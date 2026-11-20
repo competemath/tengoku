@@ -34,9 +34,15 @@ variable (B : LinearMap.BilinForm S W)
 
 def IsIntegral (N : Submodule R W) : Prop := N ≤ B.dualSubmodule N
 
+/--
+@isnad1 id=iff.0h5v.s8.9f625f42e248 from=translated src=- shape=7ccf4f61 vocab=5dba8225
+-/
 theorem integral_iff_le_dual {N : Submodule R W} :
     IsIntegral B N ↔ N ≤ B.dualSubmodule N := Iff.rfl
 
+/--
+@isnad1 id=iff.0h5v.s9.1bc4f0daa3a7 from=translated src=- shape=73976ed0 vocab=d10525a6
+-/
 theorem isIntegral_iff_forall {N : Submodule R W} :
     IsIntegral B N ↔ ∀ u ∈ N, ∀ v ∈ N, B u v ∈ (1 : Submodule R S) :=
   ⟨fun h _ hu v hv => h hu v hv, fun h _ hu v hv => h _ hu v hv⟩
@@ -50,6 +56,9 @@ open Module
 variable {W : Type*} [AddCommGroup W] [Module ℚ W]
 variable (B : LinearMap.BilinForm ℚ W)
 
+/--
+@isnad1 id=ex.1h2v.s6.0542f8c259aa from=translated src=- shape=0b86d628 vocab=59d1fa24
+-/
 theorem exists_basis_of_isLattice {N : Submodule ℤ W} (hN : IsLattice ℚ N) :
     ∃ (n : ℕ) (b : Basis (Fin n) ℚ W), N = Submodule.span ℤ (Set.range b) := by
   classical
@@ -98,12 +107,18 @@ theorem exists_basis_of_isLattice {N : Submodule ℤ W} (hN : IsLattice ℚ N) :
   congr 1
   simp [Basis.coe_mk]
 
+/--
+@isnad1 id=eq.3h3v.s6.2a13f496376e from=translated src=- shape=3d09d68c vocab=c8dab979
+-/
 theorem dual_dual {N : Submodule ℤ W} (hN : IsLattice ℚ N)
     (hnd : B.Nondegenerate) (hsymm : B.IsSymm) :
     B.dualSubmodule (B.dualSubmodule N) = N := by
   obtain ⟨n, b, rfl⟩ := exists_basis_of_isLattice hN
   exact B.dualSubmodule_dualSubmodule_of_basis hnd hsymm b
 
+/--
+@isnad1 id=islattic.2h3v.s6.b6129de3dbeb from=translated src=- shape=0976022c vocab=b1976e25
+-/
 theorem dual_isLattice {N : Submodule ℤ W} (hN : IsLattice ℚ N)
     (hnd : B.Nondegenerate) :
     IsLattice ℚ (B.dualSubmodule N) := by
@@ -120,6 +135,9 @@ end IntegerLattice
 
 section BoundedTorsion
 
+/--
+@isnad1 id=finite.1h2v.s6.7c2027d846e6 from=translated src=- shape=ad859c0d vocab=a41ab4db
+-/
 theorem finite_of_nsmul_eq_zero {Q : Type*} [AddCommGroup Q] [Module.Finite ℤ Q]
     {n : ℕ} [NeZero n] (h : ∀ q : Q, n • q = 0) : Finite Q := by
   classical
@@ -138,6 +156,9 @@ theorem finite_of_nsmul_eq_zero {Q : Type*} [AddCommGroup Q] [Module.Finite ℤ 
   have : Module.Finite (ZMod n) Q := ⟨⟨S, hspan⟩⟩
   exact Module.finite_of_finite (ZMod n)
 
+/--
+@isnad1 id=eq.1h5v.s11.d4fb4eede83a from=translated src=- shape=b1178e07 vocab=98de4685
+-/
 theorem quotient_nsmul_eq_zero {W : Type*} [AddCommGroup W]
     {N P : Submodule ℤ W} {n : ℕ} (hsmul : ∀ y ∈ P, (n : ℤ) • y ∈ N)
     (q : P ⧸ N.comap P.subtype) : n • q = 0 := by
@@ -147,6 +168,9 @@ theorem quotient_nsmul_eq_zero {W : Type*} [AddCommGroup W]
   have hy := hsmul (y : W) y.2
   rwa [Nat.cast_smul_eq_nsmul ℤ] at hy
 
+/--
+@isnad1 id=finite.2h4v.s8.677f37da02f3 from=translated src=- shape=57cc6d37 vocab=90a9ec18
+-/
 theorem finite_quotient_of_nsmul_le {W : Type*} [AddCommGroup W]
     {N P : Submodule ℤ W} (hP : P.FG) {n : ℕ} [NeZero n]
     (hsmul : ∀ y ∈ P, (n : ℤ) • y ∈ N) :

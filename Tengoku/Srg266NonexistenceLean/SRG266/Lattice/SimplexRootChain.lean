@@ -12,6 +12,9 @@ namespace SRG266.Lattice
 
 open scoped BigOperators
 
+/--
+@isnad1 id=eq.2h3v.s10.b169b391fa85 from=translated src=- shape=1e3aec0d vocab=71b04280
+-/
 theorem simplex_pair_delete_last (n : ℕ) (x y : Fin (n+1) → ℚ)
     (hx : (∑ i, x i) = 0) (hy : (∑ i, y i) = 0) :
     simplexRatForm n (fun i => x i.castSucc) (fun i => y i.castSucc) =
@@ -26,6 +29,9 @@ theorem simplex_pair_delete_last (n : ℕ) (x y : Fin (n+1) → ℚ)
 def simplexSimpleRoot (n : ℕ) (i : Fin n) : Fin n → ℚ :=
   fun j => aSimpleVector i j.castSucc
 
+/--
+@isnad1 id=mem.0h2v.s6.8fd98ccdca8b from=translated src=- shape=55e75873 vocab=e259bbeb
+-/
 theorem simplexSimpleRoot_mem (n : ℕ) (i : Fin n) :
     simplexSimpleRoot n i ∈ coordinateIntegerLattice n := by
   refine mem_coordinateIntegerLattice.mpr
@@ -34,6 +40,9 @@ theorem simplexSimpleRoot_mem (n : ℕ) (i : Fin n) :
   intro j
   simp [simplexSimpleRoot, aSimpleVector, Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h3v.s8.86f94b49558b from=translated src=- shape=6a614808 vocab=e024ee25
+-/
 theorem simplexSimpleRoot_gram (n : ℕ) (i j : Fin n) :
     simplexRatForm n (simplexSimpleRoot n i) (simplexSimpleRoot n j) =
       (gramA n i j : ℚ) := by

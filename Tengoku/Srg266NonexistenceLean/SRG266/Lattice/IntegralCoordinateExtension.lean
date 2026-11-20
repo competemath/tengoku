@@ -21,6 +21,9 @@ noncomputable def rationalCoordinateExtension (φ : (ι → ℤ) →ₗ[ℤ] X) 
     (ι → ℚ) →ₗ[ℚ] X :=
   Fintype.linearCombination ℚ (fun i => φ (Pi.single i 1))
 
+/--
+@isnad1 id=eq.0h4v.s7.6839d681e790 from=translated src=- shape=a644370a vocab=92d92e59
+-/
 theorem rationalCoordinateExtension_intCast (φ : (ι → ℤ) →ₗ[ℤ] X) (z : ι → ℤ) :
     rationalCoordinateExtension φ (fun i => (z i : ℚ)) = φ z := by
   have hz : (∑ i, (z i) • (Pi.single i 1 : ι → ℤ)) = z := by
@@ -34,6 +37,9 @@ theorem rationalCoordinateExtension_intCast (φ : (ι → ℤ) →ₗ[ℤ] X) (z
       simp only [map_sum, map_zsmul]
     _ = φ z := congrArg φ hz
 
+/--
+@isnad1 id=surjecti.2h4v.s8.db7fc06ee072 from=translated src=- shape=d39591c5 vocab=a348fd2a
+-/
 theorem rationalCoordinateExtension_surjective
     (φ : (ι → ℤ) →ₗ[ℤ] X) (R : Set X)
     (hspan : Submodule.span ℚ R = ⊤) (hcover : ∀ r ∈ R, ∃ z, φ z = r) :
@@ -46,6 +52,9 @@ theorem rationalCoordinateExtension_surjective
   obtain ⟨z, hz⟩ := hcover r hr
   exact ⟨fun i => (z i : ℚ), (rationalCoordinateExtension_intCast φ z).trans hz⟩
 
+/--
+@isnad1 id=ex.3h4v.s9.446ae6ed7969 from=translated src=- shape=e263b350 vocab=67eed870
+-/
 theorem exists_rationalCoordinateEquiv
     (φ : (ι → ℤ) →ₗ[ℤ] X) (R : Set X)
     (hspan : Submodule.span ℚ R = ⊤) (hcover : ∀ r ∈ R, ∃ z, φ z = r)

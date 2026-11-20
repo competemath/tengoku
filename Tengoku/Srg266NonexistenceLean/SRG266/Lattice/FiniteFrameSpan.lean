@@ -14,6 +14,9 @@ open scoped BigOperators
 variable {X : Type*} [AddCommGroup X] [Module ℚ X]
 variable {F : LinearMap.BilinForm ℚ X}
 
+/--
+@isnad1 id=eq.3h5v.s10.6a175fe4617d from=translated src=- shape=89fa145c vocab=48958b04
+-/
 theorem span_eq_top_of_bilinear_moment (R : Finset X) (a b : ℚ)
     (hpd : ∀ x : X, x ≠ 0 → 0 < F x x) (hb : b ≠ 0)
     (hm : ∀ x y, a * (∑ r ∈ R, F r x * F r y) = b * F x y) :

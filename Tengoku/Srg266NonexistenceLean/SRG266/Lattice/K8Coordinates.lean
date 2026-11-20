@@ -27,35 +27,59 @@ def lattice : Submodule ℤ Space :=
 private theorem standard_integral : IsIntegral (standardRatForm 1) (coordinateIntegerLattice 1) := by
   rw [IsIntegral, standardRatForm_dual_coordinateIntegerLattice]
 
+/--
+@isnad1 id=issymm.0h0v.s7.b8126882fe04 from=translated src=- shape=54c8eceb vocab=1873e7ef
+-/
 theorem form_isSymm : form.IsSymm :=
   prodForm_isSymm (simplexRatForm_isSymm 7) (isSymm_smul_form (standardRatForm_isSymm 1) 10)
 
+/--
+@isnad1 id=lt.1h1v.s10.b4bcd929f2e9 from=translated src=- shape=e7c936f8 vocab=571d4eef
+-/
 theorem form_posDef : ∀ x : Space, x ≠ 0 → 0 < form x x :=
   prodForm_posDef (simplexRatForm_posDef 7)
     (posDef_smul_form (by norm_num) (standardRatForm_posDef 1))
 
+/--
+@isnad1 id=mem.0h0v.s8.c1486d4e15df from=translated src=- shape=355401fc vocab=95986c43
+-/
 theorem half_mem_dual : half ∈ rightForm.dualSubmodule (coordinateIntegerLattice 1) := by
   rw [rightForm, mem_dual_smul_form_iff, standardRatForm_dual_coordinateIntegerLattice]
   refine mem_coordinateIntegerLattice.mpr ⟨fun _ => 5, ?_⟩
   intro i
   norm_num [half]
 
+/--
+@isnad1 id=eq.0h0v.s10.be9095bbc255 from=translated src=- shape=bd6f62e4 vocab=faba2ca7
+-/
 theorem glueVector_norm : form glueVector glueVector = 6 := by
   norm_num [form, rightForm, glueVector, half, prodForm_apply, simplexRatForm_apply,
     standardRatForm_apply, simplexWeight, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h0v.s10.08909597eba8 from=translated src=- shape=1a9fa12e vocab=c34ca903
+-/
 theorem dualVector_norm : form dualVector dualVector = 2 / 5 := by
   norm_num [form, rightForm, dualVector, fifth, prodForm_apply, simplexRatForm_apply,
     standardRatForm_apply, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h0v.s10.0afcfd623761 from=translated src=- shape=0775d00c vocab=35360d63
+-/
 theorem dualVector_pair_glueVector : form dualVector glueVector = 1 := by
   norm_num [form, rightForm, dualVector, glueVector, half, fifth, prodForm_apply,
     simplexRatForm_apply, standardRatForm_apply, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=islattic.0h0v.s8.71d81e2316cc from=translated src=- shape=93eefbde vocab=b652f5fd
+-/
 theorem lattice_isLattice : IsLattice ℚ lattice :=
   cyclicGlueLattice_isLattice (coordinateIntegerLattice_isLattice 7)
     (coordinateIntegerLattice_isLattice 1)
 
+/--
+@isnad1 id=isintegr.0h0v.s7.2c8f1b6da3e8 from=translated src=- shape=8175f13d vocab=1e7a3485
+-/
 theorem lattice_isIntegral : IsIntegral form lattice := by
   apply cyclicGlueLattice_isIntegral (simplexRatForm_isSymm 7)
     (isSymm_smul_form (standardRatForm_isSymm 1) 10)
@@ -63,16 +87,25 @@ theorem lattice_isIntegral : IsIntegral form lattice := by
     (Submodule.smul_mem _ (2 : ℤ) (simplexWeight_mem_dual 7)) half_mem_dual
   exact mem_one_iff.mpr ⟨6, glueVector_norm.symm⟩
 
+/--
+@isnad1 id=iseven.0h0v.s7.ae19f3342d31 from=translated src=- shape=54c8eceb vocab=7dcefb73
+-/
 theorem lattice_isEven : IsEven form lattice := by
   apply cyclicGlueLattice_isEven (simplexRatForm_isSymm 7)
     (isSymm_smul_form (standardRatForm_isSymm 1) 10) lattice_isIntegral
     (simplexRatForm_isEven 7) (isEven_even_smul_form standard_integral (by decide : Even (10 : ℤ)))
   exact ⟨3, glueVector_norm.trans (by norm_num)⟩
 
+/--
+@isnad1 id=eq.0h0v.s7.d88fda3c0d53 from=translated src=- shape=b3c4969c vocab=b3a89a5a
+-/
 theorem finrank_space : Module.finrank ℚ Space = 8 := by
   rw [Module.finrank_prod]
   simp
 
+/--
+@isnad1 id=mem.0h0v.s9.c23e2eca84f7 from=translated src=- shape=568e8a8c vocab=72c735f6
+-/
 theorem dualVector_mem_dual : dualVector ∈ form.dualSubmodule lattice := by
   have hf : fifth ∈ rightForm.dualSubmodule (coordinateIntegerLattice 1) := by
     rw [rightForm, mem_dual_smul_form_iff, standardRatForm_dual_coordinateIntegerLattice]
@@ -86,6 +119,9 @@ theorem dualVector_mem_dual : dualVector ∈ form.dualSubmodule lattice := by
   · rintro _ (rfl : _ = glueVector)
     exact mem_one_iff.mpr ⟨1, dualVector_pair_glueVector.symm⟩
 
+/--
+@isnad1 id=mem.0h0v.s8.d543cb299744 from=translated src=- shape=cddf0ccc vocab=950e4cd3
+-/
 theorem five_smul_dualVector_mem : (5 : ℤ) • dualVector ∈ lattice := by
   apply Submodule.mem_sup_left
   constructor
@@ -94,6 +130,9 @@ theorem five_smul_dualVector_mem : (5 : ℤ) • dualVector ∈ lattice := by
     intro i
     norm_num [dualVector, fifth]
 
+/--
+@isnad1 id=iff.0h1v.s8.0a4fe90db7d6 from=translated src=- shape=0f1bbc81 vocab=d741ff8a
+-/
 theorem dualVector_order (m : ℤ) : m • dualVector ∈ lattice ↔ 5 ∣ m := by
   constructor
   · intro hm
@@ -107,6 +146,9 @@ theorem dualVector_order (m : ℤ) : m • dualVector ∈ lattice ↔ 5 ∣ m :=
     rw [heq]
     exact lattice.smul_mem k five_smul_dualVector_mem
 
+/--
+@isnad1 id=eq.0h0v.s10.8b6159abbeea from=translated src=- shape=f0794321 vocab=5cc0a98c
+-/
 theorem lattice_dual : form.dualSubmodule lattice = lattice ⊔ Submodule.span ℤ {dualVector} := by
   apply le_antisymm
   · intro z hz

@@ -18,6 +18,9 @@ open scoped BigOperators _root_.Matrix
 variable {V : Type*} [Fintype V] [DecidableEq V]
 variable (G : SimpleGraph V) [DecidableRel G.Adj]
 
+/--
+@isnad1 id=eq.2h6v.s13.407c1db76b70 from=translated src=- shape=123a0e89 vocab=1d8215c3
+-/
 theorem lorentzD7FrameVector_pair_localGram
     (hG : IsHypothetical G) (x : V) (c : IntegralGramLattice G x)
     (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)

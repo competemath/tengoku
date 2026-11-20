@@ -16,6 +16,9 @@ variable {P B : Type*} [Fintype P] [DecidableEq P] [Fintype B] [DecidableEq B]
 
 local notation "V" => KreinVertex (P := P) (B := B)
 
+/--
+@isnad1 id=or.4h6v.s7.9d0967f06eb2 from=translated src=- shape=62c695d3 vocab=d2b6a48b
+-/
 theorem crown_independent_triple_one_part {L R T : Finset V} (h : D.CrownParts L R)
     (hT : T.card = 3) (hTI : D.IndependentSet T) (hsub : T ⊆ L ∪ R) : T ⊆ L ∨ T ⊆ R := by
   by_cases hTL : T ⊆ L
@@ -48,6 +51,9 @@ theorem crown_independent_triple_one_part {L R T : Finset V} (h : D.CrownParts L
       rw [Finset.card_union_of_disjoint hdis] at hc
       omega
 
+/--
+@isnad1 id=eq.2h6v.s7.2c9778051ce0 from=translated src=- shape=f14bd74f vocab=1659be3e
+-/
 theorem crown_degree {L R : Finset V} (h : D.CrownParts L R) {x : V} (hx : x ∈ L ∪ R) :
     D.neighborCount (L ∪ R) x = 5 := by
   rw [D.neighborCount_union _ _ h.disjoint]

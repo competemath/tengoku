@@ -13,6 +13,9 @@ open scoped BigOperators
 
 variable {X : Type*} [AddCommGroup X] [Module ℚ X]
 
+/--
+@isnad1 id=eq.2h6v.s10.7b0db9b244f9 from=translated src=- shape=f4320c2c vocab=656c11df
+-/
 theorem orthogonal_basis_pair_expansion {κ : Type*} [Fintype κ] [DecidableEq κ]
     (B : LinearMap.BilinForm ℚ X) (b : Module.Basis κ ℚ X)
     (hb : B.IsOrthoᵢ b) (hdiag : ∀ i, B (b i) (b i) ≠ 0) (x y : X) :
@@ -27,6 +30,9 @@ theorem orthogonal_basis_pair_expansion {κ : Type*} [Fintype κ] [DecidableEq �
       rw [orthogonal_basis_pair_repr B b hb x i]
       field_simp [hdiag i]
 
+/--
+@isnad1 id=eq.3h10v.s11.f6f33dc11db7 from=translated src=- shape=73838b4b vocab=0c60b72a
+-/
 theorem rational_frame_mass_eq_quadratic_defect [FiniteDimensional ℚ X]
     {ι : Type*} [Fintype ι] (B : LinearMap.BilinForm ℚ X) (hB : B.IsSymm)
     (hpos : ∀ x, x ≠ 0 → 0 < B x x) (v : ι → X) (u w : X) (a p q r : ℚ)

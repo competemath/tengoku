@@ -14,6 +14,9 @@ namespace SRG266.Lattice
 variable {W : Type*} [AddCommGroup W] [Module ℚ W]
 variable {B : LinearMap.BilinForm ℚ W} {N : Submodule ℤ W} {u v : W}
 
+/--
+@isnad1 id=not.6h6v.s10.d47cd0de69c3 from=translated src=- shape=f3626734 vocab=26ba9d52
+-/
 theorem IsMaximalIntegral.not_integral_norm_add_smul
     (hmax : IsMaximalIntegral B N) (hs : B.IsSymm)
     (hu : u ∈ B.dualSubmodule N) (hv : v ∈ B.dualSubmodule N)
@@ -47,6 +50,9 @@ private theorem norm_add_smul (hs : B.IsSymm) (a : ℤ) :
   rw [hs.eq v u]
   ring
 
+/--
+@isnad1 id=ex.9h5v.s11.a5c1efe298a4 from=translated src=- shape=e008fd5c vocab=207fd38f
+-/
 theorem normalized_three_pair (hs : B.IsSymm) (hmax : IsMaximalIntegral B N)
     (hu : u ∈ B.dualSubmodule N) (hv : v ∈ B.dualSubmodule N)
     (hpu : (3 : ℤ) • u ∈ N) (hpv : (3 : ℤ) • v ∈ N)
@@ -96,6 +102,9 @@ theorem normalized_three_pair (hs : B.IsSymm) (hmax : IsMaximalIntegral B N)
       push_cast
       ring
 
+/--
+@isnad1 id=ex.7h5v.s11.8f0f4c3e5f34 from=translated src=- shape=e0bcdbea vocab=a81c07ec
+-/
 theorem normalized_five_pair_of_unary (hs : B.IsSymm) (hmax : IsMaximalIntegral B N)
     (hu : u ∈ B.dualSubmodule N) (hv : v ∈ B.dualSubmodule N)
     (hcross : B u v ∈ (1 : Submodule ℤ ℚ))
@@ -130,6 +139,9 @@ theorem normalized_five_pair_of_unary (hs : B.IsSymm) (hmax : IsMaximalIntegral 
     subst s
     exact ⟨v, u, by rw [Set.pair_comm v u], by rwa [hs.eq], ⟨l, hsv⟩, ⟨k, hru⟩⟩
 
+/--
+@isnad1 id=ex.9h5v.s11.9ae1d836f452 from=translated src=- shape=f27d63dc vocab=140dbd43
+-/
 theorem normalized_five_pair (hs : B.IsSymm) (hmax : IsMaximalIntegral B N)
     (hu : u ∈ B.dualSubmodule N) (hv : v ∈ B.dualSubmodule N)
     (hpu : (5 : ℤ) • u ∈ N) (hpv : (5 : ℤ) • v ∈ N)
@@ -175,6 +187,9 @@ theorem normalized_five_pair (hs : B.IsSymm) (hmax : IsMaximalIntegral B N)
   obtain ⟨f, g, hfg⟩ := hbB
   exact sup_span_pair_smul_eq hpu hpv hde hfg
 
+/--
+@isnad1 id=ex.4h4v.s10.c40d04eee776 from=translated src=- shape=5a597a07 vocab=e1c12e6e
+-/
 theorem GlueBasis.normalized_binary_three (S : GlueBasis B N 3) (hR : S.rank = 2)
     (hs : B.IsSymm) (hmax : IsMaximalIntegral B N) (he : IsEven B N) :
     ∃ x y : W, torsionPart B N 3 = N ⊔ Submodule.span ℤ {x, y} ∧
@@ -198,6 +213,9 @@ theorem GlueBasis.normalized_binary_three (S : GlueBasis B N 3) (hR : S.rank = 2
   rw [hxyspan]
   simpa only [range_fin_two_eq_pair] using hspan
 
+/--
+@isnad1 id=ex.4h4v.s10.ae85bb553973 from=translated src=- shape=5a597a07 vocab=e1c12e6e
+-/
 theorem GlueBasis.normalized_binary_five (S : GlueBasis B N 5) (hR : S.rank = 2)
     (hs : B.IsSymm) (hmax : IsMaximalIntegral B N) (he : IsEven B N) :
     ∃ x y : W, torsionPart B N 5 = N ⊔ Submodule.span ℤ {x, y} ∧

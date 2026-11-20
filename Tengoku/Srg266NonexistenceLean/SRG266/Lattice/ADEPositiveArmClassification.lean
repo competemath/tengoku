@@ -15,6 +15,9 @@ open SimpleGraph
 
 variable {V : Type*}
 
+/--
+@isnad1 id=or.5h6v.s8.de89c90e1cb4 from=translated src=- shape=904689c0 vocab=5227d549
+-/
 theorem orientedArms_are_D_or_E
     [Fintype V] [DecidableEq V] {G : SimpleGraph V} [DecidableRel G.Adj]
     (hpos : IsPositiveCartan G) (hconn : G.Connected) {z : V}

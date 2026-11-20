@@ -15,10 +15,16 @@ namespace SRG266
 variable {V : Type*} [Fintype V] [DecidableEq V]
 variable (G : SimpleGraph V) [DecidableRel G.Adj]
 
+/--
+@isnad1 id=eq.0h6v.s11.1227ce52f143 from=translated src=- shape=a6437695 vocab=e00288cb
+-/
 theorem ratGramForm_zsmul_right (x : V) (v w : ratGramSpace G x) (k : ℤ) :
     ratGramForm G x v (k • w) = (k : ℚ) * ratGramForm G x v w := by
   rw [map_zsmul, zsmul_eq_mul]
 
+/--
+@isnad1 id=eq.0h6v.s11.c5feb84fc720 from=translated src=- shape=be10eea9 vocab=e00288cb
+-/
 theorem ratGramForm_zsmul_left (x : V) (v w : ratGramSpace G x) (k : ℤ) :
     ratGramForm G x (k • v) w = (k : ℚ) * ratGramForm G x v w := by
   calc ratGramForm G x (k • v) w
@@ -26,6 +32,9 @@ theorem ratGramForm_zsmul_left (x : V) (v w : ratGramSpace G x) (k : ℤ) :
     _ = (k : ℚ) * ratGramForm G x w v := ratGramForm_zsmul_right G x w v k
     _ = (k : ℚ) * ratGramForm G x v w := by rw [(ratGramForm_isSymm G x).eq w v]
 
+/--
+@isnad1 id=eq.0h4v.s10.bc43259b1435 from=translated src=- shape=f0e3d174 vocab=a538f116
+-/
 theorem ratGramSpace_mk_eq_sum_smul_generator (x : V)
     (a : SecondSubconstituent G x → ℚ) :
     (Submodule.Quotient.mk a : ratGramSpace G x) =
@@ -52,6 +61,9 @@ theorem eq_zero_of_ratPairing_generators_eq_zero (hG : IsHypothetical G) (x : V)
   refine Finset.sum_eq_zero fun B _ => ?_
   rw [map_smul, LinearMap.smul_apply, smul_eq_mul, h B, mul_zero]
 
+/--
+@isnad1 id=eq.2h5v.s9.39a3e46dcd33 from=translated src=- shape=49df3ac1 vocab=a4180495
+-/
 theorem gram_frame_identity (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
     (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
@@ -84,6 +96,9 @@ theorem gram_frame_identity (hG : IsHypothetical G) (x : V)
   rw [map_sub, LinearMap.sub_apply, hlhs, hrhs, hmul]
   ring
 
+/--
+@isnad1 id=eq.2h5v.s11.89a101cd0813 from=translated src=- shape=b92c4cd8 vocab=5808fce5
+-/
 theorem ratGram_frame_identity (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
     (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
@@ -97,6 +112,9 @@ theorem ratGram_frame_identity (hG : IsHypothetical G) (x : V)
   rw [← h]
   exact Finset.sum_congr rfl fun C _ => (map_smul _ _ _).symm
 
+/--
+@isnad1 id=isintegr.0h3v.s7.6bcb53dfb3cf from=translated src=- shape=7de0927b vocab=50346b91
+-/
 theorem gramLattice_isIntegral (x : V) :
     Lattice.IsIntegral (ratGramForm G x) (gramLattice G x) := by
   rw [Lattice.isIntegral_iff_forall]
@@ -104,15 +122,24 @@ theorem gramLattice_isIntegral (x : V) :
   rw [toRatSpace_pairing]
   exact Submodule.mem_one.mpr ⟨integralGramPairing G x a b, by simp⟩
 
+/--
+@isnad1 id=le.0h3v.s9.d8acff52c95d from=translated src=- shape=ba57d128 vocab=1c8b63c4
+-/
 theorem gramLattice_le_dual (x : V) :
     gramLattice G x ≤ (ratGramForm G x).dualSubmodule (gramLattice G x) :=
   gramLattice_isIntegral G x
 
+/--
+@isnad1 id=islattic.1h3v.s8.0056f4c846e9 from=translated src=- shape=30412d87 vocab=d49fd181
+-/
 theorem gramLattice_dual_isLattice (hG : IsHypothetical G) (x : V) :
     Lattice.IsLattice ℚ ((ratGramForm G x).dualSubmodule (gramLattice G x)) :=
   Lattice.dual_isLattice (ratGramForm G x) (gramLattice_isLattice G x)
     (ratGramForm_nondegenerate G hG x)
 
+/--
+@isnad1 id=mem.2h4v.s10.dba21864ac9a from=translated src=- shape=db6638fe vocab=b85c3ce8
+-/
 theorem gram_dual_denominator (hG : IsHypothetical G) (x : V) :
     ∀ y ∈ (ratGramForm G x).dualSubmodule (gramLattice G x),
       (225 : ℤ) • y ∈ gramLattice G x := by
@@ -184,11 +211,17 @@ abbrev gramDualQuotient (x : V) :=
     (gramLattice G x).comap
       ((ratGramForm G x).dualSubmodule (gramLattice G x)).subtype
 
+/--
+@isnad1 id=eq.1h4v.s12.5d91ae975d10 from=translated src=- shape=14c08488 vocab=3c17e6e0
+-/
 theorem gramDualQuotient_nsmul_eq_zero (hG : IsHypothetical G) (x : V)
     (q : gramDualQuotient G x) : (225 : ℕ) • q = 0 :=
   Lattice.quotient_nsmul_eq_zero
     (fun w hw => by simpa using gram_dual_denominator G hG x w hw) q
 
+/--
+@isnad1 id=finite.1h3v.s5.bbdd210ce3d4 from=translated src=- shape=b07a5bad vocab=d80f7e10
+-/
 theorem gramLattice_dual_quotient_finite (hG : IsHypothetical G) (x : V) :
     Finite (gramDualQuotient G x) :=
   Lattice.finite_quotient_of_nsmul_le

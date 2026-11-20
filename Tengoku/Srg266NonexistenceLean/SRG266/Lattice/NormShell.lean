@@ -12,6 +12,9 @@ namespace SRG266.Lattice
 def NormShell {n : ℕ} (L : PDUnimodularLattice n) (q : ℕ) :=
   {v : L.carrier // L.pairing v v = (q : ℤ)}
 
+/--
+@isnad1 id=finite.0h3v.s3.4702a86d5aa6 from=translated src=- shape=364cbd43 vocab=1e09ccbb
+-/
 theorem normShell_finite {n : ℕ} (L : PDUnimodularLattice n) (q : ℕ) :
     Finite (NormShell L q) := by
   let := L.moduleFree
@@ -46,6 +49,9 @@ theorem normShell_finite {n : ℕ} (L : PDUnimodularLattice n) (q : ℕ) :
     funext i
     exact congrArg Subtype.val (congrFun hrs i)
 
+/--
+@isnad1 id=finite.0h3v.s3.4702a86d5aa6 from=translated src=- shape=364cbd43 vocab=1e09ccbb
+-/
 noncomputable instance normShellFinite {n : ℕ}
     (L : PDUnimodularLattice n) (q : ℕ) : Finite (NormShell L q) :=
   normShell_finite L q

@@ -23,6 +23,9 @@ noncomputable def harmonicThetaSeries
     (N : PDUnimodularLattice 24) (x y : N.carrier) : PowerSeries ℂ :=
   PowerSeries.mk fun k => (harmonicThetaCoefficient N x y k : ℂ)
 
+/--
+@isnad1 id=eq.0h4v.s7.9ffdca042601 from=translated src=- shape=5d439f1f vocab=78252b8a
+-/
 @[simp]
 theorem harmonicThetaSeries_coeff
     (N : PDUnimodularLattice 24) (x y : N.carrier) (k : ℕ) :

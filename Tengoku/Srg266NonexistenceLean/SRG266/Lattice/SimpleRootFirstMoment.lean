@@ -11,6 +11,9 @@ namespace SRG266.Lattice
 
 open scoped BigOperators
 
+/--
+@isnad1 id=eq.0h4v.s11.e8cb6c691cd2 from=translated src=- shape=c4145983 vocab=12153491
+-/
 theorem reflectNormTwoRoot_pairing {n : ℕ} (L : PDUnimodularLattice n)
     (a r : NormTwoRoot L) :
     L.pairing (reflectNormTwoRoot L a r).1 a.1 = -L.pairing r.1 a.1 := by
@@ -18,6 +21,9 @@ theorem reflectNormTwoRoot_pairing {n : ℕ} (L : PDUnimodularLattice n)
     LinearMap.smul_apply, zsmul_eq_mul, Int.cast_id, a.2]
   ring
 
+/--
+@isnad1 id=involuti.0h3v.s4.b52e36fd768c from=translated src=- shape=ee8cbc46 vocab=d57d4814
+-/
 theorem reflectNormTwoRoot_involutive {n : ℕ} (L : PDUnimodularLattice n)
     (a : NormTwoRoot L) : Function.Involutive (reflectNormTwoRoot L a) := by
   intro r
@@ -26,12 +32,18 @@ theorem reflectNormTwoRoot_involutive {n : ℕ} (L : PDUnimodularLattice n)
   simp only [neg_zsmul, sub_neg_eq_add]
   abel
 
+/--
+@isnad1 id=eq.0h3v.s4.967a58956110 from=translated src=- shape=e66419a2 vocab=7e6e337a
+-/
 theorem reflectNormTwoRoot_self {n : ℕ} (L : PDUnimodularLattice n)
     (a : NormTwoRoot L) : reflectNormTwoRoot L a a = -a := by
   apply Subtype.ext
   simp only [reflectNormTwoRoot_val, a.2, NormTwoRoot.coe_neg, two_zsmul]
   abel
 
+/--
+@isnad1 id=lt.4h5v.s10.737c6f885117 from=translated src=- shape=38625846 vocab=9e51619e
+-/
 theorem reflectNormTwoRoot_simple_positive {n : ℕ} {L : PDUnimodularLattice n}
     (f : L.carrier →+ ℤ) (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0)
     {a r : NormTwoRoot L} (ha : a ∈ simpleRootSet f)
@@ -47,6 +59,9 @@ theorem reflectNormTwoRoot_simple_positive {n : ℕ} {L : PDUnimodularLattice n}
     simp only [reflectNormTwoRoot_val, map_sub, map_zsmul, zsmul_eq_mul, Int.cast_id]
     nlinarith
 
+/--
+@isnad1 id=eq.2h4v.s11.1b2c4ffb825e from=translated src=- shape=8edb6a1a vocab=f54340c7
+-/
 theorem normTwoRoot_positive_sum_pairing_simple
     {n : ℕ} (L : PDUnimodularLattice n)
     (f : L.carrier →+ ℤ) (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0)

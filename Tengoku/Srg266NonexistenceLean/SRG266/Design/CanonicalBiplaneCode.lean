@@ -19,10 +19,16 @@ variable {P : Type*} [DecidableEq P] (K : CoherentK11System P)
 noncomputable def closedStar (p : P) (a : Fin 11) : Finset P :=
   insert p ((Edge11.star a).image fun e => ((K.coordinate p).symm e).val)
 
+/--
+@isnad1 id=mem.0h4v.s5.413fb41e6f77 from=translated src=- shape=6fada19b vocab=c6139261
+-/
 theorem root_mem_closedStar (p : P) (a : Fin 11) : p ∈ K.closedStar p a := by
   classical
   exact Finset.mem_insert_self _ _
 
+/--
+@isnad1 id=eq.0h4v.s5.d17f1314bf7d from=translated src=- shape=9558e52e vocab=d3d57cae
+-/
 theorem card_closedStar (p : P) (a : Fin 11) : (K.closedStar p a).card = 11 := by
   classical
   have hi : Function.Injective (fun e => ((K.coordinate p).symm e).val) :=
@@ -34,6 +40,9 @@ theorem card_closedStar (p : P) (a : Fin 11) : (K.closedStar p a).card = 11 := b
   rw [closedStar, Finset.card_insert_of_notMem hn,
     Finset.card_image_of_injective _ hi, Edge11.card_star]
 
+/--
+@isnad1 id=iff.0h5v.s7.257fcdcac6d1 from=translated src=- shape=f38a3735 vocab=72e58b46
+-/
 theorem coordinate_mem_closedStar (p : P) (q : {q : P // q ≠ p}) (a : Fin 11) :
     q.val ∈ K.closedStar p a ↔ a ∈ (K.coordinate p q).vertices := by
   classical
@@ -62,13 +71,22 @@ def ternaryColumn (B : Fin 210) : Fin 56 → ZMod 3 :=
 def ternaryCode : Submodule (ZMod 3) (Fin 56 → ZMod 3) :=
   Submodule.span (ZMod 3) (Set.range Q.ternaryColumn)
 
+/--
+@isnad1 id=mem.0h2v.s9.1eb385cc1837 from=translated src=- shape=6508d683 vocab=693cc8f2
+-/
 theorem ternaryColumn_mem (B : Fin 210) : Q.ternaryColumn B ∈ Q.ternaryCode :=
   Submodule.subset_span ⟨B, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.10631d1c7e26 from=translated src=- shape=8a38d797 vocab=ac3e53dd
+-/
 theorem ternaryColumn_apply (B : Fin 210) (p : Fin 56) :
     Q.ternaryColumn B p = if Q.matrix p B = 1 then 1 else 0 := by
   rcases Q.entry_cases p B with h | h <;> simp [ternaryColumn, h]
 
+/--
+@isnad1 id=eq.0h3v.s7.e5f6f0c0988e from=translated src=- shape=2c0b50c4 vocab=7ebedb0d
+-/
 theorem ternaryColumn_dot_eq_zero (B D : Fin 210) :
     dotProduct (Q.ternaryColumn B) (Q.ternaryColumn D) = 0 := by
   have heq : dotProduct (Q.ternaryColumn B) (Q.ternaryColumn D) =
@@ -86,6 +104,9 @@ theorem ternaryColumn_dot_eq_zero (B D : Fin 210) :
     simp only [Matrix.mul_apply, Matrix.transpose_apply] at hi
     rcases hi with hi | hi <;> rw [hi] <;> decide
 
+/--
+@isnad1 id=eq.2h3v.s10.992ddb4dfb99 from=translated src=- shape=1284772d vocab=e11a450a
+-/
 theorem ternaryCode_selfOrthogonal
     {u v : Fin 56 → ZMod 3} (hu : u ∈ Q.ternaryCode) (hv : v ∈ Q.ternaryCode) :
     dotProduct u v = 0 := by
@@ -103,9 +124,15 @@ theorem ternaryCode_selfOrthogonal
 def pairGramWord (p q : Fin 56) : Fin 56 → ZMod 3 :=
   ∑ B ∈ Q.blocksThroughPair p q, Q.ternaryColumn B
 
+/--
+@isnad1 id=mem.0h3v.s9.3ee34d436611 from=translated src=- shape=6a1372c2 vocab=5f2000a1
+-/
 theorem pairGramWord_mem (p q : Fin 56) : Q.pairGramWord p q ∈ Q.ternaryCode :=
   Submodule.sum_mem _ fun B _ => Q.ternaryColumn_mem B
 
+/--
+@isnad1 id=eq.0h4v.s6.dd18bad619ac from=translated src=- shape=9136f80c vocab=203d1568
+-/
 theorem pairGramWord_apply (p q x : Fin 56) :
     Q.pairGramWord p q x = (Q.tripleMultiplicity p q x : ZMod 3) := by
   classical
@@ -118,6 +145,9 @@ theorem pairGramWord_apply (p q x : Fin 56) :
   ext B
   simp [blocksThroughPair, blocksThroughTriple, and_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s6.b27993d2e502 from=translated src=- shape=8e403f99 vocab=6364a50a
+-/
 theorem pairGramWord_at_root (p : Fin 56) (q : {q : Fin 56 // q ≠ p}) :
     Q.pairGramWord p q p = 0 := by
   rw [Q.pairGramWord_apply]
@@ -130,6 +160,9 @@ theorem pairGramWord_at_root (p : Fin 56) (q : {q : Fin 56 // q ≠ p}) :
   rw [heq, Q.card_blocksThroughPair q.property.symm]
   decide
 
+/--
+@isnad1 id=eq.0h4v.s9.2837af2aa887 from=translated src=- shape=2b3cfcf6 vocab=5e6e6c0c
+-/
 theorem pairGramWord_add_vmeet (p : Fin 56)
     (q x : {q : Fin 56 // q ≠ p}) :
     Q.pairGramWord p q x +
@@ -154,6 +187,9 @@ noncomputable def localStarVector (p : Fin 56) (a : Fin 11) : Fin 56 → ZMod 3 
   fun x => if hx : x = p then 0
     else if a ∈ (Q.toCoherentK11System.coordinate p ⟨x, hx⟩).vertices then 1 else 0
 
+/--
+@isnad1 id=eq.1h4v.s9.d0c4816f3e1e from=translated src=- shape=00342215 vocab=c226a6f3
+-/
 theorem edgePairGram_identity (p : Fin 56) (a b : Fin 11) (hab : a ≠ b) :
     Q.pairGramWord p ((Q.toCoherentK11System.coordinate p).symm (Edge11.mk' hab)) =
       (2 : ZMod 3) • outsideOne p - Q.localStarVector p a - Q.localStarVector p b := by
@@ -188,6 +224,9 @@ theorem edgePairGram_identity (p : Fin 56) (a b : Fin 11) (hab : a ≠ b) :
     rw [ha, hb] at h
     linear_combination h
 
+/--
+@isnad1 id=mem.0h3v.s9.9e644f08b142 from=translated src=- shape=405c91c8 vocab=2734ab25
+-/
 theorem complementedStar_mem_ternaryCode (p : Fin 56) (a : Fin 11) :
     outsideOne p - Q.localStarVector p a ∈ Q.ternaryCode := by
   obtain ⟨b, c, hba, hca, hbc⟩ := exists_two_ne a
@@ -201,6 +240,9 @@ theorem complementedStar_mem_ternaryCode (p : Fin 56) (a : Fin 11) :
   · rw [← Q.edgePairGram_identity p b c hbc]
     exact Q.pairGramWord_mem _ _
 
+/--
+@isnad1 id=eq.0h3v.s7.da82e2e2646e from=translated src=- shape=0df1adf3 vocab=10e5459f
+-/
 theorem complementVector_closedStar (p : Fin 56) (a : Fin 11) :
     TernaryStarRecovery.complementVector (Q.toCoherentK11System.closedStar p a) =
       outsideOne p - Q.localStarVector p a := by
@@ -218,6 +260,9 @@ theorem complementVector_closedStar (p : Fin 56) (a : Fin 11) :
     simp only [hm]
     split <;> simp
 
+/--
+@isnad1 id=eq.0h5v.s7.eb3be829321f from=translated src=- shape=8b81a397 vocab=b44974fd
+-/
 theorem closedStar_overlap_mod_three (p q : Fin 56) (a b : Fin 11) :
     (((Q.toCoherentK11System.closedStar p a ∩
       Q.toCoherentK11System.closedStar q b).card : ℕ) : ZMod 3) = 2 := by

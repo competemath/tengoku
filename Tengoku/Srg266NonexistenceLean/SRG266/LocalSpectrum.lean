@@ -20,6 +20,9 @@ def localSupportNumerator (x : V) :
     Matrix (SecondSubconstituent G x) (SecondSubconstituent G x) ℤ :=
   fun B C => 11 * localGramMatrix G x B C - 6
 
+/--
+@isnad1 id=eq.0h3v.s8.8281ea369664 from=translated src=- shape=a684f74f vocab=1282d0e2
+-/
 theorem localSupportNumerator_eq_linear_combination
     (x : V) :
     localSupportNumerator G x =
@@ -38,6 +41,9 @@ theorem localSupportNumerator_eq_linear_combination
   rw [nsmulMatrix_apply, nsmulMatrix_apply]
   simp [localSupportNumerator]
 
+/--
+@isnad1 id=eq.1h3v.s8.0bb2ee57585f from=translated src=- shape=744d97c8 vocab=e1bc3083
+-/
 theorem localSupportNumerator_sq
     (hG : IsHypothetical G) (x : V) :
     localSupportNumerator G x * localSupportNumerator G x =
@@ -70,6 +76,9 @@ theorem localSupportNumerator_sq
       rw [hLL, hLJ, hJL, hJJ]
       noncomm_ring
 
+/--
+@isnad1 id=eq.1h5v.s7.bb672cbde079 from=translated src=- shape=0ca0dd86 vocab=0f43daf3
+-/
 theorem localSupportNumerator_sq_apply
     (hG : IsHypothetical G) (x : V)
     (B C : SecondSubconstituent G x) :
@@ -82,6 +91,9 @@ theorem localSupportNumerator_sq_apply
   rw [nsmulMatrix_apply] at h
   exact h
 
+/--
+@isnad1 id=eq.1h3v.s8.76e79ef2a474 from=translated src=- shape=5c860aff vocab=ee659f9d
+-/
 theorem localSupportNumerator_mul_localGram
     (hG : IsHypothetical G) (x : V) :
     localSupportNumerator G x * localGramMatrix G x =
@@ -101,6 +113,9 @@ theorem localSupportNumerator_mul_localGram
   rw [hP]
   noncomm_ring [hLL, hJL]
 
+/--
+@isnad1 id=eq.1h3v.s8.5f71600581f9 from=translated src=- shape=1833a636 vocab=ac2868ac
+-/
 theorem fifteen_smul_localSupportNumerator
     (hG : IsHypothetical G) (x : V) :
     (15 : ℕ) • localSupportNumerator G x =
@@ -130,6 +145,9 @@ noncomputable def localSupportProjector (x : V) :
     Matrix (SecondSubconstituent G x) (SecondSubconstituent G x) ℝ :=
   fun B C => (localSupportNumerator G x B C : ℝ) / 495
 
+/--
+@isnad1 id=eq.1h3v.s7.568f1139a3d9 from=translated src=- shape=2ebfb7e4 vocab=9860944c
+-/
 theorem localSupportProjector_idempotent
     (hG : IsHypothetical G) (x : V) :
     localSupportProjector G x * localSupportProjector G x =
@@ -167,6 +185,9 @@ theorem localSupportProjector_idempotent
       push_cast
       ring
 
+/--
+@isnad1 id=eq.1h3v.s6.c0935a1e70f3 from=translated src=- shape=2c759236 vocab=83ef8fc1
+-/
 theorem localSupportProjector_trace
     (hG : IsHypothetical G) (x : V) :
     (localSupportProjector G x).trace = 12 := by
@@ -183,6 +204,9 @@ theorem localSupportProjector_trace
   simp [secondSubconstituent_card G hG x]
   norm_num
 
+/--
+@isnad1 id=eq.2h4v.s6.bc090ec96149 from=translated src=- shape=36106406 vocab=e576a7ed
+-/
 theorem rank_eq_nat_of_idempotent_trace
     {K : Type*} [Field K] [CharZero K]
     {ι : Type*} [Fintype ι] [DecidableEq ι]
@@ -205,6 +229,9 @@ theorem rank_eq_nat_of_idempotent_trace
     (Pi.basisFun K ι) (Pi.basisFun K ι), Matrix.toLin_eq_toLin']
   exact hfinrank
 
+/--
+@isnad1 id=eq.1h3v.s6.d409158705d4 from=translated src=- shape=d95d0888 vocab=f5085fdb
+-/
 theorem localSupportProjector_rank
     (hG : IsHypothetical G) (x : V) :
     (localSupportProjector G x).rank = 12 :=
@@ -213,6 +240,9 @@ theorem localSupportProjector_rank
     (localSupportProjector_idempotent G hG x)
     (localSupportProjector_trace G hG x)
 
+/--
+@isnad1 id=eq.1h3v.s7.d092afce261b from=translated src=- shape=7acdee51 vocab=2ae7d78c
+-/
 theorem localSupportProjector_mul_localGramMatrixReal
     (hG : IsHypothetical G) (x : V) :
     localSupportProjector G x * localGramMatrixReal G x =
@@ -260,6 +290,9 @@ def localGramRankFactorNumerator (x : V) :
     Matrix (SecondSubconstituent G x) (SecondSubconstituent G x) ℤ :=
   fun B C => (if B = C then 210 else 0) - localGramMatrix G x B C
 
+/--
+@isnad1 id=eq.0h3v.s8.d3b0eed7d3a7 from=translated src=- shape=b21f80b6 vocab=964353d4
+-/
 theorem localGramRankFactorNumerator_eq_linear_combination
     (x : V) :
     localGramRankFactorNumerator G x =
@@ -277,6 +310,9 @@ theorem localGramRankFactorNumerator_eq_linear_combination
   by_cases hBC : B = C <;>
     simp [localGramRankFactorNumerator, hBC, Matrix.one_apply]
 
+/--
+@isnad1 id=eq.1h3v.s8.e0b981e6ab70 from=translated src=- shape=844b80e8 vocab=96e66734
+-/
 theorem fifteen_smul_localSupportNumerator_factor
     (hG : IsHypothetical G) (x : V) :
     (15 : ℕ) • localSupportNumerator G x =
@@ -288,6 +324,9 @@ noncomputable def localGramRankFactor (x : V) :
     Matrix (SecondSubconstituent G x) (SecondSubconstituent G x) ℝ :=
   fun B C => (localGramRankFactorNumerator G x B C : ℝ) / 7425
 
+/--
+@isnad1 id=eq.1h3v.s7.562ccebb9f16 from=translated src=- shape=7acdee51 vocab=0acddd2b
+-/
 theorem localGramMatrixReal_mul_rankFactor
     (hG : IsHypothetical G) (x : V) :
     localGramMatrixReal G x * localGramRankFactor G x =
@@ -333,6 +372,9 @@ theorem localGramMatrixReal_mul_rankFactor
       push_cast
       ring
 
+/--
+@isnad1 id=eq.1h3v.s6.120a90e46fdc from=translated src=- shape=d95d0888 vocab=d9adaef8
+-/
 theorem localGramMatrixReal_rank
     (hG : IsHypothetical G) (x : V) :
     (localGramMatrixReal G x).rank = 12 := by
@@ -358,6 +400,9 @@ theorem localGramMatrixReal_rank
   omega
 
 omit [DecidableEq V] [DecidableRel G.Adj] in
+/--
+@isnad1 id=possemid.0h3v.s5.aee6869ea4fe from=translated src=- shape=aa36f94d vocab=da6279eb
+-/
 theorem realAllOnesMatrix_posSemidef
     (x : V) :
     (allOnesMatrix :
@@ -378,6 +423,9 @@ theorem realAllOnesMatrix_posSemidef
   rw [heq] at h
   exact h
 
+/--
+@isnad1 id=eq.0h3v.s8.b2ab5acb2c45 from=translated src=- shape=33d75694 vocab=c2fc4592
+-/
 theorem localGramMatrixReal_eq_projectors
     (x : V) :
     localGramMatrixReal G x =
@@ -402,6 +450,9 @@ theorem localGramMatrixReal_eq_projectors
   push_cast
   ring
 
+/--
+@isnad1 id=possemid.1h3v.s5.d2ddeddecc3e from=translated src=- shape=df9ada21 vocab=750b372c
+-/
 theorem localGramMatrixReal_posSemidef
     (hG : IsHypothetical G) (x : V) :
     (localGramMatrixReal G x).PosSemidef := by

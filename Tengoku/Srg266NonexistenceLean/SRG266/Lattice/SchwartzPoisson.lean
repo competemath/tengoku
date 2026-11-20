@@ -20,6 +20,9 @@ open scoped FourierTransform RealInnerProductSpace
 def standardCubeIoc (n : ℕ) : Set (Fin n → ℝ) :=
   {x | ∀ i, x i ∈ Set.Ioc (0 : ℝ) 1}
 
+/--
+@isnad1 id=eventual.0h1v.s7.4d5380373c99 from=translated src=- shape=a1658440 vocab=c225fca9
+-/
 theorem standardCubeIoc_ae_eq_fundamentalDomain (n : ℕ) :
     standardCubeIoc n =ᵐ[volume]
       ZSpan.fundamentalDomain (Pi.basisFun ℝ (Fin n)) := by
@@ -31,6 +34,9 @@ theorem standardCubeIoc_ae_eq_fundamentalDomain (n : ℕ) :
   rw [hcube]
   exact Measure.pi_Ioc_ae_eq_pi_Icc.trans Measure.pi_Ico_ae_eq_pi_Icc.symm
 
+/--
+@isnad1 id=eq.0h1v.s6.930097b40606 from=translated src=- shape=529c28aa vocab=abd504d4
+-/
 @[simp]
 theorem volume_standardCubeIoc (n : ℕ) :
     volume (standardCubeIoc n) = 1 := by
@@ -45,6 +51,9 @@ def closedUnitCubeEuclidean (n : ℕ) :
     Set (EuclideanSpace ℝ (Fin n)) :=
   {x | ∀ i, x i ∈ Set.Icc (0 : ℝ) 1}
 
+/--
+@isnad1 id=iscompac.0h1v.s5.10cc9b43cc40 from=translated src=- shape=5a85d845 vocab=6f9b7074
+-/
 theorem isCompact_closedUnitCubeEuclidean (n : ℕ) :
     IsCompact (closedUnitCubeEuclidean n) := by
   have hcoord : IsCompact
@@ -56,6 +65,9 @@ theorem isCompact_closedUnitCubeEuclidean (n : ℕ) :
   ext x
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.89aa4dc25c6c from=translated src=- shape=ff2bce54 vocab=fd481645
+-/
 theorem mFourier_add_int {n : ℕ} (a m : Fin n → ℤ) (x : Fin n → ℝ) :
     UnitAddTorus.mFourier m
         (fun i ↦ (((a i : ℝ) + x i : ℝ) : UnitAddCircle)) =
@@ -72,6 +84,9 @@ def intVectorEquivStandardIntegerAddSubgroup (n : ℕ) :
       left_inv := fun _ ↦ rfl
       right_inv := fun _ ↦ rfl }
 
+/--
+@isnad1 id=eq.0h2v.s9.b7065b0238f3 from=translated src=- shape=b79cc4db vocab=50d44652
+-/
 @[simp]
 theorem coe_intVectorEquivStandardIntegerAddSubgroup {n : ℕ} (z : Fin n → ℤ) :
     ((intVectorEquivStandardIntegerAddSubgroup n z :
@@ -79,6 +94,9 @@ theorem coe_intVectorEquivStandardIntegerAddSubgroup {n : ℕ} (z : Fin n → �
         fun i ↦ (z i : ℝ) := by
   exact coe_intVectorEquivStandardIntegerLattice z
 
+/--
+@isnad1 id=eq.0h3v.s8.342fbc1a501b from=translated src=- shape=76b188ee vocab=049d716f
+-/
 theorem mFourier_neg_eq_fourierChar_inner {n : ℕ}
     (m : Fin n → ℤ) (x : Fin n → ℝ) :
     UnitAddTorus.mFourier (-m) (fun i => (x i : UnitAddCircle)) =
@@ -103,12 +121,18 @@ def coordinatePoissonKernel {n : ℕ}
   UnitAddTorus.mFourier (-m) (fun i => (x i : UnitAddCircle)) •
     f (WithLp.toLp 2 x)
 
+/--
+@isnad1 id=continuo.0h3v.s6.471ea7211bce from=translated src=- shape=9607a290 vocab=570777d6
+-/
 theorem coordinatePoissonKernel_continuous {n : ℕ}
     (f : C(EuclideanSpace ℝ (Fin n), ℂ)) (m : Fin n → ℤ) :
     Continuous (coordinatePoissonKernel f m) := by
   unfold coordinatePoissonKernel
   fun_prop
 
+/--
+@isnad1 id=integrab.1h3v.s8.5f2e4f825558 from=translated src=- shape=b1451339 vocab=da6fe3ff
+-/
 theorem coordinatePoissonKernel_integrable {n : ℕ}
     (f : C(EuclideanSpace ℝ (Fin n), ℂ)) (hf : Integrable f)
     (m : Fin n → ℤ) :
@@ -124,6 +148,9 @@ theorem coordinatePoissonKernel_integrable {n : ℕ}
   apply (PiLp.volume_preserving_toLp (Fin n)).integrable_comp_of_integrable
   exact (Real.fourierIntegral_convergent_iff (intVectorToReal m)).2 hf
 
+/--
+@isnad1 id=summable.1h3v.s10.240000a3d664 from=translated src=- shape=6801f463 vocab=3f2a4127
+-/
 theorem summable_cube_integral_norm_coordinatePoissonKernel {n : ℕ}
     (f : C(EuclideanSpace ℝ (Fin n), ℂ))
     (hf : LocallyNormallySummableIntegerTranslates f)
@@ -191,6 +218,9 @@ theorem summable_cube_integral_norm_coordinatePoissonKernel {n : ℕ}
     _ = ‖(integerTranslate f z).restrict K‖ := by
       simp [measureReal_def, volume_standardCubeIoc]
 
+/--
+@isnad1 id=eq.1h3v.s11.877b502a97fc from=translated src=- shape=de2bf5c6 vocab=a6007745
+-/
 theorem integral_coordinatePoissonKernel_eq_tsum_cube {n : ℕ}
     (f : C(EuclideanSpace ℝ (Fin n), ℂ)) (hf : Integrable f)
     (m : Fin n → ℤ) :
@@ -234,6 +264,9 @@ theorem integral_coordinatePoissonKernel_eq_tsum_cube {n : ℕ}
       simp only [coe_intVectorEquivStandardIntegerAddSubgroup,
         coe_intVectorEquivStandardIntegerLattice]
 
+/--
+@isnad1 id=eq.1h3v.s11.721dae0085b8 from=translated src=- shape=f0178006 vocab=27058760
+-/
 theorem tsum_cube_integral_coordinatePoissonKernel {n : ℕ}
     (f : C(EuclideanSpace ℝ (Fin n), ℂ))
     (hf : LocallyNormallySummableIntegerTranslates f)
@@ -263,6 +296,9 @@ theorem tsum_cube_integral_coordinatePoissonKernel {n : ℕ}
     exact ⟨le_of_lt (hx i).1, (hx i).2⟩
   · exact summable_cube_integral_norm_coordinatePoissonKernel f hf m
 
+/--
+@isnad1 id=eq.0h5v.s11.765f11c708fe from=translated src=- shape=76e6c299 vocab=9ab93920
+-/
 theorem coordinatePoissonKernel_add_int {n : ℕ}
     (f : C(EuclideanSpace ℝ (Fin n), ℂ))
     (m z : Fin n → ℤ) (x : Fin n → ℝ) :
@@ -283,6 +319,9 @@ theorem coordinatePoissonKernel_add_int {n : ℕ}
   ext i
   simp [intVectorToReal, add_comm]
 
+/--
+@isnad1 id=eq.0h4v.s11.87ac8e925484 from=translated src=- shape=a333c103 vocab=ffcb6bb3
+-/
 theorem tsum_coordinatePoissonKernel_add_int {n : ℕ}
     (f : C(EuclideanSpace ℝ (Fin n), ℂ))
     (m : Fin n → ℤ) (x : Fin n → ℝ) :
@@ -295,6 +334,9 @@ theorem tsum_coordinatePoissonKernel_add_int {n : ℕ}
   rw [tsum_congr fun z ↦ coordinatePoissonKernel_add_int f m z x]
   exact tsum_const_smul'' _
 
+/--
+@isnad1 id=eq.0h3v.s9.f1b66350c83d from=translated src=- shape=947349dd vocab=21819c81
+-/
 theorem integral_mFourier_kernel_eq_fourier {n : ℕ}
     (f : C(EuclideanSpace ℝ (Fin n), ℂ)) (m : Fin n → ℤ) :
     (∫ x : Fin n → ℝ,

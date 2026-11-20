@@ -21,12 +21,18 @@ noncomputable def centroidHeight (x : V)
     ratGramSpace G x →ₗ[ℚ] ℚ :=
   (1 / 15 : ℚ) • ratGramForm G x (toRatSpace G x c)
 
+/--
+@isnad1 id=eq.0h5v.s11.60fb68f739de from=translated src=- shape=d7fe033c vocab=7272cead
+-/
 theorem centroidHeight_apply (x : V)
     (c : IntegralGramLattice G x) (z : ratGramSpace G x) :
     centroidHeight G x c z =
       (1 / 15 : ℚ) * ratGramForm G x (toRatSpace G x c) z := by
   rfl
 
+/--
+@isnad1 id=eq.2h5v.s10.0b49242ffb0f from=translated src=- shape=e7677cec vocab=908c5618
+-/
 @[simp]
 theorem centroidHeight_generator
     (hG : IsHypothetical G) (x : V)
@@ -39,6 +45,9 @@ theorem centroidHeight_generator
     integral_centroid_pairing_generator G hG x c hc B]
   norm_num
 
+/--
+@isnad1 id=eq.2h4v.s10.33d21a4fdfc8 from=translated src=- shape=eefe6acd vocab=6d10daf8
+-/
 @[simp]
 theorem centroidHeight_centroid
     (hG : IsHypothetical G) (x : V)
@@ -64,6 +73,9 @@ noncomputable def lorentzGramForm (x : V)
     LinearMap.BilinForm ℚ (ratGramSpace G x) :=
   ratGramForm G x - centroidRankOneForm G x c
 
+/--
+@isnad1 id=eq.0h6v.s11.0e63a5ac356f from=translated src=- shape=a0319ece vocab=e032672f
+-/
 @[simp]
 theorem lorentzGramForm_apply (x : V)
     (c : IntegralGramLattice G x) (u v : ratGramSpace G x) :
@@ -72,6 +84,9 @@ theorem lorentzGramForm_apply (x : V)
         centroidHeight G x c u * centroidHeight G x c v := by
   rfl
 
+/--
+@isnad1 id=eq.2h6v.s11.9cde9aa3d7de from=translated src=- shape=ba48f025 vocab=0c436f61
+-/
 theorem lorentzGramForm_generator_generator
     (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
@@ -90,6 +105,9 @@ noncomputable def lorentzWeylVector (x : V)
     (c : IntegralGramLattice G x) : ratGramSpace G x :=
   (1 / 5 : ℚ) • toRatSpace G x c
 
+/--
+@isnad1 id=eq.2h4v.s8.c7c5d6c55b24 from=translated src=- shape=d9699c44 vocab=47ac8094
+-/
 @[simp]
 theorem centroidHeight_weylVector
     (hG : IsHypothetical G) (x : V)
@@ -99,6 +117,9 @@ theorem centroidHeight_weylVector
   rw [lorentzWeylVector, map_smul, centroidHeight_centroid G hG x c hc]
   norm_num
 
+/--
+@isnad1 id=eq.2h5v.s11.a157cb89f80f from=translated src=- shape=2164804c vocab=d0ccd450
+-/
 @[simp]
 theorem lorentzWeylVector_pair_generator
     (hG : IsHypothetical G) (x : V)
@@ -119,6 +140,9 @@ theorem lorentzWeylVector_pair_generator
     centroidHeight_generator G hG x c hc B]
   norm_num
 
+/--
+@isnad1 id=eq.2h4v.s10.6f3e6bb19fa6 from=translated src=- shape=a7eaf144 vocab=baacf066
+-/
 @[simp]
 theorem lorentzWeylVector_norm
     (hG : IsHypothetical G) (x : V)
@@ -137,6 +161,9 @@ theorem lorentzWeylVector_norm
   rw [hnorm, centroidHeight_weylVector G hG x c hc]
   norm_num
 
+/--
+@isnad1 id=eq.2h5v.s10.01b4471c21fe from=translated src=- shape=14bb2d57 vocab=f2253afb
+-/
 @[simp]
 theorem lorentzWeylVector_pair
     (hG : IsHypothetical G) (x : V)
@@ -150,6 +177,9 @@ theorem lorentzWeylVector_pair
     map_smul, LinearMap.smul_apply, centroidHeight_apply]
   ring
 
+/--
+@isnad1 id=issymm.0h4v.s7.5a9b7acd0f06 from=translated src=- shape=974e07da vocab=3aad623b
+-/
 theorem lorentzGramForm_isSymm (x : V)
     (c : IntegralGramLattice G x) :
     (lorentzGramForm G x c).IsSymm := by
@@ -159,6 +189,9 @@ theorem lorentzGramForm_isSymm (x : V)
     (ratGramForm_isSymm G x).eq z w]
   ring
 
+/--
+@isnad1 id=eq.2h5v.s9.18ffa1fdda36 from=translated src=- shape=49df3ac1 vocab=2d5bc96c
+-/
 theorem lorentz_integral_frame_identity
     (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
@@ -182,6 +215,9 @@ theorem lorentz_integral_frame_identity
     _ = (45 : ℤ) • integralGramGenerator G x B - (5 : ℤ) • c := by
       module
 
+/--
+@isnad1 id=nondegen.2h4v.s8.c294de6fd318 from=translated src=- shape=4d555ca4 vocab=6054f340
+-/
 theorem lorentzGramForm_nondegenerate
     (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
@@ -203,6 +239,9 @@ theorem lorentzGramForm_nondegenerate
   rw [(lorentzGramForm_isSymm G x c).eq z w]
   exact hz w
 
+/--
+@isnad1 id=eq.2h5v.s11.df952d1fbc43 from=translated src=- shape=947aed94 vocab=108dff7c
+-/
 @[simp]
 theorem lorentzGramForm_pair_centroid
     (hG : IsHypothetical G) (x : V)
@@ -231,6 +270,9 @@ theorem eq_zero_of_lorentzPairing_generators_eq_zero
   refine Finset.sum_eq_zero fun B _ => ?_
   rw [map_smul, LinearMap.smul_apply, smul_eq_mul, hz B, mul_zero]
 
+/--
+@isnad1 id=eq.2h5v.s12.92639c5e5e5d from=translated src=- shape=93c4f1ed vocab=30cb1c58
+-/
 theorem lorentz_rat_frame_identity
     (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
@@ -272,6 +314,9 @@ theorem lorentz_rat_frame_identity
       _ = _ := hpair
   linear_combination hpair'
 
+/--
+@isnad1 id=mem.3h5v.s10.fd3b6b75f20d from=translated src=- shape=504b2642 vocab=d565aec2
+-/
 theorem lorentz_dual_denominator
     (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
@@ -316,6 +361,9 @@ noncomputable def lorentzHeightZeroPart
     (z : ratGramSpace G x) : ratGramSpace G x :=
   z - (centroidHeight G x c z / 4) • lorentzWeylVector G x c
 
+/--
+@isnad1 id=eq.2h5v.s8.19648668b7bf from=translated src=- shape=4efe6ad2 vocab=613fc9bd
+-/
 @[simp]
 theorem centroidHeight_heightZeroPart
     (hG : IsHypothetical G) (x : V)
@@ -327,6 +375,9 @@ theorem centroidHeight_heightZeroPart
     centroidHeight_weylVector G hG x c hc]
   ring
 
+/--
+@isnad1 id=eq.2h6v.s11.6a506b846004 from=translated src=- shape=fdb91d58 vocab=8448b39f
+-/
 theorem lorentzGramForm_heightZeroPart
     (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
@@ -344,6 +395,9 @@ theorem lorentzGramForm_heightZeroPart
     lorentzWeylVector_norm G hG x c hc]
   ring
 
+/--
+@isnad1 id=eq.2h6v.s11.024b60eaf308 from=translated src=- shape=97e1afd8 vocab=fc8f68ff
+-/
 theorem lorentzHeightZeroPart_generator_generator
     (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
@@ -361,6 +415,9 @@ theorem lorentzHeightZeroPart_generator_generator
     centroidHeight_generator G hG x c hc C]
   ring
 
+/--
+@isnad1 id=eq.2h5v.s11.ffedec888684 from=translated src=- shape=206ed23f vocab=a733eb0a
+-/
 @[simp]
 theorem lorentzHeightZeroPart_generator_norm
     (hG : IsHypothetical G) (x : V)
@@ -376,6 +433,9 @@ theorem lorentzHeightZeroPart_generator_norm
     localKMatrix_diagonal G hG x B]
   norm_num
 
+/--
+@isnad1 id=eq.1h5v.s11.3067da51b021 from=translated src=- shape=86547a51 vocab=5db4b8e2
+-/
 theorem lorentzGramForm_eq_ratGramForm_of_height_zero
     (x : V) (c : IntegralGramLattice G x) (z : ratGramSpace G x)
     (hz : centroidHeight G x c z = 0) :
@@ -383,6 +443,9 @@ theorem lorentzGramForm_eq_ratGramForm_of_height_zero
   rw [lorentzGramForm_apply, hz]
   ring
 
+/--
+@isnad1 id=other.2h5v.s10.95bc71ed7189 from=translated src=- shape=8718c681 vocab=08ce5150
+-/
 theorem lorentz_height_decomposition
     (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)

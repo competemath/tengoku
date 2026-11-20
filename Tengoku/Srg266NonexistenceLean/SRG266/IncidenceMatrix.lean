@@ -21,11 +21,17 @@ def localIncidenceMatrix (x : V) :
 def allOnesMatrix {m n R : Type*} [One R] : Matrix m n R :=
   fun _ _ => 1
 
+/--
+@isnad1 id=eq.0h5v.s4.7319537583d5 from=translated src=- shape=fb088e82 vocab=960605cf
+-/
 @[simp]
 theorem allOnesMatrix_apply {m n R : Type*} [One R] (i : m) (j : n) :
     (allOnesMatrix : Matrix m n R) i j = 1 :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.ca6deb01713b from=translated src=- shape=319fac27 vocab=6e0f54c1
+-/
 theorem localIncidenceMatrix_row_sum
     (hG : IsHypothetical G) (x : V) (p : FirstSubconstituent G x) :
     ∑ B, localIncidenceMatrix G x p B = 44 := by
@@ -37,6 +43,9 @@ theorem localIncidenceMatrix_row_sum
       rw [blocksThrough_card G hG x p]
       norm_num
 
+/--
+@isnad1 id=eq.1h4v.s6.cd4889462685 from=translated src=- shape=bb02e035 vocab=3fa5e87d
+-/
 theorem localIncidenceMatrix_column_sum
     (hG : IsHypothetical G) (x : V) (B : SecondSubconstituent G x) :
     ∑ p, localIncidenceMatrix G x p B = 9 := by
@@ -51,6 +60,9 @@ theorem localIncidenceMatrix_column_sum
       rw [localBlock_card G hG x B]
       norm_num
 
+/--
+@isnad1 id=eq.1h3v.s7.b0aabc7e9156 from=translated src=- shape=2850a1ac vocab=95831873
+-/
 @[simp]
 theorem localIncidenceMatrix_mulVec_one
     (hG : IsHypothetical G) (x : V) :
@@ -60,6 +72,9 @@ theorem localIncidenceMatrix_mulVec_one
   simp only [Pi.one_apply, mul_one]
   exact localIncidenceMatrix_row_sum G hG x p
 
+/--
+@isnad1 id=eq.1h3v.s7.edf1fee81885 from=translated src=- shape=37dfb971 vocab=47455c65
+-/
 @[simp]
 theorem localIncidenceMatrix_transpose_mulVec_one
     (hG : IsHypothetical G) (x : V) :
@@ -69,6 +84,9 @@ theorem localIncidenceMatrix_transpose_mulVec_one
   simp only [Matrix.transpose_apply, Pi.one_apply, mul_one]
   exact localIncidenceMatrix_column_sum G hG x B
 
+/--
+@isnad1 id=eq.1h5v.s7.64ef56135dba from=translated src=- shape=a0d2b281 vocab=56907b12
+-/
 theorem localIncidence_mul_transpose_apply
     (hG : IsHypothetical G) (x : V)
     (p q : FirstSubconstituent G x) :
@@ -96,6 +114,9 @@ theorem localIncidence_mul_transpose_apply
         rw [blocksThroughPair_card G hG x hpq]
         norm_num
 
+/--
+@isnad1 id=eq.1h3v.s9.0f11859ed888 from=translated src=- shape=6fb07753 vocab=27abc2f9
+-/
 theorem localIncidence_mul_transpose
     (hG : IsHypothetical G) (x : V) :
     localIncidenceMatrix G x * (localIncidenceMatrix G x)ᵀ =
@@ -116,6 +137,9 @@ def localIntersectionMatrix (x : V) :
     Matrix (SecondSubconstituent G x) (SecondSubconstituent G x) ℤ :=
   (localIncidenceMatrix G x)ᵀ * localIncidenceMatrix G x
 
+/--
+@isnad1 id=eq.1h3v.s7.b60b4f2d818c from=translated src=- shape=cd9c03c9 vocab=c1f4a423
+-/
 @[simp]
 theorem localIntersectionMatrix_mulVec_one
     (hG : IsHypothetical G) (x : V) :
@@ -131,6 +155,9 @@ theorem localIntersectionMatrix_mulVec_one
     _ = 9 * 44 := by rw [localIncidenceMatrix_column_sum G hG x B]
     _ = 396 := by norm_num
 
+/--
+@isnad1 id=eq.0h5v.s5.eb0ea895bfdb from=translated src=- shape=779be289 vocab=86ebac05
+-/
 theorem localIntersectionMatrix_apply
     (x : V) (B C : SecondSubconstituent G x) :
     localIntersectionMatrix G x B C = blockIntersection G x B C := by
@@ -142,12 +169,18 @@ theorem localIntersectionMatrix_apply
   ext p
   simp
 
+/--
+@isnad1 id=eq.1h4v.s5.b465c0d2b80d from=translated src=- shape=de33ca30 vocab=3ab2de47
+-/
 @[simp]
 theorem blockIntersection_self
     (hG : IsHypothetical G) (x : V) (B : SecondSubconstituent G x) :
     blockIntersection G x B B = 9 := by
   simp [blockIntersection, localBlock_card G hG x B]
 
+/--
+@isnad1 id=eq.1h4v.s5.69a3cda0a442 from=translated src=- shape=de33ca30 vocab=bed31623
+-/
 @[simp]
 theorem localIntersectionMatrix_diagonal
     (hG : IsHypothetical G) (x : V) (B : SecondSubconstituent G x) :

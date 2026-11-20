@@ -16,6 +16,9 @@ def GramDivisibilityDescent {ι : Type*} [Fintype ι]
     (p : ℤ) (A : Matrix ι ι ℤ) : Prop :=
   ∀ z : ι → ℤ, (∀ i, p ∣ (A *ᵥ z) i) → ∀ i, p ∣ z i
 
+/--
+@isnad1 id=gramdivi.2h6v.s6.250d95884d51 from=translated src=- shape=73f5118c vocab=20e8cf8b
+-/
 theorem GramDivisibilityDescent.reindex
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     {p : ℤ} {A : Matrix ι ι ℤ} (h : GramDivisibilityDescent p A)
@@ -32,6 +35,9 @@ theorem GramDivisibilityDescent.reindex
     simpa only [Equiv.apply_symm_apply] using hj
   simpa only [Function.comp_apply, Equiv.symm_apply_apply] using h _ hall (e i)
 
+/--
+@isnad1 id=gramdivi.2h5v.s6.3d63b86447d1 from=translated src=- shape=7b743d65 vocab=f25e2e14
+-/
 theorem GramDivisibilityDescent.block
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     {p : ℤ} {A : Matrix ι ι ℤ} {B : Matrix κ κ ℤ}
@@ -48,6 +54,9 @@ theorem GramDivisibilityDescent.block
       intro j
       simpa [Matrix.mulVec, dotProduct, Fintype.sum_sum_type] using hz (Sum.inr j)
 
+/--
+@isnad1 id=gramdivi.0h0v.s4.70bee4caa60b from=translated src=- shape=b64ad16f vocab=8d0cb6f2
+-/
 theorem gramE6_two_divisibility : GramDivisibilityDescent 2 (gramE 6) := by
   intro z hz i
   obtain ⟨k0, h0⟩ := hz 0
@@ -81,6 +90,9 @@ theorem gramE6_two_divisibility : GramDivisibilityDescent 2 (gramE 6) := by
     change z 5 = 2 * (z 2 - z 0 + k0 - z 4 + k4 - k2)
     linear_combination -h2 + h0 + h4
 
+/--
+@isnad1 id=gramdivi.1h2v.s5.a44822e74467 from=translated src=- shape=a413ba9c vocab=14605f8d
+-/
 theorem adeBlock_divisibility_of_components
     (p : ℤ) (ts : List ADEType)
     (h : ∀ t ∈ ts, GramDivisibilityDescent p t.gram) :
@@ -97,6 +109,9 @@ theorem adeBlock_divisibility_of_components
       rw [heq]
       exact hhead.block htail
 
+/--
+@isnad1 id=gramdivi.1h2v.s6.854b6c683c14 from=translated src=- shape=b276988f vocab=b2e6a97e
+-/
 theorem adeGram_divisibility_of_components
     (p : ℤ) (ts : List ADEType)
     (h : ∀ t ∈ ts, GramDivisibilityDescent p t.gram) :
@@ -104,6 +119,9 @@ theorem adeGram_divisibility_of_components
   (adeBlock_divisibility_of_components p ts h).reindex (finADEBlockEquiv ts)
     (adeGram_apply_eq_adeBlockPairing ts)
 
+/--
+@isnad1 id=gramdivi.1h1v.s5.8e939be44554 from=translated src=- shape=879235e0 vocab=9e6621b4
+-/
 theorem adeGram_two_divisibility_of_all_E6
     (ts : List ADEType) (h : ∀ t ∈ ts, t = .E6) :
     GramDivisibilityDescent 2 (adeGram ts).2 := by

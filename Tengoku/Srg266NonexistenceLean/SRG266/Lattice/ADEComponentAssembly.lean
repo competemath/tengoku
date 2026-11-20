@@ -27,6 +27,9 @@ def componentBlockToVertex : (cs : List G.ConnectedComponent) →
   | c :: _, Sum.inl i => (coord c i).1
   | _ :: cs, Sum.inr i => componentBlockToVertex cs i
 
+/--
+@isnad1 id=mem.0h6v.s6.a43b9deec339 from=translated src=- shape=e81d8ace vocab=9b6c8e08
+-/
 theorem connectedComponentMk_componentBlockToVertex :
     ∀ (cs : List G.ConnectedComponent) (i : ADEBlockIndex (cs.map typeOf)),
       G.connectedComponentMk (componentBlockToVertex G typeOf coord cs i) ∈ cs
@@ -39,6 +42,9 @@ theorem connectedComponentMk_componentBlockToVertex :
       simp only [componentBlockToVertex, List.mem_cons]
       exact Or.inr (connectedComponentMk_componentBlockToVertex cs i)
 
+/--
+@isnad1 id=injectiv.1h5v.s6.6d0316f5b9f2 from=translated src=- shape=c8e37552 vocab=7ac8e289
+-/
 theorem componentBlockToVertex_injective :
     ∀ {cs : List G.ConnectedComponent}, cs.Nodup →
       Function.Injective (componentBlockToVertex G typeOf coord cs)
@@ -81,6 +87,9 @@ theorem componentBlockToVertex_injective :
               subst j
               rfl
 
+/--
+@isnad1 id=ex.1h6v.s6.1f407cc0a781 from=translated src=- shape=c6f19f40 vocab=9b6c8e08
+-/
 theorem exists_componentBlockToVertex_eq :
     ∀ (cs : List G.ConnectedComponent) (v : V),
       G.connectedComponentMk v ∈ cs →
@@ -96,6 +105,9 @@ theorem exists_componentBlockToVertex_eq :
       · obtain ⟨i, hi⟩ := exists_componentBlockToVertex_eq cs v h
         exact ⟨Sum.inr i, hi⟩
 
+/--
+@isnad1 id=surjecti.1h5v.s6.bd9cf846edac from=translated src=- shape=6741f48d vocab=397a9900
+-/
 theorem componentBlockToVertex_surjective
     (cs : List G.ConnectedComponent)
     (hcover : ∀ c : G.ConnectedComponent, c ∈ cs) :
@@ -112,6 +124,9 @@ noncomputable def componentBlockEquiv
     ⟨componentBlockToVertex_injective G typeOf coord hnodup,
       componentBlockToVertex_surjective G typeOf coord cs hcover⟩
 
+/--
+@isnad1 id=eq.2h6v.s7.89f3012ca3c6 from=translated src=- shape=c4e2beab vocab=2d4a4e7d
+-/
 @[simp]
 theorem componentBlockEquiv_apply
     (cs : List G.ConnectedComponent) (hnodup : cs.Nodup)
@@ -121,6 +136,9 @@ theorem componentBlockEquiv_apply
       componentBlockToVertex G typeOf coord cs i :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.ba5f9ad5908a from=translated src=- shape=27bc226a vocab=8acd24c7
+-/
 theorem graphCartanMatrix_component
     (c : G.ConnectedComponent) (u v : c) :
     graphCartanMatrix G u.1 v.1 = graphCartanMatrix c.toSimpleGraph u v := by
@@ -139,6 +157,9 @@ theorem graphCartanMatrix_component
       rw [graphCartanMatrix_apply_of_not_adj huvval hadj,
         graphCartanMatrix_apply_of_not_adj huv hcnot]
 
+/--
+@isnad1 id=eq.1h4v.s5.6ce0a9c5a641 from=translated src=- shape=e2709b81 vocab=2511af02
+-/
 theorem graphCartanMatrix_eq_zero_of_components_ne
     {u v : V} (huv : G.connectedComponentMk u ≠ G.connectedComponentMk v) :
     graphCartanMatrix G u v = 0 := by
@@ -148,6 +169,9 @@ theorem graphCartanMatrix_eq_zero_of_components_ne
   · intro h
     exact huv (ConnectedComponent.connectedComponentMk_eq_of_adj h)
 
+/--
+@isnad1 id=eq.2h7v.s8.83941233351a from=translated src=- shape=3deb6770 vocab=5a6f635b
+-/
 theorem graphCartanMatrix_componentBlock :
     ∀ (cs : List G.ConnectedComponent), cs.Nodup →
       (∀ c i j, graphCartanMatrix c.toSimpleGraph (coord c i) (coord c j) =

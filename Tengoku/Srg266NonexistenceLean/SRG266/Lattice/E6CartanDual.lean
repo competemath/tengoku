@@ -19,11 +19,17 @@ def form : LinearMap.BilinForm ℚ (Fin 6 → ℚ) :=
 
 def weight : Fin 6 → ℚ := ![4/3, 5/3, 2, 4/3, 2/3, 1]
 
+/--
+@isnad1 id=mem.0h0v.s8.a98fea921ff3 from=translated src=- shape=f4afb069 vocab=d7ebe761
+-/
 theorem three_smul_weight_mem : (3 : ℤ) • weight ∈ coordinateIntegerLattice 6 := by
   refine mem_coordinateIntegerLattice.mpr ⟨![4, 5, 6, 4, 2, 3], ?_⟩
   intro i
   fin_cases i <;> norm_num [weight, zsmul_eq_mul]
 
+/--
+@isnad1 id=iff.0h1v.s8.0b2c00de78a9 from=translated src=- shape=aabaf8b7 vocab=3e5f6e4a
+-/
 theorem weight_order (m : ℤ) :
     m • weight ∈ coordinateIntegerLattice 6 ↔ 3 ∣ m := by
   constructor

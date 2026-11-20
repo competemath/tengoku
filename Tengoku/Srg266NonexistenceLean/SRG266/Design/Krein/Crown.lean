@@ -27,9 +27,15 @@ structure CrownParts (L R : Finset V) : Prop where
 
 def IsCrown (W : Finset V) : Prop := ∃ L R : Finset V, D.CrownParts L R ∧ W = L ∪ R
 
+/--
+@isnad1 id=independ.2h5v.s6.956867b0e13b from=translated src=- shape=eb8e2379 vocab=78fa879e
+-/
 theorem independentSet_mono {T U : Finset V} (hTU : T ⊆ U) (hI : D.IndependentSet U) :
     D.IndependentSet T := fun x hx y hy hxy => hI x (hTU hx) y (hTU hy) hxy
 
+/--
+@isnad1 id=eq.2h5v.s6.2944afeb902b from=translated src=- shape=8813ce2a vocab=1d21a3a6
+-/
 theorem independent_neighborCount_zero {T : Finset V} (hI : D.IndependentSet T)
     {x : V} (hx : x ∈ T) : D.neighborCount T x = 0 := by
   apply Finset.card_eq_zero.mpr
@@ -38,12 +44,18 @@ theorem independent_neighborCount_zero {T : Finset V} (hI : D.IndependentSet T)
   obtain ⟨hyT,hxy⟩ := Finset.mem_filter.mp hy
   exact hI x hx y hyT (D.kreinGraph.ne_of_adj hxy) hxy
 
+/--
+@isnad1 id=not.2h6v.s6.3ff3f50f5150 from=translated src=- shape=1d20919e vocab=0c5b82be
+-/
 theorem not_adj_of_neighborCount_zero {T : Finset V} {x y : V}
     (hzero : D.neighborCount T x = 0) (hy : y ∈ T) : ¬ D.kreinGraph.Adj x y := by
   intro hxy
   have hp : 0 < D.neighborCount T x := Finset.card_pos.mpr ⟨y,Finset.mem_filter.mpr ⟨hy,hxy⟩⟩
   omega
 
+/--
+@isnad1 id=independ.3h5v.s7.64475419b36e from=translated src=- shape=04bab237 vocab=a9c25ec4
+-/
 theorem independentSet_union {T U : Finset V} (hT : D.IndependentSet T)
     (hU : D.IndependentSet U) (hcross : ∀ x ∈ T, ∀ y ∈ U, ¬ D.kreinGraph.Adj x y) :
     D.IndependentSet (T ∪ U) := by
@@ -54,6 +66,9 @@ theorem independentSet_union {T U : Finset V} (hT : D.IndependentSet T)
   · exact hcross y hyT x hxU ((D.kreinGraph.adj_comm x y).mp ha)
   · exact hU x hxU y hyU hxy ha
 
+/--
+@isnad1 id=disjoint.1h5v.s7.259a0a855649 from=translated src=- shape=dd40d75b vocab=a7235823
+-/
 theorem companions_disjoint {S R : Finset V}
     (hsub : R ∪ D.commonTo R ⊆ D.bicliqueClass S 2) :
     Disjoint (S ∪ D.commonTo S) (R ∪ D.commonTo R) := by

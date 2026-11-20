@@ -16,6 +16,9 @@ open SimpleGraph
 
 variable {V : Type*}
 
+/--
+@isnad1 id=ex.2h2v.s6.a73b122897d8 from=translated src=- shape=a6a0c415 vocab=37870d0a
+-/
 theorem exists_spanning_path_of_degree_le_two
     [Fintype V] [DecidableEq V] {G : SimpleGraph V} [DecidableRel G.Adj]
     (hconn : G.Connected) (hdeg : ∀ v, G.degree v ≤ 2) :
@@ -97,6 +100,9 @@ theorem exists_spanning_path_of_degree_le_two
   have hydeg := hdeg y
   omega
 
+/--
+@isnad1 id=ex.3h2v.s6.ecb82b90fa97 from=translated src=- shape=132937c2 vocab=9971c531
+-/
 theorem exists_iso_pathGraph_of_degree_le_two
     [Fintype V] [DecidableEq V] {G : SimpleGraph V} [DecidableRel G.Adj]
     (hconn : G.Connected) (hacyc : G.IsAcyclic)
@@ -158,6 +164,9 @@ theorem exists_iso_pathGraph_of_degree_le_two
   · refine ⟨?_⟩
     simpa only [H, hH_eq_G] using SimpleGraph.Iso.map f (pathGraph n)
 
+/--
+@isnad1 id=eq.0h1v.s4.ab402e108fee from=translated src=- shape=82af82c8 vocab=2dca8d5c
+-/
 theorem graphCartanMatrix_pathGraph (n : ℕ) :
     graphCartanMatrix (pathGraph n) = gramA n := by
   classical
@@ -174,6 +183,9 @@ def pathGraphRevIso (n : ℕ) : pathGraph n ≃g pathGraph n where
     simp only [Fin.val_rev]
     omega
 
+/--
+@isnad1 id=or.1h2v.s5.3f7c8749e4be from=translated src=- shape=b400e0f5 vocab=7f0d8a4f
+-/
 theorem pathGraph_eq_endpoint {n : ℕ} (k : Fin n)
     (hunique : ∀ {l r}, (pathGraph n).Adj k l →
       (pathGraph n).Adj k r → l = r) :
@@ -200,6 +212,9 @@ theorem pathGraph_eq_endpoint {n : ℕ} (k : Fin n)
     omega
   exact hlr (hunique hl hr)
 
+/--
+@isnad1 id=ex.1h5v.s7.85e62054260c from=translated src=- shape=f4848b00 vocab=0474f5ad
+-/
 theorem exists_pathGraph_iso_apply_zero
     {W : Type*} [Fintype W] [DecidableEq W]
     {H : SimpleGraph W} [DecidableRel H.Adj]
@@ -236,6 +251,9 @@ theorem exists_pathGraph_iso_apply_zero
     change e (Fin.rev ⟨0, hn⟩) = x
     rw [hrev, hek]
 
+/--
+@isnad1 id=ex.3h2v.s7.a432253ac153 from=translated src=- shape=c9f11b75 vocab=d00a8caf
+-/
 theorem exists_A_coordinates_of_degree_le_two
     [Fintype V] [DecidableEq V] {G : SimpleGraph V} [DecidableRel G.Adj]
     (hconn : G.Connected) (hacyc : G.IsAcyclic)

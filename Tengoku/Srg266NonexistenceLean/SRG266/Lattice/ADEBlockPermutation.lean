@@ -9,6 +9,9 @@ import Tengoku.Srg266NonexistenceLean.SRG266.Lattice.ADEBlockCoordinates
 
 namespace SRG266.Lattice
 
+/--
+@isnad1 id=ex.1h2v.s6.1af0b0bc9a3c from=translated src=- shape=aa9cae57 vocab=1926b955
+-/
 theorem exists_adeBlock_equiv_of_perm {ts us : List ADEType} (p : ts.Perm us) :
     ∃ e : ADEBlockIndex ts ≃ ADEBlockIndex us,
       ∀ i j, adeBlockPairing ts i j = adeBlockPairing us (e i) (e j) := by

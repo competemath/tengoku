@@ -55,6 +55,9 @@ def tripodArm2Hom (a b c : ℕ) : pathGraph c →g tripodGraph a b c where
     rw [tripodGraph, SimpleGraph.fromRel_adj]
     exact ⟨by simp [hij.ne], Or.inl hij⟩
 
+/--
+@isnad1 id=connecte.3h3v.s5.835f147ccb17 from=translated src=- shape=e374b5c2 vocab=5e6b10e7
+-/
 theorem tripodGraph_connected {a b c : ℕ}
     (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :
     (tripodGraph a b c).Connected := by
@@ -105,6 +108,9 @@ def affineE8Weight : TripodVertex 1 2 5 → ℤ
 
 set_option maxHeartbeats 2000000 in
 
+/--
+@isnad1 id=eq.0h0v.s8.4376ab94f679 from=translated src=- shape=b3845ce0 vocab=e8fe9b81
+-/
 theorem affineE6_cartanEnergy_zero :
     graphCartanEnergy (tripodGraph 2 2 2) affineE6Weight = 0 := by
   norm_num [graphCartanEnergy, Matrix.toBilin'_apply, graphCartanMatrix,
@@ -115,6 +121,9 @@ theorem affineE6_cartanEnergy_zero :
 
 set_option maxHeartbeats 2000000 in
 
+/--
+@isnad1 id=eq.0h0v.s8.23b611cd9a6c from=translated src=- shape=b3845ce0 vocab=53a25219
+-/
 theorem affineE7_cartanEnergy_zero :
     graphCartanEnergy (tripodGraph 1 3 3) affineE7Weight = 0 := by
   norm_num [graphCartanEnergy, Matrix.toBilin'_apply, graphCartanMatrix,
@@ -125,6 +134,9 @@ theorem affineE7_cartanEnergy_zero :
 
 set_option maxHeartbeats 2000000 in
 
+/--
+@isnad1 id=eq.0h0v.s8.fa52828ad454 from=translated src=- shape=b3845ce0 vocab=6d966e73
+-/
 theorem affineE8_cartanEnergy_zero :
     graphCartanEnergy (tripodGraph 1 2 5) affineE8Weight = 0 := by
   norm_num [graphCartanEnergy, Matrix.toBilin'_apply, graphCartanMatrix,
@@ -133,6 +145,9 @@ theorem affineE8_cartanEnergy_zero :
     Fin.sum_univ_succ]
   decide
 
+/--
+@isnad1 id=le.0h1v.s4.95cde9a34258 from=translated src=- shape=db5f9187 vocab=d79b412c
+-/
 theorem affineE6Weight_nonnegative (x) : 0 ≤ affineE6Weight x := by
   rcases x with _ | x
   · norm_num [affineE6Weight]
@@ -140,6 +155,9 @@ theorem affineE6Weight_nonnegative (x) : 0 ≤ affineE6Weight x := by
   · fin_cases i <;> norm_num [affineE6Weight]
   rcases x with i | i <;> fin_cases i <;> norm_num [affineE6Weight]
 
+/--
+@isnad1 id=le.0h1v.s4.51e4b7efec0f from=translated src=- shape=db5f9187 vocab=be6e62b1
+-/
 theorem affineE7Weight_nonnegative (x) : 0 ≤ affineE7Weight x := by
   rcases x with _ | x
   · norm_num [affineE7Weight]
@@ -147,6 +165,9 @@ theorem affineE7Weight_nonnegative (x) : 0 ≤ affineE7Weight x := by
   · fin_cases i; norm_num [affineE7Weight]
   rcases x with i | i <;> fin_cases i <;> norm_num [affineE7Weight]
 
+/--
+@isnad1 id=le.0h1v.s4.165da16b8174 from=translated src=- shape=db5f9187 vocab=fb4f4bea
+-/
 theorem affineE8Weight_nonnegative (x) : 0 ≤ affineE8Weight x := by
   rcases x with _ | x
   · norm_num [affineE8Weight]
@@ -154,16 +175,25 @@ theorem affineE8Weight_nonnegative (x) : 0 ≤ affineE8Weight x := by
   · fin_cases i; norm_num [affineE8Weight]
   rcases x with i | i <;> fin_cases i <;> norm_num [affineE8Weight]
 
+/--
+@isnad1 id=ne.0h0v.s6.b1b582018d2a from=translated src=- shape=43d66ac9 vocab=87b8815b
+-/
 theorem affineE6Weight_ne_zero : affineE6Weight ≠ 0 := by
   intro h
   have := congrFun h (none : TripodVertex 2 2 2)
   norm_num [affineE6Weight] at this
 
+/--
+@isnad1 id=ne.0h0v.s6.27a7ecd441df from=translated src=- shape=43d66ac9 vocab=be1d25d3
+-/
 theorem affineE7Weight_ne_zero : affineE7Weight ≠ 0 := by
   intro h
   have := congrFun h (none : TripodVertex 1 3 3)
   norm_num [affineE7Weight] at this
 
+/--
+@isnad1 id=ne.0h0v.s6.bc8bf7e65c30 from=translated src=- shape=43d66ac9 vocab=ca33c7ee
+-/
 theorem affineE8Weight_ne_zero : affineE8Weight ≠ 0 := by
   intro h
   have := congrFun h (none : TripodVertex 1 2 5)
@@ -222,6 +252,9 @@ def tripodVertexEmbedding {V : Type*} {a b c : ℕ} (z : V)
                   · exact (h₁₂ y x hxy.symm).elim
                   · exact congr_arg (some ∘ Sum.inr ∘ Sum.inr) (f₂.injective hxy)⟩
 
+/--
+@isnad1 id=adj.7h11v.s7.458cfc008273 from=translated src=- shape=07a8e2e3 vocab=6978da04
+-/
 theorem tripodRel_map {V : Type*} {G : SimpleGraph V} {a b c : ℕ}
     (z : V) (f₀ : Fin a → V) (f₁ : Fin b → V) (f₂ : Fin c → V)
     (h₀ : ∀ {i j}, (pathGraph a).Adj i j → G.Adj (f₀ i) (f₀ j))
@@ -263,6 +296,9 @@ theorem tripodRel_map {V : Type*} {G : SimpleGraph V} {a b c : ℕ}
                 · simp [tripodRel, tripodArmRel] at hxy
                 · exact h₂ hxy
 
+/--
+@isnad1 id=false.5h7v.s8.767eb5fbcbd6 from=translated src=- shape=0f8df948 vocab=e86a7802
+-/
 theorem false_of_tripod_null_embedding
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj] (hpos : IsPositiveCartan G)
@@ -277,6 +313,9 @@ theorem false_of_tripod_null_embedding
   have hcomp : IsPositiveCartan (G.comap f) := hpos.comap f
   exact (not_isPositiveCartan_of_nonpositive_subgraph hle hw0 hw henergy) hcomp
 
+/--
+@isnad1 id=false.11h10v.s8.adcbba14b47f from=translated src=- shape=c1f1cc23 vocab=42683794
+-/
 theorem false_of_orientedArm_tripod
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]
@@ -320,6 +359,9 @@ theorem false_of_orientedArm_tripod
         (fun i hi ↦ A₂.adj_center_prefixEmbedding_of_val_eq_zero hc i hi) hxy).symm
   exact false_of_tripod_null_embedding hpos f hmap w hw0 hw henergy
 
+/--
+@isnad1 id=false.8h6v.s7.f1d8d71fe39e from=translated src=- shape=46794116 vocab=961bdf98
+-/
 theorem not_all_three_arms_length_two
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]
@@ -334,6 +376,9 @@ theorem not_all_three_arms_length_two
     h₀ h₁ h₂ affineE6Weight affineE6Weight_ne_zero
     affineE6Weight_nonnegative affineE6_cartanEnergy_zero.le
 
+/--
+@isnad1 id=false.8h6v.s7.21122d32de1c from=translated src=- shape=46794116 vocab=961bdf98
+-/
 theorem not_arms_length_one_three_three
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]
@@ -348,6 +393,9 @@ theorem not_arms_length_one_three_three
     h₀ h₁ h₂ affineE7Weight affineE7Weight_ne_zero
     affineE7Weight_nonnegative affineE7_cartanEnergy_zero.le
 
+/--
+@isnad1 id=false.8h6v.s7.53313e2f38ed from=translated src=- shape=46794116 vocab=961bdf98
+-/
 theorem not_arms_length_one_two_five
     {V : Type*} [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]

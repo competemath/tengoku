@@ -14,6 +14,9 @@ namespace SRG266.Lattice
 
 open scoped BigOperators Classical
 
+/--
+@isnad1 id=eq.5h5v.s10.86ff636752e1 from=translated src=- shape=cc4b5c1a vocab=215936c9
+-/
 theorem a11_constant_block_coordinate (u : Fin 11 → ℚ) (ε a : ℤ)
     (z : Fin 12 → ℤ) (f : Fin 5 ↪ Fin 12)
     (hsum : (∑ i, z i) = a)
@@ -32,6 +35,9 @@ theorem a11_constant_block_coordinate (u : Fin 11 → ℚ) (ε a : ℤ)
   rcases hb with ⟨ha, ht⟩ | ⟨ha, ht⟩ <;> rw [ha, ht] at hc <;>
     norm_num [ha] at hc ⊢ <;> exact hc
 
+/--
+@isnad1 id=and.3h2v.s7.3b0dd1d498c6 from=translated src=- shape=25557a54 vocab=da138cd9
+-/
 theorem two_type_first_moment_counts {ι : Type*} [Fintype ι]
     (a : ι → ℤ) (ha : ∀ i, a i = 9 ∨ a i = 1) (hcard : Fintype.card ι = 220)
     (hfirst : (∑ i, if a i = 9 then (1/4 : ℚ) else -1/12) = 0) :

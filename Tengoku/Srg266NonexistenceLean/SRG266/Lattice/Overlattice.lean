@@ -16,17 +16,29 @@ section Overlattice
 variable {W : Type*} [AddCommGroup W] [Module ℚ W]
 variable (B : LinearMap.BilinForm ℚ W)
 
+/--
+@isnad1 id=le.1h4v.s7.a13a06d3df22 from=translated src=- shape=aff8979c vocab=c3d35c86
+-/
 theorem dualSubmodule_antitone {N P : Submodule ℤ W} (h : N ≤ P) :
     B.dualSubmodule P ≤ B.dualSubmodule N := fun _ hx y hy => hx y (h hy)
 
+/--
+@isnad1 id=le.2h4v.s7.c8f17c110e23 from=translated src=- shape=cb10e22d vocab=108cd0f8
+-/
 theorem le_dual_of_le {N P : Submodule ℤ W} (h : N ≤ P) (hP : IsIntegral B P) :
     P ≤ B.dualSubmodule N :=
   le_trans hP (dualSubmodule_antitone B h)
 
+/--
+@isnad1 id=isintegr.2h4v.s7.00428a5a11ab from=translated src=- shape=d7261dba vocab=8044154f
+-/
 theorem IsIntegral.mono {N P : Submodule ℤ W} (hP : IsIntegral B P) (h : N ≤ P) :
     IsIntegral B N :=
   le_trans h (le_dual_of_le B h hP)
 
+/--
+@isnad1 id=isintegr.4h4v.s9.0eb2c411649e from=translated src=- shape=7ae03d21 vocab=0657bb58
+-/
 theorem isIntegral_sup_span_singleton (hsymm : B.IsSymm) {P : Submodule ℤ W}
     (hP : IsIntegral B P) {z : W}
     (hz : ∀ v ∈ P, B z v ∈ (1 : Submodule ℤ ℚ))
@@ -62,6 +74,9 @@ structure IsMaximalIntegral (B : LinearMap.BilinForm ℚ W) (Ñ : Submodule ℤ 
 
   maximal : ∀ P : Submodule ℤ W, Ñ ≤ P → IsIntegral B P → P = Ñ
 
+/--
+@isnad1 id=ex.3h3v.s7.3a395a13cde1 from=translated src=- shape=3590c41c vocab=a30edd98
+-/
 theorem exists_maximal_integral_overlattice (hnd : B.Nondegenerate)
     {N : Submodule ℤ W} (hN : IsLattice ℚ N) (hint : IsIntegral B N) :
     ∃ Ñ : Submodule ℤ W, N ≤ Ñ ∧ IsLattice ℚ Ñ ∧ IsMaximalIntegral B Ñ := by
@@ -100,6 +115,9 @@ theorem exists_maximal_integral_overlattice (hnd : B.Nondegenerate)
 
 variable {B}
 
+/--
+@isnad1 id=mem.4h5v.s7.6840d7fce121 from=translated src=- shape=c2f7f8bb vocab=22a94946
+-/
 theorem IsMaximalIntegral.smul_mem_of_sq_smul_mem (hsymm : B.IsSymm)
     {Ñ : Submodule ℤ W} (hmax : IsMaximalIntegral B Ñ) {a : ℤ} {y : W}
     (hy : y ∈ B.dualSubmodule Ñ) (h : (a ^ 2) • y ∈ Ñ) : a • y ∈ Ñ := by
@@ -120,6 +138,9 @@ theorem IsMaximalIntegral.smul_mem_of_sq_smul_mem (hsymm : B.IsSymm)
     Submodule.mem_sup_right (Submodule.mem_span_singleton_self _)
   rwa [hsup] at hmem
 
+/--
+@isnad1 id=mem.4h6v.s7.dbd9fb429d1c from=translated src=- shape=18110728 vocab=1f8c605a
+-/
 theorem IsMaximalIntegral.smul_mem_of_pow_smul_mem (hsymm : B.IsSymm)
     {Ñ : Submodule ℤ W} (hmax : IsMaximalIntegral B Ñ) {a : ℤ} {y : W}
     (hy : y ∈ B.dualSubmodule Ñ) :
@@ -138,6 +159,9 @@ theorem IsMaximalIntegral.smul_mem_of_pow_smul_mem (hsymm : B.IsSymm)
     have := hmax.smul_mem_of_sq_smul_mem hsymm hy' hsq
     rwa [smul_smul, ← pow_succ'] at this
 
+/--
+@isnad1 id=mem.5h7v.s8.c13aafb2073e from=translated src=- shape=60d0020d vocab=0437341d
+-/
 theorem IsMaximalIntegral.dual_smul_mem_of_dvd_pow (hsymm : B.IsSymm)
     {Ñ : Submodule ℤ W} (hmax : IsMaximalIntegral B Ñ) {k m : ℤ} {j : ℕ}
     (hk : ∀ y ∈ B.dualSubmodule Ñ, k • y ∈ Ñ) (hdvd : k ∣ m ^ j)
@@ -155,6 +179,9 @@ theorem IsMaximalIntegral.dual_smul_mem_of_dvd_pow (hsymm : B.IsSymm)
 
 variable (B)
 
+/--
+@isnad1 id=ex.6h6v.s8.ca2896786635 from=translated src=- shape=9769b292 vocab=d7cfbf8c
+-/
 theorem exists_maximal_integral_overlattice_denominator (hnd : B.Nondegenerate)
     (hsymm : B.IsSymm) {N : Submodule ℤ W} (hN : IsLattice ℚ N)
     (hint : IsIntegral B N) {k m : ℤ} {j : ℕ}
@@ -171,11 +198,20 @@ theorem exists_maximal_integral_overlattice_denominator (hnd : B.Nondegenerate)
 
 def natRadical (k : ℕ) : ℕ := ∏ p ∈ k.primeFactors, p
 
+/--
+@isnad1 id=dvd.0h1v.s3.dc2e6b9bc180 from=translated src=- shape=a365602c vocab=398a029f
+-/
 theorem natRadical_dvd (k : ℕ) : natRadical k ∣ k := Nat.prod_primeFactors_dvd k
 
+/--
+@isnad1 id=dvd.1h1v.s4.2cb809e11c25 from=translated src=- shape=849ebe4f vocab=536b9964
+-/
 theorem dvd_natRadical_pow {k : ℕ} (hk : k ≠ 0) : k ∣ natRadical k ^ k :=
   Nat.dvd_prod_primeFactors_pow_self hk
 
+/--
+@isnad1 id=squarefr.0h1v.s2.c052ddbf4103 from=translated src=- shape=6da4ece3 vocab=70c3ebfd
+-/
 theorem squarefree_natRadical (k : ℕ) : Squarefree (natRadical k) := by
   refine Finset.squarefree_prod_of_pairwise_isCoprime ?_ ?_
   · intro p hp q hq hpq
@@ -185,6 +221,9 @@ theorem squarefree_natRadical (k : ℕ) : Squarefree (natRadical k) := by
   · intro p hp
     exact (Nat.prime_of_mem_primeFactors hp).prime.squarefree
 
+/--
+@isnad1 id=ex.6h4v.s12.7b3c1b12c12a from=translated src=- shape=4f53c22c vocab=236269f3
+-/
 theorem exists_maximal_integral_overlattice_radical (hnd : B.Nondegenerate)
     (hsymm : B.IsSymm) {N : Submodule ℤ W} (hN : IsLattice ℚ N)
     (hint : IsIntegral B N) {k : ℕ} (hk0 : k ≠ 0)
@@ -204,19 +243,31 @@ def torsionPart (Ñ : Submodule ℤ W) (p : ℕ) : Submodule ℤ W :=
 
 variable {B}
 
+/--
+@isnad1 id=iff.0h5v.s7.1a65a9eaa1f9 from=translated src=- shape=2ef1fd4f vocab=c4204db6
+-/
 @[simp]
 theorem mem_torsionPart {Ñ : Submodule ℤ W} {p : ℕ} {y : W} :
     y ∈ torsionPart B Ñ p ↔ y ∈ B.dualSubmodule Ñ ∧ (p : ℤ) • y ∈ Ñ := by
   simp [torsionPart, LinearMap.lsmul_apply]
 
+/--
+@isnad1 id=le.0h4v.s6.6c3ff72bad40 from=translated src=- shape=26e7328f vocab=2142a320
+-/
 theorem torsionPart_le_dual (Ñ : Submodule ℤ W) (p : ℕ) :
     torsionPart B Ñ p ≤ B.dualSubmodule Ñ := inf_le_left
 
+/--
+@isnad1 id=le.1h4v.s6.c5ec7c2f0260 from=translated src=- shape=7b0d8f26 vocab=2c5fd01c
+-/
 theorem le_torsionPart {Ñ : Submodule ℤ W} (hint : IsIntegral B Ñ) (p : ℕ) :
     Ñ ≤ torsionPart B Ñ p := by
   intro y hy
   exact mem_torsionPart.mpr ⟨hint hy, Submodule.smul_mem _ _ hy⟩
 
+/--
+@isnad1 id=eq.2h5v.s8.cb79d1143e30 from=translated src=- shape=e19fccf7 vocab=3220b98b
+-/
 theorem dual_eq_torsionPart_sup {Ñ : Submodule ℤ W} {a b : ℕ}
     (hab : Nat.Coprime a b)
     (h : ∀ y ∈ B.dualSubmodule Ñ, ((a * b : ℕ) : ℤ) • y ∈ Ñ) :
@@ -248,6 +299,9 @@ theorem dual_eq_torsionPart_sup {Ñ : Submodule ℤ W} {a b : ℕ}
     rw [hswap]
     exact Submodule.smul_mem _ _ hab'
 
+/--
+@isnad1 id=eq.1h5v.s12.b9f91121acc1 from=translated src=- shape=020c37fb vocab=240d5667
+-/
 theorem dualQuotient_nsmul_eq_zero {Ñ : Submodule ℤ W} {n : ℕ}
     (hn : ∀ y ∈ B.dualSubmodule Ñ, (n : ℤ) • y ∈ Ñ)
     (q : B.dualSubmodule Ñ ⧸ Ñ.comap (B.dualSubmodule Ñ).subtype) : n • q = 0 :=

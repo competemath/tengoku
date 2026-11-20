@@ -16,6 +16,9 @@ open scoped BigOperators
 
 variable {X : Type*} [AddCommGroup X] [Module ℚ X]
 
+/--
+@isnad1 id=le.2h4v.s9.d377a5ebb25a from=translated src=- shape=53dc05b0 vocab=92ae4d42
+-/
 theorem finrank_orthogonal_span_le [FiniteDimensional ℚ X]
     {κ : Type*} [Fintype κ] (B : LinearMap.BilinForm ℚ X)
     (hpos : ∀ x, x ≠ 0 → 0 < B x x) (r : κ → X) (hr : LinearIndependent ℚ r) :
@@ -35,6 +38,9 @@ theorem finrank_orthogonal_span_le [FiniteDimensional ℚ X]
   change Module.finrank ℚ Q ≤ _
   omega
 
+/--
+@isnad1 id=le.6h7v.s10.7309527a25a7 from=translated src=- shape=847fcb0a vocab=bb590e20
+-/
 theorem rational_frame_mass_le_orthogonal_rank [FiniteDimensional ℚ X]
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     (B : LinearMap.BilinForm ℚ X) (hB : LinearMap.IsSymm B)

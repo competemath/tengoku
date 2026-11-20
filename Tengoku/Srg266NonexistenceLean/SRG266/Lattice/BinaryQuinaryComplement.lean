@@ -15,6 +15,9 @@ namespace K4Coordinates
 
 def matchingVector (i : Fin 2) : Space := (2 : ℤ) • (if i = 0 then dualA else dualB)
 
+/--
+@isnad1 id=mem.0h1v.s8.528a438006a0 from=translated src=- shape=d979743c vocab=48ccd685
+-/
 theorem matchingVector_five_smul_mem (i : Fin 2) : (5 : ℤ) • matchingVector i ∈ lattice := by
   have h : (5 : ℤ) • (if i = 0 then dualA else dualB) ∈ lattice := by
     split_ifs <;> first | exact five_smul_dualA_mem | exact five_smul_dualB_mem
@@ -25,6 +28,9 @@ theorem matchingVector_five_smul_mem (i : Fin 2) : (5 : ℤ) • matchingVector 
   rw [heq]
   exact lattice.smul_mem _ h
 
+/--
+@isnad1 id=eq.0h1v.s10.db1cb4cd8f92 from=translated src=- shape=b79b5882 vocab=5f3a6771
+-/
 theorem matchingVector_norm (i : Fin 2) :
     form (matchingVector i) (matchingVector i) = if i = 0 then 8 / 5 else 96 / 5 := by
   have heq : matchingVector i = (2 : ℚ) • (if i = 0 then dualA else dualB) := by
@@ -33,6 +39,9 @@ theorem matchingVector_norm (i : Fin 2) :
   rw [heq]
   split_ifs <;> norm_num [dualA_norm, dualB_norm]
 
+/--
+@isnad1 id=eq.1h2v.s10.44a3b33ffdc1 from=translated src=- shape=1d2ac976 vocab=3222ea78
+-/
 theorem matchingVector_cross (i j : Fin 2) (hij : i ≠ j) :
     form (matchingVector i) (matchingVector j) = 0 := by
   have heq (k : Fin 2) : matchingVector k = (2 : ℚ) • (if k = 0 then dualA else dualB) := by
@@ -41,6 +50,9 @@ theorem matchingVector_cross (i j : Fin 2) (hij : i ≠ j) :
   have hba : form dualB dualA = 0 := by rw [form_isSymm.eq, dualA_pair_dualB]
   fin_cases i <;> fin_cases j <;> simp_all [dualA_pair_dualB]
 
+/--
+@isnad1 id=eq.0h0v.s10.730609299c29 from=translated src=- shape=d3d8e21a vocab=90ca0d21
+-/
 theorem matchingVector_dual : form.dualSubmodule lattice =
     lattice ⊔ Submodule.span ℤ (Set.range matchingVector) := by
   have hr : Set.range matchingVector = {(2 : ℤ) • dualA, (2 : ℤ) • dualB} := by
@@ -73,6 +85,9 @@ def quinaryBinaryLattice (N : Submodule ℤ W) (u : Fin 2 → W) :
     Submodule ℤ (W × K4Coordinates.Space) :=
   glueLattice N K4Coordinates.lattice (fun i => (u i, K4Coordinates.matchingVector i))
 
+/--
+@isnad1 id=and.7h4v.s11.2cf633598bb4 from=translated src=- shape=92879137 vocab=08462649
+-/
 theorem complete_quinary_binary (u : Fin 2 → W)
     (hsB : B.IsSymm) (hlN : IsLattice ℚ N) (hiN : IsIntegral B N) (heN : IsEven B N)
     (hdN : B.dualSubmodule N = N ⊔ Submodule.span ℤ (Set.range u))

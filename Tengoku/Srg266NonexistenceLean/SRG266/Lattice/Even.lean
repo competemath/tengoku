@@ -17,6 +17,9 @@ variable (B : LinearMap.BilinForm ℚ W)
 def IsEven (N : Submodule ℤ W) : Prop :=
   ∀ x ∈ N, ∃ n : ℤ, B x x = 2 * (n : ℚ)
 
+/--
+@isnad1 id=iseven.3h3v.s8.28ab0d510d36 from=translated src=- shape=f781c226 vocab=5bcf2c13
+-/
 theorem isEven_of_span (hsymm : B.IsSymm) {s : Set W}
     (hint : IsIntegral B (Submodule.span ℤ s))
     (hs : ∀ x ∈ s, ∃ n : ℤ, B x x = 2 * (n : ℚ)) :
@@ -42,6 +45,9 @@ theorem isEven_of_span (hsymm : B.IsSymm) {s : Set W}
     push_cast
     ring
 
+/--
+@isnad1 id=iseven.4h5v.s7.e7044e6b08fa from=translated src=- shape=5c0ce99c vocab=93846489
+-/
 theorem IsEven.of_odd_smul {N P : Submodule ℤ W} (hN : IsEven B N)
     (hP : IsIntegral B P) {m : ℤ} (hm : Odd m)
     (hsmul : ∀ x ∈ P, m • x ∈ N) : IsEven B P := by
@@ -61,6 +67,9 @@ theorem IsEven.of_odd_smul {N P : Submodule ℤ W} (hN : IsEven B N)
   push_cast
   rfl
 
+/--
+@isnad1 id=ex.8h6v.s8.cbe6c7e3e37f from=translated src=- shape=af416428 vocab=e33a63ef
+-/
 theorem exists_even_maximal_integral_overlattice_denominator
     (hnd : B.Nondegenerate) (hsymm : B.IsSymm)
     {N : Submodule ℤ W} (hN : IsLattice ℚ N) (hint : IsIntegral B N)

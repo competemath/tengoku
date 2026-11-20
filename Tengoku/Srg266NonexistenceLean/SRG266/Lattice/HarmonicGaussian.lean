@@ -15,6 +15,9 @@ namespace SRG266.Lattice
 open MeasureTheory Filter Asymptotics
 open scoped RealInnerProductSpace Topology
 
+/--
+@isnad1 id=ex.1h2v.s6.7ccd5c706e3f from=translated src=- shape=5e27888f vocab=7bd747cc
+-/
 theorem exists_bound_pow_mul_rexp_neg_sq (k : ℕ) {a : ℝ} (ha : 0 < a) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ r : ℝ,
       |r| ^ k * Real.exp (-a * r ^ 2) ≤ C := by
@@ -43,6 +46,9 @@ def realGaussian (t : ℝ) : V → ℂ := fun v ↦
 
 omit [InnerProductSpace ℝ V] [FiniteDimensional ℝ V] [MeasurableSpace V]
   [BorelSpace V] in
+/--
+@isnad1 id=continuo.0h2v.s5.356a526e3468 from=translated src=- shape=5e19da9f vocab=c4c5c8db
+-/
 theorem realGaussian_continuous (t : ℝ) :
     Continuous (realGaussian (V := V) t) := by
   unfold realGaussian
@@ -50,11 +56,17 @@ theorem realGaussian_continuous (t : ℝ) :
 
 omit [InnerProductSpace ℝ V] [FiniteDimensional ℝ V] [MeasurableSpace V]
   [BorelSpace V] in
+/--
+@isnad1 id=eq.0h3v.s5.38861eda870e from=translated src=- shape=6bfde282 vocab=352b1c4b
+-/
 @[simp]
 theorem realGaussian_neg (t : ℝ) (v : V) :
     realGaussian t (-v) = realGaussian t v := by
   simp [realGaussian]
 
+/--
+@isnad1 id=integrab.1h3v.s7.bcb1a4b083b2 from=translated src=- shape=0ea71d7a vocab=462c16eb
+-/
 theorem integrable_norm_pow_mul_rexp_neg_sq_norm (k : ℕ) {b : ℝ} (hb : 0 < b) :
     Integrable fun v : V ↦ ‖v‖ ^ k * Real.exp (-b * ‖v‖ ^ 2) := by
   let a : ℝ := b / 2
@@ -98,6 +110,9 @@ theorem integrable_norm_pow_mul_rexp_neg_sq_norm (k : ℕ) {b : ℝ} (hb : 0 < b
       _ ≤ C * Real.exp (-a * ‖v‖ ^ 2) := by
         gcongr
 
+/--
+@isnad1 id=integrab.1h3v.s7.6b4211a27dc9 from=translated src=- shape=2aa72300 vocab=be97b661
+-/
 theorem realGaussian_moment_integrable (k : ℕ) {t : ℝ} (ht : 0 < t) :
     Integrable fun v : V ↦ ‖v‖ ^ k * ‖realGaussian (V := V) t v‖ := by
   have h := integrable_norm_pow_mul_rexp_neg_sq_norm
@@ -115,23 +130,35 @@ def harmonicGaussian (t : ℝ) (x y : V) : V → ℂ := fun v ↦
   (harmonicQuadratic x y v : ℂ) * realGaussian t v
 
 omit [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V] in
+/--
+@isnad1 id=continuo.0h4v.s5.f24dcdc91a37 from=translated src=- shape=0e10e583 vocab=31399676
+-/
 theorem harmonicGaussian_continuous (t : ℝ) (x y : V) :
     Continuous (harmonicGaussian t x y) := by
   unfold harmonicGaussian harmonicQuadratic realGaussian
   fun_prop
 
 omit [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V] in
+/--
+@isnad1 id=eq.0h4v.s5.2c4dc36e978c from=translated src=- shape=7ed9ca5f vocab=65280d54
+-/
 @[simp]
 theorem harmonicGaussian_zero (t : ℝ) (x y : V) :
     harmonicGaussian t x y 0 = 0 := by
   simp [harmonicGaussian]
 
 omit [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V] in
+/--
+@isnad1 id=eq.0h5v.s5.5fe21788221d from=translated src=- shape=cb84f5fc vocab=9f831d90
+-/
 @[simp]
 theorem harmonicGaussian_neg (t : ℝ) (x y v : V) :
     harmonicGaussian t x y (-v) = harmonicGaussian t x y v := by
   simp [harmonicGaussian]
 
+/--
+@isnad1 id=integrab.1h4v.s6.8fae82821a58 from=translated src=- shape=41b1df54 vocab=9d0da464
+-/
 theorem harmonicGaussian_integrable {t : ℝ} (ht : 0 < t) (x y : V) :
     Integrable (harmonicGaussian t x y) := by
   let C : ℝ := ((Module.finrank ℝ V : ℝ) + 1) * ‖x‖ * ‖y‖

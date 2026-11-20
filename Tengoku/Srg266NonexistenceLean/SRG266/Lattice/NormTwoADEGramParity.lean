@@ -12,6 +12,9 @@ namespace SRG266.Lattice
 
 open scoped Matrix BigOperators Classical
 
+/--
+@isnad1 id=not.6h14v.s13.f62ff37bb924 from=translated src=- shape=48f3afc6 vocab=cf7ad927
+-/
 theorem not_all_E6_of_integral_root_projection
     {W U : Type*} [AddCommGroup W] [Module ℚ W] [AddCommGroup U] [Module ℚ U]
     {n d : ℕ} (i j : Fin n) (hij : i ≠ j)

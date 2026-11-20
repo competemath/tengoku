@@ -12,6 +12,9 @@ import Tengoku.Seed.Data.Rat.Lemmas
 
 namespace SRG266.Lattice
 
+/--
+@isnad1 id=ne.0h1v.s4.17d77389e7fe from=translated src=- shape=97ed45fc vocab=65e49ada
+-/
 theorem int_sq_ne_twenty (d : ℤ) : d^2 ≠ 20 := by
   intro h
   have h0 := Int.emod_nonneg d (show (3 : ℤ) ≠ 0 by norm_num)
@@ -21,6 +24,9 @@ theorem int_sq_ne_twenty (d : ℤ) : d^2 ≠ 20 := by
   rw [pow_two, Int.mul_emod] at hm
   rcases hr with h | h | h <;> norm_num [h] at hm
 
+/--
+@isnad1 id=ne.0h1v.s4.2d415a90785a from=translated src=- shape=97ed45fc vocab=f613af4e
+-/
 theorem rat_sq_ne_twenty (d : ℚ) : d^2 ≠ 20 := by
   intro h
   have hsq : IsSquare (20 : ℚ) := ⟨d, by simpa only [pow_two] using h.symm⟩

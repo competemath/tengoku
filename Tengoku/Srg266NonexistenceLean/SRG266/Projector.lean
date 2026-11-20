@@ -20,6 +20,9 @@ def localProjectorNumerator (x : V) :
     Matrix (SecondSubconstituent G x) (SecondSubconstituent G x) ℤ :=
   fun B C => 4 * localGramMatrix G x B C - 3
 
+/--
+@isnad1 id=eq.1h3v.s8.a2d76a439f9a from=translated src=- shape=007dd422 vocab=d27a43ae
+-/
 theorem localGram_mul_allOnes
     (hG : IsHypothetical G) (x : V) :
     localGramMatrix G x *
@@ -33,6 +36,9 @@ theorem localGram_mul_allOnes
   rw [hrow]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s8.56fd212fe91f from=translated src=- shape=fdbc2098 vocab=d27a43ae
+-/
 theorem allOnes_mul_localGram
     (hG : IsHypothetical G) (x : V) :
     (allOnesMatrix :
@@ -54,6 +60,9 @@ theorem allOnes_mul_localGram
   rw [hcol]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s8.083b16677f61 from=translated src=- shape=a684f74f vocab=d3a40a24
+-/
 theorem localProjectorNumerator_eq_linear_combination
     (x : V) :
     localProjectorNumerator G x =
@@ -72,6 +81,9 @@ theorem localProjectorNumerator_eq_linear_combination
   rw [nsmulMatrix_apply, nsmulMatrix_apply]
   simp [localProjectorNumerator]
 
+/--
+@isnad1 id=eq.1h3v.s8.4b4c23542062 from=translated src=- shape=744d97c8 vocab=27a5706e
+-/
 theorem localProjectorNumerator_sq
     (hG : IsHypothetical G) (x : V) :
     localProjectorNumerator G x * localProjectorNumerator G x =
@@ -104,6 +116,9 @@ theorem localProjectorNumerator_sq
       rw [hLL, hLJ, hJL, hJJ]
       noncomm_ring
 
+/--
+@isnad1 id=eq.1h5v.s7.f382a2758cdb from=translated src=- shape=0ca0dd86 vocab=f8a73371
+-/
 theorem localProjectorNumerator_sq_apply
     (hG : IsHypothetical G) (x : V)
     (B C : SecondSubconstituent G x) :
@@ -121,18 +136,27 @@ noncomputable def localProjectorMatrix (x : V) :
     Matrix (SecondSubconstituent G x) (SecondSubconstituent G x) ℝ :=
   fun B C => (localProjectorNumerator G x B C : ℝ) / 180
 
+/--
+@isnad1 id=eq.0h5v.s5.938ff4c9ebbb from=translated src=- shape=2daeeee1 vocab=be05361c
+-/
 theorem localProjectorMatrix_comm
     (x : V) (B C : SecondSubconstituent G x) :
     localProjectorMatrix G x B C = localProjectorMatrix G x C B := by
   simp only [localProjectorMatrix, localProjectorNumerator]
   rw [localGramMatrix_comm G x B C]
 
+/--
+@isnad1 id=ishermit.0h3v.s6.9f6a7661b21f from=translated src=- shape=9bbb9fae vocab=080e9020
+-/
 theorem localProjectorMatrix_isHermitian (x : V) :
     (localProjectorMatrix G x).IsHermitian := by
   rw [Matrix.isHermitian_iff_isSymm]
   exact Matrix.IsSymm.ext fun B C =>
     (localProjectorMatrix_comm G x B C).symm
 
+/--
+@isnad1 id=eq.1h3v.s7.72300951bf24 from=translated src=- shape=2ebfb7e4 vocab=8bc9356f
+-/
 theorem localProjectorMatrix_idempotent
     (hG : IsHypothetical G) (x : V) :
     localProjectorMatrix G x * localProjectorMatrix G x =
@@ -171,6 +195,9 @@ theorem localProjectorMatrix_idempotent
       push_cast
       ring
 
+/--
+@isnad1 id=possemid.1h3v.s5.108e34fece9c from=translated src=- shape=df9ada21 vocab=c01f4ff1
+-/
 theorem localProjectorMatrix_posSemidef
     (hG : IsHypothetical G) (x : V) :
     (localProjectorMatrix G x).PosSemidef := by
@@ -180,6 +207,9 @@ theorem localProjectorMatrix_posSemidef
     localProjectorMatrix_idempotent G hG x] at h
   exact h
 
+/--
+@isnad1 id=eq.1h4v.s6.035885628107 from=translated src=- shape=f7b9541e vocab=b01a8676
+-/
 @[simp]
 theorem localProjectorMatrix_diagonal
     (hG : IsHypothetical G) (x : V)
@@ -189,6 +219,9 @@ theorem localProjectorMatrix_diagonal
     localGramMatrix_diagonal G hG x B]
   norm_num
 
+/--
+@isnad1 id=eq.2h5v.s7.05acb1e4df51 from=translated src=- shape=f2945993 vocab=8c106d88
+-/
 theorem localProjectorMatrix_of_not_adj
     (x : V) {B C : SecondSubconstituent G x}
     (hne : B ≠ C)
@@ -200,6 +233,9 @@ theorem localProjectorMatrix_of_not_adj
   push_cast
   ring
 
+/--
+@isnad1 id=le.1h5v.s6.5e0acef7144c from=translated src=- shape=1ab87255 vocab=5eb3becf
+-/
 theorem localProjectorMatrix_entry_sq_le
     (hG : IsHypothetical G) (x : V)
     (B C : SecondSubconstituent G x) :
@@ -220,6 +256,9 @@ theorem localProjectorMatrix_entry_sq_le
   rw [he0, he1, localProjectorMatrix_comm G x C B] at hdet
   nlinarith
 
+/--
+@isnad1 id=le.3h5v.s6.a72f897cbe93 from=translated src=- shape=63011bbe vocab=a4046ba1
+-/
 theorem blockIntersection_le_four_of_not_adj
     (hG : IsHypothetical G) (x : V)
     {B C : SecondSubconstituent G x}
@@ -242,6 +281,9 @@ theorem blockIntersection_le_four_of_not_adj
   norm_num at hsq
   nlinarith
 
+/--
+@isnad1 id=le.2h5v.s6.b4564bfeede7 from=translated src=- shape=99746e7e vocab=58103005
+-/
 theorem blockIntersection_le_four
     (hG : IsHypothetical G) (x : V)
     {B C : SecondSubconstituent G x}

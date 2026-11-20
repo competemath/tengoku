@@ -23,45 +23,78 @@ def dualFive : Space := (0, fifth)
 private theorem standard_integral : IsIntegral (standardRatForm 1) (coordinateIntegerLattice 1) := by
   rw [IsIntegral, standardRatForm_dual_coordinateIntegerLattice]
 
+/--
+@isnad1 id=issymm.0h0v.s7.cde479eb4a40 from=translated src=- shape=54c8eceb vocab=658c6e07
+-/
 theorem form_isSymm : form.IsSymm :=
   prodForm_isSymm (simplexRatForm_isSymm 5) (isSymm_smul_form (standardRatForm_isSymm 1) 10)
 
+/--
+@isnad1 id=lt.1h1v.s10.80abb4a264c5 from=translated src=- shape=e7c936f8 vocab=7547b03f
+-/
 theorem form_posDef : ∀ x : Space, x ≠ 0 → 0 < form x x :=
   prodForm_posDef (simplexRatForm_posDef 5)
     (posDef_smul_form (by norm_num) (standardRatForm_posDef 1))
 
+/--
+@isnad1 id=mem.0h0v.s8.7384abbd987a from=translated src=- shape=0a8cc1f1 vocab=15e3964a
+-/
 theorem half_mem_dual : simplexWeight 1 ∈ rightForm.dualSubmodule (coordinateIntegerLattice 1) := by
   rw [rightForm, mem_dual_smul_form_iff, standardRatForm_dual_coordinateIntegerLattice]
   refine mem_coordinateIntegerLattice.mpr ⟨fun _ => 5, ?_⟩
   intro i
   norm_num [simplexWeight]
 
+/--
+@isnad1 id=eq.0h0v.s10.5680050e04f5 from=translated src=- shape=bd6f62e4 vocab=c21f4a36
+-/
 theorem glueVector_norm : form glueVector glueVector = 10 := by
   norm_num [form, rightForm, glueVector, E6Coordinates.glueVector, prodForm_apply,
     simplexRatForm_apply, standardRatForm_apply, simplexWeight, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h0v.s10.3c8a23d2039f from=translated src=- shape=1a9fa12e vocab=71cf364f
+-/
 theorem dualThree_norm : form dualThree dualThree = 10 / 3 := by
   norm_num [form, rightForm, dualThree, E6Coordinates.dualVector, prodForm_apply,
     simplexRatForm_apply, standardRatForm_apply, simplexWeight, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h0v.s10.4d849c92a832 from=translated src=- shape=1a9fa12e vocab=ab3264a2
+-/
 theorem dualFive_norm : form dualFive dualFive = 2 / 5 := by
   norm_num [form, rightForm, dualFive, fifth, prodForm_apply, simplexRatForm_apply,
     standardRatForm_apply, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h0v.s10.dd4c036384bb from=translated src=- shape=0775d00c vocab=62b147e1
+-/
 theorem dualThree_pair_glueVector : form dualThree glueVector = 5 := by
   norm_num [form, rightForm, dualThree, glueVector, E6Coordinates.dualVector,
     E6Coordinates.glueVector, prodForm_apply, simplexRatForm_apply,
     standardRatForm_apply, simplexWeight, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h0v.s10.57dd6afafc8f from=translated src=- shape=0775d00c vocab=99f98eca
+-/
 theorem dualFive_pair_glueVector : form dualFive glueVector = 1 := by
   norm_num [form, rightForm, dualFive, fifth, glueVector, E6Coordinates.glueVector,
     prodForm_apply, simplexRatForm_apply, standardRatForm_apply, simplexWeight, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h0v.s10.ff4e4f2264c8 from=translated src=- shape=0775d00c vocab=7c56a6c8
+-/
 theorem dualThree_pair_dualFive : form dualThree dualFive = 0 := by
   simp [form, dualThree, E6Coordinates.dualVector, dualFive, prodForm_apply]
 
+/--
+@isnad1 id=islattic.0h0v.s8.abc96217e889 from=translated src=- shape=93eefbde vocab=c4ba2fe7
+-/
 theorem lattice_isLattice : IsLattice ℚ lattice := E6Coordinates.lattice_isLattice
 
+/--
+@isnad1 id=isintegr.0h0v.s7.73e9db0e8221 from=translated src=- shape=8175f13d vocab=7f00ffe5
+-/
 theorem lattice_isIntegral : IsIntegral form lattice := by
   apply cyclicGlueLattice_isIntegral (simplexRatForm_isSymm 5)
     (isSymm_smul_form (standardRatForm_isSymm 1) 10)
@@ -69,14 +102,23 @@ theorem lattice_isIntegral : IsIntegral form lattice := by
     (Submodule.smul_mem _ (3 : ℤ) (simplexWeight_mem_dual 5)) half_mem_dual
   exact mem_one_iff.mpr ⟨10, glueVector_norm.symm⟩
 
+/--
+@isnad1 id=iseven.0h0v.s7.6e6f786e7410 from=translated src=- shape=54c8eceb vocab=da0d2ded
+-/
 theorem lattice_isEven : IsEven form lattice := by
   apply cyclicGlueLattice_isEven (simplexRatForm_isSymm 5)
     (isSymm_smul_form (standardRatForm_isSymm 1) 10) lattice_isIntegral
     (simplexRatForm_isEven 5) (isEven_even_smul_form standard_integral (by decide : Even (10 : ℤ)))
   exact ⟨5, glueVector_norm.trans (by norm_num)⟩
 
+/--
+@isnad1 id=eq.0h0v.s7.63608335fca2 from=translated src=- shape=b3c4969c vocab=833f0bbf
+-/
 theorem finrank_space : Module.finrank ℚ Space = 6 := E6Coordinates.finrank_space
 
+/--
+@isnad1 id=mem.0h0v.s9.a103d3bd842c from=translated src=- shape=568e8a8c vocab=b965b6c1
+-/
 theorem dualThree_mem_dual : dualThree ∈ form.dualSubmodule lattice := by
   change lattice ≤ rightIntegral form dualThree
   refine sup_le (fun z hz => ?_) (Submodule.span_le.mpr ?_)
@@ -87,6 +129,9 @@ theorem dualThree_mem_dual : dualThree ∈ form.dualSubmodule lattice := by
   · rintro _ (rfl : _ = glueVector)
     exact mem_one_iff.mpr ⟨5, dualThree_pair_glueVector.symm⟩
 
+/--
+@isnad1 id=mem.0h0v.s9.54a8fe40bbce from=translated src=- shape=568e8a8c vocab=97673725
+-/
 theorem dualFive_mem_dual : dualFive ∈ form.dualSubmodule lattice := by
   have hf : fifth ∈ rightForm.dualSubmodule (coordinateIntegerLattice 1) := by
     rw [rightForm, mem_dual_smul_form_iff, standardRatForm_dual_coordinateIntegerLattice]
@@ -100,9 +145,15 @@ theorem dualFive_mem_dual : dualFive ∈ form.dualSubmodule lattice := by
   · rintro _ (rfl : _ = glueVector)
     exact mem_one_iff.mpr ⟨1, dualFive_pair_glueVector.symm⟩
 
+/--
+@isnad1 id=mem.0h0v.s8.bb8a7e57d434 from=translated src=- shape=cddf0ccc vocab=5e369da0
+-/
 theorem three_smul_dualThree_mem : (3 : ℤ) • dualThree ∈ lattice :=
   E6Coordinates.three_smul_dualVector_mem
 
+/--
+@isnad1 id=mem.0h0v.s8.92d8b9161c49 from=translated src=- shape=cddf0ccc vocab=3129088e
+-/
 theorem five_smul_dualFive_mem : (5 : ℤ) • dualFive ∈ lattice := by
   apply Submodule.mem_sup_left
   constructor
@@ -111,6 +162,9 @@ theorem five_smul_dualFive_mem : (5 : ℤ) • dualFive ∈ lattice := by
     intro i
     norm_num [dualFive, fifth]
 
+/--
+@isnad1 id=eq.0h0v.s10.4168dd158826 from=translated src=- shape=a049e693 vocab=4eee17ce
+-/
 theorem lattice_dual : form.dualSubmodule lattice =
     lattice ⊔ Submodule.span ℤ {dualThree, dualFive} := by
   apply le_antisymm

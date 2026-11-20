@@ -21,11 +21,17 @@ def integralGramForm (x : V) :
       (SecondSubconstituent G x → ℤ) :=
   Matrix.toBilin' (localGramMatrix G x)
 
+/--
+@isnad1 id=issymm.0h3v.s6.382abd13ede2 from=translated src=- shape=5838eae1 vocab=be7668f6
+-/
 theorem integralGramForm_isSymm (x : V) :
     (integralGramForm G x).IsSymm := by
   rw [integralGramForm, Matrix.isSymm_toBilin'_iff_isSymm]
   exact localGramMatrix_isSymm G x
 
+/--
+@isnad1 id=isrefl.0h3v.s6.35656d7ea669 from=translated src=- shape=5838eae1 vocab=a7db974f
+-/
 theorem integralGramForm_isRefl (x : V) :
     (integralGramForm G x).IsRefl :=
   (integralGramForm_isSymm G x).isRefl
@@ -38,6 +44,9 @@ def integralGramKernel (x : V) :
     Submodule ℤ (SecondSubconstituent G x → ℤ) :=
   LinearMap.ker (localGramMatrix G x).mulVecLin
 
+/--
+@isnad1 id=eq.0h3v.s6.05e8c00604b8 from=translated src=- shape=17ad61eb vocab=fd3d1573
+-/
 theorem integralGramKernel_eq_relations (x : V) :
     integralGramKernel G x = integralGramRelations G x := by
   ext z
@@ -102,6 +111,9 @@ def integralGramGenerator (x : V)
     IntegralGramLattice G x :=
   Submodule.Quotient.mk (Pi.single B 1)
 
+/--
+@isnad1 id=eq.0h5v.s10.56d812f95cfe from=translated src=- shape=6c816d6c vocab=7df511f1
+-/
 @[simp]
 theorem integralGramPairing_generator_generator
     (x : V) (B C : SecondSubconstituent G x) :
@@ -119,6 +131,9 @@ def integralGramGeneratorSum (x : V) :
     IntegralGramLattice G x :=
   ∑ B, integralGramGenerator G x B
 
+/--
+@isnad1 id=eq.0h3v.s7.11d894cb3062 from=translated src=- shape=dd3af504 vocab=764f739c
+-/
 theorem integralGramGeneratorSum_eq_mk_one
     (x : V) :
     integralGramGeneratorSum G x =
@@ -134,6 +149,9 @@ theorem integralGramGeneratorSum_eq_mk_one
   funext C
   simp [Pi.single_apply]
 
+/--
+@isnad1 id=eq.1h4v.s10.60c10e705c38 from=translated src=- shape=78da79df vocab=ae035fa5
+-/
 theorem integralGramPairing_sum_generator
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
@@ -151,6 +169,9 @@ theorem integralGramPairing_sum_generator
   intro C _
   exact localGramMatrix_comm G x C B
 
+/--
+@isnad1 id=eq.1h3v.s10.87940adbad0d from=translated src=- shape=e039423d vocab=d9c1b1e3
+-/
 theorem integralGramPairing_sum_sum
     (hG : IsHypothetical G) (x : V) :
     integralGramPairing G x
@@ -178,6 +199,9 @@ def HasMod11KernelLift (x : V) : Prop :=
     z ∈ integralGramRelations G x ∧
       ∀ B, ∃ a : ℤ, 1 - z B = 11 * a
 
+/--
+@isnad1 id=ex.1h3v.s7.b036adb69ed9 from=translated src=- shape=b658ee9f vocab=a1e11a9e
+-/
 theorem exists_integral_centroid_of_mod11KernelLift
     (x : V) (hlift : HasMod11KernelLift G x) :
     ∃ c : IntegralGramLattice G x,
@@ -211,6 +235,9 @@ theorem exists_integral_centroid_of_mod11KernelLift
     _ = integralGramGeneratorSum G x :=
       (integralGramGeneratorSum_eq_mk_one G x).symm
 
+/--
+@isnad1 id=eq.2h5v.s10.42336fecae8c from=translated src=- shape=b2a1d69e vocab=2b2c3f50
+-/
 theorem integral_centroid_pairing_generator
     (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
@@ -223,6 +250,9 @@ theorem integral_centroid_pairing_generator
   simp at h
   omega
 
+/--
+@isnad1 id=eq.2h4v.s10.552fc83f98c4 from=translated src=- shape=05175be3 vocab=c477bedc
+-/
 theorem integral_centroid_norm
     (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)

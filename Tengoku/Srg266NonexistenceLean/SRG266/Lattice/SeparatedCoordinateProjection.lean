@@ -21,6 +21,9 @@ def middleCoordinateProjection (n : ℕ) : ((W × (Fin n → ℚ)) × U) →ₗ[
 def middleCoordinateInclusion (n : ℕ) : (Fin n → ℚ) →ₗ[ℚ] ((W × (Fin n → ℚ)) × U) :=
   (LinearMap.inl ℚ (W × (Fin n → ℚ)) U).comp (LinearMap.inr ℚ W (Fin n → ℚ))
 
+/--
+@isnad1 id=ex.1h5v.s11.bd98c74580bc from=translated src=- shape=19af1c45 vocab=f4618c9d
+-/
 theorem separated_coordinate_eigenvalues
     {ι : Type*} [Fintype ι] [DecidableEq ι] {n : ℕ}
     (ψ : (ι → ℚ) ≃ₗ[ℚ] ((W × (Fin n → ℚ)) × U))
@@ -53,6 +56,9 @@ theorem separated_coordinate_eigenvalues
   refine ⟨a, ha, heigen, ?_⟩
   simpa using sum_coordinate_eigenvalues_of_split f g hfg a hdiag
 
+/--
+@isnad1 id=eq.0h7v.s11.016d5f7d5729 from=translated src=- shape=b795d9bc vocab=a33061f2
+-/
 theorem middleProjection_pairing {n : ℕ}
     (B : LinearMap.BilinForm ℚ W) (C : LinearMap.BilinForm ℚ U)
     (x y : (W × (Fin n → ℚ)) × U) :
@@ -62,6 +68,9 @@ theorem middleProjection_pairing {n : ℕ}
         (middleCoordinateInclusion n (middleCoordinateProjection n y)) := by
   simp [middleCoordinateInclusion, middleCoordinateProjection, prodForm_apply]
 
+/--
+@isnad1 id=eq.3h9v.s11.39fb4ecdae39 from=translated src=- shape=36472063 vocab=e117d97a
+-/
 theorem middleProjection_eigenvalues_eq_of_pairing_ne_zero {n : ℕ}
     (B : LinearMap.BilinForm ℚ W) (C : LinearMap.BilinForm ℚ U)
     {x y : (W × (Fin n → ℚ)) × U} {a b : ℚ}

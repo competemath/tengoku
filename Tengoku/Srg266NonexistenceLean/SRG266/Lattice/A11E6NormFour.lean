@@ -10,6 +10,9 @@ import Tengoku.Srg266NonexistenceLean.SRG266.Lattice.E6CartanShortNorm
 
 namespace SRG266.Lattice
 
+/--
+@isnad1 id=or.5h2v.s7.ca65bd061ec2 from=translated src=- shape=8db1fd13 vocab=ad7264d9
+-/
 theorem norm_four_split_values (a e : ℚ) (ha : 0 ≤ a) (he : 0 ≤ e)
     (hsum : a+e = 4) (hgap : a ≠ 2/3)
     (hclass : (∃ m : ℤ, e = 2*(m : ℚ)) ∨ (∃ m : ℤ, e = 4/3+2*(m : ℚ))) :

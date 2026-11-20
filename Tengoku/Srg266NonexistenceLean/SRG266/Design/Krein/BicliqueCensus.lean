@@ -19,6 +19,9 @@ local notation "V" => KreinVertex (P := P) (B := B)
 def neighborCount (T : Finset V) (x : V) : ℕ :=
   (T.filter fun y => D.kreinGraph.Adj x y).card
 
+/--
+@isnad1 id=eq.2h5v.s7.d550ba121db6 from=translated src=- shape=1696160c vocab=4c6beff1
+-/
 theorem biclique_neighbors_of_mem_side {S : Finset V} (hI : D.IndependentSet S)
     {x : V} (hx : x ∈ S) :
     (S ∪ D.commonTo S).filter (fun y => D.kreinGraph.Adj x y) = D.commonTo S := by
@@ -37,9 +40,15 @@ def bicliqueOutside (S : Finset V) : Finset V := Finset.univ \ (S ∪ D.commonTo
 def bicliqueClass (S : Finset V) (i : ℕ) : Finset V :=
   (D.bicliqueOutside S).filter fun x => D.neighborCount (S ∪ D.commonTo S) x = i
 
+/--
+@isnad1 id=iff.0h5v.s7.1ef51ab80f73 from=translated src=- shape=b5055788 vocab=c1b20236
+-/
 @[simp] theorem mem_bicliqueOutside (S : Finset V) (x : V) :
     x ∈ D.bicliqueOutside S ↔ x ∉ S ∪ D.commonTo S := by simp [bicliqueOutside]
 
+/--
+@isnad1 id=and.1h3v.s8.90ba218cfd45 from=translated src=- shape=d244676e vocab=3c9b1f1c
+-/
 theorem boundedTwo_fiber_moments {α : Type*} [DecidableEq α] (U : Finset α)
     (f : α → ℕ) (hle : ∀ x ∈ U, f x ≤ 2) :
     (U.card : ℤ) = (U.filter fun x => f x = 0).card +

@@ -12,6 +12,9 @@ namespace SRG266.Lattice
 
 open scoped BigOperators
 
+/--
+@isnad1 id=eq.1h4v.s11.c14e15c8b665 from=translated src=- shape=587fade5 vocab=2339ae07
+-/
 theorem normTwoRoot_positive_sum_pairing_combination
     {n : ℕ} (L : PDUnimodularLattice n)
     (f : L.carrier →+ ℤ) (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0)
@@ -31,6 +34,9 @@ theorem normTwoRoot_positive_sum_pairing_combination
       rw [normTwoRoot_positive_sum_pairing_simple L f hf s.1 s.2]
     _ = _ := by rw [← Finset.sum_mul]; ring
 
+/--
+@isnad1 id=eq.5h6v.s12.445122fa7312 from=translated src=- shape=fbbaae56 vocab=ee7af02d
+-/
 theorem normTwoRoot_scalar_eq_twice_dominant_height
     {n : ℕ} (L : PDUnimodularLattice n)
     (f : L.carrier →+ ℤ) (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0)
@@ -45,6 +51,9 @@ theorem normTwoRoot_scalar_eq_twice_dominant_height
   have hdomsum := normTwoRoot_dominant_positive_sum L f hf θ hθ hdom c hm
   omega
 
+/--
+@isnad1 id=le.2h5v.s11.5310cee80e9d from=translated src=- shape=a7f282ce vocab=56b648de
+-/
 theorem normTwoRoot_dominant_of_simple_pairings
     {n : ℕ} (L : PDUnimodularLattice n)
     (f : L.carrier →+ ℤ) (θ : NormTwoRoot L)

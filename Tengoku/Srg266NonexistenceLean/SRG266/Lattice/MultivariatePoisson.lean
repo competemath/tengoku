@@ -18,6 +18,9 @@ open scoped FourierTransform RealInnerProductSpace SchwartzMap
 
 open Filter Asymptotics
 
+/--
+@isnad1 id=summable.0h3v.s8.df5e52aba8c8 from=translated src=- shape=e1553724 vocab=11468fed
+-/
 theorem SchwartzMap.summable_zlattice
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] [ProperSpace E]
@@ -60,6 +63,9 @@ structure PiPoissonPeriodizationData {n : ℕ}
   fourierSummable : Summable fun m : Fin n → ℤ =>
     𝓕 f (intVectorToReal m)
 
+/--
+@isnad1 id=eq.0h3v.s7.e2a2d4a21518 from=translated src=- shape=e6d02b2b vocab=38b11081
+-/
 theorem piPoisson_of_periodization {n : ℕ}
     {f : EuclideanSpace ℝ (Fin n) → ℂ}
     (P : PiPoissonPeriodizationData f) :

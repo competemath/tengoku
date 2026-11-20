@@ -12,6 +12,9 @@ namespace SRG266.Lattice
 
 open scoped BigOperators Classical
 
+/--
+@isnad1 id=mem.1h1v.s8.cd58fffb1e72 from=translated src=- shape=88975b76 vocab=7c5428e5
+-/
 theorem a11D7E6A11Part_mem_integer {q : Fin 24 → ℚ}
     (hq : q ∈ coordinateIntegerLattice 24) :
     a11D7E6A11Part q ∈ coordinateIntegerLattice 11 := by
@@ -20,6 +23,9 @@ theorem a11D7E6A11Part_mem_integer {q : Fin 24 → ℚ}
 
 variable {W U : Type*} [AddCommGroup W] [Module ℚ W] [AddCommGroup U] [Module ℚ U]
 
+/--
+@isnad1 id=and.3h5v.s10.d87f50bcd42c from=translated src=- shape=fb813b66 vocab=ef8fd888
+-/
 theorem normalized_frame_counts_energy {ι : Type*} [Fintype ι]
     (a : ι → ℤ) (δ : ℤ) (u : ι → (Fin 11 → ℚ)) (v : ι → (Fin 6 → ℚ))
     (htype : ∀ i, A11E6NormalizedType (a i) δ (u i) (v i))

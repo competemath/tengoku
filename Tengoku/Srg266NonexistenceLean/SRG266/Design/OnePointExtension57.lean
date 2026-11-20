@@ -39,38 +39,65 @@ noncomputable def extensionBlock : Q.ExtensionBlock → Finset ExtensionPoint
   | Sum.inl B => (Q.pointsOn B).map ⟨Option.some, Option.some_injective _⟩
   | Sum.inr S => insert none (S.val.map ⟨Option.some, Option.some_injective _⟩)
 
+/--
+@isnad1 id=iff.0h3v.s6.2b2d62cf0a79 from=translated src=- shape=849ba6fb vocab=1fb5c386
+-/
 @[simp] theorem some_mem_extensionBlock_old (p : Fin 56) (B : Fin 210) :
     some p ∈ Q.extensionBlock (Sum.inl B) ↔ Q.matrix p B = 1 := by
   simp [extensionBlock]
 
+/--
+@isnad1 id=not.0h2v.s6.7bc1184e3121 from=translated src=- shape=8d84ec2d vocab=9a73e101
+-/
 @[simp] theorem none_notMem_extensionBlock_old (B : Fin 210) :
     none ∉ Q.extensionBlock (Sum.inl B) := by simp [extensionBlock]
 
+/--
+@isnad1 id=iff.0h3v.s8.8e3741a9f111 from=translated src=- shape=16713047 vocab=a22c238e
+-/
 @[simp] theorem some_mem_extensionBlock_new (p : Fin 56)
     (S : ↥Q.canonicalBiplaneBlocks) :
     some p ∈ Q.extensionBlock (Sum.inr S) ↔ p ∈ S.val := by
   simp [extensionBlock]
 
+/--
+@isnad1 id=mem.0h2v.s7.d24a31f2d5c9 from=translated src=- shape=13ff253b vocab=ff5fab66
+-/
 @[simp] theorem none_mem_extensionBlock_new (S : ↥Q.canonicalBiplaneBlocks) :
     none ∈ Q.extensionBlock (Sum.inr S) := by simp [extensionBlock]
 
+/--
+@isnad1 id=eq.0h0v.s4.163cb436d396 from=translated src=- shape=b0ae1d2b vocab=0e737645
+-/
 theorem extensionPoint_card : Fintype.card ExtensionPoint = 57 := by
   simp [ExtensionPoint]
 
+/--
+@isnad1 id=eq.0h1v.s6.46fdad4b21d6 from=translated src=- shape=f6b6ad72 vocab=5f5e7624
+-/
 theorem extensionBlock_card : Fintype.card Q.ExtensionBlock = 266 := by
   simp [ExtensionBlock, Q.canonicalBiplane_card]
 
+/--
+@isnad1 id=eq.0h2v.s4.7926ebfdadf4 from=translated src=- shape=f4981aa0 vocab=645c6143
+-/
 theorem extensionBlock_size (b : Q.ExtensionBlock) : (Q.extensionBlock b).card = 12 := by
   rcases b with b | S
   · simp [extensionBlock, Q.card_pointsOn]
   · simp [extensionBlock, Q.canonicalBiplane_block_card S.property]
 
+/--
+@isnad1 id=eq.0h2v.s9.44929508feb9 from=translated src=- shape=90efeeed vocab=770e2337
+-/
 theorem count_extensionBlock (R : Q.ExtensionBlock → Prop) [DecidablePred R] :
     (Finset.univ.filter R).card =
       (Finset.univ.filter fun b : Fin 210 => R (Sum.inl b)).card +
       (Finset.univ.filter fun S : ↥Q.canonicalBiplaneBlocks => R (Sum.inr S)).card := by
   simp only [Finset.card_filter, Fintype.sum_sum_type]
 
+/--
+@isnad1 id=eq.0h2v.s8.1accfbe5420e from=translated src=- shape=5e27b9f9 vocab=2a2b8858
+-/
 theorem count_canonicalBiplaneSubtype (R : Finset (Fin 56) → Prop) [DecidablePred R] :
     (Finset.univ.filter fun S : ↥Q.canonicalBiplaneBlocks => R S.val).card =
       (Q.canonicalBiplaneBlocks.filter R).card := by
@@ -84,6 +111,9 @@ theorem count_canonicalBiplaneSubtype (R : Finset (Fin 56) → Prop) [DecidableP
     exact ⟨⟨S,(Finset.mem_filter.mp hS).1⟩,
       Finset.mem_filter.mpr ⟨Finset.mem_univ _, (Finset.mem_filter.mp hS).2⟩, rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.052f01ac6153 from=translated src=- shape=90ac5be3 vocab=f1d0bcfd
+-/
 theorem extension_replication (p : ExtensionPoint) :
     (Finset.univ.filter fun b => p ∈ Q.extensionBlock b).card = 56 := by
   rw [Q.count_extensionBlock]
@@ -95,6 +125,9 @@ theorem extension_replication (p : ExtensionPoint) :
     change (Q.blocksThrough p).card + 11 = 56
     rw [Q.card_blocksThrough]
 
+/--
+@isnad1 id=eq.1h3v.s7.49c54378e6ca from=translated src=- shape=72978771 vocab=f1d0bcfd
+-/
 theorem extension_point_pair (p q : ExtensionPoint) (hpq : p ≠ q) :
     (Finset.univ.filter fun b => p ∈ Q.extensionBlock b ∧ q ∈ Q.extensionBlock b).card = 11 := by
   rw [Q.count_extensionBlock]
@@ -122,6 +155,9 @@ theorem extension_point_pair (p q : ExtensionPoint) (hpq : p ≠ q) :
       change (Q.blocksThroughPair p q).card + 2 = 11
       rw [Q.card_blocksThroughPair hne]
 
+/--
+@isnad1 id=eq.3h4v.s8.1b2b30f8165f from=translated src=- shape=2933011c vocab=f1d0bcfd
+-/
 theorem extension_point_triple (p q r : ExtensionPoint)
     (hpq : p ≠ q) (hpr : p ≠ r) (hqr : q ≠ r) :
     (Finset.univ.filter fun b => p ∈ Q.extensionBlock b ∧
@@ -149,6 +185,9 @@ theorem extension_point_triple (p q r : ExtensionPoint)
     exact Q.canonicalBiplane_triple_complement (fun h => hpq (congrArg some h))
       (fun h => hpr (congrArg some h)) (fun h => hqr (congrArg some h))
 
+/--
+@isnad1 id=or.1h3v.s6.811e1ac43a8e from=translated src=- shape=dab3f95c vocab=ddbfb077
+-/
 theorem extension_block_intersections (b c : Q.ExtensionBlock) (hbc : b ≠ c) :
     (Q.extensionBlock b ∩ Q.extensionBlock c).card = 0 ∨
       (Q.extensionBlock b ∩ Q.extensionBlock c).card = 3 := by

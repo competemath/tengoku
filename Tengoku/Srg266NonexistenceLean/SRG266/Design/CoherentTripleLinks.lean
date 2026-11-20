@@ -20,6 +20,9 @@ def blocksThroughTriple (p q r : Fin 56) : Finset (Fin 210) :=
 def tripleMultiplicity (p q r : Fin 56) : ℕ :=
   (Q.blocksThroughTriple p q r).card
 
+/--
+@isnad1 id=eq.0h4v.s5.dfc8c31280fa from=translated src=- shape=137a1fe4 vocab=bb9fbbf7
+-/
 theorem tripleMultiplicity_swap (p q r : Fin 56) :
     Q.tripleMultiplicity p q r = Q.tripleMultiplicity q p r := by
   unfold tripleMultiplicity
@@ -28,6 +31,9 @@ theorem tripleMultiplicity_swap (p q r : Fin 56) :
   simp only [blocksThroughTriple, Finset.mem_filter, Finset.mem_univ, true_and]
   tauto
 
+/--
+@isnad1 id=eq.0h4v.s5.31cd5d54a1f8 from=translated src=- shape=e0f72de5 vocab=bb9fbbf7
+-/
 theorem tripleMultiplicity_rotate (p q r : Fin 56) :
     Q.tripleMultiplicity p q r = Q.tripleMultiplicity q r p := by
   unfold tripleMultiplicity
@@ -39,18 +45,27 @@ theorem tripleMultiplicity_rotate (p q r : Fin 56) :
 def sparseTriple (p q r : Fin 56) : Prop :=
   p ≠ q ∧ p ≠ r ∧ q ≠ r ∧ Q.tripleMultiplicity p q r = 1
 
+/--
+@isnad1 id=iff.0h4v.s5.a68110f88b2c from=translated src=- shape=5b78a72e vocab=929b9858
+-/
 theorem sparseTriple_swap (p q r : Fin 56) :
     Q.sparseTriple p q r ↔ Q.sparseTriple q p r := by
   simp only [sparseTriple, ne_eq]
   rw [Q.tripleMultiplicity_swap p q r]
   tauto
 
+/--
+@isnad1 id=iff.0h4v.s5.614a809601d4 from=translated src=- shape=7e1d60fa vocab=929b9858
+-/
 theorem sparseTriple_rotate (p q r : Fin 56) :
     Q.sparseTriple p q r ↔ Q.sparseTriple q r p := by
   simp only [sparseTriple, ne_eq]
   rw [Q.tripleMultiplicity_rotate p q r]
   tauto
 
+/--
+@isnad1 id=eq.0h4v.s8.606c64ab11f8 from=translated src=- shape=458b4a74 vocab=dc1f863e
+-/
 theorem derived_pairMult_eq_tripleMultiplicity (z : Fin 56)
     (p q : Punctured z) :
     (Q.derived45 z).pairMult p q = Q.tripleMultiplicity z p.val q.val := by
@@ -74,6 +89,9 @@ theorem derived_pairMult_eq_tripleMultiplicity (z : Fin 56)
   simp only [Finset.mem_filter, mem_derivedIndex, blocksThroughTriple,
     Finset.mem_univ, true_and]
 
+/--
+@isnad1 id=or.3h4v.s6.ab2702d552c5 from=translated src=- shape=eade7795 vocab=bb9fbbf7
+-/
 theorem tripleMultiplicity_cases {p q r : Fin 56}
     (hpq : p ≠ q) (hpr : p ≠ r) (hqr : q ≠ r) :
     Q.tripleMultiplicity p q r = 1 ∨ Q.tripleMultiplicity p q r = 2 := by
@@ -89,6 +107,9 @@ theorem tripleMultiplicity_cases {p q r : Fin 56}
 noncomputable def tripleLink (z : Fin 56) : SimpleGraph (Punctured z) :=
   (Q.derived45 z).blockGraph
 
+/--
+@isnad1 id=iff.0h4v.s7.1e17e7425d1d from=translated src=- shape=f09ea305 vocab=29e0c285
+-/
 theorem tripleLink_adj_iff_sparseTriple {z : Fin 56} {p q : Punctured z} :
     (Q.tripleLink z).Adj p q ↔ Q.sparseTriple z p.val q.val := by
   rw [tripleLink, Derived45.blockGraph_adj,
@@ -101,6 +122,9 @@ theorem tripleLink_adj_iff_sparseTriple {z : Fin 56} {p q : Punctured z} :
   · rintro ⟨-, -, hpq, hmult⟩
     exact ⟨fun h => hpq (congrArg Subtype.val h), hmult⟩
 
+/--
+@isnad1 id=issrgwit.0h2v.s7.bc301a8bb6b8 from=translated src=- shape=0ebc2bdd vocab=fa2e3bfc
+-/
 theorem tripleLink_isSRGWith (z : Fin 56) :
     @SimpleGraph.IsSRGWith (Punctured z) _ (Q.tripleLink z)
       ((Q.derived45 z).instDecidableRelAdjBlockGraph) 55 18 9 4 := by

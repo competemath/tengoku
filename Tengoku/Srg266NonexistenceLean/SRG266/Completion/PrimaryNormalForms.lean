@@ -13,6 +13,9 @@ namespace SRG266
 variable {V : Type*} [Fintype V] [DecidableEq V]
 variable (G : SimpleGraph V) [DecidableRel G.Adj]
 
+/--
+@isnad1 id=ex.1h3v.s11.bc9639acdf32 from=translated src=- shape=3c8fab6e vocab=c51a1a44
+-/
 theorem exists_lorentzMarked_normal_forms_from_graph (hG : IsHypothetical G) (x : V) :
     ∃ (c : IntegralGramLattice G x) (P : Submodule ℤ (ratGramSpace G x)),
       (11 : ℤ) • c = integralGramGeneratorSum G x ∧

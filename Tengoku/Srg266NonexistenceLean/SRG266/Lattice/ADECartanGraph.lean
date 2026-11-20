@@ -24,21 +24,33 @@ noncomputable def graphCartanMatrix (G : SimpleGraph V) : Matrix V V ℤ := by
   classical
   exact fun i j => if i = j then 2 else if G.Adj i j then -1 else 0
 
+/--
+@isnad1 id=eq.0h3v.s4.9b2e26fe5f43 from=translated src=- shape=934604d6 vocab=4b43b9f0
+-/
 theorem graphCartanMatrix_apply_same (G : SimpleGraph V) (i : V) :
     graphCartanMatrix G i i = 2 := by
   classical
   simp [graphCartanMatrix]
 
+/--
+@isnad1 id=eq.1h4v.s4.a131ece336a8 from=translated src=- shape=d6b8234e vocab=82f14e89
+-/
 theorem graphCartanMatrix_apply_of_adj {G : SimpleGraph V} {i j : V}
     (hij : G.Adj i j) : graphCartanMatrix G i j = -1 := by
   classical
   simp [graphCartanMatrix, hij.ne, hij]
 
+/--
+@isnad1 id=eq.2h4v.s5.eb5913c16dd1 from=translated src=- shape=5aeb1287 vocab=6eddc3de
+-/
 theorem graphCartanMatrix_apply_of_not_adj {G : SimpleGraph V} {i j : V}
     (hij : i ≠ j) (hadj : ¬ G.Adj i j) : graphCartanMatrix G i j = 0 := by
   classical
   simp [graphCartanMatrix, hij, hadj]
 
+/--
+@isnad1 id=issymm.0h2v.s3.121e24ae241b from=translated src=- shape=e8aeda7b vocab=32a6bc3f
+-/
 theorem graphCartanMatrix_isSymm (G : SimpleGraph V) :
     (graphCartanMatrix G).IsSymm := by
   classical
@@ -54,6 +66,9 @@ theorem graphCartanMatrix_isSymm (G : SimpleGraph V) :
       rw [graphCartanMatrix_apply_of_not_adj (Ne.symm hij) hadj',
         graphCartanMatrix_apply_of_not_adj hij hadj]
 
+/--
+@isnad1 id=eq.0h7v.s6.fbdb12f16cb7 from=translated src=- shape=cea18146 vocab=baa5e93c
+-/
 theorem graphCartanMatrix_apply_iso {W : Type*} {G : SimpleGraph V}
     {H : SimpleGraph W} (e : G ≃g H) (i j : V) :
     graphCartanMatrix H (e i) (e j) = graphCartanMatrix G i j := by
@@ -70,6 +85,9 @@ theorem graphCartanMatrix_apply_iso {W : Type*} {G : SimpleGraph V}
       rw [graphCartanMatrix_apply_of_not_adj heij hHnot,
         graphCartanMatrix_apply_of_not_adj hij hadj]
 
+/--
+@isnad1 id=eq.0h2v.s6.047df3e78d6e from=translated src=- shape=bd0d21bb vocab=e9f2727e
+-/
 theorem graphCartanMatrix_eq_two_sub_adjMatrix [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj] :
     graphCartanMatrix G = Matrix.diagonal (fun _ ↦ (2 : ℤ)) - G.adjMatrix ℤ := by
@@ -89,6 +107,9 @@ noncomputable def graphCartanEnergy [Fintype V] [DecidableEq V]
 def IsPositiveCartan [Fintype V] [DecidableEq V] (G : SimpleGraph V) : Prop :=
   ∀ x : V → ℤ, x ≠ 0 → 0 < graphCartanEnergy G x
 
+/--
+@isnad1 id=iff.0h2v.s5.9dc07c726cd6 from=translated src=- shape=c9351ba5 vocab=a040d77e
+-/
 theorem isPositiveCartan_iff_posDef [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) :
     IsPositiveCartan G ↔ (graphCartanMatrix G).PosDef := by
@@ -101,6 +122,9 @@ theorem isPositiveCartan_iff_posDef [Fintype V] [DecidableEq V]
   · intro h x hx
     simpa [graphCartanEnergy, Matrix.toBilin'_apply'] using h.dotProduct_mulVec_pos hx
 
+/--
+@isnad1 id=eq.0h4v.s6.9b53912f805e from=translated src=- shape=75b41f5a vocab=62716982
+-/
 theorem graphCartanMatrix_comap {W : Type*} [DecidableEq W] [DecidableEq V]
     (G : SimpleGraph V) (f : W ↪ V) :
     graphCartanMatrix (G.comap f) =
@@ -119,6 +143,9 @@ theorem graphCartanMatrix_comap {W : Type*} [DecidableEq W] [DecidableEq V]
       rw [graphCartanMatrix_apply_of_not_adj hij hadj,
         graphCartanMatrix_apply_of_not_adj (fun h ↦ hij (f.injective h)) hGnot]
 
+/--
+@isnad1 id=ispositi.1h4v.s5.9363f53686a3 from=translated src=- shape=01e2f313 vocab=824b98db
+-/
 theorem IsPositiveCartan.comap {W : Type*} [Fintype W] [DecidableEq W]
     [Fintype V] [DecidableEq V] {G : SimpleGraph V}
     (hG : IsPositiveCartan G) (f : W ↪ V) :
@@ -126,6 +153,9 @@ theorem IsPositiveCartan.comap {W : Type*} [Fintype W] [DecidableEq W]
   rw [isPositiveCartan_iff_posDef, graphCartanMatrix_comap]
   exact (isPositiveCartan_iff_posDef G).mp hG |>.submatrix f.injective
 
+/--
+@isnad1 id=le.2h4v.s5.523e4c4724f7 from=translated src=- shape=6d747b1f vocab=b6256d68
+-/
 theorem graphCartanEnergy_antitone [Fintype V] [DecidableEq V]
     {H G : SimpleGraph V} (hHG : H ≤ G) {x : V → ℤ}
     (hx : ∀ i, 0 ≤ x i) :
@@ -146,6 +176,9 @@ theorem graphCartanEnergy_antitone [Fintype V] [DecidableEq V]
         nlinarith [hx i, hx j]
       · simp [graphCartanMatrix, hij, hHij, hGij]
 
+/--
+@isnad1 id=not.4h4v.s6.3f5f61b4eaed from=translated src=- shape=9a59cf0a vocab=ac2ed4ca
+-/
 theorem not_isPositiveCartan_of_nonpositive_subgraph [Fintype V] [DecidableEq V]
     {H G : SimpleGraph V} (hHG : H ≤ G) {x : V → ℤ}
     (hx0 : x ≠ 0) (hx : ∀ i, 0 ≤ x i)
@@ -156,6 +189,9 @@ theorem not_isPositiveCartan_of_nonpositive_subgraph [Fintype V] [DecidableEq V]
   have hmono := graphCartanEnergy_antitone hHG hx
   omega
 
+/--
+@isnad1 id=eq.0h2v.s6.5006fe9e7c30 from=translated src=- shape=8a1cf0aa vocab=624fa304
+-/
 theorem graphCartanEnergy_one [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj] :
     graphCartanEnergy G (fun _ ↦ 1) =
@@ -177,6 +213,9 @@ theorem graphCartanEnergy_one [Fintype V] [DecidableEq V]
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h1v.s7.c71a9c70adc8 from=translated src=- shape=cf131713 vocab=721800a6
+-/
 theorem card_edgeFinset_cycleGraph (k : ℕ) :
     (SimpleGraph.cycleGraph (k + 3)).edgeFinset.card = k + 3 := by
   have hhand :=
@@ -188,6 +227,9 @@ theorem card_edgeFinset_cycleGraph (k : ℕ) :
     2 * (SimpleGraph.cycleGraph (k + 3)).edgeFinset.card = (k + 3) * 2 := hhand.symm
     _ = 2 * (k + 3) := Nat.mul_comm _ _
 
+/--
+@isnad1 id=isacycli.1h2v.s4.fe07b0352f4b from=translated src=- shape=b36b1524 vocab=0a9e1054
+-/
 theorem IsPositiveCartan.isAcyclic [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} (hG : IsPositiveCartan G) : G.IsAcyclic := by
   rw [SimpleGraph.isAcyclic_iff_free_cycleGraph]
@@ -212,6 +254,9 @@ theorem IsPositiveCartan.isAcyclic [Fintype V] [DecidableEq V]
       norm_num at hvalue)
     (fun _ ↦ by norm_num) henergy.le) hK
 
+/--
+@isnad1 id=eq.0h0v.s6.4a1377a4fd33 from=translated src=- shape=4ee91390 vocab=577d154b
+-/
 theorem fourStar_cartanEnergy :
     graphCartanEnergy (SimpleGraph.starGraph (none : Option (Fin 4)))
       (fun i ↦ match i with | none => (2 : ℤ) | some _ => 1) = 0 := by
@@ -219,6 +264,9 @@ theorem fourStar_cartanEnergy :
     SimpleGraph.starGraph_adj, Fin.sum_univ_succ]
   decide
 
+/--
+@isnad1 id=le.1h3v.s5.8e0bbd8e3ef9 from=translated src=- shape=0be1c4a2 vocab=fc5914dd
+-/
 theorem IsPositiveCartan.degree_le_three [Fintype V] [DecidableEq V]
     {G : SimpleGraph V} [DecidableRel G.Adj]
     (hG : IsPositiveCartan G) (v : V) : G.degree v ≤ 3 := by

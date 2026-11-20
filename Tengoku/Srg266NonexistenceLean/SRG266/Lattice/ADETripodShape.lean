@@ -20,6 +20,9 @@ noncomputable def puncturedNeighborComponent (G : SimpleGraph V) (z : V)
   (G.induce {x | x ≠ z}).connectedComponentMk
     ⟨w.1, w.2.ne'⟩
 
+/--
+@isnad1 id=injectiv.1h3v.s5.88e0c941f275 from=translated src=- shape=5f3e9c3d vocab=f9609b79
+-/
 theorem puncturedNeighborComponent_injective {G : SimpleGraph V} {z : V}
     (hacyc : G.IsAcyclic) :
     Function.Injective (puncturedNeighborComponent G z) := by
@@ -79,6 +82,9 @@ theorem puncturedNeighborComponent_injective {G : SimpleGraph V} {z : V}
       | (all_goals tauto; done)
   exact hzq (hpq.symm ▸ hzp)
 
+/--
+@isnad1 id=surjecti.1h3v.s5.287ba66c585d from=translated src=- shape=5f3e9c3d vocab=da45c0cf
+-/
 theorem puncturedNeighborComponent_surjective {G : SimpleGraph V} {z : V}
     (hconn : G.Connected) :
     Function.Surjective (puncturedNeighborComponent G z) := by
@@ -132,6 +138,9 @@ noncomputable def puncturedComponentRoot {G : SimpleGraph V} {z : V}
   have h := (neighborEquivPuncturedComponents htree).apply_symm_apply C
   exact h
 
+/--
+@isnad1 id=eq.3h3v.s8.09221cb17baf from=translated src=- shape=e58d7dbd vocab=53e83121
+-/
 theorem card_puncturedComponents_eq_three
     [Fintype V] [DecidableEq V] {G : SimpleGraph V} [DecidableRel G.Adj]
     (hpos : IsPositiveCartan G) (hconn : G.Connected)
@@ -154,6 +163,9 @@ namespace OrientedPuncturedArm
 
 variable {G : SimpleGraph V} {z : V} {htree : G.IsTree}
 
+/--
+@isnad1 id=lt.1h4v.s4.9063cd77ad9b from=translated src=- shape=9c59a2b5 vocab=e2267565
+-/
 theorem length_pos (A : OrientedPuncturedArm G z htree) : 0 < A.length :=
   by
     have h := A.zero.isLt
@@ -163,6 +175,9 @@ theorem length_pos (A : OrientedPuncturedArm G z htree) : 0 < A.length :=
 def vertex (A : OrientedPuncturedArm G z htree) (i : Fin A.length) : V :=
   (A.coord i).1.1
 
+/--
+@isnad1 id=injectiv.1h4v.s5.b19a12b094b6 from=translated src=- shape=6ce0524e vocab=4486e6da
+-/
 theorem vertex_injective (A : OrientedPuncturedArm G z htree) :
     Function.Injective A.vertex := by
   intro i j hij
@@ -171,15 +186,24 @@ theorem vertex_injective (A : OrientedPuncturedArm G z htree) :
   apply Subtype.ext
   exact hij
 
+/--
+@isnad1 id=ne.1h5v.s5.3dbb49f038eb from=translated src=- shape=e5d11335 vocab=e82ddf58
+-/
 theorem vertex_ne_center (A : OrientedPuncturedArm G z htree) (i) :
     A.vertex i ≠ z :=
   (A.coord i).1.2
 
+/--
+@isnad1 id=adj.2h6v.s6.61e148307222 from=translated src=- shape=e48df383 vocab=f7527d44
+-/
 theorem adj_vertex_of_path_adj (A : OrientedPuncturedArm G z htree)
     {i j} (hij : (pathGraph A.length).Adj i j) :
     G.Adj (A.vertex i) (A.vertex j) := by
   exact A.coord.map_rel_iff.mpr hij
 
+/--
+@isnad1 id=adj.2h5v.s5.a8daa9043e6f from=translated src=- shape=88ea8bcf vocab=91b2c793
+-/
 theorem adj_center_vertex_of_val_eq_zero
     (A : OrientedPuncturedArm G z htree) (i) (hi : i.1 = 0) :
     G.Adj z (A.vertex i) := by
@@ -188,6 +212,9 @@ theorem adj_center_vertex_of_val_eq_zero
   rw [vertex, A.coord_zero]
   exact (puncturedComponentNeighbor htree A.component).2
 
+/--
+@isnad1 id=ne.2h7v.s6.8682afbbda76 from=translated src=- shape=1c8a1841 vocab=a11160a3
+-/
 theorem vertex_ne_of_component_ne
     (A B : OrientedPuncturedArm G z htree)
     (hAB : A.component ≠ B.component) (i j) :
@@ -204,10 +231,16 @@ def prefixEmbedding (A : OrientedPuncturedArm G z htree) {m : ℕ}
   ⟨fun i ↦ A.vertex (Fin.castLE hm i), fun _ _ h ↦
     (Fin.castLEEmb hm).injective (A.vertex_injective h)⟩
 
+/--
+@isnad1 id=ne.2h6v.s5.4846050ea050 from=translated src=- shape=278d5f83 vocab=52caed73
+-/
 theorem prefixEmbedding_ne_center (A : OrientedPuncturedArm G z htree)
     {m : ℕ} (hm : m ≤ A.length) (i) : A.prefixEmbedding hm i ≠ z :=
   A.vertex_ne_center _
 
+/--
+@isnad1 id=ne.4h9v.s7.5e911cfccda3 from=translated src=- shape=895e7772 vocab=ba08b515
+-/
 theorem prefixEmbedding_ne_of_component_ne
     (A B : OrientedPuncturedArm G z htree)
     (hAB : A.component ≠ B.component)
@@ -215,6 +248,9 @@ theorem prefixEmbedding_ne_of_component_ne
     A.prefixEmbedding hm i ≠ B.prefixEmbedding hn j :=
   A.vertex_ne_of_component_ne B hAB _ _
 
+/--
+@isnad1 id=adj.3h7v.s6.11160fbc9d4d from=translated src=- shape=a1800197 vocab=a11fa6a7
+-/
 theorem adj_prefixEmbedding_of_path_adj
     (A : OrientedPuncturedArm G z htree) {m : ℕ}
     (hm : m ≤ A.length) {i j : Fin m} (hij : (pathGraph m).Adj i j) :
@@ -223,6 +259,9 @@ theorem adj_prefixEmbedding_of_path_adj
   rw [SimpleGraph.pathGraph_adj] at hij ⊢
   exact hij
 
+/--
+@isnad1 id=adj.3h6v.s6.5bd6553aa68b from=translated src=- shape=2b84974d vocab=47ad3d1a
+-/
 theorem adj_center_prefixEmbedding_of_val_eq_zero
     (A : OrientedPuncturedArm G z htree) {m : ℕ}
     (hm : m ≤ A.length) (i : Fin m) (hi : i.1 = 0) :

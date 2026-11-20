@@ -12,6 +12,9 @@ namespace SRG266.Lattice
 
 variable {R X ι κ : Type*} [CommRing R] [AddCommGroup X] [Module R X]
 
+/--
+@isnad1 id=linearin.4h7v.s10.342ccf2adead from=translated src=- shape=ee0f5dfe vocab=5c4df7ca
+-/
 theorem linearIndependent_sum_of_orthogonal
     (B : X →ₗ[R] X →ₗ[R] R) (hself : ∀ x, B x x = 0 → x = 0)
     (r : ι → X) (s : κ → X) (hr : LinearIndependent R r) (hs : LinearIndependent R s)

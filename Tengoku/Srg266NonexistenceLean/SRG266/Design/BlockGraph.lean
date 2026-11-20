@@ -20,16 +20,25 @@ def blockGraph : SimpleGraph P where
   symm := ⟨fun _ _ h => ⟨h.1.symm, by rw [E.pairMult_comm]; exact h.2⟩⟩
   loopless := ⟨fun _ h => h.1 rfl⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.52d213c20ef3 from=translated src=- shape=dc7b97e2 vocab=8855b0e4
+-/
 theorem blockGraph_adj {p q : P} :
     E.blockGraph.Adj p q ↔ p ≠ q ∧ E.pairMult p q = 1 := Iff.rfl
 
 instance : DecidableRel E.blockGraph.Adj := fun _ _ =>
   decidable_of_iff _ E.blockGraph_adj.symm
 
+/--
+@isnad1 id=eq.2h4v.s5.9c4735dc5041 from=translated src=- shape=6c150baa vocab=8855b0e4
+-/
 theorem pairMult_of_not_adj {p q : P} (hne : p ≠ q) (h : ¬ E.blockGraph.Adj p q) :
     E.pairMult p q = 2 :=
   (E.pairMult_cases hne).resolve_left fun h1 => h ⟨hne, h1⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.02d81802733c from=translated src=- shape=5ed9bee7 vocab=1a48d56c
+-/
 theorem blockGraph_degree (p : P) : E.blockGraph.degree p = 18 := by
   have hset : E.blockGraph.neighborFinset p =
       (Finset.univ.erase p).filter fun q => E.pairMult p q = 1 := by
@@ -40,9 +49,15 @@ theorem blockGraph_degree (p : P) : E.blockGraph.degree p = 18 := by
       fun h => ⟨Ne.symm h.1.1, h.2⟩⟩
   rw [SimpleGraph.degree, hset, E.card_pairMult_eq_one p]
 
+/--
+@isnad1 id=isregula.0h2v.s5.311a721df1fb from=translated src=- shape=3a2e352b vocab=d7ddff92
+-/
 theorem blockGraph_isRegular : E.blockGraph.IsRegularOfDegree 18 :=
   E.blockGraph_degree
 
+/--
+@isnad1 id=eq.0h4v.s6.a97f8cecbe6e from=translated src=- shape=23ec556e vocab=9c11a94b
+-/
 theorem card_star_inter (p q : P) :
     ((starFinset E.block p) ∩ (starFinset E.block q)).card = E.pairMult p q := by
   have hset : (starFinset E.block p) ∩ (starFinset E.block q) =
@@ -52,6 +67,9 @@ theorem card_star_inter (p q : P) :
   rw [hset]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.043f7656456e from=translated src=- shape=2134e7c4 vocab=233a03af
+-/
 theorem sum_pairMult_mul (p q : P) :
     (∑ r : P, E.pairMult p r * E.pairMult q r) = 162 + 9 * E.pairMult p q := by
   have h : (∑ r : P, pairCount E.block p r * pairCount E.block q r) =
@@ -81,6 +99,9 @@ theorem sum_pairMult_mul (p q : P) :
     Finset.filter_mem_eq_inter, E.card_star_inter p q, smul_eq_mul, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s6.51fafea6475f from=translated src=- shape=7a82e000 vocab=5d56605d
+-/
 theorem card_commonNeighbors_finset {p q : P} (hne : p ≠ q) :
     ((Finset.univ.filter fun r => E.blockGraph.Adj p r ∧ E.blockGraph.Adj q r).card : ℤ)
       + 5 * E.pairMult p q = 14 := by
@@ -158,6 +179,9 @@ theorem card_commonNeighbors_finset {p q : P} (hne : p ≠ q) :
   rw [hfilter] at hrest
   linarith
 
+/--
+@isnad1 id=eq.0h4v.s7.a2ce6ed30a61 from=translated src=- shape=4135e886 vocab=3dd00ac2
+-/
 theorem card_commonNeighbors_eq (p q : P) :
     Fintype.card (E.blockGraph.commonNeighbors p q) =
       (Finset.univ.filter fun r => E.blockGraph.Adj p r ∧ E.blockGraph.Adj q r).card := by
@@ -167,6 +191,9 @@ theorem card_commonNeighbors_eq (p q : P) :
   ext r
   simp [SimpleGraph.mem_commonNeighbors]
 
+/--
+@isnad1 id=eq.1h4v.s6.c8eb64795da3 from=translated src=- shape=55893569 vocab=0474746e
+-/
 theorem card_commonNeighbors_of_adj {p q : P} (h : E.blockGraph.Adj p q) :
     Fintype.card (E.blockGraph.commonNeighbors p q) = 9 := by
   have hcount := E.card_commonNeighbors_finset h.ne
@@ -177,6 +204,9 @@ theorem card_commonNeighbors_of_adj {p q : P} (h : E.blockGraph.Adj p q) :
   rw [E.card_commonNeighbors_eq p q]
   exact_mod_cast hz
 
+/--
+@isnad1 id=eq.2h4v.s6.5ad0218e6633 from=translated src=- shape=4c3e87ec vocab=0474746e
+-/
 theorem card_commonNeighbors_of_not_adj {p q : P} (hne : p ≠ q)
     (h : ¬ E.blockGraph.Adj p q) :
     Fintype.card (E.blockGraph.commonNeighbors p q) = 4 := by
@@ -188,12 +218,18 @@ theorem card_commonNeighbors_of_not_adj {p q : P} (hne : p ≠ q)
   rw [E.card_commonNeighbors_eq p q]
   exact_mod_cast hz
 
+/--
+@isnad1 id=issrgwit.0h2v.s5.6fc32b55ae25 from=translated src=- shape=0df32aab vocab=71e505b7
+-/
 theorem blockGraph_isSRGWith : E.blockGraph.IsSRGWith 55 18 9 4 where
   card := E.point_card
   regular := E.blockGraph_isRegular
   of_adj := fun _ _ h => E.card_commonNeighbors_of_adj h
   of_not_adj := fun {_ _} hne h => E.card_commonNeighbors_of_not_adj hne h
 
+/--
+@isnad1 id=eq.0h2v.s7.121f0b087bc5 from=translated src=- shape=5adf3de2 vocab=9777d5cd
+-/
 theorem compl_adjMatrix :
     (E.blockGraph)ᶜ.adjMatrix ℤ =
       (allOnesMatrix : Matrix P P ℤ) - 1 - E.blockGraph.adjMatrix ℤ := by
@@ -205,6 +241,9 @@ theorem compl_adjMatrix :
       simp [SimpleGraph.adjMatrix_apply, SimpleGraph.compl_adj, hpq, hadj,
         Matrix.one_apply_ne hpq]
 
+/--
+@isnad1 id=eq.0h2v.s8.4da526f6c92d from=translated src=- shape=13afe573 vocab=ce9d6f7f
+-/
 theorem blockGraph_srg :
     (E.blockGraph.adjMatrix ℤ) ^ 2 =
       5 • E.blockGraph.adjMatrix ℤ + 4 • (allOnesMatrix : Matrix P P ℤ) +

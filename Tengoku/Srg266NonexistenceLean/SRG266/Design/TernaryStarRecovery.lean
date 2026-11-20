@@ -14,6 +14,9 @@ open scoped BigOperators
 
 namespace SRG266.QuasiSymmetric.TernaryStarRecovery
 
+/--
+@isnad1 id=mem.3h6v.s10.9a3fc40a79b3 from=translated src=- shape=5c364173 vocab=908d4e77
+-/
 theorem complement_mem_of_three_columns
     {V : Type*} [AddCommGroup V] [Module (ZMod 3) V]
     (C : Submodule (ZMod 3) V) (u a b c : V)
@@ -33,6 +36,9 @@ theorem complement_mem_of_three_columns
 def complementVector (B : Finset (Fin 56)) : Fin 56 → ZMod 3 :=
   fun p => if p ∈ B then 0 else 1
 
+/--
+@isnad1 id=eq.0h2v.s7.17ac1cf0d4b7 from=translated src=- shape=af1c948d vocab=80b94167
+-/
 theorem complement_dotProduct (B D : Finset (Fin 56)) :
     dotProduct (complementVector B) (complementVector D) =
       ((Bᶜ ∩ Dᶜ).card : ZMod 3) := by
@@ -52,6 +58,9 @@ theorem complement_dotProduct (B D : Finset (Fin 56)) :
       ext p
       simp
 
+/--
+@isnad1 id=eq.3h2v.s8.a793fb372f5a from=translated src=- shape=8e821f3a vocab=569008c9
+-/
 theorem overlap_eq_two_mod_three
     (B D : Finset (Fin 56)) (hB : B.card = 11) (hD : D.card = 11)
     (horth : dotProduct (complementVector B) (complementVector D) = 0) :

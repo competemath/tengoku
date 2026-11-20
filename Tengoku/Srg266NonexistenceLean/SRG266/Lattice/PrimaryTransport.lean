@@ -13,6 +13,9 @@ variable {W U : Type*} [AddCommGroup W] [Module ℚ W] [AddCommGroup U] [Module 
 variable {B : LinearMap.BilinForm ℚ W} {C : LinearMap.BilinForm ℚ U}
 variable {N : Submodule ℤ W} {M : Submodule ℤ U}
 
+/--
+@isnad1 id=eq.3h8v.s9.b7a6197b2a22 from=translated src=- shape=f017503e vocab=45da96bf
+-/
 theorem torsionPart_eq_sup_map_of_dual_transport (J : W →ₗ[ℤ] U)
     (hiM : IsIntegral C M)
     (hdual : C.dualSubmodule M = M ⊔ (B.dualSubmodule N).map J)
@@ -43,11 +46,17 @@ theorem torsionPart_eq_sup_map_of_dual_transport (J : W →ₗ[ℤ] U)
 
 omit [Module ℚ W] [Module ℚ U] in
 
+/--
+@isnad1 id=eq.2h7v.s8.f8c67d8d6e3f from=translated src=- shape=cab188e0 vocab=106dc08f
+-/
 theorem sup_map_eq_sup_span_image (J : W →ₗ[ℤ] U) (hmap : N.map J ≤ M)
     {P : Submodule ℤ W} {s : Set W} (hP : P = N ⊔ Submodule.span ℤ s) :
     M ⊔ P.map J = M ⊔ Submodule.span ℤ (J '' s) := by
   rw [hP, Submodule.map_sup, Submodule.map_span, ← sup_assoc, sup_eq_left.mpr hmap]
 
+/--
+@isnad1 id=hasprima.5h9v.s10.96584c804e99 from=translated src=- shape=bb42f3af vocab=6009d362
+-/
 theorem HasPrimaryNormalForm.map (J : W →ₗ[ℤ] U) (hmap : N.map J ≤ M)
     {p : ℕ} {r : ℤ}
     (hprimary : torsionPart C M p = M ⊔ (torsionPart B N p).map J)

@@ -11,6 +11,9 @@ namespace SRG266.Lattice
 
 open scoped Matrix BigOperators Classical
 
+/--
+@isnad1 id=eq.0h3v.s6.04ea17f8cf72 from=translated src=- shape=f76eacca vocab=cdfc0591
+-/
 theorem sum_fin_ite_val_eq (n k : ℕ) (w : Fin n → ℤ) :
     (∑ j : Fin n, if j.1 = k then w j else 0) =
       if h : k < n then w ⟨k, h⟩ else 0 := by
@@ -24,6 +27,9 @@ theorem sum_fin_ite_val_eq (n k : ℕ) (w : Fin n → ℤ) :
 def dDominantVector (n : ℕ) (i : Fin n) : ℤ :=
   if i.1 = 0 ∨ n ≤ i.1 + 2 then 1 else 2
 
+/--
+@isnad1 id=eq.1h3v.s8.c676c663cb34 from=translated src=- shape=e6eaf9ba vocab=bd814218
+-/
 theorem gramDEntry_sparse {n : ℕ} (hn : 4 ≤ n) (i j : Fin n) :
     gramDEntry n i.1 j.1 =
       (if j = i then 2 else 0) -
@@ -34,6 +40,9 @@ theorem gramDEntry_sparse {n : ℕ} (hn : 4 ≤ n) (i j : Fin n) :
   simp only [gramDEntry, Fin.ext_iff]
   split_ifs <;> omega
 
+/--
+@isnad1 id=eq.1h2v.s6.0a213fff6067 from=translated src=- shape=b9357cbb vocab=1ecc5caa
+-/
 theorem gramD_mulVec_dDominantVector (n : ℕ) (hn : 4 ≤ n) (i : Fin n) :
     (gramD n *ᵥ dDominantVector n) i = if i.1 = 1 then 1 else 0 := by
   classical
@@ -50,6 +59,9 @@ theorem gramD_mulVec_dDominantVector (n : ℕ) (hn : 4 ≤ n) (i : Fin n) :
   simp only [dDominantVector]
   repeat' first | omega | split
 
+/--
+@isnad1 id=eq.1h1v.s5.da6ece00369e from=translated src=- shape=e7aa35f2 vocab=5faf695e
+-/
 theorem sum_dDominantVector (n : ℕ) (hn : 4 ≤ n) :
     (∑ i, dDominantVector n i) = 2 * (n : ℤ) - 3 := by
   have hformula (i : Fin n) : dDominantVector n i =
@@ -66,6 +78,9 @@ theorem sum_dDominantVector (n : ℕ) (hn : 4 ≤ n) :
     Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s11.857e376d4362 from=translated src=- shape=9fabce21 vocab=45d7648c
+-/
 theorem dDominantVector_norm_two (n : ℕ) (hn : 4 ≤ n) :
     Matrix.toBilin' (gramD n) (dDominantVector n) (dDominantVector n) = 2 := by
   rw [Matrix.toBilin'_apply']

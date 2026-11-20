@@ -21,6 +21,9 @@ def a11D7E6A11Lift {K : Type*} [Zero K] (u : Fin 11 → K) (i : Fin 24) : K :=
   | Sum.inl j => u j
   | Sum.inr _ => 0
 
+/--
+@isnad1 id=eq.0h1v.s9.aad6a4ca781d from=translated src=- shape=5baa525e vocab=b7887033
+-/
 theorem a11D7E6A11Lift_intCast (z : Fin 11 → ℤ) :
     a11D7E6A11Lift (intCoordsToRat z) = intCoordsToRat (a11D7E6A11Lift z) := by
   ext i

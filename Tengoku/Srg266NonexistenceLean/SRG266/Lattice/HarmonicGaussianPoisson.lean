@@ -20,6 +20,9 @@ variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
 
 omit [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V] in
 
+/--
+@isnad1 id=ex.1h5v.s6.b0f4b2c5d84b from=translated src=- shape=6583d962 vocab=cd2dff53
+-/
 theorem exists_harmonicGaussian_pow_decay {t : ℝ} (ht : 0 < t)
     (k : ℕ) (x y : V) :
     ∃ A : ℝ, 0 ≤ A ∧ ∀ u : V, u ≠ 0 →
@@ -57,6 +60,9 @@ def harmonicGaussianContinuous {n : ℕ} (t : ℝ)
     C(EuclideanSpace ℝ (Fin n), ℂ) :=
   ⟨harmonicGaussian t x y, harmonicGaussian_continuous t x y⟩
 
+/--
+@isnad1 id=locallyn.1h4v.s5.09e5a7ba8ca9 from=translated src=- shape=bca8f278 vocab=54b608c1
+-/
 theorem harmonicGaussian_locallyNormallySummableIntegerTranslates
     {n : ℕ} {t : ℝ} (ht : 0 < t)
     (x y : EuclideanSpace ℝ (Fin n)) :
@@ -67,6 +73,9 @@ theorem harmonicGaussian_locallyNormallySummableIntegerTranslates
   exact locallyNormallySummableIntegerTranslates_of_pow_decay
     (harmonicGaussianContinuous t x y) (Nat.lt_succ_self n) hA hdecay
 
+/--
+@isnad1 id=summable.1h4v.s6.8eb0347104e5 from=translated src=- shape=66f5f22f vocab=670e8d59
+-/
 theorem summable_harmonicGaussian_intVector
     {n : ℕ} {t : ℝ} (ht : 0 < t)
     (x y : EuclideanSpace ℝ (Fin n)) :
@@ -76,6 +85,9 @@ theorem summable_harmonicGaussian_intVector
     (harmonicGaussianContinuous t x y)
     (harmonicGaussian_locallyNormallySummableIntegerTranslates ht x y)
 
+/--
+@isnad1 id=summable.1h3v.s8.e1fecd04a7ff from=translated src=- shape=d348689c vocab=d73362d8
+-/
 theorem summable_fourier_harmonicGaussian_rank24
     {t : ℝ} (ht : 0 < t)
     (x y : EuclideanSpace ℝ (Fin 24)) :

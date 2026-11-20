@@ -15,26 +15,41 @@ namespace Derived45
 
 variable {P : Type*} [Fintype P] [DecidableEq P] (E : Derived45 P)
 
+/--
+@isnad1 id=eq.0h3v.s6.dd6ad1aabf0a from=translated src=- shape=abaa9a30 vocab=2c45a3f9
+-/
 theorem card_neighborFinset (p : P) : (E.blockGraph.neighborFinset p).card = 18 :=
   E.blockGraph_degree p
 
+/--
+@isnad1 id=eq.0h4v.s7.53c5fa95a619 from=translated src=- shape=a28a8844 vocab=5376bf67
+-/
 theorem neighborFinset_inter (p q : P) :
     E.blockGraph.neighborFinset p ∩ E.blockGraph.neighborFinset q =
       Finset.univ.filter fun r => E.blockGraph.Adj p r ∧ E.blockGraph.Adj q r := by
   ext r
   simp [SimpleGraph.mem_neighborFinset]
 
+/--
+@isnad1 id=eq.1h4v.s6.a1b4a5a4d7df from=translated src=- shape=76bcf103 vocab=78f7721c
+-/
 theorem card_neighborFinset_inter_of_adj {p q : P} (h : E.blockGraph.Adj p q) :
     (E.blockGraph.neighborFinset p ∩ E.blockGraph.neighborFinset q).card = 9 := by
   rw [E.neighborFinset_inter p q, ← E.card_commonNeighbors_eq p q,
     E.card_commonNeighbors_of_adj h]
 
+/--
+@isnad1 id=eq.2h4v.s7.8eb33b5c6172 from=translated src=- shape=e7d5a13a vocab=78f7721c
+-/
 theorem card_neighborFinset_inter_of_not_adj {p q : P} (hne : p ≠ q)
     (h : ¬ E.blockGraph.Adj p q) :
     (E.blockGraph.neighborFinset p ∩ E.blockGraph.neighborFinset q).card = 4 := by
   rw [E.neighborFinset_inter p q, ← E.card_commonNeighbors_eq p q,
     E.card_commonNeighbors_of_not_adj hne h]
 
+/--
+@isnad1 id=le.2h4v.s6.86456d2122db from=translated src=- shape=523324af vocab=fd6342f7
+-/
 theorem card_filter_adj_le_one_of_isNClique {C : Finset P}
     (hC : E.blockGraph.IsNClique 11 C) {z : P} (hz : z ∉ C) :
     (C.filter fun x => E.blockGraph.Adj x z).card ≤ 1 := by
@@ -72,6 +87,9 @@ theorem card_filter_adj_le_one_of_isNClique {C : Finset P}
     exact ⟨hxz, hyz⟩
   exact hz (Finset.mem_of_mem_erase (Finset.mem_of_mem_erase hzmem))
 
+/--
+@isnad1 id=cliquefr.0h2v.s4.2509dd3cc18c from=translated src=- shape=3a2e352b vocab=4bb3c37b
+-/
 theorem no_clique_eleven : E.blockGraph.CliqueFree 11 := by
   intro C hC
   classical
@@ -121,6 +139,9 @@ theorem no_clique_eleven : E.blockGraph.CliqueFree 11 := by
       _ = 44 := by rw [Finset.sum_const, hDcard, smul_eq_mul, mul_one]
   omega
 
+/--
+@isnad1 id=le.4h5v.s7.80a36635ed80 from=translated src=- shape=7115993b vocab=50a77f89
+-/
 theorem card_local_inter_le_three {x u v : P} (hu : E.blockGraph.Adj x u)
     (hv : E.blockGraph.Adj x v) (huv : u ≠ v) (hnadj : ¬ E.blockGraph.Adj u v) :
     ((E.blockGraph.neighborFinset x ∩ E.blockGraph.neighborFinset u) ∩
@@ -143,6 +164,9 @@ theorem card_local_inter_le_three {x u v : P} (hu : E.blockGraph.Adj x u)
     E.card_neighborFinset_inter_of_not_adj huv hnadj] at hle
   omega
 
+/--
+@isnad1 id=false.9h6v.s6.98c53e6ccb01 from=translated src=- shape=ceb94522 vocab=bac5f51e
+-/
 theorem blockGraph_clawFree {x y₁ y₂ y₃ : P}
     (h₁ : E.blockGraph.Adj x y₁) (h₂ : E.blockGraph.Adj x y₂) (h₃ : E.blockGraph.Adj x y₃)
     (n₁₂ : y₁ ≠ y₂) (n₁₃ : y₁ ≠ y₃) (n₂₃ : y₂ ≠ y₃)
@@ -217,18 +241,30 @@ def localNonNbr (x u : P) : Finset P :=
 
 variable {x u : P}
 
+/--
+@isnad1 id=iff.0h5v.s5.391c282e5fd3 from=translated src=- shape=6827c0a5 vocab=b60493cc
+-/
 theorem mem_localNbr {q : P} :
     q ∈ E.localNbr x u ↔ E.blockGraph.Adj x q ∧ E.blockGraph.Adj u q := by
   simp only [localNbr, Finset.mem_inter, SimpleGraph.mem_neighborFinset]
 
+/--
+@isnad1 id=iff.0h5v.s5.ac51423e7b4c from=translated src=- shape=8951006a vocab=045f049b
+-/
 theorem mem_localNonNbr {q : P} :
     q ∈ E.localNonNbr x u ↔
       E.blockGraph.Adj x q ∧ q ≠ u ∧ ¬ E.blockGraph.Adj u q := by
   simp only [localNonNbr, Finset.mem_filter, SimpleGraph.mem_neighborFinset]
 
+/--
+@isnad1 id=eq.1h4v.s5.620556ad8884 from=translated src=- shape=bb2260bf vocab=7fa0a12c
+-/
 theorem card_localNbr (h : E.blockGraph.Adj x u) : (E.localNbr x u).card = 9 :=
   E.card_neighborFinset_inter_of_adj h
 
+/--
+@isnad1 id=eq.0h4v.s6.242b0ac93216 from=translated src=- shape=3f0998db vocab=c9ba4a81
+-/
 theorem localNbr_union_localNonNbr :
     E.localNbr x u ∪ E.localNonNbr x u = (E.blockGraph.neighborFinset x).erase u := by
   ext q
@@ -243,12 +279,18 @@ theorem localNbr_union_localNonNbr :
     · exact Or.inl ⟨hxq, huq⟩
     · exact Or.inr ⟨hxq, hqu, huq⟩
 
+/--
+@isnad1 id=disjoint.0h4v.s5.6c571cae7bb9 from=translated src=- shape=475c0330 vocab=d1adf262
+-/
 theorem disjoint_localNbr_localNonNbr :
     Disjoint (E.localNbr x u) (E.localNonNbr x u) := by
   rw [Finset.disjoint_left]
   intro q hq hq'
   exact (E.mem_localNonNbr.1 hq').2.2 (E.mem_localNbr.1 hq).2
 
+/--
+@isnad1 id=eq.1h4v.s5.1bce8e40eb0a from=translated src=- shape=bb2260bf vocab=745e7254
+-/
 theorem card_localNonNbr (h : E.blockGraph.Adj x u) : (E.localNonNbr x u).card = 8 := by
   have hmem : u ∈ E.blockGraph.neighborFinset x := (SimpleGraph.mem_neighborFinset _ _ _).2 h
   have hcard := Finset.card_union_of_disjoint (E.disjoint_localNbr_localNonNbr (x := x) (u := u))
@@ -256,11 +298,17 @@ theorem card_localNonNbr (h : E.blockGraph.Adj x u) : (E.localNonNbr x u).card =
     E.card_localNbr h] at hcard
   omega
 
+/--
+@isnad1 id=mem.2h5v.s6.37b7d1b15f44 from=translated src=- shape=2297142f vocab=045f049b
+-/
 theorem localNonNbr_symm {q : P} (h : E.blockGraph.Adj x u)
     (hq : q ∈ E.localNonNbr x u) : u ∈ E.localNonNbr x q := by
   obtain ⟨-, hqu, hnadj⟩ := E.mem_localNonNbr.1 hq
   exact E.mem_localNonNbr.2 ⟨h, Ne.symm hqu, fun hadj => hnadj hadj.symm⟩
 
+/--
+@isnad1 id=false.4h6v.s6.9bf5cc0336d7 from=translated src=- shape=acbe7435 vocab=045f049b
+-/
 theorem localNonNbr_triangle {p q : P} (h : E.blockGraph.Adj x u)
     (hp : p ∈ E.localNonNbr x u) (hq : q ∈ E.localNonNbr x u)
     (hpq : q ∈ E.localNonNbr x p) : False := by
@@ -269,6 +317,9 @@ theorem localNonNbr_triangle {p q : P} (h : E.blockGraph.Adj x u)
   obtain ⟨-, hqp, hpq'⟩ := E.mem_localNonNbr.1 hpq
   exact E.blockGraph_clawFree h hxp hxq (Ne.symm hpu) (Ne.symm hqu) (Ne.symm hqp) hup huq hpq'
 
+/--
+@isnad1 id=isclique.1h4v.s5.996eb5e96b4a from=translated src=- shape=22d8911c vocab=b852b020
+-/
 theorem localNonNbr_isClique (h : E.blockGraph.Adj x u) :
     E.blockGraph.IsClique (E.localNonNbr x u : Set P) := by
   intro a ha b hb hab
@@ -276,6 +327,9 @@ theorem localNonNbr_isClique (h : E.blockGraph.Adj x u) :
   exact E.localNonNbr_triangle h (Finset.mem_coe.1 ha) (Finset.mem_coe.1 hb)
     (E.mem_localNonNbr.2 ⟨(E.mem_localNonNbr.1 (Finset.mem_coe.1 hb)).1, Ne.symm hab, hnadj⟩)
 
+/--
+@isnad1 id=eq.2h5v.s6.fdbc9c9c21f3 from=translated src=- shape=a87b2281 vocab=c869a6e4
+-/
 theorem card_localNonNbr_inter_localNbr {a : P} (h : E.blockGraph.Adj x u)
     (ha : a ∈ E.localNonNbr x u) :
     (E.localNonNbr x a ∩ E.localNbr x u).card = 7 := by
@@ -302,6 +356,9 @@ theorem card_localNonNbr_inter_localNbr {a : P} (h : E.blockGraph.Adj x u)
   rw [hins, E.card_localNonNbr hxa] at hcard
   omega
 
+/--
+@isnad1 id=eq.2h5v.s6.d9f1dea63936 from=translated src=- shape=f5883e49 vocab=1d4cd8ae
+-/
 theorem card_localNonNbr_inter_add {b : P} (h : E.blockGraph.Adj x u)
     (hb : b ∈ E.localNbr x u) :
     (E.localNonNbr x b ∩ E.localNonNbr x u).card
@@ -326,6 +383,9 @@ theorem card_localNonNbr_inter_add {b : P} (h : E.blockGraph.Adj x u)
     rw [← Finset.inter_union_distrib_left, Finset.inter_eq_left.2 hsub]
   rw [← Finset.card_union_of_disjoint hdisj, hunion, E.card_localNonNbr hxb]
 
+/--
+@isnad1 id=eq.1h4v.s6.1ef6eeeae5d1 from=translated src=- shape=4f03ef10 vocab=f1e2428a
+-/
 theorem sum_localNonNbr_inter_localNbr (h : E.blockGraph.Adj x u) :
     ∑ b ∈ E.localNbr x u, (E.localNonNbr x b ∩ E.localNbr x u).card = 16 := by
   classical
@@ -362,6 +422,9 @@ theorem sum_localNonNbr_inter_localNbr (h : E.blockGraph.Adj x u) :
   rw [Finset.sum_add_distrib] at hB
   omega
 
+/--
+@isnad1 id=le.4h6v.s7.23d51a057cfd from=translated src=- shape=1091ed0e vocab=c5881251
+-/
 theorem le_card_add_card_of_edge {b₁ b₂ : P} (h : E.blockGraph.Adj x u)
     (h₁ : b₁ ∈ E.localNbr x u) (h₂ : b₂ ∈ E.localNbr x u)
     (he : b₂ ∈ E.localNonNbr x b₁) :
@@ -383,6 +446,9 @@ theorem le_card_add_card_of_edge {b₁ b₂ : P} (h : E.blockGraph.Adj x u)
   rw [Finset.card_union_of_disjoint hdisj, E.card_localNonNbr h] at hle
   omega
 
+/--
+@isnad1 id=false.11h8v.s7.2e2a38b045aa from=translated src=- shape=79d41b06 vocab=5f6457ec
+-/
 theorem no_two_disjoint_edges {b₁ b₂ b₃ b₄ : P} (h : E.blockGraph.Adj x u)
     (h₁ : b₁ ∈ E.localNbr x u) (h₂ : b₂ ∈ E.localNbr x u)
     (h₃ : b₃ ∈ E.localNbr x u) (h₄ : b₄ ∈ E.localNbr x u)
@@ -452,6 +518,9 @@ theorem no_two_disjoint_edges {b₁ b₂ b₃ b₄ : P} (h : E.blockGraph.Adj x 
     Finset.sum_eq_zero hzero
   omega
 
+/--
+@isnad1 id=ex.1h4v.s6.829f4b79a410 from=translated src=- shape=66251daa vocab=5f6457ec
+-/
 theorem exists_star_centre (h : E.blockGraph.Adj x u) :
     ∃ c ∈ E.localNbr x u, ∀ b ∈ E.localNbr x u, ∀ b' ∈ E.localNbr x u,
       b' ∈ E.localNonNbr x b → b = c ∨ b' = c := by
@@ -510,6 +579,9 @@ theorem exists_star_centre (h : E.blockGraph.Adj x u) :
     exact E.localNonNbr_symm (E.mem_localNbr.1 hrB).1 (by rw [← htwo, ← hone]; exact hedge)
   · exact hrb₁ (by rw [← htwo]; exact hone)
 
+/--
+@isnad1 id=ex.0h3v.s7.1e65d5bd658f from=translated src=- shape=fb565c10 vocab=96f48be7
+-/
 theorem local_split (x : P) :
     ∃ X Y : Finset P, X ∪ Y = E.blockGraph.neighborFinset x ∧ Disjoint X Y ∧
       X.card = 9 ∧ Y.card = 9 ∧
@@ -637,6 +709,9 @@ theorem local_split (x : P) :
         ⟨(E.mem_localNonNbr.1 hp).1, hpq, fun hadj => hnadj hadj.symm⟩
     · exact E.localNonNbr_isClique hu (Finset.mem_coe.2 hp) (Finset.mem_coe.2 hq) hpq
 
+/--
+@isnad1 id=eq.5h6v.s7.db89027cca5b from=translated src=- shape=9d8ae596 vocab=f5771d36
+-/
 theorem card_cross_eq_one {p : P} {X Y : Finset P}
     (hXY : X ∪ Y = E.blockGraph.neighborFinset x) (hdisj : Disjoint X Y)
     (hX : X.card = 9) (hXc : E.blockGraph.IsClique (X : Set P)) (hp : p ∈ X) :
@@ -661,6 +736,9 @@ theorem card_cross_eq_one {p : P} {X Y : Finset P}
     Finset.card_erase_of_mem hp, hX] at hcard
   omega
 
+/--
+@isnad1 id=ex.0h3v.s7.3d34b81e8e93 from=translated src=- shape=a293cbd0 vocab=f5771d36
+-/
 theorem local_split_matching (x : P) :
     ∃ X Y : Finset P, X ∪ Y = E.blockGraph.neighborFinset x ∧ Disjoint X Y ∧
       X.card = 9 ∧ Y.card = 9 ∧

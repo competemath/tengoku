@@ -20,12 +20,18 @@ abbrev secondSubconstituentGraph (x : V) :
   G.induce (Gᶜ.neighborSet x)
 
 omit [Fintype V] [DecidableEq V] [DecidableRel G.Adj] in
+/--
+@isnad1 id=iff.0h5v.s6.4cfdc0af2a34 from=translated src=- shape=638c1b55 vocab=81e7a03e
+-/
 @[simp]
 theorem secondSubconstituentGraph_adj
     (x : V) (B C : SecondSubconstituent G x) :
     (secondSubconstituentGraph G x).Adj B C ↔ G.Adj (B : V) (C : V) :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.7bb38354fc09 from=translated src=- shape=199418f5 vocab=a2f0fb30
+-/
 theorem second_neighbor_inter_eq_sdiff_common
     (x : V) (B : SecondSubconstituent G x) :
     G.neighborFinset (B : V) ∩ (Gᶜ.neighborSet x).toFinset =
@@ -47,6 +53,9 @@ theorem second_neighbor_inter_eq_sdiff_common
       exact hBx hBz
     exact ⟨hBz, (G.compl_adj x z).mpr ⟨hxne, hnotxz⟩⟩
 
+/--
+@isnad1 id=eq.1h4v.s8.e3e3db553ca9 from=translated src=- shape=1132da66 vocab=6df286b1
+-/
 theorem secondSubconstituentGraph_degree
     (hG : IsHypothetical G) (x : V) (B : SecondSubconstituent G x) :
     (secondSubconstituentGraph G x).degree B = 36 := by
@@ -75,6 +84,9 @@ theorem secondSubconstituentGraph_degree
       rw [G.card_neighborFinset_eq_degree, Set.toFinset_card, hG.regular B,
         hG.of_not_adj hB.1 hB.2]
 
+/--
+@isnad1 id=isregula.1h3v.s8.593eb3c0b669 from=translated src=- shape=41009c34 vocab=682a740a
+-/
 theorem secondSubconstituentGraph_regular
     (hG : IsHypothetical G) (x : V) :
     (secondSubconstituentGraph G x).IsRegularOfDegree 36 :=
@@ -132,6 +144,9 @@ def commonNeighborsDecomposition
         have hxy : ¬G.Adj x (y : V) := ((G.compl_adj x y).mp y.1.property).2
         simp [commonNeighborsDecompositionTo, commonNeighborsDecompositionInv, hxy]
 
+/--
+@isnad1 id=eq.0h5v.s8.6bd8f4d1e77c from=translated src=- shape=64894112 vocab=2b9d7c2e
+-/
 theorem card_commonNeighbors_decomposition
     (x : V) (B C : SecondSubconstituent G x) :
     Fintype.card (G.commonNeighbors (B : V) (C : V)) =
@@ -151,6 +166,9 @@ theorem card_commonNeighbors_decomposition
       rw [Fintype.card_coe]
       rfl
 
+/--
+@isnad1 id=eq.3h5v.s8.2887a12514d0 from=translated src=- shape=06ed0c46 vocab=e10c9691
+-/
 theorem card_second_commonNeighbors_of_not_adj
     (hG : IsHypothetical G) (x : V)
     {B C : SecondSubconstituent G x} (hne : B ≠ C)
@@ -167,6 +185,9 @@ def localAdjacencyMatrix (x : V) :
     Matrix (SecondSubconstituent G x) (SecondSubconstituent G x) ℤ :=
   (secondSubconstituentGraph G x).adjMatrix ℤ
 
+/--
+@isnad1 id=eq.1h3v.s7.0b1d76896b21 from=translated src=- shape=cd9c03c9 vocab=1fb4496c
+-/
 @[simp]
 theorem localAdjacencyMatrix_mulVec_one
     (hG : IsHypothetical G) (x : V) :
@@ -176,6 +197,9 @@ theorem localAdjacencyMatrix_mulVec_one
     (secondSubconstituentGraph G x).adjMatrix_mulVec_const_apply_of_regular
       (secondSubconstituentGraph_regular G hG x) (a := (1 : ℤ)) (v := B)
 
+/--
+@isnad1 id=eq.0h5v.s8.483388dcd19e from=translated src=- shape=2e795afb vocab=3198f5f1
+-/
 theorem localAdjacencyMatrix_sq_apply_card_commonNeighbors
     (x : V) (B C : SecondSubconstituent G x) :
     (localAdjacencyMatrix G x * localAdjacencyMatrix G x) B C =
@@ -191,6 +215,9 @@ theorem localAdjacencyMatrix_sq_apply_card_commonNeighbors
 
 omit [DecidableEq V] in
 
+/--
+@isnad1 id=disjoint.2h5v.s6.64df623c2477 from=translated src=- shape=ba28cae4 vocab=1ca867e4
+-/
 theorem localBlock_disjoint_of_adj
     (hG : IsHypothetical G) (x : V)
     {B C : SecondSubconstituent G x}
@@ -207,6 +234,9 @@ theorem localBlock_disjoint_of_adj
       (mem_localBlock G x C p).mp hpC |>.symm⟩ :
         G.commonNeighbors (B : V) (C : V))
 
+/--
+@isnad1 id=eq.2h5v.s6.5bb3bf95121b from=translated src=- shape=d34ac22b vocab=a05691cc
+-/
 theorem blockIntersection_of_adj
     (hG : IsHypothetical G) (x : V)
     {B C : SecondSubconstituent G x}
@@ -215,6 +245,9 @@ theorem blockIntersection_of_adj
   rw [blockIntersection, Finset.card_eq_zero]
   exact Finset.disjoint_iff_inter_eq_empty.mp (localBlock_disjoint_of_adj G hG x hBC)
 
+/--
+@isnad1 id=eq.2h5v.s6.9f573f14812c from=translated src=- shape=d34ac22b vocab=5f5f53d1
+-/
 theorem localIntersectionMatrix_of_adj
     (hG : IsHypothetical G) (x : V)
     {B C : SecondSubconstituent G x}
@@ -223,6 +256,9 @@ theorem localIntersectionMatrix_of_adj
   rw [localIntersectionMatrix_apply, blockIntersection_of_adj G hG x hBC]
   norm_num
 
+/--
+@isnad1 id=le.1h5v.s5.7e0d8f2d2daf from=translated src=- shape=d12a242f vocab=58103005
+-/
 theorem blockIntersection_le_nine
     (hG : IsHypothetical G) (x : V) (B C : SecondSubconstituent G x) :
     blockIntersection G x B C ≤ 9 := by
@@ -233,6 +269,9 @@ theorem blockIntersection_le_nine
       Finset.card_le_card Finset.inter_subset_left
     _ = 9 := localBlock_card G hG x B
 
+/--
+@isnad1 id=eq.1h5v.s8.aa39f1d5bf91 from=translated src=- shape=1fbba0ca vocab=173a895b
+-/
 theorem localAdjacencyMatrix_sq_apply
     (hG : IsHypothetical G) (x : V) (B C : SecondSubconstituent G x) :
     (localAdjacencyMatrix G x * localAdjacencyMatrix G x) B C =
@@ -262,6 +301,9 @@ theorem localAdjacencyMatrix_sq_apply
       rw [Nat.cast_sub (blockIntersection_le_nine G hG x B C)]
       norm_num
 
+/--
+@isnad1 id=eq.1h3v.s8.b3eb80354623 from=translated src=- shape=ba237b19 vocab=0e448d86
+-/
 theorem localAdjacencyMatrix_sq
     (hG : IsHypothetical G) (x : V) :
     localAdjacencyMatrix G x * localAdjacencyMatrix G x =

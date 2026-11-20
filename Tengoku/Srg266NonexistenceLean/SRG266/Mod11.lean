@@ -25,6 +25,9 @@ def allOnesMatrixMod11 (x : V) :
       (SecondSubconstituent G x) (ZMod 11) :=
   fun _ _ => 1
 
+/--
+@isnad1 id=eq.0h5v.s6.f89106df32d2 from=translated src=- shape=fb996be4 vocab=cb5b4efb
+-/
 @[simp]
 theorem localGramMatrixMod11_apply
     (x : V) (B C : SecondSubconstituent G x) :
@@ -32,11 +35,17 @@ theorem localGramMatrixMod11_apply
   rfl
 
 omit [Fintype V] [DecidableEq V] [DecidableRel G.Adj] in
+/--
+@isnad1 id=eq.0h5v.s6.88a7d745c593 from=translated src=- shape=07ae742a vocab=4e51232f
+-/
 @[simp] theorem allOnesMatrixMod11_apply
     (x : V) (B C : SecondSubconstituent G x) :
     allOnesMatrixMod11 G x B C = 1 :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.655784132b7e from=translated src=- shape=e4ee4059 vocab=e404d8e4
+-/
 theorem localGramMatrixMod11_sq_apply
     (hG : IsHypothetical G) (x : V)
     (B C : SecondSubconstituent G x) :
@@ -65,6 +74,9 @@ theorem localGramMatrixMod11_sq_apply
   rw [h45, h90]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s9.139694a1d885 from=translated src=- shape=98e0594e vocab=869b6539
+-/
 theorem localGramMatrixMod11_sq
     (hG : IsHypothetical G) (x : V) :
     localGramMatrixMod11 G x * localGramMatrixMod11 G x =
@@ -74,6 +86,9 @@ theorem localGramMatrixMod11_sq
   rw [localGramMatrixMod11_sq_apply G hG x B C]
   simp
 
+/--
+@isnad1 id=eq.1h5v.s8.68c6b141e946 from=translated src=- shape=a9e92809 vocab=eede3dd8
+-/
 theorem localGramMatrixMod11_mul_allOnes_apply
     (hG : IsHypothetical G) (x : V)
     (B C : SecondSubconstituent G x) :
@@ -87,12 +102,18 @@ theorem localGramMatrixMod11_mul_allOnes_apply
   rw [hcast, localGramMatrix_row_sum G hG x B]
   exact (by decide : (165 : ZMod 11) = 0)
 
+/--
+@isnad1 id=eq.1h3v.s8.a03946337111 from=translated src=- shape=3b99b768 vocab=eede3dd8
+-/
 theorem localGramMatrixMod11_mul_allOnes
     (hG : IsHypothetical G) (x : V) :
     localGramMatrixMod11 G x * allOnesMatrixMod11 G x = 0 := by
   ext B C
   exact localGramMatrixMod11_mul_allOnes_apply G hG x B C
 
+/--
+@isnad1 id=eq.1h5v.s8.c63e2ed6dca8 from=translated src=- shape=a9e92809 vocab=eede3dd8
+-/
 theorem allOnesMatrixMod11_mul_localGram_apply
     (hG : IsHypothetical G) (x : V)
     (B C : SecondSubconstituent G x) :
@@ -113,12 +134,18 @@ theorem allOnesMatrixMod11_mul_localGram_apply
   rw [hcolumn]
   exact (by decide : (165 : ZMod 11) = 0)
 
+/--
+@isnad1 id=eq.1h3v.s8.c46f60eec390 from=translated src=- shape=3b99b768 vocab=eede3dd8
+-/
 theorem allOnesMatrixMod11_mul_localGram
     (hG : IsHypothetical G) (x : V) :
     allOnesMatrixMod11 G x * localGramMatrixMod11 G x = 0 := by
   ext B C
   exact allOnesMatrixMod11_mul_localGram_apply G hG x B C
 
+/--
+@isnad1 id=eq.1h5v.s8.d6f979d5997e from=translated src=- shape=a9e92809 vocab=c36065d2
+-/
 theorem allOnesMatrixMod11_sq_apply
     (hG : IsHypothetical G) (x : V)
     (B C : SecondSubconstituent G x) :
@@ -134,12 +161,18 @@ theorem allOnesMatrixMod11_sq_apply
         (secondSubconstituent_card G hG x)
     _ = 0 := by decide
 
+/--
+@isnad1 id=eq.1h3v.s8.f51801c69e9b from=translated src=- shape=3b99b768 vocab=c36065d2
+-/
 theorem allOnesMatrixMod11_sq
     (hG : IsHypothetical G) (x : V) :
     allOnesMatrixMod11 G x * allOnesMatrixMod11 G x = 0 := by
   ext B C
   exact allOnesMatrixMod11_sq_apply G hG x B C
 
+/--
+@isnad1 id=eq.1h3v.s8.d7d5408617f5 from=translated src=- shape=ec56faba vocab=c4576718
+-/
 @[simp]
 theorem localGramMatrixMod11_mulVec_one
     (hG : IsHypothetical G) (x : V) :
@@ -155,6 +188,9 @@ theorem localGramMatrixMod11_mulVec_one
   rw [hcast, localGramMatrix_row_sum G hG x B]
   exact (by decide : (165 : ZMod 11) = 0)
 
+/--
+@isnad1 id=ne.1h3v.s7.615b0c4973dd from=translated src=- shape=3115cea9 vocab=a5066fbf
+-/
 theorem allOnesMatrixMod11_ne_zero
     (hG : IsHypothetical G) (x : V) :
     allOnesMatrixMod11 G x ≠ 0 := by
@@ -169,6 +205,9 @@ theorem allOnesMatrixMod11_ne_zero
   change (1 : ZMod 11) = 0 at hentry
   exact (by decide : (1 : ZMod 11) ≠ 0) hentry
 
+/--
+@isnad1 id=eq.1h3v.s9.0c4db435e646 from=translated src=- shape=5b6643dd vocab=33b5a166
+-/
 theorem localGramMatrixMod11_mul_sub_one
     (hG : IsHypothetical G) (x : V) :
     localGramMatrixMod11 G x *
@@ -177,6 +216,9 @@ theorem localGramMatrixMod11_mul_sub_one
   have hsq := localGramMatrixMod11_sq G hG x
   noncomm_ring [hsq]
 
+/--
+@isnad1 id=ne.1h3v.s9.7b3ab7bbc8b0 from=translated src=- shape=a48ae584 vocab=23b25d17
+-/
 theorem localGramMatrixMod11_mul_sub_one_ne_zero
     (hG : IsHypothetical G) (x : V) :
     localGramMatrixMod11 G x *
@@ -194,6 +236,9 @@ theorem localGramMatrixMod11_mul_sub_one_ne_zero
   have htwo : (2 : ZMod 11) ≠ 0 := by decide
   exact htwo hentry
 
+/--
+@isnad1 id=eq.1h3v.s9.4fc78d0ee8ca from=translated src=- shape=a6196fa6 vocab=ca1428f2
+-/
 theorem localGramMatrixMod11_cube_eq_sq
     (hG : IsHypothetical G) (x : V) :
     localGramMatrixMod11 G x *
@@ -215,6 +260,9 @@ theorem localGramMatrixMod11_cube_eq_sq
       rw [add_mul, smul_mul_assoc, hJL]
       simp
 
+/--
+@isnad1 id=eq.1h3v.s9.5052818647ee from=translated src=- shape=237827a8 vocab=ca1428f2
+-/
 theorem localGramMatrixMod11_sq_idempotent
     (hG : IsHypothetical G) (x : V) :
     (localGramMatrixMod11 G x * localGramMatrixMod11 G x) *

@@ -11,6 +11,9 @@ namespace SRG266.Lattice
 
 variable {W U : Type*} [AddCommGroup W] [AddCommGroup U]
 
+/--
+@isnad1 id=eq.0h8v.s9.000088a19bdf from=translated src=- shape=3b00b456 vocab=8374f492
+-/
 theorem prod_sup_span_ranges {ι κ : Type*} (N : Submodule ℤ W) (M : Submodule ℤ U)
     (u : ι → W) (v : κ → U) :
     (N ⊔ Submodule.span ℤ (Set.range u)).prod (M ⊔ Submodule.span ℤ (Set.range v)) =
@@ -37,6 +40,9 @@ def mixedPrimaryVector (s t : PrimaryShape) : Fin s.arity ⊕ Fin t.arity → mi
 def mixedPrimaryPeriod (s t : PrimaryShape) : Fin s.arity ⊕ Fin t.arity → ℤ :=
   Sum.elim (fun _ => 3) (fun _ => 5)
 
+/--
+@isnad1 id=eq.0h2v.s8.4301a87ef3c1 from=translated src=- shape=cb656727 vocab=2592b051
+-/
 theorem mixedPrimary_dual (s t : PrimaryShape) :
     (mixedPrimaryForm s t).dualSubmodule (mixedPrimaryBase s t) =
       mixedPrimaryBase s t ⊔ Submodule.span ℤ (Set.range (mixedPrimaryVector s t)) := by
@@ -44,6 +50,9 @@ theorem mixedPrimary_dual (s t : PrimaryShape) :
     primaryModel_dual, primaryModel_dual]
   exact prod_sup_span_ranges _ _ _ _
 
+/--
+@isnad1 id=mem.1h4v.s9.2a1318aa815b from=translated src=- shape=f7203e32 vocab=cc0bdf6b
+-/
 theorem mixedPrimary_cross (s t : PrimaryShape) (i j : Fin s.arity ⊕ Fin t.arity) (hij : i ≠ j) :
     mixedPrimaryForm s t (mixedPrimaryVector s t i) (mixedPrimaryVector s t j) ∈
       (1 : Submodule ℤ ℚ) := by
@@ -55,12 +64,18 @@ theorem mixedPrimary_cross (s t : PrimaryShape) (i j : Fin s.arity ⊕ Fin t.ari
   · simpa [mixedPrimaryForm, mixedPrimaryVector, prodForm_apply] using
       primaryModel_cross .five t i j (fun h => hij (congrArg Sum.inr h))
 
+/--
+@isnad1 id=mem.0h3v.s7.2e87805b163b from=translated src=- shape=f5b535ec vocab=76e70e34
+-/
 theorem mixedPrimary_period (s t : PrimaryShape) (i : Fin s.arity ⊕ Fin t.arity) :
     mixedPrimaryPeriod s t i • mixedPrimaryVector s t i ∈ mixedPrimaryBase s t := by
   rcases i with i | i
   · exact ⟨primaryModel_period .three s i, by simp [mixedPrimaryVector, mixedPrimaryPeriod]⟩
   · exact ⟨by simp [mixedPrimaryVector, mixedPrimaryPeriod], primaryModel_period .five t i⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.d4dec8d33c4d from=translated src=- shape=8f2ea3af vocab=be867fbf
+-/
 theorem mixedPrimary_finrank (s t : PrimaryShape) :
     Module.finrank ℚ (mixedPrimarySpace s t) = primaryModelRank .three s + primaryModelRank .five t := by
   rw [Module.finrank_prod, primaryModel_finrank, primaryModel_finrank]
@@ -75,6 +90,9 @@ def mixedPrimaryLattice (S : PrimaryFamily B N .three s) (T : PrimaryFamily B N 
     Submodule ℤ (W × mixedPrimarySpace s t) :=
   glueLattice N (mixedPrimaryBase s t) (fun i => (mixedPrimarySource S T i, mixedPrimaryVector s t i))
 
+/--
+@isnad1 id=eq.1h7v.s8.14832f614241 from=translated src=- shape=2e1a4160 vocab=651a3150
+-/
 theorem mixedPrimarySource_dual (S : PrimaryFamily B N .three s) (T : PrimaryFamily B N .five t)
     (h : B.dualSubmodule N = torsionPart B N 3 ⊔ torsionPart B N 5) :
     B.dualSubmodule N = N ⊔ Submodule.span ℤ (Set.range (mixedPrimarySource S T)) := by
@@ -83,6 +101,9 @@ theorem mixedPrimarySource_dual (S : PrimaryFamily B N .three s) (T : PrimaryFam
     show torsionPart B N 5 = N ⊔ Submodule.span ℤ (Set.range T.vec) from T.spans]
   simp only [sup_assoc, sup_left_comm, sup_left_idem]
 
+/--
+@isnad1 id=mem.2h9v.s8.403c864b9ba5 from=translated src=- shape=d31f0336 vocab=1dc094c3
+-/
 theorem mixedPrimarySource_cross (S : PrimaryFamily B N .three s) (T : PrimaryFamily B N .five t)
     (hs : B.IsSymm) (i j : Fin s.arity ⊕ Fin t.arity) (hij : i ≠ j) :
     B (mixedPrimarySource S T i) (mixedPrimarySource S T j) ∈ (1 : Submodule ℤ ℚ) := by
@@ -97,6 +118,9 @@ theorem mixedPrimarySource_cross (S : PrimaryFamily B N .three s) (T : PrimaryFa
       (mem_torsionPart.mp (S.mem j)).2
   · exact T.cross i j (fun h => hij (congrArg Sum.inr h))
 
+/--
+@isnad1 id=and.5h7v.s9.61ffe3d2ba9b from=translated src=- shape=788328c1 vocab=47f0d984
+-/
 theorem complete_mixed_primary (S : PrimaryFamily B N .three s) (T : PrimaryFamily B N .five t)
     (hs : B.IsSymm) (hl : IsLattice ℚ N) (hi : IsIntegral B N) (he : IsEven B N)
     (hd : B.dualSubmodule N = torsionPart B N 3 ⊔ torsionPart B N 5) :
@@ -132,25 +156,40 @@ theorem complete_mixed_primary (S : PrimaryFamily B N .three s) (T : PrimaryFami
     · exact S.unit i a ha
     · exact T.unit i a ha
 
+/--
+@isnad1 id=lt.2h5v.s10.d76ec67e1c7e from=translated src=- shape=38b2fb02 vocab=fdd97abd
+-/
 theorem mixedPrimaryLattice_posDef (hpd : ∀ x : W, x ≠ 0 → 0 < B x x) :
     ∀ z : W × mixedPrimarySpace s t, z ≠ 0 → 0 < prodForm B (mixedPrimaryForm s t) z z :=
   prodForm_posDef hpd (prodForm_posDef (primaryModel_posDef .three s) (primaryModel_posDef .five t))
 
+/--
+@isnad1 id=eq.0h3v.s7.54e24b4e07b6 from=translated src=- shape=0321073b vocab=0337b1d2
+-/
 theorem mixedPrimaryLattice_finrank [Module.Finite ℚ W] :
     Module.finrank ℚ (W × mixedPrimarySpace s t) =
       Module.finrank ℚ W + primaryModelRank .three s + primaryModelRank .five t := by
   rw [Module.finrank_prod, mixedPrimary_finrank, Nat.add_assoc]
 
+/--
+@isnad1 id=mem.1h8v.s8.6fc5dc1e9137 from=translated src=- shape=a7ff3c0d vocab=3d9826e0
+-/
 theorem mem_mixedPrimaryLattice_left (S : PrimaryFamily B N .three s) (T : PrimaryFamily B N .five t)
     {x : W} (hx : x ∈ N) : (x, (0 : mixedPrimarySpace s t)) ∈ mixedPrimaryLattice S T :=
   prod_le_glueLattice ⟨hx, zero_mem _⟩
 
+/--
+@isnad1 id=eq.0h6v.s10.4d6098ca7313 from=translated src=- shape=236119cd vocab=a957e08f
+-/
 theorem mixedPrimaryLattice_left_pair (x y : W) :
     prodForm B (mixedPrimaryForm s t) (x, (0 : mixedPrimarySpace s t)) (y, 0) = B x y := by
   simp [prodForm_apply]
 
 omit [AddCommGroup W] [Module ℚ W] in
 
+/--
+@isnad1 id=iff.0h2v.s6.9e0fe3569c10 from=translated src=- shape=e1045bdc vocab=6dccaddb
+-/
 theorem eight_dvd_mixed_rank_iff (s t : PrimaryShape) :
     8 ∣ 18 + primaryModelRank .three s + primaryModelRank .five t ↔
       (s = .two ∧ t = .zero) ∨ (s = .two ∧ t = .two) ∨

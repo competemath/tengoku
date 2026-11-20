@@ -16,6 +16,9 @@ open scoped BigOperators
 def orientedBinaryCoordinates {ι : Type*} (ε : ℤ) (z : ι → ℤ) : ι → ℤ :=
   if ε = 1 then z else fun i => 1-z i
 
+/--
+@isnad1 id=and.3h3v.s8.d8e80a59a333 from=translated src=- shape=608cbe60 vocab=4e268ae4
+-/
 theorem a11_centered_orientation (ε a : ℤ) (z : Fin 12 → ℤ)
     (hε : ε = -1 ∨ ε = 1) (hz : (∑ i, z i) = a) (hbinary : ∀ i, z i = 0 ∨ z i = 1) :
     (∑ i, orientedBinaryCoordinates ε z i) = orientedALabel ε a ∧
@@ -41,6 +44,9 @@ def A11E6NormalizedType (a δ : ℤ) (u : Fin 11 → ℚ) (v : Fin 6 → ℚ) : 
   (a = 1 ∧ cartanARatForm 11 u u = 11/12 ∧ E6Cartan.form v v = 4/3 ∧
     ∃ w ∈ coordinateIntegerLattice 6, v = w+δ • E6Cartan.weight)
 
+/--
+@isnad1 id=a11e6nor.6h6v.s10.303b22a1d4b6 from=translated src=- shape=71b2c822 vocab=7526e0fd
+-/
 theorem a11E6_normalized_type {ε δ a c : ℤ} {u : Fin 11 → ℚ} {v : Fin 6 → ℚ}
     (hδ : δ = -1 ∨ δ = 1) (htype : A11E6ShortType a u v) (hlabel : ShortFrameLabel a c)
     (hcoset : ∃ w ∈ coordinateIntegerLattice 6, v = w+c • E6Cartan.weight)

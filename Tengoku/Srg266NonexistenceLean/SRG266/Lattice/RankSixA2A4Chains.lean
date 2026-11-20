@@ -9,6 +9,9 @@ import Tengoku.Srg266NonexistenceLean.SRG266.Lattice.RankSixRootChains
 
 namespace SRG266.Lattice
 
+/--
+@isnad1 id=ex.0h0v.s10.9bb3bbb74ae0 from=translated src=- shape=2989e821 vocab=326a442a
+-/
 theorem rankSix_fifteenMinus_has_A2_A4 :
     ∃ (r : Fin 2 → rankSixSpace .fifteenMinus) (s : Fin 4 → rankSixSpace .fifteenMinus),
       (∀ i, r i ∈ rankSixBase .fifteenMinus) ∧

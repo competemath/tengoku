@@ -17,6 +17,9 @@ variable {N : Submodule ℤ W} {M : Submodule ℤ U} {u : W} {v : U}
 def cyclicGlueLattice (N : Submodule ℤ W) (M : Submodule ℤ U) (u : W) (v : U) :
     Submodule ℤ (W × U) := N.prod M ⊔ Submodule.span ℤ {(u, v)}
 
+/--
+@isnad1 id=islattic.2h6v.s7.5a5b5f7e97b5 from=translated src=- shape=9084e1df vocab=739f26ec
+-/
 theorem cyclicGlueLattice_isLattice (hN : IsLattice ℚ N) (hM : IsLattice ℚ M) :
     IsLattice ℚ (cyclicGlueLattice N M u v) := by
   refine ⟨Submodule.FG.sup (isLattice_prod hN hM).fg
@@ -25,6 +28,9 @@ theorem cyclicGlueLattice_isLattice (hN : IsLattice ℚ N) (hM : IsLattice ℚ M
   rw [← (isLattice_prod hN hM).spans]
   exact Submodule.span_mono (fun _ hz => Submodule.mem_sup_left hz)
 
+/--
+@isnad1 id=isintegr.7h8v.s9.83bd7d631280 from=translated src=- shape=9d2a0749 vocab=572a051a
+-/
 theorem cyclicGlueLattice_isIntegral (hsB : B.IsSymm) (hsC : C.IsSymm)
     (hN : IsIntegral B N) (hM : IsIntegral C M)
     (hu : u ∈ B.dualSubmodule N) (hv : v ∈ C.dualSubmodule M)
@@ -37,6 +43,9 @@ theorem cyclicGlueLattice_isIntegral (hsB : B.IsSymm) (hsC : C.IsSymm)
   · rintro _ (rfl : _ = (u, v)) _ (rfl : _ = (u, v))
     exact hdiag
 
+/--
+@isnad1 id=iseven.4h4v.s9.fe85b61aedca from=translated src=- shape=9237701d vocab=44e278a0
+-/
 theorem isEven_sup_span {X : Type*} [AddCommGroup X] [Module ℚ X]
     {F : LinearMap.BilinForm ℚ X} (hs : F.IsSymm) {P : Submodule ℤ X} {s : Set X}
     (hint : IsIntegral F (P ⊔ Submodule.span ℤ s)) (hP : IsEven F P)
@@ -56,6 +65,9 @@ theorem isEven_sup_span {X : Type*} [AddCommGroup X] [Module ℚ X]
   push_cast
   ring
 
+/--
+@isnad1 id=iseven.6h8v.s9.512ab68acfda from=translated src=- shape=1c90fb94 vocab=92c9c3f2
+-/
 theorem cyclicGlueLattice_isEven (hsB : B.IsSymm) (hsC : C.IsSymm)
     (hint : IsIntegral (prodForm B C) (cyclicGlueLattice N M u v))
     (hN : IsEven B N) (hM : IsEven C M)
@@ -74,6 +86,9 @@ theorem cyclicGlueLattice_isEven (hsB : B.IsSymm) (hsC : C.IsSymm)
 
 omit [Module ℚ W] [Module ℚ U] in
 
+/--
+@isnad1 id=iff.2h8v.s8.ed8e0d9b59f4 from=translated src=- shape=fc16b4e6 vocab=cb00300d
+-/
 theorem cyclicGlueLattice_mem_left_iff {p : ℤ}
     (hu : p • u ∈ N) (hv : ∀ a : ℤ, a • v ∈ M ↔ p ∣ a) (x : W) :
     (x, (0 : U)) ∈ cyclicGlueLattice N M u v ↔ x ∈ N := by
@@ -99,6 +114,9 @@ theorem cyclicGlueLattice_mem_left_iff {p : ℤ}
     exact Submodule.mem_sup_left ⟨hx, M.zero_mem⟩
 
 omit [Module ℚ W] [Module ℚ U] in
+/--
+@isnad1 id=iff.2h8v.s8.78a6d64abc05 from=translated src=- shape=3c176743 vocab=cb00300d
+-/
 theorem cyclicGlueLattice_mem_right_iff {p : ℤ}
     (hu : ∀ a : ℤ, a • u ∈ N ↔ p ∣ a) (hv : p • v ∈ M) (y : U) :
     ((0 : W), y) ∈ cyclicGlueLattice N M u v ↔ y ∈ M := by

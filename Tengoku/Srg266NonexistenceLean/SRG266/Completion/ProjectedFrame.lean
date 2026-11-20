@@ -19,6 +19,9 @@ noncomputable def lorentzProjectedGenerator (x : V) (c : IntegralGramLattice G x
     (B : SecondSubconstituent G x) : ratGramSpace G x :=
   lorentzHeightZeroPart G x c (toRatSpace G x (integralGramGenerator G x B))
 
+/--
+@isnad1 id=eq.3h6v.s11.a83bf3344b55 from=translated src=- shape=ff5b2291 vocab=cf39eb39
+-/
 theorem lorentzProjectedGenerator_pair (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x) (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
     (y : ratGramSpace G x) (hy : centroidHeight G x c y = 0)
@@ -31,6 +34,9 @@ theorem lorentzProjectedGenerator_pair (hG : IsHypothetical G) (x : V)
     lorentzWeylVector_pair G hG x c hc y, hy]
   ring
 
+/--
+@isnad1 id=eq.2h4v.s8.734b4675d380 from=translated src=- shape=2844d122 vocab=70110489
+-/
 theorem lorentzProjectedGenerator_sum (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x) (hc : (11 : ℤ) • c = integralGramGeneratorSum G x) :
     ∑ B, lorentzProjectedGenerator G x c B = 0 := by
@@ -47,6 +53,9 @@ theorem lorentzProjectedGenerator_sum (hG : IsHypothetical G) (x : V)
   simp only [lorentzWeylVector]
   module
 
+/--
+@isnad1 id=eq.3h5v.s11.729402713253 from=translated src=- shape=2796b212 vocab=d637238a
+-/
 theorem lorentzProjectedGenerator_secondMoment (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x) (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
     (y : ratGramSpace G x) (hy : centroidHeight G x c y = 0) :
@@ -64,6 +73,9 @@ theorem lorentzProjectedGenerator_secondMoment (hG : IsHypothetical G) (x : V)
       ring
     _ = _ := hf
 
+/--
+@isnad1 id=ex.4h5v.s12.5db645d653ef from=translated src=- shape=280ff045 vocab=88c84975
+-/
 theorem lorentzProjectedGenerator_exists_small_score (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x) (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
     (y : ratGramSpace G x) (hy : centroidHeight G x c y = 0)

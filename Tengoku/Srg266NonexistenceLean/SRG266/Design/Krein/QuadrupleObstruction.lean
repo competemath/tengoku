@@ -14,6 +14,9 @@ open scoped BigOperators
 
 namespace SRG266.QuasiSymmetric
 
+/--
+@isnad1 id=false.4h3v.s7.7f043489a11c from=translated src=- shape=7ca9e9d5 vocab=c5e3ee81
+-/
 theorem no_steinerQuadruple_on12 {α : Type*} [DecidableEq α]
     (X : Finset α) (hX : X.card = 12) (blocks : Finset (Finset α))
     (hsize : ∀ B ∈ blocks, B.card = 4)
@@ -71,6 +74,9 @@ theorem no_steinerQuadruple_on12 {α : Type*} [DecidableEq α]
   simp only [Finset.sum_const, Nat.nsmul_eq_mul, mul_one, hpairs] at hcount
   omega
 
+/--
+@isnad1 id=false.2h1v.s7.f592f110c70b from=translated src=- shape=065a8dcd vocab=83525520
+-/
 theorem no_steinerQuadruple12
     (blocks : Finset (Finset (Fin 12)))
     (hsize : ∀ B ∈ blocks, B.card = 4)

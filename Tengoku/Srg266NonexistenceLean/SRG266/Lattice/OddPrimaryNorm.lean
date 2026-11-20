@@ -13,6 +13,9 @@ namespace SRG266.Lattice
 variable {W : Type*} [AddCommGroup W] [Module ℚ W]
 variable {B : LinearMap.BilinForm ℚ W} {N : Submodule ℤ W}
 
+/--
+@isnad1 id=even.4h6v.s8.08b09dadd908 from=translated src=- shape=94e5c43a vocab=193cfa46
+-/
 theorem even_numerator_of_odd_multiple {p m : ℤ} (hp : Odd p)
     (hN : IsEven B N) {u : W} (hu : p • u ∈ N)
     (hnorm : (p : ℚ) * B u u = (m : ℚ)) : Even m := by
@@ -24,6 +27,9 @@ theorem even_numerator_of_odd_multiple {p m : ℤ} (hp : Odd p)
   exact even_iff_two_dvd.mpr
     ((Int.isCoprime_two_left.mpr hp).dvd_of_dvd_mul_left ⟨k, hZ⟩)
 
+/--
+@isnad1 id=ex.2h6v.s8.29483af974ec from=translated src=- shape=83624952 vocab=59cba6ee
+-/
 theorem GlueBasis.exists_even_diag {p : ℕ} (S : GlueBasis B N p)
     (hp : Odd (p : ℤ)) (hN : IsEven B N) (i : Fin S.rank) :
     ∃ m : ℤ, Even m ∧ ¬ (p : ℤ) ∣ m ∧ (p : ℚ) * B (S.vec i) (S.vec i) = (m : ℚ) := by
@@ -32,6 +38,9 @@ theorem GlueBasis.exists_even_diag {p : ℕ} (S : GlueBasis B N p)
     (mem_torsionPart.mp (S.mem i)).2 hm, hndiv, hm⟩
 
 omit [AddCommGroup W] [Module ℚ W] in
+/--
+@isnad1 id=ex.3h2v.s6.8a3de657c80d from=translated src=- shape=8d18f4c6 vocab=32e73e38
+-/
 theorem norm_mod_two_three {q : ℚ} {m : ℤ} (hm : Even m) (hunit : ¬ (3 : ℤ) ∣ m)
     (hq : 3 * q = (m : ℚ)) :
     ∃ r k : ℤ, (r = 2 ∨ r = 4) ∧ q = (r : ℚ) / 3 + 2 * (k : ℚ) := by
@@ -44,6 +53,9 @@ theorem norm_mod_two_three {q : ℚ} {m : ℤ} (hm : Even m) (hunit : ¬ (3 : �
   linarith
 
 omit [AddCommGroup W] [Module ℚ W] in
+/--
+@isnad1 id=ex.3h2v.s6.3c6746b099fe from=translated src=- shape=d7e882c9 vocab=32e73e38
+-/
 theorem norm_mod_two_five {q : ℚ} {m : ℤ} (hm : Even m) (hunit : ¬ (5 : ℤ) ∣ m)
     (hq : 5 * q = (m : ℚ)) :
     ∃ r k : ℤ, (r = 2 ∨ r = 4 ∨ r = 6 ∨ r = 8) ∧
@@ -58,6 +70,9 @@ theorem norm_mod_two_five {q : ℚ} {m : ℤ} (hm : Even m) (hunit : ¬ (5 : ℤ
 
 omit [AddCommGroup W] [Module ℚ W] in
 
+/--
+@isnad1 id=ex.3h2v.s7.7f4f8f7c6b7c from=translated src=- shape=b2502d0d vocab=9cd12dae
+-/
 theorem normalized_norm_five {q : ℚ} {m : ℤ} (hm : Even m) (hunit : ¬ (5 : ℤ) ∣ m)
     (hq : 5 * q = (m : ℚ)) :
     ∃ a r k : ℤ, (a = 1 ∨ a = 2) ∧ (r = 2 ∨ r = 4) ∧
@@ -75,6 +90,9 @@ theorem normalized_norm_five {q : ℚ} {m : ℤ} (hm : Even m) (hunit : ¬ (5 : 
 
 omit [AddCommGroup W] [Module ℚ W] in
 
+/--
+@isnad1 id=dvd.4h5v.s7.30598d9940a3 from=translated src=- shape=73e94631 vocab=6fd26816
+-/
 theorem norm_denominator_unit {p r k : ℤ} {q : ℚ} (hp : p ≠ 0)
     (hcop : IsCoprime p r) (hq : q = (r : ℚ) / (p : ℚ) + 2 * (k : ℚ))
     (a : ℤ) (ha : (a : ℚ) * q ∈ (1 : Submodule ℤ ℚ)) : p ∣ a := by

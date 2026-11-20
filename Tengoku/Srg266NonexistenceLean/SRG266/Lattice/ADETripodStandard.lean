@@ -63,16 +63,28 @@ def dTripodEquiv (t : ℕ) (ht : 0 < t) : Fin (t + 3) ≃ TripodVertex 1 1 t whe
           change t - 1 - (t - 1 - j.1) = j.1
           omega
 
+/--
+@isnad1 id=iff.2h3v.s6.465d996577e3 from=translated src=- shape=98f3c9d8 vocab=c1ef7fdd
+-/
 theorem revNat_eq_iff {t i j : ℕ} (hi : i < t) (hj : j < t) :
     t - 1 - i = t - 1 - j ↔ i = j := by omega
 
+/--
+@isnad1 id=iff.1h2v.s5.52bb81a2e855 from=translated src=- shape=4fc26c3d vocab=2c881234
+-/
 theorem revNat_eq_zero_iff {t i : ℕ} (hi : i < t) :
     t - 1 - i = 0 ↔ i + 1 = t := by omega
 
+/--
+@isnad1 id=iff.2h3v.s7.e9622accdb1a from=translated src=- shape=5974c690 vocab=2c881234
+-/
 theorem revNat_adj_iff {t i j : ℕ} (hi : i < t) (hj : j < t) :
     (t - 1 - i) + 1 = t - 1 - j ∨ (t - 1 - j) + 1 = t - 1 - i ↔
       i + 1 = j ∨ j + 1 = i := by omega
 
+/--
+@isnad1 id=eq.1h3v.s8.ac1f8feca8db from=translated src=- shape=f6817b6f vocab=fc12d108
+-/
 theorem graphCartanMatrix_dTripod (t : ℕ) (ht : 0 < t) (i j : Fin (t + 3)) :
     graphCartanMatrix (tripodGraph 1 1 t) (dTripodEquiv t ht i)
       (dTripodEquiv t ht j) = gramD (t + 3) i j := by
@@ -106,6 +118,9 @@ noncomputable def e7TripodEquiv : Fin 7 ≃ TripodVertex 1 2 3 :=
 noncomputable def e8TripodEquiv : Fin 8 ≃ TripodVertex 1 2 4 :=
   Equiv.ofBijective e8TripodMap (by decide)
 
+/--
+@isnad1 id=eq.0h2v.s8.0768306be720 from=translated src=- shape=e06cfb03 vocab=e5f4bfd5
+-/
 theorem graphCartanMatrix_e6Tripod (i j : Fin 6) :
     graphCartanMatrix (tripodGraph 1 2 2) (e6TripodEquiv i)
       (e6TripodEquiv j) = gramE 6 i j := by
@@ -114,6 +129,9 @@ theorem graphCartanMatrix_e6Tripod (i j : Fin 6) :
       tripodRel, tripodArmRel, tripodArmZero, e6TripodEquiv, e6TripodMap,
       gramE, gramEEntry, SimpleGraph.pathGraph_adj] <;> decide
 
+/--
+@isnad1 id=eq.0h2v.s8.e2d7cd0c4659 from=translated src=- shape=e06cfb03 vocab=5881f7da
+-/
 theorem graphCartanMatrix_e7Tripod (i j : Fin 7) :
     graphCartanMatrix (tripodGraph 1 2 3) (e7TripodEquiv i)
       (e7TripodEquiv j) = gramE 7 i j := by
@@ -122,6 +140,9 @@ theorem graphCartanMatrix_e7Tripod (i j : Fin 7) :
       tripodRel, tripodArmRel, tripodArmZero, e7TripodEquiv, e7TripodMap,
       gramE, gramEEntry, SimpleGraph.pathGraph_adj] <;> decide
 
+/--
+@isnad1 id=eq.0h2v.s8.c898cd1afd21 from=translated src=- shape=e06cfb03 vocab=9bdf342c
+-/
 theorem graphCartanMatrix_e8Tripod (i j : Fin 8) :
     graphCartanMatrix (tripodGraph 1 2 4) (e8TripodEquiv i)
       (e8TripodEquiv j) = gramE 8 i j := by

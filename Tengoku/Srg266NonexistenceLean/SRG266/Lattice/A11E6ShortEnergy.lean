@@ -12,6 +12,9 @@ namespace SRG266.Lattice
 
 open scoped BigOperators
 
+/--
+@isnad1 id=and.7h5v.s7.cc5f8292af9e from=translated src=- shape=a19372d9 vocab=e7988ca4
+-/
 theorem a11E6_short_trivial_class (a m t : ℤ) (A E : ℚ)
     (ha0 : 0 ≤ a) (ha11 : a ≤ 11)
     (hmin : (a : ℚ)*(12-a)/12 ≤ A) (hE0 : 0 ≤ E)
@@ -26,6 +29,9 @@ theorem a11E6_short_trivial_class (a m t : ℤ) (A E : ℚ)
     rcases ha with rfl | rfl <;> norm_num at hmin ⊢ <;> linarith
   exact ⟨ha, by linarith, by linarith⟩
 
+/--
+@isnad1 id=and.7h5v.s8.aba2274c3880 from=translated src=- shape=765a7fc1 vocab=e7988ca4
+-/
 theorem a11E6_short_nontrivial_class (a m t : ℤ) (A E : ℚ)
     (ha0 : 0 ≤ a) (ha11 : a ≤ 11)
     (hmin : (a : ℚ)*(12-a)/12 ≤ A) (hEmin : 4/3 ≤ E)

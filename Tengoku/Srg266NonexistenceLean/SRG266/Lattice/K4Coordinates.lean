@@ -25,21 +25,36 @@ def rightFraction (c : Fin 2 → ℤ) : Space := (0, (1 / 5 : ℚ) • intCoords
 def dualA : Space := rightFraction (fun i => if i = 0 then 1 else 0)
 def dualB : Space := rightFraction (fun i => if i = 0 then -2 else 4)
 
+/--
+@isnad1 id=issymm.0h0v.s7.f9472972a86d from=translated src=- shape=54c8eceb vocab=9eb34e4b
+-/
 theorem form_isSymm : form.IsSymm :=
   prodForm_isSymm (simplexRatForm_isSymm 2) (isSymm_smul_form (simplexRatForm_isSymm 2) 5)
 
+/--
+@isnad1 id=lt.1h1v.s10.9e112225b600 from=translated src=- shape=e7c936f8 vocab=bc9cec8d
+-/
 theorem form_posDef : ∀ x : Space, x ≠ 0 → 0 < form x x :=
   prodForm_posDef (simplexRatForm_posDef 2)
     (posDef_smul_form (by norm_num) (simplexRatForm_posDef 2))
 
+/--
+@isnad1 id=eq.0h0v.s10.58772dbb4eca from=translated src=- shape=bd6f62e4 vocab=f1d8fd9b
+-/
 theorem glueVector_norm : form glueVector glueVector = 4 := by
   norm_num [form, rightForm, glueVector, prodForm_apply, simplexRatForm_apply,
     simplexWeight, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=islattic.0h0v.s8.5888ae261492 from=translated src=- shape=93eefbde vocab=66c28793
+-/
 theorem lattice_isLattice : IsLattice ℚ lattice :=
   cyclicGlueLattice_isLattice (coordinateIntegerLattice_isLattice 2)
     (coordinateIntegerLattice_isLattice 2)
 
+/--
+@isnad1 id=isintegr.0h0v.s7.f1ca04aa59b6 from=translated src=- shape=8175f13d vocab=002bd3ff
+-/
 theorem lattice_isIntegral : IsIntegral form lattice := by
   have hr : simplexWeight 2 ∈ rightForm.dualSubmodule (coordinateIntegerLattice 2) := by
     apply (mem_dual_smul_form_iff (B := simplexRatForm 2) (5 : ℚ) _).mpr
@@ -52,22 +67,34 @@ theorem lattice_isIntegral : IsIntegral form lattice := by
     (simplexWeight_mem_dual 2) hr
   exact mem_one_iff.mpr ⟨4, glueVector_norm.symm⟩
 
+/--
+@isnad1 id=iseven.0h0v.s7.fec0c86c482d from=translated src=- shape=54c8eceb vocab=d23534ae
+-/
 theorem lattice_isEven : IsEven form lattice := by
   apply cyclicGlueLattice_isEven (simplexRatForm_isSymm 2)
     (isSymm_smul_form (simplexRatForm_isSymm 2) 5) lattice_isIntegral
     (simplexRatForm_isEven 2) (isEven_int_smul_form (simplexRatForm_isEven 2) 5)
   exact ⟨2, glueVector_norm.trans (by norm_num)⟩
 
+/--
+@isnad1 id=eq.0h0v.s7.893f1fda9cbc from=translated src=- shape=b3c4969c vocab=d6af2d3d
+-/
 theorem finrank_space : Module.finrank ℚ Space = 4 := by
   rw [Module.finrank_prod]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s11.50faf3605d9b from=translated src=- shape=85199cfb vocab=440d83fc
+-/
 theorem rightFraction_pair (c : Fin 2 → ℤ) (z : Space) :
     form (rightFraction c) z = simplexRatForm 2 (intCoordsToRat c) z.2 := by
   simp only [form, rightFraction, prodForm_apply, rightForm, map_zero,
     LinearMap.zero_apply, zero_add, map_smul, LinearMap.smul_apply, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=mem.0h1v.s9.12282f47c4de from=translated src=- shape=570020e6 vocab=5d955101
+-/
 theorem rightFraction_mem_dual (c : Fin 2 → ℤ) :
     rightFraction c ∈ form.dualSubmodule lattice := by
   change lattice ≤ rightIntegral form (rightFraction c)
@@ -82,6 +109,9 @@ theorem rightFraction_mem_dual (c : Fin 2 → ℤ) :
     rw [(simplexRatForm_isSymm 2).eq, simplexWeight_pair]
     exact mem_one_iff.mpr ⟨∑ i, c i, by simp⟩
 
+/--
+@isnad1 id=mem.0h1v.s8.033396194868 from=translated src=- shape=eb72b400 vocab=6304d46d
+-/
 theorem five_smul_rightFraction_mem (c : Fin 2 → ℤ) :
     (5 : ℤ) • rightFraction c ∈ lattice := by
   have heq : (5 : ℤ) • rightFraction c = (0, intCoordsToRat c) := by
@@ -89,25 +119,49 @@ theorem five_smul_rightFraction_mem (c : Fin 2 → ℤ) :
   rw [heq]
   exact Submodule.mem_sup_left ⟨(coordinateIntegerLattice 2).zero_mem, intCoordsToRat_mem c⟩
 
+/--
+@isnad1 id=mem.0h0v.s9.f7222394c1ca from=translated src=- shape=568e8a8c vocab=8a249e8b
+-/
 theorem dualA_mem_dual : dualA ∈ form.dualSubmodule lattice :=
   rightFraction_mem_dual _
+/--
+@isnad1 id=mem.0h0v.s9.af2f86fd82b8 from=translated src=- shape=568e8a8c vocab=a0866eed
+-/
 theorem dualB_mem_dual : dualB ∈ form.dualSubmodule lattice :=
   rightFraction_mem_dual _
+/--
+@isnad1 id=mem.0h0v.s8.245924cef487 from=translated src=- shape=cddf0ccc vocab=87c5d210
+-/
 theorem five_smul_dualA_mem : (5 : ℤ) • dualA ∈ lattice := five_smul_rightFraction_mem _
+/--
+@isnad1 id=mem.0h0v.s8.ae8c85949af1 from=translated src=- shape=cddf0ccc vocab=b57e6b37
+-/
 theorem five_smul_dualB_mem : (5 : ℤ) • dualB ∈ lattice := five_smul_rightFraction_mem _
 
+/--
+@isnad1 id=eq.0h0v.s10.ec1245ddf8f9 from=translated src=- shape=1a9fa12e vocab=67ac02b7
+-/
 theorem dualA_norm : form dualA dualA = 2 / 5 := by
   norm_num [form, rightForm, dualA, rightFraction, prodForm_apply, simplexRatForm_apply,
     intCoordsToRat_apply, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h0v.s10.715d4330058f from=translated src=- shape=1a9fa12e vocab=548b5290
+-/
 theorem dualB_norm : form dualB dualB = 24 / 5 := by
   norm_num [form, rightForm, dualB, rightFraction, prodForm_apply, simplexRatForm_apply,
     intCoordsToRat_apply, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h0v.s10.a3b46bacd49a from=translated src=- shape=0775d00c vocab=3c0478a1
+-/
 theorem dualA_pair_dualB : form dualA dualB = 0 := by
   norm_num [form, rightForm, dualA, dualB, rightFraction, prodForm_apply, simplexRatForm_apply,
     intCoordsToRat_apply, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=and.1h2v.s9.d64b60036e93 from=translated src=- shape=5d92648f vocab=b623e804
+-/
 theorem dual_independent (a b : ℤ) (h : a • dualA + b • dualB ∈ lattice) :
     (5 : ℤ) ∣ a ∧ (5 : ℤ) ∣ b := by
   have heq : a • dualA + b • dualB = (a : ℚ) • dualA + (b : ℚ) • dualB := by module
@@ -121,6 +175,9 @@ theorem dual_independent (a b : ℤ) (h : a • dualA + b • dualB ∈ lattice)
     norm_denominator_unit (p := 5) (r := 4) (k := 2) (by norm_num)
       ⟨1, -1, by norm_num⟩ (by rw [dualB_norm]; norm_num) b hb⟩
 
+/--
+@isnad1 id=mem.0h1v.s10.c8df3b3054e0 from=translated src=- shape=3be1a564 vocab=a48a5e13
+-/
 theorem rightFraction_mem_extension (c : Fin 2 → ℤ) :
     rightFraction c ∈ lattice ⊔ Submodule.span ℤ {dualA, dualB} := by
   let d : Fin 2 → ℤ := fun i => if i = 0 then 0 else c 1
@@ -141,6 +198,9 @@ theorem rightFraction_mem_extension (c : Fin 2 → ℤ) :
       (Submodule.mem_sup_right (Submodule.smul_mem _ _ ha)))
     (Submodule.mem_sup_right (Submodule.smul_mem _ _ hb))
 
+/--
+@isnad1 id=eq.0h0v.s10.03738235d648 from=translated src=- shape=a049e693 vocab=58ee9621
+-/
 theorem lattice_dual : form.dualSubmodule lattice = lattice ⊔ Submodule.span ℤ {dualA, dualB} := by
   apply le_antisymm
   · intro z hz

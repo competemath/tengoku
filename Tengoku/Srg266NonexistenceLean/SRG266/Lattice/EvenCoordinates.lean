@@ -28,6 +28,9 @@ def evenSumIntegers (n : ℕ) : Submodule ℤ (Fin n → ℤ) where
 def evenCoordinateLattice (n : ℕ) : Submodule ℤ (Fin n → ℚ) :=
   (evenSumIntegers n).map intCoordsToRat
 
+/--
+@isnad1 id=iff.0h2v.s8.003dded714d9 from=translated src=- shape=f23b2893 vocab=c099af1d
+-/
 theorem mem_evenCoordinateLattice {n : ℕ} {v : Fin n → ℚ} :
     v ∈ evenCoordinateLattice n ↔
       ∃ z : Fin n → ℤ, intCoordsToRat z = v ∧ Even (∑ i, z i) := by
@@ -37,11 +40,17 @@ theorem mem_evenCoordinateLattice {n : ℕ} {v : Fin n → ℚ} :
   · rintro ⟨z, rfl, hz⟩
     exact ⟨z, hz, rfl⟩
 
+/--
+@isnad1 id=le.0h1v.s7.a69c406e7c00 from=translated src=- shape=f01d12fa vocab=df3e74f5
+-/
 theorem evenCoordinateLattice_le (n : ℕ) :
     evenCoordinateLattice n ≤ coordinateIntegerLattice n := by
   rintro v ⟨z, _, rfl⟩
   exact intCoordsToRat_mem z
 
+/--
+@isnad1 id=mem.1h2v.s8.fe0f09e4e579 from=translated src=- shape=ad5f453b vocab=101d350a
+-/
 theorem two_smul_mem_evenCoordinateLattice {n : ℕ} {v : Fin n → ℚ}
     (hv : v ∈ coordinateIntegerLattice n) :
     (2 : ℤ) • v ∈ evenCoordinateLattice n := by
@@ -51,6 +60,9 @@ theorem two_smul_mem_evenCoordinateLattice {n : ℕ} {v : Fin n → ℚ}
   simp only [zsmul_eq_mul, ← Finset.mul_sum]
   exact even_two_mul _
 
+/--
+@isnad1 id=islattic.0h1v.s6.329b1b0caf50 from=translated src=- shape=f7c1ffc9 vocab=64eec006
+-/
 theorem evenCoordinateLattice_isLattice (n : ℕ) :
     IsLattice ℚ (evenCoordinateLattice n) := by
   constructor
@@ -67,6 +79,9 @@ theorem evenCoordinateLattice_isLattice (n : ℕ) :
       simp [zsmul_eq_mul]
     rwa [heq] at h'
 
+/--
+@isnad1 id=isintegr.0h1v.s5.b1b515bb10cb from=translated src=- shape=0f26cc2a vocab=d9226b93
+-/
 theorem evenCoordinateLattice_isIntegral (n : ℕ) :
     IsIntegral (standardRatForm n) (evenCoordinateLattice n) := by
   intro x hx y hy
@@ -74,6 +89,9 @@ theorem evenCoordinateLattice_isIntegral (n : ℕ) :
   rw [← standardRatForm_dual_coordinateIntegerLattice] at hx'
   exact hx' y (evenCoordinateLattice_le n hy)
 
+/--
+@isnad1 id=iseven.0h1v.s5.f0451c0cbb44 from=translated src=- shape=cae58d9e vocab=b09a4d82
+-/
 theorem evenCoordinateLattice_isEven (n : ℕ) :
     IsEven (standardRatForm n) (evenCoordinateLattice n) := by
   intro v hv
@@ -91,11 +109,17 @@ theorem evenCoordinateLattice_isEven (n : ℕ) :
 
 def coordinateSpinor (n : ℕ) : Fin n → ℚ := fun _ => 1 / 2
 
+/--
+@isnad1 id=eq.0h1v.s8.ea12f999e73d from=translated src=- shape=7e04d5de vocab=5941853e
+-/
 theorem coordinateSpinor_norm (n : ℕ) :
     standardRatForm n (coordinateSpinor n) (coordinateSpinor n) = (n : ℚ) / 4 := by
   simp [standardRatForm_apply, coordinateSpinor]
   ring
 
+/--
+@isnad1 id=mem.0h1v.s7.be94b6d8f459 from=translated src=- shape=f65ddec4 vocab=b446cac6
+-/
 theorem coordinateSpinor_mem_dual (n : ℕ) :
     coordinateSpinor n ∈ (standardRatForm n).dualSubmodule (evenCoordinateLattice n) := by
   intro v hv
@@ -108,6 +132,9 @@ theorem coordinateSpinor_mem_dual (n : ℕ) :
   rw [hk']
   ring
 
+/--
+@isnad1 id=mem.0h1v.s7.deeeb44af2ed from=translated src=- shape=857d19d2 vocab=5cfa402c
+-/
 theorem four_smul_coordinateSpinor_mem (n : ℕ) :
     (4 : ℤ) • coordinateSpinor n ∈ evenCoordinateLattice n := by
   apply mem_evenCoordinateLattice.mpr
@@ -117,6 +144,9 @@ theorem four_smul_coordinateSpinor_mem (n : ℕ) :
   · simp only [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]
     exact even_two.mul_left _
 
+/--
+@isnad1 id=iff.0h1v.s8.04c1e18e1064 from=translated src=- shape=8644e6c4 vocab=5de78d1c
+-/
 theorem d7_spinor_order (m : ℤ) :
     m • coordinateSpinor 7 ∈ evenCoordinateLattice 7 ↔ 4 ∣ m := by
   exact zsmul_mem_iff_four_dvd_of_odd_quarter_norm
@@ -127,6 +157,9 @@ private theorem dot_int_single {n : ℕ} (x : Fin n → ℚ) (i : Fin n) (a : �
     standardRatForm n x (intCoordsToRat (Pi.single i a)) = x i * (a : ℚ) := by
   simp [standardRatForm_apply, intCoordsToRat, Pi.single_apply, mul_ite]
 
+/--
+@isnad1 id=eq.1h2v.s8.ef1adcd338e8 from=translated src=- shape=75a663af vocab=89e9f868
+-/
 theorem odd_evenCoordinateLattice_dual {n : ℕ} (hn : Odd n) (i₀ : Fin n) :
     (standardRatForm n).dualSubmodule (evenCoordinateLattice n) =
       evenCoordinateLattice n ⊔ Submodule.span ℤ {coordinateSpinor n} := by
@@ -177,6 +210,9 @@ theorem odd_evenCoordinateLattice_dual {n : ℕ} (hn : Odd n) (i₀ : Fin n) :
     rintro _ (rfl : _ = coordinateSpinor n)
     exact coordinateSpinor_mem_dual n
 
+/--
+@isnad1 id=eq.0h0v.s9.842b6bf1a0e0 from=translated src=- shape=47c36bfe vocab=93b26692
+-/
 theorem d7_dual :
     (standardRatForm 7).dualSubmodule (evenCoordinateLattice 7) =
       evenCoordinateLattice 7 ⊔ Submodule.span ℤ {coordinateSpinor 7} :=

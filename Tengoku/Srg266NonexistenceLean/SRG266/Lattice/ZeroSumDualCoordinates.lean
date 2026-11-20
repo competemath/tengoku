@@ -12,6 +12,9 @@ namespace SRG266.Lattice
 
 open scoped BigOperators
 
+/--
+@isnad1 id=ex.2h2v.s8.9f26f5c3a6d9 from=translated src=- shape=7c964bff vocab=62ca4c71
+-/
 theorem exists_centered_integer_coordinates (n : ℕ) (x : Fin (n+1) → ℚ)
     (hsum : (∑ i, x i) = 0)
     (hdiff : ∀ i : Fin n, x i.castSucc-x i.succ ∈ (1 : Submodule ℤ ℚ)) :
@@ -59,6 +62,9 @@ theorem exists_centered_integer_coordinates (n : ℕ) (x : Fin (n+1) → ℚ)
     field_simp
     nlinarith
 
+/--
+@isnad1 id=mem.0h4v.s7.416e8249fde8 from=translated src=- shape=729f679b vocab=edfcc7fd
+-/
 theorem centered_coordinates_adjacent_integral {n : ℕ} (z : Fin (n+1) → ℤ) (a : ℤ)
     (i : Fin n) :
     ((z i.castSucc : ℚ)-(a : ℚ)/((n : ℚ)+1))-

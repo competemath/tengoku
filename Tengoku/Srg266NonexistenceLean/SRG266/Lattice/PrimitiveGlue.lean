@@ -13,6 +13,9 @@ variable {W U ι : Type*} [AddCommGroup W] [Module ℚ W] [AddCommGroup U] [Modu
 variable {B : LinearMap.BilinForm ℚ W} {C : LinearMap.BilinForm ℚ U}
 variable {N : Submodule ℤ W} {M : Submodule ℤ U} {u : ι → W} {v : ι → U}
 
+/--
+@isnad1 id=iff.5h10v.s8.19d984ab7b7a from=translated src=- shape=ce8d0370 vocab=4df8883a
+-/
 theorem mem_glueLattice_left_iff_of_complete_dual
     (hs : B.IsSymm) (hnd : B.Nondegenerate) (hl : IsLattice ℚ N)
     (hi : IsIntegral (prodForm B C) (glueLattice N M (fun i => (u i, v i))))
@@ -36,6 +39,9 @@ theorem mem_glueLattice_left_iff_of_complete_dual
   · intro hx
     exact prod_le_glueLattice ⟨hx, zero_mem _⟩
 
+/--
+@isnad1 id=iff.5h10v.s8.0a8b55fdf804 from=translated src=- shape=dbc75005 vocab=4df8883a
+-/
 theorem mem_glueLattice_right_iff_of_complete_dual
     (hs : C.IsSymm) (hnd : C.Nondegenerate) (hl : IsLattice ℚ M)
     (hi : IsIntegral (prodForm B C) (glueLattice N M (fun i => (u i, v i))))

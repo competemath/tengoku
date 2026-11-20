@@ -17,6 +17,9 @@ open scoped BigOperators Classical
 variable {X : Type*} [AddCommGroup X] [Module ℚ X]
 variable {F : LinearMap.BilinForm ℚ X} {H : Submodule ℤ X}
 
+/--
+@isnad1 id=ex.8h6v.s12.6925dd47b547 from=translated src=- shape=e2904977 vocab=7eb8a061
+-/
 theorem exists_integral_simple_root_data {n : ℕ}
     (hs : F.IsSymm) (hpd : ∀ x : X, x ≠ 0 → 0 < F x x)
     (hrank : Module.finrank ℚ X = n) (hl : IsLattice ℚ H)

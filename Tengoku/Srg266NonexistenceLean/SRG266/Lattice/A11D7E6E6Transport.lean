@@ -23,6 +23,9 @@ def a11D7E6E6Lift {K : Type*} [Zero K] (u : Fin 6 → K) (i : Fin 24) : K :=
   | Sum.inr (Sum.inr (Sum.inl j)) => u j
   | Sum.inr (Sum.inr (Sum.inr j)) => nomatch j
 
+/--
+@isnad1 id=eq.0h1v.s9.179fa28f3626 from=translated src=- shape=5baa525e vocab=f822b937
+-/
 theorem a11D7E6E6Lift_intCast (z : Fin 6 → ℤ) :
     a11D7E6E6Lift (intCoordsToRat z) = intCoordsToRat (a11D7E6E6Lift z) := by
   ext i

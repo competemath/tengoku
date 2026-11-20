@@ -34,6 +34,9 @@ def localBlock (x : V) (y : SecondSubconstituent G x) :
     Finset (FirstSubconstituent G x) :=
   Finset.univ.map (commonNeighborEmbedding G x y)
 
+/--
+@isnad1 id=iff.0h5v.s6.14353fdb1837 from=translated src=- shape=6cbc57ad vocab=d9662919
+-/
 @[simp]
 theorem mem_localBlock (x : V) (y : SecondSubconstituent G x)
     (z : FirstSubconstituent G x) :
@@ -46,18 +49,27 @@ theorem mem_localBlock (x : V) (y : SecondSubconstituent G x)
     rw [localBlock, Finset.mem_map]
     exact ⟨⟨z, z.property, h.symm⟩, Finset.mem_univ _, rfl⟩
 
+/--
+@isnad1 id=eq.1h3v.s5.6a9256c54791 from=translated src=- shape=f5684eb9 vocab=4c26d3f3
+-/
 theorem firstSubconstituent_card
     (hG : IsHypothetical G) (x : V) :
     Fintype.card (FirstSubconstituent G x) = 45 := by
   rw [G.card_neighborSet_eq_degree]
   exact hG.regular x
 
+/--
+@isnad1 id=eq.1h3v.s6.2a4f7b414616 from=translated src=- shape=9bfc3ce5 vocab=c5f5e072
+-/
 theorem secondSubconstituent_card
     [DecidableEq V] (hG : IsHypothetical G) (x : V) :
     Fintype.card (SecondSubconstituent G x) = 220 := by
   rw [Gᶜ.card_neighborSet_eq_degree]
   simpa using hG.compl_is_regular x
 
+/--
+@isnad1 id=eq.1h4v.s5.6df6988ff00d from=translated src=- shape=03cf651e vocab=5b0401f1
+-/
 theorem localBlock_card
     (hG : IsHypothetical G) (x : V) (y : SecondSubconstituent G x) :
     (localBlock G x y).card = 9 := by

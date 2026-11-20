@@ -13,6 +13,9 @@ namespace SRG266
 variable {V : Type*} [Fintype V] [DecidableEq V]
 variable (G : SimpleGraph V) [DecidableRel G.Adj]
 
+/--
+@isnad1 id=ex.2h4v.s11.422617efd9c3 from=translated src=- shape=00227e7c vocab=09320f5d
+-/
 theorem exists_lorentzMarked_orthogonal_glue (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
     (hc : (11 : ℤ) • c = integralGramGeneratorSum G x) :
@@ -41,6 +44,9 @@ theorem exists_lorentzMarked_orthogonal_glue (hG : IsHypothetical G) (x : V)
     (hsplit.trans (sup_comm _ _))
   exact ⟨P, hle, hlat, hmax, heven, S, T, Lattice.dual_eq_sup_span_glue S T hsplit⟩
 
+/--
+@isnad1 id=ex.1h3v.s12.d7a1ba62ace9 from=translated src=- shape=057c8ec3 vocab=e201b58e
+-/
 theorem exists_lorentzMarked_discriminant_from_graph (hG : IsHypothetical G) (x : V) :
     ∃ (c : IntegralGramLattice G x) (P : Submodule ℤ (ratGramSpace G x)),
       (11 : ℤ) • c = integralGramGeneratorSum G x ∧

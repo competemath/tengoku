@@ -19,6 +19,9 @@ noncomputable def lorentzD7OddLift (x : V) (c : IntegralGramLattice G x)
     ratGramSpace G x →ₗ[ℚ] (lorentzPerpSpace G x c × (Fin 7 → ℚ)) :=
   (lorentzIntegralProjection G x c B).prod 0
 
+/--
+@isnad1 id=mem.5h7v.s14.b256390ad94e from=translated src=- shape=4789d8ab vocab=f533d27c
+-/
 theorem lorentzD7OddLift_mem_dual (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x) (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
     {P : Submodule ℤ (ratGramSpace G x)} (hle : lorentzMarkedLattice G x c ≤ P)
@@ -41,6 +44,9 @@ theorem lorentzD7OddLift_mem_dual (hG : IsHypothetical G) (x : V)
     simpa only [map_zero, LinearMap.zero_apply, add_zero] using
       lorentzIntegralProjection_pair_marked_integral G hG x c hc hle B hv
 
+/--
+@isnad1 id=eq.4h6v.s14.2d07ee18f992 from=translated src=- shape=c7ee00f6 vocab=68f3fcaf
+-/
 theorem lorentzD7_dual_eq_sup_map (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x) (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
     {P : Submodule ℤ (ratGramSpace G x)} (hle : lorentzMarkedLattice G x c ≤ P)
@@ -123,6 +129,9 @@ theorem lorentzD7_dual_eq_sup_map (hG : IsHypothetical G) (x : V)
     rintro _ ⟨v, hv, rfl⟩
     exact lorentzD7OddLift_mem_dual G hG x c hc hle hint B hv
 
+/--
+@isnad1 id=iff.5h7v.s13.4f1d343ed43a from=translated src=- shape=56da83b4 vocab=39be0aba
+-/
 theorem lorentzD7OddLift_mem_iff (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x) (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
     {P : Submodule ℤ (ratGramSpace G x)} (hle : lorentzMarkedLattice G x c ≤ P)
@@ -133,6 +142,9 @@ theorem lorentzD7OddLift_mem_iff (hG : IsHypothetical G) (x : V)
   exact (lorentzD7Glue_mem_left_iff G hG x c hc hle B _).trans
     (lorentzIntegralProjection_mem_iff G hG x c hc hle hint B hv)
 
+/--
+@isnad1 id=iff.5h8v.s14.3e8d8d389196 from=translated src=- shape=4ac71f42 vocab=39be0aba
+-/
 theorem lorentzD7OddLift_zsmul_mem_iff (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x) (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
     {P : Submodule ℤ (ratGramSpace G x)} (hle : lorentzMarkedLattice G x c ≤ P)
@@ -143,6 +155,9 @@ theorem lorentzD7OddLift_zsmul_mem_iff (hG : IsHypothetical G) (x : V)
   rw [← map_zsmul]
   exact lorentzD7OddLift_mem_iff G hG x c hc hle hint B (Submodule.smul_mem _ m hv)
 
+/--
+@isnad1 id=ex.4h7v.s14.f73a247af505 from=translated src=- shape=c17b586a vocab=51275e22
+-/
 theorem lorentzD7OddLift_norm_mod_even (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x) (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
     {P : Submodule ℤ (ratGramSpace G x)} (hle : lorentzMarkedLattice G x c ≤ P)
@@ -156,6 +171,9 @@ theorem lorentzD7OddLift_norm_mod_even (hG : IsHypothetical G) (x : V)
   simpa only [map_zero, LinearMap.zero_apply, add_zero] using
     lorentzIntegralProjection_norm_mod_even G hG x c hc hle B hv
 
+/--
+@isnad1 id=mem.6h7v.s14.f3c265a72dd9 from=translated src=- shape=7662656e vocab=d7cc616d
+-/
 theorem lorentzD7_dual_denominator (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x) (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
     {P : Submodule ℤ (ratGramSpace G x)} (hle : lorentzMarkedLattice G x c ≤ P)
@@ -171,6 +189,9 @@ theorem lorentzD7_dual_denominator (hG : IsHypothetical G) (x : V)
   apply Submodule.add_mem _ (Submodule.smul_mem _ _ ha)
   exact (lorentzD7OddLift_zsmul_mem_iff G hG x c hc hle hint B hv 15).mpr (hden v hv)
 
+/--
+@isnad1 id=ex.1h4v.s15.c4aca67e9d23 from=translated src=- shape=78f9b44e vocab=a7aaf078
+-/
 theorem exists_lorentzD7_discriminant_from_graph (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
     ∃ (c : IntegralGramLattice G x)

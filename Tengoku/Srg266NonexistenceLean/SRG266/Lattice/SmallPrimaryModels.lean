@@ -101,6 +101,9 @@ def primaryModelRank : SmallOddPrime → PrimaryShape → ℕ
   | .three, .zero => 0 | .three, .two => 6 | .three, .four => 2 | .three, .binary => 4
   | .five, .zero => 0 | .five, .two => 8 | .five, .four => 4 | .five, .binary => 4
 
+/--
+@isnad1 id=issymm.0h2v.s4.08570aff2d0a from=translated src=- shape=fee7f684 vocab=cf668835
+-/
 theorem primaryModel_isSymm (p : SmallOddPrime) (s : PrimaryShape) :
     (primaryModelForm p s).IsSymm := by
   cases p <;> cases s
@@ -113,6 +116,9 @@ theorem primaryModel_isSymm (p : SmallOddPrime) (s : PrimaryShape) :
   · exact simplexRatForm_isSymm 4
   · exact K4Coordinates.form_isSymm
 
+/--
+@isnad1 id=lt.1h3v.s8.eb51fd3dd207 from=translated src=- shape=966ca15a vocab=8cb1da2a
+-/
 theorem primaryModel_posDef (p : SmallOddPrime) (s : PrimaryShape) :
     ∀ z : primaryModelSpace p s, z ≠ 0 → 0 < primaryModelForm p s z z := by
   cases p <;> cases s
@@ -125,6 +131,9 @@ theorem primaryModel_posDef (p : SmallOddPrime) (s : PrimaryShape) :
   · exact simplexRatForm_posDef 4
   · exact K4Coordinates.form_posDef
 
+/--
+@isnad1 id=islattic.0h2v.s5.c95c5f9f1432 from=translated src=- shape=674503aa vocab=ab9ec974
+-/
 theorem primaryModel_isLattice (p : SmallOddPrime) (s : PrimaryShape) :
     IsLattice ℚ (primaryModelLattice p s) := by
   cases p <;> cases s
@@ -143,6 +152,9 @@ private theorem zero_even : IsEven (standardRatForm 0) (coordinateIntegerLattice
   intro z _
   exact ⟨0, by simp [standardRatForm_apply]⟩
 
+/--
+@isnad1 id=isintegr.0h2v.s5.7ecc2138f112 from=translated src=- shape=4ce2a7b2 vocab=5743242f
+-/
 theorem primaryModel_isIntegral (p : SmallOddPrime) (s : PrimaryShape) :
     IsIntegral (primaryModelForm p s) (primaryModelLattice p s) := by
   cases p <;> cases s
@@ -155,6 +167,9 @@ theorem primaryModel_isIntegral (p : SmallOddPrime) (s : PrimaryShape) :
   · exact simplexRatForm_isIntegral 4
   · exact K4Coordinates.lattice_isIntegral
 
+/--
+@isnad1 id=iseven.0h2v.s4.eb0e98dc2bf2 from=translated src=- shape=c199ffed vocab=cddf2d00
+-/
 theorem primaryModel_isEven (p : SmallOddPrime) (s : PrimaryShape) :
     IsEven (primaryModelForm p s) (primaryModelLattice p s) := by
   cases p <;> cases s
@@ -167,6 +182,9 @@ theorem primaryModel_isEven (p : SmallOddPrime) (s : PrimaryShape) :
   · exact simplexRatForm_isEven 4
   · exact K4Coordinates.lattice_isEven
 
+/--
+@isnad1 id=eq.0h2v.s4.21ffbe503876 from=translated src=- shape=ee7517d2 vocab=48d7e77c
+-/
 theorem primaryModel_finrank (p : SmallOddPrime) (s : PrimaryShape) :
     Module.finrank ℚ (primaryModelSpace p s) = primaryModelRank p s := by
   cases p <;> cases s
@@ -179,6 +197,9 @@ theorem primaryModel_finrank (p : SmallOddPrime) (s : PrimaryShape) :
   · simp [primaryModelSpace, primaryModelRank]
   · exact K4Coordinates.finrank_space
 
+/--
+@isnad1 id=eq.0h2v.s7.b60ea4df62f8 from=translated src=- shape=f0949206 vocab=cc6a2489
+-/
 theorem primaryModel_dual (p : SmallOddPrime) (s : PrimaryShape) :
     (primaryModelForm p s).dualSubmodule (primaryModelLattice p s) =
       primaryModelLattice p s ⊔ Submodule.span ℤ (Set.range (primaryModelVector p s)) := by
@@ -210,6 +231,9 @@ theorem primaryModel_dual (p : SmallOddPrime) (s : PrimaryShape) :
     exact a4_twice_weight_dual
   · exact K4Coordinates.matchingVector_dual
 
+/--
+@isnad1 id=mem.0h3v.s6.180504b49aa5 from=translated src=- shape=0416bbce vocab=96e7d142
+-/
 theorem primaryModel_period (p : SmallOddPrime) (s : PrimaryShape) (i : Fin s.arity) :
     (p.modulus : ℤ) • primaryModelVector p s i ∈ primaryModelLattice p s := by
   cases p <;> cases s
@@ -229,6 +253,9 @@ theorem primaryModel_period (p : SmallOddPrime) (s : PrimaryShape) (i : Fin s.ar
     exact Submodule.smul_mem _ (2 : ℤ) (by simpa using succ_smul_simplexWeight_mem 4)
   · exact K4Coordinates.matchingVector_five_smul_mem i
 
+/--
+@isnad1 id=mem.1h4v.s8.df51bce1ce76 from=translated src=- shape=0b857019 vocab=76e76ff5
+-/
 theorem primaryModel_cross (p : SmallOddPrime) (s : PrimaryShape) (i j : Fin s.arity) (hij : i ≠ j) :
     primaryModelForm p s (primaryModelVector p s i) (primaryModelVector p s j) ∈
       (1 : Submodule ℤ ℚ) := by
@@ -248,6 +275,9 @@ theorem primaryModel_cross (p : SmallOddPrime) (s : PrimaryShape) (i j : Fin s.a
     rw [K4Coordinates.matchingVector_cross i j hij]
     exact zero_mem _
 
+/--
+@isnad1 id=ex.0h3v.s8.dfef3d4c021d from=translated src=- shape=90dd4e92 vocab=4ee7e25a
+-/
 theorem primaryModel_matched_norm (p : SmallOddPrime) (s : PrimaryShape) (i : Fin s.arity) :
     ∃ k : ℤ, primaryFraction p s i +
       primaryModelForm p s (primaryModelVector p s i) (primaryModelVector p s i) = 2 * (k : ℚ) := by

@@ -12,6 +12,9 @@ namespace SRG266.Lattice
 
 open scoped Matrix BigOperators Classical
 
+/--
+@isnad1 id=lt.2h6v.s8.d0e40f5ed947 from=translated src=- shape=34344a99 vocab=ee92a9c2
+-/
 theorem coordinateRootMap_pos_of_nonneg
     {n m : ℕ} {L : PDUnimodularLattice n} [Finite (NormTwoRoot L)]
     {f : L.carrier →+ ℤ} (coord : Fin m ≃ simpleRootSet f)
@@ -32,6 +35,9 @@ theorem coordinateRootMap_pos_of_nonneg
     (fun j _ => mul_nonneg (hz j) (hfpos j).le)
     ⟨i, Finset.mem_univ i, mul_pos hi (hfpos i)⟩
 
+/--
+@isnad1 id=eq.4h8v.s11.cf63cb8cd0c6 from=translated src=- shape=5fbd0cd6 vocab=0903d577
+-/
 theorem dominant_vector_height_eq_of_coordinates
     {n m : ℕ} {L : PDUnimodularLattice n} [Finite (NormTwoRoot L)]
     {f : L.carrier →+ ℤ} (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0)
@@ -60,6 +66,9 @@ theorem dominant_vector_height_eq_of_coordinates
     simpa only [Matrix.mulVec, dotProduct, mul_comm] using hd i
   exact hs.symm.trans (hheight θ z rfl hθ hdom)
 
+/--
+@isnad1 id=eq.5h7v.s11.77f9b4ee0079 from=translated src=- shape=a9066da1 vocab=b471f8c1
+-/
 theorem ade_component_dominantHeight_eq
     {n : ℕ} {L : PDUnimodularLattice n} [Finite (NormTwoRoot L)]
     {f : L.carrier →+ ℤ} (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0)

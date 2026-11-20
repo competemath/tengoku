@@ -13,6 +13,9 @@ open scoped BigOperators
 
 variable {ι : Type*} [Fintype ι] [Nonempty ι]
 
+/--
+@isnad1 id=eq.1h3v.s7.be73fd493c74 from=translated src=- shape=d0a9bff4 vocab=70ef4074
+-/
 theorem centered_integer_norm_identity (z : ι → ℤ) (a : ℤ) (hsum : (∑ i, z i) = a) :
     (∑ i, ((z i : ℚ)-(a : ℚ)/Fintype.card ι)^2) =
       (a : ℚ)*(Fintype.card ι-a)/Fintype.card ι +
@@ -27,6 +30,9 @@ theorem centered_integer_norm_identity (z : ι → ℤ) (a : ℤ) (hsum : (∑ i
   field_simp
   ring
 
+/--
+@isnad1 id=le.0h1v.s5.f60108caa4e6 from=translated src=- shape=9acb884f vocab=0f3449a9
+-/
 theorem integer_mul_pred_nonneg (z : ℤ) : 0 ≤ (z : ℚ)*((z : ℚ)-1) := by
   have h : z ≤ 0 ∨ 1 ≤ z := by omega
   rcases h with h | h
@@ -35,12 +41,18 @@ theorem integer_mul_pred_nonneg (z : ℤ) : 0 ≤ (z : ℚ)*((z : ℚ)-1) := by
   · have hQ : (1 : ℚ) ≤ z := by exact_mod_cast h
     exact mul_nonneg (by linarith) (by linarith)
 
+/--
+@isnad1 id=le.1h3v.s7.3f577b69dea3 from=translated src=- shape=7b68ff57 vocab=e58577fa
+-/
 theorem centered_integer_norm_minimum (z : ι → ℤ) (a : ℤ) (hsum : (∑ i, z i) = a) :
     (a : ℚ)*(Fintype.card ι-a)/Fintype.card ι ≤
       ∑ i, ((z i : ℚ)-(a : ℚ)/Fintype.card ι)^2 := by
   rw [centered_integer_norm_identity z a hsum]
   exact le_add_of_nonneg_right (Finset.sum_nonneg (fun i _ => integer_mul_pred_nonneg (z i)))
 
+/--
+@isnad1 id=iff.1h3v.s7.854cab8d154f from=translated src=- shape=5c1f1b6f vocab=cf6f88d9
+-/
 theorem centered_integer_norm_eq_iff (z : ι → ℤ) (a : ℤ) (hsum : (∑ i, z i) = a) :
     (∑ i, ((z i : ℚ)-(a : ℚ)/Fintype.card ι)^2) =
       (a : ℚ)*(Fintype.card ι-a)/Fintype.card ι ↔ ∀ i, z i = 0 ∨ z i = 1 := by

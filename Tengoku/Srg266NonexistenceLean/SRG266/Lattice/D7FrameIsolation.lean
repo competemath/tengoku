@@ -17,6 +17,9 @@ variable {W U ι : Type*} [AddCommGroup W] [Module ℚ W]
   [AddCommGroup U] [Module ℚ U] [Fintype ι]
 variable {B : LinearMap.BilinForm ℚ W} {C : LinearMap.BilinForm ℚ U}
 
+/--
+@isnad1 id=or.10h9v.s12.d017fd77f218 from=translated src=- shape=82b0375e vocab=2a90ec23
+-/
 theorem d7_root_separation_of_frame
     (u : ι → W) (L : Submodule ℤ ((W × (Fin 7 → ℚ)) × U)) (bound : ℚ)
     (hB : ∀ y : W, y ≠ 0 → 0 < B y y) (hC : ∀ z : U, z ≠ 0 → 0 < C z z)

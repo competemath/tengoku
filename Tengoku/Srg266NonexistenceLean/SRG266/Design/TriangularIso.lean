@@ -14,6 +14,9 @@ namespace SRG266.QuasiSymmetric
 
 namespace Edge11
 
+/--
+@isnad1 id=ex.1h1v.s5.294ad8dcb416 from=translated src=- shape=c3104852 vocab=101cbfeb
+-/
 theorem exists_vertices_eq {S : Finset (Fin 11)} (h : S.card = 2) :
     ∃ e : Edge11, e.vertices = S := by
   obtain ⟨a, b, hab, rfl⟩ := Finset.card_eq_two.mp h
@@ -28,21 +31,36 @@ variable {P : Type*} [Fintype P] [DecidableEq P] (E : Derived45 P)
 def grandCliques : Finset (Finset P) :=
   Finset.univ.filter fun K => E.blockGraph.IsNClique 10 K
 
+/--
+@isnad1 id=iff.0h3v.s5.8e16f45107c1 from=translated src=- shape=aada4344 vocab=a3e1e5c5
+-/
 theorem mem_grandCliques {K : Finset P} :
     K ∈ E.grandCliques ↔ E.blockGraph.IsNClique 10 K := by
   simp [grandCliques]
 
+/--
+@isnad1 id=eq.1h3v.s5.0d8e58aad574 from=translated src=- shape=8c8b323c vocab=2a954d56
+-/
 theorem card_of_mem_grandCliques {K : Finset P} (hK : K ∈ E.grandCliques) : K.card = 10 :=
   (E.mem_grandCliques.mp hK).card_eq
 
+/--
+@isnad1 id=isclique.1h3v.s5.c9b3f51b3d93 from=translated src=- shape=5586b5fb vocab=80a937d8
+-/
 theorem isClique_of_mem_grandCliques {K : Finset P} (hK : K ∈ E.grandCliques) :
     E.blockGraph.IsClique (K : Set P) :=
   (E.mem_grandCliques.mp hK).isClique
 
+/--
+@isnad1 id=adj.4h5v.s6.2fab7ce94a4f from=translated src=- shape=1b7b8d1a vocab=3c1db046
+-/
 theorem adj_of_mem_grandClique {K : Finset P} (hK : K ∈ E.grandCliques) {p q : P}
     (hp : p ∈ K) (hq : q ∈ K) (hpq : p ≠ q) : E.blockGraph.Adj p q :=
   E.isClique_of_mem_grandCliques hK (Finset.mem_coe.mpr hp) (Finset.mem_coe.mpr hq) hpq
 
+/--
+@isnad1 id=mem.3h4v.s6.812b6e681849 from=translated src=- shape=ad5b3c43 vocab=73ea635c
+-/
 theorem insert_mem_grandCliques {x : P} {X : Finset P}
     (hXsub : X ⊆ E.blockGraph.neighborFinset x) (hXcard : X.card = 9)
     (hXc : E.blockGraph.IsClique (X : Set P)) :
@@ -55,6 +73,9 @@ theorem insert_mem_grandCliques {x : P} {X : Finset P}
       (SimpleGraph.mem_neighborFinset _ _ _).mp (hXsub (Finset.mem_coe.mp hb))
   · rw [Finset.card_insert_of_notMem hxX, hXcard]
 
+/--
+@isnad1 id=or.6h5v.s7.8de00e28ca42 from=translated src=- shape=fecacf64 vocab=d11fcaa1
+-/
 theorem subset_of_isClique_local {X Y S : Finset P} (hdisj : Disjoint X Y)
     (hcross : ∀ p ∈ X, (Y.filter fun q => E.blockGraph.Adj p q).card = 1)
     (hcross' : ∀ q ∈ Y, (X.filter fun p => E.blockGraph.Adj q p).card = 1)
@@ -110,6 +131,9 @@ theorem subset_of_isClique_local {X Y S : Finset P} (hdisj : Disjoint X Y)
     · exact absurd ⟨r, Finset.mem_inter.mpr ⟨hr, h⟩⟩ hXne
     · exact h
 
+/--
+@isnad1 id=ex.0h3v.s7.4baa53e0703b from=translated src=- shape=f827cc5e vocab=210ce9b6
+-/
 theorem exists_grandCliques_pair (x : P) :
     ∃ K₁ K₂ : Finset P, K₁ ∈ E.grandCliques ∧ K₂ ∈ E.grandCliques ∧
       x ∈ K₁ ∧ x ∈ K₂ ∧ K₁ ∩ K₂ = {x} ∧
@@ -154,6 +178,9 @@ theorem exists_grandCliques_pair (x : P) :
       have heq : K.erase x = Y := Finset.eq_of_subset_of_card_le h (by omega)
       rw [← Finset.insert_erase hxK, heq]
 
+/--
+@isnad1 id=eq.0h3v.s5.c4b2d4a332be from=translated src=- shape=4803655b vocab=257ccbb4
+-/
 theorem card_filter_grandCliques (x : P) :
     (E.grandCliques.filter fun K => x ∈ K).card = 2 := by
   classical
@@ -174,6 +201,9 @@ theorem card_filter_grandCliques (x : P) :
       exacts [⟨h₁, hx₁⟩, ⟨h₂, hx₂⟩]
   rw [hset, Finset.card_insert_of_notMem (by simpa using hne), Finset.card_singleton]
 
+/--
+@isnad1 id=ex.1h4v.s6.d2fccd482d95 from=translated src=- shape=49fca3f8 vocab=3c1db046
+-/
 theorem exists_grandClique_of_adj {p q : P} (h : E.blockGraph.Adj p q) :
     ∃ K ∈ E.grandCliques, p ∈ K ∧ q ∈ K := by
   classical
@@ -189,6 +219,9 @@ theorem exists_grandClique_of_adj {p q : P} (h : E.blockGraph.Adj p q) :
   · exact ⟨insert p Y, E.insert_mem_grandCliques hYsub hY hYc,
       Finset.mem_insert_self _ _, Finset.mem_insert_of_mem hq⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.7d1a138f44b8 from=translated src=- shape=d26e6cd3 vocab=0f765fb2
+-/
 theorem card_grandCliques : E.grandCliques.card = 11 := by
   classical
   have hcol : ∀ K : Finset P, K.card = ∑ p : P, if p ∈ K then 1 else 0 := by
@@ -215,9 +248,15 @@ variable (ψ : {K : Finset P // K ∈ E.grandCliques} ≃ Fin 11)
 def cliqueIndex (K : Finset P) : Fin 11 :=
   if h : K ∈ E.grandCliques then ψ ⟨K, h⟩ else 0
 
+/--
+@isnad1 id=eq.1h4v.s8.4f7dd6f9da23 from=translated src=- shape=f76132b3 vocab=4dd96eae
+-/
 theorem cliqueIndex_of_mem {K : Finset P} (hK : K ∈ E.grandCliques) :
     E.cliqueIndex ψ K = ψ ⟨K, hK⟩ := dite_eq_left hK
 
+/--
+@isnad1 id=injon.0h3v.s6.e41b8dbe184a from=translated src=- shape=69f392cf vocab=d88f965a
+-/
 theorem cliqueIndex_injOn :
     Set.InjOn (E.cliqueIndex ψ) (E.grandCliques : Set (Finset P)) := by
   intro K hK K' hK' h
@@ -228,6 +267,9 @@ theorem cliqueIndex_injOn :
 def cliquePair (p : P) : Finset (Fin 11) :=
   (E.grandCliques.filter fun K => p ∈ K).image (E.cliqueIndex ψ)
 
+/--
+@isnad1 id=iff.0h5v.s7.34699d71398c from=translated src=- shape=aa7d61ec vocab=96fa7d83
+-/
 theorem mem_cliquePair {p : P} {i : Fin 11} :
     i ∈ E.cliquePair ψ p ↔ ∃ K ∈ E.grandCliques, p ∈ K ∧ E.cliqueIndex ψ K = i := by
   simp only [cliquePair, Finset.mem_image, Finset.mem_filter]
@@ -237,6 +279,9 @@ theorem mem_cliquePair {p : P} {i : Fin 11} :
   · rintro ⟨K, hK, hpK, hidx⟩
     exact ⟨K, ⟨hK, hpK⟩, hidx⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.f1e7cf82751c from=translated src=- shape=9c8dbd07 vocab=d8278988
+-/
 theorem card_cliquePair (p : P) : (E.cliquePair ψ p).card = 2 := by
   rw [cliquePair,
     Finset.card_image_of_injOn ((E.cliqueIndex_injOn ψ).mono
@@ -246,9 +291,15 @@ theorem card_cliquePair (p : P) : (E.cliquePair ψ p).card = 2 := by
 noncomputable def pointEdge (p : P) : Edge11 :=
   Classical.choose (Edge11.exists_vertices_eq (E.card_cliquePair ψ p))
 
+/--
+@isnad1 id=eq.0h4v.s6.bd5298bf32d4 from=translated src=- shape=10fc6d84 vocab=183c7434
+-/
 theorem pointEdge_vertices (p : P) : (E.pointEdge ψ p).vertices = E.cliquePair ψ p :=
   Classical.choose_spec (Edge11.exists_vertices_eq (E.card_cliquePair ψ p))
 
+/--
+@isnad1 id=injectiv.0h3v.s5.92f879a46b16 from=translated src=- shape=90bd2f18 vocab=3c5e5ddc
+-/
 theorem cliquePair_injective : Function.Injective (E.cliquePair ψ) := by
   intro p q hpq
   obtain ⟨K₁, K₂, h₁, h₂, hp₁, hp₂, hinter, -⟩ := E.exists_grandCliques_pair p
@@ -266,15 +317,24 @@ theorem cliquePair_injective : Function.Injective (E.cliquePair ψ) := by
   rw [hinter, Finset.mem_singleton] at hmem
   exact hmem.symm
 
+/--
+@isnad1 id=injectiv.0h3v.s5.c77149fd6748 from=translated src=- shape=fcea8aa1 vocab=5ed0c89a
+-/
 theorem pointEdge_injective : Function.Injective (E.pointEdge ψ) := by
   intro p q h
   refine E.cliquePair_injective ψ ?_
   rw [← E.pointEdge_vertices ψ p, ← E.pointEdge_vertices ψ q, h]
 
+/--
+@isnad1 id=bijectiv.0h3v.s5.31f107d346fd from=translated src=- shape=fcea8aa1 vocab=5ebbde59
+-/
 theorem pointEdge_bijective : Function.Bijective (E.pointEdge ψ) := by
   refine (Fintype.bijective_iff_injective_and_card _).mpr ⟨E.pointEdge_injective ψ, ?_⟩
   rw [E.point_card, Edge11.card_edge11]
 
+/--
+@isnad1 id=iff.0h5v.s6.d24886704ead from=translated src=- shape=a235e0f7 vocab=6b8f9b08
+-/
 theorem adj_iff_vmeet_pointEdge (p q : P) :
     E.blockGraph.Adj p q ↔ Edge11.vmeet (E.pointEdge ψ p) (E.pointEdge ψ q) = 1 := by
   classical
@@ -308,6 +368,9 @@ theorem adj_iff_vmeet_pointEdge (p q : P) :
       exact absurd h (by norm_num)
     exact E.adj_of_mem_grandClique hK hpK (heq ▸ hqK') hpq
 
+/--
+@isnad1 id=eq.0h5v.s6.44dd56fc0315 from=translated src=- shape=7efed92f vocab=ce933923
+-/
 theorem pairMult_add_vmeet_pointEdge (p q : P) :
     E.pairMult p q + Edge11.vmeet (E.pointEdge ψ p) (E.pointEdge ψ q)
       = 2 + if p = q then 9 else 0 := by
@@ -328,12 +391,18 @@ theorem pairMult_add_vmeet_pointEdge (p q : P) :
 
 end Coordinates
 
+/--
+@isnad1 id=ex.0h2v.s6.4c67624dd94f from=translated src=- shape=4531076e vocab=7aedf622
+-/
 theorem blockGraph_iso_T11 :
     ∃ φ : P ≃ Edge11, ∀ p q, E.blockGraph.Adj p q ↔ Edge11.vmeet (φ p) (φ q) = 1 := by
   obtain ⟨ψ⟩ : Nonempty ({K : Finset P // K ∈ E.grandCliques} ≃ Fin 11) :=
     ⟨Finset.equivFinOfCardEq E.card_grandCliques⟩
   exact ⟨Equiv.ofBijective _ (E.pointEdge_bijective ψ), E.adj_iff_vmeet_pointEdge ψ⟩
 
+/--
+@isnad1 id=ex.0h2v.s7.652d00326348 from=translated src=- shape=c6c9015a vocab=c2a883c9
+-/
 theorem exists_equiv_edge11 :
     ∃ φ : P ≃ Edge11,
       (∀ p q, E.blockGraph.Adj p q ↔ Edge11.vmeet (φ p) (φ q) = 1) ∧

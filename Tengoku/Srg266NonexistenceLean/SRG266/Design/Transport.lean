@@ -25,6 +25,9 @@ namespace Derived45Iso
 variable {P Q : Type*} [Fintype P] [DecidableEq P] [Fintype Q] [DecidableEq Q]
   {E : Derived45 P} {F : Derived45 Q}
 
+/--
+@isnad1 id=eq.0h6v.s7.311ee9407842 from=translated src=- shape=79536ca4 vocab=dbb72c08
+-/
 theorem block_eq_image (iso : Derived45Iso E F) (i : Fin 45) :
     F.block i = (E.block (iso.index.symm i)).image iso.point := by
   rw [iso.map_block, Equiv.apply_symm_apply]
@@ -67,6 +70,9 @@ def transport (iso : Derived45Iso E F) (R : Residual165 E) : Residual165 F where
 
 end Residual165
 
+/--
+@isnad1 id=isempty.1h5v.s5.2b0f8dc0cc24 from=translated src=- shape=87237858 vocab=ab88d3ee
+-/
 theorem isEmpty_residual165_of_iso {P Q : Type*} [Fintype P] [DecidableEq P]
     [Fintype Q] [DecidableEq Q] {E : Derived45 P} {F : Derived45 Q}
     (iso : Derived45Iso E F) (h : IsEmpty (Residual165 F)) : IsEmpty (Residual165 E) :=

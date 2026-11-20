@@ -20,25 +20,46 @@ def matchingVector : Fin 1 ⊕ Fin 2 → Space :=
     (fun i => if i = 0 then (0, (2 : ℤ) • Q15Coordinates.dualFive)
       else ((2 : ℤ) • simplexWeight 4, 0))
 
+/--
+@isnad1 id=issymm.0h0v.s7.1be4f2bbe387 from=translated src=- shape=54c8eceb vocab=844ec618
+-/
 theorem form_isSymm : form.IsSymm :=
   prodForm_isSymm (simplexRatForm_isSymm 4) Q15Coordinates.form_isSymm
 
+/--
+@isnad1 id=lt.1h1v.s10.e5c97c6aebfc from=translated src=- shape=e7c936f8 vocab=cbfc7343
+-/
 theorem form_posDef : ∀ x : Space, x ≠ 0 → 0 < form x x :=
   prodForm_posDef (simplexRatForm_posDef 4) Q15Coordinates.form_posDef
 
+/--
+@isnad1 id=islattic.0h0v.s7.9bf2e30968ce from=translated src=- shape=93eefbde vocab=be4a9422
+-/
 theorem lattice_isLattice : IsLattice ℚ lattice :=
   isLattice_prod (coordinateIntegerLattice_isLattice 4) Q15Coordinates.lattice_isLattice
 
+/--
+@isnad1 id=isintegr.0h0v.s7.503edda1116b from=translated src=- shape=8175f13d vocab=70252f4e
+-/
 theorem lattice_isIntegral : IsIntegral form lattice :=
   isIntegral_prod (simplexRatForm_isIntegral 4) Q15Coordinates.lattice_isIntegral
 
+/--
+@isnad1 id=iseven.0h0v.s7.e1dd6edbdb9b from=translated src=- shape=54c8eceb vocab=265d2037
+-/
 theorem lattice_isEven : IsEven form lattice :=
   isEven_prod (simplexRatForm_isEven 4) Q15Coordinates.lattice_isEven
 
+/--
+@isnad1 id=eq.0h0v.s7.a43706231cb5 from=translated src=- shape=b3c4969c vocab=cb8082b3
+-/
 theorem space_finrank : Module.finrank ℚ Space = 6 := by
   rw [Module.finrank_prod]
   norm_num [Space, Q15Coordinates.Space]
 
+/--
+@isnad1 id=eq.0h0v.s9.6c6ada8faecf from=translated src=- shape=9cfe1072 vocab=e81d2ff9
+-/
 theorem matchingVector_dual : form.dualSubmodule lattice =
     lattice ⊔ Submodule.span ℤ (Set.range matchingVector) := by
   let u : Fin 1 → (Fin 4 → ℚ) := fun _ => (2 : ℤ) • simplexWeight 4
@@ -65,6 +86,9 @@ theorem matchingVector_dual : form.dualSubmodule lattice =
     simp [u, v, or_left_comm, or_comm]
   rw [form, lattice, dualSubmodule_prodForm, hu, hv, prod_sup_span_ranges, hr]
 
+/--
+@isnad1 id=mem.0h1v.s8.5a3efc1b15e7 from=translated src=- shape=d76d899a vocab=485afbc4
+-/
 theorem matchingVector_period (i : Fin 1 ⊕ Fin 2) :
     mixedPrimaryPeriod .four .binary i • matchingVector i ∈ lattice := by
   have hQ : (5 : ℤ) • ((2 : ℤ) • Q15Coordinates.dualFive) ∈ Q15Coordinates.lattice := by
@@ -81,10 +105,16 @@ theorem matchingVector_period (i : Fin 1 ⊕ Fin 2) :
     · exact ⟨by simp [matchingVector, mixedPrimaryPeriod], hQ⟩
     · exact ⟨hA, by simp [matchingVector, mixedPrimaryPeriod]⟩
 
+/--
+@isnad1 id=eq.0h1v.s10.4dd946c6fb95 from=translated src=- shape=9605dd7f vocab=56a313a4
+-/
 theorem matchingVector_norm_three (i : Fin 1) :
     form (matchingVector (.inl i)) (matchingVector (.inl i)) = 2/3 := by
   simpa [matchingVector, form, prodForm_apply] using Q15Coordinates.dualThree_norm
 
+/--
+@isnad1 id=eq.0h1v.s10.37fee3b35093 from=translated src=- shape=e1132fcc vocab=eda5cc21
+-/
 theorem matchingVector_norm_five (i : Fin 2) :
     form (matchingVector (.inr i)) (matchingVector (.inr i)) =
       if i = 0 then 8/5 else 16/5 := by
@@ -96,6 +126,9 @@ theorem matchingVector_norm_five (i : Fin 2) :
   · simpa [matchingVector, form, prodForm_apply] using hQ
   · simpa [matchingVector, form, prodForm_apply] using a4_twice_weight_norm
 
+/--
+@isnad1 id=mem.1h2v.s10.8ebca5826ebf from=translated src=- shape=296d1342 vocab=38ed67f5
+-/
 theorem matchingVector_cross (i j : Fin 1 ⊕ Fin 2) (hij : i ≠ j) :
     form (matchingVector i) (matchingVector j) ∈ (1 : Submodule ℤ ℚ) := by
   rcases i with i | i <;> rcases j with j | j
@@ -107,6 +140,9 @@ theorem matchingVector_cross (i j : Fin 1 ⊕ Fin 2) (hij : i ≠ j) :
   · fin_cases i <;> fin_cases j <;>
       simp_all [matchingVector, form, prodForm_apply]
 
+/--
+@isnad1 id=ex.0h0v.s10.676d0dee7c6e from=translated src=- shape=9f909892 vocab=df4bc5ae
+-/
 theorem has_A4_chain : ∃ r : Fin 4 → Space,
     (∀ i, r i ∈ lattice) ∧
     (∀ i j, form (r i) (r j) = (gramA 4 i j : ℚ)) := by
@@ -128,6 +164,9 @@ def a4Q15CompletionLattice (S : PrimaryFamily B N .three .four)
   glueLattice N A4Q15Coordinates.lattice
     (fun i => (mixedPrimarySource S T i, A4Q15Coordinates.matchingVector i))
 
+/--
+@isnad1 id=and.5h5v.s10.c04c188d0246 from=translated src=- shape=311ec88e vocab=d83a7dd6
+-/
 theorem complete_a4Q15 (S : PrimaryFamily B N .three .four)
     (T : PrimaryFamily B N .five .binary)
     (hs : B.IsSymm) (hl : IsLattice ℚ N) (hi : IsIntegral B N) (he : IsEven B N)

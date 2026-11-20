@@ -12,11 +12,17 @@ namespace SRG266.Lattice
 
 open scoped BigOperators
 
+/--
+@isnad1 id=eq.0h4v.s9.1f65e3e5bb90 from=translated src=- shape=2c31e329 vocab=5281ff78
+-/
 theorem coordinate_root_pair {n : ℕ} (p q : Fin n) (x : Fin n → ℚ) :
     standardRatForm n (Pi.single p 1-Pi.single q 1) x = x p-x q := by
   classical
   simp [standardRatForm_apply, Pi.single_apply, ite_mul]
 
+/--
+@isnad1 id=or.1h5v.s9.2a1f1063acbd from=translated src=- shape=d824315f vocab=5281ff78
+-/
 theorem coordinate_root_pair_one {n : ℕ} (p q r s : Fin n)
     (h : standardRatForm n (Pi.single p 1-Pi.single q 1)
       (Pi.single r 1-Pi.single s 1) = 1) :
@@ -26,6 +32,9 @@ theorem coordinate_root_pair_one {n : ℕ} (p q r s : Fin n)
   simp only [Pi.sub_apply, Pi.single_apply] at h
   split_ifs at h <;> norm_num at h <;> aesop
 
+/--
+@isnad1 id=or.2h6v.s6.f0f2ac82a7c6 from=translated src=- shape=b2b90d6b vocab=775246a5
+-/
 theorem pairwise_endpoints_star {ι κ : Type*} (p q : ι → κ) (a b : ι)
     (hab : a ≠ b)
     (hpq : ∀ i j, i ≠ j → (p i = p j ∧ q i ≠ q j) ∨ (q i = q j ∧ p i ≠ p j)) :
@@ -54,6 +63,9 @@ theorem pairwise_endpoints_star {ι κ : Type*} (p q : ι → κ) (a b : ι)
   · exact Or.inl (common p q hpq h.1 h.2)
   · exact Or.inr (common q p (fun i j hij => (hpq i j hij).symm) h.1 h.2)
 
+/--
+@isnad1 id=ex.3h6v.s10.6bd5db71ef9e from=translated src=- shape=767e47e7 vocab=8fdf4fe2
+-/
 theorem coordinate_root_star_equal_coordinates {m n : ℕ}
     (p q : Fin m → Fin n) (a b : Fin m) (hab : a ≠ b)
     (hne : ∀ i, p i ≠ q i)

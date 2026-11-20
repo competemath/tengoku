@@ -19,6 +19,9 @@ variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
 def radialExp (q : ℂ) (w : V) : ℂ :=
   Complex.exp (q * (‖w‖ ^ 2 : ℝ))
 
+/--
+@isnad1 id=hasfderi.0h3v.s11.74e53ecd8c51 from=translated src=- shape=2e4b569e vocab=6a377188
+-/
 theorem hasFDerivAt_radialExp (q : ℂ) (w : V) :
     HasFDerivAt (radialExp q)
       (Complex.exp (q * (‖w‖ ^ 2 : ℝ)) •
@@ -29,6 +32,9 @@ theorem hasFDerivAt_radialExp (q : ℂ) (w : V) :
   exact Complex.ofRealCLM.hasFDerivAt.comp w
     (hasStrictFDerivAt_norm_sq w).hasFDerivAt
 
+/--
+@isnad1 id=eq.0h4v.s8.f54fc009dfa0 from=translated src=- shape=30d26aa6 vocab=250cbc9a
+-/
 theorem fderiv_radialExp_apply (q : ℂ) (w x : V) :
     fderiv ℝ (radialExp q) w x =
       Complex.exp (q * (‖w‖ ^ 2 : ℝ)) * q * (2 * inner ℝ w x) := by
@@ -38,6 +44,9 @@ theorem fderiv_radialExp_apply (q : ℂ) (w x : V) :
 def radialExpFirst (q : ℂ) (y z : V) : ℂ :=
   radialExp q z * q * ((2 * inner ℝ z y : ℝ) : ℂ)
 
+/--
+@isnad1 id=hasfderi.0h4v.s12.aecadf1506fe from=translated src=- shape=cfc1e081 vocab=b756741a
+-/
 theorem hasFDerivAt_radialExpFirst (q : ℂ) (y w : V) :
     HasFDerivAt (radialExpFirst q y)
       (radialExp q w •
@@ -56,6 +65,9 @@ theorem hasFDerivAt_radialExpFirst (q : ℂ) (y w : V) :
   simp only [Pi.mul_apply]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s9.5174b4a2924b from=translated src=- shape=59a8e43d vocab=45e302ac
+-/
 theorem fderiv_radialExpFirst_apply (q : ℂ) (y w x : V) :
     fderiv ℝ (radialExpFirst q y) w x =
       Complex.exp (q * (‖w‖ ^ 2 : ℝ)) *
@@ -65,6 +77,9 @@ theorem fderiv_radialExpFirst_apply (q : ℂ) (y w x : V) :
   simp [radialExp, real_inner_comm]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s8.fde70669dfb4 from=translated src=- shape=30565e83 vocab=728f9d3c
+-/
 theorem iteratedFDeriv_two_radialExp_apply (q : ℂ) (w x y : V) :
     iteratedFDeriv ℝ 2 (radialExp q) w ![x, y] =
       Complex.exp (q * (‖w‖ ^ 2 : ℝ)) *

@@ -14,6 +14,9 @@ open scoped BigOperators
 def aFourPrefixes {X : Type*} [Add X] (r : Fin 4 → X) : Fin 4 → X :=
   ![r 0, r 0+r 1, r 0+r 1+r 2, r 0+r 1+r 2+r 3]
 
+/--
+@isnad1 id=eq.1h5v.s9.d48a5cbdfebf from=translated src=- shape=ada12325 vocab=5139189f
+-/
 theorem aFourPrefixes_gram {X : Type*} [AddCommGroup X] [Module ℚ X]
     (B : LinearMap.BilinForm ℚ X) (r : Fin 4 → X)
     (hgram : ∀ i j, B (r i) (r j) = (gramA 4 i j : ℚ)) (i j : Fin 4) :
@@ -21,6 +24,9 @@ theorem aFourPrefixes_gram {X : Type*} [AddCommGroup X] [Module ℚ X]
   fin_cases i <;> fin_cases j <;>
     norm_num [aFourPrefixes, map_add, LinearMap.add_apply, hgram, gramA, gramAEntry]
 
+/--
+@isnad1 id=mem.1h4v.s6.59143586b02c from=translated src=- shape=e6202b56 vocab=a05841fb
+-/
 theorem aFourPrefixes_mem {X : Type*} [AddCommGroup X] [Module ℤ X]
     (L : Submodule ℤ X) (r : Fin 4 → X) (hr : ∀ i, r i ∈ L) (i : Fin 4) :
     aFourPrefixes r i ∈ L := by
@@ -33,6 +39,9 @@ theorem aFourPrefixes_mem {X : Type*} [AddCommGroup X] [Module ℤ X]
   · simpa [aFourPrefixes] using h012
   · simpa [aFourPrefixes] using h0123
 
+/--
+@isnad1 id=eq.1h5v.s9.23992f3f743a from=translated src=- shape=90bddf82 vocab=aa61b81a
+-/
 theorem aFourPrefixes_orthogonal {X : Type*} [AddCommGroup X] [Module ℚ X]
     (B : LinearMap.BilinForm ℚ X) (r : Fin 4 → X) (x : X)
     (hr : ∀ i, B (r i) x = 0) (i : Fin 4) : B (aFourPrefixes r i) x = 0 := by

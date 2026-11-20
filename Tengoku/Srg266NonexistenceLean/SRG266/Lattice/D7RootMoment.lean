@@ -15,6 +15,9 @@ open scoped BigOperators
 variable {W U : Type*} [AddCommGroup W] [Module ℚ W] [AddCommGroup U] [Module ℚ U]
 variable {B : LinearMap.BilinForm ℚ W} {C : LinearMap.BilinForm ℚ U}
 
+/--
+@isnad1 id=eq.4h6v.s13.6c15078b9cc5 from=translated src=- shape=099d73f6 vocab=f6dfe9dd
+-/
 theorem card_eq_288_of_isolated_d7
     (L : Submodule ℤ ((W × (Fin 7 → ℚ)) × U))
     (R : Finset ((W × (Fin 7 → ℚ)) × U))

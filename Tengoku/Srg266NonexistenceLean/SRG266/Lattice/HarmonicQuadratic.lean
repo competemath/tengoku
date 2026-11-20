@@ -22,12 +22,18 @@ def harmonicQuadratic (x y v : V) : ℝ :=
     inner ℝ x y * inner ℝ v v
 
 omit [FiniteDimensional ℝ V] in
+/--
+@isnad1 id=eq.0h3v.s5.f5e128334dc9 from=translated src=- shape=87ff5f94 vocab=884f9157
+-/
 @[simp]
 theorem harmonicQuadratic_zero_left (x y : V) :
     harmonicQuadratic x y 0 = 0 := by
   simp [harmonicQuadratic]
 
 omit [FiniteDimensional ℝ V] in
+/--
+@isnad1 id=eq.0h4v.s5.e45122dc79a5 from=translated src=- shape=f2b1745d vocab=2d6aea16
+-/
 @[simp]
 theorem harmonicQuadratic_neg (x y v : V) :
     harmonicQuadratic x y (-v) = harmonicQuadratic x y v := by
@@ -35,6 +41,9 @@ theorem harmonicQuadratic_neg (x y v : V) :
 
 omit [FiniteDimensional ℝ V] in
 
+/--
+@isnad1 id=eq.0h5v.s7.3fc67f507c97 from=translated src=- shape=cd5c52b6 vocab=ec81752b
+-/
 theorem harmonicQuadratic_smul (a : ℝ) (x y v : V) :
     harmonicQuadratic x y (a • v) = a ^ 2 * harmonicQuadratic x y v := by
   simp only [harmonicQuadratic, real_inner_smul_left, real_inner_smul_right]
@@ -42,6 +51,9 @@ theorem harmonicQuadratic_smul (a : ℝ) (x y v : V) :
 
 omit [FiniteDimensional ℝ V] in
 
+/--
+@isnad1 id=eq.0h4v.s5.e9f28d10c2b8 from=translated src=- shape=aae00a7c vocab=884f9157
+-/
 theorem harmonicQuadratic_comm (x y v : V) :
     harmonicQuadratic x y v = harmonicQuadratic y x v := by
   simp only [harmonicQuadratic, real_inner_comm x y]
@@ -49,6 +61,9 @@ theorem harmonicQuadratic_comm (x y v : V) :
 
 omit [FiniteDimensional ℝ V] [FiniteDimensional ℝ W] in
 
+/--
+@isnad1 id=eq.0h6v.s9.4de0ccc9ffce from=translated src=- shape=e0e2eaec vocab=2ba2f541
+-/
 theorem harmonicQuadratic_map
     (e : V ≃ₗᵢ[ℝ] W) (x y v : V) :
     harmonicQuadratic (e x) (e y) (e v) = harmonicQuadratic x y v := by
@@ -57,6 +72,9 @@ theorem harmonicQuadratic_map
 
 omit [FiniteDimensional ℝ V] in
 
+/--
+@isnad1 id=le.0h4v.s7.8322bfc5a6b7 from=translated src=- shape=3bde5524 vocab=69585fb8
+-/
 theorem abs_harmonicQuadratic_le (x y v : V) :
     |harmonicQuadratic x y v| ≤
       ((Module.finrank ℝ V : ℝ) + 1) * ‖x‖ * ‖y‖ * ‖v‖ ^ 2 := by
@@ -86,6 +104,9 @@ theorem abs_harmonicQuadratic_le (x y v : V) :
 
 omit [FiniteDimensional ℝ V] in
 
+/--
+@isnad1 id=eq.0h5v.s7.b1eada5f441d from=translated src=- shape=e233a537 vocab=aa7b2eed
+-/
 theorem sum_orthonormalBasis_inner_mul_inner
     {ι : Type*} [Fintype ι] (b : OrthonormalBasis ι ℝ V) (x y : V) :
     ∑ i, inner ℝ (b i) x * inner ℝ (b i) y = inner ℝ x y := by
@@ -95,6 +116,9 @@ theorem sum_orthonormalBasis_inner_mul_inner
 
 omit [FiniteDimensional ℝ V] in
 
+/--
+@isnad1 id=eq.0h5v.s6.f224cf2b4bd5 from=translated src=- shape=714221b8 vocab=e4d07291
+-/
 theorem sum_harmonicQuadratic_orthonormalBasis
     {ι : Type*} [Fintype ι] (b : OrthonormalBasis ι ℝ V) (x y : V) :
     ∑ i, harmonicQuadratic x y (b i) = 0 := by

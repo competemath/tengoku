@@ -39,6 +39,9 @@ private theorem trace_eq_rank_cast_of_idempotent
   rw [hrank]
   exact htraceRange
 
+/--
+@isnad1 id=eq.1h3v.s8.9edd87ab1c18 from=translated src=- shape=72aebca3 vocab=582052fb
+-/
 theorem localGramMatrixMod11_sq_trace
     (hG : IsHypothetical G) (x : V) :
     (localGramMatrixMod11 G x *
@@ -105,6 +108,9 @@ private theorem localGramMatrixMod11_sq_rank_pos
   rw [show w B = P B B by rfl, hdiag] at hentry
   exact (by decide : (5 : ZMod 11) ≠ 0) hentry
 
+/--
+@isnad1 id=eq.2h3v.s8.4ce636a0ab51 from=translated src=- shape=f803bfc7 vocab=3a38cb4c
+-/
 theorem localGramMatrixMod11_sq_rank_eq_eleven_of_rank_le_twelve
     (hG : IsHypothetical G) (x : V)
     (hupper : (localGramMatrixMod11 G x).rank ≤ 12) :
@@ -135,6 +141,9 @@ theorem localGramMatrixMod11_sq_rank_eq_eleven_of_rank_le_twelve
     simpa using hlt)
   exact Nat.le_antisymm hupperEleven hlower
 
+/--
+@isnad1 id=eq.2h3v.s7.40a45749898b from=translated src=- shape=39f3c502 vocab=347759e7
+-/
 theorem localGramMatrixMod11_rank_eq_twelve_of_rank_le_twelve
     (hG : IsHypothetical G) (x : V)
     (hupper : (localGramMatrixMod11 G x).rank ≤ 12) :

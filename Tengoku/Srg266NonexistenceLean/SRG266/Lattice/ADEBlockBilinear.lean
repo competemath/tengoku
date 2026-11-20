@@ -20,6 +20,9 @@ def adeBlockRatForm (ts : List ADEType) :
     LinearMap.BilinForm ℚ (ADEBlockIndex ts → ℚ) :=
   Matrix.toBilin' (fun i j => (adeBlockPairing ts i j : ℚ))
 
+/--
+@isnad1 id=eq.0h2v.s9.f47271aafa21 from=translated src=- shape=be8fbce0 vocab=4a94d243
+-/
 @[simp]
 theorem adeBlockRatForm_nil (x y : ADEBlockIndex [] → ℚ) :
     adeBlockRatForm [] x y = 0 := by

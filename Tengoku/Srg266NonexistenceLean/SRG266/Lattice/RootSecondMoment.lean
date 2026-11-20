@@ -18,6 +18,9 @@ def RootSecondMomentIdentity {n : ℕ} (L : PDUnimodularLattice n)
     (∑ r : NormTwoRoot L, L.pairing r.1 x * L.pairing r.1 y) =
       c * L.pairing x y
 
+/--
+@isnad1 id=eq.1h4v.s10.b5cac9e15186 from=translated src=- shape=09d2aa65 vocab=14dee2e9
+-/
 theorem rootSecondMoment_reconstruction {n : ℕ}
     (L : PDUnimodularLattice n) {c : ℤ}
     (h : RootSecondMomentIdentity L c) (x : L.carrier) :
@@ -28,6 +31,9 @@ theorem rootSecondMoment_reconstruction {n : ℕ}
     LinearMap.smul_apply, smul_eq_mul]
     using h x y
 
+/--
+@isnad1 id=mem.1h4v.s7.e4a51e40d3cf from=translated src=- shape=01bc969f vocab=577b29c8
+-/
 theorem smul_mem_normTwoRootSpan_of_secondMoment {n : ℕ}
     (L : PDUnimodularLattice n) {c : ℤ}
     (h : RootSecondMomentIdentity L c) (x : L.carrier) :
@@ -51,6 +57,9 @@ noncomputable def secondMomentSpanAddHom {n : ℕ}
     change c • (x + y) = c • x + c • y
     exact zsmul_add x y c
 
+/--
+@isnad1 id=eq.2h3v.s6.1edfbfa782a1 from=translated src=- shape=0e717378 vocab=bab9a705
+-/
 theorem normTwoRoots_fullRank_of_secondMoment {n : ℕ}
     (L : PDUnimodularLattice n) {c : ℤ} (hc : c ≠ 0)
     (h : RootSecondMomentIdentity L c) :

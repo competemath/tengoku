@@ -18,16 +18,25 @@ set_option maxRecDepth 2048
 noncomputable def canonicalBiplaneBlocks : Finset (Finset (Fin 56)) :=
   Finset.univ.image fun t : Fin 56 × Fin 11 => Q.toCoherentK11System.closedStar t.1 t.2
 
+/--
+@isnad1 id=iff.0h2v.s6.7ff47c73d674 from=translated src=- shape=fb9c276c vocab=2becfa0b
+-/
 theorem mem_canonicalBiplaneBlocks {S : Finset (Fin 56)} :
     S ∈ Q.canonicalBiplaneBlocks ↔ ∃ p a, Q.toCoherentK11System.closedStar p a = S := by
   simp only [canonicalBiplaneBlocks, Finset.mem_image, Finset.mem_univ, true_and,
     Prod.exists]
 
+/--
+@isnad1 id=eq.1h2v.s6.baaff91528b7 from=translated src=- shape=fa595fd5 vocab=8c852a34
+-/
 theorem canonicalBiplane_block_card {S : Finset (Fin 56)}
     (hS : S ∈ Q.canonicalBiplaneBlocks) : S.card = 11 := by
   obtain ⟨p,a,rfl⟩ := Q.mem_canonicalBiplaneBlocks.mp hS
   exact Q.toCoherentK11System.card_closedStar p a
 
+/--
+@isnad1 id=iff.0h2v.s7.766d6f4cb600 from=translated src=- shape=2aeeef40 vocab=805220d4
+-/
 theorem mem_canonicalBiplaneBlocks_iff_triple_clique {S : Finset (Fin 56)} :
     S ∈ Q.canonicalBiplaneBlocks ↔ S.card = 11 ∧
       ∀ x ∈ S, ∀ y ∈ S, ∀ z ∈ S,
@@ -42,6 +51,9 @@ theorem mem_canonicalBiplaneBlocks_iff_triple_clique {S : Finset (Fin 56)} :
     obtain ⟨a,ha⟩ := Q.eq_closedStar_of_triple_clique hcard hclique hp
     exact Q.mem_canonicalBiplaneBlocks.mpr ⟨p,a,ha.symm⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.7bb94a612829 from=translated src=- shape=da69b696 vocab=29cc2d1e
+-/
 theorem card_filter_canonicalBiplane_at (p : Fin 56) (R : Finset (Fin 56) → Prop)
     [DecidablePred R] :
     (Q.canonicalBiplaneBlocks.filter fun S => p ∈ S ∧ R S).card =
@@ -60,11 +72,17 @@ theorem card_filter_canonicalBiplane_at (p : Fin 56) (R : Finset (Fin 56) → Pr
     obtain ⟨a,ha⟩ := Q.closedStar_reroot hp
     exact ⟨a, Finset.mem_filter.mpr ⟨Finset.mem_univ a, ha ▸ hR⟩, ha.symm⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.02e7f3d5ef9a from=translated src=- shape=7502a5c2 vocab=a79882eb
+-/
 theorem canonicalBiplane_replication (p : Fin 56) :
     (Q.canonicalBiplaneBlocks.filter fun S => p ∈ S).card = 11 := by
   have h := Q.card_filter_canonicalBiplane_at p (fun _ => True)
   simpa using h
 
+/--
+@isnad1 id=eq.1h3v.s7.b672aa43f327 from=translated src=- shape=4b957806 vocab=a79882eb
+-/
 theorem canonicalBiplane_point_pair {p q : Fin 56} (hpq : p ≠ q) :
     (Q.canonicalBiplaneBlocks.filter fun S => p ∈ S ∧ q ∈ S).card = 2 := by
   rw [Q.card_filter_canonicalBiplane_at]
@@ -74,6 +92,9 @@ theorem canonicalBiplane_point_pair {p q : Fin 56} (hpq : p ≠ q) :
     simp [Q.toCoherentK11System.coordinate_mem_closedStar p ⟨q,hpq.symm⟩ a]
   rw [heq, Edge11.card_vertices]
 
+/--
+@isnad1 id=eq.0h1v.s4.8b08f09a7974 from=translated src=- shape=e4fe2e26 vocab=6f01cca5
+-/
 theorem canonicalBiplane_card : Q.canonicalBiplaneBlocks.card = 56 := by
   have h := Finset.sum_card_bipartiteAbove_eq_sum_card_bipartiteBelow
     (s := (Finset.univ : Finset (Fin 56))) (t := Q.canonicalBiplaneBlocks)
@@ -88,6 +109,9 @@ theorem canonicalBiplane_card : Q.canonicalBiplaneBlocks.card = 56 := by
   simp only [Finset.sum_const, Nat.nsmul_eq_mul, Finset.card_univ, Fintype.card_fin] at h
   omega
 
+/--
+@isnad1 id=eq.3h3v.s7.2ef301dd0a74 from=translated src=- shape=9824abb3 vocab=2d7f172e
+-/
 theorem canonicalBiplane_block_pair {S T : Finset (Fin 56)}
     (hS : S ∈ Q.canonicalBiplaneBlocks) (hT : T ∈ Q.canonicalBiplaneBlocks)
     (hST : S ≠ T) : (S ∩ T).card = 2 := by
@@ -108,6 +132,9 @@ theorem canonicalBiplane_block_pair {S T : Finset (Fin 56)}
   have hcd : c ≠ d := fun h => hST (hc.trans ((congrArg _ h).trans hd.symm))
   rw [hc, hd, Q.toCoherentK11System.closedStar_inter_card x hcd]
 
+/--
+@isnad1 id=eq.0h4v.s9.020faf6d4b6c from=translated src=- shape=29abfd8d vocab=e516ca70
+-/
 theorem canonicalBiplane_triple_card (p : Fin 56)
     (q r : {x : Fin 56 // x ≠ p}) :
     (Q.canonicalBiplaneBlocks.filter fun S => p ∈ S ∧ q.val ∈ S ∧ r.val ∈ S).card =
@@ -120,6 +147,9 @@ theorem canonicalBiplane_triple_card (p : Fin 56)
     Q.toCoherentK11System.coordinate_mem_closedStar p q a,
     Q.toCoherentK11System.coordinate_mem_closedStar p r a]
 
+/--
+@isnad1 id=eq.3h4v.s8.41e35bfcc819 from=translated src=- shape=e9de9424 vocab=d20aa4b1
+-/
 theorem canonicalBiplane_triple_complement {p q r : Fin 56}
     (hpq : p ≠ q) (hpr : p ≠ r) (hqr : q ≠ r) :
     Q.tripleMultiplicity p q r +
@@ -132,6 +162,9 @@ theorem canonicalBiplane_triple_complement {p q r : Fin 56}
   rw [Q.derived_pairMult_eq_tripleMultiplicity, ite_eq_right hne, add_zero] at h
   exact h
 
+/--
+@isnad1 id=eq.0h3v.s7.23135a143733 from=translated src=- shape=e8ea2493 vocab=47cb7fa7
+-/
 theorem localEdges_pointsOn_derived (p : Fin 56) (i : Fin 45) :
     Q.toCoherentK11System.localEdges (Q.pointsOn (Q.derivedEnum p i)) p =
       (Q.derived45 p).coverMember i := by
@@ -143,6 +176,9 @@ theorem localEdges_pointsOn_derived (p : Fin 56) (i : Fin 45) :
   rw [mem_restrictedBlock]
   rfl
 
+/--
+@isnad1 id=or.1h3v.s7.532101511adb from=translated src=- shape=a77e0b05 vocab=7770b199
+-/
 theorem canonicalBiplane_old_block_intersections {S : Finset (Fin 56)}
     (hS : S ∈ Q.canonicalBiplaneBlocks) (B : Fin 210) :
     (Q.pointsOn B ∩ S).card = 0 ∨ (Q.pointsOn B ∩ S).card = 3 := by

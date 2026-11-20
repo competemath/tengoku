@@ -13,12 +13,18 @@ namespace SRG266.Lattice.H6Coordinates
 def matchingVector : Fin 1 ⊕ Fin 1 → Space :=
   Sum.elim (fun _ => dualThree) (fun _ => (2 : ℤ) • dualFive)
 
+/--
+@isnad1 id=eq.0h0v.s10.27055207b2a5 from=translated src=- shape=d3074da7 vocab=031cd6d9
+-/
 theorem twice_dualFive_norm : form ((2 : ℤ) • dualFive) ((2 : ℤ) • dualFive) = 8 / 5 := by
   have h : (2 : ℤ) • dualFive = (2 : ℚ) • dualFive := by module
   rw [h]
   simp only [map_smul, LinearMap.smul_apply, smul_eq_mul, dualFive_norm]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s10.3cf3fd05253c from=translated src=- shape=9cfe1072 vocab=2244d6f8
+-/
 theorem matchingVector_dual : form.dualSubmodule lattice =
     lattice ⊔ Submodule.span ℤ (Set.range matchingVector) := by
   have hr : Set.range matchingVector = {dualThree, (2 : ℤ) • dualFive} := by
@@ -27,6 +33,9 @@ theorem matchingVector_dual : form.dualSubmodule lattice =
   rw [hr, lattice_dual, sup_span_pair, sup_span_pair]
   rw [sup_span_smul_eq_of_bezout (b := 3) (k := -1) five_smul_dualFive_mem (by norm_num)]
 
+/--
+@isnad1 id=mem.0h1v.s8.92204ef96fe1 from=translated src=- shape=7559990f vocab=225e0d8e
+-/
 theorem matchingVector_period (i : Fin 1 ⊕ Fin 1) :
     mixedPrimaryPeriod .two .two i • matchingVector i ∈ lattice := by
   rcases i with i | i
@@ -35,6 +44,9 @@ theorem matchingVector_period (i : Fin 1 ⊕ Fin 1) :
     rw [show (5 : ℤ) • ((2 : ℤ) • dualFive) = (2 : ℤ) • ((5 : ℤ) • dualFive) by module]
     exact lattice.smul_mem 2 five_smul_dualFive_mem
 
+/--
+@isnad1 id=mem.1h2v.s10.56a2faa6215d from=translated src=- shape=296d1342 vocab=3d28865f
+-/
 theorem matchingVector_cross (i j : Fin 1 ⊕ Fin 1) (hij : i ≠ j) :
     form (matchingVector i) (matchingVector j) ∈ (1 : Submodule ℤ ℚ) := by
   rcases i with i | i <;> rcases j with j | j
@@ -58,6 +70,9 @@ def h6CompletionLattice (S : PrimaryFamily B N .three .two) (T : PrimaryFamily B
     Submodule ℤ (W × H6Coordinates.Space) :=
   glueLattice N H6Coordinates.lattice (fun i => (mixedPrimarySource S T i, H6Coordinates.matchingVector i))
 
+/--
+@isnad1 id=and.5h5v.s10.0d2000fb5fc6 from=translated src=- shape=a0cff625 vocab=fa14efbe
+-/
 theorem complete_h6 (S : PrimaryFamily B N .three .two) (T : PrimaryFamily B N .five .two)
     (hs : B.IsSymm) (hl : IsLattice ℚ N) (hi : IsIntegral B N) (he : IsEven B N)
     (hd : B.dualSubmodule N = torsionPart B N 3 ⊔ torsionPart B N 5) :

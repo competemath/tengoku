@@ -19,6 +19,9 @@ def integerTranslate {n : ℕ}
     C(EuclideanSpace ℝ (Fin n), ℂ) :=
   f.comp (ContinuousMap.addRight (intVectorToReal z))
 
+/--
+@isnad1 id=eq.0h4v.s8.bc9f5e880760 from=translated src=- shape=ae66429b vocab=6d830557
+-/
 @[simp]
 theorem integerTranslate_apply {n : ℕ}
     (f : C(EuclideanSpace ℝ (Fin n), ℂ)) (z : Fin n → ℤ)
@@ -26,12 +29,18 @@ theorem integerTranslate_apply {n : ℕ}
     integerTranslate f z x = f (x + intVectorToReal z) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.70b74011129a from=translated src=- shape=b7fed339 vocab=21d962f7
+-/
 @[simp]
 theorem intVectorToReal_add {n : ℕ} (a b : Fin n → ℤ) :
     intVectorToReal (a + b) = intVectorToReal a + intVectorToReal b := by
   ext i
   simp [intVectorToReal]
 
+/--
+@isnad1 id=eq.0h1v.s6.53ec677960d8 from=translated src=- shape=dd0fe7eb vocab=faba4b4c
+-/
 @[simp]
 theorem intVectorToReal_zero {n : ℕ} :
     intVectorToReal (0 : Fin n → ℤ) = 0 := by
@@ -48,6 +57,9 @@ def integerTranslateSum {n : ℕ}
     C(EuclideanSpace ℝ (Fin n), ℂ) :=
   ∑' z : Fin n → ℤ, integerTranslate f z
 
+/--
+@isnad1 id=eq.1h3v.s8.73f6eaf350ae from=translated src=- shape=0b8892f6 vocab=3d8860ae
+-/
 theorem integerTranslateSum_apply {n : ℕ}
     (f : C(EuclideanSpace ℝ (Fin n), ℂ))
     (hf : LocallyNormallySummableIntegerTranslates f)
@@ -58,6 +70,9 @@ theorem integerTranslateSum_apply {n : ℕ}
     ContinuousMap.summable_of_locally_summable_norm hf
   exact (ContinuousMap.tsum_apply hs x).symm
 
+/--
+@isnad1 id=eq.1h4v.s8.d96c552805df from=translated src=- shape=8b52d483 vocab=f2e95306
+-/
 theorem integerTranslateSum_add_int {n : ℕ}
     (f : C(EuclideanSpace ℝ (Fin n), ℂ))
     (hf : LocallyNormallySummableIntegerTranslates f)
@@ -78,6 +93,9 @@ def euclideanToUnitTorus {n : ℕ} :
   toFun x := fun i => (x i : UnitAddCircle)
   continuous_toFun := by fun_prop
 
+/--
+@isnad1 id=isopenqu.0h1v.s7.15432d61691b from=translated src=- shape=76610196 vocab=aa1ee5a7
+-/
 theorem euclideanToUnitTorus_isOpenQuotientMap {n : ℕ} :
     IsOpenQuotientMap (@euclideanToUnitTorus n) := by
   let hPi : IsOpenQuotientMap
@@ -87,6 +105,9 @@ theorem euclideanToUnitTorus_isOpenQuotientMap {n : ℕ} :
   let hLp := (PiLp.homeomorph 2 fun _ : Fin n => ℝ).isOpenQuotientMap
   exact hPi.comp hLp
 
+/--
+@isnad1 id=ex.1h3v.s8.b317e7979d7c from=translated src=- shape=62817a01 vocab=9ca3cdcc
+-/
 theorem exists_intVector_add_eq_of_euclideanToUnitTorus_eq {n : ℕ}
     {x y : EuclideanSpace ℝ (Fin n)}
     (hxy : euclideanToUnitTorus x = euclideanToUnitTorus y) :
@@ -116,6 +137,9 @@ def torusPeriodization {n : ℕ}
         exists_intVector_add_eq_of_euclideanToUnitTorus_eq hxy
       rw [← hz, integerTranslateSum_add_int f hf]
 
+/--
+@isnad1 id=summable.1h2v.s7.51089d7c7577 from=translated src=- shape=298905ad vocab=3e7e6853
+-/
 theorem summable_integerValues_of_locallyNormal {n : ℕ}
     (f : C(EuclideanSpace ℝ (Fin n), ℂ))
     (hf : LocallyNormallySummableIntegerTranslates f) :

@@ -27,6 +27,9 @@ theorem eq_one_of_three_of_card_eq_three
   have hx : x ∈ ({a, b, c} : Finset K) := by rw [hs_univ]; simp
   simpa only [Finset.mem_insert, Finset.mem_singleton] using hx
 
+/--
+@isnad1 id=nonempty.6h6v.s9.0b248795ae9b from=translated src=- shape=62e7db62 vocab=5d98d9e7
+-/
 theorem exists_tripodGraph_iso
     [Fintype V] [DecidableEq V] {G : SimpleGraph V} [DecidableRel G.Adj]
     (hpos : IsPositiveCartan G) (hconn : G.Connected) {z : V}

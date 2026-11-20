@@ -11,6 +11,9 @@ namespace SRG266.Lattice
 
 open scoped BigOperators
 
+/--
+@isnad1 id=eq.0h1v.s8.2dd5c15313c2 from=translated src=- shape=6817736e vocab=524b3287
+-/
 theorem a11D7E6D7Projection_A11Lift (u : Fin 11 → ℚ) :
     a11D7E6D7Projection (a11D7E6A11Lift u) = 0 := by
   ext i
@@ -19,6 +22,9 @@ theorem a11D7E6D7Projection_A11Lift (u : Fin 11 → ℚ) :
   rcases finADEBlockEquiv a11D7E6Types i with j | (j | (j | j)) <;>
     simp [a11D7E6D7BlockScalar]
 
+/--
+@isnad1 id=eq.0h1v.s8.fee5d6afa3a7 from=translated src=- shape=6817736e vocab=6ee24a97
+-/
 theorem a11D7E6D7Projection_E6Lift (u : Fin 6 → ℚ) :
     a11D7E6D7Projection (a11D7E6E6Lift u) = 0 := by
   ext i
@@ -31,6 +37,9 @@ theorem a11D7E6D7Projection_E6Lift (u : Fin 6 → ℚ) :
 variable {W U Y : Type*} [AddCommGroup W] [Module ℚ W] [AddCommGroup U] [Module ℚ U]
   [AddCommGroup Y] [Module ℚ Y]
 
+/--
+@isnad1 id=le.4h9v.s12.180a421c1a6d from=translated src=- shape=9110651d vocab=4a152343
+-/
 theorem marked_product_frame_moment_bound {ι : Type*} [Fintype ι]
     (B : LinearMap.BilinForm ℚ W) (C : LinearMap.BilinForm ℚ U)
     (g : ι → W) (s : Fin 7 → ℚ) (a : ℚ) (ha : 0 ≤ a)

@@ -12,6 +12,9 @@ namespace SRG266.Lattice
 open ModularGroup ModularForm
 open scoped MatrixGroups
 
+/--
+@isnad1 id=eq.0h1v.s9.7b81c2f7f693 from=translated src=- shape=fd460423 vocab=f091eddf
+-/
 theorem levelOne_weight_fourteen_cusp_eq_zero
     (f : CuspForm 𝒮ℒ 14) : f = 0 := by
   have htwo : Module.rank ℂ (ModularForm 𝒮ℒ 2) = 0 :=

@@ -11,6 +11,9 @@ namespace SRG266.Lattice
 
 open scoped BigOperators
 
+/--
+@isnad1 id=eq.2h5v.s7.34a0dd445835 from=translated src=- shape=6df285fd vocab=e1335c0a
+-/
 theorem centered_integer_pair_identity {ι : Type*} [Fintype ι] [Nonempty ι]
     (z w : ι → ℤ) (a b : ℤ) (hz : (∑ i, z i) = a) (hw : (∑ i, w i) = b) :
     (∑ i, ((z i : ℚ)-(a : ℚ)/Fintype.card ι)*

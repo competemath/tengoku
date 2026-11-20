@@ -22,10 +22,16 @@ def coordinateSumForm (n : ℕ) : LinearMap.BilinForm ℚ (Fin n → ℚ) :=
 def simplexRatForm (n : ℕ) : LinearMap.BilinForm ℚ (Fin n → ℚ) :=
   standardRatForm n + coordinateSumForm n
 
+/--
+@isnad1 id=eq.0h3v.s9.70d9e49211f4 from=translated src=- shape=1f3abfd1 vocab=b52559d8
+-/
 @[simp]
 theorem simplexRatForm_apply {n : ℕ} (x y : Fin n → ℚ) :
     simplexRatForm n x y = (∑ i, x i * y i) + (∑ i, x i) * ∑ i, y i := rfl
 
+/--
+@isnad1 id=issymm.0h1v.s5.5ae51af9b9a4 from=translated src=- shape=c70bf99f vocab=c69788d7
+-/
 theorem simplexRatForm_isSymm (n : ℕ) : (simplexRatForm n).IsSymm := by
   constructor
   intro x y
@@ -34,11 +40,17 @@ theorem simplexRatForm_isSymm (n : ℕ) : (simplexRatForm n).IsSymm := by
   · exact Finset.sum_congr rfl (fun _ _ => mul_comm _ _)
   · exact mul_comm _ _
 
+/--
+@isnad1 id=lt.1h2v.s8.945ebe8c79f9 from=translated src=- shape=6024d4a5 vocab=ed8546be
+-/
 theorem simplexRatForm_posDef (n : ℕ) :
     ∀ x : Fin n → ℚ, x ≠ 0 → 0 < simplexRatForm n x x := by
   intro x hx
   exact add_pos_of_pos_of_nonneg (standardRatForm_posDef n x hx) (mul_self_nonneg _)
 
+/--
+@isnad1 id=isintegr.0h1v.s5.864076302c38 from=translated src=- shape=0f26cc2a vocab=c9845eae
+-/
 theorem simplexRatForm_isIntegral (n : ℕ) :
     IsIntegral (simplexRatForm n) (coordinateIntegerLattice n) := by
   rintro _ ⟨x, rfl⟩ _ ⟨y, rfl⟩
@@ -48,6 +60,9 @@ theorem simplexRatForm_isIntegral (n : ℕ) :
   push_cast
   rfl
 
+/--
+@isnad1 id=iseven.0h1v.s5.34d448cbc46e from=translated src=- shape=cae58d9e vocab=c679cdd3
+-/
 theorem simplexRatForm_isEven (n : ℕ) :
     IsEven (simplexRatForm n) (coordinateIntegerLattice n) := by
   rintro _ ⟨z, rfl⟩
@@ -67,6 +82,9 @@ theorem simplexRatForm_isEven (n : ℕ) :
 
 def simplexWeight (n : ℕ) : Fin n → ℚ := fun _ => 1 / ((n : ℚ) + 1)
 
+/--
+@isnad1 id=eq.0h2v.s8.f502d245d436 from=translated src=- shape=ee92141d vocab=3db84cf4
+-/
 theorem simplexWeight_pair {n : ℕ} (x : Fin n → ℚ) :
     simplexRatForm n (simplexWeight n) x = ∑ i, x i := by
   have hn : (n : ℚ) + 1 ≠ 0 := by positivity
@@ -75,17 +93,26 @@ theorem simplexWeight_pair {n : ℕ} (x : Fin n → ℚ) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.0h1v.s8.8ebe9c3f9a04 from=translated src=- shape=f13adeaf vocab=2e47865f
+-/
 theorem simplexWeight_norm (n : ℕ) :
     simplexRatForm n (simplexWeight n) (simplexWeight n) = (n : ℚ) / ((n : ℚ) + 1) := by
   rw [simplexWeight_pair]
   simp [simplexWeight, div_eq_mul_inv]
 
+/--
+@isnad1 id=mem.0h1v.s7.fcaa158cdb3c from=translated src=- shape=f65ddec4 vocab=fbffaf4d
+-/
 theorem simplexWeight_mem_dual (n : ℕ) :
     simplexWeight n ∈ (simplexRatForm n).dualSubmodule (coordinateIntegerLattice n) := by
   rintro _ ⟨z, rfl⟩
   rw [simplexWeight_pair]
   exact mem_one_iff.mpr ⟨∑ i, z i, by simp⟩
 
+/--
+@isnad1 id=mem.0h1v.s7.c6514cb8eb18 from=translated src=- shape=005f7b7f vocab=01fe3eae
+-/
 theorem succ_smul_simplexWeight_mem (n : ℕ) :
     ((n : ℤ) + 1) • simplexWeight n ∈ coordinateIntegerLattice n := by
   refine mem_coordinateIntegerLattice.mpr ⟨fun _ => 1, ?_⟩
@@ -95,6 +122,9 @@ theorem succ_smul_simplexWeight_mem (n : ℕ) :
   push_cast
   field_simp
 
+/--
+@isnad1 id=iff.0h3v.s7.02be1f746965 from=translated src=- shape=d7430335 vocab=8339b56e
+-/
 theorem simplexWeight_zsmul_mem_iff {n : ℕ} (i₀ : Fin n) (m : ℤ) :
     m • simplexWeight n ∈ coordinateIntegerLattice n ↔ (n : ℤ) + 1 ∣ m := by
   constructor
@@ -119,6 +149,9 @@ private theorem simplexRatForm_int_single {n : ℕ} (x : Fin n → ℚ) (i : Fin
     simplexRatForm n x (intCoordsToRat (Pi.single i 1)) = x i + ∑ j, x j := by
   simp [simplexRatForm_apply, intCoordsToRat, Pi.single_apply, mul_ite]
 
+/--
+@isnad1 id=eq.0h1v.s8.f720d66d1ca9 from=translated src=- shape=6422a9dc vocab=bf636aed
+-/
 theorem simplexRatForm_dual (n : ℕ) :
     (simplexRatForm n).dualSubmodule (coordinateIntegerLattice n) =
       coordinateIntegerLattice n ⊔ Submodule.span ℤ {simplexWeight n} := by

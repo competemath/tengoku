@@ -21,6 +21,9 @@ noncomputable def reflectNormTwoRoot {n : ℕ} (L : PDUnimodularLattice n)
     rw [a.2, b.2, hsym]
     ring⟩
 
+/--
+@isnad1 id=eq.0h4v.s11.3789f6df6787 from=translated src=- shape=6594fdb1 vocab=ec074924
+-/
 @[simp]
 theorem reflectNormTwoRoot_val {n : ℕ} (L : PDUnimodularLattice n)
     (a b : NormTwoRoot L) :
@@ -28,6 +31,9 @@ theorem reflectNormTwoRoot_val {n : ℕ} (L : PDUnimodularLattice n)
       b.1 - (L.pairing b.1 a.1) • a.1 :=
   rfl
 
+/--
+@isnad1 id=mem.1h4v.s10.4d6c68647843 from=translated src=- shape=2a8d93b6 vocab=98f7535c
+-/
 theorem positiveRoot_mem_simpleRootClosure {n : ℕ}
     {L : PDUnimodularLattice n} (f : L.carrier →+ ℤ)
     {r : NormTwoRoot L} (hr : 0 < f r.1) :
@@ -36,6 +42,9 @@ theorem positiveRoot_mem_simpleRootClosure {n : ℕ}
     AddSubmonoid.closure_image_isAddIndecomposable_baseOf]
   exact AddSubmonoid.subset_closure ⟨r, hr, rfl⟩
 
+/--
+@isnad1 id=ex.1h4v.s10.7c097fea8205 from=translated src=- shape=b1bb9dc9 vocab=a83d16c9
+-/
 theorem exists_simpleRoot_pairing_pos {n : ℕ}
     {L : PDUnimodularLattice n} (f : L.carrier →+ ℤ)
     {r : NormTwoRoot L} (hr : 0 < f r.1) :
@@ -61,6 +70,9 @@ theorem exists_simpleRoot_pairing_pos {n : ℕ}
   rw [r.2] at hnonpos
   omega
 
+/--
+@isnad1 id=lt.4h6v.s11.f7210cdeae7d from=translated src=- shape=2b38111b vocab=af4e0cc3
+-/
 theorem sub_simpleRoot_positive {n : ℕ}
     {L : PDUnimodularLattice n} (f : L.carrier →+ ℤ)
     (hf : ∀ u : NormTwoRoot L, f u.1 ≠ 0)
@@ -87,6 +99,9 @@ theorem sub_simpleRoot_positive {n : ℕ}
     · exact normTwoRootVal_ne_zero (-t) hzero
   · exact hpos
 
+/--
+@isnad1 id=eq.2h4v.s11.25ffd41b23b2 from=translated src=- shape=0d666d63 vocab=c3dfc457
+-/
 theorem pairing_eq_one_of_simple_step {n : ℕ}
     {L : PDUnimodularLattice n} {r s : NormTwoRoot L}
     (hrs : r ≠ s) (hpair : 0 < L.pairing r.1 s.1) :
@@ -101,6 +116,9 @@ theorem pairing_eq_one_of_simple_step {n : ℕ}
   rw [r.2, s.2, hsym] at hpos
   omega
 
+/--
+@isnad1 id=eq.2h5v.s11.e920b28f4b62 from=translated src=- shape=29e30361 vocab=b87bba6e
+-/
 theorem reflect_sub_simpleRoot {n : ℕ}
     {L : PDUnimodularLattice n} {r s t : NormTwoRoot L}
     (hpair : L.pairing r.1 s.1 = 1) (ht : r.1 - s.1 = t.1) :
@@ -110,6 +128,9 @@ theorem reflect_sub_simpleRoot {n : ℕ}
     LinearMap.sub_apply, hpair, s.2]
   norm_num
 
+/--
+@isnad1 id=var.1h8v.s9.e12df96a1729 from=translated src=- shape=382e3365 vocab=88c25e0a
+-/
 theorem normTwoRoot_reflection_induction {n : ℕ}
     {L : PDUnimodularLattice n} (f : L.carrier →+ ℤ)
     (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0)

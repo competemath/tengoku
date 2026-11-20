@@ -51,6 +51,9 @@ def firstSecondCommonNeighborsEquiv
     apply Subtype.ext
     rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.f98da136ced5 from=translated src=- shape=fe107fa9 vocab=4f54e089
+-/
 theorem localIncidence_mul_adjacency_apply_card
     (hG : IsHypothetical G) (x : V)
     (p : FirstSubconstituent G x) (C : SecondSubconstituent G x) :
@@ -69,6 +72,9 @@ theorem localIncidence_mul_adjacency_apply_card
       rw [← Fintype.card_coe]
       exact (Fintype.card_congr (firstSecondCommonNeighborsEquiv G hG x p C)).symm
 
+/--
+@isnad1 id=eq.1h5v.s8.11f27d354175 from=translated src=- shape=6ee22bda vocab=10a724b0
+-/
 theorem localIncidence_mul_adjacency_apply
     (hG : IsHypothetical G) (x : V)
     (p : FirstSubconstituent G x) (C : SecondSubconstituent G x) :
@@ -87,6 +93,9 @@ theorem localIncidence_mul_adjacency_apply
     rw [ite_eq_right hpC, hG.of_not_adj hne hnot]
     norm_num
 
+/--
+@isnad1 id=eq.1h3v.s8.dc8ad5dee39d from=translated src=- shape=cb950450 vocab=10a724b0
+-/
 theorem localIncidence_mul_adjacency
     (hG : IsHypothetical G) (x : V) :
     localIncidenceMatrix G x * localAdjacencyMatrix G x =
@@ -94,6 +103,9 @@ theorem localIncidence_mul_adjacency
   ext p C
   exact localIncidence_mul_adjacency_apply G hG x p C
 
+/--
+@isnad1 id=eq.1h5v.s7.34341502106b from=translated src=- shape=51f5f8ae vocab=717b21d0
+-/
 theorem localIntersection_mul_adjacency_apply
     (hG : IsHypothetical G) (x : V)
     (B C : SecondSubconstituent G x) :
@@ -131,6 +143,9 @@ theorem localIntersection_mul_adjacency_apply
       rw [localIncidenceMatrix_column_sum G hG x B, hS]
       norm_num
 
+/--
+@isnad1 id=eq.1h5v.s7.f9b200e1f998 from=translated src=- shape=d47de3b9 vocab=717b21d0
+-/
 theorem localAdjacency_mul_intersection_apply
     (hG : IsHypothetical G) (x : V)
     (B C : SecondSubconstituent G x) :
@@ -149,6 +164,9 @@ theorem localAdjacency_mul_intersection_apply
     _ = 81 - 9 * localIntersectionMatrix G x B C := by
       rw [localIntersectionMatrix_comm G x C B]
 
+/--
+@isnad1 id=eq.1h3v.s7.5b27c709821a from=translated src=- shape=3700cd5e vocab=717b21d0
+-/
 theorem localIntersection_mul_adjacency
     (hG : IsHypothetical G) (x : V) :
     localIntersectionMatrix G x * localAdjacencyMatrix G x =
@@ -156,6 +174,9 @@ theorem localIntersection_mul_adjacency
   ext B C
   exact localIntersection_mul_adjacency_apply G hG x B C
 
+/--
+@isnad1 id=eq.1h3v.s7.6ee8f2f1e966 from=translated src=- shape=94da809e vocab=717b21d0
+-/
 theorem localAdjacency_mul_intersection
     (hG : IsHypothetical G) (x : V) :
     localAdjacencyMatrix G x * localIntersectionMatrix G x =
@@ -163,6 +184,9 @@ theorem localAdjacency_mul_intersection
   ext B C
   exact localAdjacency_mul_intersection_apply G hG x B C
 
+/--
+@isnad1 id=eq.1h5v.s8.bd3f8c732cd9 from=translated src=- shape=b44643fd vocab=42ba3a6c
+-/
 theorem pointGram_mul_incidence_apply
     (hG : IsHypothetical G) (x : V)
     (p : FirstSubconstituent G x) (C : SecondSubconstituent G x) :
@@ -190,6 +214,9 @@ theorem pointGram_mul_incidence_apply
       rw [localIncidenceMatrix_column_sum G hG x C]
       ring
 
+/--
+@isnad1 id=eq.1h5v.s7.f14ae2dcea3b from=translated src=- shape=4e49b031 vocab=abeb5c1d
+-/
 theorem localIntersectionMatrix_sq_apply
     (hG : IsHypothetical G) (x : V)
     (B C : SecondSubconstituent G x) :
@@ -228,6 +255,9 @@ theorem localIntersectionMatrix_sq_apply
       rw [hS, localIncidenceMatrix_column_sum G hG x B]
       norm_num
 
+/--
+@isnad1 id=eq.1h3v.s7.a9e6af674055 from=translated src=- shape=fd9e8be8 vocab=abeb5c1d
+-/
 theorem localIntersectionMatrix_sq
     (hG : IsHypothetical G) (x : V) :
     localIntersectionMatrix G x * localIntersectionMatrix G x =
@@ -235,6 +265,9 @@ theorem localIntersectionMatrix_sq
   ext B C
   exact localIntersectionMatrix_sq_apply G hG x B C
 
+/--
+@isnad1 id=eq.0h5v.s6.28c0c7a23916 from=translated src=- shape=611b2bef vocab=62554cef
+-/
 @[simp]
 theorem natCastMatrix_mul_apply
     {ι : Type*} [Fintype ι] [DecidableEq ι]
@@ -243,11 +276,17 @@ theorem natCastMatrix_mul_apply
   rw [Matrix.mul_apply]
   simp [Matrix.natCast_apply]
 
+/--
+@isnad1 id=eq.0h6v.s6.875f841fbe9d from=translated src=- shape=e864ecfc vocab=7fcc03cf
+-/
 theorem nsmulMatrix_apply
     {m n : Type*} (k : ℕ) (A : Matrix m n ℤ) (i : m) (j : n) :
     (k • A) i j = (k : ℤ) * A i j := by
   rw [Matrix.smul_apply, nsmul_eq_mul]
 
+/--
+@isnad1 id=eq.1h3v.s8.eec4fb2c67f4 from=translated src=- shape=811d9749 vocab=a7c00432
+-/
 theorem allOnesMatrix_sq
     (hG : IsHypothetical G) (x : V) :
     (allOnesMatrix :
@@ -258,6 +297,9 @@ theorem allOnesMatrix_sq
   rw [Matrix.mul_apply]
   simp [secondSubconstituent_card G hG x]
 
+/--
+@isnad1 id=eq.1h3v.s8.04b5f9303f96 from=translated src=- shape=fdbc2098 vocab=8bdf00cb
+-/
 theorem allOnes_mul_intersection
     (hG : IsHypothetical G) (x : V) :
     (allOnesMatrix :
@@ -281,6 +323,9 @@ theorem allOnes_mul_intersection
   rw [hcol]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s8.2a6a7e8d8b56 from=translated src=- shape=007dd422 vocab=8bdf00cb
+-/
 theorem intersection_mul_allOnes
     (hG : IsHypothetical G) (x : V) :
     localIntersectionMatrix G x *
@@ -297,6 +342,9 @@ theorem intersection_mul_allOnes
   rw [hrow]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s8.7f423cc01508 from=translated src=- shape=fdbc2098 vocab=98e9353f
+-/
 theorem allOnes_mul_adjacency
     (hG : IsHypothetical G) (x : V) :
     (allOnesMatrix :
@@ -320,6 +368,9 @@ theorem allOnes_mul_adjacency
   rw [hcol]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s8.c7cfe186fba7 from=translated src=- shape=007dd422 vocab=98e9353f
+-/
 theorem adjacency_mul_allOnes
     (hG : IsHypothetical G) (x : V) :
     localAdjacencyMatrix G x *
@@ -336,6 +387,9 @@ theorem adjacency_mul_allOnes
   rw [hrow]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s9.4bc4694a5ba9 from=translated src=- shape=3d2bda2f vocab=87e1f0d5
+-/
 theorem localGramMatrix_eq_linear_combination
     (x : V) :
     localGramMatrix G x =
@@ -360,6 +414,9 @@ theorem localGramMatrix_eq_linear_combination
   by_cases hBC : B = C <;>
     simp [localGramMatrix, localAdjacencyMatrix, hBC, Matrix.one_apply]
 
+/--
+@isnad1 id=eq.1h3v.s8.893aed0e4f23 from=translated src=- shape=e922a337 vocab=d7874624
+-/
 theorem localIntersectionMatrix_sq_linear_combination
     (hG : IsHypothetical G) (x : V) :
     localIntersectionMatrix G x * localIntersectionMatrix G x =
@@ -379,6 +436,9 @@ theorem localIntersectionMatrix_sq_linear_combination
   rw [nsmulMatrix_apply, nsmulMatrix_apply]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s8.d659b5709bd2 from=translated src=- shape=2091611b vocab=bfdb1942
+-/
 theorem localIntersection_mul_adjacency_linear_combination
     (hG : IsHypothetical G) (x : V) :
     localIntersectionMatrix G x * localAdjacencyMatrix G x =
@@ -398,6 +458,9 @@ theorem localIntersection_mul_adjacency_linear_combination
   rw [nsmulMatrix_apply, nsmulMatrix_apply]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s8.1f7b1da26716 from=translated src=- shape=5ffba120 vocab=bfdb1942
+-/
 theorem localAdjacency_mul_intersection_linear_combination
     (hG : IsHypothetical G) (x : V) :
     localAdjacencyMatrix G x * localIntersectionMatrix G x =
@@ -417,6 +480,9 @@ theorem localAdjacency_mul_intersection_linear_combination
   rw [nsmulMatrix_apply, nsmulMatrix_apply]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s9.17f1016f8d3f from=translated src=- shape=2f2f75aa vocab=62beb733
+-/
 theorem localAdjacencyMatrix_sq_linear_combination
     (hG : IsHypothetical G) (x : V) :
     localAdjacencyMatrix G x * localAdjacencyMatrix G x =
@@ -445,6 +511,9 @@ theorem localAdjacencyMatrix_sq_linear_combination
   by_cases hBC : B = C <;>
     simp [localAdjacencyMatrix, hBC, Matrix.one_apply]
 
+/--
+@isnad1 id=eq.1h3v.s8.a756e17e3530 from=translated src=- shape=e922a337 vocab=d1e7ea23
+-/
 theorem localGramMatrix_sq
     (hG : IsHypothetical G) (x : V) :
     localGramMatrix G x * localGramMatrix G x =
@@ -517,6 +586,9 @@ theorem localGramMatrix_sq
               (SecondSubconstituent G x) ℤ) := by
       rfl
 
+/--
+@isnad1 id=eq.1h5v.s7.c1cf3e5f6636 from=translated src=- shape=4e49b031 vocab=d563c789
+-/
 theorem localGramMatrix_sq_apply
     (hG : IsHypothetical G) (x : V)
     (B C : SecondSubconstituent G x) :
@@ -533,6 +605,9 @@ theorem localGramMatrix_sq_apply
   rw [nsmulMatrix_apply, nsmulMatrix_apply] at h
   simpa using h
 
+/--
+@isnad1 id=eq.1h3v.s8.0e7bf1cff36b from=translated src=- shape=5051410e vocab=946900bf
+-/
 theorem localGram_mul_intersection
     (hG : IsHypothetical G) (x : V) :
     localGramMatrix G x * localIntersectionMatrix G x =

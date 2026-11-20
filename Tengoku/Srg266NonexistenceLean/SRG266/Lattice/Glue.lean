@@ -30,9 +30,15 @@ def rightIntegral (F : LinearMap.BilinForm ℚ X) (z : X) : Submodule ℤ X wher
     rw [map_zsmul]
     exact Submodule.smul_mem _ _ (hw : F z w ∈ (1 : Submodule ℤ ℚ))
 
+/--
+@isnad1 id=iff.0h4v.s8.cc6a95fa3921 from=translated src=- shape=440ff81d vocab=0492cb5b
+-/
 theorem mem_rightIntegral {F : LinearMap.BilinForm ℚ X} {z w : X} :
     w ∈ rightIntegral F z ↔ F z w ∈ (1 : Submodule ℤ ℚ) := Iff.rfl
 
+/--
+@isnad1 id=isintegr.4h4v.s9.525c6b7e738e from=translated src=- shape=c68c129a vocab=2309acda
+-/
 theorem isIntegral_sup_span {F : LinearMap.BilinForm ℚ X} (hsymm : F.IsSymm)
     {N : Submodule ℤ X} {s : Set X} (hN : IsIntegral F N)
     (hNs : ∀ z ∈ N, ∀ w ∈ s, F z w ∈ (1 : Submodule ℤ ℚ))
@@ -54,6 +60,9 @@ theorem isIntegral_sup_span {F : LinearMap.BilinForm ℚ X} (hsymm : F.IsSymm)
   · exact fun w hw => hA z hz hw
   · exact fun w hw => hB z hz hw
 
+/--
+@isnad1 id=mem.6h7v.s9.8181e44ef9dd from=translated src=- shape=4ad4136c vocab=e2b21167
+-/
 theorem inner_mem_one_of_coprime {F : LinearMap.BilinForm ℚ X} {P : Submodule ℤ X}
     (hsymm : F.IsSymm) {a b : ℤ} (hab : IsCoprime a b) {y z : X}
     (hy : y ∈ F.dualSubmodule P) (hya : a • y ∈ P)
@@ -80,14 +89,23 @@ def prodForm (B : LinearMap.BilinForm ℚ W) (C : LinearMap.BilinForm ℚ U) :
   B.compl₁₂ (LinearMap.fst ℚ W U) (LinearMap.fst ℚ W U) +
     C.compl₁₂ (LinearMap.snd ℚ W U) (LinearMap.snd ℚ W U)
 
+/--
+@isnad1 id=eq.0h6v.s9.31edf98b9035 from=translated src=- shape=13bb05dd vocab=a7f6e2d5
+-/
 @[simp]
 theorem prodForm_apply (B : LinearMap.BilinForm ℚ W) (C : LinearMap.BilinForm ℚ U)
     (z w : W × U) : prodForm B C z w = B z.1 w.1 + C z.2 w.2 := rfl
 
+/--
+@isnad1 id=issymm.2h4v.s6.da936e29ad9b from=translated src=- shape=4d424f4d vocab=608b6ba7
+-/
 theorem prodForm_isSymm {B : LinearMap.BilinForm ℚ W} {C : LinearMap.BilinForm ℚ U}
     (hB : B.IsSymm) (hC : C.IsSymm) : (prodForm B C).IsSymm :=
   ⟨fun z w => by rw [prodForm_apply, prodForm_apply, hB.eq z.1 w.1, hC.eq z.2 w.2]⟩
 
+/--
+@isnad1 id=lt.3h5v.s10.2a5fb2d04cc7 from=translated src=- shape=0fd5852e vocab=848d4191
+-/
 theorem prodForm_posDef {B : LinearMap.BilinForm ℚ W} {C : LinearMap.BilinForm ℚ U}
     (hB : ∀ v : W, v ≠ 0 → 0 < B v v) (hC : ∀ v : U, v ≠ 0 → 0 < C v v) :
     ∀ z : W × U, z ≠ 0 → 0 < prodForm B C z z := by
@@ -108,6 +126,9 @@ theorem prodForm_posDef {B : LinearMap.BilinForm ℚ W} {C : LinearMap.BilinForm
     exact add_pos_of_nonneg_of_pos hB0 (hC z.2 h2)
   · exact add_pos_of_pos_of_nonneg (hB z.1 h1) hC0
 
+/--
+@isnad1 id=le.1h3v.s9.2daba0817efc from=translated src=- shape=11c31b62 vocab=bb105ecc
+-/
 theorem ratNonneg_of_posDef {X : Type*} [AddCommGroup X] [Module ℚ X]
     {F : LinearMap.BilinForm ℚ X} (hpd : ∀ v : X, v ≠ 0 → 0 < F v v) (v : X) :
     0 ≤ F v v := by
@@ -115,12 +136,18 @@ theorem ratNonneg_of_posDef {X : Type*} [AddCommGroup X] [Module ℚ X]
   · rw [map_zero]
   · exact (hpd v h).le
 
+/--
+@isnad1 id=nondegen.2h2v.s8.753908087cf4 from=translated src=- shape=4bb86b23 vocab=d686df70
+-/
 theorem nondegenerate_of_posDef {X : Type*} [AddCommGroup X] [Module ℚ X]
     {F : LinearMap.BilinForm ℚ X} (hsymm : F.IsSymm)
     (hpd : ∀ v : X, v ≠ 0 → 0 < F v v) : F.Nondegenerate :=
   (LinearMap.BilinForm.nondegenerate_iff' F (ratNonneg_of_posDef hpd)
     (LinearMap.BilinForm.isSymm_iff.mp hsymm)).mpr hpd
 
+/--
+@isnad1 id=eq.0h6v.s7.bd786facc95c from=translated src=- shape=94f4c996 vocab=fc8c4a6a
+-/
 theorem dualSubmodule_prodForm (B : LinearMap.BilinForm ℚ W) (C : LinearMap.BilinForm ℚ U)
     (N : Submodule ℤ W) (M : Submodule ℤ U) :
     (prodForm B C).dualSubmodule (N.prod M) =
@@ -139,12 +166,18 @@ theorem dualSubmodule_prodForm (B : LinearMap.BilinForm ℚ W) (C : LinearMap.Bi
     rw [prodForm_apply]
     exact add_mem (h1 w.1 hw1) (h2 w.2 hw2)
 
+/--
+@isnad1 id=isintegr.2h6v.s7.53a35bd1a0f3 from=translated src=- shape=6cb00f54 vocab=3dec1273
+-/
 theorem isIntegral_prod {B : LinearMap.BilinForm ℚ W} {C : LinearMap.BilinForm ℚ U}
     {N : Submodule ℤ W} {M : Submodule ℤ U} (hN : IsIntegral B N) (hM : IsIntegral C M) :
     IsIntegral (prodForm B C) (N.prod M) := by
   rw [IsIntegral, dualSubmodule_prodForm]
   exact Submodule.prod_mono hN hM
 
+/--
+@isnad1 id=islattic.2h4v.s7.43cd1ba3d52a from=translated src=- shape=996669db vocab=01b87d1f
+-/
 theorem isLattice_prod {N : Submodule ℤ W} {M : Submodule ℤ U}
     (hN : IsLattice ℚ N) (hM : IsLattice ℚ M) : IsLattice ℚ (N.prod M) := by
   refine ⟨Submodule.FG.prod hN.fg hM.fg, ?_⟩
@@ -177,11 +210,17 @@ def glueLattice {ι : Type*} (N : Submodule ℤ W) (M : Submodule ℤ U) (g : ι
   N.prod M ⊔ Submodule.span ℤ (Set.range g)
 
 omit [Module ℚ W] [Module ℚ U] in
+/--
+@isnad1 id=mem.0h7v.s7.be757aad2bd6 from=translated src=- shape=c7776800 vocab=ada2de6c
+-/
 theorem gen_mem_glueLattice {ι : Type*} {N : Submodule ℤ W} {M : Submodule ℤ U}
     {g : ι → W × U} (i : ι) : g i ∈ glueLattice N M g :=
   Submodule.mem_sup_right (Submodule.subset_span ⟨i, rfl⟩)
 
 omit [Module ℚ W] [Module ℚ U] in
+/--
+@isnad1 id=le.0h6v.s7.be4c3b7e4aba from=translated src=- shape=504160d7 vocab=e5d19da9
+-/
 theorem prod_le_glueLattice {ι : Type*} {N : Submodule ℤ W} {M : Submodule ℤ U}
     {g : ι → W × U} : N.prod M ≤ glueLattice N M g := le_sup_left
 
@@ -197,11 +236,17 @@ def inclLeft {ι : Type*} (N : Submodule ℤ W) (M : Submodule ℤ U) (g : ι �
     apply Prod.ext <;> simp
 
 omit [Module ℚ W] [Module ℚ U] in
+/--
+@isnad1 id=eq.0h7v.s10.f837bdf38def from=translated src=- shape=e339ff73 vocab=3b004d0f
+-/
 @[simp]
 theorem inclLeft_coe {ι : Type*} (N : Submodule ℤ W) (M : Submodule ℤ U) (g : ι → W × U)
     (x : N) : ((inclLeft N M g x : glueLattice N M g) : W × U) = ((x : W), 0) := rfl
 
 omit [Module ℚ W] [Module ℚ U] in
+/--
+@isnad1 id=injectiv.0h6v.s10.bb2035babe2c from=translated src=- shape=104b7ed0 vocab=bfe2b54c
+-/
 theorem inclLeft_injective {ι : Type*} (N : Submodule ℤ W) (M : Submodule ℤ U)
     (g : ι → W × U) : Function.Injective (inclLeft N M g) := by
   intro x y hxy
@@ -248,17 +293,32 @@ variable {N : Submodule ℤ W} {M : Submodule ℤ U} {ι : Type*}
 
 def gen (S : GlueSystem B C N M ι) : ι → W × U := fun i => (S.y i, S.m i)
 
+/--
+@isnad1 id=eq.0h9v.s6.0bef5fb24dda from=translated src=- shape=e2076759 vocab=bb30c43c
+-/
 @[simp] theorem gen_fst (S : GlueSystem B C N M ι) (i : ι) : (S.gen i).1 = S.y i := rfl
+/--
+@isnad1 id=eq.0h9v.s6.019aacfbbe1b from=translated src=- shape=2f95d0dd vocab=eae1a356
+-/
 @[simp] theorem gen_snd (S : GlueSystem B C N M ι) (i : ι) : (S.gen i).2 = S.m i := rfl
 
+/--
+@isnad1 id=mem.0h9v.s7.216e7ffb0610 from=translated src=- shape=e6f65394 vocab=bcebfe10
+-/
 theorem y_mem_dual (S : GlueSystem B C N M ι) (i : ι) : S.y i ∈ B.dualSubmodule N := by
   rw [S.dualN]
   exact Submodule.mem_sup_right (Submodule.subset_span ⟨i, rfl⟩)
 
+/--
+@isnad1 id=mem.0h9v.s7.4a30b7c2e1d6 from=translated src=- shape=bf8a1a30 vocab=c6d55f66
+-/
 theorem m_mem_dual (S : GlueSystem B C N M ι) (i : ι) : S.m i ∈ C.dualSubmodule M := by
   rw [S.dualM]
   exact Submodule.mem_sup_right (Submodule.subset_span ⟨i, rfl⟩)
 
+/--
+@isnad1 id=mem.1h10v.s9.d0b1d847b834 from=translated src=- shape=7ad1aea6 vocab=7f175fe7
+-/
 theorem pairing_lattice_gen (S : GlueSystem B C N M ι) {z : W × U}
     (hz : z ∈ N.prod M) (j : ι) : prodForm B C z (S.gen j) ∈ (1 : Submodule ℤ ℚ) := by
   obtain ⟨hz1, hz2⟩ := Submodule.mem_prod.mp hz
@@ -269,6 +329,9 @@ theorem pairing_lattice_gen (S : GlueSystem B C N M ι) {z : W × U}
   · rw [S.symmC.eq z.2 (S.m j)]
     exact S.m_mem_dual j z.2 hz2
 
+/--
+@isnad1 id=mem.0h10v.s9.6371a70d1314 from=translated src=- shape=6d4f488a vocab=3c4f4bdc
+-/
 theorem pairing_gen_gen (S : GlueSystem B C N M ι) (i j : ι) :
     prodForm B C (S.gen i) (S.gen j) ∈ (1 : Submodule ℤ ℚ) := by
   simp only [prodForm_apply, gen_fst, gen_snd]
@@ -276,6 +339,9 @@ theorem pairing_gen_gen (S : GlueSystem B C N M ι) (i j : ι) :
   · exact S.diag i
   · exact add_mem (S.crossW i j hij) (S.crossU i j hij)
 
+/--
+@isnad1 id=isintegr.0h8v.s7.117ced04a1d7 from=translated src=- shape=9e842943 vocab=6b4c55ae
+-/
 theorem glue_isIntegral (S : GlueSystem B C N M ι) :
     IsIntegral (prodForm B C) (glueLattice N M S.gen) := by
   refine isIntegral_sup_span (prodForm_isSymm S.symmB S.symmC)
@@ -285,6 +351,9 @@ theorem glue_isIntegral (S : GlueSystem B C N M ι) :
   · rintro _ ⟨i, rfl⟩ _ ⟨j, rfl⟩
     exact S.pairing_gen_gen i j
 
+/--
+@isnad1 id=islattic.2h8v.s7.4f7821a727da from=translated src=- shape=748d4994 vocab=7bb8ec06
+-/
 theorem glue_isLattice (S : GlueSystem B C N M ι) [Finite ι]
     (hN : IsLattice ℚ N) (hM : IsLattice ℚ M) :
     IsLattice ℚ (glueLattice N M S.gen) := by
@@ -305,6 +374,9 @@ variable {B : LinearMap.BilinForm ℚ W} {C : LinearMap.BilinForm ℚ U}
 variable {N : Submodule ℤ W} {M : Submodule ℤ U}
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
+/--
+@isnad1 id=eq.0h8v.s7.2f0c579ca4fd from=translated src=- shape=511125bb vocab=2e2b4d6a
+-/
 theorem GlueSystem.glue_dual_eq_self (S : GlueSystem B C N M ι) :
     (prodForm B C).dualSubmodule (glueLattice N M S.gen) = glueLattice N M S.gen := by
   refine le_antisymm ?_ S.glue_isIntegral

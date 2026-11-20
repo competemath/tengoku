@@ -15,6 +15,9 @@ section Counting
 
 variable {α : Type*}
 
+/--
+@isnad1 id=eq.1h2v.s6.e9fd33993c75 from=translated src=- shape=410163c9 vocab=be9daa13
+-/
 theorem sum_eq_card_filter [Fintype α] (a : α → ℤ) (ha : ∀ x, a x = 0 ∨ a x = 1) :
     (∑ x, a x) = ((Finset.univ.filter fun x => a x = 1).card : ℤ) := by
   have hpoint : ∀ x, a x = if a x = 1 then (1 : ℤ) else 0 := by
@@ -23,6 +26,9 @@ theorem sum_eq_card_filter [Fintype α] (a : α → ℤ) (ha : ∀ x, a x = 0 �
   rw [Finset.sum_congr rfl fun x _ => hpoint x]
   simp
 
+/--
+@isnad1 id=eq.2h3v.s7.3285ea5e0a6d from=translated src=- shape=6b150c06 vocab=a84a8aac
+-/
 theorem sum_mul_eq_card_filter [Fintype α] (a b : α → ℤ)
     (ha : ∀ x, a x = 0 ∨ a x = 1) (hb : ∀ x, b x = 0 ∨ b x = 1) :
     (∑ x, a x * b x) =
@@ -33,6 +39,9 @@ theorem sum_mul_eq_card_filter [Fintype α] (a b : α → ℤ)
   rw [Finset.sum_congr rfl fun x _ => hpoint x]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s7.78aa590c03ba from=translated src=- shape=ef6832e8 vocab=a9b9a93c
+-/
 theorem card_filter_subtype [DecidableEq α] (s : Finset α) (p : α → Prop)
     [DecidablePred p] :
     (Finset.univ.filter fun x : ↥s => p x.val).card = (s.filter p).card := by
@@ -46,6 +55,9 @@ theorem card_filter_subtype [DecidableEq α] (s : Finset α) (p : α → Prop)
   · rintro ⟨hx, hpx⟩
     exact ⟨⟨x, hx⟩, hpx, rfl⟩
 
+/--
+@isnad1 id=eq.2h5v.s6.44cbfef2518d from=translated src=- shape=cba2dd95 vocab=720a182d
+-/
 theorem card_filter_of_enum [DecidableEq α] {n : ℕ} (b : Fin n → α) (s : Finset α)
     (hinj : Function.Injective b) (hrange : ∀ x, x ∈ s ↔ ∃ i, b i = x)
     (p : α → Prop) [DecidablePred p] :
@@ -79,25 +91,40 @@ def blocksThrough (p : Fin 56) : Finset (Fin 210) :=
 def blocksThroughPair (p q : Fin 56) : Finset (Fin 210) :=
   Finset.univ.filter fun B => Q.matrix p B = 1 ∧ Q.matrix q B = 1
 
+/--
+@isnad1 id=iff.0h3v.s6.0bb47ca8af48 from=translated src=- shape=e7e8073b vocab=914727db
+-/
 @[simp] theorem mem_pointsOn {B : Fin 210} {p : Fin 56} :
     p ∈ Q.pointsOn B ↔ Q.matrix p B = 1 := by
   simp [pointsOn]
 
+/--
+@isnad1 id=iff.0h3v.s6.4dfe8495421d from=translated src=- shape=49630692 vocab=8fba4e7f
+-/
 @[simp] theorem mem_blocksThrough {p : Fin 56} {B : Fin 210} :
     B ∈ Q.blocksThrough p ↔ Q.matrix p B = 1 := by
   simp [blocksThrough]
 
+/--
+@isnad1 id=eq.0h2v.s4.a6e2a7c55667 from=translated src=- shape=cef63aee vocab=845c6f14
+-/
 theorem card_pointsOn (B : Fin 210) : (Q.pointsOn B).card = 12 := by
   have hcol := Q.block_size B
   rw [incidenceColumnSum,
     sum_eq_card_filter (fun p => Q.matrix p B) fun p => Q.entry_cases p B] at hcol
   exact_mod_cast hcol
 
+/--
+@isnad1 id=eq.0h2v.s4.ff1dd1907f3e from=translated src=- shape=cef63aee vocab=af844f34
+-/
 theorem card_blocksThrough (p : Fin 56) : (Q.blocksThrough p).card = 45 := by
   have hrow := Q.row_sum p
   rw [sum_eq_card_filter (fun B => Q.matrix p B) fun B => Q.entry_cases p B] at hrow
   exact_mod_cast hrow
 
+/--
+@isnad1 id=eq.1h3v.s5.f1529153d176 from=translated src=- shape=bc5317f2 vocab=801d0c5c
+-/
 theorem card_blocksThroughPair {p q : Fin 56} (h : p ≠ q) :
     (Q.blocksThroughPair p q).card = 9 := by
   have hgram := Q.point_gram p q
@@ -107,6 +134,9 @@ theorem card_blocksThroughPair {p q : Fin 56} (h : p ≠ q) :
     (fun B => Q.entry_cases p B) fun B => Q.entry_cases q B, ite_eq_right h] at hgram
   exact_mod_cast hgram
 
+/--
+@isnad1 id=or.1h3v.s5.60f5333d5215 from=translated src=- shape=8e2647e0 vocab=de07d693
+-/
 theorem card_pointsOnPair {B D : Fin 210} (h : B ≠ D) :
     (Q.pointsOnPair B D).card = 0 ∨ (Q.pointsOnPair B D).card = 3 := by
   have hinter := Q.block_intersections h
@@ -150,6 +180,9 @@ structure Residual165 {P : Type*} [Fintype P] [DecidableEq P] (E : Derived45 P) 
 
 abbrev Punctured (z : Fin 56) : Type := ↥((Finset.univ : Finset (Fin 56)).erase z)
 
+/--
+@isnad1 id=eq.0h1v.s5.5a65bc0cb80f from=translated src=- shape=65af8b43 vocab=70b466d7
+-/
 theorem card_punctured (z : Fin 56) : Fintype.card (Punctured z) = 55 := by
   rw [Fintype.card_coe, Finset.card_erase_of_mem (Finset.mem_univ z)]
   simp
@@ -168,23 +201,38 @@ def restrictedBlock (B : Fin 210) : Finset (Punctured z) :=
 
 variable {Q z}
 
+/--
+@isnad1 id=iff.0h3v.s6.202d2646ded0 from=translated src=- shape=49630692 vocab=6347e0dd
+-/
 @[simp] theorem mem_derivedIndex {B : Fin 210} :
     B ∈ Q.derivedIndex z ↔ Q.matrix z B = 1 := by
   simp [derivedIndex]
 
+/--
+@isnad1 id=iff.0h3v.s6.ab41801216b6 from=translated src=- shape=49630692 vocab=9e58ce0d
+-/
 @[simp] theorem mem_residualIndex {B : Fin 210} :
     B ∈ Q.residualIndex z ↔ Q.matrix z B = 0 := by
   simp [residualIndex]
 
+/--
+@isnad1 id=iff.0h4v.s7.bd6c28481a83 from=translated src=- shape=125d476f vocab=f07af0d3
+-/
 @[simp] theorem mem_restrictedBlock {B : Fin 210} {p : Punctured z} :
     p ∈ Q.restrictedBlock z B ↔ Q.matrix p.val B = 1 := by
   simp [restrictedBlock]
 
 variable (Q z)
 
+/--
+@isnad1 id=eq.0h2v.s4.713146088da4 from=translated src=- shape=cef63aee vocab=3e4f5aba
+-/
 theorem card_derivedIndex : (Q.derivedIndex z).card = 45 :=
   Q.card_blocksThrough z
 
+/--
+@isnad1 id=eq.0h2v.s4.01f6ce0c0c19 from=translated src=- shape=cef63aee vocab=0df16eb8
+-/
 theorem card_residualIndex : (Q.residualIndex z).card = 165 := by
   have hsplit :=
     Finset.card_filter_add_card_filter_not (s := (Finset.univ : Finset (Fin 210)))
@@ -198,6 +246,9 @@ theorem card_residualIndex : (Q.residualIndex z).card = 165 := by
   simp only [Finset.card_univ, Fintype.card_fin] at hsplit
   omega
 
+/--
+@isnad1 id=eq.0h3v.s5.836c094db791 from=translated src=- shape=8bbd2cf8 vocab=4e4763a3
+-/
 theorem restrictedBlock_card (B : Fin 210) :
     (Q.restrictedBlock z B).card = ((Q.pointsOn B).erase z).card := by
   rw [restrictedBlock,
@@ -205,6 +256,9 @@ theorem restrictedBlock_card (B : Fin 210) :
     Finset.filter_erase]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.9191c33c4f54 from=translated src=- shape=49c29ee5 vocab=fa67a41a
+-/
 theorem restrictedBlock_inter_card (B D : Fin 210) :
     (Q.restrictedBlock z B ∩ Q.restrictedBlock z D).card =
       ((Q.pointsOnPair B D).erase z).card := by
@@ -222,11 +276,17 @@ theorem restrictedBlock_inter_card (B D : Fin 210) :
 
 variable {Q z}
 
+/--
+@isnad1 id=eq.1h3v.s5.f31c89f4bc97 from=translated src=- shape=62e38506 vocab=f0ba084c
+-/
 theorem card_restrictedBlock_of_through {B : Fin 210} (h : Q.matrix z B = 1) :
     (Q.restrictedBlock z B).card = 11 := by
   have hmem : z ∈ Q.pointsOn B := Q.mem_pointsOn.mpr h
   rw [restrictedBlock_card, Finset.card_erase_of_mem hmem, Q.card_pointsOn B]
 
+/--
+@isnad1 id=eq.1h3v.s5.4b44ed65241e from=translated src=- shape=62e38506 vocab=f0ba084c
+-/
 theorem card_restrictedBlock_of_missing {B : Fin 210} (h : Q.matrix z B = 0) :
     (Q.restrictedBlock z B).card = 12 := by
   have hmem : z ∉ Q.pointsOn B := by
@@ -234,6 +294,9 @@ theorem card_restrictedBlock_of_missing {B : Fin 210} (h : Q.matrix z B = 0) :
     norm_num
   rw [restrictedBlock_card, Finset.erase_eq_of_notMem hmem, Q.card_pointsOn B]
 
+/--
+@isnad1 id=eq.3h4v.s7.39398ca67048 from=translated src=- shape=aa9387c3 vocab=1ba78e8c
+-/
 theorem card_restrictedBlock_inter_of_through {B D : Fin 210}
     (hB : Q.matrix z B = 1) (hD : Q.matrix z D = 1) (hBD : B ≠ D) :
     (Q.restrictedBlock z B ∩ Q.restrictedBlock z D).card = 2 := by
@@ -248,6 +311,9 @@ theorem card_restrictedBlock_inter_of_through {B D : Fin 210}
     (Q.card_pointsOnPair hBD).resolve_left hpos
   rw [restrictedBlock_inter_card, Finset.card_erase_of_mem hmem, hthree]
 
+/--
+@isnad1 id=or.2h4v.s8.47408ca18d3a from=translated src=- shape=83dd2872 vocab=1ba78e8c
+-/
 theorem card_restrictedBlock_inter_of_missing {B D : Fin 210}
     (hD : Q.matrix z D = 0) (hBD : B ≠ D) :
     (Q.restrictedBlock z B ∩ Q.restrictedBlock z D).card = 0 ∨
@@ -260,6 +326,9 @@ theorem card_restrictedBlock_inter_of_missing {B D : Fin 210}
   rw [restrictedBlock_inter_card, Finset.erase_eq_of_notMem hmem]
   exact Q.card_pointsOnPair hBD
 
+/--
+@isnad1 id=eq.1h3v.s6.d98223c37a01 from=translated src=- shape=9e5f91c3 vocab=241638fa
+-/
 theorem card_derivedIndex_filter {p : Fin 56} (hp : p ≠ z) :
     ((Q.derivedIndex z).filter fun B => Q.matrix p B = 1).card = 9 := by
   have hfilter :
@@ -271,6 +340,9 @@ theorem card_derivedIndex_filter {p : Fin 56} (hp : p ≠ z) :
   rw [hfilter]
   exact Q.card_blocksThroughPair (Ne.symm hp)
 
+/--
+@isnad1 id=eq.1h3v.s6.88ffffcf7739 from=translated src=- shape=9e5f91c3 vocab=fd3f865c
+-/
 theorem card_residualIndex_filter {p : Fin 56} (hp : p ≠ z) :
     ((Q.residualIndex z).filter fun B => Q.matrix p B = 1).card = 36 := by
   have hsplit :=
@@ -311,24 +383,45 @@ noncomputable def residualEnum (n : Fin 165) : Fin 210 :=
 
 variable {Q z}
 
+/--
+@isnad1 id=mem.0h3v.s5.993888593d4d from=translated src=- shape=784b7082 vocab=32259acd
+-/
 theorem derivedEnum_mem (i : Fin 45) : Q.derivedEnum z i ∈ Q.derivedIndex z :=
   ((Finset.equivFinOfCardEq (card_derivedIndex Q z)).symm i).2
 
+/--
+@isnad1 id=mem.0h3v.s5.660c58e8ceb8 from=translated src=- shape=784b7082 vocab=838ddc22
+-/
 theorem residualEnum_mem (n : Fin 165) : Q.residualEnum z n ∈ Q.residualIndex z :=
   ((Finset.equivFinOfCardEq (card_residualIndex Q z)).symm n).2
 
+/--
+@isnad1 id=eq.0h3v.s4.fef5159bcbe8 from=translated src=- shape=b1a789b2 vocab=01f62dbc
+-/
 theorem derivedEnum_one (i : Fin 45) : Q.matrix z (Q.derivedEnum z i) = 1 :=
   mem_derivedIndex.mp (derivedEnum_mem i)
 
+/--
+@isnad1 id=eq.0h3v.s4.508665212c80 from=translated src=- shape=b1a789b2 vocab=439406e6
+-/
 theorem residualEnum_zero (n : Fin 165) : Q.matrix z (Q.residualEnum z n) = 0 :=
   mem_residualIndex.mp (residualEnum_mem n)
 
+/--
+@isnad1 id=injectiv.0h2v.s4.8253a00a3dde from=translated src=- shape=a3944955 vocab=167bc9ba
+-/
 theorem derivedEnum_injective : Function.Injective (Q.derivedEnum z) := fun _ _ hij =>
   (Finset.equivFinOfCardEq (card_derivedIndex Q z)).symm.injective (Subtype.ext hij)
 
+/--
+@isnad1 id=injectiv.0h2v.s4.3b0d71df021a from=translated src=- shape=a3944955 vocab=612ca4b6
+-/
 theorem residualEnum_injective : Function.Injective (Q.residualEnum z) := fun _ _ hmn =>
   (Finset.equivFinOfCardEq (card_residualIndex Q z)).symm.injective (Subtype.ext hmn)
 
+/--
+@isnad1 id=iff.0h3v.s6.d61e0fe8e8b9 from=translated src=- shape=922cf19f vocab=32259acd
+-/
 theorem derivedEnum_range (B : Fin 210) :
     B ∈ Q.derivedIndex z ↔ ∃ i, Q.derivedEnum z i = B := by
   constructor
@@ -337,6 +430,9 @@ theorem derivedEnum_range (B : Fin 210) :
   · rintro ⟨i, rfl⟩
     exact derivedEnum_mem i
 
+/--
+@isnad1 id=iff.0h3v.s6.478ee2c28432 from=translated src=- shape=922cf19f vocab=838ddc22
+-/
 theorem residualEnum_range (B : Fin 210) :
     B ∈ Q.residualIndex z ↔ ∃ n, Q.residualEnum z n = B := by
   constructor
@@ -345,6 +441,9 @@ theorem residualEnum_range (B : Fin 210) :
   · rintro ⟨n, rfl⟩
     exact residualEnum_mem n
 
+/--
+@isnad1 id=ne.0h4v.s5.1298426276f7 from=translated src=- shape=a40b5b0b vocab=04230018
+-/
 theorem derivedEnum_ne_residualEnum (i : Fin 45) (n : Fin 165) :
     Q.derivedEnum z i ≠ Q.residualEnum z n := by
   intro h
@@ -404,11 +503,17 @@ noncomputable def residual165 : Residual165 (Q.derived45 z) where
 
 end ConcreteQSD56
 
+/--
+@isnad1 id=ex.0h2v.s5.70e4f0c4a4fb from=translated src=- shape=c2ef7535 vocab=c36cbfdc
+-/
 theorem exists_derived_residual_at (Q : ConcreteQSD56) (z : Fin 56) :
     ∃ (P : Type) (instF : Fintype P) (instD : DecidableEq P)
       (E : @Derived45 P instF instD), Nonempty (@Residual165 P instF instD E) :=
   ⟨Punctured z, inferInstance, inferInstance, Q.derived45 z, ⟨Q.residual165 z⟩⟩
 
+/--
+@isnad1 id=ex.0h1v.s5.4d31d0bbe166 from=translated src=- shape=71b196b1 vocab=df30ca6b
+-/
 theorem exists_derived_residual (Q : ConcreteQSD56) :
     ∃ (P : Type) (instF : Fintype P) (instD : DecidableEq P)
       (E : @Derived45 P instF instD), Nonempty (@Residual165 P instF instD E) :=

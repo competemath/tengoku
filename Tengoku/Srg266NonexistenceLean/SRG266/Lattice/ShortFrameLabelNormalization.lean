@@ -15,6 +15,9 @@ def ShortFrameLabel (a c : ℤ) : Prop :=
 
 def orientedALabel (ε a : ℤ) : ℤ := if ε = 1 then a else 12-a
 
+/--
+@isnad1 id=or.4h4v.s7.971ec2f1c539 from=translated src=- shape=2880fbd2 vocab=3bff10e9
+-/
 theorem shortFrameLabel_compatible_B {a b c d : ℤ}
     (ha : ShortFrameLabel a c) (hb : b = 1 ∨ b = 11) (hd : d = -1 ∨ d = 1)
     (hdiv : 12 ∣ 21-a*b+16*c*d) :
@@ -27,11 +30,17 @@ theorem shortFrameLabel_compatible_B {a b c d : ℤ}
       rcases hb with rfl | rfl <;> rcases hd with rfl | rfl <;>
       norm_num at hdiv <;> norm_num [orientedALabel]
 
+/--
+@isnad1 id=eq.3h2v.s6.6447fa52fd20 from=translated src=- shape=c263070d vocab=66c777bb
+-/
 theorem shortFrameLabel_compatible_A {a b : ℤ}
     (ha : a = 3 ∨ a = 9) (hb : b = 3 ∨ b = 9) (hdiv : 12 ∣ 21-a*b) :
     a = b := by
   rcases ha with rfl | rfl <;> rcases hb with rfl | rfl <;> norm_num at hdiv <;> rfl
 
+/--
+@isnad1 id=ex.2h4v.s7.4ff6ae76d075 from=translated src=- shape=4c884dd0 vocab=772a51e7
+-/
 theorem shortFrameLabel_global_orientation {ι : Type*} (anchor : ι) (a c : ι → ℤ)
     (hlabel : ∀ i, ShortFrameLabel (a i) (c i))
     (hpair : ∀ i j, 12 ∣ 21-a i*a j+16*c i*c j) :

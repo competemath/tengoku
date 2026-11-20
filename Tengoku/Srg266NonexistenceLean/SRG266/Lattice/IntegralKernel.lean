@@ -30,6 +30,9 @@ def kernelNumerator (h : W →ₗ[ℚ] ℚ) (e : W) : W →ₗ[ℚ] h.ker where
     simp only [smul_eq_mul]
     module
 
+/--
+@isnad1 id=surjecti.1h3v.s8.dc23b39a809e from=translated src=- shape=6c0625bf vocab=4c4b3d2f
+-/
 theorem kernelNumerator_surjective (h : W →ₗ[ℚ] ℚ) (e : W) (he : h e ≠ 0) :
     Function.Surjective (kernelNumerator h e) := by
   intro y
@@ -40,6 +43,9 @@ theorem kernelNumerator_surjective (h : W →ₗ[ℚ] ℚ) (e : W) (he : h e ≠
   rw [map_smul, hy, smul_zero, zero_smul, sub_zero, smul_smul, mul_inv_cancel₀ he,
     one_smul]
 
+/--
+@isnad1 id=islattic.4h4v.s9.6651e678c6ad from=translated src=- shape=13ddb2af vocab=62818f08
+-/
 theorem isLattice_comap_kernel (h : W →ₗ[ℚ] ℚ) {P : Submodule ℤ W}
     (hP : IsLattice ℚ P) (hint : ∀ z ∈ P, h z ∈ (1 : Submodule ℤ ℚ))
     {e : W} (heP : e ∈ P) (he : h e ≠ 0) :

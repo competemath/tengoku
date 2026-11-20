@@ -23,6 +23,9 @@ def HasPrimaryNormalForm (B : LinearMap.BilinForm ℚ W) (N : Submodule ℤ W)
     (∃ k : ℤ, B u u = 2 / (p : ℚ) + 2 * (k : ℚ)) ∧
     (∃ k : ℤ, B v v = (binaryNumerator : ℚ) / (p : ℚ) + 2 * (k : ℚ)))
 
+/--
+@isnad1 id=hasprima.3h4v.s6.8415ac5287da from=translated src=- shape=b9aaecaa vocab=6d6941a6
+-/
 theorem GlueBasis.normalForm_three (S : GlueBasis B N 3)
     (hs : B.IsSymm) (hmax : IsMaximalIntegral B N) (he : IsEven B N) :
     HasPrimaryNormalForm B N 3 2 := by
@@ -46,6 +49,9 @@ theorem GlueBasis.normalForm_three (S : GlueBasis B N 3)
     exact ⟨vec 0, r, k, hr, by simpa only [range_fin_one_eq_singleton] using hspan, hk⟩
   · exact Or.inr (Or.inr (S.normalized_binary_three hR hs hmax he))
 
+/--
+@isnad1 id=hasprima.3h4v.s6.4cd2dcb78fe5 from=translated src=- shape=b9aaecaa vocab=6d6941a6
+-/
 theorem GlueBasis.normalForm_five (S : GlueBasis B N 5)
     (hs : B.IsSymm) (hmax : IsMaximalIntegral B N) (he : IsEven B N) :
     HasPrimaryNormalForm B N 5 4 := by

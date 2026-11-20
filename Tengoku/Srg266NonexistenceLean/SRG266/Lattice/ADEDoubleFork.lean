@@ -28,6 +28,9 @@ def doubleForkWeight {n : ℕ} : Fin n ⊕ (Fin 2 ⊕ Fin 2) → ℤ
   | Sum.inl _ => 2
   | Sum.inr _ => 1
 
+/--
+@isnad1 id=eq.0h2v.s7.b8b24548ec72 from=translated src=- shape=538590a5 vocab=62d3c177
+-/
 theorem pathGraph_sum_adj_indicator (n : ℕ) (i : Fin n) :
     (∑ j : Fin n, if (SimpleGraph.pathGraph n).Adj i j then (1 : ℤ) else 0) =
       (if 0 < i.1 then 1 else 0) + (if i.1 + 1 < n then 1 else 0) := by

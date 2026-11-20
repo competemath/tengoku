@@ -38,6 +38,9 @@ def blocksThroughPair (x : V) (z w : FirstSubconstituent G x) :
 
 omit [DecidableEq V] in
 
+/--
+@isnad1 id=not.2h5v.s5.98afcdb13c64 from=translated src=- shape=17c3a5c4 vocab=81e17ded
+-/
 theorem not_adj_root_of_adj_first
     (hG : IsHypothetical G) (x : V) (z : FirstSubconstituent G x)
     {w : V} (hzw : G.Adj (z : V) w) :
@@ -51,6 +54,9 @@ theorem not_adj_root_of_adj_first
 
 omit [DecidableEq V] in
 
+/--
+@isnad1 id=not.1h5v.s6.4eb0c50f6c7e from=translated src=- shape=86c58358 vocab=81e17ded
+-/
 theorem firstSubconstituent_independent
     (hG : IsHypothetical G) (x : V)
     (z w : FirstSubconstituent G x) :
@@ -82,6 +88,9 @@ def blocksThroughEquiv
     apply Subtype.ext
     rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.2e9ca08b80e3 from=translated src=- shape=bb6e0773 vocab=f047480b
+-/
 theorem blocksThrough_card
     (hG : IsHypothetical G) (x : V) (z : FirstSubconstituent G x) :
     (blocksThrough G x z).card = 44 := by
@@ -130,6 +139,9 @@ def blocksThroughPairEquiv
     apply Subtype.ext
     rfl
 
+/--
+@isnad1 id=eq.2h5v.s6.68c83ac50955 from=translated src=- shape=30e91fae vocab=b82ce912
+-/
 theorem blocksThroughPair_card
     (hG : IsHypothetical G) (x : V)
     {z w : FirstSubconstituent G x} (hzw : z ≠ w) :
@@ -151,6 +163,9 @@ theorem blocksThroughPair_card
     _ = 8 := by
       rw [Finset.card_erase_of_mem hx, Set.toFinset_card, hcommon]
 
+/--
+@isnad1 id=istwodes.1h3v.s7.0d60fbfc5432 from=translated src=- shape=bf850c48 vocab=e3593c7e
+-/
 theorem localDesign_isTwoDesignWith
     (hG : IsHypothetical G) (x : V) :
     IsTwoDesignWith (localBlock G x) 45 220 9 44 8 where

@@ -19,6 +19,9 @@ open scoped FourierTransform RealInnerProductSpace
 variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
   [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V]
 
+/--
+@isnad1 id=eq.0h4v.s12.1e6e327f76e5 from=translated src=- shape=aa41432d vocab=d6f29eac
+-/
 theorem fourier_comp_linearEquiv (A : V ≃ₗ[ℝ] V) (f : V → ℂ) (w : V) :
     𝓕 (f ∘ A) w =
       |LinearMap.det (A : V →ₗ[ℝ] V)|⁻¹ •

@@ -12,6 +12,9 @@ namespace SRG266.Lattice
 
 open scoped Matrix BigOperators Classical
 
+/--
+@isnad1 id=not.0h2v.s7.ba532d0a8c73 from=translated src=- shape=6c742425 vocab=7e000043
+-/
 theorem coordinateUnit_not_mem_even {n : ℕ} (i : Fin n) :
     Pi.single i (1 : ℚ) ∉ evenCoordinateLattice n := by
   rintro ⟨z, hz, heq⟩
@@ -24,6 +27,9 @@ theorem coordinateUnit_not_mem_even {n : ℕ} (i : Fin n) :
   rw [hzi] at hz
   simp at hz
 
+/--
+@isnad1 id=mem.0h3v.s7.44d772172546 from=translated src=- shape=1cacb4e9 vocab=28239a0c
+-/
 theorem coordinateUnit_add_mem_even {n : ℕ} (i j : Fin n) :
     Pi.single i (1 : ℚ) + Pi.single j 1 ∈ evenCoordinateLattice n := by
   apply mem_evenCoordinateLattice.mpr
@@ -34,6 +40,9 @@ theorem coordinateUnit_add_mem_even {n : ℕ} (i j : Fin n) :
     norm_num
   · simp [Finset.sum_add_distrib]
 
+/--
+@isnad1 id=mem.0h3v.s7.b21026bce600 from=translated src=- shape=1cacb4e9 vocab=fdfd7c52
+-/
 theorem coordinateUnit_sub_mem_even {n : ℕ} (i j : Fin n) :
     Pi.single i (1 : ℚ) - Pi.single j 1 ∈ evenCoordinateLattice n := by
   apply mem_evenCoordinateLattice.mpr
@@ -43,18 +52,27 @@ theorem coordinateUnit_sub_mem_even {n : ℕ} (i j : Fin n) :
       simp_all
   · simp [Finset.sum_sub_distrib]
 
+/--
+@isnad1 id=eq.1h3v.s9.964ecf3a2a7f from=translated src=- shape=9209bad7 vocab=daddf247
+-/
 theorem coordinateUnit_add_norm {n : ℕ} {i j : Fin n} (hij : i ≠ j) :
     standardRatForm n (Pi.single i 1 + Pi.single j 1)
       (Pi.single i 1 + Pi.single j 1) = 2 := by
   norm_num [map_add, LinearMap.add_apply, standardRatForm_apply,
     Pi.single_apply, mul_ite, hij, hij.symm]
 
+/--
+@isnad1 id=eq.1h3v.s9.48d5d114d505 from=translated src=- shape=9209bad7 vocab=5281ff78
+-/
 theorem coordinateUnit_sub_norm {n : ℕ} {i j : Fin n} (hij : i ≠ j) :
     standardRatForm n (Pi.single i 1 - Pi.single j 1)
       (Pi.single i 1 - Pi.single j 1) = 2 := by
   norm_num [map_sub, LinearMap.sub_apply, standardRatForm_apply,
     Pi.single_apply, mul_ite, hij, hij.symm]
 
+/--
+@isnad1 id=not.7h11v.s13.a2419e456fba from=translated src=- shape=42099ef9 vocab=a6a9cd78
+-/
 theorem not_two_gramDivisibility_of_integral_root_projection
     {ι W U : Type*} [Fintype ι] [DecidableEq ι]
     [AddCommGroup W] [Module ℚ W] [AddCommGroup U] [Module ℚ U]

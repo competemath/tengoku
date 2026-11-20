@@ -39,6 +39,9 @@ def adeBlockPairing : (ts : List ADEType) → ADEBlockIndex ts → ADEBlockIndex
   | _ :: ts, Sum.inr i, Sum.inr j => adeBlockPairing ts i j
   | _ :: _, _, _ => 0
 
+/--
+@isnad1 id=eq.0h3v.s6.2311cf674803 from=translated src=- shape=9778c545 vocab=641df000
+-/
 @[simp]
 theorem finADEBlockEquiv_cons_castAdd
     (t : ADEType) (ts : List ADEType) (i : Fin t.rank) :
@@ -48,6 +51,9 @@ theorem finADEBlockEquiv_cons_castAdd
       (Fin.castAdd (ADEType.rankSum ts) i) = Sum.inl i
   simp
 
+/--
+@isnad1 id=eq.0h3v.s7.b387e0485535 from=translated src=- shape=c3d8ef00 vocab=3f05ee8d
+-/
 @[simp]
 theorem finADEBlockEquiv_cons_natAdd
     (t : ADEType) (ts : List ADEType) (i : Fin (ADEType.rankSum ts)) :
@@ -58,6 +64,9 @@ theorem finADEBlockEquiv_cons_natAdd
       (Fin.natAdd t.rank i) = Sum.inr (finADEBlockEquiv ts i)
   simp
 
+/--
+@isnad1 id=eq.0h3v.s6.1e0f56903185 from=translated src=- shape=890568a9 vocab=658945e2
+-/
 theorem adeEntry_eq_adeBlockPairing : ∀ (ts : List ADEType)
     (i j : Fin (ADEType.rankSum ts)),
     adeEntry ts i.1 j.1 =
@@ -164,6 +173,9 @@ theorem adeEntry_eq_adeBlockPairing : ∀ (ts : List ADEType)
                   rw [hbi, hbj]
                   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.997420618df3 from=translated src=- shape=99931f11 vocab=92c49196
+-/
 theorem adeGram_apply_eq_adeBlockPairing (ts : List ADEType)
     (i j : Fin (ADEType.rankSum ts)) :
     (adeGram ts).2 i j =

@@ -22,6 +22,9 @@ def toZLinearMap {A B : Type*} [AddCommGroup A] [AddCommGroup B]
     intro r x
     simp
 
+/--
+@isnad1 id=eq.0h4v.s7.ac2878dfd8c6 from=translated src=- shape=993278b4 vocab=4b984387
+-/
 @[simp]
 theorem toZLinearMap_apply {A B : Type*} [AddCommGroup A] [AddCommGroup B]
     [Module ℤ A] [Module ℤ B] (f : A →+ B) (a : A) : toZLinearMap f a = f a := rfl

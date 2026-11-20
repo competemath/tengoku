@@ -21,6 +21,9 @@ structure PrimaryFamily (B : LinearMap.BilinForm ℚ W) (N : Submodule ℤ W)
   cross : ∀ i j, i ≠ j → B (vec i) (vec j) ∈ (1 : Submodule ℤ ℚ)
   norm : ∀ i, ∃ k : ℤ, B (vec i) (vec i) = primaryFraction p s i + 2 * (k : ℚ)
 
+/--
+@isnad1 id=ex.2h4v.s6.ecd419de9f1b from=translated src=- shape=a9566446 vocab=85f7870b
+-/
 theorem HasPrimaryNormalForm.exists_family {p : SmallOddPrime}
     (hs : B.IsSymm) (h : HasPrimaryNormalForm B N p.modulus p.binaryNumerator) :
     ∃ s : PrimaryShape, Nonempty (PrimaryFamily B N p s) := by
@@ -88,6 +91,9 @@ theorem HasPrimaryNormalForm.exists_family {p : SmallOddPrime}
           SmallOddPrime.binaryNumerator] using hk
 
 omit [AddCommGroup W] [Module ℚ W] in
+/--
+@isnad1 id=dvd.1h5v.s6.9d8480079185 from=translated src=- shape=2e3e4a2a vocab=1820dcd4
+-/
 theorem primaryFraction_unit (p : SmallOddPrime) (s : PrimaryShape) (i : Fin s.arity)
     (k a : ℤ) (h : (a : ℚ) * (primaryFraction p s i + 2 * (k : ℚ)) ∈
       (1 : Submodule ℤ ℚ)) : (p.modulus : ℤ) ∣ a := by
@@ -107,6 +113,9 @@ theorem primaryFraction_unit (p : SmallOddPrime) (s : PrimaryShape) (i : Fin s.a
     (by cases p <;> norm_num [SmallOddPrime.modulus]) hcop ?_ a h
   simp only [primaryFraction, Int.cast_natCast]
 
+/--
+@isnad1 id=dvd.1h8v.s8.aefd90266fa5 from=translated src=- shape=362f3df5 vocab=933f577e
+-/
 theorem PrimaryFamily.unit {p : SmallOddPrime} {s : PrimaryShape}
     (S : PrimaryFamily B N p s) (i : Fin s.arity) (a : ℤ)
     (h : (a : ℚ) * B (S.vec i) (S.vec i) ∈ (1 : Submodule ℤ ℚ)) : (p.modulus : ℤ) ∣ a := by

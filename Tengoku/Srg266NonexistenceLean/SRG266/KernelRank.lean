@@ -28,6 +28,9 @@ noncomputable def localSupportProjectorRat (x : V) :
       (SecondSubconstituent G x) ℚ :=
   fun B C => (localSupportNumerator G x B C : ℚ) / 495
 
+/--
+@isnad1 id=eq.1h3v.s7.828837a25047 from=translated src=- shape=2ebfb7e4 vocab=656438ff
+-/
 theorem localSupportProjectorRat_idempotent
     (hG : IsHypothetical G) (x : V) :
     localSupportProjectorRat G x * localSupportProjectorRat G x =
@@ -66,6 +69,9 @@ theorem localSupportProjectorRat_idempotent
       push_cast
       ring
 
+/--
+@isnad1 id=eq.1h3v.s6.f40e5deecce8 from=translated src=- shape=2c759236 vocab=6a818e06
+-/
 theorem localSupportProjectorRat_trace
     (hG : IsHypothetical G) (x : V) :
     (localSupportProjectorRat G x).trace = 12 := by
@@ -82,6 +88,9 @@ theorem localSupportProjectorRat_trace
   simp [secondSubconstituent_card G hG x]
   norm_num
 
+/--
+@isnad1 id=eq.1h3v.s6.f97e916ffb86 from=translated src=- shape=d95d0888 vocab=3e3f979b
+-/
 theorem localSupportProjectorRat_rank
     (hG : IsHypothetical G) (x : V) :
     (localSupportProjectorRat G x).rank = 12 :=
@@ -90,6 +99,9 @@ theorem localSupportProjectorRat_rank
     (localSupportProjectorRat_idempotent G hG x)
     (localSupportProjectorRat_trace G hG x)
 
+/--
+@isnad1 id=eq.1h3v.s7.bbc463c47417 from=translated src=- shape=7acdee51 vocab=73b4c598
+-/
 theorem localSupportProjectorRat_mul_localGramMatrixRat
     (hG : IsHypothetical G) (x : V) :
     localSupportProjectorRat G x * localGramMatrixRat G x =
@@ -139,6 +151,9 @@ noncomputable def localGramRankFactorRat (x : V) :
       (SecondSubconstituent G x) ℚ :=
   fun B C => (localGramRankFactorNumerator G x B C : ℚ) / 7425
 
+/--
+@isnad1 id=eq.1h3v.s7.d738bf5c28fa from=translated src=- shape=7acdee51 vocab=76751699
+-/
 theorem localGramMatrixRat_mul_rankFactor
     (hG : IsHypothetical G) (x : V) :
     localGramMatrixRat G x * localGramRankFactorRat G x =
@@ -186,6 +201,9 @@ theorem localGramMatrixRat_mul_rankFactor
       push_cast
       ring
 
+/--
+@isnad1 id=eq.1h3v.s6.2ad321571ed4 from=translated src=- shape=d95d0888 vocab=79be8802
+-/
 theorem localGramMatrixRat_rank
     (hG : IsHypothetical G) (x : V) :
     (localGramMatrixRat G x).rank = 12 := by
@@ -217,6 +235,9 @@ def integerToRationalVectors (x : V) :
       (SecondSubconstituent G x → ℚ) :=
   (Algebra.linearMap ℤ ℚ).compLeft (SecondSubconstituent G x)
 
+/--
+@isnad1 id=islocali.0h3v.s7.4843b2c51d85 from=translated src=- shape=818206f7 vocab=18c717f9
+-/
 local instance integerToRationalVectors_isLocalized (x : V) :
     IsLocalizedModule ℤ⁰ (integerToRationalVectors G x) := by
   let f : ℤ →ₗ[ℤ] ℚ := Algebra.linearMap ℤ ℚ
@@ -235,6 +256,9 @@ noncomputable def localizedIntegralGramMap (x : V) :
     (integerToRationalVectors G x)
     (localGramMatrix G x).mulVecLin
 
+/--
+@isnad1 id=eq.0h3v.s8.f90764c6e9ee from=translated src=- shape=1c9ec3e0 vocab=ccb37ef9
+-/
 theorem localizedIntegralGramMap_eq_localGramMatrixRat
     (x : V) :
     (localizedIntegralGramMap G x).extendScalarsOfIsLocalization ℤ⁰ ℚ =
@@ -263,6 +287,9 @@ def rationalGramKernel (x : V) :
     Submodule ℚ (SecondSubconstituent G x → ℚ) :=
   LinearMap.ker (localGramMatrixRat G x).mulVecLin
 
+/--
+@isnad1 id=eq.1h3v.s8.08a0cd50432c from=translated src=- shape=f4977a78 vocab=e61a41ac
+-/
 theorem rationalGramKernel_finrank
     (hG : IsHypothetical G) (x : V) :
     Module.finrank ℚ (rationalGramKernel G x) = 208 := by
@@ -278,6 +305,9 @@ theorem rationalGramKernel_finrank
     secondSubconstituent_card G hG x] at hnull
   omega
 
+/--
+@isnad1 id=eq.0h3v.s7.ec16df3c26ba from=translated src=- shape=555e4d81 vocab=fbf381ab
+-/
 theorem localized_integralGramKernel_eq_rationalGramKernel
     (x : V) :
     (integralGramKernel G x).localized' ℚ ℤ⁰
@@ -295,6 +325,9 @@ theorem localized_integralGramKernel_eq_rationalGramKernel
   rw [localizedIntegralGramMap_eq_localGramMatrixRat G x]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s9.bd3d6d718ee3 from=translated src=- shape=f4977a78 vocab=1478c453
+-/
 theorem integralGramKernel_finrank
     (hG : IsHypothetical G) (x : V) :
     Module.finrank ℤ (integralGramKernel G x) = 208 := by

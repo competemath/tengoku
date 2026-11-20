@@ -20,6 +20,9 @@ noncomputable def coordinateRootMap
     (Fin m → ℤ) →ₗ[ℤ] L.carrier :=
   Fintype.linearCombination ℤ fun i => normTwoRootVal (coord i).1
 
+/--
+@isnad1 id=injectiv.1h5v.s9.5cb85dc65aed from=translated src=- shape=bb96d770 vocab=30c4175c
+-/
 theorem coordinateRootMap_injective
     {n m : ℕ} {L : PDUnimodularLattice n} [Finite (NormTwoRoot L)]
     {f : L.carrier →+ ℤ} (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0)
@@ -38,6 +41,9 @@ theorem coordinateRootMap_injective
         (fun i : Fin m => normTwoRootVal (coord i).1)) y at hxy
   exact hli'.fintypeLinearCombination_injective hxy
 
+/--
+@isnad1 id=eq.2h8v.s12.3d5f842fe1e6 from=translated src=- shape=b62baf3e vocab=a625fa8a
+-/
 theorem coordinateRootMap_pairing
     {n m : ℕ} {L : PDUnimodularLattice n} [Finite (NormTwoRoot L)]
     {f : L.carrier →+ ℤ} (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0)
@@ -56,6 +62,9 @@ theorem coordinateRootMap_pairing
   rw [← hA i j, graphCartanMatrix_simpleRootGraph f hf]
   rfl
 
+/--
+@isnad1 id=ex.1h6v.s10.94c13c434080 from=translated src=- shape=98369080 vocab=b68275b4
+-/
 theorem coordinateRootMap_covers_normTwoRoots
     {n m : ℕ} {L : PDUnimodularLattice n} [Finite (NormTwoRoot L)]
     {f : L.carrier →+ ℤ} (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0)
@@ -79,6 +88,9 @@ theorem coordinateRootMap_covers_normTwoRoots
     (fun i : Fin m => normTwoRootVal (coord i).1)) x = r.1
   simpa only [Fintype.linearCombination_apply] using hx
 
+/--
+@isnad1 id=eq.0h6v.s9.11884375d550 from=translated src=- shape=a67cc2bc vocab=7817c791
+-/
 theorem coordinateRootMap_eq_simpleRootCombination
     {n m : ℕ} {L : PDUnimodularLattice n} [Finite (NormTwoRoot L)]
     {f : L.carrier →+ ℤ} (coord : Fin m ≃ simpleRootSet f) (z : Fin m → ℤ) :
@@ -96,6 +108,9 @@ theorem coordinateRootMap_eq_simpleRootCombination
     intro i _
     exact int_smul_eq_zsmul _ _ _
 
+/--
+@isnad1 id=eq.4h8v.s12.9c3fa48498bf from=translated src=- shape=494fe339 vocab=6328d88b
+-/
 theorem coordinateRootMap_dominant_height
     {n m : ℕ} {L : PDUnimodularLattice n} [Finite (NormTwoRoot L)]
     {f : L.carrier →+ ℤ} (coord : Fin m ≃ simpleRootSet f) (h : ℤ)

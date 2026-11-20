@@ -16,6 +16,9 @@ variable {P B : Type*} [Fintype P] [DecidableEq P] [Fintype B] [DecidableEq B]
 
 local notation "V" => KreinVertex (P := P) (B := B)
 
+/--
+@isnad1 id=eq.1h6v.s7.070267553622 from=translated src=- shape=f08815db vocab=0382bea0
+-/
 theorem neighborCount_union (T U : Finset V) (hd : Disjoint T U) (x : V) :
     D.neighborCount (T ∪ U) x = D.neighborCount T x + D.neighborCount U x := by
   simp only [neighborCount, Finset.filter_union]

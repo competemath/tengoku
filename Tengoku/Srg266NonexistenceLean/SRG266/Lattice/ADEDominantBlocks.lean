@@ -13,6 +13,9 @@ namespace SRG266.Lattice
 
 open scoped Matrix BigOperators Classical
 
+/--
+@isnad1 id=hasdomin.2h6v.s6.617fd4d90ffb from=translated src=- shape=8bb14831 vocab=89a47b98
+-/
 theorem HasDominantVector.reindex
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ]
@@ -33,6 +36,9 @@ theorem HasDominantVector.reindex
     exact hd (e i)
   · exact (Equiv.sum_comp e z).trans hs
 
+/--
+@isnad1 id=hasdomin.1h5v.s6.aafaf9689e4b from=translated src=- shape=29862b4d vocab=5b09de5d
+-/
 theorem HasDominantVector.blockLeft
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ]
@@ -52,6 +58,9 @@ theorem HasDominantVector.blockLeft
     · simp [Matrix.mulVec, dotProduct, Fintype.sum_sum_type, Matrix.fromBlocks]
   · simpa [Fintype.sum_sum_type] using hs
 
+/--
+@isnad1 id=hasdomin.1h5v.s6.01d13390518e from=translated src=- shape=e6864a37 vocab=5b09de5d
+-/
 theorem HasDominantVector.blockRight
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     [DecidableEq ι] [DecidableEq κ]
@@ -71,6 +80,9 @@ theorem HasDominantVector.blockRight
         Matrix.fromBlocks] using hd i
   · simpa [Fintype.sum_sum_type] using hs
 
+/--
+@isnad1 id=hasdomin.2h3v.s5.5ec636fe15b3 from=translated src=- shape=d9eeac78 vocab=4e6a9c59
+-/
 theorem adeBlock_hasDominantVector_of_mem
     {t : ADEType} {ts : List ADEType} {h : ℤ}
     (ht : t ∈ ts) (hv : HasDominantVector t.gram h) :
@@ -86,6 +98,9 @@ theorem adeBlock_hasDominantVector_of_mem
       · exact hv.blockLeft _
       · exact (ih ht).blockRight _
 
+/--
+@isnad1 id=hasdomin.2h2v.s6.7c45424e4570 from=translated src=- shape=d40caa5c vocab=ea8f9553
+-/
 theorem adeGram_hasDominantVector_of_mem
     {t : ADEType} {ts : List ADEType} (ht : t ∈ ts) (hregular : t.IsRegular) :
     HasDominantVector (adeGram ts).2 t.dominantHeight :=

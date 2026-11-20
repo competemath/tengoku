@@ -10,13 +10,22 @@ import Tengoku.Seed.Tactic.Tauto
 
 namespace SRG266.QuasiSymmetric
 
+/--
+@isnad1 id=iff.0h3v.s5.14df62ae315e from=translated src=- shape=23c29a1b vocab=00dd0f92
+-/
 theorem twoColor_link_parity (x y z : Fin 2) :
     (x = y ↔ (x = z ↔ y = z)) := by omega
 
+/--
+@isnad1 id=var.3h4v.s4.24fcf3359922 from=translated src=- shape=7a65ecdd vocab=e3b0c442
+-/
 theorem three_link_parities_force_face (A B C D : Prop)
     (h₁ : A ↔ (B ↔ C)) (h₂ : A ↔ (B ↔ D)) (h₃ : A ↔ (C ↔ D)) :
     A := by tauto
 
+/--
+@isnad1 id=var.5h6v.s6.224acf314e3f from=translated src=- shape=70a2dd46 vocab=e3b0c442
+-/
 theorem triple_of_four_point_link_parity
     {P : Type*} (H : P → P → P → Prop)
     (swap : ∀ p q r, H p q r ↔ H q p r)

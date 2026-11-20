@@ -13,6 +13,9 @@ variable {W U : Type*} [AddCommGroup W] [Module ℚ W] [AddCommGroup U] [Module 
 variable {B : LinearMap.BilinForm ℚ W} {C : LinearMap.BilinForm ℚ U}
 variable {N : Submodule ℤ W} {M : Submodule ℤ U} {ι : Type*}
 
+/--
+@isnad1 id=iseven.2h6v.s7.29100bc3a2ce from=translated src=- shape=261ee96f vocab=a9b01377
+-/
 theorem isEven_prod (hN : IsEven B N) (hM : IsEven C M) :
     IsEven (prodForm B C) (N.prod M) := by
   intro z hz
@@ -23,6 +26,9 @@ theorem isEven_prod (hN : IsEven B N) (hM : IsEven C M) :
   push_cast
   ring
 
+/--
+@isnad1 id=iseven.3h8v.s9.a646d33cd3d2 from=translated src=- shape=2bec5660 vocab=1c8d45ba
+-/
 theorem GlueSystem.glue_isEven (S : GlueSystem B C N M ι)
     (hN : IsEven B N) (hM : IsEven C M)
     (hdiag : ∀ i, ∃ k : ℤ, B (S.y i) (S.y i) + C (S.m i) (S.m i) = 2 * (k : ℚ)) :
@@ -32,6 +38,9 @@ theorem GlueSystem.glue_isEven (S : GlueSystem B C N M ι)
   rintro _ ⟨i, rfl⟩
   exact hdiag i
 
+/--
+@isnad1 id=and.15h10v.s11.026bd4b52344 from=translated src=- shape=aba17f31 vocab=a8e4a5cb
+-/
 theorem complete_even_glue [Fintype ι] [DecidableEq ι]
     (u : ι → W) (v : ι → U) (p : ι → ℤ)
     (hsB : B.IsSymm) (hsC : C.IsSymm)

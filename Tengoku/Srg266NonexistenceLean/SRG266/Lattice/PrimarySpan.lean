@@ -13,12 +13,18 @@ namespace SRG266.Lattice
 variable {W : Type*} [AddCommGroup W] {N : Submodule ℤ W} {u v : W}
 
 omit [AddCommGroup W] in
+/--
+@isnad1 id=eq.0h2v.s5.ee5a4097f1b4 from=translated src=- shape=279ee339 vocab=044e32a3
+-/
 theorem range_fin_one_eq_singleton (v : Fin 1 → W) : Set.range v = {v 0} := by
   have hv : v = fun _ : Fin 1 => v 0 :=
     funext fun i => congrArg v (Subsingleton.elim i 0)
   rw [hv, Set.range_const]
 
 omit [AddCommGroup W] in
+/--
+@isnad1 id=eq.0h2v.s6.6f8a84481ceb from=translated src=- shape=050b1535 vocab=c7601a5c
+-/
 theorem range_fin_two_eq_pair (v : Fin 2 → W) : Set.range v = {v 0, v 1} := by
   ext x
   constructor
@@ -30,12 +36,18 @@ theorem range_fin_two_eq_pair (v : Fin 2 → W) : Set.range v = {v 0, v 1} := by
     · exact ⟨0, hx.symm⟩
     · exact ⟨1, hx.symm⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.fdfb3b9af6ad from=translated src=- shape=7f1b2fb7 vocab=cccb8239
+-/
 theorem sup_span_pair (N : Submodule ℤ W) (u v : W) :
     N ⊔ Submodule.span ℤ {u, v} =
       (N ⊔ Submodule.span ℤ {u}) ⊔ (N ⊔ Submodule.span ℤ {v}) := by
   rw [show ({u, v} : Set W) = {u} ∪ {v} by ext; simp [or_comm], Submodule.span_union]
   exact sup_sup_distrib_left _ _ _
 
+/--
+@isnad1 id=eq.4h11v.s8.96c3b0d43387 from=translated src=- shape=6ce128a5 vocab=5498f793
+-/
 theorem sup_span_pair_smul_eq {p a b c d e f : ℤ}
     (hu : p • u ∈ N) (hv : p • v ∈ N)
     (ha : a * b + p * c = 1) (hd : d * e + p * f = 1) :
@@ -43,6 +55,9 @@ theorem sup_span_pair_smul_eq {p a b c d e f : ℤ}
   rw [sup_span_pair, sup_span_pair,
     sup_span_smul_eq_of_bezout hu ha, sup_span_smul_eq_of_bezout hv hd]
 
+/--
+@isnad1 id=eq.3h5v.s8.2a02a6dd4c91 from=translated src=- shape=362de53f vocab=be4c4ac6
+-/
 theorem sup_span_pair_hadamard_eq {p : ℤ} (hp : IsCoprime 2 p)
     (hu : p • u ∈ N) (hv : p • v ∈ N) :
     N ⊔ Submodule.span ℤ {u + v, u - v} = N ⊔ Submodule.span ℤ {u, v} := by
@@ -83,6 +98,9 @@ theorem sup_span_pair_hadamard_eq {p : ℤ} (hp : IsCoprime 2 p)
     · subst z
       exact hmem v h2v hv
 
+/--
+@isnad1 id=eq.0h6v.s9.96e61ac47ad7 from=translated src=- shape=cce978c4 vocab=c314f85a
+-/
 theorem prod_sup_span_singletons {U : Type*} [AddCommGroup U]
     (N : Submodule ℤ W) (M : Submodule ℤ U) (u : W) (v : U) :
     (N ⊔ Submodule.span ℤ {u}).prod (M ⊔ Submodule.span ℤ {v}) =

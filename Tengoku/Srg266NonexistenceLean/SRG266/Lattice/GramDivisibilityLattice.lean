@@ -13,6 +13,9 @@ namespace SRG266.Lattice
 
 open scoped Matrix BigOperators Classical
 
+/--
+@isnad1 id=mem.6h9v.s11.7b70f58e88fb from=translated src=- shape=f75e81bc vocab=fc0e37a7
+-/
 theorem mem_of_gramDivisibilityDescent
     {ι E : Type*} [Fintype ι] [DecidableEq ι]
     [AddCommGroup E] [Module ℚ E]

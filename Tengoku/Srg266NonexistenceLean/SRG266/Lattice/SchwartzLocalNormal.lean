@@ -22,6 +22,9 @@ abbrev intVectorEquivStandardIntegerLattice (n : ℕ) :
     (Fin n → ℤ) ≃ₗ[ℤ] standardIntegerLattice n :=
   ((Pi.basisFun ℝ (Fin n)).restrictScalars ℤ).equivFun.symm
 
+/--
+@isnad1 id=eq.0h2v.s10.15558fc50d75 from=translated src=- shape=765c8467 vocab=dae9bb17
+-/
 @[simp]
 theorem coe_intVectorEquivStandardIntegerLattice {n : ℕ} (z : Fin n → ℤ) :
     ((intVectorEquivStandardIntegerLattice n z : standardIntegerLattice n) :
@@ -32,6 +35,9 @@ theorem coe_intVectorEquivStandardIntegerLattice {n : ℕ} (z : Fin n → ℤ) :
   ext j
   simp [Pi.single_apply]
 
+/--
+@isnad1 id=summable.1h2v.s6.8f95ba343dc4 from=translated src=- shape=ff3b1152 vocab=00d2df0b
+-/
 theorem summable_intVector_norm_rpow {n : ℕ} (r : ℝ)
     (hr : r < -(n : ℝ)) :
     Summable fun z : Fin n → ℤ => ‖intVectorToReal z‖ ^ r := by
@@ -75,6 +81,9 @@ theorem summable_intVector_norm_rpow {n : ℕ} (r : ℝ)
       simpa [intVectorToReal] using PiLp.norm_apply_le (intVectorToReal z) i
     · exact (hr.trans_le (neg_nonpos.mpr (Nat.cast_nonneg n))).le
 
+/--
+@isnad1 id=locallyn.3h4v.s8.ef989049de95 from=translated src=- shape=eee4a929 vocab=b8a57983
+-/
 theorem locallyNormallySummableIntegerTranslates_of_pow_decay
     {n k : ℕ} (f : C(EuclideanSpace ℝ (Fin n), ℂ)) (hnk : n < k)
     {A : ℝ} (hA : 0 ≤ A)
@@ -161,6 +170,9 @@ theorem locallyNormallySummableIntegerTranslates_of_pow_decay
       rw [div_pow]
       field_simp
 
+/--
+@isnad1 id=locallyn.0h2v.s8.ff6ccf5760ba from=translated src=- shape=0c131f37 vocab=e497d807
+-/
 theorem SchwartzMap.locallyNormallySummableIntegerTranslates {n : ℕ}
     (f : SchwartzMap (EuclideanSpace ℝ (Fin n)) ℂ) :
     LocallyNormallySummableIntegerTranslates
@@ -249,6 +261,9 @@ theorem SchwartzMap.locallyNormallySummableIntegerTranslates {n : ℕ}
       rw [div_pow]
       field_simp
 
+/--
+@isnad1 id=summable.0h2v.s8.068d92a6dc0d from=translated src=- shape=34b7d107 vocab=c5c95acd
+-/
 theorem SchwartzMap.summable_fourier_intVector {n : ℕ}
     (f : SchwartzMap (EuclideanSpace ℝ (Fin n)) ℂ) :
     Summable fun m : Fin n → ℤ =>

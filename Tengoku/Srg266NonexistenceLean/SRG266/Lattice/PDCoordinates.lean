@@ -34,6 +34,9 @@ noncomputable def pdCoordEquiv (L : PDUnimodularLattice n) :
     (Fin n → ℤ) ≃ₗ[ℤ] L.carrier :=
   (pdFinBasis L).equivFun.symm
 
+/--
+@isnad1 id=ex.0h2v.s7.15cc5f4fd797 from=translated src=- shape=2957b1ee vocab=d3c957ae
+-/
 theorem exists_intCoords_multiple (v : Fin n → ℚ) :
     ∃ d : nonZeroDivisors ℤ, ∃ z : Fin n → ℤ,
       ∀ i, (z i : ℚ) = (d.1 : ℚ) * v i := by

@@ -13,6 +13,9 @@ namespace SRG266.Lattice
 
 open scoped BigOperators
 
+/--
+@isnad1 id=eq.2h4v.s6.796d565bdca0 from=translated src=- shape=6d4b9298 vocab=9fb60cb5
+-/
 theorem A11E6NormalizedType.label_nine_of_zero
     {a δ : ℤ} {u : Fin 11 → ℚ} {v : Fin 6 → ℚ}
     (h : A11E6NormalizedType a δ u v) (hv : v = 0) : a = 9 := by
@@ -21,6 +24,9 @@ theorem A11E6NormalizedType.label_nine_of_zero
   · simp only [hv, map_zero] at hn
     norm_num at hn
 
+/--
+@isnad1 id=ex.2h4v.s10.ab00a2cc33f2 from=translated src=- shape=1970d4e9 vocab=c052c4ff
+-/
 theorem a11_type_A_binary_coordinates
     {ε δ : ℤ} {u : Fin 11 → ℚ} {v : Fin 6 → ℚ}
     (hv : v = 0)

@@ -27,6 +27,9 @@ def quinaryFourLattice (N : Submodule ℤ W) (u : W) : Submodule ℤ (W × (Fin 
 def quinaryTwoLattice (N : Submodule ℤ W) (u : W) : Submodule ℤ (W × K8Coordinates.Space) :=
   cyclicGlueLattice N K8Coordinates.lattice u ((2 : ℤ) • K8Coordinates.dualVector)
 
+/--
+@isnad1 id=and.6h4v.s10.b476f571acee from=translated src=- shape=f8621b11 vocab=a0ac4c2b
+-/
 theorem complete_ternary_two (hsB : B.IsSymm) (hlN : IsLattice ℚ N)
     (hiN : IsIntegral B N) (heN : IsEven B N)
     (hdN : B.dualSubmodule N = N ⊔ Submodule.span ℤ {u})
@@ -46,6 +49,9 @@ theorem complete_ternary_two (hsB : B.IsSymm) (hlN : IsLattice ℚ N)
   · exact norm_denominator_unit (p := 3) (r := 2) (by norm_num)
       ⟨1, -1, by norm_num⟩ (by simpa using hk)
 
+/--
+@isnad1 id=and.6h4v.s10.510666fca0aa from=translated src=- shape=792fee04 vocab=793e3b12
+-/
 theorem complete_ternary_four (hsB : B.IsSymm) (hlN : IsLattice ℚ N)
     (hiN : IsIntegral B N) (heN : IsEven B N)
     (hdN : B.dualSubmodule N = N ⊔ Submodule.span ℤ {u})
@@ -67,6 +73,9 @@ theorem complete_ternary_four (hsB : B.IsSymm) (hlN : IsLattice ℚ N)
       ⟨-1, 1, by norm_num⟩ (by simpa using hk)
 
 omit [AddCommGroup W] [Module ℚ W] in
+/--
+@isnad1 id=eq.0h0v.s9.ce8407fb9695 from=translated src=- shape=ac816d40 vocab=a60a6239
+-/
 theorem a4_twice_weight_dual :
     (simplexRatForm 4).dualSubmodule (coordinateIntegerLattice 4) =
       coordinateIntegerLattice 4 ⊔ Submodule.span ℤ {(2 : ℤ) • simplexWeight 4} := by
@@ -75,10 +84,16 @@ theorem a4_twice_weight_dual :
   exact simplexRatForm_dual 4
 
 omit [AddCommGroup W] [Module ℚ W] in
+/--
+@isnad1 id=eq.0h0v.s9.f856647edf47 from=translated src=- shape=7493b5d3 vocab=8cc03a45
+-/
 theorem a4_twice_weight_norm :
     simplexRatForm 4 ((2 : ℤ) • simplexWeight 4) ((2 : ℤ) • simplexWeight 4) = 16 / 5 := by
   norm_num [simplexRatForm_apply, simplexWeight, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=and.6h4v.s10.4e739aa2d83d from=translated src=- shape=792fee04 vocab=bc310816
+-/
 theorem complete_quinary_four (hsB : B.IsSymm) (hlN : IsLattice ℚ N)
     (hiN : IsIntegral B N) (heN : IsEven B N)
     (hdN : B.dualSubmodule N = N ⊔ Submodule.span ℤ {u})
@@ -104,6 +119,9 @@ theorem complete_quinary_four (hsB : B.IsSymm) (hlN : IsLattice ℚ N)
       ⟨1, -1, by norm_num⟩ (by simpa using hk)
 
 omit [AddCommGroup W] [Module ℚ W] in
+/--
+@isnad1 id=eq.0h0v.s10.be3605ff8a69 from=translated src=- shape=39d9624e vocab=99fbe27a
+-/
 theorem k8_twice_dualVector_dual :
     K8Coordinates.form.dualSubmodule K8Coordinates.lattice =
       K8Coordinates.lattice ⊔ Submodule.span ℤ {(2 : ℤ) • K8Coordinates.dualVector} := by
@@ -112,6 +130,9 @@ theorem k8_twice_dualVector_dual :
   exact K8Coordinates.lattice_dual
 
 omit [AddCommGroup W] [Module ℚ W] in
+/--
+@isnad1 id=eq.0h0v.s10.6324ff3e3bcb from=translated src=- shape=d3074da7 vocab=2f962cd3
+-/
 theorem k8_twice_dualVector_norm :
     K8Coordinates.form ((2 : ℤ) • K8Coordinates.dualVector)
       ((2 : ℤ) • K8Coordinates.dualVector) = 8 / 5 := by
@@ -119,6 +140,9 @@ theorem k8_twice_dualVector_norm :
   rw [heq]
   norm_num [K8Coordinates.dualVector_norm]
 
+/--
+@isnad1 id=and.6h4v.s10.40f63dae1485 from=translated src=- shape=f8621b11 vocab=285a23ff
+-/
 theorem complete_quinary_two (hsB : B.IsSymm) (hlN : IsLattice ℚ N)
     (hiN : IsIntegral B N) (heN : IsEven B N)
     (hdN : B.dualSubmodule N = N ⊔ Submodule.span ℤ {u})

@@ -35,6 +35,9 @@ noncomputable def lorentzD7FrameVector (hG : IsHypothetical G) (x : V)
     lorentzPerpSpace G x c × (Fin 7 → ℚ) :=
   (lorentzPerpGenerator G hG x c hc B, coordinateSpinor 7)
 
+/--
+@isnad1 id=eq.2h5v.s13.b0d569b2c847 from=translated src=- shape=2888275a vocab=6df790c8
+-/
 theorem lorentzD7FrameVector_norm (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
     (hc : (11 : ℤ) • c = integralGramGeneratorSum G x) (B : SecondSubconstituent G x) :
@@ -46,6 +49,9 @@ theorem lorentzD7FrameVector_norm (hG : IsHypothetical G) (x : V)
   rw [lorentzPerpGenerator_norm, coordinateSpinor_norm]
   norm_num
 
+/--
+@isnad1 id=isintegr.4h6v.s11.2c5b734e349b from=translated src=- shape=01071384 vocab=826abcf1
+-/
 theorem lorentzD7Glue_isIntegral (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
     (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
@@ -60,6 +66,9 @@ theorem lorentzD7Glue_isIntegral (hG : IsHypothetical G) (x : V)
   apply mem_one_iff.mpr
   exact ⟨4, (lorentzD7FrameVector_norm G hG x c hc B).symm⟩
 
+/--
+@isnad1 id=iseven.5h6v.s11.e973474a404e from=translated src=- shape=38f25dfe vocab=0bb43c9e
+-/
 theorem lorentzD7Glue_isEven (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
     (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
@@ -73,6 +82,9 @@ theorem lorentzD7Glue_isEven (hG : IsHypothetical G) (x : V)
     heven (evenCoordinateLattice_isEven 7)
   exact ⟨2, (lorentzD7FrameVector_norm G hG x c hc B).trans (by norm_num)⟩
 
+/--
+@isnad1 id=iff.3h7v.s13.ad27b0cd7e63 from=translated src=- shape=18a0ab6e vocab=5972088c
+-/
 theorem lorentzD7Glue_mem_left_iff (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
     (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
@@ -83,6 +95,9 @@ theorem lorentzD7Glue_mem_left_iff (hG : IsHypothetical G) (x : V)
   cyclicGlueLattice_mem_left_iff
     (four_zsmul_lorentzPerpGenerator_mem G hG x c hc hle B) d7_spinor_order y
 
+/--
+@isnad1 id=iff.4h7v.s13.3a9da9082b68 from=translated src=- shape=e99eaca6 vocab=557f4df7
+-/
 theorem lorentzD7Glue_mem_right_iff (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
     (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
@@ -97,6 +112,9 @@ theorem lorentzD7Glue_mem_right_iff (hG : IsHypothetical G) (x : V)
     (lorentzPerpGenerator_norm G hG x c hc B)
     (four_zsmul_lorentzPerpGenerator_mem G hG x c hc hle B) m
 
+/--
+@isnad1 id=mem.3h7v.s12.1795fdfd75a2 from=translated src=- shape=26bb325e vocab=538bc841
+-/
 theorem lorentzD7FrameVector_mem (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
     (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
@@ -117,6 +135,9 @@ theorem lorentzD7FrameVector_mem (hG : IsHypothetical G) (x : V)
   rw [heq]
   exact Submodule.add_mem _ hdiff hbase
 
+/--
+@isnad1 id=eq.2h4v.s10.1c9a00eaa983 from=translated src=- shape=9b559a00 vocab=174d8e3f
+-/
 theorem finrank_lorentzD7Space (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
     (hc : (11 : ℤ) • c = integralGramGeneratorSum G x) :
@@ -124,6 +145,9 @@ theorem finrank_lorentzD7Space (hG : IsHypothetical G) (x : V)
   rw [Module.finrank_prod, finrank_lorentzPerpSpace G hG x c hc]
   simp
 
+/--
+@isnad1 id=ex.1h4v.s16.add101183ac7 from=translated src=- shape=46faa1a9 vocab=5bb0cc79
+-/
 theorem exists_lorentzD7Glue_from_graph (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
     ∃ (c : IntegralGramLattice G x)

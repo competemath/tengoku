@@ -14,6 +14,9 @@ namespace SRG266.QuasiSymmetric.TripleDesign57
 variable {P B : Type*} [Fintype P] [DecidableEq P] [Fintype B] [DecidableEq B]
     (D : TripleDesign57 P B)
 
+/--
+@isnad1 id=eq.0h6v.s8.c47349b41051 from=translated src=- shape=cc45115c vocab=dd10342c
+-/
 theorem incidence_triple_sum (p q r : P) :
     (∑ e, D.incidence p e * D.incidence q e * D.incidence r e) =
       2 + 9 * (if p = q then 1 else 0) + 9 * (if p = r then 1 else 0) +
@@ -45,13 +48,22 @@ theorem incidence_triple_sum (p q r : P) :
 
 def subsetTrace (S : Finset P) (e : B) : ℤ := ∑ p ∈ S, D.incidence p e
 
+/--
+@isnad1 id=eq.0h5v.s5.235ef530192b from=translated src=- shape=bfdd7b0d vocab=56d271f7
+-/
 @[simp] theorem subsetTrace_singleton (p : P) (e : B) :
     D.subsetTrace {p} e = D.incidence p e := by simp [subsetTrace]
 
+/--
+@isnad1 id=eq.0h5v.s6.572260c44288 from=translated src=- shape=3016e586 vocab=9659dd76
+-/
 theorem subsetTrace_block (b e : B) :
     D.subsetTrace (D.block b) e = ((D.block b ∩ D.block e).card : ℤ) := by
   simp [subsetTrace, incidence]
 
+/--
+@isnad1 id=eq.0h6v.s8.aa99f66de1b3 from=translated src=- shape=27801381 vocab=0ea93947
+-/
 theorem triple_subsetTrace_expand (S T U : Finset P) :
     (∑ e, D.subsetTrace S e * D.subsetTrace T e * D.subsetTrace U e) =
       ∑ p ∈ S, ∑ q ∈ T, ∑ r ∈ U,
@@ -73,6 +85,9 @@ theorem triple_subsetTrace_expand (S T U : Finset P) :
   rw [Finset.sum_comm]
   exact Finset.sum_congr rfl fun r hr => D.incidence_triple_sum p q r
 
+/--
+@isnad1 id=eq.0h6v.s8.9b815d67556c from=translated src=- shape=f394797c vocab=c498b714
+-/
 theorem triple_subsetTrace_sum (S T U : Finset P) :
     (∑ e, D.subsetTrace S e * D.subsetTrace T e * D.subsetTrace U e) =
       2 * (S.card : ℤ) * T.card * U.card +
@@ -92,16 +107,25 @@ theorem triple_subsetTrace_sum (S T U : Finset P) :
     Finset.sum_boole, Finset.filter_mem_eq_inter]
   ring
 
+/--
+@isnad1 id=eq.2h5v.s6.fd674f3cda1f from=translated src=- shape=67105181 vocab=dbf86ca9
+-/
 theorem block_intersection_three {b c : B} (hbc : b ≠ c)
     (hnot : (D.block b ∩ D.block c).card ≠ 0) : (D.block b ∩ D.block c).card = 3 :=
   (D.block_intersections b c hbc).resolve_left hnot
 
+/--
+@isnad1 id=eq.3h6v.s7.7209c3106068 from=translated src=- shape=731486c5 vocab=ff6646ad
+-/
 theorem point_point_block_moment {p q : P} {b : B} (hpq : p ≠ q)
     (hp : p ∉ D.block b) (hq : q ∉ D.block b) :
     (∑ e, D.incidence p e * D.incidence q e * D.subsetTrace (D.block b) e) = 24 := by
   have h := D.triple_subsetTrace_sum {p} {q} (D.block b)
   simpa [hpq, hp, hq, D.block_size] using h
 
+/--
+@isnad1 id=eq.3h6v.s7.480a613e7d99 from=translated src=- shape=ec880513 vocab=7474bd23
+-/
 theorem point_block_block_moment {p : P} {b c : B}
     (hp : p ∉ D.block b) (hq : p ∉ D.block c)
     (hbc : (D.block b ∩ D.block c).card = 3) :
@@ -109,6 +133,9 @@ theorem point_block_block_moment {p : P} {b c : B}
   have h := D.triple_subsetTrace_sum {p} (D.block b) (D.block c)
   simpa [hp, hq, hbc, D.block_size] using h
 
+/--
+@isnad1 id=eq.3h6v.s8.a9f1b721df79 from=translated src=- shape=3b8f7778 vocab=f53a1411
+-/
 theorem block_block_block_moment {b c d : B}
     (hbc : (D.block b ∩ D.block c).card = 3)
     (hbd : (D.block b ∩ D.block d).card = 3)
@@ -118,6 +145,9 @@ theorem block_block_block_moment {b c d : B}
   have h := D.triple_subsetTrace_sum (D.block b) (D.block c) (D.block d)
   simpa [hbc, hbd, hcd, D.block_size] using h
 
+/--
+@isnad1 id=eq.0h5v.s6.30fcb2c44ac5 from=translated src=- shape=759919ea vocab=50147ffc
+-/
 theorem subsetTrace_block_affine (b e : B) :
     D.subsetTrace (D.block b) e = 3 - 3 * D.disjointness b e + 9 * (if e = b then 1 else 0) := by
   rw [D.subsetTrace_block]
@@ -132,12 +162,18 @@ theorem subsetTrace_block_affine (b e : B) :
   · simp only [ite_eq_right heb, ite_eq_right (Ne.symm heb), mul_zero, add_zero] at h ⊢
     omega
 
+/--
+@isnad1 id=eq.0h5v.s6.1f408e99dc31 from=translated src=- shape=1450232a vocab=7ed9405b
+-/
 theorem incidence_mul_disjointness_sum (p : P) (b : B) :
     (∑ e, D.incidence p e * D.disjointness b e) = 12 - 12 * D.incidence p b := by
   have h := congrFun (congrFun D.incidence_mul_disjointness p) b
   simpa [Matrix.mul_apply, D.disjointness_comm b, Matrix.smul_apply, smul_eq_mul,
     Matrix.sub_apply, allOnesMatrix, mul_sub] using h
 
+/--
+@isnad1 id=eq.2h5v.s6.57c97c8e153c from=translated src=- shape=33b479ea vocab=a5efaa25
+-/
 theorem disjointness_pair_sum {b c : B} (hbc : b ≠ c)
     (hnot : (D.block b ∩ D.block c).card ≠ 0) :
     (∑ e, D.disjointness b e * D.disjointness c e) = 9 := by
@@ -149,6 +185,9 @@ theorem disjointness_pair_sum {b c : B} (hbc : b ≠ c)
   rw [hA] at h
   simpa only [← D.disjointness_comm c, mul_zero, mul_one, sub_zero, zero_add] using h
 
+/--
+@isnad1 id=eq.3h6v.s7.90a243ab1a71 from=translated src=- shape=99d5a728 vocab=4c04ccfb
+-/
 theorem point_point_disjoint_triple {p q : P} {b : B} (hpq : p ≠ q)
     (hp : p ∉ D.block b) (hq : q ∉ D.block b) :
     (∑ e, D.incidence p e * D.incidence q e * D.disjointness b e) = 3 := by
@@ -168,6 +207,9 @@ theorem point_point_disjoint_triple {p q : P} {b : B} (hpq : p ≠ q)
   rw [Finset.sum_sub_distrib, ← Finset.mul_sum, ← Finset.mul_sum, hG] at h
   omega
 
+/--
+@isnad1 id=eq.3h6v.s7.9d6f2bfaf238 from=translated src=- shape=e8c4b258 vocab=b28a3dfd
+-/
 theorem point_disjoint_disjoint_triple {p : P} {b c : B}
     (hp : p ∉ D.block b) (hq : p ∉ D.block c)
     (hbc : (D.block b ∩ D.block c).card = 3) :
@@ -196,6 +238,9 @@ theorem point_disjoint_disjoint_triple {p : P} {b c : B}
   rw [hpb,hpc] at h
   omega
 
+/--
+@isnad1 id=eq.6h6v.s8.dd666d397787 from=translated src=- shape=646ab4c3 vocab=77f867a5
+-/
 theorem three_disjoint_triple_complement {b c d : B}
     (hbcne : b ≠ c) (hbdne : b ≠ d) (hcdne : c ≠ d)
     (hbc : (D.block b ∩ D.block c).card = 3)
@@ -239,6 +284,9 @@ theorem three_disjoint_triple_complement {b c d : B}
     D.disjointness_pair_sum hcdne (by omega)] at h
   omega
 
+/--
+@isnad1 id=eq.6h6v.s7.2641d01ff5fd from=translated src=- shape=e0039e7c vocab=a3736716
+-/
 theorem independent_triple_neighbor_moment (x y z : KreinVertex (P := P) (B := B))
     (hxy : x ≠ y) (hxz : x ≠ z) (hyz : y ≠ z)
     (nxy : ¬ D.kreinGraph.Adj x y) (nxz : ¬ D.kreinGraph.Adj x z)

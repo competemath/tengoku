@@ -12,11 +12,17 @@ namespace SRG266.QuasiSymmetric
 
 open scoped BigOperators
 
+/--
+@isnad1 id=iff.0h3v.s4.393e8cf938d1 from=translated src=- shape=a2569baf vocab=e3b0c442
+-/
 theorem three_iff_parity (A B C : Prop) :
     ((A ↔ B) ↔ ((A ↔ C) ↔ (B ↔ C))) := by tauto
 
 namespace Edge11
 
+/--
+@isnad1 id=eq.1h2v.s5.4de9266f14c2 from=translated src=- shape=e7093c5b vocab=fe828aa6
+-/
 theorem arcDegree_star_ne {a b : Fin 11} (hab : a ≠ b) :
     arcDegree (star a) b = 1 := by
   rw [arcDegree, Finset.card_eq_one]
@@ -29,6 +35,9 @@ theorem arcDegree_star_ne {a b : Fin 11} (hab : a ≠ b) :
   · rintro rfl
     simp [vertices_mk']
 
+/--
+@isnad1 id=le.2h3v.s6.4be94b2263cd from=translated src=- shape=0cb6f624 vocab=1ca4d2c6
+-/
 theorem degree_le_two_of_meets {T : Finset Edge11} {c : Edge11}
     (htouch : ∀ e ∈ T, e = c ∨ vmeet c e = 1)
     {w : Fin 11} (hw : w ∉ c.vertices) : arcDegree T w ≤ 2 := by
@@ -52,6 +61,9 @@ theorem degree_le_two_of_meets {T : Finset Edge11} {c : Edge11}
     exact (Finset.card_insert_le _ _).trans (by simp)
   exact (Finset.card_le_card hsub).trans hcard
 
+/--
+@isnad1 id=mem.7h5v.s8.c437459c8cc0 from=translated src=- shape=0bf76c99 vocab=2c5a8863
+-/
 theorem common_endpoint_mem_central {T : Finset Edge11} {c e f : Edge11}
     (htouch : ∀ e ∈ T, e = c ∨ vmeet c e = 1)
     (hdegree : ∀ w, (arcDegree T w : ZMod 3) = 1)
@@ -70,6 +82,9 @@ theorem common_endpoint_mem_central {T : Finset Edge11} {c e f : Edge11}
   rw [hn] at h
   exact (by decide : (2 : ZMod 3) ≠ 1) h
 
+/--
+@isnad1 id=iff.9h6v.s8.7e28b8a0be36 from=translated src=- shape=2f70c81f vocab=cb82e7ab
+-/
 theorem vmeet_eq_one_iff_same_side {T : Finset Edge11} {c e f : Edge11}
     (htouch : ∀ e ∈ T, e = c ∨ vmeet c e = 1)
     (hdegree : ∀ w, (arcDegree T w : ZMod 3) = 1)
@@ -110,6 +125,9 @@ theorem vmeet_eq_one_iff_same_side {T : Finset Edge11} {c e f : Edge11}
       exact vmeet_eq_one hef ((hone e he hec).resolve_left hue)
         ((hone f hf hfc).resolve_left huf)
 
+/--
+@isnad1 id=ex.2h1v.s6.3ddd5f546e16 from=translated src=- shape=17372aa6 vocab=a7c631d2
+-/
 theorem exists_star_of_pairwise {T : Finset Edge11} (hcard : 3 < T.card)
     (hpair : ∀ e ∈ T, ∀ f ∈ T, e ≠ f → vmeet e f = 1) :
     ∃ w : Fin 11, T ⊆ star w := by
@@ -149,12 +167,18 @@ namespace CoherentK11System
 
 variable {P : Type*} [DecidableEq P] (K : CoherentK11System P)
 
+/--
+@isnad1 id=eq.0h4v.s5.2a7f17aff75e from=translated src=- shape=076263ac vocab=a7a9f7d0
+-/
 theorem localEdges_closedStar (p : P) (a : Fin 11) :
     K.localEdges (K.closedStar p a) p = Edge11.star a := by
   ext e
   have h := K.coordinate_mem_closedStar p ((K.coordinate p).symm e) a
   simpa [localEdges] using h
 
+/--
+@isnad1 id=injectiv.0h3v.s4.c4ca441eedb7 from=translated src=- shape=7ea29a5c vocab=80b7fef7
+-/
 theorem closedStar_injective (p : P) : Function.Injective (K.closedStar p) := by
   intro a b hab
   by_contra hne
@@ -172,6 +196,9 @@ theorem closedStar_injective (p : P) : Function.Injective (K.closedStar p) := by
   have hqb := (K.coordinate_mem_closedStar p q b).mp hqa
   simp [q, Edge11.vertices_mk', Ne.symm hne, Ne.symm hc.2] at hqb
 
+/--
+@isnad1 id=eq.1h5v.s6.0d7084fbe1a3 from=translated src=- shape=db136cce vocab=15eb646c
+-/
 theorem card_inter_closedStar {S : Finset P} {q : P} (hq : q ∈ S) (v : Fin 11) :
     (S ∩ K.closedStar q v).card = arcDegree (K.localEdges S q) v + 1 := by
   classical
@@ -202,6 +229,9 @@ theorem card_inter_closedStar {S : Finset P} {q : P} (hq : q ∈ S) (v : Fin 11)
     Finset.card_pos.mpr ⟨q, Finset.mem_inter.mpr ⟨hq, K.root_mem_closedStar q v⟩⟩
   omega
 
+/--
+@isnad1 id=or.2h6v.s8.c6e2c0eb9b23 from=translated src=- shape=38210e10 vocab=671727eb
+-/
 theorem localEdges_closedStar_meets {p : P} {a : Fin 11}
     (q : {q : P // q ≠ p}) (hq : q.val ∈ K.closedStar p a) :
     ∀ e ∈ K.localEdges (K.closedStar p a) q.val,
@@ -223,6 +253,9 @@ theorem localEdges_closedStar_meets {p : P} {a : Fin 11}
       ((K.coordinate_mem_closedStar p q a).mp hq)
       ((K.coordinate_mem_closedStar p ⟨r.val, hrp⟩ a).mp hrS)
 
+/--
+@isnad1 id=eq.1h5v.s5.91da011753c0 from=translated src=- shape=949ff3d1 vocab=14718b9b
+-/
 theorem closedStar_inter_card (p : P) {a b : Fin 11} (hab : a ≠ b) :
     (K.closedStar p a ∩ K.closedStar p b).card = 2 := by
   rw [K.card_inter_closedStar (K.root_mem_closedStar p a),
@@ -234,6 +267,9 @@ namespace ConcreteQSD56
 
 variable (Q : ConcreteQSD56)
 
+/--
+@isnad1 id=eq.1h5v.s7.a0848909c5c1 from=translated src=- shape=f323a115 vocab=1973ad9d
+-/
 theorem closedStar_degree_mod_three {p q : Fin 56} {a : Fin 11}
     (hq : q ∈ Q.toCoherentK11System.closedStar p a) (w : Fin 11) :
     (arcDegree (Q.toCoherentK11System.localEdges
@@ -242,6 +278,9 @@ theorem closedStar_degree_mod_three {p q : Fin 56} {a : Fin 11}
   rw [Q.toCoherentK11System.card_inter_closedStar hq, Nat.cast_add, Nat.cast_one] at h
   linear_combination h
 
+/--
+@isnad1 id=ex.2h4v.s9.34c266a0220a from=translated src=- shape=29038ef2 vocab=70c8bb27
+-/
 theorem closedStar_link_has_two_sides {p q : Fin 56} {a : Fin 11}
     (hqp : q ≠ p) (hq : q ∈ Q.toCoherentK11System.closedStar p a) :
     ∃ u : Fin 11, ∀ r s : {x : Fin 56 // x ≠ q},
@@ -266,6 +305,9 @@ theorem closedStar_link_has_two_sides {p q : Fin 56} {a : Fin 11}
     (fun h => hrp (congrArg Subtype.val ((K.coordinate q).injective h)))
     (fun h => hsp (congrArg Subtype.val ((K.coordinate q).injective h))) huv hc
 
+/--
+@isnad1 id=sparsetr.5h5v.s7.04329538d351 from=translated src=- shape=fd5bcfc7 vocab=53338295
+-/
 theorem closedStar_root_sparse {p q r : Fin 56} {a : Fin 11}
     (hq : q ∈ Q.toCoherentK11System.closedStar p a)
     (hr : r ∈ Q.toCoherentK11System.closedStar p a)
@@ -276,6 +318,9 @@ theorem closedStar_root_sparse {p q r : Fin 56} {a : Fin 11}
     ((Q.toCoherentK11System.coordinate_mem_closedStar p ⟨q,hqp⟩ a).mp hq)
     ((Q.toCoherentK11System.coordinate_mem_closedStar p ⟨r,hrp⟩ a).mp hr)
 
+/--
+@isnad1 id=iff.10h7v.s8.c0e292166722 from=translated src=- shape=b9b32e6e vocab=5e782516
+-/
 theorem closedStar_link_parity {p q x y z : Fin 56} {a : Fin 11}
     (hq : q ∈ (Q.toCoherentK11System.closedStar p a).erase p)
     (hx : x ∈ (Q.toCoherentK11System.closedStar p a).erase p)
@@ -301,6 +346,9 @@ theorem closedStar_link_parity {p q x y z : Fin 56} {a : Fin 11}
   rw [h₁, h₂, h₃]
   exact three_iff_parity _ _ _
 
+/--
+@isnad1 id=sparsetr.6h6v.s7.9c122151a69d from=translated src=- shape=fedd41c9 vocab=53338295
+-/
 theorem closedStar_triple_sparse {p x y z : Fin 56} {a : Fin 11}
     (hx : x ∈ Q.toCoherentK11System.closedStar p a)
     (hy : y ∈ Q.toCoherentK11System.closedStar p a)
@@ -372,6 +420,9 @@ theorem eq_closedStar_of_triple_clique {S : Finset (Fin 56)} {q : Fin 56}
     rw [heq, Edge11.mem_star] at h₁
     exact h₁.symm.trans h₂.symm
 
+/--
+@isnad1 id=ex.1h4v.s7.3aeb1cf46c7a from=translated src=- shape=47af8a7d vocab=588f57ad
+-/
 theorem closedStar_reroot {p q : Fin 56} {a : Fin 11}
     (hq : q ∈ Q.toCoherentK11System.closedStar p a) :
     ∃ b : Fin 11, Q.toCoherentK11System.closedStar p a =

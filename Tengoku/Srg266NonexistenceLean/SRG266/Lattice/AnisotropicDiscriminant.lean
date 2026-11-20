@@ -12,6 +12,9 @@ namespace SRG266.Lattice
 variable {W : Type*} [AddCommGroup W] [Module ℚ W]
 variable {B : LinearMap.BilinForm ℚ W} {P : Submodule ℤ W}
 
+/--
+@isnad1 id=mem.4h4v.s8.dff9bf283b15 from=translated src=- shape=1b152c21 vocab=e937d607
+-/
 theorem IsMaximalIntegral.mem_of_dual_of_integral_norm
     (hmax : IsMaximalIntegral B P) (hsymm : B.IsSymm) {y : W}
     (hy : y ∈ B.dualSubmodule P) (hnorm : B y y ∈ (1 : Submodule ℤ ℚ)) : y ∈ P := by
@@ -21,6 +24,9 @@ theorem IsMaximalIntegral.mem_of_dual_of_integral_norm
     Submodule.mem_sup_right (Submodule.mem_span_singleton_self _)
   rwa [heq] at hmem
 
+/--
+@isnad1 id=iff.3h5v.s11.5b597ed4dcac from=translated src=- shape=1962aa2d vocab=0f487544
+-/
 theorem discPairing_self_eq_zero_iff_of_maximal {p : ℕ} (hp : p ≠ 0)
     (hsymm : B.IsSymm) (hmax : IsMaximalIntegral B P) (d : discGroup B P p) :
     discPairing B P p hsymm d d = 0 ↔ d = 0 := by

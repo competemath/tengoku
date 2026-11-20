@@ -10,6 +10,9 @@ import Tengoku.Srg266NonexistenceLean.SRG266.Lattice.SimplexRootChain
 
 namespace SRG266.Lattice
 
+/--
+@isnad1 id=ex.1h1v.s8.18b498b4d6a6 from=translated src=- shape=961233f0 vocab=e52734c6
+-/
 theorem rankSix_has_large_A_chain (k : RankSixKind) (hk : k ≠ .seventyFive) :
     ∃ n : ℕ, (n = 0 ∨ n = 1) ∧ ∃ r : Fin (4+n) → rankSixSpace k,
       (∀ i, r i ∈ rankSixBase k) ∧

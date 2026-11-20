@@ -15,18 +15,27 @@ section GenericSOS
 
 variable {R ι : Type*} [CommRing R] [Fintype ι]
 
+/--
+@isnad1 id=eq.0h3v.s6.2f04cf8024d5 from=translated src=- shape=9786ea1e vocab=60c28547
+-/
 theorem allOnes_mulVec (a : ι → R) :
     (allOnesMatrix : Matrix ι ι R) *ᵥ a = fun _ => ∑ i, a i := by
   funext i
   show (∑ j, (1 : R) * a j) = ∑ i, a i
   simp
 
+/--
+@isnad1 id=eq.0h3v.s6.7ad08cc867f4 from=translated src=- shape=e7345863 vocab=37dfed8a
+-/
 theorem dotProduct_allOnes_mulVec (a : ι → R) :
     a ⬝ᵥ ((allOnesMatrix : Matrix ι ι R) *ᵥ a) = (∑ i, a i) ^ 2 := by
   rw [allOnes_mulVec]
   show (∑ i, a i * ∑ j, a j) = (∑ i, a i) ^ 2
   rw [← Finset.sum_mul, sq]
 
+/--
+@isnad1 id=eq.3h5v.s8.6f2e0af219a3 from=translated src=- shape=cff7fa81 vocab=a46a17fd
+-/
 theorem dotProduct_mulVec_sos {L P : Matrix ι ι R}
     (hP : P = (11 : R) • L - (6 : R) • (allOnesMatrix : Matrix ι ι R))
     (hPP : P * P = (495 : R) • P) (hPsym : P.IsSymm) (a : ι → R) :
@@ -52,6 +61,9 @@ theorem dotProduct_mulVec_sos {L P : Matrix ι ι R}
 
 variable [LinearOrder R] [IsStrictOrderedRing R]
 
+/--
+@isnad1 id=le.3h5v.s8.d1199146baad from=translated src=- shape=b09266c0 vocab=1c2e18a8
+-/
 theorem dotProduct_mulVec_nonneg {L P : Matrix ι ι R}
     (hP : P = (11 : R) • L - (6 : R) • (allOnesMatrix : Matrix ι ι R))
     (hPP : P * P = (495 : R) • P) (hPsym : P.IsSymm) (a : ι → R) :
@@ -62,6 +74,9 @@ theorem dotProduct_mulVec_nonneg {L P : Matrix ι ι R}
   have h2 : (0 : R) ≤ (∑ i, a i) ^ 2 := sq_nonneg _
   linarith
 
+/--
+@isnad1 id=eq.4h5v.s8.b9e80e56317b from=translated src=- shape=836b39a8 vocab=b157e156
+-/
 theorem dotProduct_mulVec_eq_zero {L P : Matrix ι ι R}
     (hP : P = (11 : R) • L - (6 : R) • (allOnesMatrix : Matrix ι ι R))
     (hPP : P * P = (495 : R) • P) (hPsym : P.IsSymm) (a : ι → R)
@@ -96,6 +111,9 @@ end GenericSOS
 variable {V : Type*} [Fintype V] [DecidableEq V]
 variable (G : SimpleGraph V) [DecidableRel G.Adj]
 
+/--
+@isnad1 id=eq.0h3v.s8.b60843f2508b from=translated src=- shape=e07208ba vocab=eb60d6bb
+-/
 theorem localSupportNumerator_eq_zsmul (x : V) :
     localSupportNumerator G x =
       (11 : ℤ) • localGramMatrix G x -
@@ -106,12 +124,18 @@ theorem localSupportNumerator_eq_zsmul (x : V) :
     mul_one]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.176e61bbdea9 from=translated src=- shape=74606e36 vocab=50a1ffda
+-/
 theorem localSupportNumerator_sq_zsmul (hG : IsHypothetical G) (x : V) :
     localSupportNumerator G x * localSupportNumerator G x =
       (495 : ℤ) • localSupportNumerator G x := by
   ext B C
   rw [localSupportNumerator_sq_apply G hG x B C, Matrix.smul_apply, smul_eq_mul]
 
+/--
+@isnad1 id=issymm.0h3v.s5.3bf26d9f50f7 from=translated src=- shape=9bbb9fae vocab=0114741e
+-/
 theorem localSupportNumerator_isSymm (x : V) : (localSupportNumerator G x).IsSymm :=
   Matrix.IsSymm.ext fun B C => by
     simp only [localSupportNumerator, localGramMatrix_comm G x C B]
@@ -120,6 +144,9 @@ def localSupportNumeratorRat (x : V) :
     Matrix (SecondSubconstituent G x) (SecondSubconstituent G x) ℚ :=
   fun B C => (localSupportNumerator G x B C : ℚ)
 
+/--
+@isnad1 id=eq.0h3v.s8.8791d2d4a224 from=translated src=- shape=e07208ba vocab=4a5030d5
+-/
 theorem localSupportNumeratorRat_eq_smul (x : V) :
     localSupportNumeratorRat G x =
       (11 : ℚ) • localGramMatrixRat G x -
@@ -133,6 +160,9 @@ theorem localSupportNumeratorRat_eq_smul (x : V) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.1h3v.s7.19e1f181f80d from=translated src=- shape=74606e36 vocab=2d6c474b
+-/
 theorem localSupportNumeratorRat_sq (hG : IsHypothetical G) (x : V) :
     localSupportNumeratorRat G x * localSupportNumeratorRat G x =
       (495 : ℚ) • localSupportNumeratorRat G x := by
@@ -151,6 +181,9 @@ theorem localSupportNumeratorRat_sq (hG : IsHypothetical G) (x : V) :
   push_cast
   ring
 
+/--
+@isnad1 id=issymm.0h3v.s5.9f9185c34025 from=translated src=- shape=9bbb9fae vocab=31558bb0
+-/
 theorem localSupportNumeratorRat_isSymm (x : V) :
     (localSupportNumeratorRat G x).IsSymm :=
   Matrix.IsSymm.ext fun B C => by
@@ -158,6 +191,9 @@ theorem localSupportNumeratorRat_isSymm (x : V) :
       ((localSupportNumerator G x B C : ℤ) : ℚ)
     simp only [localSupportNumerator, localGramMatrix_comm G x C B]
 
+/--
+@isnad1 id=eq.1h4v.s8.1bb76bcef495 from=translated src=- shape=248c8723 vocab=24079826
+-/
 theorem localGram_sos (hG : IsHypothetical G) (x : V)
     (a : SecondSubconstituent G x → ℤ) :
     5445 * (a ⬝ᵥ (localGramMatrix G x *ᵥ a)) =
@@ -166,6 +202,9 @@ theorem localGram_sos (hG : IsHypothetical G) (x : V)
   dotProduct_mulVec_sos (localSupportNumerator_eq_zsmul G x)
     (localSupportNumerator_sq_zsmul G hG x) (localSupportNumerator_isSymm G x) a
 
+/--
+@isnad1 id=eq.1h4v.s8.b11ceef7e5bc from=translated src=- shape=248c8723 vocab=fc3eb6bd
+-/
 theorem localGramRat_sos (hG : IsHypothetical G) (x : V)
     (a : SecondSubconstituent G x → ℚ) :
     5445 * (a ⬝ᵥ (localGramMatrixRat G x *ᵥ a)) =
@@ -174,12 +213,18 @@ theorem localGramRat_sos (hG : IsHypothetical G) (x : V)
   dotProduct_mulVec_sos (localSupportNumeratorRat_eq_smul G x)
     (localSupportNumeratorRat_sq G hG x) (localSupportNumeratorRat_isSymm G x) a
 
+/--
+@isnad1 id=le.1h4v.s7.50f34b826893 from=translated src=- shape=bafcbd40 vocab=5ce49bdf
+-/
 theorem localGram_quadratic_nonneg (hG : IsHypothetical G) (x : V)
     (a : SecondSubconstituent G x → ℤ) :
     0 ≤ a ⬝ᵥ (localGramMatrix G x *ᵥ a) :=
   dotProduct_mulVec_nonneg (localSupportNumerator_eq_zsmul G x)
     (localSupportNumerator_sq_zsmul G hG x) (localSupportNumerator_isSymm G x) a
 
+/--
+@isnad1 id=iff.1h4v.s8.8fe504f26636 from=translated src=- shape=0de06fac vocab=dee23ecd
+-/
 theorem localGram_quadratic_eq_zero_iff (hG : IsHypothetical G) (x : V)
     (a : SecondSubconstituent G x → ℤ) :
     a ⬝ᵥ (localGramMatrix G x *ᵥ a) = 0 ↔ localGramMatrix G x *ᵥ a = 0 := by
@@ -187,12 +232,18 @@ theorem localGram_quadratic_eq_zero_iff (hG : IsHypothetical G) (x : V)
   exact dotProduct_mulVec_eq_zero (localSupportNumerator_eq_zsmul G x)
     (localSupportNumerator_sq_zsmul G hG x) (localSupportNumerator_isSymm G x) a h
 
+/--
+@isnad1 id=le.1h4v.s7.c949e1c161d4 from=translated src=- shape=bafcbd40 vocab=3227b759
+-/
 theorem localGramRat_quadratic_nonneg (hG : IsHypothetical G) (x : V)
     (a : SecondSubconstituent G x → ℚ) :
     0 ≤ a ⬝ᵥ (localGramMatrixRat G x *ᵥ a) :=
   dotProduct_mulVec_nonneg (localSupportNumeratorRat_eq_smul G x)
     (localSupportNumeratorRat_sq G hG x) (localSupportNumeratorRat_isSymm G x) a
 
+/--
+@isnad1 id=iff.1h4v.s8.052fd62e0fa6 from=translated src=- shape=0de06fac vocab=5463debd
+-/
 theorem localGramRat_quadratic_eq_zero_iff (hG : IsHypothetical G) (x : V)
     (a : SecondSubconstituent G x → ℚ) :
     a ⬝ᵥ (localGramMatrixRat G x *ᵥ a) = 0 ↔ localGramMatrixRat G x *ᵥ a = 0 := by
@@ -200,11 +251,17 @@ theorem localGramRat_quadratic_eq_zero_iff (hG : IsHypothetical G) (x : V)
   exact dotProduct_mulVec_eq_zero (localSupportNumeratorRat_eq_smul G x)
     (localSupportNumeratorRat_sq G hG x) (localSupportNumeratorRat_isSymm G x) a h
 
+/--
+@isnad1 id=eq.0h5v.s10.52e04c1ca333 from=translated src=- shape=ca04c9a7 vocab=9129e996
+-/
 theorem integralGramPairing_mk (x : V) (a b : SecondSubconstituent G x → ℤ) :
     integralGramPairing G x (Submodule.Quotient.mk a) (Submodule.Quotient.mk b) =
       a ⬝ᵥ (localGramMatrix G x *ᵥ b) :=
   Matrix.toBilin'_apply' _ _ _
 
+/--
+@isnad1 id=issymm.0h3v.s7.87ab153b6486 from=translated src=- shape=3c0fbbd4 vocab=8244fff2
+-/
 theorem integralGramPairing_isSymm (x : V) : (integralGramPairing G x).IsSymm := by
   constructor
   intro v w
@@ -212,12 +269,18 @@ theorem integralGramPairing_isSymm (x : V) : (integralGramPairing G x).IsSymm :=
   obtain ⟨w, rfl⟩ := Submodule.Quotient.mk_surjective _ w
   exact (integralGramForm_isSymm G x).eq v w
 
+/--
+@isnad1 id=le.1h4v.s10.6b0f0605827d from=translated src=- shape=87e7c6c8 vocab=1dfcb0ff
+-/
 theorem integralGramPairing_nonneg (hG : IsHypothetical G) (x : V)
     (v : IntegralGramLattice G x) : 0 ≤ integralGramPairing G x v v := by
   obtain ⟨a, rfl⟩ := Submodule.Quotient.mk_surjective _ v
   rw [integralGramPairing_mk]
   exact localGram_quadratic_nonneg G hG x a
 
+/--
+@isnad1 id=lt.2h4v.s10.734d68fa4520 from=translated src=- shape=26313d67 vocab=d241a03e
+-/
 theorem integralGramPairing_posDef (hG : IsHypothetical G) (x : V)
     (v : IntegralGramLattice G x) (hv : v ≠ 0) :
     0 < integralGramPairing G x v v := by
@@ -230,6 +293,9 @@ theorem integralGramPairing_posDef (hG : IsHypothetical G) (x : V)
     exact LinearMap.mem_ker.mpr
       ((localGram_quadratic_eq_zero_iff G hG x a).mp h.symm)
 
+/--
+@isnad1 id=nondegen.1h3v.s7.ddd256863191 from=translated src=- shape=cdd5e181 vocab=39747228
+-/
 theorem integralGramPairing_nondegenerate (hG : IsHypothetical G) (x : V) :
     (integralGramPairing G x).Nondegenerate :=
   (LinearMap.BilinForm.nondegenerate_iff' (integralGramPairing G x)
@@ -237,6 +303,9 @@ theorem integralGramPairing_nondegenerate (hG : IsHypothetical G) (x : V) :
       (LinearMap.BilinForm.isSymm_iff.mp (integralGramPairing_isSymm G x))).mpr
     (integralGramPairing_posDef G hG x)
 
+/--
+@isnad1 id=eq.1h3v.s7.c8dc61e9e586 from=translated src=- shape=7a9b1ea6 vocab=86ed243c
+-/
 theorem finrank_integralGramLattice (hG : IsHypothetical G) (x : V) :
     Module.finrank ℤ (IntegralGramLattice G x) = 12 := by
   have h :
@@ -250,6 +319,9 @@ theorem finrank_integralGramLattice (hG : IsHypothetical G) (x : V) :
   rw [hker, Module.finrank_pi ℤ, secondSubconstituent_card G hG x] at h
   omega
 
+/--
+@isnad1 id=eq.0h4v.s9.ad40cd043d07 from=translated src=- shape=8eaf77e3 vocab=90885450
+-/
 theorem mk_eq_sum_smul_generator (x : V) (a : SecondSubconstituent G x → ℤ) :
     (Submodule.Quotient.mk a : IntegralGramLattice G x) =
       ∑ B, a B • integralGramGenerator G x B := by
@@ -263,6 +335,9 @@ theorem mk_eq_sum_smul_generator (x : V) (a : SecondSubconstituent G x → ℤ) 
         rw [map_sum]
         exact Finset.sum_congr rfl fun B _ => by rw [map_smul]; rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.6699a68c1e68 from=translated src=- shape=8ebae208 vocab=18f7707b
+-/
 theorem integralGramPairing_apply_mk_right (x : V)
     (v : IntegralGramLattice G x) (a : SecondSubconstituent G x → ℤ) :
     integralGramPairing G x v (Submodule.Quotient.mk a) =
@@ -283,12 +358,18 @@ theorem eq_zero_of_pairing_generators_eq_zero (hG : IsHypothetical G) (x : V)
   by_contra hv
   exact (integralGramPairing_posDef G hG x _ hv).ne' hzero
 
+/--
+@isnad1 id=le.1h4v.s10.fdbe4b66b74e from=translated src=- shape=87e7c6c8 vocab=eebb18c3
+-/
 theorem ratGramForm_nonneg (hG : IsHypothetical G) (x : V) (v : ratGramSpace G x) :
     0 ≤ ratGramForm G x v v := by
   obtain ⟨a, rfl⟩ := Submodule.Quotient.mk_surjective _ v
   rw [ratGramForm_mk]
   exact localGramRat_quadratic_nonneg G hG x a
 
+/--
+@isnad1 id=lt.2h4v.s10.5beb49343d3e from=translated src=- shape=26313d67 vocab=66e06045
+-/
 theorem ratGramForm_posDef (hG : IsHypothetical G) (x : V)
     (v : ratGramSpace G x) (hv : v ≠ 0) : 0 < ratGramForm G x v v := by
   obtain ⟨a, rfl⟩ := Submodule.Quotient.mk_surjective _ v
@@ -300,6 +381,9 @@ theorem ratGramForm_posDef (hG : IsHypothetical G) (x : V)
     exact LinearMap.mem_ker.mpr
       ((localGramRat_quadratic_eq_zero_iff G hG x a).mp h.symm)
 
+/--
+@isnad1 id=nondegen.1h3v.s7.f27adcc4ecda from=translated src=- shape=cdd5e181 vocab=182edadd
+-/
 theorem ratGramForm_nondegenerate (hG : IsHypothetical G) (x : V) :
     (ratGramForm G x).Nondegenerate :=
   (LinearMap.BilinForm.nondegenerate_iff' (ratGramForm G x)

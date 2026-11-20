@@ -14,6 +14,9 @@ namespace SRG266.Lattice
 
 variable {X Y : Type*} [AddCommGroup X] [Module ℚ X] [AddCommGroup Y] [Module ℚ Y]
 
+/--
+@isnad1 id=or.4h6v.s10.725e0cc3a8f6 from=translated src=- shape=23764e9b vocab=72e7f758
+-/
 theorem zero_or_zero_of_even_sum_two
     (B : LinearMap.BilinForm ℚ X) (C : LinearMap.BilinForm ℚ Y)
     (hB : ∀ x, x ≠ 0 → 0 < B x x) (hC : ∀ y, y ≠ 0 → 0 < C y y)
@@ -29,6 +32,9 @@ theorem zero_or_zero_of_even_sum_two
     by_contra hy0
     linarith [hC y hy0]
 
+/--
+@isnad1 id=iff.3h8v.s9.370a46f00275 from=translated src=- shape=a9492a36 vocab=9043dbad
+-/
 theorem same_zero_side_of_pair_ne_zero
     (B : LinearMap.BilinForm ℚ X) (C : LinearMap.BilinForm ℚ Y)
     {x u : X} {y v : Y} (hx : x = 0 ∨ y = 0) (hu : u = 0 ∨ v = 0)
@@ -43,6 +49,9 @@ theorem same_zero_side_of_pair_ne_zero
     · exact hx0
     · exact (hp (by simp only [hu0, hy0, map_zero, LinearMap.zero_apply, zero_add])).elim
 
+/--
+@isnad1 id=or.2h7v.s9.a9a9a0ab1256 from=translated src=- shape=ee9f7783 vocab=252510e4
+-/
 theorem A_chain_in_one_component
     (B : LinearMap.BilinForm ℚ X) (C : LinearMap.BilinForm ℚ Y)
     (n : ℕ) (x : Fin (n+1) → X) (y : Fin (n+1) → Y)

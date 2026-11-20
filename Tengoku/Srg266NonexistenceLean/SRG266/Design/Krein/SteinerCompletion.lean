@@ -26,12 +26,18 @@ local notation "V" => KreinVertex (P := P) (B := B)
 def pairNeighborhood (a u : V) : Finset V :=
   Finset.univ.filter fun x => D.kreinGraph.Adj a x ∧ D.kreinGraph.Adj u x
 
+/--
+@isnad1 id=iff.0h6v.s6.ebeacd993b3c from=translated src=- shape=1e2b19f5 vocab=58d26edd
+-/
 @[simp] theorem mem_pairNeighborhood (a u x : V) :
     x ∈ D.pairNeighborhood a u ↔ D.kreinGraph.Adj a x ∧ D.kreinGraph.Adj u x := by simp [pairNeighborhood]
 
 def crownSlice (W : Finset V) (a u : V) : Finset V :=
   W.filter fun x => D.kreinGraph.Adj a x ∧ D.kreinGraph.Adj u x
 
+/--
+@isnad1 id=iff.0h7v.s6.9608af0653bb from=translated src=- shape=a2d5fa46 vocab=f98b659c
+-/
 @[simp] theorem mem_crownSlice (W : Finset V) (a u x : V) :
     x ∈ D.crownSlice W a u ↔ x ∈ W ∧ D.kreinGraph.Adj a x ∧ D.kreinGraph.Adj u x := by
   simp [crownSlice]
@@ -41,6 +47,9 @@ noncomputable def steinerBlocks (a u : V) : Finset (Finset V) := by
   exact ((D.pairNeighborhood a u).powersetCard 4).filter fun Q =>
     ∃ W : Finset V, D.IsCrown W ∧ Q = D.crownSlice W a u
 
+/--
+@isnad1 id=iff.0h6v.s7.7c9d9fa2ac46 from=translated src=- shape=79f797c6 vocab=7e0c172a
+-/
 theorem mem_steinerBlocks (a u : V) (Q : Finset V) :
     Q ∈ D.steinerBlocks a u ↔ (Q ⊆ D.pairNeighborhood a u ∧ Q.card = 4) ∧
       ∃ W : Finset V, D.IsCrown W ∧ Q = D.crownSlice W a u := by

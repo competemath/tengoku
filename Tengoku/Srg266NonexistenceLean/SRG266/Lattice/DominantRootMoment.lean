@@ -12,6 +12,9 @@ namespace SRG266.Lattice
 
 open scoped BigOperators
 
+/--
+@isnad1 id=eq.3h4v.s12.37b6c005e87e from=translated src=- shape=d2682fb0 vocab=2df26eee
+-/
 theorem normTwoRoot_dominant_moment
     {n : ℕ} (L : PDUnimodularLattice n)
     (f : L.carrier →+ ℤ) (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0)
@@ -72,6 +75,9 @@ theorem normTwoRoot_dominant_moment
   dsimp [p]
   ring
 
+/--
+@isnad1 id=eq.4h5v.s12.097e284d8761 from=translated src=- shape=979c4314 vocab=0dd6a868
+-/
 theorem normTwoRoot_dominant_positive_sum
     {n : ℕ} (L : PDUnimodularLattice n)
     (f : L.carrier →+ ℤ) (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0)

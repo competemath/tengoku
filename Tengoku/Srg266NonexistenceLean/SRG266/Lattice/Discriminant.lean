@@ -16,6 +16,9 @@ section Discriminant
 variable {W : Type*} [AddCommGroup W] [Module ℚ W]
 variable {B : LinearMap.BilinForm ℚ W} {Ñ : Submodule ℤ W} {p : ℕ}
 
+/--
+@isnad1 id=iff.0h1v.s6.37caaee00146 from=translated src=- shape=c56f7e4c vocab=e6e7cd18
+-/
 theorem mem_one_iff {x : ℚ} : x ∈ (1 : Submodule ℤ ℚ) ↔ ∃ n : ℤ, (n : ℚ) = x :=
   ⟨fun h => by
       obtain ⟨n, hn⟩ := Submodule.mem_one.mp h
@@ -24,9 +27,15 @@ theorem mem_one_iff {x : ℚ} : x ∈ (1 : Submodule ℤ ℚ) ↔ ∃ n : ℤ, (
       obtain ⟨n, hn⟩ := h
       exact Submodule.mem_one.mpr ⟨n, by simpa using hn⟩⟩
 
+/--
+@isnad1 id=mem.0h1v.s5.f9f2a9cc906d from=translated src=- shape=74444f76 vocab=e6e7cd18
+-/
 theorem intCast_mem_one (n : ℤ) : ((n : ℚ)) ∈ (1 : Submodule ℤ ℚ) :=
   mem_one_iff.mpr ⟨n, rfl⟩
 
+/--
+@isnad1 id=mem.3h3v.s7.a110b615b6f1 from=translated src=- shape=0ec575d6 vocab=d49687a6
+-/
 theorem mem_one_of_coprime {a b : ℤ} (hab : IsCoprime a b) {x : ℚ}
     (ha : (a : ℚ) * x ∈ (1 : Submodule ℤ ℚ)) (hb : (b : ℚ) * x ∈ (1 : Submodule ℤ ℚ)) :
     x ∈ (1 : Submodule ℤ ℚ) := by
@@ -45,10 +54,16 @@ variable (B p) in
 
 def discNum (y y' : W) : ℤ := ((p : ℚ) * B y y').num
 
+/--
+@isnad1 id=eq.1h6v.s8.1fb3b858fc76 from=translated src=- shape=dd42e312 vocab=9d3fa8d4
+-/
 theorem discNum_eq_of_cast {y y' : W} {n : ℤ} (h : (n : ℚ) = (p : ℚ) * B y y') :
     discNum B p y y' = n := by
   simp [discNum, ← h]
 
+/--
+@isnad1 id=eq.2h6v.s8.bcf0c3892323 from=translated src=- shape=45cf6f03 vocab=78d09fdb
+-/
 theorem discNum_cast {y y' : W} (hy : y ∈ B.dualSubmodule Ñ) (hy' : (p : ℤ) • y' ∈ Ñ) :
     ((discNum B p y y' : ℤ) : ℚ) = (p : ℚ) * B y y' := by
   have h := hy _ hy'
@@ -57,10 +72,16 @@ theorem discNum_cast {y y' : W} (hy : y ∈ B.dualSubmodule Ñ) (hy' : (p : ℤ)
   obtain ⟨n, hn⟩ := mem_one_iff.mp h
   rw [discNum_eq_of_cast (B := B) (p := p) hn, hn]
 
+/--
+@isnad1 id=eq.1h5v.s5.68bbd2e7968b from=translated src=- shape=f79dcf3e vocab=597e61a2
+-/
 theorem discNum_symm (hsymm : B.IsSymm) (y y' : W) :
     discNum B p y y' = discNum B p y' y := by
   simp [discNum, hsymm.eq y y']
 
+/--
+@isnad1 id=eq.3h7v.s8.a0844c72a3ed from=translated src=- shape=7085f04f vocab=5067942b
+-/
 theorem discNum_add_left {y₁ y₂ y' : W} (h₁ : y₁ ∈ B.dualSubmodule Ñ)
     (h₂ : y₂ ∈ B.dualSubmodule Ñ) (hy' : (p : ℤ) • y' ∈ Ñ) :
     discNum B p (y₁ + y₂) y' = discNum B p y₁ y' + discNum B p y₂ y' := by
@@ -69,6 +90,9 @@ theorem discNum_add_left {y₁ y₂ y' : W} (h₁ : y₁ ∈ B.dualSubmodule Ñ)
   rw [discNum_cast h₁ hy', discNum_cast h₂ hy', map_add, LinearMap.add_apply]
   ring
 
+/--
+@isnad1 id=eq.2h7v.s7.54972f107de3 from=translated src=- shape=7e2dc1ce vocab=0eeda910
+-/
 theorem discNum_zsmul_left (c : ℤ) {y y' : W} (hy : y ∈ B.dualSubmodule Ñ)
     (hy' : (p : ℤ) • y' ∈ Ñ) :
     discNum B p (c • y) y' = c * discNum B p y y' := by
@@ -77,6 +101,9 @@ theorem discNum_zsmul_left (c : ℤ) {y y' : W} (hy : y ∈ B.dualSubmodule Ñ)
   rw [discNum_cast hy hy', map_zsmul, LinearMap.smul_apply, zsmul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.3h7v.s8.234979aa83a4 from=translated src=- shape=41c09a57 vocab=5067942b
+-/
 theorem discNum_add_right {y y₁' y₂' : W} (hy : y ∈ B.dualSubmodule Ñ)
     (h₁ : (p : ℤ) • y₁' ∈ Ñ) (h₂ : (p : ℤ) • y₂' ∈ Ñ) :
     discNum B p y (y₁' + y₂') = discNum B p y y₁' + discNum B p y y₂' := by
@@ -85,6 +112,9 @@ theorem discNum_add_right {y y₁' y₂' : W} (hy : y ∈ B.dualSubmodule Ñ)
   rw [discNum_cast hy h₁, discNum_cast hy h₂, map_add]
   ring
 
+/--
+@isnad1 id=eq.2h7v.s7.3d6b7bbf9549 from=translated src=- shape=efd4f7b8 vocab=0eeda910
+-/
 theorem discNum_zsmul_right (c : ℤ) {y y' : W} (hy : y ∈ B.dualSubmodule Ñ)
     (hy' : (p : ℤ) • y' ∈ Ñ) :
     discNum B p y (c • y') = c * discNum B p y y' := by
@@ -93,11 +123,17 @@ theorem discNum_zsmul_right (c : ℤ) {y y' : W} (hy : y ∈ B.dualSubmodule Ñ)
   rw [discNum_cast hy hy', map_zsmul, zsmul_eq_mul]
   ring
 
+/--
+@isnad1 id=dvd.2h6v.s7.395832fd6dac from=translated src=- shape=236df9b0 vocab=26c3672f
+-/
 theorem dvd_discNum_of_mem {y y' : W} (hy : y ∈ B.dualSubmodule Ñ) (hy' : y' ∈ Ñ) :
     (p : ℤ) ∣ discNum B p y y' := by
   obtain ⟨n, hn⟩ := mem_one_iff.mp (hy _ hy')
   exact ⟨n, discNum_eq_of_cast (by rw [← hn]; push_cast; ring)⟩
 
+/--
+@isnad1 id=mem.4h6v.s8.e6d5d08ca45e from=translated src=- shape=de15f788 vocab=2d75b764
+-/
 theorem mem_one_of_dvd_discNum (hp : p ≠ 0) {y y' : W} (hy : y ∈ B.dualSubmodule Ñ)
     (hy' : (p : ℤ) • y' ∈ Ñ) (h : (p : ℤ) ∣ discNum B p y y') :
     B y y' ∈ (1 : Submodule ℤ ℚ) := by
@@ -113,23 +149,38 @@ variable (B Ñ p) in
 abbrev discGroup : Type _ :=
   torsionPart B Ñ p ⧸ Ñ.comap (torsionPart B Ñ p).subtype
 
+/--
+@isnad1 id=eq.0h5v.s8.8c49fb90aad2 from=translated src=- shape=fec00684 vocab=b106514e
+-/
 theorem discGroup_nsmul_eq_zero (q : discGroup B Ñ p) : p • q = 0 :=
   quotient_nsmul_eq_zero (fun _ hy => (mem_torsionPart.mp hy).2) q
 
 instance discGroupZModModule : Module (ZMod p) (discGroup B Ñ p) :=
   AddCommGroup.zmodModule (discGroup_nsmul_eq_zero (B := B) (Ñ := Ñ) (p := p))
 
+/--
+@isnad1 id=mem.0h5v.s7.3d2a7713a209 from=translated src=- shape=dffd08f2 vocab=7e51c1a4
+-/
 theorem torsion_mem_dual (y : torsionPart B Ñ p) : (y : W) ∈ B.dualSubmodule Ñ :=
   (mem_torsionPart.mp y.2).1
 
+/--
+@isnad1 id=mem.0h5v.s7.7e344a75f9d1 from=translated src=- shape=fbbd1a5b vocab=034c94ab
+-/
 theorem torsion_zsmul_mem (y : torsionPart B Ñ p) : (p : ℤ) • (y : W) ∈ Ñ :=
   (mem_torsionPart.mp y.2).2
 
+/--
+@isnad1 id=iff.0h5v.s10.283321b452a2 from=translated src=- shape=da107093 vocab=1d636113
+-/
 theorem discGroup_mk_eq_zero_iff {y : torsionPart B Ñ p} :
     (Submodule.Quotient.mk y : discGroup B Ñ p) = 0 ↔ (y : W) ∈ Ñ := by
   rw [Submodule.Quotient.mk_eq_zero, Submodule.mem_comap]
   exact Iff.rfl
 
+/--
+@isnad1 id=finite.2h4v.s8.26e73b6bae08 from=translated src=- shape=e5a8a803 vocab=0de1f52e
+-/
 theorem discGroup_finite (hnd : B.Nondegenerate) (hN : IsLattice ℚ Ñ) :
     Module.Finite (ZMod p) (discGroup B Ñ p) := by
   classical
@@ -189,10 +240,16 @@ def torsionBilin :
       push_cast
       ring)
 
+/--
+@isnad1 id=eq.0h6v.s11.ad048ee7ad00 from=translated src=- shape=87213e72 vocab=8696e4e5
+-/
 @[simp]
 theorem torsionBilin_apply (y y' : torsionPart B Ñ p) :
     torsionBilin B Ñ p y y' = ((discNum B p (y : W) (y' : W) : ℤ) : ZMod p) := rfl
 
+/--
+@isnad1 id=le.0h5v.s11.32afc1fc6c84 from=translated src=- shape=504b66f6 vocab=ee96bb1c
+-/
 theorem torsionBilin_ker_right (y : torsionPart B Ñ p) :
     Ñ.comap (torsionPart B Ñ p).subtype ≤ LinearMap.ker (torsionBilin B Ñ p y) := by
   intro z hz
@@ -206,6 +263,9 @@ variable (B Ñ p) in
 def discPairingRight (y : torsionPart B Ñ p) : discGroup B Ñ p →ₗ[ℤ] ZMod p :=
   Submodule.liftQ _ (torsionBilin B Ñ p y) (torsionBilin_ker_right y)
 
+/--
+@isnad1 id=eq.0h6v.s10.a51812181b85 from=translated src=- shape=04d8f582 vocab=9be49f7c
+-/
 @[simp]
 theorem discPairingRight_mk (y y' : torsionPart B Ñ p) :
     discPairingRight B Ñ p y (Submodule.Quotient.mk y') =
@@ -229,6 +289,9 @@ def discPairingAux : torsionPart B Ñ p →ₗ[ℤ] discGroup B Ñ p →ₗ[ℤ]
     show torsionBilin B Ñ p (c • y) y' = c • torsionBilin B Ñ p y y'
     rw [map_smul, LinearMap.smul_apply]
 
+/--
+@isnad1 id=le.1h4v.s11.bd962dc1c8f1 from=translated src=- shape=53f48415 vocab=84be5a10
+-/
 theorem discPairingAux_ker (hsymm : B.IsSymm) :
     Ñ.comap (torsionPart B Ñ p).subtype ≤ LinearMap.ker (discPairingAux B Ñ p) := by
   intro z hz
@@ -246,6 +309,9 @@ def discPairingInt (hsymm : B.IsSymm) :
     discGroup B Ñ p →ₗ[ℤ] discGroup B Ñ p →ₗ[ℤ] ZMod p :=
   Submodule.liftQ _ (discPairingAux B Ñ p) (discPairingAux_ker hsymm)
 
+/--
+@isnad1 id=eq.1h6v.s12.345e1e5af7bb from=translated src=- shape=294dc70a vocab=9bfb9196
+-/
 @[simp]
 theorem discPairingInt_mk (hsymm : B.IsSymm) (y y' : torsionPart B Ñ p) :
     discPairingInt B Ñ p hsymm (Submodule.Quotient.mk y) (Submodule.Quotient.mk y') =
@@ -274,17 +340,26 @@ def discPairing (hsymm : B.IsSymm) : LinearMap.BilinForm (ZMod p) (discGroup B �
     rw [Int.cast_smul_eq_zsmul (ZMod p) k d, map_smul, LinearMap.smul_apply,
       Int.cast_smul_eq_zsmul (ZMod p) k _]
 
+/--
+@isnad1 id=eq.1h6v.s11.83ceeb50af94 from=translated src=- shape=94561373 vocab=2618e773
+-/
 @[simp]
 theorem discPairing_mk (hsymm : B.IsSymm) (y y' : torsionPart B Ñ p) :
     discPairing B Ñ p hsymm (Submodule.Quotient.mk y) (Submodule.Quotient.mk y') =
       ((discNum B p (y : W) (y' : W) : ℤ) : ZMod p) := rfl
 
+/--
+@isnad1 id=issymm.1h4v.s8.6fa185e7b948 from=translated src=- shape=4d86d899 vocab=9c39bfb2
+-/
 theorem discPairing_isSymm (hsymm : B.IsSymm) : (discPairing B Ñ p hsymm).IsSymm := by
   refine ⟨fun d d' => ?_⟩
   obtain ⟨y, rfl⟩ := Submodule.Quotient.mk_surjective _ d
   obtain ⟨y', rfl⟩ := Submodule.Quotient.mk_surjective _ d'
   rw [discPairing_mk, discPairing_mk, discNum_symm hsymm]
 
+/--
+@isnad1 id=separati.6h5v.s9.e1db8cd05821 from=translated src=- shape=eb43f5da vocab=61ecc72c
+-/
 theorem discPairing_separatingLeft (hsymm : B.IsSymm) (hnd : B.Nondegenerate)
     (hN : IsLattice ℚ Ñ) (hp : p ≠ 0) {q : ℕ} (hpq : Nat.Coprime p q)
     (hsplit : B.dualSubmodule Ñ = torsionPart B Ñ p ⊔ torsionPart B Ñ q) :
@@ -328,6 +403,9 @@ theorem discPairing_separatingLeft (hsymm : B.IsSymm) (hnd : B.Nondegenerate)
     exact Submodule.add_mem _ (hTp z₁ hz₁) (hTq z₂ hz₂)
   rwa [dual_dual B hN hnd hsymm] at hdd
 
+/--
+@isnad1 id=nondegen.6h5v.s8.0eb0e2229a03 from=translated src=- shape=119049d4 vocab=d7fefa18
+-/
 theorem discPairing_nondegenerate (hsymm : B.IsSymm) (hnd : B.Nondegenerate)
     (hN : IsLattice ℚ Ñ) (hp : p ≠ 0) {q : ℕ} (hpq : Nat.Coprime p q)
     (hsplit : B.dualSubmodule Ñ = torsionPart B Ñ p ⊔ torsionPart B Ñ q) :
@@ -355,6 +433,9 @@ private theorem bilin_sum_sum {n : ℕ} (a : Fin n → ℤ) (y : Fin n → W) :
   push_cast
   ring
 
+/--
+@isnad1 id=le.4h4v.s8.60b6ef5b158c from=translated src=- shape=15175b0a vocab=47943988
+-/
 theorem disc_dim_le_two [hp : Fact p.Prime] (hsymm : B.IsSymm) (hnd : B.Nondegenerate)
     (hN : IsLattice ℚ Ñ) (hmax : IsMaximalIntegral B Ñ) :
     Module.finrank (ZMod p) (discGroup B Ñ p) ≤ 2 := by
@@ -496,6 +577,9 @@ structure GlueBasis where
 
   indep : ∀ c : Fin rank → ℤ, (∑ i, c i • vec i) ∈ Ñ → ∀ i, (p : ℤ) ∣ c i
 
+/--
+@isnad1 id=ex.0h6v.s8.7275480fe9a8 from=translated src=- shape=a528f2d2 vocab=4e4a14b7
+-/
 theorem GlueBasis.exists_unit_diag [Fact p.Prime] (S : GlueBasis B Ñ p) (i : Fin S.rank) :
     ∃ (u : (ZMod p)ˣ) (m : ℤ), ((m : ZMod p)) = (u : ZMod p) ∧
       ((p : ℚ)) * B (S.vec i) (S.vec i) = (m : ℚ) := by
@@ -505,6 +589,9 @@ theorem GlueBasis.exists_unit_diag [Fact p.Prime] (S : GlueBasis B Ñ p) (i : Fi
   exact ⟨(isUnit_iff_ne_zero.mpr hne).unit, m,
     ((isUnit_iff_ne_zero.mpr hne).unit_spec).symm, hm⟩
 
+/--
+@isnad1 id=nonempty.7h5v.s7.e81cd9fc7ed4 from=translated src=- shape=ad00e858 vocab=19ee78c7
+-/
 theorem exists_orthogonal_glue_basis [hp : Fact p.Prime] (hp2 : p ≠ 2) (hsymm : B.IsSymm)
     (hnd : B.Nondegenerate) (hN : IsLattice ℚ Ñ) (hmax : IsMaximalIntegral B Ñ)
     {q : ℕ} (hpq : Nat.Coprime p q)
@@ -611,6 +698,9 @@ theorem exists_orthogonal_glue_basis [hp : Fact p.Prime] (hp2 : p ≠ 2) (hsymm 
     have := Fintype.linearIndependent_iff.mp b.linearIndependent (fun i => ((cf i : ZMod p))) hsum i
     exact (ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mp this
 
+/--
+@isnad1 id=eq.1h7v.s8.9fa982a12a81 from=translated src=- shape=08440509 vocab=e65e7df8
+-/
 theorem dual_eq_sup_span_glue {q : ℕ} (S : GlueBasis B Ñ p) (T : GlueBasis B Ñ q)
     (hsplit : B.dualSubmodule Ñ = torsionPart B Ñ p ⊔ torsionPart B Ñ q) :
     B.dualSubmodule Ñ = Ñ ⊔ Submodule.span ℤ (Set.range S.vec ∪ Set.range T.vec) := by

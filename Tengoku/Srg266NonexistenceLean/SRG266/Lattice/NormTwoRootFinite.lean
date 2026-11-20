@@ -14,12 +14,18 @@ import Tengoku.Seed.Tactic.Linarith
 namespace SRG266
 namespace Lattice
 
+/--
+@isnad1 id=le.0h3v.s8.fc282615704a from=translated src=- shape=287c92f3 vocab=1e54a0e1
+-/
 theorem pairing_self_nonneg {n : ℕ} (L : PDUnimodularLattice n)
     (x : L.carrier) : 0 ≤ L.pairing x x := by
   by_cases hx : x = 0
   · simp [hx]
   · exact (L.positiveDefinite x hx).le
 
+/--
+@isnad1 id=finite.0h2v.s3.d74df322ed27 from=translated src=- shape=1f8e965c vocab=647941ed
+-/
 theorem normTwoRoot_finite {n : ℕ} (L : PDUnimodularLattice n) :
     Finite (NormTwoRoot L) := by
   let := L.moduleFree
@@ -53,6 +59,9 @@ theorem normTwoRoot_finite {n : ℕ} (L : PDUnimodularLattice n) :
     funext i
     exact congrArg Subtype.val (congrFun hrs i)
 
+/--
+@isnad1 id=finite.0h2v.s3.d74df322ed27 from=translated src=- shape=1f8e965c vocab=647941ed
+-/
 noncomputable instance normTwoRootFinite {n : ℕ}
     (L : PDUnimodularLattice n) : Finite (NormTwoRoot L) :=
   normTwoRoot_finite L

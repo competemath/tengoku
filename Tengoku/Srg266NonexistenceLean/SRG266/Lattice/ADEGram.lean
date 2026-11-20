@@ -70,14 +70,23 @@ def gramD (n : ℕ) : Matrix (Fin n) (Fin n) ℤ := fun i j => gramDEntry n i.1 
 
 def gramE (n : ℕ) : Matrix (Fin n) (Fin n) ℤ := fun i j => gramEEntry n i.1 j.1
 
+/--
+@isnad1 id=eq.0h2v.s3.ca10df0339be from=translated src=- shape=ab795eaa vocab=a9ae922f
+-/
 theorem gramAEntry_symm (i j : ℕ) : gramAEntry i j = gramAEntry j i := by
   unfold gramAEntry
   split_ifs <;> omega
 
+/--
+@isnad1 id=eq.0h3v.s4.4042276c953d from=translated src=- shape=4ed00171 vocab=e8ba2915
+-/
 theorem gramDEntry_symm (n i j : ℕ) : gramDEntry n i j = gramDEntry n j i := by
   unfold gramDEntry
   split_ifs <;> omega
 
+/--
+@isnad1 id=eq.0h3v.s4.234b022c1d6d from=translated src=- shape=4ed00171 vocab=104ab044
+-/
 theorem gramEEntry_symm (n i j : ℕ) : gramEEntry n i j = gramEEntry n j i := by
   unfold gramEEntry
   split_ifs <;> omega
@@ -94,6 +103,9 @@ def gramEntry : ADEType → ℕ → ℕ → ℤ
 def gram (t : ADEType) : Matrix (Fin t.rank) (Fin t.rank) ℤ :=
   fun i j => t.gramEntry i.1 j.1
 
+/--
+@isnad1 id=eq.0h3v.s4.a2aeda3b43a0 from=translated src=- shape=72544f21 vocab=4bf07ff1
+-/
 theorem gramEntry_symm (t : ADEType) (i j : ℕ) : t.gramEntry i j = t.gramEntry j i := by
   cases t with
   | A _ => exact gramAEntry_symm i j
@@ -102,13 +114,22 @@ theorem gramEntry_symm (t : ADEType) (i j : ℕ) : t.gramEntry i j = t.gramEntry
   | E7 => exact gramEEntry_symm 7 i j
   | E8 => exact gramEEntry_symm 8 i j
 
+/--
+@isnad1 id=eq.0h2v.s3.e3b2e6e152cc from=translated src=- shape=6f92c63f vocab=4bf07ff1
+-/
 theorem gramEntry_diag (t : ADEType) (i : ℕ) : t.gramEntry i i = 2 := by
   cases t <;> simp [gramEntry, gramAEntry, gramDEntry, gramEEntry]
 
 def rankSum (ts : List ADEType) : ℕ := (ts.map rank).sum
 
+/--
+@isnad1 id=eq.0h0v.s3.3136a470bfd4 from=translated src=- shape=35225b15 vocab=dcc1f74a
+-/
 @[simp] theorem rankSum_nil : rankSum [] = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.9cdf0f267467 from=translated src=- shape=d428a9ab vocab=db4cbb5a
+-/
 @[simp] theorem rankSum_cons (t : ADEType) (ts : List ADEType) :
     rankSum (t :: ts) = t.rank + rankSum ts := rfl
 
@@ -124,6 +145,9 @@ def adeEntry : List ADEType → ℕ → ℕ → ℤ
 def adeGram (ts : List ADEType) : (n : ℕ) × Matrix (Fin n) (Fin n) ℤ :=
   ⟨ADEType.rankSum ts, fun i j => adeEntry ts i.1 j.1⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.42baf23934fb from=translated src=- shape=689c8eb2 vocab=7ce7810d
+-/
 theorem adeEntry_symm : ∀ (ts : List ADEType) (i j : ℕ), adeEntry ts i j = adeEntry ts j i
   | [], _, _ => rfl
   | t :: ts, i, j => by
@@ -139,10 +163,16 @@ theorem adeEntry_symm : ∀ (ts : List ADEType) (i j : ℕ), adeEntry ts i j = a
         · have h₂' : ¬ (t.rank ≤ j ∧ t.rank ≤ i) := fun h => h₂ ⟨h.2, h.1⟩
           simp only [adeEntry, ite_eq_right h₁, ite_eq_right h₁', ite_eq_right h₂, ite_eq_right h₂']
 
+/--
+@isnad1 id=issymm.0h1v.s4.82d51acac575 from=translated src=- shape=7b697402 vocab=728edfaf
+-/
 theorem adeGram_isSymm (ts : List ADEType) : (adeGram ts).2.IsSymm := by
   ext i j
   exact adeEntry_symm ts j.1 i.1
 
+/--
+@isnad1 id=eq.2h3v.s5.f002f752c2ce from=translated src=- shape=70bfa6d5 vocab=f6df2d0d
+-/
 theorem adeEntry_singleton (t : ADEType) {i j : ℕ} (hi : i < t.rank) (hj : j < t.rank) :
     adeEntry [t] i j = t.gramEntry i j := by
   have h : i < t.rank ∧ j < t.rank := ⟨hi, hj⟩

@@ -26,6 +26,9 @@ noncomputable instance simpleRootSetFintype
     (f : L.carrier →+ ℤ) : Fintype (simpleRootSet f) :=
   Fintype.ofFinite _
 
+/--
+@isnad1 id=or.1h4v.s10.f7d3ae3ae068 from=translated src=- shape=a430148a vocab=135644cf
+-/
 theorem normTwoRoot_mem_or_neg_mem_simple_closure
     {n : ℕ} {L : PDUnimodularLattice n} [Finite (NormTwoRoot L)]
     (f : L.carrier →+ ℤ) (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0)
@@ -35,6 +38,9 @@ theorem normTwoRoot_mem_or_neg_mem_simple_closure
   simpa [simpleRootSet] using
     (IsAddIndecomposable.mem_or_neg_mem_closure_baseOf normTwoRootVal f r (hf r) (by simp))
 
+/--
+@isnad1 id=ex.2h4v.s10.2a7d73531984 from=translated src=- shape=5d47c4db vocab=b564ed01
+-/
 theorem sub_mem_normTwoRoots_of_pairing_pos
     {n : ℕ} {L : PDUnimodularLattice n} {r s : NormTwoRoot L}
     (hrs : r ≠ s) (hpos : 0 < L.pairing r.1 s.1) :
@@ -54,6 +60,9 @@ theorem sub_mem_normTwoRoots_of_pairing_pos
     omega
   exact ⟨⟨r.1 - s.1, hnorm⟩, rfl⟩
 
+/--
+@isnad1 id=pairwise.1h3v.s10.957aa78cc3a1 from=translated src=- shape=e160b825 vocab=6fbec4d9
+-/
 theorem simpleRootSet_pairwise_pairing_nonpos
     {n : ℕ} {L : PDUnimodularLattice n}
     (f : L.carrier →+ ℤ) (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0) :
@@ -66,6 +75,9 @@ theorem simpleRootSet_pairwise_pairing_nonpos
   obtain ⟨t, ht⟩ := sub_mem_normTwoRoots_of_pairing_pos hrs hpos
   exact hsub hr hs hrs ⟨t, ht.symm⟩
 
+/--
+@isnad1 id=linearin.1h3v.s9.85d7ba832143 from=translated src=- shape=c501f479 vocab=01cefde2
+-/
 theorem simpleRootSet_linearIndepOn
     {n : ℕ} {L : PDUnimodularLattice n}
     (f : L.carrier →+ ℤ) (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0) :
@@ -85,6 +97,9 @@ noncomputable def simpleRootGraph
     SimpleGraph (simpleRootSet f) :=
   SimpleGraph.fromRel fun r s => L.pairing r.1.1 s.1.1 = -1
 
+/--
+@isnad1 id=iff.0h5v.s10.d9dc68f66ee0 from=translated src=- shape=5a9d7738 vocab=58ff8fd4
+-/
 theorem simpleRootGraph_adj_iff
     {n : ℕ} {L : PDUnimodularLattice n} (f : L.carrier →+ ℤ)
     (r s : simpleRootSet f) :
@@ -98,6 +113,9 @@ theorem simpleRootGraph_adj_iff
   · rintro ⟨hrs, h⟩
     exact ⟨hrs, Or.inl h⟩
 
+/--
+@isnad1 id=ne.0h5v.s10.eed909bd894e from=translated src=- shape=b6601a4f vocab=754877b9
+-/
 theorem simpleRoot_add_ne_zero
     {n : ℕ} {L : PDUnimodularLattice n}
     (f : L.carrier →+ ℤ) {r s : simpleRootSet f} :
@@ -117,6 +135,9 @@ theorem simpleRoot_add_ne_zero
   simp only [map_add, map_zero] at this
   omega
 
+/--
+@isnad1 id=or.2h5v.s11.d35b184aaa0c from=translated src=- shape=e03ffef0 vocab=74ecdac3
+-/
 theorem simpleRoot_pairing_eq_zero_or_neg_one
     {n : ℕ} {L : PDUnimodularLattice n}
     (f : L.carrier →+ ℤ) (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0)
@@ -131,6 +152,9 @@ theorem simpleRoot_pairing_eq_zero_or_neg_one
   rw [r.1.2, s.1.2, hsym] at hpos
   omega
 
+/--
+@isnad1 id=eq.1h5v.s10.762ae8dd2f4d from=translated src=- shape=791ade7a vocab=10023500
+-/
 theorem graphCartanMatrix_simpleRootGraph
     {n : ℕ} {L : PDUnimodularLattice n}
     (f : L.carrier →+ ℤ) (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0)
@@ -155,6 +179,9 @@ noncomputable def simpleRootCombination
     (f : L.carrier →+ ℤ) : (simpleRootSet f → ℤ) →ₗ[ℤ] L.carrier :=
   Fintype.linearCombination ℤ fun r : simpleRootSet f => (r.1.1 : L.carrier)
 
+/--
+@isnad1 id=injectiv.1h3v.s9.870a03d13fcf from=translated src=- shape=b18e2f3e vocab=a8fba213
+-/
 theorem simpleRootCombination_injective
     {n : ℕ} {L : PDUnimodularLattice n} [Finite (NormTwoRoot L)]
     (f : L.carrier →+ ℤ) (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0) :
@@ -168,6 +195,9 @@ theorem simpleRootCombination_injective
         (fun r : simpleRootSet f => normTwoRootVal r.1)) y at hxy
   exact hli.fintypeLinearCombination_injective hxy
 
+/--
+@isnad1 id=eq.0h6v.s9.1c2c56484bfe from=translated src=- shape=1a574a40 vocab=53691e75
+-/
 theorem bilinForm_fintypeLinearCombination
     {ι M : Type*} [Fintype ι] [DecidableEq ι]
     [AddCommGroup M] [Module ℤ M]
@@ -184,6 +214,9 @@ theorem bilinForm_fintypeLinearCombination
   rw [LinearMap.smul_apply]
   ring
 
+/--
+@isnad1 id=eq.1h5v.s12.90d7cbd44e71 from=translated src=- shape=fe34da32 vocab=2e0cb8bf
+-/
 theorem graphCartanBilin_simpleRootGraph
     {n : ℕ} {L : PDUnimodularLattice n} [Finite (NormTwoRoot L)]
     (f : L.carrier →+ ℤ) [DecidableEq (simpleRootSet f)]
@@ -198,6 +231,9 @@ theorem graphCartanBilin_simpleRootGraph
   exact bilinForm_fintypeLinearCombination L.pairing
     (fun r : simpleRootSet f => (r.1.1 : L.carrier)) x y
 
+/--
+@isnad1 id=eq.1h4v.s10.12c96b321d92 from=translated src=- shape=b24836ca vocab=f9b781b0
+-/
 theorem graphCartanEnergy_simpleRootGraph
     {n : ℕ} {L : PDUnimodularLattice n} [Finite (NormTwoRoot L)]
     (f : L.carrier →+ ℤ) [DecidableEq (simpleRootSet f)]
@@ -207,6 +243,9 @@ theorem graphCartanEnergy_simpleRootGraph
       L.pairing (simpleRootCombination f x) (simpleRootCombination f x) := by
   exact graphCartanBilin_simpleRootGraph f hf x x
 
+/--
+@isnad1 id=ispositi.1h3v.s9.559ccaf9f0db from=translated src=- shape=ce7d4154 vocab=b1e8e645
+-/
 theorem simpleRootGraph_isPositiveCartan
     {n : ℕ} {L : PDUnimodularLattice n} [Finite (NormTwoRoot L)]
     (f : L.carrier →+ ℤ) [DecidableEq (simpleRootSet f)]
@@ -223,6 +262,9 @@ def normTwoRootSpan {n : ℕ} (L : PDUnimodularLattice n) :
     Submodule ℤ L.carrier :=
   Submodule.span ℤ (Set.range (@normTwoRootVal n L))
 
+/--
+@isnad1 id=eq.1h3v.s9.ba1c7caea683 from=translated src=- shape=e06339c4 vocab=eea6b177
+-/
 theorem span_simpleRoots_eq_normTwoRootSpan
     {n : ℕ} {L : PDUnimodularLattice n} [Finite (NormTwoRoot L)]
     (f : L.carrier →+ ℤ) (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0) :
@@ -246,6 +288,9 @@ theorem span_simpleRoots_eq_normTwoRootSpan
     · exact hclosure hr
     · exact neg_mem_iff.mp (hclosure hr)
 
+/--
+@isnad1 id=eq.2h3v.s9.cb8925fe4f98 from=translated src=- shape=f61ac9c8 vocab=74d0cbfe
+-/
 theorem card_simpleRootSet_eq_of_fullRank
     {n : ℕ} {L : PDUnimodularLattice n} [Finite (NormTwoRoot L)]
     (f : L.carrier →+ ℤ) (hf : ∀ r : NormTwoRoot L, f r.1 ≠ 0)

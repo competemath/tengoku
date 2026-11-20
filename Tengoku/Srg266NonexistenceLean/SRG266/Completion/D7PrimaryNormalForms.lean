@@ -16,6 +16,9 @@ open SRG266.Lattice
 variable {V : Type*} [Fintype V] [DecidableEq V]
 variable (G : SimpleGraph V) [DecidableRel G.Adj]
 
+/--
+@isnad1 id=eq.4h7v.s14.aa279b032498 from=translated src=- shape=635eeeb5 vocab=bf1e562e
+-/
 theorem lorentzD7_torsionPart_eq_sup_map (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x) (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
     {P : Submodule ℤ (ratGramSpace G x)} (hle : lorentzMarkedLattice G x c ≤ P)
@@ -29,6 +32,9 @@ theorem lorentzD7_torsionPart_eq_sup_map (hG : IsHypothetical G) (x : V)
     (lorentzD7_dual_eq_sup_map G hG x c hc hle hint B)
     (fun _ hv => lorentzD7OddLift_mem_iff G hG x c hc hle hint B hv) p
 
+/--
+@isnad1 id=mem.6h8v.s14.ad1d3ce7c639 from=translated src=- shape=43779010 vocab=be11a067
+-/
 theorem lorentzD7OddLift_pair_integral (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x) (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
     {P : Submodule ℤ (ratGramSpace G x)} (hle : lorentzMarkedLattice G x c ≤ P)
@@ -43,6 +49,9 @@ theorem lorentzD7OddLift_pair_integral (hG : IsHypothetical G) (x : V)
   simpa only [map_zero, LinearMap.zero_apply, add_zero] using
     lorentzIntegralProjection_pair_integral G hG x c hc hle B hu hv huv
 
+/--
+@isnad1 id=hasprima.5h8v.s11.bd645b153188 from=translated src=- shape=02378a62 vocab=b83c10ea
+-/
 theorem lorentzD7_hasPrimaryNormalForm (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x) (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
     {P : Submodule ℤ (ratGramSpace G x)} (hle : lorentzMarkedLattice G x c ≤ P)
@@ -59,6 +68,9 @@ theorem lorentzD7_hasPrimaryNormalForm (hG : IsHypothetical G) (x : V)
     (fun _ hu _ hv huv => lorentzD7OddLift_pair_integral G hG x c hc hle B
       (mem_torsionPart.mp hu).1 (mem_torsionPart.mp hv).1 huv)
 
+/--
+@isnad1 id=ex.1h4v.s16.961bfe9e4a4c from=translated src=- shape=f149f69a vocab=16337383
+-/
 theorem exists_lorentzD7_normal_forms_from_graph (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
     ∃ (c : IntegralGramLattice G x)

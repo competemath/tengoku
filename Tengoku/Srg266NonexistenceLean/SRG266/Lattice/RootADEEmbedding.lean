@@ -26,6 +26,9 @@ def HasFullRankRootType {n : ℕ} (L : PDUnimodularLattice n)
   ∃ us : List ADEType, us.Perm ts ∧ ADEType.rankSum us = n ∧
     IsRootADEEmbedding L us
 
+/--
+@isnad1 id=hasfullr.2h4v.s4.6748a32500cd from=translated src=- shape=cc643dfe vocab=a3846492
+-/
 theorem HasFullRankRootType.of_perm {n : ℕ} {L : PDUnimodularLattice n}
     {ts us : List ADEType} (h : HasFullRankRootType L ts) (p : ts.Perm us) :
     HasFullRankRootType L us := by

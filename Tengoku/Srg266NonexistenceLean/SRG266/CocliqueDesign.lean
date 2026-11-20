@@ -23,6 +23,9 @@ variable {P B : Type*} [Fintype P] [Fintype B]
 variable [DecidableEq P]
 
 omit [Fintype P] in
+/--
+@isnad1 id=eq.2h4v.s6.884c6cd2d4a5 from=translated src=- shape=5fe67600 vocab=915ff844
+-/
 theorem incidence_row_sum_eq_forty_five
     (M : Matrix P B ℤ)
     (hbinary : ∀ p b, M p b * M p b = M p b)
@@ -40,6 +43,9 @@ theorem incidence_row_sum_eq_forty_five
       rfl
     _ = 45 := by simp [hgram]
 
+/--
+@isnad1 id=eq.3h3v.s7.a12c690ddb77 from=translated src=- shape=b27aa4d1 vocab=ef974237
+-/
 theorem incidence_total_column_sum
     (M : Matrix P B ℤ)
     (hbinary : ∀ p b, M p b * M p b = M p b)
@@ -58,6 +64,9 @@ theorem incidence_total_column_sum
       exact incidence_row_sum_eq_forty_five M hbinary hgram p
     _ = 2520 := by simp [hPcard]
 
+/--
+@isnad1 id=eq.2h3v.s6.61b64e476743 from=translated src=- shape=b2066eb3 vocab=ef974237
+-/
 theorem incidence_total_column_sum_sq
     (M : Matrix P B ℤ)
     (hgram : ∀ p q, (M * M.transpose) p q =
@@ -104,6 +113,9 @@ theorem incidence_total_column_sum_sq
       simp_rw [hrow]
       simp [hPcard]
 
+/--
+@isnad1 id=eq.4h4v.s7.3da843a430bb from=translated src=- shape=9ed789da vocab=2703f5a2
+-/
 theorem incidence_column_sum_eq_twelve
     (M : Matrix P B ℤ)
     (hbinary : ∀ p b, M p b * M p b = M p b)
@@ -169,11 +181,17 @@ abbrev CocliquePoint (C : Finset V) := ↥C
 abbrev CocliqueOutside (C : Finset V) := ↥Cᶜ
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.1h2v.s4.c3b3a6bfc02b from=translated src=- shape=5ece114d vocab=456869d3
+-/
 theorem cocliquePoint_card
     (C : Finset V) (hCcard : C.card = 56) :
     Fintype.card (CocliquePoint C) = 56 := by
   simpa using hCcard
 
+/--
+@isnad1 id=eq.2h3v.s6.5dbe5092ccc3 from=translated src=- shape=21931645 vocab=1c359c44
+-/
 theorem cocliqueOutside_card
     (hG : IsHypothetical G)
     (C : Finset V) (hCcard : C.card = 56) :
@@ -181,6 +199,9 @@ theorem cocliqueOutside_card
   rw [Fintype.card_coe, Finset.card_compl, hG.card, hCcard]
 
 omit [Fintype V] [DecidableRel G.Adj] in
+/--
+@isnad1 id=not.3h5v.s5.0d59ecc1c7ae from=translated src=- shape=59f64449 vocab=1c2264ab
+-/
 theorem not_adj_of_mem_indepSet
     {C : Finset V}
     (hC : G.IsIndepSet (C : Set V))
@@ -196,6 +217,9 @@ def cocliqueIncidenceMatrix (C : Finset V) :
     Matrix (CocliquePoint C) (CocliqueOutside C) ℤ :=
   fun p B => if G.Adj (p : V) (B : V) then 1 else 0
 
+/--
+@isnad1 id=eq.0h5v.s6.dafdfd6e064c from=translated src=- shape=7681a503 vocab=05299196
+-/
 theorem cocliqueIncidenceMatrix_binary
     (C : Finset V)
     (p : CocliquePoint C) (B : CocliqueOutside C) :
@@ -235,6 +259,9 @@ def commonNeighborsEquivCocliqueCommonOutside
     apply Subtype.ext
     rfl
 
+/--
+@isnad1 id=eq.1h5v.s7.77577cf7be5d from=translated src=- shape=b4ec1978 vocab=fb407167
+-/
 theorem cocliqueIncidence_mul_transpose_apply_card
     {C : Finset V}
     (hC : G.IsIndepSet (C : Set V))
@@ -258,6 +285,9 @@ theorem cocliqueIncidence_mul_transpose_apply_card
         (Fintype.card_congr
           (commonNeighborsEquivCocliqueCommonOutside G hC p q)).symm
 
+/--
+@isnad1 id=eq.2h5v.s7.4ff77b5a1268 from=translated src=- shape=6ddd2a9c vocab=c37fe1df
+-/
 theorem cocliqueIncidence_mul_transpose_apply
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -286,6 +316,9 @@ theorem cocliqueIncidence_mul_transpose_apply
       not_adj_of_mem_indepSet G hC p.property q.property
     exact_mod_cast hG.of_not_adj hpqv hnot
 
+/--
+@isnad1 id=eq.3h4v.s6.1e6977262f44 from=translated src=- shape=40f48c4f vocab=bdfb53f7
+-/
 theorem cocliqueIncidenceMatrix_column_sum
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -300,6 +333,9 @@ theorem cocliqueIncidenceMatrix_column_sum
   · exact cocliquePoint_card C hCcard
   · exact cocliqueOutside_card G hG C hCcard
 
+/--
+@isnad1 id=eq.0h3v.s7.1466ff2f2624 from=translated src=- shape=c4f51371 vocab=0e39d70c
+-/
 theorem sum_cocliquePoint_add_sum_cocliqueOutside
     (C : Finset V) (f : V → ℤ) :
     (∑ p : CocliquePoint C, f p) +
@@ -318,6 +354,9 @@ def cocliqueOutsideAdjacencyMatrix (C : Finset V) :
     Matrix (CocliqueOutside C) (CocliqueOutside C) ℤ :=
   fun B D => if G.Adj (B : V) (D : V) then 1 else 0
 
+/--
+@isnad1 id=eq.3h4v.s6.0ebdd0b24f3c from=translated src=- shape=2b05ad64 vocab=468c1da9
+-/
 theorem cocliqueOutsideAdjacencyMatrix_row_sum
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -384,6 +423,9 @@ def commonNeighborsEquivCocliquePointVertexCommonOutside
     apply Subtype.ext
     rfl
 
+/--
+@isnad1 id=eq.2h5v.s7.7759e74f91f1 from=translated src=- shape=0ca18206 vocab=a10edf88
+-/
 theorem cocliqueIncidence_mul_outsideAdjacency_apply
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -434,6 +476,9 @@ def cocliqueBlockIntersectionMatrix (C : Finset V) :
   (cocliqueIncidenceMatrix G C).transpose *
     cocliqueIncidenceMatrix G C
 
+/--
+@isnad1 id=eq.2h3v.s8.4b7f8fd01119 from=translated src=- shape=7ec051aa vocab=43f6e6b1
+-/
 theorem cocliquePointGram
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -451,6 +496,9 @@ theorem cocliquePointGram
     simp
   · simp [hpq]
 
+/--
+@isnad1 id=eq.2h3v.s8.08516d36b732 from=translated src=- shape=4e28141d vocab=bb2fdf75
+-/
 theorem cocliqueIncidence_mul_outsideAdjacency
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -467,6 +515,9 @@ theorem cocliqueIncidence_mul_outsideAdjacency
   · simp [cocliqueIncidenceMatrix, hadj]
   · simp [cocliqueIncidenceMatrix, hadj]
 
+/--
+@isnad1 id=issymm.0h3v.s5.25fc4a9ecb2c from=translated src=- shape=bd3ffca8 vocab=7c030437
+-/
 theorem cocliqueOutsideAdjacency_isSymm
     (C : Finset V) :
     (cocliqueOutsideAdjacencyMatrix G C).IsSymm := by
@@ -474,6 +525,9 @@ theorem cocliqueOutsideAdjacency_isSymm
   intro B D
   simp [cocliqueOutsideAdjacencyMatrix, G.adj_comm]
 
+/--
+@isnad1 id=issymm.0h3v.s5.07b99feb7e58 from=translated src=- shape=bd3ffca8 vocab=1e07fe79
+-/
 theorem cocliqueBlockIntersection_isSymm
     (C : Finset V) :
     (cocliqueBlockIntersectionMatrix G C).IsSymm := by
@@ -481,6 +535,9 @@ theorem cocliqueBlockIntersection_isSymm
   intro B D
   simp [cocliqueBlockIntersectionMatrix, Matrix.mul_apply, mul_comm]
 
+/--
+@isnad1 id=eq.3h4v.s6.019b24208f88 from=translated src=- shape=934702ed vocab=428ecdbb
+-/
 theorem cocliqueBlockIntersection_diagonal
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -502,6 +559,9 @@ theorem cocliqueBlockIntersection_diagonal
     _ = 12 :=
       cocliqueIncidenceMatrix_column_sum G hG hCcard hC B
 
+/--
+@isnad1 id=eq.3h4v.s6.d75058f6cdf5 from=translated src=- shape=2b05ad64 vocab=5ec7aa15
+-/
 theorem cocliqueBlockIntersection_row_sum
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -535,6 +595,9 @@ theorem cocliqueBlockIntersection_row_sum
           (fun p => M p B) (45 : ℤ)).symm
     _ = 540 := by rw [hcolumn]; norm_num
 
+/--
+@isnad1 id=eq.3h3v.s8.68a53c72ab43 from=translated src=- shape=c884e3a1 vocab=5a742c7e
+-/
 theorem cocliqueBlockIntersection_mul_outsideAdjacency
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -589,6 +652,9 @@ theorem cocliqueBlockIntersection_mul_outsideAdjacency
         (Finset.mul_sum (Finset.univ : Finset (CocliquePoint C))
           (fun p => M p B * M p D) (9 : ℤ)).symm
 
+/--
+@isnad1 id=eq.0h5v.s8.7f6542935700 from=translated src=- shape=68a68e94 vocab=c0ef4320
+-/
 theorem cocliqueBlockIntersection_add_outsideAdjacency_sq_apply_card
     {C : Finset V}
     (B D : CocliqueOutside C) :
@@ -623,6 +689,9 @@ theorem cocliqueBlockIntersection_add_outsideAdjacency_sq_apply_card
       ext v
       simp [SimpleGraph.mem_commonNeighbors, G.adj_comm]
 
+/--
+@isnad1 id=eq.1h5v.s8.babd43899a99 from=translated src=- shape=9ff2802b vocab=5ba1ce7e
+-/
 theorem cocliqueBlockIntersection_add_outsideAdjacency_sq_apply
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -653,6 +722,9 @@ theorem cocliqueBlockIntersection_add_outsideAdjacency_sq_apply
     · rw [ite_eq_right hadj]
       exact_mod_cast hG.of_not_adj hBDv hadj
 
+/--
+@isnad1 id=eq.1h3v.s9.bcb6bb12c77d from=translated src=- shape=522ccb6b vocab=cd150e95
+-/
 theorem cocliqueBlockIntersection_add_outsideAdjacency_sq
     (hG : IsHypothetical G)
     {C : Finset V} :
@@ -675,6 +747,9 @@ theorem cocliqueBlockIntersection_add_outsideAdjacency_sq
     · simp [cocliqueOutsideAdjacencyMatrix, hBD, hadj]
     · simp [cocliqueOutsideAdjacencyMatrix, hBD, hadj]
 
+/--
+@isnad1 id=eq.3h3v.s8.723d2d20b4bd from=translated src=- shape=638a6006 vocab=5589f797
+-/
 theorem cocliqueIncidence_transpose_mul_ones_mul_incidence
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -704,6 +779,9 @@ theorem cocliqueIncidence_transpose_mul_ones_mul_incidence
           (fun p => M p D) (12 : ℤ)).symm
     _ = 144 := by rw [hcolumn D]; norm_num
 
+/--
+@isnad1 id=eq.3h3v.s8.223e00a0f8d2 from=translated src=- shape=81ba891e vocab=90fe7892
+-/
 theorem cocliqueBlockIntersection_sq
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -752,6 +830,9 @@ theorem cocliqueBlockIntersection_sq
     _ = (36 : ℤ) • (M.transpose * M) +
         (1296 : ℤ) • Jb := by rw [houter]; module
 
+/--
+@isnad1 id=eq.2h3v.s8.a1c18b465dd7 from=translated src=- shape=e65da70c vocab=bb80c266
+-/
 theorem cocliqueOutsideOnes_sq
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -766,6 +847,9 @@ theorem cocliqueOutsideOnes_sq
   simp only [Finset.sum_const, Finset.card_univ, nsmul_eq_mul, mul_one]
   exact_mod_cast cocliqueOutside_card G hG C hCcard
 
+/--
+@isnad1 id=eq.3h3v.s8.d880dd8a8254 from=translated src=- shape=8c1b600b vocab=6ef3d072
+-/
 theorem cocliqueOutsideAdjacency_mul_ones
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -780,6 +864,9 @@ theorem cocliqueOutsideAdjacency_mul_ones
     Matrix.smul_apply, smul_eq_mul]
   exact cocliqueOutsideAdjacencyMatrix_row_sum G hG hCcard hC B
 
+/--
+@isnad1 id=eq.3h3v.s8.3e2c3d637db1 from=translated src=- shape=84633dfe vocab=6ef3d072
+-/
 theorem cocliqueOnes_mul_outsideAdjacency
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -801,6 +888,9 @@ theorem cocliqueOnes_mul_outsideAdjacency
     _ = 33 :=
       cocliqueOutsideAdjacencyMatrix_row_sum G hG hCcard hC D
 
+/--
+@isnad1 id=eq.3h3v.s8.a8af6bf33120 from=translated src=- shape=8c1b600b vocab=e7b17347
+-/
 theorem cocliqueBlockIntersection_mul_ones
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -815,6 +905,9 @@ theorem cocliqueBlockIntersection_mul_ones
     Matrix.smul_apply, smul_eq_mul]
   exact cocliqueBlockIntersection_row_sum G hG hCcard hC B
 
+/--
+@isnad1 id=eq.3h3v.s8.2f7e7a7eee98 from=translated src=- shape=84633dfe vocab=e7b17347
+-/
 theorem cocliqueOnes_mul_blockIntersection
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -835,6 +928,9 @@ theorem cocliqueOnes_mul_blockIntersection
       exact (cocliqueBlockIntersection_isSymm G C).apply D E
     _ = 540 := cocliqueBlockIntersection_row_sum G hG hCcard hC D
 
+/--
+@isnad1 id=eq.3h3v.s8.a4fbd8a613f7 from=translated src=- shape=1d8c57b4 vocab=5a742c7e
+-/
 theorem cocliqueOutsideAdjacency_mul_blockIntersection
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -885,6 +981,9 @@ def cocliqueIntersectionDefect (C : Finset V) :
   cocliqueBlockIntersectionMatrix G C -
     cocliqueTargetIntersectionMatrix G C
 
+/--
+@isnad1 id=eq.3h3v.s7.9593a0bfbe57 from=translated src=- shape=ee3af6d7 vocab=0b8c414c
+-/
 theorem cocliqueIntersectionDefect_sq
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -946,6 +1045,9 @@ theorem cocliqueIntersectionDefect_sq
         (S - ((9 : ℤ) • 1 + (3 : ℤ) • J - (3 : ℤ) • H))
   noncomm_ring [hSS, hSH, hHS, hHH, hSJ, hJS, hHJ, hJH, hJJ]
 
+/--
+@isnad1 id=issymm.0h3v.s5.3f5c1bdb591a from=translated src=- shape=bd3ffca8 vocab=98d8fd0b
+-/
 theorem cocliqueIntersectionDefect_isSymm
     (C : Finset V) :
     (cocliqueIntersectionDefect G C).IsSymm := by
@@ -962,6 +1064,9 @@ theorem cocliqueIntersectionDefect_isSymm
   · have hDB : D ≠ B := Ne.symm hBD
     simp [hBD, hDB]
 
+/--
+@isnad1 id=eq.3h4v.s6.0b20d1fb8c4c from=translated src=- shape=934702ed vocab=77662023
+-/
 theorem cocliqueIntersectionDefect_diagonal
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -976,6 +1081,9 @@ theorem cocliqueIntersectionDefect_diagonal
     smul_eq_mul, allOnesMatrix_apply]
   simp [cocliqueOutsideAdjacencyMatrix]
 
+/--
+@isnad1 id=eq.3h3v.s6.32c9b6a56a31 from=translated src=- shape=9505fd69 vocab=007cb325
+-/
 theorem cocliqueIntersectionDefect_eq_zero
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -1009,6 +1117,9 @@ theorem cocliqueIntersectionDefect_eq_zero
   have : K B D = 0 := by nlinarith
   simpa [Matrix.zero_apply] using this
 
+/--
+@isnad1 id=eq.3h3v.s6.af0502057524 from=translated src=- shape=9a709c2c vocab=1a27630c
+-/
 theorem cocliqueBlockIntersection_eq_target
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -1021,6 +1132,9 @@ theorem cocliqueBlockIntersection_eq_target
   rw [cocliqueIntersectionDefect, sub_eq_zero] at hzero
   exact hzero
 
+/--
+@isnad1 id=or.4h5v.s6.59727c61b252 from=translated src=- shape=9d6017a0 vocab=428ecdbb
+-/
 theorem cocliqueBlockIntersection_offDiagonal
     (hG : IsHypothetical G)
     {C : Finset V}
@@ -1078,6 +1192,9 @@ local instance : Fintype design.Block := design.blockFintype
 local instance : DecidableEq design.Point := design.pointDecidableEq
 local instance : DecidableEq design.Block := design.blockDecidableEq
 
+/--
+@isnad1 id=eq.0h2v.s6.85098d20aa28 from=translated src=- shape=9b9ff141 vocab=d48d846c
+-/
 theorem offDiagonalIntersectionSum (B : design.Block) :
     ∑ D ∈ Finset.univ.erase B,
         (design.incidence.transpose * design.incidence) B D = 528 := by
@@ -1121,6 +1238,9 @@ theorem offDiagonalIntersectionSum (B : design.Block) :
   rw [hdiag, htotal] at herase
   omega
 
+/--
+@isnad1 id=ex.0h2v.s6.09ac6ebb5233 from=translated src=- shape=18ca8e42 vocab=c4ea32cb
+-/
 theorem exists_intersection_three (B : design.Block) :
     ∃ D : design.Block, D ≠ B ∧
       (design.incidence.transpose * design.incidence) B D = 3 := by
@@ -1144,6 +1264,9 @@ theorem exists_intersection_three (B : design.Block) :
   rw [design.offDiagonalIntersectionSum B] at hsum
   omega
 
+/--
+@isnad1 id=ex.0h2v.s6.3baa5e32fccc from=translated src=- shape=18ca8e42 vocab=c4ea32cb
+-/
 theorem exists_intersection_zero (B : design.Block) :
     ∃ D : design.Block, D ≠ B ∧
       (design.incidence.transpose * design.incidence) B D = 0 := by
@@ -1170,6 +1293,9 @@ theorem exists_intersection_zero (B : design.Block) :
   rw [design.offDiagonalIntersectionSum B] at hsum
   omega
 
+/--
+@isnad1 id=injectiv.0h1v.s4.41289c15f6ca from=translated src=- shape=eddc7ff4 vocab=f01f5401
+-/
 theorem incidenceColumn_injective :
     Function.Injective
       (fun B : design.Block => fun p => design.incidence p B) := by
@@ -1228,6 +1354,9 @@ noncomputable def cocliqueQuasiSymmetricDesign
     intro B D hBD
     exact cocliqueBlockIntersection_offDiagonal G hG hCcard hC hBD
 
+/--
+@isnad1 id=not.2h3v.s5.e9682bb322cb from=translated src=- shape=0cb2bbb3 vocab=1408558c
+-/
 theorem localGram_not_oneIntegrable_of_noQuasiSymmetricDesign
     (hMT : NoQuasiSymmetricDesign56.{u})
     (hG : IsHypothetical G) (x : V) :

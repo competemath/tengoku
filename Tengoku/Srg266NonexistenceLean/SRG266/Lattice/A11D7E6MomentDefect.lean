@@ -14,6 +14,9 @@ open scoped BigOperators
 variable {W U Y : Type*} [AddCommGroup W] [Module ℚ W] [AddCommGroup U] [Module ℚ U]
   [AddCommGroup Y] [Module ℚ Y]
 
+/--
+@isnad1 id=eq.2h9v.s12.89612ecb77cf from=translated src=- shape=4a185bab vocab=dd06aeae
+-/
 theorem marked_product_frame_second_moment {ι : Type*} [Fintype ι]
     (B : LinearMap.BilinForm ℚ W) (C : LinearMap.BilinForm ℚ U)
     (g : ι → W) (s : Fin 7 → ℚ) (a : ℚ)

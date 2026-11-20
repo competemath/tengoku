@@ -10,6 +10,9 @@ import Tengoku.Srg266NonexistenceLean.SRG266.Lattice.IntegerCoordinates
 
 namespace SRG266.Lattice
 
+/--
+@isnad1 id=mem.5h11v.s12.f056cd9c40ce from=translated src=- shape=4b4bdd4e vocab=6cb1be58
+-/
 theorem normTwo_integer_coordinates
     {X : Type*} [AddCommGroup X] [Module ℚ X]
     (F : LinearMap.BilinForm ℚ X) (L : Submodule ℤ X)

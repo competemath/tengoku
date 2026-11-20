@@ -27,6 +27,9 @@ def factorColumnSupport
     (W : Matrix (Fin n) ι ℤ) (B : ι) : Finset (Fin n) :=
   Finset.univ.filter fun j => W j B ≠ 0
 
+/--
+@isnad1 id=eq.2h6v.s7.b8709fe1e8d6 from=translated src=- shape=e3e29b3c vocab=4bf54889
+-/
 theorem factor_column_sq_sum_eq_three
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -38,6 +41,9 @@ theorem factor_column_sq_sum_eq_three
   rw [localGramMatrix_diagonal G hG x B] at h
   simpa [Matrix.mul_apply] using h
 
+/--
+@isnad1 id=or.2h7v.s7.113921ca8935 from=translated src=- shape=e4db4277 vocab=d832e882
+-/
 theorem factor_column_entry_cases
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -57,6 +63,9 @@ theorem factor_column_entry_cases
   have hupper : W j B < 2 := by nlinarith
   omega
 
+/--
+@isnad1 id=eq.2h6v.s7.d306693aba1c from=translated src=- shape=3c2ca101 vocab=5bf54ea9
+-/
 theorem factor_column_support_card
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -86,6 +95,9 @@ theorem factor_column_support_card
     omega
   exact_mod_cast hcard'
 
+/--
+@isnad1 id=eq.1h4v.s7.c745ca4a90af from=translated src=- shape=2eaf5e93 vocab=43229e3e
+-/
 theorem factor_mulVec_eq_zero_of_gram_mulVec_eq_zero
     {ι : Type*} [Fintype ι] {n : ℕ}
     (W : Matrix (Fin n) ι ℤ) (z : ι → ℤ)
@@ -116,6 +128,9 @@ structure FactorCentroidData
 
   norm : ∑ j, c j * c j = 300
 
+/--
+@isnad1 id=nonempty.2h5v.s7.8196dd09a4ff from=translated src=- shape=10fdbf43 vocab=fb96fc9a
+-/
 theorem exists_factorCentroidData
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -212,6 +227,9 @@ theorem exists_factorCentroidData
     omega
   exact ⟨⟨c, ⟨a, rfl⟩, hrow, hpair, hnorm⟩⟩
 
+/--
+@isnad1 id=le.0h7v.s6.fc01cb3ed802 from=translated src=- shape=be5a26af vocab=e34fc3ee
+-/
 theorem FactorCentroidData.coordinate_sq_le
     {x : V} {n : ℕ}
     (W : Matrix (Fin n) (SecondSubconstituent G x) ℤ)
@@ -223,6 +241,9 @@ theorem FactorCentroidData.coordinate_sq_le
     (fun k _ => mul_self_nonneg (d.c k))
     (Finset.mem_univ j)
 
+/--
+@isnad1 id=le.2h7v.s7.ce3b140653d8 from=translated src=- shape=48d38968 vocab=829e59b4
+-/
 theorem FactorCentroidData.row_lower_bound
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -258,6 +279,9 @@ theorem FactorCentroidData.row_lower_bound
   rw [d.row_sum, hsumabs, hcard] at habs
   simpa [abs_mul] using habs
 
+/--
+@isnad1 id=eq.0h6v.s6.ff4c0de0bc14 from=translated src=- shape=365116eb vocab=d10a23c9
+-/
 theorem FactorCentroidData.transpose_mulVec
     (x : V) {n : ℕ}
     (W : Matrix (Fin n) (SecondSubconstituent G x) ℤ)
@@ -267,6 +291,9 @@ theorem FactorCentroidData.transpose_mulVec
   funext B
   simpa [Matrix.mulVec_apply, dotProduct, mul_comm] using d.pairing B
 
+/--
+@isnad1 id=eq.2h6v.s9.8874ba8d4e97 from=translated src=- shape=640ceace vocab=5331660e
+-/
 theorem factor_mul_localGramMatrix
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -408,6 +435,9 @@ def factorCentroidOuter
     Matrix (Fin n) (Fin n) ℤ :=
   Matrix.vecMulVec d.c d.c
 
+/--
+@isnad1 id=eq.2h6v.s8.4d60b20d5753 from=translated src=- shape=8076eab4 vocab=52284cf9
+-/
 theorem factorFrame_sq
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -455,6 +485,9 @@ theorem factorFrame_sq
           rw [hk]
           ring
 
+/--
+@isnad1 id=eq.0h6v.s7.e1972a5f3fdc from=translated src=- shape=c3fbf487 vocab=2ab32e85
+-/
 theorem factorFrame_mulVec_centroid
     (x : V) {n : ℕ}
     (W : Matrix (Fin n) (SecondSubconstituent G x) ℤ)
@@ -475,6 +508,9 @@ theorem factorFrame_mulVec_centroid
       rw [← Finset.sum_mul, d.row_sum]
       ring
 
+/--
+@isnad1 id=eq.0h6v.s7.b41f2cdeef8e from=translated src=- shape=e6914554 vocab=628c10e8
+-/
 theorem factorFrame_mul_centroidOuter
     (x : V) {n : ℕ}
     (W : Matrix (Fin n) (SecondSubconstituent G x) ℤ)
@@ -498,6 +534,9 @@ theorem factorFrame_mul_centroidOuter
       rw [factorFrame_mulVec_centroid G x W d]
       ring
 
+/--
+@isnad1 id=eq.0h6v.s7.be1e86566a73 from=translated src=- shape=0f8e04ac vocab=628c10e8
+-/
 theorem centroidOuter_mul_factorFrame
     (x : V) {n : ℕ}
     (W : Matrix (Fin n) (SecondSubconstituent G x) ℤ)
@@ -526,6 +565,9 @@ theorem centroidOuter_mul_factorFrame
       rw [factorFrame_mulVec_centroid G x W d]
       ring
 
+/--
+@isnad1 id=eq.0h6v.s7.dafdb631fef5 from=translated src=- shape=a08c7bc9 vocab=241dc553
+-/
 theorem centroidOuter_sq
     (x : V) {n : ℕ}
     {W : Matrix (Fin n) (SecondSubconstituent G x) ℤ}
@@ -553,6 +595,9 @@ def factorProjectorNumerator
   (5 : ℕ) • factorFrame W -
     (2 : ℕ) • factorCentroidOuter G x d
 
+/--
+@isnad1 id=eq.2h6v.s7.35848a42f940 from=translated src=- shape=44ff5de6 vocab=4849102a
+-/
 theorem factorProjectorNumerator_sq
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -585,6 +630,9 @@ noncomputable def factorSupportProjector
     Matrix (Fin n) (Fin n) ℚ :=
   fun j k => (factorProjectorNumerator G x W d j k : ℚ) / 225
 
+/--
+@isnad1 id=eq.2h6v.s7.03312b708ed3 from=translated src=- shape=e7bd7dd3 vocab=1c4e9530
+-/
 theorem factorSupportProjector_idempotent
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -636,6 +684,9 @@ theorem factorSupportProjector_idempotent
       push_cast
       ring
 
+/--
+@isnad1 id=issymm.0h6v.s5.5de21e2686a8 from=translated src=- shape=a47adc6b vocab=9ac408ad
+-/
 theorem factorSupportProjector_isSymm
     (x : V) {n : ℕ}
     (W : Matrix (Fin n) (SecondSubconstituent G x) ℤ)
@@ -658,6 +709,9 @@ theorem factorSupportProjector_isSymm
       (factorProjectorNumerator G x W d j k : ℚ) / 225
   rw [hN.apply j k]
 
+/--
+@isnad1 id=le.2h3v.s5.1177aefb8c7b from=translated src=- shape=061bce2c vocab=2f0d1a5a
+-/
 theorem symmetric_idempotent_diagonal_nonneg
     {ι : Type*} [Fintype ι]
     (P : Matrix ι ι ℚ)
@@ -672,6 +726,9 @@ theorem symmetric_idempotent_diagonal_nonneg
   rw [hsymm.apply i j]
   exact mul_self_nonneg (P i j)
 
+/--
+@isnad1 id=le.2h3v.s5.d322e1ab852f from=translated src=- shape=8d0a80a5 vocab=413b15f2
+-/
 theorem symmetric_idempotent_diagonal_le_one
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (P : Matrix ι ι ℚ)
@@ -690,6 +747,9 @@ theorem symmetric_idempotent_diagonal_le_one
   simp at hnonneg
   linarith
 
+/--
+@isnad1 id=eq.2h6v.s7.c05c752be7ad from=translated src=- shape=eae0ef17 vocab=2a041326
+-/
 theorem factorFrame_diagonal_eq_rowSupport_card
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -719,6 +779,9 @@ theorem factorFrame_diagonal_eq_rowSupport_card
     ((factorRowSupport W j).card : ℤ)
   rw [hentries, hcard]
 
+/--
+@isnad1 id=le.2h7v.s8.93451688f8d1 from=translated src=- shape=0780d13c vocab=30b309e9
+-/
 theorem FactorCentroidData.row_upper_bound
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -756,6 +819,9 @@ theorem FactorCentroidData.row_upper_bound
   rw [factorFrame_diagonal_eq_rowSupport_card G hG x W hW j] at hpint
   nlinarith
 
+/--
+@isnad1 id=le.3h2v.s6.6d600f8d42a8 from=translated src=- shape=06f2c033 vocab=53bad49b
+-/
 theorem centroid_coordinate_abs_le_five
     (c n : ℤ)
     (hnorm : c * c ≤ 300)
@@ -786,6 +852,9 @@ theorem centroid_coordinate_abs_le_five
     nlinarith
   omega
 
+/--
+@isnad1 id=le.2h7v.s7.e0022b4010c1 from=translated src=- shape=e79b525f vocab=34ef0ba7
+-/
 theorem FactorCentroidData.coordinate_abs_le_five
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -800,6 +869,9 @@ theorem FactorCentroidData.coordinate_abs_le_five
     (FactorCentroidData.row_lower_bound G hG x W hW d j)
     (FactorCentroidData.row_upper_bound G hG x W hW d j)
 
+/--
+@isnad1 id=eq.3h4v.s6.0c25e341e0f9 from=translated src=- shape=bd0530ee vocab=cce89ed1
+-/
 theorem finset_term_eq_five_of_sum_eq
     {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (f : ι → ℤ)
@@ -819,6 +891,9 @@ theorem finset_term_eq_five_of_sum_eq
     (Finset.sum_eq_zero_iff_of_nonneg hnonneg).mp hzero i hi
   omega
 
+/--
+@isnad1 id=eq.3h8v.s7.8078a0056308 from=translated src=- shape=868aa947 vocab=2d5b64d0
+-/
 theorem FactorCentroidData.centroid_mul_factor_entry
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -858,6 +933,9 @@ theorem FactorCentroidData.centroid_mul_factor_entry
   · simpa [factor_column_support_card G hG x W hW B] using hsum
   · exact hj
 
+/--
+@isnad1 id=and.4h3v.s6.d4c94affc42f from=translated src=- shape=1079c182 vocab=bb3d31a9
+-/
 theorem three_terms_eq_five
     {a b c : ℤ}
     (ha : a ≤ 5) (hb : b ≤ 5) (hc : c ≤ 5)
@@ -872,6 +950,9 @@ def alignedFactor
     Matrix (Fin n) (SecondSubconstituent G x) ℤ :=
   fun j B => if d.c j < 0 then -W j B else W j B
 
+/--
+@isnad1 id=eq.0h6v.s7.0383ddd16a37 from=translated src=- shape=efb6cfe8 vocab=e585e358
+-/
 theorem alignedFactor_transpose_mul
     (x : V) {n : ℕ}
     (W : Matrix (Fin n) (SecondSubconstituent G x) ℤ)
@@ -884,6 +965,9 @@ theorem alignedFactor_transpose_mul
   intro j _
   by_cases hj : d.c j < 0 <;> simp [hj]
 
+/--
+@isnad1 id=le.2h8v.s7.865322965739 from=translated src=- shape=812a47ae vocab=a63dea4d
+-/
 theorem alignedFactor_nonneg
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -920,6 +1004,9 @@ theorem alignedFactor_nonneg
     · simp [hzero]
     · simp [hone]
 
+/--
+@isnad1 id=ex.2h6v.s7.408f12090570 from=translated src=- shape=f630ed77 vocab=2bdcf26f
+-/
 theorem exists_alignedFactor_row_sum_fifty_five
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -966,6 +1053,9 @@ theorem exists_alignedFactor_row_sum_fifty_five
     rw [d.row_sum, hc]
     norm_num
 
+/--
+@isnad1 id=eq.4h7v.s8.749bd1271be5 from=translated src=- shape=a3a09523 vocab=fa597bf5
+-/
 theorem factor_entry_eq_one_of_nonnegative
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -984,6 +1074,9 @@ theorem factor_entry_eq_one_of_nonnegative
   · exact (hne hzero).elim
   · exact hone
 
+/--
+@isnad1 id=isindeps.3h6v.s7.dd29c82720de from=translated src=- shape=58bfb43f vocab=e15afbcc
+-/
 theorem factorRowSupport_isIndepSet
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -1018,6 +1111,9 @@ theorem factorRowSupport_isIndepSet
     simpa [Matrix.mul_apply] using hfactor
   omega
 
+/--
+@isnad1 id=eq.4h6v.s8.1f038b3d72fd from=translated src=- shape=a8202ae5 vocab=051b0dc6
+-/
 theorem factorRowSupport_card_of_sum
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -1056,6 +1152,9 @@ def extendSecondCoclique
   insert x (S.image Subtype.val)
 
 omit [Fintype V] [DecidableRel G.Adj] in
+/--
+@isnad1 id=eq.0h4v.s5.e7ba8d5ef392 from=translated src=- shape=09e41d4e vocab=8fb1131c
+-/
 theorem extendSecondCoclique_card
     (x : V) (S : Finset (SecondSubconstituent G x)) :
     (extendSecondCoclique G x S).card = S.card + 1 := by
@@ -1070,6 +1169,9 @@ theorem extendSecondCoclique_card
     Finset.card_image_of_injective S Subtype.val_injective]
 
 omit [Fintype V] [DecidableRel G.Adj] in
+/--
+@isnad1 id=isindeps.1h4v.s6.f7c0f12affb4 from=translated src=- shape=7c30ef8a vocab=9661fa3b
+-/
 theorem extendSecondCoclique_isIndepSet
     (x : V) (S : Finset (SecondSubconstituent G x))
     (hS : (secondSubconstituentGraph G x).IsIndepSet
@@ -1098,6 +1200,9 @@ theorem extendSecondCoclique_isIndepSet
         exact congrArg Subtype.val hAB
       exact hS hAS hBS hneAB
 
+/--
+@isnad1 id=ex.4h6v.s7.80dddce28968 from=translated src=- shape=e3ed34f3 vocab=997e6ee9
+-/
 theorem exists_global_coclique_of_aligned_factor_row
     (hG : IsHypothetical G) (x : V)
     {n : ℕ}
@@ -1115,6 +1220,9 @@ theorem exists_global_coclique_of_aligned_factor_row
   · apply extendSecondCoclique_isIndepSet G x S
     exact factorRowSupport_isIndepSet G hG x W hW hnonneg j
 
+/--
+@isnad1 id=ex.2h3v.s5.45af69806cb9 from=translated src=- shape=8220a725 vocab=48b58105
+-/
 theorem exists_global_coclique_of_oneIntegrable
     (hG : IsHypothetical G) (x : V)
     (hInt : LocalGramIsOneIntegrable G x) :

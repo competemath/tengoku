@@ -28,11 +28,17 @@ variable {P : Type*} [DecidableEq P] (K : CoherentK11System P)
 def localEdges (S : Finset P) (p : P) : Finset Edge11 :=
   Finset.univ.filter fun e => ((K.coordinate p).symm e : P) ∈ S
 
+/--
+@isnad1 id=iff.0h5v.s6.a02c2c94a484 from=translated src=- shape=3c8f4840 vocab=a82c7181
+-/
 @[simp] theorem coordinate_mem_localEdges (S : Finset P) (p : P)
     (q : {q : P // q ≠ p}) :
     K.coordinate p q ∈ K.localEdges S p ↔ (q : P) ∈ S := by
   simp [localEdges]
 
+/--
+@isnad1 id=eq.0h4v.s4.1d5a1e1dd5ab from=translated src=- shape=adc4710a vocab=31707424
+-/
 theorem card_localEdges (S : Finset P) (p : P) :
     (K.localEdges S p).card = (S.erase p).card := by
   classical
@@ -64,6 +70,9 @@ def IsInAdjacencyKernel (S : Finset P) : Prop :=
   ∀ p : P, ∀ e : Edge11,
     Even ((K.localEdges S p).filter fun f => Edge11.vmeet e f = 1).card
 
+/--
+@isnad1 id=iff.0h2v.s4.0d2c18380e0a from=translated src=- shape=91824be1 vocab=f5f29c79
+-/
 theorem odd_vmeet_iff_eq_one (e f : Edge11) :
     Odd (Edge11.vmeet e f) ↔ Edge11.vmeet e f = 1 := by
   by_cases hef : e = f
@@ -78,12 +87,18 @@ theorem odd_vmeet_iff_eq_one (e f : Edge11) :
       rw [h]
       norm_num
 
+/--
+@isnad1 id=isinline.1h3v.s4.339dc98126ab from=translated src=- shape=f15eaebe vocab=c8467c0b
+-/
 theorem IsInAdjacencyKernel.isInLineKernel {S : Finset P}
     (hS : K.IsInAdjacencyKernel S) : K.IsInLineKernel S := by
   intro p e
   rw [Finset.even_sum_iff_even_card_odd]
   simpa [odd_vmeet_iff_eq_one] using hS p e
 
+/--
+@isnad1 id=islocall.1h3v.s4.c06e670f745b from=translated src=- shape=f15eaebe vocab=b1f4a07e
+-/
 theorem IsInLineKernel.isLocallyEulerian {S : Finset P}
     (hS : K.IsInLineKernel S) : K.IsLocallyEulerian S := by
   classical
@@ -119,6 +134,9 @@ theorem IsInLineKernel.isLocallyEulerian {S : Finset P}
   obtain ⟨k, hk⟩ := hoddCardEven
   omega
 
+/--
+@isnad1 id=ex.3h3v.s7.e17834250e1c from=translated src=- shape=69a3bf69 vocab=6c677e11
+-/
 theorem exists_companion_of_even_degree {T : Finset Edge11} {e : Edge11}
     {v : Fin 11} (he : e ∈ T) (hv : v ∈ e.vertices)
     (heven : Even (arcDegree T v)) :
@@ -136,6 +154,9 @@ theorem exists_companion_of_even_degree {T : Finset Edge11} {e : Edge11}
   obtain ⟨f, hf, hfe⟩ := Finset.exists_mem_ne hcard e
   exact ⟨f, (Finset.mem_filter.mp hf).1, hfe, (Finset.mem_filter.mp hf).2⟩
 
+/--
+@isnad1 id=eq.4h4v.s6.a03416be6f68 from=translated src=- shape=bb299a74 vocab=eef11257
+-/
 theorem vmeet_eq_zero_of_endpoint_degrees_zero {T : Finset Edge11}
     {u v : Fin 11} (huv : u ≠ v)
     (hu : arcDegree T u = 0) (hv : arcDegree T v = 0) {f : Edge11}
@@ -155,6 +176,9 @@ theorem vmeet_eq_zero_of_endpoint_degrees_zero {T : Finset Edge11}
     subst this
     omega
 
+/--
+@isnad1 id=le.2h4v.s6.15209375eae6 from=translated src=- shape=0687a9af vocab=8376de30
+-/
 theorem unusedVertices_card_le_one {S : Finset P}
     (hS : K.IsLocallyEulerian S) {p : P} (hp : p ∈ S) :
     ((Finset.univ : Finset (Fin 11)).filter fun v =>
@@ -228,6 +252,9 @@ theorem unusedVertices_card_le_one {S : Finset P}
     vmeet_eq_zero_of_endpoint_degrees_zero huv hu0 hv0 hrmem
   omega
 
+/--
+@isnad1 id=le.2h4v.s5.6ca8eb60f54c from=translated src=- shape=6117cf9a vocab=fed12811
+-/
 theorem ten_le_card_localEdges {S : Finset P}
     (hS : K.IsLocallyEulerian S) {p : P} (hp : p ∈ S) :
     10 ≤ (K.localEdges S p).card := by
@@ -263,6 +290,9 @@ theorem ten_le_card_localEdges {S : Finset P}
   rw [hincidence] at hsumAll
   omega
 
+/--
+@isnad1 id=le.2h4v.s5.93389cae8b56 from=translated src=- shape=3b108a89 vocab=8303138b
+-/
 theorem eleven_le_card {S : Finset P} (hS : K.IsLocallyEulerian S)
     {p : P} (hp : p ∈ S) : 11 ≤ S.card := by
   have hlocal := K.ten_le_card_localEdges hS hp
@@ -307,6 +337,9 @@ noncomputable def toCoherentK11System : CoherentK11System (Fin 56) where
           (@Q.tripleLink_adj_iff_sparseTriple q pq rq).symm
       _ ↔ _ := (Q.derived45 q).adj_iff_vmeet_edgeEquiv pq rq
 
+/--
+@isnad1 id=iff.0h4v.s8.282ba8eef47e from=translated src=- shape=08ca3607 vocab=17c49732
+-/
 theorem coordinate_vmeet_iff_sparse (p : Fin 56)
     (q r : {x : Fin 56 // x ≠ p}) :
     Edge11.vmeet (Q.toCoherentK11System.coordinate p q)
@@ -346,6 +379,9 @@ noncomputable instance instDecidableTripleLinkAdj (p : Fin 56) :
 noncomputable instance instDecidableAmbientTripleLinkAdj (p : Fin 56) :
     DecidableRel (Q.ambientTripleLink p).Adj := inferInstance
 
+/--
+@isnad1 id=iff.0h4v.s5.6e91d6e201ce from=translated src=- shape=a3dfa990 vocab=cf5489aa
+-/
 theorem ambientTripleLink_adj_iff_sparseTriple {p q r : Fin 56} :
     (Q.ambientTripleLink p).Adj q r ↔ Q.sparseTriple p q r := by
   constructor
@@ -365,6 +401,9 @@ theorem ambientTripleLink_adj_iff_sparseTriple {p q r : Fin 56} :
     rw [ambientTripleLink, SimpleGraph.map_adj]
     exact ⟨q', r', hlink, rfl, rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.5cbd5db1a833 from=translated src=- shape=bfd1e58d vocab=458235d3
+-/
 theorem card_tripleLink_edgeFinset (p : Fin 56) :
     (Q.tripleLink p).edgeFinset.card = 495 := by
   have hdegree := (Q.tripleLink_isSRGWith p).regular
@@ -373,6 +412,9 @@ theorem card_tripleLink_edgeFinset (p : Fin 56) :
   simp at hsum
   omega
 
+/--
+@isnad1 id=eq.0h2v.s5.30f36fe9560c from=translated src=- shape=74506422 vocab=296f1655
+-/
 theorem card_ambientTripleLink_edgeFinset (p : Fin 56) :
     (Q.ambientTripleLink p).edgeFinset.card = 495 := by
   change ((Q.tripleLink p).map (puncturedEmbedding p)).edgeFinset.card = 495
@@ -383,6 +425,9 @@ noncomputable def sparsePairColumnCount (S : Finset (Fin 56))
   classical
   exact (S.filter fun p => e ∈ (Q.ambientTripleLink p).edgeFinset).card
 
+/--
+@isnad1 id=eq.0h4v.s5.801a236682d3 from=translated src=- shape=31483ee7 vocab=b50af88b
+-/
 theorem sparsePairColumnCount_mk (S : Finset (Fin 56)) (q r : Fin 56) :
     Q.sparsePairColumnCount S s(q, r) =
       Q.sparseCompletionCount S q r := by
@@ -395,6 +440,9 @@ theorem sparsePairColumnCount_mk (S : Finset (Fin 56)) (q r : Fin 56) :
     Q.ambientTripleLink_adj_iff_sparseTriple]
   exact and_congr_right fun _ => Q.sparseTriple_rotate p q r
 
+/--
+@isnad1 id=even.1h3v.s4.82ed8ec71ac7 from=translated src=- shape=9d415c3e vocab=e1aab024
+-/
 theorem sparseKernel_column_even {S : Finset (Fin 56)}
     (hS : Q.IsSparseKernelSupport S) (e : Sym2 (Fin 56)) :
     Even (Q.sparsePairColumnCount S e) := by
@@ -403,6 +451,9 @@ theorem sparseKernel_column_even {S : Finset (Fin 56)}
       rw [Q.sparsePairColumnCount_mk]
       exact hS q r
 
+/--
+@isnad1 id=eq.0h2v.s6.f5aa011fe095 from=translated src=- shape=d6bb30e9 vocab=7306cfc9
+-/
 theorem sum_sparsePairColumnCount (S : Finset (Fin 56)) :
     (∑ e : Sym2 (Fin 56), Q.sparsePairColumnCount S e) =
       495 * S.card := by
@@ -426,6 +477,9 @@ theorem sum_sparsePairColumnCount (S : Finset (Fin 56)) :
     _ = 495 * S.card := by
       simp [card_tripleLink_edgeFinset Q, mul_comm]
 
+/--
+@isnad1 id=even.1h2v.s4.9f44d60c9bc6 from=translated src=- shape=8fd10cf3 vocab=59153129
+-/
 theorem sparseKernelSupport_card_even {S : Finset (Fin 56)}
     (hS : Q.IsSparseKernelSupport S) : Even S.card := by
   have htotal : Even
@@ -443,6 +497,9 @@ noncomputable def pairThirdMatrix :
 noncomputable def supportVector (S : Finset (Fin 56)) : Fin 56 → ZMod 2 :=
   fun p => if p ∈ S then 1 else 0
 
+/--
+@isnad1 id=eq.0h3v.s7.7d56df89b288 from=translated src=- shape=a5de0b73 vocab=ccb99f25
+-/
 theorem pairThirdMatrix_transpose_mulVec_support_apply
     (S : Finset (Fin 56)) (e : Sym2 (Fin 56)) :
     Matrix.mulVec (Matrix.transpose Q.pairThirdMatrix) (supportVector S) e =
@@ -474,6 +531,9 @@ theorem pairThirdMatrix_transpose_mulVec_support_apply
 def IsPairThirdKernelSupport (S : Finset (Fin 56)) : Prop :=
   Matrix.mulVec (Matrix.transpose Q.pairThirdMatrix) (supportVector S) = 0
 
+/--
+@isnad1 id=iff.0h2v.s4.788451f5c4fe from=translated src=- shape=49129b75 vocab=bf21a01b
+-/
 theorem isPairThirdKernelSupport_iff_columns_even
     (S : Finset (Fin 56)) :
     Q.IsPairThirdKernelSupport S ↔
@@ -488,6 +548,9 @@ theorem isPairThirdKernelSupport_iff_columns_even
     rw [Q.pairThirdMatrix_transpose_mulVec_support_apply]
     exact ZMod.natCast_eq_zero_iff_even.mpr (h e)
 
+/--
+@isnad1 id=iff.0h2v.s4.deba06442d34 from=translated src=- shape=ebc02e55 vocab=86efc6d1
+-/
 theorem isPairThirdKernelSupport_iff_sparseKernelSupport
     (S : Finset (Fin 56)) :
     Q.IsPairThirdKernelSupport S ↔ Q.IsSparseKernelSupport S := by
@@ -499,6 +562,9 @@ theorem isPairThirdKernelSupport_iff_sparseKernelSupport
   · intro h e
     exact Q.sparseKernel_column_even h e
 
+/--
+@isnad1 id=eq.0h4v.s8.7ace860e60bb from=translated src=- shape=71bde70f vocab=75f5683b
+-/
 theorem card_filter_vmeet_eq_card_filter_sparse (S : Finset (Fin 56))
     (p : Fin 56) (e : Edge11) :
     ((Q.toCoherentK11System.localEdges S p).filter fun f =>
@@ -543,6 +609,9 @@ theorem card_filter_vmeet_eq_card_filter_sparse (S : Finset (Fin 56))
     · exact congrArg Subtype.val
         ((Q.toCoherentK11System.coordinate p).symm_apply_apply r')
 
+/--
+@isnad1 id=isinadja.1h2v.s4.75e9a9d5153d from=translated src=- shape=89561af6 vocab=e976f96e
+-/
 theorem sparseKernel_isInAdjacencyKernel {S : Finset (Fin 56)}
     (hS : Q.IsSparseKernelSupport S) :
     Q.toCoherentK11System.IsInAdjacencyKernel S := by
@@ -556,25 +625,40 @@ def IsEulerianKernelSupport (S : Finset (Fin 56)) : Prop :=
 def IsCoordinateKernelSupport (S : Finset (Fin 56)) : Prop :=
   Q.toCoherentK11System.IsInAdjacencyKernel S
 
+/--
+@isnad1 id=iseuleri.1h2v.s4.376f7f806a2a from=translated src=- shape=d716d8e5 vocab=b7f867ee
+-/
 theorem coordinateKernel_isEulerian {S : Finset (Fin 56)}
     (hS : Q.IsCoordinateKernelSupport S) : Q.IsEulerianKernelSupport S :=
   hS.isInLineKernel.isLocallyEulerian
 
+/--
+@isnad1 id=iscoordi.1h2v.s4.e5d1a34a3d38 from=translated src=- shape=d716d8e5 vocab=96806905
+-/
 theorem sparseKernel_isCoordinateKernel {S : Finset (Fin 56)}
     (hS : Q.IsSparseKernelSupport S) : Q.IsCoordinateKernelSupport S :=
   Q.sparseKernel_isInAdjacencyKernel hS
 
+/--
+@isnad1 id=le.2h3v.s7.314872c98a41 from=translated src=- shape=42260463 vocab=ebde7d7d
+-/
 theorem kernelSupport_unusedVertices_card_le_one {S : Finset (Fin 56)}
     (hS : Q.IsEulerianKernelSupport S) {p : Fin 56} (hp : p ∈ S) :
     ((Finset.univ : Finset (Fin 11)).filter fun v =>
       arcDegree (Q.toCoherentK11System.localEdges S p) v = 0).card ≤ 1 :=
   Q.toCoherentK11System.unusedVertices_card_le_one hS hp
 
+/--
+@isnad1 id=le.2h3v.s6.f74f36fbc60f from=translated src=- shape=ca0370aa vocab=a58843ae
+-/
 theorem eleven_le_card_kernelSupport {S : Finset (Fin 56)}
     (hS : Q.IsEulerianKernelSupport S) {p : Fin 56} (hp : p ∈ S) :
     11 ≤ S.card :=
   Q.toCoherentK11System.eleven_le_card hS hp
 
+/--
+@isnad1 id=le.3h3v.s6.f4bc04acbfc4 from=translated src=- shape=6ee83800 vocab=16d32b19
+-/
 theorem twelve_le_card_kernelSupport {S : Finset (Fin 56)}
     (hS : Q.IsEulerianKernelSupport S) (heven : Even S.card)
     {p : Fin 56} (hp : p ∈ S) : 12 ≤ S.card := by
@@ -582,11 +666,17 @@ theorem twelve_le_card_kernelSupport {S : Finset (Fin 56)}
   obtain ⟨k, hk⟩ := heven
   omega
 
+/--
+@isnad1 id=le.3h3v.s6.f9c0ffcabffd from=translated src=- shape=6ee83800 vocab=758c9634
+-/
 theorem twelve_le_card_coordinateKernelSupport {S : Finset (Fin 56)}
     (hS : Q.IsCoordinateKernelSupport S) (heven : Even S.card)
     {p : Fin 56} (hp : p ∈ S) : 12 ≤ S.card :=
   Q.twelve_le_card_kernelSupport (Q.coordinateKernel_isEulerian hS) heven hp
 
+/--
+@isnad1 id=le.2h3v.s6.f406b306111e from=translated src=- shape=ca0370aa vocab=59bc68eb
+-/
 theorem twelve_le_card_sparseKernelSupport {S : Finset (Fin 56)}
     (hS : Q.IsSparseKernelSupport S) {p : Fin 56} (hp : p ∈ S) :
     12 ≤ S.card :=
@@ -594,12 +684,18 @@ theorem twelve_le_card_sparseKernelSupport {S : Finset (Fin 56)}
     (Q.sparseKernel_isCoordinateKernel hS)
     (Q.sparseKernelSupport_card_even hS) hp
 
+/--
+@isnad1 id=le.2h3v.s6.e804af3129b1 from=translated src=- shape=ca0370aa vocab=ad4d5cf8
+-/
 theorem twelve_le_card_pairThirdKernelSupport {S : Finset (Fin 56)}
     (hS : Q.IsPairThirdKernelSupport S) {p : Fin 56} (hp : p ∈ S) :
     12 ≤ S.card :=
   Q.twelve_le_card_sparseKernelSupport
     ((Q.isPairThirdKernelSupport_iff_sparseKernelSupport S).mp hS) hp
 
+/--
+@isnad1 id=and.3h3v.s8.5fa86022a443 from=translated src=- shape=d535a081 vocab=b2ee9c34
+-/
 theorem weightTwelve_local_constraints {S : Finset (Fin 56)}
     (hS : Q.IsEulerianKernelSupport S) (hcard : S.card = 12)
     {p : Fin 56} (hp : p ∈ S) :
@@ -616,6 +712,9 @@ theorem weightTwelve_local_constraints {S : Finset (Fin 56)}
   refine ⟨hedgecard, Q.kernelSupport_unusedVertices_card_le_one hS hp, ?_, hS p⟩
   rw [sum_arcDegree, hedgecard]
 
+/--
+@isnad1 id=and.3h3v.s8.385ccd4b47c3 from=translated src=- shape=d535a081 vocab=33f00c1b
+-/
 theorem sparseKernel_weightTwelve_local_constraints
     {S : Finset (Fin 56)} (hS : Q.IsSparseKernelSupport S)
     (hcard : S.card = 12) {p : Fin 56} (hp : p ∈ S) :

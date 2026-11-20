@@ -18,6 +18,9 @@ open scoped BigOperators
 
 variable {X : Type*} [AddCommGroup X] [Module ℚ X]
 
+/--
+@isnad1 id=eq.1h6v.s9.6effe1a8b9aa from=translated src=- shape=9db85d24 vocab=6c46c4af
+-/
 theorem orthogonal_basis_pair_repr {κ : Type*} [Fintype κ] [DecidableEq κ]
     (B : LinearMap.BilinForm ℚ X) (b : Module.Basis κ ℚ X)
     (hb : B.IsOrthoᵢ b) (x : X) (i : κ) :
@@ -31,6 +34,9 @@ theorem orthogonal_basis_pair_repr {κ : Type*} [Fintype κ] [DecidableEq κ]
         simp only [map_smul, smul_eq_mul, hb hji.symm, mul_zero]
       · simp
 
+/--
+@isnad1 id=eq.2h5v.s10.6b8ab382e9a7 from=translated src=- shape=3c4e9865 vocab=b9881b98
+-/
 theorem orthogonal_basis_norm_expansion {κ : Type*} [Fintype κ] [DecidableEq κ]
     (B : LinearMap.BilinForm ℚ X) (b : Module.Basis κ ℚ X)
     (hb : B.IsOrthoᵢ b) (hdiag : ∀ i, B (b i) (b i) ≠ 0) (x : X) :
@@ -45,6 +51,9 @@ theorem orthogonal_basis_norm_expansion {κ : Type*} [Fintype κ] [DecidableEq �
       rw [orthogonal_basis_pair_repr B b hb]
       field_simp [hdiag i]
 
+/--
+@isnad1 id=le.3h5v.s10.99eb2d0f99b8 from=translated src=- shape=3728ccd6 vocab=bed67020
+-/
 theorem rational_frame_mass_le_finrank [FiniteDimensional ℚ X]
     {ι : Type*} [Fintype ι] (B : LinearMap.BilinForm ℚ X) (hB : B.IsSymm)
     (hpos : ∀ x, x ≠ 0 → 0 < B x x) (v : ι → X) (C : ℚ)
@@ -63,6 +72,9 @@ theorem rational_frame_mass_le_finrank [FiniteDimensional ℚ X]
   have h := Finset.sum_le_sum (s := Finset.univ) (fun j _ => hsum j)
   simpa only [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul, mul_comm] using h
 
+/--
+@isnad1 id=le.4h6v.s10.e2406c3e5059 from=translated src=- shape=cf5c06ea vocab=b7112c51
+-/
 theorem rational_frame_mass_le_submodule_finrank [FiniteDimensional ℚ X]
     {ι : Type*} [Fintype ι] (B : LinearMap.BilinForm ℚ X) (hB : B.IsSymm)
     (hpos : ∀ x, x ≠ 0 → 0 < B x x) (v : ι → X) (C : ℚ)

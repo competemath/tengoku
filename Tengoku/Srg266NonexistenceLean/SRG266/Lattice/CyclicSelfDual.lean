@@ -13,6 +13,9 @@ variable {W U : Type*} [AddCommGroup W] [Module ℚ W] [AddCommGroup U] [Module 
 variable {B : LinearMap.BilinForm ℚ W} {C : LinearMap.BilinForm ℚ U}
 variable {N : Submodule ℤ W} {M : Submodule ℤ U} {u : W} {v : U}
 
+/--
+@isnad1 id=eq.9h9v.s10.1c63fb2a9172 from=translated src=- shape=70ac86fc vocab=a583c80d
+-/
 theorem cyclicGlueLattice_dual_eq_self (hsB : B.IsSymm) (hsC : C.IsSymm)
     (hN : IsIntegral B N) (hM : IsIntegral C M)
     (hdN : B.dualSubmodule N = N ⊔ Submodule.span ℤ {u})
@@ -54,6 +57,9 @@ theorem cyclicGlueLattice_dual_eq_self (hsB : B.IsSymm) (hsC : C.IsSymm)
   rw [← heq]
   exact S.glue_dual_eq_self
 
+/--
+@isnad1 id=and.13h9v.s10.fdf827059189 from=translated src=- shape=bc6c47ee vocab=f2bd6f92
+-/
 theorem complete_even_cyclic_glue (hsB : B.IsSymm) (hsC : C.IsSymm)
     (hlN : IsLattice ℚ N) (hlM : IsLattice ℚ M)
     (hiN : IsIntegral B N) (hiM : IsIntegral C M)
@@ -83,6 +89,9 @@ theorem complete_even_cyclic_glue (hsB : B.IsSymm) (hsC : C.IsSymm)
 
 omit [Module ℚ W] [AddCommGroup U] [Module ℚ U] in
 
+/--
+@isnad1 id=eq.2h7v.s8.49fc6a4bdfef from=translated src=- shape=48321082 vocab=301b248d
+-/
 theorem sup_span_smul_eq_of_bezout {p a b k : ℤ} (hp : p • u ∈ N)
     (hab : a * b + p * k = 1) :
     N ⊔ Submodule.span ℤ {a • u} = N ⊔ Submodule.span ℤ {u} := by

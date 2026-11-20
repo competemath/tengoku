@@ -12,6 +12,9 @@ namespace SRG266.Lattice
 
 open scoped BigOperators
 
+/--
+@isnad1 id=eq.2h5v.s9.7938a06defa3 from=translated src=- shape=b02cae67 vocab=11769580
+-/
 theorem sum_coordinate_eigenvalues_of_split
     {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Fintype κ] [DecidableEq κ]
     (f : (ι → ℚ) →ₗ[ℚ] (κ → ℚ)) (g : (κ → ℚ) →ₗ[ℚ] (ι → ℚ))

@@ -14,12 +14,18 @@ namespace SRG266
 variable {V : Type*} [Fintype V] [DecidableEq V]
 variable (G : SimpleGraph V) [DecidableRel G.Adj]
 
+/--
+@isnad1 id=eq.0h5v.s5.f496806c4482 from=translated src=- shape=2daeeee1 vocab=ec1106a4
+-/
 theorem localKMatrix_comm
     (x : V) (B C : SecondSubconstituent G x) :
     localKMatrix G x B C = localKMatrix G x C B := by
   simp only [localKMatrix]
   rw [localGramMatrix_comm G x B C]
 
+/--
+@isnad1 id=eq.0h3v.s7.c27ccb3c82a6 from=translated src=- shape=30c2c3d5 vocab=41cf5a44
+-/
 theorem localKMatrix_eq_linear_combination
     (x : V) :
     localKMatrix G x =
@@ -30,6 +36,9 @@ theorem localKMatrix_eq_linear_combination
   ext B C
   simp [localKMatrix]
 
+/--
+@isnad1 id=eq.1h3v.s8.630052f7a8c7 from=translated src=- shape=e922a337 vocab=9b1d7ac8
+-/
 theorem localKMatrix_sq
     (hG : IsHypothetical G) (x : V) :
     localKMatrix G x * localKMatrix G x =
@@ -62,6 +71,9 @@ theorem localKMatrix_sq
       rw [hLL, hLJ, hJL, hJJ]
       noncomm_ring
 
+/--
+@isnad1 id=eq.1h5v.s7.7f6582f78057 from=translated src=- shape=4e49b031 vocab=41fb3ec0
+-/
 theorem localKMatrix_sq_apply
     (hG : IsHypothetical G) (x : V)
     (B C : SecondSubconstituent G x) :
@@ -81,6 +93,9 @@ theorem localKMatrix_sq_apply
 def integerPotential (z : ℤ) : ℤ :=
   z * (z + 1) / 2
 
+/--
+@isnad1 id=eq.0h1v.s5.1c408a58def0 from=translated src=- shape=b5988a5f vocab=b9f7814c
+-/
 theorem two_mul_integerPotential (z : ℤ) :
     2 * integerPotential z = z * z + z := by
   have hdiv := Int.ediv_mul_cancel (Int.two_dvd_mul_add_one z)
@@ -89,6 +104,9 @@ theorem two_mul_integerPotential (z : ℤ) :
     z * (z + 1) / 2 * 2 = z * (z + 1) := hdiv
     _ = z * z + z := by ring
 
+/--
+@isnad1 id=le.4h2v.s6.a1d42372b2fe from=translated src=- shape=d686ce17 vocab=6218ce40
+-/
 theorem integerPotential_pair_nonneg
     {a b : ℤ}
     (haLower : -2 ≤ a) (haUpper : a ≤ 2)
@@ -97,6 +115,9 @@ theorem integerPotential_pair_nonneg
   interval_cases a <;> interval_cases b <;>
     norm_num [integerPotential]
 
+/--
+@isnad1 id=and.2h5v.s6.a5b034c59068 from=translated src=- shape=b83138eb vocab=bcdf6b3b
+-/
 theorem localKMatrix_bounds
     (hG : IsHypothetical G) (x : V)
     {B C : SecondSubconstituent G x}
@@ -110,6 +131,9 @@ theorem localKMatrix_bounds
     have hnonneg : 0 ≤ (blockIntersection G x B C : ℤ) := by positivity
     constructor <;> omega
 
+/--
+@isnad1 id=le.3h6v.s7.0ffefdbc9073 from=translated src=- shape=aee7322f vocab=d6e5f876
+-/
 theorem localPotentialSummand_nonneg
     (hG : IsHypothetical G) (x : V)
     {B C D : SecondSubconstituent G x}
@@ -159,12 +183,18 @@ def otherLocalIndices
     Finset (SecondSubconstituent G x) :=
   (Finset.univ.erase B).erase C
 
+/--
+@isnad1 id=iff.0h6v.s6.55588e662002 from=translated src=- shape=41b8aab7 vocab=70c5eac9
+-/
 @[simp]
 theorem mem_otherLocalIndices
     (x : V) (B C D : SecondSubconstituent G x) :
     D ∈ otherLocalIndices G x B C ↔ D ≠ B ∧ D ≠ C := by
   simp [otherLocalIndices, and_comm]
 
+/--
+@isnad1 id=eq.1h6v.s7.bb27cc356d4f from=translated src=- shape=2a35b365 vocab=764dfc79
+-/
 theorem sum_otherLocalIndices
     (x : V) {B C : SecondSubconstituent G x}
     (hne : B ≠ C)
@@ -175,6 +205,9 @@ theorem sum_otherLocalIndices
     Finset.sum_erase_eq_sub (by simp [hne.symm]),
     Finset.sum_erase_eq_sub (by simp)]
 
+/--
+@isnad1 id=eq.1h4v.s6.5930a0483bab from=translated src=- shape=e54718eb vocab=e648a274
+-/
 theorem sum_localKMatrix_sq
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
@@ -192,6 +225,9 @@ theorem sum_localKMatrix_sq
       rw [localKMatrix_diagonal G hG x B]
       norm_num
 
+/--
+@isnad1 id=eq.1h4v.s6.b0ddca6469d9 from=translated src=- shape=3c93e0db vocab=4c6fea7a
+-/
 theorem sum_integerPotential_localKMatrix
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
@@ -208,6 +244,9 @@ theorem sum_integerPotential_localKMatrix
     localKMatrix_row_sum G hG x B] at htwice
   omega
 
+/--
+@isnad1 id=eq.3h5v.s6.338fdd726414 from=translated src=- shape=92d59fe2 vocab=3b6f1db1
+-/
 theorem localKMatrix_eq_neg_two_of_intersection_four
     (x : V) {B C : SecondSubconstituent G x}
     (hne : B ≠ C)
@@ -217,6 +256,9 @@ theorem localKMatrix_eq_neg_two_of_intersection_four
   rw [localKMatrix_of_not_adj G x hne hBC, hinter]
   norm_num
 
+/--
+@isnad1 id=eq.4h5v.s6.a3ac9ac4bbbd from=translated src=- shape=c7eddffe vocab=fea68f60
+-/
 theorem sum_other_integerPotential_eq_twenty_six
     (hG : IsHypothetical G) (x : V)
     {B C : SecondSubconstituent G x}
@@ -231,6 +273,9 @@ theorem sum_other_integerPotential_eq_twenty_six
     localKMatrix_eq_neg_two_of_intersection_four G x hne hBC hinter]
   norm_num [integerPotential]
 
+/--
+@isnad1 id=eq.4h5v.s6.876273042aba from=translated src=- shape=12e01e74 vocab=fea68f60
+-/
 theorem sum_other_integerPotential_symm_eq_twenty_six
     (hG : IsHypothetical G) (x : V)
     {B C : SecondSubconstituent G x}
@@ -249,6 +294,9 @@ theorem sum_other_integerPotential_symm_eq_twenty_six
     localKMatrix_diagonal G hG x C]
   norm_num [integerPotential]
 
+/--
+@isnad1 id=eq.4h5v.s7.6dc787c58612 from=translated src=- shape=f99674a1 vocab=aaa6416a
+-/
 theorem sum_other_localKMatrix_product_eq_neg_fifty_seven
     (hG : IsHypothetical G) (x : V)
     {B C : SecondSubconstituent G x}
@@ -278,6 +326,9 @@ theorem sum_other_localKMatrix_product_eq_neg_fifty_seven
     localKMatrix_comm G x C B, hKBC]
   norm_num
 
+/--
+@isnad1 id=eq.4h5v.s7.1ce96cb875fb from=translated src=- shape=cbece5c3 vocab=aa8d8c06
+-/
 theorem sum_other_localAdjacencyMatrix_product_eq_five
     (hG : IsHypothetical G) (x : V)
     {B C : SecondSubconstituent G x}
@@ -309,6 +360,9 @@ theorem sum_other_localAdjacencyMatrix_product_eq_five
   rw [hBB, hCC]
   norm_num
 
+/--
+@isnad1 id=eq.4h5v.s7.2a1c68872d5f from=translated src=- shape=5028a2cb vocab=118148ca
+-/
 theorem sum_other_localPotentialSummand_eq_neg_ten
     (hG : IsHypothetical G) (x : V)
     {B C : SecondSubconstituent G x}
@@ -329,6 +383,9 @@ theorem sum_other_localPotentialSummand_eq_neg_ten
     sum_other_localAdjacencyMatrix_product_eq_five G hG x hne hBC hinter]
   norm_num
 
+/--
+@isnad1 id=ne.2h5v.s6.2ef8d4e0853b from=translated src=- shape=6332221a vocab=3ab2de47
+-/
 theorem blockIntersection_ne_four
     (hG : IsHypothetical G) (x : V)
     {B C : SecondSubconstituent G x}
@@ -352,6 +409,9 @@ theorem blockIntersection_ne_four
   rw [sum_other_localPotentialSummand_eq_neg_ten G hG x hne hBC hinter] at hnonneg
   omega
 
+/--
+@isnad1 id=le.2h5v.s6.f97120f40355 from=translated src=- shape=99746e7e vocab=58103005
+-/
 theorem blockIntersection_le_three
     (hG : IsHypothetical G) (x : V)
     {B C : SecondSubconstituent G x}
@@ -361,6 +421,9 @@ theorem blockIntersection_le_three
   have hneFour := blockIntersection_ne_four G hG x hne
   omega
 
+/--
+@isnad1 id=and.1h5v.s6.e0577c62d600 from=translated src=- shape=e4fa9e12 vocab=717dde6a
+-/
 theorem localGramMatrix_bounds
     (hG : IsHypothetical G) (x : V)
     (B C : SecondSubconstituent G x) :
@@ -377,6 +440,9 @@ theorem localGramMatrix_bounds
       have hnonneg : 0 ≤ (blockIntersection G x B C : ℤ) := by positivity
       constructor <;> omega
 
+/--
+@isnad1 id=or.1h5v.s6.1e971de2b26f from=translated src=- shape=b319a3c8 vocab=80742f4f
+-/
 theorem localGramMatrix_entry_cases
     (hG : IsHypothetical G) (x : V)
     (B C : SecondSubconstituent G x) :

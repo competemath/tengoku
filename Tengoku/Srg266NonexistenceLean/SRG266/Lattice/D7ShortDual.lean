@@ -10,6 +10,9 @@ import Tengoku.Seed.Tactic.FinCases
 
 namespace SRG266.Lattice
 
+/--
+@isnad1 id=ex.1h1v.s9.8bd743df8edd from=translated src=- shape=6943c3d2 vocab=5ec7d27d
+-/
 theorem d7_dual_reduced {a : Fin 7 → ℚ}
     (ha : a ∈ (standardRatForm 7).dualSubmodule (evenCoordinateLattice 7)) :
     ∃ (v : Fin 7 → ℚ) (_ : v ∈ evenCoordinateLattice 7) (m : Fin 4),
@@ -88,6 +91,9 @@ private theorem scalar_short_gap (m : Fin 4) (b n : ℤ) (d t : ℚ)
       have ht : 1 / 4 ≤ t := by linarith
       nlinarith [sq_nonneg (t - 1 / 4)]
 
+/--
+@isnad1 id=le.4h2v.s11.a819e2f0a0ad from=translated src=- shape=4601e502 vocab=5f9a2e4d
+-/
 theorem d7_short_dual_gap {a : Fin 7 → ℚ}
     (ha : a ∈ (standardRatForm 7).dualSubmodule (evenCoordinateLattice 7))
     (hpos : 0 < standardRatForm 7 a a) (hsmall : standardRatForm 7 a a < 2)

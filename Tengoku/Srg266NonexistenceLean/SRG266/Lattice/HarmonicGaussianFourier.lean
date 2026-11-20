@@ -17,6 +17,9 @@ open scoped FourierTransform RealInnerProductSpace
 variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
   [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V]
 
+/--
+@isnad1 id=eq.1h5v.s9.4fb6659a4ca3 from=translated src=- shape=344e7f66 vocab=4fb2d974
+-/
 theorem hessian_fourier_realGaussian {t : ℝ} (ht : 0 < t) (w x y : V) :
     iteratedFDeriv ℝ 2 (𝓕 (realGaussian (V := V) t)) w ![x, y] =
       (-4 * (Real.pi : ℂ) ^ 2) *
@@ -69,6 +72,9 @@ def gaussianFourierPrefactor (V : Type*) [NormedAddCommGroup V]
 def gaussianFourierRate (t : ℝ) : ℂ :=
   -(Real.pi : ℂ) ^ 2 / ((Real.pi * t : ℝ) : ℂ)
 
+/--
+@isnad1 id=eq.1h2v.s6.736dc2e920a8 from=translated src=- shape=6f23dbd0 vocab=80bc4a1d
+-/
 theorem fourier_realGaussian_eq_prefactor_mul_radialExp {t : ℝ} (ht : 0 < t) :
     𝓕 (realGaussian (V := V) t) = fun w =>
       gaussianFourierPrefactor V t * radialExp (gaussianFourierRate t) w := by
@@ -84,6 +90,9 @@ theorem fourier_realGaussian_eq_prefactor_mul_radialExp {t : ℝ} (ht : 0 < t) :
   rw [hpow]
   ring
 
+/--
+@isnad1 id=eq.1h5v.s9.dd9a39689da6 from=translated src=- shape=e71d975e vocab=d3820cdc
+-/
 theorem hessian_fourier_realGaussian_explicit {t : ℝ} (ht : 0 < t)
     (w x y : V) :
     iteratedFDeriv ℝ 2 (𝓕 (realGaussian (V := V) t)) w ![x, y] =
@@ -103,6 +112,9 @@ theorem hessian_fourier_realGaussian_explicit {t : ℝ} (ht : 0 < t)
       iteratedFDeriv ℝ 2 (radialExp (gaussianFourierRate t)) w ![x, y] = _
   rw [iteratedFDeriv_two_radialExp_apply]
 
+/--
+@isnad1 id=eq.1h5v.s8.077a68655692 from=translated src=- shape=1e28ed60 vocab=e5232ebd
+-/
 theorem fourier_inner_mul_inner_realGaussian {t : ℝ} (ht : 0 < t)
     (w x y : V) :
     𝓕 (fun v : V =>
@@ -124,6 +136,9 @@ theorem fourier_inner_mul_inner_realGaussian {t : ℝ} (ht : 0 < t)
 def innerMulGaussian (t : ℝ) (x y : V) : V → ℂ := fun v =>
   ((inner ℝ v x * inner ℝ v y : ℝ) : ℂ) * realGaussian t v
 
+/--
+@isnad1 id=integrab.1h4v.s6.134d9dc94fa9 from=translated src=- shape=41b1df54 vocab=b1283578
+-/
 theorem innerMulGaussian_integrable {t : ℝ} (ht : 0 < t) (x y : V) :
     Integrable (innerMulGaussian t x y) := by
   let C := ‖x‖ * ‖y‖
@@ -147,6 +162,9 @@ theorem innerMulGaussian_integrable {t : ℝ} (ht : 0 < t) (x y : V) :
 def normSqGaussian (t : ℝ) : V → ℂ := fun v =>
   ((‖v‖ ^ 2 : ℝ) : ℂ) * realGaussian t v
 
+/--
+@isnad1 id=integrab.1h2v.s6.5f4c9534fe14 from=translated src=- shape=ba3af813 vocab=98e447d4
+-/
 theorem normSqGaussian_integrable {t : ℝ} (ht : 0 < t) :
     Integrable (normSqGaussian (V := V) t) := by
   have hmom := realGaussian_moment_integrable (V := V) 2 ht
@@ -160,12 +178,18 @@ theorem normSqGaussian_integrable {t : ℝ} (ht : 0 < t) :
       Real.norm_of_nonneg (sq_nonneg ‖v‖)]
 
 omit [FiniteDimensional ℝ V] [MeasurableSpace V] [BorelSpace V] in
+/--
+@isnad1 id=eq.0h4v.s7.fb089c0b1ecf from=translated src=- shape=f1be68cd vocab=122d15ce
+-/
 theorem sum_inner_self_orthonormalBasis
     {ι : Type*} [Fintype ι] (b : OrthonormalBasis ι ℝ V) (v : V) :
     ∑ i, inner ℝ v (b i) * inner ℝ v (b i) = ‖v‖ ^ 2 := by
   simpa only [real_inner_comm v, real_inner_self_eq_norm_sq] using
     sum_orthonormalBasis_inner_mul_inner b v v
 
+/--
+@isnad1 id=eq.1h5v.s7.bb67ee667a82 from=translated src=- shape=842dd90e vocab=a0a9ca36
+-/
 theorem fourier_normSqGaussian_eq_sum
     {ι : Type*} [Fintype ι] (b : OrthonormalBasis ι ℝ V)
     {t : ℝ} (ht : 0 < t) (w : V) :
@@ -188,6 +212,9 @@ theorem fourier_normSqGaussian_eq_sum
     exact (Real.fourierIntegral_convergent_iff w).2
       (innerMulGaussian_integrable ht (b i) (b i))
 
+/--
+@isnad1 id=eq.1h5v.s7.8b1783379168 from=translated src=- shape=c2bb50f6 vocab=f366b12c
+-/
 theorem fourier_harmonicGaussian_decompose
     {t : ℝ} (ht : 0 < t) (w x y : V) :
     𝓕 (harmonicGaussian t x y) w =
@@ -220,6 +247,9 @@ theorem fourier_harmonicGaussian_decompose
   · exact hprod.smul (Module.finrank ℝ V : ℂ)
   · exact hnorm.smul (inner ℝ x y : ℂ)
 
+/--
+@isnad1 id=eq.1h5v.s8.8b278865003f from=translated src=- shape=f2e544cf vocab=47d11be2
+-/
 theorem fourier_innerMulGaussian {t : ℝ} (ht : 0 < t) (w x y : V) :
     𝓕 (innerMulGaussian t x y) w =
       (-1 / (4 * (Real.pi : ℂ) ^ 2)) * gaussianFourierPrefactor V t *
@@ -228,6 +258,9 @@ theorem fourier_innerMulGaussian {t : ℝ} (ht : 0 < t) (w x y : V) :
             2 * gaussianFourierRate t * inner ℝ x y)) := by
   exact fourier_inner_mul_inner_realGaussian ht w x y
 
+/--
+@isnad1 id=eq.1h5v.s8.32b6f1da6d08 from=translated src=- shape=dded17d2 vocab=fa662aab
+-/
 theorem fourier_normSqGaussian_explicit
     {ι : Type*} [Fintype ι] (b : OrthonormalBasis ι ℝ V)
     {t : ℝ} (ht : 0 < t) (w : V) :
@@ -273,6 +306,9 @@ theorem fourier_normSqGaussian_explicit
   push_cast
   ring
 
+/--
+@isnad1 id=eq.1h7v.s7.029138574189 from=translated src=- shape=307bc6fc vocab=dd790d57
+-/
 theorem fourier_harmonicGaussian
     {ι : Type*} [Fintype ι] (b : OrthonormalBasis ι ℝ V)
     {t : ℝ} (ht : 0 < t) (w x y : V) :
@@ -291,6 +327,9 @@ theorem fourier_harmonicGaussian
   field_simp [hpi]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s4.db231e37de31 from=translated src=- shape=2f8f3b0d vocab=29d9526d
+-/
 theorem gaussianFourierRate_eq {t : ℝ} (ht : t ≠ 0) :
     gaussianFourierRate t = -((Real.pi / t : ℝ) : ℂ) := by
   unfold gaussianFourierRate
@@ -300,6 +339,9 @@ theorem gaussianFourierRate_eq {t : ℝ} (ht : t ≠ 0) :
   field_simp [hpi, htC]
 
 omit [MeasurableSpace V] [BorelSpace V] in
+/--
+@isnad1 id=eq.2h2v.s6.30eb386b9a84 from=translated src=- shape=9fd1945a vocab=fdf51fca
+-/
 theorem gaussianFourierPrefactor_rank24 {t : ℝ} (ht : t ≠ 0)
     (hdim : Module.finrank ℝ V = 24) :
     gaussianFourierPrefactor V t = ((t : ℂ)⁻¹) ^ 12 := by
@@ -312,6 +354,9 @@ theorem gaussianFourierPrefactor_rank24 {t : ℝ} (ht : t ≠ 0)
 
 omit [InnerProductSpace ℝ V] [FiniteDimensional ℝ V] [MeasurableSpace V]
   [BorelSpace V] in
+/--
+@isnad1 id=eq.1h3v.s5.b5841779a41d from=translated src=- shape=f252ef2b vocab=c286d8b0
+-/
 theorem radialExp_rate_eq_realGaussian_inv {t : ℝ} (ht : t ≠ 0) (w : V) :
     Complex.exp (gaussianFourierRate t * (‖w‖ ^ 2 : ℝ)) =
       realGaussian (V := V) t⁻¹ w := by
@@ -322,6 +367,9 @@ theorem radialExp_rate_eq_realGaussian_inv {t : ℝ} (ht : t ≠ 0) (w : V) :
   push_cast
   field_simp [htC]
 
+/--
+@isnad1 id=eq.2h7v.s7.c23b90686aca from=translated src=- shape=1a6f26c1 vocab=44f4b846
+-/
 theorem fourier_harmonicGaussian_rank24
     {ι : Type*} [Fintype ι] (b : OrthonormalBasis ι ℝ V)
     (hdim : Module.finrank ℝ V = 24) {t : ℝ} (ht : 0 < t)

@@ -29,6 +29,9 @@ def a11D7E6D7Projection : (Fin 24 → ℚ) →ₗ[ℚ] (Fin 24 → ℚ) where
   map_add' u v := by ext i; simp [mul_add]
   map_smul' r u := by ext i; simp [mul_left_comm]
 
+/--
+@isnad1 id=eq.0h1v.s8.41257f9652f8 from=translated src=- shape=bffbcb2a vocab=8b407795
+-/
 theorem a11D7E6D7Projection_single (i : Fin 24) :
     a11D7E6D7Projection (Pi.single i 1) = a11D7E6D7Scalar i • Pi.single i 1 := by
   ext j

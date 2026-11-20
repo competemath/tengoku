@@ -18,12 +18,18 @@ def GramEquivalent (x : V)
     (B C : SecondSubconstituent G x) : Prop :=
   ∀ D, localGramMatrix G x B D = localGramMatrix G x C D
 
+/--
+@isnad1 id=gramequi.0h4v.s5.e8a28d2d54bb from=translated src=- shape=a7581b69 vocab=5780df33
+-/
 @[refl]
 theorem GramEquivalent.refl (x : V)
     (B : SecondSubconstituent G x) :
     GramEquivalent G x B B :=
   fun _ => rfl
 
+/--
+@isnad1 id=gramequi.1h5v.s5.32732c59b802 from=translated src=- shape=b9d2a78b vocab=5780df33
+-/
 @[symm]
 theorem GramEquivalent.symm (x : V)
     {B C : SecondSubconstituent G x}
@@ -31,6 +37,9 @@ theorem GramEquivalent.symm (x : V)
     GramEquivalent G x C B :=
   fun D => (h D).symm
 
+/--
+@isnad1 id=gramequi.2h6v.s6.aa773205ae8b from=translated src=- shape=06156a4e vocab=5780df33
+-/
 @[trans]
 theorem GramEquivalent.trans (x : V)
     {B C D : SecondSubconstituent G x}
@@ -39,6 +48,9 @@ theorem GramEquivalent.trans (x : V)
     GramEquivalent G x B D :=
   fun E => (hBC E).trans (hCD E)
 
+/--
+@isnad1 id=iff.1h5v.s6.09b83af1c42b from=translated src=- shape=dacfd7c8 vocab=39759e17
+-/
 theorem gramEquivalent_iff_entry_eq_three
     (hG : IsHypothetical G) (x : V)
     (B C : SecondSubconstituent G x) :
@@ -115,6 +127,9 @@ noncomputable def gramClass (x : V) (B : SecondSubconstituent G x) :
   classical
   exact Finset.univ.filter fun C => GramEquivalent G x B C
 
+/--
+@isnad1 id=iff.0h5v.s6.da846b287c38 from=translated src=- shape=6906c8cb vocab=88901e32
+-/
 @[simp]
 theorem mem_gramClass (x : V)
     (B C : SecondSubconstituent G x) :
@@ -122,12 +137,18 @@ theorem mem_gramClass (x : V)
   classical
   simp [gramClass]
 
+/--
+@isnad1 id=mem.0h4v.s6.546ab806783d from=translated src=- shape=87124066 vocab=31a0aa2d
+-/
 @[simp]
 theorem mem_gramClass_self (x : V)
     (B : SecondSubconstituent G x) :
     B ∈ gramClass G x B := by
   rw [mem_gramClass]
 
+/--
+@isnad1 id=gramequi.2h6v.s7.823ccab7a9cb from=translated src=- shape=23632e4e vocab=88901e32
+-/
 theorem gramEquivalent_of_mem_gramClass
     (x : V) (B : SecondSubconstituent G x)
     {C D : SecondSubconstituent G x}
@@ -138,6 +159,9 @@ theorem gramEquivalent_of_mem_gramClass
     (GramEquivalent.symm G x ((mem_gramClass G x B C).mp hC))
     ((mem_gramClass G x B D).mp hD)
 
+/--
+@isnad1 id=disjoint.3h5v.s6.6a81e739e7e8 from=translated src=- shape=9d1ed10c vocab=6068315a
+-/
 theorem localBlocks_disjoint_of_gramEquivalent
     (hG : IsHypothetical G) (x : V)
     {B C : SecondSubconstituent G x}
@@ -158,6 +182,9 @@ theorem localBlocks_disjoint_of_gramEquivalent
   rw [Finset.disjoint_iff_inter_eq_empty]
   exact Finset.card_eq_zero.mp (by simpa [blockIntersection] using hinter)
 
+/--
+@isnad1 id=pairwise.1h4v.s6.3c6945c15b42 from=translated src=- shape=e256a7ba vocab=a30b0ff6
+-/
 theorem gramClass_pairwiseDisjoint
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
@@ -167,6 +194,9 @@ theorem gramClass_pairwiseDisjoint
   exact localBlocks_disjoint_of_gramEquivalent G hG x hne
     (gramEquivalent_of_mem_gramClass G x B hC hD)
 
+/--
+@isnad1 id=le.1h4v.s5.290d68662562 from=translated src=- shape=0d3167f8 vocab=94b50484
+-/
 theorem gramClass_card_le_five
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
@@ -194,6 +224,9 @@ noncomputable def zeroGramIndices (x : V)
   classical
   exact Finset.univ.filter fun D => localGramMatrix G x B D = 0
 
+/--
+@isnad1 id=iff.0h5v.s6.770fd52938c4 from=translated src=- shape=95d30840 vocab=939b7f41
+-/
 @[simp]
 theorem mem_zeroGramIndices (x : V)
     (B D : SecondSubconstituent G x) :
@@ -201,6 +234,9 @@ theorem mem_zeroGramIndices (x : V)
   classical
   simp [zeroGramIndices]
 
+/--
+@isnad1 id=eq.1h4v.s6.a37d3944dfb1 from=translated src=- shape=16b4a2b5 vocab=b80db79d
+-/
 theorem sum_localGramMatrix_row_sq
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
@@ -217,6 +253,9 @@ theorem sum_localGramMatrix_row_sq
       localGramMatrix_sq_apply G hG x B B
     _ = 225 := by rw [localGramMatrix_diagonal G hG x B]; norm_num
 
+/--
+@isnad1 id=eq.1h4v.s6.ec35013c1bda from=translated src=- shape=13572a41 vocab=1c9df702
+-/
 theorem zeroGramIndices_card_add_gramClass_card
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
@@ -296,6 +335,9 @@ noncomputable def classNonneighborSet (x : V)
   exact (gramClass G x B).filter fun C =>
     ¬(secondSubconstituentGraph G x).Adj C D
 
+/--
+@isnad1 id=iff.0h6v.s7.e9665bcac49b from=translated src=- shape=4a0fcd5f vocab=f17ac599
+-/
 @[simp]
 theorem mem_classAdjacencySet (x : V)
     (B D C : SecondSubconstituent G x) :
@@ -305,6 +347,9 @@ theorem mem_classAdjacencySet (x : V)
   classical
   simp [classAdjacencySet]
 
+/--
+@isnad1 id=iff.0h6v.s7.8bf2d57c0215 from=translated src=- shape=6d9453a0 vocab=e1625a13
+-/
 @[simp]
 theorem mem_classNonneighborSet (x : V)
     (B D C : SecondSubconstituent G x) :
@@ -314,6 +359,9 @@ theorem mem_classNonneighborSet (x : V)
   classical
   simp [classNonneighborSet]
 
+/--
+@isnad1 id=eq.0h5v.s6.99658ef1d1da from=translated src=- shape=f744ff5d vocab=8c829895
+-/
 theorem classAdjacency_card_add_nonneighbor_card
     (x : V) (B D : SecondSubconstituent G x) :
     (classAdjacencySet G x B D).card +
@@ -325,6 +373,9 @@ theorem classAdjacency_card_add_nonneighbor_card
       (s := gramClass G x B)
       (p := fun C => (secondSubconstituentGraph G x).Adj C D))
 
+/--
+@isnad1 id=eq.4h6v.s7.a2f30eaa1a7a from=translated src=- shape=31608823 vocab=df8a0d8f
+-/
 theorem classMember_intersection_eq_three_of_zeroGram_not_adj
     (hG : IsHypothetical G) (x : V)
     {B C D : SecondSubconstituent G x}
@@ -348,6 +399,9 @@ theorem classMember_intersection_eq_three_of_zeroGram_not_adj
   have hcast : (blockIntersection G x C D : ℤ) = 3 := by omega
   exact_mod_cast hcast
 
+/--
+@isnad1 id=le.2h5v.s6.0aa8dacc874a from=translated src=- shape=5d2ca0d4 vocab=daf42b5d
+-/
 theorem classNonneighborSet_card_le_three
     (hG : IsHypothetical G) (x : V)
     (B D : SecondSubconstituent G x)
@@ -395,6 +449,9 @@ theorem classNonneighborSet_card_le_three
   rw [hcard, hsum] at hunion
   omega
 
+/--
+@isnad1 id=le.2h5v.s7.8f6992062dc5 from=translated src=- shape=d8e4c17a vocab=fb0f7eb5
+-/
 theorem classAdjacencySet_card_lower_bound
     (hG : IsHypothetical G) (x : V)
     (B D : SecondSubconstituent G x)
@@ -409,6 +466,9 @@ noncomputable def classAdjacencyWeight (x : V)
     (B D : SecondSubconstituent G x) : ℤ :=
   ((classAdjacencySet G x B D).card : ℤ)
 
+/--
+@isnad1 id=eq.0h5v.s6.e2ea3aed71a9 from=translated src=- shape=24086672 vocab=a17aedb0
+-/
 theorem classAdjacencyWeight_eq_matrix_sum
     (x : V) (B D : SecondSubconstituent G x) :
     classAdjacencyWeight G x B D =
@@ -416,6 +476,9 @@ theorem classAdjacencyWeight_eq_matrix_sum
   classical
   simp [classAdjacencyWeight, classAdjacencySet, localAdjacencyMatrix]
 
+/--
+@isnad1 id=eq.2h5v.s6.84f9f96e0182 from=translated src=- shape=6f447e22 vocab=a6e486ce
+-/
 theorem classAdjacencyWeight_eq_zero_of_not_mem
     (hG : IsHypothetical G) (x : V)
     (B D : SecondSubconstituent G x)
@@ -434,6 +497,9 @@ theorem classAdjacencyWeight_eq_zero_of_not_mem
   · have hGCD : ¬G.Adj (C : V) (D : V) := hCD
     simp [localAdjacencyMatrix, hGCD]
 
+/--
+@isnad1 id=eq.1h4v.s7.68004265a706 from=translated src=- shape=177f0310 vocab=f2bde7ed
+-/
 theorem sum_classAdjacencyWeight
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
@@ -459,6 +525,9 @@ theorem sum_classAdjacencyWeight
       simp
       ring
 
+/--
+@isnad1 id=eq.1h4v.s6.38780e74e3cf from=translated src=- shape=456dd9a2 vocab=0b69ba2b
+-/
 theorem sum_zeroGram_classAdjacencyWeight
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
@@ -474,6 +543,9 @@ theorem sum_zeroGram_classAdjacencyWeight
     _ = 36 * (gramClass G x B).card :=
       sum_classAdjacencyWeight G hG x B
 
+/--
+@isnad1 id=eq.3h6v.s8.7d8eb2c060d0 from=translated src=- shape=64629e3c vocab=6f24074f
+-/
 theorem localAdjacencyMatrix_sq_of_mem_gramClass
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x)
@@ -504,6 +576,9 @@ theorem localAdjacencyMatrix_sq_of_mem_gramClass
     rw [hinter]
     norm_num
 
+/--
+@isnad1 id=eq.1h4v.s7.3ec6b13e0db8 from=translated src=- shape=111457ec vocab=88f040e2
+-/
 theorem sum_classAdjacencyWeight_sq
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
@@ -571,6 +646,9 @@ theorem sum_classAdjacencyWeight_sq
       simp [S]
       ring
 
+/--
+@isnad1 id=eq.1h4v.s7.518e7b49f5d7 from=translated src=- shape=642dc44d vocab=5afd3593
+-/
 theorem sum_zeroGram_classAdjacencyWeight_sq
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
@@ -601,6 +679,9 @@ private theorem quadratic_five_nonnegative
     0 ≤ (n : ℤ) ^ 2 - 5 * n + 6 := by
   interval_cases n <;> norm_num
 
+/--
+@isnad1 id=ne.1h4v.s5.532ff1ad7875 from=translated src=- shape=0d3167f8 vocab=866fb790
+-/
 theorem gramClass_card_ne_four
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
@@ -660,6 +741,9 @@ theorem gramClass_card_ne_four
   rw [hexact] at hnonnegative
   norm_num at hnonnegative
 
+/--
+@isnad1 id=ne.1h4v.s5.5b85b0560e4f from=translated src=- shape=0d3167f8 vocab=866fb790
+-/
 theorem gramClass_card_ne_five
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
@@ -719,6 +803,9 @@ theorem gramClass_card_ne_five
   rw [hexact] at hnonnegative
   norm_num at hnonnegative
 
+/--
+@isnad1 id=le.1h4v.s5.322c8ea45736 from=translated src=- shape=0d3167f8 vocab=94b50484
+-/
 theorem gramClass_card_le_three
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
@@ -734,6 +821,9 @@ noncomputable def gramEntryIndices (x : V)
   classical
   exact Finset.univ.filter fun D => localGramMatrix G x B D = k
 
+/--
+@isnad1 id=iff.0h6v.s6.98eefcadfacb from=translated src=- shape=d9295ce6 vocab=5a202288
+-/
 @[simp]
 theorem mem_gramEntryIndices (x : V)
     (B D : SecondSubconstituent G x) (k : ℤ) :
@@ -742,6 +832,9 @@ theorem mem_gramEntryIndices (x : V)
   classical
   simp [gramEntryIndices]
 
+/--
+@isnad1 id=eq.0h4v.s5.a976b28f8552 from=translated src=- shape=fc3767a7 vocab=86800143
+-/
 theorem gramEntryIndices_zero
     (x : V) (B : SecondSubconstituent G x) :
     gramEntryIndices G x B 0 = zeroGramIndices G x B := by
@@ -749,6 +842,9 @@ theorem gramEntryIndices_zero
   ext D
   simp
 
+/--
+@isnad1 id=eq.1h4v.s5.f4ce18b28772 from=translated src=- shape=3bc9fb45 vocab=254b421b
+-/
 theorem gramEntryIndices_three
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
@@ -758,6 +854,9 @@ theorem gramEntryIndices_three
   rw [mem_gramEntryIndices, mem_gramClass,
     gramEquivalent_iff_entry_eq_three G hG x B D]
 
+/--
+@isnad1 id=eq.1h4v.s6.fd3f6f8bb5dd from=translated src=- shape=f76fffc9 vocab=028b6f54
+-/
 theorem gramEntryTwo_card_add_three_mul_class_card
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
@@ -812,6 +911,9 @@ theorem gramEntryTwo_card_add_three_mul_class_card
     ((gramEntryIndices G x B 2).card : ℤ) +
         3 * (gramClass G x B).card = 30 by omega)
 
+/--
+@isnad1 id=eq.1h4v.s6.8faf45179b72 from=translated src=- shape=814f70b5 vocab=028b6f54
+-/
 theorem gramEntryOne_card
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :
@@ -875,6 +977,9 @@ theorem gramEntryOne_card
         105 + 3 * (gramClass G x B).card by
       omega)
 
+/--
+@isnad1 id=and.1h4v.s7.7f0c0601bb71 from=translated src=- shape=b801b95d vocab=028b6f54
+-/
 theorem gramEntry_weighted_profile
     (hG : IsHypothetical G) (x : V)
     (B : SecondSubconstituent G x) :

@@ -9,6 +9,9 @@ import Tengoku.Srg266NonexistenceLean.SRG266.Lattice.ADEDominantVectors
 
 namespace SRG266.Lattice
 
+/--
+@isnad1 id=eq.1h1v.s6.6cfee258d351 from=translated src=- shape=e1e8275c vocab=56e46a5c
+-/
 theorem rankSum_eq_three_counts {ts : List ADEType}
     (htypes : ∀ t ∈ ts, t = .A 11 ∨ t = .D 7 ∨ t = .E6) :
     ADEType.rankSum ts =
@@ -22,6 +25,9 @@ theorem rankSum_eq_three_counts {ts : List ADEType}
       rcases htypes t (by simp) with rfl | rfl | rfl <;>
         simp [ADEType.rankSum_cons, ADEType.rank] <;> omega
 
+/--
+@isnad1 id=or.2h1v.s6.575361b560f1 from=translated src=- shape=224a0c30 vocab=8cb90d01
+-/
 theorem ade_rank24_height_eleven_layouts {ts : List ADEType}
     (hrank : ADEType.rankSum ts = 24)
     (htypes : ∀ t ∈ ts, t = .A 11 ∨ t = .D 7 ∨ t = .E6) :

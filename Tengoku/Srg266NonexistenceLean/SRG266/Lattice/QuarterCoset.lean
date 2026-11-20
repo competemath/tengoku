@@ -10,6 +10,9 @@ import Tengoku.Seed.Tactic.Linarith
 
 namespace SRG266.Lattice
 
+/--
+@isnad1 id=dvd.2h3v.s5.fc1c33cf6a42 from=translated src=- shape=312f4387 vocab=cd68dd60
+-/
 theorem four_dvd_of_odd_mul_square_eq_eight_mul {a m n : ℤ}
     (haodd : Odd a) (h : a * m ^ 2 = 8 * n) :
     4 ∣ m := by
@@ -26,6 +29,9 @@ theorem four_dvd_of_odd_mul_square_eq_eight_mul {a m n : ℤ}
 
 variable {W : Type*} [AddCommGroup W] [Module ℚ W]
 
+/--
+@isnad1 id=iff.4h6v.s8.0ec623719ae9 from=translated src=- shape=9ad3c506 vocab=2bc75072
+-/
 theorem zsmul_mem_iff_four_dvd_of_odd_quarter_norm
     {B : LinearMap.BilinForm ℚ W} {P : Submodule ℤ W}
     (heven : IsEven B P) {u : W} {a : ℤ} (ha : Odd a) (hnorm : B u u = (a : ℚ) / 4)

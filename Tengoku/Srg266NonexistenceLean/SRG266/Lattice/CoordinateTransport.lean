@@ -19,23 +19,35 @@ variable {X : Type*} [AddCommGroup X] [Module ℚ X] {n : ℕ}
 
 def coordSum (b : Fin n → X) (v : Fin n → ℤ) : X := ∑ i, (v i : ℚ) • b i
 
+/--
+@isnad1 id=eq.0h4v.s6.2723b394b943 from=translated src=- shape=afa965f1 vocab=a81b7730
+-/
 theorem coordSum_eq_zsmul_sum (b : Fin n → X) (v : Fin n → ℤ) :
     coordSum b v = ∑ i, v i • b i := by
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [Int.cast_smul_eq_zsmul]
 
+/--
+@isnad1 id=mem.0h4v.s6.ed311398b586 from=translated src=- shape=e7a2fd72 vocab=dc54ef06
+-/
 theorem coordSum_mem_span (b : Fin n → X) (v : Fin n → ℤ) :
     coordSum b v ∈ Submodule.span ℤ (Set.range b) := by
   rw [coordSum_eq_zsmul_sum]
   exact Submodule.sum_mem _ fun i _ =>
     Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩)
 
+/--
+@isnad1 id=eq.2h4v.s6.dd192ed02a93 from=translated src=- shape=a68101fd vocab=57cb1395
+-/
 theorem coordSum_eq_zero {b : Fin n → X} (hli : LinearIndependent ℚ b) {v : Fin n → ℤ}
     (h : coordSum b v = 0) : v = 0 := by
   funext i
   have hz := Fintype.linearIndependent_iff.mp hli (fun i => (v i : ℚ)) h i
   exact_mod_cast hz
 
+/--
+@isnad1 id=eq.1h7v.s11.604b8f52db57 from=translated src=- shape=2dce5b1f vocab=41c23f86
+-/
 theorem toBilin'_coordSum {F : LinearMap.BilinForm ℚ X} (b : Fin n → X)
     (A : Matrix (Fin n) (Fin n) ℤ) (hA : ∀ i j, ((A i j : ℤ) : ℚ) = F (b i) (b j))
     (v w : Fin n → ℤ) :

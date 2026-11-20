@@ -13,6 +13,9 @@ namespace SRG266.Lattice
 
 open scoped BigOperators
 
+/--
+@isnad1 id=ne.0h2v.s6.914f7d64bec0 from=translated src=- shape=3f8b0218 vocab=0dd67219
+-/
 theorem DRoot.j_ne_zero {n : ℕ} (r : DRoot (n + 1)) : r.j ≠ 0 := by
   intro hj
   have h := r.lt
@@ -32,12 +35,18 @@ def DRoot.zeroCoordinateEquiv (n : ℕ) :
     rcases t with ⟨j, si, sj⟩
     simp only [Fin.pred_succ]
 
+/--
+@isnad1 id=eq.0h2v.s7.281a2098004d from=translated src=- shape=6bca5394 vocab=6bfe4e08
+-/
 theorem DRoot.coordinate_zero_sq {n : ℕ} (r : DRoot (n + 1)) :
     (r.vector 0) ^ 2 = if r.i = 0 then 1 else 0 := by
   by_cases hi : r.i = 0
   · simp [DRoot.vector, hi, pow_two]
   · simp [DRoot.vector, Ne.symm hi, Ne.symm r.j_ne_zero, hi]
 
+/--
+@isnad1 id=eq.0h1v.s7.e9fabb80a6cc from=translated src=- shape=fcf8450e vocab=a0a807d6
+-/
 theorem dRoot_coordinate_zero_secondMoment (n : ℕ) :
     (∑ r : DRoot (n + 1), (r.vector 0) ^ 2) = 4 * (n : ℤ) := by
   calc

@@ -13,6 +13,9 @@ namespace SRG266
 variable {V : Type*} [Fintype V] [DecidableEq V]
 variable (G : SimpleGraph V) [DecidableRel G.Adj]
 
+/--
+@isnad1 id=eq.0h3v.s9.ebdec5312d79 from=translated src=- shape=fc9d084a vocab=a090ae7a
+-/
 theorem gramLattice_eq_span_generators (x : V) :
     gramLattice G x = Submodule.span ℤ
       (Set.range fun B => toRatSpace G x (integralGramGenerator G x B)) := by
@@ -27,6 +30,9 @@ theorem gramLattice_eq_span_generators (x : V) :
       rintro _ ⟨B, rfl⟩
       exact toRatSpace_mem_gramLattice G x _)
 
+/--
+@isnad1 id=mem.3h5v.s9.b9392def0eaf from=translated src=- shape=ed31e09e vocab=f0d2a5bc
+-/
 theorem centroidHeight_integral (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
     (hc : (11 : ℤ) • c = integralGramGeneratorSum G x)
@@ -39,6 +45,9 @@ theorem centroidHeight_integral (hG : IsHypothetical G) (x : V)
     zsmul_eq_mul, mul_one]
   exact Submodule.sum_mem _ fun B _ => Submodule.mem_one.mpr ⟨a B, by simp⟩
 
+/--
+@isnad1 id=isintegr.2h4v.s8.ef0017d38dd1 from=translated src=- shape=2269e256 vocab=61e9e10c
+-/
 theorem lorentzGramLattice_isIntegral (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
     (hc : (11 : ℤ) • c = integralGramGeneratorSum G x) :
@@ -54,6 +63,9 @@ theorem lorentzGramLattice_isIntegral (hG : IsHypothetical G) (x : V)
   rw [lorentzGramForm_apply, ← ha', ← hb', ← hk']
   exact Submodule.mem_one.mpr ⟨k - a * b, by simp⟩
 
+/--
+@isnad1 id=iseven.2h4v.s8.7467eb5e5708 from=translated src=- shape=a8225a3a vocab=b7b94e02
+-/
 theorem lorentzGramLattice_isEven (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
     (hc : (11 : ℤ) • c = integralGramGeneratorSum G x) :
@@ -71,13 +83,22 @@ def lorentzMarkedLattice (x : V) (c : IntegralGramLattice G x) :
     Submodule ℤ (ratGramSpace G x) :=
   gramLattice G x ⊔ Submodule.span ℤ {lorentzWeylVector G x c}
 
+/--
+@isnad1 id=le.0h4v.s9.b880bad1320c from=translated src=- shape=51fb25b5 vocab=ef32beef
+-/
 theorem gramLattice_le_lorentzMarkedLattice (x : V) (c : IntegralGramLattice G x) :
     gramLattice G x ≤ lorentzMarkedLattice G x c := le_sup_left
 
+/--
+@isnad1 id=mem.0h4v.s8.17c6ac8a2d72 from=translated src=- shape=d978f3ab vocab=9e7f4ed2
+-/
 theorem lorentzWeylVector_mem_markedLattice (x : V) (c : IntegralGramLattice G x) :
     lorentzWeylVector G x c ∈ lorentzMarkedLattice G x c :=
   Submodule.mem_sup_right (Submodule.mem_span_singleton_self _)
 
+/--
+@isnad1 id=islattic.0h4v.s7.60d551a794f0 from=translated src=- shape=a4048686 vocab=b6c461ab
+-/
 theorem lorentzMarkedLattice_isLattice (x : V) (c : IntegralGramLattice G x) :
     Lattice.IsLattice ℚ (lorentzMarkedLattice G x c) := by
   refine ⟨(gramLattice_fg G x).sup (Submodule.fg_span_singleton _), ?_⟩
@@ -85,6 +106,9 @@ theorem lorentzMarkedLattice_isLattice (x : V) (c : IntegralGramLattice G x) :
   rw [← gramLattice_span_top G x]
   exact Submodule.span_mono (gramLattice_le_lorentzMarkedLattice G x c)
 
+/--
+@isnad1 id=isintegr.2h4v.s8.f82bd25bdcb6 from=translated src=- shape=e2a06e71 vocab=e62e8701
+-/
 theorem lorentzMarkedLattice_isIntegral (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
     (hc : (11 : ℤ) • c = integralGramGeneratorSum G x) :
@@ -97,11 +121,17 @@ theorem lorentzMarkedLattice_isIntegral (hG : IsHypothetical G) (x : V)
   · rw [lorentzWeylVector_norm G hG x c hc]
     exact Submodule.mem_one.mpr ⟨-4, by simp⟩
 
+/--
+@isnad1 id=eq.0h4v.s9.f4a4e948ad59 from=translated src=- shape=080d56f5 vocab=b1b56430
+-/
 theorem five_zsmul_lorentzWeylVector (x : V) (c : IntegralGramLattice G x) :
     (5 : ℤ) • lorentzWeylVector G x c = toRatSpace G x c := by
   rw [lorentzWeylVector, ← Int.cast_smul_eq_zsmul ℚ, smul_smul]
   norm_num
 
+/--
+@isnad1 id=mem.1h5v.s9.08fe65693c2c from=translated src=- shape=75bfc89d vocab=10ab0eb4
+-/
 theorem lorentzMarkedLattice_five_smul (x : V) (c : IntegralGramLattice G x) :
     ∀ z ∈ lorentzMarkedLattice G x c, (5 : ℤ) • z ∈ gramLattice G x := by
   intro z hz
@@ -113,6 +143,9 @@ theorem lorentzMarkedLattice_five_smul (x : V) (c : IntegralGramLattice G x) :
   exact Submodule.add_mem _ (Submodule.smul_mem _ _ ha)
     (Submodule.smul_mem _ _ (toRatSpace_mem_gramLattice G x c))
 
+/--
+@isnad1 id=iseven.2h4v.s8.5ec994cdb94d from=translated src=- shape=3c3b9f92 vocab=f60629e0
+-/
 theorem lorentzMarkedLattice_isEven (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
     (hc : (11 : ℤ) • c = integralGramGeneratorSum G x) :
@@ -122,6 +155,9 @@ theorem lorentzMarkedLattice_isEven (hG : IsHypothetical G) (x : V)
   · exact ⟨2, by norm_num⟩
   · exact lorentzMarkedLattice_five_smul G x c
 
+/--
+@isnad1 id=mem.3h5v.s10.7189c6b12fc5 from=translated src=- shape=1668308d vocab=aeab561f
+-/
 theorem lorentzMarkedLattice_dual_denominator (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
     (hc : (11 : ℤ) • c = integralGramGeneratorSum G x) :
@@ -132,6 +168,9 @@ theorem lorentzMarkedLattice_dual_denominator (hG : IsHypothetical G) (x : V)
     (lorentz_dual_denominator G hG x c hc y
       (Lattice.dualSubmodule_antitone _ (gramLattice_le_lorentzMarkedLattice G x c) hy))
 
+/--
+@isnad1 id=ex.2h4v.s11.bac107a09d6b from=translated src=- shape=49678799 vocab=e5f48e36
+-/
 theorem exists_lorentzMarked_maximal_even_extension (hG : IsHypothetical G) (x : V)
     (c : IntegralGramLattice G x)
     (hc : (11 : ℤ) • c = integralGramGeneratorSum G x) :

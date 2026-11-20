@@ -17,6 +17,9 @@ variable {P B : Type*} [Fintype P] [DecidableEq P] [Fintype B] [DecidableEq B]
 
 local notation "V" => KreinVertex (P := P) (B := B)
 
+/--
+@isnad1 id=eq.0h3v.s7.102b9aa9032e from=translated src=- shape=bd83b5e6 vocab=6df4b242
+-/
 theorem rectangular_gram_square_trace {α β : Type*} [Fintype α] [Fintype β]
     [DecidableEq α] [DecidableEq β]
     (M : Matrix α β ℤ) :
@@ -24,9 +27,15 @@ theorem rectangular_gram_square_trace {α β : Type*} [Fintype α] [Fintype β]
   simpa only [pow_two, Matrix.mul_assoc] using
     (Matrix.trace_mul_comm M (M.transpose * M * M.transpose))
 
+/--
+@isnad1 id=eq.0h6v.s5.9c71186b5caf from=translated src=- shape=bf1ce16d vocab=a1aa1192
+-/
 theorem commonCount_comm (T : Finset V) (x y : V) :
     D.commonCount T x y = D.commonCount T y x := by simp [commonCount, and_comm]
 
+/--
+@isnad1 id=le.0h1v.s5.e4f56ee6fbf2 from=translated src=- shape=7cc398d5 vocab=5b97b60e
+-/
 theorem natCast_square_sub_nonneg (n : ℕ) : 0 ≤ (n : ℤ)^2 - n := by
   by_cases h : n = 0
   · simp [h]
