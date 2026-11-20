@@ -40,7 +40,9 @@ def signedFrame (k j a : ℤ) (σ : ℤ → ℤ) : Finset (Finset ℤ) :=
   (displacementDomain k j).image (residueTriple σ) ∪ {{a, 3 * k + 2, -(3 * k + 2 + a)}}
 
 /-- The signed frame partitions the signed vertex set of the offset `3k + 2` with partner `a` into
-zero-sum triples.-/
+zero-sum triples.
+@isnad1 id=zeropart.5h4v.s7.70c274a1da09 from=translated src=- shape=83c943ae vocab=e5dea85c
+-/
 theorem signedFrame_zeroPartition {k j a : ℤ} {σ : ℤ → ℤ} (hk : 0 ≤ k) (ha : 1 ≤ a)
     (ha' : a ≤ 3 * k + 1) (haj : a = 3 * j + 1 ∨ a = -(3 * j + 1))
     (hσ : DisplacementPermutation k j σ) :
@@ -59,7 +61,9 @@ theorem signedFrame_zeroPartition {k j a : ℤ} {σ : ℤ → ℤ} (hk : 0 ≤ k
   exact h
 
 /-- Two displacement permutations that differ at a point of their domain give different frames: the
-triple of that point carries the only residue-one entry it could carry.-/
+triple of that point carries the only residue-one entry it could carry.
+@isnad1 id=ne.4h6v.s6.c83fe99f755a from=translated src=- shape=79d4b429 vocab=3ba1937c
+-/
 theorem signedFrame_ne {k j a : ℤ} {σ σ' : ℤ → ℤ} (hσ : DisplacementPermutation k j σ)
     (hσ' : DisplacementPermutation k j σ') {u : ℤ} (hu : u ∈ displacementDomain k j)
     (hne : σ u ≠ σ' u) : signedFrame k j a σ ≠ signedFrame k j a σ' := by
@@ -95,7 +99,9 @@ theorem signedFrame_ne {k j a : ℤ} {σ σ' : ℤ → ℤ} (hσ : DisplacementP
     simp only [residueTriple, Finset.mem_insert, Finset.mem_singleton] at h3
     omega
 
-/-- Three displacement permutations give three distinct signed frames.-/
+/-- Three displacement permutations give three distinct signed frames.
+@isnad1 id=threefra.5h3v.s7.6f200dfe65d8 from=translated src=- shape=f7821910 vocab=ddc8732d
+-/
 theorem threeFrames_of_threeDisp {k j a : ℤ} (hk : 0 ≤ k) (ha : 1 ≤ a) (ha' : a ≤ 3 * k + 1)
     (haj : a = 3 * j + 1 ∨ a = -(3 * j + 1)) (h : ThreeDisp k j) : ThreeFrames (3 * k + 2) a := by
   obtain ⟨σ₁, σ₂, σ₃, h₁, h₂, h₃, ⟨x₁₂, hx₁₂, hne₁₂⟩, ⟨x₁₃, hx₁₃, hne₁₃⟩, ⟨x₂₃, hx₂₃, hne₂₃⟩⟩ := h
@@ -119,7 +125,9 @@ private theorem threeZero_of_tables (s : Finset ℤ) (support : List ℤ)
     toBlocksZ_ne_of_differZ h₀ h₁ d₀₁, toBlocksZ_ne_of_differZ h₀ h₂ d₀₂,
     toBlocksZ_ne_of_differZ h₁ h₂ d₁₂⟩
 
-/-- Three signed frames at offset eleven for every partner not divisible by three.-/
+/-- Three signed frames at offset eleven for every partner not divisible by three.
+@isnad1 id=threefra.3h1v.s5.64ed5f95cc55 from=translated src=- shape=1ebb4d6e vocab=9b33ee7c
+-/
 theorem threeFrames_eleven {a : ℤ} (ha : 1 ≤ a) (ha' : a ≤ 10) (ha3 : ¬ (3 : ℤ) ∣ a) :
     ThreeFrames 11 a := by
   unfold ThreeFrames
@@ -149,7 +157,9 @@ theorem threeFrames_eleven {a : ℤ} (ha : 1 ≤ a) (ha' : a ≤ 10) (ha3 : ¬ (
       (by decide) (by decide) (by decide) (by decide)
       (by decide) (by decide) (by decide) (by decide)
 
-/-- Three signed frames at offset eight with partner one.-/
+/-- Three signed frames at offset eight with partner one.
+@isnad1 id=threefra.0h0v.s3.5b60e7331bf7 from=translated src=- shape=6d6f5044 vocab=35a01b43
+-/
 theorem threeFrames_eight_one : ThreeFrames 8 1 := by
   unfold ThreeFrames
   exact threeZero_of_tables _ (flatZ (frame81 0)) (frame81 0) (frame81 1) (frame81 2)
@@ -157,7 +167,9 @@ theorem threeFrames_eight_one : ThreeFrames 8 1 := by
     (by decide) (by decide) (by decide) (by decide)
 
 /-- Three signed frames at every offset congruent to two modulo three from eleven on, for every
-partner not divisible by three.-/
+partner not divisible by three.
+@isnad1 id=threefra.5h2v.s6.42228b6bb242 from=translated src=- shape=decedd18 vocab=a42ee6ba
+-/
 theorem threeFrames_of_mod {r a : ℤ} (hr : 11 ≤ r) (hmod : r % 3 = 2) (ha : 1 ≤ a) (ha' : a < r)
     (ha3 : ¬ (3 : ℤ) ∣ a) : ThreeFrames r a := by
   by_cases h11 : r = 11
@@ -178,7 +190,9 @@ def symFamily (k : ℤ) : Finset (Finset ℤ) :=
   (Finset.Ico 0 k).image (symmA 0 k) ∪ (Finset.Ico 0 k).image (symmB 0 k)
 
 /-- The symmetric family partitions the centered interval with its centre removed into zero-sum
-triples.-/
+triples.
+@isnad1 id=zeropart.1h1v.s4.0f17bbeaa45b from=translated src=- shape=61782199 vocab=1ccbd4ec
+-/
 theorem symFamily_zeroPartition (k : ℤ) (hk : 0 ≤ k) :
     ZeroPartition (symInterval k) (symFamily k) := by
   have hA : ∀ i ∈ Finset.Ico (0 : ℤ) k,
@@ -219,7 +233,9 @@ def negBlocks (zs : Finset (Finset ℤ)) : Finset (Finset ℤ) :=
   zs.image (fun b => b.image (fun x => -x))
 
 /-- Negating every entry of every block of a partition into zero-sum triples gives a partition of
-the negated set into zero-sum triples.-/
+the negated set into zero-sum triples.
+@isnad1 id=zeropart.1h2v.s4.029901cab233 from=translated src=- shape=5491be46 vocab=bc6fd59e
+-/
 theorem ZeroPartition.negBlocks {s : Finset ℤ} {zs : Finset (Finset ℤ)} (h : ZeroPartition s zs) :
     ZeroPartition (s.image (fun x => -x)) (negBlocks zs) := by
   have hneg : Function.Injective (fun x : ℤ => -x) := fun a b hab => by
@@ -250,7 +266,9 @@ theorem ZeroPartition.negBlocks {s : Finset ℤ} {zs : Finset (Finset ℤ)} (h :
   rw [hset] at himg
   exact himg
 
-/-- The centered interval with its centre removed is symmetric.-/
+/-- The centered interval with its centre removed is symmetric.
+@isnad1 id=eq.0h1v.s4.09c598d5bb74 from=translated src=- shape=ecae0a8b vocab=88e6df10
+-/
 theorem symInterval_neg (k : ℤ) : (symInterval k).image (fun x => -x) = symInterval k := by
   ext x
   simp only [symInterval, Finset.mem_image, Finset.mem_erase, Finset.mem_Icc]
@@ -352,7 +370,9 @@ private theorem symmA_zero_notMem_negBlocks {k : ℤ} (hk : 2 ≤ k) :
     omega
 
 /-- The symmetric family differs from its own negation: the block of the smallest entry is not the
-negation of any block of the family.-/
+negation of any block of the family.
+@isnad1 id=ne.1h1v.s4.2dca7c41e501 from=translated src=- shape=20b40022 vocab=b8ba2ca1
+-/
 theorem symFamily_ne_neg (k : ℤ) (hk : 2 ≤ k) : symFamily k ≠ negBlocks (symFamily k) :=
   ne_of_mem_notMem (symmA_mem_symFamily (le_refl 0) (by omega))
     (symmA_zero_notMem_negBlocks hk)
@@ -458,7 +478,9 @@ def tradeIII (h : ℤ) : Finset (Finset ℤ) :=
     {{-(8 * h + 6), 5 * h + 2, 3 * h + 4}, {-(4 * h + 2), -(3 * h + 3), 7 * h + 5},
       {-h, -1, h + 1}}
 
-/-- The first trade is a partition into zero-sum triples of the same centered interval.-/
+/-- The first trade is a partition into zero-sum triples of the same centered interval.
+@isnad1 id=zeropart.1h1v.s4.ee0b1a142f0a from=translated src=- shape=bfffe250 vocab=ec171a7a
+-/
 theorem tradeI_zeroPartition (h : ℤ) (hh : 1 ≤ h) :
     ZeroPartition (symInterval (3 * h)) (tradeI h) := by
   have hb₁ : symmB 0 (3 * h) 0 ∈ symFamily (3 * h) := symmB_mem_symFamily (by omega) (by omega)
@@ -476,7 +498,9 @@ theorem tradeI_zeroPartition (h : ℤ) (hh : 1 ≤ h) :
   simp only [symmB, Finset.mem_insert, Finset.mem_singleton]
   omega
 
-/-- The first trade differs from the symmetric family.-/
+/-- The first trade differs from the symmetric family.
+@isnad1 id=ne.1h1v.s5.e159b956fea0 from=translated src=- shape=ea62069c vocab=fdf38094
+-/
 theorem tradeI_ne_family (h : ℤ) (hh : 1 ≤ h) : tradeI h ≠ symFamily (3 * h) := by
   refine ne_of_mem_notMem (a := ({-(6 * h), -h, 7 * h} : Finset ℤ)) ?_ ?_
   · unfold tradeI
@@ -490,7 +514,9 @@ theorem tradeI_ne_family (h : ℤ) (hh : 1 ≤ h) : tradeI h ≠ symFamily (3 * 
       simp only [symmB, Finset.mem_insert, Finset.mem_singleton] at h1 h2
       omega
 
-/-- The first trade differs from the negation of the symmetric family.-/
+/-- The first trade differs from the negation of the symmetric family.
+@isnad1 id=ne.1h1v.s5.63e2cd4bfaa4 from=translated src=- shape=f1dd0c39 vocab=9c16f9ae
+-/
 theorem tradeI_ne_neg (h : ℤ) (hh : 1 ≤ h) : tradeI h ≠ negBlocks (symFamily (3 * h)) := by
   refine ne_of_mem_notMem (a := symmA 0 (3 * h) 0) ?_
     (symmA_zero_notMem_negBlocks (by omega))
@@ -502,7 +528,9 @@ theorem tradeI_ne_neg (h : ℤ) (hh : 1 ≤ h) : tradeI h ≠ negBlocks (symFami
   rcases hmem with heq | heq | heq <;>
     exact symmA_ne_symmB (by omega) (by omega) (by omega) (by omega) heq
 
-/-- The second trade is a partition into zero-sum triples of the same centered interval.-/
+/-- The second trade is a partition into zero-sum triples of the same centered interval.
+@isnad1 id=zeropart.1h1v.s5.ea0e31701925 from=translated src=- shape=0ef2f2b2 vocab=50c3802e
+-/
 theorem tradeII_zeroPartition (h : ℤ) (hh : 1 ≤ h) :
     ZeroPartition (symInterval (3 * h + 1)) (tradeII h) := by
   have hb₁ : symmA 0 (3 * h + 1) 0 ∈ symFamily (3 * h + 1) :=
@@ -522,7 +550,9 @@ theorem tradeII_zeroPartition (h : ℤ) (hh : 1 ≤ h) :
   simp only [symmA, symmB, Finset.mem_insert, Finset.mem_singleton]
   omega
 
-/-- The second trade differs from the symmetric family.-/
+/-- The second trade differs from the symmetric family.
+@isnad1 id=ne.1h1v.s5.4876f2093225 from=translated src=- shape=57d3713f vocab=20568954
+-/
 theorem tradeII_ne_family (h : ℤ) (hh : 1 ≤ h) : tradeII h ≠ symFamily (3 * h + 1) := by
   refine ne_of_mem_notMem (a := ({-(5 * h + 1), 1, 5 * h} : Finset ℤ)) ?_ ?_
   · unfold tradeII
@@ -538,7 +568,9 @@ theorem tradeII_ne_family (h : ℤ) (hh : 1 ≤ h) : tradeII h ≠ symFamily (3 
       omega
 
 /-- The second trade differs from the negation of the symmetric family: it keeps the block of the
-first family with index one, which is the negation of no block.-/
+first family with index one, which is the negation of no block.
+@isnad1 id=ne.1h1v.s5.c1e88d33c0da from=translated src=- shape=afd212c5 vocab=3f648b07
+-/
 theorem tradeII_ne_neg (h : ℤ) (hh : 1 ≤ h) : tradeII h ≠ negBlocks (symFamily (3 * h + 1)) := by
   refine ne_of_mem_notMem (a := symmA 0 (3 * h + 1) 1) ?_ ?_
   · unfold tradeII
@@ -559,7 +591,9 @@ theorem tradeII_ne_neg (h : ℤ) (hh : 1 ≤ h) : tradeII h ≠ negBlocks (symFa
       simp only [symmB, Finset.mem_insert, Finset.mem_singleton] at h1 h2
       omega
 
-/-- The third trade is a partition into zero-sum triples of the same centered interval.-/
+/-- The third trade is a partition into zero-sum triples of the same centered interval.
+@isnad1 id=zeropart.1h1v.s5.4c1b9f79eb8e from=translated src=- shape=0ef2f2b2 vocab=c08fb041
+-/
 theorem tradeIII_zeroPartition (h : ℤ) (hh : 2 ≤ h) :
     ZeroPartition (symInterval (3 * h + 2)) (tradeIII h) := by
   have hb₁ : symmA 0 (3 * h + 2) h ∈ symFamily (3 * h + 2) :=
@@ -579,7 +613,9 @@ theorem tradeIII_zeroPartition (h : ℤ) (hh : 2 ≤ h) :
   simp only [symmA, symmB, Finset.mem_insert, Finset.mem_singleton]
   omega
 
-/-- The third trade differs from the symmetric family.-/
+/-- The third trade differs from the symmetric family.
+@isnad1 id=ne.1h1v.s5.298663f54412 from=translated src=- shape=57d3713f vocab=80d4bd33
+-/
 theorem tradeIII_ne_family (h : ℤ) (hh : 2 ≤ h) : tradeIII h ≠ symFamily (3 * h + 2) := by
   refine ne_of_mem_notMem (a := ({-h, -1, h + 1} : Finset ℤ)) ?_ ?_
   · unfold tradeIII
@@ -594,7 +630,9 @@ theorem tradeIII_ne_family (h : ℤ) (hh : 2 ≤ h) : tradeIII h ≠ symFamily (
       simp only [symmB, Finset.mem_insert, Finset.mem_singleton] at h1 h2
       omega
 
-/-- The third trade differs from the negation of the symmetric family.-/
+/-- The third trade differs from the negation of the symmetric family.
+@isnad1 id=ne.1h1v.s5.d0092033f703 from=translated src=- shape=afd212c5 vocab=1c12a8c6
+-/
 theorem tradeIII_ne_neg (h : ℤ) (hh : 2 ≤ h) :
     tradeIII h ≠ negBlocks (symFamily (3 * h + 2)) := by
   refine ne_of_mem_notMem (a := symmA 0 (3 * h + 2) 0) ?_
@@ -634,7 +672,9 @@ private theorem threeZero_sym_five : ThreeZero (symInterval 5) := by
     toBlocksZ_ne_of_differZ (support := frameList15) (by decide) (by decide) (by decide)⟩
 
 /-- Three pairwise distinct partitions of the centered interval with its centre removed, for every
-`k ≥ 3`.-/
+`k ≥ 3`.
+@isnad1 id=threezer.1h1v.s3.0a5e0da14231 from=translated src=- shape=c1538fc1 vocab=ff10d4ac
+-/
 theorem threeZero_sym (k : ℤ) (hk : 3 ≤ k) : ThreeZero (symInterval k) := by
   have hfam := symFamily_zeroPartition k (by omega)
   have hneg : ZeroPartition (symInterval k) (negBlocks (symFamily k)) := by
@@ -679,7 +719,9 @@ private theorem eq_of_union_singleton_eq {z₁ z₂ : Finset (Finset ℤ)} {c : 
       exact absurd hb hc₂
 
 /-- Three symmetric frames at the two offsets built from a symmetric interval: the offset `3k`, and
-the offset `3k + 1` after appending the triple through the centre.-/
+the offset `3k + 1` after appending the triple through the centre.
+@isnad1 id=and.2h1v.s5.f8c4e6696338 from=translated src=- shape=188443cb vocab=5ea43733
+-/
 theorem threeFrameA_of_threeZero_sym {k : ℤ} (hk : 0 ≤ k) (h : ThreeZero (symInterval k)) :
     ThreeFrameA (3 * k) ∧ ThreeFrameA (3 * k + 1) := by
   have hset0 : frameSet (3 * k) = symInterval k := by
@@ -729,7 +771,9 @@ theorem threeFrameA_of_threeZero_sym {k : ℤ} (hk : 0 ≤ k) (h : ThreeZero (sy
     · exact fun he => h₁₃ (eq_of_union_singleton_eq (hnotmem z₁ h₁) (hnotmem z₃ h₃) he)
     · exact fun he => h₂₃ (eq_of_union_singleton_eq (hnotmem z₂ h₂) (hnotmem z₃ h₃) he)
 
-/-- Three symmetric frames at offset seven.-/
+/-- Three symmetric frames at offset seven.
+@isnad1 id=threefra.0h0v.s2.0f475fa30d1d from=translated src=- shape=e590c3e1 vocab=b5b92fcb
+-/
 theorem threeFrameA_seven : ThreeFrameA 7 := by
   have hset : frameSet 7 = Finset.Icc (-7 : ℤ) 7 := by
     rw [frameSet, ite_eq_right (by decide : ¬ ((7 : ℤ) % 3 = 0))]
@@ -749,7 +793,9 @@ theorem threeFrameA_seven : ThreeFrameA 7 := by
     toBlocksZ_ne_of_differZ (support := frameList7) (by decide) (by decide) (by decide)⟩
 
 /-- Three symmetric frames at every offset from seven on that is congruent to zero or one modulo
-three.-/
+three.
+@isnad1 id=threefra.2h1v.s5.679d0b01daeb from=translated src=- shape=2196e3eb vocab=81df6dc3
+-/
 theorem threeFrameA_of_mod (r : ℤ) (hr : 7 ≤ r) (hmod : r % 3 = 0 ∨ r % 3 = 1) :
     ThreeFrameA r := by
   by_cases h7 : r = 7

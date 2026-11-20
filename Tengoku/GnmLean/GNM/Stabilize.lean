@@ -17,7 +17,9 @@ open GN
 
 noncomputable section
 
-/-- The count at a negative offset is the same at every admissible power.-/
+/-- The count at a negative offset is the same at every admissible power.
+@isnad1 id=eq.4h3v.s7.50c2f77144ae from=translated src=- shape=ca046f5e vocab=810e83d3
+-/
 theorem count_sub_eq {r t t' : ℕ} (hr : 1 ≤ r) (hthr : r * (r - 1) < 3 ^ t) (h2 : 2 * r < 3 ^ t)
     (htt' : t ≤ t') : count (3 ^ t - r) = count (3 ^ t' - r) := by
   have hpow : (3 : ℕ) ^ t ≤ 3 ^ t' := Nat.pow_le_pow_right (by norm_num) htt'
@@ -34,7 +36,9 @@ theorem count_sub_eq {r t t' : ℕ} (hr : 1 ≤ r) (hthr : r * (r - 1) < 3 ^ t) 
     exact (liftBlocks_truncBlocks_sub (Q := 3 ^ t) (Q' := 3 ^ t') (r := r) (t := t) (t' := t')
       rfl rfl hpow hr h2 hthr hbs).1
 
-/-- The count at a positive offset is the same at every admissible power.-/
+/-- The count at a positive offset is the same at every admissible power.
+@isnad1 id=eq.2h3v.s6.520db1b96bbf from=translated src=- shape=89eda202 vocab=66698a0f
+-/
 theorem count_add_eq {r t t' : ℕ} (hthr : r * (r + 1) < 3 ^ t) (htt' : t ≤ t') :
     count (3 ^ t + r) = count (3 ^ t' + r) := by
   have hpow : (3 : ℕ) ^ t ≤ 3 ^ t' := Nat.pow_le_pow_right (by norm_num) htt'

@@ -31,7 +31,9 @@ hole `j`.-/
 def ThreeDisp (k j : ℤ) : Prop :=
   ThreePWD (displacementDomain k j) ((Finset.Icc (-k) k).erase 0)
 
-/-- A displacement permutation is exactly a permutation with differences on the centered domain.-/
+/-- A displacement permutation is exactly a permutation with differences on the centered domain.
+@isnad1 id=iff.0h3v.s5.ad523ed32080 from=translated src=- shape=aa819fec vocab=c986a191
+-/
 theorem displacementPermutation_iff (k j : ℤ) (σ : ℤ → ℤ) :
     DisplacementPermutation k j σ ↔
       PermutationWithDifferences (displacementDomain k j) ((Finset.Icc (-k) k).erase 0) σ :=
@@ -45,7 +47,9 @@ displacements `±1, …, ±k`.-/
 def ThreeA (k H : ℤ) : Prop :=
   ThreePWD ((Finset.Icc 1 (2 * k + 1)).erase H) ((Finset.Icc (-k) k).erase 0)
 
-/-- Translating every position preserves three-fold distinctness.-/
+/-- Translating every position preserves three-fold distinctness.
+@isnad1 id=threepwd.1h3v.s4.88e72b1cf8ac from=translated src=- shape=fd661d68 vocab=2bc419c2
+-/
 theorem ThreePWD.translate {S D : Finset ℤ} (c : ℤ) (h : ThreePWD S D) :
     ThreePWD (S.image (fun x => c + x)) D := by
   obtain ⟨σ₁, σ₂, σ₃, h₁, h₂, h₃, ⟨x₁₂, hx₁₂, hne₁₂⟩, ⟨x₁₃, hx₁₃, hne₁₃⟩, ⟨x₂₃, hx₂₃, hne₂₃⟩⟩ := h
@@ -61,7 +65,9 @@ theorem ThreePWD.translate {S D : Finset ℤ} (c : ℤ) (h : ThreePWD S D) :
     simp only [add_sub_cancel_left]
     omega
 
-/-- Negating every position preserves three-fold distinctness, with the displacements negated.-/
+/-- Negating every position preserves three-fold distinctness, with the displacements negated.
+@isnad1 id=threepwd.1h2v.s5.4ac76a0474e1 from=translated src=- shape=6491a720 vocab=10c81d86
+-/
 theorem ThreePWD.negate {S D : Finset ℤ} (h : ThreePWD S D) :
     ThreePWD (S.image (fun x => -x)) (D.image (fun x => -x)) := by
   obtain ⟨σ₁, σ₂, σ₃, h₁, h₂, h₃, ⟨x₁₂, hx₁₂, hne₁₂⟩, ⟨x₁₃, hx₁₃, hne₁₃⟩, ⟨x₂₃, hx₂₃, hne₂₃⟩⟩ := h
@@ -78,7 +84,9 @@ theorem ThreePWD.negate {S D : Finset ℤ} (h : ThreePWD S D) :
     omega
 
 /-- Reflecting the positions about `c / 2` preserves three-fold distinctness, with the displacements
-negated.-/
+negated.
+@isnad1 id=threepwd.1h3v.s5.2433adad723c from=translated src=- shape=f5087c73 vocab=23db0ced
+-/
 theorem ThreePWD.reflect {S D : Finset ℤ} (c : ℤ) (h : ThreePWD S D) :
     ThreePWD (S.image (fun x => c - x)) (D.image (fun x => -x)) := by
   have ht := (h.negate).translate c
@@ -90,7 +98,9 @@ theorem ThreePWD.reflect {S D : Finset ℤ} (c : ℤ) (h : ThreePWD S D) :
   rwa [hfun] at ht
 
 /-- The interval `[1, 2q]` is the positional interval `[1, 2q + 1]` with its last position as the
-hole.-/
+hole.
+@isnad1 id=iff.1h1v.s5.249d32f2459d from=translated src=- shape=6ca26e4c vocab=b58b826c
+-/
 theorem threeM_iff_threeA (q : ℤ) (hq : 0 ≤ q) : ThreeM q ↔ ThreeA q (2 * q + 1) := by
   have he : (Finset.Icc 1 (2 * q + 1)).erase (2 * q + 1) = Finset.Icc 1 (2 * q) := by
     ext x
@@ -99,7 +109,9 @@ theorem threeM_iff_threeA (q : ℤ) (hq : 0 ≤ q) : ThreeM q ↔ ThreeA q (2 * 
   unfold ThreeM ThreeA
   rw [he]
 
-/-- The centered hole `j` is the position `j + k + 1`.-/
+/-- The centered hole `j` is the position `j + k + 1`.
+@isnad1 id=threea.1h2v.s4.1ab46c9acb8c from=translated src=- shape=69ce10af vocab=b685803b
+-/
 theorem threeA_of_threeDisp {k j : ℤ} (h : ThreeDisp k j) : ThreeA k (j + k + 1) := by
   have ht := ThreePWD.translate (k + 1) h
   have he : (displacementDomain k j).image (fun x => k + 1 + x)
@@ -115,7 +127,9 @@ theorem threeA_of_threeDisp {k j : ℤ} (h : ThreeDisp k j) : ThreeA k (j + k + 
   rw [← he]
   exact ht
 
-/-- The position `H` is the centered hole `H − k − 1`.-/
+/-- The position `H` is the centered hole `H − k − 1`.
+@isnad1 id=threedis.1h2v.s4.24eca145b63f from=translated src=- shape=69ce10af vocab=b017a1ea
+-/
 theorem threeDisp_of_threeA {k H : ℤ} (h : ThreeA k H) : ThreeDisp k (H - k - 1) := by
   have ht := ThreePWD.translate (-(k + 1)) h
   have he : ((Finset.Icc 1 (2 * k + 1)).erase H).image (fun x => -(k + 1) + x)
@@ -131,7 +145,9 @@ theorem threeDisp_of_threeA {k H : ℤ} (h : ThreeA k H) : ThreeDisp k (H - k - 
   rw [← he]
   exact ht
 
-/-- The centered picture is symmetric under negating the hole.-/
+/-- The centered picture is symmetric under negating the hole.
+@isnad1 id=threedis.1h2v.s3.945b25e559ab from=translated src=- shape=f1b24a2a vocab=c3ddba13
+-/
 theorem ThreeDisp.neg {k j : ℤ} (h : ThreeDisp k j) : ThreeDisp k (-j) := by
   have hn := ThreePWD.negate h
   have hS : (displacementDomain k j).image (fun x => -x) = displacementDomain k (-j) := by

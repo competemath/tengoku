@@ -24,19 +24,25 @@ open GN
 
 /-! ### Conjunctions and disjunctions folded over a list -/
 
-/-- The left half of a true conjunction of Booleans is true.-/
+/-- The left half of a true conjunction of Booleans is true.
+@isnad1 id=eq.1h2v.s3.3d8329bab07b from=translated src=- shape=f5838b64 vocab=45e1c022
+-/
 theorem bool_and_left {a b : Bool} (h : (a && b) = true) : a = true := by
   cases a with
   | true => rfl
   | false => exact h
 
-/-- The right half of a true conjunction of Booleans is true.-/
+/-- The right half of a true conjunction of Booleans is true.
+@isnad1 id=eq.1h2v.s3.06991e8b1e0e from=translated src=- shape=ecfc921f vocab=45e1c022
+-/
 theorem bool_and_right {a b : Bool} (h : (a && b) = true) : b = true := by
   cases a with
   | true => exact h
   | false => exact Bool.noConfusion h
 
-/-- A test folded over a list with conjunction is true exactly when it holds of every entry.-/
+/-- A test folded over a list with conjunction is true exactly when it holds of every entry.
+@isnad1 id=iff.0h3v.s5.feb6ecee5582 from=translated src=- shape=b89f9a15 vocab=c1bd0b23
+-/
 theorem foldAnd_iff {α : Type*} {f : α → Bool} {l : List α} :
     (List.rec (motive := fun _ => Bool) true (fun a _ ih => f a && ih) l) = true ↔
       ∀ a ∈ l, f a = true := by
@@ -48,7 +54,9 @@ theorem foldAnd_iff {α : Type*} {f : α → Bool} {l : List α} :
       rw [e, Bool.and_eq_true, ih]
       simp
 
-/-- A test folded over a list with disjunction is true exactly when it holds of some entry.-/
+/-- A test folded over a list with disjunction is true exactly when it holds of some entry.
+@isnad1 id=iff.0h3v.s5.b4e0cbba3449 from=translated src=- shape=5cb9ede4 vocab=f05a4786
+-/
 theorem foldOr_iff {α : Type*} {f : α → Bool} {l : List α} :
     (List.rec (motive := fun _ => Bool) false (fun a _ ih => f a || ih) l) = true ↔
       ∃ a ∈ l, f a = true := by
@@ -62,26 +70,36 @@ theorem foldOr_iff {α : Type*} {f : α → Bool} {l : List α} :
 
 /-! ### The checkers on lists of natural numbers -/
 
-/-- The occurrence test is correct.-/
+/-- The occurrence test is correct.
+@isnad1 id=iff.0h2v.s4.0e56adf2bad3 from=translated src=- shape=d6702376 vocab=538c833a
+-/
 theorem memList_iff {y : ℕ} {l : List ℕ} : memList y l = true ↔ y ∈ l := by
   have e : memList y l =
       (List.rec (motive := fun _ => Bool) false (fun z _ ih => Nat.beq y z || ih) l) := rfl
   rw [e, foldOr_iff (f := fun z => Nat.beq y z)]
   simp
 
-/-- The occurrence test fails exactly when the number does not occur.-/
+/-- The occurrence test fails exactly when the number does not occur.
+@isnad1 id=iff.0h2v.s4.8cf6149d65ee from=translated src=- shape=76a23525 vocab=c4ea2e77
+-/
 theorem memList_eq_false {y : ℕ} {l : List ℕ} : memList y l = false ↔ y ∉ l := by
   rw [Bool.eq_false_iff, ne_eq, memList_iff]
 
-/-- A test holds of every block of a list of blocks exactly when the folded test is true.-/
+/-- A test holds of every block of a list of blocks exactly when the folded test is true.
+@isnad1 id=iff.0h2v.s5.9ded6f91ddee from=translated src=- shape=bd19d19e vocab=8c7bdc45
+-/
 theorem allB_iff {f : List ℕ → Bool} {l : List (List ℕ)} :
     allB f l = true ↔ ∀ b ∈ l, f b = true := foldAnd_iff
 
-/-- A test holds of every entry of a list exactly when the folded test is true.-/
+/-- A test holds of every entry of a list exactly when the folded test is true.
+@isnad1 id=iff.0h2v.s4.6b50fe0fb38b from=translated src=- shape=15d1eddb vocab=bbf6a932
+-/
 theorem allNat_iff {f : ℕ → Bool} {l : List ℕ} :
     allNat f l = true ↔ ∀ y ∈ l, f y = true := foldAnd_iff
 
-/-- The appending function is concatenation.-/
+/-- The appending function is concatenation.
+@isnad1 id=eq.0h2v.s4.45726202bf2d from=translated src=- shape=2f7d5330 vocab=4ef8ee6f
+-/
 theorem appList_eq (l r : List ℕ) : appList l r = l ++ r := by
   induction l with
   | nil => rfl
@@ -89,7 +107,9 @@ theorem appList_eq (l r : List ℕ) : appList l r = l ++ r := by
       have e : appList (a :: t) r = a :: appList t r := rfl
       rw [e, ih, List.cons_append]
 
-/-- The length function is the length of the list.-/
+/-- The length function is the length of the list.
+@isnad1 id=eq.0h1v.s3.7f8508b02294 from=translated src=- shape=3f83eb9c vocab=e7c8911a
+-/
 theorem lenList_eq (l : List ℕ) : lenList l = l.length := by
   induction l with
   | nil => rfl
@@ -97,7 +117,9 @@ theorem lenList_eq (l : List ℕ) : lenList l = l.length := by
       have e : lenList (a :: t) = lenList t + 1 := rfl
       rw [e, ih, List.length_cons]
 
-/-- The sum function is the sum of the list.-/
+/-- The sum function is the sum of the list.
+@isnad1 id=eq.0h1v.s3.443b6d1a6834 from=translated src=- shape=3f83eb9c vocab=0770408c
+-/
 theorem sumList_eq (l : List ℕ) : sumList l = l.sum := by
   induction l with
   | nil => rfl
@@ -105,7 +127,9 @@ theorem sumList_eq (l : List ℕ) : sumList l = l.sum := by
       have e : sumList (a :: t) = a + sumList t := rfl
       rw [e, ih, List.sum_cons]
 
-/-- The flattening function is the concatenation of the blocks.-/
+/-- The flattening function is the concatenation of the blocks.
+@isnad1 id=eq.0h1v.s3.577d86a2db50 from=translated src=- shape=0ed581d2 vocab=b549111a
+-/
 theorem flat_eq (bs : List (List ℕ)) : flat bs = bs.flatten := by
   induction bs with
   | nil => rfl
@@ -113,7 +137,9 @@ theorem flat_eq (bs : List (List ℕ)) : flat bs = bs.flatten := by
       have e : flat (b :: t) = appList b (flat t) := rfl
       rw [e, appList_eq, ih, List.flatten_cons]
 
-/-- The repetition test is correct.-/
+/-- The repetition test is correct.
+@isnad1 id=iff.0h1v.s3.c840556fc390 from=translated src=- shape=199b5a56 vocab=26788628
+-/
 theorem noDup_iff {l : List ℕ} : noDup l = true ↔ l.Nodup := by
   induction l with
   | nil => exact ⟨fun _ => List.nodup_nil, fun _ => rfl⟩
@@ -122,14 +148,18 @@ theorem noDup_iff {l : List ℕ} : noDup l = true ↔ l.Nodup := by
       rw [e, Bool.and_eq_true, ih, List.nodup_cons]
       simp [memList_eq_false]
 
-/-- The range test is correct.-/
+/-- The range test is correct.
+@isnad1 id=iff.0h2v.s5.6d4fb7b397db from=translated src=- shape=e87e376a vocab=9d76ff20
+-/
 theorem inRange_iff {n : ℕ} {l : List ℕ} : inRange n l = true ↔ ∀ y ∈ l, 1 ≤ y ∧ y ≤ n := by
   have e : inRange n l = (List.rec (motive := fun _ => Bool) true
       (fun y _ ih => (Nat.ble 1 y && Nat.ble y n) && ih) l) := rfl
   rw [e, foldAnd_iff (f := fun y => Nat.ble 1 y && Nat.ble y n)]
   simp [Bool.and_eq_true, Nat.ble_eq]
 
-/-- A number the power-of-three test accepts is a power of three.-/
+/-- A number the power-of-three test accepts is a power of three.
+@isnad1 id=ex.1h1v.s5.3396d775fcc3 from=translated src=- shape=6cb57256 vocab=91e9ced0
+-/
 theorem pow3_of_isPow3 {n : ℕ} (h : isPow3 n = true) : ∃ k : ℕ, n = 3 ^ k := by
   simp only [isPow3, Bool.or_eq_true, Nat.beq_eq] at h
   have h7 : n = 1 ∨ n = 3 ∨ n = 9 ∨ n = 27 ∨ n = 81 ∨ n = 243 ∨ n = 729 := by tauto
@@ -143,7 +173,9 @@ theorem pow3_of_isPow3 {n : ℕ} (h : isPow3 n = true) : ∃ k : ℕ, n = 3 ^ k 
   · exact ⟨6, by norm_num⟩
 
 /-- The power-of-three test is correct for every value it can be applied to in this development:
-a block sum of an interval below the seventh power of three.-/
+a block sum of an interval below the seventh power of three.
+@isnad1 id=iff.1h1v.s5.3c6b40d9c8d9 from=translated src=- shape=c0770290 vocab=1d59e33e
+-/
 theorem isPow3_iff {n : ℕ} (hn : n ≤ 729) : isPow3 n = true ↔ ∃ k : ℕ, n = 3 ^ k := by
   refine ⟨fun h => pow3_of_isPow3 h, ?_⟩
   rintro ⟨k, rfl⟩
@@ -154,7 +186,9 @@ theorem isPow3_iff {n : ℕ} (hn : n ≤ 729) : isPow3 n = true ↔ ∃ k : ℕ,
     norm_num at h8
   interval_cases k <;> decide
 
-/-- The block checker is exactly the three conditions on a block.-/
+/-- The block checker is exactly the three conditions on a block.
+@isnad1 id=iff.0h1v.s5.95cd0718b82e from=translated src=- shape=373dcad7 vocab=1704dad8
+-/
 theorem goodBlock_iff {b : List ℕ} :
     goodBlock b = true ↔ b ≠ [] ∧ b.length ≤ 3 ∧ isPow3 b.sum = true := by
   cases b with
@@ -166,7 +200,9 @@ theorem goodBlock_iff {b : List ℕ} :
       simp
 
 /-- Two blocks pass the equality test exactly when they have the same length and the entries of the
-first all occur in the second.-/
+first all occur in the second.
+@isnad1 id=iff.0h2v.s5.b7ba55635ce8 from=translated src=- shape=d9419bc7 vocab=99dfe2a6
+-/
 theorem sameBlock_iff {b c : List ℕ} :
     sameBlock b c = true ↔ b.length = c.length ∧ ∀ y ∈ b, y ∈ c := by
   have e : sameBlock b c = (Nat.beq (lenList b) (lenList c) && allNat (fun y => memList y c) b) :=
@@ -190,7 +226,9 @@ private theorem matchesSome_eq_false {b : List ℕ} {cs : List (List ℕ)} :
   simp
 
 /-- The difference test is correct: it holds exactly when some block of the first list matches no
-block of the second.-/
+block of the second.
+@isnad1 id=iff.0h2v.s5.74e2a63243cd from=translated src=- shape=8a9adcbe vocab=f5aaa4c3
+-/
 theorem differ_iff {bs cs : List (List ℕ)} :
     differ bs cs = true ↔ ∃ b ∈ bs, ∀ c ∈ cs, sameBlock b c = false := by
   have e : differ bs cs = (List.rec (motive := fun _ => Bool) false
@@ -200,7 +238,9 @@ theorem differ_iff {bs cs : List (List ℕ)} :
 
 /-! ### Blocks inside a concatenation without repetition -/
 
-/-- A block of a list of blocks whose concatenation has no repeated entry has no repeated entry.-/
+/-- A block of a list of blocks whose concatenation has no repeated entry has no repeated entry.
+@isnad1 id=nodup.2h3v.s4.537d4716e0e2 from=translated src=- shape=4e547ea0 vocab=9031a60c
+-/
 theorem nodup_of_flatten_nodup {α : Type*} {b : List α} :
     ∀ bs : List (List α), bs.flatten.Nodup → b ∈ bs → b.Nodup := by
   intro bs
@@ -214,7 +254,9 @@ theorem nodup_of_flatten_nodup {α : Type*} {b : List α} :
       · exact ih h.2.1 hb'
 
 /-- Two different blocks of a list of blocks whose concatenation has no repeated entry share no
-entry.-/
+entry.
+@isnad1 id=not.5h5v.s6.534f40762bf7 from=translated src=- shape=a881548e vocab=9031a60c
+-/
 theorem not_mem_of_flatten_nodup {α : Type*} {b c : List α} {y : α} (hbc : b ≠ c) (hy : y ∈ b) :
     ∀ bs : List (List α), bs.flatten.Nodup → b ∈ bs → c ∈ bs → y ∉ c := by
   intro bs
@@ -239,37 +281,51 @@ def toBlock (b : List ℕ) : Finset ℤ := (b.map (fun x : ℕ => (x : ℤ))).to
 /-- The set of blocks named by a list of lists of numbers.-/
 def toBlocks (bs : List (List ℕ)) : Finset (Finset ℤ) := (bs.map toBlock).toFinset
 
-/-- Membership in the set named by a list of numbers.-/
+/-- Membership in the set named by a list of numbers.
+@isnad1 id=iff.0h2v.s5.e63cd47b5da1 from=translated src=- shape=e228d32d vocab=e5ebdecb
+-/
 theorem mem_toBlock_iff {x : ℤ} {b : List ℕ} : x ∈ toBlock b ↔ ∃ y ∈ b, (y : ℤ) = x := by
   simp only [toBlock, List.mem_toFinset, List.mem_map]
 
-/-- The set named by a list of numbers contains the image of each entry.-/
+/-- The set named by a list of numbers contains the image of each entry.
+@isnad1 id=mem.1h2v.s4.5fac0de5aa0c from=translated src=- shape=2af552f7 vocab=e5ebdecb
+-/
 theorem mem_toBlock {y : ℕ} {b : List ℕ} (h : y ∈ b) : (y : ℤ) ∈ toBlock b :=
   mem_toBlock_iff.mpr ⟨y, h, rfl⟩
 
-/-- Membership in the set of blocks named by a list of lists of numbers.-/
+/-- Membership in the set of blocks named by a list of lists of numbers.
+@isnad1 id=iff.0h2v.s5.c23c305571f6 from=translated src=- shape=f0f77ba4 vocab=d1ce60c9
+-/
 theorem mem_toBlocks {B : Finset ℤ} {bs : List (List ℕ)} :
     B ∈ toBlocks bs ↔ ∃ b ∈ bs, toBlock b = B := by
   simp [toBlocks]
 
-/-- A list without repetition names as many integers as it has entries.-/
+/-- A list without repetition names as many integers as it has entries.
+@isnad1 id=eq.1h1v.s4.c6a0a41510d7 from=translated src=- shape=6374e532 vocab=f92be6cf
+-/
 theorem card_toBlock {b : List ℕ} (h : b.Nodup) : (toBlock b).card = b.length := by
   have hm : (b.map (fun x : ℕ => (x : ℤ))).Nodup := h.map (fun _ _ e => by exact_mod_cast e)
   rw [toBlock, List.toFinset_card_of_nodup hm, List.length_map]
 
-/-- The sum of the integers a list without repetition names is the sum of its entries.-/
+/-- The sum of the integers a list without repetition names is the sum of its entries.
+@isnad1 id=eq.1h1v.s4.a4b1d9f6016e from=translated src=- shape=d6a5b0dc vocab=c63a2124
+-/
 theorem sum_toBlock {b : List ℕ} (h : b.Nodup) : (toBlock b).sum id = (b.sum : ℤ) := by
   have hm : (b.map (fun x : ℕ => (x : ℤ))).Nodup := h.map (fun _ _ e => by exact_mod_cast e)
   rw [toBlock, List.sum_toFinset _ hm, List.map_id]
   exact (Nat.cast_list_sum b).symm
 
-/-- An entry of a block occurs in the concatenation of the blocks.-/
+/-- An entry of a block occurs in the concatenation of the blocks.
+@isnad1 id=iff.0h2v.s5.6523537e05ff from=translated src=- shape=8ad9c9b5 vocab=8eed7c9f
+-/
 theorem mem_flat {y : ℕ} {bs : List (List ℕ)} : y ∈ flat bs ↔ ∃ b ∈ bs, y ∈ b := by
   rw [flat_eq, List.mem_flatten]
 
 /-! ### The partition checker -/
 
-/-- The four facts the partition checker establishes.-/
+/-- The four facts the partition checker establishes.
+@isnad1 id=and.1h2v.s6.122b73c0f3c2 from=translated src=- shape=dc5d56c9 vocab=93eed8a7
+-/
 theorem checkPartition_facts {n : ℕ} {bs : List (List ℕ)} (h : checkPartition n bs = true) :
     (∀ b ∈ bs, goodBlock b = true) ∧ (flat bs).Nodup ∧ (flat bs).length = n ∧
       ∀ y ∈ flat bs, 1 ≤ y ∧ y ≤ n := by
@@ -284,14 +340,18 @@ theorem checkPartition_facts {n : ℕ} {bs : List (List ℕ)} (h : checkPartitio
   have h5 := Nat.eq_of_beq_eq_true h3
   rwa [lenList_eq] at h5
 
-/-- Each block of a checked partition has no repeated entry.-/
+/-- Each block of a checked partition has no repeated entry.
+@isnad1 id=nodup.2h3v.s4.7bd5fe63c3d6 from=translated src=- shape=945d330d vocab=2750b9c5
+-/
 theorem nodup_of_checkPartition {n : ℕ} {bs : List (List ℕ)} (h : checkPartition n bs = true)
     {b : List ℕ} (hb : b ∈ bs) : b.Nodup := by
   have hnd := (checkPartition_facts h).2.1
   rw [flat_eq] at hnd
   exact nodup_of_flatten_nodup bs hnd hb
 
-/-- The entries of a checked partition are exactly the numbers of the interval.-/
+/-- The entries of a checked partition are exactly the numbers of the interval.
+@isnad1 id=eq.1h2v.s4.455e9698b380 from=translated src=- shape=606e2676 vocab=b1a185c0
+-/
 theorem toFinset_flat {n : ℕ} {bs : List (List ℕ)} (h : checkPartition n bs = true) :
     (flat bs).toFinset = Finset.Icc 1 n := by
   obtain ⟨-, hnd, hlen, hr⟩ := checkPartition_facts h
@@ -302,7 +362,9 @@ theorem toFinset_flat {n : ℕ} {bs : List (List ℕ)} (h : checkPartition n bs 
   refine Finset.eq_of_subset_of_card_le hsub ?_
   rw [List.toFinset_card_of_nodup hnd, hlen, hIcc]
 
-/-- A list that passes the partition checker names a good partition of the interval.-/
+/-- A list that passes the partition checker names a good partition of the interval.
+@isnad1 id=isgoodpa.1h2v.s4.e38dbe544a51 from=translated src=- shape=27ad64c0 vocab=3b6a3696
+-/
 theorem isGoodPartition_of_checkPartition {n : ℕ} {bs : List (List ℕ)}
     (h : checkPartition n bs = true) : IsGoodPartition n (toBlocks bs) := by
   obtain ⟨hg, hnd, hlen, hr⟩ := checkPartition_facts h
@@ -346,7 +408,9 @@ theorem isGoodPartition_of_checkPartition {n : ℕ} {bs : List (List ℕ)}
       push_cast
       ring
 
-/-- Two checked lists, one of which has a block the other has not, name different partitions.-/
+/-- Two checked lists, one of which has a block the other has not, name different partitions.
+@isnad1 id=ne.3h3v.s5.74c5215f45d7 from=translated src=- shape=3a0912f6 vocab=64ec9d94
+-/
 theorem toBlocks_ne_of_differ {n : ℕ} {bs cs : List (List ℕ)} (hb : checkPartition n bs = true)
     (hc : checkPartition n cs = true) (h : differ bs cs = true) : toBlocks bs ≠ toBlocks cs := by
   intro heq
@@ -367,7 +431,9 @@ theorem toBlocks_ne_of_differ {n : ℕ} {bs cs : List (List ℕ)} (hb : checkPar
   rw [hnm c hcs] at hsb
   exact Bool.noConfusion hsb
 
-/-- Three checked lists, pairwise differing, give a count of at least three.-/
+/-- Three checked lists, pairwise differing, give a count of at least three.
+@isnad1 id=le.6h4v.s6.ed7e22036bb9 from=translated src=- shape=d121ab66 vocab=71f81edd
+-/
 theorem three_le_count_of_witnesses {n : ℕ} {w₁ w₂ w₃ : List (List ℕ)}
     (h₁ : checkPartition n w₁ = true) (h₂ : checkPartition n w₂ = true)
     (h₃ : checkPartition n w₃ = true) (d₁₂ : differ w₁ w₂ = true) (d₁₃ : differ w₁ w₃ = true)
@@ -378,18 +444,24 @@ theorem three_le_count_of_witnesses {n : ℕ} {w₁ w₂ w₃ : List (List ℕ)}
 
 /-! ### The checkers on lists of integers -/
 
-/-- The occurrence test on integers is correct.-/
+/-- The occurrence test on integers is correct.
+@isnad1 id=iff.0h2v.s4.7a9aac41a33a from=translated src=- shape=d6702376 vocab=85a4bf61
+-/
 theorem memListZ_iff {y : ℤ} {l : List ℤ} : memListZ y l = true ↔ y ∈ l := by
   have e : memListZ y l =
       (List.rec (motive := fun _ => Bool) false (fun z _ ih => (y == z) || ih) l) := rfl
   rw [e, foldOr_iff (f := fun z => (y == z))]
   simp
 
-/-- The occurrence test on integers fails exactly when the integer does not occur.-/
+/-- The occurrence test on integers fails exactly when the integer does not occur.
+@isnad1 id=iff.0h2v.s4.c0827a89f131 from=translated src=- shape=76a23525 vocab=f2f24871
+-/
 theorem memListZ_eq_false {y : ℤ} {l : List ℤ} : memListZ y l = false ↔ y ∉ l := by
   rw [Bool.eq_false_iff, ne_eq, memListZ_iff]
 
-/-- The length function on integer lists is the length of the list.-/
+/-- The length function on integer lists is the length of the list.
+@isnad1 id=eq.0h1v.s3.abfe7e6ae6b4 from=translated src=- shape=9aab4020 vocab=4c9dd662
+-/
 theorem lenListZ_eq (l : List ℤ) : lenListZ l = l.length := by
   induction l with
   | nil => rfl
@@ -397,7 +469,9 @@ theorem lenListZ_eq (l : List ℤ) : lenListZ l = l.length := by
       have e : lenListZ (a :: t) = lenListZ t + 1 := rfl
       rw [e, ih, List.length_cons]
 
-/-- The sum function on integer lists is the sum of the list.-/
+/-- The sum function on integer lists is the sum of the list.
+@isnad1 id=eq.0h1v.s4.79d29feb8a91 from=translated src=- shape=3f83eb9c vocab=9c703cd7
+-/
 theorem sumListZ_eq (l : List ℤ) : sumListZ l = l.sum := by
   induction l with
   | nil => rfl
@@ -405,7 +479,9 @@ theorem sumListZ_eq (l : List ℤ) : sumListZ l = l.sum := by
       have e : sumListZ (a :: t) = a + sumListZ t := rfl
       rw [e, ih, List.sum_cons]
 
-/-- The repetition test on integer lists is correct.-/
+/-- The repetition test on integer lists is correct.
+@isnad1 id=iff.0h1v.s3.08f8f95279d5 from=translated src=- shape=199b5a56 vocab=f0388e21
+-/
 theorem noDupZ_iff {l : List ℤ} : noDupZ l = true ↔ l.Nodup := by
   induction l with
   | nil => exact ⟨fun _ => List.nodup_nil, fun _ => rfl⟩
@@ -424,7 +500,9 @@ private theorem consAll_eq (r : List ℤ) (l : List ℤ) :
           a :: (List.rec (motive := fun _ => List ℤ) r (fun y _ jh => y :: jh) s) := rfl
       rw [e, ih, List.cons_append]
 
-/-- The flattening function on integer blocks is the concatenation of the blocks.-/
+/-- The flattening function on integer blocks is the concatenation of the blocks.
+@isnad1 id=eq.0h1v.s3.bdbe37fc2852 from=translated src=- shape=0ed581d2 vocab=cf15e1bc
+-/
 theorem flatZ_eq (bs : List (List ℤ)) : flatZ bs = bs.flatten := by
   induction bs with
   | nil => rfl
@@ -433,11 +511,15 @@ theorem flatZ_eq (bs : List (List ℤ)) : flatZ bs = bs.flatten := by
           (List.rec (motive := fun _ => List ℤ) (flatZ t) (fun y _ jh => y :: jh) b) := rfl
       rw [e, consAll_eq, ih, List.flatten_cons]
 
-/-- An entry of an integer block occurs in the concatenation of the blocks.-/
+/-- An entry of an integer block occurs in the concatenation of the blocks.
+@isnad1 id=iff.0h2v.s5.58f209bbca87 from=translated src=- shape=8ad9c9b5 vocab=c0decb8c
+-/
 theorem mem_flatZ {y : ℤ} {bs : List (List ℤ)} : y ∈ flatZ bs ↔ ∃ b ∈ bs, y ∈ b := by
   rw [flatZ_eq, List.mem_flatten]
 
-/-- The zero-sum triple test is correct.-/
+/-- The zero-sum triple test is correct.
+@isnad1 id=iff.0h1v.s5.54405776e471 from=translated src=- shape=d1dfd61d vocab=88e4928f
+-/
 theorem zeroTripleOK_iff {b : List ℤ} :
     zeroTripleOK b = true ↔ b.length = 3 ∧ b.Nodup ∧ b.sum = 0 := by
   have e : zeroTripleOK b = (Nat.beq (lenListZ b) 3 && noDupZ b && (sumListZ b == 0)) := rfl
@@ -446,7 +528,9 @@ theorem zeroTripleOK_iff {b : List ℤ} :
   exact ⟨fun hx => ⟨hx.1.1, hx.1.2, hx.2⟩, fun hx => ⟨⟨hx.1, hx.2.1⟩, hx.2.2⟩⟩
 
 /-- Two integer blocks pass the equality test exactly when they have the same length and the
-entries of the first all occur in the second.-/
+entries of the first all occur in the second.
+@isnad1 id=iff.0h2v.s5.fdaaccb320c3 from=translated src=- shape=2c927b59 vocab=52cd8aec
+-/
 theorem sameBlockZ_iff {b c : List ℤ} :
     sameBlockZ b c = true ↔ b.length = c.length ∧ ∀ y ∈ b, y ∈ c := by
   have e : sameBlockZ b c = (Nat.beq (lenListZ b) (lenListZ c) &&
@@ -470,7 +554,9 @@ private theorem matchesSomeZ_eq_false {b : List ℤ} {cs : List (List ℤ)} :
   rw [Bool.eq_false_iff, ne_eq, matchesSomeZ_iff]
   simp
 
-/-- The difference test on integer blocks is correct.-/
+/-- The difference test on integer blocks is correct.
+@isnad1 id=iff.0h2v.s5.42bb0958ddfc from=translated src=- shape=8a9adcbe vocab=6966356e
+-/
 theorem differZ_iff {bs cs : List (List ℤ)} :
     differZ bs cs = true ↔ ∃ b ∈ bs, ∀ c ∈ cs, sameBlockZ b c = false := by
   have e : differZ bs cs = (List.rec (motive := fun _ => Bool) false
@@ -486,12 +572,16 @@ def toBlockZ (b : List ℤ) : Finset ℤ := b.toFinset
 /-- The set of triples named by a list of lists of integers.-/
 def toBlocksZ (bs : List (List ℤ)) : Finset (Finset ℤ) := (bs.map toBlockZ).toFinset
 
-/-- Membership in the set of triples named by a list of lists of integers.-/
+/-- Membership in the set of triples named by a list of lists of integers.
+@isnad1 id=iff.0h2v.s5.67950f56356f from=translated src=- shape=4b16ad93 vocab=21ed0f62
+-/
 theorem mem_toBlocksZ {B : Finset ℤ} {bs : List (List ℤ)} :
     B ∈ toBlocksZ bs ↔ ∃ b ∈ bs, toBlockZ b = B := by
   simp [toBlocksZ]
 
-/-- The four facts the frame checker establishes.-/
+/-- The four facts the frame checker establishes.
+@isnad1 id=and.1h2v.s6.9467f8168547 from=translated src=- shape=2736416c vocab=82141be6
+-/
 theorem framesOK_facts {support : List ℤ} {bs : List (List ℤ)} (h : framesOK support bs = true) :
     (∀ b ∈ bs, zeroTripleOK b = true) ∧ (flatZ bs).Nodup ∧
       (flatZ bs).length = support.length ∧ ∀ y ∈ flatZ bs, y ∈ support := by
@@ -510,7 +600,9 @@ theorem framesOK_facts {support : List ℤ} {bs : List (List ℤ)} (h : framesOK
   · intro y hy
     exact memListZ_iff.mp ((foldAnd_iff (f := fun y => memListZ y support)).mp h4 y hy)
 
-/-- A list that passes the frame checker names a partition of the support into zero-sum triples.-/
+/-- A list that passes the frame checker names a partition of the support into zero-sum triples.
+@isnad1 id=zeropart.3h3v.s5.0cf60b0dbdd8 from=translated src=- shape=1d9228ac vocab=f9b86a9b
+-/
 theorem zeroPartition_of_framesOK {s : Finset ℤ} {support : List ℤ} (hs : support.toFinset = s)
     (hnd : noDupZ support = true) {bs : List (List ℤ)} (h : framesOK support bs = true) :
     ZeroPartition s (toBlocksZ bs) := by
@@ -550,7 +642,9 @@ theorem zeroPartition_of_framesOK {s : Finset ℤ} {support : List ℤ} (hs : su
     · rw [toBlockZ, List.toFinset_card_of_nodup hbnd, hlen3]
     · rw [toBlockZ, List.sum_toFinset _ hbnd, List.map_id, hsum]
 
-/-- Two checked frames, one of which has a triple the other has not, are different.-/
+/-- Two checked frames, one of which has a triple the other has not, are different.
+@isnad1 id=ne.3h3v.s5.6fff6dc78cae from=translated src=- shape=fda0565a vocab=1f102770
+-/
 theorem toBlocksZ_ne_of_differZ {support : List ℤ} {bs cs : List (List ℤ)}
     (hb : framesOK support bs = true) (hc : framesOK support cs = true)
     (h : differZ bs cs = true) : toBlocksZ bs ≠ toBlocksZ cs := by

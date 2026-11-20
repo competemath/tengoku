@@ -6,7 +6,9 @@ import Tengoku.GnmLean.GN.Transfer
 namespace GN
 noncomputable section
 
-/-- The interval induction, separated from its sequence-construction input.-/
+/-- The interval induction, separated from its sequence-construction input.
+@isnad1 id=hasgood.1h1v.s6.5bc3f503250e from=translated src=- shape=236e7261 vocab=af9e758b
+-/
 theorem hasGood_all_of_critical
     (hcritical : ∀ (P r t : ℕ), P = 3^t → 2*r < P → r % 3 = 2 →
       HasGood (interval r) → HasGood (interval (P+r))) :
@@ -44,7 +46,9 @@ theorem hasGood_all_of_critical
         apply ih
         omega
 
-/-- The signed construction supplies every critical step above the three literal bases.-/
+/-- The signed construction supplies every critical step above the three literal bases.
+@isnad1 id=hasgood.6h3v.s7.d77e98e7036e from=translated src=- shape=c48df770 vocab=4ce3459b
+-/
 theorem critical_large_of_permutations
     (hperm : ∀ k : ℤ, 3 ≤ k → ∀ j : ℤ, -k ≤ j ∧ j ≤ k →
       ∃ σ : ℤ → ℤ, DisplacementPermutation k j σ)

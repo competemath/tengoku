@@ -82,7 +82,9 @@ private theorem frameSet_image (P r : ℤ) :
 def shiftBlocks (P : ℤ) (zs : Finset (Finset ℤ)) : Finset (Finset ℤ) :=
   zs.image (fun b => b.image (fun x => P + x))
 
-/-- Translating the blocks of a family is injective in the family.-/
+/-- Translating the blocks of a family is injective in the family.
+@isnad1 id=injectiv.0h1v.s3.c189ab775ba2 from=translated src=- shape=387ef502 vocab=9c9f4ef6
+-/
 theorem shiftBlocks_injective (P : ℤ) : Function.Injective (shiftBlocks P) := by
   have hb : ∀ b : Finset ℤ, (b.image (fun x => P + x)).image (fun x => -P + x) = b := by
     intro b
@@ -110,7 +112,9 @@ theorem shiftBlocks_injective (P : ℤ) : Function.Injective (shiftBlocks P) := 
   rw [h] at h1
   exact h1.symm.trans h2
 
-/-- A translated zero-sum triple sums to three times the translation.-/
+/-- A translated zero-sum triple sums to three times the translation.
+@isnad1 id=eq.2h2v.s6.98496cd7f190 from=translated src=- shape=f1682838 vocab=2a28bf48
+-/
 theorem sum_shift_of_zero {P : ℤ} {b : Finset ℤ} (h3 : b.card = 3) (hs : b.sum id = 0) :
     (b.image (fun x => P + x)).sum id = 3 * P := by
   have hinj : ∀ x ∈ b, ∀ y ∈ b, P + x = P + y → x = y := fun x _ y _ hxy => by omega
@@ -138,7 +142,9 @@ private theorem targetA_false (P : ℤ) (src zs : Finset (Finset ℤ)) :
   show src ∪ shiftBlocks P zs ∪ ∅ = src ∪ shiftBlocks P zs
   exact Finset.union_empty _
 
-/-- The symmetric target is a good partition of `{1, …, P + r}`.-/
+/-- The symmetric target is a good partition of `{1, …, P + r}`.
+@isnad1 id=goodon.5h5v.s7.59dbedd22ee7 from=translated src=- shape=5fb45e30 vocab=6a5adb83
+-/
 theorem targetA_goodOn {P r t : ℕ} (hP : P = 3 ^ t) (hPr : 2 * r < P)
     (hmod : r % 3 = 0 ∨ r % 3 = 1) {src zs : Finset (Finset ℤ)}
     (hsrc : GoodOn (interval (P - r - 1)) src) (hz : ZeroPartition (frameSet r) zs) :
@@ -193,7 +199,9 @@ theorem targetA_goodOn {P r t : ℕ} (hP : P = 3 ^ t) (hPr : 2 * r < P)
     rw [hdec, targetA_false, ← hset]
     exact h₁
 
-/-- The frame can be read back off the symmetric target: it is the set of blocks summing to `3P`.-/
+/-- The frame can be read back off the symmetric target: it is the set of blocks summing to `3P`.
+@isnad1 id=eq.5h6v.s7.4534f2adc94d from=translated src=- shape=a61ea1d8 vocab=05bbf1ef
+-/
 theorem targetA_frame {P r t : ℕ} (hP : P = 3 ^ t) (hPr : 2 * r < P)
     (hmod : r % 3 = 0 ∨ r % 3 = 1) {src zs : Finset (Finset ℤ)} {c : Bool}
     (hsrc : GoodOn (interval (P - r - 1)) src) (hz : ZeroPartition (frameSet r) zs) :
@@ -252,7 +260,9 @@ theorem targetA_frame {P r t : ℕ} (hP : P = 3 ^ t) (hPr : 2 * r < P)
     exact ⟨Or.inl (Or.inr hb), hshiftsum b hb⟩
 
 /-- The source can be read back off the symmetric target: it is the set of blocks inside `{1, …, P −
-r − 1}`.-/
+r − 1}`.
+@isnad1 id=eq.5h6v.s8.ef14c7c55c10 from=translated src=- shape=5ac31549 vocab=81bdcda0
+-/
 theorem targetA_src {P r t : ℕ} (hP : P = 3 ^ t) (hPr : 2 * r < P)
     (hmod : r % 3 = 0 ∨ r % 3 = 1) {src zs : Finset (Finset ℤ)} {c : Bool}
     (hsrc : GoodOn (interval (P - r - 1)) src) (hz : ZeroPartition (frameSet r) zs) :
@@ -323,7 +333,9 @@ private theorem targetA_ne_of_src_ne {P r t : ℕ} (hP : P = 3 ^ t) (hPr : 2 * r
   rw [← e₁, ← e₂, heq]
 
 /-- Three symmetric frames at an offset congruent to zero or one modulo three give three good
-partitions of `{1, …, P + r}`.-/
+partitions of `{1, …, P + r}`.
+@isnad1 id=le.4h3v.s6.47cc05928c2f from=translated src=- shape=87059876 vocab=01e7d726
+-/
 theorem three_le_count_add_of_threeFrameA {P r t : ℕ} (hP : P = 3 ^ t) (hPr : 2 * r < P)
     (hmod : r % 3 = 0 ∨ r % 3 = 1) (hZ : ThreeFrameA r) : 3 ≤ count (P + r) := by
   obtain ⟨z₁, z₂, z₃, hz₁, hz₂, hz₃, h₁₂, h₁₃, h₂₃⟩ := hZ
@@ -337,7 +349,9 @@ theorem three_le_count_add_of_threeFrameA {P r t : ℕ} (hP : P = 3 ^ t) (hPr : 
     (targetA_ne_of_frame_ne hP hPr hmod hsrc hz₂ hz₃ h₂₃)
 
 /-- Offset four: three explicit good partitions of `{1, …, P + 4}` for every power at least
-twenty-seven.-/
+twenty-seven.
+@isnad1 id=le.2h2v.s5.171911da38c5 from=translated src=- shape=5cc7154a vocab=110fc0bd
+-/
 theorem three_le_count_add_four {P t : ℕ} (hP : P = 3 ^ t) (ht : 3 ≤ t) : 3 ≤ count (P + 4) := by
   have hP27 : 27 ≤ P := by
     subst hP
@@ -584,7 +598,9 @@ theorem three_le_count_add_four {P t : ℕ} (hP : P = 3 ^ t) (ht : 3 ≤ t) : 3 
     ((isGoodPartition_iff _ _).mpr hb₃) h₁₂ h₁₃ h₂₃
 
 /-- Offset six: the two good partitions of `{1, …, 6}` extended by complement pairs, with the
-symmetric frame at `k = 2` and its negation.-/
+symmetric frame at `k = 2` and its negation.
+@isnad1 id=le.2h2v.s5.eb5ca96de6df from=translated src=- shape=5cc7154a vocab=110fc0bd
+-/
 theorem three_le_count_add_six {P t : ℕ} (hP : P = 3 ^ t) (ht : 3 ≤ t) : 3 ≤ count (P + 6) := by
   have hP27 : 27 ≤ P := by
     subst hP
@@ -717,7 +733,9 @@ def uncovered (P r a : ℤ) (L : Finset (Finset ℤ)) : Finset ℤ :=
 /-- The signed construction from an abstract low family: a good partition of a subset of the
 contracted support whose complement inside that support is already covered by the translated frame
 extends, by the singleton of the power and the complement pairs over what is still uncovered, to a
-good partition of `{1, …, P + r}`.-/
+good partition of `{1, …, P + r}`.
+@isnad1 id=goodon.9h7v.s8.4b7310049bcc from=translated src=- shape=0cdcc4d3 vocab=931e2876
+-/
 theorem signedTarget_goodOn {P r a : ℤ} {t : ℕ} {S : Finset ℤ} {L zs : Finset (Finset ℤ)}
     (hP : P = (3 : ℤ) ^ t) (ha : 1 ≤ a) (har : a < r) (hPr : 2 * r < P)
     (hz : ZeroPartition (signedVertices r a) zs) (hL : GoodOn S L)
@@ -872,7 +890,9 @@ theorem signedTarget_goodOn {P r a : ℤ} {t : ℕ} {S : Finset ℤ} {L zs : Fin
   exact hu3
 
 /-- The frame is recoverable from the signed construction: its translated triples are the only
-blocks that sum to three times the power.-/
+blocks that sum to three times the power.
+@isnad1 id=eq.7h7v.s8.b6784b07f151 from=translated src=- shape=7e46069f vocab=1935605c
+-/
 theorem signedTarget_frame {P r a : ℤ} {t : ℕ} {S : Finset ℤ} {L zs : Finset (Finset ℤ)}
     (hP : P = (3 : ℤ) ^ t) (ha : 1 ≤ a) (har : a < r) (hPr : 2 * r < P)
     (hz : ZeroPartition (signedVertices r a) zs) (hL : GoodOn S L)
@@ -932,7 +952,9 @@ def targetB (P r a : ℤ) (bs : Finset (Finset ℤ)) (b : Finset ℤ) (zs : Fins
     ((uncovered P r a (contractedSource P r a bs b)).filter (fun x => 2 * x < P)).image
       (fun x => {x, P - x})
 
-/-- The signed target is a good partition of `{1, …, P + r}`.-/
+/-- The signed target is a good partition of `{1, …, P + r}`.
+@isnad1 id=goodon.8h7v.s7.2a0d1aa71127 from=translated src=- shape=62efa12a vocab=4ad74919
+-/
 theorem targetB_goodOn {P r t : ℕ} {a : ℤ} {bs zs : Finset (Finset ℤ)} {b : Finset ℤ}
     (hP : P = 3 ^ t) (hPr : 2 * r < P) (hs : GoodOn (interval r) bs) (hb : b ∈ bs) (ha : a ∈ b)
     (hr : (r : ℤ) ∈ b) (har : a ≠ (r : ℤ))
@@ -1002,7 +1024,9 @@ theorem targetB_goodOn {P r t : ℕ} {a : ℤ} {bs zs : Finset (Finset ℤ)} {b 
           omega
   simpa only [interval, Nat.cast_add] using hgoal
 
-/-- The frame can be read back off the signed target: it is the set of blocks summing to `3P`.-/
+/-- The frame can be read back off the signed target: it is the set of blocks summing to `3P`.
+@isnad1 id=eq.8h7v.s7.9d59426e88f9 from=translated src=- shape=be9a26a1 vocab=bb292521
+-/
 theorem targetB_frame {P r t : ℕ} {a : ℤ} {bs zs : Finset (Finset ℤ)} {b : Finset ℤ}
     (hP : P = 3 ^ t) (hPr : 2 * r < P) (hs : GoodOn (interval r) bs) (hb : b ∈ bs) (ha : a ∈ b)
     (hr : (r : ℤ) ∈ b) (har : a ≠ (r : ℤ))
@@ -1044,7 +1068,9 @@ theorem targetB_frame {P r t : ℕ} {a : ℤ} {bs zs : Finset (Finset ℤ)} {b :
 
 /-- Lemma B in counting form: a good partition of `{1, …, r}` with a marked block through `r` and a
 partner in that block, together with three signed frames on the vertex set of that partner, give
-three good partitions of `{1, …, P + r}`.-/
+three good partitions of `{1, …, P + r}`.
+@isnad1 id=le.8h6v.s7.049bc1df42d4 from=translated src=- shape=aeb8309f vocab=dfdf996e
+-/
 theorem three_le_count_add_of_source {P r t : ℕ} {a : ℤ} {bs : Finset (Finset ℤ)} {b : Finset ℤ}
     (hP : P = 3 ^ t) (hPr : 2 * r < P) (hs : GoodOn (interval r) bs) (hb : b ∈ bs) (ha : a ∈ b)
     (hr : (r : ℤ) ∈ b) (har : a ≠ (r : ℤ)) (hF : ThreeFrames (r : ℤ) a) : 3 ≤ count (P + r) := by
@@ -1064,7 +1090,9 @@ theorem three_le_count_add_of_source {P r t : ℕ} {a : ℤ} {bs : Finset (Finse
     (hne _ _ hz₁ hz₃ h₁₃) (hne _ _ hz₂ hz₃ h₂₃)
 
 /-- The critical residue class: three signed frames give three good partitions of `{1, …, P + r}`
-for every offset at least eleven congruent to two modulo three.-/
+for every offset at least eleven congruent to two modulo three.
+@isnad1 id=le.4h3v.s6.3d4eee5a920e from=translated src=- shape=c46b1da5 vocab=761ac8c0
+-/
 theorem three_le_count_add_of_threeFrames {P r t : ℕ} (hP : P = 3 ^ t) (hPr : 2 * r < P)
     (hr : 11 ≤ r) (hmod : r % 3 = 2) : 3 ≤ count (P + r) := by
   obtain ⟨bs, hbs⟩ := GN.gurvich_naumova r
@@ -1077,7 +1105,9 @@ theorem three_le_count_add_of_threeFrames {P r t : ℕ} (hP : P = 3 ^ t) (hPr : 
     (threeFrames_of_mod hrZ hmodZ hab.1 (by omega) ha3)
 
 /-- Offset eight: the unique good partition of `{1, …, 8}` has partner one, and the signed vertex
-set of that partner carries three frames.-/
+set of that partner carries three frames.
+@isnad1 id=le.2h2v.s5.aefe2a2b88e7 from=translated src=- shape=5cc7154a vocab=110fc0bd
+-/
 theorem three_le_count_add_eight {P t : ℕ} (hP : P = 3 ^ t) (ht : 3 ≤ t) : 3 ≤ count (P + 8) := by
   have hPr : 2 * 8 < P := by
     have h27 : 3 ^ 3 ≤ 3 ^ t := Nat.pow_le_pow_right (by norm_num) ht

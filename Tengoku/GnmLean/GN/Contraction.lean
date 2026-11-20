@@ -13,6 +13,9 @@ def contractBlock (b : Finset ℤ) (a r : ℤ) : Finset ℤ :=
 def contractSupport (s : Finset ℤ) (a r : ℤ) : Finset ℤ :=
   insert (a+r) ((s.erase a).erase r)
 
+/--
+@isnad1 id=and.5h3v.s6.e49859a2cfb7 from=translated src=- shape=0fc02ef5 vocab=cf0c3f07
+-/
 lemma contractBlock_good {b : Finset ℤ} {a r : ℤ} (hb : GoodBlock b)
     (ha : a ∈ b) (hr : r ∈ b) (har : a ≠ r) (hd : a+r ∉ b) :
     GoodBlock (contractBlock b a r) ∧ (contractBlock b a r).card ≤ 2 := by
@@ -35,6 +38,9 @@ lemma contractBlock_good {b : Finset ℤ} {a r : ℤ} (hb : GoodBlock b)
   obtain ⟨k, hk⟩ := hb.2.2
   exact ⟨k, hs.trans hk⟩
 
+/--
+@isnad1 id=goodon.6h5v.s7.3b9fc8620823 from=translated src=- shape=085239b9 vocab=d7132b0f
+-/
 lemma GoodOn.contract {s : Finset ℤ} {bs : Finset (Finset ℤ)}
     (hs : GoodOn s bs) {b : Finset ℤ} (hb : b ∈ bs) {a r : ℤ}
     (ha : a ∈ b) (hr : r ∈ b) (har : a ≠ r) (hd : a+r ∉ s) :
@@ -100,6 +106,9 @@ lemma GoodOn.contract {s : Finset ℤ} {bs : Finset (Finset ℤ)}
     · exact hgood
     · exact hs.block (Finset.mem_of_mem_erase hc)
 
+/--
+@isnad1 id=goodon.2h3v.s5.599b6d6cb233 from=translated src=- shape=fda9a089 vocab=cbf860dc
+-/
 lemma GoodOn.erase {s : Finset ℤ} {bs : Finset (Finset ℤ)}
     (hs : GoodOn s bs) {b : Finset ℤ} (hb : b ∈ bs) :
     GoodOn (s \ b) (bs.erase b) := by
@@ -123,6 +132,9 @@ lemma GoodOn.erase {s : Finset ℤ} {bs : Finset (Finset ℤ)}
   · intro c hc
     exact hs.block (Finset.mem_of_mem_erase hc)
 
+/--
+@isnad1 id=eq.4h4v.s6.ecd13e9f007d from=translated src=- shape=ef038be7 vocab=a4fbe33f
+-/
 lemma power_three_between {P q : ℤ} {t u : ℕ}
     (hp : P = 3^t) (hq : q = 3^u) (hlo : P < 3*q) (hhi : q < 3*P) : q = P := by
   subst P q
@@ -139,6 +151,9 @@ lemma power_three_between {P q : ℤ} {t u : ℕ}
       nlinarith
   rw [heq]
 
+/--
+@isnad1 id=and.2h3v.s6.951cf1d80b31 from=translated src=- shape=730e30d2 vocab=d98c2296
+-/
 lemma GoodOn.block_sum_bounds {r : ℕ} {bs : Finset (Finset ℤ)}
     (hs : GoodOn (interval r) bs) {b : Finset ℤ} (hb : b ∈ bs) :
     0 < b.sum id ∧ b.sum id ≤ 3*(r:ℤ) := by
@@ -152,6 +167,9 @@ lemma GoodOn.block_sum_bounds {r : ℕ} {bs : Finset (Finset ℤ)}
     _ = (b.card:ℤ)*(r:ℤ) := by simp
     _ ≤ 3*(r:ℤ) := by exact mul_le_mul_of_nonneg_right (by exact_mod_cast hgood.2.1) (by positivity)
 
+/--
+@isnad1 id=ex.3h2v.s6.bdb5b80bfb93 from=translated src=- shape=23a4ab0e vocab=524d3054
+-/
 lemma GoodOn.maximum_partner {r : ℕ} {bs : Finset (Finset ℤ)}
     (hs : GoodOn (interval r) bs) (hr : 2 ≤ r) (hmod : r % 3 = 2) :
     ∃ b ∈ bs, (r:ℤ) ∈ b ∧ ∃ a ∈ b, a ≠ (r:ℤ) ∧ ¬ (3:ℤ) ∣ a := by

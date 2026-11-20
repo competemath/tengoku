@@ -141,7 +141,9 @@ private theorem three_le_count_step (n : ℕ)
       rw [hneq]
       omega
 
-/-- Every interval outside the two exceptional sets has at least three good partitions.-/
+/-- Every interval outside the two exceptional sets has at least three good partitions.
+@isnad1 id=le.3h1v.s4.1d704508a5ed from=translated src=- shape=842b1a95 vocab=f2a070b5
+-/
 theorem three_le_count_of_not_exceptional (n : ℕ) (hn : 1 ≤ n) (h1 : ¬ Nu n) (h2 : ¬ E2 n) :
     3 ≤ count n := by
   have key : ∀ m : ℕ, 1 ≤ m → ¬ Nu m → ¬ E2 m → 3 ≤ count m := by
@@ -150,7 +152,9 @@ theorem three_le_count_of_not_exceptional (n : ℕ) (hn : 1 ≤ n) (h1 : ¬ Nu n
     | _ m ih => exact three_le_count_step m ih
   exact key n hn h1 h2
 
-/-- Every member of the first exceptional set has exactly one good partition.-/
+/-- Every member of the first exceptional set has exactly one good partition.
+@isnad1 id=eq.1h1v.s3.33f24f4a8674 from=translated src=- shape=fdf4e94d vocab=c76fc680
+-/
 theorem count_eq_one_of_nu {n : ℕ} (h : Nu n) : count n = 1 := by
   rcases h with rfl | rfl | rfl | rfl | ⟨t, ht, hN⟩
   · exact count_eq_one_small 1 (by decide)
@@ -231,7 +235,9 @@ theorem count_eq_one_of_nu {n : ℕ} (h : Nu n) : count n = 1 := by
       · exact count_eq_one_small 14 (by decide)
       · exact count_eq_one_small 32 (by decide)
 
-/-- Every member of the second exceptional set has exactly two good partitions.-/
+/-- Every member of the second exceptional set has exactly two good partitions.
+@isnad1 id=eq.1h1v.s3.c330a8bb62f1 from=translated src=- shape=fdf4e94d vocab=4bf95cf5
+-/
 theorem count_eq_two_of_e2 {n : ℕ} (h : E2 n) : count n = 2 := by
   rcases h with rfl | ⟨t, ht, hE⟩ | ⟨t, ht, hE⟩
   · exact count_eq_two_small 13 (by decide)

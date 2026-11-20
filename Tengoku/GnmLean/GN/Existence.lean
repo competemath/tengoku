@@ -13,11 +13,17 @@ def LangfordFamily (minDefect i : ℤ) (parity : ℤ → ℤ) : Prop :=
     (1 ≤ h ∧ h ≤ 4*d+2*i-1) → h%2 = (parity d)%2 →
     ∃ ps, LangfordPairing d (3*d-2+i) h ps
 
+ /--
+ @isnad1 id=langford.2h4v.s4.8049f7e64a2a from=translated src=- shape=a5ff9d5c vocab=cd3621d0
+ -/
  theorem LangfordFamily.mono {a b i : ℤ} {p : ℤ → ℤ}
     (h : LangfordFamily a i p) (hab : a ≤ b) : LangfordFamily b i p := by
   intro d hd q hq hp
   exact h d (hab.trans hd) q hq hp
 
+ /--
+ @isnad1 id=langford.0h0v.s4.42f139b05c7f from=translated src=- shape=9c4e1d70 vocab=978237ff
+ -/
  theorem minimal_langford_family : LangfordFamily 1 0 (fun _ => 1) := by
   intro d hd h hh hp
   dsimp only at hp
@@ -25,7 +31,9 @@ def LangfordFamily (minDefect i : ℤ) (parity : ℤ → ℤ) : Prop :=
     exists_minimal_langford (d := d) (h := h) hd (by omega) (by omega)
 
 /-- Two Langford families with opposite hole parities cover a suffix position.
-Their defects differ by two, so the two prefix lengths differ by four.-/
+Their defects differ by two, so the two prefix lengths differ by four.
+@isnad1 id=ex.4h4v.s8.6b1c9bb19ae8 from=translated src=- shape=67308052 vocab=dbb40de7
+-/
 theorem permutation_from_opposite_pairings {d k H p : ℤ}
     (_hd : 3 ≤ d) (hH : 2*d-1 ≤ H ∧ H ≤ 2*k+1)
     (hlow : ∀ h : ℤ, (1 ≤ h ∧ h ≤ 2*(k-d+1)+1) → h%2 = p%2 →
@@ -47,7 +55,9 @@ theorem permutation_from_opposite_pairings {d k H p : ℤ}
     rw [he] at hσ
     exact ⟨σ, hσ⟩
 
-/-- The six explicit excess families cover every upper-half position for k≥22.-/
+/-- The six explicit excess families cover every upper-half position for k≥22.
+@isnad1 id=ex.8h2v.s8.f97fbfc9602e from=translated src=- shape=2634833a vocab=636d00bf
+-/
 theorem high_position_permutation_of_langford_families
     (E0 : LangfordFamily 8 0 (fun _ => 1))
     (E1 : LangfordFamily 8 1 (fun d => d+1))
@@ -98,7 +108,9 @@ theorem high_position_permutation_of_langford_families
       exact ⟨ps, hps⟩
 
 /-- Reflection and centering give all prescribed holes, conditional precisely on
-six explicitly stated Langford-family existence hypotheses.-/
+six explicitly stated Langford-family existence hypotheses.
+@isnad1 id=ex.8h2v.s7.fc1171c8cc53 from=translated src=- shape=a105e34b vocab=dcdea2f5
+-/
 theorem displacement_permutations_of_langford_families
     (E0 : LangfordFamily 8 0 (fun _ => 1))
     (E1 : LangfordFamily 8 1 (fun d => d+1))

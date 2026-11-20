@@ -23,17 +23,23 @@ namespace GNM
 
 open GN
 
-/-- Three tabulated partitions, good and pairwise different, give a count of at least three.-/
+/-- Three tabulated partitions, good and pairwise different, give a count of at least three.
+@isnad1 id=le.1h1v.s4.159575e869e3 from=translated src=- shape=a8d0dfd0 vocab=a4f9ba00
+-/
 theorem three_le_count_of_threeOK {n : ℕ} (h : threeOK n = true) : 3 ≤ count n := by
   obtain ⟨c0, c1, c2, d01, d02, d12⟩ := threeOK_facts h
   exact three_le_count_of_witnesses c0 c1 c2 d01 d02 d12
 
-/-- One good tabulated partition and an accepting search give a count of one.-/
+/-- One good tabulated partition and an accepting search give a count of one.
+@isnad1 id=eq.3h1v.s5.d8c843c87355 from=translated src=- shape=04ae4cdf vocab=13169077
+-/
 theorem count_eq_one_of_oneOK {n : ℕ} (hn : 3 * n < 729) (h : oneOK n = true)
     (hs : search n [wAt n 0] = true) : count n = 1 :=
   count_eq_one_of_search hn h hs
 
-/-- Two good, different tabulated partitions and an accepting search give a count of two.-/
+/-- Two good, different tabulated partitions and an accepting search give a count of two.
+@isnad1 id=eq.3h1v.s6.de2469a9eedf from=translated src=- shape=7b053632 vocab=83c99801
+-/
 theorem count_eq_two_of_twoOK {n : ℕ} (hn : 3 * n < 729) (h : twoOK n = true)
     (hs : search n [wAt n 0, wAt n 1] = true) : count n = 2 := by
   obtain ⟨c0, c1, d01⟩ := twoOK_facts h
@@ -184,7 +190,9 @@ private theorem three_le_count_of_le_80_block (n : ℕ) (hlo : 71 ≤ n) (hhi : 
   · omega
 
 /-- Three good partitions at every value at least one and at most eighty outside the two
-exceptional sets.-/
+exceptional sets.
+@isnad1 id=le.4h1v.s5.6d09b8acf281 from=translated src=- shape=8563886e vocab=f2a070b5
+-/
 theorem three_le_count_of_le_80 (n : ℕ) (hn1 : 1 ≤ n) (hn : n ≤ 80) (h1 : ¬ Nu n)
     (h2 : ¬ E2 n) : 3 ≤ count n := by
   by_cases c10 : n ≤ 10
@@ -203,7 +211,9 @@ theorem three_le_count_of_le_80 (n : ℕ) (hn1 : 1 ≤ n) (hn : n ≤ 80) (h1 : 
   · exact three_le_count_of_le_70 n (by omega) c70 h1 h2
   exact three_le_count_of_le_80_block n (by omega) hn h1 h2
 
-/-- The sixteen values whose count of one the finite base settles.-/
+/-- The sixteen values whose count of one the finite base settles.
+@isnad1 id=eq.1h1v.s7.711e1cc54f82 from=translated src=- shape=7095063b vocab=4612b336
+-/
 theorem count_eq_one_small :
     ∀ n ∈ ({1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 14, 23, 30, 32, 86} : Finset ℕ),
       count n = 1 := by
@@ -228,7 +238,9 @@ theorem count_eq_one_small :
   · exact count_eq_one_of_oneOK (by norm_num) one_ok_32 search_one_32
   · exact count_eq_one_of_oneOK (by norm_num) one_ok_86 search_one_86
 
-/-- The four values whose count of two the finite base settles.-/
+/-- The four values whose count of two the finite base settles.
+@isnad1 id=eq.1h1v.s6.cbc2693874a6 from=translated src=- shape=14dbc650 vocab=4612b336
+-/
 theorem count_eq_two_small : ∀ n ∈ ({6, 13, 21, 75} : Finset ℕ), count n = 2 := by
   intro n hn
   simp only [Finset.mem_insert, Finset.mem_singleton] at hn

@@ -548,7 +548,9 @@ private theorem small_certificates_21 : SmallPermutationCertificate 21 := by
   unfold SmallPermutationCertificate
   decide
 
-/-- The 435 additional literal certificates cover every hole for k=7,...,21.-/
+/-- The 435 additional literal certificates cover every hole for k=7,...,21.
+@isnad1 id=ex.3h2v.s5.c0a75b7fe38d from=translated src=- shape=dec72267 vocab=53b33ad0
+-/
 theorem small_displacement_permutations {k j : ℤ} (hk : 7 ≤ k) (hk' : k ≤ 21)
     (hj : -k ≤ j ∧ j ≤ k) : ∃ σ : ℤ → ℤ, DisplacementPermutation k j σ := by
   have hc : SmallPermutationCertificate k := by
@@ -571,7 +573,9 @@ theorem small_displacement_permutations {k j : ℤ} (hk : 7 ≤ k) (hk' : k ≤ 
   obtain ⟨hσ, hδ, hcard⟩ := hc j (Finset.mem_Icc.mpr hj)
   exact ⟨smallPermutation k j, displacementPermutation_of_images hσ hδ hcard⟩
 
-/-- All 475 explicit finite certificates, including the forty earlier base rows.-/
+/-- All 475 explicit finite certificates, including the forty earlier base rows.
+@isnad1 id=ex.3h2v.s5.f8fbd41e7432 from=translated src=- shape=dec72267 vocab=53b33ad0
+-/
 theorem bounded_displacement_permutations {k j : ℤ} (hk : 3 ≤ k) (hk' : k ≤ 21)
     (hj : -k ≤ j ∧ j ≤ k) : ∃ σ : ℤ → ℤ, DisplacementPermutation k j σ := by
   by_cases hsmall : k ≤ 6

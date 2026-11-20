@@ -24,7 +24,9 @@ noncomputable section
 
 /-- Gluing with an arbitrary prefix: any permutation of the initial interval with the small
 displacements extends a pairing to a permutation of the positional interval with a prescribed hole,
-and the extension agrees with the prefix on the prefix positions.-/
+and the extension agrees with the prefix on the prefix positions.
+@isnad1 id=ex.2h5v.s8.9a59cc053b6b from=translated src=- shape=baf0833c vocab=f5bd0f26
+-/
 theorem with_prefix {d k h : ℤ} {ps : Finset (ℤ × ℤ)} (hl : LangfordPairing d k h ps) {τ : ℤ → ℤ}
     (hτ : PermutationWithDifferences (Finset.Icc 1 (2 * (d - 1)))
       ((Finset.Icc (-(d - 1)) (d - 1)).erase 0) τ) :
@@ -66,7 +68,9 @@ theorem with_prefix {d k h : ℤ} {ps : Finset (ℤ × ℤ)} (hl : LangfordPairi
   intro x hx
   simp only [ite_eq_left hx]
 
-/-- Three distinct prefixes glued to one pairing give three distinct permutations.-/
+/-- Three distinct prefixes glued to one pairing give three distinct permutations.
+@isnad1 id=threea.2h4v.s6.cb6c7ecaa17d from=translated src=- shape=124501e8 vocab=c8e7f597
+-/
 theorem threeA_of_pairing {d k h : ℤ} {ps : Finset (ℤ × ℤ)} (hl : LangfordPairing d k h ps)
     (hM : ThreeM (d - 1)) : ThreeA k (h + 2 * (d - 1)) := by
   obtain ⟨τ₁, τ₂, τ₃, h₁, h₂, h₃, ⟨x₁₂, hx₁₂, hne₁₂⟩, ⟨x₁₃, hx₁₃, hne₁₃⟩,
@@ -121,7 +125,9 @@ private theorem threeA_of_opposite_pairings {d k H p : ℤ}
     exact ha
 
 /-- The upper-half holes with a variable prefix: the six explicit pairing families of the underlying
-development, with the prefix half-length `d − 1` or `d − 3` for `d = (k + 2) / 3 ≥ 8`.-/
+development, with the prefix half-length `d − 1` or `d − 3` for `d = (k + 2) / 3 ≥ 8`.
+@isnad1 id=threea.3h2v.s6.5f4f70e5b453 from=translated src=- shape=125831e1 vocab=8fb568e9
+-/
 theorem threeA_high {k H : ℤ} (hk : 22 ≤ k) (hH : k + 1 ≤ H ∧ H ≤ 2 * k + 1)
     (hM : ∀ q : ℤ, 5 ≤ q → q < k → ThreeM q) : ThreeA k H := by
   let d := (k + 2) / 3
@@ -169,7 +175,9 @@ theorem threeA_high {k H : ℤ} (hk : 22 ≤ k) (hH : k + 1 ≤ H ∧ H ≤ 2 * 
       rw [he] at hps
       exact ⟨ps, hps⟩
 
-/-- Reflecting the positions moves the hole `H` to `2k + 2 − H`.-/
+/-- Reflecting the positions moves the hole `H` to `2k + 2 − H`.
+@isnad1 id=threea.2h2v.s5.2cf9743ca322 from=translated src=- shape=9bcd46bb vocab=4aa6a60b
+-/
 theorem threeA_reflect {k H : ℤ} (hk : 0 ≤ k) (h : ThreeA k H) : ThreeA k (2 * k + 2 - H) := by
   have hr := ThreePWD.reflect (2 * k + 2) h
   have hS : (((Finset.Icc 1 (2 * k + 1)).erase H).image (fun x => 2 * k + 2 - x)) =
@@ -184,7 +192,9 @@ theorem threeA_reflect {k H : ℤ} (hk : 0 ≤ k) (h : ThreeA k H) : ThreeA k (2
   rw [hS, hD] at hr
   exact hr
 
-/-- Three permutations of `[1, 2q]` with displacements `±1, …, ±q`, for every `q ≥ 5`.-/
+/-- Three permutations of `[1, 2q]` with displacements `±1, …, ±q`, for every `q ≥ 5`.
+@isnad1 id=threem.1h1v.s3.455819f426b4 from=translated src=- shape=2d2cffd0 vocab=16228426
+-/
 theorem threeM_all (q : ℤ) (hq : 5 ≤ q) : ThreeM q := by
   have main : ∀ n : ℕ, ∀ p : ℤ, p.toNat ≤ n → 5 ≤ p → ThreeM p := by
     intro n
@@ -206,7 +216,9 @@ theorem threeM_all (q : ℤ) (hq : 5 ≤ q) : ThreeM q := by
         exact (threeM_iff_threeA p (by omega)).mpr ha
   exact main q.toNat q le_rfl hq
 
-/-- Three permutations of `[1, 2k + 1]` with any one position removed, for every `k ≥ 4`.-/
+/-- Three permutations of `[1, 2k + 1]` with any one position removed, for every `k ≥ 4`.
+@isnad1 id=threea.2h2v.s5.e134cec8502e from=translated src=- shape=ea3aa35a vocab=a572749d
+-/
 theorem threeA_all {k H : ℤ} (hk : 4 ≤ k) (hH : 1 ≤ H ∧ H ≤ 2 * k + 1) : ThreeA k H := by
   by_cases h21 : k ≤ 21
   · have hdisp := threeDisp_of_le_21 (k := k) (j := H - k - 1) hk h21 ⟨by omega, by omega⟩
@@ -223,7 +235,9 @@ theorem threeA_all {k H : ℤ} (hk : 4 ≤ k) (hH : 1 ≤ H ∧ H ≤ 2 * k + 1)
       rw [he] at hr
       exact hr
 
-/-- Three displacement permutations at every hole of the centered interval, for every `k ≥ 4`.-/
+/-- Three displacement permutations at every hole of the centered interval, for every `k ≥ 4`.
+@isnad1 id=threedis.2h2v.s5.c3876b0f7ffa from=translated src=- shape=f8d30f39 vocab=28746bb2
+-/
 theorem threeDisp_all {k j : ℤ} (hk : 4 ≤ k) (hj : -k ≤ j ∧ j ≤ k) : ThreeDisp k j := by
   have ha := threeA_all (k := k) (H := j + k + 1) hk ⟨by omega, by omega⟩
   have hd := threeDisp_of_threeA ha

@@ -10,6 +10,9 @@ noncomputable section
 def PermutationWithDifferences (S D : Finset ℤ) (σ : ℤ → ℤ) : Prop :=
   Set.BijOn σ S S ∧ Set.BijOn (fun x => σ x-x) S D
 
+/--
+@isnad1 id=iff.0h3v.s5.a97c3e055713 from=translated src=- shape=42b9be75 vocab=007a6b40
+-/
 @[simp] theorem mem_add_image {S : Finset ℤ} {c x : ℤ} :
     x ∈ S.image (fun y => c+y) ↔ x-c ∈ S := by
   constructor
@@ -20,7 +23,9 @@ def PermutationWithDifferences (S D : Finset ℤ) (σ : ℤ → ℤ) : Prop :=
   · intro hx
     exact Finset.mem_image.mpr ⟨x-c, hx, by omega⟩
 
-/-- Translating all positions preserves the signed displacements.-/
+/-- Translating all positions preserves the signed displacements.
+@isnad1 id=permutat.1h4v.s5.e83e63d10bca from=translated src=- shape=f48f54dd vocab=3c402364
+-/
 theorem PermutationWithDifferences.translate {S D : Finset ℤ} {σ : ℤ → ℤ}
     (h : PermutationWithDifferences S D σ) (c : ℤ) :
     PermutationWithDifferences (S.image (fun x => c+x)) D
@@ -62,7 +67,9 @@ theorem PermutationWithDifferences.translate {S D : Finset ℤ} {σ : ℤ → �
         rw [he]
         omega
 
-/-- Glue two bijections on disjoint finite source and target sets.-/
+/-- Glue two bijections on disjoint finite source and target sets.
+@isnad1 id=bijon.4h6v.s7.f9e376ff7917 from=translated src=- shape=0553529d vocab=d6d1264f
+-/
 theorem bijOn_piecewise_union {S T U V : Finset ℤ} {f g : ℤ → ℤ}
     (hST : Disjoint S T) (hUV : Disjoint U V)
     (hf : Set.BijOn f S U) (hg : Set.BijOn g T V) :
@@ -107,7 +114,9 @@ theorem bijOn_piecewise_union {S T U V : Finset ℤ} {f g : ℤ → ℤ}
         exact Or.inr hx
       · simp only [ite_eq_right hxS, heq]
 
-/-- Position domains and displacement sets are glued with their own disjointness proofs.-/
+/-- Position domains and displacement sets are glued with their own disjointness proofs.
+@isnad1 id=permutat.4h6v.s6.be08addfc59e from=translated src=- shape=dc196f18 vocab=6caabf11
+-/
 theorem PermutationWithDifferences.glue {S T D E : Finset ℤ} {σ τ : ℤ → ℤ}
     (hσ : PermutationWithDifferences S D σ)
     (hτ : PermutationWithDifferences T E τ)
@@ -123,6 +132,9 @@ theorem PermutationWithDifferences.glue {S T D E : Finset ℤ} {σ τ : ℤ → 
     rw [heq]
     exact bijOn_piecewise_union hST hDE hσ.2 hτ.2
 
+ /--
+ @isnad1 id=permutat.1h1v.s6.164c3b6e56f7 from=translated src=- shape=256ccd9d vocab=ab706bee
+ -/
  theorem doubling_with_differences (m : ℤ) (hm : 0 ≤ m) :
     PermutationWithDifferences (Finset.Icc 1 (2*m))
       ((Finset.Icc (-m) m).erase 0) (doubling m) :=
@@ -137,6 +149,9 @@ def orientedPairs (ps : Finset (ℤ × ℤ)) : Finset ((ℤ × ℤ) × Bool) :=
 
  def flipEndpoint (z : (ℤ × ℤ) × Bool) : (ℤ × ℤ) × Bool := (z.1, !z.2)
 
+ /--
+ @isnad1 id=eq.0h1v.s4.131edaa4142f from=translated src=- shape=78b6d071 vocab=806ba875
+ -/
  theorem orientedEndpoint_image (ps : Finset (ℤ × ℤ)) :
     (orientedPairs ps).image orientedEndpoint = pairEndpoints ps := by
   ext x
@@ -156,10 +171,16 @@ def orientedPairs (ps : Finset (ℤ × ℤ)) : Finset ((ℤ × ℤ) × Bool) :=
     · exact Finset.mem_image.mpr ⟨(p, false), by simp [orientedPairs, hp], hx.symm⟩
     · exact Finset.mem_image.mpr ⟨(p, true), by simp [orientedPairs, hp], hx.symm⟩
 
+ /--
+ @isnad1 id=involuti.0h0v.s2.10cbc515287c from=translated src=- shape=263013bc vocab=a46dadad
+ -/
  theorem flipEndpoint_involutive : Function.Involutive flipEndpoint := by
   rintro ⟨p, b⟩
   cases b <;> rfl
 
+ /--
+ @isnad1 id=bijon.0h1v.s5.cd38973d41b8 from=translated src=- shape=9fc90978 vocab=ec847670
+ -/
  theorem flipEndpoint_bijOn (ps : Finset (ℤ × ℤ)) :
     Set.BijOn flipEndpoint (orientedPairs ps) (orientedPairs ps) := by
   have hmap : Set.MapsTo flipEndpoint (orientedPairs ps) (orientedPairs ps) := by
@@ -174,6 +195,9 @@ def orientedPairs (ps : Finset (ℤ × ℤ)) : Finset ((ℤ × ℤ) × Bool) :=
 def signedDifferences (d k : ℤ) : Finset ℤ :=
   Finset.Icc (-k) (-d) ∪ Finset.Icc d k
 
+ /--
+ @isnad1 id=eq.1h4v.s5.dd896f69e2f3 from=translated src=- shape=bf6a9984 vocab=76d7e73e
+ -/
  theorem LangfordPairing.orientedDifference_image {d k h : ℤ} {ps : Finset (ℤ × ℤ)}
     (hl : LangfordPairing d k h ps) :
     (orientedPairs ps).image (fun z => orientedEndpoint (flipEndpoint z)-orientedEndpoint z) =
@@ -208,6 +232,9 @@ def signedDifferences (d k : ℤ) : Finset ℤ :=
       simpa only [orientedEndpoint, flipEndpoint, Bool.not_false, Bool.false_eq_true,
         ↓reduceIte] using heq
 
+ /--
+ @isnad1 id=bijon.1h4v.s6.6cc9460f7d8b from=translated src=- shape=e27ec5fd vocab=2220f13e
+ -/
  theorem LangfordPairing.endpoint_bijOn {d k h : ℤ} {ps : Finset (ℤ × ℤ)}
     (hl : LangfordPairing d k h ps) :
     Set.BijOn orientedEndpoint (orientedPairs ps)
@@ -221,6 +248,9 @@ def signedDifferences (d k : ℤ) : Finset ℤ :=
     have hc := hl.card_le
     omega
 
+ /--
+ @isnad1 id=bijon.1h4v.s6.0f797a00e6ff from=translated src=- shape=e62e1a4d vocab=0e3895c1
+ -/
  theorem LangfordPairing.orientedDifference_bijOn {d k h : ℤ} {ps : Finset (ℤ × ℤ)}
     (hl : LangfordPairing d k h ps) :
     Set.BijOn (fun z => orientedEndpoint (flipEndpoint z)-orientedEndpoint z)
@@ -239,7 +269,9 @@ def signedDifferences (d k : ℤ) : Finset ℤ :=
     have hc := hl.card_le
     omega
 
-/-- Every checked Langford pairing gives a permutation with exactly its signed differences.-/
+/-- Every checked Langford pairing gives a permutation with exactly its signed differences.
+@isnad1 id=ex.1h4v.s6.ace7939b5630 from=translated src=- shape=39eee8a8 vocab=611979ac
+-/
 theorem LangfordPairing.exists_permutation {d k h : ℤ} {ps : Finset (ℤ × ℤ)}
     (hl : LangfordPairing d k h ps) :
     ∃ σ : ℤ → ℤ, PermutationWithDifferences
@@ -258,7 +290,9 @@ theorem LangfordPairing.exists_permutation {d k h : ℤ} {ps : Finset (ℤ × �
     dsimp only [Function.comp_apply, σ]
     rw [heinv]
 
-/-- Convert a position permutation to the centered hole convention used by signed frames.-/
+/-- Convert a position permutation to the centered hole convention used by signed frames.
+@isnad1 id=displace.1h3v.s7.f8bcd88ed508 from=translated src=- shape=ec834308 vocab=97ae49a2
+-/
 theorem PermutationWithDifferences.to_centered {k h : ℤ} {σ : ℤ → ℤ}
     (hp : PermutationWithDifferences ((Finset.Icc 1 (2*k+1)).erase h)
       ((Finset.Icc (-k) k).erase 0) σ) :
@@ -272,7 +306,9 @@ theorem PermutationWithDifferences.to_centered {k h : ℤ} {σ : ℤ → ℤ}
   rw [heq] at ht
   exact ht
 
-/-- Fill the smaller differences with a doubling prefix before the Langford interval.-/
+/-- Fill the smaller differences with a doubling prefix before the Langford interval.
+@isnad1 id=ex.1h4v.s7.2ac80c4966ff from=translated src=- shape=6a456640 vocab=409a88ff
+-/
 theorem LangfordPairing.with_doubling_prefix {d k h : ℤ} {ps : Finset (ℤ × ℤ)}
     (hl : LangfordPairing d k h ps) :
     ∃ σ : ℤ → ℤ, PermutationWithDifferences
@@ -315,14 +351,18 @@ theorem LangfordPairing.with_doubling_prefix {d k h : ℤ} {ps : Finset (ℤ × 
     omega
   exact ⟨σ, hS ▸ hD ▸ hσ⟩
 
-/-- A Langford certificate plus doubling supplies the centered displacement permutation.-/
+/-- A Langford certificate plus doubling supplies the centered displacement permutation.
+@isnad1 id=ex.1h4v.s6.1d015dcafbac from=translated src=- shape=380bc00a vocab=58314052
+-/
 theorem LangfordPairing.with_doubling_centered {d k h : ℤ} {ps : Finset (ℤ × ℤ)}
     (hl : LangfordPairing d k h ps) :
     ∃ σ : ℤ → ℤ, DisplacementPermutation k (h+2*(d-1)-k-1) σ := by
   obtain ⟨σ, hσ⟩ := hl.with_doubling_prefix
   exact ⟨_, hσ.to_centered⟩
 
-/-- Negating positions negates every displacement.-/
+/-- Negating positions negates every displacement.
+@isnad1 id=permutat.1h3v.s5.4842886663ad from=translated src=- shape=92aa7819 vocab=c732e78f
+-/
 theorem PermutationWithDifferences.negate {S D : Finset ℤ} {σ : ℤ → ℤ}
     (hp : PermutationWithDifferences S D σ) :
     PermutationWithDifferences (S.image (fun x => -x)) (D.image (fun x => -x))
@@ -363,7 +403,9 @@ theorem PermutationWithDifferences.negate {S D : Finset ℤ} {σ : ℤ → ℤ}
         rw [neg_neg]
         omega
 
-/-- Reflection about c/2 reverses positions and the signs of all displacements.-/
+/-- Reflection about c/2 reverses positions and the signs of all displacements.
+@isnad1 id=permutat.1h4v.s6.6986278097bc from=translated src=- shape=1da995c4 vocab=afb75f15
+-/
 theorem PermutationWithDifferences.reflect {S D : Finset ℤ} {σ : ℤ → ℤ}
     (hp : PermutationWithDifferences S D σ) (c : ℤ) :
     PermutationWithDifferences (S.image (fun x => c-x)) (D.image (fun x => -x))
@@ -371,6 +413,9 @@ theorem PermutationWithDifferences.reflect {S D : Finset ℤ} {σ : ℤ → ℤ}
   have ht := hp.negate.translate c
   simpa only [Finset.image_image, Function.comp_def, ← sub_eq_add_neg, neg_sub] using ht
 
+/--
+@isnad1 id=iff.0h3v.s5.fb97d4228212 from=translated src=- shape=5ba2f129 vocab=f9c6ac2b
+-/
 @[simp] theorem mem_sub_image {S : Finset ℤ} {c x : ℤ} :
     x ∈ S.image (fun y => c-y) ↔ c-x ∈ S := by
   constructor
@@ -381,7 +426,9 @@ theorem PermutationWithDifferences.reflect {S D : Finset ℤ} {σ : ℤ → ℤ}
   · intro hx
     exact Finset.mem_image.mpr ⟨c-x, hx, by omega⟩
 
-/-- A full signed displacement set is unchanged by reflecting a position permutation.-/
+/-- A full signed displacement set is unchanged by reflecting a position permutation.
+@isnad1 id=permutat.1h3v.s8.84eaa6694e14 from=translated src=- shape=fe4d9d64 vocab=1cdaaaaf
+-/
 theorem PermutationWithDifferences.reflect_positions {k h : ℤ} {σ : ℤ → ℤ}
     (hp : PermutationWithDifferences ((Finset.Icc 1 (2*k+1)).erase h)
       ((Finset.Icc (-k) k).erase 0) σ) :

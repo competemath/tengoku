@@ -449,7 +449,9 @@ private theorem goodOn_empty_eq {bs : Finset (Finset ℤ)} (h : GoodOn ∅ bs) :
 /-! ### Completeness of the search -/
 
 /-- Candidate completeness: a good block of the interval that contains the largest remaining element
-is one of the generated candidates.-/
+is one of the generated candidates.
+@isnad1 id=ex.8h3v.s7.7fb050dda7eb from=translated src=- shape=3626915b vocab=472757e1
+-/
 theorem mem_candidates_of {x : ℕ} {rest : List ℕ} (hsorted : rest.Pairwise (· > ·))
     (hlt : ∀ a ∈ rest, a < x) (hpos : ∀ a ∈ rest, 0 < a) (hbd : 3 * x < 729) {B : Finset ℤ}
     (hx : (x : ℤ) ∈ B) (hsub : B ⊆ toBlock (x :: rest)) (hcard : B.card ≤ 3)
@@ -649,7 +651,9 @@ private theorem searchAll_complete_aux (expected : List (List (List ℕ))) :
 
 /-- The search invariant: if the search from `rest` with the blocks of `acc` already chosen accepts,
 then every good partition of the set of `rest`, together with those blocks, is one of the expected
-partitions.-/
+partitions.
+@isnad1 id=ex.6h5v.s7.0c617d7d6ad6 from=translated src=- shape=ebfd3f70 vocab=69684319
+-/
 theorem searchAll_complete (fuel : ℕ) (rest : List ℕ) (acc : List (List ℕ))
     (expected : List (List (List ℕ))) (hsorted : rest.Pairwise (· > ·)) (hpos : ∀ y ∈ rest, 0 < y)
     (hbd : ∀ y ∈ rest, 3 * y < 729) (hfuel : rest.length ≤ fuel)
@@ -658,7 +662,9 @@ theorem searchAll_complete (fuel : ℕ) (rest : List ℕ) (acc : List (List ℕ)
       ∃ w ∈ expected, toBlocks acc ∪ bs = toBlocks w :=
   searchAll_complete_aux expected fuel rest acc hsorted hpos hbd hfuel h
 
-/-- An accepting search lists every good partition of `{1, …, n}`.-/
+/-- An accepting search lists every good partition of `{1, …, n}`.
+@isnad1 id=ex.3h3v.s6.5ab992e0d9ba from=translated src=- shape=0905b4cc vocab=09996311
+-/
 theorem complete_of_search {n : ℕ} {expected : List (List (List ℕ))} (hn : 3 * n < 729)
     (h : search n expected = true) :
     ∀ bs, IsGoodPartition n bs → ∃ w ∈ expected, bs = toBlocks w := by
@@ -674,7 +680,9 @@ theorem complete_of_search {n : ℕ} {expected : List (List (List ℕ))} (hn : 3
   refine ⟨w, hw, ?_⟩
   rw [← hweq, toBlocks_nil, Finset.empty_union]
 
-/-- One checked witness and an accepting search against it give a count of one.-/
+/-- One checked witness and an accepting search against it give a count of one.
+@isnad1 id=eq.3h2v.s5.8aed88406709 from=translated src=- shape=148454f8 vocab=e29e7cf2
+-/
 theorem count_eq_one_of_search {n : ℕ} {w : List (List ℕ)} (hn : 3 * n < 729)
     (hw : checkPartition n w = true) (h : search n [w] = true) : count n = 1 := by
   refine count_eq_one_of (isGoodPartition_of_checkPartition hw) ?_
@@ -683,7 +691,9 @@ theorem count_eq_one_of_search {n : ℕ} {w : List (List ℕ)} (hn : 3 * n < 729
   rw [List.mem_singleton] at hw'
   rw [hbs', hw']
 
-/-- Two checked, differing witnesses and an accepting search against them give a count of two.-/
+/-- Two checked, differing witnesses and an accepting search against them give a count of two.
+@isnad1 id=eq.5h3v.s6.297fd6d31042 from=translated src=- shape=b75abebf vocab=19b0876e
+-/
 theorem count_eq_two_of_search {n : ℕ} {w₁ w₂ : List (List ℕ)} (hn : 3 * n < 729)
     (h₁ : checkPartition n w₁ = true) (h₂ : checkPartition n w₂ = true)
     (hd : differ w₁ w₂ = true) (h : search n [w₁, w₂] = true) : count n = 2 := by

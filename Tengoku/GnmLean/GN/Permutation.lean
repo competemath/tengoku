@@ -56,7 +56,9 @@ The value outside the relevant domain is arbitrary and is never used.-/
 def finitePermutation (k j u : ℤ) : ℤ :=
   (finitePermutationValues k.toNat (j+k+1).toNat).getD (u+k).toNat 0 - (k+1)
 
-/-- A finite-image certificate suffices to prove both required bijections.-/
+/-- A finite-image certificate suffices to prove both required bijections.
+@isnad1 id=displace.3h3v.s6.a8030c5583de from=translated src=- shape=6a0c0c84 vocab=96833471
+-/
 theorem displacementPermutation_of_images {k j : ℤ} {σ : ℤ → ℤ}
     (hσ : (displacementDomain k j).image σ = displacementDomain k j)
     (hδ : (displacementDomain k j).image (fun u => σ u-u) =
@@ -81,7 +83,9 @@ private theorem finite_permutation_certificates :
         (displacementDomain k j).card ≤ ((Finset.Icc (-k) k).erase 0).card := by
   decide
 
-/-- Every prescribed hole has a displacement permutation in the forty base cases.-/
+/-- Every prescribed hole has a displacement permutation in the forty base cases.
+@isnad1 id=ex.3h2v.s5.ca141f04f056 from=translated src=- shape=dec72267 vocab=53b33ad0
+-/
 theorem finite_displacement_permutations {k j : ℤ} (hk : 3 ≤ k) (hk' : k ≤ 6)
     (hj : -k ≤ j ∧ j ≤ k) : ∃ σ : ℤ → ℤ, DisplacementPermutation k j σ := by
   obtain ⟨hσ, hδ, hc⟩ := finite_permutation_certificates k

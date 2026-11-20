@@ -28,6 +28,9 @@ def langfordHole2a (q h : ℤ) : Prop :=
   (4*q+6 ≤ h ∧ h ≤ 6*q+6 ∧ (h-(4*q+6))%2=0) ∨
   (6*q+12 ≤ h ∧ h ≤ 8*q+8 ∧ (h-(6*q+12))%2=0)
 
+/--
+@isnad1 id=eq.2h2v.s6.de7dbfb690ab from=translated src=- shape=464fb26f vocab=37937be0
+-/
 theorem langfordRows2a_endpoints (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole2a q h) :
     pairEndpoints (langfordRows2a q h) = (Finset.Icc 1 (8*q+11)).erase h := by
@@ -47,6 +50,9 @@ theorem langfordRows2a_endpoints (q h : ℤ) (hq : 3 ≤ q)
       clear hh
       omega
 
+/--
+@isnad1 id=eq.1h2v.s6.3afea3205ce6 from=translated src=- shape=b67d69e1 vocab=672d2138
+-/
 theorem langfordRows2a_differences (q h : ℤ) (hq : 3 ≤ q) :
     pairDifferences (langfordRows2a q h) = Finset.Icc (2*q) (6*q+4) := by
   ext x
@@ -55,6 +61,9 @@ theorem langfordRows2a_differences (q h : ℤ) (hq : 3 ≤ q) :
     mem_pairDifferences_hingedPairs, Finset.mem_Icc]
   omega
 
+/--
+@isnad1 id=le.1h2v.s5.a9c7dd28fc96 from=translated src=- shape=b5b1b387 vocab=c59503e5
+-/
 theorem langfordRows2a_card (q h : ℤ) (hq : 3 ≤ q) :
     (langfordRows2a q h).card ≤ (4*q+5).toNat := by
   have hc : (langfordRows2a q h).card ≤ 1+1+(2*q-1+1).toNat+(q+1).toNat+(q-2+1).toNat+1+1+1 := by
@@ -64,6 +73,9 @@ theorem langfordRows2a_card (q h : ℤ) (hq : 3 ≤ q) :
       exact card_pivotAffinePairs_le _ _ _ _ _ | simp
   omega
 
+/--
+@isnad1 id=langford.2h2v.s5.3ccc053070fc from=translated src=- shape=732cab77 vocab=db7b93b2
+-/
 theorem langfordRows2a_pairing (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole2a q h) :
     LangfordPairing (2*q) (6*q+4) h (langfordRows2a q h) := by
@@ -97,6 +109,9 @@ def langfordHole2b (q h : ℤ) : Prop :=
   (4*q+14 ≤ h ∧ h ≤ 6*q+10 ∧ (h-(4*q+14))%2=0) ∨
   (6*q+14 ≤ h ∧ h ≤ 8*q+10 ∧ (h-(6*q+14))%2=0)
 
+/--
+@isnad1 id=eq.2h2v.s6.42442b6422b8 from=translated src=- shape=464fb26f vocab=4cc29b99
+-/
 theorem langfordRows2b_endpoints (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole2b q h) :
     pairEndpoints (langfordRows2b q h) = (Finset.Icc 1 (8*q+11)).erase h := by
@@ -116,6 +131,9 @@ theorem langfordRows2b_endpoints (q h : ℤ) (hq : 3 ≤ q)
       clear hh
       omega
 
+/--
+@isnad1 id=eq.1h2v.s6.d2cb91149554 from=translated src=- shape=b67d69e1 vocab=d549d08c
+-/
 theorem langfordRows2b_differences (q h : ℤ) (hq : 3 ≤ q) :
     pairDifferences (langfordRows2b q h) = Finset.Icc (2*q) (6*q+4) := by
   ext x
@@ -124,6 +142,9 @@ theorem langfordRows2b_differences (q h : ℤ) (hq : 3 ≤ q) :
     mem_pairDifferences_hingedPairs, Finset.mem_Icc]
   omega
 
+/--
+@isnad1 id=le.1h2v.s5.6cb59d21d544 from=translated src=- shape=b5b1b387 vocab=b0782526
+-/
 theorem langfordRows2b_card (q h : ℤ) (hq : 3 ≤ q) :
     (langfordRows2b q h).card ≤ (4*q+5).toNat := by
   have hc : (langfordRows2b q h).card ≤ 1+1+(q-2+1).toNat+1+(q-1+1).toNat+1+1+(q-2+1).toNat+1+(q-2+1).toNat+1+1 := by
@@ -133,6 +154,9 @@ theorem langfordRows2b_card (q h : ℤ) (hq : 3 ≤ q) :
       exact card_pivotAffinePairs_le _ _ _ _ _ | simp
   omega
 
+/--
+@isnad1 id=langford.2h2v.s5.151f8aa8a13f from=translated src=- shape=732cab77 vocab=249aba62
+-/
 theorem langfordRows2b_pairing (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole2b q h) :
     LangfordPairing (2*q) (6*q+4) h (langfordRows2b q h) := by
@@ -163,6 +187,9 @@ def langfordRows3a (q h : ℤ) : Finset (ℤ × ℤ) :=
 def langfordHole3a (q h : ℤ) : Prop :=
   h=4*q+8
 
+/--
+@isnad1 id=eq.2h2v.s6.69e5bb0d2f34 from=translated src=- shape=464fb26f vocab=381627e6
+-/
 theorem langfordRows3a_endpoints (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole3a q h) :
     pairEndpoints (langfordRows3a q h) = (Finset.Icc 1 (8*q+15)).erase h := by
@@ -182,6 +209,9 @@ theorem langfordRows3a_endpoints (q h : ℤ) (hq : 3 ≤ q)
       clear hh
       omega
 
+/--
+@isnad1 id=eq.1h2v.s6.6d06761c2323 from=translated src=- shape=70575ca2 vocab=52973c82
+-/
 theorem langfordRows3a_differences (q h : ℤ) (hq : 3 ≤ q) :
     pairDifferences (langfordRows3a q h) = Finset.Icc (2*q+1) (6*q+7) := by
   ext x
@@ -190,6 +220,9 @@ theorem langfordRows3a_differences (q h : ℤ) (hq : 3 ≤ q) :
     mem_pairDifferences_hingedPairs, Finset.mem_Icc]
   omega
 
+/--
+@isnad1 id=le.1h2v.s5.b01ea4dd5b43 from=translated src=- shape=b5b1b387 vocab=8614de8e
+-/
 theorem langfordRows3a_card (q h : ℤ) (hq : 3 ≤ q) :
     (langfordRows3a q h).card ≤ (4*q+7).toNat := by
   have hc : (langfordRows3a q h).card ≤ 1+1+1+(2*q-1+1).toNat+1+(q-1+1).toNat+(q-2+1).toNat+1+1+1+1 := by
@@ -199,6 +232,9 @@ theorem langfordRows3a_card (q h : ℤ) (hq : 3 ≤ q) :
       exact card_pivotAffinePairs_le _ _ _ _ _ | simp
   omega
 
+/--
+@isnad1 id=langford.2h2v.s6.a9c1ea9513df from=translated src=- shape=91241c32 vocab=20394d3f
+-/
 theorem langfordRows3a_pairing (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole3a q h) :
     LangfordPairing (2*q+1) (6*q+7) h (langfordRows3a q h) := by
@@ -233,6 +269,9 @@ def langfordHole3b (q h : ℤ) : Prop :=
   (4*q+10 ≤ h ∧ h ≤ 6*q+8 ∧ (h-(4*q+10))%2=0) ∨
   (6*q+12 ≤ h ∧ h ≤ 8*q+8 ∧ (h-(6*q+12))%2=0)
 
+/--
+@isnad1 id=eq.2h2v.s6.cc3e14091032 from=translated src=- shape=464fb26f vocab=4401b697
+-/
 theorem langfordRows3b_endpoints (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole3b q h) :
     pairEndpoints (langfordRows3b q h) = (Finset.Icc 1 (8*q+15)).erase h := by
@@ -252,6 +291,9 @@ theorem langfordRows3b_endpoints (q h : ℤ) (hq : 3 ≤ q)
       clear hh
       omega
 
+/--
+@isnad1 id=eq.1h2v.s6.8c90676eefa0 from=translated src=- shape=70575ca2 vocab=6f97394d
+-/
 theorem langfordRows3b_differences (q h : ℤ) (hq : 3 ≤ q) :
     pairDifferences (langfordRows3b q h) = Finset.Icc (2*q+1) (6*q+7) := by
   ext x
@@ -260,6 +302,9 @@ theorem langfordRows3b_differences (q h : ℤ) (hq : 3 ≤ q) :
     mem_pairDifferences_hingedPairs, Finset.mem_Icc]
   omega
 
+/--
+@isnad1 id=le.1h2v.s5.63b484536c3f from=translated src=- shape=b5b1b387 vocab=2a63bc9d
+-/
 theorem langfordRows3b_card (q h : ℤ) (hq : 3 ≤ q) :
     (langfordRows3b q h).card ≤ (4*q+7).toNat := by
   have hc : (langfordRows3b q h).card ≤ 1+1+(q-2+1).toNat+1+1+(q-1+1).toNat+(q-1+1).toNat+1+(q-2+1).toNat+1+1+1+1 := by
@@ -269,6 +314,9 @@ theorem langfordRows3b_card (q h : ℤ) (hq : 3 ≤ q) :
       exact card_pivotAffinePairs_le _ _ _ _ _ | simp
   omega
 
+/--
+@isnad1 id=langford.2h2v.s6.f998fcdfddf5 from=translated src=- shape=91241c32 vocab=42f6a616
+-/
 theorem langfordRows3b_pairing (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole3b q h) :
     LangfordPairing (2*q+1) (6*q+7) h (langfordRows3b q h) := by
@@ -301,6 +349,9 @@ def langfordHole3c (q h : ℤ) : Prop :=
   (4*q+14 ≤ h ∧ h ≤ 6*q+10 ∧ (h-(4*q+14))%2=0) ∨
   (6*q+16 ≤ h ∧ h ≤ 8*q+14 ∧ (h-(6*q+16))%2=0)
 
+/--
+@isnad1 id=eq.2h2v.s6.e3cb047acbab from=translated src=- shape=464fb26f vocab=75988e3a
+-/
 theorem langfordRows3c_endpoints (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole3c q h) :
     pairEndpoints (langfordRows3c q h) = (Finset.Icc 1 (8*q+15)).erase h := by
@@ -320,6 +371,9 @@ theorem langfordRows3c_endpoints (q h : ℤ) (hq : 3 ≤ q)
       clear hh
       omega
 
+/--
+@isnad1 id=eq.1h2v.s6.ea545c5d875b from=translated src=- shape=70575ca2 vocab=f743b286
+-/
 theorem langfordRows3c_differences (q h : ℤ) (hq : 3 ≤ q) :
     pairDifferences (langfordRows3c q h) = Finset.Icc (2*q+1) (6*q+7) := by
   ext x
@@ -328,6 +382,9 @@ theorem langfordRows3c_differences (q h : ℤ) (hq : 3 ≤ q) :
     mem_pairDifferences_hingedPairs, Finset.mem_Icc]
   omega
 
+/--
+@isnad1 id=le.1h2v.s5.55f1b264617d from=translated src=- shape=b5b1b387 vocab=4aa3f4b7
+-/
 theorem langfordRows3c_card (q h : ℤ) (hq : 3 ≤ q) :
     (langfordRows3c q h).card ≤ (4*q+7).toNat := by
   have hc : (langfordRows3c q h).card ≤ 1+1+(q+1).toNat+1+1+(q-1+1).toNat+(q-2+1).toNat+(q-1+1).toNat+1+1+1 := by
@@ -337,6 +394,9 @@ theorem langfordRows3c_card (q h : ℤ) (hq : 3 ≤ q) :
       exact card_pivotAffinePairs_le _ _ _ _ _ | simp
   omega
 
+/--
+@isnad1 id=langford.2h2v.s6.44e2586a034c from=translated src=- shape=91241c32 vocab=799d1769
+-/
 theorem langfordRows3c_pairing (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole3c q h) :
     LangfordPairing (2*q+1) (6*q+7) h (langfordRows3c q h) := by
@@ -371,6 +431,9 @@ def langfordHole6a (q h : ℤ) : Prop :=
   (4*q+8 ≤ h ∧ h ≤ 6*q+6 ∧ (h-(4*q+8))%2=0) ∨
   (6*q+12 ≤ h ∧ h ≤ 8*q+8 ∧ (h-(6*q+12))%2=0)
 
+/--
+@isnad1 id=eq.2h2v.s6.294830381d21 from=translated src=- shape=464fb26f vocab=8c7b61fa
+-/
 theorem langfordRows6a_endpoints (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole6a q h) :
     pairEndpoints (langfordRows6a q h) = (Finset.Icc 1 (8*q+13)).erase h := by
@@ -390,6 +453,9 @@ theorem langfordRows6a_endpoints (q h : ℤ) (hq : 3 ≤ q)
       clear hh
       omega
 
+/--
+@isnad1 id=eq.1h2v.s6.b2b34d34a4a0 from=translated src=- shape=b67d69e1 vocab=2831cc27
+-/
 theorem langfordRows6a_differences (q h : ℤ) (hq : 3 ≤ q) :
     pairDifferences (langfordRows6a q h) = Finset.Icc (2*q) (6*q+5) := by
   ext x
@@ -398,6 +464,9 @@ theorem langfordRows6a_differences (q h : ℤ) (hq : 3 ≤ q) :
     mem_pairDifferences_hingedPairs, Finset.mem_Icc]
   omega
 
+/--
+@isnad1 id=le.1h2v.s5.48d47200224f from=translated src=- shape=b5b1b387 vocab=638df30e
+-/
 theorem langfordRows6a_card (q h : ℤ) (hq : 3 ≤ q) :
     (langfordRows6a q h).card ≤ (4*q+6).toNat := by
   have hc : (langfordRows6a q h).card ≤ 1+1+(q-2+1).toNat+1+(q-2+1).toNat+1+(q-1+1).toNat+1+(q-2+1).toNat+1+1+1+1 := by
@@ -407,6 +476,9 @@ theorem langfordRows6a_card (q h : ℤ) (hq : 3 ≤ q) :
       exact card_pivotAffinePairs_le _ _ _ _ _ | simp
   omega
 
+/--
+@isnad1 id=langford.2h2v.s5.93a880c2f372 from=translated src=- shape=732cab77 vocab=4cd3aedb
+-/
 theorem langfordRows6a_pairing (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole6a q h) :
     LangfordPairing (2*q) (6*q+5) h (langfordRows6a q h) := by
@@ -438,6 +510,9 @@ def langfordHole6b (q h : ℤ) : Prop :=
   (4*q+12 ≤ h ∧ h ≤ 6*q+10 ∧ (h-(4*q+12))%2=0) ∨
   (6*q+14 ≤ h ∧ h ≤ 8*q+12 ∧ (h-(6*q+14))%2=0)
 
+/--
+@isnad1 id=eq.2h2v.s6.2f35e13bf0dd from=translated src=- shape=464fb26f vocab=7b29b56a
+-/
 theorem langfordRows6b_endpoints (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole6b q h) :
     pairEndpoints (langfordRows6b q h) = (Finset.Icc 1 (8*q+13)).erase h := by
@@ -457,6 +532,9 @@ theorem langfordRows6b_endpoints (q h : ℤ) (hq : 3 ≤ q)
       clear hh
       omega
 
+/--
+@isnad1 id=eq.1h2v.s6.93bda688629c from=translated src=- shape=b67d69e1 vocab=ba1cbce4
+-/
 theorem langfordRows6b_differences (q h : ℤ) (hq : 3 ≤ q) :
     pairDifferences (langfordRows6b q h) = Finset.Icc (2*q) (6*q+5) := by
   ext x
@@ -465,6 +543,9 @@ theorem langfordRows6b_differences (q h : ℤ) (hq : 3 ≤ q) :
     mem_pairDifferences_hingedPairs, Finset.mem_Icc]
   omega
 
+/--
+@isnad1 id=le.1h2v.s5.a59d07900760 from=translated src=- shape=b5b1b387 vocab=5fdbc7d8
+-/
 theorem langfordRows6b_card (q h : ℤ) (hq : 3 ≤ q) :
     (langfordRows6b q h).card ≤ (4*q+6).toNat := by
   have hc : (langfordRows6b q h).card ≤ 1+(q+1).toNat+1+1+(q-2+1).toNat+1+(q-1+1).toNat+(q-1+1).toNat+1+1 := by
@@ -474,6 +555,9 @@ theorem langfordRows6b_card (q h : ℤ) (hq : 3 ≤ q) :
       exact card_pivotAffinePairs_le _ _ _ _ _ | simp
   omega
 
+/--
+@isnad1 id=langford.2h2v.s5.722847bbff54 from=translated src=- shape=732cab77 vocab=9166dbc2
+-/
 theorem langfordRows6b_pairing (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole6b q h) :
     LangfordPairing (2*q) (6*q+5) h (langfordRows6b q h) := by
@@ -504,6 +588,9 @@ def langfordRows7a (q h : ℤ) : Finset (ℤ × ℤ) :=
 def langfordHole7a (q h : ℤ) : Prop :=
   h=4*q+9
 
+/--
+@isnad1 id=eq.2h2v.s6.533b7a9bf3c2 from=translated src=- shape=464fb26f vocab=ae755722
+-/
 theorem langfordRows7a_endpoints (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole7a q h) :
     pairEndpoints (langfordRows7a q h) = (Finset.Icc 1 (8*q+17)).erase h := by
@@ -523,6 +610,9 @@ theorem langfordRows7a_endpoints (q h : ℤ) (hq : 3 ≤ q)
       clear hh
       omega
 
+/--
+@isnad1 id=eq.1h2v.s6.ea58cff7211e from=translated src=- shape=70575ca2 vocab=6bb8ef49
+-/
 theorem langfordRows7a_differences (q h : ℤ) (hq : 3 ≤ q) :
     pairDifferences (langfordRows7a q h) = Finset.Icc (2*q+1) (6*q+8) := by
   ext x
@@ -531,6 +621,9 @@ theorem langfordRows7a_differences (q h : ℤ) (hq : 3 ≤ q) :
     mem_pairDifferences_hingedPairs, Finset.mem_Icc]
   omega
 
+/--
+@isnad1 id=le.1h2v.s5.0c8c427d47d4 from=translated src=- shape=b5b1b387 vocab=31868e5c
+-/
 theorem langfordRows7a_card (q h : ℤ) (hq : 3 ≤ q) :
     (langfordRows7a q h).card ≤ (4*q+8).toNat := by
   have hc : (langfordRows7a q h).card ≤ 1+1+(q-1+1).toNat+1+(q-1+1).toNat+(q-1+1).toNat+1+(q+1).toNat+1+1+1 := by
@@ -540,6 +633,9 @@ theorem langfordRows7a_card (q h : ℤ) (hq : 3 ≤ q) :
       exact card_pivotAffinePairs_le _ _ _ _ _ | simp
   omega
 
+/--
+@isnad1 id=langford.2h2v.s6.96b2b8107f8b from=translated src=- shape=91241c32 vocab=090d920f
+-/
 theorem langfordRows7a_pairing (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole7a q h) :
     LangfordPairing (2*q+1) (6*q+8) h (langfordRows7a q h) := by
@@ -570,6 +666,9 @@ def langfordHole7b (q h : ℤ) : Prop :=
   (4*q+11 ≤ h ∧ h ≤ 6*q+13 ∧ (h-(4*q+11))%2=0) ∨
   (6*q+17 ≤ h ∧ h ≤ 8*q+17 ∧ (h-(6*q+17))%2=0)
 
+/--
+@isnad1 id=eq.2h2v.s6.af78c57d2f74 from=translated src=- shape=464fb26f vocab=af066aaf
+-/
 theorem langfordRows7b_endpoints (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole7b q h) :
     pairEndpoints (langfordRows7b q h) = (Finset.Icc 1 (8*q+17)).erase h := by
@@ -589,6 +688,9 @@ theorem langfordRows7b_endpoints (q h : ℤ) (hq : 3 ≤ q)
       clear hh
       omega
 
+/--
+@isnad1 id=eq.1h2v.s6.eb10d7e6067a from=translated src=- shape=70575ca2 vocab=c8320c7f
+-/
 theorem langfordRows7b_differences (q h : ℤ) (hq : 3 ≤ q) :
     pairDifferences (langfordRows7b q h) = Finset.Icc (2*q+1) (6*q+8) := by
   ext x
@@ -597,6 +699,9 @@ theorem langfordRows7b_differences (q h : ℤ) (hq : 3 ≤ q) :
     mem_pairDifferences_hingedPairs, Finset.mem_Icc]
   omega
 
+/--
+@isnad1 id=le.1h2v.s5.bfb4e73d61e8 from=translated src=- shape=b5b1b387 vocab=0beaff27
+-/
 theorem langfordRows7b_card (q h : ℤ) (hq : 3 ≤ q) :
     (langfordRows7b q h).card ≤ (4*q+8).toNat := by
   have hc : (langfordRows7b q h).card ≤ 1+(q-1+1).toNat+1+1+(q-1+1).toNat+(q+1+1).toNat+(q+1).toNat+1+1 := by
@@ -606,6 +711,9 @@ theorem langfordRows7b_card (q h : ℤ) (hq : 3 ≤ q) :
       exact card_pivotAffinePairs_le _ _ _ _ _ | simp
   omega
 
+/--
+@isnad1 id=langford.2h2v.s6.78f4165d8243 from=translated src=- shape=91241c32 vocab=2e36513d
+-/
 theorem langfordRows7b_pairing (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole7b q h) :
     LangfordPairing (2*q+1) (6*q+8) h (langfordRows7b q h) := by
@@ -639,6 +747,9 @@ def langfordHole7c (q h : ℤ) : Prop :=
   (4*q+11 ≤ h ∧ h ≤ 6*q+9 ∧ (h-(4*q+11))%2=0) ∨
   (6*q+15 ≤ h ∧ h ≤ 8*q+13 ∧ (h-(6*q+15))%2=0)
 
+/--
+@isnad1 id=eq.2h2v.s6.361db8ca5958 from=translated src=- shape=464fb26f vocab=a43f57bb
+-/
 theorem langfordRows7c_endpoints (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole7c q h) :
     pairEndpoints (langfordRows7c q h) = (Finset.Icc 1 (8*q+17)).erase h := by
@@ -658,6 +769,9 @@ theorem langfordRows7c_endpoints (q h : ℤ) (hq : 3 ≤ q)
       clear hh
       omega
 
+/--
+@isnad1 id=eq.1h2v.s6.94676f8e014b from=translated src=- shape=70575ca2 vocab=31cf1705
+-/
 theorem langfordRows7c_differences (q h : ℤ) (hq : 3 ≤ q) :
     pairDifferences (langfordRows7c q h) = Finset.Icc (2*q+1) (6*q+8) := by
   ext x
@@ -666,6 +780,9 @@ theorem langfordRows7c_differences (q h : ℤ) (hq : 3 ≤ q) :
     mem_pairDifferences_hingedPairs, Finset.mem_Icc]
   omega
 
+/--
+@isnad1 id=le.1h2v.s5.5fa7d9bac665 from=translated src=- shape=b5b1b387 vocab=2a27533b
+-/
 theorem langfordRows7c_card (q h : ℤ) (hq : 3 ≤ q) :
     (langfordRows7c q h).card ≤ (4*q+8).toNat := by
   have hc : (langfordRows7c q h).card ≤ 1+(q-1+1).toNat+1+1+(q-1+1).toNat+(q-1+1).toNat+1+(q-1+1).toNat+1+1+1+1 := by
@@ -675,6 +792,9 @@ theorem langfordRows7c_card (q h : ℤ) (hq : 3 ≤ q) :
       exact card_pivotAffinePairs_le _ _ _ _ _ | simp
   omega
 
+/--
+@isnad1 id=langford.2h2v.s6.3bf9f8cbbb25 from=translated src=- shape=91241c32 vocab=607c4aa5
+-/
 theorem langfordRows7c_pairing (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole7c q h) :
     LangfordPairing (2*q+1) (6*q+8) h (langfordRows7c q h) := by
@@ -707,6 +827,9 @@ def langfordHole10a (q h : ℤ) : Prop :=
   (4*q+11 ≤ h ∧ h ≤ 6*q+9 ∧ (h-(4*q+11))%2=0) ∨
   (6*q+15 ≤ h ∧ h ≤ 8*q+15 ∧ (h-(6*q+15))%2=0)
 
+/--
+@isnad1 id=eq.2h2v.s6.dda3c47d1073 from=translated src=- shape=464fb26f vocab=591c881f
+-/
 theorem langfordRows10a_endpoints (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole10a q h) :
     pairEndpoints (langfordRows10a q h) = (Finset.Icc 1 (8*q+15)).erase h := by
@@ -726,6 +849,9 @@ theorem langfordRows10a_endpoints (q h : ℤ) (hq : 3 ≤ q)
       clear hh
       omega
 
+/--
+@isnad1 id=eq.1h2v.s6.12d8d97a9fed from=translated src=- shape=b67d69e1 vocab=73d515a7
+-/
 theorem langfordRows10a_differences (q h : ℤ) (hq : 3 ≤ q) :
     pairDifferences (langfordRows10a q h) = Finset.Icc (2*q) (6*q+6) := by
   ext x
@@ -734,6 +860,9 @@ theorem langfordRows10a_differences (q h : ℤ) (hq : 3 ≤ q) :
     mem_pairDifferences_hingedPairs, Finset.mem_Icc]
   omega
 
+/--
+@isnad1 id=le.1h2v.s5.e4501ba85fba from=translated src=- shape=b5b1b387 vocab=30860443
+-/
 theorem langfordRows10a_card (q h : ℤ) (hq : 3 ≤ q) :
     (langfordRows10a q h).card ≤ (4*q+7).toNat := by
   have hc : (langfordRows10a q h).card ≤ 1+1+(q-1+1).toNat+1+1+(q-2+1).toNat+(q-1+1).toNat+(q+1).toNat+1+1+1 := by
@@ -743,6 +872,9 @@ theorem langfordRows10a_card (q h : ℤ) (hq : 3 ≤ q) :
       exact card_pivotAffinePairs_le _ _ _ _ _ | simp
   omega
 
+/--
+@isnad1 id=langford.2h2v.s5.9f2562df4fca from=translated src=- shape=732cab77 vocab=9119ef3d
+-/
 theorem langfordRows10a_pairing (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole10a q h) :
     LangfordPairing (2*q) (6*q+6) h (langfordRows10a q h) := by
@@ -778,6 +910,9 @@ def langfordHole10b (q h : ℤ) : Prop :=
   (4*q+9 ≤ h ∧ h ≤ 6*q+7 ∧ (h-(4*q+9))%2=0) ∨
   (6*q+11 ≤ h ∧ h ≤ 8*q+7 ∧ (h-(6*q+11))%2=0)
 
+/--
+@isnad1 id=eq.2h2v.s6.0a14febf0c9b from=translated src=- shape=464fb26f vocab=ee581806
+-/
 theorem langfordRows10b_endpoints (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole10b q h) :
     pairEndpoints (langfordRows10b q h) = (Finset.Icc 1 (8*q+15)).erase h := by
@@ -797,6 +932,9 @@ theorem langfordRows10b_endpoints (q h : ℤ) (hq : 3 ≤ q)
       clear hh
       omega
 
+/--
+@isnad1 id=eq.1h2v.s6.8d977315d271 from=translated src=- shape=b67d69e1 vocab=f438f566
+-/
 theorem langfordRows10b_differences (q h : ℤ) (hq : 3 ≤ q) :
     pairDifferences (langfordRows10b q h) = Finset.Icc (2*q) (6*q+6) := by
   ext x
@@ -805,6 +943,9 @@ theorem langfordRows10b_differences (q h : ℤ) (hq : 3 ≤ q) :
     mem_pairDifferences_hingedPairs, Finset.mem_Icc]
   omega
 
+/--
+@isnad1 id=le.1h2v.s5.9174a459c9c5 from=translated src=- shape=b5b1b387 vocab=c5917133
+-/
 theorem langfordRows10b_card (q h : ℤ) (hq : 3 ≤ q) :
     (langfordRows10b q h).card ≤ (4*q+7).toNat := by
   have hc : (langfordRows10b q h).card ≤ 1+1+(q-3+1).toNat+1+(q-1+1).toNat+(q-1+1).toNat+1+(q-2+1).toNat+1+1+1+1+1+1 := by
@@ -814,6 +955,9 @@ theorem langfordRows10b_card (q h : ℤ) (hq : 3 ≤ q) :
       exact card_pivotAffinePairs_le _ _ _ _ _ | simp
   omega
 
+/--
+@isnad1 id=langford.2h2v.s5.ffc0d4d29d1b from=translated src=- shape=732cab77 vocab=49f8373b
+-/
 theorem langfordRows10b_pairing (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole10b q h) :
     LangfordPairing (2*q) (6*q+6) h (langfordRows10b q h) := by
@@ -848,6 +992,9 @@ def langfordHole11a (q h : ℤ) : Prop :=
   (4*q+13 ≤ h ∧ h ≤ 6*q+11 ∧ (h-(4*q+13))%2=0) ∨
   (6*q+19 ≤ h ∧ h ≤ 8*q+17 ∧ (h-(6*q+19))%2=0)
 
+/--
+@isnad1 id=eq.2h2v.s6.ecd8def0e7e0 from=translated src=- shape=464fb26f vocab=f809fe27
+-/
 theorem langfordRows11a_endpoints (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole11a q h) :
     pairEndpoints (langfordRows11a q h) = (Finset.Icc 1 (8*q+19)).erase h := by
@@ -867,6 +1014,9 @@ theorem langfordRows11a_endpoints (q h : ℤ) (hq : 3 ≤ q)
       clear hh
       omega
 
+/--
+@isnad1 id=eq.1h2v.s6.56a3d66a2778 from=translated src=- shape=70575ca2 vocab=fdd8c425
+-/
 theorem langfordRows11a_differences (q h : ℤ) (hq : 3 ≤ q) :
     pairDifferences (langfordRows11a q h) = Finset.Icc (2*q+1) (6*q+9) := by
   ext x
@@ -875,6 +1025,9 @@ theorem langfordRows11a_differences (q h : ℤ) (hq : 3 ≤ q) :
     mem_pairDifferences_hingedPairs, Finset.mem_Icc]
   omega
 
+/--
+@isnad1 id=le.1h2v.s5.20ed52e3ca51 from=translated src=- shape=b5b1b387 vocab=16d98ccf
+-/
 theorem langfordRows11a_card (q h : ℤ) (hq : 3 ≤ q) :
     (langfordRows11a q h).card ≤ (4*q+9).toNat := by
   have hc : (langfordRows11a q h).card ≤ 1+1+(q-1+1).toNat+1+1+(q-1+1).toNat+1+(q-1+1).toNat+1+(q-1+1).toNat+1+1+1 := by
@@ -884,6 +1037,9 @@ theorem langfordRows11a_card (q h : ℤ) (hq : 3 ≤ q) :
       exact card_pivotAffinePairs_le _ _ _ _ _ | simp
   omega
 
+/--
+@isnad1 id=langford.2h2v.s6.0103af3dc47c from=translated src=- shape=91241c32 vocab=ac870776
+-/
 theorem langfordRows11a_pairing (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole11a q h) :
     LangfordPairing (2*q+1) (6*q+9) h (langfordRows11a q h) := by
@@ -919,6 +1075,9 @@ def langfordHole11b (q h : ℤ) : Prop :=
   (4*q+11 ≤ h ∧ h ≤ 6*q+9 ∧ (h-(4*q+11))%2=0) ∨
   (6*q+13 ≤ h ∧ h ≤ 8*q+11 ∧ (h-(6*q+13))%2=0)
 
+/--
+@isnad1 id=eq.2h2v.s6.416bec1f0d69 from=translated src=- shape=464fb26f vocab=474cb1c9
+-/
 theorem langfordRows11b_endpoints (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole11b q h) :
     pairEndpoints (langfordRows11b q h) = (Finset.Icc 1 (8*q+19)).erase h := by
@@ -938,6 +1097,9 @@ theorem langfordRows11b_endpoints (q h : ℤ) (hq : 3 ≤ q)
       clear hh
       omega
 
+/--
+@isnad1 id=eq.1h2v.s6.f624d3d062dd from=translated src=- shape=70575ca2 vocab=17e15e6d
+-/
 theorem langfordRows11b_differences (q h : ℤ) (hq : 3 ≤ q) :
     pairDifferences (langfordRows11b q h) = Finset.Icc (2*q+1) (6*q+9) := by
   ext x
@@ -946,6 +1108,9 @@ theorem langfordRows11b_differences (q h : ℤ) (hq : 3 ≤ q) :
     mem_pairDifferences_hingedPairs, Finset.mem_Icc]
   omega
 
+/--
+@isnad1 id=le.1h2v.s5.3fac18a038fd from=translated src=- shape=b5b1b387 vocab=1f2923b3
+-/
 theorem langfordRows11b_card (q h : ℤ) (hq : 3 ≤ q) :
     (langfordRows11b q h).card ≤ (4*q+9).toNat := by
   have hc : (langfordRows11b q h).card ≤ 1+1+(q-2+1).toNat+1+(q-1+1).toNat+(q-1+1).toNat+1+(q-1+1).toNat+1+1+1+1+1+1 := by
@@ -955,6 +1120,9 @@ theorem langfordRows11b_card (q h : ℤ) (hq : 3 ≤ q) :
       exact card_pivotAffinePairs_le _ _ _ _ _ | simp
   omega
 
+/--
+@isnad1 id=langford.2h2v.s6.f92604451805 from=translated src=- shape=91241c32 vocab=c9b88c89
+-/
 theorem langfordRows11b_pairing (q h : ℤ) (hq : 3 ≤ q)
     (hh : langfordHole11b q h) :
     LangfordPairing (2*q+1) (6*q+9) h (langfordRows11b q h) := by
@@ -968,6 +1136,9 @@ theorem langfordRows11b_pairing (q h : ℤ) (hq : 3 ≤ q)
   · exact langfordRows11b_differences q h hq
   · convert langfordRows11b_card q h hq using 1 <;> congr 1 <;> omega
 
+/--
+@isnad1 id=ex.3h2v.s6.52b445f13cd4 from=translated src=- shape=29498888 vocab=dd5ad13d
+-/
 theorem exists_langford_excess6_even (q h : ℤ) (hq : 3 ≤ q)
     (hh : 1 ≤ h ∧ h ≤ 8*q+11) (hp : h%2=0) :
     ∃ ps, LangfordPairing (2*q) (6*q+4) h ps := by
@@ -986,6 +1157,9 @@ theorem exists_langford_excess6_even (q h : ℤ) (hq : 3 ≤ q)
       (langfordRows2b q (8*q+12-h)), ?_⟩
     convert hr using 1 <;> omega
 
+/--
+@isnad1 id=ex.3h2v.s7.1dc24bed4fe0 from=translated src=- shape=20b0f678 vocab=dd5ad13d
+-/
 theorem exists_langford_excess6_odd (q h : ℤ) (hq : 3 ≤ q)
     (hh : 1 ≤ h ∧ h ≤ 8*q+15) (hp : h%2=0) :
     ∃ ps, LangfordPairing (2*q+1) (6*q+7) h ps := by
@@ -1009,6 +1183,9 @@ theorem exists_langford_excess6_odd (q h : ℤ) (hq : 3 ≤ q)
       (langfordRows3c q (8*q+16-h)), ?_⟩
     convert hr using 1 <;> omega
 
+/--
+@isnad1 id=ex.3h2v.s6.e33531bc1fab from=translated src=- shape=29498888 vocab=dd5ad13d
+-/
 theorem exists_langford_excess7_even (q h : ℤ) (hq : 3 ≤ q)
     (hh : 1 ≤ h ∧ h ≤ 8*q+13) (hp : h%2=0) :
     ∃ ps, LangfordPairing (2*q) (6*q+5) h ps := by
@@ -1027,6 +1204,9 @@ theorem exists_langford_excess7_even (q h : ℤ) (hq : 3 ≤ q)
       (langfordRows6b q (8*q+14-h)), ?_⟩
     convert hr using 1 <;> omega
 
+/--
+@isnad1 id=ex.3h2v.s7.3ee6ea431ca1 from=translated src=- shape=20b0f678 vocab=dd5ad13d
+-/
 theorem exists_langford_excess7_odd (q h : ℤ) (hq : 3 ≤ q)
     (hh : 1 ≤ h ∧ h ≤ 8*q+17) (hp : h%2=1) :
     ∃ ps, LangfordPairing (2*q+1) (6*q+8) h ps := by
@@ -1050,6 +1230,9 @@ theorem exists_langford_excess7_odd (q h : ℤ) (hq : 3 ≤ q)
       (langfordRows7c q (8*q+18-h)), ?_⟩
     convert hr using 1 <;> omega
 
+/--
+@isnad1 id=ex.3h2v.s6.8783c34c8750 from=translated src=- shape=29498888 vocab=dd5ad13d
+-/
 theorem exists_langford_excess8_even (q h : ℤ) (hq : 3 ≤ q)
     (hh : 1 ≤ h ∧ h ≤ 8*q+15) (hp : h%2=1) :
     ∃ ps, LangfordPairing (2*q) (6*q+6) h ps := by
@@ -1068,6 +1251,9 @@ theorem exists_langford_excess8_even (q h : ℤ) (hq : 3 ≤ q)
       (langfordRows10b q (8*q+16-h)), ?_⟩
     convert hr using 1 <;> omega
 
+/--
+@isnad1 id=ex.3h2v.s7.15069b125305 from=translated src=- shape=20b0f678 vocab=dd5ad13d
+-/
 theorem exists_langford_excess8_odd (q h : ℤ) (hq : 3 ≤ q)
     (hh : 1 ≤ h ∧ h ≤ 8*q+19) (hp : h%2=1) :
     ∃ ps, LangfordPairing (2*q+1) (6*q+9) h ps := by
@@ -1086,7 +1272,9 @@ theorem exists_langford_excess8_odd (q h : ℤ) (hq : 3 ≤ q)
       (langfordRows11b q (8*q+20-h)), ?_⟩
     convert hr using 1 <;> omega
 
-/-- Every admissible prescribed hole for excess 6, defect at least 6.-/
+/-- Every admissible prescribed hole for excess 6, defect at least 6.
+@isnad1 id=ex.3h2v.s6.a2014e2f54e6 from=translated src=- shape=219f5f72 vocab=dd5ad13d
+-/
 theorem exists_langford_excess6 (d h : ℤ) (hd : 6 ≤ d)
     (hh : 1 ≤ h ∧ h ≤ 4*d+11) (hp : h%2=0) :
     ∃ ps, LangfordPairing d (3*d+4) h ps := by
@@ -1100,7 +1288,9 @@ theorem exists_langford_excess6 (d h : ℤ) (hd : 6 ≤ d)
     refine ⟨ps, ?_⟩
     convert hps using 1 <;> omega
 
-/-- Every admissible prescribed hole for excess 7, defect at least 6.-/
+/-- Every admissible prescribed hole for excess 7, defect at least 6.
+@isnad1 id=ex.3h2v.s6.f71326c2f96c from=translated src=- shape=66b3f592 vocab=dd5ad13d
+-/
 theorem exists_langford_excess7 (d h : ℤ) (hd : 6 ≤ d)
     (hh : 1 ≤ h ∧ h ≤ 4*d+13) (hp : h%2=d%2) :
     ∃ ps, LangfordPairing d (3*d+5) h ps := by
@@ -1114,7 +1304,9 @@ theorem exists_langford_excess7 (d h : ℤ) (hd : 6 ≤ d)
     refine ⟨ps, ?_⟩
     convert hps using 1 <;> omega
 
-/-- Every admissible prescribed hole for excess 8, defect at least 6.-/
+/-- Every admissible prescribed hole for excess 8, defect at least 6.
+@isnad1 id=ex.3h2v.s6.3b1ca5bd1b64 from=translated src=- shape=219f5f72 vocab=dd5ad13d
+-/
 theorem exists_langford_excess8 (d h : ℤ) (hd : 6 ≤ d)
     (hh : 1 ≤ h ∧ h ≤ 4*d+15) (hp : h%2=1) :
     ∃ ps, LangfordPairing d (3*d+6) h ps := by

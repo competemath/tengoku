@@ -9,7 +9,9 @@ noncomputable section
 def doubling (m x : ℤ) : ℤ :=
   if x ≤ m then 2*x else 2*x-(2*m+1)
 
-/-- The explicit doubling map permutes the interval [1,2m].-/
+/-- The explicit doubling map permutes the interval [1,2m].
+@isnad1 id=bijon.1h1v.s6.20e087899a44 from=translated src=- shape=6034b664 vocab=02e89a5a
+-/
 theorem doubling_bijOn (m : ℤ) (hm : 0 ≤ m) :
     Set.BijOn (doubling m) (Finset.Icc 1 (2*m)) (Finset.Icc 1 (2*m)) := by
   refine ⟨?_, ?_, ?_⟩
@@ -36,7 +38,9 @@ theorem doubling_bijOn (m : ℤ) (hm : 0 ≤ m) :
       · simp only [doubling]
         split_ifs <;> omega
 
-/-- The doubling displacements use every nonzero value from -m through m once.-/
+/-- The doubling displacements use every nonzero value from -m through m once.
+@isnad1 id=bijon.1h1v.s6.a7fa2f357de7 from=translated src=- shape=cb8e60f6 vocab=74992e90
+-/
 theorem doubling_displacement_bijOn (m : ℤ) (hm : 0 ≤ m) :
     Set.BijOn (fun x => doubling m x-x) (Finset.Icc 1 (2*m))
       ((Finset.Icc (-m) m).erase 0) := by
@@ -66,7 +70,9 @@ theorem doubling_displacement_bijOn (m : ℤ) (hm : 0 ≤ m) :
       · simp only [doubling]
         split_ifs <;> omega
 
-/-- An unconditional displacement permutation on an interval of even size.-/
+/-- An unconditional displacement permutation on an interval of even size.
+@isnad1 id=ex.1h1v.s7.dc43425a0a29 from=translated src=- shape=bc6695fe vocab=b5d74a05
+-/
 theorem exists_doubling_permutation (m : ℤ) (hm : 0 ≤ m) :
     ∃ σ : ℤ → ℤ,
       Set.BijOn σ (Finset.Icc 1 (2*m)) (Finset.Icc 1 (2*m)) ∧
@@ -74,7 +80,9 @@ theorem exists_doubling_permutation (m : ℤ) (hm : 0 ≤ m) :
         ((Finset.Icc (-m) m).erase 0) :=
   ⟨doubling m, doubling_bijOn m hm, doubling_displacement_bijOn m hm⟩
 
-/-- Translate the even-interval construction to any identical endpoint-hole domain.-/
+/-- Translate the even-interval construction to any identical endpoint-hole domain.
+@isnad1 id=displace.2h3v.s6.81b2864ddbaf from=translated src=- shape=47bf8066 vocab=06635685
+-/
 theorem displacement_of_doubling_translation {k j c : ℤ} (hk : 0 ≤ k)
     (hdom : ∀ x : ℤ, x ∈ displacementDomain k j ↔
       x+c ∈ Finset.Icc 1 (2*k)) :
@@ -120,7 +128,9 @@ theorem displacement_of_doubling_translation {k j c : ℤ} (hk : 0 ≤ k)
         simp only [sub_add_cancel]
         omega
 
-/-- Unconditional endpoint-hole permutation with the left endpoint removed.-/
+/-- Unconditional endpoint-hole permutation with the left endpoint removed.
+@isnad1 id=displace.1h1v.s5.be863b8e8f6f from=translated src=- shape=4ff734eb vocab=16f2520b
+-/
 theorem doubling_left_endpoint (k : ℤ) (hk : 0 ≤ k) :
     DisplacementPermutation k (-k) (fun x => doubling k (x+k)-k) := by
   apply displacement_of_doubling_translation hk
@@ -128,7 +138,9 @@ theorem doubling_left_endpoint (k : ℤ) (hk : 0 ≤ k) :
   simp only [mem_displacementDomain, Finset.mem_Icc]
   omega
 
-/-- Unconditional endpoint-hole permutation with the right endpoint removed.-/
+/-- Unconditional endpoint-hole permutation with the right endpoint removed.
+@isnad1 id=displace.1h1v.s5.34307a710128 from=translated src=- shape=315e6cd9 vocab=ad746e9b
+-/
 theorem doubling_right_endpoint (k : ℤ) (hk : 0 ≤ k) :
     DisplacementPermutation k k (fun x => doubling k (x+(k+1))-(k+1)) := by
   apply displacement_of_doubling_translation hk
@@ -136,6 +148,9 @@ theorem doubling_right_endpoint (k : ℤ) (hk : 0 ≤ k) :
   simp only [mem_displacementDomain, Finset.mem_Icc]
   omega
 
+ /--
+ @isnad1 id=ex.2h2v.s5.58f337c4deb4 from=translated src=- shape=356a57ca vocab=53b33ad0
+ -/
  theorem exists_endpoint_displacement (k : ℤ) (hk : 0 ≤ k) (j : ℤ)
     (hj : j = -k ∨ j = k) : ∃ σ : ℤ → ℤ, DisplacementPermutation k j σ := by
   rcases hj with hj | hj

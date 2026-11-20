@@ -7,7 +7,9 @@ import Tengoku.GnmLean.GN.Contraction
 namespace GN
 noncomputable section
 
-/-- Complete the missing complementary pairs below a power of three.-/
+/-- Complete the missing complementary pairs below a power of three.
+@isnad1 id=hasgood.6h4v.s7.ef70abd54ff2 from=translated src=- shape=443fecc6 vocab=5b5fe535
+-/
 theorem complete_complement_orbits {P n : ℤ} {t : ℕ} {s : Finset ℤ}
     (hP : P = (3 : ℤ)^t) (hn : P ≤ n)
     (hs : HasGood s) (hsub : s ⊆ Finset.Icc 1 n)
@@ -84,12 +86,17 @@ theorem complete_complement_orbits {P n : ℤ} {t : ℕ} {s : Finset ℤ}
 def criticalSupport (r a : ℤ) : Finset ℤ :=
   insert (r+a) ((Finset.Icc 1 (r-1)).erase a)
 
+/--
+@isnad1 id=iff.0h3v.s5.a522760b79dc from=translated src=- shape=27282a02 vocab=e60536b6
+-/
 @[simp] theorem mem_criticalSupport {r a x : ℤ} :
     x ∈ criticalSupport r a ↔ x = r+a ∨ (1 ≤ x ∧ x < r ∧ x ≠ a) := by
   simp only [criticalSupport, Finset.mem_insert, Finset.mem_erase, Finset.mem_Icc]
   omega
 
-/-- Translated signed vertices comprise the upper tail and reflected low support.-/
+/-- Translated signed vertices comprise the upper tail and reflected low support.
+@isnad1 id=iff.0h4v.s6.4fed19b9da63 from=translated src=- shape=02678be0 vocab=05fed7d5
+-/
 theorem mem_shift_signed {P r a x : ℤ} :
     x ∈ (signedVertices r a).image (fun y => P+y) ↔
       (P+1 ≤ x ∧ x ≤ P+r) ∨ P-x ∈ criticalSupport r a := by
@@ -107,12 +114,17 @@ theorem mem_shift_signed {P r a x : ℤ} :
     mem_neg_image, Finset.mem_erase, Finset.mem_Icc, mem_criticalSupport]
   omega
 
+ /--
+ @isnad1 id=and.4h4v.s6.3c8653dba775 from=translated src=- shape=9878c21a vocab=2693de86
+ -/
  theorem criticalSupport_bounds {P r a x : ℤ} (ha : 1 ≤ a) (har : a < r)
     (hPr : 2*r < P) (hx : x ∈ criticalSupport r a) : 1 ≤ x ∧ x < P := by
   rw [mem_criticalSupport] at hx
   omega
 
-/-- A good low support and the signed top suffice once their overlap is repaired.-/
+/-- A good low support and the signed top suffice once their overlap is repaired.
+@isnad1 id=hasgood.9h6v.s7.c601799b890d from=translated src=- shape=b5c737a8 vocab=f7a90e44
+-/
 theorem critical_support_completion {P r a : ℤ} {t : ℕ}
     {zs : Finset (Finset ℤ)} {L : Finset ℤ}
     (hP : P = (3 : ℤ)^t) (ha : 1 ≤ a) (har : a < r) (hPr : 2*r < P)
@@ -188,6 +200,9 @@ theorem critical_support_completion {P r a : ℤ} {t : ℕ}
     rw [heq]
     exact or_comm
 
+ /--
+ @isnad1 id=eq.0h2v.s4.833a28e29e41 from=translated src=- shape=009355b4 vocab=bf12808f
+ -/
  theorem criticalSupport_eq_contractSupport (r : ℕ) (a : ℤ) :
     criticalSupport (r : ℤ) a = contractSupport (interval r) a (r : ℤ) := by
   ext x
@@ -213,6 +228,9 @@ theorem critical_support_completion {P r a : ℤ} {t : ℕ}
   simp only [Finset.mem_insert, Finset.mem_singleton]
   omega
 
+ /--
+ @isnad1 id=eq.4h3v.s6.f2f19cf2ec19 from=translated src=- shape=5fb62e23 vocab=c7ab40c5
+ -/
  theorem contractBlock_sum {b : Finset ℤ} {a r : ℤ}
     (ha : a ∈ b) (hr : r ∈ b) (har : a ≠ r) (hd : a+r ∉ b) :
     (contractBlock b a r).sum id = b.sum id := by
@@ -226,7 +244,9 @@ theorem critical_support_completion {P r a : ℤ} {t : ℕ}
   simp only [id_eq] at h1 h2
   omega
 
-/-- Any low/high overlap forces precisely the contracted complementary pair.-/
+/-- Any low/high overlap forces precisely the contracted complementary pair.
+@isnad1 id=eq.8h6v.s7.912785747db7 from=translated src=- shape=b4a1ff4c vocab=b99620d2
+-/
 theorem contractBlock_eq_collision_pair {r : ℕ} {P a : ℤ} {t : ℕ}
     {bs : Finset (Finset ℤ)} {b : Finset ℤ}
     (hs : GoodOn (interval r) bs) (hb : b ∈ bs)
@@ -267,7 +287,9 @@ theorem contractBlock_eq_collision_pair {r : ℕ} {P a : ℤ} {t : ℕ}
   · exact (contractBlock_sum ha hr har hdnot).trans hsumeq
   · omega
 
-/-- Transfer an actual source partition and actual signed frame to the critical target.-/
+/-- Transfer an actual source partition and actual signed frame to the critical target.
+@isnad1 id=hasgood.8h7v.s7.905a51294172 from=translated src=- shape=207439e6 vocab=65d054e4
+-/
 theorem critical_transfer {P r t : ℕ} {a : ℤ}
     {bs zs : Finset (Finset ℤ)} {b : Finset ℤ}
     (hP : P = 3^t) (hPr : 2*r < P)
@@ -334,7 +356,9 @@ theorem critical_transfer {P r t : ℕ} {a : ℤ}
       · rw [mem_criticalSupport] at hxt
         omega
 
-/-- Existence of the required signed frames suffices for every critical induction step.-/
+/-- Existence of the required signed frames suffices for every critical induction step.
+@isnad1 id=hasgood.5h3v.s7.af98e15a5ee9 from=translated src=- shape=6b93a212 vocab=7326f126
+-/
 theorem critical_extension_of_frames {P r t : ℕ}
     (hP : P = 3^t) (hPr : 2*r < P) (hmod : r % 3 = 2)
     (hs : HasGood (interval r))

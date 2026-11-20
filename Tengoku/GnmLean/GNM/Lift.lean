@@ -24,7 +24,9 @@ noncomputable section
 def canonicalPairs (Q lo hi : ℤ) : Finset (Finset ℤ) :=
   (Finset.Icc lo hi).image (fun d => {d, Q - d})
 
-/-- The canonical pairs of a range partition the range and its complement.-/
+/-- The canonical pairs of a range partition the range and its complement.
+@isnad1 id=goodon.3h4v.s7.8fd1f9377f36 from=translated src=- shape=1dad3b4d vocab=4b902b7e
+-/
 theorem canonicalPairs_goodOn {Q t : ℕ} {lo hi : ℤ} (hQ : Q = 3 ^ t) (hlo : 1 ≤ lo)
     (hhi : 2 * hi < (Q : ℤ)) :
     GoodOn (Finset.Icc lo hi ∪ Finset.Icc ((Q : ℤ) - hi) ((Q : ℤ) - lo))
@@ -266,7 +268,9 @@ private theorem goodOn_sdiff {s : Finset ℤ} {bs cs : Finset (Finset ℤ)} (hbs
 /-! ### The lift carries good partitions to good partitions -/
 
 /-- The lift carries good partitions at a negative offset to good partitions at the same offset of
-the larger power.-/
+the larger power.
+@isnad1 id=goodon.6h6v.s6.1dadbbb5f495 from=translated src=- shape=b4996885 vocab=abe5d870
+-/
 theorem liftBlocks_goodOn_sub {Q Q' r t t' : ℕ} (hQ : Q = 3 ^ t) (hQ' : Q' = 3 ^ t')
     (hle : Q ≤ Q') (hr : 1 ≤ r) (hQr : 2 * r < Q) {bs : Finset (Finset ℤ)}
     (hbs : GoodOn (interval (Q - r)) bs) :
@@ -349,7 +353,9 @@ theorem liftBlocks_goodOn_sub {Q Q' r t t' : ℕ} (hQ : Q = 3 ^ t) (hQ' : Q' = 3
   exact hu
 
 /-- The lift carries good partitions at a positive offset to good partitions at the same offset of
-the larger power.-/
+the larger power.
+@isnad1 id=goodon.5h6v.s6.9b5d097f2c42 from=translated src=- shape=e026ab14 vocab=76f48e36
+-/
 theorem liftBlocks_goodOn_add {P P' r t t' : ℕ} (hP : P = 3 ^ t) (hP' : P' = 3 ^ t')
     (hle : P ≤ P') (hPr : r * (r + 1) < P) {bs : Finset (Finset ℤ)}
     (hbs : GoodOn (interval (P + r)) bs) :
@@ -521,14 +527,18 @@ private theorem truncBlocks_liftBlocks_aux {Q Q' : ℤ} (hle : Q ≤ Q') (bs : F
   · intro hu
     exact ⟨u.image (relabel Q Q'), ⟨u, hu, rfl⟩, unrelabel_image_relabel hle u⟩
 
-/-- The truncation undoes the lift at a negative offset.-/
+/-- The truncation undoes the lift at a negative offset.
+@isnad1 id=eq.6h6v.s7.a6e7821f49dd from=translated src=- shape=c14302fe vocab=97cec473
+-/
 theorem truncBlocks_liftBlocks_sub {Q Q' r t t' : ℕ} (hQ : Q = 3 ^ t) (hQ' : Q' = 3 ^ t')
     (hle : Q ≤ Q') (hr : 1 ≤ r) (hQr : 2 * r < Q) {bs : Finset (Finset ℤ)}
     (hbs : GoodOn (interval (Q - r)) bs) :
     truncBlocks (Q : ℤ) (Q' : ℤ) (liftBlocks (Q : ℤ) (Q' : ℤ) bs) = bs :=
   truncBlocks_liftBlocks_aux (by exact_mod_cast hle) bs
 
-/-- The truncation undoes the lift at a positive offset.-/
+/-- The truncation undoes the lift at a positive offset.
+@isnad1 id=eq.5h6v.s6.5acae8a3a451 from=translated src=- shape=25a8f1b8 vocab=e1e364ab
+-/
 theorem truncBlocks_liftBlocks_add {P P' r t t' : ℕ} (hP : P = 3 ^ t) (hP' : P' = 3 ^ t')
     (hle : P ≤ P') (hPr : r * (r + 1) < P) {bs : Finset (Finset ℤ)}
     (hbs : GoodOn (interval (P + r)) bs) :
@@ -536,7 +546,9 @@ theorem truncBlocks_liftBlocks_add {P P' r t t' : ℕ} (hP : P = 3 ^ t) (hP' : P
   truncBlocks_liftBlocks_aux (by exact_mod_cast hle) bs
 
 /-- Above the threshold the lift undoes the truncation at a negative offset, and the truncation of a
-good partition is a good partition of the smaller interval.-/
+good partition is a good partition of the smaller interval.
+@isnad1 id=and.7h6v.s7.6427d0f3dce9 from=translated src=- shape=9f7b3a8a vocab=97cec473
+-/
 theorem liftBlocks_truncBlocks_sub {Q Q' r t t' : ℕ} (hQ : Q = 3 ^ t) (hQ' : Q' = 3 ^ t')
     (hle : Q ≤ Q') (hr : 1 ≤ r) (hQr : 2 * r < Q) (hthr : r * (r - 1) < Q)
     {bs : Finset (Finset ℤ)} (hbs : GoodOn (interval (Q' - r)) bs) :
@@ -653,7 +665,9 @@ theorem liftBlocks_truncBlocks_sub {Q Q' r t t' : ℕ} (hQ : Q = 3 ^ t) (hQ' : Q
   exact Finset.sdiff_union_of_subset hCsub
 
 /-- Above the threshold the lift undoes the truncation at a positive offset, and the truncation of a
-good partition is a good partition of the smaller interval.-/
+good partition is a good partition of the smaller interval.
+@isnad1 id=and.5h6v.s7.bf6451ad1ec1 from=translated src=- shape=bff47f63 vocab=e1e364ab
+-/
 theorem liftBlocks_truncBlocks_add {P P' r t t' : ℕ} (hP : P = 3 ^ t) (hP' : P' = 3 ^ t')
     (hle : P ≤ P') (hthr : r * (r + 1) < P) {bs : Finset (Finset ℤ)}
     (hbs : GoodOn (interval (P' + r)) bs) :
@@ -805,7 +819,9 @@ theorem liftBlocks_truncBlocks_add {P P' r t t' : ℕ} (hP : P = 3 ^ t) (hP' : P
   rw [Finset.image_congr hid, Finset.image_id]
   exact Finset.sdiff_union_of_subset hCsub
 
-/-- The counts at a negative offset are monotone along the powers.-/
+/-- The counts at a negative offset are monotone along the powers.
+@isnad1 id=le.3h3v.s6.3e36b836a5d2 from=translated src=- shape=17e3e715 vocab=810e83d3
+-/
 theorem count_sub_le_count_sub {r t t' : ℕ} (hr : 1 ≤ r) (h2 : 2 * r < 3 ^ t) (htt' : t ≤ t') :
     count (3 ^ t - r) ≤ count (3 ^ t' - r) := by
   have hpow : (3 : ℕ) ^ t ≤ 3 ^ t' := Nat.pow_le_pow_right (by norm_num) htt'

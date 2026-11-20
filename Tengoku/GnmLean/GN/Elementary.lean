@@ -6,7 +6,9 @@ namespace GN
 
 noncomputable section
 
-/-- Complementary pairs partition an interval symmetric about an odd power of three.-/
+/-- Complementary pairs partition an interval symmetric about an odd power of three.
+@isnad1 id=hasgood.2h3v.s6.144ca4034a01 from=translated src=- shape=76e3bea4 vocab=6f542052
+-/
 theorem hasGood_complement_interval {k : ℕ} {h lo : ℤ}
     (hp : (3 : ℤ)^k = 2 * h + 1) (hlo : lo ≤ h + 1) :
     HasGood (Finset.Icc lo (2 * h + 1 - lo)) := by
@@ -36,7 +38,9 @@ theorem hasGood_complement_interval {k : ℕ} {h lo : ℤ}
   · rintro ⟨x, hx, hz⟩
     omega
 
-/-- Add one contiguous interval above an already partitioned positive interval.-/
+/-- Add one contiguous interval above an already partitioned positive interval.
+@isnad1 id=hasgood.3h2v.s5.ec3eea873b45 from=translated src=- shape=d928189a vocab=942fd167
+-/
 theorem HasGood.append_interval {m n : ℕ} (hmn : m ≤ n)
     (hs : HasGood (interval m))
     (ht : HasGood (Finset.Icc ((m : ℤ) + 1) (n : ℤ))) :
@@ -52,7 +56,9 @@ theorem HasGood.append_interval {m n : ℕ} (hmn : m ≤ n)
   simp only [interval, Finset.mem_union, Finset.mem_Icc]
   omega
 
-/-- Extend a good prefix by complementary pairs with prescribed power-of-three sum.-/
+/-- Extend a good prefix by complementary pairs with prescribed power-of-three sum.
+@isnad1 id=hasgood.3h3v.s6.12defd55ffe3 from=translated src=- shape=2ee461c1 vocab=070e3bfe
+-/
 theorem complement_pair_extension {m n k : ℕ} (hmn : m ≤ n)
     (hsum : (m : ℤ) + (n : ℤ) + 1 = (3 : ℤ)^k)
     (hs : HasGood (interval m)) : HasGood (interval n) := by
@@ -73,18 +79,27 @@ def symmA (P q i : ℤ) : Finset ℤ :=
 def symmB (P q i : ℤ) : Finset ℤ :=
   {P - 2*q + i, P - q + i, P + 3*q - 2*i}
 
+ /--
+ @isnad1 id=goodbloc.2h4v.s5.8bbbb717cd6c from=translated src=- shape=3d9596a1 vocab=54e241ad
+ -/
  theorem goodBlock_symmA {P q i : ℤ} {k : ℕ} (hp : P = (3 : ℤ)^k)
     (hi : 0 ≤ i ∧ i < q) : GoodBlock (symmA P q i) := by
   apply goodBlock_triple (by omega) (by omega) (by omega) (k := k + 1)
   rw [pow_succ, ← hp]
   ring
 
+ /--
+ @isnad1 id=goodbloc.2h4v.s5.dfaf47e420df from=translated src=- shape=3d9596a1 vocab=61b6d52b
+ -/
  theorem goodBlock_symmB {P q i : ℤ} {k : ℕ} (hp : P = (3 : ℤ)^k)
     (hi : 0 ≤ i ∧ i < q) : GoodBlock (symmB P q i) := by
   apply goodBlock_triple (by omega) (by omega) (by omega) (k := k + 1)
   rw [pow_succ, ← hp]
   ring
 
+ /--
+ @isnad1 id=disjoint.3h4v.s5.250ab172c898 from=translated src=- shape=310dcaf4 vocab=c63bf3ce
+ -/
  theorem symmA_disjoint {P q i j : ℤ} (hi : 0 ≤ i ∧ i < q)
     (hj : 0 ≤ j ∧ j < q) (hij : i ≠ j) : Disjoint (symmA P q i) (symmA P q j) := by
   apply Finset.disjoint_left.mpr
@@ -92,6 +107,9 @@ def symmB (P q i : ℤ) : Finset ℤ :=
   simp only [symmA, Finset.mem_insert, Finset.mem_singleton] at hx hx'
   omega
 
+ /--
+ @isnad1 id=disjoint.3h4v.s5.ff98cf35f55e from=translated src=- shape=310dcaf4 vocab=d87a2a33
+ -/
  theorem symmB_disjoint {P q i j : ℤ} (hi : 0 ≤ i ∧ i < q)
     (hj : 0 ≤ j ∧ j < q) (hij : i ≠ j) : Disjoint (symmB P q i) (symmB P q j) := by
   apply Finset.disjoint_left.mpr
@@ -99,6 +117,9 @@ def symmB (P q i : ℤ) : Finset ℤ :=
   simp only [symmB, Finset.mem_insert, Finset.mem_singleton] at hx hx'
   omega
 
+ /--
+ @isnad1 id=disjoint.2h4v.s5.a1774fe2e105 from=translated src=- shape=bafdf95e vocab=b6473654
+ -/
  theorem symmAB_disjoint {P q i j : ℤ} (hi : 0 ≤ i ∧ i < q)
     (hj : 0 ≤ j ∧ j < q) : Disjoint (symmA P q i) (symmB P q j) := by
   apply Finset.disjoint_left.mpr
@@ -106,7 +127,9 @@ def symmB (P q i : ℤ) : Finset ℤ :=
   simp only [symmA, symmB, Finset.mem_insert, Finset.mem_singleton] at hx hx'
   omega
 
-/-- The two triple families cover precisely the symmetric interval with its center removed.-/
+/-- The two triple families cover precisely the symmetric interval with its center removed.
+@isnad1 id=eq.1h2v.s7.32bb28573435 from=translated src=- shape=4c9342e5 vocab=08fb7012
+-/
 theorem symmetric_core_coverage (P q : ℤ) (hq : 0 ≤ q) :
     (Finset.Ico 0 q).biUnion (symmA P q) ∪
       (Finset.Ico 0 q).biUnion (symmB P q) =
@@ -132,7 +155,9 @@ theorem symmetric_core_coverage (P q : ℤ) (hq : 0 ≤ q) :
         · exact Or.inl ⟨(P + 3*q - 1 - z) / 2, by omega,
             Or.inr (Or.inr (by omega))⟩
 
-/-- The symmetric interval minus its center is partitioned by good triples.-/
+/-- The symmetric interval minus its center is partitioned by good triples.
+@isnad1 id=hasgood.2h3v.s6.743a629f99a5 from=translated src=- shape=fb7adddd vocab=ef27d40c
+-/
 theorem hasGood_symmetric_core {P q : ℤ} {k : ℕ} (hp : P = (3 : ℤ)^k)
     (hq : 0 ≤ q) : HasGood ((Finset.Icc (P - 3*q) (P + 3*q)).erase P) := by
   have ha := hasGood_biUnion (Finset.Ico 0 q) (symmA P q)
@@ -151,7 +176,9 @@ theorem hasGood_symmetric_core {P q : ℤ} {k : ℕ} (hp : P = (3 : ℤ)^k)
       (symmAB_disjoint (Finset.mem_Ico.mp hi) (Finset.mem_Ico.mp hj)) hxi hxj
   simpa only [symmetric_core_coverage P q hq] using ha.union hb hd
 
-/-- Complete the symmetric core with a singleton or an outer triple.-/
+/-- Complete the symmetric core with a singleton or an outer triple.
+@isnad1 id=hasgood.3h3v.s6.9788a3b240f1 from=translated src=- shape=02eed4e6 vocab=5a374c8d
+-/
 theorem hasGood_symmetric_interval {P r : ℤ} {k : ℕ}
     (hp : P = (3 : ℤ)^k) (hr : 0 ≤ r) (hmod : r % 3 = 0 ∨ r % 3 = 1) :
     HasGood (Finset.Icc (P - r) (P + r)) := by
@@ -189,7 +216,9 @@ theorem hasGood_symmetric_interval {P r : ℤ} {k : ℕ}
       Finset.mem_insert, Finset.mem_singleton]
     omega
 
-/-- The lower noncritical step in the strong induction on the target interval.-/
+/-- The lower noncritical step in the strong induction on the target interval.
+@isnad1 id=hasgood.4h3v.s6.9292bce63635 from=translated src=- shape=236ebed7 vocab=5226683d
+-/
 theorem lower_symmetric_extension {P r k : ℕ} (hp : P = 3^k)
     (hPr : 2*r < P) (hmod : r % 3 = 0 ∨ r % 3 = 1)
     (hs : HasGood (interval (P-r-1))) : HasGood (interval (P+r)) := by
@@ -201,7 +230,9 @@ theorem lower_symmetric_extension {P r k : ℕ} (hp : P = 3^k)
   apply HasGood.append_interval (m := P-r-1) (by omega) hs
   simpa only [hleft, hright] using ht
 
-/-- The upper complement-pair step in the strong induction.-/
+/-- The upper complement-pair step in the strong induction.
+@isnad1 id=hasgood.4h3v.s6.6847634d977c from=translated src=- shape=afe9ceac vocab=59c2f20b
+-/
 theorem upper_pair_extension {P n k : ℕ} (hp : P = 3^k)
     (hlower : 3*P < 2*n) (hupper : n < 3*P)
     (hs : HasGood (interval (3*P-n-1))) : HasGood (interval n) := by

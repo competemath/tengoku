@@ -34,6 +34,9 @@ def holeVertices (k a : ℤ) : Finset ℤ :=
 def residueTriple (σ : ℤ → ℤ) (u : ℤ) : Finset ℤ :=
   {3*u+1, -(3*σ u+1), 3*(σ u-u)}
 
+ /--
+ @isnad1 id=zeropart.2h3v.s7.2a509e9ca84f from=translated src=- shape=9eb30268 vocab=11d1ccfe
+ -/
  theorem zeroPartition_image {ι : Type*} [DecidableEq ι] (u : Finset ι)
     (f : ι → Finset ℤ) (hz : ∀ i ∈ u, (f i).card = 3 ∧ (f i).sum id = 0)
     (hd : ∀ i ∈ u, ∀ j ∈ u, i ≠ j → Disjoint (f i) (f j)) :
@@ -48,6 +51,9 @@ def residueTriple (σ : ℤ → ℤ) (u : ℤ) : Finset ℤ :=
     obtain ⟨i, hi, rfl⟩ := Finset.mem_image.mp hb
     exact hz i hi
 
+ /--
+ @isnad1 id=and.0h2v.s5.781fb4c3c03b from=translated src=- shape=572fd5fd vocab=8378b6ba
+ -/
  theorem residueTriple_zero (σ : ℤ → ℤ) (u : ℤ) :
     (residueTriple σ u).card = 3 ∧ (residueTriple σ u).sum id = 0 := by
   have h12 : 3*u+1 ≠ -(3*σ u+1) := by omega
@@ -65,6 +71,9 @@ def residueTriple (σ : ℤ → ℤ) (u : ℤ) : Finset ℤ :=
     simp only [Finset.sum_singleton, id_eq]
     ring
 
+ /--
+ @isnad1 id=disjoint.4h5v.s6.57667e11bbaf from=translated src=- shape=7e9c53e3 vocab=3853ebef
+ -/
  theorem residueTriple_disjoint {k j : ℤ} {σ : ℤ → ℤ}
     (hσ : DisplacementPermutation k j σ) {u v : ℤ}
     (hu : u ∈ displacementDomain k j) (hv : v ∈ displacementDomain k j)
@@ -83,18 +92,26 @@ def residueTriple (σ : ℤ → ℤ) (u : ℤ) : Finset ℤ :=
   · omega
   · exact huv (hσ.2.injOn hu hv (by omega))
 
+/--
+@isnad1 id=iff.0h3v.s5.57f19da5b1e0 from=translated src=- shape=2296343a vocab=4efb8228
+-/
 @[simp] theorem mem_displacementDomain {k j u : ℤ} :
     u ∈ displacementDomain k j ↔ -k ≤ u ∧ u ≤ k ∧ u ≠ j := by
   simp only [displacementDomain, Finset.mem_erase, Finset.mem_Icc]
   tauto
 
+/--
+@isnad1 id=iff.0h3v.s6.0d52480b6206 from=translated src=- shape=cf9d6c78 vocab=c120d619
+-/
 @[simp] theorem mem_holeVertices {k a x : ℤ} :
     x ∈ holeVertices k a ↔
       -(3*k+1) ≤ x ∧ x ≤ 3*k+1 ∧ x ≠ 0 ∧ x ≠ a ∧ x ≠ -a := by
   simp only [holeVertices, Finset.mem_erase, Finset.mem_Icc]
   tauto
 
-/-- The residue triples exhaust exactly the symmetric interval with two holes.-/
+/-- The residue triples exhaust exactly the symmetric interval with two holes.
+@isnad1 id=eq.2h4v.s6.877ad5be0e22 from=translated src=- shape=552ab06d vocab=317e248b
+-/
  theorem residueTriple_cover {k j a : ℤ} {σ : ℤ → ℤ}
     (ha : a = 3*j+1 ∨ a = -(3*j+1))
     (hσ : DisplacementPermutation k j σ) :
@@ -143,6 +160,9 @@ def residueTriple (σ : ℤ → ℤ) (u : ℤ) : Finset ℤ :=
         simp only [residueTriple, Finset.mem_insert, Finset.mem_singleton]
         exact Or.inr (Or.inr (by dsimp only at huδ; omega))
 
+ /--
+ @isnad1 id=zeropart.2h4v.s6.427738e1b3b6 from=translated src=- shape=e74ad78f vocab=204fd6cc
+ -/
  theorem zeroPartition_hole_of_displacement {k j a : ℤ} {σ : ℤ → ℤ}
     (ha : a = 3*j+1 ∨ a = -(3*j+1))
     (hσ : DisplacementPermutation k j σ) :
@@ -152,12 +172,18 @@ def residueTriple (σ : ℤ → ℤ) (u : ℤ) : Finset ℤ :=
   exact zeroPartition_image _ _ (fun u _ => residueTriple_zero σ u)
     (fun _ hu _ hv huv => residueTriple_disjoint hσ hu hv huv)
 
+ /--
+ @isnad1 id=le.2h3v.s5.7e535e7c6bb8 from=translated src=- shape=8f0aa2b9 vocab=4fdf8e56
+ -/
  theorem ZeroPartition.subset {s : Finset ℤ} {bs : Finset (Finset ℤ)}
     (h : ZeroPartition s bs) {b : Finset ℤ} (hb : b ∈ bs) : b ⊆ s := by
   intro x hx
   rw [← h.1]
   exact Finset.mem_biUnion.mpr ⟨b, hb, hx⟩
 
+ /--
+ @isnad1 id=zeropart.3h4v.s5.27176e51a696 from=translated src=- shape=40786b37 vocab=7569ff7b
+ -/
  theorem ZeroPartition.union {s t : Finset ℤ} {bs cs : Finset (Finset ℤ)}
     (hs : ZeroPartition s bs) (ht : ZeroPartition t cs) (hst : Disjoint s t) :
     ZeroPartition (s ∪ t) (bs ∪ cs) := by
@@ -175,6 +201,9 @@ def residueTriple (σ : ℤ → ℤ) (u : ℤ) : Finset ℤ :=
     · exact hs.2.2 b hb
     · exact ht.2.2 b hb
 
+ /--
+ @isnad1 id=zeropart.4h3v.s6.f05f87411a09 from=translated src=- shape=fcf85b8c vocab=964e9eef
+ -/
  theorem zeroPartition_single_triple {x y z : ℤ}
     (hxy : x ≠ y) (hxz : x ≠ z) (hyz : y ≠ z) (hs : x+y+z = 0) :
     ZeroPartition {x,y,z} {{x,y,z}} := by
@@ -195,6 +224,9 @@ def residueTriple (σ : ℤ → ℤ) (u : ℤ) : Finset ℤ :=
     · rw [Finset.sum_insert h1, Finset.sum_insert h2]
       simpa only [Finset.sum_singleton, id_eq, add_assoc] using hs
 
+/--
+@isnad1 id=iff.0h2v.s5.30dd72984fb7 from=translated src=- shape=a094b81f vocab=fcc5f4fe
+-/
 @[simp] theorem mem_neg_image {s : Finset ℤ} {x : ℤ} :
     x ∈ s.image (fun y => -y) ↔ -x ∈ s := by
   constructor
@@ -205,6 +237,9 @@ def residueTriple (σ : ℤ → ℤ) (u : ℤ) : Finset ℤ :=
   · intro hx
     exact Finset.mem_image.mpr ⟨-x, hx, neg_neg x⟩
 
+ /--
+ @isnad1 id=eq.3h2v.s7.aee7c6a6d6a1 from=translated src=- shape=ad63a2d7 vocab=4e7b5a2e
+ -/
  theorem hole_union_critical {k a : ℤ} (_hk : 0 ≤ k)
     (ha : 1 ≤ a) (ha' : a ≤ 3*k+1) :
     holeVertices k a ∪ {a, 3*k+2, -(3*k+2+a)} = signedVertices (3*k+2) a := by
@@ -214,7 +249,9 @@ def residueTriple (σ : ℤ → ℤ) (u : ℤ) : Finset ℤ :=
     Finset.mem_Icc]
   omega
 
-/-- A displacement permutation supplies the entire critical signed frame.-/
+/-- A displacement permutation supplies the entire critical signed frame.
+@isnad1 id=ex.5h4v.s7.5c39aa029e27 from=translated src=- shape=91bf9e00 vocab=26314f30
+-/
  theorem zeroPartition_signed_of_displacement {k j a : ℤ} {σ : ℤ → ℤ}
     (hk : 0 ≤ k) (ha : 1 ≤ a) (ha' : a ≤ 3*k+1)
     (haj : a = 3*j+1 ∨ a = -(3*j+1))
@@ -235,7 +272,9 @@ def residueTriple (σ : ℤ → ℤ) (u : ℤ) : Finset ℤ :=
   have h := hh.union ht hd
   rwa [hole_union_critical hk ha ha'] at h
 
-/-- The prescribed nonmultiple of three determines a hole in the centered interval.-/
+/-- The prescribed nonmultiple of three determines a hole in the centered interval.
+@isnad1 id=ex.4h2v.s7.9e3e696bfc86 from=translated src=- shape=84669d3b vocab=c302f126
+-/
  theorem exists_residue_hole {k a : ℤ} (hk : 0 ≤ k)
     (ha : 1 ≤ a) (ha' : a ≤ 3*k+1) (ha3 : ¬ (3 : ℤ) ∣ a) :
     ∃ j : ℤ, -k ≤ j ∧ j ≤ k ∧ (a = 3*j+1 ∨ a = -(3*j+1)) := by
@@ -244,7 +283,9 @@ def residueTriple (σ : ℤ → ℤ) (u : ℤ) : Finset ℤ :=
   · refine ⟨(a-1)/3, ?_, ?_, Or.inl ?_⟩ <;> omega
   · refine ⟨-(a+1)/3, ?_, ?_, Or.inr ?_⟩ <;> omega
 
-/-- Abstract permutation existence suffices for the critical signed construction.-/
+/-- Abstract permutation existence suffices for the critical signed construction.
+@isnad1 id=ex.5h2v.s7.cb89c36a130e from=translated src=- shape=20bd851b vocab=bfaa30e9
+-/
  theorem exists_zeroPartition_signed {k a : ℤ} (hk : 0 ≤ k)
     (ha : 1 ≤ a) (ha' : a ≤ 3*k+1) (ha3 : ¬ (3 : ℤ) ∣ a)
     (hperm : ∀ j : ℤ, -k ≤ j → j ≤ k →
@@ -254,7 +295,9 @@ def residueTriple (σ : ℤ → ℤ) (u : ℤ) : Finset ℤ :=
   obtain ⟨σ, hσ⟩ := hperm j hj hj'
   exact zeroPartition_signed_of_displacement hk ha ha' haj hσ
 
-/-- Translation turns a zero triple into a block summing to the next power.-/
+/-- Translation turns a zero triple into a block summing to the next power.
+@isnad1 id=goodon.1h3v.s6.15a6a0a67273 from=translated src=- shape=68b11c65 vocab=1b0ef6bb
+-/
  theorem ZeroPartition.shift {s : Finset ℤ} {bs : Finset (Finset ℤ)}
     (h : ZeroPartition s bs) (t : ℕ) :
     GoodOn (s.image (fun x => (3 : ℤ)^t + x))
@@ -288,7 +331,9 @@ def residueTriple (σ : ℤ → ℤ) (u : ℤ) : Finset ℤ :=
     aesop
   rwa [hset] at hh
 
-/-- The shift lemma with a separately named power of three.-/
+/-- The shift lemma with a separately named power of three.
+@isnad1 id=goodon.2h4v.s6.1a3851992b75 from=translated src=- shape=06d1a3ee vocab=1b0ef6bb
+-/
  theorem ZeroPartition.shift_eq {s : Finset ℤ} {bs : Finset (Finset ℤ)}
     (h : ZeroPartition s bs) {P : ℤ} {t : ℕ} (hP : P = (3 : ℤ)^t) :
     GoodOn (s.image (fun x => P+x))

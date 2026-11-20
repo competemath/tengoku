@@ -120,7 +120,9 @@ private theorem goodOn_pairs_union {R sR : ℕ} (hR : R = 3 ^ sR) {J : Finset �
 def targetC (Q r : ℤ) (src : Finset (Finset ℤ)) : Finset (Finset ℤ) :=
   src ∪ canonicalPairs Q r ((Q - 1) / 2)
 
-/-- The negative target is a good partition of `{1, …, Q − r}`.-/
+/-- The negative target is a good partition of `{1, …, Q − r}`.
+@isnad1 id=goodon.4h4v.s6.48daa316b406 from=translated src=- shape=b7c93009 vocab=aa9d799d
+-/
 theorem targetC_goodOn {Q r t : ℕ} (hQ : Q = 3 ^ t) (hr : 1 ≤ r) (hQr : 2 * r < Q)
     {src : Finset (Finset ℤ)} (hsrc : GoodOn (interval (r - 1)) src) :
     GoodOn (interval (Q - r)) (targetC (Q : ℤ) (r : ℤ) src) := by
@@ -147,7 +149,9 @@ theorem targetC_goodOn {Q r t : ℕ} (hQ : Q = 3 ^ t) (hr : 1 ≤ r) (hQr : 2 * 
   rw [hset] at hun
   exact hun
 
-/-- The source can be read back off the negative target: it is the set of blocks below `r`.-/
+/-- The source can be read back off the negative target: it is the set of blocks below `r`.
+@isnad1 id=eq.4h4v.s7.00522b05d7d2 from=translated src=- shape=dfd6299f vocab=bc08b26e
+-/
 theorem targetC_src {Q r t : ℕ} (hQ : Q = 3 ^ t) (hr : 1 ≤ r) (hQr : 2 * r < Q)
     {src : Finset (Finset ℤ)} (hsrc : GoodOn (interval (r - 1)) src) :
     (targetC (Q : ℤ) (r : ℤ) src).filter (fun b => ∀ x ∈ b, x < (r : ℤ)) = src := by
@@ -171,7 +175,9 @@ theorem targetC_src {Q r t : ℕ} (hQ : Q = 3 ^ t) (hr : 1 ≤ r) (hQr : 2 * r <
     simp only [interval, Finset.mem_Icc] at hxs
     omega
 
-/-- The count at `r − 1` bounds the count at `Q − r`.-/
+/-- The count at `r − 1` bounds the count at `Q − r`.
+@isnad1 id=le.3h3v.s6.b97ab10b3bae from=translated src=- shape=9ff5dd9f vocab=810e83d3
+-/
 theorem count_pred_le_count_sub {Q r t : ℕ} (hQ : Q = 3 ^ t) (hr : 1 ≤ r) (hQr : 2 * r < Q) :
     count (r - 1) ≤ count (Q - r) := by
   refine count_le_of_injOn (targetC (Q : ℤ) (r : ℤ)) (fun bs hbs => ?_) (fun bs cs hbs hcs h => ?_)
@@ -444,7 +450,9 @@ private theorem srcAbove_exists {R s δ : ℕ} (hR : R = 3 ^ s) (hs : 4 ≤ s)
 /-! ### The two gadgets -/
 
 /-- The first gadget: for an offset `R − e + 1` just below a power `R`, the canonical completion and
-the two single merges of a canonical pair with the element `Q − R` give three good partitions.-/
+the two single merges of a canonical pair with the element `Q − R` give three good partitions.
+@isnad1 id=le.5h5v.s7.8422c0c3a347 from=translated src=- shape=874598bb vocab=51d41ee5
+-/
 theorem three_le_count_sub_below {Q R e t s : ℕ} (hR : R = 3 ^ s) (hs : 3 ≤ s)
     (he : e = 1 ∨ e = 2 ∨ e = 3 ∨ e = 4 ∨ e = 6) (hQ : Q = 3 ^ t) (hQR : 3 * R ≤ Q) :
     3 ≤ count (Q - (R - e + 1)) := by
@@ -583,7 +591,9 @@ theorem three_le_count_sub_below {Q R e t s : ℕ} (hR : R = 3 ^ s) (hs : 3 ≤ 
     ((isGoodPartition_iff _ _).mpr hT2) hne01 hne02 hne12
 
 /-- The second gadget: for an offset `R + δ` just above a power `R`, an explicit source at `R + δ −
-1` and the three-pair merge at two different starting deficits give three good partitions.-/
+1` and the three-pair merge at two different starting deficits give three good partitions.
+@isnad1 id=le.5h5v.s7.4b59ad76ca67 from=translated src=- shape=66c7018b vocab=51d41ee5
+-/
 theorem three_le_count_sub_above {Q R δ t s : ℕ} (hR : R = 3 ^ s) (hs : 4 ≤ s)
     (hδ : δ = 1 ∨ δ = 2 ∨ δ = 3 ∨ δ = 4 ∨ δ = 6) (hQ : Q = 3 ^ t) (hQR : 3 * R ≤ Q) :
     3 ≤ count (Q - (R + δ)) := by

@@ -659,7 +659,9 @@ private theorem certificates_of_le_21 {k : ℤ} (hk : 4 ≤ k) (hk' : k ≤ 21) 
       distinct_certificate_21⟩
 
 /-- Three distinct displacement permutations at every hole, for every `k` from four to
-twenty-one.-/
+twenty-one.
+@isnad1 id=threedis.3h2v.s5.57950e0cd258 from=translated src=- shape=d677d7df vocab=28746bb2
+-/
 theorem threeDisp_of_le_21 {k j : ℤ} (hk : 4 ≤ k) (hk' : k ≤ 21) (hj : -k ≤ j ∧ j ≤ k) :
     ThreeDisp k j := by
   obtain ⟨hp0, hp1, hp2, hd⟩ := certificates_of_le_21 hk hk'

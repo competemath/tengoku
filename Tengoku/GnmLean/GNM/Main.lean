@@ -18,7 +18,9 @@ open GN
 
 noncomputable section
 
-/-- The count is one exactly on the first exceptional set.-/
+/-- The count is one exactly on the first exceptional set.
+@isnad1 id=iff.1h1v.s4.133de16b9cc0 from=translated src=- shape=cd71a022 vocab=ad541d30
+-/
 theorem count_eq_one_iff_internal (n : ℕ) (hn : 1 ≤ n) : count n = 1 ↔ Nu n := by
   constructor
   · intro h
@@ -30,7 +32,9 @@ theorem count_eq_one_iff_internal (n : ℕ) (hn : 1 ≤ n) : count n = 1 ↔ Nu 
       omega
   · exact fun h => count_eq_one_of_nu h
 
-/-- The count is two exactly on the second exceptional set.-/
+/-- The count is two exactly on the second exceptional set.
+@isnad1 id=iff.0h1v.s3.3bdfe4e8ec8b from=translated src=- shape=f72d1292 vocab=4bf95cf5
+-/
 theorem count_eq_two_iff_internal (n : ℕ) : count n = 2 ↔ E2 n := by
   constructor
   · intro h
@@ -45,7 +49,9 @@ theorem count_eq_two_iff_internal (n : ℕ) : count n = 2 ↔ E2 n := by
         omega
   · exact fun h => count_eq_two_of_e2 h
 
-/-- The count is at least three exactly outside the two exceptional sets.-/
+/-- The count is at least three exactly outside the two exceptional sets.
+@isnad1 id=iff.1h1v.s4.26284d2a3fe9 from=translated src=- shape=4acb5dec vocab=f2a070b5
+-/
 theorem three_le_count_iff_internal (n : ℕ) (hn : 1 ≤ n) : 3 ≤ count n ↔ ¬ Nu n ∧ ¬ E2 n := by
   constructor
   · intro h
@@ -56,7 +62,9 @@ theorem three_le_count_iff_internal (n : ℕ) (hn : 1 ≤ n) : 3 ≤ count n ↔
       omega
   · exact fun h => three_le_count_of_not_exceptional n hn h.1 h.2
 
-/-- Each interval six below a power of three has exactly two good partitions.-/
+/-- Each interval six below a power of three has exactly two good partitions.
+@isnad1 id=eq.2h2v.s5.9afc5306bc05 from=translated src=- shape=2e582100 vocab=110fc0bd
+-/
 theorem count_eq_two_of_add_six_internal (n t : ℕ) (ht : 3 ≤ t) (h : n + 6 = 3 ^ t) :
     count n = 2 :=
   count_eq_two_of_e2 (Or.inr (Or.inr ⟨t, ht, h⟩))

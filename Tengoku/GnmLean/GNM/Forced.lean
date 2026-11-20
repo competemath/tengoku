@@ -138,7 +138,9 @@ private theorem eq_singleton_of_sum {s : Finset ℤ} (hpos : ∀ y ∈ s, (1 : �
 /-! ### The forced form of a block meeting the upper half -/
 
 /-- Negative offsets: a block containing an element above the halfway point sums to the power, and
-its other elements lie below the halfway point.-/
+its other elements lie below the halfway point.
+@isnad1 id=and.6h6v.s7.26668b3faa51 from=translated src=- shape=d9af3c14 vocab=211f2443
+-/
 theorem high_block_sub {Q r t : ℕ} (hQ : Q = 3 ^ t) (hQr : 2 * r < Q) {bs : Finset (Finset ℤ)}
     (hbs : GoodOn (interval (Q - r)) bs) {b : Finset ℤ} (hb : b ∈ bs) {x : ℤ} (hx : x ∈ b)
     (hhigh : ((Q : ℤ) - 1) / 2 < x) :
@@ -178,7 +180,9 @@ theorem high_block_sub {Q r t : ℕ} (hQ : Q = 3 ^ t) (hQr : 2 * r < Q) {bs : Fi
 
 /-- Positive offsets above the threshold `r(r + 1)`: a block meeting the upper half is the singleton
 of the power, or sums to the power with exactly one high element, or sums to three times the power
-with all three elements high.-/
+with all three elements high.
+@isnad1 id=or.6h6v.s8.59440443fcd0 from=translated src=- shape=7ea771cc vocab=3c54c64e
+-/
 theorem high_block_add {P r t : ℕ} (hP : P = 3 ^ t) (hPr : r * (r + 1) < P)
     {bs : Finset (Finset ℤ)} (hbs : GoodOn (interval (P + r)) bs) {b : Finset ℤ} (hb : b ∈ bs)
     {x : ℤ} (hx : x ∈ b) (hhigh : ((P : ℤ) - 1) / 2 < x) :
@@ -387,7 +391,9 @@ private theorem descent {c S : ℤ} (_hS : 0 ≤ S) (Lo : ℤ → Finset ℤ)
 
 /-! ### Every large deficit is canonical -/
 
-/-- Negative offsets: every deficit above `r(r − 1)/2` is canonical.-/
+/-- Negative offsets: every deficit above `r(r − 1)/2` is canonical.
+@isnad1 id=mem.7h5v.s7.07dba54d876b from=translated src=- shape=f96c5c55 vocab=e81c98a9
+-/
 theorem canonical_sub {Q r t : ℕ} (hQ : Q = 3 ^ t) (hr : 1 ≤ r) (hQr : 2 * r < Q)
     {bs : Finset (Finset ℤ)} (hbs : GoodOn (interval (Q - r)) bs) {d : ℤ}
     (hd : (r : ℤ) * (r - 1) / 2 < d) (hdr : (r : ℤ) ≤ d) (hd' : 2 * d < Q) :
@@ -544,7 +550,9 @@ theorem canonical_sub {Q r t : ℕ} (hQ : Q = 3 ^ t) (hr : 1 ≤ r) (hQr : 2 * r
   rw [hpair]
   exact hb1
 
-/-- Positive offsets: every deficit above `r(r + 1)/2` is canonical.-/
+/-- Positive offsets: every deficit above `r(r + 1)/2` is canonical.
+@isnad1 id=mem.6h5v.s7.8307da23a1ac from=translated src=- shape=981c23bf vocab=bb122598
+-/
 theorem canonical_add {P r t : ℕ} (hP : P = 3 ^ t) (hPr : r * (r + 1) < P)
     {bs : Finset (Finset ℤ)} (hbs : GoodOn (interval (P + r)) bs) {d : ℤ}
     (hd : (r : ℤ) * (r + 1) / 2 < d) (hd1 : 1 ≤ d) (hd' : 2 * d < P) :
