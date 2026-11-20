@@ -1,0 +1,1 @@
+-- Biyoneda: a factory bundle (data/intake/biyoneda). This file only marks the library for Tengoku/All.lean.

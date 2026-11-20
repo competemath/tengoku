@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "477e50a353aaacd41f28c2b634194e7c5704421660d58b7935e5f5bd61fb1bcb",
+ "factory_changes": {
+  "inert lines removed": 1,
+  "modules changed": 1
+ },
+ "gate2_unjudged": [],
+ "library": "biyoneda",
+ "lint_mode": "proposed",
+ "modules": 4,
+ "part": 1,
+ "theorems": 67
+}
