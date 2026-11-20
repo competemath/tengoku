@@ -47,6 +47,7 @@ import Tengoku.LieLean
 import Tengoku.LanaFormalSchemes
 import Tengoku.FltAnthropic
 import Tengoku.DescriptiveComplexity
+import Tengoku.Hellingerrepolean4
 import Tengoku.TenProofs
 import Tengoku.TusnadyLean
 import Tengoku.FormalizeTubalDemystPaper
