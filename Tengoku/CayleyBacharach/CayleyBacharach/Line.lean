@@ -31,11 +31,17 @@ def conicEval (q : Fin 6 → R) (v : Fin 3 → R) : R := ∑ j, q j * conicMono 
 def mulLin (ℓ : Fin 3 → R) (q : Fin 6 → R) : PlaneCubic R :=
   ![(ℓ 0)*(q 0), (ℓ 0)*(q 1) + (ℓ 1)*(q 0), (ℓ 0)*(q 2) + (ℓ 2)*(q 0), (ℓ 0)*(q 3) + (ℓ 1)*(q 1), (ℓ 0)*(q 4) + (ℓ 1)*(q 2) + (ℓ 2)*(q 1), (ℓ 0)*(q 5) + (ℓ 2)*(q 2), (ℓ 1)*(q 3), (ℓ 1)*(q 4) + (ℓ 2)*(q 3), (ℓ 1)*(q 5) + (ℓ 2)*(q 4), (ℓ 2)*(q 5)]
 
+/--
+@isnad1 id=eq.0h4v.s6.616941ee7bfe from=translated src=- shape=02f14cbf vocab=5700369e
+-/
 theorem eval_mulLin (ℓ : Fin 3 → R) (q : Fin 6 → R) (v : Fin 3 → R) :
     eval (mulLin ℓ q) v = (ℓ ⬝ᵥ v) * conicEval q v := by
   simp [eval_expand, mulLin, conicEval, conicMono, dotProduct, Fin.sum_univ_succ]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s6.08cf674845a4 from=translated src=- shape=0c5a57bd vocab=8ea848e8
+-/
 theorem mulLin_smul (ℓ : Fin 3 → R) (c : R) (q : Fin 6 → R) :
     mulLin ℓ (c • q) = c • mulLin ℓ q := by
   ext i
@@ -55,19 +61,27 @@ noncomputable def restrict (F : PlaneCubic R) (P Q : Fin 3 → R) : Polynomial R
     + Polynomial.C (∑ i, F i * mono2 P Q i) * Polynomial.X ^ 2
     + Polynomial.C (∑ i, F i * mono1 P Q i) * Polynomial.X + Polynomial.C (eval F P)
 
-/-- Restriction of a cubic to a line: explicit cubic polynomial in `t`.-/
+/-- Restriction of a cubic to a line: explicit cubic polynomial in `t`.
+@isnad1 id=eq.0h5v.s8.b54af61daae2 from=translated src=- shape=c88f4660 vocab=b9aed0dd
+-/
 theorem eval_add_smul (F : PlaneCubic R) (P Q : Fin 3 → R) (t : R) :
     eval F (P + t • Q) = eval F Q * t ^ 3 + (∑ i, F i * mono2 P Q i) * t ^ 2
       + (∑ i, F i * mono1 P Q i) * t + eval F P := by
   simp [eval_expand, mono1, mono2, Fin.sum_univ_succ]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s7.62421ab1b0a8 from=translated src=- shape=af6dc5d2 vocab=e86830e5
+-/
 theorem restrict_eval (F : PlaneCubic R) (P Q : Fin 3 → R) (t : R) :
     (restrict F P Q).eval t = eval F (P + t • Q) := by
   simp only [restrict, Polynomial.eval_add, Polynomial.eval_mul, Polynomial.eval_C,
     Polynomial.eval_pow, Polynomial.eval_X]
   rw [eval_add_smul]
 
+/--
+@isnad1 id=le.0h4v.s5.6fa997a4f9ec from=translated src=- shape=12c1c631 vocab=0f6d0242
+-/
 theorem restrict_natDegree_le (F : PlaneCubic R) (P Q : Fin 3 → R) :
     (restrict F P Q).natDegree ≤ 3 := by
   unfold restrict
@@ -80,7 +94,9 @@ section Field
 variable {K : Type*} [Field K]
 
 /-- A polynomial identity `a t³ + b t² + c t + d = 0` for all `t` in an infinite field
-forces all four coefficients to vanish.-/
+forces all four coefficients to vanish.
+@isnad1 id=and.1h5v.s8.e624521bb54d from=translated src=- shape=8e1da23e vocab=575aa09f
+-/
 theorem coeffs_eq_zero_of_forall [Infinite K] {a b c d : K}
     (h : ∀ t : K, a * t ^ 3 + b * t ^ 2 + c * t + d = 0) :
     a = 0 ∧ b = 0 ∧ c = 0 ∧ d = 0 := by
@@ -101,20 +117,27 @@ This is the sharp hypothesis for the line lemma (see `line_lemma_false_zmod_two`
 class AtLeastThree (K : Type*) [Field K] : Prop where
   exists_ne : ∃ t : K, t ≠ 0 ∧ t ≠ 1
 
+/--
+@isnad1 id=atleastt.0h1v.s3.7d89d4d4ef4d from=translated src=- shape=c612a321 vocab=54a360e3
+-/
 instance (priority := 100) AtLeastThree.of_infinite [Infinite K] : AtLeastThree K := by
   classical
   obtain ⟨t, ht⟩ := Infinite.exists_notMem_finset ({(0 : K), 1} : Finset K)
   simp only [Finset.mem_insert, Finset.mem_singleton, not_or] at ht
   exact ⟨t, ht⟩
 
-/-- A field with at least three elements avoids any two prescribed values, one being `0`.-/
+/-- A field with at least three elements avoids any two prescribed values, one being `0`.
+@isnad1 id=ex.0h2v.s5.7d4115296388 from=translated src=- shape=397f0fb6 vocab=9a17e0b2
+-/
 theorem AtLeastThree.exists_ne_zero_ne [AtLeastThree K] (c : K) : ∃ t : K, t ≠ 0 ∧ t ≠ c := by
   obtain ⟨t, ht0, ht1⟩ := AtLeastThree.exists_ne (K := K)
   by_cases hc : c = 1
   · exact ⟨t, ht0, hc ▸ ht1⟩
   · exact ⟨1, one_ne_zero, fun h => hc h.symm⟩
 
-/-- Finite fields with at least three elements.-/
+/-- Finite fields with at least three elements.
+@isnad1 id=atleastt.1h1v.s4.afb80bd0bc38 from=translated src=- shape=d1cfaf7d vocab=25b99cec
+-/
 theorem AtLeastThree.of_card [Fintype K] (h : 3 ≤ Fintype.card K) : AtLeastThree K := by
   classical
   by_contra hK
@@ -129,7 +152,9 @@ theorem AtLeastThree.of_card [Fintype K] (h : 3 ≤ Fintype.card K) : AtLeastThr
   omega
 
 /-- Over a field with at least three elements, a cubic in `t` with zero leading coefficient
-that vanishes identically has all coefficients zero (evaluate at `0, 1, t₀`).-/
+that vanishes identically has all coefficients zero (evaluate at `0, 1, t₀`).
+@isnad1 id=and.2h5v.s8.956887bcc512 from=translated src=- shape=e3b93f1b vocab=7b1d7b2a
+-/
 theorem coeffs_eq_zero_of_forall_three [AtLeastThree K] {a b c d : K} (ha : a = 0)
     (h : ∀ t : K, a * t ^ 3 + b * t ^ 2 + c * t + d = 0) :
     a = 0 ∧ b = 0 ∧ c = 0 ∧ d = 0 := by
@@ -147,7 +172,9 @@ theorem coeffs_eq_zero_of_forall_three [AtLeastThree K] {a b c d : K} (ha : a = 
   refine ⟨rfl, hb0, ?_, rfl⟩
   linear_combination hbc - hb0
 
-/-- Line lemma, case `ℓ 0 ≠ 0`.-/
+/-- Line lemma, case `ℓ 0 ≠ 0`.
+@isnad1 id=ex.2h3v.s7.621fb31d238b from=translated src=- shape=c07d40b9 vocab=af58f91e
+-/
 theorem line_lemma_aux0 [AtLeastThree K] (F : PlaneCubic K) (ℓ : Fin 3 → K) (hk : ℓ 0 ≠ 0)
     (hF : ∀ v : Fin 3 → K, ℓ ⬝ᵥ v = 0 → eval F v = 0) :
     ∃ q : Fin 6 → K, F = mulLin ℓ q := by
@@ -178,7 +205,9 @@ theorem line_lemma_aux0 [AtLeastThree K] (F : PlaneCubic K) (ℓ : Fin 3 → K) 
   · linear_combination h1
   · linear_combination h0
 
-/-- Line lemma, case `ℓ 1 ≠ 0`.-/
+/-- Line lemma, case `ℓ 1 ≠ 0`.
+@isnad1 id=ex.2h3v.s7.256ded360c3d from=translated src=- shape=c07d40b9 vocab=af58f91e
+-/
 theorem line_lemma_aux1 [AtLeastThree K] (F : PlaneCubic K) (ℓ : Fin 3 → K) (hk : ℓ 1 ≠ 0)
     (hF : ∀ v : Fin 3 → K, ℓ ⬝ᵥ v = 0 → eval F v = 0) :
     ∃ q : Fin 6 → K, F = mulLin ℓ q := by
@@ -209,7 +238,9 @@ theorem line_lemma_aux1 [AtLeastThree K] (F : PlaneCubic K) (ℓ : Fin 3 → K) 
   · linear_combination
   · linear_combination h0
 
-/-- Line lemma, case `ℓ 2 ≠ 0`.-/
+/-- Line lemma, case `ℓ 2 ≠ 0`.
+@isnad1 id=ex.2h3v.s7.206902e8c313 from=translated src=- shape=c07d40b9 vocab=af58f91e
+-/
 theorem line_lemma_aux2 [AtLeastThree K] (F : PlaneCubic K) (ℓ : Fin 3 → K) (hk : ℓ 2 ≠ 0)
     (hF : ∀ v : Fin 3 → K, ℓ ⬝ᵥ v = 0 → eval F v = 0) :
     ∃ q : Fin 6 → K, F = mulLin ℓ q := by
@@ -245,7 +276,9 @@ automatic for infinite `K`), if a plane cubic `F` vanishes at every
 point of the line `ℓ = 0` (with `ℓ ≠ 0`), then `F = ℓ · q` for some conic `q`.
 
 The hypothesis is sharp: over `𝔽₂` the cubic `x²y + xy²` vanishes on every point of
-`z = 0` without being divisible by `z` (`line_lemma_false_zmod_two`).-/
+`z = 0` without being divisible by `z` (`line_lemma_false_zmod_two`).
+@isnad1 id=ex.2h3v.s7.df149498342e from=translated src=- shape=c307279e vocab=af58f91e
+-/
 theorem line_lemma [AtLeastThree K] (F : PlaneCubic K) (ℓ : Fin 3 → K) (hℓ : ℓ ≠ 0)
     (hF : ∀ v : Fin 3 → K, ℓ ⬝ᵥ v = 0 → eval F v = 0) :
     ∃ q : Fin 6 → K, F = mulLin ℓ q := by
@@ -260,7 +293,9 @@ theorem line_lemma [AtLeastThree K] (F : PlaneCubic K) (ℓ : Fin 3 → K) (hℓ
     · exact line_lemma_aux1 F ℓ h1 hF
   · exact line_lemma_aux0 F ℓ h0 hF
 
-/-- Converse: `ℓ · q` vanishes on the line `ℓ = 0`.-/
+/-- Converse: `ℓ · q` vanishes on the line `ℓ = 0`.
+@isnad1 id=eq.1h4v.s6.f72d4f3103d6 from=translated src=- shape=3054c227 vocab=2babaf79
+-/
 theorem eval_mulLin_of_dot_eq_zero (ℓ : Fin 3 → K) (q : Fin 6 → K) (v : Fin 3 → K)
     (hv : ℓ ⬝ᵥ v = 0) : eval (mulLin ℓ q) v = 0 := by
   simp [eval_mulLin, hv]
@@ -268,7 +303,9 @@ theorem eval_mulLin_of_dot_eq_zero (ℓ : Fin 3 → K) (q : Fin 6 → K) (v : Fi
 end Field
 
 /-- **Sharpness of `AtLeastThree`.** Over `ZMod 2` the cubic `x²y + xy²` vanishes at every
-point of the line `z = 0` but is not of the form `z · q`.-/
+point of the line `z = 0` but is not of the form `z · q`.
+@isnad1 id=and.0h0v.s11.2ed7f09d16dd from=translated src=- shape=b0977da7 vocab=d65bc201
+-/
 theorem line_lemma_false_zmod_two :
     (∀ v : Fin 3 → ZMod 2, (![0, 0, 1] : Fin 3 → ZMod 2) ⬝ᵥ v = 0 →
         eval (![0, 1, 0, 1, 0, 0, 0, 0, 0, 0] : PlaneCubic (ZMod 2)) v = 0) ∧

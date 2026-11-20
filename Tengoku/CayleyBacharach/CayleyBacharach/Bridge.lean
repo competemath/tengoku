@@ -32,26 +32,36 @@ section CommRing
 
 variable {R : Type*} [CommRing R]
 
-/-- Evaluation is linear in the form and cubic in the point.-/
+/-- Evaluation is linear in the form and cubic in the point.
+@isnad1 id=eq.0h5v.s7.d21c8efcc5c3 from=translated src=- shape=f3a2cfcc vocab=c7bcb341
+-/
 theorem eval_smul_smul (a c : R) (F : PlaneCubic R) (v : Fin 3 → R) :
     eval (a • F) (c • v) = a * c ^ 3 * eval F v := by
   rw [eval_smul, eval_smul_vec, mul_assoc]
 
-/-- Conic evaluation is linear in the form and quadratic in the point.-/
+/-- Conic evaluation is linear in the form and quadratic in the point.
+@isnad1 id=eq.0h5v.s7.716732457986 from=translated src=- shape=86b86f11 vocab=a850869e
+-/
 theorem evalC_smul_smul (a c : R) (q : Fin 6 → R) (v : Fin 3 → R) :
     evalC (a • q) (c • v) = a * c ^ 2 * evalC q v := by
   rw [evalC_smul, evalC_smul_vec, mul_assoc]
 
-/-- `VanishesAt` is the vanishing of `eval`.-/
+/-- `VanishesAt` is the vanishing of `eval`.
+@isnad1 id=iff.0h3v.s5.9519352fe23d from=translated src=- shape=fc528422 vocab=0711a033
+-/
 theorem vanishesAt_iff (F : PlaneCubic R) (v : Fin 3 → R) : VanishesAt F v ↔ eval F v = 0 :=
   Iff.rfl
 
-/-- Vanishing is well defined on forms and points up to nonzero scalars.-/
+/-- Vanishing is well defined on forms and points up to nonzero scalars.
+@isnad1 id=iff.2h5v.s7.ba942b74350c from=translated src=- shape=8e5ef78a vocab=faa234f0
+-/
 theorem vanishesAt_smul_smul_iff [IsDomain R] {a c : R} (ha : a ≠ 0) (hc : c ≠ 0)
     (F : PlaneCubic R) (v : Fin 3 → R) : VanishesAt (a • F) (c • v) ↔ VanishesAt F v := by
   simp [VanishesAt, eval_smul_smul, ha, hc]
 
-/-- `polarC` is `q(x+y) - q(x) - q(y)` (its definition).-/
+/-- `polarC` is `q(x+y) - q(x) - q(y)` (its definition).
+@isnad1 id=eq.0h4v.s7.96cf1ac060d3 from=translated src=- shape=fdb1d41c vocab=2117b061
+-/
 theorem polarC_eq {K : Type*} [Field K] (q : Fin 6 → K) (x y : Fin 3 → K) :
     polarC q x y = evalC q (x + y) - evalC q x - evalC q y := rfl
 
@@ -59,26 +69,38 @@ end CommRing
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=eq.0h3v.s6.b534b61cc57d from=translated src=- shape=9635d361 vocab=34366088
+-/
 theorem polarC_self (q : Fin 6 → K) (x : Fin 3 → K) : polarC q x x = 2 * evalC q x := by
   simp only [polarC, evalC_expand, Pi.add_apply]; ring
 
+/--
+@isnad1 id=eq.0h4v.s5.1ec839b25589 from=translated src=- shape=6e710a4c vocab=ca75e52d
+-/
 theorem polarC_comm (q : Fin 6 → K) (x y : Fin 3 → K) : polarC q x y = polarC q y x := by
   simp only [polarC, evalC_expand, Pi.add_apply]; ring
 
 /-- `polarC q` is the symmetric bilinear form with matrix having diagonal `2qᵢᵢ` and
-off-diagonal entries the mixed coefficients (no division; every characteristic).-/
+off-diagonal entries the mixed coefficients (no division; every characteristic).
+@isnad1 id=eq.0h4v.s9.a65ecf1cac30 from=translated src=- shape=70b045c9 vocab=2844b538
+-/
 theorem polarC_eq_bilin (q : Fin 6 → K) (x y : Fin 3 → K) :
     polarC q x y = x ⬝ᵥ (!![2 * q 0, q 1, q 2; q 1, 2 * q 3, q 4; q 2, q 4, 2 * q 5] *ᵥ y) := by
   simp only [polarC, evalC_expand, Pi.add_apply]
   simp [dotProduct, mulVec, Fin.sum_univ_succ]; ring
 
-/-- `onLine P ℓ` is the set of indices of points in the kernel of the linear form `ℓ`.-/
+/-- `onLine P ℓ` is the set of indices of points in the kernel of the linear form `ℓ`.
+@isnad1 id=iff.0h5v.s10.9f0984de705b from=translated src=- shape=ab32e63d vocab=d5f5dbe8
+-/
 theorem mem_onLine_iff_mem_ker [DecidableEq K] {n : ℕ} (P : Fin n → Fin 3 → K)
     (ℓ : Fin 3 → K) (i : Fin n) :
     i ∈ onLine P ℓ ↔ P i ∈ LinearMap.ker (dotProductBilin K K ℓ) := by
   simp [mem_onLine]
 
-/-- `Col4`: the `4 × 3` coordinate matrix has a nonzero kernel vector.-/
+/-- `Col4`: the `4 × 3` coordinate matrix has a nonzero kernel vector.
+@isnad1 id=iff.0h5v.s9.ed98dbb8cc2f from=translated src=- shape=5beac092 vocab=f99d9fe6
+-/
 theorem col4_iff_exists_mulVec (x y z w : Fin 3 → K) :
     Col4 x y z w ↔ ∃ ℓ : Fin 3 → K, ℓ ≠ 0 ∧ Matrix.of ![x, y, z, w] *ᵥ ℓ = 0 := by
   unfold Col4
@@ -87,7 +109,9 @@ theorem col4_iff_exists_mulVec (x y z w : Fin 3 → K) :
     Matrix.cons_val_zero, Matrix.cons_val_succ, IsEmpty.forall_iff]
   simp [dotProduct_comm ℓ]
 
-/-- `Col4`: the `4 × 3` coordinate matrix has rank at most 2.-/
+/-- `Col4`: the `4 × 3` coordinate matrix has rank at most 2.
+@isnad1 id=iff.0h5v.s8.3d50e6bb3c1b from=translated src=- shape=a7e7d588 vocab=8cc51572
+-/
 theorem col4_iff_rank_le_two (x y z w : Fin 3 → K) :
     Col4 x y z w ↔ (Matrix.of ![x, y, z, w]).rank ≤ 2 := by
   rw [col4_iff_exists_mulVec]
@@ -137,7 +161,9 @@ private theorem det_rep1 (a b : Fin 3 → K) : det ![a, b, a] = 0 := by
 private theorem det_rep2 (a b : Fin 3 → K) : det ![a, b, b] = 0 := by
   rw [← triple_product_eq_det, cross_self, dotProduct_zero]
 
-/-- `Col4`: all four `3 × 3` minors of the coordinate matrix vanish.-/
+/-- `Col4`: all four `3 × 3` minors of the coordinate matrix vanish.
+@isnad1 id=iff.0h5v.s8.1cf772ffb5ba from=translated src=- shape=83bf9403 vocab=5f4d3808
+-/
 theorem col4_iff_minors (x y z w : Fin 3 → K) :
     Col4 x y z w ↔ det ![x, y, z] = 0 ∧ det ![x, y, w] = 0 ∧ det ![x, z, w] = 0 ∧
       det ![y, z, w] = 0 := by
@@ -187,11 +213,15 @@ theorem col4_iff_minors (x y z w : Fin 3 → K) :
     push Not at hw; subst hw
     exact ⟨Pi.single 0 1, by simp, by simp, by simp, by simp, by simp⟩
 
-/-- `VanishesAt`-reading of `CommonZero`.-/
+/-- `VanishesAt`-reading of `CommonZero`.
+@isnad1 id=iff.0h4v.s6.4038bbc79c28 from=translated src=- shape=97dfacdb vocab=83022200
+-/
 theorem commonZero_iff (F G : PlaneCubic K) (v : Fin 3 → K) :
     CommonZero F G v ↔ v ≠ 0 ∧ VanishesAt F v ∧ VanishesAt G v := Iff.rfl
 
-/-- For a nonzero `p`, `v ⨯₃ p = 0` says `v` is a scalar multiple of `p`.-/
+/-- For a nonzero `p`, `v ⨯₃ p = 0` says `v` is a scalar multiple of `p`.
+@isnad1 id=iff.1h3v.s11.feb986607570 from=translated src=- shape=9db4c54e vocab=bb366aee
+-/
 theorem cross_eq_zero_iff_eq_smul {v p : Fin 3 → K} (hp : p ≠ 0) :
     v ⨯₃ p = 0 ↔ ∃ c : K, v = c • p := by
   constructor
@@ -201,7 +231,9 @@ theorem cross_eq_zero_iff_eq_smul {v p : Fin 3 → K} (hp : p ≠ 0) :
     simp [cross_self]
 
 /-- `ExactlyMeetIn F G P`: every `P i` is a nonzero common zero of `F` and `G`, and every
-nonzero common zero is a scalar multiple of some `P i`.-/
+nonzero common zero is a scalar multiple of some `P i`.
+@isnad1 id=iff.0h5v.s8.36b78610fa85 from=translated src=- shape=648b7d23 vocab=0645736f
+-/
 theorem exactlyMeetIn_iff {ι : Type*} (F G : PlaneCubic K) (P : ι → Fin 3 → K) :
     ExactlyMeetIn F G P ↔ (∀ i, P i ≠ 0 ∧ eval F (P i) = 0 ∧ eval G (P i) = 0) ∧
       ∀ v, v ≠ 0 → eval F v = 0 → eval G v = 0 → ∃ i, ∃ c : K, v = c • P i := by

@@ -24,9 +24,15 @@ variable [DecidableEq K]
 def onLine {n : ℕ} (P : Fin n → Fin 3 → K) (ℓ : Fin 3 → K) : Finset (Fin n) :=
   Finset.univ.filter fun i => ℓ ⬝ᵥ P i = 0
 
+/--
+@isnad1 id=iff.0h5v.s6.ba3b918ecde9 from=translated src=- shape=c913fff2 vocab=9b123887
+-/
 theorem mem_onLine {n : ℕ} {P : Fin n → Fin 3 → K} {ℓ : Fin 3 → K} {i : Fin n} :
     i ∈ onLine P ℓ ↔ ℓ ⬝ᵥ P i = 0 := by simp [onLine]
 
+/--
+@isnad1 id=eq.0h4v.s7.fa621d70b3b6 from=translated src=- shape=00153cfc vocab=59e8d1fa
+-/
 theorem card_offLine {n : ℕ} (P : Fin n → Fin 3 → K) (ℓ : Fin 3 → K) :
     (Finset.univ.filter fun i => ¬ ℓ ⬝ᵥ P i = 0).card = n - (onLine P ℓ).card := by
   have := Finset.card_filter_add_card_filter_not (s := Finset.univ)
@@ -35,7 +41,9 @@ theorem card_offLine {n : ℕ} (P : Fin n → Fin 3 → K) (ℓ : Fin 3 → K) :
   unfold onLine
   omega
 
-/-- If no line carries four of the points, no four distinct ones are collinear.-/
+/-- If no line carries four of the points, no four distinct ones are collinear.
+@isnad1 id=not.7h7v.s7.6dfb449d7b41 from=translated src=- shape=825373b4 vocab=b5349ad5
+-/
 theorem not_col4 {n : ℕ} {P : Fin n → Fin 3 → K}
     (h3 : ∀ ℓ : Fin 3 → K, ℓ ≠ 0 → (onLine P ℓ).card ≤ 3) {a b c d : Fin n}
     (hab : a ≠ b) (hac : a ≠ c) (had : a ≠ d) (hbc : b ≠ c) (hbd : b ≠ d) (hcd : c ≠ d) :
@@ -51,7 +59,9 @@ theorem not_col4 {n : ℕ} {P : Fin n → Fin 3 → K}
   have := h3 M hM
   omega
 
-/-- **Case A.** Some line carries exactly four of the eight points.-/
+/-- **Case A.** Some line carries exactly four of the eight points.
+@isnad1 id=le.4h3v.s11.c6f5f57b78e6 from=translated src=- shape=e3039f87 vocab=ea5e0823
+-/
 theorem caseA [AtLeastThree K] (P : Fin 8 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
     (hconic : ∀ q : Fin 6 → K, (∀ i, evalC q (P i) = 0) → q = 0)
@@ -92,7 +102,9 @@ theorem caseA [AtLeastThree K] (P : Fin 8 → Fin 3 → K)
     simp only [Finset.mem_insert, Finset.mem_singleton] at hxB
     rcases hxB with rfl | rfl | rfl | rfl <;> simp [*]
 
-/-- **Case B.** No line carries four points, but three of them are collinear.-/
+/-- **Case B.** No line carries four points, but three of them are collinear.
+@isnad1 id=false.7h5v.s12.e95551e8d205 from=translated src=- shape=ed6354ac vocab=6ec55c9d
+-/
 theorem caseB [AtLeastThree K] (P : Fin 8 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
     (h3 : ∀ ℓ : Fin 3 → K, ℓ ≠ 0 → (onLine P ℓ).card ≤ 3)
@@ -130,7 +142,9 @@ theorem caseB [AtLeastThree K] (P : Fin 8 → Fin 3 → K)
     (not_col4 h3 hbc hbd hbe hcd hce hde)
   omega
 
-/-- **Case C.** No three of the points are collinear.-/
+/-- **Case C.** No three of the points are collinear.
+@isnad1 id=false.5h2v.s12.0330ca280b7c from=translated src=- shape=20098206 vocab=64e81588
+-/
 theorem caseC [AtLeastThree K] (P : Fin 8 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
     (h3 : ∀ ℓ : Fin 3 → K, ℓ ≠ 0 → (onLine P ℓ).card ≤ 3)
@@ -183,7 +197,9 @@ theorem caseC [AtLeastThree K] (P : Fin 8 → Fin 3 → K)
 end Dec
 
 /-- **Hard direction of the criterion.** Eight pairwise non-proportional points, no five of
-them collinear, not all on a nonzero conic: the cubics through them have dimension `≤ 2`.-/
+them collinear, not all on a nonzero conic: the cubics through them have dimension `≤ 2`.
+@isnad1 id=le.3h2v.s11.ac6074439d9d from=translated src=- shape=45719d94 vocab=cb413b03
+-/
 theorem finrank_cubicsThrough_le_two [AtLeastThree K] (P : Fin 8 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
     (h5 : ∀ ℓ : Fin 3 → K, ℓ ≠ 0 → ∀ s : Finset (Fin 8), (∀ i ∈ s, ℓ ⬝ᵥ P i = 0) →
@@ -207,7 +223,9 @@ theorem finrank_cubicsThrough_le_two [AtLeastThree K] (P : Fin 8 → Fin 3 → K
     exact caseC P hP h3 hc hconic hd
 
 /-- **The general-position criterion.** Under the same hypotheses, the kernel of the
-evaluation map on cubics has dimension exactly `2`.-/
+evaluation map on cubics has dimension exactly `2`.
+@isnad1 id=eq.3h2v.s11.9c994d52080d from=translated src=- shape=5b6409d6 vocab=7cec2674
+-/
 theorem finrank_ker_evalMap_eq_two [AtLeastThree K] (P : Fin 8 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
     (h5 : ∀ ℓ : Fin 3 → K, ℓ ≠ 0 → ∀ s : Finset (Fin 8), (∀ i ∈ s, ℓ ⬝ᵥ P i = 0) →

@@ -308,6 +308,9 @@ open CBL14
 
 /-! ### Bridges: writer's encodings ↔ L14 Mathlib-only forms -/
 
+/--
+@isnad1 id=linearin.1h3v.s8.b18f750840dd from=translated src=- shape=6e9a8ec9 vocab=5a258c79
+-/
 theorem l15_li {a b : P2 k} (h : a ≠ b) : LinearIndependent k ![a.rep, b.rep] := by
   have h' := (Projectivization.independent_pair_iff_ne a b).2 h
   rw [Projectivization.independent_iff] at h'
@@ -315,28 +318,43 @@ theorem l15_li {a b : P2 k} (h : a ≠ b) : LinearIndependent k ![a.rep, b.rep] 
     funext i; fin_cases i <;> rfl
   rw [e] at h'; exact h'
 
+/--
+@isnad1 id=linearin.2h5v.s8.b0d73e0e7815 from=translated src=- shape=f8811e07 vocab=be086c20
+-/
 theorem l15_pair {n : ℕ} {P : Fin n → P2 k} (hP : Function.Injective P) :
     ∀ i j, i ≠ j → LinearIndependent k ![(P i).rep, (P j).rep] :=
   fun i j hij => l15_li (fun h => hij (hP h))
 
+/--
+@isnad1 id=not.3h3v.s6.be6cb8b6e44f from=translated src=- shape=83777e84 vocab=b1b2b783
+-/
 theorem l15_not_unit {p : R3 k} {n : ℕ} (hp : p.IsHomogeneous n) (hn : n ≠ 0) (h0 : p ≠ 0) :
     ¬ IsUnit p := by
   intro hu
   obtain ⟨r, -, rfl⟩ := (MvPolynomial.isUnit_iff_eq_C_of_isReduced).1 hu
   exact hn ((MvPolynomial.isHomogeneous_C (Fin 3) r).inj_right hp h0).symm
 
+/--
+@isnad1 id=not.1h3v.s8.bd436c0bd809 from=translated src=- shape=9118f84c vocab=184e4ade
+-/
 theorem l15_lin {F G : R3 k} (hcop : IsRelPrime F G) :
     ¬ ∃ ℓ q q' : MvPolynomial (Fin 3) k, ℓ.IsHomogeneous 1 ∧ q.IsHomogeneous 2 ∧
       q'.IsHomogeneous 2 ∧ ℓ ≠ 0 ∧ F = ℓ * q ∧ G = ℓ * q' := by
   rintro ⟨ℓ, q, q', hℓ, -, -, h0, rfl, rfl⟩
   exact l15_not_unit hℓ one_ne_zero h0 (hcop (dvd_mul_right ℓ q) (dvd_mul_right ℓ q'))
 
+/--
+@isnad1 id=not.1h3v.s8.cc713502ee32 from=translated src=- shape=bf9ce5b0 vocab=184e4ade
+-/
 theorem l15_con {F G : R3 k} (hcop : IsRelPrime F G) :
     ¬ ∃ q m m' : MvPolynomial (Fin 3) k, q.IsHomogeneous 2 ∧ m.IsHomogeneous 1 ∧
       m'.IsHomogeneous 1 ∧ q ≠ 0 ∧ F = m * q ∧ G = m' * q := by
   rintro ⟨q, m, m', hq, -, -, h0, rfl, rfl⟩
   exact l15_not_unit hq two_ne_zero h0 (hcop (dvd_mul_left q m) (dvd_mul_left q m'))
 
+/--
+@isnad1 id=linearin.3h3v.s7.11c3af2ff7d8 from=translated src=- shape=8a443573 vocab=7d0d961b
+-/
 theorem l15_indep {F G : R3 k} (hF : IsCubic F) (hG : IsCubic G) (hcop : IsRelPrime F G) :
     LinearIndependent k ![F, G] := by
   rw [linearIndependent_fin2]
@@ -346,39 +364,62 @@ theorem l15_indep {F G : R3 k} (hF : IsCubic F) (hG : IsCubic G) (hcop : IsRelPr
   apply hcop _ dvd_rfl
   rw [← ha, MvPolynomial.smul_eq_C_mul]; exact dvd_mul_left _ _
 
+/--
+@isnad1 id=iff.0h4v.s7.72b0791b2a71 from=translated src=- shape=3d99fd22 vocab=8e3e063e
+-/
 theorem l15_mem {n : ℕ} {P : Fin n → P2 k} {F : R3 k} :
     F ∈ cubicsThrough P ↔ F.IsHomogeneous 3 ∧ ∀ i, Vanishes F (P i) := by
   simp only [cubicsThrough, Submodule.mem_inf, Submodule.mem_iInf, LinearMap.mem_ker,
     MvPolynomial.mem_homogeneousSubmodule, AlgHom.toLinearMap_apply, Vanishes]
   exact Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s8.061ad98bc034 from=translated src=- shape=cfe30f87 vocab=2396e31f
+-/
 theorem l15_li3_iff (a b c : Fin 3 → k) :
     LinearIndependent k ![a, b, c] ↔ Matrix.det ![a, b, c] ≠ 0 := by
   have := Matrix.linearIndependent_rows_iff_isUnit (A := (![a, b, c] : Matrix (Fin 3) (Fin 3) k))
   exact this.trans ((Matrix.isUnit_iff_isUnit_det (A := _)).trans isUnit_iff_ne_zero)
 
+/--
+@isnad1 id=iff.0h4v.s11.d5b6bfcb516a from=translated src=- shape=0bda86ea vocab=e1677198
+-/
 theorem l15_pcol_iff (A B X : P2 k) :
     PCollinear A B X ↔ X.rep ⬝ᵥ (A.rep ⨯₃ B.rep) = 0 := by
   unfold PCollinear
   rw [l15_li3_iff, not_not, ← triple_product_eq_det, triple_product_permutation,
     triple_product_permutation]
 
+/--
+@isnad1 id=eq.1h4v.s11.590b6982b862 from=translated src=- shape=2ebc650a vocab=34b77943
+-/
 theorem l15_det_of (X A B : Fin 3 → k) (h : X ⬝ᵥ A ⨯₃ B = 0) : Matrix.det ![X, A, B] = 0 := by
   rw [← triple_product_eq_det]; exact h
 
+/--
+@isnad1 id=eq.1h4v.s11.8edab9770b10 from=translated src=- shape=f60f1529 vocab=34b77943
+-/
 theorem l15_det_of' (X A B : Fin 3 → k) (h : X ⬝ᵥ B ⨯₃ A = 0) : Matrix.det ![X, A, B] = 0 := by
   rw [← triple_product_eq_det, ← cross_anticomm, dotProduct_neg, h, neg_zero]
 
+/--
+@isnad1 id=eq.1h4v.s11.46e60c9f2d1f from=translated src=- shape=24b6b321 vocab=34b77943
+-/
 theorem l15_col_of (X Y Z : Fin 3 → k) (h : Matrix.det ![X, Y, Z] = 0) : Z ⬝ᵥ X ⨯₃ Y = 0 := by
   rw [← triple_product_eq_det, triple_product_permutation, triple_product_permutation] at h
   exact h
 
+/--
+@isnad1 id=eq.1h4v.s11.f77aeda54556 from=translated src=- shape=ddde8a66 vocab=34b77943
+-/
 theorem l15_col_of' (X Y Z : Fin 3 → k) (h : Matrix.det ![X, Z, Y] = 0) : Z ⬝ᵥ X ⨯₃ Y = 0 := by
   rw [← triple_product_eq_det, ← cross_anticomm, dotProduct_neg, neg_eq_zero,
     triple_product_permutation, triple_product_permutation] at h
   exact h
 
-/-- Two lines `AB`, `DE` (with `D ∉ AB`, `A ∉ DE`) meet in exactly one projective point.-/
+/-- Two lines `AB`, `DE` (with `D ∉ AB`, `A ∉ DE`) meet in exactly one projective point.
+@isnad1 id=existsun.2h5v.s5.ee5ac7991eab from=translated src=- shape=88eded00 vocab=dda1cbff
+-/
 theorem l15_meet (A B D E : P2 k) (h : ¬ PCollinear A B D) (h' : ¬ PCollinear D E A) :
     ∃! X, PCollinear A B X ∧ PCollinear D E X := by
   rw [l15_pcol_iff] at h h'
@@ -400,7 +441,9 @@ theorem l15_meet (A B D E : P2 k) (h : ¬ PCollinear A B D) (h' : ¬ PCollinear 
     rw [← Projectivization.mk_rep Y]
     exact (Projectivization.mk_eq_mk_iff' k _ _ Y.rep_nonzero huv).2 ⟨c, hc.symm⟩
 
-/-- `W ∉ UV` when `U ≠ V` lie on the line `m = 0` and `W` does not.-/
+/-- `W ∉ UV` when `U ≠ V` lie on the line `m = 0` and `W` does not.
+@isnad1 id=not.5h5v.s5.6f7d4fb2c3bf from=translated src=- shape=aed3c7b6 vocab=9f474e02
+-/
 theorem l15_noncol_line {m : R3 k} (hm : IsLine m) {W U V : P2 k} (hU : Vanishes m U)
     (hV : Vanishes m V) (hUV : U ≠ V) (hW : ¬ Vanishes m W) : ¬ PCollinear W U V := by
   rw [l15_pcol_iff]
@@ -412,6 +455,9 @@ theorem l15_noncol_line {m : R3 k} (hm : IsLine m) {W U V : P2 k} (hU : Vanishes
   rw [l14b_eval1 hm.1] at hU hV ⊢
   rw [hst, dotProduct_add, dotProduct_smul, dotProduct_smul, hU, hV]; simp
 
+/--
+@isnad1 id=ne.4h4v.s7.4f330156f4a5 from=translated src=- shape=876d91ca vocab=804990e9
+-/
 theorem l15_irr {q : R3 k} (hq : IsConic q) (hirr : Irreducible q) :
     ∀ ℓ m : MvPolynomial (Fin 3) k, ℓ.IsHomogeneous 1 → m.IsHomogeneous 1 → q ≠ ℓ * m := by
   intro ℓ m hℓ hm h
@@ -421,6 +467,9 @@ theorem l15_irr {q : R3 k} (hq : IsConic q) (hirr : Irreducible q) :
   · exact l15_not_unit hℓ one_ne_zero hℓ0 hu
   · exact l15_not_unit hm one_ne_zero hm0 hu
 
+/--
+@isnad1 id=not.8h5v.s6.a469879c3178 from=translated src=- shape=a70b8520 vocab=a0553c21
+-/
 theorem l15_noncol_conic {q : R3 k} (hq : IsConic q) (hirr : Irreducible q) {a b c : P2 k}
     (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) (ha : Vanishes q a) (hb : Vanishes q b)
     (hc : Vanishes q c) : ¬ PCollinear a b c := by
@@ -430,7 +479,9 @@ theorem l15_noncol_conic {q : R3 k} (hq : IsConic q) (hirr : Irreducible q) {a b
   exact PlaneCubic.noncollinear_of_irreducible (l14b_irr hq.1 (l15_irr hq hirr))
     (l14b_cross (l15_li hab)) (l14b_cross (l15_li hac)) (l14b_cross (l15_li hbc)) ha hb hc
 
-/-- Core Cayley–Bacharach in the writer's encoding (no `F ≠ 0` needed).-/
+/-- Core Cayley–Bacharach in the writer's encoding (no `F ≠ 0` needed).
+@isnad1 id=vanishes.8h5v.s7.d9a2a54fd192 from=translated src=- shape=fe548da0 vocab=0748f002
+-/
 theorem l15_cb (F₁ F₂ F : R3 k) (h₁ : IsCubic F₁) (h₂ : IsCubic F₂) (hcop : IsRelPrime F₁ F₂)
     (P : Fin 9 → P2 k) (hP : Function.Injective P)
     (hP₁ : ∀ i, Vanishes F₁ (P i)) (hP₂ : ∀ i, Vanishes F₂ (P i))
@@ -442,10 +493,16 @@ theorem l15_cb (F₁ F₂ F : R3 k) (h₁ : IsCubic F₁) (h₂ : IsCubic F₂) 
 
 /-! ### CB1 -/
 
+/--
+@isnad1 id=classica.0h1v.s3.9fe4456c8705 from=translated src=- shape=c6850a32 vocab=e187dcaf
+-/
 theorem cov_CB1_a : classical_CB1_a (k := k) := by
   intro F₁ F₂ F h₁ h₂ hcop P hP hP₁ hP₂ hF hF8
   exact l15_cb F₁ F₂ F h₁ h₂ hcop P hP hP₁ hP₂ hF.1 hF8
 
+/--
+@isnad1 id=classica.0h1v.s3.0c672332c4bb from=translated src=- shape=c6850a32 vocab=f4352181
+-/
 theorem cov_CB1_a_linear : classical_CB1_a_linear (k := k) := by
   intro F₁ F₂ F h₁ h₂ hcop P hP hP₁ hP₂ hF hF8
   have hp := l14b_pairwise (l15_pair hP)
@@ -474,6 +531,9 @@ theorem cov_CB1_a_linear : classical_CB1_a_linear (k := k) := by
 
 /-! ### CB2 -/
 
+/--
+@isnad1 id=classica.0h1v.s3.d37354b03ef6 from=translated src=- shape=c6850a32 vocab=8c594f83
+-/
 theorem cov_CB2_a : classical_CB2_a (k := k) := by
   intro P hP
   obtain ⟨hinj, h4, h7⟩ := hP
@@ -487,7 +547,9 @@ theorem cov_CB2_a : classical_CB2_a (k := k) := by
     exact h7 (Finset.univ.erase 0) (by rw [Finset.card_erase_of_mem (Finset.mem_univ _)]; simp)
       ⟨q, ⟨hq, h0⟩, fun i _ => hv i⟩
 
-/-- Existence half of `classical_CB2_b_distinct` (the ninth point is `Q`).-/
+/-- Existence half of `classical_CB2_b_distinct` (the ninth point is `Q`).
+@isnad1 id=ex.9h5v.s9.24c96f4ca3c9 from=translated src=- shape=0baed53c vocab=a26846e9
+-/
 theorem cov_CB2_b_distinct_part (P : Fin 8 → P2 k) (hP : EightPointGeneral P)
     (F₁ F₂ : R3 k) (hF₁ : F₁ ∈ cubicsThrough P) (hF₂ : F₂ ∈ cubicsThrough P)
     (h₁ : F₁ ≠ 0) (h₂ : F₂ ≠ 0) (hcop : IsRelPrime F₁ F₂)
@@ -519,6 +581,9 @@ theorem cov_CB2_b_distinct_part (P : Fin 8 → P2 k) (hP : EightPointGeneral P)
 
 /-! ### CB3 -/
 
+/--
+@isnad1 id=classica.1h1v.s4.b335bf55bbe1 from=translated src=- shape=0d59a79e vocab=c7d05c08
+-/
 theorem cov_CB3_a_part (hK : ∃ s : Finset k, 10 < s.card) : classical_CB3_a (k := k) := by
   intro q hq hirr A B C D E F hdist hA hB hC hD hE hF X Y Z hX hY hZ
   simp only [l15_pcol_iff] at hX hY hZ ⊢
@@ -533,6 +598,9 @@ theorem cov_CB3_a_part (hK : ∃ s : Finset k, 10 < s.card) : classical_CB3_a (k
     (l15_det_of _ _ _ hX.1) (l15_det_of _ _ _ hX.2) (l15_det_of _ _ _ hY.1)
     (l15_det_of _ _ _ hY.2) (l15_det_of _ _ _ hZ.1) (l15_det_of _ _ _ hZ.2))
 
+/--
+@isnad1 id=classica.0h1v.s3.1699114cb1da from=translated src=- shape=c6850a32 vocab=3c926bbb
+-/
 theorem cov_CB3_a_obligation : classical_CB3_a_obligation (k := k) := by
   intro q hq hirr A B C D E F hdist hA hB hC hD hE hF
   have d : ∀ i j : Fin 6, i ≠ j → ![A, B, C, D, E, F] i ≠ ![A, B, C, D, E, F] j :=
@@ -545,6 +613,9 @@ theorem cov_CB3_a_obligation : classical_CB3_a_obligation (k := k) := by
   · exact l15_noncol_conic hq hirr (d 2 3 (by decide)) (d 2 5 (by decide)) (d 3 5 (by decide)) hC hD hF
   · exact l15_noncol_conic hq hirr (d 5 0 (by decide)) (d 5 2 (by decide)) (d 0 2 (by decide)) hF hA hC
 
+/--
+@isnad1 id=classica.0h1v.s3.0ed2c1125188 from=translated src=- shape=c6850a32 vocab=9118874f
+-/
 theorem cov_CB3_b_obligation : classical_CB3_b_obligation (k := k) := by
   intro A B C D E F hgen
   exact ⟨l15_meet A B D E (hgen 0 1 3 (by decide) (by decide) (by decide))
@@ -556,6 +627,9 @@ theorem cov_CB3_b_obligation : classical_CB3_b_obligation (k := k) := by
 
 /-! ### CB4 -/
 
+/--
+@isnad1 id=classica.1h1v.s4.62529658f6c7 from=translated src=- shape=0d59a79e vocab=57a48f89
+-/
 theorem cov_CB4_a_part (hK : ∃ s : Finset k, 10 < s.card) : classical_CB4_a (k := k) := by
   intro l m hl hm hlm A B C A' B' C' hA hB hC hA' hB' hC' hABC hABC' hoff X Y Z hX hY hZ
   obtain ⟨hmA, hmB, hmC, hlA', hlB', hlC'⟩ := hoff
@@ -570,6 +644,9 @@ theorem cov_CB4_a_part (hK : ∃ s : Finset k, 10 < s.card) : classical_CB4_a (k
     (l15_det_of _ _ _ hX.1) (l15_det_of _ _ _ hX.2) (l15_det_of _ _ _ hZ.2)
     (l15_det_of _ _ _ hZ.1) (l15_det_of' _ _ _ hY.2) (l15_det_of' _ _ _ hY.1))
 
+/--
+@isnad1 id=classica.0h1v.s3.3e77602ae85a from=translated src=- shape=c6850a32 vocab=d3652342
+-/
 theorem cov_CB4_a_obligation : classical_CB4_a_obligation (k := k) := by
   intro l m hl hm hlm A B C A' B' C' hA hB hC hA' hB' hC' hABC hABC' hoff
   obtain ⟨hmA, hmB, hmC, hlA', hlB', hlC'⟩ := hoff
@@ -582,6 +659,9 @@ theorem cov_CB4_a_obligation : classical_CB4_a_obligation (k := k) := by
     l15_meet B C' B' C (l15_noncol_line hm hC' hB' (Ne.symm hBC') hmB)
       (l15_noncol_line hl hC hB (Ne.symm hBC) hlB')⟩
 
+/--
+@isnad1 id=classica.1h1v.s4.560757c94e15 from=translated src=- shape=0d59a79e vocab=27c6add1
+-/
 theorem cov_CB4_b_part (hK : ∃ s : Finset k, 10 < s.card) : classical_CB4_b (k := k) := by
   intro l m hl hm V hL hM hlm hV hoff X Y Z hX hY hZ
   obtain ⟨h0, h2, h4⟩ := hL
@@ -600,6 +680,9 @@ theorem cov_CB4_b_part (hK : ∃ s : Finset k, 10 < s.card) : classical_CB4_b (k
     (l15_det_of _ _ _ hX.1) (l15_det_of _ _ _ hX.2) (l15_det_of _ _ _ hY.1)
     (l15_det_of _ _ _ hY.2) (l15_det_of _ _ _ hZ.1) (l15_det_of _ _ _ hZ.2))
 
+/--
+@isnad1 id=classica.0h1v.s3.36b81a7778ab from=translated src=- shape=c6850a32 vocab=d55b21c4
+-/
 theorem cov_CB4_b_obligation : classical_CB4_b_obligation (k := k) := by
   intro l m hl hm V hL hM hlm hV hoff
   obtain ⟨h0, h2, h4⟩ := hL
@@ -615,6 +698,9 @@ theorem cov_CB4_b_obligation : classical_CB4_b_obligation (k := k) := by
 
 /-! ### NEW PROOF: Pappus over every field (no `|K| > 10`), via an explicit polynomial identity -/
 
+/--
+@isnad1 id=eq.0h9v.s14.259105d688d6 from=translated src=- shape=4d229111 vocab=893db7c8
+-/
 theorem l15_papid (A B A' B' : Fin 3 → k) (s t s' t' : k) :
     ((A ⨯₃ B') ⨯₃ (A' ⨯₃ B)) ⬝ᵥ (((A ⨯₃ (s' • A' + t' • B')) ⨯₃ (A' ⨯₃ (s • A + t • B))) ⨯₃
       ((B ⨯₃ (s' • A' + t' • B')) ⨯₃ (B' ⨯₃ (s • A + t • B)))) = 0 := by
@@ -623,6 +709,9 @@ theorem l15_papid (A B A' B' : Fin 3 → k) (s t s' t' : k) :
     Matrix.head_cons, Matrix.tail_cons]
   ring
 
+/--
+@isnad1 id=ne.2h5v.s13.126d7493bd5c from=translated src=- shape=ef521346 vocab=20e6b0f6
+-/
 theorem l15_cross_ne {P Q R S : Fin 3 → k} (h1 : R ⬝ᵥ P ⨯₃ Q ≠ 0) (h2 : P ⬝ᵥ R ⨯₃ S ≠ 0) :
     P ⨯₃ Q ⨯₃ (R ⨯₃ S) ≠ 0 := by
   have hv : R ⨯₃ S ≠ 0 := by intro hv; apply h2; rw [hv, dotProduct_zero]
@@ -630,7 +719,9 @@ theorem l15_cross_ne {P Q R S : Fin 3 → k} (h1 : R ⬝ᵥ P ⨯₃ Q ≠ 0) (h
   obtain ⟨c, hc⟩ := (PlaneCubic.cross_eq_zero_iff_eq_smul hv).1 h0
   apply h1; rw [hc, dotProduct_smul, dot_self_cross, smul_zero]
 
-/-- `U ⬝ (W × V) ≠ 0` when `U ≠ V` lie on the line `m = 0` and `W` does not.-/
+/-- `U ⬝ (W × V) ≠ 0` when `U ≠ V` lie on the line `m = 0` and `W` does not.
+@isnad1 id=ne.5h5v.s11.b83ebfafd88e from=translated src=- shape=f939fed1 vocab=c661990a
+-/
 theorem l15_tri_ne {m : R3 k} (hm : IsLine m) {W U V : P2 k} (hU : Vanishes m U)
     (hV : Vanishes m V) (hUV : U ≠ V) (hW : ¬ Vanishes m W) :
     U.rep ⬝ᵥ W.rep ⨯₃ V.rep ≠ 0 := by
@@ -640,6 +731,9 @@ theorem l15_tri_ne {m : R3 k} (hm : IsLine m) {W U V : P2 k} (hU : Vanishes m U)
   rw [triple_product_permutation] at h0
   rw [← cross_anticomm, dotProduct_neg, ← triple_product_permutation, h0, neg_zero]
 
+/--
+@isnad1 id=ex.5h5v.s8.0826f25d52d6 from=translated src=- shape=c01a07c1 vocab=a7315c76
+-/
 theorem l15_on_line {l : R3 k} (hl : IsLine l) {A B C : P2 k} (hA : Vanishes l A)
     (hB : Vanishes l B) (hC : Vanishes l C) (hAB : A ≠ B) :
     ∃ s t : k, C.rep = s • A.rep + t • B.rep := by
@@ -653,6 +747,9 @@ theorem l15_on_line {l : R3 k} (hl : IsLine l) {A B C : P2 k} (hA : Vanishes l A
   rw [hc, smul_dotProduct, smul_eq_mul] at hC
   exact (mul_eq_zero.mp hC).resolve_left hc0
 
+/--
+@isnad1 id=eq.24h12v.s13.9b25be707887 from=translated src=- shape=f0fe2d97 vocab=c661990a
+-/
 theorem l15_pappus_core {l m : R3 k} (hl : IsLine l) (hm : IsLine m) {A B C A' B' C' : P2 k}
     (hA : Vanishes l A) (hB : Vanishes l B) (hC : Vanishes l C)
     (hA' : Vanishes m A') (hB' : Vanishes m B') (hC' : Vanishes m C')
@@ -676,11 +773,16 @@ theorem l15_pappus_core {l m : R3 k} (hl : IsLine l) (hm : IsLine m) {A B C A' B
     l15_papid]
   simp
 
+/--
+@isnad1 id=eq.1h4v.s11.0c7c53268679 from=translated src=- shape=39b03032 vocab=e1677198
+-/
 theorem l15_pcol_flip (P Q X : P2 k) (h : PCollinear P Q X) : X.rep ⬝ᵥ Q.rep ⨯₃ P.rep = 0 := by
   rw [l15_pcol_iff] at h
   rw [← cross_anticomm, dotProduct_neg, h, neg_zero]
 
-/-- **NEW PROOF.** `classical_CB4_a` over every field.-/
+/-- **NEW PROOF.** `classical_CB4_a` over every field.
+@isnad1 id=classica.0h1v.s3.753b21508b9a from=translated src=- shape=c6850a32 vocab=ff20e3c0
+-/
 theorem cov_CB4_a : classical_CB4_a (k := k) := by
   intro l m hl hm hlm A B C A' B' C' hA hB hC hA' hB' hC' hABC hABC' hoff X Y Z hX hY hZ
   obtain ⟨hmA, hmB, hmC, hlA', hlB', hlC'⟩ := hoff
@@ -688,7 +790,9 @@ theorem cov_CB4_a : classical_CB4_a (k := k) := by
   exact l15_pappus_core hl hm hA hB hC hA' hB' hC' hABC.1 hABC.2.1 hABC.2.2 hABC'.1 hABC'.2.1
     hABC'.2.2 hmA hmB hlA' hlB' hX.1 hX.2 hY.1 hY.2 hZ.1 hZ.2
 
-/-- **NEW PROOF.** `classical_CB4_b` over every field.-/
+/-- **NEW PROOF.** `classical_CB4_b` over every field.
+@isnad1 id=classica.0h1v.s3.0e6d25cf0ef1 from=translated src=- shape=c6850a32 vocab=a86f6084
+-/
 theorem cov_CB4_b : classical_CB4_b (k := k) := by
   intro l m hl hm V hL hM hlm hV hoff X Y Z hX hY hZ
   obtain ⟨h0, h2, h4⟩ := hL
@@ -714,6 +818,9 @@ def l15Qb (A B C D E p p' : Fin 3 → k) : k :=
 
 def l15e3 (i : Fin 3) : Fin 3 → k := Pi.single i 1
 
+/--
+@isnad1 id=eq.0h7v.s9.0ebeb3e46fb8 from=translated src=- shape=ce67b624 vocab=38e0d925
+-/
 theorem l15Qb_quad (A B C D E v : Fin 3 → k) : l15Qb A B C D E v v =
     l15Qb A B C D E (l15e3 0) (l15e3 0) * v 0 ^ 2 +
     (l15Qb A B C D E (l15e3 0) (l15e3 1) + l15Qb A B C D E (l15e3 1) (l15e3 0)) * (v 0 * v 1) +
@@ -730,27 +837,45 @@ theorem l15Qb_quad (A B C D E v : Fin 3 → k) : l15Qb A B C D E v v =
     dotProduct_smul, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s6.ca75ccbed819 from=translated src=- shape=c560f096 vocab=03f86748
+-/
 theorem l15Qb_A (A B C D E : Fin 3 → k) : l15Qb A B C D E A A = 0 := by
   simp [l15Qb, cross_self]
 
+/--
+@isnad1 id=eq.0h6v.s6.0ecda47fe686 from=translated src=- shape=a7504e88 vocab=03f86748
+-/
 theorem l15Qb_E (A B C D E : Fin 3 → k) : l15Qb A B C D E E E = 0 := by
   simp [l15Qb, cross_self]
 
+/--
+@isnad1 id=eq.0h6v.s6.508a532134a2 from=translated src=- shape=2c46383a vocab=03f86748
+-/
 theorem l15Qb_B (A B C D E : Fin 3 → k) : l15Qb A B C D E B B = 0 := by
   simp only [l15Qb, cross_apply, dotProduct, Fin.sum_univ_three, Matrix.cons_val_zero,
     Matrix.cons_val_one, Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s6.4d0338b78fea from=translated src=- shape=8ef1a08b vocab=03f86748
+-/
 theorem l15Qb_C (A B C D E : Fin 3 → k) : l15Qb A B C D E C C = 0 := by
   simp only [l15Qb, cross_apply, dotProduct, Fin.sum_univ_three, Matrix.cons_val_zero,
     Matrix.cons_val_one, Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s6.3abb6db4d0dd from=translated src=- shape=a8ac517c vocab=03f86748
+-/
 theorem l15Qb_D (A B C D E : Fin 3 → k) : l15Qb A B C D E D D = 0 := by
   simp only [l15Qb, cross_apply, dotProduct, Fin.sum_univ_three, Matrix.cons_val_zero,
     Matrix.cons_val_one, Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s12.b4e44f0a2918 from=translated src=- shape=7fcd6f6b vocab=f149ff01
+-/
 theorem l15Qb_AB (A B C D E : Fin 3 → k) : l15Qb A B C D E (A + B) (A + B) =
     (A ⬝ᵥ B ⨯₃ C) * (A ⬝ᵥ B ⨯₃ D) * (A ⬝ᵥ B ⨯₃ E) * (C ⬝ᵥ D ⨯₃ E) := by
   simp only [l15Qb, cross_apply, dotProduct, Fin.sum_univ_three, Matrix.cons_val_zero,
@@ -766,19 +891,30 @@ def l15Qc (A B C D E : Fin 3 → k) : Fin 6 → k :=
     l15Qb A B C D E (l15e3 1) (l15e3 2) + l15Qb A B C D E (l15e3 2) (l15e3 1),
     l15Qb A B C D E (l15e3 2) (l15e3 2)]
 
+/--
+@isnad1 id=eq.0h7v.s7.3d4a2c73eacd from=translated src=- shape=12f0fc96 vocab=40c15085
+-/
 theorem l15_eval_Qc (A B C D E v : Fin 3 → k) :
     MvPolynomial.eval v (toP E2 (l15Qc A B C D E)) = l15Qb A B C D E v v := by
   rw [eval_toP2, PlaneCubic.evalC_expand, l15Qb_quad]
   simp [l15Qc]
 
+/--
+@isnad1 id=ne.1h4v.s11.65aafa2231a1 from=translated src=- shape=c2c6e79d vocab=e1677198
+-/
 theorem l15_tri (a b c : P2 k) (h : ¬ PCollinear a b c) : a.rep ⬝ᵥ b.rep ⨯₃ c.rep ≠ 0 := by
   rw [l15_pcol_iff] at h
   rwa [triple_product_permutation, triple_product_permutation]
 
+/--
+@isnad1 id=ne.1h4v.s11.3b4eb9338464 from=translated src=- shape=4db7ad2e vocab=e1677198
+-/
 theorem l15_tri' (a b c : P2 k) (h : ¬ PCollinear a b c) : c.rep ⬝ᵥ a.rep ⨯₃ b.rep ≠ 0 := by
   rw [l15_pcol_iff] at h; exact h
 
-/-- **NEW PROOF.** `classical_CB3_b` (Braikenridge–Maclaurin) over every field.-/
+/-- **NEW PROOF.** `classical_CB3_b` (Braikenridge–Maclaurin) over every field.
+@isnad1 id=classica.0h1v.s3.fe8c2541f6a9 from=translated src=- shape=c6850a32 vocab=c47d992f
+-/
 theorem cov_CB3_b : classical_CB3_b (k := k) := by
   intro A B C D E F hgen X Y Z hX hY hZ hXYZ
   have g : ∀ i j l : Fin 6, i ≠ j → i ≠ l → j ≠ l →
@@ -825,6 +961,9 @@ theorem cov_CB3_b : classical_CB3_b (k := k) := by
 
 /-! ### NEW PROOF: Pascal (CB3(a)) over every field, via the BM conic and `conics_le_one` -/
 
+/--
+@isnad1 id=not.2h5v.s11.dfdd52244c57 from=translated src=- shape=dbeb1eac vocab=452196f7
+-/
 theorem l15_not_col4 {x y z w : Fin 3 → k} (hxy : x ⨯₃ y ≠ 0) (h : x ⨯₃ y ⬝ᵥ z ≠ 0) :
     ¬ PlaneCubic.Col4 x y z w := by
   rintro ⟨M, hM, ha, hb, hc, -⟩
@@ -833,11 +972,16 @@ theorem l15_not_col4 {x y z w : Fin 3 → k} (hxy : x ⨯₃ y ≠ 0) (h : x ⨯
   rw [smul_dotProduct, smul_eq_mul] at hc
   exact h ((mul_eq_zero.mp hc).resolve_left hc0)
 
+/--
+@isnad1 id=eq.0h7v.s6.f90a18c1775d from=translated src=- shape=f5e155ca vocab=be29c5b8
+-/
 theorem l15_evalC_Qc (A B C D E v : Fin 3 → k) :
     PlaneCubic.evalC (l15Qc A B C D E) v = l15Qb A B C D E v v := by
   rw [← eval_toP2, l15_eval_Qc]
 
-/-- **NEW PROOF.** `classical_CB3_a` (Pascal) over every field.-/
+/-- **NEW PROOF.** `classical_CB3_a` (Pascal) over every field.
+@isnad1 id=classica.0h1v.s3.41ae3b8ba622 from=translated src=- shape=c6850a32 vocab=f15a6b11
+-/
 theorem cov_CB3_a : classical_CB3_a (k := k) := by
   intro q hq hirr A B C D E F hdist hA hB hC hD hE hF X Y Z hX hY hZ
   have dd : ∀ i j : Fin 6, i ≠ j → ![A, B, C, D, E, F] i ≠ ![A, B, C, D, E, F] j :=
@@ -916,6 +1060,9 @@ theorem cov_CB3_a : classical_CB3_a (k := k) := by
 
 /-! ### CB1(b): partial (distinct-points case), via a bridge for the writer's `intMult` -/
 
+/--
+@isnad1 id=eq.1h4v.s9.87ec057a9be3 from=translated src=- shape=9585442d vocab=0ca057fe
+-/
 theorem l15_aeval_hom {F : R3 k} {d : ℕ} (hF : F.IsHomogeneous d) (v : Fin 3 → k) :
     MvPolynomial.aeval (fun i => Polynomial.C (v i) * Polynomial.X) F =
       Polynomial.C (MvPolynomial.eval v F) * Polynomial.X ^ d := by
@@ -927,6 +1074,9 @@ theorem l15_aeval_hom {F : R3 k} {d : ℕ} (hF : F.IsHomogeneous d) (v : Fin 3 �
   simp only [Finsupp.prod, mul_pow, Finset.prod_mul_distrib, ← map_pow, ← map_prod,
     Finset.prod_pow_eq_pow_sum, Polynomial.algebraMap_eq, map_mul, mul_assoc]
 
+/--
+@isnad1 id=iff.1h4v.s8.99ad55130eed from=translated src=- shape=cf30bdbe vocab=06f17dc6
+-/
 theorem l15_mem_pointIdeal {F : R3 k} {d : ℕ} (hF : F.IsHomogeneous d) (v : Fin 3 → k) :
     F ∈ pointIdeal v ↔ MvPolynomial.eval v F = 0 := by
   unfold pointIdeal
@@ -937,7 +1087,9 @@ theorem l15_mem_pointIdeal {F : R3 k} {d : ℕ} (hF : F.IsHomogeneous d) (v : Fi
     simpa using this
   · intro h; rw [h]; simp
 
-/-- `intMult F G P ≠ 0` iff both forms vanish at `P`.-/
+/-- `intMult F G P ≠ 0` iff both forms vanish at `P`.
+@isnad1 id=iff.2h6v.s6.66490108054a from=translated src=- shape=ee34ad84 vocab=859f7d89
+-/
 theorem l15_intMult_ne_zero_iff {F G : R3 k} {a b : ℕ} (hF : F.IsHomogeneous a)
     (hG : G.IsHomogeneous b) (P : P2 k) :
     intMult F G P ≠ 0 ↔ Vanishes F P ∧ Vanishes G P := by
@@ -972,7 +1124,9 @@ theorem l15_intMult_ne_zero_iff {F G : R3 k} {a b : ℕ} (hF : F.IsHomogeneous a
     exact (IsLocalRing.maximalIdeal.isMaximal _).ne_top (top_le_iff.1 this)
 
 /-- **Partial CB1(b)** (any field, no `IsAlgClosed`, no simple-point hypothesis): if the
-nine cycle points are distinct, then `Q = P₉`.-/
+nine cycle points are distinct, then `Q = P₉`.
+@isnad1 id=eq.7h6v.s7.dff8143217d4 from=translated src=- shape=1cffb23e vocab=5d26da6d
+-/
 theorem cov_CB1_b_part (F₁ F₂ F : R3 k) (h₁ : IsCubic F₁) (h₂ : IsCubic F₂) (hF : IsCubic F)
     (hcop : IsRelPrime F₁ F₂) (P : Fin 9 → P2 k) (hP : Function.Injective P)
     (hcyc : ∀ X, intMult F₁ F₂ X = (Nat.card {i // P i = X} : ℕ∞))
@@ -1009,7 +1163,9 @@ theorem cov_CB1_b_part (F₁ F₂ F : R3 k) (h₁ : IsCubic F₁) (h₂ : IsCubi
   · exact absurd (hP hi) (Fin.castSucc_lt_last i).ne
   · exact hQ
 
-/-- **Partial CB1(b), irreducible reading**: same distinct-points case.-/
+/-- **Partial CB1(b), irreducible reading**: same distinct-points case.
+@isnad1 id=eq.8h6v.s8.de9ce645edb9 from=translated src=- shape=b70bdf3d vocab=b64698f7
+-/
 theorem cov_CB1_b_irreducible_part (F₁ F₂ F : R3 k) (h₁ : IsCubic F₁) (h₂ : IsCubic F₂)
     (hF : IsCubic F) (hcop : IsRelPrime F₁ F₂) (_hirr : Irreducible F₁)
     (P : Fin 9 → P2 k) (hP : Function.Injective P)

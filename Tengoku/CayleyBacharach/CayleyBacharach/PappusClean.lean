@@ -13,7 +13,9 @@ namespace Tengoku.CayleyBacharach.PlaneCubic
 variable {K : Type*} [Field K]
 
 /-- A point `v` on a line `l` and on the chord `ab` (with `a` on `l`, `b` off `l`) is
-proportional to `a`.-/
+proportional to `a`.
+@isnad1 id=eq.5h5v.s12.f514045615d4 from=translated src=- shape=4b1fc464 vocab=20e6b0f6
+-/
 theorem on_chord_prop {l a b v : Fin 3 → K} (hab : a ⨯₃ b ≠ 0) (ha : l ⬝ᵥ a = 0)
     (hb : l ⬝ᵥ b ≠ 0) (hv : a ⨯₃ b ⬝ᵥ v = 0) (hlv : l ⬝ᵥ v = 0) : a ⨯₃ v = 0 := by
   have hlm : a ⨯₃ b ⨯₃ l ≠ 0 := by
@@ -23,12 +25,16 @@ theorem on_chord_prop {l a b v : Fin 3 → K} (hab : a ⨯₃ b ≠ 0) (ha : l �
     exact hb (by rw [dotProduct_comm]; exact this)
   exact cross_eq_zero_of_two_lines hlm (cross_dot_left a b) ha hv hlv
 
-/-- The chord `ab` (`a` on `l`, `b` off `l`) misses every other point `c` of `l`.-/
+/-- The chord `ab` (`a` on `l`, `b` off `l`) misses every other point `c` of `l`.
+@isnad1 id=ne.5h5v.s12.a337f8a47df1 from=translated src=- shape=47e8a9ab vocab=20e6b0f6
+-/
 theorem off_chord {l a b c : Fin 3 → K} (hab : a ⨯₃ b ≠ 0) (ha : l ⬝ᵥ a = 0)
     (hb : l ⬝ᵥ b ≠ 0) (hc : l ⬝ᵥ c = 0) (hac : a ⨯₃ c ≠ 0) : a ⨯₃ b ⬝ᵥ c ≠ 0 :=
   fun hv => hac (on_chord_prop hab ha hb hv hc)
 
-/-- The chord `ab` (`a` off `m`, `b` on `m`) misses every other point `c` of `m`.-/
+/-- The chord `ab` (`a` off `m`, `b` on `m`) misses every other point `c` of `m`.
+@isnad1 id=ne.5h5v.s12.aa69031fbf4d from=translated src=- shape=487809cf vocab=20e6b0f6
+-/
 theorem off_chord' {m a b c : Fin 3 → K} (hab : a ⨯₃ b ≠ 0) (ha : m ⬝ᵥ a ≠ 0)
     (hb : m ⬝ᵥ b = 0) (hc : m ⬝ᵥ c = 0) (hbc : b ⨯₃ c ≠ 0) : a ⨯₃ b ⬝ᵥ c ≠ 0 := by
   intro hv
@@ -41,7 +47,9 @@ namespace Tengoku.CayleyBacharach.PlaneCubic
 
 variable {K : Type*} [Field K]
 
-/-- Variant of `on_chord_prop` with the chord written `b ⨯₃ a`.-/
+/-- Variant of `on_chord_prop` with the chord written `b ⨯₃ a`.
+@isnad1 id=eq.5h5v.s12.99b7b9a37b21 from=translated src=- shape=0a87c9f2 vocab=20e6b0f6
+-/
 theorem on_chord_prop' {l a b v : Fin 3 → K} (hab : a ⨯₃ b ≠ 0) (ha : l ⬝ᵥ a = 0)
     (hb : l ⬝ᵥ b ≠ 0) (hv : b ⨯₃ a ⬝ᵥ v = 0) (hlv : l ⬝ᵥ v = 0) : a ⨯₃ v = 0 :=
   on_chord_prop hab ha hb (by rw [← cross_anticomm, neg_dotProduct, hv, neg_zero]) hlv
@@ -49,7 +57,9 @@ theorem on_chord_prop' {l a b v : Fin 3 → K} (hab : a ⨯₃ b ≠ 0) (ha : l 
 /-- **Pappus genericity for free.** `A₁, A₃, A₅` on `l`, `A₂, A₄, A₆` on `m`, none of the six
 on the other line (i.e. not at `l ∩ m`), and the three points on each line pairwise
 non-proportional. Then with `X = L₁₂ ⨯₃ L₄₅`, `Y = L₂₃ ⨯₃ L₅₆`, `Z = L₃₄ ⨯₃ L₆₁` all the
-genericity hypotheses of `pappus_of_cayley_bacharach` hold.-/
+genericity hypotheses of `pappus_of_cayley_bacharach` hold.
+@isnad1 id=and.21h12v.s15.4043366b1c8e from=translated src=- shape=4f73ae29 vocab=cbb2962f
+-/
 theorem pappus_generic (A₁ A₂ A₃ A₄ A₅ A₆ X Y Z l m : Fin 3 → K)
     (hl₁ : l ⬝ᵥ A₁ = 0) (hl₃ : l ⬝ᵥ A₃ = 0) (hl₅ : l ⬝ᵥ A₅ = 0)
     (hm₂ : m ⬝ᵥ A₂ = 0) (hm₄ : m ⬝ᵥ A₄ = 0) (hm₆ : m ⬝ᵥ A₆ = 0)
@@ -176,7 +186,9 @@ variable {K : Type*} [Field K]
 line `l`, `A₂, A₄, A₆` pairwise non-proportional on a line `m`, and none of the six on the
 other line (i.e. none at `l ∩ m`). Then the three points `L₁₂ ∩ L₄₅`, `L₂₃ ∩ L₅₆`,
 `L₃₄ ∩ L₆₁` (explicit cross products) are collinear. `l ≠ m` and `l, m ≠ 0` are not
-assumed separately: they follow from `m ⬝ᵥ A₁ ≠ 0`, `l ⬝ᵥ A₂ ≠ 0` and the incidences.-/
+assumed separately: they follow from `m ⬝ᵥ A₁ ≠ 0`, `l ⬝ᵥ A₂ ≠ 0` and the incidences.
+@isnad1 id=eq.18h9v.s14.c9a198df0caa from=translated src=- shape=cc6cbe67 vocab=cf767bb4
+-/
 theorem pappus_clean [CardGT K 10] (A₁ A₂ A₃ A₄ A₅ A₆ l m : Fin 3 → K)
     (hl₁ : l ⬝ᵥ A₁ = 0) (hl₃ : l ⬝ᵥ A₃ = 0) (hl₅ : l ⬝ᵥ A₅ = 0)
     (hm₂ : m ⬝ᵥ A₂ = 0) (hm₄ : m ⬝ᵥ A₄ = 0) (hm₆ : m ⬝ᵥ A₆ = 0)
@@ -192,7 +204,9 @@ theorem pappus_clean [CardGT K 10] (A₁ A₂ A₃ A₄ A₅ A₆ l m : Fin 3 �
     (dot_self_cross _ _) (dot_cross_self _ _) (dot_self_cross _ _) (dot_cross_self _ _)
     (dot_self_cross _ _) (dot_cross_self _ _) hl₁ hl₃ hl₅ hm₂ hm₄ hm₆ hlZ hmZ
 
-/-- The hypotheses of `pappus_clean` force `l, m` to be nonzero and non-proportional.-/
+/-- The hypotheses of `pappus_clean` force `l, m` to be nonzero and non-proportional.
+@isnad1 id=ne.3h5v.s11.491ef7c3fb12 from=translated src=- shape=a55ef220 vocab=20e6b0f6
+-/
 theorem pappus_lines_distinct (A₁ A₂ l m : Fin 3 → K) (hl₁ : l ⬝ᵥ A₁ = 0)
     (hm₁ : m ⬝ᵥ A₁ ≠ 0) (hl₂ : l ⬝ᵥ A₂ ≠ 0) : l ⨯₃ m ≠ 0 := by
   intro h
@@ -212,7 +226,9 @@ off-diagonal entries halved, so that `vᵀ M(q) v = q(v)` when `(2 : K) ≠ 0`.-
 def gram (q : Fin 6 → K) : Matrix (Fin 3) (Fin 3) K :=
   !![q 0, q 1 / 2, q 2 / 2; q 1 / 2, q 3, q 4 / 2; q 2 / 2, q 4 / 2, q 5]
 
-/-- `vᵀ M(q) v = q(v)` (needs `2 ≠ 0`).-/
+/-- `vᵀ M(q) v = q(v)` (needs `2 ≠ 0`).
+@isnad1 id=eq.1h3v.s7.5b33f3d4987d from=translated src=- shape=9bc48a74 vocab=b47f0a4f
+-/
 theorem gram_quadForm (h2 : (2 : K) ≠ 0) (q : Fin 6 → K) (v : Fin 3 → K) :
     v ⬝ᵥ (gram q *ᵥ v) = evalC q v := by
   rw [evalC_expand]
@@ -221,20 +237,26 @@ theorem gram_quadForm (h2 : (2 : K) ≠ 0) (q : Fin 6 → K) (v : Fin 3 → K) :
   ring
 
 /-- **A line pair has singular Gram matrix.** If `q = ℓ · m` and `(2 : K) ≠ 0` then
-`det M(q) = 0`. (In characteristic 2, `2⁻¹ = 0` in Lean and the statement fails.)-/
+`det M(q) = 0`. (In characteristic 2, `2⁻¹ = 0` in Lean and the statement fails.)
+@isnad1 id=eq.1h3v.s6.fbfceb7cf44a from=translated src=- shape=a342669b vocab=3685b34f
+-/
 theorem det_gram_linMul (h2 : (2 : K) ≠ 0) (ℓ m : Fin 3 → K) :
     (gram (linMul ℓ m)).det = 0 := by
   simp [gram, linMul, Matrix.det_fin_three]
   field_simp
   ring
 
-/-- Contrapositive: `det M(q) ≠ 0` implies `q` is not a product of two linear forms.-/
+/-- Contrapositive: `det M(q) ≠ 0` implies `q` is not a product of two linear forms.
+@isnad1 id=ne.2h4v.s7.58cd5980f343 from=translated src=- shape=a7731e24 vocab=3685b34f
+-/
 theorem not_linMul_of_det_gram_ne_zero (h2 : (2 : K) ≠ 0) {q : Fin 6 → K}
     (h : (gram q).det ≠ 0) : ∀ ℓ m : Fin 3 → K, q ≠ linMul ℓ m := by
   rintro ℓ m rfl
   exact h (det_gram_linMul h2 ℓ m)
 
-/-- **Pascal's theorem for a nondegenerate conic** (`det M(q) ≠ 0`).-/
+/-- **Pascal's theorem for a nondegenerate conic** (`det M(q) ≠ 0`).
+@isnad1 id=eq.9h8v.s14.c9a07a1c04d9 from=translated src=- shape=3b0a8cc1 vocab=146f92a4
+-/
 theorem pascal_clean_det [CardGT K 10] (h2 : (2 : K) ≠ 0) (A₁ A₂ A₃ A₄ A₅ A₆ : Fin 3 → K)
     (hA : ∀ i j, i ≠ j → ![A₁, A₂, A₃, A₄, A₅, A₆] i ⨯₃ ![A₁, A₂, A₃, A₄, A₅, A₆] j ≠ 0)
     (q : Fin 6 → K) (hdet : (gram q).det ≠ 0)
@@ -250,7 +272,9 @@ end Tengoku.CayleyBacharach.PlaneCubic
 namespace Tengoku.CayleyBacharach.PlaneCubic
 
 /-- **`(2 : K) ≠ 0` is needed in `det_gram_linMul`.** Over `ZMod 2` (where `2⁻¹ = 0`), the
-square `(x + y + z)²` has Gram matrix `diag(1,1,1)`, of determinant `1`.-/
+square `(x + y + z)²` has Gram matrix `diag(1,1,1)`, of determinant `1`.
+@isnad1 id=eq.0h0v.s7.fb3f954d99d7 from=translated src=- shape=db9768a6 vocab=a9a55723
+-/
 theorem det_gram_linMul_char_two :
     (gram (linMul (fun _ => (1 : ZMod 2)) (fun _ => 1))).det = 1 := by
   have h : (2 : ZMod 2) = 0 := rfl
@@ -262,7 +286,9 @@ namespace Tengoku.CayleyBacharach.PlaneCubic
 
 variable {K : Type*} [Field K]
 
-/-- The mixed term of `q(s•v + t•w)` is twice the Gram bilinear form.-/
+/-- The mixed term of `q(s•v + t•w)` is twice the Gram bilinear form.
+@isnad1 id=eq.1h4v.s7.8c4d8440061f from=translated src=- shape=ebabe48f vocab=375c2295
+-/
 theorem cmono1_sum_eq_gram (h2 : (2 : K) ≠ 0) (q : Fin 6 → K) (v w : Fin 3 → K) :
     ∑ j, q j * cmono1 v w j = 2 * (w ⬝ᵥ (gram q *ᵥ v)) := by
   simp [cmono1, gram, dotProduct, mulVec, Fin.sum_univ_succ]
@@ -273,7 +299,9 @@ theorem cmono1_sum_eq_gram (h2 : (2 : K) ≠ 0) (q : Fin 6 → K) (v w : Fin 3 �
 then `q` is a product of two linear forms. Proof: a kernel vector `v` of `M(q)` is a
 singular point of `q`; a second zero `w` of `q` off `v` exists (a quadratic on a line
 missing `v` has a root); `q` vanishes on the whole line `vw`, so `conic_line_lemma`
-splits off that line.-/
+splits off that line.
+@isnad1 id=ex.2h2v.s7.11b1deddfe5c from=translated src=- shape=c4cce071 vocab=43cdc81f
+-/
 theorem exists_linMul_of_det_gram_eq_zero [IsAlgClosed K] (h2 : (2 : K) ≠ 0)
     (q : Fin 6 → K) (h : (gram q).det = 0) : ∃ ℓ m : Fin 3 → K, q = linMul ℓ m := by
   obtain ⟨v, hv0, hv⟩ := Matrix.exists_mulVec_eq_zero_iff.mpr h
@@ -314,7 +342,9 @@ theorem exists_linMul_of_det_gram_eq_zero [IsAlgClosed K] (h2 : (2 : K) ≠ 0)
   exact ⟨_, m, hm⟩
 
 /-- **Irreducibility criterion.** Over an algebraically closed field with `(2 : K) ≠ 0`,
-a conic is a product of two linear forms iff its Gram matrix is singular.-/
+a conic is a product of two linear forms iff its Gram matrix is singular.
+@isnad1 id=iff.1h2v.s7.f0120c9906ad from=translated src=- shape=20170e91 vocab=43cdc81f
+-/
 theorem det_gram_eq_zero_iff [IsAlgClosed K] (h2 : (2 : K) ≠ 0) (q : Fin 6 → K) :
     (gram q).det = 0 ↔ ∃ ℓ m : Fin 3 → K, q = linMul ℓ m :=
   ⟨exists_linMul_of_det_gram_eq_zero h2 q, fun ⟨ℓ, m, hq⟩ => hq ▸ det_gram_linMul h2 ℓ m⟩

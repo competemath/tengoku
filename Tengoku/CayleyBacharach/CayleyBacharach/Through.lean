@@ -34,13 +34,18 @@ def linesThrough (S : Set (Fin 3 → K)) : Submodule K (Fin 3 → K) where
   zero_mem' v _ := by simp
   smul_mem' c F hF v hv := by simp [smul_dotProduct, hF v hv]
 
+/--
+@isnad1 id=eq.0h3v.s8.01357f86e0c4 from=translated src=- shape=f251a673 vocab=36f7c5cc
+-/
 theorem ker_evalMap_eq {ι : Type*} (P : ι → Fin 3 → K) :
     LinearMap.ker (evalMap P) = cubicsThrough (Set.range P) := by
   ext F
   rw [mem_ker_evalMap]
   simp [cubicsThrough]
 
-/-- One linear condition lowers the dimension by at most one.-/
+/-- One linear condition lowers the dimension by at most one.
+@isnad1 id=le.1h5v.s9.26d7eb2f2dd0 from=translated src=- shape=69264ab4 vocab=98419c53
+-/
 theorem finrank_le_inf_ker_add_one {V : Type*} [AddCommGroup V] [Module K V]
     [FiniteDimensional K V] (W W' : Submodule K V) (f : V →ₗ[K] K)
     (h : ∀ x ∈ W, f x = 0 → x ∈ W') :
@@ -58,6 +63,9 @@ theorem finrank_le_inf_ker_add_one {V : Type*} [AddCommGroup V] [Module K V]
     exact h y y.2 (by simpa [g] using hy)
   omega
 
+/--
+@isnad1 id=le.0h3v.s9.1c7e404bbfb7 from=translated src=- shape=9d1091b6 vocab=9a415b99
+-/
 theorem cubics_insert (a : Fin 3 → K) (S : Set (Fin 3 → K)) :
     Module.finrank K (cubicsThrough S) ≤ Module.finrank K (cubicsThrough (insert a S)) + 1 :=
   finrank_le_inf_ker_add_one _ _ (evalLin a) fun F hF ha v hv => by
@@ -65,6 +73,9 @@ theorem cubics_insert (a : Fin 3 → K) (S : Set (Fin 3 → K)) :
     · simpa using ha
     · exact hF v hv
 
+/--
+@isnad1 id=le.0h3v.s10.8b5aac898fe3 from=translated src=- shape=d160e854 vocab=2028b620
+-/
 theorem conics_insert (a : Fin 3 → K) (S : Set (Fin 3 → K)) :
     Module.finrank K (conicsThrough S) ≤ Module.finrank K (conicsThrough (insert a S)) + 1 := by
   let f : (Fin 6 → K) →ₗ[K] K :=
@@ -76,7 +87,9 @@ theorem conics_insert (a : Fin 3 → K) (S : Set (Fin 3 → K)) :
     · exact ha
     · exact hF v hv
 
-/-- Residual bound for cubics: four distinct points of `S` on `ℓ = 0`.-/
+/-- Residual bound for cubics: four distinct points of `S` on `ℓ = 0`.
+@isnad1 id=le.15h7v.s13.69d664a34428 from=translated src=- shape=36db6b43 vocab=0ee2f55c
+-/
 theorem cubics_resid [AtLeastThree K] {ℓ u v w z : Fin 3 → K} (hℓ : ℓ ≠ 0)
     (huv : u ⨯₃ v ≠ 0) (huw : u ⨯₃ w ≠ 0) (hvw : v ⨯₃ w ≠ 0)
     (huz : u ⨯₃ z ≠ 0) (hvz : v ⨯₃ z ≠ 0) (hwz : w ⨯₃ z ≠ 0)
@@ -100,7 +113,9 @@ def linMulLin (ℓ : Fin 3 → K) : (Fin 3 → K) →ₗ[K] (Fin 6 → K) where
   map_add' m m' := by ext i; fin_cases i <;> simp [linMul] <;> ring
   map_smul' c m := by ext i; fin_cases i <;> simp [linMul] <;> ring
 
-/-- Residual bound for conics: three distinct points of `S` on `ℓ = 0`.-/
+/-- Residual bound for conics: three distinct points of `S` on `ℓ = 0`.
+@isnad1 id=le.10h6v.s12.7e6248be48ef from=translated src=- shape=33871126 vocab=2666004a
+-/
 theorem conics_resid {ℓ u v w : Fin 3 → K} (hℓ : ℓ ≠ 0)
     (huv : u ⨯₃ v ≠ 0) (huw : u ⨯₃ w ≠ 0) (hvw : v ⨯₃ w ≠ 0)
     (hu : ℓ ⬝ᵥ u = 0) (hv : ℓ ⬝ᵥ v = 0) (hw : ℓ ⬝ᵥ w = 0)
@@ -116,6 +131,9 @@ theorem conics_resid {ℓ u v w : Fin 3 → K} (hℓ : ℓ ≠ 0)
     exact (mul_eq_zero.mp this).resolve_left hx.2
   exact (Submodule.finrank_mono hle).trans (Submodule.finrank_map_le _ _)
 
+/--
+@isnad1 id=le.3h4v.s11.698a12c5ec4e from=translated src=- shape=93be3dbc vocab=48dbedeb
+-/
 theorem lines_le_one {u v : Fin 3 → K} (huv : u ⨯₃ v ≠ 0) (S : Set (Fin 3 → K))
     (hu : u ∈ S) (hv : v ∈ S) : Module.finrank K (linesThrough S) ≤ 1 := by
   have hle : linesThrough S ≤ K ∙ (u ⨯₃ v) := by
@@ -124,12 +142,18 @@ theorem lines_le_one {u v : Fin 3 → K} (huv : u ⨯₃ v ≠ 0) (S : Set (Fin 
     exact Submodule.smul_mem _ c (Submodule.mem_span_singleton_self _)
   exact (Submodule.finrank_mono hle).trans (finrank_span_le_card _ |>.trans (by simp))
 
+/--
+@isnad1 id=eq.4h5v.s11.c715ba315d06 from=translated src=- shape=9f6bcc6f vocab=60db404a
+-/
 theorem lines_eq_zero {u v w : Fin 3 → K} (h : u ⨯₃ v ⬝ᵥ w ≠ 0) (S : Set (Fin 3 → K))
     (hu : u ∈ S) (hv : v ∈ S) (hw : w ∈ S) : Module.finrank K (linesThrough S) = 0 := by
   rw [Submodule.finrank_eq_zero, eq_bot_iff]
   intro m hm
   exact (Submodule.mem_bot K).mpr (lin_three h (hm u hu) (hm v hv) (hm w hw))
 
+/--
+@isnad1 id=le.2h3v.s9.875612dccaee from=translated src=- shape=819bae15 vocab=d527b493
+-/
 theorem lines_le_two {u : Fin 3 → K} (hu0 : u ≠ 0) (S : Set (Fin 3 → K)) (hu : u ∈ S) :
     Module.finrank K (linesThrough S) ≤ 2 := by
   let f : (Fin 3 → K) →ₗ[K] K :=

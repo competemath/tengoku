@@ -28,7 +28,9 @@ private theorem card_compl_fin8 (s : Finset (Fin 8)) :
 
 /-- **The eight-point criterion, as an equivalence.** For eight pairwise non-proportional
 points in the plane, the space of cubics through them is `2`-dimensional if and only if no
-line contains five of the points and no nonzero conic passes through all eight.-/
+line contains five of the points and no nonzero conic passes through all eight.
+@isnad1 id=iff.1h2v.s11.0771f969f41e from=translated src=- shape=1c5a870b vocab=b3c9cfe0
+-/
 theorem finrank_ker_evalMap_eq_two_iff (P : Fin 8 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0) :
     Module.finrank K (LinearMap.ker (evalMap P)) = 2 ↔

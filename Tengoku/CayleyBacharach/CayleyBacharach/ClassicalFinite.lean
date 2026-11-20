@@ -25,11 +25,16 @@ variable {K : Type*} [Field K]
 class CardGT (K : Type*) (n : ℕ) : Prop where
   exists_finset : ∃ s : Finset K, n < s.card
 
+/--
+@isnad1 id=cardgt.1h2v.s4.09a046630168 from=translated src=- shape=55808061 vocab=b035f40c
+-/
 theorem CardGT.of_card {L : Type*} [Fintype L] {n : ℕ} (h : n < Fintype.card L) :
     CardGT L n :=
   ⟨⟨Finset.univ, by rw [Finset.card_univ]; exact h⟩⟩
 
-/-- A field with a `3`-element finset has at least three elements.-/
+/-- A field with a `3`-element finset has at least three elements.
+@isnad1 id=atleastt.1h2v.s4.25a70399efe0 from=translated src=- shape=97d9906b vocab=ea4dd57c
+-/
 theorem AtLeastThree.of_finset (s : Finset K) (h : 3 ≤ s.card) : AtLeastThree K := by
   classical
   by_contra hK
@@ -38,7 +43,9 @@ theorem AtLeastThree.of_finset (s : Finset K) (h : 3 ≤ s.card) : AtLeastThree 
   have := (Finset.card_le_card hsub).trans Finset.card_le_two
   omega
 
-/-- **Pigeonhole, finite version.** More pairwise non-proportional zeros than classes.-/
+/-- **Pigeonhole, finite version.** More pairwise non-proportional zeros than classes.
+@isnad1 id=false.5h7v.s12.d9c5c950799b from=translated src=- shape=acf82bf2 vocab=b142f4f6
+-/
 theorem false_of_finset_family {ι : Type*} [Fintype ι] {P : ι → Fin 3 → K}
     (hP : ∀ i, P i ≠ 0) {Z : (Fin 3 → K) → Prop}
     (hZ : ∀ v, v ≠ 0 → Z v → ∃ i, v ⨯₃ P i = 0) (S : Finset K)
@@ -53,6 +60,9 @@ theorem false_of_finset_family {ι : Type*} [Fintype ι] {P : ι → Fin 3 → K
   exact hg s s.2 t t.2 (fun h => hst (Subtype.ext h))
     (cross_eq_zero_of_cross_eq_zero (hP _) h1 h2)
 
+/--
+@isnad1 id=false.4h7v.s12.18784d189eba from=translated src=- shape=e28a7c7b vocab=0e2cf8c7
+-/
 theorem false_of_pencil_card {ι : Type*} [Fintype ι] {P : ι → Fin 3 → K}
     (hP : ∀ i, P i ≠ 0) {Z : (Fin 3 → K) → Prop}
     (hZ : ∀ v, v ≠ 0 → Z v → ∃ i, v ⨯₃ P i = 0)
@@ -65,6 +75,9 @@ theorem false_of_pencil_card {ι : Type*} [Fintype ι] {P : ι → Fin 3 → K}
     (fun s _ t _ hst => by
       rw [cross_add_smul]; exact smul_ne_zero (sub_ne_zero.mpr (Ne.symm hst)) huw)
 
+/--
+@isnad1 id=false.3h4v.s11.58a1ecfaecf2 from=translated src=- shape=44f08840 vocab=d52e95f9
+-/
 theorem false_of_line_card {ι : Type*} [Fintype ι] {P : ι → Fin 3 → K}
     (hP : ∀ i, P i ≠ 0) (hK : ∃ s : Finset K, Fintype.card ι < s.card) (ℓ : Fin 3 → K)
     (hZ : ∀ v, v ≠ 0 → ℓ ⬝ᵥ v = 0 → ∃ i, v ⨯₃ P i = 0) : False := by
@@ -72,6 +85,9 @@ theorem false_of_line_card {ι : Type*} [Fintype ι] {P : ι → Fin 3 → K}
   exact false_of_pencil_card hP hZ hK huw fun t => by
     simp [dotProduct_add, dotProduct_smul, hu, hw]
 
+/--
+@isnad1 id=not.3h5v.s11.b5b9ab267949 from=translated src=- shape=6a6da665 vocab=31833294
+-/
 theorem no_common_line_of_exact_card {ι : Type*} [Fintype ι] {P : ι → Fin 3 → K}
     (hP : ∀ i, P i ≠ 0) (hK : ∃ s : Finset K, Fintype.card ι < s.card) (F G : PlaneCubic K)
     (hex : ∀ v, v ≠ 0 → eval F v = 0 → eval G v = 0 → ∃ i, v ⨯₃ P i = 0) :
@@ -80,7 +96,9 @@ theorem no_common_line_of_exact_card {ι : Type*} [Fintype ι] {P : ι → Fin 3
   exact false_of_line_card hP hK ℓ fun v hv hl =>
     hex v hv (eval_mulLin_of_dot_eq_zero _ _ _ hl) (eval_mulLin_of_dot_eq_zero _ _ _ hl)
 
-/-- A conic with two distinct zeros has at least `|K| - 1` pairwise non-proportional zeros.-/
+/-- A conic with two distinct zeros has at least `|K| - 1` pairwise non-proportional zeros.
+@isnad1 id=false.6h6v.s12.2e403c93a5a3 from=translated src=- shape=ff839874 vocab=25e19749
+-/
 theorem false_of_conic_card {ι : Type*} [Fintype ι] {P : ι → Fin 3 → K}
     (hP : ∀ i, P i ≠ 0) (hK : ∃ s : Finset K, Fintype.card ι + 1 < s.card)
     {q : Fin 6 → K} {u v : Fin 3 → K} (huv : u ⨯₃ v ≠ 0)
@@ -126,6 +144,9 @@ theorem false_of_conic_card {ι : Type*} [Fintype ι] {P : ι → Fin 3 → K}
     exact mul_ne_zero (mul_ne_zero (mul_ne_zero (neg_ne_zero.mpr hs') (neg_ne_zero.mpr ht'))
       (sub_ne_zero.mpr (Ne.symm hst))) hz this.symm
 
+/--
+@isnad1 id=false.8h8v.s12.b83127094919 from=translated src=- shape=ae851eeb vocab=c853412d
+-/
 theorem false_of_common_pair_card {ι : Type*} [Fintype ι] {P : ι → Fin 3 → K}
     (hP : ∀ i, P i ≠ 0) (hK : ∃ s : Finset K, Fintype.card ι < s.card)
     {q : Fin 6 → K} {m m' a b : Fin 3 → K} (hab : a ⨯₃ b ≠ 0)
@@ -138,6 +159,9 @@ theorem false_of_common_pair_card {ι : Type*} [Fintype ι] {P : ι → Fin 3 �
   · rw [eval_mulLin, hc, smul_dotProduct, hl, smul_zero, zero_mul]
   · rw [eval_mulLin, hc', smul_dotProduct, hl, smul_zero, zero_mul]
 
+/--
+@isnad1 id=not.5h5v.s12.deda9d85dbdc from=translated src=- shape=954b305b vocab=9c41aad7
+-/
 theorem no_common_conic_of_exact_card {n : ℕ} {P : Fin (n + 3) → Fin 3 → K}
     (hK : ∃ s : Finset K, n + 4 < s.card)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0) (F G : PlaneCubic K)
@@ -176,7 +200,9 @@ theorem no_common_conic_of_exact_card {n : ℕ} {P : Fin (n + 3) → Fin 3 → K
     · exact key 0 1 d01 h0 h1
 
 /-- **Cayley–Bacharach, classical form, counting version.** As `cayley_bacharach_classical`,
-with `[Infinite K]` replaced by "`K` has at least `11` elements".-/
+with `[Infinite K]` replaced by "`K` has at least `11` elements".
+@isnad1 id=eq.5h5v.s11.1784223f008e from=translated src=- shape=99cd848e vocab=1986690a
+-/
 theorem cayley_bacharach_classical_card (hK : ∃ s : Finset K, 10 < s.card)
     (P : Fin 9 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
@@ -196,7 +222,9 @@ theorem cayley_bacharach_classical_card (hK : ∃ s : Finset K, 10 < s.card)
       F G hex')
     (no_common_conic_of_exact_card (n := 6) ⟨T, by omega⟩ hP F G hF hG hex') H hH
 
-/-- **Classical Cayley–Bacharach over a finite field with at least 11 elements.**-/
+/-- **Classical Cayley–Bacharach over a finite field with at least 11 elements.**
+@isnad1 id=eq.5h5v.s11.1c9f73af643e from=translated src=- shape=f7570776 vocab=90219f88
+-/
 theorem cayley_bacharach_classical_fintype [Fintype K] (hK : 11 ≤ Fintype.card K)
     (P : Fin 9 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
@@ -208,7 +236,9 @@ theorem cayley_bacharach_classical_fintype [Fintype K] (hK : 11 ≤ Fintype.card
     P hP F G hFG hex H hH
 
 /-- **Classical Cayley–Bacharach under `CardGT K 10`** (typeclass form, used by
-`Pascal.lean`; `[Infinite K]` provides the instance).-/
+`Pascal.lean`; `[Infinite K]` provides the instance).
+@isnad1 id=eq.4h5v.s11.21ef7fcf231c from=translated src=- shape=0130177c vocab=7af20a65
+-/
 theorem cayley_bacharach_classical' [CardGT K 10] (P : Fin 9 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
     (F G : PlaneCubic K) (hFG : LinearIndependent K ![F, G])
@@ -217,7 +247,9 @@ theorem cayley_bacharach_classical' [CardGT K 10] (P : Fin 9 → Fin 3 → K)
     eval H (P 8) = 0 :=
   cayley_bacharach_classical_card CardGT.exists_finset P hP F G hFG hex H hH
 
-/-- `false_of_line` under `CardGT K 10`, for nine classes.-/
+/-- `false_of_line` under `CardGT K 10`, for nine classes.
+@isnad1 id=false.2h3v.s11.fc23f233dd31 from=translated src=- shape=fefcbac9 vocab=8500abd3
+-/
 theorem false_of_line' [CardGT K 10] {P : Fin 9 → Fin 3 → K}
     (hP : ∀ i, P i ≠ 0) (ℓ : Fin 3 → K)
     (hZ : ∀ v, v ≠ 0 → ℓ ⬝ᵥ v = 0 → ∃ i, v ⨯₃ P i = 0) : False := by

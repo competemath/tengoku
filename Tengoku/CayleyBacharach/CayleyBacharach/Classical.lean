@@ -17,7 +17,9 @@ namespace Tengoku.CayleyBacharach.PlaneCubic
 
 variable {K : Type*} [Field K]
 
-/-- If `u ⨯₃ p = 0` then `p k • u = u k • p`.-/
+/-- If `u ⨯₃ p = 0` then `p k • u = u k • p`.
+@isnad1 id=eq.1h4v.s11.5af300d7cf69 from=translated src=- shape=d3af4781 vocab=bb366aee
+-/
 theorem smul_eq_smul_of_cross_eq_zero {u p : Fin 3 → K} (h : u ⨯₃ p = 0) (k : Fin 3) :
     p k • u = u k • p := by
   have e := cross_cross_eq_smul_sub_smul' (Pi.single k 1) u p
@@ -25,7 +27,9 @@ theorem smul_eq_smul_of_cross_eq_zero {u p : Fin 3 → K} (h : u ⨯₃ p = 0) (
   simp only [map_zero, single_dotProduct, one_mul, dotProduct_single, mul_one] at e
   exact (sub_eq_zero.mp e.symm)
 
-/-- Proportionality to a nonzero vector is transitive.-/
+/-- Proportionality to a nonzero vector is transitive.
+@isnad1 id=eq.3h4v.s12.3279c8794c04 from=translated src=- shape=384f7e6e vocab=64357601
+-/
 theorem cross_eq_zero_of_cross_eq_zero {u w p : Fin 3 → K} (hp : p ≠ 0) (hu : u ⨯₃ p = 0)
     (hw : w ⨯₃ p = 0) : u ⨯₃ w = 0 := by
   obtain ⟨k, hk⟩ := Function.ne_iff.mp hp
@@ -39,7 +43,9 @@ theorem cross_eq_zero_of_cross_eq_zero {u w p : Fin 3 → K} (hp : p ≠ 0) (hu 
   exact (smul_eq_zero.mp h1.symm).resolve_left (mul_ne_zero hk hk)
 
 /-- **Pigeonhole.** If every nonzero `v` with property `Z` is proportional to one of finitely
-many nonzero `P i`, there is no infinite family of pairwise non-proportional such `v`.-/
+many nonzero `P i`, there is no infinite family of pairwise non-proportional such `v`.
+@isnad1 id=false.5h7v.s12.33709be1612b from=translated src=- shape=cc87d6f1 vocab=41da50e2
+-/
 theorem false_of_infinite_family {ι : Type*} [Finite ι] {P : ι → Fin 3 → K}
     (hP : ∀ i, P i ≠ 0) {Z : (Fin 3 → K) → Prop}
     (hZ : ∀ v, v ≠ 0 → Z v → ∃ i, v ⨯₃ P i = 0) {S : Set K} (hS : S.Infinite)
@@ -54,14 +60,22 @@ theorem false_of_infinite_family {ι : Type*} [Finite ι] {P : ι → Fin 3 → 
   exact hg s s.2 t t.2 (fun h => hst (Subtype.ext h))
     (cross_eq_zero_of_cross_eq_zero (hP _) h1 h2)
 
+/--
+@isnad1 id=eq.0h5v.s12.676b1ea1c86e from=translated src=- shape=4f1ff8ef vocab=e05cc001
+-/
 theorem cross_add_smul (u w : Fin 3 → K) (s t : K) :
     (u + s • w) ⨯₃ (u + t • w) = (t - s) • (u ⨯₃ w) := by
   ext i; fin_cases i <;> simp [cross_apply] <;> ring
 
+/--
+@isnad1 id=eq.0h4v.s11.f9f2adf010b1 from=translated src=- shape=09eaca56 vocab=96a70b03
+-/
 theorem cross_add_smul' (u w : Fin 3 → K) (t : K) : w ⨯₃ (u + t • w) = -(u ⨯₃ w) := by
   ext i; fin_cases i <;> simp [cross_apply] <;> ring
 
-/-- The points `u + t • w` (`t ∈ K`) of a line cannot all be among finitely many classes.-/
+/-- The points `u + t • w` (`t ∈ K`) of a line cannot all be among finitely many classes.
+@isnad1 id=false.3h7v.s12.3cd1e992a4dd from=translated src=- shape=dbbd9c98 vocab=09010ac9
+-/
 theorem false_of_pencil [Infinite K] {ι : Type*} [Finite ι] {P : ι → Fin 3 → K}
     (hP : ∀ i, P i ≠ 0) {Z : (Fin 3 → K) → Prop}
     (hZ : ∀ v, v ≠ 0 → Z v → ∃ i, v ⨯₃ P i = 0) {u w : Fin 3 → K} (huw : u ⨯₃ w ≠ 0)
@@ -72,7 +86,9 @@ theorem false_of_pencil [Infinite K] {ι : Type*} [Finite ι] {P : ι → Fin 3 
     (fun s _ t _ hst => by
       rw [cross_add_smul]; exact smul_ne_zero (sub_ne_zero.mpr (Ne.symm hst)) huw)
 
-/-- Two independent vectors on the line `ℓ = 0`.-/
+/-- Two independent vectors on the line `ℓ = 0`.
+@isnad1 id=ex.0h2v.s11.536868cec2dc from=translated src=- shape=22309827 vocab=20e6b0f6
+-/
 theorem exists_line_basis (ℓ : Fin 3 → K) :
     ∃ u w : Fin 3 → K, ℓ ⬝ᵥ u = 0 ∧ ℓ ⬝ᵥ w = 0 ∧ u ⨯₃ w ≠ 0 := by
   by_cases h0 : ℓ 0 = 0
@@ -90,7 +106,9 @@ theorem exists_line_basis (ℓ : Fin 3 → K) :
     · simp [dotProduct, Fin.sum_univ_succ]; ring
     · intro h; have := congrFun h 0; simp [cross_apply] at this; exact h0 this
 
-/-- A whole line cannot consist of common zeros lying in finitely many classes.-/
+/-- A whole line cannot consist of common zeros lying in finitely many classes.
+@isnad1 id=false.2h4v.s11.705be8755f0e from=translated src=- shape=38483417 vocab=cd0c8777
+-/
 theorem false_of_line [Infinite K] {ι : Type*} [Finite ι] {P : ι → Fin 3 → K}
     (hP : ∀ i, P i ≠ 0) (ℓ : Fin 3 → K)
     (hZ : ∀ v, v ≠ 0 → ℓ ⬝ᵥ v = 0 → ∃ i, v ⨯₃ P i = 0) : False := by
@@ -98,7 +116,9 @@ theorem false_of_line [Infinite K] {ι : Type*} [Finite ι] {P : ι → Fin 3 �
   exact false_of_pencil hP hZ huw fun t => by
     simp [dotProduct_add, dotProduct_smul, hu, hw]
 
-/-- **Exactly nine common zeros ⇒ no common linear factor.**-/
+/-- **Exactly nine common zeros ⇒ no common linear factor.**
+@isnad1 id=not.2h5v.s11.1250cb1a3617 from=translated src=- shape=dffa96e6 vocab=97f96352
+-/
 theorem no_common_line_of_exact [Infinite K] {ι : Type*} [Finite ι] {P : ι → Fin 3 → K}
     (hP : ∀ i, P i ≠ 0) (F G : PlaneCubic K)
     (hex : ∀ v, v ≠ 0 → eval F v = 0 → eval G v = 0 → ∃ i, v ⨯₃ P i = 0) :
@@ -110,28 +130,42 @@ theorem no_common_line_of_exact [Infinite K] {ι : Type*} [Finite ι] {P : ι �
 /-- Polarisation of a conic: `B(u, d) = q(u + d) - q(u) - q(d)`.-/
 def polarC (q : Fin 6 → K) (u d : Fin 3 → K) : K := evalC q (u + d) - evalC q u - evalC q d
 
+/--
+@isnad1 id=eq.0h6v.s8.ee647ba99249 from=translated src=- shape=e0983393 vocab=e586ef54
+-/
 theorem evalC_smul_add_smul' (q : Fin 6 → K) (u d : Fin 3 → K) (a b : K) :
     evalC q (a • u + b • d) = a ^ 2 * evalC q u + a * b * polarC q u d + b ^ 2 * evalC q d := by
   simp only [polarC, evalC_expand, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s7.9b2202ddfe32 from=translated src=- shape=3110f199 vocab=a79e436a
+-/
 theorem polarC_add_smul (q : Fin 6 → K) (u v z : Fin 3 → K) (t : K) :
     polarC q u (v + t • z) = polarC q u v + t * polarC q u z := by
   simp only [polarC, evalC_expand, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.0h10v.s12.18eafb66a50e from=translated src=- shape=b669b2bd vocab=d63358bd
+-/
 theorem proj_cross_dot (u v z : Fin 3 → K) (a b c e s t : K) :
     (a • u + b • (v + t • z)) ⨯₃ (c • u + e • (v + s • z)) ⬝ᵥ u =
       b * e * (s - t) * (u ⨯₃ v ⬝ᵥ z) := by
   simp [cross_apply, dotProduct, Fin.sum_univ_succ]
   ring
 
+/--
+@isnad1 id=eq.0h7v.s12.0bbcc7088a2b from=translated src=- shape=2d7b0b2d vocab=c8c102c9
+-/
 theorem proj_cross_dot' (u v z : Fin 3 → K) (a b t : K) :
     u ⨯₃ (a • u + b • (v + t • z)) ⬝ᵥ z = b * (u ⨯₃ v ⬝ᵥ z) := by
   simp [cross_apply, dotProduct, Fin.sum_univ_succ]
   ring
 
-/-- A third vector off the line through `u, v`.-/
+/-- A third vector off the line through `u, v`.
+@isnad1 id=ex.1h3v.s11.6727bd06f5ea from=translated src=- shape=1530af7a vocab=20e6b0f6
+-/
 theorem exists_off_line {u v : Fin 3 → K} (huv : u ⨯₃ v ≠ 0) : ∃ z, u ⨯₃ v ⬝ᵥ z ≠ 0 := by
   obtain ⟨k, hk⟩ := Function.ne_iff.mp huv
   exact ⟨Pi.single k 1, by simpa [dotProduct_single] using hk⟩
@@ -139,7 +173,9 @@ theorem exists_off_line {u v : Fin 3 → K} (huv : u ⨯₃ v ≠ 0) : ∃ z, u 
 /-- **A conic with two distinct zeros has infinitely many.** If every zero of `q` is
 proportional to one of finitely many `P i`, then `q` has no two non-proportional zeros.
 (Projection from a zero `u`: `d ↦ q(d) • u - B(u, d) • d`.) Works over any infinite field,
-in any characteristic.-/
+in any characteristic.
+@isnad1 id=false.5h6v.s12.4e505cb49cb7 from=translated src=- shape=1884f68c vocab=59527ae1
+-/
 theorem false_of_conic [Infinite K] {ι : Type*} [Finite ι] {P : ι → Fin 3 → K}
     (hP : ∀ i, P i ≠ 0) {q : Fin 6 → K} {u v : Fin 3 → K} (huv : u ⨯₃ v ≠ 0)
     (hu : evalC q u = 0) (hv : evalC q v = 0)
@@ -176,7 +212,9 @@ theorem false_of_conic [Infinite K] {ι : Type*} [Finite ι] {P : ι → Fin 3 �
       (sub_ne_zero.mpr (Ne.symm hst))) hz this.symm
 
 /-- If two linear forms vanish at two non-proportional points, then with a conic `q` the
-cubics `m q`, `m' q` share the whole line through the points: impossible under `hex`.-/
+cubics `m q`, `m' q` share the whole line through the points: impossible under `hex`.
+@isnad1 id=false.7h8v.s12.7e5673a37d51 from=translated src=- shape=32626745 vocab=e92dda6f
+-/
 theorem false_of_common_pair [Infinite K] {ι : Type*} [Finite ι] {P : ι → Fin 3 → K}
     (hP : ∀ i, P i ≠ 0) {q : Fin 6 → K} {m m' a b : Fin 3 → K} (hab : a ⨯₃ b ≠ 0)
     (ma : m ⬝ᵥ a = 0) (mb : m ⬝ᵥ b = 0) (m'a : m' ⬝ᵥ a = 0) (m'b : m' ⬝ᵥ b = 0)
@@ -188,6 +226,9 @@ theorem false_of_common_pair [Infinite K] {ι : Type*} [Finite ι] {P : ι → F
   · rw [eval_mulLin, hc, smul_dotProduct, hl, smul_zero, zero_mul]
   · rw [eval_mulLin, hc', smul_dotProduct, hl, smul_zero, zero_mul]
 
+/--
+@isnad1 id=ne.1h4v.s11.9b04770a325f from=translated src=- shape=1d94d528 vocab=e525d3bf
+-/
 theorem ne_zero_of_pairwise {n : ℕ} {P : Fin (n + 2) → Fin 3 → K}
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0) (i : Fin (n + 2)) : P i ≠ 0 := by
   obtain ⟨j, hj⟩ := exists_ne i
@@ -197,7 +238,9 @@ theorem ne_zero_of_pairwise {n : ℕ} {P : Fin (n + 2) → Fin 3 → K}
 if `F = m q` and `G = m' q`, then `q` vanishes on at most one of the classes `P i`
 (otherwise `q` has infinitely many zeros, all common zeros, by `false_of_conic`), so the
 linear forms `m, m'` both vanish at two of `P 0, P 1, P 2`, and then the line through them
-consists of common zeros.-/
+consists of common zeros.
+@isnad1 id=not.4h5v.s12.eb53f1ef6559 from=translated src=- shape=4f06f653 vocab=647d3bdf
+-/
 theorem no_common_conic_of_exact [Infinite K] {n : ℕ} {P : Fin (n + 3) → Fin 3 → K}
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0) (F G : PlaneCubic K)
     (hF : ∀ i, eval F (P i) = 0) (hG : ∀ i, eval G (P i) = 0)
@@ -240,7 +283,9 @@ def ExactlyMeetIn {ι : Type*} (F G : PlaneCubic K) (P : ι → Fin 3 → K) : P
 /-- **Cayley–Bacharach, classical form.** Let `F, G` be linearly independent cubics over an
 infinite field whose common zeros are exactly nine pairwise non-proportional points
 `P 0, …, P 8` (up to scaling). Then every cubic through `P 0, …, P 7` passes through `P 8`.
-No algebraic closure is assumed.-/
+No algebraic closure is assumed.
+@isnad1 id=eq.4h5v.s11.d5b89944d075 from=translated src=- shape=7d3956fa vocab=559f7439
+-/
 theorem cayley_bacharach_classical [Infinite K] (P : Fin 9 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
     (F G : PlaneCubic K) (hFG : LinearIndependent K ![F, G])

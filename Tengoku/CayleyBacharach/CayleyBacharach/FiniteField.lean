@@ -21,6 +21,9 @@ namespace Tengoku.CayleyBacharach.PlaneCubic
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=iff.0h1v.s4.45acd26af145 from=translated src=- shape=2929f87b vocab=25b99cec
+-/
 theorem atLeastThree_iff_card [Fintype K] : AtLeastThree K ↔ 3 ≤ Fintype.card K := by
   classical
   refine ⟨fun h => ?_, AtLeastThree.of_card⟩
@@ -32,7 +35,9 @@ theorem atLeastThree_iff_card [Fintype K] : AtLeastThree K ↔ 3 ≤ Fintype.car
   rw [← h3]
   exact Finset.card_le_univ _
 
-/-- **Line lemma over a finite field**, with the sharp bound `3 ≤ |K|`.-/
+/-- **Line lemma over a finite field**, with the sharp bound `3 ≤ |K|`.
+@isnad1 id=ex.3h3v.s7.a05287fec2a7 from=translated src=- shape=baef1fc7 vocab=2c177e49
+-/
 theorem line_lemma_fintype [Fintype K] (hK : 3 ≤ Fintype.card K) (F : PlaneCubic K)
     (ℓ : Fin 3 → K) (hℓ : ℓ ≠ 0) (hF : ∀ v : Fin 3 → K, ℓ ⬝ᵥ v = 0 → eval F v = 0) :
     ∃ q : Fin 6 → K, F = mulLin ℓ q :=
@@ -46,6 +51,9 @@ theorem eq_zero_or_eq_one_of_not_atLeastThree (h : ¬ AtLeastThree K) (t : K) :
   push Not at ht
   exact h ⟨⟨t, ht.1, ht.2⟩⟩
 
+/--
+@isnad1 id=finite.1h1v.s3.859c979d0907 from=translated src=- shape=cc9ba778 vocab=d8cc5dcf
+-/
 theorem finite_of_not_atLeastThree (h : ¬ AtLeastThree K) : Finite K :=
   Finite.of_surjective (fun b : Bool => if b then (1 : K) else 0) fun t => by
     rcases eq_zero_or_eq_one_of_not_atLeastThree h t with rfl | rfl
@@ -53,7 +61,9 @@ theorem finite_of_not_atLeastThree (h : ¬ AtLeastThree K) : Finite K :=
     · exact ⟨true, rfl⟩
 
 /-- **At most seven points.** Over a field with no third element (i.e. `𝔽₂`), a family of
-pairwise non-proportional vectors in `K³` has at most `7` members (`P²(𝔽₂)` has 7 points).-/
+pairwise non-proportional vectors in `K³` has at most `7` members (`P²(𝔽₂)` has 7 points).
+@isnad1 id=le.2h3v.s10.669e5c6358aa from=translated src=- shape=e23b121f vocab=ad402384
+-/
 theorem card_le_seven_of_not_atLeastThree (h : ¬ AtLeastThree K) {n : ℕ}
     (P : Fin n → Fin 3 → K) (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0) : n ≤ 7 := by
   have := finite_of_not_atLeastThree h
@@ -90,7 +100,9 @@ theorem card_le_seven_of_not_atLeastThree (h : ¬ AtLeastThree K) {n : ℕ}
     at this
   omega
 
-/-- **The criterion over every field.** No size hypothesis: for `|K| = 2` it is vacuous.-/
+/-- **The criterion over every field.** No size hypothesis: for `|K| = 2` it is vacuous.
+@isnad1 id=eq.3h2v.s11.07a378c7afc2 from=translated src=- shape=5fc2a050 vocab=b3c9cfe0
+-/
 theorem finrank_ker_evalMap_eq_two_any (P : Fin 8 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
     (h5 : ∀ ℓ : Fin 3 → K, ℓ ≠ 0 → ∀ s : Finset (Fin 8), (∀ i ∈ s, ℓ ⬝ᵥ P i = 0) →
@@ -101,7 +113,9 @@ theorem finrank_ker_evalMap_eq_two_any (P : Fin 8 → Fin 3 → K)
   · exact finrank_ker_evalMap_eq_two P hP h5 hconic
   · exact absurd (card_le_seven_of_not_atLeastThree hK P hP) (by norm_num)
 
-/-- **Cayley–Bacharach over every field** (general-position form), finite fields included.-/
+/-- **Cayley–Bacharach over every field** (general-position form), finite fields included.
+@isnad1 id=eq.7h5v.s11.5c19c2f9aa7a from=translated src=- shape=4cee3033 vocab=2d6304fe
+-/
 theorem cayley_bacharach_any (P : Fin 9 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
     (h5 : ∀ ℓ : Fin 3 → K, ℓ ≠ 0 → ∀ s : Finset (Fin 8),
@@ -115,7 +129,9 @@ theorem cayley_bacharach_any (P : Fin 9 → Fin 3 → K)
   · exact cayley_bacharach P hP h5 hconic F G hFG hF hG H hH
   · exact absurd (card_le_seven_of_not_atLeastThree hK P hP) (by norm_num)
 
-/-- **Cayley–Bacharach, no-common-factor form, over every field.**-/
+/-- **Cayley–Bacharach, no-common-factor form, over every field.**
+@isnad1 id=eq.7h5v.s11.d813664aecb9 from=translated src=- shape=a4ac0bc3 vocab=b670c4b4
+-/
 theorem cayley_bacharach_of_no_common_factor_any (P : Fin 9 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
     (F G : PlaneCubic K) (hFG : LinearIndependent K ![F, G])

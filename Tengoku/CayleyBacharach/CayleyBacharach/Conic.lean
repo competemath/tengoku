@@ -25,6 +25,9 @@ variable {R : Type*} [CommRing R]
 /-- Conic evaluation at `v`, in the monomial order `x², xy, xz, y², yz, z²`.-/
 abbrev evalC (q : Fin 6 → R) (v : Fin 3 → R) : R := conicEval q v
 
+/--
+@isnad1 id=eq.0h3v.s9.48317a186c03 from=translated src=- shape=4b88226c vocab=f553916b
+-/
 theorem evalC_expand (q : Fin 6 → R) (v : Fin 3 → R) :
     evalC q v = q 0 * v 0 ^ 2 + q 1 * (v 0 * v 1) + q 2 * (v 0 * v 2) + q 3 * v 1 ^ 2
       + q 4 * (v 1 * v 2) + q 5 * v 2 ^ 2 := by
@@ -39,22 +42,37 @@ def linMul (ℓ m : Fin 3 → R) : Fin 6 → R :=
 /-- The square `ℓ ⊗ ℓ` of a linear form, as a conic.-/
 def linearFormSquare (ℓ : Fin 3 → R) : Fin 6 → R := linMul ℓ ℓ
 
+/--
+@isnad1 id=eq.0h4v.s6.a160717fe7ba from=translated src=- shape=174c93b3 vocab=6fe6725c
+-/
 theorem evalC_linMul (ℓ m : Fin 3 → R) (v : Fin 3 → R) :
     evalC (linMul ℓ m) v = (ℓ ⬝ᵥ v) * (m ⬝ᵥ v) := by
   simp [evalC_expand, linMul, dotProduct, Fin.sum_univ_succ]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s7.b29ac5d4c3ea from=translated src=- shape=d8391c6e vocab=bffc6bbe
+-/
 theorem linMul_smul (ℓ : Fin 3 → R) (c : R) (m : Fin 3 → R) :
     linMul ℓ (c • m) = c • linMul ℓ m := by
   ext i
   fin_cases i <;> simp [linMul] <;> ring
 
+/--
+@isnad1 id=eq.0h4v.s7.c5236779c83f from=translated src=- shape=1c6278e1 vocab=38c98e8a
+-/
 theorem evalC_add (q r : Fin 6 → R) (v : Fin 3 → R) : evalC (q + r) v = evalC q v + evalC r v := by
   simp [evalC, conicEval, add_mul, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h4v.s6.45d24f250adc from=translated src=- shape=1d13732e vocab=8ff3975d
+-/
 theorem evalC_smul (c : R) (q : Fin 6 → R) (v : Fin 3 → R) : evalC (c • q) v = c * evalC q v := by
   simp [evalC, conicEval, Finset.mul_sum, mul_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s6.acb27d32fa03 from=translated src=- shape=6284fdc2 vocab=a850869e
+-/
 theorem evalC_smul_vec (q : Fin 6 → R) (c : R) (v : Fin 3 → R) :
     evalC q (c • v) = c ^ 2 * evalC q v := by
   simp only [evalC_expand, Pi.smul_apply, smul_eq_mul]
@@ -66,7 +84,9 @@ section Field
 
 variable {K : Type*} [Field K]
 
-/-- A quadratic `b t² + c t + d` with `b = 0` vanishing at `t = 0, 1` is zero (any field).-/
+/-- A quadratic `b t² + c t + d` with `b = 0` vanishing at `t = 0, 1` is zero (any field).
+@isnad1 id=and.2h4v.s7.0400388f4d47 from=translated src=- shape=f8616d79 vocab=46c704f6
+-/
 theorem quad_coeffs_eq_zero_of_forall' {b c d : K} (hb : b = 0)
     (h : ∀ t : K, b * t ^ 2 + c * t + d = 0) : b = 0 ∧ c = 0 ∧ d = 0 := by
   have e0 := h 0
@@ -76,12 +96,18 @@ theorem quad_coeffs_eq_zero_of_forall' {b c d : K} (hb : b = 0)
   subst hd
   exact ⟨rfl, by simpa using e1, rfl⟩
 
+/--
+@isnad1 id=and.1h4v.s7.178bede71c53 from=translated src=- shape=719c3625 vocab=575aa09f
+-/
 theorem quad_coeffs_eq_zero_of_forall [Infinite K] {b c d : K}
     (h : ∀ t : K, b * t ^ 2 + c * t + d = 0) : b = 0 ∧ c = 0 ∧ d = 0 := by
   obtain ⟨-, h2, h1, h0⟩ := coeffs_eq_zero_of_forall (a := 0) (b := b) (c := c) (d := d)
     (fun t => by simpa using h t)
   exact ⟨h2, h1, h0⟩
 
+/--
+@isnad1 id=ex.2h3v.s7.a39b0d1324f1 from=translated src=- shape=693a1c15 vocab=34216cc8
+-/
 theorem conic_line_lemma_aux0 (q : Fin 6 → K) (ℓ : Fin 3 → K) (hk : ℓ 0 ≠ 0)
     (hq : ∀ v : Fin 3 → K, ℓ ⬝ᵥ v = 0 → evalC q v = 0) :
     ∃ m : Fin 3 → K, q = linMul ℓ m := by
@@ -109,6 +135,9 @@ theorem conic_line_lemma_aux0 (q : Fin 6 → K) (ℓ : Fin 3 → K) (hk : ℓ 0 
   · linear_combination h1
   · linear_combination h0
 
+/--
+@isnad1 id=ex.2h3v.s7.4326c47abacc from=translated src=- shape=693a1c15 vocab=34216cc8
+-/
 theorem conic_line_lemma_aux1 (q : Fin 6 → K) (ℓ : Fin 3 → K) (hk : ℓ 1 ≠ 0)
     (hq : ∀ v : Fin 3 → K, ℓ ⬝ᵥ v = 0 → evalC q v = 0) :
     ∃ m : Fin 3 → K, q = linMul ℓ m := by
@@ -136,6 +165,9 @@ theorem conic_line_lemma_aux1 (q : Fin 6 → K) (ℓ : Fin 3 → K) (hk : ℓ 1 
   · linear_combination
   · linear_combination h0
 
+/--
+@isnad1 id=ex.2h3v.s7.81cde9586669 from=translated src=- shape=693a1c15 vocab=34216cc8
+-/
 theorem conic_line_lemma_aux2 (q : Fin 6 → K) (ℓ : Fin 3 → K) (hk : ℓ 2 ≠ 0)
     (hq : ∀ v : Fin 3 → K, ℓ ⬝ᵥ v = 0 → evalC q v = 0) :
     ∃ m : Fin 3 → K, q = linMul ℓ m := by
@@ -165,7 +197,9 @@ theorem conic_line_lemma_aux2 (q : Fin 6 → K) (ℓ : Fin 3 → K) (hk : ℓ 2 
 
 /-- **Conic line lemma.** Over any field (no size hypothesis: the line has `≥ 3` points
 `0, ∞, 1`, which is exactly enough for a binary quadratic), a conic vanishing at every point
-of the line `ℓ = 0` (`ℓ ≠ 0`) is `ℓ · m` for a linear form `m`.-/
+of the line `ℓ = 0` (`ℓ ≠ 0`) is `ℓ · m` for a linear form `m`.
+@isnad1 id=ex.2h3v.s7.f5cee36daae5 from=translated src=- shape=707818cd vocab=34216cc8
+-/
 theorem conic_line_lemma (q : Fin 6 → K) (ℓ : Fin 3 → K) (hℓ : ℓ ≠ 0)
     (hq : ∀ v : Fin 3 → K, ℓ ⬝ᵥ v = 0 → evalC q v = 0) :
     ∃ m : Fin 3 → K, q = linMul ℓ m := by
@@ -181,7 +215,9 @@ theorem conic_line_lemma (q : Fin 6 → K) (ℓ : Fin 3 → K) (hℓ : ℓ ≠ 0
   · exact conic_line_lemma_aux0 q ℓ h0 hq
 
 /-- The requested strengthening "`q = c • ℓ²`" is false: the conic `xy` vanishes on the
-line `x = 0` but is not a multiple of `x²`.-/
+line `x = 0` but is not a multiple of `x²`.
+@isnad1 id=and.0h1v.s9.5f9e6ba81870 from=translated src=- shape=06a03407 vocab=caab2487
+-/
 theorem conic_line_not_square :
     (∀ v : Fin 3 → K, (![1, 0, 0] : Fin 3 → K) ⬝ᵥ v = 0 →
         evalC (![0, 1, 0, 0, 0, 0] : Fin 6 → K) v = 0) ∧

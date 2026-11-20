@@ -17,7 +17,9 @@ namespace Tengoku.CayleyBacharach.PlaneCubic
 
 variable {K : Type*} [Field K]
 
-/-- Every cubic through the first eight points is a combination of `F` and `G`.-/
+/-- Every cubic through the first eight points is a combination of `F` and `G`.
+@isnad1 id=mem.7h5v.s11.30e1394c122b from=translated src=- shape=099be830 vocab=38535b76
+-/
 theorem mem_span_of_eight [AtLeastThree K] (P : Fin 9 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
     (h5 : ∀ ℓ : Fin 3 → K, ℓ ≠ 0 → ∀ s : Finset (Fin 8),
@@ -46,7 +48,9 @@ theorem mem_span_of_eight [AtLeastThree K] (P : Fin 9 → Fin 3 → K)
   exact hH i
 
 /-- **Cayley–Bacharach.** A cubic through eight of the nine base points of a pencil
-`⟨F, G⟩` (with the eight in general position) passes through the ninth.-/
+`⟨F, G⟩` (with the eight in general position) passes through the ninth.
+@isnad1 id=eq.7h5v.s11.d2658854a056 from=translated src=- shape=6d168320 vocab=0d50ec6b
+-/
 theorem cayley_bacharach [AtLeastThree K] (P : Fin 9 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
     (h5 : ∀ ℓ : Fin 3 → K, ℓ ≠ 0 → ∀ s : Finset (Fin 8),

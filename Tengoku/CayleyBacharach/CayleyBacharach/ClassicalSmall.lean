@@ -30,7 +30,9 @@ variable {K : Type*} [Field K]
 
 /-! ### Exact point counts -/
 
-/-- A family indexed by `Option K`, pairwise non-proportional, consists of nonzero vectors.-/
+/-- A family indexed by `Option K`, pairwise non-proportional, consists of nonzero vectors.
+@isnad1 id=ne.1h3v.s11.f3eb316353a3 from=translated src=- shape=2d7a8339 vocab=df5ed3ba
+-/
 theorem ne_zero_of_pairwise_option {g : Option K → Fin 3 → K}
     (hg : ∀ a b, a ≠ b → g a ⨯₃ g b ≠ 0) (a : Option K) : g a ≠ 0 := by
   intro h
@@ -40,7 +42,9 @@ theorem ne_zero_of_pairwise_option {g : Option K → Fin 3 → K}
     | some t => exact ⟨none, by simp⟩
   exact hg b a hb (by rw [h]; simp)
 
-/-- **The `|K| + 1` points of a line.**-/
+/-- **The `|K| + 1` points of a line.**
+@isnad1 id=ex.0h2v.s11.743b5840e0b5 from=translated src=- shape=f77d28f5 vocab=d9c5b418
+-/
 theorem line_points (ℓ : Fin 3 → K) :
     ∃ g : Option K → Fin 3 → K, (∀ a, ℓ ⬝ᵥ g a = 0) ∧ ∀ a b, a ≠ b → g a ⨯₃ g b ≠ 0 := by
   obtain ⟨u, w, hu, hw, huw⟩ := exists_line_basis ℓ
@@ -60,7 +64,9 @@ theorem line_points (ℓ : Fin 3 → K) :
       rw [cross_add_smul]; exact smul_ne_zero (sub_ne_zero.mpr (Ne.symm hst)) huw
 
 /-- **Counting.** `|K| + 1` pairwise non-proportional vectors, each proportional to some
-`P i` with `i ∈ s`, force `|K| + 1 ≤ |s|`.-/
+`P i` with `i ∈ s`, force `|K| + 1 ≤ |s|`.
+@isnad1 id=le.3h5v.s12.3fd5bf4b9e51 from=translated src=- shape=b4bf6714 vocab=6733ece0
+-/
 theorem card_add_one_le [Fintype K] {n : ℕ} {P : Fin n → Fin 3 → K} (hP0 : ∀ i, P i ≠ 0)
     (g : Option K → Fin 3 → K) (hg : ∀ a b, a ≠ b → g a ⨯₃ g b ≠ 0)
     (s : Finset (Fin n)) (hs : ∀ a, ∃ i ∈ s, g a ⨯₃ P i = 0) :
@@ -86,11 +92,17 @@ theorem eq_smul_of_cross_eq_zero {v w : Fin 3 → K} (hv : v ≠ 0) (h : v ⨯�
     _ = (v k)⁻¹ • (w k • v) := by rw [e]
     _ = (w k / v k) • v := by rw [smul_smul, div_eq_inv_mul]
 
+/--
+@isnad1 id=eq.3h4v.s11.c3cebf33dbc4 from=translated src=- shape=ff6f8cd6 vocab=20e6b0f6
+-/
 theorem dot_eq_zero_of_prop {l v w : Fin 3 → K} (hv : v ≠ 0) (h : v ⨯₃ w = 0)
     (hl : l ⬝ᵥ v = 0) : l ⬝ᵥ w = 0 := by
   obtain ⟨c, rfl⟩ := eq_smul_of_cross_eq_zero hv h
   rw [dotProduct_smul, hl, smul_zero]
 
+/--
+@isnad1 id=eq.3h4v.s11.9d600fa11823 from=translated src=- shape=167e89aa vocab=8dda343f
+-/
 theorem evalC_eq_zero_of_prop {q : Fin 6 → K} {v w : Fin 3 → K} (hv : v ≠ 0)
     (h : v ⨯₃ w = 0) (hq : evalC q v = 0) : evalC q w = 0 := by
   obtain ⟨c, rfl⟩ := eq_smul_of_cross_eq_zero hv h
@@ -98,14 +110,22 @@ theorem evalC_eq_zero_of_prop {q : Fin 6 → K} {v w : Fin 3 → K} (hv : v ≠ 
 
 /-! ### Conics: at least `|K| + 1` zeros -/
 
+/--
+@isnad1 id=eq.0h4v.s5.e83e33ef0554 from=translated src=- shape=029811a7 vocab=ebfb8036
+-/
 theorem mulLin_linMul (m ℓ n : Fin 3 → K) : mulLin m (linMul ℓ n) = mulLin ℓ (linMul m n) := by
   ext i; fin_cases i <;> simp [mulLin, linMul] <;> ring
 
+/--
+@isnad1 id=eq.0h4v.s7.77f754244a78 from=translated src=- shape=de84a7b3 vocab=119997ef
+-/
 theorem mulLin_smul_left (c : K) (ℓ : Fin 3 → K) (q : Fin 6 → K) :
     mulLin (c • ℓ) q = mulLin ℓ (c • q) := by
   ext i; fin_cases i <;> simp [mulLin] <;> ring
 
-/-- If `q` vanishes at `u, d` and `B(u, d) = 0`, the whole line `ud` lies on `q`.-/
+/-- If `q` vanishes at `u, d` and `B(u, d) = 0`, the whole line `ud` lies on `q`.
+@isnad1 id=ex.4h4v.s11.b2c6b8d5d142 from=translated src=- shape=fe098f78 vocab=7147d95f
+-/
 theorem line_comp_of_polar {q : Fin 6 → K} {u d : Fin 3 → K} (hud : u ⨯₃ d ≠ 0)
     (hu : evalC q u = 0) (hd : evalC q d = 0) (hB : polarC q u d = 0) :
     ∃ m, q = linMul (u ⨯₃ d) m := by
@@ -114,6 +134,9 @@ theorem line_comp_of_polar {q : Fin 6 → K} {u d : Fin 3 → K} (hud : u ⨯₃
   obtain ⟨s, t, rfl⟩ := on_line hud hud (cross_dot_left u d) (cross_dot_right u d) hx
   rw [evalC_smul_add_smul', hu, hd, hB]; ring
 
+/--
+@isnad1 id=ne.2h5v.s11.1ef972421392 from=translated src=- shape=038bbc5f vocab=3a615a87
+-/
 theorem smul_add_smul_ne_zero {u d : Fin 3 → K} (hud : u ⨯₃ d ≠ 0) {a b : K}
     (h : ¬ (a = 0 ∧ b = 0)) : a • u + b • d ≠ 0 := by
   intro h0
@@ -127,7 +150,9 @@ theorem smul_add_smul_ne_zero {u d : Fin 3 → K} (hud : u ⨯₃ d ≠ 0) {a b 
   exact ⟨(smul_eq_zero.mp i1.symm).resolve_right hud, (smul_eq_zero.mp i2.symm).resolve_right hud⟩
 
 /-- Two points `a u + b d`, `A u + B e` on distinct lines through `u` are non-proportional
-unless both equal `u` (`b = B = 0`).-/
+unless both equal `u` (`b = B = 0`).
+@isnad1 id=ne.4h8v.s12.34cb32ba6fba from=translated src=- shape=757b8719 vocab=893db7c8
+-/
 theorem proj_cross_ne {u d e : Fin 3 → K} (hT : d ⨯₃ e ⬝ᵥ u ≠ 0) {a b A B : K}
     (h1 : a • u + b • d ≠ 0) (h2 : A • u + B • e ≠ 0) (hbB : ¬ (b = 0 ∧ B = 0)) :
     (a • u + b • d) ⨯₃ (A • u + B • e) ≠ 0 := by
@@ -155,7 +180,9 @@ theorem proj_cross_ne {u d e : Fin 3 → K} (hT : d ⨯₃ e ⬝ᵥ u ≠ 0) {a 
 
 /-- **The `|K| + 1` points of a conic.** A conic with two non-proportional zeros and no line
 component has `|K| + 1` pairwise non-proportional zeros: projection from the zero `u`, one
-zero on each of the `|K| + 1` lines through `u`.-/
+zero on each of the `|K| + 1` lines through `u`.
+@isnad1 id=ex.4h4v.s12.8a87a98e7a94 from=translated src=- shape=2105d4f5 vocab=9945f807
+-/
 theorem conic_points {q : Fin 6 → K} {u v : Fin 3 → K} (huv : u ⨯₃ v ≠ 0)
     (hu : evalC q u = 0) (hv : evalC q v = 0) (hno : ∀ ℓ m, ℓ ≠ 0 → q ≠ linMul ℓ m) :
     ∃ g : Option K → Fin 3 → K, (∀ a, evalC q (g a) = 0) ∧ ∀ a b, a ≠ b → g a ⨯₃ g b ≠ 0 := by
@@ -224,7 +251,9 @@ theorem conic_points {q : Fin 6 → K} {u v : Fin 3 → K} (huv : u ⨯₃ v ≠
 
 /-- **Common line.** If every point of the line `ℓ = 0` is proportional to one of the nine
 `P i` and `|K| ≥ 8`, then all nine points are on the line (`|K| + 1 ≥ 9`), and a cubic
-through eight of them contains the line.-/
+through eight of them contains the line.
+@isnad1 id=eq.5h4v.s12.971fce24f0ac from=translated src=- shape=147f3cf5 vocab=48bb33ba
+-/
 theorem classical_line_case [Fintype K] (hK : 8 ≤ Fintype.card K) (P : Fin 9 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0) {ℓ : Fin 3 → K} (hℓ : ℓ ≠ 0)
     (hZ : ∀ v, v ≠ 0 → ℓ ⬝ᵥ v = 0 → ∃ i, v ⨯₃ P i = 0)
@@ -257,7 +286,9 @@ theorem classical_line_case [Fintype K] (hK : 8 ≤ Fintype.card K) (P : Fin 9 �
 /-- **Common irreducible conic.** If `q` has two non-proportional zeros, no line component,
 and all its zeros are proportional to one of the nine `P i`, then for `|K| ≥ 8` all nine
 points are on `q`; no three of them are collinear, so the cubics through eight of them are
-exactly the multiples of `q`.-/
+exactly the multiples of `q`.
+@isnad1 id=eq.8h6v.s12.cd216722f0d5 from=translated src=- shape=49448d50 vocab=a104293a
+-/
 theorem classical_conic_case [Fintype K] (hK : 8 ≤ Fintype.card K) (P : Fin 9 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0) {q : Fin 6 → K}
     (hno : ∀ ℓ m, ℓ ≠ 0 → q ≠ linMul ℓ m) {u v : Fin 3 → K} (huv : u ⨯₃ v ≠ 0)
@@ -314,7 +345,9 @@ theorem classical_conic_case [Fintype K] (hK : 8 ≤ Fintype.card K) (P : Fin 9 
 Two linearly independent cubics whose common zeros are exactly nine pairwise
 non-proportional points: every cubic through eight of them passes through the ninth.
 (There is no field with 10 elements, so this covers `𝔽₈`, `𝔽₉` and all `|K| ≥ 11`; the
-statement is false over `𝔽₄, 𝔽₅, 𝔽₇`.)-/
+statement is false over `𝔽₄, 𝔽₅, 𝔽₇`.)
+@isnad1 id=eq.5h5v.s11.ca6ae7b4dfe8 from=translated src=- shape=f7570776 vocab=90219f88
+-/
 theorem cayley_bacharach_classical_card8 [Fintype K] (hK : 8 ≤ Fintype.card K)
     (P : Fin 9 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)

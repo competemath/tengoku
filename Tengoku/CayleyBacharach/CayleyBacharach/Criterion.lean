@@ -23,14 +23,22 @@ def evalMap {ι : Type*} (P : ι → Fin 3 → K) : PlaneCubic K →ₗ[K] (ι �
   map_add' F G := by funext i; simp [eval_add]
   map_smul' c F := by funext i; simp [eval_smul]
 
+/--
+@isnad1 id=eq.0h5v.s8.c94292bf0477 from=translated src=- shape=85b538cc vocab=7f34d6fc
+-/
 @[simp] theorem evalMap_apply {ι : Type*} (P : ι → Fin 3 → K) (F : PlaneCubic K) (i : ι) :
     evalMap P F i = eval F (P i) := rfl
 
+/--
+@isnad1 id=iff.0h4v.s8.44128543142f from=translated src=- shape=50288675 vocab=2cff2d94
+-/
 theorem mem_ker_evalMap {ι : Type*} (P : ι → Fin 3 → K) (F : PlaneCubic K) :
     F ∈ LinearMap.ker (evalMap P) ↔ ∀ i, eval F (P i) = 0 := by
   simp [LinearMap.mem_ker, funext_iff]
 
-/-- `ℓ · q = 0` with `ℓ ≠ 0` forces `q = 0`.-/
+/-- `ℓ · q = 0` with `ℓ ≠ 0` forces `q = 0`.
+@isnad1 id=eq.2h3v.s7.15e01f5e306a from=translated src=- shape=14114d5f vocab=e8273358
+-/
 theorem mulLin_eq_zero {ℓ : Fin 3 → K} {q : Fin 6 → K} (hℓ : ℓ ≠ 0) (h : mulLin ℓ q = 0) :
     q = 0 := by
   have E : ∀ i : Fin 10, mulLin ℓ q i = 0 := fun i => by rw [h]; rfl
@@ -85,6 +93,9 @@ def mulLinLin (ℓ : Fin 3 → K) : (Fin 6 → K) →ₗ[K] PlaneCubic K where
   map_add' q q' := by ext i; fin_cases i <;> simp [mulLin] <;> ring
   map_smul' c q := by ext i; fin_cases i <;> simp [mulLin] <;> ring
 
+/--
+@isnad1 id=injectiv.1h2v.s8.b2b539cbdfaf from=translated src=- shape=2364c0fe vocab=ea858dec
+-/
 theorem mulConicLin_injective {q : Fin 6 → K} (hq : q ≠ 0) :
     Function.Injective (mulConicLin q) := by
   rw [← LinearMap.ker_eq_bot, LinearMap.ker_eq_bot']
@@ -92,6 +103,9 @@ theorem mulConicLin_injective {q : Fin 6 → K} (hq : q ≠ 0) :
   by_contra hm0
   exact hq (mulLin_eq_zero hm0 hm)
 
+/--
+@isnad1 id=injectiv.1h2v.s8.2fc68a592f83 from=translated src=- shape=2364c0fe vocab=f4cc333a
+-/
 theorem mulLinLin_injective {ℓ : Fin 3 → K} (hℓ : ℓ ≠ 0) :
     Function.Injective (mulLinLin ℓ) := by
   rw [← LinearMap.ker_eq_bot, LinearMap.ker_eq_bot']
@@ -100,7 +114,9 @@ theorem mulLinLin_injective {ℓ : Fin 3 → K} (hℓ : ℓ ≠ 0) :
 
 /-- **Easy direction (conic).** If a nonzero conic `q` passes through all the points, then
 the cubics through them form a space of dimension `≥ 3` (it contains `m · q` for every
-linear form `m`).-/
+linear form `m`).
+@isnad1 id=le.2h4v.s9.7f486a987777 from=translated src=- shape=22394bae vocab=13c356cd
+-/
 theorem finrank_ker_ge_of_conic {ι : Type*} (P : ι → Fin 3 → K) (q : Fin 6 → K) (hq : q ≠ 0)
     (hP : ∀ i, evalC q (P i) = 0) :
     3 ≤ Module.finrank K (LinearMap.ker (evalMap P)) := by
@@ -120,7 +136,9 @@ theorem finrank_ker_ge_of_conic {ι : Type*} (P : ι → Fin 3 → K) (q : Fin 6
 
 /-- **Easy direction (line).** If all points outside `s` number at most three and every point
 of `s` lies on the line `ℓ = 0` (`ℓ ≠ 0`), then the cubics through all the points form a
-space of dimension `≥ 3`. (For 8 points: five collinear points force `dim ≥ 3`.)-/
+space of dimension `≥ 3`. (For 8 points: five collinear points force `dim ≥ 3`.)
+@isnad1 id=le.3h5v.s10.42a4a5a0dde7 from=translated src=- shape=3373048e vocab=f3ba8100
+-/
 theorem finrank_ker_ge_of_line {ι : Type*} [Fintype ι] [DecidableEq ι] (P : ι → Fin 3 → K)
     (ℓ : Fin 3 → K) (hℓ : ℓ ≠ 0) (s : Finset ι) (hs : ∀ i ∈ s, ℓ ⬝ᵥ P i = 0)
     (hcard : Fintype.card {i // i ∉ s} ≤ 3) :

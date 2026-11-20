@@ -19,13 +19,17 @@ namespace Tengoku.CayleyBacharach.PlaneCubic
 
 variable {K : Type*} [Field K]
 
-/-- Evaluation of a product of three linear forms.-/
+/-- Evaluation of a product of three linear forms.
+@isnad1 id=eq.0h5v.s7.c99f4cfac81f from=translated src=- shape=a5da9123 vocab=d7efc721
+-/
 theorem eval_mulLin_linMul (a b c v : Fin 3 → K) :
     eval (mulLin a (linMul b c)) v = (a ⬝ᵥ v) * ((b ⬝ᵥ v) * (c ⬝ᵥ v)) := by
   rw [eval_mulLin]
   exact congrArg _ (evalC_linMul b c v)
 
-/-- Two vectors on two distinct lines `l, m` are proportional.-/
+/-- Two vectors on two distinct lines `l, m` are proportional.
+@isnad1 id=eq.5h5v.s12.c2388450ef40 from=translated src=- shape=2565effa vocab=20e6b0f6
+-/
 theorem cross_eq_zero_of_two_lines {l m v p : Fin 3 → K} (hlm : l ⨯₃ m ≠ 0)
     (lv : l ⬝ᵥ v = 0) (mv : m ⬝ᵥ v = 0) (lp : l ⬝ᵥ p = 0) (mp : m ⬝ᵥ p = 0) :
     v ⨯₃ p = 0 := by
@@ -44,7 +48,9 @@ theorem cross_eq_zero_of_two_lines {l m v p : Fin 3 → K} (hlm : l ⨯₃ m ≠
   `G = L₂₃ L₄₅ L₆₁` (so `F, G` meet in exactly the nine points);
 * `hqZ`: `Z` is not on the conic.
 Then `X, Y, Z` are collinear. No nondegeneracy of `q` is used (so Pappus is a special
-case, `pappus_of_cayley_bacharach`).-/
+case, `pappus_of_cayley_bacharach`).
+@isnad1 id=eq.15h11v.s14.d628ed5b2296 from=translated src=- shape=e9b53f4d vocab=bf9897f4
+-/
 theorem pascal_of_cayley_bacharach [CardGT K 10] (A₁ A₂ A₃ A₄ A₅ A₆ X Y Z : Fin 3 → K)
     (hP : ∀ i j, i ≠ j →
       ![A₁, A₂, A₃, A₄, A₅, A₆, X, Y, Z] i ⨯₃ ![A₁, A₂, A₃, A₄, A₅, A₆, X, Y, Z] j ≠ 0)
@@ -153,7 +159,9 @@ theorem pascal_of_cayley_bacharach [CardGT K 10] (A₁ A₂ A₃ A₄ A₅ A₆ 
 /-- **Pascal for a conic that is not a line pair.** If `q` is not a product of two linear
 forms, the hypothesis `evalC q Z ≠ 0` of `pascal_of_cayley_bacharach` is automatic:
 otherwise `q` vanishes at the three non-proportional points `A₃, A₄, Z` of the line `L₃₄`
-and so contains that line (`conic_three`).-/
+and so contains that line (`conic_three`).
+@isnad1 id=eq.15h11v.s14.868c891ed127 from=translated src=- shape=aadf5c03 vocab=3a25fa61
+-/
 theorem pascal_of_cayley_bacharach' [CardGT K 10] (A₁ A₂ A₃ A₄ A₅ A₆ X Y Z : Fin 3 → K)
     (hP : ∀ i j, i ≠ j →
       ![A₁, A₂, A₃, A₄, A₅, A₆, X, Y, Z] i ⨯₃ ![A₁, A₂, A₃, A₄, A₅, A₆, X, Y, Z] j ≠ 0)
@@ -177,7 +185,9 @@ theorem pascal_of_cayley_bacharach' [CardGT K 10] (A₁ A₂ A₃ A₄ A₅ A₆
 
 /-- **Pappus's theorem via Cayley–Bacharach.** `A₁, A₃, A₅` on a line `l`, `A₂, A₄, A₆` on a
 line `m`; `X, Y, Z` as in Pascal. This is Pascal for the degenerate conic `q = l · m`, with
-`evalC q Z ≠ 0` becoming "`Z` is on neither line".-/
+`evalC q Z ≠ 0` becoming "`Z` is on neither line".
+@isnad1 id=eq.16h12v.s14.17b8d45d75dc from=translated src=- shape=46320f51 vocab=cf767bb4
+-/
 theorem pappus_of_cayley_bacharach [CardGT K 10] (A₁ A₂ A₃ A₄ A₅ A₆ X Y Z l m : Fin 3 → K)
     (hP : ∀ i j, i ≠ j →
       ![A₁, A₂, A₃, A₄, A₅, A₆, X, Y, Z] i ⨯₃ ![A₁, A₂, A₃, A₄, A₅, A₆, X, Y, Z] j ≠ 0)

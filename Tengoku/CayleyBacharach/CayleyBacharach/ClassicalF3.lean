@@ -39,7 +39,9 @@ variable {K : Type*} [Field K]
 
 /-! ### Upper bounds for points on lines and conics -/
 
-/-- **At most `|K| + 1` points on a line.**-/
+/-- **At most `|K| + 1` points on a line.**
+@isnad1 id=le.3h4v.s11.cb7185582e79 from=translated src=- shape=098dac5e vocab=ee82eccb
+-/
 theorem card_le_of_line [Fintype K] {ι : Type*} [Fintype ι] {P : ι → Fin 3 → K}
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0) {ℓ : Fin 3 → K} (hℓ : ℓ ≠ 0)
     (hl : ∀ i, ℓ ⬝ᵥ P i = 0) : Fintype.card ι ≤ Fintype.card K + 1 := by
@@ -65,7 +67,9 @@ theorem card_le_of_line [Fintype K] {ι : Type*} [Fintype ι] {P : ι → Fin 3 
       linear_combination -h
   simpa [Fintype.card_option] using Fintype.card_le_of_injective _ hf
 
-/-- **At most `|K|` points off `ℓ` on another line `m`**: the point `ℓ ∩ m` is also on `m`.-/
+/-- **At most `|K|` points off `ℓ` on another line `m`**: the point `ℓ ∩ m` is also on `m`.
+@isnad1 id=le.5h6v.s11.9a1301806ed5 from=translated src=- shape=4ba3f9b8 vocab=4bb63fd8
+-/
 theorem card_le_of_line_off [Fintype K] {ι : Type*} {R : ι → Fin 3 → K}
     (hR : ∀ i j, i ≠ j → R i ⨯₃ R j ≠ 0) {ℓ : Fin 3 → K} (hℓ : ℓ ≠ 0)
     (hoff : ∀ i, ℓ ⬝ᵥ R i ≠ 0) {m : Fin 3 → K} (hm : m ≠ 0) (s : Finset ι)
@@ -98,13 +102,18 @@ theorem card_le_of_line_off [Fintype K] {ι : Type*} {R : ι → Fin 3 → K}
     · exact dot_cross_self ℓ m
     · exact hs i i.2
 
+/--
+@isnad1 id=eq.0h4v.s12.a42e045d7224 from=translated src=- shape=75419953 vocab=ec07f610
+-/
 theorem cross_cross_cross (a b c : Fin 3 → K) :
     (a ⨯₃ b) ⨯₃ (a ⨯₃ c) = (a ⬝ᵥ b ⨯₃ c) • a := by
   ext i; fin_cases i <;> simp [cross_apply, dotProduct, Fin.sum_univ_succ] <;> ring
 
 /-- **At most `|K| + 1` zeros besides a given one on a conic without line component**:
 projection from the zero `u` is injective, since three collinear zeros force a line
-component.-/
+component.
+@isnad1 id=le.6h5v.s12.7e7c53c56767 from=translated src=- shape=8bd79ded vocab=cc930d3b
+-/
 theorem card_le_of_conic [Fintype K] {ι : Type*} [Fintype ι] {P : ι → Fin 3 → K}
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0) {q : Fin 6 → K}
     (hno : ∀ ℓ m, ℓ ≠ 0 → q ≠ linMul ℓ m) (hq : ∀ i, evalC q (P i) = 0)
@@ -123,7 +132,9 @@ theorem card_le_of_conic [Fintype K] {ι : Type*} [Fintype ι] {P : ι → Fin 3
 /-! ### No common component over a field with three elements -/
 
 /-- Over a field with three elements, two linearly independent cubics with nine pairwise
-non-proportional common zeros have no common line.-/
+non-proportional common zeros have no common line.
+@isnad1 id=not.5h4v.s11.78f372b202f2 from=translated src=- shape=61f3fe38 vocab=6abd7f84
+-/
 theorem no_common_line_card3 [Fintype K] (hK : Fintype.card K = 3) (P : Fin 9 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0) (F G : PlaneCubic K)
     (hFG : LinearIndependent K ![F, G])
@@ -186,7 +197,9 @@ theorem no_common_line_card3 [Fintype K] (hK : Fintype.card K = 3) (P : Fin 9 �
   exact one_ne_zero this.1
 
 /-- Over a field with three elements, two cubics with nine pairwise non-proportional common
-zeros and no common line have no common conic.-/
+zeros and no common line have no common conic.
+@isnad1 id=not.5h4v.s11.59885b282e38 from=translated src=- shape=75ffbbc6 vocab=97c6fe99
+-/
 theorem no_common_conic_card3 [Fintype K] (hK : Fintype.card K = 3) (P : Fin 9 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0) (F G : PlaneCubic K)
     (hF : ∀ i, eval F (P i) = 0) (hG : ∀ i, eval G (P i) = 0)
@@ -229,7 +242,9 @@ theorem no_common_conic_card3 [Fintype K] (hK : Fintype.card K = 3) (P : Fin 9 �
 
 /-- **Cayley–Bacharach over a field with three elements.** Two linearly independent cubics
 with nine pairwise non-proportional common zeros (not necessarily all of them): every cubic
-through eight of the points passes through the ninth.-/
+through eight of the points passes through the ninth.
+@isnad1 id=eq.6h5v.s11.3f02c175a488 from=translated src=- shape=316c1650 vocab=b884267a
+-/
 theorem cayley_bacharach_card3 [Fintype K] (hK : Fintype.card K = 3) (P : Fin 9 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0) (F G : PlaneCubic K)
     (hFG : LinearIndependent K ![F, G])
@@ -241,7 +256,9 @@ theorem cayley_bacharach_card3 [Fintype K] (hK : Fintype.card K = 3) (P : Fin 9 
   exact cayley_bacharach_of_no_common_factor P hP F G hFG hF hG hlin
     (no_common_conic_card3 hK P hP F G hF hG hlin) H hH
 
-/-- **Cayley–Bacharach, classical form, over a field with three elements.**-/
+/-- **Cayley–Bacharach, classical form, over a field with three elements.**
+@isnad1 id=eq.5h5v.s11.286af8005468 from=translated src=- shape=1777c605 vocab=fb14e731
+-/
 theorem cayley_bacharach_classical_card3 [Fintype K] (hK : Fintype.card K = 3)
     (P : Fin 9 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
@@ -253,7 +270,9 @@ theorem cayley_bacharach_classical_card3 [Fintype K] (hK : Fintype.card K = 3)
 
 /-- **Cayley–Bacharach, classical form, over `𝔽₃ = ZMod 3`.** Two linearly independent
 cubics whose common zeros are exactly nine pairwise non-proportional points: every cubic
-through eight of them passes through the ninth.-/
+through eight of them passes through the ninth.
+@isnad1 id=eq.4h4v.s12.333e93ec11c2 from=translated src=- shape=de2ad983 vocab=a3935362
+-/
 theorem cayley_bacharach_classical_zmod3 (P : Fin 9 → Fin 3 → ZMod 3)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
     (F G : PlaneCubic (ZMod 3)) (hFG : LinearIndependent (ZMod 3) ![F, G])
@@ -264,7 +283,9 @@ theorem cayley_bacharach_classical_zmod3 (P : Fin 9 → Fin 3 → ZMod 3)
 
 /-- **Cayley–Bacharach, classical form, over finite fields.** The classical form holds over
 every finite field with `|K| ∉ {4, 5, 7}` (vacuously for `|K| = 2`). Over `𝔽₄, 𝔽₅, 𝔽₇` it is
-false (explicit counterexamples, checked by computer; not formalised here).-/
+false (explicit counterexamples, checked by computer; not formalised here).
+@isnad1 id=eq.7h5v.s11.6727ed1668e5 from=translated src=- shape=c29a0fbf vocab=fb14e731
+-/
 theorem cayley_bacharach_classical_finite [Fintype K] (h4 : Fintype.card K ≠ 4)
     (h5 : Fintype.card K ≠ 5) (h7 : Fintype.card K ≠ 7)
     (P : Fin 9 → Fin 3 → K)

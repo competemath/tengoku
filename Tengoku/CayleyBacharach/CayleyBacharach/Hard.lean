@@ -12,18 +12,33 @@ namespace Tengoku.CayleyBacharach.PlaneCubic
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=eq.0h3v.s10.2133637469d0 from=translated src=- shape=ee359b13 vocab=20e6b0f6
+-/
 theorem cross_dot_left (u v : Fin 3 → K) : u ⨯₃ v ⬝ᵥ u = 0 := by
   rw [dotProduct_comm]; exact dot_self_cross u v
 
+/--
+@isnad1 id=eq.0h3v.s10.0619a04f508f from=translated src=- shape=ed50bfe7 vocab=20e6b0f6
+-/
 theorem cross_dot_right (u v : Fin 3 → K) : u ⨯₃ v ⬝ᵥ v = 0 := by
   rw [dotProduct_comm]; exact dot_cross_self u v
 
+/--
+@isnad1 id=le.1h3v.s8.08ae63b8e23d from=translated src=- shape=f15b4601 vocab=7262e842
+-/
 theorem conicsThrough_anti {S T : Set (Fin 3 → K)} (h : S ⊆ T) :
     conicsThrough T ≤ conicsThrough S := fun _ hq v hv => hq v (h hv)
 
+/--
+@isnad1 id=le.1h3v.s8.9dd5c36c07e5 from=translated src=- shape=93906f89 vocab=396080a0
+-/
 theorem cubicsThrough_anti {S T : Set (Fin 3 → K)} (h : S ⊆ T) :
     cubicsThrough T ≤ cubicsThrough S := fun _ hq v hv => hq v (h hv)
 
+/--
+@isnad1 id=eq.2h3v.s7.e1a92ee185ec from=translated src=- shape=f5c9d6ed vocab=b8678599
+-/
 theorem linMul_eq_zero {ℓ m : Fin 3 → K} (hℓ : ℓ ≠ 0) (h : linMul ℓ m = 0) : m = 0 := by
   have E : ∀ i : Fin 6, linMul ℓ m i = 0 := fun i => by rw [h]; rfl
   have e0 : ℓ 0 * m 0 = 0 := by simpa [linMul] using E 0
@@ -52,22 +67,39 @@ theorem linMul_eq_zero {ℓ m : Fin 3 → K} (hℓ : ℓ ≠ 0) (h : linMul ℓ 
   obtain ⟨m0, m1, m2⟩ := key
   funext i; fin_cases i <;> simp [m0, m1, m2]
 
+/--
+@isnad1 id=ne.1h3v.s11.994af87b3f90 from=translated src=- shape=fd53363d vocab=64357601
+-/
 theorem ne_zero_of_cross {u v : Fin 3 → K} (h : u ⨯₃ v ≠ 0) : v ≠ 0 := by
   rintro rfl; simp at h
 
+/--
+@isnad1 id=ne.1h3v.s11.3d14a49beed8 from=translated src=- shape=20c4f879 vocab=64357601
+-/
 theorem ne_zero_of_cross' {u v : Fin 3 → K} (h : u ⨯₃ v ≠ 0) : u ≠ 0 := by
   rintro rfl; simp at h
 
+/--
+@isnad1 id=eq.0h3v.s11.c6d6c19ea703 from=translated src=- shape=4849573a vocab=e525d3bf
+-/
 theorem cross_add_right (u v : Fin 3 → K) : u ⨯₃ (u + v) = u ⨯₃ v := by
   ext i; fin_cases i <;> simp [cross_apply] <;> ring
 
+/--
+@isnad1 id=eq.0h3v.s11.b2c63ef6ac7e from=translated src=- shape=671e5487 vocab=fdfec51a
+-/
 theorem cross_add_right' (u v : Fin 3 → K) : v ⨯₃ (u + v) = -(u ⨯₃ v) := by
   ext i; fin_cases i <;> simp [cross_apply] <;> ring
 
+/--
+@isnad1 id=eq.0h3v.s11.2bf12d27ff74 from=translated src=- shape=fb198a3e vocab=b6d1a516
+-/
 theorem cross_add_dot (u v : Fin 3 → K) : u ⨯₃ v ⬝ᵥ (u + v) = 0 := by
   rw [dotProduct_add, cross_dot_left, cross_dot_right, add_zero]
 
-/-- **C4.** Four distinct, not all collinear points impose at least 4 conditions on conics.-/
+/-- **C4.** Four distinct, not all collinear points impose at least 4 conditions on conics.
+@isnad1 id=le.11h6v.s13.ae7a3b73c9fd from=translated src=- shape=4957753c vocab=1db510fe
+-/
 theorem conics_le_two {u v w z : Fin 3 → K} (T : Set (Fin 3 → K))
     (hu : u ∈ T) (hv : v ∈ T) (hw : w ∈ T) (hz : z ∈ T)
     (huv : u ⨯₃ v ≠ 0) (huw : u ⨯₃ w ≠ 0) (hvw : v ⨯₃ w ≠ 0)
@@ -102,7 +134,9 @@ theorem conics_le_two {u v w z : Fin 3 → K} (T : Set (Fin 3 → K))
 def Col4 (x y z w : Fin 3 → K) : Prop :=
   ∃ ℓ : Fin 3 → K, ℓ ≠ 0 ∧ ℓ ⬝ᵥ x = 0 ∧ ℓ ⬝ᵥ y = 0 ∧ ℓ ⬝ᵥ z = 0 ∧ ℓ ⬝ᵥ w = 0
 
-/-- **C5.** Five distinct points, no four collinear, impose at least 5 conditions on conics.-/
+/-- **C5.** Five distinct points, no four collinear, impose at least 5 conditions on conics.
+@isnad1 id=le.20h7v.s14.2572e9a6a077 from=translated src=- shape=bac5a2ef vocab=4fbf24ca
+-/
 theorem conics_le_one {d e f g h : Fin 3 → K} (T : Set (Fin 3 → K))
     (hd : d ∈ T) (he : e ∈ T) (hf : f ∈ T) (hg : g ∈ T) (hh : h ∈ T)
     (hde : d ⨯₃ e ≠ 0) (hdf : d ⨯₃ f ≠ 0) (hdg : d ⨯₃ g ≠ 0) (hdh : d ⨯₃ h ≠ 0)
@@ -146,6 +180,9 @@ theorem conics_le_one {d e f g h : Fin 3 → K} (T : Set (Fin 3 → K))
         (⟨Set.mem_insert_of_mem _ hf, mf⟩ : f ∈ {x | x ∈ insert (d + e) T ∧ m ⬝ᵥ x ≠ 0})
         ⟨Set.mem_insert_of_mem _ hg, mg⟩ ⟨Set.mem_insert_of_mem _ hh, mh⟩]
 
+/--
+@isnad1 id=ex.1h3v.s7.1a0fc1b2c7a4 from=translated src=- shape=7f5cc221 vocab=bd80f561
+-/
 theorem exists_ne_zero_of_one_le {V : Type*} [AddCommGroup V] [Module K V]
     [FiniteDimensional K V] {W : Submodule K V} (h : 1 ≤ Module.finrank K W) :
     ∃ x ∈ W, x ≠ 0 := by
@@ -155,7 +192,9 @@ theorem exists_ne_zero_of_one_le {V : Type*} [AddCommGroup V] [Module K V]
   omega
 
 /-- **Lemma X.** If the cubics through `S` have dimension `≥ 3` and `u, v ∈ S` are distinct
-points, some nonzero conic vanishes at every point of `S` off the line `uv`.-/
+points, some nonzero conic vanishes at every point of `S` off the line `uv`.
+@isnad1 id=ex.4h4v.s12.55ca19f5b0c2 from=translated src=- shape=3c7b3c1c vocab=a21a155a
+-/
 theorem exists_conic_off_line [AtLeastThree K] {S : Set (Fin 3 → K)} {u v : Fin 3 → K}
     (hu : u ∈ S) (hv : v ∈ S) (huv : u ⨯₃ v ≠ 0)
     (hd : 3 ≤ Module.finrank K (cubicsThrough S)) :
@@ -192,7 +231,9 @@ theorem exists_conic_off_line [AtLeastThree K] {S : Set (Fin 3 → K)} {u v : Fi
   obtain ⟨q, hq, hq0⟩ := exists_ne_zero_of_one_le hr'
   exact ⟨q, hq0, fun x hx hl => hq x ⟨by simp [S', hx], hl⟩⟩
 
-/-- In a space of dimension `≤ 1`, a vanishing statement transfers between nonzero vectors.-/
+/-- In a space of dimension `≤ 1`, a vanishing statement transfers between nonzero vectors.
+@isnad1 id=ex.5h4v.s10.d3e1d6b01479 from=translated src=- shape=ff54fedb vocab=3b991c14
+-/
 theorem proportional {W : Submodule K (Fin 6 → K)} (hW : Module.finrank K W ≤ 1)
     {q r : Fin 6 → K} (hq : q ∈ W) (hr : r ∈ W) (hq0 : q ≠ 0) (hr0 : r ≠ 0) :
     ∃ c : K, c ≠ 0 ∧ q = c • r := by
@@ -208,7 +249,9 @@ theorem proportional {W : Submodule K (Fin 6 → K)} (hW : Module.finrank K W �
 
 /-- **Lemma Y.** If three distinct points `u, v, w ∈ S` are collinear and the cubics through
 `S` have dimension `≥ 3`, the conics through the points of `S` off that line have
-dimension `≥ 2`.-/
+dimension `≥ 2`.
+@isnad1 id=le.8h5v.s13.f31356afc500 from=translated src=- shape=570645b6 vocab=0ee2f55c
+-/
 theorem conics_off_line_ge_two [AtLeastThree K] {S : Set (Fin 3 → K)} {u v w : Fin 3 → K}
     (hu : u ∈ S) (hv : v ∈ S) (hw : w ∈ S) (huv : u ⨯₃ v ≠ 0) (huw : u ⨯₃ w ≠ 0)
     (hvw : v ⨯₃ w ≠ 0) (hlw : u ⨯₃ v ⬝ᵥ w = 0)

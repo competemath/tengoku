@@ -17,7 +17,9 @@ namespace Tengoku.CayleyBacharach.PlaneCubic
 
 variable {K : Type*} [Field K]
 
-/-- Four of the points on a line force the line into every cubic through the points.-/
+/-- Four of the points on a line force the line into every cubic through the points.
+@isnad1 id=ex.5h6v.s11.ad83121ad4ad from=translated src=- shape=34f0f18e vocab=b44c4099
+-/
 theorem divides_of_four [AtLeastThree K] {n : ℕ} (P : Fin n → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0) {ℓ : Fin 3 → K} (hℓ : ℓ ≠ 0)
     (s : Finset (Fin n)) (hs : ∀ i ∈ s, ℓ ⬝ᵥ P i = 0) (h4 : 4 ≤ s.card)
@@ -29,7 +31,9 @@ theorem divides_of_four [AtLeastThree K] {n : ℕ} (P : Fin n → Fin 3 → K)
     (hP c d hcd) (hs a (hts (by simp))) (hs b (hts (by simp))) (hs c (hts (by simp)))
     (hs d (hts (by simp))) (hF a) (hF b) (hF c) (hF d)
 
-/-- No three collinear ⇒ no four collinear (the first three indices distinct suffice).-/
+/-- No three collinear ⇒ no four collinear (the first three indices distinct suffice).
+@isnad1 id=not.5h7v.s11.faf726003b0a from=translated src=- shape=8344732c vocab=452196f7
+-/
 theorem not_col4_of_no3 {n : ℕ} {P : Fin n → Fin 3 → K}
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
     (hno3 : ∀ i j k, i ≠ j → i ≠ k → j ≠ k → P i ⨯₃ P j ⬝ᵥ P k ≠ 0)
@@ -41,7 +45,9 @@ theorem not_col4_of_no3 {n : ℕ} {P : Fin n → Fin 3 → K}
   rw [smul_dotProduct, smul_eq_mul] at hc
   exact hno3 a b c hab hac hbc ((mul_eq_zero.mp hc).resolve_left hc0)
 
-/-- Eight points with no three collinear: the cubics through them have dimension `≤ 3`.-/
+/-- Eight points with no three collinear: the cubics through them have dimension `≤ 3`.
+@isnad1 id=le.2h2v.s12.4d0bc3c307f0 from=translated src=- shape=1c96a7a5 vocab=a3dd151d
+-/
 theorem finrank_le_three_of_no3 [AtLeastThree K] (P : Fin 8 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
     (hno3 : ∀ i j k, i ≠ j → i ≠ k → j ≠ k → P i ⨯₃ P j ⬝ᵥ P k ≠ 0) :
@@ -96,7 +102,9 @@ theorem finrank_le_three_of_no3 [AtLeastThree K] (P : Fin 8 → Fin 3 → K)
 
 /-- **No common factor ⇒ general position.** Let `F, G` be cubics through eight pairwise
 non-proportional points with no common linear factor and no common conic factor. Then no
-four of the points are collinear and the points do not all lie on a nonzero conic.-/
+four of the points are collinear and the points do not all lie on a nonzero conic.
+@isnad1 id=and.5h4v.s11.8673bf21d8b4 from=translated src=- shape=bfb30c5b vocab=36f8ae36
+-/
 theorem general_position_of_no_common_factor [AtLeastThree K] (P : Fin 8 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0) (F G : PlaneCubic K)
     (hF : ∀ i, eval F (P i) = 0) (hG : ∀ i, eval G (P i) = 0)
@@ -156,7 +164,9 @@ theorem general_position_of_no_common_factor [AtLeastThree K] (P : Fin 8 → Fin
 
 /-- **Cayley–Bacharach, no-common-factor form.** Let `F, G` be linearly independent cubics
 through nine pairwise non-proportional points `P 0, …, P 8`, with no common linear factor
-and no common conic factor. Every cubic through `P 0, …, P 7` passes through `P 8`.-/
+and no common conic factor. Every cubic through `P 0, …, P 7` passes through `P 8`.
+@isnad1 id=eq.7h5v.s11.fc5b94163aa7 from=translated src=- shape=6cd00325 vocab=5ff000a3
+-/
 theorem cayley_bacharach_of_no_common_factor [AtLeastThree K] (P : Fin 9 → Fin 3 → K)
     (hP : ∀ i j, i ≠ j → P i ⨯₃ P j ≠ 0)
     (F G : PlaneCubic K) (hFG : LinearIndependent K ![F, G])

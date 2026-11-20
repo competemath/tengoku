@@ -22,12 +22,17 @@ namespace Tengoku.CayleyBacharach.PlaneCubic
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=ne.1h3v.s11.7b8d4b8c904e from=translated src=- shape=9c6303aa vocab=64357601
+-/
 theorem cross_ne_zero_symm {a b : Fin 3 → K} (h : a ⨯₃ b ≠ 0) : b ⨯₃ a ≠ 0 := by
   intro h'
   apply h
   rw [← cross_anticomm, h', neg_zero]
 
-/-- If `v ≠ 0` and `w` is proportional to `v`, a linear form vanishing at `v` vanishes at `w`.-/
+/-- If `v ≠ 0` and `w` is proportional to `v`, a linear form vanishing at `v` vanishes at `w`.
+@isnad1 id=eq.3h4v.s11.c3cebf33dbc4 from=translated src=- shape=ff6f8cd6 vocab=20e6b0f6
+-/
 theorem dot_eq_zero_of_cross_eq_zero {l v w : Fin 3 → K} (hv : v ≠ 0) (h : v ⨯₃ w = 0)
     (hl : l ⬝ᵥ v = 0) : l ⬝ᵥ w = 0 := by
   obtain ⟨k, hk⟩ := Function.ne_iff.mp hv
@@ -36,12 +41,16 @@ theorem dot_eq_zero_of_cross_eq_zero {l v w : Fin 3 → K} (hv : v ≠ 0) (h : v
   simp only [dotProduct_smul, smul_eq_mul, hl, mul_zero] at e'
   exact (mul_eq_zero.mp e'.symm).resolve_left hk
 
-/-- A point on a line is not proportional to a point off it.-/
+/-- A point on a line is not proportional to a point off it.
+@isnad1 id=ne.3h4v.s11.21cdb99aa68b from=translated src=- shape=b20a14c1 vocab=20e6b0f6
+-/
 theorem cross_ne_zero_of_line {l v w : Fin 3 → K} (hv : v ≠ 0) (hl : l ⬝ᵥ v = 0)
     (hw : l ⬝ᵥ w ≠ 0) : v ⨯₃ w ≠ 0 :=
   fun h => hw (dot_eq_zero_of_cross_eq_zero hv h hl)
 
-/-- The line `ab` differs from the line `cd` if `c` is not on `ab`.-/
+/-- The line `ab` differs from the line `cd` if `c` is not on `ab`.
+@isnad1 id=ne.2h5v.s13.f425f0c9ecc6 from=translated src=- shape=77596b80 vocab=20e6b0f6
+-/
 theorem lines_ne_left {a b c d : Fin 3 → K} (hcd : c ⨯₃ d ≠ 0) (hc : a ⨯₃ b ⬝ᵥ c ≠ 0) :
     a ⨯₃ b ⨯₃ (c ⨯₃ d) ≠ 0 := by
   intro h
@@ -49,7 +58,9 @@ theorem lines_ne_left {a b c d : Fin 3 → K} (hcd : c ⨯₃ d ≠ 0) (hc : a �
   have := dot_eq_zero_of_cross_eq_zero (l := c) hcd h' (by rw [dotProduct_comm]; exact cross_dot_left _ _)
   exact hc (by rw [dotProduct_comm]; exact this)
 
-/-- The line `ab` differs from the line `cd` if `d` is not on `ab`.-/
+/-- The line `ab` differs from the line `cd` if `d` is not on `ab`.
+@isnad1 id=ne.2h5v.s13.b1a6b6ff9838 from=translated src=- shape=c66718c6 vocab=20e6b0f6
+-/
 theorem lines_ne_right {a b c d : Fin 3 → K} (hcd : c ⨯₃ d ≠ 0) (hd : a ⨯₃ b ⬝ᵥ d ≠ 0) :
     a ⨯₃ b ⨯₃ (c ⨯₃ d) ≠ 0 := by
   intro h
@@ -58,7 +69,9 @@ theorem lines_ne_right {a b c d : Fin 3 → K} (hcd : c ⨯₃ d ≠ 0) (hd : a 
   exact hd (by rw [dotProduct_comm]; exact this)
 
 /-- **An irreducible conic meets a line in at most two points**: three pairwise
-non-proportional points of a conic that is not a line pair are not collinear.-/
+non-proportional points of a conic that is not a line pair are not collinear.
+@isnad1 id=ne.7h5v.s12.0fd80e2ae6ec from=translated src=- shape=a93ff5a1 vocab=2eae13c3
+-/
 theorem noncollinear_of_irreducible {q : Fin 6 → K}
     (hirr : ∀ ℓ m : Fin 3 → K, q ≠ linMul ℓ m) {a b c : Fin 3 → K}
     (hab : a ⨯₃ b ≠ 0) (hac : a ⨯₃ c ≠ 0) (hbc : b ⨯₃ c ≠ 0)
@@ -69,7 +82,9 @@ theorem noncollinear_of_irreducible {q : Fin 6 → K}
     qa qb qc
   exact hirr _ _ hm
 
-/-- A point of the line `ab` other than `a, b` is off an irreducible conic through `a, b`.-/
+/-- A point of the line `ab` other than `a, b` is off an irreducible conic through `a, b`.
+@isnad1 id=ne.7h5v.s12.e9aaa489e627 from=translated src=- shape=0a5c923b vocab=2eae13c3
+-/
 theorem evalC_ne_zero_of_line {q : Fin 6 → K}
     (hirr : ∀ ℓ m : Fin 3 → K, q ≠ linMul ℓ m) {a b v : Fin 3 → K}
     (hab : a ⨯₃ b ≠ 0) (hav : a ⨯₃ v ≠ 0) (hbv : b ⨯₃ v ≠ 0) (hv : a ⨯₃ b ⬝ᵥ v = 0)
@@ -82,7 +97,9 @@ namespace Tengoku.CayleyBacharach.PlaneCubic
 
 variable {K : Type*} [Field K]
 
-/-- Pairwise non-proportionality of a list of nine vectors from the 36 facts `i < j`.-/
+/-- Pairwise non-proportionality of a list of nine vectors from the 36 facts `i < j`.
+@isnad1 id=ne.37h12v.s16.0c4ad388711e from=translated src=- shape=e1ab2bc8 vocab=a9e0a7b8
+-/
 theorem pairwise9 {B0 B1 B2 B3 B4 B5 B6 B7 B8 : Fin 3 → K}
     (h01 : B0 ⨯₃ B1 ≠ 0) (h02 : B0 ⨯₃ B2 ≠ 0) (h03 : B0 ⨯₃ B3 ≠ 0) (h04 : B0 ⨯₃ B4 ≠ 0) (h05 :
     B0 ⨯₃ B5 ≠ 0) (h06 : B0 ⨯₃ B6 ≠ 0) (h07 : B0 ⨯₃ B7 ≠ 0) (h08 : B0 ⨯₃ B8 ≠ 0) (h12 : B1 ⨯₃
@@ -178,7 +195,9 @@ theorem pairwise9 {B0 B1 B2 B3 B4 B5 B6 B7 B8 : Fin 3 → K}
   · exact cross_ne_zero_symm h78
   · exact absurd rfl hij
 
-/-- Nine side-line conditions from the nine facts.-/
+/-- Nine side-line conditions from the nine facts.
+@isnad1 id=ne.9h9v.s14.a75a7172aa3b from=translated src=- shape=a976a329 vocab=a9e0a7b8
+-/
 theorem lines9 {f₀ f₁ f₂ g₀ g₁ g₂ : Fin 3 → K}
     (h00 : f₀ ⨯₃ g₀ ≠ 0) (h01 : f₀ ⨯₃ g₁ ≠ 0) (h02 : f₀ ⨯₃ g₂ ≠ 0)
     (h10 : f₁ ⨯₃ g₀ ≠ 0) (h11 : f₁ ⨯₃ g₁ ≠ 0) (h12 : f₁ ⨯₃ g₂ ≠ 0)
@@ -191,7 +210,9 @@ theorem lines9 {f₀ f₁ f₂ g₀ g₁ g₂ : Fin 3 → K}
 /-- **Genericity for free.** Six pairwise non-proportional points on a conic that is not a
 line pair, with `X = L₁₂ ⨯₃ L₄₅`, `Y = L₂₃ ⨯₃ L₅₆`, `Z = L₃₄ ⨯₃ L₆₁`: the hypotheses `hP`
 (all nine points pairwise non-proportional) and `hL` (nine side-line conditions) of
-`pascal_of_cayley_bacharach'` hold.-/
+`pascal_of_cayley_bacharach'` hold.
+@isnad1 id=and.11h11v.s15.a45798dbfd06 from=translated src=- shape=a08f5fde vocab=cb1dcd89
+-/
 theorem pascal_generic (A₁ A₂ A₃ A₄ A₅ A₆ X Y Z : Fin 3 → K)
     (hA : ∀ i j, i ≠ j → ![A₁, A₂, A₃, A₄, A₅, A₆] i ⨯₃ ![A₁, A₂, A₃, A₄, A₅, A₆] j ≠ 0)
     (q : Fin 6 → K) (hirr : ∀ ℓ m : Fin 3 → K, q ≠ linMul ℓ m)
@@ -329,7 +350,9 @@ theorem pascal_generic (A₁ A₂ A₃ A₄ A₅ A₆ X Y Z : Fin 3 → K)
 
 /-- **Pascal's theorem, natural hypotheses.** Six pairwise non-proportional points on a
 conic `q` that is not a product of two linear forms: the three intersections of opposite
-sides `L₁₂ ∩ L₄₅`, `L₂₃ ∩ L₅₆`, `L₃₄ ∩ L₆₁` (explicit cross products) are collinear.-/
+sides `L₁₂ ∩ L₄₅`, `L₂₃ ∩ L₅₆`, `L₃₄ ∩ L₆₁` (explicit cross products) are collinear.
+@isnad1 id=eq.8h8v.s14.2a0093840244 from=translated src=- shape=2437e23c vocab=10c06ef5
+-/
 theorem pascal_clean [CardGT K 10] (A₁ A₂ A₃ A₄ A₅ A₆ : Fin 3 → K)
     (hA : ∀ i j, i ≠ j → ![A₁, A₂, A₃, A₄, A₅, A₆] i ⨯₃ ![A₁, A₂, A₃, A₄, A₅, A₆] j ≠ 0)
     (q : Fin 6 → K) (hirr : ∀ ℓ m : Fin 3 → K, q ≠ linMul ℓ m)
@@ -343,7 +366,9 @@ theorem pascal_clean [CardGT K 10] (A₁ A₂ A₃ A₄ A₅ A₆ : Fin 3 → K)
     (dot_self_cross _ _) (dot_cross_self _ _) (dot_self_cross _ _) (dot_cross_self _ _)
     (dot_self_cross _ _) (dot_cross_self _ _) q hirr hq₁ hq₂ hq₃ hq₄ hq₅ hq₆
 
-/-- The three Pascal points lie off the conic (each is a third point of a side line).-/
+/-- The three Pascal points lie off the conic (each is a third point of a side line).
+@isnad1 id=and.8h8v.s14.29db502bfc33 from=translated src=- shape=21a93d6c vocab=cb1dcd89
+-/
 theorem pascal_points_off_conic (A₁ A₂ A₃ A₄ A₅ A₆ : Fin 3 → K)
     (hA : ∀ i j, i ≠ j → ![A₁, A₂, A₃, A₄, A₅, A₆] i ⨯₃ ![A₁, A₂, A₃, A₄, A₅, A₆] j ≠ 0)
     (q : Fin 6 → K) (hirr : ∀ ℓ m : Fin 3 → K, q ≠ linMul ℓ m)
