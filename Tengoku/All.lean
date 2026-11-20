@@ -166,6 +166,7 @@ import Tengoku.Nkbesicovitch
 import Tengoku.LeanEvalPlatonicClassification
 import Tengoku.QuasiRiemann
 import Tengoku.LanaIut
+import Tengoku.ZanelloLc
 import Tengoku.LerayHopf
 import Tengoku.UniformSheafyTateDomains
 import Tengoku.OspTriviality
