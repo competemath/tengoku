@@ -162,6 +162,7 @@ import Tengoku.UniformSheafyTateDomains
 import Tengoku.OspTriviality
 import Tengoku.SandronesLibrary
 import Tengoku.Imoshortlist
+import Tengoku.FriedConjLean
 import Tengoku.NavierStokesEuler
 import Tengoku.PalomarQseriesRowFactorization
 import Tengoku.Formalbook

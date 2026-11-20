@@ -1,0 +1,308 @@
+/-
+FRIED AT A CODIMENSION-ONE CROSSING — THE LEDGER (9/03; vault memos
+fried_counterexample_rederivation_9_03 [cleanest statement], crossing_rate_ratio_9_03
+[rate computation], jordan_cluster_torsion_9_03 [Lemma A], zero_cluster_torsion_9_02
+[order m = dim C₀² − 2 dim C₀¹, cluster torsions]).
+
+Claim ledgered: on a closed hyperbolic 3-manifold with b₁ = 1, acyclic χ_θ, along the
+family g_τ = e^{−2τb}g_hyp the non-closed degree-1 resonance s_nc(θ,τ) crosses 0 at
+τ = σ(θ). There ζ_{χ_θ}(·; g_σ) is REGULAR at 0 (order c₂ − 2c₁ = 0) but its value
+jumps: ζ(0; g_σ) = τ_R · lim (pole rate / zero rate) ≠ τ_R. Classical Fried fails at
+the crossing metric; CD's refined identity absorbs the defect into τ(C^•(0), Γ_ϑ),
+whose value is −(zero rate)/(pole rate) (Lemma A, memo 9/03).
+
+House method: analytic inputs are named, citation-shaped HYPOTHESES; everything
+downstream is proved. ⚡AUDIT CRITERION: ZERO axioms of its own — `#print axioms` on
+every theorem below (P1–P5) lists only Lean built-ins.
+
+  P1 TorsionCore  — finite-dimensional refined torsion of the minimal zero clusters,
+                    computed from explicit matrices (CD Def 3.2 basis-change
+                    determinants, normalisation of zero_cluster_torsion_9_02 §2):
+                    semisimple (1,2,1) cluster ⇒ −1; Jordan J₂ cluster ⇒ −(1+λ)/λ;
+                    with λ = s_p/(s_z − s_p) this is −s_z/s_p (Lemma A shape).
+  P2 OrderCount   — exact reduced complex C₀¹ → C₀² → C₀³ plus ⋆-duality c₃ = c₁ and
+                    acyclicity c₀ = c₄ = 0 ⇒ c₂ = 2c₁, so the CD (5.9) order
+                    Σ(−1)^k c_k vanishes (rank–nullity only).
+  P3 Crossing     — IVT + monotonicity: a C¹ real branch with s(0) < 0 and
+                    ∂_τ s ≥ r₀ > 0 crosses 0 exactly once, at σ ≤ |s(0)|/r₀.
+  P4 RateRatio    — z ~ a(τ−σ), p ~ b(τ−σ) ⇒ z/p → a/b; if R·z/p ≡ τ_R off σ and R is
+                    continuous at σ then R(σ) = τ_R·(b/a), ≠ τ_R iff a ≠ b.
+  P5 Capstone     — `fried_fails_at_crossing_of_inputs` composes P1–P4 from the named
+  [9/16: this capstone, `Crossing.crossing_exists_unique` and `RateRatio.crossing_value` were REMOVED for the
+  Palomar entry as superseded; the compared theorem is `fried_counterexample_of_resolvent_inputs`
+  (fried_counterexample_main), which uses the `_local` forms below.]
+                    analytic inputs (hdouble, hsym, hrate_nonclosed, hrate_zero, hcont,
+                    hfried_off, hexact, hacyc, hdual; bookkeeping hdims, hτR).
+-/
+import Tengoku.FriedConjLean.B1s.fried_statement_defs_9_14
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/blawton/fried-conj-lean@610d659ea15a, `B1s/fried_crossing_9_03.lean`: removed 1 `#adaptation_note` / `set_option linter` line(s) (notes and linter settings: no declaration depends on them). What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
+
+
+namespace FriedCrossing
+
+open Filter Topology Matrix
+
+/-! ## §1 (P1) Finite-dimensional torsion core
+
+Conventions (zero_cluster_torsion_9_02 §1–2): the zero cluster at the crossing has
+C₀¹ = ⟨u⟩, C₀² = ⟨w₁, w₂⟩, C₀³ = ⟨Lu⟩ (L = ∧dα), and the full resonant complex is
+C^k = α∧C₀^{k−1} ⊕ C₀^k with d(α∧v + w) = α∧(Xw − d₀v) + (d₀w + Lv). Bases:
+C¹ = (u), C² = (α∧u, w₁, w₂), C³ = (α∧w₁, α∧w₂, Lu), C⁴ = (α∧Lu). The two minimal
+shapes are one family: d₀u = w₁, Xw₂ = x·w₁, d₀w₂ = l·Lu — x = 0 is the semisimple
+cluster (D), x = 1 the Jordan cluster (C) with intrinsic invariant λ = l. -/
+namespace TorsionCore
+
+variable {K : Type*} [Field K]
+
+/--
+@isnad1 id=eq.0h3v.s7.98ea9230f5bf from=translated src=- shape=80458022 vocab=0e1fc0b1
+-/
+theorem d₂_mul_d₁ (x l : K) : d₂ x l * (d₁ : Matrix (Fin 3) (Fin 1) K) = 0 := by
+  ext i j
+  fin_cases j
+  fin_cases i <;> simp [d₁, d₂, Matrix.mul_apply, Fin.sum_univ_succ]
+
+/--
+@isnad1 id=eq.0h3v.s7.17045cec4ea0 from=translated src=- shape=771c23e8 vocab=c341ebfc
+-/
+theorem d₃_mul_d₂ (x l : K) : d₃ l * d₂ x l = 0 := by
+  ext i j
+  fin_cases i
+  fin_cases j <;> simp [d₃, d₂, Matrix.mul_apply, Fin.sum_univ_succ]
+
+/--
+@isnad1 id=eq.0h1v.s6.695514fb98b5 from=translated src=- shape=0cde738e vocab=aba5b5d4
+-/
+theorem det_D₂mat : (D₂mat : Matrix (Fin 3) (Fin 3) K).det = -1 := by
+  rw [D₂mat, det_transpose, det_fin_three]
+  simp [d₁]
+
+/--
+@isnad1 id=eq.0h3v.s6.e65cf6aa8e9d from=translated src=- shape=1095f7e8 vocab=65f77be4
+-/
+theorem det_D₃mat (x l : K) : (D₃mat x l).det = -(l + x) := by
+  rw [D₃mat, det_transpose, det_fin_three]
+  simp [d₂]
+  ring
+
+/--
+@isnad1 id=eq.0h2v.s5.90837bb97514 from=translated src=- shape=06018280 vocab=758a5565
+-/
+theorem det_D₄mat (l : K) : (D₄mat l).det = l := by
+  rw [D₄mat, det_transpose, det_fin_one]
+  simp [d₃]
+
+/--
+@isnad1 id=eq.0h0v.s7.3e05efdbce61 from=translated src=- shape=2e6a87e6 vocab=fa2b8106
+-/
+theorem N_C_eq : (N_C : ℤ) = (1 * (1 + 1) + 2 * (2 - 1) + 1 * (1 + 1) + 0) / 2 := by
+  decide
+
+/--
+@isnad1 id=eq.0h0v.s6.aa89dccac6b1 from=translated src=- shape=b126b861 vocab=374ebd61
+-/
+theorem m_C_eq : (m_C : ℤ) = (0 + 1 * (1 - 1) + 3 * (3 + 1)) / 2 := by
+  decide
+
+/--
+@isnad1 id=eq.1h3v.s6.6750a89a3100 from=translated src=- shape=34b3188a vocab=60dd22df
+-/
+theorem refinedTorsion_eq (x l : K) (hl : l ≠ 0) : refinedTorsion x l = -(l + x) / l := by
+  rw [refinedTorsion, det_D₂mat, det_D₃mat, det_D₄mat, det_fin_one]
+  simp only [N_C, m_C, Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_fin_one]
+  field_simp
+  ring
+
+/-- The nondegeneracy that makes the (x, l)-complex EXACT: D₃, D₄ ≠ 0 ⟺ l ∉ {0, −x}
+(memo: λ ∉ {0, −1} for the Jordan cluster).
+@isnad1 id=and.2h3v.s7.af9c907f4479 from=translated src=- shape=45c85b2d vocab=dfa1f31a
+-/
+theorem dets_ne_zero (x l : K) (hl : l ≠ 0) (hlx : l + x ≠ 0) :
+    (D₂mat : Matrix (Fin 3) (Fin 3) K).det ≠ 0 ∧ (D₃mat x l).det ≠ 0 ∧ (D₄mat l).det ≠ 0 := by
+  rw [det_D₂mat, det_D₃mat, det_D₄mat]
+  exact ⟨by norm_num, neg_ne_zero.mpr hlx, hl⟩
+
+/-- Semisimple minimal cluster (D), a = 1: τ(C^•(0), Γ_ϑ) = −1 = (−1)^a.
+@isnad1 id=eq.1h2v.s6.f98a41899077 from=translated src=- shape=4650c698 vocab=bbbd893b
+-/
+theorem semisimple_cluster_torsion (l : K) (hl : l ≠ 0) : refinedTorsion 0 l = -1 := by
+  rw [refinedTorsion_eq 0 l hl, add_zero, neg_div, div_self hl]
+
+/-- Jordan J₂ cluster (C), Xw₂ = w₁ = d₀u, d₀w₂ = λ·Lu: τ(C^•(0), Γ_ϑ) = −(1+λ)/λ.
+@isnad1 id=eq.1h2v.s6.21e58a19a847 from=translated src=- shape=3f78af8e vocab=60dd22df
+-/
+theorem jordan_cluster_torsion (l : K) (hl : l ≠ 0) : refinedTorsion 1 l = -(1 + l) / l := by
+  rw [refinedTorsion_eq 1 l hl, add_comm]
+
+/-- Lemma A shape (jordan_cluster_torsion_9_03 §3.3a): with the Jordan invariant
+λ = s_p/(s_z − s_p) of the arriving pole s_p and zero s_z, τ = −s_z/s_p.
+@isnad1 id=eq.2h3v.s6.a2fe6ab62ead from=translated src=- shape=b6ab4353 vocab=8ff38a8b
+-/
+theorem jordan_torsion_eq_neg_ratio (sp sz : K) (hsp : sp ≠ 0) (hne : sz ≠ sp) :
+    refinedTorsion 1 (sp / (sz - sp)) = -(sz / sp) := by
+  have h : sz - sp ≠ 0 := sub_ne_zero.mpr hne
+  rw [jordan_cluster_torsion _ (div_ne_zero hsp h)]
+  field_simp
+  ring
+
+end TorsionCore
+
+/-! ## §2 (P2) The order count m = c₂ − 2c₁ -/
+namespace OrderCount
+
+variable {K : Type*} [Field K] {V₁ V₂ V₃ : Type*}
+  [AddCommGroup V₁] [Module K V₁] [FiniteDimensional K V₁]
+  [AddCommGroup V₂] [Module K V₂] [FiniteDimensional K V₂]
+  [AddCommGroup V₃] [Module K V₃]
+
+/-- Rank–nullity twice: for an exact 0 → V₁ → V₂ → V₃ → 0,
+dim V₂ = dim V₁ + dim V₃.
+@isnad1 id=eq.3h6v.s8.626351b31c7f from=translated src=- shape=800fe098 vocab=be1c0600
+-/
+theorem finrank_middle_of_exact (f : V₁ →ₗ[K] V₂) (g : V₂ →ₗ[K] V₃)
+    (hf : Function.Injective f) (hfg : LinearMap.range f = LinearMap.ker g)
+    (hg : Function.Surjective g) :
+    Module.finrank K V₂ = Module.finrank K V₁ + Module.finrank K V₃ := by
+  have h1 := LinearMap.finrank_range_add_finrank_ker f
+  have h2 := LinearMap.finrank_range_add_finrank_ker g
+  rw [LinearMap.ker_eq_bot.mpr hf, finrank_bot, add_zero] at h1
+  rw [LinearMap.range_eq_top.mpr hg, finrank_top, ← hfg, h1] at h2
+  omega
+
+/-- With c₀ = c₄ = 0 (DGRS Lemma 7.4 + ⋆) and c₃ = c₁ (⋆): m = c₂ − 2c₁.
+@isnad1 id=eq.3h1v.s7.c8b97d53cb18 from=translated src=- shape=b3e0ead3 vocab=ae7b8a4c
+-/
+theorem zetaOrder_eq (c : Fin 5 → ℕ) (h0 : c 0 = 0) (h4 : c 4 = 0) (h31 : c 3 = c 1) :
+    zetaOrder c = (c 2 : ℤ) - 2 * c 1 := by
+  simp only [zetaOrder, Fin.sum_univ_five, h0, h4, h31]
+  norm_num
+  ring
+
+/-- The (1,1,1) chain headed by the non-closed 1-form: a simple POLE.
+@isnad1 id=eq.0h0v.s6.2176c949b7ac from=translated src=- shape=c6f109b4 vocab=eb4475e5
+-/
+theorem zetaOrder_pole_chain : zetaOrder ![0, 1, 1, 1, 0] = -1 := by decide
+
+/-- A pure degree-2 state: a simple ZERO.
+@isnad1 id=eq.0h0v.s6.ded83931c8da from=translated src=- shape=2b791dd3 vocab=07c65881
+-/
+theorem zetaOrder_pure_zero : zetaOrder ![0, 0, 1, 0, 0] = 1 := by decide
+
+/-- The generic crossing cluster (0,1,2,1,0): order 0, ζ regular at 0.
+@isnad1 id=eq.0h0v.s6.c10631f03a80 from=translated src=- shape=2b791dd3 vocab=07c65881
+-/
+theorem zetaOrder_crossing_cluster : zetaOrder ![0, 1, 2, 1, 0] = 0 := by decide
+
+/-- P2: exact reduced complex + duality ⇒ c₂ = 2c₁ ⇒ the ζ-order at 0 is 0.
+@isnad1 id=eq.6h7v.s9.ef19e7b33156 from=translated src=- shape=9d5357e5 vocab=d20f5af6
+-/
+theorem order_zero_of_exact (f : V₁ →ₗ[K] V₂) (g : V₂ →ₗ[K] V₃)
+    (hf : Function.Injective f) (hfg : LinearMap.range f = LinearMap.ker g)
+    (hg : Function.Surjective g) (c : Fin 5 → ℕ) (hacyc : c 0 = 0 ∧ c 4 = 0)
+    (hdual : c 3 = c 1)
+    (hdims : c 1 = Module.finrank K V₁ ∧ c 2 = Module.finrank K V₂ ∧
+      c 3 = Module.finrank K V₃) :
+    zetaOrder c = 0 := by
+  have hmid := finrank_middle_of_exact f g hf hfg hg
+  rw [zetaOrder_eq c hacyc.1 hacyc.2 hdual, hdims.2.1, hdims.1]
+  have h31 : Module.finrank K V₃ = Module.finrank K V₁ := by
+    rw [← hdims.2.2, ← hdims.1, hdual]
+  rw [hmid, h31]
+  push_cast
+  ring
+
+end OrderCount
+
+/-! ## §3 (P3) Crossing existence (IVT + monotonicity; the IFT step of memo A5) -/
+namespace Crossing
+
+end Crossing
+
+/-! ## §4 (P4) Rate-ratio bookkeeping (memo crossing_rate_ratio_9_03 §1, §3) -/
+namespace RateRatio
+
+/-- `f(τ) = c·(τ − σ)·(1 + o(1))` as τ → σ, τ ≠ σ: the slope quotient tends to `c`.-/
+def LinearArrival (f : ℝ → ℝ) (c σ : ℝ) : Prop :=
+  Tendsto (fun τ => f τ / (τ - σ)) (𝓝[≠] σ) (𝓝 c)
+
+/--
+@isnad1 id=eventual.0h1v.s4.ad83bdfd8197 from=translated src=- shape=d7aa2c3c vocab=47c2ad58
+-/
+theorem eventually_ne_nhdsNE (σ : ℝ) : ∀ᶠ τ in 𝓝[≠] σ, τ ≠ σ :=
+  eventually_nhdsWithin_of_forall fun _ h => h
+
+/-- The memos' `(1 + o(1))` form implies linear arrival.
+@isnad1 id=linearar.2h4v.s6.45eb0629f7f5 from=translated src=- shape=7936e237 vocab=61620611
+-/
+theorem linearArrival_of_one_add_o {f e : ℝ → ℝ} {c σ : ℝ}
+    (hf : ∀ τ, f τ = c * (τ - σ) * (1 + e τ)) (he : Tendsto e (𝓝[≠] σ) (𝓝 0)) :
+    LinearArrival f c σ := by
+  have h : Tendsto (fun τ => c * (1 + e τ)) (𝓝[≠] σ) (𝓝 (c * (1 + 0))) :=
+    (tendsto_const_nhds.add he).const_mul c
+  rw [add_zero, mul_one] at h
+  refine h.congr' ((eventually_ne_nhdsNE σ).mono fun τ hτ => ?_)
+  have hne : τ - σ ≠ 0 := sub_ne_zero.mpr hτ
+  change c * (1 + e τ) = f τ / (τ - σ)
+  rw [hf τ]
+  field_simp
+
+/-- A branch differentiable at σ and vanishing there arrives linearly with its slope.
+@isnad1 id=linearar.2h3v.s5.682ca9658799 from=translated src=- shape=8e962fbc vocab=09d0370f
+-/
+theorem linearArrival_of_hasDerivAt {f : ℝ → ℝ} {c σ : ℝ} (hf : HasDerivAt f c σ)
+    (h0 : f σ = 0) : LinearArrival f c σ := by
+  have h := hasDerivAt_iff_tendsto_slope.mp hf
+  refine h.congr' (Eventually.of_forall fun τ => ?_)
+  rw [slope_def_field, h0, sub_zero]
+
+/-- z ~ a(τ−σ), p ~ b(τ−σ), b ≠ 0 ⇒ z/p → a/b.
+@isnad1 id=tendsto.3h5v.s6.a58a313f4786 from=translated src=- shape=31947402 vocab=5a13bf12
+-/
+theorem ratio_tendsto {z p : ℝ → ℝ} {a b σ : ℝ} (hz : LinearArrival z a σ)
+    (hp : LinearArrival p b σ) (hb : b ≠ 0) :
+    Tendsto (fun τ => z τ / p τ) (𝓝[≠] σ) (𝓝 (a / b)) := by
+  refine (hz.div hp hb).congr' ((eventually_ne_nhdsNE σ).mono fun τ hτ => ?_)
+  simp only [Pi.div_apply]
+  rw [div_div_div_cancel_right₀ (sub_ne_zero.mpr hτ)]
+
+/--
+@isnad1 id=eventual.2h3v.s5.cda0dcf07bf3 from=translated src=- shape=36b9fcbc vocab=db818e28
+-/
+theorem eventually_ne_zero_of_linearArrival {f : ℝ → ℝ} {c σ : ℝ}
+    (hf : LinearArrival f c σ) (hc : c ≠ 0) : ∀ᶠ τ in 𝓝[≠] σ, f τ ≠ 0 :=
+  (hf.eventually_ne hc).mono fun τ hτ h0 => hτ (by rw [h0, zero_div])
+
+/-- The crossing value differs from τ_R exactly when the rates are unbalanced.
+@isnad1 id=iff.2h3v.s5.862795f75c0e from=translated src=- shape=db8bb97b vocab=525158d4
+-/
+theorem crossing_value_ne_iff {τR a b : ℝ} (hτR : τR ≠ 0) (ha : a ≠ 0) :
+    τR * (b / a) ≠ τR ↔ b ≠ a := by
+  rw [Ne, Ne, not_iff_not]
+  constructor
+  · intro h
+    have h' : b / a = 1 := mul_left_cancel₀ hτR (h.trans (mul_one τR).symm)
+    exact (div_eq_one_iff_eq ha).mp h'
+  · rintro rfl
+    rw [div_self ha, mul_one]
+
+end RateRatio
+
+/-! ## §5 (P5) THE CAPSTONE — the input ledger
+
+Every hypothesis is ONE analytic fact a human verifies against the cited source; the
+conclusion is the memo's verdict. Objects: `S θ τ` = the non-closed degree-1 resonance
+branch s_nc(θ,τ) (complex-valued a priori), `ds θ τ` its τ-derivative, `z` = the pure
+degree-2 zero branch forced through 0 at the crossing, `R` = the regular factor F(0,·)
+of CD (6.5) (so ζ(0; g_τ) = R(τ)·z(τ)/s_nc(τ) off the crossing and ζ(0; g_σ) = R(σ)),
+`c` = the C₀-dimensions of the zero cluster at the crossing, `V₁ V₂ V₃` = C₀¹, C₀², C₀³
+at the crossing, `τR` = τ_R(χ_θ). -/
+namespace Capstone
+
+open TorsionCore OrderCount Crossing RateRatio
+
+end Capstone
+
+end FriedCrossing

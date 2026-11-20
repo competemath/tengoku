@@ -1,0 +1,1 @@
+-- FriedConjLean: a factory bundle (data/intake/fried-conj-lean). This file only marks the library for Tengoku/All.lean.
