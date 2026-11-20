@@ -41,15 +41,24 @@ def T {K : Type*} [Field K] (N : ℕ) (ζ : K) : K :=
 def F {R : Type*} [CommRing R] (N : ℕ) (x : R) : R :=
   ∑ r ∈ Finset.range N, x ^ (r + 1) * pochhammer x r ^ 2
 
+/--
+@isnad1 id=eq.0h2v.s5.fd7e7fda780a from=translated src=- shape=4e114734 vocab=5dc80aff
+-/
 @[simp] theorem pochhammer_zero {R : Type*} [CommRing R] (q : R) :
     pochhammer q 0 = 1 := by
   simp [pochhammer]
 
+/--
+@isnad1 id=eq.0h3v.s4.6a81f99dfd7b from=translated src=- shape=7c3763df vocab=48d9dfc0
+-/
 @[simp] theorem eval_APoly {R : Type*} [CommRing R] (x : R) (r : ℕ) :
     Polynomial.eval x (APoly r) = pochhammer x r := by
   change (Polynomial.evalRingHom x) (APoly r) = pochhammer x r
   simp [APoly, pochhammer]
 
+/--
+@isnad1 id=eq.0h3v.s4.b3edff70caf9 from=translated src=- shape=319f597d vocab=2f2a2bc9
+-/
 @[simp] theorem eval_FPoly {R : Type*} [CommRing R] (x : R) (N : ℕ) :
     Polynomial.eval x (FPoly N) = F N x := by
   change (Polynomial.evalRingHom x) (FPoly N) = F N x

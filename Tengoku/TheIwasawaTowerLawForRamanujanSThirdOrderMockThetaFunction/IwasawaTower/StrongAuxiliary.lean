@@ -34,7 +34,9 @@ private theorem M_one_sub_one_vanishes : Vanishes 1 (M 1 - 1) := by
   obtain ⟨q, hq⟩ := PowerSeries.X_dvd_iff.mpr hc
   exact ⟨q, by simpa [Y] using hq⟩
 
-/-- The initial exact order for the second-order logarithmic correction.-/
+/-- The initial exact order for the second-order logarithmic correction.
+@isnad1 id=hasleadi.0h0v.s5.eb15d49668fd from=translated src=- shape=fa5f2107 vocab=a6ad4563
+-/
 theorem M_three_hasLeading : HasLeading 2 1 (M 3) := by
   have hrec := M_three_block_precise (N := 1) ⟨0, by norm_num⟩
   have hrhs : HasLeading 2 1 (delta 1 ^ 2 * M 1) := by
@@ -51,7 +53,9 @@ theorem M_three_hasLeading : HasLeading 2 1 (M 3) := by
 
 set_option maxHeartbeats 1000000 in
 /-- For every positive power of three, `M_N` has exact order `N-1` and
-leading coefficient one.-/
+leading coefficient one.
+@isnad1 id=hasleadi.0h1v.s6.25d8aa174d22 from=translated src=- shape=ea329e2c vocab=58c6639b
+-/
 theorem M_three_power_hasLeading (a : ℕ) :
     HasLeading (3 ^ (a + 1) - 1) 1 (M (3 ^ (a + 1))) := by
   induction a with
@@ -87,7 +91,9 @@ private theorem A_sq_sub_fourth (N : ℕ) :
 
 set_option maxHeartbeats 2000000 in
 /-- The first level needed by the strong induction: `H_9` vanishes through
-degree two.-/
+degree two.
+@isnad1 id=vanishes.0h0v.s3.d11c1f2884e2 from=translated src=- shape=648e8daf vocab=be961e6c
+-/
 theorem H_nine_vanishes : Vanishes 3 (H 9) := by
   let D := A 3 ^ 2 - 1
   have hD : Vanishes 2 D := by
@@ -296,7 +302,9 @@ private theorem strong_step (b : ℕ) (ih : StrongData b) : StrongData (b + 1) :
   · simpa [N] using M_three_power_hasLeading (b + 2)
   · simpa [N, pow_succ, mul_comm, mul_left_comm, mul_assoc] using hHnext
 
-/-- Independent simultaneous induction proving the exact strong `W` result.-/
+/-- Independent simultaneous induction proving the exact strong `W` result.
+@isnad1 id=strongda.0h1v.s2.bcda74e60836 from=translated src=- shape=5c11bb93 vocab=1f278ba6
+-/
 theorem strong_data (b : ℕ) : StrongData b := by
   induction b with
   | zero =>

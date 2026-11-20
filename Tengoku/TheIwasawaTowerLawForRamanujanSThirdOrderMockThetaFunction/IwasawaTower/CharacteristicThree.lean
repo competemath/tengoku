@@ -47,6 +47,9 @@ def qAThree : P :=
     FinitePolynomial.y ^ 5 - FinitePolynomial.y ^ 4 + FinitePolynomial.y ^ 3 -
     FinitePolynomial.y ^ 2 + FinitePolynomial.y
 
+/--
+@isnad1 id=eq.0h1v.s4.c72717ba683d from=translated src=- shape=d709d7a6 vocab=338696ac
+-/
 @[simp] theorem coe_f (N : ℕ) : ((f N : P) : PS) = F N := by
   simp [f, F]
 
@@ -73,13 +76,17 @@ private theorem a_three_sq_exact :
 
 end InitialPolynomial
 
-/-- The initial `F` congruence, checked by a finite polynomial certificate.-/
+/-- The initial `F` congruence, checked by a finite polynomial certificate.
+@isnad1 id=hasleadi.0h0v.s5.c71527b69d72 from=translated src=- shape=81a22ca0 vocab=0f62dacf
+-/
 theorem F_three_hasLeading : HasLeading 1 (-1) (F 3) := by
   rw [HasLeading, ← InitialPolynomial.coe_f, InitialPolynomial.f_three_exact]
   refine ⟨((InitialPolynomial.qFThree : InitialPolynomial.P) : PS), ?_⟩
   simp [InitialPolynomial.qFThree, FinitePolynomial.y, Y]
 
-/-- The initial congruence for `A₃²-1`, checked by a finite polynomial certificate.-/
+/-- The initial congruence for `A₃²-1`, checked by a finite polynomial certificate.
+@isnad1 id=hasleadi.0h0v.s7.3a7596a5b41b from=translated src=- shape=e94e4399 vocab=d3fe20a1
+-/
 theorem A_three_sq_sub_one_hasLeading : HasLeading 2 (-1) (A 3 ^ 2 - 1) := by
   have hcoe : A 3 ^ 2 - 1 =
       (((FinitePolynomial.a 3 ^ 2 - 1 : InitialPolynomial.P) : PS)) := by simp
@@ -87,6 +94,9 @@ theorem A_three_sq_sub_one_hasLeading : HasLeading 2 (-1) (A 3 ^ 2 - 1) := by
   refine ⟨((InitialPolynomial.qAThree : InitialPolynomial.P) : PS), ?_⟩
   simp [InitialPolynomial.qAThree, FinitePolynomial.y, Y]
 
+/--
+@isnad1 id=vanishes.1h3v.s3.4d947961e7f0 from=translated src=- shape=7f1401bb vocab=b2b0310d
+-/
 theorem HasLeading.vanishes {n : ℕ} {c : 𝔽₃} {f : PS}
     (h : HasLeading n c f) : Vanishes n f := by
   obtain ⟨q, hq⟩ := h
@@ -94,6 +104,9 @@ theorem HasLeading.vanishes {n : ℕ} {c : 𝔽₃} {f : PS}
   rw [eq_add_of_sub_eq hq, pow_succ]
   ring
 
+/--
+@isnad1 id=hasleadi.2h6v.s6.13236c3f0067 from=translated src=- shape=13640352 vocab=497eff00
+-/
 theorem hasLeading_mul {m n : ℕ} {c d : 𝔽₃} {f g : PS}
     (hf : HasLeading m c f) (hg : HasLeading n d g) :
     HasLeading (m + n) (c * d) (f * g) := by
@@ -112,6 +125,9 @@ theorem hasLeading_mul {m n : ℕ} {c d : 𝔽₃} {f g : PS}
   simp only [pow_add]
   ring
 
+/--
+@isnad1 id=hasleadi.1h4v.s6.124cf512eaa9 from=translated src=- shape=50d1bd2e vocab=7a7d0c67
+-/
 theorem hasLeading_pow {n : ℕ} {c : 𝔽₃} {f : PS}
     (h : HasLeading n c f) : ∀ k : ℕ,
     HasLeading (k * n) (c ^ k) (f ^ k)
@@ -127,7 +143,9 @@ private theorem L_one_sub_cube_vanishes : Vanishes 1 (L 1 - L 1 ^ 3) := by
   obtain ⟨q, hq⟩ := PowerSeries.X_dvd_iff.mpr hc
   exact ⟨q, by simpa [Y] using hq⟩
 
-/-- The logarithmic sum vanishes to the full block length at the initial level.-/
+/-- The logarithmic sum vanishes to the full block length at the initial level.
+@isnad1 id=vanishes.0h0v.s3.6a3532038d06 from=translated src=- shape=648e8daf vocab=c7ce2e23
+-/
 theorem L_three_vanishes : Vanishes 3 (L 3) := by
   have hrec := L_three_block_precise (N := 1) ⟨0, by norm_num⟩
   have hdelta : Vanishes 2 (delta 1 ^ 2) := by
@@ -136,12 +154,18 @@ theorem L_three_vanishes : Vanishes 3 (L 3) := by
     simpa using Vanishes.mul hdelta L_one_sub_cube_vanishes
   exact Vanishes.of_modY_zero (ModY.trans hrec (Vanishes.modY_zero hrhs))
 
+/--
+@isnad1 id=vanishes.1h3v.s5.bef82c09ce01 from=translated src=- shape=cf2234a5 vocab=fee2f0b5
+-/
 theorem Vanishes.pow {n : ℕ} {f : PS} (h : Vanishes n f) : ∀ k : ℕ,
     Vanishes (k * n) (f ^ k)
   | 0 => by simp [Vanishes.one_zero]
   | k + 1 => by
       simpa [pow_succ, Nat.succ_mul, add_comm] using Vanishes.mul (Vanishes.pow h k) h
 
+/--
+@isnad1 id=hasleadi.2h4v.s5.fbbef399eb52 from=translated src=- shape=f3dc977c vocab=d2e1ee4d
+-/
 theorem HasLeading.of_modY {n : ℕ} {c : 𝔽₃} {f g : PS}
     (hfg : ModY (n + 1) f g) (hg : HasLeading n c g) : HasLeading n c f :=
   ModY.trans hfg hg
@@ -278,7 +302,9 @@ private theorem tower_step (b : ℕ) (ih : TowerData b) : TowerData (b + 1) := b
 
 /-- Simultaneous characteristic-three induction.  In particular, the `F`
 congruence is proved from the finite block identity rather than from a
-multiplicative recurrence.-/
+multiplicative recurrence.
+@isnad1 id=towerdat.0h1v.s2.4e973d66d7d1 from=translated src=- shape=5c11bb93 vocab=6829bfce
+-/
 theorem tower_data (b : ℕ) : TowerData b := by
   induction b with
   | zero =>

@@ -46,12 +46,18 @@ def w (N : ℕ) : P :=
       ∑ j ∈ Finset.range r,
         x ^ (r + 1) * x ^ (j + 1) * (1 + x ^ (j + 1)) * aExcept r j ^ 2)
 
+/--
+@isnad1 id=eq.0h3v.s6.d9055a5d3432 from=translated src=- shape=452036d1 vocab=53808064
+-/
 @[simp] theorem coe_sum {ι : Type*} [DecidableEq ι] (s : Finset ι) (f : ι → P) :
     ((∑ i ∈ s, f i : P) : PS) = ∑ i ∈ s, ((f i : P) : PS) := by
   induction s using Finset.induction_on with
   | empty => simp
   | @insert i s hi ih => simp [hi, ih, Polynomial.coe_add]
 
+/--
+@isnad1 id=eq.0h3v.s6.4180b7e9d99a from=translated src=- shape=452036d1 vocab=8a09b83e
+-/
 @[simp] theorem coe_prod {ι : Type*} [DecidableEq ι] (s : Finset ι) (f : ι → P) :
     ((∏ i ∈ s, f i : P) : PS) = ∏ i ∈ s, ((f i : P) : PS) := by
   induction s using Finset.induction_on with
@@ -71,18 +77,33 @@ private theorem prod_ite_one_eq_prod_erase {ι M : Type*} [DecidableEq ι]
       · rw [Finset.prod_insert hi, ite_eq_right hij, ih,
           Finset.erase_insert_of_ne hij, Finset.prod_insert (by simp [hi])]
 
+/--
+@isnad1 id=eq.0h0v.s4.1db35063a90c from=translated src=- shape=93ea8593 vocab=d0bf3908
+-/
 @[simp] theorem coe_y : ((y : P) : PS) = Y := by
   simp [y, Y]
 
+/--
+@isnad1 id=eq.0h0v.s4.34233acb082a from=translated src=- shape=93ea8593 vocab=d3910b0e
+-/
 @[simp] theorem coe_x : ((x : P) : PS) = X := by
   simp [x, X]
 
+/--
+@isnad1 id=eq.0h1v.s4.a9365e91b8fa from=translated src=- shape=d709d7a6 vocab=7340aeac
+-/
 @[simp] theorem coe_a (r : ℕ) : ((a r : P) : PS) = A r := by
   simp [a, A]
 
+/--
+@isnad1 id=eq.0h2v.s4.d409efc06abb from=translated src=- shape=88033774 vocab=73db6129
+-/
 @[simp] theorem coe_aExcept (r j : ℕ) : ((aExcept r j : P) : PS) = AExcept r j := by
   simp [aExcept, AExcept, prod_ite_one_eq_prod_erase]
 
+/--
+@isnad1 id=eq.0h1v.s4.41f8368e31c1 from=translated src=- shape=d709d7a6 vocab=e4695b21
+-/
 theorem coe_w (N : ℕ) : ((w N : P) : PS) = WPolynomial N := by
   simp [w, WPolynomial]
 
@@ -120,6 +141,9 @@ private theorem w_nine_exact : w 9 = y ^ 5 + y ^ 6 * qNine := by
 
 end FinitePolynomial
 
+/--
+@isnad1 id=mody.1h3v.s8.b69b67825b2f from=translated src=- shape=b5f267ae vocab=2a0db324
+-/
 theorem modY_of_coe_trunc_eq {n : ℕ} {f g : PS}
     (h : (PowerSeries.trunc n f : PS) = g) : ModY n f g := by
   refine ⟨PowerSeries.mk (fun i ↦ PowerSeries.coeff (i + n) f), ?_⟩
@@ -140,7 +164,9 @@ private theorem trunc_W_three :
   · have hi2 : i ≠ 2 := by omega
     simp [hi, hi2, FinitePolynomial.y, Y, PowerSeries.coeff_X_pow]
 
-/-- The exceptional base level has exact order two and leading coefficient one.-/
+/-- The exceptional base level has exact order two and leading coefficient one.
+@isnad1 id=hasleadi.0h0v.s5.01752748622e from=translated src=- shape=fa5f2107 vocab=1d43aa1e
+-/
 theorem W_three_hasLeading : HasLeading 2 1 (W 3) := by
   simpa [HasLeading, one_mul] using modY_of_coe_trunc_eq trunc_W_three
 
@@ -160,7 +186,9 @@ private theorem trunc_W_nine :
   · have hi5 : i ≠ 5 := by omega
     simp [hi, hi5, FinitePolynomial.y, Y, PowerSeries.coeff_X_pow]
 
-/-- The first nonexceptional strong base has order five and coefficient one.-/
+/-- The first nonexceptional strong base has order five and coefficient one.
+@isnad1 id=hasleadi.0h0v.s5.b397dfe738b4 from=translated src=- shape=fa5f2107 vocab=1d43aa1e
+-/
 theorem W_nine_hasLeading : HasLeading 5 1 (W 9) := by
   simpa [HasLeading, one_mul] using modY_of_coe_trunc_eq trunc_W_nine
 

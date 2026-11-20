@@ -41,6 +41,9 @@ private theorem map_FPoly (N : ℕ) :
   rw [map_sum (Polynomial.mapRingHom (Int.castRingHom 𝔽₃))]
   simp [map_APoly]
 
+/--
+@isnad1 id=eq.0h1v.s5.07ca161d39a3 from=translated src=- shape=81d85d90 vocab=c34ec458
+-/
 @[simp] theorem map_integerReversedPolynomial (N : ℕ) :
     (integerReversedPolynomial N).map (Int.castRingHom 𝔽₃) =
       reducedReversedPolynomial N := by

@@ -18,6 +18,9 @@ open Finset PowerSeries
 
 namespace ModY
 
+/--
+@isnad1 id=mody.1h5v.s6.38e06cf4fe5f from=translated src=- shape=92483893 vocab=9f3c34f0
+-/
 theorem sum {ι : Type*} {n : ℕ} (s : Finset ι) {f g : ι → PS}
     (h : ∀ i ∈ s, ModY n (f i) (g i)) :
     ModY n (∑ i ∈ s, f i) (∑ i ∈ s, g i) := by
@@ -42,9 +45,15 @@ def E (r : ℕ) : PS :=
   ∑ j ∈ Finset.range r,
     (X ^ (j + 1) * (1 + X ^ (j + 1))⁻¹) * L j
 
+/--
+@isnad1 id=vanishes.0h1v.s2.af48f1b260ea from=translated src=- shape=9d44d080 vocab=6af23338
+-/
 @[simp] theorem delta_vanishes (N : ℕ) : Vanishes N (delta N) :=
   ⟨-1, by simp [delta]⟩
 
+/--
+@isnad1 id=eq.1h1v.s6.24ab5a04d5cd from=translated src=- shape=afe41881 vocab=0e1476d2
+-/
 theorem X_pow_eq_one_add_delta_of_power {N : ℕ} (hN : ∃ a, N = 3 ^ a) :
     X ^ N = 1 + delta N := by
   obtain ⟨a, rfl⟩ := hN
@@ -135,7 +144,9 @@ private theorem product_one_add_second_order {N b : ℕ} {e : PS}
       simpa [Finset.prod_range_succ, L, E, Finset.sum_range_succ, q,
         mul_comm q] using ModY.trans hmul hdrop
 
-/-- First-order expansion of a shifted tail, modulo `Y^(2N)`.-/
+/-- First-order expansion of a shifted tail, modulo `Y^(2N)`.
+@isnad1 id=mody.2h4v.s7.c54e56a27da9 from=translated src=- shape=cddceea9 vocab=65f5ae19
+-/
 theorem tail_first_order {N s b : ℕ} {e : PS} (he : Vanishes N e)
     (hs : X ^ s = 1 + e) :
     ModY (2 * N) (Tail s b) (A b * (1 + e * L b)) := by
@@ -149,7 +160,9 @@ theorem tail_first_order {N s b : ℕ} {e : PS} (he : Vanishes N e)
   rw [hexact]
   exact ModY.mul_left (A b) hp
 
-/-- Second-order expansion of a shifted tail, modulo `Y^(3N)`.-/
+/-- Second-order expansion of a shifted tail, modulo `Y^(3N)`.
+@isnad1 id=mody.2h4v.s8.b49d0ed380e0 from=translated src=- shape=55985fd1 vocab=ffdb6dd6
+-/
 theorem tail_second_order {N s b : ℕ} {e : PS} (he : Vanishes N e)
     (hs : X ^ s = 1 + e) :
     ModY (3 * N) (Tail s b) (A b * (1 + e * L b + e ^ 2 * E b)) := by
@@ -186,7 +199,9 @@ private theorem log_term_square (j : ℕ) :
         _ = z * d⁻¹ - z * (d⁻¹ * d⁻¹) := by rw [hd, mul_one]
 
 /-- In characteristic three the second elementary symmetric sum has this
-form in terms of `L` and `M`.-/
+form in terms of `L` and `M`.
+@isnad1 id=eq.0h1v.s7.58dcabbae994 from=translated src=- shape=ebffbead vocab=44e15389
+-/
 theorem E_eq (r : ℕ) : E r = -L r ^ 2 + L r - M r := by
   induction r with
   | zero => simp [E, L, M]
@@ -205,12 +220,16 @@ theorem E_eq (r : ℕ) : E r = -L r ^ 2 + L r - M r := by
       rw [hE, hL, hM, ih]
       linear_combination hq + hthree * (L r * q)
 
-/-- Exact splitting of `A_(s+b)` into its first block and shifted tail.-/
+/-- Exact splitting of `A_(s+b)` into its first block and shifted tail.
+@isnad1 id=eq.0h2v.s5.3318c298abaf from=translated src=- shape=636af7e9 vocab=131a5501
+-/
 theorem A_add (s b : ℕ) : A (s + b) = A s * Tail s b := by
   rw [A, Tail, Finset.prod_range_add]
   congr 1
 
-/-- First-order formula for `A_(N+b)` at a power-of-three block size.-/
+/-- First-order formula for `A_(N+b)` at a power-of-three block size.
+@isnad1 id=mody.1h2v.s7.1213bdb8005d from=translated src=- shape=72054c3f vocab=fdba7e55
+-/
 theorem A_one_block {N b : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ModY (2 * N) (A (N + b))
       (A N * A b * (1 + delta N * L b)) := by
@@ -272,7 +291,9 @@ private theorem tail_two_blocks_second_order {N : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ring
   exact ModY.trans ht (ModY.mul (ModY.refl (3 * N) (A N)) hfactor)
 
-/-- Precise regrouping of `A_(3N)` through second order.-/
+/-- Precise regrouping of `A_(3N)` through second order.
+@isnad1 id=mody.1h1v.s7.fc0828df9c14 from=translated src=- shape=8d86610a vocab=696579e2
+-/
 theorem A_three_block_precise {N : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ModY (3 * N) (A (3 * N))
       (A N ^ 3 * (1 + delta N ^ 2 * M N)) := by
@@ -299,6 +320,9 @@ theorem A_three_block_precise {N : ℕ} (hN : ∃ a, N = 3 ^ a) :
   have hscaled := ModY.mul_left (A N ^ 3) halg
   exact ModY.trans (by convert hmul using 1 <;> ring) hscaled
 
+/--
+@isnad1 id=eq.0h1v.s6.a2b164b090fb from=translated src=- shape=c567a161 vocab=aef89578
+-/
 theorem constantCoeff_M (N : ℕ) : constantCoeff (M N) = (N : 𝔽₃) := by
   have hinv : (2 : 𝔽₃)⁻¹ = 2 :=
     ZMod.inv_eq_of_mul_eq_one 3 2 2 (by decide)
@@ -306,6 +330,9 @@ theorem constantCoeff_M (N : ℕ) : constantCoeff (M N) = (N : 𝔽₃) := by
   rw [M, map_sum]
   simp [hinv, hsq]
 
+/--
+@isnad1 id=vanishes.1h1v.s4.6d3440e5df21 from=translated src=- shape=400e5100 vocab=e70eef43
+-/
 theorem M_vanishes_one_of_three_dvd {N : ℕ} (hN : 3 ∣ N) : Vanishes 1 (M N) := by
   have hc : constantCoeff (M N) = 0 := by
     rw [constantCoeff_M]
@@ -313,7 +340,9 @@ theorem M_vanishes_one_of_three_dvd {N : ℕ} (hN : 3 ∣ N) : Vanishes 1 (M N) 
   obtain ⟨q, hq⟩ := PowerSeries.X_dvd_iff.mpr hc
   exact ⟨q, by simpa [Y] using hq⟩
 
-/-- The precision actually needed to propagate the leading term of `A_N²-1`.-/
+/-- The precision actually needed to propagate the leading term of `A_N²-1`.
+@isnad1 id=mody.3h1v.s6.be936a89a58b from=translated src=- shape=2c82a060 vocab=cf0bf5a4
+-/
 theorem A_three_block_cube {N : ℕ} (hpos : 0 < N) (hdiv : 3 ∣ N)
     (hN : ∃ a, N = 3 ^ a) :
     ModY (2 * N + 1) (A (3 * N)) (A N ^ 3) := by
@@ -336,7 +365,9 @@ theorem A_three_block_cube {N : ℕ} (hpos : 0 < N) (hdiv : 3 ∣ N)
       _ = Y ^ (2 * N + 1) * u := hu⟩
   exact ModY.trans hprec hdrop
 
-/-- First-order formula for a tail shifted by two blocks.-/
+/-- First-order formula for a tail shifted by two blocks.
+@isnad1 id=mody.1h2v.s7.5e0fec068b52 from=translated src=- shape=7c5e6bb3 vocab=e41877f8
+-/
 theorem tail_two_blocks {N b : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ModY (2 * N) (Tail (2 * N) b) (A b * (1 - delta N * L b)) := by
   let e := X ^ (2 * N) - 1
@@ -379,7 +410,9 @@ private theorem one_plus_mul_one_minus_delta (N : ℕ) (u v : PS) :
       (1 + delta N * (u - v)) := by
   simpa [sub_eq_add_neg] using mul_linear_delta N u (-v)
 
-/-- First-order formula for `A_(2N+b)`.-/
+/-- First-order formula for `A_(2N+b)`.
+@isnad1 id=mody.1h2v.s7.d7a02c47c921 from=translated src=- shape=eff66fbd vocab=e71866cb
+-/
 theorem A_two_blocks {N b : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ModY (2 * N) (A (2 * N + b))
       (A N ^ 2 * A b * (1 + delta N * (L N - L b))) := by
@@ -412,7 +445,9 @@ private theorem weight_two_blocks {N b : ℕ} (hN : ∃ a, N = 3 ^ a) :
   rw [show 2 * N + b + 1 = 2 * N + (b + 1) by omega, pow_add]
   simpa [mul_comm] using ModY.mul_left (X ^ (b + 1)) hx
 
-/-- First-order expansion of a weighted `F` summand in the second block.-/
+/-- First-order expansion of a weighted `F` summand in the second block.
+@isnad1 id=mody.1h2v.s8.26859db83b35 from=translated src=- shape=582bba34 vocab=8f432c73
+-/
 theorem F_summand_one_block {N b : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ModY (2 * N)
       (X ^ (N + b + 1) * A (N + b) ^ 2)
@@ -444,7 +479,9 @@ theorem F_summand_one_block {N b : ℕ} (hN : ∃ a, N = 3 ^ a) :
     convert hscaledFactor using 1 <;> ring
   exact ModY.trans hstart (ModY.trans hmiddle hend)
 
-/-- First-order expansion of a weighted `F` summand in the third block.-/
+/-- First-order expansion of a weighted `F` summand in the third block.
+@isnad1 id=mody.1h2v.s9.7712fe71f969 from=translated src=- shape=fff44c19 vocab=8f432c73
+-/
 theorem F_summand_two_blocks {N b : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ModY (2 * N)
       (X ^ (2 * N + b + 1) * A (2 * N + b) ^ 2)
@@ -520,7 +557,9 @@ private theorem sum_second_block_target (N : ℕ) :
 
 /-- The precise three-block identity for `F`, retaining all terms that can
 contribute below `Y^(2N)`.  This is the characteristic-three engine of the
-tower proof and does not assume any multiplicative recurrence.-/
+tower proof and does not assume any multiplicative recurrence.
+@isnad1 id=mody.1h1v.s9.341d38ff7ece from=translated src=- shape=2657a1a2 vocab=0c4eea78
+-/
 theorem F_three_block_precise {N : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ModY (2 * N) (F (3 * N))
       (F N * (1 + A N ^ 2 + A N ^ 4) +
@@ -701,7 +740,9 @@ private theorem L_three_split (N : ℕ) :
   ring
 
 /-- Precise logarithmic three-block identity.  Its remainder is cubic in the
-block error, so it is valid through `Y^(3N)`.-/
+block error, so it is valid through `Y^(3N)`.
+@isnad1 id=mody.1h1v.s7.0e70011e0a05 from=translated src=- shape=ac450b38 vocab=3a7df9b1
+-/
 theorem L_three_block_precise {N : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ModY (3 * N) (L (3 * N)) (delta N ^ 2 * (L N - L N ^ 3)) := by
   rw [L_three_split]
@@ -800,7 +841,9 @@ private theorem M_three_split (N : ℕ) :
   rw [Finset.sum_add_distrib, Finset.sum_add_distrib]
   ring
 
-/-- Exact-order recurrence for the second-order logarithmic correction.-/
+/-- Exact-order recurrence for the second-order logarithmic correction.
+@isnad1 id=mody.1h1v.s6.2415e21dd3d0 from=translated src=- shape=dca58583 vocab=8b705b06
+-/
 theorem M_three_block_precise {N : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ModY (3 * N) (M (3 * N)) (delta N ^ 2 * M N) := by
   rw [M_three_split]
@@ -869,12 +912,16 @@ private theorem L_shift {N s b : ℕ} {e : PS} (he : Vanishes N e)
     ModY.sum _ fun j hj ↦ shifted_log_term he hs
   simpa [L] using ModY.add (ModY.refl N (L s)) hsum
 
-/-- Coarse logarithmic-sum formula in the second block.-/
+/-- Coarse logarithmic-sum formula in the second block.
+@isnad1 id=mody.1h2v.s6.c9fe4f7aec60 from=translated src=- shape=05bff24b vocab=bba6e1da
+-/
 theorem L_one_block {N b : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ModY N (L (N + b)) (L N + L b) :=
   L_shift (delta_vanishes N) (X_pow_eq_one_add_delta_of_power hN)
 
-/-- Coarse logarithmic-sum formula in the third block.-/
+/-- Coarse logarithmic-sum formula in the third block.
+@isnad1 id=mody.1h2v.s6.b36f78ca7844 from=translated src=- shape=2c8e8765 vocab=ebb56c58
+-/
 theorem L_two_blocks {N b : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ModY N (L (2 * N + b)) (-L N + L b) := by
   let e := X ^ (2 * N) - 1
@@ -912,12 +959,16 @@ private theorem M_shift {N s b : ℕ} {e : PS} (he : Vanishes N e)
     ModY.sum _ fun j hj ↦ shifted_logSlope he hs
   simpa only [M, logSlope] using ModY.add (ModY.refl N (M s)) hsum
 
-/-- Coarse second-order-sum formula in the second block.-/
+/-- Coarse second-order-sum formula in the second block.
+@isnad1 id=mody.1h2v.s6.4563e1d660ae from=translated src=- shape=05bff24b vocab=2aed3cf6
+-/
 theorem M_one_block {N b : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ModY N (M (N + b)) (M N + M b) :=
   M_shift (delta_vanishes N) (X_pow_eq_one_add_delta_of_power hN)
 
-/-- Coarse second-order-sum formula in the third block.-/
+/-- Coarse second-order-sum formula in the third block.
+@isnad1 id=mody.1h2v.s6.f24d1f158a2a from=translated src=- shape=2c8e8765 vocab=add57674
+-/
 theorem M_two_blocks {N b : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ModY N (M (2 * N + b)) (-M N + M b) := by
   let e := X ^ (2 * N) - 1
@@ -951,12 +1002,16 @@ private theorem L_shift_precise {N s b : ℕ} {e : PS} (he : Vanishes N e)
   ring
 
 /-- First-order logarithmic formula in the second block, retaining the term
-needed by the precise `W` expansion.-/
+needed by the precise `W` expansion.
+@isnad1 id=mody.1h2v.s7.6c1023fff2d7 from=translated src=- shape=002c05c9 vocab=69e78a51
+-/
 theorem L_one_block_precise {N b : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ModY (2 * N) (L (N + b)) (L N + L b + delta N * M b) :=
   L_shift_precise (delta_vanishes N) (X_pow_eq_one_add_delta_of_power hN)
 
-/-- First-order logarithmic formula in the third block.-/
+/-- First-order logarithmic formula in the third block.
+@isnad1 id=mody.1h2v.s7.c888f05310a5 from=translated src=- shape=a1e557ad vocab=db33860b
+-/
 theorem L_two_blocks_precise {N b : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ModY (2 * N) (L (2 * N + b))
       (-L N + L b + delta N * (M N - M b)) := by
@@ -1059,7 +1114,9 @@ private theorem sum_H_second_target (N : ℕ) :
     ← Finset.mul_sum, ← Finset.mul_sum]
   rfl
 
-/-- Coarse three-block identity for the correction series `H`.-/
+/-- Coarse three-block identity for the correction series `H`.
+@isnad1 id=mody.1h1v.s9.b12e6ff66055 from=translated src=- shape=f74d2483 vocab=b3515f0b
+-/
 theorem H_three_block_coarse {N : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ModY N (H (3 * N))
       (H N * (1 + A N ^ 2 + A N ^ 4) +
@@ -1235,7 +1292,9 @@ private theorem sum_W_second_precise_target (N : ℕ) :
 
 /-- The precise three-block identity for `W`, retaining every first-order
 term in `δ = X^N-1`.  This is the higher-order identity required before any
-exact-order assertion for `W` can be promoted to a theorem.-/
+exact-order assertion for `W` can be promoted to a theorem.
+@isnad1 id=mody.1h1v.s9.a0266d7791f8 from=translated src=- shape=f12f205c vocab=06fc9536
+-/
 theorem W_three_block_precise {N : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ModY (2 * N) (W (3 * N))
       (W N * (1 + A N ^ 2 + A N ^ 4) +
@@ -1266,7 +1325,9 @@ theorem W_three_block_precise {N : ℕ} (hN : ∃ a, N = 3 ^ a) :
   exact ⟨0, by ring⟩
 
 /-- The coarse three-block identity for `W`.  It is deliberately stated and
-proved independently of the stronger exact-order theorem.-/
+proved independently of the stronger exact-order theorem.
+@isnad1 id=mody.1h1v.s8.fbed94d5836d from=translated src=- shape=ce009ffc vocab=4e756584
+-/
 theorem W_three_block_coarse {N : ℕ} (hN : ∃ a, N = 3 ^ a) :
     ModY N (W (3 * N))
       (W N * (1 + A N ^ 2 + A N ^ 4) -
