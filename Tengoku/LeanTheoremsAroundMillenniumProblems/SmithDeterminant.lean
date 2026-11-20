@@ -44,7 +44,9 @@ def diagPhi (N : ℕ) : Matrix (Fin N) (Fin N) ℤ :=
   Matrix.diagonal (fun i => (Nat.totient ((i : ℕ) + 1) : ℤ))
 
 /-- diagPhi · ζ escala cada fila d por φ(d+1) — solo la escala si d+1 divide j+1
-    (herencia de la estructura de ζ).-/
+    (herencia de la estructura de ζ).
+@isnad1 id=eq.0h3v.s7.ec6706902330 from=translated src=- shape=69c1c791 vocab=ba691a5c
+-/
 theorem diagPhi_mul_zeta (N : ℕ) (d j : Fin N) :
     (diagPhi N * zeta N) d j
       = if (d : ℕ) + 1 ∣ (j : ℕ) + 1 then (Nat.totient ((d : ℕ) + 1) : ℤ) else 0 := by
@@ -61,7 +63,9 @@ theorem diagPhi_mul_zeta (N : ℕ) (d j : Fin N) :
   rw [step, Finset.sum_ite_eq' Finset.univ d]
   simp
 
-/-- Puente Fin N ↔ Nat.divisors para φ (mismo patrón que en Redheffer para μ).-/
+/-- Puente Fin N ↔ Nat.divisors para φ (mismo patrón que en Redheffer para μ).
+@isnad1 id=eq.2h2v.s6.e2886d5c2c2f from=translated src=- shape=879dd958 vocab=1d6bf7b8
+-/
 theorem fin_sum_eq_divisors_sum_phi (N : ℕ) (m : ℕ) (hm1 : 1 ≤ m) (hmN : m ≤ N) :
     (∑ x : Fin N, if (x : ℕ) + 1 ∣ m then (Nat.totient ((x : ℕ) + 1) : ℤ) else 0)
       = ∑ d ∈ Nat.divisors m, (Nat.totient d : ℤ) := by
@@ -96,7 +100,9 @@ theorem fin_sum_eq_divisors_sum_phi (N : ℕ) (m : ℕ) (hm1 : 1 ≤ m) (hmN : m
     have hbpos : 1 ≤ b := Nat.pos_of_dvd_of_pos (Nat.mem_divisors.mp hb).1 (by omega)
     omega
 
-/-- LA IDENTIDAD ENTRADA A ENTRADA: (ζᵀ · diagPhi · ζ)[i][j] = gcd(i+1,j+1).-/
+/-- LA IDENTIDAD ENTRADA A ENTRADA: (ζᵀ · diagPhi · ζ)[i][j] = gcd(i+1,j+1).
+@isnad1 id=eq.0h3v.s6.bea4e64b737a from=translated src=- shape=e3327ed3 vocab=c2f10240
+-/
 theorem entrada_factorizacion (N : ℕ) (i j : Fin N) :
     ((zeta N)ᵀ * (diagPhi N * zeta N)) i j = smith N i j := by
   rw [Matrix.mul_apply]
@@ -119,17 +125,24 @@ theorem entrada_factorizacion (N : ℕ) (i j : Fin N) :
   rfl
 
 /-- LA FACTORIZACIÓN MATRICIAL: S = ζᵀ · diag(φ) · ζ. El corazón de la prueba
-    clásica de Smith, para TODO N.-/
+    clásica de Smith, para TODO N.
+@isnad1 id=eq.0h1v.s6.93910fd76148 from=translated src=- shape=9dde2a0e vocab=c2f10240
+-/
 theorem smith_eq_factorizacion (N : ℕ) :
     smith N = (zeta N)ᵀ * (diagPhi N * zeta N) := by
   ext i j; exact (entrada_factorizacion N i j).symm
 
+/--
+@isnad1 id=eq.0h1v.s5.40adc1e7e4bd from=translated src=- shape=28252bb3 vocab=b00b8856
+-/
 theorem det_diagPhi (N : ℕ) :
     (diagPhi N).det = ∏ i : Fin N, (Nat.totient ((i : ℕ) + 1) : ℤ) := by
   unfold diagPhi; exact Matrix.det_diagonal
 
 /-- EL TEOREMA DE SMITH (1875), CERRADO, para TODO N≥1, sin hipótesis:
-    det(gcd(i,j))_{i,j=1}^N = φ(1)·φ(2)···φ(N).-/
+    det(gcd(i,j))_{i,j=1}^N = φ(1)·φ(2)···φ(N).
+@isnad1 id=eq.0h1v.s5.c77010f85da3 from=translated src=- shape=28252bb3 vocab=d40e120c
+-/
 theorem smith_determinant (N : ℕ) :
     (smith N).det = ∏ i : Fin N, (Nat.totient ((i : ℕ) + 1) : ℤ) := by
   rw [smith_eq_factorizacion, Matrix.det_mul, Matrix.det_transpose, Matrix.det_mul,
@@ -155,6 +168,9 @@ def smithF (N : ℕ) (f : ℕ → ℤ) : Matrix (Fin N) (Fin N) ℤ :=
 def diagG (N : ℕ) (g : ℕ → ℤ) : Matrix (Fin N) (Fin N) ℤ :=
   Matrix.diagonal (fun i => g ((i : ℕ) + 1))
 
+/--
+@isnad1 id=eq.0h4v.s7.bee8b2f06797 from=translated src=- shape=a2412f98 vocab=016aaa93
+-/
 theorem diagG_mul_zeta (N : ℕ) (g : ℕ → ℤ) (d j : Fin N) :
     (diagG N g * zeta N) d j = if (d : ℕ) + 1 ∣ (j : ℕ) + 1 then g ((d : ℕ) + 1) else 0 := by
   simp only [Matrix.mul_apply, diagG, Matrix.diagonal_apply, zeta]
@@ -169,6 +185,9 @@ theorem diagG_mul_zeta (N : ℕ) (g : ℕ → ℤ) (d j : Fin N) :
   rw [step, Finset.sum_ite_eq' Finset.univ d]
   simp
 
+/--
+@isnad1 id=eq.1h5v.s7.2d59ccfcb98d from=translated src=- shape=5a8ff285 vocab=89f0291f
+-/
 theorem entrada_factorizacion_general (N : ℕ) (f g : ℕ → ℤ)
     (hyp : ∀ m, 1 ≤ m → f m = ∑ d ∈ Nat.divisors m, g d) (i j : Fin N) :
     ((zeta N)ᵀ * (diagG N g * zeta N)) i j = smithF N f i j := by
@@ -219,6 +238,9 @@ theorem entrada_factorizacion_general (N : ℕ) (f g : ℕ → ℤ)
   rw [hbridge, ← hyp _ hgcdpos]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.3dbdf3958697 from=translated src=- shape=c993dea0 vocab=89f0291f
+-/
 theorem smithF_eq_factorizacion (N : ℕ) (f g : ℕ → ℤ)
     (hyp : ∀ m, 1 ≤ m → f m = ∑ d ∈ Nat.divisors m, g d) :
     smithF N f = (zeta N)ᵀ * (diagG N g * zeta N) := by
@@ -226,7 +248,9 @@ theorem smithF_eq_factorizacion (N : ℕ) (f g : ℕ → ℤ)
 
 /-- SMITH GENERALIZADO, CERRADO: si f(n) = Σ_{d∣n} g(d) para todo n≥1, entonces
     det(f(gcd(i,j)))_{i,j=1}^N = g(1)·g(2)···g(N). Smith 1875 es el caso f=id,
-    g=φ; hay muchos más (ver los corolarios abajo).-/
+    g=φ; hay muchos más (ver los corolarios abajo).
+@isnad1 id=eq.1h3v.s6.1306f5efcda9 from=translated src=- shape=102a7388 vocab=829d7478
+-/
 theorem smithF_determinant (N : ℕ) (f g : ℕ → ℤ)
     (hyp : ∀ m, 1 ≤ m → f m = ∑ d ∈ Nat.divisors m, g d) :
     (smithF N f).det = ∏ i : Fin N, g ((i : ℕ) + 1) := by
@@ -237,7 +261,9 @@ theorem smithF_determinant (N : ℕ) (f g : ℕ → ℤ)
   rw [hdiag]; ring
 
 /-- Corolario: Smith clásico, reobtenido del teorema general (no una prueba
-    aparte — es la instancia f=id, g=φ, vía la identidad de Gauss).-/
+    aparte — es la instancia f=id, g=φ, vía la identidad de Gauss).
+@isnad1 id=eq.0h1v.s5.4fbafb4175b5 from=translated src=- shape=7a7010c3 vocab=c2c66160
+-/
 theorem smith_clasico_de_general (N : ℕ) :
     (smithF N (fun n => (n : ℤ))).det = ∏ i : Fin N, (Nat.totient ((i : ℕ) + 1) : ℤ) := by
   apply smithF_determinant N (fun n => (n : ℤ)) (fun n => (Nat.totient n : ℤ))
@@ -246,7 +272,9 @@ theorem smith_clasico_de_general (N : ℕ) :
 
 /-- Corolario, instancia NUEVA: f = σ (suma de divisores), g = id ⟹
     det(σ(gcd(i,j)))_{i,j=1}^N = N!. Verificado en Python (eliminación exacta
-    con Fraction) antes de formalizar: N=1..7 da 1,2,6,24,120,720,5040.-/
+    con Fraction) antes de formalizar: N=1..7 da 1,2,6,24,120,720,5040.
+@isnad1 id=eq.0h1v.s5.46cd8347eb3a from=translated src=- shape=74951860 vocab=ae732aec
+-/
 theorem smith_sigma_de_general (N : ℕ) :
     (smithF N (fun n => (∑ d ∈ Nat.divisors n, d : ℤ))).det
       = ∏ i : Fin N, ((i : ℕ) + 1 : ℤ) := by
@@ -260,7 +288,9 @@ theorem smith_sigma_de_general (N : ℕ) :
     posible de la hipótesis (τ(n) = Σ_{d∣n} 1 es la propia definición de τ vía
     cardinalidad), y el producto ∏ g(i) = ∏ 1 = 1 no depende de N. Verificado
     en Python (eliminación exacta con Fraction) antes de formalizar: N=1..9
-    dan todos 1.-/
+    dan todos 1.
+@isnad1 id=eq.0h1v.s4.d82cd7a1b31e from=translated src=- shape=e5b78824 vocab=a6c58fa1
+-/
 theorem smith_tau_de_general (N : ℕ) :
     (smithF N (fun n => (n.divisors.card : ℤ))).det = 1 := by
   have h := smithF_determinant N (fun n => (n.divisors.card : ℤ)) (fun _ => (1 : ℤ))
@@ -283,7 +313,9 @@ theorem smith_tau_de_general (N : ℕ) :
 /-- La familia COMPLETA, para todo k: det(σ_k(gcd(i,j)))_{i,j=1}^N = (N!)^k.
     k=1 recupera smith_sigma_de_general (con la σ de Mathlib en vez de la
     suma escrita a mano). Verificado en Python (Fraction exacto) para
-    k=0,1,2,3, N=1..6 antes de formalizar.-/
+    k=0,1,2,3, N=1..6 antes de formalizar.
+@isnad1 id=eq.0h2v.s6.fda7f9b9bcc3 from=translated src=- shape=f7b388ee vocab=217fdb56
+-/
 theorem smith_sigmaK_de_general (N k : ℕ) :
     (smithF N (fun n => (ArithmeticFunction.sigma k n : ℤ))).det
       = (∏ i : Fin N, ((i : ℕ) + 1 : ℤ)) ^ k := by

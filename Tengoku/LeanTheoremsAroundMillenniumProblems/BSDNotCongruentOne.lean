@@ -30,6 +30,9 @@ namespace NotCongruentOne
 /-- A solution of `x ^ 4 - y ^ 4 = z ^ 2` with `y` and `z` nonzero.-/
 def Sol (x y z : ℤ) : Prop := y ≠ 0 ∧ z ≠ 0 ∧ x ^ 4 - y ^ 4 = z ^ 2
 
+/--
+@isnad1 id=ne.1h3v.s4.695d69a1e6c5 from=translated src=- shape=11958059 vocab=71c0ff36
+-/
 theorem Sol.x_ne_zero {x y z : ℤ} (h : Sol x y z) : x ≠ 0 := by
   rintro rfl
   have h1 : 0 < y ^ 4 := Even.pow_pos (by decide) h.1
@@ -40,6 +43,9 @@ theorem Sol.x_ne_zero {x y z : ℤ} (h : Sol x y z) : x ≠ 0 := by
 /-- A solution with the smallest `|x|`.-/
 def Minimal (x y z : ℤ) : Prop := Sol x y z ∧ ∀ x1 y1 z1 : ℤ, Sol x1 y1 z1 → x.natAbs ≤ x1.natAbs
 
+/--
+@isnad1 id=ex.1h3v.s4.f0ae69ea8f2b from=translated src=- shape=13c20c3d vocab=5dc249b7
+-/
 theorem exists_minimal {x y z : ℤ} (h : Sol x y z) : ∃ x0 y0 z0, Minimal x0 y0 z0 := by
   classical
   let S : Set ℕ := { n | ∃ s : ℤ × ℤ × ℤ, Sol s.1 s.2.1 s.2.2 ∧ n = s.1.natAbs }
@@ -49,7 +55,9 @@ theorem exists_minimal {x y z : ℤ} (h : Sol x y z) : ∃ x0 y0 z0, Minimal x0 
   rw [← hs1]
   exact Nat.find_min' hS ⟨⟨x1, y1, z1⟩, h1, rfl⟩
 
-/-- In a minimal solution, `x` and `y` are coprime.-/
+/-- In a minimal solution, `x` and `y` are coprime.
+@isnad1 id=eq.1h3v.s4.2cf376add2d8 from=translated src=- shape=f3b1284f vocab=b9dce42f
+-/
 theorem coprime_xy {x y z : ℤ} (h : Minimal x y z) : Int.gcd x y = 1 := by
   by_contra hxy
   obtain ⟨p, hp, hpx, hpy⟩ := Nat.Prime.not_coprime_iff_dvd.mp hxy
@@ -75,7 +83,9 @@ theorem coprime_xy {x y z : ℤ} (h : Minimal x y z) : Int.gcd x y = 1 := by
   have : 0 < x1.natAbs := Int.natAbs_pos.mpr hx1
   nlinarith
 
-/-- In a minimal solution, `y` and `z` are coprime.-/
+/-- In a minimal solution, `y` and `z` are coprime.
+@isnad1 id=eq.1h3v.s4.050bf3476f70 from=translated src=- shape=addb8cf1 vocab=b9dce42f
+-/
 theorem coprime_yz {x y z : ℤ} (h : Minimal x y z) : Int.gcd y z = 1 := by
   by_contra hyz
   obtain ⟨p, hp, hpy, hpz⟩ := Nat.Prime.not_coprime_iff_dvd.mp hyz
@@ -92,7 +102,9 @@ theorem coprime_yz {x y z : ℤ} (h : Minimal x y z) : Int.gcd y z = 1 := by
   exact hp.one_lt.ne' (by exact_mod_cast this)
 
 /-- The descent in the case `y` even: from `x² = o² + e²` and `y² = 2·o·e` (o odd, e even,
-coprime, all positive) a solution with smaller `|x|`.-/
+coprime, all positive) a solution with smaller `|x|`.
+@isnad1 id=ex.8h4v.s7.fac69430b30a from=translated src=- shape=07820816 vocab=8249499d
+-/
 theorem descenso_par {o e x y : ℤ} (ho : 0 < o) (he : 0 < e) (hx : 0 < x) (ho2 : o % 2 = 1)
     (he2 : e % 2 = 0) (hoe : Int.gcd o e = 1) (hxoe : x ^ 2 = o ^ 2 + e ^ 2)
     (hy : y ^ 2 = 2 * o * e) :
@@ -154,6 +166,9 @@ theorem descenso_par {o e x y : ℤ} (ho : 0 < o) (he : 0 < e) (hx : 0 < x) (ho2
       _ = x := h3.symm
       _ ≤ x ^ 2 := hxx
 
+/--
+@isnad1 id=false.1h3v.s3.ecff645bd241 from=translated src=- shape=2324b133 vocab=f9262c3f
+-/
 theorem not_minimal {x y z : ℤ} (h : Minimal x y z) : False := by
   -- work with |x|, |y|, |z|: the same equation and the same measure
   set X : ℤ := (x.natAbs : ℤ) with hX
@@ -235,7 +250,9 @@ theorem not_minimal {x y z : ℤ} (h : Minimal x y z) : False := by
       have : 0 < n ^ 2 := by positivity
       linarith
 
-/-- **`x ^ 4 - y ^ 4 = z ^ 2` has no solution with `y` and `z` nonzero.**-/
+/-- **`x ^ 4 - y ^ 4 = z ^ 2` has no solution with `y` and `z` nonzero.**
+@isnad1 id=ne.2h3v.s6.8ab5131c10f8 from=translated src=- shape=d78b1b48 vocab=57452192
+-/
 theorem not_fermat_4_minus {x y z : ℤ} (hy : y ≠ 0) (hz : z ≠ 0) : x ^ 4 - y ^ 4 ≠ z ^ 2 := by
   intro h
   obtain ⟨x0, y0, z0, hm⟩ := exists_minimal ⟨hy, hz, h⟩
@@ -246,7 +263,9 @@ theorem not_fermat_4_minus {x y z : ℤ} (hy : y ≠ 0) (hz : z ≠ 0) : x ^ 4 -
 def congruentNumber (n : ℕ) : Prop :=
   ∃ (a b c : ℚ), a ^ 2 + b ^ 2 = c ^ 2 ∧ n = (2⁻¹ : ℚ) * a * b
 
-/-- **1 is not a congruent number** (Fermat).-/
+/-- **1 is not a congruent number** (Fermat).
+@isnad1 id=not.0h0v.s2.f759b7f3aff1 from=translated src=- shape=8d7dbbf6 vocab=95ebbc01
+-/
 theorem not_congruentNumber_1 : ¬ congruentNumber 1 := by
   rintro ⟨a, b, c, hp, ha⟩
   have hab : a * b = 2 := by push_cast at ha; linarith

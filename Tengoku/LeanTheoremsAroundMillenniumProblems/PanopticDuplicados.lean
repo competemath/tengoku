@@ -44,8 +44,14 @@ noncomputable def pq (s : ℝ) (n fp fn : ℕ) : ℝ :=
 /-- El denominador de PQ.-/
 noncomputable def den (n fp fn : ℕ) : ℝ := (n : ℝ) + (fp + fn) / 2
 
+/--
+@isnad1 id=eq.0h4v.s4.b5d9afbf2e88 from=translated src=- shape=14531ed5 vocab=daa9aabf
+-/
 lemma pq_def (s : ℝ) (n fp fn : ℕ) : pq s n fp fn = s / den n fp fn := rfl
 
+/--
+@isnad1 id=le.0h3v.s4.c5748ff6e545 from=translated src=- shape=1995cd38 vocab=02a2f54d
+-/
 lemma den_nonneg (n fp fn : ℕ) : 0 ≤ den n fp fn := by
   unfold den
   positivity
@@ -55,7 +61,9 @@ lemma den_nonneg (n fp fn : ℕ) : 0 ≤ den n fp fn := by
 Añadir una predicción que empareja con una verdad ya emparejada, con IoU `v`,
 suma `v` al numerador y `1` al denominador (un TP más), y no crea ningún falso
 positivo, porque el evaluador acumula todos los pares por encima del umbral.
-El PQ resultante es mayor si y solo si `v` es mayor que el PQ de partida.-/
+El PQ resultante es mayor si y solo si `v` es mayor que el PQ de partida.
+@isnad1 id=iff.1h5v.s6.52224f4e34ad from=translated src=- shape=e45153ff vocab=db2aa954
+-/
 theorem pq_dup_iff (s v : ℝ) (n fp fn : ℕ) (hd : 0 < den n fp fn) :
     pq s n fp fn < pq (s + v) (n + 1) fp fn ↔ pq s n fp fn < v := by
   have hd1 : (0 : ℝ) < den n fp fn + 1 := by linarith
@@ -68,7 +76,9 @@ theorem pq_dup_iff (s v : ℝ) (n fp fn : ℕ) (hd : 0 < den n fp fn) :
   · intro h; nlinarith
 
 /-- La misma cuenta, en la forma en que se usa: si el duplicado es mejor que el
-PQ actual, la nota sube **estrictamente**.-/
+PQ actual, la nota sube **estrictamente**.
+@isnad1 id=lt.2h5v.s6.c143ab91405f from=translated src=- shape=be8fc95e vocab=db2aa954
+-/
 theorem pq_lt_pq_dup (s v : ℝ) (n fp fn : ℕ) (hd : 0 < den n fp fn)
     (hv : pq s n fp fn < v) : pq s n fp fn < pq (s + v) (n + 1) fp fn :=
   (pq_dup_iff s v n fp fn hd).mpr hv
@@ -77,7 +87,9 @@ theorem pq_lt_pq_dup (s v : ℝ) (n fp fn : ℕ) (hd : 0 < den n fp fn)
 
 Si cada verdad sólo puede emparejarse una vez, el duplicado no empareja: cuenta
 como falso positivo. El numerador no cambia y el denominador crece en ½, así que
-el PQ baja estrictamente siempre que hubiera algo que perder (`0 < s`).-/
+el PQ baja estrictamente siempre que hubiera algo que perder (`0 < s`).
+@isnad1 id=lt.2h4v.s5.3b0329c38374 from=translated src=- shape=98921a4a vocab=db2aa954
+-/
 theorem pq_fp_lt (s : ℝ) (n fp fn : ℕ) (hs : 0 < s) (hd : 0 < den n fp fn) :
     pq s n (fp + 1) fn < pq s n fp fn := by
   have hden : den n (fp + 1) fn = den n fp fn + 1 / 2 := by
@@ -89,7 +101,9 @@ theorem pq_fp_lt (s : ℝ) (n fp fn : ℕ) (hs : 0 < s) (hd : 0 < den n fp fn) :
 /-- La brecha entre las dos reglas, dicha de una vez: bajo acumulación de todos
 los pares un duplicado suficientemente bueno sube la nota, mientras que bajo
 emparejamiento uno a uno el mismo duplicado la baja. Una métrica que se puede
-mover en direcciones opuestas según cómo se cuente no está midiendo calidad.-/
+mover en direcciones opuestas según cómo se cuente no está midiendo calidad.
+@isnad1 id=and.3h5v.s6.0d8ae7a26c43 from=translated src=- shape=2acd068f vocab=db2aa954
+-/
 theorem duplicado_sube_pero_uno_a_uno_baja
     (s v : ℝ) (n fp fn : ℕ) (hs : 0 < s) (hd : 0 < den n fp fn)
     (hv : pq s n fp fn < v) :

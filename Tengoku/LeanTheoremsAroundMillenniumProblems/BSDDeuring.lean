@@ -38,6 +38,9 @@ section Field
 
 variable {F : Type*} [Field F] [Fintype F] [DecidableEq F]
 
+/--
+@isnad1 id=eq.1h2v.s7.e4cbaf7e7c86 from=translated src=- shape=d6d00a15 vocab=ba56d17a
+-/
 theorem sum_quadraticChar_comp_eq_mul_of_odd {f : F → F} (hf : Function.Odd f) :
     ∑ x : F, quadraticChar F (f x) = quadraticChar F (-1) * ∑ x : F, quadraticChar F (f x) :=
   calc ∑ x : F, quadraticChar F (f x)
@@ -49,7 +52,9 @@ theorem sum_quadraticChar_comp_eq_mul_of_odd {f : F → F} (hf : Function.Odd f)
     _ = quadraticChar F (-1) * ∑ x : F, quadraticChar F (f x) := (Finset.mul_sum ..).symm
 
 /-- If `−1` is a non-square in a finite field `F`, the quadratic character sum of an
-**odd** function vanishes: reindexing by `x ↦ −x` pairs each value with its negative.-/
+**odd** function vanishes: reindexing by `x ↦ −x` pairs each value with its negative.
+@isnad1 id=eq.2h2v.s7.151b5fe2969e from=translated src=- shape=6885a9db vocab=e3202aea
+-/
 theorem sum_quadraticChar_comp_eq_zero_of_odd (hF : quadraticChar F (-1) = -1) {f : F → F}
     (hf : Function.Odd f) : ∑ x : F, quadraticChar F (f x) = 0 := by
   have h := sum_quadraticChar_comp_eq_mul_of_odd hf
@@ -60,6 +65,9 @@ end Field
 
 variable (p : ℕ) [Fact p.Prime]
 
+/--
+@isnad1 id=eq.1h1v.s7.8f10efab3d54 from=translated src=- shape=d2560823 vocab=21937d52
+-/
 theorem quadraticChar_neg_one_of_three_mod_four (hp : p % 4 = 3) :
     quadraticChar (ZMod p) (-1) = -1 := by
   have hF : ringChar (ZMod p) ≠ 2 := by rw [ZMod.ringChar_zmod_n]; omega
@@ -71,13 +79,18 @@ every prime `p ≡ 3 (mod 4)`, the character sum of `E_n : y² = x³ − n²x` i
 For `p ∤ 2n` that sum is `−a_p`, so the trace of Frobenius vanishes, `#E_n(F_p) = p + 1`
 and `E_n` is supersingular at `p`. For `p ∣ n` the statement is still true but says
 nothing about a curve: `E_n` reduces to the singular `y² = x³`, and there the sum
-vanishes for every odd `p`, since `χ(x³) = χ(x)` and `∑ χ = 0`.-/
+vanishes for every odd `p`, since `χ(x³) = χ(x)` and `∑ χ = 0`.
+@isnad1 id=eq.1h2v.s5.476569e4ae32 from=translated src=- shape=42244b85 vocab=7a202a4d
+-/
 theorem a_p_eq_zero (n : ℤ) (hp : p % 4 = 3) : BSDTwist.a_p n p = 0 := by
   rw [BSDTwist.a_p,
     sum_quadraticChar_comp_eq_zero_of_odd (quadraticChar_neg_one_of_three_mod_four p hp)
       fun x => by ring,
     neg_zero]
 
+/--
+@isnad1 id=eq.1h1v.s5.1e154f32bd55 from=translated src=- shape=158aff05 vocab=7a202a4d
+-/
 theorem a_p_one_eq_zero (hp : p % 4 = 3) : BSDTwist.a_p 1 p = 0 := a_p_eq_zero p 1 hp
 
 end BSDDeuring

@@ -38,7 +38,9 @@ namespace Panoptic
 open Finset
 
 /-- El testigo: dos anotaciones disjuntas y una predicción que empata el umbral
-con las dos.-/
+con las dos.
+@isnad1 id=eq.0h0v.s6.8a7c7646e433 from=translated src=- shape=1ce750fd vocab=7f6bcf3e
+-/
 lemma iou_testigo : iou ({1, 2} : Finset ℕ) ({1, 2, 3, 4} : Finset ℕ) = 1 / 2 := by
   unfold iou
   norm_num [Finset.inter_comm]
@@ -47,7 +49,9 @@ lemma iou_testigo : iou ({1, 2} : Finset ℕ) ({1, 2, 3, 4} : Finset ℕ) = 1 / 
 
 `P = {1,2,3,4}` alcanza exactamente el umbral con `A = {1,2}` y con `B = {3,4}`,
 que son disjuntas. Luego la desigualdad **estricta** de `empareja_a_lo_sumo_una`
-no es una comodidad de la demostración: es necesaria.-/
+no es una comodidad de la demostración: es necesaria.
+@isnad1 id=ex.0h0v.s6.98cf8d3d3e1c from=translated src=- shape=282d6f5d vocab=e0d9adf8
+-/
 theorem empata_con_dos_en_un_medio :
     ∃ (P A B : Finset ℕ), Disjoint A B ∧ (1 : ℝ) / 2 ≤ iou P A ∧ (1 : ℝ) / 2 ≤ iou P B := by
   refine ⟨{1, 2, 3, 4}, {1, 2}, {3, 4}, by decide, ?_, ?_⟩
@@ -62,7 +66,9 @@ theorem empata_con_dos_en_un_medio :
 Por encima, el emparejamiento contra anotaciones disjuntas es único; en 1/2 hay
 contraejemplo. Dicho de una vez: `1/2` es el ínfimo de los umbrales que hacen
 del emparejamiento una función parcial, y la métrica publicada depende de ello
-sin decirlo.-/
+sin decirlo.
+@isnad1 id=and.0h0v.s7.9bcb52778a42 from=translated src=- shape=6474e208 vocab=30ae33e8
+-/
 theorem umbral_exacto :
     (∀ (P A B : Finset ℕ), Disjoint A B → (1 : ℝ) / 2 < iou P A → (1 : ℝ) / 2 < iou P B → False)
     ∧ ¬ (∀ (P A B : Finset ℕ), Disjoint A B → (1 : ℝ) / 2 ≤ iou P A → (1 : ℝ) / 2 ≤ iou P B → False) := by

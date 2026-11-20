@@ -35,7 +35,9 @@ variable {R : Type*} [CommRing R]
 
 /-- Los divisores del radical son exactamente los divisores libres de cuadrados:
     un `d` libre de cuadrados que divide a `n` tiene los mismos primos dentro de
-    los de `n`, y por eso divide al producto de todos ellos.-/
+    los de `n`, y por eso divide al producto de todos ellos.
+@isnad1 id=dvd.3h2v.s5.1939ff9fba6f from=translated src=- shape=4a207765 vocab=55d5e4ee
+-/
 theorem dvd_radical_of_squarefree {d n : ℕ} (hn : n ≠ 0) (hd : d ∣ n) (hsq : Squarefree d) :
     d ∣ radical n := by
   rw [Nat.radical_eq_prod_primeFactors]
@@ -48,7 +50,9 @@ theorem dvd_radical_of_squarefree {d n : ℕ} (hn : n ≠ 0) (hd : d ∣ n) (hsq
     `Σ_{d|n} μ(d)·f(d) = Π_{p|n} (1 - f p)`
 
     Se reduce al radical: los sumandos con `d` no libre de cuadrados valen cero,
-    y los que quedan son justo los divisores del radical.-/
+    y los que quedan son justo los divisores del radical.
+@isnad1 id=eq.2h3v.s7.010b62d56b3a from=translated src=- shape=7c035638 vocab=ca6c9d08
+-/
 theorem sum_moebius_mul_eq_prod_one_sub (f : ArithmeticFunction R)
     (hf : f.IsMultiplicative) {n : ℕ} (hn : n ≠ 0) :
     ∑ d ∈ n.divisors, (μ d : R) * f d = ∏ p ∈ n.primeFactors, (1 - f p) := by
@@ -70,7 +74,9 @@ theorem sum_moebius_mul_eq_prod_one_sub (f : ArithmeticFunction R)
       Nat.primeFactors_radical]
 
 /-- La instancia que necesita el determinante del lcm: `f = id` sobre ℚ, es
-    decir `Σ_{d|n} μ(d)·d = Π_{p|n} (1-p)`.-/
+    decir `Σ_{d|n} μ(d)·d = Π_{p|n} (1-p)`.
+@isnad1 id=eq.1h1v.s6.54178b5ae6e5 from=translated src=- shape=e099abba vocab=86998be9
+-/
 theorem sum_moebius_mul_id {n : ℕ} (hn : n ≠ 0) :
     ∑ d ∈ n.divisors, (μ d : ℚ) * (d : ℚ)
       = ∏ p ∈ n.primeFactors, (1 - (p : ℚ)) := by

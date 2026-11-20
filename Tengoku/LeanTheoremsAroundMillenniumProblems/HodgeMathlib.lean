@@ -18,24 +18,34 @@ import Tengoku.Seed.Tactic
 
 namespace HodgeChi
 
-/-- n=2 (superficies): χ = d³ − 4d² + 6d, coincide con la binomial 6d − 4d² + d³.-/
+/-- n=2 (superficies): χ = d³ − 4d² + 6d, coincide con la binomial 6d − 4d² + d³.
+@isnad1 id=eq.0h1v.s7.84ef9eef6b37 from=translated src=- shape=d05d40ac vocab=f37b0cf8
+-/
 theorem chi_n2 (d : ℚ) :
     d ^ 3 - 4 * d ^ 2 + 6 * d = 6 * d - 4 * d ^ 2 + d ^ 3 := by ring
 
-/-- n=2, forma cerrada = binomial: ((1−d)⁴ − 1) + 4d = (d³ − 4d² + 6d)·d.-/
+/-- n=2, forma cerrada = binomial: ((1−d)⁴ − 1) + 4d = (d³ − 4d² + 6d)·d.
+@isnad1 id=eq.0h1v.s7.5b382749c5a7 from=translated src=- shape=46bb08fa vocab=f37b0cf8
+-/
 theorem chi_n2_cerrada (d : ℚ) :
     (1 - d) ^ 4 - 1 + 4 * d = (d ^ 3 - 4 * d ^ 2 + 6 * d) * d := by ring
 
-/-- n=3 (3-folds): binomial 10d − 10d² + 5d³ − d⁴; cerrada ((1−d)⁵−1)+5d, ·d.-/
+/-- n=3 (3-folds): binomial 10d − 10d² + 5d³ − d⁴; cerrada ((1−d)⁵−1)+5d, ·d.
+@isnad1 id=eq.0h1v.s7.05092e5e96a2 from=translated src=- shape=4077529d vocab=f37b0cf8
+-/
 theorem chi_n3_cerrada (d : ℚ) :
     (1 - d) ^ 5 - 1 + 5 * d = (10 * d - 10 * d ^ 2 + 5 * d ^ 3 - d ^ 4) * d := by ring
 
-/-- n=4 (4-folds): binomial 15d − 20d² + 15d³ − 6d⁴ + d⁵.-/
+/-- n=4 (4-folds): binomial 15d − 20d² + 15d³ − 6d⁴ + d⁵.
+@isnad1 id=eq.0h1v.s7.e5e4324d9d59 from=translated src=- shape=15e2e484 vocab=f37b0cf8
+-/
 theorem chi_n4_cerrada (d : ℚ) :
     (1 - d) ^ 6 - 1 + 6 * d =
       (15 * d - 20 * d ^ 2 + 15 * d ^ 3 - 6 * d ^ 4 + d ^ 5) * d := by ring
 
-/-- La quíntica 3-fold (d=5, n=3): χ = −200, de la fórmula.-/
+/-- La quíntica 3-fold (d=5, n=3): χ = −200, de la fórmula.
+@isnad1 id=eq.0h0v.s7.509edbd1f09e from=translated src=- shape=8a9b013a vocab=d13119ac
+-/
 theorem quintica_chi_menos_200 :
     (10 * 5 - 10 * 5 ^ 2 + 5 * 5 ^ 3 - 5 ^ 4 : ℤ) = -200 := by norm_num
 
@@ -45,7 +55,9 @@ theorem quintica_chi_menos_200 :
     binomio (el 1 y el −(n+2)d) se cancelan con el −1 y el +(n+2)d — por eso χ es
     un polinomio genuino sin término constante ni lineal. Demostrado con el teorema
     del binomio (`add_pow`) y pelando los dos primeros sumandos. Es la instancia
-    n=2,3,4 (chi_n*_cerrada) elevada a teorema para todo n.-/
+    n=2,3,4 (chi_n*_cerrada) elevada a teorema para todo n.
+@isnad1 id=eq.0h2v.s7.c3060bc18b53 from=translated src=- shape=eed54ac3 vocab=cf1d9f21
+-/
 theorem chi_general (d : ℚ) (n : ℕ) :
     (1 - d) ^ (n + 2) - 1 + ((n : ℚ) + 2) * d
       = ∑ k ∈ Finset.range (n + 1), ((n + 2).choose (k + 2) : ℚ) * (-d) ^ (k + 2) := by
@@ -76,18 +88,24 @@ theorem chi_general (d : ℚ) (n : ℕ) :
 /-- Género geométrico h^{n,0} de X_d^n, con m = d−1 (Griffiths: h^{n,0}=C(d−1,n+1)).-/
 def pg (m n : ℕ) : ℕ := m.choose (n + 1)
 
-/-- FANO: h^{n,0} = 0 ⟺ d ≤ n+1 (m < n+1).-/
+/-- FANO: h^{n,0} = 0 ⟺ d ≤ n+1 (m < n+1).
+@isnad1 id=iff.0h2v.s5.96b5df717922 from=translated src=- shape=1a915b11 vocab=ab2d1e22
+-/
 theorem fano_iff (m n : ℕ) : pg m n = 0 ↔ m < n + 1 := by
   unfold pg; exact Nat.choose_eq_zero_iff
 
-/-- CALABI–YAU: h^{n,0} = 1 ⟺ d = n+2 (m = n+1). El corolario, ahora demostrado.-/
+/-- CALABI–YAU: h^{n,0} = 1 ⟺ d = n+2 (m = n+1). El corolario, ahora demostrado.
+@isnad1 id=iff.0h2v.s4.3a76138c5cb0 from=translated src=- shape=4dc90082 vocab=0d6a963d
+-/
 theorem calabi_yau_iff (m n : ℕ) : pg m n = 1 ↔ m = n + 1 := by
   unfold pg
   constructor
   · intro h; rcases Nat.choose_eq_one_iff.mp h with h0 | h1 <;> omega
   · intro h; subst h; simp [Nat.choose_self]
 
-/-- TIPO GENERAL: d ≥ n+3 (m ≥ n+2) ⟹ h^{n,0} ≥ 2.-/
+/-- TIPO GENERAL: d ≥ n+3 (m ≥ n+2) ⟹ h^{n,0} ≥ 2.
+@isnad1 id=le.1h2v.s5.810f3e13d150 from=translated src=- shape=3dcd119d vocab=542b594e
+-/
 theorem general_type (m n : ℕ) (h : n + 2 ≤ m) : 2 ≤ pg m n := by
   unfold pg
   have hval : (n + 2).choose (n + 1) = n + 2 := by
@@ -98,10 +116,21 @@ theorem general_type (m n : ℕ) (h : n + 2 ≤ m) : 2 ≤ pg m n := by
   omega
 
 /-- Anclas (m = d−1): quíntica 3-fold (d=5,n=3) es CY; K3 (d=4,n=2) es CY;
-    superficie cúbica (d=3,n=2) es Fano; séxtica (d=6,n=3) es de tipo general.-/
+    superficie cúbica (d=3,n=2) es Fano; séxtica (d=6,n=3) es de tipo general.
+@isnad1 id=eq.0h0v.s4.ee34b88dff27 from=translated src=- shape=7226d0ee vocab=056d6dae
+-/
 theorem quintica_es_CY : pg 4 3 = 1 := by decide
+/--
+@isnad1 id=eq.0h0v.s4.cfcae2548bc6 from=translated src=- shape=7226d0ee vocab=056d6dae
+-/
 theorem k3_es_CY : pg 3 2 = 1 := by decide
+/--
+@isnad1 id=eq.0h0v.s4.d5fa8fe4990a from=translated src=- shape=7226d0ee vocab=056d6dae
+-/
 theorem cubica_es_Fano : pg 2 2 = 0 := by decide
+/--
+@isnad1 id=le.0h0v.s4.cd3abf7b612e from=translated src=- shape=4ff1df7c vocab=c924fe91
+-/
 theorem sextica_tipo_general : 2 ≤ pg 5 3 := by decide
 
 /-  ── La fórmula GÉNERO–GRADO, como caso n=1 ──
@@ -117,15 +146,28 @@ theorem sextica_tipo_general : 2 ≤ pg 5 3 := by decide
     d≥4 es de tipo general (g≥3).                                                  -/
 
 /-- Fórmula género–grado: una curva plana lisa de grado d = m+1 tiene género
-    g = C(m,2) = m(m−1)/2. (`Nat.choose_two_right`.)-/
+    g = C(m,2) = m(m−1)/2. (`Nat.choose_two_right`.)
+@isnad1 id=eq.0h1v.s5.3191b28d8191 from=translated src=- shape=97b11d45 vocab=ac675573
+-/
 theorem genus_degree (m : ℕ) : pg m 1 = m * (m - 1) / 2 := by
   unfold pg; exact Nat.choose_two_right m
 
 /-- Géneros clásicos: cónica (d=2) g=0; cúbica (d=3) g=1 (elíptica); cuártica g=3;
-    quíntica g=6.-/
+    quíntica g=6.
+@isnad1 id=eq.0h0v.s4.5d0bd9651177 from=translated src=- shape=7226d0ee vocab=056d6dae
+-/
 theorem genero_conica : pg 1 1 = 0 := by decide
+/--
+@isnad1 id=eq.0h0v.s4.4a00af38a7ca from=translated src=- shape=7226d0ee vocab=056d6dae
+-/
 theorem genero_cubica_es_1 : pg 2 1 = 1 := by decide
+/--
+@isnad1 id=eq.0h0v.s4.de62a04e5b4d from=translated src=- shape=7226d0ee vocab=056d6dae
+-/
 theorem genero_cuartica : pg 3 1 = 3 := by decide
+/--
+@isnad1 id=eq.0h0v.s4.a42f98a6d3e4 from=translated src=- shape=7226d0ee vocab=056d6dae
+-/
 theorem genero_quintica : pg 4 1 = 6 := by decide
 
 /-  ── SIMETRÍA ESPECULAR: h^{2,1} bien definido para TODO d, no solo la quíntica ──
@@ -144,13 +186,17 @@ theorem genero_quintica : pg 4 1 = 6 := by decide
 def chi3 (d : Int) : Int := 10 * d - 10 * d ^ 2 + 5 * d ^ 3 - d ^ 4
 
 /-- χ(d) es PAR para TODO entero d — no una instancia, el hecho general que hace
-    que h^{2,1} = (4−χ)/2 − h^{3,0} sea siempre un entero.-/
+    que h^{2,1} = (4−χ)/2 − h^{3,0} sea siempre un entero.
+@isnad1 id=even.0h1v.s2.8630cbda693f from=translated src=- shape=6da4ece3 vocab=8e0610f0
+-/
 theorem chi3_par (d : Int) : Even (chi3 d) := by
   rcases Int.even_or_odd d with ⟨k, hk⟩ | ⟨k, hk⟩
   · exact ⟨-8 * k ^ 4 + 20 * k ^ 3 - 20 * k ^ 2 + 10 * k, by subst hk; unfold chi3; ring⟩
   · exact ⟨-8 * k ^ 4 + 4 * k ^ 3 - 2 * k ^ 2 + k + 2, by subst hk; unfold chi3; ring⟩
 
-/-- b₃(d) = 4 − χ(d): también par para todo d, consecuencia directa.-/
+/-- b₃(d) = 4 − χ(d): también par para todo d, consecuencia directa.
+@isnad1 id=even.0h1v.s4.5654db06e5bb from=translated src=- shape=af556cd0 vocab=23f4d591
+-/
 theorem b3_par (d : Int) : Even (4 - chi3 d) := by
   obtain ⟨r, hr⟩ := chi3_par d
   exact ⟨2 - r, by omega⟩
@@ -159,7 +205,9 @@ theorem b3_par (d : Int) : Even (4 - chi3 d) := by
     h^{3,0} = C(d−1,4) (m=d−1 como Nat, aquí ya como valor concreto por caso). La
     quíntica (d=5, m=4): (4−(−200))/2 − 1 = 102 − 1 = 101 — el 101 clásico de la
     simetría especular (Candelas, de la Ossa, Green y Parkes, Nucl. Phys. B 359
-    (1991) 21–74, doi:10.1016/0550-3213(91)90292-6).-/
+    (1991) 21–74, doi:10.1016/0550-3213(91)90292-6).
+@isnad1 id=eq.0h0v.s5.a4ade7c450a4 from=translated src=- shape=d071e6d0 vocab=076e82b7
+-/
 theorem h21_quintica_de_formula_general :
     (4 - chi3 5) / 2 - (pg 4 3 : Int) = 101 := by
   unfold chi3 pg; decide
@@ -239,7 +287,9 @@ private theorem S_par_si_n_impar (n : ℕ) (himpar : Odd n) :
   · intro _; exact ⟨2 ^ (n + 1), by ring⟩
 
 /-- EL TEOREMA GENERAL: para TODO n impar y TODO entero d, χ_N(n,d) es par.
-    Generaliza `chi3_par` (solo n=3) a TODA dimensión impar.-/
+    Generaliza `chi3_par` (solo n=3) a TODA dimensión impar.
+@isnad1 id=dvd.1h2v.s4.aee639506d97 from=translated src=- shape=44c86b1d vocab=10c81b08
+-/
 theorem chiN_par (n : ℕ) (himpar : Odd n) (d : Int) : (2 : Int) ∣ chiN n d := by
   have h2 : ((2 : ℕ) : Int) ∣ chiN n d := by
     rw [← ZMod.intCast_zmod_eq_zero_iff_dvd, chiN_mod2, S_par_si_n_impar n himpar, mul_zero]
@@ -247,7 +297,9 @@ theorem chiN_par (n : ℕ) (himpar : Odd n) (d : Int) : (2 : Int) ∣ chiN n d :
 
 /-- Instancia n=3 (subsume chi3_par): b₃ = 4−χ_N(3,d) es par para todo d,
     exactamente lo que hace falta para que h^{2,1} de una 3-fold esté bien
-    definido — ahora como corolario del teorema general, no un caso ad hoc.-/
+    definido — ahora como corolario del teorema general, no un caso ad hoc.
+@isnad1 id=dvd.0h1v.s4.7e4112aa3af2 from=translated src=- shape=919542b1 vocab=7cd78050
+-/
 theorem b3_par_de_general (d : Int) : (2 : Int) ∣ (4 - chiN 3 d) := by
   obtain ⟨r, hr⟩ := chiN_par 3 ⟨1, rfl⟩ d
   exact ⟨2 - r, by omega⟩
@@ -289,7 +341,9 @@ private theorem h11_num_mod3 : ∀ x : ZMod 3, 2 * x ^ 3 - 6 * x ^ 2 + 7 * x = 0
 /-- INTEGRALIDAD DE h^{1,1}: 3 ∣ (2d³−6d²+7d) para TODO entero d — no solo
     los d=1..12 verificados en H-medible. Generaliza a superficies (n=2) lo
     que `chiN_par`/`b3_par_de_general` ya hicieron para 3-folds (n=3, mod 2):
-    aquí la divisibilidad relevante es mod 3, no mod 2.-/
+    aquí la divisibilidad relevante es mod 3, no mod 2.
+@isnad1 id=dvd.0h1v.s3.43a24c55c3d6 from=translated src=- shape=8a62b088 vocab=cafc7279
+-/
 theorem h11_integral (d : Int) : (3 : Int) ∣ h11_num d := by
   have h3 : ((h11_num d : Int) : ZMod 3) = 0 := by
     unfold h11_num; push_cast; exact h11_num_mod3 (d : ZMod 3)
@@ -298,7 +352,9 @@ theorem h11_integral (d : Int) : (3 : Int) ∣ h11_num d := by
 /-- CONSISTENCIA DE BETTI para TODO d, identidad de polinomios sin división:
     3·χ_top(d) = 6 + (d−1)(d−2)(d−3) + (2d³−6d²+7d). Las tres fórmulas
     independientes de H-medible (χ_top, h^{2,0}=C(d−1,3), h^{1,1}) obedecen
-    la relación clásica χ=2+2h^{2,0}+h^{1,1} para TODO d, no solo d=1..12.-/
+    la relación clásica χ=2+2h^{2,0}+h^{1,1} para TODO d, no solo d=1..12.
+@isnad1 id=eq.0h1v.s7.01382e507d00 from=translated src=- shape=d515feca vocab=56becd72
+-/
 theorem hodge_surface_betti (d : Int) :
     3 * (d ^ 3 - 4 * d ^ 2 + 6 * d) = 6 + (d - 1) * (d - 2) * (d - 3) + h11_num d := by
   unfold h11_num; ring
@@ -317,7 +373,9 @@ theorem hodge_surface_betti (d : Int) :
     igualdad, con m=d−1 (mismo convenio que `pg`).                          -/
 
 /-- d−3 ≤ p_g(d) para TODO d≥3 (m=d−1≥2): la cota se alcanza, nunca se
-    excede. Inducción con la regla de Pascal (`choose_succ_succ'`).-/
+    excede. Inducción con la regla de Pascal (`choose_succ_succ'`).
+@isnad1 id=le.1h1v.s5.c6cc287078e1 from=translated src=- shape=2cf06833 vocab=dc1ad61a
+-/
 theorem cota_le_pg (m : ℕ) (hm : 2 ≤ m) : m - 2 ≤ pg m 2 := by
   induction m, hm using Nat.le_induction with
   | base => decide
@@ -328,7 +386,9 @@ theorem cota_le_pg (m : ℕ) (hm : 2 ≤ m) : m - 2 ≤ pg m 2 := by
     omega
 
 /-- Para d≥5 (m≥4) la cota es ESTRICTA: la ventana de incertidumbre ya se
-    abrió. Misma inducción, ahora arrancando en m=4 (d=5), donde 2 < 4.-/
+    abrió. Misma inducción, ahora arrancando en m=4 (d=5), donde 2 < 4.
+@isnad1 id=lt.1h1v.s5.470644f3b968 from=translated src=- shape=e86ff504 vocab=f94d9c02
+-/
 theorem cota_lt_pg (m : ℕ) (hm : 4 ≤ m) : m - 2 < pg m 2 := by
   induction m, hm using Nat.le_induction with
   | base => decide
@@ -340,7 +400,9 @@ theorem cota_lt_pg (m : ℕ) (hm : 4 ≤ m) : m - 2 < pg m 2 := by
 
 /-- CARACTERIZACIÓN COMPLETA: la cota d−3 iguala a p_g EXACTAMENTE en d=3,4
     (m=2,3) — el "hallazgo estructural" de H-noether-lefschetz, ahora un
-    teorema, no una observación en un rango finito.-/
+    teorema, no una observación en un rango finito.
+@isnad1 id=iff.1h1v.s5.eef4c11c832e from=translated src=- shape=17b1e435 vocab=dc1ad61a
+-/
 theorem cota_eq_pg_iff (m : ℕ) (hm : 2 ≤ m) : m - 2 = pg m 2 ↔ m = 2 ∨ m = 3 := by
   constructor
   · intro heq
@@ -362,7 +424,9 @@ theorem cota_eq_pg_iff (m : ℕ) (hm : 2 ≤ m) : m - 2 = pg m 2 ↔ m = 2 ∨ m
 /-- La ventana de Noether–Lefschetz (×6, sin división) es EXACTAMENTE OEIS
     A005581(d−3) (×6), para TODO entero d — sube H-oeis-A005581 de
     "verificado con sympy externo, d=4..200" a kernel-verificado, para
-    todo d, sin excepción.-/
+    todo d, sin excepción.
+@isnad1 id=eq.0h1v.s7.546e6c655185 from=translated src=- shape=29f0f8a7 vocab=c85d5191
+-/
 theorem ventana_es_oeis_A005581 (d : Int) :
     (d - 1) * (d - 2) * (d - 3) - 6 * (d - 3) = (d - 4) * (d - 3) * (d + 1) := by
   ring
@@ -387,7 +451,9 @@ theorem ventana_es_oeis_A005581 (d : Int) :
 /-- LA OBSTRUCCIÓN ARITMÉTICA: no existe c∈ℚ con c·d=1 y c²·d entero, para
     NINGÚN entero d≥2. Es lo que hace imposible que [L]=c·h^m — la pieza
     aritmética, aislada, del argumento geométrico de H-hodge-loci-
-    dimension-n (Chern classes citadas, no re-derivadas).-/
+    dimension-n (Chern classes citadas, no re-derivadas).
+@isnad1 id=not.1h1v.s6.10ea803b886e from=translated src=- shape=ac9261d2 vocab=ac3315c7
+-/
 theorem no_proporcional_a_h_potencia_m (d : ℤ) (hd : 2 ≤ d) :
     ¬ ∃ c : ℚ, c * (d : ℚ) = 1 ∧ ∃ n : ℤ, c ^ 2 * (d : ℚ) = (n : ℚ) := by
   rintro ⟨c, hcd, n, hn⟩

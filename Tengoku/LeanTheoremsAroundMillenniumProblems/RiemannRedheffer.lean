@@ -52,7 +52,9 @@ namespace Redheffer
 def zeta (N : ℕ) : Matrix (Fin N) (Fin N) ℤ :=
   fun i j => if (i : ℕ) + 1 ∣ (j : ℕ) + 1 then 1 else 0
 
-/-- ζ es triangular superior: i∣j ⟹ i≤j, luego bajo la diagonal todo es 0.-/
+/-- ζ es triangular superior: i∣j ⟹ i≤j, luego bajo la diagonal todo es 0.
+@isnad1 id=blocktri.0h1v.s4.dda10941ad8e from=translated src=- shape=f4d4e5e1 vocab=457e24c7
+-/
 theorem zeta_blockTriangular (N : ℕ) : (zeta N).BlockTriangular id := by
   intro i j hij
   simp only [zeta]
@@ -62,7 +64,9 @@ theorem zeta_blockTriangular (N : ℕ) : (zeta N).BlockTriangular id := by
   simp only [id] at hij
   omega
 
-/-- BACKBONE (general, todo n): det(ζ_n) = 1.-/
+/-- BACKBONE (general, todo n): det(ζ_n) = 1.
+@isnad1 id=eq.0h1v.s4.18de1d95b915 from=translated src=- shape=5dbf83be vocab=8d0db54d
+-/
 theorem det_zeta (N : ℕ) : (zeta N).det = 1 := by
   rw [Matrix.det_of_isUpperTriangular (zeta_blockTriangular N)]
   simp [zeta]
@@ -73,7 +77,9 @@ def redheffer (N : ℕ) : Matrix (Fin N) (Fin N) ℤ :=
   fun i j => if (j : ℕ) = 0 ∨ (i : ℕ) + 1 ∣ (j : ℕ) + 1 then 1 else 0
 
 set_option maxRecDepth 4000 in
-/-- La columna 0 de ζ es e₀: solo la fila 0 vale 1 (porque i+1 ∣ 1 ⟺ i=0).-/
+/-- La columna 0 de ζ es e₀: solo la fila 0 vale 1 (porque i+1 ∣ 1 ⟺ i=0).
+@isnad1 id=eq.0h2v.s7.2ba9fac8eafa from=translated src=- shape=afb75631 vocab=62c45be0
+-/
 theorem zeta_col0 (N : ℕ) (i : Fin (N + 1)) :
     zeta (N + 1) i 0 = (if i = 0 then 1 else 0) := by
   simp only [zeta]
@@ -87,7 +93,9 @@ theorem zeta_col0 (N : ℕ) (i : Fin (N + 1)) :
     omega
 
 set_option maxRecDepth 4000 in
-/-- La matriz de Redheffer es ζ con la primera columna puesta a TODO-UNOS.-/
+/-- La matriz de Redheffer es ζ con la primera columna puesta a TODO-UNOS.
+@isnad1 id=eq.0h1v.s7.631933a57653 from=translated src=- shape=40274eee vocab=3d61ef32
+-/
 theorem redheffer_eq (N : ℕ) :
     redheffer (N + 1) = (zeta (N + 1)).updateCol 0 (fun _ => 1) := by
   ext i j
@@ -100,7 +108,9 @@ theorem redheffer_eq (N : ℕ) :
 
 set_option maxRecDepth 4000 in
 /-- LA REDUCCIÓN (kernel, general): det(A_n) = 1 + det(ζ'). Sale de la
-    linealidad del determinante en la columna (`det_updateCol_add`).-/
+    linealidad del determinante en la columna (`det_updateCol_add`).
+@isnad1 id=eq.0h1v.s8.f99139e7f99a from=translated src=- shape=f360a092 vocab=3b8fa8db
+-/
 theorem redheffer_reduccion (N : ℕ) :
     (redheffer (N + 1)).det
       = 1 + ((zeta (N + 1)).updateCol 0 (fun i => if i = 0 then 0 else 1)).det := by
@@ -121,7 +131,9 @@ theorem redheffer_reduccion (N : ℕ) :
 /-- La función de Mertens M(n) = Σ_{k=1}^{n} μ(k), con la Möbius genuina.-/
 def mertens (n : ℕ) : ℤ := ∑ k ∈ Finset.Icc 1 n, (μ k : ℤ)
 
-/-- Con el crux dado, la identidad general se sigue en una línea.-/
+/-- Con el crux dado, la identidad general se sigue en una línea.
+@isnad1 id=eq.1h1v.s8.dd1082a3e816 from=translated src=- shape=62585b5f vocab=2e573fb6
+-/
 theorem redheffer_de_crux (N : ℕ)
     (crux : ((zeta (N + 1)).updateCol 0 (fun i => if i = 0 then 0 else 1)).det
               = mertens (N + 1) - 1) :
@@ -138,7 +150,9 @@ theorem redheffer_de_crux (N : ℕ)
 def murow (N : ℕ) : Fin (N + 1) → ℤ := fun i => (μ ((i : ℕ) + 1) : ℤ)
 
 /-- La identidad de Möbius, en forma de suma sobre divisores: Σ_{d∣k} μ(d) =
-    [k=1]. Es `ArithmeticFunction.moebius_mul_coe_zeta` traducida.-/
+    [k=1]. Es `ArithmeticFunction.moebius_mul_coe_zeta` traducida.
+@isnad1 id=eq.0h1v.s5.e7a7ac01bc87 from=translated src=- shape=a99b4232 vocab=84a741a3
+-/
 theorem suma_mu_divisores (k : ℕ) :
     (∑ d ∈ Nat.divisors k, (μ d : ℤ)) = if k = 1 then 1 else 0 := by
   have h : ((μ * ArithmeticFunction.zeta : ArithmeticFunction ℤ)) k
@@ -148,7 +162,9 @@ theorem suma_mu_divisores (k : ℕ) :
 
 /-- Puente Fin N ↔ Nat.divisors: la suma con indicador de divisibilidad sobre
     Fin N (con los divisores POSIBLES 1..N) coincide con la suma real sobre
-    los divisores de m, cuando m ≤ N (así ningún divisor se escapa del rango).-/
+    los divisores de m, cuando m ≤ N (así ningún divisor se escapa del rango).
+@isnad1 id=eq.2h2v.s7.d1731c6df51c from=translated src=- shape=b8e8bf33 vocab=81d4373f
+-/
 theorem fin_sum_eq_divisors_sum (N : ℕ) (m : ℕ) (hm1 : 1 ≤ m) (hmN : m ≤ N) :
     (∑ x : Fin N, if (x : ℕ) + 1 ∣ m then (μ ((x : ℕ) + 1) : ℤ) else 0)
       = ∑ d ∈ Nat.divisors m, (μ d : ℤ) := by
@@ -184,7 +200,9 @@ theorem fin_sum_eq_divisors_sum (N : ℕ) (m : ℕ) (hm1 : 1 ≤ m) (hmN : m ≤
     omega
 
 /-- μ·ζ = e₁ como ecuación de VECTOR FILA — la traducción matricial de
-    Σ_{d∣k} μ(d) = [k=1]. Para TODO n.-/
+    Σ_{d∣k} μ(d) = [k=1]. Para TODO n.
+@isnad1 id=eq.0h1v.s7.412658773c73 from=translated src=- shape=3df93a85 vocab=3f562eb9
+-/
 theorem vecMul_mu_zeta (N : ℕ) :
     Matrix.vecMul (murow N) (zeta (N + 1)) = fun k => if k = 0 then (1 : ℤ) else 0 := by
   funext k
@@ -199,7 +217,9 @@ theorem vecMul_mu_zeta (N : ℕ) :
   by_cases hk : k = 0 <;> simp [hk]
 
 /-- Como ζ es invertible, μ·ζ=e₁ determina μ = fila 1 de ζ⁻¹ (cancelación por
-    la derecha: multiplicar ambos lados por ζ⁻¹).-/
+    la derecha: multiplicar ambos lados por ζ⁻¹).
+@isnad1 id=eq.0h1v.s8.4d72b04a9e65 from=translated src=- shape=9e3c8d56 vocab=aba10545
+-/
 theorem fila_inversa (N : ℕ) :
     murow N = Matrix.vecMul (fun k => if k = (0 : Fin (N + 1)) then (1 : ℤ) else 0)
       (zeta (N + 1))⁻¹ := by
@@ -211,7 +231,9 @@ theorem fila_inversa (N : ℕ) :
   exact step
 
 /-- EL CRUX, forma general: det(ζ.updateCol 0 u) es el producto de μ (la fila 1
-    de ζ⁻¹) con u — vía la fórmula de Cramer/adjugate.-/
+    de ζ⁻¹) con u — vía la fórmula de Cramer/adjugate.
+@isnad1 id=eq.0h2v.s7.8da7bc583f7a from=translated src=- shape=3d81c272 vocab=7dc9b534
+-/
 theorem crux_general (N : ℕ) (u : Fin (N + 1) → ℤ) :
     ((zeta (N + 1)).updateCol 0 u).det = ∑ j, murow N j * u j := by
   rw [← Matrix.cramer_apply]
@@ -221,11 +243,17 @@ theorem crux_general (N : ℕ) (u : Fin (N + 1) → ℤ) :
   rw [← hc, fila_inversa N]
   simp [Matrix.mulVec, dotProduct, Matrix.vecMul]
 
+/--
+@isnad1 id=eq.0h1v.s6.0f912bd6b391 from=translated src=- shape=0e8b0af5 vocab=200c7071
+-/
 theorem range_a_Icc2 (N : ℕ) :
     (∑ i ∈ Finset.range N, (μ (i + 2) : ℤ)) = ∑ k ∈ Finset.Icc 2 (N + 1), (μ k : ℤ) := by
   apply Finset.sum_nbij' (fun i => i + 2) (fun k => k - 2) <;> intros <;> simp_all
   all_goals omega
 
+/--
+@isnad1 id=eq.0h1v.s6.23984185dd49 from=translated src=- shape=fea10025 vocab=50736ab3
+-/
 theorem mertens_peel (N : ℕ) : mertens (N + 1) = 1 + ∑ k ∈ Finset.Icc 2 (N + 1), (μ k : ℤ) := by
   unfold mertens
   rw [show Finset.Icc 1 (N + 1) = insert 1 (Finset.Icc 2 (N + 1)) by
@@ -233,7 +261,9 @@ theorem mertens_peel (N : ℕ) : mertens (N + 1) = 1 + ∑ k ∈ Finset.Icc 2 (N
   rw [Finset.sum_insert (by simp)]
   norm_num [ArithmeticFunction.moebius_apply_one]
 
-/-- Con u=[0,1,…,1], el crux da exactamente M(n)−1: Σ_{k=2}^{n} μ(k).-/
+/-- Con u=[0,1,…,1], el crux da exactamente M(n)−1: Σ_{k=2}^{n} μ(k).
+@isnad1 id=eq.0h1v.s7.6bbcad9a8426 from=translated src=- shape=c8bc86c0 vocab=394c62fe
+-/
 theorem suma_a_mertens (N : ℕ) :
     (∑ j : Fin (N + 1), (if j = 0 then (0 : ℤ) else murow N j)) = mertens (N + 1) - 1 := by
   unfold murow
@@ -253,7 +283,9 @@ theorem suma_a_mertens (N : ℕ) :
 
 /-- EL TEOREMA GENERAL, SIN HIPÓTESIS NI RANGO: det(A_n) = M(n) para TODO n≥1.
     Cierra la identidad de Redheffer (1977) por completo — hasta donde sabe
-    TRINITY, la primera vez formalizada en un asistente de pruebas.-/
+    TRINITY, la primera vez formalizada en un asistente de pruebas.
+@isnad1 id=eq.0h1v.s6.b046d5aeec13 from=translated src=- shape=34111b81 vocab=033db3bc
+-/
 theorem redheffer_general (N : ℕ) : (redheffer (N + 1)).det = mertens (N + 1) := by
   apply redheffer_de_crux
   rw [crux_general]
@@ -265,22 +297,39 @@ theorem redheffer_general (N : ℕ) : (redheffer (N + 1)).det = mertens (N + 1) 
 
 -- ══════════════════ Instancias concretas, como ancla ══════════════════
 
+/--
+@isnad1 id=eq.0h0v.s3.cb55ba1bf270 from=translated src=- shape=1ac31801 vocab=121ff32d
+-/
 theorem mertens_1 : mertens 1 = 1 := by unfold mertens; simp
 
+/--
+@isnad1 id=eq.0h0v.s3.6291e1fbf592 from=translated src=- shape=1ac31801 vocab=121ff32d
+-/
 theorem mertens_2 : mertens 2 = 0 := by
   unfold mertens
   rw [show Finset.Icc 1 2 = {1, 2} by decide]
   simp [ArithmeticFunction.moebius_apply_prime Nat.prime_two]
 
+/--
+@isnad1 id=eq.0h0v.s4.caeda616aa70 from=translated src=- shape=b5968027 vocab=57fd1a6b
+-/
 theorem mertens_3 : mertens 3 = -1 := by
   unfold mertens
   rw [show Finset.Icc 1 3 = {1, 2, 3} by decide]
   simp [ArithmeticFunction.moebius_apply_prime Nat.prime_two,
         ArithmeticFunction.moebius_apply_prime Nat.prime_three]
 
-/-- n=1, n=2, n=3: casos del teorema general (dos maneras de verlo).-/
+/-- n=1, n=2, n=3: casos del teorema general (dos maneras de verlo).
+@isnad1 id=eq.0h0v.s5.6037520c8eda from=translated src=- shape=b05cac75 vocab=549e96a2
+-/
 theorem redheffer_1 : (redheffer 1).det = mertens 1 := redheffer_general 0
+/--
+@isnad1 id=eq.0h0v.s5.3a3bb248364e from=translated src=- shape=b05cac75 vocab=549e96a2
+-/
 theorem redheffer_2 : (redheffer 2).det = mertens 2 := redheffer_general 1
+/--
+@isnad1 id=eq.0h0v.s5.92cb7bc451e5 from=translated src=- shape=b05cac75 vocab=549e96a2
+-/
 theorem redheffer_3 : (redheffer 3).det = mertens 3 := redheffer_general 2
 
 /-  ── `crux_general` NO ES SOLO PARA REDHEFFER: sirve para CUALQUIER u ──
@@ -301,7 +350,9 @@ def mertens_pesada (n : ℕ) : ℤ := ∑ j ∈ Finset.range n, ((j : ℤ) + 1) 
 
 /-- det(ζ con columna 0 = (1,2,…,N+1) en vez de todo-unos) = Σ k·μ(k), para
     TODO N — instancia NUEVA de `crux_general` con u(j)=j+1: nadie había
-    usado `crux_general` con una u distinta de todo-unos hasta ahora.-/
+    usado `crux_general` con una u distinta de todo-unos hasta ahora.
+@isnad1 id=eq.0h1v.s7.65a9a50f77a1 from=translated src=- shape=0b8a2b6c vocab=8688d1d7
+-/
 theorem redheffer_pesada (N : ℕ) :
     ((zeta (N + 1)).updateCol 0 (fun i => (i : ℤ) + 1)).det = mertens_pesada (N + 1) := by
   rw [crux_general]

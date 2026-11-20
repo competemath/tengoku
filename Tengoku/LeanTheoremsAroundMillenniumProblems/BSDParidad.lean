@@ -34,7 +34,9 @@ namespace BSDParidad
     No encontrado en Mathlib (se buscó `card_modEq_card_fixedPoints` y
     variantes de `MulAction`, ninguna aplica sin montar una acción de
     grupo completa) — demostrado aquí por inducción fuerte en `S.card`,
-    quitando el par {x, f x} en cada paso.-/
+    quitando el par {x, f x} en cada paso.
+@isnad1 id=even.3h3v.s6.26ef015719f1 from=translated src=- shape=21399bc3 vocab=c88c6009
+-/
 theorem even_card_of_fixedPointFree_involution {α : Type*} [DecidableEq α] :
     ∀ S : Finset α, ∀ f : α → α, (∀ x ∈ S, f x ∈ S) → (∀ x ∈ S, f (f x) = x) →
       (∀ x ∈ S, f x ≠ x) → Even S.card := by
@@ -132,7 +134,9 @@ noncomputable def solTunnell (a c n : ℤ) : Finset (ℤ × ℤ × ℤ) :=
     ejemplo, la ecuación no acotaría x y el Finset estaría, silenciosamente,
     contando solo una FRACCIÓN de las soluciones reales. Se exigen aquí
     para que el teorema, tal como está enunciado, sea honesto sobre a qué
-    corresponde exactamente.-/
+    corresponde exactamente.
+@isnad1 id=even.6h3v.s6.2fc10dbd3203 from=translated src=- shape=f8b4a0f6 vocab=ed05df32
+-/
 theorem tunnell_par (a c n : ℤ) (ha : Even a) (hc : Even c) (hn : Odd n) (_hn0 : 0 ≤ n)
     (_ha_pos : 0 < a) (_hc_pos : 0 < c) :
     Even (solTunnell a c n).card := by

@@ -45,7 +45,9 @@ el IoU de dos conjuntos vacíos es `0`, que es lo que conviene: no hay nada que
 emparejar.-/
 noncomputable def iou (X Y : Finset α) : ℝ := ((X ∩ Y).card : ℝ) / ((X ∪ Y).card : ℝ)
 
-/-- Solapar más de la mitad con `A` obliga a ocupar más de la mitad de `P`.-/
+/-- Solapar más de la mitad con `A` obliga a ocupar más de la mitad de `P`.
+@isnad1 id=lt.1h3v.s6.60a14515847c from=translated src=- shape=7d5ac193 vocab=541eafc1
+-/
 lemma card_inter_gt_of_iou (P A : Finset α) (h : (1 : ℝ) / 2 < iou P A) :
     (P.card : ℝ) < 2 * ((P ∩ A).card : ℝ) := by
   unfold iou at h
@@ -62,7 +64,9 @@ lemma card_inter_gt_of_iou (P A : Finset α) (h : (1 : ℝ) / 2 < iou P A) :
 
 Si las anotaciones son disjuntas —lo son: son instancias distintas de la misma
 imagen— ninguna predicción puede superar el umbral con dos a la vez. Es la razón
-de que el evaluador pueda acumular pares sin ambigüedad por ese lado.-/
+de que el evaluador pueda acumular pares sin ambigüedad por ese lado.
+@isnad1 id=false.3h4v.s6.0151bb890370 from=translated src=- shape=70e95595 vocab=95193551
+-/
 theorem empareja_a_lo_sumo_una (P A B : Finset α) (hAB : Disjoint A B)
     (hA : (1 : ℝ) / 2 < iou P A) (hB : (1 : ℝ) / 2 < iou P B) : False := by
   have hpa := card_inter_gt_of_iou P A hA
@@ -80,7 +84,9 @@ theorem empareja_a_lo_sumo_una (P A B : Finset α) (hAB : Disjoint A B)
 /-- El denominador de PQ contra **un** anotador depende solo de cuántas
 predicciones y cuántas anotaciones hay: `(m + a)/2`. Los aciertos se cancelan,
 porque cada uno quita un falso positivo y un falso negativo, que valían ½ cada
-uno.-/
+uno.
+@isnad1 id=eq.2h3v.s6.58a9071312e7 from=translated src=- shape=de0b1fb4 vocab=02c5c572
+-/
 lemma den_una_anotacion (tp m a : ℕ) (h1 : tp ≤ m) (h2 : tp ≤ a) :
     den tp (m - tp) (a - tp) = ((m : ℝ) + a) / 2 := by
   unfold den
@@ -95,7 +101,9 @@ limitado por `a` y cada acierto contra el segundo por `m`, el numerador de PQ se
 queda **estrictamente** por debajo del denominador: PQ < 1 es forzoso.
 
 La holgura es `(b - a)/2`: exactamente la mitad del desacuerdo entre anotadores.
-No hay predicción, ni modelo, que la salve.-/
+No hay predicción, ni modelo, que la salve.
+@isnad1 id=lt.3h5v.s6.e6687072654d from=translated src=- shape=11a01d0b vocab=54cd24a2
+-/
 theorem techo_dos_anotadores (m a b tpA tpB : ℕ)
     (hab : a < b) (hA : tpA ≤ a) (hB : tpB ≤ m) :
     ((tpA : ℝ) + tpB) < (m : ℝ) + ((a : ℝ) + b) / 2 := by
@@ -106,7 +114,9 @@ theorem techo_dos_anotadores (m a b tpA tpB : ℕ)
 
 /-- La misma cota, escrita como PQ: el numerador (suma de IoU, cada uno ≤ 1, así
 que a lo sumo el número de aciertos) sobre el denominador combinado de los dos
-anotadores. Si discrepan en el recuento, **PQ < 1 pase lo que pase**.-/
+anotadores. Si discrepan en el recuento, **PQ < 1 pase lo que pase**.
+@isnad1 id=lt.6h7v.s7.04848a0f7e7c from=translated src=- shape=66988e76 vocab=54cd24a2
+-/
 theorem pq_lt_one_de_desacuerdo (sA sB : ℝ) (m a b tpA tpB : ℕ)
     (hab : a < b) (hA : tpA ≤ a) (hB : tpB ≤ m)
     (hsA : sA ≤ tpA) (hsB : sB ≤ tpB) (hm : 0 < m) :

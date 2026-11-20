@@ -33,7 +33,9 @@ noncomputable def a_p (n : ℤ) (p : ℕ) [Fact p.Prime] : ℤ :=
 
 /-- EL TWIST CUADRÁTICO: a_p(E_n) = χ(n)·a_p(E_1), para todo primo p que no
     divide a n (buena reducción, salvo p=2 que queda fuera por la
-    característica de `quadraticChar`).-/
+    característica de `quadraticChar`).
+@isnad1 id=eq.1h2v.s7.2759b624db98 from=translated src=- shape=837ad6fe vocab=03c87f9e
+-/
 theorem a_p_twist (n : ℤ) (p : ℕ) [Fact p.Prime] (hn : (n : ZMod p) ≠ 0) :
     a_p n p = quadraticChar (ZMod p) (n : ZMod p) * a_p 1 p := by
   have hcube : quadraticChar (ZMod p) ((n : ZMod p) ^ 3) = quadraticChar (ZMod p) (n : ZMod p) := by

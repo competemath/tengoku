@@ -35,13 +35,17 @@ falso positivo cuesta ½ y una anotación perdida cuesta ½, exactamente lo mism
 namespace Panoptic
 
 /-- Si el candidato **acierta**, un falso negativo pasa a verdadero positivo y el
-denominador sube justo `½`.-/
+denominador sube justo `½`.
+@isnad1 id=eq.0h3v.s6.ebad8d460827 from=translated src=- shape=0e7e95bf vocab=6160d0a4
+-/
 lemma den_acierto (n fp m : ℕ) :
     den (n + 1) fp m = den n fp (m + 1) + 1 / 2 := by
   unfold den; push_cast; ring
 
 /-- Si el candidato **falla**, aparece un falso positivo y el denominador sube
-justo `½`: el mismo coste que acertar.-/
+justo `½`: el mismo coste que acertar.
+@isnad1 id=eq.0h3v.s6.a4e70d702147 from=translated src=- shape=64d2b476 vocab=6160d0a4
+-/
 lemma den_fallo (n fp m : ℕ) :
     den n (fp + 1) (m + 1) = den n fp (m + 1) + 1 / 2 := by
   unfold den; push_cast; ring
@@ -54,7 +58,9 @@ noncomputable def pqCandidato (s p j : ℝ) (n fp fn : ℕ) : ℝ :=
 
 /-- **La regla de la sección 3, demostrada.**
 
-Añadir el candidato sube el PQ esperado **si y solo si** `p · j > PQ / 2`.-/
+Añadir el candidato sube el PQ esperado **si y solo si** `p · j > PQ / 2`.
+@isnad1 id=iff.1h6v.s6.38ef0540cc58 from=translated src=- shape=3b1bda07 vocab=d7f11651
+-/
 theorem pq_candidato_iff (s p j : ℝ) (n fp fn : ℕ) (hd : 0 < den n fp fn) :
     pq s n fp fn < pqCandidato s p j n fp fn ↔ pq s n fp fn / 2 < p * j := by
   have hd2 : (0 : ℝ) < den n fp fn + 1 / 2 := by linarith
@@ -65,13 +71,17 @@ theorem pq_candidato_iff (s p j : ℝ) (n fp fn : ℕ) (hd : 0 < den n fp fn) :
   · intro h; nlinarith
   · intro h; nlinarith
 
-/-- La forma en que se usa al decidir: si el candidato supera el umbral, entra.-/
+/-- La forma en que se usa al decidir: si el candidato supera el umbral, entra.
+@isnad1 id=lt.2h6v.s6.cfdf7e6fe8f4 from=translated src=- shape=98111969 vocab=d7f11651
+-/
 theorem pq_lt_candidato (s p j : ℝ) (n fp fn : ℕ) (hd : 0 < den n fp fn)
     (h : pq s n fp fn / 2 < p * j) : pq s n fp fn < pqCandidato s p j n fp fn :=
   (pq_candidato_iff s p j n fp fn hd).mpr h
 
 /-- Y el recíproco, que es el que de verdad usamos: por debajo del umbral el
-candidato **baja** la nota, así que rechazarlo no es prudencia, es aritmética.-/
+candidato **baja** la nota, así que rechazarlo no es prudencia, es aritmética.
+@isnad1 id=le.2h6v.s6.19582c6042f4 from=translated src=- shape=32e37f95 vocab=02915383
+-/
 theorem candidato_le_pq (s p j : ℝ) (n fp fn : ℕ) (hd : 0 < den n fp fn)
     (h : p * j ≤ pq s n fp fn / 2) : pqCandidato s p j n fp fn ≤ pq s n fp fn := by
   rw [← not_lt]
@@ -82,7 +92,9 @@ theorem candidato_le_pq (s p j : ℝ) (n fp fn : ℕ) (hd : 0 < den n fp fn)
 (`≈ 0.35`) el umbral cae en `p·j ≈ 0.175`, y con `j ≈ 0.5` en `p ≈ 0.35`. Es el
 rango `0.33–0.37` que el informe cita, y explica por qué los dos escalares
 ajustados a mano ya estaban en el equilibrio del teorema: no había nada que
-ganar moviéndolos.-/
+ganar moviéndolos.
+@isnad1 id=iff.2h6v.s6.7ecfc4e16266 from=translated src=- shape=1a628ee3 vocab=d7f11651
+-/
 theorem umbral_equilibrio (s p j : ℝ) (n fp fn : ℕ) (hd : 0 < den n fp fn)
     (hj : 0 < j) :
     pq s n fp fn < pqCandidato s p j n fp fn ↔ pq s n fp fn / (2 * j) < p := by

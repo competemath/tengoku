@@ -50,6 +50,9 @@ variable {R : Type*} [CommRing R]
 def zetaR (N : ℕ) : Matrix (Fin N) (Fin N) R :=
   fun i j => if (i : ℕ) + 1 ∣ (j : ℕ) + 1 then 1 else 0
 
+/--
+@isnad1 id=blocktri.0h2v.s4.0a2c7cb8cf2e from=translated src=- shape=18d92c1e vocab=d5d0e11a
+-/
 theorem zetaR_blockTriangular (N : ℕ) : (zetaR (R := R) N).BlockTriangular id := by
   intro i j hij
   simp only [zetaR]
@@ -59,7 +62,9 @@ theorem zetaR_blockTriangular (N : ℕ) : (zetaR (R := R) N).BlockTriangular id 
   simp only [id] at hij
   omega
 
-/-- det(ζ) = 1 en cualquier anillo: triangular superior con unos en la diagonal.-/
+/-- det(ζ) = 1 en cualquier anillo: triangular superior con unos en la diagonal.
+@isnad1 id=eq.0h2v.s5.a2910147011e from=translated src=- shape=86bfe29b vocab=f744b8e4
+-/
 theorem det_zetaR (N : ℕ) : (zetaR (R := R) N).det = 1 := by
   rw [Matrix.det_of_isUpperTriangular (zetaR_blockTriangular N)]
   simp [zetaR]
@@ -72,6 +77,9 @@ def smithR (N : ℕ) (f : ℕ → R) : Matrix (Fin N) (Fin N) R :=
 def diagR (N : ℕ) (g : ℕ → R) : Matrix (Fin N) (Fin N) R :=
   Matrix.diagonal (fun i => g ((i : ℕ) + 1))
 
+/--
+@isnad1 id=eq.0h5v.s7.901c4e2b62b0 from=translated src=- shape=6ef57afb vocab=665acae7
+-/
 theorem diagR_mul_zetaR (N : ℕ) (g : ℕ → R) (d j : Fin N) :
     (diagR N g * zetaR (R := R) N) d j
       = if (d : ℕ) + 1 ∣ (j : ℕ) + 1 then g ((d : ℕ) + 1) else 0 := by
@@ -88,7 +96,9 @@ theorem diagR_mul_zetaR (N : ℕ) (g : ℕ → R) (d j : Fin N) :
   simp
 
 /-- El puente `Fin N ↔ Nat.divisors m`, ahora genérico en el sumando.
-    Es puro manejo de índices: no mira lo que hay dentro de `g`.-/
+    Es puro manejo de índices: no mira lo que hay dentro de `g`.
+@isnad1 id=eq.2h4v.s7.9d865e9eb618 from=translated src=- shape=5009a012 vocab=dec6372b
+-/
 theorem fin_sum_eq_divisors_sum (N m : ℕ) (g : ℕ → R) (hm1 : 1 ≤ m) (hmN : m ≤ N) :
     (∑ x : Fin N, if (x : ℕ) + 1 ∣ m then g ((x : ℕ) + 1) else 0)
       = ∑ d ∈ Nat.divisors m, g d := by
@@ -121,6 +131,9 @@ theorem fin_sum_eq_divisors_sum (N m : ℕ) (g : ℕ → R) (hm1 : 1 ≤ m) (hmN
     have hbpos : 1 ≤ b := Nat.pos_of_dvd_of_pos (Nat.mem_divisors.mp hb).1 (by omega)
     omega
 
+/--
+@isnad1 id=eq.1h6v.s7.5d7248cee824 from=translated src=- shape=5d89c11a vocab=73499ace
+-/
 theorem entrada_factorizacion_R (N : ℕ) (f g : ℕ → R)
     (hyp : ∀ m, 1 ≤ m → f m = ∑ d ∈ Nat.divisors m, g d) (i j : Fin N) :
     ((zetaR (R := R) N)ᵀ * (diagR N g * zetaR (R := R) N)) i j = smithR N f i j := by
@@ -142,18 +155,26 @@ theorem entrada_factorizacion_R (N : ℕ) (f g : ℕ → R)
   rw [fin_sum_eq_divisors_sum N _ g hgcdpos hgcdle]
   exact (hyp _ hgcdpos).symm
 
+/--
+@isnad1 id=eq.1h4v.s7.39277cac95fd from=translated src=- shape=780f5020 vocab=73499ace
+-/
 theorem smithR_eq_factorizacion (N : ℕ) (f g : ℕ → R)
     (hyp : ∀ m, 1 ≤ m → f m = ∑ d ∈ Nat.divisors m, g d) :
     smithR N f = (zetaR (R := R) N)ᵀ * (diagR N g * zetaR (R := R) N) := by
   ext i j
   exact (entrada_factorizacion_R N f g hyp i j).symm
 
+/--
+@isnad1 id=eq.0h3v.s5.1ce35a1991b1 from=translated src=- shape=36c00b04 vocab=20cc4589
+-/
 theorem det_diagR (N : ℕ) (g : ℕ → R) :
     (diagR N g).det = ∏ i : Fin N, g ((i : ℕ) + 1) := by
   simp [diagR, Matrix.det_diagonal]
 
 /-- **Smith generalizado, sobre cualquier anillo conmutativo.**
-    Si `f(m) = Σ_{d|m} g(d)` entonces `det(f(gcd(i,j))) = g(1)···g(N)`.-/
+    Si `f(m) = Σ_{d|m} g(d)` entonces `det(f(gcd(i,j))) = g(1)···g(N)`.
+@isnad1 id=eq.1h4v.s6.8d58f71667c7 from=translated src=- shape=8c94a3eb vocab=6ec4e223
+-/
 theorem smithR_determinant (N : ℕ) (f g : ℕ → R)
     (hyp : ∀ m, 1 ≤ m → f m = ∑ d ∈ Nat.divisors m, g d) :
     (smithR N f).det = ∏ i : Fin N, g ((i : ℕ) + 1) := by
@@ -172,7 +193,9 @@ def diagId (N : ℕ) : Matrix (Fin N) (Fin N) ℚ :=
   Matrix.diagonal (fun i => (((i : ℕ) + 1 : ℕ) : ℚ))
 
 /-- **La factorización que lo reduce todo a Smith**: `lcm(i,j) = i · (1/gcd(i,j)) · j`,
-    que no es más que `lcm·gcd = i·j` dividido por el gcd.-/
+    que no es más que `lcm·gcd = i·j` dividido por el gcd.
+@isnad1 id=eq.0h1v.s6.f7018dcb5913 from=translated src=- shape=fc60229d vocab=76c2a1fa
+-/
 theorem lcmMat_eq (N : ℕ) :
     lcmMat N = diagId N * smithR N (fun m => (1 : ℚ) / m) * diagId N := by
   ext i j
@@ -191,6 +214,9 @@ theorem lcmMat_eq (N : ℕ) :
   field_simp
   linear_combination hmulQ
 
+/--
+@isnad1 id=eq.0h1v.s5.91914f16d0df from=translated src=- shape=46141e47 vocab=cfbc8e93
+-/
 theorem det_diagId (N : ℕ) :
     (diagId N).det = ∏ i : Fin N, (((i : ℕ) + 1 : ℕ) : ℚ) := by
   simp [diagId, Matrix.det_diagonal]
@@ -201,7 +227,9 @@ theorem det_diagId (N : ℕ) :
         det(lcm(i,j))_{i,j=1}^N = (Π k)² · Π_k g(k).
 
     Con `g(n) = (1/n)·Π_{p|n}(1-p)` el lado derecho es `N! · Π_k Π_{p|k}(1-p)`,
-    verificado exactamente hasta N=12 en `verifica_lcm_det.py`.-/
+    verificado exactamente hasta N=12 en `verifica_lcm_det.py`.
+@isnad1 id=eq.1h2v.s7.79cc9e0b7180 from=translated src=- shape=7a948462 vocab=9497cc6f
+-/
 theorem det_lcmMat (N : ℕ) (g : ℕ → ℚ)
     (hyp : ∀ m, 1 ≤ m → (1 : ℚ) / m = ∑ d ∈ Nat.divisors m, g d) :
     (lcmMat N).det
@@ -224,7 +252,9 @@ noncomputable def gLcm (n : ℕ) : ℚ :=
 
     `sum_eq_iff_sum_mul_moebius_eq` es un *si y solo si*: el lado que dice
     `Σ_{ab=n} μ(a)·(1/b) = gLcm n` es cierto **por definición** de `gLcm`, así
-    que el otro lado --- el que necesitamos --- se obtiene con `.mpr`.-/
+    que el otro lado --- el que necesitamos --- se obtiene con `.mpr`.
+@isnad1 id=eq.1h1v.s5.89726a8da0ef from=translated src=- shape=ebf572a0 vocab=53a52b8f
+-/
 theorem gLcm_spec (m : ℕ) (hm : 1 ≤ m) :
     (1 : ℚ) / m = ∑ d ∈ Nat.divisors m, gLcm d := by
   have h : ∀ n, 0 < n →
@@ -237,7 +267,9 @@ theorem gLcm_spec (m : ℕ) (hm : 1 ≤ m) :
 
         det(lcm(i,j))_{i,j=1}^N = (Π_{k≤N} k)² · Π_{k≤N} gLcm(k).
 
-    Sin premisas: la única que había la descarga `gLcm_spec`.-/
+    Sin premisas: la única que había la descarga `gLcm_spec`.
+@isnad1 id=eq.0h1v.s6.1c297b2d7f77 from=translated src=- shape=e57a9433 vocab=134d545b
+-/
 theorem det_lcm (N : ℕ) :
     (lcmMat N).det
       = (∏ i : Fin N, (((i : ℕ) + 1 : ℕ) : ℚ))
