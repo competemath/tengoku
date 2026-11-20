@@ -17,7 +17,9 @@ variable {α : Type*}
 /--
 A uniformly dense rank-two flat of size `2k`, with a complement of size `k`,
 canonically supplies the sorted half-weave enumeration and hence a cyclic
-rank-three basis order.-/
+rank-three basis order.
+@isnad1 id=ex.8h4v.s7.499ef17a2d8a from=translated src=- shape=2c8f9406 vocab=6061f39c
+-/
 theorem exists_cyclicBasisOrder3_of_uniformlyDense_rankTwo_flat
     (M : Matroid α) (k : ℕ)
     (hk : 0 < k)
@@ -70,7 +72,9 @@ theorem exists_cyclicBasisOrder3_of_uniformlyDense_rankTwo_flat
 
 /--
 The rank-two side of the tight-set classification now discharges all
-enumeration, restriction-rank, flatness, and complement-cardinality data.-/
+enumeration, restriction-rank, flatness, and complement-cardinality data.
+@isnad1 id=ex.7h4v.s7.c69b9ec06b7e from=translated src=- shape=f09e4e98 vocab=d299b271
+-/
 theorem exists_cyclicBasisOrder3_of_tight_rank_two
     (M : Matroid α) (k : ℕ)
     (hk : 0 < k)

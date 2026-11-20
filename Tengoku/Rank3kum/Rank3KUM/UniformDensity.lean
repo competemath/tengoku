@@ -22,7 +22,9 @@ def UniformlyDense (M : Matroid α) (k : ℕ) : Prop :=
 def Tight (M : Matroid α) (k : ℕ) (X : Set α) : Prop :=
   X ⊆ M.E ∧ X.encard = (k : ℕ∞) * M.eRk X
 
-/-- Uniform density is inherited by restriction to a ground-set subset.-/
+/-- Uniform density is inherited by restriction to a ground-set subset.
+@isnad1 id=uniforml.2h4v.s5.dae828ad4424 from=translated src=- shape=ed324afc vocab=331c3805
+-/
 theorem UniformlyDense.restrict
     (M : Matroid α)
     (k : ℕ)
@@ -38,7 +40,9 @@ theorem UniformlyDense.restrict
   simpa [M.restrict_eRk_eq hAR] using
     hDense A hAE
 
-/-- In a loopless uniformly dense matroid, every parallel class has size at most `k`.-/
+/-- In a loopless uniformly dense matroid, every parallel class has size at most `k`.
+@isnad1 id=le.3h4v.s5.419717335223 from=translated src=- shape=cb965f06 vocab=86fc46c7
+-/
 theorem closure_singleton_encard_le
     (M : Matroid α)
     (k : ℕ)
@@ -62,7 +66,9 @@ theorem closure_singleton_encard_le
       rw [heNonloop.indep.eRk_eq_encard]
     _ = (k : ℕ∞) := by simp
 
-/-- In a finite uniformly dense matroid, every tight set is a flat.-/
+/-- In a finite uniformly dense matroid, every tight set is a flat.
+@isnad1 id=isflat.3h4v.s4.269a4fb5c095 from=translated src=- shape=f796a7b9 vocab=8cfc2a80
+-/
 theorem tight_isFlat
     (M : Matroid α)
     (k : ℕ)
@@ -85,7 +91,9 @@ theorem tight_isFlat
     (hXfinite.eq_of_subset_of_encard_le
       (M.subset_closure X hX.1) hcard).symm
 
-/-- Uniform density excludes loops.-/
+/-- Uniform density excludes loops.
+@isnad1 id=loopless.2h3v.s4.ec86f0f5b97f from=translated src=- shape=453dc651 vocab=d1cc331a
+-/
 theorem loopless_of_uniformlyDense
     (M : Matroid α)
     (k : ℕ)
@@ -102,7 +110,9 @@ theorem loopless_of_uniformlyDense
 
 /--
 A nonempty proper tight set in the stated rank-three situation has extended
-rank exactly one or exactly two.-/
+rank exactly one or exactly two.
+@isnad1 id=or.8h4v.s6.e085acb5f41b from=translated src=- shape=14ba461d vocab=f675227e
+-/
 theorem tight_rank_one_or_two
     (M : Matroid α)
     (k : ℕ)
@@ -152,7 +162,9 @@ theorem tight_rank_one_or_two
   rw [hr_eq] at hr_ne_zero hr_ne_three ⊢
   interval_cases n <;> simp_all
 
-/-- A tight rank-one set has cardinality `k`.-/
+/-- A tight rank-one set has cardinality `k`.
+@isnad1 id=eq.2h4v.s5.295db76e9564 from=translated src=- shape=cc73efaa vocab=47523049
+-/
 theorem tight_encard_eq_k_of_eRk_eq_one
     (M : Matroid α)
     (k : ℕ)
@@ -165,7 +177,9 @@ theorem tight_encard_eq_k_of_eRk_eq_one
     _ = (k : ℕ∞) * 1 := by rw [hr]
     _ = (k : ℕ∞) := by simp
 
-/-- A tight rank-two set has cardinality `2k`.-/
+/-- A tight rank-two set has cardinality `2k`.
+@isnad1 id=eq.2h4v.s5.b8f8993f8ab3 from=translated src=- shape=1d4c2f95 vocab=1a288020
+-/
 theorem tight_encard_eq_two_mul_k_of_eRk_eq_two
     (M : Matroid α)
     (k : ℕ)
@@ -183,7 +197,9 @@ theorem tight_encard_eq_two_mul_k_of_eRk_eq_two
 
 /--
 Every nonempty proper tight set in a finite uniformly dense rank-three matroid
-on `3k` elements is a flat and has one of the two stated rank/cardinality types.-/
+on `3k` elements is a flat and has one of the two stated rank/cardinality types.
+@isnad1 id=and.8h4v.s7.d2e790709032 from=translated src=- shape=b4f87c74 vocab=e9ad72ab
+-/
 theorem nonempty_proper_tight_flat_classification
     (M : Matroid α)
     (k : ℕ)

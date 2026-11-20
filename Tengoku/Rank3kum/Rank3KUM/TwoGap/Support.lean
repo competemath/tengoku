@@ -16,13 +16,18 @@ def FundamentalSupport
     (M : Matroid α) (D : Set α) (e : α) : Set α :=
   M.fundCircuit e D \ {e}
 
+/--
+@isnad1 id=iff.0h5v.s5.6ff6c4edad7f from=translated src=- shape=998c04ea vocab=24472303
+-/
 @[simp] theorem mem_fundamentalSupport
     (M : Matroid α) (D : Set α) (e d : α) :
     d ∈ FundamentalSupport M D e ↔
       d ∈ M.fundCircuit e D ∧ d ≠ e := by
   simp [FundamentalSupport]
 
-/-- Fundamental support is the basis-exchange support.-/
+/-- Fundamental support is the basis-exchange support.
+@isnad1 id=iff.3h5v.s6.51d5a1e53538 from=translated src=- shape=06eab0ba vocab=533bd0f9
+-/
 theorem mem_fundamentalSupport_iff_exchange_isBase
     (M : Matroid α) {D : Set α} {e d : α}
     (hD : M.IsBase D) (heE : e ∈ M.E) (heD : e ∉ D) :
@@ -53,7 +58,9 @@ theorem mem_fundamentalSupport_iff_exchange_isBase
       (hD.indep.mem_fundCircuit_iff heclD heD).mpr hI
     exact ⟨hdC, hde⟩
 
-/-- Every symmetric partner lies in the corresponding fundamental support.-/
+/-- Every symmetric partner lies in the corresponding fundamental support.
+@isnad1 id=le.4h5v.s5.f316f5f5cbe3 from=translated src=- shape=0f5e1f31 vocab=7f8d8aa3
+-/
 theorem symmetricPartners_subset_fundamentalSupport
     (M : Matroid α) {D B : Set α} {e : α}
     (hD : M.IsBase D) (hB : M.IsBase B)
@@ -67,7 +74,9 @@ theorem symmetricPartners_subset_fundamentalSupport
 
 /--
 If the fundamental support is the singleton `{d}`, then the fundamental
-circuit itself is the two-element set `{e,d}`.-/
+circuit itself is the two-element set `{e,d}`.
+@isnad1 id=iscircui.4h5v.s6.41ad7533ce51 from=translated src=- shape=c17e9fe9 vocab=8dbe1efe
+-/
 theorem fundamentalSupport_eq_singleton_isCircuit_pair
     (M : Matroid α) {D : Set α} {e d : α}
     (hD : M.IsBase D) (heE : e ∈ M.E) (heD : e ∉ D)
@@ -87,7 +96,9 @@ theorem fundamentalSupport_eq_singleton_isCircuit_pair
       _ = ({e, d} : Set α) := rfl
   rwa [hFC] at hC
 
-/-- A circuit pair is dependent, so it cannot be contained in an independent set.-/
+/-- A circuit pair is dependent, so it cannot be contained in an independent set.
+@isnad1 id=not.2h5v.s5.db1890e4f542 from=translated src=- shape=1c7d401a vocab=bab1ad66
+-/
 theorem not_indep_of_isCircuit_pair_subset
     (M : Matroid α) {e d : α} {I : Set α}
     (hpair : M.IsCircuit ({e, d} : Set α))

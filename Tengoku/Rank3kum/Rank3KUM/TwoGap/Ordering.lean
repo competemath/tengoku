@@ -12,7 +12,9 @@ variable {α : Type*}
 
 /--
 A three-element set can be ordered with any two distinct prescribed elements
-in the first and final positions.-/
+in the first and final positions.
+@isnad1 id=ex.4h4v.s7.80365077c1be from=translated src=- shape=0f5875b2 vocab=90d99e69
+-/
 theorem exists_fin3_equiv_with_endpoints
     {D : Set α} {u w : α}
     (hcard : D.encard = 3)
@@ -59,7 +61,9 @@ theorem exists_fin3_equiv_with_endpoints
       simp [result]
     exact congrArg Subtype.val hresult_two
 
-/-- The range of an ordering `Fin 3 ≃ D` is exactly its three displayed values.-/
+/-- The range of an ordering `Fin 3 ≃ D` is exactly its three displayed values.
+@isnad1 id=eq.0h3v.s8.88e595871870 from=translated src=- shape=60a6aed3 vocab=35debedb
+-/
 theorem set_eq_triple_of_fin3_equiv
     {D : Set α} (d : Fin 3 ≃ D) :
     D = ({(d 0 : α), (d 1 : α), (d 2 : α)} : Set α) := by
@@ -81,7 +85,9 @@ theorem set_eq_triple_of_fin3_equiv
     · subst x
       exact (d 2).property
 
-/-- Distinct positions in a `Fin 3` ordering have distinct underlying values.-/
+/-- Distinct positions in a `Fin 3` ordering have distinct underlying values.
+@isnad1 id=ne.1h5v.s7.58e4daba2a7c from=translated src=- shape=4d9beb4e vocab=a248dc34
+-/
 theorem fin3_equiv_coe_ne
     {D : Set α} (d : Fin 3 ≃ D) {i j : Fin 3}
     (hij : i ≠ j) :

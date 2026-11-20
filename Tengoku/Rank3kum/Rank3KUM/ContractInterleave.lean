@@ -23,7 +23,9 @@ variable {α : Type*}
 
 /--
 A basis of a contraction by a rank-one set lifts, after adjoining a singleton
-basis of the contracted set, to a basis of the original rank-three matroid.-/
+basis of the contracted set, to a basis of the original rank-three matroid.
+@isnad1 id=isbase.4h6v.s6.35ec48de865c from=translated src=- shape=91ed82ec vocab=875a24a8
+-/
 theorem isBase_insert_pair_of_contract_isBase_rank3
     (M : Matroid α) {X : Set α}
     (hRank : M.eRank = 3)
@@ -69,6 +71,9 @@ def contractGroundEquiv (M : Matroid α) (X : Set α) :
     apply Subtype.ext
     rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.1a20166411c7 from=translated src=- shape=7c93e0fd vocab=50452254
+-/
 @[simp] theorem contractGroundEquiv_trans_apply_coe
     {β : Type*} (M : Matroid α) (X : Set α)
     (σ : β ≃ (Matroid.contract M X).E) (x : β) :
@@ -77,7 +82,9 @@ def contractGroundEquiv (M : Matroid α) (X : Set α) :
       ((σ x : (Matroid.contract M X).E) : α) := by
   rfl
 
-/-- Every point of a loopless rank-one set is a singleton basis of that set.-/
+/-- Every point of a loopless rank-one set is a singleton basis of that set.
+@isnad1 id=isbasis.4h4v.s5.5b9bfd1ff290 from=translated src=- shape=3d417c9e vocab=f2a48ace
+-/
 theorem isBasis_singleton_of_loopless_eRk_eq_one
     (M : Matroid α)
     (hLoopless : M.Loopless)
@@ -98,7 +105,9 @@ theorem isBasis_singleton_of_loopless_eRk_eq_one
 
 /--
 A sorted rank-two enumeration of the contraction by a rank-one set interleaves
-with any enumeration of that set to give a cyclic rank-three basis order.-/
+with any enumeration of that set to give a cyclic rank-three basis order.
+@isnad1 id=ex.6h7v.s7.41714e66c940 from=translated src=- shape=1915aac4 vocab=ce1de5b4
+-/
 theorem exists_cyclicBasisOrder3_of_contract_sortedEnumeration
     (M : Matroid α) {X : Set α} {k m : ℕ}
     (hk : 0 < k)
@@ -187,7 +196,9 @@ theorem exists_cyclicBasisOrder3_of_contract_sortedEnumeration
 
 /--
 Contracting a rank-one set whose singleton basis is `e` lowers the rank of
-every disjoint set union by exactly one.-/
+every disjoint set union by exactly one.
+@isnad1 id=eq.2h5v.s6.4297a752de0e from=translated src=- shape=f3cd4688 vocab=19482557
+-/
 theorem eRk_union_eq_contract_eRk_add_one
     (M : Matroid α) {X A : Set α} {e : α}
     (heBasis : M.IsBasis ({e} : Set α) X)
@@ -234,7 +245,9 @@ theorem eRk_union_eq_contract_eRk_add_one
     _ = (Matroid.contract M X).eRk A + 1 := by
       rw [hI.encard_eq_eRk]
 
-/-- Uniform density is inherited by contraction of a tight rank-one set.-/
+/-- Uniform density is inherited by contraction of a tight rank-one set.
+@isnad1 id=uniforml.3h4v.s5.f0e99856155e from=translated src=- shape=ffabd19a vocab=8770c9a8
+-/
 theorem UniformlyDense.contract_tight_rank_one
     (M : Matroid α) (k : ℕ)
     (hDense : UniformlyDense M k)
@@ -267,7 +280,9 @@ theorem UniformlyDense.contract_tight_rank_one
     (ENat.add_le_add_iff_right
       (by simp : (k : ℕ∞) ≠ ⊤)).mp hdense
 
-/-- Contracting a rank-one set from a rank-three matroid has rank two.-/
+/-- Contracting a rank-one set from a rank-three matroid has rank two.
+@isnad1 id=eq.3h3v.s5.e6086d7a636d from=translated src=- shape=0db5e72d vocab=e7b14030
+-/
 theorem eRank_contract_eq_two_of_eRank_eq_three_eRk_eq_one
     (M : Matroid α)
     (hRank : M.eRank = 3)
@@ -298,7 +313,9 @@ theorem eRank_contract_eq_two_of_eRank_eq_three_eRk_eq_one
 
 /--
 A nonempty tight rank-one set supplies the entire contraction/interleave branch
-of the rank-three construction automatically.-/
+of the rank-three construction automatically.
+@isnad1 id=ex.7h4v.s7.c1c2ea6b17d9 from=translated src=- shape=f09e4e98 vocab=1433e20f
+-/
 theorem exists_cyclicBasisOrder3_of_tight_rank_one
     (M : Matroid α) (k : ℕ)
     (hk : 0 < k)

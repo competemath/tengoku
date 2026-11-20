@@ -92,6 +92,9 @@ def SymmetricPartners
     M.IsBase (exchangeSet D d e) ∧
     M.IsBase (exchangeSet B e d)}
 
+/--
+@isnad1 id=iff.0h6v.s6.4d994fb368eb from=translated src=- shape=35b20c17 vocab=17055411
+-/
 @[simp] theorem mem_symmetricPartners
     (M : Matroid α) (D B : Set α) (e d : α) :
     d ∈ SymmetricPartners M D B e ↔
@@ -106,7 +109,9 @@ Ordinary symmetric basis exchange, packaged as nonemptiness of
 
 The proof uses the fact that the fundamental circuit of `e` over `D` and the
 fundamental cocircuit of `e` in `B` cannot meet in exactly `{e}`. A second
-intersection element is a simultaneous exchange partner.-/
+intersection element is a simultaneous exchange partner.
+@isnad1 id=nonempty.4h5v.s5.9395605e8630 from=translated src=- shape=aa627ea8 vocab=16c823ca
+-/
 theorem symmetricPartners_nonempty
     (M : Matroid α) {D B : Set α} {e : α}
     (hD : M.IsBase D) (hB : M.IsBase B)
@@ -163,7 +168,9 @@ def GapBlocked (A B : Set α) : Prop :=
 
 /--
 Two nonempty candidate sets block a gap exactly when they are the same
-singleton. This is the pure combinatorial reduction used twice in `TG`.-/
+singleton. This is the pure combinatorial reduction used twice in `TG`.
+@isnad1 id=iff.2h3v.s5.8c4d3e2a9358 from=translated src=- shape=b243d137 vocab=7b77db3b
+-/
 theorem gapBlocked_iff_common_singleton
     {A B : Set α} (hA : A.Nonempty) (hB : B.Nonempty) :
     GapBlocked A B ↔ ∃ t, A = {t} ∧ B = {t} := by
@@ -198,7 +205,9 @@ theorem gapBlocked_iff_common_singleton
 
 /--
 Specialization of `gapBlocked_iff_common_singleton` to symmetric-partner
-sets. Basis exchange supplies the two nonemptiness hypotheses.-/
+sets. Basis exchange supplies the two nonemptiness hypotheses.
+@isnad1 id=iff.7h7v.s6.cb17498d5d3b from=translated src=- shape=644e23fd vocab=43496dd3
+-/
 theorem gapBlocked_symmetricPartners_iff_common_singleton
     (M : Matroid α) {D B₁ B₂ : Set α} {e₁ e₂ : α}
     (hD : M.IsBase D)

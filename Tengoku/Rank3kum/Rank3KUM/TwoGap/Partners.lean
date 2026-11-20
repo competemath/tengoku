@@ -10,7 +10,9 @@ open Set
 
 variable {α : Type*}
 
-/-- Delete the final element of a displayed triple and insert a replacement.-/
+/-- Delete the final element of a displayed triple and insert a replacement.
+@isnad1 id=eq.3h5v.s6.5c0361347326 from=translated src=- shape=2ab550ce vocab=9e46040d
+-/
 theorem exchangeSet_triple_remove_third
     {x y z e : α}
     (hzx : z ≠ x) (hzy : z ≠ y) (hez : e ≠ z) :
@@ -21,7 +23,9 @@ theorem exchangeSet_triple_remove_third
     Set.mem_singleton_iff]
   aesop
 
-/-- Delete the first element of a displayed triple and insert a replacement.-/
+/-- Delete the first element of a displayed triple and insert a replacement.
+@isnad1 id=eq.3h5v.s6.993b0800b9f0 from=translated src=- shape=8180be33 vocab=9e46040d
+-/
 theorem exchangeSet_triple_remove_first
     {x y z e : α}
     (hxy : x ≠ y) (hxz : x ≠ z) (hex : e ≠ x) :
@@ -32,7 +36,9 @@ theorem exchangeSet_triple_remove_first
     Set.mem_singleton_iff]
   aesop
 
-/-- Two unequal symmetric partners construct a valid first-gap ordering.-/
+/-- Two unequal symmetric partners construct a valid first-gap ordering.
+@isnad1 id=firstgap.11h9v.s7.7c83c8fd7d4b from=translated src=- shape=fc6f47d7 vocab=6efb39ba
+-/
 theorem firstGapWorks_of_distinct_symmetricPartners
     (M : Matroid α) {D : Set α} {p a b c u w : α}
     (hRank : M.eRank = 3)
@@ -134,7 +140,9 @@ theorem firstGapWorks_of_distinct_symmetricPartners
   · simpa [hd2] using h3
   · simpa [hd2] using h4
 
-/-- Two unequal symmetric partners construct a valid second-gap ordering.-/
+/-- Two unequal symmetric partners construct a valid second-gap ordering.
+@isnad1 id=secondga.11h9v.s7.dd8edfee2dc2 from=translated src=- shape=fc6f47d7 vocab=163a986a
+-/
 theorem secondGapWorks_of_distinct_symmetricPartners
     (M : Matroid α) {D : Set α} {a b c q u w : α}
     (hRank : M.eRank = 3)
@@ -236,7 +244,9 @@ theorem secondGapWorks_of_distinct_symmetricPartners
   · simpa [hd2] using h3
   · simpa [hd2] using h4
 
-/-- If the first gap does not work, its two partner sets are blocked.-/
+/-- If the first gap does not work, its two partner sets are blocked.
+@isnad1 id=gapblock.9h7v.s7.3e06bd8326c2 from=translated src=- shape=afb52ac1 vocab=781fc0dd
+-/
 theorem firstGapBlocked_of_not_works
     (M : Matroid α) {D : Set α} {p a b c : α}
     (hRank : M.eRank = 3) (hD : M.IsBase D)
@@ -252,7 +262,9 @@ theorem firstGapBlocked_of_not_works
     firstGapWorks_of_distinct_symmetricPartners M hRank hD haD hbD
       hpb hab hba hca hu hw huw
 
-/-- If the second gap does not work, its two partner sets are blocked.-/
+/-- If the second gap does not work, its two partner sets are blocked.
+@isnad1 id=gapblock.9h7v.s7.eb2d55bf9a88 from=translated src=- shape=afb52ac1 vocab=e84f69af
+-/
 theorem secondGapBlocked_of_not_works
     (M : Matroid α) {D : Set α} {a b c q : α}
     (hRank : M.eRank = 3) (hD : M.IsBase D)

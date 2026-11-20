@@ -20,7 +20,9 @@ disjoint.
 
 This is the single abstract argument instantiated three times in the paper's
 table.  It replaces the need to repeat the same closure-intersection proof
-for the `(a,c)`, `(a,b)`, and `(b,c)` cases.-/
+for the `(a,c)`, `(a,b)`, and `(b,c)` cases.
+@isnad1 id=disjoint.20h9v.s8.5c75dbe7865a from=translated src=- shape=4a998be5 vocab=d48386b6
+-/
 theorem residualSupport_disjoint_of_shared_bridge
     (M : Matroid α)
     {D : Set α} {x u s v y t : α}

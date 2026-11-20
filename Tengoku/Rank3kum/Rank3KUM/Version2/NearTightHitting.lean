@@ -14,7 +14,9 @@ variable {α : Type*}
 Paper v2, Proposition 8.11.  This has the same conclusion as the legacy
 compiled theorem, but in the nonconcurrent branch it uses the strengthened
 Lemma 8.8 directly: the three near-tight flats are the entire near-tight
-family, so the basis chosen from their pairwise intersections hits every one.-/
+family, so the basis chosen from their pairwise intersections hits every one.
+@isnad1 id=ex.6h3v.s6.b20a249128d0 from=translated src=- shape=6643ef00 vocab=ae4c37c6
+-/
 theorem exists_isBase_hitsNearTight_of_strict_rankThree
     (M : Matroid α) (k : ℕ)
     (hk : 3 ≤ k)

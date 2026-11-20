@@ -9,7 +9,9 @@ import Tengoku.Seed.Combinatorics.Matroid.Rank.ENat
 
 namespace Rank3KUM.HalfWeave
 
-/-- A finite independent pair of distinct elements is a base in rank two.-/
+/-- A finite independent pair of distinct elements is a base in rank two.
+@isnad1 id=isbase.3h4v.s5.6200359ad7e9 from=translated src=- shape=2ae9dbfd vocab=23a846cb
+-/
 theorem pair_isBase_of_indep_of_eRank_eq_two
     {α : Type*}
     (M : Matroid α)
@@ -39,7 +41,9 @@ structure RankTwoSortedEnumeration
 
 /--
 In a loopless matroid, elements in different singleton-closure classes form
-an independent pair.-/
+an independent pair.
+@isnad1 id=indep.4h4v.s6.b641daa7a25e from=translated src=- shape=7e9b5aef vocab=6639351a
+-/
 theorem pair_indep_of_closure_ne
     {α : Type*}
     (M : Matroid α)
@@ -62,7 +66,9 @@ theorem pair_indep_of_closure_ne
     (heNonloop.closure_eq_closure_iff_eq_or_dep
       hfNonloop).2 (Or.inr hdep)
 
-/-- A rank-two matroid has two ground elements in different singleton-closure classes.-/
+/-- A rank-two matroid has two ground elements in different singleton-closure classes.
+@isnad1 id=ex.1h2v.s6.9b385a07ab61 from=translated src=- shape=a850d205 vocab=c156de9a
+-/
 theorem exists_pair_closure_ne_of_eRank_eq_two
     {α : Type*}
     (M : Matroid α)
@@ -130,6 +136,9 @@ def rankTwoWoven
     Fin k × Bool ≃ M.E :=
   woven k hk D.y
 
+/--
+@isnad1 id=eq.1h6v.s7.04040ff6adb2 from=translated src=- shape=f21d4760 vocab=64c43bb6
+-/
 @[simp] theorem rankTwoWoven_false
     {α : Type*}
     {M : Matroid α}
@@ -141,6 +150,9 @@ def rankTwoWoven
       D.y (firstIndex k i) := by
   simp [rankTwoWoven]
 
+/--
+@isnad1 id=eq.1h6v.s7.28efd6ac9a16 from=translated src=- shape=f21d4760 vocab=c9ff9e74
+-/
 @[simp] theorem rankTwoWoven_true
     {α : Type*}
     {M : Matroid α}
@@ -152,7 +164,9 @@ def rankTwoWoven
       D.y (secondIndex k i) := by
   simp [rankTwoWoven]
 
-/-- Successive woven values are distinct in the ground-set subtype.-/
+/-- Successive woven values are distinct in the ground-set subtype.
+@isnad1 id=ne.1h6v.s7.8149e15ef10f from=translated src=- shape=83941a98 vocab=0a61f85c
+-/
 theorem rankTwoWoven_successor_ne
     {α : Type*}
     {M : Matroid α}
@@ -173,7 +187,9 @@ theorem rankTwoWoven_successor_ne
     simpa [rankTwoWoven, woven] using heq
   exact congrArg D.sortedBlocks.block hindices
 
-/-- Successive woven values remain distinct after coercion to `α`.-/
+/-- Successive woven values remain distinct after coercion to `α`.
+@isnad1 id=ne.1h6v.s7.f9edd8ea3cde from=translated src=- shape=fb5d7eac vocab=a873c379
+-/
 theorem rankTwoWoven_successor_coe_ne
     {α : Type*}
     {M : Matroid α}
@@ -188,7 +204,9 @@ theorem rankTwoWoven_successor_coe_ne
   apply Subtype.ext
   exact heq
 
-/-- Every successor pair in the woven enumeration is independent.-/
+/-- Every successor pair in the woven enumeration is independent.
+@isnad1 id=indep.1h6v.s7.20ddc9b711f6 from=translated src=- shape=68f4d8d4 vocab=b24ac1e5
+-/
 theorem rankTwoWoven_successor_indep
     {α : Type*}
     {M : Matroid α}
@@ -208,7 +226,9 @@ theorem rankTwoWoven_successor_indep
       (halfWeaveEquiv k hk (weaveNext k hk p))
       hblocks
 
-/-- In rank two, every woven successor pair is a base.-/
+/-- In rank two, every woven successor pair is a base.
+@isnad1 id=isbase.2h6v.s7.d6c6129add13 from=translated src=- shape=d9409adb vocab=c4c24d05
+-/
 theorem rankTwoWoven_successor_isBase
     {α : Type*}
     (M : Matroid α)
@@ -228,7 +248,9 @@ theorem rankTwoWoven_successor_isBase
 
 /--
 A supplied sorted block enumeration produces a cyclic ground-set enumeration
-whose every successor pair is a base.-/
+whose every successor pair is a base.
+@isnad1 id=ex.2h5v.s7.c8e232a78cbd from=translated src=- shape=5165b286 vocab=58ee220f
+-/
 theorem exists_cyclic_adjacent_base_order_of_sortedEnumeration
     {α : Type*}
     (M : Matroid α)

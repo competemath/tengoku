@@ -8,7 +8,9 @@ open Set
 
 variable {α : Type*}
 
-/-- Append a three-element basis at the wraparound gap of a cyclic basis order.-/
+/-- Append a three-element basis at the wraparound gap of a cyclic basis order.
+@isnad1 id=cyclicba.8h7v.s10.cb00ec5c5bfc from=translated src=- shape=4e24ed89 vocab=de2f36e0
+-/
 theorem cyclicBasisOrder3_appendBlock_wrap
     (M : Matroid α) {E D : Set α} {m : ℕ}
     (hm : 2 ≤ m)

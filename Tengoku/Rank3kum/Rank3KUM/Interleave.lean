@@ -50,16 +50,25 @@ def finThreeInterleaveEquiv (k : ℕ) :
     · rfl
     · cases b <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.d3a0c22e3f04 from=translated src=- shape=c6bd305d vocab=ec0ac182
+-/
 @[simp] theorem finThreeInterleaveEquiv_zero
     (k : ℕ) (i : Fin k) :
     finThreeInterleaveEquiv k (i, 0) = Sum.inl i := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.b99a1ff91b46 from=translated src=- shape=718a75ac vocab=950a8b6f
+-/
 @[simp] theorem finThreeInterleaveEquiv_one
     (k : ℕ) (i : Fin k) :
     finThreeInterleaveEquiv k (i, 1) = Sum.inr (i, false) := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.d94022af87dc from=translated src=- shape=718a75ac vocab=5f22c9d5
+-/
 @[simp] theorem finThreeInterleaveEquiv_two
     (k : ℕ) (i : Fin k) :
     finThreeInterleaveEquiv k (i, 2) = Sum.inr (i, true) := by
@@ -76,12 +85,18 @@ def interleavePosition (k : ℕ) (i : Fin k) (j : Fin 3) :
   (finCongr (Nat.mul_comm 3 k)).symm
     (finProdFinEquiv (i, j))
 
+/--
+@isnad1 id=eq.0h3v.s7.b0bf3552c8b1 from=translated src=- shape=530deb21 vocab=3fc1a25a
+-/
 @[simp] theorem interleavePositionEquiv_apply
     (k : ℕ) (i : Fin k) (j : Fin 3) :
     interleavePositionEquiv k (i, j) =
       interleavePosition k i j := by
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.70d7482c7f7c from=translated src=- shape=b38fd60c vocab=f1599e80
+-/
 @[simp] theorem interleavePosition_val
     (k : ℕ) (i : Fin k) (j : Fin 3) :
     (interleavePosition k i j).val = j.val + 3 * i.val := by
@@ -104,7 +119,9 @@ def interleaveOneTwo
           ((Equiv.sumCongr points pairs).trans
             (Equiv.Set.union hPX).symm)))
 
-/-- The first residue advances to the second within its block.-/
+/-- The first residue advances to the second within its block.
+@isnad1 id=eq.1h2v.s6.55d5bf7ebe1e from=translated src=- shape=f529b03c vocab=a0fc58c5
+-/
 theorem cyclicIndex_interleave_zero_one
     (k : ℕ) (hk : 0 < k) (i : Fin k) :
     cyclicIndex (3 * k) (by omega) (interleavePosition k i 0) 1 =
@@ -114,7 +131,9 @@ theorem cyclicIndex_interleave_zero_one
   rw [Nat.mod_eq_of_lt (by omega)]
   omega
 
-/-- Two steps from the first residue reaches the third residue.-/
+/-- Two steps from the first residue reaches the third residue.
+@isnad1 id=eq.1h2v.s6.f6085666b155 from=translated src=- shape=f529b03c vocab=a0fc58c5
+-/
 theorem cyclicIndex_interleave_zero_two
     (k : ℕ) (hk : 0 < k) (i : Fin k) :
     cyclicIndex (3 * k) (by omega) (interleavePosition k i 0) 2 =
@@ -124,7 +143,9 @@ theorem cyclicIndex_interleave_zero_two
   rw [Nat.mod_eq_of_lt (by omega)]
   omega
 
-/-- The second residue advances to the third within its block.-/
+/-- The second residue advances to the third within its block.
+@isnad1 id=eq.1h2v.s6.d5bfb82a20f3 from=translated src=- shape=f529b03c vocab=a0fc58c5
+-/
 theorem cyclicIndex_interleave_one_one
     (k : ℕ) (hk : 0 < k) (i : Fin k) :
     cyclicIndex (3 * k) (by omega) (interleavePosition k i 1) 1 =
@@ -134,7 +155,9 @@ theorem cyclicIndex_interleave_one_one
   rw [Nat.mod_eq_of_lt (by omega)]
   omega
 
-/-- Two steps from the second residue reaches the next block's point.-/
+/-- Two steps from the second residue reaches the next block's point.
+@isnad1 id=eq.1h2v.s6.2331c0ab732b from=translated src=- shape=fe822102 vocab=a0fc58c5
+-/
 theorem cyclicIndex_interleave_one_two
     (k : ℕ) (hk : 0 < k) (i : Fin k) :
     cyclicIndex (3 * k) (by omega) (interleavePosition k i 1) 2 =
@@ -154,7 +177,9 @@ theorem cyclicIndex_interleave_one_two
     rw [hnum, hwrap, Nat.mod_self]
     norm_num
 
-/-- The third residue advances to the next block's point.-/
+/-- The third residue advances to the next block's point.
+@isnad1 id=eq.1h2v.s6.d518610f58fa from=translated src=- shape=fe822102 vocab=a0fc58c5
+-/
 theorem cyclicIndex_interleave_two_one
     (k : ℕ) (hk : 0 < k) (i : Fin k) :
     cyclicIndex (3 * k) (by omega) (interleavePosition k i 2) 1 =
@@ -174,7 +199,9 @@ theorem cyclicIndex_interleave_two_one
     rw [hnum, hwrap, Nat.mod_self]
     norm_num
 
-/-- Two steps from the third residue reaches the next block's first pair entry.-/
+/-- Two steps from the third residue reaches the next block's first pair entry.
+@isnad1 id=eq.1h2v.s6.d4477b86b20e from=translated src=- shape=fe822102 vocab=a0fc58c5
+-/
 theorem cyclicIndex_interleave_two_two
     (k : ℕ) (hk : 0 < k) (i : Fin k) :
     cyclicIndex (3 * k) (by omega) (interleavePosition k i 2) 2 =
@@ -195,6 +222,9 @@ theorem cyclicIndex_interleave_two_two
     have hone_lt : 1 < 3 * k := by omega
     simp [Nat.mod_eq_of_lt hone_lt]
 
+/--
+@isnad1 id=eq.1h7v.s8.fb6fec1cffff from=translated src=- shape=fa28026c vocab=29bd48c2
+-/
 @[simp] theorem interleaveOneTwo_point
     {P X : Set α} {k : ℕ}
     (hPX : Disjoint P X)
@@ -206,6 +236,9 @@ theorem cyclicIndex_interleave_two_two
       (points i : α) := by
   simp [interleaveOneTwo, interleavePosition]
 
+/--
+@isnad1 id=eq.1h7v.s8.ab8e686b6549 from=translated src=- shape=0ac51e54 vocab=2cda2c1e
+-/
 @[simp] theorem interleaveOneTwo_pair_false
     {P X : Set α} {k : ℕ}
     (hPX : Disjoint P X)
@@ -217,6 +250,9 @@ theorem cyclicIndex_interleave_two_two
       (pairs (i, false) : α) := by
   simp [interleaveOneTwo, interleavePosition]
 
+/--
+@isnad1 id=eq.1h7v.s8.b07755e39bc6 from=translated src=- shape=0ac51e54 vocab=b41867fe
+-/
 @[simp] theorem interleaveOneTwo_pair_true
     {P X : Set α} {k : ℕ}
     (hPX : Disjoint P X)
@@ -230,7 +266,9 @@ theorem cyclicIndex_interleave_two_two
 
 /--
 A basis of a rank-two flat extends to a basis of a rank-three matroid after
-adjoining any ground element outside the flat.-/
+adjoining any ground element outside the flat.
+@isnad1 id=isbase.6h6v.s6.6d087d82ac5b from=translated src=- shape=b7b15391 vocab=28325980
+-/
 theorem isBase_insert_pair_of_isBasis_flat_rank3
     (M : Matroid α) {X : Set α}
     (hRank : M.eRank = 3)
@@ -261,7 +299,9 @@ theorem isBase_insert_pair_of_isBasis_flat_rank3
 
 /--
 If each point with its pair, each pair with the next point, and the shifted
-pair-point-pair window are bases, the interleaved enumeration is cyclic.-/
+pair-point-pair window are bases, the interleaved enumeration is cyclic.
+@isnad1 id=cyclicba.5h7v.s9.87eeb77a93f7 from=translated src=- shape=87affffc vocab=8b109533
+-/
 theorem cyclicBasisOrder3_interleaveOneTwo
     (M : Matroid α) {P X : Set α} {k : ℕ}
     (hk : 0 < k)
@@ -318,7 +358,9 @@ theorem cyclicBasisOrder3_interleaveOneTwo
 
 /--
 A cyclic adjacent-basis order on a rank-two flat interleaves with any
-enumeration of outside points to give a cyclic rank-three basis order.-/
+enumeration of outside points to give a cyclic rank-three basis order.
+@isnad1 id=cyclicba.7h7v.s8.c0216b3808b5 from=translated src=- shape=8328a7bb vocab=cdbdc781
+-/
 theorem cyclicBasisOrder3_interleaveOneTwo_of_flat_pairs
     (M : Matroid α) {P X : Set α} {k : ℕ}
     (hk : 0 < k)
@@ -405,12 +447,18 @@ def restrictGroundEquiv (M : Matroid α) (X : Set α) :
     apply Subtype.ext
     rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.5bf173eb225d from=translated src=- shape=2104cc64 vocab=5a8aa1e8
+-/
 @[simp] theorem restrictGroundEquiv_coe
     (M : Matroid α) (X : Set α)
     (e : (Matroid.restrict M X).E) :
     ((restrictGroundEquiv M X e : X) : α) = e := by
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.a8fc19895bd0 from=translated src=- shape=2ddd46ac vocab=1015a67b
+-/
 @[simp] theorem restrictGroundEquiv_trans_apply_coe
     {β : Type*} (M : Matroid α) (X : Set α)
     (σ : β ≃ (Matroid.restrict M X).E) (x : β) :
@@ -418,7 +466,9 @@ def restrictGroundEquiv (M : Matroid α) (X : Set α) :
       ((σ x : (Matroid.restrict M X).E) : α) := by
   rfl
 
-/-- The half-weave successor is the same cyclic successor used by interleaving.-/
+/-- The half-weave successor is the same cyclic successor used by interleaving.
+@isnad1 id=eq.1h2v.s4.aa5c6f04c8fb from=translated src=- shape=02857514 vocab=05e510f7
+-/
 theorem halfWeave_cyclicSucc_eq_cyclicIndex
     (k : ℕ) (hk : 0 < k) (i : Fin k) :
     HalfWeave.cyclicSucc k hk i =
@@ -428,7 +478,9 @@ theorem halfWeave_cyclicSucc_eq_cyclicIndex
 
 /--
 A sorted rank-two enumeration supplies exactly the two pair-basis families
-needed by the rank-three flat interleave.-/
+needed by the rank-three flat interleave.
+@isnad1 id=cyclicba.6h8v.s7.97c8870c0c6e from=translated src=- shape=3d63fa70 vocab=57748849
+-/
 theorem cyclicBasisOrder3_interleaveOneTwo_of_sortedEnumeration
     (M : Matroid α) {P X : Set α} {k m : ℕ}
     (hk : 0 < k)
@@ -478,7 +530,9 @@ theorem cyclicBasisOrder3_interleaveOneTwo_of_sortedEnumeration
 
 /--
 Transport the interleaved order from the partition
-`(M.E \ X) ∪ X` back to the ground set.-/
+`(M.E \ X) ∪ X` back to the ground set.
+@isnad1 id=ex.4h7v.s7.11068b43fd33 from=translated src=- shape=ff59a4ec vocab=1f482745
+-/
 theorem exists_cyclicBasisOrder3_of_sortedEnumeration_flat
     (M : Matroid α) {X : Set α} {k m : ℕ}
     (hk : 0 < k)
@@ -513,7 +567,9 @@ theorem exists_cyclicBasisOrder3_of_sortedEnumeration_flat
     Equiv.setCongr_apply] using hi
 
 /--
-A cardinality proof for the complement supplies its enumeration automatically.-/
+A cardinality proof for the complement supplies its enumeration automatically.
+@isnad1 id=ex.6h6v.s7.966ff6100dd6 from=translated src=- shape=a2cc1ddb vocab=9690cf58
+-/
 theorem exists_cyclicBasisOrder3_of_sortedEnumeration_tight_flat
     (M : Matroid α) {X : Set α} {k m : ℕ}
     (hk : 0 < k)

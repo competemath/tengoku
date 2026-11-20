@@ -21,7 +21,9 @@ structure SortedBlockModel (k m : ℕ) where
   fiber_card_antitone :
     Antitone fun c => (fiberFinset block c).card
 
-/-- A monotone fiber contains the full interval between any two of its members.-/
+/-- A monotone fiber contains the full interval between any two of its members.
+@isnad1 id=eq.5h6v.s6.619563229527 from=translated src=- shape=9d0da09e vocab=53864f46
+-/
 theorem monotone_fiber_interval
     {n m : ℕ}
     (block : Fin n → Fin m)
@@ -38,7 +40,9 @@ theorem monotone_fiber_interval
 
 /--
 If a monotone fiber contains `a ≤ b`, then it has at least
-`b.val - a.val + 1` members.-/
+`b.val - a.val + 1` members.
+@isnad1 id=le.3h5v.s6.8ee991ede934 from=translated src=- shape=e1222d86 vocab=3a67d5a5
+-/
 theorem fiber_card_ge_interval
     {n m : ℕ}
     (block : Fin n → Fin m)
@@ -66,7 +70,9 @@ theorem fiber_card_ge_interval
   rw [hIcc] at hc
   exact hc
 
-/-- Paired first- and second-half indices have different block labels.-/
+/-- Paired first- and second-half indices have different block labels.
+@isnad1 id=ne.0h4v.s4.4ad5e49236f5 from=translated src=- shape=24c36568 vocab=d2ac9428
+-/
 theorem first_second_blocks_ne
     {k m : ℕ}
     (S : SortedBlockModel k m)
@@ -91,7 +97,9 @@ theorem first_second_blocks_ne
     simpa [firstIndex, secondIndex] using hlower
   omega
 
-/-- Away from the final index, cyclic successor has raw value `i+1`.-/
+/-- Away from the final index, cyclic successor has raw value `i+1`.
+@isnad1 id=eq.2h2v.s5.74ae780544ff from=translated src=- shape=4a69a4b3 vocab=77de7254
+-/
 theorem cyclicSucc_val_of_ne_last
     (k : ℕ) (hk : 0 < k) (i : Fin k)
     (hi : i ≠ lastFin k hk) :
@@ -107,7 +115,9 @@ theorem cyclicSucc_val_of_ne_last
 
 /--
 For a nonfinal `i`, the second-half index `k+i` and next first-half index
-`i+1` have different block labels.-/
+`i+1` have different block labels.
+@isnad1 id=ne.2h4v.s5.3dfc2dde13a2 from=translated src=- shape=7a82d105 vocab=f8459d55
+-/
 theorem second_next_blocks_ne_nonfinal
     {k m : ℕ}
     (hk : 0 < k)
@@ -231,7 +241,9 @@ theorem second_next_blocks_ne_nonfinal
     simpa [p, firstIndex] using hprev_card_upper
   omega
 
-/-- The final second-half index and first index zero have different labels.-/
+/-- The final second-half index and first index zero have different labels.
+@isnad1 id=ne.1h3v.s5.42bc270a68e0 from=translated src=- shape=b0b5eb53 vocab=0af3cc3e
+-/
 theorem wraparound_blocks_ne
     {k m : ℕ}
     (hk : 0 < k)
@@ -263,7 +275,9 @@ theorem wraparound_blocks_ne
     S.fiber_card_le (S.block a)
   omega
 
-/-- Every successor adjacency in the half weave crosses different blocks.-/
+/-- Every successor adjacency in the half weave crosses different blocks.
+@isnad1 id=ne.1h4v.s7.c950392b422a from=translated src=- shape=2d0d1a9e vocab=8a8d446b
+-/
 theorem woven_successor_blocks_ne
     {k m : ℕ}
     (hk : 0 < k)

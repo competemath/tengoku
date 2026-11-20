@@ -21,7 +21,9 @@ variable {α : Type*}
 
 /--
 Strict density at parameter two makes every pair of distinct ground elements
-independent.-/
+independent.
+@isnad1 id=indep.7h4v.s6.6c8fb9f533ba from=translated src=- shape=404a09dd vocab=9daf2de7
+-/
 theorem pair_indep_of_strict_two
     (M : Matroid α)
     (hLoopless : M.Loopless)
@@ -90,7 +92,9 @@ theorem pair_indep_of_strict_two
   omega
 
 /--
-In the strict `k = 2` case, two nonbasis triples cannot share a pair.-/
+In the strict `k = 2` case, two nonbasis triples cannot share a pair.
+@isnad1 id=false.16h6v.s7.ccf1ac5c3253 from=translated src=- shape=c6044780 vocab=e05402d7
+-/
 theorem false_of_two_nonbase_triples_sharing_pair_strict_two
     (M : Matroid α)
     (hLoopless : M.Loopless)
@@ -238,7 +242,9 @@ def SixPointBad
 
 /--
 Two literal position triples with a common pair and distinct remaining
-vertices cannot both be bad in the strict `k = 2` case.-/
+vertices cannot both be bad in the strict `k = 2` case.
+@isnad1 id=not.10h7v.s8.98425155d780 from=translated src=- shape=cfc6cc47 vocab=579c1464
+-/
 theorem not_both_sixPointBad_of_shared_pair
     (M : Matroid α)
     (hLoopless : M.Loopless)
@@ -301,7 +307,9 @@ theorem not_both_sixPointBad_of_shared_pair
     rw [hset]
     exact h
 
-/-- Strict density at two makes the six-position bad-triple certificate linear.-/
+/-- Strict density at two makes the six-position bad-triple certificate linear.
+@isnad1 id=linearsi.4h3v.s5.2e2e11987471 from=translated src=- shape=f0375d3d vocab=17bfa6a9
+-/
 theorem linearSixBad_of_strict_two
     (M : Matroid α)
     (hLoopless : M.Loopless)
@@ -1154,7 +1162,9 @@ theorem linearSixBad_of_strict_two
     exact h
 
 set_option maxHeartbeats 1000000 in
-/-- A certified good alternative produces a cyclic basis order.-/
+/-- A certified good alternative produces a cyclic basis order.
+@isnad1 id=ex.1h3v.s5.271c67d6fd22 from=translated src=- shape=b00afcf1 vocab=6e7d6e57
+-/
 theorem exists_cyclicBasisOrder3_of_sixPointGoodAlternatives
     (M : Matroid α)
     (enum : Fin 6 ≃ M.E)
@@ -1636,7 +1646,9 @@ theorem exists_cyclicBasisOrder3_of_sixPointGoodAlternatives
         exact hb
       simpa [sixPointPerm8_apply, cyclicIndex] using hgoal
 
-/-- The strict six-element rank-three case has a cyclic basis order.-/
+/-- The strict six-element rank-three case has a cyclic basis order.
+@isnad1 id=ex.5h2v.s6.f1e3b0acb398 from=translated src=- shape=9eb265ca vocab=e2cb12b1
+-/
 theorem exists_cyclicBasisOrder3_of_strict_two
     (M : Matroid α)
     (hLoopless : M.Loopless)
@@ -1669,7 +1681,9 @@ theorem exists_cyclicBasisOrder3_of_strict_two
     exists_cyclicBasisOrder3_of_sixPointGoodAlternatives
       M enum hGood
 
-/-- The complete six-element uniformly dense rank-three case.-/
+/-- The complete six-element uniformly dense rank-three case.
+@isnad1 id=ex.4h2v.s6.8c020f7f729f from=translated src=- shape=4f89074f vocab=574591bd
+-/
 theorem exists_cyclicBasisOrder3_of_ground_encard_six
     (M : Matroid α)
     (hE : M.E.Finite)

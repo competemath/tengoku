@@ -16,7 +16,9 @@ variable {α : Type*}
 /--
 **SP — Contiguous basis splicing.** A cyclic rank-three basis order of a
 rank-preserving deletion, of length at least six, admits contiguous insertion
-of the deleted three-element basis.-/
+of the deleted three-element basis.
+@isnad1 id=ex.5h5v.s7.b26374bc39c6 from=translated src=- shape=0bf02b09 vocab=cfaa1a85
+-/
 theorem contiguousBasisSplicing
     (M : Matroid α) {D : Set α} {m : ℕ}
     (hRank : M.eRank = 3)

@@ -13,7 +13,9 @@ noncomputable section
 
 variable {α : Type*}
 
-/-- The `k = 1` rank-three case: the three-element ground set itself is a basis.-/
+/-- The `k = 1` rank-three case: the three-element ground set itself is a basis.
+@isnad1 id=ex.3h2v.s6.9851eba54bc6 from=translated src=- shape=9e105fe1 vocab=baea4f75
+-/
 theorem exists_cyclicBasisOrder3_of_ground_encard_three
     (M : Matroid α)
     (hE : M.E.Finite)

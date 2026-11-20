@@ -16,7 +16,9 @@ def LinearTripleFamily6 (F : Finset (Finset (Fin 6))) : Prop :=
 def pointDegree6 (F : Finset (Finset (Fin 6))) (v : Fin 6) : ℕ :=
   (F.filter fun T => v ∈ T).card
 
-/-- In a linear triple family on six points, a point belongs to at most two triples.-/
+/-- In a linear triple family on six points, a point belongs to at most two triples.
+@isnad1 id=le.1h2v.s4.418b769f9ef1 from=translated src=- shape=6cb5e0ea vocab=6cceb798
+-/
 theorem pointDegree6_le_two
     (F : Finset (Finset (Fin 6)))
     (hF : LinearTripleFamily6 F)
@@ -79,7 +81,9 @@ theorem pointDegree6_le_two
   change G.card ≤ 2
   omega
 
-/-- Double-counting incidences: the sum of point degrees is three times the family size.-/
+/-- Double-counting incidences: the sum of point degrees is three times the family size.
+@isnad1 id=eq.1h1v.s7.80ea33a7939b from=translated src=- shape=9dfac6ec vocab=ddf41d74
+-/
 theorem sum_pointDegree6
     (F : Finset (Finset (Fin 6)))
     (htriples : ∀ T ∈ F, T.card = 3) :
@@ -105,7 +109,9 @@ theorem sum_pointDegree6
           exact htriples T hT
     _ = 3 * F.card := by simp [Nat.mul_comm]
 
-/-- A linear family of triples on six points has at most four members.-/
+/-- A linear family of triples on six points has at most four members.
+@isnad1 id=le.1h1v.s4.b53045bef62e from=translated src=- shape=7997cb1a vocab=2c76dd20
+-/
 theorem card_linearTripleFamily6_le_four
     (F : Finset (Finset (Fin 6)))
     (hF : LinearTripleFamily6 F) :
@@ -130,7 +136,9 @@ def MaximalLinearTripleFamily6 (F : Finset (Finset (Fin 6))) : Prop :=
   ∀ T : Finset (Fin 6), T.card = 3 →
     LinearTripleFamily6 (insert T F) → T ∈ F
 
-/-- A compatible triple can be adjoined to a linear family.-/
+/-- A compatible triple can be adjoined to a linear family.
+@isnad1 id=lineartr.3h2v.s7.48d07ad2c82e from=translated src=- shape=178e9c95 vocab=aef2abe9
+-/
 theorem linearTripleFamily6_insert
     {F : Finset (Finset (Fin 6))}
     (hF : LinearTripleFamily6 F)
@@ -154,7 +162,9 @@ theorem linearTripleFamily6_insert
       · simpa [Finset.inter_comm] using hcompat A hAF
       · exact hF.2 A hAF B hBF hAB
 
-/-- Every linear triple family is contained in an inclusion-maximal one.-/
+/-- Every linear triple family is contained in an inclusion-maximal one.
+@isnad1 id=ex.1h1v.s6.429efe624471 from=translated src=- shape=6797418a vocab=466d3b82
+-/
 theorem exists_maximalLinearTripleFamily6_superset
     (F : Finset (Finset (Fin 6)))
     (hF : LinearTripleFamily6 F) :

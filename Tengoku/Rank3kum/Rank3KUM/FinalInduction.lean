@@ -19,7 +19,9 @@ variable {α : Type*}
 /--
 Strong induction completes the theorem from the single remaining
 six-element input.  The strict cases with `k ≥ 3` now obtain their
-near-tight hitting basis automatically.-/
+near-tight hitting basis automatically.
+@isnad1 id=ex.6h3v.s7.2751acdecab1 from=translated src=- shape=4f17eab4 vocab=70e7e116
+-/
 theorem rankThreeKUM_of_small_two_and_strict_deletion
     (hTwo :
       ∀ N : Matroid α,
@@ -91,7 +93,9 @@ theorem rankThreeKUM_of_small_two_and_strict_deletion
           M k hkThree hRank hD hDelRank
           small hsmall
 
-/-- The complete rank-three cyclic ordering theorem.-/
+/-- The complete rank-three cyclic ordering theorem.
+@isnad1 id=ex.5h3v.s7.791f1051ff8e from=translated src=- shape=82bd2c6f vocab=26e04008
+-/
 theorem rankThreeKUM
     (k : ℕ) (M : Matroid α) (hk : 0 < k)
     (hE : M.E.Finite)

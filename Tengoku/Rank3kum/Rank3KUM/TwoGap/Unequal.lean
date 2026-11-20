@@ -16,7 +16,9 @@ element `r` cannot support exchange with `b` as well.
 
 Otherwise the two failed opposite exchanges against `P` put both `r` and `s`
 in `cl {p,a}`. Their independent pair then spans the same line, forcing `a`
-into `cl {r,s}`, contrary to the basis obtained from the partner `t`.-/
+into `cl {r,s}`, contrary to the basis obtained from the partner `t`.
+@isnad1 id=not.16h10v.s7.850ffc412c2a from=translated src=- shape=854c8dcb vocab=9f889b0e
+-/
 theorem not_mem_fundamentalSupport_third_of_unequal_singleton_partners
     (M : Matroid α) {D : Set α} {p a b c t r s : α}
     (hRank : M.eRank = 3)

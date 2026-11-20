@@ -8,7 +8,9 @@ open Set
 
 variable {α : Type*}
 
-/-- The equal common-singleton configuration for both blocked gaps is impossible.-/
+/-- The equal common-singleton configuration for both blocked gaps is impossible.
+@isnad1 id=false.21h9v.s8.e5a0e8e05dbe from=translated src=- shape=8e5ff020 vocab=7dcbdca5
+-/
 theorem false_of_equal_singleton_partner_pairs
     (M : Matroid α) {D : Set α} {p a b c q t : α}
     (hRank : M.eRank = 3)

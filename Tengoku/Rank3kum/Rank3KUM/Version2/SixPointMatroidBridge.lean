@@ -21,6 +21,9 @@ def badTripleFamily6
   classical
   exact allTriples6.filter fun T => SixPointBad M enum T
 
+/--
+@isnad1 id=iff.0h4v.s6.15b21004fa3a from=translated src=- shape=b464c68b vocab=fb37f81f
+-/
 @[simp] theorem mem_badTripleFamily6_iff
     (M : Matroid α) (enum : Fin 6 ≃ M.E)
     (T : Finset (Fin 6)) :
@@ -38,7 +41,9 @@ def badTripleFamily6
 
 /--
 Two distinct triples meeting in at least two points can be written with a
-common pair and distinct residual vertices.-/
+common pair and distinct residual vertices.
+@isnad1 id=ex.4h3v.s7.15d74323c3b5 from=translated src=- shape=62a29d00 vocab=9db1b768
+-/
 theorem exists_shared_pair_residuals_of_three_sets
     {β : Type*} [DecidableEq β]
     {A B : Finset β}
@@ -125,7 +130,9 @@ theorem exists_shared_pair_residuals_of_three_sets
     rw [hAeq, hBeq, h]
   exact ⟨i, j, c, d, hij, hic, hid, hjc, hjd, hcd, hAeq, hBeq⟩
 
-/-- In the strict `k = 2` matroid case, the actual bad triples form a linear family.-/
+/-- In the strict `k = 2` matroid case, the actual bad triples form a linear family.
+@isnad1 id=lineartr.4h3v.s5.8d7995950259 from=translated src=- shape=f0375d3d vocab=d66e562c
+-/
 theorem badTripleFamily6_linear_of_strict_two
     (M : Matroid α)
     (hLoopless : M.Loopless)
@@ -161,7 +168,9 @@ def sixCycleMap
     (a b c d e f : Fin 6) : Fin 6 → Fin 6 :=
   ![a, b, c, d, e, f]
 
-/-- The displayed six-label map is bijective when the labels are distinct.-/
+/-- The displayed six-label map is bijective when the labels are distinct.
+@isnad1 id=bijectiv.1h6v.s7.5056968a0fea from=translated src=- shape=4b74f856 vocab=e2b18e63
+-/
 theorem sixCycleMap_bijective
     (a b c d e f : Fin 6)
     (hSix : ({a, b, c, d, e, f} : Finset (Fin 6)).card = 6) :
@@ -184,43 +193,63 @@ def sixCyclePerm
   Equiv.ofBijective (sixCycleMap a b c d e f)
     (sixCycleMap_bijective a b c d e f hSix)
 
+/--
+@isnad1 id=eq.1h6v.s8.d33c51870e77 from=translated src=- shape=0cda5e87 vocab=f53a0730
+-/
 @[simp] theorem sixCyclePerm_apply_zero
     (a b c d e f : Fin 6) (hSix) :
     sixCyclePerm a b c d e f hSix 0 = a := by
   change sixCycleMap a b c d e f 0 = a
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.d1590fb66f87 from=translated src=- shape=7ea0f5eb vocab=f53a0730
+-/
 @[simp] theorem sixCyclePerm_apply_one
     (a b c d e f : Fin 6) (hSix) :
     sixCyclePerm a b c d e f hSix 1 = b := by
   change sixCycleMap a b c d e f 1 = b
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.ef6fa9f4d4a2 from=translated src=- shape=e08305ac vocab=f53a0730
+-/
 @[simp] theorem sixCyclePerm_apply_two
     (a b c d e f : Fin 6) (hSix) :
     sixCyclePerm a b c d e f hSix 2 = c := by
   change sixCycleMap a b c d e f 2 = c
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.6a831dcbdd74 from=translated src=- shape=d184b030 vocab=f53a0730
+-/
 @[simp] theorem sixCyclePerm_apply_three
     (a b c d e f : Fin 6) (hSix) :
     sixCyclePerm a b c d e f hSix 3 = d := by
   change sixCycleMap a b c d e f 3 = d
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.ebda962b7e56 from=translated src=- shape=791594d7 vocab=f53a0730
+-/
 @[simp] theorem sixCyclePerm_apply_four
     (a b c d e f : Fin 6) (hSix) :
     sixCyclePerm a b c d e f hSix 4 = e := by
   change sixCycleMap a b c d e f 4 = e
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.fc408740cbc7 from=translated src=- shape=e26c5c6a vocab=f53a0730
+-/
 @[simp] theorem sixCyclePerm_apply_five
     (a b c d e f : Fin 6) (hSix) :
     sixCyclePerm a b c d e f hSix 5 = f := by
   change sixCycleMap a b c d e f 5 = f
   rfl
 
-/-- A three-subset outside the actual bad family is a basis.-/
+/-- A three-subset outside the actual bad family is a basis.
+@isnad1 id=isbase.2h4v.s6.9afc67d9d4f1 from=translated src=- shape=cb144585 vocab=3020b318
+-/
 theorem isBase_finSixSet_of_not_mem_badTripleFamily6
     (M : Matroid α) (enum : Fin 6 ≃ M.E)
     {T : Finset (Fin 6)}
@@ -232,7 +261,9 @@ theorem isBase_finSixSet_of_not_mem_badTripleFamily6
   rw [mem_badTripleFamily6_iff]
   exact ⟨hTcard, by simpa [SixPointBad] using hbad⟩
 
-/-- An avoiding six-cycle of position triples gives a cyclic basis order.-/
+/-- An avoiding six-cycle of position triples gives a cyclic basis order.
+@isnad1 id=cyclicba.2h9v.s8.c509b47a898a from=translated src=- shape=aa4f1362 vocab=72103a19
+-/
 theorem cyclicBasisOrder3_of_avoidingCycle6
     (M : Matroid α) (enum : Fin 6 ≃ M.E)
     {a b c d e f : Fin 6}
@@ -288,7 +319,9 @@ theorem cyclicBasisOrder3_of_avoidingCycle6
 
 /--
 Paper v2, Section 9: the strict six-element rank-three case, proved through
-Lemma 9.2 rather than the old finite certificate.-/
+Lemma 9.2 rather than the old finite certificate.
+@isnad1 id=ex.5h2v.s6.f1e3b0acb398 from=translated src=- shape=9eb265ca vocab=cf55d98c
+-/
 theorem exists_cyclicBasisOrder3_of_strict_two_structural
     (M : Matroid α)
     (hLoopless : M.Loopless)
@@ -316,7 +349,9 @@ theorem exists_cyclicBasisOrder3_of_strict_two_structural
   refine ⟨(sixCyclePerm a b c d e f hSix).trans enum, ?_⟩
   exact cyclicBasisOrder3_of_avoidingCycle6 M enum hSix hAvoid
 
-/-- The complete six-element uniformly dense case via the structural Section 9 proof.-/
+/-- The complete six-element uniformly dense case via the structural Section 9 proof.
+@isnad1 id=ex.4h2v.s6.8c020f7f729f from=translated src=- shape=4f89074f vocab=1cafecc1
+-/
 theorem exists_cyclicBasisOrder3_of_ground_encard_six_structural
     (M : Matroid α)
     (hE : M.E.Finite)

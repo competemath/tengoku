@@ -13,13 +13,18 @@ def ResidualSupport
     (M : Matroid α) (D : Set α) (t e : α) : Set α :=
   FundamentalSupport M D e \ {t}
 
+/--
+@isnad1 id=iff.0h6v.s5.a7b7220d616e from=translated src=- shape=a3335871 vocab=4aa86f2a
+-/
 @[simp] theorem mem_residualSupport
     (M : Matroid α) (D : Set α) (t e d : α) :
     d ∈ ResidualSupport M D t e ↔
       d ∈ FundamentalSupport M D e ∧ d ≠ t := by
   simp [ResidualSupport]
 
-/-- A residual support lies in the deleted basis with the common partner removed.-/
+/-- A residual support lies in the deleted basis with the common partner removed.
+@isnad1 id=le.3h5v.s5.876147f0776c from=translated src=- shape=aa71d7a7 vocab=6d4f9f2c
+-/
 theorem residualSupport_subset_basis_sdiff
     (M : Matroid α) {D : Set α} {t e : α}
     (hD : M.IsBase D) (heE : e ∈ M.E) (heD : e ∉ D) :
@@ -30,7 +35,9 @@ theorem residualSupport_subset_basis_sdiff
     ((mem_fundamentalSupport_iff_exchange_isBase M hD heE heD).mp hd'.1).1
   exact ⟨hdD, by simpa using hd'.2⟩
 
-/-- If the residual support is empty and `t` supports `e`, then the full support is `{t}`.-/
+/-- If the residual support is empty and `t` supports `e`, then the full support is `{t}`.
+@isnad1 id=eq.2h5v.s5.9c6191ac2355 from=translated src=- shape=bc32af50 vocab=77ca9b34
+-/
 theorem fundamentalSupport_eq_singleton_of_residualSupport_eq_empty
     (M : Matroid α) {D : Set α} {t e : α}
     (ht : t ∈ FundamentalSupport M D e)
@@ -51,7 +58,9 @@ theorem fundamentalSupport_eq_singleton_of_residualSupport_eq_empty
 /--
 A residual support is nonempty whenever `t` supports `e` and some basis
 contains both `e` and `t`. If it were empty, `{e,t}` would be a circuit inside
-that basis.-/
+that basis.
+@isnad1 id=nonempty.6h6v.s6.ec73bc665c1c from=translated src=- shape=098bea7b vocab=57db7017
+-/
 theorem residualSupport_nonempty_of_pair_subset_basis
     (M : Matroid α) {D B : Set α} {t e : α}
     (hD : M.IsBase D) (heE : e ∈ M.E) (heD : e ∉ D)

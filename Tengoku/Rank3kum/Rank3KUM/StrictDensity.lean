@@ -42,7 +42,9 @@ def HitsNearTightRankTwo
     A.ncard = 2 * k - 1 →
     (A ∩ D).Nonempty
 
-/-- Strict density bounds every nonempty proper rank-one set by `k-1`.-/
+/-- Strict density bounds every nonempty proper rank-one set by `k-1`.
+@isnad1 id=lt.5h4v.s5.6beed87fef28 from=translated src=- shape=83ac39d2 vocab=d9ef31fe
+-/
 theorem StrictlyUniformlyDense.encard_lt_k_of_eRk_eq_one
     (M : Matroid α) (k : ℕ)
     (hStrict : StrictlyUniformlyDense M k)
@@ -55,7 +57,9 @@ theorem StrictlyUniformlyDense.encard_lt_k_of_eRk_eq_one
   simpa [hXrank] using
     hStrict X hXE hXnonempty hXproper
 
-/-- Strict density bounds every nonempty proper rank-two set below `2k`.-/
+/-- Strict density bounds every nonempty proper rank-two set below `2k`.
+@isnad1 id=lt.5h4v.s6.6f266d404266 from=translated src=- shape=4349d24d vocab=cd3c3bf7
+-/
 theorem StrictlyUniformlyDense.encard_lt_two_mul_k_of_eRk_eq_two
     (M : Matroid α) (k : ℕ)
     (hStrict : StrictlyUniformlyDense M k)
@@ -69,7 +73,9 @@ theorem StrictlyUniformlyDense.encard_lt_two_mul_k_of_eRk_eq_two
   rw [hXrank] at h
   simpa [Nat.mul_comm] using h
 
-/-- If there is no near-tight rank-two set, every basis satisfies the hitting condition.-/
+/-- If there is no near-tight rank-two set, every basis satisfies the hitting condition.
+@isnad1 id=ex.1h3v.s6.18f21100cc91 from=translated src=- shape=2ed64b44 vocab=a93ef193
+-/
 theorem exists_isBase_hitsNearTight_of_no_nearTight
     (M : Matroid α) (k : ℕ)
     (hNone :
@@ -83,7 +89,9 @@ theorem exists_isBase_hitsNearTight_of_no_nearTight
   intro A hAE hArank hAcard
   exact (hNone ⟨A, hAE, hArank, hAcard⟩).elim
 
-/-- A unique near-tight rank-two set can be hit by extending one of its points to a basis.-/
+/-- A unique near-tight rank-two set can be hit by extending one of its points to a basis.
+@isnad1 id=ex.5h4v.s7.1b974a9b7565 from=translated src=- shape=0fd40668 vocab=09b81b3e
+-/
 theorem exists_isBase_hitsNearTight_of_unique
     (M : Matroid α) (k : ℕ)
     (hLoopless : M.Loopless)
@@ -119,7 +127,9 @@ theorem exists_isBase_hitsNearTight_of_unique
 
 /--
 If all near-tight rank-two sets share a ground-set point, extend that point to
-a basis.  The resulting basis hits every possible deletion obstruction.-/
+a basis.  The resulting basis hits every possible deletion obstruction.
+@isnad1 id=ex.2h3v.s6.e55a5959c4f3 from=translated src=- shape=e4e7f3ae vocab=4a4c84f9
+-/
 theorem exists_isBase_hitsNearTight_of_common_point
     (M : Matroid α) (k : ℕ)
     (hLoopless : M.Loopless)
@@ -141,7 +151,9 @@ theorem exists_isBase_hitsNearTight_of_common_point
   intro A hAE hArank hAcard
   exact ⟨e, heCommon A hAE hArank hAcard, heD (by simp)⟩
 
-/-- A hit rules out the sole rank-two obstruction inside the complement.-/
+/-- A hit rules out the sole rank-two obstruction inside the complement.
+@isnad1 id=le.6h5v.s6.5e3dd7b8ea57 from=translated src=- shape=2fb4068e vocab=0b8d3842
+-/
 theorem rankTwoComplementBound_of_hitsNearTight
     (M : Matroid α) (k : ℕ)
     (hE : M.E.Finite)
@@ -183,7 +195,9 @@ theorem rankTwoComplementBound_of_hitsNearTight
   rw [← hAfin.cast_ncard_eq]
   exact_mod_cast hleNat
 
-/-- Two near-tight sets on a `3k`-element ground set overlap in at least `k-2` elements.-/
+/-- Two near-tight sets on a `3k`-element ground set overlap in at least `k-2` elements.
+@isnad1 id=le.6h5v.s7.fde5978e0879 from=translated src=- shape=5f0744ce vocab=254860ed
+-/
 theorem k_sub_two_le_ncard_inter_of_nearTight
     (M : Matroid α) (k : ℕ)
     (hE : M.E.Finite)
@@ -216,7 +230,9 @@ theorem k_sub_two_le_ncard_inter_of_nearTight
   rw [hEncard] at hUnionLe
   omega
 
-/-- For `k ≥ 3`, any two near-tight sets have a common point.-/
+/-- For `k ≥ 3`, any two near-tight sets have a common point.
+@isnad1 id=nonempty.7h5v.s7.ee76e93e8c2b from=translated src=- shape=ae00ab8c vocab=74a93758
+-/
 theorem inter_nonempty_of_nearTight
     (M : Matroid α) (k : ℕ)
     (hk : 3 ≤ k)
@@ -237,7 +253,9 @@ theorem inter_nonempty_of_nearTight
   simp at hle
   omega
 
-/-- Every near-tight rank-two set in the strict case is already a flat.-/
+/-- Every near-tight rank-two set in the strict case is already a flat.
+@isnad1 id=isflat.6h4v.s6.64f6e6207b3a from=translated src=- shape=43f31468 vocab=e8ae2e4a
+-/
 theorem isFlat_of_strict_rankTwo_ncard_eq
     (M : Matroid α) (k : ℕ)
     (hE : M.E.Finite)
@@ -297,7 +315,9 @@ theorem isFlat_of_strict_rankTwo_ncard_eq
       (M.subset_closure A hAE) hClosureEncardLe).symm
   exact Matroid.isFlat_iff_closure_eq.2 hClosureEq
 
-/-- Deletion density can be checked using the original rank on subsets of the complement.-/
+/-- Deletion density can be checked using the original rank on subsets of the complement.
+@isnad1 id=iff.0h4v.s6.8301c75a0c3d from=translated src=- shape=3e82f9bd vocab=2964045a
+-/
 theorem uniformlyDense_delete_iff
     (M : Matroid α) (j : ℕ) (D : Set α) :
     UniformlyDense (Matroid.delete M D) j ↔
@@ -319,7 +339,9 @@ theorem uniformlyDense_delete_iff
 
 /--
 Uniform density splits cleanly into a nonempty proper tight set or strict
-density on every nonempty proper set.-/
+density on every nonempty proper set.
+@isnad1 id=or.1h3v.s5.827d0477209e from=translated src=- shape=e1bf6778 vocab=83c1880d
+-/
 theorem exists_nonempty_proper_tight_or_strictlyUniformlyDense
     (M : Matroid α) (k : ℕ)
     (hDense : UniformlyDense M k) :
@@ -341,7 +363,9 @@ theorem exists_nonempty_proper_tight_or_strictlyUniformlyDense
 
 /--
 In the strict case, after deleting a basis the density check is automatic in
-ranks zero, one, and three.  Only rank-two subsets of the complement remain.-/
+ranks zero, one, and three.  Only rank-two subsets of the complement remain.
+@isnad1 id=uniforml.8h4v.s7.30c10d4d4ca1 from=translated src=- shape=4f6a61f1 vocab=1f09f58a
+-/
 theorem uniformlyDense_delete_of_strict_of_rank_two_bound
     (M : Matroid α) (k : ℕ)
     (hk : 0 < k)
@@ -435,7 +459,9 @@ theorem uniformlyDense_delete_of_strict_of_rank_two_bound
 
 /--
 A rank-preserving basis that hits every near-tight rank-two set is
-density-reducing.-/
+density-reducing.
+@isnad1 id=uniforml.8h4v.s6.33db9523d1ff from=translated src=- shape=4b937297 vocab=0cc5aa85
+-/
 theorem uniformlyDense_delete_of_strict_of_hitsNearTight
     (M : Matroid α) (k : ℕ)
     (hk : 0 < k)
@@ -457,7 +483,9 @@ theorem uniformlyDense_delete_of_strict_of_hitsNearTight
     rankTwoComplementBound_of_hitsNearTight
       M k hE hRank hStrict hHits hAcomp hArank
 
-/-- In a strict rank-three instance with `k ≥ 3`, deleting any basis preserves rank.-/
+/-- In a strict rank-three instance with `k ≥ 3`, deleting any basis preserves rank.
+@isnad1 id=eq.5h4v.s6.cda6186061f4 from=translated src=- shape=5258fbe2 vocab=3ae7cf5d
+-/
 theorem eRank_delete_eq_three_of_strict
     (M : Matroid α) (k : ℕ)
     (hk : 3 ≤ k)

@@ -10,7 +10,9 @@ open Set
 
 variable {α : Type*}
 
-/-- Delete the middle element of a displayed triple and insert a replacement.-/
+/-- Delete the middle element of a displayed triple and insert a replacement.
+@isnad1 id=eq.3h5v.s6.743b7e9b21cb from=translated src=- shape=a577010b vocab=9e46040d
+-/
 theorem exchangeSet_triple_remove_second
     {x y z e : α}
     (hyx : y ≠ x) (hyz : y ≠ z) (hey : e ≠ y) :
@@ -21,7 +23,9 @@ theorem exchangeSet_triple_remove_second
     Set.mem_singleton_iff]
   aesop
 
-/-- Three pairwise-distinct displayed elements have extended cardinality three.-/
+/-- Three pairwise-distinct displayed elements have extended cardinality three.
+@isnad1 id=eq.3h4v.s5.c1a5504a7fa5 from=translated src=- shape=c0213ab0 vocab=eefe5abb
+-/
 theorem encard_triple_eq_three
     {x y z : α} (hxy : x ≠ y) (hxz : x ≠ z) (hyz : y ≠ z) :
     ({x, y, z} : Set α).encard = 3 := by
@@ -30,7 +34,9 @@ theorem encard_triple_eq_three
     norm_num
   · simp [hxy, hxz]
 
-/-- In rank three, a ground-set set of cardinality three is dependent if it is not a basis.-/
+/-- In rank three, a ground-set set of cardinality three is dependent if it is not a basis.
+@isnad1 id=dep.4h3v.s5.a61dce15c7fd from=translated src=- shape=242a3145 vocab=3c9de955
+-/
 theorem dep_of_not_isBase_of_encard_eq_three
     (M : Matroid α) {X : Set α}
     (hRank : M.eRank = 3)
@@ -45,7 +51,9 @@ theorem dep_of_not_isBase_of_encard_eq_three
   apply hI.isBase_of_eRk_ge hfin
   exact (hRank.trans (hcard.symm.trans hI.eRk_eq_encard.symm)).le
 
-/-- A nonbasis triple of distinct ground elements is dependent in rank three.-/
+/-- A nonbasis triple of distinct ground elements is dependent in rank three.
+@isnad1 id=dep.8h5v.s6.45c940a3f7bd from=translated src=- shape=a686524d vocab=fb157e7d
+-/
 theorem dep_triple_of_not_isBase
     (M : Matroid α) {x y z : α}
     (hRank : M.eRank = 3)
@@ -63,7 +71,9 @@ theorem dep_triple_of_not_isBase
   · exact encard_triple_eq_three hxy hxz hyz
   · exact hnot
 
-/-- If an independent pair becomes a nonbasis triple after adjoining `z`, then `z` is in its closure.-/
+/-- If an independent pair becomes a nonbasis triple after adjoining `z`, then `z` is in its closure.
+@isnad1 id=mem.7h5v.s6.c64aa6ef6448 from=translated src=- shape=4537299f vocab=cd824eaf
+-/
 theorem mem_closure_pair_of_not_isBase_triple
     (M : Matroid α) {x y z : α}
     (hRank : M.eRank = 3)
@@ -86,7 +96,9 @@ theorem mem_closure_pair_of_not_isBase_triple
   apply (hxyI.mem_closure_iff_of_notMem hzxy).2
   rwa [heq]
 
-/-- Two finite independent sets of equal size have equal closures when one lies in the other's closure.-/
+/-- Two finite independent sets of equal size have equal closures when one lies in the other's closure.
+@isnad1 id=eq.5h4v.s5.fed873bd98ae from=translated src=- shape=88224af9 vocab=c13dc6be
+-/
 theorem closure_eq_of_indep_of_subset_closure_of_encard_eq
     (M : Matroid α) {I J : Set α}
     (hI : M.Indep I) (hJ : M.Indep J)
@@ -103,7 +115,9 @@ theorem closure_eq_of_indep_of_subset_closure_of_encard_eq
       _ = M.eRk I := hI.eRk_eq_encard.symm).le
   exact hBasis.closure_eq_right
 
-/-- A support element that is not a symmetric partner must fail the opposite exchange.-/
+/-- A support element that is not a symmetric partner must fail the opposite exchange.
+@isnad1 id=not.7h6v.s6.fa637f06dba9 from=translated src=- shape=d07b6f19 vocab=0c80bde5
+-/
 theorem not_other_exchange_isBase_of_mem_fundamentalSupport_not_symmetricPartner
     (M : Matroid α) {D B : Set α} {e d : α}
     (hD : M.IsBase D) (hB : M.IsBase B)
@@ -120,7 +134,9 @@ theorem not_other_exchange_isBase_of_mem_fundamentalSupport_not_symmetricPartner
   exact (mem_symmetricPartners M D B e d).2
     ⟨hd.1, hdB, hd.2, hother⟩
 
-/-- If the fundamental support is exactly a pair, the adjoined element lies in that pair's closure.-/
+/-- If the fundamental support is exactly a pair, the adjoined element lies in that pair's closure.
+@isnad1 id=mem.6h6v.s6.59b7cf68f24e from=translated src=- shape=50657c80 vocab=085393b0
+-/
 theorem mem_closure_pair_of_fundamentalSupport_eq_pair
     (M : Matroid α) {D : Set α} {e d₁ d₂ : α}
     (hD : M.IsBase D) (heE : e ∈ M.E) (heD : e ∉ D)
@@ -164,7 +180,9 @@ theorem mem_closure_pair_of_fundamentalSupport_eq_pair
     exact ⟨hed₁, hed₂⟩
   exact (hpairI.mem_closure_iff_of_notMem hepair).2 hC.dep
 
-/-- The final element of a basis triple is outside the closure of the first two.-/
+/-- The final element of a basis triple is outside the closure of the first two.
+@isnad1 id=not.3h5v.s6.a58df5372e30 from=translated src=- shape=9ae7da3d vocab=8839bf74
+-/
 theorem not_mem_closure_pair_of_isBase_triple
     (M : Matroid α) {x y z : α}
     (hB : M.IsBase ({x, y, z} : Set α))

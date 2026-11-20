@@ -17,11 +17,17 @@ variable {α : Type*}
 def cyclicIndex (n : ℕ) (hn : 0 < n) (i : Fin n) (j : ℕ) : Fin n :=
   ⟨(i.val + j) % n, Nat.mod_lt _ hn⟩
 
+/--
+@isnad1 id=eq.1h3v.s5.6055e807e036 from=translated src=- shape=bf4d4cbe vocab=e01ce091
+-/
 @[simp] theorem cyclicIndex_val
     (n : ℕ) (hn : 0 < n) (i : Fin n) (j : ℕ) :
     (cyclicIndex n hn i j).val = (i.val + j) % n := by
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.f5489435c442 from=translated src=- shape=3e166a12 vocab=1490af81
+-/
 @[simp] theorem cyclicIndex_zero
     (n : ℕ) (hn : 0 < n) (i : Fin n) :
     cyclicIndex n hn i 0 = i := by
@@ -50,6 +56,9 @@ def appendBlockOrder
     ((Equiv.sumCongr small block).trans
       (Equiv.Set.union hED).symm)
 
+/--
+@isnad1 id=eq.1h7v.s8.945aa16aed98 from=translated src=- shape=b2954166 vocab=225fe39e
+-/
 @[simp] theorem appendBlockOrder_old
     {E D : Set α} {m : ℕ}
     (hED : Disjoint E D)
@@ -62,6 +71,9 @@ def appendBlockOrder
   classical
   simp [appendBlockOrder]
 
+/--
+@isnad1 id=eq.1h7v.s8.465337203435 from=translated src=- shape=3adeeecd vocab=528b1538
+-/
 @[simp] theorem appendBlockOrder_block
     {E D : Set α} {m : ℕ}
     (hED : Disjoint E D)
@@ -74,7 +86,9 @@ def appendBlockOrder
   classical
   simp [appendBlockOrder]
 
-/-- A basis of a rank-preserving deletion is also a basis of the original rank-three matroid.-/
+/-- A basis of a rank-preserving deletion is also a basis of the original rank-three matroid.
+@isnad1 id=isbase.3h4v.s5.dc439d9a88f3 from=translated src=- shape=20478472 vocab=29f8d00f
+-/
 theorem isBase_of_delete_isBase_rank3
     (M : Matroid α) {D B : Set α}
     (hRank : M.eRank = 3)

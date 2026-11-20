@@ -17,7 +17,9 @@ def AvoidingCycle6
   ({e, f, a} : Finset (Fin 6)) ∉ F ∧
   ({f, a, b} : Finset (Fin 6)) ∉ F
 
-/-- Six displayed elements have pairwise distinct entries when their finset has cardinality six.-/
+/-- Six displayed elements have pairwise distinct entries when their finset has cardinality six.
+@isnad1 id=and.1h7v.s7.f1587f20e7d0 from=translated src=- shape=2f95d436 vocab=792c0608
+-/
 theorem six_pairwise_ne_of_card_six
     {β : Type*} [DecidableEq β]
     {a b c d e f : β}
@@ -56,7 +58,9 @@ theorem six_pairwise_ne_of_card_six
   exact ⟨hab, hac, had, hae, haf, hbc, hbd, hbe, hbf,
     hcd, hce, hcf, hde, hdf, hef⟩
 
-/-- Avoidance is inherited by subfamilies.-/
+/-- Avoidance is inherited by subfamilies.
+@isnad1 id=avoiding.2h8v.s6.2c21415cb38a from=translated src=- shape=0c0b5881 vocab=8ff70169
+-/
 theorem avoidingCycle6_mono
     {F G : Finset (Finset (Fin 6))}
     (hFG : F ⊆ G)
@@ -72,7 +76,9 @@ theorem avoidingCycle6_mono
     fun hF => h4 (hFG hF),
     fun hF => h5 (hFG hF)⟩
 
-/-- The first canonical family is avoided by the paper's cycle `(0,1,3,2,4,5)`.-/
+/-- The first canonical family is avoided by the paper's cycle `(0,1,3,2,4,5)`.
+@isnad1 id=ex.1h1v.s8.0e3080bfd701 from=translated src=- shape=b9e37e8f vocab=3ccf2060
+-/
 theorem pairPattern6_has_paper_avoidingCycle
     {F : Finset (Finset (Fin 6))}
     (hPair : PairPattern6 F) :
@@ -125,7 +131,9 @@ theorem pairPattern6_has_paper_avoidingCycle
   · exact hMixed _ (x := a) (y := e) (by simp) (by simp [A]) (by simp) (by simp [B])
   · exact hMixed _ (x := a) (y := f) (by simp) (by simp [A]) (by simp) (by simp [B])
 
-/-- The Pasch family is avoided by the paper's cycle `(0,1,4,2,3,5)`.-/
+/-- The Pasch family is avoided by the paper's cycle `(0,1,4,2,3,5)`.
+@isnad1 id=ex.1h1v.s8.cba971f2fd4f from=translated src=- shape=3d082a79 vocab=2589a46b
+-/
 theorem paschPattern6_has_paper_avoidingCycle
     {F : Finset (Finset (Fin 6))}
     (hPasch : PaschPattern6 F) :
@@ -225,7 +233,9 @@ theorem paschPattern6_has_paper_avoidingCycle
       hNeOfMemNotMem _ C (by simp) haC,
       hNeOfMemNotMem _ D (by simp) haD⟩
 
-/-- Classification of inclusion-maximal linear triple families on six points.-/
+/-- Classification of inclusion-maximal linear triple families on six points.
+@isnad1 id=or.1h1v.s4.31da8afb1bb5 from=translated src=- shape=f70ab71e vocab=000a2254
+-/
 theorem maximalLinearTripleFamily6_pair_or_pasch
     {F : Finset (Finset (Fin 6))}
     (hMax : MaximalLinearTripleFamily6 F) :
@@ -238,7 +248,9 @@ theorem maximalLinearTripleFamily6_pair_or_pasch
     obtain ⟨A, hAF, B, hBF, hAB, hdisj⟩ := hInt
     exact pairPattern6_of_disjoint_members hMax.1 hAF hBF hAB hdisj
 
-/-- Every linear family has a maximal extension of one of the two canonical types.-/
+/-- Every linear family has a maximal extension of one of the two canonical types.
+@isnad1 id=ex.1h1v.s6.72f19818735a from=translated src=- shape=1880c004 vocab=142f6430
+-/
 theorem exists_maximal_pair_or_pasch_superset
     {F : Finset (Finset (Fin 6))}
     (hF : LinearTripleFamily6 F) :
@@ -249,7 +261,9 @@ theorem exists_maximal_pair_or_pasch_superset
 
 /--
 Paper v2, Lemma 9.2. Every linear family of triples on six points admits a
-cyclic order whose six three-element windows avoid the family.-/
+cyclic order whose six three-element windows avoid the family.
+@isnad1 id=ex.1h1v.s8.9a2936202f79 from=translated src=- shape=c52fa8a3 vocab=228ec994
+-/
 theorem exists_avoidingCycle6_of_linear
     {F : Finset (Finset (Fin 6))}
     (hF : LinearTripleFamily6 F) :

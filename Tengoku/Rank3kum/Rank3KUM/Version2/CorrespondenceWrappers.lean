@@ -15,7 +15,9 @@ variable {α : Type*}
 /--
 Paper v2, Lemma 5.1 in its paper-facing hypothesis form.  A distinct
 independent pair inside a rank-two flat is automatically a basis of that
-flat, after which the compiled lifting lemma applies.-/
+flat, after which the compiled lifting lemma applies.
+@isnad1 id=isbase.9h6v.s7.d454c8d9efb0 from=translated src=- shape=d4f4ace1 vocab=70c835a7
+-/
 theorem isBase_insert_pair_of_indep_flat_rank3
     (M : Matroid α) {X : Set α}
     (hRank : M.eRank = 3)
@@ -46,7 +48,9 @@ theorem isBase_insert_pair_of_indep_flat_rank3
 /--
 Paper v2, Lemma 6.3 in its paper-facing hypothesis form.  In the rank-two
 contraction a distinct independent pair is a base; looplessness and rank one
-make the chosen point of `X` a singleton basis of `X`.-/
+make the chosen point of `X` a singleton basis of `X`.
+@isnad1 id=isbase.8h6v.s7.d92c81441765 from=translated src=- shape=387cd1fc vocab=02519af3
+-/
 theorem isBase_insert_pair_of_contract_indep_rank3
     (M : Matroid α) {X : Set α}
     (hRank : M.eRank = 3)

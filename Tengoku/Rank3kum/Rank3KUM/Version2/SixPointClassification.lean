@@ -16,7 +16,9 @@ def PairPattern6 (F : Finset (Finset (Fin 6))) : Prop :=
 def PairwiseIntersecting6 (F : Finset (Finset (Fin 6))) : Prop :=
   ∀ A ∈ F, ∀ B ∈ F, A ≠ B → ¬ Disjoint A B
 
-/-- Distinct members of a linear pairwise-intersecting triple family meet in exactly one point.-/
+/-- Distinct members of a linear pairwise-intersecting triple family meet in exactly one point.
+@isnad1 id=eq.5h3v.s7.807b369999a0 from=translated src=- shape=fb4a66e8 vocab=ede6d836
+-/
 theorem card_inter_eq_one_of_pairwiseIntersecting6
     {F : Finset (Finset (Fin 6))}
     (hF : LinearTripleFamily6 F)
@@ -87,7 +89,9 @@ theorem eq_pair_of_disjoint_members
     · exact hAF
     · exact hBF
 
-/-- Hence the disjoint case is, up to naming its six points, the first canonical pattern.-/
+/-- Hence the disjoint case is, up to naming its six points, the first canonical pattern.
+@isnad1 id=pairpatt.5h3v.s7.26a9277c8d2f from=translated src=- shape=8e5016df vocab=ee99a529
+-/
 theorem pairPattern6_of_disjoint_members
     {F : Finset (Finset (Fin 6))}
     (hF : LinearTripleFamily6 F)

@@ -8,7 +8,9 @@ open Set
 
 variable {α : Type*}
 
-/-- The residual supports of `a` and `b` are disjoint in the equal-singleton branch.-/
+/-- The residual supports of `a` and `b` are disjoint in the equal-singleton branch.
+@isnad1 id=disjoint.17h8v.s8.c699f3649fb6 from=translated src=- shape=fdfede9e vocab=d48386b6
+-/
 theorem equal_singleton_residualSupport_a_disjoint_b
     (M : Matroid α) {D : Set α} {a b c q t : α}
     (hRank : M.eRank = 3)
@@ -131,7 +133,9 @@ theorem equal_singleton_residualSupport_a_disjoint_b
       M hDtc htD hdD hcD hdA'.2
   exact hdNotClC hdClC
 
-/-- The residual supports of `b` and `c` are disjoint in the equal-singleton branch.-/
+/-- The residual supports of `b` and `c` are disjoint in the equal-singleton branch.
+@isnad1 id=disjoint.17h8v.s8.f294005dc472 from=translated src=- shape=cea11dbe vocab=d48386b6
+-/
 theorem equal_singleton_residualSupport_b_disjoint_c
     (M : Matroid α) {D : Set α} {p a b c t : α}
     (hRank : M.eRank = 3)

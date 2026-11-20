@@ -13,7 +13,9 @@ variable {α : Type*}
 /--
 Paper v2, Lemma 8.8.  If `A`, `B`, and `C` are a nonconcurrent triple of
 near-tight rank-two flats in a strictly uniformly dense rank-three matroid,
-then they exhaust the near-tight family.-/
+then they exhaust the near-tight family.
+@isnad1 id=or.22h7v.s8.9b61e4fbbbfa from=translated src=- shape=204f346d vocab=6fe40aed
+-/
 theorem nearTight_eq_one_of_nonconcurrent_three
     (M : Matroid α) (k : ℕ)
     (hk : 3 ≤ k)

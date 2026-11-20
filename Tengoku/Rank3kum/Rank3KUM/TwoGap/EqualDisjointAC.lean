@@ -10,7 +10,9 @@ variable {α : Type*}
 
 /--
 If `D - t + e` is a basis, every other element `d` of `D` is outside
-`cl {e}`.-/
+`cl {e}`.
+@isnad1 id=not.5h6v.s6.b5bb353bb458 from=translated src=- shape=48aa7091 vocab=e276bfa8
+-/
 theorem not_mem_closure_singleton_of_exchange_isBase
     (M : Matroid α) {D : Set α} {t e d : α}
     (hEx : M.IsBase (exchangeSet D t e))
@@ -52,7 +54,9 @@ theorem not_mem_closure_singleton_of_exchange_isBase
       exact ⟨Or.inl rfl, hde.symm⟩
   rwa [hset] at hdNot
 
-/-- The residual supports of `a` and `c` are disjoint in the equal-singleton branch.-/
+/-- The residual supports of `a` and `c` are disjoint in the equal-singleton branch.
+@isnad1 id=disjoint.13h7v.s7.837c45be8fbd from=translated src=- shape=4a5fb5d5 vocab=d48386b6
+-/
 theorem equal_singleton_residualSupport_a_disjoint_c
     (M : Matroid α) {D : Set α} {a b c t : α}
     (hRank : M.eRank = 3)

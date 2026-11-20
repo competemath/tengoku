@@ -8,7 +8,9 @@ open Set
 
 variable {α : Type*}
 
-/-- In the equal-singleton branch, all three residual fundamental supports are nonempty.-/
+/-- In the equal-singleton branch, all three residual fundamental supports are nonempty.
+@isnad1 id=and.12h8v.s7.f89422ac3393 from=translated src=- shape=d1844efe vocab=4408875a
+-/
 theorem equal_singleton_residualSupports_nonempty
     (M : Matroid α) {D : Set α} {p a b c t : α}
     (hD : M.IsBase D)

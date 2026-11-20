@@ -8,7 +8,9 @@ open Set
 
 variable {α : Type*}
 
-/-- In rank three, an independent pair together with a ground element outside its closure is a basis.-/
+/-- In rank three, an independent pair together with a ground element outside its closure is a basis.
+@isnad1 id=isbase.7h5v.s6.1f9600be6ff7 from=translated src=- shape=2c126243 vocab=cd824eaf
+-/
 theorem isBase_triple_of_indep_pair_notMem_closure_rank3
     (M : Matroid α) {x y z : α}
     (hRank : M.eRank = 3)
@@ -36,7 +38,9 @@ theorem isBase_triple_of_indep_pair_notMem_closure_rank3
 
 /--
 The unequal common-singleton configuration for the two neighboring gaps is
-impossible. This is the full `t ≠ s` branch of the universal two-gap proof.-/
+impossible. This is the full `t ≠ s` branch of the universal two-gap proof.
+@isnad1 id=false.19h10v.s8.546b69ca83a4 from=translated src=- shape=9ada977f vocab=7dcbdca5
+-/
 theorem false_of_unequal_singleton_partner_pairs
     (M : Matroid α) {D : Set α} {p a b c q t s : α}
     (hRank : M.eRank = 3)

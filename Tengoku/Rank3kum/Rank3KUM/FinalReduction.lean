@@ -16,7 +16,9 @@ variable {α : Type*}
 
 /--
 All nontrivial tight-set cases are discharged, so the full rank-three theorem
-reduces exactly to the strictly dense case.-/
+reduces exactly to the strictly dense case.
+@isnad1 id=ex.6h3v.s7.a2f60678ab83 from=translated src=- shape=c197b519 vocab=52d64829
+-/
 theorem exists_cyclicBasisOrder3_of_strict_case
     (M : Matroid α) (k : ℕ)
     (hk : 0 < k)

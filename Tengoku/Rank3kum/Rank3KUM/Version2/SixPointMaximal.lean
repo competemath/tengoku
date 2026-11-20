@@ -6,7 +6,9 @@ namespace Rank3KUM.Version2
 
 open Finset
 
-/-- A maximal linear triple family on six points is nonempty.-/
+/-- A maximal linear triple family on six points is nonempty.
+@isnad1 id=ne.1h1v.s4.dd1550d6562a from=translated src=- shape=7997cb1a vocab=56cae858
+-/
 theorem maximalLinearTripleFamily6_card_ne_zero
     {F : Finset (Finset (Fin 6))}
     (hMax : MaximalLinearTripleFamily6 F) :
@@ -26,7 +28,9 @@ theorem maximalLinearTripleFamily6_card_ne_zero
   rw [hFempty] at hmem
   simp at hmem
 
-/-- A maximal linear triple family on six points cannot have one member.-/
+/-- A maximal linear triple family on six points cannot have one member.
+@isnad1 id=ne.1h1v.s4.df8b7084ab3f from=translated src=- shape=7997cb1a vocab=56cae858
+-/
 theorem maximalLinearTripleFamily6_card_ne_one
     {F : Finset (Finset (Fin 6))}
     (hMax : MaximalLinearTripleFamily6 F) :
@@ -58,7 +62,9 @@ theorem maximalLinearTripleFamily6_card_ne_one
   have hxT : x ∈ T := by rw [hmem]; exact hxA
   exact (Finset.mem_sdiff.mp hxT).2 hxA
 
-/-- In the pairwise-intersecting branch, a maximal family cannot have exactly two members.-/
+/-- In the pairwise-intersecting branch, a maximal family cannot have exactly two members.
+@isnad1 id=ne.2h1v.s4.52251a45e86d from=translated src=- shape=f856d82f vocab=0bcfed6a
+-/
 theorem maximalLinearTripleFamily6_card_ne_two_of_pairwiseIntersecting
     {F : Finset (Finset (Fin 6))}
     (hMax : MaximalLinearTripleFamily6 F)
@@ -144,7 +150,9 @@ theorem maximalLinearTripleFamily6_card_ne_two_of_pairwiseIntersecting
   · rw [hTBeq] at hcT
     exact hcB hcT
 
-/-- In the pairwise-intersecting branch, a maximal family cannot have exactly three members.-/
+/-- In the pairwise-intersecting branch, a maximal family cannot have exactly three members.
+@isnad1 id=ne.2h1v.s4.111d07c8ba52 from=translated src=- shape=f856d82f vocab=0bcfed6a
+-/
 theorem maximalLinearTripleFamily6_card_ne_three_of_pairwiseIntersecting
     {F : Finset (Finset (Fin 6))}
     (hMax : MaximalLinearTripleFamily6 F)
@@ -281,7 +289,9 @@ theorem maximalLinearTripleFamily6_card_ne_three_of_pairwiseIntersecting
   · rw [hTC, Finset.inter_self, hCcard] at hTCcard
     omega
 
-/-- Therefore the pairwise-intersecting maximal configuration has exactly four triples.-/
+/-- Therefore the pairwise-intersecting maximal configuration has exactly four triples.
+@isnad1 id=eq.2h1v.s4.453be61c5235 from=translated src=- shape=f856d82f vocab=0bcfed6a
+-/
 theorem maximalLinearTripleFamily6_card_eq_four_of_pairwiseIntersecting
     {F : Finset (Finset (Fin 6))}
     (hMax : MaximalLinearTripleFamily6 F)

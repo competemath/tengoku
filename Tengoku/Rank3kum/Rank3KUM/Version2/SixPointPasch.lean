@@ -16,7 +16,9 @@ def PaschPattern6 (F : Finset (Finset (Fin 6))) : Prop :=
       ({pAC, pBC, pCD} : Finset (Fin 6)),
       ({pAD, pBD, pCD} : Finset (Fin 6))}
 
-/-- A point cannot lie in three distinct members of a linear triple family on six points.-/
+/-- A point cannot lie in three distinct members of a linear triple family on six points.
+@isnad1 id=disjoint.7h4v.s7.dd064399e890 from=translated src=- shape=8ae5e51d vocab=8037f92a
+-/
 theorem disjoint_pair_inter_third_of_linear
     {F : Finset (Finset (Fin 6))}
     (hF : LinearTripleFamily6 F)
@@ -46,7 +48,9 @@ theorem disjoint_pair_inter_third_of_linear
   have hdeg_le := pointDegree6_le_two F hF x
   omega
 
-/-- A point of one pair intersection differs from every point in any third family member.-/
+/-- A point of one pair intersection differs from every point in any third family member.
+@isnad1 id=ne.9h6v.s8.a958c00f7b8d from=translated src=- shape=90085877 vocab=d9e8e4be
+-/
 theorem pairIntersection_point_ne_of_three_distinct
     {F : Finset (Finset (Fin 6))}
     (hF : LinearTripleFamily6 F)
@@ -66,7 +70,9 @@ theorem pairIntersection_point_ne_of_three_distinct
 /--
 A pairwise-intersecting maximal linear triple family on six points is the
 Pasch configuration, up to relabeling.  The six labels are the six pairwise
-intersections of the four triples, i.e. the edges of `K₄`.-/
+intersections of the four triples, i.e. the edges of `K₄`.
+@isnad1 id=paschpat.2h1v.s4.33f5fd2b40b9 from=translated src=- shape=96cd3073 vocab=ec65e8be
+-/
 theorem paschPattern6_of_maximal_pairwiseIntersecting
     {F : Finset (Finset (Fin 6))}
     (hMax : MaximalLinearTripleFamily6 F)

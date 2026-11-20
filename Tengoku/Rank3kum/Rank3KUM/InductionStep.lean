@@ -13,7 +13,9 @@ noncomputable section
 
 variable {α : Type*}
 
-/-- Deleting a basis from a rank-three ground set of size `3k` leaves `3(k-1)` elements.-/
+/-- Deleting a basis from a rank-three ground set of size `3k` leaves `3(k-1)` elements.
+@isnad1 id=eq.4h4v.s6.50e196fe5412 from=translated src=- shape=cd6a6afe vocab=954bd7df
+-/
 theorem delete_ground_encard_eq_three_mul_pred
     (M : Matroid α) (k : ℕ)
     (hk : 0 < k)
@@ -52,7 +54,9 @@ theorem delete_ground_encard_eq_three_mul_pred
 /--
 The induction splice in the natural `3k` parametrization: once deleting a
 three-element basis leaves a cyclic order on `3(k-1)` elements, the two-gap
-theorem inserts that basis and returns a cyclic order on all `3k` elements.-/
+theorem inserts that basis and returns a cyclic order on all `3k` elements.
+@isnad1 id=ex.5h5v.s7.dad694786738 from=translated src=- shape=5cecdda5 vocab=c6188301
+-/
 theorem exists_cyclicBasisOrder3_of_cyclic_basis_deletion
     (M : Matroid α) (k : ℕ)
     (hk : 3 ≤ k)

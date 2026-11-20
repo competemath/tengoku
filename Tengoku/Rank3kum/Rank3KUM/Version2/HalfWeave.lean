@@ -46,7 +46,9 @@ def LargestFirstBlockModel.ofSorted
     change 0 ≤ j.val
     omega
 
-/-- Paired first- and second-half indices cross blocks under the weak model.-/
+/-- Paired first- and second-half indices cross blocks under the weak model.
+@isnad1 id=ne.0h4v.s4.12cba788c299 from=translated src=- shape=24c36568 vocab=a261dd56
+-/
 theorem first_second_blocks_ne
     {k m : ℕ}
     (S : LargestFirstBlockModel k m)
@@ -70,7 +72,9 @@ theorem first_second_blocks_ne
 /--
 For a nonfinal `i`, the bridge from the second half to the next first-half
 position crosses blocks.  This is the step where only "largest first" is
-needed; no antitonicity of all block sizes is used.-/
+needed; no antitonicity of all block sizes is used.
+@isnad1 id=ne.2h4v.s5.208233aa3081 from=translated src=- shape=7a82d105 vocab=51caac33
+-/
 theorem second_next_blocks_ne_nonfinal
     {k m : ℕ}
     (hk : 0 < k)
@@ -173,7 +177,9 @@ theorem second_next_blocks_ne_nonfinal
     omega
   omega
 
-/-- The cyclic join crosses blocks under the weak model.-/
+/-- The cyclic join crosses blocks under the weak model.
+@isnad1 id=ne.1h3v.s5.7c6a05ffb3a0 from=translated src=- shape=b0b5eb53 vocab=90c164df
+-/
 theorem wraparound_blocks_ne
     {k m : ℕ}
     (hk : 0 < k)
@@ -199,7 +205,9 @@ theorem wraparound_blocks_ne
   have hupper := S.fiber_card_le (S.block a)
   omega
 
-/-- Every successor adjacency in the half weave crosses blocks.-/
+/-- Every successor adjacency in the half weave crosses blocks.
+@isnad1 id=ne.1h4v.s7.ee631ede1e05 from=translated src=- shape=2d0d1a9e vocab=7ae23698
+-/
 theorem woven_successor_blocks_ne
     {k m : ℕ}
     (hk : 0 < k)
@@ -274,7 +282,9 @@ def rankTwoWoven
     Fin k × Bool ≃ M.E :=
   woven k hk D.y
 
-/-- Every woven successor pair is independent.-/
+/-- Every woven successor pair is independent.
+@isnad1 id=indep.1h6v.s7.a7d2692363a0 from=translated src=- shape=68f4d8d4 vocab=b427be1a
+-/
 theorem rankTwoWoven_successor_indep
     {M : Matroid α} {k m : ℕ}
     (D : RankTwoLargestFirstEnumeration M k m)
@@ -290,7 +300,9 @@ theorem rankTwoWoven_successor_indep
       (halfWeaveEquiv k hk (weaveNext k hk p))
       hblocks
 
-/-- Every woven successor pair is a basis in rank two.-/
+/-- Every woven successor pair is a basis in rank two.
+@isnad1 id=isbase.2h6v.s7.fb4d0802c0f7 from=translated src=- shape=d9409adb vocab=ad87c97d
+-/
 theorem rankTwoWoven_successor_isBase
     (M : Matroid α)
     {k m : ℕ}

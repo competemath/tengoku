@@ -189,28 +189,51 @@ noncomputable def sixPointPerm8 : Equiv.Perm (Fin 6) :=
   Equiv.ofBijective
     (![0, 1, 5, 3, 4, 2] : Fin 6 → Fin 6) (by decide)
 
-/-- Cheap evaluation lemmas: avoid unfolding `Equiv.ofBijective` during `simp`.-/
+/-- Cheap evaluation lemmas: avoid unfolding `Equiv.ofBijective` during `simp`.
+@isnad1 id=eq.0h1v.s6.9dd6cff94279 from=translated src=- shape=20edd117 vocab=2aa5c744
+-/
 
 @[simp] theorem sixPointPerm1_apply (i : Fin 6) : sixPointPerm1 i = i := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.f053d2bb702c from=translated src=- shape=dcf0d0b0 vocab=f605da33
+-/
 @[simp] theorem sixPointPerm2_apply (i : Fin 6) :
     sixPointPerm2 i = (![0, 2, 4, 1, 5, 3] : Fin 6 → Fin 6) i := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.9c9983a302da from=translated src=- shape=dcf0d0b0 vocab=aacb08f0
+-/
 @[simp] theorem sixPointPerm3_apply (i : Fin 6) :
     sixPointPerm3 i = (![0, 1, 2, 5, 4, 3] : Fin 6 → Fin 6) i := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.f4e5402580ec from=translated src=- shape=dcf0d0b0 vocab=b3d6468d
+-/
 @[simp] theorem sixPointPerm4_apply (i : Fin 6) :
     sixPointPerm4 i = (![0, 4, 1, 3, 2, 5] : Fin 6 → Fin 6) i := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.101c6f46364e from=translated src=- shape=dcf0d0b0 vocab=8b9b88c5
+-/
 @[simp] theorem sixPointPerm5_apply (i : Fin 6) :
     sixPointPerm5 i = (![0, 1, 5, 3, 2, 4] : Fin 6 → Fin 6) i := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.6c333fcf1a71 from=translated src=- shape=dcf0d0b0 vocab=2cd44401
+-/
 @[simp] theorem sixPointPerm6_apply (i : Fin 6) :
     sixPointPerm6 i = (![0, 3, 1, 4, 2, 5] : Fin 6 → Fin 6) i := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.75cd596897db from=translated src=- shape=dcf0d0b0 vocab=e377432d
+-/
 @[simp] theorem sixPointPerm7_apply (i : Fin 6) :
     sixPointPerm7 i = (![0, 2, 1, 3, 5, 4] : Fin 6 → Fin 6) i := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.5c79ffcb382e from=translated src=- shape=dcf0d0b0 vocab=e6b8a76a
+-/
 @[simp] theorem sixPointPerm8_apply (i : Fin 6) :
     sixPointPerm8 i = (![0, 1, 5, 3, 4, 2] : Fin 6 → Fin 6) i := rfl
 
@@ -531,7 +554,9 @@ private theorem sixPointSAT
 
 /--
 A family satisfying the explicit linearity certificate obeys one of the
-eight certified cyclic-order alternatives.-/
+eight certified cyclic-order alternatives.
+@isnad1 id=sixpoint.1h1v.s3.fb3e62a675ec from=translated src=- shape=c9d8a700 vocab=f09d1f97
+-/
 theorem sixPointGoodAlternatives_of_linear
     (Bad : Finset (Fin 6) → Prop)
     (hlinear : LinearSixBad Bad) :

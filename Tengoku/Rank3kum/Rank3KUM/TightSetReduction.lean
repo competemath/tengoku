@@ -15,7 +15,9 @@ variable {α : Type*}
 
 /--
 Any nonempty proper tight set resolves the rank-three cyclic-order problem:
-the rank-one case uses contraction, and the rank-two case uses restriction.-/
+the rank-one case uses contraction, and the rank-two case uses restriction.
+@isnad1 id=ex.8h4v.s7.0639d0f5ae1a from=translated src=- shape=3b1a85b6 vocab=608de93e
+-/
 theorem exists_cyclicBasisOrder3_of_nonempty_proper_tight
     (M : Matroid α) (k : ℕ)
     (hk : 0 < k)

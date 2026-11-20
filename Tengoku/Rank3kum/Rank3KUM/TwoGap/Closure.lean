@@ -12,7 +12,9 @@ variable {α : Type*}
 
 /--
 In a rank-three matroid, the two lines through the adjacent pairs of a basis
-meet exactly in the closure of their common element.-/
+meet exactly in the closure of their common element.
+@isnad1 id=eq.2h5v.s6.1fd16e76b6d0 from=translated src=- shape=d79d8719 vocab=947d093d
+-/
 theorem closure_pair_inter_closure_pair_eq
     (M : Matroid α) {a b c : α}
     (hRank : M.eRank = 3)

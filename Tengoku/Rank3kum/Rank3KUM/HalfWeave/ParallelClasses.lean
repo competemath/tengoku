@@ -50,6 +50,9 @@ def closureFinpartition
   classical
   exact Finpartition.ofSetoid (closureSetoid M)
 
+/--
+@isnad1 id=iff.0h4v.s7.a33935843b35 from=translated src=- shape=eb724bf9 vocab=a6119677
+-/
 @[simp] theorem mem_closureFinpartition_part_iff
     (M : Matroid α)
     [Fintype M.E]
@@ -70,6 +73,9 @@ def sortedClosureParts
   ((closureFinpartition M).parts.attach.toList).insertionSort
     (fun p q => q.1.card ≤ p.1.card)
 
+/--
+@isnad1 id=eq.0h2v.s7.8b6b94e18ddf from=translated src=- shape=35162953 vocab=44165f1c
+-/
 @[simp] theorem length_sortedClosureParts
     (M : Matroid α)
     [Fintype M.E]
@@ -78,6 +84,9 @@ def sortedClosureParts
       (closureFinpartition M).parts.card := by
   simp [sortedClosureParts]
 
+/--
+@isnad1 id=mem.0h3v.s8.12cd7517d6cb from=translated src=- shape=6e0dc613 vocab=f2467f6d
+-/
 @[simp] theorem mem_sortedClosureParts
     (M : Matroid α)
     [Fintype M.E]
@@ -86,6 +95,9 @@ def sortedClosureParts
     p ∈ sortedClosureParts M := by
   simp [sortedClosureParts]
 
+/--
+@isnad1 id=nodup.0h2v.s6.f63c64cf8e61 from=translated src=- shape=fb36d037 vocab=8fd9f6cd
+-/
 theorem nodup_sortedClosureParts
     (M : Matroid α)
     [Fintype M.E]
@@ -99,6 +111,9 @@ theorem nodup_sortedClosureParts
       ((closureFinpartition M).parts.attach.toList)).nodup_iff.mpr
   exact Finset.nodup_toList _
 
+/--
+@isnad1 id=pairwise.0h2v.s8.eb7b5db8030c from=translated src=- shape=c0a877d8 vocab=d6445f91
+-/
 theorem pairwise_sortedClosureParts
     (M : Matroid α)
     [Fintype M.E]
@@ -129,7 +144,9 @@ def sortedClosurePartsEquiv
     (finCongr hlength.symm).trans
       (hnodup.getEquivOfForallMemList _ hall)
 
-/-- Sorted closure-part cardinalities are nonincreasing in their labels.-/
+/-- Sorted closure-part cardinalities are nonincreasing in their labels.
+@isnad1 id=antitone.0h2v.s9.25c8e85be9e2 from=translated src=- shape=40311763 vocab=a46ea9fc
+-/
 theorem antitone_sortedClosureParts_card
     (M : Matroid α)
     [Fintype M.E]
@@ -173,7 +190,9 @@ theorem antitone_sortedClosureParts_card
   rw [hi, hj]
   exact hrel
 
-/-- The sizes of the sorted closure parts sum to the ground-set cardinality.-/
+/-- The sizes of the sorted closure parts sum to the ground-set cardinality.
+@isnad1 id=eq.0h2v.s9.489fce56d689 from=translated src=- shape=c1396119 vocab=d429a016
+-/
 theorem sum_sortedClosureParts_card
     (M : Matroid α)
     [Fintype M.E]
@@ -235,6 +254,9 @@ def finSigmaPrefix
   ∑ i ∈ Finset.range r,
     if h : i < m then n ⟨i, h⟩ else 0
 
+/--
+@isnad1 id=eq.0h3v.s5.033add68298a from=translated src=- shape=dcdd4672 vocab=4921f75b
+-/
 theorem sum_fin_castLE_eq_finSigmaPrefix
     {m : ℕ}
     (n : Fin m → ℕ)
@@ -253,6 +275,9 @@ theorem sum_fin_castLE_eq_finSigmaPrefix
   apply Fin.ext
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.d681d6cd74ff from=translated src=- shape=b326b998 vocab=fdd0768c
+-/
 theorem finSigmaPrefix_succ
     {m : ℕ}
     (n : Fin m → ℕ)
@@ -262,6 +287,9 @@ theorem finSigmaPrefix_succ
       finSigmaPrefix n r + n ⟨r, hr⟩ := by
   simp [finSigmaPrefix, Finset.sum_range_succ, hr]
 
+/--
+@isnad1 id=le.1h4v.s5.9c88a965db53 from=translated src=- shape=2ad3b662 vocab=46f90b15
+-/
 theorem finSigmaPrefix_add_le
     {m : ℕ}
     (n : Fin m → ℕ)
@@ -276,7 +304,9 @@ theorem finSigmaPrefix_add_le
   · intro i _ _
     exact Nat.zero_le _
 
-/-- The block coordinate of the standard flattened finite sigma type is monotone.-/
+/-- The block coordinate of the standard flattened finite sigma type is monotone.
+@isnad1 id=monotone.0h2v.s8.d245cd72a822 from=translated src=- shape=fcc378e2 vocab=431fb193
+-/
 theorem monotone_finSigmaFinEquiv_symm_fst
     {m : ℕ}
     {n : Fin m → ℕ} :
@@ -338,6 +368,9 @@ def closurePartsEnumeration
       ((Equiv.refl _).sigmaCongr
         (fun p => p.1.equivFin)))
 
+/--
+@isnad1 id=eq.0h3v.s10.e7948de8b0f0 from=translated src=- shape=d2897b72 vocab=e8cdcf90
+-/
 @[simp] theorem closurePartsEnumeration_part
     (M : Matroid α)
     [Fintype M.E]
@@ -359,6 +392,9 @@ def sortedClosureCoordinatesEquiv
       (sortedClosurePartsEquiv M)).trans
     (closurePartsEnumeration M).symm
 
+/--
+@isnad1 id=eq.0h3v.s12.0b4825300e26 from=translated src=- shape=4c12b0a8 vocab=cd212bc0
+-/
 theorem part_sortedClosureCoordinatesEquiv
     (M : Matroid α)
     [Fintype M.E]
@@ -414,6 +450,9 @@ def sortedClosureBlock
       Fin (closureFinpartition M).parts.card :=
   fun j => (sortedClosureSigmaEquiv M k hcard j).1
 
+/--
+@isnad1 id=monotone.1h3v.s7.f607e8fff47d from=translated src=- shape=dae4144b vocab=0bbf8629
+-/
 theorem monotone_sortedClosureBlock
     (M : Matroid α)
     (k : ℕ)
@@ -436,6 +475,9 @@ theorem monotone_sortedClosureBlock
   change a.val ≤ b.val
   exact hab
 
+/--
+@isnad1 id=eq.1h4v.s9.f7c206e5711c from=translated src=- shape=212e8b2e vocab=569051b2
+-/
 theorem part_sortedClosureGroundEquiv
     (M : Matroid α)
     (k : ℕ)
@@ -451,6 +493,9 @@ theorem part_sortedClosureGroundEquiv
     part_sortedClosureCoordinatesEquiv M
       (sortedClosureSigmaEquiv M k hcard j)
 
+/--
+@isnad1 id=iff.1h5v.s10.8617e105d675 from=translated src=- shape=7592f206 vocab=5b07cd61
+-/
 theorem mem_sortedClosurePart_iff_block_eq
     (M : Matroid α)
     (k : ℕ)
@@ -475,7 +520,9 @@ theorem mem_sortedClosurePart_iff_block_eq
     subst c
     rfl
 
-/-- Every block fiber is in bijection with its sorted closure part.-/
+/-- Every block fiber is in bijection with its sorted closure part.
+@isnad1 id=eq.1h4v.s9.2af2651b7e97 from=translated src=- shape=89ec6264 vocab=08c13b50
+-/
 theorem card_fiberFinset_sortedClosureBlock
     (M : Matroid α)
     (k : ℕ)
@@ -497,7 +544,9 @@ theorem card_fiberFinset_sortedClosureBlock
           (mem_sortedClosurePart_iff_block_eq
             M k hcard j c).symm)
 
-/-- Every sorted closure label occurs among the flattened ground positions.-/
+/-- Every sorted closure label occurs among the flattened ground positions.
+@isnad1 id=surjecti.1h3v.s6.3ab16d03831b from=translated src=- shape=dae4144b vocab=5f1042cb
+-/
 theorem sortedClosureBlock_surjective
     (M : Matroid α)
     (k : ℕ)
@@ -524,6 +573,9 @@ theorem sortedClosureBlock_surjective
   refine ⟨j, ?_⟩
   simpa [fiberFinset] using hj
 
+/--
+@isnad1 id=iff.1h5v.s8.8aee29074c1e from=translated src=- shape=1377f0b3 vocab=b6dc59e3
+-/
 theorem sortedClosureBlock_eq_iff_closure_eq
     (M : Matroid α)
     (k : ℕ)
@@ -561,7 +613,9 @@ theorem sortedClosureBlock_eq_iff_closure_eq
         mem_closureFinpartition_part_iff
           M (y a) (y b)
 
-/-- Every part of the closure partition inherits the uniform-density bound.-/
+/-- Every part of the closure partition inherits the uniform-density bound.
+@isnad1 id=le.3h4v.s6.e0fb0c4a566f from=translated src=- shape=e6f56d13 vocab=5474bc8c
+-/
 theorem card_closureFinpartition_part_le
     (M : Matroid α)
     (k : ℕ)
@@ -611,7 +665,9 @@ theorem card_closureFinpartition_part_le
           M k hDense hLoopless e.property
   exact_mod_cast hcardENat
 
-/-- Rank two forces the closure partition to have at least two parts.-/
+/-- Rank two forces the closure partition to have at least two parts.
+@isnad1 id=le.1h2v.s6.6d63b9e91069 from=translated src=- shape=47802a3a vocab=4c12ef0b
+-/
 theorem two_le_card_closureFinpartition_parts
     (M : Matroid α)
     [Fintype M.E]
@@ -707,7 +763,9 @@ def rankTwoSortedEnumerationOfUniformlyDense
     (sortedClosureBlock_eq_iff_closure_eq
       M k hcard)
 
-/-- Every finite uniformly dense rank-two matroid has the required cyclic adjacent-base order.-/
+/-- Every finite uniformly dense rank-two matroid has the required cyclic adjacent-base order.
+@isnad1 id=ex.4h3v.s8.aead3021e126 from=translated src=- shape=9f8e6853 vocab=90ca0f32
+-/
 theorem exists_cyclic_adjacent_base_order_of_uniformlyDense
     (M : Matroid α)
     (k : ℕ)
