@@ -24,6 +24,9 @@ noncomputable def _root_.Tengoku.PartialRegularity.countNonRegularPrimes (α : �
 /-- `K_max(X) = ⌊√X / (2 * (log X)^α)⌋` bounds the range of k in the double counting argument.-/
 noncomputable def _root_.Tengoku.PartialRegularity.K_max (α : ℝ) (X : ℝ) : ℕ :=
   ⌊Real.sqrt X / (2 * (Real.log X) ^ α)⌋₊
+/--
+@isnad1 id=le.2h2v.s6.c748310bcf5e from=translated src=- shape=9f7548aa vocab=8b47f58b
+-/
 lemma _root_.Tengoku.PartialRegularity.sqrt_div_log_pow_nonneg (α : ℝ) (X : ℝ) (hX : 1 < X) (hα : 0 < α) :
     0 ≤ Real.sqrt X / (2 * (Real.log X) ^ α) := by
   have hlog : 0 < Real.log X := Real.log_pos hX
@@ -31,6 +34,9 @@ lemma _root_.Tengoku.PartialRegularity.sqrt_div_log_pow_nonneg (α : ℝ) (X : �
   have hdenom : 0 < 2 * (Real.log X) ^ α := by positivity
   exact div_nonneg hsqrt.le hdenom.le
 
+/--
+@isnad1 id=eq.2h2v.s7.5397c1a2722d from=translated src=- shape=b203e070 vocab=92e14cbe
+-/
 lemma _root_.Tengoku.PartialRegularity.rhs_simplify (α : ℝ) (X : ℝ) (hX : 1 < X) (hα : 0 < α) :
     (Real.sqrt X / (2 * (Real.log X) ^ α)) ^ 2 = X / (4 * (Real.log X) ^ (2 * α)) := by
   have hlog : 0 < Real.log X := Real.log_pos hX
@@ -41,6 +47,9 @@ lemma _root_.Tengoku.PartialRegularity.rhs_simplify (α : ℝ) (X : ℝ) (hX : 1
   rw [div_pow, mul_pow, hsqrt, hpow]
   ring
 
+/--
+@isnad1 id=le.2h2v.s6.9a940b111532 from=translated src=- shape=793506a0 vocab=68ec3410
+-/
 lemma _root_.Tengoku.PartialRegularity.K_max_sq_le (α : ℝ) (X : ℝ) (hX : 1 < X) (hα : 0 < α) :
     ((K_max α X : ℕ) : ℝ) ^ 2 ≤ X / (4 * (Real.log X) ^ (2 * α)) := by
   have h_nonneg := sqrt_div_log_pow_nonneg α X hX hα
@@ -52,6 +61,9 @@ lemma _root_.Tengoku.PartialRegularity.K_max_sq_le (α : ℝ) (X : ℝ) (hX : 1 
       ≤ (Real.sqrt X / (2 * (Real.log X) ^ α)) ^ 2 := h_sq_le
     _ = X / (4 * (Real.log X) ^ (2 * α)) := rhs_simplify α X hX hα
 
+/--
+@isnad1 id=isbigo.1h1v.s6.3bd60c9fc723 from=translated src=- shape=7984939a vocab=92718dad
+-/
 lemma _root_.Tengoku.PartialRegularity.K_max_sq_isBigO (α : ℝ) (hα : 1/2 < α) :
     (fun X : ℝ => ((K_max α X : ℕ) : ℝ) ^ 2) =O[Filter.atTop]
     (fun X : ℝ => X / (Real.log X) ^ (2 * α)) := by
@@ -80,18 +92,30 @@ noncomputable def _root_.Tengoku.PartialRegularity.primeCountSet (α : ℝ) (k :
               p ≤ ⌊X⌋₊ ∧ M_alpha α p ≥ 2 * k)
     (Finset.Icc 1 ⌊X⌋₊)
 
+/--
+@isnad1 id=le.1h1v.s6.1ebad1d8dedd from=translated src=- shape=4b960890 vocab=c0715d49
+-/
 lemma _root_.Tengoku.PartialRegularity.two_k_add_one_le (k : ℕ) (hk : 1 ≤ k) : (2 * k + 1 : ℝ) ≤ 3 * k := by
   have : (1 : ℝ) ≤ k := Nat.one_le_cast.mpr hk
   linarith
 
+/--
+@isnad1 id=lt.0h0v.s4.f535f42b9c93 from=translated src=- shape=33ba5777 vocab=13f43e45
+-/
 lemma _root_.Tengoku.PartialRegularity.two_pi_gt_one : (1 : ℝ) < 2 * Real.pi := by nlinarith [Real.pi_gt_three]
 
+/--
+@isnad1 id=lt.1h1v.s5.8bb86c4a1a08 from=translated src=- shape=d0d817ed vocab=8fa2ea34
+-/
 lemma _root_.Tengoku.PartialRegularity.one_lt_re_two_mul_nat (k : ℕ) (hk : 1 ≤ k) : 1 < (2 * k : ℂ).re := by
   have h : (2 * k : ℂ).re = (2 * k : ℝ) := by simp
   rw [h]
   have : (k : ℝ) ≥ 1 := by exact_mod_cast hk
   linarith
 
+/--
+@isnad1 id=le.1h2v.s6.3b03f51c1642 from=translated src=- shape=8274ded3 vocab=b045621b
+-/
 lemma _root_.Tengoku.PartialRegularity.zeta_term_re_nonneg (n : ℕ) (k : ℕ) (hk : 1 ≤ k) :
     0 ≤ (Real.cos (2 * Real.pi * 0 * n) / (n : ℂ) ^ (2 * k : ℂ)).re := by
   simp only [mul_zero, zero_mul, Real.cos_zero]
@@ -102,10 +126,16 @@ lemma _root_.Tengoku.PartialRegularity.zeta_term_re_nonneg (n : ℕ) (k : ℕ) (
     norm_cast
     positivity
 
+/--
+@isnad1 id=lt.1h1v.s6.a58a52d69778 from=translated src=- shape=9c26ae02 vocab=fd65d30c
+-/
 lemma _root_.Tengoku.PartialRegularity.zeta_term_at_one_re_pos (k : ℕ) (_hk : 1 ≤ k) :
     0 < (Real.cos (2 * Real.pi * 0 * ((1 : ℕ) : ℝ)) / ((1 : ℕ) : ℂ) ^ (2 * k : ℂ)).re := by
   simp [Real.cos_zero, Complex.one_cpow]
 
+/--
+@isnad1 id=lt.1h1v.s5.d445d9b63c08 from=translated src=- shape=c72a6ff9 vocab=900d217b
+-/
 lemma _root_.Tengoku.PartialRegularity.riemannZeta_two_mul_nat_pos (k : ℕ) (hk : 1 ≤ k) :
     0 < (riemannZeta (2 * k : ℂ)).re := by
   have hre : 1 < (2 * k : ℂ).re := one_lt_re_two_mul_nat k hk
@@ -116,16 +146,25 @@ lemma _root_.Tengoku.PartialRegularity.riemannZeta_two_mul_nat_pos (k : ℕ) (hk
   rw [hsum_re.tsum_eq.symm]
   exact hsum_re.summable.tsum_pos (zeta_term_re_nonneg · k hk) 1 (zeta_term_at_one_re_pos k hk)
 
+/--
+@isnad1 id=summable.1h1v.s6.895dd0f87a1e from=translated src=- shape=bf815c69 vocab=a3ccf440
+-/
 theorem _root_.Tengoku.PartialRegularity.complex_zeta_series_summable (m : ℕ) (hm : 1 < m) :
     Summable (fun n : ℕ => (1 : ℂ) / (n : ℂ) ^ m) := by
   have h : 1 < (m : ℂ).re := by simp; exact_mod_cast hm
   simpa using Complex.summable_one_div_nat_cpow.mpr h
 
+/--
+@isnad1 id=eq.1h1v.s6.e570f344ed84 from=translated src=- shape=0df25c24 vocab=4b535465
+-/
 lemma _root_.Tengoku.PartialRegularity.riemannZeta_nat_re_eq_tsum (m : ℕ) (hm : 1 < m) :
     (riemannZeta (m : ℂ)).re = ∑' n : ℕ, ((1 : ℂ) / (n : ℂ) ^ m).re := by
   rw [zeta_nat_eq_tsum_of_gt_one hm]
   exact Complex.re_tsum (complex_zeta_series_summable m hm)
 
+/--
+@isnad1 id=eq.0h2v.s6.9216f0aed225 from=translated src=- shape=ae661e45 vocab=98e7a5ca
+-/
 lemma _root_.Tengoku.PartialRegularity.one_div_nat_pow_complex_re (n m : ℕ) :
     ((1 : ℂ) / (n : ℂ) ^ m).re = 1 / (n : ℝ) ^ m := by
   simp [Complex.ext_iff, pow_ne_zero, Complex.div_re, Complex.div_im, Complex.normSq, pow_two,
@@ -142,6 +181,9 @@ lemma _root_.Tengoku.PartialRegularity.one_div_nat_pow_complex_re (n m : ℕ) :
   <;> field_simp [Complex.ext_iff, pow_ne_zero, Complex.div_re, Complex.div_im, Complex.normSq,
     pow_two, pow_mul, Complex.ofReal_div, Complex.ofReal_pow, Complex.ofReal_one]
 
+/--
+@isnad1 id=lt.2h2v.s6.b58ff4c3d1f9 from=translated src=- shape=6ee21281 vocab=bbfbc6af
+-/
 lemma _root_.Tengoku.PartialRegularity.one_div_pow_strict_antimono (n k : ℕ) (hn : 2 ≤ n) (hk : 1 < k) :
     (1 : ℝ) / (n : ℝ) ^ (2 * k) < 1 / (n : ℝ) ^ 2 := by
   have hn_real : (n : ℝ) ≥ 2 := by simp_all
@@ -149,12 +191,18 @@ lemma _root_.Tengoku.PartialRegularity.one_div_pow_strict_antimono (n k : ℕ) (
   have h_exp : (2 : ℕ) < 2 * k := by simp_all
   exact one_div_pow_lt_one_div_pow_of_lt hn_gt_one h_exp
 
+/--
+@isnad1 id=le.1h2v.s6.dc7beaef173d from=translated src=- shape=669ec3b9 vocab=6a435dc2
+-/
 lemma _root_.Tengoku.PartialRegularity.one_div_pow_antimono (n k : ℕ) (hk : 1 ≤ k) :
     (1 : ℝ) / (n : ℝ) ^ (2 * k) ≤ 1 / (n : ℝ) ^ 2 := by
   rcases n with _ | n
   · simp [zero_pow (by omega : 2 * k ≠ 0)]
   · exact one_div_pow_le_one_div_pow_of_le (by simp : (1 : ℝ) ≤ n.succ) (by omega : 2 ≤ 2 * k)
 
+/--
+@isnad1 id=lt.1h1v.s5.4359fd14fde5 from=translated src=- shape=e7d2b029 vocab=d9d9c06b
+-/
 lemma _root_.Tengoku.PartialRegularity.riemannZeta_two_mul_nat_lt_of_one_lt (k : ℕ) (hk : 1 < k) :
     (riemannZeta (2 * k : ℂ)).re < (riemannZeta 2).re := by
   have h2k : 1 < 2 * k := by omega
@@ -165,12 +213,18 @@ lemma _root_.Tengoku.PartialRegularity.riemannZeta_two_mul_nat_lt_of_one_lt (k :
     (fun n => one_div_pow_antimono n k (le_of_lt hk))
     (one_div_pow_strict_antimono 2 k (le_refl 2) hk) (Real.summable_one_div_nat_pow.mpr (by norm_num))
 
+/--
+@isnad1 id=le.1h1v.s5.20752398ba24 from=translated src=- shape=e7d2b029 vocab=ad542a65
+-/
 lemma _root_.Tengoku.PartialRegularity.riemannZeta_two_mul_nat_le_two (k : ℕ) (hk : 1 ≤ k) :
     (riemannZeta (2 * k : ℂ)).re ≤ (riemannZeta 2).re := by
   rcases eq_or_lt_of_le hk with rfl | hk'
   · simp
   · exact le_of_lt (riemannZeta_two_mul_nat_lt_of_one_lt _ hk')
 
+/--
+@isnad1 id=lt.0h0v.s4.b76a97052cf9 from=translated src=- shape=43016b0b vocab=a11ac5e9
+-/
 lemma _root_.Tengoku.PartialRegularity.riemannZeta_two_re_lt_two : (riemannZeta 2).re < 2 := by
   have h1 : (riemannZeta 2).re = (Real.pi : ℝ) ^ 2 / 6 := by
     have h2 : riemannZeta 2 = (Real.pi : ℝ) ^ 2 / 6 := by
@@ -187,6 +241,9 @@ lemma _root_.Tengoku.PartialRegularity.riemannZeta_two_re_lt_two : (riemannZeta 
   rw [h1]
   exact h2
 
+/--
+@isnad1 id=eq.1h1v.s5.825bb9fce9bb from=translated src=- shape=209f8743 vocab=3a352477
+-/
 lemma _root_.Tengoku.PartialRegularity.riemannZeta_two_mul_nat_im_eq_zero (k : ℕ) (hk : 1 ≤ k) :
     (riemannZeta (2 * k : ℂ)).im = 0 := by
   have h₁ : (2 * k : ℕ) ≠ 0 := by
@@ -210,6 +267,9 @@ lemma _root_.Tengoku.PartialRegularity.riemannZeta_two_mul_nat_im_eq_zero (k : �
 
   simpa [h₁] using h₂
 
+/--
+@isnad1 id=eq.1h1v.s7.85e881a94b83 from=translated src=- shape=98e7becc vocab=e008d673
+-/
 lemma _root_.Tengoku.PartialRegularity.two_pow_mul_pi_pow_eq (k : ℕ) (hk : 1 ≤ k) :
     (2 : ℝ) ^ (2 * k - 1) * Real.pi ^ (2 * k) = (2 * Real.pi) ^ (2 * k) / 2 := by
   have h₂ : (2 * Real.pi : ℝ) ^ (2 * k) / 2 = (2 : ℝ) ^ (2 * k - 1) * Real.pi ^ (2 * k) := by
@@ -236,6 +296,9 @@ lemma _root_.Tengoku.PartialRegularity.two_pow_mul_pi_pow_eq (k : ℕ) (hk : 1 �
         <;> ring_nf
   linarith
 
+/--
+@isnad1 id=eq.1h1v.s7.aabc086551bf from=translated src=- shape=b092c5e9 vocab=423ae17c
+-/
 lemma _root_.Tengoku.PartialRegularity.bernoulli_eq_zeta_formula_aux (k : ℕ) (hk : 1 ≤ k) :
     (riemannZeta (2 * k : ℂ)).re = (-1 : ℝ)^(k + 1) * 2^(2 * k - 1) * Real.pi ^ (2 * k) * (bernoulli (2 * k) : ℝ) / (2 * k).factorial := by
   have h₁ : (k : ℕ) ≠ 0 := by
@@ -282,6 +345,9 @@ lemma _root_.Tengoku.PartialRegularity.bernoulli_eq_zeta_formula_aux (k : ℕ) (
 
   exact h₅
 
+/--
+@isnad1 id=eq.0h1v.s5.e14d2aff2d1a from=translated src=- shape=e8623351 vocab=33ae7755
+-/
 lemma _root_.Tengoku.PartialRegularity.neg_one_pow_mul_self (n : ℕ) : (-1 : ℝ)^n * (-1 : ℝ)^n = 1 := by
   have h₁ : (-1 : ℝ)^n * (-1 : ℝ)^n = ((-1 : ℝ)^2)^n := by
     calc
@@ -298,6 +364,9 @@ lemma _root_.Tengoku.PartialRegularity.neg_one_pow_mul_self (n : ℕ) : (-1 : �
   have h₃ : (1 : ℝ)^n = 1 := by norm_num
   rw [h₃]
 
+/--
+@isnad1 id=eq.1h1v.s7.d426c67cfb88 from=translated src=- shape=21d51ad2 vocab=423ae17c
+-/
 lemma _root_.Tengoku.PartialRegularity.bernoulli_eq_zeta_formula (k : ℕ) (hk : 1 ≤ k) :
     (bernoulli (2 * k) : ℝ) = (-1 : ℝ)^(k + 1) * (riemannZeta (2 * k : ℂ)).re * (2 * k).factorial / (2 ^ (2 * k - 1) * Real.pi ^ (2 * k)) := by
   have h_aux := bernoulli_eq_zeta_formula_aux k hk
@@ -329,6 +398,9 @@ lemma _root_.Tengoku.PartialRegularity.bernoulli_eq_zeta_formula (k : ℕ) (hk :
   field_simp
   linarith
 
+/--
+@isnad1 id=eq.4h1v.s8.fcd75f376313 from=translated src=- shape=a8ae3fb2 vocab=ee5b5c7f
+-/
 lemma _root_.Tengoku.PartialRegularity.bernoulli_abs_eq_zeta_aux (k : ℕ) (hk : 1 ≤ k)
     (hform : (bernoulli (2 * k) : ℝ) = (-1 : ℝ)^(k + 1) * (riemannZeta (2 * k : ℂ)).re * (2 * k).factorial / (2 ^ (2 * k - 1) * Real.pi ^ (2 * k)))
     (hpos : 0 < (riemannZeta (2 * k : ℂ)).re)
@@ -403,6 +475,9 @@ lemma _root_.Tengoku.PartialRegularity.bernoulli_abs_eq_zeta_aux (k : ℕ) (hk :
     rw [h21]
   exact h4
 
+/--
+@isnad1 id=eq.1h1v.s7.a8e9177c95ff from=translated src=- shape=3592600d vocab=73282f74
+-/
 lemma _root_.Tengoku.PartialRegularity.bernoulli_abs_eq_zeta (k : ℕ) (hk : 1 ≤ k) :
     |(bernoulli (2 * k) : ℝ)| = 2 * (riemannZeta (2 * k : ℂ)).re * (2 * k).factorial / (2 * Real.pi) ^ (2 * k) := by
   have hpos : 0 < (riemannZeta (2 * k : ℂ)).re := riemannZeta_two_mul_nat_pos k hk
@@ -410,6 +485,9 @@ lemma _root_.Tengoku.PartialRegularity.bernoulli_abs_eq_zeta (k : ℕ) (hk : 1 �
   have hform : (bernoulli (2 * k) : ℝ) = (-1 : ℝ)^(k + 1) * (riemannZeta (2 * k : ℂ)).re * (2 * k).factorial / (2 ^ (2 * k - 1) * Real.pi ^ (2 * k)) := bernoulli_eq_zeta_formula k hk
   exact bernoulli_abs_eq_zeta_aux k hk hform hpos halg
 
+/--
+@isnad1 id=le.1h1v.s6.c7a85189a55a from=translated src=- shape=20c067ff vocab=586ba4f2
+-/
 lemma _root_.Tengoku.PartialRegularity.bernoulli_abs_bound (k : ℕ) (hk : 1 ≤ k) :
     |(bernoulli (2 * k) : ℝ)| ≤ 4 * (2 * k).factorial / (2 * Real.pi) ^ (2 * k) := by
   rw [bernoulli_abs_eq_zeta k hk]
@@ -425,12 +503,18 @@ lemma _root_.Tengoku.PartialRegularity.bernoulli_abs_bound (k : ℕ) (hk : 1 ≤
 def _root_.Tengoku.PartialRegularity.vonStaudtPrimes (n : ℕ) : Finset ℕ :=
   (Finset.range (n + 2)).filter (fun p => Nat.Prime p ∧ (p - 1) ∣ n)
 
+/--
+@isnad1 id=lt.0h1v.s4.2b45a5c95443 from=translated src=- shape=436f7df1 vocab=6a8f5627
+-/
 lemma _root_.Tengoku.PartialRegularity.vonStaudtPrimes_prod_pos (n : ℕ) : 0 < ∏ p ∈ vonStaudtPrimes n, p := by
   apply Finset.prod_pos
   intro p hp
   have h₁ : Nat.Prime p := (Finset.mem_filter.mp hp).2.1
   exact Nat.Prime.pos h₁
 
+/--
+@isnad1 id=eq.0h0v.s3.64ca127319fa from=translated src=- shape=88d4f5c9 vocab=2e68d87a
+-/
 lemma _root_.Tengoku.PartialRegularity.bernoulli_two_den : (bernoulli 2).den = 6 := by
   have h₀ : bernoulli 2 = 1 / 6 := by
     norm_num [bernoulli_two]
@@ -438,6 +522,9 @@ lemma _root_.Tengoku.PartialRegularity.bernoulli_two_den : (bernoulli 2).den = 6
   rw [h₀]
   <;> simp [div_eq_mul_inv]
 
+/--
+@isnad1 id=iff.1h1v.s5.8ce92dccc3c5 from=translated src=- shape=687320af vocab=806915f4
+-/
 lemma _root_.Tengoku.PartialRegularity.prime_dvd_six_iff (p : ℕ) (hp : Nat.Prime p) : p ∣ 6 ↔ p = 2 ∨ p = 3 := by
   have h_imp : p ∣ 6 → p = 2 ∨ p = 3 := by
     intro h
@@ -471,6 +558,9 @@ lemma _root_.Tengoku.PartialRegularity.prime_dvd_six_iff (p : ℕ) (hp : Nat.Pri
 
   exact ⟨h_imp, h_converse⟩
 
+/--
+@isnad1 id=iff.1h1v.s5.c2654a2d968f from=translated src=- shape=e96c0833 vocab=a2009396
+-/
 lemma _root_.Tengoku.PartialRegularity.prime_sub_one_dvd_two_iff (p : ℕ) (hp : Nat.Prime p) : (p - 1) ∣ 2 ↔ p = 2 ∨ p = 3 := by
   have h₁ : p ≥ 2 := Nat.Prime.two_le hp
   constructor
@@ -520,10 +610,16 @@ lemma _root_.Tengoku.PartialRegularity.prime_sub_one_dvd_two_iff (p : ℕ) (hp :
         rw [h₁]
       exact h₂
 
+/--
+@isnad1 id=iff.1h1v.s5.322b049f1e5b from=translated src=- shape=9c1c4a85 vocab=11b8492f
+-/
 lemma _root_.Tengoku.PartialRegularity.prime_dvd_bernoulli_two_den_iff (p : ℕ) (hp : Nat.Prime p) :
     p ∣ (bernoulli 2).den ↔ (p - 1) ∣ 2 := by
   rw [bernoulli_two_den, prime_dvd_six_iff p hp, prime_sub_one_dvd_two_iff p hp]
 
+/--
+@isnad1 id=le.1h1v.s4.e5d5667f2a5c from=translated src=- shape=642c4401 vocab=0ee81796
+-/
 lemma _root_.Tengoku.PartialRegularity.padicValNat_six_le_one (p : ℕ) (hp : Nat.Prime p) : padicValNat p 6 ≤ 1 := by
   have h6 : (6 : ℕ) = 2 * 3 := rfl
   have hcop : Nat.Coprime 2 3 := by
@@ -538,6 +634,9 @@ lemma _root_.Tengoku.PartialRegularity.padicValNat_six_le_one (p : ℕ) (hp : Na
   rw [← Nat.factorization_def 6 hp]
   exact Squarefree.natFactorization_le_one p hsq
 
+/--
+@isnad1 id=le.1h1v.s4.0f3b72b3b275 from=translated src=- shape=d185f224 vocab=54177084
+-/
 lemma _root_.Tengoku.PartialRegularity.padic_val_bernoulli_two_ge_neg_one (p : ℕ) (hp : Nat.Prime p) :
     padicValRat p (bernoulli 2) ≥ -1 := by
   rw [bernoulli_two]
@@ -549,11 +648,17 @@ lemma _root_.Tengoku.PartialRegularity.padic_val_bernoulli_two_ge_neg_one (p : �
   have h := padicValNat_six_le_one p hp
   omega
 
+/--
+@isnad1 id=eq.0h1v.s7.bfc1f112634a from=translated src=- shape=4548e078 vocab=7b6d4ff7
+-/
 lemma ZMod.card_units_nsmul_one_eq_neg_one (p : ℕ) [Fact (Nat.Prime p)] :
     (p - 1) • (1 : ZMod p) = -1 := by
   have h_p_pos : 0 < p := Nat.pos_of_neZero p
   simp_all
 
+/--
+@isnad1 id=iff.1h3v.s8.eb2c457d08a1 from=translated src=- shape=b41a450d vocab=45877efd
+-/
 lemma ZMod.generator_pow_eq_one_iff (p : ℕ) [Fact (Nat.Prime p)] (g : (ZMod p)ˣ)
     (hg : ∀ x : (ZMod p)ˣ, x ∈ Subgroup.zpowers g) (n : ℕ) :
     g ^ n = 1 ↔ (p - 1) ∣ n := by
@@ -562,6 +667,9 @@ lemma ZMod.generator_pow_eq_one_iff (p : ℕ) [Fact (Nat.Prime p)] (g : (ZMod p)
   rw [← hord]
   exact orderOf_dvd_iff_pow_eq_one.symm
 
+/--
+@isnad1 id=other.2h3v.s11.43288afd5f0d from=translated src=- shape=6136b620 vocab=d908cb6b
+-/
 lemma _root_.Tengoku.PartialRegularity.g_pow_esymm_eq (p : ℕ) [Fact (Nat.Prime p)] (g : (ZMod p)ˣ) (hfin : IsOfFinOrder g)
     (heq : Subgroup.zpowers g = ⊤) (x : (ZMod p)ˣ) :
     let e := (finEquivZPowers hfin).trans ((MulEquiv.subgroupCongr heq).trans Subgroup.topEquiv).toEquiv
@@ -579,6 +687,9 @@ lemma _root_.Tengoku.PartialRegularity.g_pow_esymm_eq (p : ℕ) [Fact (Nat.Prime
     simp only [h2]
   rw [h3, MulEquiv.subgroupCongr_symm_apply, Subgroup.topEquiv_symm_apply_coe]
 
+/--
+@isnad1 id=other.2h4v.s11.70338d28be70 from=translated src=- shape=6651fa84 vocab=fb84b074
+-/
 lemma _root_.Tengoku.PartialRegularity.reindex_term_eq (p : ℕ) [Fact (Nat.Prime p)] (g : (ZMod p)ˣ) (hfin : IsOfFinOrder g)
     (heq : Subgroup.zpowers g = ⊤) (n : ℕ) (x : (ZMod p)ˣ) :
     let e := (finEquivZPowers hfin).trans ((MulEquiv.subgroupCongr heq).trans Subgroup.topEquiv).toEquiv
@@ -587,6 +698,9 @@ lemma _root_.Tengoku.PartialRegularity.reindex_term_eq (p : ℕ) [Fact (Nat.Prim
   rw [← g_pow_esymm_eq p g hfin heq x]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s8.340aa5537e15 from=translated src=- shape=8d9194b9 vocab=35251887
+-/
 lemma _root_.Tengoku.PartialRegularity.sum_units_pow_eq_sum_range_pow (p : ℕ) [Fact (Nat.Prime p)] (g : (ZMod p)ˣ)
     (hg : ∀ x : (ZMod p)ˣ, x ∈ Subgroup.zpowers g) (n : ℕ) :
     ∑ u : (ZMod p)ˣ, (u : ZMod p) ^ n = ∑ i ∈ Finset.range (p - 1), (g : ZMod p) ^ (i * n) := by
@@ -601,6 +715,9 @@ lemma _root_.Tengoku.PartialRegularity.sum_units_pow_eq_sum_range_pow (p : ℕ) 
   rw [Fintype.sum_equiv e.symm]
   exact fun x => reindex_term_eq p g hfin heq n x
 
+/--
+@isnad1 id=eq.2h3v.s8.abda9fb3ce82 from=translated src=- shape=32332d13 vocab=518d1ee6
+-/
 lemma _root_.Tengoku.PartialRegularity.sum_range_pow_dvd_case (p : ℕ) [Fact (Nat.Prime p)] (g : (ZMod p)ˣ)
     (hg : ∀ x : (ZMod p)ˣ, x ∈ Subgroup.zpowers g) (n : ℕ) (hdvd : (p - 1) ∣ n) :
     ∑ i ∈ Finset.range (p - 1), (g : ZMod p) ^ (i * n) = -1 := by
@@ -618,6 +735,9 @@ lemma _root_.Tengoku.PartialRegularity.sum_range_pow_dvd_case (p : ℕ) [Fact (N
     _ = (p - 1) • (1 : ZMod p) := by rw [Finset.card_range]
     _ = -1 := ZMod.card_units_nsmul_one_eq_neg_one p
 
+/--
+@isnad1 id=eq.2h3v.s8.b4715f31cfe9 from=translated src=- shape=9eed418d vocab=2ea14ceb
+-/
 lemma _root_.Tengoku.PartialRegularity.sum_range_pow_not_dvd_case (p : ℕ) [Fact (Nat.Prime p)] (g : (ZMod p)ˣ)
     (hg : ∀ x : (ZMod p)ˣ, x ∈ Subgroup.zpowers g) (n : ℕ) (hndvd : ¬(p - 1) ∣ n) :
     ∑ i ∈ Finset.range (p - 1), (g : ZMod p) ^ (i * n) = 0 := by
@@ -640,6 +760,9 @@ lemma _root_.Tengoku.PartialRegularity.sum_range_pow_not_dvd_case (p : ℕ) [Fac
     exact hndvd this
   exact (mul_eq_zero.mp hgeom).resolve_right (sub_ne_zero.mpr hr_ne_one)
 
+/--
+@isnad1 id=eq.0h2v.s8.43be8e6b904f from=translated src=- shape=7a57f09d vocab=1a6d64a6
+-/
 lemma _root_.Tengoku.PartialRegularity.sum_pow_units_eq (p : ℕ) [Fact (Nat.Prime p)] (n : ℕ) :
     ∑ u : (ZMod p)ˣ, (u : ZMod p)^n = if (p - 1) ∣ n then -1 else 0 := by
   haveI : IsCyclic (ZMod p)ˣ := ZMod.isCyclic_units_prime (Fact.out : Nat.Prime p)
@@ -649,6 +772,9 @@ lemma _root_.Tengoku.PartialRegularity.sum_pow_units_eq (p : ℕ) [Fact (Nat.Pri
   · exact sum_range_pow_dvd_case p g hg n hdvd
   · exact sum_range_pow_not_dvd_case p g hg n hdvd
 
+/--
+@isnad1 id=eq.0h2v.s7.e077c593c4a4 from=translated src=- shape=7b7bd15b vocab=b6e5326a
+-/
 lemma _root_.Tengoku.PartialRegularity.fin_coe_eq_finEquiv (p : ℕ) [hp : Fact (Nat.Prime p)] (x : Fin p) :
     (x : ZMod p) = (ZMod.finEquiv p) x := by
   -- For p > 0, ZMod p = Fin p definitionally, and finEquiv p is RingEquiv.refl for p = n+1,
@@ -662,12 +788,18 @@ lemma _root_.Tengoku.PartialRegularity.fin_coe_eq_finEquiv (p : ℕ) [hp : Fact 
   -- and `((a.val : ℕ) : ZMod p) = a`
   rw [← h, ZMod.natCast_rightInverse.eq]
 
+/--
+@isnad1 id=eq.0h2v.s7.721bd143d881 from=translated src=- shape=dcc67244 vocab=080c4cb3
+-/
 lemma _root_.Tengoku.PartialRegularity.sum_Fin_eq_sum_ZMod (p : ℕ) [Fact (Nat.Prime p)] (n : ℕ) :
     ∑ a : Fin p, (a : ZMod p)^n = ∑ a : ZMod p, a^n := by
   haveI : NeZero p := ⟨(Fact.out : Nat.Prime p).ne_zero⟩
   refine Fintype.sum_equiv (ZMod.finEquiv p) _ _ (fun x => ?_)
   simp only [fin_coe_eq_finEquiv, RingEquiv.coe_toEquiv]
 
+/--
+@isnad1 id=eq.1h2v.s7.3c16a8195bf2 from=translated src=- shape=5ff71854 vocab=2f67563a
+-/
 lemma _root_.Tengoku.PartialRegularity.powerSum_mod_eq (p : ℕ) [Fact (Nat.Prime p)] (n : ℕ) (hn : 0 < n) :
     (∑ a : Fin p, (a : ZMod p)^n) = if (p - 1) ∣ n then -1 else 0 := by
   have hp : Nat.Prime p := Fact.out
@@ -681,6 +813,9 @@ lemma _root_.Tengoku.PartialRegularity.powerSum_mod_eq (p : ℕ) [Fact (Nat.Prim
     simp [Fintype.sum_eq_zero _ this]
   rw [h3, add_zero]
 
+/--
+@isnad1 id=lt.2h2v.s4.887e9f7f11d2 from=translated src=- shape=b8904da4 vocab=f6dc1bf8
+-/
 lemma _root_.Tengoku.PartialRegularity.prime_dvd_den_imp_padic_neg (q : ℚ) (p : ℕ) (hp : Nat.Prime p) (hdvd : p ∣ q.den) :
     padicValRat p q < 0 := by
   haveI := Fact.mk hp
@@ -746,6 +881,9 @@ lemma _root_.Tengoku.PartialRegularity.prime_dvd_den_imp_padic_neg (q : ℚ) (p 
   exact by
     simpa [h₁] using h₅
 
+/--
+@isnad1 id=dvd.2h2v.s4.4f0f749c633b from=translated src=- shape=b6c2006e vocab=f6dc1bf8
+-/
 lemma _root_.Tengoku.PartialRegularity.padic_neg_imp_prime_dvd_den (q : ℚ) (p : ℕ) (hp : Nat.Prime p) (hneg : padicValRat p q < 0) :
     p ∣ q.den := by
   have hq_num_ne_zero : q.num ≠ 0 := by grind only [Rat.num_eq_zero, padicValRat.zero]
@@ -755,10 +893,16 @@ lemma _root_.Tengoku.PartialRegularity.padic_neg_imp_prime_dvd_den (q : ℚ) (p 
   have h_final : p ∣ q.den := by grind only [dvd_of_one_le_padicValNat]
   assumption
 
+/--
+@isnad1 id=iff.1h2v.s4.f8870284522a from=translated src=- shape=7876aa82 vocab=f6dc1bf8
+-/
 lemma _root_.Tengoku.PartialRegularity.prime_dvd_den_iff_padic_neg (q : ℚ) (p : ℕ) (hp : Nat.Prime p) :
     p ∣ q.den ↔ padicValRat p q < 0 :=
   ⟨prime_dvd_den_imp_padic_neg q p hp, padic_neg_imp_prime_dvd_den q p hp⟩
 
+/--
+@isnad1 id=le.1h1v.s5.56e7b1f29fbc from=translated src=- shape=1b0a78f7 vocab=607e63e1
+-/
 lemma _root_.Tengoku.PartialRegularity.two_pow_ge_succ (n : ℕ) (hn : 4 ≤ n) : 2 ^ n ≥ n + 1 := by
   have h_base : 2 ^ 4 ≥ 4 + 1 := by simp
   have h_inductive_step : ∀ (k : ℕ), 4 ≤ k → 2 ^ k ≥ k + 1 → 2 ^ (k + 1) ≥ (k + 1) + 1 := by grind
@@ -766,6 +910,9 @@ lemma _root_.Tengoku.PartialRegularity.two_pow_ge_succ (n : ℕ) (hn : 4 ≤ n) 
     grind only [Int.two_pow_pred_sub_two_pow', Nat.lt_pow_self]
   assumption
 
+/--
+@isnad1 id=le.2h2v.s5.20e4150a164c from=translated src=- shape=3b5c8d38 vocab=377e8a7b
+-/
 lemma _root_.Tengoku.PartialRegularity.log_n_plus_one_le_n (k : ℕ) (hk : 2 ≤ k) (p : ℕ) (hp : Nat.Prime p) :
     Nat.log p (2 * k + 1) ≤ 2 * k := by
   have hk4 : 4 ≤ 2 * k := by omega
@@ -777,6 +924,9 @@ lemma _root_.Tengoku.PartialRegularity.log_n_plus_one_le_n (k : ℕ) (hk : 2 ≤
   calc Nat.log p (2 * k + 1) ≤ Nat.log p (p ^ (2 * k)) := Nat.log_mono_right hppow
     _ = 2 * k := Nat.log_pow hp1 (2 * k)
 
+/--
+@isnad1 id=le.2h2v.s6.e0ad6ede21fb from=translated src=- shape=a3eb49d9 vocab=93d8431c
+-/
 lemma _root_.Tengoku.PartialRegularity.padic_val_n_plus_one_le_n (k : ℕ) (hk : 2 ≤ k) (p : ℕ) (hp : Nat.Prime p) :
     (padicValNat p (2 * k + 1) : ℤ) ≤ 2 * k := by
   have h1 : padicValNat p (2 * k + 1) ≤ Nat.log p (2 * k + 1) := padicValNat_le_nat_log (2 * k + 1)
@@ -785,6 +935,9 @@ lemma _root_.Tengoku.PartialRegularity.padic_val_n_plus_one_le_n (k : ℕ) (hk :
       ≤ (Nat.log p (2 * k + 1) : ℤ) := by exact_mod_cast h1
     _ ≤ (2 * k : ℤ) := by exact_mod_cast h2
 
+/--
+@isnad1 id=other.2h2v.s6.e4ee22451a62 from=translated src=- shape=227e09f9 vocab=2c8b2047
+-/
 lemma _root_.Tengoku.PartialRegularity.term_j0_padic_val_nonneg (k : ℕ) (hk : 2 ≤ k) (p : ℕ) (hp : Nat.Prime p) :
     let n := 2 * k
     let T0 := (p : ℚ)^n / (n + 1)
@@ -809,6 +962,9 @@ lemma _root_.Tengoku.PartialRegularity.term_j0_padic_val_nonneg (k : ℕ) (hk : 
   simp only [heq]
   omega
 
+/--
+@isnad1 id=other.2h2v.s6.f4a529a1d89d from=translated src=- shape=baa027e1 vocab=63cfe2c6
+-/
 lemma _root_.Tengoku.PartialRegularity.term_j1_padic_val_nonneg (k : ℕ) (hk : 2 ≤ k) (p : ℕ) (hp : Nat.Prime p) :
     let n := 2 * k
     let T1 := (-(p : ℚ)^(n-1)) / 2
@@ -843,6 +999,9 @@ lemma _root_.Tengoku.PartialRegularity.term_j1_padic_val_nonneg (k : ℕ) (hk : 
       intro hdiv; exact hp2 ((Nat.prime_dvd_prime_iff_eq hp Nat.prime_two).mp hdiv)
     rw [hval_two]; simp only [sub_zero]; omega
 
+/--
+@isnad1 id=le.2h2v.s5.fcc2f37bea4d from=translated src=- shape=bed5a3d9 vocab=24e0ad9a
+-/
 lemma _root_.Tengoku.PartialRegularity.padicValNat_succ_le_sub_one (p : ℕ) (hp : Nat.Prime p) (r : ℕ) (hr : 2 ≤ r) :
     padicValNat p (r + 1) ≤ r - 1 := by
   calc padicValNat p (r + 1) ≤ Nat.log p (r + 1) := padicValNat_le_nat_log (r + 1)
@@ -876,6 +1035,9 @@ lemma _root_.Tengoku.PartialRegularity.padicValNat_succ_le_sub_one (p : ℕ) (hp
         rw [← Nat.lt_succ_iff]
         exact Nat.log_lt_of_lt_pow h3 hlt
 
+/--
+@isnad1 id=le.6h3v.s6.bc392c871d01 from=translated src=- shape=fa21e751 vocab=698461e2
+-/
 lemma _root_.Tengoku.PartialRegularity.even_j_ih_apply (k : ℕ) (hk : 2 ≤ k) (p : ℕ) (hp : Nat.Prime p)
     (ih : ∀ k' < k, 1 ≤ k' → padicValRat p (bernoulli (2 * k')) ≥ -1)
     (j : ℕ) (hj_even : Even j) (hj_ge : 2 ≤ j) (hj_lt : j < 2 * k) :
@@ -894,6 +1056,9 @@ lemma _root_.Tengoku.PartialRegularity.even_j_ih_apply (k : ℕ) (hk : 2 ≤ k) 
   rw [h₅]
   exact h₄
 
+/--
+@isnad1 id=le.3h2v.s6.9cd134edc608 from=translated src=- shape=9966a176 vocab=c71f275f
+-/
 lemma _root_.Tengoku.PartialRegularity.r_ge_two (k : ℕ) (hk : 2 ≤ k) (j : ℕ) (hj_even : Even j) (hj_lt : j < 2 * k) :
     2 * k - j ≥ 2 := by
   have h₁ : j ≤ 2 * k := by
@@ -936,6 +1101,9 @@ lemma _root_.Tengoku.PartialRegularity.r_ge_two (k : ℕ) (hk : 2 ≤ k) (j : �
     exact h₁₁ h₁₀
   exact h₅
 
+/--
+@isnad1 id=other.4h3v.s7.1f3320a18577 from=translated src=- shape=d25af29c vocab=d7807b90
+-/
 lemma _root_.Tengoku.PartialRegularity.padic_val_Tj_eq (k : ℕ) (hk : 2 ≤ k) (p : ℕ) (hp : Nat.Prime p) (j : ℕ) (hj_ge : 2 ≤ j) (hj_lt : j < 2 * k) :
     let n := 2 * k
     let r := n - j
@@ -956,12 +1124,18 @@ lemma _root_.Tengoku.PartialRegularity.padic_val_Tj_eq (k : ℕ) (hk : 2 ≤ k) 
       padicValRat.div hC_ne hr1_ne, padicValRat.pow (p : ℚ), padicValRat.self hp.one_lt]
   ring
 
+/--
+@isnad1 id=le.4h4v.s6.919e4392f41d from=translated src=- shape=c5efaff4 vocab=ac93cf25
+-/
 lemma _root_.Tengoku.PartialRegularity.valuation_bound_nonneg (vC vD vB : ℤ) (r : ℕ) (hr : 2 ≤ r)
     (hvC : 0 ≤ vC) (hvD : vD ≤ r - 1) (hvB : -1 ≤ vB) :
     0 ≤ vC - vD + vB + r := by
   have h₅ : 0 ≤ vC - vD + vB + r := by nlinarith
   assumption
 
+/--
+@isnad1 id=other.1h3v.s6.16be18f35518 from=translated src=- shape=722df6d8 vocab=a7cd4a0b
+-/
 lemma _root_.Tengoku.PartialRegularity.term_zero_when_bernoulli_zero (k : ℕ) (p : ℕ) (j : ℕ) (hBj : bernoulli j = 0) :
     let n := 2 * k
     let r := n - j
@@ -972,11 +1146,17 @@ lemma _root_.Tengoku.PartialRegularity.term_zero_when_bernoulli_zero (k : ℕ) (
   have h₂ : 0 ≤ padicValRat p Tj := by simp_all
   assumption
 
+/--
+@isnad1 id=eq.0h2v.s5.b84a93d03c93 from=translated src=- shape=1ec7260a vocab=9c36a67b
+-/
 lemma _root_.Tengoku.PartialRegularity.padicValRat_nat_add_one_eq (p r : ℕ) :
     padicValRat p ((r : ℚ) + 1) = padicValNat p (r + 1) := by
   have h₁ : (r : ℚ) + 1 = (r + 1 : ℕ) := by norm_cast
   rw [h₁]; simp [padicValRat_of_nat]
 
+/--
+@isnad1 id=other.6h3v.s7.2e94080cfdb5 from=translated src=- shape=f87cc790 vocab=1a4c03a4
+-/
 lemma _root_.Tengoku.PartialRegularity.term_even_j_padic_val_nonneg (k : ℕ) (hk : 2 ≤ k) (p : ℕ) (hp : Nat.Prime p)
     (ih : ∀ k' < k, 1 ≤ k' → padicValRat p (bernoulli (2 * k')) ≥ -1)
     (j : ℕ) (hj_even : Even j) (hj_ge : 2 ≤ j) (hj_lt : j < 2 * k) :
@@ -1002,6 +1182,9 @@ lemma _root_.Tengoku.PartialRegularity.term_even_j_padic_val_nonneg (k : ℕ) (h
     rw [hval]
     exact valuation_bound_nonneg _ _ _ r hr hvC hvD' hvB
 
+/--
+@isnad1 id=eq.1h1v.s5.7e07fab40b18 from=translated src=- shape=8184567d vocab=445a7064
+-/
 lemma _root_.Tengoku.PartialRegularity.n_plus_one_ne_zero (k : Nat) (hk : 2 <= k) : ((2 * k + 1 : Nat) : Rat) != 0 := by
   have h₁ : (2 * k + 1 : ℕ) ≠ 0 := by
     omega
@@ -1009,6 +1192,9 @@ lemma _root_.Tengoku.PartialRegularity.n_plus_one_ne_zero (k : Nat) (hk : 2 <= k
   -- This is equivalent to showing that (2 * k + 1 : ℕ) is not zero, which we have already established.
   norm_cast at h₁ ⊢
 
+/--
+@isnad1 id=eq.1h1v.s4.6d37b55436b3 from=translated src=- shape=28300d35 vocab=560dda95
+-/
 lemma _root_.Tengoku.PartialRegularity.prime_cast_ne_zero (p : Nat) (hp : Nat.Prime p) : (p : Rat) != 0 := by
   have h₁ : p ≠ 0 := by
     intro h
@@ -1018,6 +1204,9 @@ lemma _root_.Tengoku.PartialRegularity.prime_cast_ne_zero (p : Nat) (hp : Nat.Pr
   norm_cast at h₁ ⊢
   <;> simp_all
 
+/--
+@isnad1 id=eq.1h3v.s6.6024fda84f57 from=translated src=- shape=f340df14 vocab=baac983f
+-/
 lemma _root_.Tengoku.PartialRegularity.pow_factor_p (p n j : Nat) (hj : j < n) :
     (p : Rat)^(n + 1 - j) = p * (p : Rat)^(n - j) := by
   have h1 : n + 1 - j = (n - j) + 1 := by grind
@@ -1025,6 +1214,9 @@ lemma _root_.Tengoku.PartialRegularity.pow_factor_p (p n j : Nat) (hj : j < n) :
   have h4 : (p : Rat)^(n + 1 - j) = p * (p : Rat)^(n - j) := by simp_all
   assumption
 
+/--
+@isnad1 id=eq.1h2v.s6.fee42d571c9f from=translated src=- shape=2b811db6 vocab=3e7dc230
+-/
 lemma _root_.Tengoku.PartialRegularity.faulhaber_term_at_n (n p : Nat) (hn : 0 < n) :
     bernoulli n * ((n + 1).choose n : Rat) * (p : Rat)^(n + 1 - n) / (n + 1) = p * bernoulli n := by
   have h_choose : (Nat.choose (n + 1) n : Rat) = (n + 1 : Rat) := by
@@ -1053,11 +1245,17 @@ lemma _root_.Tengoku.PartialRegularity.faulhaber_term_at_n (n p : Nat) (hn : 0 <
     _ = p * bernoulli n := by
       norm_cast
 
+/--
+@isnad1 id=eq.0h2v.s7.808fc60e54bb from=translated src=- shape=642a8bff vocab=34b256fd
+-/
 lemma _root_.Tengoku.PartialRegularity.S_eq_faulhaber_sum (n p : Nat) :
     (Finset.sum (Finset.range p) (fun a => (a : Rat)^n)) =
       Finset.sum (Finset.range (n + 1)) (fun i => bernoulli i * ((n + 1).choose i : Rat) * (p : Rat)^(n + 1 - i) / (n + 1)) := by
   exact sum_range_pow p n
 
+/--
+@isnad1 id=eq.0h2v.s8.125c14c4280b from=translated src=- shape=ee6b1142 vocab=34b256fd
+-/
 lemma _root_.Tengoku.PartialRegularity.faulhaber_sum_split (n p : Nat) :
     Finset.sum (Finset.range (n + 1)) (fun i => bernoulli i * ((n + 1).choose i : Rat) * (p : Rat)^(n + 1 - i) / (n + 1)) =
     (Finset.sum (Finset.range n) (fun j => bernoulli j * ((n + 1).choose j : Rat) * (p : Rat)^(n + 1 - j) / (n + 1))) +
@@ -1068,6 +1266,9 @@ lemma _root_.Tengoku.PartialRegularity.faulhaber_sum_split (n p : Nat) :
     rw [Finset.sum_range_succ]
   exact h₁
 
+/--
+@isnad1 id=eq.1h2v.s7.c6d126dedc6f from=translated src=- shape=83a76474 vocab=bb0726d0
+-/
 lemma _root_.Tengoku.PartialRegularity.remaining_sum_factor_p (n p : Nat) (hn : 0 < n) :
     (Finset.sum (Finset.range n) (fun j => bernoulli j * ((n + 1).choose j : Rat) * (p : Rat)^(n + 1 - j) / (n + 1))) =
     p * (Finset.sum (Finset.range n) (fun j => bernoulli j * ((n + 1).choose j : Rat) * (p : Rat)^(n - j) / (n + 1))) := by
@@ -1098,6 +1299,9 @@ lemma _root_.Tengoku.PartialRegularity.remaining_sum_factor_p (n p : Nat) (hn : 
     rw [Finset.mul_sum]
   rw [h₂]
 
+/--
+@isnad1 id=other.1h2v.s7.87244af5b4cf from=translated src=- shape=2955eb48 vocab=a8e1b11a
+-/
 lemma _root_.Tengoku.PartialRegularity.S_eq_p_times_sum (k : Nat) (hk : 2 <= k) (p : Nat) :
     let n := 2 * k
     let S := (Finset.sum (Finset.range p) (fun a => (a : Rat)^n))
@@ -1113,12 +1317,18 @@ lemma _root_.Tengoku.PartialRegularity.S_eq_p_times_sum (k : Nat) (hk : 2 <= k) 
     _ = p * R + p * bernoulli n := by rw [remaining_sum_factor_p n p hn]
     _ = p * bernoulli n + p * R := by ring
 
+/--
+@isnad1 id=eq.2h4v.s6.659618b00b01 from=translated src=- shape=ef8a8ef6 vocab=d1719844
+-/
 lemma _root_.Tengoku.PartialRegularity.div_sub_eq_of_eq_mul (S B R : Rat) (p : Rat) (hp : p != 0) (hS : S = p * B + p * R) :
     S / p - B = R := by
   have h_div : S / p = B + R := by grind
   have h_final : S / p - B = R := by simp_all
   exact h_final
 
+/--
+@isnad1 id=other.2h2v.s7.a2a61e8f5f13 from=translated src=- shape=c10f47a7 vocab=23b9677b
+-/
 lemma _root_.Tengoku.PartialRegularity.faulhaber_remainder_eq_sum_terms (k : Nat) (hk : 2 <= k) (p : Nat) (hp : Nat.Prime p) :
     let n := 2 * k
     let S := (Finset.sum (Finset.range p) (fun a => (a : Rat)^n))
@@ -1129,6 +1339,9 @@ lemma _root_.Tengoku.PartialRegularity.faulhaber_remainder_eq_sum_terms (k : Nat
   have hS : S = p * bernoulli n + p * (Finset.sum (Finset.range n) (fun j => bernoulli j * ((n + 1).choose j : Rat) * (p : Rat)^(n - j) / (n + 1))) := S_eq_p_times_sum k hk p
   exact div_sub_eq_of_eq_mul S (bernoulli n) _ p hp_ne hS
 
+/--
+@isnad1 id=eq.1h1v.s5.1f64eb532b68 from=translated src=- shape=2ee7ba57 vocab=d2916813
+-/
 lemma _root_.Tengoku.PartialRegularity.padic_val_neg_one_div_p (p : ℕ) (hp : Nat.Prime p) :
     padicValRat p ((-1 : ℚ) / p) = -1 := by
   haveI : Fact (Nat.Prime p) := ⟨hp⟩
@@ -1164,10 +1377,16 @@ lemma _root_.Tengoku.PartialRegularity.padic_val_neg_one_div_p (p : ℕ) (hp : N
   rw [h₃, h₄]
   <;> norm_num
 
+/--
+@isnad1 id=le.0h2v.s4.e5db9ace50f5 from=translated src=- shape=3707d0f7 vocab=e6ac2dcf
+-/
 lemma _root_.Tengoku.PartialRegularity.padic_val_int_cast_nonneg (p : ℕ) (t : ℤ) : 0 ≤ padicValRat p (t : ℚ) := by
   have h_final : 0 ≤ padicValRat p (t : ℚ) := by simp
   exact h_final
 
+/--
+@isnad1 id=other.1h3v.s7.ae66f183be21 from=translated src=- shape=76e3f9f5 vocab=bc217a62
+-/
 lemma _root_.Tengoku.PartialRegularity.term_form_eq (n p j : ℕ) (hj : j ≤ n) :
     let r := n - j
     (Nat.choose n j : ℚ) / (r + 1) * bernoulli j * (p : ℚ)^r =
@@ -1221,6 +1440,9 @@ lemma _root_.Tengoku.PartialRegularity.term_form_eq (n p j : ℕ) (hj : j ≤ n)
       ring_nf
     _ = bernoulli j * (Nat.choose (n + 1) j) * (p : ℚ) ^ (n - j) / (n + 1) := by norm_cast
 
+/--
+@isnad1 id=other.2h2v.s7.e351f2efcfee from=translated src=- shape=818e3885 vocab=e628cc11
+-/
 lemma _root_.Tengoku.PartialRegularity.term_j1_alternate_form (k : ℕ) (hk : 2 ≤ k) (p : ℕ) (hp : Nat.Prime p) :
     let n := 2 * k
     0 ≤ padicValRat p ((Nat.choose n 1 : ℚ) / (↑(n - 1) + 1) * bernoulli 1 * (p : ℚ)^(n - 1)) := by
@@ -1252,6 +1474,9 @@ lemma _root_.Tengoku.PartialRegularity.term_j1_alternate_form (k : ℕ) (hk : 2 
   rw [h_expr]
   exact term_j1_padic_val_nonneg k hk p hp
 
+/--
+@isnad1 id=other.4h3v.s7.ab86608b9f96 from=translated src=- shape=cd0fe3af vocab=96c28365
+-/
 lemma _root_.Tengoku.PartialRegularity.all_terms_padic_val_nonneg (k : ℕ) (hk : 2 ≤ k) (p : ℕ) (hp : Nat.Prime p)
     (ih : ∀ k' < k, 1 ≤ k' → padicValRat p (bernoulli (2 * k')) ≥ -1)
     (j : ℕ) (hj : j < 2 * k) :
@@ -1280,6 +1505,9 @@ lemma _root_.Tengoku.PartialRegularity.all_terms_padic_val_nonneg (k : ℕ) (hk 
         have hbern : bernoulli (j + 2) = 0 := bernoulli_eq_zero_of_odd hodd hgt1
         exact term_zero_when_bernoulli_zero k p (j + 2) hbern
 
+/--
+@isnad1 id=le.2h3v.s5.ff284db6e2a8 from=translated src=- shape=eb442efb vocab=8201cfe8
+-/
 lemma _root_.Tengoku.PartialRegularity.sum_padic_val_nonneg_of_all_nonneg (p : ℕ) (hp : Nat.Prime p)
     (S : Finset ℕ) (f : ℕ → ℚ)
     (h : ∀ j ∈ S, 0 ≤ padicValRat p (f j)) :
@@ -1296,6 +1524,9 @@ lemma _root_.Tengoku.PartialRegularity.sum_padic_val_nonneg_of_all_nonneg (p : �
       calc 0 ≤ min (padicValRat p (f a)) (padicValRat p (∑ j ∈ S', f j)) := le_min h1 h2
         _ ≤ padicValRat p (f a + ∑ j ∈ S', f j) := padicValRat.min_le_padicValRat_add hsum
 
+/--
+@isnad1 id=other.3h2v.s7.0c931473c6b3 from=translated src=- shape=d7a4ffb0 vocab=facd7ddf
+-/
 lemma _root_.Tengoku.PartialRegularity.faulhaber_remainder_padic_val_nonneg (k : ℕ) (hk : 2 ≤ k) (p : ℕ) (hp : Nat.Prime p)
     (ih : ∀ k' < k, 1 ≤ k' → padicValRat p (bernoulli (2 * k')) ≥ -1) :
     let n := 2 * k
@@ -1308,12 +1539,18 @@ lemma _root_.Tengoku.PartialRegularity.faulhaber_remainder_padic_val_nonneg (k :
   intro j hj
   exact all_terms_padic_val_nonneg k hk p hp ih j (Finset.mem_range.mp hj)
 
+/--
+@isnad1 id=eq.0h2v.s7.f56b9311c696 from=translated src=- shape=fac7fb94 vocab=8997e408
+-/
 lemma _root_.Tengoku.PartialRegularity.sum_int_cast_eq_sum_zmod (p n : ℕ) [hp : Fact (Nat.Prime p)] :
     (↑(∑ a ∈ Finset.range p, (a : ℤ)^n) : ZMod p) = ∑ a : Fin p, (a : ZMod p)^n := by
   rw [Int.cast_sum]
   simp only [Int.cast_pow, Int.cast_natCast]
   rw [Finset.sum_range]
 
+/--
+@isnad1 id=eq.0h2v.s5.88f8318aec9c from=translated src=- shape=466edf2f vocab=33e4cdf5
+-/
 lemma _root_.Tengoku.PartialRegularity.rat_sum_range_eq_int_sum_cast (p n : ℕ) :
     (∑ a ∈ Finset.range p, (a : ℚ)^n) = ((∑ a ∈ Finset.range p, (a : ℤ)^n) : ℚ) := by
   have h₁ : (∑ a ∈ Finset.range p, (a : ℚ)^n) = ∑ a ∈ Finset.range p, ((a : ℤ)^n : ℚ) := by
@@ -1324,6 +1561,9 @@ lemma _root_.Tengoku.PartialRegularity.rat_sum_range_eq_int_sum_cast (p n : ℕ)
     rw [h₂]
   rw [h₁]
 
+/--
+@isnad1 id=ex.3h2v.s6.8241792e2ae9 from=translated src=- shape=e0c30e41 vocab=a9c6e474
+-/
 lemma _root_.Tengoku.PartialRegularity.powerSum_dvd_of_not_dvd (k : ℕ) (hk : 2 ≤ k) (p : ℕ) (hp : Nat.Prime p)
     (hndvd : ¬(p - 1) ∣ (2 * k)) :
     ∃ t : ℤ, (∑ a ∈ Finset.range p, (a : ℚ)^(2 * k)) = p * t := by
@@ -1347,6 +1587,9 @@ lemma _root_.Tengoku.PartialRegularity.powerSum_dvd_of_not_dvd (k : ℕ) (hk : 2
   rw [rat_sum_range_eq_int_sum_cast]
   exact_mod_cast ht
 
+/--
+@isnad1 id=ne.1h1v.s5.435b37d7bbe4 from=translated src=- shape=a240539e vocab=e79880b0
+-/
 lemma _root_.Tengoku.PartialRegularity.bernoulli_two_mul_ne_zero (k : ℕ) (hk : 1 ≤ k) : bernoulli (2 * k) ≠ 0 := by
   have h1 : (2 * k : ℕ) ≠ 0 := by
     omega
@@ -1452,6 +1695,9 @@ lemma _root_.Tengoku.PartialRegularity.bernoulli_two_mul_ne_zero (k : ℕ) (hk :
 
   exact h6
 
+/--
+@isnad1 id=le.4h2v.s6.57ee38f3d807 from=translated src=- shape=33bba311 vocab=9f38d165
+-/
 lemma _root_.Tengoku.PartialRegularity.padic_val_bernoulli_nonneg_of_not_dvd (k : ℕ) (hk : 2 ≤ k) (p : ℕ) (hp : Nat.Prime p)
     (ih : ∀ k' < k, 1 ≤ k' → padicValRat p (bernoulli (2 * k')) ≥ -1)
     (hndvd : ¬(p - 1) ∣ (2 * k)) :
@@ -1488,6 +1734,9 @@ lemma _root_.Tengoku.PartialRegularity.padic_val_bernoulli_nonneg_of_not_dvd (k 
   rw [padicValRat.neg]
   exact le_min hvt hrem'
 
+/--
+@isnad1 id=ex.3h2v.s6.38bd9282d677 from=translated src=- shape=6c13fdbf vocab=f510bb8a
+-/
 lemma _root_.Tengoku.PartialRegularity.powerSum_eq_neg_one_mod_of_dvd (k : ℕ) (hk : 2 ≤ k) (p : ℕ) (hp : Nat.Prime p)
     (hdvd : (p - 1) ∣ (2 * k)) :
     ∃ t : ℤ, (∑ a ∈ Finset.range p, (a : ℚ)^(2 * k)) = -1 + p * t := by
@@ -1519,6 +1768,9 @@ lemma _root_.Tengoku.PartialRegularity.powerSum_eq_neg_one_mod_of_dvd (k : ℕ) 
   have : S = -1 + p * t := by omega
   simp only [this, Int.cast_add, Int.cast_neg, Int.cast_one, Int.cast_mul, Int.cast_natCast]
 
+/--
+@isnad1 id=ne.1h2v.s5.faeaf567a2f7 from=translated src=- shape=693479cb vocab=aa5b36a8
+-/
 lemma _root_.Tengoku.PartialRegularity.sum_ne_zero (p : ℕ) (hp : Nat.Prime p) (t : ℤ) :
     (t : ℚ) + (-1 : ℚ) / p ≠ 0 := by
   intro h
@@ -1570,6 +1822,9 @@ lemma _root_.Tengoku.PartialRegularity.sum_ne_zero (p : ℕ) (hp : Nat.Prime p) 
     <;> simp [h₄]
   omega
 
+/--
+@isnad1 id=ne.1h1v.s4.0e86a717fdec from=translated src=- shape=5aa75a04 vocab=464c7db4
+-/
 lemma _root_.Tengoku.PartialRegularity.neg_one_div_p_ne_zero (p : ℕ) (hp : Nat.Prime p) :
     (-1 : ℚ) / p ≠ 0 := by
   have h₁ : (p : ℚ) ≠ 0 := by
@@ -1584,6 +1839,9 @@ lemma _root_.Tengoku.PartialRegularity.neg_one_div_p_ne_zero (p : ℕ) (hp : Nat
 
   exact h₂
 
+/--
+@isnad1 id=eq.2h2v.s5.41febfc8cc5a from=translated src=- shape=722d2259 vocab=b5edda14
+-/
 lemma _root_.Tengoku.PartialRegularity.padic_val_add_neg_one_div_p (p : ℕ) (hp : Nat.Prime p) (t : ℤ) (ht : t ≠ 0) :
     padicValRat p ((t : ℚ) + (-1 : ℚ) / p) = -1 := by
   haveI : Fact (Nat.Prime p) := ⟨hp⟩
@@ -1599,6 +1857,9 @@ lemma _root_.Tengoku.PartialRegularity.padic_val_add_neg_one_div_p (p : ℕ) (hp
   have ht_ne : (t : ℚ) ≠ 0 := Int.cast_ne_zero.mpr ht
   rw [add_comm, padicValRat.add_eq_of_lt hsum_ne hneg_ne ht_ne hlt, hval_neg]
 
+/--
+@isnad1 id=eq.3h3v.s7.872ae8e3afab from=translated src=- shape=24d506cf vocab=5f8db316
+-/
 lemma _root_.Tengoku.PartialRegularity.padic_val_S_div_p_eq_neg_one (k : ℕ) (_hk : 2 ≤ k) (p : ℕ) (hp : Nat.Prime p)
     (t : ℤ) (hS : (∑ a ∈ Finset.range p, (a : ℚ)^(2 * k)) = -1 + (p : ℚ) * t) :
     padicValRat p ((∑ a ∈ Finset.range p, (a : ℚ)^(2 * k)) / p) = -1 := by
@@ -1618,6 +1879,9 @@ lemma _root_.Tengoku.PartialRegularity.padic_val_S_div_p_eq_neg_one (k : ℕ) (_
   · -- Case t ≠ 0: apply padicValRat.add_eq_of_lt
     exact padic_val_add_neg_one_div_p p hp t ht
 
+/--
+@isnad1 id=eq.4h3v.s6.d09842126ae6 from=translated src=- shape=e0476fff vocab=d899a3b9
+-/
 lemma _root_.Tengoku.PartialRegularity.padic_val_eq_of_diff_nonneg (p : ℕ) (hp : Nat.Prime p) (x y : ℚ)
     (hx : padicValRat p x = -1) (hdiff : 0 ≤ padicValRat p (x - y)) (hy_ne : y ≠ 0) :
     padicValRat p y = -1 := by
@@ -1643,6 +1907,9 @@ lemma _root_.Tengoku.PartialRegularity.padic_val_eq_of_diff_nonneg (p : ℕ) (hp
     have hsum_ne : x + (-(x - y)) ≠ 0 := by rw [← hy_eq]; exact hy_ne
     rw [hy_eq, padicValRat.add_eq_of_lt hsum_ne hx_ne hneg_ne hlt, hx]
 
+/--
+@isnad1 id=eq.4h2v.s6.22a347460060 from=translated src=- shape=4bfedca2 vocab=9f38d165
+-/
 lemma _root_.Tengoku.PartialRegularity.padic_val_bernoulli_eq_neg_one_of_dvd (k : ℕ) (hk : 2 ≤ k) (p : ℕ) (hp : Nat.Prime p)
     (ih : ∀ k' < k, 1 ≤ k' → padicValRat p (bernoulli (2 * k')) ≥ -1)
     (hdvd : (p - 1) ∣ (2 * k)) :
@@ -1673,7 +1940,9 @@ lemma _root_.Tengoku.PartialRegularity.padic_val_bernoulli_eq_neg_one_of_dvd (k 
        Since -1/p ∉ Z_(p), we have v_p(B_n) = -1 < 0, so p | den(B_n).
 
     Uses `faulhaber_remainder_padic_val_nonneg`, `powerSum_mod_eq`,
-    `prime_dvd_den_imp_padic_neg`, and `padic_neg_imp_prime_dvd_den`.-/
+    `prime_dvd_den_imp_padic_neg`, and `padic_neg_imp_prime_dvd_den`.
+@isnad1 id=iff.3h2v.s6.6201dfcb1dcb from=translated src=- shape=86eee8e5 vocab=6d42c474
+-/
 lemma _root_.Tengoku.PartialRegularity.prime_dvd_bernoulli_den_iff_of_two_le (k : ℕ) (hk : 2 ≤ k) (p : ℕ) (hp : Nat.Prime p)
     (ih : ∀ k' < k, 1 ≤ k' → padicValRat p (bernoulli (2 * k')) ≥ -1) :
     p ∣ (bernoulli (2 * k)).den ↔ (p - 1) ∣ (2 * k) := by
@@ -1689,6 +1958,9 @@ lemma _root_.Tengoku.PartialRegularity.prime_dvd_bernoulli_den_iff_of_two_le (k 
     apply padic_neg_imp_prime_dvd_den _ _ hp
     omega
 
+/--
+@isnad1 id=le.3h2v.s6.9d7c4dff6b5e from=translated src=- shape=602cf285 vocab=8d327696
+-/
 lemma _root_.Tengoku.PartialRegularity.padic_val_bernoulli_ge_neg_one_of_two_le (k : ℕ) (hk : 2 ≤ k) (p : ℕ) (hp : Nat.Prime p)
     (ih : ∀ k' < k, 1 ≤ k' → padicValRat p (bernoulli (2 * k')) ≥ -1) :
     padicValRat p (bernoulli (2 * k)) ≥ -1 := by
@@ -1700,6 +1972,9 @@ lemma _root_.Tengoku.PartialRegularity.padic_val_bernoulli_ge_neg_one_of_two_le 
     have hval := padic_val_bernoulli_nonneg_of_not_dvd k hk p hp ih hdvd
     linarith
 
+/--
+@isnad1 id=and.1h1v.s6.cc2e9ec18853 from=translated src=- shape=c0e64317 vocab=416d7649
+-/
 lemma _root_.Tengoku.PartialRegularity.strong_induction_predicate (k : ℕ) (hk : 1 ≤ k) :
     (∀ p : ℕ, Nat.Prime p → (p ∣ (bernoulli (2 * k)).den ↔ (p - 1) ∣ (2 * k))) ∧
     (∀ p : ℕ, Nat.Prime p → padicValRat p (bernoulli (2 * k)) ≥ -1) := by
@@ -1722,10 +1997,16 @@ lemma _root_.Tengoku.PartialRegularity.strong_induction_predicate (k : ℕ) (hk 
       · intro p hp; exact prime_dvd_bernoulli_two_den_iff p hp
       · intro p hp; exact padic_val_bernoulli_two_ge_neg_one p hp
 
+/--
+@isnad1 id=iff.2h2v.s6.a30027effa47 from=translated src=- shape=5de1870d vocab=e75b4412
+-/
 lemma _root_.Tengoku.PartialRegularity.prime_dvd_bernoulli_den_iff (k : ℕ) (hk : 1 ≤ k) (p : ℕ) (hp : Nat.Prime p) :
     p ∣ (bernoulli (2 * k)).den ↔ (p - 1) ∣ (2 * k) :=
   (strong_induction_predicate k hk).1 p hp
 
+/--
+@isnad1 id=not.2h2v.s5.5a094f0732a4 from=translated src=- shape=adcdc934 vocab=9a62ba78
+-/
 lemma _root_.Tengoku.PartialRegularity.padic_val_ge_neg_one_imp_sq_not_dvd_den (q : ℚ) (p : ℕ) (hp : Nat.Prime p)
     (hv : padicValRat p q ≥ -1) : ¬(p * p ∣ q.den) := by
   haveI : Fact (Nat.Prime p) := ⟨hp⟩
@@ -1764,7 +2045,9 @@ lemma _root_.Tengoku.PartialRegularity.padic_val_ge_neg_one_imp_sq_not_dvd_den (
     The proof uses the same p-adic analysis as prime_dvd_bernoulli_den_iff:
     the congruence p·B_{2k} ≡ ±1 (mod p) shows v_p(B_{2k}) = -1, not -2 or less.
 
-    No direct Mathlib equivalent. Searched: bernoulli_squarefree, bernoulli_den.-/
+    No direct Mathlib equivalent. Searched: bernoulli_squarefree, bernoulli_den.
+@isnad1 id=squarefr.1h1v.s4.3599808a20b5 from=translated src=- shape=ecf8985c vocab=38057cef
+-/
 lemma _root_.Tengoku.PartialRegularity.bernoulli_den_squarefree (k : ℕ) (hk : 1 ≤ k) :
     Squarefree (bernoulli (2 * k)).den := by
   rw [Nat.squarefree_iff_prime_squarefree]
@@ -1772,6 +2055,9 @@ lemma _root_.Tengoku.PartialRegularity.bernoulli_den_squarefree (k : ℕ) (hk : 
   have hv := (strong_induction_predicate k hk).2 p hp
   exact padic_val_ge_neg_one_imp_sq_not_dvd_den (bernoulli (2 * k)) p hp hv
 
+/--
+@isnad1 id=pairwise.0h1v.s4.c7ae94873be1 from=translated src=- shape=6d635586 vocab=a1c1cbf8
+-/
 lemma _root_.Tengoku.PartialRegularity.vonStaudtPrimes_pairwise_isRelPrime (n : ℕ) :
     (vonStaudtPrimes n : Set ℕ).Pairwise (Function.onFun IsRelPrime (fun x => x)) := by
   have h_main : (vonStaudtPrimes n : Set ℕ).Pairwise (Function.onFun IsRelPrime (fun x => x)) := by
@@ -1809,10 +2095,16 @@ lemma _root_.Tengoku.PartialRegularity.vonStaudtPrimes_pairwise_isRelPrime (n : 
     simpa [Function.onFun] using h₉
   exact h_main
 
+/--
+@isnad1 id=squarefr.1h1v.s3.ded17dbb9a0d from=translated src=- shape=4596ad61 vocab=95ce30db
+-/
 lemma _root_.Tengoku.PartialRegularity.prime_squarefree (p : ℕ) (hp : Nat.Prime p) : Squarefree p := by
   haveI : Fact p.Prime := ⟨hp⟩
   simpa [Nat.prime_iff_prime_int] using Nat.prime_iff_prime_int.mp hp |>.squarefree
 
+/--
+@isnad1 id=squarefr.0h1v.s3.c0ac7a0a5dbf from=translated src=- shape=a605203b vocab=205c7f4b
+-/
 lemma _root_.Tengoku.PartialRegularity.vonStaudtPrimes_prod_squarefree (n : ℕ) :
     Squarefree (∏ p ∈ vonStaudtPrimes n, p) := by
   apply Finset.squarefree_prod_of_pairwise_isCoprime
@@ -1823,15 +2115,24 @@ lemma _root_.Tengoku.PartialRegularity.vonStaudtPrimes_prod_squarefree (n : ℕ)
       exact hp.2.1
     exact prime_squarefree p hprime
 
+/--
+@isnad1 id=iff.0h2v.s5.5fb60b99cee2 from=translated src=- shape=004027ef vocab=af114ede
+-/
 lemma _root_.Tengoku.PartialRegularity.mem_vonStaudtPrimes_iff (n p : ℕ) :
     p ∈ vonStaudtPrimes n ↔ p < n + 2 ∧ Nat.Prime p ∧ (p - 1) ∣ n := by
   simp only [vonStaudtPrimes, Finset.mem_filter, Finset.mem_range]
 
+/--
+@isnad1 id=lt.3h2v.s5.8f155f508453 from=translated src=- shape=993047d2 vocab=9d428292
+-/
 lemma _root_.Tengoku.PartialRegularity.prime_sub_one_dvd_lt (n p : ℕ) (hn : 1 ≤ n) (hp : Nat.Prime p) (hdvd : (p - 1) ∣ n) :
     p < n + 2 := by
   have h₁ : p - 1 ≤ n := Nat.le_of_dvd (by positivity) hdvd
   omega
 
+/--
+@isnad1 id=iff.2h2v.s5.3611f26aadbe from=translated src=- shape=26d90a7a vocab=cf8350ac
+-/
 lemma _root_.Tengoku.PartialRegularity.prime_mem_vonStaudtPrimes_iff (n : ℕ) (hn : 1 ≤ n) (p : ℕ) (hp : Nat.Prime p) :
     p ∈ vonStaudtPrimes n ↔ (p - 1) ∣ n := by
   constructor
@@ -1846,17 +2147,25 @@ lemma _root_.Tengoku.PartialRegularity.prime_mem_vonStaudtPrimes_iff (n : ℕ) (
       exact Finset.mem_range.mpr h₃
     exact Finset.mem_filter.mpr ⟨h₂, hp, h⟩
 
+/--
+@isnad1 id=eq.5h2v.s5.86fc6d5fc627 from=translated src=- shape=c2acb84d vocab=0f69bcfc
+-/
 lemma _root_.Tengoku.PartialRegularity.squarefree_eq_of_same_prime_divisors (a b : ℕ) (ha : 0 < a) (hb : 0 < b)
     (hSa : Squarefree a) (hSb : Squarefree b)
     (hDiv : ∀ p : ℕ, Nat.Prime p → (p ∣ a ↔ p ∣ b)) : a = b := by
   exact (Nat.Squarefree.ext_iff hSa hSb).mpr hDiv
 
-/-- If p divides q and both are primes, then p = q.-/
+/-- If p divides q and both are primes, then p = q.
+@isnad1 id=eq.3h2v.s4.abe964adcf60 from=translated src=- shape=9b0ed9c4 vocab=806915f4
+-/
 lemma _root_.Tengoku.PartialRegularity.prime_eq_of_prime_dvd (p q : ℕ) (hp : Nat.Prime p) (hq : Nat.Prime q) (hdvd : p ∣ q) : p = q := by
   cases hq.eq_one_or_self_of_dvd p hdvd with
   | inl h => exact absurd h hp.ne_one
   | inr h => exact h
 
+/--
+@isnad1 id=iff.1h2v.s5.718aea118f68 from=translated src=- shape=621459bb vocab=f48d11d1
+-/
 lemma _root_.Tengoku.PartialRegularity.prime_dvd_vonStaudtPrimes_prod_iff (n p : ℕ) (hp : Nat.Prime p) :
     p ∣ ∏ q ∈ vonStaudtPrimes n, q ↔ p ∈ vonStaudtPrimes n := by
   constructor
@@ -1872,6 +2181,9 @@ lemma _root_.Tengoku.PartialRegularity.prime_dvd_vonStaudtPrimes_prod_iff (n p :
     intro hp_mem
     exact Finset.dvd_prod_of_mem (fun x => x) hp_mem
 
+/--
+@isnad1 id=eq.1h1v.s5.e702038dbf61 from=translated src=- shape=9c7fb98c vocab=5e938cb6
+-/
 lemma _root_.Tengoku.PartialRegularity.vonStaudt_clausen (k : ℕ) (hk : 1 ≤ k) :
     (bernoulli (2 * k)).den = ∏ p ∈ vonStaudtPrimes (2 * k), p := by
   have hk2 : 1 ≤ 2 * k := by omega
@@ -1885,6 +2197,9 @@ lemma _root_.Tengoku.PartialRegularity.vonStaudt_clausen (k : ℕ) (hk : 1 ≤ k
     rw [prime_dvd_vonStaudtPrimes_prod_iff (2 * k) p hp]
     rw [prime_mem_vonStaudtPrimes_iff (2 * k) hk2 p hp]
 
+/--
+@isnad1 id=le.1h2v.s5.d8f0d451d66f from=translated src=- shape=813e0d00 vocab=bf2a846c
+-/
 lemma _root_.Tengoku.PartialRegularity.prime_in_vonStaudt_le (n : ℕ) (p : ℕ) (hp : p ∈ vonStaudtPrimes n) :
     p ≤ n + 1 := by
   have h₁ : p ∈ (Finset.range (n + 2)).filter (fun p => Nat.Prime p ∧ (p - 1) ∣ n) := hp
@@ -1894,6 +2209,9 @@ lemma _root_.Tengoku.PartialRegularity.prime_in_vonStaudt_le (n : ℕ) (p : ℕ)
     omega
   exact h₄
 
+/--
+@isnad1 id=le.1h1v.s4.99596a015ddd from=translated src=- shape=e481bd26 vocab=9f2fa047
+-/
 lemma _root_.Tengoku.PartialRegularity.card_vonStaudt_le (n : ℕ) (hn : 1 ≤ n) :
     (vonStaudtPrimes n).card ≤ n := by
   have h₂ : (vonStaudtPrimes n) ⊆ Finset.filter (fun p => Nat.Prime p ∧ (p - 1) ∣ n) (Finset.Icc 2 (n + 1)) := by
@@ -1914,6 +2232,9 @@ lemma _root_.Tengoku.PartialRegularity.card_vonStaudt_le (n : ℕ) (hn : 1 ≤ n
     Finset.card_mono h₂
   omega
 
+/--
+@isnad1 id=le.1h1v.s6.c4e6b05e69ab from=translated src=- shape=82ac3206 vocab=3feac017
+-/
 lemma _root_.Tengoku.PartialRegularity.bernoulli_denom_bound (k : ℕ) (hk : 1 ≤ k) :
     ((bernoulli (2 * k)).den : ℝ) ≤ (2 * k + 1 : ℝ) ^ (2 * k) := by
   have hvs := vonStaudt_clausen k hk
@@ -1939,6 +2260,9 @@ lemma _root_.Tengoku.PartialRegularity.bernoulli_denom_bound (k : ℕ) (hk : 1 �
         · linarith
         · exact hcard
 
+/--
+@isnad1 id=eq.0h1v.s6.0d036313b4ec from=translated src=- shape=182902c7 vocab=a8005469
+-/
 lemma _root_.Tengoku.PartialRegularity.bernoulli_num_eq_abs_mul_den (k : ℕ) :
     ((bernoulli (2 * k)).num.natAbs : ℝ) = |(bernoulli (2 * k) : ℝ)| * (bernoulli (2 * k)).den := by
   set q := bernoulli (2 * k)
@@ -1946,6 +2270,9 @@ lemma _root_.Tengoku.PartialRegularity.bernoulli_num_eq_abs_mul_den (k : ℕ) :
   simp only [Int.cast_abs]
   field_simp
 
+/--
+@isnad1 id=le.1h1v.s6.29566365be32 from=translated src=- shape=5b404f7e vocab=8444354c
+-/
 lemma _root_.Tengoku.PartialRegularity.factorial_le_pow (k : ℕ) (hk : 1 ≤ k) :
     ((2 * k).factorial : ℝ) ≤ (2 * k : ℝ) ^ (2 * k) := by
   have h₁ : (2 * k).factorial ≤ (2 * k : ℕ) ^ (2 * k) := by
@@ -1955,6 +2282,9 @@ lemma _root_.Tengoku.PartialRegularity.factorial_le_pow (k : ℕ) (hk : 1 ≤ k)
     norm_cast at h₁ ⊢
   exact h₂
 
+/--
+@isnad1 id=le.1h1v.s6.6edfc7aa1ec5 from=translated src=- shape=82ec2dcc vocab=45c294fc
+-/
 lemma _root_.Tengoku.PartialRegularity.log_four_bound (k : ℕ) (hk : 2 ≤ k) :
     Real.log 4 + 4 * k * Real.log k ≤ 5 * k * Real.log k := by
   have h₀ : (k : ℝ) ≥ 2 := by exact_mod_cast hk
@@ -1982,6 +2312,9 @@ lemma _root_.Tengoku.PartialRegularity.log_four_bound (k : ℕ) (hk : 2 ≤ k) :
   -- Convert the inequality back to natural numbers if necessary
   norm_cast at h₄ ⊢
 
+/--
+@isnad1 id=le.1h1v.s7.f241fcca1c6a from=translated src=- shape=8bd7760f vocab=9c534705
+-/
 lemma _root_.Tengoku.PartialRegularity.num_bound (k : ℕ) (hk : 2 ≤ k) :
     ((bernoulli (2 * k)).num.natAbs : ℝ) ≤
       4 * (2 * k : ℝ) ^ (2 * k) * (3 * k : ℝ) ^ (2 * k) / (2 * Real.pi) ^ (2 * k) := by
@@ -2024,6 +2357,9 @@ lemma _root_.Tengoku.PartialRegularity.num_bound (k : ℕ) (hk : 2 ≤ k) :
               apply pow_nonneg
               linarith
 
+/--
+@isnad1 id=eq.1h1v.s8.cf3f198c37c2 from=translated src=- shape=a4b1eef5 vocab=22da1508
+-/
 lemma _root_.Tengoku.PartialRegularity.lhs_expansion (k : ℕ) (hk : 2 ≤ k) :
     Real.log (4 * (2 * k : ℝ) ^ (2 * k) * (3 * k : ℝ) ^ (2 * k) / (2 * Real.pi) ^ (2 * k)) =
       Real.log 4 + 4 * k * Real.log k + 2 * k * (Real.log 3 - Real.log Real.pi) := by
@@ -2094,7 +2430,9 @@ lemma _root_.Tengoku.PartialRegularity.lhs_expansion (k : ℕ) (hk : 2 ≤ k) :
 
 /-- Since π > 3 (Mathlib's `Real.pi_gt_three : 3 < Real.pi`), we have log(3) < log(π).
     Thus log(3) - log(π) < 0.
-    For k ≥ 2, we have 2k ≥ 4 > 0, so 2k*(log(3) - log(π)) ≤ 0.-/
+    For k ≥ 2, we have 2k ≥ 4 > 0, so 2k*(log(3) - log(π)) ≤ 0.
+@isnad1 id=le.1h1v.s6.50dac2cea7a5 from=translated src=- shape=588feb1a vocab=0126a763
+-/
 lemma _root_.Tengoku.PartialRegularity.residual_term_nonpos (k : ℕ) (hk : 2 ≤ k) :
     2 * (k : ℝ) * (Real.log 3 - Real.log Real.pi) ≤ 0 := by
   have h₀ : (3 : ℝ) < Real.pi := by
@@ -2106,6 +2444,9 @@ lemma _root_.Tengoku.PartialRegularity.residual_term_nonpos (k : ℕ) (hk : 2 �
     nlinarith
   exact h₅
 
+/--
+@isnad1 id=le.1h1v.s7.d8ad6957eac3 from=translated src=- shape=4bc47742 vocab=a5b9cc0a
+-/
 lemma _root_.Tengoku.PartialRegularity.log_bound_simplify (k : ℕ) (hk : 2 ≤ k) :
     Real.log (4 * (2 * k : ℝ) ^ (2 * k) * (3 * k : ℝ) ^ (2 * k) / (2 * Real.pi) ^ (2 * k)) ≤
       Real.log 4 + 4 * k * Real.log k := by
@@ -2115,7 +2456,9 @@ lemma _root_.Tengoku.PartialRegularity.log_bound_simplify (k : ℕ) (hk : 2 ≤ 
 
 /-- For k ≥ 2, |num(B_{2k})| > 0. Needed for taking logarithms.
 
-    Since B_{2k} ≠ 0 for k ≥ 1 (alternating non-zero), its numerator is non-zero.-/
+    Since B_{2k} ≠ 0 for k ≥ 1 (alternating non-zero), its numerator is non-zero.
+@isnad1 id=lt.1h1v.s5.ea1d46afd755 from=translated src=- shape=498ffaec vocab=a9c5aacd
+-/
 lemma _root_.Tengoku.PartialRegularity.num_pos (k : ℕ) (hk : 2 ≤ k) : (0 : ℝ) < (bernoulli (2 * k)).num.natAbs := by
   have hk1 : 1 ≤ k := Nat.one_le_of_lt hk
   have h_ne : bernoulli (2 * k) ≠ 0 := bernoulli_two_mul_ne_zero k hk1
@@ -2123,6 +2466,9 @@ lemma _root_.Tengoku.PartialRegularity.num_pos (k : ℕ) (hk : 2 ≤ k) : (0 : �
   have h_natAbs_ne : (bernoulli (2 * k)).num.natAbs ≠ 0 := Int.natAbs_ne_zero.mpr h_num_ne
   exact Nat.cast_pos.mpr (Nat.pos_of_ne_zero h_natAbs_ne)
 
+/--
+@isnad1 id=le.1h1v.s6.59e1dfe2e1dc from=translated src=- shape=f2b4b6c5 vocab=361611bf
+-/
 lemma _root_.Tengoku.PartialRegularity.bernoulli_num_bound_combined (k : ℕ) (hk : 2 ≤ k) :
     Real.log ((bernoulli (2 * k)).num.natAbs : ℝ) ≤ 5 * k * Real.log k := by
   have h_num_bound := num_bound k hk
@@ -2135,6 +2481,9 @@ lemma _root_.Tengoku.PartialRegularity.bernoulli_num_bound_combined (k : ℕ) (h
     _ ≤ Real.log 4 + 4 * k * Real.log k := h_log_simplify
     _ ≤ 5 * k * Real.log k := h_log_four
 
+/--
+@isnad1 id=ex.0h0v.s6.74e2aa794a1a from=translated src=- shape=39810c9e vocab=6647884f
+-/
 lemma _root_.Tengoku.PartialRegularity.bernoulli_num_log_bound :
     ∃ A : ℝ, A > 0 ∧ ∀ k : ℕ, 2 ≤ k →
     Real.log ((bernoulli (2 * k)).num.natAbs : ℝ) ≤ A * k * Real.log k := by
@@ -2144,6 +2493,9 @@ lemma _root_.Tengoku.PartialRegularity.bernoulli_num_log_bound :
   · intro k hk
     exact bernoulli_num_bound_combined k hk
 
+/--
+@isnad1 id=le.0h3v.s6.206b7f85aedf from=translated src=- shape=88f95711 vocab=82ceb97e
+-/
 lemma _root_.Tengoku.PartialRegularity.small_primes_subset_singleton (α : ℝ) (k : ℕ) (X : ℝ) :
     Finset.filter (fun p => ¬(3 ≤ p)) (primeCountSet α k X) ⊆ {2} := by
   intro p hp
@@ -2175,6 +2527,9 @@ lemma _root_.Tengoku.PartialRegularity.small_primes_subset_singleton (α : ℝ) 
 
   exact h₈
 
+/--
+@isnad1 id=le.0h3v.s5.5beb4e2d1bfe from=translated src=- shape=a55dcfeb vocab=513d9557
+-/
 lemma _root_.Tengoku.PartialRegularity.total_count_le_large_primes_plus_one (α : ℝ) (k : ℕ) (X : ℝ) :
     (primeCountSet α k X).card ≤ (Finset.filter (fun p => 3 ≤ p) (primeCountSet α k X)).card + 1 := by
   have h_partition := Finset.card_filter_add_card_filter_not (fun p => 3 ≤ p)
@@ -2188,9 +2543,14 @@ lemma _root_.Tengoku.PartialRegularity.total_count_le_large_primes_plus_one (α 
 
 /-- The numerator of bernoulli 2 equals 1.
     Since bernoulli 2 = 6⁻¹ = 1/6, the numerator is 1.
-    This uses `bernoulli_two : bernoulli 2 = 6⁻¹ := ...`.-/
+    This uses `bernoulli_two : bernoulli 2 = 6⁻¹ := ...`.
+@isnad1 id=eq.0h0v.s3.932169d6e04d from=translated src=- shape=43016b0b vocab=fa137493
+-/
 lemma _root_.Tengoku.PartialRegularity.bernoulli_two_num : (bernoulli 2).num = 1 := by simp
 
+/--
+@isnad1 id=ex.1h1v.s6.2075208ba8ce from=translated src=- shape=61c991a3 vocab=f771befd
+-/
 lemma _root_.Tengoku.PartialRegularity.count_at_k_eq_one_bounded (α : ℝ) (_hα : 1/2 < α) :
     ∃ B : ℝ, B > 0 ∧ ∀ X : ℝ, (primeCountSet α 1 X).card ≤ B := by
   use 1
@@ -2208,6 +2568,9 @@ lemma _root_.Tengoku.PartialRegularity.count_at_k_eq_one_bounded (α : ℝ) (_h�
       exact absurd (Int.natCast_dvd.mp hdvd) hp.not_dvd_one
     simp [hempty]
 
+/--
+@isnad1 id=le.2h2v.s5.a5c3850feef3 from=translated src=- shape=fcec1b05 vocab=e003f98d
+-/
 lemma _root_.Tengoku.PartialRegularity.log_pow_ge_one (α : ℝ) (hα_pos : 0 < α) (p : ℕ) (hp3 : 3 ≤ p) :
     (Real.log p) ^ α ≥ 1 := by
   have h₁ : Real.log (p : ℝ) ≥ Real.log 3 := by
@@ -2239,6 +2602,9 @@ lemma _root_.Tengoku.PartialRegularity.log_pow_ge_one (α : ℝ) (hα_pos : 0 < 
 
   exact h₄
 
+/--
+@isnad1 id=le.4h3v.s7.b02ebb8c7403 from=translated src=- shape=f100279b vocab=fb4a820c
+-/
 lemma _root_.Tengoku.PartialRegularity.sqrt_p_ge_2k (α : ℝ) (hα_pos : 0 < α) (k : ℕ) (p : ℕ) (hp3 : 3 ≤ p)
     (h_ratio : Real.sqrt p / (Real.log p) ^ α ≥ 2 * k)
     (h_log : (Real.log p) ^ α ≥ 1) :
@@ -2290,6 +2656,9 @@ lemma _root_.Tengoku.PartialRegularity.sqrt_p_ge_2k (α : ℝ) (hα_pos : 0 < α
     exact h14
   exact h3
 
+/--
+@isnad1 id=le.1h2v.s6.4339418878d2 from=translated src=- shape=beaf3615 vocab=fc34d60f
+-/
 lemma _root_.Tengoku.PartialRegularity.sq_le_of_sqrt_ge (k : ℕ) (p : ℕ) (h : Real.sqrt p ≥ 2 * k) :
     4 * k^2 ≤ p := by
   have h₁ : (2 * (k : ℝ))^2 ≤ (p : ℝ) := by
@@ -2304,6 +2673,9 @@ lemma _root_.Tengoku.PartialRegularity.sq_le_of_sqrt_ge (k : ℕ) (p : ℕ) (h :
     norm_cast at h₂ ⊢
   exact h₃
 
+/--
+@isnad1 id=le.4h3v.s7.8c0443e9a9ae from=translated src=- shape=4fb20997 vocab=9398ee85
+-/
 lemma _root_.Tengoku.PartialRegularity.floor_ge_imp_ge_real (α : ℝ) (hα_pos : 0 < α) (k : ℕ) (hk : 1 ≤ k)
     (p : ℕ) (hp3 : 3 ≤ p) (hM : ⌊Real.sqrt p / (Real.log p) ^ α⌋₊ ≥ 2 * k) :
     Real.sqrt p / (Real.log p) ^ α ≥ 2 * k := by
@@ -2315,6 +2687,9 @@ lemma _root_.Tengoku.PartialRegularity.floor_ge_imp_ge_real (α : ℝ) (hα_pos 
   have h_main : Real.sqrt p / (Real.log p) ^ α ≥ 2 * k := by assumption
   assumption
 
+/--
+@isnad1 id=le.5h3v.s6.4912cdbfcc51 from=translated src=- shape=29781bb4 vocab=c4887893
+-/
 theorem _root_.Tengoku.PartialRegularity.prime_ge_three_M_alpha_large_implies_ge_4k_sq (α : ℝ) (hα : 1/2 < α) (k : ℕ) (hk : 1 ≤ k)
     (p : ℕ) (_hp : Nat.Prime p) (hp3 : 3 ≤ p) (hM : M_alpha α p ≥ 2 * k) :
     4 * k^2 ≤ p := by
@@ -2324,6 +2699,9 @@ theorem _root_.Tengoku.PartialRegularity.prime_ge_three_M_alpha_large_implies_ge
   have h_sqrt := sqrt_p_ge_2k α hα_pos k p hp3 h_ratio h_log
   exact sq_le_of_sqrt_ge k p h_sqrt
 
+/--
+@isnad1 id=lt.1h1v.s4.0cbc7f843337 from=translated src=- shape=74d41dc3 vocab=671a2170
+-/
 lemma _root_.Tengoku.PartialRegularity.log_p_gt_one (p : ℕ) (hp3 : 3 ≤ p) : Real.log p > 1 := by
   have h₁ : Real.log p > 1 := by
     have h₂ : Real.log (p : ℝ) > 1 := by
@@ -2349,6 +2727,9 @@ lemma _root_.Tengoku.PartialRegularity.log_p_gt_one (p : ℕ) (hp3 : 3 ≤ p) : 
     exact h₂
   exact h₁
 
+/--
+@isnad1 id=pairwise.1h1v.s5.830a4148f3ef from=translated src=- shape=588ef8bf vocab=52a2ccf6
+-/
 lemma _root_.Tengoku.PartialRegularity.primes_pairwise_coprime (S : Finset ℕ) (hS : ∀ p ∈ S, Nat.Prime p) :
     (S : Set ℕ).Pairwise (Function.onFun IsCoprime (fun x => (x : ℤ))) := by
   have h_main : ∀ (p q : ℕ), p ∈ (S : Set ℕ) → q ∈ (S : Set ℕ) → p ≠ q → IsCoprime (p : ℤ) (q : ℤ) := by
@@ -2371,11 +2752,17 @@ lemma _root_.Tengoku.PartialRegularity.primes_pairwise_coprime (S : Finset ℕ) 
     simpa [Function.onFun] using h₁
   exact h_final
 
+/--
+@isnad1 id=dvd.2h2v.s5.6b1378846ec1 from=translated src=- shape=c3bde5b5 vocab=c31d3d77
+-/
 lemma _root_.Tengoku.PartialRegularity.prod_primes_dvd_of_each_dvd (S : Finset ℕ) (N : ℤ) (hS : ∀ p ∈ S, Nat.Prime p)
     (hdvd : ∀ p ∈ S, (p : ℤ) ∣ N) :
     (∏ p ∈ S, (p : ℤ)) ∣ N := by
   exact Finset.prod_dvd_of_coprime (primes_pairwise_coprime S hS) hdvd
 
+/--
+@isnad1 id=le.2h2v.s6.cc1472eb823a from=translated src=- shape=5aba695a vocab=bbd63bf1
+-/
 lemma _root_.Tengoku.PartialRegularity.prod_ge_pow_card (S : Finset ℕ) (m : ℕ) (hm : 0 < m) (hge : ∀ p ∈ S, m ≤ p) :
     (m : ℤ) ^ S.card ≤ ∏ p ∈ S, (p : ℤ) := by
   have h₁ : (m : ℕ) ^ S.card ≤ ∏ p ∈ S, p := Finset.pow_card_le_prod S (fun p => p) m hge
@@ -2383,6 +2770,9 @@ lemma _root_.Tengoku.PartialRegularity.prod_ge_pow_card (S : Finset ℕ) (m : �
     _ ≤ ((∏ p ∈ S, p : ℕ) : ℤ) := by exact_mod_cast h₁
     _ = ∏ p ∈ S, (p : ℤ) := by simp [Finset.prod_natCast]
 
+/--
+@isnad1 id=le.1h1v.s6.5c0436fb5684 from=translated src=- shape=28152995 vocab=30399db6
+-/
 lemma _root_.Tengoku.PartialRegularity.log_4k_sq_ge_two_log_k (k : ℕ) (hk : 2 ≤ k) :
     Real.log (4 * k^2 : ℝ) ≥ 2 * Real.log k := by
   have h₂ : Real.log (4 * (k : ℝ)^2) = Real.log 4 + 2 * Real.log (k : ℝ) := by
@@ -2397,12 +2787,18 @@ lemma _root_.Tengoku.PartialRegularity.log_4k_sq_ge_two_log_k (k : ℕ) (hk : 2 
   have h₅ : Real.log (4 * (k : ℝ)^2) ≥ 2 * Real.log (k : ℝ) := by linarith
   simpa [h₂] using h₅
 
+/--
+@isnad1 id=le.2h2v.s5.6cc6fbdc4448 from=translated src=- shape=29227144 vocab=4dcefda3
+-/
 lemma _root_.Tengoku.PartialRegularity.pow_le_prod_of_ge (S : Finset ℕ) (m : ℕ) (hm : 0 < m) (hge : ∀ p ∈ S, m ≤ p) :
     m ^ S.card ≤ ∏ p ∈ S, p := by
   have h := prod_ge_pow_card S m hm hge
   simp only [← Nat.cast_pow] at h
   exact Int.toNat_le_toNat h |>.trans (by simp)
 
+/--
+@isnad1 id=le.2h2v.s5.64f492dcbddd from=translated src=- shape=5ea688bf vocab=ab43132e
+-/
 lemma _root_.Tengoku.PartialRegularity.prod_le_natAbs (S : Finset ℕ) (N : ℤ) (hN : N ≠ 0)
     (hdvd : (∏ p ∈ S, (p : ℤ)) ∣ N) :
     (∏ p ∈ S, (p : ℕ)) ≤ N.natAbs := by
@@ -2436,6 +2832,9 @@ lemma _root_.Tengoku.PartialRegularity.prod_le_natAbs (S : Finset ℕ) (N : ℤ)
     exact_mod_cast h₅
   exact h₁
 
+/--
+@isnad1 id=le.3h3v.s6.20e4a3d01b79 from=translated src=- shape=522c2fe0 vocab=6b3b2400
+-/
 lemma _root_.Tengoku.PartialRegularity.pow_le_imp_card_le (r : ℕ) (m n : ℕ) (hm : 1 < m) (hn : 0 < n)
     (hle : m ^ r ≤ n) :
     (r : ℝ) ≤ Real.log (n : ℝ) / Real.log m := by
@@ -2463,6 +2862,9 @@ lemma _root_.Tengoku.PartialRegularity.pow_le_imp_card_le (r : ℕ) (m n : ℕ) 
   have h₁₁ : (r : ℝ) ≤ Real.log (n : ℝ) / Real.log (m : ℝ) := h₈
   simpa [h₉, h₁₀] using h₁₁
 
+/--
+@isnad1 id=le.5h3v.s6.59d1a9080ba9 from=translated src=- shape=bafe9199 vocab=9a07925c
+-/
 lemma _root_.Tengoku.PartialRegularity.count_bound_via_log (S : Finset ℕ) (m : ℕ) (N : ℤ) (hN : N ≠ 0)
     (hS : ∀ p ∈ S, Nat.Prime p) (hm : 1 < m) (hge : ∀ p ∈ S, m ≤ p)
     (hdvd : ∀ p ∈ S, (p : ℤ) ∣ N) :
@@ -2476,9 +2878,15 @@ lemma _root_.Tengoku.PartialRegularity.count_bound_via_log (S : Finset ℕ) (m :
   have h_natAbs_pos : 0 < N.natAbs := Int.natAbs_pos.mpr hN
   exact pow_le_imp_card_le S.card m N.natAbs hm h_natAbs_pos h_pow_le_natAbs
 
+/--
+@isnad1 id=lt.1h1v.s4.6826d060d30e from=translated src=- shape=998257d8 vocab=d08708e8
+-/
 lemma _root_.Tengoku.PartialRegularity.log_k_pos (k : ℕ) (hk : 2 ≤ k) : 0 < Real.log (k : ℝ) := by
   exact Real.log_pos (by simp +arith [*])
 
+/--
+@isnad1 id=lt.1h1v.s5.02972d8b2b3a from=translated src=- shape=4b8b3ace vocab=2a3f5b88
+-/
 lemma _root_.Tengoku.PartialRegularity.four_k_sq_gt_one (k : ℕ) (hk : 2 ≤ k) : 1 < 4 * k^2 := by
   have h : 1 < 4 * k ^ 2 := by
     have h₂ : k ^ 2 ≥ 4 := by
@@ -2490,6 +2898,9 @@ lemma _root_.Tengoku.PartialRegularity.four_k_sq_gt_one (k : ℕ) (hk : 2 ≤ k)
     exact h₆
   exact h
 
+/--
+@isnad1 id=le.5h5v.s6.0299d738cdfe from=translated src=- shape=7afbdc6a vocab=00077e01
+-/
 lemma _root_.Tengoku.PartialRegularity.bound_via_log_div (r : ℕ) (logN logm Ak two_logk : ℝ)
     (hr : (r : ℝ) ≤ logN / logm)
     (hlogN_le : logN ≤ Ak)
@@ -2502,6 +2913,9 @@ lemma _root_.Tengoku.PartialRegularity.bound_via_log_div (r : ℕ) (logN logm Ak
   have h4 : (r : ℝ) * two_logk ≤ Ak := by nlinarith
   exact (le_div_iff₀ htwo_logk_pos).mpr h4
 
+/--
+@isnad1 id=le.4h4v.s7.aa603619f728 from=translated src=- shape=d516a0b8 vocab=dc8a252b
+-/
 lemma _root_.Tengoku.PartialRegularity.count_ge_three_bound_at_fixed_k (α : ℝ) (hα : 1/2 < α) (A : ℝ) (hA : A > 0)
     (hAbound : ∀ k : ℕ, 2 ≤ k → Real.log ((bernoulli (2 * k)).num.natAbs : ℝ) ≤ A * k * Real.log k)
     (k : ℕ) (hk : 2 ≤ k) (X : ℝ) :
@@ -2564,6 +2978,9 @@ lemma _root_.Tengoku.PartialRegularity.count_ge_three_bound_at_fixed_k (α : ℝ
     _ = A * k / 2 := by field_simp
     _ = (A / 2) * k := by ring
 
+/--
+@isnad1 id=ex.1h1v.s6.e3931ea09a4f from=translated src=- shape=d3eb998a vocab=d84c711f
+-/
 lemma _root_.Tengoku.PartialRegularity.count_ge_three_bound_for_k_ge_two (α : ℝ) (hα : 1/2 < α) :
     ∃ C₀ : ℝ, C₀ > 0 ∧ ∀ k : ℕ, 2 ≤ k → ∀ X : ℝ,
     (Finset.filter (fun p => 3 ≤ p) (primeCountSet α k X)).card ≤ C₀ * k := by
@@ -2574,6 +2991,9 @@ lemma _root_.Tengoku.PartialRegularity.count_ge_three_bound_for_k_ge_two (α : �
   intro k hk X
   exact count_ge_three_bound_at_fixed_k α hα A hApos hAbound k hk X
 
+/--
+@isnad1 id=ex.1h1v.s6.80d5d5377401 from=translated src=- shape=3b8aa059 vocab=9b1bb31b
+-/
 lemma _root_.Tengoku.PartialRegularity.count_bound_for_k_ge_two (α : ℝ) (hα : 1/2 < α) :
     ∃ C₁ : ℝ, C₁ > 0 ∧ ∀ k : ℕ, 2 ≤ k → ∀ X : ℝ,
     (primeCountSet α k X).card ≤ C₁ * k := by
@@ -2596,6 +3016,9 @@ lemma _root_.Tengoku.PartialRegularity.count_bound_for_k_ge_two (α : ℝ) (hα 
       _ ≤ C₀ * k + 1 * k := by linarith
       _ = (C₀ + 1) * k := by ring
 
+/--
+@isnad1 id=ex.1h1v.s8.1b18a2795ce3 from=translated src=- shape=2fb4c56d vocab=fb7c34f5
+-/
 lemma _root_.Tengoku.PartialRegularity.prime_divisors_of_bernoulli_uniform_bound (α : ℝ) (hα : 1/2 < α) :
     ∃ C : ℝ, C > 0 ∧
     ∀ k : ℕ, 1 ≤ k →
@@ -2631,6 +3054,9 @@ lemma _root_.Tengoku.PartialRegularity.prime_divisors_of_bernoulli_uniform_bound
       calc ((primeCountSet α k X).card : ℝ) ≤ C₁ * k := h
         _ ≤ max B C₁ * k := by nlinarith [le_max_right B C₁]
 
+/--
+@isnad1 id=le.0h1v.s5.f7d01d20978c from=translated src=- shape=0d58dd15 vocab=a017f5a9
+-/
 lemma _root_.Tengoku.PartialRegularity.sum_Icc_le_sq (n : ℕ) :
     (∑ k ∈ Finset.Icc 1 n, (k : ℝ)) ≤ ((n : ℝ) + 1) ^ 2 := by
   have h₁ : (∑ k ∈ Finset.Icc 1 n, (k : ℝ)) ≤ ∑ k ∈ Finset.Icc 1 n, ((n : ℝ) + 1) := by
@@ -2655,9 +3081,15 @@ lemma _root_.Tengoku.PartialRegularity.sum_Icc_le_sq (n : ℕ) :
     _ = (n : ℝ) * ((n : ℝ) + 1) := by rw [h₂]
     _ ≤ ((n : ℝ) + 1) ^ 2 := h₃
 
+/--
+@isnad1 id=lt.2h2v.s5.bb1a99145c64 from=translated src=- shape=5b948454 vocab=d41f1159
+-/
 lemma _root_.Tengoku.PartialRegularity.floor_lt_of_lt {x : ℝ} {n : ℕ} (hx : 0 ≤ x) (hxn : x < n) : ⌊x⌋₊ < n := by
   exact Nat.floor_lt hx |>.mpr hxn
 
+/--
+@isnad1 id=lt.1h1v.s5.90b34a1de2ed from=translated src=- shape=685a5ffe vocab=30cfffd7
+-/
 lemma _root_.Tengoku.PartialRegularity.sqrt_lt_sub_three (p : ℕ) (hp : 6 ≤ p) : Real.sqrt p < p - 3 := by
   have h₁ : (p : ℝ) ≥ 6 := by exact_mod_cast hp
   have h₄ : (Real.sqrt (p : ℝ)) ^ 2 = (p : ℝ) := by rw [Real.sq_sqrt (by positivity)]
@@ -2669,6 +3101,9 @@ lemma _root_.Tengoku.PartialRegularity.sqrt_lt_sub_three (p : ℕ) (hp : 6 ≤ p
   have h₆ : Real.sqrt (p : ℝ) < (p : ℝ) - 3 := by linarith
   exact_mod_cast h₆
 
+/--
+@isnad1 id=lt.2h2v.s5.895794416975 from=translated src=- shape=1ee92bc0 vocab=9d232c55
+-/
 lemma _root_.Tengoku.PartialRegularity.sqrt_div_log_pow_lt_sqrt (α : ℝ) (hα : 0 < α) (p : ℕ) (hp : 3 ≤ p) :
     Real.sqrt p / (Real.log p) ^ α < Real.sqrt p := by
   have h₁ : (1 : ℝ) < Real.log p := by
@@ -2705,6 +3140,9 @@ lemma _root_.Tengoku.PartialRegularity.sqrt_div_log_pow_lt_sqrt (α : ℝ) (hα 
     simpa [h₄.ne'] using h₆
   exact h₇
 
+/--
+@isnad1 id=ex.1h1v.s6.42469aac2a66 from=translated src=- shape=b82784c0 vocab=5a5668d8
+-/
 theorem _root_.Tengoku.PartialRegularity.large_prime_min_simplifies (α : ℝ) (hα : 1/2 < α) :
     ∃ P₀ : ℕ, ∀ p : ℕ, P₀ ≤ p → Nat.Prime p → M_alpha α p < p - 3 := by
   use 7
@@ -2731,6 +3169,9 @@ theorem _root_.Tengoku.PartialRegularity.large_prime_min_simplifies (α : ℝ) (
   unfold M_alpha
   exact floor_lt_of_lt hge0 hlt'
 
+/--
+@isnad1 id=ex.1h1v.s6.4bb061ff9b66 from=translated src=- shape=febe5b6e vocab=22c53800
+-/
 lemma _root_.Tengoku.PartialRegularity.nonregular_implies_witness (α : ℝ) (hα : 1/2 < α) :
     ∃ P₀ : ℕ, ∀ p : ℕ, P₀ ≤ p → Nat.Prime p → Odd p → ¬IsRegularPrime (M_alpha α p) p →
     ∃ k : ℕ, 1 ≤ 2 * k ∧ 2 * k ≤ M_alpha α p ∧ (p : ℤ) ∣ (bernoulli (2 * k)).num := by
@@ -2763,6 +3204,9 @@ lemma _root_.Tengoku.PartialRegularity.nonregular_implies_witness (α : ℝ) (h�
     exact hk₃
   exact h₁
 
+/--
+@isnad1 id=le.2h2v.s5.1fb770f80f20 from=translated src=- shape=e7a7a9e5 vocab=a957b093
+-/
 lemma _root_.Tengoku.PartialRegularity.log_diff_le_div (s t : ℝ) (hs : 0 < s) (hst : s ≤ t) :
     Real.log t - Real.log s ≤ (t - s) / s := by
   have h₁ : 0 < t := by linarith
@@ -2781,6 +3225,9 @@ lemma _root_.Tengoku.PartialRegularity.log_diff_le_div (s t : ℝ) (hs : 0 < s) 
   rw [h₅] at h₃
   linarith
 
+/--
+@isnad1 id=le.3h3v.s6.c0cc535d61e4 from=translated src=- shape=2dd965ee vocab=103e99f5
+-/
 lemma _root_.Tengoku.PartialRegularity.alpha_ratio_bound (α s t : ℝ) (hα : 0 < α) (hs : 2 * α ≤ s) (hst : s ≤ t) :
     α * (t - s) / s ≤ (t - s) / 2 := by
   have h₁ : 0 < s := by
@@ -2810,6 +3257,9 @@ lemma _root_.Tengoku.PartialRegularity.alpha_ratio_bound (α s t : ℝ) (hα : 0
       linarith
   exact h₃
 
+/--
+@isnad1 id=le.3h3v.s6.0f676386844f from=translated src=- shape=513b134c vocab=bb162d4e
+-/
 lemma _root_.Tengoku.PartialRegularity.h_monotone (α : ℝ) (hα : 0 < α) :
     ∀ s t : ℝ, 2 * α ≤ s → s ≤ t →
     s / 2 - α * Real.log s ≤ t / 2 - α * Real.log t := by
@@ -2824,6 +3274,9 @@ lemma _root_.Tengoku.PartialRegularity.h_monotone (α : ℝ) (hα : 0 < α) :
   have h3 : α * (t - s) / s ≤ (t - s) / 2 := alpha_ratio_bound α s t hα hs hst
   linarith
 
+/--
+@isnad1 id=le.3h3v.s6.b41b4e89818c from=translated src=- shape=825a7b92 vocab=f539ffdc
+-/
 lemma _root_.Tengoku.PartialRegularity.phi_monotone (α : ℝ) (hα : 0 < α) :
     ∀ s t : ℝ, 2 * α ≤ s → s ≤ t →
     Real.exp (s / 2) / s ^ α ≤ Real.exp (t / 2) / t ^ α := by
@@ -2837,6 +3290,9 @@ lemma _root_.Tengoku.PartialRegularity.phi_monotone (α : ℝ) (hα : 0 < α) :
   rw [eq_s, eq_t]
   exact Real.exp_le_exp.mpr (h_monotone α hα s t hs hst)
 
+/--
+@isnad1 id=eq.1h2v.s6.e80ba6b876c4 from=translated src=- shape=a54b01e7 vocab=5a46764b
+-/
 lemma _root_.Tengoku.PartialRegularity.sqrt_div_log_pow_eq_phi (α x : ℝ) (hx : 1 < x) :
     Real.sqrt x / (Real.log x) ^ α = Real.exp (Real.log x / 2) / (Real.log x) ^ α := by
   have h₁ : Real.sqrt x = Real.exp (Real.log x / 2) := by
@@ -2850,6 +3306,9 @@ lemma _root_.Tengoku.PartialRegularity.sqrt_div_log_pow_eq_phi (α x : ℝ) (hx 
     rw [h₃]
   rw [h₁]
 
+/--
+@isnad1 id=ex.1h1v.s6.0353895ed0cd from=translated src=- shape=a6e6c0e8 vocab=1ebe0d67
+-/
 lemma _root_.Tengoku.PartialRegularity.sqrt_div_log_pow_monotone (α : ℝ) (hα : 1/2 < α) :
     ∃ X₀ : ℝ, ∀ x y : ℝ, X₀ ≤ x → x ≤ y →
     Real.sqrt x / (Real.log x) ^ α ≤ Real.sqrt y / (Real.log y) ^ α := by
@@ -2870,6 +3329,9 @@ lemma _root_.Tengoku.PartialRegularity.sqrt_div_log_pow_monotone (α : ℝ) (hα
     exact this
   · exact Real.log_le_log (by linarith : 0 < x) hxy
 
+/--
+@isnad1 id=tendsto.0h1v.s6.fb9341f4ce1f from=translated src=- shape=6c45ad71 vocab=884bebd2
+-/
 lemma _root_.Tengoku.PartialRegularity.log_pow_div_rpow_tendsto_zero (α : ℝ) :
     Filter.Tendsto (fun X => (Real.log X) ^ α / X ^ (1/2 : ℝ)) Filter.atTop (nhds 0) := by
   have h₂ : (fun X => (Real.log X) ^ α) =o[Filter.atTop] (fun X => (X : ℝ) ^ (1 / 2 : ℝ)) := by
@@ -2892,6 +3354,9 @@ lemma _root_.Tengoku.PartialRegularity.log_pow_div_rpow_tendsto_zero (α : ℝ) 
     exact h₄
   exact h₃
 
+/--
+@isnad1 id=eventual.0h1v.s5.8ebebe73025f from=translated src=- shape=6fc9dbb3 vocab=12292021
+-/
 lemma _root_.Tengoku.PartialRegularity.log_pow_div_sqrt_eventually_pos (α : ℝ) :
     ∀ᶠ X in Filter.atTop, 0 < (Real.log X) ^ α / Real.sqrt X := by
   have h_main : ∀ᶠ (X : ℝ) in Filter.atTop, 0 < (Real.log X) ^ α / Real.sqrt X := by
@@ -2905,6 +3370,9 @@ lemma _root_.Tengoku.PartialRegularity.log_pow_div_sqrt_eventually_pos (α : ℝ
     exact h6
   exact h_main
 
+/--
+@isnad1 id=tendsto.1h1v.s6.3b0379af864f from=translated src=- shape=4c17ec08 vocab=9b4e3c3b
+-/
 lemma _root_.Tengoku.PartialRegularity.log_pow_div_sqrt_tendsto_nhdsWithin_zero (α : ℝ) (_hα : 0 < α) :
     Filter.Tendsto (fun X => (Real.log X) ^ α / Real.sqrt X) Filter.atTop (nhdsWithin 0 (Set.Ioi 0)) := by
   apply tendsto_nhdsWithin_of_tendsto_nhds_of_eventually_within
@@ -2915,6 +3383,9 @@ lemma _root_.Tengoku.PartialRegularity.log_pow_div_sqrt_tendsto_nhdsWithin_zero 
     exact h1.congr' heq.symm
   · exact log_pow_div_sqrt_eventually_pos α
 
+/--
+@isnad1 id=tendsto.1h1v.s5.8d2663ea3dc6 from=translated src=- shape=37355ac5 vocab=e5fd4074
+-/
 lemma _root_.Tengoku.PartialRegularity.sqrt_div_log_pow_tendsto_atTop (α : ℝ) (hα : 0 < α) :
     Filter.Tendsto (fun X => Real.sqrt X / (Real.log X) ^ α) Filter.atTop Filter.atTop := by
   have h := log_pow_div_sqrt_tendsto_nhdsWithin_zero α hα
@@ -2925,6 +3396,9 @@ lemma _root_.Tengoku.PartialRegularity.sqrt_div_log_pow_tendsto_atTop (α : ℝ)
   ring_nf
   simp only [inv_inv]
 
+/--
+@isnad1 id=ex.0h2v.s5.accc10e7ca6f from=translated src=- shape=941cab06 vocab=7bf80ecd
+-/
 lemma _root_.Tengoku.PartialRegularity.f_bounded_on_finite_range (α : ℝ) (N : ℕ) :
     ∃ C : ℝ, ∀ p : ℕ, p ≤ N → Real.sqrt p / (Real.log p) ^ α ≤ C := by
   let f : ℕ → ℝ := fun p => Real.sqrt p / (Real.log p) ^ α
@@ -2932,6 +3406,9 @@ lemma _root_.Tengoku.PartialRegularity.f_bounded_on_finite_range (α : ℝ) (N :
   intro p hp
   exact Finset.le_sup' f (Finset.mem_Iic.mpr hp)
 
+/--
+@isnad1 id=le.1h3v.s5.2faca784ddd5 from=translated src=- shape=66abe371 vocab=44bb1bd3
+-/
 lemma _root_.Tengoku.PartialRegularity.k_le_K_max_of_cast_le (α X : ℝ) (k : ℕ)
     (hk : (k : ℝ) ≤ Real.sqrt X / (2 * (Real.log X) ^ α)) :
     k ≤ K_max α X := by
@@ -2941,6 +3418,9 @@ lemma _root_.Tengoku.PartialRegularity.k_le_K_max_of_cast_le (α X : ℝ) (k : �
     <;> simp_all [K_max]
   simp_all [K_max]
 
+/--
+@isnad1 id=le.5h5v.s6.eec1fcd7900e from=translated src=- shape=32fec3a7 vocab=ae4c919a
+-/
 lemma _root_.Tengoku.PartialRegularity.k_bound_large_p (α : ℝ) (X_mono : ℝ)
     (hmon : ∀ x y : ℝ, X_mono ≤ x → x ≤ y → Real.sqrt x / (Real.log x) ^ α ≤ Real.sqrt y / (Real.log y) ^ α)
     (X : ℝ) (_hX : X ≥ X_mono) (p : ℕ) (hp_large : X_mono ≤ p) (hp_le : (p : ℝ) ≤ X)
@@ -2959,6 +3439,9 @@ lemma _root_.Tengoku.PartialRegularity.k_bound_large_p (α : ℝ) (X_mono : ℝ)
     _ ≤ (Real.sqrt X / (Real.log X) ^ α) / 2 := by linarith
     _ = Real.sqrt X / (2 * (Real.log X) ^ α) := by ring
 
+/--
+@isnad1 id=le.2h2v.s6.eb750b0548f7 from=translated src=- shape=3de70934 vocab=eb003908
+-/
 lemma _root_.Tengoku.PartialRegularity.two_k_le_floor_imp_k_le_half (a : ℝ) (ha : 0 ≤ a) (k : ℕ) (h : 2 * k ≤ ⌊a⌋₊) :
     (k : ℝ) ≤ a / 2 := by
   have h₁ : (2 * k : ℝ) ≤ a := by
@@ -2971,6 +3454,9 @@ lemma _root_.Tengoku.PartialRegularity.two_k_le_floor_imp_k_le_half (a : ℝ) (h
     linarith
   exact h₄
 
+/--
+@isnad1 id=le.4h6v.s6.26f27e8e1cba from=translated src=- shape=891db427 vocab=06da6584
+-/
 lemma _root_.Tengoku.PartialRegularity.k_bound_small_p (α : ℝ) (X_mono C_max : ℝ)
     (hC : ∀ p : ℕ, (p : ℝ) < X_mono → Real.sqrt p / (Real.log p) ^ α ≤ C_max)
     (X : ℝ) (hX_dom : Real.sqrt X / (Real.log X) ^ α ≥ C_max)
@@ -2991,6 +3477,9 @@ lemma _root_.Tengoku.PartialRegularity.k_bound_small_p (α : ℝ) (X_mono C_max 
   rw [h5] at h4
   exact k_le_K_max_of_cast_le α X k h4
 
+/--
+@isnad1 id=ex.1h2v.s5.e349b1c4408d from=translated src=- shape=c17fdaf5 vocab=a4f04bf0
+-/
 lemma _root_.Tengoku.PartialRegularity.f_eventually_ge (α : ℝ) (hα : 0 < α) (C : ℝ) :
     ∃ X_dom : ℝ, ∀ X ≥ X_dom, Real.sqrt X / (Real.log X) ^ α ≥ C := by
   have htend := sqrt_div_log_pow_tendsto_atTop α hα
@@ -2998,6 +3487,9 @@ lemma _root_.Tengoku.PartialRegularity.f_eventually_ge (α : ℝ) (hα : 0 < α)
   rw [Filter.eventually_atTop] at hev
   exact hev
 
+/--
+@isnad1 id=le.1h2v.s4.d11e27fffb19 from=translated src=- shape=92ba8672 vocab=83830e16
+-/
 lemma _root_.Tengoku.PartialRegularity.nat_lt_real_imp_le_ceil (X_mono : ℝ) (p : ℕ) (h : (p : ℝ) < X_mono) : p ≤ ⌈X_mono⌉₊ := by
   have h₁ : p < ⌈(X_mono : ℝ)⌉₊ := by
     have h₃ : (p : ℝ) < ⌈(X_mono : ℝ)⌉₊ := by
@@ -3007,6 +3499,9 @@ lemma _root_.Tengoku.PartialRegularity.nat_lt_real_imp_le_ceil (X_mono : ℝ) (p
     linarith
   exact h₂
 
+/--
+@isnad1 id=le.2h2v.s5.f68c435bda83 from=translated src=- shape=78264e2e vocab=706e0df2
+-/
 lemma _root_.Tengoku.PartialRegularity.nat_le_floor_imp_cast_le (X : ℝ) (hX : 0 ≤ X) (p : ℕ) (hp : p ≤ ⌊X⌋₊) : (p : ℝ) ≤ X := by
   have h₁ : (p : ℕ) ≤ ⌊X⌋₊ := hp
   have h₂ : (p : ℝ) ≤ (⌊X⌋₊ : ℝ) := by
@@ -3015,6 +3510,9 @@ lemma _root_.Tengoku.PartialRegularity.nat_le_floor_imp_cast_le (X : ℝ) (hX : 
     (try exact Nat.floor_le (by linarith))
   linarith
 
+/--
+@isnad1 id=ex.1h1v.s6.620a98dd68e0 from=translated src=- shape=e88f4856 vocab=1ae3f290
+-/
 lemma _root_.Tengoku.PartialRegularity.witness_bounded_by_K_max (α : ℝ) (hα : 1/2 < α) :
     ∃ X₀ : ℝ, ∀ X : ℝ, X ≥ X₀ → ∀ p : ℕ, p ≤ ⌊X⌋₊ → ∀ k : ℕ,
     2 * k ≤ M_alpha α p → k ≤ K_max α X := by
@@ -3037,10 +3535,16 @@ lemma _root_.Tengoku.PartialRegularity.witness_bounded_by_K_max (α : ℝ) (hα 
     have hX_dom_app : Real.sqrt X / (Real.log X) ^ α ≥ C_max := hX_dom X hX_ge_dom
     exact k_bound_small_p α X_mono C_max hC X hX_dom_app p hp_case k hk
 
+/--
+@isnad1 id=odd.2h1v.s4.e167bc3a33f2 from=translated src=- shape=6b4c71bc vocab=263428bd
+-/
 lemma _root_.Tengoku.PartialRegularity.prime_ge_three_is_odd (p : ℕ) (hp : Nat.Prime p) (h3 : 3 ≤ p) : Odd p := by
   have h_ne_two : p ≠ 2 := by omega
   exact Nat.Prime.odd_of_ne_two hp h_ne_two
 
+/--
+@isnad1 id=ex.6h4v.s7.4ca6ba3ab59a from=translated src=- shape=2951df36 vocab=81f619d4
+-/
 lemma _root_.Tengoku.PartialRegularity.large_prime_has_witness (α : ℝ) (p : ℕ) (M P₂ : ℕ)
     (hP₂ : ∀ q : ℕ, P₂ ≤ q → Nat.Prime q → Odd q → ¬IsRegularPrime (M_alpha α q) q →
            ∃ k : ℕ, 1 ≤ 2 * k ∧ 2 * k ≤ M_alpha α q ∧ (q : ℤ) ∣ (bernoulli (2 * k)).num)
@@ -3072,6 +3576,9 @@ lemma _root_.Tengoku.PartialRegularity.large_prime_has_witness (α : ℝ) (p : �
     exact h₅
   exact h_main
 
+/--
+@isnad1 id=le.1h3v.s7.f6c9241aa87b from=translated src=- shape=f9646c21 vocab=8f704d6d
+-/
 lemma _root_.Tengoku.PartialRegularity.small_primes_bounded (α : ℝ) (M : ℕ) (X : ℝ) (hXM : M ≤ ⌊X⌋₊) :
     ((Finset.Icc 1 ⌊X⌋₊).filter (fun p =>
       Nat.Prime p ∧ ¬IsRegularPrime (M_alpha α p) p ∧ p < M)).card ≤
@@ -3085,6 +3592,9 @@ lemma _root_.Tengoku.PartialRegularity.small_primes_bounded (α : ℝ) (M : ℕ)
     omega
   exact Finset.card_le_card h_main
 
+/--
+@isnad1 id=mem.5h5v.s7.f8ab965f6257 from=translated src=- shape=3c92204a vocab=981b76f0
+-/
 lemma _root_.Tengoku.PartialRegularity.witness_in_range (α : ℝ) (X₁ X : ℝ) (hX : X ≥ X₁)
     (hX₁ : ∀ Y : ℝ, Y ≥ X₁ → ∀ p : ℕ, p ≤ ⌊Y⌋₊ → ∀ k : ℕ, 2 * k ≤ M_alpha α p → k ≤ K_max α Y)
     (p : ℕ) (hp_le : p ≤ ⌊X⌋₊) (k : ℕ) (hk1 : 1 ≤ 2 * k) (hk2 : 2 * k ≤ M_alpha α p) :
@@ -3098,6 +3608,9 @@ lemma _root_.Tengoku.PartialRegularity.witness_in_range (α : ℝ) (X₁ X : ℝ
     omega
   exact Finset.mem_Icc.mpr ⟨h₁, h₂⟩
 
+/--
+@isnad1 id=le.6h5v.s9.76f330dcbf2d from=translated src=- shape=7149209d vocab=6dca78cf
+-/
 lemma _root_.Tengoku.PartialRegularity.large_primes_subset_biUnion (α : ℝ) (X X₁ : ℝ) (M P₂ : ℕ) (hX : X ≥ X₁) (_hXM : M ≤ ⌊X⌋₊)
     (hP₂ : ∀ q : ℕ, P₂ ≤ q → Nat.Prime q → Odd q → ¬IsRegularPrime (M_alpha α q) q →
            ∃ k : ℕ, 1 ≤ 2 * k ∧ 2 * k ≤ M_alpha α q ∧ (q : ℤ) ∣ (bernoulli (2 * k)).num)
@@ -3120,6 +3633,9 @@ lemma _root_.Tengoku.PartialRegularity.large_primes_subset_biUnion (α : ℝ) (X
   simp only [Finset.mem_filter, Finset.mem_Icc]
   exact ⟨⟨hp1, hpX⟩, hprime, hdiv, hpX, hk2⟩
 
+/--
+@isnad1 id=disjoint.0h3v.s7.6d670b1937e5 from=translated src=- shape=0989f38b vocab=d6229dc6
+-/
 lemma _root_.Tengoku.PartialRegularity.disjoint_small_large (α : ℝ) (X : ℝ) (M : ℕ) :
     Disjoint
       ((Finset.Icc 1 ⌊X⌋₊).filter (fun p => Nat.Prime p ∧ ¬IsRegularPrime (M_alpha α p) p ∧ p < M))
@@ -3127,6 +3643,9 @@ lemma _root_.Tengoku.PartialRegularity.disjoint_small_large (α : ℝ) (X : ℝ)
   have h_main : ∀ (p : ℕ), p ∈ (Finset.Icc 1 ⌊X⌋₊ : Finset ℕ) → (Nat.Prime p ∧ ¬IsRegularPrime (M_alpha α p) p ∧ p < M) → (Nat.Prime p ∧ ¬IsRegularPrime (M_alpha α p) p ∧ M ≤ p) → False := by simp_all
   exact Finset.disjoint_filter.mpr h_main
 
+/--
+@isnad1 id=eq.0h3v.s7.6144c854eb13 from=translated src=- shape=fa0d0f9a vocab=df494c34
+-/
 lemma _root_.Tengoku.PartialRegularity.union_small_large_eq (α : ℝ) (X : ℝ) (M : ℕ) :
     ((Finset.Icc 1 ⌊X⌋₊).filter (fun p => Nat.Prime p ∧ ¬IsRegularPrime (M_alpha α p) p ∧ p < M)) ∪
     ((Finset.Icc 1 ⌊X⌋₊).filter (fun p => Nat.Prime p ∧ ¬IsRegularPrime (M_alpha α p) p ∧ M ≤ p)) =
@@ -3140,6 +3659,9 @@ lemma _root_.Tengoku.PartialRegularity.union_small_large_eq (α : ℝ) (X : ℝ)
     · left; exact ⟨hp1, hp2, hp3, h⟩
     · right; push_neg at h; exact ⟨hp1, hp2, hp3, h⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.bab0729f6eb9 from=translated src=- shape=0068d962 vocab=0bd5f5bd
+-/
 lemma _root_.Tengoku.PartialRegularity.partition_count (α : ℝ) (X : ℝ) (M : ℕ) :
     countNonRegularPrimes α X =
     ((Finset.Icc 1 ⌊X⌋₊).filter (fun p =>
@@ -3150,6 +3672,9 @@ lemma _root_.Tengoku.PartialRegularity.partition_count (α : ℝ) (X : ℝ) (M :
   rw [← union_small_large_eq α X M]
   rw [Finset.card_union_of_disjoint (disjoint_small_large α X M)]
 
+/--
+@isnad1 id=ex.4h4v.s9.78369515c21a from=translated src=- shape=e0c3cadd vocab=890c6ba8
+-/
 lemma _root_.Tengoku.PartialRegularity.count_bound_main (α : ℝ) (_hα : 1/2 < α)
     (P₁ : ℕ) (_hP₁ : ∀ p : ℕ, P₁ ≤ p → Nat.Prime p → M_alpha α p < p - 3)
     (P₂ : ℕ) (hP₂ : ∀ p : ℕ, P₂ ≤ p → Nat.Prime p → Odd p → ¬IsRegularPrime (M_alpha α p) p →
@@ -3203,6 +3728,9 @@ lemma _root_.Tengoku.PartialRegularity.count_bound_main (α : ℝ) (_hα : 1/2 <
           simp only [Nat.cast_sum]
   linarith
 
+/--
+@isnad1 id=ex.1h1v.s8.bdf3e09e86f1 from=translated src=- shape=ba021301 vocab=1f441233
+-/
 lemma _root_.Tengoku.PartialRegularity.count_bound_by_sum_over_k_eventually (α : ℝ) (hα : 1/2 < α) :
     ∃ C : ℝ, ∃ X₀ : ℝ, ∀ X : ℝ, X ≥ X₀ →
     (countNonRegularPrimes α X : ℝ) ≤
@@ -3216,6 +3744,9 @@ lemma _root_.Tengoku.PartialRegularity.count_bound_by_sum_over_k_eventually (α 
   obtain ⟨X₁, hX₁⟩ := witness_bounded_by_K_max α hα
   exact count_bound_main α hα P₁ hP₁ P₂ hP₂ X₁ hX₁
 
+/--
+@isnad1 id=le.1h2v.s6.2190497caddb from=translated src=- shape=1ba3d334 vocab=451a06dc
+-/
 lemma _root_.Tengoku.PartialRegularity.sum_linear_bound_sq (n : ℕ) (C : ℝ) (hC : C > 0) :
     (∑ k ∈ Finset.Icc 1 n, C * (k : ℝ)) ≤ C * ((n : ℝ) + 1) ^ 2 := by
   have h₁ : ∀ (k : ℕ), k ∈ Finset.Icc 1 n → (k : ℝ) ≤ ((n : ℝ) + 1) := by
@@ -3248,12 +3779,18 @@ lemma _root_.Tengoku.PartialRegularity.sum_linear_bound_sq (n : ℕ) (C : ℝ) (
     linarith
   exact h₅
 
+/--
+@isnad1 id=le.1h2v.s6.2190497caddb from=translated src=- shape=1ba3d334 vocab=451a06dc
+-/
 lemma _root_.Tengoku.PartialRegularity.helper_sum_bound (n : ℕ) (C : ℝ) (hC : C > 0) :
     (∑ k ∈ Finset.Icc 1 n, C * (k : ℝ)) ≤ C * ((n : ℝ) + 1) ^ 2 := by
   rw [← Finset.mul_sum]
   have h := sum_Icc_le_sq n
   exact mul_le_mul_of_nonneg_left h (le_of_lt hC)
 
+/--
+@isnad1 id=tendsto.0h1v.s5.f220b60fd4ee from=translated src=- shape=e4df1572 vocab=f89f29d4
+-/
 lemma _root_.Tengoku.PartialRegularity.tendsto_norm_div_log_rpow_atTop (α : ℝ) :
     Filter.Tendsto (fun X : ℝ => ‖X / (Real.log X) ^ (2 * α)‖) Filter.atTop Filter.atTop := by
   have h₂ : Filter.Tendsto (fun X : ℝ => Real.exp (Real.log X) / (Real.log X) ^ (2 * α)) Filter.atTop Filter.atTop := by
@@ -3315,6 +3852,9 @@ lemma _root_.Tengoku.PartialRegularity.tendsto_norm_div_log_rpow_atTop (α : ℝ
     exact h₄
   exact h₆
 
+/--
+@isnad1 id=eventual.0h1v.s5.41b8cf3b21e7 from=translated src=- shape=a0fd5b6b vocab=12292021
+-/
 lemma _root_.Tengoku.PartialRegularity.log_pow_div_sqrt_eventually_lt_one (α : ℝ) :
     ∀ᶠ (X : ℝ) in Filter.atTop, Real.log X ^ α / Real.sqrt X < 1 := by
   have htendsto := log_pow_div_rpow_tendsto_zero α
@@ -3322,6 +3862,9 @@ lemma _root_.Tengoku.PartialRegularity.log_pow_div_sqrt_eventually_lt_one (α : 
   simp only [Real.sqrt_eq_rpow] at h ⊢
   exact h
 
+/--
+@isnad1 id=eventual.0h0v.s4.c72eecc0c7fe from=translated src=- shape=012bd729 vocab=2a65c2e2
+-/
 lemma _root_.Tengoku.PartialRegularity.sqrt_eventually_pos :
     ∀ᶠ (X : ℝ) in Filter.atTop, 0 < Real.sqrt X := by
   have h : ∀ᶠ (X : ℝ) in Filter.atTop, 0 < X := by
@@ -3330,6 +3873,9 @@ lemma _root_.Tengoku.PartialRegularity.sqrt_eventually_pos :
   filter_upwards [h] with X hX
   exact Real.sqrt_pos.mpr hX
 
+/--
+@isnad1 id=eventual.1h1v.s5.f867957ae451 from=translated src=- shape=88fb0a9a vocab=67cce15e
+-/
 lemma _root_.Tengoku.PartialRegularity.log_pow_le_sqrt_eventually (α : ℝ) (_hα : 1/2 < α) :
     ∀ᶠ (X : ℝ) in Filter.atTop, Real.log X ^ α ≤ Real.sqrt X := by
   filter_upwards [log_pow_div_sqrt_eventually_lt_one α, sqrt_eventually_pos] with X hlt hpos
@@ -3338,6 +3884,9 @@ lemma _root_.Tengoku.PartialRegularity.log_pow_le_sqrt_eventually (α : ℝ) (_h
   rw [div_mul_cancel₀ _ (ne_of_gt hpos), one_mul] at h1
   exact le_of_lt h1
 
+/--
+@isnad1 id=le.2h2v.s6.9225e196be37 from=translated src=- shape=5e804810 vocab=21667bc3
+-/
 lemma _root_.Tengoku.PartialRegularity.two_K_max_le_sqrt_div (α X : ℝ) (hX : 1 < X) (hα : 0 < α) :
     2 * (K_max α X : ℝ) ≤ Real.sqrt X / (Real.log X) ^ α := by
   have h1 : 0 ≤ Real.sqrt X / (2 * (Real.log X) ^ α) := by
@@ -3353,6 +3902,9 @@ lemma _root_.Tengoku.PartialRegularity.two_K_max_le_sqrt_div (α X : ℝ) (hX : 
     field_simp [h6]
   linarith
 
+/--
+@isnad1 id=le.3h2v.s6.e16a4ff91180 from=translated src=- shape=18bda04c vocab=8b47f58b
+-/
 lemma _root_.Tengoku.PartialRegularity.sqrt_div_le_linear_div (α X : ℝ) (hX : 1 < X) (hα : 0 < α)
     (hlog : Real.log X ^ α ≤ Real.sqrt X) :
     Real.sqrt X / (Real.log X) ^ α ≤ X / (Real.log X) ^ (2 * α) := by
@@ -3387,6 +3939,9 @@ lemma _root_.Tengoku.PartialRegularity.sqrt_div_le_linear_div (α X : ℝ) (hX :
     exact h₅
   exact h_final
 
+/--
+@isnad1 id=eventual.1h1v.s6.d7d4bfabcd89 from=translated src=- shape=ddb44bac vocab=a15b2948
+-/
 lemma _root_.Tengoku.PartialRegularity.K_max_linear_bound (α : ℝ) (hα : 1/2 < α) :
     ∀ᶠ (X : ℝ) in Filter.atTop, 2 * (K_max α X : ℝ) ≤ X / (Real.log X) ^ (2 * α) := by
   have hα_pos : 0 < α := by linarith
@@ -3398,6 +3953,9 @@ lemma _root_.Tengoku.PartialRegularity.K_max_linear_bound (α : ℝ) (hα : 1/2 
       ≤ Real.sqrt X / (Real.log X) ^ α := two_K_max_le_sqrt_div α X hX hα_pos
     _ ≤ X / (Real.log X) ^ (2 * α) := sqrt_div_le_linear_div α X hX hα_pos hlog
 
+/--
+@isnad1 id=isbigo.1h1v.s6.fd523932e717 from=translated src=- shape=e0c2d209 vocab=92718dad
+-/
 theorem _root_.Tengoku.PartialRegularity.K_max_linear_isBigO (α : ℝ) (hα : 1/2 < α) :
     (fun X : ℝ => 2 * (K_max α X : ℝ)) =O[Filter.atTop]
     (fun X : ℝ => X / (Real.log X) ^ (2 * α)) := by
@@ -3408,6 +3966,9 @@ theorem _root_.Tengoku.PartialRegularity.K_max_linear_isBigO (α : ℝ) (hα : 1
   rw [Real.norm_of_nonneg (by positivity)]
   exact hX
 
+/--
+@isnad1 id=isbigo.1h2v.s6.5683bac4f34e from=translated src=- shape=fc3365b4 vocab=cb589a37
+-/
 lemma _root_.Tengoku.PartialRegularity.helper_const_isBigO (α : ℝ) (_hα : 1/2 < α) (c : ℝ) :
     (fun _ : ℝ => c) =O[Filter.atTop]
     (fun X : ℝ => X / (Real.log X) ^ (2 * α)) := by
@@ -3420,6 +3981,9 @@ lemma _root_.Tengoku.PartialRegularity.helper_const_isBigO (α : ℝ) (_hα : 1/
   calc (fun _ : ℝ => c) = (fun _ : ℝ => c * 1) := by simp
     _ =O[Filter.atTop] (fun X : ℝ => X / (Real.log X) ^ (2 * α)) := h2.const_mul_left c
 
+/--
+@isnad1 id=isbigo.1h1v.s6.9ad3c6ca873e from=translated src=- shape=a5272416 vocab=73e5d392
+-/
 lemma _root_.Tengoku.PartialRegularity.helper_K_max_plus_one_sq_isBigO (α : ℝ) (hα : 1/2 < α) :
     (fun X : ℝ => ((K_max α X : ℝ) + 1) ^ 2) =O[Filter.atTop]
     (fun X : ℝ => X / (Real.log X) ^ (2 * α)) := by
@@ -3436,6 +4000,9 @@ lemma _root_.Tengoku.PartialRegularity.helper_K_max_plus_one_sq_isBigO (α : ℝ
     exact hsq.add hlin
   exact h12.add hconst
 
+/--
+@isnad1 id=eventual.4h4v.s9.9c176470fe6f from=translated src=- shape=d2b7e3e8 vocab=a82ea79d
+-/
 lemma _root_.Tengoku.PartialRegularity.helper_count_eventually_bound (α : ℝ) (hα : 1/2 < α) (C C₁ : ℝ) (hC : C > 0)
     (hCunif : ∀ k : ℕ, 1 ≤ k → ∀ X : ℝ,
       (Finset.filter (fun p => Nat.Prime p ∧ (p : ℤ) ∣ (bernoulli (2 * k)).num ∧
@@ -3469,6 +4036,9 @@ lemma _root_.Tengoku.PartialRegularity.helper_count_eventually_bound (α : ℝ) 
     helper_sum_bound (K_max α X) C hC
   linarith
 
+/--
+@isnad1 id=isbigo.1h1v.s6.27b8b4379365 from=translated src=- shape=f138ad20 vocab=c1c6e33e
+-/
 lemma _root_.Tengoku.PartialRegularity.count_isBigO_target (α : ℝ) (hα : 1/2 < α) :
     (fun X : ℝ => (countNonRegularPrimes α X : ℝ)) =O[Filter.atTop]
     (fun X : ℝ => X / (Real.log X) ^ (2 * α)) := by
@@ -3503,7 +4073,9 @@ lemma _root_.Tengoku.PartialRegularity.count_isBigO_target (α : ℝ) (hα : 1/2
 
 -- Main Statement
 /-- For fixed `α > 1/2`, the number of primes `p ≤ X` that are not `M_α(p)`-regular is
-    $O(X / (\log X)^{2α})$ as `X → +∞`.-/
+    $O(X / (\log X)^{2α})$ as `X → +∞`.
+@isnad1 id=isbigo.1h1v.s6.27b8b4379365 from=translated src=- shape=f138ad20 vocab=c1c6e33e
+-/
 theorem _root_.Tengoku.PartialRegularity.irregular_primes_asymptotic (α : ℝ) (hα : 1/2 < α) :
     (fun X : ℝ => (countNonRegularPrimes α X : ℝ)) =O[Filter.atTop]
     (fun X : ℝ => X / (Real.log X) ^ (2 * α)) := by
