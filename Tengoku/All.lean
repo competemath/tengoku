@@ -126,6 +126,7 @@ import Tengoku.GroebnerProj
 import Tengoku.NiceNumbersLean
 import Tengoku.Biyoneda
 import Tengoku.Azurite
+import Tengoku.CayleyBacharach
 import Tengoku.Compply
 import Tengoku.LeanCharacteristicSet
 import Tengoku.GnmLean
