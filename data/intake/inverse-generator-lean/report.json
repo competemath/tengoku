@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "751c6bf63cbd9049fe26c95cbcddf1350e880fbf414f16cf39fe788baabd55c5",
+ "factory_changes": {
+  "inert lines removed": 2,
+  "modules changed": 1
+ },
+ "gate2_unjudged": [],
+ "library": "inverse-generator-lean",
+ "lint_mode": "proposed",
+ "modules": 17,
+ "part": 1,
+ "theorems": 198
+}
