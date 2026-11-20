@@ -57,35 +57,59 @@ namespace TorsionCore
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=eq.0h3v.s7.98ea9230f5bf from=translated src=- shape=80458022 vocab=0e1fc0b1
+-/
 theorem d₂_mul_d₁ (x l : K) : d₂ x l * (d₁ : Matrix (Fin 3) (Fin 1) K) = 0 := by
   ext i j
   fin_cases j
   fin_cases i <;> simp [d₁, d₂, Matrix.mul_apply, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h3v.s7.17045cec4ea0 from=translated src=- shape=771c23e8 vocab=c341ebfc
+-/
 theorem d₃_mul_d₂ (x l : K) : d₃ l * d₂ x l = 0 := by
   ext i j
   fin_cases i
   fin_cases j <;> simp [d₃, d₂, Matrix.mul_apply, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h1v.s6.695514fb98b5 from=translated src=- shape=0cde738e vocab=aba5b5d4
+-/
 theorem det_D₂mat : (D₂mat : Matrix (Fin 3) (Fin 3) K).det = -1 := by
   rw [D₂mat, det_transpose, det_fin_three]
   simp [d₁]
 
+/--
+@isnad1 id=eq.0h3v.s6.e65cf6aa8e9d from=translated src=- shape=1095f7e8 vocab=65f77be4
+-/
 theorem det_D₃mat (x l : K) : (D₃mat x l).det = -(l + x) := by
   rw [D₃mat, det_transpose, det_fin_three]
   simp [d₂]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s5.90837bb97514 from=translated src=- shape=06018280 vocab=758a5565
+-/
 theorem det_D₄mat (l : K) : (D₄mat l).det = l := by
   rw [D₄mat, det_transpose, det_fin_one]
   simp [d₃]
 
+/--
+@isnad1 id=eq.0h0v.s7.3e05efdbce61 from=translated src=- shape=2e6a87e6 vocab=fa2b8106
+-/
 theorem N_C_eq : (N_C : ℤ) = (1 * (1 + 1) + 2 * (2 - 1) + 1 * (1 + 1) + 0) / 2 := by
   decide
 
+/--
+@isnad1 id=eq.0h0v.s6.aa89dccac6b1 from=translated src=- shape=b126b861 vocab=374ebd61
+-/
 theorem m_C_eq : (m_C : ℤ) = (0 + 1 * (1 - 1) + 3 * (3 + 1)) / 2 := by
   decide
 
+/--
+@isnad1 id=eq.1h3v.s6.6750a89a3100 from=translated src=- shape=34b3188a vocab=60dd22df
+-/
 theorem refinedTorsion_eq (x l : K) (hl : l ≠ 0) : refinedTorsion x l = -(l + x) / l := by
   rw [refinedTorsion, det_D₂mat, det_D₃mat, det_D₄mat, det_fin_one]
   simp only [N_C, m_C, Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_fin_one]
@@ -93,22 +117,30 @@ theorem refinedTorsion_eq (x l : K) (hl : l ≠ 0) : refinedTorsion x l = -(l + 
   ring
 
 /-- The nondegeneracy that makes the (x, l)-complex EXACT: D₃, D₄ ≠ 0 ⟺ l ∉ {0, −x}
-(memo: λ ∉ {0, −1} for the Jordan cluster).-/
+(memo: λ ∉ {0, −1} for the Jordan cluster).
+@isnad1 id=and.2h3v.s7.af9c907f4479 from=translated src=- shape=45c85b2d vocab=dfa1f31a
+-/
 theorem dets_ne_zero (x l : K) (hl : l ≠ 0) (hlx : l + x ≠ 0) :
     (D₂mat : Matrix (Fin 3) (Fin 3) K).det ≠ 0 ∧ (D₃mat x l).det ≠ 0 ∧ (D₄mat l).det ≠ 0 := by
   rw [det_D₂mat, det_D₃mat, det_D₄mat]
   exact ⟨by norm_num, neg_ne_zero.mpr hlx, hl⟩
 
-/-- Semisimple minimal cluster (D), a = 1: τ(C^•(0), Γ_ϑ) = −1 = (−1)^a.-/
+/-- Semisimple minimal cluster (D), a = 1: τ(C^•(0), Γ_ϑ) = −1 = (−1)^a.
+@isnad1 id=eq.1h2v.s6.f98a41899077 from=translated src=- shape=4650c698 vocab=bbbd893b
+-/
 theorem semisimple_cluster_torsion (l : K) (hl : l ≠ 0) : refinedTorsion 0 l = -1 := by
   rw [refinedTorsion_eq 0 l hl, add_zero, neg_div, div_self hl]
 
-/-- Jordan J₂ cluster (C), Xw₂ = w₁ = d₀u, d₀w₂ = λ·Lu: τ(C^•(0), Γ_ϑ) = −(1+λ)/λ.-/
+/-- Jordan J₂ cluster (C), Xw₂ = w₁ = d₀u, d₀w₂ = λ·Lu: τ(C^•(0), Γ_ϑ) = −(1+λ)/λ.
+@isnad1 id=eq.1h2v.s6.21e58a19a847 from=translated src=- shape=3f78af8e vocab=60dd22df
+-/
 theorem jordan_cluster_torsion (l : K) (hl : l ≠ 0) : refinedTorsion 1 l = -(1 + l) / l := by
   rw [refinedTorsion_eq 1 l hl, add_comm]
 
 /-- Lemma A shape (jordan_cluster_torsion_9_03 §3.3a): with the Jordan invariant
-λ = s_p/(s_z − s_p) of the arriving pole s_p and zero s_z, τ = −s_z/s_p.-/
+λ = s_p/(s_z − s_p) of the arriving pole s_p and zero s_z, τ = −s_z/s_p.
+@isnad1 id=eq.2h3v.s6.a2fe6ab62ead from=translated src=- shape=b6ab4353 vocab=8ff38a8b
+-/
 theorem jordan_torsion_eq_neg_ratio (sp sz : K) (hsp : sp ≠ 0) (hne : sz ≠ sp) :
     refinedTorsion 1 (sp / (sz - sp)) = -(sz / sp) := by
   have h : sz - sp ≠ 0 := sub_ne_zero.mpr hne
@@ -127,7 +159,9 @@ variable {K : Type*} [Field K] {V₁ V₂ V₃ : Type*}
   [AddCommGroup V₃] [Module K V₃]
 
 /-- Rank–nullity twice: for an exact 0 → V₁ → V₂ → V₃ → 0,
-dim V₂ = dim V₁ + dim V₃.-/
+dim V₂ = dim V₁ + dim V₃.
+@isnad1 id=eq.3h6v.s8.626351b31c7f from=translated src=- shape=800fe098 vocab=be1c0600
+-/
 theorem finrank_middle_of_exact (f : V₁ →ₗ[K] V₂) (g : V₂ →ₗ[K] V₃)
     (hf : Function.Injective f) (hfg : LinearMap.range f = LinearMap.ker g)
     (hg : Function.Surjective g) :
@@ -138,23 +172,33 @@ theorem finrank_middle_of_exact (f : V₁ →ₗ[K] V₂) (g : V₂ →ₗ[K] V�
   rw [LinearMap.range_eq_top.mpr hg, finrank_top, ← hfg, h1] at h2
   omega
 
-/-- With c₀ = c₄ = 0 (DGRS Lemma 7.4 + ⋆) and c₃ = c₁ (⋆): m = c₂ − 2c₁.-/
+/-- With c₀ = c₄ = 0 (DGRS Lemma 7.4 + ⋆) and c₃ = c₁ (⋆): m = c₂ − 2c₁.
+@isnad1 id=eq.3h1v.s7.c8b97d53cb18 from=translated src=- shape=b3e0ead3 vocab=ae7b8a4c
+-/
 theorem zetaOrder_eq (c : Fin 5 → ℕ) (h0 : c 0 = 0) (h4 : c 4 = 0) (h31 : c 3 = c 1) :
     zetaOrder c = (c 2 : ℤ) - 2 * c 1 := by
   simp only [zetaOrder, Fin.sum_univ_five, h0, h4, h31]
   norm_num
   ring
 
-/-- The (1,1,1) chain headed by the non-closed 1-form: a simple POLE.-/
+/-- The (1,1,1) chain headed by the non-closed 1-form: a simple POLE.
+@isnad1 id=eq.0h0v.s6.2176c949b7ac from=translated src=- shape=c6f109b4 vocab=eb4475e5
+-/
 theorem zetaOrder_pole_chain : zetaOrder ![0, 1, 1, 1, 0] = -1 := by decide
 
-/-- A pure degree-2 state: a simple ZERO.-/
+/-- A pure degree-2 state: a simple ZERO.
+@isnad1 id=eq.0h0v.s6.ded83931c8da from=translated src=- shape=2b791dd3 vocab=07c65881
+-/
 theorem zetaOrder_pure_zero : zetaOrder ![0, 0, 1, 0, 0] = 1 := by decide
 
-/-- The generic crossing cluster (0,1,2,1,0): order 0, ζ regular at 0.-/
+/-- The generic crossing cluster (0,1,2,1,0): order 0, ζ regular at 0.
+@isnad1 id=eq.0h0v.s6.c10631f03a80 from=translated src=- shape=2b791dd3 vocab=07c65881
+-/
 theorem zetaOrder_crossing_cluster : zetaOrder ![0, 1, 2, 1, 0] = 0 := by decide
 
-/-- P2: exact reduced complex + duality ⇒ c₂ = 2c₁ ⇒ the ζ-order at 0 is 0.-/
+/-- P2: exact reduced complex + duality ⇒ c₂ = 2c₁ ⇒ the ζ-order at 0 is 0.
+@isnad1 id=eq.6h7v.s9.ef19e7b33156 from=translated src=- shape=9d5357e5 vocab=d20f5af6
+-/
 theorem order_zero_of_exact (f : V₁ →ₗ[K] V₂) (g : V₂ →ₗ[K] V₃)
     (hf : Function.Injective f) (hfg : LinearMap.range f = LinearMap.ker g)
     (hg : Function.Surjective g) (c : Fin 5 → ℕ) (hacyc : c 0 = 0 ∧ c 4 = 0)
@@ -184,10 +228,15 @@ namespace RateRatio
 def LinearArrival (f : ℝ → ℝ) (c σ : ℝ) : Prop :=
   Tendsto (fun τ => f τ / (τ - σ)) (𝓝[≠] σ) (𝓝 c)
 
+/--
+@isnad1 id=eventual.0h1v.s4.ad83bdfd8197 from=translated src=- shape=d7aa2c3c vocab=47c2ad58
+-/
 theorem eventually_ne_nhdsNE (σ : ℝ) : ∀ᶠ τ in 𝓝[≠] σ, τ ≠ σ :=
   eventually_nhdsWithin_of_forall fun _ h => h
 
-/-- The memos' `(1 + o(1))` form implies linear arrival.-/
+/-- The memos' `(1 + o(1))` form implies linear arrival.
+@isnad1 id=linearar.2h4v.s6.45eb0629f7f5 from=translated src=- shape=7936e237 vocab=61620611
+-/
 theorem linearArrival_of_one_add_o {f e : ℝ → ℝ} {c σ : ℝ}
     (hf : ∀ τ, f τ = c * (τ - σ) * (1 + e τ)) (he : Tendsto e (𝓝[≠] σ) (𝓝 0)) :
     LinearArrival f c σ := by
@@ -200,14 +249,18 @@ theorem linearArrival_of_one_add_o {f e : ℝ → ℝ} {c σ : ℝ}
   rw [hf τ]
   field_simp
 
-/-- A branch differentiable at σ and vanishing there arrives linearly with its slope.-/
+/-- A branch differentiable at σ and vanishing there arrives linearly with its slope.
+@isnad1 id=linearar.2h3v.s5.682ca9658799 from=translated src=- shape=8e962fbc vocab=09d0370f
+-/
 theorem linearArrival_of_hasDerivAt {f : ℝ → ℝ} {c σ : ℝ} (hf : HasDerivAt f c σ)
     (h0 : f σ = 0) : LinearArrival f c σ := by
   have h := hasDerivAt_iff_tendsto_slope.mp hf
   refine h.congr' (Eventually.of_forall fun τ => ?_)
   rw [slope_def_field, h0, sub_zero]
 
-/-- z ~ a(τ−σ), p ~ b(τ−σ), b ≠ 0 ⇒ z/p → a/b.-/
+/-- z ~ a(τ−σ), p ~ b(τ−σ), b ≠ 0 ⇒ z/p → a/b.
+@isnad1 id=tendsto.3h5v.s6.a58a313f4786 from=translated src=- shape=31947402 vocab=5a13bf12
+-/
 theorem ratio_tendsto {z p : ℝ → ℝ} {a b σ : ℝ} (hz : LinearArrival z a σ)
     (hp : LinearArrival p b σ) (hb : b ≠ 0) :
     Tendsto (fun τ => z τ / p τ) (𝓝[≠] σ) (𝓝 (a / b)) := by
@@ -215,11 +268,16 @@ theorem ratio_tendsto {z p : ℝ → ℝ} {a b σ : ℝ} (hz : LinearArrival z a
   simp only [Pi.div_apply]
   rw [div_div_div_cancel_right₀ (sub_ne_zero.mpr hτ)]
 
+/--
+@isnad1 id=eventual.2h3v.s5.cda0dcf07bf3 from=translated src=- shape=36b9fcbc vocab=db818e28
+-/
 theorem eventually_ne_zero_of_linearArrival {f : ℝ → ℝ} {c σ : ℝ}
     (hf : LinearArrival f c σ) (hc : c ≠ 0) : ∀ᶠ τ in 𝓝[≠] σ, f τ ≠ 0 :=
   (hf.eventually_ne hc).mono fun τ hτ h0 => hτ (by rw [h0, zero_div])
 
-/-- The crossing value differs from τ_R exactly when the rates are unbalanced.-/
+/-- The crossing value differs from τ_R exactly when the rates are unbalanced.
+@isnad1 id=iff.2h3v.s5.862795f75c0e from=translated src=- shape=db8bb97b vocab=525158d4
+-/
 theorem crossing_value_ne_iff {τR a b : ℝ} (hτR : τR ≠ 0) (ha : a ≠ 0) :
     τR * (b / a) ≠ τR ↔ b ≠ a := by
   rw [Ne, Ne, not_iff_not]

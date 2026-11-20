@@ -72,14 +72,18 @@ def rem₁ (c₁ c₂ c₃ scl snc : ℝ) : ℝ :=
 
 def rem₀ (c₁ c₂ c₄ scl snc : ℝ) : ℝ := c₄ - scl * snc * e₂of c₁ c₂ scl snc
 
-/-- Division with remainder: P = (z − s_cl)(z − s_nc)·Q − rem₁·z + rem₀.-/
+/-- Division with remainder: P = (z − s_cl)(z − s_nc)·Q − rem₁·z + rem₀.
+@isnad1 id=eq.0h7v.s7.970adc9f7c22 from=translated src=- shape=38585371 vocab=e46d76b7
+-/
 theorem quartic_div (c₁ c₂ c₃ c₄ scl snc z : ℝ) :
     quartic c₁ c₂ c₃ c₄ z =
       (z - scl) * (z - snc) * (z ^ 2 - e₁of c₁ scl snc * z + e₂of c₁ c₂ scl snc)
         - rem₁ c₁ c₂ c₃ scl snc * z + rem₀ c₁ c₂ c₄ scl snc := by
   simp only [quartic, e₁of, e₂of, rem₁, rem₀]; ring
 
-/-- If the two locked branches are distinct roots of P, the remainder vanishes.-/
+/-- If the two locked branches are distinct roots of P, the remainder vanishes.
+@isnad1 id=and.3h6v.s6.31f4eaa23f14 from=translated src=- shape=24971453 vocab=76f9d1d6
+-/
 theorem rem_eq_zero {c₁ c₂ c₃ c₄ scl snc : ℝ} (hne : scl ≠ snc)
     (h1 : quartic c₁ c₂ c₃ c₄ scl = 0) (h2 : quartic c₁ c₂ c₃ c₄ snc = 0) :
     rem₁ c₁ c₂ c₃ scl snc = 0 ∧ rem₀ c₁ c₂ c₄ scl snc = 0 := by
@@ -95,7 +99,9 @@ theorem rem_eq_zero {c₁ c₂ c₃ c₄ scl snc : ℝ} (hne : scl ≠ snc)
   refine ⟨hr1, ?_⟩
   linear_combination -e1 + scl * hr1
 
-/-- P factors exactly through the pure quadratic.-/
+/-- P factors exactly through the pure quadratic.
+@isnad1 id=eq.3h7v.s7.b321194a8f4d from=translated src=- shape=066db3c1 vocab=ecf291c2
+-/
 theorem quartic_factor {c₁ c₂ c₃ c₄ scl snc : ℝ} (hne : scl ≠ snc)
     (h1 : quartic c₁ c₂ c₃ c₄ scl = 0) (h2 : quartic c₁ c₂ c₃ c₄ snc = 0) (z : ℝ) :
     quartic c₁ c₂ c₃ c₄ z =
@@ -103,7 +109,9 @@ theorem quartic_factor {c₁ c₂ c₃ c₄ scl snc : ℝ} (hne : scl ≠ snc)
   obtain ⟨hr1, hr0⟩ := rem_eq_zero hne h1 h2
   rw [quartic_div, hr1, hr0, zero_mul, sub_zero, add_zero]
 
-/-- The degree-2 resonances in the disc are exactly: the two locked branches and the roots of Q.-/
+/-- The degree-2 resonances in the disc are exactly: the two locked branches and the roots of Q.
+@isnad1 id=iff.3h7v.s7.2153ddadad76 from=translated src=- shape=a099515b vocab=ecf291c2
+-/
 theorem quartic_roots {c₁ c₂ c₃ c₄ scl snc : ℝ} (hne : scl ≠ snc)
     (h1 : quartic c₁ c₂ c₃ c₄ scl = 0) (h2 : quartic c₁ c₂ c₃ c₄ snc = 0) (z : ℝ) :
     quartic c₁ c₂ c₃ c₄ z = 0 ↔
@@ -112,7 +120,9 @@ theorem quartic_roots {c₁ c₂ c₃ c₄ scl snc : ℝ} (hne : scl ≠ snc)
 
 /-! ## §2 Two-variable Hadamard bounds -/
 
-/-- f vanishes on both axes and has a bounded mixed partial ⇒ |f(θ,τ)| ≤ K|θ||τ|.-/
+/-- f vanishes on both axes and has a bounded mixed partial ⇒ |f(θ,τ)| ≤ K|θ||τ|.
+@isnad1 id=le.8h7v.s7.8ec846d5b410 from=translated src=- shape=250a7067 vocab=b20de48f
+-/
 theorem abs_le_of_vanish_axes {f fτ fθτ : ℝ → ℝ → ℝ} {K ε : ℝ} (hε : 0 < ε)
     (h0τ : ∀ θ, f θ 0 = 0) (h0θ : ∀ τ, f 0 τ = 0)
     (hτ : ∀ θ τ, HasDerivAt (f θ) (fτ θ τ) τ)
@@ -142,7 +152,9 @@ theorem abs_le_of_vanish_axes {f fτ fθτ : ℝ → ℝ → ℝ} {K ε : ℝ} (
   calc |τ| * (|θ| * |fθτ η ξ|) ≤ |τ| * (|θ| * K) := by gcongr
     _ = K * |θ| * |τ| := by ring
 
-/-- g vanishes on the axis θ = 0 and has a bounded θ-derivative ⇒ |g(θ,τ)| ≤ K|θ|.-/
+/-- g vanishes on the axis θ = 0 and has a bounded θ-derivative ⇒ |g(θ,τ)| ≤ K|θ|.
+@isnad1 id=le.6h6v.s7.1b29b3329513 from=translated src=- shape=e20cdf1d vocab=b20de48f
+-/
 theorem abs_le_of_vanish_θ {g gθ : ℝ → ℝ → ℝ} {K ε : ℝ} (hε : 0 < ε)
     (h0 : ∀ τ, g 0 τ = 0)
     (hθ : ∀ θ τ, HasDerivAt (fun θ => g θ τ) (gθ θ τ) θ)
@@ -160,7 +172,9 @@ theorem abs_le_of_vanish_θ {g gθ : ℝ → ℝ → ℝ} {K ε : ℝ} (hε : 0 
   calc |θ| * |gθ η τ| ≤ |θ| * K := by gcongr
     _ = K * |θ| := by ring
 
-/-- Derivatives of a function vanishing identically on a line vanish there too.-/
+/-- Derivatives of a function vanishing identically on a line vanish there too.
+@isnad1 id=eq.2h3v.s6.45856e9b8522 from=translated src=- shape=fda01c23 vocab=6ed66805
+-/
 theorem deriv_zero_of_zero_fun {g gτ : ℝ → ℝ} (h0 : ∀ τ, g τ = 0)
     (hd : ∀ τ, HasDerivAt g (gτ τ) τ) (τ : ℝ) : gτ τ = 0 := by
   have h1 : HasDerivAt g 0 τ := by
@@ -174,7 +188,9 @@ theorem deriv_zero_of_zero_fun {g gτ : ℝ → ℝ} (h0 : ∀ τ, g τ = 0)
 (i) |e₁(θ,σ)| ≤ K₁|θ|σ (Hadamard from the two axes);
 (ii) |∂_τe₂(θ,σ)| ≥ r₀|s*|/4 (mean value on [0,σ] from e₂(θ,0) = −s*², e₂(θ,σ) = 0, corrected
 by the O(|θ|)-bound on ∂²_τe₂ transferred from the axis θ = 0);
-(iii) hence, if e₁(θ,σ) ≠ 0, the zero's slope |∂_τe₂/e₁| > 2r₀.-/
+(iii) hence, if e₁(θ,σ) ≠ 0, the zero's slope |∂_τe₂/e₁| > 2r₀.
+@isnad1 id=and.23h14v.s9.ef708e812c26 from=translated src=- shape=4286a231 vocab=410598e0
+-/
 theorem crossing_estimates
     (sStar : ℝ → ℝ) (e₁ e₂ e₁τ e₁θτ e₂τ e₂ττ e₂θττ : ℝ → ℝ → ℝ) {r₀ K₁ K₂ ε : ℝ}
     (hr₀ : 0 < r₀) (hK₁ : 0 < K₁) (hK₂ : 0 < K₂) (hε : 0 < ε)
@@ -270,6 +286,9 @@ theorem crossing_estimates
 noncomputable def dwMinus (a b a' b' : ℝ) : ℝ :=
   (a' - (2 * a * a' - 4 * b') / (2 * Real.sqrt (disc a b))) / 2
 
+/--
+@isnad1 id=hasderiv.3h5v.s7.680887d0cb17 from=translated src=- shape=1e1dd936 vocab=ccb9f827
+-/
 theorem hasDerivAt_wMinus {A B : ℝ → ℝ} {a' b' τ : ℝ} (hA : HasDerivAt A a' τ)
     (hB : HasDerivAt B b' τ) (hD : 0 < disc (A τ) (B τ)) :
     HasDerivAt (fun t => wMinus (A t) (B t)) (dwMinus (A τ) (B τ) a' b') τ := by
@@ -279,12 +298,17 @@ theorem hasDerivAt_wMinus {A B : ℝ → ℝ} {a' b' τ : ℝ} (hA : HasDerivAt 
     (hasDerivAt_disc hA hB).sqrt hD.ne'
   exact (hA.sub hs).div_const 2
 
+/--
+@isnad1 id=continuo.0h1v.s5.6620671cd406 from=translated src=- shape=12bd033f vocab=863c6027
+-/
 theorem continuousAt_wMinus (p : ℝ × ℝ) :
     ContinuousAt (fun q : ℝ × ℝ => wMinus q.1 q.2) p := by
   unfold wMinus disc
   fun_prop
 
-/-- At a point where b = 0 and a ≠ 0 the root through 0 has slope b'/a, whichever of w± it is.-/
+/-- At a point where b = 0 and a ≠ 0 the root through 0 has slope b'/a, whichever of w± it is.
+@isnad1 id=eq.1h3v.s5.d7149c1c9411 from=translated src=- shape=9056b1cc vocab=7cc413c8
+-/
 theorem dwMinus_at_zero {a a' b' : ℝ} (ha : 0 < a) : dwMinus a 0 a' b' = b' / a := by
   have ha0 : a ≠ 0 := ha.ne'
   unfold dwMinus disc
@@ -292,6 +316,9 @@ theorem dwMinus_at_zero {a a' b' : ℝ} (ha : 0 < a) : dwMinus a 0 a' b' = b' / 
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h3v.s5.1cdafd61351e from=translated src=- shape=ca1f6c9c vocab=0cafe126
+-/
 theorem dwPlus_at_zero {a a' b' : ℝ} (ha : a < 0) : dwPlus a 0 a' b' = b' / a := by
   have ha0 : a ≠ 0 := ha.ne
   unfold dwPlus disc
@@ -300,17 +327,29 @@ theorem dwPlus_at_zero {a a' b' : ℝ} (ha : a < 0) : dwPlus a 0 a' b' = b' / a 
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h1v.s4.76efb7fff988 from=translated src=- shape=cb752352 vocab=24fa01a8
+-/
 theorem wMinus_at_zero_nonneg {a : ℝ} (ha : 0 ≤ a) : wMinus a 0 = 0 := by
   unfold wMinus disc
   rw [mul_zero, sub_zero, Real.sqrt_sq ha]; ring
 
+/--
+@isnad1 id=eq.1h1v.s4.14a90379d143 from=translated src=- shape=1a2c69ac vocab=188a2260
+-/
 theorem wPlus_at_zero_neg {a : ℝ} (ha : a < 0) : wPlus a 0 = 0 := by
   unfold wPlus disc
   have : Real.sqrt (a ^ 2) = -a := by rw [Real.sqrt_sq_eq_abs, abs_of_neg ha]
   rw [mul_zero, sub_zero, this]; ring
 
+/--
+@isnad1 id=eq.1h1v.s4.5b085b68e204 from=translated src=- shape=da02dbfb vocab=188a2260
+-/
 theorem wPlus_at_zero_pos {a : ℝ} (ha : 0 < a) : wPlus a 0 = a := wPlus_at_cddp ha
 
+/--
+@isnad1 id=eq.1h1v.s4.09494bf9db3b from=translated src=- shape=29a6b9ff vocab=0dcffa4c
+-/
 theorem wMinus_at_zero_neg {a : ℝ} (ha : a < 0) : wMinus a 0 = a := by
   unfold wMinus disc
   have : Real.sqrt (a ^ 2) = -a := by rw [Real.sqrt_sq_eq_abs, abs_of_neg ha]
@@ -318,7 +357,9 @@ theorem wMinus_at_zero_neg {a : ℝ} (ha : a < 0) : wMinus a 0 = a := by
 
 /-- THE PURE-ZERO BRANCH. A continuous root z of Q(τ; ·) = z² − e₁(τ)z + e₂(τ) with z(σ) = 0,
 where e₂(σ) = 0 and e₁(σ) ≠ 0, coincides near σ with the explicit root vanishing at σ and is
-differentiable there with slope ∂_τe₂(σ)/e₁(σ).-/
+differentiable there with slope ∂_τe₂(σ)/e₁(σ).
+@isnad1 id=hasderiv.7h6v.s7.34701d66d713 from=translated src=- shape=6bf3653f vocab=cd1835bf
+-/
 theorem hasDerivAt_zero_branch {e₁ e₂ z : ℝ → ℝ} {e₁' e₂' σ : ℝ}
     (hd₁ : HasDerivAt e₁ e₁' σ) (hd₂ : HasDerivAt e₂ e₂' σ)
     (h₂σ : e₂ σ = 0) (h₁σ : e₁ σ ≠ 0)
@@ -391,7 +432,9 @@ open TorsionCore OrderCount Crossing RateRatio TwinRate PureZeros
 
 /-- `fried_fails_at_crossing_local` with the zero's arrival given as `LinearArrival`, only required
 at crossings inside |τ| < δ, and (9/11) the ζ-order fact `zetaOrder c = 0` taken directly at each
-crossing — the exactness quartet enters the argument ONLY through it.-/
+crossing — the exactness quartet enters the argument ONLY through it.
+@isnad1 id=ex.9h8v.s9.36fe03ba697f from=translated src=- shape=4ff4da3e vocab=50fb0515
+-/
 theorem fried_fails_at_crossing_local_ord
     (s ds z R : ℝ → ℝ) (c : Fin 5 → ℕ) (r δ τR : ℝ)
     (hτR : τR ≠ 0) (hr : 0 < r)
@@ -436,7 +479,9 @@ e₂(θ,0) = −s*² [mirror, A], e₁(0,τ) = e₂(0,τ) = 0 [pinning, D], and 
 pure-zero branch]. Everything else is the cluster capstone's ledger. Conclusion adds: the zero's
 slope at the crossing is ∂_τe₂/e₁ and exceeds 2r₀ in absolute value (steeper than the pole).
 ⚡9/11 `_ord` form: the exactness quartet (hexact, hacyc, hdual, hdims) is replaced by the one
-fact it feeds, `zetaOrder c = 0` at each crossing; the original statement is a corollary below.-/
+fact it feeds, `zetaOrder c = 0` at each crossing; the original statement is a corollary below.
+@isnad1 id=ex.26h16v.s10.024cec9f6a33 from=translated src=- shape=30efee38 vocab=b5e174d4
+-/
 theorem fried_fails_at_crossing_of_pure_zero_inputs_ord
     -- the twin (rate file)
     (sStar : ℝ → ℝ) (a b a' b' : ℝ → ℝ → ℝ) {r₀ : ℝ} (hr₀ : 0 < r₀)

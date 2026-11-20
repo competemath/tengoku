@@ -63,15 +63,24 @@ open Filter Topology
 /-! ## §1 The rank-2 cluster: eigenvalues as s* + τ·(roots of w² − a w + b) -/
 namespace TwinRate
 
+/--
+@isnad1 id=eq.0h2v.s4.d6b68cbe4d0c from=translated src=- shape=31dd4b17 vocab=93945a21
+-/
 theorem wPlus_add_wMinus (a b : ℝ) : wPlus a b + wMinus a b = a := by
   unfold wPlus wMinus; ring
 
+/--
+@isnad1 id=eq.1h2v.s5.0e3564f32263 from=translated src=- shape=59b16266 vocab=2ee91617
+-/
 theorem wPlus_mul_wMinus {a b : ℝ} (h : 0 ≤ disc a b) : wPlus a b * wMinus a b = b := by
   unfold wPlus wMinus
   have := Real.sq_sqrt h
   unfold disc at this ⊢
   nlinarith [this]
 
+/--
+@isnad1 id=eq.1h2v.s6.fb9e6fdb35ce from=translated src=- shape=0dcaf6e3 vocab=3f82ba26
+-/
 theorem wPlus_root {a b : ℝ} (h : 0 ≤ disc a b) :
     wPlus a b ^ 2 - a * wPlus a b + b = 0 := by
   have h1 := wPlus_add_wMinus a b
@@ -81,20 +90,31 @@ theorem wPlus_root {a b : ℝ} (h : 0 ≤ disc a b) :
     rw [h1, h2]
   rw [this]; ring
 
+/--
+@isnad1 id=eq.0h2v.s4.e100df27a15d from=translated src=- shape=08753b90 vocab=74225d41
+-/
 theorem wPlus_sub_wMinus (a b : ℝ) : wPlus a b - wMinus a b = Real.sqrt (disc a b) := by
   unfold wPlus wMinus; ring
 
+/--
+@isnad1 id=ne.1h2v.s4.186bfbd3ba07 from=translated src=- shape=6f9b4851 vocab=c9a4ec82
+-/
 theorem wPlus_ne_wMinus {a b : ℝ} (h : 0 < disc a b) : wPlus a b ≠ wMinus a b := by
   intro heq
   have := wPlus_sub_wMinus a b
   rw [heq, sub_self] at this
   exact (Real.sqrt_pos.mpr h).ne this
 
-/-- At the CDDP point (a, b) = (r₀, 0) with r₀ > 0 the two first-order rates are r₀ and 0.-/
+/-- At the CDDP point (a, b) = (r₀, 0) with r₀ > 0 the two first-order rates are r₀ and 0.
+@isnad1 id=eq.1h1v.s4.5b085b68e204 from=translated src=- shape=da02dbfb vocab=188a2260
+-/
 theorem wPlus_at_cddp {r₀ : ℝ} (hr₀ : 0 < r₀) : wPlus r₀ 0 = r₀ := by
   unfold wPlus disc
   rw [mul_zero, sub_zero, Real.sqrt_sq hr₀.le]; ring
 
+/--
+@isnad1 id=eq.1h1v.s4.7f141c4cc17f from=translated src=- shape=cb752352 vocab=0dcffa4c
+-/
 theorem wMinus_at_cddp {r₀ : ℝ} (hr₀ : 0 < r₀) : wMinus r₀ 0 = 0 := by
   unfold wMinus disc
   rw [mul_zero, sub_zero, Real.sqrt_sq hr₀.le]; ring
@@ -104,7 +124,9 @@ def clusterTrace (sStar τ a : ℝ) : ℝ := 2 * sStar + τ * a
 def clusterDet (sStar τ a b : ℝ) : ℝ := sStar ^ 2 + sStar * τ * a + τ ^ 2 * b
 
 /-- The characteristic polynomial of the cluster factors through the two branches:
-z² − (tr M) z + det M = (z − (s* + τ w₊))(z − (s* + τ w₋)).-/
+z² − (tr M) z + det M = (z − (s* + τ w₊))(z − (s* + τ w₋)).
+@isnad1 id=eq.1h5v.s7.4b79a0e524c4 from=translated src=- shape=a7b77b7e vocab=7295fe09
+-/
 theorem charpoly_factor {sStar τ a b : ℝ} (h : 0 ≤ disc a b) (z : ℝ) :
     z ^ 2 - clusterTrace sStar τ a * z + clusterDet sStar τ a b =
       (z - (sStar + τ * wPlus a b)) * (z - (sStar + τ * wMinus a b)) := by
@@ -118,14 +140,18 @@ theorem charpoly_factor {sStar τ a b : ℝ} (h : 0 ≤ disc a b) (z : ℝ) :
   rw [this, h1, h2]
 
 /-- The eigenvalues of the cluster are EXACTLY the two branches (no third resonance in the
-disc): z is a root of the characteristic polynomial iff z = s* + τ w₊ or z = s* + τ w₋.-/
+disc): z is a root of the characteristic polynomial iff z = s* + τ w₊ or z = s* + τ w₋.
+@isnad1 id=iff.1h5v.s6.6b6964dbfeda from=translated src=- shape=ae2f9cfa vocab=7295fe09
+-/
 theorem cluster_roots {sStar τ a b : ℝ} (h : 0 ≤ disc a b) (z : ℝ) :
     z ^ 2 - clusterTrace sStar τ a * z + clusterDet sStar τ a b = 0 ↔
       z = sStar + τ * wPlus a b ∨ z = sStar + τ * wMinus a b := by
   rw [charpoly_factor h, mul_eq_zero, sub_eq_zero, sub_eq_zero]
 
 /-- For τ ≠ 0 and positive discriminant the two branches are distinct: the twin has
-separated from the closed state.-/
+separated from the closed state.
+@isnad1 id=ne.2h4v.s6.71617a0b520b from=translated src=- shape=09e780da vocab=fddc5637
+-/
 theorem branches_ne {sStar τ a b : ℝ} (hτ : τ ≠ 0) (h : 0 < disc a b) :
     sStar + τ * wPlus a b ≠ sStar + τ * wMinus a b := by
   intro heq
@@ -136,9 +162,15 @@ theorem branches_ne {sStar τ a b : ℝ} (hτ : τ ≠ 0) (h : 0 < disc a b) :
 
 /-! ## §2 The twin branch and its τ-derivative -/
 
+/--
+@isnad1 id=eq.0h4v.s5.2c55eaf8562d from=translated src=- shape=94e56af1 vocab=9e24daca
+-/
 theorem twin_zero (sStar : ℝ → ℝ) (a b : ℝ → ℝ → ℝ) (θ : ℝ) : twin sStar a b θ 0 = sStar θ := by
   simp [twin]
 
+/--
+@isnad1 id=hasderiv.2h5v.s7.bf412a119e30 from=translated src=- shape=c36c51f1 vocab=0c4016c9
+-/
 theorem hasDerivAt_disc {A B : ℝ → ℝ} {a' b' τ : ℝ} (hA : HasDerivAt A a' τ)
     (hB : HasDerivAt B b' τ) :
     HasDerivAt (fun t => disc (A t) (B t)) (2 * A τ * a' - 4 * b') τ := by
@@ -150,6 +182,9 @@ theorem hasDerivAt_disc {A B : ℝ → ℝ} {a' b' τ : ℝ} (hA : HasDerivAt A 
   rw [hfun]
   exact h3.congr_deriv (by ring)
 
+/--
+@isnad1 id=hasderiv.3h5v.s7.36b3f079afd0 from=translated src=- shape=1e1dd936 vocab=b0ae852f
+-/
 theorem hasDerivAt_wPlus {A B : ℝ → ℝ} {a' b' τ : ℝ} (hA : HasDerivAt A a' τ)
     (hB : HasDerivAt B b' τ) (hD : 0 < disc (A τ) (B τ)) :
     HasDerivAt (fun t => wPlus (A t) (B t)) (dwPlus (A τ) (B τ) a' b') τ := by
@@ -159,6 +194,9 @@ theorem hasDerivAt_wPlus {A B : ℝ → ℝ} {a' b' τ : ℝ} (hA : HasDerivAt A
     (hasDerivAt_disc hA hB).sqrt hD.ne'
   exact (hA.add hs).div_const 2
 
+/--
+@isnad1 id=hasderiv.3h7v.s7.0edc9f19a72d from=translated src=- shape=8e3c27cf vocab=439ceaec
+-/
 theorem hasDerivAt_twin {sStar : ℝ → ℝ} {a b a' b' : ℝ → ℝ → ℝ} {θ τ : ℝ}
     (hA : HasDerivAt (a θ) (a' θ τ) τ) (hB : HasDerivAt (b θ) (b' θ τ) τ)
     (hD : 0 < disc (a θ τ) (b θ τ)) :
@@ -172,11 +210,17 @@ theorem hasDerivAt_twin {sStar : ℝ → ℝ} {a b a' b' : ℝ → ℝ → ℝ} 
 
 /-! ## §3 Continuity of the rate at the CDDP point -/
 
+/--
+@isnad1 id=continuo.0h1v.s5.4ebea11f5eb4 from=translated src=- shape=12bd033f vocab=af0bf6e5
+-/
 theorem continuousAt_wPlus (p : ℝ × ℝ) :
     ContinuousAt (fun q : ℝ × ℝ => wPlus q.1 q.2) p := by
   unfold wPlus disc
   fun_prop
 
+/--
+@isnad1 id=continuo.1h1v.s7.a467b94abb96 from=translated src=- shape=8a48824e vocab=7b9adffa
+-/
 theorem continuousAt_dwPlus {p : ℝ × ℝ × ℝ × ℝ} (hD : 0 < disc p.1 p.2.1) :
     ContinuousAt (fun q : ℝ × ℝ × ℝ × ℝ => dwPlus q.1 q.2.1 q.2.2.1 q.2.2.2) p := by
   unfold dwPlus
@@ -188,7 +232,9 @@ theorem continuousAt_dwPlus {p : ℝ × ℝ × ℝ × ℝ} (hD : 0 < disc p.1 p.
 /-- THE RATE LEMMA. From (i) C¹ cluster data a, b (trace and determinant of N, with
 τ-derivatives a', b', all four continuous at (0,0)), (ii) a(0,0) = r₀ > 0, (iii) b(0,0) = 0:
 on a full neighbourhood |θ| < ε, |τ| < ε the discriminant is positive, the twin branch is
-differentiable in τ with derivative `dtwin`, and that derivative lies in [r₀/2, 2r₀].-/
+differentiable in τ with derivative `dtwin`, and that derivative lies in [r₀/2, 2r₀].
+@isnad1 id=ex.9h6v.s9.067925ad2172 from=translated src=- shape=782ee7e2 vocab=cd0c0382
+-/
 theorem twin_rate_of_cluster (sStar : ℝ → ℝ) (a b a' b' : ℝ → ℝ → ℝ) {r₀ : ℝ}
     (hr₀ : 0 < r₀)
     (hderiv_a : ∀ θ τ, HasDerivAt (a θ) (a' θ τ) τ)
@@ -255,7 +301,9 @@ namespace Crossing
 
 /-- LOCAL crossing lemma. A real branch differentiable on |τ| < δ with ∂_τ s ≥ r > 0
 there, s(0) < 0 and |s(0)| < rδ, crosses 0 exactly once in (−δ, δ), at
-σ ∈ (0, |s(0)|/r] ⊂ (0, δ).-/
+σ ∈ (0, |s(0)|/r] ⊂ (0, δ).
+@isnad1 id=ex.5h4v.s7.68cc26110a72 from=translated src=- shape=cb2c112f vocab=0b67a077
+-/
 theorem crossing_exists_unique_local {s ds : ℝ → ℝ} {r δ : ℝ} (hr : 0 < r)
     (hderiv : ∀ τ, |τ| < δ → HasDerivAt s (ds τ) τ) (hlow : ∀ τ, |τ| < δ → r ≤ ds τ)
     (hs0 : s 0 < 0) (hsmall : |s 0| < r * δ) :
@@ -307,7 +355,9 @@ end Crossing
 
 namespace RateRatio
 
-/-- `crossing_value` with the off-crossing identity only required EVENTUALLY near σ.-/
+/-- `crossing_value` with the off-crossing identity only required EVENTUALLY near σ.
+@isnad1 id=eq.6h7v.s7.46356a7ea6c6 from=translated src=- shape=b871fd5f vocab=ae612d67
+-/
 theorem crossing_value_local {z p R : ℝ → ℝ} {a b σ τR : ℝ}
     (hz : LinearArrival z a σ) (hp : LinearArrival p b σ) (ha : a ≠ 0) (hb : b ≠ 0)
     (hoff : ∀ᶠ τ in 𝓝[≠] σ, R τ * z τ / p τ = τR) (hR : ContinuousAt R σ) :
@@ -347,7 +397,9 @@ namespace Saturation
 variable {K : Type*} [Field K] {V : Type*} [AddCommGroup V] [Module K V]
 
 /-- Two independent eigenvectors with the same eigenvalue in a 2-dimensional space force the
-operator to be that scalar.-/
+operator to be that scalar.
+@isnad1 id=eq.4h6v.s9.c8adeb03bd02 from=translated src=- shape=fdb69aac vocab=08cb8950
+-/
 theorem scalar_of_two_eigenvectors (hdim : Module.finrank K V = 2) (T : V →ₗ[K] V) (s : K)
     (v₁ v₂ : V) (hind : LinearIndependent K ![v₁, v₂])
     (h₁ : T v₁ = s • v₁) (h₂ : T v₂ = s • v₂) :
@@ -363,7 +415,9 @@ theorem scalar_of_two_eigenvectors (hdim : Module.finrank K V = 2) (T : V →ₗ
   · simpa using h₂
 
 /-- SATURATION: under the same hypotheses every eigenvalue of T equals s — there is no third
-resonance in the disc.-/
+resonance in the disc.
+@isnad1 id=eq.6h8v.s9.54ecb7de2162 from=translated src=- shape=6c1b46f9 vocab=cc429122
+-/
 theorem eigenvalue_eq_of_saturated (hdim : Module.finrank K V = 2) (T : V →ₗ[K] V) (s : K)
     (v₁ v₂ : V) (hind : LinearIndependent K ![v₁, v₂])
     (h₁ : T v₁ = s • v₁) (h₂ : T v₂ = s • v₂)
@@ -378,7 +432,9 @@ theorem eigenvalue_eq_of_saturated (hdim : Module.finrank K V = 2) (T : V →ₗ
 
 /-- No Jordan block: (T − s)² = 0 already at the first power, so algebraic multiplicity of s
 is exactly the rank 2 = its geometric multiplicity (SEMISIMPLE double point — the premise
-`M(θ,0) = s*·1` of §2).-/
+`M(θ,0) = s*·1` of §2).
+@isnad1 id=eq.4h6v.s9.ba9fa3c99359 from=translated src=- shape=3a517048 vocab=2110fe60
+-/
 theorem semisimple_of_saturated (hdim : Module.finrank K V = 2) (T : V →ₗ[K] V) (s : K)
     (v₁ v₂ : V) (hind : LinearIndependent K ![v₁, v₂])
     (h₁ : T v₁ = s • v₁) (h₂ : T v₂ = s • v₂) :

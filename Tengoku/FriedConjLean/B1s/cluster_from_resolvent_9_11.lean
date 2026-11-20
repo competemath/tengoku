@@ -52,6 +52,9 @@ noncomputable def partialX {E G : Type} [NormedAddCommGroup E] [NormedSpace ℝ 
     [NormedAddCommGroup G] [NormedSpace ℝ G] (F : E → ℝ → G) (x : E) (t : ℝ) : E →L[ℝ] G :=
   (fderiv ℝ (Function.uncurry F) (x, t)).comp (inl ℝ E ℝ)
 
+/--
+@isnad1 id=contdiff.1h4v.s8.b676bafc2f61 from=translated src=- shape=a0180ca2 vocab=12bd8334
+-/
 theorem contDiff_uncurry_partialX {E G : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup G] [NormedSpace ℝ G] (F : E → ℝ → G) (n : ℕ)
     (hF : ContDiff ℝ (n + 1) (Function.uncurry F)) :
@@ -62,6 +65,9 @@ theorem contDiff_uncurry_partialX {E G : Type} [NormedAddCommGroup E] [NormedSpa
   rw [this]
   exact (hF.fderiv_right le_rfl).clm_comp contDiff_const
 
+/--
+@isnad1 id=hasfderi.1h6v.s7.037db7b0f3b3 from=translated src=- shape=7e582942 vocab=84706110
+-/
 theorem hasFDerivAt_partialX {E G : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup G] [NormedSpace ℝ G] (F : E → ℝ → G) (n : ℕ)
     (hF : ContDiff ℝ (n + 1) (Function.uncurry F)) (x : E) (t : ℝ) :
@@ -73,7 +79,9 @@ theorem hasFDerivAt_partialX {E G : Type} [NormedAddCommGroup E] [NormedSpace �
 
 /-- THE LEMMA. A jointly C^n integrand on a fixed compact interval integrates to a C^n function of
 a finite-dimensional parameter. Induction on n; differentiation under the integral is dominated by
-a constant from compactness of a closed ball times the interval.-/
+a constant from compactness of a closed ball times the interval.
+@isnad1 id=contdiff.1h6v.s7.6be00c2d8335 from=translated src=- shape=51f4ea96 vocab=43565f9f
+-/
 theorem contDiff_parametric_intervalIntegral {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [ProperSpace E] (a b : ℝ) :
     ∀ (n : ℕ) (G : Type) [NormedAddCommGroup G] [NormedSpace ℝ G] [CompleteSpace G]
@@ -124,7 +132,9 @@ open ParamInt
 
 variable {S : BanachScale.{0}} (F : ResolventFamily S Param) (Jc : ComplexStructure S)
 
-/-- Matrix elements of the resolvent with loss ≥ L 3 = 15 are C³ in (θ, τ, λ).-/
+/-- Matrix elements of the resolvent with loss ≥ L 3 = 15 are C³ in (θ, τ, λ).
+@isnad1 id=contdiff.1h7v.s8.aac2ba7b22dd from=translated src=- shape=f874df49 vocab=e0369398
+-/
 theorem contDiff_melem (a b : ℕ) (hab : b + 15 ≤ a) (φ : S.H a) (ℓ : S.H b →L[ℝ] ℝ) :
     ContDiff ℝ 3 (melem F Jc a b (by omega) φ ℓ) := by
   have hT : ContDiff ℝ 3 fun x => (S.incl a b (by omega)).comp (F.R a x) :=
@@ -139,12 +149,17 @@ theorem contDiff_melem (a b : ℕ) (hab : b + 15 ≤ a) (φ : S.H a) (ℓ : S.H 
 
 /-! ## §3 Contour integrals: the Riesz projector's matrix elements -/
 
+/--
+@isnad1 id=contdiff.0h2v.s5.61bfb3d218eb from=translated src=- shape=914a4606 vocab=32671e45
+-/
 theorem contDiff_contour (c : ℂ) (r : ℝ) : ContDiff ℝ ⊤ fun t : ℝ => contour c r t := by
   unfold contour
   refine contDiff_const.add (contDiff_const.mul (Complex.contDiff_exp.comp ?_))
   exact contDiff_const.mul Complex.ofRealCLM.contDiff
 
-/-- A C³ function of (p, λ) has C³ contour integrals in p.-/
+/-- A C³ function of (p, λ) has C³ contour integrals in p.
+@isnad1 id=contdiff.1h3v.s7.93f79babbb02 from=translated src=- shape=97895a2d vocab=cbf2ca46
+-/
 theorem contDiff_riesz (c : ℂ) (r : ℝ) (g : Param → ℂ) (hg : ContDiff ℝ 3 g) :
     ContDiff ℝ 3 (riesz c r g) := by
   have hint : ContDiff ℝ 3 (Function.uncurry fun (p : ℝ × ℝ) (t : ℝ) =>
@@ -163,24 +178,35 @@ theorem contDiff_riesz (c : ℂ) (r : ℝ) (g : Param → ℂ) (hg : ContDiff �
 
 variable {k : ℕ}
 
+/--
+@isnad1 id=contdiff.0h7v.s7.79cc57a14b91 from=translated src=- shape=ad9659a7 vocab=6996f641
+-/
 theorem contDiff_Amat (D : FrameData S k) (l j : Fin k) :
     ContDiff ℝ 3 fun p => Amat F Jc D p l j := by
   simp only [Amat, Matrix.of_apply]
   exact contDiff_riesz _ _ _ (contDiff_melem F Jc D.a D.b D.hab (D.φ j) (D.ℓ l))
 
+/--
+@isnad1 id=contdiff.0h7v.s7.c48cd411be4e from=translated src=- shape=ad9659a7 vocab=943fda5a
+-/
 theorem contDiff_Bmat (D : FrameData S k) (l j : Fin k) :
     ContDiff ℝ 3 fun p => Bmat F Jc D p l j := by
   simp only [Bmat, Matrix.of_apply]
   refine contDiff_riesz _ _ _ ?_
   exact (contDiff_snd).mul (contDiff_melem F Jc D.a D.b D.hab (D.φ j) (D.ℓ l))
 
-/-- Determinants of ℂ-matrices with C^n entries (real smoothness).-/
+/-- Determinants of ℂ-matrices with C^n entries (real smoothness).
+@isnad1 id=contdiff.1h4v.s6.79031ec55dc9 from=translated src=- shape=661dd430 vocab=e475b899
+-/
 theorem contDiff_det_complex {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {n : Type*} [Fintype n] [DecidableEq n] {m : WithTop ℕ∞} {A : E → Matrix n n ℂ}
     (h : ∀ i j, ContDiff ℝ m fun x => A x i j) : ContDiff ℝ m fun x => (A x).det := by
   simp only [Matrix.det_apply']
   exact ContDiff.sum fun σ _ => contDiff_const.mul (contDiff_prod fun i _ => h _ _)
 
+/--
+@isnad1 id=contdiff.1h6v.s6.3cc7e72ce57f from=translated src=- shape=82f1781c vocab=75aa535f
+-/
 theorem contDiff_adjugate_complex {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {n : Type*} [Fintype n] [DecidableEq n] {m : WithTop ℕ∞} {A : E → Matrix n n ℂ}
     (h : ∀ i j, ContDiff ℝ m fun x => A x i j) (i j : n) :
@@ -191,7 +217,9 @@ theorem contDiff_adjugate_complex {E : Type*} [NormedAddCommGroup E] [NormedSpac
   · simp only [Matrix.updateRow_self]; exact contDiff_const
   · simp only [Matrix.updateRow_ne hne]; exact h i' j'
 
-/-- Entries of the inverse of a nonsingular C^m matrix family are C^m.-/
+/-- Entries of the inverse of a nonsingular C^m matrix family are C^m.
+@isnad1 id=contdiff.2h6v.s6.05f08cd2911b from=translated src=- shape=47b724cd vocab=f3ceb337
+-/
 theorem contDiff_inv_complex {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {n : Type*} [Fintype n] [DecidableEq n] {m : WithTop ℕ∞} {A : E → Matrix n n ℂ}
     (h : ∀ i j, ContDiff ℝ m fun x => A x i j) (hdet : ∀ x, (A x).det ≠ 0) (i j : n) :
@@ -202,7 +230,9 @@ theorem contDiff_inv_complex {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ
   rw [this]
   exact ((contDiff_det_complex h).inv hdet).mul (contDiff_adjugate_complex h i j)
 
-/-- Entries of a product of C^m matrix families are C^m.-/
+/-- Entries of a product of C^m matrix families are C^m.
+@isnad1 id=contdiff.2h7v.s7.5e295872cf73 from=translated src=- shape=ab2b292d vocab=60038224
+-/
 theorem contDiff_mul_complex {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {n : Type*} [Fintype n] {m : WithTop ℕ∞} {A B : E → Matrix n n ℂ}
     (hA : ∀ i j, ContDiff ℝ m fun x => A x i j) (hB : ∀ i j, ContDiff ℝ m fun x => B x i j)
@@ -210,7 +240,9 @@ theorem contDiff_mul_complex {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ
   simp only [Matrix.mul_apply]
   exact ContDiff.sum fun l _ => (hA i l).mul (hB l j)
 
-/-- THE FRAME MATRIX IS C³ (given the frame is nondegenerate).-/
+/-- THE FRAME MATRIX IS C³ (given the frame is nondegenerate).
+@isnad1 id=contdiff.1h7v.s7.65b87e5f6361 from=translated src=- shape=1ff4ef1a vocab=74cd8320
+-/
 theorem contDiff_Mframe (D : FrameData S k) (hdet : ∀ p, (Amat F Jc D p).det ≠ 0) (l j : Fin k) :
     ContDiff ℝ 3 fun p => Mframe F Jc D p l j := by
   unfold Mframe
@@ -219,6 +251,9 @@ theorem contDiff_Mframe (D : FrameData S k) (hdet : ∀ p, (Amat F Jc D p).det �
 
 /-! ## §5 The ledger's input (B) -/
 
+/--
+@isnad1 id=contdiff.1h7v.s7.55ce91c0e794 from=translated src=- shape=b8cc1dad vocab=4c6d4dac
+-/
 theorem contDiff_Mreal (D : FrameData S k) (hdet : ∀ p, (Amat F Jc D p).det ≠ 0) (i j : Fin k) :
     ContDiff ℝ 3 fun q : ℝ × ℝ => Mreal F Jc D q.1 q.2 i j := by
   have : (fun q : ℝ × ℝ => Mreal F Jc D q.1 q.2 i j) =
@@ -228,7 +263,9 @@ theorem contDiff_Mreal (D : FrameData S k) (hdet : ∀ p, (Amat F Jc D p).det �
   exact Complex.reCLM.contDiff.comp (contDiff_Mframe F Jc D hdet i j)
 
 /-- INPUT (B) DERIVED: two resolvent families (degree 1 on its scale, degree 2 on its scale), each
-with a nondegenerate frame, give `Ledger.ClusterC3` for the real frame matrices.-/
+with a nondegenerate frame, give `Ledger.ClusterC3` for the real frame matrices.
+@isnad1 id=clusterc.2h8v.s8.0a4c14c1fca2 from=translated src=- shape=6938e655 vocab=c461cad0
+-/
 theorem clusterC3_of_resolvent {S₁ S₂ : BanachScale.{0}}
     (F₁ : ResolventFamily S₁ Param) (J₁ : ComplexStructure S₁) (D₁ : FrameData S₁ 2)
     (F₂ : ResolventFamily S₂ Param) (J₂ : ComplexStructure S₂) (D₂ : FrameData S₂ 4)

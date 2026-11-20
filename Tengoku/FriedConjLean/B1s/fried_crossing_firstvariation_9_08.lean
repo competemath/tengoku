@@ -56,21 +56,32 @@ def Nmat0 (Bcc Bcψ p : K) : Matrix (Fin 2) (Fin 2) K := !![0, -(Bcψ * p); 0, B
 def Nmat (Bcc Bcψ Bψc Bψψ p : K) : Matrix (Fin 2) (Fin 2) K :=
   (1 / (Bcc * Bψψ - Bcψ * Bψc)) • Nmat0 Bcc Bcψ p
 
+/--
+@isnad1 id=eq.0h5v.s6.1dc0715189ed from=translated src=- shape=2acfa4dc vocab=c13646d2
+-/
 theorem det_Bmat (Bcc Bcψ Bψc Bψψ : K) :
     (Bmat Bcc Bcψ Bψc Bψψ).det = Bcc * Bψψ - Bcψ * Bψc := by
   simp [Bmat, Matrix.det_fin_two]
 
+/--
+@isnad1 id=eq.0h6v.s8.ab35a3c8a6ad from=translated src=- shape=ca591435 vocab=5b067eaf
+-/
 theorem Bmat_mul_Nmat0 (Bcc Bcψ Bψc Bψψ p : K) :
     Bmat Bcc Bcψ Bψc Bψψ * Nmat0 Bcc Bcψ p = (Bcc * Bψψ - Bcψ * Bψc) • Pmat p := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [Bmat, Nmat0, Pmat, Matrix.mul_apply, Fin.sum_univ_two] <;> ring
 
+/--
+@isnad1 id=eq.1h6v.s7.35c14b3dbc97 from=translated src=- shape=57c4c4c9 vocab=ae633f1b
+-/
 theorem Bmat_mul_Nmat {Bcc Bcψ Bψc Bψψ p : K} (h : Bcc * Bψψ - Bcψ * Bψc ≠ 0) :
     Bmat Bcc Bcψ Bψc Bψψ * Nmat Bcc Bcψ Bψc Bψψ p = Pmat p := by
   rw [Nmat, Matrix.mul_smul, Bmat_mul_Nmat0, smul_smul, one_div_mul_cancel h, one_smul]
 
-/-- N is the unique solution of B·N = P when B is invertible.-/
+/-- N is the unique solution of B·N = P when B is invertible.
+@isnad1 id=eq.2h7v.s7.bbb9a2aae4e7 from=translated src=- shape=9840da0f vocab=ae633f1b
+-/
 theorem Nmat_unique {Bcc Bcψ Bψc Bψψ p : K} (h : Bcc * Bψψ - Bcψ * Bψc ≠ 0)
     (N : Matrix (Fin 2) (Fin 2) K) (hN : Bmat Bcc Bcψ Bψc Bψψ * N = Pmat p) :
     N = Nmat Bcc Bcψ Bψc Bψψ p := by
@@ -83,6 +94,9 @@ theorem Nmat_unique {Bcc Bcψ Bψc Bψψ p : K} (h : Bcc * Bψψ - Bcψ * Bψc �
   · exact absurd h3 h
   · exact sub_eq_zero.mp h3
 
+/--
+@isnad1 id=eq.0h6v.s7.7bcc192af025 from=translated src=- shape=ae7538f0 vocab=2f90f6ec
+-/
 theorem trace_Nmat (Bcc Bcψ Bψc Bψψ p : K) :
     (Nmat Bcc Bcψ Bψc Bψψ p).trace = Bcc * p / (Bcc * Bψψ - Bcψ * Bψc) := by
   have : (Nmat Bcc Bcψ Bψc Bψψ p).trace =
@@ -90,11 +104,16 @@ theorem trace_Nmat (Bcc Bcψ Bψc Bψψ p : K) :
     simp [Nmat, Nmat0, Matrix.trace_fin_two]
   rw [this]; ring
 
+/--
+@isnad1 id=eq.0h6v.s6.cac4d30ec664 from=translated src=- shape=8f187c14 vocab=5097ce35
+-/
 theorem det_Nmat (Bcc Bcψ Bψc Bψψ p : K) : (Nmat Bcc Bcψ Bψc Bψψ p).det = 0 := by
   simp [Nmat, Nmat0, Matrix.det_fin_two]
 
 /-- The eigenvalues of ∂_τZ(0) on Res¹₀ are exactly 0 (the closed state, frozen) and
-B_cc·p/det B (the non-closed state): z is a root of the characteristic polynomial iff so.-/
+B_cc·p/det B (the non-closed state): z is a root of the characteristic polynomial iff so.
+@isnad1 id=iff.0h7v.s8.2eac93f67c08 from=translated src=- shape=a2664a74 vocab=f80ff2d5
+-/
 theorem charpoly_roots (Bcc Bcψ Bψc Bψψ p : K) (z : K) :
     z ^ 2 - (Nmat Bcc Bcψ Bψc Bψψ p).trace * z + (Nmat Bcc Bcψ Bψc Bψψ p).det = 0 ↔
       z = 0 ∨ z = Bcc * p / (Bcc * Bψψ - Bcψ * Bψc) := by
@@ -109,14 +128,18 @@ theorem charpoly_roots (Bcc Bcψ Bψc Bψψ p : K) (z : K) :
     · ring
     · ring
 
-/-- CDDP (3.55)–(3.56): the pairing is block diagonal across C × C_ψ*, so the rate is p/B_ψψ.-/
+/-- CDDP (3.55)–(3.56): the pairing is block diagonal across C × C_ψ*, so the rate is p/B_ψψ.
+@isnad1 id=eq.2h4v.s7.77e0feb0e333 from=translated src=- shape=0f5e2bdc vocab=bbda6862
+-/
 theorem trace_Nmat_blockdiag {Bcc Bψψ p : K} (hcc : Bcc ≠ 0) (hψψ : Bψψ ≠ 0) :
     (Nmat Bcc 0 0 Bψψ p).trace = p / Bψψ := by
   rw [trace_Nmat]
   field_simp
   ring
 
-/-- The non-closed rate is non-zero iff p ≠ 0: CDDP's non-degeneracy (1.3) ⟺ r₀ ≠ 0.-/
+/-- The non-closed rate is non-zero iff p ≠ 0: CDDP's non-degeneracy (1.3) ⟺ r₀ ≠ 0.
+@isnad1 id=iff.2h6v.s7.5d5700d75122 from=translated src=- shape=4b993ec6 vocab=8d8c1ff0
+-/
 theorem trace_Nmat_ne_zero_iff {Bcc Bcψ Bψc Bψψ p : K} (hcc : Bcc ≠ 0)
     (hdet : Bcc * Bψψ - Bcψ * Bψc ≠ 0) :
     (Nmat Bcc Bcψ Bψc Bψψ p).trace ≠ 0 ↔ p ≠ 0 := by
@@ -126,13 +149,18 @@ theorem trace_Nmat_ne_zero_iff {Bcc Bcψ Bψc Bψψ p : K} (hcc : Bcc ≠ 0)
   · intro hp; exact ⟨⟨hcc, hp⟩, hdet⟩
 
 /-- Over ℝ, with the rate oriented positive: the (4.22) matrix has w₊ = tr N = r₀ and w₋ = 0
-in the notation of `TwinRate` — the two first-order rates of `twin_rate_of_cluster`.-/
+in the notation of `TwinRate` — the two first-order rates of `twin_rate_of_cluster`.
+@isnad1 id=eq.1h5v.s6.2fbc2dff8043 from=translated src=- shape=7176da47 vocab=3379d77c
+-/
 theorem wPlus_of_firstVariation {Bcc Bcψ Bψc Bψψ p : ℝ}
     (hr : 0 < (Nmat Bcc Bcψ Bψc Bψψ p).trace) :
     TwinRate.wPlus (Nmat Bcc Bcψ Bψc Bψψ p).trace (Nmat Bcc Bcψ Bψc Bψψ p).det =
       (Nmat Bcc Bcψ Bψc Bψψ p).trace := by
   rw [det_Nmat]; exact TwinRate.wPlus_at_cddp hr
 
+/--
+@isnad1 id=eq.1h5v.s6.2441f4381176 from=translated src=- shape=1a54d020 vocab=65a5c115
+-/
 theorem wMinus_of_firstVariation {Bcc Bcψ Bψc Bψψ p : ℝ}
     (hr : 0 < (Nmat Bcc Bcψ Bψc Bψψ p).trace) :
     TwinRate.wMinus (Nmat Bcc Bcψ Bψc Bψψ p).trace (Nmat Bcc Bcψ Bψc Bψψ p).det = 0 := by
@@ -143,10 +171,15 @@ end FirstVariation
 /-! ## §2 Hadamard: from M(θ,0) = s*·1 to M = s*·1 + τ·N with N continuous at (0,0) -/
 namespace Hadamard
 
+/--
+@isnad1 id=eq.0h4v.s6.473eb1b42599 from=translated src=- shape=65f7d4a2 vocab=319055b4
+-/
 theorem Ndiv_zero (M M' : ℝ → ℝ → Matrix (Fin 2) (Fin 2) ℝ) (sStar : ℝ → ℝ) (θ : ℝ) :
     Ndiv M M' sStar θ 0 = M' θ 0 := by simp [Ndiv]
 
-/-- M = s*·1 + τ·N identically (given M(θ,0) = s*(θ)·1).-/
+/-- M = s*·1 + τ·N identically (given M(θ,0) = s*(θ)·1).
+@isnad1 id=eq.1h5v.s8.914a794967b5 from=translated src=- shape=428c58db vocab=3a7853d2
+-/
 theorem M_eq (M M' : ℝ → ℝ → Matrix (Fin 2) (Fin 2) ℝ) (sStar : ℝ → ℝ)
     (h0 : ∀ θ, M θ 0 = sStar θ • (1 : Matrix (Fin 2) (Fin 2) ℝ)) (θ τ : ℝ) :
     M θ τ = sStar θ • (1 : Matrix (Fin 2) (Fin 2) ℝ) + τ • Ndiv M M' sStar θ τ := by
@@ -156,7 +189,9 @@ theorem M_eq (M M' : ℝ → ℝ → Matrix (Fin 2) (Fin 2) ℝ) (sStar : ℝ �
   · rw [smul_smul, mul_one_div_cancel hτ, one_smul, add_sub_cancel]
 
 /-- Entrywise mean value theorem: for τ ≠ 0 the difference quotient of an entry equals the
-τ-derivative of that entry at some ξ strictly between 0 and τ.-/
+τ-derivative of that entry at some ξ strictly between 0 and τ.
+@isnad1 id=ex.2h3v.s6.116016b6fd35 from=translated src=- shape=ce2b3977 vocab=ffa9a5f8
+-/
 theorem entry_slope_eq {f f' : ℝ → ℝ} (hderiv : ∀ t, HasDerivAt f (f' t) t) {τ : ℝ}
     (hτ : τ ≠ 0) : ∃ ξ, |ξ| < |τ| ∧ (f τ - f 0) / τ = f' ξ := by
   have hcont : ∀ s, ContinuousAt f s := fun s => (hderiv s).continuousAt
@@ -174,7 +209,9 @@ theorem entry_slope_eq {f f' : ℝ → ℝ} (hderiv : ∀ t, HasDerivAt f (f' t)
 
 /-- THE HADAMARD STEP. If each entry of M is differentiable in τ with derivative M', M(θ,0) =
 s*(θ)·1, and each entry of M' is jointly continuous at (0,0), then each entry of N = Ndiv is
-jointly continuous at (0,0) with value M'(0,0).-/
+jointly continuous at (0,0) with value M'(0,0).
+@isnad1 id=continuo.3h5v.s8.0e1e8b46b0ad from=translated src=- shape=05cc7658 vocab=78328ab8
+-/
 theorem continuousAt_Ndiv_entry (M M' : ℝ → ℝ → Matrix (Fin 2) (Fin 2) ℝ) (sStar : ℝ → ℝ)
     (h0 : ∀ θ, M θ 0 = sStar θ • (1 : Matrix (Fin 2) (Fin 2) ℝ))
     (hderiv : ∀ θ τ i j, HasDerivAt (fun t => M θ t i j) (M' θ τ i j) τ)
@@ -209,7 +246,9 @@ theorem continuousAt_Ndiv_entry (M M' : ℝ → ℝ → Matrix (Fin 2) (Fin 2) �
       exact max_lt hp'.1 (lt_trans hξ hp'.2)
     exact hball hd
 
-/-- Trace and determinant of N are jointly continuous at (0,0).-/
+/-- Trace and determinant of N are jointly continuous at (0,0).
+@isnad1 id=continuo.3h3v.s8.1e639225937f from=translated src=- shape=a2bc185a vocab=062d3e3a
+-/
 theorem continuousAt_trace_Ndiv (M M' : ℝ → ℝ → Matrix (Fin 2) (Fin 2) ℝ) (sStar : ℝ → ℝ)
     (h0 : ∀ θ, M θ 0 = sStar θ • (1 : Matrix (Fin 2) (Fin 2) ℝ))
     (hderiv : ∀ θ τ i j, HasDerivAt (fun t => M θ t i j) (M' θ τ i j) τ)
@@ -219,6 +258,9 @@ theorem continuousAt_trace_Ndiv (M M' : ℝ → ℝ → Matrix (Fin 2) (Fin 2) �
   simp only [Matrix.trace_fin_two]
   exact (h 0 0).add (h 1 1)
 
+/--
+@isnad1 id=continuo.3h3v.s8.6ee8dd932d41 from=translated src=- shape=a2bc185a vocab=b81e536d
+-/
 theorem continuousAt_det_Ndiv (M M' : ℝ → ℝ → Matrix (Fin 2) (Fin 2) ℝ) (sStar : ℝ → ℝ)
     (h0 : ∀ θ, M θ 0 = sStar θ • (1 : Matrix (Fin 2) (Fin 2) ℝ))
     (hderiv : ∀ θ τ i j, HasDerivAt (fun t => M θ t i j) (M' θ τ i j) τ)
@@ -229,19 +271,26 @@ theorem continuousAt_det_Ndiv (M M' : ℝ → ℝ → Matrix (Fin 2) (Fin 2) ℝ
   exact ((h 0 0).mul (h 1 1)).sub ((h 0 1).mul (h 1 0))
 
 /-- The characteristic-polynomial data of the ACTUAL cluster matrix M = s*·1 + τ·N are
-`TwinRate.clusterTrace`/`clusterDet` with a = tr N, b = det N.-/
+`TwinRate.clusterTrace`/`clusterDet` with a = tr N, b = det N.
+@isnad1 id=eq.0h3v.s8.fe484ee9ad46 from=translated src=- shape=b4e99e81 vocab=b9534580
+-/
 theorem trace_M (sStar τ : ℝ) (N : Matrix (Fin 2) (Fin 2) ℝ) :
     (sStar • (1 : Matrix (Fin 2) (Fin 2) ℝ) + τ • N).trace =
       TwinRate.clusterTrace sStar τ N.trace := by
   simp [TwinRate.clusterTrace, Matrix.trace_fin_two]; ring
 
+/--
+@isnad1 id=eq.0h3v.s8.6eb146056535 from=translated src=- shape=84e968bb vocab=a2206f76
+-/
 theorem det_M (sStar τ : ℝ) (N : Matrix (Fin 2) (Fin 2) ℝ) :
     (sStar • (1 : Matrix (Fin 2) (Fin 2) ℝ) + τ • N).det =
       TwinRate.clusterDet sStar τ N.trace N.det := by
   simp [TwinRate.clusterDet, Matrix.det_fin_two, Matrix.trace_fin_two]; ring
 
 /-- CLUSTER ROOTS FOR THE ACTUAL MATRIX: z is a root of the characteristic polynomial of
-M(θ,τ) iff z = s*(θ) + τ·w±(tr N, det N). Consumes only M(θ,0) = s*·1 and disc ≥ 0.-/
+M(θ,τ) iff z = s*(θ) + τ·w±(tr N, det N). Consumes only M(θ,0) = s*·1 and disc ≥ 0.
+@isnad1 id=iff.2h6v.s8.8884e8afab6a from=translated src=- shape=a5cc95f9 vocab=ca8994d1
+-/
 theorem cluster_roots_M (M M' : ℝ → ℝ → Matrix (Fin 2) (Fin 2) ℝ) (sStar : ℝ → ℝ)
     (h0 : ∀ θ, M θ 0 = sStar θ • (1 : Matrix (Fin 2) (Fin 2) ℝ)) (θ τ : ℝ)
     (hD : 0 ≤ TwinRate.disc (Ndiv M M' sStar θ τ).trace (Ndiv M M' sStar θ τ).det) (z : ℝ) :

@@ -39,11 +39,16 @@ open Filter Topology Matrix Polynomial
 /-! ## §1 The cluster matrices and the pure quadratic -/
 namespace ClusterMatrix
 
+/--
+@isnad1 id=eq.0h1v.s5.c84b67257fda from=translated src=- shape=3646d3df vocab=930be4a0
+-/
 theorem charpoly_natDegree (A : Matrix (Fin 4) (Fin 4) ℝ) : A.charpoly.natDegree = 4 := by
   rw [charpoly_natDegree_eq_dim, Fintype.card_fin]
 
 /-- The characteristic polynomial of the degree-2 cluster matrix IS the quartic of the pure-zeros
-file.-/
+file.
+@isnad1 id=eq.0h2v.s5.1c2b5cb338cb from=translated src=- shape=726cf9a8 vocab=9478f5b9
+-/
 theorem eval_charpoly_eq_quartic (A : Matrix (Fin 4) (Fin 4) ℝ) (z : ℝ) :
     A.charpoly.eval z = PureZeros.quartic (c₁ A) (c₂ A) (c₃ A) (c₄ A) z := by
   have hlead : A.charpoly.coeff 4 = 1 := by
@@ -54,7 +59,9 @@ theorem eval_charpoly_eq_quartic (A : Matrix (Fin 4) (Fin 4) ℝ) (z : ℝ) :
     hlead]
   ring
 
-/-- The 2×2 characteristic polynomial: z² − (tr M)z + det M.-/
+/-- The 2×2 characteristic polynomial: z² − (tr M)z + det M.
+@isnad1 id=eq.0h2v.s6.618f2e3581ea from=translated src=- shape=18655f2b vocab=e2c326fb
+-/
 theorem eval_charpoly_fin_two (M : Matrix (Fin 2) (Fin 2) ℝ) (z : ℝ) :
     M.charpoly.eval z = z ^ 2 - M.trace * z + M.det := by
   rw [eval_charpoly]
@@ -62,19 +69,30 @@ theorem eval_charpoly_fin_two (M : Matrix (Fin 2) (Fin 2) ℝ) (z : ℝ) :
   ring
 
 /-- With the locked branches the eigenvalues of M, these are the pure-zeros file's `e₁of`,
-`e₂of`.-/
+`e₂of`.
+@isnad1 id=eq.1h4v.s6.c0a86eec97af from=translated src=- shape=02705a1a vocab=130f020c
+-/
 theorem E₁_eq (A : Matrix (Fin 4) (Fin 4) ℝ) (M : Matrix (Fin 2) (Fin 2) ℝ) {scl snc : ℝ}
     (hs : scl + snc = M.trace) : E₁ A M = PureZeros.e₁of (c₁ A) scl snc := by
   unfold E₁ PureZeros.e₁of; rw [← hs]; ring
 
+/--
+@isnad1 id=eq.2h4v.s6.9ff8c4752410 from=translated src=- shape=06e30a90 vocab=fabebc3f
+-/
 theorem E₂_eq (A : Matrix (Fin 4) (Fin 4) ℝ) (M : Matrix (Fin 2) (Fin 2) ℝ) {scl snc : ℝ}
     (hs : scl + snc = M.trace) (hp : scl * snc = M.det) :
     E₂ A M = PureZeros.e₂of (c₁ A) (c₂ A) scl snc := by
   unfold E₂ E₁ PureZeros.e₂of PureZeros.e₁of; rw [← hs, ← hp]; ring
 
+/--
+@isnad1 id=eq.0h1v.s7.5acaeaa9f2e6 from=translated src=- shape=d70c5771 vocab=d0909209
+-/
 theorem trace_smul_one (s : ℝ) : (s • (1 : Matrix (Fin 2) (Fin 2) ℝ)).trace = 2 * s := by
   rw [Matrix.trace_smul, Matrix.trace_one, Fintype.card_fin]; push_cast; ring
 
+/--
+@isnad1 id=eq.0h1v.s7.fbfd66521f73 from=translated src=- shape=26aaa8b7 vocab=cccdae99
+-/
 theorem det_smul_one (s : ℝ) : (s • (1 : Matrix (Fin 2) (Fin 2) ℝ)).det = s ^ 2 := by
   rw [Matrix.det_smul, Matrix.det_one, Fintype.card_fin, mul_one]
 
@@ -82,14 +100,18 @@ section Smoothness
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] {k : WithTop ℕ∞}
 
-/-- The determinant is a polynomial in the entries.-/
+/-- The determinant is a polynomial in the entries.
+@isnad1 id=contdiff.1h4v.s6.e4b4985f2bcb from=translated src=- shape=9bf34741 vocab=5012c8b1
+-/
 theorem contDiff_det {n : Type*} [Fintype n] [DecidableEq n] {A : E → Matrix n n ℝ}
     (h : ∀ i j, ContDiff ℝ k fun x => A x i j) : ContDiff ℝ k fun x => (A x).det := by
   simp only [Matrix.det_apply']
   exact ContDiff.sum fun σ _ => contDiff_const.mul (contDiff_prod fun i _ => h _ _)
 
 /-- Characteristic coefficients are signed sums of principal minors (Mathlib), hence polynomial
-in the entries.-/
+in the entries.
+@isnad1 id=contdiff.2h4v.s7.12319c5f1b3c from=translated src=- shape=df6c5f61 vocab=19c078d9
+-/
 theorem contDiff_charpoly_coeff {A : E → Matrix (Fin 4) (Fin 4) ℝ}
     (h : ∀ i j, ContDiff ℝ k fun x => A x i j) (m : ℕ) (hm : m ≤ 4) :
     ContDiff ℝ k fun x => (A x).charpoly.coeff (4 - m) := by
@@ -102,27 +124,45 @@ theorem contDiff_charpoly_coeff {A : E → Matrix (Fin 4) (Fin 4) ℝ}
   rw [heq]
   exact contDiff_const.mul (ContDiff.sum fun s _ => contDiff_det fun i j => h _ _)
 
+/--
+@isnad1 id=contdiff.1h3v.s6.55d537971cd1 from=translated src=- shape=ea535342 vocab=3e26c043
+-/
 theorem contDiff_c₁ {A : E → Matrix (Fin 4) (Fin 4) ℝ}
     (h : ∀ i j, ContDiff ℝ k fun x => A x i j) : ContDiff ℝ k fun x => c₁ (A x) :=
   (contDiff_charpoly_coeff h 1 (by norm_num)).neg
 
+/--
+@isnad1 id=contdiff.1h3v.s6.9411e1de5eed from=translated src=- shape=ea535342 vocab=72db98e6
+-/
 theorem contDiff_c₂ {A : E → Matrix (Fin 4) (Fin 4) ℝ}
     (h : ∀ i j, ContDiff ℝ k fun x => A x i j) : ContDiff ℝ k fun x => c₂ (A x) :=
   contDiff_charpoly_coeff h 2 (by norm_num)
 
+/--
+@isnad1 id=contdiff.1h3v.s6.e8ee7bb58243 from=translated src=- shape=adf42e50 vocab=de74f3a3
+-/
 theorem contDiff_trace_fin_two {M : E → Matrix (Fin 2) (Fin 2) ℝ}
     (h : ∀ i j, ContDiff ℝ k fun x => M x i j) : ContDiff ℝ k fun x => (M x).trace := by
   simp only [Matrix.trace_fin_two]; exact (h 0 0).add (h 1 1)
 
+/--
+@isnad1 id=contdiff.1h3v.s6.6d5ca4882d9a from=translated src=- shape=adf42e50 vocab=e45e148f
+-/
 theorem contDiff_det_fin_two {M : E → Matrix (Fin 2) (Fin 2) ℝ}
     (h : ∀ i j, ContDiff ℝ k fun x => M x i j) : ContDiff ℝ k fun x => (M x).det := by
   simp only [Matrix.det_fin_two]; exact ((h 0 0).mul (h 1 1)).sub ((h 0 1).mul (h 1 0))
 
+/--
+@isnad1 id=contdiff.2h4v.s7.e5de40bbe809 from=translated src=- shape=23da2fef vocab=4bdc3223
+-/
 theorem contDiff_E₁ {A : E → Matrix (Fin 4) (Fin 4) ℝ} {M : E → Matrix (Fin 2) (Fin 2) ℝ}
     (hA : ∀ i j, ContDiff ℝ k fun x => A x i j) (hM : ∀ i j, ContDiff ℝ k fun x => M x i j) :
     ContDiff ℝ k fun x => E₁ (A x) (M x) :=
   (contDiff_c₁ hA).sub (contDiff_trace_fin_two hM)
 
+/--
+@isnad1 id=contdiff.2h4v.s7.0fa4301e6f1c from=translated src=- shape=23da2fef vocab=827df515
+-/
 theorem contDiff_E₂ {A : E → Matrix (Fin 4) (Fin 4) ℝ} {M : E → Matrix (Fin 2) (Fin 2) ℝ}
     (hA : ∀ i j, ContDiff ℝ k fun x => A x i j) (hM : ∀ i j, ContDiff ℝ k fun x => M x i j) :
     ContDiff ℝ k fun x => E₂ (A x) (M x) :=
@@ -136,6 +176,9 @@ end ClusterMatrix
 /-! ## §2 Partial derivatives of jointly C^k functions -/
 namespace Regularity
 
+/--
+@isnad1 id=hasderiv.1h3v.s9.1ae5911d1437 from=translated src=- shape=4611c329 vocab=fb89a3a7
+-/
 theorem hasDerivAt_slice_τ {f : ℝ → ℝ → ℝ} (hf : Differentiable ℝ fun q : ℝ × ℝ => f q.1 q.2)
     (θ τ : ℝ) :
     HasDerivAt (fun t => f θ t) (fderiv ℝ (fun q : ℝ × ℝ => f q.1 q.2) (θ, τ) (0, 1)) τ := by
@@ -144,6 +187,9 @@ theorem hasDerivAt_slice_τ {f : ℝ → ℝ → ℝ} (hf : Differentiable ℝ f
     (hasDerivAt_const τ θ).prodMk (hasDerivAt_id τ)
   exact HasFDerivAt.comp_hasDerivAt (f := fun t : ℝ => ((θ, t) : ℝ × ℝ)) τ h1 h2
 
+/--
+@isnad1 id=hasderiv.1h3v.s9.2f2ff9d03589 from=translated src=- shape=352b0336 vocab=fb89a3a7
+-/
 theorem hasDerivAt_slice_θ {f : ℝ → ℝ → ℝ} (hf : Differentiable ℝ fun q : ℝ × ℝ => f q.1 q.2)
     (θ τ : ℝ) :
     HasDerivAt (fun s => f s τ) (fderiv ℝ (fun q : ℝ × ℝ => f q.1 q.2) (θ, τ) (1, 0)) θ := by
@@ -152,28 +198,45 @@ theorem hasDerivAt_slice_θ {f : ℝ → ℝ → ℝ} (hf : Differentiable ℝ f
     (hasDerivAt_id θ).prodMk (hasDerivAt_const θ τ)
   exact HasFDerivAt.comp_hasDerivAt (f := fun s : ℝ => ((s, τ) : ℝ × ℝ)) θ h1 h2
 
+/--
+@isnad1 id=eq.1h3v.s9.2b66ebd04623 from=translated src=- shape=6560c2ac vocab=001f2484
+-/
 theorem pτ_eq {f : ℝ → ℝ → ℝ} (hf : Differentiable ℝ fun q : ℝ × ℝ => f q.1 q.2) (θ τ : ℝ) :
     pτ f θ τ = fderiv ℝ (fun q : ℝ × ℝ => f q.1 q.2) (θ, τ) (0, 1) :=
   (hasDerivAt_slice_τ hf θ τ).deriv
 
+/--
+@isnad1 id=eq.1h3v.s9.64167728c3d0 from=translated src=- shape=6560c2ac vocab=8ea13ac0
+-/
 theorem pθ_eq {f : ℝ → ℝ → ℝ} (hf : Differentiable ℝ fun q : ℝ × ℝ => f q.1 q.2) (θ τ : ℝ) :
     pθ f θ τ = fderiv ℝ (fun q : ℝ × ℝ => f q.1 q.2) (θ, τ) (1, 0) :=
   (hasDerivAt_slice_θ hf θ τ).deriv
 
+/--
+@isnad1 id=hasderiv.1h3v.s7.974f7da9b9e0 from=translated src=- shape=6ab5bad4 vocab=cdfee1e7
+-/
 theorem hasDerivAt_pτ {f : ℝ → ℝ → ℝ} (hf : Differentiable ℝ fun q : ℝ × ℝ => f q.1 q.2)
     (θ τ : ℝ) : HasDerivAt (fun t => f θ t) (pτ f θ τ) τ := by
   rw [pτ_eq hf]; exact hasDerivAt_slice_τ hf θ τ
 
+/--
+@isnad1 id=hasderiv.1h3v.s7.f1c5d6d0ee3b from=translated src=- shape=4bd9d08d vocab=55acede1
+-/
 theorem hasDerivAt_pθ {f : ℝ → ℝ → ℝ} (hf : Differentiable ℝ fun q : ℝ × ℝ => f q.1 q.2)
     (θ τ : ℝ) : HasDerivAt (fun s => f s τ) (pθ f θ τ) θ := by
   rw [pθ_eq hf]; exact hasDerivAt_slice_θ hf θ τ
 
+/--
+@isnad1 id=differen.2h3v.s7.63f71a33af45 from=translated src=- shape=27bd90e9 vocab=5cb3724e
+-/
 theorem differentiable_of_contDiff {f : ℝ → ℝ → ℝ} {m n : WithTop ℕ∞} (hmn : m + 1 ≤ n)
     (hf : ContDiff ℝ n fun q : ℝ × ℝ => f q.1 q.2) :
     Differentiable ℝ fun q : ℝ × ℝ => f q.1 q.2 :=
   (hf.of_le (le_trans le_add_self hmn)).differentiable one_ne_zero
 
-/-- One derivative down: the τ-partial of a jointly C^{m+1} function is jointly C^m.-/
+/-- One derivative down: the τ-partial of a jointly C^{m+1} function is jointly C^m.
+@isnad1 id=contdiff.2h3v.s7.ca65b8dc70a8 from=translated src=- shape=4a2599b3 vocab=8bced089
+-/
 theorem contDiff_pτ {f : ℝ → ℝ → ℝ} {m n : WithTop ℕ∞} (hmn : m + 1 ≤ n)
     (hf : ContDiff ℝ n fun q : ℝ × ℝ => f q.1 q.2) :
     ContDiff ℝ m fun q : ℝ × ℝ => pτ f q.1 q.2 := by
@@ -184,6 +247,9 @@ theorem contDiff_pτ {f : ℝ → ℝ → ℝ} {m n : WithTop ℕ∞} (hmn : m +
   rw [this]
   exact (hf.fderiv_right hmn).clm_apply contDiff_const
 
+/--
+@isnad1 id=contdiff.2h3v.s7.83059a7c4995 from=translated src=- shape=4a2599b3 vocab=99d666a6
+-/
 theorem contDiff_pθ {f : ℝ → ℝ → ℝ} {m n : WithTop ℕ∞} (hmn : m + 1 ≤ n)
     (hf : ContDiff ℝ n fun q : ℝ × ℝ => f q.1 q.2) :
     ContDiff ℝ m fun q : ℝ × ℝ => pθ f q.1 q.2 := by
@@ -194,7 +260,9 @@ theorem contDiff_pθ {f : ℝ → ℝ → ℝ} {m n : WithTop ℕ∞} (hmn : m +
   rw [this]
   exact (hf.fderiv_right hmn).clm_apply contDiff_const
 
-/-- A continuous function is bounded on the unit square.-/
+/-- A continuous function is bounded on the unit square.
+@isnad1 id=ex.1h1v.s6.60a42b3009de from=translated src=- shape=c4a1e7cf vocab=1b0b06f2
+-/
 theorem bound_on_square {g : ℝ → ℝ → ℝ} (hg : Continuous fun q : ℝ × ℝ => g q.1 q.2) :
     ∃ K : ℝ, 0 < K ∧ ∀ θ τ : ℝ, |θ| < 1 → |τ| < 1 → |g θ τ| ≤ K := by
   have hK : IsCompact (Set.Icc (-1 : ℝ) 1 ×ˢ Set.Icc (-1 : ℝ) 1) := isCompact_Icc.prod isCompact_Icc
@@ -212,7 +280,9 @@ end Regularity
 /-! ## §3 The Hadamard quotient of a C² function is C¹ -/
 namespace HQuot
 
-/-- Mean value theorem with the intermediate point strictly between 0 and τ.-/
+/-- Mean value theorem with the intermediate point strictly between 0 and τ.
+@isnad1 id=ex.2h3v.s6.cd02d589a23c from=translated src=- shape=a7037868 vocab=ffa9a5f8
+-/
 theorem slope_eq_strict {f f' : ℝ → ℝ} (hderiv : ∀ t, HasDerivAt f (f' t) t) {τ : ℝ}
     (hτ : τ ≠ 0) : ∃ ξ, ξ ≠ 0 ∧ |ξ| < |τ| ∧ (f τ - f 0) / τ = f' ξ := by
   have hcont : ∀ s, ContinuousAt f s := fun s => (hderiv s).continuousAt
@@ -229,7 +299,9 @@ theorem slope_eq_strict {f f' : ℝ → ℝ} (hderiv : ∀ t, HasDerivAt f (f' t
     · rw [hslope, sub_zero]
 
 /-- Second-order Taylor with Lagrange remainder, from two mean value theorems:
-f(τ) − f(0) − τf'(0) = τ²f''(ξ)/2 with |ξ| < |τ|.-/
+f(τ) − f(0) − τf'(0) = τ²f''(ξ)/2 with |ξ| < |τ|.
+@isnad1 id=ex.3h4v.s7.362a073a25fb from=translated src=- shape=e58777f2 vocab=cdad4a00
+-/
 theorem taylor2 {f f' f'' : ℝ → ℝ} (hf : ∀ t, HasDerivAt f (f' t) t)
     (hf' : ∀ t, HasDerivAt f' (f'' t) t) {τ : ℝ} (hτ : τ ≠ 0) :
     ∃ ξ, |ξ| < |τ| ∧ f τ - f 0 - τ * f' 0 = τ ^ 2 * f'' ξ / 2 := by
@@ -267,6 +339,9 @@ theorem taylor2 {f f' f'' : ℝ → ℝ} (hf : ∀ t, HasDerivAt f (f' t) t)
   · exact absurd h hξ₁ne
   · linarith
 
+/--
+@isnad1 id=hasderiv.2h4v.s6.c936a369ef5a from=translated src=- shape=b11a6047 vocab=b3d86f50
+-/
 theorem hasDerivAt_hq_of_ne {f f' f'' : ℝ → ℝ} (hf : ∀ t, HasDerivAt f (f' t) t) {τ : ℝ}
     (hτ : τ ≠ 0) : HasDerivAt (hq f f') (hq' f f' f'' τ) τ := by
   have h : HasDerivAt (fun t => (f t - f 0) / t) ((f' τ * τ - (f τ - f 0) * 1) / τ ^ 2) τ :=
@@ -277,6 +352,9 @@ theorem hasDerivAt_hq_of_ne {f f' f'' : ℝ → ℝ} (hf : ∀ t, HasDerivAt f (
   refine (h.congr_of_eventuallyEq heq).congr_deriv ?_
   simp only [hq', hτ, ite_false]; ring
 
+/--
+@isnad1 id=hasderiv.3h3v.s7.b233f195497b from=translated src=- shape=c0460fe7 vocab=d3db0454
+-/
 theorem hasDerivAt_hq_zero {f f' f'' : ℝ → ℝ} (hf : ∀ t, HasDerivAt f (f' t) t)
     (hf' : ∀ t, HasDerivAt f' (f'' t) t) (hc : ContinuousAt f'' 0) :
     HasDerivAt (hq f f') (hq' f f' f'' 0) 0 := by
@@ -302,6 +380,9 @@ theorem hasDerivAt_hq_zero {f f' f'' : ℝ → ℝ} (hf : ∀ t, HasDerivAt f (f
   calc |f'' ξ / 2 - f'' 0 / 2| = |f'' ξ - f'' 0| / 2 := by rw [← sub_div, abs_div, abs_two]
     _ < ε := by linarith
 
+/--
+@isnad1 id=hasderiv.3h4v.s7.e868a67b13b2 from=translated src=- shape=ca4c1040 vocab=d3db0454
+-/
 theorem hasDerivAt_hq {f f' f'' : ℝ → ℝ} (hf : ∀ t, HasDerivAt f (f' t) t)
     (hf' : ∀ t, HasDerivAt f' (f'' t) t) (hc : ContinuousAt f'' 0) (τ : ℝ) :
     HasDerivAt (hq f f') (hq' f f' f'' τ) τ := by
@@ -310,7 +391,9 @@ theorem hasDerivAt_hq {f f' f'' : ℝ → ℝ} (hf : ∀ t, HasDerivAt f (f' t) 
   · exact hasDerivAt_hq_of_ne hf hτ
 
 /-- Joint continuity at (0,0) of the derivative of the Hadamard quotient of a parametrised
-family, from joint continuity of the second derivative.-/
+family, from joint continuity of the second derivative.
+@isnad1 id=continuo.3h3v.s7.c034345a9359 from=translated src=- shape=9d39fbb5 vocab=d0d45925
+-/
 theorem continuousAt_hq' {F F' F'' : ℝ → ℝ → ℝ}
     (hF : ∀ θ t, HasDerivAt (F θ) (F' θ t) t) (hF' : ∀ θ t, HasDerivAt (F' θ) (F'' θ t) t)
     (hc : ContinuousAt (fun q : ℝ × ℝ => F'' q.1 q.2) (0, 0)) :
@@ -411,49 +494,84 @@ namespace Derived
 
 open Regularity HQuot Hadamard ClusterMatrix Ledger
 
+/--
+@isnad1 id=eq.0h3v.s8.ee0cb8d6345f from=translated src=- shape=644c8725 vocab=d8f22f57
+-/
 theorem finrank_resZero₁ (M : ℝ → ℝ → Matrix (Fin 2) (Fin 2) ℝ) (θ τ : ℝ) :
     Module.finrank ℝ (resZero₁ M θ τ) = (M θ τ).charpoly.rootMultiplicity 0 := by
   rw [resZero₁, LinearMap.finrank_maxGenEigenspace_eq, Matrix.charpoly_toLin']
 
+/--
+@isnad1 id=eq.0h3v.s8.5f21c3b29d43 from=translated src=- shape=644c8725 vocab=991c008e
+-/
 theorem finrank_resZero₂ (A : ℝ → ℝ → Matrix (Fin 4) (Fin 4) ℝ) (θ τ : ℝ) :
     Module.finrank ℝ (resZero₂ A θ τ) = (A θ τ).charpoly.rootMultiplicity 0 := by
   rw [resZero₂, LinearMap.finrank_maxGenEigenspace_eq, Matrix.charpoly_toLin']
 
+/--
+@isnad1 id=le.0h0v.s5.71a2b769fbef from=translated src=- shape=70326b0b vocab=90e0d78c
+-/
 theorem two_add_one_le_three : (2 : WithTop ℕ∞) + 1 ≤ 3 := by norm_num
+/--
+@isnad1 id=le.0h0v.s5.003d6e2f3c82 from=translated src=- shape=70326b0b vocab=90e0d78c
+-/
 theorem one_add_one_le_two : (1 : WithTop ℕ∞) + 1 ≤ 2 := by norm_num
+/--
+@isnad1 id=le.0h0v.s5.91d52ade3499 from=translated src=- shape=70326b0b vocab=1dcec9a8
+-/
 theorem zero_add_one_le_one : (0 : WithTop ℕ∞) + 1 ≤ 1 := by norm_num
 
 variable {M : ℝ → ℝ → Matrix (Fin 2) (Fin 2) ℝ} {A : ℝ → ℝ → Matrix (Fin 4) (Fin 4) ℝ}
   {sStar : ℝ → ℝ}
 
+/--
+@isnad1 id=contdiff.1h4v.s7.a65686ee445f from=translated src=- shape=18df2736 vocab=373c411e
+-/
 theorem contDiff_Mτ (h : ClusterC3 M A) (i j : Fin 2) :
     ContDiff ℝ 2 fun q : ℝ × ℝ => Mτ M q.1 q.2 i j :=
   contDiff_pτ (f := fun θ τ => M θ τ i j) two_add_one_le_three (h.deg1 i j)
 
+/--
+@isnad1 id=contdiff.1h4v.s7.5536bdcef7e9 from=translated src=- shape=18df2736 vocab=b2707d1f
+-/
 theorem contDiff_Mττ (h : ClusterC3 M A) (i j : Fin 2) :
     ContDiff ℝ 1 fun q : ℝ × ℝ => Mττ M q.1 q.2 i j :=
   contDiff_pτ (f := fun θ τ => Mτ M θ τ i j) one_add_one_le_two (contDiff_Mτ h i j)
 
+/--
+@isnad1 id=hasderiv.1h6v.s6.521ddf839277 from=translated src=- shape=dc6bae4e vocab=2ca00a9d
+-/
 theorem hasDerivAt_M (h : ClusterC3 M A) (θ τ : ℝ) (i j : Fin 2) :
     HasDerivAt (fun t => M θ t i j) (Mτ M θ τ i j) τ :=
   hasDerivAt_pτ (f := fun θ τ => M θ τ i j)
     (differentiable_of_contDiff (f := fun θ τ => M θ τ i j) two_add_one_le_three (h.deg1 i j)) θ τ
 
+/--
+@isnad1 id=hasderiv.1h6v.s6.188749a856c8 from=translated src=- shape=eeb71e17 vocab=5c6b4f91
+-/
 theorem hasDerivAt_Mτ (h : ClusterC3 M A) (θ τ : ℝ) (i j : Fin 2) :
     HasDerivAt (fun t => Mτ M θ t i j) (Mττ M θ τ i j) τ :=
   hasDerivAt_pτ (f := fun θ τ => Mτ M θ τ i j)
     (differentiable_of_contDiff (f := fun θ τ => Mτ M θ τ i j) one_add_one_le_two
       (contDiff_Mτ h i j)) θ τ
 
+/--
+@isnad1 id=continuo.1h4v.s6.41f271422b7a from=translated src=- shape=7b4ca1c9 vocab=06df26b7
+-/
 theorem continuousAt_Mττ (h : ClusterC3 M A) (i j : Fin 2) :
     ContinuousAt (fun q : ℝ × ℝ => Mττ M q.1 q.2 i j) (0, 0) :=
   (contDiff_Mττ h i j).continuous.continuousAt
 
-/-- ClusterC3 ⇒ ClusterC1 with M' = ∂_τM.-/
+/-- ClusterC3 ⇒ ClusterC1 with M' = ∂_τM.
+@isnad1 id=clusterc.1h2v.s5.9fab1314dd2a from=translated src=- shape=740d05c5 vocab=2e92f5ee
+-/
 theorem clusterC1_of_C3 (h : ClusterC3 M A) : ClusterC1 M (Mτ M) where
   deriv := hasDerivAt_M h
   cont i j := (contDiff_Mτ h i j).continuous.continuousAt
 
+/--
+@isnad1 id=eq.1h6v.s7.b2155c33df04 from=translated src=- shape=9b74e122 vocab=3e8862a7
+-/
 theorem Ndiv_eq_hq (hsemi : ∀ θ, M θ 0 = sStar θ • (1 : Matrix (Fin 2) (Fin 2) ℝ)) (θ τ : ℝ)
     (i j : Fin 2) :
     Ndiv M (Mτ M) sStar θ τ i j = hq (fun t => M θ t i j) (fun t => Mτ M θ t i j) τ := by
@@ -463,6 +581,9 @@ theorem Ndiv_eq_hq (hsemi : ∀ θ, M θ 0 = sStar θ • (1 : Matrix (Fin 2) (F
   · simp only [Matrix.smul_apply, Matrix.sub_apply, smul_eq_mul, hsemi θ]
     ring
 
+/--
+@isnad1 id=hasderiv.2h7v.s7.8fe0ec1bed9e from=translated src=- shape=b8721fe4 vocab=9ffc6ec7
+-/
 theorem hasDerivAt_Ndiv_entry (h : ClusterC3 M A)
     (hsemi : ∀ θ, M θ 0 = sStar θ • (1 : Matrix (Fin 2) (Fin 2) ℝ)) (θ τ : ℝ) (i j : Fin 2) :
     HasDerivAt (fun τ => Ndiv M (Mτ M) sStar θ τ i j) (Nτ M θ τ i j) τ := by
@@ -474,12 +595,18 @@ theorem hasDerivAt_Ndiv_entry (h : ClusterC3 M A)
   exact hasDerivAt_hq (fun t => hasDerivAt_M h θ t i j) (fun t => hasDerivAt_Mτ h θ t i j)
     hc.continuousAt τ
 
+/--
+@isnad1 id=hasderiv.2h5v.s7.6862d4dc92e1 from=translated src=- shape=450bcd55 vocab=6e75f561
+-/
 theorem hasDerivAt_trace_Ndiv (h : ClusterC3 M A)
     (hsemi : ∀ θ, M θ 0 = sStar θ • (1 : Matrix (Fin 2) (Fin 2) ℝ)) (θ τ : ℝ) :
     HasDerivAt (fun τ => (Ndiv M (Mτ M) sStar θ τ).trace) (aτ M θ τ) τ := by
   simp only [Matrix.trace_fin_two, aτ]
   exact (hasDerivAt_Ndiv_entry h hsemi θ τ 0 0).add (hasDerivAt_Ndiv_entry h hsemi θ τ 1 1)
 
+/--
+@isnad1 id=hasderiv.2h5v.s7.fc211cd1120b from=translated src=- shape=b4c9bccf vocab=12fa058b
+-/
 theorem hasDerivAt_det_Ndiv (h : ClusterC3 M A)
     (hsemi : ∀ θ, M θ 0 = sStar θ • (1 : Matrix (Fin 2) (Fin 2) ℝ)) (θ τ : ℝ) :
     HasDerivAt (fun τ => (Ndiv M (Mτ M) sStar θ τ).det) (bτ M sStar θ τ) τ := by
@@ -487,18 +614,27 @@ theorem hasDerivAt_det_Ndiv (h : ClusterC3 M A)
   exact ((hasDerivAt_Ndiv_entry h hsemi θ τ 0 0).mul (hasDerivAt_Ndiv_entry h hsemi θ τ 1 1)).sub
     ((hasDerivAt_Ndiv_entry h hsemi θ τ 0 1).mul (hasDerivAt_Ndiv_entry h hsemi θ τ 1 0))
 
+/--
+@isnad1 id=continuo.1h4v.s6.98f876a5e1ef from=translated src=- shape=7b4ca1c9 vocab=8b59aa59
+-/
 theorem continuousAt_Nτ_entry (h : ClusterC3 M A) (i j : Fin 2) :
     ContinuousAt (fun q : ℝ × ℝ => Nτ M q.1 q.2 i j) (0, 0) :=
   continuousAt_hq' (F := fun θ t => M θ t i j) (F' := fun θ t => Mτ M θ t i j)
     (F'' := fun θ t => Mττ M θ t i j) (fun θ t => hasDerivAt_M h θ t i j)
     (fun θ t => hasDerivAt_Mτ h θ t i j) (continuousAt_Mττ h i j)
 
+/--
+@isnad1 id=continuo.1h2v.s6.75fe8bd006fe from=translated src=- shape=fb866706 vocab=c8ac1c7a
+-/
 theorem continuousAt_aτ (h : ClusterC3 M A) : ContinuousAt (Function.uncurry (aτ M)) (0, 0) := by
   have : Function.uncurry (aτ M) = fun q : ℝ × ℝ => Nτ M q.1 q.2 0 0 + Nτ M q.1 q.2 1 1 := by
     funext q; simp [Function.uncurry, aτ, Matrix.trace_fin_two]
   rw [this]
   exact (continuousAt_Nτ_entry h 0 0).add (continuousAt_Nτ_entry h 1 1)
 
+/--
+@isnad1 id=continuo.2h3v.s7.2e457548b5f2 from=translated src=- shape=e43a4624 vocab=99ec1af6
+-/
 theorem continuousAt_bτ (h : ClusterC3 M A)
     (hsemi : ∀ θ, M θ 0 = sStar θ • (1 : Matrix (Fin 2) (Fin 2) ℝ)) :
     ContinuousAt (Function.uncurry (bτ M sStar)) (0, 0) := by
@@ -510,7 +646,9 @@ theorem continuousAt_bτ (h : ClusterC3 M A)
   exact (((hNτ 0 0).mul (hN 1 1)).add ((hN 0 0).mul (hNτ 1 1))).sub
     (((hNτ 0 1).mul (hN 1 0)).add ((hN 0 1).mul (hNτ 1 0)))
 
-/-- ClusterC3 (+ semisimplicity at τ = 0) ⇒ TraceDetC1 with the explicit derivatives.-/
+/-- ClusterC3 (+ semisimplicity at τ = 0) ⇒ TraceDetC1 with the explicit derivatives.
+@isnad1 id=tracedet.2h3v.s7.a196667831e1 from=translated src=- shape=2f7c0c12 vocab=cc0d70e3
+-/
 theorem traceDetC1_of_C3 (h : ClusterC3 M A)
     (hsemi : ∀ θ, M θ 0 = sStar θ • (1 : Matrix (Fin 2) (Fin 2) ℝ)) :
     TraceDetC1 M (Mτ M) sStar (aτ M) (bτ M sStar) where
@@ -519,13 +657,21 @@ theorem traceDetC1_of_C3 (h : ClusterC3 M A)
   cont_a' := continuousAt_aτ h
   cont_b' := continuousAt_bτ h hsemi
 
+/--
+@isnad1 id=contdiff.1h2v.s7.ed7b9a08cc00 from=translated src=- shape=0955e023 vocab=fd6ae3e7
+-/
 theorem contDiff_E₁f (h : ClusterC3 M A) : ContDiff ℝ 3 fun q : ℝ × ℝ => E₁f M A q.1 q.2 :=
   contDiff_E₁ (A := fun q : ℝ × ℝ => A q.1 q.2) (M := fun q : ℝ × ℝ => M q.1 q.2) h.deg2 h.deg1
 
+/--
+@isnad1 id=contdiff.1h2v.s7.2e5d4c65bd0a from=translated src=- shape=0955e023 vocab=811a55b1
+-/
 theorem contDiff_E₂f (h : ClusterC3 M A) : ContDiff ℝ 3 fun q : ℝ × ℝ => E₂f M A q.1 q.2 :=
   contDiff_E₂ (A := fun q : ℝ × ℝ => A q.1 q.2) (M := fun q : ℝ × ℝ => M q.1 q.2) h.deg2 h.deg1
 
-/-- ClusterC3 ⇒ PureSumC2 on the unit square, with the partials as the derivative data.-/
+/-- ClusterC3 ⇒ PureSumC2 on the unit square, with the partials as the derivative data.
+@isnad1 id=ex.1h2v.s6.0f4eb55ffb34 from=translated src=- shape=b4867983 vocab=8ec164f6
+-/
 theorem pureSumC2_of_C3 (h : ClusterC3 M A) :
     ∃ K₁ : ℝ, PureSumC2 (E₁f M A) (pτ (E₁f M A)) (pθ (pτ (E₁f M A))) K₁ 1 := by
   have h3 := contDiff_E₁f h
@@ -538,7 +684,9 @@ theorem pureSumC2_of_C3 (h : ClusterC3 M A) :
     hasDerivAt_pτ (f := E₁f M A) (differentiable_of_contDiff two_add_one_le_three h3),
     hasDerivAt_pθ (f := pτ (E₁f M A)) (differentiable_of_contDiff one_add_one_le_two h2), hb⟩
 
-/-- ClusterC3 ⇒ PureProdC3 on the unit square.-/
+/-- ClusterC3 ⇒ PureProdC3 on the unit square.
+@isnad1 id=ex.1h2v.s6.9481a0202d2f from=translated src=- shape=2af63e19 vocab=5fc3a452
+-/
 theorem pureProdC3_of_C3 (h : ClusterC3 M A) :
     ∃ K₂ : ℝ, PureProdC3 (E₂f M A) (pτ (E₂f M A)) (pτ (pτ (E₂f M A)))
       (pθ (pτ (pτ (E₂f M A)))) K₂ 1 := by
@@ -563,7 +711,9 @@ namespace Spectral
 
 open ClusterMatrix
 
-/-- spec A = {s, s, s, −s} ⇒ c₁ = 2s, c₂ = 0 (coefficient extraction at z = 0, ±1, 2).-/
+/-- spec A = {s, s, s, −s} ⇒ c₁ = 2s, c₂ = 0 (coefficient extraction at z = 0, ±1, 2).
+@isnad1 id=and.1h2v.s6.b23008af58d8 from=translated src=- shape=20971785 vocab=3aa6c190
+-/
 theorem coeffs_of_mirror {A : Matrix (Fin 4) (Fin 4) ℝ} {s : ℝ}
     (h : ∀ z, A.charpoly.eval z = (z - s) ^ 3 * (z + s)) : c₁ A = 2 * s ∧ c₂ A = 0 := by
   have h0 := h 0
@@ -574,7 +724,9 @@ theorem coeffs_of_mirror {A : Matrix (Fin 4) (Fin 4) ℝ} {s : ℝ}
   ring_nf at h0 h1 hm h2
   constructor <;> linarith
 
-/-- spec A = {0, 0, 0, t} ⇒ c₁ = t, c₂ = 0.-/
+/-- spec A = {0, 0, 0, t} ⇒ c₁ = t, c₂ = 0.
+@isnad1 id=and.1h2v.s6.e873cf79186c from=translated src=- shape=e724396c vocab=8549c3e4
+-/
 theorem coeffs_of_pinned {A : Matrix (Fin 4) (Fin 4) ℝ} {t : ℝ}
     (h : ∀ z, A.charpoly.eval z = z ^ 3 * (z - t)) : c₁ A = t ∧ c₂ A = 0 := by
   have h0 := h 0
@@ -586,13 +738,18 @@ theorem coeffs_of_pinned {A : Matrix (Fin 4) (Fin 4) ℝ} {t : ℝ}
   constructor <;> linarith
 
 /-- MIRROR (input A) on the matrices: M(θ,0) = s*·1 and spec A(θ,0) = {s*,s*,s*,−s*} ⇒
-e₁(θ,0) = 0, e₂(θ,0) = −s*².-/
+e₁(θ,0) = 0, e₂(θ,0) = −s*².
+@isnad1 id=eq.2h3v.s7.1fffcb10d21e from=translated src=- shape=2c31a3b9 vocab=8a2277db
+-/
 theorem E₁_mirror {A : Matrix (Fin 4) (Fin 4) ℝ} {M : Matrix (Fin 2) (Fin 2) ℝ} {s : ℝ}
     (hM : M = s • (1 : Matrix (Fin 2) (Fin 2) ℝ))
     (hA : ∀ z, A.charpoly.eval z = (z - s) ^ 3 * (z + s)) : E₁ A M = 0 := by
   obtain ⟨h1, _⟩ := coeffs_of_mirror hA
   rw [E₁, h1, hM, trace_smul_one]; ring
 
+/--
+@isnad1 id=eq.2h3v.s8.312c300b2534 from=translated src=- shape=0b6e870f vocab=2c0c95d5
+-/
 theorem E₂_mirror {A : Matrix (Fin 4) (Fin 4) ℝ} {M : Matrix (Fin 2) (Fin 2) ℝ} {s : ℝ}
     (hM : M = s • (1 : Matrix (Fin 2) (Fin 2) ℝ))
     (hA : ∀ z, A.charpoly.eval z = (z - s) ^ 3 * (z + s)) : E₂ A M = -s ^ 2 := by
@@ -600,12 +757,17 @@ theorem E₂_mirror {A : Matrix (Fin 4) (Fin 4) ℝ} {M : Matrix (Fin 2) (Fin 2)
   rw [E₂, E₁, h1, h2, hM, trace_smul_one, det_smul_one]; ring
 
 /-- PINNING (input D) on the matrices: det M(0,τ) = 0 and spec A(0,τ) = {0,0,0,tr M(0,τ)} ⇒
-e₁(0,τ) = 0, e₂(0,τ) = 0.-/
+e₁(0,τ) = 0, e₂(0,τ) = 0.
+@isnad1 id=eq.1h2v.s6.c60419226700 from=translated src=- shape=0c25029c vocab=cf3b0d95
+-/
 theorem E₁_pinned {A : Matrix (Fin 4) (Fin 4) ℝ} {M : Matrix (Fin 2) (Fin 2) ℝ}
     (hA : ∀ z, A.charpoly.eval z = z ^ 3 * (z - M.trace)) : E₁ A M = 0 := by
   obtain ⟨h1, _⟩ := coeffs_of_pinned hA
   rw [E₁, h1]; ring
 
+/--
+@isnad1 id=eq.2h2v.s7.378cfba85444 from=translated src=- shape=5173a04f vocab=5e95cb85
+-/
 theorem E₂_pinned {A : Matrix (Fin 4) (Fin 4) ℝ} {M : Matrix (Fin 2) (Fin 2) ℝ}
     (hdet : M.det = 0) (hA : ∀ z, A.charpoly.eval z = z ^ 3 * (z - M.trace)) : E₂ A M = 0 := by
   obtain ⟨h1, h2⟩ := coeffs_of_pinned hA
@@ -614,15 +776,23 @@ theorem E₂_pinned {A : Matrix (Fin 4) (Fin 4) ℝ} {M : Matrix (Fin 2) (Fin 2)
 /-- The pure quadratic as a polynomial.-/
 noncomputable def Qpoly (e₁ e₂ : ℝ) : ℝ[X] := X ^ 2 - C e₁ * X + C e₂
 
+/--
+@isnad1 id=eq.0h3v.s5.f93e6882c57f from=translated src=- shape=6067dd2e vocab=30631d69
+-/
 theorem eval_Qpoly (e₁ e₂ z : ℝ) : (Qpoly e₁ e₂).eval z = z ^ 2 - e₁ * z + e₂ := by
   simp [Qpoly]
 
+/--
+@isnad1 id=ne.0h2v.s4.0a5bc10c3f7d from=translated src=- shape=36c45843 vocab=7d67376c
+-/
 theorem Qpoly_ne_zero (e₁ e₂ : ℝ) : Qpoly e₁ e₂ ≠ 0 := by
   intro h
   have := congrArg (fun p : ℝ[X] => p.coeff 2) h
   simp [Qpoly] at this
 
-/-- The 2×2 characteristic polynomial factors through its two eigenvalues.-/
+/-- The 2×2 characteristic polynomial factors through its two eigenvalues.
+@isnad1 id=eq.2h3v.s7.b5d38f48db86 from=translated src=- shape=063ef8a7 vocab=f5d59897
+-/
 theorem charpoly_fin_two_factor {M : Matrix (Fin 2) (Fin 2) ℝ} {scl snc : ℝ}
     (hs : scl + snc = M.trace) (hp : scl * snc = M.det) :
     M.charpoly = (X - C scl) * (X - C snc) := by
@@ -632,7 +802,9 @@ theorem charpoly_fin_two_factor {M : Matrix (Fin 2) (Fin 2) ℝ} {scl snc : ℝ}
   simp only [eval_mul, eval_sub, eval_X, eval_C]
   ring
 
-/-- At a crossing (snc = 0, scl ≠ 0): 0 is a SIMPLE eigenvalue of the degree-1 cluster.-/
+/-- At a crossing (snc = 0, scl ≠ 0): 0 is a SIMPLE eigenvalue of the degree-1 cluster.
+@isnad1 id=eq.4h3v.s7.85aed62a4fe9 from=translated src=- shape=9aa2138f vocab=be52282c
+-/
 theorem rootMultiplicity_zero_fin_two {M : Matrix (Fin 2) (Fin 2) ℝ} {scl snc : ℝ}
     (hne : scl ≠ snc) (hsnc : snc = 0) (hs : scl + snc = M.trace) (hp : scl * snc = M.det) :
     M.charpoly.rootMultiplicity 0 = 1 := by
@@ -644,7 +816,9 @@ theorem rootMultiplicity_zero_fin_two {M : Matrix (Fin 2) (Fin 2) ℝ} {scl snc 
 
 /-- LOCKED BRANCHES: if the two degree-1 eigenvalues (distinct) are degree-2 eigenvalues, the
 degree-2 characteristic polynomial factors as (X − s_cl)(X − s_nc)·Q with Q the pure quadratic of
-E₁, E₂ (quartic division).-/
+E₁, E₂ (quartic division).
+@isnad1 id=eq.4h4v.s8.df69203fce0c from=translated src=- shape=220fe72d vocab=943c95a6
+-/
 theorem charpoly_factor_locked {A : Matrix (Fin 4) (Fin 4) ℝ} {M : Matrix (Fin 2) (Fin 2) ℝ}
     {scl snc : ℝ} (hne : scl ≠ snc) (hs : scl + snc = M.trace) (hp : scl * snc = M.det)
     (hlocked : ∀ z, M.charpoly.eval z = 0 → A.charpoly.eval z = 0) :
@@ -661,6 +835,9 @@ theorem charpoly_factor_locked {A : Matrix (Fin 4) (Fin 4) ℝ} {M : Matrix (Fin
   simp only [Qpoly, eval_mul, eval_sub, eval_add, eval_pow, eval_X, eval_C]
   rw [E₁_eq A M hs, E₂_eq A M hs hp]
 
+/--
+@isnad1 id=eq.1h3v.s7.bb2727726b21 from=translated src=- shape=8086629b vocab=25288e85
+-/
 theorem rootMultiplicity_zero_locked {scl : ℝ} (hscl : scl ≠ 0) (e₁ e₂ : ℝ) :
     ((X - C scl) * (X - C (0 : ℝ)) * Qpoly e₁ e₂).rootMultiplicity 0 =
       1 + (Qpoly e₁ e₂).rootMultiplicity 0 := by
@@ -673,7 +850,9 @@ theorem rootMultiplicity_zero_locked {scl : ℝ} (hscl : scl ≠ 0) (e₁ e₂ :
 
 /-- THE EXACTNESS DICTIONARY. At a crossing (s_nc = 0 ≠ s_cl, locked branches in degree 2): if
 the algebraic multiplicity of 0 in the degree-2 cluster is 2 (= 2·c₁ by exactness), then the pure
-quadratic has 0 as a SIMPLE root: e₂ = 0 and e₁ ≠ 0 — the former `hexactZero` and `hgeneric`.-/
+quadratic has 0 as a SIMPLE root: e₂ = 0 and e₁ ≠ 0 — the former `hexactZero` and `hgeneric`.
+@isnad1 id=and.6h4v.s7.56114ee5223c from=translated src=- shape=57a6465c vocab=5a24ad0d
+-/
 theorem crossing_pure_data {A : Matrix (Fin 4) (Fin 4) ℝ} {M : Matrix (Fin 2) (Fin 2) ℝ}
     {scl snc : ℝ} (hne : scl ≠ snc) (hsnc : snc = 0) (hs : scl + snc = M.trace)
     (hp : scl * snc = M.det) (hlocked : ∀ z, M.charpoly.eval z = 0 → A.charpoly.eval z = 0)
@@ -702,7 +881,9 @@ namespace Derived
 /-- SATURATION, matrix form. Two linearly independent eigenvectors of a real 2×2 matrix with the same
 eigenvalue s force the matrix to be s·1: the rank (2, the type) plus two independent resonant states
 at s*(θ) — d₀f and I·d₀f (rederivation A2) — give M(θ,0) = s*(θ)·1, the former binder `hsemisimple`.
-Wraps `Saturation.scalar_of_two_eigenvectors` (rate file §6) through `Matrix.toLin'`.-/
+Wraps `Saturation.scalar_of_two_eigenvectors` (rate file §6) through `Matrix.toLin'`.
+@isnad1 id=eq.3h4v.s8.62eec00691ef from=translated src=- shape=0f311b4a vocab=5cd45fe4
+-/
 theorem matrix_scalar_of_two_eigenvectors (M : Matrix (Fin 2) (Fin 2) ℝ) (s : ℝ)
     (v₁ v₂ : Fin 2 → ℝ) (hind : LinearIndependent ℝ ![v₁, v₂])
     (h₁ : M *ᵥ v₁ = s • v₁) (h₂ : M *ᵥ v₂ = s • v₂) :
@@ -719,7 +900,9 @@ theorem matrix_scalar_of_two_eigenvectors (M : Matrix (Fin 2) (Fin 2) ℝ) (s : 
   fin_cases i <;> simp
 
 /-- The ledger shape: for every θ, two independent states at s*(θ) in the degree-1 cluster at g_hyp
-⇒ M(θ,0) = s*(θ)·1.-/
+⇒ M(θ,0) = s*(θ)·1.
+@isnad1 id=eq.1h3v.s8.8879a9931323 from=translated src=- shape=2723889b vocab=5cd45fe4
+-/
 theorem semisimple_of_states (M : ℝ → ℝ → Matrix (Fin 2) (Fin 2) ℝ) (sStar : ℝ → ℝ)
     (hstates : ∀ θ, ∃ v₁ v₂ : Fin 2 → ℝ, LinearIndependent ℝ ![v₁, v₂] ∧
       M θ 0 *ᵥ v₁ = sStar θ • v₁ ∧ M θ 0 *ᵥ v₂ = sStar θ • v₂) :
@@ -734,11 +917,16 @@ namespace Branch
 
 open TwinRate PureZeros
 
+/--
+@isnad1 id=eq.1h2v.s6.6317925ed61a from=translated src=- shape=0dcaf6e3 vocab=b52e6e1b
+-/
 theorem wMinus_root {a b : ℝ} (hD : 0 ≤ disc a b) : wMinus a b ^ 2 - a * wMinus a b + b = 0 := by
   have h := Real.sq_sqrt hD
   unfold disc at h; unfold wMinus disc; linear_combination h / 4
 
-/-- Wherever the discriminant is nonnegative, `zBranch` is a root of Q.-/
+/-- Wherever the discriminant is nonnegative, `zBranch` is a root of Q.
+@isnad1 id=eq.1h3v.s6.2d5cc6e646ab from=translated src=- shape=f220eed4 vocab=28a94662
+-/
 theorem zBranch_root (e₁ e₂ : ℝ → ℝ) (τ : ℝ) (hD : 0 ≤ disc (e₁ τ) (e₂ τ)) :
     zBranch e₁ e₂ τ ^ 2 - e₁ τ * zBranch e₁ e₂ τ + e₂ τ = 0 := by
   unfold zBranch
@@ -747,7 +935,9 @@ theorem zBranch_root (e₁ e₂ : ℝ → ℝ) (τ : ℝ) (hD : 0 ≤ disc (e₁
   · exact wMinus_root hD
 
 /-- At a point where Q has the SIMPLE root 0 (e₂ = 0, e₁ ≠ 0) and e₁, e₂ are continuous, the
-nearest-zero branch vanishes and is continuous — the former `hbranch`.-/
+nearest-zero branch vanishes and is continuous — the former `hbranch`.
+@isnad1 id=and.4h3v.s6.b9511ae3ab41 from=translated src=- shape=7e60c83a vocab=2df4f51c
+-/
 theorem zBranch_at_simple_zero {e₁ e₂ : ℝ → ℝ} {σ : ℝ} (hc₁ : ContinuousAt e₁ σ)
     (hc₂ : ContinuousAt e₂ σ) (h₂ : e₂ σ = 0) (h₁ : e₁ σ ≠ 0) :
     ContinuousAt (zBranch e₁ e₂) σ ∧ zBranch e₁ e₂ σ = 0 := by
@@ -810,7 +1000,9 @@ DEFINED from M and A; ⚡9/11: so is the pure-zero branch z = `Branch.zBranch` (
 which removes the former `hzQ` and `hbranch`; and the ζ-side enters as the two facts it really is —
 `ZetaFactorization` (CD (6.5) at λ = 0, with ζ₀(τ) = ζ(0; g_τ) and F its regular factor) and
 `hfried_off` = "ζ₀ = τ_R off the crossing" (DGRS Thm 2 + Fried at g_hyp).
-Conclusion: ζ₀(σ) ≠ τ_R.-/
+Conclusion: ζ₀(σ) ≠ τ_R.
+@isnad1 id=other.11h9v.s13.b4f56feb0883 from=translated src=- shape=e924bf85 vocab=08f08be8
+-/
 theorem fried_fails_at_crossing_of_matrix_inputs
     {V₃ : Type*} [AddCommGroup V₃] [Module ℝ V₃]
     (M : ℝ → ℝ → Matrix (Fin 2) (Fin 2) ℝ) (A : ℝ → ℝ → Matrix (Fin 4) (Fin 4) ℝ)

@@ -101,7 +101,9 @@ open Filter Topology TwinRate FirstVariation Hadamard PureZeros Capstone OrderCo
 -- The conclusion's hypotheses are NAMED (`∀ (hzQ : …), …`) so that the ledger table in the README
 -- can refer to them (`scripts/ledger_check.py` compares the two); the proof consumes them by
 -- unification, so the unused-variable linter is switched off for this one declaration.
-/-- **Fried's identity fails at the crossing metric** — THE LEDGER. One binder per fact.-/
+/-- **Fried's identity fails at the crossing metric** — THE LEDGER. One binder per fact.
+@isnad1 id=other.8h9v.s13.26b3cb20856f from=translated src=- shape=9bb0c1c4 vocab=0e759484
+-/
 theorem fried_counterexample_of_inputs
     {V₃ : Type*} [AddCommGroup V₃] [Module ℝ V₃]
     (M : ℝ → ℝ → Matrix (Fin 2) (Fin 2) ℝ) (A : ℝ → ℝ → Matrix (Fin 4) (Fin 4) ℝ)
@@ -205,7 +207,9 @@ M := `Mreal F₁ J₁ D₁` (2×2, degree 1) and A := `Mreal F₂ J₂ D₂` (4�
 frame matrices A(p)⁻¹B(p) built from contour integrals of matrix elements of the resolvent families.
 Input (B) is replaced by the fields of `F₁`, `F₂` (CDDP Lemma 4.3 + generator smoothness, [V]) and
 the frame nondegeneracy `hdet₁`, `hdet₂` ([def]: dual frame at (0,0), CP20 §6.2). Every other binder is
-as in `fried_counterexample_of_inputs`.-/
+as in `fried_counterexample_of_inputs`.
+@isnad1 id=other.9h15v.s13.4ce20fe4b233 from=translated src=- shape=92debfbb vocab=16dca8a6
+-/
 theorem fried_counterexample_of_resolvent_inputs
     {V₃ : Type*} [AddCommGroup V₃] [Module ℝ V₃]
     {S₁ S₂ : BanachScale.{0}}

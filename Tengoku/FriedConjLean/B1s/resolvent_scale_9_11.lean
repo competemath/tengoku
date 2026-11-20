@@ -47,7 +47,9 @@ variable {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
 variable {S : BanachScale.{u}} (F : ResolventFamily S X)
 
 /-- THE RESOLVENT IDENTITY (CDDP (4.12)), derived from the inverse relations:
-incl (R x − R y) = R x (B y − B x) R y as maps H (n+1) → H n.-/
+incl (R x − R y) = R x (B y − B x) R y as maps H (n+1) → H n.
+@isnad1 id=eq.0h6v.s12.e488cb6f28bb from=translated src=- shape=b3522e9d vocab=631d1e2d
+-/
 theorem resolvent_identity (n : ℕ) (x y : X) :
     (S.incl (n + 1) n (Nat.le_succ n)).comp (F.R (n + 1) x - F.R (n + 1) y) =
       ((F.R n x).comp (F.B n y - F.B n x)).comp (F.R (n + 1) y) := by
@@ -59,7 +61,9 @@ theorem resolvent_identity (n : ℕ) (x y : X) :
 
 /-! ## §2 Compatibilities across several levels; continuity with loss -/
 
-/-- The resolvent commutes with every inclusion.-/
+/-- The resolvent commutes with every inclusion.
+@isnad1 id=eq.1h6v.s8.8bdb569bf9ad from=translated src=- shape=dbc9160d vocab=d9f93d05
+-/
 theorem R_incl_gen (a b : ℕ) (hab : b ≤ a) (x : X) :
     (S.incl a b hab).comp (F.R a x) = (F.R b x).comp (S.incl a b hab) := by
   induction a with
@@ -74,7 +78,9 @@ theorem R_incl_gen (a b : ℕ) (hab : b ≤ a) (x : X) :
       rw [← S.incl_trans (a + 1) a b (Nat.le_succ a) hba, comp_assoc, F.R_incl, ← comp_assoc,
         ih hba, comp_assoc]
 
-/-- The generator commutes with every inclusion.-/
+/-- The generator commutes with every inclusion.
+@isnad1 id=eq.1h6v.s10.bac2403d1d88 from=translated src=- shape=8652dc50 vocab=ca37da31
+-/
 theorem B_incl_gen (a b : ℕ) (hab : b ≤ a) (x : X) :
     (S.incl a b hab).comp (F.B a x) = (F.B b x).comp (S.incl (a + 1) (b + 1) (by omega)) := by
   induction a with
@@ -90,7 +96,9 @@ theorem B_incl_gen (a b : ℕ) (hab : b ≤ a) (x : X) :
         ih hba, comp_assoc, S.incl_trans]
 
 /-- Loss-one continuity (CDDP: "locally Lipschitz continuous in τ"):
-x ↦ incl (n+1) n ∘ R (n+1) x.-/
+x ↦ incl (n+1) n ∘ R (n+1) x.
+@isnad1 id=locallyl.0h4v.s10.566cb41c65bd from=translated src=- shape=f5e5330a vocab=4c4268fb
+-/
 theorem locallyLipschitz_loss_one (n : ℕ) :
     LocallyLipschitz fun x => (S.incl (n + 1) n (Nat.le_succ n)).comp (F.R (n + 1) x) := by
   intro x₀
@@ -118,7 +126,9 @@ theorem locallyLipschitz_loss_one (n : ℕ) :
           (mul_nonneg hC0 (by positivity))
     _ = ((⟨C * K * C', by positivity⟩ : NNReal) : ℝ) * dist x y := by push_cast; ring
 
-/-- Continuity with any loss ≥ 1, in the shape used downstream.-/
+/-- Continuity with any loss ≥ 1, in the shape used downstream.
+@isnad1 id=continuo.1h5v.s8.a31985227d04 from=translated src=- shape=b05279ae vocab=988e2a3d
+-/
 theorem continuous_loss (a b : ℕ) (hab : b + 1 ≤ a) :
     Continuous fun x => (S.incl a b (by omega)).comp (F.R a x) := by
   have heq : (fun x => (S.incl a b (by omega)).comp (F.R a x)) =
@@ -140,6 +150,9 @@ noncomputable def derivLoss (a b : ℕ) (hab : b + 2 ≤ a) (x : X) :
     (((compL ℝ (S.H a) (S.H (b + 2)) (S.H (b + 1))).flip
       ((S.incl a (b + 2) hab).comp (F.R a x))).comp (fderiv ℝ (F.B (b + 1)) x)))
 
+/--
+@isnad1 id=eq.1h7v.s13.ef138eb78fbe from=translated src=- shape=34b6ac74 vocab=fa9e5631
+-/
 theorem derivLoss_apply (a b : ℕ) (hab : b + 2 ≤ a) (x : X) (h : X) :
     derivLoss F a b hab x h =
       -(((S.incl (b + 1) b (Nat.le_succ b)).comp (F.R (b + 1) x)).comp
@@ -147,7 +160,9 @@ theorem derivLoss_apply (a b : ℕ) (hab : b + 2 ≤ a) (x : X) (h : X) :
   simp [derivLoss, compL_apply, flip_apply]
 
 /-- incl a b ∘ (R a x − R a x₀) = (incl (b+1) b ∘ R (b+1) x) ∘ (B (b+1) x₀ − B (b+1) x) ∘
-(incl a (b+2) ∘ R a x₀): the identity at level b+1, pushed through the inclusions.-/
+(incl a (b+2) ∘ R a x₀): the identity at level b+1, pushed through the inclusions.
+@isnad1 id=eq.1h7v.s12.5c6773634322 from=translated src=- shape=c9805590 vocab=5f65451c
+-/
 theorem diff_eq (a b : ℕ) (hab : b + 2 ≤ a) (x x₀ : X) :
     (S.incl a b (by omega)).comp (F.R a x - F.R a x₀) =
       (((S.incl (b + 1) b (Nat.le_succ b)).comp (F.R (b + 1) x)).comp
@@ -164,7 +179,9 @@ theorem diff_eq (a b : ℕ) (hab : b + 2 ≤ a) (x x₀ : X) :
 
 /-- THE DERIVATIVE WITH LOSS. For a ≥ b + 2 the family x ↦ incl a b ∘ R a x is Fréchet
 differentiable with derivative `derivLoss`. Proof: the identity gives the difference as a product;
-subtracting the candidate derivative leaves (loss-one Lipschitz) × O(h) = O(h²) plus (bounded) × o(h).-/
+subtracting the candidate derivative leaves (loss-one Lipschitz) × O(h) = O(h²) plus (bounded) × o(h).
+@isnad1 id=hasfderi.1h6v.s9.5bbb811ed8af from=translated src=- shape=2235f350 vocab=c73c6adc
+-/
 theorem hasFDerivAt_loss (a b : ℕ) (hab : b + 2 ≤ a) (x₀ : X) :
     HasFDerivAt (fun x => (S.incl a b (by omega)).comp (F.R a x)) (derivLoss F a b hab x₀) x₀ := by
   set U : X → (S.H (b + 1) →L[ℝ] S.H b) :=
@@ -238,12 +255,17 @@ def lossBudget : ℕ → ℕ
   | 0 => 1
   | k + 1 => 2 * lossBudget k + 1
 
+/--
+@isnad1 id=le.0h1v.s3.cd05b4c4eb61 from=translated src=- shape=8a62b088 vocab=d2e91605
+-/
 theorem one_le_lossBudget (k : ℕ) : 1 ≤ lossBudget k := by
   induction k with
   | zero => simp [lossBudget]
   | succ k ih => simp only [lossBudget]; omega
 
-/-- The differentiated compatibility: incl a b ∘ ∂B a x h = ∂B b x h ∘ incl (a+1) (b+1).-/
+/-- The differentiated compatibility: incl a b ∘ ∂B a x h = ∂B b x h ∘ incl (a+1) (b+1).
+@isnad1 id=eq.1h7v.s13.124f6243e9a3 from=translated src=- shape=e6625b5a vocab=33307b69
+-/
 theorem fderiv_B_incl_gen (a b : ℕ) (hab : b ≤ a) (x h : X) :
     (S.incl a b hab).comp (fderiv ℝ (F.B a) x h) =
       (fderiv ℝ (F.B b) x h).comp (S.incl (a + 1) (b + 1) (by omega)) := by
@@ -277,7 +299,9 @@ noncomputable def derivSplit (a b j : ℕ) (hj : b + j + 1 ≤ a) (x : X) :
     (((compL ℝ (S.H a) (S.H (b + j + 1)) (S.H (b + j))).flip
       ((S.incl a (b + j + 1) hj).comp (F.R a x))).comp (fderiv ℝ (F.B (b + j)) x)))
 
-/-- Every split equals the level-b canonical form −R b x ∘ ∂B b x h ∘ incl a (b+1) ∘ R a x.-/
+/-- Every split equals the level-b canonical form −R b x ∘ ∂B b x h ∘ incl a (b+1) ∘ R a x.
+@isnad1 id=eq.1h8v.s12.112ffd9925a1 from=translated src=- shape=ad0bf866 vocab=4889fe3a
+-/
 theorem derivSplit_apply_canonical (a b j : ℕ) (hj : b + j + 1 ≤ a) (x h : X) :
     derivSplit F a b j hj x h =
       -((F.R b x).comp ((fderiv ℝ (F.B b) x h).comp
@@ -290,10 +314,15 @@ theorem derivSplit_apply_canonical (a b j : ℕ) (hj : b + j + 1 ≤ a) (x h : X
     comp_assoc (F.R b x), comp_assoc (fderiv ℝ (F.B b) x h), S.incl_trans]
   simp only [comp_assoc]
 
+/--
+@isnad1 id=eq.1h6v.s9.1a911aff4788 from=translated src=- shape=108edb34 vocab=a4691059
+-/
 theorem derivLoss_eq_derivSplit (a b : ℕ) (hab : b + 2 ≤ a) (x : X) :
     derivLoss F a b hab x = derivSplit F a b 1 hab x := rfl
 
-/-- Smoothness of a split derivative from smoothness of its two resolvent factors.-/
+/-- Smoothness of a split derivative from smoothness of its two resolvent factors.
+@isnad1 id=contdiff.3h7v.s11.624ef5043d21 from=translated src=- shape=282039b4 vocab=725d25ae
+-/
 theorem contDiff_derivSplit (k : ℕ) (a b j : ℕ) (hj : b + j + 1 ≤ a)
     (hU : ContDiff ℝ k fun x => (S.incl (b + j) b (Nat.le_add_right b j)).comp (F.R (b + j) x))
     (hV : ContDiff ℝ k fun x => (S.incl a (b + j + 1) hj).comp (F.R a x)) :
@@ -308,7 +337,9 @@ theorem contDiff_derivSplit (k : ℕ) (a b j : ℕ) (hj : b + j + 1 ≤ a)
   exact (h1.clm_comp (h2.clm_comp hW)).neg
 
 /-- THE THEOREM. On a scale with a locally uniformly bounded resolvent family and a smooth generator
-family, the resolvent with loss ≥ L k is C^k in the parameter.-/
+family, the resolvent with loss ≥ L k is C^k in the parameter.
+@isnad1 id=contdiff.1h6v.s8.ff6af1b70dd6 from=translated src=- shape=e473150a vocab=54a3e186
+-/
 theorem contDiff_loss : ∀ (k : ℕ) (a b : ℕ) (hab : b + lossBudget k ≤ a),
     ContDiff ℝ k fun x => (S.incl a b (le_trans (Nat.le_add_right b _) hab)).comp (F.R a x) := by
   intro k
