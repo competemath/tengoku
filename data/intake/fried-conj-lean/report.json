@@ -1,0 +1,14 @@
+{
+ "bundle_sha256": "6dbe891e3206e7f544ef1baba769f6958c62a2e6fdc04f230ffb0ae976b71d3a",
+ "factory_changes": {
+  "inert lines removed": 11,
+  "modules changed": 9,
+  "print lines removed": 2
+ },
+ "gate2_unjudged": [],
+ "library": "fried-conj-lean",
+ "lint_mode": "proposed",
+ "modules": 10,
+ "part": 1,
+ "theorems": 189
+}
