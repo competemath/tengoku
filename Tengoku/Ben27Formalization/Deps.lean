@@ -1,0 +1,1 @@
+-- Ben27Formalization: a factory bundle (data/intake/ben-27-formalization). This file only marks the library for Tengoku/All.lean.
