@@ -23,6 +23,7 @@ import Tengoku.LongGapsBetweenPrimes
 import Tengoku.Leancondensed
 import Tengoku.FixedPointTheoremsLean4
 import Tengoku.Aintlib
+import Tengoku.OeisLean
 import Tengoku.Jsp000198Lean
 import Tengoku.LeanOperads
 import Tengoku.ObserverEquivarianceLean
