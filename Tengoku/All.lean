@@ -121,6 +121,7 @@ import Tengoku.LanaOrbicurveCores
 import Tengoku.TunnellTwoToOneMap
 import Tengoku.AsymptoticTrianglePacking
 import Tengoku.Primenumbertheoremand
+import Tengoku.ScaleSpaceLean
 import Tengoku.FormalMathfin
 import Tengoku.Semigroup
 import Tengoku.SphereEversion
