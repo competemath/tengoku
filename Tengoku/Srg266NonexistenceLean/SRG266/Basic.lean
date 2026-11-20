@@ -1,0 +1,82 @@
+/-
+Copyright (c) 2026 Kay Akiyama.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Kay Akiyama
+-/
+import Tengoku.Seed.Combinatorics.SimpleGraph.StronglyRegular
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+open scoped BigOperators
+
+namespace SRG266
+
+variable {V : Type*} [Fintype V]
+
+abbrev IsHypothetical (G : SimpleGraph V) [DecidableRel G.Adj] : Prop :=
+  G.IsSRGWith 266 45 0 9
+
+section Rooted
+
+variable (G : SimpleGraph V) [DecidableRel G.Adj]
+
+abbrev FirstSubconstituent (x : V) := G.neighborSet x
+
+abbrev SecondSubconstituent (x : V) := Gᶜ.neighborSet x
+
+def commonNeighborEmbedding (x y : V) :
+    G.commonNeighbors x y ↪ FirstSubconstituent G x where
+  toFun z := ⟨z, z.property.1⟩
+  inj' _ _ h :=
+    Subtype.ext (congrArg (fun z : FirstSubconstituent G x => (z : V)) h)
+
+def localBlock (x : V) (y : SecondSubconstituent G x) :
+    Finset (FirstSubconstituent G x) :=
+  Finset.univ.map (commonNeighborEmbedding G x y)
+
+/--
+@isnad1 id=iff.0h5v.s6.14353fdb1837 from=translated src=- shape=6cbc57ad vocab=d9662919
+-/
+@[simp]
+theorem mem_localBlock (x : V) (y : SecondSubconstituent G x)
+    (z : FirstSubconstituent G x) :
+    z ∈ localBlock G x y ↔ G.Adj (z : V) (y : V) := by
+  constructor
+  · rw [localBlock, Finset.mem_map]
+    rintro ⟨a, _, rfl⟩
+    exact a.property.2.symm
+  · intro h
+    rw [localBlock, Finset.mem_map]
+    exact ⟨⟨z, z.property, h.symm⟩, Finset.mem_univ _, rfl⟩
+
+/--
+@isnad1 id=eq.1h3v.s5.6a9256c54791 from=translated src=- shape=f5684eb9 vocab=4c26d3f3
+-/
+theorem firstSubconstituent_card
+    (hG : IsHypothetical G) (x : V) :
+    Fintype.card (FirstSubconstituent G x) = 45 := by
+  rw [G.card_neighborSet_eq_degree]
+  exact hG.regular x
+
+/--
+@isnad1 id=eq.1h3v.s6.2a4f7b414616 from=translated src=- shape=9bfc3ce5 vocab=c5f5e072
+-/
+theorem secondSubconstituent_card
+    [DecidableEq V] (hG : IsHypothetical G) (x : V) :
+    Fintype.card (SecondSubconstituent G x) = 220 := by
+  rw [Gᶜ.card_neighborSet_eq_degree]
+  simpa using hG.compl_is_regular x
+
+/--
+@isnad1 id=eq.1h4v.s5.6df6988ff00d from=translated src=- shape=03cf651e vocab=5b0401f1
+-/
+theorem localBlock_card
+    (hG : IsHypothetical G) (x : V) (y : SecondSubconstituent G x) :
+    (localBlock G x y).card = 9 := by
+  rw [localBlock, Finset.card_map, Finset.card_univ]
+  have hy : Gᶜ.Adj x (y : V) := y.property
+  exact hG.of_not_adj ((G.compl_adj x y).mp hy).1 ((G.compl_adj x y).mp hy).2
+
+end Rooted
+
+end SRG266

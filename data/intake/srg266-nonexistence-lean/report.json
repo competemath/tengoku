@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "acfb599f0ede896c0d3f794ce8c3fcd701d9c1c94bbce3151acd1cea84549cd2",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "srg266-nonexistence-lean",
+ "lint_mode": "proposed",
+ "modules": 215,
+ "part": 1,
+ "theorems": 1579
+}
