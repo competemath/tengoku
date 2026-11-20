@@ -158,7 +158,9 @@ private theorem invariant_add {n : ℕ} {p q : Polynomial F}
 /-! The public invariant API. -/
 
 /-- Membership in the bounded square cone forces nonnegative leading coefficient,
-even natural degree, and degree below twice the bound.-/
+even natural degree, and degree below twice the bound.
+@isnad1 id=and.2h3v.s9.154c048267f9 from=translated src=- shape=bf652e58 vocab=ed149505
+-/
 theorem invariant {n : ℕ} (hn : 0 < n) {p : Polynomial F}
     (hp : p ∈ oddPolynomialCone (F := F) n) :
     0 ≤ p.leadingCoeff ∧ Even p.natDegree ∧ p.natDegree < 2 * n := by

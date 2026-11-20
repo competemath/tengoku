@@ -25,7 +25,9 @@ universe u
 noncomputable section
 
 /-- A polynomial that is nonzero on a closed interval has the same strict
-sign at its two endpoints.-/
+sign at its two endpoints.
+@isnad1 id=iff.2h4v.s7.e4bc6d99d821 from=translated src=- shape=bdd20523 vocab=c4336f21
+-/
 theorem polynomial_eval_pos_iff_of_ne_zero_on_Icc
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     [IsRealClosed R]
@@ -78,7 +80,9 @@ theorem polynomial_eval_pos_iff_of_ne_zero_on_Icc
     · exact (lt_asymm hy hyneg).elim
 
 /-- At a simple root forming the left endpoint of a root-free interval, the
-right-hand sign is the sign of the cofactor at that root.-/
+right-hand sign is the sign of the cofactor at that root.
+@isnad1 id=iff.4h4v.s8.5ebc2a625304 from=translated src=- shape=da47241b vocab=ede07c53
+-/
 theorem polynomial_divByMonic_eval_pos_iff_eval_pos_of_squarefree_of_isRoot_of_ne_zero_on_Ioc
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     [IsRealClosed R]
@@ -109,7 +113,9 @@ theorem polynomial_divByMonic_eval_pos_iff_eval_pos_of_squarefree_of_isRoot_of_n
     exact hqsign.mpr (pos_of_mul_pos_right hmul (sub_nonneg.mpr hrs.le))
 
 /-- At a simple root forming the right endpoint of a root-free interval, the
-left-hand sign is the sign of the negatively oriented cofactor.-/
+left-hand sign is the sign of the negatively oriented cofactor.
+@isnad1 id=iff.4h4v.s8.ffce8379a730 from=translated src=- shape=d510a3cb vocab=7b0e9555
+-/
 theorem polynomial_eval_pos_iff_neg_divByMonic_eval_of_squarefree_of_isRoot_of_ne_zero_on_Ico
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     [IsRealClosed R]

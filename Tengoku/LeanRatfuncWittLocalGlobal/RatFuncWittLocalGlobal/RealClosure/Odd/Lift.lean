@@ -34,7 +34,9 @@ noncomputable def baseSquareSpan : Submodule (Subsemiring.nonneg F) K :=
   Submodule.span (Subsemiring.nonneg F) {x : K | IsSquare x}
 
 /-- A bounded polynomial square cone element evaluates to an element of the
-base-square span, for every evaluation point in the extension field.-/
+base-square span, for every evaluation point in the extension field.
+@isnad1 id=mem.1h5v.s10.811b59b77624 from=translated src=- shape=6ca4a552 vocab=911b74f2
+-/
 theorem boundedSquarePolynomialCone_aeval_mem_baseSquareSpan
     {n : ℕ} {g : Polynomial F}
     (hg : g ∈ boundedSquarePolynomialCone (F := F) n) (x : K) :
@@ -61,7 +63,9 @@ theorem boundedSquarePolynomialCone_aeval_mem_baseSquareSpan
     exact (baseSquareSpan (F := F) (K := K)).smul_mem a ihp
 
 /-- Every element of the base-square span has a bounded polynomial lift along
-a power basis.-/
+a power basis.
+@isnad1 id=ex.1h4v.s10.23e6d6441ba8 from=translated src=- shape=84030c9c vocab=0d540b8b
+-/
 theorem mem_baseSquareSpan_aeval
     (pb : PowerBasis F K) {x : K}
     (hx : x ∈ baseSquareSpan (F := F) (K := K)) :

@@ -28,7 +28,9 @@ universe u
 noncomputable section
 
 /-- A normalized irreducible factor takes values with positive product at the
-endpoints of a root-free interval.-/
+endpoints of a root-free interval.
+@isnad1 id=lt.3h5v.s8.a6bd73eba452 from=translated src=- shape=8ee2a35e vocab=c81fdcb1
+-/
 theorem normalizedFactor_eval_mul_eval_pos_of_polynomial_ne_zero_on_Icc
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     [IsRealClosed R]

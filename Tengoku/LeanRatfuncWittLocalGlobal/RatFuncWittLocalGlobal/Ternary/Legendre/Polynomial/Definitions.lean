@@ -79,6 +79,9 @@ def SquarefreeGcdSplitNoCommonStrictSign
     (algebraMap (Polynomial R) (RatFunc R) s.C₁)
     (algebraMap (Polynomial R) (RatFunc R) s.B₁)
 
+/--
+@isnad1 id=squarefr.1h4v.s9.34488e7ef224 from=translated src=- shape=de1c9b64 vocab=0b1884d1
+-/
 theorem squarefreeGcdSplitNoCommonStrictSign_of_not_normalizedOrderingObstruction
     {R : Type u} [Field R] {B C : Polynomial R} (s : SquarefreeGcdSplit B C)
     (hno : ¬ NormalizedOrderingObstruction
@@ -114,6 +117,9 @@ def PolynomialLegendreWholeModConditions
     IsSquareMod B (-(A * C)) ∧
       IsSquareMod C (-(A * B))
 
+/--
+@isnad1 id=polynomi.1h4v.s5.e050434b0844 from=translated src=- shape=c378a3f0 vocab=57f94714
+-/
 theorem polynomialLegendreLocalConditions_of_wholeModConditions
     {R : Type u} [CommRing R] {A B C : Polynomial R}
     (hwhole : PolynomialLegendreWholeModConditions A B C) :
@@ -126,6 +132,9 @@ theorem polynomialLegendreLocalConditions_of_wholeModConditions
   · intro π _hirr hπC
     exact hwhole.2.2.of_dvd hπC
 
+/--
+@isnad1 id=polynomi.7h4v.s8.d2a1940b7fb1 from=translated src=- shape=edd5b3fa vocab=d6b02d59
+-/
 theorem polynomialLegendreWholeModConditions_of_localConditions
     {R : Type u} [Field R] {A B C : Polynomial R}
     (hA0 : A ≠ 0) (hB0 : B ≠ 0) (hC0 : C ≠ 0)
@@ -143,12 +152,18 @@ def SquarefreeGcdSplitLegendreWholeModConditions
     Prop :=
   PolynomialLegendreWholeModConditions s.G s.C₁ s.B₁
 
+/--
+@isnad1 id=polynomi.1h4v.s5.444d2cb1a670 from=translated src=- shape=748dbd4b vocab=44f0ca6b
+-/
 theorem squarefreeGcdSplitLegendreLocalConditions_of_wholeModConditions
     {R : Type u} [Field R] {B C : Polynomial R} {s : SquarefreeGcdSplit B C}
     (hwhole : SquarefreeGcdSplitLegendreWholeModConditions s) :
     PolynomialLegendreLocalConditions s.G s.C₁ s.B₁ :=
   polynomialLegendreLocalConditions_of_wholeModConditions hwhole
 
+/--
+@isnad1 id=squarefr.3h4v.s7.0ab1ad9d5f85 from=translated src=- shape=80d4ef30 vocab=4d1a0015
+-/
 theorem squarefreeGcdSplitLegendreWholeModConditions_of_factor_mod
     {R : Type u} [Field R] {B C : Polynomial R} (s : SquarefreeGcdSplit B C)
     (hG : IsSquareMod s.G (-(s.C₁ * s.B₁)))
@@ -159,6 +174,9 @@ theorem squarefreeGcdSplitLegendreWholeModConditions_of_factor_mod
   · exact s.isSquareMod_neg_G_mul_B₁_of_neg_B hC₁
   · exact s.isSquareMod_neg_G_mul_C₁_of_neg_C hB₁
 
+/--
+@isnad1 id=polynomi.3h4v.s7.c45139dec31c from=translated src=- shape=c1d04297 vocab=99b86942
+-/
 theorem squarefreeGcdSplitLegendreLocalConditions_of_factor_mod
     {R : Type u} [Field R] {B C : Polynomial R} (s : SquarefreeGcdSplit B C)
     (hG : IsSquareMod s.G (-(s.C₁ * s.B₁)))

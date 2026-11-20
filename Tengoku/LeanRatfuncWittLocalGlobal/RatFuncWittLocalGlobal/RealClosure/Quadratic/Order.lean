@@ -36,6 +36,9 @@ def quadraticReLinearMap {K : Type*} [Semiring K] (a : K) :
     QuadraticAlgebra K a 0 →ₗ[K] K :=
   QuadraticAlgebra.reₗ a 0
 
+/--
+@isnad1 id=eq.0h3v.s7.345c5d878982 from=translated src=- shape=7ed8d873 vocab=d574e324
+-/
 @[simp] theorem quadraticReLinearMap_apply {K : Type*} [Semiring K] (a : K)
     (w : QuadraticAlgebra K a 0) :
     quadraticReLinearMap a w = w.re :=
@@ -48,6 +51,9 @@ def quadraticProjection {K L : Type*} [CommSemiring K] [Semiring L]
     (e : QuadraticAlgebra K a 0 ≃ₐ[K] L) : L →ₗ[K] K :=
   (quadraticReLinearMap a).comp e.symm.toLinearMap
 
+/--
+@isnad1 id=eq.0h5v.s8.6bc9c6dc0b4a from=translated src=- shape=eb771d6e vocab=b03dde83
+-/
 @[simp] theorem quadraticProjection_apply {K L : Type*} [CommSemiring K] [Semiring L]
     [Algebra K L] {a : K}
     (e : QuadraticAlgebra K a 0 ≃ₐ[K] L) (z : L) :
@@ -59,6 +65,9 @@ The square formula is stated with the coordinates of `e.symm z` explicit so
 that it can be consumed directly by the later sign criterion.
 -/
 
+/--
+@isnad1 id=eq.1h7v.s9.45e6517cce77 from=translated src=- shape=03fed7e6 vocab=0cc12790
+-/
 theorem quadraticProjection_mul_self_eq {K L : Type*} [CommSemiring K] [Semiring L]
     [Algebra K L] {a : K}
     (e : QuadraticAlgebra K a 0 ≃ₐ[K] L) {z : L} {x y : K}
@@ -69,6 +78,9 @@ theorem quadraticProjection_mul_self_eq {K L : Type*} [CommSemiring K] [Semiring
   simp only [QuadraticAlgebra.re_mul]
   ring
 
+/--
+@isnad1 id=lt.2h5v.s8.212f9e8b0fb6 from=translated src=- shape=c7d188da vocab=9d46c7c1
+-/
 theorem quadraticProjection_mul_self_pos {K L : Type*} [Field K] [LinearOrder K]
     [IsStrictOrderedRing K] [Field L] [Algebra K L] {a : K}
     (e : QuadraticAlgebra K a 0 ≃ₐ[K] L) {z : L}
@@ -112,6 +124,9 @@ construction.  Since the latter exposes the induced order by its explicit
 object explicitly.
 -/
 
+/--
+@isnad1 id=ex.3h4v.s15.8322ab11c39d from=translated src=- shape=90b706f8 vocab=60355470
+-/
 theorem exists_ordered_quadratic_adjoin
     (E : Intermediate F) {a : E.carrier} {α : Ω}
     (ha : 0 < a) (hα : α ^ 2 = (a : Ω)) (hnsq : ¬ IsSquare a) :
@@ -146,6 +161,9 @@ nonzero case the square-root adjunction strictly extends the carrier unless
 the root was already present, while maximality forces the latter.
 -/
 
+/--
+@isnad1 id=issquare.2h3v.s10.285c94b9a5a0 from=translated src=- shape=9185f7b6 vocab=b7e1f5e4
+-/
 theorem nonnegative_isSquare_of_isMax
     (M : Intermediate F) (hmax : IsMax M) {a : M.carrier}
     (ha : 0 ≤ a) : IsSquare a := by

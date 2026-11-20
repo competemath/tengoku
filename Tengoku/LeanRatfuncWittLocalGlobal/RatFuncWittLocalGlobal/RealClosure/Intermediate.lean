@@ -77,12 +77,17 @@ def ambientConePreordering {F : Type u} [Field F] [LinearOrder F] [IsStrictOrder
     intro h
     exact E.proper h
 
+/--
+@isnad1 id=iff.0h3v.s10.f8bcee0c8c98 from=translated src=- shape=2ee6270e vocab=5f5415aa
+-/
 @[simp] theorem mem_ambientConePreordering {F : Type u} [Field F] [LinearOrder F]
     [IsStrictOrderedRing F] {E : Intermediate F} {x : E.carrier} :
     x ∈ ambientConePreordering E ↔ (x : AlgebraicClosure F) ∈ E.nonnegative :=
   Iff.rfl
 
-/-- Totality of an ambient cone makes its subtype preordering an ordering.-/
+/-- Totality of an ambient cone makes its subtype preordering an ordering.
+@isnad1 id=isorderi.0h2v.s8.2e69c78c83f0 from=translated src=- shape=87a633a4 vocab=907316f9
+-/
 theorem ambientConePreordering_isOrdering {F : Type u} [Field F] [LinearOrder F]
     [IsStrictOrderedRing F] (E : Intermediate F) :
     (ambientConePreordering E).IsOrdering := by
@@ -120,11 +125,16 @@ attribute [instance] ambientConePreordering_isOrdering
 noncomputable instance instLinearOrder (E : Intermediate F) : LinearOrder E.carrier := by
   exact RingPreordering.linearOrderOfIsOrdering (ambientConePreordering E)
 
-/-- The strict ordered-ring structure induced on the carrier by the ambient cone.-/
+/-- The strict ordered-ring structure induced on the carrier by the ambient cone.
+@isnad1 id=isstrict.0h2v.s9.73f147f22d90 from=translated src=- shape=abab779d vocab=ded97bea
+-/
 noncomputable instance instIsStrictOrderedRing (E : Intermediate F) :
     IsStrictOrderedRing E.carrier := by
   exact RingPreordering.isStrictOrderedRingOfIsOrdering (ambientConePreordering E)
 
+/--
+@isnad1 id=iff.0h3v.s11.f6bdea79bd80 from=translated src=- shape=a604a9f0 vocab=b98262f0
+-/
 theorem base_nonnegative_iff (E : Intermediate F) (x : F) :
     0 ≤ x ↔ 0 ≤ algebraMap F E.carrier x := by
   calc
@@ -152,11 +162,17 @@ def orderedLe {F : Type u} [Field F] [LinearOrder F] [IsStrictOrderedRing F]
     (E E' : Intermediate F) : Prop :=
   ∃ h : E.carrier ≤ E'.carrier, ConeCompatible (F := F) E E' h
 
+/--
+@isnad1 id=orderedl.0h2v.s5.6b7adeac64f6 from=translated src=- shape=77536c22 vocab=4cfb536b
+-/
 theorem orderedLe_refl (E : Intermediate F) : orderedLe E E := by
   refine ⟨le_rfl, ?_⟩
   intro x hx
   exact Iff.rfl
 
+/--
+@isnad1 id=orderedl.2h4v.s6.a2a0df34a2cd from=translated src=- shape=429673cd vocab=4cfb536b
+-/
 theorem orderedLe_trans {E E' E'' : Intermediate F}
     (h₁ : orderedLe E E') (h₂ : orderedLe E' E'') : orderedLe E E'' := by
   rcases h₁ with ⟨h₁, h₁cone⟩
@@ -169,6 +185,9 @@ theorem orderedLe_trans {E E' E'' : Intermediate F}
   intro x hx
   exact (h₁cone hx).trans (h₂cone (h₁ hx))
 
+/--
+@isnad1 id=eq.2h3v.s5.cf96d8068b89 from=translated src=- shape=06e53f06 vocab=4cfb536b
+-/
 theorem orderedLe_antisymm {E E' : Intermediate F}
     (h₁ : orderedLe E E') (h₂ : orderedLe E' E) : E = E' := by
   rcases h₁ with ⟨h₁, h₁cone⟩
@@ -202,10 +221,16 @@ instance instPartialOrderIntermediate : PartialOrder (Intermediate F) where
   le_antisymm := @orderedLe_antisymm F _ _ _
 
 omit [IsStrictOrderedRing F] in
+/--
+@isnad1 id=isalgebr.0h2v.s8.ebcedba74d9b from=translated src=- shape=4a062d94 vocab=2857be1d
+-/
 theorem intermediate_is_algebraic (E : Intermediate F) :
     Algebra.IsAlgebraic F E.carrier := by
   infer_instance
 
+/--
+@isnad1 id=lt.1h3v.s11.f377813f4ef1 from=translated src=- shape=13ca0e6e vocab=7dc0036b
+-/
 theorem base_positive (E : Intermediate F) {x : F} (hx : 0 < x) :
     0 < algebraMap F E.carrier x := by
   have hnonneg : 0 ≤ algebraMap F E.carrier x :=
@@ -231,12 +256,18 @@ noncomputable def adjoinCarrier {F : Type u} [Field F] [LinearOrder F]
   IntermediateField.restrictScalars F
     (IntermediateField.adjoin E.carrier ({α} : Set (AlgebraicClosure F)))
 
+/--
+@isnad1 id=mem.0h3v.s6.8777a51aa303 from=translated src=- shape=1c78b138 vocab=420197bd
+-/
 theorem adjoin_mem_adjoinCarrier (E : Intermediate F) (α : Ω) :
     α ∈ adjoinCarrier E α := by
   change α ∈ IntermediateField.adjoin E.carrier ({α} : Set Ω)
   exact IntermediateField.mem_adjoin_of_mem E.carrier (Set.mem_singleton α)
 
 omit [IsStrictOrderedRing F] in
+/--
+@isnad1 id=isintegr.1h4v.s9.0f2bcffebfe4 from=translated src=- shape=5a8e105e vocab=085b3eac
+-/
 theorem alpha_integral (E : Intermediate F) {a : E.carrier} {α : Ω}
     (hα : α ^ 2 = (a : Ω)) :
     IsIntegral E.carrier α := by
@@ -246,6 +277,9 @@ theorem alpha_integral (E : Intermediate F) {a : E.carrier} {α : Ω}
     exact sub_eq_zero.mpr hα
 
 omit [IsStrictOrderedRing F] in
+/--
+@isnad1 id=eq.2h4v.s13.20a434ff31d4 from=translated src=- shape=3939e598 vocab=d6fe841d
+-/
 theorem minpoly_alpha_eq (E : Intermediate F) {a : E.carrier} {α : Ω}
     (hα : α ^ 2 = (a : Ω)) (hnsq : ¬ IsSquare a) :
     minpoly E.carrier α = X ^ 2 - C a := by
@@ -261,6 +295,9 @@ theorem minpoly_alpha_eq (E : Intermediate F) {a : E.carrier} {α : Ω}
   exact sub_eq_zero.mpr hα
 
 omit [IsStrictOrderedRing F] in
+/--
+@isnad1 id=ex.2h5v.s11.1ce7407f3e16 from=translated src=- shape=8acd69e1 vocab=793a3a00
+-/
 theorem exists_linear_representation (E : Intermediate F) {a : E.carrier} {α : Ω}
     (hα : α ^ 2 = (a : Ω)) (hnsq : ¬ IsSquare a)
     (z : IntermediateField.adjoin E.carrier ({α} : Set Ω)) :
@@ -292,10 +329,16 @@ theorem exists_linear_representation (E : Intermediate F) {a : E.carrier} {α : 
   rw [hgen]
 
 omit [LinearOrder F] [IsStrictOrderedRing F] in
+/--
+@isnad1 id=ex.0h2v.s6.f8c08d2c3659 from=translated src=- shape=8dab6a1a vocab=36c9bbb2
+-/
 theorem exists_square_root (a : Ω) : ∃ α : Ω, α ^ 2 = a := by
   simpa using IsAlgClosed.exists_pow_nat_eq a (n := 2) (by norm_num)
 
 omit [IsStrictOrderedRing F] in
+/--
+@isnad1 id=ex.1h3v.s10.7d81e600382e from=translated src=- shape=344171ee vocab=8662945f
+-/
 theorem exists_root_over_intermediate (E : Intermediate F) {p : E.carrier[X]}
     (hp : p.degree ≠ 0) :
     ∃ α : Ω, Polynomial.eval₂ (algebraMap E.carrier Ω) α p = 0 := by
@@ -306,10 +349,16 @@ theorem exists_root_over_intermediate (E : Intermediate F) {p : E.carrier[X]}
     (p.map (algebraMap E.carrier Ω)) hmapdeg
   exact ⟨α, by simpa [Polynomial.IsRoot.def, Polynomial.eval_map] using hα⟩
 
+/--
+@isnad1 id=eq.2h3v.s6.e337ea832c08 from=translated src=- shape=71a41cab vocab=bed03696
+-/
 theorem maximal_eq_of_le {M E' : Intermediate F} (hmax : IsMax M) (hME : M ≤ E') :
     E' = M := by
   exact le_antisymm (hmax hME) hME
 
+/--
+@isnad1 id=mem.3h4v.s8.a25701193878 from=translated src=- shape=add0e629 vocab=4f05adcd
+-/
 theorem maximal_contains_of_le {M E' : Intermediate F} (hmax : IsMax M)
     (hME : M ≤ E') {α : Ω} (hα : α ∈ E'.carrier) : α ∈ M.carrier := by
   have hEq : E' = M := maximal_eq_of_le (F := F) hmax hME
@@ -372,6 +421,9 @@ noncomputable def base : Intermediate F where
         simpa using hxy
       simpa [this] using hy
 
+/--
+@isnad1 id=directed.1h2v.s8.9ae36fcf3b26 from=translated src=- shape=2216b98f vocab=edece61d
+-/
 theorem chain_carrier_directed {s : Set (Intermediate F)}
     (hs : IsChain (· ≤ ·) s) :
     Directed (· ≤ ·) (fun E : s => E.1.carrier) := by
@@ -382,6 +434,9 @@ theorem chain_carrier_directed {s : Set (Intermediate F)}
   · rcases hE'E with ⟨h, _⟩
     exact ⟨E, le_rfl, h⟩
 
+/--
+@isnad1 id=ex.2h2v.s7.2c51c0870934 from=translated src=- shape=5b34d551 vocab=1b9c96f6
+-/
 theorem chain_upperBound {s : Set (Intermediate F)} (hne : s.Nonempty)
     (hs : IsChain (· ≤ ·) s) :
     ∃ U : Intermediate F, ∀ E ∈ s, E ≤ U := by
@@ -492,6 +547,9 @@ above the seed.  This is only the maximal ordered-subfield stage; adjoining a
 root while extending the cone is the separate real-closure step.
 -/
 
+/--
+@isnad1 id=ex.0h1v.s6.9771ba4f1e7a from=translated src=- shape=4df63630 vocab=8c5dcbbe
+-/
 theorem exists_maximal_orderedIntermediate :
     ∃ M : Intermediate F, base F ≤ M ∧ IsMax M := by
   obtain ⟨M, hbaseM, hmaxM⟩ :=
@@ -502,6 +560,9 @@ theorem exists_maximal_orderedIntermediate :
       (base F) le_rfl
   exact ⟨M, hbaseM, hmaxM⟩
 
+/--
+@isnad1 id=ex.0h1v.s11.9c38d8114852 from=translated src=- shape=e05b89ab vocab=316afe11
+-/
 theorem exists_maximal_ordered_algebraic_extension :
     ∃ M : Intermediate F,
       base F ≤ M ∧ IsMax M ∧ Algebra.IsAlgebraic F M.carrier ∧

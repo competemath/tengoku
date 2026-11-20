@@ -31,7 +31,9 @@ namespace OrderedRealClosure
 variable {F : Type u} [Field F] [LinearOrder F] [IsStrictOrderedRing F]
   {K : Type v} [Field K] [Algebra F K]
 
-/-- The base-square span is proper for an odd-dimensional power basis.-/
+/-- The base-square span is proper for an odd-dimensional power basis.
+@isnad1 id=not.1h3v.s9.caa377e3568a from=translated src=- shape=5e6492a1 vocab=b6998907
+-/
 theorem minus_one_notMem_baseSquareSpan_of_odd_powerBasis
     (pb : PowerBasis F K) (hodd : Odd pb.dim) :
     (-1 : K) ∉ baseSquareSpan (F := F) (K := K) := by
@@ -57,6 +59,9 @@ theorem minus_one_notMem_baseSquareSpan_of_odd_powerBasis
 
 /-! The proper span feeds directly into the maximal-order extension witness. -/
 
+/--
+@isnad1 id=ex.1h3v.s8.4647d78ab387 from=translated src=- shape=7abe0929 vocab=00608be2
+-/
 theorem exists_orderedAlgebraExtension_of_odd_powerBasis
     (pb : PowerBasis F K) (hodd : Odd pb.dim) :
     ∃ (O : _root_.RingPreordering K) (hO : O.IsOrdering),

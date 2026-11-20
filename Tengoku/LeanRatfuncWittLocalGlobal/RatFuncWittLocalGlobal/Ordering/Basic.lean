@@ -27,22 +27,34 @@ variable {K : Type*} [Field K] [LinearOrder K] [IsStrictOrderedRing K]
 def StrictPos (P : _root_.RingPreordering F) (x : F) : Prop :=
   x ∈ P ∧ -x ∉ P
 
+/--
+@isnad1 id=mem.1h3v.s5.9c4fcc4ecb52 from=translated src=- shape=d31f1269 vocab=d925d164
+-/
 theorem StrictPos.mem
     {P : _root_.RingPreordering F} {x : F} (hx : StrictPos P x) :
     x ∈ P :=
   hx.1
 
+/--
+@isnad1 id=not.1h3v.s5.a05ae1be88c0 from=translated src=- shape=a60c8316 vocab=1e56770e
+-/
 theorem StrictPos.neg_notMem
     {P : _root_.RingPreordering F} {x : F} (hx : StrictPos P x) :
     -x ∉ P :=
   hx.2
 
+/--
+@isnad1 id=ne.1h3v.s5.f2d4e72774fc from=translated src=- shape=5524bfcd vocab=cd814d7f
+-/
 theorem StrictPos.ne_zero
     {P : _root_.RingPreordering F} {x : F} (hx : StrictPos P x) :
     x ≠ 0 := by
   intro hx0
   exact hx.neg_notMem (by simp [hx0])
 
+/--
+@isnad1 id=strictpo.2h4v.s5.f3899aa572b1 from=translated src=- shape=fac0df2f vocab=75684df0
+-/
 theorem StrictPos.mul
     {P : _root_.RingPreordering F} {x y : F}
     (hx : StrictPos P x) (hy : StrictPos P y) :
@@ -56,6 +68,9 @@ theorem StrictPos.mul
   · exact hx.ne_zero hx0
   · exact hy.ne_zero hy0
 
+/--
+@isnad1 id=strictpo.1h3v.s5.79f2721d442e from=translated src=- shape=36ed969c vocab=407c20a8
+-/
 theorem strictPos_pow_two
     {P : _root_.RingPreordering F} {x : F} (hx : x ≠ 0) :
     StrictPos P (x ^ 2) := by
@@ -81,10 +96,16 @@ def comapNonnegative (f : F →+* K) : _root_.RingPreordering F where
   neg_one_notMem' := by
     norm_num
 
+/--
+@isnad1 id=iff.0h4v.s7.563bccc47ffa from=translated src=- shape=719d11db vocab=b156f827
+-/
 theorem mem_comapNonnegative_iff (f : F →+* K) {x : F} :
     x ∈ comapNonnegative f ↔ 0 ≤ f x :=
   Iff.rfl
 
+/--
+@isnad1 id=isorderi.0h3v.s6.2a198fbb4454 from=translated src=- shape=6ca2c918 vocab=858bf6ec
+-/
 instance comapNonnegative_isOrdering (f : F →+* K) :
     (comapNonnegative f).IsOrdering := by
   rw [_root_.RingPreordering.isOrdering_iff]
@@ -114,11 +135,17 @@ def nonnegative
   neg_one_notMem' := by
     norm_num
 
+/--
+@isnad1 id=iff.0h2v.s6.deb8903bb6a0 from=translated src=- shape=ea0a7987 vocab=4deec58d
+-/
 theorem mem_nonnegative_iff
     [LinearOrder F] [IsStrictOrderedRing F] {x : F} :
     x ∈ nonnegative F ↔ 0 ≤ x :=
   Iff.rfl
 
+/--
+@isnad1 id=isorderi.0h1v.s5.0a844493a6af from=translated src=- shape=456cb356 vocab=f03e1a88
+-/
 instance nonnegative_isOrdering
     [LinearOrder F] [IsStrictOrderedRing F] :
     (nonnegative F).IsOrdering := by
@@ -158,33 +185,51 @@ noncomputable def linearOrderOfIsOrdering
   toDecidableEq := Classical.decEq F
   toDecidableLT := Classical.decRel _
 
+/--
+@isnad1 id=iff.0h4v.s6.1af7207fa32b from=translated src=- shape=477cd2f0 vocab=d8c70725
+-/
 theorem le_linearOrderOfIsOrdering_iff
     (P : _root_.RingPreordering F) [P.IsOrdering] {x y : F} :
     @LE.le F (linearOrderOfIsOrdering P).toLE x y ↔ y - x ∈ P :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s6.884e6b847d56 from=translated src=- shape=50f485fa vocab=51cb9906
+-/
 theorem lt_linearOrderOfIsOrdering_iff
     (P : _root_.RingPreordering F) [P.IsOrdering] {x y : F} :
     @LT.lt F (linearOrderOfIsOrdering P).toLT x y ↔ y - x ∈ P ∧ x - y ∉ P :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s6.f252277df654 from=translated src=- shape=8ab7004c vocab=954552eb
+-/
 theorem zero_le_linearOrderOfIsOrdering_iff
     (P : _root_.RingPreordering F) [P.IsOrdering] {x : F} :
     @LE.le F (linearOrderOfIsOrdering P).toLE 0 x ↔ x ∈ P := by
   rw [le_linearOrderOfIsOrdering_iff P]
   simp
 
+/--
+@isnad1 id=iff.0h3v.s6.d677af761581 from=translated src=- shape=f4bc968e vocab=d593ee11
+-/
 theorem zero_lt_linearOrderOfIsOrdering_iff
     (P : _root_.RingPreordering F) [P.IsOrdering] {x : F} :
     @LT.lt F (linearOrderOfIsOrdering P).toLT 0 x ↔ x ∈ P ∧ -x ∉ P := by
   rw [lt_linearOrderOfIsOrdering_iff P]
   simp
 
+/--
+@isnad1 id=iff.0h3v.s5.fcf878121f0a from=translated src=- shape=420cb089 vocab=bdf49608
+-/
 theorem strictPos_iff_zero_lt_linearOrderOfIsOrdering
     (P : _root_.RingPreordering F) [P.IsOrdering] {x : F} :
     StrictPos P x ↔ @LT.lt F (linearOrderOfIsOrdering P).toLT 0 x :=
   (zero_lt_linearOrderOfIsOrdering_iff P).symm
 
+/--
+@isnad1 id=isstrict.0h2v.s5.8b890ab9518b from=translated src=- shape=aa29de5d vocab=9f8f63b5
+-/
 theorem isStrictOrderedRingOfIsOrdering
     (P : _root_.RingPreordering F) [P.IsOrdering] :
     @IsStrictOrderedRing F _ (linearOrderOfIsOrdering P).toPartialOrder := by

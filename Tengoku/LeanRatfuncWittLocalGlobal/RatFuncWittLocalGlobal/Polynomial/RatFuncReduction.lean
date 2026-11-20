@@ -90,6 +90,9 @@ private theorem ternary_isotropic_of_polynomial_solution
   · exact Or.inr <| Or.inl fun h ↦ hp₁ ((_root_.RatFunc.algebraMap_injective R) (by simpa using h))
   · exact Or.inr <| Or.inr fun h ↦ hp₂ ((_root_.RatFunc.algebraMap_injective R) (by simpa using h))
 
+/--
+@isnad1 id=iff.0h4v.s10.bd8cb1d43e6a from=translated src=- shape=132cce2d vocab=cfa39e0e
+-/
 theorem ternary_isotropic_iff_exists_polynomial_solution
     [Field R] {a₀ a₁ a₂ : RatFunc R} :
     Diagonal.TernaryIsotropic a₀ a₁ a₂ ↔
@@ -166,6 +169,9 @@ private theorem exists_polynomial_solution_of_binary_representation
     _ = t * (algebraMap (Polynomial R) (RatFunc R) d) ^ 2 := by
           rw [hyz]
 
+/--
+@isnad1 id=iff.0h3v.s10.1ce64a0d2e6e from=translated src=- shape=e0f9a7d7 vocab=87dfe66d
+-/
 theorem binary_representation_iff_exists_polynomial_solution
     [Field R] {c t : RatFunc R} :
     (∃ y z : RatFunc R, y ^ 2 + c * z ^ 2 = t) ↔

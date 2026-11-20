@@ -28,7 +28,9 @@ universe u
 open Polynomial
 
 /-- Decompose every nonzero rational-function coefficient through the
-squarefree part of its numerator-denominator product.-/
+squarefree part of its numerator-denominator product.
+@isnad1 id=ex.1h3v.s10.c7e71454861e from=translated src=- shape=8af78fc5 vocab=0150b190
+-/
 theorem exists_squarefree_polynomial_normal_form
     {R : Type u} [Field R] {ι : Type*}
     (a : ι → _root_.RatFunc R) (ha : ∀ i, a i ≠ 0) :
@@ -73,7 +75,9 @@ theorem exists_squarefree_polynomial_normal_form
     exact ⟨by rfl, hy i, hdecomp i⟩
 
 /-- The squarefree normal form preserves both diagonal isotropy and finite
-strict-sign orderability.-/
+strict-sign orderability.
+@isnad1 id=ex.1h3v.s10.18b9b02a7d1d from=translated src=- shape=ecca9ff9 vocab=45355672
+-/
 theorem exists_squarefree_polynomial_normal_form_with_invariants
     {R : Type u} [Field R] {ι : Type*} [Fintype ι]
     (a : ι → _root_.RatFunc R) (ha : ∀ i, a i ≠ 0) :

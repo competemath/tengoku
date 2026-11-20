@@ -32,7 +32,9 @@ noncomputable def polynomialTernaryQuaternionCoeff [Field R]
   -(algebraMap (Polynomial R) (RatFunc R) N /
       algebraMap (Polynomial R) (RatFunc R) A)
 
-/-- The first normalized quaternion coefficient is nonzero when `A` and `B` are.-/
+/-- The first normalized quaternion coefficient is nonzero when `A` and `B` are.
+@isnad1 id=ratfuncq.1h4v.s9.452a97493e75 from=translated src=- shape=70c93086 vocab=988e385d
+-/
 theorem polynomialTernaryQuaternion_squareClass_cleared
     [Field R] {A B C : Polynomial R} (hA0 : A ≠ 0) :
     RatFuncQuaternionSquareClass
@@ -50,7 +52,9 @@ theorem polynomialTernaryQuaternion_squareClass_cleared
 
 /--
 Real split for the normalized symbol transfers to the cleared polynomial
-symbol.-/
+symbol.
+@isnad1 id=ratfuncq.2h4v.s9.35c8c64b0087 from=translated src=- shape=7d6b65f8 vocab=f2a92e6f
+-/
 theorem polynomialTernaryQuaternionRealSplit_cleared_of_normalized
     [Field R] {A B C : Polynomial R} (hA0 : A ≠ 0) :
     RatFuncQuaternionRealSplit.{u, v}
@@ -63,7 +67,9 @@ theorem polynomialTernaryQuaternionRealSplit_cleared_of_normalized
     (polynomialTernaryQuaternion_squareClass_cleared (R := R) hA0)
 
 /--
-Split of the cleared polynomial symbol transfers back to the normalized symbol.-/
+Split of the cleared polynomial symbol transfers back to the normalized symbol.
+@isnad1 id=quaterni.2h4v.s9.a23677e4d86e from=translated src=- shape=933f3093 vocab=e5b2f052
+-/
 theorem polynomialTernaryQuaternionSplit_of_cleared
     [Field R] {A B C : Polynomial R} (hA0 : A ≠ 0) :
     QuaternionSymbolSplit
@@ -87,6 +93,9 @@ one-step consumer, not a claim that one congruence already proves the
 normalized ternary symbol is split.
 -/
 
+/--
+@isnad1 id=ex.4h4v.s9.c97e19a498f8 from=translated src=- shape=b582e612 vocab=d705b894
+-/
 theorem reducedSquareModWitness_of_degree_bound
     [Field R] {A B C : Polynomial R}
     (hA0 : A ≠ 0) (hAdeg : 0 < A.natDegree)
@@ -134,6 +143,9 @@ both facts explicit because a gcd-removal argument cannot silently choose a
 different residue representative.
 -/
 
+/--
+@isnad1 id=eq.1h7v.s9.237473da374d from=translated src=- shape=48f84daa vocab=e03b327a
+-/
 theorem squareModWitness_add_mul_quotient
     [CommRing R] {A B C x d t : Polynomial R}
     (hxd : x ^ 2 + B * C = A * d) :
@@ -145,6 +157,9 @@ theorem squareModWitness_add_mul_quotient
     _ = A * d + A * (2 * x * t + A * t ^ 2) := by rw [hxd]
     _ = A * (d + 2 * x * t + A * t ^ 2) := by ring
 
+/--
+@isnad1 id=ex.4h7v.s9.62cfe362ee87 from=translated src=- shape=b3c6d612 vocab=a810cf52
+-/
 theorem squareModWitness_common_factor_of_squarefree_factor
     [Field R] {A B C x d r : Polynomial R}
     (hrsq : Squarefree r)
@@ -200,18 +215,27 @@ attached to `(1,A*B,A*C)`.  This is the orientation used for the ordering
 resolver: its obstruction concerns the cleared pair, not the raw pair `(B,C)`.
 -/
 
+/--
+@isnad1 id=iff.0h4v.s7.4979ca44c5d6 from=translated src=- shape=58a9c675 vocab=ac7225a0
+-/
 theorem polynomialTernaryClearedQuaternionSplit_unit_first_iff
     [Field R] {A B C : Polynomial R} :
     PolynomialTernaryClearedQuaternionSplit A B C ↔
       PolynomialTernaryClearedQuaternionSplit 1 (A * B) (A * C) := by
   simp [PolynomialTernaryClearedQuaternionSplit]
 
+/--
+@isnad1 id=iff.0h4v.s7.a7f0644687ce from=translated src=- shape=58a9c675 vocab=23aa9e8c
+-/
 theorem polynomialTernaryClearedQuaternionRealSplit_unit_first_iff
     [Field R] {A B C : Polynomial R} :
     PolynomialTernaryClearedQuaternionRealSplit.{u, v} A B C ↔
       PolynomialTernaryClearedQuaternionRealSplit.{u, v} 1 (A * B) (A * C) := by
   simp [PolynomialTernaryClearedQuaternionRealSplit]
 
+/--
+@isnad1 id=iff.6h10v.s9.1792014cfc49 from=translated src=- shape=94335312 vocab=96a96b0f
+-/
 theorem polynomialTernaryClearedQuaternionSplit_square_factor_transport
     [Field R] {A B C A' B' C' a b c : Polynomial R}
     (ha0 : a ≠ 0) (hb0 : b ≠ 0) (hc0 : c ≠ 0)
@@ -240,6 +264,9 @@ theorem polynomialTernaryClearedQuaternionSplit_square_factor_transport
     (quaternionSymbolSplit_mul_square_right
       (u := φ (-(A' * B'))) (v := φ (-(A' * C'))) (s := φ (a * c)) hac0)
 
+/--
+@isnad1 id=iff.6h10v.s9.99aa588defc3 from=translated src=- shape=94335312 vocab=0fd054a4
+-/
 theorem polynomialTernaryClearedQuaternionRealSplit_square_factor_transport
     [Field R] {A B C A' B' C' a b c : Polynomial R}
     (ha0 : a ≠ 0) (hb0 : b ≠ 0) (hc0 : c ≠ 0)
@@ -275,6 +302,9 @@ old whole-modulus witness descends along the representative divisor, and the
 square factors coming from the other two coefficients are cancelled using
 their coprimality with that representative.
 -/
+/--
+@isnad1 id=iff.2h4v.s7.3110c8149da5 from=translated src=- shape=513cf686 vocab=b298e48a
+-/
 theorem polynomialTernaryClearedQuaternionSplit_cyclic_iff
     [Field R] {A B C : Polynomial R} (hA0 : A ≠ 0) (hB0 : B ≠ 0) :
     PolynomialTernaryClearedQuaternionSplit A B C ↔
@@ -309,6 +339,9 @@ theorem polynomialTernaryClearedQuaternionSplit_cyclic_iff
     _ ↔ QuaternionSymbolSplit (φ (-(B * C))) (φ (-(B * A))) := by
       simp [φ, map_mul, map_neg, mul_comm]
 
+/--
+@isnad1 id=iff.3h6v.s8.0983d2e66e77 from=translated src=- shape=eece6b51 vocab=0e3fe013
+-/
 theorem polynomialTernaryClearedQuaternionSplit_descent
     [Field R] {A B C x d : Polynomial R}
     (hA0 : A ≠ 0) (hB0 : B ≠ 0)
@@ -394,6 +427,9 @@ must move to the other coefficient.  Thus the honest target is
 `S(B, g * C, d)`, not `S(B, C, d)`.
 -/
 
+/--
+@isnad1 id=iff.4h7v.s9.b0d1f4dcf1ed from=translated src=- shape=81458a8b vocab=0e3fe013
+-/
 theorem polynomialTernaryClearedQuaternionSplit_weighted_descent
     [Field R] {A B C d g x : Polynomial R}
     (hA0 : A ≠ 0) (hB0 : B ≠ 0) (hg0 : g ≠ 0)
@@ -427,6 +463,9 @@ theorem polynomialTernaryClearedQuaternionSplit_weighted_descent
     exact quaternionSymbolSplit_mul_square_right hgφ
   exact hdesc.trans hfactor
 
+/--
+@isnad1 id=polynomi.8h8v.s9.2a177261d781 from=translated src=- shape=08cde330 vocab=16660264
+-/
 theorem polynomialLegendreWholeModConditions_common_factor_transport
     [Field R] {A B C g x₁ B₁ d₁ : Polynomial R}
     (hwhole : PolynomialLegendreWholeModConditions A B C)
@@ -522,6 +561,9 @@ theorem polynomialLegendreWholeModConditions_common_factor_transport
       _ = d₁ * (g * A) := by ring
   exact ⟨hB₁new, hGCnew, hd₁new⟩
 
+/--
+@isnad1 id=iff.2h4v.s7.55b2512a6cde from=translated src=- shape=513cf686 vocab=162faa87
+-/
 theorem polynomialTernaryClearedQuaternionRealSplit_cyclic_iff
     [Field R] {A B C : Polynomial R} (hA0 : A ≠ 0) (hB0 : B ≠ 0) :
     PolynomialTernaryClearedQuaternionRealSplit.{u, v} A B C ↔
@@ -561,6 +603,9 @@ gcd is removed from two slots.  It is unconditional at the symbol level:
 the factor contributes only a square to the first cleared coefficient.
 -/
 
+/--
+@isnad1 id=iff.3h5v.s8.712a8dbf131a from=translated src=- shape=6e57d5c5 vocab=ac7225a0
+-/
 theorem polynomialTernaryClearedQuaternionSplit_common_factor_cyclic_transport
     [Field R] {A B C h : Polynomial R}
     (hA0 : A ≠ 0) (hB0 : B ≠ 0) (hh0 : h ≠ 0) :
@@ -594,6 +639,9 @@ theorem polynomialTernaryClearedQuaternionSplit_common_factor_cyclic_transport
     exact quaternionSymbolSplit_mul_square_left hφ
   exact hcyc.trans hfactor
 
+/--
+@isnad1 id=iff.3h5v.s8.06a969d4d636 from=translated src=- shape=6e57d5c5 vocab=23aa9e8c
+-/
 theorem polynomialTernaryClearedQuaternionRealSplit_common_factor_cyclic_transport
     [Field R] {A B C h : Polynomial R}
     (hA0 : A ≠ 0) (hB0 : B ≠ 0) (hh0 : h ≠ 0) :
@@ -635,6 +683,9 @@ the target `-(B * C)` as a square.  The coprimality hypothesis is exactly
 what permits cancellation and recombination of these two congruences.
 -/
 
+/--
+@isnad1 id=iff.3h6v.s8.e960dbbc28d9 from=translated src=- shape=eece6b51 vocab=9cb58a66
+-/
 theorem polynomialTernaryClearedQuaternionRealSplit_descent
     [Field R] {A B C x d : Polynomial R}
     (hA0 : A ≠ 0) (hB0 : B ≠ 0)
@@ -750,6 +801,9 @@ theorem polynomialTernaryClearedQuaternionRealSplit_descent
       rw [hcyc]
       exact hcyclic'
 
+/--
+@isnad1 id=iff.4h7v.s9.f845a7e0df69 from=translated src=- shape=81458a8b vocab=9cb58a66
+-/
 theorem polynomialTernaryClearedQuaternionRealSplit_weighted_descent
     [Field R] {A B C d g x : Polynomial R}
     (hA0 : A ≠ 0) (hB0 : B ≠ 0) (hg0 : g ≠ 0)
@@ -783,6 +837,9 @@ theorem polynomialTernaryClearedQuaternionRealSplit_weighted_descent
     exact ratFuncQuaternionRealSplit_mul_square_right hgφ
   exact hdesc.trans hfactor
 
+/--
+@isnad1 id=ex.9h6v.s11.ad39ee0c0daa from=translated src=- shape=c7e6b6be vocab=2cf5bbc3
+-/
 theorem polynomialTernaryClearedQuaternion_square_part_gcd_normalization
     [Field R] {A B C d x : Polynomial R}
     (hA0 : A ≠ 0) (hB0 : B ≠ 0) (hC0 : C ≠ 0) (hd0 : d ≠ 0)
@@ -983,6 +1040,9 @@ theorem polynomialTernaryClearedQuaternion_square_part_gcd_normalization
     hidentity, hB₁, hd₁, hweighted, hB₁d₁, hwhole, hsplit, hreal, hmeasure,
     hstrict⟩
 
+/--
+@isnad1 id=polynomi.4h6v.s8.3cb2dcbcc8f2 from=translated src=- shape=2d935eb6 vocab=97604e2c
+-/
 theorem polynomialLegendreWholeModConditions_transport_of_squareMod
     [Field R] {A B C x d : Polynomial R}
     (hwhole : PolynomialLegendreWholeModConditions A B C)
@@ -1069,6 +1129,9 @@ theorem polynomialLegendreWholeModConditions_transport_of_squareMod
     rw [sub_neg_eq_add, hd]
     exact dvd_mul_left d A
 
+/--
+@isnad1 id=ex.7h4v.s9.e88fe2db8dba from=translated src=- shape=37499da1 vocab=dd948ac6
+-/
 theorem polynomialTernaryClearedQuaternionSplit_descent_with_wholeMod
     [Field R] {A B C : Polynomial R}
     (hA0 : A ≠ 0) (hB0 : B ≠ 0)

@@ -37,6 +37,9 @@ noncomputable def toLexRingHom (A : Type*) [Semiring A] : A →+* Lex A where
     intro _ _
     rfl
 
+/--
+@isnad1 id=eq.2h2v.s6.1129f41ea3b5 from=translated src=- shape=c47d43b9 vocab=4f57801a
+-/
 theorem laurentSeries_leadingCoeff_eq_coeff_zero_of_no_negative
     {R : Type u} [Zero R] {f : LaurentSeries R}
     (hneg : ∀ i : ℤ, i < 0 → f.coeff i = 0) (h0 : f.coeff 0 ≠ 0) :
@@ -56,6 +59,9 @@ theorem laurentSeries_leadingCoeff_eq_coeff_zero_of_no_negative
     (WithTop.untop_eq_iff _).mpr htop
   rw [huntop]
 
+/--
+@isnad1 id=eq.0h4v.s9.310905357c8d from=translated src=- shape=a7b6c87c vocab=188fc9c5
+-/
 theorem scaledShiftedPolynomial_laurentSeries_coeff_zero
     {R : Type u} [Field R] (x ε : R) (p : Polynomial R) :
     (algebraMap (Polynomial R) (LaurentSeries R)
@@ -75,6 +81,9 @@ theorem scaledShiftedPolynomial_laurentSeries_coeff_zero
       rw [Polynomial.coeff_zero_eq_eval_zero]
       simp [Polynomial.eval_comp]
 
+/--
+@isnad1 id=eq.1h5v.s9.cf22495f4c76 from=translated src=- shape=448dc6b6 vocab=920a3147
+-/
 theorem scaledShiftedPolynomial_laurentSeries_coeff_neg
     {R : Type u} [Field R] (x ε : R) (p : Polynomial R) :
     ∀ i : ℤ, i < 0 →
@@ -87,6 +96,9 @@ theorem scaledShiftedPolynomial_laurentSeries_coeff_neg
   rw [PowerSeries.coeff_coe]
   simp [hi]
 
+/--
+@isnad1 id=eq.1h4v.s9.cfd19f46b671 from=translated src=- shape=54d014b5 vocab=8cdbbfa0
+-/
 theorem scaledShiftedPolynomial_laurentSeries_leadingCoeff
     {R : Type u} [Field R] {x ε : R} {p : Polynomial R} (hp : p.eval x ≠ 0) :
     (algebraMap (Polynomial R) (LaurentSeries R)
@@ -100,7 +112,9 @@ theorem scaledShiftedPolynomial_laurentSeries_leadingCoeff
 After reversing coefficients and substituting a nonzero scalar multiple of the
 Laurent parameter, the leading coefficient is the original polynomial leading
 coefficient.  This is the local piece used for the orderings at infinity, where
-`p(X)` is analyzed as `X ^ p.natDegree * p.reverse (X⁻¹)`.-/
+`p(X)` is analyzed as `X ^ p.natDegree * p.reverse (X⁻¹)`.
+@isnad1 id=eq.2h3v.s9.89e37d6c7a58 from=translated src=- shape=7317c175 vocab=3e6c7d55
+-/
 theorem scaledReversePolynomial_laurentSeries_leadingCoeff
     {R : Type u} [Field R] {ε : R} {p : Polynomial R}
     (_hε : ε ≠ 0) (hp : p ≠ 0) :
@@ -117,6 +131,9 @@ theorem scaledReversePolynomial_laurentSeries_leadingCoeff
       (x := 0) (ε := ε) (p := p.reverse) hrev0
   simpa [hrev_eval] using hlead
 
+/--
+@isnad1 id=eq.0h2v.s8.8b65f75714e1 from=translated src=- shape=fceb9c17 vocab=66a40399
+-/
 theorem powerSeries_C_mul_X_laurentSeries_leadingCoeff
     {R : Type u} [Field R] (ε : R) :
     ((HahnSeries.ofPowerSeries ℤ R)
@@ -125,7 +142,9 @@ theorem powerSeries_C_mul_X_laurentSeries_leadingCoeff
       PowerSeries.C ε * PowerSeries.X by simp]
   simp [HahnSeries.C_apply, HahnSeries.leadingCoeff_of_single]
 
-/-- The Laurent-series embedding sends `C a * X` to the single term `a X`.-/
+/-- The Laurent-series embedding sends `C a * X` to the single term `a X`.
+@isnad1 id=eq.0h2v.s9.5626a47a09b4 from=translated src=- shape=d6b003e1 vocab=4489534e
+-/
 theorem algebraMap_C_mul_X_laurentSeries
     {R : Type u} [Field R] (a : R) :
     algebraMap (Polynomial R) (LaurentSeries R) (Polynomial.C a * Polynomial.X) =
@@ -133,7 +152,9 @@ theorem algebraMap_C_mul_X_laurentSeries
   rw [map_mul]
   simp [HahnSeries.C_apply, HahnSeries.single_mul_single]
 
-/-- Evaluating a polynomial at a single Laurent monomial is substitution by `C a * X`.-/
+/-- Evaluating a polynomial at a single Laurent monomial is substitution by `C a * X`.
+@isnad1 id=eq.0h3v.s9.655b8e5fa434 from=translated src=- shape=c666a57b vocab=8edc33f1
+-/
 theorem polynomial_eval₂_single_one_eq_algebraMap_comp_C_mul_X
     {R : Type u} [Field R] (a : R) (p : Polynomial R) :
     Polynomial.eval₂ (algebraMap R (LaurentSeries R))
@@ -154,7 +175,9 @@ theorem polynomial_eval₂_single_one_eq_algebraMap_comp_C_mul_X
 
 /--
 Evaluating a polynomial at the inverse Laurent parameter reads the polynomial
-leading coefficient as the leading coefficient of the resulting Laurent series.-/
+leading coefficient as the leading coefficient of the resulting Laurent series.
+@isnad1 id=eq.2h3v.s8.55b6497800e6 from=translated src=- shape=7325eb6a vocab=f26a198a
+-/
 theorem polynomial_eval_single_neg_one_laurentSeries_leadingCoeff
     {R : Type u} [Field R] {ε : R} (hε : ε ≠ 0) {p : Polynomial R} (hp : p ≠ 0) :
     (Polynomial.eval₂ (algebraMap R (LaurentSeries R))
@@ -182,7 +205,9 @@ theorem polynomial_eval_single_neg_one_laurentSeries_leadingCoeff
   rw [← hformula]
   rw [HahnSeries.leadingCoeff_mul, hfirst, hsecond]
 
-/-- The `+∞` Laurent evaluation sends positive leading coefficient to positivity.-/
+/-- The `+∞` Laurent evaluation sends positive leading coefficient to positivity.
+@isnad1 id=lt.1h2v.s9.827e417aeeaa from=translated src=- shape=55c398d4 vocab=f22e70fa
+-/
 theorem polynomial_posInfinity_eval_pos_laurentSeries
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     {p : Polynomial R} (hp : 0 < p.leadingCoeff) :
@@ -195,7 +220,9 @@ theorem polynomial_posInfinity_eval_pos_laurentSeries
     (ε := (1 : R)) one_ne_zero hp0]
   simpa using hp
 
-/-- The `+∞` Laurent evaluation sends negative leading coefficient to negativity.-/
+/-- The `+∞` Laurent evaluation sends negative leading coefficient to negativity.
+@isnad1 id=lt.1h2v.s9.fa01cc22aed3 from=translated src=- shape=5a65bd02 vocab=f22e70fa
+-/
 theorem polynomial_posInfinity_eval_neg_laurentSeries
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     {p : Polynomial R} (hp : p.leadingCoeff < 0) :
@@ -208,7 +235,9 @@ theorem polynomial_posInfinity_eval_neg_laurentSeries
     (ε := (1 : R)) one_ne_zero hp0]
   simpa using hp
 
-/-- The `-∞` Laurent evaluation sends the parity-adjusted positive sign to positivity.-/
+/-- The `-∞` Laurent evaluation sends the parity-adjusted positive sign to positivity.
+@isnad1 id=lt.1h2v.s9.147d924aa5b7 from=translated src=- shape=ef280dd2 vocab=29b7d680
+-/
 theorem polynomial_negInfinity_eval_pos_laurentSeries
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     {p : Polynomial R}
@@ -230,7 +259,9 @@ theorem polynomial_negInfinity_eval_pos_laurentSeries
   · rw [hdeg.neg_one_pow, mul_neg_one]
     exact neg_pos.mpr hlc
 
-/-- The `-∞` Laurent evaluation sends the parity-adjusted negative sign to negativity.-/
+/-- The `-∞` Laurent evaluation sends the parity-adjusted negative sign to negativity.
+@isnad1 id=lt.1h2v.s9.eadcd6de4274 from=translated src=- shape=ac19ece5 vocab=29b7d680
+-/
 theorem polynomial_negInfinity_eval_neg_laurentSeries
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     {p : Polynomial R}
@@ -252,6 +283,9 @@ theorem polynomial_negInfinity_eval_neg_laurentSeries
   · rw [hdeg.neg_one_pow, mul_neg_one]
     exact neg_lt_zero.mpr hlc
 
+/--
+@isnad1 id=eq.1h4v.s9.9ed04ce2d5fe from=translated src=- shape=8594c4e0 vocab=1a5c3ca1
+-/
 theorem scaledShiftedPolynomial_mul_X_sub_C_laurentSeries_leadingCoeff
     {R : Type u} [Field R] {x ε : R} {p : Polynomial R} (hp : p.eval x ≠ 0) :
     (algebraMap (Polynomial R) (LaurentSeries R)
@@ -285,6 +319,9 @@ theorem scaledShiftedPolynomial_mul_X_sub_C_laurentSeries_leadingCoeff
   change lhs.leadingCoeff = p.eval x * ε
   rw [hlhs, HahnSeries.leadingCoeff_mul, hA, hL]
 
+/--
+@isnad1 id=eq.1h4v.s9.58d95cb0b1c0 from=translated src=- shape=cf26fdf8 vocab=1a5c3ca1
+-/
 theorem scaledShifted_X_sub_C_mul_polynomial_laurentSeries_leadingCoeff
     {R : Type u} [Field R] {x ε : R} {p : Polynomial R} (hp : p.eval x ≠ 0) :
     (algebraMap (Polynomial R) (LaurentSeries R)
@@ -295,6 +332,9 @@ theorem scaledShifted_X_sub_C_mul_polynomial_laurentSeries_leadingCoeff
   exact scaledShiftedPolynomial_mul_X_sub_C_laurentSeries_leadingCoeff
     (x := x) (ε := ε) (p := p) hp
 
+/--
+@isnad1 id=ex.3h5v.s10.6e327ab4748f from=translated src=- shape=82e78235 vocab=72f250e9
+-/
 theorem scaledLinearFactorAndPointHomPos_laurentSeries
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     {x : R} {B C q : Polynomial R}
@@ -368,6 +408,9 @@ theorem scaledLinearFactorAndPointHomPos_laurentSeries
       exact mul_self_pos.mpr hq
     exact hmap.symm ▸ hpos
 
+/--
+@isnad1 id=ex.3h6v.s10.c1be829ad1bc from=translated src=- shape=9300b882 vocab=72f250e9
+-/
 theorem scaledLinearFactorPairHomPos_laurentSeries
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     {x : R} {B C qB qC : Polynomial R}
@@ -447,6 +490,9 @@ theorem scaledLinearFactorPairHomPos_laurentSeries
       simpa [mul_comm] using hprod
     exact hmap.symm ▸ hpos
 
+/--
+@isnad1 id=ex.5h6v.s10.260c596097eb from=translated src=- shape=dc03b4d1 vocab=b64f0831
+-/
 theorem squarefreeGcdSplit_homPos_of_C₁_linear_laurentSeries
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     {B C π : Polynomial R} {a : R} (s : SquarefreeGcdSplit B C)
@@ -469,6 +515,9 @@ theorem squarefreeGcdSplit_homPos_of_C₁_linear_laurentSeries
   exact scaledLinearFactorAndPointHomPos_laurentSeries
     (x := a) (B := B) (C := C) (q := q) hBpos hCeq hq
 
+/--
+@isnad1 id=ex.5h6v.s10.37f380d90426 from=translated src=- shape=42de521c vocab=90a1a635
+-/
 theorem squarefreeGcdSplit_homPos_of_B₁_linear_laurentSeries
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     {B C π : Polynomial R} {a : R} (s : SquarefreeGcdSplit B C)
@@ -493,6 +542,9 @@ theorem squarefreeGcdSplit_homPos_of_B₁_linear_laurentSeries
     ⟨K, hKfield, hKorder, hKstrict, f, hCpos', hBpos'⟩
   exact ⟨K, hKfield, hKorder, hKstrict, f, hBpos', hCpos'⟩
 
+/--
+@isnad1 id=ex.4h6v.s10.fe70321c6566 from=translated src=- shape=b459a4fc vocab=ee849fb0
+-/
 theorem squarefreeGcdSplit_homPos_of_G_linear_laurentSeries
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     {B C π : Polynomial R} {a : R} (s : SquarefreeGcdSplit B C)
@@ -581,6 +633,9 @@ def SquarefreeGcdLegendreLinearRootHomPosPrinciples
                               0 < f (algebraMap (Polynomial R) (RatFunc R) B) ∧
                                 0 < f (algebraMap (Polynomial R) (RatFunc R) C))
 
+/--
+@isnad1 id=squarefr.0h1v.s5.ece37c0e2d0f from=translated src=- shape=7ddc04c7 vocab=1ab6316f
+-/
 theorem squarefreeGcdLegendreLinearRootHomPosPrinciples_laurentSeries
     (R : Type u) [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R] :
     SquarefreeGcdLegendreLinearRootHomPosPrinciples.{u, u} R := by

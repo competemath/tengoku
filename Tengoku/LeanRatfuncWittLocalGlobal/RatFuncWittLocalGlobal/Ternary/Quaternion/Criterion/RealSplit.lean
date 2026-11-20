@@ -30,7 +30,9 @@ def RatFuncQuaternionRealSplit [Field R] (u v : RatFunc R) : Prop :=
       [Algebra (RatFunc R) K],
     QuaternionSymbolSplit (algebraMap (RatFunc R) K u) (algebraMap (RatFunc R) K v)
 
-/-- Real split is symmetric in the two quaternion-symbol coefficients.-/
+/-- Real split is symmetric in the two quaternion-symbol coefficients.
+@isnad1 id=iff.0h3v.s4.19f501538517 from=translated src=- shape=d301f23b vocab=15ff955b
+-/
 theorem ratFuncQuaternionRealSplit_comm [Field R] {p q : RatFunc R} :
     RatFuncQuaternionRealSplit.{u, v} p q ↔
       RatFuncQuaternionRealSplit.{u, v} q p := by
@@ -52,7 +54,9 @@ theorem ratFuncQuaternionRealSplit_comm [Field R] {p q : RatFunc R} :
 
 /--
 Real split is invariant under multiplying the first coefficient by a nonzero
-square in `RatFunc R`.-/
+square in `RatFunc R`.
+@isnad1 id=iff.1h4v.s7.78d02179a207 from=translated src=- shape=4cddad8b vocab=cbf1eea6
+-/
 theorem ratFuncQuaternionRealSplit_mul_square_left
     [Field R] {p q s : RatFunc R} (hs : s ≠ 0) :
     RatFuncQuaternionRealSplit.{u, v} (p * s ^ 2) q ↔
@@ -98,7 +102,9 @@ theorem ratFuncQuaternionRealSplit_mul_square_left
 
 /--
 Real split is invariant under multiplying the second coefficient by a nonzero
-square in `RatFunc R`.-/
+square in `RatFunc R`.
+@isnad1 id=iff.1h4v.s7.1f81792bad5b from=translated src=- shape=e2bf5bc6 vocab=cbf1eea6
+-/
 theorem ratFuncQuaternionRealSplit_mul_square_right
     [Field R] {p q s : RatFunc R} (hs : s ≠ 0) :
     RatFuncQuaternionRealSplit.{u, v} p (q * s ^ 2) ↔
@@ -114,7 +120,9 @@ theorem ratFuncQuaternionRealSplit_mul_square_right
 
 /--
 Real split is invariant under multiplying the second coefficient by a nonzero
-norm from `(RatFunc R)[√p]`.-/
+norm from `(RatFunc R)[√p]`.
+@isnad1 id=iff.2h6v.s8.8f693d3c2bc1 from=translated src=- shape=113eff2a vocab=a9966c17
+-/
 theorem ratFuncQuaternionRealSplit_mul_norm_right
     [Field R] {p q n α β : RatFunc R}
     (hn : n = α ^ 2 - p * β ^ 2) (hn0 : n ≠ 0) :
@@ -156,7 +164,9 @@ theorem ratFuncQuaternionRealSplit_mul_norm_right
 
 /--
 Real split is invariant under multiplying the first coefficient by a nonzero
-norm from `(RatFunc R)[√q]`.-/
+norm from `(RatFunc R)[√q]`.
+@isnad1 id=iff.2h6v.s8.065fee5aed26 from=translated src=- shape=fcdce7b9 vocab=a9966c17
+-/
 theorem ratFuncQuaternionRealSplit_mul_norm_left
     [Field R] {p q n α β : RatFunc R}
     (hn : n = α ^ 2 - q * β ^ 2) (hn0 : n ≠ 0) :
@@ -180,7 +190,9 @@ def RatFuncQuaternionSquareClass [Field R]
     s ≠ 0 ∧ t ≠ 0 ∧
       p = p' * s ^ 2 ∧ q = q' * t ^ 2
 
-/-- A square-class relation transfers split from the representative back.-/
+/-- A square-class relation transfers split from the representative back.
+@isnad1 id=quaterni.2h5v.s6.be2750c182ea from=translated src=- shape=e58b4560 vocab=c3c37e2d
+-/
 theorem ratFuncQuaternionSquareClass_transfers_split
     [Field R] {p q p' q' : RatFunc R}
     (hclass : RatFuncQuaternionSquareClass p q p' q') :
@@ -195,7 +207,9 @@ theorem ratFuncQuaternionSquareClass_transfers_split
 
 /--
 A square-class relation transfers real split from the original symbol to the
-representative.-/
+representative.
+@isnad1 id=ratfuncq.2h5v.s5.d36a78ab296d from=translated src=- shape=c085eedc vocab=f3025514
+-/
 theorem ratFuncQuaternionSquareClass_transfers_realSplit
     [Field R] {p q p' q' : RatFunc R}
     (hclass : RatFuncQuaternionSquareClass p q p' q') :

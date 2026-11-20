@@ -378,6 +378,9 @@ def SquarefreeGcdLegendreLinearRootOrderedPosPrinciples
                             (algebraMap (Polynomial R) (RatFunc R) B)
                             (algebraMap (Polynomial R) (RatFunc R) C)))
 
+/--
+@isnad1 id=squarefr.1h1v.s5.470e846803f0 from=translated src=- shape=fb04960b vocab=6ce956b8
+-/
 theorem linearRootOrderedPosPrinciples_of_homPosPrinciples
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (hhom : SquarefreeGcdLegendreLinearRootHomPosPrinciples.{u, v} R) :
@@ -411,13 +414,18 @@ theorem linearRootOrderedPosPrinciples_of_homPosPrinciples
     exact orderedRatFuncPositivePair_of_normalizedOrderingObstruction
       (normalizedOrderingObstruction_of_hom_pos f hBpos hCpos)
 
-/-- Laurent-series point-sign constructions supply the ordered linear-root principles.-/
+/-- Laurent-series point-sign constructions supply the ordered linear-root principles.
+@isnad1 id=squarefr.0h1v.s5.5351d8faf902 from=translated src=- shape=7ddc04c7 vocab=4cd03e0a
+-/
 theorem squarefreeGcdLegendreLinearRootOrderedPosPrinciples_laurentSeries
     (R : Type u) [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R] :
     SquarefreeGcdLegendreLinearRootOrderedPosPrinciples R :=
   linearRootOrderedPosPrinciples_of_homPosPrinciples
     (squarefreeGcdLegendreLinearRootHomPosPrinciples_laurentSeries R)
 
+/--
+@isnad1 id=squarefr.1h1v.s5.9fe7f76361c3 from=translated src=- shape=fb04960b vocab=78030a93
+-/
 theorem linearRootObstructionPrinciples_of_orderedPosPrinciples
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (hordered : SquarefreeGcdLegendreLinearRootOrderedPosPrinciples R) :
@@ -436,6 +444,9 @@ theorem linearRootObstructionPrinciples_of_orderedPosPrinciples
       let ⟨w⟩ := hB₁ordered π a hπ hπB₁ hlin hpos
       normalizedOrderingObstruction_of_orderedRatFuncPositivePair w)⟩
 
+/--
+@isnad1 id=squarefr.1h1v.s5.6c0db7856d35 from=translated src=- shape=fb04960b vocab=755420a3
+-/
 theorem linearDivisorSignConditionsNoOrderingObstruction_of_rootObstructionPrinciples
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (hroot : SquarefreeGcdLegendreLinearRootObstructionPrinciples R) :
@@ -480,7 +491,9 @@ The Laurent-series point-sign construction closes the linear factor branch
 directly.  At a linear factor, a negative target evaluation would turn the
 corresponding product (or coefficient) evaluation positive; the ordered
 positive pair supplied by the Laurent root principle then contradicts the
-assumed absence of a normalized ordering obstruction.-/
+assumed absence of a normalized ordering obstruction.
+@isnad1 id=squarefr.0h1v.s5.e86a19f86be7 from=translated src=- shape=7ddc04c7 vocab=b272c6cb
+-/
 theorem squarefreeGcdLegendreLinearDivisorSignConditionsNoOrderingObstruction_laurentSeries
     (R : Type u) [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R] :
     SquarefreeGcdLegendreLinearDivisorSignConditionsNoOrderingObstruction R := by
@@ -524,6 +537,9 @@ theorem squarefreeGcdLegendreLinearDivisorSignConditionsNoOrderingObstruction_la
     rcases hB₁ordered π a hπ hπB₁ hlin hpos with ⟨w⟩
     exact hno (normalizedOrderingObstruction_of_orderedRatFuncPositivePair w)
 
+/--
+@isnad1 id=squarefr.2h1v.s5.a8f563ea21db from=translated src=- shape=4ff572b6 vocab=2f021eaf
+-/
 theorem linearAndNonlinearDivisorConditionsNoOrderingObstruction_of_linearSigns
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (hlinear : SquarefreeGcdLegendreLinearDivisorSignConditionsNoOrderingObstruction R)
@@ -540,6 +556,9 @@ theorem linearAndNonlinearDivisorConditionsNoOrderingObstruction_of_linearSigns
     hB₁lin,
     (fun π hπ _hπB₁ hdeg => hnonlinear π (-C) hπ hdeg)⟩
 
+/--
+@isnad1 id=squarefr.1h1v.s5.716c4230afdc from=translated src=- shape=fb04960b vocab=f4ee469a
+-/
 theorem squarefreeGcdLegendreFactorModConditionsNoOrderingObstruction_of_irreducibleDivisors
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (hirrDivisors : SquarefreeGcdLegendreIrreducibleDivisorConditionsNoOrderingObstruction R) :
@@ -553,6 +572,9 @@ theorem squarefreeGcdLegendreFactorModConditionsNoOrderingObstruction_of_irreduc
     isSquareMod_of_forall_irreducible_dvd_of_squarefree s.C₁_ne_zero s.squarefree_C₁ hC₁,
     isSquareMod_of_forall_irreducible_dvd_of_squarefree s.B₁_ne_zero s.squarefree_B₁ hB₁⟩
 
+/--
+@isnad1 id=squarefr.1h1v.s5.0c89ae927647 from=translated src=- shape=fb04960b vocab=1f604d74
+-/
 theorem
     irreducibleDivisorConditionsNoOrderingObstruction_of_splitDivisors
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
@@ -586,6 +608,9 @@ theorem
           hπ hπB₁ hlin hnonneg
     · exact hB₁nonlin π hπ hπB₁ hdeg
 
+/--
+@isnad1 id=squarefr.1h1v.s5.1c1b590e3e9a from=translated src=- shape=fb04960b vocab=0e430d8d
+-/
 theorem squarefreeGcdLegendreFactorModConditionsNoOrderingObstruction_of_splitDivisors
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (hlocal :
@@ -594,6 +619,9 @@ theorem squarefreeGcdLegendreFactorModConditionsNoOrderingObstruction_of_splitDi
   squarefreeGcdLegendreFactorModConditionsNoOrderingObstruction_of_irreducibleDivisors
     (irreducibleDivisorConditionsNoOrderingObstruction_of_splitDivisors hlocal)
 
+/--
+@isnad1 id=squarefr.1h1v.s5.ee81be37961a from=translated src=- shape=fb04960b vocab=3a87ae52
+-/
 theorem squarefreeGcdLegendreLocalConditionsNoOrderingObstruction_of_factorMod
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (hfactor : SquarefreeGcdLegendreFactorModConditionsNoOrderingObstruction R) :
@@ -606,7 +634,9 @@ theorem squarefreeGcdLegendreLocalConditionsNoOrderingObstruction_of_factorMod
 /--
 The direct Laurent-series linear branch is consumable by the existing
 linear-plus-nonlinear local-condition assembly; only the nonlinear square-mod
-input remains in this slice.-/
+input remains in this slice.
+@isnad1 id=squarefr.1h1v.s5.30fd82a5ff8f from=translated src=- shape=fb04960b vocab=3bfa556b
+-/
 theorem squarefreeGcdLegendreLocalConditionsNoOrderingObstruction_of_laurentSeriesLinearSigns
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (hnonlinear : NonlinearIrreducibleDivisorSquareMod R) :
@@ -617,12 +647,18 @@ theorem squarefreeGcdLegendreLocalConditionsNoOrderingObstruction_of_laurentSeri
         (squarefreeGcdLegendreLinearDivisorSignConditionsNoOrderingObstruction_laurentSeries R)
         hnonlinear))
 
+/--
+@isnad1 id=squarefr.0h1v.s5.d7bfcc98c591 from=translated src=- shape=7ddc04c7 vocab=a0088b7d
+-/
 theorem squarefreeGcdLegendreLocalConditionsNoOrderingObstruction_of_realClosed
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R] :
     SquarefreeGcdLegendreLocalConditionsNoOrderingObstruction R :=
   squarefreeGcdLegendreLocalConditionsNoOrderingObstruction_of_laurentSeriesLinearSigns
     (nonlinearIrreducibleDivisorSquareMod_of_realClosed (R := R))
 
+/--
+@isnad1 id=squarefr.2h1v.s5.508caeda86c5 from=translated src=- shape=4ff572b6 vocab=8f0149d2
+-/
 theorem squarefreeGcdLegendreConstructionNoOrderingObstruction_of_polynomialLegendre
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (hlegendre : PolynomialLegendreConstruction R)
@@ -639,6 +675,9 @@ theorem squarefreeGcdLegendreConstructionNoOrderingObstruction_of_polynomialLege
     ⟨r, q, d, hne, hzero⟩
   exact ⟨s, r, q, d, hne, hzero⟩
 
+/--
+@isnad1 id=squarefr.2h1v.s5.b8aa1ae8c2e3 from=translated src=- shape=4ff572b6 vocab=354456bd
+-/
 theorem squarefreeGcdLegendreConstructionNoOrderingObstruction_of_polynomialLegendre_of_factorMod
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (hlegendre : PolynomialLegendreConstruction R)

@@ -31,6 +31,9 @@ variable {F : Type u} [Field F] [LinearOrder F] [IsStrictOrderedRing F]
 
 local notation "Ω" => AlgebraicClosure F
 
+/--
+@isnad1 id=iff.0h3v.s10.87320062c5f6 from=translated src=- shape=2ac3c3f7 vocab=8c63f4b5
+-/
 @[simp] theorem Intermediate.zero_le_iff_ambient_nonnegative (E : Intermediate F)
     {x : E.carrier} :
     0 ≤ x ↔ (x : Ω) ∈ E.nonnegative := by
@@ -48,6 +51,9 @@ extension, injectivity upgrades monotonicity to strict monotonicity, hence the
 map reflects the nonnegative cone as well.
 -/
 
+/--
+@isnad1 id=iff.0h3v.s8.01aebf4f1f8e from=translated src=- shape=72949202 vocab=a9f01216
+-/
 theorem algebraMap_nonneg_iff_of_isOrderedModule
     {K L : Type*} [Field K] [LinearOrder K] [IsStrictOrderedRing K]
     [Field L] [LinearOrder L] [IsStrictOrderedRing L] [Algebra K L]
@@ -131,6 +137,9 @@ noncomputable def Intermediate.ofOrderedSubfield
             simpa [IsScalarTower.algebraMap_apply F E.carrier L x] using hxL)
       exact (base_nonnegative_iff (F := F) E x).mpr hxE
 
+/--
+@isnad1 id=le.0h3v.s13.eda7595e8338 from=translated src=- shape=26cac671 vocab=096f6e94
+-/
 theorem Intermediate.le_ofOrderedSubfield
     (E : Intermediate F) (L : IntermediateField E.carrier Ω)
     [LinearOrder L] [IsStrictOrderedRing L] [IsOrderedModule E.carrier L] :

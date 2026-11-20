@@ -31,7 +31,9 @@ def QuaternionSymbolSplit [Field F] (u v : F) : Prop :=
     (x ≠ 0 ∨ y ≠ 0 ∨ z ≠ 0) ∧
       x ^ 2 - u * y ^ 2 - v * z ^ 2 = 0
 
-/-- A split quaternion-symbol conic remains split after base change.-/
+/-- A split quaternion-symbol conic remains split after base change.
+@isnad1 id=quaterni.1h4v.s7.05d58bf5453a from=translated src=- shape=2b88cee8 vocab=0fdc7c88
+-/
 theorem quaternionSymbolSplit_baseChange [Field F] [Field K] [Algebra F K] {u v : F}
     (h : QuaternionSymbolSplit u v) :
     QuaternionSymbolSplit (algebraMap F K u) (algebraMap F K v) := by
@@ -46,7 +48,9 @@ theorem quaternionSymbolSplit_baseChange [Field F] [Field K] [Algebra F K] {u v 
   · have hmap := congrArg (algebraMap F K) hsum
     simpa using hmap
 
-/-- The quaternion-symbol split predicate is symmetric in its two coefficients.-/
+/-- The quaternion-symbol split predicate is symmetric in its two coefficients.
+@isnad1 id=iff.0h3v.s4.82a2435ca2ca from=translated src=- shape=bc89b7d4 vocab=7224eee0
+-/
 theorem quaternionSymbolSplit_comm [Field F] {u v : F} :
     QuaternionSymbolSplit u v ↔ QuaternionSymbolSplit v u := by
   constructor
@@ -71,19 +75,25 @@ theorem quaternionSymbolSplit_comm [Field F] {u v : F} :
             x ^ 2 - v * z ^ 2 - u * y ^ 2 := by ring
         _ = 0 := hsum
 
-/-- If the first quaternion-symbol coefficient is a square, the symbol is split.-/
+/-- If the first quaternion-symbol coefficient is a square, the symbol is split.
+@isnad1 id=quaterni.1h3v.s4.5d43b7b6acb7 from=translated src=- shape=bf802d47 vocab=9622c42d
+-/
 theorem quaternionSymbolSplit_of_isSquare_left [Field F] {u v : F} (hu : IsSquare u) :
     QuaternionSymbolSplit u v := by
   rcases hu with ⟨s, rfl⟩
   refine ⟨s, 1, 0, Or.inr (Or.inl one_ne_zero), ?_⟩
   ring
 
-/-- If the second quaternion-symbol coefficient is a square, the symbol is split.-/
+/-- If the second quaternion-symbol coefficient is a square, the symbol is split.
+@isnad1 id=quaterni.1h3v.s4.26c5f708ef80 from=translated src=- shape=f85d469d vocab=9622c42d
+-/
 theorem quaternionSymbolSplit_of_isSquare_right [Field F] {u v : F} (hv : IsSquare v) :
     QuaternionSymbolSplit u v := by
   exact quaternionSymbolSplit_comm.mpr (quaternionSymbolSplit_of_isSquare_left hv)
 
-/-- If the second quaternion-symbol coefficient is zero, the symbol is split.-/
+/-- If the second quaternion-symbol coefficient is zero, the symbol is split.
+@isnad1 id=quaterni.1h3v.s5.1281bf480744 from=translated src=- shape=14b21296 vocab=7224eee0
+-/
 theorem quaternionSymbolSplit_of_right_eq_zero [Field F] {u v : F} (hv : v = 0) :
     QuaternionSymbolSplit u v := by
   subst v
@@ -91,7 +101,9 @@ theorem quaternionSymbolSplit_of_right_eq_zero [Field F] {u v : F} (hv : v = 0) 
 
 /--
 Multiplying the first quaternion-symbol coefficient by a nonzero square does
-not change splitness.-/
+not change splitness.
+@isnad1 id=iff.1h4v.s6.8484fca35c4b from=translated src=- shape=34d447ab vocab=e7b292b5
+-/
 theorem quaternionSymbolSplit_mul_square_left [Field F] {u v s : F} (hs : s ≠ 0) :
     QuaternionSymbolSplit (u * s ^ 2) v ↔ QuaternionSymbolSplit u v := by
   constructor
@@ -119,7 +131,9 @@ theorem quaternionSymbolSplit_mul_square_left [Field F] {u v s : F} (hs : s ≠ 
 
 /--
 Multiplying the second quaternion-symbol coefficient by a nonzero square does
-not change splitness.-/
+not change splitness.
+@isnad1 id=iff.1h4v.s6.564e3aabb325 from=translated src=- shape=220eb6c0 vocab=e7b292b5
+-/
 theorem quaternionSymbolSplit_mul_square_right [Field F] {u v s : F} (hs : s ≠ 0) :
     QuaternionSymbolSplit u (v * s ^ 2) ↔ QuaternionSymbolSplit u v := by
   calc
@@ -132,7 +146,9 @@ theorem quaternionSymbolSplit_mul_square_right [Field F] {u v s : F} (hs : s ≠
 
 /--
 The conic split condition for `(u, v)` is equivalently a quadratic-algebra norm
-equation in `F[√u]`, with the square factor on the `v` side kept explicit.-/
+equation in `F[√u]`, with the square factor on the `v` side kept explicit.
+@isnad1 id=iff.0h3v.s8.a6f4a9cba8c7 from=translated src=- shape=4cd09139 vocab=ec2c7242
+-/
 theorem quaternionSymbolSplit_iff_quadraticAlgebra_norm [Field F] {u v : F} :
     QuaternionSymbolSplit u v ↔
       ∃ x y z : F,
@@ -158,7 +174,9 @@ theorem quaternionSymbolSplit_iff_quadraticAlgebra_norm [Field F] {u v : F} :
 
 /--
 Multiplying the second quaternion-symbol coefficient by a nonzero norm from
-`F[√u]` preserves splitness in the forward direction.-/
+`F[√u]` preserves splitness in the forward direction.
+@isnad1 id=quaterni.3h6v.s7.3aa6af16d289 from=translated src=- shape=f1440ef0 vocab=00b906b7
+-/
 theorem quaternionSymbolSplit_mul_norm_right [Field F] {u v n α β : F}
     (hn : n = α ^ 2 - u * β ^ 2) (hn0 : n ≠ 0) :
     QuaternionSymbolSplit u v → QuaternionSymbolSplit u (v * n) := by
@@ -203,7 +221,9 @@ theorem quaternionSymbolSplit_mul_norm_right [Field F] {u v n α β : F}
 
 /--
 Multiplying the second quaternion-symbol coefficient by a nonzero norm from
-`F[√u]` does not change splitness.-/
+`F[√u]` does not change splitness.
+@isnad1 id=iff.2h6v.s7.fde69f289297 from=translated src=- shape=a4d1a79d vocab=00b906b7
+-/
 theorem quaternionSymbolSplit_mul_norm_right_iff [Field F] {u v n α β : F}
     (hn : n = α ^ 2 - u * β ^ 2) (hn0 : n ≠ 0) :
     QuaternionSymbolSplit u (v * n) ↔ QuaternionSymbolSplit u v := by
@@ -220,7 +240,9 @@ theorem quaternionSymbolSplit_mul_norm_right_iff [Field F] {u v n α β : F}
 
 /--
 Multiplying the first quaternion-symbol coefficient by a nonzero norm from
-`F[√v]` does not change splitness.-/
+`F[√v]` does not change splitness.
+@isnad1 id=iff.2h6v.s7.d8e4330c820c from=translated src=- shape=ae68fdc9 vocab=00b906b7
+-/
 theorem quaternionSymbolSplit_mul_norm_left_iff [Field F] {u v n α β : F}
     (hn : n = α ^ 2 - v * β ^ 2) (hn0 : n ≠ 0) :
     QuaternionSymbolSplit (u * n) v ↔ QuaternionSymbolSplit u v := by
@@ -235,7 +257,9 @@ theorem quaternionSymbolSplit_mul_norm_left_iff [Field F] {u v n α β : F}
 namespace Diagonal
 /--
 The normalized ternary form `⟨1, b, c⟩` is isotropic exactly when the conic for
-the quaternion symbol `(-b, -c)` has a nontrivial point.-/
+the quaternion symbol `(-b, -c)` has a nontrivial point.
+@isnad1 id=iff.0h3v.s6.fb1ef8305f81 from=translated src=- shape=c2bfab65 vocab=63d2c9e1
+-/
 theorem ternary_isotropic_one_iff_quaternionSymbolSplit [Field F] {b c : F} :
     TernaryIsotropic 1 b c ↔ QuaternionSymbolSplit (-b) (-c) := by
   constructor
@@ -256,7 +280,9 @@ theorem ternary_isotropic_one_iff_quaternionSymbolSplit [Field F] {b c : F} :
 
 /--
 After normalizing by the first nonzero coefficient, a ternary form is isotropic
-exactly when the corresponding quaternion-symbol conic is split.-/
+exactly when the corresponding quaternion-symbol conic is split.
+@isnad1 id=iff.1h4v.s6.0cfd379e4800 from=translated src=- shape=cab2235d vocab=5834fc00
+-/
 theorem ternary_isotropic_iff_quaternionSymbolSplit_normalize_first [Field F]
     {a₀ a₁ a₂ : F} (ha₀ : a₀ ≠ 0) :
     TernaryIsotropic a₀ a₁ a₂ ↔

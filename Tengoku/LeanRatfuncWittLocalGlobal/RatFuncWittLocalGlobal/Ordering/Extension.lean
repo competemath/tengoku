@@ -158,7 +158,9 @@ private theorem exists_maximal_containing
   have hMsub : M ≤ (⟨Q, hPQ⟩ : S) := hMQ
   exact hM hMsub
 
-/-- Every preordering on a field is contained in an ordering.-/
+/-- Every preordering on a field is contained in an ordering.
+@isnad1 id=ex.0h2v.s5.7e25dd999cbc from=translated src=- shape=d720e93a vocab=f79de725
+-/
 theorem exists_le_isOrdering (P : RingPreordering K) :
     ∃ O : RingPreordering K, P ≤ O ∧ O.IsOrdering := by
   rcases exists_maximal_containing P with ⟨O, hPO, hOmax⟩
@@ -244,6 +246,9 @@ def baseSquarePreordering
     hproper
 
 omit [IsStrictOrderedRing F] in
+/--
+@isnad1 id=mem.2h3v.s7.3a305d5aeb35 from=translated src=- shape=61b73c4a vocab=04775284
+-/
 theorem mem_baseSquarePreordering_algebraMap
     (hproper : (-1 : K) ∉ baseSquareSubsemiring (F := F) (K := K))
     {a : F} (ha : 0 ≤ a) :
@@ -350,7 +355,9 @@ private theorem baseSquareWeightedCone_nonneg_of_projection
       rw [baseSquareWeightedTerm, ← Algebra.smul_def, map_smul]
       simpa [smul_eq_mul] using hscale
 
-/-- A strictly positive square projection makes the base-square cone proper.-/
+/-- A strictly positive square projection makes the base-square cone proper.
+@isnad1 id=not.1h3v.s8.332ad3739431 from=translated src=- shape=bdfe693d vocab=25f4fa7c
+-/
 theorem baseSquareSubsemiring_proper_of_projection
     (π : K →ₗ[F] F) (hπ : ∀ x : K, x ≠ 0 → 0 < π (x * x)) :
     (-1 : K) ∉ baseSquareSubsemiring (F := F) (K := K) := by
@@ -370,7 +377,9 @@ theorem baseSquareSubsemiring_proper_of_projection
 The order returned here is the canonical order induced by the resulting ordering
 preordering.  In particular the statement is independent of any ambient order on
 `K`; callers can install `linearOrderOfIsOrdering` and
-`isStrictOrderedRingOfIsOrdering` as local instances using the returned `O.IsOrdering`.-/
+`isStrictOrderedRingOfIsOrdering` as local instances using the returned `O.IsOrdering`.
+@isnad1 id=ex.1h2v.s8.fe00347da789 from=translated src=- shape=1a9e206e vocab=bba2098f
+-/
 theorem exists_orderedAlgebraExtension_of_baseSquareSubsemiring
     (hproper : (-1 : K) ∉ baseSquareSubsemiring (F := F) (K := K)) :
     ∃ (O : RingPreordering K) (hO : O.IsOrdering),
@@ -418,7 +427,9 @@ theorem exists_orderedAlgebraExtension_of_baseSquareSubsemiring
       K _ O hO).mp
       ⟨hmem, hneg⟩
 
-/-- A strictly positive square projection supplies an ordered algebra extension.-/
+/-- A strictly positive square projection supplies an ordered algebra extension.
+@isnad1 id=ex.1h3v.s9.e3dbc3f482bf from=translated src=- shape=e6f24f6d vocab=3657119e
+-/
 theorem exists_orderedAlgebraExtension_of_projection
     (π : K →ₗ[F] F) (hπ : ∀ x : K, x ≠ 0 → 0 < π (x * x)) :
     ∃ (O : RingPreordering K) (hO : O.IsOrdering),
@@ -433,7 +444,9 @@ theorem exists_orderedAlgebraExtension_of_projection
   apply exists_orderedAlgebraExtension_of_baseSquareSubsemiring
   exact baseSquareSubsemiring_proper_of_projection π hπ
 
-/-- The same projection witness also makes the scalar map monotone for the induced order.-/
+/-- The same projection witness also makes the scalar map monotone for the induced order.
+@isnad1 id=ex.1h3v.s9.d234bed92e3a from=translated src=- shape=07f8c380 vocab=3657119e
+-/
 theorem exists_orderedAlgebraExtension_with_algebraMap_monotone_of_projection
     (π : K →ₗ[F] F) (hπ : ∀ x : K, x ≠ 0 → 0 < π (x * x)) :
     ∃ (O : RingPreordering K) (hO : O.IsOrdering),

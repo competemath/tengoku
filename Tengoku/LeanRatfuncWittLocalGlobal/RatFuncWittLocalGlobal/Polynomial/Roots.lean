@@ -20,6 +20,9 @@ namespace RatFuncWittLocalGlobal
 
 universe u
 
+/--
+@isnad1 id=eq.2h3v.s6.c71d58ef48e1 from=translated src=- shape=d136b777 vocab=5d398bd1
+-/
 theorem rootMultiplicity_eq_one_of_squarefree_of_isRoot
     {R : Type u} [Field R] {f : Polynomial R} {a : R}
     (hf : Squarefree f) (hroot : f.IsRoot a) :
@@ -35,6 +38,9 @@ theorem rootMultiplicity_eq_one_of_squarefree_of_isRoot
   have hpos : 0 < f.rootMultiplicity a := (Polynomial.rootMultiplicity_pos hf0).mpr hroot
   omega
 
+/--
+@isnad1 id=ne.2h3v.s7.d71564094586 from=translated src=- shape=59fc473f vocab=92a72f1e
+-/
 theorem eval_divByMonic_X_sub_C_ne_zero_of_squarefree_of_isRoot
     {R : Type u} [Field R] {f : Polynomial R} {a : R}
     (hf : Squarefree f) (hroot : f.IsRoot a) :
@@ -44,6 +50,9 @@ theorem eval_divByMonic_X_sub_C_ne_zero_of_squarefree_of_isRoot
   have hf0 : f ≠ 0 := hf.ne_zero
   simpa [hmult] using Polynomial.eval_divByMonic_pow_rootMultiplicity_ne_zero (p := f) a hf0
 
+/--
+@isnad1 id=ex.2h2v.s7.c4efac6e1508 from=translated src=- shape=31155dfd vocab=8eea234d
+-/
 theorem exists_associated_X_sub_C_of_irreducible_of_natDegree_eq_one
     {R : Type u} [Field R] {π : Polynomial R}
     (hπ : Irreducible π) (hdeg : π.natDegree = 1) :
@@ -58,6 +67,9 @@ theorem exists_associated_X_sub_C_of_irreducible_of_natDegree_eq_one
     rw [hdeg, Polynomial.natDegree_X_sub_C]
   exact (Polynomial.associated_of_dvd_of_natDegree_le hdiv hπ.ne_zero hle).symm
 
+/--
+@isnad1 id=ex.3h2v.s7.3b82004c32bd from=translated src=- shape=f71b0664 vocab=1c715a43
+-/
 theorem exists_eq_X_sub_C_of_irreducible_monic_of_natDegree_eq_one
     {R : Type u} [Field R] {π : Polynomial R}
     (hπ : Irreducible π) (hπmonic : π.Monic) (hdeg : π.natDegree = 1) :
@@ -66,6 +78,9 @@ theorem exists_eq_X_sub_C_of_irreducible_monic_of_natDegree_eq_one
   exact ⟨a, Polynomial.eq_of_monic_of_associated hπmonic
     (Polynomial.monic_X_sub_C a) ha⟩
 
+/--
+@isnad1 id=monic.1h3v.s7.cea9fa0e9dc7 from=translated src=- shape=cc6d4191 vocab=4f1108e6
+-/
 theorem monic_of_mem_normalizedFactors
     {R : Type u} [Field R] [DecidableEq R] {P π : Polynomial R}
     (hπ : π ∈ UniqueFactorizationMonoid.normalizedFactors P) :
@@ -75,6 +90,9 @@ theorem monic_of_mem_normalizedFactors
     UniqueFactorizationMonoid.normalize_normalized_factor π hπ
   exact (Polynomial.normalize_eq_self_iff_monic hπ0).mp hnorm
 
+/--
+@isnad1 id=not.2h3v.s6.cb625b307fdd from=translated src=- shape=760753b2 vocab=0b214d88
+-/
 theorem not_isRoot_of_irreducible_of_natDegree_ne_one
     {R : Type u} [Field R] {π : Polynomial R}
     (hπ : Irreducible π) (hdeg : π.natDegree ≠ 1) (a : R) :
@@ -83,6 +101,9 @@ theorem not_isRoot_of_irreducible_of_natDegree_ne_one
   exact hdeg (Polynomial.natDegree_eq_of_degree_eq_some
     (Polynomial.degree_eq_one_of_irreducible_of_root hπ hroot))
 
+/--
+@isnad1 id=ne.2h3v.s6.1840f0ae1bb1 from=translated src=- shape=a9327821 vocab=6fd8c9d9
+-/
 theorem eval_ne_zero_of_irreducible_of_natDegree_ne_one
     {R : Type u} [Field R] {π : Polynomial R}
     (hπ : Irreducible π) (hdeg : π.natDegree ≠ 1) (a : R) :

@@ -22,7 +22,9 @@ variable {R : Type u}
 
 /--
 Polynomial wrapper using the polynomial-specialized quaternion residue criterion
-and an already packaged residue-triviality input.-/
+and an already packaged residue-triviality input.
+@isnad1 id=ternaryi.12h4v.s10.8b055edbab5e from=translated src=- shape=0ce25242 vocab=438a2686
+-/
 theorem polynomial_sqfree_pairwise_isotropic_of_polyQuaternionCriterion
     [LinearOrder R] [Field R]
     (hcriterion : PolynomialTernaryQuaternionSplitCriterion (R := R))
@@ -62,7 +64,9 @@ theorem polynomial_sqfree_pairwise_isotropic_of_polyQuaternionCriterion
 
 /--
 Laurent-infinity polynomial wrapper using the polynomial-specialized
-quaternion residue criterion.-/
+quaternion residue criterion.
+@isnad1 id=ternaryi.12h4v.s10.977a9e083afb from=translated src=- shape=1bc6b6fc vocab=554aff35
+-/
 theorem polynomial_sqfree_pairwise_isotropic_of_polyQuaternionCriterion_laurentInfinity
     [LinearOrder R] [Field R] [IsStrictOrderedRing R]
     (hcriterion : PolynomialTernaryQuaternionSplitCriterion (R := R))
@@ -89,7 +93,9 @@ theorem polynomial_sqfree_pairwise_isotropic_of_polyQuaternionCriterion_laurentI
 /--
 The normalized-ordering quaternion criterion supplies the polynomial Legendre
 construction after the rational-function isotropic solution is cleared back to
-polynomials.-/
+polynomials.
+@isnad1 id=polynomi.1h1v.s5.f27f0e17ff95 from=translated src=- shape=fb04960b vocab=23965a72
+-/
 theorem polynomialLegendreConstruction_of_normalizedOrderingRealization
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (hrealization : RatFunc.NormalizedOrderingRealization.{u, u} R) :

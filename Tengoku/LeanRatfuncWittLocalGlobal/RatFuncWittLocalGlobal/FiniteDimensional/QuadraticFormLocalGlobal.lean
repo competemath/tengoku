@@ -29,7 +29,9 @@ universe u v w
 
 noncomputable section
 
-/-- An isometric equivalence preserves failure of anisotropy.-/
+/-- An isometric equivalence preserves failure of anisotropy.
+@isnad1 id=iff.0h6v.s6.6da82f613c74 from=translated src=- shape=d8aec0cd vocab=036acac2
+-/
 theorem quadraticMap_isometryEquiv_not_anisotropic_iff
     {F : Type u} [CommSemiring F]
     {M₁ : Type v} {M₂ : Type w}
@@ -79,7 +81,9 @@ noncomputable def quadraticFormBaseChangeIsometryWeightedSumSquares
 
 /-- Same-universe local-global principle for an arbitrary finite-dimensional
 quadratic form of dimension at least three over `RatFunc R`.  Isotropy is
-expressed as failure of Mathlib's `QuadraticMap.Anisotropic` predicate.-/
+expressed as failure of Mathlib's `QuadraticMap.Anisotropic` predicate.
+@isnad1 id=iff.1h3v.s9.84f60fc04901 from=translated src=- shape=147ec530 vocab=4267eec0
+-/
 theorem quadraticForm_not_anisotropic_iff_forall_realClosedExtension_same_universe
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     [IsRealClosed R]
@@ -129,7 +133,9 @@ theorem quadraticForm_not_anisotropic_iff_forall_realClosedExtension_same_univer
     exact (quadraticMap_isometryEquiv_not_anisotropic_iff eK).mp hlocal
 
 /-- Universe-parameterized quadratic-form local-global theorem under the
-precise ordered-real-closure input for `RatFunc R`.-/
+precise ordered-real-closure input for `RatFunc R`.
+@isnad1 id=iff.2h3v.s9.5cef0d0660e2 from=translated src=- shape=4a1829ff vocab=690d6559
+-/
 theorem quadraticForm_not_anisotropic_iff_forall_realClosedExtension_of_ratFuncClosure
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     [IsRealClosed R]
@@ -180,7 +186,9 @@ theorem quadraticForm_not_anisotropic_iff_forall_realClosedExtension_of_ratFuncC
     exact (quadraticMap_isometryEquiv_not_anisotropic_iff eK).mp hlocal
 
 /-- Universe-parameterized quadratic-form local-global theorem under a
-real-closure input for every ordered field in the base universe.-/
+real-closure input for every ordered field in the base universe.
+@isnad1 id=iff.2h3v.s9.37f538878d4b from=translated src=- shape=9fe98244 vocab=a84d9355
+-/
 theorem quadraticForm_not_anisotropic_iff_forall_realClosedExtension_of_orderedFieldClosure
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     [IsRealClosed R]

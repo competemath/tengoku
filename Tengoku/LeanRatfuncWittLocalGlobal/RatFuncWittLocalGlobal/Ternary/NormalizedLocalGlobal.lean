@@ -25,7 +25,9 @@ universe u
 variable {R : Type u}
 
 /-- The normalized polynomial Legendre argument from an ordering
-realization.-/
+realization.
+@isnad1 id=normaliz.1h1v.s5.31f1673d8755 from=translated src=- shape=fb04960b vocab=f8b91905
+-/
 theorem normalizedTernaryLocalGlobal_of_normalizedOrderingRealization
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (hrealization : RatFunc.NormalizedOrderingRealization.{u, u} R) :
@@ -36,7 +38,9 @@ theorem normalizedTernaryLocalGlobal_of_normalizedOrderingRealization
     (RatFunc.squarefreeGcdLegendreLinearRootOrderedPosPrinciples_laurentSeries R)
     (RatFunc.nonlinearIrreducibleDivisorSquareMod_of_realClosed (R := R))
 
-/-- The ternary local-global statement obtained from the normalized one.-/
+/-- The ternary local-global statement obtained from the normalized one.
+@isnad1 id=ternaryl.1h1v.s5.02edcd87b461 from=translated src=- shape=fb04960b vocab=6e1fad4f
+-/
 theorem ternaryLocalGlobal_of_normalizedOrderingRealization
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (hrealization : RatFunc.NormalizedOrderingRealization.{u, u} R) :

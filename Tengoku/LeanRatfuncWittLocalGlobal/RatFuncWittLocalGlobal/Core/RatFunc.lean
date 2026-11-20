@@ -20,6 +20,9 @@ namespace RatFunc
 
 variable {R ι : Type*}
 
+/--
+@isnad1 id=ex.0h3v.s9.7e1ff1feca47 from=translated src=- shape=454826f5 vocab=e120e0dc
+-/
 theorem exists_common_denominator [Field R] [Finite ι] (x : ι → RatFunc R) :
     ∃ d : Polynomial R, d ≠ 0 ∧
       ∀ i, ∃ p : Polynomial R,

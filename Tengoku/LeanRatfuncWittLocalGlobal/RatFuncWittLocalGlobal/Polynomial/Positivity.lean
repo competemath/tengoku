@@ -40,6 +40,9 @@ def NonnegativePolynomialStandardFactorization
                   (∏ j ∈ t,
                     (Polynomial.X ^ 2 + Polynomial.C (a j) * Polynomial.X + Polynomial.C (b j))))
 
+/--
+@isnad1 id=nonnegat.1h3v.s9.0d79ac29607b from=translated src=- shape=46669b3c vocab=fa6261a9
+-/
 theorem nonnegativePolynomialStandardFactorization_monic_quadratic
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (a : R) {b : R} (hb : 0 ≤ b - (a / 2) ^ 2) :
@@ -53,6 +56,9 @@ theorem nonnegativePolynomialStandardFactorization_monic_quadratic
     exact hb
   · simp
 
+/--
+@isnad1 id=nonnegat.2h3v.s6.b954b912308d from=translated src=- shape=ef3ade6d vocab=608ae3d9
+-/
 theorem NonnegativePolynomialStandardFactorization.of_eq
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {P Q : Polynomial R}
@@ -64,12 +70,18 @@ def PolynomialEverywhereNonnegative
     {R : Type u} [Semiring R] [LE R] (P : Polynomial R) : Prop :=
   ∀ x : R, 0 ≤ P.eval x
 
+/--
+@isnad1 id=polynomi.0h1v.s5.b2c008362d4e from=translated src=- shape=db136945 vocab=da303a3c
+-/
 theorem polynomialEverywhereNonnegative_one
     {R : Type u} [CommSemiring R] [LinearOrder R] [IsStrictOrderedRing R] :
     PolynomialEverywhereNonnegative (1 : Polynomial R) := by
   intro x
   simp
 
+/--
+@isnad1 id=polynomi.1h2v.s7.c247b20d0de5 from=translated src=- shape=495f2de7 vocab=4b9ce609
+-/
 theorem polynomialEverywhereNonnegative_C
     {R : Type u} [CommSemiring R] [LinearOrder R] [IsStrictOrderedRing R]
     {a : R} (ha : 0 ≤ a) :
@@ -77,6 +89,9 @@ theorem polynomialEverywhereNonnegative_C
   intro x
   simpa using ha
 
+/--
+@isnad1 id=polynomi.2h3v.s6.a001e0c8c160 from=translated src=- shape=a44d2b2c vocab=48795353
+-/
 theorem PolynomialEverywhereNonnegative.mul
     {R : Type u} [CommSemiring R] [LinearOrder R] [IsStrictOrderedRing R]
     {P Q : Polynomial R}
@@ -86,6 +101,9 @@ theorem PolynomialEverywhereNonnegative.mul
   rw [Polynomial.eval_mul]
   exact mul_nonneg (hP x) (hQ x)
 
+/--
+@isnad1 id=polynomi.2h3v.s6.83d29f61c4bb from=translated src=- shape=a44d2b2c vocab=2c65b5e4
+-/
 theorem PolynomialEverywhereNonnegative.add
     {R : Type u} [CommSemiring R] [LinearOrder R] [IsStrictOrderedRing R]
     {P Q : Polynomial R}
@@ -95,6 +113,9 @@ theorem PolynomialEverywhereNonnegative.add
   rw [Polynomial.eval_add]
   exact add_nonneg (hP x) (hQ x)
 
+/--
+@isnad1 id=polynomi.0h2v.s6.bc5c8e89d5fc from=translated src=- shape=89babbf9 vocab=2f4a3d84
+-/
 theorem polynomialEverywhereNonnegative_square
     {R : Type u} [CommRing R] [LinearOrder R] [IsStrictOrderedRing R]
     (P : Polynomial R) :
@@ -103,6 +124,9 @@ theorem polynomialEverywhereNonnegative_square
   rw [Polynomial.eval_pow]
   simpa [sq] using sq_nonneg (P.eval x)
 
+/--
+@isnad1 id=polynomi.1h3v.s6.4f44fb427f5a from=translated src=- shape=e66f493b vocab=49576426
+-/
 theorem polynomialEverywhereNonnegative_even_pow
     {R : Type u} [CommRing R] [LinearOrder R] [IsStrictOrderedRing R]
     (P : Polynomial R) {n : ℕ} (hn : Even n) :
@@ -110,6 +134,9 @@ theorem polynomialEverywhereNonnegative_even_pow
   rcases hn with ⟨m, rfl⟩
   simpa [pow_add, pow_two] using polynomialEverywhereNonnegative_square (P ^ m)
 
+/--
+@isnad1 id=polynomi.1h4v.s6.f45bd68a1929 from=translated src=- shape=a3584455 vocab=e9f8c154
+-/
 theorem polynomialEverywhereNonnegative_finset_prod
     {R : Type u} [CommSemiring R] [LinearOrder R] [IsStrictOrderedRing R]
     {ι : Type*} (s : Finset ι) (P : ι → Polynomial R)
@@ -127,6 +154,9 @@ theorem polynomialEverywhereNonnegative_finset_prod
         ih fun i hi => hP i (Finset.mem_insert_of_mem hi)
       simpa [Finset.prod_insert, ha] using haP.mul hsP
 
+/--
+@isnad1 id=polynomi.1h3v.s8.bc8053e85774 from=translated src=- shape=5e8e420b vocab=f210b8ae
+-/
 theorem polynomialEverywhereNonnegative_X_add_C_sq_add_C_of_nonneg
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     (a : R) {b : R} (hb : 0 ≤ b) :
@@ -134,6 +164,9 @@ theorem polynomialEverywhereNonnegative_X_add_C_sq_add_C_of_nonneg
   (polynomialEverywhereNonnegative_square (Polynomial.X + Polynomial.C a)).add
     (polynomialEverywhereNonnegative_C hb)
 
+/--
+@isnad1 id=polynomi.1h3v.s9.9ee27c55f908 from=translated src=- shape=52044a6f vocab=280e76b1
+-/
 theorem polynomialEverywhereNonnegative_monic_quadratic_of_two_mul_coeff
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     (r : R) {b : R} (hb : 0 ≤ b - r ^ 2) :
@@ -154,6 +187,9 @@ theorem polynomialEverywhereNonnegative_monic_quadratic_of_two_mul_coeff
     rfl
   rwa [hpoly] at hsq
 
+/--
+@isnad1 id=polynomi.1h3v.s9.218db0f3e68e from=translated src=- shape=3bae0f65 vocab=b964556d
+-/
 theorem polynomialEverywhereNonnegative_monic_quadratic_of_completed_square_nonneg
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     (a : R) {b : R} (hb : 0 ≤ b - (a / 2) ^ 2) :
@@ -165,6 +201,9 @@ theorem polynomialEverywhereNonnegative_monic_quadratic_of_completed_square_nonn
     (polynomialEverywhereNonnegative_monic_quadratic_of_two_mul_coeff
       (R := R) (a / 2) hb)
 
+/--
+@isnad1 id=le.1h3v.s9.f6ae990cb141 from=translated src=- shape=1f65b516 vocab=5c6b9b8e
+-/
 theorem monic_quadratic_completed_square_nonneg_of_irreducible
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {a b : R}
@@ -204,6 +243,9 @@ theorem monic_quadratic_completed_square_nonneg_of_irreducible
         one_ne_zero)
   omega
 
+/--
+@isnad1 id=lt.1h3v.s9.2a046c473113 from=translated src=- shape=1f65b516 vocab=f68a7273
+-/
 theorem monic_quadratic_completed_square_pos_of_irreducible
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {a b : R}
@@ -238,6 +280,9 @@ theorem monic_quadratic_completed_square_pos_of_irreducible
         one_ne_zero)
   omega
 
+/--
+@isnad1 id=ex.1h3v.s7.c607b1cda8bc from=translated src=- shape=39d232fb vocab=b5432412
+-/
 theorem exists_imaginary_quadratic_square_coeffs_of_imag_zero
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {c : R} (hc : 0 < c) (x : R) :
@@ -257,6 +302,9 @@ theorem exists_imaginary_quadratic_square_coeffs_of_imag_zero
       nlinarith [hv]
     · simp
 
+/--
+@isnad1 id=ex.2h4v.s8.bd981db5fe70 from=translated src=- shape=0ef5bf6e vocab=cbdb21cc
+-/
 theorem exists_imaginary_quadratic_norm_sqrt_with_pos_half
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {c : R} (hc : 0 < c) {y : R} (hy : y ≠ 0) (x : R) :
@@ -277,6 +325,9 @@ theorem exists_imaginary_quadratic_norm_sqrt_with_pos_half
       (abs_lt_of_sq_lt_sq' hx_sq_lt hr_nonneg).1
     nlinarith
 
+/--
+@isnad1 id=ex.1h2v.s6.3012dd5734fc from=translated src=- shape=b9d42f2c vocab=b8804474
+-/
 theorem exists_sqrt_of_pos_with_ne_zero
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {x : R} (hx : 0 < x) :
@@ -287,6 +338,9 @@ theorem exists_sqrt_of_pos_with_ne_zero
   · intro hu0
     nlinarith [hu]
 
+/--
+@isnad1 id=other.3h6v.s8.3e5955f0e4ca from=translated src=- shape=f5c9589a vocab=f519a1c6
+-/
 theorem imaginary_quadratic_square_coeffs_of_norm_sqrt
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     {c x y r u : R}
@@ -334,6 +388,9 @@ theorem imaginary_quadratic_square_coeffs_of_norm_sqrt
       2 * u * v = v * (2 * u) := by ring
       _ = y := hv_mul
 
+/--
+@isnad1 id=ex.2h4v.s7.67ce5cfe3cb4 from=translated src=- shape=019f88c5 vocab=b5432412
+-/
 theorem exists_imaginary_quadratic_square_coeffs_of_imag_ne_zero
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {c : R} (hc : 0 < c) {y : R} (hy : y ≠ 0) (x : R) :
@@ -345,6 +402,9 @@ theorem exists_imaginary_quadratic_square_coeffs_of_imag_ne_zero
   simpa using imaginary_quadratic_square_coeffs_of_norm_sqrt
     (c := c) (x := x) (y := y) (r := r) (u := u) hr hu hu0
 
+/--
+@isnad1 id=ex.1h4v.s7.824c7ae5d4ac from=translated src=- shape=5cb24694 vocab=b5432412
+-/
 theorem exists_imaginary_quadratic_square_coeffs
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {c : R} (hc : 0 < c) (x y : R) :
@@ -355,6 +415,9 @@ theorem exists_imaginary_quadratic_square_coeffs
     exact ⟨u, v, hreal, by simpa [hy] using himag⟩
   · exact exists_imaginary_quadratic_square_coeffs_of_imag_ne_zero hc hy x
 
+/--
+@isnad1 id=issquare.2h6v.s9.ce183cccafb6 from=translated src=- shape=5ce928d8 vocab=2c413a07
+-/
 theorem isSquareMod_X_sq_add_C_of_imaginary_quadratic_coeffs
     {R : Type u} [Field R] {c x y u v : R}
     (hreal : u ^ 2 - c * v ^ 2 = x) (himag : 2 * u * v = y) :
@@ -375,6 +438,9 @@ theorem isSquareMod_X_sq_add_C_of_imaginary_quadratic_coeffs
   simp only [Polynomial.C_mul, Polynomial.C_pow]
   ring_nf
 
+/--
+@isnad1 id=issquare.1h3v.s8.6196adabb87f from=translated src=- shape=92c47a51 vocab=7a6ddc5b
+-/
 theorem isSquareMod_X_sq_add_C_of_pos
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {c : R} (hc : 0 < c) (f : Polynomial R) :
@@ -418,6 +484,9 @@ theorem isSquareMod_X_sq_add_C_of_pos
   rw [hdecomp]
   exact dvd_add hw hrf
 
+/--
+@isnad1 id=issquare.1h4v.s6.ba167a7f2f5e from=translated src=- shape=f9c60422 vocab=e1fe8aac
+-/
 theorem IsSquareMod.comp
     {R : Type u} [Field R] {m a g : Polynomial R}
     (h : IsSquareMod m a) :
@@ -431,6 +500,9 @@ theorem IsSquareMod.comp
     _ = (m * t).comp g := by rw [ht]
     _ = m.comp g * t.comp g := by rw [Polynomial.mul_comp]
 
+/--
+@isnad1 id=issquare.1h4v.s9.ba99eaf3c1f8 from=translated src=- shape=93a7de66 vocab=8acc70fa
+-/
 theorem isSquareMod_monic_quadratic_of_completed_square_pos
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {a b : R} (hc : 0 < b - (a / 2) ^ 2) (f : Polynomial R) :
@@ -473,6 +545,9 @@ theorem Polynomial.eq_monic_quadratic_of_natDegree_eq_two
   rw [hquad, hcoeff_two]
   simp
 
+/--
+@isnad1 id=issquare.3h3v.s6.1f6db1a1e642 from=translated src=- shape=8d05b701 vocab=54668918
+-/
 theorem isSquareMod_irreducible_monic_natDegree_two
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {π f : Polynomial R}
@@ -488,6 +563,9 @@ theorem isSquareMod_irreducible_monic_natDegree_two
     simpa [← hπeq] using hπ
   exact monic_quadratic_completed_square_pos_of_irreducible hquad_irreducible
 
+/--
+@isnad1 id=nonnegat.3h2v.s6.a598368ae027 from=translated src=- shape=2cc4a62e vocab=ae03759b
+-/
 theorem nonnegativePolynomialStandardFactorization_irreducible_monic_natDegree_two
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {π : Polynomial R}
@@ -507,6 +585,9 @@ theorem nonnegativePolynomialStandardFactorization_irreducible_monic_natDegree_t
       (monic_quadratic_completed_square_nonneg_of_irreducible hquad_irreducible)
   exact hstd.of_eq hπeq
 
+/--
+@isnad1 id=polynomi.1h2v.s6.1ec0d2ca4726 from=translated src=- shape=fc688b40 vocab=aaa0b9e7
+-/
 theorem polynomialEverywhereNonnegative_of_standardFactorization
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {P : Polynomial R} (hP : NonnegativePolynomialStandardFactorization P) :

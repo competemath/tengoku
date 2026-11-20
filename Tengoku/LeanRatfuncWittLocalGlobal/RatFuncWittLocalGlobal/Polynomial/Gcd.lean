@@ -50,15 +50,27 @@ namespace SquarefreeGcdSplit
 
 variable {R : Type u} [Field R] {B C : Polynomial R} (s : SquarefreeGcdSplit B C)
 
+/--
+@isnad1 id=iscoprim.0h4v.s5.d457963297b8 from=translated src=- shape=2fecea32 vocab=70932ea0
+-/
 theorem coprime_G_B₁ : IsCoprime s.G s.B₁ :=
   s.relPrime_G_B₁.isCoprime
 
+/--
+@isnad1 id=iscoprim.0h4v.s5.603431cbd299 from=translated src=- shape=2fecea32 vocab=e4a5f53c
+-/
 theorem coprime_G_C₁ : IsCoprime s.G s.C₁ :=
   s.relPrime_G_C₁.isCoprime
 
+/--
+@isnad1 id=iscoprim.0h4v.s5.78fd4b39d273 from=translated src=- shape=2fecea32 vocab=135a2093
+-/
 theorem coprime_B₁_C₁ : IsCoprime s.B₁ s.C₁ :=
   s.relPrime_B₁_C₁.isCoprime
 
+/--
+@isnad1 id=isroot.3h6v.s8.179f39b1f9cf from=translated src=- shape=d8dc302c vocab=cc67d72a
+-/
 theorem isRoot_B_of_irreducible_dvd_B₁_of_linear
     {π : Polynomial R} {a : R}
     (_hπ : Irreducible π) (hπB₁ : π ∣ s.B₁)
@@ -71,6 +83,9 @@ theorem isRoot_B_of_irreducible_dvd_B₁_of_linear
   simp [Polynomial.IsRoot] at hroot
   simp [hroot]
 
+/--
+@isnad1 id=isroot.3h6v.s8.4641a3817d9a from=translated src=- shape=814d78c0 vocab=5389bb73
+-/
 theorem isRoot_C_of_irreducible_dvd_C₁_of_linear
     {π : Polynomial R} {a : R}
     (_hπ : Irreducible π) (hπC₁ : π ∣ s.C₁)
@@ -83,6 +98,9 @@ theorem isRoot_C_of_irreducible_dvd_C₁_of_linear
   simp [Polynomial.IsRoot] at hroot
   simp [hroot]
 
+/--
+@isnad1 id=issquare.4h6v.s9.7673b6bee79c from=translated src=- shape=84bd65e1 vocab=190a396e
+-/
 theorem isSquareMod_neg_C₁_mul_B₁_of_irreducible_dvd_G_of_linear_of_nonneg_eval
     [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {π : Polynomial R} {a : R}
@@ -92,6 +110,9 @@ theorem isSquareMod_neg_C₁_mul_B₁_of_irreducible_dvd_G_of_linear_of_nonneg_e
     IsSquareMod π (-(s.C₁ * s.B₁)) :=
   isSquareMod_linear_associated_of_nonneg_eval hlin hnonneg
 
+/--
+@isnad1 id=issquare.4h6v.s8.0d7ea8f794a8 from=translated src=- shape=bce53bf3 vocab=2fb588d1
+-/
 theorem isSquareMod_neg_B_of_irreducible_dvd_C₁_of_linear_of_nonneg_eval
     [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {π : Polynomial R} {a : R}
@@ -101,6 +122,9 @@ theorem isSquareMod_neg_B_of_irreducible_dvd_C₁_of_linear_of_nonneg_eval
     IsSquareMod π (-B) :=
   isSquareMod_linear_associated_of_nonneg_eval hlin hnonneg
 
+/--
+@isnad1 id=issquare.4h6v.s8.624a9ef612fd from=translated src=- shape=a192a97c vocab=b245a22d
+-/
 theorem isSquareMod_neg_C_of_irreducible_dvd_B₁_of_linear_of_nonneg_eval
     [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {π : Polynomial R} {a : R}
@@ -110,6 +134,9 @@ theorem isSquareMod_neg_C_of_irreducible_dvd_B₁_of_linear_of_nonneg_eval
     IsSquareMod π (-C) :=
   isSquareMod_linear_associated_of_nonneg_eval hlin hnonneg
 
+/--
+@isnad1 id=iff.0h5v.s7.c9dc74ad371d from=translated src=- shape=faaf374f vocab=0f864473
+-/
 theorem isSquareMod_neg_G_mul_C₁_iff_neg_C
     {π : Polynomial R} :
     IsSquareMod π (-(s.G * s.C₁)) ↔ IsSquareMod π (-C) := by
@@ -117,11 +144,17 @@ theorem isSquareMod_neg_G_mul_C₁_iff_neg_C
     rw [← s.hC]
   rw [h]
 
+/--
+@isnad1 id=issquare.1h5v.s7.8fbcdab064b5 from=translated src=- shape=56072bd3 vocab=0f864473
+-/
 theorem isSquareMod_neg_G_mul_C₁_of_neg_C
     {π : Polynomial R} (h : IsSquareMod π (-C)) :
     IsSquareMod π (-(s.G * s.C₁)) :=
   (s.isSquareMod_neg_G_mul_C₁_iff_neg_C).mpr h
 
+/--
+@isnad1 id=iff.0h5v.s7.9dce6ba3f515 from=translated src=- shape=3c777d74 vocab=98515283
+-/
 theorem isSquareMod_neg_G_mul_B₁_iff_neg_B
     {π : Polynomial R} :
     IsSquareMod π (-(s.G * s.B₁)) ↔ IsSquareMod π (-B) := by
@@ -129,6 +162,9 @@ theorem isSquareMod_neg_G_mul_B₁_iff_neg_B
     rw [← s.hB]
   rw [h]
 
+/--
+@isnad1 id=issquare.1h5v.s7.85db8f1fb80d from=translated src=- shape=1fea8c81 vocab=98515283
+-/
 theorem isSquareMod_neg_G_mul_B₁_of_neg_B
     {π : Polynomial R} (h : IsSquareMod π (-B)) :
     IsSquareMod π (-(s.G * s.B₁)) :=
@@ -189,6 +225,9 @@ private theorem factorization_prod_pow_of_prime_support
     _ = f := by
       simpa [Finsupp.sum] using (Finsupp.sum_single f)
 
+/--
+@isnad1 id=ex.1h2v.s8.d41750bb9a6b from=translated src=- shape=03078bd4 vocab=4885200a
+-/
 theorem exists_unit_mul_square_mul_squarefree_of_ne_zero
     {R : Type*} [Field R] [Nontrivial R] {P : Polynomial R} (hP : P ≠ 0) :
     ∃ (u : (Polynomial R)ˣ) (sf q : Polynomial R),
@@ -265,6 +304,9 @@ theorem exists_unit_mul_square_mul_squarefree_of_ne_zero
   rw [← hu]
   simp [mul_assoc, mul_comm]
 
+/--
+@isnad1 id=ex.1h2v.s8.bb06a22b8eb1 from=translated src=- shape=52e2bc38 vocab=20350a0e
+-/
 theorem exists_squarefree_mul_square_of_ne_zero
     {R : Type*} [Field R] [Nontrivial R] {P : Polynomial R} (hP : P ≠ 0) :
     ∃ (sf q : Polynomial R),
@@ -285,6 +327,9 @@ theorem exists_squarefree_mul_square_of_ne_zero
   refine ⟨sf', q, hsf'0, hq0, hsf', ?_⟩
   simpa [sf', mul_assoc] using hdecomp
 
+/--
+@isnad1 id=nonempty.4h3v.s7.49927cf99d56 from=translated src=- shape=7ad816fa vocab=4e803ce0
+-/
 theorem exists_squarefreeGcdSplit
     {R : Type u} [Field R] {B C : Polynomial R}
     (hB0 : B ≠ 0) (hC0 : C ≠ 0)

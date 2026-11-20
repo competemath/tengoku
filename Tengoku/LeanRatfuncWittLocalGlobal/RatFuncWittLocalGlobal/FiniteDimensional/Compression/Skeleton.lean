@@ -39,6 +39,9 @@ def localCoefficientFamily (T : FinitePolynomialState a)
     (r ε : R) : Sum (Fin 2) κ → R :=
   fun i => localLaurentLeadingCoeff r ε (T.A i)
 
+/--
+@isnad1 id=ne.1h7v.s7.c2dadd87e5f8 from=translated src=- shape=45fea5f3 vocab=10339170
+-/
 theorem localCoefficientFamily_ne_zero (T : FinitePolynomialState a)
     (i : Sum (Fin 2) κ) (r ε : R) (hε : ε ≠ 0) :
     T.localCoefficientFamily r ε i ≠ 0 := by
@@ -60,6 +63,9 @@ theorem localCoefficientFamily_ne_zero (T : FinitePolynomialState a)
       localLaurentLeadingCoeff_eq_eval_of_ne_zero hroot]
     exact hroot
 
+/--
+@isnad1 id=iff.2h7v.s8.10f0b67438d4 from=translated src=- shape=72538252 vocab=f8250931
+-/
 theorem coefficient_eval_pos_iff_of_rootFree_Icc
     [IsRealClosed R] (T : FinitePolynomialState a)
     {x y : R} (hxy : x ≤ y)
@@ -70,6 +76,9 @@ theorem coefficient_eval_pos_iff_of_rootFree_Icc
   intro z hz
   exact T.eval_ne_zero_of_not_mem_realRoots (hgap z hz) i
 
+/--
+@isnad1 id=iff.2h7v.s8.d96aa7b5a865 from=translated src=- shape=c9b793d1 vocab=ab949493
+-/
 theorem localCoefficient_one_pos_iff_eval_of_gap
     [IsRealClosed R] (T : FinitePolynomialState a)
     (i : Sum (Fin 2) κ) {r s : R} (hrs : r < s)
@@ -104,6 +113,9 @@ theorem localCoefficient_one_pos_iff_eval_of_gap
     · exact T.eval_ne_zero_of_not_mem_realRoots
         (hgap z ⟨lt_of_le_of_ne hz.1 (Ne.symm hzr), hz.2⟩) i
 
+/--
+@isnad1 id=iff.2h7v.s8.262cd384dc94 from=translated src=- shape=3b5ad1b5 vocab=5e0e8de6
+-/
 theorem eval_pos_iff_localCoefficient_neg_one_of_gap
     [IsRealClosed R] (T : FinitePolynomialState a)
     (i : Sum (Fin 2) κ) {r s : R} (hrs : r < s)
@@ -144,6 +156,9 @@ def binaryTailSign (T : FinitePolynomialState a) (r ε : R) : StrictSign :=
     (fun i => T.localCoefficientFamily r ε (Sum.inl i))
     (fun j => T.localCoefficientFamily r ε (Sum.inr j))
 
+/--
+@isnad1 id=eq.2h6v.s7.53da053c2d7e from=translated src=- shape=9f2c1d35 vocab=12c873eb
+-/
 theorem binaryTailSign_eq_across_gap [IsRealClosed R]
     (T : FinitePolynomialState a) {r s : R} (hrs : r < s)
     (hgap : ∀ z, r < z → z < s → z ∉ T.realRoots) :
@@ -190,6 +205,9 @@ noncomputable def binaryTailOddRoots (T : FinitePolynomialState a) : Finset R :=
     T.binaryTailLeftSign r ≠ T.binaryTailRightSign r
 
 omit [IsStrictOrderedRing R] in
+/--
+@isnad1 id=iff.0h5v.s7.4128acef0e96 from=translated src=- shape=91ffa627 vocab=af8ee37e
+-/
 theorem mem_binaryTailOddRoots_iff (T : FinitePolynomialState a) (r : R) :
     r ∈ T.binaryTailOddRoots ↔
       r ∈ T.realRoots ∧
@@ -198,6 +216,9 @@ theorem mem_binaryTailOddRoots_iff (T : FinitePolynomialState a) (r : R) :
   simp [binaryTailOddRoots]
 
 omit [IsStrictOrderedRing R] in
+/--
+@isnad1 id=le.0h4v.s6.c8710a8cb7f5 from=translated src=- shape=6983b4a5 vocab=60ad57e8
+-/
 theorem binaryTailOddRoots_subset_realRoots (T : FinitePolynomialState a) :
     T.binaryTailOddRoots ⊆ T.realRoots := by
   intro r hr
@@ -209,6 +230,9 @@ def binaryTailSkeleton (T : FinitePolynomialState a)
   scale := scale
   scale_ne_zero := hscale
 
+/--
+@isnad1 id=other.1h6v.s7.876eb97f57c7 from=translated src=- shape=efca058a vocab=993bee74
+-/
 theorem binaryTailEndpointRequirements_iff
     (T : FinitePolynomialState a) (r scale : R) (hscale : scale ≠ 0) :
     let S := T.binaryTailSkeleton scale hscale
@@ -262,6 +286,9 @@ theorem binaryTailEndpointRequirements_iff
     rw [localLaurentLeadingCoeff_eq_eval_of_ne_zero heval,
       localLaurentLeadingCoeff_eq_eval_of_ne_zero heval, heq]
 
+/--
+@isnad1 id=other.3h7v.s8.05e3eefe39fb from=translated src=- shape=a739d58a vocab=4ca46fb4
+-/
 theorem binaryTailRightRequirements_iff_across_gap [IsRealClosed R]
     (T : FinitePolynomialState a) {r s : R} (hrs : r < s)
     (hgap : ∀ z ∈ T.realRoots, ¬ (r < z ∧ z < s))
@@ -284,6 +311,9 @@ theorem binaryTailRightRequirements_iff_across_gap [IsRealClosed R]
     rw [hsign]
     exact (T.binaryTailEndpointRequirements_iff s scale hscale).symm)
 
+/--
+@isnad1 id=ex.0h5v.s7.f6cea1a9fbc1 from=translated src=- shape=b4e3425f vocab=c3e93ed6
+-/
 theorem exists_binaryTailScale_at (T : FinitePolynomialState a) (r : R) :
     ∃ (scale : R) (hscale : scale ≠ 0),
       (scale = 1 ∨ scale = -1) ∧
@@ -305,6 +335,9 @@ theorem exists_binaryTailScale_at (T : FinitePolynomialState a) (r : R) :
     rw [hrescale, SignedLinearRootSkeleton.localLaurentLeadingCoeff_rescale]
     simpa [sign, x] using hneg
 
+/--
+@isnad1 id=ex.1h4v.s8.b0facd2014ff from=translated src=- shape=1a3b9cf7 vocab=3cac9ac0
+-/
 theorem exists_binaryTailSkeleton_endpoints [IsRealClosed R]
     (T : FinitePolynomialState a) (hroots : T.realRoots.Nonempty) :
     ∃ (scale : R) (hscale : scale ≠ 0),

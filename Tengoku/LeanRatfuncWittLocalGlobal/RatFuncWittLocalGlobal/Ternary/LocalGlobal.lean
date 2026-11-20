@@ -30,7 +30,9 @@ realization by the maximal ordered-intermediate construction.
 
 The displayed typeclass assumptions are the ambient assumptions already built
 into `RatFunc.TernaryLocalGlobal`; no additional real-closure, Legendre, or
-linear-root input is required.-/
+linear-root input is required.
+@isnad1 id=ternaryl.0h1v.s5.f0db2d1b75db from=translated src=- shape=7ddc04c7 vocab=283ced79
+-/
 theorem ternaryLocalGlobal_of_maximal_orderedIntermediate
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R] :
     RatFunc.TernaryLocalGlobal.{u, u} R :=
@@ -44,7 +46,9 @@ namespace RatFunc
 README-shaped direct ternary wrapper in the same universe as the base field.
 The explicit suffix records that the local extensions `K` are restricted to
 `Type u`, matching the universe of the unconditional
-`RatFunc.TernaryLocalGlobal.{u, u}` endpoint above.-/
+`RatFunc.TernaryLocalGlobal.{u, u}` endpoint above.
+@isnad1 id=ex.2h4v.s10.b7f185f47427 from=translated src=- shape=6a9719e5 vocab=e3e81f0c
+-/
 theorem ternary_isotropic_of_forall_realClosedExtension_same_universe
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (a₀ a₁ a₂ : RatFunc R)
@@ -67,7 +71,9 @@ theorem ternary_isotropic_of_forall_realClosedExtension_same_universe
 /--
 The ternary isotropy predicate is equivalent to isotropy after every real
 closed extension in the same universe.  The regularity hypothesis is needed
-only for the local-to-global direction.-/
+only for the local-to-global direction.
+@isnad1 id=iff.1h4v.s9.84c92597e290 from=translated src=- shape=9143c782 vocab=2f3f0ae9
+-/
 theorem ternary_isotropic_iff_forall_realClosedExtension_same_universe
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (a₀ a₁ a₂ : RatFunc R)

@@ -35,7 +35,9 @@ def diagonalValue [Field F] [Fintype ι] (a x : ι → F) : F :=
 def sumTypeCoeff (a b : F) (ψ : κ → F) : Fin 2 ⊕ κ → F :=
   Sum.elim ![a, b] ψ
 
-/-- An isotropic tail embeds into the binary-plus-tail diagonal form.-/
+/-- An isotropic tail embeds into the binary-plus-tail diagonal form.
+@isnad1 id=isotropi.1h5v.s5.8eb266900ede from=translated src=- shape=e3cdb88c vocab=28bc058d
+-/
 theorem isotropic_sumType_of_tail [Field F] [Fintype κ]
     (a b : F) (ψ : κ → F) (hψ : Isotropic ψ) :
     Isotropic (sumTypeCoeff a b ψ) := by
@@ -52,7 +54,9 @@ theorem isotropic_sumType_of_tail [Field F] [Fintype κ]
 /--
 If `c` is represented by a nonzero tail vector and `<a,b,c>` is isotropic,
 then adjoining that tail to the first two coefficients gives an isotropic
-finite diagonal form.-/
+finite diagonal form.
+@isnad1 id=isotropi.3h7v.s7.dc708db48e91 from=translated src=- shape=234e95ae vocab=461b96c5
+-/
 theorem isotropic_sumType_of_ternary_of_representation [Field F] [Fintype κ]
     (a b c : F) (ψ : κ → F) (y : κ → F) (hy : y ≠ 0)
     (hrep : c = ∑ i, ψ i * y i ^ 2)

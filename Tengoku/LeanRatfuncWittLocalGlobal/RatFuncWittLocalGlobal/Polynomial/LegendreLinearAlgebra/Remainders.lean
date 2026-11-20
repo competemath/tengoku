@@ -33,6 +33,9 @@ noncomputable def modByNonzeroDegreeLTLinearMap
             Polynomial.degree_modByMonic_lt p
               (Polynomial.monic_mul_leadingCoeff_inv hq0))
 
+/--
+@isnad1 id=associat.1h2v.s8.407159b9af26 from=translated src=- shape=d8052bab vocab=3db11eaa
+-/
 theorem associated_mul_leadingCoeff_inv
     {R : Type u} [Field R] {q : Polynomial R} (hq0 : q ≠ 0) :
     Associated (q * Polynomial.C q.leadingCoeff⁻¹) q := by
@@ -42,6 +45,9 @@ theorem associated_mul_leadingCoeff_inv
       Polynomial.C_1, mul_one]
   · exact dvd_mul_right q (Polynomial.C q.leadingCoeff⁻¹)
 
+/--
+@isnad1 id=dvd.1h3v.s10.45d36225773f from=translated src=- shape=cc7b48ea vocab=efc6352a
+-/
 theorem dvd_sub_modByNonzeroDegreeLTLinearMap
     {R : Type u} [Field R] {q p : Polynomial R} (hq0 : q ≠ 0) :
     q ∣ p - (modByNonzeroDegreeLTLinearMap q hq0 p : Polynomial R) := by
@@ -55,6 +61,9 @@ theorem dvd_sub_modByNonzeroDegreeLTLinearMap
   change q ∣ p - p %ₘ m
   exact ((associated_mul_leadingCoeff_inv hq0).dvd_iff_dvd_left).mp hmdiv
 
+/--
+@isnad1 id=dvd.2h4v.s10.442909a01996 from=translated src=- shape=51cb81b1 vocab=cf7a66dd
+-/
 theorem dvd_square_add_of_modByNonzeroDegreeLTLinearMap
     {R : Type u} [Field R] {q u t : Polynomial R} (hq0 : q ≠ 0)
     (h : q ∣ u ^ 2 + t) :

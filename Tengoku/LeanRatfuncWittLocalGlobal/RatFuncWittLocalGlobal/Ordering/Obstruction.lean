@@ -101,6 +101,9 @@ def FiniteSameStrictSignOrdering
       ((∀ i, RatFuncWittLocalGlobal.RingPreordering.StrictPos P (a i)) ∨
         (∀ i, RatFuncWittLocalGlobal.RingPreordering.StrictPos P (-(a i))))
 
+/--
+@isnad1 id=iff.0h5v.s5.364521e86ec6 from=translated src=- shape=18af981b vocab=96124cfd
+-/
 theorem finiteSameStrictSignOrdering_comp_equiv
     {R : Type u} [Field R] {ι : Type w} {κ : Type z}
     (e : ι ≃ κ) (a : κ → RatFunc R) :
@@ -121,6 +124,9 @@ theorem finiteSameStrictSignOrdering_comp_equiv
     · exact Or.inr fun i => by
         simpa using hneg (e i)
 
+/--
+@isnad1 id=strictpo.1h4v.s7.8d2298ec25b8 from=translated src=- shape=62cb6bd3 vocab=710b18dd
+-/
 theorem strictPos_comapNonnegative_of_pos
     {R : Type u} [Field R]
     {K : Type v} [Field K] [LinearOrder K] [IsStrictOrderedRing K]
@@ -134,6 +140,9 @@ theorem strictPos_comapNonnegative_of_pos
     simpa using neg_nonneg.mp (by simpa using hneg)
   exact not_le_of_gt hx hx_nonpos
 
+/--
+@isnad1 id=samestri.3h6v.s9.64b033dd7713 from=translated src=- shape=18b123fa vocab=681d244f
+-/
 theorem sameStrictSignOrdering_of_hom_pos
     {R : Type u} [Field R]
     {K : Type v} [Field K] [LinearOrder K] [IsStrictOrderedRing K]
@@ -147,6 +156,9 @@ theorem sameStrictSignOrdering_of_hom_pos
       strictPos_comapNonnegative_of_pos f hb,
       strictPos_comapNonnegative_of_pos f hc⟩⟩
 
+/--
+@isnad1 id=samestri.3h6v.s9.b4d15e229e60 from=translated src=- shape=91277f4d vocab=681d244f
+-/
 theorem sameStrictSignOrdering_of_hom_neg
     {R : Type u} [Field R]
     {K : Type v} [Field K] [LinearOrder K] [IsStrictOrderedRing K]
@@ -163,6 +175,9 @@ theorem sameStrictSignOrdering_of_hom_neg
       strictPos_comapNonnegative_of_pos f hnb,
       strictPos_comapNonnegative_of_pos f hnc⟩⟩
 
+/--
+@isnad1 id=finitesa.1h5v.s7.4ee866bdc165 from=translated src=- shape=c5269915 vocab=b7c4df26
+-/
 theorem finiteSameStrictSignOrdering_of_hom_all_pos
     {R : Type u} [Field R] {ι : Type w}
     {K : Type v} [Field K] [LinearOrder K] [IsStrictOrderedRing K]
@@ -174,6 +189,9 @@ theorem finiteSameStrictSignOrdering_of_hom_all_pos
   exact ⟨P, inferInstance, Or.inl fun i =>
     strictPos_comapNonnegative_of_pos f (hpos i)⟩
 
+/--
+@isnad1 id=finitesa.1h5v.s7.c0c9c60c4ecf from=translated src=- shape=b306821d vocab=b7c4df26
+-/
 theorem finiteSameStrictSignOrdering_of_hom_all_neg
     {R : Type u} [Field R] {ι : Type w}
     {K : Type v} [Field K] [LinearOrder K] [IsStrictOrderedRing K]
@@ -185,6 +203,9 @@ theorem finiteSameStrictSignOrdering_of_hom_all_neg
   exact ⟨P, inferInstance, Or.inr fun i =>
     strictPos_comapNonnegative_of_pos f (by simpa using neg_pos.mpr (hneg i))⟩
 
+/--
+@isnad1 id=finitesa.2h5v.s7.ba03d41bc9a7 from=translated src=- shape=9368a9b4 vocab=1d88ac65
+-/
 theorem finiteSameStrictSignOrdering_of_hom_not_isotropic
     {R : Type u} [Field R] {ι : Type w} [Fintype ι] [Nonempty ι]
     {K : Type v} [Field K] [LinearOrder K] [IsStrictOrderedRing K] [IsRealClosed K]
@@ -199,6 +220,9 @@ theorem finiteSameStrictSignOrdering_of_hom_not_isotropic
   · exact finiteSameStrictSignOrdering_of_hom_all_pos f hpos
   · exact finiteSameStrictSignOrdering_of_hom_all_neg f hneg
 
+/--
+@isnad1 id=iff.1h4v.s7.ebb2627e03dc from=translated src=- shape=e79a9a82 vocab=54fb8478
+-/
 theorem finiteSameStrictSignOrdering_mul_square
     {R : Type u} [Field R] {ι : Type w}
     {a r : ι → RatFunc R} (hr : ∀ i, r i ≠ 0) :
@@ -239,6 +263,9 @@ theorem finiteSameStrictSignOrdering_mul_square
       have hscaled := (hneg i).mul hsqr
       simpa [neg_mul] using hscaled
 
+/--
+@isnad1 id=not.1h3v.s5.7c8bfe01d256 from=translated src=- shape=55933707 vocab=a2f0bed1
+-/
 theorem not_finiteSameStrictSignOrdering_of_isotropic
     {R : Type u} [Field R] {ι : Type w} [Fintype ι]
     (a : ι → RatFunc R) (hiso : Diagonal.Isotropic a) :
@@ -264,6 +291,9 @@ theorem not_finiteSameStrictSignOrdering_of_isotropic
       exact neg_pos.mp hneg_pos
     exact (Diagonal.not_isotropic_of_all_neg hneg) hiso
 
+/--
+@isnad1 id=samestri.4h6v.s8.225ed399c3f7 from=translated src=- shape=4285dd5d vocab=42ea1ace
+-/
 theorem sameStrictSignOrdering_of_ternary_hom_not_isotropic
     {R : Type u} [Field R]
     {K : Type v} [Field K] [LinearOrder K] [IsStrictOrderedRing K] [IsRealClosed K]
@@ -293,6 +323,9 @@ theorem sameStrictSignOrdering_of_ternary_hom_not_isotropic
       (by simpa [coeff] using hneg 1)
       (by simpa [coeff] using hneg 2)
 
+/--
+@isnad1 id=samestri.4h5v.s9.13ed77693ae3 from=translated src=- shape=8f83235d vocab=f4e0a32c
+-/
 theorem sameStrictSignOrdering_of_ternary_not_isotropic
     {R : Type u} [Field R]
     {K : Type v} [Field K] [LinearOrder K] [IsStrictOrderedRing K] [IsRealClosed K]
@@ -307,6 +340,9 @@ theorem sameStrictSignOrdering_of_ternary_not_isotropic
   sameStrictSignOrdering_of_ternary_hom_not_isotropic
     (algebraMap (RatFunc R) K) ha hb hc haniso
 
+/--
+@isnad1 id=ternaryl.4h4v.s6.c8460551b424 from=translated src=- shape=588be8e4 vocab=8ffbba7c
+-/
 theorem ternaryLocallyIsotropic_of_not_sameStrictSignOrdering
     {R : Type u} [Field R] {a b c : RatFunc R}
     (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0)
@@ -316,6 +352,9 @@ theorem ternaryLocallyIsotropic_of_not_sameStrictSignOrdering
   by_contra haniso
   exact hno (sameStrictSignOrdering_of_ternary_not_isotropic ha hb hc haniso)
 
+/--
+@isnad1 id=normaliz.2h5v.s8.b2b8d0a6691c from=translated src=- shape=b9e5c1f6 vocab=06b0dbe0
+-/
 theorem normalizedOrderingObstruction_of_hom_pos
     {R : Type u} [Field R]
     {K : Type v} [Field K] [LinearOrder K] [IsStrictOrderedRing K]
@@ -330,6 +369,9 @@ theorem normalizedOrderingObstruction_of_hom_pos
     (strictPos_comapNonnegative_of_pos f hc).mem,
     (strictPos_comapNonnegative_of_pos f hc).neg_notMem⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.100c096c5dad from=translated src=- shape=e4b38072 vocab=1e358974
+-/
 theorem normalizedOrderingObstruction_iff_strictPos
     {R : Type u} [Field R] {b c : RatFunc R} :
     NormalizedOrderingObstruction b c ↔
@@ -343,6 +385,9 @@ theorem normalizedOrderingObstruction_iff_strictPos
   · rintro ⟨P, hP, hb, hc⟩
     exact ⟨P, hP, hb.mem, hb.neg_notMem, hc.mem, hc.neg_notMem⟩
 
+/--
+@isnad1 id=normaliz.2h3v.s7.556562342da6 from=translated src=- shape=207c1d49 vocab=a565a8c8
+-/
 theorem normalizedOrderingObstruction_of_ordered_pos
     {R : Type u} [Field R] [LinearOrder (RatFunc R)] [IsStrictOrderedRing (RatFunc R)]
     {b c : RatFunc R} (hb : 0 < b) (hc : 0 < c) :
@@ -363,6 +408,9 @@ theorem normalizedOrderingObstruction_of_ordered_pos
       exact neg_nonneg.mp hnc
     exact (not_le_of_gt hc) hc_nonpos
 
+/--
+@isnad1 id=normaliz.0h4v.s4.3b989db896e1 from=translated src=- shape=c59de103 vocab=4b20c604
+-/
 theorem normalizedOrderingObstruction_of_orderedRatFuncPositivePair
     {R : Type u} [Field R] {b c : RatFunc R}
     (h : OrderedRatFuncPositivePair b c) :
@@ -371,6 +419,9 @@ theorem normalizedOrderingObstruction_of_orderedRatFuncPositivePair
   let _ := h.strictOrdered
   exact normalizedOrderingObstruction_of_ordered_pos h.pos_left h.pos_right
 
+/--
+@isnad1 id=nonempty.1h3v.s4.63964ed7aa13 from=translated src=- shape=85e1c446 vocab=08ca7bf0
+-/
 theorem orderedRatFuncPositivePair_of_normalizedOrderingObstruction
     {R : Type u} [Field R] {b c : RatFunc R}
     (h : NormalizedOrderingObstruction b c) :
@@ -392,6 +443,9 @@ theorem orderedRatFuncPositivePair_of_normalizedOrderingObstruction
         P).mp hc
   }⟩
 
+/--
+@isnad1 id=normaliz.3h6v.s6.364ee911a2c3 from=translated src=- shape=6baa7cac vocab=7d709eb6
+-/
 theorem normalizedOrderingObstruction_of_sameStrictSign_factors
     {R : Type u} [Field R] {g b₁ c₁ b c : RatFunc R}
     (hb : b = g * b₁) (hc : c = g * c₁) :
@@ -405,6 +459,9 @@ theorem normalizedOrderingObstruction_of_sameStrictSign_factors
   · rcases hneg with ⟨hg, hb₁, hc₁⟩
     exact ⟨P, hP, by simpa [hb] using hg.mul hb₁, by simpa [hc] using hg.mul hc₁⟩
 
+/--
+@isnad1 id=normaliz.1h4v.s6.ab8f05ac9b2e from=translated src=- shape=cd3aede9 vocab=226eddb0
+-/
 theorem normalizedOrderingObstruction_of_sameStrictSign_div
     {R : Type u} [Field R] {a b c : RatFunc R} :
     SameStrictSignOrdering a b c →
@@ -467,6 +524,9 @@ def RatFuncOrderedRealClosedExtension
         ∃ (_ : Algebra (RatFunc R) K),
           ∀ x : RatFunc R, 0 < x → 0 < algebraMap (RatFunc R) K x
 
+/--
+@isnad1 id=ratfunco.1h1v.s3.6cf8823c5d54 from=translated src=- shape=e1073aff vocab=0226eb1d
+-/
 theorem ratFuncOrderedRealClosedExtension_of_orderedFieldRealClosedExtension
     {R : Type u} [Field R]
     (hclosure : OrderedFieldRealClosedExtension.{u, v}) :
@@ -487,6 +547,9 @@ def NormalizedOrderingRealization
     NormalizedOrderingObstruction b c →
       HasNormalizedSignObstruction.{u, v} b c
 
+/--
+@isnad1 id=hasnorma.1h4v.s5.6a1b3ddb4d93 from=translated src=- shape=e171c694 vocab=fcf5afc5
+-/
 theorem hasNormalizedSignObstruction_of_orderedRatFuncPositivePair_ratFuncClosure
     {R : Type u} [Field R]
     (hclosure : RatFuncOrderedRealClosedExtension.{u, v} R) {b c : RatFunc R}
@@ -507,6 +570,9 @@ theorem hasNormalizedSignObstruction_of_orderedRatFuncPositivePair_ratFuncClosur
     pos_right := hpos c hpair.pos_right
   }⟩
 
+/--
+@isnad1 id=normaliz.1h1v.s3.023c6d2b049e from=translated src=- shape=c612a321 vocab=a5f76e0f
+-/
 theorem normalizedOrderingRealization_of_ratFuncOrderedRealClosedExtension
     {R : Type u} [Field R]
     (hclosure : RatFuncOrderedRealClosedExtension.{u, v} R) :
@@ -515,6 +581,9 @@ theorem normalizedOrderingRealization_of_ratFuncOrderedRealClosedExtension
   rcases orderedRatFuncPositivePair_of_normalizedOrderingObstruction h with ⟨hpair⟩
   exact hasNormalizedSignObstruction_of_orderedRatFuncPositivePair_ratFuncClosure hclosure hpair
 
+/--
+@isnad1 id=normaliz.1h1v.s3.2ad5ede3f6f3 from=translated src=- shape=e1073aff vocab=e17085ea
+-/
 theorem normalizedOrderingRealization_of_orderedFieldRealClosedExtension
     {R : Type u} [Field R]
     (hclosure : OrderedFieldRealClosedExtension.{u, v}) :
@@ -522,6 +591,9 @@ theorem normalizedOrderingRealization_of_orderedFieldRealClosedExtension
   normalizedOrderingRealization_of_ratFuncOrderedRealClosedExtension
     (ratFuncOrderedRealClosedExtension_of_orderedFieldRealClosedExtension hclosure)
 
+/--
+@isnad1 id=not.2h3v.s8.f69e9f1a6ef0 from=translated src=- shape=bce9f11b vocab=c8454a18
+-/
 theorem not_finiteSameStrictSignOrdering_of_forall_realClosedExtension_ratFuncClosure
     {R : Type u} [Field R] {ι : Type w} [Fintype ι]
     (hclosure : RatFuncOrderedRealClosedExtension.{u, v} R)
@@ -566,6 +638,9 @@ theorem not_finiteSameStrictSignOrdering_of_forall_realClosedExtension_ratFuncCl
       simpa using neg_pos.mp (by simpa using hneg_img)
     exact (Diagonal.not_isotropic_of_all_neg hall_neg) hiso
 
+/--
+@isnad1 id=not.2h3v.s8.497bf9fe2dd6 from=translated src=- shape=b6f0c38b vocab=dfb80cd8
+-/
 theorem not_finiteSameStrictSignOrdering_of_forall_realClosedExtension
     {R : Type u} [Field R] {ι : Type w} [Fintype ι]
     (hclosure : OrderedFieldRealClosedExtension.{u, v})
@@ -582,6 +657,9 @@ theorem not_finiteSameStrictSignOrdering_of_forall_realClosedExtension
     (ratFuncOrderedRealClosedExtension_of_orderedFieldRealClosedExtension hclosure)
     a hlocal
 
+/--
+@isnad1 id=ex.2h4v.s8.9b038fef02c7 from=translated src=- shape=0bd07055 vocab=d574911c
+-/
 theorem forall_realClosedExtension_of_not_finiteSameStrictSignOrdering
     {R : Type u} [Field R] {ι : Type w} [Fintype ι] [Nonempty ι]
     (a : ι → RatFunc R)
@@ -603,6 +681,9 @@ theorem forall_realClosedExtension_of_not_finiteSameStrictSignOrdering
     (finiteSameStrictSignOrdering_of_hom_not_isotropic
       (algebraMap (RatFunc R) K) hreg haniso)
 
+/--
+@isnad1 id=iff.2h3v.s8.ea626582d270 from=translated src=- shape=0d0f6dda vocab=ea9eab8f
+-/
 theorem forall_realClosedExtension_iff_not_finiteSameStrictSignOrdering_ratFuncClosure
     {R : Type u} [Field R] {ι : Type w} [Fintype ι] [Nonempty ι]
     (hclosure : RatFuncOrderedRealClosedExtension.{u, v} R)
@@ -619,6 +700,9 @@ theorem forall_realClosedExtension_iff_not_finiteSameStrictSignOrdering_ratFuncC
   · exact not_finiteSameStrictSignOrdering_of_forall_realClosedExtension_ratFuncClosure hclosure a
   · exact forall_realClosedExtension_of_not_finiteSameStrictSignOrdering a hreg
 
+/--
+@isnad1 id=iff.2h3v.s8.78708be9718b from=translated src=- shape=323f1b0b vocab=6183ac86
+-/
 theorem forall_realClosedExtension_iff_not_finiteSameStrictSignOrdering
     {R : Type u} [Field R] {ι : Type w} [Fintype ι] [Nonempty ι]
     (hclosure : OrderedFieldRealClosedExtension.{u, v})
@@ -635,6 +719,9 @@ theorem forall_realClosedExtension_iff_not_finiteSameStrictSignOrdering
     (ratFuncOrderedRealClosedExtension_of_orderedFieldRealClosedExtension hclosure)
     a hreg
 
+/--
+@isnad1 id=iff.0h3v.s4.812e7d8b5391 from=translated src=- shape=d301f23b vocab=a49a8c7d
+-/
 theorem normalizedOrderingObstruction_swap
     {R : Type u} [Field R] {b c : RatFunc R} :
     NormalizedOrderingObstruction b c ↔
@@ -645,6 +732,9 @@ theorem normalizedOrderingObstruction_swap
   · rintro ⟨P, hP, hc, hnc, hb, hnb⟩
     exact ⟨P, hP, hb, hnb, hc, hnc⟩
 
+/--
+@isnad1 id=iff.0h3v.s4.8f8a9eda8ec9 from=translated src=- shape=a07a875c vocab=3a626170
+-/
 theorem normalizedSignObstructionFree_iff_not_hasObstruction
     {R : Type u} [Field R] (b c : RatFunc R) :
     NormalizedSignObstructionFree.{u, v} b c ↔
@@ -669,6 +759,9 @@ theorem normalizedSignObstructionFree_iff_not_hasObstruction
       pos_right := not_le.mp hsign.2
     }⟩
 
+/--
+@isnad1 id=iff.2h5v.s8.50a75f9f01c3 from=translated src=- shape=23bd39af vocab=b12b4518
+-/
 theorem hasNormalizedSignObstruction_mul_square
     {R : Type u} [Field R] {b c r s : RatFunc R}
     (hr : r ≠ 0) (hs : s ≠ 0) :
@@ -714,6 +807,9 @@ theorem hasNormalizedSignObstruction_mul_square
           mul_pos w.pos_right (sq_pos_of_ne_zero hsK)
     }⟩
 
+/--
+@isnad1 id=iff.2h5v.s10.1fced0ad5b55 from=translated src=- shape=9083c6ab vocab=62a00c9e
+-/
 theorem hasNormalizedSignObstruction_polynomial_mul_square
     {R : Type u} [Field R] {B C S T : Polynomial R}
     (hS : S ≠ 0) (hT : T ≠ 0) :
@@ -733,6 +829,9 @@ theorem hasNormalizedSignObstruction_polynomial_mul_square
       (c := algebraMap (Polynomial R) (RatFunc R) C)
       (r := s) (s := t) hs ht)
 
+/--
+@isnad1 id=iff.0h3v.s5.4255910e9200 from=translated src=- shape=edf67160 vocab=876ffff2
+-/
 theorem normalizedSignObstructionFree_iff_locallyIsotropic
     {R : Type u} [Field R] (b c : RatFunc R) :
     NormalizedSignObstructionFree.{u, v} b c ↔
@@ -756,6 +855,9 @@ theorem normalizedSignObstructionFree_iff_locallyIsotropic
         (algebraMap (RatFunc R) K b)
         (algebraMap (RatFunc R) K c)).mp hloc'
 
+/--
+@isnad1 id=iff.2h5v.s8.96b8da021ccb from=translated src=- shape=23bd39af vocab=1783b370
+-/
 theorem normalizedSignObstructionFree_mul_square
     {R : Type u} [Field R] {b c u v : RatFunc R}
     (hu : u ≠ 0) (hv : v ≠ 0) :

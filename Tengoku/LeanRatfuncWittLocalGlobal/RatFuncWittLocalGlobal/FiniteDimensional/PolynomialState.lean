@@ -54,7 +54,9 @@ structure FinitePolynomialState
     algebraMap (Polynomial R) (_root_.RatFunc R) (A i))
 
 /-- Every regular finite family with the ordering obstruction has a
-squarefree polynomial state.-/
+squarefree polynomial state.
+@isnad1 id=nonempty.2h3v.s5.ed4f32dbd0bc from=translated src=- shape=761edb48 vocab=1ca891f5
+-/
 theorem finitePolynomialState_exists
     {R : Type u} [Field R] {ι : Type*} [Fintype ι]
     {a : ι → _root_.RatFunc R}
@@ -83,7 +85,9 @@ noncomputable def FinitePolynomialState.realRoots
   exact Finset.univ.biUnion fun i => (T.A i).roots.toFinset
 
 /-- Membership in the breakpoint set is membership in the root set of some
-coefficient.-/
+coefficient.
+@isnad1 id=iff.0h5v.s6.00dccdb07353 from=translated src=- shape=8e142ab3 vocab=4645012b
+-/
 theorem FinitePolynomialState.mem_realRoots_iff
     {R : Type u} [Field R] {ι : Type*} [Fintype ι]
     {a : ι → _root_.RatFunc R}
@@ -98,7 +102,9 @@ theorem FinitePolynomialState.mem_realRoots_iff
   · rintro ⟨i, hi⟩
     exact ⟨i, (mem_roots (T.normal_form i).1).mpr hi⟩
 
-/-- Away from the breakpoint set, every coefficient evaluates nontrivially.-/
+/-- Away from the breakpoint set, every coefficient evaluates nontrivially.
+@isnad1 id=ne.1h6v.s6.380f45a78f9e from=translated src=- shape=9946eb36 vocab=4645012b
+-/
 theorem FinitePolynomialState.eval_ne_zero_of_not_mem_realRoots
     {R : Type u} [Field R] {ι : Type*} [Fintype ι]
     {a : ι → _root_.RatFunc R}
@@ -109,7 +115,9 @@ theorem FinitePolynomialState.eval_ne_zero_of_not_mem_realRoots
   exact hr ((T.mem_realRoots_iff r).mpr ⟨i, hz⟩)
 
 /-- The normalized family remains nondefinite after every ordered field
-embedding of the rational function field.-/
+embedding of the rational function field.
+@isnad1 id=not.0h6v.s8.0d910cf19911 from=translated src=- shape=52500ac6 vocab=75fede68
+-/
 theorem FinitePolynomialState.not_scalarFamilySameStrictSign_map
     {R : Type u} [Field R] {ι : Type*} [Fintype ι]
     {a : ι → _root_.RatFunc R}

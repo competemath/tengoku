@@ -26,7 +26,9 @@ open Polynomial
 ### Odd-degree irreducible factors
 -/
 
-/-- Every odd-degree polynomial over a field has a monic irreducible odd-degree factor.-/
+/-- Every odd-degree polynomial over a field has a monic irreducible odd-degree factor.
+@isnad1 id=ex.1h2v.s7.0db8801d3488 from=translated src=- shape=897fe6d7 vocab=5f3d79af
+-/
 theorem Polynomial.exists_odd_natDegree_monic_irreducible_factor
     {K : Type*} [Field K] {p : K[X]} (hp : Odd p.natDegree) :
     ∃ q : K[X], Odd q.natDegree ∧ q.Monic ∧ Irreducible q ∧ q ∣ p := by
@@ -86,7 +88,9 @@ universe u
 ### Minimal polynomial and odd root power basis
 -/
 
-/-- A monic irreducible annihilator is the minimal polynomial.-/
+/-- A monic irreducible annihilator is the minimal polynomial.
+@isnad1 id=eq.3h4v.s8.902ee35d3ce3 from=translated src=- shape=765eafa7 vocab=6546b005
+-/
 theorem minpoly_eq_of_monic_irreducible_root
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     {q : K[X]} {α : L} (hqmonic : q.Monic) (hqirr : Irreducible q)

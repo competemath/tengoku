@@ -29,13 +29,18 @@ def diagonalQuadraticForm [Field F] [Fintype ι] (a : ι → F) :
     QuadraticMap F (ι → F) F :=
   QuadraticMap.weightedSumSquares F a
 
+/--
+@isnad1 id=eq.0h4v.s7.fb47d0bcdade from=translated src=- shape=8530c7d2 vocab=0dbba9cf
+-/
 @[simp]
 theorem diagonalQuadraticForm_apply [Field F] [Fintype ι]
     (a x : ι → F) :
     diagonalQuadraticForm a x = diagonalValue a x := by
   simp [diagonalQuadraticForm, diagonalValue, smul_eq_mul, pow_two]
 
-/-- Diagonal isotropy is non-anisotropy of its associated quadratic map.-/
+/-- Diagonal isotropy is non-anisotropy of its associated quadratic map.
+@isnad1 id=iff.0h3v.s6.ff128214e463 from=translated src=- shape=c8316ef7 vocab=20965818
+-/
 theorem isotropic_iff_not_diagonalQuadraticForm_anisotropic
     [Field F] [Fintype ι] (a : ι → F) :
     Isotropic a ↔ ¬(diagonalQuadraticForm a).Anisotropic := by

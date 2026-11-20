@@ -28,7 +28,9 @@ def ScalarFamilySameStrictSign
   (∀ i, 0 < A i) ∨ (∀ i, A i < 0)
 
 /-- Over a real-closed field, a regular scalar family with no common strict
-sign is isotropic.-/
+sign is isotropic.
+@isnad1 id=isotropi.2h3v.s6.4c8ac3cc3d8d from=translated src=- shape=561094ea vocab=4510d23b
+-/
 theorem Diagonal.isotropic_of_not_scalarFamilySameStrictSign
     {K ι : Type*} [Field K] [LinearOrder K] [IsStrictOrderedRing K]
     [IsRealClosed K] [Fintype ι] [Nonempty ι]

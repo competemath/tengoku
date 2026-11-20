@@ -25,7 +25,9 @@ universe u
 
 variable {F : Type u} [Field F] [LinearOrder F] [IsStrictOrderedRing F]
 
-/-- A maximal ordered intermediate field is real closed.-/
+/-- A maximal ordered intermediate field is real closed.
+@isnad1 id=isrealcl.1h2v.s7.61a884a579da from=translated src=- shape=27a543ef vocab=2017c0d7
+-/
 theorem maximal_isRealClosed
     (M : Intermediate F) (hmax : IsMax M) : IsRealClosed M.carrier :=
   IsRealClosed.of_linearOrderedField
@@ -35,7 +37,9 @@ theorem maximal_isRealClosed
 /-- Every ordered field has a real-closed ordered extension in the same universe.
 
 The extension is the carrier of a maximal ordered intermediate field in an
-algebraic closure; its algebra map is the canonical intermediate-field map.-/
+algebraic closure; its algebra map is the canonical intermediate-field map.
+@isnad1 id=orderedf.0h0v.s0.d8796b546aa3 from=translated src=- shape=45709ebd vocab=7a31378e
+-/
 theorem orderedFieldRealClosedExtension_same_universe :
     RatFunc.OrderedFieldRealClosedExtension.{u, u} := by
   intro F _instField _instLinearOrder _instStrictOrdered
@@ -46,7 +50,9 @@ theorem orderedFieldRealClosedExtension_same_universe :
     inferInstance, hpos⟩
 
 /-- The maximal-intermediate construction discharges the normalized-ordering
-realization principle in the same universe.-/
+realization principle in the same universe.
+@isnad1 id=normaliz.0h1v.s3.14963153f1fb from=translated src=- shape=c6850a32 vocab=3f847b70
+-/
 theorem normalizedOrderingRealization_of_maximal_orderedIntermediate
     {R : Type u} [Field R] :
     RatFunc.NormalizedOrderingRealization.{u, u} R :=

@@ -77,7 +77,9 @@ noncomputable def PolynomialTernaryFiniteTameResidueClass [Field R]
     else
       1
 
-/-- If the finite place divides the first coefficient, the tame residue is `-B*C`.-/
+/-- If the finite place divides the first coefficient, the tame residue is `-B*C`.
+@isnad1 id=eq.1h5v.s7.1265cb1f7a5d from=translated src=- shape=53aa82cf vocab=44956ad1
+-/
 theorem polynomialTernaryFiniteTameResidueClass_of_dvd_left
     [Field R] {A B C π : Polynomial R} (hA : π ∣ A) :
     PolynomialTernaryFiniteTameResidueClass A B C π = -(B * C) := by
@@ -85,7 +87,9 @@ theorem polynomialTernaryFiniteTameResidueClass_of_dvd_left
 
 /--
 If the finite place does not divide the first coefficient but divides the
-second, the tame residue is `-A*C`.-/
+second, the tame residue is `-A*C`.
+@isnad1 id=eq.2h5v.s8.ffff72c3436a from=translated src=- shape=5169c73d vocab=44956ad1
+-/
 theorem polynomialTernaryFiniteTameResidueClass_of_not_dvd_left_dvd_mid
     [Field R] {A B C π : Polynomial R} (hA : ¬ π ∣ A) (hB : π ∣ B) :
     PolynomialTernaryFiniteTameResidueClass A B C π = -(A * C) := by
@@ -93,7 +97,9 @@ theorem polynomialTernaryFiniteTameResidueClass_of_not_dvd_left_dvd_mid
 
 /--
 If the finite place divides only the third coefficient among the first two
-tests, the tame residue is `-A*B`.-/
+tests, the tame residue is `-A*B`.
+@isnad1 id=eq.3h5v.s8.f8f5e7496e13 from=translated src=- shape=52251064 vocab=44956ad1
+-/
 theorem polynomialTernaryFiniteTameResidueClass_of_not_dvd_left_mid_dvd_right
     [Field R] {A B C π : Polynomial R}
     (hA : ¬ π ∣ A) (hB : ¬ π ∣ B) (hC : π ∣ C) :
@@ -102,7 +108,9 @@ theorem polynomialTernaryFiniteTameResidueClass_of_not_dvd_left_mid_dvd_right
 
 /--
 If the finite place divides none of the three coefficients, the tame residue
-representative is `1`.-/
+representative is `1`.
+@isnad1 id=not.3h4v.s7.adb1af23ede8 from=translated src=- shape=e84dd32a vocab=4baa34fb
+-/
 theorem irreducible_not_dvd_right_of_isCoprime_of_dvd_left
     [Field R] {π A B : Polynomial R}
     (hπ : Irreducible π) (hAB : IsCoprime A B) (hπA : π ∣ A) :
@@ -130,6 +138,9 @@ branch.  This is the exceptional-factor step that cannot be obtained by a
 bare square-class rewrite.
 -/
 
+/--
+@isnad1 id=issquare.2h7v.s7.b093e0e0936c from=translated src=- shape=078cd66d vocab=cb1bdad4
+-/
 theorem isSquareMod_neg_mid_mul_right_of_tameResidueTrivial_dvd_left
     [Field R] {A B C π : Polynomial R} {p q : RatFunc R}
     (hA : π ∣ A)
@@ -147,6 +158,9 @@ file provide the infinity ordering, whereas finite places are represented by
 the residue predicates below.
 -/
 
+/--
+@isnad1 id=or.10h4v.s11.467e44af76e8 from=translated src=- shape=70fa2ab7 vocab=7bbbf07f
+-/
 theorem polynomialTernaryClearedQuaternionSplit_unit_first_gcdSplit_normalization_core
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {A B C : Polynomial R}
@@ -367,6 +381,9 @@ the square `A²` with `IsSquareMod.of_mul_square_of_isCoprime` is the exact
 local preservation step needed by the weighted recursion.
 -/
 
+/--
+@isnad1 id=issquare.3h7v.s8.07adf3f0c20e from=translated src=- shape=6e810179 vocab=cb1bdad4
+-/
 theorem isSquareMod_neg_left_mul_right_of_tameResidueTrivial_not_dvd_left_dvd_mid
     [Field R] {A B C π : Polynomial R} {p q : RatFunc R}
     (hA : ¬ π ∣ A) (hB : π ∣ B)
@@ -377,7 +394,9 @@ theorem isSquareMod_neg_left_mul_right_of_tameResidueTrivial_not_dvd_left_dvd_mi
 
 /--
 In the `π ∤ A`, `π ∤ B`, `π ∣ C` branch, tame-residue triviality gives
-square-mod triviality of `-A*B`.-/
+square-mod triviality of `-A*B`.
+@isnad1 id=issquare.4h7v.s8.b28adaf633ca from=translated src=- shape=be583147 vocab=cb1bdad4
+-/
 theorem isSquareMod_neg_left_mul_mid_of_tameResidueTrivial_not_dvd_left_mid_dvd_right
     [Field R] {A B C π : Polynomial R} {p q : RatFunc R}
     (hA : ¬ π ∣ A) (hB : ¬ π ∣ B) (hC : π ∣ C)
@@ -389,7 +408,9 @@ theorem isSquareMod_neg_left_mul_mid_of_tameResidueTrivial_not_dvd_left_mid_dvd_
 
 /--
 For a pairwise-coprime triple, tame-residue triviality at an irreducible
-divisor of the second coefficient gives square-mod triviality of `-A*C`.-/
+divisor of the second coefficient gives square-mod triviality of `-A*C`.
+@isnad1 id=issquare.4h7v.s8.04bd4520a4d1 from=translated src=- shape=f7ac4e01 vocab=44e213d5
+-/
 theorem isSquareMod_neg_left_mul_right_of_tameResidueTrivial_irreducible_dvd_mid
     [Field R] {A B C π : Polynomial R} {p q : RatFunc R}
     (hπ : Irreducible π) (hAB : IsCoprime A B) (hπB : π ∣ B)
@@ -401,7 +422,9 @@ theorem isSquareMod_neg_left_mul_right_of_tameResidueTrivial_irreducible_dvd_mid
 
 /--
 For a pairwise-coprime triple, tame-residue triviality at an irreducible
-divisor of the third coefficient gives square-mod triviality of `-A*B`.-/
+divisor of the third coefficient gives square-mod triviality of `-A*B`.
+@isnad1 id=issquare.5h7v.s8.1c429d73b1eb from=translated src=- shape=3b060e8e vocab=44e213d5
+-/
 theorem isSquareMod_neg_left_mul_mid_of_tameResidueTrivial_irreducible_dvd_right
     [Field R] {A B C π : Polynomial R} {p q : RatFunc R}
     (hπ : Irreducible π) (hAC : IsCoprime A C) (hBC : IsCoprime B C)
@@ -415,7 +438,9 @@ theorem isSquareMod_neg_left_mul_mid_of_tameResidueTrivial_irreducible_dvd_right
 
 /--
 The componentwise finite residue conditions imply the single tame-residue
-condition at the same finite place.-/
+condition at the same finite place.
+@isnad1 id=polynomi.1h7v.s6.ca83d204262b from=translated src=- shape=06be408f vocab=21d9926f
+-/
 theorem polynomialTernaryFiniteTameResidueTrivial_of_component
     [Field R] {A B C : Polynomial R} {p q : RatFunc R} {π : Polynomial R}
     (hfinite : PolynomialTernaryFiniteResidueTrivial A B C p q π) :
@@ -436,7 +461,9 @@ theorem polynomialTernaryFiniteTameResidueTrivial_of_component
 
 /--
 For pairwise-coprime triples, tame-residue triviality at an irreducible finite
-place gives back the componentwise finite residue conditions.-/
+place gives back the componentwise finite residue conditions.
+@isnad1 id=polynomi.5h7v.s7.398a7f7746b9 from=translated src=- shape=90d0d6f1 vocab=7257aefe
+-/
 theorem polynomialTernaryFiniteResidueTrivial_of_tameResidueTrivial
     [Field R] {A B C : Polynomial R} {p q : RatFunc R} {π : Polynomial R}
     (hπ : Irreducible π) (hAB : IsCoprime A B) (hAC : IsCoprime A C)
@@ -456,7 +483,9 @@ theorem polynomialTernaryFiniteResidueTrivial_of_tameResidueTrivial
 
 /--
 For pairwise-coprime triples, the finite tame-residue package and the
-componentwise finite-residue package are equivalent for the normalized symbol.-/
+componentwise finite-residue package are equivalent for the normalized symbol.
+@isnad1 id=iff.3h4v.s6.5ecd0724bab5 from=translated src=- shape=86a69770 vocab=3924ae37
+-/
 theorem polynomialTernaryQuaternionFiniteResiduesTrivialFor_tame_iff_component
     [Field R] {A B C : Polynomial R}
     (hAB : IsCoprime A B) (hAC : IsCoprime A C) (hBC : IsCoprime B C) :
@@ -478,6 +507,9 @@ normalization of all three coefficients.  It is converted back to the tame
 package only after the normalized cores' pairwise coprimality is supplied.
 -/
 
+/--
+@isnad1 id=polynomi.10h4v.s8.0d28ab9b9c3c from=translated src=- shape=91f9d73d vocab=2d1a5752
+-/
 theorem polynomialTernaryFiniteTameResiduesTrivial_globalSquareMod
     [Field R] {A B C : Polynomial R}
     (hA0 : A ≠ 0) (hB0 : B ≠ 0) (hC0 : C ≠ 0)

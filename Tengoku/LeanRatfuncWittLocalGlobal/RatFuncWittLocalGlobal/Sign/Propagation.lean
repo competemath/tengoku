@@ -22,7 +22,9 @@ universe u
 
 namespace StrictSign
 
-/-- A strict sign holds either on a nonzero scalar or on its negative.-/
+/-- A strict sign holds either on a nonzero scalar or on its negative.
+@isnad1 id=or.1h3v.s6.6a9ed169e2c9 from=translated src=- shape=b940779a vocab=41b666a8
+-/
 theorem holds_or_holds_neg
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     (sign : StrictSign) {x : R} (hx : x ≠ 0) :
@@ -35,7 +37,9 @@ theorem holds_or_holds_neg
     | pos => exact Or.inl hxpos
     | neg => exact Or.inr (neg_lt_zero.mpr hxpos)
 
-/-- Two unequal strict signs are opposites.-/
+/-- Two unequal strict signs are opposites.
+@isnad1 id=eq.1h2v.s3.90b3c285e7ae from=translated src=- shape=3bae67f0 vocab=1c019cda
+-/
 theorem opposite_eq_of_ne (s t : StrictSign) (h : s ≠ t) :
     s.opposite = t := by
   cases s <;> cases t <;> simp [opposite] at h ⊢
@@ -45,7 +49,9 @@ end StrictSign
 namespace Finset
 
 /-- On a finite linear order, a predicate that is equivalent across every
-consecutive pair propagates from the minimum to every element.-/
+consecutive pair propagates from the minimum to every element.
+@isnad1 id=var.3h5v.s7.474a3bdd99e4 from=translated src=- shape=97e13bc6 vocab=4ccdd713
+-/
 theorem forall_of_min'_of_consecutive_iff
     {α : Type*} [LinearOrder α] (s : Finset α) (P : α → Prop)
     (hstep : ∀ x ∈ s, ∀ y ∈ s, x < y →

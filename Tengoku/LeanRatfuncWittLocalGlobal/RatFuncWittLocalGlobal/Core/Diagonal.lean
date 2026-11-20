@@ -32,7 +32,9 @@ def TernaryIsotropic [Field F] (a₀ a₁ a₂ : F) : Prop :=
     (x₀ ≠ 0 ∨ x₁ ≠ 0 ∨ x₂ ≠ 0) ∧
       a₀ * x₀ ^ 2 + a₁ * x₁ ^ 2 + a₂ * x₂ ^ 2 = 0
 
-/-- A zero diagonal coefficient supplies an isotropic coordinate vector.-/
+/-- A zero diagonal coefficient supplies an isotropic coordinate vector.
+@isnad1 id=isotropi.1h4v.s5.c9d88233fb46 from=translated src=- shape=0a83a183 vocab=48e28714
+-/
 theorem isotropic_of_zero_coeff [Field F] [Fintype ι] (a : ι → F) {i : ι}
     (hi : a i = 0) :
     Isotropic a := by
@@ -52,6 +54,9 @@ theorem isotropic_of_zero_coeff [Field F] [Fintype ι] (a : ι → F) {i : ι}
       _ = 0 := by
         simp [x, hi]
 
+/--
+@isnad1 id=iff.0h4v.s8.7843365349dd from=translated src=- shape=dec75260 vocab=abfab354
+-/
 theorem ternary_isotropic_iff_exists_tuple_ne [Field F] {a₀ a₁ a₂ : F} :
     TernaryIsotropic a₀ a₁ a₂ ↔
       ∃ x₀ x₁ x₂ : F,
@@ -73,6 +78,9 @@ theorem ternary_isotropic_iff_exists_tuple_ne [Field F] {a₀ a₁ a₂ : F} :
     simp only [not_or, not_not] at hx_all
     exact hx_ne (by simp [hx_all])
 
+/--
+@isnad1 id=iff.0h2v.s6.e595eb3255d5 from=translated src=- shape=ea6ddce8 vocab=6650f2d3
+-/
 theorem isotropic_fin_three_iff [Field F] (a : Fin 3 → F) :
     Isotropic a ↔ TernaryIsotropic (a 0) (a 1) (a 2) := by
   constructor
@@ -93,6 +101,9 @@ theorem isotropic_fin_three_iff [Field F] (a : Fin 3 → F) :
       · exact hx₂ (by simpa using congr_fun hx 2)
     · simpa [Isotropic, TernaryIsotropic, Fin.sum_univ_three] using hx_sum
 
+/--
+@isnad1 id=iff.0h5v.s5.a49215e32dc6 from=translated src=- shape=8db3c2a8 vocab=08f45894
+-/
 theorem isotropic_comp_equiv [Field F] [Fintype ι] [Fintype J]
     (e : ι ≃ J) (a : J → F) :
     Isotropic (fun i : ι => a (e i)) ↔ Isotropic a := by
@@ -122,6 +133,9 @@ theorem isotropic_comp_equiv [Field F] [Fintype ι] [Fintype J]
         simpa using e.sum_comp (fun k : J => a k * x k ^ 2)
       exact hsum.trans hx_sum
 
+/--
+@isnad1 id=iff.1h4v.s6.aaae0b8d545f from=translated src=- shape=4b1883bc vocab=3d61b7d8
+-/
 theorem isotropic_mul_square [Field F] [Fintype ι] {a u : ι → F}
     (hu : ∀ i, u i ≠ 0) :
     Isotropic (fun i => a i * u i ^ 2) ↔ Isotropic a := by
@@ -156,6 +170,9 @@ theorem isotropic_mul_square [Field F] [Fintype ι] {a u : ι → F}
                 field_simp [hu i]
         _ = 0 := hx_sum
 
+/--
+@isnad1 id=iff.1h5v.s6.04af74475d27 from=translated src=- shape=975a6149 vocab=2c74dd41
+-/
 theorem ternary_isotropic_const_mul [Field F] {a₀ a₁ a₂ c : F}
     (hc : c ≠ 0) :
     TernaryIsotropic (c * a₀) (c * a₁) (c * a₂) ↔
@@ -174,6 +191,9 @@ theorem ternary_isotropic_const_mul [Field F] {a₀ a₁ a₂ c : F}
             ring
       _ = 0 := by simp [hx_sum]
 
+/--
+@isnad1 id=iff.3h7v.s7.b86a88fea5c0 from=translated src=- shape=9e971a78 vocab=7fc106e4
+-/
 theorem ternary_isotropic_mul_square [Field F] {a₀ a₁ a₂ u₀ u₁ u₂ : F}
     (hu₀ : u₀ ≠ 0) (hu₁ : u₁ ≠ 0) (hu₂ : u₂ ≠ 0) :
     TernaryIsotropic (a₀ * u₀ ^ 2) (a₁ * u₁ ^ 2) (a₂ * u₂ ^ 2) ↔
@@ -212,6 +232,9 @@ theorem ternary_isotropic_mul_square [Field F] {a₀ a₁ a₂ u₀ u₁ u₂ : 
                 field_simp [hu₀, hu₁, hu₂]
         _ = 0 := hx_sum
 
+/--
+@isnad1 id=ternaryi.1h3v.s6.6efab28be6c6 from=translated src=- shape=52096b0e vocab=1dbfac17
+-/
 theorem ternary_isotropic_one_of_isSquare_neg_left [Field F] {b c : F}
     (hb : IsSquare (-b)) :
     TernaryIsotropic 1 b c := by
@@ -225,6 +248,9 @@ theorem ternary_isotropic_one_of_isSquare_neg_left [Field F] {b c : F}
       rw [hrpow]
       ring
 
+/--
+@isnad1 id=ternaryi.1h3v.s6.5da1e40a5bb3 from=translated src=- shape=d04986d2 vocab=1dbfac17
+-/
 theorem ternary_isotropic_one_of_isSquare_neg_right [Field F] {b c : F}
     (hc : IsSquare (-c)) :
     TernaryIsotropic 1 b c := by
@@ -238,6 +264,9 @@ theorem ternary_isotropic_one_of_isSquare_neg_right [Field F] {b c : F}
       rw [hrpow]
       ring
 
+/--
+@isnad1 id=iff.0h3v.s7.3620aebc449b from=translated src=- shape=d3a3979a vocab=55ad38d4
+-/
 theorem ternary_isotropic_one_iff_binary_or_isSquare_neg_right [Field F] {b c : F} :
     TernaryIsotropic 1 b c ↔
       (∃ y z : F, y ^ 2 + c * z ^ 2 = -b) ∨ IsSquare (-c) := by
@@ -290,6 +319,9 @@ theorem ternary_isotropic_one_iff_binary_or_isSquare_neg_right [Field F] {b c : 
           ring
     · exact ternary_isotropic_one_of_isSquare_neg_right hc
 
+/--
+@isnad1 id=iff.1h4v.s6.97eb0489e709 from=translated src=- shape=fa9eef77 vocab=ec8738dd
+-/
 theorem ternary_isotropic_normalize_first [Field F] {a₀ a₁ a₂ : F}
     (ha₀ : a₀ ≠ 0) :
     TernaryIsotropic 1 (a₁ / a₀) (a₂ / a₀) ↔
@@ -298,6 +330,9 @@ theorem ternary_isotropic_normalize_first [Field F] {a₀ a₁ a₂ : F}
     (ternary_isotropic_const_mul (F := F) (a₀ := a₀) (a₁ := a₁) (a₂ := a₂)
       (c := a₀⁻¹) (inv_ne_zero ha₀))
 
+/--
+@isnad1 id=ex.1h4v.s7.10a34dd55b1b from=translated src=- shape=e89fddf4 vocab=b7dc43eb
+-/
 theorem isotropic_baseChange [Field F] [Field K] [Algebra F K] [Fintype ι]
     {a : ι → F} (h : Isotropic a) :
     ∃ x : ι → K,
@@ -334,6 +369,9 @@ def TernaryLocallyIsotropic
       (algebraMap (RatFunc R) K a₂)
 
 universe u v
+/--
+@isnad1 id=iff.1h5v.s7.588c608de642 from=translated src=- shape=00d65ad0 vocab=cd6fec82
+-/
 theorem ternary_locally_isotropic_const_mul
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {a₀ a₁ a₂ c : RatFunc R} (hc : c ≠ 0) :
@@ -375,6 +413,9 @@ theorem ternary_locally_isotropic_const_mul
         (a₂ := algebraMap (RatFunc R) K a₂)
         (c := algebraMap (RatFunc R) K c) hcK).mpr hK
 
+/--
+@isnad1 id=iff.1h4v.s7.07320c30c968 from=translated src=- shape=ff92ab73 vocab=f566185b
+-/
 theorem ternary_locally_isotropic_normalize_first
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {a₀ a₁ a₂ : RatFunc R} (ha₀ : a₀ ≠ 0) :

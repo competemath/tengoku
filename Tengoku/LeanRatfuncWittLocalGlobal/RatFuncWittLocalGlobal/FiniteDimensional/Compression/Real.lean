@@ -26,6 +26,9 @@ variable {R : Type u} {κ : Type w} [Field R] [LinearOrder R] [IsStrictOrderedRi
   [IsRealClosed R] [Fintype κ]
   {a : Sum (Fin 2) κ → _root_.RatFunc R}
 
+/--
+@isnad1 id=holds.4h7v.s8.ffc49ab3a17e from=translated src=- shape=bb86075c vocab=9b8c6f49
+-/
 theorem binaryTailSignHolds_eval_of_right_gap
     (T : FinitePolynomialState a) (S : SignedLinearRootSkeleton R)
     {r y : R} (hry : r < y)
@@ -64,6 +67,9 @@ theorem binaryTailSignHolds_eval_of_right_gap
   rw [hsign] at hlocal
   exact (StrictSign.holds_iff_of_pos_iff _ hlocal0 hSy hSpos).mp hlocal
 
+/--
+@isnad1 id=holds.4h7v.s8.dcc0319a4872 from=translated src=- shape=5bac6200 vocab=21be58ba
+-/
 theorem binaryTailSignHolds_eval_of_left_gap
     (T : FinitePolynomialState a) (S : SignedLinearRootSkeleton R)
     {y r : R} (hyr : y < r)
@@ -101,6 +107,9 @@ theorem binaryTailSignHolds_eval_of_left_gap
   rw [← hsign] at hlocal
   exact (StrictSign.holds_iff_of_pos_iff _ hSy hlocal0 hSpos).mpr hlocal
 
+/--
+@isnad1 id=holds.4h6v.s8.cccd442db9c7 from=translated src=- shape=374d8cb1 vocab=a32f5acf
+-/
 theorem binaryTailSignHolds_eval_of_endpoints
     (T : FinitePolynomialState a) (S : SignedLinearRootSkeleton R)
     (hSroots : S.roots ⊆ T.realRoots)
@@ -140,7 +149,9 @@ theorem binaryTailSignHolds_eval_of_endpoints
       (hendpoint r hr).2
 
 /-- A single signed skeleton realizes the binary-tail sign rule at every
-ordinary point away from the coefficient roots.-/
+ordinary point away from the coefficient roots.
+@isnad1 id=ex.0h4v.s8.533c6474c80c from=translated src=- shape=a1f77d79 vocab=a1ce5f80
+-/
 theorem exists_binaryTailSkeleton_eval (T : FinitePolynomialState a) :
     ∃ S : SignedLinearRootSkeleton R,
       S.roots ⊆ T.realRoots ∧

@@ -28,7 +28,9 @@ variable {R : Type u} {κ : Type w} [Field R] [LinearOrder R] [IsStrictOrderedRi
   {a : Sum (Fin 2) κ → _root_.RatFunc R}
 
 /-- Ordinary realization of a binary-tail skeleton transports to every
-same-universe ordered field image.-/
+same-universe ordered field image.
+@isnad1 id=holds.2h7v.s10.7039e9b672a1 from=translated src=- shape=4a9661af vocab=38e59b2d
+-/
 theorem binaryTailSkeleton_allOrdered
     (T : FinitePolynomialState a) (S : SignedLinearRootSkeleton R)
     (hSroots : S.roots ⊆ T.realRoots)
@@ -120,7 +122,9 @@ theorem binaryTailSkeleton_allOrdered
   simpa only [heval] using hmapped
 
 /-- Every finite binary-tail polynomial state admits one compression
-coefficient with the required sign in all same-universe ordered images.-/
+coefficient with the required sign in all same-universe ordered images.
+@isnad1 id=ex.0h4v.s10.d4fb69152e2a from=translated src=- shape=9277296c vocab=c12d80f3
+-/
 theorem exists_binaryTailSkeleton_allOrdered
     (T : FinitePolynomialState a) :
     ∃ S : SignedLinearRootSkeleton R,

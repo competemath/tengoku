@@ -31,6 +31,9 @@ variable (F : Type u) [Field F] [LinearOrder F] [IsStrictOrderedRing F]
 local notation "Ω" => AlgebraicClosure F
 
 omit [IsStrictOrderedRing F] in
+/--
+@isnad1 id=fact.1h3v.s11.4d7c161d630b from=translated src=- shape=81c04ebf vocab=a6a4a231
+-/
 theorem quadraticAdjoinFact {E : Intermediate F} {a : E.carrier}
     (hnsq : ¬ IsSquare a) :
     Fact (∀ r : E.carrier, r ^ 2 ≠ a + 0 * r) := by
@@ -39,6 +42,9 @@ theorem quadraticAdjoinFact {E : Intermediate F} {a : E.carrier}
   apply hnsq
   exact ⟨r, by simpa [pow_two] using hr.symm⟩
 
+/--
+@isnad1 id=ex.2h4v.s14.4f1143a9d0a4 from=translated src=- shape=c2161cf8 vocab=f2712c16
+-/
 theorem quadraticAdjoinAlgEquiv {E : Intermediate F} {a : E.carrier} {α : Ω}
     (hα : α ^ 2 = (a : Ω)) (hnsq : ¬ IsSquare a) :
     ∃ e : QuadraticAlgebra E.carrier a 0 ≃ₐ[E.carrier]

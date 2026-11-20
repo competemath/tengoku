@@ -27,7 +27,9 @@ namespace Diagonal
 variable {F κ : Type*}
 
 /-- An isotropic tail enlarged by `-c`, together with an isotropic ternary
-head `<a,b,c>`, reconstructs isotropy of the original binary-plus-tail form.-/
+head `<a,b,c>`, reconstructs isotropy of the original binary-plus-tail form.
+@isnad1 id=isotropi.3h6v.s7.293efd610e65 from=translated src=- shape=2d9095f2 vocab=072d3890
+-/
 theorem isotropic_sumType_of_ternary_of_tailAdjoinNeg
     [Field F] [Fintype κ]
     (a b c : F) (hc : c ≠ 0) (ψ : κ → F)

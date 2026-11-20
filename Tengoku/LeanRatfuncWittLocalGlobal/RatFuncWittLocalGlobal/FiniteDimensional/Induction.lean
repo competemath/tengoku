@@ -33,7 +33,9 @@ def DiagonalOrderingObstructionSufficiency
   ∀ (a : ι → _root_.RatFunc R), (∀ i, a i ≠ 0) →
     ¬ RatFunc.FiniteSameStrictSignOrdering a → Diagonal.Isotropic a
 
-/-- Ordering-obstruction sufficiency is invariant under reindexing.-/
+/-- Ordering-obstruction sufficiency is invariant under reindexing.
+@isnad1 id=diagonal.1h4v.s4.c50c5abd5ca5 from=translated src=- shape=40b37343 vocab=92765773
+-/
 theorem diagonalOrderingObstructionSufficiency_reindex
     {R : Type u} {ι : Type w} {κ : Type z} [Field R] [Fintype ι] [Fintype κ]
     (e : ι ≃ κ) (h : DiagonalOrderingObstructionSufficiency R κ) :
@@ -50,7 +52,9 @@ theorem diagonalOrderingObstructionSufficiency_reindex
   simpa [b] using (Diagonal.isotropic_comp_equiv e b).mpr hbiso
 
 /-- Binary-tail compression turns sufficiency in dimension `card κ + 1`
-into sufficiency in dimension `card κ + 2`.-/
+into sufficiency in dimension `card κ + 2`.
+@isnad1 id=diagonal.1h2v.s6.5c17d4fd5479 from=translated src=- shape=0c58daba vocab=a6e08ffa
+-/
 theorem diagonalOrderingObstructionSufficiency_sum_fin_two
     {R : Type u} {κ : Type w} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     [IsRealClosed R] [Fintype κ] [Nonempty κ]
@@ -152,7 +156,9 @@ theorem diagonalOrderingObstructionSufficiency_sum_fin_two
   rw [heq] at hsum
   exact hsum
 
-/-- Finite-dimensional successor form of the binary-tail step.-/
+/-- Finite-dimensional successor form of the binary-tail step.
+@isnad1 id=diagonal.2h2v.s6.68cd5132a397 from=translated src=- shape=9bb3de03 vocab=621b01da
+-/
 theorem diagonalOrderingObstructionSufficiency_fin_add_two
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     [IsRealClosed R] (n : ℕ) (hn : 0 < n)
@@ -169,7 +175,9 @@ theorem diagonalOrderingObstructionSufficiency_fin_add_two
   exact diagonalOrderingObstructionSufficiency_reindex
     (finSumFinEquiv (m := 2) (n := n)).symm hsum
 
-/-- Ternary local-global gives the base case for dimension induction.-/
+/-- Ternary local-global gives the base case for dimension induction.
+@isnad1 id=diagonal.0h1v.s5.21a6ae02c958 from=translated src=- shape=b2fd816d vocab=a24e15a6
+-/
 theorem diagonalOrderingObstructionSufficiency_fin_three
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     [IsRealClosed R] :
@@ -189,7 +197,9 @@ theorem diagonalOrderingObstructionSufficiency_fin_three
   exact (Diagonal.isotropic_fin_three_iff a).mpr htern
 
 /-- Ordering-obstruction sufficiency in every finite dimension at least
-three, presented as `Fin (n + 3)`.-/
+three, presented as `Fin (n + 3)`.
+@isnad1 id=diagonal.0h2v.s6.c6f109e5c0b2 from=translated src=- shape=452a0291 vocab=a434d7f3
+-/
 theorem diagonalOrderingObstructionSufficiency_fin_add_three
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     [IsRealClosed R] (n : ℕ) :
@@ -204,7 +214,9 @@ theorem diagonalOrderingObstructionSufficiency_fin_add_three
         (Equiv.cast (congrArg Fin heq.symm)) hstep
 
 /-- The ordering obstruction is sufficient for every regular finite diagonal
-form of dimension at least three.-/
+form of dimension at least three.
+@isnad1 id=isotropi.3h3v.s6.61c0dfb68dd9 from=translated src=- shape=38e62f2e vocab=921e72b7
+-/
 theorem diagonal_isotropic_of_not_finiteSameStrictSignOrdering_of_card_ge_three
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     [IsRealClosed R] {ι : Type w} [Fintype ι]

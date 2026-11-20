@@ -18,6 +18,9 @@ namespace RatFunc
 
 universe u v
 
+/--
+@isnad1 id=iff.0h3v.s8.d27c1f17afd2 from=translated src=- shape=09096384 vocab=bdd125ac
+-/
 theorem clearedBinaryOrSquareRight_iff_binary_or_square
     {R : Type u} [Field R] (B C : Polynomial R) :
     ClearedBinaryOrSquareRight R B C ↔
@@ -27,7 +30,9 @@ theorem clearedBinaryOrSquareRight_iff_binary_or_square
 
 /--
 Turn the ternary Legendre identity after removing the common factor
-`B = G * B₁`, `C = G * C₁` into the right-oriented cleared binary identity.-/
+`B = G * B₁`, `C = G * C₁` into the right-oriented cleared binary identity.
+@isnad1 id=clearedb.4h9v.s9.e40027dbcdb7 from=translated src=- shape=023f5f45 vocab=c9f14354
+-/
 theorem clearedBinaryRight_of_gcd_legendre_identity
     {R : Type u} [Field R]
     {G B₁ C₁ B C r q d : Polynomial R}
@@ -56,6 +61,9 @@ theorem clearedBinaryRight_of_gcd_legendre_identity
   simpa [map_add, map_mul, map_pow, map_neg] using
     congrArg (algebraMap (Polynomial R) (RatFunc R)) hpoly
 
+/--
+@isnad1 id=ne.4h7v.s9.0edd8701975c from=translated src=- shape=ca8ecddd vocab=e41c1ea5
+-/
 theorem legendre_identity_q_ne_zero_of_d_eq_zero_of_nonzero
     {R : Type u} [Field R]
     {G B₁ C₁ r q d : Polynomial R}
@@ -73,6 +81,9 @@ theorem legendre_identity_q_ne_zero_of_d_eq_zero_of_nonzero
   · exact hq hq0
   · exact hd hd0
 
+/--
+@isnad1 id=issquare.4h8v.s9.78a89fad2f0d from=translated src=- shape=d93d9205 vocab=064eb971
+-/
 theorem isSquare_neg_right_of_gcd_legendre_identity_d_eq_zero
     {R : Type u} [Field R]
     {G B₁ C₁ C r q d : Polynomial R}
@@ -105,6 +116,9 @@ theorem isSquare_neg_right_of_gcd_legendre_identity_d_eq_zero
     _ = (φ q) ^ 2 * ((φ (G * r) / φ q) * (φ (G * r) / φ q)) := by
           field_simp [hqmap]
 
+/--
+@isnad1 id=clearedb.6h9v.s10.3fc2d4f44e93 from=translated src=- shape=73b1dfb6 vocab=870313bc
+-/
 theorem clearedBinaryRight_of_gcd_legendre_identity_of_not_isSquare_neg_right
     {R : Type u} [Field R]
     {G B₁ C₁ B C r q d : Polynomial R}
@@ -119,6 +133,9 @@ theorem clearedBinaryRight_of_gcd_legendre_identity_of_not_isSquare_neg_right
     exact False.elim (hnotC (isSquare_neg_right_of_gcd_legendre_identity_d_eq_zero hC hq h hd))
   · exact clearedBinaryRight_of_gcd_legendre_identity hB hC hd h
 
+/--
+@isnad1 id=clearedb.3h7v.s9.3fe727a22bd5 from=translated src=- shape=c61526ea vocab=f7f27de1
+-/
 theorem clearedBinaryRight_of_squarefreeGcdSplit_legendre_identity_of_not_isSquare_neg_right
     {R : Type u} [Field R] {B C r q d : Polynomial R}
     (s : SquarefreeGcdSplit B C) (hne : r ≠ 0 ∨ q ≠ 0 ∨ d ≠ 0)
@@ -128,6 +145,9 @@ theorem clearedBinaryRight_of_squarefreeGcdSplit_legendre_identity_of_not_isSqua
   clearedBinaryRight_of_gcd_legendre_identity_of_not_isSquare_neg_right
     s.hB s.hC s.G_ne_zero hne hnotC h
 
+/--
+@isnad1 id=iff.0h1v.s5.37993e517b71 from=translated src=- shape=6c04fe61 vocab=ca4c3b6c
+-/
 theorem clearedBinaryConstructionRight_iff_noObstruction
     (R : Type u) [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R] :
     ClearedBinaryConstructionRight.{u, v} R ↔
@@ -140,6 +160,9 @@ theorem clearedBinaryConstructionRight_iff_noObstruction
     exact h B C hB hC
       ((normalizedSignObstructionFree_iff_not_hasObstruction _ _).mp hfree)
 
+/--
+@isnad1 id=squarefr.1h1v.s5.57e343bbe234 from=translated src=- shape=fb04960b vocab=91e7ef8d
+-/
 theorem squarefreeNonterminalBinaryConstructionRightNoOrderingObstruction_of_gcdLegendre
     (R : Type u) [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (h :
@@ -151,6 +174,9 @@ theorem squarefreeNonterminalBinaryConstructionRightNoOrderingObstruction_of_gcd
   exact clearedBinaryRight_of_squarefreeGcdSplit_legendre_identity_of_not_isSquare_neg_right
     s hne hnotC hidentity
 
+/--
+@isnad1 id=iff.0h1v.s5.47befb844af2 from=translated src=- shape=6c04fe61 vocab=bcb400b6
+-/
 theorem squarefreeClearedBinaryConstructionRightNoObstruction_iff_binary
     (R : Type u) [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R] :
     SquarefreeClearedBinaryConstructionRightNoObstruction.{u, v} R ↔
@@ -167,6 +193,9 @@ theorem squarefreeClearedBinaryConstructionRightNoObstruction_iff_binary
     · exact (clearedBinaryOrSquareRight_iff_binary_or_square B C).mpr
         (Or.inl (h B C hB hC hBsq hCsq hno hsquare))
 
+/--
+@isnad1 id=iff.0h3v.s9.1711954188dd from=translated src=- shape=5874e93d vocab=58842e11
+-/
 theorem clearedBinaryOrSquareRight_iff_ternary_isotropic
     {R : Type u} [Field R] (B C : Polynomial R) :
     ClearedBinaryOrSquareRight R B C ↔

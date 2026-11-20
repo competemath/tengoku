@@ -35,6 +35,9 @@ local notation "Ω" => AlgebraicClosure F
 ### The odd simple-adjunction ordering bridge
 -/
 
+/--
+@isnad1 id=ex.4h4v.s15.315a2ed54416 from=translated src=- shape=1693269c vocab=0853261a
+-/
 theorem exists_ordered_odd_adjoin
     (M : Intermediate F) {q : M.carrier[X]} {α : Ω}
     (hqodd : Odd q.natDegree) (hqmonic : q.Monic) (hqirr : Irreducible q)
@@ -72,7 +75,9 @@ theorem exists_ordered_odd_adjoin
 ### Maximality consumes the odd ordering witness
 -/
 
-/-- An odd-degree polynomial over a maximal ordered intermediate field has a root there.-/
+/-- An odd-degree polynomial over a maximal ordered intermediate field has a root there.
+@isnad1 id=ex.2h3v.s10.996b150f74fa from=translated src=- shape=c97d1e19 vocab=b221eaaa
+-/
 theorem exists_root_of_odd_natDegree_of_isMax
     (M : Intermediate F) (hmax : IsMax M) {p : M.carrier[X]}
     (hodd : Odd p.natDegree) :

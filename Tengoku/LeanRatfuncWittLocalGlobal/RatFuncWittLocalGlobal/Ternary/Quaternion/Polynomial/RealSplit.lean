@@ -20,7 +20,9 @@ universe u v
 
 variable {R : Type u}
 
-/-- Predicate-form version using `RatFunc.TernaryLocallyIsotropic`.-/
+/-- Predicate-form version using `RatFunc.TernaryLocallyIsotropic`.
+@isnad1 id=iff.1h4v.s7.3eebcf0013f7 from=translated src=- shape=ed8ed13a vocab=fab1e0fb
+-/
 theorem ratFuncQuaternionRealSplit_iff_ternaryLocallyIsotropic_normalize_first
     [Field R] {a₀ a₁ a₂ : RatFunc R} (ha₀ : a₀ ≠ 0) :
     RatFuncQuaternionRealSplit.{u, v} (-(a₁ / a₀)) (-(a₂ / a₀)) ↔
@@ -29,7 +31,9 @@ theorem ratFuncQuaternionRealSplit_iff_ternaryLocallyIsotropic_normalize_first
 
 /--
 For a polynomial ternary form, absence of a common strict sign supplies the
-real-split input for the normalized polynomial quaternion symbol.-/
+real-split input for the normalized polynomial quaternion symbol.
+@isnad1 id=ratfuncq.4h4v.s9.bb091fd87445 from=translated src=- shape=1bd8d66c vocab=e079e320
+-/
 theorem polynomialTernaryQuaternionRealSplit_of_not_sameStrictSign
     [Field R] {A B C : Polynomial R}
     (hA0 : A ≠ 0) (hB0 : B ≠ 0) (hC0 : C ≠ 0)

@@ -54,6 +54,9 @@ private theorem baseSquareSpan_mul_mem
     rw [mul_smul_comm]
     exact (baseSquareSpan (F := F) (K := K)).smul_mem a hxy
 
+/--
+@isnad1 id=le.0h2v.s8.19db80a78c3e from=translated src=- shape=41fae866 vocab=ddabe9e8
+-/
 theorem baseSquareSubsemiring_le_baseSquareSpan :
     (RingPreordering.baseSquareSubsemiring (F := F) (K := K) : Set K) ⊆
       (baseSquareSpan (F := F) (K := K) : Set K) := by
@@ -86,7 +89,9 @@ theorem baseSquareSubsemiring_le_baseSquareSpan :
   | mul x y hx hy hxs hys =>
       exact baseSquareSpan_mul_mem hxs hys
 
-/-- A proper additive base-square span yields an ordered algebra extension.-/
+/-- A proper additive base-square span yields an ordered algebra extension.
+@isnad1 id=ex.1h2v.s9.43c27e41cd77 from=translated src=- shape=b819368b vocab=33232e68
+-/
 theorem exists_orderedAlgebraExtension_of_baseSquareSpanProper
     (hproper : (-1 : K) ∉ baseSquareSpan (F := F) (K := K)) :
     ∃ (O : _root_.RingPreordering K) (hO : O.IsOrdering),

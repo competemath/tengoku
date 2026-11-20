@@ -27,7 +27,9 @@ universe u v
 noncomputable section
 
 /-- An ordered extension point avoiding a finite set of base points has an
-ordinary base-field sample with exactly the same comparisons to that set.-/
+ordinary base-field sample with exactly the same comparisons to that set.
+@isnad1 id=ex.2h5v.s8.0995784d23b5 from=translated src=- shape=a35185d8 vocab=a220af44
+-/
 theorem exists_base_sample_with_same_finite_cut
     {R : Type u} {K : Type v}
     [Field R] [LinearOrder R] [IsStrictOrderedRing R]
@@ -136,7 +138,9 @@ theorem exists_base_sample_with_same_finite_cut
       exact ⟨0, by simp [hsEmpty], by simp [hsEmpty]⟩
 
 /-- A monic irreducible quadratic over a real closed field remains strictly
-positive at every point of every ordered field extension.-/
+positive at every point of every ordered field extension.
+@isnad1 id=lt.4h5v.s8.d727b619eee7 from=translated src=- shape=42823d79 vocab=aaf8c26f
+-/
 theorem eval₂_pos_of_irreducible_monic_natDegree_two
     {R : Type u} {K : Type v}
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
@@ -168,7 +172,9 @@ theorem eval₂_pos_of_irreducible_monic_natDegree_two
 
 /-- If a finite set contains every real root of a nonzero polynomial, then
 two points lying in the same cell cut out by that set give the same strict
-sign, even when one point belongs to an ordered field extension.-/
+sign, even when one point belongs to an ordered field extension.
+@isnad1 id=iff.5h7v.s9.f3f1de820035 from=translated src=- shape=07a325b7 vocab=58fa9ddc
+-/
 theorem polynomial_eval₂_pos_iff_eval_of_same_finite_cut
     {R : Type u} {K : Type v}
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]

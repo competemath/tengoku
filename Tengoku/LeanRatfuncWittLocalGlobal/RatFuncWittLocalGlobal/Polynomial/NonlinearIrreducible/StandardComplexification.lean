@@ -20,6 +20,9 @@ universe u v
 
 open scoped IntermediateField
 
+/--
+@isnad1 id=ne.0h1v.s7.62156e7654d9 from=translated src=- shape=6aa00d8e vocab=12771d3d
+-/
 theorem standardComplexification_two_ne_zero
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] :
     (2 : StandardComplexification R) ≠ 0 := by
@@ -39,7 +42,9 @@ theorem standardComplexification_two_ne_zero
       (2 : R) (0 : R)).mp hzero
   exact two_ne_zero hcoeff.1
 
-/-- The standard complexification admits no further quadratic extension.-/
+/-- The standard complexification admits no further quadratic extension.
+@isnad1 id=false.0h2v.s6.8ed6ff787897 from=translated src=- shape=599d54b9 vocab=cf9893ef
+-/
 theorem not_quadraticExtension_standardComplexification
     {R L : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     [Field L] [Algebra (StandardComplexification R) L]
@@ -58,7 +63,9 @@ theorem not_quadraticExtension_standardComplexification
 /-- Every quadratic field extension of a real closed field is the standard
 complexification.  The primitive element has an irreducible quadratic
 minimal polynomial; its discriminant is not a square, so its negative is a
-square and the corresponding normalized root squares to `-1`.-/
+square and the corresponding normalized root squares to `-1`.
+@isnad1 id=nonempty.0h2v.s7.040c955e1280 from=translated src=- shape=795a6325 vocab=287069c7
+-/
 theorem quadraticExtension_algEquiv_standardComplexification
     {R K : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     [Field K] [Algebra R K] [Algebra.IsQuadraticExtension R K] :
@@ -177,6 +184,9 @@ theorem quadraticExtension_algEquiv_standardComplexification
    successive fixed fields; if the degree were at least three, this produces
    a quadratic extension of the standard complexification, which is
    impossible because every element of that field is a square. -/
+/--
+@isnad1 id=le.0h2v.s7.bbbe2a022e70 from=translated src=- shape=c80605a4 vocab=7d3a0407
+-/
 theorem finiteGalois_finrank_le_two_realClosed
     {R L : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     [Field L] [Algebra R L] [FiniteDimensional R L] [IsGalois R L] :
@@ -277,7 +287,9 @@ theorem finiteGalois_finrank_le_two_realClosed
   let _ : Algebra.IsQuadraticExtension (StandardComplexification R) F := ⟨hfin_stdF⟩
   exact not_quadraticExtension_standardComplexification (R := R) (L := F)
 
-/-- Every irreducible over a real closed field has degree at most two.-/
+/-- Every irreducible over a real closed field has degree at most two.
+@isnad1 id=irreduci.0h1v.s5.4840934915a6 from=translated src=- shape=7ddc04c7 vocab=eee2ac6b
+-/
 theorem irreducibleNatDegreeLeTwo_of_realClosed
     {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R] :
     IrreducibleNatDegreeLeTwo R := by
@@ -292,13 +304,18 @@ theorem irreducibleNatDegreeLeTwo_of_realClosed
       (Polynomial.SplittingField.splits p)
   exact (Nat.le_of_dvd (Module.finrank_pos) hdvd).trans hfin
 
+/--
+@isnad1 id=nonlinea.0h1v.s5.5b1e9a106ed2 from=translated src=- shape=7ddc04c7 vocab=71eafcd8
+-/
 theorem nonlinearIrreducibleNatDegreeTwo_of_realClosed
     {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R] :
     NonlinearIrreducibleNatDegreeTwo R :=
   nonlinearIrreducibleNatDegreeTwo_of_irreducibleNatDegreeLeTwo
     (irreducibleNatDegreeLeTwo_of_realClosed (R := R))
 
-/-- Alternative algebraic-closedness criteria are preserved on the research branch.-/
+/-- Alternative algebraic-closedness criteria are preserved on the research branch.
+@isnad1 id=nonlinea.2h1v.s4.05cac7c4acdf from=translated src=- shape=affebb5f vocab=0214e04b
+-/
 theorem nonlinearIrreducibleQuotientSquares_of_natDegreeTwo_of_quadraticQuotients
     {R : Type u} [Field R]
     (hdeg : NonlinearIrreducibleNatDegreeTwo R)
@@ -307,6 +324,9 @@ theorem nonlinearIrreducibleQuotientSquares_of_natDegreeTwo_of_quadraticQuotient
   intro π f hπ hnonlinear
   exact hquad π f hπ (hdeg π hπ hnonlinear)
 
+/--
+@isnad1 id=nonlinea.1h1v.s5.d075431cea29 from=translated src=- shape=fb04960b vocab=71dfd4fd
+-/
 theorem nonlinearIrreducibleQuotientSquares_of_natDegreeTwo_realClosed
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (hdeg : NonlinearIrreducibleNatDegreeTwo R) :
@@ -314,7 +334,9 @@ theorem nonlinearIrreducibleQuotientSquares_of_natDegreeTwo_realClosed
   nonlinearIrreducibleQuotientSquares_of_natDegreeTwo_of_quadraticQuotients
     hdeg (quadraticIrreducibleQuotientSquares_of_realClosed R)
 
-/-- Alternative quotient criteria are preserved on the research branch.-/
+/-- Alternative quotient criteria are preserved on the research branch.
+@isnad1 id=nonlinea.1h1v.s3.071c76030005 from=translated src=- shape=c612a321 vocab=396c8b11
+-/
 theorem nonlinearIrreducibleDivisorSquareMod_of_quotientSquares
     {R : Type u} [Field R]
     (hquot : NonlinearIrreducibleQuotientSquares R) :
@@ -322,6 +344,9 @@ theorem nonlinearIrreducibleDivisorSquareMod_of_quotientSquares
   intro π f hπ hdeg
   exact isSquareMod_of_isSquare_quotient_span_singleton (hquot π f hπ hdeg)
 
+/--
+@isnad1 id=nonlinea.1h1v.s5.53f473297185 from=translated src=- shape=fb04960b vocab=f2a3b2fb
+-/
 theorem nonlinearIrreducibleDivisorSquareMod_of_natDegreeTwo_realClosed
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (hdeg : NonlinearIrreducibleNatDegreeTwo R) :
@@ -329,6 +354,9 @@ theorem nonlinearIrreducibleDivisorSquareMod_of_natDegreeTwo_realClosed
   nonlinearIrreducibleDivisorSquareMod_of_quotientSquares
     (nonlinearIrreducibleQuotientSquares_of_natDegreeTwo_realClosed hdeg)
 
+/--
+@isnad1 id=nonlinea.0h1v.s5.a0d77770aad7 from=translated src=- shape=7ddc04c7 vocab=fdbacc94
+-/
 theorem nonlinearIrreducibleDivisorSquareMod_of_realClosed
     {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R] :
     NonlinearIrreducibleDivisorSquareMod R :=

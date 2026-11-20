@@ -29,7 +29,9 @@ noncomputable section
 
 /-- The right Laurent sign of a skeleton at the left endpoint equals its
 ordinary sign at the right endpoint when the intervening half-gap has no
-skeleton root.-/
+skeleton root.
+@isnad1 id=iff.2h4v.s7.4890c33a1716 from=translated src=- shape=8a59fdb4 vocab=f30d1aea
+-/
 theorem SignedLinearRootSkeleton.localLaurentLeadingCoeff_one_pos_iff_eval_pos_of_gap
     {R : Type u} [Field R] [CharZero R] [LinearOrder R]
     [IsStrictOrderedRing R] [IsRealClosed R]
@@ -65,7 +67,9 @@ theorem SignedLinearRootSkeleton.localLaurentLeadingCoeff_one_pos_iff_eval_pos_o
         ((S.eval_poly_eq_zero_iff z).mp hz0)
 
 /-- The ordinary sign at the left endpoint equals the left Laurent sign at
-the right endpoint when the intervening half-gap has no skeleton root.-/
+the right endpoint when the intervening half-gap has no skeleton root.
+@isnad1 id=iff.2h4v.s7.7667ad834cf9 from=translated src=- shape=025f1fc6 vocab=2e3a7d01
+-/
 theorem SignedLinearRootSkeleton.eval_pos_iff_localLaurentLeadingCoeff_neg_one_of_gap
     {R : Type u} [Field R] [CharZero R] [LinearOrder R]
     [IsStrictOrderedRing R] [IsRealClosed R]
@@ -101,7 +105,9 @@ theorem SignedLinearRootSkeleton.eval_pos_iff_localLaurentLeadingCoeff_neg_one_o
         ((S.eval_poly_eq_zero_iff z).mp hz0)
 
 /-- A root-free open gap preserves the two inward Laurent signs of a signed
-skeleton.-/
+skeleton.
+@isnad1 id=iff.2h4v.s7.c015a056be4f from=translated src=- shape=f2d9721b vocab=033969c0
+-/
 theorem SignedLinearRootSkeleton.localLaurentLeadingCoeff_pos_iff_across_gap
     {R : Type u} [Field R] [CharZero R] [LinearOrder R]
     [IsStrictOrderedRing R] [IsRealClosed R]
@@ -119,7 +125,9 @@ theorem SignedLinearRootSkeleton.localLaurentLeadingCoeff_pos_iff_across_gap
       (fun z hz => hgap z (hrt.trans_le hz.1) hz.2))
 
 /-- Every nontrivially oriented local Laurent leading coefficient of a signed
-skeleton is nonzero.-/
+skeleton is nonzero.
+@isnad1 id=ne.1h4v.s6.39f2ce873c0b from=translated src=- shape=94182668 vocab=1a2fa386
+-/
 theorem SignedLinearRootSkeleton.localLaurentLeadingCoeff_ne_zero
     {R : Type u} [Field R] [CharZero R] [LinearOrder R]
     [IsStrictOrderedRing R]
@@ -138,7 +146,9 @@ theorem SignedLinearRootSkeleton.localLaurentLeadingCoeff_ne_zero
     exact heval
 
 /-- Equality of positivity for two nonzero values transports every strict
-sign.-/
+sign.
+@isnad1 id=iff.3h5v.s7.b61f478e2208 from=translated src=- shape=52dbe0a9 vocab=daf44a5b
+-/
 theorem StrictSign.holds_iff_of_pos_iff
     {R : Type u} {S : Type v}
     [Field R] [LinearOrder R] [IsStrictOrderedRing R]
@@ -160,7 +170,9 @@ theorem StrictSign.holds_iff_of_pos_iff
         exact lt_of_le_of_ne (le_of_not_gt hnot) hx
 
 /-- A root-free open gap preserves every strict sign between the two inward
-Laurent sides of a signed skeleton.-/
+Laurent sides of a signed skeleton.
+@isnad1 id=iff.2h5v.s7.b70886e064bf from=translated src=- shape=09064082 vocab=c132a2c0
+-/
 theorem SignedLinearRootSkeleton.localLaurentLeadingCoeff_holds_iff_across_gap
     {R : Type u} [Field R] [CharZero R] [LinearOrder R]
     [IsStrictOrderedRing R] [IsRealClosed R]
@@ -176,7 +188,9 @@ theorem SignedLinearRootSkeleton.localLaurentLeadingCoeff_holds_iff_across_gap
   exact S.localLaurentLeadingCoeff_pos_iff_across_gap hrs hgap
 
 /-- At a recorded simple root, changing Laurent orientation from right to
-left negates the leading coefficient.-/
+left negates the leading coefficient.
+@isnad1 id=eq.1h3v.s6.a8008c712cc9 from=translated src=- shape=364683f8 vocab=0eb27182
+-/
 theorem SignedLinearRootSkeleton.localLaurentLeadingCoeff_neg_one_eq_neg_one
     {R : Type u} [Field R] [CharZero R]
     (S : SignedLinearRootSkeleton R) {r : R} (hr : r ∈ S.roots) :

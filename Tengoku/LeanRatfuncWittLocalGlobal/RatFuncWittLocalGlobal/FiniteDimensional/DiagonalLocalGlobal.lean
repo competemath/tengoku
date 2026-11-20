@@ -23,7 +23,9 @@ noncomputable section
 
 /-- Total ordering criterion in dimension at least three.  A zero coefficient
 already gives an isotropic coordinate vector; the regular branch is the
-completed finite-dimensional theorem.-/
+completed finite-dimensional theorem.
+@isnad1 id=iff.1h3v.s6.6b4783525eab from=translated src=- shape=22b8e5d7 vocab=921e72b7
+-/
 theorem diagonal_isotropic_iff_not_finiteSameStrictSignOrdering_of_card_ge_three_total
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     [IsRealClosed R] {ι : Type w} [Fintype ι]
@@ -42,7 +44,9 @@ theorem diagonal_isotropic_iff_not_finiteSameStrictSignOrdering_of_card_ge_three
       exact Diagonal.isotropic_of_zero_coeff a hi
 
 /-- Total same-universe local-global principle in every finite dimension at
-least three.-/
+least three.
+@isnad1 id=iff.1h3v.s8.8e5d50fd5f98 from=translated src=- shape=16639625 vocab=962268aa
+-/
 theorem diagonal_isotropic_iff_forall_realClosedExtension_of_card_ge_three_same_universe_total
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     [IsRealClosed R] {ι : Type w} [Fintype ι]
@@ -66,7 +70,9 @@ theorem diagonal_isotropic_iff_forall_realClosedExtension_of_card_ge_three_same_
         hcard a).mpr hno
 
 /-- Universe-parameterized total local-global theorem under the precise
-real-closure input for ordered structures on `RatFunc R`.-/
+real-closure input for ordered structures on `RatFunc R`.
+@isnad1 id=iff.2h3v.s8.35746eb57834 from=translated src=- shape=778f2141 vocab=1c081ad7
+-/
 theorem diagonal_isotropic_iff_forall_realClosedExtension_of_card_ge_three_of_ratFuncClosure
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     [IsRealClosed R] {ι : Type w} [Fintype ι]
@@ -90,7 +96,9 @@ theorem diagonal_isotropic_iff_forall_realClosedExtension_of_card_ge_three_of_ra
         hcard a).mpr hno
 
 /-- Universe-parameterized total local-global theorem under a real-closure
-input for every ordered field in the base universe.-/
+input for every ordered field in the base universe.
+@isnad1 id=iff.2h3v.s8.32230b2aacc8 from=translated src=- shape=c5331bad vocab=94f0b0c0
+-/
 theorem diagonal_isotropic_iff_forall_realClosedExtension_of_card_ge_three_of_orderedFieldClosure
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R]
     [IsRealClosed R] {ι : Type w} [Fintype ι]

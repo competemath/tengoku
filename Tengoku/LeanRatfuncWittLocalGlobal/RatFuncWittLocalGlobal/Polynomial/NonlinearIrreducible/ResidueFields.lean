@@ -74,7 +74,9 @@ open scoped IntermediateField
 /-- A finite extension of a real closed field with odd degree is trivial.
 
 The primitive-element reduction is the part of the Artin--Schreier argument
-that is independent of any splitting-field or Galois-group infrastructure.-/
+that is independent of any splitting-field or Galois-group infrastructure.
+@isnad1 id=eq.1h2v.s7.ed5e7dc9aa1c from=translated src=- shape=b0a6e3bf vocab=8e24bfc8
+-/
 theorem finiteDimensional_eq_one_of_odd_finrank_realClosed
     {R K : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     [Field K] [Algebra R K] [FiniteDimensional R K]
@@ -100,6 +102,9 @@ theorem finiteDimensional_eq_one_of_odd_finrank_realClosed
    odd-order Sylow complement trivial: its order is therefore a power of two.
    The fixed field of a Sylow-2 subgroup has odd degree, and the preceding
    primitive-element lemma collapses that degree to one. -/
+/--
+@isnad1 id=ex.0h2v.s7.51a08f472e1c from=translated src=- shape=1ea740cd vocab=0c87c5a5
+-/
 theorem finiteGalois_card_is_two_power_of_realClosed
     {R L : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     [Field L] [Algebra R L] [FiniteDimensional R L] [IsGalois R L] :
@@ -136,6 +141,9 @@ def NonlinearIrreducibleNatDegreeTwo
       π.natDegree ≠ 1 →
         π.natDegree = 2
 
+/--
+@isnad1 id=nonlinea.1h1v.s3.a2c26adb1d6d from=translated src=- shape=c612a321 vocab=7785a21a
+-/
 theorem nonlinearIrreducibleNatDegreeTwo_of_irreducibleNatDegreeLeTwo
     {R : Type u} [Field R]
     (hle : IrreducibleNatDegreeLeTwo R) :
@@ -156,6 +164,9 @@ def QuadraticIrreducibleQuotientSquares
       π.natDegree = 2 →
         IsSquare (Ideal.Quotient.mk (Ideal.span ({π} : Set (Polynomial R))) f)
 
+/--
+@isnad1 id=quadrati.0h1v.s5.12b0f8253ae5 from=translated src=- shape=7ddc04c7 vocab=c1f07f9b
+-/
 theorem quadraticIrreducibleQuotientSquares_of_realClosed
     (R : Type u) [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R] :
     QuadraticIrreducibleQuotientSquares R := by
@@ -173,6 +184,9 @@ theorem quadraticIrreducibleQuotientSquares_of_realClosed
   exact (isSquareMod_associated_iff hassoc).mp
     (isSquareMod_irreducible_monic_natDegree_two hirr_m hmonic hdeg_m)
 
+/--
+@isnad1 id=irreduci.0h1v.s8.91130ea15a7d from=translated src=- shape=a57b7ff5 vocab=b7bb58ed
+-/
 theorem irreducible_X_sq_add_one
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] :
     Irreducible (Polynomial.X ^ 2 + Polynomial.C (1 : R) : Polynomial R) := by
@@ -205,6 +219,9 @@ noncomputable def standardComplexificationI
     (R : Type u) [Field R] : StandardComplexification R :=
   Ideal.Quotient.mk (standardComplexificationIdeal R) Polynomial.X
 
+/--
+@isnad1 id=eq.0h1v.s7.8565a8ed7ecb from=translated src=- shape=c3b6b3c7 vocab=51deafab
+-/
 theorem standardComplexificationI_sq
     (R : Type u) [Field R] :
     standardComplexificationI R ^ 2 = -(1 : StandardComplexification R) := by
@@ -220,6 +237,9 @@ theorem standardComplexificationI_sq
     Ideal.span ({standardComplexificationPolynomial R} : Set (Polynomial R))
   simp [standardComplexificationPolynomial, sub_neg_eq_add]
 
+/--
+@isnad1 id=eq.0h2v.s10.02ea24ceaf30 from=translated src=- shape=56ef9aa3 vocab=ce534c20
+-/
 theorem standardComplexification_mk_eq_modByMonic
     {R : Type u} [Field R] (p : Polynomial R) :
     Ideal.Quotient.mk (standardComplexificationIdeal R) p =
@@ -236,6 +256,9 @@ theorem standardComplexification_mk_eq_modByMonic
   rw [Polynomial.modByMonic_eq_sub_mul_div p (standardComplexificationPolynomial R)]
   ring
 
+/--
+@isnad1 id=ex.0h2v.s8.f65ccea88100 from=translated src=- shape=10f81909 vocab=9c912bea
+-/
 theorem standardComplexification_exists_algebraMap_add_mul_I
     {R : Type u} [Field R] (z : StandardComplexification R) :
     ∃ a b : R,
@@ -288,6 +311,9 @@ theorem standardComplexification_exists_algebraMap_add_mul_I
                     Ideal.Quotient.mk (standardComplexificationIdeal R) Polynomial.X
               rw [map_add, map_mul]
 
+/--
+@isnad1 id=eq.0h3v.s10.c2dea20dc1f1 from=translated src=- shape=12d5406a vocab=c2737c71
+-/
 theorem standardComplexification_square_algebraMap_add_mul_I
     {R : Type u} [Field R] (a b : R) :
     (algebraMap R (StandardComplexification R) a +
@@ -308,6 +334,9 @@ theorem standardComplexification_square_algebraMap_add_mul_I
   simp only [map_mul, map_sub, map_pow, map_ofNat]
   ring_nf
 
+/--
+@isnad1 id=iff.0h3v.s9.0381948e60d2 from=translated src=- shape=e7bd3a61 vocab=9c912bea
+-/
 theorem standardComplexification_algebraMap_add_mul_I_eq_zero_iff
     {R : Type u} [Field R] (a b : R) :
     algebraMap R (StandardComplexification R) a +
@@ -351,6 +380,9 @@ theorem standardComplexification_algebraMap_add_mul_I_eq_zero_iff
   · rintro ⟨rfl, rfl⟩
     simp
 
+/--
+@isnad1 id=nontrivi.0h1v.s3.628eb70c3504 from=translated src=- shape=1666ae32 vocab=f46041f8
+-/
 instance standardComplexification.instNontrivial
     {R : Type u} [Field R] : Nontrivial (StandardComplexification R) := by
   refine ⟨⟨0, 1, ?_⟩⟩
@@ -365,6 +397,9 @@ instance standardComplexification.instNontrivial
       (1 : R) (0 : R)).mp hnormal
   exact one_ne_zero hR.1
 
+/--
+@isnad1 id=ex.0h2v.s6.cafbd9774e9d from=translated src=- shape=f0e17c8b vocab=c4bb6fbf
+-/
 theorem standardComplexification_exists_sq_eq
     {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (z : StandardComplexification R) :
@@ -381,7 +416,9 @@ theorem standardComplexification_exists_sq_eq
     simpa using hreal
   rw [hreal', himag]
 
-/-- The cubic-root exploration is preserved on the research branch.-/
+/-- The cubic-root exploration is preserved on the research branch.
+@isnad1 id=ex.2h3v.s9.c8e29920c77d from=translated src=- shape=4220e03a vocab=694e26cc
+-/
 theorem quadratic_monic_has_root_of_forall_sq_eq
     {K : Type u} [Field K]
     (hsqrt : ∀ z : K, ∃ w : K, w ^ 2 = z) (h2 : (2 : K) ≠ 0) (b c : K) :
@@ -399,7 +436,9 @@ theorem quadratic_monic_has_root_of_forall_sq_eq
 
 /-- A field in which every element is a square has no nontrivial quadratic
 extension.  We choose an element outside the base field, use its minimal
-polynomial, and then apply the quadratic root formula.-/
+polynomial, and then apply the quadratic root formula.
+@isnad1 id=false.2h2v.s6.6090b9298715 from=translated src=- shape=fc502010 vocab=8c3271cc
+-/
 theorem not_quadraticExtension_of_forall_sq_eq
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [Algebra.IsQuadraticExtension K L]

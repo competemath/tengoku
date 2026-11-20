@@ -22,7 +22,9 @@ open _root_.Polynomial
 universe u v
 
 /-- A field homomorphism from a real closed ordered field to an ordered field
-necessarily preserves the strict order.-/
+necessarily preserves the strict order.
+@isnad1 id=strictmo.0h3v.s7.2eb6467e6f28 from=translated src=- shape=21a6c940 vocab=a84d4a96
+-/
 theorem realClosed_ringHom_strictMono
     {R : Type u} {K : Type v}
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
@@ -40,7 +42,9 @@ theorem realClosed_ringHom_strictMono
   simpa using mul_self_pos.mpr hφb
 
 /-- The image of the rational-function variable cannot equal the image of a
-base-field constant under a field homomorphism.-/
+base-field constant under a field homomorphism.
+@isnad1 id=ne.0h4v.s8.d98ba73eec97 from=translated src=- shape=8a70c97b vocab=80181757
+-/
 theorem ratFunc_X_image_ne_base
     {R : Type u} {K : Type v} [Field R] [Field K]
     (f : _root_.RatFunc R →+* K) (r : R) :

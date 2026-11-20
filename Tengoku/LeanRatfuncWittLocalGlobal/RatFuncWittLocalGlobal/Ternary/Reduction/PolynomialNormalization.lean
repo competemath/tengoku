@@ -340,6 +340,9 @@ private theorem normalizedTernaryLocalGlobal_iff_squarefree_binary_right
     _ ↔ SquarefreeBinaryConstructionRightNoObstruction.{u, v} R :=
       squarefreeClearedBinaryConstructionRightNoObstruction_iff_binary R
 
+/--
+@isnad1 id=iff.0h1v.s5.099f01508149 from=translated src=- shape=6c04fe61 vocab=fe1a1c0b
+-/
 theorem normalizedTernaryLocalGlobal_iff_squarefree_nonterminal_right
     (R : Type u) [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R] :
     NormalizedTernaryLocalGlobal.{u, v} R ↔

@@ -29,10 +29,16 @@ variable {R : Type*} [CommRing R]
 def IsSquareMod (m a : _root_.Polynomial R) : Prop :=
   ∃ x : _root_.Polynomial R, m ∣ x ^ 2 - a
 
+/--
+@isnad1 id=issquare.0h2v.s5.b448e027a88e from=translated src=- shape=40ade7c8 vocab=c5352572
+-/
 theorem isSquareMod_one (a : _root_.Polynomial R) :
     IsSquareMod 1 a :=
   ⟨0, one_dvd _⟩
 
+/--
+@isnad1 id=issquare.1h3v.s10.3c85255b61a4 from=translated src=- shape=750b5532 vocab=f135d003
+-/
 theorem isSquare_quotient_span_singleton_of_isSquareMod
     {m a : _root_.Polynomial R} (h : IsSquareMod m a) :
     IsSquare (Ideal.Quotient.mk (Ideal.span ({m} : Set (_root_.Polynomial R))) a) := by
@@ -48,6 +54,9 @@ theorem isSquare_quotient_span_singleton_of_isSquareMod
       (I := Ideal.span ({m} : Set (_root_.Polynomial R))) (x ^ 2) a).mpr hmem
   simpa [pow_two] using hq.symm
 
+/--
+@isnad1 id=issquare.1h3v.s10.0d598fadf6d5 from=translated src=- shape=3c415524 vocab=f135d003
+-/
 theorem isSquareMod_of_isSquare_quotient_span_singleton
     {m a : _root_.Polynomial R}
     (h : IsSquare (Ideal.Quotient.mk (Ideal.span ({m} : Set (_root_.Polynomial R))) a)) :
@@ -65,17 +74,26 @@ theorem isSquareMod_of_isSquare_quotient_span_singleton
     simpa [map_sub] using sub_eq_zero.mpr hq
   exact hzero
 
+/--
+@isnad1 id=issquare.2h4v.s6.63e174f81fb7 from=translated src=- shape=b0127af7 vocab=b6dc6099
+-/
 theorem IsSquareMod.of_dvd
     {m n a : _root_.Polynomial R} (hmn : m ∣ n) (h : IsSquareMod n a) :
     IsSquareMod m a := by
   rcases h with ⟨x, hx⟩
   exact ⟨x, hmn.trans hx⟩
 
+/--
+@isnad1 id=issquare.2h4v.s6.d2951d7821bd from=translated src=- shape=b0127af7 vocab=2542822f
+-/
 theorem IsSquareMod.of_associated
     {m n a : _root_.Polynomial R} (hmn : Associated m n) (h : IsSquareMod n a) :
     IsSquareMod m a :=
   h.of_dvd hmn.dvd
 
+/--
+@isnad1 id=iff.1h4v.s6.ce0d046ea655 from=translated src=- shape=85972b07 vocab=2542822f
+-/
 theorem isSquareMod_associated_iff
     {m n a : _root_.Polynomial R} (hmn : Associated m n) :
     IsSquareMod m a ↔ IsSquareMod n a := by
@@ -85,6 +103,9 @@ theorem isSquareMod_associated_iff
   · intro h
     exact h.of_dvd hmn.dvd
 
+/--
+@isnad1 id=issquare.2h4v.s7.19c12f95db77 from=translated src=- shape=89c80db9 vocab=62153e69
+-/
 theorem IsSquareMod.of_dvd_sub
     {m a b : _root_.Polynomial R} (hab : m ∣ a - b) (h : IsSquareMod m a) :
     IsSquareMod m b := by
@@ -94,6 +115,9 @@ theorem IsSquareMod.of_dvd_sub
   convert hsum using 1
   ring
 
+/--
+@isnad1 id=issquare.1h4v.s7.9212f52e9271 from=translated src=- shape=2ec6c868 vocab=268f95d3
+-/
 theorem IsSquareMod.mul_square
     {m a : _root_.Polynomial R} (h : IsSquareMod m a) (b : _root_.Polynomial R) :
     IsSquareMod m (a * b ^ 2) := by
@@ -103,6 +127,9 @@ theorem IsSquareMod.mul_square
   convert hmul using 1
   ring
 
+/--
+@isnad1 id=issquare.2h4v.s7.8c67ef5d0372 from=translated src=- shape=394f7c58 vocab=e3f026f0
+-/
 theorem IsSquareMod.of_mul_square_of_isCoprime
     {m a q : _root_.Polynomial R} (hqm : IsCoprime q m)
     (h : IsSquareMod m (a * q ^ 2)) :
@@ -129,12 +156,18 @@ theorem IsSquareMod.of_mul_square_of_isCoprime
   convert hsum using 1
   ring
 
+/--
+@isnad1 id=dvd.1h4v.s8.7a24fa4fe6c0 from=translated src=- shape=29fe8dd9 vocab=d4b525f1
+-/
 theorem polynomial_dvd_sq_sub_sq_of_dvd_sub
     {m x y : _root_.Polynomial R} (hxy : m ∣ y - x) :
     m ∣ y ^ 2 - x ^ 2 := by
   rw [show y ^ 2 - x ^ 2 = (y - x) * (y + x) by ring]
   exact dvd_mul_of_dvd_left hxy _
 
+/--
+@isnad1 id=dvd.2h5v.s8.481b38e953cd from=translated src=- shape=a3dcbd88 vocab=d4b525f1
+-/
 theorem polynomial_dvd_sq_sub_of_dvd_sub_of_dvd_sq_sub
     {m a x y : _root_.Polynomial R} (hxy : m ∣ y - x) (hx : m ∣ x ^ 2 - a) :
     m ∣ y ^ 2 - a := by
@@ -143,6 +176,9 @@ theorem polynomial_dvd_sq_sub_of_dvd_sub_of_dvd_sq_sub
   convert hsum using 1
   ring
 
+/--
+@isnad1 id=issquare.3h4v.s6.30485577ce4e from=translated src=- shape=4ccde2b2 vocab=311468e9
+-/
 theorem isSquareMod_mul_of_isCoprime
     {m n a : _root_.Polynomial R} (hmn : IsCoprime m n)
     (hm : IsSquareMod m a) (hn : IsSquareMod n a) :
@@ -173,6 +209,9 @@ theorem isSquareMod_mul_of_isCoprime
   · exact polynomial_dvd_sq_sub_of_dvd_sub_of_dvd_sq_sub hzm hx
   · exact polynomial_dvd_sq_sub_of_dvd_sub_of_dvd_sq_sub hzn hy
 
+/--
+@isnad1 id=issquare.2h5v.s7.ab3b068382ca from=translated src=- shape=fe2cb384 vocab=cffb7202
+-/
 theorem isSquareMod_finset_prod_of_pairwise_isCoprime
     {ι : Type*} {a : _root_.Polynomial R}
     (s : Finset ι) (m : ι → _root_.Polynomial R)
@@ -197,6 +236,9 @@ theorem isSquareMod_finset_prod_of_pairwise_isCoprime
           hpair_insert i (Finset.mem_insert_of_mem hit) j (Finset.mem_insert_of_mem hjt) hij)
         (fun i hit => hall_insert i (Finset.mem_insert_of_mem hit))
 
+/--
+@isnad1 id=issquare.3h3v.s8.e3ebe14c0a41 from=translated src=- shape=20b76037 vocab=b705888b
+-/
 theorem isSquareMod_prod_normalizedFactors_of_squarefree
     {R : Type*} [Field R] [DecidableEq R] {m a : _root_.Polynomial R}
     (hm0 : m ≠ 0) (hsq : Squarefree m)
@@ -235,6 +277,9 @@ theorem isSquareMod_prod_normalizedFactors_of_squarefree
     rw [← Finset.prod_val S, hval]
   simpa [hprod] using hS
 
+/--
+@isnad1 id=issquare.3h3v.s7.d382ee451438 from=translated src=- shape=0a762bdb vocab=87ecfac1
+-/
 theorem isSquareMod_of_forall_normalizedFactors_of_squarefree
     {R : Type*} [Field R] [DecidableEq R] {m a : _root_.Polynomial R}
     (hm0 : m ≠ 0) (hsq : Squarefree m)
@@ -245,6 +290,9 @@ theorem isSquareMod_of_forall_normalizedFactors_of_squarefree
   (isSquareMod_prod_normalizedFactors_of_squarefree hm0 hsq hall).of_associated
     (UniqueFactorizationMonoid.prod_normalizedFactors hm0).symm
 
+/--
+@isnad1 id=issquare.3h3v.s7.f45f3ae3e615 from=translated src=- shape=9609066d vocab=b04f3269
+-/
 theorem isSquareMod_of_forall_irreducible_dvd_of_squarefree
     {R : Type*} [Field R] {m a : _root_.Polynomial R}
     (hm0 : m ≠ 0) (hsq : Squarefree m)
@@ -259,6 +307,9 @@ theorem isSquareMod_of_forall_irreducible_dvd_of_squarefree
         (UniqueFactorizationMonoid.irreducible_of_normalized_factor π hπ)
         (UniqueFactorizationMonoid.dvd_of_mem_normalizedFactors hπ))
 
+/--
+@isnad1 id=iff.0h3v.s7.4196988f5337 from=translated src=- shape=bef17d76 vocab=c0876070
+-/
 theorem isSquareMod_X_sub_C_iff (a : R) (f : _root_.Polynomial R) :
     IsSquareMod (_root_.Polynomial.X - _root_.Polynomial.C a) f ↔
       IsSquare (f.eval a) := by
@@ -274,6 +325,9 @@ theorem isSquareMod_X_sub_C_iff (a : R) (f : _root_.Polynomial R) :
     rw [_root_.Polynomial.dvd_iff_isRoot, _root_.Polynomial.IsRoot]
     simp [hx, pow_two]
 
+/--
+@isnad1 id=iff.1h4v.s7.0f6c1791edd2 from=translated src=- shape=13e3fd04 vocab=dd2583fc
+-/
 theorem isSquareMod_linear_associated_iff
     {π : _root_.Polynomial R} {a : R} {f : _root_.Polynomial R}
     (hπ : Associated π (_root_.Polynomial.X - _root_.Polynomial.C a)) :
@@ -281,6 +335,9 @@ theorem isSquareMod_linear_associated_iff
   rw [isSquareMod_associated_iff hπ]
   exact isSquareMod_X_sub_C_iff a f
 
+/--
+@isnad1 id=issquare.2h4v.s8.065056c101cb from=translated src=- shape=9654f3cb vocab=c261f63f
+-/
 theorem isSquareMod_linear_associated_of_nonneg_eval
     {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {π : _root_.Polynomial R} {a : R} {f : _root_.Polynomial R}

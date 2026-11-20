@@ -36,7 +36,9 @@ def rescale (S : SignedLinearRootSkeleton R) (t : R) (ht : t ≠ 0) :
   scale := t * S.scale
   scale_ne_zero := mul_ne_zero ht S.scale_ne_zero
 
-/-- Rescaling multiplies the represented polynomial by the same constant.-/
+/-- Rescaling multiplies the represented polynomial by the same constant.
+@isnad1 id=eq.1h3v.s7.a8248ad2c84a from=translated src=- shape=e169dde1 vocab=6cf4a11b
+-/
 theorem poly_rescale (S : SignedLinearRootSkeleton R) (t : R) (ht : t ≠ 0) :
     (S.rescale t ht).poly = C t * S.poly := by
   change C (t * S.scale) * ∏ r ∈ S.roots, (X - C r) =
@@ -45,7 +47,9 @@ theorem poly_rescale (S : SignedLinearRootSkeleton R) (t : R) (ht : t ≠ 0) :
   ring
 
 /-- Every local Laurent leading coefficient is multiplied by the rescaling
-scalar.-/
+scalar.
+@isnad1 id=eq.1h5v.s6.15298dbf73ca from=translated src=- shape=fde0453e vocab=79d5b936
+-/
 @[simp]
 theorem localLaurentLeadingCoeff_rescale
     (S : SignedLinearRootSkeleton R) (t : R) (ht : t ≠ 0)

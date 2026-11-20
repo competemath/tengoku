@@ -31,7 +31,9 @@ def binaryTailCompressionRequiredSign
 
 /-- Componentwise preservation of nonzero strict signs preserves the
 binary-tail compression sign, even when the two families live in different
-ordered fields.-/
+ordered fields.
+@isnad1 id=eq.4h7v.s8.152d6dba3b9c from=translated src=- shape=ca9b92f8 vocab=3cddcb0f
+-/
 theorem binaryTailCompressionRequiredSign_eq_of_pos_iff
     {F K κ : Type*}
     [Field F] [LinearOrder F] [IsStrictOrderedRing F]
@@ -58,7 +60,9 @@ theorem binaryTailCompressionRequiredSign_eq_of_pos_iff
   simp only [hheadPos, htailNeg]
 
 /-- The binary-tail sign rule prevents both the ternary head and the tail
-enlarged by the negative compression coefficient from being definite.-/
+enlarged by the negative compression coefficient from being definite.
+@isnad1 id=and.2h5v.s8.15f03dc5582a from=translated src=- shape=f41a70f0 vocab=40709aa6
+-/
 theorem binaryTailCompressionRequiredSign_spec
     {F κ : Type*} [Field F] [LinearOrder F] [IsStrictOrderedRing F]
     [Nonempty κ]

@@ -25,7 +25,9 @@ Normalized-ordering-realization version of
 A same-strict-sign ordering of `⟨A,B,C⟩` makes `B/A` and `C/A` positive.
 Realizing that normalized pair in a real closed target contradicts real split
 of the normalized quaternion symbol, since `⟨1,B/A,C/A⟩` would have all
-coefficients positive there.-/
+coefficients positive there.
+@isnad1 id=not.3h4v.s9.b5f564860978 from=translated src=- shape=db139e87 vocab=689380aa
+-/
 theorem not_sameStrictSignOrdering_of_polynomialTernaryQuaternionRealSplit_normalized
     [Field R]
     (hrealization : RatFunc.NormalizedOrderingRealization.{u, v} R)
@@ -86,6 +88,9 @@ strict-degree cases; the equal-degree branch uses the top-cancel endpoint and
 the sign orientation bridge.
 -/
 
+/--
+@isnad1 id=or.13h4v.s9.bb9d64ff8d00 from=translated src=- shape=05a1f8bd vocab=237ed489
+-/
 theorem
     polynomialTernaryClearedQuaternionSplit_descent_wholeMod_normalized_right_pivot_complete
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
@@ -161,6 +166,9 @@ condition rules out all three constants having one strict sign, so one of the
 two cleared coefficients is a square over the real-closed base field.
 -/
 
+/--
+@isnad1 id=polynomi.8h4v.s8.ce9bc2b877f6 from=translated src=- shape=845b4e12 vocab=de98dbc1
+-/
 theorem polynomialTernaryClearedQuaternionSplit_constant_terminal
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {A B C : Polynomial R}
@@ -285,6 +293,9 @@ The successor package carries the recursive real-split equivalence and the
 strict total-degree bound, so no conditional residual branch remains.
 -/
 
+/--
+@isnad1 id=polynomi.12h4v.s8.26d3186ed78f from=translated src=- shape=f4d36d02 vocab=bf428525
+-/
 theorem polynomialTernaryClearedQuaternionSplit_of_wholeMod_realSplit
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {A B C : Polynomial R}
@@ -345,6 +356,9 @@ normalized ordering realization is supplied: tame/component finite residues
 assemble `WholeMod`, and normalized real split transports to the cleared form.
 -/
 
+/--
+@isnad1 id=polynomi.1h1v.s5.0201ad3382c7 from=translated src=- shape=fb04960b vocab=f025df96
+-/
 theorem polynomialTernaryQuaternionFiniteSplitCriterion_of_normalizedOrderingRealization
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (hrealization : RatFunc.NormalizedOrderingRealization.{u, u} R) :
@@ -367,6 +381,9 @@ theorem polynomialTernaryQuaternionFiniteSplitCriterion_of_normalizedOrderingRea
       hA0 hB0 hC0 hwhole hAsq hBsq hCsq hAB hAC hBC hrealCleared hrealization
   exact polynomialTernaryQuaternionSplit_of_cleared hA0 hsplitCleared
 
+/--
+@isnad1 id=polynomi.1h1v.s5.0abe9ff705cf from=translated src=- shape=fb04960b vocab=e7cf86d1
+-/
 theorem polynomialTernaryQuaternionSplitCriterion_of_normalizedOrderingRealization
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     (hrealization : RatFunc.NormalizedOrderingRealization.{u, u} R) :
@@ -378,7 +395,9 @@ theorem polynomialTernaryQuaternionSplitCriterion_of_normalizedOrderingRealizati
 /--
 The polynomial-specialized quaternion criterion turns the packaged residue input
 and the no-common-strict-sign real-split input into a split normalized
-quaternion symbol.-/
+quaternion symbol.
+@isnad1 id=quaterni.12h4v.s10.04499acfe181 from=translated src=- shape=d48ab5ba vocab=9151bea4
+-/
 theorem polynomialQuaternionSymbolSplit_of_polyQuaternionCriterion
     [LinearOrder R] [Field R]
     (hcriterion : PolynomialTernaryQuaternionSplitCriterion (R := R))

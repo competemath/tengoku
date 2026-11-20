@@ -45,7 +45,9 @@ def PolynomialTernaryQuaternionFiniteSplitCriterion [Field R] : Prop :=
 
 /--
 A finite polynomial split criterion supplies the older finite/infinity
-polynomial split criterion by forgetting the infinity predicate.-/
+polynomial split criterion by forgetting the infinity predicate.
+@isnad1 id=polynomi.1h1v.s4.d4829d061c19 from=translated src=- shape=affebb5f vocab=8c457eb8
+-/
 theorem polynomialTernaryQuaternionSplitCriterion_of_finiteCriterion
     [LinearOrder R] [Field R]
     (hcriterion : PolynomialTernaryQuaternionFiniteSplitCriterion (R := R)) :
@@ -86,7 +88,9 @@ def PolynomialNegInfinitySignHomRealization
       (∀ P : Polynomial R, PolynomialNegAtNegInfinity P →
         f (algebraMap (Polynomial R) (RatFunc R) P) < 0)
 
-/-- The concrete Laurent-series homomorphism realizes signs at `+∞`.-/
+/-- The concrete Laurent-series homomorphism realizes signs at `+∞`.
+@isnad1 id=polynomi.0h1v.s4.f064f05127d4 from=translated src=- shape=affebb5f vocab=aba05061
+-/
 theorem polynomialPosInfinitySignHomRealization_laurentSeries
     [LinearOrder R] [Field R] [IsStrictOrderedRing R] :
     PolynomialPosInfinitySignHomRealization R := by
@@ -131,7 +135,9 @@ theorem polynomialPosInfinitySignHomRealization_laurentSeries
       exact RatFunc.liftRingHom_algebraMap φ hφ _
     exact hmap.symm ▸ RatFunc.polynomial_posInfinity_eval_neg_laurentSeries hP
 
-/-- The concrete Laurent-series homomorphism realizes signs at `-∞`.-/
+/-- The concrete Laurent-series homomorphism realizes signs at `-∞`.
+@isnad1 id=polynomi.0h1v.s4.c866fdffdeca from=translated src=- shape=affebb5f vocab=b0bfd6d9
+-/
 theorem polynomialNegInfinitySignHomRealization_laurentSeries
     [LinearOrder R] [Field R] [IsStrictOrderedRing R] :
     PolynomialNegInfinitySignHomRealization R := by
@@ -180,7 +186,9 @@ theorem polynomialNegInfinitySignHomRealization_laurentSeries
 
 /--
 Hom-realization of both infinity orderings implies the ordering-level infinity
-sign realization.-/
+sign realization.
+@isnad1 id=polynomi.2h1v.s4.e1a00de69154 from=translated src=- shape=7ddc04c7 vocab=ceef6b97
+-/
 theorem polynomialTernaryInfinitySignRealization_of_hom
     [LinearOrder R] [Field R]
     (hposInf : PolynomialPosInfinitySignHomRealization R)
@@ -213,7 +221,9 @@ theorem polynomialTernaryInfinitySignRealization_of_hom
       exact RatFunc.sameStrictSignOrdering_of_hom_neg fn
         (hn_neg A hneg.1) (hn_neg B hneg.2.1) (hn_neg C hneg.2.2)
 
-/-- The two infinity orderings of `RatFunc R` are realized by Laurent-series homomorphisms.-/
+/-- The two infinity orderings of `RatFunc R` are realized by Laurent-series homomorphisms.
+@isnad1 id=polynomi.0h1v.s4.736be61d0e3d from=translated src=- shape=affebb5f vocab=fcec16f6
+-/
 theorem polynomialTernaryInfinitySignRealization_laurentSeries
     [LinearOrder R] [Field R] [IsStrictOrderedRing R] :
     PolynomialTernaryInfinitySignRealization (R := R) :=
@@ -224,7 +234,9 @@ theorem polynomialTernaryInfinitySignRealization_laurentSeries
 /--
 If common strict signs at infinity can be realized as orderings of `RatFunc R`,
 then absence of a same-strict-sign ordering supplies the no-common-sign
-condition at infinity.-/
+condition at infinity.
+@isnad1 id=polynomi.2h4v.s9.e39e09a39631 from=translated src=- shape=222ae9ed vocab=b4be35ac
+-/
 theorem polynomialTernaryNoCommonStrictSignAtInfinity_of_not_sameStrictSign
     [LinearOrder R] [Field R]
     (hinftyRealization : PolynomialTernaryInfinitySignRealization (R := R))
@@ -242,7 +254,9 @@ theorem polynomialTernaryNoCommonStrictSignAtInfinity_of_not_sameStrictSign
 
 /--
 The existing polynomial Legendre local conditions provide the finite-place
-residue component for the normalized quaternion symbol.-/
+residue component for the normalized quaternion symbol.
+@isnad1 id=polynomi.2h5v.s6.f18435a72916 from=translated src=- shape=164173b9 vocab=5de56659
+-/
 theorem polynomialTernaryFiniteResidueTrivial_of_legendreLocalConditions
     [Field R] {A B C : Polynomial R}
     (hlocal : RatFunc.PolynomialLegendreLocalConditions A B C) :
@@ -256,7 +270,9 @@ theorem polynomialTernaryFiniteResidueTrivial_of_legendreLocalConditions
 
 /--
 The existing Legendre finite local conditions also provide the finite
-tame-residue condition for the normalized quaternion symbol.-/
+tame-residue condition for the normalized quaternion symbol.
+@isnad1 id=polynomi.2h5v.s6.2e39df6f5173 from=translated src=- shape=164173b9 vocab=83102929
+-/
 theorem polynomialTernaryFiniteTameResidueTrivial_of_legendreLocalConditions
     [Field R] {A B C : Polynomial R}
     (hlocal : RatFunc.PolynomialLegendreLocalConditions A B C) :
@@ -272,7 +288,9 @@ theorem polynomialTernaryFiniteTameResidueTrivial_of_legendreLocalConditions
 
 /--
 The existing Legendre finite local conditions provide the finite tame-residue
-input for the normalized polynomial quaternion symbol.-/
+input for the normalized polynomial quaternion symbol.
+@isnad1 id=polynomi.1h4v.s5.9387c23007f8 from=translated src=- shape=20c09c6a vocab=e8fc57bf
+-/
 theorem polynomialTernaryQuaternionFiniteTameResiduesTrivialFor_of_legendreLocalConditions
     [Field R] {A B C : Polynomial R}
     (hlocal : RatFunc.PolynomialLegendreLocalConditions A B C) :
@@ -288,6 +306,9 @@ the returned local conditions, while the square-factor transport restores the
 original cleared and real split predicates.
 -/
 
+/--
+@isnad1 id=or.9h4v.s12.81b6d931a613 from=translated src=- shape=6a299d0e vocab=3067c6cf
+-/
 theorem polynomialTernaryClearedQuaternionSplit_gcdSplit_normalization_of_arbitrary_right
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {A B C : Polynomial R}
@@ -419,6 +440,9 @@ arbitrary-right endpoint.  The weighted strict measure and the normalizer's
 nonincrease combine into the final strict decrease.
 -/
 
+/--
+@isnad1 id=or.14h6v.s13.83e7340e018a from=translated src=- shape=994e1f57 vocab=8b6fa4d8
+-/
 theorem
     polynomialTernaryClearedQuaternionSplit_square_part_gcd_normalization_right
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
@@ -565,6 +589,9 @@ successor.  Since its measure is at most `deg B + deg C + deg d` and
 `deg d < deg A`, the final decrease is unconditional.
 -/
 
+/--
+@isnad1 id=or.14h4v.s10.53dd4df968e1 from=translated src=- shape=66b720c7 vocab=6bbc5384
+-/
 theorem
     polynomialTernaryClearedQuaternionSplit_descent_wholeMod_normalized_right
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
@@ -638,6 +665,9 @@ equal.  Keeping this elementary alternative explicit prevents the equal-degree
 case from being hidden in a false strict-premise assumption.
 -/
 
+/--
+@isnad1 id=or.1h4v.s8.fc7108554cc3 from=translated src=- shape=ed12c792 vocab=26dd96f2
+-/
 theorem polynomialTernaryClearedQuaternionSplit_pivot_degree_choice
     [Field R] {A B C : Polynomial R}
     (hnonconstant : 0 < A.natDegree ∨ 0 < B.natDegree ∨ 0 < C.natDegree) :
@@ -693,6 +723,9 @@ congruence while cancelling its degree-`2 * deg A` coefficient.  The resulting
 quotient is either zero or has strictly smaller degree than the pivot.
 -/
 
+/--
+@isnad1 id=ex.8h4v.s9.4dcbc5de5499 from=translated src=- shape=eaa2bc5a vocab=6934cff4
+-/
 theorem polynomialTernaryClearedQuaternionSplit_equal_degree_top_cancelled_witness
     [LinearOrder R] [Field R] [IsStrictOrderedRing R] [IsRealClosed R]
     {A B C : Polynomial R}
@@ -812,6 +845,9 @@ nonzero, failure of a common positive/negative sign at `+∞` forces an opposite
 sign pair among them.
 -/
 
+/--
+@isnad1 id=ex.4h4v.s8.4847ce14453c from=translated src=- shape=67e86c74 vocab=ad5abb8f
+-/
 theorem polynomialTernaryNoCommonStrictSignAtInfinity_cyclic_opposite_leadingCoeff
     [LinearOrder R] [Field R] [IsStrictOrderedRing R]
     {A B C : Polynomial R}
@@ -907,6 +943,9 @@ strictly below the pivot, so the normalized successor has an unconditional
 strict total-degree drop.
 -/
 
+/--
+@isnad1 id=or.16h4v.s8.d188f40121ec from=translated src=- shape=af7f1e9e vocab=664e93ab
+-/
 theorem polynomialTernaryClearedQuaternionSplit_equal_degree_top_cancelled_right
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {A B C : Polynomial R}
@@ -964,6 +1003,9 @@ than assumed as an input.  If all three positive degrees coincide, the theorem
 returns that exact residual branch instead of manufacturing a strict premise.
 -/
 
+/--
+@isnad1 id=or.13h4v.s9.8d828c519cc9 from=translated src=- shape=c66f638d vocab=d7c4b9d9
+-/
 theorem
     polynomialTernaryClearedQuaternionSplit_descent_wholeMod_normalized_right_pivot
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
@@ -1175,6 +1217,9 @@ coefficients have opposite signs; the oriented top-cancel endpoint is then
 transported back through the cyclic split/real equivalences.
 -/
 
+/--
+@isnad1 id=or.16h4v.s9.6d9c8693cd81 from=translated src=- shape=57015903 vocab=674f5d57
+-/
 theorem polynomialTernaryClearedQuaternionSplit_equal_degree_pivot_of_noCommonInfinity
     [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
     {A B C : Polynomial R}
@@ -1378,7 +1423,9 @@ theorem polynomialTernaryClearedQuaternionSplit_equal_degree_pivot_of_noCommonIn
 /--
 Legendre finite local conditions plus the polynomial infinity condition give the
 packaged residue-triviality input for the normalized polynomial quaternion
-symbol.-/
+symbol.
+@isnad1 id=polynomi.2h4v.s6.4efad53706da from=translated src=- shape=439d5d20 vocab=06c4a0b4
+-/
 theorem polynomialTernaryQuaternionResiduesTrivialFor_of_legendreLocalConditions
     [LinearOrder R] [Field R] {A B C : Polynomial R}
     (hlocal : RatFunc.PolynomialLegendreLocalConditions A B C)
@@ -1394,7 +1441,9 @@ theorem polynomialTernaryQuaternionResiduesTrivialFor_of_legendreLocalConditions
 /--
 If infinity common signs are realized as orderings, then the absence of a
 same-strict-sign ordering packages the finite Legendre conditions and the
-infinity condition into the normalized polynomial quaternion residue input.-/
+infinity condition into the normalized polynomial quaternion residue input.
+@isnad1 id=polynomi.3h4v.s9.8a1c2c727abd from=translated src=- shape=4088f5fc vocab=d26728b9
+-/
 theorem polynomialTernaryQuaternionResiduesTrivialFor_of_not_sameStrictSign
     [LinearOrder R] [Field R]
     (hinftyRealization : PolynomialTernaryInfinitySignRealization (R := R))
@@ -1415,7 +1464,9 @@ theorem polynomialTernaryQuaternionResiduesTrivialFor_of_not_sameStrictSign
 
 /--
 Concrete Laurent-series version of the packaged polynomial quaternion residue
-input.-/
+input.
+@isnad1 id=polynomi.2h4v.s9.ed0f7f46b822 from=translated src=- shape=4088f5fc vocab=79c5ae67
+-/
 theorem polynomialTernaryQuaternionResiduesTrivialFor_laurentInfinity
     [LinearOrder R] [Field R] [IsStrictOrderedRing R]
     {A B C : Polynomial R}
@@ -1433,7 +1484,9 @@ theorem polynomialTernaryQuaternionResiduesTrivialFor_laurentInfinity
 
 /--
 For normalized ternary forms, local isotropy over every ordered real-closed
-extension is exactly real split of the corresponding quaternion symbol.-/
+extension is exactly real split of the corresponding quaternion symbol.
+@isnad1 id=iff.0h3v.s8.2024dd39fe92 from=translated src=- shape=f9f5ff37 vocab=c7f8db23
+-/
 theorem ratFuncQuaternionRealSplit_iff_forall_ternary_isotropic_one [Field R]
     {b c : RatFunc R} :
     RatFuncQuaternionRealSplit.{u, v} (-b) (-c) ↔
@@ -1464,7 +1517,9 @@ theorem ratFuncQuaternionRealSplit_iff_forall_ternary_isotropic_one [Field R]
 /--
 For an unnormalized ternary form with nonzero first coefficient, local isotropy
 over every ordered real-closed extension is real split of the normalized
-quaternion symbol.-/
+quaternion symbol.
+@isnad1 id=iff.1h4v.s9.819d7b1d2535 from=translated src=- shape=fbf0dd98 vocab=468c785f
+-/
 theorem ratFuncQuaternionRealSplit_iff_forall_ternary_isotropic_normalize_first [Field R]
     {a₀ a₁ a₂ : RatFunc R} (ha₀ : a₀ ≠ 0) :
     RatFuncQuaternionRealSplit.{u, v} (-(a₁ / a₀)) (-(a₂ / a₀)) ↔

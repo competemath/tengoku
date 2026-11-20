@@ -21,6 +21,9 @@ namespace Diagonal
 
 variable {K : Type*} [Field K] [LinearOrder K] [IsStrictOrderedRing K] [IsRealClosed K]
 
+/--
+@isnad1 id=isotropi.2h5v.s6.f8ce39d62b09 from=translated src=- shape=ae26b35f vocab=313d6f08
+-/
 theorem isotropic_of_pos_of_neg [Fintype ι] (a : ι → K) {i j : ι}
     (hi : 0 < a i) (hj : a j < 0) :
     Isotropic a := by
@@ -64,6 +67,9 @@ theorem isotropic_of_pos_of_neg [Fintype ι] (a : ι → K) {i j : ι}
             ring
 
 omit [IsRealClosed K] in
+/--
+@isnad1 id=or.1h3v.s7.30957aa81b1f from=translated src=- shape=d47db5ed vocab=cf396fe4
+-/
 theorem zero_or_pos_neg_of_isotropic [Fintype ι] {a : ι → K}
     (h : Isotropic a) :
     (∃ i, a i = 0) ∨ ∃ i j, 0 < a i ∧ a j < 0 := by
@@ -109,6 +115,9 @@ theorem zero_or_pos_neg_of_isotropic [Fintype ι] {a : ι → K}
       simpa using hsum_pos
     simp [hx_sum] at hsum_pos'
 
+/--
+@isnad1 id=iff.0h3v.s7.9164ca6bd220 from=translated src=- shape=4e6ab707 vocab=313d6f08
+-/
 theorem isotropic_iff_zero_or_pos_neg [Fintype ι] (a : ι → K) :
     Isotropic a ↔ (∃ i, a i = 0) ∨ ∃ i j, 0 < a i ∧ a j < 0 := by
   constructor
@@ -117,6 +126,9 @@ theorem isotropic_iff_zero_or_pos_neg [Fintype ι] (a : ι → K) :
     · exact isotropic_of_zero_coeff a hi
     · exact isotropic_of_pos_of_neg a hi hj
 
+/--
+@isnad1 id=or.2h3v.s7.ac968f4066e0 from=translated src=- shape=7ad14ee9 vocab=50aaa5c4
+-/
 theorem all_pos_or_all_neg_of_not_isotropic [Fintype ι] [Nonempty ι] {a : ι → K}
     (hreg : ∀ i, a i ≠ 0) (haniso : ¬ Isotropic a) :
     (∀ i, 0 < a i) ∨ (∀ i, a i < 0) := by
@@ -138,6 +150,9 @@ theorem all_pos_or_all_neg_of_not_isotropic [Fintype ι] [Nonempty ι] {a : ι �
     · exact hi_neg
 
 omit [IsRealClosed K] in
+/--
+@isnad1 id=not.1h3v.s6.d6b3e73a6ade from=translated src=- shape=4c4d2f68 vocab=cf396fe4
+-/
 theorem not_isotropic_of_all_pos [Fintype ι] {a : ι → K}
     (hpos : ∀ i, 0 < a i) :
     ¬ Isotropic a := by
@@ -149,6 +164,9 @@ theorem not_isotropic_of_all_pos [Fintype ι] {a : ι → K}
     exact (not_lt_of_ge (hpos j).le) hj
 
 omit [IsRealClosed K] in
+/--
+@isnad1 id=not.1h3v.s6.30cbf5eb5159 from=translated src=- shape=2f91e57e vocab=cf396fe4
+-/
 theorem not_isotropic_of_all_neg [Fintype ι] {a : ι → K}
     (hneg : ∀ i, a i < 0) :
     ¬ Isotropic a := by
@@ -159,6 +177,9 @@ theorem not_isotropic_of_all_neg [Fintype ι] {a : ι → K}
   · rcases hposneg with ⟨i, _, hi, _⟩
     exact (not_lt_of_ge hi.le) (hneg i)
 
+/--
+@isnad1 id=iff.1h3v.s7.fb0be558c2c2 from=translated src=- shape=0d20ddf0 vocab=50aaa5c4
+-/
 theorem not_isotropic_iff_all_pos_or_all_neg [Fintype ι] [Nonempty ι]
     {a : ι → K} (hreg : ∀ i, a i ≠ 0) :
     ¬ Isotropic a ↔ (∀ i, 0 < a i) ∨ (∀ i, a i < 0) := by
@@ -168,6 +189,9 @@ theorem not_isotropic_iff_all_pos_or_all_neg [Fintype ι] [Nonempty ι]
     · exact not_isotropic_of_all_pos hpos
     · exact not_isotropic_of_all_neg hneg
 
+/--
+@isnad1 id=iff.0h3v.s6.913349895701 from=translated src=- shape=f5b08245 vocab=77fe33f1
+-/
 theorem ternary_isotropic_one_iff (b c : K) :
     TernaryIsotropic 1 b c ↔ b ≤ 0 ∨ c ≤ 0 := by
   let a : Fin 3 → K := ![1, b, c]
