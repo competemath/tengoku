@@ -32,23 +32,35 @@ def parameter (μ : (i : ι) → Measure (E i)) (a : (i : ι) → E i → ℝ) (
   ∫ y, root (a i y) ∂μ i
 
 omit [DecidableEq ι] [∀ i, MeasurableSpace (E i)] in
+/--
+@isnad1 id=le.1h5v.s6.183fe2f31a0a from=translated src=- shape=157c8cd1 vocab=3fec529b
+-/
 theorem probability_nonneg (a : (i : ι) → E i → ℝ)
     (ha : ∀ i y, a i y ∈ Set.Icc (-1 : ℝ) 1) (y : (i : ι) → E i) (b : ι → Bool) :
     0 ≤ probability a y b := Finset.prod_nonneg (fun i _ => (bitProbability_mem _ (ha i _) _).1)
 
 omit [∀ i, MeasurableSpace (E i)] in
+/--
+@isnad1 id=eq.0h4v.s6.52051354abe1 from=translated src=- shape=d6719720 vocab=f627198f
+-/
 theorem probability_sum (a : (i : ι) → E i → ℝ) (y : (i : ι) → E i) :
     ∑ b, probability a y b = 1 := by
   change (∑ b : ι → Bool, ∏ i, bitProbability (a i (y i)) (b i)) = 1
   rw [← Fintype.prod_sum (fun i b => bitProbability (a i (y i)) b)]
   simp only [bitProbability_sum, Finset.prod_const_one]
 
+/--
+@isnad1 id=measurab.1h4v.s6.f9a688b41ec2 from=translated src=- shape=f4465250 vocab=980efd20
+-/
 theorem measurable_value (a : (i : ι) → E i → ℝ) (ha : ∀ i, Measurable (a i))
     (f : (ι → Bool) → ℝ) : Measurable (value a f) := by
   unfold value probability bitProbability
   fun_prop
 
 omit [∀ i, MeasurableSpace (E i)] in
+/--
+@isnad1 id=mem.2h5v.s7.a9987187806b from=translated src=- shape=1bd79ed2 vocab=1c2b7707
+-/
 theorem value_mem (a : (i : ι) → E i → ℝ)
     (ha : ∀ i y, a i y ∈ Set.Icc (-1 : ℝ) 1) (f : (ι → Bool) → ℝ)
     (hf : ∀ b, f b ∈ Set.Icc (-1 : ℝ) 1) (y : (i : ι) → E i) :
@@ -63,6 +75,9 @@ theorem value_mem (a : (i : ι) → E i → ℝ)
         mul_le_mul_of_nonneg_left (hf b).2 (probability_nonneg a ha y b))
       _ = 1 := by simp [probability_sum]
 
+/--
+@isnad1 id=eq.0h7v.s9.c01bef90e6cb from=translated src=- shape=f7a613d3 vocab=0e8c0a06
+-/
 theorem value_reindex (e : κ ≃ ι) (a : (i : ι) → E i → ℝ)
     (f : (ι → Bool) → ℝ) (y : (i : κ) → E (e i)) :
     value (fun i => a (e i)) (f ∘ cubeEquiv e) y =
@@ -80,6 +95,9 @@ theorem value_reindex (e : κ ≃ ι) (a : (i : ι) → E i → ℝ)
   intro i _
   simp [MeasurableEquiv.piCongrLeft_apply_apply, cubeEquiv]
 
+/--
+@isnad1 id=le.7h6v.s8.e01304b06811 from=translated src=- shape=bb1e3704 vocab=6ed744a2
+-/
 theorem indexed_antipodal_bound [Nonempty ι]
     (μ : (i : ι) → Measure (E i)) [∀ i, IsProbabilityMeasure (μ i)]
     (a : (i : ι) → E i → ℝ) (ha : ∀ i, Measurable (a i))
@@ -105,6 +123,9 @@ theorem indexed_antipodal_bound [Nonempty ι]
   rw [(measurePreserving_piCongrLeft μ e).integral_comp' (fun y => root (value a f y))] at h
   exact h
 
+/--
+@isnad1 id=le.5h6v.s7.c2049e24cebc from=translated src=- shape=57dd1cdb vocab=28d7139d
+-/
 theorem finite_mixture_bound {Ω β : Type*} [MeasurableSpace Ω] [Fintype β]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (u : β → Ω → ℝ)
     (hu : ∀ b, Measurable (u b)) (hb : ∀ b y, u b y ∈ Set.Icc (-1 : ℝ) 1)
@@ -133,6 +154,9 @@ theorem finite_mixture_bound {Ω β : Type*} [MeasurableSpace Ω] [Fintype β]
     _ ≤ _ := integral_mono hsumint hrootint hj
 
 omit [DecidableEq ι] [∀ i, MeasurableSpace (E i)] in
+/--
+@isnad1 id=eq.0h7v.s8.803a1f8854a7 from=translated src=- shape=8493fae2 vocab=7f6ce0b7
+-/
 theorem probability_split_symm (p : ι → Prop) [DecidablePred p]
     (a : (i : ι) → E i → ℝ) (y : (i : ι) → E i)
     (w : {i // p i} → Bool) (z : {i // ¬p i} → Bool) :
@@ -151,6 +175,9 @@ theorem probability_split_symm (p : ι → Prop) [DecidablePred p]
     simp [splitCube, Equiv.piEquivPiSubtypeProd_symm_apply, i.property]
 
 omit [∀ i, MeasurableSpace (E i)] in
+/--
+@isnad1 id=eq.0h6v.s9.a7341a14d9df from=translated src=- shape=27f2fe57 vocab=ac68cb47
+-/
 theorem value_split (p : ι → Prop) [DecidablePred p]
     (a : (i : ι) → E i → ℝ) (f : (ι → Bool) → ℝ) (y : (i : ι) → E i) :
     value a f y = ∑ z : {i // ¬p i} → Bool,
@@ -169,6 +196,9 @@ theorem value_split (p : ι → Prop) [DecidablePred p]
   ring
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h4v.s9.25c420152837 from=translated src=- shape=46d19dbe vocab=da00118b
+-/
 theorem split_flip (p : ι → Prop) [DecidablePred p]
     (w : {i // p i} → Bool) (z : {i // ¬p i} → Bool) :
     (splitCube p).symm ((fun i => !(w i)), z) =
@@ -176,6 +206,9 @@ theorem split_flip (p : ι → Prop) [DecidablePred p]
   funext i
   by_cases hi : p i <;> simp [splitCube, Equiv.piEquivPiSubtypeProd_symm_apply, hi]
 
+/--
+@isnad1 id=le.7h7v.s8.a3e4e5e67c41 from=translated src=- shape=6c19f87c vocab=0e586191
+-/
 theorem subset_bound (p : ι → Prop) [DecidablePred p] [Nonempty {i // p i}]
     (μ : (i : ι) → Measure (E i)) [∀ i, IsProbabilityMeasure (μ i)]
     (a : (i : ι) → E i → ℝ) (ha : ∀ i, Measurable (a i))
@@ -236,6 +269,9 @@ theorem subset_bound (p : ι → Prop) [DecidablePred p] [Nonempty {i // p i}]
   simpa using hbound
 
 omit [∀ i, MeasurableSpace (E i)] in
+/--
+@isnad1 id=eq.0h5v.s5.775f1bdfd2e6 from=translated src=- shape=76b34ff8 vocab=16fae598
+-/
 theorem value_coordinate (a : (i : ι) → E i → ℝ) (i : ι) (y : (i : ι) → E i) :
     value a (fun b => boolSign (b i)) y = a i (y i) := by
   calc
@@ -261,6 +297,9 @@ theorem value_coordinate (a : (i : ι) → E i → ℝ) (i : ι) (y : (i : ι) �
       simp_rw [hfactor]
       simp
 
+/--
+@isnad1 id=eq.1h5v.s6.aef0bfa7351d from=translated src=- shape=afc3b51d vocab=3e1e792c
+-/
 theorem coordinate_attains (μ : (i : ι) → Measure (E i)) [∀ i, IsProbabilityMeasure (μ i)]
     (a : (i : ι) → E i → ℝ) (ha : ∀ i, Measurable (a i)) (i : ι) :
     (∫ y, root (value a (fun b => boolSign (b i)) y) ∂Measure.pi μ) = parameter μ a i := by
@@ -269,6 +308,9 @@ theorem coordinate_attains (μ : (i : ι) → Measure (E i)) [∀ i, IsProbabili
   exact integral_comp_eval hm.aestronglyMeasurable
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=mem.1h5v.s6.1a70af9f8b29 from=translated src=- shape=c7583672 vocab=cc925a9c
+-/
 theorem parameter_mem (μ : (i : ι) → Measure (E i)) [∀ i, IsProbabilityMeasure (μ i)]
     (a : (i : ι) → E i → ℝ) (ha : ∀ i, Measurable (a i)) (i : ι) :
     parameter μ a i ∈ Set.Icc (0 : ℝ) 1 := by
@@ -279,7 +321,9 @@ theorem parameter_mem (μ : (i : ι) → Measure (E i)) [∀ i, IsProbabilityMea
   exact (integral_mono hi (integrable_const (1 : ℝ)) (fun y => (root_mem _).2)).trans_eq
     (by simp)
 
-/-- The best common lower bound is attained by an actual selected coordinate.-/
+/-- The best common lower bound is attained by an actual selected coordinate.
+@isnad1 id=ex.3h5v.s8.7ea607b5d82b from=translated src=- shape=1ad3d69f vocab=6f76b836
+-/
 theorem subset_sharp (p : ι → Prop) [DecidablePred p] [Nonempty {i // p i}]
     (μ : (i : ι) → Measure (E i)) [∀ i, IsProbabilityMeasure (μ i)]
     (a : (i : ι) → E i → ℝ) (ha : ∀ i, Measurable (a i))

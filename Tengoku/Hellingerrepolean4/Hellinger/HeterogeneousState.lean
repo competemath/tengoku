@@ -20,19 +20,31 @@ open Hellinger.ProductState (oneQubit oneQubit_symmetric)
 def state (n : ℕ) (z : Fin n → ℝ) : Matrix (Cube n) (Cube n) ℝ :=
   fun x y => ∏ i, oneQubit (z i) (x i) (y i)
 
+/--
+@isnad1 id=ishermit.0h2v.s5.2790baf3e8df from=translated src=- shape=e468b350 vocab=2d3f8b91
+-/
 theorem state_isHermitian (n : ℕ) (z : Fin n → ℝ) : (state n z).IsHermitian := by
   ext x y
   simp only [Matrix.conjTranspose_apply, star_trivial, state]
   exact Finset.prod_congr rfl (fun i _ => oneQubit_symmetric (z i) (y i) (x i))
 
+/--
+@isnad1 id=eq.0h2v.s4.1c3a06fef1e7 from=translated src=- shape=9a263a08 vocab=18d4ac32
+-/
 theorem state_const (n : ℕ) (c : ℝ) : state n (fun _ => c) = ProductState.state n c := rfl
 
 def phaseMatrix {n : ℕ} (s : Cube n) : Matrix (Cube n) (Cube n) ℝ :=
   Matrix.diagonal (phase s)
 
+/--
+@isnad1 id=eq.0h2v.s5.cb20b547f99f from=translated src=- shape=d14df389 vocab=bc6ee9ac
+-/
 theorem phaseMatrix_star {n : ℕ} (s : Cube n) : star (phaseMatrix s) = phaseMatrix s := by
   exact Matrix.isHermitian_diagonal (phase s)
 
+/--
+@isnad1 id=eq.0h2v.s6.44ae94a20686 from=translated src=- shape=ee4d3914 vocab=1340e63d
+-/
 theorem phaseMatrix_sq {n : ℕ} (s : Cube n) : phaseMatrix s * phaseMatrix s = 1 := by
   rw [phaseMatrix, Matrix.diagonal_mul_diagonal]
   have hs : (fun x => phase s x * phase s x) = (fun _ => (1 : ℝ)) := by
@@ -46,15 +58,24 @@ def phaseUnitary {n : ℕ} (s : Cube n) : Matrix.unitaryGroup (Cube n) ℝ :=
 def phaseConjugate {n : ℕ} (s : Cube n) (A : Matrix (Cube n) (Cube n) ℝ) :
     Matrix (Cube n) (Cube n) ℝ := phaseMatrix s * A * phaseMatrix s
 
+/--
+@isnad1 id=eq.0h5v.s5.13dc7de2130f from=translated src=- shape=9faba35c vocab=f1de4bad
+-/
 theorem phaseConjugate_entry {n : ℕ} (s : Cube n) (A : Matrix (Cube n) (Cube n) ℝ)
     (x y : Cube n) : phaseConjugate s A x y = phase s x * A x y * phase s y := by
   simp only [phaseConjugate, phaseMatrix, Matrix.diagonal_mul, Matrix.mul_diagonal]
 
+/--
+@isnad1 id=eq.0h3v.s13.a910403fb296 from=translated src=- shape=9a4b9cf3 vocab=68805ad2
+-/
 theorem phaseConjugate_eq {n : ℕ} (s : Cube n) (A : Matrix (Cube n) (Cube n) ℝ) :
     phaseConjugate s A = Unitary.conjStarAlgAut ℝ _ (phaseUnitary s) A := by
   simp only [Unitary.conjStarAlgAut_apply, phaseUnitary, phaseMatrix_star]
   rfl
 
+/--
+@isnad1 id=ishermit.1h3v.s6.e07b4d3458af from=translated src=- shape=7e66342f vocab=fa4b209c
+-/
 theorem phaseConjugate_isHermitian {n : ℕ} (s : Cube n)
     {A : Matrix (Cube n) (Cube n) ℝ} (hA : A.IsHermitian) :
     (phaseConjugate s A).IsHermitian := by
@@ -75,6 +96,9 @@ def dephase (n : ℕ) (η : Fin n → ℝ) (hη : ∀ i, η i ∈ Set.Icc (0 : �
     (A : Matrix (Cube n) (Cube n) ℝ) : Matrix (Cube n) (Cube n) ℝ :=
   ∑ s, mixtureWeight n η hη s • phaseConjugate s A
 
+/--
+@isnad1 id=le.2h3v.s7.e8653b18fca1 from=translated src=- shape=ed0cbf07 vocab=d1205385
+-/
 theorem dephase_traceNorm_le (n : ℕ) (η : Fin n → ℝ) (hη : ∀ i, η i ∈ Set.Icc (0 : ℝ) 1)
     (A : Matrix (Cube n) (Cube n) ℝ) (hA : A.IsHermitian) :
     traceNorm (dephase n η hη A) ≤ traceNorm A := by
@@ -90,11 +114,17 @@ theorem dephase_traceNorm_le (n : ℕ) (η : Fin n → ℝ) (hη : ∀ i, η i �
       rw [traceNorm_smul, abs_of_nonneg (hp s), phaseConjugate_eq, traceNorm_conjugate]
     _ = traceNorm A := by rw [← Finset.sum_mul, hs, one_mul]
 
+/--
+@isnad1 id=eq.1h3v.s6.44d16c5e1865 from=translated src=- shape=f4a5e993 vocab=5e560104
+-/
 theorem bool_mixture_phase (η : ℝ) (hη : η ∈ Set.Icc (0 : ℝ) 1) (x y : Bool) :
     (∑ s : Bool, (bsc η hη).weight false s * boolSign (s && x) * boolSign (s && y)) =
       if x = y then 1 else η := by
   cases x <;> cases y <;> simp [bsc, boolSign] <;> ring
 
+/--
+@isnad1 id=eq.1h4v.s7.83f65f157664 from=translated src=- shape=028a0fc2 vocab=5293a076
+-/
 theorem mixture_phase (n : ℕ) (η : Fin n → ℝ) (hη : ∀ i, η i ∈ Set.Icc (0 : ℝ) 1)
     (x y : Cube n) :
     (∑ s, mixtureWeight n η hη s * phase s x * phase s y) =
@@ -112,6 +142,9 @@ theorem mixture_phase (n : ℕ) (η : Fin n → ℝ) (hη : ∀ i, η i ∈ Set.
         (bsc (η i) (hη i)).weight false s * boolSign (s && x i) * boolSign (s && y i))).symm
     _ = _ := by simp only [bool_mixture_phase]
 
+/--
+@isnad1 id=eq.1h5v.s6.878ae1327110 from=translated src=- shape=c38a5a48 vocab=c388a25a
+-/
 theorem dephase_entry (n : ℕ) (η : Fin n → ℝ) (hη : ∀ i, η i ∈ Set.Icc (0 : ℝ) 1)
     (A : Matrix (Cube n) (Cube n) ℝ) (x y : Cube n) :
     dephase n η hη A x y = (∏ i, if x i = y i then 1 else η i) * A x y := by
@@ -121,6 +154,9 @@ theorem dephase_entry (n : ℕ) (η : Fin n → ℝ) (hη : ∀ i, η i ∈ Set.
   intro s _
   ring
 
+/--
+@isnad1 id=eq.1h3v.s6.4e8e9e0ca813 from=translated src=- shape=7f253e67 vocab=2e7668ac
+-/
 theorem dephase_state (n : ℕ) (η : Fin n → ℝ) (hη : ∀ i, η i ∈ Set.Icc (0 : ℝ) 1)
     (z : Fin n → ℝ) : dephase n η hη (state n z) = state n (fun i => η i * z i) := by
   ext x y
@@ -131,6 +167,9 @@ theorem dephase_state (n : ℕ) (η : Fin n → ℝ) (hη : ∀ i, η i ∈ Set.
   by_cases hxy : x i = y i <;> simp [oneQubit, hxy]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s8.08390b512a73 from=translated src=- shape=bf069d37 vocab=dd402c5f
+-/
 theorem dephase_reflection (n : ℕ) (η : Fin n → ℝ) (hη : ∀ i, η i ∈ Set.Icc (0 : ℝ) 1)
     (f : Cube n → ℝ) (A : Matrix (Cube n) (Cube n) ℝ) :
     dephase n η hη (reflection f * A * reflection f) =
@@ -139,12 +178,18 @@ theorem dephase_reflection (n : ℕ) (η : Fin n → ℝ) (hη : ∀ i, η i ∈
   simp only [dephase_entry, reflection, Matrix.diagonal_mul, Matrix.mul_diagonal]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s7.da64e42d6365 from=translated src=- shape=f02825d6 vocab=9992a223
+-/
 theorem dephase_sub (n : ℕ) (η : Fin n → ℝ) (hη : ∀ i, η i ∈ Set.Icc (0 : ℝ) 1)
     (A B : Matrix (Cube n) (Cube n) ℝ) :
     dephase n η hη (A - B) = dephase n η hη A - dephase n η hη B := by
   ext x y
   simp only [dephase_entry, Matrix.sub_apply, mul_sub]
 
+/--
+@isnad1 id=ishermit.1h3v.s7.30d8b16cd972 from=translated src=- shape=d97da148 vocab=9c967642
+-/
 theorem reflection_isHermitian {n : ℕ} (f : Cube n → ℝ)
     {A : Matrix (Cube n) (Cube n) ℝ} (hA : A.IsHermitian) :
     (reflection f * A * reflection f).IsHermitian := by
@@ -155,6 +200,9 @@ theorem reflection_isHermitian {n : ℕ} (f : Cube n → ℝ)
   rw [ha]
   ring
 
+/--
+@isnad1 id=le.5h4v.s10.51609eea8927 from=translated src=- shape=ffc1f7eb vocab=2cf1e215
+-/
 theorem antipodal_trace_lower_bound (n : ℕ) (z : Fin (n + 1) → ℝ)
     (hz : ∀ i, z i ∈ Set.Icc (0 : ℝ) 1) (c : ℝ) (hc : c ∈ Set.Icc (0 : ℝ) 1)
     (hcz : ∀ i, c ≤ z i) (f : Cube (n + 1) → ℝ)

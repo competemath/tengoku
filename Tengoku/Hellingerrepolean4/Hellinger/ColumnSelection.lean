@@ -15,6 +15,9 @@ open scoped BigOperators
 namespace Hellinger.ColumnSelection
 open F2Model
 
+/--
+@isnad1 id=eq.1h3v.s10.25d2e51e4557 from=translated src=- shape=b99b38d3 vocab=28df0277
+-/
 theorem span_columns_eq_top (n k : ℕ) (L : Cube n →ₗ[F2] Cube k)
     (hL : Function.Surjective L) :
     Submodule.span F2 (Set.range (fun i : Fin n => L (Pi.single i 1))) = ⊤ := by
@@ -22,6 +25,9 @@ theorem span_columns_eq_top (n k : ℕ) (L : Cube n →ₗ[F2] Cube k)
   rw [Submodule.map_span, Submodule.map_top, LinearMap.range_eq_top.mpr hL] at h
   simpa only [← Set.range_comp, Function.comp_def, Pi.basisFun_apply] using h
 
+/--
+@isnad1 id=ex.1h3v.s10.e8092e2b7f4f from=translated src=- shape=286619a4 vocab=44e02309
+-/
 theorem exists_column_basis (n k : ℕ) (L : Cube n →ₗ[F2] Cube k)
     (hL : Function.Surjective L) :
     ∃ (a : Fin k ↪ Fin n) (b : Module.Basis (Fin k) F2 (Cube k)),

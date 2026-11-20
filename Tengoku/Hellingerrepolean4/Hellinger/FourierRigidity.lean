@@ -19,10 +19,16 @@ open scoped BigOperators
 
 namespace Hellinger.Fourier
 
+/--
+@isnad1 id=eq.0h1v.s3.72d01ed2b02a from=translated src=- shape=a1232c14 vocab=9896a029
+-/
 theorem degree_zero : ∀ n, degree (fun _ : Fin n => false) = 0 := by
   intro n
   simp [degree, support]
 
+/--
+@isnad1 id=lt.1h2v.s4.7dec0c62418a from=translated src=- shape=84844805 vocab=6106af2f
+-/
 theorem degree_pos_of_ne_zero {n : ℕ} (s : Cube n) (hs : s ≠ (fun _ => false)) :
     0 < degree s := by
   obtain ⟨i, hi⟩ : ∃ i, s i ≠ false := by
@@ -32,18 +38,30 @@ theorem degree_pos_of_ne_zero {n : ℕ} (s : Cube n) (hs : s ≠ (fun _ => false
   refine ⟨i, ?_⟩
   cases hsi : s i <;> simp_all [support]
 
+/--
+@isnad1 id=eq.0h2v.s4.76d83e142758 from=translated src=- shape=be902b59 vocab=b3bb0357
+-/
 theorem support_unit {n : ℕ} (i : Fin n) : support (unit i) = {i} := by
   ext j
   simp [support, unit]
 
+/--
+@isnad1 id=eq.0h2v.s4.0ed0a9bf9d5b from=translated src=- shape=5091f66c vocab=2a9052e1
+-/
 theorem degree_unit {n : ℕ} (i : Fin n) : degree (unit i) = 1 := by
   simp [degree, support_unit]
 
+/--
+@isnad1 id=injectiv.0h1v.s3.202496b3ef9f from=translated src=- shape=ca92e646 vocab=2529bfbf
+-/
 theorem unit_injective (n : ℕ) : Function.Injective (unit (n := n)) := by
   intro i j h
   have hs := congrArg support h
   simpa only [support_unit, Finset.singleton_inj] using hs
 
+/--
+@isnad1 id=iff.0h2v.s4.0c2519448e8b from=translated src=- shape=6bc0bd2d vocab=c3094ebf
+-/
 theorem degree_eq_one_iff {n : ℕ} (s : Cube n) :
     degree s = 1 ↔ ∃ i : Fin n, s = unit i := by
   constructor
@@ -56,12 +74,17 @@ theorem degree_eq_one_iff {n : ℕ} (s : Cube n) :
   · rintro ⟨i, rfl⟩
     exact degree_unit i
 
+/--
+@isnad1 id=eq.0h3v.s4.f62548029a0e from=translated src=- shape=6eda17d1 vocab=bbc627a2
+-/
 theorem phase_unit {n : ℕ} (i : Fin n) (x : Cube n) :
     phase (unit i) x = boolSign (x i) := by
   rw [phase_character, support_unit]
   simp [character]
 
-/-- Higher Walsh coefficients vanish at equality of the actual noisy moment.-/
+/-- Higher Walsh coefficients vanish at equality of the actual noisy moment.
+@isnad1 id=eq.7h4v.s7.6b59f588cf46 from=translated src=- shape=ea68d186 vocab=3d22c98c
+-/
 theorem high_walsh_eq_zero_of_noise_equality {n : ℕ} (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hm : mean f = 0)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρpos : 0 < ρ) (hρlt : ρ < 1)
@@ -86,6 +109,9 @@ theorem high_walsh_eq_zero_of_noise_equality {n : ℕ} (f : Cube n → ℝ)
     simp [degree_zero] at hs
   · exact hs
 
+/--
+@isnad1 id=eq.2h3v.s6.2d8793c0e85c from=translated src=- shape=f353edc1 vocab=45781d2c
+-/
 theorem linear_expansion_of_high_walsh_zero {n : ℕ} (f : Cube n → ℝ)
     (hm : mean f = 0) (hh : ∀ s, 1 < degree s → walsh f s = 0) (x : Cube n) :
     f x = ∑ i : Fin n, walsh f (unit i) * boolSign (x i) := by
@@ -111,7 +137,9 @@ theorem linear_expansion_of_high_walsh_zero {n : ℕ} (f : Cube n → ℝ)
       simp only [phase_unit]
 
 /-- A balanced Boolean function attaining the dictator second moment is a
-signed dictator. No Fourier coefficient identity is an input hypothesis.-/
+signed dictator. No Fourier coefficient identity is an input hypothesis.
+@isnad1 id=ex.6h3v.s7.fb2966df9171 from=translated src=- shape=35ab0da2 vocab=d8cc46ec
+-/
 theorem signed_dictator_of_noise_equality {n : ℕ} (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hm : mean f = 0)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρpos : 0 < ρ) (hρlt : ρ < 1)

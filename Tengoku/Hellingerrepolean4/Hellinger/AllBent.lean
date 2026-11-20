@@ -15,7 +15,9 @@ namespace Hellinger.AllBent
 open Fourier
 
 /-- Every positive-dimensional bent Boolean function satisfies the all-noise
-Hellinger inequality, with strictness for every positive correlation.-/
+Hellinger inequality, with strictness for every positive correlation.
+@isnad1 id=and.4h3v.s7.3ad42b28f090 from=translated src=- shape=c1a9e72d vocab=53f5357d
+-/
 theorem bent_hellinger (n : ℕ) (hn : 0 < n) (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) :
@@ -33,7 +35,9 @@ theorem bent_hellinger (n : ℕ) (hn : 0 < n) (f : Cube n → ℝ)
       have hn6 : 6 ≤ n := by omega
       exact BentLow.bent_large_hellinger hn6 hf hb ρ hρ
 
-/-- Direct inhabitant of the independently declared full manuscript target.-/
+/-- Direct inhabitant of the independently declared full manuscript target.
+@isnad1 id=benthell.0h0v.s0.29c54d7684dd from=translated src=- shape=45709ebd vocab=29c54d76
+-/
 theorem paper_bent_hellinger : PaperSpecs.BentHellinger := by
   intro n hn f hf hb ρ hρ
   exact bent_hellinger n hn f hf hb ρ hρ

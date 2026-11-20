@@ -18,7 +18,9 @@ def negativeEdges (e : Fin 6 → ℝ) : ℕ := ∑ i, if e i = -1 then 1 else 0
 
 set_option maxHeartbeats 20000000 in
 /-- Each nondegenerate four-coordinate sign matrix has one of the exact
-fourth-moment polynomials, with at least two nonzero cross terms.-/
+fourth-moment polynomials, with at least two nonzero cross terms.
+@isnad1 id=and.2h2v.s7.8de6a1f925d9 from=translated src=- shape=b5e6e2d9 vocab=ee734fa7
+-/
 theorem derivative_moment_edge_count (e : Fin 6 → ℝ)
     (he : ∀ i, e i ^ 2 = 1) (hnd : EdgeNondegenerate e) (ρ : ℝ) :
     2 ≤ negativeEdges e ∧ (∑ s : Cube 4, noiseDerivativeSum e ρ s ^ 2) =

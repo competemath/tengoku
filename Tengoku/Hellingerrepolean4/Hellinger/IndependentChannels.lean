@@ -24,17 +24,26 @@ open ProductPosterior ProductDisintegration
 def bias {E : Type*} [MeasurableSpace E] (κ : Kernel E Bool) (y : E) : ℝ :=
   (κ y).real {false} - (κ y).real {true}
 
+/--
+@isnad1 id=measurab.0h2v.s4.9f26fdaa142e from=translated src=- shape=d94a05c3 vocab=5a89ed63
+-/
 theorem measurable_bias {E : Type*} [MeasurableSpace E] (κ : Kernel E Bool) :
     Measurable (bias κ) :=
   ((κ.measurable_coe (measurableSet_singleton false)).ennreal_toReal).sub
     ((κ.measurable_coe (measurableSet_singleton true)).ennreal_toReal)
 
+/--
+@isnad1 id=eq.0h1v.s5.3ad2dc32e084 from=translated src=- shape=eda446df vocab=edfeefed
+-/
 theorem bool_masses (ν : Measure Bool) [IsProbabilityMeasure ν] :
     ν.real {false} + ν.real {true} = 1 := by
   have h := measureReal_add_measureReal_compl (μ := ν) (measurableSet_singleton false)
   have hc : ({false} : Set Bool)ᶜ = {true} := by ext b; cases b <;> simp
   simpa only [hc, measureReal_def, measure_univ, ENNReal.toReal_one] using h
 
+/--
+@isnad1 id=mem.0h3v.s5.9c6b1376b5c1 from=translated src=- shape=466e874d vocab=f0b1bd99
+-/
 theorem bias_mem {E : Type*} [MeasurableSpace E] (κ : Kernel E Bool) [IsMarkovKernel κ] (y : E) :
     bias κ y ∈ Set.Icc (-1 : ℝ) 1 := by
   have hsum := bool_masses (κ y)
@@ -43,26 +52,41 @@ theorem bias_mem {E : Type*} [MeasurableSpace E] (κ : Kernel E Bool) [IsMarkovK
   dsimp [bias]
   constructor <;> linarith
 
+/--
+@isnad1 id=eq.0h4v.s5.376903451a5a from=translated src=- shape=30904e41 vocab=c0c34b0a
+-/
 theorem bias_mass {E : Type*} [MeasurableSpace E] (κ : Kernel E Bool) [IsMarkovKernel κ]
     (y : E) (b : Bool) : (κ y).real {b} = bitProbability (bias κ y) b := by
   have hsum := bool_masses (κ y)
   cases b <;> norm_num [bitProbability, bias, boolSign] <;> linarith
 
+/--
+@isnad1 id=integrab.0h1v.s5.ec53e5e2a865 from=translated src=- shape=dda1d2c1 vocab=34d6a367
+-/
 theorem boolSign_integrable (ν : Measure Bool) [IsFiniteMeasure ν] : Integrable boolSign ν := by
   apply integrable_of_abs_le ν boolSign (measurable_of_finite boolSign) 1
   intro b
   cases b <;> norm_num [boolSign]
 
+/--
+@isnad1 id=eq.0h3v.s6.df591a9a02b1 from=translated src=- shape=de34dcea vocab=431f7c96
+-/
 theorem bias_integral {E : Type*} [MeasurableSpace E] (κ : Kernel E Bool) [IsMarkovKernel κ] (y : E) :
     bias κ y = ∫ b, boolSign b ∂κ y := by
   rw [integral_fintype (boolSign_integrable (κ y))]
   simp [bias, boolSign]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s5.031f2695897b from=translated src=- shape=5f26ef62 vocab=5269e0cd
+-/
 theorem uniform_mean : ∫ b, boolSign b ∂(PMF.uniformOfFintype Bool).toMeasure = 0 := by
   rw [integral_fintype (boolSign_integrable _)]
   norm_num [boolSign, Measure.real, PMF.toMeasure_apply_singleton, PMF.uniformOfFintype_apply]
 
+/--
+@isnad1 id=eq.0h5v.s7.f489dded4bd3 from=translated src=- shape=694b478d vocab=e9610175
+-/
 theorem productKernel_integral {ι : Type*} [Fintype ι] [DecidableEq ι]
     {E : ι → Type*} [∀ i, MeasurableSpace (E i)]
     (κ : (i : ι) → Kernel (E i) Bool) [∀ i, IsMarkovKernel (κ i)]
@@ -97,6 +121,9 @@ def channelParameter (i : ι) : ℝ :=
   ∫ ω, root (μ[fun ω => boolSign (B i ω) | MeasurableSpace.comap (Y i) inferInstance] ω) ∂μ
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=eventual.2h7v.s7.36b851e9eee3 from=translated src=- shape=9575dd48 vocab=6c23f77a
+-/
 theorem coordinate_condExp (hB : ∀ i, Measurable (B i)) (hY : ∀ i, Measurable (Y i)) (i : ι) :
     μ[fun ω => boolSign (B i ω) | MeasurableSpace.comap (Y i) inferInstance] =ᵐ[μ]
       fun ω => coordinateBias μ B Y i (Y i ω) := by
@@ -109,6 +136,9 @@ theorem coordinate_condExp (hB : ∀ i, Measurable (B i)) (hY : ∀ i, Measurabl
   simpa only [coordinateBias, bias_integral] using h
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=eq.3h7v.s7.80336b3e2495 from=translated src=- shape=6248598f vocab=ce0f3cb2
+-/
 theorem coordinate_mean_zero (hB : ∀ i, Measurable (B i)) (hY : ∀ i, Measurable (Y i))
     (hfair : ∀ i, μ.map (B i) = (PMF.uniformOfFintype Bool).toMeasure) (i : ι) :
     ∫ y, coordinateBias μ B Y i y ∂outputLaw μ Y i = 0 := by
@@ -123,6 +153,9 @@ theorem coordinate_mean_zero (hB : ∀ i, Measurable (B i)) (hY : ∀ i, Measura
     _ = 0 := by rw [hfair i]; exact uniform_mean
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=eq.2h7v.s6.4b003fade77f from=translated src=- shape=44acb415 vocab=e7bf3cce
+-/
 theorem channelParameter_eq (hB : ∀ i, Measurable (B i)) (hY : ∀ i, Measurable (Y i)) (i : ι) :
     channelParameter μ B Y i =
       PosteriorSections.parameter (outputLaw μ Y) (coordinateBias μ B Y) i := by
@@ -133,6 +166,9 @@ theorem channelParameter_eq (hB : ∀ i, Measurable (B i)) (hY : ∀ i, Measurab
   rw [PosteriorSections.parameter, outputLaw, integral_map (hY i).aemeasurable hm.aestronglyMeasurable]
   exact integral_congr_ae ((coordinate_condExp μ B Y hB hY i).fun_comp root)
 
+/--
+@isnad1 id=eventual.3h7v.s7.c9fd5172dc6d from=translated src=- shape=f76281f8 vocab=7731c58c
+-/
 theorem posterior_value (f : (ι → Bool) → ℝ)
     (hB : ∀ i, Measurable (B i)) (hY : ∀ i, Measurable (Y i))
     (hpairs : iIndepFun (fun i ω => (Y i ω, B i ω)) μ) :
@@ -142,6 +178,9 @@ theorem posterior_value (f : (ι → Bool) → ℝ)
   simp_rw [productKernel_integral] at h
   exact h
 
+/--
+@isnad1 id=eq.3h7v.s7.8ec47acec3b9 from=translated src=- shape=ea8d8717 vocab=b7a8686c
+-/
 theorem posterior_root_integral (f : (ι → Bool) → ℝ)
     (hB : ∀ i, Measurable (B i)) (hY : ∀ i, Measurable (Y i))
     (hpairs : iIndepFun (fun i ω => (Y i ω, B i ω)) μ) :
@@ -162,6 +201,9 @@ theorem posterior_root_integral (f : (ι → Bool) → ℝ)
         hm.aestronglyMeasurable).symm
     _ = _ := by rw [independent_output_law μ B Y hY hpairs]; rfl
 
+/--
+@isnad1 id=le.7h9v.s8.577f63f0e880 from=translated src=- shape=235bf46c vocab=f0699c86
+-/
 theorem independent_channel_bound (p : ι → Prop) [DecidablePred p] [Nonempty {i // p i}]
     (hB : ∀ i, Measurable (B i)) (hY : ∀ i, Measurable (Y i))
     (hpairs : iIndepFun (fun i ω => (Y i ω, B i ω)) μ)
@@ -181,6 +223,9 @@ theorem independent_channel_bound (p : ι → Prop) [DecidablePred p] [Nonempty 
   · intro j hj
     simpa only [channelParameter_eq μ B Y hB hY] using hmin ⟨j, hj⟩
 
+/--
+@isnad1 id=eq.3h7v.s7.3eff46997e39 from=translated src=- shape=945bb592 vocab=3a80d8b2
+-/
 theorem coordinate_attains (hB : ∀ i, Measurable (B i)) (hY : ∀ i, Measurable (Y i))
     (hpairs : iIndepFun (fun i ω => (Y i ω, B i ω)) μ) (i : ι) :
     (∫ ω, root (posterior μ B Y (fun b => boolSign (b i)) ω) ∂μ) = channelParameter μ B Y i := by
@@ -190,7 +235,9 @@ theorem coordinate_attains (hB : ∀ i, Measurable (B i)) (hY : ∀ i, Measurabl
   exact PosteriorSections.coordinate_attains _ _ (fun j => measurable_bias _) i
 
 /-- The minimum of the original conditional-expectation parameters is the
-sharp bound over the entire sign-reversing class.-/
+sharp bound over the entire sign-reversing class.
+@isnad1 id=ex.4h7v.s8.5d0ce4ba3214 from=translated src=- shape=acd88f07 vocab=fd1f39fd
+-/
 theorem independent_channels (p : ι → Prop) [DecidablePred p] [Nonempty {i // p i}]
     (hB : ∀ i, Measurable (B i)) (hY : ∀ i, Measurable (Y i))
     (hpairs : iIndepFun (fun i ω => (Y i ω, B i ω)) μ)

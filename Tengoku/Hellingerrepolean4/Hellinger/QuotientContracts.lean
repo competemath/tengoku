@@ -12,6 +12,9 @@ noncomputable section
 namespace Hellinger.QuotientContracts
 open F2Model
 
+/--
+@isnad1 id=ex.2h4v.s11.ae0363cf425e from=translated src=- shape=088a2f36 vocab=8ec7f6b7
+-/
 theorem linear_quotient (n k : ℕ) (L : Cube n →ₗ[F2] Cube k)
     (hL : Function.Surjective L) (g : Cube k → ℝ)
     (hg : ∀ x, g x = -1 ∨ g x = 1) :

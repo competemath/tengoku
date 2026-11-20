@@ -18,12 +18,18 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 local instance kernelFintype (B : Matrix ι ι F2) : Fintype B.mulVecLin.ker :=
   Fintype.ofFinite _
 
+/--
+@isnad1 id=eq.0h1v.s6.553393d9857b from=translated src=- shape=34b8be76 vocab=a462139c
+-/
 theorem coordinate_character_sum (v : F2) :
     (∑ x : F2, sign (x * v)) = if v = 0 then (2 : ℝ) else 0 := by
   obtain ⟨b, rfl⟩ := bitEquiv.surjective v
   rw [← bitEquiv.sum_comp]
   cases b <;> norm_num [boolSign]
 
+/--
+@isnad1 id=eq.0h2v.s7.634bee9fff71 from=translated src=- shape=b14e3ea6 vocab=345fa4ac
+-/
 theorem sum_character (v : ι → F2) :
     (∑ x : ι → F2, sign (x ⬝ᵥ v)) = if v = 0 then (2 : ℝ) ^ Fintype.card ι else 0 := by
   have hs (x : ι → F2) : sign (x ⬝ᵥ v) = ∏ i, sign (x i * v i) :=
@@ -40,6 +46,9 @@ theorem sum_character (v : ι → F2) :
     exact Finset.prod_eq_zero (Finset.mem_univ i) (ite_eq_right hi)
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h2v.s9.6be8cc44901a from=translated src=- shape=0f9bdd49 vocab=0a8f9c20
+-/
 theorem kernel_card (B : Matrix ι ι F2) :
     Fintype.card B.mulVecLin.ker = 2 ^ (Fintype.card ι - B.rank) := by
   rw [Module.card_eq_pow_finrank (K := F2) (V := B.mulVecLin.ker)]
@@ -53,7 +62,9 @@ theorem kernel_card (B : Matrix ι ι F2) :
   simp [F2]
 
 /-- Orthogonality on a principal coordinate space, with rank interpreted by mathlib's
-finite-dimensional linear-algebra definition, not as a supplied combinatorial invariant.-/
+finite-dimensional linear-algebra definition, not as a supplied combinatorial invariant.
+@isnad1 id=eq.0h2v.s7.3b56d5a496dd from=translated src=- shape=be4086e3 vocab=c53a11d2
+-/
 theorem double_character_sum (B : Matrix ι ι F2) :
     (∑ s : ι → F2, ∑ d : ι → F2, sign (d ⬝ᵥ B *ᵥ s)) =
       (2 : ℝ) ^ (2 * Fintype.card ι - B.rank) := by

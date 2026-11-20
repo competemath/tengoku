@@ -16,6 +16,9 @@ noncomputable section
 namespace Hellinger.FunctionContracts
 open PaperSpecs FiniteInformation
 
+/--
+@isnad1 id=and.4h4v.s8.e43db89e58cd from=translated src=- shape=831064fa vocab=898d2d88
+-/
 theorem translation (n : ℕ) (f : Cube n → ℝ) (hf : IsBoolean f)
     (S : Finset (Fin n)) (hS : S.Nonempty) (hs : SignReversing f S)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) :
@@ -40,6 +43,9 @@ theorem translation (n : ℕ) (f : Cube n → ℝ) (hf : IsBoolean f)
       posteriorRootMean f ρ hρ = root ρ := by constructor <;> intro h <;> linarith
   exact he.trans heR
 
+/--
+@isnad1 id=and.0h0v.s8.90de90061298 from=translated src=- shape=c21f60d7 vocab=a2986bc9
+-/
 theorem flat_spectra_and_quadratic_phases :
     (∀ (n : ℕ), 0 < n → ∀ (f : Cube n → ℝ), IsBoolean f → Flatness.IsBent f →
       ∀ (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1),
@@ -63,16 +69,25 @@ theorem flat_spectra_and_quadratic_phases :
     obtain ⟨hI, heI⟩ := ProbabilityContracts.quadratic_information n hn f hq ρ hρ
     exact ⟨hH, hI, fun hp hl => ⟨heH hp hl, heI hp hl⟩⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.c1c5a8fd66d9 from=translated src=- shape=660cd912 vocab=8e74bb1e
+-/
 theorem flat_amplitude (n : ℕ) : Flatness.amplitude n = (2 : ℝ) ^ (-(n : ℝ) / 2) := by
   rw [Flatness.amplitude, Real.sqrt_eq_rpow, ← Real.rpow_natCast (2 : ℝ) n,
     ← Real.rpow_neg (by norm_num : (0 : ℝ) ≤ 2), ← Real.rpow_mul (by norm_num : (0 : ℝ) ≤ 2)]
   congr 1
   ring
 
+/--
+@isnad1 id=iff.0h2v.s6.f981be250007 from=translated src=- shape=cc37ad6f vocab=e2d7c60e
+-/
 theorem bent_definition_equivalence (n : ℕ) (f : Cube n → ℝ) :
     Flatness.IsBent f ↔ ∀ s, |Fourier.walsh f s| = (2 : ℝ) ^ (-(n : ℝ) / 2) := by
   rw [Flatness.isBent_iff_abs, flat_amplitude]
 
+/--
+@isnad1 id=and.4h3v.s9.e6c735ab0f60 from=translated src=- shape=9b864e06 vocab=97b9ae19
+-/
 theorem consequences_of_flatness (n : ℕ) (_hn : 0 < n) (f : Cube n → ℝ)
     (hf : IsBoolean f) (hb : Flatness.IsBent f) (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) :
     Even n ∧ mean f ^ 2 = ((2 : ℝ) ^ n)⁻¹ ∧
@@ -91,6 +106,9 @@ theorem consequences_of_flatness (n : ℕ) (_hn : 0 < n) (f : Cube n → ℝ)
   rw [← flat_amplitude]
   exact Flatness.noise_abs_le hb ρ hρ x
 
+/--
+@isnad1 id=and.2h3v.s8.e5df4abb79ce from=translated src=- shape=d99fb25b vocab=daa338cd
+-/
 theorem odd_real_dual (n : ℕ) (h : Cube n → ℝ)
     (ho : ∀ x, h (antipode n x) = -h x) (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) :
     root ρ ≤ mean (fun x => Real.sqrt (1 + h x ^ 2)) -
@@ -103,6 +121,9 @@ theorem odd_real_dual (n : ℕ) (h : Cube n → ℝ)
   exact ⟨OddDual.odd_dual_bound_all n h ho ρ hρ,
     fun hp hl => OddDual.odd_dual_equality_iff_all n h ho ρ hρ hp hl⟩
 
+/--
+@isnad1 id=and.5h3v.s7.35c9fbac797c from=translated src=- shape=50abe95e vocab=21d6ac49
+-/
 theorem bent_high_noise (n : ℕ) (hn : 4 ≤ n) (f : Cube n → ℝ)
     (_hf : IsBoolean f) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hhigh : ρ ≤ 3 / 10) :
@@ -110,12 +131,18 @@ theorem bent_high_noise (n : ℕ) (hn : 4 ≤ n) (f : Cube n → ℝ)
   exact ⟨BentLarge.bent_high_noise_hellinger hn f hb ρ hρ hhigh,
     fun hp => BentLarge.bent_high_noise_hellinger_strict hn f hb ρ hρ hhigh hp⟩
 
+/--
+@isnad1 id=and.4h3v.s7.2d688ab9d9c3 from=translated src=- shape=edc33aa9 vocab=6e798b41
+-/
 theorem bent_large_dimension (n : ℕ) (hn : 6 ≤ n) (f : Cube n → ℝ)
     (hf : IsBoolean f) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) :
     HellingerBound f ρ hρ ∧ (0 < ρ → objective ((cubeBSC n ρ hρ).apply f) < 1 - root ρ) :=
   BentLow.bent_large_hellinger hn hf hb ρ hρ
 
+/--
+@isnad1 id=and.10h5v.s9.c44fb1805fbd from=translated src=- shape=6c208611 vocab=85b03fed
+-/
 theorem four_point_completion (n : ℕ) (f : Cube n → ℝ)
     (hf : IsBoolean f) (hmean : mean f = 0) (x y : Cube n)
     (hyx : y ≠ x) (hyax : y ≠ antipode n x)

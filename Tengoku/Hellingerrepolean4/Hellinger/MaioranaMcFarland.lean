@@ -33,6 +33,9 @@ def pairFunction {k : ℕ} (p : Fourier.Cube k × Fourier.Cube k) : ℝ :=
 
 def family (k : ℕ) : Fourier.Cube (k + k) → ℝ := pairFunction ∘ halves k
 
+/--
+@isnad1 id=eq.0h3v.s8.837b6bc2d917 from=translated src=- shape=69faefc2 vocab=c15d9d0d
+-/
 theorem phase_halves {k : ℕ} (s x : Fourier.Cube (k + k)) :
     Fourier.phase s x = Fourier.phase (halves k s).1 (halves k x).1 *
       Fourier.phase (halves k s).2 (halves k x).2 := by
@@ -41,6 +44,9 @@ theorem phase_halves {k : ℕ} (s x : Fourier.Cube (k + k)) :
   rw [Fintype.prod_sum_type]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.a69ec40ee635 from=translated src=- shape=de76ba00 vocab=ea0f3189
+-/
 theorem pair_walsh {k : ℕ} (s t : Fourier.Cube k) :
     mean (fun p : Fourier.Cube k × Fourier.Cube k =>
       pairFunction p * Fourier.phase s p.1 * Fourier.phase t p.2) =
@@ -59,6 +65,9 @@ theorem pair_walsh {k : ℕ} (s t : Fourier.Cube k) :
   simp_rw [hinner]
   simp [mean, mul_assoc]
 
+/--
+@isnad1 id=eq.0h2v.s8.4a2c080e28cd from=translated src=- shape=cd6c606c vocab=b287c44b
+-/
 theorem walsh_family (k : ℕ) (v : Fourier.Cube (k + k)) :
     Fourier.walsh (family k) v = ((2 : ℝ) ^ k)⁻¹ *
       highSign (halves k v).1 * Fourier.phase (halves k v).2 (halves k v).1 := by
@@ -75,6 +84,9 @@ theorem walsh_family (k : ℕ) (v : Fourier.Cube (k + k)) :
   simp_rw [heq]
   exact pair_walsh _ _
 
+/--
+@isnad1 id=or.0h2v.s5.3a4020d6f05d from=translated src=- shape=6b35fc0f vocab=5a978cdf
+-/
 theorem family_boolean (k : ℕ) (x : Fourier.Cube (k + k)) :
     family k x = -1 ∨ family k x = 1 := by
   have hp := Fourier.phase_sq (halves k x).1 (halves k x).2
@@ -85,12 +97,18 @@ theorem family_boolean (k : ℕ) (x : Fourier.Cube (k + k)) :
   · exact Or.inr hx
   · exact Or.inl hx
 
+/--
+@isnad1 id=isbent.0h1v.s3.f9c4fa3e2414 from=translated src=- shape=26a36036 vocab=c393f662
+-/
 theorem family_bent (k : ℕ) : Flatness.IsBent (family k) := by
   intro v
   rw [walsh_family, mul_pow, mul_pow, Fourier.phase_sq,
     show highSign (halves k v).1 ^ 2 = 1 from QuadraticRadical.sign_sq _]
   simp [pow_add, pow_two, mul_inv_rev]
 
+/--
+@isnad1 id=eq.1h1v.s6.cc6986ff678b from=translated src=- shape=72674841 vocab=0e101d06
+-/
 theorem family_mean (k : ℕ) (hk : 0 < k) : mean (family k) = ((2 : ℝ) ^ k)⁻¹ := by
   rw [← Fourier.walsh_zero, walsh_family]
   have hh : halves k (fun _ => false) = ((fun _ => false), (fun _ => false)) := rfl
@@ -107,6 +125,9 @@ def highPart (k : ℕ) : MvPolynomial (Variables k) F2 :=
 
 def anf (k : ℕ) : MvPolynomial (Variables k) F2 := quadraticPart k + highPart k
 
+/--
+@isnad1 id=eq.0h3v.s8.1b59e0484ca1 from=translated src=- shape=eedce224 vocab=94fc6278
+-/
 theorem anf_eval (k : ℕ) (x y : Fourier.Cube k) :
     sign (MvPolynomial.eval (Sum.elim (fun i => bitEquiv (x i)) (fun i => bitEquiv (y i)))
       (anf k)) = pairFunction (x, y) := by
@@ -119,11 +140,17 @@ theorem anf_eval (k : ℕ) (x y : Fourier.Cube k) :
     cases x i <;> cases y i <;> norm_num [sign, boolSign]
   exact congrArg (· * highSign y) hprod
 
+/--
+@isnad1 id=le.0h1v.s4.519ef7c1f0c9 from=translated src=- shape=dd8d1055 vocab=6233a5e8
+-/
 theorem quadraticPart_totalDegree (k : ℕ) : (quadraticPart k).totalDegree ≤ 2 := by
   apply MvPolynomial.totalDegree_finsetSum_le
   intro i _
   exact (MvPolynomial.totalDegree_mul _ _).trans (by simp)
 
+/--
+@isnad1 id=eq.0h4v.s6.ef70bab3b52f from=translated src=- shape=43f09e87 vocab=61e099b5
+-/
 theorem prod_X_totalDegree {σ β : Type*} (s : Finset β) (j : β → σ) :
     (∏ i ∈ s, (MvPolynomial.X (j i) : MvPolynomial σ F2)).totalDegree = s.card := by
   classical
@@ -136,15 +163,23 @@ theorem prod_X_totalDegree {σ β : Type*} (s : Finset β) (j : β → σ) :
       MvPolynomial.totalDegree_X, ih]
     omega
 
+/--
+@isnad1 id=eq.0h1v.s4.d5b3996c63e3 from=translated src=- shape=115f156b vocab=1734b602
+-/
 theorem highPart_totalDegree (k : ℕ) : (highPart k).totalDegree = k := by
   simpa [highPart] using prod_X_totalDegree (Finset.univ : Finset (Fin k)) Sum.inr
 
+/--
+@isnad1 id=eq.1h1v.s5.861ed6893fdb from=translated src=- shape=da261d76 vocab=e0678b96
+-/
 theorem anf_totalDegree (k : ℕ) (hk : 3 ≤ k) : (anf k).totalDegree = k := by
   rw [anf, MvPolynomial.totalDegree_add_eq_right_of_totalDegree_lt, highPart_totalDegree]
   rw [highPart_totalDegree]
   exact lt_of_le_of_lt (quadraticPart_totalDegree k) (by omega)
 
-/-- Every exponent is at most one, so this is the multilinear algebraic normal form.-/
+/-- Every exponent is at most one, so this is the multilinear algebraic normal form.
+@isnad1 id=le.0h2v.s4.3af6bb19bb23 from=translated src=- shape=8b510f90 vocab=61a567c3
+-/
 theorem anf_multilinear (k : ℕ) (v : Variables k) : (anf k).degreeOf v ≤ 1 := by
   apply (MvPolynomial.degreeOf_add_le v _ _).trans
   apply max_le

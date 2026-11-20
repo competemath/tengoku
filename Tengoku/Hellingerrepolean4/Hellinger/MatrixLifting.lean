@@ -19,10 +19,16 @@ variable {ι : Type*} [Fintype ι]
 def pureDifference (v w : ι → ℝ) : Matrix ι ι ℝ :=
   Matrix.vecMulVec v v - Matrix.vecMulVec w w
 
+/--
+@isnad1 id=eq.0h5v.s6.b5e354e390fb from=translated src=- shape=6b04f8f0 vocab=261846c2
+-/
 theorem outer_mul (u v w z : ι → ℝ) :
     Matrix.vecMulVec u v * Matrix.vecMulVec w z = (v ⬝ᵥ w) • Matrix.vecMulVec u z := by
   rw [Matrix.vecMulVec_mul_vecMulVec, Matrix.vecMulVec_smul]
 
+/--
+@isnad1 id=ishermit.0h3v.s5.525d712ab931 from=translated src=- shape=8fec28ca vocab=2dd67b3c
+-/
 theorem pureDifference_isHermitian (v w : ι → ℝ) : (pureDifference v w).IsHermitian := by
   have hv : (Matrix.vecMulVec v v).PosSemidef := by
     simpa using Matrix.posSemidef_vecMulVec_self_star v
@@ -30,6 +36,9 @@ theorem pureDifference_isHermitian (v w : ι → ℝ) : (pureDifference v w).IsH
     simpa using Matrix.posSemidef_vecMulVec_self_star w
   exact hv.isHermitian.sub hw.isHermitian
 
+/--
+@isnad1 id=eq.2h3v.s7.bcbe182b5258 from=translated src=- shape=485c707b vocab=ac0ce0d3
+-/
 theorem pureDifference_square (v w : ι → ℝ) (hv : v ⬝ᵥ v = 1) (hw : w ⬝ᵥ w = 1) :
     pureDifference v w * pureDifference v w =
       Matrix.vecMulVec v v + Matrix.vecMulVec w w -
@@ -39,6 +48,9 @@ theorem pureDifference_square (v w : ι → ℝ) (hv : v ⬝ᵥ v = 1) (hw : w �
   simp only [outer_mul, hv, hw, one_smul, dotProduct_comm w v]
   abel
 
+/--
+@isnad1 id=eq.2h3v.s7.7788a11511c2 from=translated src=- shape=69558379 vocab=fbab2f42
+-/
 theorem pureDifference_cube (v w : ι → ℝ) (hv : v ⬝ᵥ v = 1) (hw : w ⬝ᵥ w = 1) :
     pureDifference v w * pureDifference v w * pureDifference v w =
       (1 - (v ⬝ᵥ w) ^ 2) • pureDifference v w := by
@@ -48,6 +60,9 @@ theorem pureDifference_cube (v w : ι → ℝ) (hv : v ⬝ᵥ v = 1) (hw : w ⬝
     hv, hw, dotProduct_comm w v, one_smul, smul_smul]
   module
 
+/--
+@isnad1 id=eq.2h3v.s7.f2f336ca8bdf from=translated src=- shape=3156b155 vocab=4b81be80
+-/
 theorem pureDifference_square_trace (v w : ι → ℝ)
     (hv : v ⬝ᵥ v = 1) (hw : w ⬝ᵥ w = 1) :
     (pureDifference v w * pureDifference v w).trace = 2 * (1 - (v ⬝ᵥ w) ^ 2) := by
@@ -56,11 +71,17 @@ theorem pureDifference_square_trace (v w : ι → ℝ)
     dotProduct_comm w v, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=possemid.0h3v.s5.76f8699fe23b from=translated src=- shape=021a123d vocab=44c27b4b
+-/
 theorem pureDifference_square_posSemidef (v w : ι → ℝ) :
     (pureDifference v w * pureDifference v w).PosSemidef := by
   have h := Matrix.posSemidef_conjTranspose_mul_self (pureDifference v w)
   rwa [(pureDifference_isHermitian v w).eq] at h
 
+/--
+@isnad1 id=le.2h3v.s6.84cfad4b7168 from=translated src=- shape=30f84fd2 vocab=632f94d4
+-/
 theorem one_sub_inner_sq_nonneg (v w : ι → ℝ)
     (hv : v ⬝ᵥ v = 1) (hw : w ⬝ᵥ w = 1) : 0 ≤ 1 - (v ⬝ᵥ w) ^ 2 := by
   have h := (pureDifference_square_posSemidef v w).trace_nonneg
@@ -70,7 +91,9 @@ theorem one_sub_inner_sq_nonneg (v w : ι → ℝ)
 variable [DecidableEq ι]
 
 /-- The exact trace norm of the difference of two real pure states, including
-coincident states and opposite representatives of the same state.-/
+coincident states and opposite representatives of the same state.
+@isnad1 id=eq.2h3v.s6.c394b827415b from=translated src=- shape=23b3deaf vocab=8b5cb2a3
+-/
 theorem traceNorm_pureDifference (v w : ι → ℝ)
     (hv : v ⬝ᵥ v = 1) (hw : w ⬝ᵥ w = 1) :
     traceNorm (pureDifference v w) = 2 * Real.sqrt (1 - (v ⬝ᵥ w) ^ 2) := by
@@ -106,7 +129,9 @@ theorem traceNorm_pureDifference (v w : ι → ℝ)
     nlinarith
 
 /-- A finite weighted pure-state lifting bound.  The state vectors and their
-normalizations are concrete inputs; the norm inequality is proved, not assumed.-/
+normalizations are concrete inputs; the norm inequality is proved, not assumed.
+@isnad1 id=le.3h5v.s7.803d834442c8 from=translated src=- shape=2ad68a03 vocab=48936be1
+-/
 theorem traceNorm_weighted_pureDifference_le {α : Type*} [Fintype α]
     (p : α → ℝ) (v w : α → ι → ℝ) (hp : ∀ y, 0 ≤ p y)
     (hv : ∀ y, v y ⬝ᵥ v y = 1) (hw : ∀ y, w y ⬝ᵥ w y = 1) :

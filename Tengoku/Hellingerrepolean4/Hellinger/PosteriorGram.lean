@@ -38,6 +38,9 @@ def minusVector {Ω : Type*} [Fintype Ω] (f : Ω → ℝ) (K : UniformChannel �
     (y : Ω) : Ω → ℝ :=
   fun x => if f x = 1 then 0 else posteriorVector K y x
 
+/--
+@isnad1 id=and.2h2v.s6.5387ecb59334 from=translated src=- shape=6f3ca58d vocab=5051cb37
+-/
 theorem boolean_has_both_signs {Ω : Type*} (f : Ω → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1)
     (hnonconstant : ∃ x z, f x ≠ f z) :
@@ -49,16 +52,25 @@ theorem boolean_has_both_signs {Ω : Type*} (f : Ω → ℝ)
   · exact ⟨⟨x, hx⟩, ⟨z, hz⟩⟩
   · exact False.elim (hxz (hx.trans hz.symm))
 
+/--
+@isnad1 id=lt.2h3v.s5.1582fa3f541a from=translated src=- shape=81ee41dc vocab=1bc0532a
+-/
 theorem bsc_weight_pos (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρlt : ρ < 1)
     (y x : Bool) : 0 < (bsc ρ hρ).weight y x := by
   change 0 < if y = x then (1 + ρ) / 2 else (1 - ρ) / 2
   split_ifs <;> linarith [hρ.1]
 
+/--
+@isnad1 id=lt.2h4v.s6.abf9025340ae from=translated src=- shape=d21c94ed vocab=18d16b7c
+-/
 theorem cube_weight_pos (n : ℕ) (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
     (hρlt : ρ < 1) (y x : Cube n) : 0 < (cubeBSC n ρ hρ).weight y x := by
   change 0 < ∏ i : Fin n, (bsc ρ hρ).weight (y i) (x i)
   exact Finset.prod_pos (fun i _ => bsc_weight_pos ρ hρ hρlt (y i) (x i))
 
+/--
+@isnad1 id=and.3h4v.s6.49e5be64225f from=translated src=- shape=7e973576 vocab=93039190
+-/
 theorem apply_strict_bounds {Ω : Type*} [Fintype Ω]
     (K : UniformChannel Ω) (hK : ∀ y x, 0 < K.weight y x) (f : Ω → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1)
@@ -87,6 +99,9 @@ theorem apply_strict_bounds {Ω : Type*} [Fintype Ω]
           linarith [hK y xm]
       _ = 1 := by simp only [mul_one, K.row_sum]
 
+/--
+@isnad1 id=and.4h4v.s7.007c6d989727 from=translated src=- shape=186075de vocab=ff5a4015
+-/
 theorem posterior_strict_bounds {n : ℕ} (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1)
     (hnonconstant : ∃ x z, f x ≠ f z)
@@ -95,6 +110,9 @@ theorem posterior_strict_bounds {n : ℕ} (f : Cube n → ℝ)
   apply_strict_bounds (cubeBSC n ρ hρ) (cube_weight_pos n ρ hρ hρlt)
     f hf hnonconstant y
 
+/--
+@isnad1 id=eq.1h4v.s6.710f9ae09991 from=translated src=- shape=6864d9a0 vocab=67024ffc
+-/
 theorem plus_norm_sq {Ω : Type*} [Fintype Ω] (f : Ω → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (K : UniformChannel Ω) (y : Ω) :
     plusVector f K y ⬝ᵥ plusVector f K y = (1 + K.apply f y) / 2 := by
@@ -109,6 +127,9 @@ theorem plus_norm_sq {Ω : Type*} [Fintype Ω] (f : Ω → ℝ)
   rw [← Finset.sum_div, Finset.sum_add_distrib, K.row_sum]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.8d4f9f69925c from=translated src=- shape=6864d9a0 vocab=f607a8c6
+-/
 theorem minus_norm_sq {Ω : Type*} [Fintype Ω] (f : Ω → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (K : UniformChannel Ω) (y : Ω) :
     minusVector f K y ⬝ᵥ minusVector f K y = (1 - K.apply f y) / 2 := by
@@ -123,6 +144,9 @@ theorem minus_norm_sq {Ω : Type*} [Fintype Ω] (f : Ω → ℝ)
   rw [← Finset.sum_div, Finset.sum_sub_distrib, K.row_sum]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.b7dc1b6211bb from=translated src=- shape=90222d58 vocab=d26c0560
+-/
 theorem component_orthogonal {Ω : Type*} [Fintype Ω]
     (f : Ω → ℝ) (K : UniformChannel Ω) (y z : Ω) :
     plusVector f K y ⬝ᵥ minusVector f K z = 0 := by
@@ -130,15 +154,24 @@ theorem component_orthogonal {Ω : Type*} [Fintype Ω]
   intro x hx
   by_cases h : f x = 1 <;> simp [plusVector, minusVector, h]
 
+/--
+@isnad1 id=eq.1h3v.s5.201c25ac4f02 from=translated src=- shape=99a252b0 vocab=fe56347f
+-/
 theorem bsc_flip_sum (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (y x : Bool) :
     (bsc ρ hρ).weight y x + (bsc ρ hρ).weight (!y) x = 1 := by
   cases y <;> cases x <;> simp [bsc] <;> ring
 
+/--
+@isnad1 id=eq.1h3v.s6.25a49333eae9 from=translated src=- shape=76c4c61d vocab=3d190bbb
+-/
 theorem bsc_flip_sqrt_product (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (y x : Bool) :
     Real.sqrt ((bsc ρ hρ).weight y x) *
       Real.sqrt ((bsc ρ hρ).weight (!y) x) = root ρ / 2 := by
   cases y <;> cases x <;> simpa [bsc, mul_comm] using bsc_sqrt_cross ρ hρ
 
+/--
+@isnad1 id=eq.1h5v.s6.0af936920921 from=translated src=- shape=dd57e88d vocab=e68cde46
+-/
 theorem cube_weight_split {n : ℕ} (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
     (y x : Cube n) (i : Fin n) :
     (cubeBSC n ρ hρ).weight y x =
@@ -147,6 +180,9 @@ theorem cube_weight_split {n : ℕ} (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1
   exact (Finset.mul_prod_erase Finset.univ
     (fun j => (bsc ρ hρ).weight (y j) (x j)) (Finset.mem_univ i)).symm
 
+/--
+@isnad1 id=eq.1h5v.s7.f100d910ec78 from=translated src=- shape=f3aa1bd7 vocab=04a49798
+-/
 theorem cube_weight_neighbor_sum {n : ℕ} (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
     (y x : Cube n) (i : Fin n) :
     (cubeBSC n ρ hρ).weight y x +
@@ -165,7 +201,9 @@ theorem cube_weight_neighbor_sum {n : ℕ} (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 :
   rw [he, ← add_mul, bsc_flip_sum, one_mul]
 
 /-- The pointwise neighboring posterior-vector identity, before restricting
-to either Boolean output fiber.-/
+to either Boolean output fiber.
+@isnad1 id=eq.1h5v.s7.9cd1c42b89bb from=translated src=- shape=793c46a8 vocab=48ec6a03
+-/
 theorem posterior_neighbor_product {n : ℕ} (ρ : ℝ)
     (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (y x : Cube n) (i : Fin n) :
     posteriorVector (cubeBSC n ρ hρ) y x *
@@ -186,7 +224,9 @@ theorem posterior_neighbor_product {n : ℕ} (ρ : ℝ)
     Real.mul_self_sqrt ((bsc ρ hρ).nonneg (y j) (x j))]
 
 /-- The positive-output posterior component has the manuscript's exact
-neighboring inner product.-/
+neighboring inner product.
+@isnad1 id=eq.2h5v.s8.a00610d91065 from=translated src=- shape=21226355 vocab=cfea2adb
+-/
 theorem plus_neighbor_inner {n : ℕ} (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (y : Cube n) (i : Fin n) :
@@ -215,6 +255,9 @@ theorem plus_neighbor_inner {n : ℕ} (f : Cube n → ℝ)
   rw [plus_norm_sq f hf, plus_norm_sq f hf]
   ring
 
+/--
+@isnad1 id=eq.2h5v.s8.f501895dc1fb from=translated src=- shape=5a1ba5dd vocab=ed4accfa
+-/
 theorem minus_neighbor_inner {n : ℕ} (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (y : Cube n) (i : Fin n) :
@@ -243,6 +286,9 @@ theorem minus_neighbor_inner {n : ℕ} (f : Cube n → ℝ)
   rw [minus_norm_sq f hf, minus_norm_sq f hf]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s6.4251108e13b0 from=translated src=- shape=9f5cb864 vocab=613f93bf
+-/
 theorem sqrt_half_product (a b : ℝ) (ha : 0 ≤ a) :
     Real.sqrt (a / 2) * Real.sqrt (b / 2) = Real.sqrt (a * b) / 2 := by
   rw [← Real.sqrt_mul (div_nonneg ha (by norm_num))]
@@ -250,6 +296,9 @@ theorem sqrt_half_product (a b : ℝ) (ha : 0 ≤ a) :
   rw [Real.sqrt_div' _ (by norm_num : (0 : ℝ) ≤ 4)]
   norm_num
 
+/--
+@isnad1 id=eq.1h4v.s6.1ed5fda14851 from=translated src=- shape=79e3e599 vocab=35d228e8
+-/
 theorem root_eq_two_component_norms {Ω : Type*} [Fintype Ω]
     (f : Ω → ℝ) (hf : ∀ x, f x = -1 ∨ f x = 1) (K : UniformChannel Ω) (y : Ω) :
     root (K.apply f y) =
@@ -263,6 +312,9 @@ theorem root_eq_two_component_norms {Ω : Type*} [Fintype Ω]
   unfold root
   ring
 
+/--
+@isnad1 id=eq.1h4v.s7.8965c33cdf65 from=translated src=- shape=dadac24b vocab=5cbfa96a
+-/
 theorem pureDifference_components {Ω : Type*} [Fintype Ω]
     (f : Ω → ℝ) (hf : ∀ x, f x = -1 ∨ f x = 1) (K : UniformChannel Ω) (y : Ω) :
     MatrixLifting.pureDifference (posteriorVector K y)
@@ -274,6 +326,9 @@ theorem pureDifference_components {Ω : Type*} [Fintype Ω]
     norm_num [MatrixLifting.pureDifference, reflectedVector, plusVector, minusVector,
       Matrix.vecMulVec_apply, hx, hz] <;> ring
 
+/--
+@isnad1 id=eq.1h3v.s8.906ac442bf34 from=translated src=- shape=c259e6fb vocab=a9f0e4a4
+-/
 theorem average_component_cross {Ω : Type*} [Fintype Ω] [DecidableEq Ω]
     (f : Ω → ℝ) (hf : ∀ x, f x = -1 ∨ f x = 1) (K : UniformChannel Ω) :
     averageProjection K - reflection f * averageProjection K * reflection f =
@@ -286,6 +341,9 @@ theorem average_component_cross {Ω : Type*} [Fintype Ω] [DecidableEq Ω]
   intro y hy
   exact smul_comm _ _ _
 
+/--
+@isnad1 id=eq.1h3v.s7.5b59f569aa0a from=translated src=- shape=1ad135a8 vocab=f86f83e2
+-/
 theorem weighted_component_roots {Ω : Type*} [Fintype Ω]
     (f : Ω → ℝ) (hf : ∀ x, f x = -1 ∨ f x = 1) (K : UniformChannel Ω) :
     (2 : ℝ) * ∑ y, (Fintype.card Ω : ℝ)⁻¹ *
@@ -299,7 +357,9 @@ theorem weighted_component_roots {Ω : Type*} [Fintype Ω]
   ring
 
 /-- Equality in actual posterior lifting gives precisely the cross-ensemble
-trace equality required by the abstract equality theorem.-/
+trace equality required by the abstract equality theorem.
+@isnad1 id=eq.2h3v.s8.af53d19164d5 from=translated src=- shape=cc25d37f vocab=be44fc74
+-/
 theorem cross_equality_of_lifting_equality {Ω : Type*} [Fintype Ω] [DecidableEq Ω]
     (f : Ω → ℝ) (hf : ∀ x, f x = -1 ∨ f x = 1) (K : UniformChannel Ω)
     (heq : TraceNorm.traceNorm
@@ -317,6 +377,9 @@ theorem cross_equality_of_lifting_equality {Ω : Type*} [Fintype Ω] [DecidableE
   rw [weighted_component_roots f hf]
   linarith
 
+/--
+@isnad1 id=and.4h4v.s7.a2c88c1d1249 from=translated src=- shape=c8fbb959 vocab=c5b28983
+-/
 theorem component_norms_pos {n : ℕ} (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1)
     (hnonconstant : ∃ x z, f x ≠ f z)
@@ -327,6 +390,9 @@ theorem component_norms_pos {n : ℕ} (f : Cube n → ℝ)
   have h := posterior_strict_bounds f hf hnonconstant ρ hρ hρlt y
   constructor <;> linarith
 
+/--
+@isnad1 id=eq.4h3v.s9.8a69345d16f9 from=translated src=- shape=763a9359 vocab=d1258b30
+-/
 theorem normalized_gram_of_component_equality (p q c : ℝ)
     (hp : -1 < p ∧ p < 1) (hq : -1 < q ∧ q < 1) (hc : 0 < c)
     (h :
@@ -355,7 +421,9 @@ theorem normalized_gram_of_component_equality (p q c : ℝ)
 
 /-- The actual posterior has constant absolute value once equality of its
 normalized positive/negative component Gram matrices has been established.
-The equality-of-Gram premise is discharged by the abstract trace-equality module.-/
+The equality-of-Gram premise is discharged by the abstract trace-equality module.
+@isnad1 id=eq.5h5v.s9.33b3e4b5dc2f from=translated src=- shape=3852324d vocab=844ad20b
+-/
 theorem posterior_abs_constant_of_component_gram {n : ℕ} (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1)
     (hnonconstant : ∃ x z, f x ≠ f z)
@@ -381,6 +449,9 @@ theorem posterior_abs_constant_of_component_gram {n : ℕ} (f : Cube n → ℝ)
   have hh := normalized_gram_of_component_equality _ _ _ (hb y) (hb _) hc hg
   simpa only [add_comm, mul_comm] using hh
 
+/--
+@isnad1 id=ex.2h2v.s6.8f074c15b2e5 from=translated src=- shape=4b9d5e95 vocab=b92d6217
+-/
 theorem balanced_boolean_nonconstant {n : ℕ} (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hm : mean f = 0) :
     ∃ x z, f x ≠ f z := by
@@ -394,7 +465,9 @@ theorem balanced_boolean_nonconstant {n : ℕ} (f : Cube n → ℝ)
   rcases hf x₀ with hs | hs <;> linarith
 
 /-- Once the actual posterior has constant absolute value, equality in the
-Hellinger objective forces its actual second moment to be rho squared.-/
+Hellinger objective forces its actual second moment to be rho squared.
+@isnad1 id=eq.5h3v.s8.4998b513f814 from=translated src=- shape=c6d0e653 vocab=88ecee5b
+-/
 theorem noise_second_moment_of_abs_constant_and_objective_eq {n : ℕ}
     (f : Cube n → ℝ) (hf : ∀ x, f x = -1 ∨ f x = 1) (hm : mean f = 0)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
@@ -435,7 +508,9 @@ theorem noise_second_moment_of_abs_constant_and_objective_eq {n : ℕ}
 
 /-- Equality in actual BSC lifting forces constant absolute posterior.
 The trace-equality theorem constructs the common contraction and proves the
-Gram identity; no contraction or Gram condition is an input here.-/
+Gram identity; no contraction or Gram condition is an input here.
+@isnad1 id=eq.5h5v.s9.9bb52045198d from=translated src=- shape=b321127f vocab=70275a6f
+-/
 theorem posterior_abs_constant_of_lifting_equality {n : ℕ} (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1)
     (hnonconstant : ∃ x z, f x ≠ f z)
@@ -455,6 +530,9 @@ theorem posterior_abs_constant_of_lifting_equality {n : ℕ} (f : Cube n → ℝ
     (fun _ => by positivity) (fun y => (hnorm y).1) (fun y => (hnorm y).2)
     hcross y z
 
+/--
+@isnad1 id=eq.5h5v.s8.4365e43111a8 from=translated src=- shape=5ab1973d vocab=3864f693
+-/
 theorem bsc_posterior_abs_constant_of_lifting_equality {n : ℕ} (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1)
     (hnonconstant : ∃ x z, f x ≠ f z)
@@ -468,7 +546,9 @@ theorem bsc_posterior_abs_constant_of_lifting_equality {n : ℕ} (f : Cube n →
   simpa only [cube_averageProjection] using heq
 
 /-- The actual lifting and Hellinger equalities imply the full Boolean
-signed-dictator classification. Every Fourier and Gram step is discharged.-/
+signed-dictator classification. Every Fourier and Gram step is discharged.
+@isnad1 id=ex.7h3v.s9.4ed695e4c917 from=translated src=- shape=1bef508d vocab=3371f0d9
+-/
 theorem signed_dictator_of_lifting_and_objective_equality {n : ℕ} (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hm : mean f = 0)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρpos : 0 < ρ) (hρlt : ρ < 1)
@@ -485,7 +565,9 @@ theorem signed_dictator_of_lifting_and_objective_equality {n : ℕ} (f : Cube n 
     (noise_second_moment_of_abs_constant_and_objective_eq f hf hm ρ hρ habs hobj)
 
 /-- A signed dictator that reverses sign under a specified input translation
-must use a coordinate in that translation's actual support.-/
+must use a coordinate in that translation's actual support.
+@isnad1 id=mem.3h5v.s6.10d0283105bb from=translated src=- shape=9d731410 vocab=eb9f96f1
+-/
 theorem signed_dictator_coordinate_in_support {n : ℕ} (f : Cube n → ℝ)
     (i : Fin n) (a : ℝ) (ha : a = 1 ∨ a = -1)
     (hform : ∀ x, f x = a * boolSign (x i)) (v : Cube n)

@@ -22,6 +22,9 @@ variable {Ω ι : Type*} [MeasurableSpace Ω]
 def matrixIntegral (μ : Measure Ω) (A : Ω → Matrix ι ι ℝ) : Matrix ι ι ℝ :=
   fun i j => ∫ y, A y i j ∂μ
 
+/--
+@isnad1 id=ishermit.1h4v.s6.2da7177118b9 from=translated src=- shape=d70297a7 vocab=4e2aacd2
+-/
 theorem matrixIntegral_isHermitian (μ : Measure Ω) (A : Ω → Matrix ι ι ℝ)
     (hA : ∀ y, (A y).IsHermitian) : (matrixIntegral μ A).IsHermitian := by
   ext i j
@@ -34,6 +37,9 @@ theorem matrixIntegral_isHermitian (μ : Measure Ω) (A : Ω → Matrix ι ι �
 variable [Fintype ι] [DecidableEq ι]
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=eq.2h5v.s7.6ac9dcbcce58 from=translated src=- shape=a81a5430 vocab=9cd58967
+-/
 theorem matrixIntegral_sub (μ : Measure Ω) (A B : Ω → Matrix ι ι ℝ)
     (hA : ∀ i j, Integrable (fun y => A y i j) μ)
     (hB : ∀ i j, Integrable (fun y => B y i j) μ) :
@@ -41,6 +47,9 @@ theorem matrixIntegral_sub (μ : Measure Ω) (A B : Ω → Matrix ι ι ℝ)
   ext i j
   exact integral_sub (hA i j) (hB i j)
 
+/--
+@isnad1 id=eq.0h5v.s7.cb60b8b51f9a from=translated src=- shape=3d9242c4 vocab=3b73a39e
+-/
 theorem matrixIntegral_reflection (μ : Measure Ω) (A : Ω → Matrix ι ι ℝ) (f : ι → ℝ) :
     matrixIntegral μ (fun y => reflection f * A y * reflection f) =
       reflection f * matrixIntegral μ A * reflection f := by
@@ -49,6 +58,9 @@ theorem matrixIntegral_reflection (μ : Measure Ω) (A : Ω → Matrix ι ι ℝ
     integral_mul_const, integral_const_mul]
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=integrab.1h5v.s6.1e63e14415c6 from=translated src=- shape=7421b996 vocab=808d2679
+-/
 theorem trace_mul_integrable (μ : Measure Ω) (A : Ω → Matrix ι ι ℝ)
     (hA : ∀ i j, Integrable (fun y => A y i j) μ) (Q : Matrix ι ι ℝ) :
     Integrable (fun y => (Q * A y).trace) μ := by
@@ -61,6 +73,9 @@ theorem trace_mul_integrable (μ : Measure Ω) (A : Ω → Matrix ι ι ℝ)
   exact (hA j i).const_mul (Q i j)
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.1h5v.s7.1206dc6abb7d from=translated src=- shape=fe630061 vocab=ab401f1e
+-/
 theorem trace_mul_matrixIntegral (μ : Measure Ω) (A : Ω → Matrix ι ι ℝ)
     (hA : ∀ i j, Integrable (fun y => A y i j) μ) (Q : Matrix ι ι ℝ) :
     (Q * matrixIntegral μ A).trace = ∫ y, (Q * A y).trace ∂μ := by
@@ -80,6 +95,9 @@ theorem trace_mul_matrixIntegral (μ : Measure Ω) (A : Ω → Matrix ι ι ℝ)
     intro j _
     exact (hA j i).const_mul (Q i j)
 
+/--
+@isnad1 id=le.4h5v.s7.3b8953d6d874 from=translated src=- shape=f77af6ce vocab=128c8b74
+-/
 theorem traceNorm_matrixIntegral_le (μ : Measure Ω) (A : Ω → Matrix ι ι ℝ)
     (hA : ∀ i j, Integrable (fun y => A y i j) μ)
     (hAH : ∀ y, (A y).IsHermitian) (g : Ω → ℝ) (hg : Integrable g μ)
@@ -91,6 +109,9 @@ theorem traceNorm_matrixIntegral_le (μ : Measure Ω) (A : Ω → Matrix ι ι �
   intro y
   exact (trace_mul_le_traceNorm (hAH y) (signWitness_orderContraction _)).trans (hbound y)
 
+/--
+@isnad1 id=le.4h5v.s7.7ceb3d2e7d59 from=translated src=- shape=f8e21819 vocab=ae6ba501
+-/
 theorem integral_pure_lifting (μ : Measure Ω) (v w : Ω → ι → ℝ)
     (hv : ∀ y, v y ⬝ᵥ v y = 1) (hw : ∀ y, w y ⬝ᵥ w y = 1)
     (hentry : ∀ i j, Integrable (fun y => pureDifference (v y) (w y) i j) μ)

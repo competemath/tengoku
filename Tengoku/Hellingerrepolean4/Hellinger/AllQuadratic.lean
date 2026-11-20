@@ -17,6 +17,9 @@ open F2Model QuadraticRadical ChannelSections
 
 def support {n : ℕ} (v : Cube n) : Finset (Fin n) := Finset.univ.filter (fun i => v i = 1)
 
+/--
+@isnad1 id=nonempty.1h2v.s5.25099ae8671d from=translated src=- shape=fdf5e281 vocab=75f64471
+-/
 theorem support_nonempty {n : ℕ} (v : Cube n) (hv : v ≠ 0) : (support v).Nonempty := by
   by_contra h
   apply hv
@@ -25,6 +28,9 @@ theorem support_nonempty {n : ℕ} (v : Cube n) (hv : v ≠ 0) : (support v).Non
   have hi1 := eq_one_of_ne_zero (v i) hi
   exact h ⟨i, by simp [support, hi1]⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.dc4bd5cb135f from=translated src=- shape=7c2030b0 vocab=52cebfce
+-/
 theorem bits_flip_support {n : ℕ} (v : Cube n) (x : PaperSpecs.Cube n) :
     bitsEquiv (Fin n) (PaperSpecs.flip (support v) x) = bitsEquiv (Fin n) x + v := by
   funext i
@@ -33,6 +39,9 @@ theorem bits_flip_support {n : ℕ} (v : Cube n) (x : PaperSpecs.Cube n) :
     Finset.mem_univ, true_and, Pi.add_apply, ← hb]
   cases x i <;> cases b <;> norm_num [show (1 : F2) + 1 = 0 from rfl]
 
+/--
+@isnad1 id=and.3h5v.s8.70e1331079b8 from=translated src=- shape=47e34430 vocab=ebeed9bc
+-/
 theorem translation_phase_bound {n : ℕ} (a : F2) (Q : Form n) (v : Cube n)
     (hv : v ≠ 0) (hanti : ∀ x, phase a Q (x + v) = -phase a Q x)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) :
@@ -66,6 +75,9 @@ theorem translation_phase_bound {n : ℕ} (a : F2) (Q : Form n) (v : Cube n)
     rw [hf]
     exact bsc_signed_dictator_equality n i negative ρ hρ
 
+/--
+@isnad1 id=eq.0h3v.s5.5097f6e9146a from=translated src=- shape=b2e70816 vocab=139a1bc9
+-/
 theorem constant_objective {Ω : Type*} [Fintype Ω] [Nonempty Ω]
     (K : UniformChannel Ω) (c : ℝ) : objective (K.apply (fun _ => c)) = 0 := by
   have heq : K.apply (fun _ => c) = fun _ => c := by
@@ -73,16 +85,24 @@ theorem constant_objective {Ω : Type*} [Fintype Ω] [Nonempty Ω]
     simp only [UniformChannel.apply, ← Finset.sum_mul, K.row_sum, one_mul]
   simp only [heq, objective, mean_const, sub_self]
 
+/--
+@isnad1 id=le.0h1v.s3.afc0dcaf6938 from=translated src=- shape=b14ee516 vocab=acfc1c0c
+-/
 theorem root_le_one (ρ : ℝ) : root ρ ≤ 1 := by
   unfold root
   exact Real.sqrt_le_iff.mpr ⟨by norm_num, by nlinarith [sq_nonneg ρ]⟩
 
+/--
+@isnad1 id=lt.1h1v.s4.c23aa33c7433 from=translated src=- shape=3965f485 vocab=27ad12ef
+-/
 theorem root_lt_one (ρ : ℝ) (hp : 0 < ρ) : root ρ < 1 := by
   unfold root
   exact (Real.sqrt_lt' (by norm_num)).mpr (by nlinarith [sq_pos_of_pos hp])
 
 /-- The quotient case is strict at every positive correlation, including when
-the reduced quotient has dimension zero and the phase is constant.-/
+the reduced quotient has dimension zero and the phase is constant.
+@isnad1 id=and.4h7v.s11.a8fc1cba76f6 from=translated src=- shape=9881b43a vocab=06f3f054
+-/
 theorem quotient_phase_bound {n k : ℕ} (a : F2) (Q : Form n) (Q₀ : Form k)
     (L : Cube n →ₗ[F2] Cube k) (hL : Function.Surjective L)
     (hQ₀ : Q₀.polarBilin.ker = ⊥) (hf : phase a Q = phase a Q₀ ∘ L)
@@ -113,6 +133,9 @@ theorem quotient_phase_bound {n k : ℕ} (a : F2) (Q : Form n) (Q₀ : Form k)
       ((phase a Q₀ ∘ M) ∘ bitsEquiv (Fin k)) (fun x => phase_boolean a Q₀ _) hb ρ hρ
     exact ⟨hc.trans ht.1, fun hp => hc.trans_lt (ht.2 hp)⟩
 
+/--
+@isnad1 id=and.1h4v.s8.2724a802441a from=translated src=- shape=1aa8c7e8 vocab=b895c46b
+-/
 theorem phase_hellinger {n : ℕ} (a : F2) (Q : Form n)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) :
     PaperSpecs.HellingerBound (phase a Q ∘ bitsEquiv (Fin n)) ρ hρ ∧
@@ -130,7 +153,9 @@ theorem phase_hellinger {n : ℕ} (a : F2) (Q : Form n)
       rw [heq]
       exact bsc_signed_dictator_equality n i negative ρ hρ
 
-/-- Exact inhabitant of the independent quadratic-function manuscript target.-/
+/-- Exact inhabitant of the independent quadratic-function manuscript target.
+@isnad1 id=quadrati.0h0v.s0.30945c3e087a from=translated src=- shape=45709ebd vocab=30945c3e
+-/
 theorem paper_quadratic_hellinger : PaperSpecs.QuadraticHellinger := by
   intro n _ f hquad ρ hρ
   obtain ⟨a, b, q, hq⟩ := hquad

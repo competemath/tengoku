@@ -21,12 +21,18 @@ def fourBitsEquiv : Cube 4 ≃ Bool × Bool × Bool × Bool where
   left_inv x := by funext i; fin_cases i <;> rfl
   right_inv p := by rcases p with ⟨a, b, c, d⟩; rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.50dc4f2228e7 from=translated src=- shape=f2e96124 vocab=b79f6bb5
+-/
 theorem sum_four_bits {R : Type*} [AddCommMonoid R] (F : Cube 4 → R) :
     (∑ x, F x) =
       ∑ a : Bool, ∑ b : Bool, ∑ c : Bool, ∑ d : Bool, F ![a, b, c, d] := by
   rw [← fourBitsEquiv.symm.sum_comp F]
   simp [Fintype.sum_prod_type, fourBitsEquiv]
 
+/--
+@isnad1 id=eq.0h2v.s7.d7300671155d from=translated src=- shape=f2e96124 vocab=ee990901
+-/
 theorem prod_four_bits {R : Type*} [CommMonoid R] (F : Cube 4 → R) :
     (∏ x, F x) =
       ∏ a : Bool, ∏ b : Bool, ∏ c : Bool, ∏ d : Bool, F ![a, b, c, d] := by
@@ -35,15 +41,24 @@ theorem prod_four_bits {R : Type*} [CommMonoid R] (F : Cube 4 → R) :
 
 def face (i : Fin 4) (b : Bool) : Finset (Cube 4) := Finset.univ.filter (fun x => x i = b)
 
+/--
+@isnad1 id=eq.0h2v.s4.a64bd960bf13 from=translated src=- shape=9197357e vocab=6fc6a961
+-/
 theorem face_card (i : Fin 4) (b : Bool) : (face i b).card = 8 := by
   have heq : (face i b).card = ∑ x : Cube 4, if x i = b then (1 : ℕ) else 0 := by
     simp [face, Finset.sum_boole]
   rw [heq, sum_four_bits]
   fin_cases i <;> cases b <;> norm_num
 
+/--
+@isnad1 id=eq.0h2v.s5.29aea4bd5a36 from=translated src=- shape=b66e37cf vocab=bbc627a2
+-/
 theorem phase_unit (i : Fin 4) (x : Cube 4) : phase (unit i) x = boolSign (x i) := by
   fin_cases i <;> simp [phase, Fin.prod_univ_succ, unit, boolSign]
 
+/--
+@isnad1 id=eq.0h3v.s7.f375feaf6957 from=translated src=- shape=dacfe215 vocab=e829151e
+-/
 theorem face_sum (f : Cube 4 → ℝ) (i : Fin 4) (b : Bool) :
     (∑ x ∈ face i b, f x) = 8 * (mean f + boolSign b * walsh f (unit i)) := by
   have hpoint (x : Cube 4) : (if x i = b then f x else 0) =
@@ -57,6 +72,9 @@ theorem face_sum (f : Cube 4 → ℝ) (i : Fin 4) (b : Bool) :
   norm_num
   ring
 
+/--
+@isnad1 id=or.1h2v.s6.f3b34c1fe4f7 from=translated src=- shape=f9ebf88c vocab=a03f817c
+-/
 theorem flat_four_coefficient (f : Cube 4 → ℝ) (hb : Flatness.IsBent f) (s : Cube 4) :
     walsh f s = -1 / 4 ∨ walsh f s = 1 / 4 := by
   have h := hb s
@@ -66,6 +84,9 @@ theorem flat_four_coefficient (f : Cube 4 → ℝ) (hb : Flatness.IsBent f) (s :
   · left; linarith
   · right; linarith
 
+/--
+@isnad1 id=or.1h3v.s6.9829f0f4bdcf from=translated src=- shape=f08bb297 vocab=cbe5bd94
+-/
 theorem bent_face_sum (f : Cube 4 → ℝ) (hb : Flatness.IsBent f) (i : Fin 4) (b : Bool) :
     (∑ x ∈ face i b, f x) = -4 ∨ (∑ x ∈ face i b, f x) = 0 ∨
       (∑ x ∈ face i b, f x) = 4 := by
@@ -75,6 +96,9 @@ theorem bent_face_sum (f : Cube 4 → ℝ) (hb : Flatness.IsBent f) (i : Fin 4) 
   rcases hm with hm | hm <;> rcases flat_four_coefficient f hb (unit i) with hw | hw <;>
     cases b <;> norm_num [hm, hw, boolSign]
 
+/--
+@isnad1 id=eq.3h3v.s7.4dc35ad1afe8 from=translated src=- shape=2c9bc297 vocab=8b420a76
+-/
 theorem boolean_product_of_eight_sum {ι : Type*} [DecidableEq ι] (s : Finset ι)
     (f : ι → ℝ) (hf : ∀ x ∈ s, f x = -1 ∨ f x = 1) (hcard : s.card = 8)
     (hsum : (∑ x ∈ s, f x) = -4 ∨ (∑ x ∈ s, f x) = 0 ∨ (∑ x ∈ s, f x) = 4) :
@@ -108,6 +132,9 @@ theorem boolean_product_of_eight_sum {ι : Type*} [DecidableEq ι] (s : Finset �
   rw [hprod]
   rcases hk with h | h | h <;> rw [h] <;> norm_num
 
+/--
+@isnad1 id=eq.2h3v.s6.7bebaa0a8c6c from=translated src=- shape=1d3d92ca vocab=094f99a0
+-/
 theorem bent_face_product (f : Cube 4 → ℝ) (hf : ∀ x, f x = -1 ∨ f x = 1)
     (hb : Flatness.IsBent f) (i : Fin 4) (b : Bool) :
     ∏ x ∈ face i b, f x = 1 :=
@@ -146,7 +173,9 @@ private theorem sign_eq_product (a P : ℝ) (ha : a ^ 2 = 1) (h : a * P = 1) : a
 
 set_option maxHeartbeats 3000000 in
 /-- Flatness forces all cubic face derivatives to vanish; these five face
-identities reconstruct the entire truth table from its terms of degree at most two.-/
+identities reconstruct the entire truth table from its terms of degree at most two.
+@isnad1 id=eq.2h1v.s6.90a1fa89a7aa from=translated src=- shape=9b88470b vocab=6c71e8bc
+-/
 theorem bent_quadratic_representation (f : Cube 4 → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hb : Flatness.IsBent f) :
     f = quadraticPhase (constantTerm f) (linearTerms f) (mixedTerms f) := by
@@ -213,7 +242,9 @@ def edgeAction (e : Fin 6 → ℝ) (s : Cube 4) : Fin 4 → ℝ :=
 def signCharacter (a : Fin 4 → ℝ) (x : Cube 4) : ℝ := ∏ i, if x i then a i else 1
 
 set_option maxHeartbeats 10000000 in
-/-- The exact polar identity, for arbitrary sign-valued coefficients.-/
+/-- The exact polar identity, for arbitrary sign-valued coefficients.
+@isnad1 id=eq.3h5v.s7.40696d43197e from=translated src=- shape=1f0d3233 vocab=5ab09dfe
+-/
 theorem quadratic_polar (c : ℝ) (l : Fin 4 → ℝ) (e : Fin 6 → ℝ)
     (hc : c ^ 2 = 1) (hl : ∀ i, l i ^ 2 = 1) (he : ∀ i, e i ^ 2 = 1)
     (s x : Cube 4) :
@@ -230,11 +261,17 @@ theorem quadratic_polar (c : ℝ) (l : Fin 4 → ℝ) (e : Fin 6 → ℝ)
     dsimp [quadraticPhase, translate, edgeAction] <;>
     ring_nf <;> simp only [hc, hl, he, hp3, mul_one, one_mul]
 
+/--
+@isnad1 id=eq.3h4v.s7.73be0be0c158 from=translated src=- shape=5a8ce9c7 vocab=90f60d5f
+-/
 theorem quadraticPhase_sq (c : ℝ) (l : Fin 4 → ℝ) (e : Fin 6 → ℝ)
     (hc : c ^ 2 = 1) (hl : ∀ i, l i ^ 2 = 1) (he : ∀ i, e i ^ 2 = 1) (x : Cube 4) :
     quadraticPhase c l e x ^ 2 = 1 := by
   simp only [quadraticPhase, mul_pow, ite_pow, hc, hl, he, one_pow, ite_self, mul_one]
 
+/--
+@isnad1 id=eq.0h1v.s6.245c384587bc from=translated src=- shape=d64ca5a4 vocab=a4a03ce7
+-/
 theorem signCharacter_sum (a : Fin 4 → ℝ) :
     (∑ x : Cube 4, signCharacter a x) = ∏ i, (1 + a i) := by
   unfold signCharacter
@@ -244,6 +281,9 @@ theorem signCharacter_sum (a : Fin 4 → ℝ) :
 def noiseDerivativeSum (e : Fin 6 → ℝ) (ρ : ℝ) (s : Cube 4) : ℝ :=
   ∏ i, if s i then ρ * (1 + edgeAction e s i) else 1 + ρ ^ 2 * edgeAction e s i
 
+/--
+@isnad1 id=eq.0h3v.s7.387a3ecc8ff6 from=translated src=- shape=ecfc613b vocab=2733946e
+-/
 theorem weighted_character_sum (a : Fin 4 → ℝ) (ρ : ℝ) (s : Cube 4) :
     (∑ x : Cube 4, ρ ^ (degree x + degree (translate s x)) * signCharacter a x) =
       ∏ i, if s i then ρ * (1 + a i) else 1 + ρ ^ 2 * a i := by
@@ -258,6 +298,9 @@ theorem weighted_character_sum (a : Fin 4 → ℝ) (ρ : ℝ) (s : Cube 4) :
   intro i _
   cases s i <;> simp <;> ring
 
+/--
+@isnad1 id=eq.3h5v.s8.337caf5152ee from=translated src=- shape=4f9ff84d vocab=0ea2fdea
+-/
 theorem quadratic_weighted_derivative (c : ℝ) (l : Fin 4 → ℝ) (e : Fin 6 → ℝ)
     (hc : c ^ 2 = 1) (hl : ∀ i, l i ^ 2 = 1) (he : ∀ i, e i ^ 2 = 1)
     (ρ : ℝ) (s : Cube 4) :
@@ -281,6 +324,9 @@ theorem quadratic_weighted_derivative (c : ℝ) (l : Fin 4 → ℝ) (e : Fin 6 �
 def EdgeNondegenerate (e : Fin 6 → ℝ) : Prop :=
   ∀ s : Cube 4, s ≠ (fun _ => false) → ∏ i, (1 + edgeAction e s i) = 0
 
+/--
+@isnad1 id=edgenond.4h3v.s7.ad48e7e047cd from=translated src=- shape=958e3bfb vocab=dac4b407
+-/
 theorem quadratic_bent_nondegenerate (c : ℝ) (l : Fin 4 → ℝ) (e : Fin 6 → ℝ)
     (hc : c ^ 2 = 1) (hl : ∀ i, l i ^ 2 = 1) (he : ∀ i, e i ^ 2 = 1)
     (hb : Flatness.IsBent (quadraticPhase c l e)) : EdgeNondegenerate e := by

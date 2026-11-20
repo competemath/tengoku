@@ -40,7 +40,9 @@ namespace Hellinger.Rigidity
 
 open scoped BigOperators
 
-/-- The exact factorization used after clearing and squaring the Gram equality.-/
+/-- The exact factorization used after clearing and squaring the Gram equality.
+@isnad1 id=eq.0h2v.s8.335bfd712990 from=translated src=- shape=69921b8a vocab=d8abdb84
+-/
 theorem gram_factorization (p q : ℝ) :
     (1 + (p + q) / 2) ^ 2 * (1 - p) * (1 - q) -
       (1 - (p + q) / 2) ^ 2 * (1 + p) * (1 + q) =
@@ -61,7 +63,9 @@ theorem eq_or_eq_neg_of_squared_gram (p q : ℝ)
   · left
     exact sub_eq_zero.mp (eq_zero_of_pow_eq_zero hsq)
 
-/-- The local conclusion of the paper's Gram calculation.-/
+/-- The local conclusion of the paper's Gram calculation.
+@isnad1 id=eq.1h2v.s7.4f78f646d246 from=translated src=- shape=f6a4b534 vocab=a616277b
+-/
 theorem abs_eq_of_squared_gram (p q : ℝ)
     (h : (1 + (p + q) / 2) ^ 2 * (1 - p) * (1 - q) =
       (1 - (p + q) / 2) ^ 2 * (1 + p) * (1 + q)) :
@@ -71,7 +75,9 @@ theorem abs_eq_of_squared_gram (p q : ℝ)
   · rw [hneg, abs_neg]
 
 /-- Clearing denominators and squaring the normalized Gram equality from the
-paper. The open-interval assumptions supply the required positive denominators.-/
+paper. The open-interval assumptions supply the required positive denominators.
+@isnad1 id=eq.5h2v.s8.3dcb5f9ed46a from=translated src=- shape=d09f47c3 vocab=db7e05bf
+-/
 theorem squared_gram_of_normalized_gram (p q : ℝ)
     (hp_lower : -1 < p) (hp_upper : p < 1)
     (hq_lower : -1 < q) (hq_upper : q < 1)
@@ -91,7 +97,9 @@ theorem squared_gram_of_normalized_gram (p q : ℝ)
   simpa only [mul_pow, Real.sq_sqrt hplus.le, Real.sq_sqrt hminus.le,
     mul_assoc] using hsquare
 
-/-- The complete local scalar implication from the normalized Gram equation.-/
+/-- The complete local scalar implication from the normalized Gram equation.
+@isnad1 id=eq.5h2v.s7.02061be63788 from=translated src=- shape=c8c16815 vocab=a3ea0360
+-/
 theorem abs_eq_of_normalized_gram (p q : ℝ)
     (hp_lower : -1 < p) (hp_upper : p < 1)
     (hq_lower : -1 < q) (hq_upper : q < 1)
@@ -108,7 +116,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- A function on a finite product which is invariant under replacing one
 coordinate is constant. This is the finite-cube connectivity step, proved by
-induction on the coordinates that may differ.-/
+induction on the coordinates that may differ.
+@isnad1 id=eq.1h6v.s5.83b86d83adfa from=translated src=- shape=e3ebebe2 vocab=2eb58813
+-/
 theorem constant_of_update_invariant {β γ : Type*} (g : (ι → β) → γ)
     (hupdate : ∀ x i b, g (Function.update x i b) = g x) :
     ∀ x y, g x = g y := by
@@ -140,7 +150,9 @@ theorem constant_of_update_invariant {β γ : Type*} (g : (ι → β) → γ)
 
 /-- All values have the same absolute value if each one-coordinate replacement
 satisfies the squared Gram identity. The upstream analytic Gram identity is an
-explicit hypothesis, not an axiom or a formalized trace-norm equality claim.-/
+explicit hypothesis, not an axiom or a formalized trace-norm equality claim.
+@isnad1 id=eq.1h4v.s8.146f72c2dc28 from=translated src=- shape=84619350 vocab=66f5656b
+-/
 theorem abs_constant_of_update_squared_gram (g : (ι → Bool) → ℝ)
     (hgram : ∀ x i b,
       (1 + (g (Function.update x i b) + g x) / 2) ^ 2 *
@@ -153,7 +165,9 @@ theorem abs_constant_of_update_squared_gram (g : (ι → Bool) → ℝ)
   exact abs_eq_of_squared_gram _ _ (hgram x i b)
 
 /-- A version whose hypothesis is required only on actual cube edges: replacing
-one bit by its negation. The proof supplies unchanged-coordinate updates itself.-/
+one bit by its negation. The proof supplies unchanged-coordinate updates itself.
+@isnad1 id=eq.1h4v.s8.69bb3a21a15d from=translated src=- shape=94c08de8 vocab=6fd5b5bc
+-/
 theorem abs_constant_of_flip_squared_gram (g : (ι → Bool) → ℝ)
     (hgram : ∀ x i,
       (1 + (g (Function.update x i (!(x i))) + g x) / 2) ^ 2 *
@@ -173,7 +187,9 @@ theorem abs_constant_of_flip_squared_gram (g : (ι → Bool) → ℝ)
 
 /-- The finite scalar and connectivity portion of Lemma 7, starting with the
 normalized Gram equality on edges and the open-interval bounds. No trace-norm
-statement or posterior model is hidden in this theorem.-/
+statement or posterior model is hidden in this theorem.
+@isnad1 id=eq.2h4v.s8.d87779cb925e from=translated src=- shape=8b79e87d vocab=23ea6f39
+-/
 theorem abs_constant_of_normalized_edge_gram (g : (ι → Bool) → ℝ)
     (hbound : ∀ x, -1 < g x ∧ g x < 1)
     (hgram : ∀ x i,
@@ -191,13 +207,17 @@ theorem abs_constant_of_normalized_edge_gram (g : (ι → Bool) → ℝ)
 def IsSignVector (x : ι → ℝ) : Prop := ∀ i, (x i) ^ 2 = 1
 
 omit [DecidableEq ι] in
-/-- The coefficient sum for the all-positive input.-/
+/-- The coefficient sum for the all-positive input.
+@isnad1 id=eq.1h2v.s6.0b29e7ce59a3 from=translated src=- shape=4a112e53 vocab=d211d451
+-/
 lemma all_positive_square (a : ι → ℝ)
     (hbool : ∀ x : ι → ℝ, IsSignVector x → (∑ i, a i * x i) ^ 2 = 1) :
     (∑ i, a i) ^ 2 = 1 := by
   simpa using hbool (fun _ => 1) (by intro i; norm_num)
 
-/-- Evaluation of a linear form at a sign vector with one negative coordinate.-/
+/-- Evaluation of a linear form at a sign vector with one negative coordinate.
+@isnad1 id=eq.0h3v.s6.ec5297a05c3a from=translated src=- shape=07d7ff7f vocab=6f703852
+-/
 lemma sum_single_flip (a : ι → ℝ) (i : ι) :
     (∑ k, a k * (if k = i then (-1 : ℝ) else 1)) =
       (∑ k, a k) - 2 * a i := by
@@ -208,7 +228,9 @@ lemma sum_single_flip (a : ι → ℝ) (i : ι) :
   simp_rw [hterm]
   simp [Finset.sum_sub_distrib]
 
-/-- Evaluation at a sign vector with two distinct negative coordinates.-/
+/-- Evaluation at a sign vector with two distinct negative coordinates.
+@isnad1 id=eq.1h4v.s7.4a554fe91cda from=translated src=- shape=814e8ee1 vocab=6f703852
+-/
 lemma sum_double_flip (a : ι → ℝ) (i j : ι) (hij : i ≠ j) :
     (∑ k, a k * (if k = i ∨ k = j then (-1 : ℝ) else 1)) =
       (∑ k, a k) - 2 * a i - 2 * a j := by
@@ -229,7 +251,9 @@ lemma sum_double_flip (a : ι → ℝ) (i j : ι) (hij : i ≠ j) :
   simp [Finset.sum_sub_distrib]
 
 /-- Pairwise coefficient products vanish as a consequence of the full Boolean
-linear-form hypothesis. They are not assumed.-/
+linear-form hypothesis. They are not assumed.
+@isnad1 id=eq.2h4v.s6.a20b0ea8f2c0 from=translated src=- shape=44dd0682 vocab=79cbd4d5
+-/
 theorem coefficient_mul_eq_zero_of_boolean_linear (a : ι → ℝ)
     (hbool : ∀ x : ι → ℝ, IsSignVector x → (∑ i, a i * x i) ^ 2 = 1)
     (i j : ι) (hij : i ≠ j) :
@@ -252,7 +276,9 @@ theorem coefficient_mul_eq_zero_of_boolean_linear (a : ι → ℝ)
 /-- Full finite-dimensional Boolean linear rigidity: a real linear form that
 is Boolean on every sign vector has one signed-unit coefficient and all other
 coefficients zero. This theorem does not assume a Fourier expansion theorem,
-Parseval, or pairwise vanishing of coefficient products.-/
+Parseval, or pairwise vanishing of coefficient products.
+@isnad1 id=ex.1h2v.s6.15eef4bc58d7 from=translated src=- shape=67ef880f vocab=07638e7f
+-/
 theorem boolean_linear_coefficients (a : ι → ℝ)
     (hbool : ∀ x : ι → ℝ, IsSignVector x → (∑ i, a i * x i) ^ 2 = 1) :
     ∃ i, (a i = 1 ∨ a i = -1) ∧ ∀ j, j ≠ i → a j = 0 := by
@@ -283,7 +309,9 @@ theorem boolean_linear_coefficients (a : ι → ℝ)
   exact ⟨i, hsign, hothers⟩
 
 /-- The preceding coefficient classification also identifies the entire linear
-form with a single signed coordinate, on all real inputs.-/
+form with a single signed coordinate, on all real inputs.
+@isnad1 id=ex.1h2v.s7.43b5e7a10659 from=translated src=- shape=7a2200ff vocab=07638e7f
+-/
 theorem boolean_linear_is_signed_coordinate (a : ι → ℝ)
     (hbool : ∀ x : ι → ℝ, IsSignVector x → (∑ i, a i * x i) ^ 2 = 1) :
     ∃ i, (a i = 1 ∨ a i = -1) ∧
@@ -297,7 +325,9 @@ theorem boolean_linear_is_signed_coordinate (a : ι → ℝ)
     rw [hothers j hji, zero_mul]
   · simp
 
-/-- The unique-coordinate conclusion stated as an explicit uniqueness theorem.-/
+/-- The unique-coordinate conclusion stated as an explicit uniqueness theorem.
+@isnad1 id=existsun.1h2v.s6.e0338aebc9d9 from=translated src=- shape=2cc914a6 vocab=af52acbb
+-/
 theorem boolean_linear_unique_nonzero (a : ι → ℝ)
     (hbool : ∀ x : ι → ℝ, IsSignVector x → (∑ i, a i * x i) ^ 2 = 1) :
     ∃! i, a i ≠ 0 := by
@@ -310,7 +340,9 @@ theorem boolean_linear_unique_nonzero (a : ι → ℝ)
 
 omit [Fintype ι] [DecidableEq ι] in
 /-- A finite weighted-sum equality has no positive weight at a strictly smaller
-multiplier. This isolates the finite-sum rigidity used after Parseval.-/
+multiplier. This isolates the finite-sum rigidity used after Parseval.
+@isnad1 id=eq.5h6v.s7.d9990b220053 from=translated src=- shape=0c470286 vocab=dcd41aca
+-/
 theorem weight_eq_zero_of_strict_multiplier {s : Finset ι}
     (a w : ι → ℝ) (c : ℝ)
     (hw : ∀ i ∈ s, 0 ≤ w i)
@@ -334,7 +366,9 @@ omit [Fintype ι] [DecidableEq ι] in
 paper: once the nonconstant spectral coefficients have squared mass one and
 their noise-weighted squared mass is rho squared, every degree above one
 vanishes. The Fourier expansion and Parseval identities themselves remain
-explicit hypotheses of this theorem.-/
+explicit hypotheses of this theorem.
+@isnad1 id=eq.7h6v.s7.751400dfdb79 from=translated src=- shape=eada6275 vocab=3962e8a6
+-/
 theorem coefficient_eq_zero_of_noise_parseval_equality {s : Finset ι}
     (degree : ι → ℕ) (coeff : ι → ℝ) (rho : ℝ)
     (hrho_pos : 0 < rho) (hrho_lt_one : rho < 1)

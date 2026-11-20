@@ -20,6 +20,9 @@ open Hellinger.ChannelSections
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
+/--
+@isnad1 id=ex.6h3v.s7.2442b8189353 from=translated src=- shape=ca41cf08 vocab=9722203c
+-/
 theorem indexed_antipodal_root_equality [Nonempty ι]
     (f : (ι → Bool) → ℝ) (hf : ∀ x, f x = -1 ∨ f x = 1)
     (hanti : ∀ x, f (fun i => !(x i)) = -f x)
@@ -59,12 +62,18 @@ theorem indexed_antipodal_root_equality [Nonempty ι]
   rw [hcomp] at h
   exact h
 
+/--
+@isnad1 id=lt.2h4v.s6.8430f6eb43ed from=translated src=- shape=ca0b9bdf vocab=d86a5774
+-/
 theorem indexedBSC_weight_pos (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρlt : ρ < 1)
     (x y : ι → Bool) : 0 < (indexedBSC ι ρ hρ).weight x y := by
   apply Finset.prod_pos
   intro i _
   exact PosteriorGram.bsc_weight_pos ρ hρ hρlt (x i) (y i)
 
+/--
+@isnad1 id=injectiv.2h2v.s6.7bd0d57f4cff from=translated src=- shape=8edbb9cf vocab=483f44f1
+-/
 theorem cubeBSC_injective (n : ℕ) (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
     (hρpos : 0 < ρ) : Function.Injective (cubeBSC n ρ hρ).apply := by
   intro f g heq
@@ -76,6 +85,9 @@ theorem cubeBSC_injective (n : ℕ) (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1
   rw [Fourier.inversion f x, Fourier.inversion g x]
   simp only [hw]
 
+/--
+@isnad1 id=injectiv.2h2v.s6.3c1e429bc104 from=translated src=- shape=ef47121a vocab=e3446aa2
+-/
 theorem indexedBSC_injective (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρpos : 0 < ρ) :
     Function.Injective (indexedBSC ι ρ hρ).apply := by
   intro f g heq
@@ -96,6 +108,9 @@ theorem indexedBSC_injective (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρp
 
 variable {Ω Λ : Type*} [Fintype Ω] [Fintype Λ] [Nonempty Ω] [Nonempty Λ]
 
+/--
+@isnad1 id=eq.3h8v.s7.a86d80f1fedd from=translated src=- shape=8232baa8 vocab=457739e2
+-/
 theorem sections_equal_of_root_mean_equality
     (K : UniformChannel Ω) (L : UniformChannel Λ)
     (f : Ω × Λ → ℝ) (hf : ∀ p, f p ∈ Set.Icc (-1 : ℝ) 1)
@@ -120,6 +135,9 @@ theorem sections_equal_of_root_mean_equality
   intro y z w
   exact (L.root_mean_equality_iff (u y) (hu y) hpos).mp (hpoint y).symm z w
 
+/--
+@isnad1 id=and.4h6v.s7.bfb0a8cce4b3 from=translated src=- shape=ed5181cf vocab=2d81f5fa
+-/
 theorem sections_of_bound_equality (K : UniformChannel Ω) (L : UniformChannel Λ)
     (f : Ω × Λ → ℝ) (hf : ∀ p, f p ∈ Set.Icc (-1 : ℝ) 1)
     (hpos : ∀ y x, 0 < L.weight y x) (c : ℝ)
@@ -138,6 +156,9 @@ theorem sections_of_bound_equality (K : UniformChannel Ω) (L : UniformChannel �
     exact fun z => (h z).symm
   · exact sections_equal_of_root_mean_equality K L f hf hpos (heq.trans hm.symm)
 
+/--
+@isnad1 id=translat.0h0v.s0.4779b9cf666a from=translated src=- shape=45709ebd vocab=4779b9cf
+-/
 theorem translation_equality : PaperSpecs.TranslationEquality := by
   intro n f hf S hS hanti ρ hρ hρpos hρlt
   constructor

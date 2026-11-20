@@ -12,6 +12,9 @@ open scoped BigOperators
 namespace Hellinger.F2Model
 open ChannelSections
 
+/--
+@isnad1 id=eq.0h4v.s5.9bfbb33f678b from=translated src=- shape=72282452 vocab=fbf3e373
+-/
 theorem objective_comp_equiv {Ω Λ : Type*} [Fintype Ω] [Fintype Λ]
     (e : Ω ≃ Λ) (f : Λ → ℝ) : objective (f ∘ e) = objective f := by
   have hm := mean_comp_equiv e f
@@ -20,6 +23,9 @@ theorem objective_comp_equiv {Ω Λ : Type*} [Fintype Ω] [Fintype Λ]
   rw [hm]
   exact congrArg (root (mean f) - ·) hr
 
+/--
+@isnad1 id=eq.1h3v.s7.bbb2587ed62e from=translated src=- shape=808f2fb4 vocab=3ebe2208
+-/
 theorem noise_objective_bits {ι : Type*} [Fintype ι] [DecidableEq ι]
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (f : (ι → F2) → ℝ) :
     objective ((noise ι ρ hρ).apply f) =
@@ -30,20 +36,32 @@ theorem noise_objective_bits {ι : Type*} [Fintype ι] [DecidableEq ι]
     exact noise_apply_bits ρ hρ f x
   rw [← hfun, objective_comp_equiv]
 
+/--
+@isnad1 id=eq.0h2v.s6.9aea898b0d34 from=translated src=- shape=371ffd5a vocab=9caba52f
+-/
 @[simp] theorem bitEquiv_xor (x y : Bool) :
     bitEquiv (Bool.xor x y) = bitEquiv x + bitEquiv y := by
   cases x <;> cases y <;> simp [show (1 : F2) + 1 = 0 from rfl]
 
+/--
+@isnad1 id=eq.0h1v.s6.3383bd7e56dc from=translated src=- shape=c477b57d vocab=c18020c1
+-/
 @[simp] theorem bitsEquiv_zero (n : ℕ) : bitsEquiv (Fin n) (fun _ => false) = 0 := by
   funext i
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.cfa7e041bc63 from=translated src=- shape=38c90416 vocab=4c50a5c9
+-/
 theorem bitsEquiv_translate (n : ℕ) (x v : Fourier.Cube n) :
     bitsEquiv (Fin n) (Fourier.translate x v) = bitsEquiv (Fin n) x + bitsEquiv (Fin n) v := by
   funext i
   simpa only [Fourier.translate, bitsEquiv_apply, Pi.add_apply, Bool.xor_comm] using
     bitEquiv_xor (x i) (v i)
 
+/--
+@isnad1 id=eq.0h3v.s7.6d80ef496c68 from=translated src=- shape=9b52181c vocab=93e528d0
+-/
 theorem autocorrelation_bits (n : ℕ) (f : Cube n → ℝ) (v : Fourier.Cube n) :
     Fourier.autocorrelation (f ∘ bitsEquiv (Fin n)) v =
       mean (fun x : Cube n => f x * f (x + bitsEquiv (Fin n) v)) := by
@@ -52,6 +70,9 @@ theorem autocorrelation_bits (n : ℕ) (f : Cube n → ℝ) (v : Fourier.Cube n)
   simpa only [Function.comp_def, add_comm] using mean_comp_equiv (bitsEquiv (Fin n))
     (fun x => f x * f (x + bitsEquiv (Fin n) v))
 
+/--
+@isnad1 id=eq.0h3v.s5.d49f0ac0dccd from=translated src=- shape=f6e25da1 vocab=f0e55828
+-/
 theorem walsh_autocorrelation {n : ℕ} (f : Fourier.Cube n → ℝ) (t : Fourier.Cube n) :
     Fourier.walsh (Fourier.autocorrelation f) t = Fourier.walsh f t ^ 2 := by
   unfold Fourier.walsh
@@ -67,6 +88,9 @@ theorem walsh_autocorrelation {n : ℕ} (f : Fourier.Cube n → ℝ) (t : Fourie
   simp [ho]
   rfl
 
+/--
+@isnad1 id=isbent.2h2v.s7.8f4f0a4a5df1 from=translated src=- shape=2e523b9e vocab=05c158a3
+-/
 theorem bent_of_autocorrelation (n : ℕ) (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1)
     (hc : ∀ v : Cube n, v ≠ 0 → mean (fun x => f x * f (x + v)) = 0) :
@@ -89,6 +113,9 @@ theorem bent_of_autocorrelation (n : ℕ) (f : Cube n → ℝ)
   simp only [Fourier.walsh, hcorr, mean]
   simp [Fourier.phase, boolSign]
 
+/--
+@isnad1 id=eq.2h3v.s7.1761a12135f7 from=translated src=- shape=73504986 vocab=a990e649
+-/
 theorem bent_autocorrelation (n : ℕ) (f : Cube n → ℝ)
     (hf : Flatness.IsBent (f ∘ bitsEquiv (Fin n))) (v : Cube n) (hv : v ≠ 0) :
     mean (fun x => f x * f (x + v)) = 0 := by
@@ -98,6 +125,9 @@ theorem bent_autocorrelation (n : ℕ) (f : Cube n → ℝ)
   intro hw
   exact hv (hw ▸ bitsEquiv_zero n)
 
+/--
+@isnad1 id=isbent.2h3v.s10.055f611dc733 from=translated src=- shape=3d3fa439 vocab=81f76c67
+-/
 theorem bent_linearEquiv (n : ℕ) (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1)
     (hb : Flatness.IsBent (f ∘ bitsEquiv (Fin n))) (M : Cube n ≃ₗ[F2] Cube n) :

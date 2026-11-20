@@ -33,6 +33,9 @@ noncomputable def translationChannel (p : G → ℝ)
       (∑ x, p (y - x)) = ∑ e, p e := (Equiv.subLeft y).sum_comp p
       _ = 1 := hs
 
+/--
+@isnad1 id=eq.2h4v.s6.30568484eccd from=translated src=- shape=d12026f7 vocab=7f52ee13
+-/
 theorem translationChannel_apply (p f : G → ℝ)
     (hp : ∀ e, 0 ≤ p e) (hs : ∑ e, p e = 1) (x : G) :
     (translationChannel p hp hs).apply f x = convolution p f x := by
@@ -42,6 +45,9 @@ theorem translationChannel_apply (p f : G → ℝ)
   intro e
   simp
 
+/--
+@isnad1 id=eq.2h3v.s6.b3e1fcb4d0a1 from=translated src=- shape=f06f3676 vocab=7e64f518
+-/
 theorem convolution_preserves_mean (p f : G → ℝ)
     (hp : ∀ e, 0 ≤ p e) (hs : ∑ e, p e = 1) :
     mean (convolution p f) = mean f := by
@@ -51,6 +57,9 @@ theorem convolution_preserves_mean (p f : G → ℝ)
   rw [← hfun]
   exact UniformChannel.mean_apply _ _
 
+/--
+@isnad1 id=le.3h3v.s6.e32b296d2cbd from=translated src=- shape=7bb96498 vocab=1ffeb528
+-/
 theorem convolution_objective_le (p f : G → ℝ)
     (hp : ∀ e, 0 ≤ p e) (hs : ∑ e, p e = 1)
     (hf : ∀ x, f x ∈ Set.Icc (-1 : ℝ) 1) :

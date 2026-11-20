@@ -35,17 +35,29 @@ noncomputable def mean {Ω : Type*} [Fintype Ω] (f : Ω → ℝ) : ℝ :=
 noncomputable def objective {Ω : Type*} [Fintype Ω] (f : Ω → ℝ) : ℝ :=
   root (mean f) - mean (fun x => root (f x))
 
+/--
+@isnad1 id=eq.0h2v.s4.ca0c65c5bef0 from=translated src=- shape=5addde91 vocab=7fec4007
+-/
 theorem mean_const {Ω : Type*} [Fintype Ω] [Nonempty Ω] (a : ℝ) :
     mean (fun _ : Ω => a) = a := by
   simp [mean, Fintype.card_ne_zero]
 
+/--
+@isnad1 id=eq.0h1v.s3.98515834817c from=translated src=- shape=cd419dad vocab=f3004e99
+-/
 theorem root_neg (t : ℝ) : root (-t) = root t := by
   simp [root]
 
+/--
+@isnad1 id=eq.0h2v.s4.a93c266bdd3b from=translated src=- shape=67aa5d67 vocab=51279537
+-/
 theorem mean_neg {Ω : Type*} [Fintype Ω] (f : Ω → ℝ) :
     mean (fun x => -f x) = -mean f := by
   simp [mean, Finset.sum_neg_distrib]
 
+/--
+@isnad1 id=eq.0h2v.s4.0d40883b34e1 from=translated src=- shape=6c68cda4 vocab=6f44ca3b
+-/
 theorem objective_neg {Ω : Type*} [Fintype Ω] (f : Ω → ℝ) :
     objective (fun x => -f x) = objective f := by
   simp [objective, mean_neg, root_neg]
@@ -65,11 +77,17 @@ variable {Ω : Type*} [Fintype Ω]
 noncomputable def apply (K : UniformChannel Ω) (f : Ω → ℝ) (x : Ω) : ℝ :=
   ∑ y, K.weight x y * f y
 
+/--
+@isnad1 id=eq.0h3v.s5.dd36db95c56f from=translated src=- shape=d1d72538 vocab=ec0cb58a
+-/
 theorem apply_neg (K : UniformChannel Ω) (f : Ω → ℝ) :
     K.apply (fun x => -f x) = fun x => -K.apply f x := by
   funext x
   simp [apply, Finset.sum_neg_distrib]
 
+/--
+@isnad1 id=eq.0h3v.s5.fe2fa0d47145 from=translated src=- shape=403aaa8b vocab=cc5d398b
+-/
 theorem sum_apply (K : UniformChannel Ω) (f : Ω → ℝ) :
     ∑ x, K.apply f x = ∑ x, f x := by
   classical
@@ -79,10 +97,16 @@ theorem sum_apply (K : UniformChannel Ω) (f : Ω → ℝ) :
   intro y _
   rw [← Finset.sum_mul, K.column_sum, one_mul]
 
+/--
+@isnad1 id=eq.0h3v.s4.29a29b2c905a from=translated src=- shape=73009a18 vocab=60138813
+-/
 theorem mean_apply (K : UniformChannel Ω) (f : Ω → ℝ) :
     mean (K.apply f) = mean f := by
   simp only [mean, K.sum_apply]
 
+/--
+@isnad1 id=mem.1h4v.s6.8ee45f97ffbd from=translated src=- shape=e13cdc35 vocab=aafdfd79
+-/
 theorem apply_mem_Icc (K : UniformChannel Ω) (f : Ω → ℝ)
     (hf : ∀ x, f x ∈ Set.Icc (-1 : ℝ) 1) (x : Ω) :
     K.apply f x ∈ Set.Icc (-1 : ℝ) 1 := by
@@ -96,7 +120,9 @@ theorem apply_mem_Icc (K : UniformChannel Ω) (f : Ω → ℝ)
         mul_le_mul_of_nonneg_left (hf y).2 (K.nonneg x y)
       _ = 1 := by simp [K.row_sum]
 
-/-- Convex functions decrease on average after an additional uniform channel.-/
+/-- Convex functions decrease on average after an additional uniform channel.
+@isnad1 id=le.2h4v.s6.10fbd1bfad19 from=translated src=- shape=e4857148 vocab=c52d82b7
+-/
 theorem convex_mean_contracts (K : UniformChannel Ω) (f : Ω → ℝ)
     (Φ : ℝ → ℝ) (hΦ : ConvexOn ℝ (Set.Icc (-1 : ℝ) 1) Φ)
     (hf : ∀ x, f x ∈ Set.Icc (-1 : ℝ) 1) :
@@ -111,6 +137,9 @@ theorem convex_mean_contracts (K : UniformChannel Ω) (f : Ω → ℝ)
         (inv_nonneg.mpr (Nat.cast_nonneg _))
     _ = mean (fun y => Φ (f y)) := K.mean_apply _
 
+/--
+@isnad1 id=le.2h4v.s6.f9c9119fac72 from=translated src=- shape=dbed268f vocab=05df8514
+-/
 theorem concave_mean_expands (K : UniformChannel Ω) (f : Ω → ℝ)
     (r : ℝ → ℝ) (hr : ConcaveOn ℝ (Set.Icc (-1 : ℝ) 1) r)
     (hf : ∀ x, f x ∈ Set.Icc (-1 : ℝ) 1) :
@@ -127,6 +156,9 @@ theorem concave_mean_expands (K : UniformChannel Ω) (f : Ω → ℝ)
 
 end UniformChannel
 
+/--
+@isnad1 id=concaveo.0h0v.s5.b4d394815ea8 from=translated src=- shape=65986746 vocab=77819332
+-/
 theorem root_concave : ConcaveOn ℝ (Set.Icc (-1 : ℝ) 1) root := by
   refine ⟨convex_Icc _ _, ?_⟩
   intro x hx y hy a b ha hb hab
@@ -148,7 +180,9 @@ theorem root_concave : ConcaveOn ℝ (Set.Icc (-1 : ℝ) 1) root := by
     simpa only [smul_eq_mul] using hj
   exact hj'.trans (Real.sqrt_le_sqrt hq)
 
-/-- The bias term is preserved, so the full Hellinger objective contracts.-/
+/-- The bias term is preserved, so the full Hellinger objective contracts.
+@isnad1 id=le.1h3v.s5.e5590db8da42 from=translated src=- shape=012ab37a vocab=0213b492
+-/
 theorem objective_channel_le {Ω : Type*} [Fintype Ω]
     (K : UniformChannel Ω) (f : Ω → ℝ)
     (hf : ∀ x, f x ∈ Set.Icc (-1 : ℝ) 1) :

@@ -20,6 +20,9 @@ def interlace {n : ℕ} (B : Matrix (Fin n) (Fin n) F2) (ξ η : ℝ) : ℝ :=
   ∑ S : Finset (Fin n), (ξ - 1) ^ (principalMatrix B S).rank *
     (η - 1) ^ (S.card - (principalMatrix B S).rank)
 
+/--
+@isnad1 id=eq.3h4v.s8.be53bb328f28 from=translated src=- shape=975a7c1a vocab=5ce83074
+-/
 theorem scalar_substitution (n s r : ℕ) (hs : s ≤ n) (hr : r ≤ s)
     (t : ℝ) (ht : t ≠ 1) :
     (1 - t) ^ (2 * n) *
@@ -52,7 +55,9 @@ theorem scalar_substitution (n s r : ℕ) (hs : s ≤ n) (hr : r ≤ s)
       exact mul_div_cancel₀ _ (pow_ne_zero _ (pow_ne_zero _ hd))
     _ = _ := by rw [hcoef]; ring
 
-/-- The graph-polynomial specialization is a term-by-term algebraic identity.-/
+/-- The graph-polynomial specialization is a term-by-term algebraic identity.
+@isnad1 id=eq.1h3v.s8.5ffb2e05cc6c from=translated src=- shape=d77d0455 vocab=a8761039
+-/
 theorem interlace_substitution {n : ℕ} (B : Matrix (Fin n) (Fin n) F2)
     (t : ℝ) (ht : t ≠ 1) :
     (1 - t) ^ (2 * n) * interlace B (1 + 4 * t / (1 - t) ^ 2)
@@ -68,7 +73,9 @@ theorem interlace_substitution {n : ℕ} (B : Matrix (Fin n) (Fin n) F2)
   simpa only [rankWeight, mul_assoc] using scalar_substitution n S.card
     (principalMatrix B S).rank hs hr t ht
 
-/-- The true BSC noise fourth moment is the claimed interlace specialization.-/
+/-- The true BSC noise fourth moment is the claimed interlace specialization.
+@isnad1 id=eq.3h4v.s9.381a01af3ff3 from=translated src=- shape=303b7b16 vocab=7cfa8813
+-/
 theorem fourth_moment_interlace {n : ℕ} (a : F2) (Q : Form n)
     (hQ : IsUnit (polarMatrix Q).det) (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
     (hρlt : ρ < 1) :
@@ -80,6 +87,9 @@ theorem fourth_moment_interlace {n : ℕ} (a : F2) (Q : Form n)
   rw [fourth_moment_principal_ranks a Q hQ, mul_assoc, interlace_substitution _ _ ht]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.537fb9ce593e from=translated src=- shape=141e515c vocab=229ec2e8
+-/
 theorem inverse_polar_alternating {n : ℕ} (Q : Form n)
     (hQ : IsUnit (polarMatrix Q).det) (x : Cube n) :
     x ⬝ᵥ (polarMatrix Q)⁻¹ *ᵥ x = 0 := by
@@ -88,6 +98,9 @@ theorem inverse_polar_alternating {n : ℕ} (Q : Form n)
   rw [QuadraticMap.polar_self, two_nsmul]
   exact (F2Model.add_eq_zero_iff _ _).mpr rfl
 
+/--
+@isnad1 id=isadjmat.1h2v.s6.5fa21326a09a from=translated src=- shape=e928169e vocab=63ce8d77
+-/
 theorem inverse_polar_isAdjMatrix {n : ℕ} (Q : Form n)
     (hQ : IsUnit (polarMatrix Q).det) : ((polarMatrix Q)⁻¹).IsAdjMatrix where
   zero_or_one i j := by
@@ -107,6 +120,9 @@ noncomputable instance inversePolarGraph_decidable {n : ℕ} (Q : Form n)
     (hQ : IsUnit (polarMatrix Q).det) : DecidableRel (inversePolarGraph Q hQ).Adj :=
   Classical.decRel _
 
+/--
+@isnad1 id=eq.1h2v.s6.31ceb3ba2912 from=translated src=- shape=af301696 vocab=5b22f7cf
+-/
 theorem inversePolarGraph_adjacency {n : ℕ} (Q : Form n) (hQ : IsUnit (polarMatrix Q).det) :
     (inversePolarGraph Q hQ).adjMatrix F2 = (polarMatrix Q)⁻¹ := by
   ext i j
@@ -118,6 +134,9 @@ theorem inversePolarGraph_adjacency {n : ℕ} (Q : Form n) (hQ : IsUnit (polarMa
 def graphInterlace {n : ℕ} (G : SimpleGraph (Fin n)) [DecidableRel G.Adj] (ξ η : ℝ) : ℝ :=
   interlace (G.adjMatrix F2) ξ η
 
+/--
+@isnad1 id=eq.3h4v.s9.567683417c07 from=translated src=- shape=e00ec365 vocab=e07e5f96
+-/
 theorem fourth_moment_graph_interlace {n : ℕ} (a : F2) (Q : Form n)
     (hQ : IsUnit (polarMatrix Q).det) (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
     (hρlt : ρ < 1) :
@@ -128,6 +147,9 @@ theorem fourth_moment_graph_interlace {n : ℕ} (a : F2) (Q : Form n)
   rw [graphInterlace, inversePolarGraph_adjacency]
   exact fourth_moment_interlace a Q hQ ρ hρ hρlt
 
+/--
+@isnad1 id=eq.1h2v.s6.ae72dec096a3 from=translated src=- shape=151fd67b vocab=d2bc16d9
+-/
 theorem noise_one {n : ℕ} (f : Fourier.Cube n → ℝ)
     (h₁ : (1 : ℝ) ∈ Set.Icc (0 : ℝ) 1) : (cubeBSC n 1 h₁).apply f = f := by
   funext x
@@ -136,7 +158,9 @@ theorem noise_one {n : ℕ} (f : Fourier.Cube n → ℝ)
   exact (Fourier.inversion f x).symm
 
 /-- The endpoint omitted by the rational substitution is included by the rank formula
-and has exactly the expected fourth moment one.-/
+and has exactly the expected fourth moment one.
+@isnad1 id=eq.1h3v.s7.49ad4abeee6f from=translated src=- shape=03e53f7b vocab=74e6459a
+-/
 theorem phase_fourth_moment_one {n : ℕ} (a : F2) (Q : Form n)
     (h₁ : (1 : ℝ) ∈ Set.Icc (0 : ℝ) 1) :
     mean (fun x => ((cubeBSC n 1 h₁).apply (phase a Q ∘ bitsEquiv (Fin n)) x) ^ 4) = 1 := by

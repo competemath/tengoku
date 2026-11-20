@@ -17,7 +17,9 @@ open scoped BigOperators Matrix
 namespace Hellinger.SmallPrincipalRanks
 open F2Model QuadraticRadical QuadraticDual PrincipalSubspaces
 
-/-- A nonzero symmetric zero-diagonal matrix over F₂ has rank at least two.-/
+/-- A nonzero symmetric zero-diagonal matrix over F₂ has rank at least two.
+@isnad1 id=le.3h2v.s6.f7f3d56e21db from=translated src=- shape=a2f77375 vocab=4019a213
+-/
 theorem alternating_rank_ge_two {ι : Type*} [Fintype ι] [DecidableEq ι]
     (C : Matrix ι ι F2) (hs : C.IsSymm) (hd : ∀ i, C i i = 0) (hC : C ≠ 0) :
     2 ≤ C.rank := by
@@ -35,7 +37,9 @@ theorem alternating_rank_ge_two {ι : Type*} [Fintype ι] [DecidableEq ι]
   have hle := C.rank_submatrix_le e e
   simpa only [hr, Fintype.card_fin] using hle
 
-/-- In size three, a nonzero alternating matrix over F₂ has rank exactly two.-/
+/-- In size three, a nonzero alternating matrix over F₂ has rank exactly two.
+@isnad1 id=eq.3h1v.s7.0c833a727801 from=translated src=- shape=8f03e7c9 vocab=d10c6ec2
+-/
 theorem alternating_three_rank (C : Matrix (Fin 3) (Fin 3) F2)
     (hs : C.IsSymm) (hd : ∀ i, C i i = 0) (hC : C ≠ 0) : C.rank = 2 := by
   have hs10 : C 1 0 = C 0 1 := congrArg (fun A => A 0 1) hs.eq
@@ -69,7 +73,9 @@ theorem alternating_three_rank (C : Matrix (Fin 3) (Fin 3) F2)
   omega
 
 /-- If a three-coordinate principal block vanished, the full matrix would factor
-through a two-dimensional space. Thus nonsingularity rules this out.-/
+through a two-dimensional space. Thus nonsingularity rules this out.
+@isnad1 id=ne.4h2v.s9.0af1e8346994 from=translated src=- shape=9c18ca6a vocab=18146d72
+-/
 theorem principal_three_nonzero (B : Matrix (Fin 4) (Fin 4) F2)
     (hs : B.IsSymm) (hd : ∀ i, B i i = 0) (hdet : B.det ≠ 0)
     (S : Finset (Fin 4)) (hS : S.card = 3) : principalMatrix B S ≠ 0 := by
@@ -109,7 +115,9 @@ theorem principal_three_nonzero (B : Matrix (Fin 4) (Fin 4) F2)
   omega
 
 /-- Every three-by-three principal submatrix of an invertible alternating
-four-by-four matrix has its actual F₂ rank equal to two.-/
+four-by-four matrix has its actual F₂ rank equal to two.
+@isnad1 id=eq.4h2v.s8.284766e8ce79 from=translated src=- shape=6cc4a9fc vocab=167f524b
+-/
 theorem principal_three_rank (B : Matrix (Fin 4) (Fin 4) F2)
     (hs : B.IsSymm) (hd : ∀ i, B i i = 0) (hdet : B.det ≠ 0)
     (S : Finset (Fin 4)) (hS : S.card = 3) : (principalMatrix B S).rank = 2 := by
@@ -130,7 +138,9 @@ theorem principal_three_rank (B : Matrix (Fin 4) (Fin 4) F2)
   have hr := alternating_three_rank C hCs hCd hCn
   simpa only [C, Matrix.rank_submatrix] using hr
 
-/-- Exact two-coordinate rank: it is two for a nonzero edge, and zero otherwise.-/
+/-- Exact two-coordinate rank: it is two for a nonzero edge, and zero otherwise.
+@isnad1 id=eq.2h1v.s7.9b53fd7d975d from=translated src=- shape=81fd6dc7 vocab=e33f0b05
+-/
 theorem alternating_two_rank (C : Matrix (Fin 2) (Fin 2) F2)
     (hs : C.IsSymm) (hd : ∀ i, C i i = 0) :
     C.rank = if C 0 1 = 0 then 0 else 2 := by
@@ -148,7 +158,9 @@ theorem alternating_two_rank (C : Matrix (Fin 2) (Fin 2) F2)
     simpa using Matrix.rank_of_det_ne_zero hdet
 
 /-- The statement applies to every two-element principal set and either ordering
-of its two distinct vertices.-/
+of its two distinct vertices.
+@isnad1 id=eq.4h5v.s8.67caf4e1e5b2 from=translated src=- shape=837ab51c vocab=67259517
+-/
 theorem principal_two_rank {n : ℕ} (B : Matrix (Fin n) (Fin n) F2)
     (hs : B.IsSymm) (hd : ∀ i, B i i = 0) (S : Finset (Fin n)) (hS : S.card = 2)
     (i j : S) (hij : i ≠ j) :
@@ -174,6 +186,9 @@ theorem principal_two_rank {n : ℕ} (B : Matrix (Fin n) (Fin n) F2)
   rw [hval] at h
   simpa only [C, Matrix.rank_submatrix] using h
 
+/--
+@isnad1 id=and.4h5v.s8.6c5b206dbf8a from=translated src=- shape=fd3c3045 vocab=4506d12f
+-/
 theorem principal_two_rank_iff {n : ℕ} (B : Matrix (Fin n) (Fin n) F2)
     (hs : B.IsSymm) (hd : ∀ i, B i i = 0) (S : Finset (Fin n)) (hS : S.card = 2)
     (i j : S) (hij : i ≠ j) :
@@ -182,12 +197,17 @@ theorem principal_two_rank_iff {n : ℕ} (B : Matrix (Fin n) (Fin n) F2)
   rw [principal_two_rank B hs hd S hS i j hij]
   by_cases h : B i j = 0 <;> simp [h]
 
+/--
+@isnad1 id=eq.0h2v.s6.0dbf319e0716 from=translated src=- shape=0a92c9a9 vocab=0a61dbfa
+-/
 theorem principal_empty_rank {n : ℕ} (B : Matrix (Fin n) (Fin n) F2) :
     (principalMatrix B ∅).rank = 0 := by
   have hle := (principalMatrix B ∅).rank_le_card_width
   simpa using hle
 
-/-- Manuscript specialization to the actual inverse polar matrix.-/
+/-- Manuscript specialization to the actual inverse polar matrix.
+@isnad1 id=eq.2h2v.s8.b3b423fea0aa from=translated src=- shape=0c7dd566 vocab=116f6903
+-/
 theorem inverse_polar_principal_three (Q : Form 4) (hQ : IsUnit (polarMatrix Q).det)
     (S : Finset (Fin 4)) (hS : S.card = 3) :
     (principalMatrix (polarMatrix Q)⁻¹ S).rank = 2 := by
@@ -196,6 +216,9 @@ theorem inverse_polar_principal_three (Q : Form 4) (hQ : IsUnit (polarMatrix Q).
   rw [Matrix.det_nonsing_inv, Ring.inverse_eq_inv]
   exact inv_ne_zero (isUnit_iff_ne_zero.mp hQ)
 
+/--
+@isnad1 id=eq.3h4v.s9.8f3b27a2eacb from=translated src=- shape=8663547b vocab=e6734e0f
+-/
 theorem inverse_polar_principal_two (Q : Form 4) (hQ : IsUnit (polarMatrix Q).det)
     (S : Finset (Fin 4)) (hS : S.card = 2) (i j : S) (hij : i ≠ j) :
     (principalMatrix (polarMatrix Q)⁻¹ S).rank =

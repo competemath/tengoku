@@ -18,6 +18,9 @@ namespace Hellinger.LayerCake
 
 def threshold (a t : ℝ) : ℝ := if t < a then 1 else 0
 
+/--
+@isnad1 id=eq.1h2v.s5.1f13071b3094 from=translated src=- shape=b4339b6b vocab=56ab60e2
+-/
 theorem threshold_difference_indicator (a b : ℝ) (hab : a ≤ b) :
     (fun t => |threshold a t - threshold b t|) =
       (Ico a b).indicator (fun _ => (1 : ℝ)) := by
@@ -29,6 +32,9 @@ theorem threshold_difference_indicator (a b : ℝ) (hab : a ≤ b) :
     · simp [threshold, hta, htb, not_lt.mp hta]
     · simp [threshold, hta, htb]
 
+/--
+@isnad1 id=integrab.0h2v.s5.6ae2fc5fcc70 from=translated src=- shape=0e83658d vocab=00686aa0
+-/
 theorem threshold_difference_integrable (a b : ℝ) :
     Integrable (fun t => |threshold a t - threshold b t|) := by
   wlog hab : a ≤ b generalizing a b
@@ -37,6 +43,9 @@ theorem threshold_difference_integrable (a b : ℝ) :
   exact (integrable_indicator_iff measurableSet_Ico).mpr
     (integrableOn_const (by simp [Real.volume_Ico]))
 
+/--
+@isnad1 id=eq.2h2v.s6.99f4cb5a9a3e from=translated src=- shape=38e78ccc vocab=df740e44
+-/
 theorem threshold_difference_integral (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) :
     (∫ t in Ici (0 : ℝ), |threshold a t - threshold b t|) = |a - b| := by
   wlog hab : a ≤ b generalizing a b
@@ -50,6 +59,9 @@ theorem threshold_difference_integral (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) 
 
 variable {ι : Type*} [Fintype ι] [LinearOrder ι]
 
+/--
+@isnad1 id=or.2h4v.s6.ad47df10c86d from=translated src=- shape=8e8ae1dd vocab=f0c03a53
+-/
 theorem threshold_cuts_nested (a b : ι → ℝ) (ha : Antitone a) (hb : Antitone b) (t : ℝ) :
     (∀ i, threshold (a i) t ≤ threshold (b i) t) ∨
       (∀ i, threshold (b i) t ≤ threshold (a i) t) := by
@@ -74,6 +86,9 @@ theorem threshold_cuts_nested (a b : ι → ℝ) (ha : Antitone a) (hb : Antiton
     · simp [threshold, hj]
       split_ifs <;> norm_num
 
+/--
+@isnad1 id=eq.2h4v.s6.6e7aaee9a800 from=translated src=- shape=cf4ffa41 vocab=e53cee24
+-/
 theorem sum_abs_threshold_difference (a b : ι → ℝ)
     (ha : Antitone a) (hb : Antitone b) (t : ℝ) :
     (∑ i, |threshold (a i) t - threshold (b i) t|) =
@@ -93,12 +108,17 @@ def countAbove (a : ι → ℝ) (t : ℝ) : ℝ :=
   ((Finset.univ.filter (fun i => t < a i)).card : ℝ)
 
 omit [LinearOrder ι] in
+/--
+@isnad1 id=eq.0h3v.s5.a5f621690c81 from=translated src=- shape=407f4127 vocab=0af28d88
+-/
 theorem countAbove_eq_sum (a : ι → ℝ) (t : ℝ) :
     countAbove a t = ∑ i, threshold (a i) t := by
   simp only [countAbove, threshold, Finset.sum_boole]
 
 /-- The exact counting-function integrand is integrable; its integral is not
-using a default value for a nonintegrable function.-/
+using a default value for a nonintegrable function.
+@isnad1 id=integrab.2h3v.s6.8c584f4e9ea5 from=translated src=- shape=e492ae98 vocab=925bc57c
+-/
 theorem counting_difference_integrable (a b : ι → ℝ)
     (ha : Antitone a) (hb : Antitone b) :
     Integrable (fun t => |countAbove a t - countAbove b t|) := by
@@ -107,7 +127,9 @@ theorem counting_difference_integrable (a b : ι → ℝ)
   simpa only [sum_abs_threshold_difference a b ha hb, ← countAbove_eq_sum] using hi
 
 /-- Original manuscript equation `eq:layercake`, including arbitrary equal
-entries and zeros and an empty index type.-/
+entries and zeros and an empty index type.
+@isnad1 id=eq.4h3v.s7.f6b040bbe473 from=translated src=- shape=469882e7 vocab=6c1bd8f8
+-/
 theorem ordered_layer_cake (a b : ι → ℝ) (ha : Antitone a) (hb : Antitone b)
     (ha₀ : ∀ i, 0 ≤ a i) (hb₀ : ∀ i, 0 ≤ b i) :
     (∑ i, |a i - b i|) = ∫ t in Ici (0 : ℝ), |countAbove a t - countAbove b t| := by

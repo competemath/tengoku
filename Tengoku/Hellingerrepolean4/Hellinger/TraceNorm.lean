@@ -18,47 +18,80 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 /-- The trace is not normalized by the dimension.-/
 noncomputable def traceNorm (A : Matrix ι ι ℝ) : ℝ := (CFC.abs A).trace
 
+/--
+@isnad1 id=eq.0h2v.s6.52ff85c015b3 from=translated src=- shape=51dae669 vocab=414259f8
+-/
 theorem traceNorm_eq_trace_sqrt (A : Matrix ι ι ℝ) :
     traceNorm A = (CFC.sqrt (A.transpose * A)).trace := by
   simp only [traceNorm, CFC.abs, Matrix.star_eq_conjTranspose, conjTranspose_eq_transpose_of_trivial]
 
+/--
+@isnad1 id=le.0h2v.s4.d5ea34579f7f from=translated src=- shape=f0c08c97 vocab=bc73d13e
+-/
 theorem traceNorm_nonneg (A : Matrix ι ι ℝ) : 0 ≤ traceNorm A :=
   (CFC.abs_nonneg A).posSemidef.trace_nonneg
 
+/--
+@isnad1 id=eq.0h1v.s5.c54719cf700e from=translated src=- shape=9fb96855 vocab=0d8a753a
+-/
 @[simp] theorem traceNorm_zero : traceNorm (0 : Matrix ι ι ℝ) = 0 := by
   simp [traceNorm]
 
+/--
+@isnad1 id=eq.0h2v.s5.286447e04002 from=translated src=- shape=b865c8ae vocab=49a0b056
+-/
 @[simp] theorem traceNorm_neg (A : Matrix ι ι ℝ) : traceNorm (-A) = traceNorm A := by
   simp [traceNorm]
 
+/--
+@isnad1 id=eq.0h3v.s6.644d07b05b27 from=translated src=- shape=04cf2415 vocab=6f9a389c
+-/
 theorem traceNorm_smul (r : ℝ) (A : Matrix ι ι ℝ) :
     traceNorm (r • A) = |r| * traceNorm A := by
   simp [traceNorm, CFC.abs_smul, Real.norm_eq_abs]
 
+/--
+@isnad1 id=eq.1h2v.s5.1f26596adae9 from=translated src=- shape=53d1e3bc vocab=ce4af957
+-/
 theorem traceNorm_of_posSemidef (A : Matrix ι ι ℝ) (hA : A.PosSemidef) :
     traceNorm A = A.trace := by
   rw [traceNorm, CFC.abs_of_nonneg A hA.nonneg]
 
+/--
+@isnad1 id=eq.0h3v.s12.ca75b3dabd99 from=translated src=- shape=0f1429f7 vocab=ac415099
+-/
 theorem trace_conjugate (U : Matrix.unitaryGroup ι ℝ) (A : Matrix ι ι ℝ) :
     (conjStarAlgAut ℝ _ U A).trace = A.trace := by
   simp only [conjStarAlgAut_apply, trace_mul_cycle, coe_star_mul_self, one_mul]
 
+/--
+@isnad1 id=eq.1h3v.s7.6dd4823c33f3 from=translated src=- shape=d5ff44d9 vocab=9f5fa992
+-/
 theorem trace_cfc {A : Matrix ι ι ℝ} (hA : A.IsHermitian) (f : ℝ → ℝ) :
     (cfc f A).trace = ∑ i, f (hA.eigenvalues i) := by
   rw [hA.cfc_eq, Matrix.IsHermitian.cfc, trace_conjugate, trace_diagonal]
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s6.feaf17084c08 from=translated src=- shape=61d24359 vocab=4fbf90c9
+-/
 theorem traceNorm_eq_sum_abs_eigenvalues {A : Matrix ι ι ℝ} (hA : A.IsHermitian) :
     traceNorm A = ∑ i, |hA.eigenvalues i| := by
   rw [traceNorm, CFC.abs_eq_cfc_norm A hA, trace_cfc hA]
   simp [Real.norm_eq_abs]
 
+/--
+@isnad1 id=possemid.1h3v.s12.29cfa4e5793f from=translated src=- shape=fab72890 vocab=8c7d642f
+-/
 theorem posSemidef_conjugate (U : Matrix.unitaryGroup ι ℝ)
     {A : Matrix ι ι ℝ} (hA : A.PosSemidef) :
     (conjStarAlgAut ℝ _ U A).PosSemidef := by
   simpa only [conjStarAlgAut_apply, Matrix.star_eq_conjTranspose] using
     hA.mul_mul_conjTranspose_same (U : Matrix ι ι ℝ)
 
+/--
+@isnad1 id=eq.0h3v.s13.0de91fe5103c from=translated src=- shape=e16399be vocab=35f6a373
+-/
 theorem abs_conjugate (U : Matrix.unitaryGroup ι ℝ) (A : Matrix ι ι ℝ) :
     CFC.abs (conjStarAlgAut ℝ _ U A) = conjStarAlgAut ℝ _ U (CFC.abs A) := by
   change CFC.sqrt (star (conjStarAlgAut ℝ _ U A) * conjStarAlgAut ℝ _ U A) = _
@@ -66,11 +99,17 @@ theorem abs_conjugate (U : Matrix.unitaryGroup ι ℝ) (A : Matrix ι ι ℝ) :
   · rw [← map_mul, CFC.abs_mul_abs, map_mul, map_star]
   · exact (posSemidef_conjugate U (CFC.abs_nonneg A).posSemidef).nonneg
 
+/--
+@isnad1 id=eq.0h3v.s12.d2e22ef3f7bc from=translated src=- shape=811783cf vocab=23e937a7
+-/
 theorem traceNorm_conjugate (U : Matrix.unitaryGroup ι ℝ) (A : Matrix ι ι ℝ) :
     traceNorm (conjStarAlgAut ℝ _ U A) = traceNorm A := by
   rw [traceNorm, abs_conjugate, trace_conjugate]
   rfl
 
+/--
+@isnad1 id=iff.0h2v.s5.ab18fb54117e from=translated src=- shape=f53fe8bf vocab=0d8a753a
+-/
 theorem traceNorm_eq_zero_iff (A : Matrix ι ι ℝ) : traceNorm A = 0 ↔ A = 0 := by
   rw [traceNorm, (CFC.abs_nonneg A).posSemidef.trace_eq_zero_iff]
   constructor
@@ -85,6 +124,9 @@ theorem traceNorm_eq_zero_iff (A : Matrix ι ι ℝ) : traceNorm A = 0 ↔ A = 0
 def OrderContraction (Q : Matrix ι ι ℝ) : Prop :=
   (1 - Q).PosSemidef ∧ (1 + Q).PosSemidef
 
+/--
+@isnad1 id=ordercon.1h3v.s12.79fc416de9c8 from=translated src=- shape=4d7e85f8 vocab=2c00dadc
+-/
 theorem OrderContraction.conjugate {Q : Matrix ι ι ℝ} (hQ : OrderContraction Q)
     (U : Matrix.unitaryGroup ι ℝ) : OrderContraction (conjStarAlgAut ℝ _ U Q) := by
   constructor
@@ -92,6 +134,9 @@ theorem OrderContraction.conjugate {Q : Matrix ι ι ℝ} (hQ : OrderContraction
   · simpa only [map_add, map_one] using posSemidef_conjugate U hQ.2
 
 omit [Fintype ι] in
+/--
+@isnad1 id=le.1h3v.s5.f39e77584ff7 from=translated src=- shape=cca6d122 vocab=10b058ea
+-/
 theorem OrderContraction.diagonal_abs_le {Q : Matrix ι ι ℝ}
     (hQ : OrderContraction Q) (i : ι) : |Q i i| ≤ 1 := by
   have h₁ := hQ.1.diag_nonneg (i := i)
@@ -99,6 +144,9 @@ theorem OrderContraction.diagonal_abs_le {Q : Matrix ι ι ℝ}
   simp only [Matrix.sub_apply, Matrix.add_apply, one_apply_eq] at h₁ h₂
   exact abs_le.mpr ⟨by linarith, by linarith⟩
 
+/--
+@isnad1 id=le.2h3v.s6.4888776a6f13 from=translated src=- shape=3b673e0b vocab=fa640058
+-/
 theorem trace_mul_le_traceNorm {A Q : Matrix ι ι ℝ}
     (hA : A.IsHermitian) (hQ : OrderContraction Q) :
     (Q * A).trace ≤ traceNorm A := by
@@ -120,10 +168,16 @@ theorem trace_mul_le_traceNorm {A Q : Matrix ι ι ℝ}
 noncomputable def scalarSign (x : ℝ) : ℝ :=
   if x < 0 then -1 else if x = 0 then 0 else 1
 
+/--
+@isnad1 id=and.0h1v.s4.5c7316c9293a from=translated src=- shape=24e024fb vocab=eea70370
+-/
 theorem scalarSign_bounds (x : ℝ) : -1 ≤ scalarSign x ∧ scalarSign x ≤ 1 := by
   unfold scalarSign
   split_ifs <;> norm_num
 
+/--
+@isnad1 id=eq.0h1v.s4.f4a6b0dde750 from=translated src=- shape=9a232c61 vocab=6b23c52d
+-/
 theorem scalarSign_mul (x : ℝ) : scalarSign x * x = |x| := by
   by_cases hx : x < 0
   · simp [scalarSign, hx, abs_of_neg hx]
@@ -135,6 +189,9 @@ theorem scalarSign_mul (x : ℝ) : scalarSign x * x = |x| := by
 noncomputable def signWitness {A : Matrix ι ι ℝ} (hA : A.IsHermitian) : Matrix ι ι ℝ :=
   conjStarAlgAut ℝ _ hA.eigenvectorUnitary (diagonal (fun i => scalarSign (hA.eigenvalues i)))
 
+/--
+@isnad1 id=ordercon.1h2v.s5.b4197087ecf2 from=translated src=- shape=f7dc7d9c vocab=133d8fd2
+-/
 theorem signWitness_orderContraction {A : Matrix ι ι ℝ} (hA : A.IsHermitian) :
     OrderContraction (signWitness hA) := by
   apply OrderContraction.conjugate
@@ -144,6 +201,9 @@ theorem signWitness_orderContraction {A : Matrix ι ι ℝ} (hA : A.IsHermitian)
   · rw [← diagonal_one, diagonal_add]
     exact .diagonal fun i => by dsimp; linarith [(scalarSign_bounds (hA.eigenvalues i)).1]
 
+/--
+@isnad1 id=eq.1h2v.s6.ebe3a3ad5969 from=translated src=- shape=1e273b03 vocab=9526b2d8
+-/
 theorem signWitness_attains {A : Matrix ι ι ℝ} (hA : A.IsHermitian) :
     (signWitness hA * A).trace = traceNorm A := by
   calc
@@ -155,13 +215,18 @@ theorem signWitness_attains {A : Matrix ι ι ℝ} (hA : A.IsHermitian) :
         traceNorm_eq_sum_abs_eigenvalues hA]
       simp [scalarSign_mul]
 
-/-- The trace-norm triangle inequality for arbitrary real symmetric matrices.-/
+/-- The trace-norm triangle inequality for arbitrary real symmetric matrices.
+@isnad1 id=le.2h3v.s7.d09f38f63212 from=translated src=- shape=5f6a2251 vocab=875fff2b
+-/
 theorem traceNorm_add_le {A B : Matrix ι ι ℝ} (hA : A.IsHermitian) (hB : B.IsHermitian) :
     traceNorm (A + B) ≤ traceNorm A + traceNorm B := by
   rw [← signWitness_attains (hA.add hB), mul_add, trace_add]
   exact add_le_add (trace_mul_le_traceNorm hA (signWitness_orderContraction _))
     (trace_mul_le_traceNorm hB (signWitness_orderContraction _))
 
+/--
+@isnad1 id=le.1h4v.s6.3747a7114f09 from=translated src=- shape=5f9de862 vocab=906de6b4
+-/
 theorem traceNorm_sum_le {α : Type*} (s : Finset α) (A : α → Matrix ι ι ℝ)
     (hA : ∀ i ∈ s, (A i).IsHermitian) :
     traceNorm (∑ i ∈ s, A i) ≤ ∑ i ∈ s, traceNorm (A i) := by
@@ -181,6 +246,9 @@ section Blocks
 variable {κ : Type*} [Fintype κ] [DecidableEq κ]
 
 omit [DecidableEq ι] [DecidableEq κ] in
+/--
+@isnad1 id=possemid.2h4v.s6.18029934ff6c from=translated src=- shape=89a3e164 vocab=87dde2c2
+-/
 theorem posSemidef_blockDiagonal {A : Matrix ι ι ℝ} {B : Matrix κ κ ℝ}
     (hA : A.PosSemidef) (hB : B.PosSemidef) :
     (Matrix.fromBlocks A 0 0 B).PosSemidef := by
@@ -192,10 +260,16 @@ theorem posSemidef_blockDiagonal {A : Matrix ι ι ℝ} {B : Matrix κ κ ℝ}
   simpa [Matrix.fromBlocks_mulVec, dotProduct, Fintype.sum_sum_type] using add_nonneg h₁ h₂
 
 omit [DecidableEq ι] [DecidableEq κ] in
+/--
+@isnad1 id=eq.0h4v.s6.6b6f5e1a3a70 from=translated src=- shape=80f999b7 vocab=fe09ffdf
+-/
 theorem trace_blockDiagonal (A : Matrix ι ι ℝ) (B : Matrix κ κ ℝ) :
     (Matrix.fromBlocks A 0 0 B).trace = A.trace + B.trace := by
   simp [Matrix.trace, Matrix.diag, Fintype.sum_sum_type]
 
+/--
+@isnad1 id=eq.2h4v.s8.92775ae7d112 from=translated src=- shape=20aeaedf vocab=16e18ffe
+-/
 theorem sqrt_blockDiagonal {A : Matrix ι ι ℝ} {B : Matrix κ κ ℝ}
     (hA : A.PosSemidef) (hB : B.PosSemidef) :
     CFC.sqrt (Matrix.fromBlocks A 0 0 B) =
@@ -206,6 +280,9 @@ theorem sqrt_blockDiagonal {A : Matrix ι ι ℝ} {B : Matrix κ κ ℝ}
   · exact (posSemidef_blockDiagonal (CFC.sqrt_nonneg A).posSemidef
       (CFC.sqrt_nonneg B).posSemidef).nonneg
 
+/--
+@isnad1 id=eq.0h4v.s8.23b450918946 from=translated src=- shape=a5a74b12 vocab=b49e04d3
+-/
 theorem abs_blockDiagonal (A : Matrix ι ι ℝ) (B : Matrix κ κ ℝ) :
     CFC.abs (Matrix.fromBlocks A 0 0 B) =
       Matrix.fromBlocks (CFC.abs A) 0 0 (CFC.abs B) := by
@@ -214,6 +291,9 @@ theorem abs_blockDiagonal (A : Matrix ι ι ℝ) (B : Matrix κ κ ℝ) :
   exact sqrt_blockDiagonal (Matrix.posSemidef_conjTranspose_mul_self A)
     (Matrix.posSemidef_conjTranspose_mul_self B)
 
+/--
+@isnad1 id=eq.0h4v.s6.b4f32d83f1e6 from=translated src=- shape=72e3c8ff vocab=27175bdf
+-/
 theorem traceNorm_blockDiagonal (A : Matrix ι ι ℝ) (B : Matrix κ κ ℝ) :
     traceNorm (Matrix.fromBlocks A 0 0 B) = traceNorm A + traceNorm B := by
   rw [traceNorm, abs_blockDiagonal, trace_blockDiagonal]
@@ -222,7 +302,9 @@ theorem traceNorm_blockDiagonal (A : Matrix ι ι ℝ) (B : Matrix κ κ ℝ) :
 end Blocks
 
 /-- The paired diagonal blocks occurring after an anticommuting reflection
-have twice the trace norm of either difference block.-/
+have twice the trace norm of either difference block.
+@isnad1 id=eq.0h4v.s13.c9aee72bdc9b from=translated src=- shape=bdae3e28 vocab=55b322c3
+-/
 theorem traceNorm_paired_difference (U : Matrix.unitaryGroup ι ℝ)
     (A B : Matrix ι ι ℝ) :
     traceNorm (Matrix.fromBlocks (A - conjStarAlgAut ℝ _ U B) 0 0

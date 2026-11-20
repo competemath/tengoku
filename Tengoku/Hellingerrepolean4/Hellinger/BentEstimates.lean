@@ -36,14 +36,18 @@ namespace Hellinger.BentEstimates
 
 open scoped BigOperators
 
-/-- The lower polynomial approximation in (C.9), on its whole domain.-/
+/-- The lower polynomial approximation in (C.9), on its whole domain.
+@isnad1 id=le.2h1v.s6.c9726c3bfed9 from=translated src=- shape=4338ded0 vocab=177add60
+-/
 theorem sqrt_one_sub_lower (z : ℝ) (hz0 : 0 ≤ z) (hz1 : z ≤ 1) :
     1 - z / 2 - z ^ 2 / 2 ≤ Real.sqrt (1 - z) := by
   apply Real.le_sqrt_of_sq_le
   have h : 0 ≤ z ^ 2 * (1 - z) * (z + 3) / 4 := by positivity
   nlinarith only [h]
 
-/-- The upper polynomial approximation in (C.9), on its whole domain.-/
+/-- The upper polynomial approximation in (C.9), on its whole domain.
+@isnad1 id=le.2h1v.s6.f722ec905543 from=translated src=- shape=337a86bd vocab=177add60
+-/
 theorem sqrt_one_sub_upper (z : ℝ) (hz0 : 0 ≤ z) (hz1 : z ≤ 1) :
     Real.sqrt (1 - z) ≤ 1 - z / 2 - z ^ 2 / 8 := by
   have hz2 : z ^ 2 ≤ z := by nlinarith [mul_nonneg hz0 (sub_nonneg.mpr hz1)]
@@ -79,7 +83,9 @@ private theorem pCertificate_identity (t : ℝ) :
   unfold bentP bentH pCertificate
   ring
 
-/-- A uniform positive lower bound on the complete intermediate-noise interval.-/
+/-- A uniform positive lower bound on the complete intermediate-noise interval.
+@isnad1 id=le.2h1v.s6.b00ddac8b025 from=translated src=- shape=d610ec2d vocab=5a0ecb11
+-/
 theorem bentP_lower_bound (t : ℝ) (ht0 : 1 / 16 ≤ t) (ht1 : t ≤ 7 / 10) :
     (1 : ℝ) / 100 ≤ bentP t := by
   have hl : 0 ≤ t - 1 / 16 := sub_nonneg.mpr ht0
@@ -90,12 +96,16 @@ theorem bentP_lower_bound (t : ℝ) (ht0 : 1 / 16 ≤ t) (ht1 : t ≤ 7 / 10) :
   rw [pCertificate_identity]
   linarith
 
-/-- In particular, positivity holds for every point, not merely the endpoints.-/
+/-- In particular, positivity holds for every point, not merely the endpoints.
+@isnad1 id=lt.2h1v.s6.63d8c2592fb5 from=translated src=- shape=5c3dea10 vocab=ad7e7635
+-/
 theorem bentP_pos (t : ℝ) (ht0 : 1 / 16 ≤ t) (ht1 : t ≤ 7 / 10) :
     0 < bentP t := by
   linarith [bentP_lower_bound t ht0 ht1]
 
-/-- The strict four-dimensional bias margin used in (C.10).-/
+/-- The strict four-dimensional bias margin used in (C.10).
+@isnad1 id=lt.0h0v.s6.38f3457c07b6 from=translated src=- shape=32d0b123 vocab=56eb3141
+-/
 theorem four_dimensional_bias_margin :
     (1 : ℝ) / 32 < 1 - Real.sqrt 15 / 4 := by
   have hs : Real.sqrt (15 : ℝ) < 31 / 8 := by
@@ -103,7 +113,9 @@ theorem four_dimensional_bias_margin :
     norm_num
   linarith
 
-/-- Averaging the lower square-root approximation over a finite distribution.-/
+/-- Averaging the lower square-root approximation over a finite distribution.
+@isnad1 id=le.3h3v.s8.e950dbc10b8a from=translated src=- shape=534a84b9 vocab=2fa6cbfa
+-/
 theorem finite_posterior_lower_bound {ι : Type*} [Fintype ι]
     (w u : ι → ℝ) (hw : ∀ i, 0 ≤ w i) (hsum : ∑ i, w i = 1)
     (hu : ∀ i, (u i) ^ 2 ≤ 1) :
@@ -123,7 +135,9 @@ theorem finite_posterior_lower_bound {ι : Type*} [Fintype ι]
   exact havg
 
 /-- The scalar implication of the second- and fourth-moment estimates.
-The moment bounds are hypotheses, so no Fourier identity is silently assumed.-/
+The moment bounds are hypotheses, so no Fourier identity is silently assumed.
+@isnad1 id=lt.5h4v.s8.bbe96a607af0 from=translated src=- shape=c8138944 vocab=cbfb51b4
+-/
 theorem gap_gt_bentP (t R Q₂ Q₄ : ℝ) (ht0 : 0 ≤ t) (ht1 : t ≤ 1)
     (hR : 1 - Q₂ / 2 - Q₄ / 2 ≤ R)
     (hQ₂ : Q₂ = (1 + t) ^ 4 / 16)
@@ -139,7 +153,9 @@ theorem gap_gt_bentP (t R Q₂ Q₄ : ℝ) (ht0 : 0 ≤ t) (ht1 : t ≤ 1)
 For an arbitrary finite distribution this is not its own Hellinger gap, unless
 its squared mean is `1/16`. See `four_dimensional_weighted_hellinger_gap` for
 the theorem tying this expression to the actual mean. Moment identities
-remain explicit hypotheses; their Boolean/Fourier derivation is separate.-/
+remain explicit hypotheses; their Boolean/Fourier derivation is separate.
+@isnad1 id=lt.7h4v.s8.6e57f8bdc230 from=translated src=- shape=7018a2a2 vocab=e1278e5e
+-/
 theorem four_dimensional_intermediate_gap {ι : Type*} [Fintype ι]
     (w u : ι → ℝ) (hw : ∀ i, 0 ≤ w i) (hsum : ∑ i, w i = 1)
     (hu : ∀ i, (u i) ^ 2 ≤ 1)
@@ -154,7 +170,9 @@ theorem four_dimensional_intermediate_gap {ι : Type*} [Fintype ι]
 
 /-- The actual weighted Hellinger gap, with the squared-mean hypothesis explicit.
 The mean, second moment, and fourth-moment bound are all supplied independently;
-none is inferred from the other two.-/
+none is inferred from the other two.
+@isnad1 id=lt.8h4v.s9.f32eb478415d from=translated src=- shape=ea559bc6 vocab=e1278e5e
+-/
 theorem four_dimensional_weighted_hellinger_gap {ι : Type*} [Fintype ι]
     (w u : ι → ℝ) (hw : ∀ i, 0 ≤ w i) (hsum : ∑ i, w i = 1)
     (hu : ∀ i, (u i) ^ 2 ≤ 1)
@@ -174,7 +192,9 @@ theorem four_dimensional_weighted_hellinger_gap {ι : Type*} [Fintype ι]
   rw [hroot]
   exact four_dimensional_intermediate_gap w u hw hsum hu t ht0 ht1 hQ₂ hQ₄
 
-/-- A chord bound for the square root, proved algebraically on the whole segment.-/
+/-- A chord bound for the square root, proved algebraically on the whole segment.
+@isnad1 id=le.4h3v.s7.7bf352a1201c from=translated src=- shape=183fbea2 vocab=ef4deeb7
+-/
 theorem sqrt_chord (a b t : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b)
     (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
     (1 - t) * Real.sqrt a + t * Real.sqrt b ≤ Real.sqrt ((1 - t) * a + t * b) := by
@@ -186,7 +206,9 @@ theorem sqrt_chord (a b t : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b)
       nlinarith only [h]
     _ = (1 - t) * a + t * b := by rw [Real.sq_sqrt ha, Real.sq_sqrt hb]
 
-/-- The two-variable root-pair comparison from (C.2), including both endpoints.-/
+/-- The two-variable root-pair comparison from (C.2), including both endpoints.
+@isnad1 id=le.2h1v.s7.cf45e02c527c from=translated src=- shape=31868a58 vocab=3bfce676
+-/
 theorem two_root_pair (ρ : ℝ) (hρ0 : 0 ≤ ρ) (hρ1 : ρ ≤ 1) :
     2 * Real.sqrt (3 - ρ ^ 2) ≤
       Real.sqrt (3 + ρ ^ 2 - 4 * ρ) + Real.sqrt (3 + ρ ^ 2 + 4 * ρ) := by
@@ -211,7 +233,9 @@ def twoRootR (ρ : ℝ) : ℝ :=
     (Real.sqrt (3 + ρ ^ 2 - 4 * ρ) + Real.sqrt (3 + ρ ^ 2 + 4 * ρ) +
       2 * Real.sqrt (3 + ρ ^ 2))
 
-/-- The complete chord estimate (C.3), without a concavity hypothesis.-/
+/-- The complete chord estimate (C.3), without a concavity hypothesis.
+@isnad1 id=le.2h1v.s7.671b8fde425b from=translated src=- shape=a152d1b4 vocab=778f125c
+-/
 theorem twoRootR_chord (ρ : ℝ) (hρ0 : 0 ≤ ρ) (hρ1 : ρ ≤ 1) :
     Real.sqrt (1 - ρ ^ 2) *
         ((1 - ρ ^ 2) * (Real.sqrt 3 / 2) + ρ ^ 2 * ((2 + Real.sqrt 2) / 4)) ≤
@@ -236,7 +260,9 @@ theorem twoRootR_chord (ρ : ℝ) (hρ0 : 0 ≤ ρ) (hρ1 : ρ ≤ 1) :
   unfold twoRootR
   nlinarith only [hchm, hpair]
 
-/-- The strictly positive coefficient in the two-dimensional gap (C.4).-/
+/-- The strictly positive coefficient in the two-dimensional gap (C.4).
+@isnad1 id=lt.0h0v.s6.d3f97503d728 from=translated src=- shape=9ffac78e vocab=2cc20a5a
+-/
 theorem two_gap_coefficient_pos : 0 < (4 + Real.sqrt (2 : ℝ) - 3 * Real.sqrt 3) / 4 := by
   have h2 := Real.sq_sqrt (show 0 ≤ (2 : ℝ) by norm_num)
   have h3 := Real.sq_sqrt (show 0 ≤ (3 : ℝ) by norm_num)
@@ -257,7 +283,9 @@ private theorem two_coefficients_order : (2 + Real.sqrt (2 : ℝ)) / 4 ≤ Real.
   have h := (sq_le_sq₀ (by positivity) (by positivity)).mp hs
   linarith
 
-/-- Quantitative two-dimensional Hellinger gap on the entire noise interval.-/
+/-- Quantitative two-dimensional Hellinger gap on the entire noise interval.
+@isnad1 id=le.2h1v.s7.6d7551c00236 from=translated src=- shape=dee606b9 vocab=778f125c
+-/
 theorem twoRootR_gap_bound (ρ : ℝ) (hρ0 : 0 ≤ ρ) (hρ1 : ρ ≤ 1) :
     (4 + Real.sqrt (2 : ℝ) - 3 * Real.sqrt 3) / 4 * ρ ^ 2 ≤
       twoRootR ρ - Real.sqrt 3 / 2 + 1 - Real.sqrt (1 - ρ ^ 2) := by
@@ -286,7 +314,9 @@ theorem twoRootR_gap_bound (ρ : ℝ) (hρ0 : 0 ≤ ρ) (hρ1 : ρ ≤ 1) :
       (Real.sqrt (1 - ρ ^ 2) ^ 2 - (1 - ρ ^ 2)) = 0 := by rw [hsq]; ring
   nlinarith only [hR, h₁, h₂, heq']
 
-/-- Strictness at every positive correlation, for the explicit two-variable expression.-/
+/-- Strictness at every positive correlation, for the explicit two-variable expression.
+@isnad1 id=lt.2h1v.s6.7b9395d37e5c from=translated src=- shape=5cfcffb2 vocab=afef20c2
+-/
 theorem twoRootR_gap_pos (ρ : ℝ) (hρ0 : 0 < ρ) (hρ1 : ρ ≤ 1) :
     0 < twoRootR ρ - Real.sqrt 3 / 2 + 1 - Real.sqrt (1 - ρ ^ 2) := by
   have h := twoRootR_gap_bound ρ (le_of_lt hρ0) hρ1
@@ -301,7 +331,9 @@ def twoNoiseR (ρ : ℝ) : ℝ :=
     2 * Real.sqrt (1 - ((1 + ρ ^ 2) / 2) ^ 2) +
     Real.sqrt (1 - ((1 - 2 * ρ - ρ ^ 2) / 2) ^ 2)) / 4
 
-/-- All three complementary-square factorizations leading to (C.2).-/
+/-- All three complementary-square factorizations leading to (C.2).
+@isnad1 id=eq.2h1v.s4.b20e231bcd04 from=translated src=- shape=df5c752e vocab=485217fe
+-/
 theorem twoNoiseR_eq_twoRootR (ρ : ℝ) (hρ0 : 0 ≤ ρ) (hρ1 : ρ ≤ 1) :
     twoNoiseR ρ = twoRootR ρ := by
   have ht1 : ρ ^ 2 ≤ 1 := by nlinarith [mul_nonneg hρ0 (sub_nonneg.mpr hρ1)]
@@ -320,14 +352,18 @@ theorem twoNoiseR_eq_twoRootR (ρ : ℝ) (hρ0 : 0 ≤ ρ) (hρ1 : ρ ≤ 1) :
   ring
 
 /-- Quantitative Hellinger bound for the complete four-value posterior formula,
-valid at every correlation in `[0,1]`, including both endpoints.-/
+valid at every correlation in `[0,1]`, including both endpoints.
+@isnad1 id=le.2h1v.s7.8a43ae42c853 from=translated src=- shape=dee606b9 vocab=c4977345
+-/
 theorem twoNoiseR_gap_bound (ρ : ℝ) (hρ0 : 0 ≤ ρ) (hρ1 : ρ ≤ 1) :
     (4 + Real.sqrt (2 : ℝ) - 3 * Real.sqrt 3) / 4 * ρ ^ 2 ≤
       twoNoiseR ρ - Real.sqrt 3 / 2 + 1 - Real.sqrt (1 - ρ ^ 2) := by
   rw [twoNoiseR_eq_twoRootR ρ hρ0 hρ1]
   exact twoRootR_gap_bound ρ hρ0 hρ1
 
-/-- Strict Hellinger inequality for the canonical two-variable posterior formula.-/
+/-- Strict Hellinger inequality for the canonical two-variable posterior formula.
+@isnad1 id=lt.2h1v.s6.b64a662ee0ba from=translated src=- shape=2b725850 vocab=85c239fb
+-/
 theorem twoNoiseR_hellinger_strict (ρ : ℝ) (hρ0 : 0 < ρ) (hρ1 : ρ ≤ 1) :
     Real.sqrt 3 / 2 - twoNoiseR ρ < 1 - Real.sqrt (1 - ρ ^ 2) := by
   rw [twoNoiseR_eq_twoRootR ρ (le_of_lt hρ0) hρ1]
@@ -338,21 +374,27 @@ def fourthMomentExpression (e t : ℝ) : ℝ :=
   ((1 - t) ^ 8 + 32 * t * (1 - t) ^ 6 + (384 - 48 * e) * t ^ 2 * (1 - t) ^ 4 +
     512 * t ^ 3 * (1 - t) ^ 2 + 256 * t ^ 4) / 256
 
-/-- The identity behind the fourth-moment upper bound is valid for all real inputs.-/
+/-- The identity behind the fourth-moment upper bound is valid for all real inputs.
+@isnad1 id=eq.0h2v.s7.80706db118b7 from=translated src=- shape=a6752ca8 vocab=1b23445f
+-/
 theorem fourthMomentExpression_identity (e t : ℝ) :
     fourthMomentExpression e t = bentH t ^ 2 / 256 -
       3 / 16 * (e - 2) * t ^ 2 * (1 - t) ^ 4 := by
   unfold fourthMomentExpression bentH
   ring
 
-/-- Once the graph/rank argument supplies `e ≥ 2`, the moment upper bound follows.-/
+/-- Once the graph/rank argument supplies `e ≥ 2`, the moment upper bound follows.
+@isnad1 id=le.1h2v.s5.61404d7bf63f from=translated src=- shape=38ce99d5 vocab=afb0bb1f
+-/
 theorem fourthMomentExpression_le (e t : ℝ) (he : 2 ≤ e) :
     fourthMomentExpression e t ≤ bentH t ^ 2 / 256 := by
   rw [fourthMomentExpression_identity]
   have h : 0 ≤ 3 / 16 * (e - 2) * t ^ 2 * (1 - t) ^ 4 := by positivity
   linarith
 
-/-- The strict sensitivity constant in (C.12); its binomial provenance is separate.-/
+/-- The strict sensitivity constant in (C.12); its binomial provenance is separate.
+@isnad1 id=lt.0h0v.s6.7b560146187b from=translated src=- shape=14c9b21c vocab=bd0eb148
+-/
 theorem four_sensitivity_constant :
     (4 : ℝ) / 3 < (3 + 3 * Real.sqrt 2 + 2 * Real.sqrt 3) / 8 := by
   have h2 : (141 : ℝ) / 100 < Real.sqrt 2 := by
@@ -364,7 +406,9 @@ theorem four_sensitivity_constant :
   linarith
 
 /-- Uniform low-noise strictness from the sensitivity lower estimate, for the
-whole interval `α ≤ 1/12`. The probabilistic event estimate is an explicit input.-/
+whole interval `α ≤ 1/12`. The probabilistic event estimate is an explicit input.
+@isnad1 id=lt.3h3v.s7.5ce55067cef9 from=translated src=- shape=797e289c vocab=e7d2045c
+-/
 theorem four_low_noise_ratio_gt_one (α S ratio : ℝ) (hα : α ≤ 1 / 12)
     (hS : (3 + 3 * Real.sqrt 2 + 2 * Real.sqrt 3) / 8 ≤ S)
     (hratio : (1 - α) ^ 3 * S ≤ ratio) : 1 < ratio := by
@@ -375,7 +419,9 @@ theorem four_low_noise_ratio_gt_one (α S ratio : ℝ) (hα : α ≤ 1 / 12)
   norm_num at hmul
   linarith
 
-/-- Exact rational curvature comparison (4.8).-/
+/-- Exact rational curvature comparison (4.8).
+@isnad1 id=lt.0h0v.s7.bb07091ee281 from=translated src=- shape=8b66aeb6 vocab=39ed9922
+-/
 theorem high_noise_curvature_constant :
     ((109 : ℝ) ^ 3 / 4000000) ^ 2 < (1 - (169 / 200 : ℝ) ^ 4) ^ 3 := by
   norm_num

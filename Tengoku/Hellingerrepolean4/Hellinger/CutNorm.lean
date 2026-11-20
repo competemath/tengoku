@@ -19,19 +19,31 @@ def rectangularTraceNorm (A : Matrix ι κ ℝ) : ℝ :=
   (CFC.sqrt (A.transpose * A)).trace
 
 omit [DecidableEq ι] [DecidableEq κ] in
+/--
+@isnad1 id=possemid.0h3v.s5.7416e2874efd from=translated src=- shape=5b0f41a4 vocab=db4fedd7
+-/
 theorem gram_posSemidef (A : Matrix ι κ ℝ) : (A.transpose * A).PosSemidef := by
   simpa only [Matrix.conjTranspose_eq_transpose_of_trivial] using
     Matrix.posSemidef_conjTranspose_mul_self A
 
 omit [DecidableEq ι] [DecidableEq κ] in
+/--
+@isnad1 id=possemid.0h3v.s5.3cf7dbd4c2e2 from=translated src=- shape=bc5e289c vocab=db4fedd7
+-/
 theorem cogram_posSemidef (A : Matrix ι κ ℝ) : (A * A.transpose).PosSemidef := by
   simpa only [Matrix.conjTranspose_eq_transpose_of_trivial] using
     Matrix.posSemidef_self_mul_conjTranspose A
 
+/--
+@isnad1 id=eq.1h2v.s7.97db58eec7c6 from=translated src=- shape=ef9d59db vocab=053402b4
+-/
 theorem sqrt_eq_real_cfc {A : Matrix ι ι ℝ} (hA : A.PosSemidef) :
     CFC.sqrt A = cfc Real.sqrt A := by
   rw [CFC.sqrt_eq_real_sqrt A hA.nonneg, cfcₙ_eq_cfc]
 
+/--
+@isnad1 id=eq.0h2v.s4.a844f5cfedfa from=translated src=- shape=199c3359 vocab=5aefc614
+-/
 theorem traceNorm_transpose (A : Matrix ι ι ℝ) : traceNorm A.transpose = traceNorm A := by
   have h₁ := (cogram_posSemidef A).isHermitian
   have h₂ := (gram_posSemidef A).isHermitian
@@ -42,6 +54,9 @@ theorem traceNorm_transpose (A : Matrix ι ι ℝ) : traceNorm A.transpose = tra
     sqrt_eq_real_cfc (gram_posSemidef A),
     trace_cfc h₁, trace_cfc h₂, he]
 
+/--
+@isnad1 id=eq.0h2v.s6.7a87c9e45e62 from=translated src=- shape=120b3d56 vocab=79031dea
+-/
 theorem traceNorm_offDiagonal (A : Matrix ι ι ℝ) :
     traceNorm (Matrix.fromBlocks 0 A A.transpose 0) = 2 * traceNorm A := by
   rw [traceNorm_eq_trace_sqrt]
@@ -55,12 +70,18 @@ theorem traceNorm_offDiagonal (A : Matrix ι ι ℝ) :
   rw [traceNorm_transpose]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s7.9f3b0d138b84 from=translated src=- shape=8ad87be4 vocab=a3a4766b
+-/
 theorem sqrt_submatrix_equiv {A : Matrix ι ι ℝ} (hA : A.PosSemidef) (e : κ ≃ ι) :
     CFC.sqrt (A.submatrix e e) = (CFC.sqrt A).submatrix e e := by
   apply CFC.sqrt_unique
   · rw [Matrix.submatrix_mul_equiv, CFC.sqrt_mul_sqrt_self A hA.nonneg]
   · exact ((CFC.sqrt_nonneg A).posSemidef.submatrix e).nonneg
 
+/--
+@isnad1 id=eq.0h4v.s6.5ab5367aa3f4 from=translated src=- shape=ab1bbce8 vocab=d517dec7
+-/
 theorem rectangularTraceNorm_columns (A : Matrix ι κ ℝ) (e : ι ≃ κ) :
     rectangularTraceNorm A = traceNorm (A.submatrix id e) := by
   rw [traceNorm_eq_trace_sqrt]
@@ -78,10 +99,16 @@ abbrev Positive (f : ι → ℝ) := {x // f x = 1}
 abbrev Negative (f : ι → ℝ) := {x // f x ≠ 1}
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=eq.1h3v.s6.97694ded5a3c from=translated src=- shape=fdc2bb7c vocab=955b9ad9
+-/
 theorem value_negative (f : ι → ℝ) (hf : ∀ x, f x = -1 ∨ f x = 1)
     (x : Negative f) : f x = -1 := (hf x).resolve_right x.property
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.2h2v.s7.3748e5649125 from=translated src=- shape=f12a0928 vocab=c3ccf59e
+-/
 theorem balanced_cards [Nonempty ι] (f : ι → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hm : mean f = 0) :
     Fintype.card (Positive f) = Fintype.card (Negative f) := by
@@ -101,6 +128,9 @@ def cutEquiv (f : ι → ℝ) (e : Positive f ≃ Negative f) :
     Positive f ⊕ Positive f ≃ ι :=
   (Equiv.sumCongr (Equiv.refl _) e).trans (Equiv.sumCompl (fun x => f x = 1))
 
+/--
+@isnad1 id=eq.2h4v.s9.4fc0910cff5e from=translated src=- shape=e6c4348a vocab=0113fb0a
+-/
 theorem cut_blocks (K : Matrix ι ι ℝ) (hK : K.IsHermitian)
     (f : ι → ℝ) (hf : ∀ x, f x = -1 ∨ f x = 1)
     (e : Positive f ≃ Negative f) :
@@ -117,6 +147,9 @@ theorem cut_blocks (K : Matrix ι ι ℝ) (hK : K.IsHermitian)
     simp [Matrix.submatrix_apply, cutEquiv, Matrix.mul_diagonal,
       Matrix.diagonal_mul, hp, hn, cutMatrix, hsym] <;> ring
 
+/--
+@isnad1 id=eq.3h3v.s8.aa30c3a38212 from=translated src=- shape=1139f6db vocab=85815902
+-/
 theorem cut_trace_identity [Nonempty ι] (K : Matrix ι ι ℝ) (hK : K.IsHermitian)
     (f : ι → ℝ) (hf : ∀ x, f x = -1 ∨ f x = 1) (hm : mean f = 0) :
     traceNorm (K - Matrix.diagonal f * K * Matrix.diagonal f) / 2 =
@@ -127,6 +160,9 @@ theorem cut_trace_identity [Nonempty ι] (K : Matrix ι ι ℝ) (hK : K.IsHermit
     rectangularTraceNorm_columns (cutMatrix K f) e]
   norm_num
 
+/--
+@isnad1 id=eq.2h3v.s9.a95fdc8f9c1a from=translated src=- shape=c4115965 vocab=dc38b37d
+-/
 theorem product_state_cut_identity (n : ℕ) (c : ℝ) (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hm : mean f = 0) :
     traceNorm (state n c - Matrix.diagonal f * state n c * Matrix.diagonal f) / 2 =

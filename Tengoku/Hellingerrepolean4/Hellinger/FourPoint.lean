@@ -18,6 +18,9 @@ namespace Hellinger.FourPoint
 
 open Hellinger.Fourier Hellinger.ChannelSections Hellinger.OddDual
 
+/--
+@isnad1 id=le.3h3v.s7.bbc9bd656075 from=translated src=- shape=7b1a717b vocab=563d7439
+-/
 theorem root_pair_antitone (u v w : ℝ) (habs : |v| ≤ |w|)
     (hp : u + w ∈ Set.Icc (-1 : ℝ) 1) (hm : u - w ∈ Set.Icc (-1 : ℝ) 1) :
     root (u + w) + root (u - w) ≤ root (u + v) + root (u - v) := by
@@ -61,11 +64,17 @@ theorem root_pair_antitone (u v w : ℝ) (habs : |v| ≤ |w|)
   rw [heven, min_self, hqw] at h
   exact h
 
+/--
+@isnad1 id=eq.0h5v.s5.87b88c3dcfe7 from=translated src=- shape=2e92f5c0 vocab=723c7874
+-/
 theorem apply_add {Ω : Type*} [Fintype Ω] (K : UniformChannel Ω)
     (f g : Ω → ℝ) (y : Ω) :
     K.apply (fun x => f x + g x) y = K.apply f y + K.apply g y := by
   simp only [UniformChannel.apply, mul_add, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h5v.s5.c0a80c73527d from=translated src=- shape=2e92f5c0 vocab=b94cbebf
+-/
 theorem apply_sub {Ω : Type*} [Fintype Ω] (K : UniformChannel Ω)
     (f g : Ω → ℝ) (y : Ω) :
     K.apply (fun x => f x - g x) y = K.apply f y - K.apply g y := by
@@ -79,11 +88,17 @@ def exceptionalEven {n : ℕ} (x y : Cube n) (z : Cube n) : ℝ :=
 def completionOdd {n : ℕ} (x y : Cube n) (z : Cube n) : ℝ :=
   delta x z - delta (antipode n x) z + delta y z - delta (antipode n y) z
 
+/--
+@isnad1 id=eq.0h4v.s6.1ac6d8199946 from=translated src=- shape=dcf08635 vocab=6ed8c66c
+-/
 theorem apply_delta {n : ℕ} (K : UniformChannel (Cube n)) (x z : Cube n) :
     K.apply (delta x) z = K.weight z x := by
   classical
   simp [UniformChannel.apply, delta]
 
+/--
+@isnad1 id=eq.0h5v.s8.0e4254899909 from=translated src=- shape=54260a15 vocab=89f6ee73
+-/
 theorem apply_exceptionalEven {n : ℕ} (K : UniformChannel (Cube n)) (x y z : Cube n) :
     K.apply (exceptionalEven x y) z =
       K.weight z x + K.weight z (antipode n x) - K.weight z y - K.weight z (antipode n y) := by
@@ -91,6 +106,9 @@ theorem apply_exceptionalEven {n : ℕ} (K : UniformChannel (Cube n)) (x y z : C
   rw [apply_sub, apply_sub, apply_add]
   simp only [apply_delta]
 
+/--
+@isnad1 id=eq.0h5v.s8.0531851207e2 from=translated src=- shape=54260a15 vocab=378e0d72
+-/
 theorem apply_completionOdd {n : ℕ} (K : UniformChannel (Cube n)) (x y z : Cube n) :
     K.apply (completionOdd x y) z =
       K.weight z x - K.weight z (antipode n x) + K.weight z y - K.weight z (antipode n y) := by
@@ -98,6 +116,9 @@ theorem apply_completionOdd {n : ℕ} (K : UniformChannel (Cube n)) (x y z : Cub
   rw [apply_sub, apply_add, apply_sub]
   simp only [apply_delta]
 
+/--
+@isnad1 id=le.1h5v.s6.fdcdb227e801 from=translated src=- shape=0bc94173 vocab=625996c5
+-/
 theorem noise_exceptional_abs_le (n : ℕ) (x y z : Cube n)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) :
     |(cubeBSC n ρ hρ).apply (exceptionalEven x y) z| ≤
@@ -148,16 +169,25 @@ theorem noise_exceptional_abs_le (n : ℕ) (x y z : Cube n)
   rw [he, hh, abs_mul, abs_mul, abs_of_nonneg (add_nonneg (hP0 _) (hP0 _))]
   exact mul_le_mul_of_nonneg_right hsub (abs_nonneg _)
 
+/--
+@isnad1 id=eq.0h2v.s6.1016c8b61bac from=translated src=- shape=a41877e0 vocab=fc95089a
+-/
 theorem antipode_twice (n : ℕ) (x : Cube n) : antipode n (antipode n x) = x := by
   funext i
   simp [antipode]
 
+/--
+@isnad1 id=ne.0h2v.s7.ac0aa7f73def from=translated src=- shape=4d13eb34 vocab=903efb92
+-/
 theorem antipode_ne_self (n : ℕ) (x : Cube (n + 1)) : antipode (n + 1) x ≠ x := by
   intro heq
   have h := congrFun heq 0
   change (!(x 0)) = x 0 at h
   cases hx : x 0 <;> simp [hx] at h
 
+/--
+@isnad1 id=eq.0h3v.s6.56cb8132cbe4 from=translated src=- shape=40b6aea5 vocab=fe8ef229
+-/
 theorem delta_antipode (n : ℕ) (x z : Cube n) : delta x (antipode n z) = delta (antipode n x) z := by
   have hiff : antipode n z = x ↔ z = antipode n x := by
     constructor <;> intro h
@@ -166,16 +196,25 @@ theorem delta_antipode (n : ℕ) (x z : Cube n) : delta x (antipode n z) = delta
     · rw [h, antipode_twice]
   simp only [delta, hiff]
 
+/--
+@isnad1 id=eq.0h4v.s6.7a6188457596 from=translated src=- shape=21e034f9 vocab=135fad14
+-/
 theorem exceptionalEven_even (n : ℕ) (x y z : Cube n) :
     exceptionalEven x y (antipode n z) = exceptionalEven x y z := by
   simp only [exceptionalEven, delta_antipode, antipode_twice]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s6.6cc721f39c2a from=translated src=- shape=0e1b494a vocab=7f31a705
+-/
 theorem completionOdd_odd (n : ℕ) (x y z : Cube n) :
     completionOdd x y (antipode n z) = -completionOdd x y z := by
   simp only [completionOdd, delta_antipode, antipode_twice]
   ring
 
+/--
+@isnad1 id=eq.2h4v.s7.6925dd882202 from=translated src=- shape=5e9430ca vocab=385ad389
+-/
 theorem noise_even (n : ℕ) (h : Cube n → ℝ)
     (heven : ∀ x, h (antipode n x) = h x) (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
     (y : Cube n) : (cubeBSC n ρ hρ).apply h (antipode n y) = (cubeBSC n ρ hρ).apply h y := by
@@ -183,6 +222,9 @@ theorem noise_even (n : ℕ) (h : Cube n → ℝ)
   rw [← (antipode n).sum_comp (fun x => (cubeBSC n ρ hρ).weight (antipode n y) x * h x)]
   simp only [cube_weight_antipode, heven]
 
+/--
+@isnad1 id=eq.2h3v.s7.2858e8ef0754 from=translated src=- shape=14cb8b2e vocab=5f46c01b
+-/
 theorem paired_root_mean (n : ℕ) (u v : Cube n → ℝ)
     (hu : ∀ x, u (antipode n x) = -u x) (hv : ∀ x, v (antipode n x) = v x) :
     mean (fun x => root (u x + v x)) = mean (fun x => root (u x - v x)) := by
@@ -203,6 +245,9 @@ def plusCompletion {n : ℕ} (f : Cube n → ℝ) (x y : Cube n) : Cube n → �
 def minusCompletion {n : ℕ} (f : Cube n → ℝ) (x y : Cube n) : Cube n → ℝ :=
   fun z => remainder f x y z - completionOdd x y z
 
+/--
+@isnad1 id=and.7h4v.s10.3223b913656c from=translated src=- shape=d3503852 vocab=4946bc17
+-/
 theorem exceptional_data (n : ℕ) (f : Cube (n + 1) → ℝ) (x y : Cube (n + 1))
     (hyx : y ≠ x) (hyax : y ≠ antipode (n + 1) x)
     (hfx : f x = 1) (hfax : f (antipode (n + 1) x) = 1)
@@ -262,6 +307,9 @@ theorem exceptional_data (n : ℕ) (f : Cube (n + 1) → ℝ) (x y : Cube (n + 1
     · exact Or.inl ⟨by rw [hzya, heay, hfay], Or.inr (by rw [hzya, hhay])⟩
     exact Or.inr (by simp [exceptionalEven, completionOdd, delta, hz, hza, hzy, hzya])
 
+/--
+@isnad1 id=eq.1h5v.s7.3ecd75a03d8c from=translated src=- shape=45038f40 vocab=3420a29a
+-/
 theorem remainder_odd {n : ℕ} (f : Cube n → ℝ) (x y : Cube n)
     (hpair : ∀ z, f z + f (antipode n z) = 2 * exceptionalEven x y z) (z : Cube n) :
     remainder f x y (antipode n z) = -remainder f x y z := by
@@ -269,6 +317,9 @@ theorem remainder_odd {n : ℕ} (f : Cube n → ℝ) (x y : Cube n)
   rw [exceptionalEven_even]
   linarith [hpair z]
 
+/--
+@isnad1 id=and.2h4v.s7.6611c5680491 from=translated src=- shape=a4bf9fe1 vocab=ceaad112
+-/
 theorem completion_boolean {n : ℕ} (f : Cube n → ℝ) (x y : Cube n)
     (hf : ∀ z, f z = -1 ∨ f z = 1)
     (hdata : ∀ z, (exceptionalEven x y z = f z ∧
@@ -283,6 +334,9 @@ theorem completion_boolean {n : ℕ} (f : Cube n → ℝ) (x y : Cube n)
       zero_add, zero_sub, neg_neg, sub_zero, add_zero]
     all_goals first | exact Or.inl True.intro | exact Or.inr True.intro | exact hf z
 
+/--
+@isnad1 id=eq.1h5v.s7.6414884137f8 from=translated src=- shape=45038f40 vocab=84dcbae1
+-/
 theorem plusCompletion_odd {n : ℕ} (f : Cube n → ℝ) (x y : Cube n)
     (hpair : ∀ z, f z + f (antipode n z) = 2 * exceptionalEven x y z) (z : Cube n) :
     plusCompletion f x y (antipode n z) = -plusCompletion f x y z := by
@@ -290,6 +344,9 @@ theorem plusCompletion_odd {n : ℕ} (f : Cube n → ℝ) (x y : Cube n)
   rw [remainder_odd f x y hpair, completionOdd_odd]
   ring
 
+/--
+@isnad1 id=eq.1h5v.s7.4203eee526ad from=translated src=- shape=45038f40 vocab=256f5e4b
+-/
 theorem minusCompletion_odd {n : ℕ} (f : Cube n → ℝ) (x y : Cube n)
     (hpair : ∀ z, f z + f (antipode n z) = 2 * exceptionalEven x y z) (z : Cube n) :
     minusCompletion f x y (antipode n z) = -minusCompletion f x y z := by
@@ -297,6 +354,9 @@ theorem minusCompletion_odd {n : ℕ} (f : Cube n → ℝ) (x y : Cube n)
   rw [remainder_odd f x y hpair, completionOdd_odd]
   ring
 
+/--
+@isnad1 id=le.5h5v.s8.610df366b4ed from=translated src=- shape=96c6536c vocab=e92eadbc
+-/
 theorem average_completion_improvement (n : ℕ) (f : Cube n → ℝ) (x y : Cube n)
     (hmean : mean f = 0)
     (hpair : ∀ z, f z + f (antipode n z) = 2 * exceptionalEven x y z)
@@ -347,12 +407,18 @@ theorem average_completion_improvement (n : ℕ) (f : Cube n → ℝ) (x y : Cub
   rw [hr0]
   linarith
 
+/--
+@isnad1 id=and.4h5v.s7.4d47481b3e02 from=translated src=- shape=188a084e vocab=d11552a6
+-/
 theorem completion_agrees_outside {n : ℕ} (f : Cube n → ℝ) (x y z : Cube n)
     (hzx : z ≠ x) (hzax : z ≠ antipode n x) (hzy : z ≠ y) (hzay : z ≠ antipode n y) :
     plusCompletion f x y z = f z ∧ minusCompletion f x y z = f z := by
   simp [plusCompletion, minusCompletion, remainder, exceptionalEven, completionOdd, delta,
     hzx, hzax, hzy, hzay]
 
+/--
+@isnad1 id=ex.10h5v.s9.6dffd325b875 from=translated src=- shape=509ef5b1 vocab=cf5d9bc1
+-/
 theorem four_point_completion (n : ℕ) (f : Cube n → ℝ)
     (hf : ∀ z, f z = -1 ∨ f z = 1) (hmean : mean f = 0) (x y : Cube n)
     (hyx : y ≠ x) (hyax : y ≠ antipode n x)
@@ -384,6 +450,9 @@ theorem four_point_completion (n : ℕ) (f : Cube n → ℝ)
         exact (completion_agrees_outside f x y z hzx hzax hzy hzay).1
       · linarith
 
+/--
+@isnad1 id=and.10h5v.s9.8b84eee710ea from=translated src=- shape=9f967005 vocab=03583582
+-/
 theorem four_point_bounds (n : ℕ) (f : Cube n → ℝ)
     (hf : ∀ z, f z = -1 ∨ f z = 1) (hmean : mean f = 0) (x y : Cube n)
     (hyx : y ≠ x) (hyax : y ≠ antipode n x)

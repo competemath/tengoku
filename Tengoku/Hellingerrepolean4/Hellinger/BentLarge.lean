@@ -23,7 +23,9 @@ open scoped BigOperators
 
 namespace Hellinger.BentLarge
 
-/-- The first derivative of the actual Hellinger square-root function.-/
+/-- The first derivative of the actual Hellinger square-root function.
+@isnad1 id=hasderiv.1h1v.s6.4630cc21dd2c from=translated src=- shape=0dd282e7 vocab=39bf0f7d
+-/
 theorem root_hasDerivAt (x : ℝ) (hx : x ^ 2 < 1) :
     HasDerivAt root (-x / root x) x := by
   have hp : 0 < 1 - x ^ 2 := by linarith
@@ -37,7 +39,9 @@ theorem root_hasDerivAt (x : ℝ) (hx : x ^ 2 < 1) :
     field_simp
     ring
 
-/-- The second derivative, with the nonzero denominator justified by `x² < 1`.-/
+/-- The second derivative, with the nonzero denominator justified by `x² < 1`.
+@isnad1 id=hasderiv.1h1v.s6.693abb4c2cc4 from=translated src=- shape=d89b20b5 vocab=39bf0f7d
+-/
 theorem root_derivative_hasDerivAt (x : ℝ) (hx : x ^ 2 < 1) :
     HasDerivAt (fun y => -y / root y) (-1 / root x ^ 3) x := by
   have hp : 0 < 1 - x ^ 2 := by linarith
@@ -51,7 +55,9 @@ theorem root_derivative_hasDerivAt (x : ℝ) (hx : x ^ 2 < 1) :
   nlinarith only [hs]
 
 /-- Adding the sharp quadratic curvature correction gives a convex function
-on a compact subinterval of `(-1,1)`.-/
+on a compact subinterval of `(-1,1)`.
+@isnad1 id=convexon.2h1v.s7.b2611d2abfe4 from=translated src=- shape=50de5c99 vocab=4781d39e
+-/
 theorem root_quadratic_convex (M : ℝ) (hM₀ : 0 ≤ M) (hM₁ : M < 1) :
     ConvexOn ℝ (Set.Icc (-M) M)
       (fun x => root x + (1 / (2 * root M ^ 3)) * x ^ 2) := by
@@ -93,7 +99,9 @@ theorem root_quadratic_convex (M : ℝ) (hM₀ : 0 ≤ M) (hM₁ : M < 1) :
     linarith only [hi]
 
 /-- The Hellinger Jensen gap is bounded by variance times the curvature bound.
-The mean is the actual mean of the supplied posterior values.-/
+The mean is the actual mean of the supplied posterior values.
+@isnad1 id=le.5h4v.s8.7a5df3eb7199 from=translated src=- shape=6916fc23 vocab=e94400ae
+-/
 theorem weighted_curvature_bound {ι : Type*} [Fintype ι]
     (w u : ι → ℝ) (hw : ∀ i, 0 ≤ w i) (hsum : ∑ i, w i = 1)
     (M : ℝ) (hM₀ : 0 ≤ M) (hM₁ : M < 1)
@@ -118,7 +126,9 @@ theorem weighted_curvature_bound {ι : Type*} [Fintype ι]
   simp only [div_eq_mul_inv, one_mul] at hj ⊢
   nlinarith only [hj]
 
-/-- The variance coefficient decreases from dimension four onwards.-/
+/-- The variance coefficient decreases from dimension four onwards.
+@isnad1 id=le.1h1v.s7.2100cca377c3 from=translated src=- shape=6f5cbba1 vocab=6c42160c
+-/
 theorem dimension_variance_coefficient (n : ℕ) (hn : 4 ≤ n) :
     (n : ℝ) * (109 / 200 : ℝ) ^ (n - 1) / 2 ≤ 109 ^ 3 / 4000000 := by
   induction n, hn using Nat.le_induction with
@@ -136,7 +146,9 @@ theorem dimension_variance_coefficient (n : ℕ) (hn : 4 ≤ n) :
       (show 0 ≤ (109 / 200 : ℝ) ^ (n - 1) by positivity)
     nlinarith only [hmul, ih]
 
-/-- Exact bent variance is quadratically small, uniformly in every `n ≥ 4`.-/
+/-- Exact bent variance is quadratically small, uniformly in every `n ≥ 4`.
+@isnad1 id=le.3h2v.s7.cc92d3cb070e from=translated src=- shape=4118a8e6 vocab=f122a08f
+-/
 theorem high_noise_variance (n : ℕ) (hn : 4 ≤ n) (ρ : ℝ)
     (hρ₀ : 0 ≤ ρ) (hρ₁ : ρ ≤ 3 / 10) :
     ((2 : ℝ) ^ n)⁻¹ * ((1 + ρ ^ 2) ^ n - 1) ≤
@@ -162,7 +174,9 @@ theorem high_noise_variance (n : ℕ) (hn : 4 ≤ n) (ρ : ℝ)
   rw [heq]
   nlinarith only [hdiff, hm, hv]
 
-/-- Flatness controls the actual posterior on the whole high-noise interval.-/
+/-- Flatness controls the actual posterior on the whole high-noise interval.
+@isnad1 id=le.4h4v.s7.37536f3e52bc from=translated src=- shape=2729edb1 vocab=b445740a
+-/
 theorem high_noise_posterior_bound {n : ℕ} (hn : 4 ≤ n)
     {f : Fourier.Cube n → ℝ} (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρ₁ : ρ ≤ 3 / 10)
@@ -183,7 +197,9 @@ theorem high_noise_posterior_bound {n : ℕ} (hn : 4 ≤ n)
     nlinarith only [hpow]
   exact (Flatness.noise_abs_le hb ρ hρ x).trans hA
 
-/-- Uniform Jensen curvature bound for a finite nonempty probability space.-/
+/-- Uniform Jensen curvature bound for a finite nonempty probability space.
+@isnad1 id=le.3h3v.s7.5955a92077c7 from=translated src=- shape=ce5bfbff vocab=e2a3750b
+-/
 theorem mean_curvature_bound {ι : Type*} [Fintype ι] [Nonempty ι]
     (u : ι → ℝ) (M : ℝ) (hM₀ : 0 ≤ M) (hM₁ : M < 1)
     (hu : ∀ i, u i ∈ Set.Icc (-M) M) :
@@ -194,7 +210,9 @@ theorem mean_curvature_bound {ι : Type*} [Fintype ι] [Nonempty ι]
     (by intro; positivity) (by simp [hcard]) M hM₀ hM₁ hu
   simpa only [objective, mean, ← Finset.mul_sum] using h
 
-/-- The rational curvature constant is strictly below the denominator.-/
+/-- The rational curvature constant is strictly below the denominator.
+@isnad1 id=lt.0h0v.s6.39dff1308560 from=translated src=- shape=4ccdfd9b vocab=f76eaa4b
+-/
 theorem high_noise_constant_lt :
     (109 ^ 3 / 4000000 : ℝ) < root ((169 / 200 : ℝ) ^ 2) ^ 3 := by
   have hs : root ((169 / 200 : ℝ) ^ 2) ^ 2 = 1 - (169 / 200 : ℝ) ^ 4 := by
@@ -208,7 +226,9 @@ theorem high_noise_constant_lt :
   rw [← hh] at h
   nlinarith only [h, h₀]
 
-/-- High-noise theorem connected to the actual BSC, mean and flat Walsh spectrum.-/
+/-- High-noise theorem connected to the actual BSC, mean and flat Walsh spectrum.
+@isnad1 id=le.4h3v.s7.291d6bf7a0a1 from=translated src=- shape=40628498 vocab=f602b581
+-/
 theorem bent_high_noise_quadratic_bound {n : ℕ} (hn : 4 ≤ n)
     (f : Fourier.Cube n → ℝ) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρ₁ : ρ ≤ 3 / 10) :
@@ -235,7 +255,9 @@ theorem bent_high_noise_quadratic_bound {n : ℕ} (hn : 4 ≤ n)
     nlinarith only [hmul]
   exact hc.trans (hcv.trans hcoeff)
 
-/-- High noise, including the independent endpoint.-/
+/-- High noise, including the independent endpoint.
+@isnad1 id=le.4h3v.s7.61419b88587d from=translated src=- shape=d0990fc4 vocab=fa8cc152
+-/
 theorem bent_high_noise_hellinger {n : ℕ} (hn : 4 ≤ n)
     (f : Fourier.Cube n → ℝ) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρ₁ : ρ ≤ 3 / 10) :
@@ -246,7 +268,9 @@ theorem bent_high_noise_hellinger {n : ℕ} (hn : 4 ≤ n)
   have hs₀ := Real.sqrt_nonneg (1 - ρ ^ 2)
   nlinarith [sq_nonneg (1 - Real.sqrt (1 - ρ ^ 2))]
 
-/-- Strict high-noise inequality for every positive correlation.-/
+/-- Strict high-noise inequality for every positive correlation.
+@isnad1 id=lt.5h3v.s7.333d02b38492 from=translated src=- shape=a2e4124a vocab=8fdad242
+-/
 theorem bent_high_noise_hellinger_strict {n : ℕ} (hn : 4 ≤ n)
     (f : Fourier.Cube n → ℝ) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρ₁ : ρ ≤ 3 / 10) (hρpos : 0 < ρ) :
@@ -259,7 +283,9 @@ theorem bent_high_noise_hellinger_strict {n : ℕ} (hn : 4 ≤ n)
   have hp := sq_pos_of_pos (sub_pos.mpr hs₁)
   nlinarith only [h, hs, hp]
 
-/-- Rational comparison used in the low-`c` part of the large-dimension interval.-/
+/-- Rational comparison used in the low-`c` part of the large-dimension interval.
+@isnad1 id=lt.0h0v.s5.b76d6fc34f1a from=translated src=- shape=f1f41ed7 vocab=9690e6ba
+-/
 theorem exp_neg_seventeen_twentyseven_lt :
     Real.exp (-(17 : ℝ) / 27) < 27 / 50 := by
   have h := Real.sum_le_exp_of_nonneg (show 0 ≤ (17 : ℝ) / 27 by norm_num) 4
@@ -270,7 +296,9 @@ theorem exp_neg_seventeen_twentyseven_lt :
   linarith
 
 /-- A continuous certificate on the entire compact part of the middle interval.
-The identity is in the Bernstein basis; every coefficient is positive.-/
+The identity is in the Bernstein basis; every coefficient is positive.
+@isnad1 id=le.2h1v.s7.a41dc0c7d5e8 from=translated src=- shape=38954b18 vocab=38c498f2
+-/
 theorem middle_six_polynomial (c : ℝ) (hc₀ : 23 / 50 ≤ c) (hc₁ : c ≤ 24 / 25) :
     (1 - c ^ 2 / 2) ^ 6 ≤ 1 - c - 1 / 100 := by
   have hu : 0 ≤ 2 * c - 23 / 25 := by linarith
@@ -305,7 +333,9 @@ theorem middle_six_polynomial (c : ℝ) (hc₀ : 23 / 50 ≤ c) (hc₁ : c ≤ 2
     (1293342884250839 / 238418579101562500 : ℝ) * (2 * c - 23 / 25) ^ 12 * (48 / 25 - 2 * c) ^ 0 := by positivity
   linarith only [hcert, hpos]
 
-/-- The scalar second-moment estimate throughout the full middle-noise range.-/
+/-- The scalar second-moment estimate throughout the full middle-noise range.
+@isnad1 id=le.4h2v.s7.4669d2f18c8c from=translated src=- shape=cb1e59ac vocab=6c42160c
+-/
 theorem middle_scalar (n : ℕ) (hn : 6 ≤ n) (c : ℝ)
     (hc₀ : 0 ≤ c) (hc₁ : c ≤ 24 / 25)
     (hscale : 17 / 27 ≤ (n : ℝ) * c ^ 2 / 2) :
@@ -326,7 +356,9 @@ theorem middle_scalar (n : ℕ) (hn : 6 ≤ n) (c : ℝ)
     have hq := middle_six_polynomial c (le_of_not_ge hc) hc₁
     linarith only [hp, hq]
 
-/-- Conversion of the original dimension-dependent interval to the scalar range.-/
+/-- Conversion of the original dimension-dependent interval to the scalar range.
+@isnad1 id=le.3h2v.s7.26d69f49d06c from=translated src=- shape=53c9961f vocab=743d85dd
+-/
 theorem middle_noise_second_moment (n : ℕ) (hn : 6 ≤ n) (ρ : ℝ)
     (hρ₀ : 3 / 10 ≤ ρ) (hρ₁ : ρ ≤ 1 - 2 / (3 * (n : ℝ))) :
     ((1 + ρ ^ 2) / 2) ^ n ≤ 1 - Real.sqrt (1 - ρ ^ 2) := by
@@ -359,7 +391,9 @@ theorem middle_noise_second_moment (n : ℕ) (hn : 6 ≤ n) (ρ : ℝ)
   rw [hs]
   ring
 
-/-- A simple lower bound for the actual posterior average.-/
+/-- A simple lower bound for the actual posterior average.
+@isnad1 id=le.1h2v.s6.98f521eaab0c from=translated src=- shape=a891a667 vocab=2c8d4751
+-/
 theorem mean_root_lower {ι : Type*} [Fintype ι] [Nonempty ι]
     (u : ι → ℝ) (hu : ∀ i, u i ∈ Set.Icc (-1 : ℝ) 1) :
     1 - mean (fun i => (u i) ^ 2) ≤ mean (fun i => root (u i)) := by
@@ -373,7 +407,9 @@ theorem mean_root_lower {ι : Type*} [Fintype ι] [Nonempty ι]
   have hcard : (Fintype.card ι : ℝ) ≠ 0 := by exact_mod_cast Fintype.card_ne_zero
   simpa [mean, Finset.sum_sub_distrib, mul_sub, hcard] using h
 
-/-- Middle-noise Hellinger theorem for the genuine cube BSC and bent spectrum.-/
+/-- Middle-noise Hellinger theorem for the genuine cube BSC and bent spectrum.
+@isnad1 id=le.6h3v.s7.b5ae8912b1cb from=translated src=- shape=9217d21b vocab=ba592b4e
+-/
 theorem bent_middle_hellinger {n : ℕ} (hn : 6 ≤ n)
     (f : Fourier.Cube n → ℝ) (hf : ∀ x, f x = 1 ∨ f x = -1)
     (hb : Flatness.IsBent f) (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
@@ -400,7 +436,9 @@ theorem bent_middle_hellinger {n : ℕ} (hn : 6 ≤ n)
   change root (mean u) - mean (fun x => root (u x)) ≤ _
   linarith only [hl, hm, hroot]
 
-/-- The nonzero bent mean makes the middle-noise inequality strict.-/
+/-- The nonzero bent mean makes the middle-noise inequality strict.
+@isnad1 id=lt.6h3v.s7.937665fd40c1 from=translated src=- shape=591ee4f4 vocab=f4f2b461
+-/
 theorem bent_middle_hellinger_strict {n : ℕ} (hn : 6 ≤ n)
     (f : Fourier.Cube n → ℝ) (hf : ∀ x, f x = 1 ∨ f x = -1)
     (hb : Flatness.IsBent f) (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)

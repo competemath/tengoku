@@ -14,6 +14,9 @@ open scoped BigOperators
 
 namespace Hellinger
 
+/--
+@isnad1 id=strictco.0h0v.s5.5408043a11f8 from=translated src=- shape=65986746 vocab=8c32fc3d
+-/
 theorem root_strictConcave : StrictConcaveOn ℝ (Set.Icc (-1 : ℝ) 1) root := by
   refine ⟨convex_Icc _ _, ?_⟩
   intro x hx y hy hxy a b ha hb hab
@@ -35,6 +38,9 @@ theorem root_strictConcave : StrictConcaveOn ℝ (Set.Icc (-1 : ℝ) 1) root := 
   apply Real.lt_sqrt_of_sq_lt
   nlinarith
 
+/--
+@isnad1 id=iff.3h3v.s7.5b027a787ae2 from=translated src=- shape=260b929b vocab=85dbb374
+-/
 theorem root_sum_equality_iff {ι : Type*} [Fintype ι]
     (w p : ι → ℝ) (hw : ∀ i, 0 < w i) (hsum : ∑ i, w i = 1)
     (hp : ∀ i, p i ∈ Set.Icc (-1 : ℝ) 1) :
@@ -57,6 +63,9 @@ namespace UniformChannel
 
 variable {Ω : Type*} [Fintype Ω]
 
+/--
+@isnad1 id=iff.2h4v.s6.ac522eb24cef from=translated src=- shape=490a6f45 vocab=821cb535
+-/
 theorem root_apply_equality_iff (K : UniformChannel Ω) (f : Ω → ℝ)
     (hf : ∀ x, f x ∈ Set.Icc (-1 : ℝ) 1) (y : Ω)
     (hpos : ∀ x, 0 < K.weight y x) :
@@ -64,6 +73,9 @@ theorem root_apply_equality_iff (K : UniformChannel Ω) (f : Ω → ℝ)
       ∀ x z, f x = f z := by
   exact root_sum_equality_iff (K.weight y) f hpos (K.row_sum y) hf
 
+/--
+@isnad1 id=iff.2h3v.s6.9b43f5051053 from=translated src=- shape=0ba1982f vocab=7c232ab8
+-/
 theorem root_mean_equality_iff [Nonempty Ω] (K : UniformChannel Ω) (f : Ω → ℝ)
     (hf : ∀ x, f x ∈ Set.Icc (-1 : ℝ) 1)
     (hpos : ∀ y x, 0 < K.weight y x) :

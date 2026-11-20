@@ -17,6 +17,9 @@ namespace Hellinger.AntipodalEquality
 
 open Hellinger.Fourier Hellinger.PosteriorState Hellinger.PosteriorGram
 
+/--
+@isnad1 id=iff.5h3v.s9.3582c61f2716 from=translated src=- shape=78ac142f vocab=dd0dd32d
+-/
 theorem root_mean_equality_iff_signed_dictator (n : ℕ) (f : Cube (n + 1) → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1)
     (hanti : ∀ x, f (antipode (n + 1) x) = -f x)
@@ -60,6 +63,9 @@ theorem root_mean_equality_iff_signed_dictator (n : ℕ) (f : Cube (n + 1) → �
     rw [UniformChannel.mean_apply, hm, hr0] at hobj
     linarith
 
+/--
+@isnad1 id=iff.5h3v.s9.6125ac68b2e1 from=translated src=- shape=cd52263d vocab=fa7c0116
+-/
 theorem objective_equality_iff_signed_dictator (n : ℕ) (f : Cube (n + 1) → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1)
     (hanti : ∀ x, f (antipode (n + 1) x) = -f x)

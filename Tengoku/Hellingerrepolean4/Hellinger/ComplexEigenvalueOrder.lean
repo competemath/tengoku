@@ -21,11 +21,17 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
   [FiniteDimensional ℂ E] {d : ℕ}
 
 omit [FiniteDimensional ℂ E] in
+/--
+@isnad1 id=eq.0h4v.s9.d879df631b4b from=translated src=- shape=08e4421b vocab=b546793c
+-/
 theorem norm_sq_eq_sum_repr_norm_sq (b : OrthonormalBasis (Fin d) ℂ E) (x : E) :
     ‖x‖ ^ 2 = ∑ j, ‖b.repr x j‖ ^ 2 := by
   simpa only [b.repr_apply_apply] using
     (b.sum_sq_norm_inner_right x).symm
 
+/--
+@isnad1 id=eq.2h4v.s10.38e4349b3c20 from=translated src=- shape=ae067e98 vocab=094e52b7
+-/
 theorem inner_apply_eq_sum_eigenvalues {T : E →ₗ[ℂ] E} (hT : T.IsSymmetric)
     (hd : Module.finrank ℂ E = d) (x : E) :
     (inner ℂ x (T x)).re = ∑ j, hT.eigenvalues hd j * ‖(hT.eigenvectorBasis hd).repr x j‖ ^ 2 := by
@@ -38,6 +44,9 @@ theorem inner_apply_eq_sum_eigenvalues {T : E →ₗ[ℂ] E} (hT : T.IsSymmetric
   simp [Complex.sq_norm, Complex.normSq_apply]
   ring
 
+/--
+@isnad1 id=le.3h5v.s10.eda7bd9306ab from=translated src=- shape=3934dff7 vocab=101f00ed
+-/
 theorem eigenvalue_mul_norm_sq_le_inner {T : E →ₗ[ℂ] E} (hT : T.IsSymmetric)
     (hd : Module.finrank ℂ E = d) (k : Fin d) (x : E)
     (hx : ∀ j : Fin d, k < j → (hT.eigenvectorBasis hd).repr x j = 0) :
@@ -51,6 +60,9 @@ theorem eigenvalue_mul_norm_sq_le_inner {T : E →ₗ[ℂ] E} (hT : T.IsSymmetri
   · exact mul_le_mul_of_nonneg_right
       (hT.eigenvalues_antitone hd (le_of_not_gt hj)) (sq_nonneg _)
 
+/--
+@isnad1 id=le.3h5v.s10.e63790be2387 from=translated src=- shape=49615737 vocab=101f00ed
+-/
 theorem inner_le_eigenvalue_mul_norm_sq {T : E →ₗ[ℂ] E} (hT : T.IsSymmetric)
     (hd : Module.finrank ℂ E = d) (k : Fin d) (x : E)
     (hx : ∀ j : Fin d, j < k → (hT.eigenvectorBasis hd).repr x j = 0) :
@@ -77,6 +89,9 @@ noncomputable def initialCoordinates (d k : ℕ) :
     intro j
     by_cases h : j.val < k <;> simp [h]
 
+/--
+@isnad1 id=injectiv.1h2v.s8.6dca0195b467 from=translated src=- shape=36559805 vocab=1896d33e
+-/
 theorem initialCoordinates_injective {d k : ℕ} (hk : k ≤ d) :
     Function.Injective (initialCoordinates d k) := by
   intro c e h
@@ -93,7 +108,9 @@ noncomputable def firstCoordinates (d k : ℕ) (hk : k ≤ d) :
 
 omit [FiniteDimensional ℂ E] in
 /-- The first `k+1` vectors of one orthonormal basis have a nonzero linear
-combination orthogonal to the first `k` vectors of any other basis.-/
+combination orthogonal to the first `k` vectors of any other basis.
+@isnad1 id=ex.0h5v.s10.dd49c0707dd3 from=translated src=- shape=e9a96dc2 vocab=0ce3e05f
+-/
 theorem exists_initial_final_vector (b c : OrthonormalBasis (Fin d) ℂ E) (k : Fin d) :
     ∃ x : E, x ≠ 0 ∧
       (∀ j : Fin d, k < j → b.repr x j = 0) ∧
@@ -126,7 +143,9 @@ theorem exists_initial_final_vector (b c : OrthonormalBasis (Fin d) ℂ E) (k : 
     change c.repr (emb a) j = 0 at h
     exact h
 
-/-- Ordered eigenvalues are monotone under quadratic-form order.-/
+/-- Ordered eigenvalues are monotone under quadratic-form order.
+@isnad1 id=le.4h5v.s8.92394cf28293 from=translated src=- shape=bfc6c94e vocab=270f1202
+-/
 theorem symmetric_eigenvalues_mono {T S : E →ₗ[ℂ] E}
     (hT : T.IsSymmetric) (hS : S.IsSymmetric) (hd : Module.finrank ℂ E = d)
     (hTS : ∀ x : E, (inner ℂ x (T x)).re ≤ (inner ℂ x (S x)).re) (k : Fin d) :
@@ -146,6 +165,9 @@ open scoped InnerProductSpace
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
+/--
+@isnad1 id=le.3h4v.s6.6b04614b8c94 from=translated src=- shape=681ded9d vocab=a0b226d9
+-/
 theorem matrix_eigenvalues_mono {A B : Matrix ι ι ℂ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) (hAB : A ≤ B)
     (k : Fin (Fintype.card ι)) : hA.eigenvalues₀ k ≤ hB.eigenvalues₀ k := by
@@ -158,6 +180,9 @@ theorem matrix_eigenvalues_mono {A B : Matrix ι ι ℂ}
   simpa only [EuclideanSpace.inner_eq_star_dotProduct, Matrix.toLpLin_apply,
     WithLp.ofLp_toLp, RCLike.re_to_complex, dotProduct_comm] using sub_nonneg.mp h
 
+/--
+@isnad1 id=eq.1h2v.s6.d111556090c8 from=translated src=- shape=e07bd181 vocab=f24199ae
+-/
 theorem realTrace_eq_sum_eigenvalues₀ {A : Matrix ι ι ℂ} (hA : A.IsHermitian) :
     realTrace A = ∑ j : Fin (Fintype.card ι), hA.eigenvalues₀ j := by
   unfold realTrace
@@ -167,6 +192,9 @@ theorem realTrace_eq_sum_eigenvalues₀ {A : Matrix ι ι ℂ} (hA : A.IsHermiti
     (Fintype.equivOfCardEq (Fintype.card_fin (Fintype.card ι))).symm
   simpa only [Matrix.IsHermitian.eigenvalues] using e.sum_comp hA.eigenvalues₀
 
+/--
+@isnad1 id=le.2h3v.s7.c3bafd25b3f4 from=translated src=- shape=b95911e0 vocab=c7f72853
+-/
 theorem sum_positive_eigenvalue_differences_le {A B : Matrix ι ι ℂ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) :
     (∑ j, max (hA.eigenvalues₀ j - hB.eigenvalues₀ j) 0) ≤ realTrace ((A - B)⁺) := by
@@ -194,7 +222,9 @@ theorem sum_positive_eigenvalue_differences_le {A B : Matrix ι ι ℂ}
     _ = _ := by simp [C]
 
 /-- Mirsky's trace-norm comparison for arbitrary complex Hermitian matrices,
-with sorted eigenvalues and every multiplicity included.-/
+with sorted eigenvalues and every multiplicity included.
+@isnad1 id=le.2h3v.s7.a742bd452278 from=translated src=- shape=6edd945b vocab=26e327ab
+-/
 theorem ordered_eigenvalue_distance_le_traceNorm {A B : Matrix ι ι ℂ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) :
     (∑ j, |hA.eigenvalues₀ j - hB.eigenvalues₀ j|) ≤ traceNorm (A - B) := by
@@ -214,11 +244,17 @@ theorem ordered_eigenvalue_distance_le_traceNorm {A B : Matrix ι ι ℂ}
       rw [← realTrace_add, CFC.posPart_add_negPart (A - B) (hA.sub hB)]
       rfl
 
+/--
+@isnad1 id=ishermit.1h3v.s12.0a50d359eb90 from=translated src=- shape=38d006dd vocab=450d5434
+-/
 theorem isHermitian_conjugate {A : Matrix ι ι ℂ} (hA : A.IsHermitian)
     (U : Matrix.unitaryGroup ι ℂ) : (conjStarAlgAut ℂ _ U A).IsHermitian := by
   simpa only [conjStarAlgAut_apply, Matrix.star_eq_conjTranspose] using
     Matrix.isHermitian_mul_mul_conjTranspose (U : Matrix ι ι ℂ) hA
 
+/--
+@isnad1 id=eq.1h3v.s12.4b8d6c26e25e from=translated src=- shape=82fb2a6f vocab=4fc524bd
+-/
 theorem eigenvalues₀_conjugate {A : Matrix ι ι ℂ} (hA : A.IsHermitian)
     (U : Matrix.unitaryGroup ι ℂ) :
     (isHermitian_conjugate hA U).eigenvalues₀ = hA.eigenvalues₀ := by
@@ -227,6 +263,9 @@ theorem eigenvalues₀_conjugate {A : Matrix ι ι ℂ} (hA : A.IsHermitian)
   rw [← List.ofFn_inj, ← (isHermitian_conjugate hA U).sort_roots_charpoly_eq_eigenvalues₀,
     ← hA.sort_roots_charpoly_eq_eigenvalues₀, hchar]
 
+/--
+@isnad1 id=le.2h4v.s12.e10be4a55e47 from=translated src=- shape=60f7cb8d vocab=e40ac720
+-/
 theorem ordered_eigenvalue_distance_le_traceNorm_conjugate {A B : Matrix ι ι ℂ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) (U : Matrix.unitaryGroup ι ℂ) :
     (∑ j, |hA.eigenvalues₀ j - hB.eigenvalues₀ j|) ≤

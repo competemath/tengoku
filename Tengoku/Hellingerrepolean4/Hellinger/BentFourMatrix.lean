@@ -24,14 +24,23 @@ def edgeSigns (B : Matrix (Fin 4) (Fin 4) F2) : Fin 6 → ℝ :=
 def upperEdgeCount (B : Matrix (Fin 4) (Fin 4) F2) : ℕ :=
   ∑ i : Fin 4, ∑ j : Fin 4, if i < j ∧ B i j ≠ 0 then 1 else 0
 
+/--
+@isnad1 id=eq.0h2v.s5.a05cc98863b5 from=translated src=- shape=b9ce2351 vocab=69f52eaf
+-/
 theorem edgeSigns_sq (B : Matrix (Fin 4) (Fin 4) F2) (i : Fin 6) :
     edgeSigns B i ^ 2 = 1 := by
   fin_cases i <;> dsimp [edgeSigns] <;> exact sign_sq _
 
+/--
+@isnad1 id=eq.0h2v.s6.928e10244086 from=translated src=- shape=cd2e04b4 vocab=08f95eb5
+-/
 theorem sign_mul_bit (z : F2) (b : Bool) :
     sign (z * bitEquiv b) = if b then sign z else 1 := by
   cases b <;> simp
 
+/--
+@isnad1 id=eq.2h3v.s7.51a37bca2b0c from=translated src=- shape=95d29ff0 vocab=fc33cbc3
+-/
 theorem edgeAction_matrix (B : Matrix (Fin 4) (Fin 4) F2)
     (hB : B.IsSymm) (hd : ∀ i, B i i = 0) (s : Fourier.Cube 4) (i : Fin 4) :
     edgeAction (edgeSigns B) s i = sign ((B *ᵥ bitsEquiv (Fin 4) s) i) := by
@@ -44,6 +53,9 @@ theorem edgeAction_matrix (B : Matrix (Fin 4) (Fin 4) F2)
   · rw [hs 2 0, hs 2 1]
   · rw [hs 3 0, hs 3 1, hs 3 2]
 
+/--
+@isnad1 id=eq.0h2v.s7.b8c7d330f70d from=translated src=- shape=53650c65 vocab=82cfae6c
+-/
 theorem sign_dot_character (x : Fourier.Cube 4) (v : Cube 4) :
     sign (bitsEquiv (Fin 4) x ⬝ᵥ v) = signCharacter (fun i => sign (v i)) x := by
   rw [dotProduct_comm]
@@ -53,6 +65,9 @@ theorem sign_dot_character (x : Fourier.Cube 4) (v : Cube 4) :
   intro i _
   exact sign_mul_bit (v i) (x i)
 
+/--
+@isnad1 id=eq.2h3v.s9.f2141d83f8fe from=translated src=- shape=ee82a5de vocab=3f0af3f7
+-/
 theorem matrix_character_sum (B : Matrix (Fin 4) (Fin 4) F2)
     (hB : B.IsSymm) (hd : ∀ i, B i i = 0) (ρ : ℝ) (s : Fourier.Cube 4) :
     (∑ x : Cube 4, noiseWeight ρ x * noiseWeight ρ (x + bitsEquiv (Fin 4) s) *
@@ -66,6 +81,9 @@ theorem matrix_character_sum (B : Matrix (Fin 4) (Fin 4) F2)
   simp_rw [ht]
   exact weighted_character_sum _ ρ s
 
+/--
+@isnad1 id=edgenond.3h1v.s6.e5eb4dd95216 from=translated src=- shape=7ca21b25 vocab=f3c231a6
+-/
 theorem edgeSigns_nondegenerate (B : Matrix (Fin 4) (Fin 4) F2)
     (hB : B.IsSymm) (hd : ∀ i, B i i = 0) (hdet : IsUnit B.det) :
     EdgeNondegenerate (edgeSigns B) := by
@@ -90,6 +108,9 @@ theorem edgeSigns_nondegenerate (B : Matrix (Fin 4) (Fin 4) F2)
   rw [edgeAction_matrix B hB hd, eq_one_of_ne_zero _ hi]
   norm_num
 
+/--
+@isnad1 id=eq.0h1v.s4.91627ae81ae4 from=translated src=- shape=bc25afce vocab=31108722
+-/
 theorem negativeEdges_eq_upperEdgeCount (B : Matrix (Fin 4) (Fin 4) F2) :
     BentFourEdgeCount.negativeEdges (edgeSigns B) = upperEdgeCount B := by
   have hz (z : F2) : sign z = -1 ↔ z ≠ 0 := by
@@ -122,7 +143,9 @@ theorem negativeEdges_eq_upperEdgeCount (B : Matrix (Fin 4) (Fin 4) F2) :
 set_option maxHeartbeats 200000 in
 
 /-- Exact dimension-four fourth moment, with the parameter equal to the number
-of nonzero entries above the diagonal of the actual inverse polar matrix.-/
+of nonzero entries above the diagonal of the actual inverse polar matrix.
+@isnad1 id=and.2h3v.s8.15868f891271 from=translated src=- shape=0f33ea0a vocab=4758af8d
+-/
 theorem fourth_moment_actual_edges (a : F2) (Q : Form 4)
     (hQ : IsUnit (polarMatrix Q).det) (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) :
     2 ≤ upperEdgeCount ((polarMatrix Q)⁻¹) ∧

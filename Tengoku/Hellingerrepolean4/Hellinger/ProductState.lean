@@ -27,23 +27,38 @@ def oneQubit (c : ℝ) : Matrix Bool Bool ℝ :=
 def state (n : ℕ) (c : ℝ) : Matrix (Cube n) (Cube n) ℝ :=
   fun x z => ∏ i, oneQubit c (x i) (z i)
 
+/--
+@isnad1 id=eq.0h3v.s4.521c29cfa779 from=translated src=- shape=ef4233a0 vocab=848b9594
+-/
 theorem oneQubit_symmetric (c : ℝ) (x z : Bool) :
     oneQubit c x z = oneQubit c z x := by
   simp [oneQubit, eq_comm]
 
+/--
+@isnad1 id=ishermit.0h2v.s5.8ed2ea1c13f5 from=translated src=- shape=47ad473e vocab=48a5799a
+-/
 theorem state_isHermitian (n : ℕ) (c : ℝ) : (state n c).IsHermitian := by
   ext x z
   simp only [conjTranspose_apply, star_trivial, state]
   exact Finset.prod_congr rfl fun i _ => oneQubit_symmetric c (z i) (x i)
 
+/--
+@isnad1 id=eq.0h2v.s5.e5b232e9c22a from=translated src=- shape=430fd960 vocab=ddad1a80
+-/
 theorem oneQubit_apply_one (c : ℝ) (x : Bool) :
     (oneQubit c *ᵥ (fun _ => 1)) x = (1 + c) / 2 := by
   cases x <;> simp [Matrix.mulVec, dotProduct, oneQubit] <;> ring
 
+/--
+@isnad1 id=eq.0h2v.s6.fc3e09166ec8 from=translated src=- shape=0070a208 vocab=4490bf71
+-/
 theorem oneQubit_apply_sign (c : ℝ) (x : Bool) :
     (oneQubit c *ᵥ boolSign) x = (1 - c) / 2 * boolSign x := by
   cases x <;> simp [Matrix.mulVec, dotProduct, oneQubit, boolSign] <;> ring
 
+/--
+@isnad1 id=eq.0h4v.s6.52eb96cd8487 from=translated src=- shape=48453ccb vocab=270ea40d
+-/
 theorem state_apply_product (n : ℕ) (c : ℝ) (f : Fin n → Bool → ℝ) (x : Cube n) :
     (state n c *ᵥ (fun z => ∏ i, f i (z i))) x =
       ∏ i, (oneQubit c *ᵥ f i) (x i) := by
@@ -51,6 +66,9 @@ theorem state_apply_product (n : ℕ) (c : ℝ) (f : Fin n → Bool → ℝ) (x 
   simp_rw [← Finset.prod_mul_distrib]
   exact (Fintype.prod_sum (fun i z => oneQubit c (x i) z * f i z)).symm
 
+/--
+@isnad1 id=eq.0h4v.s6.6025db60367b from=translated src=- shape=5b592592 vocab=679ea990
+-/
 theorem product_two_levels (n : ℕ) (S : Finset (Fin n)) (a b : ℝ) :
     (∏ i : Fin n, if i ∈ S then b else a) = a ^ (n - S.card) * b ^ S.card := by
   rw [Finset.prod_ite]
@@ -61,6 +79,9 @@ theorem product_two_levels (n : ℕ) (S : Finset (Fin n)) (a b : ℝ) :
   rw [hfilter, Finset.card_sdiff_of_subset (Finset.subset_univ S)]
   simp [mul_comm]
 
+/--
+@isnad1 id=eq.0h4v.s7.5a470f5d496c from=translated src=- shape=efd5b999 vocab=bc747f00
+-/
 theorem state_character (n : ℕ) (S : Finset (Fin n)) (c : ℝ) (x : Cube n) :
     (state n c *ᵥ character n S) x =
       ((1 + c) / 2) ^ (n - S.card) * ((1 - c) / 2) ^ S.card * character n S x := by
@@ -79,6 +100,9 @@ theorem state_character (n : ℕ) (S : Finset (Fin n)) (c : ℝ) (x : Cube n) :
 def hammingDistance (n : ℕ) (x z : Cube n) : ℕ :=
   (Finset.univ.filter fun i => x i ≠ z i).card
 
+/--
+@isnad1 id=eq.0h4v.s6.a31fb8607cda from=translated src=- shape=954bdbd4 vocab=c9aab2b6
+-/
 theorem state_entry (n : ℕ) (c : ℝ) (x z : Cube n) :
     state n c x z = c ^ hammingDistance n x z / (2 : ℝ) ^ n := by
   simp only [state, oneQubit, Finset.prod_div_distrib, Finset.prod_const,
@@ -90,10 +114,16 @@ theorem state_entry (n : ℕ) (c : ℝ) (x z : Cube n) :
 def antipodalMatrix (n : ℕ) : Matrix (Cube n) (Cube n) ℝ :=
   Equiv.Perm.permMatrix ℝ (antipode n)
 
+/--
+@isnad1 id=eq.0h3v.s6.ee436fecfb00 from=translated src=- shape=36b1129f vocab=b30737f3
+-/
 theorem antipodalMatrix_apply (n : ℕ) (v : Cube n → ℝ) (x : Cube n) :
     (antipodalMatrix n *ᵥ v) x = v (antipode n x) := by
   simp [antipodalMatrix, Matrix.permMatrix_mulVec]
 
+/--
+@isnad1 id=eq.0h3v.s6.eb8a392e2865 from=translated src=- shape=9f0c039b vocab=5f93e4ad
+-/
 theorem character_antipode (n : ℕ) (S : Finset (Fin n)) (x : Cube n) :
     character n S (antipode n x) = (-1 : ℝ) ^ S.card * character n S x := by
   unfold character
@@ -107,12 +137,18 @@ theorem character_antipode (n : ℕ) (S : Finset (Fin n)) (x : Cube n) :
   rw [Finset.prod_mul_distrib]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s6.2b5756e41298 from=translated src=- shape=3a7873c4 vocab=c5c51ed0
+-/
 theorem antipodalMatrix_character (n : ℕ) (S : Finset (Fin n)) (x : Cube n) :
     (antipodalMatrix n *ᵥ character n S) x = (-1 : ℝ) ^ S.card * character n S x := by
   rw [antipodalMatrix_apply, character_antipode]
 
 def normalization (n : ℕ) : ℝ := (Real.sqrt ((2 : ℝ) ^ n))⁻¹
 
+/--
+@isnad1 id=eq.0h1v.s5.f83e2c6f7607 from=translated src=- shape=a80393f4 vocab=17c17ed4
+-/
 theorem normalization_square (n : ℕ) : normalization n ^ 2 * (2 : ℝ) ^ n = 1 := by
   rw [normalization, inv_pow, Real.sq_sqrt (by positivity), inv_mul_cancel₀]
   positivity
@@ -121,10 +157,16 @@ theorem normalization_square (n : ℕ) : normalization n ^ 2 * (2 : ℝ) ^ n = 1
 def hadamard (n : ℕ) : Matrix (Cube n) (Cube n) ℝ :=
   fun x s => normalization n * Fourier.phase s x
 
+/--
+@isnad1 id=eq.0h1v.s4.7b5bce23e9a1 from=translated src=- shape=ba899254 vocab=07ef164b
+-/
 theorem hadamard_transpose (n : ℕ) : (hadamard n).transpose = hadamard n := by
   ext x s
   exact congrArg (normalization n * ·) (Fourier.phase_symm x s)
 
+/--
+@isnad1 id=eq.0h1v.s6.d71cdf6dd18f from=translated src=- shape=097af835 vocab=990c437b
+-/
 theorem hadamard_squared (n : ℕ) : hadamard n * hadamard n = 1 := by
   ext x z
   change (∑ s, (normalization n * Fourier.phase s x) *
@@ -149,9 +191,15 @@ def hadamardUnitary (n : ℕ) : Matrix.unitaryGroup (Cube n) ℝ :=
     simpa only [Matrix.star_eq_conjTranspose, Matrix.conjTranspose_eq_transpose_of_trivial,
       hadamard_transpose] using hadamard_squared n)⟩
 
+/--
+@isnad1 id=eq.0h1v.s8.c2075ec89591 from=translated src=- shape=1e5e3ca6 vocab=c266b8cd
+-/
 theorem hadamardUnitary_coe (n : ℕ) :
     (hadamardUnitary n : Matrix (Cube n) (Cube n) ℝ) = hadamard n := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.6ef618ddae81 from=translated src=- shape=bb9b7bf7 vocab=63d3f371
+-/
 theorem state_phase (n : ℕ) (s : Cube n) (c : ℝ) (x : Cube n) :
     (state n c *ᵥ Fourier.phase s) x =
       ((1 + c) / 2) ^ (n - Fourier.degree s) *
@@ -164,6 +212,9 @@ theorem state_phase (n : ℕ) (s : Cube n) (c : ℝ) (x : Cube n) :
 def eigenvalue (n : ℕ) (c : ℝ) (s : Cube n) : ℝ :=
   ((1 + c) / 2) ^ (n - Fourier.degree s) * ((1 - c) / 2) ^ Fourier.degree s
 
+/--
+@isnad1 id=eq.0h2v.s7.a8a2f9828130 from=translated src=- shape=55ab8831 vocab=05554cf1
+-/
 theorem state_mul_hadamard (n : ℕ) (c : ℝ) :
     state n c * hadamard n = hadamard n * Matrix.diagonal (eigenvalue n c) := by
   ext x s
@@ -181,10 +232,16 @@ theorem state_mul_hadamard (n : ℕ) (c : ℝ) :
       unfold eigenvalue
       ring
 
+/--
+@isnad1 id=eq.0h2v.s7.e5f5e9453800 from=translated src=- shape=115583b3 vocab=05554cf1
+-/
 theorem state_diagonalization (n : ℕ) (c : ℝ) :
     hadamard n * state n c * hadamard n = Matrix.diagonal (eigenvalue n c) := by
   rw [Matrix.mul_assoc, state_mul_hadamard, ← Matrix.mul_assoc, hadamard_squared, Matrix.one_mul]
 
+/--
+@isnad1 id=eq.0h3v.s6.dbb93ee6860e from=translated src=- shape=da3fcc3d vocab=01386bb4
+-/
 theorem antipodalMatrix_phase (n : ℕ) (s : Cube n) (x : Cube n) :
     (antipodalMatrix n *ᵥ Fourier.phase s) x =
       (-1 : ℝ) ^ Fourier.degree s * Fourier.phase s x := by
@@ -193,6 +250,9 @@ theorem antipodalMatrix_phase (n : ℕ) (s : Cube n) (x : Cube n) :
   rw [hp]
   exact antipodalMatrix_character n (Fourier.support s) x
 
+/--
+@isnad1 id=eq.0h1v.s7.8d67a8aa60b4 from=translated src=- shape=c091871b vocab=cfc3c4ea
+-/
 theorem antipodalMatrix_mul_hadamard (n : ℕ) :
     antipodalMatrix n * hadamard n =
       hadamard n * Matrix.diagonal (fun s => (-1 : ℝ) ^ Fourier.degree s) := by
@@ -210,6 +270,9 @@ theorem antipodalMatrix_mul_hadamard (n : ℕ) :
       rw [antipodalMatrix_phase]
       ring
 
+/--
+@isnad1 id=eq.0h1v.s7.35843a52c99c from=translated src=- shape=2a4a8541 vocab=cfc3c4ea
+-/
 theorem antipodalMatrix_diagonalization (n : ℕ) :
     hadamard n * antipodalMatrix n * hadamard n =
       Matrix.diagonal (fun s => (-1 : ℝ) ^ Fourier.degree s) := by

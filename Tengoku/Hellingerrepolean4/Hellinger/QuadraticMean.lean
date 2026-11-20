@@ -14,6 +14,9 @@ open scoped BigOperators Matrix
 namespace Hellinger.QuadraticMean
 open F2Model QuadraticRadical QuadraticDual RankCharacterSum ChannelSections
 
+/--
+@isnad1 id=iff.0h3v.s10.4faa7885d9eb from=translated src=- shape=aab7b3a1 vocab=1b2fe58f
+-/
 theorem polar_kernel_iff {n : ℕ} (Q : Form n) (v : Cube n) :
     Q.polarBilin v = 0 ↔ polarMatrix Q *ᵥ v = 0 := by
   constructor
@@ -31,12 +34,18 @@ theorem polar_kernel_iff {n : ℕ} (Q : Form n) (v : Cube n) :
     change Q.polarBilin x v = 0
     rw [← polarMatrix_bilin, hv, dotProduct_zero]
 
+/--
+@isnad1 id=eq.0h2v.s7.f1e6b015e8ee from=translated src=- shape=2c427e3c vocab=416bb76a
+-/
 theorem mean_character {n : ℕ} (v : Cube n) :
     mean (fun x => sign (x ⬝ᵥ v)) = if v = 0 then 1 else 0 := by
   rw [mean, sum_character]
   simp only [Cube, Fintype.card_fun, ZMod.card, Fintype.card_fin, Nat.cast_pow, Nat.cast_ofNat]
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h4v.s8.39c9fdec32a5 from=translated src=- shape=179df0c4 vocab=77ed9d70
+-/
 theorem phase_autocorrelation {n : ℕ} (a : F2) (Q : Form n) (v : Cube n) :
     mean (fun x => phase a Q x * phase a Q (x + v)) =
       if polarMatrix Q *ᵥ v = 0 then sign (Q v) else 0 := by
@@ -44,6 +53,9 @@ theorem phase_autocorrelation {n : ℕ} (a : F2) (Q : Form n) (v : Cube n) :
   rw [Fourier.mean_const_mul, mean_character]
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h2v.s7.0d2c674d9487 from=translated src=- shape=af244ed5 vocab=22e4380c
+-/
 theorem mean_square_autocorrelation {n : ℕ} (f : Cube n → ℝ) :
     mean f ^ 2 = mean (fun v => mean (fun x => f x * f (x + v))) := by
   have hm := mean_prod_swap (fun p : Cube n × Cube n => f p.1 * f (p.1 + p.2))
@@ -56,7 +68,9 @@ theorem mean_square_autocorrelation {n : ℕ} (f : Cube n → ℝ) :
   simpa only [pow_two] using hm
 
 /-- Exact kernel character-sum formula for the bias, with the constant phase
-term cancelling as in the manuscript's `q(v)+q(0)`.-/
+term cancelling as in the manuscript's `q(v)+q(0)`.
+@isnad1 id=eq.0h3v.s8.5f134342b7ef from=translated src=- shape=cb328a99 vocab=cb48fa4b
+-/
 theorem mean_square_kernel_sum {n : ℕ} (a : F2) (Q : Form n) :
     mean (phase a Q) ^ 2 = ((2 : ℝ) ^ n)⁻¹ *
       ∑ v ∈ Finset.univ.filter (fun v : Cube n => polarMatrix Q *ᵥ v = 0), sign (Q v) := by
@@ -65,6 +79,9 @@ theorem mean_square_kernel_sum {n : ℕ} (a : F2) (Q : Form n) :
   simp only [mean, Cube, Fintype.card_fun, ZMod.card, Fintype.card_fin,
     Nat.cast_pow, Nat.cast_ofNat, Finset.sum_filter]
 
+/--
+@isnad1 id=eq.1h3v.s8.623edf33cc95 from=translated src=- shape=5ee735c8 vocab=689b8918
+-/
 theorem mean_zero_of_kernel_nonzero {n : ℕ} (a : F2) (Q : Form n)
     (h : ∃ v : Cube n, polarMatrix Q *ᵥ v = 0 ∧ Q v ≠ 0) : mean (phase a Q) = 0 := by
   obtain ⟨v, hv, hq⟩ := h
@@ -74,6 +91,9 @@ theorem mean_zero_of_kernel_nonzero {n : ℕ} (a : F2) (Q : Form n)
     simp
   exact mean_eq_zero_of_sign_reversing (Equiv.addRight v) (phase a Q) ha
 
+/--
+@isnad1 id=eq.1h3v.s8.582bd7b2e299 from=translated src=- shape=8c309d48 vocab=8bbfaf4c
+-/
 theorem mean_square_of_kernel_zero {n : ℕ} (a : F2) (Q : Form n)
     (h : ∀ v : Cube n, polarMatrix Q *ᵥ v = 0 → Q v = 0) :
     mean (phase a Q) ^ 2 = ((2 : ℝ) ^ (polarMatrix Q).rank)⁻¹ := by
@@ -103,7 +123,9 @@ theorem mean_square_of_kernel_zero {n : ℕ} (a : F2) (Q : Form n)
   rw [hepow, mul_inv]
   field_simp
 
-/-- The two exhaustive bias branches, with the actual polar matrix rank.-/
+/-- The two exhaustive bias branches, with the actual polar matrix rank.
+@isnad1 id=eq.0h3v.s10.11f0b7c1d3f2 from=translated src=- shape=38a15966 vocab=aa3b29db
+-/
 theorem mean_square_branches {n : ℕ} (a : F2) (Q : Form n) :
     mean (phase a Q) ^ 2 =
       if ∃ v : Cube n, polarMatrix Q *ᵥ v = 0 ∧ Q v ≠ 0 then 0
@@ -118,9 +140,15 @@ theorem mean_square_branches {n : ℕ} (a : F2) (Q : Form n) :
 
 def linearForm {n : ℕ} (s : Cube n) : Form n := polynomial s (fun _ _ => 0)
 
+/--
+@isnad1 id=eq.0h3v.s7.297a618936da from=translated src=- shape=adbbdb4e vocab=2dbc2dff
+-/
 @[simp] theorem linearForm_apply {n : ℕ} (s x : Cube n) : linearForm s x = s ⬝ᵥ x := by
   simp [linearForm, polynomial_apply, dotProduct]
 
+/--
+@isnad1 id=eq.0h3v.s7.17fa084348f6 from=translated src=- shape=57104868 vocab=fc6433b2
+-/
 theorem polarMatrix_add_linear {n : ℕ} (Q : Form n) (s : Cube n) :
     polarMatrix (Q + linearForm s) = polarMatrix Q := by
   ext i j
@@ -129,6 +157,9 @@ theorem polarMatrix_add_linear {n : ℕ} (Q : Form n) (s : Cube n) :
     linearForm_apply, dotProduct_add]
   abel
 
+/--
+@isnad1 id=eq.0h4v.s7.90b8f8a61d93 from=translated src=- shape=32169389 vocab=5b254d88
+-/
 theorem mean_add_linear {n : ℕ} (a : F2) (Q : Form n) (s : Cube n) :
     mean (phase a (Q + linearForm s)) = walsh (phase a Q) s := by
   unfold walsh
@@ -137,6 +168,9 @@ theorem mean_add_linear {n : ℕ} (a : F2) (Q : Form n) (s : Cube n) :
   simp only [phase, _root_.add_apply, linearForm_apply, sign_add]
   ring
 
+/--
+@isnad1 id=ex.0h3v.s4.fb32b0a6a8e8 from=translated src=- shape=924eef39 vocab=308149bc
+-/
 theorem exists_nonzero_walsh {n : ℕ} (a : F2) (Q : Form n) :
     ∃ s : Cube n, walsh (phase a Q) s ≠ 0 := by
   by_contra! h
@@ -146,7 +180,9 @@ theorem exists_nonzero_walsh {n : ℕ} (a : F2) (Q : Form n) :
     rw [hp] at hi <;> norm_num at hi
 
 /-- Every polar matrix of a quadratic form over F₂ has even rank. The proof
-uses a nonzero Walsh coefficient, the exact bias formula, and integer-square parity.-/
+uses a nonzero Walsh coefficient, the exact bias formula, and integer-square parity.
+@isnad1 id=even.0h2v.s4.2fb11e6dd4fc from=translated src=- shape=dc9d1841 vocab=d93c4144
+-/
 theorem polar_rank_even {n : ℕ} (Q : Form n) : Even (polarMatrix Q).rank := by
   obtain ⟨s, hs⟩ := exists_nonzero_walsh (0 : F2) Q
   let Q' := Q + linearForm s

@@ -13,7 +13,9 @@ open scoped BigOperators
 namespace Hellinger.BentFourFinal
 open Fourier BentFour BentFourStructure
 
-/-- The actual posterior fourth moment, expressed through the dual quadratic phase.-/
+/-- The actual posterior fourth moment, expressed through the dual quadratic phase.
+@isnad1 id=eq.3h2v.s8.3481666eddd8 from=translated src=- shape=031fd842 vocab=0d8997dc
+-/
 theorem bent_fourth_moment_identity (f : Cube 4 → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) :
@@ -42,7 +44,9 @@ theorem bent_fourth_moment_identity (f : Cube 4 → ℝ)
   simp_rw [quadratic_weighted_derivative _ _ _ hc hl he]
   ring
 
-/-- The fourth-moment bound is now derived from Boolean flatness, rather than assumed.-/
+/-- The fourth-moment bound is now derived from Boolean flatness, rather than assumed.
+@isnad1 id=le.3h2v.s8.4b74e876c788 from=translated src=- shape=bfafb613 vocab=98d69047
+-/
 theorem bent_fourth_moment_upper (f : Cube 4 → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) :
@@ -57,7 +61,9 @@ theorem bent_fourth_moment_upper (f : Cube 4 → ℝ)
     (linearTerms (dual f)) (mixedTerms (dual f)) hc hl he (by rw [← hrep]; exact hgb)
   exact BentFourGraphs.derivative_moment_upper _ he hnd ρ
 
-/-- The complete continuous middle interval with genuine posterior moments and mean.-/
+/-- The complete continuous middle interval with genuine posterior moments and mean.
+@isnad1 id=lt.5h2v.s8.aeb71d9cbb6b from=translated src=- shape=eb704960 vocab=ea86ca01
+-/
 theorem bent_four_middle_strict (f : Cube 4 → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
@@ -89,7 +95,9 @@ theorem bent_four_middle_strict (f : Cube 4 → ℝ)
   simp only [← Finset.mul_sum] at h
   nlinarith only [h]
 
-/-- The no-flip/single-flip estimate and exact sensitivity distribution cover low noise.-/
+/-- The no-flip/single-flip estimate and exact sensitivity distribution cover low noise.
+@isnad1 id=lt.4h2v.s7.5b1749e05024 from=translated src=- shape=b906a301 vocab=9d988e51
+-/
 theorem bent_four_low_strict (f : Cube 4 → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hlo : 5 / 6 ≤ ρ) :
@@ -113,7 +121,9 @@ theorem bent_four_low_strict (f : Cube 4 → ℝ)
   unfold objective
   linarith only [hR, hroot]
 
-/-- Complete all-noise result for every four-dimensional bent Boolean function.-/
+/-- Complete all-noise result for every four-dimensional bent Boolean function.
+@isnad1 id=and.3h2v.s8.1ce5285f92bd from=translated src=- shape=b27a0b4b vocab=53f5357d
+-/
 theorem bent_four_hellinger (f : Cube 4 → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) :

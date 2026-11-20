@@ -23,11 +23,17 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] {d : ℕ}
 
 omit [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.0h4v.s9.94119f239b75 from=translated src=- shape=48944417 vocab=f00481e6
+-/
 theorem norm_sq_eq_sum_repr_sq (b : OrthonormalBasis (Fin d) ℝ E) (x : E) :
     ‖x‖ ^ 2 = ∑ j, (b.repr x j) ^ 2 := by
   simpa only [b.repr_apply_apply, Real.norm_eq_abs, sq_abs] using
     (b.sum_sq_norm_inner_right x).symm
 
+/--
+@isnad1 id=eq.2h4v.s10.42d8469a5297 from=translated src=- shape=8e49c5c0 vocab=1e69889f
+-/
 theorem inner_apply_eq_sum_eigenvalues {T : E →ₗ[ℝ] E} (hT : T.IsSymmetric)
     (hd : Module.finrank ℝ E = d) (x : E) :
     ⟪x, T x⟫_ℝ = ∑ j, hT.eigenvalues hd j * ((hT.eigenvectorBasis hd).repr x j) ^ 2 := by
@@ -39,6 +45,9 @@ theorem inner_apply_eq_sum_eigenvalues {T : E →ₗ[ℝ] E} (hT : T.IsSymmetric
   simp only [RCLike.ofReal_real_eq_id, id_eq]
   ring
 
+/--
+@isnad1 id=le.3h5v.s10.0a6f5e35b592 from=translated src=- shape=d1da244e vocab=ac598b28
+-/
 theorem eigenvalue_mul_norm_sq_le_inner {T : E →ₗ[ℝ] E} (hT : T.IsSymmetric)
     (hd : Module.finrank ℝ E = d) (k : Fin d) (x : E)
     (hx : ∀ j : Fin d, k < j → (hT.eigenvectorBasis hd).repr x j = 0) :
@@ -52,6 +61,9 @@ theorem eigenvalue_mul_norm_sq_le_inner {T : E →ₗ[ℝ] E} (hT : T.IsSymmetri
   · exact mul_le_mul_of_nonneg_right
       (hT.eigenvalues_antitone hd (le_of_not_gt hj)) (sq_nonneg _)
 
+/--
+@isnad1 id=le.3h5v.s10.e0f6ddd4de24 from=translated src=- shape=03515b29 vocab=ac598b28
+-/
 theorem inner_le_eigenvalue_mul_norm_sq {T : E →ₗ[ℝ] E} (hT : T.IsSymmetric)
     (hd : Module.finrank ℝ E = d) (k : Fin d) (x : E)
     (hx : ∀ j : Fin d, j < k → (hT.eigenvectorBasis hd).repr x j = 0) :
@@ -78,6 +90,9 @@ noncomputable def initialCoordinates (d k : ℕ) :
     intro j
     by_cases h : j.val < k <;> simp [h]
 
+/--
+@isnad1 id=injectiv.1h2v.s8.b7b66de0aaee from=translated src=- shape=36559805 vocab=6714293e
+-/
 theorem initialCoordinates_injective {d k : ℕ} (hk : k ≤ d) :
     Function.Injective (initialCoordinates d k) := by
   intro c e h
@@ -94,7 +109,9 @@ noncomputable def firstCoordinates (d k : ℕ) (hk : k ≤ d) :
 
 omit [FiniteDimensional ℝ E] in
 /-- The first `k+1` vectors of one orthonormal basis have a nonzero linear
-combination orthogonal to the first `k` vectors of any other basis.-/
+combination orthogonal to the first `k` vectors of any other basis.
+@isnad1 id=ex.0h5v.s10.07265f725866 from=translated src=- shape=e9a96dc2 vocab=b06e1fb5
+-/
 theorem exists_initial_final_vector (b c : OrthonormalBasis (Fin d) ℝ E) (k : Fin d) :
     ∃ x : E, x ≠ 0 ∧
       (∀ j : Fin d, k < j → b.repr x j = 0) ∧
@@ -127,7 +144,9 @@ theorem exists_initial_final_vector (b c : OrthonormalBasis (Fin d) ℝ E) (k : 
     change c.repr (emb a) j = 0 at h
     exact h
 
-/-- Ordered eigenvalues are monotone under quadratic-form order.-/
+/-- Ordered eigenvalues are monotone under quadratic-form order.
+@isnad1 id=le.4h5v.s8.9e1b1937b7c7 from=translated src=- shape=560c1372 vocab=7f666159
+-/
 theorem symmetric_eigenvalues_mono {T S : E →ₗ[ℝ] E}
     (hT : T.IsSymmetric) (hS : S.IsSymmetric) (hd : Module.finrank ℝ E = d)
     (hTS : ∀ x : E, ⟪x, T x⟫_ℝ ≤ ⟪x, S x⟫_ℝ) (k : Fin d) :
@@ -148,7 +167,9 @@ open scoped InnerProductSpace
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- Loewner order implies pointwise order of the decreasing eigenvalue lists.
-The min--max step is proved above using a dimension argument.-/
+The min--max step is proved above using a dimension argument.
+@isnad1 id=le.3h4v.s7.5c9fb4e05a76 from=translated src=- shape=78252bf3 vocab=29af91c1
+-/
 theorem matrix_eigenvalues_mono {A B : Matrix ι ι ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) (hAB : A ≤ B)
     (k : Fin (Fintype.card ι)) : hA.eigenvalues₀ k ≤ hB.eigenvalues₀ k := by
@@ -161,6 +182,9 @@ theorem matrix_eigenvalues_mono {A B : Matrix ι ι ℝ}
   simpa only [EuclideanSpace.inner_eq_star_dotProduct, Matrix.toLpLin_apply,
     WithLp.ofLp_toLp, dotProduct_comm] using sub_nonneg.mp h
 
+/--
+@isnad1 id=eq.1h2v.s6.5030a89e0ba8 from=translated src=- shape=1795d3eb vocab=e3def2e9
+-/
 theorem trace_eq_sum_eigenvalues₀ {A : Matrix ι ι ℝ} (hA : A.IsHermitian) :
     A.trace = ∑ j : Fin (Fintype.card ι), hA.eigenvalues₀ j := by
   rw [hA.trace_eq_sum_eigenvalues]
@@ -170,7 +194,9 @@ theorem trace_eq_sum_eigenvalues₀ {A : Matrix ι ι ℝ} (hA : A.IsHermitian) 
     e.sum_comp hA.eigenvalues₀
 
 /-- The positive deviations of the ordered eigenvalues are bounded by the
-trace of the actual positive part of the matrix difference.-/
+trace of the actual positive part of the matrix difference.
+@isnad1 id=le.2h3v.s7.53da8d386be7 from=translated src=- shape=93eabae3 vocab=b88f2925
+-/
 theorem sum_positive_eigenvalue_differences_le {A B : Matrix ι ι ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) :
     (∑ j, max (hA.eigenvalues₀ j - hB.eigenvalues₀ j) 0) ≤ ((A - B)⁺).trace := by
@@ -198,7 +224,9 @@ theorem sum_positive_eigenvalue_differences_le {A B : Matrix ι ι ℝ}
 
 /-- Mirsky's trace-norm comparison, with ordered eigenvalues and all
 multiplicities.  No simple-spectrum or eigenvalue-monotonicity hypothesis is
-needed: the latter is proved from Loewner order above.-/
+needed: the latter is proved from Loewner order above.
+@isnad1 id=le.2h3v.s7.dcc575997cf9 from=translated src=- shape=256327ee vocab=387089f6
+-/
 theorem ordered_eigenvalue_distance_le_traceNorm {A B : Matrix ι ι ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) :
     (∑ j, |hA.eigenvalues₀ j - hB.eigenvalues₀ j|) ≤ traceNorm (A - B) := by
@@ -218,11 +246,17 @@ theorem ordered_eigenvalue_distance_le_traceNorm {A B : Matrix ι ι ℝ}
       rw [← trace_add, CFC.posPart_add_negPart (A - B) (hA.sub hB)]
       rfl
 
+/--
+@isnad1 id=ishermit.1h3v.s12.857b47fb77ec from=translated src=- shape=38d006dd vocab=fba00189
+-/
 theorem isHermitian_conjugate {A : Matrix ι ι ℝ} (hA : A.IsHermitian)
     (U : Matrix.unitaryGroup ι ℝ) : (conjStarAlgAut ℝ _ U A).IsHermitian := by
   simpa only [conjStarAlgAut_apply, Matrix.star_eq_conjTranspose] using
     Matrix.isHermitian_mul_mul_conjTranspose (U : Matrix ι ι ℝ) hA
 
+/--
+@isnad1 id=eq.1h3v.s12.f4ef207178d7 from=translated src=- shape=6cd93fdb vocab=46dc701d
+-/
 theorem eigenvalues₀_conjugate {A : Matrix ι ι ℝ} (hA : A.IsHermitian)
     (U : Matrix.unitaryGroup ι ℝ) :
     (isHermitian_conjugate hA U).eigenvalues₀ = hA.eigenvalues₀ := by
@@ -232,7 +266,9 @@ theorem eigenvalues₀_conjugate {A : Matrix ι ι ℝ} (hA : A.IsHermitian)
   rw [← List.ofFn_inj, ← (isHermitian_conjugate hA U).sort_roots_charpoly_eq_eigenvalues₀,
     ← hA.sort_roots_charpoly_eq_eigenvalues₀, hchar]
 
-/-- The unitary-conjugation form used by the antipodal block argument.-/
+/-- The unitary-conjugation form used by the antipodal block argument.
+@isnad1 id=le.2h4v.s12.c1739ecd734e from=translated src=- shape=9e42d1e3 vocab=c4976d84
+-/
 theorem ordered_eigenvalue_distance_le_traceNorm_conjugate {A B : Matrix ι ι ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) (U : Matrix.unitaryGroup ι ℝ) :
     (∑ j, |hA.eigenvalues₀ j - hB.eigenvalues₀ j|) ≤
@@ -241,7 +277,9 @@ theorem ordered_eigenvalue_distance_le_traceNorm_conjugate {A B : Matrix ι ι �
   rwa [eigenvalues₀_conjugate hB U] at h
 
 /-- A decreasing diagonal is already the decreasing eigenvalue list.  The
-cast only identifies `card (Fin N)` with `N`.-/
+cast only identifies `card (Fin N)` with `N`.
+@isnad1 id=eq.1h2v.s6.b010f9f2605d from=translated src=- shape=9428de33 vocab=f19d9ede
+-/
 theorem eigenvalues₀_diagonal_of_antitone {N : ℕ} (a : Fin N → ℝ) (ha : Antitone a) :
     (Matrix.isHermitian_diagonal a).eigenvalues₀ =
       fun j => a (Fin.cast (Fintype.card_fin N) j) := by
@@ -264,7 +302,9 @@ theorem eigenvalues₀_diagonal_of_antitone {N : ℕ} (a : Fin N → ℝ) (ha : 
     _ = List.ofFn a := hsorted
     _ = _ := List.ofFn_congr (Fintype.card_fin N).symm a
 
-/-- Direct diagonal-list form, with the spectral identification proved here.-/
+/-- Direct diagonal-list form, with the spectral identification proved here.
+@isnad1 id=le.2h4v.s12.247263bae64c from=translated src=- shape=75dcd6eb vocab=6cc73792
+-/
 theorem sorted_diagonal_distance_le_traceNorm {N : ℕ} (a b : Fin N → ℝ)
     (ha : Antitone a) (hb : Antitone b) (U : Matrix.unitaryGroup (Fin N) ℝ) :
     (∑ j, |a j - b j|) ≤ traceNorm

@@ -18,21 +18,39 @@ variable {ι : Type*} [Fintype ι]
 
 noncomputable def vectorNorm (v : ι → ℝ) : ℝ := Real.sqrt (v ⬝ᵥ v)
 
+/--
+@isnad1 id=le.0h2v.s4.6e6563b835bf from=translated src=- shape=88b7ad43 vocab=fbc09bd2
+-/
 theorem dot_self_nonneg (v : ι → ℝ) : 0 ≤ v ⬝ᵥ v := by
   simpa only [star_trivial] using dotProduct_star_self_nonneg v
 
+/--
+@isnad1 id=le.0h2v.s4.d0d0782447ae from=translated src=- shape=c8b3cbfd vocab=930b8971
+-/
 theorem vectorNorm_nonneg (v : ι → ℝ) : 0 ≤ vectorNorm v := Real.sqrt_nonneg _
 
+/--
+@isnad1 id=eq.0h2v.s5.1550a297891f from=translated src=- shape=65fdc8a4 vocab=c67174cf
+-/
 theorem vectorNorm_sq (v : ι → ℝ) : vectorNorm v ^ 2 = v ⬝ᵥ v :=
   Real.sq_sqrt (dot_self_nonneg v)
 
+/--
+@isnad1 id=lt.1h2v.s5.a4cf37b7157b from=translated src=- shape=5d26c1cc vocab=89bc338a
+-/
 theorem vectorNorm_pos {v : ι → ℝ} (hv : 0 < v ⬝ᵥ v) : 0 < vectorNorm v :=
   Real.sqrt_pos.mpr hv
 
+/--
+@isnad1 id=eq.0h2v.s6.1abc1d31321a from=translated src=- shape=5e5bc08a vocab=30e7f0ee
+-/
 theorem vectorNorm_eq_norm (v : ι → ℝ) : vectorNorm v = ‖toLp 2 v‖ := by
   simpa only [vectorNorm, EuclideanSpace.inner_toLp_toLp, star_trivial] using
     (norm_eq_sqrt_real_inner (toLp 2 v)).symm
 
+/--
+@isnad1 id=le.0h3v.s5.236e040e3153 from=translated src=- shape=4304f818 vocab=390cf98a
+-/
 theorem dot_le_vectorNorm_mul (u v : ι → ℝ) : u ⬝ᵥ v ≤ vectorNorm u * vectorNorm v := by
   rw [vectorNorm_eq_norm, vectorNorm_eq_norm]
   simpa only [EuclideanSpace.inner_toLp_toLp, star_trivial, dotProduct_comm] using
@@ -40,6 +58,9 @@ theorem dot_le_vectorNorm_mul (u v : ι → ℝ) : u ⬝ᵥ v ≤ vectorNorm u *
 
 noncomputable def normalizedVector (v : ι → ℝ) : ι → ℝ := (vectorNorm v)⁻¹ • v
 
+/--
+@isnad1 id=eq.1h2v.s5.d503ccf4a99f from=translated src=- shape=32ddaa87 vocab=5e93af13
+-/
 theorem normalizedVector_self {v : ι → ℝ} (hv : 0 < v ⬝ᵥ v) :
     normalizedVector v ⬝ᵥ normalizedVector v = 1 := by
   have hs := vectorNorm_sq v
@@ -48,6 +69,9 @@ theorem normalizedVector_self {v : ι → ℝ} (hv : 0 < v ⬝ᵥ v) :
   field_simp
   nlinarith
 
+/--
+@isnad1 id=eq.0h3v.s5.a324a9f8e5fc from=translated src=- shape=3ff852a3 vocab=819fc48e
+-/
 theorem normalizedVector_dot (u v : ι → ℝ) :
     normalizedVector u ⬝ᵥ normalizedVector v =
       (u ⬝ᵥ v) / (vectorNorm u * vectorNorm v) := by
@@ -55,6 +79,9 @@ theorem normalizedVector_dot (u v : ι → ℝ) :
     div_eq_mul_inv, _root_.mul_inv_rev]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s6.80721eaf60eb from=translated src=- shape=ab8b7860 vocab=9b9adfe5
+-/
 theorem dot_mulVec_comm {Q : Matrix ι ι ℝ} (hQ : Q.IsHermitian) (u v : ι → ℝ) :
     u ⬝ᵥ Q *ᵥ v = v ⬝ᵥ Q *ᵥ u := by
   have hQt : Q.transpose = Q := by
@@ -64,16 +91,24 @@ theorem dot_mulVec_comm {Q : Matrix ι ι ℝ} (hQ : Q.IsHermitian) (u v : ι �
 variable [DecidableEq ι]
 
 omit [Fintype ι] in
+/--
+@isnad1 id=ishermit.1h2v.s5.69093e2a7a5c from=translated src=- shape=6be7d06e vocab=0150ff4b
+-/
 theorem orderContraction_isHermitian {Q : Matrix ι ι ℝ} (hQ : OrderContraction Q) :
     Q.IsHermitian := by
   have h := Matrix.isHermitian_one.sub hQ.1.isHermitian
   simpa only [sub_sub_cancel] using h
 
+/--
+@isnad1 id=ishermit.1h2v.s6.b68b1d34f726 from=translated src=- shape=589c7e33 vocab=e66f5288
+-/
 theorem signWitness_isHermitian {A : Matrix ι ι ℝ} (hA : A.IsHermitian) :
     (signWitness hA).IsHermitian :=
   isHermitian_conjugate (Matrix.isHermitian_diagonal _) hA.eigenvectorUnitary
 
-/-- Every spectral value of an order contraction lies in `[-1,1]`.-/
+/-- Every spectral value of an order contraction lies in `[-1,1]`.
+@isnad1 id=le.1h3v.s5.4fb092c674e1 from=translated src=- shape=553d37ea vocab=e104ca36
+-/
 theorem orderContraction_eigenvalue_abs_le {Q : Matrix ι ι ℝ}
     (hQ : OrderContraction Q) (i : ι) :
     |(orderContraction_isHermitian hQ).eigenvalues i| ≤ 1 := by
@@ -83,7 +118,9 @@ theorem orderContraction_eigenvalue_abs_le {Q : Matrix ι ι ℝ}
   simpa only [diagonal_apply_eq, Function.comp_apply, RCLike.ofReal_real_eq_id, id_eq] using
     h.diagonal_abs_le i
 
-/-- The order contraction is also a contraction on Euclidean vectors.-/
+/-- The order contraction is also a contraction on Euclidean vectors.
+@isnad1 id=possemid.1h2v.s6.6e26e7819c28 from=translated src=- shape=340b2a76 vocab=5418f001
+-/
 theorem orderContraction_square_posSemidef {Q : Matrix ι ι ℝ}
     (hQ : OrderContraction Q) : (1 - Q * Q).PosSemidef := by
   let hH := orderContraction_isHermitian hQ
@@ -102,6 +139,9 @@ theorem orderContraction_square_posSemidef {Q : Matrix ι ι ℝ}
   rw [hid, hD]
   exact posSemidef_conjugate _ hdiag
 
+/--
+@isnad1 id=le.1h3v.s6.a9b545bb4d3d from=translated src=- shape=d065762f vocab=f76fd015
+-/
 theorem orderContraction_dot_sq_le {Q : Matrix ι ι ℝ} (hQ : OrderContraction Q)
     (v : ι → ℝ) : (Q *ᵥ v) ⬝ᵥ (Q *ᵥ v) ≤ v ⬝ᵥ v := by
   have h := (orderContraction_square_posSemidef hQ).dotProduct_mulVec_nonneg v
@@ -110,11 +150,16 @@ theorem orderContraction_dot_sq_le {Q : Matrix ι ι ℝ} (hQ : OrderContraction
   rw [dot_mulVec_comm (orderContraction_isHermitian hQ)] at h
   exact sub_nonneg.mp h
 
+/--
+@isnad1 id=le.1h3v.s5.d158ea86989b from=translated src=- shape=e2f26105 vocab=4e2ea49e
+-/
 theorem orderContraction_vectorNorm_le {Q : Matrix ι ι ℝ} (hQ : OrderContraction Q)
     (v : ι → ℝ) : vectorNorm (Q *ᵥ v) ≤ vectorNorm v :=
   Real.sqrt_le_sqrt (orderContraction_dot_sq_le hQ v)
 
-/-- The contraction bound uses the genuine Euclidean operator norm.-/
+/-- The contraction bound uses the genuine Euclidean operator norm.
+@isnad1 id=le.1h2v.s12.3957b63e0231 from=translated src=- shape=5e7b4f92 vocab=3fc24383
+-/
 theorem orderContraction_operatorNorm_le {Q : Matrix ι ι ℝ} (hQ : OrderContraction Q) :
     ‖Matrix.toEuclideanCLM (𝕜 := ℝ) (n := ι) Q‖ ≤ 1 := by
   apply ContinuousLinearMap.opNorm_le_bound _ zero_le_one
@@ -123,6 +168,9 @@ theorem orderContraction_operatorNorm_le {Q : Matrix ι ι ℝ} (hQ : OrderContr
   simpa only [one_mul, vectorNorm_eq_norm, toLp_ofLp] using
     orderContraction_vectorNorm_le hQ (ofLp x)
 
+/--
+@isnad1 id=le.1h3v.s12.dd1226bf05fc from=translated src=- shape=6fb1941e vocab=e30b4fe8
+-/
 theorem operatorNorm_quadratic_abs_le {Q : Matrix ι ι ℝ}
     (hQ : ‖Matrix.toEuclideanCLM (𝕜 := ℝ) (n := ι) Q‖ ≤ 1) (v : ι → ℝ) :
     |v ⬝ᵥ Q *ᵥ v| ≤ v ⬝ᵥ v := by
@@ -136,6 +184,9 @@ theorem operatorNorm_quadratic_abs_le {Q : Matrix ι ι ℝ}
   have hs := vectorNorm_sq v
   nlinarith [vectorNorm_nonneg v]
 
+/--
+@isnad1 id=iff.1h2v.s12.68cc3ca3767d from=translated src=- shape=430c0825 vocab=58497e8b
+-/
 theorem orderContraction_iff_operatorNorm {Q : Matrix ι ι ℝ} (hQ : Q.IsHermitian) :
     OrderContraction Q ↔ ‖Matrix.toEuclideanCLM (𝕜 := ℝ) (n := ι) Q‖ ≤ 1 := by
   constructor
@@ -152,11 +203,17 @@ theorem orderContraction_iff_operatorNorm {Q : Matrix ι ι ℝ} (hQ : Q.IsHermi
       simp only [star_trivial, add_mulVec, one_mulVec, dotProduct_add]
       linarith
 
+/--
+@isnad1 id=le.1h4v.s6.f2d4206c5254 from=translated src=- shape=8a49daeb vocab=53417eaf
+-/
 theorem orderContraction_pair_le {Q : Matrix ι ι ℝ} (hQ : OrderContraction Q)
     (u v : ι → ℝ) : u ⬝ᵥ (Q *ᵥ v) ≤ vectorNorm u * vectorNorm v :=
   (dot_le_vectorNorm_mul u _).trans
     (mul_le_mul_of_nonneg_left (orderContraction_vectorNorm_le hQ v) (vectorNorm_nonneg u))
 
+/--
+@isnad1 id=eq.4h4v.s6.e4f8a763dfa4 from=translated src=- shape=b5058562 vocab=80b12409
+-/
 theorem unit_pair_equality_maps {Q : Matrix ι ι ℝ} (hQ : OrderContraction Q)
     (u v : ι → ℝ) (hu : u ⬝ᵥ u = 1) (hv : v ⬝ᵥ v = 1)
     (heq : u ⬝ᵥ Q *ᵥ v = 1) : Q *ᵥ v = u := by
@@ -169,6 +226,9 @@ theorem unit_pair_equality_maps {Q : Matrix ι ι ℝ} (hQ : OrderContraction Q)
     linarith
   exact sub_eq_zero.mp (dotProduct_self_eq_zero.mp hz)
 
+/--
+@isnad1 id=and.4h4v.s7.39eca80309ae from=translated src=- shape=940853f1 vocab=a9188ddb
+-/
 theorem pair_equality_maps_normalized {Q : Matrix ι ι ℝ} (hQ : OrderContraction Q)
     (u v : ι → ℝ) (hu : 0 < u ⬝ᵥ u) (hv : 0 < v ⬝ᵥ v)
     (heq : u ⬝ᵥ Q *ᵥ v = vectorNorm u * vectorNorm v) :
@@ -185,6 +245,9 @@ theorem pair_equality_maps_normalized {Q : Matrix ι ι ℝ} (hQ : OrderContract
     rw [dot_mulVec_comm (orderContraction_isHermitian hQ)]
     exact hpair
 
+/--
+@isnad1 id=eq.4h7v.s7.916d62840e81 from=translated src=- shape=106a6cd6 vocab=d1816160
+-/
 theorem common_pair_equality_gram {α : Type*} {Q : Matrix ι ι ℝ}
     (hQ : OrderContraction Q) (u v : α → ι → ℝ)
     (hu : ∀ y, 0 < u y ⬝ᵥ u y) (hv : ∀ y, 0 < v y ⬝ᵥ v y)
@@ -202,12 +265,18 @@ theorem common_pair_equality_gram {α : Type*} {Q : Matrix ι ι ℝ}
     _ = _ := by rw [hz.2]
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=ishermit.0h3v.s6.7ee6afaf7bec from=translated src=- shape=c31054aa vocab=68e3ac0c
+-/
 theorem cross_isHermitian (u v : ι → ℝ) :
     (vecMulVec u v + vecMulVec v u).IsHermitian := by
   change (vecMulVec u v + vecMulVec v u).conjTranspose = _
   simp only [conjTranspose_eq_transpose_of_trivial, transpose_add, transpose_vecMulVec]
   exact add_comm _ _
 
+/--
+@isnad1 id=eq.1h4v.s7.c6f6e0056aba from=translated src=- shape=e251fef6 vocab=3605a414
+-/
 theorem trace_mul_cross {Q : Matrix ι ι ℝ} (hQ : Q.IsHermitian) (u v : ι → ℝ) :
     (Q * (vecMulVec u v + vecMulVec v u)).trace = 2 * (u ⬝ᵥ Q *ᵥ v) := by
   rw [mul_add, trace_add, mul_vecMulVec, mul_vecMulVec, trace_vecMulVec, trace_vecMulVec]
@@ -216,7 +285,9 @@ theorem trace_mul_cross {Q : Matrix ι ι ℝ} (hQ : Q.IsHermitian) (u v : ι �
 
 /-- Equality for a positively weighted sum of symmetric cross matrices forces
 the normalized Gram matrices of the two vector families to coincide. The
-common contraction is the spectral sign of the actual weighted sum.-/
+common contraction is the spectral sign of the actual weighted sum.
+@isnad1 id=eq.4h7v.s8.67df08fc3ab1 from=translated src=- shape=52845060 vocab=f85fc451
+-/
 theorem weighted_cross_trace_equality_gram {α : Type*} [Fintype α]
     (p : α → ℝ) (u v : α → ι → ℝ) (hp : ∀ y, 0 < p y)
     (hu : ∀ y, 0 < u y ⬝ᵥ u y) (hv : ∀ y, 0 < v y ⬝ᵥ v y)
@@ -258,6 +329,9 @@ theorem weighted_cross_trace_equality_gram {α : Type*} [Fintype α]
   have hpa := hp a
   nlinarith
 
+/--
+@isnad1 id=eq.1h3v.s7.154169584064 from=translated src=- shape=3a9cbaf6 vocab=45dbe581
+-/
 theorem reflection_conjugate_twice {F : Matrix ι ι ℝ} (hF : F * F = 1)
     (A : Matrix ι ι ℝ) : F * (F * A * F) * F = A := by
   calc
@@ -265,11 +339,17 @@ theorem reflection_conjugate_twice {F : Matrix ι ι ℝ} (hF : F * F = 1)
     _ = _ := by rw [hF, one_mul, mul_one]
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=ishermit.2h3v.s7.70c1dd1d3420 from=translated src=- shape=1037f1c7 vocab=93311f42
+-/
 theorem reflection_conjugate_isHermitian {F A : Matrix ι ι ℝ}
     (hF : F.IsHermitian) (hA : A.IsHermitian) : (F * A * F).IsHermitian := by
   change (F * A * F).conjTranspose = _
   simp only [conjTranspose_mul, hF.eq, hA.eq, mul_assoc]
 
+/--
+@isnad1 id=ordercon.3h3v.s7.31188aeeaf0b from=translated src=- shape=9c08d92f vocab=4af2ddab
+-/
 theorem orderContraction_reflection_conjugate {F Q : Matrix ι ι ℝ}
     (hF : F.IsHermitian) (hFsq : F * F = 1) (hQ : OrderContraction Q) :
     OrderContraction (F * Q * F) := by
@@ -280,6 +360,9 @@ theorem orderContraction_reflection_conjugate {F Q : Matrix ι ι ℝ}
     simpa only [hF.eq, mul_add, add_mul, mul_one, hFsq] using h
 
 omit [Fintype ι] in
+/--
+@isnad1 id=ordercon.2h3v.s6.cfafc604ee06 from=translated src=- shape=f1b970da vocab=eedff0ea
+-/
 theorem orderContraction_half_sub {Q R : Matrix ι ι ℝ}
     (hQ : OrderContraction Q) (hR : OrderContraction R) :
     OrderContraction ((1 / 2 : ℝ) • (Q - R)) := by
@@ -290,6 +373,9 @@ theorem orderContraction_half_sub {Q R : Matrix ι ι ℝ}
     convert h using 1; module
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h4v.s7.ed344e6a871d from=translated src=- shape=6b4f4670 vocab=1f79f5f9
+-/
 theorem trace_reflection_move (F A B : Matrix ι ι ℝ) :
     (F * A * F * B).trace = (A * (F * B * F)).trace := by
   calc
@@ -298,6 +384,9 @@ theorem trace_reflection_move (F A B : Matrix ι ι ℝ) :
     _ = _ := by congr 1; noncomm_ring
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.1h4v.s7.9e9bb3e194eb from=translated src=- shape=26f8b132 vocab=9016f749
+-/
 theorem anticommuting_trace_identity {F Q : Matrix ι ι ℝ}
     (hQ : F * Q * F = -Q) (K : Matrix ι ι ℝ) :
     (Q * (K - F * K * F)).trace = 2 * (K * Q).trace := by
@@ -307,7 +396,9 @@ theorem anticommuting_trace_identity {F Q : Matrix ι ι ℝ}
   ring
 
 /-- The anticommuting trace witness exists for every real symmetric `K` and
-reflection `F`; density normalization and positivity of `K` are unnecessary.-/
+reflection `F`; density normalization and positivity of `K` are unnecessary.
+@isnad1 id=ex.3h3v.s8.71c0b2c553fc from=translated src=- shape=d8e5ebe5 vocab=82dd0970
+-/
 theorem exists_anticommuting_trace_witness {K F : Matrix ι ι ℝ}
     (hK : K.IsHermitian) (hF : F.IsHermitian) (hFsq : F * F = 1) :
     ∃ Q : Matrix ι ι ℝ, Q.IsHermitian ∧ OrderContraction Q ∧ F * Q * F = -Q ∧
@@ -342,6 +433,9 @@ theorem exists_anticommuting_trace_witness {K F : Matrix ι ι ℝ}
   change (K * Q).trace = traceNorm H / 2
   linarith
 
+/--
+@isnad1 id=le.4h4v.s8.4aadb694aeb2 from=translated src=- shape=2ed838d6 vocab=2855fb48
+-/
 theorem anticommuting_trace_le {K F Q : Matrix ι ι ℝ}
     (hK : K.IsHermitian) (hF : F.IsHermitian) (hQ : OrderContraction Q)
     (ha : F * Q * F = -Q) :
@@ -351,13 +445,18 @@ theorem anticommuting_trace_le {K F Q : Matrix ι ι ℝ}
   rw [anticommuting_trace_identity ha] at h
   linarith
 
+/--
+@isnad1 id=eq.2h3v.s7.88d0e0a98a07 from=translated src=- shape=a931dcff vocab=b22d0b81
+-/
 theorem reflection_anticommutes {F Q : Matrix ι ι ℝ}
     (hFsq : F * F = 1) (ha : F * Q * F = -Q) : F * Q = -(Q * F) := by
   have h := congrArg (fun A => A * F) ha
   simpa only [mul_assoc, hFsq, mul_one, neg_mul] using h
 
 /-- The real finite-dimensional uncertainty relation for a reflection and an
-anticommuting order contraction, with a genuinely normalized input vector.-/
+anticommuting order contraction, with a genuinely normalized input vector.
+@isnad1 id=le.5h4v.s8.66abec0f8135 from=translated src=- shape=81747232 vocab=54de1cdc
+-/
 theorem anticommuting_uncertainty {F Q : Matrix ι ι ℝ}
     (hF : F.IsHermitian) (hFsq : F * F = 1) (hQ : OrderContraction Q)
     (ha : F * Q * F = -Q) (ψ : ι → ℝ) (hψ : ψ ⬝ᵥ ψ = 1) :
@@ -394,7 +493,9 @@ theorem anticommuting_uncertainty {F Q : Matrix ι ι ℝ}
   nlinarith
 
 /-- Exact real-matrix version of the manuscript maximum, using the Euclidean
-continuous-linear-map operator norm rather than a matrix entrywise norm.-/
+continuous-linear-map operator norm rather than a matrix entrywise norm.
+@isnad1 id=isgreate.3h3v.s12.28f45754e8d5 from=translated src=- shape=3ccc5386 vocab=fcb629df
+-/
 theorem anticommuting_trace_maximum {K F : Matrix ι ι ℝ}
     (hK : K.IsHermitian) (hF : F.IsHermitian) (hFsq : F * F = 1) :
     IsGreatest {t : ℝ | ∃ Q : Matrix ι ι ℝ, Q.IsHermitian ∧
@@ -406,6 +507,9 @@ theorem anticommuting_trace_maximum {K F : Matrix ι ι ℝ}
   · rintro t ⟨Q, hQH, hn, ha, rfl⟩
     exact anticommuting_trace_le hK hF ((orderContraction_iff_operatorNorm hQH).mpr hn) ha
 
+/--
+@isnad1 id=le.6h4v.s12.a9e5ad555401 from=translated src=- shape=6d73e329 vocab=540eb6f9
+-/
 theorem anticommuting_uncertainty_operatorNorm {F Q : Matrix ι ι ℝ}
     (hF : F.IsHermitian) (hFsq : F * F = 1) (hQ : Q.IsHermitian)
     (hn : ‖Matrix.toEuclideanCLM (𝕜 := ℝ) (n := ι) Q‖ ≤ 1)

@@ -18,21 +18,33 @@ namespace Hellinger.EntropyTransfer
 
 def halfLog (v : ℝ) : ℝ := 1 / 2 * Real.log ((1 + v) / (1 - v))
 
+/--
+@isnad1 id=hasderiv.1h1v.s6.910646b15850 from=translated src=- shape=dfaf4561 vocab=c2bb1455
+-/
 theorem halfLog_hasDerivAt {v : ℝ} (hv : v ∈ Ioo (-1 : ℝ) 1) :
     HasDerivAt halfLog (1 / (1 - v ^ 2)) v := by
   change HasDerivAt (fun x : ℝ => 1 / 2 * Real.log ((1 + x) / (1 - x))) _ _
   simpa using
     Real.hasDerivAt_half_log_one_add_div_one_sub_sub_sum_range 0 hv.1 hv.2
 
+/--
+@isnad1 id=lt.1h1v.s4.4face04ac328 from=translated src=- shape=ab40fd09 vocab=c6397172
+-/
 theorem halfLog_gt_self {v : ℝ} (hv : v ∈ Ioo (0 : ℝ) 1) : v < halfLog v := by
   have h := Real.sum_range_le_log_div hv.1.le hv.2 2
   norm_num [Finset.sum_range_succ] at h
   change v < 1 / 2 * Real.log ((1 + v) / (1 - v))
   nlinarith [pow_pos hv.1 3]
 
+/--
+@isnad1 id=continuo.0h0v.s3.c4c196def8ce from=translated src=- shape=e3d48bcb vocab=90a7fee3
+-/
 theorem root_continuous : Continuous root :=
   Real.continuous_sqrt.comp (continuous_const.sub (continuous_id.pow 2))
 
+/--
+@isnad1 id=mem.1h1v.s5.f9f21a8cc003 from=translated src=- shape=727b7c20 vocab=c491f6ee
+-/
 theorem root_interior {z : ℝ} (hz : z ∈ Ioo (0 : ℝ) 1) : root z ∈ Ioo (0 : ℝ) 1 := by
   have hs : 0 < 1 - z ^ 2 := by nlinarith [hz.1, hz.2]
   constructor
@@ -40,9 +52,15 @@ theorem root_interior {z : ℝ} (hz : z ∈ Ioo (0 : ℝ) 1) : root z ∈ Ioo (0
   · change Real.sqrt (1 - z ^ 2) < 1
     exact (Real.sqrt_lt' zero_lt_one).mpr (by nlinarith [hz.1])
 
+/--
+@isnad1 id=eq.1h1v.s6.7c2ab99a46f9 from=translated src=- shape=ef6ad3ac vocab=29a71ac4
+-/
 theorem root_sq {z : ℝ} (hz : z ∈ Icc (-1 : ℝ) 1) : root z ^ 2 = 1 - z ^ 2 :=
   Real.sq_sqrt (by nlinarith [hz.1, hz.2])
 
+/--
+@isnad1 id=hasderiv.1h1v.s6.13a07ece7a76 from=translated src=- shape=23dd8561 vocab=dcea668c
+-/
 theorem root_hasDerivAt {z : ℝ} (hz : z ∈ Ioo (0 : ℝ) 1) :
     HasDerivAt root (-z / root z) z := by
   have hp : 0 < 1 - z ^ 2 := by nlinarith [hz.1, hz.2]
@@ -59,9 +77,15 @@ def entropyCurve (z : ℝ) : ℝ := Real.binEntropy ((1 - root z) / 2)
 
 def entropyCurveDeriv (z : ℝ) : ℝ := z * halfLog (root z) / root z
 
+/--
+@isnad1 id=continuo.0h0v.s3.826e2202ea48 from=translated src=- shape=e3d48bcb vocab=28a328a8
+-/
 theorem entropyCurve_continuous : Continuous entropyCurve :=
   Real.binEntropy_continuous.comp ((continuous_const.sub root_continuous).div_const 2)
 
+/--
+@isnad1 id=hasderiv.1h1v.s5.00a3b5b4307d from=translated src=- shape=c0b471d9 vocab=c977aa56
+-/
 theorem entropyCurve_hasDerivAt {z : ℝ} (hz : z ∈ Ioo (0 : ℝ) 1) :
     HasDerivAt entropyCurve (entropyCurveDeriv z) z := by
   have hv := root_interior hz
@@ -82,6 +106,9 @@ theorem entropyCurve_hasDerivAt {z : ℝ} (hz : z ∈ Ioo (0 : ℝ) 1) :
   dsimp [entropyCurveDeriv]
   ring
 
+/--
+@isnad1 id=hasderiv.1h1v.s6.df5c9e7edeed from=translated src=- shape=0da3852a vocab=1f72d2fb
+-/
 theorem entropyCurveDeriv_hasDerivAt {z : ℝ} (hz : z ∈ Ioo (0 : ℝ) 1) :
     HasDerivAt entropyCurveDeriv
       ((halfLog (root z) - root z) / root z ^ 3) z := by
@@ -100,6 +127,9 @@ theorem entropyCurveDeriv_hasDerivAt {z : ℝ} (hz : z ∈ Ioo (0 : ℝ) 1) :
   field_simp
   linear_combination halfLog (root z) * hs
 
+/--
+@isnad1 id=strictco.0h0v.s4.de6a8e49f80b from=translated src=- shape=2b2e5daa vocab=15ffff51
+-/
 theorem entropyCurve_strictConvex : StrictConvexOn ℝ (Icc (0 : ℝ) 1) entropyCurve := by
   apply strictConvexOn_of_deriv2_pos (convex_Icc 0 1) entropyCurve_continuous.continuousOn
   intro z hz
@@ -112,6 +142,9 @@ theorem entropyCurve_strictConvex : StrictConvexOn ℝ (Icc (0 : ℝ) 1) entropy
   exact div_pos (sub_pos.mpr (halfLog_gt_self (root_interior hz)))
     (pow_pos (root_interior hz).1 3)
 
+/--
+@isnad1 id=strictmo.0h0v.s4.552e2556cbf3 from=translated src=- shape=6c3888e7 vocab=1739468a
+-/
 theorem entropyCurve_strictMono : StrictMonoOn entropyCurve (Icc (0 : ℝ) 1) := by
   apply strictMonoOn_of_deriv_pos (convex_Icc 0 1) entropyCurve_continuous.continuousOn
   intro z hz
@@ -120,28 +153,46 @@ theorem entropyCurve_strictMono : StrictMonoOn entropyCurve (Icc (0 : ℝ) 1) :=
   exact div_pos (mul_pos hz.1 ((root_interior hz).1.trans (halfLog_gt_self (root_interior hz))))
     (root_interior hz).1
 
+/--
+@isnad1 id=lt.0h0v.s4.0b427c4055e0 from=translated src=- shape=cf0a9d99 vocab=8079cfe6
+-/
 theorem log_two_pos : 0 < Real.log 2 := Real.log_pos (by norm_num)
 
 def entropyCurveBits (z : ℝ) : ℝ := entropyCurve z / Real.log 2
 
+/--
+@isnad1 id=strictmo.0h0v.s4.6e6f4627a1bb from=translated src=- shape=6c3888e7 vocab=aa7eeba1
+-/
 theorem entropyCurveBits_strictMono : StrictMonoOn entropyCurveBits (Icc (0 : ℝ) 1) := by
   intro x hx y hy hxy
   exact div_lt_div_of_pos_right (entropyCurve_strictMono hx hy hxy) log_two_pos
 
+/--
+@isnad1 id=convexon.0h0v.s4.35c91f13b827 from=translated src=- shape=2b2e5daa vocab=97d3a0c5
+-/
 theorem entropyCurveBits_convex : ConvexOn ℝ (Icc (0 : ℝ) 1) entropyCurveBits := by
   change ConvexOn ℝ (Icc (0 : ℝ) 1) (fun z => entropyCurve z / Real.log 2)
   simpa only [entropyCurveBits, smul_eq_mul, div_eq_mul_inv, mul_comm] using
     entropyCurve_strictConvex.convexOn.smul (inv_nonneg.mpr log_two_pos.le)
 
+/--
+@isnad1 id=mem.1h1v.s5.f73599b71543 from=translated src=- shape=ef75474a vocab=78734cba
+-/
 theorem root_mem_Icc {t : ℝ} (_ht : t ∈ Icc (-1 : ℝ) 1) : root t ∈ Icc (0 : ℝ) 1 := by
   refine ⟨Real.sqrt_nonneg _, ?_⟩
   change Real.sqrt (1 - t ^ 2) ≤ 1
   exact (Real.sqrt_le_left zero_le_one).mpr (by nlinarith [sq_nonneg t])
 
+/--
+@isnad1 id=eq.1h1v.s5.1962258842cc from=translated src=- shape=f1ca9f23 vocab=45805e56
+-/
 theorem root_root {t : ℝ} (ht : t ∈ Icc (-1 : ℝ) 1) : root (root t) = |t| := by
   change Real.sqrt (1 - root t ^ 2) = |t|
   rw [root_sq ht, show 1 - (1 - t ^ 2) = t ^ 2 by ring, Real.sqrt_sq_eq_abs]
 
+/--
+@isnad1 id=eq.1h1v.s6.ec7a5b9f2c1d from=translated src=- shape=fc37b484 vocab=5b2be843
+-/
 theorem entropyCurve_root {t : ℝ} (ht : t ∈ Icc (-1 : ℝ) 1) :
     entropyCurve (root t) = Real.binEntropy ((1 - t) / 2) := by
   unfold entropyCurve
@@ -153,20 +204,31 @@ theorem entropyCurve_root {t : ℝ} (ht : t ∈ Icc (-1 : ℝ) 1) :
     congr 1
     ring
 
+/--
+@isnad1 id=eq.1h1v.s6.8ea713c477e7 from=translated src=- shape=fc37b484 vocab=4a9ef2e6
+-/
 theorem entropyCurveBits_root {t : ℝ} (ht : t ∈ Icc (-1 : ℝ) 1) :
     entropyCurveBits (root t) = PaperSpecs.binaryEntropyBits ((1 - t) / 2) := by
   rw [entropyCurveBits, entropyCurve_root ht]
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.8734b4930da2 from=translated src=- shape=3c26ae4f vocab=2dfb7957
+-/
 @[simp] theorem entropyCurveBits_one : entropyCurveBits 1 = 1 := by
   simp only [entropyCurveBits, entropyCurve, root, one_pow, sub_self, Real.sqrt_zero, sub_zero]
   rw [one_div, Real.binEntropy_two_inv, div_self log_two_pos.ne']
 
+/--
+@isnad1 id=eq.0h0v.s3.073a5d4f6501 from=translated src=- shape=3c26ae4f vocab=2dfb7957
+-/
 @[simp] theorem entropyCurveBits_zero : entropyCurveBits 0 = 0 := by
   simp [entropyCurveBits, entropyCurve, root]
 
 /-- A fixed increment of a convex function grows when shifted to the right.
-The elementary two-point proof includes all interval endpoints.-/
+The elementary two-point proof includes all interval endpoints.
+@isnad1 id=le.4h3v.s6.b5ac4f79a0cb from=translated src=- shape=a3cda4b3 vocab=48261294
+-/
 theorem convex_increment_right {Φ : ℝ → ℝ} (hΦ : ConvexOn ℝ (Icc (0 : ℝ) 1) Φ)
     {a b : ℝ} (hb : 0 ≤ b) (hba : b ≤ a) (ha : a ≤ 1) :
     Φ a - Φ b ≤ Φ 1 - Φ (1 - a + b) := by
@@ -191,12 +253,18 @@ theorem convex_increment_right {Φ : ℝ → ℝ} (hΦ : ConvexOn ℝ (Icc (0 : 
 
 open Hellinger.Fourier
 
+/--
+@isnad1 id=mem.1h4v.s5.9d7bcff9ae69 from=translated src=- shape=8433be3d vocab=29e29a41
+-/
 theorem mean_mem_Icc {Ω : Type*} [Fintype Ω] [Nonempty Ω] {u : Ω → ℝ} {a b : ℝ}
     (hu : ∀ x, u x ∈ Icc a b) : mean u ∈ Icc a b := by
   constructor
   · simpa only [mean_const] using mean_le_mean (fun _ : Ω => a) u (fun x => (hu x).1)
   · simpa only [mean_const] using mean_le_mean u (fun _ : Ω => b) (fun x => (hu x).2)
 
+/--
+@isnad1 id=le.2h5v.s6.5fcf29e41c9b from=translated src=- shape=66ad9dc7 vocab=80bc1fb2
+-/
 theorem convex_mean {Ω : Type*} [Fintype Ω] [Nonempty Ω] {Φ : ℝ → ℝ} {a b : ℝ}
     (hΦ : ConvexOn ℝ (Icc a b) Φ) (u : Ω → ℝ) (hu : ∀ x, u x ∈ Icc a b) :
     Φ (mean u) ≤ mean (fun x => Φ (u x)) := by
@@ -206,6 +274,9 @@ theorem convex_mean {Ω : Type*} [Fintype Ω] [Nonempty Ω] {Φ : ℝ → ℝ} {
     hΦ.map_sum_le (t := Finset.univ) (w := fun _ : Ω => (Fintype.card Ω : ℝ)⁻¹) (p := u)
       (fun _ _ => by positivity) hw (fun x _ => hu x)
 
+/--
+@isnad1 id=le.1h2v.s5.a7745f7ea78c from=translated src=- shape=18d959e8 vocab=54694640
+-/
 theorem mean_root_le_root_mean {Ω : Type*} [Fintype Ω] [Nonempty Ω]
     (u : Ω → ℝ) (hu : ∀ x, u x ∈ Icc (-1 : ℝ) 1) :
     mean (fun x => root (u x)) ≤ root (mean u) := by
@@ -216,7 +287,9 @@ theorem mean_root_le_root_mean {Ω : Type*} [Fintype Ω] [Nonempty Ω]
       (p := u) (fun _ _ => by positivity) hw (fun x _ => hu x)
 
 /-- The information upper bound before the Hellinger estimate is inserted.
-The bias appears through `root (mean u)` and is retained throughout.-/
+The bias appears through `root (mean u)` and is retained throughout.
+@isnad1 id=le.1h2v.s7.3ae419fa5b9e from=translated src=- shape=4d2462b9 vocab=591929ec
+-/
 theorem information_le_entropy_gap {Ω : Type*} [Fintype Ω] [Nonempty Ω]
     (u : Ω → ℝ) (hu : ∀ x, u x ∈ Icc (-1 : ℝ) 1) :
     PaperSpecs.binaryEntropyBits ((1 - mean u) / 2) -
@@ -241,6 +314,9 @@ theorem information_le_entropy_gap {Ω : Type*} [Fintype Ω] [Nonempty Ω]
   rw [he]
   linarith
 
+/--
+@isnad1 id=mem.1h2v.s6.a032534cbd64 from=translated src=- shape=ebec74c0 vocab=53d2ec49
+-/
 theorem objective_complement_mem_Icc {Ω : Type*} [Fintype Ω] [Nonempty Ω]
     (u : Ω → ℝ) (hu : ∀ x, u x ∈ Icc (-1 : ℝ) 1) : 1 - objective u ∈ Icc (0 : ℝ) 1 := by
   have ha := root_mem_Icc (mean_mem_Icc hu)
@@ -249,6 +325,9 @@ theorem objective_complement_mem_Icc {Ω : Type*} [Fintype Ω] [Nonempty Ω]
   unfold objective
   constructor <;> linarith [ha.2, hb.1]
 
+/--
+@isnad1 id=le.3h3v.s7.d901a9ccc115 from=translated src=- shape=0c16a43a vocab=d846107a
+-/
 theorem information_of_hellinger {Ω : Type*} [Fintype Ω] [Nonempty Ω]
     (u : Ω → ℝ) (hu : ∀ x, u x ∈ Icc (-1 : ℝ) 1)
     (ρ : ℝ) (hρ : ρ ∈ Icc (0 : ℝ) 1) (hH : objective u ≤ 1 - root ρ) :
@@ -261,6 +340,9 @@ theorem information_of_hellinger {Ω : Type*} [Fintype Ω] [Nonempty Ω]
   rw [entropyCurveBits_root hr] at hm
   exact (information_le_entropy_gap u hu).trans (by linarith)
 
+/--
+@isnad1 id=lt.3h3v.s7.cd234200015b from=translated src=- shape=0c16a43a vocab=bce4f130
+-/
 theorem strict_information_of_strict_hellinger {Ω : Type*} [Fintype Ω] [Nonempty Ω]
     (u : Ω → ℝ) (hu : ∀ x, u x ∈ Icc (-1 : ℝ) 1)
     (ρ : ℝ) (hρ : ρ ∈ Icc (0 : ℝ) 1) (hH : objective u < 1 - root ρ) :
@@ -273,6 +355,9 @@ theorem strict_information_of_strict_hellinger {Ω : Type*} [Fintype Ω] [Nonemp
   rw [entropyCurveBits_root hr] at hm
   exact (information_le_entropy_gap u hu).trans_lt (by linarith)
 
+/--
+@isnad1 id=eq.4h3v.s7.fe55a59bac6b from=translated src=- shape=c8883cc6 vocab=d846107a
+-/
 theorem information_equality_implies_hellinger_equality
     {Ω : Type*} [Fintype Ω] [Nonempty Ω]
     (u : Ω → ℝ) (hu : ∀ x, u x ∈ Icc (-1 : ℝ) 1)
@@ -285,11 +370,16 @@ theorem information_equality_implies_hellinger_equality
   have hs := strict_information_of_strict_hellinger u hu ρ hρ (lt_of_le_of_ne hH hne)
   linarith
 
+/--
+@isnad1 id=mem.1h3v.s5.f85e6a752c9e from=translated src=- shape=da1f579e vocab=4fca7e19
+-/
 theorem boolean_mem_Icc {n : ℕ} {f : PaperSpecs.Cube n → ℝ}
     (hf : PaperSpecs.IsBoolean f) (x : PaperSpecs.Cube n) : f x ∈ Icc (-1 : ℝ) 1 := by
   rcases hf x with h | h <;> rw [h] <;> norm_num
 
-/-- The complete specified biased Hellinger-to-CK implication.-/
+/-- The complete specified biased Hellinger-to-CK implication.
+@isnad1 id=ckbound.3h3v.s5.2fe5af0debb4 from=translated src=- shape=ea717ca3 vocab=6d6dde93
+-/
 theorem hellinger_implies_ck {n : ℕ} (f : PaperSpecs.Cube n → ℝ)
     (hf : PaperSpecs.IsBoolean f) (ρ : ℝ) (hρ : ρ ∈ Icc (0 : ℝ) 1)
     (hH : PaperSpecs.HellingerBound f ρ hρ) : PaperSpecs.CKBound f ρ hρ := by
@@ -297,10 +387,16 @@ theorem hellinger_implies_ck {n : ℕ} (f : PaperSpecs.Cube n → ℝ)
     ((cubeBSC n ρ hρ).apply_mem_Icc f (boolean_mem_Icc hf)) ρ hρ hH
   simpa only [UniformChannel.mean_apply, PaperSpecs.CKBound, PaperSpecs.posteriorInformation] using h
 
+/--
+@isnad1 id=entropyt.0h0v.s0.39c9da0b05d0 from=translated src=- shape=45709ebd vocab=39c9da0b
+-/
 theorem entropyTransfer : PaperSpecs.EntropyTransfer := by
   intro n f hf ρ hρ hH
   exact hellinger_implies_ck f hf ρ hρ hH
 
+/--
+@isnad1 id=lt.3h3v.s7.8b0179422343 from=translated src=- shape=e1eae687 vocab=dbc92cb2
+-/
 theorem strict_hellinger_implies_strict_ck {n : ℕ} (f : PaperSpecs.Cube n → ℝ)
     (hf : PaperSpecs.IsBoolean f) (ρ : ℝ) (hρ : ρ ∈ Icc (0 : ℝ) 1)
     (hH : objective ((cubeBSC n ρ hρ).apply f) < 1 - root ρ) :
@@ -309,6 +405,9 @@ theorem strict_hellinger_implies_strict_ck {n : ℕ} (f : PaperSpecs.Cube n → 
     ((cubeBSC n ρ hρ).apply_mem_Icc f (boolean_mem_Icc hf)) ρ hρ hH
   simpa only [UniformChannel.mean_apply, PaperSpecs.posteriorInformation] using h
 
+/--
+@isnad1 id=eq.4h3v.s7.2e82c0ee8a5a from=translated src=- shape=93641e50 vocab=707d8906
+-/
 theorem ck_equality_implies_hellinger_equality {n : ℕ} (f : PaperSpecs.Cube n → ℝ)
     (hf : PaperSpecs.IsBoolean f) (ρ : ℝ) (hρ : ρ ∈ Icc (0 : ℝ) 1)
     (hH : PaperSpecs.HellingerBound f ρ hρ)
@@ -319,12 +418,18 @@ theorem ck_equality_implies_hellinger_equality {n : ℕ} (f : PaperSpecs.Cube n 
     ((cubeBSC n ρ hρ).apply_mem_Icc f (boolean_mem_Icc hf)) ρ hρ hH
   simpa only [UniformChannel.mean_apply, PaperSpecs.posteriorInformation] using hI
 
+/--
+@isnad1 id=eq.0h1v.s6.35da0d3a95ef from=translated src=- shape=1b8273c9 vocab=9f32847f
+-/
 theorem binaryEntropyBits_neg_bias (t : ℝ) :
     PaperSpecs.binaryEntropyBits ((1 - -t) / 2) = PaperSpecs.binaryEntropyBits ((1 - t) / 2) := by
   unfold PaperSpecs.binaryEntropyBits
   have h : (1 - -t) / 2 = 1 - (1 - t) / 2 := by ring
   rw [h, Real.binEntropy_one_sub]
 
+/--
+@isnad1 id=eq.1h3v.s5.fad58d1fcb44 from=translated src=- shape=beda8483 vocab=e7efd29e
+-/
 theorem posteriorInformation_neg {n : ℕ} (f : PaperSpecs.Cube n → ℝ)
     (ρ : ℝ) (hρ : ρ ∈ Icc (0 : ℝ) 1) :
     PaperSpecs.posteriorInformation (fun x => -f x) ρ hρ =
@@ -332,6 +437,9 @@ theorem posteriorInformation_neg {n : ℕ} (f : PaperSpecs.Cube n → ℝ)
   simp only [PaperSpecs.posteriorInformation, mean_neg, UniformChannel.apply_neg,
     binaryEntropyBits_neg_bias]
 
+/--
+@isnad1 id=eq.1h4v.s6.841b89281c55 from=translated src=- shape=eb12c99f vocab=df5bb684
+-/
 theorem signed_dictator_information (n : ℕ) (i : Fin n) (negative : Bool)
     (ρ : ℝ) (hρ : ρ ∈ Icc (0 : ℝ) 1) :
     PaperSpecs.posteriorInformation

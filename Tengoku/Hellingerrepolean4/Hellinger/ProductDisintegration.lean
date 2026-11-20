@@ -42,10 +42,16 @@ def productKernel (κ : (i : ι) → Kernel (E i) Bool) [∀ i, IsMarkovKernel (
     intro i _
     exact (Kernel.measurable_coe (κ i) (measurableSet_singleton (b i))).comp (measurable_pi_apply i)
 
+/--
+@isnad1 id=eq.0h4v.s7.c7ccdbe0a917 from=translated src=- shape=ef5d32c2 vocab=5b46f399
+-/
 @[simp] theorem productKernel_apply (κ : (i : ι) → Kernel (E i) Bool)
     [∀ i, IsMarkovKernel (κ i)] (y : (i : ι) → E i) :
     productKernel κ y = Measure.pi (fun i => κ i (y i)) := rfl
 
+/--
+@isnad1 id=ismarkov.0h3v.s6.53c8850884c5 from=translated src=- shape=a8779910 vocab=8ca82705
+-/
 instance productKernel_isMarkov (κ : (i : ι) → Kernel (E i) Bool)
     [∀ i, IsMarkovKernel (κ i)] : IsMarkovKernel (productKernel κ) := by
   constructor
@@ -53,6 +59,9 @@ instance productKernel_isMarkov (κ : (i : ι) → Kernel (E i) Bool)
   change IsProbabilityMeasure (Measure.pi (fun i => κ i (y i)))
   infer_instance
 
+/--
+@isnad1 id=eq.0h5v.s7.a09415ad8acc from=translated src=- shape=1a67c3e0 vocab=60ad0839
+-/
 @[simp] theorem productKernel_singleton (κ : (i : ι) → Kernel (E i) Bool)
     [∀ i, IsMarkovKernel (κ i)] (y : (i : ι) → E i) (b : ι → Bool) :
     productKernel κ y {b} = ∏ i, κ i (y i) {b i} := by
@@ -74,6 +83,9 @@ def groupEquiv : ((i : ι) → E i × Bool) ≃ᵐ (((i : ι) → E i) × (ι �
 /- Tonelli factorization for a product of nonnegative measurable coordinate
 functions on a finite product space. -/
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.1h4v.s7.f8f5852e2c51 from=translated src=- shape=4d6d9670 vocab=bb01d03c
+-/
 theorem lintegral_fin_prod {n : ℕ} {X : Fin n → Type*}
     [∀ i, MeasurableSpace (X i)] (ν : (i : Fin n) → Measure (X i)) [∀ i, SigmaFinite (ν i)]
     (f : (i : Fin n) → X i → ℝ≥0∞) (hf : ∀ i, Measurable (f i)) :
@@ -98,6 +110,9 @@ theorem lintegral_fin_prod {n : ℕ} {X : Fin n → Type*}
             (measurable_pi_apply i))).aemeasurable
       _ = _ := by rw [Fin.prod_univ_succ]
 
+/--
+@isnad1 id=eq.1h4v.s7.c049613fdd9b from=translated src=- shape=950adf05 vocab=41172b0a
+-/
 theorem lintegral_fintype_prod (ν : (i : ι) → Measure (E i)) [∀ i, SigmaFinite (ν i)]
     (f : (i : ι) → E i → ℝ≥0∞) (hf : ∀ i, Measurable (f i)) :
     (∫⁻ x, ∏ i, f i (x i) ∂Measure.pi ν) = ∏ i, ∫⁻ z, f i z ∂ν i := by
@@ -109,7 +124,9 @@ theorem lintegral_fintype_prod (ν : (i : ι) → Measure (E i)) [∀ i, SigmaFi
 
 /-- Grouping independent coordinate disintegrations is the disintegration by
 the product kernel. This identity does not impose any regularity assumption
-on the output measurable spaces.-/
+on the output measurable spaces.
+@isnad1 id=eq.0h4v.s8.11d4f2034c05 from=translated src=- shape=538cbaab vocab=a91920fa
+-/
 theorem pi_compProd (ν : (i : ι) → Measure (E i)) [∀ i, IsProbabilityMeasure (ν i)]
     (κ : (i : ι) → Kernel (E i) Bool) [∀ i, IsMarkovKernel (κ i)] :
     ((Measure.pi ν) ⊗ₘ productKernel κ).map (groupEquiv (E := E)).symm =
@@ -135,7 +152,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasu
 variable (B : ι → Ω → Bool) (Y : (i : ι) → Ω → E i)
 
 /-- Exact joint-law disintegration derived from independence of the actual
-pairs `(Y_i,B_i)` and the actual coordinate conditional distributions.-/
+pairs `(Y_i,B_i)` and the actual coordinate conditional distributions.
+@isnad1 id=eq.3h6v.s8.e1fbb32d5821 from=translated src=- shape=4696d0d0 vocab=8e915d34
+-/
 theorem independent_pair_disintegration
     (hB : ∀ i, Measurable (B i)) (hY : ∀ i, Measurable (Y i))
     (hpairs : iIndepFun (fun i ω => (Y i ω, B i ω)) μ) :
@@ -160,6 +179,9 @@ theorem independent_pair_disintegration
 
 /- The output vector has the product of the coordinate output marginals. -/
 omit [IsProbabilityMeasure μ] in
+/--
+@isnad1 id=eq.2h6v.s7.baf6f0d88276 from=translated src=- shape=83c18e37 vocab=7840348e
+-/
 theorem independent_output_law
     (hY : ∀ i, Measurable (Y i))
     (hpairs : iIndepFun (fun i ω => (Y i ω, B i ω)) μ) :
@@ -168,7 +190,9 @@ theorem independent_output_law
   exact hi.map_fun_eq_pi_map (fun i => (hY i).aemeasurable)
 
 /-- Uniqueness identifies the constructed product kernel with the actual
-conditional distribution of the full Boolean input vector.-/
+conditional distribution of the full Boolean input vector.
+@isnad1 id=eventual.3h6v.s8.143e581fbbb6 from=translated src=- shape=fddafdc7 vocab=53be7a52
+-/
 theorem productKernel_ae_condDistrib
     (hB : ∀ i, Measurable (B i)) (hY : ∀ i, Measurable (Y i))
     (hpairs : iIndepFun (fun i ω => (Y i ω, B i ω)) μ) :
@@ -181,7 +205,9 @@ theorem productKernel_ae_condDistrib
   exact independent_pair_disintegration μ B Y hB hY hpairs
 
 /-- The actual conditional expectation given all outputs is the integral
-against the product of the coordinate conditional Boolean distributions.-/
+against the product of the coordinate conditional Boolean distributions.
+@isnad1 id=eventual.3h7v.s8.f2e0cb29a62d from=translated src=- shape=b7b8d4e9 vocab=d9230425
+-/
 theorem conditional_expectation_productKernel (f : (ι → Bool) → ℝ)
     (hB : ∀ i, Measurable (B i)) (hY : ∀ i, Measurable (Y i))
     (hpairs : iIndepFun (fun i ω => (Y i ω, B i ω)) μ) :

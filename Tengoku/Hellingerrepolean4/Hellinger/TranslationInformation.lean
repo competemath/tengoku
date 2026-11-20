@@ -11,6 +11,9 @@ noncomputable section
 
 namespace Hellinger.TranslationInformation
 
+/--
+@isnad1 id=translat.0h0v.s0.1879ec452686 from=translated src=- shape=45709ebd vocab=1879ec45
+-/
 theorem translation_information : PaperSpecs.TranslationInformation := by
   intro n f hf S hS hanti ρ hρ
   obtain ⟨hm, _, hH⟩ := ChannelSections.translation_hellinger n f hf S hS hanti ρ hρ

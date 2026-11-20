@@ -17,6 +17,9 @@ variable {Ω E : Type*} [MeasurableSpace Ω] [MeasurableSpace E]
 variable [Countable E] [MeasurableSingletonClass E] [Nonempty E]
 variable (μ : Measure Ω) [IsProbabilityMeasure μ] (B : Ω → Bool) (Y : Ω → E)
 
+/--
+@isnad1 id=eq.3h7v.s7.5d885f5755e2 from=translated src=- shape=bfbde2f5 vocab=9318a461
+-/
 theorem bayes_singleton (hB : Measurable B) (hY : Measurable Y)
     (hfair : μ.map B = (PMF.uniformOfFintype Bool).toMeasure) (y : E) (b : Bool) :
     (μ.map Y).real {y} * (condDistrib B Y μ y).real {b} =

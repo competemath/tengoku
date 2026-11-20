@@ -29,7 +29,9 @@ namespace Hellinger.ParitySpectrum
 open Finset
 
 /-- The alternating partial sum, with dimension written as `n + 1`.
-It remains valid even when the cut index is beyond the dimension.-/
+It remains valid even when the cut index is beyond the dimension.
+@isnad1 id=eq.0h2v.s6.fcd867df172f from=translated src=- shape=44034074 vocab=a5fb1033
+-/
 theorem alternating_partial_choose (n k : ℕ) :
     (∑ j ∈ range (k + 1), (-1 : ℝ) ^ j * ((n + 1).choose j : ℝ)) =
       (-1 : ℝ) ^ k * (n.choose k : ℝ) := by
@@ -41,7 +43,9 @@ theorem alternating_partial_choose (n k : ℕ) :
       rw [pow_succ]
       ring
 
-/-- Absolute cumulative parity imbalance is a binomial coefficient.-/
+/-- Absolute cumulative parity imbalance is a binomial coefficient.
+@isnad1 id=eq.0h2v.s6.36ab967fa352 from=translated src=- shape=d99f7858 vocab=e8a144fb
+-/
 theorem abs_alternating_partial_choose (n k : ℕ) :
     |∑ j ∈ range (k + 1), (-1 : ℝ) ^ j * ((n + 1).choose j : ℝ)| =
       (n.choose k : ℝ) := by
@@ -51,7 +55,9 @@ theorem abs_alternating_partial_choose (n k : ℕ) :
 /-- The product-state spectral level of Hamming weight `k`.-/
 def spectralLevel (n k : ℕ) (a b : ℝ) : ℝ := a ^ (n - k) * b ^ k
 
-/-- Factoring the gap between successive levels uses the restriction `k ≤ n`.-/
+/-- Factoring the gap between successive levels uses the restriction `k ≤ n`.
+@isnad1 id=eq.1h4v.s7.31a3810119d7 from=translated src=- shape=d40b8497 vocab=ec51810c
+-/
 theorem spectralLevel_gap (n k : ℕ) (a b : ℝ) (hk : k ≤ n) :
     spectralLevel (n + 1) k a b - spectralLevel (n + 1) (k + 1) a b =
       (a - b) * a ^ (n - k) * b ^ k := by
@@ -61,7 +67,9 @@ theorem spectralLevel_gap (n k : ℕ) (a b : ℝ) (hk : k ≤ n) :
   rw [h₁, h₂, pow_succ, pow_succ]
   ring
 
-/-- Exact weighted layer-gap sum in every positive dimension.-/
+/-- Exact weighted layer-gap sum in every positive dimension.
+@isnad1 id=eq.0h3v.s7.7c941b66e53e from=translated src=- shape=5f6433a3 vocab=67e8637f
+-/
 theorem weighted_layer_gaps (n : ℕ) (a b : ℝ) :
     (∑ k ∈ range (n + 1), (n.choose k : ℝ) *
       (spectralLevel (n + 1) k a b - spectralLevel (n + 1) (k + 1) a b)) =
@@ -85,7 +93,9 @@ def parityLayerDistance (n : ℕ) (a b : ℝ) : ℝ :=
     |∑ j ∈ range (k + 1), (-1 : ℝ) ^ j * (n.choose j : ℝ)| *
       (spectralLevel n k a b - spectralLevel n (k + 1) a b)
 
-/-- Evaluation of the layer-cake side; this is not yet the sorting bridge.-/
+/-- Evaluation of the layer-cake side; this is not yet the sorting bridge.
+@isnad1 id=eq.0h3v.s5.d53ee1aecb12 from=translated src=- shape=e9e6ca64 vocab=4c95ea51
+-/
 theorem parityLayerDistance_succ (n : ℕ) (a b : ℝ) :
     parityLayerDistance (n + 1) a b = (a - b) * (a + b) ^ n := by
   unfold parityLayerDistance
@@ -93,7 +103,9 @@ theorem parityLayerDistance_succ (n : ℕ) (a b : ℝ) :
   exact weighted_layer_gaps n a b
 
 /-- Algebraic normalization of the layer expression. This identity holds for
-all real `c`; its interpretation as an ℓ¹-distance uses `0 ≤ c ≤ 1` below.-/
+all real `c`; its interpretation as an ℓ¹-distance uses `0 ≤ c ≤ 1` below.
+@isnad1 id=eq.0h2v.s6.72855532d4ca from=translated src=- shape=800fee8a vocab=94f32c34
+-/
 theorem parityLayerDistance_normalized (n : ℕ) (c : ℝ) :
     parityLayerDistance (n + 1) ((1 + c) / 2) ((1 - c) / 2) = c := by
   rw [parityLayerDistance_succ]
@@ -106,6 +118,9 @@ theorem parityLayerDistance_normalized (n : ℕ) (c : ℝ) :
 /-- The real-valued indicator of a level being at or before a cut.-/
 def cutIndicator (s k : ℕ) : ℝ := if s ≤ k then 1 else 0
 
+/--
+@isnad1 id=le.1h3v.s4.faaf54bdcbd3 from=translated src=- shape=1b77af75 vocab=c1b3fd9e
+-/
 theorem cutIndicator_antitone (s t k : ℕ) (hst : s ≤ t) :
     cutIndicator t k ≤ cutIndicator s k := by
   by_cases htk : t ≤ k
@@ -114,7 +129,9 @@ theorem cutIndicator_antitone (s t k : ℕ) (hst : s ≤ t) :
   · simp only [cutIndicator, ite_eq_right htk]
     split_ifs <;> norm_num
 
-/-- Telescoping a list of gaps starting at an arbitrary level.-/
+/-- Telescoping a list of gaps starting at an arbitrary level.
+@isnad1 id=eq.1h3v.s6.4724fd260991 from=translated src=- shape=9db5d93c vocab=b5bfa896
+-/
 theorem sum_gaps_cutIndicator (level : ℕ → ℝ) (d s : ℕ) (hs : s ≤ d) :
     (∑ k ∈ range d, (level k - level (k + 1)) * cutIndicator s k) =
       level s - level d := by
@@ -138,7 +155,9 @@ theorem sum_gaps_cutIndicator (level : ℕ → ℝ) (d s : ℕ) (hs : s ≤ d) :
           simp [cutIndicator, hnot]
         simpa using hz
 
-/-- Scalar discrete layer cake. Only finite monotonicity of the levels is needed.-/
+/-- Scalar discrete layer cake. Only finite monotonicity of the levels is needed.
+@isnad1 id=eq.3h4v.s6.bd5cc98ebc86 from=translated src=- shape=2acfcabf vocab=56b024e8
+-/
 theorem abs_level_sub_eq_sum_gaps (level : ℕ → ℝ) (d s t : ℕ)
     (hlevel : ∀ i j, i ≤ j → j ≤ d → level j ≤ level i)
     (hs : s ≤ d) (ht : t ≤ d) :
@@ -174,7 +193,9 @@ theorem abs_level_sub_eq_sum_gaps (level : ℕ → ℝ) (d s t : ℕ)
         ring
 
 /-- Two initial segments of a linear order are nested. Consequently all
-indicator differences at a fixed cut have the same sign.-/
+indicator differences at a fixed cut have the same sign.
+@isnad1 id=or.2h4v.s6.409622834778 from=translated src=- shape=78dcd206 vocab=8b4953e8
+-/
 theorem monotone_cuts_nested {ι : Type*} [LinearOrder ι]
     (p q : ι → ℕ) (hp : Monotone p) (hq : Monotone q) (k : ℕ) :
     (∀ i, cutIndicator (p i) k ≤ cutIndicator (q i) k) ∨
@@ -202,7 +223,9 @@ theorem monotone_cuts_nested {ι : Type*} [LinearOrder ι]
       split_ifs <;> norm_num
 
 /-- For two ordered lists, the sum of absolute indicator differences equals
-the absolute difference of the cumulative counts.-/
+the absolute difference of the cumulative counts.
+@isnad1 id=eq.2h4v.s6.1dcd27662a0e from=translated src=- shape=fba3504e vocab=4ff3b1d9
+-/
 theorem sum_abs_cutIndicator_sub {ι : Type*} [Fintype ι] [LinearOrder ι]
     (p q : ι → ℕ) (hp : Monotone p) (hq : Monotone q) (k : ℕ) :
     (∑ i, |cutIndicator (p i) k - cutIndicator (q i) k|) =
@@ -227,7 +250,9 @@ theorem sum_abs_cutIndicator_sub {ι : Type*} [Fintype ι] [LinearOrder ι]
 
 /-- A fully finite layer-cake identity for two sorted lists whose entries lie
 on the same finite decreasing set of levels. The lists are represented by
-monotone level-index functions on a finite linear order.-/
+monotone level-index functions on a finite linear order.
+@isnad1 id=eq.5h5v.s7.9888ceb14a2b from=translated src=- shape=8718cf0f vocab=7dfb4a3a
+-/
 theorem ordered_layer_distance {ι : Type*} [Fintype ι] [LinearOrder ι]
     (level : ℕ → ℝ) (d : ℕ) (p q : ι → ℕ)
     (hp : Monotone p) (hq : Monotone q)
@@ -251,7 +276,9 @@ theorem ordered_layer_distance {ι : Type*} [Fintype ι] [LinearOrder ι]
       rw [← mul_sum, sum_abs_cutIndicator_sub p q hp hq k]
 
 /-- Nonnegative ordered one-coordinate eigenvalues give ordered finite
-product-state spectral levels, including degenerate endpoints.-/
+product-state spectral levels, including degenerate endpoints.
+@isnad1 id=le.4h4v.s6.bd69da17a90a from=translated src=- shape=9e92570f vocab=fc2be53c
+-/
 theorem spectralLevel_step (n k : ℕ) (a b : ℝ)
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hab : b ≤ a) (hk : k < n) :
     spectralLevel n (k + 1) a b ≤ spectralLevel n k a b := by
@@ -264,6 +291,9 @@ theorem spectralLevel_step (n k : ℕ) (a b : ℝ)
         (pow_nonneg hb _)
     linarith
 
+/--
+@isnad1 id=le.5h5v.s5.6ea5ef93f001 from=translated src=- shape=9982a3d2 vocab=c6d0dd6b
+-/
 theorem spectralLevel_antitone (n : ℕ) (a b : ℝ)
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hab : b ≤ a)
     (i j : ℕ) (hij : i ≤ j) (hj : j ≤ n) :
@@ -279,13 +309,17 @@ theorem spectralLevel_antitone (n : ℕ) (a b : ℝ)
     have hprev := ih (by omega)
     simpa [Nat.add_assoc] using hstep.trans hprev
 
-/-- The cumulative count is the sum of the multiplicities up to its cut.-/
+/-- The cumulative count is the sum of the multiplicities up to its cut.
+@isnad1 id=eq.0h2v.s5.4815f36fabaa from=translated src=- shape=8a85da3e vocab=c9307b95
+-/
 theorem cutIndicator_eq_sum_multiplicities (s k : ℕ) :
     cutIndicator s k = ∑ j ∈ range (k + 1), (if s = j then (1 : ℝ) else 0) := by
   simp [cutIndicator]
 
 /-- Summing a signed multiplicity formula gives the corresponding cumulative
-count formula. This isolates the meaning of the parity multiplicity input.-/
+count formula. This isolates the meaning of the parity multiplicity input.
+@isnad1 id=eq.1h5v.s7.1f9cee7927fd from=translated src=- shape=1f8c6b76 vocab=3d6664b0
+-/
 theorem cumulative_from_multiplicities {ι : Type*} [Fintype ι]
     (n k : ℕ) (p q : ι → ℕ)
     (hmult : ∀ j ≤ k,
@@ -307,7 +341,9 @@ expressed through sorted level-index lists and their signed multiplicities.
 The multiplicity hypothesis says: the even list contains `choose (n+1) k`
 copies of level `k` for even `k`, the odd list contains that many for odd
 `k`, and common copies cancel. It is sufficient to state their difference.
-The theorem includes `c = 0` and `c = 1` without a continuity argument.-/
+The theorem includes `c = 0` and `c = 1` without a continuity argument.
+@isnad1 id=eq.7h5v.s8.3369cf4edd6b from=translated src=- shape=311e67d3 vocab=a9e991cf
+-/
 theorem sorted_parity_spectrum_distance {ι : Type*} [Fintype ι] [LinearOrder ι]
     (n : ℕ) (c : ℝ) (hc₀ : 0 ≤ c) (hc₁ : c ≤ 1)
     (p q : ι → ℕ) (hp : Monotone p) (hq : Monotone q)
@@ -341,6 +377,9 @@ def evenMultiplicity (d k : ℕ) : ℝ := if Even k then (d.choose k : ℝ) else
 /-- Multiplicity of level `k` in the odd-parity spectrum in dimension `d`.-/
 def oddMultiplicity (d k : ℕ) : ℝ := if Odd k then (d.choose k : ℝ) else 0
 
+/--
+@isnad1 id=eq.0h2v.s5.59735e2feb91 from=translated src=- shape=90d34f02 vocab=98f2715d
+-/
 theorem evenMultiplicity_sub_oddMultiplicity (d k : ℕ) :
     evenMultiplicity d k - oddMultiplicity d k =
       (-1 : ℝ) ^ k * (d.choose k : ℝ) := by
@@ -357,7 +396,9 @@ dimension `n+1`, have normalized spectral ℓ¹-distance `c`.
 
 The hypotheses state the spectral multiplicities explicitly. This theorem
 does not identify the eigenvalues of concrete operators or their restrictions;
-that separate linear-algebra bridge is not part of this file.-/
+that separate linear-algebra bridge is not part of this file.
+@isnad1 id=eq.8h4v.s9.fb521660c1dc from=translated src=- shape=adfc8680 vocab=4f467fd7
+-/
 theorem parity_spectra_l1 (n : ℕ) (c : ℝ) (hc₀ : 0 ≤ c) (hc₁ : c ≤ 1)
     (p q : Fin (2 ^ n) → ℕ) (hp : Monotone p) (hq : Monotone q)
     (hp_bound : ∀ i, p i ≤ n + 1) (hq_bound : ∀ i, q i ≤ n + 1)

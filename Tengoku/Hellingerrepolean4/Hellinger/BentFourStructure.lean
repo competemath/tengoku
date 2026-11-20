@@ -12,6 +12,9 @@ open scoped BigOperators
 namespace Hellinger.BentFourStructure
 open Fourier BentFour
 
+/--
+@isnad1 id=and.1h1v.s7.45e4929afeba from=translated src=- shape=a824f3a2 vocab=7601f412
+-/
 theorem coefficient_squares (f : Cube 4 → ℝ) (hf : ∀ x, f x = -1 ∨ f x = 1) :
     constantTerm f ^ 2 = 1 ∧ (∀ i, linearTerms f i ^ 2 = 1) ∧
       (∀ i, mixedTerms f i ^ 2 = 1) := by
@@ -26,11 +29,17 @@ theorem coefficient_squares (f : Cube 4 → ℝ) (hf : ∀ x, f x = -1 ∨ f x =
 
 def dual (f : Cube 4 → ℝ) : Cube 4 → ℝ := fun s => 4 * walsh f s
 
+/--
+@isnad1 id=or.1h2v.s5.680bee598726 from=translated src=- shape=ebf9f802 vocab=c449f89f
+-/
 theorem dual_boolean (f : Cube 4 → ℝ) (hb : Flatness.IsBent f) :
     ∀ s, dual f s = -1 ∨ dual f s = 1 := by
   intro s
   rcases flat_four_coefficient f hb s with h | h <;> norm_num [dual, h]
 
+/--
+@isnad1 id=eq.0h2v.s5.b5c3490da7ec from=translated src=- shape=3611dcde vocab=d9e3d620
+-/
 theorem dual_walsh (f : Cube 4 → ℝ) (x : Cube 4) : walsh (dual f) x = f x / 4 := by
   change mean (fun s => (4 * walsh f s) * phase x s) = _
   have hmul : (fun s => 4 * walsh f s * phase x s) =
@@ -41,12 +50,18 @@ theorem dual_walsh (f : Cube 4 → ℝ) (x : Cube 4) : walsh (dual f) x = f x / 
   norm_num
   ring
 
+/--
+@isnad1 id=isbent.1h1v.s5.50a9250914c7 from=translated src=- shape=cf7091b3 vocab=c449f89f
+-/
 theorem dual_bent (f : Cube 4 → ℝ) (hf : ∀ x, f x = -1 ∨ f x = 1) :
     Flatness.IsBent (dual f) := by
   intro x
   rw [dual_walsh]
   rcases hf x with h | h <;> norm_num [h]
 
+/--
+@isnad1 id=eq.1h3v.s6.8eceebb6559f from=translated src=- shape=3d0acde3 vocab=a752b080
+-/
 theorem edgeAction_sq (e : Fin 6 → ℝ) (he : ∀ i, e i ^ 2 = 1)
     (x : Cube 4) (i : Fin 4) : edgeAction e x i ^ 2 = 1 := by
   fin_cases i <;> dsimp [edgeAction] <;>
@@ -56,6 +71,9 @@ private theorem signFactor_xor (a : ℝ) (ha : a ^ 2 = 1) (b c : Bool) :
     (if Bool.xor b c then a else 1) = (if b then a else 1) * (if c then a else 1) := by
   cases b <;> cases c <;> norm_num [← pow_two, ha]
 
+/--
+@isnad1 id=eq.1h4v.s6.69033debec9c from=translated src=- shape=96437a33 vocab=e278e54e
+-/
 theorem edgeAction_translate (e : Fin 6 → ℝ) (he : ∀ i, e i ^ 2 = 1)
     (s x : Cube 4) (i : Fin 4) :
     edgeAction e (translate s x) i = edgeAction e x i * edgeAction e s i := by
@@ -76,11 +94,17 @@ theorem edgeAction_translate (e : Fin 6 → ℝ) (he : ∀ i, e i ^ 2 = 1)
 def edgeBits (e : Fin 6 → ℝ) (x : Cube 4) : Cube 4 :=
   fun i => decide (edgeAction e x i = -1)
 
+/--
+@isnad1 id=eq.1h3v.s6.195f806251cb from=translated src=- shape=7c9b6919 vocab=07c99114
+-/
 theorem edgeBits_sign (e : Fin 6 → ℝ) (he : ∀ i, e i ^ 2 = 1)
     (x : Cube 4) (i : Fin 4) : boolSign (edgeBits e x i) = edgeAction e x i := by
   rcases sq_eq_one_iff.mp (edgeAction_sq e he x i) with h | h <;>
     norm_num [edgeBits, boolSign, h]
 
+/--
+@isnad1 id=injectiv.2h1v.s5.d6a903cf98c9 from=translated src=- shape=4b6b11d3 vocab=8e754548
+-/
 theorem edgeBits_injective (e : Fin 6 → ℝ) (he : ∀ i, e i ^ 2 = 1)
     (hnd : EdgeNondegenerate e) : Function.Injective (edgeBits e) := by
   intro x y hxy
@@ -102,21 +126,33 @@ def edgeEquiv (e : Fin 6 → ℝ) (he : ∀ i, e i ^ 2 = 1)
     (hnd : EdgeNondegenerate e) : Cube 4 ≃ Cube 4 :=
   Equiv.ofBijective (edgeBits e) ⟨edgeBits_injective e he hnd, Finite.surjective_of_injective (edgeBits_injective e he hnd)⟩
 
+/--
+@isnad1 id=eq.2h2v.s7.01fa9f16e783 from=translated src=- shape=b4caed92 vocab=5dcac653
+-/
 theorem edge_mean_invariant (e : Fin 6 → ℝ) (he : ∀ i, e i ^ 2 = 1)
     (hnd : EdgeNondegenerate e) (F : Cube 4 → ℝ) :
     mean (fun x => F (edgeBits e x)) = mean F := by
   unfold mean
   rw [show (∑ x, F (edgeBits e x)) = ∑ x, F x from (edgeEquiv e he hnd).sum_comp F]
 
+/--
+@isnad1 id=eq.0h3v.s5.08a0e99c4b25 from=translated src=- shape=76619093 vocab=c00c0162
+-/
 theorem edgeAction_unit_character (e : Fin 6 → ℝ) (x : Cube 4) (i : Fin 4) :
     signCharacter (edgeAction e (unit i)) x = edgeAction e x i := by
   simp only [signCharacter, Fin.prod_univ_succ]
   fin_cases i <;> dsimp [edgeAction, unit] <;> simp only [ite_self, one_mul, mul_one] <;> ring
 
+/--
+@isnad1 id=eq.0h4v.s5.76c8f34aa262 from=translated src=- shape=96651455 vocab=a68fe919
+-/
 theorem quadratic_unit (c : ℝ) (l : Fin 4 → ℝ) (e : Fin 6 → ℝ) (i : Fin 4) :
     quadraticPhase c l e (unit i) = c * l i := by
   fin_cases i <;> dsimp [quadraticPhase, unit] <;> ring
 
+/--
+@isnad1 id=eq.3h5v.s7.96ae128df327 from=translated src=- shape=fe72cab9 vocab=e9169772
+-/
 theorem quadratic_coordinate_derivative (c : ℝ) (l : Fin 4 → ℝ) (e : Fin 6 → ℝ)
     (hc : c ^ 2 = 1) (hl : ∀ i, l i ^ 2 = 1) (he : ∀ i, e i ^ 2 = 1)
     (x : Cube 4) (i : Fin 4) :
@@ -129,6 +165,9 @@ theorem quadratic_coordinate_derivative (c : ℝ) (l : Fin 4 → ℝ) (e : Fin 6
 
 def linearBits (l : Fin 4 → ℝ) : Cube 4 := fun i => decide (l i = -1)
 
+/--
+@isnad1 id=eq.1h2v.s5.0290de479836 from=translated src=- shape=82836f0e vocab=201d25f4
+-/
 theorem linearBits_sign (l : Fin 4 → ℝ) (hl : ∀ i, l i ^ 2 = 1) (i : Fin 4) :
     boolSign (linearBits l i) = l i := by
   rcases sq_eq_one_iff.mp (hl i) with h | h <;> norm_num [linearBits, boolSign, h]
@@ -137,9 +176,15 @@ private theorem sign_disagreement (a b : Bool) :
     (1 - boolSign a * boolSign b) / 2 = if Bool.xor b a then (1 : ℝ) else 0 := by
   cases a <;> cases b <;> norm_num [boolSign]
 
+/--
+@isnad1 id=eq.0h1v.s6.ae28e27f0e67 from=translated src=- shape=8105a3fc vocab=a47ad6e9
+-/
 theorem degree_eq_sum (x : Cube 4) : (degree x : ℝ) = ∑ i, if x i then (1 : ℝ) else 0 := by
   simp [degree, support, Finset.sum_boole]
 
+/--
+@isnad1 id=eq.3h4v.s7.fcfaba4d4cf5 from=translated src=- shape=adc20af2 vocab=719dc9aa
+-/
 theorem quadratic_sensitivity (c : ℝ) (l : Fin 4 → ℝ) (e : Fin 6 → ℝ)
     (hc : c ^ 2 = 1) (hl : ∀ i, l i ^ 2 = 1) (he : ∀ i, e i ^ 2 = 1)
     (x : Cube 4) :
@@ -153,6 +198,9 @@ theorem quadratic_sensitivity (c : ℝ) (l : Fin 4 → ℝ) (e : Fin 6 → ℝ)
   rw [← linearBits_sign l hl i, ← edgeBits_sign e he x i, sign_disagreement]
   rfl
 
+/--
+@isnad1 id=eq.4h4v.s7.73b8d51ead54 from=translated src=- shape=a7086b48 vocab=7c9f63e8
+-/
 theorem quadratic_sensitivity_distribution (c : ℝ) (l : Fin 4 → ℝ) (e : Fin 6 → ℝ)
     (hc : c ^ 2 = 1) (hl : ∀ i, l i ^ 2 = 1) (he : ∀ i, e i ^ 2 = 1)
     (hnd : EdgeNondegenerate e) (Φ : ℝ → ℝ) :
@@ -162,6 +210,9 @@ theorem quadratic_sensitivity_distribution (c : ℝ) (l : Fin 4 → ℝ) (e : Fi
   rw [edge_mean_invariant e he hnd (fun x => Φ (degree (translate (linearBits l) x)))]
   exact mean_translate (fun x : Cube 4 => Φ (degree x)) (linearBits l)
 
+/--
+@isnad1 id=eq.0h0v.s7.de0710d471e4 from=translated src=- shape=fb073869 vocab=e796fc81
+-/
 theorem sqrt_degree_mean :
     mean (fun x : Cube 4 => Real.sqrt (degree x)) =
       (3 + 3 * Real.sqrt 2 + 2 * Real.sqrt 3) / 8 := by
@@ -174,7 +225,9 @@ theorem sqrt_degree_mean :
   rw [h4]
   ring
 
-/-- Exact binomial sensitivity distribution, derived from actual four-dimensional flatness.-/
+/-- Exact binomial sensitivity distribution, derived from actual four-dimensional flatness.
+@isnad1 id=eq.2h1v.s7.5ed83d9bc3a2 from=translated src=- shape=40d04d59 vocab=05f58a2c
+-/
 theorem bent_four_sensitivity_mean (f : Cube 4 → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hb : Flatness.IsBent f) :
     mean (fun x => Real.sqrt (Flatness.sensitivity f x)) =

@@ -15,6 +15,9 @@ noncomputable section
 namespace Hellinger.PaperQuantitativeBounds
 open Fourier
 
+/--
+@isnad1 id=and.1h1v.s7.72092e97a101 from=translated src=- shape=781b5d59 vocab=0368f090
+-/
 theorem dimension_constant_chain (n : ℕ) (hn : 6 ≤ n) :
     1 < (4 : ℝ) / Real.sqrt 14 ∧
     (4 : ℝ) / Real.sqrt 14 ≤ 2 * n / (3 * Real.sqrt (2 * ((n : ℝ) + 1))) := by
@@ -41,6 +44,9 @@ theorem dimension_constant_chain (n : ℕ) (hn : 6 ≤ n) :
     have hr : 0 ≤ 2 * (n : ℝ) * Real.sqrt 14 := by positivity
     nlinarith only [hs, hr]
 
+/--
+@isnad1 id=le.6h3v.s8.e4a2df15fed8 from=translated src=- shape=be3a5206 vocab=5331c899
+-/
 theorem bent_low_noise_ratio (n : ℕ) (hn : 6 ≤ n) (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρlt : ρ < 1)
@@ -61,6 +67,9 @@ theorem bent_low_noise_ratio (n : ℕ) (hn : 6 ≤ n) (f : Cube n → ℝ)
   rw [heq]
   nlinarith only [hmul, he]
 
+/--
+@isnad1 id=and.6h3v.s8.2734c8eb2c54 from=translated src=- shape=a72bd9dc vocab=5331c899
+-/
 theorem bent_low_noise_full_constant_chain (n : ℕ) (hn : 6 ≤ n) (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρlt : ρ < 1)
@@ -72,6 +81,9 @@ theorem bent_low_noise_full_constant_chain (n : ℕ) (hn : 6 ≤ n) (f : Cube n 
   ⟨(dimension_constant_chain n hn).1, (dimension_constant_chain n hn).2,
     bent_low_noise_ratio n hn f hf hb ρ hρ hρlt hlo⟩
 
+/--
+@isnad1 id=and.5h2v.s8.19d9a7554320 from=translated src=- shape=7bbdc222 vocab=e204df10
+-/
 theorem four_low_noise_explicit_ratio (f : Cube 4 → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρlt : ρ < 1) (hlo : 5 / 6 ≤ ρ) :
@@ -96,7 +108,9 @@ theorem four_low_noise_explicit_ratio (f : Cube 4 → ℝ)
 
 open BentLarge
 
-/-- The scalar second-moment estimate throughout the full middle-noise range.-/
+/-- The scalar second-moment estimate throughout the full middle-noise range.
+@isnad1 id=lt.4h2v.s7.a8dc17095ab4 from=translated src=- shape=0aebffed vocab=dd3297cd
+-/
 theorem middle_scalar_strict (n : ℕ) (hn : 6 ≤ n) (c : ℝ)
     (hc₀ : 0 ≤ c) (hc₁ : c ≤ 24 / 25)
     (hscale : 17 / 27 ≤ (n : ℝ) * c ^ 2 / 2) :
@@ -117,7 +131,9 @@ theorem middle_scalar_strict (n : ℕ) (hn : 6 ≤ n) (c : ℝ)
     have hq := middle_six_polynomial c (le_of_not_ge hc) hc₁
     linarith only [hp, hq]
 
-/-- Conversion of the original dimension-dependent interval to the scalar range.-/
+/-- Conversion of the original dimension-dependent interval to the scalar range.
+@isnad1 id=lt.3h2v.s7.774a9e47e684 from=translated src=- shape=c195065b vocab=b572c0f0
+-/
 theorem middle_noise_second_moment_strict (n : ℕ) (hn : 6 ≤ n) (ρ : ℝ)
     (hρ₀ : 3 / 10 ≤ ρ) (hρ₁ : ρ ≤ 1 - 2 / (3 * (n : ℝ))) :
     ((1 + ρ ^ 2) / 2) ^ n < 1 - Real.sqrt (1 - ρ ^ 2) := by
@@ -150,6 +166,9 @@ theorem middle_noise_second_moment_strict (n : ℕ) (hn : 6 ≤ n) (ρ : ℝ)
   rw [hs]
   ring
 
+/--
+@isnad1 id=lt.6h3v.s7.18e94b28e9ab from=translated src=- shape=542ffeb8 vocab=5beaf6c2
+-/
 theorem bent_middle_root_strict (n : ℕ) (hn : 6 ≤ n) (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
@@ -169,6 +188,9 @@ theorem bent_middle_root_strict (n : ℕ) (hn : 6 ≤ n) (f : Cube n → ℝ)
   change Real.sqrt (1 - ρ ^ 2) < _
   linarith only [hl, hm]
 
+/--
+@isnad1 id=lt.5h3v.s7.8a87faeb4750 from=translated src=- shape=5e8f8bb7 vocab=bda32d61
+-/
 theorem bent_high_noise_quadratic_strict {n : ℕ} (hn : 4 ≤ n)
     (f : Cube n → ℝ) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρ₁ : ρ ≤ 3 / 10) (hρpos : 0 < ρ) :

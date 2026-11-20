@@ -17,13 +17,25 @@ abbrev Form (n : ℕ) := QuadraticMap F2 (Cube n) F2
 
 def phase {n : ℕ} (a : F2) (Q : Form n) (x : Cube n) : ℝ := sign (a + Q x)
 
+/--
+@isnad1 id=or.0h1v.s4.a0f09c302272 from=translated src=- shape=9a48c35a vocab=7e7d5702
+-/
 theorem sign_boolean (z : F2) : sign z = -1 ∨ sign z = 1 := by
   unfold sign
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h0v.s4.bf57204f0608 from=translated src=- shape=1ac31801 vocab=f66f32c0
+-/
 @[simp] theorem sign_zero : sign (0 : F2) = 1 := by norm_num [sign]
+/--
+@isnad1 id=eq.0h0v.s5.0b3fb15a18af from=translated src=- shape=b5968027 vocab=104f5aa0
+-/
 @[simp] theorem sign_one : sign (1 : F2) = -1 := by norm_num [sign]
 
+/--
+@isnad1 id=eq.0h1v.s4.755f78a07eb4 from=translated src=- shape=d9ef4337 vocab=ba7797f1
+-/
 theorem sign_sq (z : F2) : sign z ^ 2 = 1 := by
   rcases sign_boolean z with h | h <;> rw [h] <;> norm_num
 
@@ -31,9 +43,15 @@ theorem eq_one_of_ne_zero (z : F2) (hz : z ≠ 0) : z = 1 := by
   obtain ⟨b, rfl⟩ := bitEquiv.surjective z
   cases b <;> simp_all
 
+/--
+@isnad1 id=or.0h4v.s5.0fa63e713037 from=translated src=- shape=dd02c155 vocab=741c2181
+-/
 theorem phase_boolean {n : ℕ} (a : F2) (Q : Form n) (x : Cube n) :
     phase a Q x = -1 ∨ phase a Q x = 1 := sign_boolean _
 
+/--
+@isnad1 id=eq.0h5v.s10.5c39c5e6a543 from=translated src=- shape=5126a768 vocab=44a9c5eb
+-/
 theorem phase_derivative {n : ℕ} (a : F2) (Q : Form n) (x v : Cube n) :
     phase a Q x * phase a Q (x + v) = sign (Q v) * sign (Q.polarBilin x v) := by
   have hq := QuadraticMap.map_add Q x v
@@ -45,6 +63,9 @@ theorem phase_derivative {n : ℕ} (a : F2) (Q : Form n) (x v : Cube n) :
     _ = sign a ^ 2 * sign (Q x) ^ 2 * (sign (Q v) * sign (Q.polarBilin x v)) := by ring
     _ = _ := by rw [ha, hx]; ring
 
+/--
+@isnad1 id=eq.1h2v.s10.7e2ccf3ccbfd from=translated src=- shape=f4d96728 vocab=35c92a54
+-/
 theorem character_mean_zero {n : ℕ} (L : Cube n →ₗ[F2] F2)
     (hL : L ≠ 0) : mean (fun x => sign (L x)) = 0 := by
   have hex : ∃ v, L v ≠ 0 := by
@@ -63,6 +84,9 @@ theorem character_mean_zero {n : ℕ} (L : Cube n →ₗ[F2] F2)
   rw [hfun, mean_neg] at hm
   linarith
 
+/--
+@isnad1 id=isbent.1h3v.s9.7f7b3f415657 from=translated src=- shape=b8fb3b73 vocab=7a989dee
+-/
 theorem phase_bent {n : ℕ} (a : F2) (Q : Form n)
     (hQ : Q.polarBilin.ker = ⊥) :
     Flatness.IsBent (phase a Q ∘ bitsEquiv (Fin n)) := by
@@ -82,6 +106,9 @@ def polynomial {n : ℕ} (b : Fin n → F2) (q : Fin n → Fin n → F2) : Form 
   ∑ i, b i • QuadraticMap.proj i i +
     ∑ i, ∑ j ∈ Finset.univ.filter (fun j => i < j), q i j • QuadraticMap.proj i j
 
+/--
+@isnad1 id=eq.0h4v.s8.47a012e4cfea from=translated src=- shape=a07b37d7 vocab=1f712fdf
+-/
 theorem polynomial_apply {n : ℕ} (b : Fin n → F2) (q : Fin n → Fin n → F2)
     (x : Cube n) : polynomial b q x =
       (∑ i, b i * x i) + ∑ i, ∑ j ∈ Finset.univ.filter (fun j => i < j),
@@ -91,6 +118,9 @@ theorem polynomial_apply {n : ℕ} (b : Fin n → F2) (q : Fin n → Fin n → F
     cases t <;> norm_num
   simp [polynomial, QuadraticMap.proj_apply, hs, mul_assoc]
 
+/--
+@isnad1 id=eq.0h5v.s7.3895f66bfbc0 from=translated src=- shape=c7e7363b vocab=1f11b6df
+-/
 theorem polynomial_phase_bits {n : ℕ} (a : F2) (b : Fin n → F2)
     (q : Fin n → Fin n → F2) (x : PaperSpecs.Cube n) :
     phase a (polynomial b q) (bitsEquiv (Fin n) x) =
@@ -100,7 +130,9 @@ theorem polynomial_phase_bits {n : ℕ} (a : F2) (b : Fin n → F2)
   rfl
 
 /-- A quadratic phase either has a sign-reversing additive translation, or
-factors through a quadratic form whose polar bilinear form has trivial kernel.-/
+factors through a quadratic form whose polar bilinear form has trivial kernel.
+@isnad1 id=or.0h3v.s11.ec6008ffca43 from=translated src=- shape=f95f9e91 vocab=b04609fc
+-/
 theorem radical_dichotomy {n : ℕ} (a : F2) (Q : Form n) :
     (∃ v : Cube n, v ≠ 0 ∧ ∀ x, phase a Q (x + v) = -phase a Q x) ∨
     ∃ (k : ℕ) (L : Cube n →ₗ[F2] Cube k), Function.Surjective L ∧

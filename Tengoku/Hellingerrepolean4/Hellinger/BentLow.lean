@@ -16,6 +16,9 @@ open Fourier
 def neighbor {n : ℕ} (x : Cube n) (i : Fin n) : Cube n :=
   Function.update x i (!(x i))
 
+/--
+@isnad1 id=injectiv.0h2v.s3.e1ab187f076c from=translated src=- shape=cf9fbca5 vocab=2782875a
+-/
 theorem neighbor_injective {n : ℕ} (x : Cube n) : Function.Injective (neighbor x) := by
   intro i j h
   by_contra hij
@@ -24,10 +27,16 @@ theorem neighbor_injective {n : ℕ} (x : Cube n) : Function.Injective (neighbor
   simp only [neighbor, Function.update_self, Function.update_of_ne hji] at he
   cases hx : x i <;> simp [hx] at he
 
+/--
+@isnad1 id=eq.1h3v.s6.c350334bdaaf from=translated src=- shape=01cbc94c vocab=4d354342
+-/
 theorem cube_weight_self (n : ℕ) (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
     (x : Cube n) : (cubeBSC n ρ hρ).weight x x = ((1 + ρ) / 2) ^ n := by
   simp [cubeBSC, UniformChannel.product, bsc, div_pow]
 
+/--
+@isnad1 id=eq.1h4v.s7.5729d15269bb from=translated src=- shape=b1e416e8 vocab=d2215e45
+-/
 theorem cube_weight_neighbor {n : ℕ} (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
     (x : Cube n) (i : Fin n) :
     (cubeBSC n ρ hρ).weight x (neighbor x i) =
@@ -50,11 +59,17 @@ theorem cube_weight_neighbor {n : ℕ} (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ
 def disagreement {n : ℕ} (f : Cube n → ℝ) (x y : Cube n) : ℝ :=
   (1 - f x * f y) / 2
 
+/--
+@isnad1 id=le.1h4v.s5.8881395ba9ba from=translated src=- shape=eadb5ed1 vocab=46a39112
+-/
 theorem disagreement_nonneg {n : ℕ} {f : Cube n → ℝ}
     (hf : ∀ x, f x = -1 ∨ f x = 1) (x y : Cube n) : 0 ≤ disagreement f x y := by
   rcases hf x with h | h <;> rcases hf y with hy | hy <;>
     norm_num [disagreement, h, hy]
 
+/--
+@isnad1 id=le.1h4v.s6.ae10f27e3a0b from=translated src=- shape=55acbb06 vocab=24d25d2a
+-/
 theorem agreement_nonneg {n : ℕ} {f : Cube n → ℝ}
     (hf : ∀ x, f x = -1 ∨ f x = 1) (x y : Cube n) : 0 ≤ 1 - disagreement f x y := by
   rcases hf x with h | h <;> rcases hf y with hy | hy <;>
@@ -64,6 +79,9 @@ def mismatchProbability {n : ℕ} (f : Cube n → ℝ)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (x : Cube n) : ℝ :=
   ∑ y, (cubeBSC n ρ hρ).weight x y * disagreement f x y
 
+/--
+@isnad1 id=eq.1h4v.s6.6211f3a353f2 from=translated src=- shape=9f22a19f vocab=6aa4c1f9
+-/
 theorem mismatch_formula {n : ℕ} (f : Cube n → ℝ)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (x : Cube n) :
     mismatchProbability f ρ hρ x = (1 - f x * (cubeBSC n ρ hρ).apply f x) / 2 := by
@@ -77,6 +95,9 @@ theorem mismatch_formula {n : ℕ} (f : Cube n → ℝ)
   intro y _
   ring
 
+/--
+@isnad1 id=le.2h4v.s7.c97ecf0b6166 from=translated src=- shape=7bfa103d vocab=8c96363f
+-/
 theorem mismatch_lower {n : ℕ} {f : Cube n → ℝ}
     (hf : ∀ x, f x = -1 ∨ f x = 1)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (x : Cube n) :
@@ -97,6 +118,9 @@ theorem mismatch_lower {n : ℕ} {f : Cube n → ℝ}
     exact hsum
   · exact fun i _ j _ h => neighbor_injective x h
 
+/--
+@isnad1 id=le.2h4v.s7.e1808bdab4bb from=translated src=- shape=1d166c06 vocab=95a4038e
+-/
 theorem agreement_lower {n : ℕ} {f : Cube n → ℝ}
     (hf : ∀ x, f x = -1 ∨ f x = 1)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (x : Cube n) :
@@ -115,7 +139,9 @@ theorem agreement_lower {n : ℕ} {f : Cube n → ℝ}
   rw [hid] at hsum
   exact hsum
 
-/-- Pointwise root bound from the two genuine channel events.-/
+/-- Pointwise root bound from the two genuine channel events.
+@isnad1 id=le.3h4v.s7.98c9d3474cbc from=translated src=- shape=0eaf27d2 vocab=0bf24be3
+-/
 theorem posterior_root_lower {n : ℕ} (hn : 1 ≤ n) {f : Cube n → ℝ}
     (hf : ∀ x, f x = -1 ∨ f x = 1)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (x : Cube n) :
@@ -148,7 +174,9 @@ theorem posterior_root_lower {n : ℕ} (hn : 1 ≤ n) {f : Cube n → ℝ}
   rw [hab]
   nlinarith only [hprod]
 
-/-- Averaging gives the full low-noise event bound, with no event assumption.-/
+/-- Averaging gives the full low-noise event bound, with no event assumption.
+@isnad1 id=le.3h3v.s7.9e380b1e645b from=translated src=- shape=5665f3ef vocab=8d308370
+-/
 theorem posterior_root_mean_lower {n : ℕ} (hn : 1 ≤ n) {f : Cube n → ℝ}
     (hf : ∀ x, f x = -1 ∨ f x = 1)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) :
@@ -162,7 +190,9 @@ theorem posterior_root_mean_lower {n : ℕ} (hn : 1 ≤ n) {f : Cube n → ℝ}
   unfold mean
   nlinarith only [hm]
 
-/-- Bernoulli's inequality controls the no-flip factor over the whole range.-/
+/-- Bernoulli's inequality controls the no-flip factor over the whole range.
+@isnad1 id=le.3h2v.s7.13d2654dcb2c from=translated src=- shape=21df1246 vocab=74c3286b
+-/
 theorem low_noise_power_lower (n : ℕ) (hn : 1 ≤ n) (ρ : ℝ)
     (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hlo : 1 - 2 / (3 * (n : ℝ)) ≤ ρ) :
     (2 / 3 : ℝ) ≤ ((1 + ρ) / 2) ^ (n - 1) := by
@@ -178,7 +208,9 @@ theorem low_noise_power_lower (n : ℕ) (hn : 1 ≤ n) (ρ : ℝ)
   norm_num only [Nat.cast_one] at hpow
   nlinarith only [hpow, hmul, hρ.2]
 
-/-- The sensitivity factor is already at least one from dimension six onward.-/
+/-- The sensitivity factor is already at least one from dimension six onward.
+@isnad1 id=le.1h1v.s6.ee1f5f87e1da from=translated src=- shape=6003a598 vocab=5cf31876
+-/
 theorem low_noise_dimension_factor (n : ℕ) (hn : 6 ≤ n) :
     1 ≤ (2 / 3 : ℝ) * ((n : ℝ) / Real.sqrt (2 * ((n : ℝ) + 1))) := by
   have hnR : (6 : ℝ) ≤ n := by exact_mod_cast hn
@@ -191,7 +223,9 @@ theorem low_noise_dimension_factor (n : ℕ) (hn : 6 ≤ n) :
   apply (le_div_iff₀ hp).2
   nlinarith only [hh]
 
-/-- Actual low-noise posterior-root lower bound for every bent Boolean function.-/
+/-- Actual low-noise posterior-root lower bound for every bent Boolean function.
+@isnad1 id=le.5h3v.s7.9f984d94570a from=translated src=- shape=2d10957c vocab=577a2e87
+-/
 theorem bent_low_noise_root_mean {n : ℕ} (hn : 6 ≤ n)
     {f : Cube n → ℝ} (hf : ∀ x, f x = -1 ∨ f x = 1) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hlo : 1 - 2 / (3 * (n : ℝ)) ≤ ρ) :
@@ -210,7 +244,9 @@ theorem bent_low_noise_root_mean {n : ℕ} (hn : 6 ≤ n)
   have hprod := mul_le_mul_of_nonneg_left (hdim.trans hfactor) hc
   nlinarith only [hprod, hevent]
 
-/-- Low-noise strict Hellinger bound, including the noiseless endpoint.-/
+/-- Low-noise strict Hellinger bound, including the noiseless endpoint.
+@isnad1 id=lt.5h3v.s7.a305184e8f62 from=translated src=- shape=28a4f966 vocab=e1e6b769
+-/
 theorem bent_low_noise_hellinger_strict {n : ℕ} (hn : 6 ≤ n)
     {f : Cube n → ℝ} (hf : ∀ x, f x = -1 ∨ f x = 1) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hlo : 1 - 2 / (3 * (n : ℝ)) ≤ ρ) :
@@ -224,7 +260,9 @@ theorem bent_low_noise_hellinger_strict {n : ℕ} (hn : 6 ≤ n)
   unfold objective
   linarith only [hR, hroot]
 
-/-- Full-noise theorem for every bent Boolean function of dimension at least six.-/
+/-- Full-noise theorem for every bent Boolean function of dimension at least six.
+@isnad1 id=and.4h3v.s7.7871ed4e9bab from=translated src=- shape=d2fa783a vocab=53f5357d
+-/
 theorem bent_large_hellinger {n : ℕ} (hn : 6 ≤ n)
     {f : Cube n → ℝ} (hf : ∀ x, f x = -1 ∨ f x = 1) (hb : Flatness.IsBent f)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) :

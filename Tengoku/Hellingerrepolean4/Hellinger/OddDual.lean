@@ -18,6 +18,9 @@ namespace Hellinger.OddDual
 
 open Hellinger.Fourier Hellinger.ChannelSections
 
+/--
+@isnad1 id=le.1h2v.s6.3c9c7d933e1a from=translated src=- shape=0a730dd5 vocab=e61100ef
+-/
 theorem scalar_dual (u t : ℝ) (hu : u ∈ Set.Icc (-1 : ℝ) 1) :
     root u + t * u ≤ Real.sqrt (1 + t ^ 2) := by
   have hr : (root u) ^ 2 = 1 - u ^ 2 :=
@@ -25,6 +28,9 @@ theorem scalar_dual (u t : ℝ) (hu : u ∈ Set.Icc (-1 : ℝ) 1) :
   apply Real.le_sqrt_of_sq_le
   nlinarith [sq_nonneg (t * root u - u)]
 
+/--
+@isnad1 id=eq.2h2v.s6.fc1126c857f5 from=translated src=- shape=afe94c13 vocab=5ad473e2
+-/
 theorem scalar_dual_equality (u t : ℝ) (hu : u ∈ Set.Icc (-1 : ℝ) 1)
     (heq : root u + t * u = Real.sqrt (1 + t ^ 2)) : t * root u = u := by
   have hr : (root u) ^ 2 = 1 - u ^ 2 :=
@@ -34,26 +40,41 @@ theorem scalar_dual_equality (u t : ℝ) (hu : u ∈ Set.Icc (-1 : ℝ) 1)
   have hid : (t * root u - u) ^ 2 = 0 := by nlinarith
   exact sub_eq_zero.mp (sq_eq_zero_iff.mp hid)
 
+/--
+@isnad1 id=eq.1h3v.s5.cf6f75695101 from=translated src=- shape=d57c08bb vocab=7f3f07ff
+-/
 theorem bsc_weight_symm (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (x y : Bool) :
     (bsc ρ hρ).weight x y = (bsc ρ hρ).weight y x := by
   change (if x = y then _ else _) = (if y = x then _ else _)
   simp only [eq_comm]
 
+/--
+@isnad1 id=eq.1h4v.s6.4c0ece992f32 from=translated src=- shape=73cd272c vocab=cad44345
+-/
 theorem cube_weight_symm (n : ℕ) (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
     (x y : Cube n) : (cubeBSC n ρ hρ).weight x y = (cubeBSC n ρ hρ).weight y x := by
   change (∏ i, (bsc ρ hρ).weight (x i) (y i)) = ∏ i, (bsc ρ hρ).weight (y i) (x i)
   simp only [bsc_weight_symm]
 
+/--
+@isnad1 id=eq.1h3v.s5.826edfb6d635 from=translated src=- shape=a80ab394 vocab=968ee098
+-/
 theorem bsc_weight_antipode (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (x y : Bool) :
     (bsc ρ hρ).weight (!x) (!y) = (bsc ρ hρ).weight x y := by
   cases x <;> cases y <;> rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.3ff2ea574599 from=translated src=- shape=316612be vocab=0ce2985a
+-/
 theorem cube_weight_antipode (n : ℕ) (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
     (x y : Cube n) : (cubeBSC n ρ hρ).weight (antipode n x) (antipode n y) =
       (cubeBSC n ρ hρ).weight x y := by
   change (∏ i, (bsc ρ hρ).weight (!(x i)) (!(y i))) = ∏ i, (bsc ρ hρ).weight (x i) (y i)
   simp only [bsc_weight_antipode]
 
+/--
+@isnad1 id=eq.2h4v.s7.244e6f418037 from=translated src=- shape=ba5102e8 vocab=9ba7de2c
+-/
 theorem noise_odd (n : ℕ) (h : Cube n → ℝ)
     (hodd : ∀ x, h (antipode n x) = -h x) (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
     (y : Cube n) : (cubeBSC n ρ hρ).apply h (antipode n y) = -(cubeBSC n ρ hρ).apply h y := by
@@ -61,6 +82,9 @@ theorem noise_odd (n : ℕ) (h : Cube n → ℝ)
   rw [← (antipode n).sum_comp (fun x => (cubeBSC n ρ hρ).weight (antipode n y) x * h x)]
   simp only [cube_weight_antipode, hodd, mul_neg, Finset.sum_neg_distrib]
 
+/--
+@isnad1 id=eq.1h4v.s7.c47dbfa10a38 from=translated src=- shape=d877ae2c vocab=0ea978fb
+-/
 theorem noise_selfadjoint (n : ℕ) (f g : Cube n → ℝ)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) :
     mean (fun y => f y * (cubeBSC n ρ hρ).apply g y) =
@@ -78,6 +102,9 @@ theorem noise_selfadjoint (n : ℕ) (f g : Cube n → ℝ)
 def oddSign {n : ℕ} (g : Cube (n + 1) → ℝ) (x : Cube (n + 1)) : ℝ :=
   if 0 < g x then 1 else if g x < 0 then -1 else boolSign (x 0)
 
+/--
+@isnad1 id=or.0h3v.s5.bee845894f26 from=translated src=- shape=efa62e6f vocab=0fcfa75e
+-/
 theorem oddSign_boolean {n : ℕ} (g : Cube (n + 1) → ℝ) (x : Cube (n + 1)) :
     oddSign g x = -1 ∨ oddSign g x = 1 := by
   unfold oddSign
@@ -86,6 +113,9 @@ theorem oddSign_boolean {n : ℕ} (g : Cube (n + 1) → ℝ) (x : Cube (n + 1)) 
   · exact Or.inl rfl
   · cases x 0 <;> norm_num [boolSign]
 
+/--
+@isnad1 id=eq.1h3v.s8.9a00edd64f4e from=translated src=- shape=022d307b vocab=b451f0ff
+-/
 theorem oddSign_odd {n : ℕ} (g : Cube (n + 1) → ℝ)
     (hodd : ∀ x, g (antipode (n + 1) x) = -g x) (x : Cube (n + 1)) :
     oddSign g (antipode (n + 1) x) = -oddSign g x := by
@@ -95,6 +125,9 @@ theorem oddSign_odd {n : ℕ} (g : Cube (n + 1) → ℝ)
   rw [boolSign_neg]
   split_ifs <;> norm_num at * <;> linarith
 
+/--
+@isnad1 id=eq.0h3v.s5.47919b98a5fe from=translated src=- shape=4d7ab5f7 vocab=526f510d
+-/
 theorem oddSign_mul {n : ℕ} (g : Cube (n + 1) → ℝ) (x : Cube (n + 1)) :
     oddSign g x * g x = |g x| := by
   unfold oddSign
@@ -107,6 +140,9 @@ theorem oddSign_mul {n : ℕ} (g : Cube (n + 1) → ℝ) (x : Cube (n + 1)) :
 def dualFunctional {n : ℕ} (h : Cube n → ℝ) (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) : ℝ :=
   mean (fun x => Real.sqrt (1 + h x ^ 2)) - mean (fun y => |(cubeBSC n ρ hρ).apply h y|)
 
+/--
+@isnad1 id=le.1h3v.s8.694ad4272eb4 from=translated src=- shape=135ca410 vocab=03cbdaa6
+-/
 theorem root_mean_le_dual (n : ℕ) (h : Cube (n + 1) → ℝ)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) :
     mean (fun y => root ((cubeBSC (n + 1) ρ hρ).apply
@@ -128,12 +164,18 @@ theorem root_mean_le_dual (n : ℕ) (h : Cube (n + 1) → ℝ)
   rw [hsign] at hle
   exact le_sub_iff_add_le.mpr hle
 
+/--
+@isnad1 id=le.2h3v.s8.b92cd170425b from=translated src=- shape=f71c293d vocab=1cf515ed
+-/
 theorem odd_dual_bound (n : ℕ) (h : Cube (n + 1) → ℝ)
     (hodd : ∀ x, h (antipode (n + 1) x) = -h x)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) : root ρ ≤ dualFunctional h ρ hρ := by
   exact (ParityBlocks.antipodal_hellinger n _ (oddSign_boolean _)
     (oddSign_odd _ (noise_odd _ h hodd ρ hρ)) ρ hρ).trans (root_mean_le_dual n h ρ hρ)
 
+/--
+@isnad1 id=eq.1h5v.s6.4ff5abdafaac from=translated src=- shape=e831abc1 vocab=6c736ce4
+-/
 theorem noise_signed_coordinate (n : ℕ) (i : Fin n) (negative : Bool)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (x : Cube n) :
     (cubeBSC n ρ hρ).apply
@@ -149,6 +191,9 @@ theorem noise_signed_coordinate (n : ℕ) (i : Fin n) (negative : Bool)
   · simp only [ite_true, UniformChannel.apply_neg, hbase]
     ring
 
+/--
+@isnad1 id=ex.5h3v.s8.7b8707a49ab0 from=translated src=- shape=c6eec3a4 vocab=418b9875
+-/
 theorem odd_dual_equality_form (n : ℕ) (h : Cube (n + 1) → ℝ)
     (hodd : ∀ x, h (antipode (n + 1) x) = -h x)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρpos : 0 < ρ) (hρlt : ρ < 1)
@@ -196,6 +241,9 @@ theorem odd_dual_equality_form (n : ℕ) (h : Cube (n + 1) → ℝ)
   rw [hmul]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s5.0a71be19cfa7 from=translated src=- shape=5646c569 vocab=283d1e00
+-/
 theorem apply_const_mul {Ω : Type*} [Fintype Ω] (K : UniformChannel Ω)
     (a : ℝ) (f : Ω → ℝ) (y : Ω) : K.apply (fun x => a * f x) y = a * K.apply f y := by
   unfold UniformChannel.apply
@@ -204,6 +252,9 @@ theorem apply_const_mul {Ω : Type*} [Fintype Ω] (K : UniformChannel Ω)
   intro x _
   ring
 
+/--
+@isnad1 id=eq.2h4v.s6.674364561347 from=translated src=- shape=12a4823a vocab=c2ad0570
+-/
 theorem scaled_coordinate_attains (n : ℕ) (i : Fin n) (negative : Bool)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρlt : ρ < 1) :
     dualFunctional
@@ -234,6 +285,9 @@ theorem scaled_coordinate_attains (n : ℕ) (i : Fin n) (negative : Bool)
   field_simp [ne_of_gt hcpos]
   nlinarith
 
+/--
+@isnad1 id=iff.4h3v.s8.8b9ff1100a5c from=translated src=- shape=3e20daeb vocab=418b9875
+-/
 theorem odd_dual_equality_iff (n : ℕ) (h : Cube (n + 1) → ℝ)
     (hodd : ∀ x, h (antipode (n + 1) x) = -h x)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρpos : 0 < ρ) (hρlt : ρ < 1) :
@@ -245,6 +299,9 @@ theorem odd_dual_equality_iff (n : ℕ) (h : Cube (n + 1) → ℝ)
   · rintro ⟨i, negative, rfl⟩
     exact scaled_coordinate_attains _ i negative ρ hρ hρlt
 
+/--
+@isnad1 id=le.2h3v.s6.48091d2f28ae from=translated src=- shape=0818a979 vocab=c01c5cdf
+-/
 theorem odd_dual_bound_all (n : ℕ) (h : Cube n → ℝ)
     (hodd : ∀ x, h (antipode n x) = -h x)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) : root ρ ≤ dualFunctional h ρ hρ := by
@@ -261,6 +318,9 @@ theorem odd_dual_bound_all (n : ℕ) (h : Cube n → ℝ)
     simpa [dualFunctional, UniformChannel.apply, mean_const] using hr
   | succ n => exact odd_dual_bound n h hodd ρ hρ
 
+/--
+@isnad1 id=iff.4h3v.s7.2c243b7a1052 from=translated src=- shape=8196967a vocab=a787bc31
+-/
 theorem odd_dual_equality_iff_all (n : ℕ) (h : Cube n → ℝ)
     (hodd : ∀ x, h (antipode n x) = -h x)
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (hρpos : 0 < ρ) (hρlt : ρ < 1) :
@@ -285,10 +345,16 @@ theorem odd_dual_equality_iff_all (n : ℕ) (h : Cube n → ℝ)
     exact iff_false_intro (ne_of_gt hr)
   | succ n => exact odd_dual_equality_iff n h hodd ρ hρ hρpos hρlt
 
+/--
+@isnad1 id=eq.0h1v.s4.9e151069f93e from=translated src=- shape=45c01c4a vocab=fded7e98
+-/
 theorem zero_attains_at_zero (n : ℕ) :
     dualFunctional (fun _ : Cube n => 0) 0 (by norm_num) = root 0 := by
   simp [dualFunctional, UniformChannel.apply, root, mean_const]
 
+/--
+@isnad1 id=eq.1h5v.s6.3d1fd3d37798 from=translated src=- shape=7db95d60 vocab=b51278e7
+-/
 theorem coordinate_functional (n : ℕ) (i : Fin n) (negative : Bool) (t ρ : ℝ)
     (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) :
     dualFunctional (fun x : Cube n => t * (if negative then -boolSign (x i) else boolSign (x i)))
@@ -305,6 +371,9 @@ theorem coordinate_functional (n : ℕ) (i : Fin n) (negative : Bool) (t ρ : �
   simp_rw [hsq, habs]
   rw [mean_const, mean_const]
 
+/--
+@isnad1 id=ex.1h3v.s6.3b4fb61340fb from=translated src=- shape=178d9295 vocab=50b2bfb5
+-/
 theorem endpoint_one_approach (n : ℕ) (i : Fin n) (ε : ℝ) (hε : 0 < ε) :
     ∃ t : ℝ, 0 ≤ t ∧
       0 < dualFunctional (fun x : Cube n => t * boolSign (x i)) 1 (by norm_num) ∧

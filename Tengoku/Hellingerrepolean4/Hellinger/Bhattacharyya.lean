@@ -15,6 +15,9 @@ open MeasureTheory ProbabilityTheory
 
 namespace Hellinger.Bhattacharyya
 
+/--
+@isnad1 id=eq.6h5v.s7.274eee824db8 from=translated src=- shape=38468f8d vocab=9c84e9de
+-/
 theorem weighted_root (q p m P M : ℝ) (hq : 0 ≤ q) (hp : 0 ≤ p) (hm : 0 ≤ m)
     (hsum : p + m = 1) (hP : q * p = P / 2) (hM : q * m = M / 2) :
     q * root (p - m) = Real.sqrt (P * M) := by
@@ -31,6 +34,9 @@ theorem weighted_root (q p m P M : ℝ) (hq : 0 ≤ q) (hp : 0 ≤ p) (hm : 0 �
   rw [← hsquare]
   exact (Real.sqrt_sq (show 0 ≤ q * root (p - m) from mul_nonneg hq (Real.sqrt_nonneg _))).symm
 
+/--
+@isnad1 id=eq.3h5v.s7.fc36d6917394 from=translated src=- shape=07ff2584 vocab=9d8da482
+-/
 theorem discrete_parameter {Ω E : Type*} [MeasurableSpace Ω] [MeasurableSpace E]
     [Countable E] [MeasurableSingletonClass E] [Nonempty E]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (B : Ω → Bool) (Y : Ω → E)
@@ -62,6 +68,9 @@ theorem discrete_parameter {Ω E : Type*} [MeasurableSpace Ω] [MeasurableSpace 
     _ = ∑' y, (μ.map Y).real {y} * root (a y) := by rw [integral_countable hint]; rfl
     _ = _ := tsum_congr hpoint
 
+/--
+@isnad1 id=eq.3h7v.s8.20f2c415ac81 from=translated src=- shape=06ccd50a vocab=05961230
+-/
 theorem discrete_channelParameter {ι Ω : Type*} [MeasurableSpace Ω]
     {E : ι → Type*} [∀ i, MeasurableSpace (E i)]
     (μ : Measure Ω) [IsProbabilityMeasure μ]

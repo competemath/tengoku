@@ -16,6 +16,9 @@ namespace Hellinger.Flatness
 
 open Hellinger.Fourier
 
+/--
+@isnad1 id=even.2h2v.s5.13040f36e6e7 from=translated src=- shape=01289505 vocab=590da655
+-/
 theorem dimension_even {n : ℕ} {f : Cube n → ℝ}
     (hf : ∀ x, f x = -1 ∨ f x = 1) (hb : IsBent f) : Even n := by
   let z : Cube n → ℤ := fun x => if f x = 1 then 1 else -1
@@ -40,6 +43,9 @@ theorem dimension_even {n : ℕ} {f : Cube n → ℝ}
     Nat.Prime.factorization_self Nat.prime_two] at hfactor
   exact ⟨(∑ x, z x : ℤ).natAbs.factorization 2, by omega⟩
 
+/--
+@isnad1 id=not.1h3v.s5.16dc6345ce07 from=translated src=- shape=d6ce265e vocab=b77a68e7
+-/
 theorem no_sign_reversing_translation {n : ℕ} {f : Cube n → ℝ}
     (hb : IsBent f) (v : Cube n) :
     ¬ (∀ x, f (translate v x) = -f x) := by

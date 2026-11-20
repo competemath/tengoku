@@ -19,14 +19,23 @@ open Hellinger.Fourier Hellinger.PosteriorState Hellinger.IntegralLifting Hellin
 
 def bitProbability (a : ℝ) (b : Bool) : ℝ := (1 + boolSign b * a) / 2
 
+/--
+@isnad1 id=mem.1h2v.s5.cc39be295c7a from=translated src=- shape=9bf4fd12 vocab=7e5de705
+-/
 theorem bitProbability_mem (a : ℝ) (ha : a ∈ Set.Icc (-1 : ℝ) 1) (b : Bool) :
     bitProbability a b ∈ Set.Icc (0 : ℝ) 1 := by
   cases b <;> norm_num [bitProbability, boolSign] <;> constructor <;> linarith [ha.1, ha.2]
 
+/--
+@isnad1 id=eq.0h1v.s4.c51befe0882a from=translated src=- shape=521cf472 vocab=777432d6
+-/
 theorem bitProbability_sum (a : ℝ) : ∑ b : Bool, bitProbability a b = 1 := by
   simp [bitProbability, boolSign]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s6.32adebf435e4 from=translated src=- shape=6f54cb01 vocab=0ab4fa0f
+-/
 theorem bitProbability_cross (a : ℝ) (ha : a ∈ Set.Icc (-1 : ℝ) 1) :
     Real.sqrt (bitProbability a false) * Real.sqrt (bitProbability a true) = root a / 2 := by
   rw [← Real.sqrt_mul (bitProbability_mem a ha false).1]
@@ -47,16 +56,25 @@ def vector (a : (i : Fin n) → E i → ℝ) (y : (i : Fin n) → E i) (b : Cube
 def posteriorMean (a : (i : Fin n) → E i → ℝ) (f : Cube n → ℝ)
     (y : (i : Fin n) → E i) : ℝ := ∑ b, probability a y b * f b
 
+/--
+@isnad1 id=le.1h5v.s6.2f13a3680b98 from=translated src=- shape=a23090dd vocab=36b4ea05
+-/
 theorem probability_nonneg (a : (i : Fin n) → E i → ℝ)
     (ha : ∀ i y, a i y ∈ Set.Icc (-1 : ℝ) 1) (y : (i : Fin n) → E i) (b : Cube n) :
     0 ≤ probability a y b := Finset.prod_nonneg (fun i _ => (bitProbability_mem _ (ha i _) _).1)
 
+/--
+@isnad1 id=eq.0h4v.s5.149c0a9ba4f2 from=translated src=- shape=59823c15 vocab=9d3e3685
+-/
 theorem probability_sum (a : (i : Fin n) → E i → ℝ) (y : (i : Fin n) → E i) :
     ∑ b, probability a y b = 1 := by
   change (∑ b : Cube n, ∏ i, bitProbability (a i (y i)) (b i)) = 1
   rw [← Fintype.prod_sum (fun i b => bitProbability (a i (y i)) b)]
   simp only [bitProbability_sum, Finset.prod_const_one]
 
+/--
+@isnad1 id=eq.1h5v.s6.be07fec656a9 from=translated src=- shape=7b155357 vocab=7f31717a
+-/
 theorem vector_sq (a : (i : Fin n) → E i → ℝ)
     (ha : ∀ i y, a i y ∈ Set.Icc (-1 : ℝ) 1) (y : (i : Fin n) → E i) (b : Cube n) :
     (vector a y b) ^ 2 = probability a y b := by
@@ -65,6 +83,9 @@ theorem vector_sq (a : (i : Fin n) → E i → ℝ)
   intro i _
   exact Real.sq_sqrt (bitProbability_mem _ (ha i _) _).1
 
+/--
+@isnad1 id=mem.1h5v.s6.ede745e10807 from=translated src=- shape=dde34869 vocab=f7e967fb
+-/
 theorem vector_mem (a : (i : Fin n) → E i → ℝ)
     (ha : ∀ i y, a i y ∈ Set.Icc (-1 : ℝ) 1) (y : (i : Fin n) → E i) (b : Cube n) :
     vector a y b ∈ Set.Icc (0 : ℝ) 1 := by
@@ -73,6 +94,9 @@ theorem vector_mem (a : (i : Fin n) → E i → ℝ)
   · exact Finset.prod_le_one (fun _ _ => Real.sqrt_nonneg _)
       (fun i _ => Real.sqrt_le_one.mpr (bitProbability_mem _ (ha i _) _).2)
 
+/--
+@isnad1 id=eq.1h4v.s6.63101a33d387 from=translated src=- shape=a9b7d292 vocab=035eb498
+-/
 theorem vector_unit (a : (i : Fin n) → E i → ℝ)
     (ha : ∀ i y, a i y ∈ Set.Icc (-1 : ℝ) 1) (y : (i : Fin n) → E i) :
     vector a y ⬝ᵥ vector a y = 1 := by
@@ -80,6 +104,9 @@ theorem vector_unit (a : (i : Fin n) → E i → ℝ)
   simp_rw [← pow_two, vector_sq a ha]
   exact probability_sum a y
 
+/--
+@isnad1 id=eq.2h5v.s7.833bdf283b35 from=translated src=- shape=c90e4e1d vocab=7c4fbdde
+-/
 theorem reflected_unit (a : (i : Fin n) → E i → ℝ)
     (ha : ∀ i y, a i y ∈ Set.Icc (-1 : ℝ) 1) (f : Cube n → ℝ)
     (hf : ∀ b, f b = -1 ∨ f b = 1) (y : (i : Fin n) → E i) :
@@ -91,6 +118,9 @@ theorem reflected_unit (a : (i : Fin n) → E i → ℝ)
       rcases hf b with hb | hb <;> simp [reflectedVector, hb]
     _ = 1 := vector_unit a ha y
 
+/--
+@isnad1 id=eq.1h5v.s6.de268f5cf4ab from=translated src=- shape=b675be5a vocab=93c43e10
+-/
 theorem vector_inner (a : (i : Fin n) → E i → ℝ)
     (ha : ∀ i y, a i y ∈ Set.Icc (-1 : ℝ) 1) (f : Cube n → ℝ) (y : (i : Fin n) → E i) :
     vector a y ⬝ᵥ reflectedVector f (vector a y) = posteriorMean a f y := by
@@ -100,6 +130,9 @@ theorem vector_inner (a : (i : Fin n) → E i → ℝ)
   rw [reflectedVector, show vector a y b * (f b * vector a y b) = (vector a y b) ^ 2 * f b by ring,
     vector_sq a ha]
 
+/--
+@isnad1 id=mem.2h5v.s6.e665ccabfc4f from=translated src=- shape=46644bc6 vocab=b21beef2
+-/
 theorem posteriorMean_mem (a : (i : Fin n) → E i → ℝ)
     (ha : ∀ i y, a i y ∈ Set.Icc (-1 : ℝ) 1) (f : Cube n → ℝ)
     (hf : ∀ b, f b ∈ Set.Icc (-1 : ℝ) 1) (y : (i : Fin n) → E i) :
@@ -114,26 +147,41 @@ theorem posteriorMean_mem (a : (i : Fin n) → E i → ℝ)
         mul_le_mul_of_nonneg_left (hf b).2 (probability_nonneg a ha y b))
       _ = 1 := by simp [probability_sum]
 
+/--
+@isnad1 id=integrab.2h4v.s6.3e38e997c56e from=translated src=- shape=d1e1d9e6 vocab=22556976
+-/
 theorem integrable_of_abs_le {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω) [IsFiniteMeasure μ]
     (f : Ω → ℝ) (hf : Measurable f) (C : ℝ) (hC : ∀ y, |f y| ≤ C) : Integrable f μ := by
   exact Integrable.of_bound hf.aestronglyMeasurable C
     (Filter.Eventually.of_forall (fun y => by simpa only [Real.norm_eq_abs] using hC y))
 
+/--
+@isnad1 id=mem.0h1v.s4.52b7a419e415 from=translated src=- shape=828ff9db vocab=c1be7811
+-/
 theorem root_mem (t : ℝ) : root t ∈ Set.Icc (0 : ℝ) 1 :=
   ⟨Real.sqrt_nonneg _, Real.sqrt_le_one.mpr (by nlinarith [sq_nonneg t])⟩
 
 variable [∀ i, MeasurableSpace (E i)]
 
+/--
+@isnad1 id=measurab.1h4v.s6.ba84cface622 from=translated src=- shape=cbba856c vocab=2a56db5f
+-/
 theorem measurable_probability (a : (i : Fin n) → E i → ℝ) (ha : ∀ i, Measurable (a i))
     (b : Cube n) : Measurable (fun y => probability a y b) := by
   unfold probability bitProbability
   fun_prop
 
+/--
+@isnad1 id=measurab.1h4v.s6.c81cf09b24a7 from=translated src=- shape=cbba856c vocab=3d3f10ec
+-/
 theorem measurable_vector (a : (i : Fin n) → E i → ℝ) (ha : ∀ i, Measurable (a i))
     (b : Cube n) : Measurable (fun y => vector a y b) := by
   unfold vector bitProbability
   fun_prop
 
+/--
+@isnad1 id=measurab.1h4v.s6.911d8afabeb0 from=translated src=- shape=9d241143 vocab=97864deb
+-/
 theorem measurable_posteriorMean (a : (i : Fin n) → E i → ℝ) (ha : ∀ i, Measurable (a i))
     (f : Cube n → ℝ) : Measurable (posteriorMean a f) := by
   unfold posteriorMean
@@ -142,6 +190,9 @@ theorem measurable_posteriorMean (a : (i : Fin n) → E i → ℝ) (ha : ∀ i, 
 def parameter (μ : (i : Fin n) → Measure (E i)) (a : (i : Fin n) → E i → ℝ) (i : Fin n) : ℝ :=
   ∫ y, root (a i y) ∂μ i
 
+/--
+@isnad1 id=mem.1h5v.s6.b0c479a19c6f from=translated src=- shape=82651e92 vocab=30d545e5
+-/
 theorem parameter_mem (μ : (i : Fin n) → Measure (E i)) [∀ i, IsProbabilityMeasure (μ i)]
     (a : (i : Fin n) → E i → ℝ) (ha : ∀ i, Measurable (a i)) (i : Fin n) :
     parameter μ a i ∈ Set.Icc (0 : ℝ) 1 := by
@@ -153,6 +204,9 @@ theorem parameter_mem (μ : (i : Fin n) → Measure (E i)) [∀ i, IsProbability
   · have h := integral_mono hint (integrable_const (1 : ℝ)) (fun y => (root_mem (a i y)).2)
     simpa [parameter] using h
 
+/--
+@isnad1 id=eq.3h4v.s7.539a9ef72130 from=translated src=- shape=a518a42c vocab=d657603f
+-/
 theorem bitProbability_integral {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     (a : Ω → ℝ) (ha : Measurable a) (hb : ∀ y, a y ∈ Set.Icc (-1 : ℝ) 1)
     (hmean : ∫ y, a y ∂μ = 0) (b : Bool) : ∫ y, bitProbability (a y) b ∂μ = 1 / 2 := by
@@ -161,6 +215,9 @@ theorem bitProbability_integral {Ω : Type*} [MeasurableSpace Ω] (μ : Measure 
   rw [integral_div, integral_add (integrable_const 1) (hint.const_mul _), integral_const_mul, hmean]
   simp
 
+/--
+@isnad1 id=eq.3h5v.s7.fcfe70965833 from=translated src=- shape=72b1bc94 vocab=74c7bafd
+-/
 theorem coordinate_average {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     (a : Ω → ℝ) (ha : Measurable a) (hb : ∀ y, a y ∈ Set.Icc (-1 : ℝ) 1)
     (hmean : ∫ y, a y ∂μ = 0) (b c : Bool) :
@@ -181,6 +238,9 @@ theorem coordinate_average {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω) [
     exact bitProbability_integral μ a ha hb hmean c
   · simp only [hbc, ite_false, ProductState.oneQubit, integral_div]
 
+/--
+@isnad1 id=eq.3h4v.s7.ce80510ae448 from=translated src=- shape=3d9851e7 vocab=aa705bcf
+-/
 theorem average_projection (μ : (i : Fin n) → Measure (E i)) [∀ i, IsProbabilityMeasure (μ i)]
     (a : (i : Fin n) → E i → ℝ) (ha : ∀ i, Measurable (a i))
     (hb : ∀ i y, a i y ∈ Set.Icc (-1 : ℝ) 1) (hmean : ∀ i, ∫ y, a i y ∂μ i = 0) :
@@ -196,6 +256,9 @@ theorem average_projection (μ : (i : Fin n) → Measure (E i)) [∀ i, IsProbab
   intro i _
   exact coordinate_average (μ i) (a i) (ha i) (hb i) (hmean i) (b i) (c i)
 
+/--
+@isnad1 id=le.4h5v.s8.630fef8eec8a from=translated src=- shape=621db469 vocab=d8414363
+-/
 theorem arbitrary_output_lifting (μ : (i : Fin n) → Measure (E i)) [∀ i, IsProbabilityMeasure (μ i)]
     (a : (i : Fin n) → E i → ℝ) (ha : ∀ i, Measurable (a i))
     (hb : ∀ i y, a i y ∈ Set.Icc (-1 : ℝ) 1) (hmean : ∀ i, ∫ y, a i y ∂μ i = 0)
@@ -243,6 +306,9 @@ theorem arbitrary_output_lifting (μ : (i : Fin n) → Measure (E i)) [∀ i, Is
   change matrixIntegral (Measure.pi μ) V = _ at hVeq
   simpa only [hVeq] using h
 
+/--
+@isnad1 id=le.7h6v.s9.357a05a7019f from=translated src=- shape=ccdd2dc9 vocab=64537f19
+-/
 theorem antipodal_bound {n : ℕ} {E : Fin (n + 1) → Type*} [∀ i, MeasurableSpace (E i)]
     (μ : (i : Fin (n + 1)) → Measure (E i)) [∀ i, IsProbabilityMeasure (μ i)]
     (a : (i : Fin (n + 1)) → E i → ℝ) (ha : ∀ i, Measurable (a i))

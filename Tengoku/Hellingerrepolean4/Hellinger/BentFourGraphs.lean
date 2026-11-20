@@ -15,7 +15,9 @@ open Hellinger.Fourier Hellinger.BentFour
 
 set_option maxHeartbeats 20000000 in
 /-- Each nondegenerate four-coordinate sign matrix has one of the exact
-fourth-moment polynomials, with at least two nonzero cross terms.-/
+fourth-moment polynomials, with at least two nonzero cross terms.
+@isnad1 id=ex.2h2v.s7.f7a67d03d6b3 from=translated src=- shape=c0a54b34 vocab=95566ab3
+-/
 theorem derivative_moment_classification (e : Fin 6 → ℝ)
     (he : ∀ i, e i ^ 2 = 1) (hnd : EdgeNondegenerate e) (ρ : ℝ) :
     ∃ d : ℝ, 2 ≤ d ∧ (∑ s : Cube 4, noiseDerivativeSum e ρ s ^ 2) =
@@ -468,6 +470,9 @@ theorem derivative_moment_classification (e : Fin 6 → ℝ)
     dsimp [edgeAction, BentEstimates.fourthMomentExpression]
     ring
 
+/--
+@isnad1 id=le.2h2v.s7.5f1a3041fb76 from=translated src=- shape=d445756b vocab=a289f77c
+-/
 theorem derivative_moment_upper (e : Fin 6 → ℝ)
     (he : ∀ i, e i ^ 2 = 1) (hnd : EdgeNondegenerate e) (ρ : ℝ) :
     (∑ s : Cube 4, noiseDerivativeSum e ρ s ^ 2) / 256 ≤

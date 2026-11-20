@@ -12,6 +12,9 @@ open scoped BigOperators
 namespace Hellinger.BentLowExact
 open Fourier
 
+/--
+@isnad1 id=and.3h2v.s6.0495cf7a3108 from=translated src=- shape=e08b6686 vocab=18022e9b
+-/
 theorem alpha_bounds (n : ℕ) (hn : 2 ≤ n) (α : ℝ) (hα : 0 ≤ α)
     (hmax : α ≤ 1 / (n : ℝ)) : α ≤ 1 / 2 ∧ (n : ℝ) * α ≤ 1 := by
   have hnR : (2 : ℝ) ≤ n := by exact_mod_cast hn
@@ -21,7 +24,9 @@ theorem alpha_bounds (n : ℕ) (hn : 2 ≤ n) (α : ℝ) (hα : 0 ≤ α)
   constructor <;> nlinarith
 
 /-- The no-flip coefficient proved earlier dominates the precise coefficient
-in the manuscript on its full stipulated interval.-/
+in the manuscript on its full stipulated interval.
+@isnad1 id=le.3h2v.s7.b222bab17b40 from=translated src=- shape=842c2655 vocab=077beb62
+-/
 theorem coefficient_le (n : ℕ) (hn : 2 ≤ n) (α : ℝ) (hα : 0 ≤ α)
     (hmax : α ≤ 1 / (n : ℝ)) :
     (1 - α) ^ (((n : ℝ) - 2) / 2) * Real.sqrt (1 - (n : ℝ) * α) ≤
@@ -49,7 +54,9 @@ theorem coefficient_le (n : ℕ) (hn : 2 ≤ n) (α : ℝ) (hα : 0 ≤ α)
   nlinarith only [hsq, hright]
 
 /-- Full manuscript low-noise statement: every Boolean function, every `n ≥ 2`,
-every `0 < α ≤ 1/n`, and the actual real exponent `(n−2)/2`.-/
+every `0 < α ≤ 1/n`, and the actual real exponent `(n−2)/2`.
+@isnad1 id=le.5h3v.s8.09ea52bcfb45 from=translated src=- shape=0234d94a vocab=26c28b7a
+-/
 theorem manuscript_low_noise {n : ℕ} (hn : 2 ≤ n) (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (α : ℝ) (hα : 0 < α)
     (hmax : α ≤ 1 / (n : ℝ))
@@ -79,7 +86,9 @@ theorem manuscript_low_noise {n : ℕ} (hn : 2 ≤ n) (f : Cube n → ℝ)
   nlinarith only [hc, hevent, hden]
 
 /-- Noise admissibility is a consequence of the stated alpha range, not an extra
-restriction on the manuscript theorem.-/
+restriction on the manuscript theorem.
+@isnad1 id=other.4h3v.s9.7eb0556de9ec from=translated src=- shape=8485a402 vocab=f942b400
+-/
 theorem manuscript_low_noise_full {n : ℕ} (hn : 2 ≤ n) (f : Cube n → ℝ)
     (hf : ∀ x, f x = -1 ∨ f x = 1) (α : ℝ) (hα : 0 < α)
     (hmax : α ≤ 1 / (n : ℝ)) :

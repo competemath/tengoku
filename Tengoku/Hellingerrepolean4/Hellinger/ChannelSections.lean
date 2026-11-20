@@ -17,19 +17,31 @@ namespace Hellinger.ChannelSections
 
 variable {Ω Λ : Type*} [Fintype Ω] [Fintype Λ]
 
+/--
+@isnad1 id=eq.0h4v.s5.ea2bd448892b from=translated src=- shape=72282452 vocab=c365be2e
+-/
 theorem mean_comp_equiv (e : Ω ≃ Λ) (f : Λ → ℝ) : mean (f ∘ e) = mean f := by
   simp only [mean, Function.comp_apply]
   rw [Fintype.card_congr e, e.sum_comp]
 
+/--
+@isnad1 id=le.1h3v.s5.d81e0584d3cc from=translated src=- shape=6f600fa3 vocab=3b642aae
+-/
 theorem mean_mono (f g : Ω → ℝ) (h : ∀ x, f x ≤ g x) : mean f ≤ mean g := by
   exact mul_le_mul_of_nonneg_left (Finset.sum_le_sum (fun x _ => h x)) (by positivity)
 
+/--
+@isnad1 id=eq.0h3v.s5.8f664f676ca7 from=translated src=- shape=fbfa7000 vocab=fd454fd3
+-/
 theorem mean_prod (f : Ω × Λ → ℝ) :
     mean f = mean (fun x => mean (fun y => f (x, y))) := by
   simp only [mean, Fintype.card_prod, Nat.cast_mul, mul_inv, Fintype.sum_prod_type,
     ← Finset.mul_sum]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s5.3f55ba8e338b from=translated src=- shape=ffec3d6e vocab=fd454fd3
+-/
 theorem mean_prod_swap (f : Ω × Λ → ℝ) :
     mean f = mean (fun y => mean (fun x => f (x, y))) := by
   rw [mean_prod]
@@ -45,6 +57,9 @@ def productChannel (K : UniformChannel Ω) (L : UniformChannel Λ) : UniformChan
   column_sum y := by
     simp only [Fintype.sum_prod_type, ← Finset.mul_sum, L.column_sum, mul_one, K.column_sum]
 
+/--
+@isnad1 id=eq.0h7v.s6.02b5b3f042bd from=translated src=- shape=e68d5097 vocab=63e34287
+-/
 theorem productChannel_apply (K : UniformChannel Ω) (L : UniformChannel Λ)
     (f : Ω × Λ → ℝ) (x : Ω) (y : Λ) :
     (productChannel K L).apply f (x, y) =
@@ -57,6 +72,9 @@ theorem productChannel_apply (K : UniformChannel Ω) (L : UniformChannel Λ)
   intro w _
   ring
 
+/--
+@isnad1 id=le.1h5v.s6.3b96282d90f2 from=translated src=- shape=fce0ca12 vocab=f2c6fc53
+-/
 theorem sections_root_mean_le (K : UniformChannel Ω) (L : UniformChannel Λ)
     (f : Ω × Λ → ℝ) (hf : ∀ p, f p ∈ Set.Icc (-1 : ℝ) 1) :
     mean (fun z => mean (fun y => root (K.apply (fun x => f (x, z)) y))) ≤
@@ -81,12 +99,18 @@ def indexedBSC (ι : Type*) [Fintype ι] [DecidableEq ι]
 def cubeEquiv (e : ι ≃ κ) : (ι → Bool) ≃ (κ → Bool) :=
   Equiv.arrowCongr e (Equiv.refl Bool)
 
+/--
+@isnad1 id=eq.1h6v.s7.d2a3cddc5370 from=translated src=- shape=65042e9d vocab=721fef79
+-/
 theorem indexedBSC_weight_reindex (e : ι ≃ κ) (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
     (x y : ι → Bool) :
     (indexedBSC κ ρ hρ).weight (cubeEquiv e x) (cubeEquiv e y) =
       (indexedBSC ι ρ hρ).weight x y := by
   exact e.symm.prod_comp (fun i => (bsc ρ hρ).weight (x i) (y i))
 
+/--
+@isnad1 id=eq.1h6v.s7.5d22414a4e74 from=translated src=- shape=00466d86 vocab=958e13dd
+-/
 theorem indexedBSC_apply_reindex (e : ι ≃ κ) (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
     (f : (κ → Bool) → ℝ) (x : ι → Bool) :
     (indexedBSC ι ρ hρ).apply (f ∘ cubeEquiv e) x =
@@ -96,6 +120,9 @@ theorem indexedBSC_apply_reindex (e : ι ≃ κ) (ρ : ℝ) (hρ : ρ ∈ Set.Ic
     (fun y => (indexedBSC κ ρ hρ).weight (cubeEquiv e x) y * f y)]
   simp only [indexedBSC_weight_reindex, Function.comp_apply]
 
+/--
+@isnad1 id=le.3h3v.s7.9cc7ef399195 from=translated src=- shape=64549bd7 vocab=a1643ebf
+-/
 theorem indexed_antipodal_hellinger [Nonempty ι]
     (f : (ι → Bool) → ℝ) (hf : ∀ x, f x = -1 ∨ f x = 1)
     (hanti : ∀ x, f (fun i => !(x i)) = -f x)
@@ -129,12 +156,18 @@ def splitCube (p : ι → Prop) [DecidablePred p] :
     (ι → Bool) ≃ (({i // p i} → Bool) × ({i // ¬p i} → Bool)) :=
   Equiv.piEquivPiSubtypeProd p (fun _ => Bool)
 
+/--
+@isnad1 id=eq.1h5v.s9.5b6593683b19 from=translated src=- shape=d13266da vocab=bb805839
+-/
 theorem indexedBSC_weight_split (p : ι → Prop) [DecidablePred p]
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (x y : ι → Bool) :
     (productChannel (indexedBSC {i // p i} ρ hρ) (indexedBSC {i // ¬p i} ρ hρ)).weight
       (splitCube p x) (splitCube p y) = (indexedBSC ι ρ hρ).weight x y := by
   exact Fintype.prod_subtype_mul_prod_subtype p (fun i => (bsc ρ hρ).weight (x i) (y i))
 
+/--
+@isnad1 id=eq.1h5v.s9.892f5db2b1d1 from=translated src=- shape=d957325c vocab=dbb0a8dd
+-/
 theorem indexedBSC_apply_split (p : ι → Prop) [DecidablePred p]
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1)
     (g : (({i // p i} → Bool) × ({i // ¬p i} → Bool)) → ℝ) (x : ι → Bool) :
@@ -147,6 +180,9 @@ theorem indexedBSC_apply_split (p : ι → Prop) [DecidablePred p]
       (indexedBSC {i // ¬p i} ρ hρ)).weight (splitCube p x) y * g y)]
   simp only [indexedBSC_weight_split, Function.comp_apply]
 
+/--
+@isnad1 id=le.2h4v.s9.d56b75fb1026 from=translated src=- shape=84181ad1 vocab=71a3312f
+-/
 theorem indexedBSC_root_sections (p : ι → Prop) [DecidablePred p]
     (ρ : ℝ) (hρ : ρ ∈ Set.Icc (0 : ℝ) 1) (f : (ι → Bool) → ℝ)
     (hf : ∀ x, f x ∈ Set.Icc (-1 : ℝ) 1) :
@@ -182,6 +218,9 @@ def flipEquiv (n : ℕ) (S : Finset (Fin n)) : (Fin n → Bool) ≃ (Fin n → B
     funext i
     by_cases hi : i ∈ S <;> simp [PaperSpecs.flip, hi]
 
+/--
+@isnad1 id=eq.0h4v.s10.57049a87f25a from=translated src=- shape=c904c1a5 vocab=dbfae01b
+-/
 theorem split_flip_section (n : ℕ) (S : Finset (Fin n))
     (w : {i // i ∈ S} → Bool) (z : {i // i ∉ S} → Bool) :
     (splitCube (fun i => i ∈ S)).symm ((fun i => !(w i)), z) =
@@ -190,6 +229,9 @@ theorem split_flip_section (n : ℕ) (S : Finset (Fin n))
   by_cases hi : i ∈ S <;>
     simp [splitCube, Equiv.piEquivPiSubtypeProd_symm_apply, PaperSpecs.flip, hi]
 
+/--
+@isnad1 id=translat.0h0v.s0.0432ac86949e from=translated src=- shape=45709ebd vocab=0432ac86
+-/
 theorem translation_hellinger : PaperSpecs.TranslationHellinger := by
   intro n f hf S hS hanti ρ hρ
   let : Fintype {i : Fin n // i ∈ S} := Subtype.fintype (fun i : Fin n => i ∈ S)

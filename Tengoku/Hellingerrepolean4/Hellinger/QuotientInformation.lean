@@ -16,7 +16,9 @@ namespace Hellinger.QuotientInformation
 open F2Model ChannelSections FiniteInformation
 
 /-- Actual negative binary entropy in bits is convex as a function of the
-posterior sign bias, including both endpoints.-/
+posterior sign bias, including both endpoints.
+@isnad1 id=convexon.0h0v.s6.dde55b7845ec from=translated src=- shape=b14de46d vocab=128b6405
+-/
 theorem neg_binary_entropy_convex : ConvexOn ℝ (Icc (-1 : ℝ) 1)
     (fun t => -PaperSpecs.binaryEntropyBits ((1 - t) / 2)) := by
   have hc : ConcaveOn ℝ (Icc (-1 : ℝ) 1) (fun t => Real.binEntropy ((1 - t) / 2)) := by
@@ -40,7 +42,9 @@ theorem neg_binary_entropy_convex : ConvexOn ℝ (Icc (-1 : ℝ) 1)
   nlinarith
 
 /-- Exact transfer from the additive F₂ BSC to the probability model on the
-Boolean cube. The displayed quantity is actual KL mutual information.-/
+Boolean cube. The displayed quantity is actual KL mutual information.
+@isnad1 id=eq.2h3v.s8.69e7339f787b from=translated src=- shape=2ab34edb vocab=bdeefd9e
+-/
 theorem bscMutualInformation_bits (n : ℕ) (g : Cube n → ℝ)
     (hg : ∀ x, g x = -1 ∨ g x = 1) (ρ : ℝ) (hρ : ρ ∈ Icc (0 : ℝ) 1) :
     bscMutualInformation (g ∘ bitsEquiv (Fin n)) ρ hρ =
@@ -60,7 +64,9 @@ theorem bscMutualInformation_bits (n : ℕ) (g : Cube n → ℝ)
 
 /-- A single invertible output-coordinate map, chosen before the noise and
 convex test function, provides both the complete convex comparison and the
-actual mutual-information comparison.-/
+actual mutual-information comparison.
+@isnad1 id=ex.2h4v.s12.67678587b091 from=translated src=- shape=45fffcb9 vocab=14784585
+-/
 theorem linear_quotient_information (n k : ℕ) (L : Cube n →ₗ[F2] Cube k)
     (hL : Function.Surjective L) (g : Cube k → ℝ)
     (hg : ∀ x, g x = -1 ∨ g x = 1) :
