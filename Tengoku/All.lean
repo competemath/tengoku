@@ -24,6 +24,7 @@ import Tengoku.FixedPointTheoremsLean4
 import Tengoku.Aintlib
 import Tengoku.Jsp000198Lean
 import Tengoku.LeanOperads
+import Tengoku.ObserverEquivarianceLean
 import Tengoku.Expdb
 import Tengoku.DerivedAlgGeoLean
 import Tengoku.Dandelin

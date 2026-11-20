@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "1886b16849a86ad0e61208abee32ccd7d5cc8167f449670ca53f59e3e4fe5e44",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "observer-equivariance-lean",
+ "lint_mode": "proposed",
+ "modules": 18,
+ "part": 1,
+ "theorems": 573
+}
