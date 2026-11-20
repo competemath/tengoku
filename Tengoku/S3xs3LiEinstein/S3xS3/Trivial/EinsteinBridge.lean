@@ -36,6 +36,9 @@ noncomputable def RawGraph.q (r : RawGraph) : I3 → ℝ :=
 noncomputable def RawGraph.P (r : RawGraph) : Mat3 := Matrix.diagonal r.p
 noncomputable def RawGraph.Q (r : RawGraph) : Mat3 := Matrix.diagonal r.q
 
+/--
+@isnad1 id=lt.1h2v.s4.a9949342b59e from=translated src=- shape=82f57599 vocab=608669e3
+-/
 lemma RawPositive.p_pos {r : RawGraph} (h : RawPositive r) (i : I3) :
     0 < r.p i := by
   fin_cases i
@@ -43,6 +46,9 @@ lemma RawPositive.p_pos {r : RawGraph} (h : RawPositive r) (i : I3) :
   · simpa [RawGraph.p] using div_pos (mul_pos (h.d_pos 0) (h.d_pos 2)) (h.d_pos 1)
   · simpa [RawGraph.p] using div_pos (mul_pos (h.d_pos 0) (h.d_pos 1)) (h.d_pos 2)
 
+/--
+@isnad1 id=lt.1h2v.s4.b03ad27f76d8 from=translated src=- shape=82f57599 vocab=93994690
+-/
 lemma RawPositive.q_pos {r : RawGraph} (h : RawPositive r) (i : I3) :
     0 < r.q i := by
   fin_cases i
@@ -50,18 +56,33 @@ lemma RawPositive.q_pos {r : RawGraph} (h : RawPositive r) (i : I3) :
   · simpa [RawGraph.q] using div_pos (mul_pos (h.e_pos 0) (h.e_pos 2)) (h.e_pos 1)
   · simpa [RawGraph.q] using div_pos (mul_pos (h.e_pos 0) (h.e_pos 1)) (h.e_pos 2)
 
+/--
+@isnad1 id=posdef.1h1v.s3.f2a41e3b3c6c from=translated src=- shape=d566622f vocab=8bd0a63d
+-/
 lemma RawPositive.D_posDef {r : RawGraph} (h : RawPositive r) : r.D.PosDef := by
   exact Matrix.posDef_diagonal_iff.mpr h.d_pos
 
+/--
+@isnad1 id=posdef.1h1v.s3.b51b2a626ffe from=translated src=- shape=d566622f vocab=488c098d
+-/
 lemma RawPositive.E_posDef {r : RawGraph} (h : RawPositive r) : r.E.PosDef := by
   exact Matrix.posDef_diagonal_iff.mpr h.e_pos
 
+/--
+@isnad1 id=posdef.1h1v.s3.e4133b9566aa from=translated src=- shape=d566622f vocab=10c20134
+-/
 lemma RawPositive.P_posDef {r : RawGraph} (h : RawPositive r) : r.P.PosDef := by
   exact Matrix.posDef_diagonal_iff.mpr h.p_pos
 
+/--
+@isnad1 id=posdef.1h1v.s3.dd4c2dc60173 from=translated src=- shape=d566622f vocab=aaf87996
+-/
 lemma RawPositive.Q_posDef {r : RawGraph} (h : RawPositive r) : r.Q.PosDef := by
   exact Matrix.posDef_diagonal_iff.mpr h.q_pos
 
+/--
+@isnad1 id=eq.1h1v.s5.3816e3a59f91 from=translated src=- shape=ab2823b1 vocab=88c699e8
+-/
 lemma RawGraph.D_sq_cofactor_P (r : RawGraph) (h : RawPositive r) :
     r.D * r.D = cofactor3 r.P := by
   ext i j
@@ -71,6 +92,9 @@ lemma RawGraph.D_sq_cofactor_P (r : RawGraph) (h : RawPositive r) :
     field_simp [ne_of_gt (h.d_pos 0), ne_of_gt (h.d_pos 1),
       ne_of_gt (h.d_pos 2)]
 
+/--
+@isnad1 id=eq.1h1v.s5.4b4b2b684829 from=translated src=- shape=ab2823b1 vocab=71912e44
+-/
 lemma RawGraph.E_sq_cofactor_Q (r : RawGraph) (h : RawPositive r) :
     r.E * r.E = cofactor3 r.Q := by
   ext i j
@@ -80,6 +104,9 @@ lemma RawGraph.E_sq_cofactor_Q (r : RawGraph) (h : RawPositive r) :
     field_simp [ne_of_gt (h.e_pos 0), ne_of_gt (h.e_pos 1),
       ne_of_gt (h.e_pos 2)]
 
+/--
+@isnad1 id=ne.1h1v.s5.52e5c920e8b2 from=translated src=- shape=42e24819 vocab=74b58aae
+-/
 lemma RawGraph.frame_det_ne_zero (r : RawGraph) (h : RawPositive r) :
     r.frame.det ≠ 0 :=
   graphFrame_det_ne_zero h.D_posDef h.E_posDef
@@ -115,6 +142,9 @@ noncomputable def RawGraph.inverseTranspose (r : RawGraph) : Mat6 :=
 
 def frameVec (V : Mat6) (i : I6) : LieVec := V *ᵥ basisVec i
 
+/--
+@isnad1 id=eq.0h3v.s4.ab3f71413f44 from=translated src=- shape=65663674 vocab=ac2fc196
+-/
 @[simp] lemma frameVec_apply (V : Mat6) (i j : I6) :
     frameVec V i j = V j i := by
   simp [frameVec, basisVec, Matrix.mulVec, dotProduct]

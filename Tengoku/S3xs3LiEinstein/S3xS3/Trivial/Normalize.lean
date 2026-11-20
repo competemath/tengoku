@@ -10,22 +10,34 @@ open S3xS3.Trivial.Graph
 open S3xS3.Trivial.Euler
 open S3xS3.Trivial.Gauge
 
+/--
+@isnad1 id=eq.0h3v.s5.e15c004d44ba from=translated src=- shape=ce527358 vocab=e0704a01
+-/
 lemma dcof_smul_left (t : ℝ) (A H : Mat3) :
     dcof (t • A) H = t • dcof A H := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [dcof] <;> ring
 
+/--
+@isnad1 id=eq.0h3v.s5.29e44163ce91 from=translated src=- shape=b5dd2775 vocab=e0704a01
+-/
 lemma dcof_smul_right (t : ℝ) (A H : Mat3) :
     dcof A (t • H) = t • dcof A H := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [dcof] <;> ring
 
+/--
+@isnad1 id=eq.0h4v.s6.6978ac55b2d8 from=translated src=- shape=a59be4bb vocab=f5fe6f7d
+-/
 lemma residual_scale (t : ℝ) (P Q M : Mat3) :
     Euler.residual (t • P) (t • Q) M =
       t • Euler.residual P Q M := by
   simp only [Euler.residual, Matrix.mul_smul, Matrix.smul_mul]
   module
 
+/--
+@isnad1 id=eq.0h2v.s5.9b87314b1f8c from=translated src=- shape=f90c5dad vocab=bf78cd59
+-/
 lemma lop'_scale (t : ℝ) (P : Mat3) :
     lop' (t • P) = t ^ 2 • lop' P := by
   ext i j
@@ -33,6 +45,9 @@ lemma lop'_scale (t : ℝ) (P : Mat3) :
     simp [lop', cofactor3, Matrix.trace, Matrix.mul_apply,
       Fin.sum_univ_succ] <;> ring
 
+/--
+@isnad1 id=eq.0h4v.s6.9f8dd2f089b5 from=translated src=- shape=a59be4bb vocab=1443c828
+-/
 lemma gradPFormula_scale (t : ℝ) (P Q M : Mat3) :
     gradPFormula (t • P) (t • Q) M = t • gradPFormula P Q M := by
   rw [gradPFormula, gradPFormula, residual_scale, dcof_smul_left]
@@ -40,6 +55,9 @@ lemma gradPFormula_scale (t : ℝ) (P Q M : Mat3) :
     Matrix.transpose_smul, smul_smul]
   module
 
+/--
+@isnad1 id=eq.0h4v.s6.4ecb3788bc6b from=translated src=- shape=a59be4bb vocab=62b13a3a
+-/
 lemma gradQFormula_scale (t : ℝ) (P Q M : Mat3) :
     gradQFormula (t • P) (t • Q) M = t • gradQFormula P Q M := by
   rw [gradQFormula, gradQFormula, residual_scale]
@@ -47,6 +65,9 @@ lemma gradQFormula_scale (t : ℝ) (P Q M : Mat3) :
     Matrix.transpose_smul, smul_smul]
   module
 
+/--
+@isnad1 id=eq.0h4v.s6.237e973c1640 from=translated src=- shape=3d451980 vocab=126847a9
+-/
 lemma gradMFormula_scale (t : ℝ) (P Q M : Mat3) :
     gradMFormula (t • P) (t • Q) M = t ^ 2 • gradMFormula P Q M := by
   rw [gradMFormula, gradMFormula, lop'_scale, residual_scale]
@@ -60,6 +81,9 @@ lemma gradMFormula_scale (t : ℝ) (P Q M : Mat3) :
   simp only [Matrix.mul_smul, Matrix.smul_mul, smul_smul]
   module
 
+/--
+@isnad1 id=eq.2h2v.s6.35f832cb86d4 from=translated src=- shape=9d427b59 vocab=3447a707
+-/
 lemma nonsing_inv_smul {t : ℝ} (ht : t ≠ 0) (A : Mat3)
     (hA : IsUnit A.det) :
     (t • A)⁻¹ = (t⁻¹ : ℝ) • A⁻¹ := by
@@ -108,6 +132,9 @@ noncomputable def EulerData.scale (d : EulerData) (t : ℝ) (ht : 0 < t) :
 noncomputable def EulerData.normalize (d : EulerData) : EulerData :=
   EulerData.scale d (rhoP d) (rhoP_pos d)
 
+/--
+@isnad1 id=eq.0h1v.s3.de29077c92d1 from=translated src=- shape=8d4cac31 vocab=e8820374
+-/
 lemma normalize_M (d : EulerData) : (EulerData.normalize d).M = d.M := rfl
 
 end S3xS3.Trivial.Normalize

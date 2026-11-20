@@ -16,6 +16,9 @@ def diagOf (A : Mat3) : I3 → ℝ := fun i ↦ A i i
 
 def edgeOf (A : Mat3) : I3 → ℝ := ![A 1 2, A 0 2, A 0 1]
 
+/--
+@isnad1 id=eq.1h1v.s5.187cbdb39d49 from=translated src=- shape=46d23b05 vocab=1a6a0627
+-/
 lemma symm3_diagOf_edgeOf {A : Mat3} (hA : A.IsHermitian) :
     symm3 (diagOf A) (edgeOf A) = A := by
   have h01 : A 1 0 = A 0 1 := by
@@ -31,6 +34,9 @@ lemma symm3_diagOf_edgeOf {A : Mat3} (hA : A.IsHermitian) :
   fin_cases i <;> fin_cases j <;>
     simp [symm3, diagOf, edgeOf, h01, h02, h12]
 
+/--
+@isnad1 id=eq.1h3v.s6.21c89a24ba55 from=translated src=- shape=ace57a74 vocab=f4863958
+-/
 lemma normalized_gradP_rhs (d : EulerData) (hnorm : rhoP d = 1)
     (i j : I3) :
     (d.kappa • d.P⁻¹) i j = (1 / 2 : ℝ) * cofactor3 d.P i j := by
@@ -43,6 +49,9 @@ lemma normalized_gradP_rhs (d : EulerData) (hnorm : rhoP d = 1)
   rw [hcof, ← hk]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.8d4988593451 from=translated src=- shape=eff3d0be vocab=8e7aba88
+-/
 lemma gradQ_rhs_cofactor (d : EulerData) (i j : I3) :
     (d.kappa • d.Q⁻¹) i j =
       (rhoQ d / 2) * cofactor3 d.Q i j := by
@@ -52,6 +61,9 @@ lemma gradQ_rhs_cofactor (d : EulerData) (i j : I3) :
   rw [hcof, rhoQ]
   field_simp [hdet0]
 
+/--
+@isnad1 id=eq.2h3v.s6.7f02f3c86284 from=translated src=- shape=3cd46291 vocab=36881720
+-/
 lemma offP_equation (d : EulerData) (m : I3 → ℝ)
     (hM : d.M = Matrix.diagonal m) (hnorm : rhoP d = 1) (i : I3) :
     -bCoeff m i * deltaCoeff m i * edgeOf d.P i +
@@ -110,6 +122,9 @@ lemma offP_equation (d : EulerData) (m : I3 → ℝ)
       hP10, hP20, hP21, hQ10] at h ⊢
     nlinarith
 
+/--
+@isnad1 id=eq.1h3v.s6.dc7d3cfb4246 from=translated src=- shape=5c2686d7 vocab=4d7da9bd
+-/
 lemma offQ_equation (d : EulerData) (m : I3 → ℝ)
     (hM : d.M = Matrix.diagonal m) (i : I3) :
     m i * sCoeff m i * edgeOf d.P i -
@@ -168,16 +183,25 @@ lemma offQ_equation (d : EulerData) (m : I3 → ℝ)
       hP10, hQ10, hQ20, hQ21] at h ⊢
     nlinarith
 
+/--
+@isnad1 id=eq.0h2v.s3.d2f019bd40fa from=translated src=- shape=0525f0b1 vocab=ab8d593e
+-/
 lemma quad3_basis3 (A : Mat3) (i : I3) :
     S3xS3.Trivial.quad3 A (basis3 i) = A i i := by
   fin_cases i <;>
     simp [S3xS3.Trivial.quad3, basis3]
 
+/--
+@isnad1 id=eq.0h1v.s3.0de61f420b80 from=translated src=- shape=f6b6ad72 vocab=45d3ad7c
+-/
 lemma normSq3_basis3 (i : I3) :
     S3xS3.Trivial.normSq3 (basis3 i) = 1 := by
   fin_cases i <;>
     simp [S3xS3.Trivial.normSq3, basis3]
 
+/--
+@isnad1 id=lt.1h2v.s4.6596cbe53697 from=translated src=- shape=754975e6 vocab=a17d8178
+-/
 lemma strictBelowFour_diagonal_entry {A : Mat3}
     (hA : S3xS3.Trivial.StrictBelowFour A) (i : I3) : A i i < 4 := by
   have h := hA (basis3 i) (basis3_ne_zero i)
@@ -185,6 +209,9 @@ lemma strictBelowFour_diagonal_entry {A : Mat3}
   norm_num at h ⊢
   exact h
 
+/--
+@isnad1 id=eq.1h3v.s5.92516939442f from=translated src=- shape=d77e46b5 vocab=1f90a4be
+-/
 lemma edgeResidual_smul (A : Mat3) {c : ℝ} (hc : c ≠ 0) (i : I3) :
     edgeResidual (c • A) i = c * edgeResidual A i := by
   fin_cases i <;>
@@ -192,12 +219,18 @@ lemma edgeResidual_smul (A : Mat3) {c : ℝ} (hc : c ≠ 0) (i : I3) :
       off0, off1, off2]
   all_goals field_simp [hc]
 
+/--
+@isnad1 id=lt.1h2v.s5.f577fe902cc1 from=translated src=- shape=b52f658b vocab=b8419bc7
+-/
 lemma firstBarrier_diag (d : EulerData)
     (hfirst : S3xS3.Trivial.StrictBelowFour (rhoQ d • d.Q))
     (i : I3) : rhoQ d * diagOf d.Q i < 4 := by
   have h := strictBelowFour_diagonal_entry hfirst i
   simpa [diagOf] using h
 
+/--
+@isnad1 id=twoofthr.2h1v.s5.027f750602ec from=translated src=- shape=e681e3cc vocab=326213fc
+-/
 lemma firstBarrier_residual (d : EulerData)
     (hfirst : S3xS3.Trivial.StrictBelowFour (rhoQ d • d.Q))
     (hy : AllNonzero (edgeOf d.Q)) :
@@ -236,23 +269,38 @@ noncomputable def invBRoot (m : I3 → ℝ) : Mat3 :=
 noncomputable def secondMatrix (m : I3 → ℝ) (P : Mat3) : Mat3 :=
   invBRoot m * P * invBRoot m
 
+/--
+@isnad1 id=lt.0h2v.s4.ee235b3fa511 from=translated src=- shape=160fe2e2 vocab=6e73b9c1
+-/
 lemma bCoeff_pos_of_m_ne (m : I3 → ℝ) (i : I3) :
     0 < bCoeff m i := by
   simp [bCoeff, aCoeff]
   nlinarith [sq_nonneg (m i)]
 
+/--
+@isnad1 id=lt.0h2v.s4.92a7f71b7db7 from=translated src=- shape=160fe2e2 vocab=1829c6dc
+-/
 lemma bRoot_pos (m : I3 → ℝ) (i : I3) : 0 < bRoot m i := by
   exact Real.sqrt_pos.2 (bCoeff_pos_of_m_ne m i)
 
+/--
+@isnad1 id=eq.0h2v.s4.c1286660f267 from=translated src=- shape=f4d07429 vocab=8a64f1de
+-/
 lemma bRoot_sq (m : I3 → ℝ) (i : I3) :
     bRoot m i ^ 2 = bCoeff m i := by
   exact Real.sq_sqrt (bCoeff_pos_of_m_ne m i).le
 
+/--
+@isnad1 id=eq.0h4v.s5.e61b6f404944 from=translated src=- shape=6ae7bbf6 vocab=6c4658f0
+-/
 lemma secondMatrix_apply (m : I3 → ℝ) (P : Mat3) (i j : I3) :
     secondMatrix m P i j = (bRoot m i)⁻¹ * P i j * (bRoot m j)⁻¹ := by
   fin_cases i <;> fin_cases j <;>
     simp [secondMatrix, invBRoot, Matrix.mul_apply, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h3v.s4.fd66cc513dcb from=translated src=- shape=52f3e056 vocab=c5f96707
+-/
 lemma secondMatrix_diag (m : I3 → ℝ) (P : Mat3) (i : I3) :
     secondMatrix m P i i = P i i / bCoeff m i := by
   rw [secondMatrix_apply]
@@ -261,6 +309,9 @@ lemma secondMatrix_diag (m : I3 → ℝ) (P : Mat3) (i : I3) :
   rw [← hr]
   field_simp [hr0]
 
+/--
+@isnad1 id=ne.1h3v.s5.17ac41dfc7b0 from=translated src=- shape=e625828f vocab=f9ac75b0
+-/
 lemma secondMatrix_edge_ne (m : I3 → ℝ) (P : Mat3) (i : I3)
     (h : edgeOf P i ≠ 0) : edgeOf (secondMatrix m P) i ≠ 0 := by
   fin_cases i
@@ -283,6 +334,9 @@ lemma secondMatrix_edge_ne (m : I3 → ℝ) (P : Mat3) (i : I3)
       (inv_ne_zero (ne_of_gt (bRoot_pos m 0))) h)
       (inv_ne_zero (ne_of_gt (bRoot_pos m 1)))
 
+/--
+@isnad1 id=eq.0h3v.s4.fd7e4120f630 from=translated src=- shape=61e5aacf vocab=37e0fc37
+-/
 lemma secondMatrix_residual (m : I3 → ℝ) (P : Mat3) (i : I3) :
     edgeResidual (secondMatrix m P) i =
       edgeResidual P i / bCoeff m i := by
@@ -309,6 +363,9 @@ lemma secondMatrix_residual (m : I3 → ℝ) (P : Mat3) (i : I3) :
     rw [← hs2]
     field_simp [hr0, hr1, hr2]
 
+/--
+@isnad1 id=ishermit.1h2v.s6.04962c0e5f8f from=translated src=- shape=32077565 vocab=c615d7fb
+-/
 lemma secondMatrix_isHermitian {P : Mat3} (hP : P.IsHermitian)
     (m : I3 → ℝ) : (secondMatrix m P).IsHermitian := by
   have hPt : Pᵀ = P := by
@@ -319,6 +376,9 @@ lemma secondMatrix_isHermitian {P : Mat3} (hP : P.IsHermitian)
     secondMatrix, Matrix.transpose_mul, Matrix.transpose_mul, hPt, hBt]
   noncomm_ring
 
+/--
+@isnad1 id=lt.1h3v.s5.a28fefa51018 from=translated src=- shape=217d16c6 vocab=e2479104
+-/
 lemma secondBarrier_diag (d : EulerData) (m : I3 → ℝ)
     (hsecond : S3xS3.Trivial.StrictBelowFour (secondMatrix m d.P))
     (i : I3) : diagOf d.P i / bCoeff m i < 4 := by
@@ -326,6 +386,9 @@ lemma secondBarrier_diag (d : EulerData) (m : I3 → ℝ)
   rw [secondMatrix_diag] at h
   simpa [diagOf] using h
 
+/--
+@isnad1 id=twoofthr.2h2v.s5.1eab8d09d100 from=translated src=- shape=d690db36 vocab=3535337b
+-/
 lemma secondBarrier_residual (d : EulerData) (m : I3 → ℝ)
     (hsecond : S3xS3.Trivial.StrictBelowFour (secondMatrix m d.P))
     (hx : AllNonzero (edgeOf d.P)) :

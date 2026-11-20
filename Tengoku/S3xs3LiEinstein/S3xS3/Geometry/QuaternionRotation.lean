@@ -23,6 +23,9 @@ noncomputable def quaternionSU2OfNormSqOne (q : ℍ) (hq : Quaternion.normSq q =
     · rw [Quaternion.self_mul_star, hq]
       norm_num⟩
 
+/--
+@isnad1 id=eq.0h1v.s9.4724ad4c9c96 from=translated src=- shape=61677fab vocab=d6701263
+-/
 lemma quaternionSU2_normSq (q : QuaternionSU2) :
     Quaternion.normSq (q : ℍ) = 1 := by
   have h := q.property.2
@@ -43,6 +46,9 @@ def quaternionRotationMatrix (q : ℍ) : Mat3 :=
       2 * (q.imJ * q.imK + q.re * q.imI),
       q.re ^ 2 - q.imI ^ 2 - q.imJ ^ 2 + q.imK ^ 2]
 
+/--
+@isnad1 id=eq.0h0v.s5.ca3256d1a9a3 from=translated src=- shape=479f814a vocab=55fd9fac
+-/
 @[simp]
 lemma quaternionRotationMatrix_one :
     quaternionRotationMatrix (1 : ℍ) = 1 := by
@@ -50,6 +56,9 @@ lemma quaternionRotationMatrix_one :
   fin_cases i <;> fin_cases j <;>
     simp [quaternionRotationMatrix]
 
+/--
+@isnad1 id=eq.0h2v.s6.3696e338c6b7 from=translated src=- shape=4273dce4 vocab=3077f24b
+-/
 lemma quaternionRotationMatrix_mul (q r : ℍ) :
     quaternionRotationMatrix (q * r) =
       quaternionRotationMatrix q * quaternionRotationMatrix r := by
@@ -60,6 +69,9 @@ lemma quaternionRotationMatrix_mul (q r : ℍ) :
       Quaternion.imK_mul] <;>
     ring
 
+/--
+@isnad1 id=eq.0h1v.s8.3a401c57a664 from=translated src=- shape=e55b3157 vocab=8cc9a569
+-/
 lemma quaternionRotationMatrix_mul_transpose (q : ℍ) :
     quaternionRotationMatrix q * (quaternionRotationMatrix q)ᵀ =
       (Quaternion.normSq q) ^ 2 • (1 : Mat3) := by
@@ -69,6 +81,9 @@ lemma quaternionRotationMatrix_mul_transpose (q : ℍ) :
       Quaternion.normSq_def'] <;>
     ring
 
+/--
+@isnad1 id=eq.0h1v.s8.77315e12b285 from=translated src=- shape=566b3e9e vocab=f16a8bac
+-/
 lemma quaternionRotationMatrix_det (q : ℍ) :
     (quaternionRotationMatrix q).det = (Quaternion.normSq q) ^ 3 := by
   simp [quaternionRotationMatrix, Matrix.det_fin_three,
@@ -92,6 +107,9 @@ def quaternionAdjoint : QuaternionSU2 →* SO3 where
     apply Subtype.ext
     exact quaternionRotationMatrix_mul q r
 
+/--
+@isnad1 id=eq.0h1v.s10.bd19585d7df2 from=translated src=- shape=91be0901 vocab=c21309d1
+-/
 @[simp]
 lemma quaternionAdjoint_coe (q : QuaternionSU2) :
     ((quaternionAdjoint q : SO3) : Mat3) = quaternionRotationMatrix q := rfl

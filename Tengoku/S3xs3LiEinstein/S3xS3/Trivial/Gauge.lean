@@ -18,14 +18,23 @@ def complementK : I3 → I3 := ![2, 2, 1]
 noncomputable def diagonalRoot (p : I3 → ℝ) : I3 → ℝ :=
   fun i ↦ Real.sqrt (p (complementJ i) * p (complementK i))
 
+/--
+@isnad1 id=lt.1h2v.s5.e73995620a77 from=translated src=- shape=fc3c31a9 vocab=e09f7316
+-/
 lemma diagonalRoot_pos {p : I3 → ℝ} (hp : ∀ i, 0 < p i) (i : I3) :
     0 < diagonalRoot p i := by
   exact Real.sqrt_pos.2 (mul_pos (hp _) (hp _))
 
+/--
+@isnad1 id=eq.1h2v.s5.d15588eb7f9f from=translated src=- shape=348f68d2 vocab=be13d4b4
+-/
 lemma diagonalRoot_sq {p : I3 → ℝ} (hp : ∀ i, 0 < p i) (i : I3) :
     diagonalRoot p i ^ 2 = p (complementJ i) * p (complementK i) := by
   exact Real.sq_sqrt (mul_pos (hp _) (hp _)).le
 
+/--
+@isnad1 id=eq.1h2v.s5.29c14cf1a453 from=translated src=- shape=feb7039a vocab=937fbad0
+-/
 lemma diagonalRoot_product {p : I3 → ℝ} (hp : ∀ i, 0 < p i)
     (i : I3) :
     diagonalRoot p (complementJ i) * diagonalRoot p (complementK i) =
@@ -81,6 +90,9 @@ noncomputable def rawOfDiagonalGraph {g : LeftInvariantMetric}
   e := diagonalRoot q
   M := d.M
 
+/--
+@isnad1 id=rawposit.2h4v.s5.09abd856f728 from=translated src=- shape=d9107963 vocab=cdd5ea61
+-/
 lemma rawOfDiagonalGraph_positive {g : LeftInvariantMetric}
     (d : GraphData g) (p q : I3 → ℝ)
     (hp : ∀ i, 0 < p i) (hq : ∀ i, 0 < q i) :
@@ -88,6 +100,9 @@ lemma rawOfDiagonalGraph_positive {g : LeftInvariantMetric}
   d_pos := diagonalRoot_pos hp
   e_pos := diagonalRoot_pos hq
 
+/--
+@isnad1 id=eq.1h5v.s5.155430674d70 from=translated src=- shape=8635fb6a vocab=dbe8cdca
+-/
 lemma rawOfDiagonalGraph_p {g : LeftInvariantMetric}
     (d : GraphData g) (p q : I3 → ℝ)
     (hp : ∀ i, 0 < p i) (i : I3) :
@@ -102,6 +117,9 @@ lemma rawOfDiagonalGraph_p {g : LeftInvariantMetric}
   · simp [rawOfDiagonalGraph, RawGraph.p] at hprod ⊢
     exact (div_eq_iff hden).2 hprod
 
+/--
+@isnad1 id=eq.1h5v.s5.1c7a5488ec6a from=translated src=- shape=d36405d0 vocab=8d734a14
+-/
 lemma rawOfDiagonalGraph_q {g : LeftInvariantMetric}
     (d : GraphData g) (p q : I3 → ℝ)
     (hq : ∀ i, 0 < q i) (i : I3) :
@@ -116,6 +134,9 @@ lemma rawOfDiagonalGraph_q {g : LeftInvariantMetric}
   · simp [rawOfDiagonalGraph, RawGraph.q] at hprod ⊢
     exact (div_eq_iff hden).2 hprod
 
+/--
+@isnad1 id=eq.1h4v.s5.67749b6b5e30 from=translated src=- shape=6a826b9f vocab=8d9f1bb4
+-/
 lemma rawOfDiagonalGraph_P {g : LeftInvariantMetric}
     (d : GraphData g) (p q : I3 → ℝ) (hp : ∀ i, 0 < p i) :
     (rawOfDiagonalGraph d p q).P = Matrix.diagonal p := by
@@ -125,6 +146,9 @@ lemma rawOfDiagonalGraph_P {g : LeftInvariantMetric}
     simp [RawGraph.P, rawOfDiagonalGraph_p d p q hp]
   · simp [RawGraph.P, Matrix.diagonal, hij]
 
+/--
+@isnad1 id=eq.1h4v.s5.ebc63291aca4 from=translated src=- shape=3a89cb27 vocab=36090c4f
+-/
 lemma rawOfDiagonalGraph_Q {g : LeftInvariantMetric}
     (d : GraphData g) (p q : I3 → ℝ) (hq : ∀ i, 0 < q i) :
     (rawOfDiagonalGraph d p q).Q = Matrix.diagonal q := by
@@ -134,6 +158,9 @@ lemma rawOfDiagonalGraph_Q {g : LeftInvariantMetric}
     simp [RawGraph.Q, rawOfDiagonalGraph_q d p q hq]
   · simp [RawGraph.Q, Matrix.diagonal, hij]
 
+/--
+@isnad1 id=eq.3h4v.s6.e4e1afa3ae10 from=translated src=- shape=38d6f339 vocab=f8464e66
+-/
 lemma rawOfDiagonalGraph_D_eq {g : LeftInvariantMetric}
     (d : GraphData g) (p q : I3 → ℝ)
     (hp : ∀ i, 0 < p i) (hq : ∀ i, 0 < q i)
@@ -145,6 +172,9 @@ lemma rawOfDiagonalGraph_D_eq {g : LeftInvariantMetric}
   rw [r.D_sq_cofactor_P hr, rawOfDiagonalGraph_P d p q hp, ← hP,
     ← d.D_sq]
 
+/--
+@isnad1 id=eq.3h4v.s6.1a974ba435bc from=translated src=- shape=cf97ee7b vocab=c12ad86d
+-/
 lemma rawOfDiagonalGraph_E_eq {g : LeftInvariantMetric}
     (d : GraphData g) (p q : I3 → ℝ)
     (hp : ∀ i, 0 < p i) (hq : ∀ i, 0 < q i)
@@ -156,6 +186,9 @@ lemma rawOfDiagonalGraph_E_eq {g : LeftInvariantMetric}
   rw [r.E_sq_cofactor_Q hr, rawOfDiagonalGraph_Q d p q hq, ← hQ,
     ← d.E_sq]
 
+/--
+@isnad1 id=eq.4h4v.s6.fa539f88e296 from=translated src=- shape=93c485c4 vocab=a08c73c1
+-/
 lemma rawOfDiagonalGraph_metric_eq {g : LeftInvariantMetric}
     (d : GraphData g) (p q : I3 → ℝ)
     (hp : ∀ i, 0 < p i) (hq : ∀ i, 0 < q i)
@@ -179,17 +212,26 @@ lemma rawOfDiagonalGraph_metric_eq {g : LeftInvariantMetric}
       rw [show r.frame = graphFrame d.D d.E d.M by exact hframe]
     _ = g := d.metric_eq.symm
 
+/--
+@isnad1 id=eq.0h3v.s9.c39b23a2e83d from=translated src=- shape=05162f7b vocab=291c0e8c
+-/
 lemma cofactor3_two_sided_so3 (A : Mat3) (U V : SO3) :
     cofactor3 ((V : Mat3)ᵀ * A * U) =
       (V : Mat3)ᵀ * cofactor3 A * U := by
   rw [cofactor3_mul, cofactor3_mul, cofactor3_transpose,
     cofactor3_eq_of_mem_SO3, cofactor3_eq_of_mem_SO3]
 
+/--
+@isnad1 id=eq.0h2v.s5.4b1f2446ef5f from=translated src=- shape=869775bd vocab=f2694d52
+-/
 lemma cofactor3_add_polarization (A H : Mat3) :
     cofactor3 (A + H) = cofactor3 A + cofactor3 H + dcof A H := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [cofactor3, dcof] <;> ring
 
+/--
+@isnad1 id=eq.0h4v.s10.891cd7f2850e from=translated src=- shape=a2739b1f vocab=59628170
+-/
 lemma dcof_two_sided_so3 (A H : Mat3) (U V : SO3) :
     dcof ((V : Mat3)ᵀ * A * U) ((V : Mat3)ᵀ * H * U) =
       (V : Mat3)ᵀ * dcof A H * U := by
@@ -215,6 +257,9 @@ lemma dcof_two_sided_so3 (A H : Mat3) (U V : SO3) :
       rw [cofactor3_add_polarization]
       noncomm_ring
 
+/--
+@isnad1 id=eq.0h2v.s8.dfe0058623e0 from=translated src=- shape=1f6cdce3 vocab=db79214a
+-/
 lemma trace_so3_conjugate (A : Mat3) (U : SO3) :
     ((U : Mat3)ᵀ * A * U).trace = A.trace := by
   calc
@@ -223,6 +268,9 @@ lemma trace_so3_conjugate (A : Mat3) (U : SO3) :
       Matrix.trace_mul_cycle (U : Mat3)ᵀ A U
     _ = A.trace := by rw [so3_mul_transpose]; simp
 
+/--
+@isnad1 id=eq.0h1v.s8.aa171201021d from=translated src=- shape=0545f59d vocab=83cb85ff
+-/
 lemma so3_nonsing_inv (U : SO3) : (U : Mat3)⁻¹ = (U : Mat3)ᵀ := by
   have hU : IsUnit (U : Mat3) :=
     (Matrix.isUnit_iff_isUnit_det (U : Mat3)).mpr
@@ -234,6 +282,9 @@ lemma so3_nonsing_inv (U : SO3) : (U : Mat3)⁻¹ = (U : Mat3)ᵀ := by
     ((Matrix.isUnit_iff_isUnit_det (U : Mat3)).mp hU),
     so3_transpose_mul]
 
+/--
+@isnad1 id=eq.0h1v.s8.162e0544b546 from=translated src=- shape=d03658bd vocab=83cb85ff
+-/
 lemma so3_transpose_nonsing_inv (U : SO3) :
     ((U : Mat3)ᵀ)⁻¹ = (U : Mat3) := by
   have hUt : IsUnit (U : Mat3)ᵀ :=
@@ -247,6 +298,9 @@ lemma so3_transpose_nonsing_inv (U : SO3) :
     ((Matrix.isUnit_iff_isUnit_det (U : Mat3)ᵀ).mp hUt),
     so3_mul_transpose]
 
+/--
+@isnad1 id=eq.0h5v.s10.45a7792186c4 from=translated src=- shape=241b0d66 vocab=247000f5
+-/
 lemma so3_two_sided_mul_ll (L O R : SO3) (A B : Mat3) :
     (((L : Mat3)ᵀ * A) * O) * (((O : Mat3)ᵀ * B) * R) =
       (L : Mat3)ᵀ * ((A * B) * R) := by
@@ -259,6 +313,9 @@ lemma so3_two_sided_mul_ll (L O R : SO3) (A B : Mat3) :
       simp
       noncomm_ring
 
+/--
+@isnad1 id=eq.0h5v.s10.3df2f9c23fd3 from=translated src=- shape=b47b7044 vocab=247000f5
+-/
 lemma so3_two_sided_mul_rl (L O R : SO3) (A B : Mat3) :
     ((L : Mat3)ᵀ * (A * O)) * (((O : Mat3)ᵀ * B) * R) =
       (L : Mat3)ᵀ * ((A * B) * R) := by
@@ -271,6 +328,9 @@ lemma so3_two_sided_mul_rl (L O R : SO3) (A B : Mat3) :
       simp
       noncomm_ring
 
+/--
+@isnad1 id=eq.0h5v.s10.91d2cc63c8c3 from=translated src=- shape=c042c3a3 vocab=247000f5
+-/
 lemma so3_two_sided_mul_lr (L O R : SO3) (A B : Mat3) :
     (((L : Mat3)ᵀ * A) * O) * ((O : Mat3)ᵀ * (B * R)) =
       (L : Mat3)ᵀ * ((A * B) * R) := by
@@ -283,12 +343,18 @@ lemma so3_two_sided_mul_lr (L O R : SO3) (A B : Mat3) :
       simp
       noncomm_ring
 
+/--
+@isnad1 id=eq.0h2v.s8.84f343a86808 from=translated src=- shape=eababfb8 vocab=597969d4
+-/
 lemma smul_one_so3_conjugate (c : ℝ) (U : SO3) :
     c • (1 : Mat3) = (U : Mat3)ᵀ * (c • (1 : Mat3)) * U := by
   rw [Matrix.mul_smul, Matrix.smul_mul]
   change c • (1 : Mat3) = c • ((U : Mat3)ᵀ * (1 : Mat3) * U)
   rw [Matrix.mul_one, so3_transpose_mul]
 
+/--
+@isnad1 id=eq.0h2v.s9.a650a0def301 from=translated src=- shape=ee6e82f4 vocab=c6fe85cf
+-/
 lemma inv_so3_conjugate (A : Mat3) (U : SO3) :
     ((U : Mat3)ᵀ * A * U)⁻¹ = (U : Mat3)ᵀ * A⁻¹ * U := by
   rw [Matrix.mul_inv_rev, Matrix.mul_inv_rev, so3_nonsing_inv,
@@ -299,6 +365,9 @@ def rotateP (P : Mat3) (U : SO3) : Mat3 := (U : Mat3)ᵀ * P * U
 def rotateQ (Q : Mat3) (V : SO3) : Mat3 := (V : Mat3)ᵀ * Q * V
 def rotateM (M : Mat3) (U V : SO3) : Mat3 := (V : Mat3)ᵀ * M * U
 
+/--
+@isnad1 id=eq.0h3v.s9.5640733f5a98 from=translated src=- shape=e2c46294 vocab=9f018d3d
+-/
 lemma rotateM_transpose_mul (M : Mat3) (U V : SO3) :
     (rotateM M U V)ᵀ * rotateM M U V =
       (U : Mat3)ᵀ * (Mᵀ * M) * U := by
@@ -312,6 +381,9 @@ lemma rotateM_transpose_mul (M : Mat3) (U V : SO3) :
       simp
       noncomm_ring
 
+/--
+@isnad1 id=eq.0h5v.s9.d6b410156fac from=translated src=- shape=26fbc432 vocab=d5034f8a
+-/
 lemma residual_rotate (P Q M : Mat3) (U V : SO3) :
     Euler.residual (rotateP P U) (rotateQ Q V) (rotateM M U V) =
       (V : Mat3)ᵀ * Euler.residual P Q M * U := by
@@ -348,6 +420,9 @@ def gradMFormula (P Q M : Mat3) : Mat3 :=
   -(M * lop' P) - dcof M (Euler.residual P Q M * P) +
     Q * Euler.residual P Q M
 
+/--
+@isnad1 id=eq.0h5v.s9.30797c1437ff from=translated src=- shape=7b61b86f vocab=408c53bc
+-/
 lemma gradPFormula_rotate (P Q M : Mat3) (U V : SO3) :
     gradPFormula (rotateP P U) (rotateQ Q V) (rotateM M U V) =
       (U : Mat3)ᵀ * gradPFormula P Q M * U := by
@@ -370,6 +445,9 @@ lemma gradPFormula_rotate (P Q M : Mat3) (U V : SO3) :
     rw [smul_one_so3_conjugate P.trace U]
   noncomm_ring
 
+/--
+@isnad1 id=eq.0h5v.s9.e101f28586f3 from=translated src=- shape=ac11f4b7 vocab=3d9628d2
+-/
 lemma gradQFormula_rotate (P Q M : Mat3) (U V : SO3) :
     gradQFormula (rotateP P U) (rotateQ Q V) (rotateM M U V) =
       (V : Mat3)ᵀ * gradQFormula P Q M * V := by
@@ -386,6 +464,9 @@ lemma gradQFormula_rotate (P Q M : Mat3) (U V : SO3) :
     rw [smul_one_so3_conjugate Q.trace V]
   noncomm_ring
 
+/--
+@isnad1 id=eq.0h5v.s9.21ec616b0640 from=translated src=- shape=26fbc432 vocab=54655b91
+-/
 lemma gradMFormula_rotate (P Q M : Mat3) (U V : SO3) :
     gradMFormula (rotateP P U) (rotateQ Q V) (rotateM M U V) =
       (V : Mat3)ᵀ * gradMFormula P Q M * U := by

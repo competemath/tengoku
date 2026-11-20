@@ -53,19 +53,31 @@ structure CriticalData where
   secondResidual : AllNonzero x →
     TwoOfThree (fun i ↦ edgeResidual (symm3 p x) i / bCoeff m i < 4)
 
+/--
+@isnad1 id=lt.0h2v.s4.96b4e82b1994 from=translated src=- shape=456e0cbc vocab=b09f3dfb
+-/
 lemma aCoeff_pos (d : CriticalData) (i : I3) : 0 < aCoeff d.m i := by
   exact sq_pos_of_ne_zero (d.m_ne_zero i)
 
+/--
+@isnad1 id=lt.0h2v.s4.39f84799a0e1 from=translated src=- shape=456e0cbc vocab=5d1899e5
+-/
 lemma bCoeff_pos (d : CriticalData) (i : I3) : 0 < bCoeff d.m i := by
   dsimp [bCoeff, aCoeff]
   nlinarith [sq_nonneg (d.m i)]
 
+/--
+@isnad1 id=lt.0h2v.s4.dc95a93ebfbb from=translated src=- shape=456e0cbc vocab=d50cfc09
+-/
 lemma sCoeff_pos (d : CriticalData) (i : I3) : 0 < sCoeff d.m i := by
   dsimp [sCoeff]
   have h1 := aCoeff_pos d (jIndex i)
   have h2 := aCoeff_pos d (kIndex i)
   linarith
 
+/--
+@isnad1 id=eq.0h3v.s5.de16adf38c91 from=translated src=- shape=c66bfcc5 vocab=391046d8
+-/
 @[simp] lemma edgeCof_symm3 (p x : I3 → ℝ) (i : I3) :
     edgeCof (symm3 p x) i =
       x (jIndex i) * x (kIndex i) - p i * x i := by
@@ -73,6 +85,9 @@ lemma sCoeff_pos (d : CriticalData) (i : I3) : 0 < sCoeff d.m i := by
     simp [edgeCof, symm3, cofEdge0, cofEdge1, cofEdge2,
       jIndex, kIndex] <;> ring
 
+/--
+@isnad1 id=eq.1h3v.s5.630fad184365 from=translated src=- shape=cb58c8b2 vocab=b6a6200c
+-/
 lemma edgeCof_eq_neg_residual (p x : I3 → ℝ) (i : I3)
     (hxi : x i ≠ 0) :
     edgeCof (symm3 p x) i =
@@ -88,19 +103,31 @@ lemma edgeCof_eq_neg_residual (p x : I3 → ℝ) (i : I3)
 noncomputable def theta (d : CriticalData) (i : I3) : ℝ :=
   d.y i / (d.m i * d.x i)
 
+/--
+@isnad1 id=ne.2h2v.s5.34a97b5f4046 from=translated src=- shape=4401012c vocab=5e894d4e
+-/
 lemma theta_ne_zero (d : CriticalData) (i : I3)
     (hx : d.x i ≠ 0) (hy : d.y i ≠ 0) : theta d i ≠ 0 := by
   exact div_ne_zero hy (mul_ne_zero (d.m_ne_zero i) hx)
 
+/--
+@isnad1 id=eq.0h2v.s4.bb96f8f04fc1 from=translated src=- shape=2c514eeb vocab=a079efd0
+-/
 lemma delta_sub_four (d : CriticalData) (i : I3) :
     deltaCoeff d.m i - 4 = sCoeff d.m i := by
   simp [deltaCoeff]
 
+/--
+@isnad1 id=lt.0h2v.s4.e6b6fe380c75 from=translated src=- shape=f18d0c26 vocab=de763f1f
+-/
 lemma one_lt_b_div_a (d : CriticalData) (i : I3) :
     1 < bCoeff d.m i / aCoeff d.m i := by
   rw [lt_div_iff₀ (aCoeff_pos d i)]
   simp [bCoeff]
 
+/--
+@isnad1 id=eq.2h2v.s6.70b1faa3ea65 from=translated src=- shape=6bda094b vocab=1562d15a
+-/
 lemma q_residual_identity (d : CriticalData) (i : I3)
     (_hx : d.x i ≠ 0) (hy : d.y i ≠ 0) :
     d.sigma * edgeResidual (symm3 d.q d.y) i =
@@ -112,6 +139,9 @@ lemma q_residual_identity (d : CriticalData) (i : I3)
   field_simp [_hx, hy, d.m_ne_zero i]
   nlinarith [hoff]
 
+/--
+@isnad1 id=eq.1h2v.s6.de0c5de84f29 from=translated src=- shape=75fb4216 vocab=36d08362
+-/
 lemma p_residual_identity (d : CriticalData) (i : I3)
     (hx : d.x i ≠ 0) :
     edgeResidual (symm3 d.p d.x) i / bCoeff d.m i =
@@ -124,6 +154,9 @@ lemma p_residual_identity (d : CriticalData) (i : I3)
   field_simp [hx, d.m_ne_zero i, ne_of_gt (bCoeff_pos d i)]
   nlinarith [hoff]
 
+/--
+@isnad1 id=iff.2h2v.s6.8ed9ed2b0400 from=translated src=- shape=53c08f97 vocab=937c8bf9
+-/
 lemma q_residual_lt_four_iff (d : CriticalData) (i : I3)
     (hx : d.x i ≠ 0) (hy : d.y i ≠ 0) :
     d.sigma * edgeResidual (symm3 d.q d.y) i < 4 ↔
@@ -147,6 +180,9 @@ lemma q_residual_lt_four_iff (d : CriticalData) (i : I3)
     rw [← heq] at this
     linarith
 
+/--
+@isnad1 id=iff.1h2v.s6.f59a5186bed8 from=translated src=- shape=51e29821 vocab=5944df0c
+-/
 lemma p_residual_lt_four_iff (d : CriticalData) (i : I3)
     (hx : d.x i ≠ 0) :
     edgeResidual (symm3 d.p d.x) i / bCoeff d.m i < 4 ↔
@@ -172,6 +208,9 @@ lemma p_residual_lt_four_iff (d : CriticalData) (i : I3)
     rw [← heq] at this
     linarith
 
+/--
+@isnad1 id=iff.1h2v.s5.e6ec6c23da67 from=translated src=- shape=dcaf1b1e vocab=919309dd
+-/
 lemma y_support_of_x_zero (d : CriticalData) (i : I3)
     (hx : d.x i = 0) :
     d.y i ≠ 0 ↔ d.x (jIndex i) ≠ 0 ∧ d.x (kIndex i) ≠ 0 := by
@@ -192,6 +231,9 @@ lemma y_support_of_x_zero (d : CriticalData) (i : I3)
     rw [← hoff, hy]
     ring
 
+/--
+@isnad1 id=iff.1h2v.s5.8e9319d4a9e1 from=translated src=- shape=dcaf1b1e vocab=919309dd
+-/
 lemma x_support_of_y_zero (d : CriticalData) (i : I3)
     (hy : d.y i = 0) :
     d.x i ≠ 0 ↔ d.y (jIndex i) ≠ 0 ∧ d.y (kIndex i) ≠ 0 := by
@@ -218,6 +260,9 @@ lemma x_support_of_y_zero (d : CriticalData) (i : I3)
       ring
     exact (mul_eq_zero.mp this).resolve_left hright
 
+/--
+@isnad1 id=not.0h2v.s4.1133afed82e0 from=translated src=- shape=a7bf165c vocab=49ab712b
+-/
 lemma not_both_zero (d : CriticalData) (i : I3) :
     ¬(d.x i = 0 ∧ d.y i = 0) := by
   rintro ⟨hx, hy⟩
@@ -274,6 +319,9 @@ lemma not_both_zero (d : CriticalData) (i : I3) :
 def MissingOnly (x : I3 → ℝ) (i : I3) : Prop :=
   x i = 0 ∧ ∀ r, r ≠ i → x r ≠ 0
 
+/--
+@isnad1 id=missingo.1h2v.s4.5bcbbfa8e66e from=translated src=- shape=4be770cc vocab=c3f00f21
+-/
 lemma missingOnly_of_zero (d : CriticalData) (i : I3) (hx : d.x i = 0) :
     MissingOnly d.x i := by
   refine ⟨hx, ?_⟩
@@ -283,6 +331,9 @@ lemma missingOnly_of_zero (d : CriticalData) (i : I3) (hx : d.x i = 0) :
   fin_cases i <;> fin_cases r <;>
     simp [jIndex, kIndex] at hri hsupp ⊢ <;> tauto
 
+/--
+@isnad1 id=missingo.1h2v.s4.ba768d184fbf from=translated src=- shape=4be770cc vocab=507fcf5a
+-/
 lemma missingOnly_y_of_zero (d : CriticalData) (i : I3) (hy : d.y i = 0) :
     MissingOnly d.y i := by
   refine ⟨hy, ?_⟩
@@ -292,6 +343,9 @@ lemma missingOnly_y_of_zero (d : CriticalData) (i : I3) (hy : d.y i = 0) :
   fin_cases i <;> fin_cases r <;>
     simp [jIndex, kIndex] at hri hsupp ⊢ <;> tauto
 
+/--
+@isnad1 id=or.0h1v.s5.01d65d068748 from=translated src=- shape=2214b3c8 vocab=53d46bf3
+-/
 lemma support_classification (d : CriticalData) :
     (AllNonzero d.x ∧ AllNonzero d.y) ∨
     (∃ i, MissingOnly d.x i ∧ AllNonzero d.y) ∨
@@ -321,6 +375,9 @@ lemma support_classification (d : CriticalData) :
         exact (not_both_zero d i) ⟨hi, hj⟩
       exact Or.inr (Or.inr (Or.inr ⟨i, j, hij, hmi, hmj⟩))
 
+/--
+@isnad1 id=ex.2h2v.s4.0ea0e1cdaddc from=translated src=- shape=1b6cdf33 vocab=60668945
+-/
 lemma twoOfThree_intersection {A B : I3 → Prop}
     (hA : TwoOfThree A) (hB : TwoOfThree B) :
     ∃ i, A i ∧ B i := by
@@ -333,6 +390,9 @@ lemma twoOfThree_intersection {A B : I3 → Prop}
     | exact ⟨1, hA.1, hB.2⟩
     | exact ⟨2, hA.2, hB.2⟩
 
+/--
+@isnad1 id=ex.1h2v.s4.2c663f18e767 from=translated src=- shape=2dc957b7 vocab=60668945
+-/
 lemma twoOfThree_has_off_missing {P : I3 → Prop} {i : I3}
     (hP : TwoOfThree P) : ∃ r, r ≠ i ∧ P r := by
   fin_cases i
@@ -349,6 +409,9 @@ lemma twoOfThree_has_off_missing {P : I3 → Prop} {i : I3}
     · exact ⟨0, by decide, h.1⟩
     · exact ⟨1, by decide, h.1⟩
 
+/--
+@isnad1 id=eq.2h3v.s5.e900594a4ccc from=translated src=- shape=0bc5f5df vocab=af4b921c
+-/
 lemma edge_product_zero_of_missing {x : I3 → ℝ} {i r : I3}
     (hmiss : MissingOnly x i) (hri : r ≠ i) :
     x (jIndex r) * x (kIndex r) = 0 := by
@@ -356,6 +419,9 @@ lemma edge_product_zero_of_missing {x : I3 → ℝ} {i r : I3}
     simp [MissingOnly, jIndex, kIndex] at hmiss hri ⊢ <;>
     simp [hmiss.1]
 
+/--
+@isnad1 id=eq.2h4v.s4.f1885717405e from=translated src=- shape=6c4984a6 vocab=5e4e5f68
+-/
 lemma residual_eq_diag_of_missing {p x : I3 → ℝ} {i r : I3}
     (hmiss : MissingOnly x i) (hri : r ≠ i) :
     edgeResidual (symm3 p x) r = p r := by
@@ -369,6 +435,9 @@ lemma residual_eq_diag_of_missing {p x : I3 → ℝ} {i r : I3}
   have hneg := mul_right_cancel₀ hxr hmul
   linarith
 
+/--
+@isnad1 id=false.2h1v.s3.c60ad421959e from=translated src=- shape=08add514 vocab=eb6bdc13
+-/
 lemma exclude_fully_mixed (d : CriticalData)
     (hx : AllNonzero d.x) (hy : AllNonzero d.y) : False := by
   have hq := d.firstResidual hy
@@ -379,6 +448,9 @@ lemma exclude_fully_mixed (d : CriticalData)
   have hone := one_lt_b_div_a d i
   linarith
 
+/--
+@isnad1 id=false.2h2v.s3.7c64f6b9e89c from=translated src=- shape=6393cde7 vocab=53d46bf3
+-/
 lemma exclude_two_three (d : CriticalData) (i : I3)
     (hx : MissingOnly d.x i) (hy : AllNonzero d.y) : False := by
   have hq := d.firstResidual hy
@@ -393,6 +465,9 @@ lemma exclude_two_three (d : CriticalData) (i : I3)
   have hone := one_lt_b_div_a d r
   linarith
 
+/--
+@isnad1 id=false.2h2v.s3.424fb178b769 from=translated src=- shape=61cc0f00 vocab=53d46bf3
+-/
 lemma exclude_three_two (d : CriticalData) (i : I3)
     (hx : AllNonzero d.x) (hy : MissingOnly d.y i) : False := by
   have hp := d.secondResidual hx
@@ -407,6 +482,9 @@ lemma exclude_three_two (d : CriticalData) (i : I3)
   have hone := one_lt_b_div_a d r
   linarith
 
+/--
+@isnad1 id=false.3h3v.s4.75dbe4353c9a from=translated src=- shape=8c49bef3 vocab=8126a299
+-/
 lemma exclude_two_two (d : CriticalData) (i j : I3) (hij : i ≠ j)
     (hx : MissingOnly d.x i) (hy : MissingOnly d.y j) : False := by
   have hxj := hx.2 j (Ne.symm hij)
@@ -426,6 +504,9 @@ lemma exclude_two_two (d : CriticalData) (i j : I3) (hij : i ≠ j)
   field_simp [ne_of_gt hb] at hdiag
   nlinarith
 
+/--
+@isnad1 id=false.0h1v.s1.e8bcb18fa11f from=translated src=- shape=1d48f1ac vocab=9e27de06
+-/
 theorem criticalData_false (d : CriticalData) : False := by
   rcases support_classification d with h | h | h | h
   · exact exclude_fully_mixed d h.1 h.2

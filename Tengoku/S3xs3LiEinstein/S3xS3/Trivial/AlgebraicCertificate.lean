@@ -18,7 +18,9 @@ namespace S3xS3.Trivial
 
 /-- The suppressed sign case in the radial estimate.  Positivity of
 `(y-x)(2x-y)` together with `x>0` forces both factors, rather than allowing
-both to be negative.-/
+both to be negative.
+@isnad1 id=and.2h2v.s6.c1b63c326625 from=translated src=- shape=7e35a290 vocab=67ce4c94
+-/
 lemma positive_radial_factors {x y : ℝ} (hx : 0 < x)
     (hprod : 0 < (y - x) * (2 * x - y)) : x < y ∧ y < 2 * x := by
   rcases mul_pos_iff.mp hprod with hpos | hneg
@@ -27,7 +29,9 @@ lemma positive_radial_factors {x y : ℝ} (hx : 0 < x)
     linarith
 
 /-- Exact ordered-field core of Proposition `radial`: Cauchy--Schwarz and the
-radial identity imply `alpha < -ell`.-/
+radial identity imply `alpha < -ell`.
+@isnad1 id=lt.5h5v.s7.6f212e81f172 from=translated src=- shape=1a605a33 vocab=a93c5883
+-/
 lemma radial_alpha_strict {ell x y c alpha : ℝ}
     (hell : 0 < ell) (hx : 0 < x)
     (hcidentity : 3 * c = 2 * x ^ 2 + y ^ 2 + ell)
@@ -49,6 +53,9 @@ lemma radial_alpha_strict {ell x y c alpha : ℝ}
 
 /-! ## The scalar threshold four -/
 
+/--
+@isnad1 id=lt.5h3v.s7.bc9d5c7fa443 from=translated src=- shape=f4d44958 vocab=7435bc9b
+-/
 lemma threshold_four_large_middle {r s t : ℝ}
     (hr : 0 < r) (hrs : r ≤ s) (hst : s ≤ t)
     (hs : 2 ≤ s) (ht : 4 ≤ t) :
@@ -60,6 +67,9 @@ lemma threshold_four_large_middle {r s t : ℝ}
     have hspos : 0 < s - 2 := sub_pos.mpr hslt
     nlinarith
 
+/--
+@isnad1 id=lt.4h3v.s7.0e730f58a89e from=translated src=- shape=a8dee2d2 vocab=7435bc9b
+-/
 lemma threshold_four_small_middle {r s t : ℝ}
     (_hr : 0 < r) (hrs : r ≤ s) (hs : s < 2) (ht : 4 ≤ t) :
     0 < r * s - 2 * r - 2 * s + 2 * t := by
@@ -68,7 +78,9 @@ lemma threshold_four_small_middle {r s t : ℝ}
   nlinarith
 
 /-- Eigenvalue form of the threshold lemma: if the largest eigenvalue is at
-least four, the corresponding eigenvalue of `Kop` is strictly positive.-/
+least four, the corresponding eigenvalue of `Kop` is strictly positive.
+@isnad1 id=lt.4h3v.s7.273a93728159 from=translated src=- shape=71d3821c vocab=7435bc9b
+-/
 lemma threshold_four_scalar {r s t : ℝ}
     (hr : 0 < r) (hrs : r ≤ s) (hst : s ≤ t) (ht : 4 ≤ t) :
     0 < r * s - 2 * r - 2 * s + 2 * t := by
@@ -78,6 +90,9 @@ lemma threshold_four_scalar {r s t : ℝ}
 
 /-! ## Rational inequalities used in the support exclusions -/
 
+/--
+@isnad1 id=iff.2h2v.s6.b206d702fb0a from=translated src=- shape=e4ac2771 vocab=2d787729
+-/
 lemma theta_small_iff {S theta : ℝ} (hS : 0 < S) (htheta : theta ≠ 0) :
     S * (theta - 1) / theta < 0 ↔ 0 < theta ∧ theta < 1 := by
   constructor
@@ -97,6 +112,9 @@ lemma theta_small_iff {S theta : ℝ} (hS : 0 < S) (htheta : theta ≠ 0) :
   · rintro ⟨hp, hlt⟩
     exact div_neg_of_neg_of_pos (mul_neg_of_pos_of_neg hS (sub_neg.mpr hlt)) hp
 
+/--
+@isnad1 id=iff.3h4v.s6.6eaa0b5a4a32 from=translated src=- shape=1a8efad4 vocab=2d787729
+-/
 lemma theta_large_iff {a b S theta : ℝ}
     (ha : 0 < a) (hb : 0 < b) (hS : 0 < S) :
     S / b * (b - a * theta) < 0 ↔ b / a < theta := by
@@ -117,6 +135,9 @@ lemma theta_large_iff {a b S theta : ℝ}
 
 /-! ## Three-index pigeonhole lemma -/
 
+/--
+@isnad1 id=nonempty.2h2v.s6.e9f4a2fdfed5 from=translated src=- shape=127d8612 vocab=d5b8acae
+-/
 lemma two_large_subsets_intersect (A B : Finset (Fin 3))
     (hA : 2 ≤ A.card) (hB : 2 ≤ B.card) : (A ∩ B).Nonempty := by
   by_contra hnone
@@ -147,6 +168,9 @@ noncomputable def residual0 (H : Mat3) : ℝ := H 0 0 - off1 H * off2 H / off0 H
 noncomputable def residual1 (H : Mat3) : ℝ := H 1 1 - off0 H * off2 H / off1 H
 noncomputable def residual2 (H : Mat3) : ℝ := H 2 2 - off0 H * off1 H / off2 H
 
+/--
+@isnad1 id=eq.3h1v.s7.ba360f57c045 from=translated src=- shape=cf2ac8d4 vocab=ea6b98e5
+-/
 lemma pair01_test_identity {H : Mat3} (hsym : H.IsHermitian)
     (h0 : off0 H ≠ 0) (h1 : off1 H ≠ 0) :
     quad3 H ![off0 H, -off1 H, 0] =
@@ -161,6 +185,9 @@ lemma pair01_test_identity {H : Mat3} (hsym : H.IsHermitian)
   field_simp [h0', h1']
   ring
 
+/--
+@isnad1 id=eq.3h1v.s7.82b149bc3c01 from=translated src=- shape=796c55d1 vocab=d6d42de7
+-/
 lemma pair02_test_identity {H : Mat3} (hsym : H.IsHermitian)
     (h0 : off0 H ≠ 0) (h2 : off2 H ≠ 0) :
     quad3 H ![off0 H, 0, -off2 H] =
@@ -175,6 +202,9 @@ lemma pair02_test_identity {H : Mat3} (hsym : H.IsHermitian)
   field_simp [h0', h2']
   ring
 
+/--
+@isnad1 id=eq.3h1v.s7.18a4ab746675 from=translated src=- shape=00118151 vocab=8607af7e
+-/
 lemma pair12_test_identity {H : Mat3} (hsym : H.IsHermitian)
     (h1 : off1 H ≠ 0) (h2 : off2 H ≠ 0) :
     quad3 H ![0, off1 H, -off2 H] =
@@ -189,15 +219,27 @@ lemma pair12_test_identity {H : Mat3} (hsym : H.IsHermitian)
   field_simp [h1', h2']
   ring
 
+/--
+@isnad1 id=eq.0h2v.s6.c294547d7f9f from=translated src=- shape=cacffa2f vocab=c8c87671
+-/
 lemma normSq3_pair01 (u v : ℝ) : normSq3 ![u, -v, 0] = u ^ 2 + v ^ 2 := by
   simp [normSq3, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h2v.s6.42962036aa0d from=translated src=- shape=dd404aae vocab=c8c87671
+-/
 lemma normSq3_pair02 (u w : ℝ) : normSq3 ![u, 0, -w] = u ^ 2 + w ^ 2 := by
   simp [normSq3, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h2v.s6.35dcced5c8fc from=translated src=- shape=d167183c vocab=c8c87671
+-/
 lemma normSq3_pair12 (v w : ℝ) : normSq3 ![0, v, -w] = v ^ 2 + w ^ 2 := by
   simp [normSq3, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=or.4h1v.s6.cd333bf6805f from=translated src=- shape=6fdd4f04 vocab=105bdbbf
+-/
 lemma residual_pair01_not_both_large {H : Mat3} (hsym : H.IsHermitian)
     (hfour : StrictBelowFour H) (h0 : off0 H ≠ 0) (h1 : off1 H ≠ 0) :
     residual0 H < 4 ∨ residual1 H < 4 := by
@@ -214,6 +256,9 @@ lemma residual_pair01_not_both_large {H : Mat3} (hsym : H.IsHermitian)
   have hs1 : 0 < (off1 H) ^ 2 := sq_pos_of_ne_zero h1
   nlinarith
 
+/--
+@isnad1 id=or.4h1v.s6.5b2767a1bb9f from=translated src=- shape=6fdd4f04 vocab=ac7d8bbf
+-/
 lemma residual_pair02_not_both_large {H : Mat3} (hsym : H.IsHermitian)
     (hfour : StrictBelowFour H) (h0 : off0 H ≠ 0) (h2 : off2 H ≠ 0) :
     residual0 H < 4 ∨ residual2 H < 4 := by
@@ -230,6 +275,9 @@ lemma residual_pair02_not_both_large {H : Mat3} (hsym : H.IsHermitian)
   have hs2 : 0 < (off2 H) ^ 2 := sq_pos_of_ne_zero h2
   nlinarith
 
+/--
+@isnad1 id=or.4h1v.s6.5634597da5fb from=translated src=- shape=6fdd4f04 vocab=77c22e07
+-/
 lemma residual_pair12_not_both_large {H : Mat3} (hsym : H.IsHermitian)
     (hfour : StrictBelowFour H) (h1 : off1 H ≠ 0) (h2 : off2 H ≠ 0) :
     residual1 H < 4 ∨ residual2 H < 4 := by
@@ -247,7 +295,9 @@ lemma residual_pair12_not_both_large {H : Mat3} (hsym : H.IsHermitian)
   nlinarith
 
 /-- Fully mixed strict barrier in the exact form used by all support cases:
-at least two of the three denominator-free residuals are below four.-/
+at least two of the three denominator-free residuals are below four.
+@isnad1 id=or.5h1v.s7.5bdf9db4abeb from=translated src=- shape=fcc33732 vocab=bbd45641
+-/
 theorem two_residuals_lt_four {H : Mat3} (hsym : H.IsHermitian)
     (hfour : StrictBelowFour H)
     (h0 : off0 H ≠ 0) (h1 : off1 H ≠ 0) (h2 : off2 H ≠ 0) :
@@ -270,18 +320,27 @@ def cofEdge0 (H : Mat3) : ℝ := H 0 1 * H 0 2 - H 0 0 * H 1 2
 def cofEdge1 (H : Mat3) : ℝ := H 0 1 * H 1 2 - H 1 1 * H 0 2
 def cofEdge2 (H : Mat3) : ℝ := H 0 2 * H 1 2 - H 2 2 * H 0 1
 
+/--
+@isnad1 id=eq.1h1v.s4.e11a202cbece from=translated src=- shape=88ac4602 vocab=14af89d0
+-/
 lemma cofEdge0_eq_neg_residual (H : Mat3) (h0 : off0 H ≠ 0) :
     cofEdge0 H = -residual0 H * off0 H := by
   have h0' : H 1 2 ≠ 0 := h0
   simp [cofEdge0, residual0, off0, off1, off2]
   field_simp [h0']
 
+/--
+@isnad1 id=eq.1h1v.s4.1a383b72daf0 from=translated src=- shape=88ac4602 vocab=77b937e2
+-/
 lemma cofEdge1_eq_neg_residual (H : Mat3) (h1 : off1 H ≠ 0) :
     cofEdge1 H = -residual1 H * off1 H := by
   have h1' : H 0 2 ≠ 0 := h1
   simp [cofEdge1, residual1, off0, off1, off2]
   field_simp [h1']
 
+/--
+@isnad1 id=eq.1h1v.s4.445c2886c2c0 from=translated src=- shape=88ac4602 vocab=3c56ed8a
+-/
 lemma cofEdge2_eq_neg_residual (H : Mat3) (h2 : off2 H ≠ 0) :
     cofEdge2 H = -residual2 H * off2 H := by
   have h2' : H 0 1 ≠ 0 := h2

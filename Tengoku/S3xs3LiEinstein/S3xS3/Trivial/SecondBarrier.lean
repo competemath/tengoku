@@ -16,6 +16,9 @@ open S3xS3.Trivial.FactorSwapFormulas
 open S3xS3.Trivial.SwappedEuler
 open S3xS3.Trivial.SwapNaturality
 
+/--
+@isnad1 id=strictbe.1h1v.s5.42990a942a3a from=translated src=- shape=7b000aea vocab=c68a35e9
+-/
 lemma strictBelowFour_diagonal_of_entries (s : I3 → ℝ)
     (hs : ∀ i, s i < 4) :
     S3xS3.Trivial.StrictBelowFour (Matrix.diagonal s) := by

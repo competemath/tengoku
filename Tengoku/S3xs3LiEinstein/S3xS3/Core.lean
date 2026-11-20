@@ -39,6 +39,9 @@ def cofactor3 (A : Mat3) : Mat3 :=
      A 0 2 * A 1 0 - A 0 0 * A 1 2,
      A 0 0 * A 1 1 - A 0 1 * A 1 0]
 
+/--
+@isnad1 id=eq.0h1v.s6.1fee696d00fd from=translated src=- shape=0a640d8e vocab=05adc473
+-/
 lemma cofactor3_mul_transpose (A : Mat3) :
     cofactor3 A * Aᵀ = A.det • (1 : Mat3) := by
   ext i j
@@ -46,6 +49,9 @@ lemma cofactor3_mul_transpose (A : Mat3) :
     simp [cofactor3, Matrix.mul_apply, Fin.sum_univ_succ,
       Matrix.det_fin_three] <;> ring
 
+/--
+@isnad1 id=eq.0h1v.s8.371bf55b2a8e from=translated src=- shape=47b219e7 vocab=1040d339
+-/
 lemma cofactor3_eq_of_mem_SO3 (A : SO3) : cofactor3 A = (A : Mat3) := by
   have hcof : cofactor3 A * (A : Mat3)ᵀ = 1 := by
     rw [cofactor3_mul_transpose]
@@ -71,11 +77,17 @@ def bracket (x y : LieVec) : LieVec
   | Sum.inl i => (fun j ↦ x (Sum.inl j)) ⨯₃ (fun j ↦ y (Sum.inl j)) $ i
   | Sum.inr i => (fun j ↦ x (Sum.inr j)) ⨯₃ (fun j ↦ y (Sum.inr j)) $ i
 
+/--
+@isnad1 id=eq.0h3v.s10.78e7881aa2d0 from=translated src=- shape=cb49c698 vocab=7e2f2d1b
+-/
 @[simp]
 theorem bracket_apply_inl (x y : LieVec) (i : I3) :
     bracket x y (Sum.inl i) =
       ((fun j ↦ x (Sum.inl j)) ⨯₃ (fun j ↦ y (Sum.inl j))) i := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.9bde504ef9ba from=translated src=- shape=cb49c698 vocab=1126d9c9
+-/
 @[simp]
 theorem bracket_apply_inr (x y : LieVec) (i : I3) :
     bracket x y (Sum.inr i) =
@@ -88,6 +100,9 @@ structure LeftInvariantMetric where
 
 namespace LeftInvariantMetric
 
+/--
+@isnad1 id=ishermit.0h1v.s5.8fbdc6fa9286 from=translated src=- shape=7000f90d vocab=dc062883
+-/
 theorem isHermitian (g : LeftInvariantMetric) : g.gram.IsHermitian :=
   g.posDef.isHermitian
 
@@ -111,14 +126,18 @@ noncomputable def metricOfFrame (C : Mat6) (hC : C.det ≠ 0) :
     exact hpd.inv
 
 /-- Passing from an invertible frame to its metric does not introduce any
-geometric assumption: the inverse co-metric is exactly `Cᵀ C`.-/
+geometric assumption: the inverse co-metric is exactly `Cᵀ C`.
+@isnad1 id=eq.1h1v.s7.18af80d34288 from=translated src=- shape=782268f2 vocab=f5bf5a5b
+-/
 @[simp]
 theorem metricOfFrame_gram (C : Mat6) (hC : C.det ≠ 0) :
     (metricOfFrame C hC).gram = (Cᵀ * C)⁻¹ := rfl
 
 /-- The co-metric of a frame metric is the Gram matrix of the frame
 coefficients.  This is the cancellation used throughout both coordinate
-proofs.-/
+proofs.
+@isnad1 id=eq.1h1v.s7.c8ee4a79fe0c from=translated src=- shape=d6428c0d vocab=f5bf5a5b
+-/
 @[simp]
 theorem metricOfFrame_gram_inv (C : Mat6) (hC : C.det ≠ 0) :
     (metricOfFrame C hC).gram⁻¹ = Cᵀ * C := by
@@ -129,6 +148,9 @@ theorem metricOfFrame_gram_inv (C : Mat6) (hC : C.det ≠ 0) :
   letI : Invertible (Cᵀ * C) := hunitCtC.invertible
   exact Matrix.inv_inv_of_invertible (Cᵀ * C)
 
+/--
+@isnad1 id=eq.1h2v.s3.3025b780486e from=translated src=- shape=296f4854 vocab=325b5c6c
+-/
 @[ext]
 theorem LeftInvariantMetric.ext {g h : LeftInvariantMetric}
     (hgram : g.gram = h.gram) : g = h := by
@@ -136,6 +158,9 @@ theorem LeftInvariantMetric.ext {g h : LeftInvariantMetric}
   cases h
   simp_all
 
+/--
+@isnad1 id=eq.1h2v.s6.7997ef7c979b from=translated src=- shape=d9571f2e vocab=8721b49b
+-/
 theorem LeftInvariantMetric.ext_of_inv_eq {g h : LeftInvariantMetric}
     (hinv : g.gram⁻¹ = h.gram⁻¹) : g = h := by
   apply LeftInvariantMetric.ext
@@ -185,6 +210,9 @@ def Einstein (g : LeftInvariantMetric) : Prop :=
 def innerMatrix (a : InnerAction) : Mat6 :=
   Matrix.fromBlocks (a.1 : Mat3) 0 0 (a.2 : Mat3)
 
+/--
+@isnad1 id=eq.0h1v.s6.07608dc988ec from=translated src=- shape=27e3930b vocab=fae2dfce
+-/
 theorem innerMatrix_mul_transpose (a : InnerAction) :
     innerMatrix a * (innerMatrix a)ᵀ = 1 := by
   have ha : (a.1 : Mat3) * (a.1 : Mat3)ᵀ = 1 :=
@@ -196,6 +224,9 @@ theorem innerMatrix_mul_transpose (a : InnerAction) :
   rw [innerMatrix, Matrix.fromBlocks_transpose, Matrix.fromBlocks_multiply]
   simp [ha, hb]
 
+/--
+@isnad1 id=eq.0h1v.s6.f258adadd2ff from=translated src=- shape=86f6f80c vocab=fae2dfce
+-/
 theorem innerMatrix_transpose_mul (a : InnerAction) :
     (innerMatrix a)ᵀ * innerMatrix a = 1 := by
   have ha : (a.1 : Mat3)ᵀ * (a.1 : Mat3) = 1 :=
@@ -207,10 +238,16 @@ theorem innerMatrix_transpose_mul (a : InnerAction) :
   rw [innerMatrix, Matrix.fromBlocks_transpose, Matrix.fromBlocks_multiply]
   simp [ha, hb]
 
+/--
+@isnad1 id=eq.0h0v.s8.5d220700a406 from=translated src=- shape=1ac31801 vocab=60c3ce6f
+-/
 @[simp]
 theorem innerMatrix_one : innerMatrix (1 : InnerAction) = 1 := by
   simp [innerMatrix]
 
+/--
+@isnad1 id=eq.0h2v.s8.7963412e047c from=translated src=- shape=c9611ea7 vocab=344d7356
+-/
 @[simp]
 theorem innerMatrix_mul (a b : InnerAction) :
     innerMatrix (a * b) = innerMatrix a * innerMatrix b := by
@@ -230,11 +267,17 @@ noncomputable def pullbackMetric (a : InnerAction) (g : LeftInvariantMetric) :
     simpa [Matrix.conjTranspose_eq_transpose_of_trivial] using
       g.posDef.conjTranspose_mul_mul_same hinj
 
+/--
+@isnad1 id=eq.0h2v.s6.c2a91ed1e7c5 from=translated src=- shape=300f212f vocab=631d0561
+-/
 @[simp]
 theorem pullbackMetric_gram (a : InnerAction) (g : LeftInvariantMetric) :
     (pullbackMetric a g).gram =
       (innerMatrix a)ᵀ * g.gram * innerMatrix a := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.22177318e4a5 from=translated src=- shape=542e7734 vocab=2b973987
+-/
 @[simp]
 theorem pullbackMetric_gram_inv (a : InnerAction) (g : LeftInvariantMetric) :
     (pullbackMetric a g).gram⁻¹ =
@@ -248,6 +291,9 @@ theorem pullbackMetric_gram_inv (a : InnerAction) (g : LeftInvariantMetric) :
   rw [Matrix.mul_inv_rev, Matrix.mul_inv_rev, hinvT, hinvTt]
   noncomm_ring
 
+/--
+@isnad1 id=eq.0h1v.s8.cfc5c65d0d67 from=translated src=- shape=5b483ac0 vocab=916326fd
+-/
 @[simp]
 theorem pullbackMetric_one (g : LeftInvariantMetric) : pullbackMetric 1 g = g := by
   apply LeftInvariantMetric.ext
@@ -257,6 +303,9 @@ theorem pullbackMetric_one (g : LeftInvariantMetric) : pullbackMetric 1 g = g :=
 def Fixes (a : InnerAction) (g : LeftInvariantMetric) : Prop :=
   (innerMatrix a)ᵀ * g.gram * innerMatrix a = g.gram
 
+/--
+@isnad1 id=iff.0h3v.s9.71e395387108 from=translated src=- shape=275c3f2a vocab=dd5b043a
+-/
 theorem fixes_conjugate_iff (a b : InnerAction) (g : LeftInvariantMetric) :
     Fixes (a * b * a⁻¹) g ↔ Fixes b (pullbackMetric a g) := by
   let A : Mat6 := innerMatrix a
@@ -311,10 +360,16 @@ theorem fixes_conjugate_iff (a b : InnerAction) (g : LeftInvariantMetric) :
           _ = (Aiᵀ * Aᵀ) * g.gram * (A * Ai) := by noncomm_ring
           _ = g.gram := by rw [hAAit, hAAi]; simp
 
+/--
+@isnad1 id=fixes.0h1v.s8.42b8bffab94f from=translated src=- shape=c455abe0 vocab=4f19f2f4
+-/
 @[simp]
 theorem fixes_one (g : LeftInvariantMetric) : Fixes 1 g := by
   simp [Fixes]
 
+/--
+@isnad1 id=fixes.2h3v.s8.da17b7cbdcea from=translated src=- shape=b436fead vocab=28dbdec1
+-/
 theorem fixes_mul {a b : InnerAction} {g : LeftInvariantMetric}
     (ha : Fixes a g) (hb : Fixes b g) : Fixes (a * b) g := by
   rw [Fixes, innerMatrix_mul, Matrix.transpose_mul]
@@ -330,6 +385,9 @@ theorem fixes_mul {a b : InnerAction} {g : LeftInvariantMetric}
     _ = (innerMatrix b)ᵀ * g.gram * innerMatrix b := by rw [ha]
     _ = g.gram := hb
 
+/--
+@isnad1 id=fixes.1h2v.s8.6a4c7a143ff0 from=translated src=- shape=8675323e vocab=77212d90
+-/
 theorem fixes_inv {a : InnerAction} {g : LeftInvariantMetric} (ha : Fixes a g) :
     Fixes a⁻¹ g := by
   have hleft : innerMatrix a⁻¹ * innerMatrix a = 1 := by
@@ -358,6 +416,9 @@ def innerIsotropy (g : LeftInvariantMetric) : Subgroup InnerAction where
   mul_mem' := fixes_mul
   inv_mem' := fixes_inv
 
+/--
+@isnad1 id=iff.0h2v.s9.43654d975a6d from=translated src=- shape=f333eb33 vocab=b16d0b9c
+-/
 @[simp]
 theorem mem_innerIsotropy_iff {g : LeftInvariantMetric} {a : InnerAction} :
     a ∈ innerIsotropy g ↔ Fixes a g := Iff.rfl
