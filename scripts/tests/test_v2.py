@@ -862,7 +862,7 @@ class SnapshotSchema2(unittest.TestCase):
     os.environ.get("TENGOKU_V1_SNAPSHOT"), "set TENGOKU_V1_SNAPSHOT to the directory of the 1.0.0 release to run this on the real data"
 )
 class RealRelease(unittest.TestCase):
-    """the 198,172 records of release 1.0.0 (the v2-migration workflow runs this)"""
+    """the 198,172 records of release 1.0.0: skipped unless TENGOKU_V1_SNAPSHOT names the directory of the release (`gh release download v1.0.0 -p snapshot.json -p tengoku-dataset.jsonl.gz -D v1`)"""
 
     @classmethod
     def setUpClass(cls):
