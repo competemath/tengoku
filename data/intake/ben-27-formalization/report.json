@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "5c9d49dd6283def7d69e396b993363ffec696c27b3e387218f4a2f712474bb81",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "ben-27-formalization",
+ "lint_mode": "proposed",
+ "modules": 10,
+ "part": 1,
+ "theorems": 272
+}
