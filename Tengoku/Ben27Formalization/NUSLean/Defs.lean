@@ -20,7 +20,9 @@ namespace NUS
 
 open Finset
 
-/-- Equality of two-element multisets, spelled out.-/
+/-- Equality of two-element multisets, spelled out.
+@isnad1 id=iff.0h5v.s5.4f7dca4bd0bd from=translated src=- shape=a67a8a27 vocab=5aa23eba
+-/
 theorem multiset_pair_eq_pair {α : Type*} {a b c d : α} :
     ({a, b} : Multiset α) = {c, d} ↔ a = c ∧ b = d ∨ a = d ∧ b = c := by
   constructor
@@ -50,7 +52,9 @@ def HasNoUniqueSum (A : Finset G) : Prop :=
     ∃ t' : Multiset G, IsPairFrom A t' ∧ t' ≠ t ∧ t'.sum = t.sum
 
 /-- The empty set vacuously has no unique sum; this is why the definition of `m p`
-carries the side condition `2 ≤ |A|`.-/
+carries the side condition `2 ≤ |A|`.
+@isnad1 id=hasnouni.0h1v.s3.c5231b828fb2 from=translated src=- shape=b8471119 vocab=6af9f3fe
+-/
 theorem hasNoUniqueSum_empty : HasNoUniqueSum (∅ : Finset G) := by
   rintro t ⟨hcard, hmem⟩
   obtain ⟨x, y, rfl⟩ := Multiset.card_eq_two.mp hcard
@@ -58,7 +62,9 @@ theorem hasNoUniqueSum_empty : HasNoUniqueSum (∅ : Finset G) := by
 
 /-- Every set having no unique sum (of size at least two) contains an inclusion-minimal
 subset with the same properties.  This is the reduction made at the start of the proof
-of Theorem 1.2.-/
+of Theorem 1.2.
+@isnad1 id=ex.2h2v.s6.e510e039d3b1 from=translated src=- shape=551fa5f9 vocab=cd725d3a
+-/
 theorem exists_minimal (A : Finset G) :
     2 ≤ A.card → HasNoUniqueSum A →
       ∃ B, B ⊆ A ∧ 2 ≤ B.card ∧ HasNoUniqueSum B ∧
@@ -81,7 +87,9 @@ noncomputable def m (p : ℕ) : ℕ :=
   sInf {k | ∃ A : Finset (ZMod p), A.card = k ∧ 2 ≤ k ∧ HasNoUniqueSum A}
 
 /-- For odd `p`, the whole of `𝔽_p` has no unique sum: replace `{a, b}` by
-`{a + 1, b - 1}`, or by `{b + 1, a - 1}` in the degenerate case `b = a + 1`.-/
+`{a + 1, b - 1}`, or by `{b + 1, a - 1}` in the degenerate case `b = a + 1`.
+@isnad1 id=hasnouni.1h1v.s5.006227713df2 from=translated src=- shape=ab2c226f vocab=2b9a86c5
+-/
 theorem hasNoUniqueSum_univ (p : ℕ) [hp : Fact p.Prime] (hp2 : p ≠ 2) :
     HasNoUniqueSum (univ : Finset (ZMod p)) := by
   haveI : Fact (1 < p) := ⟨hp.out.one_lt⟩
@@ -118,7 +126,9 @@ theorem hasNoUniqueSum_univ (p : ℕ) [hp : Fact p.Prime] (hp2 : p ≠ 2) :
     · exact h1 (add_left_cancel (show a + 1 = a + 0 by rw [add_zero]; exact haa))
     · exact hab hab'.symm
 
-/-- For odd primes the defining set of `m p` is nonempty, hence the infimum is attained.-/
+/-- For odd primes the defining set of `m p` is nonempty, hence the infimum is attained.
+@isnad1 id=ex.1h1v.s5.181a89dd9d7d from=translated src=- shape=56dfa2f8 vocab=b271a2eb
+-/
 theorem m_spec (p : ℕ) [hp : Fact p.Prime] (hp2 : p ≠ 2) :
     ∃ A : Finset (ZMod p), A.card = m p ∧ 2 ≤ m p ∧ HasNoUniqueSum A := by
   have hmem : m p ∈ {k | ∃ A : Finset (ZMod p), A.card = k ∧ 2 ≤ k ∧ HasNoUniqueSum A} := by

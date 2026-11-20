@@ -48,24 +48,39 @@ def optionOutcome {i : Type*} (b : Bool) (a : i → Bool) : Option i → Bool
   | none => b
   | some t => a t
 
+/--
+@isnad1 id=eq.0h3v.s4.61cc688cc1cb from=translated src=- shape=b7ae278f vocab=def42951
+-/
 @[simp] theorem optionOutcome_none {i : Type*} (b : Bool) (a : i → Bool) :
     optionOutcome b a none = b := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.e4eafe05932c from=translated src=- shape=88c6b7b9 vocab=0c25f63f
+-/
 @[simp] theorem optionOutcome_some {i : Type*} (b : Bool) (a : i → Bool) (t : i) :
     optionOutcome b a (some t) = a t := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.e20982ade5f5 from=translated src=- shape=4bd096e9 vocab=aa5491e4
+-/
 @[simp] theorem piOptionEquivProd_symm_apply {i : Type*} (b : Bool) (a : i → Bool) :
     (Equiv.piOptionEquivProd (β := fun _ : Option i => Bool)).symm (b, a) =
       optionOutcome b a := by
   funext t
   cases t <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.85f0a4714d73 from=translated src=- shape=1c73da15 vocab=4db41c70
+-/
 theorem update_optionOutcome_none {i : Type*} [DecidableEq i] [DecidableEq (Option i)]
     (b : Bool) (a : i → Bool) :
     Function.update (optionOutcome b a) none false = optionOutcome false a := by
   funext t
   cases t <;> simp [Function.update, optionOutcome]
 
+/--
+@isnad1 id=eq.0h4v.s5.0d74fb9a38e5 from=translated src=- shape=0a8d9abe vocab=51e0a421
+-/
 theorem update_optionOutcome_some {i : Type*} [DecidableEq i] [DecidableEq (Option i)]
     (b : Bool) (a : i → Bool) (t : i) :
     Function.update (optionOutcome b a) (some t) false =
@@ -89,12 +104,18 @@ noncomputable def expect (θ : ℝ) (F : (ι → Bool) → ℝ) : ℝ :=
 noncomputable def var (θ : ℝ) (F : (ι → Bool) → ℝ) : ℝ :=
   expect θ fun ω => (F ω - expect θ F) ^ 2
 
+/--
+@isnad1 id=eq.0h5v.s5.38de9ff7f8fd from=translated src=- shape=9c2ab06a vocab=ebb92e04
+-/
 theorem wt_reindexOutcome {a b : Type*} [Fintype a] [Fintype b]
     (e : a ≃ b) (θ : ℝ) (w : b → Bool) :
     wt θ (reindexOutcome e w) = wt θ w := by
   unfold wt reindexOutcome
   exact e.prod_comp (fun t => if w t then θ else 1 - θ)
 
+/--
+@isnad1 id=eq.0h5v.s5.85b3f15db686 from=translated src=- shape=11f50691 vocab=810b1c08
+-/
 theorem expect_reindexOutcome {a b : Type*} [Fintype a] [DecidableEq a]
     [Fintype b] [DecidableEq b] (e : a ≃ b) (θ : ℝ) (F : (a → Bool) → ℝ) :
     expect θ F = expect θ (fun w : b → Bool => F (reindexOutcome e w)) := by
@@ -109,6 +130,9 @@ theorem expect_reindexOutcome {a b : Type*} [Fintype a] [DecidableEq a]
   rw [hq]
   rw [wt_reindexOutcome]
 
+/--
+@isnad1 id=eq.0h5v.s5.dc3c8b2f363f from=translated src=- shape=11f50691 vocab=292fa032
+-/
 theorem var_reindexOutcome {a b : Type*} [Fintype a] [DecidableEq a]
     [Fintype b] [DecidableEq b] (e : a ≃ b) (θ : ℝ) (F : (a → Bool) → ℝ) :
     var θ F = var θ (fun w : b → Bool => F (reindexOutcome e w)) := by
@@ -116,6 +140,9 @@ theorem var_reindexOutcome {a b : Type*} [Fintype a] [DecidableEq a]
   rw [expect_reindexOutcome e θ]
   rw [expect_reindexOutcome e θ F]
 
+/--
+@isnad1 id=eq.0h5v.s6.f2febcdbf45d from=translated src=- shape=76fdb02a vocab=127439f5
+-/
 theorem reindexOutcome_update {a b : Type*} [DecidableEq a] [DecidableEq b]
     (e : a ≃ b) (w : b → Bool) (t : a) :
     reindexOutcome e (Function.update w (e t) false) =
@@ -127,6 +154,9 @@ theorem reindexOutcome_update {a b : Type*} [DecidableEq a] [DecidableEq b]
   · have he : e u ≠ e t := fun h' => h (e.injective h')
     simp [reindexOutcome, Function.update, h, he]
 
+/--
+@isnad1 id=eq.0h5v.s7.f80af8a9aa69 from=translated src=- shape=139ab5e4 vocab=f7a1494d
+-/
 theorem switchEnergy_reindexOutcome {a b : Type*} [Fintype a] [DecidableEq a]
     [Fintype b] [DecidableEq b] (e : a ≃ b) (F : (a → Bool) → ℝ) (w : b → Bool) :
     (∑ u : b, (F (reindexOutcome e w) -
@@ -139,11 +169,16 @@ theorem switchEnergy_reindexOutcome {a b : Type*} [Fintype a] [DecidableEq a]
   rw [reindexOutcome_update]
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=le.2h3v.s5.3c6eef210f8c from=translated src=- shape=87446e00 vocab=d87422c8
+-/
 theorem wt_nonneg {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) (ω : ι → Bool) : 0 ≤ wt θ ω :=
   Finset.prod_nonneg fun t _ => by
     by_cases h : ω t <;> simp [h] <;> linarith
 
-/-- The weights sum to one.-/
+/-- The weights sum to one.
+@isnad1 id=eq.0h2v.s5.e3a37ee2796a from=translated src=- shape=5130e2c8 vocab=61e07086
+-/
 theorem sum_wt (θ : ℝ) : ∑ ω : ι → Bool, wt θ ω = 1 := by
   classical
   have h := Finset.prod_univ_sum (fun _ : ι => (Finset.univ : Finset Bool))
@@ -154,11 +189,16 @@ theorem sum_wt (θ : ℝ) : ∑ ω : ι → Bool, wt θ ω = 1 := by
   simp
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=lt.2h3v.s5.713a0f28ae5c from=translated src=- shape=87446e00 vocab=e55e41af
+-/
 theorem wt_pos {θ : ℝ} (hθ0 : 0 < θ) (hθ1 : θ < 1) (ω : ι → Bool) : 0 < wt θ ω :=
   Finset.prod_pos fun t _ => by
     by_cases h : ω t <;> simp [h] <;> linarith
 
-/-- Splitting product-Bernoulli expectation at the distinguished `Option` coordinate.-/
+/-- Splitting product-Bernoulli expectation at the distinguished `Option` coordinate.
+@isnad1 id=eq.0h3v.s6.568f072f74f1 from=translated src=- shape=f9be82d1 vocab=9824f30c
+-/
 theorem expect_option {i : Type*} [Fintype i] [DecidableEq i] [DecidableEq (Option i)] (θ : ℝ)
     (F : (Option i → Bool) → ℝ) :
     expect θ F = θ * expect θ (fun a : i → Bool => F (optionOutcome true a))
@@ -177,7 +217,9 @@ theorem expect_option {i : Type*} [Fintype i] [DecidableEq i] [DecidableEq (Opti
   rw [Finset.mul_sum, Finset.mul_sum]
   congr 1 <;> apply Finset.sum_congr rfl <;> intro a ha <;> ring
 
-/-- The usual second-moment expression for the finite-sum variance.-/
+/-- The usual second-moment expression for the finite-sum variance.
+@isnad1 id=eq.0h3v.s6.92d15b415140 from=translated src=- shape=755d5b98 vocab=7c1af278
+-/
 theorem var_eq_expect_sq_sub (θ : ℝ) (F : (ι → Bool) → ℝ) :
     var θ F = expect θ (fun ω => (F ω) ^ 2) - (expect θ F) ^ 2 := by
   unfold var expect
@@ -193,7 +235,9 @@ theorem var_eq_expect_sq_sub (θ : ℝ) (F : (ι → Bool) → ℝ) :
     ← Finset.mul_sum, sum_wt]
   ring
 
-/-- Jensen/Cauchy–Schwarz for the square under a product-Bernoulli expectation.-/
+/-- Jensen/Cauchy–Schwarz for the square under a product-Bernoulli expectation.
+@isnad1 id=le.2h3v.s6.fd8d6db49b43 from=translated src=- shape=53b2c5ff vocab=fb8e9679
+-/
 theorem sq_expect_le_expect_sq {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1)
     (F : (ι → Bool) → ℝ) :
     (expect θ F) ^ 2 ≤ expect θ (fun ω => (F ω) ^ 2) := by
@@ -209,37 +253,57 @@ theorem sq_expect_le_expect_sq {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1)
     exact Real.mul_self_sqrt (wt_nonneg hθ0 hθ1 ω)
   simpa only [← mul_assoc, hmul, hsqrt, one_mul, sum_wt, mul_one, mul_pow] using hcs
 
+/--
+@isnad1 id=le.3h3v.s6.2ed439a2427e from=translated src=- shape=2659aed6 vocab=4ce5ad96
+-/
 theorem expect_nonneg {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) {F : (ι → Bool) → ℝ}
     (hF : ∀ ω, 0 ≤ F ω) : 0 ≤ expect θ F :=
   Finset.sum_nonneg fun ω _ => mul_nonneg (wt_nonneg hθ0 hθ1 ω) (hF ω)
 
+/--
+@isnad1 id=le.3h4v.s6.ecef5c8d16ca from=translated src=- shape=e8b0cb42 vocab=4ce5ad96
+-/
 theorem expect_mono {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) {F G : (ι → Bool) → ℝ}
     (h : ∀ ω, F ω ≤ G ω) : expect θ F ≤ expect θ G :=
   Finset.sum_le_sum fun ω _ => mul_le_mul_of_nonneg_left (h ω) (wt_nonneg hθ0 hθ1 ω)
 
-/-- The expectation of a constant.-/
+/-- The expectation of a constant.
+@isnad1 id=eq.0h3v.s4.c3d865cbb6f4 from=translated src=- shape=9a12e284 vocab=06942f36
+-/
 theorem expect_const (θ c : ℝ) : expect θ (fun _ : ι → Bool => c) = c := by
   unfold expect
   rw [← Finset.sum_mul, sum_wt, one_mul]
 
+/--
+@isnad1 id=eq.0h4v.s6.6ca681d11ca4 from=translated src=- shape=1e0e18eb vocab=c574b59e
+-/
 theorem expect_add (θ : ℝ) (F G : (ι → Bool) → ℝ) :
     expect θ (fun ω => F ω + G ω) = expect θ F + expect θ G := by
   unfold expect
   rw [← Finset.sum_add_distrib]
   exact Finset.sum_congr rfl fun ω _ => mul_add _ _ _
 
+/--
+@isnad1 id=eq.0h4v.s6.448f7147977d from=translated src=- shape=1e0e18eb vocab=52922532
+-/
 theorem expect_sub (θ : ℝ) (F G : (ι → Bool) → ℝ) :
     expect θ (fun ω => F ω - G ω) = expect θ F - expect θ G := by
   unfold expect
   rw [← Finset.sum_sub_distrib]
   exact Finset.sum_congr rfl fun ω _ => mul_sub _ _ _
 
+/--
+@isnad1 id=eq.0h4v.s5.24f5f0777c49 from=translated src=- shape=227ee69e vocab=a6773e63
+-/
 theorem expect_const_mul (θ c : ℝ) (F : (ι → Bool) → ℝ) :
     expect θ (fun ω => c * F ω) = c * expect θ F := by
   unfold expect
   rw [Finset.mul_sum]
   exact Finset.sum_congr rfl fun ω _ => by ring
 
+/--
+@isnad1 id=eq.0h5v.s5.5db3d00fcb53 from=translated src=- shape=c49a11b8 vocab=aa3e5449
+-/
 theorem expect_sum {κ : Type*} (θ : ℝ) (s : Finset κ) (F : κ → (ι → Bool) → ℝ) :
     expect θ (fun ω => ∑ k ∈ s, F k ω) = ∑ k ∈ s, expect θ (F k) := by
   unfold expect
@@ -248,7 +312,9 @@ theorem expect_sum {κ : Type*} (θ : ℝ) (s : Finset κ) (F : κ → (ι → B
         Finset.sum_congr rfl fun ω _ => Finset.mul_sum _ _ _
     _ = ∑ k ∈ s, ∑ ω, wt θ ω * F k ω := Finset.sum_comm
 
-/-- Averaging: some outcome is at least the mean.-/
+/-- Averaging: some outcome is at least the mean.
+@isnad1 id=ex.2h3v.s5.410dffb16527 from=translated src=- shape=deb8cb8e vocab=1b82d60d
+-/
 theorem exists_expect_le {θ : ℝ} (hθ0 : 0 < θ) (hθ1 : θ < 1) (F : (ι → Bool) → ℝ) :
     ∃ ω : ι → Bool, expect θ F ≤ F ω := by
   by_contra h
@@ -260,7 +326,9 @@ theorem exists_expect_le {θ : ℝ} (hθ0 : 0 < θ) (hθ1 : θ < 1) (F : (ι →
       mul_lt_mul_of_pos_left (h ω) (wt_pos hθ0 hθ1 ω)
   exact lt_irrefl _ h1
 
-/-- Averaging: some outcome is at most the mean.-/
+/-- Averaging: some outcome is at most the mean.
+@isnad1 id=ex.2h3v.s5.06099c037408 from=translated src=- shape=16b5c7ae vocab=1b82d60d
+-/
 theorem exists_le_expect {θ : ℝ} (hθ0 : 0 < θ) (hθ1 : θ < 1) (F : (ι → Bool) → ℝ) :
     ∃ ω : ι → Bool, F ω ≤ expect θ F := by
   by_contra h
@@ -272,7 +340,9 @@ theorem exists_le_expect {θ : ℝ} (hθ0 : 0 < θ) (hθ1 : θ < 1) (F : (ι →
       mul_lt_mul_of_pos_left (h ω) (wt_pos hθ0 hθ1 ω)
   exact lt_irrefl _ h1
 
-/-- Markov's inequality for the product Bernoulli measure.-/
+/-- Markov's inequality for the product Bernoulli measure.
+@isnad1 id=le.4h4v.s6.7cd18f3b3d13 from=translated src=- shape=a4170c94 vocab=dbb81c6b
+-/
 theorem markov {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) (F : (ι → Bool) → ℝ)
     (hF : ∀ ω, 0 ≤ F ω) {a : ℝ} (ha : 0 < a) :
     expect θ (fun ω => if a ≤ F ω then (1 : ℝ) else 0) ≤ expect θ F / a := by
@@ -289,7 +359,9 @@ theorem markov {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) (F : (ι → Bool)
     _ = a⁻¹ * expect θ F := expect_const_mul _ _ _
     _ = expect θ F / a := by rw [inv_mul_eq_div]
 
-/-- Expectation of a product of per-coordinate functions factorizes.-/
+/-- Expectation of a product of per-coordinate functions factorizes.
+@isnad1 id=eq.0h3v.s6.e8610b8bb014 from=translated src=- shape=b6e49f80 vocab=c162e4e2
+-/
 theorem expect_prod_comp (θ : ℝ) (g : ι → Bool → ℝ) :
     expect θ (fun ω => ∏ t, g t (ω t)) = ∏ t, (θ * g t true + (1 - θ) * g t false) := by
   have h := Finset.prod_univ_sum (fun _ : ι => (Finset.univ : Finset Bool))
@@ -304,7 +376,9 @@ theorem expect_prod_comp (θ : ℝ) (g : ι → Bool → ℝ) :
         Finset.prod_congr rfl fun t _ => by rw [Fintype.sum_bool]; simp
 
 /-- The probability of a cylinder event: the coordinates in `S` are on and the
-coordinates in `T` are off.-/
+coordinates in `T` are off.
+@isnad1 id=eq.1h4v.s8.c5670feff268 from=translated src=- shape=13e7ab5b vocab=0e2cf2ed
+-/
 theorem expect_cylinder (θ : ℝ) (S T : Finset ι) (hd : Disjoint S T) :
     expect θ (fun ω => if (∀ i ∈ S, ω i = true) ∧ (∀ i ∈ T, ω i = false) then (1 : ℝ) else 0)
       = θ ^ S.card * (1 - θ) ^ T.card := by
@@ -369,6 +443,9 @@ def merge (p : ι → Prop) [DecidablePred p] (a : {i // p i} → Bool) (b : {i 
     ι → Bool := fun i => if h : p i then a ⟨i, h⟩ else b ⟨i, h⟩
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h5v.s6.13fd9441d6dd from=translated src=- shape=a85eb8ed vocab=cd88e981
+-/
 theorem wt_merge (θ : ℝ) (p : ι → Prop) [DecidablePred p]
     (a : {i // p i} → Bool) (b : {i // ¬ p i} → Bool) :
     wt θ (merge p a b) = wt θ a * wt θ b := by
@@ -380,7 +457,9 @@ theorem wt_merge (θ : ℝ) (p : ι → Prop) [DecidablePred p]
   · exact Finset.prod_congr rfl fun i _ => by rw [dite_eq_right i.2]
 
 /-- Expectation splits into an outer expectation over the coordinates satisfying `p`
-and an inner expectation over the remaining coordinates.-/
+and an inner expectation over the remaining coordinates.
+@isnad1 id=eq.0h4v.s7.388f8821f36c from=translated src=- shape=34571860 vocab=750c8ff1
+-/
 theorem expect_split (θ : ℝ) (p : ι → Prop) [DecidablePred p] (F : (ι → Bool) → ℝ) :
     expect θ F = expect θ (fun a : {i // p i} → Bool =>
       expect θ (fun b : {i // ¬ p i} → Bool => F (merge p a b))) := by
@@ -399,7 +478,9 @@ end Bernoulli
 
 /-! ### Elementary inequalities -/
 
-/-- For `0 ≤ θ ≤ 1` we have `(1-θ)^d ≤ 1/(1+θd)`.-/
+/-- For `0 ≤ θ ≤ 1` we have `(1-θ)^d ≤ 1/(1+θd)`.
+@isnad1 id=le.2h2v.s6.d218e0dc573b from=translated src=- shape=70964a88 vocab=a8e1e6c9
+-/
 theorem one_sub_pow_le_inv {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) (d : ℕ) :
     (1 - θ) ^ d ≤ 1 / (1 + θ * d) := by
   induction d with
@@ -415,7 +496,9 @@ theorem one_sub_pow_le_inv {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) (d : �
           push_cast
           nlinarith [sq_nonneg θ]
 
-/-- If `θ d ≥ 1` then `1 - (1-θ)^d ≥ 1/2`.-/
+/-- If `θ d ≥ 1` then `1 - (1-θ)^d ≥ 1/2`.
+@isnad1 id=le.3h2v.s6.f1d9fae9092e from=translated src=- shape=f315fef3 vocab=6c42160c
+-/
 theorem half_le_one_sub_pow {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) {d : ℕ}
     (hd : 1 ≤ θ * d) : (1 / 2 : ℝ) ≤ 1 - (1 - θ) ^ d := by
   have h := one_sub_pow_le_inv hθ0 hθ1 d
@@ -425,7 +508,9 @@ theorem half_le_one_sub_pow {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) {d : 
     linarith
   linarith
 
-/-- If `θ d ≤ 1` then `1 - (1-θ)^d ≥ θd/2`.-/
+/-- If `θ d ≤ 1` then `1 - (1-θ)^d ≥ θd/2`.
+@isnad1 id=le.3h2v.s6.8cc6d584a972 from=translated src=- shape=006b68af vocab=6c42160c
+-/
 theorem lin_le_one_sub_pow {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) {d : ℕ}
     (hd : θ * d ≤ 1) : θ * d / 2 ≤ 1 - (1 - θ) ^ d := by
   have h := one_sub_pow_le_inv hθ0 hθ1 d
@@ -436,7 +521,9 @@ theorem lin_le_one_sub_pow {θ : ℝ} (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) {d : �
     nlinarith
   linarith
 
-/-- `(1-θ)^n ≤ exp (-θ n)`.-/
+/-- `(1-θ)^n ≤ exp (-θ n)`.
+@isnad1 id=le.2h2v.s6.c45c849dfd80 from=translated src=- shape=4d359d28 vocab=2b8c9761
+-/
 theorem one_sub_pow_le_exp {θ : ℝ} (_hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) (n : ℕ) :
     (1 - θ) ^ n ≤ Real.exp (-(θ * n)) := by
   have h1 : 1 - θ ≤ Real.exp (-θ) := by
@@ -447,6 +534,9 @@ theorem one_sub_pow_le_exp {θ : ℝ} (_hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) (n : 
         rw [← Real.exp_nat_mul]
         ring_nf
 
+/--
+@isnad1 id=le.0h0v.s5.12808a41bf7e from=translated src=- shape=a644ce02 vocab=ff3fd5be
+-/
 theorem exp_neg_eight_le : Real.exp (-8) ≤ (1 / 256 : ℝ) := by
   have h2 : (2 : ℝ) ≤ Real.exp 1 := by
     (convert Real.add_one_le_exp 1 using 1; norm_num)
@@ -463,7 +553,9 @@ namespace Bernoulli
 
 variable {ι : Type u} [Fintype ι] [DecidableEq ι]
 
-/-- Variance decomposition after exposing the distinguished coordinate of `Option i`.-/
+/-- Variance decomposition after exposing the distinguished coordinate of `Option i`.
+@isnad1 id=eq.0h3v.s7.5ecfcc81054e from=translated src=- shape=ad33a57f vocab=a7d113af
+-/
 theorem var_option {i : Type*} [Fintype i] [DecidableEq i] [DecidableEq (Option i)]
     (θ : ℝ) (F : (Option i → Bool) → ℝ) :
     var θ F =
@@ -477,7 +569,9 @@ theorem var_option {i : Type*} [Fintype i] [DecidableEq i] [DecidableEq (Option 
   ring
 
 /-- The coordinate switch-off energy also splits at the distinguished `Option`
-coordinate.-/
+coordinate.
+@isnad1 id=eq.0h3v.s8.0468f51d9537 from=translated src=- shape=68680d54 vocab=8271dff8
+-/
 theorem switchEnergy_option {i : Type*} [Fintype i] [DecidableEq i] [DecidableEq (Option i)]
     (θ : ℝ) (F : (Option i → Bool) → ℝ) :
     expect θ (fun ω => ∑ t, (F ω - F (Function.update ω t false)) ^ 2) =
@@ -516,7 +610,9 @@ theorem switchEnergy_option {i : Type*} [Fintype i] [DecidableEq i] [DecidableEq
   rw [htrue, hfalse, expect_add]
   ring
 
-/-- Tensorization step for Efron–Stein when one Boolean coordinate is added.-/
+/-- Tensorization step for Efron–Stein when one Boolean coordinate is added.
+@isnad1 id=le.3h3v.s7.5fc028597377 from=translated src=- shape=0a56292c vocab=b865bc0f
+-/
 theorem efron_stein_option {i : Type*} [Fintype i] [DecidableEq i]
     [DecidableEq (Option i)]
     (θ : ℝ) (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1)
@@ -556,7 +652,9 @@ theorem efron_stein_option {i : Type*} [Fintype i] [DecidableEq i]
   have hh0 := mul_le_mul_of_nonneg_left h0 hc0
   linarith
 
-/-- Efron–Stein is invariant under a relabelling of the coordinate type.-/
+/-- Efron–Stein is invariant under a relabelling of the coordinate type.
+@isnad1 id=le.1h5v.s7.d4a6fe3b1fe6 from=translated src=- shape=9a34344f vocab=e854cd8b
+-/
 theorem efron_stein_of_equiv {a b : Type*} [Fintype a] [DecidableEq a]
     [Fintype b] [DecidableEq b] (e : a ≃ b) (θ : ℝ)
     (h : ∀ G : (b → Bool) → ℝ,
@@ -589,7 +687,9 @@ This follows from the classical Efron–Stein inequality
 `Var(Z) ≤ ½ ∑ t E[(Z − Z⁽ᵗ⁾)²]` (independent resampling of coordinate `t`), since for
 a Bernoulli(θ) coordinate `½ E[(Z − Z⁽ᵗ⁾)²] = θ(1−θ)·E[(Z_on − Z_off)²]` while
 `E[(Z − Z^{(t,0)})²] = θ·E[(Z_on − Z_off)²]`.  This is the single analytic input of
-Section 3.-/
+Section 3.
+@isnad1 id=le.2h3v.s6.3594ae51911d from=translated src=- shape=2400b733 vocab=ce52729e
+-/
 theorem efron_stein (θ : ℝ) (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) (F : (ι → Bool) → ℝ) :
     var θ F ≤ expect θ fun ω => ∑ t, (F ω - F (Function.update ω t false)) ^ 2 := by
   classical
@@ -642,7 +742,9 @@ section Coverage
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 omit [Fintype V] in
-/-- A `Finset V` of cardinality `≤ 2` containing the support of a `Sym2 V`.-/
+/-- A `Finset V` of cardinality `≤ 2` containing the support of a `Sym2 V`.
+@isnad1 id=le.1h3v.s5.54d8228d4539 from=translated src=- shape=f8aa0ff7 vocab=211330fd
+-/
 theorem sym2_card_le (z : Sym2 V) (s : Finset V) (h : ∀ v ∈ s, v ∈ z) : s.card ≤ 2 := by
   induction z using Sym2.inductionOn with
   | hf x y =>
@@ -653,7 +755,9 @@ theorem sym2_card_le (z : Sym2 V) (s : Finset V) (h : ∀ v ∈ s, v ∈ z) : s.
       _ ≤ 2 := le_trans (Finset.card_insert_le _ _) (by simp)
 
 omit [Fintype V] in
-/-- Every `Sym2` element supported in `H` lies in the image of `H ×ˢ H`.-/
+/-- Every `Sym2` element supported in `H` lies in the image of `H ×ˢ H`.
+@isnad1 id=mem.1h3v.s6.8a7757db42a8 from=translated src=- shape=ed1ca4ca vocab=211372b2
+-/
 theorem sym2_mem_image_product (H : Finset V) (z : Sym2 V) (h : ∀ v ∈ z, v ∈ H) :
     z ∈ (H ×ˢ H).image (fun p : V × V => s(p.1, p.2)) := by
   induction z using Sym2.inductionOn with
@@ -665,12 +769,17 @@ theorem sym2_mem_image_product (H : Finset V) (z : Sym2 V) (h : ∀ v ∈ z, v �
 def retained (F : Finset (Configuration V)) (σ : V → Bool) : Finset (Configuration V) :=
   F.filter fun c => σ c.j = true ∧ ∀ v ∈ c.τ, σ v = false
 
+/--
+@isnad1 id=iff.0h4v.s6.86ef41fb58a2 from=translated src=- shape=24c71e47 vocab=f037c853
+-/
 theorem mem_retained {F : Finset (Configuration V)} {σ : V → Bool}
     {c : Configuration V} :
     c ∈ retained F σ ↔ c ∈ F ∧ σ c.j = true ∧ ∀ v ∈ c.τ, σ v = false := by
   simp [retained]
 
-/-- Some bipartition retains at least one eighth of any configuration family.-/
+/-- Some bipartition retains at least one eighth of any configuration family.
+@isnad1 id=ex.0h2v.s5.d815aa98a1a8 from=translated src=- shape=85708ab7 vocab=f662bb4a
+-/
 theorem exists_large_retained (F : Finset (Configuration V)) :
     ∃ σ : V → Bool, F.card ≤ 8 * (retained F σ).card := by
   classical
@@ -728,6 +837,9 @@ theorem exists_large_retained (F : Finset (Configuration V)) :
 def offSide (σ : V → Bool) : Finset V := Finset.univ.filter (fun v => σ v = false)
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=iff.0h3v.s5.d01921fb3266 from=translated src=- shape=1d5c52df vocab=a262ea09
+-/
 theorem mem_offSide {σ : V → Bool} {v : V} : v ∈ offSide σ ↔ σ v = false := by
   unfold offSide; simp
 
@@ -736,6 +848,9 @@ def covSet (R : Finset (Configuration V)) (v : V) : Finset V :=
   (R.filter (fun c => v ∈ c.τ)).image Configuration.j
 
 omit [Fintype V] in
+/--
+@isnad1 id=iff.0h4v.s6.ca6417cd50a1 from=translated src=- shape=b9443529 vocab=b573f762
+-/
 theorem mem_covSet {R : Finset (Configuration V)} {v u : V} :
     u ∈ covSet R v ↔ ∃ c ∈ R, v ∈ c.τ ∧ c.j = u := by
   unfold covSet
@@ -745,11 +860,17 @@ theorem mem_covSet {R : Finset (Configuration V)} {v u : V} :
 def coveredSet (R : Finset (Configuration V)) (σ : V → Bool) (ω : V → Bool) : Finset V :=
   (offSide σ).filter (fun v => ∃ u ∈ covSet R v, ω u = true)
 
+/--
+@isnad1 id=iff.0h5v.s6.36fbfc90a4ac from=translated src=- shape=efffaffe vocab=84014812
+-/
 theorem mem_coveredSet {R : Finset (Configuration V)} {σ ω : V → Bool} {v : V} :
     v ∈ coveredSet R σ ω ↔ σ v = false ∧ ∃ u ∈ covSet R v, ω u = true := by
   unfold coveredSet
   rw [Finset.mem_filter, mem_offSide]
 
+/--
+@isnad1 id=le.0h5v.s5.d70d81217a3a from=translated src=- shape=a938461d vocab=a1861064
+-/
 theorem coveredSet_update_subset (R : Finset (Configuration V)) (σ ω : V → Bool) (u : V) :
     coveredSet R σ (Function.update ω u false) ⊆ coveredSet R σ ω := by
   intro v hv
@@ -765,6 +886,9 @@ theorem coveredSet_update_subset (R : Finset (Configuration V)) (σ ω : V → B
 def loseSet (R : Finset (Configuration V)) (σ ω : V → Bool) (u : V) : Finset V :=
   coveredSet R σ ω \ coveredSet R σ (Function.update ω u false)
 
+/--
+@isnad1 id=eq.0h5v.s6.ae3bc2d506f0 from=translated src=- shape=dae34e91 vocab=191324dc
+-/
 theorem card_loseSet (R : Finset (Configuration V)) (σ ω : V → Bool) (u : V) :
     (loseSet R σ ω u).card
       = (coveredSet R σ ω).card - (coveredSet R σ (Function.update ω u false)).card :=
@@ -780,7 +904,9 @@ theorem eq_of_mem_loseSet {R : Finset (Configuration V)} {σ ω : V → Bool} {u
   exact mem_coveredSet.mpr ⟨(mem_coveredSet.mp hv.1).1, w, hw,
     by rwa [Function.update_of_ne hne]⟩
 
-/-- Switching off one coordinate uncovers at most two vertices.-/
+/-- Switching off one coordinate uncovers at most two vertices.
+@isnad1 id=le.1h5v.s5.d23c6e35eeb2 from=translated src=- shape=b681d64d vocab=721a7e7f
+-/
 theorem card_loseSet_le_two {R : Finset (Configuration V)}
     (hj : Set.InjOn Configuration.j (R : Set (Configuration V))) (σ ω : V → Bool) (u : V) :
     (loseSet R σ ω u).card ≤ 2 := by
@@ -809,7 +935,9 @@ theorem card_loseSet_le_two {R : Finset (Configuration V)}
     simp
 
 /-- A covered vertex loses coverage for at most one switched-off coordinate:
-the lose-sets are pairwise disjoint and contained in the covered set.-/
+the lose-sets are pairwise disjoint and contained in the covered set.
+@isnad1 id=le.0h4v.s5.0a78921381a3 from=translated src=- shape=8bc59ce1 vocab=b3a25e21
+-/
 theorem sum_card_loseSet_le (R : Finset (Configuration V)) (σ ω : V → Bool) :
     ∑ u : V, (loseSet R σ ω u).card ≤ (coveredSet R σ ω).card := by
   have hdisj : (↑(Finset.univ : Finset V) : Set V).PairwiseDisjoint (loseSet R σ ω) := by
@@ -838,7 +966,9 @@ side), with pairwise distinct distinguished elements and multisets and `|R| ≥ 
 Under the Bernoulli(θ) random set `T = {v | ω v = true}` the probability that no
 configuration of `R` is hit is at most `8/μ₀ + exp (-θ μ₀/2)`, where
 `μ₀ = min (√(ρ/2)/2) (θρ/4)` is a lower bound on the expected number of covered
-off-side vertices.-/
+off-side vertices.
+@isnad1 id=le.7h5v.s9.22ae786fcf28 from=translated src=- shape=bdaeae31 vocab=43752457
+-/
 theorem miss_bound (θ : ℝ) (hθ0 : 0 < θ) (hθ1 : θ ≤ 1)
     (R : Finset (Configuration V)) (σ : V → Bool)
     (hret : ∀ c ∈ R, σ c.j = true ∧ ∀ v ∈ c.τ, σ v = false)
@@ -1227,7 +1357,9 @@ end MissBound
 
 /-- **Lemma 3.1 (Common-cut lemma), single family.**  A family of `≥ α·m`
 configurations with pairwise distinct distinguished elements and pairwise distinct
-multisets can be hit by a set of size `O_α(√m)`.-/
+multisets can be hit by a set of size `O_α(√m)`.
+@isnad1 id=ex.1h1v.s7.7224323d08cc from=translated src=- shape=069a3e24 vocab=29d28c8d
+-/
 theorem common_cut_single (α : ℝ) (hα : 0 < α) :
     ∃ (D : ℝ) (m₀ : ℕ), 0 < D ∧
       ∀ (V : Type) (_ : Fintype V) (_ : DecidableEq V) (F : Finset (Configuration V)),
@@ -1260,7 +1392,9 @@ theorem common_cut_single (α : ℝ) (hα : 0 < α) :
     _ ≤ 3 * Real.sqrt (Fintype.card V) := by linarith
 
 /-- **Lemma 3.1, "moreover" part.**  Given at most `m` such families on the same
-ground set, a single set of size `O_α(√m)` hits all but at most `m/8` of them.-/
+ground set, a single set of size `O_α(√m)` hits all but at most `m/8` of them.
+@isnad1 id=ex.1h1v.s7.a4542a9d8a80 from=translated src=- shape=329864f6 vocab=9dce8067
+-/
 theorem common_cut (α : ℝ) (hα : 0 < α) :
     ∃ (D : ℝ) (m₀ : ℕ), 0 < D ∧
       ∀ (V : Type) (_ : Fintype V) (_ : DecidableEq V) (q : ℕ)

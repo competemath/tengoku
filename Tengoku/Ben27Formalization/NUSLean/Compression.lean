@@ -24,7 +24,9 @@ open MinimalNUS
 
 /-- The uncompressed initial state: the zero subgroup is primitive, and its quotient
 has the images of the standard coordinate vectors as a basis.  This is also the
-terminal construction whenever the requested corank estimate already allows `K = n`.-/
+terminal construction whenever the requested corank estimate already allows `K = n`.
+@isnad1 id=ex.2h5v.s11.cd199353c8c6 from=translated src=- shape=618f2a8e vocab=81df62d4
+-/
 theorem compression_bot_case (C p n : ℕ) (S : MinimalNUS p n) (P : S.Pairing)
     (_hC : 0 < C)
     (hbound : (n : ℝ) ≤ C * (Real.sqrt n + n / Real.log p)) :
@@ -62,7 +64,9 @@ theorem compression_bot_case (C p n : ℕ) (S : MinimalNUS p n) (P : S.Pairing)
     exact one_le_pow₀ hn
 
 /-- Two light blocks have a collision row which leaves their rectangle.  This is the
-precise contrapositive of the clean-rectangle lemma used at the start of every round.-/
+precise contrapositive of the clean-rectangle lemma used at the start of every round.
+@isnad1 id=ex.4h6v.s7.5e0a7cb2326c from=translated src=- shape=c85eba57 vocab=e3c7d91e
+-/
 theorem exists_departing_pair {p n : ℕ} [Fact p.Prime] (S : MinimalNUS p n)
     (P : S.Pairing) (X Y : Finset (Fin n)) (hX : X.Nonempty) (hY : Y.Nonempty)
     (hXY : Disjoint X Y) (hlight : 2 ^ (X.card + Y.card - 2) < p) :
@@ -92,7 +96,9 @@ def IsUnitRelation {V : Type*} [DecidableEq V] (w : V → ℤ) : Prop :=
   ∃ a b, a ≠ b ∧ w = -(Pi.single a 1 - Pi.single b 1)
 
 /-- A unit relation taking value one at `i` can be oriented with `i` as its positive
-endpoint.-/
+endpoint.
+@isnad1 id=or.2h3v.s6.89770fcecd61 from=translated src=- shape=ed4cc83a vocab=4ed2d8f8
+-/
 theorem unitRelation_normalize_at_one {V : Type*} [DecidableEq V]
     {w : V → ℤ} (i : V) (hu : IsUnitRelation w) (hi : w i = 1) :
     w = Pi.single i 1 ∨
@@ -141,7 +147,9 @@ theorem unitRelation_normalize_at_one {V : Type*} [DecidableEq V]
     ring
 
 /-- Restricting coordinates after promotion preserves a unit relation incident with
-an unpromoted positive endpoint.-/
+an unpromoted positive endpoint.
+@isnad1 id=isunitre.3h4v.s7.961311cd76dc from=translated src=- shape=0ea17707 vocab=78ffd264
+-/
 theorem unitRelation_restrict_at_one {V : Type*} [Fintype V] [DecidableEq V]
     {w : V → ℤ} (i : V) (hu : IsUnitRelation w) (hi : w i = 1)
     (T : Finset V) (hiT : i ∉ T) :
@@ -166,6 +174,9 @@ theorem unitRelation_restrict_at_one {V : Type*} [Fintype V] [DecidableEq V]
         rw [hw]
         simp [Pi.single_apply, Subtype.ext_iff]
 
+/--
+@isnad1 id=or.1h2v.s6.c2d1b8881588 from=translated src=- shape=b4defbd8 vocab=b1eeaf2d
+-/
 theorem multiset_card_le_two_cases {V : Type*} (ν : Multiset V) (hν : ν.card ≤ 2) :
     ν = 0 ∨ (∃ a, ν = {a}) ∨ ∃ a b, ν = {a, b} := by
   rcases Nat.eq_zero_or_pos ν.card with h0 | hp
@@ -177,6 +188,9 @@ theorem multiset_card_le_two_cases {V : Type*} (ν : Multiset V) (hν : ν.card 
   · obtain ⟨a, b, hab⟩ := Multiset.card_eq_two.mp h2
     exact Or.inr (Or.inr ⟨a, b, hab⟩)
 
+/--
+@isnad1 id=eq.0h4v.s6.3eae149a0e08 from=translated src=- shape=7255cfbe vocab=254a4ce8
+-/
 theorem count_pair_apply {V : Type*} [DecidableEq V] (a b v : V) :
     (({a, b} : Multiset V).count v : ℤ) =
       (Pi.single a (1 : ℤ) : V → ℤ) v + (Pi.single b (1 : ℤ) : V → ℤ) v := by
@@ -189,6 +203,9 @@ theorem count_pair_apply {V : Type*} [DecidableEq V] (a b v : V) :
   push_cast
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.f3c7538d4a31 from=translated src=- shape=5be746dd vocab=f347b3a1
+-/
 theorem count_singleton_apply {V : Type*} [DecidableEq V] (a v : V) :
     (({a} : Multiset V).count v : ℤ) = (Pi.single a (1 : ℤ) : V → ℤ) v := by
   rw [Multiset.count_singleton]
@@ -196,7 +213,9 @@ theorem count_singleton_apply {V : Type*} [DecidableEq V] (a v : V) :
   split <;> norm_num
 
 /-- If the outgoing live multiset contains the second endpoint, cancellation makes
-the departing row a unit relation.  This is the `direct` case in Section 4.-/
+the departing row a unit relation.  This is the `direct` case in Section 4.
+@isnad1 id=isunitre.3h4v.s5.4aaeeee76efd from=translated src=- shape=b08e76cf vocab=0c3ebb27
+-/
 theorem departingLive_unit_of_mem_right {V : Type*} [DecidableEq V]
     (i j : V) (ν : Multiset V) (hcard : ν.card ≤ 2) (hmem : j ∈ ν)
     (hne : ν ≠ {i, j}) : IsUnitRelation (departingLive i j ν) := by
@@ -233,13 +252,18 @@ theorem departingLive_unit_of_mem_right {V : Type*} [DecidableEq V]
         rw [count_pair_apply]
         ring
 
+/--
+@isnad1 id=eq.0h4v.s4.933471e16b72 from=translated src=- shape=53bba432 vocab=0abff682
+-/
 theorem departingLive_comm {V : Type*} [DecidableEq V] (i j : V) (ν : Multiset V) :
     departingLive i j ν = departingLive j i ν := by
   ext v
   simp only [departingLive, Pi.add_apply, Pi.sub_apply]
   ring
 
-/-- The symmetric immediate-cancellation case.-/
+/-- The symmetric immediate-cancellation case.
+@isnad1 id=isunitre.3h4v.s5.a874dfe10efd from=translated src=- shape=0d95c04c vocab=0c3ebb27
+-/
 theorem departingLive_unit_of_mem_left {V : Type*} [DecidableEq V]
     (i j : V) (ν : Multiset V) (hcard : ν.card ≤ 2) (hmem : i ∈ ν)
     (hne : ν ≠ {i, j}) : IsUnitRelation (departingLive i j ν) := by
@@ -250,7 +274,9 @@ theorem departingLive_unit_of_mem_left {V : Type*} [DecidableEq V]
   rw [departingLive_comm i j ν]
   exact departingLive_unit_of_mem_right j i ν hcard hmem hne'
 
-/-- In the direct-cancellation case the surviving anchor coefficient is exactly one.-/
+/-- In the direct-cancellation case the surviving anchor coefficient is exactly one.
+@isnad1 id=eq.4h4v.s6.5bfffa9d9a25 from=translated src=- shape=b9816274 vocab=c2091509
+-/
 theorem departingLive_anchor_of_mem_right {V : Type*} [DecidableEq V]
     (i j : V) (ν : Multiset V) (hij : i ≠ j) (hcard : ν.card ≤ 2)
     (hmem : j ∈ ν) (hne : ν ≠ {i, j}) : departingLive i j ν i = 1 := by
@@ -281,7 +307,9 @@ theorem departingLive_anchor_of_mem_right {V : Type*} [DecidableEq V]
     rw [count_pair_apply]
     simp [hij, hi.1, hi.2]
 
-/-- Symmetric immediate cancellation leaves coefficient one at the label.-/
+/-- Symmetric immediate cancellation leaves coefficient one at the label.
+@isnad1 id=eq.4h4v.s6.21cb18c21fa0 from=translated src=- shape=b2acbaa8 vocab=c2091509
+-/
 theorem departingLive_label_of_mem_left {V : Type*} [DecidableEq V]
     (i j : V) (ν : Multiset V) (hij : i ≠ j) (hcard : ν.card ≤ 2)
     (hmem : i ∈ ν) (hne : ν ≠ {i, j}) : departingLive i j ν j = 1 := by
@@ -291,13 +319,18 @@ theorem departingLive_label_of_mem_left {V : Type*} [DecidableEq V]
   apply hne
   exact h.trans (Multiset.pair_comm j i)
 
+/--
+@isnad1 id=eq.2h4v.s5.11054e695361 from=translated src=- shape=99a2f04d vocab=5bd84dd2
+-/
 theorem departingLive_anchor_of_not_mem {V : Type*} [DecidableEq V]
     (i j : V) (ν : Multiset V) (hij : i ≠ j) (hi : i ∉ ν) :
     departingLive i j ν i = 1 := by
   simp [departingLive, hij, Multiset.count_eq_zero.mpr hi]
 
 /-- Subtracting two proper rows of the same type cancels both the anchor and the type,
-leaving the unit difference between their labels.-/
+leaving the unit difference between their labels.
+@isnad1 id=eq.0h5v.s6.b1220f73fe90 from=translated src=- shape=3356023b vocab=b2d17aab
+-/
 theorem departingLive_sub_same_type {V : Type*} [DecidableEq V]
     (i j j' : V) (ν : Multiset V) :
     departingLive i j ν - departingLive i j' ν =
@@ -314,7 +347,9 @@ def IsProperDeparture {V : Type*} (i j : V) (ν : Multiset V) : Prop :=
 
 /-- Sampling the label of an easy departure turns its surviving live part into a
 unit relation.  The outgoing multiset has size at most one, so it either disappears
-into the promoted core or supplies the other endpoint of a live edge.-/
+into the promoted core or supplies the other endpoint of a live edge.
+@isnad1 id=isunitre.3h5v.s7.a38851ff3d96 from=translated src=- shape=6b2a957b vocab=acf21d07
+-/
 theorem easy_after_promote_unit {V : Type*} [Fintype V] [DecidableEq V]
     {i j : V} {ν : Multiset V} (h : IsEasyDeparture i j ν)
     (T : Finset V) (hiT : i ∉ T) (hjT : j ∈ T) :
@@ -353,7 +388,9 @@ theorem easy_after_promote_unit {V : Type*} [Fintype V] [DecidableEq V]
 
 /-- A hit proper configuration likewise leaves a unit row: its distinguished label
 and at least one member of its two-element type enter the core, leaving either
-`x_i` or `x_i-x_a`.-/
+`x_i` or `x_i-x_a`.
+@isnad1 id=isunitre.4h5v.s7.23f7e747104f from=translated src=- shape=b7d9b4ab vocab=e1ba9334
+-/
 theorem proper_after_promote_unit {V : Type*} [Fintype V] [DecidableEq V]
     {i j : V} {ν : Multiset V} (h : IsProperDeparture i j ν)
     (T : Finset V) (hiT : i ∉ T) (hjT : j ∈ T)
@@ -416,7 +453,9 @@ theorem proper_after_promote_unit {V : Type*} [Fintype V] [DecidableEq V]
           (Pi.single b (1 : ℤ) : V → ℤ) v.1 by exact count_pair_apply a b v.1]
       simp [Pi.single_apply, hvj, hvb, Subtype.ext_iff]
 
-/-- The exhaustive direct/easy/proper classification following (4.1).-/
+/-- The exhaustive direct/easy/proper classification following (4.1).
+@isnad1 id=or.2h4v.s6.c0497aac34e3 from=translated src=- shape=c44ade65 vocab=f1fb127b
+-/
 theorem departing_classification {V : Type*} [DecidableEq V]
     (i j : V) (ν : Multiset V) (hcard : ν.card ≤ 2) (hne : ν ≠ {i, j}) :
     IsUnitRelation (departingLive i j ν) ∨
@@ -430,16 +469,24 @@ theorem departing_classification {V : Type*} [DecidableEq V]
   · exact Or.inl ⟨hi, hj, by omega⟩
   · exact Or.inr ⟨hi, hj, heq⟩
 
+/--
+@isnad1 id=not.1h4v.s5.facbbcd2cde3 from=translated src=- shape=8cefe8e2 vocab=7fb0951a
+-/
 theorem proper_support_avoids_label {V : Type*} [DecidableEq V] {i j : V} {ν : Multiset V}
     (h : IsProperDeparture i j ν) : j ∉ ν.toFinset := by
   simpa using h.2.1
 
+/--
+@isnad1 id=ex.1h4v.s5.f5ff61f5f90e from=translated src=- shape=6bc76128 vocab=23274aa5
+-/
 theorem proper_eq_pair {V : Type*} {i j : V} {ν : Multiset V}
     (h : IsProperDeparture i j ν) : ∃ a b, ν = {a, b} :=
   Multiset.card_eq_two.mp h.2.2
 
 /-- A proper departure is exactly a common-cut configuration: its label is outside
-the support of its two-element type.-/
+the support of its two-element type.
+@isnad1 id=ex.1h4v.s6.09677b19d048 from=translated src=- shape=f1d2a59a vocab=02d0f10b
+-/
 theorem exists_configuration_of_proper {V : Type*} [DecidableEq V]
     {i j : V} {ν : Multiset V} (h : IsProperDeparture i j ν) :
     ∃ a b : V, ∃ c : Configuration V, ν = {a, b} ∧ c.j = j ∧ c.τ = s(a, b) := by
@@ -474,6 +521,9 @@ noncomputable def LiveBlocks.heavy {n : ℕ} {V : Type*}
 def LiveBlocks.mass {n : ℕ} {V : Type*} [Fintype V]
     (B : LiveBlocks n V) : ℕ := ∑ v, (B.block v).card
 
+/--
+@isnad1 id=disjoint.1h5v.s5.9010cbe6a401 from=translated src=- shape=f97913b9 vocab=60a27f9e
+-/
 theorem LiveBlocks.disjoint {n : ℕ} {V : Type*} [DecidableEq V]
     (B : LiveBlocks n V) {i j : V} (hij : i ≠ j) : Disjoint (B.block i) (B.block j) := by
   rw [Finset.disjoint_left]
@@ -482,6 +532,9 @@ theorem LiveBlocks.disjoint {n : ℕ} {V : Type*} [DecidableEq V]
   have hj := (B.mem_block_iff a j).mp haj
   exact hij (Option.some.inj (hi.symm.trans hj))
 
+/--
+@isnad1 id=le.0h3v.s4.1ff20e6d6413 from=translated src=- shape=ad88543c vocab=c9b17f63
+-/
 theorem LiveBlocks.mass_le {n : ℕ} {V : Type*} [Fintype V] [DecidableEq V]
     (B : LiveBlocks n V) : B.mass ≤ n := by
   classical
@@ -499,9 +552,15 @@ def liveLabels {n : ℕ} {V : Type*} (B : LiveBlocks n V) : Sym2 (Fin n) → Mul
     intro a b
     exact add_comm _ _⟩
 
+/--
+@isnad1 id=eq.0h5v.s5.58fead1f521d from=translated src=- shape=8a37e364 vocab=cac9f463
+-/
 theorem liveLabels_mk {n : ℕ} {V : Type*} (B : LiveBlocks n V) (a b : Fin n) :
     liveLabels B s(a, b) = (B.owner a).toList + (B.owner b).toList := rfl
 
+/--
+@isnad1 id=le.0h4v.s4.a81d133bd04c from=translated src=- shape=65f00253 vocab=ced3cc70
+-/
 theorem liveLabels_card_le_two {n : ℕ} {V : Type*} (B : LiveBlocks n V)
     (t : Sym2 (Fin n)) : (liveLabels B t).card ≤ 2 := by
   induction t using Sym2.inductionOn with
@@ -509,6 +568,9 @@ theorem liveLabels_card_le_two {n : ℕ} {V : Type*} (B : LiveBlocks n V)
       simp only [liveLabels_mk, Multiset.card_add, Option.toList]
       split <;> split <;> simp
 
+/--
+@isnad1 id=eq.1h6v.s6.c66480c9e01a from=translated src=- shape=132138c8 vocab=41b94afc
+-/
 theorem liveLabels_source_pair {n : ℕ} {V : Type*} [DecidableEq V]
     (B : LiveBlocks n V) {i j : V} {t : Sym2 (Fin n)}
     (ht : t ∈ MinimalNUS.rectangle (B.block i) (B.block j)) :
@@ -517,6 +579,9 @@ theorem liveLabels_source_pair {n : ℕ} {V : Type*} [DecidableEq V]
   rw [liveLabels_mk, (B.mem_block_iff a i).mp ha, (B.mem_block_iff b j).mp hb]
   simp [Multiset.insert_eq_cons]
 
+/--
+@isnad1 id=mem.2h6v.s6.bfe5a4d5535a from=translated src=- shape=35d1f46b vocab=41b94afc
+-/
 theorem mem_rectangle_of_liveLabels_eq_pair {n : ℕ} {V : Type*} [DecidableEq V]
     (B : LiveBlocks n V) {i j : V} (_hij : i ≠ j) {t : Sym2 (Fin n)}
     (ht : liveLabels B t = {i, j}) :
@@ -542,6 +607,9 @@ theorem mem_rectangle_of_liveLabels_eq_pair {n : ℕ} {V : Type*} [DecidableEq V
         exact ⟨b, (B.mem_block_iff b i).mpr hOB, a,
           (B.mem_block_iff a j).mpr hOA, rfl⟩
 
+/--
+@isnad1 id=ne.2h6v.s6.5c291c6792a4 from=translated src=- shape=b28ad883 vocab=41b94afc
+-/
 theorem liveLabels_departing_ne {n : ℕ} {V : Type*} [DecidableEq V]
     (B : LiveBlocks n V) {i j : V} (hij : i ≠ j) {t : Sym2 (Fin n)}
     (hout : t ∉ MinimalNUS.rectangle (B.block i) (B.block j)) :
@@ -578,6 +646,9 @@ def CoreBound (st : CompressionState S P C V) (M : ℤ) : Prop :=
     ∑ c : C,
       |st.basis.repr (Submodule.Quotient.mk (Pi.single a 1)) (Sum.inl c)| ≤ M
 
+/--
+@isnad1 id=le.1h8v.s6.3d1a6ed352ba from=translated src=- shape=908d1ff2 vocab=4c8236f4
+-/
 theorem coreBound_nonneg (st : CompressionState S P C V) {M : ℤ}
     (hM : st.CoreBound M) : 0 ≤ M := by
   classical
@@ -585,7 +656,9 @@ theorem coreBound_nonneg (st : CompressionState S P C V) {M : ℤ}
   exact le_trans (Finset.sum_nonneg fun _ _ => abs_nonneg _) (hM a)
 
 /-- The core part of the image of a two-index incidence vector has norm at most
-`2M`.-/
+`2M`.
+@isnad1 id=le.1h9v.s10.b1de626481ce from=translated src=- shape=522cbe84 vocab=2335cef5
+-/
 theorem core_norm_uvec_le (st : CompressionState S P C V) {M : ℤ}
     (hM : st.CoreBound M) (t : Sym2 (Fin n)) :
     ∑ c : C,
@@ -615,7 +688,9 @@ theorem core_norm_uvec_le (st : CompressionState S P C V) {M : ℤ}
         _ = 2 * M := by ring
 
 /-- Equation (4.1), quantitatively: the core-supported error in every raw departing
-row has norm at most `4M` (in fact this holds for every collision row).-/
+row has norm at most `4M` (in fact this holds for every collision row).
+@isnad1 id=le.1h9v.s6.470af1d5e242 from=translated src=- shape=c5ef7b27 vocab=692a48d4
+-/
 theorem projectedRow_core_norm_le (st : CompressionState S P C V) {M : ℤ}
     (hM : st.CoreBound M) (t : Sym2 (Fin n)) :
     ∑ c : C, |st.projectedRow t (Sum.inl c)| ≤ 4 * M := by
@@ -642,6 +717,9 @@ theorem projectedRow_core_norm_le (st : CompressionState S P C V) {M : ℤ}
       (st.core_norm_uvec_le hM (P.μ t))
     _ = 4 * M := by ring
 
+/--
+@isnad1 id=eq.0h9v.s10.1213cd8b6bdc from=translated src=- shape=8610dc81 vocab=635ef218
+-/
 theorem live_coord_uvec (st : CompressionState S P C V) (t : Sym2 (Fin n)) (v : V) :
     st.basis.repr (Submodule.Quotient.mk (uvec t)) (Sum.inr v) =
       ((liveLabels st.blocks t).count v : ℤ) := by
@@ -658,7 +736,9 @@ theorem live_coord_uvec (st : CompressionState S P C V) (t : Sym2 (Fin n)) (v : 
           Multiset.count_singleton, eq_comm, add_comm]
 
 /-- The live part of an incidence vector has `ℓ1`-norm at most two, even when
-one or both physical endpoints already belong to the core.-/
+one or both physical endpoints already belong to the core.
+@isnad1 id=le.0h8v.s10.5730508d2459 from=translated src=- shape=3264fdd2 vocab=1e8a9ae1
+-/
 theorem live_norm_uvec_le (st : CompressionState S P C V) (t : Sym2 (Fin n)) :
     ∑ v : V, |st.basis.repr (Submodule.Quotient.mk (uvec t)) (Sum.inr v)| ≤ 2 := by
   classical
@@ -674,7 +754,9 @@ theorem live_norm_uvec_le (st : CompressionState S P C V) (t : Sym2 (Fin n)) :
   simp_rw [habs]
   exact_mod_cast hsum.symm ▸ hcard
 
-/-- Every collision row has live `ℓ1`-norm at most four.-/
+/-- Every collision row has live `ℓ1`-norm at most four.
+@isnad1 id=le.0h8v.s6.2006c8469026 from=translated src=- shape=77cb54a7 vocab=7af2cfec
+-/
 theorem projectedRow_live_norm_le (st : CompressionState S P C V)
     (t : Sym2 (Fin n)) :
     ∑ v : V, |st.projectedRow t (Sum.inr v)| ≤ 4 := by
@@ -702,6 +784,9 @@ theorem projectedRow_live_norm_le (st : CompressionState S P C V)
     _ ≤ 2 + 2 := add_le_add (st.live_norm_uvec_le t) (st.live_norm_uvec_le (P.μ t))
     _ = 4 := by norm_num
 
+/--
+@isnad1 id=eq.2h10v.s7.c845b84841d8 from=translated src=- shape=157b2d6f vocab=03a14daf
+-/
 theorem projectedRow_live (st : CompressionState S P C V) {i j : V}
     (_hij : i ≠ j) {t : Sym2 (Fin n)}
     (ht : t ∈ MinimalNUS.rectangle (st.blocks.block i) (st.blocks.block j)) :
@@ -717,6 +802,9 @@ theorem projectedRow_live (st : CompressionState S P C V) {i j : V}
   rw [hsrc, count_pair_apply]
   rfl
 
+/--
+@isnad1 id=or.3h10v.s8.321d32512038 from=translated src=- shape=abf0f358 vocab=e2aba020
+-/
 theorem projected_departing_classification (st : CompressionState S P C V)
     {i j : V} (hij : i ≠ j) {t : Sym2 (Fin n)}
     (ht : t ∈ MinimalNUS.rectangle (st.blocks.block i) (st.blocks.block j))
@@ -767,6 +855,9 @@ noncomputable def initialCompressionState {p n : ℕ} (S : MinimalNUS p n)
       initialLiveBlocks]
     simp [Pi.single_apply, eq_comm]
 
+/--
+@isnad1 id=coreboun.0h4v.s5.7f9da6ec69fe from=translated src=- shape=fc48f45b vocab=bf79a9c1
+-/
 theorem initialCompressionState_coreBound {p n : ℕ} (S : MinimalNUS p n)
     (P : S.Pairing) : (initialCompressionState S P).CoreBound 0 := by
   intro a
@@ -780,6 +871,9 @@ def promoteOwner {V : Type*} [DecidableEq V] (T : Finset V) :
   | none => none
   | some v => if hv : v ∈ T then none else some ⟨v, hv⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.6b663e5e7f42 from=translated src=- shape=3e2a4aa6 vocab=81d4d179
+-/
 @[simp] theorem promoteOwner_eq_some_iff {V : Type*} [DecidableEq V]
     (T : Finset V) (o : Option V) (v : {v : V // v ∉ T}) :
     promoteOwner T o = some v ↔ o = some v.1 := by
@@ -802,6 +896,9 @@ def LiveBlocks.promote {n : ℕ} {V : Type*} [Fintype V] [DecidableEq V]
     rw [B.mem_block_iff, promoteOwner_eq_some_iff]
   nonempty v := B.nonempty v.1
 
+/--
+@isnad1 id=lt.0h5v.s6.b1a8cf11ff84 from=translated src=- shape=0800a86e vocab=a685c6d9
+-/
 theorem LiveBlocks.promote_heavy_is_light {n : ℕ} {V : Type*}
     [Fintype V] [DecidableEq V] (B : LiveBlocks n V) (L : ℕ)
     (v : {v : V // v ∉ B.heavy L}) : ((B.promote (B.heavy L)).block v).card < L := by
@@ -809,6 +906,9 @@ theorem LiveBlocks.promote_heavy_is_light {n : ℕ} {V : Type*}
     simpa only [LiveBlocks.heavy, Finset.mem_filter, Finset.mem_univ, true_and] using v.2
   simpa [LiveBlocks.promote] using (Nat.lt_of_not_ge hv)
 
+/--
+@isnad1 id=le.0h4v.s5.e868774dcbfc from=translated src=- shape=9f94b326 vocab=53f078de
+-/
 theorem LiveBlocks.heavy_card_mul_le {n : ℕ} {V : Type*}
     [Fintype V] [DecidableEq V] (B : LiveBlocks n V) (L : ℕ) :
     L * (B.heavy L).card ≤ B.mass := by
@@ -826,6 +926,9 @@ theorem LiveBlocks.heavy_card_mul_le {n : ℕ} {V : Type*}
       intro i hi hnot
       omega
 
+/--
+@isnad1 id=le.0h4v.s5.937db9d7eefe from=translated src=- shape=afaeb8c1 vocab=ee3c8b9f
+-/
 theorem LiveBlocks.heavy_card_mul_le_removed {n : ℕ} {V : Type*}
     [Fintype V] [DecidableEq V] (B : LiveBlocks n V) (L : ℕ) :
     L * (B.heavy L).card ≤ ∑ v ∈ B.heavy L, (B.block v).card := by
@@ -838,6 +941,9 @@ theorem LiveBlocks.heavy_card_mul_le_removed {n : ℕ} {V : Type*}
       simpa only [LiveBlocks.heavy, Finset.mem_filter, Finset.mem_univ, true_and]
         using hv
 
+/--
+@isnad1 id=eq.0h4v.s6.2df9b3687c91 from=translated src=- shape=54b85cf5 vocab=c948fb71
+-/
 theorem LiveBlocks.mass_promote_add_removed {n : ℕ} {V : Type*}
     [Fintype V] [DecidableEq V] (B : LiveBlocks n V) (T : Finset V) :
     (B.promote T).mass + ∑ v ∈ T, (B.block v).card = B.mass := by
@@ -920,6 +1026,9 @@ noncomputable def CompressionState.promote {p n : ℕ} {S : MinimalNUS p n}
     · have h' : (st.blocks.promote T).owner a ≠ some v := fun h' => h (hp.mp h')
       simp [h, h']
 
+/--
+@isnad1 id=eq.0h10v.s13.cedb3203c573 from=translated src=- shape=87351adc vocab=31773974
+-/
 @[simp] theorem CompressionState.promote_old_core_coord {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -930,6 +1039,9 @@ noncomputable def CompressionState.promote {p n : ℕ} {S : MinimalNUS p n}
   rw [CompressionState.promote, Module.Basis.repr_reindex_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h10v.s12.f6339aff7272 from=translated src=- shape=07c4c2a2 vocab=30bd353d
+-/
 @[simp] theorem CompressionState.promote_new_core_coord {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -943,7 +1055,9 @@ noncomputable def CompressionState.promote {p n : ℕ} {S : MinimalNUS p n}
 
 /-- The coordinate formulas for promotion hold for every ambient row, not just the
 original coordinate vectors.  These formulas let us carry the actual collision rows
-chosen before a round through its promotion step.-/
+chosen before a round through its promotion step.
+@isnad1 id=eq.0h10v.s13.1804761dab72 from=translated src=- shape=64be1106 vocab=691cb2d0
+-/
 @[simp] theorem CompressionState.promote_old_core_coord_row {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -954,6 +1068,9 @@ chosen before a round through its promotion step.-/
   rw [CompressionState.promote, Module.Basis.repr_reindex_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h10v.s13.21444972fb20 from=translated src=- shape=ed08c364 vocab=8c40f35a
+-/
 @[simp] theorem CompressionState.promote_new_core_coord_row {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -965,6 +1082,9 @@ chosen before a round through its promotion step.-/
   rw [CompressionState.promote, Module.Basis.repr_reindex_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h10v.s13.285e43473794 from=translated src=- shape=fa88acb6 vocab=8b4883c4
+-/
 @[simp] theorem CompressionState.promote_live_coord_row {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -977,7 +1097,9 @@ chosen before a round through its promotion step.-/
 
 /-- Promotion splits the old live coordinates into new core and surviving live
 coordinates, so the promoted core norm is the old core norm plus precisely the
-absolute coefficients of the promoted labels.-/
+absolute coefficients of the promoted labels.
+@isnad1 id=eq.0h9v.s13.24d74b39b108 from=translated src=- shape=3f5d4cbb vocab=d7c9e408
+-/
 theorem CompressionState.promote_core_norm_row {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -991,7 +1113,9 @@ theorem CompressionState.promote_core_norm_row {p n : ℕ}
   simp
 
 /-- A raw collision row remains quantitatively bounded after an arbitrary promotion:
-at most four old live coefficients can have moved into the core.-/
+at most four old live coefficients can have moved into the core.
+@isnad1 id=le.1h10v.s12.b3f31de0e5a3 from=translated src=- shape=ff113ec4 vocab=7e915223
+-/
 theorem CompressionState.promote_projectedRow_core_norm_le {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -1021,7 +1145,9 @@ theorem CompressionState.promote_projectedRow_core_norm_le {p n : ℕ}
     _ ≤ 4 := st.projectedRow_live_norm_le t
 
 /-- In the round invariant `M ≥ 1`, the preceding estimate is at most `8M`, and
-hence comfortably within the paper's uniform `12M` budget for forest rows.-/
+hence comfortably within the paper's uniform `12M` budget for forest rows.
+@isnad1 id=le.2h10v.s12.77eaac9a07c1 from=translated src=- shape=8d873ab8 vocab=89d1b449
+-/
 theorem CompressionState.promote_projectedRow_core_norm_le_eight_mul {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -1034,7 +1160,9 @@ theorem CompressionState.promote_projectedRow_core_norm_le_eight_mul {p n : ℕ}
   linarith
 
 /-- Promoting any collection of live representatives raises the core bound by at
-most one, since an original coordinate belongs to at most one live block.-/
+most one, since an original coordinate belongs to at most one live block.
+@isnad1 id=coreboun.1h9v.s8.254a5458c538 from=translated src=- shape=6869fe68 vocab=e4247138
+-/
 theorem CompressionState.promote_coreBound {p n : ℕ} {S : MinimalNUS p n}
     {P : S.Pairing} {C V : Type*} [Fintype C] [DecidableEq C]
     [Fintype V] [DecidableEq V] (st : CompressionState S P C V) (T : Finset V)
@@ -1082,18 +1210,26 @@ def unitElim {C V : Type*} [DecidableEq V] (v : V) (y : Sum C V → ℤ) :
     funext i
     rcases i with c | u <;> simp <;> ring
 
+/--
+@isnad1 id=eq.0h6v.s8.06ca2327e1b2 from=translated src=- shape=597cbbc2 vocab=0a4f5ab8
+-/
 @[simp] theorem unitElim_apply_left {C V : Type*} [DecidableEq V]
     (v : V) (y z : Sum C V → ℤ) (c : C) :
     unitElim v y z (Sum.inl c) =
       z (Sum.inl c) - z (Sum.inr v) * y (Sum.inl c) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.aa216faa220f from=translated src=- shape=e9228e11 vocab=0aa1d079
+-/
 @[simp] theorem unitElim_apply_right {C V : Type*} [DecidableEq V]
     (v : V) (y z : Sum C V → ℤ) (u : {u : V // u ≠ v}) :
     unitElim v y z (Sum.inr u) =
       z (Sum.inr u.1) - z (Sum.inr v) * y (Sum.inr u.1) := rfl
 
 /-- A unit elimination is onto: prescribe all surviving coordinates and set the
-pivot coordinate to zero.-/
+pivot coordinate to zero.
+@isnad1 id=surjecti.0h4v.s8.a858f4900196 from=translated src=- shape=2cfb790c vocab=c5c568bb
+-/
 theorem unitElim_surjective {C V : Type*} [DecidableEq V] (v : V)
     (y : Sum C V → ℤ) : Function.Surjective (unitElim v y) := by
   intro x
@@ -1108,7 +1244,9 @@ theorem unitElim_surjective {C V : Type*} [DecidableEq V] (v : V)
 
 /-- If the pivot coefficient of `y` is one, the kernel of elimination is precisely
 the cyclic submodule generated by `y`.  This is the algebraic reason every selected
-forest row is a primitive pivot.-/
+forest row is a primitive pivot.
+@isnad1 id=eq.1h4v.s8.0a0674dbb872 from=translated src=- shape=c5355772 vocab=fa20e16a
+-/
 theorem ker_unitElim {C V : Type*} [DecidableEq V] (v : V) (y : Sum C V → ℤ)
     (hy : y (Sum.inr v) = 1) :
     LinearMap.ker (unitElim v y) = Submodule.span ℤ {y} := by
@@ -1138,7 +1276,9 @@ theorem ker_unitElim {C V : Type*} [DecidableEq V] (v : V) (y : Sum C V → ℤ)
     rcases i with c | u <;>
       simp [unitElim, hy]
 
-/-- Kernels of maps to a free integral coordinate module are primitive.-/
+/-- Kernels of maps to a free integral coordinate module are primitive.
+@isnad1 id=mem.2h5v.s7.9498d497bfc5 from=translated src=- shape=9ae99614 vocab=b31963b7
+-/
 theorem ker_primitive {M ι : Type*} [AddCommGroup M] [Module ℤ M]
     (f : M →ₗ[ℤ] (ι → ℤ)) :
     ∀ (x : M) (c : ℤ), c ≠ 0 → c • x ∈ LinearMap.ker f → x ∈ LinearMap.ker f := by
@@ -1156,6 +1296,9 @@ def contractOwner {V : Type*} [DecidableEq V] (v : V)
   | none => none
   | some u => if h : u = v then parent else some ⟨u, h⟩
 
+/--
+@isnad1 id=iff.0h5v.s6.655ae6831e98 from=translated src=- shape=a868936a vocab=1a400e08
+-/
 @[simp] theorem contractOwner_eq_some_iff {V : Type*} [DecidableEq V] (v : V)
     (parent : Option {u : V // u ≠ v}) (o : Option V) (u : {u : V // u ≠ v}) :
     contractOwner v parent o = some u ↔
@@ -1168,6 +1311,9 @@ def contractOwner {V : Type*} [DecidableEq V] (v : V)
       simp [contractOwner, hvu]
     · simp [contractOwner, hwv, Subtype.ext_iff]
 
+/--
+@isnad1 id=eq.0h5v.s8.8bb546bd11ee from=translated src=- shape=fa97863d vocab=40709892
+-/
 theorem contractOwner_indicator {V : Type*} [DecidableEq V] (v : V)
     (parent : Option {u : V // u ≠ v}) (o : Option V) (u : {u : V // u ≠ v}) :
     (if o = some u.1 then (1 : ℤ) else 0) -
@@ -1221,6 +1367,9 @@ noncomputable def CompressionState.pivotMap {p n : ℕ} {S : MinimalNUS p n}
   (unitElim v y).comp
     (st.basis.equivFun.toLinearMap.comp (st.Q.mkQ : (Fin n → ℤ) →ₗ[ℤ] _))
 
+/--
+@isnad1 id=surjecti.0h9v.s8.d244743359cf from=translated src=- shape=d608af48 vocab=2365b54c
+-/
 theorem CompressionState.pivotMap_surjective {p n : ℕ} {S : MinimalNUS p n}
     {P : S.Pairing} {C V : Type*} [Fintype C] [DecidableEq C]
     [Fintype V] [DecidableEq V] (st : CompressionState S P C V)
@@ -1302,6 +1451,9 @@ noncomputable def CompressionState.pivot {p n : ℕ} {S : MinimalNUS p n}
     change _ = if contractOwner v parent (st.blocks.owner a) = some u then 1 else 0
     exact contractOwner_indicator v parent (st.blocks.owner a) u
 
+/--
+@isnad1 id=eq.3h12v.s13.4e466ce336e6 from=translated src=- shape=dd6315bf vocab=2598fb24
+-/
 theorem CompressionState.pivot_core_coord {p n : ℕ} {S : MinimalNUS p n}
     {P : S.Pairing} {C V : Type*} [Fintype C] [DecidableEq C]
     [Fintype V] [DecidableEq V] (st : CompressionState S P C V)
@@ -1326,7 +1478,9 @@ theorem CompressionState.pivot_core_coord {p n : ℕ} {S : MinimalNUS p n}
         st.basis.repr (Submodule.Quotient.mk r) (Sum.inl c) = _
   rw [st.live_coord]
 
-/-- Coordinate update for an arbitrary ambient row under a pivot.-/
+/-- Coordinate update for an arbitrary ambient row under a pivot.
+@isnad1 id=eq.3h12v.s13.7baecd29da49 from=translated src=- shape=9b5a8c7d vocab=f4dd8282
+-/
 theorem CompressionState.pivot_core_coord_row {p n : ℕ} {S : MinimalNUS p n}
     {P : S.Pairing} {C V : Type*} [Fintype C] [DecidableEq C]
     [Fintype V] [DecidableEq V] (st : CompressionState S P C V)
@@ -1348,6 +1502,9 @@ theorem CompressionState.pivot_core_coord_row {p n : ℕ} {S : MinimalNUS p n}
   rw [unitElim_apply_left]
   rfl
 
+/--
+@isnad1 id=eq.3h12v.s13.137b13c547e5 from=translated src=- shape=c757dd41 vocab=b2514c9f
+-/
 theorem CompressionState.pivot_live_coord_row {p n : ℕ} {S : MinimalNUS p n}
     {P : S.Pairing} {C V : Type*} [Fintype C] [DecidableEq C]
     [Fintype V] [DecidableEq V] (st : CompressionState S P C V)
@@ -1370,7 +1527,9 @@ theorem CompressionState.pivot_live_coord_row {p n : ℕ} {S : MinimalNUS p n}
   rfl
 
 /-- A row with zero coefficient at the eliminated leaf is unchanged in every
-surviving coordinate.-/
+surviving coordinate.
+@isnad1 id=and.4h11v.s13.54a8ac7e3770 from=translated src=- shape=f4b2360e vocab=14d3afd7
+-/
 theorem CompressionState.pivot_repr_eq_of_zero {p n : ℕ} {S : MinimalNUS p n}
     {P : S.Pairing} {C V : Type*} [Fintype C] [DecidableEq C]
     [Fintype V] [DecidableEq V] (st : CompressionState S P C V)
@@ -1395,7 +1554,9 @@ theorem CompressionState.pivot_repr_eq_of_zero {p n : ℕ} {S : MinimalNUS p n}
   · intro u
     rw [st.pivot_live_coord_row r hr v parent hy hlive q u, hqv, zero_mul, sub_zero]
 
-/-- One unit substitution adds at most the core norm of its pivot row.-/
+/-- One unit substitution adds at most the core norm of its pivot row.
+@isnad1 id=coreboun.5h12v.s12.095be482daf8 from=translated src=- shape=69e5028c vocab=02fd0ba0
+-/
 theorem CompressionState.pivot_coreBound {p n : ℕ} {S : MinimalNUS p n}
     {P : S.Pairing} {C V : Type*} [Fintype C] [DecidableEq C]
     [Fintype V] [DecidableEq V] (st : CompressionState S P C V)
@@ -1435,7 +1596,9 @@ theorem CompressionState.pivot_coreBound {p n : ℕ} {S : MinimalNUS p n}
 
 /-- Every abstract unit row can be oriented as a pivot `x_v` or `x_v-x_parent`.
 Negating the underlying lattice row handles the two negative cases without changing
-its core norm.-/
+its core norm.
+@isnad1 id=ex.2h8v.s13.2b673e3120ff from=translated src=- shape=3e680e18 vocab=2d23768d
+-/
 theorem CompressionState.exists_oriented_unit_pivot {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -1519,7 +1682,9 @@ theorem CompressionState.exists_oriented_unit_pivot {p n : ℕ}
 /-- An easy-label set of size at least two can itself be presented as a common-cut
 family.  A derangement `π` of the labels sends `j` to the configuration
 `(j,{i,π(j)})`.  Hitting such a configuration necessarily selects the easy label
-`j`; the distinguished elements and types are both injective.-/
+`j`; the distinguished elements and types are both injective.
+@isnad1 id=ex.2h3v.s7.8d26b1acd484 from=translated src=- shape=b744e873 vocab=393e35e8
+-/
 theorem exists_easy_configuration_family {V : Type*} [Fintype V] [DecidableEq V]
     (i : V) (E : Finset V) (hi : i ∉ E) (hE : 2 ≤ E.card) :
     ∃ F : Finset (Configuration V),
@@ -1574,7 +1739,9 @@ theorem exists_easy_configuration_family {V : Type*} [Fintype V] [DecidableEq V]
     exact ⟨j.1, hhit.1, j.2⟩
 
 /-- The canonical configuration attached to a proper label and its two-element
-type.-/
+type.
+@isnad1 id=iff.0h3v.s7.b3cbf61c9405 from=translated src=- shape=9d2993f0 vocab=becd4810
+-/
 theorem mem_equivMultiset_iff {V : Type*} (u : V) (z : Sym2 V) :
     u ∈ ((Sym2.equivMultiset V) z : Multiset V) ↔ u ∈ z := by
   induction z using Sym2.inductionOn with
@@ -1597,17 +1764,25 @@ noncomputable def properConfiguration {V : Type*} [DecidableEq V]
       (mem_equivMultiset_iff j _).mpr h
     rwa [hm] at h'
 
+/--
+@isnad1 id=eq.2h3v.s5.d308f1f31f62 from=translated src=- shape=98a4dda9 vocab=85fd5bcd
+-/
 @[simp] theorem properConfiguration_j {V : Type*} [DecidableEq V]
     (j : V) (ν : Multiset V) (hj : j ∉ ν) (hν : ν.card = 2) :
     (properConfiguration j ν hj hν).j = j := rfl
 
+/--
+@isnad1 id=eq.2h3v.s7.7c4031aee0b9 from=translated src=- shape=5636ac1b vocab=cb54b247
+-/
 theorem properConfiguration_multiset {V : Type*} [DecidableEq V]
     (j : V) (ν : Multiset V) (hj : j ∉ ν) (hν : ν.card = 2) :
     (Sym2.equivMultiset V) (properConfiguration j ν hj hν).τ = ⟨ν, hν⟩ := by
   exact (Sym2.equivMultiset V).apply_symm_apply _
 
 /-- A selected collection of proper labels with distinct types gives exactly the
-configuration family required by the common-cut lemma.-/
+configuration family required by the common-cut lemma.
+@isnad1 id=ex.2h3v.s7.64fbdb6e13c8 from=translated src=- shape=b69849a6 vocab=7aec7fab
+-/
 theorem exists_proper_configuration_family {V : Type*} [Fintype V] [DecidableEq V]
     (J : Finset V) (ν : V → Multiset V)
     (hproper : ∀ j ∈ J, j ∉ ν j ∧ (ν j).card = 2)
@@ -1670,7 +1845,9 @@ structure DepartingSystem {p n : ℕ} {S : MinimalNUS p n} (P : S.Pairing)
   leaves_rectangle : ∀ e,
     P.μ (t e) ∉ MinimalNUS.rectangle (B.block e.1.1) (B.block e.1.2)
 
-/-- Blocks below `⌊log₂ p / 3⌋` satisfy the clean-rectangle power hypothesis.-/
+/-- Blocks below `⌊log₂ p / 3⌋` satisfy the clean-rectangle power hypothesis.
+@isnad1 id=lt.2h5v.s7.dd270ade2d3d from=translated src=- shape=51088d5c vocab=0a873d81
+-/
 theorem light_blocks_power_lt {n p : ℕ} {V : Type*}
     [Fintype V] [DecidableEq V] (B : LiveBlocks n V) (hp : 64 ≤ p)
     (hlight : ∀ v, (B.block v).card < Nat.log 2 p / 3) :
@@ -1691,7 +1868,9 @@ theorem light_blocks_power_lt {n p : ℕ} {V : Type*}
       2 ^ ell := Nat.pow_lt_pow_right (by norm_num) hexp
   exact hpow.trans_le (Nat.pow_log_le_self 2 (by omega))
 
-/-- The clean-rectangle lemma supplies all departing rows used in one round.-/
+/-- The clean-rectangle lemma supplies all departing rows used in one round.
+@isnad1 id=nonempty.1h6v.s7.20a6d6d8f18b from=translated src=- shape=b1f21e0e vocab=f7f40a91
+-/
 theorem exists_departingSystem {p n : ℕ} [Fact p.Prime]
     (S : MinimalNUS p n) (P : S.Pairing)
     {V : Type*} [Fintype V] [DecidableEq V] (B : LiveBlocks n V)
@@ -1722,10 +1901,16 @@ def row (D : DepartingSystem P B) (e : OrderedDistinct V) : Fin n → ℤ :=
 def liveType (D : DepartingSystem P B) (e : OrderedDistinct V) : Multiset V :=
   liveLabels B (P.μ (D.t e))
 
+/--
+@isnad1 id=mem.0h8v.s7.e28b515ef391 from=translated src=- shape=e28cceed vocab=5b22234a
+-/
 theorem row_mem_colLat (D : DepartingSystem P B) (e : OrderedDistinct V) :
     D.row e ∈ S.colLat P :=
   Submodule.subset_span ⟨D.t e, rfl⟩
 
+/--
+@isnad1 id=or.0h9v.s10.702f61f0822f from=translated src=- shape=5791d3e7 vocab=df1af355
+-/
 theorem row_classification (st : CompressionState S P C V)
     (D : DepartingSystem P st.blocks) (e : OrderedDistinct V) :
     IsUnitRelation (fun v => st.basis.repr
@@ -1735,6 +1920,9 @@ theorem row_classification (st : CompressionState S P C V)
   exact st.projected_departing_classification e.2
     (D.mem_rectangle e) (D.leaves_rectangle e)
 
+/--
+@isnad1 id=isunitre.1h9v.s10.8dc569da9a78 from=translated src=- shape=501dcffd vocab=9713ebe3
+-/
 theorem row_unit_of_mem_right (st : CompressionState S P C V)
     (D : DepartingSystem P st.blocks) (e : OrderedDistinct V)
     (hmem : e.1.2 ∈ D.liveType e) :
@@ -1746,6 +1934,9 @@ theorem row_unit_of_mem_right (st : CompressionState S P C V)
     (liveLabels_card_le_two st.blocks _) hmem
     (liveLabels_departing_ne st.blocks e.2 (D.leaves_rectangle e))
 
+/--
+@isnad1 id=isunitre.1h9v.s10.477d9609d146 from=translated src=- shape=d2e69a53 vocab=9713ebe3
+-/
 theorem row_unit_of_mem_left (st : CompressionState S P C V)
     (D : DepartingSystem P st.blocks) (e : OrderedDistinct V)
     (hmem : e.1.1 ∈ D.liveType e) :
@@ -1757,18 +1948,26 @@ theorem row_unit_of_mem_left (st : CompressionState S P C V)
     (liveLabels_card_le_two st.blocks _) hmem
     (liveLabels_departing_ne st.blocks e.2 (D.leaves_rectangle e))
 
+/--
+@isnad1 id=le.1h10v.s10.185c8978c21f from=translated src=- shape=7abdf64c vocab=5a21143f
+-/
 theorem row_core_norm_le (st : CompressionState S P C V) {M : ℤ}
     (hM : st.CoreBound M) (D : DepartingSystem P st.blocks) (e : OrderedDistinct V) :
     ∑ c : C, |st.basis.repr (Submodule.Quotient.mk (D.row e)) (Sum.inl c)| ≤
       4 * M :=
   st.projectedRow_core_norm_le hM (D.t e)
 
+/--
+@isnad1 id=mem.0h9v.s7.da086e45e51d from=translated src=- shape=65ffb8e5 vocab=c6ef2be5
+-/
 theorem row_sub_mem_colLat (D : DepartingSystem P B)
     (e e' : OrderedDistinct V) :
     D.row e - D.row e' ∈ S.colLat P :=
   (S.colLat P).sub_mem (D.row_mem_colLat e) (D.row_mem_colLat e')
 
-/-- Same-type proper rows differ by exactly the unit vector between their labels.-/
+/-- Same-type proper rows differ by exactly the unit vector between their labels.
+@isnad1 id=eq.2h10v.s10.4d603968b849 from=translated src=- shape=6b6653c7 vocab=9acd62ed
+-/
 theorem row_sub_live_eq (st : CompressionState S P C V)
     (D : DepartingSystem P st.blocks) (e e' : OrderedDistinct V)
     (hanchor : e.1.1 = e'.1.1) (htype : D.liveType e = D.liveType e') :
@@ -1789,7 +1988,9 @@ theorem row_sub_live_eq (st : CompressionState S P C V)
   exact congrFun (departingLive_sub_same_type e'.1.1 e.1.2 e'.1.2
     (D.liveType e')) v
 
-/-- The core part of a same-type difference costs at most `8M`.-/
+/-- The core part of a same-type difference costs at most `8M`.
+@isnad1 id=le.1h11v.s10.f41e7c06f772 from=translated src=- shape=2ed9b003 vocab=68202ed5
+-/
 theorem row_sub_core_norm_le (st : CompressionState S P C V) {M : ℤ}
     (hM : st.CoreBound M) (D : DepartingSystem P st.blocks)
     (e e' : OrderedDistinct V) :
@@ -1817,7 +2018,9 @@ theorem row_sub_core_norm_le (st : CompressionState S P C V) {M : ℤ}
     _ = 8 * M := by ring
 
 /-- An easy departing row whose label is promoted is an actual unit row in the
-promoted state, with the original collision vector retained as its witness.-/
+promoted state, with the original collision vector retained as its witness.
+@isnad1 id=isunitre.3h10v.s12.036dfb4f6cfc from=translated src=- shape=27d3bbbc vocab=d0efc25f
+-/
 theorem promoted_row_unit_of_easy (st : CompressionState S P C V)
     (D : DepartingSystem P st.blocks) (e : OrderedDistinct V)
     (heasy : IsEasyDeparture e.1.1 e.1.2 (D.liveType e))
@@ -1835,7 +2038,9 @@ theorem promoted_row_unit_of_easy (st : CompressionState S P C V)
   exact hu
 
 /-- A proper departing row from a configuration hit by the sample is an actual unit
-row after promotion.-/
+row after promotion.
+@isnad1 id=isunitre.4h10v.s12.8602e7f8e324 from=translated src=- shape=2de0999f vocab=fbf85e96
+-/
 theorem promoted_row_unit_of_proper (st : CompressionState S P C V)
     (D : DepartingSystem P st.blocks) (e : OrderedDistinct V)
     (hproper : IsProperDeparture e.1.1 e.1.2 (D.liveType e))
@@ -1853,7 +2058,9 @@ theorem promoted_row_unit_of_proper (st : CompressionState S P C V)
     exact congrFun hlive v.1]
   exact hu
 
-/-- The promoted easy row also satisfies the round's uniform `8M` core budget.-/
+/-- The promoted easy row also satisfies the round's uniform `8M` core budget.
+@isnad1 id=le.2h11v.s12.015555d7c3d5 from=translated src=- shape=5b171f00 vocab=9e58175d
+-/
 theorem promoted_row_core_norm_le_eight_mul (st : CompressionState S P C V)
     (D : DepartingSystem P st.blocks) (e : OrderedDistinct V)
     (T : Finset V) {M : ℤ} (hM : st.CoreBound M) (hM1 : 1 ≤ M) :
@@ -1862,7 +2069,9 @@ theorem promoted_row_core_norm_le_eight_mul (st : CompressionState S P C V)
         ≤ 8 * M := by
   exact st.promote_projectedRow_core_norm_le_eight_mul T hM hM1 (D.t e)
 
-/-- A direct row remains a unit row after any promotion that leaves its anchor live.-/
+/-- A direct row remains a unit row after any promotion that leaves its anchor live.
+@isnad1 id=isunitre.2h10v.s12.c0cd49da1dc3 from=translated src=- shape=a4007d4d vocab=0891a29f
+-/
 theorem promoted_row_unit_of_mem_right (st : CompressionState S P C V)
     (D : DepartingSystem P st.blocks) (e : OrderedDistinct V)
     (hmem : e.1.2 ∈ D.liveType e) (T : Finset V) (hiT : e.1.1 ∉ T) :
@@ -1921,7 +2130,9 @@ noncomputable def DepartingSystem.properTypes {p n : ℕ} {S : MinimalNUS p n} {
   exact (D.properLabels i).image fun j => D.liveType (anchorPair i j)
 
 /-- Easy labels of an anchor form a common-cut family whose hit selects an easy
-label.-/
+label.
+@isnad1 id=ex.1h8v.s7.c737530929b6 from=translated src=- shape=54ba54a0 vocab=90d80053
+-/
 theorem DepartingSystem.exists_easy_anchor_family {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {V : Type*}
     [Fintype V] [DecidableEq V] {B : LiveBlocks n V}
@@ -1951,7 +2162,9 @@ theorem DepartingSystem.exists_easy_anchor_family {p n : ℕ}
   exact ⟨j, hj, hvT⟩
 
 /-- Choosing one proper label for every distinct type produces the proper-anchor
-configuration family used by the common-cut lemma.-/
+configuration family used by the common-cut lemma.
+@isnad1 id=ex.0h8v.s7.ce33e3afc9f2 from=translated src=- shape=39fedc33 vocab=251dc074
+-/
 theorem DepartingSystem.exists_proper_anchor_family {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {V : Type*}
     [Fintype V] [DecidableEq V] {B : LiveBlocks n V}
@@ -2025,7 +2238,9 @@ def DepartingSystem.SampleCoversAnchor {p n : ℕ} {S : MinimalNUS p n}
     ∃ u ∈ T, u ∈ D.liveType (anchorPair i j)
 
 /-- Either large easy-label set or many proper types supplies a common-cut family of
-density `1/8`; every hit of that family covers the anchor after promotion.-/
+density `1/8`; every hit of that family covers the anchor after promotion.
+@isnad1 id=ex.2h8v.s7.2bc0b848106c from=translated src=- shape=c5e4241c vocab=19375ba5
+-/
 theorem DepartingSystem.exists_large_anchor_family {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {V : Type*}
     [Fintype V] [DecidableEq V] {B : LiveBlocks n V}
@@ -2076,6 +2291,9 @@ def CompressionState.IsEdgeRow {p n : ℕ} {S : MinimalNUS p n} {P : S.Pairing}
       (fun u => st.basis.repr (Submodule.Quotient.mk r) (Sum.inr u)) =
         Pi.single a 1 - Pi.single b 1
 
+/--
+@isnad1 id=isedgero.1h10v.s6.117c2183dbc5 from=translated src=- shape=90552553 vocab=4a9ec5b7
+-/
 theorem CompressionState.isEdgeRow_symm {p n : ℕ} {S : MinimalNUS p n}
     {P : S.Pairing} {C V : Type*} [Fintype C] [DecidableEq C]
     [Fintype V] [DecidableEq V] (st : CompressionState S P C V)
@@ -2119,6 +2337,9 @@ noncomputable def CompressionState.unitGraph {p n : ℕ} {S : MinimalNUS p n}
     (∑ c : C, |st.basis.repr (Submodule.Quotient.mk r) (Sum.inl c)|) ≤ R ∧
     st.IsEdgeRow r x y
 
+/--
+@isnad1 id=adj.4h11v.s10.9f43aee21b6d from=translated src=- shape=021a6d90 vocab=60c55496
+-/
 theorem CompressionState.unitGraph_adj_of_row {p n : ℕ} {S : MinimalNUS p n}
     {P : S.Pairing} {C V : Type*} [Fintype C] [DecidableEq C]
     [Fintype V] [DecidableEq V] (st : CompressionState S P C V) {R : ℤ}
@@ -2129,6 +2350,9 @@ theorem CompressionState.unitGraph_adj_of_row {p n : ℕ} {S : MinimalNUS p n}
   rw [CompressionState.unitGraph, SimpleGraph.fromRel_adj]
   exact ⟨hxy, Or.inl ⟨r, hr, hR, hedge⟩⟩
 
+/--
+@isnad1 id=ex.1h10v.s10.30fb01298882 from=translated src=- shape=1a53779b vocab=60c55496
+-/
 theorem CompressionState.exists_row_of_unitGraph_adj {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -2145,7 +2369,9 @@ theorem CompressionState.exists_row_of_unitGraph_adj {p n : ℕ}
 
 /-- An edge directed from a live child supplies exactly the oriented integral pivot
 data expected by `CompressionState.pivot`.  A root edge is negated when necessary;
-a live edge is directed toward its parent.-/
+a live edge is directed toward its parent.
+@isnad1 id=ex.1h10v.s12.d37d927ea3f9 from=translated src=- shape=9fa7ed36 vocab=0aec8b42
+-/
 theorem CompressionState.exists_pivot_of_unitGraph_adj {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -2194,7 +2420,9 @@ theorem CompressionState.exists_pivot_of_unitGraph_adj {p n : ℕ}
           exact huw (congrArg Subtype.val (Option.some.inj e)).symm
         simpa [CompressionState.IsEdgeRow, Pi.single_apply, u.2, huw, hune] using h
 
-/-- Each abstract unit relation supplies an edge of the proof-relevant unit graph.-/
+/-- Each abstract unit relation supplies an edge of the proof-relevant unit graph.
+@isnad1 id=ex.3h9v.s11.2037dacc36e7 from=translated src=- shape=46e1a661 vocab=91def123
+-/
 theorem CompressionState.exists_unitGraph_neighbor {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -2224,7 +2452,9 @@ theorem CompressionState.exists_unitGraph_neighbor {p n : ℕ}
         ring)⟩
 
 /-- If a bounded unit row has coefficient `1` at a specified live coordinate, the
-corresponding unit-graph edge is incident with that coordinate.-/
+corresponding unit-graph edge is incident with that coordinate.
+@isnad1 id=ex.4h10v.s12.7cf9b66c237e from=translated src=- shape=3b1def65 vocab=bb99c483
+-/
 theorem CompressionState.exists_unitGraph_neighbor_at {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -2287,7 +2517,9 @@ theorem CompressionState.exists_unitGraph_neighbor_at {p n : ℕ}
         ring)⟩
 
 /-- Immediate cancellation at the label gives a bounded unit edge incident with the
-anchor.-/
+anchor.
+@isnad1 id=ex.2h10v.s7.b3688f8793b0 from=translated src=- shape=808305ce vocab=f2e07948
+-/
 theorem DepartingSystem.unitGraph_neighbor_anchor_of_mem_right {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -2306,7 +2538,9 @@ theorem DepartingSystem.unitGraph_neighbor_anchor_of_mem_right {p n : ℕ}
     (liveLabels_departing_ne st.blocks e.2 (D.leaves_rectangle e))
 
 /-- Immediate cancellation at the anchor gives a bounded unit edge incident with the
-label.-/
+label.
+@isnad1 id=ex.2h10v.s7.c5ad8f7da06c from=translated src=- shape=adcef966 vocab=f2e07948
+-/
 theorem DepartingSystem.unitGraph_neighbor_label_of_mem_left {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -2325,7 +2559,9 @@ theorem DepartingSystem.unitGraph_neighbor_label_of_mem_left {p n : ℕ}
     (liveLabels_departing_ne st.blocks e.2 (D.leaves_rectangle e))
 
 /-- A promoted bounded unit row with coefficient one at `i` produces an edge incident
-with `i` in the promoted unit graph.-/
+with `i` in the promoted unit graph.
+@isnad1 id=ex.4h12v.s13.9582e84cda9a from=translated src=- shape=4a6f51c9 vocab=8580b1c8
+-/
 theorem DepartingSystem.promoted_unitGraph_neighbor_at {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -2340,6 +2576,9 @@ theorem DepartingSystem.promoted_unitGraph_neighbor_at {p n : ℕ}
   exact (st.promote T).exists_unitGraph_neighbor_at (D.row e) (D.row_mem_colLat e)
     (D.promoted_row_core_norm_le_eight_mul st e T hM hM1) i hu hi
 
+/--
+@isnad1 id=ex.4h11v.s9.0f81898b6a80 from=translated src=- shape=2eeb8f38 vocab=26f0511b
+-/
 theorem DepartingSystem.promoted_neighbor_of_direct {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -2356,6 +2595,9 @@ theorem DepartingSystem.promoted_neighbor_of_direct {p n : ℕ}
     (liveLabels_card_le_two st.blocks _) hmem
     (liveLabels_departing_ne st.blocks e.2 (D.leaves_rectangle e))
 
+/--
+@isnad1 id=ex.5h11v.s9.f7d7f3b3ab73 from=translated src=- shape=1e4c47ff vocab=92e913c9
+-/
 theorem DepartingSystem.promoted_neighbor_of_easy {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -2371,6 +2613,9 @@ theorem DepartingSystem.promoted_neighbor_of_easy {p n : ℕ}
   rw [congrFun (st.projectedRow_live e.2 (D.mem_rectangle e)) e.1.1]
   exact departingLive_anchor_of_not_mem e.1.1 e.1.2 (D.liveType e) e.2 heasy.1
 
+/--
+@isnad1 id=ex.6h11v.s9.e94d744b96c5 from=translated src=- shape=e725b13f vocab=2f5e2c56
+-/
 theorem DepartingSystem.promoted_neighbor_of_proper {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -2396,6 +2641,9 @@ noncomputable def CompressionState.isolatedLive {p n : ℕ}
   classical
   exact Finset.univ.filter fun v => ∀ w, ¬(st.unitGraph R).Adj (some v) w
 
+/--
+@isnad1 id=ex.0h0v.s9.ffe0bd763170 from=translated src=- shape=3708c063 vocab=00a5508b
+-/
 theorem exists_high_anchor_sample :
     ∃ (D₀ : ℝ) (m₀ : ℕ), 0 < D₀ ∧
       ∀ {p n : ℕ} {S : MinimalNUS p n} {P : S.Pairing} {C V : Type}
@@ -2499,7 +2747,9 @@ theorem exists_high_anchor_sample :
 
 /-- Relative to a nondirect anchor, every other isolated label is easy or proper.
 The two immediate-cancellation alternatives would instead cover the label or make
-the anchor direct.-/
+the anchor direct.
+@isnad1 id=or.3h11v.s7.f4b1d4ea4633 from=translated src=- shape=18c656e3 vocab=cbc2f5ca
+-/
 theorem DepartingSystem.isolated_mem_easy_or_proper {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -2534,7 +2784,9 @@ theorem DepartingSystem.isolated_mem_easy_or_proper {p n : ℕ}
 
 /-- The proper-type star construction gives a concrete edge between any two
 distinct labels of the same type, witnessed by the difference of their collision
-rows and carrying the `8M` bound from the paper.-/
+rows and carrying the `8M` bound from the paper.
+@isnad1 id=adj.4h11v.s8.827d77ef3e48 from=translated src=- shape=d2160c73 vocab=78008e06
+-/
 theorem DepartingSystem.unitGraph_adj_of_same_type {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -2550,7 +2802,9 @@ theorem DepartingSystem.unitGraph_adj_of_same_type {p n : ℕ}
   · exact D.row_sub_live_eq st e e' hanchor htype
 
 /-- Among isolated proper labels for one anchor, the proper type is injective: two
-distinct labels of one type are joined by the proper-type star edge.-/
+distinct labels of one type are joined by the proper-type star edge.
+@isnad1 id=injon.1h10v.s7.3755cee78b8d from=translated src=- shape=927f07f0 vocab=d08250d0
+-/
 theorem DepartingSystem.isolated_proper_type_injective {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -2569,7 +2823,9 @@ theorem DepartingSystem.isolated_proper_type_injective {p n : ℕ}
 
 /-- The low-easy/low-type anchor estimate from Section 4: for a nondirect anchor,
 the isolated vertices consist of the anchor itself, its easy labels, and at most one
-proper label of each type.-/
+proper label of each type.
+@isnad1 id=le.2h10v.s7.6faacf81b273 from=translated src=- shape=af5cbbe3 vocab=1f2e2b7b
+-/
 theorem DepartingSystem.isolatedLive_card_le_anchor {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -2661,7 +2917,9 @@ structure ForestPivotPlan {p n : ℕ} {S : MinimalNUS p n} {P : S.Pairing}
       (∑ c : C, |st.basis.repr (Submodule.Quotient.mk r) (Sum.inl c)|) ≤ R
 
 /-- Lemma 3.2 applied to the proof-relevant unit graph supplies both the quantitative
-component bound and a leaf-to-root plan containing actual bounded lattice rows.-/
+component bound and a leaf-to-root plan containing actual bounded lattice rows.
+@isnad1 id=ex.1h9v.s8.5f62b5fe70f5 from=translated src=- shape=084c6f64 vocab=b555c29a
+-/
 theorem CompressionState.exists_forestPivotPlan {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -2712,7 +2970,9 @@ variable {p n : ℕ} {S : MinimalNUS p n} {P : S.Pairing}
 variable {C V : Type*} [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
 variable {st : CompressionState S P C V} {R : ℤ}
 
-/-- Unless the plan is already terminal, it has an active vertex of maximal rank.-/
+/-- Unless the plan is already terminal, it has an active vertex of maximal rank.
+@isnad1 id=ex.1h9v.s7.b961096b6516 from=translated src=- shape=529211ac vocab=a402d681
+-/
 theorem exists_maximal_active (plan : ForestPivotPlan st R)
     (hactive : ∃ v, plan.parent v ≠ none) :
     ∃ v y, plan.parent v = some y ∧
@@ -2731,7 +2991,9 @@ theorem exists_maximal_active (plan : ForestPivotPlan st R)
   apply hvmax
   exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, by rw [huz]; simp⟩
 
-/-- A maximal active vertex is a leaf: no remaining pivot points toward it.-/
+/-- A maximal active vertex is a leaf: no remaining pivot points toward it.
+@isnad1 id=ne.1h11v.s7.fd1e6775290a from=translated src=- shape=484576b2 vocab=5ac74467
+-/
 theorem no_child_of_maximal (plan : ForestPivotPlan st R) {w : V}
     (hv : ∀ u z, plan.parent u = some z →
       plan.rank (some u) ≤ plan.rank (some w)) (u : V) :
@@ -2751,6 +3013,9 @@ noncomputable def activeParent (plan : ForestPivotPlan st R)
     (v : plan.Active) : Option V :=
   Classical.choose (Option.ne_none_iff_exists'.mp v.2)
 
+/--
+@isnad1 id=eq.0h10v.s7.c8db5a6770c9 from=translated src=- shape=b1843484 vocab=6e630d99
+-/
 theorem parent_activeParent (plan : ForestPivotPlan st R) (v : plan.Active) :
     plan.parent v.1 = some (plan.activeParent v) :=
   Classical.choose_spec (Option.ne_none_iff_exists'.mp v.2)
@@ -2766,6 +3031,9 @@ def terminalRoot (plan : ForestPivotPlan st R) (v : V) : Option plan.Roots :=
 termination_by plan.rank (some v)
 decreasing_by exact plan.decreases v (some w) h
 
+/--
+@isnad1 id=eq.0h10v.s7.ae7c1526755d from=translated src=- shape=6d6609c6 vocab=a782bf19
+-/
 @[simp] theorem terminalRoot_of_root (plan : ForestPivotPlan st R)
     (v : plan.Roots) : plan.terminalRoot v.1 = some v := by
   rw [terminalRoot]
@@ -2777,12 +3045,18 @@ decreasing_by exact plan.decreases v (some w) h
   · rw [v.2] at hpar
     contradiction
 
+/--
+@isnad1 id=eq.1h11v.s7.21d91ef8c0ec from=translated src=- shape=3d6441f6 vocab=d158f594
+-/
 theorem terminalRoot_of_live_parent (plan : ForestPivotPlan st R) {v w : V}
     (h : plan.parent v = some (some w)) :
     plan.terminalRoot v = plan.terminalRoot w := by
   rw [terminalRoot]
   split <;> simp_all
 
+/--
+@isnad1 id=eq.1h10v.s7.d8a552e29734 from=translated src=- shape=be3ca8d3 vocab=71e9f38b
+-/
 theorem terminalRoot_of_core_parent (plan : ForestPivotPlan st R) {v : V}
     (h : plan.parent v = some none) : plan.terminalRoot v = none := by
   rw [terminalRoot]
@@ -2793,6 +3067,9 @@ noncomputable def chosenRow (plan : ForestPivotPlan st R) {v : V} {y : Option V}
     (h : plan.parent v = some y) : Fin n → ℤ :=
   Classical.choose (plan.pivotData v y h)
 
+/--
+@isnad1 id=mem.1h11v.s7.61a9b85ae728 from=translated src=- shape=503cdcf1 vocab=b9b3572a
+-/
 theorem chosenRow_mem (plan : ForestPivotPlan st R) {v : V} {y : Option V}
     (h : plan.parent v = some y) : plan.chosenRow h ∈ S.colLat P :=
   Classical.choose (Classical.choose_spec (plan.pivotData v y h))
@@ -2803,6 +3080,9 @@ noncomputable def chosenPivotParent (plan : ForestPivotPlan st R)
   Classical.choose (Classical.choose_spec
     (Classical.choose_spec (plan.pivotData v y h)))
 
+/--
+@isnad1 id=and.1h11v.s12.b244dceafcdc from=translated src=- shape=ac9d09ac vocab=76583fc6
+-/
 theorem chosenRow_spec (plan : ForestPivotPlan st R) {v : V} {y : Option V}
     (h : plan.parent v = some y) :
     st.basis.repr (Submodule.Quotient.mk (plan.chosenRow h)) (Sum.inr v) = 1 ∧
@@ -2815,6 +3095,9 @@ theorem chosenRow_spec (plan : ForestPivotPlan st R) {v : V} {y : Option V}
   exact Classical.choose_spec (Classical.choose_spec
     (Classical.choose_spec (plan.pivotData v y h)))
 
+/--
+@isnad1 id=le.1h11v.s10.3c05cdc075a3 from=translated src=- shape=c417e9ee vocab=a5a419ea
+-/
 theorem chosenRow_core_norm_le (plan : ForestPivotPlan st R)
     {v : V} {y : Option V} (h : plan.parent v = some y) :
     (∑ c : C,
@@ -2825,6 +3108,9 @@ noncomputable def activeRow (plan : ForestPivotPlan st R)
     (v : plan.Active) : Fin n → ℤ :=
   plan.chosenRow (plan.parent_activeParent v)
 
+/--
+@isnad1 id=mem.0h10v.s7.1a7df80960fd from=translated src=- shape=1c64b8ed vocab=739a626e
+-/
 theorem activeRow_mem (plan : ForestPivotPlan st R) (v : plan.Active) :
     plan.activeRow v ∈ S.colLat P :=
   plan.chosenRow_mem (plan.parent_activeParent v)
@@ -2834,12 +3120,17 @@ noncomputable def pivotMatrix (plan : ForestPivotPlan st R) :
     Matrix plan.Active plan.Active ℤ := fun v u =>
   st.basis.repr (Submodule.Quotient.mk (plan.activeRow v)) (Sum.inr u.1)
 
+/--
+@isnad1 id=eq.0h10v.s6.6aa729bb9cc7 from=translated src=- shape=5b112850 vocab=785063bb
+-/
 @[simp] theorem pivotMatrix_diag (plan : ForestPivotPlan st R)
     (v : plan.Active) : plan.pivotMatrix v v = 1 := by
   exact (plan.chosenRow_spec (plan.parent_activeParent v)).1
 
 /-- A nonzero off-diagonal active coefficient can occur only at the live parent,
-whose rank is strictly smaller.-/
+whose rank is strictly smaller.
+@isnad1 id=or.1h11v.s7.d874c657e945 from=translated src=- shape=f25925a9 vocab=7fe64a01
+-/
 theorem rank_lt_of_pivotMatrix_ne_zero (plan : ForestPivotPlan st R)
     {v u : plan.Active} (hvu : plan.pivotMatrix v u ≠ 0) :
     u = v ∨ plan.rank (some u.1) < plan.rank (some v.1) := by
@@ -2863,7 +3154,9 @@ theorem rank_lt_of_pivotMatrix_ne_zero (plan : ForestPivotPlan st R)
       exact absurd hu hvu
 
 /-- The active-row matrix is integrally invertible.  A tie-breaker refines the parent
-rank to a linear order; all possible parent entries lie strictly below the diagonal.-/
+rank to a linear order; all possible parent entries lie strictly below the diagonal.
+@isnad1 id=eq.0h9v.s7.a34545ad68b4 from=translated src=- shape=131a3937 vocab=55ed31f9
+-/
 theorem pivotMatrix_det_eq_one (plan : ForestPivotPlan st R) :
     (plan.pivotMatrix).det = 1 := by
   classical
@@ -2888,11 +3181,17 @@ theorem pivotMatrix_det_eq_one (plan : ForestPivotPlan st R) :
   rw [Matrix.det_of_isLowerTriangular _ htri]
   simp
 
+/--
+@isnad1 id=isunit.0h9v.s7.97b359603735 from=translated src=- shape=fb6b447d vocab=bc120d17
+-/
 theorem pivotMatrix_isUnit (plan : ForestPivotPlan st R) :
     IsUnit (plan.pivotMatrix).det := by
   rw [plan.pivotMatrix_det_eq_one]
   exact isUnit_one
 
+/--
+@isnad1 id=eq.1h10v.s6.f4b93f228010 from=translated src=- shape=d2cbe413 vocab=9b61791f
+-/
 theorem chosenPivotParent_eq_none (plan : ForestPivotPlan st R) {v : V}
     (h : plan.parent v = some none) : plan.chosenPivotParent h = none := by
   have hm := (plan.chosenRow_spec h).2.2.1
@@ -2902,6 +3201,9 @@ theorem chosenPivotParent_eq_none (plan : ForestPivotPlan st R) {v : V}
       rw [hp] at hm
       simp at hm
 
+/--
+@isnad1 id=ex.1h11v.s7.32f6a62323a1 from=translated src=- shape=36bed23c vocab=7f615751
+-/
 theorem chosenPivotParent_of_live (plan : ForestPivotPlan st R) {v w : V}
     (h : plan.parent v = some (some w)) :
     ∃ (hwv : w ≠ v), plan.chosenPivotParent h = some ⟨w, hwv⟩ := by
@@ -2916,7 +3218,9 @@ theorem chosenPivotParent_of_live (plan : ForestPivotPlan st R) {v w : V}
       subst w
       exact ⟨u.2, congrArg some (Subtype.ext rfl)⟩
 
-/-- Exact live-coordinate vector of a row pointing to the auxiliary root.-/
+/-- Exact live-coordinate vector of a row pointing to the auxiliary root.
+@isnad1 id=eq.1h10v.s10.cd58eef6d973 from=translated src=- shape=53ed917f vocab=ac79a7aa
+-/
 theorem chosenRow_live_core_parent (plan : ForestPivotPlan st R) {v : V}
     (h : plan.parent v = some none) :
     (fun u => st.basis.repr (Submodule.Quotient.mk (plan.chosenRow h))
@@ -2932,7 +3236,9 @@ theorem chosenRow_live_core_parent (plan : ForestPivotPlan st R) {v : V}
     simp [hp, huv, u'] at hu ⊢
     exact hu
 
-/-- Exact live-coordinate vector of a row pointing to a live parent.-/
+/-- Exact live-coordinate vector of a row pointing to a live parent.
+@isnad1 id=eq.1h11v.s10.a273d6fad84a from=translated src=- shape=3faf524b vocab=40fb3369
+-/
 theorem chosenRow_live_live_parent (plan : ForestPivotPlan st R) {v w : V}
     (h : plan.parent v = some (some w)) :
     (fun u => st.basis.repr (Submodule.Quotient.mk (plan.chosenRow h))
@@ -2974,10 +3280,16 @@ noncomputable def coreImage (plan : ForestPivotPlan st R) (v : V) : C → ℤ :=
 termination_by plan.rank (some v)
 decreasing_by exact plan.decreases v (some w) h
 
+/--
+@isnad1 id=eq.0h10v.s7.45e1ed14469b from=translated src=- shape=04d34c0e vocab=ce520ed9
+-/
 @[simp] theorem rootImage_of_root (plan : ForestPivotPlan st R)
     (v : plan.Roots) : plan.rootImage v.1 = Pi.single v 1 := by
   simp [rootImage]
 
+/--
+@isnad1 id=eq.0h10v.s7.0994c128ea7f from=translated src=- shape=74b72b10 vocab=37637476
+-/
 @[simp] theorem coreImage_of_root (plan : ForestPivotPlan st R)
     (v : plan.Roots) : plan.coreImage v.1 = 0 := by
   rw [coreImage]
@@ -2988,15 +3300,24 @@ decreasing_by exact plan.decreases v (some w) h
   · rw [v.2] at hpar
     contradiction
 
+/--
+@isnad1 id=eq.1h10v.s7.79f92315e142 from=translated src=- shape=a4ca715e vocab=647e1cd5
+-/
 theorem rootImage_of_core_parent (plan : ForestPivotPlan st R) {v : V}
     (h : plan.parent v = some none) : plan.rootImage v = 0 := by
   simp [rootImage, plan.terminalRoot_of_core_parent h]
 
+/--
+@isnad1 id=eq.1h11v.s7.95a946f08319 from=translated src=- shape=faaf43c6 vocab=cfe76738
+-/
 theorem rootImage_of_live_parent (plan : ForestPivotPlan st R) {v w : V}
     (h : plan.parent v = some (some w)) :
     plan.rootImage v = plan.rootImage w := by
   simp [rootImage, plan.terminalRoot_of_live_parent h]
 
+/--
+@isnad1 id=eq.1h11v.s10.78f117ce443d from=translated src=- shape=35413f11 vocab=5cf5b078
+-/
 theorem coreImage_of_core_parent (plan : ForestPivotPlan st R) {v : V}
     (h : plan.parent v = some none) (c : C) :
     plan.coreImage v c =
@@ -3012,6 +3333,9 @@ theorem coreImage_of_core_parent (plan : ForestPivotPlan st R) {v : V}
       simp [h] at heq
   exact congrFun hf c
 
+/--
+@isnad1 id=eq.1h12v.s10.dc7098c00bb3 from=translated src=- shape=67fde088 vocab=ef7d415d
+-/
 theorem coreImage_of_live_parent (plan : ForestPivotPlan st R) {v w : V}
     (h : plan.parent v = some (some w)) (c : C) :
     plan.coreImage v c = plan.coreImage w c -
@@ -3032,7 +3356,9 @@ theorem coreImage_of_live_parent (plan : ForestPivotPlan st R) {v w : V}
 
 /-- The accumulated core correction along a parent chain costs at most one selected
 row per rank level.  This is the quantitative content of the radius-three forest
-construction.-/
+construction.
+@isnad1 id=le.1h10v.s7.ea040d49dc07 from=translated src=- shape=9f2c3a15 vocab=7231d85f
+-/
 theorem coreImage_norm_le_rank_mul (plan : ForestPivotPlan st R) (hR : 0 ≤ R)
     (v : V) :
     (∑ c : C, |plan.coreImage v c|) ≤ (plan.rank (some v) : ℤ) * R := by
@@ -3091,7 +3417,9 @@ theorem coreImage_norm_le_rank_mul (plan : ForestPivotPlan st R) (hR : 0 ≤ R)
                 _ ≤ (plan.rank (some v) : ℤ) * R :=
                   mul_le_mul_of_nonneg_right hrank hR
 
-/-- Every forest substitution changes the core by at most three row norms.-/
+/-- Every forest substitution changes the core by at most three row norms.
+@isnad1 id=le.1h10v.s6.105fa25aa0de from=translated src=- shape=76b4046a vocab=2a5d7c4b
+-/
 theorem coreImage_norm_le_three_mul (plan : ForestPivotPlan st R) (hR : 0 ≤ R)
     (v : V) : (∑ c : C, |plan.coreImage v c|) ≤ 3 * R := by
   calc
@@ -3145,7 +3473,9 @@ noncomputable def forestMap (plan : ForestPivotPlan st R) :
               rw [Finset.mul_sum]
 
 /-- The simultaneous elimination map is onto: prescribe the core coordinates and
-the coordinates at retained roots, setting every nonroot live input to zero.-/
+the coordinates at retained roots, setting every nonroot live input to zero.
+@isnad1 id=surjecti.0h9v.s8.c5c249b27e26 from=translated src=- shape=6fc9c73e vocab=ae1431a9
+-/
 theorem forestMap_surjective (plan : ForestPivotPlan st R) :
     Function.Surjective plan.forestMap := by
   classical
@@ -3197,7 +3527,9 @@ private theorem sum_single_sub_mul (a b : V) (f : V → ℤ) :
   simp_rw [Pi.sub_apply, sub_mul]
   rw [Finset.sum_sub_distrib, sum_single_mul, sum_single_mul]
 
-/-- Every selected forest row is killed by the simultaneous elimination map.-/
+/-- Every selected forest row is killed by the simultaneous elimination map.
+@isnad1 id=mem.1h11v.s10.3392fca68dc5 from=translated src=- shape=8861d8d0 vocab=317711ca
+-/
 theorem chosenRow_mem_ker_forestMap (plan : ForestPivotPlan st R)
     {v : V} {y : Option V} (h : plan.parent v = some y) :
     (fun i => st.basis.repr (Submodule.Quotient.mk (plan.chosenRow h)) i) ∈
@@ -3284,11 +3616,16 @@ noncomputable def activeRowCoords (plan : ForestPivotPlan st R)
     (v : plan.Active) : Sum C V → ℤ := fun i =>
   st.basis.repr (Submodule.Quotient.mk (plan.activeRow v)) i
 
+/--
+@isnad1 id=mem.0h10v.s8.1025567de731 from=translated src=- shape=298170cc vocab=05dd8dc1
+-/
 theorem activeRowCoords_mem_ker (plan : ForestPivotPlan st R)
     (v : plan.Active) : plan.activeRowCoords v ∈ LinearMap.ker plan.forestMap := by
   exact plan.chosenRow_mem_ker_forestMap (plan.parent_activeParent v)
 
-/-- Exact triangular generation of the forest kernel by the selected lattice rows.-/
+/-- Exact triangular generation of the forest kernel by the selected lattice rows.
+@isnad1 id=eq.0h9v.s8.078b13f7adf0 from=translated src=- shape=430f97ed vocab=bdb3ead2
+-/
 theorem ker_forestMap_eq_span_activeRows (plan : ForestPivotPlan st R) :
     LinearMap.ker plan.forestMap =
       Submodule.span ℤ (Set.range plan.activeRowCoords) := by
@@ -3332,7 +3669,9 @@ theorem ker_forestMap_eq_span_activeRows (plan : ForestPivotPlan st R) :
     exact plan.activeRowCoords_mem_ker v
 
 /-- Constructive form of the kernel equality: every kernel vector is an integral
-linear combination of the selected row-coordinate vectors.-/
+linear combination of the selected row-coordinate vectors.
+@isnad1 id=ex.1h10v.s9.07579c5b6850 from=translated src=- shape=36ad4d60 vocab=dd6a4465
+-/
 theorem exists_activeRowCoords_sum (plan : ForestPivotPlan st R)
     (z : Sum C V → ℤ) (hz : z ∈ LinearMap.ker plan.forestMap) :
     ∃ k : plan.Active → ℤ,
@@ -3380,6 +3719,9 @@ def contractedBlocks (plan : ForestPivotPlan st R) : LiveBlocks n plan.Roots whe
     rw [(st.blocks.mem_block_iff a w.1).mp ha]
     simp
 
+/--
+@isnad1 id=le.0h9v.s7.90d3b2b4b089 from=translated src=- shape=77c0dbfd vocab=5c131865
+-/
 theorem contractedBlocks_mass_le (plan : ForestPivotPlan st R) :
     plan.contractedBlocks.mass ≤ st.blocks.mass := by
   classical
@@ -3416,6 +3758,9 @@ noncomputable def ambientForestMap (plan : ForestPivotPlan st R) :
   plan.forestMap.comp
     (st.basis.equivFun.toLinearMap.comp (st.Q.mkQ : (Fin n → ℤ) →ₗ[ℤ] _))
 
+/--
+@isnad1 id=surjecti.0h9v.s8.a55b97ad6f26 from=translated src=- shape=9b70eb27 vocab=980d2c9b
+-/
 theorem ambientForestMap_surjective (plan : ForestPivotPlan st R) :
     Function.Surjective plan.ambientForestMap := by
   intro z
@@ -3514,7 +3859,9 @@ noncomputable def contract (plan : ForestPivotPlan st R) :
       · simp
 
 /-- Core coordinates after simultaneous contraction are obtained by applying the
-forest substitution to the old quotient coordinates.-/
+forest substitution to the old quotient coordinates.
+@isnad1 id=eq.0h11v.s12.2f1e4586cfae from=translated src=- shape=342eeb6a vocab=8748185c
+-/
 theorem contract_core_coord (plan : ForestPivotPlan st R) (a : Fin n) (c : C) :
     (plan.contract).basis.repr (Submodule.Quotient.mk (Pi.single a 1)) (Sum.inl c) =
       st.basis.repr (Submodule.Quotient.mk (Pi.single a 1)) (Sum.inl c) +
@@ -3524,7 +3871,9 @@ theorem contract_core_coord (plan : ForestPivotPlan st R) (a : Fin n) (c : C) :
   rfl
 
 /-- Simultaneous radius-three contraction preserves the core invariant, increasing
-its bound by at most three times the selected-row bound.-/
+its bound by at most three times the selected-row bound.
+@isnad1 id=coreboun.2h10v.s7.255254ec49eb from=translated src=- shape=e7847534 vocab=930e7c60
+-/
 theorem contract_coreBound (plan : ForestPivotPlan st R) {M : ℤ}
     (hM : st.CoreBound M) (hR : 0 ≤ R) :
     plan.contract.CoreBound (M + 3 * R) := by
@@ -3580,15 +3929,24 @@ the light blocks eligible for the next clean-rectangle round.-/
 noncomputable def finishRound (plan : ForestPivotPlan st R) (L : ℕ) :=
   plan.contract.promote (plan.contract.blocks.heavy L)
 
+/--
+@isnad1 id=coreboun.1h11v.s12.ca7e36792459 from=translated src=- shape=58271d4b vocab=cd1275a3
+-/
 theorem finishRound_coreBound (plan : ForestPivotPlan st R) (L : ℕ) {M : ℤ}
     (hM : plan.contract.CoreBound M) : plan.finishRound L |>.CoreBound (M + 1) := by
   exact plan.contract.promote_coreBound _ hM
 
+/--
+@isnad1 id=lt.0h11v.s12.05edac951e4f from=translated src=- shape=a181b149 vocab=67224309
+-/
 theorem finishRound_blocks_light (plan : ForestPivotPlan st R) (L : ℕ)
     (v : {v : plan.Roots // v ∉ plan.contract.blocks.heavy L}) :
     ((plan.finishRound L).blocks.block v).card < L := by
   exact plan.contract.blocks.promote_heavy_is_light L v
 
+/--
+@isnad1 id=le.0h10v.s12.ea7ebcf05abf from=translated src=- shape=5155c3e3 vocab=8a0b19f0
+-/
 theorem finishRound_mass_add_heavy_le (plan : ForestPivotPlan st R) (L : ℕ) :
     (plan.finishRound L).blocks.mass +
         L * (plan.contract.blocks.heavy L).card ≤ st.blocks.mass := by
@@ -3609,7 +3967,9 @@ end ForestPivotPlan
 
 /-- A quantitative one-shot interface to forest contraction.  Once all but `f` live
 vertices have a unit-graph neighbour, it returns an explicit next compression state
-with the paper's retained-vertex and coefficient bounds.-/
+with the paper's retained-vertex and coefficient bounds.
+@isnad1 id=ex.3h10v.s8.fd7ba3e6eb78 from=translated src=- shape=a4f4dff9 vocab=cdc5e47b
+-/
 theorem CompressionState.exists_bounded_forest_contract {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -3629,7 +3989,9 @@ theorem CompressionState.exists_bounded_forest_contract {p n : ℕ}
   exact ⟨plan, hroots, plan.contract_coreBound hM hR⟩
 
 /-- Contract a promoted state after a common sample has reduced the isolated count to
-`m/8`.  The live count falls by `2/3` and the round core bound grows by at most `26`.-/
+`m/8`.  The live count falls by `2/3` and the round core bound grows by at most `26`.
+@isnad1 id=ex.3h9v.s12.5f51355099b4 from=translated src=- shape=be36cf39 vocab=6d4e1da7
+-/
 theorem CompressionState.exists_contract_after_sample {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -3662,7 +4024,9 @@ theorem CompressionState.exists_contract_after_sample {p n : ℕ}
 
 /-- The first branch of the round dichotomy.  A nondirect anchor with fewer than
 `m/8` easy labels and fewer than `m/8` proper types already yields a contraction by
-a factor `2/3`, with no sampling or promotion.-/
+a factor `2/3`, with no sampling or promotion.
+@isnad1 id=ex.5h10v.s9.ab1fb06dc2dd from=translated src=- shape=8656930f vocab=bc8e23fd
+-/
 theorem DepartingSystem.exists_low_anchor_contract {p n : ℕ}
     {S : MinimalNUS p n} {P : S.Pairing} {C V : Type*}
     [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -3769,7 +4133,9 @@ structure IterationResult (X : PackedCompressionState S P) (M : ℤ)
   rounds_le : rounds ≤ 2 * Nat.log 2 X.liveCard + 2
 
 /-- One complete nonterminal round of Section 4, including the anchor dichotomy,
-common sampling when needed, forest contraction, and promotion of newly heavy blocks.-/
+common sampling when needed, forest contraction, and promotion of newly heavy blocks.
+@isnad1 id=nonempty.8h9v.s9.a9369190c344 from=translated src=- shape=a1ed2b39 vocab=87257e4f
+-/
 theorem exists_round_result (D₀ : ℝ) (m₀ : ℕ) (hD₀ : 0 < D₀)
     (hhigh : ∀ {p n : ℕ} {S : MinimalNUS p n} {P : S.Pairing} {C V : Type}
       [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
@@ -3870,7 +4236,9 @@ theorem exists_round_result (D₀ : ℝ) (m₀ : ℕ) (hD₀ : 0 < D₀)
 
 /-- Iterate the verified round interface two rounds at a time.  Two successive
 `2/3` contractions at least halve the live count, giving the logarithmic round bound;
-the geometric square-root sum is bounded by `12√m`.-/
+the geometric square-root sum is bounded by `12√m`.
+@isnad1 id=nonempty.6h9v.s8.5bcd657b0a54 from=translated src=- shape=61eba21a vocab=b2ab36a9
+-/
 theorem iterate_round_results (D₀ : ℝ) (hD₀ : 0 < D₀) (L mstar : ℕ)
     (hmstar16 : 16 ≤ mstar)
     (hstep : ∀ (X : PackedCompressionState S P) (M : ℤ),
@@ -4007,7 +4375,9 @@ end PackedCompressionState
 /-! ### Reading off a terminal state -/
 
 /-- Read off an arbitrary final state by retaining both its core and its boundedly
-many remaining live representatives.-/
+many remaining live representatives.
+@isnad1 id=ex.3h9v.s11.e2615188e3b9 from=translated src=- shape=120f6143 vocab=4b9c8e8b
+-/
 theorem CompressionState.finish_any {p n E : ℕ} {S : MinimalNUS p n} {P : S.Pairing}
     {C V : Type*} [Fintype C] [DecidableEq C] [Fintype V] [DecidableEq V]
     (st : CompressionState S P C V) {M : ℤ} (hM : st.CoreBound M)
@@ -4069,7 +4439,9 @@ theorem CompressionState.finish_any {p n E : ℕ} {S : MinimalNUS p n} {P : S.Pa
       _ ≤ (n : ℤ) ^ E := hnorm
 
 /-- Once no live representative remains, a compression state is exactly the subgroup
-and bounded quotient basis required by Proposition 4.1.-/
+and bounded quotient basis required by Proposition 4.1.
+@isnad1 id=ex.2h7v.s12.3fdfd709a12f from=translated src=- shape=55bb36b2 vocab=7ecb9313
+-/
 theorem CompressionState.finish {p n E : ℕ} {S : MinimalNUS p n} {P : S.Pairing}
     {C : Type*} [Fintype C] [DecidableEq C]
     (st : CompressionState S P C Empty)
@@ -4176,7 +4548,9 @@ private theorem coefficient_growth_le {n r : ℕ} (hn : 2 ≤ n)
 every prime `p ≥ 64` and every inclusion-minimal example with pairing, there exist
 `K` and a primitive subgroup `Q ≤ Λ` of rank `n − K` with `K ≤ C(√n + n/log p)`, whose
 quotient `ℤⁿ/Q` is free of rank `K` with a basis in which the image of every coordinate
-vector `e_i` has `ℓ¹`-norm at most `n^C`.-/
+vector `e_i` has `ℓ¹`-norm at most `n^C`.
+@isnad1 id=ex.0h0v.s11.ad4d61060d88 from=translated src=- shape=907b162d vocab=aa30cbd7
+-/
 theorem compression :
     ∃ C : ℕ, 0 < C ∧
       ∀ (p n : ℕ) (_ : Fact p.Prime) (S : MinimalNUS p n) (P : S.Pairing),

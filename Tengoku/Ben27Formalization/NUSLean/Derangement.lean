@@ -13,7 +13,9 @@ import Tengoku
 
 namespace NUS
 
-/-- Every finite type with at least two elements admits a fixed-point-free permutation.-/
+/-- Every finite type with at least two elements admits a fixed-point-free permutation.
+@isnad1 id=ex.1h1v.s5.f70109325ff8 from=translated src=- shape=2f5185c9 vocab=eeaf6555
+-/
 theorem exists_derangement (α : Type*) [Fintype α] [DecidableEq α]
     (h : 2 ≤ Fintype.card α) : ∃ π : Equiv.Perm α, ∀ x, π x ≠ x := by
   obtain ⟨k, hk⟩ : ∃ k, Fintype.card α = k + 2 := ⟨Fintype.card α - 2, by omega⟩
@@ -27,7 +29,9 @@ theorem exists_derangement (α : Type*) [Fintype α] [DecidableEq α]
   omega
 
 /-- If every point of a finite type has a distinct mate in the same fiber of `f`, then
-there is a fixed-point-free permutation preserving the fibers of `f`.-/
+there is a fixed-point-free permutation preserving the fibers of `f`.
+@isnad1 id=ex.1h3v.s6.1e8538f0bfb0 from=translated src=- shape=135eaac2 vocab=06df0c06
+-/
 theorem exists_fiberwise_derangement {α β : Type*} [Fintype α] [DecidableEq α]
     (f : α → β) (h : ∀ x, ∃ y, y ≠ x ∧ f y = f x) :
     ∃ π : Equiv.Perm α, (∀ x, f (π x) = f x) ∧ ∀ x, π x ≠ x := by

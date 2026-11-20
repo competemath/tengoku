@@ -25,7 +25,9 @@ namespace NUS
 open MinimalNUS
 
 /-- **The closing arithmetic of Section 5.**  If `X = log p` satisfies
-`X ≤ C(√n + n/X)·log n`, then `n ≫ (X / log X)²`.-/
+`X ≤ C(√n + n/X)·log n`, then `n ≫ (X / log X)²`.
+@isnad1 id=ex.1h1v.s7.d12f622f0a7c from=translated src=- shape=b0abf23b vocab=3fc8b303
+-/
 theorem numeric_reduction (C : ℝ) (hC : 0 < C) :
     ∃ c : ℝ, 0 < c ∧ ∀ p n : ℕ, 64 ≤ p → 2 ≤ n →
       Real.log p ≤ C * (Real.sqrt n + n / Real.log p) * Real.log n →

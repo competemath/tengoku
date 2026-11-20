@@ -95,7 +95,9 @@ private lemma pgraph_isAcyclic {α : Type*} (p : α → Option α) (rk : α → 
 neither a live edge nor a root edge).  Then `G` contains a forest `F` such that
 components of `F` avoiding the root have diameter at most `3`; every live vertex in the
 root's component is at distance at most `4` from the root; and the number of components
-avoiding the root — the retained live blocks — is at most `(N + f)/2`.-/
+avoiding the root — the retained live blocks — is at most `(N + f)/2`.
+@isnad1 id=ex.1h3v.s8.d475d1bda27c from=translated src=- shape=c18c68fd vocab=b1805d50
+-/
 theorem bounded_radius_contraction {V : Type*} [Fintype V] [DecidableEq V]
     (G : SimpleGraph (Option V)) [DecidableRel G.Adj] (f : ℕ)
     (hf : (Finset.univ.filter fun v : V => ∀ w, ¬G.Adj (some v) w).card ≤ f) :

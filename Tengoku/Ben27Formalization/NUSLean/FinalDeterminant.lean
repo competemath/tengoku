@@ -24,7 +24,9 @@ open Finset Matrix
 
 /-! ### An entrywise `ℓ¹` bound for determinants -/
 
-/-- The determinant is at most the product of the column `ℓ¹`-norms.-/
+/-- The determinant is at most the product of the column `ℓ¹`-norms.
+@isnad1 id=le.0h2v.s5.9559f9dd91b6 from=translated src=- shape=74f8d7e5 vocab=b955838d
+-/
 theorem abs_det_le_prod_col_l1 {N : ℕ} (A : Matrix (Fin N) (Fin N) ℤ) :
     |A.det| ≤ ∏ c, ∑ r, |A r c| := by
   classical
@@ -49,7 +51,9 @@ theorem abs_det_le_prod_col_l1 {N : ℕ} (A : Matrix (Fin N) (Fin N) ℤ) :
         rw [Finset.prod_univ_sum, Fintype.piFinset_univ]
 
 /-- **Determinant `ℓ¹` bound.**  The determinant of an integer matrix is at most the
-product of the `ℓ¹`-norms of its rows.-/
+product of the `ℓ¹`-norms of its rows.
+@isnad1 id=le.0h2v.s5.549493b982ce from=translated src=- shape=e46ed7f2 vocab=b955838d
+-/
 theorem abs_det_le_prod_row_l1 {N : ℕ} (A : Matrix (Fin N) (Fin N) ℤ) :
     |A.det| ≤ ∏ r, ∑ c, |A r c| := by
   have h := abs_det_le_prod_col_l1 Aᵀ
@@ -59,7 +63,9 @@ theorem abs_det_le_prod_row_l1 {N : ℕ} (A : Matrix (Fin N) (Fin N) ℤ) :
 /-! ### Small linear-algebra helpers -/
 
 /-- A `ℤ`-linear functional on `ℤⁿ` is determined by its values on the coordinate
-vectors.-/
+vectors.
+@isnad1 id=eq.0h3v.s8.45bd58c82c22 from=translated src=- shape=54d32a62 vocab=218e305c
+-/
 theorem lin_pi_decomp {n : ℕ} (ℓ : (Fin n → ℤ) →ₗ[ℤ] ℤ) (w : Fin n → ℤ) :
     ℓ w = ∑ i, w i * ℓ (Pi.single i 1) := by
   have hw : w = ∑ i, w i • (Pi.single i 1 : Fin n → ℤ) := by
@@ -71,7 +77,9 @@ theorem lin_pi_decomp {n : ℕ} (ℓ : (Fin n → ℤ) →ₗ[ℤ] ℤ) (w : Fin
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [ℓ.map_smul, smul_eq_mul]
 
-/-- Every element of the collision lattice has coordinate sum zero.-/
+/-- Every element of the collision lattice has coordinate sum zero.
+@isnad1 id=eq.1h5v.s7.5a095d5375eb from=translated src=- shape=8d416a62 vocab=2feb8de1
+-/
 theorem MinimalNUS.sum_eq_zero_of_mem_colLat {p n : ℕ} (S : MinimalNUS p n)
     (P : S.Pairing) {w : Fin n → ℤ} (hw : w ∈ S.colLat P) : ∑ k, w k = 0 := by
   induction hw using Submodule.span_induction with
@@ -85,7 +93,9 @@ theorem MinimalNUS.sum_eq_zero_of_mem_colLat {p n : ℕ} (S : MinimalNUS p n)
     simp only [Pi.smul_apply, smul_eq_mul, ← Finset.mul_sum, hu, mul_zero]
 
 /-- From a spanning family whose span has dimension at least `d`, one can select `d`
-members forming a linearly independent family.-/
+members forming a linearly independent family.
+@isnad1 id=ex.1h5v.s7.529822e80310 from=translated src=- shape=08496515 vocab=871743ee
+-/
 theorem exists_indep_family {F V : Type*} [Field F] [AddCommGroup V] [Module F V]
     [FiniteDimensional F V] {ι : Type*} (g : ι → V) (d : ℕ)
     (hd : d ≤ Module.finrank F (Submodule.span F (Set.range g))) :
@@ -112,7 +122,9 @@ theorem exists_indep_family {F V : Type*} [Field F] [AddCommGroup V] [Module F V
   exact hli.comp emb emb.injective
 
 /-- A `m × (m+1)` matrix with linearly independent rows has a nonvanishing maximal
-minor obtained by deleting a single column.-/
+minor obtained by deleting a single column.
+@isnad1 id=ex.1h3v.s7.61e4bcc56ab2 from=translated src=- shape=e585c0be vocab=09947e8c
+-/
 theorem exists_succAbove_det_ne_zero {F : Type*} [Field F] {m : ℕ}
     (A : Matrix (Fin m) (Fin (m + 1)) F) (hA : LinearIndependent F (fun i => A i)) :
     ∃ c : Fin (m + 1), (A.submatrix id c.succAbove).det ≠ 0 := by
@@ -186,6 +198,9 @@ def castZQ {n : ℕ} : (Fin n → ℤ) →ₗ[ℤ] (Fin n → ℚ) where
   map_add' x y := by ext i; simp
   map_smul' c x := by ext i; simp
 
+/--
+@isnad1 id=injectiv.0h1v.s7.98bf79792e8c from=translated src=- shape=e352b9cf vocab=b011a9e0
+-/
 theorem castZQ_injective {n : ℕ} : Function.Injective (castZQ (n := n)) := by
   intro x y h
   funext i
@@ -193,6 +208,9 @@ theorem castZQ_injective {n : ℕ} : Function.Injective (castZQ (n := n)) := by
   change ((x i : ℤ) : ℚ) = ((y i : ℤ) : ℚ) at hi
   exact_mod_cast hi
 
+/--
+@isnad1 id=eq.0h4v.s8.b457fdffc753 from=translated src=- shape=301a892f vocab=732564cb
+-/
 theorem MinimalNUS.finrank_colLat {p n : ℕ} (S : MinimalNUS p n)
     (P : S.Pairing) : Module.finrank ℤ (S.colLat P) = n - 1 := by
   classical
@@ -218,6 +236,9 @@ theorem MinimalNUS.finrank_colLat {p n : ℕ} (S : MinimalNUS p n)
       (Submodule.finrank_span_eq_finrank_span ℤ ℚ _).symm
     _ = n - 1 := S.finrank_span_rhoQ P
 
+/--
+@isnad1 id=eq.2h7v.s12.81b04fef111b from=translated src=- shape=8dbdd21f vocab=584b41f0
+-/
 theorem MinimalNUS.quotient_collision_rank {p n K : ℕ} (S : MinimalNUS p n)
     (P : S.Pairing) (Q : Submodule ℤ (Fin n → ℤ)) (hQ : Q ≤ S.colLat P)
     (hQr : Module.finrank ℤ Q = n - K)
@@ -275,6 +296,9 @@ noncomputable def quotientCoordsQ {n K : ℕ} {Q : Submodule ℤ (Fin n → ℤ)
     (b : Module.Basis (Fin K) ℤ ((Fin n → ℤ) ⧸ Q))
     (x : (Fin n → ℤ) ⧸ Q) : Fin K → ℚ := fun k => b.repr x k
 
+/--
+@isnad1 id=eq.2h7v.s10.5dc85441751a from=translated src=- shape=d9484376 vocab=f0842bb4
+-/
 theorem MinimalNUS.quotientCoordsQ_collision_rank {p n K : ℕ} (S : MinimalNUS p n)
     (P : S.Pairing) (Q : Submodule ℤ (Fin n → ℤ)) (hQ : Q ≤ S.colLat P)
     (hQr : Module.finrank ℤ Q = n - K)
@@ -327,6 +351,9 @@ theorem MinimalNUS.quotientCoordsQ_collision_rank {p n K : ℕ} (S : MinimalNUS 
         quotientCoordsZ b (Submodule.Quotient.mk (S.rho P t)))) := hef.symm
     _ = K - 1 := he
 
+/--
+@isnad1 id=le.0h2v.s5.6bd410de6ef0 from=translated src=- shape=51345f6c vocab=ba850c2b
+-/
 theorem sum_abs_uvec_le_two {n : ℕ} (t : Sym2 (Fin n)) :
     ∑ i, |uvec t i| ≤ 2 := by
   classical
@@ -352,6 +379,9 @@ theorem sum_abs_uvec_le_two {n : ℕ} (t : Sym2 (Fin n)) :
           ∑ i, |(Pi.single b 1 : Fin n → ℤ) i| := Finset.sum_add_distrib
       _ = 2 := by rw [ha, hb]; norm_num
 
+/--
+@isnad1 id=le.0h5v.s5.7caa11da2f58 from=translated src=- shape=8f89724b vocab=8c18f122
+-/
 theorem MinimalNUS.sum_abs_rho_le_four {p n : ℕ} (S : MinimalNUS p n)
     (P : S.Pairing) (t : Sym2 (Fin n)) : ∑ i, |S.rho P t i| ≤ 4 := by
   have ht := sum_abs_uvec_le_two t
@@ -364,6 +394,9 @@ theorem MinimalNUS.sum_abs_rho_le_four {p n : ℕ} (S : MinimalNUS p n)
     _ = (∑ i, |uvec t i|) + ∑ i, |uvec (P.μ t) i| := Finset.sum_add_distrib
     _ ≤ 4 := by omega
 
+/--
+@isnad1 id=le.2h9v.s11.0f28c17ac7e2 from=translated src=- shape=080eb2c2 vocab=734f01cc
+-/
 theorem MinimalNUS.core_rho_norm_le {p n K : ℕ} (S : MinimalNUS p n)
     (P : S.Pairing) (Q : Submodule ℤ (Fin n → ℤ))
     (b : Module.Basis (Fin K) ℤ ((Fin n → ℤ) ⧸ Q)) (M : ℤ) (hM : 0 ≤ M)

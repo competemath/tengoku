@@ -21,7 +21,9 @@ namespace NUS
 
 open Finset Matrix
 
-/-- Every element of `Sym2 α` is of the form `s(x, y)`.-/
+/-- Every element of `Sym2 α` is of the form `s(x, y)`.
+@isnad1 id=ex.0h2v.s4.c87545339f92 from=translated src=- shape=55a7df0b vocab=5c8c580b
+-/
 theorem sym2_surj {α : Type*} (z : Sym2 α) : ∃ x y, z = s(x, y) :=
   Sym2.ind (fun x y => ⟨x, y, rfl⟩) z
 
@@ -33,6 +35,9 @@ variable {n : ℕ}
 def uvec : Sym2 (Fin n) → (Fin n → ℤ) :=
   Sym2.lift ⟨fun i j => Pi.single i 1 + Pi.single j 1, fun _ _ => add_comm _ _⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.fce80a2e2809 from=translated src=- shape=6d43eabd vocab=6587236b
+-/
 @[simp] theorem uvec_mk (i j : Fin n) :
     uvec s(i, j) = Pi.single i 1 + Pi.single j 1 := rfl
 
@@ -40,11 +45,16 @@ def uvec : Sym2 (Fin n) → (Fin n → ℤ) :=
 def pairSum {R : Type*} [AddCommMonoid R] (x : Fin n → R) : Sym2 (Fin n) → R :=
   Sym2.lift ⟨fun i j => x i + x j, fun _ _ => add_comm _ _⟩
 
+/--
+@isnad1 id=eq.0h5v.s5.625c300984f8 from=translated src=- shape=cd2f10fc vocab=e725d210
+-/
 @[simp] theorem pairSum_mk {R : Type*} [AddCommMonoid R] (x : Fin n → R) (i j : Fin n) :
     pairSum x s(i, j) = x i + x j := rfl
 
 /-- The fundamental computation: `⟨u_t, x⟩` is the pair sum of `x` at `t`
-(after extending scalars along `ℤ → R`).-/
+(after extending scalars along `ℤ → R`).
+@isnad1 id=eq.0h4v.s6.d09d3d70831d from=translated src=- shape=6137b62e vocab=b2cb5d30
+-/
 theorem uvec_cast_dot {R : Type*} [CommRing R] (t : Sym2 (Fin n)) (x : Fin n → R) :
     (fun k => ((uvec t k : ℤ) : R)) ⬝ᵥ x = pairSum x t := by
   induction t using Sym2.ind with
@@ -71,6 +81,9 @@ variable {p : ℕ} (S : MinimalNUS p n)
 /-- The underlying set `A ⊆ 𝔽_p`.-/
 def carrier : Finset (ZMod p) := Finset.univ.map S.a
 
+/--
+@isnad1 id=mem.0h4v.s5.170ea3e76262 from=translated src=- shape=62e7c87b vocab=4d35ea31
+-/
 theorem mem_carrier (i : Fin n) : S.a i ∈ S.carrier :=
   mem_map_of_mem _ (mem_univ i)
 
@@ -78,8 +91,14 @@ theorem mem_carrier (i : Fin n) : S.a i ∈ S.carrier :=
 def sumMap : Sym2 (Fin n) → ZMod p :=
   Sym2.lift ⟨fun i j => S.a i + S.a j, fun _ _ => add_comm _ _⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.2da80fc456d4 from=translated src=- shape=6234feb8 vocab=3c5c1994
+-/
 @[simp] theorem sumMap_mk (i j : Fin n) : S.sumMap s(i, j) = S.a i + S.a j := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.e6c9764d51c0 from=translated src=- shape=521f1fb2 vocab=1fa8eacc
+-/
 theorem pairSum_a (t : Sym2 (Fin n)) : pairSum (fun i => S.a i) t = S.sumMap t := by
   induction t using Sym2.ind with
   | _ i j => rfl
@@ -88,8 +107,14 @@ theorem pairSum_a (t : Sym2 (Fin n)) : pairSum (fun i => S.a i) t = S.sumMap t :
 def pairMul : Sym2 (Fin n) → Multiset (ZMod p) :=
   Sym2.lift ⟨fun i j => {S.a i, S.a j}, fun _ _ => Multiset.pair_comm _ _⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.5fdd375d07b5 from=translated src=- shape=d5bd1de2 vocab=92f0ed0e
+-/
 @[simp] theorem pairMul_mk (i j : Fin n) : S.pairMul s(i, j) = {S.a i, S.a j} := rfl
 
+/--
+@isnad1 id=ispairfr.0h4v.s4.a6dbd4339449 from=translated src=- shape=2084a711 vocab=7b88960a
+-/
 theorem isPairFrom_pairMul (t : Sym2 (Fin n)) : IsPairFrom S.carrier (S.pairMul t) := by
   induction t using Sym2.ind with
   | _ i j =>
@@ -98,12 +123,17 @@ theorem isPairFrom_pairMul (t : Sym2 (Fin n)) : IsPairFrom S.carrier (S.pairMul 
     rcases (by simpa using hx : x = S.a i ∨ x = S.a j) with rfl | rfl
     exacts [S.mem_carrier i, S.mem_carrier j]
 
+/--
+@isnad1 id=eq.0h4v.s5.37cb6276c878 from=translated src=- shape=5523140e vocab=39fc3e0b
+-/
 theorem sum_pairMul (t : Sym2 (Fin n)) : (S.pairMul t).sum = S.sumMap t := by
   induction t using Sym2.ind with
   | _ i j => simp
 
 /-- Since `A` has no unique sum, every index pair has a distinct index pair with the
-same sum: the fibers of `σ` all have at least two elements.-/
+same sum: the fibers of `σ` all have at least two elements.
+@isnad1 id=ex.0h4v.s5.962fd772e701 from=translated src=- shape=a8b2195e vocab=2d3d9ac7
+-/
 theorem exists_mate (t : Sym2 (Fin n)) :
     ∃ t' : Sym2 (Fin n), t' ≠ t ∧ S.sumMap t' = S.sumMap t := by
   obtain ⟨m', ⟨hcard, hmem⟩, hne, hsum⟩ := S.nus (S.pairMul t) (S.isPairFrom_pairMul t)
@@ -127,7 +157,9 @@ structure Pairing (S : MinimalNUS p n) where
   sumMap_fix : ∀ t, S.sumMap (μ t) = S.sumMap t
   ne : ∀ t, μ t ≠ t
 
-/-- Existence of a pairing (the choice of `μ` at the start of Section 1).-/
+/-- Existence of a pairing (the choice of `μ` at the start of Section 1).
+@isnad1 id=nonempty.0h3v.s3.fed42fde15e4 from=translated src=- shape=3c5a21e7 vocab=adcfc0f1
+-/
 theorem exists_pairing : Nonempty S.Pairing := by
   obtain ⟨π, hfib, hne⟩ := exists_fiberwise_derangement S.sumMap fun t => by
     obtain ⟨t', h1, h2⟩ := S.exists_mate t
@@ -144,7 +176,9 @@ def rho (P : S.Pairing) (t : Sym2 (Fin n)) : Fin n → ℤ :=
 def colLat (P : S.Pairing) : Submodule ℤ (Fin n → ℤ) :=
   Submodule.span ℤ (Set.range (S.rho P))
 
-/-- `⟨ρ_t, x⟩ = (x_i + x_j) − (x_{i'} + x_{j'})` where `μ(t) = {i',j'}`.-/
+/-- `⟨ρ_t, x⟩ = (x_i + x_j) − (x_{i'} + x_{j'})` where `μ(t) = {i',j'}`.
+@isnad1 id=eq.0h7v.s7.c3c9bff1073c from=translated src=- shape=2378a014 vocab=d259a98e
+-/
 theorem rho_cast_dot {R : Type*} [CommRing R] (P : S.Pairing) (t : Sym2 (Fin n))
     (x : Fin n → R) :
     (fun k => ((S.rho P t k : ℤ) : R)) ⬝ᵥ x = pairSum x t - pairSum x (P.μ t) := by
@@ -154,7 +188,9 @@ theorem rho_cast_dot {R : Type*} [CommRing R] (P : S.Pairing) (t : Sym2 (Fin n))
     simp [rho]
   rw [hfun, sub_dotProduct, uvec_cast_dot, uvec_cast_dot]
 
-/-- The collision rows are orthogonal to the all-ones vector (over any ring).-/
+/-- The collision rows are orthogonal to the all-ones vector (over any ring).
+@isnad1 id=eq.0h6v.s6.e1c6a2b1769b from=translated src=- shape=cbee1d48 vocab=aa7b24ff
+-/
 theorem rho_cast_dot_one {R : Type*} [CommRing R] (P : S.Pairing) (t : Sym2 (Fin n)) :
     (fun k => ((S.rho P t k : ℤ) : R)) ⬝ᵥ (fun _ => (1 : R)) = 0 := by
   rw [rho_cast_dot]
@@ -164,7 +200,9 @@ theorem rho_cast_dot_one {R : Type*} [CommRing R] (P : S.Pairing) (t : Sym2 (Fin
     | _ i j => rw [pairSum_mk]; norm_num
   rw [h2, h2, sub_self]
 
-/-- Mod `p`, the collision rows are orthogonal to the label vector `a`.-/
+/-- Mod `p`, the collision rows are orthogonal to the label vector `a`.
+@isnad1 id=eq.0h5v.s6.cbf794b04bdc from=translated src=- shape=716dc1b5 vocab=ee0de6d1
+-/
 theorem rho_cast_dot_a (P : S.Pairing) (t : Sym2 (Fin n)) :
     (fun k => ((S.rho P t k : ℤ) : ZMod p)) ⬝ᵥ (fun i => S.a i) = 0 := by
   rw [rho_cast_dot, pairSum_a, pairSum_a, P.sumMap_fix, sub_self]
@@ -284,7 +322,9 @@ theorem eq_const_of_rho_dot_eq_zero (P : S.Pairing) (x : Fin n → ℚ)
 def rhoQ (P : S.Pairing) (t : Sym2 (Fin n)) : Fin n → ℚ :=
   fun k => ((S.rho P t k : ℤ) : ℚ)
 
-/-- **Lemma 1.3, first part.**  The collision lattice has rational rank `n − 1`.-/
+/-- **Lemma 1.3, first part.**  The collision lattice has rational rank `n − 1`.
+@isnad1 id=eq.0h4v.s8.d2e6e41de2cd from=translated src=- shape=1f1afac4 vocab=9eeeb478
+-/
 theorem finrank_span_rhoQ (P : S.Pairing) :
     Module.finrank ℚ (Submodule.span ℚ (Set.range (S.rhoQ P))) = n - 1 := by
   classical
@@ -338,7 +378,9 @@ def modp (p : ℕ) {n : ℕ} : (Fin n → ℤ) →ₗ[ℤ] (Fin n → ZMod p) wh
     simp [zsmul_eq_mul]
 
 /-- Every vector of the collision lattice is orthogonal, mod `p`, to both the all-ones
-vector and the label vector `a`.-/
+vector and the label vector `a`.
+@isnad1 id=and.1h5v.s9.fb3e2f7c13b3 from=translated src=- shape=cf91c5a5 vocab=22590071
+-/
 theorem colLat_orth (P : S.Pairing) {y : Fin n → ℤ} (hy : y ∈ S.colLat P) :
     (modp p y) ⬝ᵥ (fun _ => (1 : ZMod p)) = 0 ∧ (modp p y) ⬝ᵥ (fun i => S.a i) = 0 := by
   induction hy using Submodule.span_induction with
@@ -362,6 +404,9 @@ of vectors orthogonal to both.-/
 def Bt : Matrix (Fin 2) (Fin n) (ZMod p) :=
   Matrix.of ![fun _ => (1 : ZMod p), fun i => S.a i]
 
+/--
+@isnad1 id=eq.0h3v.s5.fb4dc5fb49b2 from=translated src=- shape=09b0ca57 vocab=92247029
+-/
 theorem Bt_rank : (Bt S).rank = 2 := by
   have hn := S.two_le
   have i₀ : Fin n := ⟨0, by omega⟩
@@ -391,7 +436,9 @@ theorem Bt_rank : (Bt S).rank = 2 := by
   have := hli.rank_matrix
   simpa using this
 
-/-- The space of mod-`p` vectors orthogonal to `𝟙` and to `a` has dimension `n − 2`.-/
+/-- The space of mod-`p` vectors orthogonal to `𝟙` and to `a` has dimension `n − 2`.
+@isnad1 id=eq.0h3v.s10.d03b12abd7e9 from=translated src=- shape=f85acecc vocab=cd34e7e8
+-/
 theorem finrank_ker_Bt :
     Module.finrank (ZMod p) (LinearMap.ker (Bt S).mulVecLin) = n - 2 := by
   have hn := S.two_le
@@ -405,6 +452,9 @@ theorem finrank_ker_Bt :
   simp only [Fintype.card_fin] at hrn
   omega
 
+/--
+@isnad1 id=mem.2h4v.s9.51a9a10aaf04 from=translated src=- shape=158f219f vocab=249a0924
+-/
 theorem mem_ker_Bt_of_orth {y : Fin n → ZMod p}
     (h1 : y ⬝ᵥ (fun _ => (1 : ZMod p)) = 0) (ha : y ⬝ᵥ (fun i => S.a i) = 0) :
     y ∈ LinearMap.ker (Bt S).mulVecLin := by
@@ -415,7 +465,9 @@ theorem mem_ker_Bt_of_orth {y : Fin n → ZMod p}
   · simpa [Bt, Matrix.mulVecLin_apply, Matrix.mulVec, dotProduct_comm] using ha
 
 /-- **Lemma 1.3, second part.**  Mod `p`, the rows of the collision lattice span a space
-of dimension at most `n − 2`.-/
+of dimension at most `n − 2`.
+@isnad1 id=le.0h4v.s10.2ee2e188106b from=translated src=- shape=7a841412 vocab=e4db0362
+-/
 theorem finrank_span_modp_le (P : S.Pairing) :
     Module.finrank (ZMod p)
       (Submodule.span (ZMod p) (Set.range (fun t => modp p (S.rho P t)))) ≤ n - 2 := by
@@ -431,7 +483,9 @@ theorem finrank_span_modp_le (P : S.Pairing) :
     _ = n - 2 := finrank_ker_Bt S
 
 /-- **Lemma 1.3, final part.**  Every maximal minor of an `(n−1)`-row integer matrix
-whose rows lie in the collision lattice is divisible by `p`.-/
+whose rows lie in the collision lattice is divisible by `p`.
+@isnad1 id=dvd.1h6v.s9.1267f518b707 from=translated src=- shape=eddd7ea9 vocab=93c500e1
+-/
 theorem p_dvd_maximal_minor (P : S.Pairing)
     (v : Fin (n - 1) → (Fin n → ℤ)) (hv : ∀ r, v r ∈ S.colLat P)
     (cols : Fin (n - 1) ↪ Fin n) :
@@ -472,7 +526,9 @@ theorem p_dvd_maximal_minor (P : S.Pairing)
 /-- Generalization of `p_dvd_maximal_minor`: for an arbitrary integer matrix `U`,
 `p` divides `det (V * U)` whenever the `n − 1` rows of `V` lie in the collision
 lattice.  Maximal minors are the case of column-selection matrices; this form also
-covers arbitrary (e.g. unimodular) column operations, as needed in Section 5.-/
+covers arbitrary (e.g. unimodular) column operations, as needed in Section 5.
+@isnad1 id=dvd.1h6v.s9.33dbf4709b66 from=translated src=- shape=bfcdb051 vocab=f60aa654
+-/
 theorem p_dvd_det_mul (P : S.Pairing)
     (v : Fin (n - 1) → (Fin n → ℤ)) (hv : ∀ r, v r ∈ S.colLat P)
     (U : Matrix (Fin n) (Fin (n - 1)) ℤ) :

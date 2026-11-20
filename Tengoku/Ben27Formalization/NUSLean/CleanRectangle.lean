@@ -24,7 +24,9 @@ namespace NUS
 open Finset Matrix
 open scoped RealInnerProductSpace
 
-/-- Hadamard's determinant inequality, in the row-vector form used below.-/
+/-- Hadamard's determinant inequality, in the row-vector form used below.
+@isnad1 id=le.0h2v.s6.76cfb43a3968 from=translated src=- shape=d7658768 vocab=e5565675
+-/
 theorem abs_det_le_prod_euclidean_row_norm {d : ℕ} (A : Matrix (Fin d) (Fin d) ℝ) :
     |A.det| ≤ ∏ i, ‖(WithLp.toLp 2 (A i) : EuclideanSpace ℝ (Fin d))‖ := by
   letI : Fact (Module.finrank ℝ (EuclideanSpace ℝ (Fin d)) = d) := ⟨by simp⟩
@@ -56,6 +58,9 @@ def NearUni {κ : Type*} (v : κ → ℤ) : Prop :=
     (∀ c c', v c = 1 → v c' = 1 → c = c') ∧
     ∀ c c', v c = -1 → v c' = -1 → c = c'
 
+/--
+@isnad1 id=nearuni.2h4v.s4.2418f8ef2afe from=translated src=- shape=5f7701ae vocab=270e6cb8
+-/
 theorem NearUni.comp {κ κ' : Type*} {v : κ → ℤ} (hv : NearUni v) {f : κ' → κ}
     (hf : Function.Injective f) : NearUni (v ∘ f) :=
   ⟨fun c => hv.1 (f c), fun c c' h h' => hf (hv.2.1 (f c) (f c') h h'),
@@ -65,12 +70,17 @@ theorem NearUni.comp {κ κ' : Type*} {v : κ → ℤ} (hv : NearUni v) {f : κ'
 def isub {α : Type*} [DecidableEq α] (a b : α) : α → ℤ :=
   Pi.single a 1 - Pi.single b 1
 
+/--
+@isnad1 id=eq.0h4v.s6.8b414146aab7 from=translated src=- shape=8893b798 vocab=b23c6b42
+-/
 theorem isub_apply {α : Type*} [DecidableEq α] (a b k : α) :
     isub a b k = (if k = a then (1 : ℤ) else 0) - if k = b then (1 : ℤ) else 0 := by
   rw [isub, Pi.sub_apply, Pi.single_apply, Pi.single_apply]
 
 /-- The difference of two indicator vectors, pulled back along an injective map, is
-near-unimodular.-/
+near-unimodular.
+@isnad1 id=nearuni.1h5v.s5.ccaab7744cce from=translated src=- shape=cc97aab6 vocab=bf5bfe8a
+-/
 theorem nearUni_isub {α : Type*} [DecidableEq α] {κ : Type*} {a b : α} {f : κ → α}
     (hf : Function.Injective f) :
     NearUni (fun c => isub a b (f c)) := by
@@ -103,10 +113,16 @@ theorem nearUni_isub {α : Type*} [DecidableEq α] {κ : Type*} {a b : α} {f : 
   · exact hf ((hone c hc).trans (hone c' hc').symm)
   · exact hf ((hmone c hc).trans (hmone c' hc').symm)
 
+/--
+@isnad1 id=eq.2h4v.s5.f6315022038b from=translated src=- shape=31f3b790 vocab=88a72d5b
+-/
 theorem sum_isub_eq_zero {α : Type*} [DecidableEq α] (T : Finset α) {a b : α}
     (ha : a ∈ T) (hb : b ∈ T) : ∑ k ∈ T, isub a b k = 0 := by
   simp [isub, Finset.sum_sub_distrib, ha, hb]
 
+/--
+@isnad1 id=or.1h4v.s5.c1818a27f39e from=translated src=- shape=842865d2 vocab=8580e33a
+-/
 theorem isub_ne_zero_support {α : Type*} [DecidableEq α] {a b k : α}
     (h : isub a b k ≠ 0) : k = a ∨ k = b := by
   rw [isub_apply] at h
@@ -116,6 +132,9 @@ theorem isub_ne_zero_support {α : Type*} [DecidableEq α] {a b k : α}
   · exact Or.inr hb
   simp [ha, hb] at h
 
+/--
+@isnad1 id=le.0h3v.s5.a98c65fb1d52 from=translated src=- shape=9cf41701 vocab=313a1461
+-/
 theorem sum_sq_isub_le_two {α : Type*} [Fintype α] [DecidableEq α] (a b : α) :
     ∑ k, (((isub a b k : ℤ) : ℝ) ^ 2) ≤ 2 := by
   by_cases h : a = b
@@ -146,7 +165,9 @@ theorem sum_sq_isub_le_two {α : Type*} [Fintype α] [DecidableEq α] (a b : α)
         norm_num
       _ ≤ 2 := le_rfl
 
-/-- Select a prescribed number of independent members from a spanning family.-/
+/-- Select a prescribed number of independent members from a spanning family.
+@isnad1 id=ex.1h5v.s7.529822e80310 from=translated src=- shape=08496515 vocab=871743ee
+-/
 theorem exists_indep_family_of_finrank {F V : Type*} [Field F] [AddCommGroup V] [Module F V]
     [FiniteDimensional F V] {ι : Type*} (g : ι → V) (d : ℕ)
     (hd : d ≤ Module.finrank F (Submodule.span F (Set.range g))) :
@@ -172,7 +193,9 @@ theorem exists_indep_family_of_finrank {F V : Type*} [Field F] [AddCommGroup V] 
   rw [hfun]
   exact hli.comp emb emb.injective
 
-/-- Independent rows yield a nonsingular square coordinate minor.-/
+/-- Independent rows yield a nonsingular square coordinate minor.
+@isnad1 id=ex.1h4v.s7.5c71951e3801 from=translated src=- shape=da6a6fd9 vocab=6949c48a
+-/
 theorem exists_coordinate_minor {F κ : Type*} [Field F] [Fintype κ] [DecidableEq κ]
     {d : ℕ} (g : Fin d → (κ → F)) (hg : LinearIndependent F g) :
     ∃ c : Fin d ↪ κ, (Matrix.of fun i j => g i (c j)).det ≠ 0 := by
@@ -202,7 +225,9 @@ theorem exists_coordinate_minor {F κ : Type*} [Field F] [Fintype κ] [Decidable
   exact (B.isUnit_iff_isUnit_det.mp hu).ne_zero
 
 /-- **Near-unimodularity bound.**  A square integer matrix whose rows all have entries in
-`{-1, 0, 1}` with at most one `+1` and at most one `-1` has determinant `0` or `±1`.-/
+`{-1, 0, 1}` with at most one `+1` and at most one `-1` has determinant `0` or `±1`.
+@isnad1 id=le.1h2v.s5.90fa08651b74 from=translated src=- shape=a859f370 vocab=f14a8998
+-/
 theorem det_natAbs_le_one : ∀ {N : ℕ} (A : Matrix (Fin N) (Fin N) ℤ),
     (∀ r, NearUni (A r)) → A.det.natAbs ≤ 1 := by
   intro N
@@ -298,7 +323,9 @@ def rectangle (X Y : Finset (Fin n)) : Set (Sym2 (Fin n)) :=
   {t | ∃ i ∈ X, ∃ j ∈ Y, t = s(i, j)}
 
 /-- The collision row of a rectangle pair splits as a sum of two near-unimodular parts,
-one supported on each side.-/
+one supported on each side.
+@isnad1 id=eq.1h8v.s6.eff4d4503550 from=translated src=- shape=c77912cc vocab=00838bcf
+-/
 theorem rho_eq_isub_add_isub (S : MinimalNUS p n) (P : S.Pairing) {i j i' j' : Fin n}
     (hEq : P.μ s(i, j) = s(i', j')) :
     S.rho P s(i, j) = fun k => isub i i' k + isub j j' k := by
@@ -306,7 +333,9 @@ theorem rho_eq_isub_add_isub (S : MinimalNUS p n) (P : S.Pairing) {i j i' j' : F
   simp only [rho, hEq, uvec_mk, Pi.sub_apply, Pi.add_apply, isub_apply, Pi.single_apply]
   ring
 
-/-- Collision rows of rectangle pairs vanish outside the four endpoints.-/
+/-- Collision rows of rectangle pairs vanish outside the four endpoints.
+@isnad1 id=eq.5h9v.s6.7e19b56d54da from=translated src=- shape=b6b6b9c6 vocab=20af411f
+-/
 theorem rho_apply_eq_zero (S : MinimalNUS p n) (P : S.Pairing) {i j i' j' k : Fin n}
     (hEq : P.μ s(i, j) = s(i', j')) (h1 : k ≠ i) (h2 : k ≠ j) (h3 : k ≠ i') (h4 : k ≠ j') :
     S.rho P s(i, j) k = 0 := by
@@ -315,7 +344,9 @@ theorem rho_apply_eq_zero (S : MinimalNUS p n) (P : S.Pairing) {i j i' j' k : Fi
   ring
 
 /-- A collision row inside an invariant disjoint rectangle has coordinate sum zero on
-each of the two sides separately.-/
+each of the two sides separately.
+@isnad1 id=and.2h7v.s7.f48902a329b1 from=translated src=- shape=b0bc700b vocab=d2b71526
+-/
 theorem sum_rho_rectangle_side_eq_zero (S : MinimalNUS p n) (P : S.Pairing)
     {X Y : Finset (Fin n)} (hXY : Disjoint X Y)
     (hinv : ∀ t ∈ rectangle X Y, P.μ t ∈ rectangle X Y)
@@ -336,7 +367,9 @@ theorem sum_rho_rectangle_side_eq_zero (S : MinimalNUS p n) (P : S.Pairing)
   · rw [Finset.sum_add_distrib, sum_isub_eq_zero Y hj hj']
     simp [isub, hij, hi'j]
 
-/-- A rectangle collision row has Euclidean norm at most `2`.-/
+/-- A rectangle collision row has Euclidean norm at most `2`.
+@isnad1 id=le.2h7v.s7.228b29a875f6 from=translated src=- shape=2fcb22b2 vocab=404caaf5
+-/
 theorem sum_sq_rho_rectangle_le_four (S : MinimalNUS p n) (P : S.Pairing)
     {X Y : Finset (Fin n)} (hXY : Disjoint X Y)
     (hinv : ∀ t ∈ rectangle X Y, P.μ t ∈ rectangle X Y)
@@ -372,7 +405,9 @@ theorem sum_sq_rho_rectangle_le_four (S : MinimalNUS p n) (P : S.Pairing)
     _ = 4 := by norm_num
 
 /-- For a vector supported inside `U`, the dot product computed over the coordinates in `U`
-agrees with the full dot product.-/
+agrees with the full dot product.
+@isnad1 id=eq.1h5v.s7.93a942fc2475 from=translated src=- shape=001c2869 vocab=07ec9c12
+-/
 theorem sum_subtype_mul_eq_dot {R : Type*} [CommRing R] {U : Finset (Fin n)} {v : Fin n → ℤ}
     (hsupp : ∀ k, k ∉ U → v k = 0) (w : Fin n → R) :
     ∑ k : ↥U, w k.1 * ((v k.1 : ℤ) : R) = (fun k => ((v k : ℤ) : R)) ⬝ᵥ w := by
@@ -381,7 +416,9 @@ theorem sum_subtype_mul_eq_dot {R : Type*} [CommRing R] {U : Finset (Fin n)} {v 
   exact Finset.sum_subset (Finset.subset_univ U) fun k _ hk => by rw [hsupp k hk]; norm_num
 
 /-- A `μ`-invariant rectangle has at least three vertices: a `1 × 1` rectangle would force
-`μ` to fix its unique pair.-/
+`μ` to fix its unique pair.
+@isnad1 id=le.3h6v.s7.8dc0910c39cc from=translated src=- shape=e75ea06a vocab=8921ec54
+-/
 theorem three_le_of_invariant (S : MinimalNUS p n) (P : S.Pairing) {X' Y' : Finset (Fin n)}
     (hX' : X'.Nonempty) (hY' : Y'.Nonempty)
     (hinv : ∀ t ∈ rectangle X' Y', P.μ t ∈ rectangle X' Y') :
@@ -399,7 +436,9 @@ theorem three_le_of_invariant (S : MinimalNUS p n) (P : S.Pairing) {X' Y' : Fins
   exact P.ne s(i₀, j₀) (by rw [hEq, hi', hj'])
 
 /-- Every invariant rectangle contains one minimal under taking nonempty invariant
-subrectangles.-/
+subrectangles.
+@isnad1 id=ex.3h6v.s8.6c553eb8cee0 from=translated src=- shape=32475939 vocab=7081edb3
+-/
 theorem exists_minimal_rectangle (S : MinimalNUS p n) (P : S.Pairing)
     {X Y : Finset (Fin n)} (hX : X.Nonempty) (hY : Y.Nonempty)
     (hinv : ∀ t ∈ rectangle X Y, P.μ t ∈ rectangle X Y) :
@@ -434,7 +473,9 @@ theorem exists_minimal_rectangle (S : MinimalNUS p n) (P : S.Pairing)
 
 /-- **The argmax step.**  On a *minimal* invariant rectangle, a rational vector whose pair
 sums are `μ`-invariant over the rectangle is constant on each side: the argmax sets on the
-two sides span an invariant sub-rectangle, which by minimality is everything.-/
+two sides span an invariant sub-rectangle, which by minimality is everything.
+@isnad1 id=and.5h7v.s8.d6cfba4af77e from=translated src=- shape=5a93f39e vocab=ccdb66b6
+-/
 theorem const_on_sides (S : MinimalNUS p n) (P : S.Pairing) {X' Y' : Finset (Fin n)}
     (hX' : X'.Nonempty) (hY' : Y'.Nonempty)
     (hinv : ∀ t ∈ rectangle X' Y', P.μ t ∈ rectangle X' Y')
@@ -494,7 +535,9 @@ theorem const_on_sides (S : MinimalNUS p n) (P : S.Pairing) {X' Y' : Finset (Fin
     rw [e₁, e₂]
 
 /-- On a minimal invariant rectangle, the restricted collision rows have rank at least
-the number of vertices minus two.-/
+the number of vertices minus two.
+@isnad1 id=le.4h6v.s11.d78564cb4ef9 from=translated src=- shape=f0ed9940 vocab=76aeb7d3
+-/
 theorem finrank_rectRows_ge (S : MinimalNUS p n) (P : S.Pairing)
     {X' Y' : Finset (Fin n)} (hX' : X'.Nonempty) (hY' : Y'.Nonempty)
     (hinv : ∀ t ∈ rectangle X' Y', P.μ t ∈ rectangle X' Y')
@@ -595,7 +638,9 @@ theorem finrank_rectRows_ge (S : MinimalNUS p n) (P : S.Pairing)
   exact hrange
 
 /-- **Lemma 2.1 (Clean rectangle).**  If `μ` maps the rectangle `X × Y` into itself,
-then `p ≤ 2^(|X|+|Y|−2)`, i.e. `|X| + |Y| ≥ log₂ p + 2`.-/
+then `p ≤ 2^(|X|+|Y|−2)`, i.e. `|X| + |Y| ≥ log₂ p + 2`.
+@isnad1 id=le.4h6v.s7.c2f346041501 from=translated src=- shape=b9353234 vocab=c455c5fa
+-/
 theorem clean_rectangle [Fact p.Prime] (S : MinimalNUS p n) (P : S.Pairing)
     (X Y : Finset (Fin n)) (hX : X.Nonempty) (hY : Y.Nonempty) (hXY : Disjoint X Y)
     (hinv : ∀ t ∈ rectangle X Y, P.μ t ∈ rectangle X Y) :
