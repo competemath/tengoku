@@ -16,7 +16,9 @@ open Finset
 variable {V : Type*} [Fintype V] [DecidableEq V]
 variable {edges : Finset (Sym2 V)} (c : Construction edges)
 
-/-- The full type-2 family supplies the ambient graph needed for the exchange.-/
+/-- The full type-2 family supplies the ambient graph needed for the exchange.
+@isnad1 id=eq.7h8v.s8.b444231c1369 from=translated src=- shape=4f0cccb0 vocab=7081c996
+-/
 theorem pair_unique_in_special {u v x y : V}
     (hparent : triangleEdges u v x ∈ c.typeTwo)
     (hpage : triangleEdges u v y ∈ c.specialFamily)
@@ -44,6 +46,9 @@ theorem pair_unique_in_special {u v x y : V}
   rw [← typeTwo_eq_oneRed]
   exact c.specialFamily_subset_typeTwo_residual hT
 
+/--
+@isnad1 id=mem.6h8v.s8.0df7aa20bfa7 from=translated src=- shape=f5d7400f vocab=1dc07c52
+-/
 theorem pair_mem_privateRed {Q : Finset (Finset (Sym2 V))}
     (hQ : IsPacking c.specialFamily Q) {u v x y : V}
     (hparent : triangleEdges u v x ∈ c.typeTwo)
@@ -59,12 +64,18 @@ theorem pair_mem_privateRed {Q : Finset (Finset (Sym2 V))}
     mem_inter.mpr ⟨by simp, hspine⟩
   exact (mem_inter.mp (heq.symm ▸ he)).1
 
+/--
+@isnad1 id=not.2h5v.s6.6e313938cd56 from=translated src=- shape=bf268bac vocab=3875bb4a
+-/
 theorem special_member_not_typeTwo {Q : Finset (Finset (Sym2 V))}
     (hQ : IsPacking c.specialFamily Q) {q : Finset (Sym2 V)} (hq : q ∈ Q) :
     q ∉ c.typeTwo := by
   exact Layered.residual_member_not_parent (typeTwo_colored c.remainingEdges c.old)
     (hQ.mono_family c.specialFamily_subset_typeTwo_residual) hq
 
+/--
+@isnad1 id=mem.9h8v.s8.aa02a16c1c9e from=translated src=- shape=423a1bc6 vocab=86bcbf9b
+-/
 theorem book_child_private {Q : Finset (Finset (Sym2 V))}
     (hQ : IsPacking c.specialFamily Q) (b : Book V) {p q : Finset (Sym2 V)}
     (hp : p ∈ c.typeTwo) (hpb : p ∈ b.pages) (hq : q ∈ Q) (hqb : q ∈ b.pages)
@@ -91,7 +102,9 @@ theorem book_child_private {Q : Finset (Finset (Sym2 V))}
           (Sym2.eq_swap ▸ he) (Sym2.eq_swap ▸ heout)
       · exact (hne hsame).elim
 
-/-- Disjoint book supports give distinct private pages.-/
+/-- Disjoint book supports give distinct private pages.
+@isnad1 id=le.6h7v.s8.428d6d4a4c7f from=translated src=- shape=726a5bc9 vocab=1507d6e8
+-/
 theorem count_books_le_privateRed {I : Type*} [Fintype I] [DecidableEq I]
     {Q : Finset (Finset (Sym2 V))} (hQ : IsPacking c.specialFamily Q)
     (books : I → Book V) (B : Finset I)
@@ -129,6 +142,9 @@ theorem count_books_le_privateRed {I : Type*} [Fintype I] [DecidableEq I]
   rw [card_image_of_injective _ hinj] at hcard
   simpa using hcard
 
+/--
+@isnad1 id=le.5h6v.s8.55369f40af1e from=translated src=- shape=0c130a0e vocab=93fd4cf3
+-/
 theorem random_books_card_le_privateRed {I : Type*} [Fintype I] [DecidableEq I]
     {Q : Finset (Finset (Sym2 V))} (hQ : IsPacking c.specialFamily Q)
     (books : I → Book V)

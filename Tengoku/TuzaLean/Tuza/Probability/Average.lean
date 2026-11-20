@@ -22,39 +22,59 @@ def finiteAverage [Fintype Ω] (f : Ω → ℚ) : ℚ :=
 def bitAverage [Fintype V] [DecidableEq V] (f : (V → Bool) → ℚ) : ℚ :=
   finiteAverage f
 
+/--
+@isnad1 id=eq.0h4v.s5.558e8539780b from=translated src=- shape=03577e2f vocab=8b354cb7
+-/
 theorem finiteAverage_equiv [Fintype Ω] [Fintype Ω']
     (e : Ω ≃ Ω') (f : Ω' → ℚ) :
     finiteAverage (fun ω => f (e ω)) = finiteAverage f := by
   unfold finiteAverage
   rw [e.sum_comp, Fintype.card_congr e]
 
+/--
+@isnad1 id=eq.0h2v.s4.90960f808cbc from=translated src=- shape=5addde91 vocab=a69f753b
+-/
 theorem finiteAverage_const [Fintype Ω] [Nonempty Ω] (c : ℚ) :
     finiteAverage (fun _ : Ω => c) = c := by
   have hn : (Fintype.card Ω : ℚ) ≠ 0 := by
     exact_mod_cast Fintype.card_ne_zero
   simp [finiteAverage, hn]
 
+/--
+@isnad1 id=eq.0h3v.s5.506ecc61c94c from=translated src=- shape=f9e647ab vocab=8630a719
+-/
 theorem finiteAverage_add [Fintype Ω] (f g : Ω → ℚ) :
     finiteAverage (fun ω => f ω + g ω) = finiteAverage f + finiteAverage g := by
   simp only [finiteAverage, Finset.sum_add_distrib, add_div]
 
+/--
+@isnad1 id=eq.0h4v.s5.60419fe67eca from=translated src=- shape=adf1d57e vocab=1c7e9238
+-/
 theorem finiteAverage_finset_sum [Fintype Ω] (s : Finset I) (f : I → Ω → ℚ) :
     finiteAverage (fun ω => ∑ i ∈ s, f i ω) =
       ∑ i ∈ s, finiteAverage (f i) := by
   unfold finiteAverage
   rw [Finset.sum_comm, Finset.sum_div]
 
+/--
+@isnad1 id=eq.0h3v.s5.3ebc414221c7 from=translated src=- shape=f48f0e7b vocab=c40be859
+-/
 theorem finiteAverage_sum [Fintype Ω] [Fintype I] (f : I → Ω → ℚ) :
     finiteAverage (fun ω => ∑ i, f i ω) = ∑ i, finiteAverage (f i) := by
   exact finiteAverage_finset_sum Finset.univ f
 
+/--
+@isnad1 id=le.1h3v.s5.87f52d33d9f2 from=translated src=- shape=6f600fa3 vocab=656784e2
+-/
 theorem finiteAverage_mono [Fintype Ω] (f g : Ω → ℚ)
     (h : ∀ ω, f ω ≤ g ω) : finiteAverage f ≤ finiteAverage g := by
   unfold finiteAverage
   exact div_le_div_of_nonneg_right (Finset.sum_le_sum fun ω _ => h ω)
     (by positivity)
 
-/-- Some outcome costs no more than its uniform finite average.-/
+/-- Some outcome costs no more than its uniform finite average.
+@isnad1 id=ex.0h2v.s4.05b5f7815c15 from=translated src=- shape=1187b43e vocab=520360f4
+-/
 theorem exists_le_finiteAverage [Fintype Ω] [Nonempty Ω] (f : Ω → ℚ) :
     ∃ ω, f ω ≤ finiteAverage f := by
   classical
@@ -69,7 +89,9 @@ theorem exists_le_finiteAverage [Fintype Ω] [Nonempty Ω] (f : Ω → ℚ) :
     _ ≤ ∑ a : Ω, f a := Finset.sum_le_sum fun a ha => hω a ha
 
 /-- Finite-sum accounting: pointwise charges and individual average bounds
-produce one outcome obeying the sum of the budgets.-/
+produce one outcome obeying the sum of the budgets.
+@isnad1 id=ex.2h7v.s6.e5ec209b75fe from=translated src=- shape=7a5bf273 vocab=ebd8147e
+-/
 theorem exists_le_sum_of_average_le [Fintype Ω] [Nonempty Ω]
     (s : Finset I) (cost : Ω → ℚ) (base : ℚ)
     (charge : I → Ω → ℚ) (budget : I → ℚ)
@@ -102,7 +124,9 @@ private theorem finiteAverage_prod_fst [Fintype Ω] [Fintype Ω']
   field_simp
 
 /-- Uniform Boolean colorings restrict uniformly to any list of distinct
-vertices.  This is the finite independence statement used below.-/
+vertices.  This is the finite independence statement used below.
+@isnad1 id=eq.1h4v.s5.2835f9a31ac5 from=translated src=- shape=a54b9fa0 vocab=952d32dd
+-/
 theorem bitAverage_restrict [Fintype V] [DecidableEq V] [Fintype I] [DecidableEq I]
     (v : I → V) (hv : Function.Injective v) (f : (I → Bool) → ℚ) :
     bitAverage (fun χ : V → Bool => f (χ ∘ v)) = bitAverage f := by
@@ -139,7 +163,9 @@ instance (u v : V) : DecidablePred (sameColor u v) :=
 instance (u v x y : V) : DecidablePred (bookEvent u v x y) :=
   fun _ => inferInstanceAs (Decidable (_ ∧ (_ ∨ _)))
 
-/-- Two distinct vertices agree in exactly half of all Boolean colorings.-/
+/-- Two distinct vertices agree in exactly half of all Boolean colorings.
+@isnad1 id=eq.1h3v.s6.e0fd9fd20a56 from=translated src=- shape=83378a20 vocab=5eafd82b
+-/
 theorem sameColor_average [Fintype V] [DecidableEq V] (u v : V) (huv : u ≠ v) :
     bitAverage (fun χ => if sameColor u v χ then (1 : ℚ) else 0) = 1 / 2 := by
   have hi : Function.Injective (![u, v] : Fin 2 → V) := by
@@ -158,7 +184,9 @@ theorem sameColor_average [Fintype V] [DecidableEq V] (u v : V) (huv : u ≠ v) 
       congr 1
     _ = 1 / 2 := h.trans hsmall
 
-/-- The book event occurs in six of the sixteen local Boolean colorings.-/
+/-- The book event occurs in six of the sixteen local Boolean colorings.
+@isnad1 id=eq.1h5v.s6.90112aa80001 from=translated src=- shape=9a4dac85 vocab=32f2a9a8
+-/
 theorem bookEvent_average_of_injective [Fintype V] [DecidableEq V] (u v x y : V)
     (h : Function.Injective (![u, v, x, y] : Fin 4 → V)) :
     bitAverage (fun χ => if bookEvent u v x y χ then (1 : ℚ) else 0) = 3 / 8 := by
@@ -179,6 +207,9 @@ theorem bookEvent_average_of_injective [Fintype V] [DecidableEq V] (u v x y : V)
       congr 1
     _ = 3 / 8 := hr.trans hsmall
 
+/--
+@isnad1 id=eq.6h5v.s6.865bfda75a93 from=translated src=- shape=36504822 vocab=654773cd
+-/
 theorem bookEvent_average [Fintype V] [DecidableEq V] (u v x y : V)
     (huv : u ≠ v) (hux : u ≠ x) (huy : u ≠ y)
     (hvx : v ≠ x) (hvy : v ≠ y) (hxy : x ≠ y) :

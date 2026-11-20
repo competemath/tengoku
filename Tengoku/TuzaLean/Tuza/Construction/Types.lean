@@ -17,16 +17,25 @@ noncomputable def typeFamily (A O : Finset (Sym2 V)) (j : ℕ) :
   classical
   exact (trianglesOn A).filter (fun T => (T ∩ O).card = j)
 
+/--
+@isnad1 id=iff.0h5v.s6.0f1cd6364188 from=translated src=- shape=98a95813 vocab=1bc792d0
+-/
 @[simp] theorem mem_typeFamily {A O T : Finset (Sym2 V)} {j : ℕ} :
     T ∈ typeFamily A O j ↔ T ∈ trianglesOn A ∧ (T ∩ O).card = j := by
   classical
   simp [typeFamily]
 
+/--
+@isnad1 id=le.0h4v.s5.69a635373f31 from=translated src=- shape=9171667c vocab=fabf0260
+-/
 theorem typeFamily_subset (A O : Finset (Sym2 V)) (j : ℕ) :
     typeFamily A O j ⊆ trianglesOn A := by
   classical
   exact filter_subset _ _
 
+/--
+@isnad1 id=eq.0h5v.s6.20abcff7a13b from=translated src=- shape=6b0486d8 vocab=59fcbf59
+-/
 theorem typeFamily_sdiff (A O C : Finset (Sym2 V)) (j : ℕ) :
     typeFamily (A \ C) O j = residual (typeFamily A O j) C := by
   classical
@@ -34,13 +43,18 @@ theorem typeFamily_sdiff (A O C : Finset (Sym2 V)) (j : ℕ) :
   simp only [typeFamily, mem_filter, trianglesOn_sdiff, mem_residual]
   tauto
 
+/--
+@isnad1 id=coloredf.0h3v.s5.35d98a655f32 from=translated src=- shape=3fc69d85 vocab=f774cf7e
+-/
 theorem typeOne_colored (A O : Finset (Sym2 V)) :
     ColoredFamily (typeFamily A O 1) O := by
   intro T hT
   obtain ⟨ht, hc⟩ := mem_typeFamily.mp hT
   exact ⟨trianglesOn_card ht, hc⟩
 
-/-- In a triangle, two old edges are equivalent to one new edge.-/
+/-- In a triangle, two old edges are equivalent to one new edge.
+@isnad1 id=eq.0h3v.s5.2282a44cbe79 from=translated src=- shape=21a4d2f5 vocab=ce8acf56
+-/
 theorem typeTwo_eq_oneRed (A O : Finset (Sym2 V)) :
     typeFamily A O 2 = oneRedTriangles A (A \ O) := by
   ext T
@@ -71,11 +85,17 @@ theorem typeTwo_eq_oneRed (A O : Finset (Sym2 V)) :
     have hcard := hT.card_eq_three
     omega
 
+/--
+@isnad1 id=coloredf.0h3v.s5.17ec817c4ad2 from=translated src=- shape=df12bf68 vocab=456dcfce
+-/
 theorem typeTwo_colored (A O : Finset (Sym2 V)) :
     ColoredFamily (typeFamily A O 2) (A \ O) := by
   rw [typeTwo_eq_oneRed]
   exact oneRedTriangles_colored _ _
 
+/--
+@isnad1 id=mem.3h5v.s7.1bbbe902cd7c from=translated src=- shape=dda81859 vocab=23cdfcde
+-/
 theorem new_edge_forces_typeTwo {A O T : Finset (Sym2 V)}
     (hT : T ∈ trianglesOn A) (hold : 2 ≤ (T ∩ O).card)
     {e : Sym2 V} (he : e ∈ T \ O) : T ∈ typeFamily A O 2 := by
@@ -85,6 +105,9 @@ theorem new_edge_forces_typeTwo {A O T : Finset (Sym2 V)}
   have hcard := trianglesOn_card hT
   omega
 
+/--
+@isnad1 id=le.2h4v.s6.db2422fd13c5 from=translated src=- shape=e1be432e vocab=e9647df6
+-/
 theorem maximumPacking_old_nonempty {A : Finset (Sym2 V)}
     {P : Finset (Finset (Sym2 V))} (hP : IsMaximumPacking (trianglesOn A) P)
     {T : Finset (Sym2 V)} (hT : T ∈ trianglesOn A) :
@@ -92,7 +115,9 @@ theorem maximumPacking_old_nonempty {A : Finset (Sym2 V)}
   exact card_pos.mpr (hP.meets_support hT (trianglesOn_nonempty hT))
 
 /-- After deleting a maximum packing of type-1 triangles, every remaining
-triangle has at least two old edges.-/
+triangle has at least two old edges.
+@isnad1 id=le.3h5v.s7.bf1a4889d139 from=translated src=- shape=aed14655 vocab=bf05b8d5
+-/
 theorem old_card_ge_two_after_typeOne {A : Finset (Sym2 V)}
     {P Q : Finset (Finset (Sym2 V))}
     (hP : IsMaximumPacking (trianglesOn A) P)
@@ -108,7 +133,9 @@ theorem old_card_ge_two_after_typeOne {A : Finset (Sym2 V)}
   obtain ⟨e, he⟩ := hQ.meets_support htype (trianglesOn_nonempty ht)
   exact disjoint_left.mp hd (mem_inter.mp he).1 (mem_inter.mp he).2
 
-/-- The old edges left after deleting the type-1 packing are counted exactly.-/
+/-- The old edges left after deleting the type-1 packing are counted exactly.
+@isnad1 id=eq.2h4v.s7.0db94acf65fe from=translated src=- shape=de5524b4 vocab=6549c4fc
+-/
 theorem remaining_old_card {A : Finset (Sym2 V)}
     {P Q : Finset (Finset (Sym2 V))}
     (hP : IsPacking (trianglesOn A) P)
@@ -121,7 +148,9 @@ theorem remaining_old_card {A : Finset (Sym2 V)}
   rw [inter_comm] at hred
   omega
 
-/-- A packing in the remaining graph can be combined with the deleted packing.-/
+/-- A packing in the remaining graph can be combined with the deleted packing.
+@isnad1 id=le.2h4v.s6.ee49a823ec6e from=translated src=- shape=d08522a4 vocab=df8b8896
+-/
 theorem deleted_packing_card_add_le {A : Finset (Sym2 V)}
     {P Q : Finset (Finset (Sym2 V))}
     (hP : IsPacking (trianglesOn A) P)

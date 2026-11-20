@@ -18,6 +18,9 @@ namespace Construction
 
 variable {edges : Finset (Sym2 V)} (c : Construction edges)
 
+/--
+@isnad1 id=le.0h3v.s6.9e88255e34f4 from=translated src=- shape=8ad844e7 vocab=52a3effe
+-/
 theorem first_cover :
     transversalNumber (trianglesOn edges) + c.first.card ≤ 3 * c.initial.card :=
   FirstCover.transversalNumber_add_typeOne_packing_le c.initial_maximum c.first_maximum.1

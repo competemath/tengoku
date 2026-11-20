@@ -14,7 +14,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V]
 variable {edges : Finset (Sym2 V)}
 
 /-- The fourth cover consists of the first packing, the old edges of the
-remaining packing, and a minimum cover of the complete special family.-/
+remaining packing, and a minimum cover of the complete special family.
+@isnad1 id=ex.2h5v.s8.3363ebc1a2b4 from=translated src=- shape=8d9ca426 vocab=8c349931
+-/
 theorem exists_fourth_cover (c : Construction edges)
     {Q Q1 : Finset (Finset (Sym2 V))}
     (hQ : IsMaximumPacking c.specialFamily Q)
@@ -57,6 +59,9 @@ theorem exists_fourth_cover (c : Construction edges)
   refine ⟨C, hC, ?_⟩
   omega
 
+/--
+@isnad1 id=le.2h5v.s8.e0843e1bc8eb from=translated src=- shape=86f7a127 vocab=c554ae30
+-/
 theorem fourth_cover (c : Construction edges)
     {Q Q1 : Finset (Finset (Sym2 V))}
     (hQ : IsMaximumPacking c.specialFamily Q)

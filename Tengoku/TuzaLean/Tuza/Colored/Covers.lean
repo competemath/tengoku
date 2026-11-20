@@ -179,7 +179,9 @@ private theorem exists_first_cover_base {A R : Finset (Sym2 V)}
 
 /-- The first cover includes one opposite edge for each private residual page.
 Every opposite edge that is actually needed is assigned to such a page by
-`paired_extra`; counting additional private pages only enlarges the bound.-/
+`paired_extra`; counting additional private pages only enlarges the bound.
+@isnad1 id=ex.3h6v.s8.4a79c71a1449 from=translated src=- shape=caeb8cc8 vocab=cf360ed9
+-/
 theorem exists_first_colored_cover {A R : Finset (Sym2 V)}
     {P Q U : Finset (Finset (Sym2 V))}
     (hP : IsMaximumPacking (oneRedTriangles A R) P)
@@ -219,6 +221,9 @@ theorem exists_first_colored_cover {A R : Finset (Sym2 V)}
   change (C \ redEdges R U).card + 2 * Q.card + U.card ≤ 3 * P.card + J.card
   omega
 
+/--
+@isnad1 id=le.3h6v.s8.b954d553b9de from=translated src=- shape=55ca5a0f vocab=fb19813c
+-/
 theorem first_colored_cover {A R : Finset (Sym2 V)}
     {P Q U : Finset (Finset (Sym2 V))}
     (hP : IsMaximumPacking (oneRedTriangles A R) P)
@@ -229,7 +234,9 @@ theorem first_colored_cover {A R : Finset (Sym2 V)}
   obtain ⟨C, hC, hc⟩ := exists_first_colored_cover hP hQ hU
   exact (Nat.add_le_add_right (Nat.add_le_add_right hC.number_le _) _).trans hc
 
-/-- The first colored bound: equation (1).-/
+/-- The first colored bound: equation (1).
+@isnad1 id=le.3h6v.s7.433284f5704c from=translated src=- shape=ed890622 vocab=c34708b8
+-/
 theorem colored_bound {A R : Finset (Sym2 V)}
     {P Q U : Finset (Finset (Sym2 V))}
     (hP : IsMaximumPacking (oneRedTriangles A R) P)
@@ -242,7 +249,9 @@ theorem colored_bound {A R : Finset (Sym2 V)}
     (privateRedPages_subset (residual (oneRedTriangles A R) (blueEdges R P)) R Q)
   exact colored_bound_arithmetic hfirst hsecond hr
 
-/-- Apply the first bound to the family left after deleting the parent blue edges.-/
+/-- Apply the first bound to the family left after deleting the parent blue edges.
+@isnad1 id=le.3h6v.s7.fdb7649c5a80 from=translated src=- shape=c3dd7386 vocab=c34708b8
+-/
 theorem colored_refined {A R : Finset (Sym2 V)}
     {P Q U : Finset (Finset (Sym2 V))}
     (hP : IsMaximumPacking (oneRedTriangles A R) P)

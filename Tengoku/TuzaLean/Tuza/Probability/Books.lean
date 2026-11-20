@@ -26,6 +26,9 @@ instance (b : Book V) : DecidablePred b.cutEvent := by
   intro χ
   cases b <;> unfold cutEvent <;> infer_instance
 
+/--
+@isnad1 id=le.0h2v.s5.7734108a46ca from=translated src=- shape=ec226424 vocab=70d437d7
+-/
 theorem cutEvent_average (b : Book V) :
     bitAverage (fun χ => if b.cutEvent χ then (1 : ℚ) else 0) ≤ 3 / 8 := by
   cases b with
@@ -43,6 +46,9 @@ noncomputable def oppositeBooks (A O N : Finset (Sym2 V)) (books : I → Book V)
   exact univ.filter (fun i => ∃ e, (books i).opposite = some e ∧ e ∈ A \ O ∧ e ∉ N)
 
 omit [Fintype V] in
+/--
+@isnad1 id=iff.0h7v.s6.4fb0eedf3a4d from=translated src=- shape=02f3fc04 vocab=5b2155f8
+-/
 @[simp] theorem mem_oppositeBooks {A O N : Finset (Sym2 V)} {books : I → Book V} {i : I} :
     i ∈ oppositeBooks A O N books ↔
       ∃ e, (books i).opposite = some e ∧ e ∈ A \ O ∧ e ∉ N := by
@@ -50,7 +56,9 @@ omit [Fintype V] in
   simp [oppositeBooks]
 
 /-- Every added edge outside N comes from a two-page book whose local
-cut event occurs. The witness is derived from the actual uncovered triangle.-/
+cut event occurs. The witness is derived from the actual uncovered triangle.
+@isnad1 id=ex.7h9v.s8.3059046589d9 from=translated src=- shape=25e23737 vocab=cc453141
+-/
 theorem cutAddedEdges_book_witness {A W O N : Finset (Sym2 V)} (books : I → Book V)
     (hOld : ∀ T ∈ trianglesOn A, 2 ≤ (T ∩ O).card)
     (hNO : Disjoint N O)
@@ -151,7 +159,9 @@ theorem cutAddedEdges_book_witness {A W O N : Finset (Sym2 V)} (books : I → Bo
 
 omit [Fintype V] [Fintype I] in
 /-- Each book contributes at most one opposite edge, so the union has at most
-as many edges as there are books whose cut events occur.-/
+as many edges as there are books whose cut events occur.
+@isnad1 id=le.1h6v.s6.98ee891e97ce from=translated src=- shape=93244621 vocab=bfa4e9e9
+-/
 theorem card_le_book_events (books : I → Book V) (J : Finset I)
     (D : Finset (Sym2 V)) (χ : V → Bool)
     (hw : ∀ e ∈ D, ∃ i ∈ J, (books i).opposite = some e ∧ (books i).cutEvent χ) :
@@ -173,6 +183,9 @@ theorem card_le_book_events (books : I → Book V) (J : Finset I)
     _ = K.card := by simp
 
 omit [Fintype I] in
+/--
+@isnad1 id=le.0h4v.s6.5e2c8b8a056d from=translated src=- shape=aa85c204 vocab=4912e2d5
+-/
 theorem book_events_average_le (books : I → Book V) (J : Finset I) :
     bitAverage (fun χ => ((J.filter (fun i => (books i).cutEvent χ)).card : ℚ))
       ≤ 3 * (J.card : ℚ) / 8 := by

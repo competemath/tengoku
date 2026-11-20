@@ -56,9 +56,15 @@ def cover : Book V → Finset (Sym2 V)
   | .triple u v _ _ _ _ => {s(u, v)}
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.1h5v.s5.68a5ae424e57 from=translated src=- shape=36a21289 vocab=48692ae7
+-/
 @[simp] theorem opposite_double (u v x y : V) (h : [u, v, x, y].Nodup) :
     (Book.double u v x y h).opposite = some s(x, y) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.51108a438ad2 from=translated src=- shape=305a5162 vocab=2a2593a7
+-/
 @[simp] theorem cover_double (u v x y : V) (h : [u, v, x, y].Nodup) :
     (Book.double u v x y h).cover = {s(u, v), s(x, y)} := rfl
 
@@ -71,9 +77,15 @@ private theorem pages_ne {u v x y : V} (h : [u, v, x, y].Nodup) :
   simp only [mem_triangleEdges, Sym2.eq_iff] at hx
   aesop
 
+/--
+@isnad1 id=nonempty.0h2v.s4.e56a8f43e673 from=translated src=- shape=78cffae9 vocab=78cc690c
+-/
 theorem pages_nonempty (b : Book V) : b.pages.Nonempty := by
   cases b <;> simp [pages]
 
+/--
+@isnad1 id=eq.0h2v.s4.cc69846e1d0f from=translated src=- shape=9069501a vocab=560e42e0
+-/
 theorem pages_card (b : Book V) : b.pages.card = b.pageCount := by
   cases b with
   | single u v x h => simp [pages, pageCount]
@@ -84,10 +96,16 @@ theorem pages_card (b : Book V) : b.pages.card = b.pageCount := by
     have hyz : [u, v, y, z].Nodup := by simp_all [List.nodup_cons]
     simp [pages, pageCount, pages_ne hxy, pages_ne hxz, pages_ne hyz]
 
+/--
+@isnad1 id=le.0h2v.s4.a190549f65b9 from=translated src=- shape=462fed09 vocab=8922a0a5
+-/
 theorem pages_card_le_three (b : Book V) : b.pages.card ≤ 3 := by
   rw [pages_card]
   cases b <;> simp [pageCount]
 
+/--
+@isnad1 id=istriang.1h3v.s5.511c3ed7ca86 from=translated src=- shape=0fb62e86 vocab=9e012c2a
+-/
 theorem page_isTriangle (b : Book V) {T : Finset (Sym2 V)} (hT : T ∈ b.pages) :
     IsTriangle T := by
   cases b with
@@ -104,10 +122,16 @@ theorem page_isTriangle (b : Book V) {T : Finset (Sym2 V)} (hT : T ∈ b.pages) 
     rcases hT with rfl | rfl | rfl <;>
       apply isTriangle_triangleEdges <;> simp_all [List.nodup_cons]
 
+/--
+@isnad1 id=mem.1h3v.s5.d500014ce5fe from=translated src=- shape=54886bce vocab=787be86f
+-/
 theorem spine_mem_page (b : Book V) {T : Finset (Sym2 V)} (hT : T ∈ b.pages) :
     b.spine ∈ T := by
   cases b <;> simp_all [pages, spine] <;> aesop
 
+/--
+@isnad1 id=le.0h2v.s5.8c13402bcec5 from=translated src=- shape=f6439b50 vocab=3c585106
+-/
 theorem cover_card_add_pages_card_le_four (b : Book V) :
     b.cover.card + b.pages.card ≤ 4 := by
   rw [pages_card]
@@ -123,7 +147,9 @@ theorem cover_card_add_pages_card_le_four (b : Book V) :
     omega
   | triple u v x y z h => simp [cover, pageCount]
 
-/-- Meeting every page of an actual book forces a triangle to meet its cover.-/
+/-- Meeting every page of an actual book forces a triangle to meet its cover.
+@isnad1 id=nonempty.2h3v.s6.2b6a615c2a40 from=translated src=- shape=1c934d4b vocab=bf3c5d73
+-/
 theorem meets_cover (b : Book V) {T : Finset (Sym2 V)} (hT : IsTriangle T)
     (hmeet : ∀ U ∈ b.pages, (T ∩ U).Nonempty) : (T ∩ b.cover).Nonempty := by
   cases b with
@@ -142,6 +168,9 @@ theorem meets_cover (b : Book V) {T : Finset (Sym2 V)} (hT : IsTriangle T)
       (hmeet (triangleEdges u v z) (by simp [pages]))
     exact ⟨s(u, v), mem_inter.mpr ⟨he, by simp [cover]⟩⟩
 
+/--
+@isnad1 id=nonempty.2h3v.s6.7b04ef6cb53b from=translated src=- shape=496b1117 vocab=273039f5
+-/
 theorem meets_cover_of_not_disjoint (b : Book V) {T : Finset (Sym2 V)}
     (hT : IsTriangle T) (hmeet : ∀ U ∈ b.pages, ¬ Disjoint T U) :
     (T ∩ b.cover).Nonempty := by
@@ -151,7 +180,9 @@ theorem meets_cover_of_not_disjoint (b : Book V) {T : Finset (Sym2 V)}
   exact ⟨e, mem_inter.mpr ⟨heT, heU⟩⟩
 
 /-- Every nonempty family of at most three actual triangles with a common edge
-has one of the three book representations above, with that precise spine.-/
+has one of the three book representations above, with that precise spine.
+@isnad1 id=ex.4h3v.s7.18e40578ea5c from=translated src=- shape=f9137e7a vocab=586024e8
+-/
 theorem exists_representation (S : Finset (Finset (Sym2 V))) (e : Sym2 V)
     (hne : S.Nonempty) (hcard : S.card ≤ 3)
     (htri : ∀ T ∈ S, IsTriangle T) (hspine : ∀ T ∈ S, e ∈ T) :
@@ -189,6 +220,9 @@ theorem exists_representation (S : Finset (Finset (Sym2 V))) (e : Sym2 V)
       simp [List.nodup_cons, huv, hux, huy, huz, hvx, hvy, hvz, hxy, hxz, hyz]
     exact ⟨.triple u v x y z hv, rfl, rfl⟩
 
+/--
+@isnad1 id=eq.1h3v.s5.41b7a4819ee9 from=translated src=- shape=18043728 vocab=077bba77
+-/
 theorem pages_card_of_opposite {b : Book V} {e : Sym2 V}
     (hop : b.opposite = some e) : b.pages.card = 2 := by
   rw [b.pages_card]
@@ -202,6 +236,9 @@ variable [DecidableEq V] {I : Type*} [Fintype I]
 def bookFamilyCover (books : I → Book V) : Finset (Sym2 V) :=
   univ.biUnion (fun i => (books i).cover)
 
+/--
+@isnad1 id=iscover.2h4v.s7.48ca15cae1c6 from=translated src=- shape=4f39984e vocab=b7fb5738
+-/
 theorem bookFamilyCover_covers (books : I → Book V)
     (F : Finset (Finset (Sym2 V))) (htri : ∀ T ∈ F, IsTriangle T)
     (hmeet : ∀ T ∈ F, ∃ i, ∀ U ∈ (books i).pages, ¬ Disjoint T U) :
@@ -212,6 +249,9 @@ theorem bookFamilyCover_covers (books : I → Book V)
   exact ⟨e, mem_inter.mpr ⟨(mem_inter.mp he).1,
     mem_biUnion.mpr ⟨i, mem_univ _, (mem_inter.mp he).2⟩⟩⟩
 
+/--
+@isnad1 id=le.0h3v.s6.09625764190b from=translated src=- shape=172000bb vocab=a05cc6db
+-/
 theorem bookFamilyCover_card (books : I → Book V) :
     (bookFamilyCover books).card + (∑ i, (books i).pages.card) ≤
       4 * Fintype.card I := by
@@ -226,7 +266,9 @@ theorem bookFamilyCover_card (books : I → Book V) :
       _ = 4 * Fintype.card I := by simp [Nat.mul_comm]
   omega
 
-/-- Represent each page family as a book and combine the book covers.-/
+/-- Represent each page family as a book and combine the book covers.
+@isnad1 id=ex.6h4v.s7.918398784c3b from=translated src=- shape=8516d9e1 vocab=0cd0a50c
+-/
 theorem exists_cover_of_small_common_spine_books
     (F : Finset (Finset (Sym2 V))) (pages : I → Finset (Finset (Sym2 V)))
     (hne : ∀ i, (pages i).Nonempty) (hcard : ∀ i, (pages i).card ≤ 3)

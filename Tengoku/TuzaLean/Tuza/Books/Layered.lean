@@ -25,21 +25,33 @@ def children (R : Finset E) (Q : Finset (Finset E)) (p : Finset E) :
 def twoLayerPages (R : Finset E) (P Q : Finset (Finset E))
     (p : {T // T ∈ P}) : Finset (Finset E) := insert p.val (children R Q p.val)
 
+/--
+@isnad1 id=iff.0h5v.s6.af819f33c817 from=translated src=- shape=b98f48ea vocab=4843d96b
+-/
 @[simp] theorem mem_pairedParents {R : Finset E} {P Q : Finset (Finset E)}
     {p : Finset E} :
     p ∈ pairedParents R P Q ↔ p ∈ P ∧ ∃ q ∈ Q, p ∩ R = q ∩ R := by
   classical
   simp [pairedParents]
 
+/--
+@isnad1 id=iff.0h5v.s6.8834d234f8ab from=translated src=- shape=5068136c vocab=0bafd1c4
+-/
 @[simp] theorem mem_children {R : Finset E} {Q : Finset (Finset E)}
     {p q : Finset E} : q ∈ children R Q p ↔ q ∈ Q ∧ q ∩ R = p ∩ R := by
   simp [children]
 
+/--
+@isnad1 id=iff.0h6v.s7.5777e4c9b2ca from=translated src=- shape=8a3d1d6f vocab=44d18d00
+-/
 @[simp] theorem mem_twoLayerPages {R : Finset E} {P Q : Finset (Finset E)}
     {p : {T // T ∈ P}} {T : Finset E} :
     T ∈ twoLayerPages R P Q p ↔ T = p.val ∨ (T ∈ Q ∧ T ∩ R = p.val ∩ R) := by
   simp [twoLayerPages]
 
+/--
+@isnad1 id=le.0h4v.s5.972acd89336c from=translated src=- shape=32b5135e vocab=0d9c63d2
+-/
 theorem pairedParents_subset (R : Finset E) (P Q : Finset (Finset E)) :
     pairedParents R P Q ⊆ P := by
   intro p hp
@@ -47,6 +59,9 @@ theorem pairedParents_subset (R : Finset E) (P Q : Finset (Finset E)) :
 
 variable {F P Q : Finset (Finset E)} {R : Finset E}
 
+/--
+@isnad1 id=ex.3h6v.s7.810b8d308d75 from=translated src=- shape=de6d6a21 vocab=ebf1a4b6
+-/
 theorem exists_parent (hF : ColoredFamily F R) (hP : IsMaximumPacking F P)
     (hQ : IsPacking (residual F (blueEdges R P)) Q) (q : {T // T ∈ Q}) :
     ∃ p : {T // T ∈ P}, p.val ∩ R = q.val ∩ R := by
@@ -65,11 +80,17 @@ noncomputable def parent (hF : ColoredFamily F R) (hP : IsMaximumPacking F P)
     (hQ : IsPacking (residual F (blueEdges R P)) Q) (q : {T // T ∈ Q}) :
     {T // T ∈ P} := Classical.choose (exists_parent hF hP hQ q)
 
+/--
+@isnad1 id=eq.3h6v.s7.1d6268dcd182 from=translated src=- shape=bd8592e6 vocab=1a0e3601
+-/
 theorem parent_spec (hF : ColoredFamily F R) (hP : IsMaximumPacking F P)
     (hQ : IsPacking (residual F (blueEdges R P)) Q) (q : {T // T ∈ Q}) :
     (parent hF hP hQ q).val ∩ R = q.val ∩ R :=
   Classical.choose_spec (exists_parent hF hP hQ q)
 
+/--
+@isnad1 id=eq.4h7v.s7.553de67333f9 from=translated src=- shape=39643b4c vocab=1a0e3601
+-/
 theorem parent_unique (hF : ColoredFamily F R) (hP : IsMaximumPacking F P)
     (hQ : IsPacking (residual F (blueEdges R P)) Q) (q : {T // T ∈ Q})
     (p : {T // T ∈ P}) (heq : p.val ∩ R = q.val ∩ R) :
@@ -78,6 +99,9 @@ theorem parent_unique (hF : ColoredFamily F R) (hP : IsMaximumPacking F P)
   exact hP.1.red_inter_injective hF p.property (parent hF hP hQ q).property
     (heq.trans (parent_spec hF hP hQ q).symm)
 
+/--
+@isnad1 id=injectiv.3h5v.s6.b223807935c3 from=translated src=- shape=f41196b6 vocab=ad92307c
+-/
 theorem parent_injective (hF : ColoredFamily F R) (hP : IsMaximumPacking F P)
     (hQ : IsPacking (residual F (blueEdges R P)) Q) :
     Function.Injective (parent hF hP hQ) := by
@@ -89,6 +113,9 @@ theorem parent_injective (hF : ColoredFamily F R) (hP : IsMaximumPacking F P)
     _ = (parent hF hP hQ q₂).val ∩ R := by rw [heq]
     _ = q₂.val ∩ R := parent_spec hF hP hQ q₂
 
+/--
+@isnad1 id=eq.3h5v.s7.7b46c1e57b0e from=translated src=- shape=51b9d020 vocab=17b5316e
+-/
 theorem pairedParents_eq_image (hF : ColoredFamily F R) (hP : IsMaximumPacking F P)
     (hQ : IsPacking (residual F (blueEdges R P)) Q) :
     pairedParents R P Q = Q.attach.image (fun q => (parent hF hP hQ q).val) := by
@@ -104,6 +131,9 @@ theorem pairedParents_eq_image (hF : ColoredFamily F R) (hP : IsMaximumPacking F
     exact mem_pairedParents.mpr ⟨(parent hF hP hQ q).property,
       q.val, q.property, parent_spec hF hP hQ q⟩
 
+/--
+@isnad1 id=eq.3h5v.s5.db9ac991833c from=translated src=- shape=f3a31045 vocab=b971f05a
+-/
 theorem pairedParents_card (hF : ColoredFamily F R) (hP : IsMaximumPacking F P)
     (hQ : IsPacking (residual F (blueEdges R P)) Q) :
     (pairedParents R P Q).card = Q.card := by
@@ -114,13 +144,18 @@ theorem pairedParents_card (hF : ColoredFamily F R) (hP : IsMaximumPacking F P)
     exact parent_injective hF hP hQ (Subtype.ext heq)
   rw [card_image_of_injective _ hinj, card_attach]
 
+/--
+@isnad1 id=le.3h5v.s5.74ce50342076 from=translated src=- shape=a295dbd3 vocab=0db5bbb7
+-/
 theorem residual_packing_card_le (hF : ColoredFamily F R) (hP : IsMaximumPacking F P)
     (hQ : IsPacking (residual F (blueEdges R P)) Q) : Q.card ≤ P.card := by
   rw [← pairedParents_card hF hP hQ]
   exact card_le_card (pairedParents_subset R P Q)
 
 /-- A residual page cannot be an original parent page: its two blue edges
-avoid the parent support.-/
+avoid the parent support.
+@isnad1 id=not.3h6v.s6.ca819b8f800c from=translated src=- shape=2983e305 vocab=7c709ac8
+-/
 theorem residual_member_not_parent (hF : ColoredFamily F R)
     (hQ : IsPacking (residual F (blueEdges R P)) Q) {q : Finset E} (hq : q ∈ Q) :
     q ∉ P := by
@@ -133,10 +168,16 @@ theorem residual_member_not_parent (hF : ColoredFamily F R)
     (mem_blueEdges.mpr ⟨mem_support.mpr ⟨q, hq, heq⟩, heR⟩)
     (mem_support.mpr ⟨q, hqP, heq⟩)
 
+/--
+@isnad1 id=nonempty.0h5v.s5.42236d11fc6d from=translated src=- shape=5e26e295 vocab=0e34f2d5
+-/
 theorem pages_nonempty (R : Finset E) (P Q : Finset (Finset E))
     (p : {T // T ∈ P}) : (twoLayerPages R P Q p).Nonempty := by
   exact ⟨p.val, mem_insert_self _ _⟩
 
+/--
+@isnad1 id=le.2h6v.s6.beca093136d5 from=translated src=- shape=f5616c96 vocab=a425aed4
+-/
 theorem pages_subset_family (hP : IsMaximumPacking F P)
     (hQ : IsPacking (residual F (blueEdges R P)) Q) (p : {T // T ∈ P}) :
     twoLayerPages R P Q p ⊆ F := by
@@ -145,12 +186,17 @@ theorem pages_subset_family (hP : IsMaximumPacking F P)
   · exact hP.1.1 p.property
   · exact (mem_residual.mp (hQ.1 hTQ)).1
 
+/--
+@isnad1 id=nonempty.4h7v.s6.a414a4bbd0c0 from=translated src=- shape=13cf0882 vocab=32c65df1
+-/
 theorem pages_members_nonempty (hF : ColoredFamily F R) (hP : IsMaximumPacking F P)
     (hQ : IsPacking (residual F (blueEdges R P)) Q) (p : {T // T ∈ P})
     (T : Finset E) (hT : T ∈ twoLayerPages R P Q p) : T.Nonempty :=
   hF.member_nonempty (pages_subset_family hP hQ p hT)
 
-/-- All parent-support edges of a book belong to that book's parent.-/
+/-- All parent-support edges of a book belong to that book's parent.
+@isnad1 id=le.3h6v.s6.084a6f9d5b3a from=translated src=- shape=3d045453 vocab=1a4306c2
+-/
 theorem book_inter_parent_subset (hF : ColoredFamily F R) (hP : IsMaximumPacking F P)
     (hQ : IsPacking (residual F (blueEdges R P)) Q) (p : {T // T ∈ P}) :
     support (twoLayerPages R P Q p) ∩ support P ⊆ p.val := by
@@ -164,6 +210,9 @@ theorem book_inter_parent_subset (hF : ColoredFamily F R) (hP : IsMaximumPacking
         mem_inter.mpr ⟨heT, heP⟩
     exact (mem_inter.mp (hred ▸ heTR)).1
 
+/--
+@isnad1 id=disjoint.3h5v.s6.ec9138076e24 from=translated src=- shape=73c33c65 vocab=93123afb
+-/
 theorem supports_disjoint (hF : ColoredFamily F R) (hP : IsMaximumPacking F P)
     (hQ : IsPacking (residual F (blueEdges R P)) Q) :
     Books.DisjointSupports (twoLayerPages R P Q) := by
@@ -192,6 +241,9 @@ theorem supports_disjoint (hF : ColoredFamily F R) (hP : IsMaximumPacking F P)
           _ = p'.val ∩ R := hUR
       exact disjoint_left.mp (hQ.2 hTQ hUQ hTU) heT heU
 
+/--
+@isnad1 id=ismaximu.4h6v.s7.74fa11479225 from=translated src=- shape=8d4000ff vocab=4e37791e
+-/
 theorem choices_maximum (hF : ColoredFamily F R) (hP : IsMaximumPacking F P)
     (hQ : IsPacking (residual F (blueEdges R P)) Q)
     {f : {T // T ∈ P} → Finset E}
@@ -202,6 +254,9 @@ theorem choices_maximum (hF : ColoredFamily F R) (hP : IsMaximumPacking F P)
   intro K hK
   simpa using hP.2 K hK
 
+/--
+@isnad1 id=le.2h6v.s5.21797603127d from=translated src=- shape=1fa76cd9 vocab=2803f12a
+-/
 theorem children_card_le_one (hF : ColoredFamily F R)
     (hQ : IsPacking (residual F (blueEdges R P)) Q) (p : Finset E) :
     (children R Q p).card ≤ 1 := by
@@ -211,6 +266,9 @@ theorem children_card_le_one (hF : ColoredFamily F R)
   obtain ⟨hUQ, hUR⟩ := mem_children.mp hU
   exact hQ.red_inter_injective hF.residual hTQ hUQ (hTR.trans hUR.symm)
 
+/--
+@isnad1 id=iff.0h5v.s6.be61004acd51 from=translated src=- shape=922a8460 vocab=79f7ee89
+-/
 theorem children_nonempty_iff_paired (p : {T // T ∈ P}) :
     (children R Q p.val).Nonempty ↔ p.val ∈ pairedParents R P Q := by
   constructor
@@ -221,12 +279,18 @@ theorem children_nonempty_iff_paired (p : {T // T ∈ P}) :
     obtain ⟨_, q, hqQ, heq⟩ := mem_pairedParents.mp hp
     exact ⟨q, mem_children.mpr ⟨hqQ, heq.symm⟩⟩
 
+/--
+@isnad1 id=not.2h6v.s7.bb84072204eb from=translated src=- shape=bbd0914c vocab=86ebde95
+-/
 theorem parent_not_child (hF : ColoredFamily F R)
     (hQ : IsPacking (residual F (blueEdges R P)) Q) (p : {T // T ∈ P}) :
     p.val ∉ children R Q p.val := by
   intro hp
   exact residual_member_not_parent hF hQ (mem_children.mp hp).1 p.property
 
+/--
+@isnad1 id=eq.3h6v.s6.97c0e3657d15 from=translated src=- shape=f31b9ede vocab=930959a9
+-/
 theorem pages_card_paired (hF : ColoredFamily F R)
     (hQ : IsPacking (residual F (blueEdges R P)) Q) (p : {T // T ∈ P})
     (hp : p.val ∈ pairedParents R P Q) : (twoLayerPages R P Q p).card = 2 := by
@@ -235,6 +299,9 @@ theorem pages_card_paired (hF : ColoredFamily F R)
   rw [twoLayerPages, card_insert_of_notMem (parent_not_child hF hQ p)]
   omega
 
+/--
+@isnad1 id=eq.1h5v.s7.ab9d96e5a907 from=translated src=- shape=340f252f vocab=d9d4f330
+-/
 theorem pages_eq_singleton_unpaired (p : {T // T ∈ P})
     (hp : p.val ∉ pairedParents R P Q) : twoLayerPages R P Q p = {p.val} := by
   have hempty : children R Q p.val = ∅ := by
@@ -243,10 +310,16 @@ theorem pages_eq_singleton_unpaired (p : {T // T ∈ P})
     exact hp ((children_nonempty_iff_paired p).mp hn)
   simp [twoLayerPages, hempty]
 
+/--
+@isnad1 id=eq.1h5v.s6.0e6b96aa5734 from=translated src=- shape=18823d4b vocab=0c12a97e
+-/
 theorem pages_card_unpaired (p : {T // T ∈ P})
     (hp : p.val ∉ pairedParents R P Q) : (twoLayerPages R P Q p).card = 1 := by
   rw [pages_eq_singleton_unpaired p hp, card_singleton]
 
+/--
+@isnad1 id=eq.4h7v.s7.2b504eaa5a16 from=translated src=- shape=50bfe79e vocab=db6fda50
+-/
 theorem pages_eq_pair (hF : ColoredFamily F R)
     (hQ : IsPacking (residual F (blueEdges R P)) Q) (p : {T // T ∈ P})
     {q : Finset E} (hq : q ∈ Q) (heq : q ∩ R = p.val ∩ R) :
@@ -265,7 +338,9 @@ theorem pages_eq_pair (hF : ColoredFamily F R)
   rw [twoLayerPages, hchild]
 
 /-- If an actual red edge occurs only in its parent within the entire family,
-that parent has no residual page.-/
+that parent has no residual page.
+@isnad1 id=not.5h7v.s7.f60fbdab7dfe from=translated src=- shape=1a9fbbdc vocab=ebb3c54d
+-/
 theorem unique_red_parent_unpaired (hF : ColoredFamily F R)
     (hQ : IsPacking (residual F (blueEdges R P)) Q) (p : {T // T ∈ P})
     {e : E} (hep : e ∈ p.val) (heR : e ∈ R)

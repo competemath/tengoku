@@ -13,6 +13,9 @@ variable {V : Type*} [DecidableEq V]
 def triangleEdges (u v w : V) : Finset (Sym2 V) :=
   {s(u, v), s(u, w), s(v, w)}
 
+/--
+@isnad1 id=iff.0h5v.s5.a6fba7e57850 from=translated src=- shape=cfbca333 vocab=e9f28eaf
+-/
 @[simp]
 theorem mem_triangleEdges {e : Sym2 V} {u v w : V} :
     e ∈ triangleEdges u v w ↔ e = s(u, v) ∨ e = s(u, w) ∨ e = s(v, w) := by
@@ -22,11 +25,17 @@ theorem mem_triangleEdges {e : Sym2 V} {u v w : V} :
 def IsTriangle (T : Finset (Sym2 V)) : Prop :=
   ∃ u v w, u ≠ v ∧ u ≠ w ∧ v ≠ w ∧ T = triangleEdges u v w
 
+/--
+@isnad1 id=istriang.3h4v.s5.eed6580607f9 from=translated src=- shape=65a5e158 vocab=b81ad5b3
+-/
 theorem isTriangle_triangleEdges {u v w : V}
     (huv : u ≠ v) (huw : u ≠ w) (hvw : v ≠ w) :
     IsTriangle (triangleEdges u v w) :=
   ⟨u, v, w, huv, huw, hvw, rfl⟩
 
+/--
+@isnad1 id=eq.3h4v.s5.70a53785066b from=translated src=- shape=373a9fe3 vocab=93c30662
+-/
 theorem triangleEdges_card {u v w : V}
     (huv : u ≠ v) (huw : u ≠ w) (hvw : v ≠ w) :
     (triangleEdges u v w).card = 3 := by
@@ -43,23 +52,34 @@ theorem triangleEdges_card {u v w : V}
     exact huv (Sym2.congr_left.mp h)
   simp [triangleEdges, h₁, h₂, h₃]
 
+/--
+@isnad1 id=eq.1h2v.s4.a6881b3d4be3 from=translated src=- shape=4a3db6e1 vocab=0427e5d4
+-/
 theorem IsTriangle.card_eq_three {T : Finset (Sym2 V)} (hT : IsTriangle T) :
     T.card = 3 := by
   rcases hT with ⟨u, v, w, huv, huw, hvw, rfl⟩
   exact triangleEdges_card huv huw hvw
 
+/--
+@isnad1 id=not.1h3v.s5.e3bf4344883e from=translated src=- shape=8a4c5ba9 vocab=72fdeb31
+-/
 theorem IsTriangle.not_mem_diag {T : Finset (Sym2 V)}
     (hT : IsTriangle T) (z : V) : s(z, z) ∉ T := by
   rcases hT with ⟨u, v, w, huv, huw, hvw, rfl⟩
   simp only [mem_triangleEdges, Sym2.eq_iff]
   aesop
 
+/--
+@isnad1 id=ne.2h4v.s5.7d5c37a403fc from=translated src=- shape=201519d7 vocab=72fdeb31
+-/
 theorem IsTriangle.ne_of_mem {T : Finset (Sym2 V)} (hT : IsTriangle T)
     {u v : V} (h : s(u, v) ∈ T) : u ≠ v := by
   rintro rfl
   exact hT.not_mem_diag u h
 
-/-- Any two edges of a triangle have a common endpoint.-/
+/-- Any two edges of a triangle have a common endpoint.
+@isnad1 id=ex.3h4v.s6.b713cdb7a80b from=translated src=- shape=50a76f92 vocab=1df46755
+-/
 theorem IsTriangle.edges_incident {T : Finset (Sym2 V)} (hT : IsTriangle T)
     {e f : Sym2 V} (he : e ∈ T) (hf : f ∈ T) :
     ∃ z : V, z ∈ e ∧ z ∈ f := by
@@ -94,6 +114,9 @@ theorem IsTriangle.eq_of_spokes {T : Finset (Sym2 V)} (hT : IsTriangle T)
     simp only [Finset.mem_insert, Finset.mem_singleton]
     tauto
 
+/--
+@isnad1 id=ex.2h4v.s6.360a0d88ce30 from=translated src=- shape=1adf3b46 vocab=59bacbdd
+-/
 theorem IsTriangle.exists_third_of_mem {T : Finset (Sym2 V)}
     (hT : IsTriangle T) {u v : V} (he : s(u, v) ∈ T) :
     ∃ w, u ≠ w ∧ v ≠ w ∧ T = triangleEdges u v w := by
@@ -135,6 +158,9 @@ theorem IsTriangle.eq_of_two_common_edges {T U : Finset (Sym2 V)}
   exact (hT.eq_of_spokes huv huw hvw heT hfT).trans
     (hU.eq_of_spokes huv huw hvw heU hfU).symm
 
+/--
+@isnad1 id=le.3h3v.s5.e00098833699 from=translated src=- shape=e706282b vocab=47cca326
+-/
 theorem IsTriangle.inter_card_le_one {T U : Finset (Sym2 V)}
     (hT : IsTriangle T) (hU : IsTriangle U) (hne : T ≠ U) :
     (T ∩ U).card ≤ 1 := by
@@ -145,7 +171,9 @@ theorem IsTriangle.inter_card_le_one {T U : Finset (Sym2 V)}
     (Finset.mem_inter.mp he).1 (Finset.mem_inter.mp hf).1
     (Finset.mem_inter.mp he).2 (Finset.mem_inter.mp hf).2)
 
-/-- Triangles whose listed vertices have only the first vertex in common share no edge.-/
+/-- Triangles whose listed vertices have only the first vertex in common share no edge.
+@isnad1 id=disjoint.1h6v.s5.54a7099f6972 from=translated src=- shape=be1ca5ae vocab=b223f15f
+-/
 theorem triangleEdges_disjoint_of_five_distinct {u v w x y : V}
     (hvertices : [u, v, w, x, y].Nodup) :
     Disjoint (triangleEdges u v w) (triangleEdges u x y) := by
@@ -154,7 +182,9 @@ theorem triangleEdges_disjoint_of_five_distinct {u v w x y : V}
   rcases mem_triangleEdges.mp he with rfl | rfl | rfl <;>
     simp_all [mem_triangleEdges, List.nodup_cons]
 
-/-- A triangle meeting both pages and missing their spine uses the opposite edge.-/
+/-- A triangle meeting both pages and missing their spine uses the opposite edge.
+@isnad1 id=or.5h6v.s7.4e62f84990a5 from=translated src=- shape=9a75972a vocab=590161d9
+-/
 theorem two_page_triangle {T : Finset (Sym2 V)} (hT : IsTriangle T)
     {u v x y : V} (hvertices : [u, v, x, y].Nodup)
     (hspine : s(u, v) ∉ T)
@@ -181,6 +211,9 @@ theorem two_page_triangle {T : Finset (Sym2 V)} (hT : IsTriangle T)
     rcases hz with rfl | rfl <;> rcases hz' with h | h <;> simp_all
   · exact Or.inr (hT.eq_of_spokes hvx hvy hxy heT hfT)
 
+/--
+@isnad1 id=mem.5h6v.s7.51a3147d22a3 from=translated src=- shape=8879bccd vocab=590161d9
+-/
 theorem two_page_opposite_mem {T : Finset (Sym2 V)} (hT : IsTriangle T)
     {u v x y : V} (hvertices : [u, v, x, y].Nodup)
     (hspine : s(u, v) ∉ T)
@@ -188,7 +221,9 @@ theorem two_page_opposite_mem {T : Finset (Sym2 V)} (hT : IsTriangle T)
     (hy : (T ∩ triangleEdges u v y).Nonempty) : s(x, y) ∈ T := by
   rcases two_page_triangle hT hvertices hspine hx hy with rfl | rfl <;> simp
 
-/-- A triangle meeting three distinct pages must contain their common spine.-/
+/-- A triangle meeting three distinct pages must contain their common spine.
+@isnad1 id=mem.5h7v.s7.a78146eacb41 from=translated src=- shape=59a211ae vocab=590161d9
+-/
 theorem three_page_spine {T : Finset (Sym2 V)} (hT : IsTriangle T)
     {u v x y z : V} (hvertices : [u, v, x, y, z].Nodup)
     (hx : (T ∩ triangleEdges u v x).Nonempty)

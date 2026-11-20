@@ -17,7 +17,9 @@ private theorem red_edges_eq {T R : Finset (Sym2 V)}
   exact Finset.card_le_one.mp (Nat.le_of_eq hcard)
     e (mem_inter.mpr ⟨he, heR⟩) f (mem_inter.mpr ⟨hf, hfR⟩)
 
-/-- The two-for-one exchange in Lemma 2.1 of the manuscript.-/
+/-- The two-for-one exchange in Lemma 2.1 of the manuscript.
+@isnad1 id=eq.9h9v.s8.7c4005cc5e46 from=translated src=- shape=12b61cd5 vocab=73e14441
+-/
 theorem unique_residual_triangle {A R : Finset (Sym2 V)}
     {P : Finset (Finset (Sym2 V))} {u v x y : V}
     (hP : IsMaximumPacking (oneRedTriangles A R) P)
