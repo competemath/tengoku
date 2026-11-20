@@ -73,7 +73,9 @@ open CoproductsFromFiniteFiltered
 variable {C : Type u} [Category.{v} C] {D : Type u'} [Category.{v'} D]
 
 set_option backward.isDefEq.respectTransparency false in
-/-- A functor preserving finite coproducts and filtered colimits preserves coproducts.-/
+/-- A functor preserving finite coproducts and filtered colimits preserves coproducts.
+@isnad1 id=preserve.0h4v.s5.1f54b484745d from=translated src=- shape=7475246a vocab=06f19092
+-/
 lemma preservesColimitsOfShape_discrete_of_preservesFiniteCoproducts_and_filteredColimits
     [HasFiniteCoproducts C] [HasFilteredColimitsOfSize.{w, w} C]
     [HasFiniteCoproducts D] [HasFilteredColimitsOfSize.{w, w} D]

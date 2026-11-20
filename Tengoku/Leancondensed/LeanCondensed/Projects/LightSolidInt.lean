@@ -45,6 +45,9 @@ def seqShift : SeqZ →ₗ[ℤ] SeqZ :=
     intro a b h
     exact Nat.succ.inj h)).toIntLinearMap
 
+/--
+@isnad1 id=eq.0h2v.s6.140a10e6e5e6 from=translated src=- shape=3ec7c0ad vocab=8f6e6e14
+-/
 @[simp]
 lemma seqShift_apply (a : SeqZ) (n : ℕ) :
     seqShift a n = a (n + 1) := by
@@ -54,6 +57,9 @@ lemma seqShift_apply (a : SeqZ) (n : ℕ) :
 def seqDiff : SeqZ →ₗ[ℤ] SeqZ :=
   LinearMap.id - seqShift
 
+/--
+@isnad1 id=eq.0h2v.s7.e9711fffda0f from=translated src=- shape=67b05438 vocab=3a7530c9
+-/
 @[simp]
 lemma seqDiff_apply (a : SeqZ) (n : ℕ) :
     seqDiff a n = a n - a (n + 1) := by
@@ -63,6 +69,9 @@ lemma seqDiff_apply (a : SeqZ) (n : ℕ) :
 def tailFun (b : SeqZ) (n : ℕ) : ℤ :=
   b.sum fun i z => if n ≤ i then z else 0
 
+/--
+@isnad1 id=eq.0h2v.s5.4a6bc9c148da from=translated src=- shape=8efa71a3 vocab=904c3e14
+-/
 lemma tailFun_eq_sum_filter (b : SeqZ) (n : ℕ) :
     tailFun b n = ∑ i ∈ b.support.filter (fun i => n ≤ i), b i := by
   simp [tailFun, Finsupp.sum, Finset.sum_filter]
@@ -96,24 +105,36 @@ def seqTailSumAddHom : SeqZ →+ SeqZ where
 def seqTailSum : SeqZ →ₗ[ℤ] SeqZ :=
   seqTailSumAddHom.toIntLinearMap
 
+/--
+@isnad1 id=eq.0h2v.s7.33128f2a104f from=translated src=- shape=5bae8470 vocab=41739c5b
+-/
 @[simp]
 lemma seqTailSum_apply (b : SeqZ) (n : ℕ) :
     seqTailSum b n = ∑ i ∈ b.support.filter (fun i => n ≤ i), b i := by
   change tailFun b n = _
   exact tailFun_eq_sum_filter b n
 
+/--
+@isnad1 id=eq.1h2v.s6.7bd94103ae4b from=translated src=- shape=9b08425b vocab=84e8eed1
+-/
 lemma filter_ge_eq_insert_filter_gt (b : SeqZ) {n : ℕ} (hn : n ∈ b.support) :
     b.support.filter (fun i => n ≤ i) = insert n (b.support.filter (fun i => n < i)) := by
   ext i
   by_cases hin : i = n
   all_goals grind
 
+/--
+@isnad1 id=eq.1h2v.s6.cbb2b41c4a2c from=translated src=- shape=2e7fa418 vocab=7d7b3899
+-/
 lemma filter_ge_eq_filter_gt (b : SeqZ) {n : ℕ} (hn : n ∉ b.support) :
     b.support.filter (fun i => n ≤ i) = b.support.filter (fun i => n < i) := by
   ext i
   by_cases hin : i = n
   all_goals grind
 
+/--
+@isnad1 id=eq.0h2v.s5.8d08662e8cfa from=translated src=- shape=00cf1be0 vocab=cebb4ebf
+-/
 lemma tailFun_sub_succ (b : SeqZ) (n : ℕ) :
     tailFun b n - tailFun b (n + 1) = b n := by
   rw [tailFun_eq_sum_filter, tailFun_eq_sum_filter]
@@ -124,12 +145,18 @@ lemma tailFun_sub_succ (b : SeqZ) (n : ℕ) :
   · rw [filter_ge_eq_filter_gt b hn, Finsupp.notMem_support_iff.mp hn]
     abel
 
+/--
+@isnad1 id=eq.0h1v.s7.eea34a50b81e from=translated src=- shape=f29aefcb vocab=b4647bca
+-/
 lemma seqDiff_seqTailSum (b : SeqZ) :
     seqDiff (seqTailSum b) = b := by
   ext n
   simp only [seqDiff_apply, seqTailSum_apply]
   rw [← tailFun_eq_sum_filter, ← tailFun_eq_sum_filter, tailFun_sub_succ]
 
+/--
+@isnad1 id=eq.1h1v.s6.5e7acc112607 from=translated src=- shape=64c4b82c vocab=7aa13727
+-/
 lemma seqDiff_eq_zero {a : SeqZ} (h : seqDiff a = 0) : a = 0 := by
   by_contra ha
   rw [← ne_eq, ← Finsupp.support_nonempty_iff] at ha
@@ -144,6 +171,9 @@ lemma seqDiff_eq_zero {a : SeqZ} (h : seqDiff a = 0) : a = 0 := by
   simp [Finsupp.notMem_support_iff.mp hMsucc] at heval
   exact Finsupp.mem_support_iff.mp hM heval
 
+/--
+@isnad1 id=eq.0h1v.s7.830c98f6630d from=translated src=- shape=f29aefcb vocab=b4647bca
+-/
 lemma seqTailSum_seqDiff (a : SeqZ) :
     seqTailSum (seqDiff a) = a := by
   have hzero : seqDiff (seqTailSum (seqDiff a) - a) = 0 := by
@@ -181,7 +211,9 @@ variable {R : Type} [CommRing R]
 
 set_option backward.isDefEq.respectTransparency false in
 /-- On `S`-points of internal Homs, precomposition by `f` is precomposition by
-`f ▷ ℤ[S]` after applying `ihomPoints`.-/
+`f ▷ ℤ[S]` after applying `ihomPoints`.
+@isnad1 id=eq.0h7v.s14.cfa5066082a9 from=translated src=- shape=0221526b vocab=e74cff9a
+-/
 lemma ihom_pre_val_app
     {A B X : LightCondMod R} (f : B ⟶ A)
     (S : LightProfinite)
@@ -196,6 +228,9 @@ lemma ihom_pre_val_app
   apply (coherentTopology LightProfinite).yonedaEquiv.injective
   simp [dsimp% GrothendieckTopology.yonedaEquiv_comp]
 
+/--
+@isnad1 id=eq.0h7v.s14.fc065912cacd from=translated src=- shape=bb74cf11 vocab=0305e823
+-/
 lemma ihomPoints_pre_app
     {A B X : LightCondMod R} (f : B ⟶ A)
     (S : LightProfinite)
@@ -247,6 +282,9 @@ noncomputable def freeHomDiscreteEquiv :
   right_inv x := by simp [_root_.id, ← Functor.map_comp]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h6v.s12.5638d543439e from=translated src=- shape=8acf8bae vocab=dc379931
+-/
 lemma freeHomDiscreteEquiv_map {T T' : LightProfinite} (φ : T' ⟶ T)
     (f : (LightCondensed.free R).obj T.toCondensed ⟶
       (LightCondensed.discrete (ModuleCat R)).obj M) :
@@ -282,6 +320,9 @@ lemma freeHomDiscreteEquiv_map {T T' : LightProfinite} (φ : T' ⟶ T)
     (t := (coherentTopology LightProfinite).yonedaEquiv m)).symm
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s11.c9bc60ead562 from=translated src=- shape=adbae164 vocab=962d6b77
+-/
 lemma freeHomDiscreteEquiv_zero_apply (x : T) :
     freeHomDiscreteEquiv R T M
       (0 : (LightCondensed.free R).obj T.toCondensed ⟶
@@ -319,6 +360,9 @@ lemma freeHomDiscreteEquiv_zero_apply (x : T) :
   simp [w]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h6v.s13.1cac7b9bd54c from=translated src=- shape=d35bf9e9 vocab=137b6f34
+-/
 lemma freeHomDiscreteEquiv_sub_apply
     (f g : (LightCondensed.free R).obj T.toCondensed ⟶
       (LightCondensed.discrete (ModuleCat R)).obj M)
@@ -401,6 +445,9 @@ noncomputable def freeProductHomEquiv (A S : LightProfinite) :
   (Iso.homCongr (freeTensorIsoInt A S) (Iso.refl Zdisc)).trans
     (freeHomDiscreteEquiv ℤ (A ⊗ S : LightProfinite) (ModuleCat.of ℤ ℤ))
 
+/--
+@isnad1 id=eq.0h4v.s12.c78ed8c0be77 from=translated src=- shape=5a385122 vocab=dc5bff35
+-/
 @[reassoc]
 lemma freeTensorIsoInt_inv_naturality_left {A' A S : LightProfinite} (φ : A' ⟶ A) :
     (freeTensorIsoInt A' S).inv ≫
@@ -415,6 +462,9 @@ lemma freeTensorIsoInt_inv_naturality_left {A' A S : LightProfinite} (φ : A' �
   simp [MonoidalCategory.tensorHom_id]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s13.45802aadd013 from=translated src=- shape=74321302 vocab=349325d6
+-/
 lemma freeProductHomEquiv_precomp_left {A' A S : LightProfinite} (φ : A' ⟶ A)
     (g : ((free ℤ).obj A.toCondensed ⊗ (free ℤ).obj S.toCondensed ⟶ Zdisc)) :
     freeProductHomEquiv A' S
@@ -432,6 +482,9 @@ lemma freeProductHomEquiv_precomp_left {A' A S : LightProfinite} (φ : A' ⟶ A)
   rw [hcomp]
   rw [freeHomDiscreteEquiv_map]
 
+/--
+@isnad1 id=eq.0h3v.s12.ceb747079d95 from=translated src=- shape=3c1d4538 vocab=109b0e51
+-/
 lemma freeProductHomEquiv_zero_apply (A S : LightProfinite) (x : (A ⊗ S : LightProfinite)) :
     freeProductHomEquiv A S
       (0 : (free ℤ).obj A.toCondensed ⊗ (free ℤ).obj S.toCondensed ⟶ Zdisc) x = 0 := by
@@ -456,6 +509,9 @@ noncomputable def pTensorHomSubtypeEquiv (S : LightProfinite) :
   exact (Iso.homCongr e (Iso.refl Zdisc)).trans (cokernelHomEquiv (P_map ℤ ▷ C))
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h1v.s13.dd87a865e750 from=translated src=- shape=c6f8a9a8 vocab=aac6e91b
+-/
 lemma tensorCokerIsoInt_π_inv {C : LightCondAb} :
     cokernel.π (P_map ℤ ▷ C) ≫
         (tensorCokerIsoInt (P_map ℤ) : P ℤ ⊗ C ≅ cokernel (P_map ℤ ▷ C)).inv =
@@ -463,6 +519,9 @@ lemma tensorCokerIsoInt_π_inv {C : LightCondAb} :
   simp [tensorCokerIsoInt, P_proj]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h2v.s15.eb7e8e69fa76 from=translated src=- shape=cffd8caa vocab=583dd83d
+-/
 lemma pTensorHomSubtypeEquiv_apply_coe (S : LightProfinite)
     (f : (P ℤ ⊗ (free ℤ).obj S.toCondensed) ⟶ Zdisc) :
     (pTensorHomSubtypeEquiv S f).1 = (P_proj ℤ ▷ (free ℤ).obj S.toCondensed) ≫ f := by
@@ -471,6 +530,9 @@ lemma pTensorHomSubtypeEquiv_apply_coe (S : LightProfinite)
   simpa [Category.assoc] using congrArg (fun k => k ≫ f)
     (tensorCokerIsoInt_π_inv (C := (free ℤ).obj S.toCondensed))
 
+/--
+@isnad1 id=eq.0h5v.s14.cdcf1325bde2 from=translated src=- shape=2ac0cd49 vocab=cc781c57
+-/
 lemma freeProductHomEquiv_sub_apply (A S : LightProfinite)
     (f g : (free ℤ).obj A.toCondensed ⊗ (free ℤ).obj S.toCondensed ⟶ Zdisc)
     (x : (A ⊗ S : LightProfinite)) :
@@ -482,6 +544,9 @@ lemma freeProductHomEquiv_sub_apply (A S : LightProfinite)
   exact freeHomDiscreteEquiv_sub_apply ℤ (A ⊗ S : LightProfinite) (ModuleCat.of ℤ ℤ)
     ((freeTensorIsoInt A S).inv ≫ f) ((freeTensorIsoInt A S).inv ≫ g) x
 
+/--
+@isnad1 id=eq.0h5v.s12.23ceed30b0b4 from=translated src=- shape=df2cef8e vocab=eea792f4
+-/
 lemma sub_whiskerRight {X Y C : LightCondAb} (f g : X ⟶ Y) :
     (f - g) ▷ C = f ▷ C - g ▷ C := by
   change (tensorRight C).map (f - g) = (tensorRight C).map f - (tensorRight C).map g
@@ -496,6 +561,9 @@ abbrev VanishAtInfinity (S : LightProfinite) :=
   { h : LocallyConstant (NinfTensor S) ℤ // ∀ s : S, h (∞, s) = 0 }
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=finite.0h2v.s8.27c955de4932 from=translated src=- shape=9d4ad7bd vocab=4ac65ca3
+-/
 lemma vanish_supportN_finite {S : LightProfinite} (h : VanishAtInfinity S) :
     Set.Finite {n : ℕ | ∃ s : S, h.1 ((n : ℕ∪{∞}), s) ≠ 0} := by
   let K : Set (NinfTensor S) := {x | h.1 x ≠ 0}
@@ -522,6 +590,9 @@ lemma vanish_supportN_finite {S : LightProfinite} (h : VanishAtInfinity S) :
   simp [L, K]
   constructor <;> rintro ⟨s, hs⟩ <;> exact ⟨s, hs⟩
 
+/--
+@isnad1 id=ex.0h2v.s8.fff41d2fa4e7 from=translated src=- shape=334c0ce4 vocab=1241a587
+-/
 lemma vanish_eventually_zero {S : LightProfinite} (h : VanishAtInfinity S) :
     ∃ N : ℕ, ∀ s : S, ∀ n : ℕ, N ≤ n → h.1 ((n : ℕ∪{∞}), s) = 0 := by
   obtain ⟨N, hN⟩ := (vanish_supportN_finite h).bddAbove
@@ -542,11 +613,17 @@ noncomputable def finFunToSeq (N : ℕ) (v : Fin N → ℤ) : SeqZ :=
       · simpa [Finset.mem_range] using hn
       · simp [hn] at hnzero)
 
+/--
+@isnad1 id=eq.1h3v.s5.902d0045f62f from=translated src=- shape=cb98a5b9 vocab=8e5f0f7c
+-/
 @[simp]
 lemma finFunToSeq_apply_lt (N n : ℕ) (hn : n < N) (v : Fin N → ℤ) :
     finFunToSeq N v n = v ⟨n, hn⟩ := by
   simp [finFunToSeq, hn]
 
+/--
+@isnad1 id=eq.1h3v.s5.7caec12c9ce9 from=translated src=- shape=f661ec85 vocab=c9307f2c
+-/
 @[simp]
 lemma finFunToSeq_apply_not_lt (N n : ℕ) (hn : ¬ n < N) (v : Fin N → ℤ) :
     finFunToSeq N v n = 0 := by
@@ -565,6 +642,9 @@ noncomputable def vanishToSeq {S : LightProfinite} (h : VanishAtInfinity S) :
   exact (LocallyConstant.unflip coords).map (finFunToSeq N)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s9.44633a57f4fd from=translated src=- shape=66e4fb96 vocab=da69e784
+-/
 lemma vanishToSeq_apply {S : LightProfinite} (h : VanishAtInfinity S) (s : S) (n : ℕ) :
     vanishToSeq h s n = h.1 ((n : ℕ∪{∞}), s) := by
   dsimp [vanishToSeq]
@@ -580,6 +660,9 @@ noncomputable def truncIndexFun (N : ℕ) : ℕ∪{∞} → Option (Fin N)
   | ∞ => none
   | (OnePoint.some n) => if hn : n < N then Option.some ⟨n, hn⟩ else none
 
+/--
+@isnad1 id=eventual.0h1v.s4.1a2fdc1b4f2c from=translated src=- shape=94a498ff vocab=f69a77c5
+-/
 lemma truncIndexFun_eventually_none (N : ℕ) :
     ∀ᶠ n : ℕ in atTop, truncIndexFun N (n : ℕ∪{∞}) = none := by
   refine eventually_atTop.2 ⟨N, ?_⟩
@@ -605,6 +688,9 @@ noncomputable def sndMap (S : LightProfinite) : C(NinfTensor S, S) where
   toFun x := x.2
   continuous_toFun := continuous_snd
 
+/--
+@isnad1 id=finite.0h2v.s7.a096aca7eaa3 from=translated src=- shape=a0ad1a84 vocab=c8aace4b
+-/
 lemma seq_family_support_finite {S : LightProfinite} (g : LocallyConstant S SeqZ) :
     Set.Finite {n : ℕ | ∃ s : S, g s n ≠ 0} := by
   let R : Set SeqZ := Set.range (fun s : S => g s)
@@ -620,6 +706,9 @@ lemma seq_family_support_finite {S : LightProfinite} (g : LocallyConstant S SeqZ
   rw [Set.mem_iUnion]
   exact ⟨⟨s, rfl⟩, by simpa [Finsupp.mem_support_iff] using hs⟩
 
+/--
+@isnad1 id=ex.0h2v.s7.7de17a5b5395 from=translated src=- shape=4b3f4598 vocab=469ed596
+-/
 lemma seq_family_eventually_zero {S : LightProfinite} (g : LocallyConstant S SeqZ) :
     ∃ N : ℕ, ∀ s : S, ∀ n : ℕ, N ≤ n → g s n = 0 := by
   obtain ⟨N, hN⟩ := (seq_family_support_finite g).bddAbove
@@ -645,6 +734,9 @@ noncomputable def seqToVanish {S : LightProfinite} (g : LocallyConstant S SeqZ) 
     simp [idx, truncIndex, truncIndexFun, fstMap, ContinuousMap.coe_mk]
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s9.0c3f0e165534 from=translated src=- shape=7f588d72 vocab=57072b21
+-/
 lemma seqToVanish_apply_nat {S : LightProfinite} (g : LocallyConstant S SeqZ) (s : S) (n : ℕ) :
     (seqToVanish g).1 ((n : ℕ∪{∞}), s) = g s n := by
   dsimp [seqToVanish]
@@ -655,6 +747,9 @@ lemma seqToVanish_apply_nat {S : LightProfinite} (g : LocallyConstant S SeqZ) (s
   · have hzero := hN s n (by omega)
     simp [N, hn, truncIndex, truncIndexFun, fstMap, hzero, ContinuousMap.coe_mk]
 
+/--
+@isnad1 id=eq.0h3v.s8.008cbd987dfe from=translated src=- shape=498706e6 vocab=c67c3996
+-/
 lemma seqToVanish_apply_infty {S : LightProfinite} (g : LocallyConstant S SeqZ) (s : S) :
     (seqToVanish g).1 ((∞ : ℕ∪{∞}), s) = 0 := by
   exact (seqToVanish g).2 s
@@ -684,6 +779,9 @@ noncomputable def iotaTensorMap (S : LightProfinite) :
     (LightProfinite.of PUnit.{1}) ⊗ S ⟶ NinfTensor S :=
   ι ⊗ₘ 𝟙 S
 
+/--
+@isnad1 id=eq.0h2v.s9.1ce35e7b7525 from=translated src=- shape=94237eec vocab=3b021f34
+-/
 @[simp]
 lemma iotaTensorMap_apply (S : LightProfinite) (s : S) :
     iotaTensorMap S (PUnit.unit, s) = ((∞ : ℕ∪{∞}), s) := rfl
@@ -740,6 +838,9 @@ noncomputable def nullSeqPointsEquiv (S : LightProfinite) :
   (pTensorHomVanishEquiv S).trans (vanishAtInfinityEquiv S)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s15.21e6b9777690 from=translated src=- shape=c1b15d3c vocab=079e960e
+-/
 lemma nullSeqPointsEquiv_apply (S : LightProfinite)
     (f : (P ℤ ⊗ (free ℤ).obj S.toCondensed) ⟶ Zdisc) (s : S) (n : ℕ) :
     nullSeqPointsEquiv S f s n =

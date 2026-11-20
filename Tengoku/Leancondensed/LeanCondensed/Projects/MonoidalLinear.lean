@@ -26,12 +26,18 @@ open Functor.LaxMonoidal Functor.OplaxMonoidal
 variable {C D : Type*} [Category C] [Category D] [MonoidalCategory C] [MonoidalCategory D]
     (F : C ⥤ D) [F.Monoidal]
 
+/--
+@isnad1 id=eq.0h7v.s8.258b475da713 from=translated src=- shape=a6614c02 vocab=f3a91321
+-/
 @[reassoc]
 lemma map_whiskerLeft' (X : C) {Y Z : C} (f : Y ⟶ Z) :
     F.obj X ◁ F.map f = μ F X Y ≫ F.map (X ◁ f) ≫ δ F X Z := by
   rw [map_whiskerLeft]
   simp [-μ_natural_right, -δ_natural_right_assoc, -δ_natural_right]
 
+/--
+@isnad1 id=eq.0h7v.s8.471da394e538 from=translated src=- shape=7b5e8ffa vocab=0590a2af
+-/
 @[reassoc]
 lemma map_whiskerRight' {X Y : C} (f : X ⟶ Y) (Z : C) :
     F.map f ▷ F.obj Z = μ F X Z ≫ F.map (f ▷ Z) ≫ δ F Y Z := by
@@ -56,6 +62,9 @@ instance : Preadditive (LocalizedMonoidal L W ε) := inferInstanceAs (Preadditiv
 instance [L.Additive] : (L').Additive := inferInstanceAs (L.Additive)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=monoidal.0h8v.s7.ea7a8b207e74 from=translated src=- shape=196d79c0 vocab=8fd8cc5e
+-/
 lemma monoidalPreadditive [L.Additive] (R : D ⥤ C) [R.Full] [R.Faithful] (adj : L ⊣ R) :
     MonoidalPreadditive (LocalizedMonoidal L W ε) where
   whiskerLeft_zero {X Y Z} := by
@@ -112,6 +121,9 @@ lemma monoidalPreadditive [L.Additive] (R : D ⥤ C) [R.Full] [R.Faithful] (adj 
     simp
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=monoidal.0h9v.s8.f45f12a6b952 from=translated src=- shape=1780c53e vocab=468cb8e2
+-/
 lemma monoidalLinear (A : Type u) [Ring A] [L.Additive] (R : D ⥤ C) [R.Full] [R.Faithful]
     (adj : L ⊣ R) [Linear A D] [Linear A C] [L.Linear A]
     [MonoidalLinear A C] :
@@ -175,6 +187,9 @@ end Linear
 
 instance [MonoidalCategory A] [MonoidalPreadditive A] : MonoidalPreadditive (C ⥤ A) where
 
+/--
+@isnad1 id=monoidal.0h3v.s7.8ad75141f47a from=translated src=- shape=056eed6e vocab=12807406
+-/
 lemma CategoryTheory.Sheaf.monoidalPreadditive [MonoidalCategory A]
     [(J.W (A := A)).IsMonoidal] [HasSheafify J A] [Limits.HasBinaryProducts A]
     [MonoidalPreadditive A] :
@@ -189,6 +204,9 @@ instance [MonoidalCategory A] [MonoidalPreadditive A]
 
 attribute [local instance] CategoryTheory.Sheaf.monoidalCategory
   CategoryTheory.Sheaf.monoidalPreadditive in
+/--
+@isnad1 id=monoidal.0h4v.s8.0911a6d3f561 from=translated src=- shape=923da9be vocab=e444aa23
+-/
 lemma CategoryTheory.Sheaf.monoidalLinear [MonoidalCategory A]
     [(J.W (A := A)).IsMonoidal] [HasSheafify J A] [Limits.HasBinaryProducts A]
     [MonoidalPreadditive A] (R : Type u) [Ring R] [Linear R A]

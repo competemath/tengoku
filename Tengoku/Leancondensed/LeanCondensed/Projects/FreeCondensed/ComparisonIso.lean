@@ -15,7 +15,9 @@ namespace LightCondAb
 
 variable (S : LightProfinite.{0})
 
-/-- Evaluation on topological free abelian groups is natural in the light profinite source.-/
+/-- Evaluation on topological free abelian groups is natural in the light profinite source.
+@isnad1 id=eq.0h4v.s7.790a61a1cd66 from=translated src=- shape=f1566ce9 vocab=9e917ca4
+-/
 lemma topologicalFreeEval_naturality {S T : LightProfinite.{0}} (f : S ⟶ T)
     (g : LocallyConstant T ℤ) :
     topologicalFreeMap f ≫ topologicalFreeEval T g =
@@ -46,7 +48,9 @@ noncomputable def topologicalFreeEvalDiscrete (f : LocallyConstant S ℤ) :
       (LightCondensed.discrete (ModuleCat ℤ)).obj (ModuleCat.of ℤ ℤ) :=
   topologicalFreeEvalCondensed S f ≫ discreteIntTopModuleCondensedIso.hom
 
-/-- Represented topological-free evaluation is natural in the light profinite source.-/
+/-- Represented topological-free evaluation is natural in the light profinite source.
+@isnad1 id=eq.0h4v.s8.e7eaa25b1b0a from=translated src=- shape=2d4df86c vocab=bd93d84f
+-/
 lemma topologicalFreeEvalCondensed_naturality {S T : LightProfinite.{0}} (f : S ⟶ T)
     (g : LocallyConstant T ℤ) :
     topologicalFreeCondensedMap f ≫ topologicalFreeEvalCondensed T g =
@@ -67,7 +71,9 @@ lemma topologicalFreeEvalCondensed_naturality {S T : LightProfinite.{0}} (f : S 
     (topologicalFreeEval_naturality f g)
   simpa using hn
 
-/-- `Z`-valued represented topological-free evaluation is natural in the light profinite source.-/
+/-- `Z`-valued represented topological-free evaluation is natural in the light profinite source.
+@isnad1 id=eq.0h4v.s9.0345c26a16ea from=translated src=- shape=bf8b53cf vocab=55d47141
+-/
 lemma topologicalFreeEvalDiscrete_naturality {S T : LightProfinite.{0}} (f : S ⟶ T)
     (g : LocallyConstant T ℤ) :
     topologicalFreeCondensedMap f ≫ topologicalFreeEvalDiscrete T g =
@@ -76,7 +82,9 @@ lemma topologicalFreeEvalDiscrete_naturality {S T : LightProfinite.{0}} (f : S �
     congrArg (fun m => m ≫ discreteIntTopModuleCondensedIso.hom)
       (topologicalFreeEvalCondensed_naturality f g)
 
-/-- The represented evaluation induced by `f` sends the Dirac section to `f`.-/
+/-- The represented evaluation induced by `f` sends the Dirac section to `f`.
+@isnad1 id=eq.0h2v.s13.e465190d0f04 from=translated src=- shape=0e1b6216 vocab=7978d298
+-/
 lemma topologicalFreeEvalDiscrete_diracSection (f : LocallyConstant S ℤ) :
     ((LightCondMod.LocallyConstant.functorIsoDiscrete ℤ).inv.app (ModuleCat.of ℤ ℤ)).hom.app ⟨S⟩
       ((topologicalFreeEvalDiscrete S f).hom.app ⟨S⟩
@@ -107,6 +115,9 @@ noncomputable def freePresheafComparisonSheafification :
   hom := CategoryTheory.sheafifyLift (coherentTopology LightProfinite)
     (freePresheafToTopologicalFreePresheaf S) (topologicalFreeCondensed S).property
 
+/--
+@isnad1 id=eq.0h1v.s9.a0254f228bbd from=translated src=- shape=fa35e67e vocab=d951b806
+-/
 @[reassoc (attr := simp)]
 lemma toSheafify_freePresheafComparisonSheafification :
     CategoryTheory.toSheafify (coherentTopology LightProfinite) (freePresheaf S) ≫
@@ -116,7 +127,9 @@ lemma toSheafify_freePresheafComparisonSheafification :
     (freePresheafToTopologicalFreePresheaf S) (topologicalFreeCondensed S).property
 
 /-- At the represented identity section, the free/sheaf adjunction unit is the sheafification of
-the presheaf free generator.-/
+the presheaf free generator.
+@isnad1 id=eq.0h1v.s12.659f1f1568b1 from=translated src=- shape=6241ff79 vocab=74214d37
+-/
 lemma freeForgetAdjunction_unit_app_id :
     ((LightCondensed.freeForgetAdjunction ℤ).unit.app S.toCondensed).hom.app ⟨S⟩ (𝟙 S) =
       (CategoryTheory.toSheafify (coherentTopology LightProfinite) (freePresheaf S)).app ⟨S⟩
@@ -126,7 +139,9 @@ lemma freeForgetAdjunction_unit_app_id :
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The sheafified presheaf comparison sends the represented Dirac generator to the represented
-topological Dirac section.-/
+topological Dirac section.
+@isnad1 id=eq.0h1v.s13.6e77f045c6d4 from=translated src=- shape=9645a38d vocab=202384b9
+-/
 lemma freePresheafComparison_diracSection :
     (freePresheafComparisonSheafification S).hom.app ⟨S⟩
       ((CategoryTheory.toSheafify (coherentTopology LightProfinite) (freePresheaf S)).app ⟨S⟩
@@ -150,7 +165,9 @@ lemma freePresheafComparison_diracSection :
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Under the free/forget adjunction, the sheafified presheaf comparison is characterized by the
-represented topological Dirac section.-/
+represented topological Dirac section.
+@isnad1 id=eq.0h1v.s11.4fa177af70e8 from=translated src=- shape=24d7768b vocab=18316c90
+-/
 lemma freeForgetAdjunction_homEquiv_freePresheafComparisonSheafification :
     (LightCondensed.freeForgetAdjunction ℤ).homEquiv S.toCondensed (topologicalFreeCondensed S)
       (freePresheafComparisonSheafification S) = topologicalFreeDiracSection S := by
@@ -170,6 +187,9 @@ noncomputable def freeToTopologicalFree :
   ((LightCondensed.freeForgetAdjunction ℤ).homEquiv S.toCondensed (topologicalFreeCondensed S)).symm
     (topologicalFreeDiracSection S)
 
+/--
+@isnad1 id=eq.0h1v.s11.3cb3cda3edc7 from=translated src=- shape=24d7768b vocab=a95d250b
+-/
 @[simp]
 lemma freeForgetAdjunction_homEquiv_freeToTopologicalFree :
     (LightCondensed.freeForgetAdjunction ℤ).homEquiv S.toCondensed (topologicalFreeCondensed S)
@@ -177,7 +197,9 @@ lemma freeForgetAdjunction_homEquiv_freeToTopologicalFree :
   simp [freeToTopologicalFree]
 
 /-- The existing `freeToTopologicalFree` morphism is the sheaf-level morphism induced by the
-presheaf comparison.-/
+presheaf comparison.
+@isnad1 id=eq.0h1v.s8.d7dd74cfbaa6 from=translated src=- shape=44a8abe3 vocab=38f93bfe
+-/
 lemma freeToTopologicalFree_eq_sheafified_presheaf_comparison :
     freeToTopologicalFree S = freePresheafComparisonSheafification S := by
   apply ((LightCondensed.freeForgetAdjunction ℤ).homEquiv S.toCondensed
@@ -186,7 +208,9 @@ lemma freeToTopologicalFree_eq_sheafified_presheaf_comparison :
     freeForgetAdjunction_homEquiv_freePresheafComparisonSheafification]
 
 /-- The comparison from the free light condensed abelian group to the represented topological free
-abelian group is natural in the light profinite source.-/
+abelian group is natural in the light profinite source.
+@isnad1 id=eq.0h3v.s10.dc386c50548b from=translated src=- shape=45054e37 vocab=194c5f6d
+-/
 lemma freeToTopologicalFree_naturality {S T : LightProfinite.{0}} (f : S ⟶ T) :
     ((free ℤ).map (lightProfiniteToLightCondSet.map f)) ≫ freeToTopologicalFree T =
       freeToTopologicalFree S ≫ topologicalFreeCondensedMap f := by
@@ -217,7 +241,9 @@ noncomputable def topologicalFreeCondensedSheafifyIso (S : LightProfinite.{0}) :
       (topologicalFreeCondensed S).property).inv_hom_id
 
 /-- The sheafified presheaf comparison is the comparison followed by the inverse sheafification
-identification of the represented target.-/
+identification of the represented target.
+@isnad1 id=eq.0h1v.s10.fd20158520b1 from=translated src=- shape=c3614494 vocab=5e10cd3b
+-/
 lemma sheafified_presheaf_comparison_comp_topologicalFreeCondensedSheafifyIso_inv
     (S : LightProfinite.{0}) :
     (((CategoryTheory.presheafToSheaf (coherentTopology LightProfinite) (ModuleCat.{0} ℤ)).map
@@ -236,6 +262,9 @@ lemma sheafified_presheaf_comparison_comp_topologicalFreeCondensedSheafifyIso_in
   erw [CategoryTheory.sheafifyMap_sheafifyLift]
   simp
 
+/--
+@isnad1 id=isiso.0h1v.s9.f4d625dca3b8 from=translated src=- shape=f6b606a1 vocab=26b314ff
+-/
 instance instIsIso_sheafifiedPresheafComparison (S : LightProfinite.{0}) :
     IsIso (((CategoryTheory.presheafToSheaf (coherentTopology LightProfinite) (ModuleCat.{0} ℤ)).map
       (freePresheafToTopologicalFreePresheaf S))) := by
@@ -243,6 +272,9 @@ instance instIsIso_sheafifiedPresheafComparison (S : LightProfinite.{0}) :
   exact (coherentTopology LightProfinite).W_of_isLocallyBijective
     (freePresheafToTopologicalFreePresheaf S)
 
+/--
+@isnad1 id=isiso.0h1v.s8.94c2e12b3af3 from=translated src=- shape=6215046a vocab=cab7ef21
+-/
 instance instIsIso_freeToTopologicalFree (S : LightProfinite.{0}) :
     IsIso (freeToTopologicalFree S) := by
   rw [freeToTopologicalFree_eq_sheafified_presheaf_comparison]
@@ -253,12 +285,17 @@ noncomputable def freeTopologicalFreeIso (S : LightProfinite.{0}) :
     (free ℤ).obj S.toCondensed ≅ topologicalFreeCondensed S :=
   asIso (freeToTopologicalFree S)
 
+/--
+@isnad1 id=eq.0h1v.s9.1f5c32df055f from=translated src=- shape=3ce754f3 vocab=a4c12f38
+-/
 lemma freeTopologicalFreeIso_hom (S : LightProfinite.{0}) :
     (freeTopologicalFreeIso S).hom = freeToTopologicalFree S := by
   rfl
 
 /-- Applying the comparison to a section transported back along `freeTopologicalFreeIso.symm`
-recovers the original represented topological-free section.-/
+recovers the original represented topological-free section.
+@isnad1 id=eq.0h3v.s12.4b39b6434272 from=translated src=- shape=8385ca9d vocab=fb7bdb14
+-/
 @[simp]
 lemma freeToTopologicalFree_app_section_of_iso_symm
     (T X : LightProfinite.{0}) (s : (topologicalFreeCondensed T).obj.obj ⟨X⟩) :
@@ -270,7 +307,9 @@ lemma freeToTopologicalFree_app_section_of_iso_symm
   simp
 
 /-- Restrictions of a free section pulled back from the represented topological-free sheaf are
-identified by applying the free/topological-free comparison.-/
+identified by applying the free/topological-free comparison.
+@isnad1 id=eq.0h5v.s13.15ecc8a653cb from=translated src=- shape=6d57e273 vocab=01564baa
+-/
 @[simp]
 lemma freeToTopologicalFree_app_map_section_of_iso_symm
     (T X Y : LightProfinite.{0}) (s : (topologicalFreeCondensed T).obj.obj ⟨X⟩)
@@ -291,14 +330,18 @@ lemma freeToTopologicalFree_app_map_section_of_iso_symm
   rw [hX] at hn
   exact hn
 
-/-- The free/topological-free comparison is injective on sections over every light profinite.-/
+/-- The free/topological-free comparison is injective on sections over every light profinite.
+@isnad1 id=injectiv.0h2v.s11.3d7de86a17d2 from=translated src=- shape=38abb2f4 vocab=57a9ec77
+-/
 lemma freeToTopologicalFree_app_injective
     (T X : LightProfinite.{0}) :
     Function.Injective ((freeToTopologicalFree T).hom.app ⟨X⟩) := by
   rw [← ModuleCat.mono_iff_injective]
   infer_instance
 
-/-- A free section is determined by its image in the represented topological-free sheaf.-/
+/-- A free section is determined by its image in the represented topological-free sheaf.
+@isnad1 id=eq.1h4v.s12.9e02db75a4e6 from=translated src=- shape=44dedc55 vocab=03d588c8
+-/
 lemma freeSection_eq_of_freeToTopologicalFree_eq
     (T X : LightProfinite.{0})
     {u v : ((free ℤ).obj T.toCondensed).obj.obj ⟨X⟩}
@@ -308,7 +351,9 @@ lemma freeSection_eq_of_freeToTopologicalFree_eq
   freeToTopologicalFree_app_injective T X h
 
 /-- Convenience form for comparing free sections by comparing the resulting measures pointwise
-after applying the free/topological-free comparison.-/
+after applying the free/topological-free comparison.
+@isnad1 id=eq.1h4v.s12.755eaa5867d1 from=translated src=- shape=e0c920d3 vocab=87ac4a4d
+-/
 lemma freeSection_map_eq_of_pointwise_measure_eq
     (T X : LightProfinite.{0})
     {u v : ((free ℤ).obj T.toCondensed).obj.obj ⟨X⟩}

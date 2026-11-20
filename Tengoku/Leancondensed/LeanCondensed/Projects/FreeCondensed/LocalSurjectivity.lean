@@ -20,6 +20,9 @@ noncomputable def topologicalFreeMap {S T : LightProfinite.{0}} (f : S ⟶ T) :
     topologicalFree S ⟶ topologicalFree T :=
   (TopModuleCat.free ℤ).map (LightProfinite.toTopCat.map f)
 
+/--
+@isnad1 id=eq.0h4v.s9.10f1514ce172 from=translated src=- shape=bac9afde vocab=d7596659
+-/
 @[simp]
 lemma topologicalFreeMap_single {S T : LightProfinite.{0}} (f : S ⟶ T) (s : S) :
     (topologicalFreeMap f).hom (Finsupp.single s (1 : ℤ)) = Finsupp.single (f s) (1 : ℤ) := by
@@ -40,6 +43,9 @@ noncomputable def topologicalFreeDiracSection :
       (LightCondensed.topModuleToLightCondAbForgetIso (topologicalFree S)).inv
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h2v.s12.bd20262647eb from=translated src=- shape=61d0932a vocab=fea783ad
+-/
 @[simp]
 lemma topologicalFreeDiracSection_yoneda_apply (s : S) :
     ((show C(↑S.toTop, ↑(topologicalFree S).toModuleCat) from
@@ -55,7 +61,9 @@ lemma topologicalFreeDiracSection_yoneda_apply (s : S) :
   rw [LightCondensed.topModuleToLightCondAbForgetIso_inv_app]
   rfl
 
-/-- The topological Dirac section is natural in the light profinite source.-/
+/-- The topological Dirac section is natural in the light profinite source.
+@isnad1 id=eq.0h3v.s10.63604a30935c from=translated src=- shape=9717ef00 vocab=31d0d4a6
+-/
 lemma topologicalFreeDiracSection_naturality {S T : LightProfinite.{0}} (f : S ⟶ T) :
     lightProfiniteToLightCondSet.map f ≫ topologicalFreeDiracSection T =
       topologicalFreeDiracSection S ≫ (forget ℤ).map (topologicalFreeCondensedMap f) := by
@@ -73,7 +81,9 @@ lemma topologicalFreeDiracSection_naturality {S T : LightProfinite.{0}} (f : S �
     (topologicalFreeMap f).hom (Finsupp.single (g' u) (1 : ℤ))
   exact (topologicalFreeMap_single f (g' u)).symm
 
-/-- The topological free map sends the Dirac section to the Dirac section.-/
+/-- The topological free map sends the Dirac section to the Dirac section.
+@isnad1 id=eq.0h3v.s13.7b61622863e5 from=translated src=- shape=54f0f3ff vocab=bed72be9
+-/
 lemma topologicalFreeCondensedMap_diracSection_apply {S T : LightProfinite.{0}} (f : S ⟶ T) :
     (topologicalFreeCondensed T).obj.map f.op
         ((coherentTopology LightProfinite).yonedaEquiv (topologicalFreeDiracSection T)) =
@@ -156,7 +166,9 @@ noncomputable def discreteIntTopModuleSectionsEquiv (T : LightProfinite.{0}) :
     simp [_root_.id]
 
 /-- The previous equivalence is compatible with the comparison to the discrete light condensed
-abelian group `ℤ`.-/
+abelian group `ℤ`.
+@isnad1 id=eq.0h2v.s12.804806d12394 from=translated src=- shape=cfc45c84 vocab=cd9cd189
+-/
 lemma discreteIntTopModuleCondensedIso_sections (T : LightProfinite.{0})
     (x : (LightCondensed.topModuleToLightCondAbObj discreteIntTopModule).obj.obj ⟨T⟩) :
     ((LightCondMod.LocallyConstant.functorIsoDiscrete ℤ).inv.app (ModuleCat.of ℤ ℤ)).hom.app ⟨T⟩
@@ -183,6 +195,9 @@ noncomputable def topologicalFreeEvalTopModule
     topologicalFree S ⟶ M :=
   ((TopModuleCat.freeAdj ℤ).homEquiv S.toTop M).symm f
 
+/--
+@isnad1 id=eq.0h4v.s10.3c88f874e93c from=translated src=- shape=9f1d0381 vocab=edf9c20a
+-/
 @[simp]
 lemma topologicalFreeEvalTopModule_single
     (M : TopModuleCat.{0} ℤ)
@@ -193,7 +208,9 @@ lemma topologicalFreeEvalTopModule_single
     (topologicalFreeEvalTopModule S M f)) s) = f s
   simp [topologicalFreeEvalTopModule]
 
-/-- The universal extension computes by the usual finite sum against the generators.-/
+/-- The universal extension computes by the usual finite sum against the generators.
+@isnad1 id=eq.0h4v.s10.4672c51b5039 from=translated src=- shape=ba8aeb0c vocab=648b3e73
+-/
 lemma topologicalFreeEvalTopModule_apply
     (M : TopModuleCat.{0} ℤ)
     (f : S.toTop ⟶ (forget₂ (TopModuleCat ℤ) TopCat).obj M)
@@ -230,6 +247,9 @@ noncomputable def topologicalFreeEval (f : LocallyConstant S ℤ) :
   ((TopModuleCat.freeAdj ℤ).homEquiv S.toTop discreteIntTopModule).symm
     (TopCat.ofHom f.toContinuousMap)
 
+/--
+@isnad1 id=eq.0h3v.s8.d75668c0c794 from=translated src=- shape=e045d6d9 vocab=4c6ce1f1
+-/
 @[simp]
 lemma topologicalFreeEval_single (f : LocallyConstant S ℤ) (s : S) :
     (topologicalFreeEval S f).hom (Finsupp.single s (1 : ℤ)) = f s := by
@@ -238,7 +258,9 @@ lemma topologicalFreeEval_single (f : LocallyConstant S ℤ) (s : S) :
   simp [topologicalFreeEval]
 
 /-- The continuous linear evaluation map on the topological free abelian group is the usual finite
-sum against the locally constant function.-/
+sum against the locally constant function.
+@isnad1 id=eq.0h3v.s9.fd1c09ec1373 from=translated src=- shape=8093921f vocab=06b93ec9
+-/
 lemma topologicalFreeEval_apply (f : LocallyConstant S ℤ) (μ : topologicalFree S) :
     (topologicalFreeEval S f).hom μ = (Finsupp.linearCombination ℤ fun s : S => f s) μ := by
   let L : (topologicalFree S) →ₗ[ℤ] ℤ := (topologicalFreeEval S f).hom.toLinearMap
@@ -252,7 +274,9 @@ lemma topologicalFreeEval_apply (f : LocallyConstant S ℤ) (μ : topologicalFre
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Locally constant integer evaluations separate distinct points of the topological free abelian
- group.-/
+ group.
+@isnad1 id=ex.1h3v.s9.a1795c22473e from=translated src=- shape=2b2cd1db vocab=22454ec4
+-/
 lemma topologicalFreeEval_separates_points {μ ν : topologicalFree S} (hμν : μ ≠ ν) :
     ∃ f : LocallyConstant S ℤ,
       (topologicalFreeEval S f).hom μ ≠ (topologicalFreeEval S f).hom ν := by
@@ -320,6 +344,9 @@ lemma topologicalFreeEval_separates_points {μ ν : topologicalFree S} (hμν : 
   intro h
   exact hs₀ (hμ.symm.trans (h.trans hν))
 
+/--
+@isnad1 id=t2space.0h1v.s4.d86accdc16ae from=translated src=- shape=efe873a3 vocab=4b481bcf
+-/
 instance topologicalFree_t2Space : T2Space (topologicalFree S) := by
   classical
   rw [t2Space_iff_nhds]
@@ -343,6 +370,9 @@ noncomputable def finsuppRealEvalCLM (μ : S →₀ ℤ) :
     (S →ᵇ ℝ) →L[ℝ] ℝ :=
   μ.sum fun s n => (n : ℝ) • BoundedContinuousFunction.evalCLM ℝ s
 
+/--
+@isnad1 id=eq.0h3v.s9.58ca1dfdc4da from=translated src=- shape=6366c68e vocab=3065abed
+-/
 @[simp]
 lemma finsuppRealEvalCLM_apply (μ : S →₀ ℤ) (f : S →ᵇ ℝ) :
     finsuppRealEvalCLM S μ f = μ.sum (fun s n => (n : ℝ) * f s) := by
@@ -352,6 +382,9 @@ lemma finsuppRealEvalCLM_apply (μ : S →₀ ℤ) (f : S →ᵇ ℝ) :
     ∑ x ∈ μ.support, (μ x : ℝ) * f x
   simp
 
+/--
+@isnad1 id=le.0h3v.s9.5c3d8ed5eb51 from=translated src=- shape=5307ab65 vocab=dc65584d
+-/
 lemma finsuppRealEvalCLM_bound (μ : S →₀ ℤ) (f : S →ᵇ ℝ) :
     ‖finsuppRealEvalCLM S μ f‖ ≤
       (LightProfinite.FreeImage.totalVariation μ : ℝ) * ‖f‖ := by
@@ -376,12 +409,18 @@ lemma finsuppRealEvalCLM_bound (μ : S →₀ ℤ) (f : S →ᵇ ℝ) :
       simp_rw [Int.cast_sum, Int.cast_abs]
       rw [Finset.sum_mul]
 
+/--
+@isnad1 id=le.0h2v.s8.5a09878e416c from=translated src=- shape=5343bb62 vocab=18a4bfd1
+-/
 lemma norm_finsuppRealEvalCLM_le (μ : S →₀ ℤ) :
     ‖finsuppRealEvalCLM S μ‖ ≤ (LightProfinite.FreeImage.totalVariation μ : ℝ) := by
   exact ContinuousLinearMap.opNorm_le_bound _
     (by exact_mod_cast LightProfinite.FreeImage.totalVariation_nonneg μ)
     (finsuppRealEvalCLM_bound S μ)
 
+/--
+@isnad1 id=ex.0h2v.s9.daecdd5e875f from=translated src=- shape=cd1491d0 vocab=1d13d906
+-/
 lemma exists_finsuppRealEvalCLM_sign (μ : S →₀ ℤ) :
     ∃ f : S →ᵇ ℝ, ‖f‖ ≤ 1 ∧
       finsuppRealEvalCLM S μ f = (LightProfinite.FreeImage.totalVariation μ : ℝ) := by
@@ -437,6 +476,9 @@ lemma exists_finsuppRealEvalCLM_sign (μ : S →₀ ℤ) :
     have hnonpos : μ s ≤ 0 := le_of_lt hneg
     simp [hpos, abs_of_nonpos hnonpos]
 
+/--
+@isnad1 id=le.0h2v.s8.02ee16d2ba73 from=translated src=- shape=a6f80176 vocab=18a4bfd1
+-/
 lemma totalVariation_le_norm_finsuppRealEvalCLM (μ : S →₀ ℤ) :
     (LightProfinite.FreeImage.totalVariation μ : ℝ) ≤ ‖finsuppRealEvalCLM S μ‖ := by
   obtain ⟨f, hf_norm, hf_eval⟩ := exists_finsuppRealEvalCLM_sign S μ
@@ -447,13 +489,18 @@ lemma totalVariation_le_norm_finsuppRealEvalCLM (μ : S →₀ ℤ) :
   rw [← h_eval_norm]
   simpa using (finsuppRealEvalCLM S μ).le_opNorm_of_le hf_norm
 
+/--
+@isnad1 id=eq.0h2v.s8.22bcd9b9e474 from=translated src=- shape=5343bb62 vocab=c662949c
+-/
 lemma norm_finsuppRealEvalCLM (μ : S →₀ ℤ) :
     ‖finsuppRealEvalCLM S μ‖ = (LightProfinite.FreeImage.totalVariation μ : ℝ) := by
   exact le_antisymm (norm_finsuppRealEvalCLM_le S μ)
     (totalVariation_le_norm_finsuppRealEvalCLM S μ)
 
 /-- The universal continuous evaluation at a bounded real-valued function agrees with the
-corresponding continuous linear functional on bounded continuous functions.-/
+corresponding continuous linear functional on bounded continuous functions.
+@isnad1 id=eq.0h3v.s9.1399df7a3a64 from=translated src=- shape=acdce947 vocab=a723b1a7
+-/
 lemma topologicalFreeEvalTopModule_real_apply_eq_finsuppRealEvalCLM
     (μ : topologicalFree S) (f : S →ᵇ ℝ) :
     ((topologicalFreeEvalTopModule S realTopModule (TopCat.ofHom f.toContinuousMap)).hom μ : ℝ) =
@@ -462,7 +509,9 @@ lemma topologicalFreeEvalTopModule_real_apply_eq_finsuppRealEvalCLM
   simp [realTopModule]
 
 /-- A convergent sequence in the topological free abelian group has eventually bounded total
-variation.-/
+variation.
+@isnad1 id=ex.1h3v.s6.80b4ec719847 from=translated src=- shape=7def54d6 vocab=e6fdaa35
+-/
 lemma topologicalFree_tendsto_totalVariation_bddAbove
     {μ : ℕ → topologicalFree S} {μ₀ : topologicalFree S}
     (hμ : Filter.Tendsto μ Filter.atTop (nhds μ₀)) :
@@ -502,7 +551,9 @@ lemma topologicalFree_tendsto_totalVariation_bddAbove
   exact_mod_cast hTV_real
 
 /-- The total variation of a continuous family of finitely supported measures over a light
-profinite source is uniformly bounded.-/
+profinite source is uniformly bounded.
+@isnad1 id=ex.0h3v.s8.5434647f140d from=translated src=- shape=d87bc734 vocab=68ed3b73
+-/
 lemma topologicalFree_totalVariation_bounded_of_continuous
     (U : LightProfinite.{0}) (a : (topologicalFreePresheaf S).obj ⟨U⟩) :
     ∃ N : ℕ, ∀ u : U,
@@ -538,6 +589,9 @@ negative sign convention: `true` means coefficient `-1`, and `false` means coeff
 def signedTupleIndex (N : ℕ) : Type :=
   Σ m : Fin (N + 1), (Fin m.1 → Bool)
 
+/--
+@isnad1 id=finite.0h1v.s2.3d83cadb1e37 from=translated src=- shape=76a08d12 vocab=b79285b2
+-/
 instance signedTupleIndex_finite (N : ℕ) : Finite (signedTupleIndex N) := by
   unfold signedTupleIndex
   infer_instance
@@ -555,6 +609,9 @@ noncomputable def signedTupleProj
     change Continuous (fun x : Fin i.1.1 → S => x j)
     exact continuous_apply j⟩
 
+/--
+@isnad1 id=eq.0h5v.s9.e85bb44c16ff from=translated src=- shape=86d1ded8 vocab=b1ffae84
+-/
 @[simp]
 lemma signedTupleProj_apply
     (S : LightProfinite.{0}) {N : ℕ} (i : signedTupleIndex N) (j : Fin i.1.1)
@@ -591,6 +648,9 @@ noncomputable def signedTupleMap
       change Continuous (fun x : Fin i.1.1 → S => x j)
       exact continuous_apply j)
 
+/--
+@isnad1 id=eq.0h4v.s9.a71078d71117 from=translated src=- shape=4d141ad4 vocab=7dcd8b52
+-/
 lemma signedTupleMap_apply
     (S : LightProfinite.{0}) {N : ℕ} (i : signedTupleIndex N)
     (x : signedTupleSpace S i) :
@@ -598,6 +658,9 @@ lemma signedTupleMap_apply
       ∑ j : Fin i.1.1,
         Finsupp.single (x j) (if i.2 j then (-1 : ℤ) else (1 : ℤ)) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.60a169a23c96 from=translated src=- shape=fa7328da vocab=e2037de1
+-/
 lemma int_signed_natAbs_sum (n : ℤ) :
     (∑ _ : Fin n.natAbs, (if n < 0 then (-1 : ℤ) else 1)) = n := by
   by_cases hneg : n < 0
@@ -615,6 +678,9 @@ lemma int_signed_natAbs_sum (n : ℤ) :
     simp only [Finset.card_fin, nsmul_eq_mul, mul_one]
     exact Int.natAbs_of_nonneg (le_of_not_gt hneg)
 
+/--
+@isnad1 id=eq.0h2v.s9.e5c0f59d4461 from=translated src=- shape=166242fd vocab=d68b0233
+-/
 lemma signedSigma_sum_eq (S : Type*) (μ : S →₀ ℤ) :
     (∑ a : (Σ s : {s // s ∈ μ.support}, Fin ((μ s.1).natAbs)),
       Finsupp.single (a.1.1 : S) (if μ a.1.1 < 0 then (-1 : ℤ) else 1)) = μ := by
@@ -646,6 +712,9 @@ lemma signedSigma_sum_eq (S : Type*) (μ : S →₀ ℤ) :
         exact s.2
       exact ht htmem : t ≠ (s : S))]
 
+/--
+@isnad1 id=eq.0h2v.s8.a34aa4c7e3b1 from=translated src=- shape=7d301b73 vocab=dad1425b
+-/
 lemma signedSigma_card_eq_totalVariation (S : Type*) (μ : S →₀ ℤ) :
     (Fintype.card (Σ s : {s // s ∈ μ.support}, Fin ((μ s.1).natAbs)) : ℤ) =
       LightProfinite.FreeImage.totalVariation μ := by
@@ -662,7 +731,9 @@ lemma signedSigma_card_eq_totalVariation (S : Type*) (μ : S →₀ ℤ) :
 
 /-- Every finitely supported integer measure with total variation at most `N` is a fixed-sign
 signed tuple sum of length at most `N`; repeated coordinates encode coefficients of larger
-absolute value.-/
+absolute value.
+@isnad1 id=ex.1h3v.s8.d780dbc27305 from=translated src=- shape=0d2b5061 vocab=5fae4fc8
+-/
 lemma exists_signedTuple_of_totalVariation_le
     (S : LightProfinite.{0}) {N : ℕ} (μ : S →₀ ℤ)
     (hμ : LightProfinite.FreeImage.totalVariation μ ≤ (N : ℤ)) :
@@ -701,6 +772,9 @@ noncomputable def freePresheaf_signedTupleSection
     Finsupp.single (τ ≫ signedTupleProj S i j) (if i.2 j then (-1 : ℤ) else 1)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h5v.s9.ec2453f75135 from=translated src=- shape=d45dbb86 vocab=7dae7e3c
+-/
 lemma freePresheafToTopologicalFreePresheaf_signedTupleSection
     (S V : LightProfinite.{0}) {N : ℕ} (i : signedTupleIndex N)
     (τ : V ⟶ signedTupleSpace S i) :
@@ -734,6 +808,9 @@ def signedTuplePullbackSet
   {p | (show C(↑U.toTop, ↑(topologicalFree S).toModuleCat) from a) p.1 =
     signedTupleMap S i p.2}
 
+/--
+@isnad1 id=isclosed.0h5v.s7.555a3ad88861 from=translated src=- shape=2b7a7915 vocab=2430b46d
+-/
 lemma signedTuplePullbackSet_isClosed
     (S U : LightProfinite.{0}) {N : ℕ}
     (a : (topologicalFreePresheaf S).obj ⟨U⟩)
@@ -777,6 +854,9 @@ noncomputable def signedTuplePullbackτ
       U × signedTupleSpace S i).2,
     continuous_snd.comp continuous_subtype_val⟩
 
+/--
+@isnad1 id=eq.0h6v.s10.9804e8a6559b from=translated src=- shape=b001a899 vocab=8dc16c53
+-/
 @[simp]
 lemma signedTuplePullbackπ_apply
     (S U : LightProfinite.{0}) {N : ℕ}
@@ -794,6 +874,9 @@ lemma signedTuplePullbackπ_apply
     exact CompHausLike.hom_ofHom _ _]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.6c99e29b39bc from=translated src=- shape=cc09592a vocab=26e2a79c
+-/
 @[simp]
 lemma signedTuplePullbackτ_apply
     (S U : LightProfinite.{0}) {N : ℕ}
@@ -811,6 +894,9 @@ lemma signedTuplePullbackτ_apply
     exact CompHausLike.hom_ofHom _ _]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.ed89b458a866 from=translated src=- shape=bccbea83 vocab=02f7cd56
+-/
 lemma signedTuplePullback_mem
     (S U : LightProfinite.{0}) {N : ℕ}
     (a : (topologicalFreePresheaf S).obj ⟨U⟩)
@@ -821,6 +907,9 @@ lemma signedTuplePullback_mem
   rw [signedTuplePullbackπ_apply, signedTuplePullbackτ_apply]
   exact (v : signedTuplePullbackSet S U a i).2
 
+/--
+@isnad1 id=eq.0h5v.s10.e323cc8dd49c from=translated src=- shape=a0a285f3 vocab=1fec7767
+-/
 lemma signedTuplePullback_condition
     (S U : LightProfinite.{0}) {N : ℕ}
     (a : (topologicalFreePresheaf S).obj ⟨U⟩)
@@ -836,6 +925,9 @@ lemma signedTuplePullback_condition
       (signedTuplePullbackπ S U a i v)
   exact (signedTuplePullback_mem S U a i v).symm
 
+/--
+@isnad1 id=ex.1h5v.s9.6b14a8db4eae from=translated src=- shape=a5c20348 vocab=b1768d4f
+-/
 lemma signedTuplePullback_jointly_surjective_of_bound
     (S U : LightProfinite.{0}) {N : ℕ}
     (a : (topologicalFreePresheaf S).obj ⟨U⟩)
@@ -856,6 +948,9 @@ most `N`.-/
 def signedTupleBoundedSet (S : LightProfinite.{0}) (N : ℕ) : Set (topologicalFree S) :=
   ⋃ i : signedTupleIndex N, Set.range (fun x : signedTupleSpace S i => signedTupleMap S i x)
 
+/--
+@isnad1 id=iscompac.0h2v.s4.c5c89f0f5634 from=translated src=- shape=0e03f65b vocab=780e7bce
+-/
 lemma signedTupleBoundedSet_isCompact (S : LightProfinite.{0}) (N : ℕ) :
     IsCompact (signedTupleBoundedSet S N) := by
   classical
@@ -865,6 +960,9 @@ lemma signedTupleBoundedSet_isCompact (S : LightProfinite.{0}) (N : ℕ) :
       isCompact_univ.image (show Continuous fun x : signedTupleSpace S i => signedTupleMap S i x from
         (signedTupleMap S i).continuous)
 
+/--
+@isnad1 id=mem.1h3v.s6.1e9bcd654bbb from=translated src=- shape=73829fe0 vocab=968ca834
+-/
 lemma mem_signedTupleBoundedSet_of_totalVariation_le
     (S : LightProfinite.{0}) {N : ℕ} (μ : topologicalFree S)
     (hμ : LightProfinite.FreeImage.totalVariation μ ≤ (N : ℤ)) :
@@ -875,7 +973,9 @@ lemma mem_signedTupleBoundedSet_of_totalVariation_le
   rw [signedTupleBoundedSet]
   exact Set.mem_iUnion.mpr ⟨i, Set.mem_range.mpr ⟨x, hx⟩⟩
 
-/-- Finite quotient projections jointly separate points of the represented topological free group.-/
+/-- Finite quotient projections jointly separate points of the represented topological free group.
+@isnad1 id=eq.1h3v.s10.a32ae4966dc8 from=translated src=- shape=4b88f22b vocab=c7227472
+-/
 lemma topologicalFree_eq_of_forall_proj_eq (S : LightProfinite.{0})
     {μ ν : topologicalFree S}
     (h : ∀ k : ℕ,
@@ -894,7 +994,9 @@ lemma topologicalFree_eq_of_forall_proj_eq (S : LightProfinite.{0})
       Finsupp.mapDomain (fun s : S => S.proj k s) (show S →₀ ℤ from ν) at hk'
     exact hk'
 
-/-- A closed-graph criterion for maps into a compact space.-/
+/-- A closed-graph criterion for maps into a compact space.
+@isnad1 id=continuo.1h3v.s5.b58a2b836fac from=translated src=- shape=e39ae16e vocab=65ac99ca
+-/
 lemma continuous_of_isClosed_graph_of_compact {α β : Type*}
     [TopologicalSpace α] [TopologicalSpace β] [CompactSpace β]
     (f : α → β) (hgraph : IsClosed {p : α × β | p.2 = f p.1}) : Continuous f := by
@@ -915,7 +1017,9 @@ lemma continuous_of_isClosed_graph_of_compact {α β : Type*}
   exact isClosedMap_fst_of_compactSpace A hA
 
 /-- On a uniformly bounded family of finite signed measures, continuity into the represented
-topological free abelian group is detected by all finite quotient projections.-/
+topological free abelian group is detected by all finite quotient projections.
+@isnad1 id=continuo.2h4v.s9.3da70bdb4809 from=translated src=- shape=d078a818 vocab=f3468fc5
+-/
 lemma topologicalFree_continuous_of_bounded_of_finiteProj
     (T X : LightProfinite.{0}) (a : X → topologicalFree T) (N : ℕ)
     (hN : ∀ x : X, LightProfinite.FreeImage.totalVariation (a x) ≤ (N : ℤ))
@@ -970,7 +1074,9 @@ noncomputable def topologicalFreeSectionOfBoundedFiniteProj
   (⟨a, topologicalFree_continuous_of_bounded_of_finiteProj T X a N hN hproj⟩ :
     C(↑X.toTop, ↑(topologicalFree T).toModuleCat))
 
-/-- The bounded finite-projection section is represented by the continuous map it was built from.-/
+/-- The bounded finite-projection section is represented by the continuous map it was built from.
+@isnad1 id=eq.2h4v.s9.42d3c4726ab8 from=translated src=- shape=dc7b0564 vocab=776bf615
+-/
 @[simp]
 lemma topologicalFreeSectionOfBoundedFiniteProj_underlying
     (T X : LightProfinite.{0}) (a : X → topologicalFree T) (N : ℕ)
@@ -983,7 +1089,9 @@ lemma topologicalFreeSectionOfBoundedFiniteProj_underlying
         C(↑X.toTop, ↑(topologicalFree T).toModuleCat)) :=
   rfl
 
-/-- Pointwise form of `topologicalFreeSectionOfBoundedFiniteProj_underlying`.-/
+/-- Pointwise form of `topologicalFreeSectionOfBoundedFiniteProj_underlying`.
+@isnad1 id=eq.2h5v.s10.d8e9d96c2a2e from=translated src=- shape=0987b603 vocab=04431ea0
+-/
 @[simp]
 lemma topologicalFreeSectionOfBoundedFiniteProj_apply
     (T X : LightProfinite.{0}) (a : X → topologicalFree T) (N : ℕ)
@@ -994,7 +1102,9 @@ lemma topologicalFreeSectionOfBoundedFiniteProj_apply
       topologicalFreeSectionOfBoundedFiniteProj T X a N hN hproj) x = a x :=
   rfl
 
-/-- Restriction of a represented topological-free section is composition with the source map.-/
+/-- Restriction of a represented topological-free section is composition with the source map.
+@isnad1 id=eq.0h6v.s11.f7529b4d4719 from=translated src=- shape=dbe3f61f vocab=c24bd1ea
+-/
 @[simp]
 lemma topologicalFreeCondensed_section_map_apply
     (T X Y : LightProfinite.{0}) (s : (topologicalFreeCondensed T).obj.obj ⟨X⟩)
@@ -1004,7 +1114,9 @@ lemma topologicalFreeCondensed_section_map_apply
       (show C(↑X.toTop, ↑(topologicalFree T).toModuleCat) from s) (f y) :=
   rfl
 
-/-- Restricting a represented topological-free section to a point evaluates its underlying map.-/
+/-- Restricting a represented topological-free section to a point evaluates its underlying map.
+@isnad1 id=eq.0h5v.s11.8be2ab220a73 from=translated src=- shape=b1c8b50c vocab=b0d63d7c
+-/
 @[simp]
 lemma topologicalFreeCondensed_section_map_point
     (T X : LightProfinite.{0}) (s : (topologicalFreeCondensed T).obj.obj ⟨X⟩)
@@ -1014,6 +1126,9 @@ lemma topologicalFreeCondensed_section_map_point
       (show C(↑X.toTop, ↑(topologicalFree T).toModuleCat) from s) (f pt) :=
   rfl
 
+/--
+@isnad1 id=mem.0h3v.s8.bc8879654fff from=translated src=- shape=5f0f8a11 vocab=739156d3
+-/
 lemma freePresheafToTopologicalFreePresheaf_imageSieve_mem
     (S U : LightProfinite.{0})
     (a : (topologicalFreePresheaf S).obj ⟨U⟩) :
@@ -1031,6 +1146,9 @@ lemma freePresheafToTopologicalFreePresheaf_imageSieve_mem
     rw [freePresheafToTopologicalFreePresheaf_signedTupleSection]
     exact signedTuplePullback_condition S U a i
 
+/--
+@isnad1 id=islocall.0h1v.s7.9dd1f8d6e51b from=translated src=- shape=42895bc9 vocab=f16d0320
+-/
 instance freePresheafToTopologicalFreePresheaf_isLocallySurjective
     (S : LightProfinite.{0}) :
     CategoryTheory.Presheaf.IsLocallySurjective (coherentTopology LightProfinite)

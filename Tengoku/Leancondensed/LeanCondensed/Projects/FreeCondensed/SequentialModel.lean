@@ -67,7 +67,9 @@ noncomputable def colimitCoconeOfTop_isColimit {J : Type} [Category J]
       colimit.desc (F ⋙ sequentialToTop) (sequentialToTop.mapCocone s)
     exact Functor.map_preimage _ _
 
-/-- The inclusion of sequential spaces into topological spaces preserves colimits.-/
+/-- The inclusion of sequential spaces into topological spaces preserves colimits.
+@isnad1 id=preserve.0h2v.s5.9fc4b540446a from=translated src=- shape=bd704de3 vocab=c13f79ac
+-/
 noncomputable instance preservesColimit_sequentialToTop {J : Type} [Category J]
     (F : J ⥤ Sequential.{0}) [HasColimit (F ⋙ sequentialToTop)] :
     PreservesColimit F sequentialToTop :=
@@ -80,6 +82,9 @@ noncomputable instance preservesColimit_sequentialToTop {J : Type} [Category J]
 noncomputable def forgetIso : (forget Sequential.{0}) ≅ (sequentialToTop ⋙ forget TopCat) :=
   NatIso.ofComponents (fun _ => Iso.refl _) (by intro X Y f; rfl)
 
+/--
+@isnad1 id=preserve.0h2v.s6.982f0be0b4df from=translated src=- shape=4f74937b vocab=a6e5bd8c
+-/
 noncomputable instance preservesColimit_forget {J : Type} [Category J]
     (F : J ⥤ Sequential.{0}) [HasColimit (F ⋙ sequentialToTop)] :
     PreservesColimit F (forget Sequential) :=
@@ -90,7 +95,9 @@ end Sequential
 namespace LightCondSet
 
 /-- If a light condensed set is represented by its topological realization, then a morphism out of
-it is sectionwise injective as soon as it is injective on point-valued sections.-/
+it is sectionwise injective as soon as it is injective on point-valued sections.
+@isnad1 id=injectiv.1h4v.s11.db52779bbe46 from=translated src=- shape=b9a69836 vocab=604326fd
+-/
 lemma injective_app_of_topCatAdjunctionUnit_iso_and_injective_point {X Y : LightCondSet.{0}}
     (f : X ⟶ Y)
     [IsIso (topCatAdjunctionUnit X)]
@@ -137,16 +144,25 @@ namespace FreeImage
 def totalVariation {α : Type*} (a : α →₀ ℤ) : ℤ :=
   a.sum fun _ n => |n|
 
+/--
+@isnad1 id=eq.0h2v.s5.fe73997b9d62 from=translated src=- shape=efe7a477 vocab=a56069d1
+-/
 lemma totalVariation_eq_sum_fintype {α : Type*} [Fintype α] (a : α →₀ ℤ) :
     totalVariation a = ∑ i, |a i| := by
   rw [totalVariation, Finsupp.sum_fintype]
   intro i
   simp
 
+/--
+@isnad1 id=le.0h2v.s4.97a42965a9d2 from=translated src=- shape=d1cbbded vocab=46fe0ff4
+-/
 lemma totalVariation_nonneg {α : Type*} (a : α →₀ ℤ) : 0 ≤ totalVariation a := by
   dsimp [totalVariation, Finsupp.sum]
   positivity
 
+/--
+@isnad1 id=le.0h3v.s5.aae982c8d966 from=translated src=- shape=b40a886d vocab=ea0fa61e
+-/
 lemma abs_apply_le_totalVariation {α : Type*} (a : α →₀ ℤ) (i : α) :
     |a i| ≤ totalVariation a := by
   by_cases hi : i ∈ a.support
@@ -156,12 +172,18 @@ lemma abs_apply_le_totalVariation {α : Type*} (a : α →₀ ℤ) (i : α) :
       simpa [Finsupp.mem_support_iff] using hi
     simp [hzero, totalVariation_nonneg a]
 
+/--
+@isnad1 id=mem.2h4v.s6.63bc8e258008 from=translated src=- shape=83c08418 vocab=ec33182e
+-/
 lemma apply_mem_Icc_of_totalVariation_le {α : Type*} (a : α →₀ ℤ) {c : ℤ}
     (_hc : 0 ≤ c) (ha : totalVariation a ≤ c) (i : α) :
     a i ∈ Set.Icc (-c) c := by
   have habs : |a i| ≤ c := le_trans (abs_apply_le_totalVariation a i) ha
   exact abs_le.mp habs
 
+/--
+@isnad1 id=le.0h5v.s6.4e05712b9371 from=translated src=- shape=0ba01ed7 vocab=0c338342
+-/
 lemma abs_mapDomain_apply_le_sum_filter {α β : Type*} [DecidableEq β]
     (f : α → β) (a : α →₀ ℤ) (b : β) :
     |(Finsupp.mapDomain f a) b| ≤ ∑ i ∈ a.support with f i = b, |a i| := by
@@ -173,7 +195,9 @@ lemma abs_mapDomain_apply_le_sum_filter {α β : Type*} [DecidableEq β]
   · rw [Finsupp.mapDomain_of_notMem_range a b hb]
     positivity
 
-/-- Pushing a finite signed measure forward cannot increase total variation.-/
+/-- Pushing a finite signed measure forward cannot increase total variation.
+@isnad1 id=le.0h4v.s5.dcb8a10b094c from=translated src=- shape=bd51a21a vocab=14a6ebd4
+-/
 lemma totalVariation_mapDomain_le {α β : Type*} [Fintype β] [DecidableEq β]
     (f : α → β) (a : α →₀ ℤ) :
     totalVariation (Finsupp.mapDomain f a) ≤ totalVariation a := by
@@ -264,23 +288,35 @@ def functorBoundInclusion {c d : ℤ} (hcd : c ≤ d) :
     functor c ⟶ functor d :=
   Functor.whiskerRight (boundInclusionNat hcd) FintypeCat.toLightProfinite
 
+/--
+@isnad1 id=eq.0h1v.s6.fe35a110bf17 from=translated src=- shape=efd48288 vocab=090dd865
+-/
 lemma boundInclusionNat_refl (c : ℤ) :
     boundInclusionNat (le_refl c) = 𝟙 (fintypeFunctor c) := by
   ext Si a
   rfl
 
+/--
+@isnad1 id=eq.2h3v.s6.4f2723e85885 from=translated src=- shape=8a1e0555 vocab=74cf5ad4
+-/
 lemma boundInclusionNat_comp {c d e : ℤ} (hcd : c ≤ d) (hde : d ≤ e) :
     boundInclusionNat (le_trans hcd hde) =
       boundInclusionNat hcd ≫ boundInclusionNat hde := by
   ext Si a
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.90f03029af54 from=translated src=- shape=d01c9139 vocab=9a034369
+-/
 lemma functorBoundInclusion_refl (c : ℤ) :
     functorBoundInclusion (le_refl c) = 𝟙 (functor c) := by
   dsimp [functorBoundInclusion, functor]
   rw [boundInclusionNat_refl]
   rfl
 
+/--
+@isnad1 id=eq.2h3v.s7.7880ee76a5d3 from=translated src=- shape=952e965f vocab=a581d12a
+-/
 lemma functorBoundInclusion_comp {c d e : ℤ} (hcd : c ≤ d) (hde : d ≤ e) :
     functorBoundInclusion (le_trans hcd hde) =
       functorBoundInclusion hcd ≫ functorBoundInclusion hde := by
@@ -294,12 +330,18 @@ noncomputable def profiniteComponentMap (S : LightProfinite.{0}) {c d : ℤ} (hc
   _root_.CategoryTheory.Limits.lim.map
     (Functor.whiskerLeft S.fintypeDiagram (functorBoundInclusion hcd))
 
+/--
+@isnad1 id=eq.2h3v.s5.341569c4b311 from=translated src=- shape=7c9dd0bc vocab=f26311ac
+-/
 lemma profiniteComponentMap_congr (S : LightProfinite.{0}) {c d : ℤ} (h₁ h₂ : c ≤ d) :
     profiniteComponentMap S h₁ = profiniteComponentMap S h₂ := by
   have h : h₁ = h₂ := Subsingleton.elim _ _
   cases h
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.0ec5f4e379df from=translated src=- shape=4788649d vocab=4f124dc7
+-/
 lemma profiniteComponentMap_id (S : LightProfinite.{0}) (c : ℤ) :
     profiniteComponentMap S (le_refl c) = 𝟙 (profiniteComponent S c) := by
   have hα : Functor.whiskerLeft S.fintypeDiagram (functorBoundInclusion (le_refl c)) =
@@ -310,6 +352,9 @@ lemma profiniteComponentMap_id (S : LightProfinite.{0}) (c : ℤ) :
   rw [hα]
   exact _root_.CategoryTheory.Limits.lim.map_id (S.fintypeDiagram ⋙ functor c)
 
+/--
+@isnad1 id=eq.2h4v.s6.9c2ea00c9d8b from=translated src=- shape=931e49a4 vocab=304affc5
+-/
 lemma profiniteComponentMap_comp (S : LightProfinite.{0}) {c d e : ℤ}
     (hcd : c ≤ d) (hde : d ≤ e) :
     profiniteComponentMap S (le_trans hcd hde) =
@@ -325,7 +370,9 @@ lemma profiniteComponentMap_comp (S : LightProfinite.{0}) {c d e : ℤ}
   rw [hαβ]
   exact _root_.CategoryTheory.Limits.lim.map_comp α β
 
-/-- A morphism in the preorder category `ℕ+` gives the corresponding integer inequality.-/
+/-- A morphism in the preorder category `ℕ+` gives the corresponding integer inequality.
+@isnad1 id=le.0h3v.s5.312412492a26 from=translated src=- shape=a47cab4c vocab=78dd531c
+-/
 theorem pnatHomLeInt {c d : ℕ+} (h : c ⟶ d) : (c : ℤ) ≤ (d : ℤ) := by
   have hnat : (c : ℕ) ≤ (d : ℕ) := leOfHom h
   exact_mod_cast hnat
@@ -393,12 +440,18 @@ noncomputable def finiteStageEval (Si : FintypeCat.{0}) (c : ℤ) (g : Si → �
     component Si c → ℤ :=
   fun a => (a : set Si c).1.sum fun i n => n * g i
 
+/--
+@isnad1 id=eq.1h5v.s8.6d20f3b73e1d from=translated src=- shape=fbdc8e07 vocab=f55272ab
+-/
 @[simp]
 lemma finiteStageEval_boundInclusion (Si : FintypeCat.{0}) {c d : ℤ} (hcd : c ≤ d)
     (g : Si → ℤ) (a : set Si c) :
     finiteStageEval Si d g (boundInclusion Si hcd a) = finiteStageEval Si c g a := by
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.5a6a7aec7e1d from=translated src=- shape=f8f55ec9 vocab=3c41ac0f
+-/
 @[simp]
 lemma finiteStageEval_fintypeMap (c : ℤ) {Si Sj : FintypeCat.{0}} (f : Si ⟶ Sj)
     (g : Sj → ℤ) (a : set Si c) :
@@ -419,6 +472,9 @@ noncomputable def diracFintype (Si : FintypeCat.{0}) (i : Si) : set Si (1 : ℤ)
   change (Finsupp.single i (1 : ℤ)).sum (fun _ n => |n|) ≤ 1
   simp
 
+/--
+@isnad1 id=eq.0h3v.s5.384b3399d488 from=translated src=- shape=c4a91a4e vocab=befbb2dd
+-/
 @[simp]
 lemma finiteStageEval_diracFintype (Si : FintypeCat.{0}) (g : Si → ℤ) (i : Si) :
     finiteStageEval Si (1 : ℤ) g (diracFintype Si i) = g i := by
@@ -426,6 +482,9 @@ lemma finiteStageEval_diracFintype (Si : FintypeCat.{0}) (g : Si → ℤ) (i : S
   dsimp [finiteStageEval, diracFintype]
   simp
 
+/--
+@isnad1 id=eq.0h4v.s9.83e3df96f731 from=translated src=- shape=d11f320c vocab=d7c644a5
+-/
 @[simp]
 lemma fintypeMap_diracFintype {Si Sj : FintypeCat.{0}} (f : Si ⟶ Sj) (i : Si) :
     fintypeMap (1 : ℤ) f (diracFintype Si i) = diracFintype Sj (f i) := by
@@ -435,7 +494,9 @@ lemma fintypeMap_diracFintype {Si Sj : FintypeCat.{0}} (f : Si ⟶ Sj) (i : Si) 
   simp [Finsupp.mapDomain_single]
 
 /-- Bounded finite-stage signed measures are separated by their evaluations against all
-integer-valued functions on the finite stage.-/
+integer-valued functions on the finite stage.
+@isnad1 id=eq.1h4v.s6.d5f038082b89 from=translated src=- shape=ec52ebb2 vocab=64f2e345
+-/
 lemma finiteStageEval_ext (Si : FintypeCat.{0}) (c : ℤ) {a b : set Si c}
     (h : ∀ g : Si → ℤ, finiteStageEval Si c g a = finiteStageEval Si c g b) : a = b := by
   classical
@@ -483,7 +544,9 @@ noncomputable def profiniteComponentEval (S : LightProfinite.{0}) (c : ℤ) (k :
     C(↑(lightProfiniteToSequential.obj (profiniteComponent S c)).toTop, ↑discreteIntSeq.toTop))
   exact he.comp πk.hom.hom.continuous
 
-/-- The bounded-component evaluation maps are compatible with increasing the bound.-/
+/-- The bounded-component evaluation maps are compatible with increasing the bound.
+@isnad1 id=eq.1h5v.s7.a044b8bf460a from=translated src=- shape=6dd3d8b9 vocab=1ce33d10
+-/
 lemma profiniteComponentEval_bound (S : LightProfinite.{0}) {c d : ℤ} (hcd : c ≤ d) (k : ℕ)
     (g : S.fintypeDiagram.obj ⟨k⟩ → ℤ) :
     lightProfiniteToSequential.map (profiniteComponentMap S hcd) ≫
@@ -509,7 +572,9 @@ lemma profiniteComponentEval_bound (S : LightProfinite.{0}) {c d : ℤ} (hcd : c
   rw [hx]
   rfl
 
-/-- Points in a fixed bounded profinite component are separated by all finite-stage evaluations.-/
+/-- Points in a fixed bounded profinite component are separated by all finite-stage evaluations.
+@isnad1 id=eq.1h4v.s9.bb6af522ddc9 from=translated src=- shape=bc7e1e86 vocab=8d70afdc
+-/
 lemma profiniteComponentEval_ext (S : LightProfinite.{0}) (c : ℤ)
     {x y : profiniteComponent S c}
     (h : ∀ k : ℕ, ∀ g : S.fintypeDiagram.obj ⟨k⟩ → ℤ,
@@ -559,12 +624,18 @@ noncomputable def diracComponent (S : LightProfinite.{0}) : S ⟶ profiniteCompo
 noncomputable def diracComponentOne (S : LightProfinite.{0}) : S ⟶ (seqFunctor S).obj (1 : ℕ+) :=
   diracComponent S
 
+/--
+@isnad1 id=eq.0h2v.s8.d21017ba10ea from=translated src=- shape=c092333d vocab=a876d69c
+-/
 @[simp]
 lemma diracComponent_π (S : LightProfinite.{0}) (k : ℕ) :
     diracComponent S ≫ limit.π (S.fintypeDiagram ⋙ functor (1 : ℤ)) ⟨k⟩ =
       (diracCone S).π.app ⟨k⟩ := by
   exact limit.lift_π _ _
 
+/--
+@isnad1 id=eq.0h3v.s11.98fa6dd7f1cb from=translated src=- shape=55cf3579 vocab=f7773b71
+-/
 @[simp]
 lemma diracComponent_apply_π (S : LightProfinite.{0}) (k : ℕ) (s : S) :
     (limit.π (S.fintypeDiagram ⋙ functor (1 : ℤ)) ⟨k⟩) (diracComponent S s) =
@@ -574,6 +645,9 @@ lemma diracComponent_apply_π (S : LightProfinite.{0}) (k : ℕ) (s : S) :
   rw [diracComponent_π]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.31b28e504180 from=translated src=- shape=876d956d vocab=3a08ba4e
+-/
 @[simp]
 lemma profiniteComponentEval_diracComponent (S : LightProfinite.{0}) (k : ℕ)
     (g : S.fintypeDiagram.obj ⟨k⟩ → ℤ) (s : S) :
@@ -611,6 +685,9 @@ noncomputable def sequentialEvalOfFactor (S : LightProfinite.{0}) (k : ℕ)
     sequential S ⟶ discreteIntSeq :=
   colimit.desc (seqFunctor S ⋙ lightProfiniteToSequential) (sequentialEvalCoconeOfFactor S k g)
 
+/--
+@isnad1 id=eq.0h4v.s8.f3e6762d7451 from=translated src=- shape=83900c56 vocab=d275efd8
+-/
 @[simp]
 lemma colimit_ι_sequentialEvalOfFactor (S : LightProfinite.{0}) (k : ℕ)
     (g : S.fintypeDiagram.obj ⟨k⟩ → ℤ) (c : ℕ+) :
@@ -618,6 +695,9 @@ lemma colimit_ι_sequentialEvalOfFactor (S : LightProfinite.{0}) (k : ℕ)
       profiniteComponentEval S c k g := by
   exact colimit.ι_desc _ c
 
+/--
+@isnad1 id=eq.0h4v.s9.f79b7269fe8b from=translated src=- shape=b6b183aa vocab=19b58ee0
+-/
 @[simp]
 lemma diracSequential_eval_apply (S : LightProfinite.{0}) (k : ℕ)
     (g : S.fintypeDiagram.obj ⟨k⟩ → ℤ) (s : S) :
@@ -634,7 +714,9 @@ lemma diracSequential_eval_apply (S : LightProfinite.{0}) (k : ℕ)
     profiniteComponentEval S (1 : ℤ) k g (diracComponent S s) at hs
   exact hs.trans (profiniteComponentEval_diracComponent S k g s)
 
-/-- Points of the sequential finite-measure model are separated by finite-stage evaluations.-/
+/-- Points of the sequential finite-measure model are separated by finite-stage evaluations.
+@isnad1 id=eq.1h3v.s8.c1d14b22cf56 from=translated src=- shape=d378f165 vocab=54e0badf
+-/
 lemma sequentialEvalOfFactor_ext (S : LightProfinite.{0})
     {x y : sequential S}
     (h : ∀ k : ℕ, ∀ g : S.fintypeDiagram.obj ⟨k⟩ → ℤ,
@@ -667,7 +749,9 @@ lemma sequentialEvalOfFactor_ext (S : LightProfinite.{0})
   rw [hc, hd]
   exact hxy
 
-/-- Sections of the sequential finite-measure model are separated by finite-stage evaluations.-/
+/-- Sections of the sequential finite-measure model are separated by finite-stage evaluations.
+@isnad1 id=eq.1h4v.s12.714ce8f102d2 from=translated src=- shape=31c79aca vocab=e4f68c2f
+-/
 lemma sequential_section_ext_of_eval (T U : LightProfinite.{0})
     {x y : (sequentialToLightCondSet.obj (sequential T)).obj.obj ⟨U⟩}
     (h : ∀ k : ℕ, ∀ g : T.fintypeDiagram.obj ⟨k⟩ → ℤ,

@@ -70,7 +70,9 @@ abbrev lightCondAbPoints (T : LightProfinite) : LightCondAb ⥤ ModuleCat ℤ :=
   sheafToPresheaf (coherentTopology LightProfinite) (ModuleCat ℤ) ⋙
     (evaluation LightProfiniteᵒᵖ (ModuleCat ℤ)).obj (Opposite.op T)
 
-/-- A pointwise filtered colimit of light condensed abelian groups is again a sheaf.-/
+/-- A pointwise filtered colimit of light condensed abelian groups is again a sheaf.
+@isnad1 id=issheaf.0h2v.s9.0f228d3a9045 from=translated src=- shape=0592bbc2 vocab=4fa8199c
+-/
 lemma isSheaf_pointwiseFilteredColimit_presheaf
     {I : Type} [SmallCategory I] [IsFiltered I] (F : I ⥤ LightCondAb) :
     Presheaf.IsSheaf (coherentTopology LightProfinite)
@@ -140,7 +142,9 @@ lemma isSheaf_pointwiseFilteredColimit_presheaf
     exact (IsLimit.equivOfNatIsoOfIso i _ _ e).symm hcolim
 
 /-- The key pointwise-colimit input: a filtered presheaf colimit of light condensed abelian groups
-is again a sheaf.-/
+is again a sheaf.
+@isnad1 id=issheaf.0h4v.s9.6e6f4d3cee5e from=translated src=- shape=864c23d1 vocab=94806364
+-/
 lemma isSheaf_filtered_colimit_presheaf
     {I : Type} [SmallCategory I] [IsFiltered I]
     (F : I ⥤ LightCondAb)
@@ -164,7 +168,9 @@ noncomputable def lightCondAb_sheafToPresheaf_createsFilteredColimitsOfShape
 
 attribute [local instance] lightCondAb_sheafToPresheaf_createsFilteredColimitsOfShape
 
-/-- Point evaluation preserves filtered colimits once filtered colimits are pointwise.-/
+/-- Point evaluation preserves filtered colimits once filtered colimits are pointwise.
+@isnad1 id=preserve.0h1v.s6.38c071f07514 from=translated src=- shape=6085e2e6 vocab=0016a9a9
+-/
 lemma lightCondAbPoints_preservesFilteredColimits (T : LightProfinite) :
     PreservesFilteredColimits (lightCondAbPoints T) := by
   refine ⟨fun J _ _ => ?_⟩
@@ -189,7 +195,9 @@ noncomputable def hom_free_lightProfinite_iso_points (S : LightProfinite) :
           (((LightCondensed.freeForgetAdjunction ℤ).homEquiv S.toCondensed A) g)))
     congr 1
 
-/-- Homs out of a free light condensed module preserve small filtered colimits.-/
+/-- Homs out of a free light condensed module preserve small filtered colimits.
+@isnad1 id=preserve.0h1v.s9.d26875c9d309 from=translated src=- shape=a040a99f vocab=95142982
+-/
 lemma preservesFilteredColimits_hom_free_lightProfinite (S : LightProfinite) :
     PreservesFilteredColimitsOfSize.{0, 0}
       (coyoneda.obj (Opposite.op ((LightCondensed.free ℤ).obj S.toCondensed))) := by
@@ -205,7 +213,9 @@ lemma preservesFilteredColimits_hom_free_lightProfinite (S : LightProfinite) :
   exact preservesColimitsOfShape_of_natIso (hom_free_lightProfinite_iso_points S).symm
 
 /-- Homs out of a tensor product of two free light condensed modules preserve small filtered
-colimits.-/
+colimits.
+@isnad1 id=preserve.0h2v.s10.14bfb15fb35c from=translated src=- shape=6bcda90b vocab=15b98c4d
+-/
 lemma preservesFilteredColimits_hom_free_tensor_free (S T : LightProfinite) :
     PreservesFilteredColimitsOfSize.{0, 0}
       (coyoneda.obj (Opposite.op
@@ -236,10 +246,16 @@ abbrev PDenominatorTensor (T : LightProfinite) : LightCondAb :=
   ((LightCondensed.free ℤ).obj (LightProfinite.of PUnit.{1}).toCondensed) ⊗
     (LightCondensed.free ℤ).obj T.toCondensed
 
+/--
+@isnad1 id=preserve.0h1v.s8.c0ca17b3f0ad from=translated src=- shape=f3fab8bb vocab=93b6defc
+-/
 lemma preservesFilteredColimits_hom_PNumeratorTensor (T : LightProfinite) :
     PreservesFilteredColimitsOfSize.{0, 0} (coyoneda.obj (Opposite.op (PNumeratorTensor T))) := by
   exact preservesFilteredColimits_hom_free_tensor_free _ _
 
+/--
+@isnad1 id=preserve.0h1v.s8.074f0f877694 from=translated src=- shape=f3fab8bb vocab=5ccae8df
+-/
 lemma preservesFilteredColimits_hom_PDenominatorTensor (T : LightProfinite) :
     PreservesFilteredColimitsOfSize.{0, 0} (coyoneda.obj (Opposite.op (PDenominatorTensor T))) := by
   exact preservesFilteredColimits_hom_free_tensor_free _ _
@@ -255,6 +271,9 @@ noncomputable def tensorCokerIsoScaffold {A B C : LightCondAb} (f : A ⟶ B) :
 
 -- Small filtered colimits commute with finite limits in `Type 1`.
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=preserve.0h1v.s4.03a488dc744b from=translated src=- shape=5b0446df vocab=f33010d9
+-/
 lemma lim_preservesFilteredColimitsOfSize_type1 (K : Type) [SmallCategory K] [FinCategory K] :
     PreservesFilteredColimitsOfSize.{0, 0} (lim : (K ⥤ Type 1) ⥤ Type 1) := by
   refine ⟨fun J _ _ => ?_⟩
@@ -295,7 +314,9 @@ lemma lim_preservesFilteredColimitsOfSize_type1 (K : Type) [SmallCategory K] [Fi
 of a cokernel of `X ⟶ Y` preserve small filtered colimits.
 
 Ordinary hom out of a cokernel is an equalizer of ordinary hom functors, and filtered colimits
-commute with finite limits in `Type`.-/
+commute with finite limits in `Type`.
+@isnad1 id=preserve.0h3v.s10.e8619e4f8b0c from=translated src=- shape=43aac1d9 vocab=c490480b
+-/
 lemma preservesFilteredColimits_hom_cokernel_of_preserves_hom {X Y : LightCondAb} (f : X ⟶ Y)
     [PreservesFilteredColimitsOfSize.{0, 0} (coyoneda.obj (Opposite.op X))]
     [PreservesFilteredColimitsOfSize.{0, 0} (coyoneda.obj (Opposite.op Y))] :
@@ -326,7 +347,9 @@ lemma preservesFilteredColimits_hom_cokernel_of_preserves_hom {X Y : LightCondAb
   exact preservesColimitsOfShape_of_natIso
     (coyonedaOpColimitIsoLimitCoyoneda (parallelPair f 0)).symm
 
-/-- Ordinary homs out of `P ℤ ⊗ ℤ[T]` preserve small filtered colimits.-/
+/-- Ordinary homs out of `P ℤ ⊗ ℤ[T]` preserve small filtered colimits.
+@isnad1 id=preserve.0h1v.s9.c326eebc9b9b from=translated src=- shape=751aa605 vocab=fce16592
+-/
 lemma preservesFilteredColimits_hom_P_tensor_free (T : LightProfinite) :
     PreservesFilteredColimitsOfSize.{0, 0}
       (coyoneda.obj (Opposite.op (P ℤ ⊗ (LightCondensed.free ℤ).obj T.toCondensed))) := by
@@ -369,7 +392,9 @@ noncomputable def ihomP_points_forget_iso (T : LightProfinite) :
     rw [LightCondensed.ihom_map_val_app]
     simp
 
-/-- Reduction from pointwise ordinary hom preservation to internal hom preservation.-/
+/-- Reduction from pointwise ordinary hom preservation to internal hom preservation.
+@isnad1 id=preserve.1h0v.s10.8772e8bd5eb6 from=translated src=- shape=67fd86c6 vocab=dcc6091e
+-/
 lemma preservesFilteredColimits_ihom_P_of_pointwise_hom
     (h : ∀ T : LightProfinite,
       PreservesFilteredColimitsOfSize.{0, 0}
@@ -403,7 +428,9 @@ lemma preservesFilteredColimits_ihom_P_of_pointwise_hom
   exact preservesColimitsOfShape_of_reflects_of_preserves (F := ihom (P ℤ))
     (G := sheafToPresheaf (coherentTopology LightProfinite) (ModuleCat ℤ))
 
-/-- Final scaffold for the target lemma in `LightSolid.lean`.-/
+/-- Final scaffold for the target lemma in `LightSolid.lean`.
+@isnad1 id=preserve.0h0v.s8.ecd603fe030c from=translated src=- shape=8a3eedd5 vocab=329f2dd4
+-/
 lemma preservesFilteredColimits_ihom_P_scaffold :
     PreservesFilteredColimitsOfSize.{0, 0} (ihom (P ℤ)) := by
   exact preservesFilteredColimits_ihom_P_of_pointwise_hom

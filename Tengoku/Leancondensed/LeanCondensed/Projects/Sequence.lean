@@ -49,6 +49,9 @@ def P_proj : (free R).obj (ℕ∪{∞}).toCondensed ⟶ P R := cokernel.π _
 def PSequence : ShortComplex (LightCondMod R) :=
   ShortComplex.mk (P_map R) (P_proj R) (cokernel.condition _)
 
+/--
+@isnad1 id=shortexa.0h1v.s8.b09c6d678b85 from=translated src=- shape=e7b3e04d vocab=45fa6ca2
+-/
 lemma PSequence_exact : (PSequence R).ShortExact := by
   refine ShortComplex.ShortExact.mk' ?_
     (SplitMono.mono ((ι_split).map (lightProfiniteToLightCondSet ⋙ free R)))

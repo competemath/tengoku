@@ -75,12 +75,18 @@ noncomputable def topModuleToLightCondAbForgetIso (M : TopModuleCat.{0} ℤ) :
       topCatToLightCondSet.obj ((forget₂ (TopModuleCat ℤ) TopCat).obj M) :=
   (fullyFaithfulSheafToPresheaf _ _).preimageIso (topModulePresheafForgetIso M)
 
+/--
+@isnad1 id=eq.0h3v.s12.3402c32739b3 from=translated src=- shape=3a80318d vocab=aa4d3a3b
+-/
 @[simp]
 lemma topModuleToLightCondAbForgetIso_hom_app (M : TopModuleCat.{0} ℤ)
     (S : LightProfiniteᵒᵖ)
     (x : ((forget ℤ).obj (topModuleToLightCondAbObj M)).obj.obj S) :
     (topModuleToLightCondAbForgetIso M).hom.hom.app S x = x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s12.12590490f511 from=translated src=- shape=23738ec6 vocab=74d181db
+-/
 @[simp]
 lemma topModuleToLightCondAbForgetIso_inv_app (M : TopModuleCat.{0} ℤ)
     (S : LightProfiniteᵒᵖ)
@@ -118,6 +124,9 @@ abbrev topologicalFreeCondensed : LightCondAb :=
 abbrev topologicalFreeDirac : S.toTop ⟶ (forget₂ (TopModuleCat ℤ) TopCat).obj (topologicalFree S) :=
   (TopModuleCat.freeAdj ℤ).unit.app S.toTop
 
+/--
+@isnad1 id=eq.0h2v.s10.fc71484b787d from=translated src=- shape=6f91e4b6 vocab=fc064af7
+-/
 @[simp]
 lemma topologicalFreeDirac_apply (s : S) :
     (topologicalFreeDirac S) s = Finsupp.single s (1 : ℤ) := rfl
@@ -174,6 +183,9 @@ noncomputable def freePresheafToTopologicalFreePresheaf (S : LightProfinite.{0})
     intro u
     rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.cf7380f21e9d from=translated src=- shape=4acdb466 vocab=c4f79be9
+-/
 @[simp]
 lemma freePresheafToTopologicalFreePresheaf_app_freeMk
     (S : LightProfinite.{0}) (U : LightProfiniteᵒᵖ)
@@ -182,6 +194,9 @@ lemma freePresheafToTopologicalFreePresheaf_app_freeMk
       freePresheafToTopologicalFreePresheafGenerator S U g := by
   exact ModuleCat.freeDesc_apply (↾freePresheafToTopologicalFreePresheafGenerator S U) g
 
+/--
+@isnad1 id=eq.0h4v.s10.d1bba95eaabb from=translated src=- shape=0ad33692 vocab=e173fa42
+-/
 @[simp]
 lemma freePresheafToTopologicalFreePresheaf_apply_single
     (S U : LightProfinite.{0}) (g : U ⟶ S) (u : U) :
@@ -200,6 +215,9 @@ lemma freePresheafToTopologicalFreePresheaf_apply_single
       (↾freePresheafToTopologicalFreePresheafGenerator S (Opposite.op U)) g]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.c61389cdd4b5 from=translated src=- shape=2637c64c vocab=3f9dd3fa
+-/
 lemma freePresheafToTopologicalFreePresheaf_naturality_apply
     (S : LightProfinite.{0}) {U V : LightProfiniteᵒᵖ} (f : U ⟶ V)
     (a : (freePresheaf S).obj U) :
@@ -213,7 +231,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- Pointwise, the presheaf comparison sends a formal sum of maps `U ⟶ S` to the corresponding
 finite signed measure on `S`.  This is the algebraic reduction used in the local-injectivity
 argument: equality in the represented topological free group gives equality of these pushed-forward
-finitely supported functions at every point of `U`.-/
+finitely supported functions at every point of `U`.
+@isnad1 id=eq.0h4v.s10.4a68085c270d from=translated src=- shape=2e279771 vocab=d24ae998
+-/
 lemma freePresheafToTopologicalFreePresheaf_apply
     (S U : LightProfinite.{0}) (a : (freePresheaf S).obj ⟨U⟩) (u : U) :
     ((show C(↑U.toTop, ↑(topologicalFree S).toModuleCat) from
@@ -259,6 +279,9 @@ lemma freePresheafToTopologicalFreePresheaf_apply
   exact (Finsupp.mapDomain_single (f := fun h : S.toCondensed.obj.obj ⟨U⟩ ↦
     (show U ⟶ S from h) u) (a := g) (b := (1 : ℤ))).symm
 
+/--
+@isnad1 id=eq.1h5v.s11.40d534e91d72 from=translated src=- shape=4c3f898b vocab=c254683f
+-/
 lemma freePresheafToTopologicalFreePresheaf_pointwise_mapDomain_eq_of_eq
     (S U : LightProfinite.{0}) {a b : (freePresheaf S).obj ⟨U⟩}
     (h : (freePresheafToTopologicalFreePresheaf S).app ⟨U⟩ a =

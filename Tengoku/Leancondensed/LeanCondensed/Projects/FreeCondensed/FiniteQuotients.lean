@@ -33,7 +33,9 @@ lemma eq_of_forall_proj_eq (S : LightProfinite.{0}) {x y : S}
   have hy : fy PUnit.unit = y := rfl
   simpa [hx, hy] using hp
 
-/-- Distinct points of a light profinite space are separated by some finite quotient projection.-/
+/-- Distinct points of a light profinite space are separated by some finite quotient projection.
+@isnad1 id=ex.1h3v.s10.c2d620187847 from=translated src=- shape=d101a8f2 vocab=04debc31
+-/
 lemma exists_proj_ne (S : LightProfinite.{0}) {x y : S} (hxy : x ≠ y) :
     ∃ n : ℕ, S.proj n x ≠ S.proj n y := by
   by_contra h
@@ -44,7 +46,9 @@ lemma exists_proj_ne (S : LightProfinite.{0}) {x y : S} (hxy : x ≠ y) :
   exact h ⟨n, hn⟩
 
 /-- Distinct maps into a light profinite space are separated after postcomposition with some finite
-quotient projection.-/
+quotient projection.
+@isnad1 id=ex.1h4v.s7.bcf0a817a8ec from=translated src=- shape=8f7235e2 vocab=fa095a86
+-/
 lemma exists_proj_comp_ne_of_ne {U S : LightProfinite.{0}} {g h : U ⟶ S} (hgh : g ≠ h) :
     ∃ n : ℕ, g ≫ S.proj n ≠ h ≫ S.proj n := by
   obtain ⟨u, hu⟩ : ∃ u : U, g u ≠ h u := by
@@ -59,7 +63,9 @@ lemma exists_proj_comp_ne_of_ne {U S : LightProfinite.{0}} {g h : U ⟶ S} (hgh 
   apply hn
   exact ConcreteCategory.congr_hom H u
 
-/-- Separation by a finite quotient persists after passing to any later quotient.-/
+/-- Separation by a finite quotient persists after passing to any later quotient.
+@isnad1 id=ne.2h6v.s8.d6ab90619458 from=translated src=- shape=6c330a0f vocab=9bbf85da
+-/
 lemma proj_comp_ne_of_le {U S : LightProfinite.{0}} {g h : U ⟶ S} {k n : ℕ}
     (hkn : k ≤ n) (hne : g ≫ S.proj k ≠ h ≫ S.proj k) :
     g ≫ S.proj n ≠ h ≫ S.proj n := by
@@ -73,7 +79,9 @@ lemma proj_comp_ne_of_le {U S : LightProfinite.{0}} {g h : U ⟶ S} {k n : ℕ}
     _ = h ≫ (S.proj n ≫ S.transitionMapLE hkn) := by rw [Category.assoc]
     _ = h ≫ S.proj k := by rw [S.proj_comp_transitionMapLE hkn]
 
-/-- A finite set of maps into a light profinite space is separated by one finite quotient.-/
+/-- A finite set of maps into a light profinite space is separated by one finite quotient.
+@isnad1 id=ex.0h3v.s7.c0474d0b63ab from=translated src=- shape=9267887e vocab=b72d4d81
+-/
 lemma exists_proj_injective_on_finset_hom (U S : LightProfinite.{0}) (t : Finset (U ⟶ S)) :
     ∃ n : ℕ, Set.InjOn (fun g : U ⟶ S => g ≫ S.proj n) (↑t : Set (U ⟶ S)) := by
   classical
@@ -93,7 +101,9 @@ lemma exists_proj_injective_on_finset_hom (U S : LightProfinite.{0}) (t : Finset
       exact (Finset.mem_product).mpr ⟨hg, hh⟩)
   exact proj_comp_ne_of_le hle hsep H
 
-/-- A finite set of points in a light profinite space is separated by one finite quotient.-/
+/-- A finite set of points in a light profinite space is separated by one finite quotient.
+@isnad1 id=ex.0h2v.s9.6523066db2af from=translated src=- shape=86d545e8 vocab=6c9989e5
+-/
 lemma exists_proj_injective_on_finset_points (S : LightProfinite.{0}) (t : Finset S) :
     ∃ n : ℕ, Set.InjOn (fun s : S => S.proj n s) (↑t : Set S) := by
   classical
