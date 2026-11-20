@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "e866c683a07352a5bd27ce7566b52ffbd29a605dc1c405c51f689d2b11b207e3",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "jsp940-erdos1133-formalization",
+ "lint_mode": "proposed",
+ "modules": 48,
+ "part": 1,
+ "theorems": 325
+}
