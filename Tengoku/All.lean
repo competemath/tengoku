@@ -114,6 +114,7 @@ import Tengoku.Erdos278
 import Tengoku.SplittingDensityRationality
 import Tengoku.Causalean
 import Tengoku.ErdosUnitDistance1
+import Tengoku.LeanTheoremsAroundMillenniumProblems
 import Tengoku.TuzaLean
 import Tengoku.AlpogeLean
 import Tengoku.ErdosLean
