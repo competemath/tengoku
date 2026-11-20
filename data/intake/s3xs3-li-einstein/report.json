@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "2816e3ed8f1d0889194aee189edbffe419e400b782e7b825b1437cb7c53cad25",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "s3xs3-li-einstein",
+ "lint_mode": "proposed",
+ "modules": 20,
+ "part": 1,
+ "theorems": 89
+}

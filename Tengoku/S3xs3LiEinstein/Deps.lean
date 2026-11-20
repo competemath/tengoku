@@ -1,0 +1,1 @@
+-- S3xs3LiEinstein: a factory bundle (data/intake/s3xs3-li-einstein). This file only marks the library for Tengoku/All.lean.
