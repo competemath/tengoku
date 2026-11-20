@@ -184,7 +184,6 @@
     "https://github.com/xiangyazi24/palomar-qseries-row-factorization",
     "https://github.com/frenzymath/PiIrrationalityMeasure",
     "https://github.com/andrew-tawfeek/twinprime",
-    "https://github.com/t4v1/thurston23",
     "https://github.com/DavidVFeldman/qpcf-lean",
     "https://github.com/davidsavitt/KLSposet",
     "https://github.com/apellis/lie-lean",
@@ -282,7 +281,6 @@
     "https://github.com/blawton/fried-conj-lean",
     "https://github.com/JD-Jones-ASES/gnm-lean",
     "https://github.com/YijunYuan/FormalizedSparse",
-    "https://github.com/luohaoyuan0420-w/lhyMathLib",
     "https://github.com/RamenSensei/HellingerRepoLean4",
     "https://github.com/xinjiegit/ben_27_formalization",
     "https://github.com/JJYYY-JJY/burning-path-token-graphs",
@@ -490,7 +488,6 @@
     "https://github.com/xiangyazi24/palomar-qseries-row-factorization": "Apache-2.0",
     "https://github.com/frenzymath/PiIrrationalityMeasure": "Apache-2.0",
     "https://github.com/andrew-tawfeek/twinprime": "Apache-2.0",
-    "https://github.com/t4v1/thurston23": "Apache-2.0",
     "https://github.com/DavidVFeldman/qpcf-lean": "Apache-2.0",
     "https://github.com/davidsavitt/KLSposet": "Apache-2.0",
     "https://github.com/apellis/lie-lean": "Apache-2.0",
@@ -588,7 +585,6 @@
     "https://github.com/blawton/fried-conj-lean": "Apache-2.0",
     "https://github.com/JD-Jones-ASES/gnm-lean": "MIT",
     "https://github.com/YijunYuan/FormalizedSparse": "Apache-2.0",
-    "https://github.com/luohaoyuan0420-w/lhyMathLib": "Apache-2.0",
     "https://github.com/RamenSensei/HellingerRepoLean4": "MIT",
     "https://github.com/xinjiegit/ben_27_formalization": "Apache-2.0",
     "https://github.com/JJYYY-JJY/burning-path-token-graphs": "Apache-2.0",
@@ -1833,18 +1829,6 @@
         "TwinPrime"
       ]
     },
-    "thurston23": {
-      "repo": "https://github.com/t4v1/thurston23",
-      "commit": "3e118f265ef17eddb117513b9b401483fba13dc5",
-      "roots": [
-        "CatalanEisensteinRatio",
-        "CatalanLattice",
-        "CatalanLogSin",
-        "EisensteinLogSin",
-        "Thurston23",
-        "Thurston23Eisenstein"
-      ]
-    },
     "qpcf-lean": {
       "repo": "https://github.com/DavidVFeldman/qpcf-lean",
       "commit": "3610bafc5e8c47b4cd7f490b451b31dd772aa87d",
@@ -2857,13 +2841,6 @@
       "commit": "be9fb43dded873bc7567b486e17e924823e10e41",
       "roots": [
         "FormalizedSparse"
-      ]
-    },
-    "lhymathlib": {
-      "repo": "https://github.com/luohaoyuan0420-w/lhyMathLib",
-      "commit": "f69123de02bacebb912891735c17310ba57ac0b3",
-      "roots": [
-        "LhyMathLib"
       ]
     },
     "hellingerrepolean4": {
