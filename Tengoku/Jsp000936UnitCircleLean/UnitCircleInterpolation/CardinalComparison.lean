@@ -39,6 +39,9 @@ def cardinalNormNumerator (z : Fin n → ℂ) (k : Fin n) (w : ℂ) : ℝ :=
 def cardinalNormDenominator (z : Fin n → ℂ) (k : Fin n) : ℝ :=
   ∏ l ∈ Finset.univ.erase k, ‖z k - z l‖
 
+/--
+@isnad1 id=eq.0h4v.s5.3ead56b1a1e4 from=translated src=- shape=2f2b0a2f vocab=d6d8d6b5
+-/
 lemma norm_cardinal_eq_numerator_div_denominator (z : Fin n → ℂ) (k : Fin n)
     (w : ℂ) :
     ‖cardinal z k w‖ = cardinalNormNumerator z k w / cardinalNormDenominator z k := by
@@ -47,6 +50,9 @@ lemma norm_cardinal_eq_numerator_div_denominator (z : Fin n → ℂ) (k : Fin n)
   simp_rw [norm_div]
   rw [Finset.prod_div_distrib]
 
+/--
+@isnad1 id=lt.1h3v.s4.6b786be80849 from=translated src=- shape=0608b4f6 vocab=1a00360c
+-/
 lemma cardinalNormDenominator_pos (z : Fin n → ℂ) (hinj : Function.Injective z)
     (k : Fin n) : 0 < cardinalNormDenominator z k := by
   apply Finset.prod_pos
@@ -54,6 +60,9 @@ lemma cardinalNormDenominator_pos (z : Fin n → ℂ) (hinj : Function.Injective
   exact norm_pos_iff.mpr (sub_ne_zero.mpr (fun heq =>
     (Finset.mem_erase.mp hl).1 (hinj heq).symm))
 
+/--
+@isnad1 id=le.2h5v.s8.10a6889a6741 from=translated src=- shape=9ad6c2ee vocab=ffb7d42c
+-/
 lemma circle_cardinal_numerator_lower (z : Fin n → Circle) (k : Fin n) (y : Circle)
     (c : ℝ) (hc : 0 ≤ c) (hsep : ∀ l, c ≤ ‖(y : ℂ) - (z l : ℂ)‖) :
     c ^ (n - 1) ≤ cardinalNormNumerator (fun l => (z l : ℂ)) k (y : ℂ) := by
@@ -63,7 +72,9 @@ lemma circle_cardinal_numerator_lower (z : Fin n → Circle) (k : Fin n) (y : Ci
   simpa only [Finset.prod_const, Finset.card_erase_of_mem (Finset.mem_univ k),
     Finset.card_univ, Fintype.card_fin, cardinalNormNumerator] using hprod
 
-/-- A selected near node can be removed from the finite product even if its distance is zero.-/
+/-- A selected near node can be removed from the finite product even if its distance is zero.
+@isnad1 id=le.3h6v.s8.2b5b08969f99 from=translated src=- shape=aa1e95cb vocab=e5d2de27
+-/
 lemma circle_cardinal_numerator_upper_of_near_node (z : Fin n → Circle)
     (k l : Fin n) (hkl : l ≠ k) (x : Circle) (b : ℝ) (hb : 0 ≤ b)
     (hnear : ‖(x : ℂ) - (z l : ℂ)‖ ≤ b) :
@@ -87,7 +98,9 @@ lemma circle_cardinal_numerator_upper_of_near_node (z : Fin n → Circle)
   rw [← Finset.mul_prod_erase s (fun i => ‖(x : ℂ) - (z i : ℂ)‖) hl]
   exact mul_le_mul hnear hrest hrest0 hb
 
-/-- This normalization retains the exact exponent at the two-node endpoint.-/
+/-- This normalization retains the exact exponent at the two-node endpoint.
+@isnad1 id=eq.1h2v.s7.d5f8cadd2b9d from=translated src=- shape=6270fce6 vocab=5ce83074
+-/
 lemma cardinal_comparison_factor_mul_pow (hsize : 2 ≤ n) (c : ℝ) :
     (2 * (c / 2) ^ (n - 1)) * (2 : ℝ) ^ (n - 2) = c ^ (n - 1) := by
   have hexp : n - 1 = (n - 2) + 1 := by omega
@@ -96,7 +109,9 @@ lemma cardinal_comparison_factor_mul_pow (hsize : 2 ≤ n) (c : ℝ) :
   rw [div_pow, htwo]
   field_simp
 
-/-- The literal cardinal comparison for one selected other node.-/
+/-- The literal cardinal comparison for one selected other node.
+@isnad1 id=le.7h8v.s9.05844674fcec from=translated src=- shape=fb1eb5f8 vocab=f3e059f1
+-/
 lemma circle_cardinal_comparison_of_near_node (hsize : 2 ≤ n)
     (z : Fin n → Circle) (hinj : Function.Injective z) (k l : Fin n) (hkl : l ≠ k)
     (y x : Circle) (c b : ℝ) (hc : 0 < c) (hb : 0 < b)
@@ -128,7 +143,9 @@ lemma circle_cardinal_comparison_of_near_node (hsize : 2 ≤ n)
     ← mul_div_assoc, ← mul_div_assoc]
   exact div_le_div_of_nonneg_right hnum hden.le
 
-/-- Each actual cardinal is controlled when some other node is close to the second point.-/
+/-- Each actual cardinal is controlled when some other node is close to the second point.
+@isnad1 id=le.6h7v.s9.5bfc5003ec9e from=translated src=- shape=095f786e vocab=f3e059f1
+-/
 lemma circle_cardinal_comparison (hsize : 2 ≤ n)
     (z : Fin n → Circle) (hinj : Function.Injective z) (y x : Circle) (c b : ℝ)
     (hc : 0 < c) (hb : 0 < b) (hsep : ∀ i, c ≤ ‖(y : ℂ) - (z i : ℂ)‖)
@@ -139,7 +156,9 @@ lemma circle_cardinal_comparison (hsize : 2 ≤ n)
   obtain ⟨l, hkl, hl⟩ := hnear k
   exact circle_cardinal_comparison_of_near_node hsize z hinj k l hkl y x c b hc hb hsep hl
 
-/-- Summing the pointwise estimates compares the literal Lebesgue functions.-/
+/-- Summing the pointwise estimates compares the literal Lebesgue functions.
+@isnad1 id=le.6h6v.s9.fb6929031e07 from=translated src=- shape=a9e75d28 vocab=1c041e6d
+-/
 lemma circle_lebesgue_comparison (hsize : 2 ≤ n)
     (z : Fin n → Circle) (hinj : Function.Injective z) (y x : Circle) (c b : ℝ)
     (hc : 0 < c) (hb : 0 < b) (hsep : ∀ i, c ≤ ‖(y : ℂ) - (z i : ℂ)‖)
@@ -151,7 +170,9 @@ lemma circle_lebesgue_comparison (hsize : 2 ≤ n)
   exact Finset.sum_le_sum (fun k _ =>
     circle_cardinal_comparison hsize z hinj y x c b hc hb hsep hnear k)
 
-/-- Evaluating at a literal node supplies a nonzero comparison value without any peak theorem.-/
+/-- Evaluating at a literal node supplies a nonzero comparison value without any peak theorem.
+@isnad1 id=le.7h7v.s9.4b94b77ded87 from=translated src=- shape=6f1c4a8e vocab=1c041e6d
+-/
 lemma circle_lebesgue_lower_of_close_pair (hsize : 2 ≤ n)
     (z : Fin n → Circle) (hinj : Function.Injective z) (k l : Fin n) (hkl : l ≠ k)
     (y : Circle) (c b : ℝ) (hc : 0 < c) (hb : 0 < b)
@@ -170,7 +191,9 @@ lemma circle_lebesgue_lower_of_close_pair (hsize : 2 ≤ n)
     (Circle.coe_injective.comp hinj) k, mul_one] at h
   exact h
 
-/-- A separated evaluation point and a close node pair give a literal amplification estimate.-/
+/-- A separated evaluation point and a close node pair give a literal amplification estimate.
+@isnad1 id=le.6h7v.s7.c7375b24a693 from=translated src=- shape=68b04052 vocab=99f6f8fa
+-/
 lemma amplification_lower_of_separated_point_close_pair (hsize : 2 ≤ n)
     (nodes : NodeFamily n) (k l : Fin n) (hkl : l ≠ k) (y : Circle) (c b : ℝ)
     (hc : 0 < c) (hb : 0 < b)

@@ -27,6 +27,9 @@ namespace UnitCircleInterpolation
 
 noncomputable section
 
+/--
+@isnad1 id=eq.4h3v.s6.54c70e729d3d from=translated src=- shape=bee64680 vocab=1c41790b
+-/
 lemma polynomial_roots_eq_of_saturated_roots {ι : Type*} [Fintype ι]
     (P : ℝ[X]) (hP : P ≠ 0) (root : ι → ℝ) (hinj : Function.Injective root)
     (hdegree : P.natDegree ≤ Fintype.card ι) (hroot : ∀ i, P.eval (root i) = 0) :
@@ -39,6 +42,9 @@ lemma polynomial_roots_eq_of_saturated_roots {ι : Type*} [Fintype ι]
   · simpa only [Finset.card_image_of_injective _ hinj, Finset.card_univ] using hdegree
   · exact hP
 
+/--
+@isnad1 id=ne.4h4v.s7.fc0f134e9702 from=translated src=- shape=4b3d071f vocab=34bf60ec
+-/
 lemma polynomial_derivative_ne_zero_of_saturated_roots {ι : Type*} [Fintype ι]
     (P : ℝ[X]) (hP : P ≠ 0) (root : ι → ℝ) (hinj : Function.Injective root)
     (hdegree : P.natDegree ≤ Fintype.card ι) (hroot : ∀ i, P.eval (root i) = 0)
@@ -53,6 +59,9 @@ lemma polynomial_derivative_ne_zero_of_saturated_roots {ι : Type*} [Fintype ι]
   rw [Polynomial.count_roots] at hcount
   omega
 
+/--
+@isnad1 id=ex.5h4v.s6.3ef7a47484a7 from=translated src=- shape=fa7a8ec0 vocab=5f25357f
+-/
 lemma polynomial_root_mem_of_saturated_roots {ι : Type*} [Fintype ι]
     (P : ℝ[X]) (hP : P ≠ 0) (root : ι → ℝ) (hinj : Function.Injective root)
     (hdegree : P.natDegree ≤ Fintype.card ι) (hroot : ∀ i, P.eval (root i) = 0)
@@ -63,7 +72,9 @@ lemma polynomial_root_mem_of_saturated_roots {ι : Type*} [Fintype ι]
   obtain ⟨i, _, hi⟩ := Finset.mem_image.mp hmem
   exact ⟨i, hi⟩
 
-/-- A saturated circle-root list leaves no additional zero anywhere in the complete turn.-/
+/-- A saturated circle-root list leaves no additional zero anywhere in the complete turn.
+@isnad1 id=ex.9h5v.s8.7917558e3d55 from=translated src=- shape=03289303 vocab=5f940eab
+-/
 lemma cayley_chart_root_mem_of_saturated_roots (p : ℕ) (f : ℝ → ℝ) (P : ℝ[X])
     (hP : P ≠ 0) (hdegree : P.natDegree ≤ p)
     (hchart : ∀ t, Real.cos (t / 2) ≠ 0 →

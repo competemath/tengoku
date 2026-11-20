@@ -41,12 +41,17 @@ def homogeneousTrig (p : ℕ) (P : ℝ[X]) (t : ℝ) : ℝ :=
   ∑ k ∈ Finset.range (p + 1),
     P.coeff k * Real.sin (t / 2) ^ k * Real.cos (t / 2) ^ (p - k)
 
+/--
+@isnad1 id=eq.0h2v.s4.87ff2ccdc563 from=translated src=- shape=ac16100d vocab=b11d0744
+-/
 @[simp]
 lemma homogeneousTrig_zero (P : ℝ[X]) (t : ℝ) :
     homogeneousTrig 0 P t = P.coeff 0 := by
   simp [homogeneousTrig]
 
-/-- The division-free homogeneous expansion equals its Cayley formula on chart.-/
+/-- The division-free homogeneous expansion equals its Cayley formula on chart.
+@isnad1 id=eq.2h3v.s6.c54c18b1b168 from=translated src=- shape=a3d9d0b2 vocab=bc8ba49a
+-/
 lemma homogeneousTrig_eq_cos_pow_eval_tan (p : ℕ) (P : ℝ[X])
     (hP : P.natDegree ≤ p) (t : ℝ) (ht : Real.cos (t / 2) ≠ 0) :
     homogeneousTrig p P t = Real.cos (t / 2) ^ p * P.eval (Real.tan (t / 2)) := by
@@ -62,7 +67,9 @@ lemma homogeneousTrig_eq_cos_pow_eval_tan (p : ℕ) (P : ℝ[X])
   rw [Real.tan_eq_sin_div_cos, div_pow, hpow]
   field_simp
 
-/-- At the chart pole the expansion keeps exactly its top homogeneous coefficient.-/
+/-- At the chart pole the expansion keeps exactly its top homogeneous coefficient.
+@isnad1 id=eq.0h2v.s4.f3ad27cd9eef from=translated src=- shape=a3e6143a vocab=ede58eb3
+-/
 lemma homogeneousTrig_pi (p : ℕ) (P : ℝ[X]) :
     homogeneousTrig p P Real.pi = P.coeff p := by
   simp only [homogeneousTrig, Real.sin_pi_div_two, Real.cos_pi_div_two,
@@ -78,13 +85,17 @@ lemma homogeneousTrig_pi (p : ℕ) (P : ℝ[X]) :
   · intro hp
     exact (hp (Finset.mem_range.mpr (Nat.lt_succ_self p))).elim
 
-/-- The homogeneous pullback is continuous at every angle, without chart assumptions.-/
+/-- The homogeneous pullback is continuous at every angle, without chart assumptions.
+@isnad1 id=continuo.0h2v.s4.dd0a74390931 from=translated src=- shape=1207b67a vocab=c569b6ea
+-/
 lemma continuous_homogeneousTrig (p : ℕ) (P : ℝ[X]) :
     Continuous (homogeneousTrig p P) := by
   unfold homogeneousTrig
   fun_prop
 
-/-- Every angle is a limit of angles with finite half-angle tangent coordinate.-/
+/-- Every angle is a limit of angles with finite half-angle tangent coordinate.
+@isnad1 id=dense.0h0v.s5.c2e0d53f28c3 from=translated src=- shape=74dc347b vocab=7560ed07
+-/
 lemma dense_cos_half_ne_zero : Dense {t : ℝ | Real.cos (t / 2) ≠ 0} := by
   rw [Metric.dense_iff]
   intro t ε hε
@@ -176,7 +187,9 @@ private lemma homogeneousTrigDerivative_eq (p : ℕ) (P : ℝ[X])
   exact (hasDerivAt_homogeneousTrig_explicit p P t).unique
     (hasDerivAt_homogeneousTrig_on_chart p P hP t ht)
 
-/-- The Cayley operator gives the derivative at every real angle, including all poles.-/
+/-- The Cayley operator gives the derivative at every real angle, including all poles.
+@isnad1 id=hasderiv.1h3v.s6.73ab9af93b5d from=translated src=- shape=432301b5 vocab=e2375e12
+-/
 lemma hasDerivAt_homogeneousTrig (p : ℕ) (P : ℝ[X])
     (hP : P.natDegree ≤ p) (t : ℝ) :
     HasDerivAt (homogeneousTrig p P)
@@ -185,14 +198,18 @@ lemma hasDerivAt_homogeneousTrig (p : ℕ) (P : ℝ[X])
   rw [homogeneousTrigDerivative_eq p P hP] at hderiv
   exact hderiv
 
-/-- The literal global derivative formula has no finite-coordinate chart hypothesis.-/
+/-- The literal global derivative formula has no finite-coordinate chart hypothesis.
+@isnad1 id=eq.1h3v.s6.cac55aa87584 from=translated src=- shape=8b368d0f vocab=0e49ebc0
+-/
 lemma deriv_homogeneousTrig (p : ℕ) (P : ℝ[X])
     (hP : P.natDegree ≤ p) (t : ℝ) :
     deriv (homogeneousTrig p P) t =
       homogeneousTrig p (cayleyOperator p P) t / 2 :=
   (hasDerivAt_homogeneousTrig p P hP t).deriv
 
-/-- In positive homogeneous degree, the Cayley top coefficient is minus the previous one.-/
+/-- In positive homogeneous degree, the Cayley top coefficient is minus the previous one.
+@isnad1 id=eq.2h2v.s5.2646a9fdb43a from=translated src=- shape=1b013714 vocab=b5d5647f
+-/
 lemma cayleyOperator_coeff_top (p : ℕ) (P : ℝ[X]) (hp : 0 < p)
     (hP : P.natDegree ≤ p) :
     (cayleyOperator p P).coeff p = -P.coeff (p - 1) := by
@@ -209,7 +226,9 @@ lemma cayleyOperator_coeff_top (p : ℕ) (P : ℝ[X]) (hp : 0 < p)
   rw [hdiff]
   ring
 
-/-- The global derivative at the tangent pole reads the next-to-top coefficient.-/
+/-- The global derivative at the tangent pole reads the next-to-top coefficient.
+@isnad1 id=eq.2h2v.s6.b180c9985a94 from=translated src=- shape=d4af7c1b vocab=6e56af86
+-/
 lemma deriv_homogeneousTrig_pi (p : ℕ) (P : ℝ[X]) (hp : 0 < p)
     (hP : P.natDegree ≤ p) :
     deriv (homogeneousTrig p P) Real.pi = -P.coeff (p - 1) / 2 := by

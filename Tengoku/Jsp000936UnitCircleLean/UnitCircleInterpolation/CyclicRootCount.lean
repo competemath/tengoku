@@ -27,6 +27,9 @@ namespace UnitCircleInterpolation
 
 noncomputable section
 
+/--
+@isnad1 id=le.3h3v.s6.0b9f0a2abd47 from=translated src=- shape=74a728ae vocab=5f25357f
+-/
 lemma polynomial_distinct_root_count {ι : Type*} [Fintype ι] (P : ℝ[X]) (hP : P ≠ 0)
     (root : ι → ℝ) (hinj : Function.Injective root) (hroot : ∀ i, P.eval (root i) = 0) :
     Fintype.card ι ≤ P.natDegree := by
@@ -36,7 +39,9 @@ lemma polynomial_distinct_root_count {ι : Type*} [Fintype ι] (P : ℝ[X]) (hP 
 
 variable {n m : ℕ}
 
-/-- A complete-turn root bound from an exact finite chart and its pole value.-/
+/-- A complete-turn root bound from an exact finite chart and its pole value.
+@isnad1 id=le.7h5v.s7.0dabe86df3cb from=translated src=- shape=8d76e24d vocab=5f940eab
+-/
 lemma cayley_chart_distinct_root_count (p : ℕ) (f : ℝ → ℝ) (P : ℝ[X])
     (hP : P ≠ 0) (hdegree : P.natDegree ≤ p)
     (hchart : ∀ t, Real.cos (t / 2) ≠ 0 →
@@ -86,7 +91,9 @@ lemma cayley_chart_distinct_root_count (p : ℕ) (f : ℝ → ℝ) (P : ℝ[X])
       (fun i => heval _ (hcos i) (hroot i))
     simpa only [Fintype.card_fin] using hc.trans hdegree
 
-/-- Nonzero nodal data give a nonzero polynomial even when the node is the chart pole.-/
+/-- Nonzero nodal data give a nonzero polynomial even when the node is the chart pole.
+@isnad1 id=ne.3h4v.s6.585e955e87d0 from=translated src=- shape=08723ee4 vocab=1625ce7e
+-/
 lemma interpolantPolynomial_ne_zero_of_node (θ : Fin n → ℝ)
     (hθ : Function.Injective (phaseNodes θ)) (hbound : ∀ i, θ i ∈ Set.Ico 0 (2 * Real.pi))
     (c : Fin n → ℝ) (i : Fin n) (hci : c i ≠ 0) :
@@ -99,7 +106,9 @@ lemma interpolantPolynomial_ne_zero_of_node (θ : Fin n → ℝ)
   · exact interpolantPolynomial_ne_zero_of_node_on_chart θ hθ c i
       ((cos_half_ne_zero_iff_of_mem_Ico (θ i) (hbound i)).mpr hpole) hci
 
-/-- Exact degree bounds count every distinct zero in a full half-open turn.-/
+/-- Exact degree bounds count every distinct zero in a full half-open turn.
+@isnad1 id=le.4h5v.s6.5ff577f91df8 from=translated src=- shape=59d78629 vocab=d2e7ff41
+-/
 lemma sineInterpolant_distinct_root_count (θ : Fin n → ℝ) (c : Fin n → ℝ)
     (hP : interpolantPolynomial θ c ≠ 0) (root : Fin m → ℝ)
     (hinj : Function.Injective root) (hbound : ∀ i, root i ∈ Set.Ico 0 (2 * Real.pi))
@@ -109,7 +118,9 @@ lemma sineInterpolant_distinct_root_count (θ : Fin n → ℝ) (c : Fin n → �
     (cos_pow_mul_interpolantPolynomial_eval_tan θ c) (interpolantPolynomial_coeff_top θ c)
     root hinj hbound hroot
 
-/-- The circle bound applies directly to actual interpolation data with a nonzero node.-/
+/-- The circle bound applies directly to actual interpolation data with a nonzero node.
+@isnad1 id=le.6h6v.s7.92fa3d0be032 from=translated src=- shape=cfb7b6da vocab=5104e785
+-/
 lemma sineInterpolant_distinct_root_count_of_node (θ : Fin n → ℝ)
     (hθ : Function.Injective (phaseNodes θ)) (hθbound : ∀ i, θ i ∈ Set.Ico 0 (2 * Real.pi))
     (c : Fin n → ℝ) (i : Fin n) (hci : c i ≠ 0) (root : Fin m → ℝ)

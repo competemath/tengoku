@@ -25,11 +25,17 @@ noncomputable section
 
 variable {n : ℕ} {hn : 0 < n}
 
+/--
+@isnad1 id=eq.0h5v.s5.fb6eca41f7e0 from=translated src=- shape=aa8b9359 vocab=40f5fcec
+-/
 lemma sineWronskian_comm (θ a b : Fin n → ℝ) (t : ℝ) :
     sineWronskian θ a b t = -sineWronskian θ b a t := by
   unfold sineWronskian
   ring
 
+/--
+@isnad1 id=eq.3h3v.s6.086bdd205a2b from=translated src=- shape=724f8221 vocab=c93ce7e5
+-/
 lemma physicalGapCut_phase_before_last (hn : 0 < n) (i j : Fin n)
     (hij : i < j) (hj : j.val + 1 < n) :
     cyclicCrossGapPhase (physicalGapCut hn i) (physicalGapCut hn j) =
@@ -46,6 +52,9 @@ lemma physicalGapCut_phase_before_last (hn : 0 < n) (i j : Fin n)
   rw [he, pow_add, pow_mul]
   norm_num
 
+/--
+@isnad1 id=eq.3h3v.s6.1195110acd5f from=translated src=- shape=7de29e38 vocab=c93ce7e5
+-/
 lemma physicalGapCut_phase_at_last (hn : 0 < n) (i j : Fin n)
     (hij : i < j) (hj : j.val + 1 = n) :
     cyclicCrossGapPhase (physicalGapCut hn j) (physicalGapCut hn i) =
@@ -60,7 +69,9 @@ lemma physicalGapCut_phase_at_last (hn : 0 < n) (i j : Fin n)
   rw [he, pow_succ]
   ring
 
-/-- The actual physical-order Wronskian has the checkerboard phase globally.-/
+/-- The actual physical-order Wronskian has the checkerboard phase globally.
+@isnad1 id=lt.2h5v.s6.7d2491c2d168 from=translated src=- shape=41db28ad vocab=9a8200d7
+-/
 theorem orderedGap_sineWronskian_neg (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) (t : ℝ) :
     (-1 : ℝ) ^ (i.val + j.val) *
@@ -87,6 +98,9 @@ theorem orderedGap_sineWronskian_neg (angles : CyclicAngles n hn)
     rw [physicalGapCut_phase_at_last hn i j hij hjlast, sineWronskian_comm] at h
     simpa only [neg_mul_neg] using h
 
+/--
+@isnad1 id=lt.3h4v.s7.c32520c3fd02 from=translated src=- shape=310c477a vocab=fdec1c74
+-/
 theorem orderedPeak_first_derivative_phase_pos (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (i j : Fin n) (hij : i < j) :
     0 < (-1 : ℝ) ^ (i.val + j.val) *
@@ -114,6 +128,9 @@ theorem orderedPeak_first_derivative_phase_pos (angles : CyclicAngles n hn)
   rw [he] at h
   linarith
 
+/--
+@isnad1 id=lt.3h4v.s7.557a258dd621 from=translated src=- shape=91de7d2e vocab=fdec1c74
+-/
 theorem orderedPeak_other_derivative_phase_neg (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (i j : Fin n) (hij : i < j) :
     (-1 : ℝ) ^ (i.val + j.val) *

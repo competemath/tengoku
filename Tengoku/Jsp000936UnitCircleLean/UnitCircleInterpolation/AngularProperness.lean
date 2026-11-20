@@ -30,6 +30,9 @@ noncomputable section
 
 variable {d : ℕ}
 
+/--
+@isnad1 id=iscompac.1h2v.s7.016a78d0f268 from=translated src=- shape=2a179791 vocab=b65957c7
+-/
 lemma isCompact_shrunkenAngularSimplex_subtype {ε : ℝ} (hε : 0 < ε) :
     IsCompact {u : angularParameterDomain d | u.val ∈ shrunkenAngularSimplex d ε} := by
   apply Topology.IsEmbedding.subtypeVal.isInducing.isCompact_preimage'
@@ -37,7 +40,9 @@ lemma isCompact_shrunkenAngularSimplex_subtype {ε : ℝ} (hε : 0 < ε) :
   intro u hu
   exact ⟨⟨u, shrunkenAngularSimplex_subset_domain hε hu⟩, rfl⟩
 
-/-- Every compact set of actual height differences has compact preimage.-/
+/-- Every compact set of actual height differences has compact preimage.
+@isnad1 id=iscompac.2h2v.s6.ae904c37edf2 from=translated src=- shape=02b626c0 vocab=f7158001
+-/
 theorem isCompact_preimage_heightDifferenceMap (hsize : 2 ≤ d + 1)
     {K : Set (Fin d → ℝ)} (hK : IsCompact K) :
     IsCompact (heightDifferenceMap hsize ⁻¹' K) := by
@@ -50,7 +55,9 @@ theorem isCompact_preimage_heightDifferenceMap (hsize : 2 ≤ d + 1)
   exact parameterGapWidth_lower_of_adjacent_height_norm_le hsize u.val u.property R hR.le
     (hnorm (heightDifferenceMap hsize u) hu) cut
 
-/-- The actual difference map is proper on the admissible angular domain.-/
+/-- The actual difference map is proper on the admissible angular domain.
+@isnad1 id=isproper.1h1v.s6.aa662ed3747b from=translated src=- shape=2176ad16 vocab=01402597
+-/
 theorem isProperMap_heightDifferenceMap (hsize : 2 ≤ d + 1) :
     IsProperMap (heightDifferenceMap hsize) := by
   apply isProperMap_iff_isCompact_preimage.mpr

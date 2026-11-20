@@ -37,6 +37,9 @@ def angularParameterAmplification (_hsize : 2 ≤ d + 1)
     (u : angularParameterDomain d) : ℝ :=
   angularAmplification (cyclicAnglesOfParameters u.val u.property)
 
+/--
+@isnad1 id=le.1h3v.s6.cca249b60073 from=translated src=- shape=142fb241 vocab=f2e6544f
+-/
 lemma parameterOrderedHeight_le_angularParameterAmplification (hsize : 2 ≤ d + 1)
     (u : angularParameterDomain d) (i : Fin (d + 1)) :
     parameterOrderedHeight hsize i u.val ≤ angularParameterAmplification hsize u := by
@@ -44,11 +47,16 @@ lemma parameterOrderedHeight_le_angularParameterAmplification (hsize : 2 ≤ d +
   exact gapHeight_le_angularAmplification (cyclicAnglesOfParameters u.val u.property)
     hsize (physicalGapCut (Nat.succ_pos d) i)
 
+/--
+@isnad1 id=lt.1h2v.s5.953cb1995cd6 from=translated src=- shape=930b36b1 vocab=e4b169cd
+-/
 lemma one_lt_angularParameterAmplification (hsize : 2 ≤ d + 1)
     (u : angularParameterDomain d) : 1 < angularParameterAmplification hsize u :=
   one_lt_angularAmplification (cyclicAnglesOfParameters u.val u.property) hsize
 
-/-- Reordering the actual gaps does not change the literal objective's finite maximum.-/
+/-- Reordering the actual gaps does not change the literal objective's finite maximum.
+@isnad1 id=eq.1h2v.s8.e4542e203311 from=translated src=- shape=ac968de0 vocab=6980d4d6
+-/
 theorem angularParameterAmplification_eq_orderedHeightMaximum (hsize : 2 ≤ d + 1)
     (u : angularParameterDomain d) :
     angularParameterAmplification hsize u =
@@ -67,6 +75,9 @@ theorem angularParameterAmplification_eq_orderedHeightMaximum (hsize : 2 ≤ d +
     intro i _
     exact parameterOrderedHeight_le_angularParameterAmplification hsize u i
 
+/--
+@isnad1 id=continuo.1h2v.s7.80aeadb91503 from=translated src=- shape=affaa005 vocab=3619965a
+-/
 lemma continuous_parameterOrderedHeight_on_domain (hsize : 2 ≤ d + 1)
     (i : Fin (d + 1)) :
     Continuous (fun u : angularParameterDomain d => parameterOrderedHeight hsize i u.val) := by
@@ -75,7 +86,9 @@ lemma continuous_parameterOrderedHeight_on_domain (hsize : 2 ≤ d + 1)
   exact (contDiffAt_parameterOrderedHeight_of_mem_domain u.val u.property hsize i).continuousAt.comp
     continuous_subtype_val.continuousAt
 
-/-- Continuity concerns the supremum over the entire circle, via the proved maximum formula.-/
+/-- Continuity concerns the supremum over the entire circle, via the proved maximum formula.
+@isnad1 id=continuo.1h1v.s6.e9582c68e958 from=translated src=- shape=42b60c5d vocab=692868aa
+-/
 theorem continuous_angularParameterAmplification (hsize : 2 ≤ d + 1) :
     Continuous (angularParameterAmplification hsize) := by
   have heq : angularParameterAmplification hsize =
@@ -88,7 +101,9 @@ theorem continuous_angularParameterAmplification (hsize : 2 ≤ d + 1) :
   exact Continuous.finset_sup'_apply _ (fun i _ =>
     continuous_parameterOrderedHeight_on_domain hsize i)
 
-/-- Every actual adjacent-height difference is bounded by twice the literal objective.-/
+/-- Every actual adjacent-height difference is bounded by twice the literal objective.
+@isnad1 id=le.1h2v.s6.f72bef121103 from=translated src=- shape=c96912d2 vocab=3a5d93e2
+-/
 theorem norm_heightDifferenceMap_le_twice_amplification (hsize : 2 ≤ d + 1)
     (u : angularParameterDomain d) :
     ‖heightDifferenceMap hsize u‖ ≤ 2 * angularParameterAmplification hsize u := by
@@ -113,7 +128,9 @@ theorem norm_heightDifferenceMap_le_twice_amplification (hsize : 2 ≤ d + 1)
         (parameterOrderedHeight_le_angularParameterAmplification hsize u i.castSucc)
     _ = 2 * angularParameterAmplification hsize u := by ring
 
-/-- Actual objective sublevels are compact; nodes cannot collide in a bounded sublevel.-/
+/-- Actual objective sublevels are compact; nodes cannot collide in a bounded sublevel.
+@isnad1 id=iscompac.1h2v.s6.7af1326da5c8 from=translated src=- shape=11519a29 vocab=75109617
+-/
 theorem isCompact_sublevel_angularParameterAmplification (hsize : 2 ≤ d + 1) (M : ℝ) :
     IsCompact {u : angularParameterDomain d | angularParameterAmplification hsize u ≤ M} := by
   apply (isCompact_preimage_heightDifferenceMap hsize
@@ -125,7 +142,9 @@ theorem isCompact_sublevel_angularParameterAmplification (hsize : 2 ≤ d + 1) (
     (norm_heightDifferenceMap_le_twice_amplification hsize u).trans
       (mul_le_mul_of_nonneg_left hu (by norm_num : (0 : ℝ) ≤ 2))
 
-/-- For every number of nodes at least two, the literal full-circle objective has a global minimum.-/
+/-- For every number of nodes at least two, the literal full-circle objective has a global minimum.
+@isnad1 id=ex.1h1v.s5.4f98235cde7b from=translated src=- shape=abfa1180 vocab=42edfb98
+-/
 theorem exists_minimum_angularParameterAmplification (hsize : 2 ≤ d + 1) :
     ∃ u : angularParameterDomain d, ∀ v : angularParameterDomain d,
       angularParameterAmplification hsize u ≤ angularParameterAmplification hsize v := by

@@ -34,13 +34,17 @@ private theorem coeff_X_sq_mul_derivative_succ (P : ℝ[X]) (n : ℕ) :
         Nat.cast_add, Nat.cast_one] using
         (Polynomial.coeff_X_pow_mul P.derivative 2 n)
 
-/-- The constant coefficient has no contribution from either term containing `X`.-/
+/-- The constant coefficient has no contribution from either term containing `X`.
+@isnad1 id=eq.0h2v.s4.618906188af8 from=translated src=- shape=cca062c0 vocab=214155e8
+-/
 @[simp]
 theorem cayleyOperator_coeff_zero (p : ℕ) (P : ℝ[X]) :
     (cayleyOperator p P).coeff 0 = P.coeff 1 := by
   simp [cayleyOperator, add_mul, mul_assoc, Polynomial.coeff_derivative]
 
-/-- The successor coefficient displays the cancellation at degree `p + 1`.-/
+/-- The successor coefficient displays the cancellation at degree `p + 1`.
+@isnad1 id=eq.0h3v.s6.078bb730be28 from=translated src=- shape=5b2b062c vocab=84384fff
+-/
 theorem cayleyOperator_coeff_succ (p : ℕ) (P : ℝ[X]) (n : ℕ) :
     (cayleyOperator p P).coeff (n + 1) =
       P.coeff (n + 2) * ((n + 2 : ℕ) : ℝ) + P.coeff n * ((n : ℝ) - (p : ℝ)) := by
@@ -50,7 +54,9 @@ theorem cayleyOperator_coeff_succ (p : ℕ) (P : ℝ[X]) (n : ℕ) :
     Nat.add_assoc, Nat.cast_add, Nat.cast_ofNat]
   ring
 
-/-- The top coefficient cancels, including when `p = 0` or `P = 0`.-/
+/-- The top coefficient cancels, including when `p = 0` or `P = 0`.
+@isnad1 id=le.1h2v.s4.8478620fee8a from=translated src=- shape=9caccca8 vocab=6f7558ac
+-/
 theorem cayleyOperator_natDegree_le (p : ℕ) (P : ℝ[X]) (hP : P.natDegree ≤ p) :
     (cayleyOperator p P).natDegree ≤ p := by
   apply Polynomial.natDegree_le_iff_coeff_eq_zero.mpr
@@ -70,7 +76,9 @@ theorem cayleyOperator_natDegree_le (p : ℕ) (P : ℝ[X]) (hP : P.natDegree ≤
           Polynomial.natDegree_le_iff_coeff_eq_zero.mp hP _ (by omega)
         rw [hmid, zero_mul]
 
-/-- Evaluation gives the literal weighted differentiation numerator.-/
+/-- Evaluation gives the literal weighted differentiation numerator.
+@isnad1 id=eq.0h3v.s7.5574b6d56276 from=translated src=- shape=4958250f vocab=3428de24
+-/
 @[simp]
 theorem cayleyOperator_eval (p : ℕ) (P : ℝ[X]) (x : ℝ) :
     (cayleyOperator p P).eval x =

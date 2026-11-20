@@ -68,7 +68,9 @@ open Polynomial
 
 variable {d : ℕ}
 
-/-- In the generic circular space, a relation missing one coefficient is zero.-/
+/-- In the generic circular space, a relation missing one coefficient is zero.
+@isnad1 id=eq.10h6v.s9.4b86ed758219 from=translated src=- shape=4e93af6b vocab=79d12519
+-/
 theorem cyclic_relation_eq_zero_of_missing_coeff (hd : 0 < d)
     (V : Submodule ℝ (ℝ → ℝ))
     (hcontinuous : ∀ f ∈ V, Continuous f)
@@ -89,7 +91,9 @@ theorem cyclic_relation_eq_zero_of_missing_coeff (hd : 0 < d)
     simp [hmissing] at this
 
 /-- Extending a deleted-family relation by zero in the missing slot makes every
-coefficient zero. This is the finite-sum interface used by independence and minors.-/
+coefficient zero. This is the finite-sum interface used by independence and minors.
+@isnad1 id=eq.9h6v.s9.a3ff95d95c45 from=translated src=- shape=400e30ca vocab=29279d33
+-/
 theorem cyclic_deleted_relation_eq_zero (hd : 0 < d)
     (V : Submodule ℝ (ℝ → ℝ))
     (hcontinuous : ∀ f ∈ V, Continuous f)
@@ -112,7 +116,9 @@ theorem cyclic_deleted_relation_eq_zero (hd : 0 < d)
   have hi := congrFun hazero (omitted.succAbove i)
   simpa [a] using hi
 
-/-- The `d` retained functions are linearly independent as functions on all angles.-/
+/-- The `d` retained functions are linearly independent as functions on all angles.
+@isnad1 id=linearin.8h5v.s9.ea5d2a33abda from=translated src=- shape=b5486238 vocab=8cc71b5f
+-/
 theorem cyclic_deleted_linearIndependent (hd : 0 < d)
     (V : Submodule ℝ (ℝ → ℝ))
     (hcontinuous : ∀ f ∈ V, Continuous f)
@@ -132,7 +138,9 @@ theorem cyclic_deleted_linearIndependent (hd : 0 < d)
   exact congrFun (cyclic_deleted_relation_eq_zero hd V hcontinuous hrootBound q hq
     τ hτ hbound hdiag hoff omitted c hrel) i
 
-/-- `d` distinct canonical evaluation zeros already force a deleted relation to be zero.-/
+/-- `d` distinct canonical evaluation zeros already force a deleted relation to be zero.
+@isnad1 id=eq.11h7v.s9.e0a87dde2ca3 from=translated src=- shape=a914ca6b vocab=c49bf5de
+-/
 theorem cyclic_deleted_evaluation_relation_eq_zero (hd : 0 < d)
     (V : Submodule ℝ (ℝ → ℝ))
     (hcontinuous : ∀ f ∈ V, Continuous f)
@@ -166,7 +174,9 @@ def cyclicDeletedEvaluationMatrix (q : Fin (d + 1) → ℝ → ℝ)
     (omitted : Fin (d + 1)) (x : Fin d → ℝ) : Matrix (Fin d) (Fin d) ℝ :=
   fun j i => q (omitted.succAbove i) (x j)
 
-/-- Any distinct `d` canonical angles yield a nonsingular square evaluation matrix.-/
+/-- Any distinct `d` canonical angles yield a nonsingular square evaluation matrix.
+@isnad1 id=ne.10h6v.s9.7aaed73bbc8e from=translated src=- shape=f092fad5 vocab=8063f2c2
+-/
 theorem cyclicDeletedEvaluationMatrix_det_ne_zero (hd : 0 < d)
     (V : Submodule ℝ (ℝ → ℝ))
     (hcontinuous : ∀ f ∈ V, Continuous f)
@@ -193,13 +203,18 @@ theorem cyclicDeletedEvaluationMatrix_det_ne_zero (hd : 0 < d)
 def cyclicEvaluationMatrix (q : Fin (d + 1) → ℝ → ℝ) (x : Fin d → ℝ) :
     Matrix (Fin (d + 1)) (Fin d) ℝ := fun i j => q i (x j)
 
+/--
+@isnad1 id=eq.0h4v.s6.cb2215b6998d from=translated src=- shape=f5d927b5 vocab=9f3a03e2
+-/
 lemma cyclicDeletedEvaluationMatrix_transpose (q : Fin (d + 1) → ℝ → ℝ)
     (omitted : Fin (d + 1)) (x : Fin d → ℝ) :
     (cyclicDeletedEvaluationMatrix q omitted x).transpose =
       (cyclicEvaluationMatrix q x).submatrix omitted.succAbove id := by
   rfl
 
-/-- The determinant conclusion also holds in physical row convention.-/
+/-- The determinant conclusion also holds in physical row convention.
+@isnad1 id=ne.10h6v.s9.3b4eaa0f95f7 from=translated src=- shape=7d83378e vocab=f6fd1220
+-/
 theorem cyclicEvaluationMatrix_deleted_row_det_ne_zero (hd : 0 < d)
     (V : Submodule ℝ (ℝ → ℝ))
     (hcontinuous : ∀ f ∈ V, Continuous f)
@@ -216,7 +231,9 @@ theorem cyclicEvaluationMatrix_deleted_row_det_ne_zero (hd : 0 < d)
   exact cyclicDeletedEvaluationMatrix_det_ne_zero hd V hcontinuous hrootBound
     q hq τ hτ hbound hdiag hoff omitted x hxinj hxbound
 
-/-- The actual homogeneous-degree space gives row-deleted functional independence.-/
+/-- The actual homogeneous-degree space gives row-deleted functional independence.
+@isnad1 id=linearin.6h4v.s8.f7918a7dbfad from=translated src=- shape=ada91ad5 vocab=34dbc8d3
+-/
 theorem homogeneousTrig_deleted_linearIndependent (hd : 0 < d)
     (P : Fin (d + 1) → ℝ[X]) (hdegree : ∀ i, (P i).natDegree ≤ d - 1)
     (τ : Fin (d + 1) → ℝ) (hτ : StrictMono τ)
@@ -232,7 +249,9 @@ theorem homogeneousTrig_deleted_linearIndependent (hd : 0 < d)
     (fun i => homogeneousTrig_mem_space (d - 1) (P i) (hdegree i))
     τ hτ hbound hdiag hoff omitted
 
-/-- The actual homogeneous-degree instance has nonsingular deleted evaluation matrices.-/
+/-- The actual homogeneous-degree instance has nonsingular deleted evaluation matrices.
+@isnad1 id=ne.8h5v.s8.17f42872ce9c from=translated src=- shape=a0ccd466 vocab=bb1b2b4b
+-/
 theorem homogeneousTrig_deleted_evaluation_det_ne_zero (hd : 0 < d)
     (P : Fin (d + 1) → ℝ[X]) (hdegree : ∀ i, (P i).natDegree ≤ d - 1)
     (τ : Fin (d + 1) → ℝ) (hτ : StrictMono τ)

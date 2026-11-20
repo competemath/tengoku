@@ -28,7 +28,9 @@ noncomputable section
 
 open Polynomial
 
-/-- Multiplication of homogeneous pullbacks holds at every real angle.-/
+/-- Multiplication of homogeneous pullbacks holds at every real angle.
+@isnad1 id=eq.2h5v.s6.0ac5d5043b78 from=translated src=- shape=71ed5b0c vocab=c0d204e9
+-/
 lemma homogeneousTrig_mul (m n : ℕ) (P Q : ℝ[X])
     (hP : P.natDegree ≤ m) (hQ : Q.natDegree ≤ n) (t : ℝ) :
     homogeneousTrig (m + n) (P * Q) t =
@@ -49,7 +51,9 @@ lemma homogeneousTrig_mul (m n : ℕ) (P Q : ℝ[X])
     ring
   exact congrFun heq t
 
-/-- Raising the homogeneous degree multiplies the pullback by a half-angle cosine.-/
+/-- Raising the homogeneous degree multiplies the pullback by a half-angle cosine.
+@isnad1 id=eq.1h3v.s6.0840747d799f from=translated src=- shape=93c29d83 vocab=3fa2be60
+-/
 lemma homogeneousTrig_succ (p : ℕ) (P : ℝ[X]) (hP : P.natDegree ≤ p) (t : ℝ) :
     homogeneousTrig (p + 1) P t = Real.cos (t / 2) * homogeneousTrig p P t := by
   have heq : homogeneousTrig (p + 1) P =
@@ -65,13 +69,17 @@ lemma homogeneousTrig_succ (p : ℕ) (P : ℝ[X]) (hP : P.natDegree ≤ p) (t : 
     ring
   exact congrFun heq t
 
-/-- Negating polynomial coefficients negates the global homogeneous pullback.-/
+/-- Negating polynomial coefficients negates the global homogeneous pullback.
+@isnad1 id=eq.0h3v.s4.df3d4617475d from=translated src=- shape=64ee7c5e vocab=6db8a236
+-/
 @[simp]
 lemma homogeneousTrig_neg (p : ℕ) (P : ℝ[X]) (t : ℝ) :
     homogeneousTrig p (-P) t = -homogeneousTrig p P t := by
   simp only [homogeneousTrig, Polynomial.coeff_neg, neg_mul, Finset.sum_neg_distrib]
 
-/-- The homogeneous linear sine factor is the literal half-angle sine everywhere.-/
+/-- The homogeneous linear sine factor is the literal half-angle sine everywhere.
+@isnad1 id=eq.0h2v.s5.56b9fe2cb2a6 from=translated src=- shape=1acc620c vocab=bdcf0d38
+-/
 lemma homogeneousTrig_sineFactor (r t : ℝ) :
     homogeneousTrig 1 (sineFactor (r / 2)) t = Real.sin ((t - r) / 2) := by
   simp only [homogeneousTrig, Finset.sum_range_succ, Finset.sum_range_zero,
@@ -81,7 +89,9 @@ lemma homogeneousTrig_sineFactor (r t : ℝ) :
   norm_num
   ring
 
-/-- A zero top coefficient lowers a positive degree bound, including the zero polynomial.-/
+/-- A zero top coefficient lowers a positive degree bound, including the zero polynomial.
+@isnad1 id=le.3h2v.s5.6abae7bd7a46 from=translated src=- shape=47089f03 vocab=77e922e0
+-/
 lemma natDegree_le_pred_of_coeff_top_eq_zero (p : ℕ) (P : ℝ[X]) (hp : 0 < p)
     (hP : P.natDegree ≤ p) (htop : P.coeff p = 0) : P.natDegree ≤ p - 1 := by
   apply Polynomial.natDegree_le_iff_coeff_eq_zero.mpr
@@ -94,7 +104,9 @@ private lemma sineFactor_eq_C_mul_X_sub_C_tan (a : ℝ) (ha : Real.cos a ≠ 0) 
     sineFactor a = C (Real.cos a) * (X - C (Real.tan a)) := by
   rw [sineFactor, mul_sub, ← C_mul, mul_comm (Real.cos a), Real.tan_mul_cos ha]
 
-/-- A finite-chart root admits a literal polynomial sine-factor quotient.-/
+/-- A finite-chart root admits a literal polynomial sine-factor quotient.
+@isnad1 id=ex.4h3v.s6.ca70004da2c4 from=translated src=- shape=316334ba vocab=f2d8e88d
+-/
 lemma exists_sineFactor_quotient_of_eval_tan_eq_zero (p : ℕ) (P : ℝ[X])
     (hp : 0 < p) (hP : P.natDegree ≤ p) (a : ℝ) (ha : Real.cos a ≠ 0)
     (hroot : P.eval (Real.tan a) = 0) :
@@ -117,7 +129,9 @@ lemma exists_sineFactor_quotient_of_eval_tan_eq_zero (p : ℕ) (P : ℝ[X])
     _ = C (Real.cos a) * (X - C (Real.tan a)) *
         (C (Real.cos a)⁻¹ * R) := by ring
 
-/-- Every canonical circle root removes one global sine factor and one degree.-/
+/-- Every canonical circle root removes one global sine factor and one degree.
+@isnad1 id=ex.4h3v.s7.c2c2f9c560bf from=translated src=- shape=6dc19812 vocab=336c6c65
+-/
 lemma exists_homogeneousTrig_sine_quotient (p : ℕ) (P : ℝ[X])
     (hp : 0 < p) (hP : P.natDegree ≤ p) (r : ℝ)
     (hr : r ∈ Set.Ico 0 (2 * Real.pi)) (hroot : homogeneousTrig p P r = 0) :
@@ -153,7 +167,9 @@ lemma exists_homogeneousTrig_sine_quotient (p : ℕ) (P : ℝ[X])
         rw [homogeneousTrig_mul 1 (p - 1) _ _ (sineFactor_natDegree_le _) hQ t,
           homogeneousTrig_sineFactor]
 
-/-- A second global derivative is still represented by the twice-applied Cayley operator.-/
+/-- A second global derivative is still represented by the twice-applied Cayley operator.
+@isnad1 id=hasderiv.1h3v.s6.a0f845f52f2d from=translated src=- shape=054bdc9e vocab=04bd1d10
+-/
 lemma hasDerivAt_deriv_homogeneousTrig (p : ℕ) (P : ℝ[X])
     (hP : P.natDegree ≤ p) (t : ℝ) :
     HasDerivAt (deriv (homogeneousTrig p P))
@@ -180,7 +196,9 @@ private lemma hasDerivAt_cosine_half_sub_div_two (r t : ℝ) :
     simpa only [id_eq] using ((hasDerivAt_id t).sub_const r).div_const 2
   exact (hhalf.cos.div_const 2).congr_deriv (by ring)
 
-/-- The continuous sine quotient has the removable-root value `2 F′(r)`.-/
+/-- The continuous sine quotient has the removable-root value `2 F′(r)`.
+@isnad1 id=eq.2h4v.s7.b5ef775209b9 from=translated src=- shape=4096b4da vocab=638f160d
+-/
 lemma homogeneousTrig_sine_quotient_value_at_root (p : ℕ) (P Q : ℝ[X])
     (hQ : Q.natDegree ≤ p - 1) (r : ℝ)
     (hfactor : ∀ t : ℝ, homogeneousTrig p P t =
@@ -197,7 +215,9 @@ lemma homogeneousTrig_sine_quotient_value_at_root (p : ℕ) (P Q : ℝ[X])
   simp only [sub_self, zero_div, Real.cos_zero, Real.sin_zero, zero_mul, add_zero] at hd
   linarith
 
-/-- The derivative of the continuous sine quotient at its removed root is `F″(r)`.-/
+/-- The derivative of the continuous sine quotient at its removed root is `F″(r)`.
+@isnad1 id=eq.2h4v.s7.0774fee30b57 from=translated src=- shape=6c8e28ed vocab=638f160d
+-/
 lemma deriv_homogeneousTrig_sine_quotient_at_root (p : ℕ) (P Q : ℝ[X])
     (hQ : Q.natDegree ≤ p - 1) (r : ℝ)
     (hfactor : ∀ t : ℝ, homogeneousTrig p P t =
@@ -228,7 +248,9 @@ lemma deriv_homogeneousTrig_sine_quotient_at_root (p : ℕ) (P Q : ℝ[X])
     zero_mul, zero_add, add_zero] at hd
   linarith
 
-/-- One degree lower provides the sine quotient, its root value, and its root derivative.-/
+/-- One degree lower provides the sine quotient, its root value, and its root derivative.
+@isnad1 id=ex.4h3v.s8.80b3d6e19c73 from=translated src=- shape=d31572b0 vocab=70a368b7
+-/
 lemma exists_homogeneousTrig_sine_quotient_with_root_data (p : ℕ) (P : ℝ[X])
     (hp : 0 < p) (hP : P.natDegree ≤ p) (r : ℝ)
     (hr : r ∈ Set.Ico 0 (2 * Real.pi)) (hroot : homogeneousTrig p P r = 0) :

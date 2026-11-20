@@ -66,7 +66,9 @@ def rectangularCofactor (M : Matrix (Fin (d + 1)) (Fin d) ℝ) (i : Fin (d + 1))
   (-1 : ℝ) ^ i.val * (M.submatrix i.succAbove id).det
 
 /-- The signed deleted determinants form a literal left relation of every
-rectangular matrix, by expansion of a duplicated-column square matrix.-/
+rectangular matrix, by expansion of a duplicated-column square matrix.
+@isnad1 id=eq.0h2v.s6.351b7505ca96 from=translated src=- shape=72141758 vocab=a0d4179e
+-/
 lemma rectangularCofactor_left_relation (M : Matrix (Fin (d + 1)) (Fin d) ℝ) :
     rectangularCofactor M ᵥ* M = 0 := by
   classical
@@ -90,6 +92,9 @@ lemma rectangularCofactor_left_relation (M : Matrix (Fin (d + 1)) (Fin d) ℝ) :
   simpa [rectangularCofactor, Matrix.vecMul, dotProduct, mul_assoc,
     mul_left_comm, mul_comm] using hexpand.symm
 
+/--
+@isnad1 id=ne.1h2v.s7.cd55d185a877 from=translated src=- shape=f008b6ca vocab=33282f5d
+-/
 lemma rectangularCofactor_ne_zero_of_first_minor
     (M : Matrix (Fin (d + 1)) (Fin d) ℝ)
     (hminor : (M.submatrix (0 : Fin (d + 1)).succAbove id).det ≠ 0) :
@@ -103,6 +108,9 @@ def augmentedOnesMatrix (M : Matrix (Fin (d + 1)) (Fin d) ℝ) :
     Matrix (Fin (d + 1)) (Fin (d + 1)) ℝ :=
   fun i k => Fin.cases 1 (fun j => M i j) k
 
+/--
+@isnad1 id=eq.0h2v.s7.cbacff5b0c39 from=translated src=- shape=a16ed9a7 vocab=be59478d
+-/
 lemma augmentedOnesMatrix_det_eq_sum_cofactors
     (M : Matrix (Fin (d + 1)) (Fin d) ℝ) :
     (augmentedOnesMatrix M).det = ∑ i, rectangularCofactor M i := by
@@ -114,6 +122,9 @@ lemma augmentedOnesMatrix_det_eq_sum_cofactors
   simpa only [augmentedOnesMatrix, Fin.cases_zero, mul_one, hminor,
     rectangularCofactor] using hexpand
 
+/--
+@isnad1 id=ne.1h2v.s7.d0a6dc2870df from=translated src=- shape=ea359a60 vocab=85cab0d4
+-/
 lemma augmentedOnesMatrix_det_ne_zero_of_coherent_cofactors
     (M : Matrix (Fin (d + 1)) (Fin d) ℝ)
     (hcoherent : (∀ i, 0 < rectangularCofactor M i) ∨
@@ -127,7 +138,9 @@ def adjacentRowDifferenceMatrix (M : Matrix (Fin (d + 1)) (Fin d) ℝ) :
     Matrix (Fin d) (Fin d) ℝ :=
   fun i j => M i.succ j - M i.castSucc j
 
-/-- Consecutive differences are nonsingular when the augmented square matrix is.-/
+/-- Consecutive differences are nonsingular when the augmented square matrix is.
+@isnad1 id=ne.1h2v.s6.806787d7d82c from=translated src=- shape=bd24eb53 vocab=b64bfbe5
+-/
 theorem adjacentRowDifferenceMatrix_det_ne_zero_of_augmented
     (M : Matrix (Fin (d + 1)) (Fin d) ℝ)
     (haug : (augmentedOnesMatrix M).det ≠ 0) :
@@ -162,7 +175,9 @@ theorem adjacentRowDifferenceMatrix_det_ne_zero_of_augmented
     simp
   exact haug (Matrix.exists_mulVec_eq_zero_iff.mp ⟨w, hwne, hAw⟩)
 
-/-- Common strict cofactor signs imply an invertible adjacent-difference matrix.-/
+/-- Common strict cofactor signs imply an invertible adjacent-difference matrix.
+@isnad1 id=ne.1h2v.s6.6cf13faa4b53 from=translated src=- shape=d5e5d929 vocab=295f17c3
+-/
 theorem adjacentRowDifferenceMatrix_det_ne_zero_of_coherent_cofactors
     (M : Matrix (Fin (d + 1)) (Fin d) ℝ)
     (hcoherent : (∀ i, 0 < rectangularCofactor M i) ∨

@@ -29,7 +29,9 @@ noncomputable section
 variable {n : ℕ} {hn : 0 < n}
 
 /-- Every actual wrap-gap signed interpolant has a unique strict interior peak,
-with value above one and strictly negative second derivative, also for `n = 2`.-/
+with value above one and strictly negative second derivative, also for `n = 2`.
+@isnad1 id=ex.2h2v.s7.36fc85f84450 from=translated src=- shape=ba200293 vocab=9db576f1
+-/
 theorem exists_wrapInterpolant_strict_peak (angles : CyclicAngles n hn) (hsize : 2 ≤ n) :
     ∃ peak : ℝ,
       StrictIntervalPeak (sineInterpolant angles.angle wrapCoefficient)

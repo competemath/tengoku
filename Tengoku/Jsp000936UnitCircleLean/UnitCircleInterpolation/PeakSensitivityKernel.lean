@@ -42,7 +42,9 @@ private lemma negOnePow_complement (i : Fin (d + 1)) :
     rw [← pow_add, Nat.sub_add_cancel hle]
   rw [hp, mul_assoc, negOnePow_mul_self, mul_one]
 
-/-- Each node at or before the gap's left node gives a strictly positive sine factor.-/
+/-- Each node at or before the gap's left node gives a strictly positive sine factor.
+@isnad1 id=lt.3h4v.s7.541b382d7282 from=translated src=- shape=023f9b1a vocab=c5afd3c2
+-/
 lemma sin_orderedPeak_sub_node_pos_of_le (angles : CyclicAngles (d + 1) hn)
     (hsize : 2 ≤ d + 1) (i k : Fin (d + 1)) (hki : k ≤ i) :
     0 < Real.sin ((orderedPeak angles hsize i - angles.angle k) / 2) := by
@@ -52,7 +54,9 @@ lemma sin_orderedPeak_sub_node_pos_of_le (angles : CyclicAngles (d + 1) hn)
   have hnonneg := angles.nonneg k
   apply Real.sin_pos_of_pos_of_lt_pi <;> linarith [hpeak.1, hpeak.2]
 
-/-- Every later node gives a strictly negative sine factor at the physical gap peak.-/
+/-- Every later node gives a strictly negative sine factor at the physical gap peak.
+@isnad1 id=lt.3h4v.s7.b79a188226d6 from=translated src=- shape=8cff6dfb vocab=c5afd3c2
+-/
 lemma sin_orderedPeak_sub_node_neg_of_lt (angles : CyclicAngles (d + 1) hn)
     (hsize : 2 ≤ d + 1) (i k : Fin (d + 1)) (hik : i < k) :
     Real.sin ((orderedPeak angles hsize i - angles.angle k) / 2) < 0 := by
@@ -62,7 +66,9 @@ lemma sin_orderedPeak_sub_node_neg_of_lt (angles : CyclicAngles (d + 1) hn)
   have hupper := angles.lt_two_pi k
   apply Real.sin_neg_of_neg_of_neg_pi_lt <;> linarith [hpeak.1, hpeak.2]
 
-/-- The literal sine-product row factor has the sign of its `d-i` negative factors.-/
+/-- The literal sine-product row factor has the sign of its `d-i` negative factors.
+@isnad1 id=lt.2h3v.s7.f359d450952b from=translated src=- shape=1afab567 vocab=e202a012
+-/
 theorem peakSensitivityRowFactor_phase_pos (angles : CyclicAngles (d + 1) hn)
     (hsize : 2 ≤ d + 1) (i : Fin (d + 1)) :
     0 < (-1 : ℝ) ^ (d - i.val) * peakSensitivityRowFactor angles hsize i := by
@@ -88,7 +94,9 @@ theorem peakSensitivityRowFactor_phase_pos (angles : CyclicAngles (d + 1) hn)
   rw [Finset.prod_mul_distrib, hphase] at hprod
   exact hprod
 
-/-- The same row-factor sign, written in the phase used by the actual quotient relation.-/
+/-- The same row-factor sign, written in the phase used by the actual quotient relation.
+@isnad1 id=lt.2h3v.s7.ce556021cd44 from=translated src=- shape=248b879e vocab=271f6855
+-/
 lemma peakSensitivityRowFactor_checkerboard_pos (angles : CyclicAngles (d + 1) hn)
     (hsize : 2 ≤ d + 1) (i : Fin (d + 1)) :
     0 < ((-1 : ℝ) ^ d * (-1 : ℝ) ^ i.val) *
@@ -97,7 +105,9 @@ lemma peakSensitivityRowFactor_checkerboard_pos (angles : CyclicAngles (d + 1) h
   exact peakSensitivityRowFactor_phase_pos angles hsize i
 
 /-- A left sensitivity relation already vanishes as a quotient combination on the whole circle.
-The `d` actual moving nodes supply more roots than the degree `d-1` root bound.-/
+The `d` actual moving nodes supply more roots than the degree `d-1` root bound.
+@isnad1 id=eq.3h4v.s8.0563b026f074 from=translated src=- shape=b6954851 vocab=d48163ee
+-/
 theorem peakSensitivity_left_relation_quotient_relation
     (angles : CyclicAngles (d + 1) hn) (hsize : 2 ≤ d + 1)
     (a : Fin (d + 1) → ℝ)
@@ -141,7 +151,9 @@ theorem peakSensitivity_left_relation_quotient_relation
   have ht := congrFun hfzero t
   simpa only [f, b, Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Pi.zero_apply] using ht
 
-/-- Every nonzero left relation of the actual sensitivity matrix has one strict sign.-/
+/-- Every nonzero left relation of the actual sensitivity matrix has one strict sign.
+@isnad1 id=or.4h3v.s8.000ecb38664b from=translated src=- shape=91fb1e25 vocab=cf7e02bf
+-/
 theorem peakSensitivity_left_relation_coherent_sign
     (angles : CyclicAngles (d + 1) hn) (hsize : 2 ≤ d + 1)
     (a : Fin (d + 1) → ℝ)

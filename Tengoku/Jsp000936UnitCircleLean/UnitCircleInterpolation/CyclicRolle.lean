@@ -38,6 +38,9 @@ def cyclicRolleNext (hp : 0 < p) (root : Fin p → ℝ) (T : ℝ) (i : Fin p) : 
 /-- A Rolle point in the lifted turn needs at most one subtraction.-/
 def cyclicRolleReduce (T t : ℝ) : ℝ := if t < T then t else t - T
 
+/--
+@isnad1 id=lt.3h4v.s6.3c0f852f149d from=translated src=- shape=920431d9 vocab=5cc3fb78
+-/
 lemma cyclicRolleNext_gt (hp : 0 < p) (root : Fin p → ℝ) (T : ℝ)
     (hmono : StrictMono root) (hbound : ∀ i, root i ∈ Set.Ico 0 T) (i : Fin p) :
     root i < cyclicRolleNext hp root T i := by
@@ -48,6 +51,9 @@ lemma cyclicRolleNext_gt (hp : 0 < p) (root : Fin p → ℝ) (T : ℝ)
     have hi := (hbound i).2
     linarith
 
+/--
+@isnad1 id=le.2h4v.s6.511135824702 from=translated src=- shape=143fc02f vocab=6d8a314a
+-/
 lemma cyclicRolleNext_le_first_add (hp : 0 < p) (root : Fin p → ℝ) (T : ℝ)
     (hbound : ∀ i, root i ∈ Set.Ico 0 T) (i : Fin p) :
     cyclicRolleNext hp root T i ≤ root ⟨0, hp⟩ + T := by
@@ -58,6 +64,9 @@ lemma cyclicRolleNext_le_first_add (hp : 0 < p) (root : Fin p → ℝ) (T : ℝ)
     linarith
   · exact le_rfl
 
+/--
+@isnad1 id=mem.3h5v.s6.95caf44bbbaf from=translated src=- shape=60c753b9 vocab=8957d7c5
+-/
 lemma cyclicRolleReduce_mem_Ico (hp : 0 < p) (root : Fin p → ℝ) (T : ℝ)
     (hbound : ∀ i, root i ∈ Set.Ico 0 T) (point : Fin p → ℝ)
     (hpoint : ∀ i, point i ∈ Set.Ioo (root i) (cyclicRolleNext hp root T i))
@@ -73,6 +82,9 @@ lemma cyclicRolleReduce_mem_Ico (hp : 0 < p) (root : Fin p → ℝ) (T : ℝ)
     · linarith
     · linarith [hfirst.2]
 
+/--
+@isnad1 id=injectiv.4h4v.s6.1ab87e7a91de from=translated src=- shape=5555d4bc vocab=b171c67b
+-/
 lemma cyclicRolleReduce_injective (hp : 0 < p) (root : Fin p → ℝ) (T : ℝ)
     (hmono : StrictMono root) (hbound : ∀ i, root i ∈ Set.Ico 0 T)
     (point : Fin p → ℝ)
@@ -105,7 +117,9 @@ lemma cyclicRolleReduce_injective (hp : 0 < p) (root : Fin p → ℝ) (T : ℝ)
   · exact False.elim (hne hgt hij.symm)
 
 /-- One Rolle point in each lifted root arc, with distinct derivative-zero
-representatives in the original half-open turn.-/
+representatives in the original half-open turn.
+@isnad1 id=ex.8h4v.s8.005311c41a92 from=translated src=- shape=0d5b7070 vocab=822a317e
+-/
 theorem exists_cyclic_rolle_points (hp : 0 < p) (T : ℝ) (_hT : 0 < T)
     (root : Fin p → ℝ) (hmono : StrictMono root)
     (hbound : ∀ i, root i ∈ Set.Ico 0 T) (f : ℝ → ℝ)
@@ -139,7 +153,9 @@ theorem exists_cyclic_rolle_points (hp : 0 < p) (T : ℝ) (_hT : 0 < T)
   · apply hdshift (point i - T)
     simpa only [sub_add_cancel] using hzero i
 
-/-- The finite family needed by a full-turn derivative root-count theorem.-/
+/-- The finite family needed by a full-turn derivative root-count theorem.
+@isnad1 id=ex.8h4v.s8.38b825e9a669 from=translated src=- shape=7bad5fe9 vocab=abeeb863
+-/
 theorem exists_cyclic_deriv_roots (hp : 0 < p) (T : ℝ) (hT : 0 < T)
     (root : Fin p → ℝ) (hmono : StrictMono root)
     (hbound : ∀ i, root i ∈ Set.Ico 0 T) (f : ℝ → ℝ)
@@ -154,7 +170,9 @@ theorem exists_cyclic_deriv_roots (hp : 0 < p) (T : ℝ) (hT : 0 < T)
 
 /-- A local maximum with nonzero second derivative has strictly negative second
 derivative. Continuity of the original function is the only extra regularity
-needed beyond the stated derivative values.-/
+needed beyond the stated derivative values.
+@isnad1 id=lt.4h2v.s7.4457e4e32067 from=translated src=- shape=515a9302 vocab=38da5446
+-/
 lemma second_deriv_neg_of_localMax {f : ℝ → ℝ} {t : ℝ}
     (hmax : IsLocalMax f t) (hcont : ContinuousAt f t) (hzero : deriv f t = 0)
     (hne : deriv (deriv f) t ≠ 0) : deriv (deriv f) t < 0 := by
@@ -174,6 +192,9 @@ def cyclicRootArc (hp : 0 < p) (root : Fin p → ℝ) (T : ℝ) (i : Fin p) : Se
   if h : i.val + 1 < p then Set.Ioo (root i) (root ⟨i.val + 1, h⟩)
   else {t | t ∈ Set.Ico 0 T ∧ (root i < t ∨ t < root ⟨0, hp⟩)}
 
+/--
+@isnad1 id=mem.3h5v.s6.07b4edec3c7c from=translated src=- shape=7e850a6f vocab=7579d3a4
+-/
 lemma cyclicRootArc_mem_Ico (hp : 0 < p) (root : Fin p → ℝ) (T : ℝ)
     (hbound : ∀ i, root i ∈ Set.Ico 0 T) {i : Fin p} {t : ℝ}
     (ht : t ∈ cyclicRootArc hp root T i) : t ∈ Set.Ico 0 T := by
@@ -182,6 +203,9 @@ lemma cyclicRootArc_mem_Ico (hp : 0 < p) (root : Fin p → ℝ) (T : ℝ)
   · exact ⟨(hbound i).1.trans ht.1.le, ht.2.trans (hbound ⟨i.val + 1, h⟩).2⟩
   · exact ht.1
 
+/--
+@isnad1 id=disjoint.3h5v.s6.cc9a9dd08487 from=translated src=- shape=c3b12b2d vocab=2be7bfd4
+-/
 lemma cyclicRootArc_disjoint_of_lt (hp : 0 < p) (root : Fin p → ℝ) (T : ℝ)
     (hmono : StrictMono root) {i j : Fin p} (hij : i < j) :
     Disjoint (cyclicRootArc hp root T i) (cyclicRootArc hp root T j) := by
@@ -204,7 +228,9 @@ lemma cyclicRootArc_disjoint_of_lt (hp : 0 < p) (root : Fin p → ℝ) (T : ℝ)
     · have hi_lower := hti.1
       linarith
 
-/-- All cyclic root arcs are pairwise disjoint, including the one-root case.-/
+/-- All cyclic root arcs are pairwise disjoint, including the one-root case.
+@isnad1 id=pairwise.2h3v.s6.b7799244bd1f from=translated src=- shape=7df06d9d vocab=83a15bfc
+-/
 lemma cyclicRootArc_pairwise_disjoint (hp : 0 < p) (root : Fin p → ℝ) (T : ℝ)
     (hmono : StrictMono root) :
     Pairwise (fun i j => Disjoint (cyclicRootArc hp root T i) (cyclicRootArc hp root T j)) := by
@@ -213,7 +239,9 @@ lemma cyclicRootArc_pairwise_disjoint (hp : 0 < p) (root : Fin p → ℝ) (T : �
   · exact cyclicRootArc_disjoint_of_lt hp root T hmono hlt
   · exact (cyclicRootArc_disjoint_of_lt hp root T hmono hgt).symm
 
-/-- Every reduced lifted Rolle point belongs to its own cyclic root arc.-/
+/-- Every reduced lifted Rolle point belongs to its own cyclic root arc.
+@isnad1 id=mem.3h5v.s6.e5bf2adce0c8 from=translated src=- shape=9db27e38 vocab=7ec23f90
+-/
 lemma cyclicRolleReduce_mem_arc (hp : 0 < p) (root : Fin p → ℝ) (T : ℝ)
     (hbound : ∀ i, root i ∈ Set.Ico 0 T) (point : Fin p → ℝ)
     (hpoint : ∀ i, point i ∈ Set.Ioo (root i) (cyclicRolleNext hp root T i))
@@ -233,7 +261,9 @@ lemma cyclicRolleReduce_mem_arc (hp : 0 < p) (root : Fin p → ℝ) (T : ℝ)
       rw [cyclicRolleNext, dite_eq_right hnext] at hi_upper
       linarith
 
-/-- Membership of a reduced Rolle point in a cyclic root arc determines its index.-/
+/-- Membership of a reduced Rolle point in a cyclic root arc determines its index.
+@isnad1 id=eq.5h6v.s6.709c388bc3dc from=translated src=- shape=b5b0380a vocab=b68ad217
+-/
 lemma cyclicRolleReduce_index_eq_of_mem_arc (hp : 0 < p) (root : Fin p → ℝ) (T : ℝ)
     (hmono : StrictMono root) (hbound : ∀ i, root i ∈ Set.Ico 0 T)
     (point : Fin p → ℝ)

@@ -20,7 +20,9 @@ noncomputable section
 variable {n : ℕ} {hn : 0 < n}
 
 /-- Every cyclic representative is an actual node or belongs to one of the actual
-open node gaps. This includes the one-node configuration.-/
+open node gaps. This includes the one-node configuration.
+@isnad1 id=or.2h3v.s6.929bf2a74abb from=translated src=- shape=3d31cbc1 vocab=84f6311c
+-/
 lemma CyclicAngles.exists_node_or_gap (angles : CyclicAngles n hn) (t : ℝ)
     (ht : t ∈ Set.Ico 0 (2 * Real.pi)) :
     (∃ i, t = angles.angle i) ∨

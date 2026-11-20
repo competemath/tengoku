@@ -28,18 +28,26 @@ noncomputable section
 
 variable {d : ℕ} {hn : 0 < d + 1}
 
+/--
+@isnad1 id=hascycli.0h1v.s5.15ad691ff911 from=translated src=- shape=3fe288f1 vocab=89024915
+-/
 lemma actualPeakQuotientSpace_hasCyclicRootBound :
     HasCyclicRootBound (d - 1) (homogeneousTrigSpace (d + 1 - 2)) := by
   rw [show d + 1 - 2 = d - 1 by omega]
   exact homogeneousTrigSpace_hasCyclicRootBound _
 
+/--
+@isnad1 id=mem.2h3v.s6.691785f11593 from=translated src=- shape=fa4e05e6 vocab=43ed0a09
+-/
 lemma orderedPeak_mem_Ico (angles : CyclicAngles (d + 1) hn)
     (hsize : 2 ≤ d + 1) (i : Fin (d + 1)) :
     orderedPeak angles hsize i ∈ Set.Ico 0 (2 * Real.pi) := by
   have h := orderedPeak_mem_Ioo angles hsize i
   exact ⟨h.1.le, h.2⟩
 
-/-- Every nonzero relation of actual peak quotients has one coherent alternating sign.-/
+/-- Every nonzero relation of actual peak quotients has one coherent alternating sign.
+@isnad1 id=or.4h3v.s8.0ed4b044f5ea from=translated src=- shape=cf30fa86 vocab=c9d65bd4
+-/
 theorem actualPeakQuotient_relation_coherent_sign (angles : CyclicAngles (d + 1) hn)
     (hsize : 2 ≤ d + 1) (a : Fin (d + 1) → ℝ)
     (hrel : ∀ t, (∑ i, a i * orderedPeakQuotient angles hsize i t) = 0)
@@ -53,6 +61,9 @@ theorem actualPeakQuotient_relation_coherent_sign (angles : CyclicAngles (d + 1)
     (orderedPeak_mem_Ico angles hsize) (orderedPeakQuotient_diag_neg angles hsize)
     (orderedPeakQuotient_offdiag_phase_pos angles hsize) a hrel ha
 
+/--
+@isnad1 id=ne.4h4v.s8.5e2baa608c1c from=translated src=- shape=3e7fa50d vocab=39568609
+-/
 theorem actualPeakQuotient_relation_coeff_ne_zero (angles : CyclicAngles (d + 1) hn)
     (hsize : 2 ≤ d + 1) (a : Fin (d + 1) → ℝ)
     (hrel : ∀ t, (∑ i, a i * orderedPeakQuotient angles hsize i t) = 0)
@@ -65,6 +76,9 @@ theorem actualPeakQuotient_relation_coeff_ne_zero (angles : CyclicAngles (d + 1)
     have := h i
     simp [hi] at this
 
+/--
+@isnad1 id=eq.4h4v.s8.8dd3169b4911 from=translated src=- shape=4acae64a vocab=39568609
+-/
 theorem actualPeakQuotient_relation_eq_zero_of_missing_coeff
     (angles : CyclicAngles (d + 1) hn) (hsize : 2 ≤ d + 1)
     (a : Fin (d + 1) → ℝ)
@@ -73,7 +87,9 @@ theorem actualPeakQuotient_relation_eq_zero_of_missing_coeff
   by_contra ha
   exact actualPeakQuotient_relation_coeff_ne_zero angles hsize a hrel ha omitted hmissing
 
-/-- Deleting any one actual peak quotient leaves `d` independent functions.-/
+/-- Deleting any one actual peak quotient leaves `d` independent functions.
+@isnad1 id=linearin.2h3v.s6.97aedebf7b02 from=translated src=- shape=24735aee vocab=25be366e
+-/
 theorem actualPeakQuotient_deleted_linearIndependent
     (angles : CyclicAngles (d + 1) hn) (hsize : 2 ≤ d + 1) (omitted : Fin (d + 1)) :
     LinearIndependent ℝ
@@ -86,7 +102,9 @@ theorem actualPeakQuotient_deleted_linearIndependent
     (orderedPeakQuotient_offdiag_phase_pos angles hsize) omitted
 
 /-- All deleted evaluation matrices of the actual quotients are nonsingular,
-at any `d` distinct canonical angles, including an evaluation at `π`.-/
+at any `d` distinct canonical angles, including an evaluation at `π`.
+@isnad1 id=ne.4h4v.s7.5353ad92d1a0 from=translated src=- shape=2c9c8b0c vocab=38b5cc45
+-/
 theorem actualPeakQuotient_deleted_evaluation_det_ne_zero
     (angles : CyclicAngles (d + 1) hn) (hsize : 2 ≤ d + 1) (omitted : Fin (d + 1))
     (x : Fin d → ℝ) (hxinj : Function.Injective x)

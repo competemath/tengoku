@@ -43,7 +43,9 @@ private lemma exists_zero_between_opposite_values (f : ℝ → ℝ)
   · have hright : f b < 0 := by rw [hopposite]; linarith
     exact intermediate_value_Ioo' hab.le hf.continuousOn ⟨hright, hpos⟩
 
-/-- Each other ordinary gap contains a zero of the ordinary selected-gap interpolant.-/
+/-- Each other ordinary gap contains a zero of the ordinary selected-gap interpolant.
+@isnad1 id=ex.3h4v.s6.c64eaaf82021 from=translated src=- shape=0a96874a vocab=8094e5a4
+-/
 lemma exists_gapInterpolant_zero_on_other_gap (angles : CyclicAngles n hn)
     (cut l : Fin n) (hl : 0 < l.val) (hlcut : l ≠ cut) :
     ∃ t, t ∈ ordinaryGap angles l hl ∧
@@ -64,7 +66,9 @@ lemma exists_gapInterpolant_zero_on_other_gap (angles : CyclicAngles n hn)
     rcases gapCoefficient_eq_one_or_neg_one cut (gapPredecessor l) with h | h <;>
       rw [h] <;> norm_num
 
-/-- The final open gap contains a zero of every ordinary selected-gap interpolant.-/
+/-- The final open gap contains a zero of every ordinary selected-gap interpolant.
+@isnad1 id=ex.2h3v.s6.698f8c1fdcf7 from=translated src=- shape=d8ed12e2 vocab=d685f782
+-/
 lemma exists_gapInterpolant_zero_on_wrapGap (angles : CyclicAngles n hn)
     (cut : Fin n) (hcut : 0 < cut.val) :
     ∃ t, t ∈ wrapGap angles ∧
@@ -86,7 +90,9 @@ lemma exists_gapInterpolant_zero_on_wrapGap (angles : CyclicAngles n hn)
     rcases gapCoefficient_eq_one_or_neg_one cut (lastNodeIndex hn) with h | h <;>
       rw [h] <;> norm_num
 
-/-- Every ordinary gap contains a zero when the selected gap is the wrap gap.-/
+/-- Every ordinary gap contains a zero when the selected gap is the wrap gap.
+@isnad1 id=ex.2h3v.s6.c5f5bb387a14 from=translated src=- shape=825e06a4 vocab=5581189c
+-/
 lemma exists_wrapInterpolant_zero_on_ordinaryGap (angles : CyclicAngles n hn)
     (l : Fin n) (hl : 0 < l.val) :
     ∃ t, t ∈ ordinaryGap angles l hl ∧
@@ -167,7 +173,9 @@ private lemma otherGapIndex_next_ne_cut (cut : Fin n) (k : Fin (n - 1)) :
   change (if k.val < cut.val - 1 then k.val else k.val + 1) + 1 ≠ cut.val
   split_ifs <;> omega
 
-/-- Ordinary selected-gap zeros retain their exact locations in the other cyclic gaps.-/
+/-- Ordinary selected-gap zeros retain their exact locations in the other cyclic gaps.
+@isnad1 id=ex.3h3v.s7.e0c9467bba14 from=translated src=- shape=3befda76 vocab=6150505f
+-/
 theorem exists_gapInterpolant_ordered_cyclic_zeros_with_locations
     (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (cut : Fin n) (hcut : 0 < cut.val) :
@@ -210,7 +218,9 @@ theorem exists_gapInterpolant_ordered_cyclic_zeros_with_locations
     rw [hright, hjlast]
     exact exists_gapInterpolant_zero_on_wrapGap angles cut hcut
 
-/-- The signed wrap-gap zeros retain their exact adjacent-node locations.-/
+/-- The signed wrap-gap zeros retain their exact adjacent-node locations.
+@isnad1 id=ex.2h2v.s8.e30daf50f11b from=translated src=- shape=3ab81e55 vocab=53eb7059
+-/
 theorem exists_wrapInterpolant_ordered_cyclic_zeros_with_locations
     (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) :
@@ -249,7 +259,9 @@ theorem exists_wrapInterpolant_ordered_cyclic_zeros_with_locations
   have hj : k.val + 1 < n := by have := k.isLt; omega
   simpa only [index, cyclicGapRight, Fin.val_mk, dite_eq_left hj] using hlocations k
 
-/-- A selected ordinary signed interpolant has `n - 1` distinct, increasing cyclic zeros.-/
+/-- A selected ordinary signed interpolant has `n - 1` distinct, increasing cyclic zeros.
+@isnad1 id=ex.3h3v.s7.d23c98b9705e from=translated src=- shape=ce4f3199 vocab=65ef1144
+-/
 theorem exists_gapInterpolant_ordered_cyclic_zeros (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (cut : Fin n) (hcut : 0 < cut.val) :
     ∃ root : Fin (n - 1) → ℝ, StrictMono root ∧
@@ -259,7 +271,9 @@ theorem exists_gapInterpolant_ordered_cyclic_zeros (angles : CyclicAngles n hn)
     exists_gapInterpolant_ordered_cyclic_zeros_with_locations angles hsize cut hcut
   exact ⟨root, hmono, hbounds, hroots⟩
 
-/-- The signed wrap-gap interpolant has one zero in every ordinary gap, in cyclic order.-/
+/-- The signed wrap-gap interpolant has one zero in every ordinary gap, in cyclic order.
+@isnad1 id=ex.2h2v.s7.129b4b177834 from=translated src=- shape=83a86984 vocab=6a895ad7
+-/
 theorem exists_wrapInterpolant_ordered_cyclic_zeros (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) :
     ∃ root : Fin (n - 1) → ℝ, StrictMono root ∧

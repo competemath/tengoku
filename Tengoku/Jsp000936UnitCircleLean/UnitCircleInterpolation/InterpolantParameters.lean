@@ -30,7 +30,9 @@ noncomputable section
 
 variable {n : ℕ}
 
-/-- Distinct actual complex phases form an open set of finite real angle parameters.-/
+/-- Distinct actual complex phases form an open set of finite real angle parameters.
+@isnad1 id=isopen.0h1v.s5.e96dd302667e from=translated src=- shape=175731da vocab=bcb2c893
+-/
 lemma isOpen_phaseNodes_injective :
     IsOpen {θ : Fin n → ℝ | Function.Injective (phaseNodes θ)} := by
   have hcont (i : Fin n) : Continuous (fun θ : Fin n → ℝ => phaseNodes θ i) := by
@@ -61,12 +63,16 @@ lemma isOpen_phaseNodes_injective :
   · simp only [hij, false_or]
     exact isOpen_ne_fun (hcont i) (hcont j)
 
-/-- Adding an unrestricted real evaluation angle preserves the open parameter domain.-/
+/-- Adding an unrestricted real evaluation angle preserves the open parameter domain.
+@isnad1 id=isopen.0h1v.s5.26442ca4a4c8 from=translated src=- shape=3058b927 vocab=0e2862f5
+-/
 lemma isOpen_joint_phaseNodes_injective :
     IsOpen {x : (Fin n → ℝ) × ℝ | Function.Injective (phaseNodes x.1)} :=
   isOpen_phaseNodes_injective.preimage continuous_fst
 
-/-- Moving one actual node preserves phase distinctness for all sufficiently small moves.-/
+/-- Moving one actual node preserves phase distinctness for all sufficiently small moves.
+@isnad1 id=eventual.1h3v.s5.459eff60b623 from=translated src=- shape=28cf005b vocab=0dd5851c
+-/
 lemma eventually_phaseNodes_injective_update (θ : Fin n → ℝ) (j : Fin n)
     (hθ : Function.Injective (phaseNodes θ)) :
     ∀ᶠ u in nhds (θ j), Function.Injective (phaseNodes (Function.update θ j u)) := by
@@ -81,12 +87,16 @@ lemma eventually_phaseNodes_injective_update (θ : Fin n → ℝ) (j : Fin n)
     simpa only [Function.update_eq_self] using ht
   exact htendsto.eventually hevent
 
-/-- A scalar sine denominator is globally smooth in the actual angle parameters.-/
+/-- A scalar sine denominator is globally smooth in the actual angle parameters.
+@isnad1 id=contdiff.0h4v.s6.61d78215c0ab from=translated src=- shape=fac1b798 vocab=6b3c773c
+-/
 lemma contDiff_sine_denominator (m : ℕ∞ω) (j k : Fin n) :
     ContDiff ℝ m (fun θ : Fin n → ℝ => Real.sin ((θ j - θ k) / 2)) := by
   exact (((contDiff_apply ℝ ℝ j).sub (contDiff_apply ℝ ℝ k)).div_const 2).sin
 
-/-- Each off-diagonal sine ratio is jointly smooth at every distinct phase family.-/
+/-- Each off-diagonal sine ratio is jointly smooth at every distinct phase family.
+@isnad1 id=contdiff.2h6v.s7.a663b70aeb8e from=translated src=- shape=1d0843fc vocab=0788bb44
+-/
 lemma contDiffAt_sine_ratio_joint (m : ℕ∞ω) (θ : Fin n → ℝ) (t : ℝ)
     (hθ : Function.Injective (phaseNodes θ)) (j k : Fin n) (hjk : j ≠ k) :
     ContDiffAt ℝ m (fun x : (Fin n → ℝ) × ℝ =>
@@ -101,7 +111,9 @@ lemma contDiffAt_sine_ratio_joint (m : ℕ∞ω) (θ : Fin n → ℝ) (t : ℝ)
     (contDiff_sine_denominator m j k).comp contDiff_fst
   exact hnum.contDiffAt.div hden.contDiffAt (sine_denominator_ne_zero θ hθ hjk)
 
-/-- The literal finite sine product is jointly smooth, including at its zeros.-/
+/-- The literal finite sine product is jointly smooth, including at its zeros.
+@isnad1 id=contdiff.1h5v.s7.b075d1d2c9e6 from=translated src=- shape=1f100c9b vocab=d7249a83
+-/
 lemma contDiffAt_sineCardinal_joint (m : ℕ∞ω) (θ : Fin n → ℝ) (t : ℝ)
     (hθ : Function.Injective (phaseNodes θ)) (j : Fin n) :
     ContDiffAt ℝ m (fun x : (Fin n → ℝ) × ℝ => sineCardinal x.1 j x.2) (θ, t) := by
@@ -110,7 +122,9 @@ lemma contDiffAt_sineCardinal_joint (m : ℕ∞ω) (θ : Fin n → ℝ) (t : ℝ
   intro k hk
   exact contDiffAt_sine_ratio_joint m θ t hθ j k (Finset.mem_erase.mp hk).1.symm
 
-/-- For fixed real nodal values, the actual interpolant is jointly smooth to every order.-/
+/-- For fixed real nodal values, the actual interpolant is jointly smooth to every order.
+@isnad1 id=contdiff.1h5v.s7.e498599d2268 from=translated src=- shape=ded0c750 vocab=5f023aa5
+-/
 lemma contDiffAt_sineInterpolant_joint (m : ℕ∞ω) (θ : Fin n → ℝ) (t : ℝ)
     (c : Fin n → ℝ) (hθ : Function.Injective (phaseNodes θ)) :
     ContDiffAt ℝ m (fun x : (Fin n → ℝ) × ℝ => sineInterpolant x.1 c x.2) (θ, t) := by
@@ -119,7 +133,9 @@ lemma contDiffAt_sineInterpolant_joint (m : ℕ∞ω) (θ : Fin n → ℝ) (t : 
   intro j hj
   exact contDiffAt_const.mul (contDiffAt_sineCardinal_joint m θ t hθ j)
 
-/-- The same explicit product-rule formula is jointly smooth in parameters and angle.-/
+/-- The same explicit product-rule formula is jointly smooth in parameters and angle.
+@isnad1 id=contdiff.1h5v.s7.3648619acf90 from=translated src=- shape=1f100c9b vocab=98243ca9
+-/
 lemma contDiffAt_sineCardinalDerivative_joint (m : ℕ∞ω) (θ : Fin n → ℝ) (t : ℝ)
     (hθ : Function.Injective (phaseNodes θ)) (j : Fin n) :
     ContDiffAt ℝ m (fun x : (Fin n → ℝ) × ℝ =>
@@ -143,7 +159,9 @@ lemma contDiffAt_sineCardinalDerivative_joint (m : ℕ∞ω) (θ : Fin n → ℝ
     exact hnum.contDiffAt.div hden.contDiffAt
       (sine_denominator_ne_zero θ hθ (Finset.mem_erase.mp hk).1.symm)
 
-/-- The ordinary derivative of the actual interpolant is jointly smooth to every order.-/
+/-- The ordinary derivative of the actual interpolant is jointly smooth to every order.
+@isnad1 id=contdiff.1h5v.s7.7f1438acf9f5 from=translated src=- shape=ded0c750 vocab=36ba3f95
+-/
 lemma contDiffAt_sineInterpolantDerivative_joint (m : ℕ∞ω)
     (θ : Fin n → ℝ) (t : ℝ) (c : Fin n → ℝ)
     (hθ : Function.Injective (phaseNodes θ)) :
@@ -154,7 +172,9 @@ lemma contDiffAt_sineInterpolantDerivative_joint (m : ℕ∞ω)
   intro j hj
   exact contDiffAt_const.mul (contDiffAt_sineCardinalDerivative_joint m θ t hθ j)
 
-/-- Joint smoothness also holds with the ordinary derivative written literally.-/
+/-- Joint smoothness also holds with the ordinary derivative written literally.
+@isnad1 id=contdiff.1h5v.s7.143d937ad148 from=translated src=- shape=3fbce1df vocab=2ac3e370
+-/
 lemma contDiffAt_deriv_sineInterpolant_joint (m : ℕ∞ω)
     (θ : Fin n → ℝ) (t : ℝ) (c : Fin n → ℝ)
     (hθ : Function.Injective (phaseNodes θ)) :
@@ -163,21 +183,27 @@ lemma contDiffAt_deriv_sineInterpolant_joint (m : ℕ∞ω)
   simpa only [deriv_sineInterpolant] using
     contDiffAt_sineInterpolantDerivative_joint m θ t c hθ
 
-/-- The actual interpolant is smooth on the full open domain of distinct phases.-/
+/-- The actual interpolant is smooth on the full open domain of distinct phases.
+@isnad1 id=contdiff.0h3v.s7.096a360693e8 from=translated src=- shape=2246a71a vocab=2493ad00
+-/
 lemma contDiffOn_sineInterpolant_joint (m : ℕ∞ω) (c : Fin n → ℝ) :
     ContDiffOn ℝ m (fun x : (Fin n → ℝ) × ℝ => sineInterpolant x.1 c x.2)
       {x : (Fin n → ℝ) × ℝ | Function.Injective (phaseNodes x.1)} := by
   intro x hx
   exact (contDiffAt_sineInterpolant_joint m x.1 x.2 c hx).contDiffWithinAt
 
-/-- The actual ordinary derivative is smooth on the same full open parameter domain.-/
+/-- The actual ordinary derivative is smooth on the same full open parameter domain.
+@isnad1 id=contdiff.0h3v.s7.9cbcd1bd121a from=translated src=- shape=7f9e22a1 vocab=0c5ac574
+-/
 lemma contDiffOn_deriv_sineInterpolant_joint (m : ℕ∞ω) (c : Fin n → ℝ) :
     ContDiffOn ℝ m (fun x : (Fin n → ℝ) × ℝ => deriv (sineInterpolant x.1 c) x.2)
       {x : (Fin n → ℝ) × ℝ | Function.Injective (phaseNodes x.1)} := by
   intro x hx
   exact (contDiffAt_deriv_sineInterpolant_joint m x.1 x.2 c hx).contDiffWithinAt
 
-/-- Holding the evaluation angle fixed leaves a smooth map of the actual node parameters.-/
+/-- Holding the evaluation angle fixed leaves a smooth map of the actual node parameters.
+@isnad1 id=contdiff.1h5v.s6.778850a7232d from=translated src=- shape=73d31562 vocab=759ed6d9
+-/
 lemma contDiffAt_sineInterpolant_parameters (m : ℕ∞ω) (θ : Fin n → ℝ)
     (c : Fin n → ℝ) (t : ℝ) (hθ : Function.Injective (phaseNodes θ)) :
     ContDiffAt ℝ m (fun η : Fin n → ℝ => sineInterpolant η c t) θ := by
@@ -187,7 +213,9 @@ lemma contDiffAt_sineInterpolant_parameters (m : ℕ∞ω) (θ : Fin n → ℝ)
   have hcomp := hjoint.comp θ hmap
   exact hcomp
 
-/-- Updating one node therefore gives a smooth genuine scalar parameter curve.-/
+/-- Updating one node therefore gives a smooth genuine scalar parameter curve.
+@isnad1 id=contdiff.1h6v.s6.9fec4552bc75 from=translated src=- shape=df781c3e vocab=b0d0317b
+-/
 lemma contDiffAt_sineInterpolant_update (m : ℕ∞ω) (θ : Fin n → ℝ)
     (c : Fin n → ℝ) (j : Fin n) (t : ℝ)
     (hθ : Function.Injective (phaseNodes θ)) :

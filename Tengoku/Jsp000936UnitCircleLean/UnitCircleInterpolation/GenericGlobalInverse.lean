@@ -65,7 +65,9 @@ open Function Topology
 
 noncomputable section
 
-/-- Properness and local charts give the compact discrete fibers of a covering map.-/
+/-- Properness and local charts give the compact discrete fibers of a covering map.
+@isnad1 id=iscoveri.2h3v.s5.18a592512b99 from=translated src=- shape=fe28e5a3 vocab=24df0e61
+-/
 theorem isCoveringMap_of_localHomeomorph_of_proper
     {E X : Type*} [TopologicalSpace E] [TopologicalSpace X]
     [T2Space E] [T2Space X] {f : E → X}
@@ -83,7 +85,9 @@ theorem isCoveringMap_of_localHomeomorph_of_proper
     obtain ⟨φ, heφ, hφ⟩ := hloc e
     exact ⟨φ, heφ, hφ⟩
 
-/-- Lifting the target identity gives the inverse of a connected one-sheeted covering.-/
+/-- Lifting the target identity gives the inverse of a connected one-sheeted covering.
+@isnad1 id=ishomeom.2h3v.s5.e7994c619ca9 from=translated src=- shape=cd5bfac0 vocab=cb4de7d4
+-/
 theorem isHomeomorph_of_surjective_covering
     {E X : Type*} [TopologicalSpace E] [TopologicalSpace X]
     [PreconnectedSpace E] [Nonempty X]
@@ -112,7 +116,9 @@ theorem isHomeomorph_of_surjective_covering
     simpa [fid, Function.comp_def] using hright
 
 /-- A proper local homeomorphism from any nonempty preconnected Hausdorff space
-to a finite-dimensional real coordinate space is a global homeomorphism.-/
+to a finite-dimensional real coordinate space is a global homeomorphism.
+@isnad1 id=ishomeom.2h3v.s6.c7921a1738b4 from=translated src=- shape=614bb5fa vocab=4b165b76
+-/
 theorem euclideanTarget_isHomeomorph_of_localHomeomorph_of_proper
     {E : Type*} [TopologicalSpace E] [T2Space E]
     [PreconnectedSpace E] [Nonempty E] {d : ℕ} {f : E → Fin d → ℝ}

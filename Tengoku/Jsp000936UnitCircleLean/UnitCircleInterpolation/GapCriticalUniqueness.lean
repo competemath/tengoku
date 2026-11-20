@@ -29,7 +29,9 @@ noncomputable section
 
 variable {n : ℕ} {hn : 0 < n}
 
-/-- Two critical points in the actual selected ordinary gap coincide.-/
+/-- Two critical points in the actual selected ordinary gap coincide.
+@isnad1 id=eq.7h5v.s7.b78e242e6b17 from=translated src=- shape=9aba9ac1 vocab=941ad249
+-/
 lemma ordinaryGap_critical_unique (angles : CyclicAngles n hn) (hsize : 2 ≤ n)
     (cut : Fin n) (hcut : 0 < cut.val) {x y : ℝ}
     (hx : x ∈ ordinaryGap angles cut hcut) (hy : y ∈ ordinaryGap angles cut hcut)
@@ -110,7 +112,9 @@ lemma ordinaryGap_critical_unique (angles : CyclicAngles n hn) (hsize : 2 ≤ n)
     exact (hcritical i x (hmem x hx) hzx).trans
       (hcritical i y (hmem y hy) hzy).symm
 
-/-- Two critical points in the actual final wrap gap coincide.-/
+/-- Two critical points in the actual final wrap gap coincide.
+@isnad1 id=eq.6h4v.s7.22c576ee65b0 from=translated src=- shape=98cdb668 vocab=b438b740
+-/
 lemma wrapGap_critical_unique (angles : CyclicAngles n hn) (hsize : 2 ≤ n)
     {x y : ℝ} (hx : x ∈ wrapGap angles) (hy : y ∈ wrapGap angles)
     (hzx : deriv (sineInterpolant angles.angle wrapCoefficient) x = 0)
@@ -148,7 +152,9 @@ lemma wrapGap_critical_unique (angles : CyclicAngles n hn) (hsize : 2 ≤ n)
   exact (hcritical last x (hmem x hx) hzx).trans
     (hcritical last y (hmem y hy) hzy).symm
 
-/-- Critical-point uniqueness covers both actual cyclic gap types.-/
+/-- Critical-point uniqueness covers both actual cyclic gap types.
+@isnad1 id=eq.6h5v.s7.7c66a088b94d from=translated src=- shape=f800199c vocab=184527fe
+-/
 lemma gapInterpolant_critical_unique (angles : CyclicAngles n hn) (hsize : 2 ≤ n)
     (cut : Fin n) {x y : ℝ}
     (hx : x ∈ gapInterval angles cut) (hy : y ∈ gapInterval angles cut)

@@ -31,6 +31,9 @@ namespace UnitCircleInterpolation
 
 noncomputable section
 
+/--
+@isnad1 id=le.5h4v.s6.2f05de9198aa from=translated src=- shape=5bc96c13 vocab=f8a481b5
+-/
 lemma homogeneousTrig_distinct_root_count {m : ℕ} (p : ℕ) (P : ℝ[X])
     (hP : P ≠ 0) (hdegree : P.natDegree ≤ p) (root : Fin m → ℝ)
     (hinj : Function.Injective root) (hbound : ∀ i, root i ∈ Set.Ico 0 (2 * Real.pi))
@@ -39,6 +42,9 @@ lemma homogeneousTrig_distinct_root_count {m : ℕ} (p : ℕ) (P : ℝ[X])
     (fun t ht => (homogeneousTrig_eq_cos_pow_eval_tan p P hdegree t ht).symm)
     (homogeneousTrig_pi p P).symm root hinj hbound hroot
 
+/--
+@isnad1 id=ex.7h4v.s7.c04a55191a30 from=translated src=- shape=80150d56 vocab=f8a481b5
+-/
 lemma homogeneousTrig_root_mem_of_saturated_roots (p : ℕ) (P : ℝ[X])
     (hP : P ≠ 0) (hdegree : P.natDegree ≤ p) (root : Fin p → ℝ)
     (hinj : Function.Injective root) (hbound : ∀ i, root i ∈ Set.Ico 0 (2 * Real.pi))
@@ -49,6 +55,9 @@ lemma homogeneousTrig_root_mem_of_saturated_roots (p : ℕ) (P : ℝ[X])
     (fun t ht => (homogeneousTrig_eq_cos_pow_eval_tan p P hdegree t ht).symm)
     (homogeneousTrig_pi p P).symm root hinj hbound hroot t ht hz
 
+/--
+@isnad1 id=ne.4h3v.s7.dee4d31eefec from=translated src=- shape=a944956a vocab=481748f6
+-/
 lemma deriv_homogeneousTrig_ne_zero_of_chart_root (p : ℕ) (P : ℝ[X])
     (hdegree : P.natDegree ≤ p) (t : ℝ) (ht : Real.cos (t / 2) ≠ 0)
     (hz : P.eval (Real.tan (t / 2)) = 0)
@@ -63,7 +72,9 @@ lemma deriv_homogeneousTrig_ne_zero_of_chart_root (p : ℕ) (P : ℝ[X])
       (by norm_num)
 
 /-- A nonzero homogeneous trigonometric polynomial with `p` distinct cyclic roots
-has a nonzero derivative at every listed root, including a root at `π`.-/
+has a nonzero derivative at every listed root, including a root at `π`.
+@isnad1 id=ne.5h4v.s7.d2dc935141c4 from=translated src=- shape=2a818934 vocab=48128645
+-/
 lemma deriv_homogeneousTrig_ne_zero_of_saturated_roots (p : ℕ) (P : ℝ[X])
     (hP : P ≠ 0) (hdegree : P.natDegree ≤ p) (root : Fin p → ℝ)
     (hinj : Function.Injective root) (hbound : ∀ i, root i ∈ Set.Ico 0 (2 * Real.pi))
@@ -127,7 +138,9 @@ lemma deriv_homogeneousTrig_ne_zero_of_saturated_roots (p : ℕ) (P : ℝ[X])
 
 variable {n : ℕ}
 
-/-- The homogeneous representation agrees with the literal sine interpolant globally.-/
+/-- The homogeneous representation agrees with the literal sine interpolant globally.
+@isnad1 id=eq.0h3v.s5.c22365dd9410 from=translated src=- shape=3e5fe20f vocab=b3b0c447
+-/
 lemma homogeneousTrig_interpolantPolynomial (θ : Fin n → ℝ) (c : Fin n → ℝ) :
     homogeneousTrig (n - 1) (interpolantPolynomial θ c) = sineInterpolant θ c := by
   apply Continuous.ext_on dense_cos_half_ne_zero
@@ -136,12 +149,18 @@ lemma homogeneousTrig_interpolantPolynomial (θ : Fin n → ℝ) (c : Fin n → 
   rw [homogeneousTrig_eq_cos_pow_eval_tan _ _ (interpolantPolynomial_natDegree_le θ c) t ht,
     cos_pow_mul_interpolantPolynomial_eval_tan θ c t ht]
 
+/--
+@isnad1 id=eq.0h4v.s6.1f8cfcc5b6f0 from=translated src=- shape=a27837f4 vocab=2add9dd6
+-/
 lemma deriv_sineInterpolant_globalCayley (θ : Fin n → ℝ) (c : Fin n → ℝ) (t : ℝ) :
     deriv (sineInterpolant θ c) t =
       homogeneousTrig (n - 1) (cayleyOperator (n - 1) (interpolantPolynomial θ c)) t / 2 := by
   rw [← homogeneousTrig_interpolantPolynomial θ c]
   exact deriv_homogeneousTrig _ _ (interpolantPolynomial_natDegree_le θ c) t
 
+/--
+@isnad1 id=ne.4h5v.s7.f0c7902887f7 from=translated src=- shape=a9e31df4 vocab=857ff695
+-/
 lemma deriv_sineInterpolant_ne_zero_of_saturated_roots (θ : Fin n → ℝ) (c : Fin n → ℝ)
     (hP : interpolantPolynomial θ c ≠ 0) (root : Fin (n - 1) → ℝ)
     (hinj : Function.Injective root) (hbound : ∀ i, root i ∈ Set.Ico 0 (2 * Real.pi))
@@ -152,6 +171,9 @@ lemma deriv_sineInterpolant_ne_zero_of_saturated_roots (θ : Fin n → ℝ) (c :
     (interpolantPolynomial_natDegree_le θ c) root hinj hbound
     (by rwa [homogeneousTrig_interpolantPolynomial θ c]) i
 
+/--
+@isnad1 id=ne.1h5v.s5.1103752a89e9 from=translated src=- shape=5fdec207 vocab=cc89dc36
+-/
 lemma cayleyOperator_interpolant_ne_zero_of_ne (θ : Fin n → ℝ) (c : Fin n → ℝ)
     (a b : ℝ) (hab : sineInterpolant θ c a ≠ sineInterpolant θ c b) :
     cayleyOperator (n - 1) (interpolantPolynomial θ c) ≠ 0 := by
@@ -162,6 +184,9 @@ lemma cayleyOperator_interpolant_ne_zero_of_ne (θ : Fin n → ℝ) (c : Fin n �
   rw [deriv_sineInterpolant_globalCayley, hzero]
   simp [homogeneousTrig]
 
+/--
+@isnad1 id=le.4h5v.s7.1da9c86ff2eb from=translated src=- shape=2f631fcf vocab=c93e582c
+-/
 lemma deriv_sineInterpolant_distinct_root_count {m : ℕ} (θ : Fin n → ℝ) (c : Fin n → ℝ)
     (hP : cayleyOperator (n - 1) (interpolantPolynomial θ c) ≠ 0) (root : Fin m → ℝ)
     (hinj : Function.Injective root) (hbound : ∀ i, root i ∈ Set.Ico 0 (2 * Real.pi))
@@ -173,6 +198,9 @@ lemma deriv_sineInterpolant_distinct_root_count {m : ℕ} (θ : Fin n → ℝ) (
   rw [deriv_sineInterpolant_globalCayley] at h
   exact (div_eq_zero_iff.mp h).resolve_right (by norm_num)
 
+/--
+@isnad1 id=ne.4h5v.s8.ee268ac07aef from=translated src=- shape=31a195c3 vocab=1c7fcbfc
+-/
 lemma second_deriv_sineInterpolant_ne_zero_of_saturated_deriv_roots
     (θ : Fin n → ℝ) (c : Fin n → ℝ)
     (hP : cayleyOperator (n - 1) (interpolantPolynomial θ c) ≠ 0)
@@ -193,6 +221,9 @@ lemma second_deriv_sineInterpolant_ne_zero_of_saturated_deriv_roots
   rw [heq, deriv_div_const]
   exact div_ne_zero hsimple (by norm_num)
 
+/--
+@isnad1 id=ex.6h5v.s8.195880a1a46c from=translated src=- shape=d5e1085c vocab=1c7fcbfc
+-/
 lemma deriv_sineInterpolant_root_mem_of_saturated_roots (θ : Fin n → ℝ) (c : Fin n → ℝ)
     (hP : cayleyOperator (n - 1) (interpolantPolynomial θ c) ≠ 0)
     (root : Fin (n - 1) → ℝ) (hinj : Function.Injective root)
@@ -208,7 +239,9 @@ lemma deriv_sineInterpolant_root_mem_of_saturated_roots (θ : Fin n → ℝ) (c 
     (derivativePolynomial_natDegree_le θ c) root hinj hbound
     (fun i => hconvert _ (hroot i)) t ht (hconvert t hz)
 
-/-- Saturation makes every critical point in the full turn nondegenerate.-/
+/-- Saturation makes every critical point in the full turn nondegenerate.
+@isnad1 id=ne.6h5v.s8.96f9a0fc16c9 from=translated src=- shape=70b7a38c vocab=1c7fcbfc
+-/
 lemma second_deriv_sineInterpolant_ne_zero_at_critical (θ : Fin n → ℝ) (c : Fin n → ℝ)
     (hP : cayleyOperator (n - 1) (interpolantPolynomial θ c) ≠ 0)
     (root : Fin (n - 1) → ℝ) (hinj : Function.Injective root)
@@ -222,6 +255,9 @@ lemma second_deriv_sineInterpolant_ne_zero_at_critical (θ : Fin n → ℝ) (c :
   exact second_deriv_sineInterpolant_ne_zero_of_saturated_deriv_roots θ c hP
     root hinj hbound hroot i
 
+/--
+@isnad1 id=ex.4h4v.s8.65e8ed9e76fd from=translated src=- shape=fd1d2775 vocab=7342d54b
+-/
 lemma exists_sineInterpolant_cyclic_deriv_roots (hn : 1 < n)
     (θ : Fin n → ℝ) (c : Fin n → ℝ) (root : Fin (n - 1) → ℝ)
     (hmono : StrictMono root) (hbound : ∀ i, root i ∈ Set.Ico 0 (2 * Real.pi))
@@ -238,7 +274,9 @@ lemma exists_sineInterpolant_cyclic_deriv_roots (hn : 1 < n)
     exact (sineInterpolantDerivative_add_two_pi_eq_zero_iff θ c t).mp ht
 
 /-- Critical points strictly interlace a saturated ordered zero list. Each cyclic
-root arc has exactly one critical representative, rather than merely at least one.-/
+root arc has exactly one critical representative, rather than merely at least one.
+@isnad1 id=ex.5h4v.s9.29f613146c94 from=translated src=- shape=2056200d vocab=6d543a55
+-/
 lemma sineInterpolant_cyclic_critical_interlacing (hsize : 2 ≤ n)
     (θ : Fin n → ℝ) (c : Fin n → ℝ)
     (hP : cayleyOperator (n - 1) (interpolantPolynomial θ c) ≠ 0)

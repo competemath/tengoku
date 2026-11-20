@@ -25,7 +25,9 @@ noncomputable section
 
 variable {n : ℕ} {hn : 0 < n}
 
-/-- Deleting one nodal label shifts exactly the labels at or above the cut.-/
+/-- Deleting one nodal label shifts exactly the labels at or above the cut.
+@isnad1 id=eq.0h3v.s8.9a9f79b24478 from=translated src=- shape=0acfbc56 vocab=7866b77d
+-/
 lemma erasedNodeIndex_val (cut : Fin n) (q : Fin (n - 1)) :
     (((Finset.univ.erase cut : Finset (Fin n)).orderIsoOfFin (by simp) q).val).val =
       if q.val < cut.val then q.val else q.val + 1 := by
@@ -45,17 +47,25 @@ lemma erasedNodeIndex_val (cut : Fin n) (q : Fin (n - 1)) :
     · rw [ite_eq_right h, Fin.succAbove_of_le_castSucc cut q (le_of_not_gt h)]
       rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.fb84716e729b from=translated src=- shape=552b674c vocab=a9c3a3ac
+-/
 lemma crossDifferenceRootIndex_val (i : Fin n) (q : Fin (n - 1)) :
     (crossDifferenceRootIndex i q).val =
       if q.val < i.val then q.val else q.val + 1 :=
   erasedNodeIndex_val i q
 
+/--
+@isnad1 id=eq.0h3v.s6.c48eebb8ad98 from=translated src=- shape=552b674c vocab=525a2fac
+-/
 lemma crossSumRootIndex_val (j : Fin n) (q : Fin (n - 1)) :
     (crossSumRootIndex j q).val =
       if q.val < j.val then q.val else q.val + 1 :=
   erasedNodeIndex_val j q
 
-/-- A difference zero assigned to a larger label is strictly after the smaller node.-/
+/-- A difference zero assigned to a larger label is strictly after the smaller node.
+@isnad1 id=lt.3h7v.s5.a79510b47154 from=translated src=- shape=650953e3 vocab=ac9a762d
+-/
 lemma angle_lt_of_crossDifferenceRootLocation_of_lt (angles : CyclicAngles n hn)
     (i j k l : Fin n) (hkl : k < l) {t : ℝ}
     (ht : crossDifferenceRootLocation angles i j l t) : angles.angle k < t := by
@@ -65,7 +75,9 @@ lemma angle_lt_of_crossDifferenceRootLocation_of_lt (angles : CyclicAngles n hn)
   · rw [ht]
     exact angles.strictMono hkl
 
-/-- Every ordinary difference-root arc contains the next erased-label sum root.-/
+/-- Every ordinary difference-root arc contains the next erased-label sum root.
+@isnad1 id=and.5h7v.s8.f7df135ed8ba from=translated src=- shape=f7b79d0a vocab=265782a8
+-/
 theorem cross_roots_strictly_interlace_adjacent (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) (Droot Troot : Fin (n - 1) → ℝ)
     (hDloc : ∀ q, crossDifferenceRootLocation angles i j
@@ -176,7 +188,9 @@ theorem cross_roots_strictly_interlace_adjacent (angles : CyclicAngles n hn)
       · rw [hDb]
         simpa only [hrb] using hTr.2
 
-/-- The first erased-label sum root lies on one side of the entire ordinary chain.-/
+/-- The first erased-label sum root lies on one side of the entire ordinary chain.
+@isnad1 id=or.5h6v.s7.cb78befd2e42 from=translated src=- shape=8bd53ed6 vocab=de07db1b
+-/
 lemma crossSum_first_root_outside_difference_span (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) (hm : 0 < n - 1)
     (Droot Troot : Fin (n - 1) → ℝ)
@@ -222,7 +236,9 @@ lemma crossSum_first_root_outside_difference_span (angles : CyclicAngles n hn)
       Nat.le_sub_one_of_lt (crossDifferenceRootIndex i q).isLt
     exact (hupper.trans (angles.strictMono.monotone hlast)).trans_lt hT.1
 
-/-- Ordinary adjacent interlacing excludes every other sum root, including the wrap root.-/
+/-- Ordinary adjacent interlacing excludes every other sum root, including the wrap root.
+@isnad1 id=eq.6h5v.s7.209fc8a0af7f from=translated src=- shape=7568c49a vocab=e794418a
+-/
 lemma interlacing_root_index_of_mem_adjacent_closed {m : ℕ} (hm : 0 < m)
     (Droot Troot : Fin m → ℝ) (hmono : StrictMono Droot)
     (hfirst : (∀ q, Troot ⟨0, hm⟩ < Droot q) ∨
@@ -258,7 +274,9 @@ lemma interlacing_root_index_of_mem_adjacent_closed {m : ℕ} (hm : 0 < m)
       have hlower := (hmono.monotone hqp).trans_lt hinterl.1
       exact (not_lt_of_ge hl.2) hlower
 
-/-- Exhaustion and ordering remove every difference zero from an ordinary root arc.-/
+/-- Exhaustion and ordering remove every difference zero from an ordinary root arc.
+@isnad1 id=ne.6h7v.s8.bedfee2a0bef from=translated src=- shape=ca65f16f vocab=82fd2685
+-/
 lemma difference_no_zero_on_adjacent_arc (angles : CyclicAngles n hn)
     (i j : Fin n) (Droot : Fin (n - 1) → ℝ) (hmono : StrictMono Droot)
     (hbound : ∀ q, Droot q ∈ Set.Ico 0 (2 * Real.pi))
@@ -284,7 +302,9 @@ lemma difference_no_zero_on_adjacent_arc (angles : CyclicAngles n hn)
     rw [hl] at hlower
     exact (not_lt_of_ge hlower) ht.2
 
-/-- The actual sum has no other zeros on the closed interval around its interlacing root.-/
+/-- The actual sum has no other zeros on the closed interval around its interlacing root.
+@isnad1 id=ne.11h8v.s9.e1e24d0d2021 from=translated src=- shape=ef378515 vocab=ec499fcf
+-/
 lemma crossSum_no_other_zero_on_adjacent_arc (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) (hm : 0 < n - 1)
     (Droot Troot : Fin (n - 1) → ℝ) (hmono : StrictMono Droot)
@@ -312,7 +332,9 @@ lemma crossSum_no_other_zero_on_adjacent_arc (angles : CyclicAngles n hn)
     q hq l hlmem
   exact hne (hl.symm.trans (congrArg Troot hleq))
 
-/-- Actual strict interlacing transports the proved anchor to every saturated difference root.-/
+/-- Actual strict interlacing transports the proved anchor to every saturated difference root.
+@isnad1 id=ex.2h4v.s7.cc15a18be2bd from=translated src=- shape=5f3a5f20 vocab=8dc1a321
+-/
 theorem exists_crossDifference_positive_root_residues (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) :
     ∃ root : Fin (n - 1) → ℝ, Function.Injective root ∧
@@ -361,7 +383,9 @@ theorem exists_crossDifference_positive_root_residues (angles : CyclicAngles n h
   · intro t ht
     exact hTnoother t ⟨har.le.trans ht.1.le, ht.2⟩ (ne_of_gt ht.1)
 
-/-- The literal cross-gap difference/sum Wronskian is strictly negative at every real angle.-/
+/-- The literal cross-gap difference/sum Wronskian is strictly negative at every real angle.
+@isnad1 id=lt.2h5v.s5.ac4ac55fe36f from=translated src=- shape=b1b43f59 vocab=9e4a940f
+-/
 theorem crossGap_sineWronskian_neg (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) (t : ℝ) :
     sineWronskian angles.angle (crossDifferenceCoefficient i j)
@@ -377,7 +401,9 @@ theorem crossGap_sineWronskian_neg (angles : CyclicAngles n hn)
     (crossDifferenceCoefficient i j) (crossSumCoefficient i j)
     root hinj hbound hroot hresidue t
 
-/-- The phase-oriented Wronskian for the literal gap coefficients is globally negative.-/
+/-- The phase-oriented Wronskian for the literal gap coefficients is globally negative.
+@isnad1 id=lt.2h5v.s6.a6a3d45ce827 from=translated src=- shape=9bdb6e17 vocab=d132e86c
+-/
 theorem crossGap_phase_sineWronskian_neg (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) (t : ℝ) :
     crossGapPhase i j * sineWronskian angles.angle (gapCoefficient i) (gapCoefficient j) t < 0 :=

@@ -27,6 +27,9 @@ noncomputable section
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=ne.7h6v.s8.67ff49a1c99c from=translated src=- shape=55c2740f vocab=ed02e69c
+-/
 lemma sineInterpolant_critical_non_degenerate_of_ordered_zeros (hsize : 2 ≤ n)
     (θ : Fin n → ℝ) (c : Fin n → ℝ) (root : Fin (n - 1) → ℝ)
     (hmono : StrictMono root) (hbound : ∀ i, root i ∈ Set.Ico 0 (2 * Real.pi))
@@ -45,7 +48,9 @@ lemma sineInterpolant_critical_non_degenerate_of_ordered_zeros (hsize : 2 ≤ n)
 
 variable {hn : 0 < n}
 
-/-- Every full-turn critical point of an ordinary signed gap interpolant is nondegenerate.-/
+/-- Every full-turn critical point of an ordinary signed gap interpolant is nondegenerate.
+@isnad1 id=ne.5h4v.s7.5563157fe55c from=translated src=- shape=4ae62845 vocab=8d7e2989
+-/
 lemma gapInterpolant_critical_non_degenerate (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (cut : Fin n) (hcut : 0 < cut.val) (t : ℝ)
     (ht : t ∈ Set.Ico 0 (2 * Real.pi))
@@ -59,7 +64,9 @@ lemma gapInterpolant_critical_non_degenerate (angles : CyclicAngles n hn)
   exact sineInterpolant_critical_non_degenerate_of_ordered_zeros hsize _ _
     root hmono hbound hroot _ ha t ht hz
 
-/-- The same nondegeneracy holds for the wrap gap, including both parities at the pole.-/
+/-- The same nondegeneracy holds for the wrap gap, including both parities at the pole.
+@isnad1 id=ne.4h3v.s7.b7d460ae0849 from=translated src=- shape=d8525489 vocab=8f612e65
+-/
 lemma wrapInterpolant_critical_non_degenerate (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (t : ℝ) (ht : t ∈ Set.Ico 0 (2 * Real.pi))
     (hz : deriv (sineInterpolant angles.angle wrapCoefficient) t = 0) :

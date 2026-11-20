@@ -27,11 +27,17 @@ open Polynomial
 def sineFactor (a : ℝ) : ℝ[X] :=
   C (Real.cos a) * X - C (Real.sin a)
 
+/--
+@isnad1 id=eq.0h2v.s4.795bcba92315 from=translated src=- shape=79364b86 vocab=a54951a6
+-/
 @[simp]
 theorem sineFactor_eval (a x : ℝ) :
     (sineFactor a).eval x = Real.cos a * x - Real.sin a := by
   simp [sineFactor]
 
+/--
+@isnad1 id=le.0h1v.s3.4f22974da9b1 from=translated src=- shape=fcff7bf0 vocab=e169438e
+-/
 theorem sineFactor_natDegree_le (a : ℝ) : (sineFactor a).natDegree ≤ 1 := by
   apply (Polynomial.natDegree_sub_le _ _).trans
   apply max_le
@@ -39,6 +45,9 @@ theorem sineFactor_natDegree_le (a : ℝ) : (sineFactor a).natDegree ≤ 1 := by
       (Polynomial.natDegree_C_mul_X_pow_le (Real.cos a) 1)
   · simp
 
+/--
+@isnad1 id=eq.1h2v.s5.c8b01599c687 from=translated src=- shape=2dc6fdb7 vocab=170b673d
+-/
 theorem cos_mul_sineFactor_eval_tan (a t : ℝ) (ht : Real.cos t ≠ 0) :
     Real.cos t * (sineFactor a).eval (Real.tan t) = Real.sin (t - a) := by
   rw [sineFactor_eval, Real.sin_sub, ← Real.tan_mul_cos ht]
@@ -48,6 +57,9 @@ theorem cos_mul_sineFactor_eval_tan (a t : ℝ) (ht : Real.cos t ≠ 0) :
 def sineProductPolynomial {ι : Type*} (s : Finset ι) (a : ι → ℝ) : ℝ[X] :=
   ∏ i ∈ s, sineFactor (a i)
 
+/--
+@isnad1 id=le.0h3v.s4.12ecda5758f8 from=translated src=- shape=4b407fc7 vocab=1e3a030b
+-/
 theorem sineProductPolynomial_natDegree_le {ι : Type*} (s : Finset ι) (a : ι → ℝ) :
     (sineProductPolynomial s a).natDegree ≤ s.card := by
   unfold sineProductPolynomial
@@ -57,6 +69,9 @@ theorem sineProductPolynomial_natDegree_le {ι : Type*} (s : Finset ι) (a : ι 
     _ ≤ ∑ _i ∈ s, 1 := Finset.sum_le_sum fun i _hi => sineFactor_natDegree_le (a i)
     _ = s.card := by simp
 
+/--
+@isnad1 id=eq.1h4v.s6.2ed8931a00fc from=translated src=- shape=bcb3fdb9 vocab=6e283c3d
+-/
 theorem cos_pow_mul_sineProductPolynomial_eval_tan {ι : Type*}
     (s : Finset ι) (a : ι → ℝ) (t : ℝ) (ht : Real.cos t ≠ 0) :
     Real.cos t ^ s.card * (sineProductPolynomial s a).eval (Real.tan t) =
@@ -88,7 +103,9 @@ private theorem hasDerivAt_cos_pow (p : ℕ) {t : ℝ} (ht : Real.cos t ≠ 0) :
       rw [← Real.tan_mul_cos ht]
       ring
 
-/-- Differentiation is represented by the same degree-bounded Cayley operator for every `p`.-/
+/-- Differentiation is represented by the same degree-bounded Cayley operator for every `p`.
+@isnad1 id=hasderiv.1h3v.s6.9d4410b2958b from=translated src=- shape=7d69bcec vocab=50b7573f
+-/
 theorem hasDerivAt_cosineWeighted (p : ℕ) (P : ℝ[X]) (t : ℝ)
     (ht : Real.cos t ≠ 0) :
     HasDerivAt (cosineWeighted p P)

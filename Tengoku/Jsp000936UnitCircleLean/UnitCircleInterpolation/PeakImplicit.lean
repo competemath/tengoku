@@ -67,7 +67,9 @@ noncomputable section
 
 variable {n : ℕ} {hn : 0 < n} {d : ℕ}
 
-/-- A scalar vertical section determines the vertical part of the joint derivative.-/
+/-- A scalar vertical section determines the vertical part of the joint derivative.
+@isnad1 id=eq.2h5v.s9.4ee97da7b92b from=translated src=- shape=ce623a11 vocab=c513670b
+-/
 lemma fderiv_comp_inr_eq_smul_of_hasDeriv {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     {f : E × ℝ → ℝ} {u : E} {x c : ℝ}
@@ -82,7 +84,9 @@ lemma fderiv_comp_inr_eq_smul_of_hasDeriv {E : Type*}
   have hcomp := hf.hasFDerivAt.comp x hcurve
   exact hcomp.unique hx
 
-/-- Nonzero scalar multiplication is a genuinely invertible vertical differential.-/
+/-- Nonzero scalar multiplication is a genuinely invertible vertical differential.
+@isnad1 id=isinvert.1h1v.s7.4f4e649bc551 from=translated src=- shape=5d933638 vocab=ba57e02c
+-/
 lemma isInvertible_smulRight_of_ne_zero (c : ℝ) (hc : c ≠ 0) :
     (ContinuousLinearMap.smulRight (1 : ℝ →L[ℝ] ℝ) c).IsInvertible := by
   apply ContinuousLinearMap.IsInvertible.of_inverse
@@ -100,12 +104,18 @@ lemma isInvertible_smulRight_of_ne_zero (c : ℝ) (hc : c ≠ 0) :
 def orderedCriticalMap (hn : 0 < n) (k : Fin n) (x : (Fin n → ℝ) × ℝ) : ℝ :=
   deriv (sineInterpolant x.1 (cyclicGapCoefficient (physicalGapCut hn k))) x.2
 
+/--
+@isnad1 id=contdiff.1h5v.s7.5deca2fabe05 from=translated src=- shape=6d6799fb vocab=92f48d63
+-/
 lemma contDiffAt_orderedCriticalMap (m : ℕ∞ω) (angles : CyclicAngles n hn)
     (t : ℝ) (k : Fin n) :
     ContDiffAt ℝ m (orderedCriticalMap hn k) (angles.angle, t) :=
   contDiffAt_deriv_sineInterpolant_joint m angles.angle t
     (cyclicGapCoefficient (physicalGapCut hn k)) angles.phaseNodes_injective
 
+/--
+@isnad1 id=eq.1h4v.s9.a95a5f90d8c0 from=translated src=- shape=45d3ddc7 vocab=42c73ebd
+-/
 lemma orderedCriticalMap_vertical (angles : CyclicAngles n hn) (k : Fin n) (t : ℝ) :
     (fderiv ℝ (orderedCriticalMap hn k) (angles.angle, t)).comp
         (ContinuousLinearMap.inr ℝ (Fin n → ℝ) ℝ) =
@@ -118,6 +128,9 @@ lemma orderedCriticalMap_vertical (angles : CyclicAngles n hn) (k : Fin n) (t : 
       (contDiffAt_const.prodMk contDiffAt_id)
   exact (hsection.differentiableAt (by norm_num)).hasDerivAt
 
+/--
+@isnad1 id=isinvert.2h3v.s9.0c256c682c85 from=translated src=- shape=2764199a vocab=9b71c245
+-/
 lemma orderedCriticalMap_vertical_isInvertible (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (k : Fin n) :
     (fderiv ℝ (orderedCriticalMap hn k) (angles.angle, orderedPeak angles hsize k) ∘L
@@ -132,18 +145,27 @@ def localOrderedPeak (angles : CyclicAngles n hn) (hsize : 2 ≤ n) (k : Fin n) 
   (contDiffAt_orderedCriticalMap ∞ angles (orderedPeak angles hsize k) k).implicitFunction
     (by simp) (orderedCriticalMap_vertical_isInvertible angles hsize k)
 
+/--
+@isnad1 id=eq.2h3v.s5.25f6eca19a75 from=translated src=- shape=194ce3cf vocab=7c7380cb
+-/
 lemma localOrderedPeak_eq_at_base (angles : CyclicAngles n hn) (hsize : 2 ≤ n)
     (k : Fin n) : localOrderedPeak angles hsize k angles.angle = orderedPeak angles hsize k :=
   ContDiffAt.implicitFunction_apply_self
     (contDiffAt_orderedCriticalMap ∞ angles (orderedPeak angles hsize k) k)
     (by simp) (orderedCriticalMap_vertical_isInvertible angles hsize k)
 
+/--
+@isnad1 id=contdiff.2h3v.s6.06a1dafc6c49 from=translated src=- shape=0f4914c5 vocab=586adfc5
+-/
 lemma contDiffAt_localOrderedPeak (angles : CyclicAngles n hn) (hsize : 2 ≤ n)
     (k : Fin n) : ContDiffAt ℝ ∞ (localOrderedPeak angles hsize k) angles.angle :=
   ContDiffAt.contDiffAt_implicitFunction
     (contDiffAt_orderedCriticalMap ∞ angles (orderedPeak angles hsize k) k)
     (by simp) (orderedCriticalMap_vertical_isInvertible angles hsize k)
 
+/--
+@isnad1 id=eventual.2h3v.s6.0893c0c56370 from=translated src=- shape=acb41693 vocab=d6b6350c
+-/
 lemma eventually_orderedCriticalMap_localOrderedPeak_eq_zero (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (k : Fin n) :
     ∀ᶠ θ in 𝓝 angles.angle, orderedCriticalMap hn k (θ, localOrderedPeak angles hsize k θ) = 0 := by
@@ -159,11 +181,17 @@ def localParameterPeak (angles : CyclicAngles (d + 1) (Nat.succ_pos d))
     (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) (u : Fin d → ℝ) : ℝ :=
   localOrderedPeak angles hsize k (angularParameterAngles u)
 
+/--
+@isnad1 id=eq.1h3v.s6.520e55d17b3a from=translated src=- shape=4598a742 vocab=72614aae
+-/
 lemma localParameterPeak_eq_at_base (angles : CyclicAngles (d + 1) (Nat.succ_pos d))
     (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
     localParameterPeak angles hsize k angles.interiorParameters = orderedPeak angles hsize k := by
   rw [localParameterPeak, angularParameterAngles_interiorParameters, localOrderedPeak_eq_at_base]
 
+/--
+@isnad1 id=contdiff.1h3v.s7.10175319353e from=translated src=- shape=a9ce0d05 vocab=2e3a5124
+-/
 lemma contDiffAt_localParameterPeak (angles : CyclicAngles (d + 1) (Nat.succ_pos d))
     (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
     ContDiffAt ℝ ∞ (localParameterPeak angles hsize k) angles.interiorParameters := by
@@ -173,6 +201,9 @@ lemma contDiffAt_localParameterPeak (angles : CyclicAngles (d + 1) (Nat.succ_pos
     exact contDiffAt_localOrderedPeak angles hsize k
   exact hbase.comp angles.interiorParameters (contDiff_angularParameterAngles ∞).contDiffAt
 
+/--
+@isnad1 id=eventual.1h3v.s6.dcac863ecf0a from=translated src=- shape=6f685f70 vocab=fad15770
+-/
 lemma eventually_orderedCriticalMap_localParameterPeak_eq_zero
     (angles : CyclicAngles (d + 1) (Nat.succ_pos d))
     (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
@@ -190,6 +221,9 @@ def angularParameterGapRight (k : Fin (d + 1)) (u : Fin d → ℝ) : ℝ :=
   if hk : k.val + 1 < d + 1 then angularParameterAngles u ⟨k.val + 1, hk⟩
   else 2 * Real.pi
 
+/--
+@isnad1 id=continuo.0h2v.s5.dd159718f5ee from=translated src=- shape=f83f0786 vocab=a3349f5c
+-/
 lemma continuous_angularParameterGapRight (k : Fin (d + 1)) :
     Continuous (angularParameterGapRight k) := by
   unfold angularParameterGapRight
@@ -197,12 +231,17 @@ lemma continuous_angularParameterGapRight (k : Fin (d + 1)) :
   · exact continuous_angularParameterAngle _
   · exact continuous_const
 
+/--
+@isnad1 id=eq.1h3v.s6.127898882838 from=translated src=- shape=4f073610 vocab=04e854fa
+-/
 lemma angularParameterGapRight_ofParameters (u : Fin d → ℝ)
     (hu : u ∈ angularParameterDomain d) (k : Fin (d + 1)) :
     angularParameterGapRight k u = cyclicGapRight (cyclicAnglesOfParameters u hu) k :=
   rfl
 
-/-- The implicit branch remains between its actual moving node endpoints.-/
+/-- The implicit branch remains between its actual moving node endpoints.
+@isnad1 id=eventual.1h3v.s6.b6f18a37d0e3 from=translated src=- shape=0fd72809 vocab=e3d79f52
+-/
 lemma eventually_localParameterPeak_mem_gap
     (angles : CyclicAngles (d + 1) (Nat.succ_pos d))
     (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
@@ -223,7 +262,9 @@ lemma eventually_localParameterPeak_mem_gap
   exact ((continuous_angularParameterAngle k).continuousAt.eventually_lt hcont hleft).and
     (hcont.eventually_lt (continuous_angularParameterGapRight k).continuousAt hright)
 
-/-- Actual own-gap critical uniqueness identifies the local implicit branch.-/
+/-- Actual own-gap critical uniqueness identifies the local implicit branch.
+@isnad1 id=eventual.1h3v.s7.75b1c21ac2aa from=translated src=- shape=3de327ac vocab=a2818eea
+-/
 lemma eventually_localParameterPeak_eq_orderedPeak
     (angles : CyclicAngles (d + 1) (Nat.succ_pos d))
     (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
@@ -250,16 +291,25 @@ def parameterOrderedHeight (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) (u : Fin d �
   exact if hu : u ∈ angularParameterDomain d then
     orderedHeight (cyclicAnglesOfParameters u hu) hsize k else 0
 
+/--
+@isnad1 id=eq.2h3v.s6.8d12dd3be80e from=translated src=- shape=f6c84b3f vocab=6ee33f73
+-/
 lemma parameterOrderedPeak_of_mem_domain (u : Fin d → ℝ)
     (hu : u ∈ angularParameterDomain d) (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
     parameterOrderedPeak hsize k u = orderedPeak (cyclicAnglesOfParameters u hu) hsize k := by
   rw [parameterOrderedPeak, dite_eq_left hu]
 
+/--
+@isnad1 id=eq.2h3v.s6.99771742aad6 from=translated src=- shape=f6c84b3f vocab=8edce3b2
+-/
 lemma parameterOrderedHeight_of_mem_domain (u : Fin d → ℝ)
     (hu : u ∈ angularParameterDomain d) (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
     parameterOrderedHeight hsize k u = orderedHeight (cyclicAnglesOfParameters u hu) hsize k := by
   rw [parameterOrderedHeight, dite_eq_left hu]
 
+/--
+@isnad1 id=eq.2h3v.s6.6f309cfe1f40 from=translated src=- shape=352e6929 vocab=153e66b2
+-/
 lemma parameterOrderedHeight_eq_value_at_peak (u : Fin d → ℝ)
     (hu : u ∈ angularParameterDomain d) (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
     parameterOrderedHeight hsize k u =
@@ -269,6 +319,9 @@ lemma parameterOrderedHeight_eq_value_at_peak (u : Fin d → ℝ)
   rw [parameterOrderedHeight_of_mem_domain u hu, parameterOrderedPeak_of_mem_domain u hu]
   rfl
 
+/--
+@isnad1 id=eventual.1h3v.s6.cb286d0f8adc from=translated src=- shape=a9e01192 vocab=3afc50ff
+-/
 lemma eventually_parameterOrderedPeak_eq_localParameterPeak
     (angles : CyclicAngles (d + 1) (Nat.succ_pos d))
     (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
@@ -280,6 +333,9 @@ lemma eventually_parameterOrderedPeak_eq_localParameterPeak
   rw [parameterOrderedPeak_of_mem_domain u hu]
   exact (heq hu).symm
 
+/--
+@isnad1 id=contdiff.1h3v.s7.df28be5f20f6 from=translated src=- shape=2aee26ea vocab=ec2db2d7
+-/
 lemma contDiffAt_parameterOrderedPeak
     (angles : CyclicAngles (d + 1) (Nat.succ_pos d))
     (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
@@ -287,6 +343,9 @@ lemma contDiffAt_parameterOrderedPeak
   (contDiffAt_localParameterPeak angles hsize k).congr_of_eventuallyEq
     (eventually_parameterOrderedPeak_eq_localParameterPeak angles hsize k)
 
+/--
+@isnad1 id=contdiff.2h3v.s7.69d35f2dabc5 from=translated src=- shape=79c08947 vocab=00ff9d44
+-/
 lemma contDiffAt_parameterOrderedPeak_of_mem_domain (u : Fin d → ℝ)
     (hu : u ∈ angularParameterDomain d) (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
     ContDiffAt ℝ ∞ (parameterOrderedPeak hsize k) u := by
@@ -300,6 +359,9 @@ def localParameterHeight (angles : CyclicAngles (d + 1) (Nat.succ_pos d))
     (cyclicGapCoefficient (physicalGapCut (Nat.succ_pos d) k))
     (localParameterPeak angles hsize k u)
 
+/--
+@isnad1 id=contdiff.1h3v.s7.8e212ef5b66f from=translated src=- shape=a9ce0d05 vocab=f64f1b6a
+-/
 lemma contDiffAt_localParameterHeight
     (angles : CyclicAngles (d + 1) (Nat.succ_pos d))
     (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
@@ -317,6 +379,9 @@ lemma contDiffAt_localParameterHeight
       (contDiffAt_localParameterPeak angles hsize k))
   exact hcomp
 
+/--
+@isnad1 id=eventual.1h3v.s7.9b7a4bff84e6 from=translated src=- shape=3de327ac vocab=b2bca917
+-/
 lemma eventually_localParameterHeight_eq_orderedHeight
     (angles : CyclicAngles (d + 1) (Nat.succ_pos d))
     (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
@@ -328,6 +393,9 @@ lemma eventually_localParameterHeight_eq_orderedHeight
   rw [localParameterHeight, heq hu]
   rfl
 
+/--
+@isnad1 id=eventual.1h3v.s6.3ad2f63f7c04 from=translated src=- shape=a9e01192 vocab=50989327
+-/
 lemma eventually_parameterOrderedHeight_eq_localParameterHeight
     (angles : CyclicAngles (d + 1) (Nat.succ_pos d))
     (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
@@ -339,6 +407,9 @@ lemma eventually_parameterOrderedHeight_eq_localParameterHeight
   rw [parameterOrderedHeight_of_mem_domain u hu]
   exact (heq hu).symm
 
+/--
+@isnad1 id=contdiff.1h3v.s7.3aeb50ae94d4 from=translated src=- shape=2aee26ea vocab=d6df43e8
+-/
 lemma contDiffAt_parameterOrderedHeight
     (angles : CyclicAngles (d + 1) (Nat.succ_pos d))
     (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
@@ -346,6 +417,9 @@ lemma contDiffAt_parameterOrderedHeight
   (contDiffAt_localParameterHeight angles hsize k).congr_of_eventuallyEq
     (eventually_parameterOrderedHeight_eq_localParameterHeight angles hsize k)
 
+/--
+@isnad1 id=contdiff.2h3v.s7.3f50cee877a8 from=translated src=- shape=79c08947 vocab=f9007b5d
+-/
 lemma contDiffAt_parameterOrderedHeight_of_mem_domain (u : Fin d → ℝ)
     (hu : u ∈ angularParameterDomain d) (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
     ContDiffAt ℝ ∞ (parameterOrderedHeight hsize k) u := by

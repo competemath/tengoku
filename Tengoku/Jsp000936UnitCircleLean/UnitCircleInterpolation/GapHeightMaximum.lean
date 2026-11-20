@@ -30,15 +30,24 @@ variable {n : ℕ} {hn : 0 < n}
 def gapHeightMaximum (angles : CyclicAngles n hn) (hsize : 2 ≤ n) : ℝ :=
   Finset.univ.sup' ⟨⟨0, hn⟩, Finset.mem_univ _⟩ (gapHeight angles hsize)
 
+/--
+@isnad1 id=le.2h3v.s5.b7eea6c78108 from=translated src=- shape=b2977437 vocab=60c4085b
+-/
 lemma gapHeight_le_gapHeightMaximum (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (cut : Fin n) : gapHeight angles hsize cut ≤ gapHeightMaximum angles hsize :=
   Finset.le_sup' (gapHeight angles hsize) (Finset.mem_univ cut)
 
+/--
+@isnad1 id=lt.2h2v.s5.256a240ce6c7 from=translated src=- shape=a7cfc183 vocab=6616f969
+-/
 lemma one_lt_gapHeightMaximum (angles : CyclicAngles n hn) (hsize : 2 ≤ n) :
     1 < gapHeightMaximum angles hsize :=
   (one_lt_gapHeight angles hsize ⟨0, hn⟩).trans_le
     (gapHeight_le_gapHeightMaximum angles hsize ⟨0, hn⟩)
 
+/--
+@isnad1 id=le.3h3v.s7.bb361c2a4151 from=translated src=- shape=903ff5d2 vocab=a4f029b8
+-/
 lemma circleLebesgue_le_gapHeightMaximum (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (t : ℝ) (ht : t ∈ Set.Ico 0 (2 * Real.pi)) :
     lebesgueFunction (phaseNodes angles.angle) (Circle.exp t : ℂ) ≤
@@ -59,7 +68,9 @@ lemma circleLebesgue_le_gapHeightMaximum (angles : CyclicAngles n hn)
       (Set.Ioo_subset_Icc_self hinterval)).trans
         (gapHeight_le_gapHeightMaximum angles hsize ⟨0, hn⟩)
 
-/-- The original supremum over all unit complex points equals the finite gap maximum.-/
+/-- The original supremum over all unit complex points equals the finite gap maximum.
+@isnad1 id=eq.2h2v.s5.93b2070c5219 from=translated src=- shape=0b4c4b62 vocab=b8b7f6aa
+-/
 theorem angularAmplification_eq_gapHeightMaximum (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) : angularAmplification angles = gapHeightMaximum angles hsize := by
   apply le_antisymm
@@ -73,13 +84,18 @@ theorem angularAmplification_eq_gapHeightMaximum (angles : CyclicAngles n hn)
     intro cut hcut
     exact gapHeight_le_angularAmplification angles hsize cut
 
+/--
+@isnad1 id=lt.2h2v.s5.d41188f6b2dd from=translated src=- shape=f4b13ed9 vocab=a6331517
+-/
 lemma one_lt_angularAmplification (angles : CyclicAngles n hn) (hsize : 2 ≤ n) :
     1 < angularAmplification angles := by
   rw [angularAmplification_eq_gapHeightMaximum angles hsize]
   exact one_lt_gapHeightMaximum angles hsize
 
 /-- Sorting and rotation preserve the original objective, so the finite height
-formula also holds for every admissible input enumeration.-/
+formula also holds for every admissible input enumeration.
+@isnad1 id=eq.2h2v.s5.117acac472f4 from=translated src=- shape=60074bdd vocab=0f713d68
+-/
 theorem amplification_eq_ordered_gapHeightMaximum (nodes : NodeFamily n) (hn : 0 < n)
     (hsize : 2 ≤ n) :
     amplification nodes = gapHeightMaximum (orderedAngles nodes hn) hsize := by
@@ -102,6 +118,9 @@ theorem amplification_eq_ordered_gapHeightMaximum (nodes : NodeFamily n) (hn : 0
     _ = gapHeightMaximum (orderedAngles nodes hn) hsize :=
       angularAmplification_eq_gapHeightMaximum _ hsize
 
+/--
+@isnad1 id=lt.1h2v.s4.ed9fbb990baf from=translated src=- shape=bc264ae3 vocab=ea2cd438
+-/
 lemma one_lt_amplification_of_two_le (nodes : NodeFamily n) (hsize : 2 ≤ n) :
     1 < amplification nodes := by
   have hn : 0 < n := by omega

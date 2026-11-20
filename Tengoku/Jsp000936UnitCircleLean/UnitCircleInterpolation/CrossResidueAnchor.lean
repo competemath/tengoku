@@ -27,7 +27,9 @@ noncomputable section
 
 variable {n : ℕ} {hn : 0 < n}
 
-/-- No difference root location enters the right interval after the predecessor of a cut.-/
+/-- No difference root location enters the right interval after the predecessor of a cut.
+@isnad1 id=not.3h6v.s6.579b9ee06ec4 from=translated src=- shape=1cb21642 vocab=0e1b8697
+-/
 lemma crossDifferenceRootLocation_not_mem_anchor_interval (angles : CyclicAngles n hn)
     (i j k : Fin n) (hki : k ≠ i) {t : ℝ}
     (ht : crossDifferenceRootLocation angles i j k t) :
@@ -50,7 +52,9 @@ lemma crossDifferenceRootLocation_not_mem_anchor_interval (angles : CyclicAngles
       have hgreater : angles.angle i < t := by rw [ht]; exact angles.strictMono hik
       exact (not_lt_of_ge hmem.2) hgreater
 
-/-- At a positive cut, both the actual sum at the anchor and difference at its sample are `2`.-/
+/-- At a positive cut, both the actual sum at the anchor and difference at its sample are `2`.
+@isnad1 id=and.3h4v.s6.e7b101f6083e from=translated src=- shape=a53c02d5 vocab=09c3d743
+-/
 lemma crossResidueAnchor_positive_cut_values (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) (hi : 0 < i.val) :
     sineInterpolant angles.angle (crossDifferenceCoefficient i j)
@@ -70,7 +74,9 @@ lemma crossResidueAnchor_positive_cut_values (angles : CyclicAngles n hn)
       gapCoefficient_at_cut]
     norm_num
 
-/-- The positive-cut residue orientation follows from an actual right sample.-/
+/-- The positive-cut residue orientation follows from an actual right sample.
+@isnad1 id=lt.3h4v.s6.a89441ab501d from=translated src=- shape=745541e1 vocab=a11f6e65
+-/
 theorem crossResidueAnchor_positive_cut (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) (hi : 0 < i.val) :
     0 < sineInterpolant angles.angle (crossSumCoefficient i j)
@@ -103,7 +109,9 @@ theorem crossResidueAnchor_positive_cut (angles : CyclicAngles n hn)
   rw [hsum, mul_comm]
   exact hsign
 
-/-- The literal zero-cut coefficient at the last node includes the full-turn phase.-/
+/-- The literal zero-cut coefficient at the last node includes the full-turn phase.
+@isnad1 id=eq.1h1v.s5.0994d332bcc9 from=translated src=- shape=4ed7dd6d vocab=eac8b453
+-/
 lemma gapCoefficient_zero_cut_at_last (hn : 0 < n) :
     gapCoefficient (⟨0, hn⟩ : Fin n) (lastNodeIndex hn) = (-1 : ℝ) ^ (n - 1) := by
   have h := wrapCoefficient_eq_phaseSign_mul_gapCoefficient hn (lastNodeIndex hn)
@@ -120,7 +128,9 @@ lemma gapCoefficient_zero_cut_at_last (hn : 0 < n) :
       ring
     _ = (-1 : ℝ) ^ (n - 1) := by rw [← h, mul_one]
 
-/-- At cut zero, the sum at the last node equals the difference at the `2π` sample.-/
+/-- At cut zero, the sum at the last node equals the difference at the `2π` sample.
+@isnad1 id=and.3h4v.s7.5896c3f28597 from=translated src=- shape=088c8efa vocab=2d67810a
+-/
 lemma crossResidueAnchor_zero_cut_values (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) (hi : i.val = 0) :
     sineInterpolant angles.angle (crossDifferenceCoefficient i j)
@@ -146,14 +156,18 @@ lemma crossResidueAnchor_zero_cut_values (angles : CyclicAngles n hn)
     rw [zero_add, hfirst] at h
     rw [h, mul_comm]
 
-/-- Every difference root location lies at or before the last node.-/
+/-- Every difference root location lies at or before the last node.
+@isnad1 id=le.2h6v.s5.ee9cf5250452 from=translated src=- shape=21499a66 vocab=88640bd2
+-/
 lemma crossDifferenceRootLocation_le_last (angles : CyclicAngles n hn)
     (i j k : Fin n) {t : ℝ} (ht : crossDifferenceRootLocation angles i j k t) :
     t ≤ angles.angle (lastNodeIndex hn) :=
   (crossDifferenceRootLocation_le_angle angles i j k ht).trans
     (angles.strictMono.monotone (Nat.le_sub_one_of_lt k.isLt))
 
-/-- The wrap anchor also has positive residue, including the even-node phase sign.-/
+/-- The wrap anchor also has positive residue, including the even-node phase sign.
+@isnad1 id=lt.3h4v.s6.bb78ad472e87 from=translated src=- shape=bc8021bc vocab=d6751e83
+-/
 theorem crossResidueAnchor_zero_cut (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) (hi : i.val = 0) :
     0 < sineInterpolant angles.angle (crossSumCoefficient i j)
@@ -215,6 +229,9 @@ theorem crossResidueAnchor_zero_cut (angles : CyclicAngles n hn)
 def crossResidueAnchorIndex (hn : 0 < n) (i : Fin n) : Fin n :=
   if i.val = 0 then lastNodeIndex hn else gapPredecessor i
 
+/--
+@isnad1 id=eq.2h4v.s5.b2c1d150cee9 from=translated src=- shape=04db0522 vocab=23a0990b
+-/
 theorem crossResidueAnchor_is_root (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) :
     sineInterpolant angles.angle (crossDifferenceCoefficient i j)
@@ -225,7 +242,9 @@ theorem crossResidueAnchor_is_root (angles : CyclicAngles n hn)
   · rw [crossResidueAnchorIndex, ite_eq_right hi]
     exact (crossResidueAnchor_positive_cut_values angles i j hij (by omega)).1
 
-/-- A positive actual sum/derivative product exists for every pair of distinct ordered cuts.-/
+/-- A positive actual sum/derivative product exists for every pair of distinct ordered cuts.
+@isnad1 id=lt.2h4v.s6.ce0bd708e7ab from=translated src=- shape=e94a3cc7 vocab=5d4784c4
+-/
 theorem crossResidueAnchor_pos (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) :
     0 < sineInterpolant angles.angle (crossSumCoefficient i j)
@@ -238,6 +257,9 @@ theorem crossResidueAnchor_pos (angles : CyclicAngles n hn)
   · rw [crossResidueAnchorIndex, ite_eq_right hi]
     exact crossResidueAnchor_positive_cut angles i j hij (by omega)
 
+/--
+@isnad1 id=ne.2h4v.s5.91cb002bad53 from=translated src=- shape=04db0522 vocab=03988a84
+-/
 lemma crossResidueAnchor_sum_ne_zero (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) :
     sineInterpolant angles.angle (crossSumCoefficient i j)
@@ -247,7 +269,9 @@ lemma crossResidueAnchor_sum_ne_zero (angles : CyclicAngles n hn)
   rw [hzero, zero_mul] at h
   exact (lt_irrefl 0) h
 
-/-- Any saturated actual difference-root list contains the proved positive residue anchor.-/
+/-- Any saturated actual difference-root list contains the proved positive residue anchor.
+@isnad1 id=ex.5h5v.s8.1ecb123ca292 from=translated src=- shape=7cef0f26 vocab=445e6014
+-/
 theorem crossResidueAnchor_in_root_list (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) (root : Fin (n - 1) → ℝ)
     (hinj : Function.Injective root) (hbound : ∀ k, root k ∈ Set.Ico 0 (2 * Real.pi))

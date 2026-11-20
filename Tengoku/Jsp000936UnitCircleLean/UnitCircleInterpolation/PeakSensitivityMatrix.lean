@@ -76,6 +76,9 @@ def peakSensitivityMatrix (angles : CyclicAngles (d + 1) hn)
   fun i j => -deriv (orderedGapInterpolant angles i) (angles.angle j.succ) *
     sineCardinal angles.angle j.succ (orderedPeak angles hsize i)
 
+/--
+@isnad1 id=ne.2h4v.s7.7d9a7193f499 from=translated src=- shape=147d06a3 vocab=c5afd3c2
+-/
 lemma sin_orderedPeak_sub_node_ne_zero (angles : CyclicAngles (d + 1) hn)
     (hsize : 2 ≤ d + 1) (i k : Fin (d + 1)) :
     Real.sin ((orderedPeak angles hsize i - angles.angle k) / 2) ≠ 0 := by
@@ -89,11 +92,17 @@ lemma sin_orderedPeak_sub_node_ne_zero (angles : CyclicAngles (d + 1) hn)
       exact (gapInterval_of_pos angles _ hc) ▸ hpeak
     exact sin_numerator_ne_zero_on_gap angles _ hc hord k
 
+/--
+@isnad1 id=ne.2h3v.s6.cee13f238588 from=translated src=- shape=ee67336e vocab=37656e66
+-/
 lemma peakSensitivityRowFactor_ne_zero (angles : CyclicAngles (d + 1) hn)
     (hsize : 2 ≤ d + 1) (i : Fin (d + 1)) :
     peakSensitivityRowFactor angles hsize i ≠ 0 := by
   exact Finset.prod_ne_zero_iff.mpr (fun k _ => sin_orderedPeak_sub_node_ne_zero angles hsize i k)
 
+/--
+@isnad1 id=ne.1h3v.s5.1e8afc5eca68 from=translated src=- shape=4c6a8f49 vocab=1c1873b6
+-/
 lemma peakSensitivityColumnFactor_ne_zero (angles : CyclicAngles (d + 1) hn) (j : Fin d) :
     peakSensitivityColumnFactor angles j ≠ 0 := by
   apply inv_ne_zero
@@ -102,6 +111,9 @@ lemma peakSensitivityColumnFactor_ne_zero (angles : CyclicAngles (d + 1) hn) (j 
   exact sine_denominator_ne_zero angles.angle angles.phaseNodes_injective
     (Finset.mem_erase.mp hk).1.symm
 
+/--
+@isnad1 id=eq.2h4v.s6.a05b28077b19 from=translated src=- shape=26d72c56 vocab=405ef69e
+-/
 lemma peakSensitivityMatrix_apply_factorization (angles : CyclicAngles (d + 1) hn)
     (hsize : 2 ≤ d + 1) (i : Fin (d + 1)) (j : Fin d) :
     peakSensitivityMatrix angles hsize i j = peakSensitivityRowFactor angles hsize i *
@@ -119,6 +131,9 @@ lemma peakSensitivityMatrix_apply_factorization (angles : CyclicAngles (d + 1) h
     (Finset.mem_univ j.succ)]
   ring
 
+/--
+@isnad1 id=eq.2h2v.s8.eafd15abcbfd from=translated src=- shape=aeb73256 vocab=0215b9d6
+-/
 lemma peakSensitivityMatrix_factorization (angles : CyclicAngles (d + 1) hn)
     (hsize : 2 ≤ d + 1) :
     peakSensitivityMatrix angles hsize = Matrix.diagonal (peakSensitivityRowFactor angles hsize) *
@@ -127,6 +142,9 @@ lemma peakSensitivityMatrix_factorization (angles : CyclicAngles (d + 1) hn)
   simp only [Matrix.diagonal_mul, Matrix.mul_diagonal]
   exact peakSensitivityMatrix_apply_factorization angles hsize i j
 
+/--
+@isnad1 id=ne.2h3v.s6.2f887227bfb3 from=translated src=- shape=9677d2de vocab=5018a0bc
+-/
 theorem peakQuotientNodeMatrix_deleted_det_ne_zero (angles : CyclicAngles (d + 1) hn)
     (hsize : 2 ≤ d + 1) (omitted : Fin (d + 1)) :
     ((peakQuotientNodeMatrix angles hsize).submatrix omitted.succAbove id).det ≠ 0 := by
@@ -135,7 +153,9 @@ theorem peakQuotientNodeMatrix_deleted_det_ne_zero (angles : CyclicAngles (d + 1
     (angles.strictMono.injective.comp (Fin.succ_injective d))
     (fun j => ⟨angles.nonneg j.succ, angles.lt_two_pi j.succ⟩)
 
-/-- Each actual sensitivity minor is its actual quotient minor times nonzero factors.-/
+/-- Each actual sensitivity minor is its actual quotient minor times nonzero factors.
+@isnad1 id=eq.2h3v.s7.cc76c757ae38 from=translated src=- shape=55eb2669 vocab=8155808f
+-/
 theorem peakSensitivityMatrix_deleted_det_factorization (angles : CyclicAngles (d + 1) hn)
     (hsize : 2 ≤ d + 1) (omitted : Fin (d + 1)) :
     ((peakSensitivityMatrix angles hsize).submatrix omitted.succAbove id).det =
@@ -156,7 +176,9 @@ theorem peakSensitivityMatrix_deleted_det_factorization (angles : CyclicAngles (
   rw [hmatrix, Matrix.det_mul, Matrix.det_mul]
   simp only [R, Q, C, Matrix.det_diagonal]
 
-/-- All maximal minors of the literal actual node-sensitivity matrix are nonzero.-/
+/-- All maximal minors of the literal actual node-sensitivity matrix are nonzero.
+@isnad1 id=ne.2h3v.s6.500ad9ab66dd from=translated src=- shape=9677d2de vocab=758951ec
+-/
 theorem peakSensitivityMatrix_deleted_det_ne_zero (angles : CyclicAngles (d + 1) hn)
     (hsize : 2 ≤ d + 1) (omitted : Fin (d + 1)) :
     ((peakSensitivityMatrix angles hsize).submatrix omitted.succAbove id).det ≠ 0 := by

@@ -77,6 +77,9 @@ def HasCyclicRootBound (p : ℕ) (V : Submodule ℝ (ℝ → ℝ)) : Prop :=
     ∀ root : Fin m → ℝ, Function.Injective root →
       (∀ i, root i ∈ Set.Ico 0 (2 * Real.pi)) → (∀ i, f (root i) = 0) → m ≤ p
 
+/--
+@isnad1 id=hascycli.0h1v.s2.2216eb16badb from=translated src=- shape=9d44d080 vocab=31137947
+-/
 lemma homogeneousTrigSpace_hasCyclicRootBound (p : ℕ) :
     HasCyclicRootBound p (homogeneousTrigSpace p) := by
   intro m f hf hne root hinj hbound hroot
@@ -169,7 +172,9 @@ private lemma sum_eq_first_add_negative_add_positive {d : ℕ}
   ring
 
 /-- The source-normalized relation pattern follows from continuity and the literal
-circular root bound. This theorem assumes no determinant or minor property.-/
+circular root bound. This theorem assumes no determinant or minor property.
+@isnad1 id=or.11h5v.s10.538354e7d479 from=translated src=- shape=c9994997 vocab=79d12519
+-/
 theorem cyclic_relation_normalized_sign_pattern {d : ℕ} (hd : 0 < d)
     (V : Submodule ℝ (ℝ → ℝ))
     (hcontinuous : ∀ f ∈ V, Continuous f)
@@ -531,7 +536,9 @@ private lemma cyclicRelationNormalizer_sq {d : ℕ} (i : Fin (d + 1)) :
   · nlinarith [sq_negOnePow i.val]
 
 /-- In a nonzero relation among a full-circle checkerboard family, the adjusted
-coefficients `(-1)^i aᵢ` are all strictly positive or all strictly negative.-/
+coefficients `(-1)^i aᵢ` are all strictly positive or all strictly negative.
+@isnad1 id=or.10h5v.s9.eef5040bf954 from=translated src=- shape=fee0e5da vocab=79d12519
+-/
 theorem cyclic_relation_coherent_sign {d : ℕ} (hd : 0 < d)
     (V : Submodule ℝ (ℝ → ℝ))
     (hcontinuous : ∀ f ∈ V, Continuous f)
@@ -607,7 +614,9 @@ theorem cyclic_relation_coherent_sign {d : ℕ} (hd : 0 < d)
     · simpa only [c, cyclicRelationNormalizer, ite_eq_right hi] using h.2 i hi
 
 /-- The explicit homogeneous-degree instance of the generic full-circle relation theorem.
-The literal peak sign table remains an input to be proved for actual quotients.-/
+The literal peak sign table remains an input to be proved for actual quotients.
+@isnad1 id=or.8h4v.s9.7796d823e01a from=translated src=- shape=37413cd0 vocab=232427c4
+-/
 theorem homogeneousTrig_relation_coherent_sign {d : ℕ} (hd : 0 < d)
     (P : Fin (d + 1) → ℝ[X]) (hdegree : ∀ i, (P i).natDegree ≤ d - 1)
     (τ : Fin (d + 1) → ℝ) (hτ : StrictMono τ)
@@ -627,7 +636,9 @@ theorem homogeneousTrig_relation_coherent_sign {d : ℕ} (hd : 0 < d)
     (fun i => homogeneousTrig_mem_space (d - 1) (P i) (hdegree i))
     τ hτ hbound hdiag hoff a hrel ha
 
-/-- Every coefficient of a nonzero homogeneous circular relation is nonzero.-/
+/-- Every coefficient of a nonzero homogeneous circular relation is nonzero.
+@isnad1 id=ne.8h5v.s9.9043f6cfde23 from=translated src=- shape=0697983f vocab=232427c4
+-/
 theorem homogeneousTrig_relation_coeff_ne_zero {d : ℕ} (hd : 0 < d)
     (P : Fin (d + 1) → ℝ[X]) (hdegree : ∀ i, (P i).natDegree ≤ d - 1)
     (τ : Fin (d + 1) → ℝ) (hτ : StrictMono τ)
@@ -648,7 +659,9 @@ theorem homogeneousTrig_relation_coeff_ne_zero {d : ℕ} (hd : 0 < d)
     simp [hi] at this
 
 /-- A relation omitting even one member is trivial; equivalently every row-deleted
-homogeneous circular family is linearly independent as functions.-/
+homogeneous circular family is linearly independent as functions.
+@isnad1 id=eq.8h5v.s9.70a524f762fd from=translated src=- shape=d092af91 vocab=232427c4
+-/
 theorem homogeneousTrig_relation_eq_zero_of_missing_coeff {d : ℕ} (hd : 0 < d)
     (P : Fin (d + 1) → ℝ[X]) (hdegree : ∀ i, (P i).natDegree ≤ d - 1)
     (τ : Fin (d + 1) → ℝ) (hτ : StrictMono τ)

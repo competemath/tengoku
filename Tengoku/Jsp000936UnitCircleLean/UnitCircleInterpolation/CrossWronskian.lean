@@ -28,6 +28,9 @@ noncomputable section
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=eq.0h5v.s7.499a859f8ccc from=translated src=- shape=ce2124b1 vocab=4d2d5aab
+-/
 lemma deriv_crossDifferenceInterpolant (θ : Fin n → ℝ) (i j : Fin n) (t : ℝ) :
     deriv (sineInterpolant θ (crossDifferenceCoefficient i j)) t =
       deriv (sineInterpolant θ (gapCoefficient i)) t -
@@ -45,6 +48,9 @@ lemma deriv_crossDifferenceInterpolant (θ : Fin n → ℝ) (i j : Fin n) (t : �
   rw [← heq] at h
   simpa only [deriv_sineInterpolant] using h.deriv
 
+/--
+@isnad1 id=eq.0h5v.s7.908cab27372e from=translated src=- shape=ce2124b1 vocab=7aaa32e7
+-/
 lemma deriv_crossSumInterpolant (θ : Fin n → ℝ) (i j : Fin n) (t : ℝ) :
     deriv (sineInterpolant θ (crossSumCoefficient i j)) t =
       deriv (sineInterpolant θ (gapCoefficient i)) t +
@@ -62,7 +68,9 @@ lemma deriv_crossSumInterpolant (θ : Fin n → ℝ) (i j : Fin n) (t : ℝ) :
   rw [← heq] at h
   simpa only [deriv_sineInterpolant] using h.deriv
 
-/-- `W(F_i - ε F_j, F_i + ε F_j) = 2 ε W(F_i, F_j)` globally.-/
+/-- `W(F_i - ε F_j, F_i + ε F_j) = 2 ε W(F_i, F_j)` globally.
+@isnad1 id=eq.0h5v.s6.dde4484523d6 from=translated src=- shape=82db4b37 vocab=49d8f3fc
+-/
 lemma crossWronskian_eq (θ : Fin n → ℝ) (i j : Fin n) (t : ℝ) :
     sineWronskian θ (crossDifferenceCoefficient i j) (crossSumCoefficient i j) t =
       2 * crossGapPhase i j * sineWronskian θ (gapCoefficient i) (gapCoefficient j) t := by
@@ -71,6 +79,9 @@ lemma crossWronskian_eq (θ : Fin n → ℝ) (i j : Fin n) (t : ℝ) :
     deriv_crossDifferenceInterpolant, deriv_crossSumInterpolant]
   ring
 
+/--
+@isnad1 id=iff.0h5v.s6.c51a19a34279 from=translated src=- shape=0836dc33 vocab=887adeed
+-/
 lemma crossWronskian_neg_iff (θ : Fin n → ℝ) (i j : Fin n) (t : ℝ) :
     sineWronskian θ (crossDifferenceCoefficient i j) (crossSumCoefficient i j) t < 0 ↔
       crossGapPhase i j * sineWronskian θ (gapCoefficient i) (gapCoefficient j) t < 0 := by
@@ -78,7 +89,9 @@ lemma crossWronskian_neg_iff (θ : Fin n → ℝ) (i j : Fin n) (t : ℝ) :
   constructor <;> intro h <;> nlinarith
 
 /-- At a critical point of the first gap interpolant, the other derivative's
-orientation is the sign prescribed by the phase-oriented Wronskian.-/
+orientation is the sign prescribed by the phase-oriented Wronskian.
+@isnad1 id=lt.2h5v.s7.14e7dbd32f48 from=translated src=- shape=c1e5daaf vocab=f3a9bc60
+-/
 lemma crossGap_critical_derivative_orientation (θ : Fin n → ℝ) (i j : Fin n) (t : ℝ)
     (hW : sineWronskian θ (crossDifferenceCoefficient i j) (crossSumCoefficient i j) t < 0)
     (hcritical : deriv (sineInterpolant θ (gapCoefficient i)) t = 0) :
@@ -87,6 +100,9 @@ lemma crossGap_critical_derivative_orientation (θ : Fin n → ℝ) (i j : Fin n
   have h := (crossWronskian_neg_iff θ i j t).mp hW
   simpa only [sineWronskian, hcritical, zero_mul, sub_zero, mul_assoc] using h
 
+/--
+@isnad1 id=ne.2h5v.s6.bf2c581facb2 from=translated src=- shape=bdad2192 vocab=107539e8
+-/
 lemma crossGap_no_common_critical (θ : Fin n → ℝ) (i j : Fin n) (t : ℝ)
     (hW : sineWronskian θ (crossDifferenceCoefficient i j) (crossSumCoefficient i j) t < 0)
     (hcritical : deriv (sineInterpolant θ (gapCoefficient i)) t = 0) :

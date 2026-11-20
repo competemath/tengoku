@@ -21,6 +21,9 @@ noncomputable section
 
 variable {d : ℕ}
 
+/--
+@isnad1 id=eq.0h5v.s8.852986ae7b1c from=translated src=- shape=b15d79fa vocab=c2450f96
+-/
 lemma angularParameterAngles_smul_add (u v : Fin d → ℝ) (a b : ℝ) :
     angularParameterAngles (a • u + b • v) =
       a • angularParameterAngles u + b • angularParameterAngles v := by
@@ -29,6 +32,9 @@ lemma angularParameterAngles_smul_add (u v : Fin d → ℝ) (a b : ℝ) :
     simp only [angularParameterAngles_zero, angularParameterAngles_succ,
       Pi.add_apply, Pi.smul_apply, smul_eq_mul, mul_zero, add_zero]
 
+/--
+@isnad1 id=convex.0h1v.s4.8801d82f180e from=translated src=- shape=c70bf99f vocab=2247dabb
+-/
 theorem convex_angularParameterDomain (d : ℕ) : Convex ℝ (angularParameterDomain d) := by
   intro u hu v hv a b ha hb hab
   constructor
@@ -47,6 +53,9 @@ theorem convex_angularParameterDomain (d : ℕ) : Convex ℝ (angularParameterDo
   · intro i
     exact (convex_Iio (2 * Real.pi)) (hu.2 i) (hv.2 i) ha hb hab
 
+/--
+@isnad1 id=isprecon.0h1v.s4.3cff9b9203d7 from=translated src=- shape=fe6f4f64 vocab=0950394b
+-/
 theorem isPreconnected_angularParameterDomain (d : ℕ) :
     IsPreconnected (angularParameterDomain d) :=
   (convex_angularParameterDomain d).isPreconnected
@@ -55,6 +64,9 @@ theorem isPreconnected_angularParameterDomain (d : ℕ) :
 def regularAngularParameters (d : ℕ) : Fin d → ℝ :=
   fun i => 2 * Real.pi * ((i.succ.val : ℝ) / ((d + 1 : ℕ) : ℝ))
 
+/--
+@isnad1 id=eq.0h2v.s6.1e9e394b9dfe from=translated src=- shape=67b7b8d0 vocab=17d7ff95
+-/
 lemma angularParameterAngles_regular (d : ℕ) (i : Fin (d + 1)) :
     angularParameterAngles (regularAngularParameters d) i =
       2 * Real.pi * ((i.val : ℝ) / ((d + 1 : ℕ) : ℝ)) := by
@@ -62,6 +74,9 @@ lemma angularParameterAngles_regular (d : ℕ) (i : Fin (d + 1)) :
   · simp only [angularParameterAngles_zero, Fin.val_zero, Nat.cast_zero, zero_div, mul_zero]
   · rfl
 
+/--
+@isnad1 id=mem.0h1v.s4.03d9b7bf1de1 from=translated src=- shape=7f2c1417 vocab=c5a5e639
+-/
 theorem regularAngularParameters_mem_domain (d : ℕ) :
     regularAngularParameters d ∈ angularParameterDomain d := by
   constructor
@@ -73,9 +88,15 @@ theorem regularAngularParameters_mem_domain (d : ℕ) :
   · intro i
     exact (regular_angle_mem_Ico (d + 1) (Nat.succ_pos d) i.succ).2
 
+/--
+@isnad1 id=nonempty.0h1v.s3.7df68624b406 from=translated src=- shape=fe6f4f64 vocab=6c5df7a5
+-/
 theorem angularParameterDomain_nonempty (d : ℕ) : (angularParameterDomain d).Nonempty :=
   ⟨regularAngularParameters d, regularAngularParameters_mem_domain d⟩
 
+/--
+@isnad1 id=isconnec.0h1v.s4.ac582471efd5 from=translated src=- shape=fe6f4f64 vocab=5993013e
+-/
 theorem isConnected_angularParameterDomain (d : ℕ) : IsConnected (angularParameterDomain d) :=
   (convex_angularParameterDomain d).isConnected (angularParameterDomain_nonempty d)
 

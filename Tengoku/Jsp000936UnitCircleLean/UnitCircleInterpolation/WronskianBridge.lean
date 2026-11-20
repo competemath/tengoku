@@ -35,7 +35,9 @@ open Polynomial
 def polynomialWronskian (P Q : ℝ[X]) (x : ℝ) : ℝ :=
   P.eval x * Q.derivative.eval x - P.derivative.eval x * Q.eval x
 
-/-- The common weighted differentiation term cancels for two polynomials.-/
+/-- The common weighted differentiation term cancels for two polynomials.
+@isnad1 id=eq.0h4v.s6.42b4d9deda4b from=translated src=- shape=39d2ef76 vocab=43e89f00
+-/
 lemma cayleyOperator_wronskian (p : ℕ) (P Q : ℝ[X]) (x : ℝ) :
     P.eval x * (cayleyOperator p Q).eval x -
         (cayleyOperator p P).eval x * Q.eval x =
@@ -50,7 +52,9 @@ def sineWronskian (θ a b : Fin n → ℝ) (t : ℝ) : ℝ :=
   sineInterpolant θ a t * deriv (sineInterpolant θ b) t -
     deriv (sineInterpolant θ a) t * sineInterpolant θ b t
 
-/-- Exact Wronskian identity on a tangent chart; the chart-pole hypothesis is explicit.-/
+/-- Exact Wronskian identity on a tangent chart; the chart-pole hypothesis is explicit.
+@isnad1 id=eq.1h5v.s7.21480d7b99b4 from=translated src=- shape=4342d7b5 vocab=cddddd26
+-/
 lemma sineWronskian_eq_polynomialWronskian_on_chart
     (θ a b : Fin n → ℝ) (t : ℝ) (ht : Real.cos (t / 2) ≠ 0) :
     sineWronskian θ a b t =
@@ -66,7 +70,9 @@ lemma sineWronskian_eq_polynomialWronskian_on_chart
     cayleyOperator_eval, cayleyOperator_eval, polynomialWronskian]
   ring
 
-/-- The chart factor is strictly positive, including when the degree bound is zero.-/
+/-- The chart factor is strictly positive, including when the degree bound is zero.
+@isnad1 id=lt.1h2v.s7.61892eb02ffa from=translated src=- shape=abfee801 vocab=a21a1ad3
+-/
 lemma sineWronskian_chart_factor_pos (n : ℕ) (t : ℝ)
     (ht : Real.cos (t / 2) ≠ 0) :
     0 < (Real.cos (t / 2) ^ (n - 1)) ^ 2 *
@@ -77,7 +83,9 @@ lemma sineWronskian_chart_factor_pos (n : ℕ) (t : ℝ)
     add_pos_of_pos_of_nonneg (by norm_num) (sq_nonneg _)
   exact div_pos (mul_pos hcos htan) (by norm_num)
 
-/-- The negative-Wronskian condition is equivalent on the stated coordinate chart.-/
+/-- The negative-Wronskian condition is equivalent on the stated coordinate chart.
+@isnad1 id=iff.1h5v.s6.f7a71afcd1f8 from=translated src=- shape=5bd3e88b vocab=8267da58
+-/
 lemma sineWronskian_neg_on_chart_iff
     (θ a b : Fin n → ℝ) (t : ℝ) (ht : Real.cos (t / 2) ≠ 0) :
     sineWronskian θ a b t < 0 ↔
@@ -96,7 +104,9 @@ lemma sineWronskian_neg_on_chart_iff
     mul_lt_mul_iff_right₀ (sineWronskian_chart_factor_pos n t ht)
   simpa only [mul_zero] using hiff
 
-/-- A known polynomial Wronskian sign transfers to the literal sine interpolants on chart.-/
+/-- A known polynomial Wronskian sign transfers to the literal sine interpolants on chart.
+@isnad1 id=lt.2h5v.s6.4814e7d60269 from=translated src=- shape=0a6f4f3f vocab=8267da58
+-/
 lemma sineWronskian_neg_of_polynomialWronskian_neg
     (θ a b : Fin n → ℝ) (t : ℝ) (ht : Real.cos (t / 2) ≠ 0)
     (hW : polynomialWronskian (interpolantPolynomial θ a)

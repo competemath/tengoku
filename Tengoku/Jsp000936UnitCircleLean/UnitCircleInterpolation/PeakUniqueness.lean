@@ -32,10 +32,16 @@ structure StrictIntervalPeak (f : ℝ → ℝ) (a b peak : ℝ) : Prop where
   isMaxOn : IsMaxOn f (Set.Icc a b) peak
   eq_iff : ∀ x ∈ Set.Icc a b, f x = f peak ↔ x = peak
 
+/--
+@isnad1 id=islocalm.1h4v.s4.91a640d84683 from=translated src=- shape=bb646b49 vocab=94b82168
+-/
 lemma StrictIntervalPeak.isLocalMax {f : ℝ → ℝ} {a b peak : ℝ}
     (hpeak : StrictIntervalPeak f a b peak) : IsLocalMax f peak :=
   hpeak.isMaxOn.isLocalMax (Icc_mem_nhds hpeak.mem_Ioo.1 hpeak.mem_Ioo.2)
 
+/--
+@isnad1 id=lt.3h5v.s5.cd5385070c9c from=translated src=- shape=641aa982 vocab=a78645d3
+-/
 lemma StrictIntervalPeak.lt_of_ne {f : ℝ → ℝ} {a b peak x : ℝ}
     (hpeak : StrictIntervalPeak f a b peak) (hx : x ∈ Set.Icc a b) (hne : x ≠ peak) :
     f x < f peak := by
@@ -43,6 +49,9 @@ lemma StrictIntervalPeak.lt_of_ne {f : ℝ → ℝ} {a b peak x : ℝ}
   intro heq
   exact hne ((hpeak.eq_iff x hx).mp heq)
 
+/--
+@isnad1 id=lt.3h4v.s7.d6e0ce5ae964 from=translated src=- shape=ce46e6ac vocab=03da884b
+-/
 lemma StrictIntervalPeak.second_deriv_neg {f : ℝ → ℝ} {a b peak : ℝ}
     (hpeak : StrictIntervalPeak f a b peak) (hcont : ContinuousOn f (Set.Icc a b))
     (hne : deriv (deriv f) peak ≠ 0) : deriv (deriv f) peak < 0 :=
@@ -52,7 +61,9 @@ lemma StrictIntervalPeak.second_deriv_neg {f : ℝ → ℝ} {a b peak : ℝ}
 
 /-- Compactness and an interior overshoot turn uniqueness of critical points
 into a unique strict maximum. The common endpoint level can be `1` for a node
-gap, or `0` for the larger interval between adjacent zeros.-/
+gap, or `0` for the larger interval between adjacent zeros.
+@isnad1 id=and.7h5v.s7.d0c7ddf28129 from=translated src=- shape=10c7dac6 vocab=75045e9a
+-/
 theorem strict_interval_peak_of_unique_critical {f : ℝ → ℝ} {a b peak level : ℝ}
     (hab : a < b) (hcont : ContinuousOn f (Set.Icc a b))
     (hdiff : DifferentiableOn ℝ f (Set.Ioo a b))
@@ -98,7 +109,9 @@ theorem strict_interval_peak_of_unique_critical {f : ℝ → ℝ} {a b peak leve
     · rintro rfl
       rfl
 
-/-- The node-gap specialization with the literal endpoint values `1`.-/
+/-- The node-gap specialization with the literal endpoint values `1`.
+@isnad1 id=and.7h4v.s7.98e4fb63f7f9 from=translated src=- shape=66cf3cb0 vocab=75045e9a
+-/
 theorem strict_gap_peak_of_unique_critical {f : ℝ → ℝ} {a b peak : ℝ}
     (hab : a < b) (hcont : ContinuousOn f (Set.Icc a b))
     (hdiff : DifferentiableOn ℝ f (Set.Ioo a b))

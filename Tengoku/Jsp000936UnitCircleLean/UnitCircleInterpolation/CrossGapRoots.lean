@@ -45,7 +45,9 @@ def crossDifferenceRootLocation (angles : CyclicAngles n hn) (i j k : Fin n) (t 
     t ∈ Set.Ioo (angles.angle (gapPredecessor k)) (angles.angle k)
   else t = angles.angle k
 
-/-- Actual opposite nodal values construct a root in every interior difference gap.-/
+/-- Actual opposite nodal values construct a root in every interior difference gap.
+@isnad1 id=ex.3h5v.s6.f975a0b99ce5 from=translated src=- shape=ca2d0afd vocab=964edb7f
+-/
 theorem exists_crossDifference_root_on_gap (angles : CyclicAngles n hn)
     (i j k : Fin n) (hik : i < k) (hkj : k < j) :
     ∃ t, t ∈ Set.Ioo (angles.angle (gapPredecessor k)) (angles.angle k) ∧
@@ -67,7 +69,9 @@ theorem exists_crossDifference_root_on_gap (angles : CyclicAngles n hn)
   · exact (crossDifferenceInterpolant_at_node_ne_zero_iff angles i j
       (gapPredecessor k) (hik.trans hkj).le).mpr ⟨hip, hpk.trans hkj⟩
 
-/-- Every index except `i` determines one proved root location.-/
+/-- Every index except `i` determines one proved root location.
+@isnad1 id=ex.3h5v.s6.58f51d7d5e48 from=translated src=- shape=e637f89d vocab=a834ee42
+-/
 theorem exists_crossDifference_root_at_index (angles : CyclicAngles n hn)
     (i j k : Fin n) (hij : i < j) (hki : k ≠ i) :
     ∃ t, crossDifferenceRootLocation angles i j k t ∧
@@ -85,6 +89,9 @@ theorem exists_crossDifference_root_at_index (angles : CyclicAngles n hn)
     exact ⟨angles.angle k, by simp [crossDifferenceRootLocation, hk],
       crossDifferenceInterpolant_at_node_outside angles i j k hij.le houtside⟩
 
+/--
+@isnad1 id=le.2h6v.s5.050a76dba198 from=translated src=- shape=86f86d8c vocab=728d1698
+-/
 lemma crossDifferenceRootLocation_le_angle (angles : CyclicAngles n hn)
     (i j k : Fin n) {t : ℝ} (ht : crossDifferenceRootLocation angles i j k t) :
     t ≤ angles.angle k := by
@@ -93,6 +100,9 @@ lemma crossDifferenceRootLocation_le_angle (angles : CyclicAngles n hn)
   · exact ht.2.le
   · exact ht.le
 
+/--
+@isnad1 id=mem.2h6v.s6.f6b780c09829 from=translated src=- shape=d250aa1e vocab=59d6aeb3
+-/
 lemma crossDifferenceRootLocation_mem_Ico (angles : CyclicAngles n hn)
     (i j k : Fin n) {t : ℝ} (ht : crossDifferenceRootLocation angles i j k t) :
     t ∈ Set.Ico 0 (2 * Real.pi) := by
@@ -102,7 +112,9 @@ lemma crossDifferenceRootLocation_mem_Ico (angles : CyclicAngles n hn)
   · rw [ht]
     exact ⟨angles.nonneg k, angles.lt_two_pi k⟩
 
-/-- The chosen roots on the erased index set are strictly ordered, including the nodal roots.-/
+/-- The chosen roots on the erased index set are strictly ordered, including the nodal roots.
+@isnad1 id=ex.2h4v.s8.507cf3d92647 from=translated src=- shape=a2a08010 vocab=107c4888
+-/
 theorem exists_crossDifference_roots_on_erase (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) :
     ∃ root : {k : Fin n // k ∈ (Finset.univ.erase i : Finset (Fin n))} → ℝ,
@@ -136,17 +148,25 @@ theorem exists_crossDifference_roots_on_erase (angles : CyclicAngles n hn)
 def crossDifferenceRootIndex (i : Fin n) (k : Fin (n - 1)) : Fin n :=
   ((Finset.univ.erase i : Finset (Fin n)).orderIsoOfFin (by simp) k).val
 
+/--
+@isnad1 id=strictmo.0h2v.s5.4ae96ddf6597 from=translated src=- shape=d8ecb191 vocab=3bbdc0c0
+-/
 lemma crossDifferenceRootIndex_strictMono (i : Fin n) :
     StrictMono (crossDifferenceRootIndex i) := by
   intro k l hkl
   exact ((Finset.univ.erase i : Finset (Fin n)).orderIsoOfFin (by simp)).strictMono hkl
 
+/--
+@isnad1 id=ne.0h3v.s4.3a7b9526c2e9 from=translated src=- shape=57487d4e vocab=0fe49ad3
+-/
 lemma crossDifferenceRootIndex_ne_cut (i : Fin n) (k : Fin (n - 1)) :
     crossDifferenceRootIndex i k ≠ i :=
   (Finset.mem_erase.mp
     (((Finset.univ.erase i : Finset (Fin n)).orderIsoOfFin (by simp) k).property)).1
 
-/-- The difference has exactly `n - 1` explicitly located, ordered, full-turn zeros.-/
+/-- The difference has exactly `n - 1` explicitly located, ordered, full-turn zeros.
+@isnad1 id=ex.2h4v.s7.98ead87367b3 from=translated src=- shape=d85ed789 vocab=10dc72fd
+-/
 theorem exists_crossDifference_ordered_roots_with_locations (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) :
     ∃ root : Fin (n - 1) → ℝ, StrictMono root ∧
@@ -163,6 +183,9 @@ theorem exists_crossDifference_ordered_roots_with_locations (angles : CyclicAngl
   intro k
   exact hloc (e k)
 
+/--
+@isnad1 id=ne.2h4v.s5.f1cf8c85a476 from=translated src=- shape=1f561300 vocab=86a7baa1
+-/
 lemma crossDifferencePolynomial_ne_zero (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) :
     interpolantPolynomial angles.angle (crossDifferenceCoefficient i j) ≠ 0 := by
@@ -170,7 +193,9 @@ lemma crossDifferencePolynomial_ne_zero (angles : CyclicAngles n hn)
     (fun k => ⟨angles.nonneg k, angles.lt_two_pi k⟩) (crossDifferenceCoefficient i j) i
   exact (crossDifferenceCoefficient_ne_zero_iff i j i hij.le).mpr ⟨le_rfl, hij⟩
 
-/-- These actual roots saturate the circle bound, so all are simple and all zeros are listed.-/
+/-- These actual roots saturate the circle bound, so all are simple and all zeros are listed.
+@isnad1 id=ex.2h4v.s8.2391db29616b from=translated src=- shape=13ed6302 vocab=7c3d53c1
+-/
 theorem exists_crossDifference_saturated_roots_with_locations (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) :
     ∃ root : Fin (n - 1) → ℝ, StrictMono root ∧

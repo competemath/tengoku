@@ -34,7 +34,9 @@ namespace UnitCircleInterpolation
 noncomputable section
 
 /-- Saturation forces a polynomial to be a nonzero constant multiple of the
-product of its listed distinct roots.-/
+product of its listed distinct roots.
+@isnad1 id=ex.4h3v.s7.fa081ca4b6f3 from=translated src=- shape=8582bf40 vocab=2c4e2ff6
+-/
 lemma polynomial_eq_finiteRootProduct_mul_C {m : ℕ}
     (P : ℝ[X]) (hP : P ≠ 0) (r : Fin m → ℝ) (hinj : Function.Injective r)
     (hdegree : P.natDegree ≤ m) (hroot : ∀ i, P.eval (r i) = 0) :
@@ -72,7 +74,9 @@ lemma polynomial_eq_finiteRootProduct_mul_C {m : ℕ}
     exact hQ
 
 /-- The finite Markov theorem stated for an arbitrary saturated polynomial,
-with the same orientation as `polynomialWronskian`.-/
+with the same orientation as `polynomialWronskian`.
+@isnad1 id=lt.7h5v.s7.4aeef3abe9b5 from=translated src=- shape=0df3254e vocab=37ad2573
+-/
 lemma polynomialWronskian_neg_of_saturated_root_residues {m : ℕ} (hm : 0 < m)
     (P Q : ℝ[X]) (hP : P ≠ 0) (r : Fin m → ℝ) (hinj : Function.Injective r)
     (hPdegree : P.natDegree ≤ m) (hQdegree : Q.natDegree ≤ m)
@@ -87,7 +91,9 @@ lemma polynomialWronskian_neg_of_saturated_root_residues {m : ℕ} (hm : 0 < m)
 variable {n : ℕ}
 
 /-- A root with a positive trigonometric residue gives a positive polynomial
-residue on every chart containing that root.-/
+residue on every chart containing that root.
+@isnad1 id=lt.3h5v.s8.6661dcfff28f from=translated src=- shape=f83d4ea6 vocab=6833314a
+-/
 lemma interpolantPolynomial_residue_pos_on_chart
     (θ d c : Fin n → ℝ) (r : ℝ) (hcos : Real.cos (r / 2) ≠ 0)
     (hroot : sineInterpolant θ d r = 0)
@@ -107,7 +113,9 @@ lemma interpolantPolynomial_residue_pos_on_chart
   nlinarith
 
 /-- The direct finite-chart interface keeps injectivity and all root chart
-conditions explicit. The root list has exactly the degree bound `n - 1`.-/
+conditions explicit. The root list has exactly the degree bound `n - 1`.
+@isnad1 id=lt.6h6v.s8.5f17ab51085a from=translated src=- shape=57aa0c56 vocab=69004538
+-/
 lemma sineWronskian_neg_on_chart_of_saturated_root_residues
     (hn : 2 ≤ n) (θ d c : Fin n → ℝ) (root : Fin (n - 1) → ℝ)
     (htan : Function.Injective (fun i => Real.tan (root i / 2)))
@@ -142,7 +150,9 @@ lemma sineWronskian_neg_on_chart_of_saturated_root_residues
 
 /-- Conditional Markov transfer on the complete circle. Every evaluation angle,
 including an original Cayley pole, is covered by a translation that avoids all
-`n - 1` roots and that evaluation point simultaneously.-/
+`n - 1` roots and that evaluation point simultaneously.
+@isnad1 id=lt.5h6v.s7.c71845324a0a from=translated src=- shape=d0b8b392 vocab=b116d57d
+-/
 theorem sineWronskian_neg_of_cyclic_root_residues
     (hn : 2 ≤ n) (θ d c : Fin n → ℝ) (root : Fin (n - 1) → ℝ)
     (hinj : Function.Injective root)

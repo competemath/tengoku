@@ -96,7 +96,9 @@ private lemma ordinary_peak_from_enclosing_zeros (angles : CyclicAngles n hn)
     hnondegenerate⟩
 
 /-- Ordinary cuts after the first gap have a unique strict peak, exceeding one
-and with negative second derivative, on the literal closed node gap.-/
+and with negative second derivative, on the literal closed node gap.
+@isnad1 id=ex.3h3v.s7.a85c0243815b from=translated src=- shape=64a42480 vocab=2ed7ce75
+-/
 theorem exists_ordinaryGap_strict_peak_of_two_le_cut (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (cut : Fin n) (hcut : 2 ≤ cut.val) :
     ∃ peak, StrictIntervalPeak (sineInterpolant angles.angle (gapCoefficient cut))
@@ -154,7 +156,9 @@ theorem exists_ordinaryGap_strict_peak_of_two_le_cut (angles : CyclicAngles n hn
   exact (hcritical i x hxarc hxzero).trans heq.symm
 
 /-- The first ordinary gap also has a strict peak above one, including the
-single-root cyclic case `n = 2`.-/
+single-root cyclic case `n = 2`.
+@isnad1 id=ex.3h3v.s7.a16cc0d7abe8 from=translated src=- shape=8878c9c8 vocab=2ed7ce75
+-/
 theorem exists_ordinaryGap_strict_peak_of_cut_eq_one (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (cut : Fin n) (hcut : cut.val = 1) :
     ∃ peak, StrictIntervalPeak (sineInterpolant angles.angle (gapCoefficient cut))
@@ -228,7 +232,9 @@ theorem exists_ordinaryGap_strict_peak_of_cut_eq_one (angles : CyclicAngles n hn
     exact False.elim (by linarith)
 
 /-- Every positive ordinary cut has a unique strict interior peak on its
-literal node interval, with value above one and negative second derivative.-/
+literal node interval, with value above one and negative second derivative.
+@isnad1 id=ex.3h3v.s7.f49da19cf595 from=translated src=- shape=58ab4b4a vocab=2ed7ce75
+-/
 theorem exists_ordinaryGap_strict_peak (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (cut : Fin n) (hcut : 0 < cut.val) :
     ∃ peak, StrictIntervalPeak (sineInterpolant angles.angle (gapCoefficient cut))

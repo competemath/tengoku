@@ -19,6 +19,9 @@ namespace UnitCircleInterpolation
 
 noncomputable section
 
+/--
+@isnad1 id=mem.1h2v.s6.38e8c0a98c08 from=translated src=- shape=e71f4075 vocab=88361997
+-/
 lemma regular_angle_mem_Ico (n : ℕ) (hn : 0 < n) (i : Fin n) :
     2 * Real.pi * ((i.val : ℝ) / (n : ℝ)) ∈ Set.Ico 0 (2 * Real.pi) := by
   have hnR : (0 : ℝ) < n := by exact_mod_cast hn
@@ -29,6 +32,9 @@ lemma regular_angle_mem_Ico (n : ℕ) (hn : 0 < n) (i : Fin n) :
   · have hdiv : (i.val : ℝ) / (n : ℝ) < 1 := (div_lt_one hnR).mpr hiR
     simpa only [mul_one] using mul_lt_mul_of_pos_left hdiv hpi
 
+/--
+@isnad1 id=injectiv.1h1v.s4.4955acd0b561 from=translated src=- shape=c3193e28 vocab=9d692cd6
+-/
 lemma regularPoint_injective (n : ℕ) (hn : 0 < n) :
     Function.Injective (regularPoint n) := by
   intro i j hij
@@ -48,10 +54,16 @@ def regularNodes (n : ℕ) (hn : 0 < n) : NodeFamily n where
   point := regularPoint n
   injective := regularPoint_injective n hn
 
+/--
+@isnad1 id=isregula.1h1v.s4.2a1dd8d030ce from=translated src=- shape=dd19ab6e vocab=c28233ca
+-/
 lemma regularNodes_isRegularRotation (n : ℕ) (hn : 0 < n) :
     IsRegularRotation (regularNodes n hn) := by
   exact ⟨1, Equiv.refl _, fun i => (one_mul _).symm⟩
 
+/--
+@isnad1 id=eq.1h1v.s5.e3258bfdeb3a from=translated src=- shape=a8b1c59f vocab=e3e32f48
+-/
 @[simp] lemma regularPoint_zero (n : ℕ) (hn : 0 < n) :
     regularPoint n ⟨0, hn⟩ = 1 := by
   simp [regularPoint]

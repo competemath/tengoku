@@ -32,11 +32,17 @@ noncomputable section
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=mem.0h3v.s6.5ab58aa86289 from=translated src=- shape=4ae3ebcd vocab=1193686b
+-/
 lemma sineInterpolant_mem_homogeneousTrigSpace (θ c : Fin n → ℝ) :
     sineInterpolant θ c ∈ homogeneousTrigSpace (n - 1) :=
   ⟨interpolantPolynomial θ c, interpolantPolynomial_natDegree_le θ c,
     (homogeneousTrig_interpolantPolynomial θ c).symm⟩
 
+/--
+@isnad1 id=mem.0h3v.s6.d9392eb042cf from=translated src=- shape=3bd249dd vocab=23716b63
+-/
 lemma sineCardinal_mem_homogeneousTrigSpace (θ : Fin n → ℝ) (j : Fin n) :
     sineCardinal θ j ∈ homogeneousTrigSpace (n - 1) := by
   have heq : sineInterpolant θ (Pi.single j 1) = sineCardinal θ j := by
@@ -45,7 +51,9 @@ lemma sineCardinal_mem_homogeneousTrigSpace (θ : Fin n → ℝ) (j : Fin n) :
   rw [← heq]
   exact sineInterpolant_mem_homogeneousTrigSpace θ (Pi.single j 1)
 
-/-- Values at all distinct canonical nodes determine the actual homogeneous space.-/
+/-- Values at all distinct canonical nodes determine the actual homogeneous space.
+@isnad1 id=eq.6h4v.s8.bb4a4a9029f6 from=translated src=- shape=db70d243 vocab=f86d5234
+-/
 lemma homogeneousTrigSpace_eq_of_at_nodes (θ : Fin n → ℝ) (hn : 0 < n)
     (hθ : Function.Injective (phaseNodes θ))
     (hbound : ∀ i, θ i ∈ Set.Ico 0 (2 * Real.pi)) (f g : ℝ → ℝ)
@@ -63,7 +71,9 @@ lemma homogeneousTrigSpace_eq_of_at_nodes (θ : Fin n → ℝ) (hn : 0 < n)
     (fun i => by simp [hnode i])
   omega
 
-/-- Changing one node is an exact finite difference along its original cardinal.-/
+/-- Changing one node is an exact finite difference along its original cardinal.
+@isnad1 id=eq.3h6v.s7.73ac2c265222 from=translated src=- shape=89b5c2b5 vocab=f3f9ddad
+-/
 lemma sineInterpolant_update_node_transport (θ c : Fin n → ℝ) (j : Fin n) (u t : ℝ)
     (hθ : Function.Injective (phaseNodes θ))
     (hbound : ∀ i, θ i ∈ Set.Ico 0 (2 * Real.pi))
@@ -92,7 +102,9 @@ lemma sineInterpolant_update_node_transport (θ c : Fin n → ℝ) (j : Fin n) (
           sineInterpolant_at_node θ hθ c i, sineCardinal_other θ hij, mul_zero, add_zero]
   exact congrFun heq t
 
-/-- The moving-node interpolation identity differentiates to the actual negative angle slope.-/
+/-- The moving-node interpolation identity differentiates to the actual negative angle slope.
+@isnad1 id=hasderiv.1h4v.s6.abdfe6cdd853 from=translated src=- shape=de29a492 vocab=a1647b97
+-/
 lemma hasDerivAt_sineInterpolant_update_at_original_node (θ c : Fin n → ℝ)
     (j : Fin n) (hθ : Function.Injective (phaseNodes θ)) :
     HasDerivAt (fun u : ℝ => sineInterpolant (Function.update θ j u) c (θ j))
@@ -134,7 +146,9 @@ lemma hasDerivAt_sineInterpolant_update_at_original_node (θ c : Fin n → ℝ)
     linarith
   exact hvalue ▸ hcoord
 
-/-- Exact coordinate sensitivity of the literal sine interpolant, at every evaluation angle.-/
+/-- Exact coordinate sensitivity of the literal sine interpolant, at every evaluation angle.
+@isnad1 id=hasderiv.2h5v.s7.80969be14d1b from=translated src=- shape=1eef8a3d vocab=f7fb931f
+-/
 lemma hasDerivAt_sineInterpolant_update (θ c : Fin n → ℝ) (j : Fin n) (t : ℝ)
     (hθ : Function.Injective (phaseNodes θ))
     (hbound : ∀ i, θ i ∈ Set.Ico 0 (2 * Real.pi)) :
@@ -149,7 +163,9 @@ lemma hasDerivAt_sineInterpolant_update (θ c : Fin n → ℝ) (j : Fin n) (t : 
   filter_upwards [eventually_phaseNodes_injective_update θ j hθ] with u hu
   exact sineInterpolant_update_node_transport θ c j u t hθ hbound hu
 
-/-- The coordinate derivative is written with the actual ordinary angle derivative.-/
+/-- The coordinate derivative is written with the actual ordinary angle derivative.
+@isnad1 id=eq.2h5v.s7.245a718cdc0f from=translated src=- shape=316bc971 vocab=c35bd738
+-/
 lemma deriv_sineInterpolant_update (θ c : Fin n → ℝ) (j : Fin n) (t : ℝ)
     (hθ : Function.Injective (phaseNodes θ))
     (hbound : ∀ i, θ i ∈ Set.Ico 0 (2 * Real.pi)) :
@@ -157,7 +173,9 @@ lemma deriv_sineInterpolant_update (θ c : Fin n → ℝ) (j : Fin n) (t : ℝ)
       -deriv (sineInterpolant θ c) (θ j) * sineCardinal θ j t :=
   (hasDerivAt_sineInterpolant_update θ c j t hθ hbound).deriv
 
-/-- The actual parameter Fréchet derivative on a coordinate basis vector.-/
+/-- The actual parameter Fréchet derivative on a coordinate basis vector.
+@isnad1 id=eq.2h5v.s9.8fb6d3e184c7 from=translated src=- shape=2c608274 vocab=d8741e43
+-/
 lemma fderiv_sineInterpolant_parameters_single (θ c : Fin n → ℝ) (j : Fin n) (t : ℝ)
     (hθ : Function.Injective (phaseNodes θ))
     (hbound : ∀ i, θ i ∈ Set.Ico 0 (2 * Real.pi)) :
@@ -169,7 +187,9 @@ lemma fderiv_sineInterpolant_parameters_single (θ c : Fin n → ℝ) (j : Fin n
     (hasDerivAt_update θ j (θ j)) (by simp only [Function.update_eq_self])
   exact hcomp.unique (hasDerivAt_sineInterpolant_update θ c j t hθ hbound)
 
-/-- All parameter directions have the finite sum of the actual cardinal sensitivities.-/
+/-- All parameter directions have the finite sum of the actual cardinal sensitivities.
+@isnad1 id=eq.2h5v.s9.263c62a1e568 from=translated src=- shape=94cb0b6a vocab=44163372
+-/
 lemma fderiv_sineInterpolant_parameters_apply (θ c : Fin n → ℝ) (t : ℝ)
     (hθ : Function.Injective (phaseNodes θ))
     (hbound : ∀ i, θ i ∈ Set.Ico 0 (2 * Real.pi)) (v : Fin n → ℝ) :
@@ -194,6 +214,9 @@ def sineInterpolantParameterDerivative (θ c : Fin n → ℝ) (t : ℝ) :
   ∑ j, (-deriv (sineInterpolant θ c) (θ j) * sineCardinal θ j t) •
     ContinuousLinearMap.proj j
 
+/--
+@isnad1 id=eq.0h5v.s7.73ebfdb0c8b5 from=translated src=- shape=e6f51ec4 vocab=ead23eb7
+-/
 lemma sineInterpolantParameterDerivative_apply (θ c : Fin n → ℝ) (t : ℝ)
     (v : Fin n → ℝ) :
     sineInterpolantParameterDerivative θ c t v =
@@ -204,7 +227,9 @@ lemma sineInterpolantParameterDerivative_apply (θ c : Fin n → ℝ) (t : ℝ)
   intro j hj
   ring
 
-/-- The full parameter Fréchet derivative, with no missing sensitivity hypothesis.-/
+/-- The full parameter Fréchet derivative, with no missing sensitivity hypothesis.
+@isnad1 id=hasfderi.2h4v.s7.19a352687da6 from=translated src=- shape=1a094e6c vocab=60e30e38
+-/
 lemma hasFDerivAt_sineInterpolant_parameters (θ c : Fin n → ℝ) (t : ℝ)
     (hθ : Function.Injective (phaseNodes θ))
     (hbound : ∀ i, θ i ∈ Set.Ico 0 (2 * Real.pi)) :
@@ -225,6 +250,9 @@ def sineInterpolantJointDerivative (θ c : Fin n → ℝ) (t : ℝ) :
   (sineInterpolantParameterDerivative θ c t).comp (ContinuousLinearMap.fst ℝ _ _) +
     deriv (sineInterpolant θ c) t • ContinuousLinearMap.snd ℝ _ _
 
+/--
+@isnad1 id=eq.0h6v.s8.de79948e02e1 from=translated src=- shape=c02abb68 vocab=903ecb80
+-/
 lemma sineInterpolantJointDerivative_apply (θ c : Fin n → ℝ) (t : ℝ)
     (v : Fin n → ℝ) (s : ℝ) :
     sineInterpolantJointDerivative θ c t (v, s) =
@@ -235,7 +263,9 @@ lemma sineInterpolantJointDerivative_apply (θ c : Fin n → ℝ) (t : ℝ)
     ContinuousLinearMap.coe_snd', smul_eq_mul, sineInterpolantParameterDerivative_apply]
   ring
 
-/-- The full joint derivative is proved for the literal parameter/evaluation function.-/
+/-- The full joint derivative is proved for the literal parameter/evaluation function.
+@isnad1 id=hasfderi.2h4v.s7.e95a2b33e0f8 from=translated src=- shape=643b3b14 vocab=57615057
+-/
 lemma hasFDerivAt_sineInterpolant_joint (θ c : Fin n → ℝ) (t : ℝ)
     (hθ : Function.Injective (phaseNodes θ))
     (hbound : ∀ i, θ i ∈ Set.Ico 0 (2 * Real.pi)) :

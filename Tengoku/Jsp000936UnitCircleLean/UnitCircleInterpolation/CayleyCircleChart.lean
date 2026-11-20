@@ -29,7 +29,9 @@ namespace UnitCircleInterpolation
 
 noncomputable section
 
-/-- Equal finite tangent coordinates give equal doubled-angle circle points.-/
+/-- Equal finite tangent coordinates give equal doubled-angle circle points.
+@isnad1 id=eq.3h2v.s6.d585482fdaba from=translated src=- shape=388b68bc vocab=c3380052
+-/
 lemma circle_exp_two_mul_eq_of_tan_eq (u v : ℝ)
     (hu : Real.cos u ≠ 0) (hv : Real.cos v ≠ 0)
     (htan : Real.tan u = Real.tan v) :
@@ -51,7 +53,9 @@ lemma circle_exp_two_mul_eq_of_tan_eq (u v : ℝ)
   · simpa only [Circle.coe_exp, Complex.exp_ofReal_mul_I_re] using hcos
   · simpa only [Circle.coe_exp, Complex.exp_ofReal_mul_I_im] using hsin
 
-/-- The half-angle tangent coordinate is injective on the explicitly stated chart.-/
+/-- The half-angle tangent coordinate is injective on the explicitly stated chart.
+@isnad1 id=injon.0h0v.s6.83cb3d79f558 from=translated src=- shape=50c708cf vocab=68dacbdb
+-/
 lemma tan_half_injOn_Ico :
     Set.InjOn (fun t : ℝ => Real.tan (t / 2))
       {t | t ∈ Set.Ico 0 (2 * Real.pi) ∧ Real.cos (t / 2) ≠ 0} := by
@@ -64,7 +68,9 @@ lemma tan_half_injOn_Ico :
   exact Circle.exp_injOn_Ico (a := 0) (b := 2 * Real.pi) (by simp)
     ht.1 hs.1 heqExp
 
-/-- Among canonical cyclic phases, the half-angle cosine vanishes exactly at `π`.-/
+/-- Among canonical cyclic phases, the half-angle cosine vanishes exactly at `π`.
+@isnad1 id=iff.1h1v.s6.4d955b00f87e from=translated src=- shape=5db2f063 vocab=de4711d4
+-/
 lemma cos_half_eq_zero_iff_of_mem_Ico (t : ℝ)
     (ht : t ∈ Set.Ico 0 (2 * Real.pi)) :
     Real.cos (t / 2) = 0 ↔ t = Real.pi := by
@@ -80,7 +86,9 @@ lemma cos_half_eq_zero_iff_of_mem_Ico (t : ℝ)
   · intro heq
     rw [heq, Real.cos_pi_div_two]
 
-/-- Excluding the cyclic phase `π` is exactly the finite-coordinate chart condition.-/
+/-- Excluding the cyclic phase `π` is exactly the finite-coordinate chart condition.
+@isnad1 id=iff.1h1v.s6.8fe16c82e2e9 from=translated src=- shape=5db2f063 vocab=de4711d4
+-/
 lemma cos_half_ne_zero_iff_of_mem_Ico (t : ℝ)
     (ht : t ∈ Set.Ico 0 (2 * Real.pi)) :
     Real.cos (t / 2) ≠ 0 ↔ t ≠ Real.pi :=

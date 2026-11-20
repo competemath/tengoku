@@ -29,6 +29,9 @@ namespace UnitCircleInterpolation
 
 noncomputable section
 
+/--
+@isnad1 id=lt.4h4v.s6.41a8eb59bbfc from=translated src=- shape=1c67c331 vocab=4011bb39
+-/
 lemma positive_on_right_of_zero_free (f : ℝ → ℝ) {a b : ℝ}
     (hf : ContinuousOn f (Set.Icc a b))
     (hnozero : ∀ t ∈ Set.Ioo a b, f t ≠ 0) (hb : 0 < f b)
@@ -44,6 +47,9 @@ lemma positive_on_right_of_zero_free (f : ℝ → ℝ) {a b : ℝ}
     exact hb.ne' hfu)
   exact hnozero u ⟨ht.1.trans_le hu.1, hub⟩ hfu
 
+/--
+@isnad1 id=lt.7h4v.s7.761edc2b94cf from=translated src=- shape=a657434e vocab=85542cad
+-/
 lemma hasDerivAt_pos_of_zero_free_right (f : ℝ → ℝ) {a b d : ℝ}
     (hab : a < b) (hf : ContinuousOn f (Set.Icc a b))
     (ha : f a = 0) (hd : HasDerivAt f d a) (hdne : d ≠ 0)
@@ -60,7 +66,9 @@ lemma hasDerivAt_pos_of_zero_free_right (f : ℝ → ℝ) {a b d : ℝ}
     exact (mul_pos (inv_pos.mpr hh) hsample).le
   exact lt_of_le_of_ne hdnonneg hdne.symm
 
-/-- The sign at a zero-free right sample determines the simple root's orientation.-/
+/-- The sign at a zero-free right sample determines the simple root's orientation.
+@isnad1 id=lt.6h4v.s7.d48c9eb86ec1 from=translated src=- shape=ea6bccb1 vocab=62487a00
+-/
 lemma hasDerivAt_mul_sample_pos_of_zero_free_right (f : ℝ → ℝ) {a b d : ℝ}
     (hab : a < b) (hf : ContinuousOn f (Set.Icc a b))
     (ha : f a = 0) (hd : HasDerivAt f d a) (hdne : d ≠ 0)
@@ -76,7 +84,9 @@ lemma hasDerivAt_mul_sample_pos_of_zero_free_right (f : ℝ → ℝ) {a b d : �
   · exact mul_pos (hasDerivAt_pos_of_zero_free_right f hab hf ha hd hdne
       (fun t ht => hnozero t ⟨ht.1, ht.2.le⟩) hbpos) hbpos
 
-/-- A left sample gives the opposite orientation at a simple right endpoint root.-/
+/-- A left sample gives the opposite orientation at a simple right endpoint root.
+@isnad1 id=lt.6h4v.s7.d4e53383c400 from=translated src=- shape=bb346687 vocab=e9f55fee
+-/
 lemma hasDerivAt_mul_sample_neg_of_zero_free_left (f : ℝ → ℝ) {a b d : ℝ}
     (hab : a < b) (hf : ContinuousOn f (Set.Icc a b))
     (hb : f b = 0) (hd : HasDerivAt f d b) (hdne : d ≠ 0)
@@ -99,7 +109,9 @@ lemma hasDerivAt_mul_sample_neg_of_zero_free_left (f : ℝ → ℝ) {a b d : ℝ
   linarith
 
 /-- With no zero between two simple endpoint roots, their derivatives have
-opposite signs. This follows from one actual midpoint sample.-/
+opposite signs. This follows from one actual midpoint sample.
+@isnad1 id=lt.9h5v.s7.ed9844813b5a from=translated src=- shape=03e32cf4 vocab=6409a60f
+-/
 lemma endpoint_derivatives_mul_neg_of_zero_free (f : ℝ → ℝ) {a b da db : ℝ}
     (hab : a < b) (hf : Continuous f) (ha : f a = 0) (hb : f b = 0)
     (hda : HasDerivAt f da a) (hdb : HasDerivAt f db b)
@@ -121,7 +133,9 @@ lemma endpoint_derivatives_mul_neg_of_zero_free (f : ℝ → ℝ) {a b da db : �
   by_contra hneg
   exact (not_le_of_gt hprod) (mul_nonneg hsquare.le (le_of_not_gt hneg))
 
-/-- Crossing exactly one simple interior root reverses the signs at two samples.-/
+/-- Crossing exactly one simple interior root reverses the signs at two samples.
+@isnad1 id=lt.8h5v.s7.6d7f9b17ee1f from=translated src=- shape=318ef2d2 vocab=463ed699
+-/
 lemma sample_values_mul_neg_of_single_simple_root (f : ℝ → ℝ) {a r b d : ℝ}
     (har : a < r) (hrb : r < b) (hf : Continuous f) (hr : f r = 0)
     (hd : HasDerivAt f d r) (hdne : d ≠ 0)
@@ -138,7 +152,9 @@ lemma sample_values_mul_neg_of_single_simple_root (f : ℝ → ℝ) {a r b d : �
   exact (not_le_of_gt hprod) (mul_nonneg (sq_nonneg d) (le_of_not_gt hneg))
 
 /-- Positive residues propagate across interlacing simple roots: both the first
-function's endpoint derivatives and the second function's samples reverse sign.-/
+function's endpoint derivatives and the second function's samples reverse sign.
+@isnad1 id=lt.17h8v.s8.6ef6894d6b03 from=translated src=- shape=0dfc6986 vocab=560621a7
+-/
 lemma positive_residue_propagates_across_interlacing (D T : ℝ → ℝ)
     {a r b da dr db : ℝ} (har : a < r) (hrb : r < b)
     (hD : Continuous D) (hT : Continuous T) (hDa : D a = 0) (hDb : D b = 0)
@@ -160,7 +176,9 @@ lemma positive_residue_propagates_across_interlacing (D T : ℝ → ℝ)
   exact (not_le_of_gt hp)
     (mul_nonpos_of_nonneg_of_nonpos hresidue.le (le_of_not_gt hpos))
 
-/-- The same sign propagation works in both directions along the linear root list.-/
+/-- The same sign propagation works in both directions along the linear root list.
+@isnad1 id=iff.16h8v.s8.20f999974f86 from=translated src=- shape=39066c29 vocab=560621a7
+-/
 lemma positive_residue_iff_across_interlacing (D T : ℝ → ℝ)
     {a r b da dr db : ℝ} (har : a < r) (hrb : r < b)
     (hD : Continuous D) (hT : Continuous T) (hDa : D a = 0) (hDb : D b = 0)
@@ -190,7 +208,9 @@ lemma positive_residue_iff_across_interlacing (D T : ℝ → ℝ)
       (mul_nonpos_of_nonpos_of_nonneg (le_of_not_gt hnot) hpos.le)
 
 /-- Adjacent sign equivalences propagate one proved positive anchor to every
-member of a finite linear chain, including the singleton case.-/
+member of a finite linear chain, including the singleton case.
+@isnad1 id=lt.2h4v.s6.324d6536baa7 from=translated src=- shape=a42f86ad vocab=c8f222f6
+-/
 lemma finite_chain_positive_of_adjacent_iff {m : ℕ} (f : Fin m → ℝ)
     (hstep : ∀ k l : Fin m, k.val + 1 = l.val → (0 < f k ↔ 0 < f l))
     (anchor : Fin m) (hanchor : 0 < f anchor) : ∀ k, 0 < f k := by
@@ -211,7 +231,9 @@ lemma finite_chain_positive_of_adjacent_iff {m : ℕ} (f : Fin m → ℝ)
 variable {n : ℕ}
 
 /-- Exhaustion removes all unlisted zeros, and saturation supplies simplicity.
-No derivative orientation is assumed for the actual interpolant.-/
+No derivative orientation is assumed for the actual interpolant.
+@isnad1 id=lt.7h6v.s8.8317e8c6bf3f from=translated src=- shape=d95f86ef vocab=3d12db8a
+-/
 lemma sineInterpolant_deriv_mul_pos_of_next_sample (θ : Fin n → ℝ) (c : Fin n → ℝ)
     (hP : interpolantPolynomial θ c ≠ 0) (root : Fin (n - 1) → ℝ)
     (hinj : Function.Injective root) (hbound : ∀ i, root i ∈ Set.Ico 0 (2 * Real.pi))

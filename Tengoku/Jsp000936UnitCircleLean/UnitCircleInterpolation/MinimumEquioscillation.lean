@@ -31,7 +31,9 @@ noncomputable section
 
 variable {d : ℕ}
 
-/-- A strictly negative real derivative gives strict decrease immediately to the right.-/
+/-- A strictly negative real derivative gives strict decrease immediately to the right.
+@isnad1 id=eventual.2h2v.s6.6a2a4d205595 from=translated src=- shape=e3bfcdb1 vocab=ba78a265
+-/
 lemma eventually_lt_at_zero_of_hasDerivAt_neg {f : ℝ → ℝ} {f' : ℝ}
     (hf : HasDerivAt f f' 0) (hf' : f' < 0) :
     ∀ᶠ t in 𝓝[>] (0 : ℝ), f t < f 0 := by
@@ -42,7 +44,9 @@ lemma eventually_lt_at_zero_of_hasDerivAt_neg {f : ℝ → ℝ} {f' : ℝ}
   have hdiff : f t - f 0 < 0 := neg_of_mul_neg_right ht (le_of_lt (inv_pos.mpr hpos))
   linarith
 
-/-- A direction lowering every row except a strictly submaximal one lowers the finite maximum.-/
+/-- A direction lowering every row except a strictly submaximal one lowers the finite maximum.
+@isnad1 id=ex.6h8v.s9.67d16769c0f3 from=translated src=- shape=0ec9c787 vocab=7fde238e
+-/
 theorem exists_finite_height_descent
     (H : (Fin d → ℝ) → Fin (d + 1) → ℝ)
     (L : (Fin d → ℝ) →L[ℝ] (Fin (d + 1) → ℝ))
@@ -84,11 +88,17 @@ def deletedHeightDerivative (hsize : 2 ≤ d + 1) (u : Fin d → ℝ)
   (ContinuousLinearMap.pi (fun i : Fin d => ContinuousLinearMap.proj (omitted.succAbove i))).comp
     (fderiv ℝ (parameterOrderedHeightMap hsize) u)
 
+/--
+@isnad1 id=eq.1h5v.s10.8e659cc370dd from=translated src=- shape=9602b536 vocab=98ff78c1
+-/
 lemma deletedHeightDerivative_apply (hsize : 2 ≤ d + 1) (u v : Fin d → ℝ)
     (omitted : Fin (d + 1)) (i : Fin d) :
     deletedHeightDerivative hsize u omitted v i =
       fderiv ℝ (parameterOrderedHeightMap hsize) u v (omitted.succAbove i) := rfl
 
+/--
+@isnad1 id=eq.1h4v.s8.c9b1f62f000a from=translated src=- shape=696dd8de vocab=9636a812
+-/
 lemma deletedHeightJacobian_mulVec (hsize : 2 ≤ d + 1) (u v : Fin d → ℝ)
     (omitted : Fin (d + 1)) :
     ((parameterHeightJacobian hsize u).submatrix omitted.succAbove id).mulVec v =
@@ -100,6 +110,9 @@ lemma deletedHeightJacobian_mulVec (hsize : 2 ≤ d + 1) (u v : Fin d → ℝ)
   rw [← hm]
   exact LinearMap.toMatrix'_mulVec (deletedHeightDerivative hsize u omitted).toLinearMap v
 
+/--
+@isnad1 id=bijectiv.2h3v.s8.dc098cd2629e from=translated src=- shape=aefcc1d3 vocab=5ebc43d6
+-/
 theorem deletedHeightDerivative_bijective (hsize : 2 ≤ d + 1) (u : Fin d → ℝ)
     (hu : u ∈ angularParameterDomain d) (omitted : Fin (d + 1)) :
     Function.Bijective (deletedHeightDerivative hsize u omitted) := by
@@ -110,7 +123,9 @@ theorem deletedHeightDerivative_bijective (hsize : 2 ≤ d + 1) (u : Fin d → �
     simpa only [deletedHeightJacobian_mulVec] using hvw
   exact ⟨hinj, LinearMap.injective_iff_surjective.mp hinj⟩
 
-/-- Every chosen deleted-row family admits a common strictly decreasing actual direction.-/
+/-- Every chosen deleted-row family admits a common strictly decreasing actual direction.
+@isnad1 id=ex.2h3v.s9.460ba2978865 from=translated src=- shape=17dbcb77 vocab=8d1c5a06
+-/
 theorem exists_decreasing_actual_height_direction (hsize : 2 ≤ d + 1) (u : Fin d → ℝ)
     (hu : u ∈ angularParameterDomain d) (omitted : Fin (d + 1)) :
     ∃ v : Fin d → ℝ, ∀ i, i ≠ omitted →
@@ -121,7 +136,9 @@ theorem exists_decreasing_actual_height_direction (hsize : 2 ≤ d + 1) (u : Fin
   obtain ⟨j, rfl⟩ := Fin.exists_succAbove_eq hi
   exact congrFun hv j
 
-/-- Every actual ordered gap height at a global angular minimum reaches the literal maximum.-/
+/-- Every actual ordered gap height at a global angular minimum reaches the literal maximum.
+@isnad1 id=eq.2h3v.s6.7d56b089c6c8 from=translated src=- shape=1b0f4184 vocab=f2e6544f
+-/
 theorem parameterOrderedHeight_eq_amplification_of_minimum (hsize : 2 ≤ d + 1)
     (u : angularParameterDomain d)
     (hmin : ∀ v : angularParameterDomain d,
@@ -147,7 +164,9 @@ theorem parameterOrderedHeight_eq_amplification_of_minimum (hsize : 2 ≤ d + 1)
     exact (Finset.sup'_lt_iff _).mpr (fun j _ => hrows j)
   exact (not_lt_of_ge (hmin ⟨w, hw⟩)) hless
 
-/-- A global minimum of the literal full-circle objective has equal actual gap heights.-/
+/-- A global minimum of the literal full-circle objective has equal actual gap heights.
+@isnad1 id=eq.2h3v.s7.a3c3b0d70a90 from=translated src=- shape=dea5ace2 vocab=f2e6544f
+-/
 theorem equal_parameterOrderedHeights_of_minimum (hsize : 2 ≤ d + 1)
     (u : angularParameterDomain d)
     (hmin : ∀ v : angularParameterDomain d,

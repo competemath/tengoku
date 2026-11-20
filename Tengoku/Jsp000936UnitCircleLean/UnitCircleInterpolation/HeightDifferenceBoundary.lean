@@ -36,6 +36,9 @@ variable {d : ℕ}
 def heightDifferenceBoundaryCoefficient (d : ℕ) : ℝ :=
   2 * Real.sin ((2 * Real.pi / ((d + 1 : ℕ) : ℝ)) / 4) ^ d
 
+/--
+@isnad1 id=lt.0h1v.s3.82e45ec88c83 from=translated src=- shape=b9369acb vocab=90fb5ded
+-/
 lemma heightDifferenceBoundaryCoefficient_pos (d : ℕ) :
     0 < heightDifferenceBoundaryCoefficient d := by
   have hn : 0 < ((d + 1 : ℕ) : ℝ) := Nat.cast_pos.mpr (Nat.succ_pos d)
@@ -54,12 +57,17 @@ lemma heightDifferenceBoundaryCoefficient_pos (d : ℕ) :
         (by simpa only [sub_zero] using havg_le)
   exact mul_pos (by norm_num) (pow_pos hsin _)
 
+/--
+@isnad1 id=eq.1h2v.s5.81e10f072883 from=translated src=- shape=d13c4c4d vocab=74ab6c2f
+-/
 lemma finiteHeightDifferences_parameterOrderedHeightMap (hsize : 2 ≤ d + 1)
     (u : Fin d → ℝ) :
     finiteHeightDifferences (parameterOrderedHeightMap hsize u) =
       parameterAdjacentHeightDifferences hsize u := rfl
 
-/-- The actual chart vector controls heights of any two actual raw circular gaps.-/
+/-- The actual chart vector controls heights of any two actual raw circular gaps.
+@isnad1 id=le.2h4v.s7.8f4c2e7fd780 from=translated src=- shape=97e93bce vocab=70279226
+-/
 lemma parameter_gapHeight_difference_le_two_dim_norm (hsize : 2 ≤ d + 1)
     (u : Fin d → ℝ) (hu : u ∈ angularParameterDomain d) (large small : Fin (d + 1)) :
     gapHeight (cyclicAnglesOfParameters u hu) hsize large -
@@ -72,7 +80,9 @@ lemma parameter_gapHeight_difference_le_two_dim_norm (hsize : 2 ≤ d + 1)
   change parameterOrderedHeight hsize i u - parameterOrderedHeight hsize j u ≤ _ at h
   simpa only [parameterOrderedHeight_of_mem_domain u hu, orderedHeight, hi, hj] using h
 
-/-- The unconditional reciprocal estimate uses the actual minimum gap and actual difference norm.-/
+/-- The unconditional reciprocal estimate uses the actual minimum gap and actual difference norm.
+@isnad1 id=le.2h2v.s7.f15088a7736f from=translated src=- shape=6c2d782f vocab=0548f49e
+-/
 theorem minimumGapWidth_reciprocal_le_adjacent_height_norm (hsize : 2 ≤ d + 1)
     (u : Fin d → ℝ) (hu : u ∈ angularParameterDomain d) :
     heightDifferenceBoundaryCoefficient d /
@@ -103,11 +113,16 @@ theorem minimumGapWidth_reciprocal_le_adjacent_height_norm (hsize : 2 ≤ d + 1)
       mul_nonneg (mul_nonneg (by norm_num) (Nat.cast_nonneg d)) (norm_nonneg _)
     exact (sub_nonpos.mpr hdiv).trans hnorm
 
+/--
+@isnad1 id=lt.1h2v.s6.d93e7595b7eb from=translated src=- shape=e5bf2ed9 vocab=abe49d9a
+-/
 lemma heightDifferenceBoundaryMargin_pos (d : ℕ) (R : ℝ) (hR : 0 ≤ R) :
     0 < heightDifferenceBoundaryCoefficient d / (1 + 2 * (d : ℝ) * R) := by
   exact div_pos (heightDifferenceBoundaryCoefficient_pos d) (by positivity)
 
-/-- A bounded actual adjacent-height vector forces an explicit positive minimum width.-/
+/-- A bounded actual adjacent-height vector forces an explicit positive minimum width.
+@isnad1 id=le.4h3v.s7.e36b5a520e61 from=translated src=- shape=66fce013 vocab=a7f5c742
+-/
 theorem minimumGapWidth_lower_of_adjacent_height_norm_le (hsize : 2 ≤ d + 1)
     (u : Fin d → ℝ) (hu : u ∈ angularParameterDomain d) (R : ℝ) (hR : 0 ≤ R)
     (hnorm : ‖parameterAdjacentHeightDifferences hsize u‖ ≤ R) :
@@ -124,7 +139,9 @@ theorem minimumGapWidth_lower_of_adjacent_height_norm_le (hsize : 2 ≤ d + 1)
   apply (div_le_iff₀ (by positivity : 0 < 1 + 2 * (d : ℝ) * R)).mpr
   simpa only [mul_comm] using hmul
 
-/-- The same fixed positive lower width controls every literal gap in the ambient chart.-/
+/-- The same fixed positive lower width controls every literal gap in the ambient chart.
+@isnad1 id=le.4h4v.s7.2f8c2e57c1fd from=translated src=- shape=2ec1a3a5 vocab=f77c1704
+-/
 theorem parameterGapWidth_lower_of_adjacent_height_norm_le (hsize : 2 ≤ d + 1)
     (u : Fin d → ℝ) (hu : u ∈ angularParameterDomain d) (R : ℝ) (hR : 0 ≤ R)
     (hnorm : ‖parameterAdjacentHeightDifferences hsize u‖ ≤ R) (cut : Fin (d + 1)) :
@@ -134,7 +151,9 @@ theorem parameterGapWidth_lower_of_adjacent_height_norm_le (hsize : 2 ≤ d + 1)
   exact (minimumGapWidth_lower_of_adjacent_height_norm_le hsize u hu R hR hnorm).trans
     (minimumGapWidth_le (cyclicAnglesOfParameters u hu) cut)
 
-/-- Crossing the explicit minimum-width threshold forces the actual norm above `R`.-/
+/-- Crossing the explicit minimum-width threshold forces the actual norm above `R`.
+@isnad1 id=lt.4h3v.s7.f61789223358 from=translated src=- shape=845e2243 vocab=4f7eca4b
+-/
 theorem lt_adjacent_height_norm_of_minimumGapWidth_lt (hsize : 2 ≤ d + 1)
     (u : Fin d → ℝ) (hu : u ∈ angularParameterDomain d) (R : ℝ) (hR : 0 ≤ R)
     (hwidth : minimumGapWidth (cyclicAnglesOfParameters u hu) <
@@ -145,7 +164,9 @@ theorem lt_adjacent_height_norm_of_minimumGapWidth_lt (hsize : 2 ≤ d + 1)
   exact (not_le_of_gt hwidth)
     (minimumGapWidth_lower_of_adjacent_height_norm_le hsize u hu R hR hnorm)
 
-/-- Along any family in the actual chart, minimum width tending to zero forces norm divergence.-/
+/-- Along any family in the actual chart, minimum width tending to zero forces norm divergence.
+@isnad1 id=tendsto.3h4v.s7.83356a8151f2 from=translated src=- shape=14fa593a vocab=73298849
+-/
 theorem adjacent_height_norm_tendsto_atTop_of_minimumGapWidth_tendsto_zero
     {α : Type*} (hsize : 2 ≤ d + 1) (u : α → Fin d → ℝ)
     (hu : ∀ a, u a ∈ angularParameterDomain d) (l : Filter α)

@@ -28,6 +28,9 @@ noncomputable section
 
 variable {n : ℕ} {hn : 0 < n}
 
+/--
+@isnad1 id=le.2h3v.s7.f9e30f4052bd from=translated src=- shape=98f5f824 vocab=0225df12
+-/
 lemma lebesgueFunction_gapMidpoint_le_gapHeight (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (cut : Fin n) :
     lebesgueFunction (phaseNodes angles.angle) (Circle.exp (gapMidpoint angles cut) : ℂ) ≤
@@ -36,7 +39,9 @@ lemma lebesgueFunction_gapMidpoint_le_gapHeight (angles : CyclicAngles n hn)
   exact (gapPeak_strictIntervalPeak angles hsize cut).isMaxOn
     (Set.Ioo_subset_Icc_self (gapMidpoint_mem_gapInterval angles cut))
 
-/-- The actual large-gap height dominates the small-gap height with a reciprocal-width factor.-/
+/-- The actual large-gap height dominates the small-gap height with a reciprocal-width factor.
+@isnad1 id=le.4h5v.s7.7346b002444a from=translated src=- shape=871dfd18 vocab=fde0110e
+-/
 theorem gapHeight_width_comparison (angles : CyclicAngles n hn) (hsize : 2 ≤ n)
     (large small : Fin n) (width : ℝ) (hw : 0 < width)
     (hwidth : width ≤ gapWidth angles large) :
@@ -62,7 +67,9 @@ theorem gapHeight_width_comparison (angles : CyclicAngles n hn) (hsize : 2 ≤ n
     (gapWidth_pos angles small).le)
 
 /-- An explicit lower bound for the actual range of gap heights when a small
-gap is narrower than the fixed positive comparison coefficient.-/
+gap is narrower than the fixed positive comparison coefficient.
+@isnad1 id=le.5h5v.s7.cc827b3e0c07 from=translated src=- shape=49cafdca vocab=fde0110e
+-/
 theorem gapHeight_difference_lower_bound (angles : CyclicAngles n hn) (hsize : 2 ≤ n)
     (large small : Fin n) (width : ℝ) (hw : 0 < width)
     (hwidth : width ≤ gapWidth angles large)

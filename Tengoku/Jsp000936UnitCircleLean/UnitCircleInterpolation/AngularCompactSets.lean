@@ -30,7 +30,9 @@ noncomputable section
 
 variable {d : ℕ}
 
-/-- The width of an ordinary gap is the literal successive angle difference.-/
+/-- The width of an ordinary gap is the literal successive angle difference.
+@isnad1 id=eq.0h3v.s5.955fe0d1c64b from=translated src=- shape=ade4073c vocab=8fb599e7
+-/
 lemma parameterGapWidth_succ (u : Fin d → ℝ) (i : Fin d) :
     parameterGapWidth i.succ u = angularParameterAngles u i.succ -
       angularParameterAngles u i.castSucc := by
@@ -39,7 +41,9 @@ lemma parameterGapWidth_succ (u : Fin d → ℝ) (i : Fin d) :
     simp [gapLeftNodeIndex, gapPredecessor]
   simp only [parameterGapWidth, Fin.val_succ, Nat.succ_ne_zero, ite_false, hpred]
 
-/-- The final width uses the lifted first angle at `2π`.-/
+/-- The final width uses the lifted first angle at `2π`.
+@isnad1 id=eq.0h2v.s6.ab2b79d17e01 from=translated src=- shape=c3281da1 vocab=f52ee236
+-/
 lemma parameterGapWidth_zero (u : Fin d → ℝ) :
     parameterGapWidth (0 : Fin (d + 1)) u =
       2 * Real.pi - angularParameterAngles u (lastNodeIndex (Nat.succ_pos d)) := by
@@ -49,10 +53,16 @@ lemma parameterGapWidth_zero (u : Fin d → ℝ) :
 def shrunkenAngularSimplex (d : ℕ) (ε : ℝ) : Set (Fin d → ℝ) :=
   {u | ∀ cut : Fin (d + 1), ε ≤ parameterGapWidth cut u}
 
+/--
+@isnad1 id=iff.0h3v.s5.d34cddc41ec9 from=translated src=- shape=76ce6f7f vocab=87437994
+-/
 lemma mem_shrunkenAngularSimplex (u : Fin d → ℝ) (ε : ℝ) :
     u ∈ shrunkenAngularSimplex d ε ↔ ∀ cut, ε ≤ parameterGapWidth cut u :=
   Iff.rfl
 
+/--
+@isnad1 id=isclosed.0h2v.s4.2ef966e98fd6 from=translated src=- shape=663d86fd vocab=5b233260
+-/
 lemma isClosed_shrunkenAngularSimplex (d : ℕ) (ε : ℝ) :
     IsClosed (shrunkenAngularSimplex d ε) := by
   have heq : shrunkenAngularSimplex d ε =
@@ -62,7 +72,9 @@ lemma isClosed_shrunkenAngularSimplex (d : ℕ) (ε : ℝ) :
   rw [heq]
   exact isClosed_iInter (fun cut => isClosed_le continuous_const (continuous_parameterGapWidth cut))
 
-/-- Positive literal width at every cut forces strictly increasing full angles.-/
+/-- Positive literal width at every cut forces strictly increasing full angles.
+@isnad1 id=strictmo.2h3v.s6.89a01ae5d6ec from=translated src=- shape=ac18bcec vocab=e4b1601f
+-/
 lemma shrunkenAngularSimplex_strictMono {ε : ℝ} (hε : 0 < ε)
     {u : Fin d → ℝ} (hu : u ∈ shrunkenAngularSimplex d ε) :
     StrictMono (angularParameterAngles u) := by
@@ -72,6 +84,9 @@ lemma shrunkenAngularSimplex_strictMono {ε : ℝ} (hε : 0 < ε)
   rw [parameterGapWidth_succ] at hwidth
   exact sub_pos.mp (hε.trans_le hwidth)
 
+/--
+@isnad1 id=le.1h3v.s6.3c31d9c1959e from=translated src=- shape=c5375de6 vocab=545c9994
+-/
 lemma shrunkenAngularSimplex_last_le {ε : ℝ} {u : Fin d → ℝ}
     (hu : u ∈ shrunkenAngularSimplex d ε) :
     angularParameterAngles u (lastNodeIndex (Nat.succ_pos d)) ≤ 2 * Real.pi - ε := by
@@ -79,7 +94,9 @@ lemma shrunkenAngularSimplex_last_le {ε : ℝ} {u : Fin d → ℝ}
   rw [parameterGapWidth_zero] at hlast
   linarith
 
-/-- The closed shrunken simplex lies inside the actual open chart.-/
+/-- The closed shrunken simplex lies inside the actual open chart.
+@isnad1 id=le.1h2v.s4.9f19ae44d3df from=translated src=- shape=44c74513 vocab=e2e2b40f
+-/
 lemma shrunkenAngularSimplex_subset_domain {ε : ℝ} (hε : 0 < ε) :
     shrunkenAngularSimplex d ε ⊆ angularParameterDomain d := by
   intro u hu
@@ -94,7 +111,9 @@ lemma shrunkenAngularSimplex_subset_domain {ε : ℝ} (hε : 0 < ε) :
   change u i ≤ angularParameterAngles u (lastNodeIndex (Nat.succ_pos d)) at hi
   linarith
 
-/-- The free coordinates lie in a closed box with a literal `ε` margin at both ends.-/
+/-- The free coordinates lie in a closed box with a literal `ε` margin at both ends.
+@isnad1 id=and.2h4v.s6.9abcf3b0f86f from=translated src=- shape=01fa2602 vocab=63208762
+-/
 lemma shrunkenAngularSimplex_coordinate_bounds {ε : ℝ} (hε : 0 < ε)
     {u : Fin d → ℝ} (hu : u ∈ shrunkenAngularSimplex d ε) (i : Fin d) :
     ε ≤ u i ∧ u i ≤ 2 * Real.pi - ε := by
@@ -109,24 +128,34 @@ lemma shrunkenAngularSimplex_coordinate_bounds {ε : ℝ} (hε : 0 < ε)
     hmono.monotone (show i.succ ≤ lastNodeIndex (Nat.succ_pos d) from Fin.le_last _)
   exact ⟨by linarith, hi.trans (shrunkenAngularSimplex_last_le hu)⟩
 
+/--
+@isnad1 id=le.1h2v.s6.a64a096d14ea from=translated src=- shape=7a0b2a26 vocab=4906a8ed
+-/
 lemma shrunkenAngularSimplex_subset_box {ε : ℝ} (hε : 0 < ε) :
     shrunkenAngularSimplex d ε ⊆ Set.Icc (fun _ : Fin d => ε) (fun _ => 2 * Real.pi - ε) := by
   intro u hu
   exact ⟨fun i => (shrunkenAngularSimplex_coordinate_bounds hε hu i).1,
     fun i => (shrunkenAngularSimplex_coordinate_bounds hε hu i).2⟩
 
-/-- Uniformly positive literal circular gap widths define a compact actual parameter set.-/
+/-- Uniformly positive literal circular gap widths define a compact actual parameter set.
+@isnad1 id=iscompac.1h2v.s5.f7d9299bbedb from=translated src=- shape=d2237b8a vocab=20fed41f
+-/
 theorem isCompact_shrunkenAngularSimplex {ε : ℝ} (hε : 0 < ε) :
     IsCompact (shrunkenAngularSimplex d ε) :=
   (isCompact_Icc : IsCompact
     (Set.Icc (fun _ : Fin d => ε) (fun _ => 2 * Real.pi - ε))).of_isClosed_subset
     (isClosed_shrunkenAngularSimplex d ε) (shrunkenAngularSimplex_subset_box hε)
 
+/--
+@isnad1 id=isbounde.1h2v.s5.2b26f194cff7 from=translated src=- shape=d2237b8a vocab=19111ad2
+-/
 lemma isBounded_shrunkenAngularSimplex {ε : ℝ} (hε : 0 < ε) :
     Bornology.IsBounded (shrunkenAngularSimplex d ε) :=
   (isCompact_shrunkenAngularSimplex hε).isBounded
 
-/-- Inside the actual chart the shrunken condition is precisely a bound on its actual minimum.-/
+/-- Inside the actual chart the shrunken condition is precisely a bound on its actual minimum.
+@isnad1 id=iff.1h3v.s6.fd8aa05f7b99 from=translated src=- shape=b2958358 vocab=b479c187
+-/
 lemma mem_shrunkenAngularSimplex_iff_minimumGapWidth (u : Fin d → ℝ)
     (hu : u ∈ angularParameterDomain d) (ε : ℝ) :
     u ∈ shrunkenAngularSimplex d ε ↔ ε ≤ minimumGapWidth (cyclicAnglesOfParameters u hu) := by

@@ -33,16 +33,23 @@ variable {d : ℕ}
 def finiteHeightDifferences (H : Fin (d + 1) → ℝ) : Fin d → ℝ :=
   fun k => H k.succ - H k.castSucc
 
+/--
+@isnad1 id=eq.0h3v.s5.5ce1d66a4a51 from=translated src=- shape=7ea9eb51 vocab=bddea338
+-/
 @[simp] lemma finiteHeightDifferences_apply (H : Fin (d + 1) → ℝ) (k : Fin d) :
     finiteHeightDifferences H k = H k.succ - H k.castSucc := rfl
 
-/-- Each consecutive height difference is bounded by the literal finite sup norm.-/
+/-- Each consecutive height difference is bounded by the literal finite sup norm.
+@isnad1 id=le.0h3v.s6.a9d755e8a802 from=translated src=- shape=22d15ecc vocab=709db0c7
+-/
 lemma abs_adjacent_height_sub_le_norm (H : Fin (d + 1) → ℝ) (k : Fin d) :
     |H k.succ - H k.castSucc| ≤ ‖finiteHeightDifferences H‖ := by
   simpa only [Real.norm_eq_abs, finiteHeightDifferences_apply] using
     norm_le_pi_norm (finiteHeightDifferences H) k
 
-/-- Finite induction accumulates at most one difference norm per preceding index.-/
+/-- Finite induction accumulates at most one difference norm per preceding index.
+@isnad1 id=le.0h3v.s7.25d6e8107289 from=translated src=- shape=2eed422f vocab=39d7b33e
+-/
 lemma abs_height_sub_first_le_index_mul_norm (H : Fin (d + 1) → ℝ)
     (i : Fin (d + 1)) :
     |H i - H 0| ≤ (i.val : ℝ) * ‖finiteHeightDifferences H‖ := by
@@ -60,7 +67,9 @@ lemma abs_height_sub_first_le_index_mul_norm (H : Fin (d + 1) → ℝ)
         simp only [Fin.val_succ, Nat.cast_add, Nat.cast_one]
         ring
 
-/-- The finite difference norm controls every literal height difference uniformly.-/
+/-- The finite difference norm controls every literal height difference uniformly.
+@isnad1 id=le.0h4v.s6.40021d2c3b9a from=translated src=- shape=02e9345b vocab=3a3a64c7
+-/
 lemma abs_height_sub_le_two_dim_mul_norm (H : Fin (d + 1) → ℝ)
     (i j : Fin (d + 1)) :
     |H i - H j| ≤ 2 * (d : ℝ) * ‖finiteHeightDifferences H‖ := by
@@ -83,12 +92,17 @@ lemma abs_height_sub_le_two_dim_mul_norm (H : Fin (d + 1) → ℝ)
         (mul_le_mul_of_nonneg_right hj (norm_nonneg _))
     _ = 2 * (d : ℝ) * ‖finiteHeightDifferences H‖ := by ring
 
+/--
+@isnad1 id=le.0h4v.s6.ae105a2f04fb from=translated src=- shape=6464c527 vocab=9772e391
+-/
 lemma height_sub_le_two_dim_mul_norm (H : Fin (d + 1) → ℝ)
     (i j : Fin (d + 1)) :
     H i - H j ≤ 2 * (d : ℝ) * ‖finiteHeightDifferences H‖ :=
   (le_abs_self _).trans (abs_height_sub_le_two_dim_mul_norm H i j)
 
-/-- A vanishing finite difference vector means all heights are the first height.-/
+/-- A vanishing finite difference vector means all heights are the first height.
+@isnad1 id=iff.0h2v.s6.7a040c7915f3 from=translated src=- shape=a8ffa789 vocab=960d2682
+-/
 lemma finiteHeightDifferences_eq_zero_iff (H : Fin (d + 1) → ℝ) :
     finiteHeightDifferences H = 0 ↔ ∀ i, H i = H 0 := by
   constructor

@@ -78,6 +78,9 @@ def finiteRootComplement {m : ℕ} (d : Fin m → ℝ)
     (k : Fin m) : ℝ[X] :=
   ∏ l ∈ (Finset.univ.erase k : Finset (Fin m)), (X - C (d l))
 
+/--
+@isnad1 id=eq.0h3v.s6.ef9dc578820a from=translated src=- shape=b90739f5 vocab=ba3be682
+-/
 lemma finiteRootProduct_eq_mul_complement {m : ℕ}
     (d : Fin m → ℝ) (k : Fin m) :
     finiteRootProduct d = (X - C (d k)) * finiteRootComplement d k := by
@@ -85,6 +88,9 @@ lemma finiteRootProduct_eq_mul_complement {m : ℕ}
   rw [finiteRootProduct, Fintype.prod_eq_mul_prod_compl k]
   simp only [finiteRootComplement, Finset.compl_singleton]
 
+/--
+@isnad1 id=ne.1h3v.s5.70e02a668d5f from=translated src=- shape=ae92ab92 vocab=831e2ee1
+-/
 lemma finiteRootComplement_eval_self_ne_zero {m : ℕ}
     {d : Fin m → ℝ} (hd : Function.Injective d) (k : Fin m) :
     (finiteRootComplement d k).eval (d k) ≠ 0 := by
@@ -96,6 +102,9 @@ lemma finiteRootComplement_eval_self_ne_zero {m : ℕ}
   have hlk : l ≠ k := (Finset.mem_erase.mp hl).1
   exact sub_ne_zero.mpr (hd.ne hlk.symm)
 
+/--
+@isnad1 id=eq.0h3v.s7.2fc64da02ce0 from=translated src=- shape=4efb7862 vocab=3fd4ace6
+-/
 lemma finiteRootProduct_derivative_eval_root {m : ℕ}
     (d : Fin m → ℝ) (k : Fin m) :
     (finiteRootProduct d).derivative.eval (d k) =
@@ -111,12 +120,18 @@ def finiteRootBasis {m : ℕ} (d : Fin m → ℝ)
   C ((finiteRootComplement d k).eval (d k))⁻¹ *
     finiteRootComplement d k
 
+/--
+@isnad1 id=eq.1h3v.s5.7292e149d6ca from=translated src=- shape=ae92ab92 vocab=8cc67714
+-/
 lemma finiteRootBasis_eval_self {m : ℕ} {d : Fin m → ℝ}
     (hd : Function.Injective d) (k : Fin m) :
     (finiteRootBasis d k).eval (d k) = 1 := by
   rw [finiteRootBasis, Polynomial.eval_mul, Polynomial.eval_C]
   exact inv_mul_cancel₀ (finiteRootComplement_eval_self_ne_zero hd k)
 
+/--
+@isnad1 id=eq.1h4v.s5.550f574662d4 from=translated src=- shape=4e5f237b vocab=b3947438
+-/
 lemma finiteRootBasis_eval_of_ne {m : ℕ} {d : Fin m → ℝ}
     (k l : Fin m) (hlk : l ≠ k) :
     (finiteRootBasis d k).eval (d l) = 0 := by
@@ -128,6 +143,9 @@ lemma finiteRootBasis_eval_of_ne {m : ℕ} {d : Fin m → ℝ}
   apply Finset.prod_eq_zero (Finset.mem_erase.mpr ⟨hlk, Finset.mem_univ l⟩)
   simp
 
+/--
+@isnad1 id=eq.1h3v.s5.6f1371c3f95e from=translated src=- shape=89de028f vocab=d5dccfb5
+-/
 lemma finiteRootBasis_eq_lagrangeBasis {m : ℕ}
     {d : Fin m → ℝ} (hd : Function.Injective d) (k : Fin m) :
     finiteRootBasis d k = Lagrange.basis Finset.univ d k := by
@@ -156,6 +174,9 @@ lemma finiteRootBasis_eq_lagrangeBasis {m : ℕ}
     · rw [finiteRootBasis_eval_of_ne k l hlk]
       exact (Lagrange.eval_basis_of_ne (Ne.symm hlk) (Finset.mem_univ l)).symm
 
+/--
+@isnad1 id=eq.0h5v.s8.5d4beeab42c9 from=translated src=- shape=274eaa7b vocab=bb9f5ea9
+-/
 lemma finiteRootBasis_wronskian {m : ℕ} (d : Fin m → ℝ)
     (scale : ℝ) (k : Fin m) (x : ℝ) :
     ((finiteRootProduct d * C scale).eval x *
@@ -172,6 +193,9 @@ lemma finiteRootBasis_wronskian {m : ℕ} (d : Fin m → ℝ)
     Polynomial.eval_one]
   ring
 
+/--
+@isnad1 id=eq.0h6v.s9.37a1613d3bcc from=translated src=- shape=0cc870c6 vocab=bb9f5ea9
+-/
 lemma finiteRootScaledBasis_wronskian {m : ℕ}
     (d : Fin m → ℝ) (scale value : ℝ) (k : Fin m) (x : ℝ) :
     ((finiteRootProduct d * C scale).eval x *
@@ -205,6 +229,9 @@ def finiteRootInterpolant {m : ℕ} (d : Fin m → ℝ)
     (S : ℝ[X]) : ℝ[X] :=
   ∑ k : Fin m, C (S.eval (d k)) * finiteRootBasis d k
 
+/--
+@isnad1 id=eq.1h3v.s8.295aab287fcd from=translated src=- shape=5df8ca9a vocab=e30cba8f
+-/
 lemma finiteRootInterpolant_eq_lagrange {m : ℕ}
     {d : Fin m → ℝ} (hd : Function.Injective d) (S : ℝ[X]) :
     finiteRootInterpolant d S =
@@ -213,6 +240,9 @@ lemma finiteRootInterpolant_eq_lagrange {m : ℕ}
   rw [finiteRootInterpolant, Lagrange.interpolate_apply]
   simp only [finiteRootBasis_eq_lagrangeBasis hd]
 
+/--
+@isnad1 id=lt.1h3v.s5.2c517e749c93 from=translated src=- shape=cd823b09 vocab=c9b001a0
+-/
 lemma finiteRootInterpolant_degree_lt {m : ℕ}
     {d : Fin m → ℝ} (hd : Function.Injective d) (S : ℝ[X]) :
     (finiteRootInterpolant d S).degree < m := by
@@ -221,6 +251,9 @@ lemma finiteRootInterpolant_degree_lt {m : ℕ}
     Lagrange.degree_interpolate_lt (s := Finset.univ) (v := d)
       (fun k => S.eval (d k)) hd.injOn
 
+/--
+@isnad1 id=eq.1h4v.s5.1dd95fc9fa1b from=translated src=- shape=8e84ff83 vocab=ce4cb937
+-/
 lemma finiteRootInterpolant_eval_root {m : ℕ}
     {d : Fin m → ℝ} (hd : Function.Injective d) (S : ℝ[X])
     (k : Fin m) :
@@ -228,6 +261,9 @@ lemma finiteRootInterpolant_eval_root {m : ℕ}
   rw [finiteRootInterpolant_eq_lagrange hd]
   exact Lagrange.eval_interpolate_at_node _ hd.injOn (Finset.mem_univ k)
 
+/--
+@isnad1 id=ex.2h3v.s5.ef6ba9a433e2 from=translated src=- shape=2f40ef2b vocab=c3c04ccf
+-/
 lemma exists_finiteRootComplement_eval_ne_zero {m : ℕ}
     (hm : 0 < m) {d : Fin m → ℝ} (hd : Function.Injective d) (x : ℝ) :
     ∃ k : Fin m, (finiteRootComplement d k).eval x ≠ 0 := by
@@ -246,7 +282,9 @@ lemma exists_finiteRootComplement_eval_ne_zero {m : ℕ}
 /-- Finite V. A. Markov specialization in the form actually consumed below.
 The proof is Lagrange interpolation modulo the exhaustive root product.
 Every residue contributes a negative square, and at least one complementary
-root product is nonzero at each real point.-/
+root product is nonzero at each real point.
+@isnad1 id=lt.5h5v.s9.c5ac885a8ebe from=translated src=- shape=03b86f18 vocab=e3d16289
+-/
 theorem finite_markov_wronskian_neg {m : ℕ} (hm : 0 < m)
     (d : Fin m → ℝ) (hd : Function.Injective d) (scale : ℝ)
     (hscale : scale ≠ 0) (S : ℝ[X]) (hSdegree : S.natDegree ≤ m)

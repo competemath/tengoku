@@ -33,6 +33,9 @@ variable {n : ℕ} {hn : 0 < n}
 def gapPhaseSign (cut : Fin n) : ℝ :=
   if cut.val = 0 then (-1 : ℝ) ^ (n - 1) else 1
 
+/--
+@isnad1 id=eq.0h2v.s4.42517e41d147 from=translated src=- shape=d2d1eb20 vocab=be028fc8
+-/
 lemma gapPhaseSign_mul_self (cut : Fin n) : gapPhaseSign cut * gapPhaseSign cut = 1 := by
   unfold gapPhaseSign
   split_ifs
@@ -40,6 +43,9 @@ lemma gapPhaseSign_mul_self (cut : Fin n) : gapPhaseSign cut * gapPhaseSign cut 
     norm_num
   · norm_num
 
+/--
+@isnad1 id=eq.0h3v.s4.4749bbb20954 from=translated src=- shape=6476189f vocab=109b004c
+-/
 lemma cyclicGapCoefficient_eq_phase_mul (cut k : Fin n) :
     cyclicGapCoefficient cut k = gapPhaseSign cut * gapCoefficient cut k := by
   by_cases hz : cut.val = 0
@@ -49,6 +55,9 @@ lemma cyclicGapCoefficient_eq_phase_mul (cut k : Fin n) :
     rw [wrapCoefficient_eq_phaseSign_mul_gapCoefficient hpositive k, heq]
   · simp only [cyclicGapCoefficient, gapPhaseSign, hz, ite_false, one_mul]
 
+/--
+@isnad1 id=eq.1h4v.s5.69abaa0452c8 from=translated src=- shape=1db721bb vocab=58b9214e
+-/
 lemma gapInterpolant_eq_phase_mul (angles : CyclicAngles n hn) (cut : Fin n) (t : ℝ) :
     gapInterpolant angles cut t =
       gapPhaseSign cut * sineInterpolant angles.angle (gapCoefficient cut) t := by
@@ -56,6 +65,9 @@ lemma gapInterpolant_eq_phase_mul (angles : CyclicAngles n hn) (cut : Fin n) (t 
   simp_rw [cyclicGapCoefficient_eq_phase_mul, mul_assoc]
   rw [Finset.mul_sum]
 
+/--
+@isnad1 id=eq.1h4v.s6.a6f2fb12991a from=translated src=- shape=8241dfc9 vocab=ab452324
+-/
 lemma deriv_gapInterpolant_eq_phase_mul (angles : CyclicAngles n hn)
     (cut : Fin n) (t : ℝ) :
     deriv (gapInterpolant angles cut) t =
@@ -68,6 +80,9 @@ lemma deriv_gapInterpolant_eq_phase_mul (angles : CyclicAngles n hn)
   rw [← heq] at h
   simpa only [deriv_sineInterpolant] using h.deriv
 
+/--
+@isnad1 id=eq.1h5v.s6.da4b5851bfb6 from=translated src=- shape=01afb204 vocab=93353363
+-/
 lemma cyclicGap_sineWronskian_eq (angles : CyclicAngles n hn) (i j : Fin n) (t : ℝ) :
     sineWronskian angles.angle (cyclicGapCoefficient i) (cyclicGapCoefficient j) t =
       gapPhaseSign i * gapPhaseSign j *
@@ -83,6 +98,9 @@ lemma cyclicGap_sineWronskian_eq (angles : CyclicAngles n hn) (i j : Fin n) (t :
 def cyclicCrossGapPhase (i j : Fin n) : ℝ :=
   crossGapPhase i j * gapPhaseSign i * gapPhaseSign j
 
+/--
+@isnad1 id=lt.2h5v.s6.f23c9d01f16c from=translated src=- shape=9bdb6e17 vocab=dcbbd261
+-/
 theorem cyclicGap_phase_sineWronskian_neg (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) (t : ℝ) :
     cyclicCrossGapPhase i j *
@@ -104,7 +122,9 @@ theorem cyclicGap_phase_sineWronskian_neg (angles : CyclicAngles n hn)
   exact crossGap_phase_sineWronskian_neg angles i j hij t
 
 /-- At the first gap's own positive peak, the other derivative has the prescribed
-strict phase sign. No residue or Wronskian hypothesis remains.-/
+strict phase sign. No residue or Wronskian hypothesis remains.
+@isnad1 id=lt.3h4v.s6.d808392927a2 from=translated src=- shape=a0b39db6 vocab=05662e3a
+-/
 theorem gapPeak_other_derivative_phase_neg (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (i j : Fin n) (hij : i < j) :
     cyclicCrossGapPhase i j * deriv (gapInterpolant angles j) (gapPeak angles hsize i) < 0 := by
@@ -130,6 +150,9 @@ theorem gapPeak_other_derivative_phase_neg (angles : CyclicAngles n hn)
   rw [heq] at hprod
   exact (not_le_of_gt hW) hprod
 
+/--
+@isnad1 id=ne.3h4v.s6.1013bc1b52fd from=translated src=- shape=f3c8d664 vocab=08893dca
+-/
 theorem gapPeak_other_derivative_ne_zero (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (i j : Fin n) (hij : i < j) :
     deriv (gapInterpolant angles j) (gapPeak angles hsize i) ≠ 0 := by
@@ -138,7 +161,9 @@ theorem gapPeak_other_derivative_ne_zero (angles : CyclicAngles n hn)
   rw [hzero, mul_zero] at h
   exact (lt_irrefl 0) h
 
-/-- The reversed evaluation has the opposite strict phase sign.-/
+/-- The reversed evaluation has the opposite strict phase sign.
+@isnad1 id=lt.3h4v.s6.5d4ee590cd40 from=translated src=- shape=a50ca2b0 vocab=05662e3a
+-/
 theorem gapPeak_first_derivative_phase_pos (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (i j : Fin n) (hij : i < j) :
     0 < cyclicCrossGapPhase i j *
@@ -166,6 +191,9 @@ theorem gapPeak_first_derivative_phase_pos (angles : CyclicAngles n hn)
   rw [heq] at hW
   linarith
 
+/--
+@isnad1 id=ne.3h4v.s6.2fa92ce28468 from=translated src=- shape=c595b1be vocab=08893dca
+-/
 theorem gapPeak_first_derivative_ne_zero (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (i j : Fin n) (hij : i < j) :
     deriv (gapInterpolant angles i) (gapPeak angles hsize j) ≠ 0 := by
@@ -174,7 +202,9 @@ theorem gapPeak_first_derivative_ne_zero (angles : CyclicAngles n hn)
   rw [hzero, mul_zero] at h
   exact (lt_irrefl 0) h
 
-/-- A gap function is never critical at another gap's unique peak.-/
+/-- A gap function is never critical at another gap's unique peak.
+@isnad1 id=ne.3h4v.s6.107974bdfb8b from=translated src=- shape=b2e9f8e2 vocab=08893dca
+-/
 theorem gapPeak_distinct_gap_derivative_ne_zero (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (i j : Fin n) (hij : i ≠ j) :
     deriv (gapInterpolant angles j) (gapPeak angles hsize i) ≠ 0 := by

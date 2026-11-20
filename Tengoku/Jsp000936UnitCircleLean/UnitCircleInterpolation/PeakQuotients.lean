@@ -33,12 +33,18 @@ def orderedGapDerivativePolynomial (angles : CyclicAngles n hn) (i : Fin n) : �
   C (1 / 2) * cayleyOperator (n - 1)
     (interpolantPolynomial angles.angle (cyclicGapCoefficient (physicalGapCut hn i)))
 
+/--
+@isnad1 id=le.1h3v.s5.711160dba180 from=translated src=- shape=bbdbd15e vocab=dd07fb37
+-/
 lemma orderedGapDerivativePolynomial_natDegree_le (angles : CyclicAngles n hn)
     (i : Fin n) : (orderedGapDerivativePolynomial angles i).natDegree ≤ n - 1 := by
   exact (Polynomial.natDegree_C_mul_le _ _).trans
     (derivativePolynomial_natDegree_le angles.angle
       (cyclicGapCoefficient (physicalGapCut hn i)))
 
+/--
+@isnad1 id=eq.1h3v.s6.06ab055902ef from=translated src=- shape=0059bcf7 vocab=79a48495
+-/
 lemma deriv_orderedGapInterpolant_homogeneousTrig (angles : CyclicAngles n hn)
     (i : Fin n) :
     deriv (orderedGapInterpolant angles i) =
@@ -50,7 +56,9 @@ lemma deriv_orderedGapInterpolant_homogeneousTrig (angles : CyclicAngles n hn)
     homogeneousTrig_C_mul]
   ring
 
-/-- The witness contains the removable-root value, rather than a `0/0` definition.-/
+/-- The witness contains the removable-root value, rather than a `0/0` definition.
+@isnad1 id=ex.2h3v.s7.1aa8e69825f4 from=translated src=- shape=9fab9a5a vocab=be61b2c6
+-/
 lemma exists_orderedPeakQuotientPolynomial (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (i : Fin n) :
     ∃ Q : ℝ[X], Q.natDegree ≤ n - 2 ∧
@@ -87,11 +95,17 @@ def orderedPeakQuotient (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (i : Fin n) : ℝ → ℝ :=
   homogeneousTrig (n - 2) (orderedPeakQuotientPolynomial angles hsize i)
 
+/--
+@isnad1 id=le.2h3v.s5.0554a2998830 from=translated src=- shape=9de6849e vocab=ab68bab0
+-/
 lemma orderedPeakQuotientPolynomial_natDegree_le (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (i : Fin n) :
     (orderedPeakQuotientPolynomial angles hsize i).natDegree ≤ n - 2 :=
   (exists_orderedPeakQuotientPolynomial angles hsize i).choose_spec.1
 
+/--
+@isnad1 id=eq.2h4v.s6.dd4a02c5f07a from=translated src=- shape=57f70f49 vocab=30310004
+-/
 lemma deriv_orderedGapInterpolant_sine_factor (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (i : Fin n) (t : ℝ) :
     deriv (orderedGapInterpolant angles i) t =
@@ -99,27 +113,42 @@ lemma deriv_orderedGapInterpolant_sine_factor (angles : CyclicAngles n hn)
         orderedPeakQuotient angles hsize i t :=
   (exists_orderedPeakQuotientPolynomial angles hsize i).choose_spec.2.1 t
 
+/--
+@isnad1 id=eq.2h3v.s6.2c21fd8ce70a from=translated src=- shape=40982dff vocab=e8d18e7f
+-/
 lemma orderedPeakQuotient_value_at_peak (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (i : Fin n) :
     orderedPeakQuotient angles hsize i (orderedPeak angles hsize i) =
       2 * deriv (deriv (orderedGapInterpolant angles i)) (orderedPeak angles hsize i) :=
   (exists_orderedPeakQuotientPolynomial angles hsize i).choose_spec.2.2
 
+/--
+@isnad1 id=continuo.2h3v.s5.c67a18ec551a from=translated src=- shape=fe668eaa vocab=858ede3b
+-/
 lemma continuous_orderedPeakQuotient (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (i : Fin n) : Continuous (orderedPeakQuotient angles hsize i) :=
   continuous_homogeneousTrig _ _
 
+/--
+@isnad1 id=mem.2h3v.s6.820257b92a68 from=translated src=- shape=f3cc4437 vocab=576cfbcb
+-/
 lemma orderedPeakQuotient_mem_space (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (i : Fin n) :
     orderedPeakQuotient angles hsize i ∈ homogeneousTrigSpace (n - 2) :=
   homogeneousTrig_mem_space _ _ (orderedPeakQuotientPolynomial_natDegree_le angles hsize i)
 
+/--
+@isnad1 id=lt.2h3v.s5.b7e20352ba51 from=translated src=- shape=31577197 vocab=92f83be2
+-/
 lemma orderedPeakQuotient_diag_neg (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (i : Fin n) :
     orderedPeakQuotient angles hsize i (orderedPeak angles hsize i) < 0 := by
   rw [orderedPeakQuotient_value_at_peak]
   exact mul_neg_of_pos_of_neg (by norm_num) (orderedPeak_second_deriv_neg angles hsize i)
 
+/--
+@isnad1 id=lt.3h4v.s6.94699a2a4375 from=translated src=- shape=428819a8 vocab=8c9e54cf
+-/
 lemma sin_half_orderedPeak_sub_pos (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (i j : Fin n) (hij : i < j) :
     0 < Real.sin ((orderedPeak angles hsize j - orderedPeak angles hsize i) / 2) := by
@@ -129,6 +158,9 @@ lemma sin_half_orderedPeak_sub_pos (angles : CyclicAngles n hn)
     have hj := orderedPeak_mem_Ioo angles hsize j
     linarith [hi.1, hj.2]
 
+/--
+@isnad1 id=lt.3h4v.s6.f7ee987b30ff from=translated src=- shape=2edb5e53 vocab=8c9e54cf
+-/
 lemma sin_half_orderedPeak_sub_neg (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (i j : Fin n) (hij : i < j) :
     Real.sin ((orderedPeak angles hsize i - orderedPeak angles hsize j) / 2) < 0 := by
@@ -137,7 +169,9 @@ lemma sin_half_orderedPeak_sub_neg (angles : CyclicAngles n hn)
   exact neg_neg_of_pos (sin_half_orderedPeak_sub_pos angles hsize i j hij)
 
 /-- The actual quotient sign table: all off-diagonal entries have positive
-checkerboard phase, while every diagonal entry is strictly negative.-/
+checkerboard phase, while every diagonal entry is strictly negative.
+@isnad1 id=lt.3h4v.s6.d792467a63b0 from=translated src=- shape=5dff3e66 vocab=396ab2bc
+-/
 theorem orderedPeakQuotient_offdiag_phase_pos (angles : CyclicAngles n hn)
     (hsize : 2 ≤ n) (i j : Fin n) (hij : i ≠ j) :
     0 < (-1 : ℝ) ^ (i.val + j.val) *

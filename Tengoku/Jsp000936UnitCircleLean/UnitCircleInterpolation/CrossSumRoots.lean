@@ -45,7 +45,9 @@ def crossSumRootLocation (angles : CyclicAngles n hn) (i j k : Fin n) (t : ℝ) 
   else if k.val = 0 then t ∈ wrapGap angles
   else t ∈ Set.Ioo (angles.angle (gapPredecessor k)) (angles.angle k)
 
-/-- Alternating actual endpoint values construct a sum zero in an exterior ordinary gap.-/
+/-- Alternating actual endpoint values construct a sum zero in an exterior ordinary gap.
+@isnad1 id=ex.4h5v.s6.dfff0c84b5a8 from=translated src=- shape=c8ddd29c vocab=994fd748
+-/
 theorem exists_crossSum_root_on_gap (angles : CyclicAngles n hn)
     (i j k : Fin n) (hij : i < j) (hkpos : 0 < k.val) (hk : k < i ∨ j < k) :
     ∃ t, t ∈ Set.Ioo (angles.angle (gapPredecessor k)) (angles.angle k) ∧
@@ -68,7 +70,9 @@ theorem exists_crossSum_root_on_gap (angles : CyclicAngles n hn)
   · exact (crossSumInterpolant_at_node_ne_zero_iff angles i j
       (gapPredecessor k) hij.le).mpr hpredoutside
 
-/-- For a positive first cut, the final gap has opposite nonzero actual endpoint values.-/
+/-- For a positive first cut, the final gap has opposite nonzero actual endpoint values.
+@isnad1 id=eq.3h4v.s6.2b223cb0c48c from=translated src=- shape=03109007 vocab=148902db
+-/
 theorem crossSumInterpolant_wrap_opposite (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) (hi : 0 < i.val) :
     sineInterpolant angles.angle (crossSumCoefficient i j) (2 * Real.pi) =
@@ -94,6 +98,9 @@ theorem crossSumInterpolant_wrap_opposite (angles : CyclicAngles n hn)
     _ = -sineInterpolant angles.angle (crossSumCoefficient i j)
         (angles.angle (lastNodeIndex hn)) := by rw [hlastvalue]
 
+/--
+@isnad1 id=ex.3h4v.s6.79914cb9eb6a from=translated src=- shape=cb330478 vocab=4f4329e6
+-/
 theorem exists_crossSum_root_on_wrapGap (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) (hi : 0 < i.val) :
     ∃ t, t ∈ wrapGap angles ∧
@@ -106,7 +113,9 @@ theorem exists_crossSum_root_on_wrapGap (angles : CyclicAngles n hn)
   · exact (crossSumInterpolant_at_node_ne_zero_iff angles i j
       (lastNodeIndex hn) hij.le).mpr (Or.inr (Nat.le_sub_one_of_lt j.isLt))
 
-/-- Every nodal index except the second cut supplies an actual zero.-/
+/-- Every nodal index except the second cut supplies an actual zero.
+@isnad1 id=ex.3h5v.s6.b900b973d40e from=translated src=- shape=4c08cccd vocab=9c4942f8
+-/
 theorem exists_crossSum_root_at_index (angles : CyclicAngles n hn)
     (i j k : Fin n) (hij : i < j) (hkj : k ≠ j) :
     ∃ t, crossSumRootLocation angles i j k t ∧
@@ -135,7 +144,9 @@ theorem exists_crossSum_root_at_index (angles : CyclicAngles n hn)
       obtain ⟨t, ht, hz⟩ := exists_crossSum_root_on_gap angles i j k hij hkpos houtside
       exact ⟨t, by simpa [crossSumRootLocation, hmiddle, hkzero] using ht, hz⟩
 
-/-- Except for a wrap-gap zero, the assigned zero is at or before its nodal index.-/
+/-- Except for a wrap-gap zero, the assigned zero is at or before its nodal index.
+@isnad1 id=le.3h6v.s6.8eb88dc673da from=translated src=- shape=dc195ea3 vocab=55121333
+-/
 lemma crossSumRootLocation_le_angle (angles : CyclicAngles n hn)
     (i j k : Fin n) {t : ℝ} (ht : crossSumRootLocation angles i j k t)
     (hregular : k.val ≠ 0 ∨ i ≤ k ∧ k < j) : t ≤ angles.angle k := by
@@ -147,7 +158,9 @@ lemma crossSumRootLocation_le_angle (angles : CyclicAngles n hn)
     · exact (hmiddle hmiddle').elim
   · exact ht.2.le
 
-/-- A larger regular index places its assigned zero strictly after every smaller node.-/
+/-- A larger regular index places its assigned zero strictly after every smaller node.
+@isnad1 id=lt.3h7v.s5.b68c7566833f from=translated src=- shape=650953e3 vocab=c735dc72
+-/
 lemma angle_lt_of_crossSumRootLocation_of_lt (angles : CyclicAngles n hn)
     (i j k l : Fin n) (hkl : k < l) {u : ℝ}
     (hu : crossSumRootLocation angles i j l u) : angles.angle k < u := by
@@ -159,6 +172,9 @@ lemma angle_lt_of_crossSumRootLocation_of_lt (angles : CyclicAngles n hn)
   · omega
   · exact (angles.strictMono.monotone (Nat.le_sub_one_of_lt hkl)).trans_lt hu.1
 
+/--
+@isnad1 id=ne.4h8v.s5.8b7f5fcb2e16 from=translated src=- shape=439ac9f6 vocab=e43a1d6f
+-/
 lemma crossSumRootLocation_distinct_of_lt (angles : CyclicAngles n hn)
     (i j k l : Fin n) (hkl : k < l) {t u : ℝ}
     (ht : crossSumRootLocation angles i j k t)
@@ -174,6 +190,9 @@ lemma crossSumRootLocation_distinct_of_lt (angles : CyclicAngles n hn)
     have huless := crossSumRootLocation_le_angle angles i j l hu (Or.inl hlzero)
     exact ne_of_gt (huless.trans_lt (angle_lt_of_mem_wrapGap angles hwrap l))
 
+/--
+@isnad1 id=mem.2h6v.s6.5973299c0a00 from=translated src=- shape=d250aa1e vocab=10a53750
+-/
 lemma crossSumRootLocation_mem_Ico (angles : CyclicAngles n hn)
     (i j k : Fin n) {t : ℝ} (ht : crossSumRootLocation angles i j k t) :
     t ∈ Set.Ico 0 (2 * Real.pi) := by
@@ -184,7 +203,9 @@ lemma crossSumRootLocation_mem_Ico (angles : CyclicAngles n hn)
   · exact ⟨(wrapGap_mem_Ioo angles ht).1.le, ht.2⟩
   · exact ⟨(angles.nonneg _).trans ht.1.le, ht.2.trans (angles.lt_two_pi k)⟩
 
-/-- The actual zero selected at every erased nodal index is distinct from all the others.-/
+/-- The actual zero selected at every erased nodal index is distinct from all the others.
+@isnad1 id=ex.2h4v.s8.0cad32a8e990 from=translated src=- shape=1d31bf96 vocab=446ad69a
+-/
 theorem exists_crossSum_roots_on_erase (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) :
     ∃ root : ↥(Finset.univ.erase j : Finset (Fin n)) → ℝ, Function.Injective root ∧
@@ -214,12 +235,17 @@ theorem exists_crossSum_roots_on_erase (angles : CyclicAngles n hn)
 def crossSumRootIndex (j : Fin n) (k : Fin (n - 1)) : Fin n :=
   ((Finset.univ.erase j : Finset (Fin n)).orderIsoOfFin (by simp) k).val
 
+/--
+@isnad1 id=ne.0h3v.s4.ebf7275d0b45 from=translated src=- shape=57487d4e vocab=099dd9b9
+-/
 lemma crossSumRootIndex_ne_cut (j : Fin n) (k : Fin (n - 1)) :
     crossSumRootIndex j k ≠ j :=
   (Finset.mem_erase.mp
     (((Finset.univ.erase j : Finset (Fin n)).orderIsoOfFin (by simp) k).property)).1
 
-/-- The actual sum has `n - 1` distinct roots with retained exact locations.-/
+/-- The actual sum has `n - 1` distinct roots with retained exact locations.
+@isnad1 id=ex.2h4v.s7.e9f681c27fae from=translated src=- shape=0734b0d4 vocab=cdeb76e8
+-/
 theorem exists_crossSum_roots_with_locations (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) :
     ∃ root : Fin (n - 1) → ℝ, Function.Injective root ∧
@@ -233,6 +259,9 @@ theorem exists_crossSum_roots_with_locations (angles : CyclicAngles n hn)
   exact ⟨fun k => root (e k), hinj.comp e.injective, fun k => hloc (e k),
     fun k => hbound (e k), fun k => hroot (e k)⟩
 
+/--
+@isnad1 id=ne.2h4v.s5.c1cf12d8814a from=translated src=- shape=1f561300 vocab=228639c4
+-/
 lemma crossSumPolynomial_ne_zero (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) :
     interpolantPolynomial angles.angle (crossSumCoefficient i j) ≠ 0 := by
@@ -240,7 +269,9 @@ lemma crossSumPolynomial_ne_zero (angles : CyclicAngles n hn)
     (fun k => ⟨angles.nonneg k, angles.lt_two_pi k⟩) (crossSumCoefficient i j) j
   exact (crossSumCoefficient_ne_zero_iff i j j hij.le).mpr (Or.inr le_rfl)
 
-/-- The constructed actual roots are simple and exhaust all zeros in the complete turn.-/
+/-- The constructed actual roots are simple and exhaust all zeros in the complete turn.
+@isnad1 id=ex.2h4v.s8.351421cad0bf from=translated src=- shape=0f802c93 vocab=ea2b81bd
+-/
 theorem exists_crossSum_saturated_roots_with_locations (angles : CyclicAngles n hn)
     (i j : Fin n) (hij : i < j) :
     ∃ root : Fin (n - 1) → ℝ, Function.Injective root ∧

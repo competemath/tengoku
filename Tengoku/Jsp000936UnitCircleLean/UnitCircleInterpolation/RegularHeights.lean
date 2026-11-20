@@ -30,6 +30,9 @@ namespace UnitCircleInterpolation
 
 noncomputable section
 
+/--
+@isnad1 id=eq.0h3v.s5.dd3f34db58e5 from=translated src=- shape=1764137d vocab=81980279
+-/
 lemma regularPoint_add {n : ℕ} [NeZero n] (i j : Fin n) :
     regularPoint n (i + j) = regularPoint n i * regularPoint n j := by
   have hn : (n : ℝ) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne n)
@@ -46,7 +49,9 @@ lemma regularPoint_add {n : ℕ} [NeZero n] (i j : Fin n) :
     ring
 
 /-- The full literal Lebesgue function of regular nodes is invariant under
-rotation by any node, with no assumption on the evaluation point.-/
+rotation by any node, with no assumption on the evaluation point.
+@isnad1 id=eq.1h3v.s7.ddeab091c284 from=translated src=- shape=0f0bd861 vocab=66cbe190
+-/
 theorem regular_lebesgueFunction_rotate {n : ℕ} (hn : 0 < n)
     (i : Fin n) (w : Circle) :
     lebesgueFunction (regularNodes n hn).coordinates
@@ -64,6 +69,9 @@ theorem regular_lebesgueFunction_rotate {n : ℕ} (hn : 0 < n)
   rw [hcoord, lebesgueFunction_reindex] at h
   exact h
 
+/--
+@isnad1 id=eq.1h3v.s8.83a6dfdb54d9 from=translated src=- shape=5d9e3ebc vocab=3c9caa61
+-/
 theorem regular_lebesgueFunction_shift {n : ℕ} (hn : 0 < n)
     (i : Fin n) (t : ℝ) :
     lebesgueFunction (regularNodes n hn).coordinates
@@ -77,11 +85,17 @@ def regularCyclicAngles (d : ℕ) : CyclicAngles (d + 1) (Nat.succ_pos d) :=
   cyclicAnglesOfParameters (regularAngularParameters d)
     (regularAngularParameters_mem_domain d)
 
+/--
+@isnad1 id=eq.0h2v.s6.570bf64b8812 from=translated src=- shape=12f43d01 vocab=a6612156
+-/
 lemma regularCyclicAngles_angle (d : ℕ) (i : Fin (d + 1)) :
     (regularCyclicAngles d).angle i =
       2 * Real.pi * ((i.val : ℝ) / ((d + 1 : ℕ) : ℝ)) :=
   angularParameterAngles_regular d i
 
+/--
+@isnad1 id=eq.0h1v.s6.e230c8f094e7 from=translated src=- shape=6bb3fdfd vocab=c15f1e1a
+-/
 lemma regularCyclicAngles_coordinates (d : ℕ) :
     phaseNodes (regularCyclicAngles d).angle =
       (regularNodes (d + 1) (Nat.succ_pos d)).coordinates := by
@@ -90,6 +104,9 @@ lemma regularCyclicAngles_coordinates (d : ℕ) :
   rw [regularCyclicAngles_angle]
   rfl
 
+/--
+@isnad1 id=isregula.0h1v.s5.d12a6a846288 from=translated src=- shape=734db5bc vocab=234a979d
+-/
 theorem regularCyclicAngles_isRegularRotation (d : ℕ) :
     IsRegularRotation (regularCyclicAngles d).toNodeFamily := by
   refine ⟨1, Equiv.refl _, ?_⟩
@@ -98,6 +115,9 @@ theorem regularCyclicAngles_isRegularRotation (d : ℕ) :
   rw [regularCyclicAngles_angle, one_mul]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.f22cba09c2c5 from=translated src=- shape=a7124376 vocab=0d53e7d5
+-/
 lemma regularCyclicGapRight (d : ℕ) (i : Fin (d + 1)) :
     cyclicGapRight (regularCyclicAngles d) i =
       2 * Real.pi * (((i.val : ℝ) + 1) / ((d + 1 : ℕ) : ℝ)) := by
@@ -111,6 +131,9 @@ lemma regularCyclicGapRight (d : ℕ) (i : Fin (d + 1)) :
 
 variable {d : ℕ}
 
+/--
+@isnad1 id=mem.1h3v.s7.b74ddd67fef1 from=translated src=- shape=e56b7a74 vocab=fa125dbb
+-/
 lemma regular_ordered_gap_translate (k : Fin (d + 1)) {t : ℝ}
     (ht : t ∈ Set.Ioo ((regularCyclicAngles d).angle k)
       (cyclicGapRight (regularCyclicAngles d) k)) :
@@ -127,6 +150,9 @@ lemma regular_ordered_gap_translate (k : Fin (d + 1)) {t : ℝ}
   rcases ht with ⟨ht₁, ht₂⟩
   constructor <;> linarith
 
+/--
+@isnad1 id=mem.1h3v.s7.9300f730a6ad from=translated src=- shape=b13e9fb1 vocab=676746eb
+-/
 lemma regular_ordered_gap_translate_back (k : Fin (d + 1)) {t : ℝ}
     (ht : t ∈ Set.Ioo ((regularCyclicAngles d).angle 0)
       (cyclicGapRight (regularCyclicAngles d) 0)) :
@@ -142,6 +168,9 @@ lemma regular_ordered_gap_translate_back (k : Fin (d + 1)) {t : ℝ}
   rcases ht with ⟨ht₁, ht₂⟩
   constructor <;> linarith
 
+/--
+@isnad1 id=eq.1h2v.s7.36accf352b3f from=translated src=- shape=add82c86 vocab=c62014be
+-/
 lemma regular_orderedHeight_eq_literal (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
     orderedHeight (regularCyclicAngles d) hsize k =
       lebesgueFunction (regularNodes (d + 1) (Nat.succ_pos d)).coordinates
@@ -149,6 +178,9 @@ lemma regular_orderedHeight_eq_literal (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
   rw [orderedHeight, gapHeight_eq_lebesgueFunction, regularCyclicAngles_coordinates]
   rfl
 
+/--
+@isnad1 id=le.2h3v.s7.538d695ba6d4 from=translated src=- shape=5e0b7601 vocab=ed5f409b
+-/
 lemma regular_literal_le_orderedHeight (hsize : 2 ≤ d + 1) (k : Fin (d + 1))
     {t : ℝ} (ht : t ∈ Set.Ioo ((regularCyclicAngles d).angle k)
       (cyclicGapRight (regularCyclicAngles d) k)) :
@@ -161,7 +193,9 @@ lemma regular_literal_le_orderedHeight (hsize : 2 ≤ d + 1) (k : Fin (d + 1))
   rw [← regularCyclicAngles_coordinates, lebesgueFunction_on_gapInterval _ _ hgap]
   exact gapInterpolant_le_gapHeight _ hsize _ (Set.Ioo_subset_Icc_self hgap)
 
-/-- Every actual regular-polygon gap has the same peak height, including the wrap gap.-/
+/-- Every actual regular-polygon gap has the same peak height, including the wrap gap.
+@isnad1 id=eq.1h2v.s6.148b44b0ab5f from=translated src=- shape=0137124b vocab=66fa9818
+-/
 theorem regular_orderedHeight_eq (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
     orderedHeight (regularCyclicAngles d) hsize k =
       orderedHeight (regularCyclicAngles d) hsize 0 := by
@@ -185,6 +219,9 @@ theorem regular_orderedHeight_eq (hsize : 2 ≤ d + 1) (k : Fin (d + 1)) :
     rw [regular_orderedHeight_eq_literal, ← hshift]
     exact regular_literal_le_orderedHeight hsize k ht
 
+/--
+@isnad1 id=eq.1h3v.s6.6b150d14f9a5 from=translated src=- shape=2a74b308 vocab=a13c9adb
+-/
 theorem regular_gapHeight_eq (hsize : 2 ≤ d + 1) (i j : Fin (d + 1)) :
     gapHeight (regularCyclicAngles d) hsize i =
       gapHeight (regularCyclicAngles d) hsize j := by
@@ -192,6 +229,9 @@ theorem regular_gapHeight_eq (hsize : 2 ≤ d + 1) (i j : Fin (d + 1)) :
   obtain ⟨l, rfl⟩ := physicalGapCut_surjective (Nat.succ_pos d) j
   exact (regular_orderedHeight_eq hsize k).trans (regular_orderedHeight_eq hsize l).symm
 
+/--
+@isnad1 id=eq.1h3v.s6.8f1f791d3e83 from=translated src=- shape=70c1d7c6 vocab=b935d523
+-/
 theorem parameterOrderedHeight_regular_eq (hsize : 2 ≤ d + 1) (i j : Fin (d + 1)) :
     parameterOrderedHeight hsize i (regularAngularParameters d) =
       parameterOrderedHeight hsize j (regularAngularParameters d) := by
@@ -199,7 +239,9 @@ theorem parameterOrderedHeight_regular_eq (hsize : 2 ≤ d + 1) (i j : Fin (d + 
     parameterOrderedHeight_of_mem_domain _ (regularAngularParameters_mem_domain d)]
   exact (regular_orderedHeight_eq hsize i).trans (regular_orderedHeight_eq hsize j).symm
 
-/-- The actual height-difference map sends the canonical regular polygon to zero.-/
+/-- The actual height-difference map sends the canonical regular polygon to zero.
+@isnad1 id=eq.1h1v.s5.df37d8d78090 from=translated src=- shape=d0bda7e9 vocab=c696effd
+-/
 theorem parameterAdjacentHeightDifferences_regular_eq_zero (hsize : 2 ≤ d + 1) :
     parameterAdjacentHeightDifferences hsize (regularAngularParameters d) = 0 := by
   funext i
