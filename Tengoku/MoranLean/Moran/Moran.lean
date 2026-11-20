@@ -99,7 +99,9 @@ private lemma coding_term_le (n d : ℕ) (hd : d ∈ A.digits n) :
       field_simp
       simp
 
-/-- Every admissible digit expansion is summable.-/
+/-- Every admissible digit expansion is summable.
+@isnad1 id=summable.1h2v.s5.55fc5706911d from=translated src=- shape=e6172f25 vocab=1e0dd760
+-/
 theorem summable_coding (d : ℕ → ℕ) (hd : ∀ n, d n ∈ A.digits n) :
     Summable (fun n ↦ (d n : ℝ) / (A.scale n : ℝ)) := by
   exact Summable.of_nonneg_of_le (fun n ↦ div_nonneg (Nat.cast_nonneg _) (Nat.cast_nonneg _))
@@ -118,7 +120,9 @@ private lemma continuousOn_coding :
   · intro n x hx
     simpa only [norm_div, Real.norm_natCast] using A.coding_term_le n (x n) (hx n)
 
-/-- The homogeneous Moran set is nonempty and compact.-/
+/-- The homogeneous Moran set is nonempty and compact.
+@isnad1 id=and.0h1v.s4.c61063334bb6 from=translated src=- shape=361f4482 vocab=4d8f6737
+-/
 theorem nonempty_isCompact_carrier :
     A.carrier.Nonempty ∧ IsCompact A.carrier := by
   change (A.coding '' {d | ∀ n, d n ∈ A.digits n}).Nonempty ∧
@@ -169,12 +173,16 @@ private lemma measurable_coding : Measurable A.coding := by
     ((measurable_of_countable (fun k : ℕ ↦ (k : ℝ))).comp
       (measurable_pi_apply n)).div_const (A.scale n : ℝ))
 
-/-- The Cantor–Moran measure is a probability measure.-/
+/-- The Cantor–Moran measure is a probability measure.
+@isnad1 id=isprobab.0h1v.s2.35441280ac89 from=translated src=- shape=7000f90d vocab=8f30da48
+-/
 instance instIsProbabilityMeasure : IsProbabilityMeasure A.measure := by
   letI (n : ℕ) : IsProbabilityMeasure (A.digitLaw n) := A.isProbabilityMeasure_digitLaw n
   exact Measure.isProbabilityMeasure_map A.measurable_coding.aemeasurable
 
-/-- The Cantor–Moran measure is concentrated on its homogeneous Moran set.-/
+/-- The Cantor–Moran measure is concentrated on its homogeneous Moran set.
+@isnad1 id=eq.0h1v.s5.d2cb991338fc from=translated src=- shape=76ae6903 vocab=23bc8ea0
+-/
 theorem measure_compl_carrier :
     A.measure A.carrierᶜ = 0 := by
   rw [measure, Measure.map_apply A.measurable_coding
@@ -262,7 +270,9 @@ private lemma tendsto_integral_partialConvolution {E : Type*} [NormedAddCommGrou
     integral_map_of_stronglyMeasurable A.measurable_coding f.continuous.stronglyMeasurable]
     using A.tendsto_integral_partial_coding f
 
-/-- Finite digit convolutions converge weakly to the Cantor–Moran measure.-/
+/-- Finite digit convolutions converge weakly to the Cantor–Moran measure.
+@isnad1 id=tendsto.0h2v.s6.bc001babebcd from=translated src=- shape=a577fcc9 vocab=c9e1a509
+-/
 theorem tendsto_partialConvolution (f : ℝ →ᵇ ℝ) :
     Tendsto (fun n ↦ ∫ x, f x ∂(A.partialConvolution n))
       atTop (𝓝 (∫ x, f x ∂A.measure)) := by
@@ -521,7 +531,9 @@ private def centeredGridIndex (p : ℕ) (θ : ℝ) (a : Fin p) : ℤ :=
 private def gridWeight (k : ℤ) : ℝ :=
   if k.natAbs ≤ 1 then 1 else (2 * (k.natAbs - 1 : ℕ) : ℝ)⁻¹
 
-/-- The Fourier integral of the constant one function is the measure Fourier transform.-/
+/-- The Fourier integral of the constant one function is the measure Fourier transform.
+@isnad1 id=eq.0h2v.s6.a31b275eee4e from=translated src=- shape=750d52cf vocab=154346c3
+-/
 theorem fourierIntegral_one_eq (μ : Measure ℝ) (ξ : ℝ) :
     Fourier.fourierIntegral Real.fourierChar μ (fun _ ↦ (1 : ℂ)) ξ =
       ∫ x : ℝ, Complex.exp
@@ -555,7 +567,9 @@ private lemma hasProd_charFun_factor (A : Data) (t : ℝ) :
     Data.measure, integral_map_of_stronglyMeasurable A.measurable_coding
       (BoundedContinuousFunction.innerProbChar t).continuous.stronglyMeasurable] using h
 
-/-- The Fourier transform of a Cantor–Moran measure is the convergent product of its masks.-/
+/-- The Fourier transform of a Cantor–Moran measure is the convergent product of its masks.
+@isnad1 id=hasprod.0h2v.s6.6725f103afc0 from=translated src=- shape=7f69d08a vocab=85205e05
+-/
 theorem Data.hasProd_mask (A : Data) (ξ : ℝ) :
     HasProd (fun n ↦ mask (A.digits n) (ξ / (A.scale n : ℝ)))
       (Fourier.fourierIntegral Real.fourierChar A.measure
@@ -1176,7 +1190,9 @@ def spectralMoranSpectrum (s : ℝ) (hs : 0 < s) (hs₁ : s ≤ 1) : Set ℝ :=
   galoisPowerSpectrum (constructionPrime s hs hs₁) (constructionRank s)
     (fun j ↦ constructionLength s j - constructionRank s j) (constructionRank_pos hs)
 
-/-- The constructed spectrum is countable.-/
+/-- The constructed spectrum is countable.
+@isnad1 id=countabl.2h1v.s4.75f2731b53d4 from=translated src=- shape=bdeb4c92 vocab=444cf47a
+-/
 theorem spectralMoranSpectrum_countable (s : ℝ) (hs : 0 < s) (hs₁ : s ≤ 1) :
     (spectralMoranSpectrum s hs hs₁).Countable := by
   refine (Set.countable_range (fun z : ℤ ↦ (z : ℝ))).mono ?_
