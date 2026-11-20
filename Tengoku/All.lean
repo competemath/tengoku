@@ -116,6 +116,7 @@ import Tengoku.TdaLib
 import Tengoku.RobustInverseUncertaintyLean
 import Tengoku.Ieantn
 import Tengoku.GroebnerProj
+import Tengoku.NiceNumbersLean
 import Tengoku.Biyoneda
 import Tengoku.Azurite
 import Tengoku.Compply

@@ -1,0 +1,1 @@
+-- NiceNumbersLean: a factory bundle (data/intake/nice-numbers-lean). This file only marks the library for Tengoku/All.lean.
