@@ -326,7 +326,11 @@
     "https://github.com/BrandonMYates/grlab",
     "https://github.com/arex1337/erdos-263-lean",
     "https://github.com/AxiomMath/ramanujan-tau-misses-primes",
-    "https://github.com/qkkqk1234/jsp-000907-lean"
+    "https://github.com/qkkqk1234/jsp-000907-lean",
+    "https://github.com/erebos-labs/ordered-matrix-removal-4x4",
+    "https://github.com/Riflonnade/RandomSetTheory",
+    "https://github.com/urdvr/superpermutations-hunter",
+    "https://github.com/jimpeebles/rainich-kaluza-reconstruction"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -665,7 +669,11 @@
     "https://github.com/BrandonMYates/grlab": "Apache-2.0",
     "https://github.com/arex1337/erdos-263-lean": "Apache-2.0",
     "https://github.com/AxiomMath/ramanujan-tau-misses-primes": "MIT",
-    "https://github.com/qkkqk1234/jsp-000907-lean": "Apache-2.0"
+    "https://github.com/qkkqk1234/jsp-000907-lean": "Apache-2.0",
+    "https://github.com/erebos-labs/ordered-matrix-removal-4x4": "Apache-2.0",
+    "https://github.com/Riflonnade/RandomSetTheory": "Apache-2.0",
+    "https://github.com/urdvr/superpermutations-hunter": "Apache-2.0",
+    "https://github.com/jimpeebles/rainich-kaluza-reconstruction": "MIT"
   },
   "corpora": {
     "equational-theories": {
@@ -3251,6 +3259,35 @@
       "commit": "f820373fea69f3f959cdaaf3a1d9dd70ce6a3e1a",
       "roots": [
         "JSP907"
+      ]
+    },
+    "ordered-matrix-removal-4x4": {
+      "repo": "https://github.com/erebos-labs/ordered-matrix-removal-4x4",
+      "commit": "0d43f182f2ee12e27419ac4d5e32fd2d9b68ab43",
+      "roots": [
+        "OrderedMatrixRemoval4"
+      ]
+    },
+    "randomsettheory": {
+      "repo": "https://github.com/Riflonnade/RandomSetTheory",
+      "commit": "544f98470c3960a282d6f95c6e08c5487a195664",
+      "roots": [
+        "RandomSetTheory"
+      ]
+    },
+    "superpermutations-hunter": {
+      "repo": "https://github.com/urdvr/superpermutations-hunter",
+      "commit": "d45222190031d162feb1f6f3cf5fe2d11fab726d",
+      "roots": [
+        "AxiomCheck",
+        "Hunter"
+      ]
+    },
+    "rainich-kaluza-reconstruction": {
+      "repo": "https://github.com/jimpeebles/rainich-kaluza-reconstruction",
+      "commit": "33a5fc9ae279c1cc5b0dad9b6517d2d026c7cc54",
+      "roots": [
+        "RainichKaluza"
       ]
     }
   },
