@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "bfb20486b500795816a726af4158c4e4883c9f9052cf687ce2333b12f39291ac",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "goemans",
+ "lint_mode": "proposed",
+ "modules": 19,
+ "part": 1,
+ "theorems": 311
+}
