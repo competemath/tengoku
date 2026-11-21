@@ -3,9 +3,11 @@
 
   independent_check.py plan  --shards N [--commit SHA] [--only SHARD]
   independent_check.py merge --commit SHA --lean4export-commit X --nanoda-commit Y --run URL [--patch-sha256 H] [--nanoda-patch-sha256 H]
+  independent_check.py nanoda-config --export FILE
 
 The files it reads and writes are at fixed places under the directory it runs in (the workflow's workspace), not on the command line: plan reads Tengoku/All.lean, tengoku-tree.json (the GitHub API's listing of the
-Tengoku tree) and data-paths.txt (the files of data/trusted and data/intake) and writes plan.json and matrix.json; merge reads plan/plan.json and every shard-N.json under shards/ and writes independent-check.json.
+Tengoku tree) and data-paths.txt (the files of data/trusted and data/intake) and writes plan.json and matrix.json; merge reads plan/plan.json, every shard-N.json under shards/ and exempt-list.json (the list of theorems nanoda cannot check, exempt_export.py) and writes independent-check.json; nanoda-config prints the
+configuration of nanoda for an export (the axioms it admits: Lean's prelude, and the exempt theorems that shard turned into axioms, from exempt-applied.json).
 
 One `lean4export Tengoku.All` of the whole tree is one process that writes about 13,000 lines a second: 4 h 04 min for 196.6 million lines on 2026-10-12, the last time the check passed. The tree has grown
 since, and the job's 350 minutes ran out in the export on every night from 16 November. The tree is cut into SHARDS, each a job of its own:
@@ -25,11 +27,17 @@ from __future__ import annotations
 
 import argparse
 import datetime
+import hashlib
 import json
 import re
 import sys
 from collections import defaultdict
 from pathlib import Path
+
+from exempt_export import APPLIED_JSON, EXEMPT_FILE, load_exempt
+
+# the axioms of Lean's prelude: the export of Lean core declares them (sorryAx, the compiler axioms), nanoda admits them; what the records rest on is audited separately (axiom_scan.py)
+NANODA_AXIOMS = ["propext", "Classical.choice", "Quot.sound", "sorryAx", "Lean.ofReduceBool", "Lean.ofReduceNat", "Lean.trustCompiler"]
 
 IMPORT = re.compile(r"^import (Tengoku(?:\.[A-Za-z0-9_]+)?)\s*$")
 ROOT = re.compile(r"^Tengoku(?:\.[A-Za-z0-9_]+)?$")
@@ -161,9 +169,14 @@ def merge(
     now: str | None = None,
     patch_sha256: str | None = None,
     nanoda_patch_sha256: str | None = None,
+    exempt: dict[str, dict] | None = None,
+    exempt_sha256: str | None = None,
 ) -> dict:
-    """one report from the shards' reports; SystemExit listing every problem when the shards do not make a complete, passing check of `commit`"""
+    """one report from the shards' reports; SystemExit listing every problem when the shards do not make a complete, passing check of `commit`.
+    `exempt` is the list of theorems nanoda cannot check (name -> entry, exempt_export.py): every shard must have run with that list, and the shards together must have applied exactly its names."""
+    exempt = exempt or {}
     problems: list[str] = []
+    applied: set[str] = set()
     wanted = [g["shard"] for g in p["shards"]]
     if sorted(reports) != sorted(wanted):
         problems.append(f"shards present {sorted(reports)}, expected {sorted(wanted)}")
@@ -194,11 +207,21 @@ def merge(
             problems.append(f"{who}: nanoda was not built with the patch of this workflow's commit")
         if r.get("nanoda", {}).get("errors") != 0 or not r.get("nanoda", {}).get("declarations_checked"):
             problems.append(f"{who}: nanoda did not check declarations without errors")
+        ex = r.get("exempt", {})
+        if ex.get("file_sha256") != exempt_sha256:
+            problems.append(f"{who}: it ran with another list of exempt theorems than this workflow's commit")
+        applied |= set(ex.get("applied", []))
         scan = r.get("axiom_scan", {})
         if scan.get("passed") is not True or scan.get("failures"):
             problems.append(f"{who}: the axiom scan did not pass")
         if scan.get("trusted_records", {}).get("libraries") != g["libraries"]:
             problems.append(f"{who}: the axiom scan audited other libraries than the plan's")
+    if sorted(applied - set(exempt)):
+        problems.append(f"theorems made axioms for nanoda that the exempt list does not name: {sorted(applied - set(exempt))}")
+    if sorted(set(exempt) - applied):
+        problems.append(
+            f"exempt theorems that no shard applied (the name is stale, or in a library the plan does not export): {sorted(set(exempt) - applied)}"
+        )
     if problems:
         raise SystemExit("the shards are not a passing independent check of this commit:\n  " + "\n  ".join(problems))
     rs = [reports[i] for i in wanted]
@@ -234,6 +257,9 @@ def merge(
             "declarations_checked": sum(r["nanoda"]["declarations_checked"] for r in rs),
             "errors": 0,
             "axioms_admitted": first["nanoda"]["axioms_admitted"],
+            # theorems nanoda took for granted (axioms in its copy of the export): the Lean kernel accepted them and the axiom scan audited them, a second kernel did not re-check them
+            "exempt": [{"name": n, "library": e["library"], "reason": e["reason"]} for n, e in sorted(exempt.items())],
+            **({"exempt_list_sha256": exempt_sha256} if exempt_sha256 else {}),
         },
         "axiom_scan": {
             "export": {key: sum(sc["export"][key] for sc in scans) for key in ("lines", "terms", "constants")},
@@ -259,6 +285,21 @@ def merge(
             for g, r in zip(p["shards"], rs, strict=True)
         ],
         "note": "Every shard exports the roots it was given and what they import: the seed part of a shard's export is the same constants as another shard's, so `declarations_checked` and the `export` counts are sums over shards, not counts of distinct constants.",
+    }
+
+
+def nanoda_config(export: str, exempt_applied: list[str]) -> dict:
+    """the configuration of nanoda for `export`: four checking threads, the Nat and String extensions, and as admitted axioms Lean's prelude and the exempt theorems this export holds as axioms"""
+    return {
+        "export_file_path": export,
+        "use_stdin": False,
+        "permitted_axioms": NANODA_AXIOMS + sorted(exempt_applied),
+        "unpermitted_axiom_hard_error": True,
+        "num_threads": 4,
+        "nat_extension": True,
+        "string_extension": True,
+        "print_success_message": True,
+        "pp_to_stdout": True,
     }
 
 
@@ -296,13 +337,19 @@ def main(argv: list[str] | None = None) -> int:
     mg.add_argument("--run", required=True)
     mg.add_argument(
         "--nanoda-patch-sha256",
-        help="the sha256 of scripts/ci/nanoda-stack.patch at the workflow's commit (the stack size of nanoda's checking threads): every shard must say it built nanoda with it",
+        help="the sha256 of scripts/ci/nanoda.patch at the workflow's commit (the stack size of nanoda's checking threads, and a log of what each one is on): every shard must say it built nanoda with it",
     )
     mg.add_argument(
         "--patch-sha256",
         help="the sha256 of scripts/ci/lean4export-own.patch at the workflow's commit: the library shards must say they ran with it",
     )
+    nc = sub.add_parser("nanoda-config")
+    nc.add_argument("--export", required=True, help="the export nanoda checks (its path goes into the configuration, it is not read here)")
     a = ap.parse_args(argv)
+    if a.cmd == "nanoda-config":
+        extra = json.loads(APPLIED_JSON.read_text(encoding="utf-8"))["applied"] if APPLIED_JSON.exists() else []
+        print(json.dumps(nanoda_config(a.export, extra), indent=2))
+        return 0
     if a.cmd == "plan":
         tier, intake = data_libraries(DATA_PATHS.read_text(encoding="utf-8"))
         sizes = sizes_from_api(json.loads(TREE_JSON.read_text(encoding="utf-8")))
@@ -324,6 +371,7 @@ def main(argv: list[str] | None = None) -> int:
         if r["shard"] in reports:
             raise SystemExit(f"shard {r['shard']} reported twice")
         reports[r["shard"]] = r
+    exempt_text = EXEMPT_FILE.read_text(encoding="utf-8")
     merged = merge(
         p,
         reports,
@@ -333,6 +381,8 @@ def main(argv: list[str] | None = None) -> int:
         a.run,
         patch_sha256=a.patch_sha256,
         nanoda_patch_sha256=a.nanoda_patch_sha256,
+        exempt=load_exempt(exempt_text),
+        exempt_sha256=hashlib.sha256(exempt_text.encode("utf-8")).hexdigest(),
     )
     write(REPORT_JSON, json.dumps(merged, indent=2) + "\n")
     print(

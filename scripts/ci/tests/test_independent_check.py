@@ -3,6 +3,7 @@ refuse to write the report a release reads unless every shard is there once, for
 
 from __future__ import annotations
 
+import hashlib
 import json
 import subprocess
 import sys
@@ -30,6 +31,9 @@ L4E, NANODA = "a" * 40, "b" * 40
 PATCH = "d" * 64
 NANODA_PATCH = "e" * 64
 COMMIT = "c" * 40
+EXEMPT_TEXT = json.dumps({"exempt": []})  # the list the workflow's commit holds (exempt-list.json): empty, unless a test says otherwise
+EXEMPT_SHA = hashlib.sha256(EXEMPT_TEXT.encode()).hexdigest()
+REASON = "nanoda does not finish it: its memory grows until the runner is out of it (run 1 of the independent check)"
 
 
 def make_plan(shards: int = 2) -> dict:
@@ -77,6 +81,7 @@ def shard_report(g: dict, **kw) -> dict:
             "passed": True,
         },
         "seconds": {"export": 100, "nanoda": 20},
+        "exempt": {"file_sha256": EXEMPT_SHA, "applied": []},
     }
     r.update(kw)
     return r
@@ -96,6 +101,8 @@ def merge_all(p: dict, mutate=None, **kw):
         now="2026-11-21T00:00:00Z",
         patch_sha256=kw.get("patch", PATCH),
         nanoda_patch_sha256=kw.get("nanoda_patch", NANODA_PATCH),
+        exempt=kw.get("exempt", {}),
+        exempt_sha256=kw.get("exempt_sha", EXEMPT_SHA),
     )
 
 
@@ -328,6 +335,43 @@ class Merge(unittest.TestCase):
         with self.assertRaises(SystemExit):
             merge_all(make_plan(), nanoda_patch="f" * 64)  # the workflow's patch is another one than the shards used
 
+    def test_exempt_theorems_are_named_in_the_report_and_must_have_been_applied_exactly(self):
+        p = make_plan(2)
+        listed = {"Navier.big": {"name": "Navier.big", "library": "beta", "reason": REASON}}
+
+        def applied_in_shard_2(reps):
+            reps[2]["exempt"]["applied"] = ["Navier.big"]
+
+        r = merge_all(p, applied_in_shard_2, exempt=listed)
+        self.assertEqual(r["nanoda"]["exempt"], [{"name": "Navier.big", "library": "beta", "reason": REASON}])
+        self.assertEqual(r["nanoda"]["exempt_list_sha256"], EXEMPT_SHA)
+        self.assertEqual(merge_all(p)["nanoda"]["exempt"], [])  # none listed, none applied
+
+    def test_a_listed_theorem_that_no_shard_applied_is_refused(self):
+        with self.assertRaises(SystemExit) as cm:
+            merge_all(make_plan(2), exempt={"Gone.thm": {"name": "Gone.thm", "library": "beta", "reason": REASON}})
+        self.assertIn("no shard applied", str(cm.exception))
+        self.assertIn("Gone.thm", str(cm.exception))
+
+    def test_a_theorem_made_an_axiom_that_the_list_does_not_name_is_refused(self):
+        def sneaks(reps):
+            reps[1]["exempt"]["applied"] = ["Sneaky.thm"]
+
+        with self.assertRaises(SystemExit) as cm:
+            merge_all(make_plan(2), sneaks)
+        self.assertIn("does not name", str(cm.exception))
+        self.assertIn("Sneaky.thm", str(cm.exception))
+
+    def test_a_shard_that_ran_with_another_list_is_refused(self):
+        def other(reps):
+            reps[1]["exempt"]["file_sha256"] = "0" * 64
+
+        with self.assertRaises(SystemExit) as cm:
+            merge_all(make_plan(2), other)
+        self.assertIn("another list of exempt theorems", str(cm.exception))
+        with self.assertRaises(SystemExit):
+            merge_all(make_plan(2), lambda reps: reps[0].pop("exempt"))  # a shard that says nothing about the list
+
     def test_the_merged_report_names_the_patch_of_the_checker(self):
         self.assertEqual(merge_all(make_plan())["nanoda"]["patch_sha256"], NANODA_PATCH)
 
@@ -373,6 +417,7 @@ def write_plan_inputs(t: Path) -> None:
     (t / "data-paths.txt").write_text(
         "".join(f"data/trusted/{x}.jsonl\n" for x in TIER) + "".join(f"data/intake/{x}/manifest.jsonl\n" for x in INTAKE)
     )
+    (t / "exempt-list.json").write_text(EXEMPT_TEXT)
 
 
 class CommandLine(unittest.TestCase):
@@ -396,6 +441,40 @@ class CommandLine(unittest.TestCase):
             self.assertIn("3 shards", r.stdout)
             out = json.loads((t / "independent-check.json").read_text())
             self.assertTrue(out["axiom_scan"]["passed"])
+
+    def test_the_nanoda_configuration_admits_the_prelude_axioms_and_the_exempt_theorems_applied(self):
+        with tempfile.TemporaryDirectory() as d:
+            r = cli(d, "nanoda-config", "--export", "/tmp/shard.ndjson")
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            cfg = json.loads(r.stdout)
+            self.assertEqual(cfg["export_file_path"], "/tmp/shard.ndjson")
+            self.assertEqual(cfg["permitted_axioms"], I.NANODA_AXIOMS)
+            self.assertEqual(
+                (cfg["num_threads"], cfg["nat_extension"], cfg["string_extension"], cfg["unpermitted_axiom_hard_error"]),
+                (4, True, True, True),
+            )
+            (Path(d) / "exempt-applied.json").write_text(json.dumps({"file_sha256": EXEMPT_SHA, "applied": ["Z.thm", "A.thm"]}))
+            cfg = json.loads(cli(d, "nanoda-config", "--export", "/tmp/shard.ndjson").stdout)
+            self.assertEqual(cfg["permitted_axioms"], I.NANODA_AXIOMS + ["A.thm", "Z.thm"])
+
+    def test_merge_reads_the_exempt_list_from_its_file_and_refuses_a_shard_that_ran_with_another(self):
+        with tempfile.TemporaryDirectory() as d:
+            t = Path(d)
+            write_plan_inputs(t)
+            self.assertEqual(cli(d, "plan", "--shards", "2", "--commit", COMMIT).returncode, 0)
+            plan = json.loads((t / "plan.json").read_text())
+            (t / "plan").mkdir()
+            (t / "plan" / "plan.json").write_text(json.dumps(plan))
+            (t / "shards").mkdir()
+            for g in plan["shards"]:
+                (t / "shards" / f"shard-{g['shard']}.json").write_text(json.dumps(shard_report(g)))
+            (t / "exempt-list.json").write_text(
+                json.dumps({"exempt": [{"name": "A.b", "library": "alpha", "reason": REASON}]})
+            )  # the list changed after the shards ran
+            r = cli(d, *merge_args())
+            self.assertNotEqual(r.returncode, 0)
+            self.assertIn("another list of exempt theorems", r.stderr)
+            self.assertFalse((t / "independent-check.json").exists())
 
     def test_only_one_shard_in_the_matrix_for_a_diagnosis(self):
         with tempfile.TemporaryDirectory() as d:

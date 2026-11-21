@@ -1,0 +1,9 @@
+{
+  "exempt": [
+    {
+      "name": "NavierStokes.WholeDomainStageBounds.initialPotential_bound",
+      "library": "navier-stokes-euler",
+      "reason": "nanoda (3a24072) does not finish checking it: its definitional-equality check unfolds without end and its memory grows by about 2 GB a minute until the runner is out of it (diagnostic runs 44929370267 and 44930520505 of the independent-check workflow, on d3f4681); the Lean kernel accepts it (Tengoku/NavierStokesEuler/NavierStokes/WholeDomainInitializationBounds.lean:38, four lines, `exact LogBound.of_bound ...`)"
+    }
+  ]
+}
