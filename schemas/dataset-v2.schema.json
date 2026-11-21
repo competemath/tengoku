@@ -9,7 +9,6 @@
       "name",
       "library",
       "statement",
-      "proof",
       "source_url",
       "toolchain"
     ],
@@ -17,6 +16,9 @@
       "id",
       "legacy_name",
       "module",
+      "tree_module",
+      "proof",
+      "via",
       "licence",
       "credit",
       "credit_evidence",
@@ -42,12 +44,17 @@
       "toolchain": "string",
       "promoted_at": "string",
       "headline": "boolean (true)",
-      "upstream": "string"
+      "upstream": "string",
+      "tree_module": "string (a module of the tree: Tengoku.<...>)",
+      "via": "string (equal | entails)"
     },
     "ref": "<library>:<name>, or <library>:<name>~<10 hex digits of the statement's sha256>, with .2, .3 ... when even that ties; unique in the dataset",
     "id": "^[a-z0-9]{1,8}[.][0-9]+h[0-9]+v[.]s[0-9]+[.][0-9a-f]{12}$",
     "legacy_name": "a proper prefix of name: what schema 1 said where it cut the name",
-    "module": "the Lean module of the .lean file source_url points into"
+    "module": "the Lean module of the .lean file source_url points into (the UPSTREAM module)",
+    "tree_module": "the module of the Tengoku tree that holds the theorem (import it); present on the theorems that arrived as modules (data/intake)",
+    "via": "how Gate 2 related the tree's statement to the upstream original's: equal (the same type) or entails (the tree's statement implies the original's, kernel-checked); present with tree_module when the factory recorded it",
+    "proof": "the text from the := (or where) on; left out where the proof is a module of the tree (tree_module) and could not be read from it, and every row has one or the other"
   },
   "renamed_from_schema_1": {
     "credit_corrected_evidence": "credit_evidence"
@@ -58,6 +65,8 @@
     "status",
     "id",
     "legacy_name",
-    "module"
+    "module",
+    "tree_module",
+    "via"
   ]
 }
