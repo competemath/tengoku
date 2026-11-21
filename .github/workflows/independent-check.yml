@@ -158,7 +158,7 @@ jobs:
           git -C "$RUNNER_TEMP/lean4export" checkout -q "$LEAN4EXPORT_COMMIT"
           if [ "$OWN" = true ]; then
             # a library shard exports the constants declared in its own libraries and what they need, not every constant of the environment it imports (the whole seed):
-            # scripts/ci/lean4export-own.patch adds `--own=<module prefix>` to lean4export's main (10 lines; the checker re-checks whatever is exported, the plan and the report vouch for the coverage)
+            # scripts/ci/lean4export-own.patch adds `--own=<module prefix>` to lean4export's main (a dozen lines; the checker re-checks whatever is exported, the plan and the report vouch for the coverage)
             git show "$GITHUB_SHA:scripts/ci/lean4export-own.patch" > "$RUNNER_TEMP/own.patch"
             git -C "$RUNNER_TEMP/lean4export" apply "$RUNNER_TEMP/own.patch"
             sha256sum "$RUNNER_TEMP/own.patch" | cut -d' ' -f1 > "$RUNNER_TEMP/own.patch.sha256"
