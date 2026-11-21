@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "5a28658c6555a1b104ca4f29ec17bdcb76aa1136fe4cfb7b9f4f3cec1d451ee3",
+ "factory_changes": {
+  "inert lines removed": 3,
+  "modules changed": 1
+ },
+ "gate2_unjudged": [],
+ "library": "ramanujan-tau-misses-primes",
+ "lint_mode": "proposed",
+ "modules": 2,
+ "part": 1,
+ "theorems": 496
+}

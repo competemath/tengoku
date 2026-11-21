@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "31c7c0c94256d0a1da3dd906d6ec485d772d831cdf45d2d3ef672bcc8301f006",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "grlab",
+ "lint_mode": "proposed",
+ "modules": 18,
+ "part": 1,
+ "theorems": 80
+}

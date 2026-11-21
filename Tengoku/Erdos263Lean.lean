@@ -1,0 +1,11 @@
+import Tengoku.Erdos263Lean.Erdos263.Basic
+import Tengoku.Erdos263Lean.Erdos263.Erdos1975
+import Tengoku.Erdos263Lean.Erdos263.Erdos1975B
+import Tengoku.Erdos263Lean.Erdos263.Erdos1975C
+import Tengoku.Erdos263Lean.Erdos263.Erdos1975D
+import Tengoku.Erdos263Lean.Erdos263.Erdos1975E
+import Tengoku.Erdos263Lean.Erdos263.Erdos1975F
+import Tengoku.Erdos263Lean.Erdos263.Folklore
+import Tengoku.Erdos263Lean.Erdos263.FormalConjecturesAdapter
+import Tengoku.Erdos263Lean.Erdos263.OneSided
+import Tengoku.Erdos263Lean.Erdos263.Statement

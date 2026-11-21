@@ -1,0 +1,1 @@
+-- OneEdgeInstability: a factory bundle (data/intake/one-edge-instability). This file only marks the library for Tengoku/All.lean.

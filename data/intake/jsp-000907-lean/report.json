@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "9714b0ca22034de762b109b2a09f148b94a7feabae4ee1dbeb68b65cf26fa504",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "jsp-000907-lean",
+ "lint_mode": "proposed",
+ "modules": 14,
+ "part": 1,
+ "theorems": 104
+}
