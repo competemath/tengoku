@@ -112,13 +112,17 @@ inductive Walk : Nat → St → Prop
 
 /-- Flip a `±1`-difference statement to the opposite direction: if `a - b` is
 `±1` then so is `b - a`. Used to discharge the reverse-orientation `Adj`
-constructors from the forward `lip_*` lemmas.-/
+constructors from the forward `lip_*` lemmas.
+@isnad1 id=or.1h2v.s6.8af5d82e433d from=translated src=- shape=ba39be12 vocab=0282f42d
+-/
 theorem flip1 {a b : Int} (h : a - b = 1 ∨ a - b = -1) :
     b - a = 1 ∨ b - a = -1 := by
   rcases h with h | h <;> omega
 
 /-- Every `Adj` edge changes `D` by exactly `± 1`. This is precisely the
-content of the 24 `lip_*` lemmas, repackaged for the abstract adjacency.-/
+content of the 24 `lip_*` lemmas, repackaged for the abstract adjacency.
+@isnad1 id=or.1h2v.s5.88665f25c740 from=translated src=- shape=88e61180 vocab=45d16a61
+-/
 theorem adj_dist_step {s t : St} (h : Adj s t) :
     D t - D s = 1 ∨ D t - D s = -1 := by
   cases h <;> simp only [D]
@@ -171,7 +175,9 @@ theorem adj_dist_step {s t : St} (h : Adj s t) :
   · exact lip_e23_78 ..
   · exact flip1 (lip_e23_78 ..)
 
-/-- `D` is nonnegative everywhere, and vanishes only at `base`.-/
+/-- `D` is nonnegative everywhere, and vanishes only at `base`.
+@isnad1 id=le.0h1v.s3.bc61c0cfaf04 from=translated src=- shape=b9369acb vocab=e2dd505b
+-/
 theorem d_nonneg (s : St) : 0 ≤ D s := by
   obtain ⟨v, x, y, z⟩ := s
   fin_cases v <;> simp only [D]
@@ -184,6 +190,9 @@ theorem d_nonneg (s : St) : 0 ≤ D s := by
   · linarith [d7_pos x y z]
   · linarith [d8_pos x y z]
 
+/--
+@isnad1 id=iff.0h1v.s4.623db8dc9f03 from=translated src=- shape=c8a0a801 vocab=d856b2b5
+-/
 theorem d_zero_iff (s : St) : D s = 0 ↔ s = base := by
   obtain ⟨v, x, y, z⟩ := s
   fin_cases v <;> simp only [D, base, Prod.mk.injEq, Fin.ext_iff]
@@ -197,7 +206,9 @@ theorem d_zero_iff (s : St) : D s = 0 ↔ s = base := by
   · exact iff_of_false (by linarith [d8_pos x y z]) (by simp)
 
 /-- Every non-base state `s` has a neighbor `t` with `Adj t s` and
-`D t = D s - 1`: the abstract repackaging of the `descent_*` lemmas.-/
+`D t = D s - 1`: the abstract repackaging of the `descent_*` lemmas.
+@isnad1 id=ex.1h1v.s5.7b5a25c6549d from=translated src=- shape=c57710f9 vocab=cbcf8cb8
+-/
 theorem descent_step (s : St) (h : s ≠ base) :
     ∃ t : St, Adj t s ∧ D t = D s - 1 := by
   obtain ⟨v, x, y, z⟩ := s
@@ -264,7 +275,9 @@ theorem descent_step (s : St) (h : s ≠ base) :
 exactly `(D s).toNat` steps. Strong induction on `(D s).toNat`: if `D s = 0`
 then `s = base` (by `d_zero_iff`); otherwise `descent_step` produces a neighbor
 `t` one step closer to `base`, reached in `(D t).toNat = (D s).toNat - 1`
-steps by the induction hypothesis, and `Walk.cons` extends that walk to `s`.-/
+steps by the induction hypothesis, and `Walk.cons` extends that walk to `s`.
+@isnad1 id=walk.0h1v.s2.2ef7e05b6163 from=translated src=- shape=7fb93114 vocab=9ccf3780
+-/
 theorem walk_dist (s : St) : Walk (D s).toNat s := by
   generalize hn : (D s).toNat = n
   induction n using Nat.strong_induction_on generalizing s with
@@ -288,7 +301,9 @@ theorem walk_dist (s : St) : Walk (D s).toNat s := by
 /-- **Lower bound.** Any walk of length `n` reaching `s` forces
 `(D s).toNat ≤ n`: induction on the walk, using `adj_dist_step` to see that
 each step changes `D` by at most 1 (so `D` can drop by at most 1 per step,
-and it starts at `D base = 0`).-/
+and it starts at `D base = 0`).
+@isnad1 id=le.1h2v.s3.7face6d1b200 from=translated src=- shape=2ed1417d vocab=da90d3db
+-/
 theorem dist_le_walk {n : Nat} {s : St} (h : Walk n s) : (D s).toNat ≤ n := by
   induction h with
   | nil =>
@@ -301,7 +316,9 @@ theorem dist_le_walk {n : Nat} {s : St} (h : Walk n s) : (D s).toNat ≤ n := by
     · omega
 
 /-- **Headline theorem.** `(D s).toNat` is the least `n` such that `s` is
-reachable from `base` in `n` steps: `D` *is* the graph distance.-/
+reachable from `base` in `n` steps: `D` *is* the graph distance.
+@isnad1 id=isleast.0h1v.s3.ced73103a578 from=translated src=- shape=0bd17606 vocab=581c08d5
+-/
 theorem dist_is_least (s : St) : IsLeast {n : Nat | Walk n s} (D s).toNat := by
   constructor
   · exact walk_dist s
@@ -314,6 +331,9 @@ theorem dist_is_least (s : St) : IsLeast {n : Nat | Walk n s} (D s).toNat := by
 -- class is one `omega` after unfolding the metric (the class-1/8 cases first
 -- `split` on the exceptional-line bump).
 set_option maxHeartbeats 8000000 in
+/--
+@isnad1 id=and.1h5v.s6.28c24b1eaa33 from=translated src=- shape=a1dbe05d vocab=b583c805
+-/
 theorem dist_box (v : Fin 8) (x y z n : Int) (h : D (v, x, y, z) = n) :
     x.natAbs ≤ n.natAbs ∧ y.natAbs ≤ n.natAbs ∧ z.natAbs ≤ n.natAbs := by
   fin_cases v <;> simp only [D] at h

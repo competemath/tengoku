@@ -55,7 +55,9 @@ exactly `f v`. Proved by strong induction on `f v`: if `v = base` this is the
 trivial `Walk.nil` (using `h0` to know `f base = 0`); otherwise `hdesc`
 gives a neighbor `w` one step closer to `base`, reached by the induction
 hypothesis in `f w = f v - 1` steps, and appending the edge `w ⟶ v` reaches `v`
-in `f v` steps.-/
+in `f v` steps.
+@isnad1 id=ex.2h5v.s6.44dd3495ce44 from=translated src=- shape=900e542c vocab=e4c3a087
+-/
 theorem exists_walk_length_eq_of_descent (h0 : f base = 0)
     (hdesc : ∀ v, v ≠ base → ∃ w, G.Adj v w ∧ f w + 1 = f v) :
     ∀ v, ∃ p : G.Walk base v, p.length = f v := by
@@ -75,7 +77,9 @@ theorem exists_walk_length_eq_of_descent (h0 : f base = 0)
 
 /-- **Descent alone gives connectivity from `base`.**
 A convenience corollary of `exists_walk_length_eq_of_descent`: under just the
-descent hypothesis, every vertex is reachable from `base`.-/
+descent hypothesis, every vertex is reachable from `base`.
+@isnad1 id=reachabl.2h5v.s6.b2787f4da780 from=translated src=- shape=55e67b62 vocab=4ed3cfec
+-/
 theorem reachable_of_descent (h0 : f base = 0)
     (hdesc : ∀ v, v ≠ base → ∃ w, G.Adj v w ∧ f w + 1 = f v) (v : V) :
     G.Reachable base v :=
@@ -85,7 +89,9 @@ theorem reachable_of_descent (h0 : f base = 0)
 If `f` changes by at most one across every edge (`hlip`), then along any walk
 starting at `base`, `f` of the endpoint is at most `f base` plus the walk's
 length. Proved by induction on the walk: `Walk.nil` is `f base ≤ f base`, and
-each `cons` step adds at most one to the right-hand side by `hlip`.-/
+each `cons` step adds at most one to the right-hand side by `hlip`.
+@isnad1 id=le.1h6v.s6.fceedd893b50 from=translated src=- shape=9dbc7e0d vocab=8d5430d2
+-/
 theorem le_length_add_of_lipschitz (hlip : ∀ v w, G.Adj v w → f w ≤ f v + 1) :
     ∀ {v : V} (p : G.Walk base v), f v ≤ f base + p.length := by
   intro v p
@@ -104,7 +110,9 @@ every `v`.
 The proof is the standard squeeze: `exists_walk_length_eq_of_descent` builds a
 walk of length `f v` from `base` to `v`, giving `G.dist base v ≤ f v` (via
 `SimpleGraph.dist_le`); and `le_length_add_of_lipschitz` applied to a shortest
-walk gives `f v ≤ f base + G.dist base v = G.dist base v`.-/
+walk gives `f v ≤ f base + G.dist base v = G.dist base v`.
+@isnad1 id=eq.3h5v.s6.65972138448c from=translated src=- shape=7f4cc046 vocab=d3f9955e
+-/
 theorem dist_eq_of_descent_of_lipschitz (h0 : f base = 0)
     (hdesc : ∀ v, v ≠ base → ∃ w, G.Adj v w ∧ f w + 1 = f v)
     (hlip : ∀ v w, G.Adj v w → f w ≤ f v + 1) (v : V) :

@@ -36,7 +36,9 @@ def classCard (v : Fin 8) (n : ℕ) : ℕ :=
 def shellCard (n : ℕ) : ℕ :=
   (((univ : Finset (Fin 8)) ×ˢ box n).filter (fun s => D s = n)).card
 
-/-- The shell splits as the sum of the eight class counts.-/
+/-- The shell splits as the sum of the eight class counts.
+@isnad1 id=eq.0h1v.s5.892407e347fd from=translated src=- shape=7ba632b8 vocab=25e22440
+-/
 theorem shellCard_eq_sum (n : ℕ) :
     shellCard n = ∑ v : Fin 8, classCard v n := by
   classical

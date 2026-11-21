@@ -26,7 +26,9 @@ namespace Bcs
 
 open Finset
 
-/-- Triple product-filter factorization: independent coordinate predicates.-/
+/-- Triple product-filter factorization: independent coordinate predicates.
+@isnad1 id=eq.0h6v.s7.4b1efb64f8ec from=translated src=- shape=b6846423 vocab=60451990
+-/
 theorem card_filter_prod3 (A B C : Finset Int) (P Q R : Int → Prop)
     [DecidablePred P] [DecidablePred Q] [DecidablePred R] :
     ((A ×ˢ B ×ˢ C).filter fun p => P p.1 ∧ Q p.2.1 ∧ R p.2.2).card
@@ -38,7 +40,9 @@ theorem card_filter_prod3 (A B C : Finset Int) (P Q R : Int → Prop)
 
 /-- Change of variables `(x,y,z) ↦ (x+y+z, x-y+z, -x+y+z)`: counts transfer
 from the `(x,y,z)` box to the same-parity sublattice of the `(s,u,v)` box,
-provided the predicate confines its solutions to both boxes.-/
+provided the predicate confines its solutions to both boxes.
+@isnad1 id=eq.2h3v.s10.b7bfee6030db from=translated src=- shape=884a428d vocab=5092be48
+-/
 theorem card_xyz_uvw (n N : ℕ) (F : Int → Int → Int → Prop)
     [∀ s u v, Decidable (F s u v)]
     (hxyz : ∀ x y z : Int, F (x+y+z) (x-y+z) (-x+y+z) →

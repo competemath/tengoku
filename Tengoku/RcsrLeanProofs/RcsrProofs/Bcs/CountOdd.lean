@@ -56,16 +56,37 @@ def levelCard (f : Int → Int → Int → Int) (n : Nat) : Nat :=
 
 /-! ## Parity of the four classes -/
 
+/--
+@isnad1 id=eq.0h3v.s4.b1c00392d283 from=translated src=- shape=44ba1afa vocab=e7defeeb
+-/
 theorem D2_odd (x y z : Int) : D2 x y z % 2 = 1 := by unfold D2; omega
+/--
+@isnad1 id=eq.0h3v.s4.54e42da5803d from=translated src=- shape=44ba1afa vocab=bb57f4c8
+-/
 theorem D3_odd (x y z : Int) : D3 x y z % 2 = 1 := by unfold D3; omega
+/--
+@isnad1 id=eq.0h3v.s4.cf12dee5e77d from=translated src=- shape=44ba1afa vocab=ea7dd8e8
+-/
 theorem D4_odd (x y z : Int) : D4 x y z % 2 = 1 := by unfold D4; omega
+/--
+@isnad1 id=eq.0h3v.s4.6c622a9da0da from=translated src=- shape=44ba1afa vocab=1de2a5c4
+-/
 theorem D8_odd (x y z : Int) : D8 x y z % 2 = 1 := by unfold D8; split <;> omega
 
+/--
+@isnad1 id=le.0h3v.s4.de2e1fe4128f from=translated src=- shape=ac9c39a3 vocab=5774265d
+-/
 theorem D2_nonneg (x y z : Int) : 0 ≤ D2 x y z := by unfold D2; omega
+/--
+@isnad1 id=le.0h3v.s4.fd0b779d00a6 from=translated src=- shape=ac9c39a3 vocab=c5a3fb66
+-/
 theorem D8_nonneg (x y z : Int) : 0 ≤ D8 x y z := by unfold D8; split <;> omega
 
 /-! ## Even n: all four level sets are empty -/
 
+/--
+@isnad1 id=eq.1h1v.s5.7c471a88d230 from=translated src=- shape=d39c40ff vocab=5498f3b3
+-/
 theorem levelCard_D2_even (n : Nat) (hn : n % 2 = 0) : levelCard D2 n = 0 := by
   unfold levelCard
   rw [Finset.card_eq_zero, Finset.filter_eq_empty_iff]
@@ -73,6 +94,9 @@ theorem levelCard_D2_even (n : Nat) (hn : n % 2 = 0) : levelCard D2 n = 0 := by
   have h := D2_odd x y z
   intro heq; rw [heq] at h; omega
 
+/--
+@isnad1 id=eq.1h1v.s5.a870d1c37781 from=translated src=- shape=d39c40ff vocab=fb95b517
+-/
 theorem levelCard_D3_even (n : Nat) (hn : n % 2 = 0) : levelCard D3 n = 0 := by
   unfold levelCard
   rw [Finset.card_eq_zero, Finset.filter_eq_empty_iff]
@@ -80,6 +104,9 @@ theorem levelCard_D3_even (n : Nat) (hn : n % 2 = 0) : levelCard D3 n = 0 := by
   have h := D3_odd x y z
   intro heq; rw [heq] at h; omega
 
+/--
+@isnad1 id=eq.1h1v.s5.a2ad0ea3d4cb from=translated src=- shape=d39c40ff vocab=3b16c0ee
+-/
 theorem levelCard_D4_even (n : Nat) (hn : n % 2 = 0) : levelCard D4 n = 0 := by
   unfold levelCard
   rw [Finset.card_eq_zero, Finset.filter_eq_empty_iff]
@@ -87,6 +114,9 @@ theorem levelCard_D4_even (n : Nat) (hn : n % 2 = 0) : levelCard D4 n = 0 := by
   have h := D4_odd x y z
   intro heq; rw [heq] at h; omega
 
+/--
+@isnad1 id=eq.1h1v.s5.07fcad836724 from=translated src=- shape=d39c40ff vocab=58139cac
+-/
 theorem levelCard_D8_even (n : Nat) (hn : n % 2 = 0) : levelCard D8 n = 0 := by
   unfold levelCard
   rw [Finset.card_eq_zero, Finset.filter_eq_empty_iff]
@@ -96,19 +126,46 @@ theorem levelCard_D8_even (n : Nat) (hn : n % 2 = 0) : levelCard D8 n = 0 := by
 
 /-! ## Small cases by kernel computation -/
 
+/--
+@isnad1 id=eq.0h0v.s3.efd3867194ed from=translated src=- shape=904d2e91 vocab=28fd9ffc
+-/
 theorem levelCard_D2_1 : levelCard D2 1 = 2 := by decide +kernel
+/--
+@isnad1 id=eq.0h0v.s3.c00897a7889a from=translated src=- shape=904d2e91 vocab=9912646d
+-/
 theorem levelCard_D3_1 : levelCard D3 1 = 2 := by decide +kernel
+/--
+@isnad1 id=eq.0h0v.s3.90c8c3252b52 from=translated src=- shape=904d2e91 vocab=d35a164a
+-/
 theorem levelCard_D4_1 : levelCard D4 1 = 2 := by decide +kernel
+/--
+@isnad1 id=eq.0h0v.s3.5e435b2d707a from=translated src=- shape=904d2e91 vocab=6a11dd64
+-/
 theorem levelCard_D8_1 : levelCard D8 1 = 0 := by decide +kernel
+/--
+@isnad1 id=eq.0h0v.s3.ea12ccc271a6 from=translated src=- shape=904d2e91 vocab=28fd9ffc
+-/
 theorem levelCard_D2_3 : levelCard D2 3 = 14 := by decide +kernel
+/--
+@isnad1 id=eq.0h0v.s3.b71d61f27e80 from=translated src=- shape=904d2e91 vocab=6a11dd64
+-/
 theorem levelCard_D8_3 : levelCard D8 3 = 14 := by decide +kernel
 
 /-! ## `D3`, `D4` reduce to `D2` by exact coordinate identities -/
 
+/--
+@isnad1 id=eq.0h3v.s4.831bc008d50a from=translated src=- shape=aaca53d5 vocab=1f598f9b
+-/
 theorem D3_eq_D2 (x y z : Int) : D3 x y z = D2 (-x) z y := by unfold D2 D3; omega
+/--
+@isnad1 id=eq.0h3v.s4.80490b9edd86 from=translated src=- shape=c6bc3673 vocab=3bb66c21
+-/
 theorem D4_eq_D2 (x y z : Int) : D4 x y z = D2 (-y) z x := by unfold D2 D4; omega
 
 set_option maxHeartbeats 1000000 in
+/--
+@isnad1 id=eq.0h1v.s3.3901c288f395 from=translated src=- shape=6280f415 vocab=80d996c1
+-/
 theorem levelCard_D3_eq_D2 (n : ℕ) : levelCard D3 n = levelCard D2 n := by
   unfold levelCard
   apply Finset.card_nbij' (fun p => (-p.1, p.2.2, p.2.1)) (fun p => (-p.1, p.2.2, p.2.1))
@@ -129,6 +186,9 @@ theorem levelCard_D3_eq_D2 (n : ℕ) : levelCard D3 n = levelCard D2 n := by
   · rintro ⟨x, y, z⟩ _; simp
 
 set_option maxHeartbeats 1000000 in
+/--
+@isnad1 id=eq.0h1v.s3.b6de682df4a3 from=translated src=- shape=6280f415 vocab=d6c5c64c
+-/
 theorem levelCard_D4_eq_D2 (n : ℕ) : levelCard D4 n = levelCard D2 n := by
   unfold levelCard
   apply Finset.card_nbij' (fun p => (-p.2.1, p.2.2, p.1)) (fun p => (p.2.2, -p.1, p.2.1))
@@ -155,6 +215,9 @@ Transfers a filtered count over the `(x,y,z)` box to a filtered count over an
 predicate to both boxes (any box big enough works — the two radii `n`, `N`
 need not match, which lets us always pick `N` generously large). -/
 
+/--
+@isnad1 id=eq.2h3v.s10.b7bfee6030db from=translated src=- shape=884a428d vocab=5092be48
+-/
 theorem card_xyz_uvw (n N : ℕ) (F : Int → Int → Int → Prop)
     [∀ s u v, Decidable (F s u v)]
     (hxyz : ∀ x y z : Int, F (x + y + z) (x - y + z) (-x + y + z) →
@@ -213,9 +276,15 @@ def F2 (n s u v : Int) : Prop :=
 
 instance (n s u v : Int) : Decidable (F2 n s u v) := by unfold F2; infer_instance
 
+/--
+@isnad1 id=iff.0h4v.s6.a57aaf25a3ba from=translated src=- shape=0fcba9cd vocab=5bdfe706
+-/
 theorem D2_eq_F2 (x y z n : Int) : D2 x y z = n ↔ F2 n (x + y + z) (x - y + z) (-x + y + z) := by
   unfold D2 F2; omega
 
+/--
+@isnad1 id=eq.0h1v.s9.094b00b640a7 from=translated src=- shape=dd74c3c4 vocab=5d88646a
+-/
 theorem levelCard_D2_eq_uvw (n : ℕ) :
     levelCard D2 n =
       ((Icc (-((2 * n + 2 : ℕ) : Int)) ((2 * n + 2 : ℕ) : Int) ×ˢ
@@ -261,6 +330,9 @@ def ballF2 (N n : ℕ) : Finset (Int × Int × Int) :=
       (-(n : Int) ≤ 2 * q.2.1 - 1 ∧ 2 * q.2.1 - 1 ≤ n) ∧
       (-(n : Int) ≤ 2 * q.2.2 - 1 ∧ 2 * q.2.2 - 1 ≤ n)))
 
+/--
+@isnad1 id=le.1h3v.s5.51c4ba1cdf8c from=translated src=- shape=cfaaba0d vocab=4a54f161
+-/
 theorem ballF2_mono (N : ℕ) {m n : ℕ} (h : m ≤ n) : ballF2 N m ⊆ ballF2 N n := by
   unfold ballF2
   intro p hp
@@ -268,7 +340,9 @@ theorem ballF2_mono (N : ℕ) {m n : ℕ} (h : m ≤ n) : ballF2 N m ⊆ ballF2 
   obtain ⟨hbox, hpar, hs, hu, hv⟩ := hp
   exact ⟨hbox, hpar, by omega, by omega, by omega⟩
 
-/-- One-dimensional count: `#{v ∈ Icc(-N,N) : v ≡ r (mod 2), -(n:Int) ≤ 2v-1 ≤ n}`.-/
+/-- One-dimensional count: `#{v ∈ Icc(-N,N) : v ≡ r (mod 2), -(n:Int) ≤ 2v-1 ≤ n}`.
+@isnad1 id=eq.0h1v.s6.0aa08bfafa9f from=translated src=- shape=f1b78f74 vocab=3f29aea9
+-/
 theorem even_count_in_interval (k : ℕ) :
     ((Finset.Icc (-(k : Int)) (k + 1 : Int)).filter (fun v => v % 2 = 0)).card = k + 1 := by
   induction k with
@@ -291,6 +365,9 @@ theorem even_count_in_interval (k : ℕ) :
       rw [Finset.card_insert_of_notMem, ih]
       simp only [Finset.mem_filter, Finset.mem_Icc]; omega
 
+/--
+@isnad1 id=eq.0h1v.s6.358622d4af8e from=translated src=- shape=f1b78f74 vocab=3f29aea9
+-/
 theorem odd_count_in_interval (k : ℕ) :
     ((Finset.Icc (-(k : Int)) (k + 1 : Int)).filter (fun v => v % 2 = 1)).card = k + 1 := by
   have htot : (Finset.Icc (-(k : Int)) (k + 1 : Int)).card = 2 * k + 2 := by
@@ -309,7 +386,9 @@ theorem odd_count_in_interval (k : ℕ) :
   omega
 
 /-- The single-coordinate constraint `-(n:Int) ≤ 2v-1 ≤ n` for `n = 2k+1` pins
-`v` to exactly the interval `Icc (-k) (k+1)`.-/
+`v` to exactly the interval `Icc (-k) (k+1)`.
+@isnad1 id=iff.0h2v.s7.647bba2f112c from=translated src=- shape=a6fa1dc7 vocab=1b635e1e
+-/
 theorem coord_constraint_iff (k : ℕ) (v : Int) :
     (-((2 * k + 1 : ℕ) : Int) ≤ 2 * v - 1 ∧ 2 * v - 1 ≤ ((2 * k + 1 : ℕ) : Int)) ↔
       -(k : Int) ≤ v ∧ v ≤ (k : Int) + 1 := by
@@ -318,7 +397,9 @@ theorem coord_constraint_iff (k : ℕ) (v : Int) :
 set_option maxRecDepth 2000 in
 /-- The `F2`-count (within a box of radius `N`) equals the ball-difference:
 `F2 n` holds exactly on the same-parity triples that are in `ball N n` but not
-in `ball N (n-2)`.-/
+in `ball N (n-2)`.
+@isnad1 id=eq.1h2v.s9.220321d23151 from=translated src=- shape=d44afe0e vocab=a840f455
+-/
 theorem F2Card_eq_ball_diff (N k : ℕ) (hN : 2 * k + 1 ≤ N) :
     ((Icc (-(N : Int)) N ×ˢ Icc (-(N : Int)) N ×ˢ Icc (-(N : Int)) N).filter
         fun q => (q.1 % 2 = q.2.1 % 2 ∧ q.2.1 % 2 = q.2.2 % 2) ∧
@@ -385,13 +466,25 @@ def D8base (x y z : Int) : Int :=
   max (2*x + 2*y + 2*z - 1) <| max (2*x - 2*y + 2*z - 3) <| max (-2*x + 2*y + 2*z - 3) <|
     max (-2*x - 2*y - 2*z + 1) <| max (2*x - 2*y - 2*z + 3) (-2*x + 2*y - 2*z + 3)
 
+/--
+@isnad1 id=eq.0h3v.s6.c35e2a5257cc from=translated src=- shape=05a7e959 vocab=3da45233
+-/
 theorem D8_eq_base_add_bump (x y z : Int) :
     D8 x y z = D8base x y z + (if x = y ∧ z = 1 - x then 2 else 0) := by
   unfold D8 D8base; rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.bf81b63ad5e2 from=translated src=- shape=44ba1afa vocab=47ddc929
+-/
 theorem D8base_odd (x y z : Int) : D8base x y z % 2 = 1 := by unfold D8base; omega
+/--
+@isnad1 id=le.0h3v.s4.8108d35d0245 from=translated src=- shape=ac9c39a3 vocab=9bf965df
+-/
 theorem D8base_nonneg (x y z : Int) : 0 ≤ D8base x y z := by unfold D8base; omega
 
+/--
+@isnad1 id=eq.0h1v.s6.2eb760dc7c7b from=translated src=- shape=8c1113e5 vocab=adf6310c
+-/
 theorem D8base_line (t : Int) : D8base t t (1 - t) = max (2 * t + 1) (-(2 * t + 1)) := by
   unfold D8base; omega
 
@@ -405,6 +498,9 @@ def F8 (n s u v : Int) : Prop :=
 
 instance (n s u v : Int) : Decidable (F8 n s u v) := by unfold F8; infer_instance
 
+/--
+@isnad1 id=iff.0h4v.s6.891f6cf0864b from=translated src=- shape=0fcba9cd vocab=33691b1a
+-/
 theorem D8base_eq_F8 (x y z n : Int) :
     D8base x y z = n ↔ F8 n (x + y + z) (x - y + z) (-x + y + z) := by
   unfold D8base F8; omega
@@ -414,6 +510,9 @@ def levelCard8base (n : Nat) : Nat :=
       Finset.Icc (-(n : Int)) (n : Int)).filter
     (fun p => D8base p.1 p.2.1 p.2.2 = (n : Int))).card
 
+/--
+@isnad1 id=eq.1h1v.s9.d7767c64f6b7 from=translated src=- shape=6a0d2173 vocab=1395fa6a
+-/
 theorem levelCard8base_eq_uvw (n : ℕ) (hn : 3 ≤ n) :
     levelCard8base n =
       ((Icc (-((2 * n + 2 : ℕ) : Int)) ((2 * n + 2 : ℕ) : Int) ×ˢ
@@ -444,7 +543,9 @@ theorem levelCard8base_eq_uvw (n : ℕ) (hn : 3 ≤ n) :
 
 /-- The `u`-coordinate's shifted interval `Icc (1-k) (k+2)` contains the same
 number of even values (`k+1`) as `Icc (-k) (k+1)` — a translate by `1` of an
-interval swaps which parity sits at which end but preserves the split.-/
+interval swaps which parity sits at which end but preserves the split.
+@isnad1 id=eq.0h1v.s6.a75f037412be from=translated src=- shape=d2814309 vocab=66771a75
+-/
 theorem even_count_in_interval_shift (k : ℕ) :
     ((Finset.Icc (1 - (k : Int)) (k + 2 : Int)).filter (fun v => v % 2 = 0)).card = k + 1 := by
   have heq : (Finset.Icc (1 - (k : Int)) (k + 2 : Int)).filter (fun v => v % 2 = 0)
@@ -459,6 +560,9 @@ theorem even_count_in_interval_shift (k : ℕ) :
       omega
   rw [heq, Finset.card_image_of_injective _ (fun a b hab => by omega), odd_count_in_interval]
 
+/--
+@isnad1 id=eq.0h1v.s6.b552f1598052 from=translated src=- shape=d2814309 vocab=66771a75
+-/
 theorem odd_count_in_interval_shift (k : ℕ) :
     ((Finset.Icc (1 - (k : Int)) (k + 2 : Int)).filter (fun v => v % 2 = 1)).card = k + 1 := by
   have htot : (Finset.Icc (1 - (k : Int)) (k + 2 : Int)).card = 2 * k + 2 := by
@@ -485,6 +589,9 @@ def ballF8 (N n : ℕ) : Finset (Int × Int × Int) :=
       (-(n : Int) ≤ 2 * q.2.1 - 3 ∧ 2 * q.2.1 - 3 ≤ n) ∧
       (-(n : Int) ≤ 2 * q.2.2 - 3 ∧ 2 * q.2.2 - 3 ≤ n)))
 
+/--
+@isnad1 id=le.1h3v.s5.e8c9adcf9e47 from=translated src=- shape=cfaaba0d vocab=8ad0a31d
+-/
 theorem ballF8_mono (N : ℕ) {m n : ℕ} (h : m ≤ n) : ballF8 N m ⊆ ballF8 N n := by
   unfold ballF8
   intro p hp
@@ -492,11 +599,17 @@ theorem ballF8_mono (N : ℕ) {m n : ℕ} (h : m ≤ n) : ballF8 N m ⊆ ballF8 
   obtain ⟨hbox, hpar, hs, hu, hv⟩ := hp
   exact ⟨hbox, hpar, by omega, by omega, by omega⟩
 
+/--
+@isnad1 id=iff.0h2v.s7.427c03ce49f6 from=translated src=- shape=e69bf5c2 vocab=1b635e1e
+-/
 theorem coord_constraint8_u_iff (k : ℕ) (v : Int) :
     (-((2 * k + 1 : ℕ) : Int) ≤ 2 * v - 3 ∧ 2 * v - 3 ≤ ((2 * k + 1 : ℕ) : Int)) ↔
       1 - (k : Int) ≤ v ∧ v ≤ (k : Int) + 2 := by omega
 
 set_option maxRecDepth 2000 in
+/--
+@isnad1 id=eq.2h2v.s9.5cf6c577f08a from=translated src=- shape=83477b2d vocab=a625e182
+-/
 theorem F8Card_eq_ball_diff (N k : ℕ) (hk : 1 ≤ k) (_hN : 2 * k + 1 ≤ N) :
     ((Icc (-(N : Int)) N ×ˢ Icc (-(N : Int)) N ×ˢ Icc (-(N : Int)) N).filter
         fun q => (q.1 % 2 = q.2.1 % 2 ∧ q.2.1 % 2 = q.2.2 % 2) ∧
@@ -524,10 +637,15 @@ theorem F8Card_eq_ball_diff (N k : ℕ) (hk : 1 ≤ k) (_hN : 2 * k + 1 ≤ N) :
     apply hnotin
     refine ⟨⟨hboxa, hboxb, hboxc⟩, hpar, ?_, ?_, ?_⟩ <;> omega
 
+/--
+@isnad1 id=eq.0h0v.s3.46fdca18b37d from=translated src=- shape=3c26ae4f vocab=103d414a
+-/
 theorem levelCard8base_1 : levelCard8base 1 = 1 := by unfold levelCard8base; decide
 
 /-- On the bump line, the number of points with `D8base = m` (`m` odd `≥ 1`)
-is exactly `2` (the two roots of `|2t+1| = m`), and `0` otherwise.-/
+is exactly `2` (the two roots of `|2t+1| = m`), and `0` otherwise.
+@isnad1 id=eq.3h2v.s7.c5b10b83b8d8 from=translated src=- shape=9a1721cc vocab=27a7aa36
+-/
 theorem lineAtLevel_card (M : Int) (m : ℕ) (hM : (m : Int) + 1 ≤ M) (hm : 1 ≤ m)
     (hodd : m % 2 = 1) :
     ((Finset.Icc (-M) M).filter (fun t => D8base t t (1 - t) = (m : Int))).card = 2 := by
@@ -546,7 +664,9 @@ set_option maxHeartbeats 1000000 in
 both `n` and `n-2` are odd and `≥ 1`, so the bump line contributes exactly `2`
 points removed (bumped from level `n` to `n+2`) and `2` points added (bumped
 from level `n-2` into level `n`) — a net-zero correction, so `D8` and `D8base`
-have the same level-`n` cardinality.-/
+have the same level-`n` cardinality.
+@isnad1 id=eq.1h1v.s6.4d8cfbb9a111 from=translated src=- shape=bccaf66f vocab=ddfbba16
+-/
 theorem levelCard_D8_eq_base (k : ℕ) (hk : 1 ≤ k) :
     levelCard D8 (2 * k + 1) = levelCard8base (2 * k + 1) := by
   unfold levelCard levelCard8base

@@ -62,7 +62,9 @@ def parseKey (s : String) : List (Nat × Nat × Int × Int × Int) :=
   groupEdges (((tokens s.toList).drop 2).map readInt)
 
 /-- **The kernel checks the transcription**: parsing the verbatim published
-key line yields exactly the edge list the development uses.-/
+key line yields exactly the edge list the development uses.
+@isnad1 id=eq.0h0v.s3.e04877bbc731 from=translated src=- shape=17248fe8 vocab=b839d9f0
+-/
 theorem parseKey_bcsKeyLine : parseKey bcsKeyLine = edges := by
   decide +kernel
 

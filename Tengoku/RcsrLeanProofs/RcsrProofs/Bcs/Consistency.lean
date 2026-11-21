@@ -41,6 +41,9 @@ components. -/
 -- Each fold-unfolding simp call walks the full 24-entry edges list; the default
 -- heartbeat budget is occasionally too tight for the elaborator on this machine.
 set_option maxHeartbeats 8000000 in
+/--
+@isnad1 id=eq.0h3v.s8.f845c41593ed from=translated src=- shape=be888048 vocab=f9d36231
+-/
 theorem nbrs_one (x y z : Int) :
     nbrs (1, x, y, z) =
       [(4, x+1, y, z), (4, x, y, z), (3, x, y+1, z), (3, x, y, z),
@@ -51,6 +54,9 @@ theorem nbrs_one (x y z : Int) :
 -- Each fold-unfolding simp call walks the full 24-entry edges list; the default
 -- heartbeat budget is occasionally too tight for the elaborator on this machine.
 set_option maxHeartbeats 8000000 in
+/--
+@isnad1 id=eq.0h3v.s8.231d8787de6c from=translated src=- shape=b0a26d60 vocab=75c781f0
+-/
 theorem nbrs_two (x y z : Int) :
     nbrs (2, x, y, z) =
       [(6, x, y+1, z), (6, x, y, z), (5, x, y, z), (5, x-1, y-1, z+1),
@@ -61,6 +67,9 @@ theorem nbrs_two (x y z : Int) :
 -- Each fold-unfolding simp call walks the full 24-entry edges list; the default
 -- heartbeat budget is occasionally too tight for the elaborator on this machine.
 set_option maxHeartbeats 8000000 in
+/--
+@isnad1 id=eq.0h3v.s8.c0513cd1452e from=translated src=- shape=94e52c42 vocab=75c781f0
+-/
 theorem nbrs_three (x y z : Int) :
     nbrs (3, x, y, z) =
       [(7, x, y, z), (7, x-1, y-1, z+1), (5, x, y-1, z+1), (5, x-1, y-1, z+1),
@@ -71,6 +80,9 @@ theorem nbrs_three (x y z : Int) :
 -- Each fold-unfolding simp call walks the full 24-entry edges list; the default
 -- heartbeat budget is occasionally too tight for the elaborator on this machine.
 set_option maxHeartbeats 8000000 in
+/--
+@isnad1 id=eq.0h3v.s8.d9147f0dae1e from=translated src=- shape=d3b6ac35 vocab=75c781f0
+-/
 theorem nbrs_four (x y z : Int) :
     nbrs (4, x, y, z) =
       [(7, x-1, y, z+1), (7, x-1, y, z), (6, x, y+1, z), (6, x-1, y, z+1),
@@ -81,6 +93,9 @@ theorem nbrs_four (x y z : Int) :
 -- Each fold-unfolding simp call walks the full 24-entry edges list; the default
 -- heartbeat budget is occasionally too tight for the elaborator on this machine.
 set_option maxHeartbeats 8000000 in
+/--
+@isnad1 id=eq.0h3v.s8.50d762a3a5ad from=translated src=- shape=913bdc82 vocab=75c781f0
+-/
 theorem nbrs_five (x y z : Int) :
     nbrs (5, x, y, z) =
       [(8, x, y, z+1), (8, x, y, z), (3, x, y+1, z-1), (3, x+1, y+1, z-1),
@@ -91,6 +106,9 @@ theorem nbrs_five (x y z : Int) :
 -- Each fold-unfolding simp call walks the full 24-entry edges list; the default
 -- heartbeat budget is occasionally too tight for the elaborator on this machine.
 set_option maxHeartbeats 8000000 in
+/--
+@isnad1 id=eq.0h3v.s8.9bd07457a680 from=translated src=- shape=18f7fdaf vocab=75c781f0
+-/
 theorem nbrs_six (x y z : Int) :
     nbrs (6, x, y, z) =
       [(8, x, y-1, z+1), (8, x-1, y-1, z+1), (4, x, y-1, z), (4, x+1, y, z-1),
@@ -101,6 +119,9 @@ theorem nbrs_six (x y z : Int) :
 -- Each fold-unfolding simp call walks the full 24-entry edges list; the default
 -- heartbeat budget is occasionally too tight for the elaborator on this machine.
 set_option maxHeartbeats 8000000 in
+/--
+@isnad1 id=eq.0h3v.s8.51e7cf342274 from=translated src=- shape=641e67ff vocab=75c781f0
+-/
 theorem nbrs_seven (x y z : Int) :
     nbrs (7, x, y, z) =
       [(8, x, y, z+1), (8, x, y-1, z+1), (4, x+1, y, z-1), (4, x+1, y, z),
@@ -111,6 +132,9 @@ theorem nbrs_seven (x y z : Int) :
 -- Each fold-unfolding simp call walks the full 24-entry edges list; the default
 -- heartbeat budget is occasionally too tight for the elaborator on this machine.
 set_option maxHeartbeats 8000000 in
+/--
+@isnad1 id=eq.0h3v.s8.c125164c8ffb from=translated src=- shape=f3bb3cb0 vocab=75c781f0
+-/
 theorem nbrs_eight (x y z : Int) :
     nbrs (8, x, y, z) =
       [(7, x, y, z-1), (7, x, y+1, z-1), (6, x, y+1, z-1), (6, x+1, y+1, z-1),
@@ -135,6 +159,9 @@ the true one rewrites the target cell coordinates and matches the
 correspondingly-shaped `Adj` constructor. -/
 
 set_option maxHeartbeats 8000000 in
+/--
+@isnad1 id=iff.0h8v.s7.264b29e495c3 from=translated src=- shape=e42198c4 vocab=25d1de42
+-/
 theorem adj_iff_mem_nbrs (v w : Fin 8) (x y z x' y' z' : Int) :
     Adj (v, x, y, z) (w, x', y', z') ↔
       ((w.val + 1 : Nat), x', y', z') ∈ nbrs ((v.val + 1 : Nat), x, y, z) := by
