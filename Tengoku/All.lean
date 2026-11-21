@@ -250,6 +250,7 @@ import Tengoku.LeanRatfuncWittLocalGlobal
 import Tengoku.GrunbaumLean
 import Tengoku.MahlerHansenCograph
 import Tengoku.Complexitylib
+import Tengoku.RcsrLeanProofs
 import Tengoku.DuistermaatVanDerKallenNonvanishing
 import Tengoku.Tauceti
 import Tengoku.Fagin
