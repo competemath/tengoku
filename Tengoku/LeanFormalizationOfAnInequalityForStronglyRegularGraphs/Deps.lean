@@ -1,0 +1,1 @@
+-- LeanFormalizationOfAnInequalityForStronglyRegularGraphs: a factory bundle (data/intake/lean-formalization-of-an-inequality-for-strongly-regular-graphs). This file only marks the library for Tengoku/All.lean.

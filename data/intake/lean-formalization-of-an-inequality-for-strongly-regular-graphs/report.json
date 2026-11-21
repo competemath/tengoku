@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "365685f399f0a70adf3d6ef784c4406c8ea5d42a51a4fb8c6c5726a893f75e43",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "lean-formalization-of-an-inequality-for-strongly-regular-graphs",
+ "lint_mode": "proposed",
+ "modules": 2,
+ "part": 1,
+ "theorems": 1
+}
