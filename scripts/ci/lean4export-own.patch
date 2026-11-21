@@ -10,7 +10,7 @@
      | some cs => cs.map fun c => Syntax.decodeNameLit ("`" ++ c) |>.get!
 -    | none    => env.constants.toList.map Prod.fst |>.filter (!·.isInternal)
 +    | none    =>
-+      let all := env.constants.toList.map Prod.fst |>.filter (!·.isInternal)
++      let all : List Name := env.constants.toList.map Prod.fst |>.filter (fun (n : Name) => !n.isInternal)
 +      if own.isEmpty then all
 +      else all.filter fun n =>
 +        match env.getModuleIdxFor? n with
