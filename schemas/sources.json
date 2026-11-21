@@ -321,7 +321,12 @@
     "https://github.com/MingchenXia/pshd-lean",
     "https://github.com/AxiomMath/partial-regularity",
     "https://github.com/NoahW314/Lean-Tnorms",
-    "https://github.com/ZeterMordio/one-edge-instability"
+    "https://github.com/ZeterMordio/one-edge-instability",
+    "https://github.com/Diudiutse/Lean-Formalization-of-an-Inequality-for-Strongly-Regular-Graphs",
+    "https://github.com/BrandonMYates/grlab",
+    "https://github.com/arex1337/erdos-263-lean",
+    "https://github.com/AxiomMath/ramanujan-tau-misses-primes",
+    "https://github.com/qkkqk1234/jsp-000907-lean"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -655,7 +660,12 @@
     "https://github.com/MingchenXia/pshd-lean": "Apache-2.0",
     "https://github.com/AxiomMath/partial-regularity": "MIT",
     "https://github.com/NoahW314/Lean-Tnorms": "Apache-2.0",
-    "https://github.com/ZeterMordio/one-edge-instability": "Apache-2.0"
+    "https://github.com/ZeterMordio/one-edge-instability": "Apache-2.0",
+    "https://github.com/Diudiutse/Lean-Formalization-of-an-Inequality-for-Strongly-Regular-Graphs": "MIT",
+    "https://github.com/BrandonMYates/grlab": "Apache-2.0",
+    "https://github.com/arex1337/erdos-263-lean": "Apache-2.0",
+    "https://github.com/AxiomMath/ramanujan-tau-misses-primes": "MIT",
+    "https://github.com/qkkqk1234/jsp-000907-lean": "Apache-2.0"
   },
   "corpora": {
     "equational-theories": {
@@ -3206,6 +3216,41 @@
       "commit": "ce2d519d1445159ce0f4aba7efd901429c6772ba",
       "roots": [
         "OneEdgeInstability"
+      ]
+    },
+    "lean-formalization-of-an-inequality-for-strongly-regular-graphs": {
+      "repo": "https://github.com/Diudiutse/Lean-Formalization-of-an-Inequality-for-Strongly-Regular-Graphs",
+      "commit": "f84a94a03dba217084eb5b74566ee79a1d6d295e",
+      "roots": [
+        "SRGInequality"
+      ]
+    },
+    "grlab": {
+      "repo": "https://github.com/BrandonMYates/grlab",
+      "commit": "88aa2e75dc1bb7fb06e33c51c2447acb456edd4a",
+      "roots": [
+        "GRLab"
+      ]
+    },
+    "erdos-263-lean": {
+      "repo": "https://github.com/arex1337/erdos-263-lean",
+      "commit": "db50c38c3f6a060fe67c17edf029606d561826a2",
+      "roots": [
+        "Erdos263"
+      ]
+    },
+    "ramanujan-tau-misses-primes": {
+      "repo": "https://github.com/AxiomMath/ramanujan-tau-misses-primes",
+      "commit": "58669f754852dbd4b7afa061b0272bd93ecf35b4",
+      "roots": [
+        "RamanujanTauMissesPrimes"
+      ]
+    },
+    "jsp-000907-lean": {
+      "repo": "https://github.com/qkkqk1234/jsp-000907-lean",
+      "commit": "f820373fea69f3f959cdaaf3a1d9dd70ce6a3e1a",
+      "roots": [
+        "JSP907"
       ]
     }
   },
