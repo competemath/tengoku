@@ -17,7 +17,7 @@ catches something the others cannot.
 | Pre-commit hooks | `.pre-commit-config.yaml` | your machine, CI (`lint-python`) | lint, formatting, secrets, banked content — the same list in both places | seconds |
 | The PR gate | `.github/workflows/pr-gate.yml` | every pull request | wrong shape of change: two purposes, edits to append-only data, forbidden constructs, missing credits, secrets, missing sign-off, unmet dependencies | 2–3 min |
 | The merge queue | `.github/workflows/queue-gate.yml` | every merge group | wrong mathematics: a proof that does not compile, a `sorry`, a non-standard axiom, a hand-edited generated file | 3–7 min |
-| The independent check | `.github/workflows/independent-check.yml` | nightly, and on demand for any commit of `main` | a bug in Lean's own kernel, or a record that slipped something past both gates: every declaration of the tree type-checked again by nanoda, every constant's axioms recomputed from the export | ~45 min |
+| The independent check | `.github/workflows/independent-check.yml` | nightly, and on demand for any commit of `main` | a bug in Lean's own kernel, or a record that slipped something past both gates: every declaration of the tree type-checked again by nanoda, every constant's axioms recomputed from the export | hours, in shards (below) |
 | The scenario campaign | `scripts/ci/campaign/` | a sandbox copy of the repo, on demand | a check that passes when it should fail — the tests of the tests | ~3 h for everything |
 
 The nightly cache build (`.github/workflows/build.yml`) is not a test but the
@@ -183,17 +183,40 @@ are green on the sandbox:
 
 ### The independent check
 
-Nightly, and on demand for any commit of `main` (`gh workflow run independent-check.yml -f commit=<sha>`):
-lean4export writes every declaration of the compiled tree (Lean's core, the seed, every library), about
-110 million lines, and two programs that share no code with Lean read it.
+Nightly, and on demand for any commit of `main` (`gh workflow run independent-check.yml -f commit=<sha>`, and `-f shards=N` to cut it differently). lean4export writes every declaration of the compiled
+tree (Lean's core, the seed, every library), and two programs that share no code with Lean read it.
+
+**In shards.** One `lean4export Tengoku.All` is one process that writes about 13,000 lines a second: 196.6 million lines took 4 h 04 min on 2026-10-12, the last night the check passed as one job, and
+nanoda then checked 1,028,453 declarations in 29 minutes. The tree has grown since (the libraries that arrived as modules are about three times what they were), and from 16 November the job's 350
+minutes ran out in the export every night, so no release could be cut (`release.yml` needs a passing check of its commit). The check is now cut into jobs (`scripts/ci/independent_check.py`):
+
+| Job | What it does |
+|---|---|
+| `plan` | reads `Tengoku/All.lean`, the size of each library's sources and the libraries of `data/`, and cuts the tree into shards: **shard 0** is the seeded root `Tengoku` (all of Lean's core and the seed) and the compiled libraries of the tier files, and audits the records of every library of `data/trusted`; **shards 1..N** are the libraries that arrived as modules (`data/intake`), balanced by the size of their sources, each audited for its own records. It refuses a plan whose roots are not exactly the imports of `All.lean`, each once, or that audits a library in no shard or in two |
+| `check` (one per shard, up to `parallel` at a time: 8 by default) | builds its roots at the commit, exports its constants (shard 0: every constant of its roots' environment; a library shard: those of its own libraries' modules and what they need), has nanoda check the export (sealed, no network), and runs the axiom scan on it |
+| `report` | runs only when every shard passed, and joins the shards' reports into the one `independent-check` artifact a release reads; it refuses a shard that is missing, reported twice, made for another commit, made by other tools than the pinned lean4export and nanoda, or that audited other libraries than the plan's |
+
+Shard 0 exports every constant of the environment its roots make (all of Lean core and the seed). A library shard imports the whole seed too, and exporting all of it in every shard outgrew the runner's memory (a shard of the first trial:
+"the hosted runner lost communication with the server", after an hour of export; the seed alone is 110 million lines, 7 minutes, and fits): a library shard exports **the constants declared in the modules of its own libraries and what they need**.
+That is `lean4export --own=<module prefix>`, a dozen lines added to lean4export's main by `scripts/ci/lean4export-own.patch` (applied to the pinned commit; the report carries its sha256 and the joiner refuses a library shard that does not name it).
+The exporter is not trusted (nanoda re-checks whatever it writes); what the patch could get wrong is coverage, which the plan and the report vouch for: the roots of the shards are exactly the imports of `All.lean`, and every trusted record and manifest theorem of a library is looked up by name in the export of its shard.
+nanoda's own checking threads have a stack of 16 MiB compiled in (`STACK_SIZE` in `src/lib.rs`), and a library with deep terms overflows it (`thread_2 has overflowed its stack`: two of the three many-library shards of the first trial). `scripts/ci/nanoda.patch` changes that one constant to 1 GiB (address space until it is used) and adds a watcher thread that says every 20 seconds which declaration each checking thread is on (so that a shard that runs out of memory or time names the declaration it was in); nothing of the checking is touched, the report carries the sha256 of the patch and the joiner refuses a shard built without it.
+A many-library shard exported for 44-47 minutes in the first trial, and the cause was the exporter patch itself: `EnvironmentHeader.moduleNames` builds its array on every call, and the filter called it for every constant and every `--own` name (about 65 microseconds a pair, so about 85 seconds per library). The patch now takes the module names once.
+
+**A memory limit on each program, and the theorems nanoda cannot check.** The runner has 16 GB; the first trial's Navier-Stokes shard made it unresponsive for an hour ("lost communication") and left no log. nanoda and the axiom scan therefore each run in a cgroup that cannot swap (`systemd-run --scope`: 10 GB and 4 GB), so a program that outgrows its share is killed by the kernel and the job keeps its log; the step first proves on the runner that a process that outgrows a 64 MB limit is killed, and fails if it is not. The Navier-Stokes shard (33.6 million lines, exported in two minutes) then named the cause: ONE declaration, `NavierStokes.WholeDomainStageBounds.initialPotential_bound` (`Tengoku/NavierStokesEuler/NavierStokes/WholeDomainInitializationBounds.lean:38`, a four-line `exact`), which nanoda does not finish: its definitional-equality check unfolds without end, one checking thread stays on it while its memory grows by about 2 GB a minute (the other three threads go on normally), where the Lean kernel accepts it. The two other shards that ran for more than 85 minutes in that trial (20 and 24) were traced the same way and each held two more: two theorems of `albert-frame-triple-invariants`, a `by decide` table in `pdt-lean` that its file says takes about seven minutes in the kernel, and an auxiliary proof in `piirrationalitymeasure`. With a limit of 30 million expressions on the temporary storage of one declaration's check (a diagnostic patch of nanoda, not part of the check) each of the three shards finished in under five minutes, nanoda at 4-5 GB, giving up on exactly those five; the other 21 shards of the trial passed without any limit. Such theorems are listed in `scripts/ci/independent_check_exempt.json`, by name, each with its library and the reason and where it was seen. For a name on the list, the shard that holds it writes nanoda's copy of the export with that theorem's line replaced by an axiom of the same name, level parameters and type (`scripts/ci/exempt_export.py`); nanoda then takes its statement for granted and checks everything else against it. The axiom scan reads the original export, so the theorem is still audited for the axioms it rests on, and the Lean kernel accepted it when the library was built. Only theorems can be exempt (a definition replaced by an axiom would change what the declarations that unfold it mean). The report names the exempt theorems with their reasons (`nanoda.exempt`) and the sha256 of the list, and the joiner refuses a check in which a shard ran with another list, a listed theorem was applied in no shard (a stale name) or a theorem was made an axiom that is not listed. The list lies under `scripts/ci/`, so a change to it needs the approver's review like every other change to the check: adding a name is a decision about what the independent check guarantees, and it should say what was seen.
+The seed part of a shard's export is therefore only what its libraries use; the report's `declarations_checked` and `export` counts are sums over shards, not counts of distinct constants.
 
 - [nanoda](https://github.com/ammkrn/nanoda_lib), an independent type checker written in Rust, checks every
-  declaration again (745,847 on the tree today, about 9 minutes) in a sandbox without network. It admits the
+  declaration of the export again in a sandbox without network. It admits the
   seven axioms Lean's prelude declares in every environment; any other axiom is a hard error.
 - `scripts/ci/axiom_scan.py` computes, from the same export, the axioms every constant rests on. It fails if
-  anything rests on `sorryAx`, if a trusted record rests on anything but `propext`, `Classical.choice` and
+  anything rests on `sorryAx`, if a trusted record of the libraries it was given (`--libraries`; all of them
+  when it is run without) rests on anything but `propext`, `Classical.choice` and
   `Quot.sound`, if a record of a library the tree compiles is missing from the export, or if the export
-  declares an axiom outside the prelude. The queue asks Lean the same question with `collectAxioms`; this
+  declares an axiom outside the prelude. Every declaration of the export is scanned whatever the libraries are.
+  The records of libraries without modules in the tree (the Mathlib index files, CompeteMath's problems: 25,579 on 2026-10-12) have no
+  name to find in an export; they are counted, by library, and the declarations they are made of are
+  the seed's, all of which are scanned. The queue asks Lean the same question with `collectAxioms`; this
   answer comes from the exported terms alone.
 
 A kernel bug, or a record that fooled the gate and the queue, would have to fool both.
