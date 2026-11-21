@@ -111,7 +111,7 @@ jobs:
           sudo swapoff -a >/dev/null 2>&1 || true; sudo rm -f /mnt/swapfile /swapfile || true
           df -h /
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with: { ref: "${{ needs.plan.outputs.commit }}", fetch-depth: 0, filter: "blob:none", persist-credentials: false }
+        with: { ref: "${{ inputs.commit || github.sha }}", fetch-depth: 0, filter: "blob:none", persist-credentials: false }   # as the plan job: the plan's commit is only compared with, never checked out by name
       - name: A commit of main, checked by the newest checker
         run: |
           [ "$(git rev-parse HEAD)" = "$CHECK_COMMIT" ] || { echo "::error::checked out $(git rev-parse HEAD), not $CHECK_COMMIT"; exit 1; }
@@ -229,7 +229,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: "${{ needs.plan.outputs.commit }}"
+          ref: "${{ inputs.commit || github.sha }}"
           fetch-depth: 0
           filter: "blob:none"
           sparse-checkout: lean-toolchain
