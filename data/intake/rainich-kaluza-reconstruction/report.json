@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "88d1093edaf433ec0af6e9d8fbe5af488ed249db94ea277f5a4f3f1dcfe4d400",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "rainich-kaluza-reconstruction",
+ "lint_mode": "proposed",
+ "modules": 26,
+ "part": 1,
+ "theorems": 214
+}
