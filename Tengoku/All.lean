@@ -118,6 +118,7 @@ import Tengoku.ErdosUnitDistance1
 import Tengoku.LeanTheoremsAroundMillenniumProblems
 import Tengoku.TuzaLean
 import Tengoku.AlpogeLean
+import Tengoku.Erdos263Lean
 import Tengoku.ErdosLean
 import Tengoku.AclGeom
 import Tengoku.Jsp000936UnitCircleLean
