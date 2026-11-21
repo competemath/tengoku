@@ -88,27 +88,116 @@ def load_licences(root: Path) -> dict[str, str]:
     return json.loads((root / "schemas" / "sources.json").read_text(encoding="utf-8")).get("licences", {})
 
 
-def intake_rows(root: Path, licences: dict[str, str], ids: dict | None = None) -> tuple[list[dict], dict[str, int]]:
+def command_words(root: Path) -> frozenset[str]:
+    """the words that begin a command in a module of the tree (schemas/command-keywords.json: the content gate lets a word at column 0 begin a command only if it is one of these)"""
+    return frozenset(json.loads((root / "schemas" / "command-keywords.json").read_text(encoding="utf-8"))["commands"])
+
+
+def starts_command(line: str, words: frozenset[str]) -> bool:
+    """a line that begins a command: it starts at column 0 with a command keyword, an attribute list (`@[`) or a doc comment"""
+    if not line or line[0].isspace():
+        return False
+    if line.startswith(("@[", "/--", "/-!")):
+        return True
+    m = re.match(r"«[^»]*»|[#A-Za-z_][^\s(\[{:⟨]*", line)
+    return bool(m) and m.group(0) in words
+
+
+def comment_end(text: str, i: int) -> int:
+    """the index just after the block comment that opens at `i` (they nest); the end of the text when it never closes"""
+    depth, n = 0, len(text)
+    while i < n:
+        if text.startswith("/-", i):
+            depth, i = depth + 1, i + 2
+        elif text.startswith("-/", i):
+            depth, i = depth - 1, i + 2
+            if depth == 0:
+                return i
+        else:
+            i += 1
+    return n
+
+
+def declaration_proof(text: str, statement: str, words: frozenset[str]) -> str | None:
+    """the proof of the declaration whose header is `statement`, read from the text of its module: from the `:=` (or `where`) to the end of the declaration. None when it cannot be said without guessing.
+
+    The manifest keeps a theorem's header exactly as the module has it, so the header is found in the module's text. It must be there once and begin a line (a header found twice, or in the middle of a
+    line, may be another declaration or a comment); what follows it is the proof, up to the next command. A command begins where the tree's own gate says it does (`starts_command`): at column 0 with
+    a command keyword. Any other word at column 0, an indented line and a `--` comment inside the proof belong to the proof; comments after its last line (a `--` or a block comment at column 0) do not.
+    A header that has no `:=` after it (equation-style definitions keep their match arms in the header) has no proof text: the module has the whole declaration."""
+    start = text.find(statement)
+    if start < 0 or text.find(statement, start + 1) >= 0 or text[text.rfind("\n", 0, start) + 1 : start].strip():
+        return None
+    i = start + len(statement)
+    pos = text.find("\n", i)
+    end = len(text) if pos < 0 else pos  # the rest of the header's last line is the beginning of the proof
+    while pos >= 0:
+        nxt = pos + 1
+        eol = text.find("\n", nxt)
+        line_end = len(text) if eol < 0 else eol
+        line = text[nxt:line_end]
+        if not line.strip() or line.startswith("--"):
+            pass
+        elif line.startswith("/-") and not line.startswith(("/--", "/-!")):
+            close = comment_end(text, nxt)
+            eol = text.find(
+                "\n", close
+            )  # a block comment at column 0: skipped, and not part of the proof unless the proof goes on after it
+        elif line[0].isspace():
+            end = line_end
+        elif starts_command(line, words):
+            break
+        else:
+            end = line_end  # a word that is not a command continues the command above
+        pos = eol
+    proof = text[i:end].strip()
+    return proof if proof.startswith((":=", "where")) else None
+
+
+def module_text(root: Path, module: str, cache: dict[str, str | None]) -> str | None:
+    """the source of a module of the tree (`Tengoku.A.B` is Tengoku/A/B.lean), or None when the file is not there"""
+    if module not in cache:
+        f = root.joinpath(*module.split(".")).with_name(module.split(".")[-1] + ".lean")
+        cache.clear()  # the manifest lists a library module by module: one file at a time is enough
+        cache[module] = f.read_text(encoding="utf-8") if f.is_file() else None
+    return cache[module]
+
+
+def intake_rows(root: Path, licences: dict[str, str], ids: dict | None = None, proofs: bool = True) -> tuple[list[dict], dict[str, int]]:
     """schema 2 rows for the theorems that arrived in the tree as modules: one per line of `data/intake/<library>/manifest.jsonl` (docs/v2.md, "The theorems that arrived as modules").
 
     The manifest of a library is exactly what the tree holds of it: a raze removes the lines of the modules it removes (docs/pr-classes.md, section 8), so nothing is retracted here. `ids` is the
-    optional table of `v2.load_ids`; an id goes to the theorem it names by its tree module, its upstream module or no module at all (a library's names are unique, so a name names one theorem)."""
+    optional table of `v2.load_ids`; an id goes to the theorem it names by its tree module, its upstream module or no module at all (a library's names are unique, so a name names one theorem).
+    With `proofs` a row gets the proof text `declaration_proof` reads out of its module, where it can be read; a row without one has the module (`tree_module`) for its proof."""
     rows: list[dict] = []
     counts: dict[str, int] = {}
     base = root / "data" / "intake"
+    words: frozenset[str] | None = None  # read when the first manifest is: a tree with no intake needs no keyword list
+    cache: dict[str, str | None] = {}
     for d in sorted(p for p in base.iterdir() if p.is_dir()) if base.is_dir() else []:
         manifest = d / "manifest.jsonl"
         if not manifest.is_file():
             continue
-        for m in lines(manifest):
+        entries = list(lines(manifest))
+        if proofs and words is None:
+            words = command_words(root)
+        order = sorted(
+            range(len(entries)), key=lambda k: str(entries[k].get("module"))
+        )  # a module's theorems together: its file is read once (the rows keep the manifest's order)
+        proof_of: dict[int, str | None] = {}
+        for k in order if proofs else []:
+            m = entries[k]
+            text = module_text(root, str(m.get("module")), cache)
+            proof_of[k] = declaration_proof(text, str(m.get("statement")), words) if text is not None else None
+        for k, m in enumerate(entries):
             library = m.get("library") or d.name
             keys = (
                 (library, m.get("name"), m.get("module")),
                 (library, m.get("name"), v2.module_of(m.get("source_url"))),
                 (library, m.get("name"), None),
             )
-            ident = next((ids[k] for k in keys if ids and k in ids), None)
-            rows.append(v2.intake_row(m, licence_of(str(m.get("source_url", "")), licences), ident))
+            ident = next((ids[x] for x in keys if ids and x in ids), None)
+            rows.append(v2.intake_row(m, licence_of(str(m.get("source_url", "")), licences), ident, proof_of.get(k)))
             counts[library] = counts.get(library, 0) + 1
     return rows, counts
 
@@ -289,9 +378,11 @@ def release_notes(
             )
         tree = sum(1 for r in records if "tree_module" in r)
         if tree:
+            read = sum(1 for r in records if "tree_module" in r and "proof" in r)
             why.append(
-                f"the dataset now holds every trusted theorem of the tree, {tree:,} of them theorems of libraries that arrived as modules: their rows have no `proof` field "
-                "(the proof is the module `tree_module` in the source release of the same version) and carry `via`, how Gate 2 related the statement to the original's"
+                f"the dataset now holds every trusted theorem of the tree, {tree:,} of them theorems of libraries that arrived as modules: {read:,} of those rows have a `proof` read "
+                "from their module, the others have none (their proof is the module `tree_module`, in the source release of the same version), and all carry `via`, how Gate 2 related "
+                "the statement to the original's"
             )
         if gone:
             why.append(f"record fields were removed or renamed ({', '.join(gone)}): code reading the dataset must stop expecting them")
@@ -342,6 +433,7 @@ def main() -> None:
             root, load_licences(root), ids
         )  # schema 2 holds every trusted theorem of the tree: the intake libraries too
         records += tree_rows
+        tree_n, tree_proofs = len(tree_rows), sum(1 for r in tree_rows if "proof" in r)
         for library, n in tree_counts.items():
             counts.setdefault(library, {})["intake"] = n
         problems = v2.check(records)
@@ -386,6 +478,7 @@ def main() -> None:
             "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
             "uncompressed_sha256": hashlib.sha256(raw).hexdigest(),
         },
+        **({"tree": {"theorems": tree_n, "with_proof": tree_proofs}} if args.schema == 2 else {}),
         "libraries": {k: counts[k] for k in sorted(counts)},
         "totals": {
             t: sum(c.get(t, 0) for c in counts.values())

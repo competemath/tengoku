@@ -286,12 +286,15 @@ def upgrade_dataset(
     }
 
 
-def intake_row(m: Dict[str, Any], licence: Optional[str] = None, ident: Optional[str] = None) -> Dict[str, Any]:
+def intake_row(
+    m: Dict[str, Any], licence: Optional[str] = None, ident: Optional[str] = None, proof: Optional[str] = None
+) -> Dict[str, Any]:
     """one version 2 row from one line of `data/intake/<library>/manifest.jsonl`: a theorem of a library that arrived in the tree as modules (docs/pr-classes.md, sections 3 and 6).
 
     A manifest line is the theorem as the tree holds it: `name` is the full Lean name, `statement` the declaration's header, `module` the module of the TREE that holds it (`tree_module` here),
     `source_url` the upstream file at a fixed commit, `via` how Gate 2 related the statement to the upstream original's (`equal`: the same type; `entails`: the tree's statement implies the original's,
-    checked by the kernel). The row has no `proof`: the module is in the release's source archive. `module` is the UPSTREAM module (what `source_url` points into), as for every other row.
+    checked by the kernel). The row has a `proof` only when the caller read one out of the module (`proof`, the text from the `:=` on: snapshot.py `declaration_proof`); otherwise the proof is the module,
+    which is in the release's source archive. `module` is the UPSTREAM module (what `source_url` points into), as for every other row.
     A field the line lacks is left out, and `check` says which required one is missing: nothing is invented here. A library's names are unique (the intake gate refuses a repeat), and a library
     is never both in `data/trusted` and in `data/intake`, so the plain ref `<library>:<name>` is unique: `check` verifies it."""
     library, name = m.get("library"), m.get("name")
@@ -305,6 +308,7 @@ def intake_row(m: Dict[str, Any], licence: Optional[str] = None, ident: Optional
         "module": module_of(m.get("source_url")),
         "tree_module": m.get("module") or None,
         "statement": m.get("statement"),
+        "proof": proof or None,
         "via": m.get("via") or None,  # the factory leaves it empty when its ledger had none
         "source_url": m.get("source_url"),
         "licence": licence or None,
@@ -371,6 +375,10 @@ def check(rows: List[Dict[str, Any]]) -> List[str]:
             problems.append(f"row {i}: via {r['via']!r} is not one of {', '.join(VIA)}")
         if "proof" not in r and "tree_module" not in r:
             problems.append(f"row {i}: neither a proof nor a tree_module: nowhere to find the proof")
+        if "tree_module" in r and "proof" in r and not str(r["proof"]).strip():
+            problems.append(
+                f"row {i}: an empty proof must be left out"
+            )  # (a version 1 record keeps the empty proof it had: the round trip is exact)
         for k, v in r.items():
             if v is None or (k == "headline" and v is not True):
                 problems.append(f"row {i}: {k} must be left out when it does not apply")

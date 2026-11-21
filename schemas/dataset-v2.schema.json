@@ -54,7 +54,7 @@
     "module": "the Lean module of the .lean file source_url points into (the UPSTREAM module)",
     "tree_module": "the module of the Tengoku tree that holds the theorem (import it); present on the theorems that arrived as modules (data/intake)",
     "via": "how Gate 2 related the tree's statement to the upstream original's: equal (the same type) or entails (the tree's statement implies the original's, kernel-checked); present with tree_module when the factory recorded it",
-    "proof": "the text from the := on; left out where the proof is a module of the tree (tree_module), and every row has one or the other"
+    "proof": "the text from the := (or where) on; left out where the proof is a module of the tree (tree_module) and could not be read from it, and every row has one or the other"
   },
   "renamed_from_schema_1": {
     "credit_corrected_evidence": "credit_evidence"

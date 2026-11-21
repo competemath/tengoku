@@ -19,6 +19,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
+import snapshot  # noqa: E402
 import v2  # noqa: E402
 
 TC = "leanprover/lean4:v4.34.0-rc2"
@@ -930,6 +931,75 @@ class SnapshotSchema2(unittest.TestCase):
         self.assertIn("**Added:** 2 trusted theorems", text)
 
 
+WORDS = frozenset(
+    [
+        "theorem",
+        "lemma",
+        "def",
+        "end",
+        "namespace",
+        "open",
+        "section",
+        "variable",
+        "instance",
+        "import",
+        "universe",
+        "example",
+        "private",
+        "protected",
+        "set_option",
+        "attribute",
+    ]
+)
+
+
+class DeclarationProof(unittest.TestCase):
+    """snapshot.declaration_proof: the proof of a theorem of the tree, read out of its module, or nothing (never a guess)"""
+
+    def proof(self, text, statement):
+        return snapshot.declaration_proof(text, statement, WORDS)
+
+    def test_a_proof_runs_to_the_next_command(self):
+        text = "namespace A\n\ntheorem foo : 1 = 1 := by\n  rfl\n\ntheorem bar : 2 = 2 := rfl\n\nend A\n"
+        self.assertEqual(self.proof(text, "theorem foo : 1 = 1"), ":= by\n  rfl")
+        self.assertEqual(self.proof(text, "theorem bar : 2 = 2"), ":= rfl")
+
+    def test_what_follows_the_last_line_is_not_the_proof(self):
+        text = "theorem foo : 1 = 1 := by\n  simp\n\n-- about the next one\n/- and a block\n   comment -/\n/-- its doc -/\ntheorem baz : 3 = 3 := rfl\n"
+        self.assertEqual(self.proof(text, "theorem foo : 1 = 1"), ":= by\n  simp")
+        self.assertEqual(
+            self.proof("theorem foo : 1 = 1 := by\n  simp\n\n@[simp]\ntheorem x : 1 = 1 := rfl\n", "theorem foo : 1 = 1"), ":= by\n  simp"
+        )
+
+    def test_a_comment_inside_the_proof_is_part_of_it(self):
+        text = "theorem foo : 1 = 1 := by\n  -- why\n  simp\n-- a line at column 0\n  rfl\n/- a block\n  comment -/\n  done\n\nend A\n"
+        self.assertEqual(
+            self.proof(text, "theorem foo : 1 = 1"),
+            ":= by\n  -- why\n  simp\n-- a line at column 0\n  rfl\n/- a block\n  comment -/\n  done",
+        )
+
+    def test_a_word_at_column_0_that_is_not_a_command_goes_on_with_the_proof(self):
+        text = "def f (n : Nat) : Nat := f (n - 1)\ntermination_by n\n\ntheorem x : True := trivial\n"
+        self.assertEqual(self.proof(text, "def f (n : Nat) : Nat"), ":= f (n - 1)\ntermination_by n")
+
+    def test_where_is_a_proof_and_the_last_declaration_of_a_file_without_a_final_newline_is_read(self):
+        self.assertEqual(self.proof("instance : Foo Nat where\n  x := 1\n", "instance : Foo Nat"), "where\n  x := 1")
+        self.assertEqual(self.proof("theorem foo : True := trivial", "theorem foo : True"), ":= trivial")
+
+    def test_nothing_is_guessed(self):
+        header = "theorem foo : 1 = 1"
+        self.assertIsNone(self.proof("theorem bar : 2 = 2 := rfl\n", header))  # not in the module (a generated lemma)
+        self.assertIsNone(self.proof(f"{header} := rfl\n\nnamespace B\n\n{header} := by simp\n", header))  # twice: which one is it?
+        self.assertIsNone(self.proof(f"-- {header} := rfl\n", header))  # in the middle of a line: a comment, not a declaration
+        eqn = "theorem f : ∀ n : Nat, n = n\n  | 0 => rfl\n  | n + 1 => rfl"  # equation-style: the header has the arms, there is no `:=`
+        self.assertIsNone(self.proof(eqn + "\n\ntheorem g : True := trivial\n", eqn))
+
+    def test_a_block_comment_that_never_closes_ends_the_proof_where_the_comment_began(self):
+        self.assertEqual(
+            self.proof("theorem foo : True := by\n  trivial\n/- never closed\n  theorem x", "theorem foo : True"), ":= by\n  trivial"
+        )
+
+
 def manifest_line(name="TauCeti.A.foo", library="tauceti", path="TauCeti/A.lean", via="equal", **kw):
     """one line of data/intake/<library>/manifest.jsonl as the tree has them (name = the full Lean name, statement = the header, module = the TREE's module)"""
     m = {
@@ -1048,6 +1118,7 @@ class SnapshotWithTheTree(unittest.TestCase):
                 }
             )
         )
+        (self.root / "schemas" / "command-keywords.json").write_text(json.dumps({"commands": sorted(WORDS)}))
         (self.root / "lean-toolchain").write_text(TC + "\n")
         (self.root / "data" / "trusted").mkdir(parents=True)
         fields = ("name", "statement", "proof", "source_url", "toolchain", "library")
@@ -1163,6 +1234,37 @@ class SnapshotWithTheTree(unittest.TestCase):
         self.assertEqual(by["TauCeti.A.t2"]["id"], "eq.1h3v.s4.222222222222")
         self.assertNotIn("id", by["TauCeti.A.t3"])
 
+    def write_modules(self):
+        d = self.root / "Tengoku" / "Tauceti" / "TauCeti"
+        d.mkdir(parents=True)
+        (d / "A.lean").write_text(
+            "import Tengoku.Seed.Init\n\nnamespace TauCeti.A\n\ntheorem t0 : True := trivial\n\n/-- doc -/\ntheorem t2 : True := by\n  -- a note\n  trivial\n\nend TauCeti.A\n"
+        )
+        (d / "B.lean").write_text(
+            "theorem t1 : True := rfl\n\ntheorem t3 : True := rfl\n\ntheorem t3 : True := by\n  rfl\n"
+        )  # t3 twice: no proof is read for it
+
+    def test_a_row_has_the_proof_read_from_its_module_where_it_can_be(self):
+        self.write_modules()
+        out = self.root / "out2"
+        notes = self.snap(out, "--schema", "2")
+        by = {r["name"]: r for r in v2.read_jsonl(out / "tengoku-dataset.jsonl.gz")}
+        self.assertEqual(by["TauCeti.A.t0"]["proof"], ":= trivial")
+        self.assertEqual(by["TauCeti.A.t2"]["proof"], ":= by\n  -- a note\n  trivial")
+        self.assertEqual(by["TauCeti.A.t1"]["proof"], ":= rfl")
+        self.assertNotIn("proof", by["TauCeti.A.t3"])
+        self.assertEqual(v2.check(list(by.values())), [])
+        self.assertEqual(json.loads((out / "snapshot.json").read_text())["tree"], {"theorems": 4, "with_proof": 3})
+        self.snap(self.root / "r1")
+        text = self.snap(self.root / "r2", "--schema", "2", "--previous", str(self.root / "r1")).read_text()
+        self.assertIn("3 of those rows have a `proof` read from their module", text)
+        self.assertTrue(notes.exists())
+
+    def test_a_module_that_is_not_there_gives_a_row_with_no_proof(self):
+        out = self.root / "out2"
+        self.snap(out, "--schema", "2")
+        self.assertEqual(json.loads((out / "snapshot.json").read_text())["tree"], {"theorems": 4, "with_proof": 0})
+
     def test_a_manifest_line_without_a_source_url_stops_the_cut(self):
         bad = dict(self.lines[0])
         del bad["source_url"]
@@ -1180,7 +1282,9 @@ class TheTreeOfThisRepository(unittest.TestCase):
         sys.path.insert(0, str(ROOT / "scripts"))
         import snapshot
 
-        cls.rows, cls.counts = snapshot.intake_rows(ROOT, snapshot.load_licences(ROOT))
+        cls.rows, cls.counts = snapshot.intake_rows(
+            ROOT, snapshot.load_licences(ROOT), proofs=False
+        )  # reading every module for its proof takes a minute: not on every PR
 
     def test_every_theorem_of_the_tree_is_a_valid_row(self):
         self.assertEqual(v2.check(self.rows), [])
