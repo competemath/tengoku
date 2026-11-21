@@ -32,8 +32,14 @@ def PosAdj (y z : Pos) : Prop := z = y + 1 ∨ y = z + 1
 
 instance : DecidableRel PosAdj := fun _ _ => inferInstanceAs (Decidable (_ ∨ _))
 
+/--
+@isnad1 id=posadj.1h2v.s3.06e4086579f2 from=translated src=- shape=7e524d71 vocab=3c6eeae1
+-/
 lemma posAdj_symm {y z : Pos} (h : PosAdj y z) : PosAdj z y := h.symm
 
+/--
+@isnad1 id=not.0h1v.s2.f1b240023806 from=translated src=- shape=66a6bd96 vocab=3c6eeae1
+-/
 lemma posAdj_irrefl (y : Pos) : ¬ PosAdj y y := by
   revert y; decide
 
@@ -93,7 +99,13 @@ def ext : Blk m × Pos → Vtx m
   | (Sum.inl S, y) => extS S y
   | (Sum.inr L, y) => extL L y
 
+/--
+@isnad1 id=eq.0h3v.s4.bab07bb07210 from=translated src=- shape=6a5ed755 vocab=7fdede7f
+-/
 @[simp] lemma ext_inl (S : SIdx m) (y : Pos) : ext (Sum.inl S, y) = extS S y := rfl
+/--
+@isnad1 id=eq.0h3v.s4.df4d2a90c8ad from=translated src=- shape=19ee64bb vocab=f5261229
+-/
 @[simp] lemma ext_inr (L : LIdx m) (y : Pos) : ext (Sum.inr L, y) = extL L y := rfl
 
 /-- Adjacency of the pentagon caterpillar.-/
@@ -114,6 +126,9 @@ instance : DecidableRel (AdjRel (m := m)) := by
       exact inferInstanceAs
         (Decidable ((p.1 = q.1 ∧ PosAdj p.2 q.2) ∨ ext p = some q ∨ ext q = some p))
 
+/--
+@isnad1 id=ne.0h2v.s4.8aaab4ad074a from=translated src=- shape=6ef27f53 vocab=a5d04166
+-/
 lemma ext_ne_self (p : Blk m × Pos) : ext p ≠ some p := by
   obtain ⟨B, y⟩ := p
   cases B with
@@ -166,6 +181,9 @@ def G (m : ℕ) : SimpleGraph (Vtx m) where
 
 instance (m : ℕ) : DecidableRel (G m).Adj := inferInstanceAs (DecidableRel (AdjRel (m := m)))
 
+/--
+@isnad1 id=iff.0h3v.s4.1b3e28898d67 from=translated src=- shape=2c67a4d3 vocab=2a629792
+-/
 @[simp] lemma G_adj (u v : Vtx m) : (G m).Adj u v ↔ AdjRel u v := Iff.rfl
 
 end JSP907

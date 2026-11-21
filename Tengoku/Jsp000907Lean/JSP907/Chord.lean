@@ -17,30 +17,47 @@ open SimpleGraph
 
 variable {m : ℕ} {v : Vtx m} {c : (G m).Walk v v}
 
+/--
+@isnad1 id=mem.1h4v.s6.8d1d0a9ec25a from=translated src=- shape=d8e2d19c vocab=11e367f8
+-/
 lemma dart_edge_mem (d : (G m).Dart) (hd : d ∈ c.darts) : d.edge ∈ c.edges :=
   mem_edges_of_mem_darts hd
 
+/--
+@isnad1 id=mem.2h4v.s6.131ff76837d2 from=translated src=- shape=354fc805 vocab=3dff77a7
+-/
 lemma hub_nbr_of_dart {d : (G m).Dart} (hd : d ∈ c.darts) (h : d.toProd.1 = none) :
     d.toProd.2 ∈ c.toSubgraph.neighborSet none := by
   have he : d.edge ∈ c.edges := dart_edge_mem d hd
   rw [SimpleGraph.Dart.edge, h] at he
   exact SimpleGraph.Walk.adj_toSubgraph_iff_mem_edges.2 he
 
+/--
+@isnad1 id=mem.2h4v.s6.00a21ab417cc from=translated src=- shape=354fc805 vocab=3dff77a7
+-/
 lemma hub_nbr_of_dart' {d : (G m).Dart} (hd : d ∈ c.darts) (h : d.toProd.2 = none) :
     d.toProd.1 ∈ c.toSubgraph.neighborSet none := by
   have he : d.edge ∈ c.edges := dart_edge_mem d hd
   rw [SimpleGraph.Dart.edge, h, Sym2.eq_swap] at he
   exact SimpleGraph.Walk.adj_toSubgraph_iff_mem_edges.2 he
 
+/--
+@isnad1 id=or.1h3v.s6.a08c140bbe6f from=translated src=- shape=827d9636 vocab=70851ea2
+-/
 lemma cross_cases {f : Vtx m → Bool} {d : (G m).Dart} (hcr : Crosses f d = true) :
     (f d.toProd.1 = true ∧ f d.toProd.2 = false) ∨
       (f d.toProd.1 = false ∧ f d.toProd.2 = true) := by
   simp only [Crosses, bne_iff_ne, ne_eq] at hcr
   cases h1 : f d.toProd.1 <;> cases h2 : f d.toProd.2 <;> simp_all
 
+/--
+@isnad1 id=eq.0h2v.s5.84d1c92466a8 from=translated src=- shape=403e68cc vocab=287da25f
+-/
 lemma dart_edge_eq (d : (G m).Dart) : d.edge = s(d.toProd.1, d.toProd.2) := rfl
 
-/-- If the only non-hub crossing edge is unused, every crossing dart meets the hub.-/
+/-- If the only non-hub crossing edge is unused, every crossing dart meets the hub.
+@isnad1 id=or.4h6v.s7.d6a6ab76b2d2 from=translated src=- shape=154a5a1f vocab=a357078a
+-/
 lemma cross_hub_of_not_mem (f : Vtx m → Bool) (e : Sym2 (Vtx m))
     (hstep : ∀ {a b : Vtx m}, (G m).Adj a b → f a = true → f b = false →
         s(a, b) = e ∨ b = none ∨ a = none)
@@ -61,7 +78,9 @@ lemma cross_hub_of_not_mem (f : Vtx m → Bool) (e : Sym2 (Vtx m))
     · exact Or.inl h
     · exact Or.inr h
 
-/-- The attachment edge of a leaf block is never a chord.-/
+/-- The attachment edge of a leaf block is never a chord.
+@isnad1 id=not.1h4v.s5.6560e1ca3590 from=translated src=- shape=a7d599c1 vocab=55a5af4a
+-/
 lemma attach_not_chord (hc : c.IsCycle) (L : LIdx m) : ¬ c.IsChord (attachEdge L) := by
   intro hch
   rw [attachEdge, SimpleGraph.Walk.isChord_sym2Mk] at hch
@@ -73,7 +92,9 @@ lemma attach_not_chord (hc : c.IsCycle) (L : LIdx m) : ¬ c.IsChord (attachEdge 
   · exact Or.inl h
   · exact Or.inr (Or.inl h)
 
-/-- Spine edges are never chords.-/
+/-- Spine edges are never chords.
+@isnad1 id=not.2h4v.s5.0d3cfc5ab2ee from=translated src=- shape=0b4dbaa7 vocab=ab09d267
+-/
 lemma spine_not_chord (hc : c.IsCycle) {i : ℕ} (hi : i < m) : ¬ c.IsChord (spineEdge hi) := by
   intro hch
   rw [spineEdge, SimpleGraph.Walk.isChord_sym2Mk] at hch
@@ -96,7 +117,9 @@ lemma eq_of_inLeaf {L : LIdx m} {a : Vtx m} (h : inLeaf L a = true) :
       | inl S => simp [inLeaf] at h
       | inr L' => exact ⟨y, by rw [inLeaf_some_inr.1 h]⟩
 
-/-- Every leaf block met by the cycle contains a cycle-neighbour of the hub.-/
+/-- Every leaf block met by the cycle contains a cycle-neighbour of the hub.
+@isnad1 id=ex.3h5v.s7.171679e749a1 from=translated src=- shape=6f71a70a vocab=d7ae1fb3
+-/
 lemma leaf_has_hub_nbr (hc : c.IsCycle) (L : LIdx m) {y0 : Pos}
     (hmem : some (Sum.inr L, y0) ∈ c.support) (hhub : (none : Vtx m) ∈ c.support) :
     ∃ y : Pos, some (Sum.inr L, y) ∈ c.toSubgraph.neighborSet none := by
@@ -116,10 +139,15 @@ lemma leaf_has_hub_nbr (hc : c.IsCycle) (L : LIdx m) {y0 : Pos}
       obtain ⟨y, hy⟩ := eq_of_inLeaf h2
       exact hcon y (hy ▸ hub_nbr_of_dart hd h)
 
+/--
+@isnad1 id=le.0h4v.s5.7aed32551bea from=translated src=- shape=5bfcd416 vocab=3ab1babc
+-/
 lemma Nc_subset_nbr (u : Vtx m) :
     c.toSubgraph.neighborSet u ⊆ (G m).neighborSet u := fun _ hx => c.toSubgraph.adj_sub hx
 
-/-- If a pentagon edge at `some p` is a chord, the inter-block edge at `some p` is used.-/
+/-- If a pentagon edge at `some p` is a chord, the inter-block edge at `some p` is used.
+@isnad1 id=mem.3h5v.s6.025353ccd8fd from=translated src=- shape=4e33da68 vocab=dfc84db1
+-/
 lemma ext_mem_edges_of_pent_chord (hc : c.IsCycle) {p q : Blk m × Pos} (hbq : q.1 = p.1)
     (hch : c.IsChord s(some p, some q)) : s(some p, ext p) ∈ c.edges := by
   rw [SimpleGraph.Walk.isChord_sym2Mk] at hch
@@ -164,7 +192,9 @@ lemma ext_mem_edges_of_pent_chord (hc : c.IsCycle) {p q : Blk m × Pos} (hbq : q
   rw [hN, Set.ncard_singleton] at this
   omega
 
-/-- Every inter-block edge is an attachment edge or a spine edge.-/
+/-- Every inter-block edge is an attachment edge or a spine edge.
+@isnad1 id=or.1h3v.s6.a613ff9742be from=translated src=- shape=ef25d887 vocab=2a0c055a
+-/
 lemma ext_edge_cases {p q : Blk m × Pos} (h : ext p = some q) :
     (∃ L : LIdx m, s((some p : Vtx m), some q) = attachEdge L) ∨
       (∃ (i : ℕ) (hi : i < m), s((some p : Vtx m), some q) = spineEdge hi) := by
@@ -205,14 +235,18 @@ lemma ext_edge_cases {p q : Blk m × Pos} (h : ext p = some q) :
             Subtype.ext (by simp only; omega)
           rw [h1, h2]
 
-/-- No inter-block edge is a chord.-/
+/-- No inter-block edge is a chord.
+@isnad1 id=not.2h5v.s6.06cb8da86a4f from=translated src=- shape=a65c51be vocab=dc440644
+-/
 lemma interblock_not_chord (hc : c.IsCycle) {p q : Blk m × Pos} (h : ext p = some q) :
     ¬ c.IsChord s((some p : Vtx m), some q) := by
   rcases ext_edge_cases h with ⟨L, hL⟩ | ⟨i, hi, hi'⟩
   · rw [hL]; exact attach_not_chord hc L
   · rw [hi']; exact spine_not_chord hc hi
 
-/-- If the cycle meets a leaf block and also something outside it, the hub is on it.-/
+/-- If the cycle meets a leaf block and also something outside it, the hub is on it.
+@isnad1 id=mem.5h6v.s6.e31d365a553a from=translated src=- shape=74385dd3 vocab=0713f086
+-/
 lemma hub_mem_of_leaf_and_outside (hc : c.IsCycle) (L : LIdx m) {a b : Vtx m}
     (ha : a ∈ c.support) (hb : b ∈ c.support)
     (hia : inLeaf L a = true) (hib : inLeaf L b = false) : (none : Vtx m) ∈ c.support := by
@@ -228,7 +262,9 @@ lemma hub_mem_of_leaf_and_outside (hc : c.IsCycle) (L : LIdx m) {a b : Vtx m}
     · exact absurd (h ▸ c.dart_fst_mem_support_of_mem_darts hd) hcon
 
 /-- Half of the block analysis for a pentagon chord: the vertex `some (B, x)` is assumed
-to have a leaf block hanging from it, or to be a non-attachment leaf vertex.-/
+to have a leaf block hanging from it, or to be a non-attachment leaf vertex.
+@isnad1 id=ex.3h6v.s8.1b4740937fca from=translated src=- shape=18646c35 vocab=87b7e677
+-/
 lemma pent_chord_aux (hc : c.IsCycle) {B : Blk m} {x y : Pos}
     (he : c.IsChord s((some (B, x) : Vtx m), some (B, y))) :
     ((∃ L : LIdx m, B = Sum.inr L ∧ x ≠ L.1.2) ∨ (∃ S : SIdx m, B = Sum.inl S ∧ LeafOK m S.1 x)) →

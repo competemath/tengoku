@@ -22,7 +22,9 @@ open SimpleGraph
 
 variable {m : ℕ}
 
-/-- The inter-block neighbour lies in a different block.-/
+/-- The inter-block neighbour lies in a different block.
+@isnad1 id=ne.1h3v.s5.2cf9d6df6d15 from=translated src=- shape=bc937bf6 vocab=9127f034
+-/
 lemma ext_block_ne {p q : Blk m × Pos} (h : ext p = some q) : q.1 ≠ p.1 := by
   obtain ⟨B, y⟩ := p
   cases B with
@@ -52,25 +54,39 @@ lemma ext_block_ne {p q : Blk m × Pos} (h : ext p = some q) : q.1 ≠ p.1 := by
           have : min (S.1 + 1) m = S.1 := congrArg Subtype.val (Sum.inl_injective hc)
           omega
 
+/--
+@isnad1 id=ne.0h1v.s6.09e17fd53bd5 from=translated src=- shape=6e7d942a vocab=c21ac8e2
+-/
 lemma pos_ne_shift (y : Pos) : y + 1 ≠ y + 1 + 1 + 1 + 1 := by
   revert y
   decide
 
+/--
+@isnad1 id=ne.0h2v.s7.28457034c376 from=translated src=- shape=5203ec97 vocab=8267e0d5
+-/
 lemma pentNbr_ne (p : Blk m × Pos) :
     (some (p.1, p.2 + 1) : Vtx m) ≠ some (p.1, p.2 + 1 + 1 + 1 + 1) := by
   intro h
   exact pos_ne_shift p.2 (congrArg Prod.snd (Option.some.inj h))
 
+/--
+@isnad1 id=ne.0h2v.s5.0b6e684ebdc3 from=translated src=- shape=989134aa vocab=d9636115
+-/
 lemma ext_ne_pentNbr₁ (p : Blk m × Pos) : (ext p : Vtx m) ≠ some (p.1, p.2 + 1) := by
   intro h
   exact ext_block_ne h rfl
 
+/--
+@isnad1 id=ne.0h2v.s6.719040641726 from=translated src=- shape=38744802 vocab=d9636115
+-/
 lemma ext_ne_pentNbr₂ (p : Blk m × Pos) :
     (ext p : Vtx m) ≠ some (p.1, p.2 + 1 + 1 + 1 + 1) := by
   intro h
   exact ext_block_ne h rfl
 
-/-- The neighbour set of a non-hub vertex, as a `Set`.-/
+/-- The neighbour set of a non-hub vertex, as a `Set`.
+@isnad1 id=eq.0h2v.s7.1eb1d72334ae from=translated src=- shape=3220a695 vocab=634ed336
+-/
 lemma neighborSet_some (p : Blk m × Pos) :
     (G m).neighborSet (some p) =
       ({some (p.1, p.2 + 1), some (p.1, p.2 + 1 + 1 + 1 + 1), ext p} : Set (Vtx m)) := by

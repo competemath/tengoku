@@ -30,14 +30,23 @@ def hubEdges (L : LIdx m) : Finset (Sym2 (Vtx m)) :=
 def locEdges (L : LIdx m) : Finset (Sym2 (Vtx m)) :=
   pentEdges (Sum.inr L) ∪ pentEdges (Sum.inl (⟨L.1.1, L.2.1⟩ : SIdx m)) ∪ hubEdges L
 
+/--
+@isnad1 id=le.0h2v.s4.47ac309a7e9f from=translated src=- shape=18c82c2c vocab=f1420482
+-/
 lemma card_pentEdges (B : Blk m) : (pentEdges B).card ≤ 5 := by
   refine le_trans (Finset.card_image_le) ?_
   simp
 
+/--
+@isnad1 id=le.0h2v.s4.571877d5ec46 from=translated src=- shape=18c82c2c vocab=0e1bc17c
+-/
 lemma card_hubEdges (L : LIdx m) : (hubEdges L).card ≤ 5 := by
   refine le_trans (Finset.card_image_le) ?_
   simp
 
+/--
+@isnad1 id=le.0h2v.s4.c016d720e827 from=translated src=- shape=18c82c2c vocab=d68f47eb
+-/
 lemma card_locEdges (L : LIdx m) : (locEdges L).card ≤ 15 := by
   refine le_trans (Finset.card_union_le _ _) ?_
   have h1 := card_pentEdges (Sum.inr L)
@@ -47,10 +56,16 @@ lemma card_locEdges (L : LIdx m) : (locEdges L).card ≤ 15 := by
     (pentEdges (Sum.inl (⟨L.1.1, L.2.1⟩ : SIdx m)))
   omega
 
+/--
+@isnad1 id=eq.0h1v.s6.c58e743f6f2c from=translated src=- shape=1216558c vocab=c21ac8e2
+-/
 lemma pos_five (x : Pos) : x + 1 + 1 + 1 + 1 + 1 = x := by
   revert x
   decide
 
+/--
+@isnad1 id=mem.1h4v.s6.f8ff32613027 from=translated src=- shape=3c2d8609 vocab=3fc7bbb4
+-/
 lemma mem_pentEdges (B : Blk m) {x y : Pos} (h : PosAdj x y) :
     s((some (B, x) : Vtx m), some (B, y)) ∈ pentEdges B := by
   rcases (posAdj_iff x y).1 h with rfl | rfl
@@ -59,15 +74,24 @@ lemma mem_pentEdges (B : Blk m) {x y : Pos} (h : PosAdj x y) :
     rw [pos_five]
     exact Sym2.eq_swap
 
+/--
+@isnad1 id=ne.1h2v.s3.0f6f064630ef from=translated src=- shape=37236ace vocab=3c6eeae1
+-/
 lemma posAdj_ne {x y : Pos} (h : PosAdj x y) : x ≠ y := by
   revert x y
   decide
 
+/--
+@isnad1 id=or.1h2v.s6.dc5ada708986 from=translated src=- shape=e043d51f vocab=c0c9ed13
+-/
 lemma posAdj_leafSlot {x y : Pos} (h : PosAdj x y) :
     (x = 1 ∨ x = 3 ∨ x = 4) ∨ (y = 1 ∨ y = 3 ∨ y = 4) := by
   revert x y
   decide
 
+/--
+@isnad1 id=ex.1h2v.s5.2a8b0c0be30b from=translated src=- shape=a3a63ac5 vocab=c3ba0c10
+-/
 lemma hub_adj_leaf {b : Vtx m} (h : (G m).Adj none b) :
     ∃ (L : LIdx m) (z : Pos), b = some (Sum.inr L, z) := by
   cases b with
@@ -83,7 +107,9 @@ lemma hub_adj_leaf {b : Vtx m} (h : (G m).Adj none b) :
           split_ifs at hx
 
 /-- Every chord of a cycle lies in `locEdges L` for a leaf block `L` containing a
-cycle-neighbour of the hub.-/
+cycle-neighbour of the hub.
+@isnad1 id=ex.2h5v.s7.1d390fe7ffb8 from=translated src=- shape=2bf91431 vocab=8d704d38
+-/
 theorem chord_mem_locEdges (hc : c.IsCycle) {a b : Vtx m} (he : c.IsChord s(a, b)) :
     ∃ L : LIdx m, (∃ z : Pos, some (Sum.inr L, z) ∈ c.toSubgraph.neighborSet none) ∧
       s(a, b) ∈ locEdges L := by
@@ -139,7 +165,9 @@ theorem chord_mem_locEdges (hc : c.IsCycle) {a b : Vtx m} (he : c.IsChord s(a, b
       · exact Finset.mem_union_left _ (Finset.mem_union_left _ (mem_pentEdges _ hpa))
       · exact Finset.mem_union_left _ (Finset.mem_union_right _ (mem_pentEdges _ hpa))
 
-/-- **Every cycle of `G m` carries at most `30` chords.**-/
+/-- **Every cycle of `G m` carries at most `30` chords.**
+@isnad1 id=le.2h4v.s6.5a844699b203 from=translated src=- shape=9cf6b01c vocab=6ff55626
+-/
 theorem chord_card_le (hc : c.IsCycle) (t : Finset (Sym2 (Vtx m)))
     (ht : ∀ e ∈ t, c.IsChord e) : t.card ≤ 30 := by
   by_cases hhub : (none : Vtx m) ∈ c.support
@@ -189,7 +217,9 @@ theorem chord_card_le (hc : c.IsCycle) (t : Finset (Sym2 (Vtx m)))
     rw [this]
     simp
 
-/-- A vertex set of size at most `r ≤ m` cannot be everything.-/
+/-- A vertex set of size at most `r ≤ m` cannot be everything.
+@isnad1 id=ex.2h3v.s5.8571f1fe7fa6 from=translated src=- shape=8d9b22e2 vocab=da184f38
+-/
 lemma exists_outside {r : ℕ} (hr : r ≤ m) (s : Finset (Vtx m)) (hs : s.card ≤ r) :
     ∃ w : Vtx m, w ∉ s := by
   by_contra hcon
@@ -206,7 +236,9 @@ lemma exists_outside {r : ℕ} (hr : r ≤ m) (s : Finset (Vtx m)) (hs : s.card 
   rw [Finset.card_image_of_injective _ hinj, Finset.card_univ, Fintype.card_fin] at hcard
   omega
 
-/-- The induced subgraph on a small vertex set is `3`-colourable.-/
+/-- The induced subgraph on a small vertex set is `3`-colourable.
+@isnad1 id=colorabl.2h3v.s5.420b6e9eb06f from=translated src=- shape=e58445ac vocab=ad73619f
+-/
 lemma induce_colorable_three {r : ℕ} (hr : r ≤ m) (s : Finset (Vtx m)) (hs : s.card ≤ r) :
     ((G m).induce (↑s : Set (Vtx m))).Colorable 3 := by
   obtain ⟨w, hw⟩ := exists_outside hr s hs
@@ -224,7 +256,9 @@ every `4`-chromatic graph all of whose subgraphs on at most `r` vertices are
 
 This theorem refutes the second question: for every `r` there is a *finite* graph `H` with
 `χ(H) = 4`, all of whose subgraphs on at most `r` vertices are `3`-colourable, in which
-every cycle — in particular every odd cycle — carries at most `30` chords.-/
+every cycle — in particular every odd cycle — carries at most `30` chords.
+@isnad1 id=ex.0h1v.s7.5dfe445a0674 from=translated src=- shape=173a0ef0 vocab=198b2bb9
+-/
 theorem erdos_1091 (r : ℕ) :
     ∃ (V : Type) (H : SimpleGraph V), Finite V ∧
       ¬ H.Colorable 3 ∧ H.Colorable 4 ∧ H.chromaticNumber = 4 ∧
@@ -244,7 +278,9 @@ theorem erdos_1091 (r : ℕ) :
 
 /-- The same statement in refutation form: for every `r` and every threshold `K > 30`
 there is a finite `4`-chromatic graph whose `r`-vertex subgraphs are `3`-colourable and
-which has **no** cycle at all carrying `K` chords.-/
+which has **no** cycle at all carrying `K` chords.
+@isnad1 id=ex.1h2v.s7.e5085d2a38ad from=translated src=- shape=c49fd009 vocab=ce57795d
+-/
 theorem erdos_1091_no_bound (r K : ℕ) (hK : 30 < K) :
     ∃ (V : Type) (H : SimpleGraph V), Finite V ∧
       ¬ H.Colorable 3 ∧ H.Colorable 4 ∧ H.chromaticNumber = 4 ∧
@@ -259,7 +295,9 @@ theorem erdos_1091_no_bound (r K : ℕ) (hK : 30 < K) :
 
 /-- **No function tending to infinity can serve as `f`.**  For every `f` with
 `f r → ∞` there is an `r` and a finite `4`-chromatic graph whose `r`-vertex subgraphs are
-`3`-colourable and which has no cycle — in particular no odd cycle — with `f r` chords.-/
+`3`-colourable and which has no cycle — in particular no odd cycle — with `f r` chords.
+@isnad1 id=ex.1h1v.s7.9c3243c2a70a from=translated src=- shape=df8862a8 vocab=3ed653dd
+-/
 theorem erdos_1091_negation (f : ℕ → ℕ)
     (hf : Filter.Tendsto f Filter.atTop Filter.atTop) :
     ∃ (r : ℕ) (V : Type) (H : SimpleGraph V), Finite V ∧

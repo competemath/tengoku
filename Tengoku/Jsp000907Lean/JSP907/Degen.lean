@@ -15,14 +15,21 @@ namespace JSP907
 
 variable {m : ℕ}
 
-/-- There is at least one leaf block.-/
+/-- There is at least one leaf block.
+@isnad1 id=nonempty.0h1v.s2.627cb2ed6503 from=translated src=- shape=76a08d12 vocab=6341f2c5
+-/
 lemma leafIdx_nonempty (m : ℕ) : Nonempty (LIdx m) :=
   ⟨⟨(0, 1), ⟨Nat.zero_le m, leafOK_of_mem (Or.inl rfl)⟩⟩⟩
 
+/--
+@isnad1 id=ne.0h1v.s4.1c23fb6d5891 from=translated src=- shape=eeffd242 vocab=c21ac8e2
+-/
 lemma pos_succ_ne (y : Pos) : y + 1 ≠ y := by revert y; decide
 
 /-- A nonempty set of vertices which is not everything contains a vertex with at most
-two neighbours inside the set.-/
+two neighbours inside the set.
+@isnad1 id=ex.2h3v.s6.6e1ac6628dcb from=translated src=- shape=d8d8a296 vocab=fd62b476
+-/
 lemma exists_low_degree (s : Finset (Vtx m)) (hs : s.Nonempty) {w : Vtx m} (hw : w ∉ s) :
     ∃ u ∈ s, (s.filter fun v => (G m).Adj u v).card ≤ 2 := by
   by_cases hex : ∃ p : Blk m × Pos, some p ∈ s ∧ ∃ v, (G m).Adj (some p) v ∧ v ∉ s
@@ -86,7 +93,9 @@ lemma exists_low_degree (s : Finset (Vtx m)) (hs : s.Nonempty) {w : Vtx m} (hw :
       rw [this]
       simp
 
-/-- Any vertex set missing at least one vertex carries a proper `3`-colouring.-/
+/-- Any vertex set missing at least one vertex carries a proper `3`-colouring.
+@isnad1 id=ex.2h4v.s6.ed94df2aad6d from=translated src=- shape=b5d707ef vocab=3977918b
+-/
 theorem partial_colourable (w : Vtx m) :
     ∀ (n : ℕ) (s : Finset (Vtx m)), s.card ≤ n → w ∉ s →
       ∃ c : Vtx m → Fin 3, ∀ u ∈ s, ∀ v ∈ s, (G m).Adj u v → c u ≠ c v := by

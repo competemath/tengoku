@@ -22,7 +22,13 @@ def blkIdx : Blk m → ℕ
   | Sum.inl S => S.1
   | Sum.inr L => L.1.1
 
+/--
+@isnad1 id=eq.0h2v.s4.b058f35d6511 from=translated src=- shape=ae3c4947 vocab=ec821d36
+-/
 @[simp] lemma blkIdx_inl (S : SIdx m) : blkIdx (Sum.inl S) = S.1 := rfl
+/--
+@isnad1 id=eq.0h2v.s5.233df9d51a2e from=translated src=- shape=13a6c3ab vocab=fff28dad
+-/
 @[simp] lemma blkIdx_inr (L : LIdx m) : blkIdx (Sum.inr L) = L.1.1 := rfl
 
 /-- Indicator of the vertex set of the leaf block `L`.-/
@@ -55,11 +61,16 @@ def attachEdge (L : LIdx m) : Sym2 (Vtx m) :=
 def spineEdge {i : ℕ} (hi : i < m) : Sym2 (Vtx m) :=
   s(some (Sum.inl (⟨i, hi.le⟩ : SIdx m), 2), some (Sum.inl (⟨i + 1, hi⟩ : SIdx m), 0))
 
+/--
+@isnad1 id=iff.0h4v.s5.37af6faf49d1 from=translated src=- shape=2e3e9faa vocab=2ba82e6d
+-/
 lemma inLeaf_some_inr {L L' : LIdx m} {y : Pos} :
     inLeaf L (some (Sum.inr L', y)) = true ↔ L' = L := by
   simp [inLeaf]
 
-/-- Crossing an edge out of a leaf block.-/
+/-- Crossing an edge out of a leaf block.
+@isnad1 id=or.3h4v.s5.78959326f53f from=translated src=- shape=98b1df42 vocab=b99d33c1
+-/
 lemma cross_leaf_aux {L : LIdx m} {a b : Vtx m} (hab : (G m).Adj a b)
     (ha : inLeaf L a = true) (hb : inLeaf L b = false) :
     s(a, b) = attachEdge L ∨ b = none := by
@@ -82,7 +93,9 @@ lemma cross_leaf_aux {L : LIdx m} {a b : Vtx m} (hab : (G m).Adj a b)
             · right
               exact h
 
-/-- Crossing an edge out of a leaf block together with the hub.-/
+/-- Crossing an edge out of a leaf block together with the hub.
+@isnad1 id=or.3h4v.s5.05ab41d62268 from=translated src=- shape=60f0eda5 vocab=44bfd209
+-/
 lemma cross_leafHub_aux {L : LIdx m} {a b : Vtx m} (hab : (G m).Adj a b)
     (ha : inLeafHub L a = true) (hb : inLeafHub L b = false) :
     s(a, b) = attachEdge L ∨ a = none := by
@@ -104,7 +117,9 @@ lemma cross_leafHub_aux {L : LIdx m} {a b : Vtx m} (hab : (G m).Adj a b)
               rw [h, hy, attachEdge]
             · exact absurd hb (by rw [h]; simp [inLeafHub])
 
-/-- Every neighbour of a block vertex outside its own block is its `ext` neighbour.-/
+/-- Every neighbour of a block vertex outside its own block is its `ext` neighbour.
+@isnad1 id=eq.2h3v.s5.f997280852cf from=translated src=- shape=815a3ddd vocab=648dc046
+-/
 lemma ext_eq_of_adj_other_block {p q : Blk m × Pos} (hab : (G m).Adj (some p) (some q))
     (hne : q.1 ≠ p.1) : ext p = some q := by
   rcases (adj_some_iff p (some q)).1 hab with h | h | h
@@ -112,7 +127,9 @@ lemma ext_eq_of_adj_other_block {p q : Blk m × Pos} (hab : (G m).Adj (some p) (
   · exact absurd (congrArg Prod.fst (Option.some.inj h)) hne
   · exact h.symm
 
-/-- Crossing an edge out of the high part of the spine.-/
+/-- Crossing an edge out of the high part of the spine.
+@isnad1 id=or.4h4v.s6.435005183770 from=translated src=- shape=d5c14358 vocab=5a455283
+-/
 lemma cross_high_aux {i : ℕ} (hi : i < m) {a b : Vtx m} (hab : (G m).Adj a b)
     (ha : inHigh (i + 1) a = true) (hb : inHigh (i + 1) b = false) :
     s(a, b) = spineEdge hi ∨ b = none := by
@@ -166,7 +183,9 @@ lemma cross_high_aux {i : ℕ} (hi : i < m) {a b : Vtx m} (hab : (G m).Adj a b)
                   have h2 : ¬ (i + 1 ≤ min (S.1 + 1) m) := by rw [hq] at hkb; simpa using hkb
                   omega
 
-/-- Crossing an edge out of the high part of the spine, hub included.-/
+/-- Crossing an edge out of the high part of the spine, hub included.
+@isnad1 id=or.4h4v.s6.2766c334619a from=translated src=- shape=2856c57d vocab=8d1a94ff
+-/
 lemma cross_highHub_aux {i : ℕ} (hi : i < m) {a b : Vtx m} (hab : (G m).Adj a b)
     (ha : inHighHub (i + 1) a = true) (hb : inHighHub (i + 1) b = false) :
     s(a, b) = spineEdge hi ∨ a = none := by

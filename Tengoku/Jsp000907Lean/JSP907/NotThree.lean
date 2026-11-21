@@ -20,7 +20,9 @@ namespace JSP907
 
 variable {m : ℕ}
 
-/-- **`G m` is not `3`-colourable** whenever `1 ≤ m`.-/
+/-- **`G m` is not `3`-colourable** whenever `1 ≤ m`.
+@isnad1 id=not.1h1v.s4.2d049bfcf56c from=translated src=- shape=0c29fef7 vocab=f8629bdb
+-/
 theorem not_colorable_three (m : ℕ) (hm : 1 ≤ m) : ¬ (G m).Colorable 3 := by
   rintro ⟨C⟩
   set α := C none with hα

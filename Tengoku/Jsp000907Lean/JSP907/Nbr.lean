@@ -19,11 +19,16 @@ namespace JSP907
 
 variable {m : ℕ}
 
+/--
+@isnad1 id=iff.0h2v.s7.f73181748006 from=translated src=- shape=3903602b vocab=3d44c89c
+-/
 lemma posAdj_iff (y z : Pos) : PosAdj y z ↔ (z = y + 1 ∨ z = y + 1 + 1 + 1 + 1) := by
   revert y z
   decide
 
-/-- `ext` is an involution on block vertices.-/
+/-- `ext` is an involution on block vertices.
+@isnad1 id=eq.1h3v.s5.d4c84aed4695 from=translated src=- shape=6d1ae21a vocab=a5d04166
+-/
 lemma ext_involutive {p q : Blk m × Pos} (h : ext p = some q) : ext q = some p := by
   obtain ⟨B, y⟩ := p
   cases B with
@@ -75,9 +80,14 @@ lemma ext_involutive {p q : Blk m × Pos} (h : ext p = some q) : ext q = some p 
             Subtype.ext (by simp only; omega)
           rw [this]
 
+/--
+@isnad1 id=iff.0h2v.s5.f095e9691e4e from=translated src=- shape=ae3070a8 vocab=0abe7293
+-/
 lemma adj_none_iff (p : Blk m × Pos) : (G m).Adj (some p) none ↔ ext p = none := Iff.rfl
 
-/-- The neighbours of a block vertex.-/
+/-- The neighbours of a block vertex.
+@isnad1 id=iff.0h3v.s7.b092454458aa from=translated src=- shape=b15b232c vocab=d6811cbf
+-/
 lemma adj_some_iff (p : Blk m × Pos) (v : Vtx m) :
     (G m).Adj (some p) v ↔
       (v = some (p.1, p.2 + 1) ∨ v = some (p.1, p.2 + 1 + 1 + 1 + 1) ∨ v = ext p) := by

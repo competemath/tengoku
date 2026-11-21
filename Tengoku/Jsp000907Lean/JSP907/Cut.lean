@@ -17,7 +17,9 @@ open SimpleGraph
 
 variable {m : ℕ} {v : Vtx m} {c : (G m).Walk v v}
 
-/-- A two-valued function that does not change along `c` is constant on its support.-/
+/-- A two-valued function that does not change along `c` is constant on its support.
+@isnad1 id=eq.2h5v.s6.a96e42334502 from=translated src=- shape=87639044 vocab=3be271a5
+-/
 lemma const_on_support (f : Vtx m → Bool) (h : c.darts.countP (Crosses f) = 0)
     {x : Vtx m} (hx : x ∈ c.support) : f v = f x := by
   refine const_of_no_cross (c.takeUntil x hx) f ?_
@@ -27,7 +29,9 @@ lemma const_on_support (f : Vtx m → Bool) (h : c.darts.countP (Crosses f) = 0)
   rw [List.countP_eq_zero] at h
   exact h d hd'
 
-/-- If every crossing dart of `f` uses one fixed edge, `f` is constant on the cycle.-/
+/-- If every crossing dart of `f` uses one fixed edge, `f` is constant on the cycle.
+@isnad1 id=false.5h7v.s7.c73d6ccdf77f from=translated src=- shape=c7862835 vocab=620a0f46
+-/
 lemma cut_absurd' (hc : c.IsCycle) (f : Vtx m → Bool) (e : Sym2 (Vtx m))
     (hcross : ∀ d ∈ c.darts, Crosses f d = true → (d.edge == e) = true)
     {x y : Vtx m} (hx : x ∈ c.support) (hy : y ∈ c.support) (hxy : f x ≠ f y) : False := by
@@ -39,7 +43,9 @@ lemma cut_absurd' (hc : c.IsCycle) (f : Vtx m → Bool) (e : Sym2 (Vtx m))
   exact hxy ((const_on_support f h4 hx).symm.trans (const_on_support f h4 hy))
 
 /-- If every crossing dart of `f` is incident to the hub, then `f` cannot separate two
-non-hub vertices of the cycle.-/
+non-hub vertices of the cycle.
+@isnad1 id=false.7h6v.s7.ffebb1f15df8 from=translated src=- shape=ed82e8bc vocab=d9c0a7b8
+-/
 lemma cut_absurd (hc : c.IsCycle) (f : Vtx m → Bool)
     (hcross : ∀ d ∈ c.darts, Crosses f d = true → (d.toProd.1 = none ∨ d.toProd.2 = none))
     {x y : Vtx m} (hx : x ∈ c.support) (hy : y ∈ c.support)
