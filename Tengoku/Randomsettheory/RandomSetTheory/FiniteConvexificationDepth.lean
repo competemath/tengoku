@@ -27,7 +27,9 @@ noncomputable section
 namespace RandomSetTheory
 
 /-- The convex hull of a finite subset of `S` is reached no later than the
-binary-convexification stage indexed by its cardinality.-/
+binary-convexification stage indexed by its cardinality.
+@isnad1 id=le.2h3v.s6.487e3544b95f from=translated src=- shape=2b040a80 vocab=fd011182
+-/
 theorem convexHull_finset_subset_convexJoinIterate_card
     {E : Type*} [AddCommGroup E] [Module ℝ E]
     {S : Set E} (hS : S.Nonempty) (T : Finset E)
@@ -61,7 +63,9 @@ theorem convexHull_finset_subset_convexJoinIterate_card
             (subset_convexJoin_left (𝕜 := ℝ) (s := S) (t := S) hS)
 
 /-- Carathéodory's theorem gives a uniform finite stage at which iterated
-binary convexification reaches the whole convex hull.-/
+binary convexification reaches the whole convex hull.
+@isnad1 id=le.1h2v.s6.978623966cec from=translated src=- shape=5b5169f0 vocab=d699e34d
+-/
 theorem convexHull_subset_convexJoinIterate_finrank_add_one
     {E : Type*} [AddCommGroup E] [Module ℝ E] [FiniteDimensional ℝ E]
     {S : Set E} (hS : S.Nonempty) :
@@ -79,7 +83,9 @@ theorem convexHull_subset_convexJoinIterate_finrank_add_one
     (convexHull_finset_subset_convexJoinIterate_card hS T hTS hxT)
 
 /-- In a finite-dimensional real vector space, the `finrank + 1` stage of
-binary convexification is exactly the convex hull.-/
+binary convexification is exactly the convex hull.
+@isnad1 id=eq.1h2v.s6.b6ed6853e57b from=translated src=- shape=640ddd05 vocab=1199ef2a
+-/
 theorem convexJoinIterate_finrank_add_one_eq_convexHull
     {E : Type*} [AddCommGroup E] [Module ℝ E] [FiniteDimensional ℝ E]
     {S : Set E} (hS : S.Nonempty) :
@@ -90,7 +96,9 @@ theorem convexJoinIterate_finrank_add_one_eq_convexHull
   · exact convexHull_subset_convexJoinIterate_finrank_add_one hS
 
 /-- For a compact nonempty set in a finite-dimensional normed space, the
-same finite stage is also the closed convex hull.-/
+same finite stage is also the closed convex hull.
+@isnad1 id=eq.2h2v.s7.5e3d023131e6 from=translated src=- shape=eeab8cb0 vocab=354dadf6
+-/
 theorem convexJoinIterate_finrank_add_one_eq_closedConvexHull
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]
@@ -104,7 +112,9 @@ theorem convexJoinIterate_finrank_add_one_eq_closedConvexHull
     hhullClosed.closure_eq]
 
 /-- The convex hull of a compact nonempty set is already closed in finite
-dimension, hence agrees with the closed convex hull.-/
+dimension, hence agrees with the closed convex hull.
+@isnad1 id=eq.2h2v.s7.f8483dce8b46 from=translated src=- shape=6575fb59 vocab=998affa0
+-/
 theorem convexHull_eq_closedConvexHull_of_compact
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]
@@ -114,7 +124,9 @@ theorem convexHull_eq_closedConvexHull_of_compact
     convexJoinIterate_finrank_add_one_eq_closedConvexHull hScompact hS]
 
 /-- Compactness of the ordinary convex hull of a compact nonempty set in
-finite dimension.-/
+finite dimension.
+@isnad1 id=iscompac.2h2v.s6.d25f74816b7e from=translated src=- shape=5eb140e1 vocab=db7566c8
+-/
 theorem convexHull_compact_of_compact
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]

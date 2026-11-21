@@ -38,7 +38,9 @@ section DenseSupremum
 variable [TopologicalSpace T] [SeparableSpace T] [Nonempty T]
 
 /-- A continuous real-valued function has the same supremum on `denseSeq` as
-on the whole space.-/
+on the whole space.
+@isnad1 id=eq.1h2v.s5.296477c6acf8 from=translated src=- shape=43f0e01d vocab=66d24d4a
+-/
 theorem iSup_denseSeq_eq_iSup (f : T → ℝ) (hf : Continuous f) :
     (⨆ k : ℕ, f (denseSeq T k)) = ⨆ t : T, f t := by
   let S : Set T := Set.range (denseSeq T)
@@ -58,7 +60,9 @@ theorem iSup_denseSeq_eq_iSup (f : T → ℝ) (hf : Continuous f) :
   rw [← sSup_range, ← sSup_range, hrange]
   exact hsub
 
-/-- Absolute-value version of `iSup_denseSeq_eq_iSup`.-/
+/-- Absolute-value version of `iSup_denseSeq_eq_iSup`.
+@isnad1 id=eq.1h2v.s5.4f1e0d5c5b61 from=translated src=- shape=43fd782d vocab=f5cc0232
+-/
 theorem iSup_abs_denseSeq_eq_iSup_abs (f : T → ℝ) (hf : Continuous f) :
     (⨆ k : ℕ, |f (denseSeq T k)|) = ⨆ t : T, |f t| := by
   exact iSup_denseSeq_eq_iSup (fun t ↦ |f t|) hf.abs
@@ -70,20 +74,26 @@ bottom element in `ℝ`; the prefix always contains its zeroth term.-/
 def densePrefixSupremum (f : T → ℝ) (n : ℕ) : ℝ :=
   partialSups (fun k : ℕ ↦ f (denseSeq T k)) n
 
-/-- A dense prefix supremum is the finite maximum over `Finset.range (n + 1)`.-/
+/-- A dense prefix supremum is the finite maximum over `Finset.range (n + 1)`.
+@isnad1 id=eq.0h3v.s5.4ab10a64cb8d from=translated src=- shape=4939cfe9 vocab=0f5a45c4
+-/
 theorem densePrefixSupremum_eq_sup'_range (f : T → ℝ) (n : ℕ) :
     densePrefixSupremum f n =
       (Finset.range (n + 1)).sup' Finset.nonempty_range_add_one
         (fun k ↦ f (denseSeq T k)) :=
   partialSups_eq_sup'_range _ n
 
-/-- Dense prefix suprema form a monotone sequence.-/
+/-- Dense prefix suprema form a monotone sequence.
+@isnad1 id=monotone.0h2v.s4.fc29f78a646c from=translated src=- shape=a573c158 vocab=59b6b6d2
+-/
 theorem densePrefixSupremum_monotone (f : T → ℝ) :
     Monotone (densePrefixSupremum f) := by
   exact partialSups_monotone _
 
 /-- The supremum of all dense prefix suprema is the supremum on the whole
-space.-/
+space.
+@isnad1 id=eq.1h2v.s5.46bd93e03884 from=translated src=- shape=b4e8b00b vocab=45b0a2be
+-/
 theorem iSup_densePrefixSupremum_eq_iSup (f : T → ℝ)
     (hf : Continuous f) :
     (⨆ n : ℕ, densePrefixSupremum f n) = ⨆ t : T, f t := by
@@ -92,7 +102,9 @@ theorem iSup_densePrefixSupremum_eq_iSup (f : T → ℝ)
   exact iSup_denseSeq_eq_iSup f hf
 
 /-- If the range of `f` is bounded above, its dense prefix suprema converge
-monotonically to its supremum on the whole space.-/
+monotonically to its supremum on the whole space.
+@isnad1 id=tendsto.2h2v.s5.4a7f349f2ade from=translated src=- shape=959c2d42 vocab=5d5891dd
+-/
 theorem tendsto_densePrefixSupremum (f : T → ℝ) (hf : Continuous f)
     (hbdd : BddAbove (Set.range f)) :
     Tendsto (densePrefixSupremum f) atTop (nhds (⨆ t : T, f t)) := by
@@ -113,20 +125,26 @@ evaluations.-/
 def densePrefixAbsSupremum (f : T → ℝ) (n : ℕ) : ℝ :=
   densePrefixSupremum (fun t ↦ |f t|) n
 
-/-- Absolute dense prefix suprema form a monotone sequence.-/
+/-- Absolute dense prefix suprema form a monotone sequence.
+@isnad1 id=monotone.0h2v.s4.0b44cedd0499 from=translated src=- shape=a573c158 vocab=22cbebb1
+-/
 theorem densePrefixAbsSupremum_monotone (f : T → ℝ) :
     Monotone (densePrefixAbsSupremum f) :=
   densePrefixSupremum_monotone _
 
 /-- The supremum of the absolute dense prefix suprema is the full absolute
-supremum.-/
+supremum.
+@isnad1 id=eq.1h2v.s5.5dbc73e1e2f6 from=translated src=- shape=f3b248d7 vocab=fa3dae77
+-/
 theorem iSup_densePrefixAbsSupremum_eq_iSup_abs (f : T → ℝ)
     (hf : Continuous f) :
     (⨆ n : ℕ, densePrefixAbsSupremum f n) = ⨆ t : T, |f t| := by
   exact iSup_densePrefixSupremum_eq_iSup (fun t ↦ |f t|) hf.abs
 
 /-- Under boundedness of the absolute range, the absolute dense prefix
-suprema converge to the full absolute supremum.-/
+suprema converge to the full absolute supremum.
+@isnad1 id=tendsto.2h2v.s6.2db605a5bbae from=translated src=- shape=dd85fd0b vocab=fad145fb
+-/
 theorem tendsto_densePrefixAbsSupremum (f : T → ℝ) (hf : Continuous f)
     (hbdd : BddAbove (Set.range fun t ↦ |f t|)) :
     Tendsto (densePrefixAbsSupremum f) atTop (nhds (⨆ t : T, |f t|)) := by
@@ -140,7 +158,9 @@ variable [TopologicalSpace T] [SeparableSpace T] [Nonempty T]
   [MeasurableSpace Omega]
 
 /-- A dense prefix supremum is measurable whenever all the corresponding
-dense evaluations are measurable.-/
+dense evaluations are measurable.
+@isnad1 id=measurab.1h4v.s5.64a06714906a from=translated src=- shape=82237c9c vocab=df70a3cf
+-/
 theorem measurable_densePrefixSupremum (F : Omega → T → ℝ)
     (hF : ∀ k : ℕ, Measurable (fun omega ↦ F omega (denseSeq T k))) (n : ℕ) :
     Measurable (fun omega ↦ densePrefixSupremum (F omega) n) := by
@@ -153,7 +173,9 @@ theorem measurable_densePrefixSupremum (F : Omega → T → ℝ)
   exact Finset.measurable_range_sup'' fun k _hk ↦ hF k
 
 /-- An absolute dense prefix supremum is measurable whenever all dense
-evaluations are measurable.-/
+evaluations are measurable.
+@isnad1 id=measurab.1h4v.s5.f6fb0135b4c5 from=translated src=- shape=82237c9c vocab=bb401e54
+-/
 theorem measurable_densePrefixAbsSupremum (F : Omega → T → ℝ)
     (hF : ∀ k : ℕ, Measurable (fun omega ↦ F omega (denseSeq T k))) (n : ℕ) :
     Measurable (fun omega ↦ densePrefixAbsSupremum (F omega) n) := by

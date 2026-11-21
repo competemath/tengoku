@@ -54,13 +54,17 @@ def conditionalValueAtRisk (alpha : ℝ) (X : Omega → ℝ)
   sInf (Set.range (cvarObjective alpha X mu))
 
 /-- The positive excess over a fixed threshold is integrable whenever the
-loss is integrable on a finite measure space.-/
+loss is integrable on a finite measure space.
+@isnad1 id=integrab.1h4v.s6.5b1b01c19584 from=translated src=- shape=6428b39d vocab=dc700e00
+-/
 theorem integrable_cvarExcess [IsFiniteMeasure mu]
     {X : Omega → ℝ} (hX : Integrable X mu) (t : ℝ) :
     Integrable (fun omega ↦ max (X omega - t) 0) mu := by
   exact (hX.sub (integrable_const t)).sup (integrable_const 0)
 
-/-- Positive parts are subadditive.-/
+/-- Positive parts are subadditive.
+@isnad1 id=le.0h4v.s6.adba73da9e56 from=translated src=- shape=f1d8c384 vocab=2963c302
+-/
 theorem max_sub_add_sub_le (x y s t : ℝ) :
     max (x + y - (s + t)) 0 ≤ max (x - s) 0 + max (y - t) 0 := by
   have hx : x - s ≤ max (x - s) 0 := le_max_left _ _
@@ -73,7 +77,9 @@ theorem max_sub_add_sub_le (x y s t : ℝ) :
   · exact hzero
 
 /-- The CVaR objective of a sum at the sum of two thresholds is bounded by
-the sum of the two objectives.-/
+the sum of the two objectives.
+@isnad1 id=le.3h7v.s7.b90000cca284 from=translated src=- shape=632a2356 vocab=41152f3e
+-/
 theorem cvarObjective_add_le [IsFiniteMeasure mu]
     {X Y : Omega → ℝ} (hX : Integrable X mu) (hY : Integrable Y mu)
     {alpha : ℝ} (halpha : 0 ≤ alpha) (s t : ℝ) :
@@ -95,7 +101,9 @@ theorem cvarObjective_add_le [IsFiniteMeasure mu]
   have hinv : 0 ≤ alpha⁻¹ := inv_nonneg.mpr halpha
   nlinarith [mul_le_mul_of_nonneg_left hint hinv]
 
-/-- The CVaR objective is monotone in the loss.-/
+/-- The CVaR objective is monotone in the loss.
+@isnad1 id=le.4h6v.s6.0baa3ebd0fd7 from=translated src=- shape=530115ed vocab=508512c5
+-/
 theorem cvarObjective_mono_ae [IsFiniteMeasure mu]
     {X Y : Omega → ℝ} (hX : Integrable X mu) (hY : Integrable Y mu)
     {alpha : ℝ} (halpha : 0 ≤ alpha) (hXY : X ≤ᵐ[mu] Y) (t : ℝ) :
@@ -113,7 +121,9 @@ theorem cvarObjective_mono_ae [IsFiniteMeasure mu]
     (mul_le_mul_of_nonneg_left hint (inv_nonneg.mpr halpha)) t
 
 /-- The mean of an integrable loss is a lower bound for every CVaR
-objective when `0 < alpha ≤ 1`.-/
+objective when `0 < alpha ≤ 1`.
+@isnad1 id=le.3h5v.s6.4a7e08a46cba from=translated src=- shape=33c71bb7 vocab=84d3e82b
+-/
 theorem integral_le_cvarObjective [IsProbabilityMeasure mu]
     {X : Omega → ℝ} (hX : Integrable X mu)
     {alpha : ℝ} (halpha0 : 0 < alpha) (halpha1 : alpha ≤ 1) (t : ℝ) :
@@ -142,7 +152,9 @@ theorem integral_le_cvarObjective [IsProbabilityMeasure mu]
   nlinarith
 
 /-- The family of variational objectives is bounded below under the natural
-CVaR assumptions.-/
+CVaR assumptions.
+@isnad1 id=bddbelow.3h4v.s6.9d246a24af04 from=translated src=- shape=2c04385d vocab=f14b63d1
+-/
 theorem bddBelow_range_cvarObjective [IsProbabilityMeasure mu]
     {X : Omega → ℝ} (hX : Integrable X mu)
     {alpha : ℝ} (halpha0 : 0 < alpha) (halpha1 : alpha ≤ 1) :
@@ -153,7 +165,9 @@ theorem bddBelow_range_cvarObjective [IsProbabilityMeasure mu]
   rw [← ht]
   exact integral_le_cvarObjective hX halpha0 halpha1 t
 
-/-- Conditional value at risk is no smaller than the mean.-/
+/-- Conditional value at risk is no smaller than the mean.
+@isnad1 id=le.3h4v.s6.677b7a6c7f9a from=translated src=- shape=792ec31e vocab=71396390
+-/
 theorem integral_le_conditionalValueAtRisk [IsProbabilityMeasure mu]
     {X : Omega → ℝ} (hX : Integrable X mu)
     {alpha : ℝ} (halpha0 : 0 < alpha) (halpha1 : alpha ≤ 1) :
@@ -165,7 +179,9 @@ theorem integral_le_conditionalValueAtRisk [IsProbabilityMeasure mu]
   rw [← ht]
   exact integral_le_cvarObjective hX halpha0 halpha1 t
 
-/-- Subadditivity of upper-tail conditional value at risk.-/
+/-- Subadditivity of upper-tail conditional value at risk.
+@isnad1 id=le.4h5v.s7.a535a71bc42e from=translated src=- shape=be55934e vocab=6f644cc9
+-/
 theorem conditionalValueAtRisk_add_le [IsProbabilityMeasure mu]
     {X Y : Omega → ℝ} (hX : Integrable X mu) (hY : Integrable Y mu)
     {alpha : ℝ} (halpha0 : 0 < alpha) (halpha1 : alpha ≤ 1) :
@@ -196,7 +212,9 @@ theorem conditionalValueAtRisk_add_le [IsProbabilityMeasure mu]
         (sInf (Set.range fY) + epsilon / 2) := (add_lt_add hax hay).le
     _ = sInf (Set.range fX) + sInf (Set.range fY) + epsilon := by ring
 
-/-- Conditional value at risk is monotone under almost-everywhere order.-/
+/-- Conditional value at risk is monotone under almost-everywhere order.
+@isnad1 id=le.5h5v.s7.fd66e3570b45 from=translated src=- shape=01ec0575 vocab=9495c3eb
+-/
 theorem conditionalValueAtRisk_mono_ae [IsProbabilityMeasure mu]
     {X Y : Omega → ℝ} (hX : Integrable X mu) (hY : Integrable Y mu)
     {alpha : ℝ} (halpha0 : 0 < alpha) (halpha1 : alpha ≤ 1)
@@ -218,7 +236,9 @@ theorem conditionalValueAtRisk_mono_ae [IsProbabilityMeasure mu]
       cvarObjective_mono_ae hX hY halpha0.le hXY t
     _ ≤ sInf (Set.range (cvarObjective alpha Y mu)) + epsilon := hay.le
 
-/-- CVaR of a deterministic loss is that loss.-/
+/-- CVaR of a deterministic loss is that loss.
+@isnad1 id=eq.2h4v.s5.56a04e42f1cf from=translated src=- shape=9c8f0a75 vocab=28e8bdb6
+-/
 theorem conditionalValueAtRisk_const [IsProbabilityMeasure mu]
     {alpha : ℝ} (halpha0 : 0 < alpha) (halpha1 : alpha ≤ 1) (c : ℝ) :
     conditionalValueAtRisk alpha (fun _ : Omega ↦ c) mu = c := by
@@ -235,7 +255,9 @@ theorem conditionalValueAtRisk_const [IsProbabilityMeasure mu]
   · have hmean := integral_le_conditionalValueAtRisk hc halpha0 halpha1
     simpa using hmean
 
-/-- Translation equivariance of conditional value at risk.-/
+/-- Translation equivariance of conditional value at risk.
+@isnad1 id=eq.3h5v.s6.2eec9abb4b95 from=translated src=- shape=638cf9a6 vocab=6f644cc9
+-/
 theorem conditionalValueAtRisk_add_const [IsProbabilityMeasure mu]
     {X : Omega → ℝ} (hX : Integrable X mu)
     {alpha : ℝ} (halpha0 : 0 < alpha) (halpha1 : alpha ≤ 1) (c : ℝ) :
@@ -261,7 +283,9 @@ theorem conditionalValueAtRisk_add_const [IsProbabilityMeasure mu]
 
 /-- The integral over an event is controlled by any threshold plus the full
 positive excess above that threshold.  This elementary inequality is the
-eventwise core of the dual description of CVaR.-/
+eventwise core of the dual description of CVaR.
+@isnad1 id=le.2h5v.s6.5dd2a3e77cb2 from=translated src=- shape=304f1de9 vocab=b8c52b78
+-/
 theorem setIntegral_le_measureReal_mul_add_cvarExcess
     [IsFiniteMeasure mu] {X : Omega → ℝ} (hX : Integrable X mu)
     {A : Set Omega} (hA : MeasurableSet A) (t : ℝ) :
@@ -291,7 +315,9 @@ theorem setIntegral_le_measureReal_mul_add_cvarExcess
 /-- If an event has exactly upper-tail mass `alpha`, its partial expectation
 is at most `alpha` times CVaR.  Equality of the event mass is essential for
 signed losses: the analogous statement with only `mu.real A ≤ alpha` is
-false, for instance for a negative constant loss and the empty event.-/
+false, for instance for a negative constant loss and the empty event.
+@isnad1 id=le.5h5v.s6.f9d99afa5329 from=translated src=- shape=db76b67e vocab=444c7720
+-/
 theorem setIntegral_le_mul_conditionalValueAtRisk_of_measureReal_eq
     [IsProbabilityMeasure mu] {X : Omega → ℝ} (hX : Integrable X mu)
     {A : Set Omega} (hA : MeasurableSet A)
@@ -322,7 +348,9 @@ theorem setIntegral_le_mul_conditionalValueAtRisk_of_measureReal_eq
 /-- For a nonnegative loss, equality of the event mass can be relaxed to an
 upper bound.  The nonnegativity assumption is necessary: for a negative
 constant loss and the empty event the left side is zero whereas
-`alpha * CVaR` is negative.-/
+`alpha * CVaR` is negative.
+@isnad1 id=le.6h5v.s7.affec0ecf5b5 from=translated src=- shape=db04405f vocab=45ef8985
+-/
 theorem setIntegral_le_mul_conditionalValueAtRisk_of_measureReal_le_of_nonneg
     [IsProbabilityMeasure mu] {X : Omega → ℝ} (hX : Integrable X mu)
     (hXnonneg : 0 ≤ᵐ[mu] X) {A : Set Omega} (hA : MeasurableSet A)
@@ -384,7 +412,9 @@ theorem setIntegral_le_mul_conditionalValueAtRisk_of_measureReal_le_of_nonneg
 
 /-- A measurable upper-tail event separated by a threshold realizes the
 eventwise CVaR bound.  This gives the exact event-dual formula whenever a
-top-`alpha` event exists without requiring a general quantile API.-/
+top-`alpha` event exists without requiring a general quantile API.
+@isnad1 id=eq.7h6v.s7.6f00de689b10 from=translated src=- shape=21b905f3 vocab=e81353b8
+-/
 theorem mul_conditionalValueAtRisk_eq_setIntegral_of_thresholdEvent
     [IsProbabilityMeasure mu] {X : Omega → ℝ} (hX : Integrable X mu)
     {A : Set Omega} (hA : MeasurableSet A)
@@ -434,7 +464,9 @@ theorem mul_conditionalValueAtRisk_eq_setIntegral_of_thresholdEvent
 /-! ## Exponential-moment bounds -/
 
 /-- Exponential domination of the positive part, with the normalization that
-makes the optimized CVaR bound have no additive constant.-/
+makes the optimized CVaR bound have no additive constant.
+@isnad1 id=le.1h2v.s5.bc03613f39e7 from=translated src=- shape=20829d25 vocab=c702c070
+-/
 theorem max_le_exp_mul_sub_one_div {lambda : ℝ} (hlambda : 0 < lambda)
     (x : ℝ) :
     max x 0 ≤ Real.exp (lambda * x - 1) / lambda := by
@@ -446,7 +478,9 @@ theorem max_le_exp_mul_sub_one_div {lambda : ℝ} (hlambda : 0 < lambda)
   · rw [max_eq_right (le_of_not_ge hx)]
     positivity
 
-/-- Every threshold objective is bounded by an exponential moment.-/
+/-- Every threshold objective is bounded by an exponential moment.
+@isnad1 id=le.4h6v.s7.a8e0fabee362 from=translated src=- shape=2cc9609e vocab=04f1532f
+-/
 theorem cvarObjective_le_of_exponentialMoment
     [IsFiniteMeasure mu] {X : Omega → ℝ} (hX : Integrable X mu)
     {alpha lambda : ℝ} (halpha : 0 ≤ alpha) (hlambda : 0 < lambda)
@@ -489,7 +523,9 @@ theorem cvarObjective_le_of_exponentialMoment
     (mul_le_mul_of_nonneg_left hint (inv_nonneg.mpr halpha)) t
 
 /-- An integrable exponential has strictly positive integral on a probability
-space.-/
+space.
+@isnad1 id=lt.1h4v.s6.03e7a66bf6ad from=translated src=- shape=43a5c0de vocab=8a220f36
+-/
 theorem integral_exp_mul_pos [IsProbabilityMeasure mu]
     (X : Omega → ℝ) (lambda : ℝ)
     (hExp : Integrable (fun omega ↦ Real.exp (lambda * X omega)) mu) :
@@ -503,7 +539,9 @@ theorem integral_exp_mul_pos [IsProbabilityMeasure mu]
   rw [hsupport, measure_univ]
   norm_num
 
-/-- Chernoff/log-MGF upper bound for CVaR.-/
+/-- Chernoff/log-MGF upper bound for CVaR.
+@isnad1 id=le.5h5v.s7.ad014da3b396 from=translated src=- shape=c572920e vocab=495ef858
+-/
 theorem conditionalValueAtRisk_le_log_integral_exp_div
     [IsProbabilityMeasure mu] {X : Omega → ℝ} (hX : Integrable X mu)
     {alpha lambda : ℝ} (halpha0 : 0 < alpha) (halpha1 : alpha ≤ 1)

@@ -34,7 +34,9 @@ def IsBoundedInProbability
     ∀ᶠ i in l, μ {ω | M < ‖X i ω‖} ≤ ENNReal.ofReal ε
 
 /-- Boundedness in probability is preserved by an eventual deterministic
-norm domination with a fixed nonnegative multiplicative constant.-/
+norm domination with a fixed nonnegative multiplicative constant.
+@isnad1 id=isbounde.3h9v.s6.f6f24295c699 from=translated src=- shape=ba5454cd vocab=3dd69fd8
+-/
 theorem IsBoundedInProbability.mono_norm
     {Ω ι F G : Type*} [MeasurableSpace Ω]
     [SeminormedAddCommGroup F] [SeminormedAddCommGroup G]
@@ -69,7 +71,9 @@ that the limiting law is tight.  Portmanteau, applied to the closed norm tail
 laws.
 
 This law-level statement is useful when the limiting probability measure is
-given directly, without choosing a random variable that realizes it.-/
+given directly, without choosing a random variable that realizes it.
+@isnad1 id=isbounde.2h7v.s7.d71918582c91 from=translated src=- shape=9f6c693a vocab=a625cb8a
+-/
 theorem isBoundedInProbability_of_tendsto_law
     {Ω ι E : Type*} [MeasurableSpace Ω] [MeasurableSpace E]
     [NormedAddCommGroup E] [CompleteSpace E] [SecondCountableTopology E]
@@ -127,7 +131,9 @@ theorem isBoundedInProbability_of_tendsto_law
   exact hω.le
 
 /-- Convergence in distribution to a normed-space-valued random variable
-implies boundedness in probability.-/
+implies boundedness in probability.
+@isnad1 id=isbounde.1h9v.s7.1cf16732debf from=translated src=- shape=c3686c60 vocab=de2e809f
+-/
 theorem _root_.MeasureTheory.TendstoInDistribution.isBoundedInProbability
     {Ω Ω' ι E : Type*} [MeasurableSpace Ω] [MeasurableSpace Ω']
     [MeasurableSpace E] [NormedAddCommGroup E] [CompleteSpace E]

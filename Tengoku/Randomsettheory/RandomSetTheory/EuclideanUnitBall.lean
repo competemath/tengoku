@@ -28,6 +28,9 @@ instance {E : Type*} [NormedAddCommGroup E] :
     Nonempty (EuclideanUnitBall E) :=
   ⟨⟨0, by simp⟩⟩
 
+/--
+@isnad1 id=eq.2h3v.s7.1fccf4d0d165 from=translated src=- shape=8fcdfa06 vocab=02e966ed
+-/
 @[simp] theorem euclideanUnitBall_dist_mk
     {E : Type*} [NormedAddCommGroup E]
     (x y : E) (hx : ‖x‖ ≤ 1) (hy : ‖y‖ ≤ 1) :

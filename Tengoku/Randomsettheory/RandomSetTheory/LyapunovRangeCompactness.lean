@@ -43,7 +43,9 @@ namespace RandomSetTheory
 /-! ## Exact scalar masses inside a measurable set -/
 
 /-- Exact divisibility realizes every real mass between zero and the mass of
-a measurable set.-/
+a measurable set.
+@isnad1 id=ex.3h4v.s6.a6ed8be5c582 from=translated src=- shape=049de125 vocab=4d624e30
+-/
 theorem HasExactDivisibility.exists_measurable_subset_measureReal_eq
     {Omega : Type*} [MeasurableSpace Omega]
     {mu : Measure Omega} [IsFiniteMeasure mu]
@@ -80,7 +82,9 @@ def setIntegralZonotope
     (fun t : ℝ => t • y) '' Set.Icc 0 (mu.real (f ⁻¹' {y}))
 
 /-- On an exactly divisible finite measure space, the measurable set-integral
-range of a simple function is exactly its fibre zonotope.-/
+range of a simple function is exactly its fibre zonotope.
+@isnad1 id=eq.1h4v.s6.db5fe3553fc6 from=translated src=- shape=7a09fa48 vocab=15be9d68
+-/
 theorem measurableSetIntegralRange_eq_setIntegralZonotope
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -142,7 +146,9 @@ theorem measurableSetIntegralRange_eq_setIntegralZonotope
         rw [hinter y hy, hAsMeasure ⟨y, hy⟩, htEq ⟨y, hy⟩]
       _ = z := hgsum
 
-/-- Every fibre summand in the zonotope is compact.-/
+/-- Every fibre summand in the zonotope is compact.
+@isnad1 id=iscompac.0h5v.s7.9b316174f7ac from=translated src=- shape=6b91aad6 vocab=4c9e12de
+-/
 theorem isCompact_setIntegralZonotope_summand
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -153,7 +159,9 @@ theorem isCompact_setIntegralZonotope_summand
 
 /-- The simple-function zonotope is compact in any normed target; no finite
 dimensionality assumption is needed because it is a finite sum of compact
-segments.-/
+segments.
+@isnad1 id=iscompac.0h4v.s5.7b6c9f8f240c from=translated src=- shape=b317a00e vocab=aca963c4
+-/
 theorem isCompact_setIntegralZonotope
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -163,7 +171,9 @@ theorem isCompact_setIntegralZonotope
     isCompact_setIntegralZonotope_summand mu f y
 
 /-- Consequently, the raw set-integral range of a simple function is compact
-under exact divisibility.-/
+under exact divisibility.
+@isnad1 id=iscompac.1h4v.s6.892857d1b562 from=translated src=- shape=e3500182 vocab=3a1245db
+-/
 theorem isCompact_measurableSetIntegralRange_of_exactDivisibility
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -173,7 +183,9 @@ theorem isCompact_measurableSetIntegralRange_of_exactDivisibility
   rw [measurableSetIntegralRange_eq_setIntegralZonotope mu hmu f]
   exact isCompact_setIntegralZonotope mu f
 
-/-- The same raw range is closed.-/
+/-- The same raw range is closed.
+@isnad1 id=isclosed.1h4v.s6.26da3e5a790a from=translated src=- shape=e3500182 vocab=cfd800ad
+-/
 theorem isClosed_measurableSetIntegralRange_of_exactDivisibility
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -184,7 +196,9 @@ theorem isClosed_measurableSetIntegralRange_of_exactDivisibility
     mu hmu f).isClosed
 
 /-- On every finite atomless measurable space, the raw set-integral range of
-a vector-valued simple function is compact.-/
+a vector-valued simple function is compact.
+@isnad1 id=iscompac.1h4v.s6.052b5d75427e from=translated src=- shape=e3500182 vocab=a4acab28
+-/
 theorem isCompact_measurableSetIntegralRange_of_atomless
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -195,7 +209,9 @@ theorem isCompact_measurableSetIntegralRange_of_atomless
     mu (hasExactDivisibility_of_atomless hmu) f
 
 /-- On every finite atomless measurable space, the raw set-integral range of
-a vector-valued simple function is closed.-/
+a vector-valued simple function is closed.
+@isnad1 id=isclosed.1h4v.s6.7004f54ba6a6 from=translated src=- shape=e3500182 vocab=178f33e4
+-/
 theorem isClosed_measurableSetIntegralRange_of_atomless
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -209,7 +225,9 @@ end SimpleFunc
 /-! ## Boundedness and compact closure for arbitrary integrable functions -/
 
 /-- Every set integral is bounded by the integral of the pointwise norm,
-uniformly over the measurable set.-/
+uniformly over the measurable set.
+@isnad1 id=le.1h4v.s6.d28f86c86108 from=translated src=- shape=882d5628 vocab=086d0713
+-/
 theorem measurableSetIntegralRange_subset_closedBall
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -226,7 +244,9 @@ theorem measurableSetIntegralRange_subset_closedBall
         (Filter.Eventually.of_forall fun omega => norm_nonneg (f omega))
 
 /-- The measurable set-integral range of every integrable function is
-bounded.-/
+bounded.
+@isnad1 id=isbounde.1h4v.s6.fec5209a8c02 from=translated src=- shape=06b60ffe vocab=0465c55b
+-/
 theorem measurableSetIntegralRange_isBounded
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -237,7 +257,9 @@ theorem measurableSetIntegralRange_isBounded
 
 /-- In finite dimension, the closure of every integrable vector-measure
 range is compact.  This statement does not claim that the raw range is
-closed.-/
+closed.
+@isnad1 id=iscompac.1h4v.s6.5ec81dc62789 from=translated src=- shape=9873f3e0 vocab=49e03b9b
+-/
 theorem isCompact_closure_measurableSetIntegralRange
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
@@ -246,7 +268,9 @@ theorem isCompact_closure_measurableSetIntegralRange
   (measurableSetIntegralRange_isBounded hf).isCompact_closure
 
 /-- In finite dimension the raw range is compact if and only if it is
-closed: boundedness is automatic from integrability.-/
+closed: boundedness is automatic from integrability.
+@isnad1 id=iff.1h4v.s6.11a0e6acad92 from=translated src=- shape=cd76c7ca vocab=b625db54
+-/
 theorem isCompact_measurableSetIntegralRange_iff_isClosed
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
@@ -261,7 +285,9 @@ theorem isCompact_measurableSetIntegralRange_iff_isClosed
 
 /-- Every sequence of measurable set integrals has a subsequence converging
 to a point of the compact closure in finite dimension.  The conclusion does
-not assert that this limit is itself represented by a measurable set.-/
+not assert that this limit is itself represented by a measurable set.
+@isnad1 id=ex.2h5v.s7.4f99938e95d5 from=translated src=- shape=5409ada1 vocab=2aced3a1
+-/
 theorem exists_setIntegral_subsequence_tendsto_mem_closure
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
@@ -284,7 +310,9 @@ theorem exists_setIntegral_subsequence_tendsto_mem_closure
 /-- Exact divisibility makes the closure of the general vector-measure range
 convex.  The proof extends approximate convexity from raw range points to
 closure points by sequential approximation and continuity of affine
-combinations.-/
+combinations.
+@isnad1 id=convex.2h4v.s7.0a20b83c49a8 from=translated src=- shape=120bb3be vocab=4afe9e9b
+-/
 theorem convex_closure_measurableSetIntegralRange_of_exactDivisibility
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -307,7 +335,9 @@ theorem convex_closure_measurableSetIntegralRange_of_exactDivisibility
     (Filter.Eventually.of_forall huv)
 
 /-- Under exact divisibility, closing the measurable set-integral range is
-the same as taking its closed convex hull.-/
+the same as taking its closed convex hull.
+@isnad1 id=eq.2h4v.s7.5e0adf40bd4a from=translated src=- shape=d25cb358 vocab=1e9e2226
+-/
 theorem closure_measurableSetIntegralRange_eq_closedConvexHull
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -324,7 +354,9 @@ theorem closure_measurableSetIntegralRange_eq_closedConvexHull
         mu hmu hf) isClosed_closure
 
 /-- Finite-dimensional exact divisibility therefore gives a canonical
-compact convex relaxation of the vector-measure range.-/
+compact convex relaxation of the vector-measure range.
+@isnad1 id=and.2h4v.s7.0d6acb128761 from=translated src=- shape=c91a7b21 vocab=54eb7f42
+-/
 theorem isCompact_convex_closure_measurableSetIntegralRange_of_exactDivisibility
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -345,7 +377,9 @@ closure of the set-integral range is compact and convex.
 
 This deliberately concerns the closure: atomlessness supplies exact scalar
 divisibility, but a separate sequential-attainment argument is still needed
-to identify the raw range with its closure.-/
+to identify the raw range with its closure.
+@isnad1 id=and.2h4v.s7.af90838a0929 from=translated src=- shape=c91a7b21 vocab=e679dfca
+-/
 theorem isCompact_convex_closure_measurableSetIntegralRange_of_atomless
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -360,7 +394,9 @@ theorem isCompact_convex_closure_measurableSetIntegralRange_of_atomless
     mu (hasExactDivisibility_of_atomless hmu) hf
 
 /-- Under finite atomlessness, closing a set-integral range agrees with its
-closed convex hull.  This does not claim that the raw range is closed.-/
+closed convex hull.  This does not claim that the raw range is closed.
+@isnad1 id=eq.2h4v.s7.25d687e2a490 from=translated src=- shape=d25cb358 vocab=5fbc38b0
+-/
 theorem closure_measurableSetIntegralRange_eq_closedConvexHull_of_atomless
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -373,7 +409,9 @@ theorem closure_measurableSetIntegralRange_eq_closedConvexHull_of_atomless
   closure_measurableSetIntegralRange_eq_closedConvexHull
     mu (hasExactDivisibility_of_atomless hmu) hf
 
-/-- Explicit Euclidean specialization of the compact-convex closure theorem.-/
+/-- Explicit Euclidean specialization of the compact-convex closure theorem.
+@isnad1 id=and.2h4v.s8.144e7f7f33d6 from=translated src=- shape=f1285fad vocab=cbb802c5
+-/
 theorem isCompact_convex_closure_measurableSetIntegralRange_euclidean
     {Omega ι : Type*} [MeasurableSpace Omega] [Fintype ι]
     (mu : Measure Omega) [IsFiniteMeasure mu]
@@ -388,7 +426,9 @@ theorem isCompact_convex_closure_measurableSetIntegralRange_euclidean
 
 /-- Explicit sequential formulation of closedness of one set-integral
 range.  Every convergent sequence of integrals over measurable sets must
-have its limit represented by one measurable set.-/
+have its limit represented by one measurable set.
+@isnad1 id=iff.0h4v.s7.bfaaf4208c6b from=translated src=- shape=67b8bdf8 vocab=aae60837
+-/
 theorem isSeqClosed_measurableSetIntegralRange_iff
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -433,7 +473,9 @@ def HasSequentialSetIntegralAttainment
         (∫ omega in B, f omega ∂mu) = z
 
 /-- Sequential attainment is exactly closedness of every integrable
-set-integral range; it is not a disguised stronger compactness hypothesis.-/
+set-integral range; it is not a disguised stronger compactness hypothesis.
+@isnad1 id=iff.0h3v.s6.3eddf6e55925 from=translated src=- shape=72333d2b vocab=38f79afb
+-/
 theorem hasSequentialSetIntegralAttainment_iff_isClosedRange
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -452,7 +494,9 @@ theorem hasSequentialSetIntegralAttainment_iff_isClosedRange
     exact (isSeqClosed_measurableSetIntegralRange_iff mu f).mp hseq
       A z hA hlim
 
-/-- Sequential attainment makes every integrable set-integral range closed.-/
+/-- Sequential attainment makes every integrable set-integral range closed.
+@isnad1 id=isclosed.2h4v.s6.0393266781b4 from=translated src=- shape=2cd7729d vocab=38f79afb
+-/
 theorem isClosed_measurableSetIntegralRange_of_sequentialAttainment
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -465,7 +509,9 @@ theorem isClosed_measurableSetIntegralRange_of_sequentialAttainment
   exact hattain f hf
 
 /-- In finite dimension, sequential attainment upgrades the compact closure
-to compactness of the raw range.-/
+to compactness of the raw range.
+@isnad1 id=iscompac.2h4v.s6.45e22ec34c3e from=translated src=- shape=652d6fa8 vocab=b1f76730
+-/
 theorem isCompact_measurableSetIntegralRange_of_sequentialAttainment
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -479,7 +525,9 @@ theorem isCompact_measurableSetIntegralRange_of_sequentialAttainment
       hattain hf)
 
 /-- In finite dimension, the global sequential-attainment property is also
-equivalent to compactness of every integrable raw range.-/
+equivalent to compactness of every integrable raw range.
+@isnad1 id=iff.0h3v.s6.fe76f9a40070 from=translated src=- shape=d67a79fd vocab=b1f76730
+-/
 theorem hasSequentialSetIntegralAttainment_iff_isCompactRange
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -497,7 +545,9 @@ theorem hasSequentialSetIntegralAttainment_iff_isCompactRange
     exact (hcompact f hf).isClosed
 
 /-- Full Lyapunov convexity follows from exact divisibility once the precise
-sequential-attainment gap is supplied.-/
+sequential-attainment gap is supplied.
+@isnad1 id=haslyapu.2h3v.s6.f9f427ba22d6 from=translated src=- shape=19057a08 vocab=9aeca172
+-/
 theorem hasLyapunovConvexity_of_exactDivisibility_of_sequentialAttainment
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -513,7 +563,9 @@ theorem hasLyapunovConvexity_of_exactDivisibility_of_sequentialAttainment
 
 /-- Full Lyapunov convexity on a finite atomless base, conditional exactly on
 sequential attainment of limits of measurable set integrals.  The condition
-is not discharged by the scalar Sierpiński theorem.-/
+is not discharged by the scalar Sierpiński theorem.
+@isnad1 id=haslyapu.2h3v.s6.acbfe07c39f9 from=translated src=- shape=19057a08 vocab=7e61094e
+-/
 theorem hasLyapunovConvexity_of_atomless_of_sequentialAttainment
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -526,7 +578,9 @@ theorem hasLyapunovConvexity_of_atomless_of_sequentialAttainment
     mu (hasExactDivisibility_of_atomless hmu) hattain
 
 /-- Equivalent compactness-oriented bridge: if every raw integrable range is
-compact, exact divisibility gives full Lyapunov convexity.-/
+compact, exact divisibility gives full Lyapunov convexity.
+@isnad1 id=haslyapu.2h3v.s6.ea52d56a2cce from=translated src=- shape=ad8ca384 vocab=dc63e669
+-/
 theorem hasLyapunovConvexity_of_exactDivisibility_of_isCompactRange
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -542,7 +596,9 @@ theorem hasLyapunovConvexity_of_exactDivisibility_of_isCompactRange
 
 /-- Compactness of every raw vector-measure range, together with finite
 atomlessness, implies full Lyapunov convexity.  Compactness remains an
-explicit hypothesis rather than being silently inferred from atomlessness.-/
+explicit hypothesis rather than being silently inferred from atomlessness.
+@isnad1 id=haslyapu.2h3v.s6.fa0c68e5263c from=translated src=- shape=ad8ca384 vocab=3f30625b
+-/
 theorem hasLyapunovConvexity_of_atomless_of_isCompactRange
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]

@@ -29,7 +29,9 @@ namespace ProbabilityTheory
 variable {Omega : Type*} {mOmega : MeasurableSpace Omega}
 
 /-- On a probability space, the first moment of a nonnegative `L²` random
-variable is bounded by its quadratic mean.-/
+variable is bounded by its quadratic mean.
+@isnad1 id=le.2h4v.s7.24c58dc44caf from=translated src=- shape=3872af63 vocab=0fbc4b4f
+-/
 theorem integral_nonnegative_le_sqrt_integral_sq
     {mu : Measure Omega} [IsProbabilityMeasure mu]
     (f : Omega → ℝ) (hf : MemLp f 2 mu)
@@ -52,7 +54,9 @@ theorem integral_nonnegative_le_sqrt_integral_sq
     Real.rpow_two] using hholder
 
 /-- The expected Euclidean norm of a finite vector is at most the square
-root of the sum of the coordinate second moments.-/
+root of the sum of the coordinate second moments.
+@isnad1 id=le.1h5v.s7.81e60535a9f9 from=translated src=- shape=903ec0f3 vocab=d23dc30b
+-/
 theorem integral_sqrt_fin_sum_sq_le
     {mu : Measure Omega} [IsProbabilityMeasure mu]
     {n : Nat} (A : Fin n → Omega → ℝ)
@@ -83,7 +87,9 @@ theorem integral_sqrt_fin_sum_sq_le
   simpa only [hpoint] using hnorm
 
 /-- If all coordinate second moments are bounded by `K₂²`, the expected
-empirical quadratic envelope is bounded by `√n K₂`.-/
+empirical quadratic envelope is bounded by `√n K₂`.
+@isnad1 id=le.3h6v.s7.78172f1daa6f from=translated src=- shape=c58b738f vocab=8624ce4e
+-/
 theorem integral_sqrt_fin_sum_sq_le_sqrt_nat_mul
     {mu : Measure Omega} [IsProbabilityMeasure mu]
     {n : Nat} (A : Fin n → Omega → ℝ) (K₂ : ℝ)
@@ -106,7 +112,9 @@ theorem integral_sqrt_fin_sum_sq_le_sqrt_nat_mul
 
 /-- Normalized version of
 `integral_sqrt_fin_sum_sq_le_sqrt_nat_mul`: the empirical quadratic scale
-has expectation at most `K₂ / √n`.-/
+has expectation at most `K₂ / √n`.
+@isnad1 id=le.4h6v.s7.9f8282e055f8 from=translated src=- shape=4215827f vocab=55608f51
+-/
 theorem integral_normalized_sqrt_fin_sum_sq_le
     {mu : Measure Omega} [IsProbabilityMeasure mu]
     {n : Nat} (hn : 0 < n) (A : Fin n → Omega → ℝ) (K₂ : ℝ)

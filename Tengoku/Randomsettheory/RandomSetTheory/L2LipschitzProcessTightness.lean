@@ -52,6 +52,9 @@ def centeredTruncatedEmpiricalContinuousMap
           continuous_subtype_val
 
 omit [NormedSpace ℝ E] [CompleteSpace E] [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.7h11v.s8.1c913b01d581 from=translated src=- shape=2bb361df vocab=a2e66082
+-/
 @[simp]
 theorem centeredTruncatedEmpiricalContinuousMap_apply
     [IsProbabilityMeasure mu]
@@ -71,7 +74,9 @@ theorem centeredTruncatedEmpiricalContinuousMap_apply
 omit [CompleteSpace E] in
 /-- Uniform tightness of all sample-size laws of the centered, truncated
 empirical process.  Measurability of the bundled path is kept explicit; in
-random-set applications it is supplied by the measurable support-map layer.-/
+random-set applications it is supplied by the measurable support-map layer.
+@isnad1 id=istightm.12h9v.s9.f823f489c70e from=translated src=- shape=25eea7ee vocab=30089aa0
+-/
 theorem isTightMeasureSet_range_centeredTruncatedEmpiricalContinuousMap
     [IsProbabilityMeasure mu]
     [MeasurableSpace C(EuclideanUnitBall E, ℝ)]

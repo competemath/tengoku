@@ -29,7 +29,9 @@ open Metric
 
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
-/-- Markov exponentiel/Chernoff, écrit directement avec une intégrale.-/
+/-- Markov exponentiel/Chernoff, écrit directement avec une intégrale.
+@isnad1 id=le.2h5v.s7.5192482667f5 from=translated src=- shape=258758d9 vocab=dd6d8bab
+-/
 lemma exponential_markov_real [IsFiniteMeasure μ]
     (X : Ω → ℝ) (q t : ℝ) (hq : 0 ≤ q)
     (h_exp : Integrable (fun ω => exp (q * X ω)) μ) :
@@ -41,7 +43,9 @@ lemma exponential_markov_real [IsFiniteMeasure μ]
       rw [mgf, div_eq_mul_inv, ← exp_neg]
       ring
 
-/-- Hoeffding pour une somme finie de variables indépendantes, centrées et bornées.-/
+/-- Hoeffding pour une somme finie de variables indépendantes, centrées et bornées.
+@isnad1 id=le.5h8v.s8.8897315aa6a7 from=translated src=- shape=56fbeed1 vocab=879f8109
+-/
 lemma hoeffding_sum_real [IsProbabilityMeasure μ]
     {ι : Type*} (X : ι → Ω → ℝ) (a b : ι → ℝ)
     (h_indep : iIndepFun X μ)
@@ -58,7 +62,9 @@ lemma hoeffding_sum_real [IsProbabilityMeasure μ]
   exact hasSubgaussianMGF_of_mem_Icc_of_integral_eq_zero
     (h_meas i) (h_bounds i) (h_centered i)
 
-/-- Forme moyenne empirique de l'inégalité de Hoeffding.-/
+/-- Forme moyenne empirique de l'inégalité de Hoeffding.
+@isnad1 id=le.6h7v.s8.85536c253944 from=translated src=- shape=3c9447dd vocab=21a25cb9
+-/
 lemma hoeffding_average_real [IsProbabilityMeasure μ]
     (X : ℕ → Ω → ℝ) (a b : ℕ → ℝ)
     (h_indep : iIndepFun X μ)
@@ -80,7 +86,9 @@ lemma hoeffding_average_real [IsProbabilityMeasure μ]
   rw [hset]
   exact h
 
-/-- Version bilatérale de Hoeffding pour une moyenne empirique.-/
+/-- Version bilatérale de Hoeffding pour une moyenne empirique.
+@isnad1 id=le.6h7v.s8.6250227530d2 from=translated src=- shape=1082e61b vocab=4db4ac76
+-/
 lemma hoeffding_average_abs_real [IsProbabilityMeasure μ]
     (X : ℕ → Ω → ℝ) (a b : ℕ → ℝ)
     (h_indep : iIndepFun X μ)
@@ -129,7 +137,9 @@ lemma hoeffding_average_abs_real [IsProbabilityMeasure μ]
           (((‖b i - a i‖₊ / (2 : NNReal)) ^ (2 : ℕ)) : NNReal) : NNReal) : ℝ))) := by
       ring
 
-/-- Union bound réelle sur une famille finie d'événements.-/
+/-- Union bound réelle sur une famille finie d'événements.
+@isnad1 id=le.1h6v.s6.9bf6bdcb6637 from=translated src=- shape=d10edb30 vocab=7d435907
+-/
 lemma measureReal_biUnion_finset_le_card_mul {ι : Type*} [IsFiniteMeasure μ]
     (s : Finset ι) (A : ι → Set Ω) {q : ℝ}
     (hA : ∀ i ∈ s, μ.real (A i) ≤ q) :
@@ -140,7 +150,9 @@ lemma measureReal_biUnion_finset_le_card_mul {ι : Type*} [IsFiniteMeasure μ]
     _ ≤ ∑ _i ∈ s, q := Finset.sum_le_sum fun i hi => hA i hi
     _ = s.card * q := by simp
 
-/-- Union bound sous la forme utilisée pour un réseau fini de directions.-/
+/-- Union bound sous la forme utilisée pour un réseau fini de directions.
+@isnad1 id=le.1h7v.s6.4e02845c9ed8 from=translated src=- shape=fc38aee3 vocab=5d1a1463
+-/
 lemma finite_family_deviation_bound {ι : Type*} [IsFiniteMeasure μ]
     (s : Finset ι) (Z : ι → Ω → ℝ) {t q : ℝ}
     (htail : ∀ i ∈ s, μ.real {ω | t ≤ |Z i ω|} ≤ q) :
@@ -152,7 +164,9 @@ lemma finite_family_deviation_bound {ι : Type*} [IsFiniteMeasure μ]
   rw [hset]
   exact measureReal_biUnion_finset_le_card_mul s _ htail
 
-/-- Uniform Hoeffding bound over a finite family.-/
+/-- Uniform Hoeffding bound over a finite family.
+@isnad1 id=le.6h9v.s8.b2af942febe4 from=translated src=- shape=c56d165a vocab=7dbf6b96
+-/
 lemma finite_family_hoeffding_average_abs {ι : Type*} [IsProbabilityMeasure μ]
     (s : Finset ι) (X : ι → ℕ → Ω → ℝ) (a b : ℕ → ℝ)
     (h_indep : ∀ u ∈ s, iIndepFun (X u) μ)
@@ -170,7 +184,9 @@ lemma finite_family_hoeffding_average_abs {ι : Type*} [IsProbabilityMeasure μ]
     (h_bounds u hu) (h_centered u hu) hn ht
 
 omit [MeasurableSpace Ω] in
-/-- Passage déterministe d'un réseau fini au supremum sur tout l'ensemble de directions.-/
+/-- Passage déterministe d'un réseau fini au supremum sur tout l'ensemble de directions.
+@isnad1 id=le.3h8v.s7.ca818fc472c2 from=translated src=- shape=fe4c0f7a vocab=0f229acb
+-/
 lemma finiteNet_deviation_subset {E : Type*} [PseudoMetricSpace E]
     (D : Set E) (N : Finset E) {ε L s : ℝ} (hL : 0 ≤ L)
     (hnet : ∀ u ∈ D, ∃ v ∈ N, dist u v ≤ ε)
@@ -193,7 +209,9 @@ lemma finiteNet_deviation_subset {E : Type*} [PseudoMetricSpace E]
   have hmul : L * dist u v ≤ L * ε := mul_le_mul_of_nonneg_left huv hL
   linarith
 
-/-- Borne probabiliste uniforme obtenue à partir d'un réseau fini et d'un module Lipschitz.-/
+/-- Borne probabiliste uniforme obtenue à partir d'un réseau fini et d'un module Lipschitz.
+@isnad1 id=le.4h10v.s8.b640ef80f241 from=translated src=- shape=6ddbe90b vocab=81bf0850
+-/
 lemma finiteNet_uniform_deviation_bound {E : Type*} [PseudoMetricSpace E]
     [IsFiniteMeasure μ] (D : Set E) (N : Finset E) {ε L s q : ℝ} (hL : 0 ≤ L)
     (hnet : ∀ u ∈ D, ∃ v ∈ N, dist u v ≤ ε)
@@ -212,7 +230,9 @@ lemma finiteNet_uniform_deviation_bound {E : Type*} [PseudoMetricSpace E]
       finite_family_deviation_bound (μ := μ) N (fun v ω => Z ω v)
         (t := s) (q := q) htail
 
-/-- Un compact admet un réseau fini interne à toute précision strictement positive.-/
+/-- Un compact admet un réseau fini interne à toute précision strictement positive.
+@isnad1 id=ex.2h3v.s6.6e36b0817cd8 from=translated src=- shape=a3b8a371 vocab=30854ff8
+-/
 lemma compact_exists_finset_net {E : Type*} [PseudoMetricSpace E]
     (D : Set E) (hD : IsCompact D) {ε : ℝ} (hε : 0 < ε) :
     ∃ N : Finset E,
@@ -236,7 +256,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /--
 Argument volumique pour une famille finie `eps`-séparée dans une boule de norme.
-Cette forme `ENNReal` est l'étape robuste qui annule le volume de la boule unité.-/
+Cette forme `ENNReal` est l'étape robuste qui annule le volume de la boule unité.
+@isnad1 id=le.3h4v.s8.32e930a2b7ed from=translated src=- shape=9c3bec11 vocab=e5f3bef9
+-/
 theorem finset_card_mul_ballVolume_le
     (s : Finset E) {R eps : ℝ} (heps : 0 < eps)
     (hs : ∀ c ∈ s, ‖c‖ ≤ R)
@@ -289,7 +311,9 @@ theorem finset_card_mul_ballVolume_le
       measure_ball_lt_top.ne).1 hmeasure
   simpa [δ, ρ] using hcancel
 
-/-- Forme réelle de l'estimation volumique de packing.-/
+/-- Forme réelle de l'estimation volumique de packing.
+@isnad1 id=le.4h4v.s8.bbff8b0a1fb6 from=translated src=- shape=24b42c37 vocab=876eb2c7
+-/
 theorem finset_card_le_volume_ratio
     (s : Finset E) {R eps : ℝ} (hR : 0 ≤ R) (heps : 0 < eps)
     (hs : ∀ c ∈ s, ‖c‖ ≤ R)
@@ -312,7 +336,9 @@ theorem finset_card_le_volume_ratio
 
 /--
 Dans la boule unité, une famille finie `eps`-séparée a au plus
-`(1 + 2 / eps) ^ finrank ℝ E` points.-/
+`(1 + 2 / eps) ^ finrank ℝ E` points.
+@isnad1 id=le.3h3v.s7.3fb7a51056cd from=translated src=- shape=0180cdde vocab=876eb2c7
+-/
 theorem finset_card_le_one_add_two_div_pow
     (s : Finset E) {eps : ℝ} (heps : 0 < eps)
     (hs : ∀ c ∈ s, ‖c‖ ≤ 1)
@@ -331,7 +357,9 @@ theorem finset_card_le_one_add_two_div_pow
 
 end EuclideanNets
 
-/-- Tout ensemble compact a un nombre de packing fini à rayon strictement positif.-/
+/-- Tout ensemble compact a un nombre de packing fini à rayon strictement positif.
+@isnad1 id=ne.2h3v.s5.baaac306e1d2 from=translated src=- shape=19567667 vocab=c9694eef
+-/
 theorem packingNumber_ne_top_of_isCompact {E : Type*} [PseudoMetricSpace E]
     (D : Set E) (hD : IsCompact D) {eps : ℝ≥0} (heps : 0 < eps) :
     Metric.packingNumber eps D ≠ ⊤ := by
@@ -360,7 +388,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /--
 Filet fini interne de la boule unité avec la borne volumique standard
-`(1 + 2 / eps) ^ finrank ℝ E`.-/
+`(1 + 2 / eps) ^ finrank ℝ E`.
+@isnad1 id=ex.1h2v.s7.3ad146c5a1be from=translated src=- shape=43a18c24 vocab=5b044614
+-/
 theorem exists_unitBall_finset_net_card_le
     {eps : ℝ} (heps : 0 < eps) :
     ∃ N : Finset E,
@@ -411,7 +441,9 @@ theorem exists_unitBall_finset_net_card_le
   refine ⟨N, hNmem, hNcover, ?_⟩
   exact finset_card_le_one_add_two_div_pow N heps hNmem hNsep
 
-/-- Pour `eps ≤ 1`, la borne usuelle simplifiée `(3 / eps) ^ finrank ℝ E`.-/
+/-- Pour `eps ≤ 1`, la borne usuelle simplifiée `(3 / eps) ^ finrank ℝ E`.
+@isnad1 id=ex.2h2v.s7.b9dc2b0be50d from=translated src=- shape=02ab53e8 vocab=bd620544
+-/
 theorem exists_unitBall_finset_net_card_le_three_div
     {eps : ℝ} (heps : 0 < eps) (heps_one : eps ≤ 1) :
     ∃ N : Finset E,
@@ -432,7 +464,9 @@ end EuclideanNets
 
 /--
 Version compacte du passage au réseau : le réseau fini est construit à
-l'intérieur de `D`, puis la borne de queue ponctuelle est union-bornée.-/
+l'intérieur de `D`, puis la borne de queue ponctuelle est union-bornée.
+@isnad1 id=ex.5h9v.s8.ca9aeda84485 from=translated src=- shape=ef6b5dfe vocab=d520ca7a
+-/
 lemma compact_uniform_deviation_bound {E : Type*} [PseudoMetricSpace E]
     [IsFiniteMeasure μ] (D : Set E) (hD : IsCompact D)
     {ε L s q : ℝ} (hε : 0 < ε) (hL : 0 ≤ L)
@@ -450,7 +484,9 @@ lemma compact_uniform_deviation_bound {E : Type*} [PseudoMetricSpace E]
   · intro v hv
     exact htail v (hND v hv)
 
-/-- Loi forte des grands nombres pour une suite i.i.d. réelle intégrable.-/
+/-- Loi forte des grands nombres pour une suite i.i.d. réelle intégrable.
+@isnad1 id=eventual.3h3v.s7.b76aee49b65d from=translated src=- shape=d37628da vocab=dd73d7d2
+-/
 lemma strong_law_ae_of_iIndepFun
     (X : ℕ → Ω → ℝ) (hint : Integrable (X 0) μ)
     (h_indep : iIndepFun X μ)
@@ -473,7 +509,9 @@ structure HasSubgammaMGF (X : Ω → ℝ) (v c : ℝ) (μ : Measure Ω) : Prop w
   mgf_le : ∀ q : ℝ, 0 ≤ q → c * q < 1 →
     mgf X μ q ≤ exp (v * q ^ 2 / (2 * (1 - c * q)))
 
-/-- Les variances-proxy de variables sub-gamma indépendantes s'additionnent.-/
+/-- Les variances-proxy de variables sub-gamma indépendantes s'additionnent.
+@isnad1 id=hassubga.4h7v.s6.9a4a08451035 from=translated src=- shape=44e84315 vocab=6e191ea4
+-/
 lemma HasSubgammaMGF.sum_of_iIndepFun [IsFiniteMeasure μ]
     {ι : Type*} {X : ι → Ω → ℝ} {v : ι → ℝ} {c : ℝ}
     (h_indep : iIndepFun X μ) (h_meas : ∀ i, Measurable (X i))
@@ -498,7 +536,9 @@ lemma HasSubgammaMGF.sum_of_iIndepFun [IsFiniteMeasure μ]
         congr 1
         rw [← Finset.sum_div, ← Finset.sum_mul]
 
-/-- Borne de Bernstein à droite obtenue à partir d'un contrôle sub-gamma.-/
+/-- Borne de Bernstein à droite obtenue à partir d'un contrôle sub-gamma.
+@isnad1 id=le.3h6v.s7.d7ae9d0156d7 from=translated src=- shape=6f873372 vocab=21410212
+-/
 lemma HasSubgammaMGF.measure_ge_le [IsFiniteMeasure μ]
     {X : Ω → ℝ} {v c : ℝ} (h : HasSubgammaMGF X v c μ)
     (hv : 0 < v) {ε : ℝ} (hε : 0 ≤ ε) :
@@ -535,7 +575,9 @@ structure HasTwoSidedSubgammaMGF (X : Ω → ℝ) (v c : ℝ) (μ : Measure Ω) 
   pos : HasSubgammaMGF X v c μ
   neg : HasSubgammaMGF (-X) v c μ
 
-/-- Une somme de variables sub-gamma bilatérales indépendantes reste sub-gamma bilatérale.-/
+/-- Une somme de variables sub-gamma bilatérales indépendantes reste sub-gamma bilatérale.
+@isnad1 id=hastwosi.4h7v.s6.8a607910e7cc from=translated src=- shape=44e84315 vocab=8befb064
+-/
 lemma HasTwoSidedSubgammaMGF.sum_of_iIndepFun [IsFiniteMeasure μ]
     {ι : Type*} {X : ι → Ω → ℝ} {v : ι → ℝ} {c : ℝ}
     (h_indep : iIndepFun X μ) (h_meas : ∀ i, Measurable (X i))
@@ -551,7 +593,9 @@ lemma HasTwoSidedSubgammaMGF.sum_of_iIndepFun [IsFiniteMeasure μ]
     change HasSubgammaMGF (fun ω => -(∑ i ∈ s, X i ω)) (∑ i ∈ s, v i) c μ
     simpa only [Pi.neg_apply, Finset.sum_neg_distrib] using h_neg
 
-/-- Borne de Bernstein bilatérale.-/
+/-- Borne de Bernstein bilatérale.
+@isnad1 id=le.3h6v.s7.02740ea05b16 from=translated src=- shape=76b15d25 vocab=e1a6e255
+-/
 lemma HasTwoSidedSubgammaMGF.measure_abs_ge_le [IsFiniteMeasure μ]
     {X : Ω → ℝ} {v c : ℝ} (h : HasTwoSidedSubgammaMGF X v c μ)
     (hv : 0 < v) {ε : ℝ} (hε : 0 ≤ ε) :

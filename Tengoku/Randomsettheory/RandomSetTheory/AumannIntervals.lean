@@ -25,7 +25,9 @@ namespace RandomSetTheory
 /-- **Aumann expectation of a random interval.**  No atomlessness,
 measurability-of-the-correspondence, or closure operation is needed: the two
 integrable endpoints are selections, every other selection integrates
-between them, and convexity fills the resulting interval.-/
+between them, and convexity fills the resulting interval.
+@isnad1 id=eq.3h4v.s7.11a2bbbf3a43 from=translated src=- shape=d83cadc1 vocab=647bf949
+-/
 theorem aumannExpectation_Icc
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     {a b : Ω → ℝ} (ha : Integrable a μ) (hb : Integrable b μ)
@@ -66,7 +68,9 @@ theorem aumannExpectation_Icc
     exact hseg hx
 
 /-- A deterministic interval is fixed by Aumann expectation on a probability
-space.-/
+space.
+@isnad1 id=eq.1h4v.s5.60360f14d485 from=translated src=- shape=34a93f32 vocab=896a2747
+-/
 theorem aumannExpectation_const_Icc
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     [IsProbabilityMeasure μ] {a b : ℝ} (hab : a ≤ b) :

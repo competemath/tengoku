@@ -52,6 +52,9 @@ def centeredProcessEnvelope (A : Omega → ℝ) (mu : Measure Omega)
     (omega : Omega) : ℝ :=
   |A omega| + ∫ z, |A z| ∂mu
 
+/--
+@isnad1 id=le.0h4v.s4.1b1f4ef927a8 from=translated src=- shape=99fc114c vocab=ca2ef416
+-/
 theorem centeredProcessEnvelope_nonneg
     (A : Omega → ℝ) (mu : Measure Omega) (omega : Omega) :
     0 ≤ centeredProcessEnvelope A mu omega := by
@@ -59,7 +62,9 @@ theorem centeredProcessEnvelope_nonneg
   exact add_nonneg (abs_nonneg _) (integral_nonneg fun _ ↦ abs_nonneg _)
 
 /-- A raw envelope dominates every centred coordinate after adding its mean
-absolute size.  The conclusion is pointwise and uniform in the index.-/
+absolute size.  The conclusion is pointwise and uniform in the index.
+@isnad1 id=le.3h7v.s6.d21f62208905 from=translated src=- shape=0546fda0 vocab=4e11040b
+-/
 theorem abs_centeredProcess_le_centeredProcessEnvelope
     (X : Omega → T → ℝ) (A : Omega → ℝ)
     (hA : Integrable A mu)
@@ -85,7 +90,9 @@ theorem abs_centeredProcess_le_centeredProcessEnvelope
 
 /-- On a probability space, the `L^1` norm is bounded by every `L^q` norm
 with `q ≥ 1`.  This real-valued wrapper avoids exposing `ENNReal.toReal` in
-applications.-/
+applications.
+@isnad1 id=le.2h4v.s6.aa62bcc0ee28 from=translated src=- shape=1b5087ee vocab=a186ac7e
+-/
 theorem lpNorm_one_le_lpNorm_nat
     [IsProbabilityMeasure mu]
     (A : Omega → ℝ) {q : ℕ} (hq : 1 ≤ q)
@@ -99,7 +106,9 @@ theorem lpNorm_one_le_lpNorm_nat
   simpa only [toReal_eLpNorm hAq.aestronglyMeasurable] using hreal
 
 /-- The mean absolute value is bounded by the `L^q` norm on a probability
-space.-/
+space.
+@isnad1 id=le.2h4v.s6.1a3095bb74ec from=translated src=- shape=21d3e528 vocab=f40df75c
+-/
 theorem integral_abs_le_lpNorm_nat
     [IsProbabilityMeasure mu]
     (A : Omega → ℝ) {q : ℕ} (hq : 1 ≤ q)
@@ -116,7 +125,9 @@ theorem integral_abs_le_lpNorm_nat
 
 /-- Centring costs at most a factor two in every strong `L^q` envelope norm.
 This is the exact generic estimate used to pass from the report's raw
-envelope `A` to Marchina's centred envelope.-/
+envelope `A` to Marchina's centred envelope.
+@isnad1 id=le.2h4v.s7.2b69aae0ef29 from=translated src=- shape=5d56da83 vocab=ae737769
+-/
 theorem lpNorm_centeredProcessEnvelope_le_two_mul
     [IsProbabilityMeasure mu]
     (A : Omega → ℝ) {q : ℕ} (hq : 1 ≤ q)
@@ -153,7 +164,9 @@ theorem lpNorm_centeredProcessEnvelope_le_two_mul
     _ = 2 * lpNorm A q mu := by ring
 
 /-- The canonical centred envelope belongs to `L^q` whenever the raw
-envelope does.-/
+envelope does.
+@isnad1 id=memlp.1h4v.s6.e6670e352bc7 from=translated src=- shape=c2929148 vocab=9faef61e
+-/
 theorem memLp_centeredProcessEnvelope
     [IsProbabilityMeasure mu]
     (A : Omega → ℝ) {q : ℕ} (hAq : MemLp A q mu) :
@@ -163,7 +176,9 @@ theorem memLp_centeredProcessEnvelope
 
 /-- The `q`-th absolute moment is the `q`-th power of the real `L^q` norm.
 This bridge is useful because the existing polynomial-tail API is formulated
-with `absoluteMoment`.-/
+with `absoluteMoment`.
+@isnad1 id=eq.2h4v.s6.858cb6be5f7b from=translated src=- shape=c3deea13 vocab=f5380969
+-/
 theorem absoluteMoment_eq_lpNorm_pow
     (A : Omega → ℝ) {q : ℕ} (hq : 0 < q)
     (hAq : MemLp A q mu) :
@@ -178,7 +193,9 @@ theorem absoluteMoment_eq_lpNorm_pow
   rw [hlp]
   exact (Real.rpow_inv_natCast_pow hmoment hq.ne').symm
 
-/-- Strong moment form of the factor-two centred-envelope bound.-/
+/-- Strong moment form of the factor-two centred-envelope bound.
+@isnad1 id=le.4h5v.s7.08df01bd14a9 from=translated src=- shape=8aa3f892 vocab=972f4c33
+-/
 theorem absoluteMoment_centeredProcessEnvelope_le
     [IsProbabilityMeasure mu]
     (A : Omega → ℝ) {q : ℕ} (hq : 1 ≤ q)
@@ -194,7 +211,9 @@ theorem absoluteMoment_centeredProcessEnvelope_le
 
 /-- A coordinatewise variance proxy follows immediately from the centred
 envelope.  This is the `sigma ≤ 2 K2` part of Marchina's specialization;
-it is independent of the maximal martingale argument.-/
+it is independent of the maximal martingale argument.
+@isnad1 id=le.5h7v.s7.0321811f8bbf from=translated src=- shape=5fa98703 vocab=0998feea
+-/
 theorem absoluteMoment_centeredProcess_two_le
     [IsProbabilityMeasure mu]
     (X : Omega → T → ℝ) (A : Omega → ℝ)
@@ -232,7 +251,9 @@ theorem absoluteMoment_centeredProcess_two_le
 envelope, its `L²` norm is at most four times the raw-envelope `L²` norm.
 Marchina's extremal variables `zeta_k` have precisely this domination: their
 law is obtained by replacing a lower part of the law of twice the centred
-envelope by zero.-/
+envelope by zero.
+@isnad1 id=le.5h5v.s7.6d00acf4daa5 from=translated src=- shape=089a2ec9 vocab=386dfaf7
+-/
 theorem absoluteMoment_auxiliary_le_sixteen_mul_sq
     [IsProbabilityMeasure mu]
     (A zeta : Omega → ℝ)
@@ -281,7 +302,9 @@ def averageAbsoluteSecondMoment {n : ℕ}
   (∑ i, absoluteMoment (zeta i) 2 mu) / n
 
 /-- Averaging the preceding pointwise-in-`k` estimate preserves the same
-constant.  This is the report's coarse bound `v_n ≤ 16 K2²`.-/
+constant.  This is the report's coarse bound `v_n ≤ 16 K2²`.
+@isnad1 id=le.2h5v.s6.857466a741dc from=translated src=- shape=d8516b90 vocab=4c26d9c7
+-/
 theorem averageAbsoluteSecondMoment_le_sixteen_mul_sq
     {n : ℕ} (hn : 0 < n) (zeta : Fin n → Omega → ℝ)
     {K2 : ℝ}

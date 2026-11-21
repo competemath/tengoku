@@ -37,7 +37,9 @@ def scalarEmpiricalAverage (X : Nat → Omega → Real) (n : Nat)
   (∑ i ∈ Finset.range n, X i omega) / n
 
 /-- Almost-everywhere scalar strong law for a measurable observable of
-pairwise independent identically distributed observations.-/
+pairwise independent identically distributed observations.
+@isnad1 id=eventual.4h5v.s7.99fc7e1f09ab from=translated src=- shape=304ff2bb vocab=a31e918e
+-/
 theorem ae_tendsto_scalarEmpiricalAverage_iid
     (observation : Nat → Omega → Sample) (f : Sample → Real)
     (hf : Measurable f)
@@ -60,7 +62,9 @@ theorem ae_tendsto_scalarEmpiricalAverage_iid
 
 /-- Convergence in measure of the scalar empirical average.  Finite measure is
 the only extra assumption needed to pass from the almost-everywhere strong law
-to convergence in measure.-/
+to convergence in measure.
+@isnad1 id=tendstoi.4h5v.s7.34fce4d21582 from=translated src=- shape=25ab699c vocab=58d1cab1
+-/
 theorem tendstoInMeasure_scalarEmpiricalAverage_iid
     [IsFiniteMeasure probabilityMeasure]
     (observation : Nat → Omega → Sample) (f : Sample → Real)

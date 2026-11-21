@@ -33,7 +33,9 @@ noncomputable section
 namespace RandomSetTheory
 
 /-- The support function of the closed convex hull of an Effros-measurable
-compact random set is measurable.-/
+compact random set is measurable.
+@isnad1 id=measurab.3h4v.s7.3dbabcf4e3a5 from=translated src=- shape=1aaa1234 vocab=09089f67
+-/
 theorem measurable_supportFunction_closedConvexHull_of_effros
     {Z E : Type*} [MeasurableSpace Z]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
@@ -50,7 +52,9 @@ theorem measurable_supportFunction_closedConvexHull_of_effros
   exact hraw
 
 /-- Measurability of every convexified directional support deviation follows
-from Effros measurability of `F` and measurability of the observation.-/
+from Effros measurability of `F` and measurability of the observation.
+@isnad1 id=measurab.4h9v.s7.d0f2628ad2a3 from=translated src=- shape=eba94f5b vocab=8674f5cb
+-/
 theorem measurable_convexifiedDirectionalSupportDeviation
     {Ω Z E ι : Type*} [MeasurableSpace Ω] [MeasurableSpace Z]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
@@ -67,7 +71,9 @@ theorem measurable_convexifiedDirectionalSupportDeviation
   exact hsupp.sub_const (supportFunction L u)
 
 /-- Mutual independence of observations is preserved by convexified
-directional support deviations.-/
+directional support deviations.
+@isnad1 id=iindepfu.4h9v.s7.27507332e29e from=translated src=- shape=dd3c0132 vocab=f5dcd0a2
+-/
 theorem iIndepFun_convexifiedDirectionalSupportDeviation
     {Ω Z E ι : Type*} [MeasurableSpace Ω] [MeasurableSpace Z]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
@@ -92,7 +98,9 @@ theorem iIndepFun_convexifiedDirectionalSupportDeviation
   simpa only [Function.comp_def] using hcomp
 
 /-- Identical distribution and the population support identity center every
-convexified directional deviation.-/
+convexified directional deviation.
+@isnad1 id=eq.6h9v.s8.2c914ba5d648 from=translated src=- shape=908e9e2f vocab=16db127d
+-/
 theorem integral_convexifiedDirectionalSupportDeviation_eq_zero
     {Ω Z E : Type*} [MeasurableSpace Ω] [MeasurableSpace Z]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
@@ -148,7 +156,9 @@ def iidAumannTarget
 /-- Finite-net Hoeffding concentration for bounded iid random compact sets.
 All independence, measurability, boundedness, and centering hypotheses of
 `hausdorffDist_minkowskiAverage_risk_bound_of_hoeffding` are derived inside
-the proof.-/
+the proof.
+@isnad1 id=le.12h11v.s9.9bc2917d0904 from=translated src=- shape=2cf30d35 vocab=e4e2f43a
+-/
 theorem hausdorffDist_convexified_iid_risk_bound_of_hoeffding
     {Ω Z E : Type*} [MeasurableSpace Ω] [MeasurableSpace Z]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
@@ -276,7 +286,9 @@ theorem hausdorffDist_convexified_iid_risk_bound_of_hoeffding
   rw [hEvent]
   simpa only [Finset.card_range] using hbound
 
-/-- Closed-form version of iid convexified concentration.-/
+/-- Closed-form version of iid convexified concentration.
+@isnad1 id=le.13h11v.s9.4d9028d90f04 from=translated src=- shape=d1fdc9e7 vocab=66053f26
+-/
 theorem hausdorffDist_convexified_iid_risk_bound_standard
     {Ω Z E : Type*} [MeasurableSpace Ω] [MeasurableSpace Z]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
@@ -308,7 +320,9 @@ theorem hausdorffDist_convexified_iid_risk_bound_standard
   exact hbound
 
 /-- Automatic finite-net version of bounded iid concentration.  A suitable
-net of the unit ball is chosen internally at every positive scale.-/
+net of the unit ball is chosen internally at every positive scale.
+@isnad1 id=ex.10h10v.s9.ea8b8abe1dd5 from=translated src=- shape=05bca334 vocab=e4e2f43a
+-/
 theorem exists_finset_hausdorffDist_convexified_iid_risk_bound_of_hoeffding
     {Ω Z E : Type*} [MeasurableSpace Ω] [MeasurableSpace Z]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
@@ -340,7 +354,9 @@ theorem exists_finset_hausdorffDist_convexified_iid_risk_bound_of_hoeffding
       hn heps.le ht N hN hnet⟩
 
 /-- Automatic finite-net concentration with the closed-form Hoeffding
-exponent.-/
+exponent.
+@isnad1 id=ex.11h10v.s9.0a031cd9e6a0 from=translated src=- shape=d5a390dc vocab=66053f26
+-/
 theorem exists_finset_hausdorffDist_convexified_iid_risk_bound_standard
     {Ω Z E : Type*} [MeasurableSpace Ω] [MeasurableSpace Z]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]

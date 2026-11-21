@@ -49,7 +49,9 @@ def HasExactDivisibility (μ : Measure Ω) : Prop :=
         μ.real A = a * μ.real s
 
 /-- Exact divisibility is stronger than the project's nonatomicity
-property for finite measures.-/
+property for finite measures.
+@isnad1 id=isatomle.1h2v.s4.f14104477d3e from=translated src=- shape=d047bb62 vocab=b61a6e33
+-/
 theorem HasExactDivisibility.isAtomlessMeasure
     {μ : Measure Ω} [IsFiniteMeasure μ] (hμ : HasExactDivisibility μ) :
     IsAtomlessMeasure μ := by
@@ -71,7 +73,9 @@ theorem HasExactDivisibility.isAtomlessMeasure
       ENNReal.toReal_pos hspos.ne' (measure_ne_top μ s)
     linarith
 
-/-- Restriction to a measurable set preserves exact divisibility.-/
+/-- Restriction to a measurable set preserves exact divisibility.
+@isnad1 id=hasexact.2h3v.s4.eeabe8ad3669 from=translated src=- shape=a6a6750d vocab=db7ace3f
+-/
 theorem HasExactDivisibility.restrict
     {μ : Measure Ω} (hμ : HasExactDivisibility μ)
     {s : Set Ω} (hs : MeasurableSet s) :
@@ -85,7 +89,9 @@ theorem HasExactDivisibility.restrict
   exact hmeasure
 
 /-- `measureReal` of a measurable set under the pushforward by a measurable
-equivalence.-/
+equivalence.
+@isnad1 id=eq.1h5v.s6.fd3c3497be14 from=translated src=- shape=d7b8d53d vocab=5b5b1513
+-/
 theorem measureReal_map_measurableEquiv_apply
     (μ : Measure Ω) (e : Ω ≃ᵐ Ω') {s : Set Ω'} (hs : MeasurableSet s) :
     (Measure.map e μ).real s = μ.real (e ⁻¹' s) := by
@@ -93,14 +99,18 @@ theorem measureReal_map_measurableEquiv_apply
     Measure.map_apply_of_aemeasurable e.measurable.aemeasurable hs]
 
 /-- `measureReal` is unchanged when a measurable set is transported through
-a measurable equivalence.-/
+a measurable equivalence.
+@isnad1 id=eq.1h5v.s6.169df0878c25 from=translated src=- shape=2297fde1 vocab=7f1607cd
+-/
 theorem measureReal_map_measurableEquiv_image
     (μ : Measure Ω) (e : Ω ≃ᵐ Ω') {s : Set Ω} (hs : MeasurableSet s) :
     (Measure.map e μ).real (e '' s) = μ.real s := by
   rw [measureReal_map_measurableEquiv_apply μ e ((e.measurableSet_image).2 hs),
     Set.preimage_image_eq _ e.injective]
 
-/-- Exact divisibility transports forward through a measurable equivalence.-/
+/-- Exact divisibility transports forward through a measurable equivalence.
+@isnad1 id=hasexact.1h4v.s5.6478772a1738 from=translated src=- shape=091e9c9b vocab=5c9869c3
+-/
 theorem HasExactDivisibility.map_measurableEquiv
     {μ : Measure Ω} (hμ : HasExactDivisibility μ) (e : Ω ≃ᵐ Ω') :
     HasExactDivisibility (Measure.map e μ) := by
@@ -113,7 +123,9 @@ theorem HasExactDivisibility.map_measurableEquiv
   · rw [measureReal_map_measurableEquiv_image μ e hA,
       measureReal_map_measurableEquiv_apply μ e hs, hmeasure]
 
-/-- Exact divisibility is invariant under measurable equivalences.-/
+/-- Exact divisibility is invariant under measurable equivalences.
+@isnad1 id=iff.0h4v.s5.168b016f1664 from=translated src=- shape=f09ec903 vocab=5c9869c3
+-/
 theorem hasExactDivisibility_map_measurableEquiv_iff
     (μ : Measure Ω) (e : Ω ≃ᵐ Ω') :
     HasExactDivisibility (Measure.map e μ) ↔ HasExactDivisibility μ := by
@@ -131,7 +143,9 @@ theorem hasExactDivisibility_map_measurableEquiv_iff
       rw [hpre, hmeasure, measureReal_map_measurableEquiv_image μ e hs]
   · exact fun hμ ↦ hμ.map_measurableEquiv e
 
-/-- Genuine atomlessness transports through measurable equivalences.-/
+/-- Genuine atomlessness transports through measurable equivalences.
+@isnad1 id=isatomle.1h4v.s5.7ce740566509 from=translated src=- shape=091e9c9b vocab=0c205118
+-/
 theorem IsAtomlessMeasure.map_measurableEquiv
     {μ : Measure Ω} (hμ : IsAtomlessMeasure μ) (e : Ω ≃ᵐ Ω') :
     IsAtomlessMeasure (Measure.map e μ) := by
@@ -153,7 +167,9 @@ theorem IsAtomlessMeasure.map_measurableEquiv
       Set.preimage_image_eq _ e.injective] using hAlt
 
 /-- The exact divisibility theorem already proved for finite Borel measures
-on the real line, packaged in the abstract interface.-/
+on the real line, packaged in the abstract interface.
+@isnad1 id=hasexact.0h1v.s4.044b833c7874 from=translated src=- shape=3305e152 vocab=f38fc781
+-/
 theorem hasExactDivisibility_real_of_nullSingletonClass
     (μ : Measure ℝ) [IsFiniteMeasure μ] [NullSingletonClass μ] :
     HasExactDivisibility μ := by
@@ -161,7 +177,9 @@ theorem hasExactDivisibility_real_of_nullSingletonClass
   exact exists_measurable_subset_measureReal_eq_mul μ hs ha0 ha1
 
 /-- A finite measure transported to a point-mass-free real Borel measure is
-exactly divisible.-/
+exactly divisible.
+@isnad1 id=hasexact.0h3v.s5.e4863bc9dc81 from=translated src=- shape=827ddd80 vocab=57d20ebc
+-/
 theorem hasExactDivisibility_of_measurableEquiv_real
     {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsFiniteMeasure μ] (e : Ω ≃ᵐ ℝ)
@@ -172,7 +190,9 @@ theorem hasExactDivisibility_of_measurableEquiv_real
 
 /-- Honest bridge from the project's nonatomicity property: finite
 atomlessness implies exact divisibility here only with the additional
-assumption that the measurable base is equivalent to the real Borel line.-/
+assumption that the measurable base is equivalent to the real Borel line.
+@isnad1 id=hasexact.1h3v.s4.1bd9bf294598 from=translated src=- shape=a59103dc vocab=94023022
+-/
 theorem hasExactDivisibility_of_atomless_measurableEquiv_real
     {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsFiniteMeasure μ] (hμ : IsAtomlessMeasure μ)
@@ -195,7 +215,9 @@ def IsMeasurableFinpartition (s : Finset ι)
     (⋃ i ∈ s, A i) = B
 
 /-- Exact finite measurable partition of a measurable set with prescribed
-nonnegative masses on any exactly divisible finite measure space.-/
+nonnegative masses on any exactly divisible finite measure space.
+@isnad1 id=ex.4h6v.s7.fbc2d4623330 from=translated src=- shape=01c6a7e8 vocab=ed86059b
+-/
 theorem HasExactDivisibility.exists_isMeasurableFinpartition_measureReal_eq
     {μ : Measure Ω} [IsFiniteMeasure μ] (hμ : HasExactDivisibility μ)
     (s : Finset ι) (B : Set Ω) (hB : MeasurableSet B)

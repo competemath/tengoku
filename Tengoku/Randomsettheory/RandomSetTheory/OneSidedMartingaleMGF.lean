@@ -50,6 +50,9 @@ structure HasCondOneSidedMGF (m : MeasurableSpace Omega) (hm : m ≤ mOmega)
 
 namespace HasCondOneSidedMGF
 
+/--
+@isnad1 id=eventual.3h7v.s6.bdc3f762d302 from=translated src=- shape=a0f058a5 vocab=16494823
+-/
 theorem ae_condExp_le
     {X : Omega → ℝ} {psi : ℝ → ℝ} {hm : m ≤ mOmega}
     (hX : HasCondOneSidedMGF m hm X psi mu)
@@ -61,7 +64,9 @@ theorem ae_condExp_le
 end HasCondOneSidedMGF
 
 /-- Exponentials of a sum are integrable under deterministic upper bounds
-when the Laplace parameter is nonnegative.-/
+when the Laplace parameter is nonnegative.
+@isnad1 id=integrab.5h8v.s7.278bd10b4f36 from=translated src=- shape=c2f77a9a vocab=6d1535cc
+-/
 theorem integrable_exp_mul_add_of_ae_le
     [IsFiniteMeasure mu]
     {X Y : Omega → ℝ} (hX : AEMeasurable X mu) (hY : AEMeasurable Y mu)
@@ -76,7 +81,9 @@ theorem integrable_exp_mul_add_of_ae_le
   exact exp_le_exp.mpr
     (mul_le_mul_of_nonneg_left (add_le_add hXomega hYomega) ht)
 
-/-- The zero random variable has zero one-sided exponent.-/
+/-- The zero random variable has zero one-sided exponent.
+@isnad1 id=hasonesi.0h3v.s5.84d9cba0774d from=translated src=- shape=4c521acb vocab=211a1270
+-/
 @[simp] theorem HasOneSidedMGF.zero [IsProbabilityMeasure mu] :
     HasOneSidedMGF (fun _ : Omega ↦ 0) (fun _ ↦ 0) mu := by
   refine
@@ -89,7 +96,9 @@ theorem integrable_exp_mul_add_of_ae_le
   · intro t _ht
     simp [mgf]
 
-/-- An ordinary one-sided MGF bound composes with a conditional one.-/
+/-- An ordinary one-sided MGF bound composes with a conditional one.
+@isnad1 id=hasonesi.6h10v.s7.8ad28b6da650 from=translated src=- shape=6cfd3cfe vocab=b41a55a3
+-/
 theorem HasOneSidedMGF.add_of_hasCondOneSidedMGF
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     {X Y : Omega → ℝ} {psiX psiY : ℝ → ℝ}
@@ -154,7 +163,9 @@ theorem HasOneSidedMGF.add_of_hasCondOneSidedMGF
 
 variable (filtration : Filtration ℕ mOmega)
 
-/-- A finite sum inherits the sum of deterministic upper bounds.-/
+/-- A finite sum inherits the sum of deterministic upper bounds.
+@isnad1 id=eventual.1h6v.s6.76f69af167a3 from=translated src=- shape=b831e226 vocab=64c863a7
+-/
 theorem ae_sum_range_le_sum
     {Y : ℕ → Omega → ℝ} {B : ℕ → ℝ} {n : ℕ}
     (hbound : ∀ i < n, ∀ᵐ omega ∂mu, Y i omega ≤ B i) :
@@ -168,7 +179,9 @@ theorem ae_sum_range_le_sum
   exact Finset.sum_le_sum fun i hi ↦ homega i hi
 
 /-- Finite sums of strongly adapted conditional one-sided MGF increments
-have exponent equal to the sum of their deterministic exponents.-/
+have exponent equal to the sum of their deterministic exponents.
+@isnad1 id=hasonesi.4h8v.s7.51efecf97e29 from=translated src=- shape=9f99ab38 vocab=6825a504
+-/
 theorem HasOneSidedMGF.sum_of_hasCondOneSidedMGF
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     {Y : ℕ → Omega → ℝ} {psi : ℕ → ℝ → ℝ} {B : ℕ → ℝ}
@@ -215,7 +228,9 @@ theorem HasOneSidedMGF.sum_of_hasCondOneSidedMGF
 /-! ## Strong-moment constructors -/
 
 /-- The unconditional strong-moment Taylor theorem produces a generic
-one-sided MGF certificate.-/
+one-sided MGF certificate.
+@isnad1 id=hasonesi.7h6v.s8.f81ec28df68a from=translated src=- shape=df5f7972 vocab=02040802
+-/
 theorem hasOneSidedMGF_of_strongMoment
     [IsProbabilityMeasure mu]
     (X : Omega → ℝ) (q : ℕ) (hq : 3 ≤ q) {y : ℝ} (hy : 0 ≤ y)
@@ -245,7 +260,9 @@ theorem hasOneSidedMGF_of_strongMoment
       X q hq ht hy hX hXsq hpow hupper hcenter
 
 /-- The conditional strong-moment theorem produces a generic conditional
-one-sided MGF certificate.-/
+one-sided MGF certificate.
+@isnad1 id=hascondo.10h9v.s8.32285cadd9c1 from=translated src=- shape=38eed15d vocab=d9a475aa
+-/
 theorem hasCondOneSidedMGF_of_strongMoment
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (hm : m ≤ mOmega) (X : Omega → ℝ) (q : ℕ) (hq : 3 ≤ q)

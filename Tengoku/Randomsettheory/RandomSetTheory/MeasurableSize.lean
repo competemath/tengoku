@@ -38,7 +38,9 @@ this supremum finite and attained.-/
 def setRadiusAt {E : Type*} [PseudoMetricSpace E] (K : Set E) (x₀ : E) : ℝ :=
   sSup ((fun x => dist x x₀) '' K)
 
-/-- Every point of a compact set lies within its radius about `x₀`.-/
+/-- Every point of a compact set lies within its radius about `x₀`.
+@isnad1 id=le.2h4v.s5.496ef01d3b69 from=translated src=- shape=3c7ef508 vocab=6d50ae0d
+-/
 theorem dist_le_setRadiusAt
     {E : Type*} [PseudoMetricSpace E] {K : Set E} {x x₀ : E}
     (hcompact : IsCompact K) (hx : x ∈ K) :
@@ -47,7 +49,9 @@ theorem dist_le_setRadiusAt
   · exact (hcompact.image (continuous_id.dist continuous_const)).bddAbove
   · exact ⟨x, hx, rfl⟩
 
-/-- The radius of a nonempty compact set is nonnegative.-/
+/-- The radius of a nonempty compact set is nonnegative.
+@isnad1 id=le.2h3v.s5.09c83f2bbbb4 from=translated src=- shape=59f4c003 vocab=0b5ed03e
+-/
 theorem setRadiusAt_nonneg
     {E : Type*} [PseudoMetricSpace E] {K : Set E} {x₀ : E}
     (hcompact : IsCompact K) (hne : K.Nonempty) :
@@ -55,7 +59,9 @@ theorem setRadiusAt_nonneg
   obtain ⟨x, hx⟩ := hne
   exact dist_nonneg.trans (dist_le_setRadiusAt hcompact hx)
 
-/-- The radius of a nonempty compact set is attained.-/
+/-- The radius of a nonempty compact set is attained.
+@isnad1 id=ex.2h3v.s5.96213066c860 from=translated src=- shape=15da2293 vocab=69dade08
+-/
 theorem exists_mem_setRadiusAt_eq_dist
     {E : Type*} [PseudoMetricSpace E] {K : Set E} {x₀ : E}
     (hcompact : IsCompact K) (hne : K.Nonempty) :
@@ -65,7 +71,9 @@ theorem exists_mem_setRadiusAt_eq_dist
   exact ⟨x, hx, heq⟩
 
 /-- For a nonempty compact set, the radius about `x₀` is exactly its
-Hausdorff distance to the singleton `{x₀}`.-/
+Hausdorff distance to the singleton `{x₀}`.
+@isnad1 id=eq.2h3v.s5.9d0631fb663d from=translated src=- shape=51089c33 vocab=ba73f909
+-/
 theorem setRadiusAt_eq_hausdorffDist_singleton
     {E : Type*} [PseudoMetricSpace E] {K : Set E} {x₀ : E}
     (hcompact : IsCompact K) (hne : K.Nonempty) :
@@ -94,7 +102,9 @@ theorem setRadiusAt_eq_hausdorffDist_singleton
         simpa only [dist_comm] using
           (dist_le_setRadiusAt (x₀ := x₀) hcompact hy)⟩
 
-/-- The radius about a measurably varying centre is measurable.-/
+/-- The radius about a measurably varying centre is measurable.
+@isnad1 id=measurab.4h4v.s6.0fead79f4ca7 from=translated src=- shape=9c59e498 vocab=e64d4f59
+-/
 theorem measurable_setRadiusAt
     {Omega E : Type*} [MeasurableSpace Omega]
     [MetricSpace E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -122,7 +132,9 @@ theorem measurable_setRadiusAt
   exact hhausdorff
 
 /-- In particular, the radius about a fixed deterministic point is
-measurable.-/
+measurable.
+@isnad1 id=measurab.3h4v.s6.00d383787108 from=translated src=- shape=a8b493a7 vocab=e64d4f59
+-/
 theorem measurable_setRadiusAt_const
     {Omega E : Type*} [MeasurableSpace Omega]
     [MetricSpace E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -136,7 +148,9 @@ theorem measurable_setRadiusAt_const
 /-! ## Diameter and radius bounds -/
 
 /-- The diameter of a compact set is at most twice its radius about any
-point.-/
+point.
+@isnad1 id=le.2h3v.s5.a0f9c94bf75a from=translated src=- shape=8c7b1202 vocab=1ec3f356
+-/
 theorem diam_le_two_mul_setRadiusAt
     {E : Type*} [PseudoMetricSpace E] {K : Set E} {x₀ : E}
     (hcompact : IsCompact K) (hne : K.Nonempty) :
@@ -152,7 +166,9 @@ theorem diam_le_two_mul_setRadiusAt
     _ = 2 * setRadiusAt K x₀ := by ring
 
 /-- If the centre belongs to the set, its radius is bounded by the
-diameter.-/
+diameter.
+@isnad1 id=le.2h3v.s5.0c10efdc73c0 from=translated src=- shape=38abaca2 vocab=6152a2a8
+-/
 theorem setRadiusAt_le_diam_of_mem
     {E : Type*} [PseudoMetricSpace E] {K : Set E} {x₀ : E}
     (hcompact : IsCompact K) (hx₀ : x₀ ∈ K) :
@@ -166,7 +182,9 @@ theorem setRadiusAt_le_diam_of_mem
 /-! ## Measurability of the diameter -/
 
 /-- A Castaing representation computes the extended diameter as a double
-countable supremum of pairwise extended distances.-/
+countable supremum of pairwise extended distances.
+@isnad1 id=eq.3h4v.s7.befcf0507f70 from=translated src=- shape=48b2c920 vocab=3e118f7e
+-/
 theorem ediam_eq_iSup_edist_castaingRepresentation
     {Omega E : Type*} [MeasurableSpace Omega]
     [MetricSpace E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -192,7 +210,9 @@ theorem ediam_eq_iSup_edist_castaingRepresentation
           (castaingRepresentation hS hclosed hne j omega) := rfl
 
 /-- The extended diameter of a nonempty closed-valued Effros
-correspondence is measurable.-/
+correspondence is measurable.
+@isnad1 id=measurab.3h3v.s6.9a6d771a31a7 from=translated src=- shape=2864a6e5 vocab=1174c247
+-/
 theorem measurable_ediam_correspondence
     {Omega E : Type*} [MeasurableSpace Omega]
     [MetricSpace E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -216,7 +236,9 @@ theorem measurable_ediam_correspondence
 /-- The ordinary real diameter is measurable.  For compact fibres this is
 the usual finite diameter; the statement remains valid for arbitrary
 nonempty closed fibres because `Metric.diam` is defined as
-`ENNReal.toReal Metric.ediam`.-/
+`ENNReal.toReal Metric.ediam`.
+@isnad1 id=measurab.3h3v.s6.7f7652574147 from=translated src=- shape=2864a6e5 vocab=965cc9c7
+-/
 theorem measurable_diam_correspondence
     {Omega E : Type*} [MeasurableSpace Omega]
     [MetricSpace E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -227,7 +249,9 @@ theorem measurable_diam_correspondence
     Measurable (fun omega => Metric.diam (S omega)) := by
   exact (measurable_ediam_correspondence hS hclosed hne).ennreal_toReal
 
-/-- Compact-valued specialization of diameter measurability.-/
+/-- Compact-valued specialization of diameter measurability.
+@isnad1 id=measurab.3h3v.s6.ca7d7265df12 from=translated src=- shape=2864a6e5 vocab=29d04b54
+-/
 theorem measurable_diam_compact_correspondence
     {Omega E : Type*} [MeasurableSpace Omega]
     [MetricSpace E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -244,11 +268,17 @@ theorem measurable_diam_compact_correspondence
 def setNormEnvelope {E : Type*} [SeminormedAddCommGroup E] (K : Set E) : ℝ :=
   setRadiusAt K 0
 
+/--
+@isnad1 id=eq.0h2v.s4.675cfa30bb1b from=translated src=- shape=fca43f59 vocab=98695a39
+-/
 theorem setNormEnvelope_eq_sSup_norm
     {E : Type*} [SeminormedAddCommGroup E] (K : Set E) :
     setNormEnvelope K = sSup ((fun x => ‖x‖) '' K) := by
   simp only [setNormEnvelope, setRadiusAt, dist_zero_right]
 
+/--
+@isnad1 id=le.2h3v.s5.b062c7e07d2f from=translated src=- shape=952598e0 vocab=0a784ef2
+-/
 theorem norm_le_setNormEnvelope
     {E : Type*} [SeminormedAddCommGroup E] {K : Set E} {x : E}
     (hcompact : IsCompact K) (hx : x ∈ K) :
@@ -256,6 +286,9 @@ theorem norm_le_setNormEnvelope
   simpa only [setNormEnvelope, dist_zero_right] using
     (dist_le_setRadiusAt hcompact hx : dist x 0 ≤ setRadiusAt K 0)
 
+/--
+@isnad1 id=measurab.3h3v.s6.0c607fca5694 from=translated src=- shape=2864a6e5 vocab=98e9e69a
+-/
 theorem measurable_setNormEnvelope
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [CompleteSpace E]
@@ -267,6 +300,9 @@ theorem measurable_setNormEnvelope
     Measurable (fun omega => setNormEnvelope (S omega)) := by
   exact measurable_setRadiusAt_const hS hcompact hne 0
 
+/--
+@isnad1 id=le.2h2v.s5.02d0eeb9032d from=translated src=- shape=4b7c7c43 vocab=c5fa6669
+-/
 theorem diam_le_two_mul_setNormEnvelope
     {E : Type*} [NormedAddCommGroup E] {K : Set E}
     (hcompact : IsCompact K) (hne : K.Nonempty) :

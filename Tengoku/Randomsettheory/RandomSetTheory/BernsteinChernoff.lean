@@ -37,6 +37,9 @@ def bernsteinOptimalParameter (V c x : ℝ) : ℝ :=
   let a := Real.sqrt (2 * x / V)
   a / (1 + c * a / 3)
 
+/--
+@isnad1 id=lt.3h3v.s5.3b39aa51aa83 from=translated src=- shape=10bfa5ba vocab=32151baf
+-/
 theorem bernsteinOptimalParameter_pos
     {V c x : ℝ} (hV : 0 < V) (hc : 0 ≤ c) (hx : 0 < x) :
     0 < bernsteinOptimalParameter V c x := by
@@ -46,7 +49,9 @@ theorem bernsteinOptimalParameter_pos
   exact div_pos ha hden
 
 /-- Exact objective value of the rational Bernstein exponent at its
-canonical parameter.-/
+canonical parameter.
+@isnad1 id=eq.3h3v.s6.0f8514e6f75a from=translated src=- shape=a615a0ea vocab=50c8d756
+-/
 theorem bernsteinRationalObjective_optimal
     {V c x : ℝ} (hV : 0 < V) (hc : 0 ≤ c) (hx : 0 < x) :
     (bernsteinRationalExponent V c
@@ -90,7 +95,9 @@ theorem bernsteinRationalObjective_optimal
 
 /-- Any nonnegative exponent which is bounded by the rational Bernstein
 exponent at the canonical parameter has the usual
-Gaussian-plus-linear Chernoff transform.-/
+Gaussian-plus-linear Chernoff transform.
+@isnad1 id=le.5h4v.s7.ae256532c125 from=translated src=- shape=ec6a103a vocab=719c1414
+-/
 theorem chernoffTransform_le_sqrt_add_linear_of_le_bernsteinOptimal
     {psi : ℝ → ℝ} {V c x : ℝ}
     (hV : 0 < V) (hc : 0 ≤ c) (hx : 0 < x)

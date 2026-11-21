@@ -42,7 +42,9 @@ def jointLawAttainableMoments (mu : Measure O) (S : O → Set X)
 
 /-- Supported conditional kernels and compatible joint-law couplings generate
 exactly the same moments.  This is the precise disintegration bridge behind
-the report's notation `P(do,dx) = P_obs(do) K(dx|o)`.-/
+the report's notation `P(do,dx) = P_obs(do) K(dx|o)`.
+@isnad1 id=eq.2h6v.s6.537d3a214cba from=translated src=- shape=c2bae277 vocab=17aefe00
+-/
 theorem jointLawAttainableMoments_eq_kernelAttainableMoments
     [StandardBorelSpace X] [Nonempty X]
     {mu : Measure O} [IsProbabilityMeasure mu]
@@ -93,7 +95,9 @@ theorem jointLawAttainableMoments_eq_kernelAttainableMoments
 
 /-- Sharp Aumann representation stated directly for compatible joint laws.
 On a finite atomless observed base and in a finite-dimensional target, no
-extra closedness or purification hypothesis remains.-/
+extra closedness or purification hypothesis remains.
+@isnad1 id=eq.10h7v.s8.db190bb9c2f7 from=translated src=- shape=37cd585a vocab=63d43e33
+-/
 theorem jointLawAttainableMoments_eq_aumannExpectation_of_atomless
     {H : Type*}
     [MetricSpace X] [CompleteSpace X] [BorelSpace X]

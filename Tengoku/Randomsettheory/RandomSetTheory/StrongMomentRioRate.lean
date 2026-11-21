@@ -34,7 +34,9 @@ def empiricalPolynomialScale (q n : Nat) (K : Real) : Real :=
   2 * K / (n : Real) ^ (1 - 1 / (q : Real))
 
 /-- Exact simplification of the strong-moment root at the empirical moment
-value produced by `EmpiricalEnvelopeMomentScaling`.-/
+value produced by `EmpiricalEnvelopeMomentScaling`.
+@isnad1 id=eq.3h3v.s6.1d3a133c9d01 from=translated src=- shape=a1f776cf vocab=09f07062
+-/
 theorem strongMomentQScale_empiricalMoment
     {q n : Nat} (hq : 1 <= q) (hn : 0 < n) {K : Real} (hK : 0 < K) :
     strongMomentQScale q
@@ -60,7 +62,9 @@ theorem strongMomentQScale_empiricalMoment
   rw [hexponent]
 
 /-- The same simplification after adding the confidence power
-`alpha^(-1/q)`.-/
+`alpha^(-1/q)`.
+@isnad1 id=eq.3h4v.s7.9e4b3b64fc8a from=translated src=- shape=405c6229 vocab=920dd872
+-/
 theorem rioConfidenceScale_empiricalMoment
     {q n : Nat} (hq : 1 <= q) (hn : 0 < n) {K alpha : Real}
     (hK : 0 < K) :
@@ -77,7 +81,9 @@ def rioPolynomialCoefficient (q : Nat) : Real :=
   1 + 2 / (q : Real) + Real.exp 1 * (q : Real) / 3
 
 /-- The logarithmic confidence factor is bounded by the polynomial factor
-`q * alpha^(-1/q)`.-/
+`q * alpha^(-1/q)`.
+@isnad1 id=le.2h2v.s6.232b0ba3ac1a from=translated src=- shape=95d7db40 vocab=cf21e088
+-/
 theorem neg_log_le_natCast_mul_inv_rpow
     {q : Nat} (hq : 1 <= q) {alpha : Real}
     (halpha0 : 0 < alpha) :
@@ -99,7 +105,9 @@ theorem neg_log_le_natCast_mul_inv_rpow
 
 /-- Report-shaped polynomial upper bound for the exact Rio confidence
 radius.  The Gaussian part is unchanged; all strong-moment contributions
-are collected into one explicit order-`q` coefficient.-/
+are collected into one explicit order-`q` coefficient.
+@isnad1 id=le.3h4v.s6.98d9048cc1d4 from=translated src=- shape=95ce4740 vocab=784b527c
+-/
 theorem rioStrongMomentConfidenceRadius_le_polynomialRate
     {q : Nat} (hq : 1 <= q) {V Q alpha : Real}
     (hQ : 0 < Q) (halpha0 : 0 < alpha) :
@@ -124,7 +132,9 @@ theorem rioStrongMomentConfidenceRadius_le_polynomialRate
 
 /-- Fully explicit empirical specialization of the polynomial-rate bound.
 The order-two term is kept under its exact square root, while the order-`q`
-term is displayed at scale `Kq / n^(1-1/q) * alpha^(-1/q)`.-/
+term is displayed at scale `Kq / n^(1-1/q) * alpha^(-1/q)`.
+@isnad1 id=le.4h5v.s8.c15a96eab38d from=translated src=- shape=abb42f57 vocab=8ad4dfe8
+-/
 theorem rioStrongMomentConfidenceRadius_empiricalMoment_le
     {q n : Nat} (hq : 1 <= q) (hn : 0 < n)
     {Ktwo Kq alpha : Real} (hKq : 0 < Kq) (halpha0 : 0 < alpha) :

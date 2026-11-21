@@ -24,7 +24,9 @@ noncomputable section
 namespace RandomSetTheory
 
 /-- Distance to a fixed point is 1-Lipschitz with respect to Hausdorff
-distance on sets at finite Hausdorff distance.-/
+distance on sets at finite Hausdorff distance.
+@isnad1 id=le.1h4v.s5.7bc370199748 from=translated src=- shape=e6b41e4d vocab=47c56665
+-/
 theorem abs_infDist_sub_infDist_le_hausdorffDist
     {X : Type*} [PseudoMetricSpace X] (x : X) (s t : Set X)
     (hfin : hausdorffEDist s t ≠ ⊤) :
@@ -38,13 +40,18 @@ theorem abs_infDist_sub_infDist_le_hausdorffDist
   constructor <;> linarith
 
 /-- In a normed space, the minimum-norm criterion (distance from zero) is
-stable under Hausdorff perturbations.-/
+stable under Hausdorff perturbations.
+@isnad1 id=le.1h3v.s6.ccf940a1502d from=translated src=- shape=dc5f3b1e vocab=d363c82a
+-/
 theorem abs_infDist_zero_sub_infDist_zero_le_hausdorffDist
     {X : Type*} [SeminormedAddCommGroup X] (s t : Set X)
     (hfin : hausdorffEDist s t ≠ ⊤) :
     |infDist 0 s - infDist 0 t| ≤ hausdorffDist s t :=
   abs_infDist_sub_infDist_le_hausdorffDist 0 s t hfin
 
+/--
+@isnad1 id=iscompac.1h2v.s7.d72c27da20d8 from=translated src=- shape=a750a729 vocab=032edfcb
+-/
 theorem closedConvexHull_compact {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {K : Set E} (hK : IsCompact K) :
@@ -52,6 +59,9 @@ theorem closedConvexHull_compact {E : Type*}
   rw [closedConvexHull_eq_closure_convexHull]
   exact (isBounded_convexHull.mpr hK.isBounded).isCompact_closure
 
+/--
+@isnad1 id=eq.2h3v.s7.8e8517449b2e from=translated src=- shape=808cd3bf vocab=cd1e4ae8
+-/
 theorem supportFunction_closedConvexHull {E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     {K : Set E} (hK : IsCompact K) (hKne : K.Nonempty) (u : E) :
@@ -71,7 +81,9 @@ theorem supportFunction_closedConvexHull {E : Type*}
   · exact supportFunction_mono hK hc hKne subset_closedConvexHull u
 
 /-- A compact nonempty convex set is the intersection of the closed
-half-spaces determined by its support function.-/
+half-spaces determined by its support function.
+@isnad1 id=iff.3h3v.s7.78db50dca3ea from=translated src=- shape=4e11e96a vocab=60eaed4f
+-/
 theorem mem_iff_inner_le_supportFunction {E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {K : Set E} (hK : IsCompact K) (hKne : K.Nonempty)
@@ -119,7 +131,9 @@ theorem eq_of_supportFunction_eq {E : Type*}
   simp_rw [h]
 
 /-- Closed convexification commutes with empirical Minkowski averaging for
-compact nonempty values.-/
+compact nonempty values.
+@isnad1 id=eq.2h4v.s8.39d93a6a4247 from=translated src=- shape=98b259d8 vocab=664d8be3
+-/
 theorem closedConvexHull_minkowskiAverage {E ι : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (s : Finset ι) (K : ι → Set E)
@@ -151,7 +165,9 @@ theorem closedConvexHull_minkowskiAverage {E ι : Type*}
   intro i hi
   exact (supportFunction_closedConvexHull (hK i hi) (hKne i hi) u).symm
 
-/-- One-sided support-function stability under Hausdorff perturbations.-/
+/-- One-sided support-function stability under Hausdorff perturbations.
+@isnad1 id=le.4h4v.s6.2fa500368764 from=translated src=- shape=442a1114 vocab=5abfe6a4
+-/
 theorem supportFunction_sub_le_norm_mul_hausdorffDist {E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {K L : Set E} (hK : IsCompact K) (hL : IsCompact L)
@@ -177,7 +193,9 @@ theorem supportFunction_sub_le_norm_mul_hausdorffDist {E : Type*}
     _ ≤ ‖u‖ * hausdorffDist K L :=
       mul_le_mul_of_nonneg_left hdist (norm_nonneg _)
 
-/-- Hausdorff distance controls the support functions in every direction.-/
+/-- Hausdorff distance controls the support functions in every direction.
+@isnad1 id=le.4h4v.s6.3207f12d6d32 from=translated src=- shape=da076f1f vocab=13092942
+-/
 theorem abs_supportFunction_sub_le_hausdorffDist {E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {K L : Set E} (hK : IsCompact K) (hL : IsCompact L)
@@ -231,7 +249,9 @@ private theorem exists_mem_dist_le_of_supportFunction_sub_le
       nlinarith
   exact ⟨y, hy, by simpa [dist_eq_norm] using hnorm⟩
 
-/-- Two directed support inequalities control Hausdorff distance.-/
+/-- Two directed support inequalities control Hausdorff distance.
+@isnad1 id=le.9h4v.s8.55bc79370096 from=translated src=- shape=2d69089c vocab=4d0df4d4
+-/
 theorem hausdorffDist_le_of_supportFunction_sub_le {E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {K L : Set E} (hK : IsCompact K) (hL : IsCompact L)
@@ -252,7 +272,9 @@ theorem hausdorffDist_le_of_supportFunction_sub_le {E : Type*}
       hL hK hKne hKconv hr hLK hy
     exact ⟨x, hx, by simpa [dist_comm] using hdist⟩
 
-/-- A uniform absolute support bound controls Hausdorff distance.-/
+/-- A uniform absolute support bound controls Hausdorff distance.
+@isnad1 id=le.8h4v.s8.9f9447d1994b from=translated src=- shape=63141e5a vocab=845b6590
+-/
 theorem hausdorffDist_le_of_abs_supportFunction_sub_le {E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {K L : Set E} (hK : IsCompact K) (hL : IsCompact L)
@@ -271,7 +293,9 @@ theorem hausdorffDist_le_of_abs_supportFunction_sub_le {E : Type*}
     rw [abs_sub_comm] at hu
     exact (le_abs_self _).trans hu
 
-/-- It is enough to control support functions on the closed unit ball.-/
+/-- It is enough to control support functions on the closed unit ball.
+@isnad1 id=le.8h4v.s8.50c47becf3a7 from=translated src=- shape=abf2990b vocab=4427e49b
+-/
 theorem hausdorffDist_le_of_unitBall_supportFunction_sub_le {E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {K L : Set E} (hK : IsCompact K) (hL : IsCompact L)
@@ -310,7 +334,9 @@ theorem hausdorffDist_le_of_unitBall_supportFunction_sub_le {E : Type*}
       _ = r * ‖u‖ := mul_comm _ _
 
 /-- A finite `ε`-net of the unit ball reduces Hausdorff control to finitely
-many support-function evaluations.-/
+many support-function evaluations.
+@isnad1 id=le.12h8v.s8.8df00d4abdc5 from=translated src=- shape=a53db1ac vocab=006766cb
+-/
 theorem hausdorffDist_le_of_finset_net_supportFunction {E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {K L : Set E} (hK : IsCompact K) (hL : IsCompact L)
@@ -361,7 +387,9 @@ def supportHausdorffGap {E : Type*}
     Metric.closedBall 0 1)
 
 /-- For compact nonempty convex sets, Hausdorff distance is exactly the
-uniform distance of support functions on the unit ball.-/
+uniform distance of support functions on the unit ball.
+@isnad1 id=eq.6h3v.s7.fa9fcbcf2d7f from=translated src=- shape=d366f3cc vocab=d0086c72
+-/
 theorem supportHausdorffGap_eq_hausdorffDist {E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {K L : Set E} (hK : IsCompact K) (hL : IsCompact L)
@@ -400,7 +428,9 @@ theorem supportHausdorffGap_eq_hausdorffDist {E : Type*}
       apply le_csSup hAbdd
       exact ⟨u, by simpa [Metric.mem_closedBall] using hu, rfl⟩
 
-/-- Closed convexification is nonexpansive for Hausdorff distance.-/
+/-- Closed convexification is nonexpansive for Hausdorff distance.
+@isnad1 id=le.4h3v.s7.215366f8b4bd from=translated src=- shape=bc465d5a vocab=31f057a8
+-/
 theorem hausdorffDist_closedConvexHull_le {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     {s t : Set E} (hs : IsCompact s) (ht : IsCompact t)
@@ -451,7 +481,9 @@ theorem hausdorffDist_closedConvexHull_le {E : Type*}
 
 /-- A Lipschitz map contracts Hausdorff distance up to its Lipschitz
 constant.  Compactness and nonemptiness make the real Hausdorff distances
-finite and provide nearest points in both directions.-/
+finite and provide nearest points in both directions.
+@isnad1 id=le.5h6v.s6.7cd1f8e49c23 from=translated src=- shape=c64c597d vocab=d42423a4
+-/
 theorem hausdorffDist_image_le_of_lipschitzWith
     {X Y : Type*} [PseudoMetricSpace X] [PseudoMetricSpace Y]
     {f : X → Y} {K L : Set X} {c : NNReal}
@@ -486,7 +518,9 @@ theorem hausdorffDist_image_le_of_lipschitzWith
         simpa [hausdorffEDist_comm] using hfin
 
 /-- To control the nonconvexity of a set, it is enough to approximate every
-point of its closed convex hull by a point of the original set.-/
+point of its closed convex hull by a point of the original set.
+@isnad1 id=le.2h3v.s7.551ceac0ae55 from=translated src=- shape=bb328b90 vocab=b2b9189f
+-/
 theorem hausdorffDist_self_closedConvexHull_le_of_approx
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {s : Set E} {r : ℝ} (hr : 0 ≤ r)

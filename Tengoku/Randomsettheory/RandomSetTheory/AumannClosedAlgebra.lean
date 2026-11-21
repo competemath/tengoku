@@ -34,7 +34,9 @@ namespace RandomSetTheory
 
 /-! ## Deterministic closed-convex algebra -/
 
-/-- Closed convexification commutes with scalar multiplication.-/
+/-- Closed convexification commutes with scalar multiplication.
+@isnad1 id=eq.0h3v.s8.65c6b7e62867 from=translated src=- shape=571741ec vocab=e326f353
+-/
 theorem closedConvexHull_smul_set_eq
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (c : ℝ) (K : Set E) :
@@ -48,7 +50,9 @@ theorem closedConvexHull_smul_set_eq
 
 No measurable decomposition of a selection of `S ω + T ω` is assumed.  The
 proof instead combines the exact support identity for closed Aumann
-expectations with pointwise Minkowski additivity of support functions.-/
+expectations with pointwise Minkowski additivity of support functions.
+@isnad1 id=eq.10h7v.s9.5e486fa772f7 from=translated src=- shape=71b4dab8 vocab=d23ffc96
+-/
 theorem closedConvexHull_closure_aumannExpectation_add
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]
@@ -182,7 +186,9 @@ theorem closedConvexHull_closure_aumannExpectation_add
 /-- Closed convexified Aumann expectation commutes with every deterministic
 scalar multiplication.  For `c ≠ 0`, this is already exact before taking
 closures.  For `c = 0`, nonemptiness of the Effros correspondence ensures
-that both sides reduce to the singleton `{0}`.-/
+that both sides reduce to the singleton `{0}`.
+@isnad1 id=eq.5h6v.s9.5b0334a32177 from=translated src=- shape=e9801488 vocab=f0450533
+-/
 theorem closedConvexHull_closure_aumannExpectation_smul
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]

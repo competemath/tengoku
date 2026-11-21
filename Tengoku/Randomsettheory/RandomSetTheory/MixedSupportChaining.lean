@@ -47,12 +47,18 @@ def mixedEuclideanThreshold (σ₂ σ₁ : ℝ) (d : ℕ) (x : ℝ)
       Real.sqrt (2 * mixedEuclideanConfidence d x k) +
     6 * σ₁ * ((1 / 2 : ℝ) ^ k) * mixedEuclideanConfidence d x k
 
+/--
+@isnad1 id=le.1h3v.s4.e3f0a25f6d1f from=translated src=- shape=144bfabc vocab=7f6b9dae
+-/
 theorem mixedEuclideanConfidence_nonneg (d : ℕ) {x : ℝ}
     (hx : 0 ≤ x) (k : ℕ) :
     0 ≤ mixedEuclideanConfidence d x k := by
   unfold mixedEuclideanConfidence
   positivity
 
+/--
+@isnad1 id=le.3h5v.s5.c203d34afb44 from=translated src=- shape=17dd1c97 vocab=1cda453b
+-/
 theorem mixedEuclideanThreshold_nonneg {σ₂ σ₁ : ℝ}
     (hσ₂ : 0 ≤ σ₂) (hσ₁ : 0 ≤ σ₁) (d : ℕ) {x : ℝ}
     (hx : 0 ≤ x) (k : ℕ) :
@@ -67,7 +73,9 @@ theorem mixedEuclideanThreshold_nonneg {σ₂ σ₁ : ℝ}
     (mul_nonneg (mul_nonneg (mul_nonneg (by positivity) hσ₂) hp) hs)
     (mul_nonneg (mul_nonneg (mul_nonneg (by positivity) hσ₁) hp) hc)
 
-/-- Conservative square-root split used in the `γ₂` part of the sum.-/
+/-- Conservative square-root split used in the `γ₂` part of the sum.
+@isnad1 id=le.1h3v.s6.0e5980fef04f from=translated src=- shape=38ad0db2 vocab=fb2ad3f3
+-/
 theorem sqrt_mixedEuclideanConfidence_le (d : ℕ) {x : ℝ}
     (hx : 0 ≤ x) (k : ℕ) :
     Real.sqrt (2 * mixedEuclideanConfidence d x k) ≤
@@ -159,6 +167,9 @@ private theorem hasSum_mixedEuclideanMajorant
   convert hsum' using 1
   ring
 
+/--
+@isnad1 id=summable.3h4v.s5.c274878e8698 from=translated src=- shape=cbadd400 vocab=391f5a6a
+-/
 theorem summable_mixedEuclideanThreshold {σ₂ σ₁ : ℝ}
     (hσ₂ : 0 ≤ σ₂) (hσ₁ : 0 ≤ σ₁)
     (d : ℕ) {x : ℝ} (hx : 0 ≤ x) :
@@ -169,7 +180,9 @@ theorem summable_mixedEuclideanThreshold {σ₂ σ₁ : ℝ}
     (hasSum_mixedEuclideanMajorant σ₂ σ₁ d x).summable
 
 /-- Closed bound for the mixed entropy sum.  The constants are deliberately
-conservative; their important feature is the optimal dependence on `d,x`.-/
+conservative; their important feature is the optimal dependence on `d,x`.
+@isnad1 id=le.3h4v.s7.f52c10b81b26 from=translated src=- shape=c3bcd134 vocab=4a6ba6ae
+-/
 theorem tsum_mixedEuclideanThreshold_le {σ₂ σ₁ : ℝ}
     (hσ₂ : 0 ≤ σ₂) (hσ₁ : 0 ≤ σ₁)
     (d : ℕ) {x : ℝ} (hx : 0 ≤ x) :
@@ -198,6 +211,9 @@ def mixedEuclideanEntropyCost (d : ℕ) (x : ℝ) (k : ℕ) : ℝ :=
   Real.exp (4 * (d : ℝ) * (k + 2 : ℝ)) *
     (2 * Real.exp (-mixedEuclideanConfidence d x k))
 
+/--
+@isnad1 id=eq.0h3v.s6.25968a759eae from=translated src=- shape=ee2bfeb1 vocab=28771aa5
+-/
 theorem mixedEuclideanEntropyCost_eq (d : ℕ) (x : ℝ) (k : ℕ) :
     mixedEuclideanEntropyCost d x k =
       2 * Real.exp (-x) * (Real.exp (-2)) ^ 2 *
@@ -224,6 +240,9 @@ theorem mixedEuclideanEntropyCost_eq (d : ℕ) (x : ℝ) (k : ℕ) :
     _ = 2 * Real.exp (-x) * (Real.exp (-2)) ^ 2 *
         (Real.exp (-2)) ^ k := by rw [pow_add]; ring
 
+/--
+@isnad1 id=summable.0h2v.s4.35de13bf811f from=translated src=- shape=27343aff vocab=a3344ba6
+-/
 theorem summable_mixedEuclideanEntropyCost (d : ℕ) (x : ℝ) :
     Summable (mixedEuclideanEntropyCost d x) := by
   let q : ℝ := Real.exp (-2)
@@ -236,6 +255,9 @@ theorem summable_mixedEuclideanEntropyCost (d : ℕ) (x : ℝ) :
   exact hscaled.congr (fun k => by
     simpa only [q] using (mixedEuclideanEntropyCost_eq d x k).symm)
 
+/--
+@isnad1 id=le.0h2v.s4.70d7b9bc8a45 from=translated src=- shape=92528953 vocab=c8e17ba9
+-/
 theorem tsum_mixedEuclideanEntropyCost_le (d : ℕ) (x : ℝ) :
     ∑' k, mixedEuclideanEntropyCost d x k ≤ Real.exp (-x) := by
   let q : ℝ := Real.exp (-2)
@@ -282,7 +304,9 @@ process, formulated over explicit local edge graphs.
 
 No independence between edges is used.  The tail hypothesis is exactly the
 Bernstein mixed metric bound, and the existential deviation event avoids a
-measurability assumption on an uncountable supremum.-/
+measurability assumption on an uncountable supremum.
+@isnad1 id=le.10h11v.s9.27cdac0a225f from=translated src=- shape=2704bc13 vocab=05caaeba
+-/
 theorem measureReal_mixedEuclideanProcess_largeDeviation_le
     [IsProbabilityMeasure μ]
     (Z : Ω → T → ℝ) (N0 : Finset T)
@@ -391,7 +415,9 @@ theorem measureReal_mixedEuclideanProcess_largeDeviation_le
 /-- Continuous-process interface for the preceding chaining theorem.  The
 projections converge to every index point, so path continuity discharges the
 infinite remainder.  The mixed tail is assumed for every pair and every
-nonnegative confidence level; the entropy allocation is then automatic.-/
+nonnegative confidence level; the entropy allocation is then automatic.
+@isnad1 id=le.11h11v.s9.1080f71825fc from=translated src=- shape=8d19c9b2 vocab=068f6edf
+-/
 theorem measureReal_mixedEuclideanContinuousProcess_largeDeviation_le
     [IsProbabilityMeasure μ]
     (Z : Ω → T → ℝ) (N0 : Finset T)

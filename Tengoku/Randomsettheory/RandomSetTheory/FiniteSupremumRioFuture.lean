@@ -39,6 +39,9 @@ def finiteCoordinateSumProcess (Y : Nat -> Omega -> Z)
   ∑ j : Fin n, W j (Y j omega) t
 
 omit [MeasurableSpace Z] in
+/--
+@isnad1 id=eq.1h8v.s5.39d1a04fb236 from=translated src=- shape=46b95fb1 vocab=f284e61e
+-/
 @[simp]
 theorem finiteProcessSupremum_finiteCoordinateSumProcess
     (s : Finset T) (hs : s.Nonempty) (Y : Nat -> Omega -> Z)
@@ -46,6 +49,9 @@ theorem finiteProcessSupremum_finiteCoordinateSumProcess
     finiteProcessSupremum s hs (finiteCoordinateSumProcess Y W) omega =
       finiteCoordinateSumSupremum s hs W (fun j => Y j omega) := rfl
 
+/--
+@isnad1 id=measurab.2h8v.s6.23a44aa2faae from=translated src=- shape=0067de8f vocab=2055fb0f
+-/
 theorem measurable_finiteCoordinateSumProcess
     (Y : Nat -> Omega -> Z) (hY : forall j, Measurable (Y j))
     (W : Fin n -> Z -> T -> Real)
@@ -55,7 +61,9 @@ theorem measurable_finiteCoordinateSumProcess
     (hWt j).comp (hY j)
 
 /-- Every additive process coordinate is measurable with respect to the
-terminal strict-prefix sigma-algebra.-/
+terminal strict-prefix sigma-algebra.
+@isnad1 id=measurab.2h8v.s6.4236e404f18d from=translated src=- shape=0067de8f vocab=a3dfd217
+-/
 theorem measurable_finiteCoordinateSumProcess_prefix
     (Y : Nat -> Omega -> Z) (hY : forall j, Measurable (Y j))
     (W : Fin n -> Z -> T -> Real)
@@ -77,6 +85,9 @@ def finiteCoordinateSumEnvelope (Y : Nat -> Omega -> Z)
     (A : Fin n -> Z -> Real) (omega : Omega) : Real :=
   ∑ j : Fin n, A j (Y j omega)
 
+/--
+@isnad1 id=eq.1h5v.s6.f09d166a5922 from=translated src=- shape=7828aab1 vocab=e837e9b9
+-/
 theorem sum_range_replaceOneCenteredMoment_finiteSuccessorEnvelope
     (nu : Measure Z) (A : Fin n -> Z -> Real) (k : Nat) (hk : 0 < k) :
     (∑ j ∈ Finset.range (n + 1),
@@ -90,7 +101,9 @@ theorem sum_range_replaceOneCenteredMoment_finiteSuccessorEnvelope
 
 All structural martingale data are generated internally.  In particular,
 the theorem does not assume conditional-expectation formulae, Doob
-representations, or a modulus for an opaque value function.-/
+representations, or a modulus for an opaque value function.
+@isnad1 id=le.17h17v.s9.1a4b979aca8d from=translated src=- shape=ac9c0d48 vocab=c1e47014
+-/
 theorem conditionalValueAtRisk_finiteCoordinateSumSupremum_le_rio
     {mu : Measure Omega} {nu : Measure Z}
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]

@@ -45,21 +45,27 @@ def totalTruncationBias (s : Finset I) (X : I → Omega → ℝ)
   ∑ i ∈ s, ((∫ z, truncation (X i) y z ∂mu) - ∫ z, X i z ∂mu)
 
 /-- Truncation and deterministic recentering preserve almost-everywhere
-measurability.-/
+measurability.
+@isnad1 id=aemeasur.1h4v.s5.4c2985e28fff from=translated src=- shape=f41c30ff vocab=e88d8854
+-/
 theorem aemeasurable_centeredTruncation [IsFiniteMeasure mu]
     {X : Omega → ℝ} (hX : AEMeasurable X mu) (y : ℝ) :
     AEMeasurable (centeredTruncation X y mu) mu := by
   unfold centeredTruncation
   exact hX.aestronglyMeasurable.truncation.aemeasurable.sub aemeasurable_const
 
-/-- A centred truncation is integrable on every finite measure space.-/
+/-- A centred truncation is integrable on every finite measure space.
+@isnad1 id=integrab.1h4v.s5.852771545d0c from=translated src=- shape=6042859a vocab=f959e047
+-/
 theorem integrable_centeredTruncation [IsFiniteMeasure mu]
     {X : Omega → ℝ} (hX : AEMeasurable X mu) (y : ℝ) :
     Integrable (centeredTruncation X y mu) mu := by
   unfold centeredTruncation
   exact hX.aestronglyMeasurable.integrable_truncation.sub (integrable_const _)
 
-/-- On a probability space, centring a truncation gives integral zero.-/
+/-- On a probability space, centring a truncation gives integral zero.
+@isnad1 id=eq.1h4v.s5.5fdf158cbde3 from=translated src=- shape=62bc5b50 vocab=6c14d832
+-/
 theorem integral_centeredTruncation [IsProbabilityMeasure mu]
     {X : Omega → ℝ} (hX : AEMeasurable X mu) (y : ℝ) :
     ∫ omega, centeredTruncation X y mu omega ∂mu = 0 := by
@@ -69,7 +75,9 @@ theorem integral_centeredTruncation [IsProbabilityMeasure mu]
   rw [integral_sub htrunc (integrable_const _)]
   simp
 
-/-- The mean of a truncation is bounded by the truncation level.-/
+/-- The mean of a truncation is bounded by the truncation level.
+@isnad1 id=le.0h4v.s5.02daa4484e31 from=translated src=- shape=f31b976b vocab=c245bafb
+-/
 theorem abs_integral_truncation_le [IsProbabilityMeasure mu]
     (X : Omega → ℝ) (y : ℝ) :
     |∫ omega, truncation X y omega ∂mu| ≤ |y| := by
@@ -80,7 +88,9 @@ theorem abs_integral_truncation_le [IsProbabilityMeasure mu]
   simpa only [Real.norm_eq_abs, probReal_univ, mul_one] using h
 
 /-- A centred truncation at `y` takes values in the deterministic interval
-`[-2|y|, 2|y|]`.-/
+`[-2|y|, 2|y|]`.
+@isnad1 id=mem.0h5v.s6.2481f3c4aa75 from=translated src=- shape=ca54bfcf vocab=a6371d30
+-/
 theorem centeredTruncation_mem_Icc [IsProbabilityMeasure mu]
     (X : Omega → ℝ) (y : ℝ) (omega : Omega) :
     centeredTruncation X y mu omega ∈ Icc (-2 * |y|) (2 * |y|) := by
@@ -101,7 +111,9 @@ theorem centeredTruncation_mem_Icc [IsProbabilityMeasure mu]
 
 /-- Coordinatewise measurable transformations preserve independence; in
 particular an independent family stays independent after truncation and
-recentering.-/
+recentering.
+@isnad1 id=iindepfu.1h5v.s5.64962e4a81fb from=translated src=- shape=ac96f439 vocab=ce12fa82
+-/
 theorem iIndepFun_centeredTruncation
     (X : I → Omega → ℝ) (y : ℝ)
     (h_indep : iIndepFun X mu) :
@@ -118,7 +130,9 @@ theorem iIndepFun_centeredTruncation
 
 /-- Hoeffding's inequality for a sum of centred truncations.  The interval
 width is `4|y|`, hence the explicit variance proxy `4 * card(s) * y²` and
-the denominator `8 * card(s) * y²`.-/
+the denominator `8 * card(s) * y²`.
+@isnad1 id=le.3h7v.s7.8ab3ee8af505 from=translated src=- shape=d4aff55c vocab=4d44944d
+-/
 theorem measureReal_sum_centeredTruncation_abs_ge_le
     [IsProbabilityMeasure mu]
     (s : Finset I) (X : I → Omega → ℝ)
@@ -156,7 +170,9 @@ theorem measureReal_sum_centeredTruncation_abs_ge_le
   all_goals ring_nf
 
 omit [MeasurableSpace Omega] in
-/-- The pointwise truncation error is controlled by the `q`-th power tail.-/
+/-- The pointwise truncation error is controlled by the `q`-th power tail.
+@isnad1 id=le.2h5v.s6.250c7d11dbb1 from=translated src=- shape=6e635d77 vocab=99ecd930
+-/
 theorem abs_truncation_sub_le_abs_pow_div
     (X : Omega → ℝ) {q : ℕ} (hq : 1 ≤ q) {y : ℝ} (hy : 0 < y)
     (omega : Omega) :
@@ -180,7 +196,9 @@ theorem abs_truncation_sub_le_abs_pow_div
         congr 1
         omega
 
-/-- The mean removed by truncation has the classical `q`-moment bound.-/
+/-- The mean removed by truncation has the classical `q`-moment bound.
+@isnad1 id=le.4h5v.s7.d5cf217a0abc from=translated src=- shape=d4ddc471 vocab=7b437d66
+-/
 theorem abs_integral_truncation_sub_integral_le_absoluteMoment_div
     [IsProbabilityMeasure mu]
     {X : Omega → ℝ} (hX : AEMeasurable X mu) {q : ℕ} (hq : 1 ≤ q)
@@ -207,7 +225,9 @@ theorem abs_integral_truncation_sub_integral_le_absoluteMoment_div
           abs_truncation_sub_le_abs_pow_div X hq hy omega))
 
 /-- The total deterministic truncation bias is bounded by the sum of
-`q`-th absolute moments divided by `y^(q-1)`.-/
+`q`-th absolute moments divided by `y^(q-1)`.
+@isnad1 id=le.4h7v.s7.a24e07741d45 from=translated src=- shape=1f267a9a vocab=6efbf94f
+-/
 theorem abs_totalTruncationBias_le_sum_absoluteMoment_div
     [IsProbabilityMeasure mu]
     (s : Finset I) (X : I → Omega → ℝ)
@@ -233,7 +253,9 @@ theorem abs_totalTruncationBias_le_sum_absoluteMoment_div
 
 /-- On a realization where no summand reaches the truncation level, the
 original centred sum is the centred truncated sum plus the deterministic
-truncation bias.-/
+truncation bias.
+@isnad1 id=eq.1h7v.s6.00acb3858556 from=translated src=- shape=14356cdb vocab=bf00adea
+-/
 theorem sum_sub_integral_eq_sum_centeredTruncation_add_bias
     (s : Finset I) (X : I → Omega → ℝ) (y : ℝ) (omega : Omega)
     (hsmall : ∀ i ∈ s, |X i omega| < y) :
@@ -249,7 +271,9 @@ theorem sum_sub_integral_eq_sum_centeredTruncation_add_bias
 
 /-- **Fuk--Nagaev event decomposition.** A centred sum above the threshold
 `t + |bias|` forces either one raw observation above `y`, or the centred
-truncated sum above `t`.-/
+truncated sum above `t`.
+@isnad1 id=le.0h7v.s7.743bdc94d2ad from=translated src=- shape=82a223b0 vocab=eeba3faf
+-/
 theorem centered_sum_large_subset_iUnion_large_or_truncation
     (s : Finset I) (X : I → Omega → ℝ) (y t : ℝ) :
     {omega | t + |totalTruncationBias s X y mu| ≤
@@ -284,7 +308,9 @@ theorem centered_sum_large_subset_iUnion_large_or_truncation
 
 /-- Probability form of the truncation decomposition.  It is purely a union
 bound and does not require measurability hypotheses beyond those implicit in
-`measureReal`.-/
+`measureReal`.
+@isnad1 id=le.0h7v.s7.54ad054c9413 from=translated src=- shape=ed049257 vocab=964077d0
+-/
 theorem measureReal_centered_sum_large_le_sum_large_add_truncation
     [IsFiniteMeasure mu]
     (s : Finset I) (X : I → Omega → ℝ) (y t : ℝ) :
@@ -315,7 +341,9 @@ theorem measureReal_centered_sum_large_le_sum_large_add_truncation
 
 /-- Moment form of the Fuk--Nagaev reduction.  The heavy-tail contribution
 is the transparent polynomial term `sum moments / y^q`; only the centred
-truncated probability remains to be estimated.-/
+truncated probability remains to be estimated.
+@isnad1 id=le.2h8v.s8.907a489d6c24 from=translated src=- shape=eab1765a vocab=5cfe5f8c
+-/
 theorem measureReal_centered_sum_large_le_moment_div_add_truncation
     [IsFiniteMeasure mu]
     (s : Finset I) (X : I → Omega → ℝ) {q : ℕ}
@@ -347,7 +375,9 @@ theorem measureReal_centered_sum_large_le_moment_div_add_truncation
 
 /-- A scalar Fuk--Nagaev inequality with the deterministic truncation bias
 kept explicit.  It combines the polynomial cost of exceptional observations
-with Hoeffding's exponential bound for the bounded centred remainder.-/
+with Hoeffding's exponential bound for the bounded centred remainder.
+@isnad1 id=le.5h8v.s8.663787d25ab3 from=translated src=- shape=f4a7dbd2 vocab=684d19e5
+-/
 theorem measureReal_centered_sum_large_le_moment_div_add_exp
     [IsProbabilityMeasure mu]
     (s : Finset I) (X : I → Omega → ℝ) {q : ℕ}
@@ -368,7 +398,9 @@ theorem measureReal_centered_sum_large_le_moment_div_add_exp
 
 /-- **Fuk--Nagaev bound with a completely explicit truncation bias.**
 The threshold is shifted by the moment bound `sum E|X_i|^q / y^(q-1)`,
-so the deterministic bias no longer appears in the statement.-/
+so the deterministic bias no longer appears in the statement.
+@isnad1 id=le.6h8v.s8.be148d84f471 from=translated src=- shape=e5eedef7 vocab=6791dfd6
+-/
 theorem measureReal_centered_sum_large_le_moment_bias_add_exp
     [IsProbabilityMeasure mu]
     (s : Finset I) (X : I → Omega → ℝ) {q : ℕ}
@@ -396,7 +428,9 @@ theorem measureReal_centered_sum_large_le_moment_bias_add_exp
 
 /-- Unshifted-threshold form of the explicit Fuk--Nagaev bound.  The only
 additional assumption says that the requested deviation `u` dominates the
-moment-controlled truncation bias.-/
+moment-controlled truncation bias.
+@isnad1 id=le.6h8v.s8.792034c3d1b3 from=translated src=- shape=62f8d40c vocab=6791dfd6
+-/
 theorem measureReal_centered_sum_ge_le_moment_div_add_exp
     [IsProbabilityMeasure mu]
     (s : Finset I) (X : I → Omega → ℝ) {q : ℕ}
@@ -431,7 +465,9 @@ theorem measureReal_centered_sum_ge_le_moment_div_add_exp
       exact hthreshold.trans homega)
   simpa only [B] using hmono.trans hbase
 
-/-- Common-moment simplification of the polynomial truncation term.-/
+/-- Common-moment simplification of the polynomial truncation term.
+@isnad1 id=le.3h9v.s8.dd75bc78a93a from=translated src=- shape=2ea2d47b vocab=012b1613
+-/
 theorem measureReal_centered_sum_large_le_common_moment_add_truncation
     [IsFiniteMeasure mu]
     (s : Finset I) (X : I → Omega → ℝ) {q : ℕ}
@@ -451,7 +487,9 @@ theorem measureReal_centered_sum_large_le_common_moment_add_truncation
     (Finset.sum_le_card_nsmul s
       (fun i ↦ absoluteMoment (X i) q mu) M hM)
 
-/-- Common-moment version of the scalar Fuk--Nagaev bound.-/
+/-- Common-moment version of the scalar Fuk--Nagaev bound.
+@isnad1 id=le.6h9v.s8.82b12505b8dd from=translated src=- shape=1749b19b vocab=684d19e5
+-/
 theorem measureReal_centered_sum_large_le_common_moment_add_exp
     [IsProbabilityMeasure mu]
     (s : Finset I) (X : I → Omega → ℝ) {q : ℕ}

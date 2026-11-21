@@ -45,7 +45,9 @@ namespace RandomSetTheory
 
 /-- The CDF of a probability measure on `ℝ` without point masses is
 continuous.  Mathlib provides right-continuity; vanishing singleton masses
-identify the left limit with the value.-/
+identify the left limit with the value.
+@isnad1 id=continuo.0h1v.s5.336c0857d5c5 from=translated src=- shape=d183f2f7 vocab=9b9d1207
+-/
 theorem continuous_cdf_of_nullSingletonClass (mu : Measure ℝ)
     [IsProbabilityMeasure mu] [NullSingletonClass mu] :
     Continuous (ProbabilityTheory.cdf mu) := by
@@ -65,7 +67,9 @@ theorem continuous_cdf_of_nullSingletonClass (mu : Measure ℝ)
     linarith
 
 /-- Every value strictly between zero and one is attained by the CDF of an
-atomless real probability measure.-/
+atomless real probability measure.
+@isnad1 id=ex.2h2v.s6.b09009f9cd8c from=translated src=- shape=de203eec vocab=a74bf0e0
+-/
 theorem exists_Iic_measure_eq_of_between (mu : Measure ℝ)
     [IsProbabilityMeasure mu] [NullSingletonClass mu]
     {a : ℝ} (ha0 : 0 < a) (ha1 : a < 1) :
@@ -85,7 +89,9 @@ theorem exists_Iic_measure_eq_of_between (mu : Measure ℝ)
 /-! ## Exact divisibility of finite real Borel measures -/
 
 /-- A finite Borel measure on `ℝ` without point masses has a measurable
-set carrying any prescribed fraction of its total mass.-/
+set carrying any prescribed fraction of its total mass.
+@isnad1 id=ex.2h2v.s6.a5cab95645f0 from=translated src=- shape=7bf06e02 vocab=8d6a5338
+-/
 theorem exists_measurable_measureReal_eq_mul_univ (nu : Measure ℝ)
     [IsFiniteMeasure nu] [NullSingletonClass nu]
     {a : ℝ} (ha0 : 0 ≤ a) (ha1 : a ≤ 1) :
@@ -129,7 +135,9 @@ theorem exists_measurable_measureReal_eq_mul_univ (nu : Measure ℝ)
       simp only [FiniteMeasure.mass]
       ring
 
-/-- Exact divisibility inside an arbitrary measurable set.-/
+/-- Exact divisibility inside an arbitrary measurable set.
+@isnad1 id=ex.3h3v.s6.e24acb70a4e4 from=translated src=- shape=ff4558fd vocab=d29c1e48
+-/
 theorem exists_measurable_subset_measureReal_eq_mul (nu : Measure ℝ)
     [IsFiniteMeasure nu] [NullSingletonClass nu]
     {s : Set ℝ} (hs : MeasurableSet s)
@@ -145,7 +153,9 @@ theorem exists_measurable_subset_measureReal_eq_mul (nu : Measure ℝ)
   simpa using hmeasure
 
 /-- On the real Borel line, Mathlib's `NullSingletonClass` implies the
-project's genuine atomlessness property for finite measures.-/
+project's genuine atomlessness property for finite measures.
+@isnad1 id=isatomle.0h1v.s4.626ef484a378 from=translated src=- shape=3305e152 vocab=bf52574b
+-/
 theorem isAtomlessMeasure_of_nullSingletonClass_real (nu : Measure ℝ)
     [IsFiniteMeasure nu] [NullSingletonClass nu] :
     IsAtomlessMeasure nu := by
@@ -172,7 +182,9 @@ theorem isAtomlessMeasure_of_nullSingletonClass_real (nu : Measure ℝ)
 
 /-- A measurable integrable real function admits a measurable set carrying
 any prescribed fraction of its integral.  Positive and negative parts are
-split independently using the exact divisibility theorem.-/
+split independently using the exact divisibility theorem.
+@isnad1 id=ex.4h3v.s7.2b03325f9468 from=translated src=- shape=51a064d5 vocab=9307fa93
+-/
 theorem exists_setIntegral_eq_mul_real_of_measurable
     (mu : Measure ℝ) [NullSingletonClass mu]
     {f : ℝ → ℝ} (hf : Integrable f mu) (hfm : Measurable f)
@@ -251,7 +263,9 @@ theorem exists_setIntegral_eq_mul_real_of_measurable
     hApint, hAnint, hApmeasure, hAnmeasure, hmup_full, hmun_full, htotal]
   ring
 
-/-- Exact scalar splitting for an arbitrary integrable representative.-/
+/-- Exact scalar splitting for an arbitrary integrable representative.
+@isnad1 id=ex.3h3v.s7.c55c14180f76 from=translated src=- shape=5469586a vocab=17353603
+-/
 theorem exists_setIntegral_eq_mul_real
     (mu : Measure ℝ) [NullSingletonClass mu]
     {f : ℝ → ℝ} (hf : Integrable f mu)
@@ -274,7 +288,9 @@ theorem exists_setIntegral_eq_mul_real
 
 /-- A reusable abstract implication: exact proportional splitting of every
 integrable function implies convexity of every measurable set-integral
-range.-/
+range.
+@isnad1 id=haslyapu.1h3v.s7.e69cffc838e3 from=translated src=- shape=b5eb1e54 vocab=35ad0d54
+-/
 theorem hasLyapunovConvexity_of_proportional_splitting
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -311,7 +327,9 @@ theorem hasLyapunovConvexity_of_proportional_splitting
 
 /-- Exact scalar Lyapunov convexity on the real Borel line.  Finiteness of
 the base measure is unnecessary because integrability makes the positive and
-negative density measures finite.-/
+negative density measures finite.
+@isnad1 id=haslyapu.0h1v.s4.44e2b7ca782d from=translated src=- shape=d4c7d840 vocab=58d3db02
+-/
 theorem hasLyapunovConvexity_real_of_nullSingletonClass
     (mu : Measure ℝ) [NullSingletonClass mu] :
     HasLyapunovConvexity mu ℝ := by
@@ -326,7 +344,9 @@ namespace SimpleFunc
 
 /-- A vector-valued simple function over a finite real atomless measure can
 be split exactly in any prescribed proportion.  This is the simple-function
-core of the finite-dimensional Lyapunov theorem.-/
+core of the finite-dimensional Lyapunov theorem.
+@isnad1 id=ex.2h4v.s7.514716e6a82f from=translated src=- shape=97af9b16 vocab=b9298a42
+-/
 theorem exists_setIntegral_eq_smul_of_nullSingletonClass
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     (mu : Measure ℝ) [IsFiniteMeasure mu] [NullSingletonClass mu]
@@ -377,7 +397,9 @@ end SimpleFunc
 /-! ## Transport under measurable equivalences -/
 
 /-- The measurable set-integral range is invariant under a measurable
-change of coordinates on the base space.-/
+change of coordinates on the base space.
+@isnad1 id=eq.0h6v.s6.732db22dc150 from=translated src=- shape=6b72bcff vocab=37d73b9c
+-/
 theorem measurableSetIntegralRange_map_measurableEquiv
     {Omega Omega' E : Type*} [MeasurableSpace Omega] [MeasurableSpace Omega']
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -403,7 +425,9 @@ theorem measurableSetIntegralRange_map_measurableEquiv
     simpa using hz
 
 /-- Lyapunov convexity is invariant under measurable equivalences of the
-base space.-/
+base space.
+@isnad1 id=iff.0h5v.s6.5c6c116cb16e from=translated src=- shape=018becd3 vocab=0be43063
+-/
 theorem hasLyapunovConvexity_map_measurableEquiv_iff
     {Omega Omega' E : Type*} [MeasurableSpace Omega] [MeasurableSpace Omega']
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -435,7 +459,9 @@ theorem hasLyapunovConvexity_map_measurableEquiv_iff
     exact hconv
 
 /-- Scalar Lyapunov convexity on any measurable space measurably equivalent
-to the real line, provided the transported measure has no point masses.-/
+to the real line, provided the transported measure has no point masses.
+@isnad1 id=haslyapu.0h3v.s6.6c7769b51bf9 from=translated src=- shape=50ec1501 vocab=6a8dbc56
+-/
 theorem hasLyapunovConvexity_real_of_measurableEquiv
     {Omega : Type*} [MeasurableSpace Omega]
     (mu : Measure Omega) (e : Omega ≃ᵐ ℝ)
@@ -445,7 +471,9 @@ theorem hasLyapunovConvexity_real_of_measurableEquiv
     (hasLyapunovConvexity_real_of_nullSingletonClass (Measure.map e mu))
 
 /-- A genuine atomless measure on a space measurably equivalent to `ℝ`
-satisfies scalar Lyapunov convexity.-/
+satisfies scalar Lyapunov convexity.
+@isnad1 id=haslyapu.1h3v.s5.ed6e5cf7dffd from=translated src=- shape=161fbb35 vocab=6e73fa8d
+-/
 theorem hasLyapunovConvexity_real_of_atomless_measurableEquiv
     {Omega : Type*} [MeasurableSpace Omega]
     (mu : Measure Omega) (hmu : IsAtomlessMeasure mu)

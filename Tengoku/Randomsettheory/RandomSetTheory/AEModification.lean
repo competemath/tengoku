@@ -36,19 +36,27 @@ noncomputable def correspondenceOn {Ω X : Type*} (A : Set Ω)
   classical
   exact fun ω => if ω ∈ A then S ω else K
 
+/--
+@isnad1 id=eq.1h6v.s5.550cf207b0f6 from=translated src=- shape=e24d9385 vocab=365ab402
+-/
 @[simp]
 theorem correspondenceOn_of_mem {Ω X : Type*} {A : Set Ω}
     {S : Ω → Set X} {K : Set X} {ω : Ω} (hω : ω ∈ A) :
     correspondenceOn A S K ω = S ω := by
   simp [correspondenceOn, hω]
 
+/--
+@isnad1 id=eq.1h6v.s5.2b54c26c8768 from=translated src=- shape=5659b51c vocab=365ab402
+-/
 @[simp]
 theorem correspondenceOn_of_not_mem {Ω X : Type*} {A : Set Ω}
     {S : Ω → Set X} {K : Set X} {ω : Ω} (hω : ω ∉ A) :
     correspondenceOn A S K ω = K := by
   simp [correspondenceOn, hω]
 
-/-- Measurable gluing of an Effros correspondence with a fixed fibre.-/
+/-- Measurable gluing of an Effros correspondence with a fixed fibre.
+@isnad1 id=iseffros.2h5v.s5.89116d75e5f0 from=translated src=- shape=682d697d vocab=3e5daa4a
+-/
 theorem effrosMeasurable_correspondenceOn
     {Ω X : Type*} [MeasurableSpace Ω] [TopologicalSpace X]
     {A : Set Ω} (hA : MeasurableSet A) {S : Ω → Set X}
@@ -65,6 +73,9 @@ theorem effrosMeasurable_correspondenceOn
   exact (hA.inter (hS U hU)).union
     (hA.compl.inter (RandomSet.isEffrosMeasurable_const K U hU))
 
+/--
+@isnad1 id=iscompac.2h6v.s5.47d7c5e37477 from=translated src=- shape=fd15d56f vocab=1eed74bb
+-/
 theorem correspondenceOn_isCompact
     {Ω X : Type*} [TopologicalSpace X]
     {A : Set Ω} {S : Ω → Set X} {K : Set X}
@@ -74,6 +85,9 @@ theorem correspondenceOn_isCompact
   · simpa [correspondenceOn, hω] using hS ω hω
   · simpa [correspondenceOn, hω] using hK
 
+/--
+@isnad1 id=nonempty.2h6v.s5.db1477af05a6 from=translated src=- shape=4b357496 vocab=8c7e50f8
+-/
 theorem correspondenceOn_nonempty
     {Ω X : Type*} {A : Set Ω} {S : Ω → Set X} {K : Set X}
     (hS : ∀ ω ∈ A, (S ω).Nonempty) (hK : K.Nonempty) (ω : Ω) :
@@ -82,6 +96,9 @@ theorem correspondenceOn_nonempty
   · simpa [correspondenceOn, hω] using hS ω hω
   · simpa [correspondenceOn, hω] using hK
 
+/--
+@isnad1 id=isclosed.2h6v.s5.8cba3c9e90be from=translated src=- shape=fd15d56f vocab=c73ef6c6
+-/
 theorem correspondenceOn_isClosed
     {Ω X : Type*} [TopologicalSpace X]
     {A : Set Ω} {S : Ω → Set X} {K : Set X}
@@ -91,6 +108,9 @@ theorem correspondenceOn_isClosed
   · simpa [correspondenceOn, hω] using hS ω hω
   · simpa [correspondenceOn, hω] using hK
 
+/--
+@isnad1 id=convex.2h7v.s7.1e96a1ea991c from=translated src=- shape=84becdd2 vocab=5bd12ed9
+-/
 theorem correspondenceOn_convex
     {Ω E : Type*} {A : Set Ω} {S : Ω → Set E} {K : Set E}
     {𝕜 : Type*} [Semiring 𝕜] [PartialOrder 𝕜]
@@ -102,7 +122,9 @@ theorem correspondenceOn_convex
   · simpa [correspondenceOn, hω] using hK
 
 /-- On a full-measure set, regularization agrees almost everywhere with the
-original correspondence.-/
+original correspondence.
+@isnad1 id=eventual.1h6v.s6.1a6827dfb16f from=translated src=- shape=4c742b38 vocab=69752ab0
+-/
 theorem correspondenceOn_ae_eq
     {Ω X : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     {A : Set Ω} {S : Ω → Set X} {K : Set X}
@@ -112,7 +134,9 @@ theorem correspondenceOn_ae_eq
   exact correspondenceOn_of_mem hω
 
 /-- Changing exceptional fibres on a measurable null set leaves the Aumann
-expectation unchanged.-/
+expectation unchanged.
+@isnad1 id=eq.1h6v.s6.0cdb861e2c07 from=translated src=- shape=204f2027 vocab=e2a1f174
+-/
 theorem aumannExpectation_correspondenceOn
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -125,7 +149,9 @@ theorem aumannExpectation_correspondenceOn
 /-! ## Almost-everywhere Berge theorems -/
 
 /-- Exact measurable maximization when compactness and nonemptiness hold on
-a measurable set of full measure.-/
+a measurable set of full measure.
+@isnad1 id=ex.7h7v.s7.6122a70e3bd7 from=translated src=- shape=dfe93a8e vocab=fed42cb5
+-/
 theorem exists_measurable_bergeMaximizer_ae
     {Ω X : Type*} [MeasurableSpace Ω]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -157,7 +183,9 @@ theorem exists_measurable_bergeMaximizer_ae
   exact (hs ω).2.trans (by simp only [bergeMaxValue, hTω])
 
 /-- Exact measurable minimization under almost-everywhere compactness and
-nonemptiness.-/
+nonemptiness.
+@isnad1 id=ex.7h7v.s7.f24e052ac7ad from=translated src=- shape=dfe93a8e vocab=7d9d1b18
+-/
 theorem exists_measurable_bergeMinimizer_ae
     {Ω X : Type*} [MeasurableSpace Ω]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -189,7 +217,9 @@ theorem exists_measurable_bergeMinimizer_ae
   exact (hs ω).2.trans (by simp only [bergeMinValue, hTω])
 
 /-- A measurable nearest point exists almost surely when the original
-correspondence is compact and nonempty almost surely on a measurable set.-/
+correspondence is compact and nonempty almost surely on a measurable set.
+@isnad1 id=ex.6h7v.s7.f9e52a8b44a8 from=translated src=- shape=b77c02b4 vocab=172bd101
+-/
 theorem exists_measurable_metricProjection_ae
     {Ω X : Type*} [MeasurableSpace Ω]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]

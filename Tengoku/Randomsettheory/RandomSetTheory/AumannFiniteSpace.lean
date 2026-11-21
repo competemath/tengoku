@@ -40,6 +40,9 @@ def finiteWeightedIntegral (mu : Measure Omega) (f : Omega -> E) : E :=
   letI := Fintype.ofFinite Omega
   ∑ omega, mu.real {omega} • f omega
 
+/--
+@isnad1 id=eq.0h4v.s6.54e287e85449 from=translated src=- shape=174cf676 vocab=1ecf3bb1
+-/
 theorem integral_eq_finiteWeightedIntegral
     {mu : Measure Omega} [IsFiniteMeasure mu] (f : Omega -> E) :
     (∫ omega, f omega ∂mu) = finiteWeightedIntegral mu f := by
@@ -48,7 +51,9 @@ theorem integral_eq_finiteWeightedIntegral
 
 /-- On a finite full-support measure space, the Aumann expectation is exactly
 the image, under the weighted-sum map, of the product of the pointwise
-values.-/
+values.
+@isnad1 id=eq.1h4v.s6.0dcff82bbfcc from=translated src=- shape=5c51e378 vocab=29320e9a
+-/
 theorem aumannExpectation_eq_image_finiteWeightedIntegral
     {mu : Measure Omega} [IsFiniteMeasure mu] {S : Omega -> Set E}
     (hfull : ∀ omega, mu {omega} ≠ 0) :
@@ -72,6 +77,9 @@ theorem aumannExpectation_eq_image_finiteWeightedIntegral
     · exact integral_eq_finiteWeightedIntegral f
 
 omit [MeasurableSingletonClass Omega] [CompleteSpace E] in
+/--
+@isnad1 id=continuo.0h3v.s5.737973146628 from=translated src=- shape=05095dee vocab=59bdc24f
+-/
 theorem continuous_finiteWeightedIntegral (mu : Measure Omega) :
     Continuous (finiteWeightedIntegral (E := E) mu) := by
   letI := Fintype.ofFinite Omega
@@ -83,7 +91,9 @@ theorem continuous_finiteWeightedIntegral (mu : Measure Omega) :
 
 /-- Finite-atomic Aumann compactness, before taking any closure.  Compactness
 of the fibers is the only topological hypothesis; nonemptiness and convexity
-are not needed for the conclusion.-/
+are not needed for the conclusion.
+@isnad1 id=iscompac.2h4v.s6.64f8aa8a98b9 from=translated src=- shape=74276896 vocab=57fb2322
+-/
 theorem aumannExpectation_isCompact_of_finite_fullSupport
     {mu : Measure Omega} [IsFiniteMeasure mu] {S : Omega -> Set E}
     (hfull : ∀ omega, mu {omega} ≠ 0)
@@ -94,7 +104,9 @@ theorem aumannExpectation_isCompact_of_finite_fullSupport
     (continuous_finiteWeightedIntegral mu)
 
 /-- In particular, finite-atomic Aumann expectations of compact-valued
-correspondences are closed without a `closure` wrapper.-/
+correspondences are closed without a `closure` wrapper.
+@isnad1 id=isclosed.2h4v.s6.9013ace61d78 from=translated src=- shape=fc0e45b7 vocab=ae3bd840
+-/
 theorem aumannExpectation_isClosed_of_finite_fullSupport
     {mu : Measure Omega} [IsFiniteMeasure mu] {S : Omega -> Set E}
     (hfull : ∀ omega, mu {omega} ≠ 0)
@@ -103,7 +115,9 @@ theorem aumannExpectation_isClosed_of_finite_fullSupport
   (aumannExpectation_isCompact_of_finite_fullSupport hfull hcompact).isClosed
 
 /-- The closure used in the general theory disappears on finite full-support
-spaces.-/
+spaces.
+@isnad1 id=eq.2h4v.s7.dce1abf6f49f from=translated src=- shape=88cc9182 vocab=6f6c3578
+-/
 theorem closure_aumannExpectation_eq_of_finite_fullSupport
     {mu : Measure Omega} [IsFiniteMeasure mu] {S : Omega -> Set E}
     (hfull : ∀ omega, mu {omega} ≠ 0)
@@ -113,7 +127,9 @@ theorem closure_aumannExpectation_eq_of_finite_fullSupport
 
 /-- Compactness and nonemptiness of the finite-atomic Aumann expectation.
 The latter follows from a pointwise choice and needs no measurable-selection
-theorem because the source is finite and discrete.-/
+theorem because the source is finite and discrete.
+@isnad1 id=and.3h4v.s7.636e9e6dae79 from=translated src=- shape=741b87d1 vocab=4058b921
+-/
 theorem aumannExpectation_isCompact_nonempty_of_finite_fullSupport
     {mu : Measure Omega} [IsFiniteMeasure mu] {S : Omega -> Set E}
     (hfull : ∀ omega, mu {omega} ≠ 0)

@@ -46,7 +46,9 @@ variable {Omega T : Type*} {mOmega : MeasurableSpace Omega}
 variable (filtration : Filtration ℕ mOmega)
 
 /-- A uniformly bounded terminal variable has Doob differences bounded by
-twice the terminal bound.  This includes the initial centred difference.-/
+twice the terminal bound.  This includes the initial centred difference.
+@isnad1 id=eventual.1h7v.s6.142e4ff1cacf from=translated src=- shape=9a5df02d vocab=23414160
+-/
 theorem ae_abs_doobCenteredDifference_le_two_mul
     [IsProbabilityMeasure mu]
     (F : Omega → ℝ) {B : ℝ}
@@ -93,7 +95,9 @@ theorem ae_abs_doobCenteredDifference_le_two_mul
         _ = 2 * B := by ring
 
 /-- The preceding deterministic bound gives every finite Doob difference all
-finite moments, in particular `L²`.-/
+finite moments, in particular `L²`.
+@isnad1 id=memlp.1h7v.s6.798c1dca7eba from=translated src=- shape=a06d018b vocab=f2aa9ced
+-/
 theorem memLp_doobCenteredDifference_two_of_ae_abs_le
     [IsProbabilityMeasure mu]
     (F : Omega → ℝ) {B : ℝ}

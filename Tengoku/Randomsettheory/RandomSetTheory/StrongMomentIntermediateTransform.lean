@@ -27,7 +27,9 @@ noncomputable section
 namespace ProbabilityTheory
 
 /-- The elementary factorial estimate behind the Bernstein majorant:
-`k! >= 2 * 3^(k-2)` for `k >= 2`.-/
+`k! >= 2 * 3^(k-2)` for `k >= 2`.
+@isnad1 id=le.1h1v.s5.304ff81a40e1 from=translated src=- shape=48170ec0 vocab=c9343037
+-/
 theorem two_mul_three_pow_sub_le_factorial {k : ℕ} (hk : 2 ≤ k) :
     2 * 3 ^ (k - 2) ≤ k.factorial := by
   rcases hk.eq_or_lt with rfl | hk
@@ -42,7 +44,9 @@ theorem two_mul_three_pow_sub_le_factorial {k : ℕ} (hk : 2 ≤ k) :
       _ ≤ k.factorial := by simpa [mul_comm] using h
 
 /-- Reindexing the powers which occur in the intermediate-moment
-polynomial.-/
+polynomial.
+@isnad1 id=eq.1h2v.s6.98e331b57f47 from=translated src=- shape=2129fc5e vocab=7de29fe7
+-/
 theorem sum_Ico_three_pow_sub_two_eq
     (q : ℕ) (hq : 3 ≤ q) (r : ℝ) :
     (∑ k ∈ Ico 3 q, r ^ (k - 2)) =
@@ -53,7 +57,9 @@ theorem sum_Ico_three_pow_sub_two_eq
     using h.symm
 
 /-- A finite intermediate geometric sum is bounded by its infinite
-counterpart.-/
+counterpart.
+@isnad1 id=le.3h2v.s6.0006efe0399c from=translated src=- shape=723428e6 vocab=b05b30e6
+-/
 theorem sum_Ico_three_pow_sub_two_le
     (q : ℕ) (hq : 3 ≤ q) {r : ℝ}
     (hr : 0 ≤ r) (hr1 : r < 1) :
@@ -63,7 +69,9 @@ theorem sum_Ico_three_pow_sub_two_le
     (geom_sum_Ico_le_of_lt_one (x := r) (m := 1) (n := q - 2) hr hr1)
 
 /-- A term of the intermediate polynomial is dominated by the
-corresponding term in the Bernstein geometric series.-/
+corresponding term in the Bernstein geometric series.
+@isnad1 id=le.5h5v.s7.c8d8a21630e7 from=translated src=- shape=e61a38cb vocab=cf2bf199
+-/
 theorem intermediate_term_le_bernstein_geometric
     {k : ℕ} (hk : 2 ≤ k) {V c t A : ℝ}
     (hV : 0 ≤ V) (hc : 0 ≤ c) (ht : 0 ≤ t)
@@ -96,7 +104,9 @@ theorem intermediate_term_le_bernstein_geometric
       ring
 
 /-- The whole intermediate polynomial is bounded by the nonconstant part
-of the Bernstein geometric series.-/
+of the Bernstein geometric series.
+@isnad1 id=le.6h5v.s7.bbc564346318 from=translated src=- shape=e1b21709 vocab=1c30f1db
+-/
 theorem strongMomentIntermediateExponent_le_bernstein_geometric
     (q : ℕ) (hq : 3 ≤ q) {V Q c t : ℝ}
     (hV : 0 ≤ V) (hc : 0 ≤ c) (ht : 0 ≤ t)
@@ -129,7 +139,9 @@ theorem strongMomentIntermediateExponent_le_bernstein_geometric
 
 /-- Rio's finite Gaussian-plus-intermediate exponent is dominated by the
 rational Bernstein exponent whenever its interpolated coefficients have
-the expected geometric form.-/
+the expected geometric form.
+@isnad1 id=le.6h5v.s7.7b7949430bb6 from=translated src=- shape=43400f9f vocab=880a92e2
+-/
 theorem gaussian_add_strongMomentIntermediateExponent_le_bernstein
     (q : ℕ) (hq : 3 ≤ q) {V Q c t : ℝ}
     (hV : 0 ≤ V) (hc : 0 ≤ c) (ht : 0 ≤ t)
@@ -156,7 +168,9 @@ theorem gaussian_add_strongMomentIntermediateExponent_le_bernstein
       ring
 
 /-- In the normalization `Q = 1`, Rio's interpolated coefficient is a
-geometric sequence with ratio `V^(-1/(q-2))`.-/
+geometric sequence with ratio `V^(-1/(q-2))`.
+@isnad1 id=eq.3h3v.s7.6eb97e00a589 from=translated src=- shape=0ff978c4 vocab=886ab4db
+-/
 theorem interpolatedStrongMomentCoefficient_one_eq_geometric
     {q k : ℕ} (hq : 3 ≤ q) (hk : 2 ≤ k)
     {V : ℝ} (hV : 0 < V) :
@@ -177,7 +191,9 @@ theorem interpolatedStrongMomentCoefficient_one_eq_geometric
   simp only [one_rpow, mul_one, Real.rpow_one]
   rw [Real.rpow_mul hV.le, Real.rpow_natCast]
 
-/-- Equivalent root form of the normalized interpolation coefficient.-/
+/-- Equivalent root form of the normalized interpolation coefficient.
+@isnad1 id=eq.3h3v.s6.1ea1b2b20668 from=translated src=- shape=bf146b31 vocab=5b57cd57
+-/
 theorem interpolatedStrongMomentCoefficient_one_eq_root_pow
     {q k : ℕ} (hq : 3 ≤ q) (hkq : k ≤ q)
     {V : ℝ} (hV : 0 < V) :
@@ -196,7 +212,9 @@ theorem interpolatedStrongMomentCoefficient_one_eq_root_pow
   rw [hweight, Real.rpow_mul hV.le, Real.rpow_natCast]
   simp
 
-/-- Pointwise normalized form of Rio's inequality preceding (3.21).-/
+/-- Pointwise normalized form of Rio's inequality preceding (3.21).
+@isnad1 id=le.4h3v.s7.c235f70fc811 from=translated src=- shape=3743eea1 vocab=cd39047a
+-/
 theorem gaussian_add_strongMomentIntermediateExponent_one_le_bernstein
     (q : ℕ) (hq : 3 ≤ q) {V t : ℝ}
     (hV : 0 < V) (ht : 0 ≤ t)
@@ -214,7 +232,9 @@ theorem gaussian_add_strongMomentIntermediateExponent_one_le_bernstein
   rw [interpolatedStrongMomentCoefficient_one_eq_geometric hq
     (by omega) hV]
 
-/-- The canonical Bernstein parameter lies strictly below the pole.-/
+/-- The canonical Bernstein parameter lies strictly below the pole.
+@isnad1 id=lt.3h3v.s6.fcdb824ae5a4 from=translated src=- shape=7ce8185d vocab=52bb9d2b
+-/
 theorem bernsteinOptimalParameter_scale_lt_three
     {V c x : ℝ} (hV : 0 < V) (hc : 0 ≤ c) (hx : 0 < x) :
     c * bernsteinOptimalParameter V c x / 3 < 1 := by
@@ -231,7 +251,9 @@ theorem bernsteinOptimalParameter_scale_lt_three
     _ < 1 := (div_lt_iff₀ (by norm_num : (0 : ℝ) < 3)).2 (by
       simpa using hfrac)
 
-/-- Rio's transform estimate (3.21), in the normalization `Q = 1`.-/
+/-- Rio's transform estimate (3.21), in the normalization `Q = 1`.
+@isnad1 id=le.3h3v.s7.26179336d5ee from=translated src=- shape=7adf0cc6 vocab=7b639513
+-/
 theorem chernoffTransform_gaussian_add_intermediate_one_le
     (q : ℕ) (hq : 3 ≤ q) {V x : ℝ}
     (hV : 0 < V) (hx : 0 < x) :
@@ -254,7 +276,9 @@ theorem chernoffTransform_gaussian_add_intermediate_one_le
 
 /-- The second branch in Rio's transform decomposition (3.15): optimize
 the Gaussian-plus-intermediate polynomial by Bernstein and the exact tail
-separately.-/
+separately.
+@isnad1 id=le.5h4v.s7.70b90a1fdab7 from=translated src=- shape=42d41594 vocab=da260669
+-/
 theorem chernoffTransform_rioStrongMomentExponent_one_second_branch_le
     (q : ℕ) (hq : 3 ≤ q) {V y x : ℝ}
     (hV : 0 < V) (hy : 0 < y) (hx : 0 < x)
@@ -327,7 +351,9 @@ theorem chernoffTransform_rioStrongMomentExponent_one_second_branch_le
 
 /-! ## Closing Rio's minimum estimate -/
 
-/-- A convenient finite subseries bound for the exponential series.-/
+/-- A convenient finite subseries bound for the exponential series.
+@isnad1 id=le.0h1v.s5.2cd709f06dec from=translated src=- shape=fd2fe07e vocab=fa11c52f
+-/
 theorem sum_Ico_pow_div_factorial_le_exp (q : ℕ) :
     (∑ k ∈ Finset.Ico 3 q,
       (q : ℝ) ^ k / (k.factorial : ℝ)) ≤ Real.exp q := by
@@ -337,7 +363,9 @@ theorem sum_Ico_pow_div_factorial_le_exp (q : ℕ) :
 
 /-- If the normalized coefficients obey Rio's comparison
 `a_k <= exp(k-q)`, then the intermediate polynomial evaluated at `q/e`
-is at most one.-/
+is at most one.
+@isnad1 id=le.1h3v.s6.5d6e29786d7d from=translated src=- shape=a86ed639 vocab=43d5a976
+-/
 theorem strongMomentIntermediateExponent_q_div_exp_one_le_one_of_coeff
     (q : ℕ) {V Q : ℝ}
     (hcoeff : ∀ k ∈ Finset.Ico 3 q,
@@ -372,7 +400,9 @@ theorem strongMomentIntermediateExponent_q_div_exp_one_le_one_of_coeff
     _ = 1 := by rw [← Real.exp_add]; simp
 
 /-- If Rio's Bernstein scale is larger than `e`, every normalized
-interpolation coefficient is bounded by `exp(k-q)`.-/
+interpolation coefficient is bounded by `exp(k-q)`.
+@isnad1 id=le.4h3v.s6.cf67d4ad93f5 from=translated src=- shape=4bd4ae5f vocab=802c12d7
+-/
 theorem interpolatedStrongMomentCoefficient_one_le_exp_sub_of_exp_lt_scale
     {q k : ℕ} (hq : 3 ≤ q) (hkq : k ≤ q)
     {V : ℝ} (hV : 0 < V)
@@ -398,7 +428,9 @@ theorem interpolatedStrongMomentCoefficient_one_le_exp_sub_of_exp_lt_scale
       ring
 
 /-- The large-scale case in Rio's proof: if the Bernstein scale exceeds
-`e`, the intermediate polynomial at `q/e` is at most one.-/
+`e`, the intermediate polynomial at `q/e` is at most one.
+@isnad1 id=le.3h2v.s6.9d999c83f5e2 from=translated src=- shape=20e664ba vocab=bc928367
+-/
 theorem strongMomentIntermediateExponent_q_div_exp_one_le_one_of_exp_lt_scale
     (q : ℕ) (hq : 3 ≤ q) {V : ℝ} (hV : 0 < V)
     (hscale : Real.exp 1 < V ^ (-(1 / ((q : ℝ) - 2)))) :
@@ -409,7 +441,9 @@ theorem strongMomentIntermediateExponent_q_div_exp_one_le_one_of_exp_lt_scale
   exact interpolatedStrongMomentCoefficient_one_le_exp_sub_of_exp_lt_scale
     hq (by have := (Finset.mem_Ico.mp hk).2; omega) hV hscale
 
-/-- Rio's key minimum estimate (3.23), with `e` written as `exp 1`.-/
+/-- Rio's key minimum estimate (3.23), with `e` written as `exp 1`.
+@isnad1 id=le.2h2v.s6.34b1086ce1df from=translated src=- shape=624e4633 vocab=6d396aac
+-/
 theorem min_exp_mul_intermediate_or_scale_le_exp_one
     (q : ℕ) (hq : 3 ≤ q) {V : ℝ} (hV : 0 < V) :
     min
@@ -436,7 +470,9 @@ theorem min_exp_mul_intermediate_or_scale_le_exp_one
       _ = Real.exp 1 := mul_one _
 
 /-- Multiplying (3.23) by `x/3` gives the universal linear correction
-`(e/3) x`.-/
+`(e/3) x`.
+@isnad1 id=le.3h3v.s7.8fb2c02e6d2b from=translated src=- shape=8b73a97b vocab=6d396aac
+-/
 theorem rio_intermediate_min_linear_correction_le
     (q : ℕ) (hq : 3 ≤ q) {V x : ℝ}
     (hV : 0 < V) (hx : 0 ≤ x) :

@@ -29,16 +29,25 @@ namespace ProbabilityTheory
 def gaussianChernoffExponent (V t : ℝ) : ℝ :=
   (V / 2) * t ^ 2
 
+/--
+@isnad1 id=eq.0h1v.s4.2bf4d5e34587 from=translated src=- shape=1d838610 vocab=a4ed6344
+-/
 @[simp] theorem gaussianChernoffExponent_zero (V : ℝ) :
     gaussianChernoffExponent V 0 = 0 := by
   simp [gaussianChernoffExponent]
 
+/--
+@isnad1 id=le.1h2v.s4.4a45552075ca from=translated src=- shape=334a1355 vocab=2f5f7ca3
+-/
 theorem gaussianChernoffExponent_nonneg {V t : ℝ}
     (hV : 0 ≤ V) :
     0 ≤ gaussianChernoffExponent V t := by
   unfold gaussianChernoffExponent
   positivity
 
+/--
+@isnad1 id=convexon.1h1v.s5.f8b956c1a61d from=translated src=- shape=c30f1592 vocab=e4ab9c8a
+-/
 theorem convexOn_gaussianChernoffExponent {V : ℝ} (hV : 0 ≤ V) :
     ConvexOn ℝ (Set.Ici 0) (gaussianChernoffExponent V) := by
   have hcoef : 0 ≤ V / 2 := by positivity
@@ -53,7 +62,9 @@ theorem convexOn_gaussianChernoffExponent {V : ℝ} (hV : 0 ≤ V) :
       mul_le_mul_of_nonneg_left hp hcoef
     _ = a * (V / 2 * x ^ 2) + b * (V / 2 * y ^ 2) := by ring
 
-/-- Exact optimization of the quadratic Chernoff component.-/
+/-- Exact optimization of the quadratic Chernoff component.
+@isnad1 id=le.2h2v.s5.425a5723969f from=translated src=- shape=275acc1f vocab=8d6b16aa
+-/
 theorem chernoffTransform_gaussianChernoffExponent_le
     {V x : ℝ} (hV : 0 < V) (hx : 0 < x) :
     chernoffTransform (gaussianChernoffExponent V) x ≤
@@ -94,7 +105,9 @@ theorem chernoffTransform_gaussianChernoffExponent_le
   rw [hobjective] at heval
   exact heval
 
-/-- The exact tail component is convex on nonnegative Laplace parameters.-/
+/-- The exact tail component is convex on nonnegative Laplace parameters.
+@isnad1 id=convexon.2h3v.s5.3165413a1c0e from=translated src=- shape=d2dd4545 vocab=0bf03846
+-/
 theorem convexOn_exactStrongMomentTailExponent
     (q : ℕ) {Q y : ℝ} (hQ : 0 ≤ Q) (hy : 0 < y) :
     ConvexOn ℝ (Set.Ici 0) (exactStrongMomentTailExponent q Q y) := by
@@ -133,12 +146,18 @@ def strongMomentIntermediateExponent
     t ^ k / (k.factorial : ℝ) *
       interpolatedStrongMomentCoefficient q V Q k
 
+/--
+@isnad1 id=le.2h4v.s5.91b3c0534e39 from=translated src=- shape=fdbab15a vocab=9221c55a
+-/
 theorem interpolatedStrongMomentCoefficient_nonneg
     (q k : ℕ) {V Q : ℝ} (hV : 0 ≤ V) (hQ : 0 ≤ Q) :
     0 ≤ interpolatedStrongMomentCoefficient q V Q k := by
   unfold interpolatedStrongMomentCoefficient
   exact mul_nonneg (Real.rpow_nonneg hV _) (Real.rpow_nonneg hQ _)
 
+/--
+@isnad1 id=le.3h4v.s5.4d8012faf2ac from=translated src=- shape=a14b3bca vocab=e13a65b2
+-/
 theorem strongMomentIntermediateExponent_nonneg
     (q : ℕ) {V Q t : ℝ} (hV : 0 ≤ V) (hQ : 0 ≤ Q)
     (ht : 0 ≤ t) :
@@ -148,6 +167,9 @@ theorem strongMomentIntermediateExponent_nonneg
     (div_nonneg (pow_nonneg ht k) (by positivity))
     (interpolatedStrongMomentCoefficient_nonneg q k hV hQ)
 
+/--
+@isnad1 id=eq.0h3v.s4.cb4ca648f889 from=translated src=- shape=12022745 vocab=de43a84d
+-/
 @[simp] theorem strongMomentIntermediateExponent_zero
     (q : ℕ) (V Q : ℝ) :
     strongMomentIntermediateExponent q V Q 0 = 0 := by
@@ -159,6 +181,9 @@ theorem strongMomentIntermediateExponent_nonneg
     omega
   simp [hk0]
 
+/--
+@isnad1 id=convexon.2h3v.s5.15aa1fea7c58 from=translated src=- shape=f662865f vocab=1091d039
+-/
 theorem convexOn_strongMomentIntermediateExponent
     (q : ℕ) {V Q : ℝ} (hV : 0 ≤ V) (hQ : 0 ≤ Q) :
     ConvexOn ℝ (Set.Ici 0) (strongMomentIntermediateExponent q V Q) := by
@@ -193,11 +218,17 @@ def rioStrongMomentExponent
     strongMomentIntermediateExponent q V Q t +
     exactStrongMomentTailExponent q Q y t
 
+/--
+@isnad1 id=eq.1h4v.s5.c603db1e3a40 from=translated src=- shape=12daad04 vocab=b33ef35d
+-/
 @[simp] theorem rioStrongMomentExponent_zero
     {q : ℕ} (hq : q ≠ 0) (V Q y : ℝ) :
     rioStrongMomentExponent q V Q y 0 = 0 := by
   simp [rioStrongMomentExponent, hq]
 
+/--
+@isnad1 id=le.4h5v.s6.0ead89fe9ee9 from=translated src=- shape=05d5c3c8 vocab=bf0e3842
+-/
 theorem rioStrongMomentExponent_nonneg
     (q : ℕ) {V Q y t : ℝ}
     (hV : 0 ≤ V) (hQ : 0 ≤ Q) (hy : 0 < y) (ht : 0 ≤ t) :
@@ -208,6 +239,9 @@ theorem rioStrongMomentExponent_nonneg
       (strongMomentIntermediateExponent_nonneg q hV hQ ht))
     (exactStrongMomentTailExponent_nonneg q hQ hy ht)
 
+/--
+@isnad1 id=convexon.3h4v.s6.dc66cfe1ff44 from=translated src=- shape=0c3350b5 vocab=80b87018
+-/
 theorem convexOn_rioStrongMomentExponent
     (q : ℕ) {V Q y : ℝ}
     (hV : 0 ≤ V) (hQ : 0 ≤ Q) (hy : 0 < y) :
@@ -241,7 +275,9 @@ theorem convexOn_rioStrongMomentExponent
           exactStrongMomentTailExponent q Q y t) := by ring
 
 /-- Hölder interpolation upgrades an exact-series exponent with raw moment
-proxies to Rio's deterministic exponent.-/
+proxies to Rio's deterministic exponent.
+@isnad1 id=le.5h7v.s6.9c9a50cc8544 from=translated src=- shape=d3fc42fd vocab=9c2d8e53
+-/
 theorem strongMomentSeriesExponent_le_rioStrongMomentExponent
     (q : ℕ) {t y second V Q : ℝ} {moment : ℕ → ℝ}
     (ht : 0 ≤ t) (hy : 0 < y)
@@ -281,7 +317,9 @@ theorem strongMomentSeriesExponent_le_rioStrongMomentExponent
 
 /-- Evaluation of the combined intermediate and exact-tail components at
 `x / y`.  This is the formal version of Rio's inequality (3.20) before the
-last bound on the finite intermediate series.-/
+last bound on the finite intermediate series.
+@isnad1 id=le.6h5v.s7.0062820231a5 from=translated src=- shape=bb8c09b1 vocab=8bb47fd1
+-/
 theorem chernoffTransform_intermediate_add_tail_le
     (q : ℕ) (hq : 1 ≤ q) {V Q y x : ℝ}
     (hV : 0 ≤ V) (hQ : 0 ≤ Q) (hy : 0 < y) (hx : 0 < x)
@@ -344,7 +382,9 @@ theorem chernoffTransform_intermediate_add_tail_le
       ring
 
 /-- Three-way Chernoff decomposition: exact Gaussian optimization plus an
-explicit evaluation of the intermediate and heavy-tail components.-/
+explicit evaluation of the intermediate and heavy-tail components.
+@isnad1 id=le.6h5v.s7.70fdc041091b from=translated src=- shape=7086b76e vocab=f156e7da
+-/
 theorem chernoffTransform_rioStrongMomentExponent_le
     (q : ℕ) (hq : 3 ≤ q) {V Q y x : ℝ}
     (hV : 0 < V) (hQ : 0 ≤ Q) (hy : 0 < y) (hx : 0 < x)

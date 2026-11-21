@@ -50,7 +50,9 @@ def finiteChainingIncrementEvent (Z : Omega → T → ℝ)
 /-- Choice of projections onto a finite family of nets.  This isolates the
 only use of choice in finite chaining: once each `N k` covers the index
 space at radius `eps k`, one can simultaneously choose a nearest-enough net
-point at every level up to `m`.-/
+point at every level up to `m`.
+@isnad1 id=ex.1h4v.s7.7fd9a8bec605 from=translated src=- shape=60346e86 vocab=4bc95c1e
+-/
 theorem exists_finiteNetProjections [PseudoMetricSpace T] [Nonempty T]
     (N : ℕ → Finset T) (eps : ℕ → ℝ) (m : ℕ)
     (hnet : ∀ k, k ≤ m → ∀ t, ∃ u ∈ N k, dist t u ≤ eps k) :
@@ -72,7 +74,9 @@ theorem exists_finiteNetProjections [PseudoMetricSpace T] [Nonempty T]
 omit [MeasurableSpace Omega] in
 /-- A finite telescoping decomposition bounds a process value by its base
 value, the absolute adjacent-level increments, and the last approximation
-remainder.-/
+remainder.
+@isnad1 id=le.0h7v.s7.5543c1be7801 from=translated src=- shape=936b571a vocab=d3d12529
+-/
 theorem abs_process_le_finiteChainingSum
     (Z : Omega → T → ℝ) (proj : ℕ → T → T)
     (m : ℕ) (omega : Omega) (t : T) :
@@ -137,7 +141,9 @@ thresholds forces a bad base value or a bad adjacent-level increment.
 
 The existential event is the set-theoretically robust formulation of an
 upper tail for the supremum; it does not presuppose measurability of that
-supremum.-/
+supremum.
+@isnad1 id=le.2h9v.s7.a506b2c69ebe from=translated src=- shape=c6c39dd4 vocab=f145a692
+-/
 theorem finiteChaining_largeDeviation_subset
     (Z : Omega → T → ℝ) (N : ℕ → Finset T)
     (proj : ℕ → T → T) (a : ℕ → ℝ) (b r : ℝ) (m : ℕ)
@@ -187,7 +193,9 @@ is the cost of the coarsest net.  At level `k`, the union bound pays for all
 `card (N (k+1)) * card (N k)` possible adjacent-net pairs.
 
 This is the reusable probabilistic core: any scalar concentration inequality
-can be supplied through `hbaseTail` and `hincrTail`.-/
+can be supplied through `hbaseTail` and `hincrTail`.
+@isnad1 id=le.4h12v.s8.6712eb9f4031 from=translated src=- shape=497574f7 vocab=b5372fff
+-/
 theorem measureReal_finiteChaining_largeDeviation_le [IsFiniteMeasure mu]
     (Z : Omega → T → ℝ) (N : ℕ → Finset T)
     (proj : ℕ → T → T) (a delta : ℕ → ℝ)
@@ -274,7 +282,9 @@ theorem measureReal_finiteChaining_largeDeviation_le [IsFiniteMeasure mu]
           ((N (k + 1)).card * (N k).card : ℕ) * delta k :=
       add_le_add hB hI
 
-/-- Bilateral tail estimate for one variable with a sub-Gaussian MGF.-/
+/-- Bilateral tail estimate for one variable with a sub-Gaussian MGF.
+@isnad1 id=le.2h5v.s6.93e7174cdf13 from=translated src=- shape=6c9d344a vocab=37d80269
+-/
 theorem HasSubgaussianMGF.measureReal_abs_ge_le
     [IsProbabilityMeasure mu]
     {X : Omega → ℝ} {c : ℝ≥0}
@@ -300,7 +310,9 @@ theorem HasSubgaussianMGF.measureReal_abs_ge_le
     _ = 2 * exp (-t ^ 2 / (2 * (c : ℝ))) := by ring
 
 /-- Strict version of the bilateral sub-Gaussian tail, convenient for the
-open upper-tail events used by finite chaining.-/
+open upper-tail events used by finite chaining.
+@isnad1 id=le.2h5v.s6.cf23ab5bba1b from=translated src=- shape=65dfaf86 vocab=f26b071b
+-/
 theorem HasSubgaussianMGF.measureReal_abs_gt_le
     [IsProbabilityMeasure mu]
     {X : Omega → ℝ} {c : ℝ≥0}
@@ -320,7 +332,9 @@ def hoeffdingMGFProxy (lower upper : ℝ) : ℝ≥0 :=
 
 /-- Finite multiscale chaining under sub-Gaussian MGF assumptions.  No
 independence between the values at different net points is needed: only the
-individual base and increment tails enter the union bound.-/
+individual base and increment tails enter the union bound.
+@isnad1 id=le.6h12v.s9.b2e2911a95c1 from=translated src=- shape=dfcbb962 vocab=0d7823b5
+-/
 theorem measureReal_finiteChaining_largeDeviation_le_of_subgaussian
     [IsProbabilityMeasure mu]
     (Z : Omega → T → ℝ) (N : ℕ → Finset T)
@@ -352,7 +366,9 @@ theorem measureReal_finiteChaining_largeDeviation_le_of_subgaussian
 
 /-- Hoeffding specialization of finite chaining.  Boundedness and centring
 are required only for the finitely many base values and adjacent-level
-increments that appear in the chain.-/
+increments that appear in the chain.
+@isnad1 id=le.10h14v.s9.8dff0e030ed7 from=translated src=- shape=7ef8fd2b vocab=03860a91
+-/
 theorem measureReal_finiteChaining_largeDeviation_le_of_hoeffding
     [IsProbabilityMeasure mu]
     (Z : Omega → T → ℝ) (N : ℕ → Finset T)
@@ -397,7 +413,9 @@ theorem measureReal_finiteChaining_largeDeviation_le_of_hoeffding
 
 /-- Metric finite chaining.  A deterministic Lipschitz modulus and the
 finest projection radius turn the abstract remainder into `L * eps`.
-The right-hand side displays the cardinalities of all adjacent net levels.-/
+The right-hand side displays the cardinalities of all adjacent net levels.
+@isnad1 id=le.8h13v.s9.a9c528508cc5 from=translated src=- shape=90451e28 vocab=4278083e
+-/
 theorem measureReal_finiteChaining_lipschitz_le_of_subgaussian
     [PseudoMetricSpace T] [IsProbabilityMeasure mu]
     (Z : Omega → T → ℝ) (N : ℕ → Finset T)

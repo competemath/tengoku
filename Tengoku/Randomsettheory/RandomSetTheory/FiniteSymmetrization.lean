@@ -55,6 +55,9 @@ def finiteSupAbsEvent (X : Omega → T → ℝ) (N : Finset T) (r : ℝ) : Set O
   ⋃ t ∈ N, {omega | r < |X omega t|}
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=iff.0h6v.s5.81fbcfe3aaaf from=translated src=- shape=aee1e279 vocab=c1a795aa
+-/
 @[simp]
 theorem mem_finiteSupAbsEvent {X : Omega → T → ℝ} {N : Finset T}
     {r : ℝ} {omega : Omega} :
@@ -68,6 +71,9 @@ def finiteUniformAbsLeEvent (X : Omega → T → ℝ) (N : Finset T) (r : ℝ) :
   (finiteSupAbsEvent X N r)ᶜ
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=iff.0h6v.s5.aef867e8df23 from=translated src=- shape=1a3af6ec vocab=f1a6d572
+-/
 @[simp]
 theorem mem_finiteUniformAbsLeEvent {X : Omega → T → ℝ} {N : Finset T}
     {r : ℝ} {omega : Omega} :
@@ -81,6 +87,9 @@ def finitePairedDifferenceEvent (X : Omega → T → ℝ)
   finiteSupAbsEvent (fun z t ↦ X z.1 t - Y z.2 t) N r
 
 omit [MeasurableSpace Omega] [MeasurableSpace Omega'] in
+/--
+@isnad1 id=iff.0h8v.s6.5e7aa1136778 from=translated src=- shape=35eb09e5 vocab=f44e65d7
+-/
 @[simp]
 theorem mem_finitePairedDifferenceEvent
     {X : Omega → T → ℝ} {Y : Omega' → T → ℝ}
@@ -90,7 +99,9 @@ theorem mem_finitePairedDifferenceEvent
   simp [finitePairedDifferenceEvent]
 
 /-- Measurability of a finite upper event from coordinatewise measurability on
-the finite class.-/
+the finite class.
+@isnad1 id=measurab.1h5v.s5.f3f099f73341 from=translated src=- shape=657ef68b vocab=aac48363
+-/
 theorem measurableSet_finiteSupAbsEvent
     {X : Omega → T → ℝ} {N : Finset T} {r : ℝ}
     (hX : ∀ t ∈ N, Measurable (fun omega ↦ X omega t)) :
@@ -100,14 +111,18 @@ theorem measurableSet_finiteSupAbsEvent
   intro t ht
   exact measurableSet_lt measurable_const (hX t (by simpa using ht)).abs
 
-/-- Measurability of the uniform-good ghost event.-/
+/-- Measurability of the uniform-good ghost event.
+@isnad1 id=measurab.1h5v.s5.a8fe53e9fc43 from=translated src=- shape=657ef68b vocab=c8d1559e
+-/
 theorem measurableSet_finiteUniformAbsLeEvent
     {X : Omega → T → ℝ} {N : Finset T} {r : ℝ}
     (hX : ∀ t ∈ N, Measurable (fun omega ↦ X omega t)) :
     MeasurableSet (finiteUniformAbsLeEvent X N r) :=
   (measurableSet_finiteSupAbsEvent hX).compl
 
-/-- Measurability of the paired-difference event.-/
+/-- Measurability of the paired-difference event.
+@isnad1 id=measurab.2h7v.s6.523dd70f1be8 from=translated src=- shape=634b73ea vocab=29733aeb
+-/
 theorem measurableSet_finitePairedDifferenceEvent
     {X : Omega → T → ℝ} {Y : Omega' → T → ℝ}
     {N : Finset T} {r : ℝ}
@@ -121,7 +136,9 @@ theorem measurableSet_finitePairedDifferenceEvent
 omit [MeasurableSpace Omega] [MeasurableSpace Omega'] in
 /-- Deterministic ghost-sample implication.  If `X` is larger than `2r` at
 one index and `Y` is at most `r` at every index, their difference is larger
-than `r` at the same index.-/
+than `r` at the same index.
+@isnad1 id=le.0h7v.s6.331109d0e7a2 from=translated src=- shape=63a2d463 vocab=90281ed4
+-/
 theorem finiteSupAbsEvent_prod_finiteUniformAbsLeEvent_subset
     (X : Omega → T → ℝ) (Y : Omega' → T → ℝ)
     (N : Finset T) {r : ℝ} :
@@ -140,7 +157,9 @@ theorem finiteSupAbsEvent_prod_finiteUniformAbsLeEvent_subset
 
 /-- Product-measure form of the exact ghost-sample reduction.  No identical
 distribution or independence hypothesis is needed here: the two samples
-already live under the product measure `mu.prod nu`.-/
+already live under the product measure `mu.prod nu`.
+@isnad1 id=le.0h9v.s6.edc90671667b from=translated src=- shape=d1673f76 vocab=a3010916
+-/
 theorem measureReal_mul_finiteUniformAbsLeEvent_le_pairedDifference
     [IsFiniteMeasure mu] [IsFiniteMeasure nu]
     (X : Omega → T → ℝ) (Y : Omega' → T → ℝ)
@@ -155,7 +174,9 @@ theorem measureReal_mul_finiteUniformAbsLeEvent_le_pairedDifference
 /-- Quantitative ghost-sample reduction.  If the uniform-good ghost event has
 probability at least `p > 0` and the paired-difference event has probability
 at most `delta`, then the original `2r` event has probability at most
-`delta / p`.-/
+`delta / p`.
+@isnad1 id=le.3h11v.s7.7e063f02f8ed from=translated src=- shape=2796ca8f vocab=7e74e303
+-/
 theorem measureReal_finiteSupAbsEvent_le_of_ghost
     [IsFiniteMeasure mu] [IsFiniteMeasure nu]
     (X : Omega → T → ℝ) (Y : Omega' → T → ℝ)
@@ -181,7 +202,9 @@ def finiteEmpiricalSum (X : ι → Omega → T → ℝ)
 
 omit [MeasurableSpace Omega] [MeasurableSpace Omega'] in
 /-- A paired empirical difference is the sum of the coordinatewise ghost
-differences.-/
+differences.
+@isnad1 id=eq.0h10v.s6.92b2674f661b from=translated src=- shape=318968d5 vocab=c41b7f49
+-/
 theorem finiteEmpiricalSum_sub_finiteEmpiricalSum
     (X : ι → Omega → T → ℝ) (Y : ι → Omega' → T → ℝ)
     (s : Finset ι) (omega : Omega) (omega' : Omega') (t : T) :
@@ -198,7 +221,9 @@ def HasSymmetricLaw (X : Omega → ℝ) (mu : Measure Omega := by volume_tac) : 
 
 /-- A difference of two copies of the same measurable variable on the product
 space has a symmetric law.  This is the elementary exchangeability step in
-ghost-sample symmetrization.-/
+ghost-sample symmetrization.
+@isnad1 id=hassymme.1h3v.s6.8fcf65488d20 from=translated src=- shape=547f8c55 vocab=d72a1c84
+-/
 theorem hasSymmetricLaw_ghostDifference [IsProbabilityMeasure mu]
     {X : Omega → ℝ} (hX : Measurable X) :
     HasSymmetricLaw (fun z : Omega × Omega ↦ X z.1 - X z.2) (mu.prod mu) := by
@@ -223,7 +248,9 @@ theorem hasSymmetricLaw_ghostDifference [IsProbabilityMeasure mu]
 /-- Coordinatewise identical laws and independence on both spaces transport
 through a finite sum.  Taking `Y i = epsilon i * D i` is the exact abstract
 interface for random-sign symmetrization: the caller must verify both the
-coordinatewise sign invariance and independence of the signed coordinates.-/
+coordinatewise sign invariance and independence of the signed coordinates.
+@isnad1 id=identdis.3h8v.s6.4306fc016f86 from=translated src=- shape=de6a57d2 vocab=2ce69dfe
+-/
 theorem identDistrib_finset_sum_of_independent_coordinates
     [Countable ι]
     (X : ι → Omega → ℝ) (Y : ι → Omega' → ℝ)
@@ -239,7 +266,9 @@ theorem identDistrib_finset_sum_of_independent_coordinates
 
 /-- An independent family of symmetric variables is invariant in law, after
 finite summation, under every deterministic choice of signs `+1` or `-1`.
-This is the exact fixed-sign form of the Rademacher symmetrization principle.-/
+This is the exact fixed-sign form of the Rademacher symmetrization principle.
+@isnad1 id=identdis.3h6v.s6.0caecddd3596 from=translated src=- shape=93d15141 vocab=c887b0cd
+-/
 theorem identDistrib_finset_sum_sign_mul_of_independent_symmetric
     [Countable ι]
     (X : ι → Omega → ℝ) (hX_indep : iIndepFun X mu)
@@ -278,7 +307,9 @@ def HasSymmetricFiniteLaw (X : Omega → T → ℝ) (N : Finset T)
 
 /-- The joint finite-dimensional ghost difference has a symmetric law.  This
 is the process-valued version of `hasSymmetricLaw_ghostDifference`; swapping
-the two samples negates every coordinate simultaneously.-/
+the two samples negates every coordinate simultaneously.
+@isnad1 id=hassymme.1h5v.s6.158b41fda71e from=translated src=- shape=87ea2876 vocab=c239d87e
+-/
 theorem hasSymmetricFiniteLaw_ghostDifference [IsProbabilityMeasure mu]
     (X : Omega → T → ℝ) (N : Finset T)
     (hX : ∀ t ∈ N, Measurable (fun omega ↦ X omega t)) :
@@ -313,7 +344,9 @@ theorem hasSymmetricFiniteLaw_ghostDifference [IsProbabilityMeasure mu]
 are independent and each whole finite restriction is symmetric, multiplying
 each coordinate process by an arbitrary fixed sign preserves the law of the
 entire summed restriction.  Consequently every measurable functional of the
-finite vector, including its maximum absolute coordinate, has the same law.-/
+finite vector, including its maximum absolute coordinate, has the same law.
+@isnad1 id=identdis.3h8v.s8.414d1ebc5fe3 from=translated src=- shape=771e86e1 vocab=fae25202
+-/
 theorem identDistrib_finiteProcessSum_sign_mul_of_independent_symmetric
     [Countable ι]
     (X : ι → Omega → T → ℝ) (N : Finset T)
@@ -352,7 +385,9 @@ omit [MeasurableSpace Omega'] in
 /-- Conditional form of finite-process random-sign symmetrization.  For every
 realization of any sign process taking values in `{+1,-1}`, the signed sum has
 the same joint finite-dimensional law as the unsigned sum.  No probability
-law for the signs is needed for this conditional statement.-/
+law for the signs is needed for this conditional statement.
+@isnad1 id=identdis.3h10v.s8.bdef82b18cae from=translated src=- shape=14135438 vocab=fae25202
+-/
 theorem identDistrib_finiteProcessSum_randomSigns_conditionally
     [Countable ι]
     (X : ι → Omega → T → ℝ) (N : Finset T)
@@ -385,14 +420,18 @@ namespace IsRademacher
 
 variable {epsilon : Omega → ℝ}
 
-/-- A Rademacher variable lies in `[-1,1]` almost surely.-/
+/-- A Rademacher variable lies in `[-1,1]` almost surely.
+@isnad1 id=eventual.1h3v.s5.9effc3d25000 from=translated src=- shape=3fa16a14 vocab=db40ee1d
+-/
 theorem ae_mem_Icc (h : IsRademacher epsilon mu) :
     ∀ᵐ omega ∂mu, epsilon omega ∈ Set.Icc (-1 : ℝ) 1 := by
   filter_upwards [h.ae_eq_one_or_neg_one] with omega homega
   rcases homega with homega | homega <;> simp [homega]
 
 /-- Hoeffding's lemma gives the sharp variance proxy `1` for a centred
-Rademacher sign.-/
+Rademacher sign.
+@isnad1 id=hassubga.1h3v.s5.3b60416e5436 from=translated src=- shape=61767b58 vocab=ee4f2a77
+-/
 theorem hasSubgaussianMGF [IsProbabilityMeasure mu]
     (h : IsRademacher epsilon mu) :
     HasSubgaussianMGF epsilon 1 mu := by
@@ -408,7 +447,9 @@ def rademacherSqProxy (a : ℝ) : ℝ≥0 := ⟨a ^ 2, sq_nonneg a⟩
 
 /-- A finite maximum of (possibly dependent) sub-Gaussian variables obeys
 the sum of their bilateral tails.  Dependence across the class `N` is not
-restricted because this is a pure union bound.-/
+restricted because this is a pure union bound.
+@isnad1 id=le.2h7v.s7.e616abfd1f23 from=translated src=- shape=20693e2f vocab=439dc85b
+-/
 theorem measureReal_finiteSupAbsEvent_le_of_subgaussian
     [IsProbabilityMeasure mu]
     (X : Omega → T → ℝ) (N : Finset T) (c : T → ℝ≥0)

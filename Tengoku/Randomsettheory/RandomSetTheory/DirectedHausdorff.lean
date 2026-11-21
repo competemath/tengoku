@@ -40,7 +40,9 @@ def directedHausdorffDist (K L : Set E) : ℝ :=
   sSup ((fun x => infDist x L) '' K)
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
-/-- Compactness of `K` makes the directed distance attain its maximum.-/
+/-- Compactness of `K` makes the directed distance attain its maximum.
+@isnad1 id=ex.2h3v.s5.4f762c2bb5f2 from=translated src=- shape=7d032097 vocab=e8166575
+-/
 theorem exists_mem_infDist_eq_directedHausdorffDist
     {K L : Set E} (hK : IsCompact K) (hKne : K.Nonempty) :
     ∃ x ∈ K, infDist x L = directedHausdorffDist K L := by
@@ -51,7 +53,9 @@ theorem exists_mem_infDist_eq_directedHausdorffDist
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
 /-- Every point-to-set distance on `K` is bounded by the directed Hausdorff
-distance.-/
+distance.
+@isnad1 id=le.2h4v.s5.e1407e86d675 from=translated src=- shape=3fec64bf vocab=a191ca40
+-/
 theorem infDist_le_directedHausdorffDist
     {K L : Set E} (hK : IsCompact K)
     {x : E} (hx : x ∈ K) :
@@ -61,7 +65,9 @@ theorem infDist_le_directedHausdorffDist
     (mem_image_of_mem _ hx)
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
-/-- Directed Hausdorff distance is nonnegative when its source is nonempty.-/
+/-- Directed Hausdorff distance is nonnegative when its source is nonempty.
+@isnad1 id=le.2h3v.s5.5fd950f5293f from=translated src=- shape=a0a720b8 vocab=3f5ed3e2
+-/
 theorem directedHausdorffDist_nonneg
     {K L : Set E} (hK : IsCompact K) (hKne : K.Nonempty) :
     0 ≤ directedHausdorffDist K L := by
@@ -71,7 +77,9 @@ theorem directedHausdorffDist_nonneg
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
 /-- One orientation of the Hausdorff distance is bounded by the symmetric
-Hausdorff distance.-/
+Hausdorff distance.
+@isnad1 id=le.4h3v.s5.6d1893482827 from=translated src=- shape=84e06fde vocab=554d59c0
+-/
 theorem directedHausdorffDist_le_hausdorffDist
     {K L : Set E} (hK : IsCompact K) (hL : IsCompact L)
     (hKne : K.Nonempty) (hLne : L.Nonempty) :
@@ -86,7 +94,9 @@ theorem directedHausdorffDist_le_hausdorffDist
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
 /-- **Classical directed decomposition of Hausdorff distance.**  For two
 nonempty compact sets, the symmetric Hausdorff distance is the maximum of
-the two directed point-to-set distances.-/
+the two directed point-to-set distances.
+@isnad1 id=eq.4h3v.s6.19c18657bd6d from=translated src=- shape=3751a8e8 vocab=12d48607
+-/
 theorem hausdorffDist_eq_max_directedHausdorffDist
     {K L : Set E} (hK : IsCompact K) (hL : IsCompact L)
     (hKne : K.Nonempty) (hLne : L.Nonempty) :
@@ -137,7 +147,9 @@ private theorem continuous_supportFunction_sub
       (abs_supportFunctionDifference_sub_le
         hK hL hKne hLne hRK hRL u v)
 
-/-- The zero direction shows that the directed support gap is nonnegative.-/
+/-- The zero direction shows that the directed support gap is nonnegative.
+@isnad1 id=le.4h3v.s6.9570ed50c93b from=translated src=- shape=6e452400 vocab=b11fe1b7
+-/
 theorem directedSupportGap_nonneg
     {K L : Set E} (hK : IsCompact K) (hL : IsCompact L)
     (hKne : K.Nonempty) (hLne : L.Nonempty) :
@@ -156,7 +168,9 @@ theorem directedSupportGap_nonneg
   exact (le_csSup hcompact.bddAbove hzero)
 
 /-- Any directional support difference on the unit ball is bounded by the
-directed support gap.-/
+directed support gap.
+@isnad1 id=le.5h4v.s6.c0d6aef1b443 from=translated src=- shape=caa38f40 vocab=89c8e5c0
+-/
 theorem supportFunction_sub_le_directedSupportGap
     {K L : Set E} (hK : IsCompact K) (hL : IsCompact L)
     (hKne : K.Nonempty) (hLne : L.Nonempty)
@@ -173,7 +187,9 @@ theorem supportFunction_sub_le_directedSupportGap
 
 omit [FiniteDimensional ℝ E] in
 /-- Support differences are bounded above by the directed Hausdorff distance.
-This is the one-sided counterpart of the elementary support/Hausdorff bound.-/
+This is the one-sided counterpart of the elementary support/Hausdorff bound.
+@isnad1 id=le.4h4v.s6.b6c9dc370833 from=translated src=- shape=442a1114 vocab=7a3809a5
+-/
 theorem supportFunction_sub_le_directedHausdorffDist
     {K L : Set E} (hK : IsCompact K) (hL : IsCompact L)
     (hKne : K.Nonempty) (hLne : L.Nonempty) (u : E) :
@@ -198,7 +214,9 @@ theorem supportFunction_sub_le_directedHausdorffDist
       mul_le_mul_of_nonneg_left hdist (norm_nonneg _)
 
 omit [FiniteDimensional ℝ E] in
-/-- The directed support gap never exceeds the directed Hausdorff distance.-/
+/-- The directed support gap never exceeds the directed Hausdorff distance.
+@isnad1 id=le.4h3v.s6.ce4cb9637b7e from=translated src=- shape=695addd0 vocab=d3e95d90
+-/
 theorem directedSupportGap_le_directedHausdorffDist
     {K L : Set E} (hK : IsCompact K) (hL : IsCompact L)
     (hKne : K.Nonempty) (hLne : L.Nonempty) :
@@ -244,7 +262,9 @@ private theorem supportFunction_displacement_eq_inner_nearest
   · exact inner_le_supportFunction hL hy (x - y)
 
 /-- The maximal point-to-set distance is witnessed by a unit direction whose
-support gap is at least that distance.-/
+support gap is at least that distance.
+@isnad1 id=le.5h3v.s7.2fe6c7d8dc09 from=translated src=- shape=d17e0816 vocab=73815b22
+-/
 theorem directedHausdorffDist_le_directedSupportGap
     {K L : Set E} (hK : IsCompact K) (hL : IsCompact L)
     (hKne : K.Nonempty) (hLne : L.Nonempty) (hLconv : Convex ℝ L) :
@@ -300,7 +320,9 @@ theorem directedHausdorffDist_le_directedSupportGap
 
 /-- **Directed support/Hausdorff duality.**  For compact nonempty sets, with
 the target convex, directed Hausdorff distance is exactly the maximum support
-difference on the closed unit ball.  Convexity of the source is unnecessary.-/
+difference on the closed unit ball.  Convexity of the source is unnecessary.
+@isnad1 id=eq.5h3v.s7.5db532e30024 from=translated src=- shape=d17e0816 vocab=6773d8f2
+-/
 theorem directedSupportGap_eq_directedHausdorffDist
     {K L : Set E} (hK : IsCompact K) (hL : IsCompact L)
     (hKne : K.Nonempty) (hLne : L.Nonempty) (hLconv : Convex ℝ L) :
@@ -311,7 +333,9 @@ theorem directedSupportGap_eq_directedHausdorffDist
       hK hL hKne hLne hLconv
 
 /-- For compact nonempty convex sets, the usual support/Hausdorff duality
-splits into the maximum of its two one-sided support gaps.-/
+splits into the maximum of its two one-sided support gaps.
+@isnad1 id=eq.6h3v.s8.6ed504663c6c from=translated src=- shape=74f1bfe5 vocab=2ed46fdb
+-/
 theorem hausdorffDist_eq_max_directedSupportGap
     {K L : Set E} (hK : IsCompact K) (hL : IsCompact L)
     (hKne : K.Nonempty) (hLne : L.Nonempty)
@@ -332,7 +356,9 @@ variable {T : Type*} [TopologicalSpace T] [CompactSpace T]
 def continuousSup (f : C(T, ℝ)) : ℝ := sSup (Set.range f)
 
 /-- Taking the maximum of a continuous function on a compact index space is
-continuous for the uniform topology.-/
+continuous for the uniform topology.
+@isnad1 id=continuo.0h1v.s5.861e2f3fba4b from=translated src=- shape=f1a1a94c vocab=91d39ac9
+-/
 theorem continuous_continuousSup :
     Continuous (continuousSup : C(T, ℝ) → ℝ) := by
   have heval : Continuous (fun p : C(T, ℝ) × T => p.1 p.2) := by fun_prop
@@ -342,7 +368,9 @@ theorem continuous_continuousSup :
 
 omit [CompactSpace T] in
 /-- A nonnegative scalar can be pulled through the maximum of a continuous
-real function on a compact space.-/
+real function on a compact space.
+@isnad1 id=eq.1h3v.s6.23c969189602 from=translated src=- shape=c7f080b8 vocab=6dd72a68
+-/
 theorem continuousSup_smul_of_nonneg
     (c : ℝ) (hc : 0 ≤ c) (f : C(T, ℝ)) :
     continuousSup (c • f) = c * continuousSup f := by
@@ -359,7 +387,9 @@ theorem continuousSup_smul_of_nonneg
   rfl
 
 /-- Continuous-mapping transfer for the supremum (without absolute values)
-of a compactly indexed continuous process.-/
+of a compactly indexed continuous process.
+@isnad1 id=tendstoi.1h11v.s7.80bc2f75d6d9 from=translated src=- shape=32051e03 vocab=82e9ef4f
+-/
 theorem TendstoInDistribution.continuousSup
     {I Omega' : Type*} {Omega : I → Type*}
     {mOmega : ∀ i, MeasurableSpace (Omega i)}
@@ -379,7 +409,9 @@ end ContinuousSup
 section DirectedContinuousMapping
 
 /-- The maximum of the support-difference path is directed Hausdorff
-distance.-/
+distance.
+@isnad1 id=eq.5h3v.s8.f1bb5e97b165 from=translated src=- shape=0b5e19ca vocab=38074716
+-/
 theorem continuousSup_supportDifferenceContinuousMap_eq_directedHausdorffDist
     (K L : Set E) (hK : IsCompact K) (hL : IsCompact L)
     (hKne : K.Nonempty) (hLne : L.Nonempty) (hLconv : Convex ℝ L) :
@@ -398,7 +430,9 @@ theorem continuousSup_supportDifferenceContinuousMap_eq_directedHausdorffDist
 
 /-- Functional continuous-mapping bridge for directed Hausdorff distance.
 The premise is a weak limit for the entire scaled support-difference process;
-no Donsker or tightness theorem is claimed.-/
+no Donsker or tightness theorem is claimed.
+@isnad1 id=tendstoi.7h13v.s9.f670cbc880bf from=translated src=- shape=688bcfde vocab=34ecd4d5
+-/
 theorem tendstoInDistribution_scale_mul_directedHausdorffDist_of_process
     {I Omega' : Type*} {Omega : I → Type*}
     {mOmega : ∀ i, MeasurableSpace (Omega i)}
@@ -439,7 +473,9 @@ theorem tendstoInDistribution_scale_mul_directedHausdorffDist_of_process
 
 /-- Reverse-orientation version of the preceding continuous-mapping theorem.
 The limit is the supremum of the negative support process, corresponding to
-the negative part in the second one-sided limit from the report.-/
+the negative part in the second one-sided limit from the report.
+@isnad1 id=tendstoi.7h13v.s10.916dbfcc48b6 from=translated src=- shape=f71abb4f vocab=89c00d98
+-/
 theorem tendstoInDistribution_scale_mul_reverseDirectedHausdorffDist_of_process
     {I Omega' : Type*} {Omega : I → Type*}
     {mOmega : ∀ i, MeasurableSpace (Omega i)}

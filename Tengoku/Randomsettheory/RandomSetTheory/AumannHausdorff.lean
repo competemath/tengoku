@@ -29,7 +29,9 @@ variable {Ω E : Type*} [MeasurableSpace Ω]
 
 /-- Hausdorff stability of Aumann expectation.  The support-selection
 hypotheses are exactly the measurable maximum theorem needed to invoke the
-sharp support identity in every direction.-/
+sharp support identity in every direction.
+@isnad1 id=le.15h5v.s9.79e350afcd06 from=translated src=- shape=eecdc724 vocab=b64f4167
+-/
 theorem hausdorffDist_aumannExpectation_le_integral
     {μ : Measure Ω} {S T : Ω → Set E}
     (hScompact : ∀ ω, IsCompact (S ω))
@@ -84,7 +86,9 @@ theorem hausdorffDist_aumannExpectation_le_integral
 /-- Automatic form of Hausdorff stability for the (unclosed) Aumann
 expectations.  Once compactness of the two Aumann expectations is known,
 Effros measurability and integrable envelopes construct all exact support
-maximizers required by the elementary contraction theorem.-/
+maximizers required by the elementary contraction theorem.
+@isnad1 id=le.15h7v.s9.285c55fb2a43 from=translated src=- shape=e8d52faa vocab=86d8db97
+-/
 theorem hausdorffDist_aumannExpectation_le_integral_of_effros_of_envelope
     [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E] [Nonempty E]
     {μ : Measure Ω} {S T : Ω → Set E}
@@ -130,7 +134,9 @@ theorem hausdorffDist_aumannExpectation_le_integral_of_effros_of_envelope
 
 /-- Hausdorff contraction for the closures of Aumann expectations.  Effros
 measurability and integrable envelopes now supply the support approximations
-automatically, so no maximizing-selection hypotheses occur in the statement.-/
+automatically, so no maximizing-selection hypotheses occur in the statement.
+@isnad1 id=le.15h7v.s9.b40170d3ba02 from=translated src=- shape=e6287416 vocab=62e09434
+-/
 theorem hausdorffDist_closure_aumannExpectation_le_integral_of_envelope
     [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E] [Nonempty E]
     {μ : Measure Ω} [IsFiniteMeasure μ] {S T : Ω → Set E}
@@ -202,7 +208,9 @@ theorem hausdorffDist_closure_aumannExpectation_le_integral_of_envelope
           _ = hausdorffDist (S ω) (T ω) := one_mul _
 
 /-- Finite-dimensional form of the contraction theorem: compactness of both
-closed Aumann expectations follows automatically from the envelopes.-/
+closed Aumann expectations follows automatically from the envelopes.
+@isnad1 id=le.13h7v.s9.3727daba3991 from=translated src=- shape=b322ed93 vocab=8b9013f8
+-/
 theorem hausdorffDist_closure_aumannExpectation_le_integral
     [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E] [Nonempty E]
     [FiniteDimensional ℝ E]

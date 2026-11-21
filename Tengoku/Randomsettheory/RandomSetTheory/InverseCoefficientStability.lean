@@ -39,7 +39,9 @@ namespace RandomSetTheory
 /-! ## Spectral control of inversion -/
 
 /-- A strictly positive Loewner lower bound makes a real matrix positive
-definite.-/
+definite.
+@isnad1 id=posdef.2h3v.s6.456f3063c58d from=translated src=- shape=fb617fb0 vocab=15ccae53
+-/
 theorem matrix_posDef_of_loewnerLowerBound
     {n : Type*} [DecidableEq n]
     (A : Matrix n n ℝ) {a : ℝ} (ha : 0 < a)
@@ -52,7 +54,9 @@ theorem matrix_posDef_of_loewnerLowerBound
   exact hbase.add_posSemidef hdiff
 
 /-- In particular, a matrix with a strictly positive Loewner lower bound is
-invertible.-/
+invertible.
+@isnad1 id=isunit.2h3v.s6.c23432aec41f from=translated src=- shape=820ef417 vocab=572cd8e9
+-/
 theorem matrix_isUnit_of_loewnerLowerBound
     {n : Type*} [Fintype n] [DecidableEq n]
     (A : Matrix n n ℝ) {a : ℝ} (ha : 0 < a)
@@ -60,7 +64,9 @@ theorem matrix_isUnit_of_loewnerLowerBound
     IsUnit A :=
   (matrix_posDef_of_loewnerLowerBound A ha hA).isUnit
 
-/-- Determinantal form of the preceding invertibility conclusion.-/
+/-- Determinantal form of the preceding invertibility conclusion.
+@isnad1 id=lt.2h3v.s6.6c692efbfaa1 from=translated src=- shape=11437c2a vocab=fd169e6e
+-/
 theorem matrix_det_pos_of_loewnerLowerBound
     {n : Type*} [Fintype n] [DecidableEq n]
     (A : Matrix n n ℝ) {a : ℝ} (ha : 0 < a)
@@ -69,7 +75,9 @@ theorem matrix_det_pos_of_loewnerLowerBound
   (matrix_posDef_of_loewnerLowerBound A ha hA).det_pos
 
 /-- A positive Loewner lower bound controls the `L²` operator norm of the
-matrix inverse.-/
+matrix inverse.
+@isnad1 id=le.2h3v.s7.3fe0de64ce09 from=translated src=- shape=2c0c250e vocab=d0035b80
+-/
 theorem matrix_norm_inv_le_of_loewnerLowerBound
     {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
     (A : Matrix n n ℝ) {a : ℝ} (ha : 0 < a)
@@ -92,7 +100,9 @@ theorem matrix_norm_inv_le_of_loewnerLowerBound
   simpa only [Matrix.nonsing_inv_eq_ringInverse] using hcfc
 
 /-- Resolvent estimate for two matrices satisfying the same positive Loewner
-lower bound.-/
+lower bound.
+@isnad1 id=le.3h4v.s8.c3e4eb5d8a97 from=translated src=- shape=78a89243 vocab=e63d7e92
+-/
 theorem matrix_norm_inv_sub_inv_le_of_loewnerLowerBound
     {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
     (A B : Matrix n n ℝ) {a : ℝ} (ha : 0 < a)
@@ -139,7 +149,9 @@ def inverseCoefficientDomain
 
 /-- Every matrix component in a positive uniform-invertibility domain is a
 unit; this records that the totalized inverse agrees with genuine inversion
-on the whole domain.-/
+on the whole domain.
+@isnad1 id=isunit.2h4v.s6.34a5f89ad37b from=translated src=- shape=64ffbc10 vocab=cf151ab2
+-/
 theorem inverseCoefficientDomain_matrix_isUnit
     {n : Type*} [Fintype n] [DecidableEq n]
     {x : InverseCoefficientMomentSpace n} {a G : ℝ}
@@ -159,7 +171,9 @@ def inverseCoefficientLipschitzNN
     exact mul_nonneg (Real.sqrt_nonneg 2)
       ((one_div_nonneg.mpr ha.le).trans (le_max_left _ _))⟩
 
-/-- Analytic two-term estimate before combining the two product coordinates.-/
+/-- Analytic two-term estimate before combining the two product coordinates.
+@isnad1 id=le.4h7v.s9.bd4edb98c6d9 from=translated src=- shape=330cdc64 vocab=c0fe7241
+-/
 theorem inverseCoefficientMap_norm_sub_le_add
     {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
     (A B : Matrix n n ℝ) (b c : n → ℝ) {a G : ℝ}
@@ -214,7 +228,9 @@ private theorem weighted_two_le_sqrt_two_max
 
 /-- Exact pointwise Lipschitz estimate for `Phi`.  The hypothesis only bounds
 the second vector, which is sufficient because the resolvent decomposition is
-oriented with that vector.-/
+oriented with that vector.
+@isnad1 id=le.4h5v.s7.af526b496626 from=translated src=- shape=5583df25 vocab=c3780fc8
+-/
 theorem inverseCoefficientMap_dist_le
     {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
     {x y : InverseCoefficientMomentSpace n} {a G : ℝ}
@@ -239,7 +255,9 @@ theorem inverseCoefficientMap_dist_le
     WithLp.ofLp_toLp, WithLp.toLp_sub] using hbound
 
 /-- `Phi` is Lipschitz on the uniform-invertibility domain, with exactly the
-constant stated in the report.-/
+constant stated in the report.
+@isnad1 id=lipschit.2h3v.s7.6833a8f066d5 from=translated src=- shape=a3f47cdb vocab=a2445693
+-/
 theorem inverseCoefficientMap_lipschitzOnWith
     {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
     {a G : ℝ} (ha : 0 < a) (hG : 0 ≤ G) :
@@ -251,7 +269,9 @@ theorem inverseCoefficientMap_lipschitzOnWith
     inverseCoefficientLipschitzConstant a G * dist x y
   exact inverseCoefficientMap_dist_le ha hG hx hy
 
-/-- `Phi` is continuous on the uniform-invertibility domain.-/
+/-- `Phi` is continuous on the uniform-invertibility domain.
+@isnad1 id=continuo.2h3v.s7.118c9cc907f8 from=translated src=- shape=feeca902 vocab=57dfd969
+-/
 theorem inverseCoefficientMap_continuousOn
     {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
     {a G : ℝ} (ha : 0 < a) (hG : 0 ≤ G) :
@@ -260,7 +280,9 @@ theorem inverseCoefficientMap_continuousOn
   (inverseCoefficientMap_lipschitzOnWith ha hG).continuousOn
 
 /-- Uniform invertibility and the cross-moment envelope also bound every
-coefficient vector by `G / a`.-/
+coefficient vector by `G / a`.
+@isnad1 id=le.2h4v.s6.6afc0d94e9aa from=translated src=- shape=f07479a1 vocab=18ddc629
+-/
 theorem inverseCoefficientMap_norm_le
     {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
     {x : InverseCoefficientMomentSpace n} {a G : ℝ}
@@ -286,7 +308,9 @@ def inverseCoefficientImage
   inverseCoefficientMap '' K
 
 /-- A moment-set coefficient image satisfying the deterministic bounds lies
-in the closed ball of radius `G / a`.-/
+in the closed ball of radius `G / a`.
+@isnad1 id=le.2h4v.s7.b283333e1a14 from=translated src=- shape=d69b1746 vocab=ac477cf6
+-/
 theorem inverseCoefficientImage_subset_closedBall
     {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
     {a G : ℝ} (ha : 0 < a)
@@ -297,7 +321,9 @@ theorem inverseCoefficientImage_subset_closedBall
   simpa [mem_closedBall, dist_zero_right] using
     inverseCoefficientMap_norm_le ha (hKD hxK)
 
-/-- Nonemptiness is preserved by the coefficient map.-/
+/-- Nonemptiness is preserved by the coefficient map.
+@isnad1 id=nonempty.1h2v.s4.969f02972991 from=translated src=- shape=593216e7 vocab=36f215be
+-/
 theorem inverseCoefficientImage_nonempty
     {n : Type*} [Fintype n] [DecidableEq n]
     {K : Set (InverseCoefficientMomentSpace n)} (hK : K.Nonempty) :
@@ -305,7 +331,9 @@ theorem inverseCoefficientImage_nonempty
   hK.image inverseCoefficientMap
 
 /-- The identified coefficient set is compact whenever its moment set is
-compact and satisfies the uniform inverse and vector bounds.-/
+compact and satisfies the uniform inverse and vector bounds.
+@isnad1 id=iscompac.4h4v.s7.dbfd8d634d0c from=translated src=- shape=fe156916 vocab=edae36f3
+-/
 theorem inverseCoefficientImage_isCompact
     {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
     {a G : ℝ} (ha : 0 < a) (hG : 0 ≤ G)
@@ -317,7 +345,9 @@ theorem inverseCoefficientImage_isCompact
     ((inverseCoefficientMap_continuousOn ha hG).mono hKD)
 
 /-- Closed convexification preserves compactness of an identified coefficient
-set in finite dimension.-/
+set in finite dimension.
+@isnad1 id=iscompac.4h4v.s8.2fdba4e23d7c from=translated src=- shape=c889a06a vocab=41196a4b
+-/
 theorem inverseCoefficientImage_closedConvexHull_isCompact
     {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
     {a G : ℝ} (ha : 0 < a) (hG : 0 ≤ G)
@@ -329,7 +359,9 @@ theorem inverseCoefficientImage_closedConvexHull_isCompact
     (inverseCoefficientImage_isCompact ha hG hK hKD)
 
 /-- Hausdorff error on compact moment sets transports to coefficient sets
-with the exact inverse-map Lipschitz factor.-/
+with the exact inverse-map Lipschitz factor.
+@isnad1 id=le.8h5v.s8.9c3357f5755e from=translated src=- shape=5a2777f9 vocab=8c38052c
+-/
 theorem hausdorffDist_inverseCoefficientImage_le
     {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
     {a G : ℝ} (ha : 0 < a) (hG : 0 ≤ G)
@@ -345,7 +377,9 @@ theorem hausdorffDist_inverseCoefficientImage_le
       (union_subset hKD hLD)) hK hL hKne hLne
 
 /-- The same Hausdorff bound holds for the closed convex hulls of the two
-coefficient images.-/
+coefficient images.
+@isnad1 id=le.8h5v.s9.08458a348ec4 from=translated src=- shape=154ddf94 vocab=460bf9ab
+-/
 theorem hausdorffDist_closedConvexHull_inverseCoefficientImage_le
     {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
     {a G : ℝ} (ha : 0 < a) (hG : 0 ≤ G)
@@ -363,7 +397,9 @@ theorem hausdorffDist_closedConvexHull_inverseCoefficientImage_le
       (union_subset hKD hLD)) hK hL hKne hLne
 
 /-- Uniformly invertible compact moment sets converging in Hausdorff distance
-have coefficient images converging in Hausdorff distance.-/
+have coefficient images converging in Hausdorff distance.
+@isnad1 id=tendsto.9h7v.s8.c48613f1a27b from=translated src=- shape=b1716463 vocab=4b53a4db
+-/
 theorem tendsto_hausdorffDist_inverseCoefficientImage
     {n ι : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
     {l : Filter ι} {a G : ℝ} (ha : 0 < a) (hG : 0 ≤ G)
@@ -389,7 +425,9 @@ theorem tendsto_hausdorffDist_inverseCoefficientImage
   · exact hKL
 
 /-- The preceding convergence remains valid after closed convexification of
-both coefficient images.-/
+both coefficient images.
+@isnad1 id=tendsto.9h7v.s9.451a5e40dc1b from=translated src=- shape=42ff1302 vocab=fa0e6b9b
+-/
 theorem tendsto_hausdorffDist_closedConvexHull_inverseCoefficientImage
     {n ι : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
     {l : Filter ι} {a G : ℝ} (ha : 0 < a) (hG : 0 ≤ G)

@@ -34,7 +34,9 @@ independent coordinates.
 
 Compared with the ghost endpoint, this theorem constructs automatically the
 filtration, its trivial time zero, the measurable fixed-codomain past encoding
-and the independence of that past from the current coordinate.-/
+and the independence of that past from the current coordinate.
+@isnad1 id=le.21h19v.s9.7a9acf6719a9 from=translated src=- shape=87c8cc8e vocab=e10a75e8
+-/
 theorem conditionalValueAtRisk_finiteSupremum_le_rio_of_iidGhostFibers
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     [StandardBorelSpace Z] [Nonempty Z] [IsProbabilityMeasure nu]

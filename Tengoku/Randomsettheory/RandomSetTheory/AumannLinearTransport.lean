@@ -36,7 +36,9 @@ variable {Ω E F : Type*} [MeasurableSpace Ω]
 /-! ## Transport of integrable selections -/
 
 /-- The image of an integrable selection by a continuous linear map is an
-integrable selection of the pointwise image correspondence.-/
+integrable selection of the pointwise image correspondence.
+@isnad1 id=isintegr.1h7v.s8.70160dc2f1bc from=translated src=- shape=a1093443 vocab=0c9ff64a
+-/
 theorem IsIntegrableSelection.map_continuousLinearMap
     {μ : Measure Ω} {S : Ω → Set E} {g : Ω → E}
     (L : E →L[ℝ] F) (hg : IsIntegrableSelection μ S g) :
@@ -46,7 +48,9 @@ theorem IsIntegrableSelection.map_continuousLinearMap
   exact ⟨g ω, hω, rfl⟩
 
 /-- For a continuous linear equivalence, transporting a fixed selection
-preserves and reflects the integrable-selection property.-/
+preserves and reflects the integrable-selection property.
+@isnad1 id=iff.0h7v.s9.bf68089a3817 from=translated src=- shape=c35f4a08 vocab=ba741cb9
+-/
 theorem isIntegrableSelection_map_continuousLinearEquiv_iff
     {μ : Measure Ω} {S : Ω → Set E} (e : E ≃L[ℝ] F) (g : Ω → E) :
     IsIntegrableSelection μ (fun ω => e '' S ω) (fun ω => e (g ω)) ↔
@@ -64,7 +68,9 @@ theorem isIntegrableSelection_map_continuousLinearEquiv_iff
 /-! ## Functoriality of the Aumann expectation -/
 
 /-- A continuous linear map sends every point of the Aumann expectation to
-the Aumann expectation of the pointwise image correspondence.-/
+the Aumann expectation of the pointwise image correspondence.
+@isnad1 id=mem.1h7v.s8.29ded6ae138f from=translated src=- shape=4eb98627 vocab=8a5caf43
+-/
 theorem map_mem_aumannExpectation_image
     [CompleteSpace E] [CompleteSpace F]
     {μ : Measure Ω} {S : Ω → Set E} (L : E →L[ℝ] F)
@@ -75,7 +81,9 @@ theorem map_mem_aumannExpectation_image
   exact L.integral_comp_comm hg.1
 
 /-- Continuous linear images commute with Aumann expectation in the forward
-direction.  Equality need not hold for a non-injective or non-surjective map.-/
+direction.  Equality need not hold for a non-injective or non-surjective map.
+@isnad1 id=le.0h6v.s8.92fa5944325e from=translated src=- shape=f2c16590 vocab=80baf188
+-/
 theorem image_aumannExpectation_subset_aumannExpectation_image
     [CompleteSpace E] [CompleteSpace F]
     {μ : Measure Ω} {S : Ω → Set E} (L : E →L[ℝ] F) :
@@ -86,7 +94,9 @@ theorem image_aumannExpectation_subset_aumannExpectation_image
 
 /-- The Aumann expectation is equivariant under continuous linear
 equivalences.  The inverse inclusion transports a selection back through
-`e.symm`, so both strong measurability and integrability are controlled.-/
+`e.symm`, so both strong measurability and integrability are controlled.
+@isnad1 id=eq.0h6v.s9.03fec364ecb5 from=translated src=- shape=d99b0f3e vocab=6ba3ee69
+-/
 theorem image_aumannExpectation_continuousLinearEquiv
     [CompleteSpace E] [CompleteSpace F]
     {μ : Measure Ω} {S : Ω → Set E} (e : E ≃L[ℝ] F) :
@@ -106,7 +116,9 @@ theorem image_aumannExpectation_continuousLinearEquiv
 /-! ## Closure and convexification consequences -/
 
 /-- The closure of the Aumann expectation is transported into the closure of
-the image Aumann expectation by every continuous linear map.-/
+the image Aumann expectation by every continuous linear map.
+@isnad1 id=le.0h6v.s8.c34973adc465 from=translated src=- shape=66873ee8 vocab=cdb798b4
+-/
 theorem image_closure_aumannExpectation_subset
     [CompleteSpace E] [CompleteSpace F]
     {μ : Measure Ω} {S : Ω → Set E} (L : E →L[ℝ] F) :
@@ -116,7 +128,9 @@ theorem image_closure_aumannExpectation_subset
     (closure_mono (image_aumannExpectation_subset_aumannExpectation_image L))
 
 /-- A continuous linear equivalence commutes with the closed convex hull of a
-set.-/
+set.
+@isnad1 id=eq.0h4v.s9.2fc54b3b53de from=translated src=- shape=65514cb5 vocab=0929fe40
+-/
 theorem image_closedConvexHull_continuousLinearEquiv
     (e : E ≃L[ℝ] F) (s : Set E) :
     e '' closedConvexHull ℝ s = closedConvexHull ℝ (e '' s) := by
@@ -129,7 +143,9 @@ theorem image_closedConvexHull_continuousLinearEquiv
   exact congrArg closure hconv
 
 /-- Every continuous linear image of the closed convex hull of an Aumann
-expectation lies in the closed convex hull of the image Aumann expectation.-/
+expectation lies in the closed convex hull of the image Aumann expectation.
+@isnad1 id=le.0h6v.s9.d0a7d76d0cb8 from=translated src=- shape=59a1ad79 vocab=99d135e3
+-/
 theorem image_closedConvexHull_aumannExpectation_subset
     [CompleteSpace E] [CompleteSpace F]
     {μ : Measure Ω} {S : Ω → Set E} (L : E →L[ℝ] F) :
@@ -158,7 +174,9 @@ theorem image_closedConvexHull_aumannExpectation_subset
       rw [closedConvexHull_eq_closure_convexHull]
 
 /-- For a continuous linear equivalence, the closed convex hull of the Aumann
-expectation is transported exactly.-/
+expectation is transported exactly.
+@isnad1 id=eq.0h6v.s9.c0e1c88d2a52 from=translated src=- shape=614de102 vocab=16506047
+-/
 theorem image_closedConvexHull_aumannExpectation_continuousLinearEquiv
     [CompleteSpace E] [CompleteSpace F]
     {μ : Measure Ω} {S : Ω → Set E} (e : E ≃L[ℝ] F) :
@@ -169,7 +187,9 @@ theorem image_closedConvexHull_aumannExpectation_continuousLinearEquiv
     image_aumannExpectation_continuousLinearEquiv]
 
 /-- For a continuous linear equivalence, closure of the Aumann expectation is
-transported exactly.-/
+transported exactly.
+@isnad1 id=eq.0h6v.s9.c06b61e6e4c6 from=translated src=- shape=b4841d11 vocab=cdff8f1e
+-/
 theorem image_closure_aumannExpectation_continuousLinearEquiv
     [CompleteSpace E] [CompleteSpace F]
     {μ : Measure Ω} {S : Ω → Set E} (e : E ≃L[ℝ] F) :

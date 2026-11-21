@@ -33,6 +33,9 @@ def supportArgmax {Ω H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H
     (S : Ω → Set H) (u : H) (ω : Ω) : Set H :=
   S ω ∩ {x | ⟪u, x⟫_ℝ = supportFunction (S ω) u}
 
+/--
+@isnad1 id=nonempty.2h5v.s5.6e11b2ad4956 from=translated src=- shape=ae37fc15 vocab=1b4578b4
+-/
 theorem supportArgmax_nonempty
     {Ω H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
     {S : Ω → Set H} (hcompact : ∀ ω, IsCompact (S ω))
@@ -41,6 +44,9 @@ theorem supportArgmax_nonempty
   obtain ⟨x, hx, hxmax⟩ := supportFunction_attains (hcompact ω) (hne ω) u
   exact ⟨x, hx, hxmax.symm⟩
 
+/--
+@isnad1 id=iscompac.1h5v.s5.04ff1815af96 from=translated src=- shape=72a17649 vocab=2c850faf
+-/
 theorem supportArgmax_isCompact
     {Ω H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
     {S : Ω → Set H} (hcompact : ∀ ω, IsCompact (S ω))
@@ -48,6 +54,9 @@ theorem supportArgmax_isCompact
   exact (hcompact ω).inter_right
     (isClosed_eq (by fun_prop : Continuous fun x : H => ⟪u, x⟫_ℝ) continuous_const)
 
+/--
+@isnad1 id=le.0h5v.s5.56baa557818a from=translated src=- shape=48c6609f vocab=aa0d5c99
+-/
 theorem supportArgmax_subset
     {Ω H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
     (S : Ω → Set H) (u : H) (ω : Ω) : supportArgmax S u ω ⊆ S ω :=
@@ -55,7 +64,9 @@ theorem supportArgmax_subset
 
 /-- Balls with centres in the canonical dense sequence and inverse-natural
 radii form a shrinking basis whose closed balls still fit inside an open
-neighbourhood.-/
+neighbourhood.
+@isnad1 id=ex.2h3v.s7.0005635b8a2c from=translated src=- shape=df44a016 vocab=66a5acce
+-/
 theorem exists_denseSeq_ball_closedBall_subset
     {H : Type*} [MetricSpace H] [SecondCountableTopology H] [Nonempty H]
     {U : Set H} (hU : IsOpen U) {x : H} (hx : x ∈ U) :
@@ -90,6 +101,9 @@ def SupportArgmaxBasisEvent
           (castaingLocalization S (denseSeq H n) (1 / (m + 1 : ℝ)) ω) u =
         supportFunction (S ω) u
 
+/--
+@isnad1 id=measurab.3h7v.s6.6b39f0ef6796 from=translated src=- shape=c3ab2203 vocab=ed3aa1b6
+-/
 theorem measurableSet_supportArgmaxBasisEvent
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H]
@@ -134,7 +148,9 @@ theorem measurableSet_supportArgmaxBasisEvent
     exact MeasurableSet.empty
 
 /-- The support-argmax correspondence of a compact random set is Effros
-measurable.-/
+measurable.
+@isnad1 id=iseffros.3h4v.s6.9ca502014b1c from=translated src=- shape=35fe321a vocab=e08c0b77
+-/
 theorem effrosMeasurable_supportArgmax
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H]
@@ -207,6 +223,9 @@ def supportMaximizingSelection
   krnSelection (effrosMeasurable_supportArgmax hS hcompact hne u)
     (supportArgmax_nonempty hcompact hne u)
 
+/--
+@isnad1 id=measurab.3h4v.s6.6890f8b65f8a from=translated src=- shape=84455fa3 vocab=b3059abd
+-/
 theorem measurable_supportMaximizingSelection
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]
@@ -219,6 +238,9 @@ theorem measurable_supportMaximizingSelection
     (fun ω => (supportArgmax_isCompact hcompact u ω).isClosed)
     (supportArgmax_nonempty hcompact hne u)).1
 
+/--
+@isnad1 id=and.3h5v.s7.d64e1aa7844d from=translated src=- shape=326fd16c vocab=cbff3845
+-/
 theorem supportMaximizingSelection_mem_and_inner_eq
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]
@@ -235,7 +257,9 @@ theorem supportMaximizingSelection_mem_and_inner_eq
     (supportArgmax_nonempty hcompact hne u)).2 ω
 
 /-- An integrable envelope makes the exact measurable support maximizer an
-integrable selection, hence provides `HasIntegrableSupportSelection`.-/
+integrable selection, hence provides `HasIntegrableSupportSelection`.
+@isnad1 id=hasinteg.5h6v.s7.3bae51022c9b from=translated src=- shape=9e3e4ce7 vocab=880ac4c8
+-/
 theorem hasIntegrableSupportSelection_of_effros_of_envelope
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]
@@ -260,7 +284,9 @@ theorem hasIntegrableSupportSelection_of_effros_of_envelope
 /-- Exact support representation of the Aumann expectation.  Effros
 measurability, compact nonempty values, and an integrable envelope now
 construct the maximizing selection internally; no separate measurable
-maximum hypothesis is needed.-/
+maximum hypothesis is needed.
+@isnad1 id=eq.6h6v.s7.8627223bc1c9 from=translated src=- shape=e53a5468 vocab=51f24933
+-/
 theorem supportFunction_aumannExpectation_of_effros_of_envelope
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]

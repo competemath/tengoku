@@ -53,7 +53,9 @@ variable {Omega : Type*} {m mOmega : MeasurableSpace Omega}
 
 /-- Ordinary centring after hard truncation does not increase the second
 moment.  This is the variance identity followed by the pointwise contraction
-`|truncation X y| <= |X|`.-/
+`|truncation X y| <= |X|`.
+@isnad1 id=le.1h5v.s7.843848dd6f87 from=translated src=- shape=8ba231d8 vocab=c589a342
+-/
 theorem integral_sq_centeredTruncation_le_integral_sq
     [IsProbabilityMeasure mu] {X : Omega → ℝ} (hX : MemLp X 2 mu)
     (y : ℝ) :
@@ -84,7 +86,9 @@ theorem integral_sq_centeredTruncation_le_integral_sq
 /-- Conditional centring after hard truncation does not increase the
 conditional second moment.  The left-hand side is the conditional variance
 of the truncation; `condVar_ae_le_condExp_sq` and conditional monotonicity
-then compare it to the raw square.-/
+then compare it to the raw square.
+@isnad1 id=eventual.2h6v.s7.201974c865c5 from=translated src=- shape=35bc72ad vocab=d0eec0b4
+-/
 theorem condExp_sq_conditionallyCenteredTruncation_le_condExp_sq
     [IsProbabilityMeasure mu] (hm : m ≤ mOmega)
     {X : Omega → ℝ} (hX : MemLp X 2 mu) (y : ℝ) :
@@ -111,7 +115,9 @@ theorem condExp_sq_conditionallyCenteredTruncation_le_condExp_sq
 
 /-- The elementary comparison `exp (-z) <= r! / z^r`.  Keeping the
 factorial gives a clean exact constant and avoids any asymptotic estimate for
-`r!`.-/
+`r!`.
+@isnad1 id=le.1h2v.s5.c88da568ddb1 from=translated src=- shape=d94828f9 vocab=c7ec78f6
+-/
 theorem exp_neg_le_factorial_div_pow (r : ℕ) {z : ℝ} (hz : 0 < z) :
     exp (-z) ≤ (r.factorial : ℝ) / z ^ r := by
   have hseries : z ^ r / (r.factorial : ℝ) ≤ exp z :=
@@ -128,7 +134,9 @@ theorem exp_neg_le_factorial_div_pow (r : ℕ) {z : ℝ} (hz : 0 < z) :
 
 For `b*x <= 2*V` the Bernstein denominator is at most `8*V`, giving the
 Gaussian term.  In the complementary regime it gives `exp (-x/(4*b))`,
-which is bounded by the displayed power term.-/
+which is bounded by the displayed power term.
+@isnad1 id=le.3h4v.s7.0073ead4e537 from=translated src=- shape=2f4447cd vocab=135158ca
+-/
 theorem exp_neg_sq_div_bernstein_le_gaussian_add_polynomial
     (r : ℕ) {x V b : ℝ} (hx : 0 < x) (hV : 0 < V) (hb : 0 < b) :
     exp (-x ^ 2 / (2 * (2 * V + b * x))) ≤

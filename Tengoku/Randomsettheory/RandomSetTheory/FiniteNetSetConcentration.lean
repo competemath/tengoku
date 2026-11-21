@@ -26,7 +26,9 @@ noncomputable section
 namespace RandomSetTheory
 
 /-- If the Hausdorff distance exceeds the net precision, some direction in the
-net has a large support-function error.-/
+net has a large support-function error.
+@isnad1 id=le.11h9v.s8.56237584751f from=translated src=- shape=ac5d2e70 vocab=122306d8
+-/
 theorem supportFunction_bad_event_subset_finset
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -56,7 +58,9 @@ theorem supportFunction_bad_event_subset_finset
   exact (not_lt_of_ge hdist) hbad
 
 /-- Directional tail bounds on a finite net imply a Hausdorff-distance tail
-bound for convex compact sets.-/
+bound for convex compact sets.
+@isnad1 id=le.12h11v.s8.d12655920d8a from=translated src=- shape=69372dae vocab=94982a9b
+-/
 theorem hausdorffDist_risk_bound_of_finset_supportFunction
     {Ω E : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     [IsFiniteMeasure μ]
@@ -87,7 +91,9 @@ theorem hausdorffDist_risk_bound_of_finset_supportFunction
       ProbabilityTheory.finite_family_deviation_bound N
         (fun v ω => supportFunction (K ω) v - supportFunction L v) htail
 
-/-- Finite-dimensional version using a volumetric unit-ball net.-/
+/-- Finite-dimensional version using a volumetric unit-ball net.
+@isnad1 id=ex.13h10v.s9.0a8e135f23f9 from=translated src=- shape=fe2e016d vocab=f9027085
+-/
 theorem exists_hausdorffDist_risk_bound_supportFunction_net
     {Ω E : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     [IsFiniteMeasure μ]

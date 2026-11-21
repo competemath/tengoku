@@ -22,7 +22,9 @@ noncomputable section
 
 namespace RandomSetTheory
 
-/-- **Aumann expectation of a random closed ball.**-/
+/-- **Aumann expectation of a random closed ball.**
+@isnad1 id=eq.3h5v.s7.a4c4ee239b0c from=translated src=- shape=537e5fa1 vocab=5ad993ac
+-/
 theorem aumannExpectation_closedBall
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -83,7 +85,9 @@ theorem aumannExpectation_closedBall
           rw [smul_smul, mul_inv_cancel₀ hR, one_smul, add_sub_cancel]
 
 /-- In finite dimension, the preceding exact formula immediately supplies
-compactness of the unclosed Aumann expectation.-/
+compactness of the unclosed Aumann expectation.
+@isnad1 id=iscompac.3h5v.s7.1429d25b1160 from=translated src=- shape=579d2201 vocab=3adbd097
+-/
 theorem aumannExpectation_isCompact_closedBall
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -96,7 +100,9 @@ theorem aumannExpectation_isCompact_closedBall
   exact isCompact_closedBall _ _
 
 /-- Hence the closure wrapper is redundant for integrable random balls in
-finite dimension.-/
+finite dimension.
+@isnad1 id=eq.3h5v.s7.9deb0bf97c77 from=translated src=- shape=53255abe vocab=df28ddae
+-/
 theorem closure_aumannExpectation_closedBall
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]

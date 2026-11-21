@@ -51,7 +51,9 @@ def UniformStrongMonotonicity (Theta : Set E) (kappa : ℝ)
       ⟪g p theta - g p theta', (theta : E) - (theta' : E)⟫_ℝ
 
 /-- Strong monotonicity and a zero at `root p` force the norm of the moment
-to dominate the distance to that root.-/
+to dominate the distance to that root.
+@isnad1 id=le.2h8v.s7.a76921edc694 from=translated src=- shape=81672c72 vocab=aaa5f904
+-/
 theorem norm_moment_ge_of_uniformStrongMonotonicity
     (Theta : Set E) {kappa : ℝ} (g : P → Theta → E) (root : P → Theta)
     (hmono : UniformStrongMonotonicity Theta kappa g)
@@ -70,7 +72,9 @@ theorem norm_moment_ge_of_uniformStrongMonotonicity
     nlinarith
 
 /-- For each admissible model, a root of a uniformly strongly monotone moment
-map is unique on the parameter domain.-/
+map is unique on the parameter domain.
+@isnad1 id=eq.4h8v.s6.ae73dab2d4ad from=translated src=- shape=a7011a23 vocab=6e54e4ea
+-/
 theorem root_unique_of_uniformStrongMonotonicity
     (Theta : Set E) {kappa : ℝ} (g : P → Theta → E) (root : P → Theta)
     (hkappa : 0 < kappa)
@@ -87,7 +91,9 @@ theorem root_unique_of_uniformStrongMonotonicity
   exact sub_eq_zero.mp (norm_eq_zero.mp hnorm)
 
 /-- The exact zero set of the range-valued moment correspondence is precisely
-the set of designated roots.-/
+the set of designated roots.
+@isnad1 id=eq.3h6v.s6.197055a7150e from=translated src=- shape=2c6acb98 vocab=eb3fb0e1
+-/
 theorem setValuedZeroSet_momentCorrespondence_eq_designatedRootSet
     (Theta : Set E) {kappa : ℝ} (g : P → Theta → E) (root : P → Theta)
     (hkappa : 0 < kappa)
@@ -104,7 +110,9 @@ theorem setValuedZeroSet_momentCorrespondence_eq_designatedRootSet
     exact ⟨p, hroot p⟩
 
 /-- Uniform strong monotonicity yields the metric error bound relative to the
-set of roots, with no loss in the constant.-/
+set of roots, with no loss in the constant.
+@isnad1 id=le.3h7v.s7.806d5b2f2db4 from=translated src=- shape=1b2064c7 vocab=77eea7c2
+-/
 theorem infDist_momentCorrespondence_ge_designatedRootSet
     (Theta : Set E) [Nonempty P] {kappa : ℝ}
     (g : P → Theta → E) (root : P → Theta)
@@ -135,7 +143,9 @@ theorem infDist_momentCorrespondence_ge_designatedRootSet
 
 /-- Form of the previous theorem stated directly with the exact zero set of
 the set-valued moment map.  This is the hypothesis consumed by the oracle
-enlarged-zero-set theorem in `ZeroSetStability`.-/
+enlarged-zero-set theorem in `ZeroSetStability`.
+@isnad1 id=le.3h7v.s7.544e7397d2cb from=translated src=- shape=b5de13f4 vocab=a96c0f12
+-/
 theorem uniformStrongMonotonicity_zeroSet_errorBound
     (Theta : Set E) [Nonempty P] {kappa : ℝ}
     (g : P → Theta → E) (root : P → Theta)
@@ -152,7 +162,9 @@ theorem uniformStrongMonotonicity_zeroSet_errorBound
 
 /-- Direct combination of uniform strong monotonicity with the oracle
 enlarged-zero-set theorem.  This is the deterministic conclusion of the two
-successive results in Section 5, with the same identification constant.-/
+successive results in Section 5, with the same identification constant.
+@isnad1 id=le.6h8v.s7.0f9e01446a2f from=translated src=- shape=8f108247 vocab=70b8b18c
+-/
 theorem hausdorffDist_enlarged_momentCorrespondence_le_of_uniformStrongMonotonicity
     (Theta : Set E) [Nonempty P] {kappa Delta : ℝ}
     (g : P → Theta → E) (root : P → Theta)

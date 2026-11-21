@@ -34,6 +34,9 @@ def continuousProcessModulusFamily
     (delta eta : ℕ → ℝ) (B : ℝ) : Set C(T, ℝ) :=
   {f | ‖f‖ ≤ B ∧ ∀ k s t, dist s t < delta k → dist (f s) (f t) ≤ eta k}
 
+/--
+@isnad1 id=uniforme.2h4v.s7.8bf7b136b298 from=translated src=- shape=7b8c857b vocab=e251b4e0
+-/
 theorem uniformEquicontinuous_continuousProcessModulusFamily
     {delta eta : ℕ → ℝ} {B : ℝ}
     (hdelta : ∀ k, 0 < delta k)
@@ -50,7 +53,9 @@ theorem uniformEquicontinuous_continuousProcessModulusFamily
   exact (f.property.2 k s t hst).trans_lt (hk k le_rfl)
 
 /-- The closure of a uniformly bounded family with a vanishing countable
-modulus is compact in the uniform topology on continuous paths.-/
+modulus is compact in the uniform topology on continuous paths.
+@isnad1 id=iscompac.3h4v.s7.282bd05ae94c from=translated src=- shape=a6d26bd7 vocab=a8e748c4
+-/
 theorem isCompact_closure_continuousProcessModulusFamily
     {delta eta : ℕ → ℝ} {B : ℝ} (hB : 0 ≤ B)
     (hdelta : ∀ k, 0 < delta k)
@@ -99,7 +104,9 @@ theorem isCompact_closure_continuousProcessModulusFamily
 /-- A family of laws on continuous paths is tight as soon as a uniform norm
 tail and a summable family of modulus tails are available.  This formulation
 is deliberately measure-theoretic: later chaining arguments only have to
-provide the two displayed probability estimates.-/
+provide the two displayed probability estimates.
+@isnad1 id=istightm.2h4v.s9.5dec492208e3 from=translated src=- shape=c3426baf vocab=acc45934
+-/
 theorem isTightMeasureSet_range_of_norm_and_modulus
     {I : Type*} [MeasurableSpace C(T, ℝ)]
     (nu : I → Measure C(T, ℝ))
@@ -151,7 +158,9 @@ theorem isTightMeasureSet_range_of_norm_and_modulus
       _ ≤ epsilon / 2 + epsilon / 2 := add_le_add_right hp _
       _ = epsilon := ENNReal.add_halves epsilon
 
-/-- The strict modulus-violation event is open in the uniform topology.-/
+/-- The strict modulus-violation event is open in the uniform topology.
+@isnad1 id=isopen.0h3v.s7.7f9385797b7a from=translated src=- shape=b0551a90 vocab=0b907a04
+-/
 theorem isOpen_continuousProcessModulusBad (delta eta : ℝ) :
     IsOpen {f : C(T, ℝ) | ∃ s t, dist s t < delta ∧
       eta < dist (f s) (f t)} := by
@@ -167,7 +176,9 @@ theorem isOpen_continuousProcessModulusBad (delta eta : ℝ) :
 
 /-- Real-probability version of the compact-containment criterion, stated
 directly for stochastic processes.  It handles the conversion to pushforward
-laws and to `ENNReal` internally.-/
+laws and to `ENNReal` internally.
+@isnad1 id=istightm.3h6v.s9.196e8dd9aeb6 from=translated src=- shape=d5e3d215 vocab=3e3afbf1
+-/
 theorem isTightMeasureSet_range_map_of_real_norm_and_modulus
     {I Omega : Type*} [MeasurableSpace Omega]
     [MeasurableSpace C(T, ℝ)] [BorelSpace C(T, ℝ)]
@@ -247,7 +258,9 @@ theorem isTightMeasureSet_range_map_of_real_norm_and_modulus
 
 /-- Direct compact-containment form of the preceding criterion.  A single
 bad event may simultaneously account for the norm and all modulus scales;
-this is useful when one shared truncation remainder controls every scale.-/
+this is useful when one shared truncation remainder controls every scale.
+@isnad1 id=istightm.3h6v.s8.425cd1054016 from=translated src=- shape=a2d45128 vocab=29c1ccc0
+-/
 theorem isTightMeasureSet_range_map_of_real_compactContainment
     {I Omega : Type*} [MeasurableSpace Omega]
     [MeasurableSpace C(T, ℝ)] [BorelSpace C(T, ℝ)]

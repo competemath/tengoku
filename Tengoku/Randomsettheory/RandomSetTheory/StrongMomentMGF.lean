@@ -35,31 +35,48 @@ def upperTruncation (X : Omega → ℝ) (y : ℝ) : Omega → ℝ :=
   fun omega => min (X omega) y
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=eq.0h4v.s4.1b1087702e1e from=translated src=- shape=a77a99ee vocab=d0bccca9
+-/
 @[simp] theorem upperTruncation_apply (X : Omega → ℝ) (y : ℝ)
     (omega : Omega) :
     upperTruncation X y omega = min (X omega) y := rfl
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=le.0h4v.s4.f19ab4eba4af from=translated src=- shape=77044d4e vocab=eaacda0c
+-/
 theorem upperTruncation_le (X : Omega → ℝ) (y : ℝ) (omega : Omega) :
     upperTruncation X y omega ≤ y :=
   min_le_right _ _
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=le.0h4v.s4.9d6b05259c9d from=translated src=- shape=b43819fa vocab=eaacda0c
+-/
 theorem upperTruncation_le_self (X : Omega → ℝ) (y : ℝ) (omega : Omega) :
     upperTruncation X y omega ≤ X omega :=
   min_le_left _ _
 
+/--
+@isnad1 id=measurab.1h3v.s4.1bca78b10b95 from=translated src=- shape=6b09dfb9 vocab=ea609541
+-/
 theorem measurable_upperTruncation {X : Omega → ℝ}
     (hX : Measurable X) (y : ℝ) :
     Measurable (upperTruncation X y) := by
   exact hX.min measurable_const
 
+/--
+@isnad1 id=aemeasur.1h4v.s5.cc4dc1291639 from=translated src=- shape=9de12b72 vocab=f2520b67
+-/
 theorem aemeasurable_upperTruncation {X : Omega → ℝ}
     (hX : AEMeasurable X mu) (y : ℝ) :
     AEMeasurable (upperTruncation X y) mu := by
   exact hX.min aemeasurable_const
 
-/-- Positive parts commute with multiplication by a nonnegative scalar.-/
+/-- Positive parts commute with multiplication by a nonnegative scalar.
+@isnad1 id=eq.1h2v.s5.99a253d2a7e5 from=translated src=- shape=f0886876 vocab=e8b42584
+-/
 theorem max_mul_eq_mul_max (t x : ℝ) (ht : 0 ≤ t) :
     max (t * x) 0 = t * max x 0 := by
   rw [mul_max_of_nonneg x 0 ht]
@@ -67,13 +84,17 @@ theorem max_mul_eq_mul_max (t x : ℝ) (ht : 0 ≤ t) :
 
 omit [MeasurableSpace Omega] in
 /-- The positive part of an upper truncation is bounded by the truncation
-height when that height is nonnegative.-/
+height when that height is nonnegative.
+@isnad1 id=le.1h4v.s5.67d0ff3f0bdc from=translated src=- shape=40713455 vocab=bf81fd5e
+-/
 theorem max_upperTruncation_zero_le
     (X : Omega → ℝ) {y : ℝ} (hy : 0 ≤ y) (omega : Omega) :
     max (upperTruncation X y omega) 0 ≤ y := by
   exact max_le (upperTruncation_le X y omega) hy
 
-/-- Upper truncation preserves integrability under a finite measure.-/
+/-- Upper truncation preserves integrability under a finite measure.
+@isnad1 id=integrab.1h4v.s6.eb7b8b1ab5f0 from=translated src=- shape=82d6c675 vocab=907d657b
+-/
 theorem integrable_upperTruncation [IsFiniteMeasure mu]
     {X : Omega → ℝ} (hX : Integrable X mu) (y : ℝ) :
     Integrable (upperTruncation X y) mu := by
@@ -81,14 +102,18 @@ theorem integrable_upperTruncation [IsFiniteMeasure mu]
   exact hX.inf (integrable_const y)
 
 omit [MeasurableSpace Omega] in
-/-- Taking the positive part after upper truncation can only decrease it.-/
+/-- Taking the positive part after upper truncation can only decrease it.
+@isnad1 id=le.0h4v.s5.3bd573a6a3f7 from=translated src=- shape=b21867b3 vocab=bf81fd5e
+-/
 theorem max_upperTruncation_zero_le_max_self
     (X : Omega → ℝ) (y : ℝ) (omega : Omega) :
     max (upperTruncation X y omega) 0 ≤ max (X omega) 0 := by
   exact max_le_max (upperTruncation_le_self X y omega) le_rfl
 
 omit [MeasurableSpace Omega] in
-/-- Positive integer moments contract under upper truncation.-/
+/-- Positive integer moments contract under upper truncation.
+@isnad1 id=le.0h5v.s6.1050e06db469 from=translated src=- shape=16edd2d5 vocab=76130899
+-/
 theorem pow_max_upperTruncation_zero_le_pow_max_self
     (X : Omega → ℝ) (y : ℝ) (k : ℕ) (omega : Omega) :
     (max (upperTruncation X y omega) 0) ^ k ≤
@@ -99,7 +124,9 @@ theorem pow_max_upperTruncation_zero_le_pow_max_self
 omit [MeasurableSpace Omega] in
 /-- When the truncation height is nonnegative, upper truncation cannot
 increase the square.  The nonnegativity assumption is necessary: replacing a
-small positive value by a negative cap could increase its absolute value.-/
+small positive value by a negative cap could increase its absolute value.
+@isnad1 id=le.1h4v.s6.73bba8e71758 from=translated src=- shape=56fc2b11 vocab=63968449
+-/
 theorem sq_upperTruncation_le_sq_self
     (X : Omega → ℝ) {y : ℝ} (hy : 0 ≤ y) (omega : Omega) :
     upperTruncation X y omega ^ 2 ≤ X omega ^ 2 := by
@@ -110,7 +137,9 @@ theorem sq_upperTruncation_le_sq_self
     exact pow_le_pow_left₀ hy hyx 2
 
 /-- Integrability of the square is preserved by nonnegative upper
-truncation.-/
+truncation.
+@isnad1 id=integrab.3h4v.s6.5d52197d864d from=translated src=- shape=6126e6c5 vocab=da66facc
+-/
 theorem integrable_sq_upperTruncation
     {X : Omega → ℝ} (hX : AEMeasurable X mu)
     (hXsq : Integrable (fun omega => X omega ^ 2) mu)
@@ -122,7 +151,9 @@ theorem integrable_sq_upperTruncation
   · exact ae_of_all mu fun omega => sq_upperTruncation_le_sq_self X hy omega
 
 /-- Integrability of every displayed positive moment is preserved by upper
-truncation.-/
+truncation.
+@isnad1 id=integrab.2h5v.s7.80f3e3e1adc7 from=translated src=- shape=e477d6f5 vocab=5b712570
+-/
 theorem integrable_pow_max_upperTruncation_zero
     {X : Omega → ℝ} (hX : AEMeasurable X mu) (y : ℝ) (k : ℕ)
     (hpow : Integrable (fun omega => (max (X omega) 0) ^ k) mu) :
@@ -146,7 +177,9 @@ def strongMomentTaylorExponent
     t ^ q / (q.factorial : ℝ) * Real.exp (t * y) * moment q
 
 /-- Strong-moment Taylor exponents add exactly when their deterministic
-second- and higher-moment proxies add.-/
+second- and higher-moment proxies add.
+@isnad1 id=eq.0h7v.s6.7eb3a7ed436d from=translated src=- shape=75974dbf vocab=69c6c73f
+-/
 theorem sum_strongMomentTaylorExponent
     {ι : Type*} (s : Finset ι) (q : ℕ) (t y : ℝ)
     (second : ι → ℝ) (moment : ι → ℕ → ℝ) :
@@ -182,7 +215,9 @@ theorem sum_strongMomentTaylorExponent
 The function is only required to be bounded above by `y`; its negative tail
 may be unbounded.  Integrability of the displayed positive moments is made
 explicit so this lemma can be used both ordinarily and on conditional-law
-fibres.-/
+fibres.
+@isnad1 id=le.8h6v.s8.64cfc141137f from=translated src=- shape=bd81994b vocab=c5e6d2fa
+-/
 theorem integral_exp_mul_le_exp_strongMomentTaylorExponent
     [IsProbabilityMeasure mu]
     (X : Omega → ℝ) (q : ℕ) (hq : 3 ≤ q)

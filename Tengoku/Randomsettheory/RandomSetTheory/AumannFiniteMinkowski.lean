@@ -27,7 +27,9 @@ namespace RandomSetTheory
 
 /-- Aumann expectation commutes exactly with a finite Minkowski sum of
 compact nonempty Effros-measurable correspondences admitting individual
-integrable envelopes.-/
+integrable envelopes.
+@isnad1 id=eq.5h7v.s8.b285a82fcb21 from=translated src=- shape=b993dd99 vocab=9b50ceed
+-/
 theorem aumannExpectation_finset_sum_of_effros_of_envelopes
     {Ω E ι : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -107,7 +109,9 @@ theorem aumannExpectation_finset_sum_of_effros_of_envelopes
           rw [Finset.sum_insert ha]
 
 /-- For a nonempty finite family, Aumann expectation commutes exactly with
-the empirical Minkowski average.-/
+the empirical Minkowski average.
+@isnad1 id=eq.6h7v.s8.b9a19b3d8450 from=translated src=- shape=1cee89ee vocab=a6234e71
+-/
 theorem aumannExpectation_minkowskiAverage_of_effros_of_envelopes
     {Ω E ι : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]

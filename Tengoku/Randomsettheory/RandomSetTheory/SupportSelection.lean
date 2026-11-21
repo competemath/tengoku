@@ -35,6 +35,9 @@ def SupportDenseCandidate
     (n : ℕ) (ω : Ω) : Prop :=
   supportFunction (S ω) u - ε < ⟪u, f n ω⟫_ℝ
 
+/--
+@isnad1 id=ex.4h7v.s6.0baa1d963729 from=translated src=- shape=999b82ef vocab=cfd80dab
+-/
 theorem exists_supportDenseCandidate
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H]
@@ -73,6 +76,9 @@ def supportApproximateSelection
     (closure_range_castaingRepresentation hS (fun ω => (hcompact ω).isClosed) hne)
     u hε ω)) ω
 
+/--
+@isnad1 id=measurab.4h5v.s7.c14054df9664 from=translated src=- shape=8276d219 vocab=0af369c3
+-/
 theorem measurable_supportApproximateSelection
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]
@@ -96,6 +102,9 @@ theorem measurable_supportApproximateSelection
       u hε
   exact Measurable.find hf hp hexists
 
+/--
+@isnad1 id=mem.4h6v.s7.973d996f3270 from=translated src=- shape=4a5af176 vocab=cbe2031c
+-/
 theorem supportApproximateSelection_mem
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]
@@ -107,6 +116,9 @@ theorem supportApproximateSelection_mem
   classical
   exact castaingRepresentation_mem hS (fun ω => (hcompact ω).isClosed) hne _ ω
 
+/--
+@isnad1 id=lt.4h6v.s7.38f648f704c0 from=translated src=- shape=19e005be vocab=8a40688a
+-/
 theorem supportFunction_sub_lt_inner_supportApproximateSelection
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]
@@ -122,7 +134,9 @@ theorem supportFunction_sub_lt_inner_supportApproximateSelection
     u hε ω)
 
 /-- Under an integrable envelope, the canonical approximate maximizer is an
-integrable selection.-/
+integrable selection.
+@isnad1 id=isintegr.6h7v.s7.ae57a14b3fda from=translated src=- shape=ad068cbf vocab=9ac1f7f7
+-/
 theorem integrableSelection_supportApproximateSelection_of_envelope
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]
@@ -143,7 +157,9 @@ theorem integrableSelection_supportApproximateSelection_of_envelope
     exact supportApproximateSelection_mem hS hcompact hne u hε ω
 
 /-- Existential, implementation-independent form of the measurable
-integrable approximate support-selection theorem.-/
+integrable approximate support-selection theorem.
+@isnad1 id=ex.6h7v.s7.71a2e41809b7 from=translated src=- shape=1597bd95 vocab=02e449fa
+-/
 theorem exists_integrable_supportApproximation
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]
@@ -162,7 +178,9 @@ theorem exists_integrable_supportApproximation
       hS hcompact hne u hε⟩
 
 /-- The integral of an `ε`-maximizing selection loses at most
-`μ(Ω) ε` compared with the integrated pointwise support.-/
+`μ(Ω) ε` compared with the integrated pointwise support.
+@isnad1 id=le.6h7v.s8.31dd7cef1550 from=translated src=- shape=61f3e2d5 vocab=9d0f4298
+-/
 theorem inner_integral_supportApproximateSelection_lower_bound
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]
@@ -195,7 +213,9 @@ theorem inner_integral_supportApproximateSelection_lower_bound
 
 /-- Exact support identity for the closure of the Aumann expectation, derived
 from Castaing's theorem and approximate maximizing selections.  No exact
-maximizing-selection hypothesis is required.-/
+maximizing-selection hypothesis is required.
+@isnad1 id=eq.6h6v.s8.4b9bd9545403 from=translated src=- shape=6255d344 vocab=0de5c12b
+-/
 theorem supportFunction_closure_aumannExpectation_of_envelope
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]
@@ -257,7 +277,9 @@ that this expectation is closed or compact.
 The integrable envelope makes its closure compact.  Since a nonempty set and
 its closure have the same support function, the closed-target identity above
 immediately yields the formula on the unclosed Aumann expectation itself.
-This does not prove topological closedness of that expectation.-/
+This does not prove topological closedness of that expectation.
+@isnad1 id=eq.5h6v.s7.6b1fef03a099 from=translated src=- shape=13799aa4 vocab=62f9ef22
+-/
 theorem supportFunction_aumannExpectation_of_envelope
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]

@@ -36,7 +36,9 @@ variable {Omega E : Type*} [MeasurableSpace Omega]
 /-- **Weighted bang--bang principle.**  A measurable `[0,1]`-valued weight
 can be purified to a measurable set while preserving the integral of one
 finite-dimensional vector-valued function.  The bounds need only hold almost
-everywhere.-/
+everywhere.
+@isnad1 id=ex.5h5v.s8.091110516976 from=translated src=- shape=80f1d595 vocab=c26b63e4
+-/
 theorem exists_measurableSet_setIntegral_eq_integral_weighted_of_atomless
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (hmu : IsAtomlessMeasure mu) [FiniteDimensional ℝ E]
@@ -88,7 +90,9 @@ theorem exists_measurableSet_setIntegral_eq_integral_weighted_of_atomless
 
 /-- A measurable binary mixture of two integrable functions can be replaced
 by an integrable function choosing pointwise between them, with exactly the
-same vector integral.-/
+same vector integral.
+@isnad1 id=ex.6h6v.s8.e12547eb6d7d from=translated src=- shape=0290b9bc vocab=7e1bb440
+-/
 theorem exists_integrable_binarySelection_integral_eq_of_atomless
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (hmu : IsAtomlessMeasure mu) [FiniteDimensional ℝ E]
@@ -134,7 +138,9 @@ theorem exists_integrable_binarySelection_integral_eq_of_atomless
 
 /-- Selection-valued form of binary purification.  If both endpoints select
 the same correspondence, the purified pointwise choice is again an
-integrable selection of that correspondence.-/
+integrable selection of that correspondence.
+@isnad1 id=ex.6h7v.s8.0bdcfd78d98e from=translated src=- shape=31f6385d vocab=f260cae8
+-/
 theorem exists_binary_purification_of_integrableSelections_of_atomless
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (hmu : IsAtomlessMeasure mu) [FiniteDimensional ℝ E]

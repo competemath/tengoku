@@ -34,6 +34,9 @@ def castaingLocalization {Ω E : Type*} [PseudoMetricSpace E]
       closure (S ω ∩ Metric.ball q r)
     else S ω
 
+/--
+@isnad1 id=isclosed.1h6v.s5.532c9576ee41 from=translated src=- shape=86ddf1bd vocab=1e341db2
+-/
 theorem castaingLocalization_isClosed
     {Ω E : Type*} [PseudoMetricSpace E]
     {S : Ω → Set E} (hclosed : ∀ ω, IsClosed (S ω))
@@ -45,6 +48,9 @@ theorem castaingLocalization_isClosed
     exact isClosed_closure
   · simpa [castaingLocalization, hhit] using hclosed ω
 
+/--
+@isnad1 id=nonempty.1h6v.s5.33e3409074b4 from=translated src=- shape=86ddf1bd vocab=cb6654c6
+-/
 theorem castaingLocalization_nonempty
     {Ω E : Type*} [PseudoMetricSpace E]
     {S : Ω → Set E} (hne : ∀ ω, (S ω).Nonempty)
@@ -56,6 +62,9 @@ theorem castaingLocalization_nonempty
     exact hhit.closure
   · simpa [castaingLocalization, hhit] using hne ω
 
+/--
+@isnad1 id=iscompac.1h6v.s5.40e70b9fad2b from=translated src=- shape=86ddf1bd vocab=8797acce
+-/
 theorem castaingLocalization_isCompact
     {Ω E : Type*} [MetricSpace E]
     {S : Ω → Set E} (hcompact : ∀ ω, IsCompact (S ω))
@@ -68,6 +77,9 @@ theorem castaingLocalization_isCompact
       (closure_minimal inter_subset_left (hcompact ω).isClosed)
   · simpa [castaingLocalization, hhit] using hcompact ω
 
+/--
+@isnad1 id=le.1h6v.s5.82e18623ca42 from=translated src=- shape=74f57f7a vocab=c979cc72
+-/
 theorem castaingLocalization_subset
     {Ω E : Type*} [PseudoMetricSpace E]
     {S : Ω → Set E} (hclosed : ∀ ω, IsClosed (S ω))
@@ -79,7 +91,9 @@ theorem castaingLocalization_subset
     exact closure_minimal inter_subset_left (hclosed ω)
   · simp [castaingLocalization, hhit]
 
-/-- Closed localization preserves Effros measurability.-/
+/-- Closed localization preserves Effros measurability.
+@isnad1 id=iseffros.1h5v.s5.bf04eeabba60 from=translated src=- shape=3ef5fe03 vocab=23a94c07
+-/
 theorem effros_castaingLocalization
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E]
@@ -129,6 +143,9 @@ def castaingRepresentation
   let p := Nat.unpair n
   castaingLocalSelection hS hclosed hne p.1 p.2
 
+/--
+@isnad1 id=measurab.3h4v.s6.530148ebb75e from=translated src=- shape=a768ad6a vocab=232be870
+-/
 theorem castaingRepresentation_measurable
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -144,6 +161,9 @@ theorem castaingRepresentation_measurable
     (castaingLocalization_nonempty hne
       (denseSeq E p.1) (1 / (p.2 + 1 : ℝ)))).1
 
+/--
+@isnad1 id=mem.3h5v.s6.2a612041c8a2 from=translated src=- shape=34e5dc7c vocab=7efcc63e
+-/
 theorem castaingRepresentation_mem
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -162,7 +182,9 @@ theorem castaingRepresentation_mem
     (denseSeq E p.1) (1 / (p.2 + 1 : ℝ)) ω hloc
 
 /-- **Castaing representation theorem**: the values of the canonical sequence
-of measurable selections are dense in each closed fibre.-/
+of measurable selections are dense in each closed fibre.
+@isnad1 id=eq.3h4v.s6.2e96dd00ed79 from=translated src=- shape=b2d5b4ce vocab=130d150e
+-/
 theorem closure_range_castaingRepresentation
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -224,7 +246,9 @@ theorem closure_range_castaingRepresentation
         dsimp [r] at hm ⊢
         linarith
 
-/-- Existential form of the Castaing representation theorem.-/
+/-- Existential form of the Castaing representation theorem.
+@isnad1 id=ex.3h3v.s7.6b6231253914 from=translated src=- shape=bcdc54d4 vocab=1e82d3bf
+-/
 theorem exists_castaingRepresentation
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -241,7 +265,9 @@ theorem exists_castaingRepresentation
     closure_range_castaingRepresentation hS hclosed hne⟩
 
 /-- Conversely, a fibrewise dense countable family of measurable functions
-makes the correspondence Effros measurable.-/
+makes the correspondence Effros measurable.
+@isnad1 id=iseffros.2h4v.s6.14434e377d4b from=translated src=- shape=44a37e2f vocab=ddfb09c0
+-/
 theorem effrosMeasurable_of_closure_range
     {Ω E : Type*} [MeasurableSpace Ω]
     [TopologicalSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -262,7 +288,9 @@ theorem effrosMeasurable_of_closure_range
   rw [hEq]
   exact MeasurableSet.iUnion fun n => hf n hU.measurableSet
 
-/-- Castaing's characterization of nonempty random closed sets.-/
+/-- Castaing's characterization of nonempty random closed sets.
+@isnad1 id=iff.2h3v.s7.162f076b8d25 from=translated src=- shape=84759229 vocab=1e82d3bf
+-/
 theorem effrosMeasurable_iff_exists_castaing
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]

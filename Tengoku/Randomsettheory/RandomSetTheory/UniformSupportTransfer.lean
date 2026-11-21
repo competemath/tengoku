@@ -28,7 +28,9 @@ noncomputable section
 namespace RandomSetTheory
 
 /-- Uniformly over a parameter family, the support Hausdorff gap and the
-Hausdorff distance have exactly the same upper bounds.-/
+Hausdorff distance have exactly the same upper bounds.
+@isnad1 id=iff.6h5v.s8.d64636d4a0a5 from=translated src=- shape=93b65071 vocab=bcd05dbc
+-/
 theorem forall_supportHausdorffGap_le_iff_forall_hausdorffDist_le
     {Theta E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -47,7 +49,9 @@ theorem forall_supportHausdorffGap_le_iff_forall_hausdorffDist_le
     (hKconv _) (hLconv _)]
 
 /-- A Hausdorff bound uniform in `theta` is equivalent to an absolute support
-bound uniform jointly in `theta` and in directions of the closed unit ball.-/
+bound uniform jointly in `theta` and in directions of the closed unit ball.
+@isnad1 id=iff.7h5v.s8.628c6a39c03c from=translated src=- shape=3868c8ba vocab=4427e49b
+-/
 theorem forall_hausdorffDist_le_iff_forall_unitBall_supportFunction_sub_le
     {Theta E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -77,7 +81,9 @@ theorem forall_hausdorffDist_le_iff_forall_unitBall_supportFunction_sub_le
       (hKconv theta) (hLconv theta) hr (h theta)
 
 /-- A pointwise rate envelope for all parameter-direction support errors is
-also a rate envelope for every parameterwise Hausdorff distance.-/
+also a rate envelope for every parameterwise Hausdorff distance.
+@isnad1 id=le.8h8v.s8.5ba5919df39e from=translated src=- shape=1171fa91 vocab=4427e49b
+-/
 theorem uniform_hausdorffDist_le_of_unitBall_supportFunction_le
     {I Theta E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -99,7 +105,9 @@ theorem uniform_hausdorffDist_le_of_unitBall_supportFunction_le
 
 /-- Uniform Hausdorff convergence of compact convex fibers is equivalent to
 uniform convergence to zero of the signed support-function differences,
-jointly over the parameter and the closed unit ball.-/
+jointly over the parameter and the closed unit ball.
+@isnad1 id=iff.6h6v.s9.0f8e72801d96 from=translated src=- shape=227174c4 vocab=de7f4016
+-/
 theorem tendstoUniformly_hausdorffDist_zero_iff_supportFunction_sub_zero
     {I Theta E : Type*} {l : Filter I}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -158,7 +166,9 @@ theorem tendstoUniformly_hausdorffDist_zero_iff_supportFunction_sub_zero
 
 /-- If a nonnegative deterministic envelope tends to zero and dominates all
 parameter-direction support errors, the Hausdorff distances converge to zero
-uniformly in the parameter.-/
+uniformly in the parameter.
+@isnad1 id=tendstou.9h7v.s8.a3756a2ffa1c from=translated src=- shape=366b4e19 vocab=499080e7
+-/
 theorem tendstoUniformly_hausdorffDist_zero_of_supportFunction_rate
     {I Theta E : Type*} {l : Filter I}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -188,7 +198,9 @@ theorem tendstoUniformly_hausdorffDist_zero_of_supportFunction_rate
   simpa [Real.dist_eq, abs_of_nonneg hausdorffDist_nonneg] using hlt
 
 /-- Finite union bound for a parameter-uniform Hausdorff deviation.  The
-input scalar events are the exact support Hausdorff gaps.-/
+input scalar events are the exact support Hausdorff gaps.
+@isnad1 id=le.7h9v.s8.5dd70c8559b0 from=translated src=- shape=50715489 vocab=c999efe5
+-/
 theorem measure_exists_mem_hausdorffDist_gt_le_finset_supportHausdorffGap
     {Omega Theta E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -228,7 +240,9 @@ theorem measure_exists_mem_hausdorffDist_gt_le_finset_supportHausdorffGap
     _ ≤ ∑ theta ∈ s, delta theta := by
       exact Finset.sum_le_sum fun theta htheta ↦ htail theta htheta
 
-/-- Countable union bound for a parameter-uniform Hausdorff deviation.-/
+/-- Countable union bound for a parameter-uniform Hausdorff deviation.
+@isnad1 id=le.7h8v.s8.67b3bfd73994 from=translated src=- shape=f659d49e vocab=046f2e28
+-/
 theorem measure_exists_hausdorffDist_gt_le_tsum_supportHausdorffGap
     {Omega Theta E : Type*} [MeasurableSpace Omega] [Countable Theta]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]

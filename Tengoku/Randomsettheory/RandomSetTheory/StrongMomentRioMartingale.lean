@@ -39,7 +39,9 @@ variable {Omega : Type*} {mOmega : MeasurableSpace Omega}
 variable (filtration : Filtration ℕ mOmega)
 
 /-- The scale condition used in Rio's transform also controls the exact
-CVaR cost of restoring the discarded upper tails.-/
+CVaR cost of restoring the discarded upper tails.
+@isnad1 id=le.4h4v.s7.8d950fb5d45e from=translated src=- shape=f801b320 vocab=fda1d7db
+-/
 theorem inv_mul_strongMomentResidual_le_div
     (q : ℕ) (hq : 1 ≤ q) {Q y alpha : ℝ}
     (hy : 0 < y) (halpha0 : 0 < alpha)
@@ -67,7 +69,9 @@ martingale-difference sum.
 
 `V` and `Q` dominate respectively the aggregate second moment and aggregate
 positive `q`-th moment.  The intermediate deterministic proxies are required
-to satisfy the sharp Hölder interpolation used in Rio's exponent.-/
+to satisfy the sharp Hölder interpolation used in Rio's exponent.
+@isnad1 id=le.21h13v.s10.ebba848e7311 from=translated src=- shape=3357ad1b vocab=297585fb
+-/
 theorem conditionalValueAtRisk_sum_le_rioStrongMoment_explicit
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (D : ℕ → Omega → ℝ) (hAdapted : StronglyAdapted filtration D)

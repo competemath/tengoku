@@ -31,7 +31,9 @@ variable (T : Type*) [MetricSpace T]
 
 /-- Every finite-evaluation functional is a finite linear combination of
 point-evaluation continuous linear maps.  The case `k = 0` represents the
-zero functional.-/
+zero functional.
+@isnad1 id=ex.0h2v.s11.3d6eca82852b from=translated src=- shape=7159f76a vocab=28901414
+-/
 theorem FiniteEvaluationDual.exists_fin_sum_evalCLM
     (w : FiniteEvaluationDual T) :
     ∃ (k : ℕ) (a : Fin k → ℝ) (t : Fin k → T),
@@ -50,7 +52,9 @@ theorem FiniteEvaluationDual.exists_fin_sum_evalCLM
     _ = w.1 := hg
 
 /-- Pointwise form of `FiniteEvaluationDual.exists_fin_sum_evalCLM`:
-`w(f)` is a finite weighted sum of values of `f`.-/
+`w(f)` is a finite weighted sum of values of `f`.
+@isnad1 id=ex.0h2v.s11.976add65b3d9 from=translated src=- shape=b341e2e4 vocab=a82bb2e8
+-/
 theorem FiniteEvaluationDual.exists_apply_eq_fin_sum
     (w : FiniteEvaluationDual T) :
     ∃ (k : ℕ) (a : Fin k → ℝ) (t : Fin k → T),
@@ -71,6 +75,9 @@ def finiteEvaluationVectorCLM {k : ℕ} (t : Fin k → T) :
   (PiLp.continuousLinearEquiv 2 ℝ (fun _ : Fin k ↦ ℝ)).symm.toContinuousLinearMap.comp
     (ContinuousLinearMap.pi fun j ↦ ContinuousMap.evalCLM ℝ (t j))
 
+/--
+@isnad1 id=eq.0h5v.s9.4b0536857786 from=translated src=- shape=c53fb04b vocab=23ed218f
+-/
 @[simp]
 theorem finiteEvaluationVectorCLM_apply {k : ℕ} (t : Fin k → T)
     (f : C(T, ℝ)) (j : Fin k) :
@@ -82,6 +89,9 @@ def finiteLinearCombinationCLM {k : ℕ} (a : Fin k → ℝ) :
     EuclideanSpace ℝ (Fin k) →L[ℝ] ℝ :=
   innerSL ℝ (toLp 2 a)
 
+/--
+@isnad1 id=eq.0h3v.s8.ebaed18bb6cc from=translated src=- shape=75e5a7c4 vocab=60528ceb
+-/
 @[simp]
 theorem finiteLinearCombinationCLM_apply {k : ℕ} (a : Fin k → ℝ)
     (x : EuclideanSpace ℝ (Fin k)) :
@@ -89,7 +99,9 @@ theorem finiteLinearCombinationCLM_apply {k : ℕ} (a : Fin k → ℝ)
   simp [finiteLinearCombinationCLM, PiLp.inner_apply, mul_comm]
 
 /-- A representation by point evaluations factors the corresponding
-functional through its finite evaluation vector.-/
+functional through its finite evaluation vector.
+@isnad1 id=eq.1h5v.s12.77116965eec4 from=translated src=- shape=5dde7a7b vocab=c04d5f76
+-/
 theorem finiteLinearCombinationCLM_comp_finiteEvaluationVectorCLM
     {k : ℕ} (a : Fin k → ℝ) (t : Fin k → T)
     (w : FiniteEvaluationDual T)
@@ -112,7 +124,9 @@ variable {iota : Type*} {l : Filter iota}
 /-- Continuous-mapping bridge for a fixed finite representation.  If the
 finite evaluation-vector laws converge to `rho`, then the law of the
 represented finite-evaluation functional converges to the image of `rho` by
-the corresponding scalar linear form.-/
+the corresponding scalar linear form.
+@isnad1 id=tendsto.2h9v.s12.deb86c1d576d from=translated src=- shape=cffc1637 vocab=321f25d0
+-/
 theorem ProbabilityMeasure.tendsto_map_finiteEvaluationDual_of_vector
     {k : ℕ} (a : Fin k → ℝ) (t : Fin k → T)
     (w : FiniteEvaluationDual T)
@@ -153,7 +167,9 @@ theorem ProbabilityMeasure.tendsto_map_finiteEvaluationDual_of_vector
 
 /-- Every `w : FiniteEvaluationDual T` admits finite data for which the
 continuous-mapping bridge is available.  This is the form intended for
-instantiating process tightness results from a finite-dimensional CLT.-/
+instantiating process tightness results from a finite-dimensional CLT.
+@isnad1 id=ex.0h5v.s12.1a723f51db7a from=translated src=- shape=c2f41584 vocab=321f25d0
+-/
 theorem ProbabilityMeasure.exists_fin_tendsto_map_finiteEvaluationDual_bridge
     (w : FiniteEvaluationDual T)
     (mu : iota → ProbabilityMeasure C(T, ℝ)) :

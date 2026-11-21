@@ -34,7 +34,9 @@ namespace ProbabilityTheory
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
 /-- Multiplication by a deterministic scalar multiplies the variance proxy by
-its square and the Bernstein scale proxy by its absolute value.-/
+its square and the Bernstein scale proxy by its absolute value.
+@isnad1 id=hasberns.1h6v.s6.6a7be9db6224 from=translated src=- shape=4493efba vocab=1bc61536
+-/
 theorem HasBernsteinMGF.const_mul {X : Ω → ℝ} {v b : ℝ≥0}
     (hX : HasBernsteinMGF X v b μ) (a : ℝ) :
     HasBernsteinMGF (fun ω ↦ a * X ω)
@@ -66,7 +68,9 @@ theorem HasBernsteinMGF.const_mul {X : Ω → ℝ} {v b : ℝ≥0}
 
 /-- Nonnegative-scalar version of `HasBernsteinMGF.const_mul`, expressed
 with the native multiplication on `ℝ≥0`.  This form composes cleanly with
-finite sums of variance proxies.-/
+finite sums of variance proxies.
+@isnad1 id=hasberns.1h6v.s6.bb2754d30b43 from=translated src=- shape=332117ea vocab=b3524a81
+-/
 theorem HasBernsteinMGF.nnreal_mul {X : Ω → ℝ} {v b : ℝ≥0}
     (hX : HasBernsteinMGF X v b μ) (a : ℝ≥0) :
     HasBernsteinMGF (fun ω ↦ (a : ℝ) * X ω) (a ^ 2 * v) (a * b) μ := by
@@ -93,7 +97,9 @@ theorem HasBernsteinMGF.nnreal_mul {X : Ω → ℝ} {v b : ℝ≥0}
     ring
 
 /-- A convenient second-order upper bound for the real exponential on the
-unit interval.-/
+unit interval.
+@isnad1 id=le.1h1v.s6.fe30eb45054d from=translated src=- shape=b58eafbb vocab=8829e7b0
+-/
 theorem exp_le_one_add_add_three_quarters_sq {x : ℝ} (hx : |x| ≤ 1) :
     Real.exp x ≤ 1 + x + (3 / 4 : ℝ) * x ^ 2 := by
   have h := (abs_le.mp (Real.exp_bound hx (n := 2) (by norm_num))).2
@@ -104,7 +110,9 @@ theorem exp_le_one_add_add_three_quarters_sq {x : ℝ} (hx : |x| ≤ 1) :
 whose variance proxy is twice any upper bound for its second moment.
 
 The denominator in `HasBernsteinMGF` absorbs the restriction `b * |t| < 1`.
-No higher moment assumption is used.-/
+No higher moment assumption is used.
+@isnad1 id=hasberns.6h5v.s7.106b5ee9d86f from=translated src=- shape=3e859e98 vocab=d58dd215
+-/
 theorem hasBernsteinMGF_of_memLp_two_of_ae_abs_le_of_integral_eq_zero
     [IsProbabilityMeasure μ]
     (X : Ω → ℝ) (hX : MemLp X 2 μ) {v b : ℝ}
@@ -215,7 +223,9 @@ theorem hasBernsteinMGF_of_memLp_two_of_ae_abs_le_of_integral_eq_zero
 
 /-- Centered form of the bounded-variance Bernstein estimate.  If `X` is
 bounded by `b`, centering costs only a factor `2` in the scale proxy, while
-the variance proxy remains controlled by the uncentered second moment.-/
+the variance proxy remains controlled by the uncentered second moment.
+@isnad1 id=hasberns.5h5v.s8.1279ebf10331 from=translated src=- shape=44a19ffc vocab=b244ed64
+-/
 theorem hasBernsteinMGF_centered_of_memLp_two_of_ae_abs_le
     [IsProbabilityMeasure μ]
     (X : Ω → ℝ) (hX : MemLp X 2 μ) {v b : ℝ}

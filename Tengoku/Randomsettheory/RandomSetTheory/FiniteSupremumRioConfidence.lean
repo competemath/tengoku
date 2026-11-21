@@ -28,7 +28,9 @@ namespace ProbabilityTheory
 variable {Omega T Z : Type*} {mOmega : MeasurableSpace Omega}
   [MeasurableSpace Z]
 
-/-- Finite-coordinate Rio bound with no free truncation parameter.-/
+/-- Finite-coordinate Rio bound with no free truncation parameter.
+@isnad1 id=le.15h16v.s8.40cb76d5eac1 from=translated src=- shape=14354128 vocab=769b8027
+-/
 theorem conditionalValueAtRisk_finiteCoordinateSumSupremum_le_rioConfidence
     {mu : Measure Omega} {nu : Measure Z}
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]

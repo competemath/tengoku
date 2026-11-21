@@ -24,7 +24,9 @@ noncomputable section
 namespace RandomSetTheory
 
 /-- The support function of an Effros-measurable compact nonempty
-correspondence into a separable Hilbert space is jointly measurable.-/
+correspondence into a separable Hilbert space is jointly measurable.
+@isnad1 id=measurab.3h3v.s7.e884f88567cf from=translated src=- shape=d614f96e vocab=92a909a9
+-/
 theorem measurable_supportFunction_joint
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]

@@ -33,7 +33,9 @@ variable {Omega : Type*} [MeasurableSpace Omega] {mu : Measure Omega}
 /-- Conditional value at risk is `alpha⁻¹`-Lipschitz for the `L¹` distance.
 
 This is proved directly from monotonicity, subadditivity and the variational
-bound on a nonnegative loss, so it does not require a quantile representation.-/
+bound on a nonnegative loss, so it does not require a quantile representation.
+@isnad1 id=le.4h5v.s7.fcfc5b5c8bc2 from=translated src=- shape=d5ac6185 vocab=67513624
+-/
 theorem abs_conditionalValueAtRisk_sub_le_integral_abs_sub
     [IsProbabilityMeasure mu]
     {X Y : Omega → ℝ} (hX : Integrable X mu) (hY : Integrable Y mu)
@@ -90,7 +92,9 @@ theorem abs_conditionalValueAtRisk_sub_le_integral_abs_sub
   constructor <;> linarith
 
 /-- `L¹` convergence implies convergence of conditional value at risk at
-every fixed tail mass.-/
+every fixed tail mass.
+@isnad1 id=tendsto.5h5v.s7.22b9fd90a954 from=translated src=- shape=3892b1a4 vocab=dd4fbe59
+-/
 theorem tendsto_conditionalValueAtRisk_of_tendsto_integral_abs_sub
     [IsProbabilityMeasure mu]
     {X : ℕ → Omega → ℝ} {Y : Omega → ℝ}
@@ -113,7 +117,9 @@ theorem tendsto_conditionalValueAtRisk_of_tendsto_integral_abs_sub
         atTop (nhds (alpha⁻¹ * 0)))
 
 /-- Centering by the respective expectations costs at most a factor two in
-`L¹`.  In particular, `L¹` convergence is preserved by centering.-/
+`L¹`.  In particular, `L¹` convergence is preserved by centering.
+@isnad1 id=tendsto.3h4v.s7.9b18a147fbff from=translated src=- shape=7f24e6d1 vocab=4edb6d6f
+-/
 theorem tendsto_integral_abs_centered_sub_centered
     [IsProbabilityMeasure mu]
     {X : ℕ → Omega → ℝ} {Y : Omega → ℝ}
@@ -172,7 +178,9 @@ theorem tendsto_integral_abs_centered_sub_centered
         Tendsto (fun n ↦ 2 * d n) atTop (nhds (2 * 0)))
 
 /-- CVaR of the centered process is continuous under `L¹` convergence of the
-uncentered process.-/
+uncentered process.
+@isnad1 id=tendsto.5h5v.s7.a96b96bce6a9 from=translated src=- shape=9fa3af99 vocab=dd4fbe59
+-/
 theorem tendsto_conditionalValueAtRisk_centered_of_tendsto_integral_abs_sub
     [IsProbabilityMeasure mu]
     {X : ℕ → Omega → ℝ} {Y : Omega → ℝ}
@@ -196,7 +204,9 @@ corresponding strict upper-tail probability bound.
 
 Atomlessness is used only to carve out an event of mass exactly `alpha` from
 a hypothetical larger upper-tail event.  The eventwise dual inequality in
-`CVaRQuantile` then gives the contradiction.-/
+`CVaRQuantile` then gives the contradiction.
+@isnad1 id=le.6h5v.s6.da226f112ae5 from=translated src=- shape=9a4a481b vocab=b73368d6
+-/
 theorem measureReal_lt_le_of_conditionalValueAtRisk_le_of_atomless
     [IsProbabilityMeasure mu]
     (hmu : RandomSetTheory.IsAtomlessMeasure mu)
@@ -258,7 +268,9 @@ variable [TopologicalSpace T] [SeparableSpace T] [Nonempty T]
 variable {mu : Measure Omega}
 
 /-- The full supremum of a continuous process is measurable when all
-evaluations on the canonical dense sequence are measurable.-/
+evaluations on the canonical dense sequence are measurable.
+@isnad1 id=measurab.2h3v.s6.49d3ed675388 from=translated src=- shape=ae68e5e4 vocab=1fac94cf
+-/
 theorem measurable_iSup_continuous_of_measurable_dense
     (F : Omega → T → ℝ) (hcontinuous : ∀ omega, Continuous (F omega))
     (hmeas : ∀ k, Measurable (fun omega ↦ F omega (denseSeq T k))) :
@@ -271,7 +283,9 @@ theorem measurable_iSup_continuous_of_measurable_dense
   exact Measurable.iSup hmeas
 
 /-- Dense prefix suprema converge in `L¹` to the full supremum under one
-integrable pathwise envelope.-/
+integrable pathwise envelope.
+@isnad1 id=tendsto.4h5v.s7.952d12fda777 from=translated src=- shape=0ed3421d vocab=f02337bb
+-/
 theorem tendsto_integral_abs_densePrefixSupremum_sub_iSup
     (F : Omega → T → ℝ) (B : Omega → ℝ)
     (hcontinuous : ∀ omega, Continuous (F omega))
@@ -351,7 +365,9 @@ theorem tendsto_integral_abs_densePrefixSupremum_sub_iSup
 
 /-- The centered CVaR of dense finite prefix suprema converges to that of the
 full continuous supremum.  This is the finite-to-continuous bridge needed by
-maximal inequalities proved first for a finite index class.-/
+maximal inequalities proved first for a finite index class.
+@isnad1 id=tendsto.6h6v.s8.5eccc36108b5 from=translated src=- shape=943c6827 vocab=42ce490f
+-/
 theorem tendsto_conditionalValueAtRisk_centered_densePrefixSupremum
     [IsProbabilityMeasure mu]
     (F : Omega → T → ℝ) (B : Omega → ℝ)
@@ -421,7 +437,9 @@ theorem tendsto_conditionalValueAtRisk_centered_densePrefixSupremum
         hPint hSint halpha0 halpha1 hL1)
 
 /-- Any uniform CVaR bound for all dense finite prefix suprema passes without
-loss to the supremum over the entire continuous index space.-/
+loss to the supremum over the entire continuous index space.
+@isnad1 id=le.7h7v.s8.a0027be3f0a5 from=translated src=- shape=0d33c8a6 vocab=aea3f510
+-/
 theorem conditionalValueAtRisk_centered_iSup_le_of_densePrefixes
     [IsProbabilityMeasure mu]
     (F : Omega → T → ℝ) (B : Omega → ℝ)
@@ -444,7 +462,9 @@ theorem conditionalValueAtRisk_centered_iSup_le_of_densePrefixes
     (Eventually.of_forall hfinite)
 
 /-- Uniform finite-prefix CVaR estimates yield the corresponding strict-tail
-bound for the full continuous supremum on an atomless probability space.-/
+bound for the full continuous supremum on an atomless probability space.
+@isnad1 id=le.8h7v.s8.b220d88919c3 from=translated src=- shape=70a3a725 vocab=88863526
+-/
 theorem measureReal_centered_iSup_lt_le_of_densePrefixes
     [IsProbabilityMeasure mu]
     (hmu : IsAtomlessMeasure mu)

@@ -25,7 +25,9 @@ noncomputable section
 namespace RandomSetTheory
 
 /-- Kernel support is invariant under almost-everywhere equality of the
-supporting correspondences.-/
+supporting correspondences.
+@isnad1 id=kernelsu.2h6v.s6.f5f74924dc42 from=translated src=- shape=7c970a3a vocab=552fcf20
+-/
 theorem KernelSupportedOn.congr_ae
     {O X : Type*} [MeasurableSpace O] [MeasurableSpace X]
     {μ : Measure O} {S T : O → Set X}
@@ -36,7 +38,9 @@ theorem KernelSupportedOn.congr_ae
   rwa [← hSTo]
 
 /-- The set of attainable kernel moments depends only on the almost-sure
-class of the feasible correspondence.-/
+class of the feasible correspondence.
+@isnad1 id=eq.1h7v.s6.eba0b79004dd from=translated src=- shape=4343a3c4 vocab=dd40b7f3
+-/
 theorem kernelAttainableMoments_congr_ae
     {O X E : Type*} [MeasurableSpace O] [MeasurableSpace X]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -54,7 +58,9 @@ feasible correspondence hold only on a measurable full-measure set.
 
 The purification equality is stated for the original correspondence; null
 set regularization transports it automatically to the everywhere-regular
-representative used by the measurable lifting theorem.-/
+representative used by the measurable lifting theorem.
+@isnad1 id=eq.8h8v.s8.62b4e8e783b9 from=translated src=- shape=2b931c7b vocab=cd16ea1b
+-/
 theorem kernelAttainableMoments_eq_aumannExpectation_of_purification_ae
     {O X E : Type*} [MeasurableSpace O] [MeasurableSpace X]
     [MetricSpace X] [CompleteSpace X] [BorelSpace X]
@@ -123,7 +129,9 @@ theorem kernelAttainableMoments_eq_aumannExpectation_of_purification_ae
 representation.  Compactness, nonemptiness, and the norm envelope are only
 required on a measurable full-measure set.  The correspondence is replaced
 by a singleton off that set, and finite-dimensional binary purification is
-then applied to this everywhere-regular representative.-/
+then applied to this everywhere-regular representative.
+@isnad1 id=eq.10h9v.s8.505be4aa0922 from=translated src=- shape=523041a1 vocab=c2895655
+-/
 theorem kernelAttainableMoments_eq_aumannExpectation_of_atomless_ae
     {O X H : Type*} [MeasurableSpace O] [MeasurableSpace X]
     [MetricSpace X] [CompleteSpace X] [BorelSpace X]

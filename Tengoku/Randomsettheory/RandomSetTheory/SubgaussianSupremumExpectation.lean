@@ -39,7 +39,9 @@ namespace ProbabilityTheory
 variable {Omega : Type*} [MeasurableSpace Omega] {mu : Measure Omega}
 
 /-- Integrating a shifted exponential tail.  The positive-part reduction is
-what avoids paying an artificial exponential factor in the shift `A`.-/
+what avoids paying an artificial exponential factor in the shift `A`.
+@isnad1 id=le.3h5v.s7.a55be2f803dc from=translated src=- shape=a806c25c vocab=5f8bdbde
+-/
 theorem integral_le_add_of_shifted_exponential_tail
     [IsProbabilityMeasure mu]
     (S : Omega → ℝ) (hS : Integrable S mu)
@@ -121,7 +123,9 @@ variable {Omega E : Type*} [MeasurableSpace Omega]
 
 /-- Expected absolute supremum of a continuous sub-Gaussian process on a
 finite-dimensional Euclidean unit ball.  The proof integrates the existing
-chaining tail; it does not repeat the construction of nets or edge graphs.-/
+chaining tail; it does not repeat the construction of nets or edge graphs.
+@isnad1 id=le.7h6v.s8.eed58f7c224c from=translated src=- shape=8febf81a vocab=34776d49
+-/
 theorem integral_iSup_abs_unitBall_subgaussianProcess_le
     [IsProbabilityMeasure mu]
     (Z : Omega → EuclideanUnitBall E → ℝ) (B : Omega → ℝ)
@@ -221,7 +225,9 @@ have sub-Gaussian increments at scale `K2 / sqrt n`.
 This theorem deliberately does not claim that an `L²` envelope implies its
 `hsubgaussian` hypothesis.  For heavy-tailed empirical processes that step
 must instead pass through ghost-sample symmetrization and a conditionally
-Rademacher process.-/
+Rademacher process.
+@isnad1 id=le.8h7v.s8.248c0039f527 from=translated src=- shape=d556c70b vocab=da2aa005
+-/
 theorem integral_iSup_abs_unitBall_subgaussianEmpiricalProcess_le
     [IsProbabilityMeasure mu]
     (Z : Omega → EuclideanUnitBall E → ℝ) (B : Omega → ℝ)

@@ -55,12 +55,18 @@ def empiricalNormalizedEnvelope (n : Nat) (A : Z → Real) (z : Z) : Real :=
   ((n : Real)⁻¹) * A z
 
 omit [MeasurableSpace Z] in
+/--
+@isnad1 id=eq.0h4v.s5.7955493b038c from=translated src=- shape=5de57061 vocab=c9feab77
+-/
 @[simp]
 theorem empiricalNormalizedEnvelope_apply
     (n : Nat) (A : Z → Real) (z : Z) :
     empiricalNormalizedEnvelope n A z = A z / (n : Real) := by
   simp only [empiricalNormalizedEnvelope, div_eq_mul_inv, mul_comm]
 
+/--
+@isnad1 id=memlp.1h5v.s6.3e0769e58737 from=translated src=- shape=dc528cbf vocab=d1336fb1
+-/
 theorem memLp_empiricalNormalizedEnvelope
     (n : Nat) (A : Z → Real) (q : ENNReal) (hA : MemLp A q nu) :
     MemLp (empiricalNormalizedEnvelope n A) q nu := by
@@ -68,6 +74,9 @@ theorem memLp_empiricalNormalizedEnvelope
   exact hA.const_mul ((n : Real)⁻¹)
 
 omit [MeasurableSpace Z] in
+/--
+@isnad1 id=le.1h4v.s5.76e049c4f0f2 from=translated src=- shape=e70b346e vocab=9646a616
+-/
 theorem empiricalNormalizedEnvelope_nonneg
     (n : Nat) (A : Z → Real)
     (hA : forall z, 0 ≤ A z) (z : Z) :
@@ -77,7 +86,9 @@ theorem empiricalNormalizedEnvelope_nonneg
 /-- The centred replace-one envelope is homogeneous under scalar
 multiplication.  This identity does not require integrability: the Bochner
 integral uses its canonical value on non-integrable functions and commutes
-with scalar multiplication.-/
+with scalar multiplication.
+@isnad1 id=eq.0h5v.s5.970b76566306 from=translated src=- shape=5646c569 vocab=5bc4ed9f
+-/
 theorem replaceOneCenteredEnvelope_const_mul
     (c : Real) (A : Z → Real) (z : Z) :
     replaceOneCenteredEnvelope nu (fun z ↦ c * A z) z =
@@ -85,7 +96,9 @@ theorem replaceOneCenteredEnvelope_const_mul
   simp only [replaceOneCenteredEnvelope, integral_const_mul]
   ring
 
-/-- Exact degree-`k` homogeneity of the centred replace-one moment.-/
+/-- Exact degree-`k` homogeneity of the centred replace-one moment.
+@isnad1 id=eq.0h5v.s6.461531de1530 from=translated src=- shape=3c17c805 vocab=5f00e5f0
+-/
 theorem replaceOneCenteredMoment_const_mul
     (c : Real) (A : Z → Real) (k : Nat) :
     replaceOneCenteredMoment nu (fun z ↦ c * A z) k =
@@ -94,7 +107,9 @@ theorem replaceOneCenteredMoment_const_mul
   simp_rw [replaceOneCenteredEnvelope_const_mul (nu := nu), mul_pow,
     integral_const_mul]
 
-/-- Exact empirical normalization of a centred replace-one moment.-/
+/-- Exact empirical normalization of a centred replace-one moment.
+@isnad1 id=eq.0h5v.s5.551ac61550d8 from=translated src=- shape=c296a304 vocab=6a850085
+-/
 theorem replaceOneCenteredMoment_empiricalNormalizedEnvelope
     (n k : Nat) (A : Z → Real) :
     replaceOneCenteredMoment nu (empiricalNormalizedEnvelope n A) k =
@@ -102,7 +117,9 @@ theorem replaceOneCenteredMoment_empiricalNormalizedEnvelope
   change replaceOneCenteredMoment nu (fun z ↦ ((n : Real)⁻¹) * A z) k = _
   exact replaceOneCenteredMoment_const_mul (nu := nu) ((n : Real)⁻¹) A k
 
-/-- Denominator form of exact empirical homogeneity.-/
+/-- Denominator form of exact empirical homogeneity.
+@isnad1 id=eq.0h5v.s5.75fe807ff9ad from=translated src=- shape=23835413 vocab=45ee0639
+-/
 theorem replaceOneCenteredMoment_empiricalNormalizedEnvelope_div
     (n k : Nat) (A : Z → Real) :
     replaceOneCenteredMoment nu (empiricalNormalizedEnvelope n A) k =
@@ -113,7 +130,9 @@ theorem replaceOneCenteredMoment_empiricalNormalizedEnvelope_div
 
 /-- A nonnegative envelope's centred replace-one moment is at most `2^k`
 times its raw `k`-th moment.  The sole loss is the elementary two-term
-power inequality; Jensen controls the constant mean term.-/
+power inequality; Jensen controls the constant mean term.
+@isnad1 id=le.3h4v.s7.55a6695bae3c from=translated src=- shape=36cfe55c vocab=c0374131
+-/
 theorem replaceOneCenteredMoment_le_two_pow_mul_integral_pow
     [IsProbabilityMeasure nu]
     (A : Z → Real) (k : Nat) (hk : 1 ≤ k)
@@ -171,7 +190,9 @@ theorem replaceOneCenteredMoment_le_two_pow_mul_integral_pow
 /-- General aggregate scaling lemma.  For `n` nonnegative coordinate
 envelopes, a uniform raw `k`-th moment bound `K^k` gives the exact rate
 `2^k K^k / n^(k-1)` for the sum of centred replace-one proxies after
-empirical normalization.-/
+empirical normalization.
+@isnad1 id=le.5h6v.s8.175a2d227489 from=translated src=- shape=1d17118c vocab=118f7fdd
+-/
 theorem sum_replaceOneCenteredMoment_empiricalNormalizedEnvelope_le
     [IsProbabilityMeasure nu]
     (n k : Nat) (hn : 0 < n) (hk : 1 ≤ k)
@@ -226,7 +247,9 @@ theorem sum_replaceOneCenteredMoment_empiricalNormalizedEnvelope_le
       ring
 
 /-- Order-two specialization: the aggregate normalized proxy is at most
-`4 K₂² / n`.-/
+`4 K₂² / n`.
+@isnad1 id=le.5h6v.s8.89ea9242acce from=translated src=- shape=0c704aba vocab=64cdecba
+-/
 theorem sum_replaceOneCenteredMoment_empiricalNormalizedEnvelope_two_le
     [IsProbabilityMeasure nu]
     (n q : Nat) (hn : 0 < n) (hq : 2 ≤ q)
@@ -247,7 +270,9 @@ theorem sum_replaceOneCenteredMoment_empiricalNormalizedEnvelope_two_le
   exact h
 
 /-- Order-`q` specialization: the aggregate normalized proxy is at most
-`2^q K_q^q / n^(q-1)`, i.e. `2^q K_q^q n^(1-q)`.-/
+`2^q K_q^q / n^(q-1)`, i.e. `2^q K_q^q n^(1-q)`.
+@isnad1 id=le.5h6v.s8.175a2d227489 from=translated src=- shape=1d17118c vocab=118f7fdd
+-/
 theorem sum_replaceOneCenteredMoment_empiricalNormalizedEnvelope_q_le
     [IsProbabilityMeasure nu]
     (n q : Nat) (hn : 0 < n) (hq : 1 ≤ q)

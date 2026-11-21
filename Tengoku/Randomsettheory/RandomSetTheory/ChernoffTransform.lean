@@ -48,7 +48,9 @@ def chernoffTransform (psi : ℝ → ℝ) (x : ℝ) : ℝ :=
   sInf (Set.range (chernoffObjective psi x))
 
 /-- Under nonnegativity of the exponent and of `x`, every Chernoff objective
-is nonnegative.-/
+is nonnegative.
+@isnad1 id=le.2h3v.s5.7fe5fdc51329 from=translated src=- shape=00cc8a1e vocab=ad76efba
+-/
 theorem chernoffObjective_nonneg
     {psi : ℝ → ℝ} {x : ℝ} (hx : 0 ≤ x)
     (hpsi : ∀ t, 0 < t → 0 ≤ psi t)
@@ -56,7 +58,9 @@ theorem chernoffObjective_nonneg
     0 ≤ chernoffObjective psi x t := by
   exact div_nonneg (add_nonneg (hpsi t t.property) hx) t.property.le
 
-/-- The range of a nonnegative Chernoff objective is bounded below.-/
+/-- The range of a nonnegative Chernoff objective is bounded below.
+@isnad1 id=bddbelow.2h2v.s5.60cc31cb313f from=translated src=- shape=8dfb5880 vocab=e4c79d75
+-/
 theorem bddBelow_range_chernoffObjective
     {psi : ℝ → ℝ} {x : ℝ} (hx : 0 ≤ x)
     (hpsi : ∀ t, 0 < t → 0 ≤ psi t) :
@@ -67,7 +71,9 @@ theorem bddBelow_range_chernoffObjective
   exact chernoffObjective_nonneg hx hpsi t
 
 /-- Evaluation at any positive parameter gives an upper bound on the
-Chernoff transform.-/
+Chernoff transform.
+@isnad1 id=le.2h3v.s5.4ebb1b000d4f from=translated src=- shape=b14c887f vocab=0fa70656
+-/
 theorem chernoffTransform_le_objective
     {psi : ℝ → ℝ} {x t : ℝ} (ht : 0 < t)
     (hbounded : BddBelow (Set.range (chernoffObjective psi x))) :
@@ -76,7 +82,9 @@ theorem chernoffTransform_le_objective
   exact csInf_le hbounded ⟨⟨t, ht⟩, rfl⟩
 
 /-- Convexity at the origin contracts a convex exponent under multiplication
-by a coefficient in `[0,1]`.-/
+by a coefficient in `[0,1]`.
+@isnad1 id=le.5h3v.s6.75d2e42f3022 from=translated src=- shape=98543222 vocab=959ff45d
+-/
 theorem convexOn_Ici_mul_le_mul
     {psi : ℝ → ℝ} (hconv : ConvexOn ℝ (Set.Ici 0) psi)
     (hzero : psi 0 = 0) {a t : ℝ}
@@ -90,7 +98,9 @@ theorem convexOn_Ici_mul_le_mul
 
 /-- Two positive Chernoff objectives dominate the objective of the sum at
 the harmonic combination of their parameters.  This is inequality (2.5) in
-Rio's proof.-/
+Rio's proof.
+@isnad1 id=le.6h5v.s8.4f5f162f2ff8 from=translated src=- shape=7d666b6a vocab=1e16039e
+-/
 theorem chernoffObjective_add_harmonic_le
     {psi0 psi1 : ℝ → ℝ} {x s t : ℝ}
     (hconv0 : ConvexOn ℝ (Set.Ici 0) psi0)
@@ -136,7 +146,9 @@ theorem chernoffObjective_add_harmonic_le
       ring
 
 /-- The Chernoff transform is subadditive on nonnegative convex exponents
-vanishing at the origin.-/
+vanishing at the origin.
+@isnad1 id=le.7h3v.s7.663c92dd7e86 from=translated src=- shape=82662448 vocab=aedbd37a
+-/
 theorem chernoffTransform_add_le
     {psi0 psi1 : ℝ → ℝ} {x : ℝ} (hx : 0 ≤ x)
     (hconv0 : ConvexOn ℝ (Set.Ici 0) psi0)

@@ -50,7 +50,9 @@ namespace ProbabilityTheory
 /-- The regular conditional law of `Y` given an independent variable `X` is
 the constant kernel with value `law(Y)`.  This small product identity is the
 measure-theoretic part of the ghost-coordinate bridge which was missing from
-the finite-supremum martingale API.-/
+the finite-supremum martingale API.
+@isnad1 id=eventual.3h6v.s7.85303df5d682 from=translated src=- shape=fdfc4058 vocab=978a3ee8
+-/
 theorem IndepFun.condDistrib_ae_eq_const
     {Omega Beta Gamma : Type*}
     [MeasurableSpace Omega] [MeasurableSpace Beta]
@@ -66,7 +68,9 @@ theorem IndepFun.condDistrib_ae_eq_const
 
 /-- Conditional expectation formula under independence: after conditioning
 on `X`, integrating a function of `(X,Y)` amounts to keeping `X` fixed and
-integrating only the independent `Y` coordinate against its ordinary law.-/
+integrating only the independent `Y` coordinate against its ordinary law.
+@isnad1 id=eventual.5h7v.s7.098dd220b573 from=translated src=- shape=77a68608 vocab=17052d99
+-/
 theorem IndepFun.condExp_prod_ae_eq_integral_map
     {Omega Beta Gamma : Type*}
     [MeasurableSpace Omega] [MeasurableSpace Beta]
@@ -110,7 +114,9 @@ def finiteReplaceOneCenteredSupremum
   finiteReplaceOneSupremum s hs (r bz.1) X bz.2 -
     integral nu (finiteReplaceOneSupremum s hs (r bz.1) X)
 
-/-- Measurability of the one-coordinate finite supremum.-/
+/-- Measurability of the one-coordinate finite supremum.
+@isnad1 id=measurab.2h5v.s5.8e094b17923f from=translated src=- shape=6243b433 vocab=a3b263ab
+-/
 theorem measurable_finiteReplaceOneSupremum
     (s : Finset T) (hs : s.Nonempty)
     (r : T -> Real) (X : Z -> T -> Real)
@@ -121,7 +127,9 @@ theorem measurable_finiteReplaceOneSupremum
     (fun t ht => measurable_const.add (hX t ht))
 
 /-- Joint strong measurability of the centred fibre.  This supplies the
-measurability side condition needed by the conditional-distribution formula.-/
+measurability side condition needed by the conditional-distribution formula.
+@isnad1 id=strongly.3h7v.s6.d7fc3c7c7eb6 from=translated src=- shape=589bde59 vocab=e059ba78
+-/
 theorem stronglyMeasurable_finiteReplaceOneCenteredSupremum
     {Beta : Type*} [MeasurableSpace Beta]
     [IsFiniteMeasure nu]
@@ -145,7 +153,9 @@ theorem stronglyMeasurable_finiteReplaceOneCenteredSupremum
     (hmean.comp_measurable measurable_fst)
 
 /-- The centred free-coordinate supremum is conditionally centred given an
-independent revealed past.-/
+independent revealed past.
+@isnad1 id=eventual.8h10v.s8.de9841ffb1b0 from=translated src=- shape=fdb01984 vocab=91f43080
+-/
 theorem condExp_finiteReplaceOneCenteredSupremum_ae_eq_zero
     {Omega Beta : Type*}
     [MeasurableSpace Omega] [MeasurableSpace Beta]
@@ -182,7 +192,9 @@ theorem condExp_finiteReplaceOneCenteredSupremum_ae_eq_zero
 
 omit [MeasurableSpace Z] in
 /-- Replacing the free coordinate changes the supremum by at most the sum of
-the old and ghost envelopes.-/
+the old and ghost envelopes.
+@isnad1 id=le.2h8v.s6.d16e47ca2b39 from=translated src=- shape=2e3584ef vocab=ba6f9492
+-/
 theorem abs_finiteReplaceOneSupremum_sub_le_add_envelopes
     (s : Finset T) (hs : s.Nonempty)
     (r : T -> Real) (X : Z -> T -> Real) (A : Z -> Real)
@@ -195,7 +207,9 @@ theorem abs_finiteReplaceOneSupremum_sub_le_add_envelopes
 
 omit [MeasurableSpace Z] in
 /-- Squared replace-one form.  The factor `2` is the elementary inequality
-`(a+b)^2 <= 2a^2+2b^2`.-/
+`(a+b)^2 <= 2a^2+2b^2`.
+@isnad1 id=le.3h8v.s7.95215bd3bd18 from=translated src=- shape=3ac048f0 vocab=72f78c3a
+-/
 theorem sq_finiteReplaceOneSupremum_sub_le_two_mul_add
     (s : Finset T) (hs : s.Nonempty)
     (r : T -> Real) (X : Z -> T -> Real) (A : Z -> Real)
@@ -223,7 +237,9 @@ theorem sq_finiteReplaceOneSupremum_sub_le_two_mul_add
 
 /-- Every one-coordinate supremum lies in `L2` when its coordinate envelope
 does.  The frozen contribution `r` costs only a finite deterministic
-constant.-/
+constant.
+@isnad1 id=memlp.5h7v.s7.35c02e01c739 from=translated src=- shape=088756d6 vocab=b05fcd98
+-/
 theorem memLp_finiteReplaceOneSupremum_two
     [IsFiniteMeasure nu]
     (s : Finset T) (hs : s.Nonempty)
@@ -260,7 +276,9 @@ theorem memLp_finiteReplaceOneSupremum_two
   simpa only [Real.norm_eq_abs, abs_of_nonneg henvnonneg] using hbound
 
 /-- Exact independent-ghost identity: the mean squared difference of two
-copies is twice the variance.-/
+copies is twice the variance.
+@isnad1 id=eq.1h3v.s7.0f18945a01dc from=translated src=- shape=4d75f5c7 vocab=bed30455
+-/
 theorem integral_sq_sub_ghost_eq_two_mul_variance
     [IsProbabilityMeasure nu]
     (F : Z -> Real) (hF : MemLp F 2 nu) :
@@ -297,7 +315,9 @@ fibre `F` satisfies that inequality, its variance obeys the same bound.
 
 This formulation is important for Doob martingales: after integrating out
 the unrevealed future, the current fibre need no longer be literally a
-supremum, but its replace-one modulus is unchanged.-/
+supremum, but its replace-one modulus is unchanged.
+@isnad1 id=le.4h4v.s7.a494ebbc6eb9 from=translated src=- shape=9128089d vocab=f4e8a3bd
+-/
 theorem variance_le_two_mul_integral_sq_of_abs_sub_le_add_envelopes
     [IsProbabilityMeasure nu]
     (F A : Z -> Real) (hF2 : MemLp F 2 nu) (hA2 : MemLp A 2 nu)
@@ -351,7 +371,9 @@ theorem variance_le_two_mul_integral_sq_of_abs_sub_le_add_envelopes
 
 /-- Abstract conditional Efron--Stein bridge for a revealed past and one
 independent current coordinate.  It applies in particular when `G b z` is a
-future-integrated empirical supremum.-/
+future-integrated empirical supremum.
+@isnad1 id=eventual.9h8v.s9.9eb5144fd3f5 from=translated src=- shape=010a055a vocab=3cee3a2e
+-/
 theorem condExp_sq_centeredGhostFiber_le
     {Omega Beta : Type*}
     [MeasurableSpace Omega] [MeasurableSpace Beta]
@@ -394,7 +416,9 @@ theorem condExp_sq_centeredGhostFiber_le
 
 /-- Product/ghost Efron--Stein bound for a finite supremum with one free
 coordinate.  It is uniform in the frozen process `r` and in the cardinality
-of the finite class.-/
+of the finite class.
+@isnad1 id=le.5h7v.s7.6b21869a8690 from=translated src=- shape=33acd561 vocab=d26ea43a
+-/
 theorem variance_finiteReplaceOneSupremum_le_two_mul_integral_sq
     [IsProbabilityMeasure nu]
     (s : Finset T) (hs : s.Nonempty)
@@ -451,7 +475,9 @@ moment of the coordinate envelope.
 
 The right-hand side is deterministic and contains no cardinality of `s`.
 For an empirical average, applying the scaled replace-one theorem to
-`X/n` gives the per-coordinate bound `2*K2^2/n^2`.-/
+`X/n` gives the per-coordinate bound `2*K2^2/n^2`.
+@isnad1 id=eventual.10h11v.s8.08dbd1c7c2e5 from=translated src=- shape=9d95ce91 vocab=49b1d090
+-/
 theorem condExp_sq_finiteReplaceOneCenteredSupremum_le
     {Omega Beta : Type*}
     [MeasurableSpace Omega] [MeasurableSpace Beta]
@@ -493,7 +519,9 @@ theorem condExp_sq_finiteReplaceOneCenteredSupremum_le
 
 /-- Scaled conditional Efron--Stein bound.  With `c = 1/n` and
 `E[A^2] <= K2^2`, this is the deterministic conditional-variance input
-`2*K2^2/n^2` for one Doob increment.-/
+`2*K2^2/n^2` for one Doob increment.
+@isnad1 id=eventual.10h12v.s9.098f78ac4bcd from=translated src=- shape=62adf9b7 vocab=49b1d090
+-/
 theorem condExp_sq_finiteReplaceOneCenteredSupremum_const_mul_le
     {Omega Beta : Type*}
     [MeasurableSpace Omega] [MeasurableSpace Beta]
@@ -545,7 +573,9 @@ theorem condExp_sq_finiteReplaceOneCenteredSupremum_const_mul_le
 
 /-- Scaled empirical-coordinate form of the ghost Efron--Stein bound.  For an
 empirical average one takes `c = 1 / n`, so one coordinate contributes at
-most `2 * K2^2 / n^2` to the conditional quadratic variation.-/
+most `2 * K2^2 / n^2` to the conditional quadratic variation.
+@isnad1 id=le.5h8v.s8.15f5d49b55a6 from=translated src=- shape=a7234a48 vocab=d26ea43a
+-/
 theorem variance_finiteReplaceOneSupremum_const_mul_le
     [IsProbabilityMeasure nu]
     (s : Finset T) (hs : s.Nonempty)
@@ -583,7 +613,9 @@ theorem variance_finiteReplaceOneSupremum_const_mul_le
   rw [hint] at hbase
   nlinarith
 
-/-- Deterministic `K2` specialization of the scaled coordinate variance.-/
+/-- Deterministic `K2` specialization of the scaled coordinate variance.
+@isnad1 id=le.6h9v.s8.05346b6d2f13 from=translated src=- shape=52783b23 vocab=d26ea43a
+-/
 theorem variance_finiteReplaceOneSupremum_const_mul_le_two_mul_sq
     [IsProbabilityMeasure nu]
     (s : Finset T) (hs : s.Nonempty)
@@ -609,7 +641,9 @@ theorem variance_finiteReplaceOneSupremum_const_mul_le_two_mul_sq
 /-- A bounded coordinate envelope bounds the centred one-coordinate
 supremum by its replace-one diameter, independently of the frozen term `r`.
 This is sharper than bounding the terminal supremum itself, whose size also
-contains all the frozen observations.-/
+contains all the frozen observations.
+@isnad1 id=le.6h9v.s7.d1533b6b80c7 from=translated src=- shape=2ba0d096 vocab=02c72989
+-/
 theorem abs_finiteReplaceOneSupremum_sub_integral_le_two_mul
     [IsProbabilityMeasure nu]
     (s : Finset T) (hs : s.Nonempty)
@@ -650,7 +684,9 @@ neither depends on the finite class cardinality or on the frozen process.
 
 This is the fibrewise concentration statement required in a product
 filtration.  Iterating it needs a conditional-expectation/product-filtration
-identification, which is intentionally not postulated in this theorem.-/
+identification, which is intentionally not postulated in this theorem.
+@isnad1 id=hasberns.8h9v.s8.87095bbeb89d from=translated src=- shape=625aa090 vocab=c3840b96
+-/
 theorem hasBernsteinMGF_finiteReplaceOneSupremum_sub_integral
     [IsProbabilityMeasure nu]
     (s : Finset T) (hs : s.Nonempty)
@@ -705,7 +741,9 @@ theorem hasBernsteinMGF_finiteReplaceOneSupremum_sub_integral
     | (all_goals decide; done)
     | (all_goals tauto; done)
 
-/-- One-sided tail corresponding to the preceding fibrewise Bernstein MGF.-/
+/-- One-sided tail corresponding to the preceding fibrewise Bernstein MGF.
+@isnad1 id=le.10h10v.s8.8bf065a49b9c from=translated src=- shape=7c0d8ffe vocab=cbfd9b9b
+-/
 theorem measureReal_finiteReplaceOneSupremum_sub_integral_ge_le
     [IsProbabilityMeasure nu]
     (s : Finset T) (hs : s.Nonempty)

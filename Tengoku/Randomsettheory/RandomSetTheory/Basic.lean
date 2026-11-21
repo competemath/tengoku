@@ -59,6 +59,9 @@ instance : CoeFun (RandomSet Ω X) (fun _ => Ω → Set X) where
 def ofMeasurable (S : Ω → Set X) (hS : Measurable S) : RandomSet Ω X :=
   ⟨S, hS⟩
 
+/--
+@isnad1 id=eq.1h4v.s5.69cbfd2cf4f6 from=translated src=- shape=3ba1b22c vocab=f5632397
+-/
 @[simp] theorem ofMeasurable_apply (S : Ω → Set X) (hS : Measurable S) (ω : Ω) :
     ofMeasurable S hS ω = S ω :=
   rfl
@@ -123,6 +126,9 @@ noncomputable def add [AddCommMonoid X] (S T : RandomSet Ω X)
   toFun := fun ω => S ω + T ω
   measurable' := hmeas
 
+/--
+@isnad1 id=eq.1h5v.s6.38b0c7a9c742 from=translated src=- shape=87a00a0f vocab=88aa59d1
+-/
 @[simp] theorem add_apply [AddCommMonoid X] (S T : RandomSet Ω X)
     (hmeas : Measurable fun ω => S ω + T ω) (ω : Ω) :
     add S T hmeas ω = S ω + T ω :=
@@ -135,6 +141,9 @@ noncomputable def smul [AddCommGroup X] [Module ℝ X] (r : ℝ) (S : RandomSet 
   toFun := fun ω => r • S ω
   measurable' := hmeas
 
+/--
+@isnad1 id=eq.1h5v.s7.ecd5e97ff46f from=translated src=- shape=44fb45cc vocab=9274de6c
+-/
 @[simp] theorem smul_apply [AddCommGroup X] [Module ℝ X]
     (r : ℝ) (S : RandomSet Ω X) (hmeas : Measurable fun ω => r • S ω) (ω : Ω) :
     smul r S hmeas ω = r • S ω :=
@@ -158,6 +167,9 @@ noncomputable def smulOfNe [AddCommGroup X] [Module ℝ X]
       rw [mem_smul_set_iff_inv_smul_mem₀ hr]
     simpa [hequiv] using hmem
 
+/--
+@isnad1 id=eq.1h5v.s7.9218d981f906 from=translated src=- shape=de0ec842 vocab=1c467045
+-/
 @[simp] theorem smulOfNe_apply [AddCommGroup X] [Module ℝ X]
     (r : ℝ) (hr : r ≠ 0) (S : RandomSet Ω X) (ω : Ω) :
     smulOfNe r hr S ω = r • S ω :=
@@ -173,9 +185,15 @@ def support (S : RandomSet Ω X) : Set X := ⋃ ω, S ω
 /-- The range of a random set: the set of all values it takes.-/
 def range (S : RandomSet Ω X) : Set X := S.support
 
+/--
+@isnad1 id=iff.0h4v.s5.7d23ad616e2f from=translated src=- shape=dc464512 vocab=9e3ddecb
+-/
 lemma mem_support {S : RandomSet Ω X} {x : X} : x ∈ S.support ↔ ∃ ω, x ∈ S ω := by
   simp [support]
 
+/--
+@isnad1 id=iff.0h4v.s5.1d9f2aa8eba1 from=translated src=- shape=dc464512 vocab=766b978b
+-/
 lemma mem_range_iff {S : RandomSet Ω X} {x : X} : x ∈ S.range ↔ ∃ ω, x ∈ S ω := by
   simp [range, support]
 
@@ -187,6 +205,9 @@ lemma mem_range_iff {S : RandomSet Ω X} {x : X} : x ∈ S.range ↔ ∃ ω, x �
 def aEq (S T : RandomSet Ω X) (μ : Measure Ω) : Prop :=
   S.toFun =ᵐ[μ] T.toFun
 
+/--
+@isnad1 id=iff.0h5v.s6.c84a2acaa775 from=translated src=- shape=7f2a61d7 vocab=2dc6a067
+-/
 lemma aEq_iff (S T : RandomSet Ω X) (μ : Measure Ω) : S.aEq T μ ↔ ∀ᵐ ω ∂μ, S ω = T ω := by
   rfl
 
@@ -204,6 +225,9 @@ measurable.-/
 def IsEffrosMeasurable (S : Ω → Set X) : Prop :=
   ∀ U : Set X, IsOpen U → MeasurableSet {ω | (S ω ∩ U).Nonempty}
 
+/--
+@isnad1 id=iseffros.0h3v.s4.8637b2dfd5e0 from=translated src=- shape=ce587ab1 vocab=88ea0549
+-/
 theorem isEffrosMeasurable_const (K : Set X) :
     IsEffrosMeasurable (fun _ : Ω => K) := by
   intro U _
@@ -211,10 +235,16 @@ theorem isEffrosMeasurable_const (K : Set X) :
   · simp [h]
   · simp [h]
 
+/--
+@isnad1 id=iseffros.0h2v.s4.627c687e3f6d from=translated src=- shape=9ec1bce7 vocab=524124a7
+-/
 theorem isEffrosMeasurable_empty :
     IsEffrosMeasurable (fun _ : Ω => (∅ : Set X)) :=
   isEffrosMeasurable_const ∅
 
+/--
+@isnad1 id=iseffros.2h4v.s5.4e5e4be8f1ab from=translated src=- shape=beecaef8 vocab=07699ea9
+-/
 theorem IsEffrosMeasurable.union {S T : Ω → Set X}
     (hS : IsEffrosMeasurable S) (hT : IsEffrosMeasurable T) :
     IsEffrosMeasurable (fun ω => S ω ∪ T ω) := by
@@ -234,6 +264,9 @@ theorem IsEffrosMeasurable.union {S T : Ω → Set X}
   rw [hEq]
   exact (hS U hU).union (hT U hU)
 
+/--
+@isnad1 id=iseffros.2h4v.s5.8d143c77e099 from=translated src=- shape=91bc882d vocab=88ea0549
+-/
 theorem IsEffrosMeasurable.congr {S T : Ω → Set X}
     (hS : IsEffrosMeasurable S) (hST : ∀ ω, S ω = T ω) :
     IsEffrosMeasurable T := by
@@ -243,6 +276,9 @@ theorem IsEffrosMeasurable.congr {S T : Ω → Set X}
   simp only [Set.mem_ofPred_eq]
   rw [← hST ω]
 
+/--
+@isnad1 id=iseffros.2h5v.s5.dc4a38a00b4f from=translated src=- shape=db316675 vocab=8d30e61d
+-/
 theorem IsEffrosMeasurable.image {Y : Type*} [TopologicalSpace Y]
     {S : Ω → Set X} (hS : IsEffrosMeasurable S) {f : X → Y}
     (hf : Continuous f) :
@@ -285,13 +321,22 @@ def union (S T : EffrosRandomClosedSet Ω X) : EffrosRandomClosedSet Ω X where
   isClosed' := fun ω => (S.isClosed' ω).union (T.isClosed' ω)
   measurable' := S.measurable'.union T.measurable'
 
+/--
+@isnad1 id=eq.1h4v.s5.595656654df6 from=translated src=- shape=46fa02b0 vocab=15a3a0d2
+-/
 @[simp] theorem const_apply (K : Set X) (hK : IsClosed K) (ω : Ω) :
     const K hK ω = K :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.a3d11a3ef6a4 from=translated src=- shape=df084ab0 vocab=dd5d4365
+-/
 @[simp] theorem empty_apply (ω : Ω) : (empty : EffrosRandomClosedSet Ω X) ω = ∅ :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.d45b45b151a4 from=translated src=- shape=679ab429 vocab=4cbf6132
+-/
 @[simp] theorem union_apply (S T : EffrosRandomClosedSet Ω X) (ω : Ω) :
     union S T ω = S ω ∪ T ω :=
   rfl

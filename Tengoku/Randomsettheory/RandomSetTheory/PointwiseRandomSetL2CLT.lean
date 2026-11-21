@@ -36,7 +36,9 @@ variable {Omega Z E : Type*} [MeasurableSpace Omega] [MeasurableSpace Z]
   [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
-/-- Equality of the two set presentations of the closed unit ball.-/
+/-- Equality of the two set presentations of the closed unit ball.
+@isnad1 id=eq.0h1v.s5.dd008191c7dd from=translated src=- shape=046a0d0f vocab=d5b0c95c
+-/
 theorem euclideanUnitBall_set_eq_closedBall :
     {x : E | ‖x‖ ≤ 1} = Metric.closedBall (0 : E) 1 := by
   ext x
@@ -44,7 +46,9 @@ theorem euclideanUnitBall_set_eq_closedBall :
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
 /-- The two unit-ball index types used by the chaining and support-process
-APIs are propositionally equal.-/
+APIs are propositionally equal.
+@isnad1 id=eq.0h1v.s5.5921cc222d6d from=translated src=- shape=061a2aa4 vocab=073637d5
+-/
 theorem euclideanUnitBall_eq_closedBall :
     EuclideanUnitBall E = Metric.closedBall (0 : E) 1 :=
   congrArg (fun s : Set E ↦ (s : Type _))
@@ -56,6 +60,9 @@ def euclideanUnitBallHomeomorphClosedBall :
   Homeomorph.setCongr (euclideanUnitBall_set_eq_closedBall (E := E))
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.0h2v.s8.012b94edf259 from=translated src=- shape=38898a6a vocab=56efd6bb
+-/
 @[simp]
 theorem euclideanUnitBallHomeomorphClosedBall_coe
     (u : EuclideanUnitBall E) :
@@ -63,13 +70,18 @@ theorem euclideanUnitBallHomeomorphClosedBall_coe
       Metric.closedBall (0 : E) 1) : E) = (u : E) := rfl
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.0h2v.s9.3cecb66971b5 from=translated src=- shape=a3b3b611 vocab=eaa8688f
+-/
 @[simp]
 theorem euclideanUnitBallHomeomorphClosedBall_symm_coe
     (u : Metric.closedBall (0 : E) 1) :
     ((euclideanUnitBallHomeomorphClosedBall (E := E).symm u :
       EuclideanUnitBall E) : E) = (u : E) := rfl
 
-/-- In finite dimension the Euclidean unit ball is compact.-/
+/-- In finite dimension the Euclidean unit ball is compact.
+@isnad1 id=compacts.0h1v.s6.ec63a175a5e6 from=translated src=- shape=af58d91a vocab=cc354b9b
+-/
 noncomputable instance instCompactSpaceEuclideanUnitBall :
     CompactSpace (EuclideanUnitBall E) :=
   isCompact_iff_compactSpace.mp (by
@@ -85,6 +97,9 @@ def unitBallPathToClosedBall
   f.comp (euclideanUnitBallHomeomorphClosedBall (E := E).symm)
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.0h3v.s9.7860ee40e7ac from=translated src=- shape=7b1ee426 vocab=8a01398b
+-/
 @[simp]
 theorem unitBallPathToClosedBall_apply
     (f : C(EuclideanUnitBall E, ℝ))
@@ -93,7 +108,9 @@ theorem unitBallPathToClosedBall_apply
       f (euclideanUnitBallHomeomorphClosedBall (E := E).symm u) := rfl
 
 /-- Reindexing along the unit-ball homeomorphism is continuous for the
-uniform path norms.-/
+uniform path norms.
+@isnad1 id=continuo.0h1v.s8.508b751fae23 from=translated src=- shape=089b8114 vocab=8d489898
+-/
 theorem continuous_unitBallPathToClosedBall :
     Continuous (unitBallPathToClosedBall (E := E)) := by
   apply (LipschitzWith.of_dist_le_mul (K := 1) ?_).continuous
@@ -106,7 +123,9 @@ theorem continuous_unitBallPathToClosedBall :
 
 omit [MeasurableSpace Z] [FiniteDimensional ℝ E] in
 /-- A pointwise radius envelope is a Lipschitz envelope for support
-functions.-/
+functions.
+@isnad1 id=le.3h7v.s7.fabd4184cc1f from=translated src=- shape=b134df46 vocab=eb7334cb
+-/
 theorem abs_supportFunction_sub_le_radiusEnvelope
     (F : Z → Set E) (hFcompact : ∀ z, IsCompact (F z))
     (hFne : ∀ z, (F z).Nonempty) (R : Z → ℝ)
@@ -121,7 +140,9 @@ theorem abs_supportFunction_sub_le_radiusEnvelope
 
 omit [MeasurableSpace Z] [FiniteDimensional ℝ E] in
 /-- Support functions are continuous whenever their random compact set has a
-finite radius envelope.-/
+finite radius envelope.
+@isnad1 id=continuo.4h5v.s6.0efc17ff08bf from=translated src=- shape=cbc94961 vocab=01985a6f
+-/
 theorem continuous_supportFunction_of_radiusEnvelope
     (F : Z → Set E) (hFcompact : ∀ z, IsCompact (F z))
     (hFne : ∀ z, (F z).Nonempty) (R : Z → ℝ)
@@ -175,7 +196,9 @@ def centeredTruncatedSupportEmpiricalContinuousMap
 
 /-- Effros measurability in every direction and path continuity make the
 canonical untruncated support process measurable as a path-valued random
-variable.-/
+variable.
+@isnad1 id=measurab.7h8v.s8.67d4ebe93faa from=translated src=- shape=97e8bbf5 vocab=a7a3fd0a
+-/
 theorem measurable_centeredSupportEmpiricalContinuousMap
     {mu : Measure Omega} [IsProbabilityMeasure mu]
     [MeasurableSpace C(EuclideanUnitBall E, ℝ)]
@@ -199,7 +222,9 @@ theorem measurable_centeredSupportEmpiricalContinuousMap
         F hFcompact hFne R hRbound) hRL2 n
 
 /-- The same automatic path measurability holds after square-root
-truncation.-/
+truncation.
+@isnad1 id=measurab.7h8v.s8.13f725865db4 from=translated src=- shape=b45d1e6b vocab=d5345674
+-/
 theorem measurable_centeredTruncatedSupportEmpiricalContinuousMap
     {mu : Measure Omega} [IsProbabilityMeasure mu]
     [MeasurableSpace C(EuclideanUnitBall E, ℝ)]
@@ -224,7 +249,9 @@ theorem measurable_centeredTruncatedSupportEmpiricalContinuousMap
 
 omit [FiniteDimensional ℝ E] in
 /-- A square-integrable radius envelope gives the `L²` hypothesis required
-by every finite-direction support CLT.-/
+by every finite-direction support CLT.
+@isnad1 id=memlp.6h10v.s8.2a74cca9a65b from=translated src=- shape=1bfcfa0e vocab=9c1bf490
+-/
 theorem memLp_finiteDirectionalSupportDeviation_of_radiusEnvelope
     {mu : Measure Omega} [IsProbabilityMeasure mu]
     (X : ℕ → Omega → Z)
@@ -259,7 +286,9 @@ theorem memLp_finiteDirectionalSupportDeviation_of_radiusEnvelope
 omit [FiniteDimensional ℝ E] in
 /-- The generic anchored empirical process is exactly the square-root-scaled
 support difference between the empirical Minkowski average and its population
-target.  The `n + 1` convention avoids the empty empirical average.-/
+target.  The `n + 1` convention avoids the empty empirical average.
+@isnad1 id=eq.10h11v.s9.9baec830d9b8 from=translated src=- shape=65e12010 vocab=cb4bcbf3
+-/
 theorem centeredAnchoredEmpiricalContinuousMap_supportFunction_apply
     {mu : Measure Omega} [IsProbabilityMeasure mu]
     (X : ℕ → Omega → Z) (hX : ∀ i, Measurable (X i))

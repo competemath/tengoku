@@ -38,12 +38,18 @@ def minkowskiDecompositionArgmin
   (S ω ×ˢ T ω) ∩
     {p | dist (p.1 + p.2) (h ω) = infDist (h ω) (S ω + T ω)}
 
+/--
+@isnad1 id=le.0h6v.s5.062ab26fa146 from=translated src=- shape=c7d800cb vocab=2430c89c
+-/
 theorem minkowskiDecompositionArgmin_subset
     {Ω E : Type*} [PseudoMetricSpace E] [Add E]
     (S T : Ω → Set E) (h : Ω → E) (ω : Ω) :
     minkowskiDecompositionArgmin S T h ω ⊆ S ω ×ˢ T ω :=
   inter_subset_left
 
+/--
+@isnad1 id=iscompac.2h6v.s6.e728c3ae0c04 from=translated src=- shape=43dda002 vocab=d3ab5465
+-/
 theorem minkowskiDecompositionArgmin_isCompact
     {Ω E : Type*} [NormedAddCommGroup E]
     {S T : Ω → Set E} (hScompact : ∀ ω, IsCompact (S ω))
@@ -54,6 +60,9 @@ theorem minkowskiDecompositionArgmin_isCompact
     ((continuous_fst.add continuous_snd).dist continuous_const)
     continuous_const
 
+/--
+@isnad1 id=nonempty.4h6v.s6.5ce13cc5a4e0 from=translated src=- shape=f68933c1 vocab=5e321281
+-/
 theorem minkowskiDecompositionArgmin_nonempty
     {Ω E : Type*} [NormedAddCommGroup E]
     {S T : Ω → Set E} (hScompact : ∀ ω, IsCompact (S ω))
@@ -87,7 +96,9 @@ def MinkowskiArgminBasisEvent
 
 /-- The distance to an Effros-measurable closed correspondence remains
 measurable when the point at which it is evaluated also depends measurably on
-the base point.-/
+the base point.
+@isnad1 id=measurab.4h4v.s6.cd3e1447030b from=translated src=- shape=c0b41f2b vocab=c79248f4
+-/
 theorem measurable_infDist_correspondence_comp
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [CompleteSpace E]
@@ -122,6 +133,9 @@ theorem measurable_infDist_correspondence_comp
 set_option maxHeartbeats 800000 in
 -- The nested product correspondence and its two localized distance maps make
 -- elaboration substantially heavier than the scalar support-argmax analogue.
+/--
+@isnad1 id=measurab.7h8v.s7.29e595129064 from=translated src=- shape=548b06fd vocab=b2f72e06
+-/
 theorem measurableSet_minkowskiArgminBasisEvent
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [CompleteSpace E]
@@ -199,7 +213,9 @@ theorem measurableSet_minkowskiArgminBasisEvent
     exact MeasurableSet.empty
 
 /-- The correspondence of pairs minimizing the residual of a prescribed
-measurable target is Effros measurable.-/
+measurable target is Effros measurable.
+@isnad1 id=iseffros.7h5v.s7.f40d14c2e5c5 from=translated src=- shape=8381e7a8 vocab=6939244e
+-/
 theorem effrosMeasurable_minkowskiDecompositionArgmin
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [CompleteSpace E]
@@ -321,6 +337,9 @@ def minkowskiDecompositionSelection
     (minkowskiDecompositionArgmin_nonempty
       hScompact hTcompact hSne hTne h)
 
+/--
+@isnad1 id=measurab.7h5v.s7.28209634326a from=translated src=- shape=e1073a28 vocab=c144a8b4
+-/
 theorem measurable_minkowskiDecompositionSelection
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [CompleteSpace E]
@@ -343,6 +362,9 @@ theorem measurable_minkowskiDecompositionSelection
     (minkowskiDecompositionArgmin_nonempty
       hScompact hTcompact hSne hTne h)).1
 
+/--
+@isnad1 id=other.7h6v.s8.a1928f48cc1b from=translated src=- shape=dffc80b6 vocab=30a6686c
+-/
 theorem minkowskiDecompositionSelection_mem_and_residual_eq
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [CompleteSpace E]
@@ -368,7 +390,9 @@ theorem minkowskiDecompositionSelection_mem_and_residual_eq
   exact ⟨hp.1.1, hp.1.2, hp.2⟩
 
 /-- A measurable selection of a pointwise Minkowski sum admits two globally
-measurable coordinate selections whose sum is the target pointwise.-/
+measurable coordinate selections whose sum is the target pointwise.
+@isnad1 id=ex.8h5v.s8.3ae0d2372639 from=translated src=- shape=065739c2 vocab=e678d524
+-/
 theorem exists_measurable_minkowski_decomposition
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [CompleteSpace E]
@@ -403,7 +427,9 @@ theorem exists_measurable_minkowski_decomposition
 
 /-- Almost-everywhere membership in the sum suffices for an almost-everywhere
 exact decomposition; the coordinate selections still belong to their fibres
-at every base point.-/
+at every base point.
+@isnad1 id=ex.8h6v.s8.e2ecf7e6f52a from=translated src=- shape=3879545d vocab=425508ef
+-/
 theorem exists_measurable_minkowski_decomposition_ae
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [CompleteSpace E]
@@ -439,7 +465,9 @@ theorem exists_measurable_minkowski_decomposition_ae
 
 /-- Compact nonempty Effros-measurable summands with integrable envelopes
 have the integrable Minkowski decomposition property required by the Aumann
-expectation API.-/
+expectation API.
+@isnad1 id=hasinteg.10h7v.s8.4de6019a4304 from=translated src=- shape=5a26dcc8 vocab=6fb33dce
+-/
 theorem hasIntegrableMinkowskiDecomposition_of_effros_of_envelopes
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -482,7 +510,9 @@ theorem hasIntegrableMinkowskiDecomposition_of_effros_of_envelopes
     hheq.trans hsum⟩
 
 /-- Under the same concrete random-set hypotheses, Aumann expectation is
-Minkowski additive with no separate decomposition axiom.-/
+Minkowski additive with no separate decomposition axiom.
+@isnad1 id=eq.10h7v.s8.2734ab185fbc from=translated src=- shape=c5025ad8 vocab=f876dcf0
+-/
 theorem aumannExpectation_add_of_effros_of_envelopes
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]

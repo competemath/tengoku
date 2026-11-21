@@ -39,7 +39,9 @@ omit [MeasurableSpace Z] in
 
 This elementary contraction is the deterministic step needed to pass a
 coordinatewise modulus of the terminal process to its future-integrated value
-functions.-/
+functions.
+@isnad1 id=le.2h9v.s7.c1dcb4fad1fa from=translated src=- shape=88886e8b vocab=89baf294
+-/
 theorem abs_integral_sub_integral_le_add_envelopes
     {Beta W : Type*} [MeasurableSpace W]
     {kappa : Measure W} [IsProbabilityMeasure kappa]
@@ -59,7 +61,9 @@ theorem abs_integral_sub_integral_le_add_envelopes
   simpa only [Real.norm_eq_abs, integral_const, probReal_univ, one_smul]
     using hbound
 
-/-- Absolute (rather than only positive-part) form of ghost centring.-/
+/-- Absolute (rather than only positive-part) form of ghost centring.
+@isnad1 id=le.3h5v.s7.050fb51e712a from=translated src=- shape=8dc97f56 vocab=b8d43d8c
+-/
 theorem abs_sub_integral_le_replaceOneCenteredEnvelope
     [IsProbabilityMeasure nu]
     (F A : Z → ℝ) (hFint : Integrable F nu) (hAint : Integrable A nu)
@@ -86,7 +90,9 @@ theorem abs_sub_integral_le_replaceOneCenteredEnvelope
   exact habs
 
 /-- The composition of a centred ghost fibre with a measurable
-past/current-coordinate pair inherits the envelope's `L^q` bound.-/
+past/current-coordinate pair inherits the envelope's `L^q` bound.
+@isnad1 id=memlp.7h9v.s8.fb2393e1ec7a from=translated src=- shape=217135db vocab=fb1fd499
+-/
 theorem memLp_centeredGhostFiber_comp
     {Omega Beta : Type*}
     [MeasurableSpace Omega] [MeasurableSpace Beta]
@@ -134,7 +140,9 @@ theorem memLp_centeredGhostFiber_comp
 
 /-- The full conditional square of a centred ghost fibre is controlled by
 the same order-two proxy as the positive moments.  This common proxy is what
-makes aggregate interpolation exact.-/
+makes aggregate interpolation exact.
+@isnad1 id=eventual.8h9v.s8.c1740996a37f from=translated src=- shape=e2e3a5a5 vocab=16209564
+-/
 theorem condExp_sq_centeredGhostFiber_le_replaceOneCenteredMoment
     {Omega Beta : Type*}
     [MeasurableSpace Omega] [MeasurableSpace Beta]
@@ -197,7 +205,9 @@ theorem condExp_sq_centeredGhostFiber_le_replaceOneCenteredMoment
   simpa only [sq_abs] using hpow
 
 /-- Transport of the preceding square estimate to a concrete successor Doob
-difference represented by the centred ghost fibre.-/
+difference represented by the centred ghost fibre.
+@isnad1 id=eventual.10h12v.s8.5f14d331f09f from=translated src=- shape=6d98075a vocab=ce0d0fc0
+-/
 theorem condExp_sq_doobCenteredDifference_succ_le_of_centeredGhostFiber
     {Omega Beta : Type*}
     [MeasurableSpace Omega] [MeasurableSpace Beta]
@@ -242,7 +252,9 @@ identification of the *next* conditional expectation.
 The past conditional expectation is not assumed: the tower property and
 independence of `(P,Y)` compute it automatically as the integral of `G` in
 the current coordinate.  This is the structural bridge used when `G` is the
-future-integrated value function of a product process.-/
+future-integrated value function of a product process.
+@isnad1 id=eventual.6h10v.s8.c6b27eff651a from=translated src=- shape=f9e7fc04 vocab=5ff628ba
+-/
 theorem doobCenteredDifference_succ_ae_eq_centeredGhostFiber_of_condExp_next
     {Omega Beta : Type*}
     [MeasurableSpace Omega] [MeasurableSpace Beta]
@@ -293,7 +305,9 @@ variable {Omega T Beta : Type*} {mOmega : MeasurableSpace Omega}
 
 /-- The centred time-zero Doob difference vanishes automatically when the
 initial sigma-algebra is trivial.  This removes a separate probabilistic
-hypothesis from applications built with the canonical product filtration.-/
+hypothesis from applications built with the canonical product filtration.
+@isnad1 id=eventual.1h5v.s6.d8c8b16ef306 from=translated src=- shape=dbb80180 vocab=095fd3ca
+-/
 theorem doobCenteredDifference_zero_ae_eq_zero_of_filtration_zero_eq_bot
     [IsProbabilityMeasure mu]
     (filtration : Filtration ℕ mOmega) (F : Omega → ℝ)
@@ -312,7 +326,9 @@ The family `Acoord j` provides the deterministic proxy for Doob difference
 vanish), and may therefore be chosen to be the zero envelope.  Successor
 index `i + 1` is represented by `G i (P i) (Y i)`, centred in the coordinate
 `Y i`.  Equality of all laws `mu.map (Y i) = nu` permits one aggregate
-application of Rio's interpolation theorem.-/
+application of Rio's interpolation theorem.
+@isnad1 id=le.25h21v.s10.dd844f7eb729 from=translated src=- shape=1edc9b41 vocab=c78d7c79
+-/
 theorem conditionalValueAtRisk_finiteSupremum_le_rio_of_centeredGhostFibers
     (filtration : Filtration ℕ mOmega)
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]

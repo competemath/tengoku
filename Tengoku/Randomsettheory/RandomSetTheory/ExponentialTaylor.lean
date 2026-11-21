@@ -33,14 +33,18 @@ noncomputable section
 namespace ProbabilityTheory
 
 /-- Factorials are supermultiplicative after addition, in real
-coordinates.-/
+coordinates.
+@isnad1 id=le.0h2v.s5.92258194835b from=translated src=- shape=d0e862c1 vocab=559033e8
+-/
 theorem factorial_mul_factorial_cast_le_factorial_add_cast (q k : ℕ) :
     (q.factorial : ℝ) * (k.factorial : ℝ) ≤ ((q + k).factorial : ℝ) := by
   exact_mod_cast Nat.le_of_dvd (Nat.factorial_pos (q + k))
     (Nat.factorial_mul_factorial_dvd_factorial_add q k)
 
 /-- Termwise domination used to compare a shifted exponential tail with the
-full exponential series.-/
+full exponential series.
+@isnad1 id=le.1h3v.s6.dedc9e521a9a from=translated src=- shape=19d922aa vocab=975ff2ed
+-/
 theorem pow_add_div_factorial_add_le_mul_pow_div_factorial
     {x : ℝ} (hx : 0 ≤ x) (q k : ℕ) :
     x ^ (q + k) / ((q + k).factorial : ℝ) ≤
@@ -61,7 +65,9 @@ theorem pow_add_div_factorial_add_le_mul_pow_div_factorial
         (x ^ k / (k.factorial : ℝ)) := by
       field_simp
 
-/-- The shifted tail of the real exponential series is summable.-/
+/-- The shifted tail of the real exponential series is summable.
+@isnad1 id=summable.0h2v.s5.afe5a44e9475 from=translated src=- shape=9b816485 vocab=95a6caf7
+-/
 theorem summable_expSeries_nat_add (x : ℝ) (q : ℕ) :
     Summable (fun k : ℕ => x ^ (q + k) / ((q + k).factorial : ℝ)) := by
   simpa only [add_comm] using
@@ -75,22 +81,31 @@ Rio--Marchina argument possible.-/
 def expSeriesTail (q : ℕ) (x : ℝ) : ℝ :=
   ∑' k : ℕ, x ^ (q + k) / ((q + k).factorial : ℝ)
 
+/--
+@isnad1 id=summable.0h2v.s5.5f497b26607a from=translated src=- shape=ce30839e vocab=95a6caf7
+-/
 theorem summable_expSeriesTail (q : ℕ) (x : ℝ) :
     Summable (fun k : ℕ => x ^ (q + k) / ((q + k).factorial : ℝ)) :=
   summable_expSeries_nat_add x q
 
 /-- The exact exponential tail is nonnegative on the nonnegative
-half-line.-/
+half-line.
+@isnad1 id=le.1h2v.s4.775de507306f from=translated src=- shape=5df0cd53 vocab=d3295aee
+-/
 theorem expSeriesTail_nonneg {x : ℝ} (hx : 0 ≤ x) (q : ℕ) :
     0 ≤ expSeriesTail q x := by
   exact tsum_nonneg fun k => by positivity
 
-/-- A tail starting at a positive degree vanishes at zero.-/
+/-- A tail starting at a positive degree vanishes at zero.
+@isnad1 id=eq.1h1v.s4.591b87867d22 from=translated src=- shape=be06c720 vocab=1fcc0b89
+-/
 @[simp] theorem expSeriesTail_zero {q : ℕ} (hq : q ≠ 0) :
     expSeriesTail q 0 = 0 := by
   simp [expSeriesTail, hq, Nat.add_eq_zero_iff]
 
-/-- Exponential-series tail bound with the exact leading factorial.-/
+/-- Exponential-series tail bound with the exact leading factorial.
+@isnad1 id=le.1h2v.s6.2f8aca035f77 from=translated src=- shape=7f2ea58a vocab=0f28df6a
+-/
 theorem tsum_pow_add_div_factorial_add_le (x : ℝ) (hx : 0 ≤ x) (q : ℕ) :
     (∑' k : ℕ, x ^ (q + k) / ((q + k).factorial : ℝ)) ≤
       (x ^ q / (q.factorial : ℝ)) * Real.exp x := by
@@ -115,7 +130,9 @@ theorem tsum_pow_add_div_factorial_add_le (x : ℝ) (hx : 0 ≤ x) (q : ℕ) :
         ← Real.exp_eq_exp_ℝ]
 
 /-- Exact decomposition of the exponential into its first `q` terms and its
-shifted tail.-/
+shifted tail.
+@isnad1 id=eq.0h2v.s6.3527cd508f4e from=translated src=- shape=91e2d680 vocab=1527ed92
+-/
 theorem exp_eq_sum_range_add_tsum_nat_add (x : ℝ) (q : ℕ) :
     Real.exp x =
       (∑ k ∈ range q, x ^ k / (k.factorial : ℝ)) +
@@ -134,14 +151,18 @@ theorem exp_eq_sum_range_add_tsum_nat_add (x : ℝ) (q : ℕ) :
       intro k
       rw [add_comm]
 
-/-- Exact decomposition of `exp` using the named series tail.-/
+/-- Exact decomposition of `exp` using the named series tail.
+@isnad1 id=eq.0h2v.s5.4b215408b9a7 from=translated src=- shape=c6d87525 vocab=b25e528b
+-/
 theorem exp_eq_sum_range_add_expSeriesTail (x : ℝ) (q : ℕ) :
     Real.exp x =
       (∑ k ∈ range q, x ^ k / (k.factorial : ℝ)) + expSeriesTail q x := by
   simpa only [expSeriesTail] using exp_eq_sum_range_add_tsum_nat_add x q
 
 /-- The exact tail is at most the whole exponential series on the
-nonnegative half-line.-/
+nonnegative half-line.
+@isnad1 id=le.1h2v.s4.94c082062cb2 from=translated src=- shape=92e8efed vocab=74d787a6
+-/
 theorem expSeriesTail_le_exp (x : ℝ) (hx : 0 ≤ x) (q : ℕ) :
     expSeriesTail q x ≤ Real.exp x := by
   have hfinite :
@@ -152,7 +173,9 @@ theorem expSeriesTail_le_exp (x : ℝ) (hx : 0 ≤ x) (q : ℕ) :
 
 /-- Contraction of the exact exponential tail under a decrease of its
 nonnegative argument.  The factor has precisely degree `q`; retaining that
-degree is the key advantage over the usual Lagrange remainder.-/
+degree is the key advantage over the usual Lagrange remainder.
+@isnad1 id=le.4h4v.s6.b581015cb57c from=translated src=- shape=107e3170 vocab=056060df
+-/
 theorem expSeriesTail_mul_le_ratio_pow_mul
     (q : ℕ) {t a y : ℝ} (ht : 0 ≤ t) (ha : 0 ≤ a)
     (hay : a ≤ y) (hy : 0 < y) :
@@ -200,7 +223,9 @@ theorem expSeriesTail_mul_le_ratio_pow_mul
           ((q + k).factorial : ℝ) := by rfl
 
 /-- Removing the first degree from an exponential tail costs at most the
-factor `x / (n + 1)`.-/
+factor `x / (n + 1)`.
+@isnad1 id=le.1h2v.s6.15fcd2bc342d from=translated src=- shape=4a9ce04d vocab=fd86c970
+-/
 theorem expSeriesTail_succ_le_mul_expSeriesTail
     (n : ℕ) (x : ℝ) (hx : 0 ≤ x) :
     expSeriesTail (n + 1) x ≤
@@ -250,7 +275,9 @@ theorem expSeriesTail_succ_le_mul_expSeriesTail
       rw [tsum_mul_left]
 
 /-- Rio's elementary estimate for the exact exponential tail:
-`psi_q(x) <= (x / q) * exp x` for every positive order `q`.-/
+`psi_q(x) <= (x / q) * exp x` for every positive order `q`.
+@isnad1 id=le.2h2v.s5.1139efdcb8ac from=translated src=- shape=defab412 vocab=fec2c691
+-/
 theorem expSeriesTail_le_div_mul_exp
     (q : ℕ) (hq : 1 ≤ q) (x : ℝ) (hx : 0 ≤ x) :
     expSeriesTail q x ≤ (x / q) * Real.exp x := by
@@ -266,7 +293,9 @@ theorem expSeriesTail_le_div_mul_exp
     _ = (x / (1 + n : ℕ)) * Real.exp x := by
       rw [add_comm]
 
-/-- The exact exponential tail is convex on the nonnegative half-line.-/
+/-- The exact exponential tail is convex on the nonnegative half-line.
+@isnad1 id=convexon.0h1v.s4.5a08bba4f4a1 from=translated src=- shape=4c03133e vocab=551192ec
+-/
 theorem convexOn_expSeriesTail (q : ℕ) :
     ConvexOn ℝ (Set.Ici 0) (expSeriesTail q) := by
   refine ⟨convex_Ici 0, ?_⟩
@@ -313,7 +342,9 @@ theorem convexOn_expSeriesTail (q : ℕ) :
       rw [hsax.tsum_add hsby, tsum_mul_left, tsum_mul_left]
 
 /-- Finite Taylor expansion with an explicit exponentially weighted
-remainder, valid on the nonnegative half-line.-/
+remainder, valid on the nonnegative half-line.
+@isnad1 id=le.1h2v.s6.7d721a39545b from=translated src=- shape=0263d5c9 vocab=2391fd43
+-/
 theorem exp_le_sum_range_add_pow_div_factorial_mul_exp
     (x : ℝ) (hx : 0 ≤ x) (q : ℕ) :
     Real.exp x ≤
@@ -330,7 +361,9 @@ theorem exp_le_sum_range_add_pow_div_factorial_mul_exp
 
 /-- The quadratic upper Taylor bound needed on the negative half-line.  A
 coefficient `3/4` is sufficient globally; no boundedness assumption on `x`
-remains.-/
+remains.
+@isnad1 id=le.1h1v.s6.59ac03389c55 from=translated src=- shape=a68e324d vocab=19c893c6
+-/
 theorem exp_le_one_add_add_three_quarters_sq_of_nonpos
     {x : ℝ} (hx : x ≤ 0) :
     Real.exp x ≤ 1 + x + (3 / 4 : ℝ) * x ^ 2 := by
@@ -357,7 +390,9 @@ theorem exp_le_one_add_add_three_quarters_sq_of_nonpos
     exact hexpMono.trans (hhalf.trans hquad)
 
 /-- Exact quadratic upper Taylor bound on the negative half-line.  This is
-the coefficient used in Rio's one-sided exponential estimate.-/
+the coefficient used in Rio's one-sided exponential estimate.
+@isnad1 id=le.1h1v.s6.6b7bd83c3069 from=translated src=- shape=7413a1d2 vocab=9115dc4c
+-/
 theorem exp_le_one_add_add_half_sq_of_nonpos
     {x : ℝ} (hx : x ≤ 0) :
     Real.exp x ≤ 1 + x + x ^ 2 / 2 := by
@@ -400,7 +435,9 @@ def oneSidedExpTaylorBound (q : ℕ) (x : ℝ) : ℝ :=
     (max x 0) ^ q / (q.factorial : ℝ) * Real.exp (max x 0)
 
 /-- The real exponential is bounded by its one-sided Taylor majorant at any
-natural order `q >= 3`.-/
+natural order `q >= 3`.
+@isnad1 id=le.1h2v.s4.8f27f59a60bc from=translated src=- shape=530dc965 vocab=e8958f2c
+-/
 theorem exp_le_oneSidedExpTaylorBound
     (q : ℕ) (hq : 3 ≤ q) (x : ℝ) :
     Real.exp x ≤ oneSidedExpTaylorBound q x := by

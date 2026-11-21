@@ -33,7 +33,9 @@ namespace RandomSetTheory
 /-! ## Real-line compatibility wrapper for finite partitions -/
 
 /-- Exact finite measurable partition on the real Borel line.  This retains
-the original API while delegating to the abstract divisibility theorem.-/
+the original API while delegating to the abstract divisibility theorem.
+@isnad1 id=ex.3h5v.s7.c622fd517cb6 from=translated src=- shape=67397980 vocab=6ddb0339
+-/
 theorem exists_isMeasurableFinpartition_measureReal_eq
     {ι : Type*} (mu : Measure ℝ)
     [IsFiniteMeasure mu] [NullSingletonClass mu]
@@ -48,7 +50,9 @@ theorem exists_isMeasurableFinpartition_measureReal_eq
 /-! ## Purification of finite action mixtures -/
 
 /-- A finite convex combination of actions is realized exactly by a
-measurable pure action on any exactly divisible probability space.-/
+measurable pure action on any exactly divisible probability space.
+@isnad1 id=ex.3h5v.s7.ec161b73c5de from=translated src=- shape=e5e9995c vocab=ee44b979
+-/
 theorem HasExactDivisibility.exists_integrable_finsetSelection_integral_eq
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -107,7 +111,9 @@ theorem HasExactDivisibility.exists_integrable_finsetSelection_integral_eq
         intro x hx
         rw [hAmeasure x hx, probReal_univ, mul_one]
 
-/-- Real-line specialization of finite-action purification.-/
+/-- Real-line specialization of finite-action purification.
+@isnad1 id=ex.2h4v.s7.befd3e2bc8d1 from=translated src=- shape=28bf883b vocab=a1f0a22d
+-/
 theorem exists_integrable_finsetSelection_integral_eq
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     (mu : Measure ℝ) [IsProbabilityMeasure mu] [NullSingletonClass mu]
@@ -121,7 +127,9 @@ theorem exists_integrable_finsetSelection_integral_eq
 
 /-- **Finite-action purification theorem.** On any exactly divisible
 probability space, the Aumann expectation of a constant finite, possibly
-nonconvex, action set is exactly its convex hull.-/
+nonconvex, action set is exactly its convex hull.
+@isnad1 id=eq.1h4v.s7.775a2adb2866 from=translated src=- shape=335680f7 vocab=9201d5f6
+-/
 theorem aumannExpectation_const_finset_eq_convexHull_of_exactDivisibility
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -143,7 +151,9 @@ theorem aumannExpectation_const_finset_eq_convexHull_of_exactDivisibility
     refine ⟨f, ⟨hfInt, Filter.Eventually.of_forall hfK⟩, ?_⟩
     exact hfIntegral.trans hweighted
 
-/-- Real-line compatibility form of finite-action purification.-/
+/-- Real-line compatibility form of finite-action purification.
+@isnad1 id=eq.0h3v.s7.977ce04fb842 from=translated src=- shape=675e3131 vocab=5cb7d28a
+-/
 theorem aumannExpectation_const_finset_eq_convexHull
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     (mu : Measure ℝ) [IsProbabilityMeasure mu] [NullSingletonClass mu]
@@ -154,7 +164,9 @@ theorem aumannExpectation_const_finset_eq_convexHull
     mu (hasExactDivisibility_real_of_nullSingletonClass mu) K
 
 /-- Finite-action purification on every finite atomless probability space,
-with no standard-Borel hypothesis on the measurable base.-/
+with no standard-Borel hypothesis on the measurable base.
+@isnad1 id=eq.1h4v.s7.c4a2c1fc5365 from=translated src=- shape=335680f7 vocab=36999918
+-/
 theorem aumannExpectation_const_finset_eq_convexHull_of_atomless
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -166,7 +178,9 @@ theorem aumannExpectation_const_finset_eq_convexHull_of_atomless
     mu (hasExactDivisibility_of_atomless hmu) K
 
 /-- Compatibility specialization of finite-action purification when the
-measurable base is explicitly equivalent to the real Borel line.-/
+measurable base is explicitly equivalent to the real Borel line.
+@isnad1 id=eq.1h5v.s7.4247e44f2f3c from=translated src=- shape=dc495426 vocab=9e8753fa
+-/
 theorem aumannExpectation_const_finset_eq_convexHull_of_atomless_measurableEquiv_real
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]

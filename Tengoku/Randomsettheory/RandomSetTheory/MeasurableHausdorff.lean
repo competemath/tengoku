@@ -22,7 +22,9 @@ noncomputable section
 namespace RandomSetTheory
 
 /-- The extended Hausdorff distance between two nonempty closed-valued
-Effros correspondences is measurable.-/
+Effros correspondences is measurable.
+@isnad1 id=measurab.6h4v.s7.327633dbf119 from=translated src=- shape=6fe4f5d1 vocab=dac50029
+-/
 theorem measurable_hausdorffEDist_correspondence
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -65,7 +67,9 @@ theorem measurable_hausdorffEDist_correspondence
         (hg m).edist (hf n))
 
 /-- The real Hausdorff distance between two nonempty closed-valued Effros
-correspondences is measurable.-/
+correspondences is measurable.
+@isnad1 id=measurab.6h4v.s7.dc4138ac0630 from=translated src=- shape=6fe4f5d1 vocab=e529b32d
+-/
 theorem measurable_hausdorffDist_correspondence
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]

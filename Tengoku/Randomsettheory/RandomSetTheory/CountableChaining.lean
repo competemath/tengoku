@@ -53,7 +53,9 @@ def countableChainingIncrementEvent (Z : Omega → T → ℝ)
 /-- Simultaneous choice of projections onto a countable family of finite
 nets.  No measurability of the projections is needed in the chaining bounds,
 because all bad events are enlarged to unions over the finite nets or edge
-graphs.-/
+graphs.
+@isnad1 id=ex.1h3v.s6.7f0747bae71e from=translated src=- shape=9196d4dd vocab=4bc95c1e
+-/
 theorem exists_countableNetProjections [PseudoMetricSpace T] [Nonempty T]
     (N : ℕ → Finset T) (eps : ℕ → ℝ)
     (hnet : ∀ k t, ∃ u ∈ N k, dist t u ≤ eps k) :
@@ -71,7 +73,9 @@ theorem exists_countableNetProjections [PseudoMetricSpace T] [Nonempty T]
 omit [MeasurableSpace Omega] in
 /-- Infinite telescoping bound.  Pointwise convergence of the final
 remainder and summability of the increment majorants are the exact extra
-hypotheses needed beyond the finite telescope.-/
+hypotheses needed beyond the finite telescope.
+@isnad1 id=le.3h7v.s7.f973e6c6c9cb from=translated src=- shape=4b9dfa29 vocab=a515cec8
+-/
 theorem abs_process_le_countableChainingSum
     (Z : Omega → T → ℝ) (proj : ℕ → T → T)
     (threshold : ℕ → ℝ) (omega : Omega) (t : T)
@@ -107,7 +111,9 @@ omit [MeasurableSpace Omega] in
 each level.  Summability of the thresholds permits the infinite telescope;
 their effective nonnegativity follows on every traversed edge from the
 increment bounds.  A large deviation therefore forces either a bad
-coarsest-net value or one bad increment at a finite level.-/
+coarsest-net value or one bad increment at a finite level.
+@isnad1 id=le.4h8v.s7.fe055ed94805 from=translated src=- shape=ad72b5a2 vocab=83a03961
+-/
 theorem countableChaining_largeDeviation_subset_edges
     (Z : Omega → T → ℝ) (N0 : Finset T)
     (edges : ℕ → Finset (T × T)) (proj : ℕ → T → T)
@@ -152,7 +158,9 @@ theorem countableChaining_largeDeviation_subset_edges
 
 /-- Countable subadditivity for `Measure.real`, under the explicit
 summability hypothesis needed to keep the right-hand side finite.  The
-corresponding `ℝ≥0∞` statement `measure_iUnion_le` needs no such hypothesis.-/
+corresponding `ℝ≥0∞` statement `measure_iUnion_le` needs no such hypothesis.
+@isnad1 id=le.1h3v.s6.fa4cd9399772 from=translated src=- shape=f8989b3a vocab=05eb3f76
+-/
 theorem measureReal_iUnion_nat_le_of_summable [IsFiniteMeasure mu]
     (A : ℕ → Set Omega)
     (hA : Summable fun k ↦ mu.real (A k)) :
@@ -186,7 +194,9 @@ theorem measureReal_iUnion_nat_le_of_summable [IsFiniteMeasure mu]
 /-- Countable chaining with arbitrary pointwise edge-tail bounds, stated in
 the canonical `ℝ≥0∞` measure scale.  This form needs no measurability or
 summability assumption on the costs: countable subadditivity is valid even
-when the right-hand side is infinite.-/
+when the right-hand side is infinite.
+@isnad1 id=le.6h11v.s8.20810dcd587e from=translated src=- shape=a0fa2035 vocab=8d477eeb
+-/
 theorem measure_countableChaining_edges_largeDeviation_le
     (Z : Omega → T → ℝ) (N0 : Finset T)
     (edges : ℕ → Finset (T × T)) (proj : ℕ → T → T)
@@ -256,7 +266,9 @@ theorem measure_countableChaining_edges_largeDeviation_le
 version, summability of the level costs is explicit and essential: it is what
 allows `Measure.real` to commute with the countable upper bound.  Event
 measurability is not needed for this one-sided estimate, since countable
-subadditivity applies to arbitrary sets.-/
+subadditivity applies to arbitrary sets.
+@isnad1 id=le.7h11v.s8.23bd4abba1f2 from=translated src=- shape=d8245f47 vocab=4fc4c2fe
+-/
 theorem measureReal_countableChaining_edges_largeDeviation_le
     [IsFiniteMeasure mu]
     (Z : Omega → T → ℝ) (N0 : Finset T)
@@ -343,7 +355,9 @@ the confidence-cost series are required to be summable explicitly.
 No independence between different edges is used.  The `HasBernsteinMGF`
 certificates supply the scalar measurability and tail estimates; the
 existential large-deviation event avoids any measurability assumption on an
-uncountable supremum.-/
+uncountable supremum.
+@isnad1 id=le.15h17v.s9.bb6b3e584dfe from=translated src=- shape=6edff444 vocab=ae7f2f23
+-/
 theorem measureReal_countableChaining_edges_largeDeviation_le_of_bernstein
     [IsProbabilityMeasure mu]
     (Z : Omega → T → ℝ) (N0 : Finset T)
@@ -420,7 +434,9 @@ theorem measureReal_countableChaining_edges_largeDeviation_le_of_bernstein
 
 /-- Anchored form of countable Bernstein chaining.  When the process
 vanishes on the coarsest net, neither a base MGF certificate nor a base
-confidence cost is required.-/
+confidence cost is required.
+@isnad1 id=le.11h12v.s9.8fc895dbfbb5 from=translated src=- shape=7ed2506b vocab=ae7f2f23
+-/
 theorem measureReal_countableChaining_edges_largeDeviation_le_of_bernstein_anchored
     [IsProbabilityMeasure mu]
     (Z : Omega → T → ℝ) (N0 : Finset T)

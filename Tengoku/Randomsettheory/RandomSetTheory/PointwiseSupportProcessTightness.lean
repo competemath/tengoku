@@ -53,13 +53,18 @@ def finiteEvaluationPairing :
   map_smul' := fun _ _ ↦ by ext; simp
 
 omit [CompactSpace T] in
+/--
+@isnad1 id=eq.0h3v.s14.5cc0c660b3f8 from=translated src=- shape=451221a1 vocab=bd1e8a22
+-/
 @[simp]
 theorem finiteEvaluationPairing_apply
     (f : C(T, ℝ)) (w : FiniteEvaluationDual T) :
     finiteEvaluationPairing T f w = (w.1 : StrongDual ℝ C(T, ℝ)) f := rfl
 
 /-- Evaluation of a continuous path against a finite evaluation functional is
-jointly continuous.-/
+jointly continuous.
+@isnad1 id=continuo.0h1v.s14.e43eb66463d6 from=translated src=- shape=a3f1020b vocab=829babee
+-/
 theorem continuous_finiteEvaluationPairing :
     Continuous fun p : C(T, ℝ) × FiniteEvaluationDual T ↦
       finiteEvaluationPairing T p.1 p.2 := by
@@ -72,7 +77,9 @@ theorem continuous_finiteEvaluationPairing :
   exact (isBoundedBilinearMap_apply (E := C(T, ℝ)) (F := ℝ)).symm.continuous.comp hp
 
 omit [CompactSpace T] in
-/-- Finite combinations of point evaluations separate continuous paths.-/
+/-- Finite combinations of point evaluations separate continuous paths.
+@isnad1 id=ne.1h2v.s14.6f48b2bb84cf from=translated src=- shape=c788ea06 vocab=54bf524a
+-/
 theorem finiteEvaluationPairing_ne_zero
     {f : C(T, ℝ)} (hf : f ≠ 0) : finiteEvaluationPairing T f ≠ 0 := by
   have hfun : (f : T → ℝ) ≠ 0 := by

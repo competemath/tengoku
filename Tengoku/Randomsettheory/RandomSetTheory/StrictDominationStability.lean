@@ -33,7 +33,9 @@ variable {Omega : Type*} [MeasurableSpace Omega]
   {probabilityMeasure : Measure Omega}
 
 /-- Strict domination survives deterministic uniform perturbations tending
-to zero.-/
+to zero.
+@isnad1 id=tendsto.7h10v.s8.36a84b32fd0a from=translated src=- shape=0d67a029 vocab=fd795296
+-/
 theorem tendsto_measure_failure_strictDomination_of_uniformApproximation
     {oracleCurvature oracleSignal actualCurvature actualSignal :
       Nat → Omega → Real}

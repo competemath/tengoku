@@ -33,7 +33,9 @@ in a Polish space and `φ` is jointly measurable and continuous in its second
 variable, then the fibrewise image `φ(ω, ·) '' S(ω)` is Effros measurable.
 
 The image itself need not be closed; Effros measurability only concerns open
-hitting events.-/
+hitting events.
+@isnad1 id=iseffros.5h5v.s7.00f1fe735229 from=translated src=- shape=e3cda485 vocab=344b3e6d
+-/
 theorem effrosMeasurable_caratheodoryImage
     {Ω X Y : Type*} [MeasurableSpace Ω]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -81,7 +83,9 @@ theorem effrosMeasurable_caratheodoryImage
 
 /-- Parameterized Effros--Carathéodory theorem.  A correspondence `S(ω)` can
 be transported by a map depending additionally on a measurable parameter
-`θ`; the resulting correspondence on `Ω × Θ` remains Effros measurable.-/
+`θ`; the resulting correspondence on `Ω × Θ` remains Effros measurable.
+@isnad1 id=iseffros.5h6v.s7.9900256be167 from=translated src=- shape=87a0b545 vocab=a2f2d476
+-/
 theorem effrosMeasurable_caratheodoryImage_param
     {Ω Θ X Y : Type*} [MeasurableSpace Ω] [MeasurableSpace Θ]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -107,7 +111,9 @@ theorem effrosMeasurable_caratheodoryImage_param
     (fun p => hclosed p.1) (fun p => hne p.1) hφmeas hφcont
 
 /-- Joint measurability of the support function of a compact-valued
-Carathéodory image in a separable Hilbert space.-/
+Carathéodory image in a separable Hilbert space.
+@isnad1 id=measurab.5h5v.s7.8d0d7f3c6a0f from=translated src=- shape=71ce97b0 vocab=74bb5db4
+-/
 theorem measurable_supportFunction_caratheodoryImage_joint
     {Ω X H : Type*} [MeasurableSpace Ω]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -127,7 +133,9 @@ theorem measurable_supportFunction_caratheodoryImage_joint
   · exact fun ω => (hne ω).image (fun x => φ (ω, x))
 
 /-- Parameterized joint support-function measurability.  Both the external
-parameter and the support direction are measurable variables.-/
+parameter and the support direction are measurable variables.
+@isnad1 id=measurab.5h6v.s8.66e13d14f746 from=translated src=- shape=b0e1e95a vocab=74bb5db4
+-/
 theorem measurable_supportFunction_caratheodoryImage_param_joint
     {Ω Θ X H : Type*} [MeasurableSpace Ω] [MeasurableSpace Θ]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]

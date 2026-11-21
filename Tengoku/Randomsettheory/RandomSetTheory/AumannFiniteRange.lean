@@ -44,6 +44,9 @@ def finiteRegimeCorrespondence (p : Ω → ι) (K : ι → Set E) : Ω → Set E
   fun ω => K (p ω)
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=iff.0h5v.s4.5ff6cc8c7f7a from=translated src=- shape=f2e103e7 vocab=611f99f4
+-/
 @[simp]
 theorem mem_regimeCell {p : Ω → ι} {i : ι} {ω : Ω} :
     ω ∈ regimeCell p i ↔ p ω = i :=
@@ -51,13 +54,18 @@ theorem mem_regimeCell {p : Ω → ι} {i : ι} {ω : Ω} :
 
 omit [MeasurableSpace Ω] [NormedAddCommGroup E] [NormedSpace ℝ E]
   [CompleteSpace E] in
+/--
+@isnad1 id=eq.0h6v.s5.bec6b1c9a61d from=translated src=- shape=991f45ba vocab=f6d88711
+-/
 @[simp]
 theorem finiteRegimeCorrespondence_apply (p : Ω → ι) (K : ι → Set E)
     (ω : Ω) : finiteRegimeCorrespondence p K ω = K (p ω) :=
   rfl
 
 /-- The indicators of all regime cells form a finite partition of unity:
-exactly the summand indexed by `p ω` survives.-/
+exactly the summand indexed by `p ω` survives.
+@isnad1 id=eq.0h6v.s6.c700e0573cd1 from=translated src=- shape=b3fa4faa vocab=5747a285
+-/
 theorem sum_regimeCell_indicator [Fintype ι]
     (p : Ω → ι) (g : ι → Ω → E) (ω : Ω) :
     ∑ i, (regimeCell p i).indicator (g i) ω = g (p ω) ω := by
@@ -72,7 +80,9 @@ theorem sum_regimeCell_indicator [Fintype ι]
 
 /-- Finite measurable regime cells automatically give Effros measurability.
 No closedness assumption on the finitely many values is needed for this
-hitting-event statement.-/
+hitting-event statement.
+@isnad1 id=iseffros.1h5v.s6.2d6c55c1e4e8 from=translated src=- shape=70f34474 vocab=90e358b2
+-/
 theorem effrosMeasurable_finiteRegimeCorrespondence
     [Fintype ι] [TopologicalSpace E]
     {p : Ω → ι} {K : ι → Set E}
@@ -106,7 +116,9 @@ theorem effrosMeasurable_finiteRegimeCorrespondence
 
 /-- The integral over a measurable cell of a selection of a nonempty closed
 convex set belongs to the measure of that cell times the set.  This is the
-unnormalized finite-measure form of `Convex.set_average_mem`.-/
+unnormalized finite-measure form of `Convex.set_average_mem`.
+@isnad1 id=mem.5h6v.s8.959f01367dcc from=translated src=- shape=f20da2a3 vocab=486dadd5
+-/
 theorem setIntegral_mem_measureReal_smul
     {μ : Measure Ω} [IsFiniteMeasure μ]
     {A : Set Ω}
@@ -133,7 +145,9 @@ theorem setIntegral_mem_measureReal_smul
     rwa [hscaleEq] at hscaled
 
 /-- Exact Aumann formula for a finite-range closed convex correspondence on
-an arbitrary finite measure space.-/
+an arbitrary finite measure space.
+@isnad1 id=eq.4h6v.s8.8bf74ff02428 from=translated src=- shape=f47fc6c3 vocab=69c6ded0
+-/
 theorem aumannExpectation_finiteRegimeCorrespondence
     [Fintype ι]
     {μ : Measure Ω} [IsFiniteMeasure μ]
@@ -216,7 +230,9 @@ theorem aumannExpectation_finiteRegimeCorrespondence
       _ = x := hySum
 
 /-- Compactness of the Aumann expectation for compact convex finite-range
-correspondences on an arbitrary finite measure space.-/
+correspondences on an arbitrary finite measure space.
+@isnad1 id=iscompac.4h6v.s7.6fee7a0dc54e from=translated src=- shape=5b1e855a vocab=fcee6d10
+-/
 theorem aumannExpectation_isCompact_of_finiteRegime
     [Fintype ι]
     {μ : Measure Ω} [IsFiniteMeasure μ]
@@ -232,7 +248,9 @@ theorem aumannExpectation_isCompact_of_finiteRegime
     (fun i => μ.real (regimeCell p i) • K i)
     (fun i _ => (hKcompact i).smul (μ.real (regimeCell p i)))
 
-/-- Closedness follows immediately from finite-range compactness.-/
+/-- Closedness follows immediately from finite-range compactness.
+@isnad1 id=isclosed.4h6v.s7.0d392f359b8a from=translated src=- shape=5d3efe0e vocab=fc270b29
+-/
 theorem aumannExpectation_isClosed_of_finiteRegime
     [Fintype ι]
     {μ : Measure Ω} [IsFiniteMeasure μ]
@@ -245,7 +263,9 @@ theorem aumannExpectation_isClosed_of_finiteRegime
   (aumannExpectation_isCompact_of_finiteRegime hcell hKcompact hKconv hKne).isClosed
 
 /-- Consequently the closure wrapper used by the general Aumann theory is
-redundant for finite-range compact convex correspondences.-/
+redundant for finite-range compact convex correspondences.
+@isnad1 id=eq.4h6v.s7.2dd3fdd83389 from=translated src=- shape=d7431acf vocab=f80c9154
+-/
 theorem closure_aumannExpectation_eq_of_finiteRegime
     [Fintype ι]
     {μ : Measure Ω} [IsFiniteMeasure μ]

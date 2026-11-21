@@ -46,7 +46,9 @@ def convexifiedAumannExpectationParam
     closedConvexHull ℝ (caratheodoryImageAt S φ θ ω)))
 
 /-- Pairing the same source point in two parameter images gives the basic
-Hausdorff Lipschitz bound.-/
+Hausdorff Lipschitz bound.
+@isnad1 id=le.2h10v.s7.ea50d3eb7ec4 from=translated src=- shape=81a67d59 vocab=dca46007
+-/
 theorem hausdorffDist_caratheodoryImageAt_le
     {Ω Θ X E : Type*} [PseudoMetricSpace Θ]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -65,7 +67,9 @@ theorem hausdorffDist_caratheodoryImageAt_le
     refine ⟨φ ((ω, θ), x), ⟨x, hx, rfl⟩, ?_⟩
     simpa [dist_eq_norm, dist_comm] using hφLip ω η θ x hx
 
-/-- Closed convexification preserves the preceding parameter bound.-/
+/-- Closed convexification preserves the preceding parameter bound.
+@isnad1 id=le.5h10v.s8.0b865d370556 from=translated src=- shape=ffa572d1 vocab=9c0c2fef
+-/
 theorem hausdorffDist_closedConvexHull_caratheodoryImageAt_le
     {Ω Θ X E : Type*} [PseudoMetricSpace Θ]
     [TopologicalSpace X]
@@ -98,7 +102,9 @@ Lipschitz coefficient for the moment map integrates to a deterministic
 Hausdorff Lipschitz coefficient for the closed convexified Aumann population.
 
 The common envelope is used only to make the closed Aumann expectations
-compact and their support functions integrable.-/
+compact and their support functions integrable.
+@isnad1 id=le.10h11v.s9.70cc279577aa from=translated src=- shape=203d4f42 vocab=8acd1375
+-/
 theorem hausdorffDist_convexifiedAumannExpectationParam_le
     {Ω Θ X E : Type*} [MeasurableSpace Ω]
     [PseudoMetricSpace Θ] [MeasurableSpace Θ]
@@ -196,7 +202,9 @@ theorem hausdorffDist_convexifiedAumannExpectationParam_le
   simpa [convexifiedAumannExpectationParam, C, I] using hmain
 
 /-- Compactness and nonemptiness of every closed convexified Aumann
-population follow automatically from a common integrable envelope.-/
+population follow automatically from a common integrable envelope.
+@isnad1 id=and.7h9v.s8.b24de7973fa7 from=translated src=- shape=ddaca672 vocab=e0b869b8
+-/
 theorem compact_nonempty_convexifiedAumannExpectationParam
     {Ω Θ X E : Type*} [MeasurableSpace Ω] [MeasurableSpace Θ]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -252,7 +260,9 @@ theorem compact_nonempty_convexifiedAumannExpectationParam
     And.intro hcompactA hneA
 
 /-- The preceding Lipschitz estimate implies Hausdorff continuity of the
-whole parameterized population correspondence.-/
+whole parameterized population correspondence.
+@isnad1 id=hausdorf.10h9v.s8.0cdc13b99492 from=translated src=- shape=ee435c3f vocab=31f40f08
+-/
 theorem hausdorffContinuous_convexifiedAumannExpectationParam
     {Ω Θ X E : Type*} [MeasurableSpace Ω]
     [PseudoMetricSpace Θ] [MeasurableSpace Θ]
@@ -285,7 +295,9 @@ theorem hausdorffContinuous_convexifiedAumannExpectationParam
 
 /-- Under the parameterized Lipschitz and envelope assumptions, the exact
 population zero set is closed.  This is the direct topological conclusion
-used by identification arguments.-/
+used by identification arguments.
+@isnad1 id=isclosed.10h9v.s8.b9f92f503127 from=translated src=- shape=2892e8b8 vocab=5e4839f5
+-/
 theorem isClosed_zeroSet_convexifiedAumannExpectationParam
     {Ω Θ X E : Type*} [MeasurableSpace Ω]
     [PseudoMetricSpace Θ] [MeasurableSpace Θ]
@@ -318,7 +330,9 @@ theorem isClosed_zeroSet_convexifiedAumannExpectationParam
     (fun θ => (hreg θ).1) (fun θ => (hreg θ).2)
 
 /-- On a compact parameter space, the exact population zero set is compact
-under the same primitive assumptions.-/
+under the same primitive assumptions.
+@isnad1 id=iscompac.10h9v.s8.2a14b5c45785 from=translated src=- shape=8c3fbfda vocab=afb2d286
+-/
 theorem isCompact_zeroSet_convexifiedAumannExpectationParam
     {Ω Θ X E : Type*} [MeasurableSpace Ω]
     [PseudoMetricSpace Θ] [CompactSpace Θ] [MeasurableSpace Θ]

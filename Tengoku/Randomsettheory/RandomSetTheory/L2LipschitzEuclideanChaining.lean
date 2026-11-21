@@ -40,7 +40,9 @@ def centeredAnchoredTruncatedEmpiricalProcess
       ∫ xi, truncatedLipschitzIncrement H R M X i t o xi ∂mu)
 
 /-- The expectation of a truncated anchored increment is Lipschitz in its
-free index, with the same deterministic truncation constant.-/
+free index, with the same deterministic truncation constant.
+@isnad1 id=lipschit.6h11v.s7.6323aa9480ce from=translated src=- shape=a49041e1 vocab=87660f6f
+-/
 theorem lipschitzWith_integral_truncatedLipschitzIncrement
     [IsProbabilityMeasure mu]
     (H : Z → T → ℝ) (R : Z → ℝ) {M : ℝ} (hM : 0 ≤ M)
@@ -73,7 +75,9 @@ theorem lipschitzWith_integral_truncatedLipschitzIncrement
   simpa only [Real.norm_eq_abs, probReal_univ, mul_one,
     Real.coe_toNNReal _ hM] using hint
 
-/-- Continuity of one sample path of the anchored truncated process.-/
+/-- Continuity of one sample path of the anchored truncated process.
+@isnad1 id=continuo.7h13v.s7.a3c7ba7ee3d9 from=translated src=- shape=53bbca8c vocab=2ebc4b7f
+-/
 theorem continuous_centeredAnchoredTruncatedEmpiricalProcess
     [IsProbabilityMeasure mu]
     (H : Z → T → ℝ) (R : Z → ℝ) {M c : ℝ} (hM : 0 ≤ M)
@@ -100,7 +104,9 @@ theorem continuous_centeredAnchoredTruncatedEmpiricalProcess
   · exact (lipschitzWith_integral_truncatedLipschitzIncrement
       (mu := mu) H R hM X hX hHmeas hRmeas hR hLip i o).continuous
 
-/-- Algebraic increment identity for the anchored process.-/
+/-- Algebraic increment identity for the anchored process.
+@isnad1 id=eq.6h15v.s8.93cdd1e60699 from=translated src=- shape=301bdb37 vocab=13c48229
+-/
 theorem centeredAnchoredTruncatedEmpiricalProcess_sub
     [IsProbabilityMeasure mu]
     (H : Z → T → ℝ) (R : Z → ℝ) {M c : ℝ} (hM : 0 ≤ M)
@@ -147,7 +153,9 @@ theorem centeredAnchoredTruncatedEmpiricalProcess_sub
           ∫ xi, truncatedLipschitzIncrement H R M X i t o xi ∂mu) := by ring
     _ = _ := by rw [hpoint, hint]
 
-/-- The anchored process vanishes at its anchor.-/
+/-- The anchored process vanishes at its anchor.
+@isnad1 id=eq.0h13v.s6.2c09245ca1e9 from=translated src=- shape=310b4621 vocab=f85d2baa
+-/
 @[simp]
 theorem centeredAnchoredTruncatedEmpiricalProcess_anchor
     (H : Z → T → ℝ) (R : Z → ℝ) (M c : ℝ)
@@ -163,7 +171,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   [FiniteDimensional ℝ E]
 
 /-- A linearly growing confidence budget still gives a vanishing (indeed
-summable) mixed-process radius at dyadic spatial scales.-/
+summable) mixed-process radius at dyadic spatial scales.
+@isnad1 id=summable.1h4v.s6.f5c9873135f6 from=translated src=- shape=c0debe62 vocab=020ce47f
+-/
 theorem summable_dyadic_mixedEuclideanProcessBound
     (sigma2 sigma1 : ℝ) (d : ℕ) {x : ℝ} (hx : 0 ≤ x) :
     Summable (fun k ↦ mixedEuclideanProcessBound
@@ -201,7 +211,9 @@ theorem summable_dyadic_mixedEuclideanProcessBound
     add_assoc, mul_comm, mul_left_comm, mul_assoc] using hsum
 
 /-- A single volumetric net at dyadic resolution is dominated by the loose
-entropy budget used by the mixed chaining construction.-/
+entropy budget used by the mixed chaining construction.
+@isnad1 id=le.0h2v.s6.8a4f23143677 from=translated src=- shape=2cab1069 vocab=558d4ae8
+-/
 theorem one_add_two_div_dyadicResolution_pow_le_exp
     (d k : ℕ) :
     (1 + 2 / RandomSetTheory.dyadicResolution k) ^ d ≤
@@ -235,7 +247,9 @@ theorem one_add_two_div_dyadicResolution_pow_le_exp
         show (0 : ℝ) ≤ (k : ℝ) from Nat.cast_nonneg k]
 
 /-- Uniform chaining bound for the centered truncated process on a Euclidean
-unit ball.  Crucially, its constants do not depend on the sample size.-/
+unit ball.  Crucially, its constants do not depend on the sample size.
+@isnad1 id=other.12h11v.s9.2b289111aea5 from=translated src=- shape=482d0225 vocab=c6628c32
+-/
 theorem measureReal_unitBall_range_succ_centeredTruncated_largeDeviation_le
     [IsProbabilityMeasure mu]
     (H : Z → E → ℝ) (R : Z → ℝ) {a K x : ℝ}
@@ -291,7 +305,9 @@ theorem measureReal_unitBall_range_succ_centeredTruncated_largeDeviation_le
 /-- The same chaining estimate after translating the index set by `u` and
 scaling it by `r`.  This is the local-oscillation input used in the tightness
 argument.  The variance and Bernstein scales both contract linearly with the
-radius.-/
+radius.
+@isnad1 id=other.13h13v.s9.aa4be28db775 from=translated src=- shape=9b6a1805 vocab=96dc227b
+-/
 theorem measureReal_unitBall_local_range_succ_centeredTruncated_largeDeviation_le
     [IsProbabilityMeasure mu]
     (H : Z → E → ℝ) (R : Z → ℝ) {a K r x : ℝ}
@@ -374,7 +390,9 @@ theorem measureReal_unitBall_local_range_succ_centeredTruncated_largeDeviation_l
     simpa only [hthreshold, hsub] using htail
 
 /-- Local chaining written directly on a closed ball of the ambient
-Euclidean space.-/
+Euclidean space.
+@isnad1 id=other.13h13v.s9.b9e4b38940fb from=translated src=- shape=f75de4b9 vocab=38a91ca3
+-/
 theorem measureReal_closedBall_local_range_succ_centeredTruncated_largeDeviation_le
     [IsProbabilityMeasure mu]
     (H : Z → E → ℝ) (R : Z → ℝ) {a K r x : ℝ}
@@ -426,7 +444,9 @@ theorem measureReal_closedBall_local_range_succ_centeredTruncated_largeDeviation
   simpa only [hqpoint] using hbad
 
 /-- A finite volumetric net upgrades the local chaining estimate to a
-uniform modulus bound on the Euclidean unit ball.-/
+uniform modulus bound on the Euclidean unit ball.
+@isnad1 id=other.13h12v.s9.6f93dbb00769 from=translated src=- shape=a66da71b vocab=13a2be8f
+-/
 theorem measureReal_unitBall_oscillation_range_succ_centeredTruncated_le
     [IsProbabilityMeasure mu]
     (H : Z → E → ℝ) (R : Z → ℝ) {a K delta x : ℝ}
@@ -528,7 +548,9 @@ theorem measureReal_unitBall_oscillation_range_succ_centeredTruncated_le
     _ ≤ (1 + 2 / delta) ^ finrank ℝ E * Real.exp (-x) :=
       mul_le_mul_of_nonneg_right hcard (Real.exp_pos _).le
 
-/-- Dyadic oscillation bound with a summable entropy budget.-/
+/-- Dyadic oscillation bound with a summable entropy budget.
+@isnad1 id=other.12h12v.s9.bb030742b9fb from=translated src=- shape=fecfbe66 vocab=8a312b7f
+-/
 theorem measureReal_unitBall_dyadicOscillation_range_succ_centeredTruncated_le
     [IsProbabilityMeasure mu]
     (H : Z → E → ℝ) (R : Z → ℝ) {a K x : ℝ}

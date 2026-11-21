@@ -41,6 +41,9 @@ def unitSphereInClosedUnitBall :
   continuous_toFun := Continuous.subtype_mk continuous_subtype_val _
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.0h2v.s9.09e230eb8566 from=translated src=- shape=11f3503e vocab=fb6a8b78
+-/
 @[simp]
 theorem coe_unitSphereInClosedUnitBall
     (u : Metric.sphere (0 : E) 1) :
@@ -64,6 +67,9 @@ def unitSphereAbsContinuousMap
     (f.continuous.comp (unitSphereInClosedUnitBall (E := E)).continuous).abs
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.0h3v.s10.1a1066f1ba9e from=translated src=- shape=bc0d8a12 vocab=75806eb3
+-/
 @[simp]
 theorem unitSphereAbsContinuousMap_apply
     (f : C(Metric.closedBall (0 : E) 1, ℝ))
@@ -81,6 +87,9 @@ def unitSpherePositivePartContinuousMap
       continuous_const
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.0h3v.s10.154562b1c20a from=translated src=- shape=53248d60 vocab=8d612804
+-/
 @[simp]
 theorem unitSpherePositivePartContinuousMap_apply
     (f : C(Metric.closedBall (0 : E) 1, ℝ))
@@ -104,7 +113,9 @@ def unitSphereSupNegativePart
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
 /-- `unitSphereSupAbs` is literally the supremum of `|f u|` over unit
-directions.-/
+directions.
+@isnad1 id=eq.0h2v.s9.ccd1052a7273 from=translated src=- shape=6ca7d52a vocab=1fba875a
+-/
 theorem unitSphereSupAbs_eq_sSup_range
     (f : C(Metric.closedBall (0 : E) 1, ℝ)) :
     unitSphereSupAbs f = sSup (Set.range fun u : Metric.sphere (0 : E) 1 ↦
@@ -112,7 +123,9 @@ theorem unitSphereSupAbs_eq_sSup_range
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
 /-- `unitSphereSupPositivePart` is literally the supremum of `(f u)₊` over
-unit directions, with the positive part written as `max (f u) 0`.-/
+unit directions, with the positive part written as `max (f u) 0`.
+@isnad1 id=eq.0h2v.s9.64a9738f5faf from=translated src=- shape=c363b63c vocab=bd61f125
+-/
 theorem unitSphereSupPositivePart_eq_sSup_range
     (f : C(Metric.closedBall (0 : E) 1, ℝ)) :
     unitSphereSupPositivePart f =
@@ -121,7 +134,9 @@ theorem unitSphereSupPositivePart_eq_sSup_range
 
 omit [InnerProductSpace ℝ E] [FiniteDimensional ℝ E] in
 /-- `unitSphereSupNegativePart` is literally the supremum of `(-f u)₊` over
-unit directions.-/
+unit directions.
+@isnad1 id=eq.0h2v.s9.ee0fc6fc78ef from=translated src=- shape=8c84ef84 vocab=1016a397
+-/
 theorem unitSphereSupNegativePart_eq_sSup_range
     (f : C(Metric.closedBall (0 : E) 1, ℝ)) :
     unitSphereSupNegativePart f =
@@ -159,7 +174,9 @@ private theorem exists_unitSphere_radialRepresentation [Nontrivial E]
 
 /-- For a radially positively homogeneous path vanishing at zero, the
 uniform norm on the closed unit ball is the supremum of its absolute value
-on the unit sphere.-/
+on the unit sphere.
+@isnad1 id=eq.2h2v.s9.e69a99413630 from=translated src=- shape=791e7b2a vocab=d0485ed6
+-/
 theorem norm_eq_unitSphereSupAbs [Nontrivial E]
     (f : C(Metric.closedBall (0 : E) 1, ℝ))
     (hzero : f (closedUnitBallZero (E := E)) = 0)
@@ -201,7 +218,9 @@ theorem norm_eq_unitSphereSupAbs [Nontrivial E]
 
 /-- For a radially positively homogeneous path vanishing at zero, its
 maximum on the closed unit ball is the supremum of its positive part on the
-unit sphere.-/
+unit sphere.
+@isnad1 id=eq.2h2v.s8.eba62856dc91 from=translated src=- shape=3f00392a vocab=fe5d4e7a
+-/
 theorem continuousSup_eq_unitSphereSupPositivePart [Nontrivial E]
     (f : C(Metric.closedBall (0 : E) 1, ℝ))
     (hzero : f (closedUnitBallZero (E := E)) = 0)
@@ -256,7 +275,9 @@ theorem continuousSup_eq_unitSphereSupPositivePart [Nontrivial E]
       exact hzero_le
 
 /-- The reverse one-sided functional is the supremum of the positive part of
-the negative path on the unit sphere.-/
+the negative path on the unit sphere.
+@isnad1 id=eq.2h2v.s9.35f83e521b3e from=translated src=- shape=f5870c33 vocab=9242f79a
+-/
 theorem continuousSup_neg_eq_unitSphereSupNegativePart [Nontrivial E]
     (f : C(Metric.closedBall (0 : E) 1, ℝ))
     (hzero : f (closedUnitBallZero (E := E)) = 0)
@@ -273,7 +294,9 @@ theorem continuousSup_neg_eq_unitSphereSupNegativePart [Nontrivial E]
   exact continuousSup_eq_unitSphereSupPositivePart (-f) hzero_neg hhom_neg
 
 /-- The three deterministic limit functionals in the pointwise random-set
-CLT, rewritten exactly as suprema over the unit sphere.-/
+CLT, rewritten exactly as suprema over the unit sphere.
+@isnad1 id=and.2h2v.s9.1660bde73825 from=translated src=- shape=356feabd vocab=eecee70b
+-/
 theorem pointwiseContinuousMappings_eq_unitSphere [Nontrivial E]
     (f : C(Metric.closedBall (0 : E) 1, ℝ))
     (hzero : f (closedUnitBallZero (E := E)) = 0)
@@ -292,7 +315,9 @@ The first component is the symmetric Hausdorff limit.  The second and third
 components are respectively the directed distances from the empirical set to
 the population set and in the reverse direction.  The symmetric scaling is
 written with `|c i|`; the two directed statements use the supplied
-nonnegative scale `c i` directly.-/
+nonnegative scale `c i` directly.
+@isnad1 id=and.8h13v.s10.33c9ead7ed2c from=translated src=- shape=e0ef2732 vocab=821605e9
+-/
 theorem pointwiseRandomSetCLT_of_supportProcess
     {I Ω' : Type*} {Ω : I → Type*}
     {mΩ : ∀ i, MeasurableSpace (Ω i)}
@@ -337,7 +362,9 @@ theorem pointwiseRandomSetCLT_of_supportProcess
 the literal sphere form used in the report.  The additional pathwise
 hypotheses say that the limiting support process vanishes at the zero
 direction and remains positively homogeneous along every ray of the closed
-unit ball.-/
+unit ball.
+@isnad1 id=and.10h13v.s10.c7fc38390914 from=translated src=- shape=121d2a15 vocab=6ca1fef8
+-/
 theorem pointwiseRandomSetCLT_of_supportProcess_unitSphere [Nontrivial E]
     {I Ω' : Type*} {Ω : I → Type*}
     {mΩ : ∀ i, MeasurableSpace (Ω i)}

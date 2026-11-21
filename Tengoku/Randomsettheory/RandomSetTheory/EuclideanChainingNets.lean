@@ -40,7 +40,9 @@ noncomputable section
 namespace RandomSetTheory
 
 /-- One volumetrically controlled net, lifted to the subtype of the closed
-unit ball.-/
+unit ball.
+@isnad1 id=ex.1h2v.s7.eb78f7c24d3c from=translated src=- shape=97ccb3ba vocab=2383e008
+-/
 theorem exists_euclideanUnitBall_finset_net_card_le
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]
@@ -74,7 +76,9 @@ theorem exists_euclideanUnitBall_finset_net_card_le
 
 /-- Simultaneous volumetric nets at an arbitrary positive sequence of
 scales.  Choice is made independently at each level; no nesting is asserted
-by this theorem.-/
+by this theorem.
+@isnad1 id=ex.1h2v.s7.169c5f51f6cf from=translated src=- shape=9ff1c86c vocab=2383e008
+-/
 theorem exists_euclideanUnitBall_multiscaleNets
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]
@@ -90,7 +94,9 @@ theorem exists_euclideanUnitBall_multiscaleNets
 
 /-- Simultaneous volumetric nets together with the finite-horizon projections
 used by `FiniteChaining`.  Every projection through level `m` lies in its net
-and is within that level's prescribed radius.-/
+and is within that level's prescribed radius.
+@isnad1 id=ex.1h3v.s8.e4a584d1cd20 from=translated src=- shape=2e34b08c vocab=2383e008
+-/
 theorem exists_euclideanUnitBall_multiscaleNets_projections
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]
@@ -110,7 +116,9 @@ theorem exists_euclideanUnitBall_multiscaleNets_projections
       (fun k _ ↦ hnet k)
   exact ⟨N, proj, hnet, hcard, hproj, hnear⟩
 
-/-- Simultaneous choice of a nearest-enough parent in every level.-/
+/-- Simultaneous choice of a nearest-enough parent in every level.
+@isnad1 id=ex.1h3v.s7.12ea0a05f481 from=translated src=- shape=c2c71643 vocab=9a7dcc7e
+-/
 theorem exists_euclideanUnitBall_netParents
     {E : Type*} [NormedAddCommGroup E]
     (N : ℕ → Finset (EuclideanUnitBall E)) (eps : ℕ → ℝ)
@@ -129,17 +137,25 @@ def finiteParentDescent {T : Type*} (parent : ℕ → T → T)
   | steps + 1 => parent (m - (steps + 1))
       (finiteParentDescent parent m top steps)
 
+/--
+@isnad1 id=eq.0h4v.s4.eb2145c8cf62 from=translated src=- shape=6777128a vocab=18c47cb8
+-/
 @[simp] theorem finiteParentDescent_zero
     {T : Type*} (parent : ℕ → T → T) (m : ℕ) (top : T) :
     finiteParentDescent parent m top 0 = top := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.072fbfe27884 from=translated src=- shape=1ffc4302 vocab=415ff897
+-/
 @[simp] theorem finiteParentDescent_succ
     {T : Type*} (parent : ℕ → T → T) (m : ℕ) (top : T) (steps : ℕ) :
     finiteParentDescent parent m top (steps + 1) =
       parent (m - (steps + 1))
         (finiteParentDescent parent m top steps) := rfl
 
-/-- The algebraic identity behind coherence of reverse parent descent.-/
+/-- The algebraic identity behind coherence of reverse parent descent.
+@isnad1 id=eq.1h5v.s6.eaf5ba0ac744 from=translated src=- shape=e93cbc96 vocab=7f5e7cc3
+-/
 theorem parent_finiteParentDescent_sub_succ
     {T : Type*} (parent : ℕ → T → T) (m : ℕ) (top : T)
     {k : ℕ} (hk : k < m) :
@@ -156,13 +172,18 @@ def coherentParentProjection {T : Type*} (parent : ℕ → T → T)
     (top : T → T) (m k : ℕ) (t : T) : T :=
   if k ≤ m then finiteParentDescent parent m (top t) (m - k) else top t
 
+/--
+@isnad1 id=eq.0h5v.s4.a12fd3d51156 from=translated src=- shape=b3f4d08c vocab=29cd0f45
+-/
 @[simp] theorem coherentParentProjection_top
     {T : Type*} (parent : ℕ → T → T) (top : T → T)
     (m : ℕ) (t : T) :
     coherentParentProjection parent top m m t = top t := by
   simp [coherentParentProjection]
 
-/-- Successive coherent projections are related by the prescribed parent.-/
+/-- Successive coherent projections are related by the prescribed parent.
+@isnad1 id=eq.1h6v.s5.7db35e8a32d8 from=translated src=- shape=0d4a4412 vocab=85142e39
+-/
 theorem coherentParentProjection_parent
     {T : Type*} (parent : ℕ → T → T) (top : T → T)
     (m : ℕ) {k : ℕ} (hk : k < m) (t : T) :
@@ -174,7 +195,9 @@ theorem coherentParentProjection_parent
 
 /-- Full finite Euclidean chaining package with coherent parent projections.
 The finest projection is within `eps m`; every local parent edge at level `k`
-has length at most `eps k`.-/
+has length at most `eps k`.
+@isnad1 id=ex.1h3v.s9.248514dbe208 from=translated src=- shape=fa3fd569 vocab=b80680d5
+-/
 theorem exists_euclideanUnitBall_coherentParentChaining
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]

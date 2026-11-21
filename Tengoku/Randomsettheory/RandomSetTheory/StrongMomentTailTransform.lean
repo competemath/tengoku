@@ -38,11 +38,17 @@ def exactStrongMomentTailExponent
     (q : ℕ) (Q y t : ℝ) : ℝ :=
   Q / y ^ q * expSeriesTail q (t * y)
 
+/--
+@isnad1 id=eq.1h3v.s5.40ee56b1bc11 from=translated src=- shape=ff611cda vocab=dd29509e
+-/
 @[simp] theorem exactStrongMomentTailExponent_zero
     {q : ℕ} (hq : q ≠ 0) (Q y : ℝ) :
     exactStrongMomentTailExponent q Q y 0 = 0 := by
   simp [exactStrongMomentTailExponent, hq]
 
+/--
+@isnad1 id=le.3h4v.s5.c4c88938c970 from=translated src=- shape=1a13c3dd vocab=850af118
+-/
 theorem exactStrongMomentTailExponent_nonneg
     (q : ℕ) {Q y t : ℝ} (hQ : 0 ≤ Q) (hy : 0 < y)
     (ht : 0 ≤ t) :
@@ -52,7 +58,9 @@ theorem exactStrongMomentTailExponent_nonneg
     (expSeriesTail_nonneg (mul_nonneg ht hy.le) q)
 
 /-- Exact evaluation of the polynomial tail component of Rio's Chernoff
-transform.-/
+transform.
+@isnad1 id=le.5h4v.s7.64953442d14b from=translated src=- shape=2991aecf vocab=5d026a50
+-/
 theorem chernoffTransform_exactStrongMomentTailExponent_le
     (q : ℕ) (hq : 1 ≤ q) {Q y x : ℝ}
     (hQ : 0 ≤ Q) (hy : 0 < y) (hx : 0 < x)

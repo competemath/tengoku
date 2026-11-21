@@ -34,7 +34,9 @@ variable {Omega T Z : Type*} {mOmega : MeasurableSpace Omega}
 
 /-- **Concrete signed Rio endpoint.**  The conclusion controls the centered
 absolute supremum while the hypotheses remain the primitive coordinate
-envelopes and their replace-one moments.-/
+envelopes and their replace-one moments.
+@isnad1 id=le.17h17v.s9.56350edf3ec8 from=translated src=- shape=95fb6f29 vocab=37445452
+-/
 theorem conditionalValueAtRisk_finiteCoordinateSumAbsSupremum_le_rio
     {mu : Measure Omega} {nu : Measure Z}
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]

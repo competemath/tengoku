@@ -41,7 +41,9 @@ sub-Gaussian variance proxy is `((b-a)/2)^2`.
 
 This is proved from the unconditional Hoeffding lemma on the fibres of the
 regular conditional distribution; it is not an assumed concentration
-certificate.-/
+certificate.
+@isnad1 id=hasconds.4h6v.s7.d746f57646ca from=translated src=- shape=6f7e1c34 vocab=93c41974
+-/
 theorem hasCondSubgaussianMGF_of_mem_Icc_of_condExp_ae_eq_zero
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (hm : m ≤ mOmega) {X : Omega → ℝ} {a b : ℝ}
@@ -89,6 +91,9 @@ def conditionallyCenteredTruncation (mu : Measure Omega)
   truncation X y omega -
     @condExp Omega ℝ m mOmega _ _ mu (truncation X y) omega
 
+/--
+@isnad1 id=aemeasur.2h5v.s5.38f05306e5b4 from=translated src=- shape=4844f3a4 vocab=ac736390
+-/
 theorem aemeasurable_conditionallyCenteredTruncation
     [IsFiniteMeasure mu] {X : Omega → ℝ} (hX : AEMeasurable X mu)
     (hm : m ≤ mOmega) (y : ℝ) :
@@ -99,6 +104,9 @@ theorem aemeasurable_conditionallyCenteredTruncation
       (f := truncation X y)).mono hm |>.aemeasurable
   exact hX.aestronglyMeasurable.truncation.aemeasurable.sub hCEmeas
 
+/--
+@isnad1 id=integrab.1h5v.s5.0edd2bf8ae2f from=translated src=- shape=8ed93995 vocab=f803420a
+-/
 theorem integrable_conditionallyCenteredTruncation
     [IsFiniteMeasure mu] {X : Omega → ℝ} (hX : AEMeasurable X mu)
     (y : ℝ) :
@@ -106,7 +114,9 @@ theorem integrable_conditionallyCenteredTruncation
   unfold conditionallyCenteredTruncation
   exact hX.aestronglyMeasurable.integrable_truncation.sub integrable_condExp
 
-/-- Conditional centring gives a martingale difference.-/
+/-- Conditional centring gives a martingale difference.
+@isnad1 id=eventual.2h5v.s6.022c9fe8ad9d from=translated src=- shape=21fc0b42 vocab=641b09f7
+-/
 theorem condExp_conditionallyCenteredTruncation_ae_eq_zero
     [IsProbabilityMeasure mu] (hm : m ≤ mOmega)
     {X : Omega → ℝ} (hX : AEMeasurable X mu) (y : ℝ) :
@@ -123,7 +133,9 @@ theorem condExp_conditionallyCenteredTruncation_ae_eq_zero
   exact hsub.trans (htwice.mono fun omega homega ↦ by simp [homega])
 
 /-- A conditionally centred truncation lies in
-`[-2|y|, 2|y|]`.-/
+`[-2|y|, 2|y|]`.
+@isnad1 id=eventual.0h5v.s6.b081999e3211 from=translated src=- shape=b8137a41 vocab=a7dac6f0
+-/
 theorem conditionallyCenteredTruncation_mem_Icc
     [IsProbabilityMeasure mu] (X : Omega → ℝ) (y : ℝ) :
     ∀ᵐ omega ∂mu,
@@ -153,7 +165,9 @@ theorem conditionallyCenteredTruncation_mem_Icc
   constructor <;> linarith
 
 /-- A conditionally centred truncation is conditionally sub-Gaussian.  Its
-proxy is `4 y²`, corresponding to an interval of width `4|y|`.-/
+proxy is `4 y²`, corresponding to an interval of width `4|y|`.
+@isnad1 id=hasconds.2h5v.s7.aef723781e51 from=translated src=- shape=3547a226 vocab=524ad462
+-/
 theorem hasCondSubgaussianMGF_conditionallyCenteredTruncation
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (hm : m ≤ mOmega) {X : Omega → ℝ} (hX : AEMeasurable X mu)
@@ -168,7 +182,9 @@ theorem hasCondSubgaussianMGF_conditionallyCenteredTruncation
 
 /-- Conditional truncation bias controlled by a conditional `q`-moment.
 This is the conditional analogue of
-`abs_integral_truncation_sub_integral_le_absoluteMoment_div`.-/
+`abs_integral_truncation_sub_integral_le_absoluteMoment_div`.
+@isnad1 id=eventual.6h6v.s8.ec2664ad3dee from=translated src=- shape=4f6b5f89 vocab=9118dd49
+-/
 theorem abs_condExp_truncation_le_condExp_abs_pow_div
     [IsProbabilityMeasure mu] (_hm : m ≤ mOmega)
     {X : Omega → ℝ} (hX : AEMeasurable X mu)
@@ -208,7 +224,9 @@ theorem abs_condExp_truncation_le_condExp_abs_pow_div
   exact habs.trans hle
 
 /-- If the conditional `q`-moment is bounded by `K`, then the predictable
-truncation centre is at most `K / y^(q-1)`.-/
+truncation centre is at most `K / y^(q-1)`.
+@isnad1 id=eventual.7h7v.s8.a4f9da02369a from=translated src=- shape=9519e97e vocab=9118dd49
+-/
 theorem abs_condExp_truncation_le_moment_div
     [IsProbabilityMeasure mu] (hm : m ≤ mOmega)
     {X : Omega → ℝ} (hX : AEMeasurable X mu)
@@ -242,7 +260,9 @@ theorem abs_condExp_truncation_le_moment_div
       mul_le_mul_of_nonneg_left hmoment hinv
     _ = K / y ^ (q - 1) := by rw [div_eq_inv_mul]
 
-/-- Simplified real form of the conditional Hoeffding proxy.-/
+/-- Simplified real form of the conditional Hoeffding proxy.
+@isnad1 id=eq.0h1v.s7.658283757992 from=translated src=- shape=c747b2dd vocab=163db27e
+-/
 theorem centeredTruncation_proxy_coe (y : ℝ) :
     (((‖(2 * |y|) - (-2 * |y|)‖₊ / 2) ^ 2 : ℝ≥0) : ℝ) =
       4 * y ^ 2 := by
@@ -270,7 +290,9 @@ def martingaleTruncationCenter (mu : Measure Omega)
   | k + 1 => mu[truncation (D (k + 1)) y | filtration k]
 
 /-- Before truncation occurs, one increment is exactly the sum of its
-conditionally centred truncation and its predictable centre.-/
+conditionally centred truncation and its predictable centre.
+@isnad1 id=eq.1h7v.s6.83178497baa1 from=translated src=- shape=de34a38a vocab=3f06619e
+-/
 theorem martingaleCenteredTruncation_add_center_eq
     (mu : Measure Omega) (D : ℕ → Omega → ℝ) (y : ℝ)
     (k : ℕ) (omega : Omega) (hsmall : |D k omega| < y) :
@@ -289,7 +311,9 @@ theorem martingaleCenteredTruncation_add_center_eq
       rw [truncation_eq_self hsmall]
       ring
 
-/-- Sum form of the preceding exact identity.-/
+/-- Sum form of the preceding exact identity.
+@isnad1 id=eq.1h7v.s6.5c310679acd0 from=translated src=- shape=3aecdf7b vocab=cd18aa44
+-/
 theorem sum_martingaleCenteredTruncation_add_center_eq
     (mu : Measure Omega) (D : ℕ → Omega → ℝ) (y : ℝ)
     (n : ℕ) (omega : Omega)
@@ -305,7 +329,9 @@ theorem sum_martingaleCenteredTruncation_add_center_eq
   exact martingaleCenteredTruncation_add_center_eq filtration mu D y k omega
     (hsmall k (mem_range.mp hk))
 
-/-- Strong measurability is preserved by the hard truncation used here.-/
+/-- Strong measurability is preserved by the hard truncation used here.
+@isnad1 id=strongly.1h4v.s5.973ba28d7309 from=translated src=- shape=7308114e vocab=b80380a0
+-/
 theorem StronglyMeasurable.truncation
     {m' : MeasurableSpace Omega} {X : Omega → ℝ}
     (hX : StronglyMeasurable[m'] X) (y : ℝ) :
@@ -315,7 +341,9 @@ theorem StronglyMeasurable.truncation
     hX.measurable
 
 /-- Conditional centring preserves adaptation: the centre at time `k+1` is
-measurable already at time `k`.-/
+measurable already at time `k`.
+@isnad1 id=strongly.1h5v.s6.99604c04a569 from=translated src=- shape=53b327f9 vocab=025bacac
+-/
 theorem stronglyAdapted_martingaleCenteredTruncation
     [IsFiniteMeasure mu] (D : ℕ → Omega → ℝ) (y : ℝ)
     (hD : StronglyAdapted filtration D) :
@@ -338,7 +366,9 @@ theorem stronglyAdapted_martingaleCenteredTruncation
           (filtration.mono (Nat.le_succ k)))
 
 /-- The first truncated difference is sub-Gaussian with the same coarse
-proxy as all subsequent conditionally centred differences.-/
+proxy as all subsequent conditionally centred differences.
+@isnad1 id=hassubga.1h5v.s7.1b2c84879c0a from=translated src=- shape=b17498f8 vocab=769065f4
+-/
 theorem hasSubgaussianMGF_martingaleCenteredTruncation_zero
     [IsProbabilityMeasure mu] (D : ℕ → Omega → ℝ)
     (hD0 : AEMeasurable (D 0) mu) (y : ℝ) :
@@ -353,7 +383,9 @@ theorem hasSubgaussianMGF_martingaleCenteredTruncation_zero
   · exact integral_centeredTruncation hD0 y
 
 /-- Every later truncated difference is sub-Gaussian conditionally on the
-preceding filtration level.-/
+preceding filtration level.
+@isnad1 id=hasconds.1h6v.s7.27c1022a4d97 from=translated src=- shape=7f519e04 vocab=9ee069dc
+-/
 theorem hasCondSubgaussianMGF_martingaleCenteredTruncation_succ
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (D : ℕ → Omega → ℝ) (hD : StronglyAdapted filtration D)
@@ -370,7 +402,9 @@ theorem hasCondSubgaussianMGF_martingaleCenteredTruncation_succ
 
 /-- Azuma--Hoeffding for the canonically truncated martingale differences.
 The explicit denominator `8 n y²` records the factor-four loss caused by
-conditional recentering.-/
+conditional recentering.
+@isnad1 id=le.2h7v.s7.40c9a154e729 from=translated src=- shape=6a7b8982 vocab=8ae5121e
+-/
 theorem measureReal_sum_martingaleCenteredTruncation_ge_le
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (D : ℕ → Omega → ℝ) (hD : StronglyAdapted filtration D)
@@ -409,7 +443,9 @@ theorem measureReal_sum_martingaleCenteredTruncation_ge_le
 /-- A large martingale sum forces either a large raw difference or a large
 sum of the conditionally centred truncations.  The predictable truncation
 centre remains visible in the threshold; bounding it is the next, genuinely
-moment-sensitive, step of the argument.-/
+moment-sensitive, step of the argument.
+@isnad1 id=le.0h7v.s7.ca41bab3d0a6 from=translated src=- shape=876762b2 vocab=1aedc7b2
+-/
 theorem martingale_sum_large_subset_iUnion_large_or_truncation
     (mu : Measure Omega) (D : ℕ → Omega → ℝ)
     (y t : ℝ) (n : ℕ) :
@@ -443,7 +479,9 @@ theorem martingale_sum_large_subset_iUnion_large_or_truncation
     rw [← hid] at homega
     linarith [le_abs_self C]
 
-/-- Probability form of the martingale truncation reduction.-/
+/-- Probability form of the martingale truncation reduction.
+@isnad1 id=le.0h7v.s7.03493543fd56 from=translated src=- shape=24e7a993 vocab=700cf536
+-/
 theorem measureReal_martingale_sum_large_le_sum_large_add_truncation
     [IsFiniteMeasure mu] (D : ℕ → Omega → ℝ)
     (y t : ℝ) (n : ℕ) :
@@ -485,7 +523,9 @@ difference.  No maximal-tail conclusion is assumed.
 
 The Gaussian denominator still contains `y²`; this is the explicit loss of
 the elementary Azuma route compared with Rio's variance-sensitive theorem.
-The random predictable centre is also retained in the deviation threshold.-/
+The random predictable centre is also retained in the deviation threshold.
+@isnad1 id=le.4h8v.s8.c85c6db20185 from=translated src=- shape=56dde32b vocab=ca888189
+-/
 theorem measureReal_martingale_sum_large_le_moment_div_add_exp
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (D : ℕ → Omega → ℝ) (hD : StronglyAdapted filtration D)
@@ -524,7 +564,9 @@ theorem measureReal_martingale_sum_large_le_moment_div_add_exp
       rw [sum_div]
 
 /-- Conditional `q`-moment bounds control the full predictable centre created
-by truncating a finite sequence of martingale differences.-/
+by truncating a finite sequence of martingale differences.
+@isnad1 id=eventual.8h8v.s8.d9f19d455737 from=translated src=- shape=0a7b395c vocab=4b79e467
+-/
 theorem abs_sum_martingaleTruncationCenter_le_moment_div
     [IsProbabilityMeasure mu]
     (D : ℕ → Omega → ℝ) (hD : StronglyAdapted filtration D)
@@ -600,7 +642,9 @@ adaptation, martingale centring, measurability, and moment bounds, rather
 than a pre-packaged concentration certificate.  Its exponential term is
 Azuma's `exp (-t² / (8 n y²))`; replacing that denominator by the quadratic
 variation is precisely the stronger Rio step still needed for Marchina's
-optimal Gaussian-plus-polynomial rate.-/
+optimal Gaussian-plus-polynomial rate.
+@isnad1 id=le.9h9v.s9.bfc9967ca5e5 from=translated src=- shape=c4d1c8a5 vocab=c4a0d1f4
+-/
 theorem measureReal_martingale_sum_large_le_condMoment_bias_add_exp
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (D : ℕ → Omega → ℝ) (hD : StronglyAdapted filtration D)
@@ -656,7 +700,9 @@ def doobCenteredDifference (mu : Measure Omega) (F : Omega → ℝ) :
       mu[F | filtration (k + 1)] omega - mu[F | filtration k] omega
 
 /-- The Doob differences telescope exactly to the current conditional
-expectation minus the terminal expectation.-/
+expectation minus the terminal expectation.
+@isnad1 id=eq.0h6v.s6.05c88fd572d3 from=translated src=- shape=abdc2a5b vocab=b2625192
+-/
 theorem sum_doobCenteredDifference
     (mu : Measure Omega) (F : Omega → ℝ) (n : ℕ) (omega : Omega) :
     ∑ k ∈ range (n + 1), doobCenteredDifference filtration mu F k omega =
@@ -669,7 +715,9 @@ theorem sum_doobCenteredDifference
       simp only [doobCenteredDifference]
       ring
 
-/-- The canonical Doob differences are adapted.-/
+/-- The canonical Doob differences are adapted.
+@isnad1 id=strongly.0h4v.s5.1034d76863d7 from=translated src=- shape=e9a96910 vocab=95095079
+-/
 theorem stronglyAdapted_doobCenteredDifference
     (mu : Measure Omega) (F : Omega → ℝ) :
     StronglyAdapted filtration (doobCenteredDifference filtration mu F) := by
@@ -687,7 +735,9 @@ theorem stronglyAdapted_doobCenteredDifference
         (stronglyMeasurable_condExp.mono
           (filtration.mono (Nat.le_succ k)))
 
-/-- The initial Doob difference has ordinary expectation zero.-/
+/-- The initial Doob difference has ordinary expectation zero.
+@isnad1 id=eq.0h4v.s6.c0a223060201 from=translated src=- shape=8d5c1842 vocab=0faf5568
+-/
 theorem integral_doobCenteredDifference_zero
     [IsProbabilityMeasure mu] [SigmaFiniteFiltration mu filtration]
     (F : Omega → ℝ) :
@@ -698,7 +748,9 @@ theorem integral_doobCenteredDifference_zero
     integral_condExp (filtration.le 0)]
   simp
 
-/-- Every later Doob difference has conditional expectation zero.-/
+/-- Every later Doob difference has conditional expectation zero.
+@isnad1 id=eventual.0h5v.s6.e5bcaee00f82 from=translated src=- shape=e347516a vocab=25a06769
+-/
 theorem condExp_doobCenteredDifference_succ_ae_eq_zero
     [IsFiniteMeasure mu] [SigmaFiniteFiltration mu filtration]
     (F : Omega → ℝ) (k : ℕ) :
@@ -728,7 +780,9 @@ def finiteProcessSupremum (s : Finset T) (hs : s.Nonempty)
     (X : T → Omega → ℝ) (omega : Omega) : ℝ :=
   s.sup' hs (fun t ↦ X t omega)
 
-/-- A finite supremum of measurable coordinates is measurable.-/
+/-- A finite supremum of measurable coordinates is measurable.
+@isnad1 id=measurab.2h4v.s5.57d900296728 from=translated src=- shape=59c2ed99 vocab=2a3df695
+-/
 theorem measurable_finiteProcessSupremum
     (s : Finset T) (hs : s.Nonempty) (X : T → Omega → ℝ)
     (hX : ∀ t ∈ s, Measurable (X t)) :
@@ -740,7 +794,9 @@ theorem measurable_finiteProcessSupremum
   exact Finset.measurable_sup' hs hX
 
 /-- A common absolute envelope also dominates the absolute value of the
-finite supremum.-/
+finite supremum.
+@isnad1 id=le.2h6v.s6.66246b3fe050 from=translated src=- shape=695a7255 vocab=7588d28b
+-/
 theorem abs_finiteProcessSupremum_le
     (s : Finset T) (hs : s.Nonempty) (X : T → Omega → ℝ)
     (A : Omega → ℝ)
@@ -760,7 +816,9 @@ theorem abs_finiteProcessSupremum_le
 
 /-- Integrability of a common envelope implies integrability of the finite
 process supremum, so its Doob martingale is available without any additional
-maximal-integrability assumption.-/
+maximal-integrability assumption.
+@isnad1 id=integrab.4h6v.s7.ab0c7fc6456f from=translated src=- shape=6b7c9808 vocab=ccf4bc32
+-/
 theorem integrable_finiteProcessSupremum
     (s : Finset T) (hs : s.Nonempty) (X : T → Omega → ℝ)
     (A : Omega → ℝ) (hA : Integrable A mu)
@@ -776,7 +834,9 @@ theorem integrable_finiteProcessSupremum
 /-- A finite maximum changes by at most the largest coordinatewise absolute
 change.  This avoids choosing a measurable argmax and is the deterministic
 replace-one estimate behind the Doob increment bounds for empirical
-suprema.-/
+suprema.
+@isnad1 id=le.1h4v.s6.9d5f4f44817c from=translated src=- shape=c4032136 vocab=bdc78d94
+-/
 theorem abs_finset_sup'_sub_sup'_le_sup'_abs_sub
     (s : Finset T) (hs : s.Nonempty) (f g : T → ℝ) :
     |s.sup' hs f - s.sup' hs g| ≤
@@ -805,7 +865,9 @@ theorem abs_finset_sup'_sub_sup'_le_sup'_abs_sub
   exact abs_le.mpr ⟨hbackward, hforward⟩
 
 /-- Replacing one observation in a finite empirical supremum costs at most
-the largest coordinatewise change of that observation.-/
+the largest coordinatewise change of that observation.
+@isnad1 id=le.1h5v.s6.9c957f678abb from=translated src=- shape=45949576 vocab=760e8d3c
+-/
 theorem abs_finset_sup'_sum_replace_one_le
     (s : Finset T) (hs : s.Nonempty)
     (r : T → ℝ) (X X' : T → ℝ) :
@@ -818,7 +880,9 @@ theorem abs_finset_sup'_sum_replace_one_le
 
 /-- Envelope form of the replace-one estimate.  If the old and replacement
 observations have scalar envelopes `A` and `A'`, the finite supremum changes
-by at most `A + A'`.-/
+by at most `A + A'`.
+@isnad1 id=le.3h7v.s7.e8079231089e from=translated src=- shape=fc9a3f1b vocab=a43b6b0d
+-/
 theorem abs_finset_sup'_sum_replace_one_le_add_envelopes
     (s : Finset T) (hs : s.Nonempty)
     (r : T → ℝ) (X X' : T → ℝ) {A A' : ℝ}

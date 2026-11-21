@@ -40,7 +40,9 @@ variable (filtration : Filtration ℕ mOmega)
 /-! ## Almost-everywhere invariance of CVaR -/
 
 /-- Conditional value at risk only depends on the almost-everywhere class of
-an integrable random variable.-/
+an integrable random variable.
+@isnad1 id=eq.5h6v.s6.15f049ec5962 from=translated src=- shape=e1412f0a vocab=940e6a9d
+-/
 theorem conditionalValueAtRisk_congr_ae
     [IsProbabilityMeasure mu]
     {X Y : Omega → ℝ} (hX : Integrable X mu) (hY : Integrable Y mu)
@@ -62,7 +64,9 @@ centred by its expectation.
 The index `0` is the initial centred Doob increment and indices `k+1` are
 conditioned on `filtration k`.  All structural martingale hypotheses and the
 terminal telescoping identity are proved in this theorem.  Only the
-deterministic conditional moment bounds remain as inputs.-/
+deterministic conditional moment bounds remain as inputs.
+@isnad1 id=le.16h15v.s10.fe2435ddae85 from=translated src=- shape=8483b4f4 vocab=a0f7a0bb
+-/
 theorem conditionalValueAtRisk_finiteProcessSupremum_sub_integral_le_strongMomentSeries
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     [SigmaFiniteFiltration mu filtration]

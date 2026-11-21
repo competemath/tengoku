@@ -26,7 +26,9 @@ namespace Tengoku.Randomsettheory.RandomSet
 open RandomSetTheory
 
 /-- A finite pointwise Minkowski sum of compact, nonempty Effros
-correspondences is Effros measurable.-/
+correspondences is Effros measurable.
+@isnad1 id=iseffros.3h5v.s7.3dcfefb896bd from=translated src=- shape=106395a7 vocab=97669d62
+-/
 theorem IsEffrosMeasurable.finset_sum
     {Ω E ι : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [CompleteSpace E]
@@ -59,7 +61,9 @@ theorem IsEffrosMeasurable.finset_sum
           (fun i hi => hne i (Finset.mem_insert_of_mem hi) ω)
 
 /-- The empirical Minkowski average of finitely many compact, nonempty
-Effros correspondences is Effros measurable.-/
+Effros correspondences is Effros measurable.
+@isnad1 id=iseffros.3h5v.s7.2dbacb55ed42 from=translated src=- shape=a45f7afb vocab=4426d463
+-/
 theorem IsEffrosMeasurable.minkowskiAverage
     {Ω E ι : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]

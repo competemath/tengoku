@@ -43,6 +43,9 @@ def strongMomentSecondWeight (q k : ℕ) : ℝ :=
 def strongMomentQWeight (q k : ℕ) : ℝ :=
   ((k : ℝ) - 2) / ((q : ℝ) - 2)
 
+/--
+@isnad1 id=le.2h2v.s5.7203b542e1a9 from=translated src=- shape=c65ec732 vocab=67161258
+-/
 theorem strongMomentSecondWeight_nonneg {q k : ℕ} (hkq : k ≤ q)
     (hq : 3 ≤ q) :
     0 ≤ strongMomentSecondWeight q k := by
@@ -50,6 +53,9 @@ theorem strongMomentSecondWeight_nonneg {q k : ℕ} (hkq : k ≤ q)
   exact div_nonneg (sub_nonneg.mpr (mod_cast hkq))
     (sub_nonneg.mpr (by norm_num; omega))
 
+/--
+@isnad1 id=le.2h2v.s5.a823fa70268f from=translated src=- shape=e534e85e vocab=434200c2
+-/
 theorem strongMomentQWeight_nonneg {q k : ℕ} (hk : 2 ≤ k)
     (hq : 3 ≤ q) :
     0 ≤ strongMomentQWeight q k := by
@@ -57,6 +63,9 @@ theorem strongMomentQWeight_nonneg {q k : ℕ} (hk : 2 ≤ k)
   exact div_nonneg (sub_nonneg.mpr (by norm_num; omega))
     (sub_nonneg.mpr (by norm_num; omega))
 
+/--
+@isnad1 id=eq.1h2v.s5.23b6bdf78170 from=translated src=- shape=b6ec9cd2 vocab=896db227
+-/
 theorem strongMomentSecondWeight_add_QWeight {q k : ℕ} (hq : 3 ≤ q) :
     strongMomentSecondWeight q k + strongMomentQWeight q k = 1 := by
   unfold strongMomentSecondWeight strongMomentQWeight
@@ -65,6 +74,9 @@ theorem strongMomentSecondWeight_add_QWeight {q k : ℕ} (hq : 3 ≤ q) :
   field_simp
   ring
 
+/--
+@isnad1 id=eq.1h2v.s5.03dac3f10ac6 from=translated src=- shape=33f9aa59 vocab=2544e593
+-/
 theorem two_mul_strongMomentSecondWeight_add_q_mul_strongMomentQWeight
     {q k : ℕ} (hq : 3 ≤ q) :
     2 * strongMomentSecondWeight q k +
@@ -79,7 +91,9 @@ theorem two_mul_strongMomentSecondWeight_add_q_mul_strongMomentQWeight
 
 /-- Weighted Hölder inequality in the form needed to sum interpolated
 moments.  Unlike a pointwise AM--GM bound, this retains the two global sums
-with their interpolation powers.-/
+with their interpolation powers.
+@isnad1 id=le.3h6v.s7.72fcd1392cf1 from=translated src=- shape=e4177ba0 vocab=b495c0d6
+-/
 theorem sum_rpow_mul_rpow_le_sum_rpow_mul_sum_rpow
     {ι : Type*} (s : Finset ι) (A B : ι → ℝ≥0∞)
     {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (hab : a + b = 1) :
@@ -102,7 +116,9 @@ theorem sum_rpow_mul_rpow_le_sum_rpow_mul_sum_rpow
 
 /-- Log-convexity of nonnegative moments, expressed with Lebesgue
 integrals.  This theorem includes the endpoints `k = 2` and `k = q` and
-does not require finiteness of either endpoint moment.-/
+does not require finiteness of either endpoint moment.
+@isnad1 id=le.4h5v.s7.c268311b5228 from=translated src=- shape=f8dd5907 vocab=f387bf0d
+-/
 theorem lintegral_rpow_nat_le_strongMomentInterpolation
     {Omega : Type*} [MeasurableSpace Omega] (mu : Measure Omega)
     (X : Omega → ℝ≥0∞) {q k : ℕ} (hq : 3 ≤ q)
@@ -144,7 +160,9 @@ theorem lintegral_rpow_nat_le_strongMomentInterpolation
 
 /-- Rio's two-stage interpolation inequality: the intermediate moments are
 first interpolated for each member of the family, and the resulting terms
-are then summed by a second application of Hölder.-/
+are then summed by a second application of Hölder.
+@isnad1 id=le.4h7v.s7.f453fdb53290 from=translated src=- shape=1031de90 vocab=80ef4c86
+-/
 theorem sum_lintegral_rpow_nat_le_strongMomentInterpolation
     {ι Omega : Type*} [MeasurableSpace Omega] (mu : Measure Omega)
     (s : Finset ι) (X : ι → Omega → ℝ≥0∞)
@@ -176,7 +194,9 @@ theorem sum_lintegral_rpow_nat_le_strongMomentInterpolation
 /-! ## Real-valued positive moments -/
 
 /-- Conversion between a finite nonnegative real moment and the `ENNReal`
-moment used by the interpolation theorem.-/
+moment used by the interpolation theorem.
+@isnad1 id=eq.2h4v.s7.f38a8ceeb896 from=translated src=- shape=849e755f vocab=5b0b11a2
+-/
 theorem ofReal_integral_pow_eq_lintegral_rpow_of_ae_nonneg
     {Omega : Type*} [MeasurableSpace Omega] {mu : Measure Omega}
     {X : Omega → ℝ} (r : ℕ) (hX : 0 ≤ᵐ[mu] X)
@@ -199,7 +219,9 @@ theorem ofReal_integral_pow_eq_lintegral_rpow_of_ae_nonneg
 This is the form directly applicable to the positive parts of martingale
 differences.  Integrability of the three displayed orders is explicit;
 the surrounding strong-moment API already supplies it for every
-`k ∈ Icc 2 q`.-/
+`k ∈ Icc 2 q`.
+@isnad1 id=le.8h7v.s8.9b24c2284df1 from=translated src=- shape=97ba2de3 vocab=25c932cd
+-/
 theorem sum_integral_pow_le_strongMomentInterpolation
     {ι Omega : Type*} [MeasurableSpace Omega] (mu : Measure Omega)
     (s : Finset ι) (X : ι → Omega → ℝ)
@@ -286,7 +308,9 @@ theorem sum_integral_pow_le_strongMomentInterpolation
 
 /-- Interpolation with deterministic proxies `V` and `Q` for the sums of
 second and `q`-th moments.  This is the precise form of Rio's Proposition
-3.5 used in the subsequent MGF optimization.-/
+3.5 used in the subsequent MGF optimization.
+@isnad1 id=le.12h9v.s8.c5abd29bce9e from=translated src=- shape=2475656f vocab=25c932cd
+-/
 theorem sum_integral_pow_le_strongMomentInterpolation_of_le
     {ι Omega : Type*} [MeasurableSpace Omega] (mu : Measure Omega)
     (s : Finset ι) (X : ι → Omega → ℝ)
@@ -330,7 +354,9 @@ theorem sum_integral_pow_le_strongMomentInterpolation_of_le
 
 /-- Specialization of the proxy interpolation theorem to positive parts.
 This matches the one-sided moments appearing in the strong-moment Taylor
-exponent.-/
+exponent.
+@isnad1 id=le.11h9v.s8.76d4735ea75b from=translated src=- shape=f62ebd73 vocab=ce38c032
+-/
 theorem sum_integral_pow_max_zero_le_strongMomentInterpolation_of_le
     {ι Omega : Type*} [MeasurableSpace Omega] (mu : Measure Omega)
     (s : Finset ι) (D : ι → Omega → ℝ)

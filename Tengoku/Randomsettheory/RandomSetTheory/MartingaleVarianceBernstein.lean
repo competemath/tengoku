@@ -54,7 +54,9 @@ structure HasCondBernsteinMGF (m : MeasurableSpace Omega) (hm : m ≤ mOmega)
 namespace HasCondBernsteinMGF
 
 /-- The conditional MGF field, with a name parallel to the unconditional
-`HasBernsteinMGF.mgf_le`.-/
+`HasBernsteinMGF.mgf_le`.
+@isnad1 id=eventual.3h8v.s7.2cfb550b6eff from=translated src=- shape=d58fc306 vocab=3e90ae7d
+-/
 theorem ae_condExp_le
     (hX : HasCondBernsteinMGF m hm X v b mu) (t : ℝ)
     (ht : (b : ℝ) * |t| < 1) :
@@ -71,7 +73,9 @@ end HasCondBernsteinMGF
 The variance proxy is twice the deterministic upper bound on the conditional
 second moment, matching
 `hasBernsteinMGF_of_memLp_two_of_ae_abs_le_of_integral_eq_zero`.  The proof
-applies that unconditional result on almost every fibre of `condExpKernel`.-/
+applies that unconditional result on almost every fibre of `condExpKernel`.
+@isnad1 id=hascondb.7h7v.s8.fad626204abb from=translated src=- shape=b09de1a4 vocab=a629508d
+-/
 theorem hasCondBernsteinMGF_of_memLp_two_of_ae_abs_le_of_condExp_ae_eq_zero
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (hm : m ≤ mOmega) (X : Omega → ℝ) (hX : MemLp X 2 mu)
@@ -168,7 +172,9 @@ theorem hasCondBernsteinMGF_of_memLp_two_of_ae_abs_le_of_condExp_ae_eq_zero
 
 /-- Exponentials of a sum are integrable when both summands have deterministic
 almost-sure bounds.  This small lemma supplies the integrability side
-condition in the conditional-MGF multiplication rule.-/
+condition in the conditional-MGF multiplication rule.
+@isnad1 id=integrab.4h8v.s7.21544718745f from=translated src=- shape=2ae0a682 vocab=60a3bf74
+-/
 theorem integrable_exp_mul_add_of_ae_abs_le
     [IsFiniteMeasure mu]
     {X Y : Omega → ℝ} (hX : AEMeasurable X mu) (hY : AEMeasurable Y mu)
@@ -194,7 +200,9 @@ theorem integrable_exp_mul_add_of_ae_abs_le
 The first summand must be measurable with respect to the conditioning
 sigma-algebra.  Boundedness is used only to discharge exponential
 integrability; the MGF calculation itself keeps the variance proxies additive
-and the common scale proxy unchanged.-/
+and the common scale proxy unchanged.
+@isnad1 id=hasberns.6h11v.s7.510f5caaed2e from=translated src=- shape=fc0c62f5 vocab=63ce25fb
+-/
 theorem HasBernsteinMGF.add_of_hasCondBernsteinMGF
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     {X Y : Omega → ℝ} {vX vY b : ℝ≥0}
@@ -265,7 +273,9 @@ variable (filtration : Filtration ℕ mOmega)
 
 /-- A finite sum of variables bounded by `b` is bounded by `n * b`.
 The statement is separated out because it is also useful for proving the
-exponential integrability required by martingale MGF arguments.-/
+exponential integrability required by martingale MGF arguments.
+@isnad1 id=eventual.1h6v.s6.c07e1ba931f5 from=translated src=- shape=977518f6 vocab=b4abbb50
+-/
 theorem ae_abs_sum_range_le_nat_mul
     {Y : ℕ → Omega → ℝ} {b : ℝ} {n : ℕ}
     (hbound : ∀ i < n, ∀ᵐ omega ∂mu, |Y i omega| ≤ b) :
@@ -286,7 +296,9 @@ theorem ae_abs_sum_range_le_nat_mul
 
 /-- Finite sums of adapted conditional-Bernstein differences satisfy an
 ordinary Bernstein MGF bound.  The deterministic variance proxies add and
-the common scale proxy is preserved.-/
+the common scale proxy is preserved.
+@isnad1 id=hasberns.4h8v.s7.efe3690f0656 from=translated src=- shape=3b8ecf9c vocab=56e11e7a
+-/
 theorem HasBernsteinMGF.sum_of_hasCondBernsteinMGF
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     {Y : ℕ → Omega → ℝ} {v : ℕ → ℝ≥0} {b : ℝ≥0}

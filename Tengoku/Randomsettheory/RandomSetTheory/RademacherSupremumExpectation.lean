@@ -44,7 +44,9 @@ variable {Omega : Type*} [MeasurableSpace Omega] {mu : Measure Omega}
 
 /-- A sub-Gaussian MGF certificate remains valid after enlarging its variance
 proxy.  This elementary monotonicity lemma is useful when deterministic
-Lipschitz bounds replace the exact sum of squared Rademacher coefficients.-/
+Lipschitz bounds replace the exact sum of squared Rademacher coefficients.
+@isnad1 id=hassubga.2h5v.s5.d042e459cd7e from=translated src=- shape=91ead777 vocab=66404da1
+-/
 theorem HasSubgaussianMGF.mono_proxy
     {X : Omega → ℝ} {c d : ℝ≥0}
     (hX : HasSubgaussianMGF X c mu) (hcd : c ≤ d) :
@@ -64,6 +66,9 @@ def rademacherLipschitzProcess
   c * ∑ i ∈ I, epsilon i omega * F i t
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=eq.0h10v.s6.419ef6f299c6 from=translated src=- shape=c32d56a1 vocab=50dbccf8
+-/
 theorem rademacherLipschitzProcess_sub
     {ι T : Type*} (epsilon : ι → Omega → ℝ)
     (F : ι → T → ℝ) (I : Finset ι) (c : ℝ)
@@ -79,6 +84,9 @@ theorem rademacherLipschitzProcess_sub
   ring
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=eq.1h8v.s6.0a9edb3261e8 from=translated src=- shape=d48a1dd5 vocab=356d3e70
+-/
 @[simp]
 theorem rademacherLipschitzProcess_zero
     {ι T : Type*} [Zero T]
@@ -95,6 +103,9 @@ theorem rademacherLipschitzProcess_zero
 /-- Squared real scale packaged as a nonnegative variance proxy.-/
 def rademacherLipschitzProxy (x : ℝ) : ℝ≥0 := ⟨x ^ 2, sq_nonneg x⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.b6813d0cd6e0 from=translated src=- shape=292bf1f0 vocab=e6f4187d
+-/
 @[simp]
 theorem coe_rademacherLipschitzProxy (x : ℝ) :
     (rademacherLipschitzProxy x : ℝ) = x ^ 2 := rfl
@@ -110,7 +121,9 @@ def finiteVectorSupAbs {T : Type*} (N : Finset T) (hN : N.Nonempty)
 
 omit [MeasurableSpace Omega] in
 /-- Rewrite the subtype-indexed finite vector maximum as a maximum over the
-original finset.-/
+original finset.
+@isnad1 id=eq.1h3v.s6.22353eb522ea from=translated src=- shape=6348a251 vocab=5274a0ab
+-/
 theorem finiteVectorSupAbs_eq_sup' {T : Type*}
     (N : Finset T) (hN : N.Nonempty) (f : T → ℝ) :
     finiteVectorSupAbs N hN (fun t ↦ f t) =
@@ -126,7 +139,9 @@ theorem finiteVectorSupAbs_eq_sup' {T : Type*}
     exact Finset.le_sup' (fun u : N ↦ |f u|)
       (Finset.mem_univ (⟨t, ht⟩ : N))
 
-/-- Measurability of the absolute maximum functional on a finite vector.-/
+/-- Measurability of the absolute maximum functional on a finite vector.
+@isnad1 id=measurab.1h2v.s6.7167b788a1fa from=translated src=- shape=9614d565 vocab=7f49f1a8
+-/
 theorem measurable_finiteVectorSupAbs {T : Type*}
     (N : Finset T) (hN : N.Nonempty) :
     Measurable (finiteVectorSupAbs N hN) := by
@@ -149,7 +164,9 @@ independent random signs, for every fixed finite restriction.
 This is the expectation-level Fubini bridge needed after the ghost-sample
 step.  The signs may live on an arbitrary probability space and need only
 take the values `+1` and `-1` pointwise.  `hJointInt` is the exact hypothesis
-which justifies exchanging the data and sign integrals.-/
+which justifies exchanging the data and sign integrals.
+@isnad1 id=eq.5h10v.s8.dcd2ede46b8f from=translated src=- shape=17844089 vocab=00f90a2a
+-/
 theorem integral_finiteVectorSupAbs_sum_eq_iterated_randomSigns
     {OmegaData OmegaSign T ι : Type*}
     [MeasurableSpace OmegaData] [MeasurableSpace OmegaSign]
@@ -204,7 +221,9 @@ For each fixed sample `x`, the centred empirical vector is the integral of
 its difference with an independent ghost copy.  Convexity of the finite
 maximum of absolute coordinates then gives the displayed inequality.  The
 two integrability hypotheses are exactly those needed for Jensen/Fubini and
-are typically discharged by a finite sum of scalar envelopes.-/
+are typically discharged by a finite sum of scalar envelopes.
+@isnad1 id=le.4h7v.s9.4d5ade6c7cb9 from=translated src=- shape=25f332ad vocab=be90a756
+-/
 theorem integral_finiteVectorSupAbs_centeredSum_le_ghostDifference
     {OmegaData T ι : Type*} [MeasurableSpace OmegaData]
     [Countable ι]
@@ -283,7 +302,9 @@ theorem integral_finiteVectorSupAbs_centeredSum_le_ghostDifference
 The only structural independence hypothesis is stated on the paired ghost
 process restricted to `N`.  For an independent original sample it follows
 by applying independence to the coordinate-pair maps.  Symmetry itself is
-proved here from exchangeability of the two ghost copies.-/
+proved here from exchangeability of the two ghost copies.
+@isnad1 id=le.8h10v.s10.f5a771a338f9 from=translated src=- shape=1e56984f vocab=8933f2b3
+-/
 theorem integral_finiteVectorSupAbs_centeredSum_le_iterated_randomSigns_of_ghost
     {OmegaData OmegaSign T ι : Type*}
     [MeasurableSpace OmegaData] [MeasurableSpace OmegaSign]
@@ -329,7 +350,9 @@ theorem integral_finiteVectorSupAbs_centeredSum_le_iterated_randomSigns_of_ghost
 
 /-- User-facing finite symmetrization theorem from independence of the
 original process-valued coordinates.  The independence of paired ghost
-differences is derived internally by `iIndepFun_finiteProcess_ghostDifference`.-/
+differences is derived internally by `iIndepFun_finiteProcess_ghostDifference`.
+@isnad1 id=le.8h10v.s10.d6bdbf2506a6 from=translated src=- shape=28f6195b vocab=b6ec3cb9
+-/
 theorem integral_finiteVectorSupAbs_centeredSum_le_iterated_randomSigns
     {OmegaData OmegaSign T ι : Type*}
     [MeasurableSpace OmegaData] [MeasurableSpace OmegaSign]
@@ -402,7 +425,9 @@ def rademacherGhostEmpiricalProcess
 
 /-- Uniform expectation bounds for all dense finite prefixes pass to the
 absolute supremum of a continuous process.  This is the expectation analogue
-of the CVaR dense-prefix bridge.-/
+of the CVaR dense-prefix bridge.
+@isnad1 id=le.5h6v.s7.5e538c447478 from=translated src=- shape=d8c5fdcc vocab=e7d414dd
+-/
 theorem integral_iSup_abs_le_of_densePrefixBounds
     {T : Type*} [TopologicalSpace T] [SeparableSpace T] [Nonempty T]
     (F : Omega → T → ℝ) (B : Omega → ℝ)
@@ -491,7 +516,9 @@ theorem integral_iSup_abs_le_of_densePrefixBounds
 /-- One dense-prefix comparison between the centred empirical process and
 the full continuous Rademacher ghost process.  This theorem composes the
 finite ghost/sign symmetrization with the elementary inclusion of a finite
-dense prefix in the full supremum.-/
+dense prefix in the full supremum.
+@isnad1 id=le.9h9v.s10.27777691bf57 from=translated src=- shape=00dcf825 vocab=9327bd6b
+-/
 theorem integral_densePrefixAbs_centeredEmpirical_le_rademacherGhost
     {OmegaData OmegaSign : Type*}
     [MeasurableSpace OmegaData] [MeasurableSpace OmegaSign]

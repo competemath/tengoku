@@ -38,7 +38,9 @@ variable {Ω X Y : Type*} [MeasurableSpace Ω]
 
 /-- An integrable selection of a Carathéodory image correspondence has an
 integrable source selection lift.  The transformed lift agrees with the
-given image selection almost everywhere and is itself integrable.-/
+given image selection almost everywhere and is itself integrable.
+@isnad1 id=ex.8h8v.s8.8d4ce5a2e7bb from=translated src=- shape=effbb865 vocab=a5251cfd
+-/
 theorem IsIntegrableSelection.exists_lift_caratheodory_image
     {μ : Measure Ω} {S : Ω → Set X} {v : Ω → Y}
     {φ : Ω × X → Y}
@@ -82,7 +84,9 @@ theorem IsIntegrableSelection.exists_lift_caratheodory_image
 
 /-- **Aumann--Carathéodory image formula.**  The Aumann expectation of a
 Carathéodory image correspondence is exactly the set of integrals of
-integrable transformed source selections.-/
+integrable transformed source selections.
+@isnad1 id=eq.7h7v.s8.4f54865c9554 from=translated src=- shape=b25d95cc vocab=1777f914
+-/
 theorem aumannExpectation_caratheodory_image
     [NormedSpace ℝ Y]
     {μ : Measure Ω} {S : Ω → Set X} {φ : Ω × X → Y}

@@ -51,6 +51,9 @@ def centeredAnchoredEmpiricalProcess
       ∫ xi, lipschitzIncrement H X i t o xi ∂mu)
 
 omit [PseudoMetricSpace T] in
+/--
+@isnad1 id=measurab.2h9v.s6.22eddd8ef4f3 from=translated src=- shape=4b8cc326 vocab=e364d095
+-/
 theorem measurable_lipschitzIncrement
     (H : Z → T → ℝ) (X : iota → Omega → Z)
     (hX : ∀ i, Measurable (X i))
@@ -59,7 +62,9 @@ theorem measurable_lipschitzIncrement
     Measurable (lipschitzIncrement H X i s t) := by
   exact ((hH s).comp (hX i)).sub ((hH t).comp (hX i))
 
-/-- An `L¹` envelope makes every untruncated increment integrable.-/
+/-- An `L¹` envelope makes every untruncated increment integrable.
+@isnad1 id=integrab.4h11v.s7.0a03b766fcd2 from=translated src=- shape=89089f00 vocab=e07c9df7
+-/
 theorem integrable_lipschitzIncrement
     (H : Z → T → ℝ) (R : Z → ℝ)
     (X : iota → Omega → Z) (hX : ∀ i, Measurable (X i))
@@ -76,7 +81,9 @@ theorem integrable_lipschitzIncrement
     Real.norm_eq_abs, abs_of_nonneg dist_nonneg, mul_comm] using
       hLip (X i omega) s t
 
-/-- The expected untruncated increment is Lipschitz in its free index.-/
+/-- The expected untruncated increment is Lipschitz in its free index.
+@isnad1 id=lipschit.5h10v.s7.63745a97204c from=translated src=- shape=27e8562e vocab=e37337a9
+-/
 theorem lipschitzWith_integral_lipschitzIncrement
     (H : Z → T → ℝ) (R : Z → ℝ)
     (X : iota → Omega → Z) (hX : ∀ i, Measurable (X i))
@@ -116,7 +123,9 @@ theorem lipschitzWith_integral_lipschitzIncrement
   rw [integral_const_mul] at hint
   simpa only [coe_nnrealOfNonneg, Real.norm_eq_abs, mul_comm] using hint
 
-/-- Continuity of every sample path of the original anchored process.-/
+/-- Continuity of every sample path of the original anchored process.
+@isnad1 id=continuo.6h12v.s7.397a90c98329 from=translated src=- shape=dd364197 vocab=60ef14a6
+-/
 theorem continuous_centeredAnchoredEmpiricalProcess
     (H : Z → T → ℝ) (R : Z → ℝ) (c : ℝ)
     (X : iota → Omega → Z) (hX : ∀ i, Measurable (X i))
@@ -139,6 +148,9 @@ theorem continuous_centeredAnchoredEmpiricalProcess
       H R X hX hHmeas hR hLip i (hRint i) o).continuous
 
 omit [MeasurableSpace Z] [PseudoMetricSpace T] in
+/--
+@isnad1 id=eq.0h11v.s5.7005a3734987 from=translated src=- shape=d0d42a64 vocab=31858c9a
+-/
 @[simp]
 theorem centeredAnchoredEmpiricalProcess_anchor
     (H : Z → T → ℝ) (c : ℝ)
@@ -152,6 +164,9 @@ def truncationTailEnvelope (R : Z → ℝ) (M : ℝ) (z : Z) : ℝ :=
   if M < R z then R z else 0
 
 omit [MeasurableSpace Z] in
+/--
+@isnad1 id=le.1h8v.s7.04a43c925bac from=translated src=- shape=077f3673 vocab=429bf3b0
+-/
 theorem abs_lipschitzObservation_sub_truncated_sub_le
     (H : Z → T → ℝ) (R : Z → ℝ) (M : ℝ)
     (hLip : ∀ z s t, |H z s - H z t| ≤ R z * dist s t)
@@ -177,6 +192,9 @@ def truncationResidualIncrement
   lipschitzIncrement H X i s t omega -
     truncatedLipschitzIncrement H R M X i s t omega
 
+/--
+@isnad1 id=measurab.3h11v.s6.d42213539bba from=translated src=- shape=12f68799 vocab=172e1d8c
+-/
 theorem measurable_truncationResidualIncrement
     (H : Z → T → ℝ) (R : Z → ℝ) (M : ℝ)
     (X : iota → Omega → Z) (hX : ∀ i, Measurable (X i))
@@ -188,6 +206,9 @@ theorem measurable_truncationResidualIncrement
       H R M X hX hH hRmeas i s t)
 
 omit [MeasurableSpace Omega] [MeasurableSpace Z] in
+/--
+@isnad1 id=le.1h12v.s6.d979657fd2df from=translated src=- shape=c26f885a vocab=e0d216a9
+-/
 theorem abs_truncationResidualIncrement_le
     (H : Z → T → ℝ) (R : Z → ℝ) (M : ℝ)
     (hLip : ∀ z s t, |H z s - H z t| ≤ R z * dist s t)
@@ -198,6 +219,9 @@ theorem abs_truncationResidualIncrement_le
     H R M hLip (X i omega) s t
 
 omit [PseudoMetricSpace T] in
+/--
+@isnad1 id=measurab.1h3v.s4.96f72ceffe34 from=translated src=- shape=f90732d9 vocab=6d5b5f9f
+-/
 theorem measurable_truncationTailEnvelope
     (R : Z → ℝ) (M : ℝ) (hRmeas : Measurable R) :
     Measurable (truncationTailEnvelope R M) := by
@@ -206,6 +230,9 @@ theorem measurable_truncationTailEnvelope
     hRmeas measurable_const
 
 omit [MeasurableSpace Z] [PseudoMetricSpace T] in
+/--
+@isnad1 id=le.1h4v.s5.5eeb28fd7e1c from=translated src=- shape=cd1a8a34 vocab=5393d4a0
+-/
 theorem truncationTailEnvelope_nonneg
     (R : Z → ℝ) (M : ℝ) (hR : ∀ z, 0 ≤ R z) (z : Z) :
     0 ≤ truncationTailEnvelope R M z := by
@@ -215,6 +242,9 @@ theorem truncationTailEnvelope_nonneg
   · exact le_rfl
 
 omit [MeasurableSpace Z] [PseudoMetricSpace T] in
+/--
+@isnad1 id=le.1h4v.s5.786c6541ec50 from=translated src=- shape=3a6c4715 vocab=5393d4a0
+-/
 theorem truncationTailEnvelope_le
     (R : Z → ℝ) (M : ℝ) (hR : ∀ z, 0 ≤ R z) (z : Z) :
     truncationTailEnvelope R M z ≤ R z := by
@@ -225,7 +255,9 @@ theorem truncationTailEnvelope_le
 
 omit [PseudoMetricSpace T] in
 /-- Integrability of the discarded envelope follows from integrability of
-the original one.-/
+the original one.
+@isnad1 id=integrab.4h6v.s6.e96272190fb3 from=translated src=- shape=c052dc49 vocab=94611b77
+-/
 theorem integrable_truncationTailEnvelope_comp
     (R : Z → ℝ) (M : ℝ) (hRmeas : Measurable R)
     (hR : ∀ z, 0 ≤ R z) (X : Omega → Z)
@@ -238,7 +270,9 @@ theorem integrable_truncationTailEnvelope_comp
     abs_of_nonneg (truncationTailEnvelope_nonneg R M hR (X omega))]
   exact truncationTailEnvelope_le R M hR (X omega)
 
-/-- The discarded increment is integrable under an `L¹` envelope.-/
+/-- The discarded increment is integrable under an `L¹` envelope.
+@isnad1 id=integrab.7h12v.s7.848dcb2a6e4d from=translated src=- shape=4cb54d27 vocab=a3b18043
+-/
 theorem integrable_truncationResidualIncrement
     [IsFiniteMeasure mu]
     (H : Z → T → ℝ) (R : Z → ℝ) {M : ℝ} (hM : 0 ≤ M)
@@ -263,7 +297,9 @@ def centeredAnchoredTruncationResidualProcess
       ∫ xi, truncationResidualIncrement H R M X i t o xi ∂mu)
 
 /-- The difference between the original and truncated centered processes is
-exactly the centered truncation remainder.-/
+exactly the centered truncation remainder.
+@isnad1 id=eq.7h14v.s7.c714abb7911a from=translated src=- shape=3e6a47d4 vocab=7244ac78
+-/
 theorem centeredAnchoredEmpiricalProcess_sub_truncated
     [IsFiniteMeasure mu]
     (H : Z → T → ℝ) (R : Z → ℝ) {M c : ℝ} (hM : 0 ≤ M)
@@ -299,7 +335,9 @@ theorem centeredAnchoredEmpiricalProcess_sub_truncated
   unfold truncationResidualIncrement
   ring
 
-/-- Algebraic increment identity for the centered truncation remainder.-/
+/-- Algebraic increment identity for the centered truncation remainder.
+@isnad1 id=eq.7h15v.s8.982c458f5f31 from=translated src=- shape=e70dc087 vocab=dc8f19d6
+-/
 theorem centeredAnchoredTruncationResidualProcess_sub
     [IsFiniteMeasure mu]
     (H : Z → T → ℝ) (R : Z → ℝ) {M c : ℝ} (hM : 0 ≤ M)
@@ -358,7 +396,9 @@ def centeredTruncationResidualCoefficient
       ∫ xi, truncationTailEnvelope R M (X i xi) ∂mu)
 
 /-- The centered truncation remainder is Lipschitz with its explicit random
-coefficient.-/
+coefficient.
+@isnad1 id=le.7h15v.s8.cf3beaef02a1 from=translated src=- shape=b651ba38 vocab=03b7eb42
+-/
 theorem abs_centeredAnchoredTruncationResidualProcess_sub_le
     [IsFiniteMeasure mu]
     (H : Z → T → ℝ) (R : Z → ℝ) {M c : ℝ} (hM : 0 ≤ M)
@@ -435,7 +475,9 @@ theorem abs_centeredAnchoredTruncationResidualProcess_sub_le
 
 omit [MeasurableSpace Omega] [MeasurableSpace Z] [PseudoMetricSpace T] in
 /-- A tail above a positive threshold is bounded by the square divided by
-that threshold.-/
+that threshold.
+@isnad1 id=le.2h4v.s6.7ee69d295929 from=translated src=- shape=9c13126d vocab=f5450c01
+-/
 theorem truncationTailEnvelope_le_inv_mul_sq
     (R : Z → ℝ) {M : ℝ} (hM : 0 < M) (hR : ∀ z, 0 ≤ R z) (z : Z) :
     truncationTailEnvelope R M z ≤ M⁻¹ * R z ^ 2 := by
@@ -449,7 +491,9 @@ theorem truncationTailEnvelope_le_inv_mul_sq
   · exact mul_nonneg (inv_nonneg.mpr hM.le) (sq_nonneg _)
 
 omit [PseudoMetricSpace T] in
-/-- Integral version of the square-over-threshold tail estimate.-/
+/-- Integral version of the square-over-threshold tail estimate.
+@isnad1 id=le.5h6v.s7.ea5035f1893e from=translated src=- shape=b424cf2b vocab=85c93fa7
+-/
 theorem integral_truncationTailEnvelope_le_inv_mul_integral_sq
     [IsFiniteMeasure mu]
     (R : Z → ℝ) {M : ℝ} (hM : 0 < M)
@@ -482,6 +526,9 @@ def empiricalEnvelopeSquareAverage
     ∑ i ∈ Finset.range (n + 1), R (X i omega) ^ 2
 
 omit [PseudoMetricSpace T] in
+/--
+@isnad1 id=measurab.2h5v.s5.0185363233d3 from=translated src=- shape=dfb2bbba vocab=0acd870e
+-/
 theorem measurable_empiricalEnvelopeSquareAverage
     (R : Z → ℝ) (hRmeas : Measurable R)
     (X : ℕ → Omega → Z) (hX : ∀ i, Measurable (X i)) (n : ℕ) :
@@ -492,6 +539,9 @@ theorem measurable_empiricalEnvelopeSquareAverage
     ((hRmeas.comp (hX i)).pow_const 2)
 
 omit [MeasurableSpace Omega] [MeasurableSpace Z] [PseudoMetricSpace T] in
+/--
+@isnad1 id=le.0h6v.s5.be74dc644b5a from=translated src=- shape=0e96c4ad vocab=2a444f06
+-/
 theorem empiricalEnvelopeSquareAverage_nonneg
     (R : Z → ℝ) (X : ℕ → Omega → Z) (n : ℕ) (omega : Omega) :
     0 ≤ empiricalEnvelopeSquareAverage R X n omega := by
@@ -499,7 +549,9 @@ theorem empiricalEnvelopeSquareAverage_nonneg
   positivity
 
 omit [MeasurableSpace Z] [PseudoMetricSpace T] in
-/-- The empirical squared-envelope average is integrable under `L²`.-/
+/-- The empirical squared-envelope average is integrable under `L²`.
+@isnad1 id=integrab.1h6v.s6.194f6f4e2b2a from=translated src=- shape=f407b3d4 vocab=fe592d1a
+-/
 theorem integrable_empiricalEnvelopeSquareAverage
     (R : Z → ℝ) (X : ℕ → Omega → Z)
     (hRL2 : ∀ i, MemLp (fun omega ↦ R (X i omega)) 2 mu) (n : ℕ) :
@@ -511,7 +563,9 @@ theorem integrable_empiricalEnvelopeSquareAverage
 
 omit [MeasurableSpace Z] [PseudoMetricSpace T] in
 /-- The expected empirical squared-envelope average inherits the common
-second-moment bound.-/
+second-moment bound.
+@isnad1 id=le.2h7v.s7.51468766ddbd from=translated src=- shape=8129da67 vocab=011628ae
+-/
 theorem integral_empiricalEnvelopeSquareAverage_le
     (R : Z → ℝ) (X : ℕ → Omega → Z) {K : ℝ}
     (hRL2 : ∀ i, MemLp (fun omega ↦ R (X i omega)) 2 mu)
@@ -539,7 +593,9 @@ theorem integral_empiricalEnvelopeSquareAverage_le
       field_simp
 
 omit [MeasurableSpace Z] [PseudoMetricSpace T] in
-/-- Uniform Markov bound for the empirical squared-envelope average.-/
+/-- Uniform Markov bound for the empirical squared-envelope average.
+@isnad1 id=le.3h8v.s7.c33cd5fc84f7 from=translated src=- shape=b6f6af0a vocab=254e8043
+-/
 theorem measureReal_empiricalEnvelopeSquareAverage_gt_le
     [IsFiniteMeasure mu]
     (R : Z → ℝ) (X : ℕ → Omega → Z) {K C : ℝ} (hC : 0 < C)
@@ -572,7 +628,9 @@ theorem measureReal_empiricalEnvelopeSquareAverage_gt_le
 omit [PseudoMetricSpace T] in
 /-- At the natural square-root truncation level, the remainder coefficient is
 bounded by the empirical second moment plus its deterministic expectation
-bound.-/
+bound.
+@isnad1 id=le.5h8v.s8.4b8469d86e37 from=translated src=- shape=f5f2c0de vocab=6c3f3a13
+-/
 theorem centeredTruncationResidualCoefficient_sqrt_le
     [IsProbabilityMeasure mu]
     (R : Z → ℝ) (hRmeas : Measurable R) (hR : ∀ z, 0 ≤ R z)
@@ -642,6 +700,9 @@ theorem centeredTruncationResidualCoefficient_sqrt_le
       field_simp
 
 omit [MeasurableSpace Z] [PseudoMetricSpace T] in
+/--
+@isnad1 id=eq.0h13v.s6.fac24b30e416 from=translated src=- shape=058dc9f4 vocab=f0588eec
+-/
 @[simp]
 theorem centeredAnchoredTruncationResidualProcess_anchor
     (H : Z → T → ℝ) (R : Z → ℝ) (M c : ℝ)
@@ -678,6 +739,9 @@ def centeredAnchoredEmpiricalContinuousMap
       (Finset.range (n + 1)) 0 omega).comp continuous_subtype_val
 
 omit [NormedSpace ℝ E] [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.6h10v.s8.e805ff8ab7e8 from=translated src=- shape=53c9f6c0 vocab=7e4cf5ff
+-/
 @[simp]
 theorem centeredAnchoredEmpiricalContinuousMap_apply
     [IsProbabilityMeasure mu]
@@ -713,6 +777,9 @@ def centeredTruncationResidualContinuousMap
       H R (a := 1) (by norm_num) X hX hHmeas hHcont hRmeas hR hLip n omega
 
 omit [NormedSpace ℝ E] [FiniteDimensional ℝ E] in
+/--
+@isnad1 id=eq.7h10v.s8.5686fa1ec63a from=translated src=- shape=a235afc2 vocab=241eef7d
+-/
 @[simp]
 theorem centeredTruncationResidualContinuousMap_apply
     [IsProbabilityMeasure mu]
@@ -740,7 +807,9 @@ theorem centeredTruncationResidualContinuousMap_apply
       (Finset.range (n + 1)) 0 omega (t : E)
 
 omit [NormedSpace ℝ E] [FiniteDimensional ℝ E] in
-/-- The original path is the sum of its truncated and residual parts.-/
+/-- The original path is the sum of its truncated and residual parts.
+@isnad1 id=eq.7h9v.s9.e7eb9383ce03 from=translated src=- shape=53dc1232 vocab=3f83876d
+-/
 theorem centeredTruncated_add_residual_eq_centeredAnchored
     [IsProbabilityMeasure mu]
     (H : Z → E → ℝ) (R : Z → ℝ)
@@ -761,7 +830,9 @@ theorem centeredTruncated_add_residual_eq_centeredAnchored
   abel
 
 omit [NormedSpace ℝ E] [FiniteDimensional ℝ E] in
-/-- Pathwise Lipschitz estimate for the square-root truncation remainder.-/
+/-- Pathwise Lipschitz estimate for the square-root truncation remainder.
+@isnad1 id=le.8h12v.s9.ada8ff0d8eba from=translated src=- shape=fbcbe80d vocab=f41dfb49
+-/
 theorem dist_centeredTruncationResidualContinuousMap_le
     [IsProbabilityMeasure mu]
     (H : Z → E → ℝ) (R : Z → ℝ)
@@ -805,7 +876,9 @@ theorem dist_centeredTruncationResidualContinuousMap_le
 
 omit [NormedSpace ℝ E] [FiniteDimensional ℝ E] in
 /-- The sup norm of the remainder on the unit ball is controlled by the same
-random Lipschitz coefficient.-/
+random Lipschitz coefficient.
+@isnad1 id=le.8h10v.s8.ae7d2cd07ae7 from=translated src=- shape=262f113d vocab=b0206c63
+-/
 theorem norm_centeredTruncationResidualContinuousMap_le
     [IsProbabilityMeasure mu]
     [CompactSpace (EuclideanUnitBall E)]
@@ -850,7 +923,9 @@ theorem norm_centeredTruncationResidualContinuousMap_le
     _ ≤ D * 1 := mul_le_mul_of_nonneg_left htz hD
     _ = D := mul_one D
 
-/-- Uniform tightness of the square-root truncation remainders.-/
+/-- Uniform tightness of the square-root truncation remainders.
+@isnad1 id=istightm.10h8v.s9.f90cd1fc0e66 from=translated src=- shape=c3101646 vocab=9e28973c
+-/
 theorem isTightMeasureSet_range_centeredTruncationResidualContinuousMap
     [IsProbabilityMeasure mu]
     [MeasurableSpace C(EuclideanUnitBall E, ℝ)]
@@ -946,7 +1021,9 @@ theorem isTightMeasureSet_range_centeredTruncationResidualContinuousMap
 /-- Uniform tightness of the original, untruncated centered empirical
 process.  The proof combines the already established tightness of the
 square-root truncation with tightness of the `L²` remainder and then applies
-continuous addition on path space.-/
+continuous addition on path space.
+@isnad1 id=istightm.12h8v.s9.ac706de3999d from=translated src=- shape=969122bd vocab=bc8082f5
+-/
 theorem isTightMeasureSet_range_centeredAnchoredEmpiricalContinuousMap
     [IsProbabilityMeasure mu]
     [MeasurableSpace C(EuclideanUnitBall E, ℝ)]

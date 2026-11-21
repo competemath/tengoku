@@ -46,12 +46,18 @@ def finiteTruncatedGaussianScale (I : Finset iota) (c : ℝ≥0) (K : ℝ) : ℝ
 def finiteTruncatedLinearScale (c : ℝ≥0) (M : ℝ) : ℝ :=
   2 * (c : ℝ) * M
 
+/--
+@isnad1 id=le.1h4v.s5.da6232a03752 from=translated src=- shape=4a3591ab vocab=965591f1
+-/
 theorem finiteTruncatedGaussianScale_nonneg
     (I : Finset iota) (c : ℝ≥0) {K : ℝ} (hK : 0 ≤ K) :
     0 ≤ finiteTruncatedGaussianScale I c K := by
   unfold finiteTruncatedGaussianScale
   positivity
 
+/--
+@isnad1 id=le.1h2v.s4.b0cc3b4817ca from=translated src=- shape=696abc3b vocab=d33648e0
+-/
 theorem finiteTruncatedLinearScale_nonneg
     (c : ℝ≥0) {M : ℝ} (hM : 0 ≤ M) :
     0 ≤ finiteTruncatedLinearScale c M := by
@@ -60,7 +66,9 @@ theorem finiteTruncatedLinearScale_nonneg
 
 /-- Uniform Bernstein chaining for a finite centered truncated process on a
 Euclidean unit ball.  Unlike the prefix theorem, this statement accepts an
-arbitrary finite index type and arbitrary normalization `c`.-/
+arbitrary finite index type and arbitrary normalization `c`.
+@isnad1 id=other.14h13v.s9.4f86c6eb8199 from=translated src=- shape=1db43808 vocab=e5090ba4
+-/
 theorem measureReal_unitBall_finite_centeredTruncated_largeDeviation_le
     [IsProbabilityMeasure mu]
     (H : Z → E → ℝ) (R : Z → ℝ) {M K x : ℝ}

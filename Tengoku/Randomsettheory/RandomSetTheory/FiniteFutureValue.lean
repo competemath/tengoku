@@ -40,6 +40,9 @@ def finiteCoordinateBlock (Y : Nat -> Omega -> Z) (I : Finset Nat)
     (omega : Omega) : I -> Z :=
   fun j => Y j omega
 
+/--
+@isnad1 id=measurab.1h5v.s6.238ab2150a69 from=translated src=- shape=6d8c1f47 vocab=747fb415
+-/
 theorem measurable_finiteCoordinateBlock
     (Y : Nat -> Omega -> Z) (hY : forall j, Measurable (Y j))
     (I : Finset Nat) :
@@ -51,7 +54,9 @@ abbrev finiteFutureBlock (Y : Nat -> Omega -> Z) (i n : Nat) :=
   finiteCoordinateBlock Y (Finset.Ico (i + 1) n)
 
 /-- A mutually independent sequence makes the padded prefix through `i`
-independent of the remaining finite block `[i + 1,n)`.-/
+independent of the remaining finite block `[i + 1,n)`.
+@isnad1 id=indepfun.2h8v.s7.abf30beb820e from=translated src=- shape=4c0cbffc vocab=f6b9f115
+-/
 theorem iIndepFun.indepFun_paddedPrefix_futureBlock
     {mu : Measure Omega} (z0 : Z) (Y : Nat -> Omega -> Z)
     (hIndep : iIndepFun Y mu) (hY : forall j, Measurable (Y j))
@@ -95,7 +100,9 @@ theorem iIndepFun.indepFun_paddedPrefix_futureBlock
   simpa only [U, Function.id_comp] using hcomp
 
 /-- Under identical coordinate laws, the unrevealed finite block has the
-corresponding finite product law.-/
+corresponding finite product law.
+@isnad1 id=eq.3h8v.s9.387e9e415021 from=translated src=- shape=6a1eb6f5 vocab=faa6e80b
+-/
 theorem iIndepFun.map_finiteFutureBlock_eq_pi
     {mu : Measure Omega} [IsProbabilityMeasure mu]
     (Y : Nat -> Omega -> Z) (hIndep : iIndepFun Y mu)
@@ -125,6 +132,9 @@ def mergePrefixFuture (i n : Nat)
     else prefixFuture.2
       ⟨j, Finset.mem_Ico.mpr ⟨Nat.le_of_not_gt h, j.isLt⟩⟩
 
+/--
+@isnad1 id=measurab.0h3v.s7.e4d54600c6a0 from=translated src=- shape=edd57d14 vocab=741abd72
+-/
 theorem measurable_mergePrefixFuture (i n : Nat) :
     Measurable (mergePrefixFuture (Z := Z) i n) := by
   apply measurable_pi_lambda
@@ -139,7 +149,9 @@ theorem measurable_mergePrefixFuture (i n : Nat) :
 
 omit [MeasurableSpace Z] in
 /-- Merging the actual prefix and future block recovers the first `n`
-coordinates exactly.-/
+coordinates exactly.
+@isnad1 id=eq.0h7v.s6.553cfa6b47b3 from=translated src=- shape=fd0e492f vocab=082f07dc
+-/
 theorem mergePrefixFuture_comp
     (z0 : Z) (Y : Nat -> Omega -> Z) (i n : Nat) (omega : Omega) :
     mergePrefixFuture i n
@@ -170,6 +182,9 @@ def finiteFutureValue (mu : Measure Omega) (z0 : Z)
   nextPrefixFutureValue mu Y i n Phi
     (insertCurrentIntoPaddedPrefix z0 i (past, current))
 
+/--
+@isnad1 id=strongly.1h8v.s6.79d319610a3c from=translated src=- shape=1652f65f vocab=60196787
+-/
 theorem stronglyMeasurable_nextPrefixFutureValue
     {mu : Measure Omega} [SFinite mu]
     (Y : Nat -> Omega -> Z) (i n : Nat)
@@ -184,6 +199,9 @@ theorem stronglyMeasurable_nextPrefixFutureValue
       ∂(mu.map (finiteFutureBlock Y i n)))
   exact hjoint.integral_prod_right'
 
+/--
+@isnad1 id=strongly.1h9v.s6.1bfb5d15a10e from=translated src=- shape=2112adbc vocab=235d1606
+-/
 theorem stronglyMeasurable_uncurry_finiteFutureValue
     {mu : Measure Omega} [SFinite mu]
     (z0 : Z) (Y : Nat -> Omega -> Z)
@@ -198,7 +216,9 @@ theorem stronglyMeasurable_uncurry_finiteFutureValue
 /-- A finite sum of coordinatewise integrable envelopes makes every frozen
 past/current future slice integrable.  This is the non-bounded integrability
 input needed to apply the integral contraction theorem to empirical
-statistics.-/
+statistics.
+@isnad1 id=integrab.7h13v.s9.e34cdc08774a from=translated src=- shape=9d2e8363 vocab=59969428
+-/
 theorem integrable_terminal_futureSlice_of_sum_envelope
     {mu : Measure Omega} {nu : Measure Z}
     [IsProbabilityMeasure mu]
@@ -252,7 +272,9 @@ theorem integrable_terminal_futureSlice_of_sum_envelope
 
 /-- The future-integrated value is a concrete version of the conditional
 expectation at time `i + 1` of a terminal statistic of the first `n`
-coordinates.-/
+coordinates.
+@isnad1 id=eventual.4h9v.s7.fed9fd160da3 from=translated src=- shape=d3e9c228 vocab=1dfe8eb2
+-/
 theorem condExp_terminal_ae_eq_finiteFutureValue
     [StandardBorelSpace Z] [Nonempty Z]
     {mu : Measure Omega} [IsProbabilityMeasure mu]
@@ -303,6 +325,9 @@ theorem condExp_terminal_ae_eq_finiteFutureValue
 /-! ## Contraction of terminal replace-one moduli -/
 
 omit [MeasurableSpace Z] in
+/--
+@isnad1 id=eq.1h7v.s6.61692786f274 from=translated src=- shape=66f13dca vocab=280f010e
+-/
 theorem mergePrefixFuture_insertCurrent_apply_current
     (z0 : Z) (i n : Nat) (hi : i < n)
     (past : Nat -> Z) (current : Z)
@@ -314,7 +339,9 @@ theorem mergePrefixFuture_insertCurrent_apply_current
 
 omit [MeasurableSpace Z] in
 /-- Changing the displayed current coordinate leaves every other coordinate
-of the merged terminal vector unchanged.-/
+of the merged terminal vector unchanged.
+@isnad1 id=eq.2h9v.s7.eb28bf121a29 from=translated src=- shape=5a6f129b vocab=a0e1e823
+-/
 theorem mergePrefixFuture_insertCurrent_eq_of_ne
     (z0 : Z) (i n : Nat) (hi : i < n)
     (past : Nat -> Z) (current current' : Z)
@@ -340,7 +367,9 @@ theorem mergePrefixFuture_insertCurrent_eq_of_ne
 Unlike the abstract ghost endpoint, the hypothesis `hreplace` concerns only
 the original terminal statistic `Phi`.  The desired modulus of the value
 function is a conclusion, so this theorem removes the circular certificate
-from the product construction.-/
+from the product construction.
+@isnad1 id=le.4h13v.s9.307ca26e7b28 from=translated src=- shape=2f38d97d vocab=7d1c4d82
+-/
 theorem abs_finiteFutureValue_sub_le_of_terminal_replaceOne
     {mu : Measure Omega} [IsProbabilityMeasure mu]
     (z0 : Z) (Y : Nat -> Omega -> Z)
@@ -391,7 +420,9 @@ theorem abs_finiteFutureValue_sub_le_of_terminal_replaceOne
 /-! ## Canonical Doob representation -/
 
 /-- The successor Doob difference of a finite-coordinate statistic is the
-centred current fibre of its concrete future-integrated value function.-/
+centred current fibre of its concrete future-integrated value function.
+@isnad1 id=eventual.4h9v.s8.4e02b77f8ab6 from=translated src=- shape=e92ae183 vocab=e0d7db24
+-/
 theorem doobCenteredDifference_terminal_succ_ae_eq_finiteFutureValue
     {mu : Measure Omega}
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
@@ -438,17 +469,26 @@ def finiteSuccessorEnvelope (A : Fin n -> Z -> Real) : Nat -> Z -> Real
   | i + 1 => if hi : i < n then A ⟨i, hi⟩ else 0
 
 omit [MeasurableSpace Z] in
+/--
+@isnad1 id=eq.0h3v.s5.a9de589c925a from=translated src=- shape=6b8c7df9 vocab=ceffba82
+-/
 @[simp]
 theorem finiteSuccessorEnvelope_zero (A : Fin n -> Z -> Real) :
     finiteSuccessorEnvelope A 0 = 0 := rfl
 
 omit [MeasurableSpace Z] in
+/--
+@isnad1 id=eq.1h4v.s5.5cba0507f1e7 from=translated src=- shape=1ccb2df6 vocab=61e96262
+-/
 @[simp]
 theorem finiteSuccessorEnvelope_succ (A : Fin n -> Z -> Real)
     (i : Nat) (hi : i < n) :
     finiteSuccessorEnvelope A (i + 1) = A ⟨i, hi⟩ := by
   simp [finiteSuccessorEnvelope, hi]
 
+/--
+@isnad1 id=measurab.2h5v.s6.7279ef673b52 from=translated src=- shape=8f9b5dc4 vocab=355bdd2c
+-/
 theorem measurable_finiteCoordinateSumSupremum {T : Type*}
     (s : Finset T) (hs : s.Nonempty)
     (W : Fin n -> Z -> T -> Real)
@@ -461,7 +501,9 @@ theorem measurable_finiteCoordinateSumSupremum {T : Type*}
 
 omit [MeasurableSpace Z] in
 /-- The terminal additive finite supremum has the expected replace-one
-modulus, proved directly from the observation envelopes.-/
+modulus, proved directly from the observation envelopes.
+@isnad1 id=le.4h9v.s7.61933e36c90a from=translated src=- shape=f6cb34d0 vocab=458f4f80
+-/
 theorem abs_finiteCoordinateSumSupremum_replace_le_add_envelopes
     {T : Type*} (s : Finset T) (hs : s.Nonempty)
     (W : Fin n -> Z -> T -> Real) (A : Fin n -> Z -> Real)
@@ -500,7 +542,9 @@ theorem abs_finiteCoordinateSumSupremum_replace_le_add_envelopes
 
 omit [MeasurableSpace Z] in
 /-- The sum of the observation envelopes is a common envelope for the
-terminal finite supremum.-/
+terminal finite supremum.
+@isnad1 id=le.3h7v.s6.8f734972c8e0 from=translated src=- shape=e57a6844 vocab=832d1595
+-/
 theorem abs_finiteCoordinateSumSupremum_le_sum_envelopes
     {T : Type*} (s : Finset T) (hs : s.Nonempty)
     (W : Fin n -> Z -> T -> Real) (A : Fin n -> Z -> Real)
@@ -530,7 +574,9 @@ theorem abs_finiteCoordinateSumSupremum_le_sum_envelopes
     abs_of_nonneg hsumNonneg] using hbound
 
 /-- Every frozen future slice of an additive finite supremum is integrable
-from ordinary `L¹` coordinate envelopes.-/
+from ordinary `L¹` coordinate envelopes.
+@isnad1 id=integrab.8h15v.s9.395c2a1ce3d3 from=translated src=- shape=c1be38b4 vocab=030d61a9
+-/
 theorem integrable_finiteCoordinateSumSupremum_futureSlice
     {T : Type*} {mu : Measure Omega} {nu : Measure Z}
     [IsProbabilityMeasure mu] [IsProbabilityMeasure nu]
@@ -558,7 +604,9 @@ theorem integrable_finiteCoordinateSumSupremum_futureSlice
 
 /-- Concrete, non-circular replace-one modulus for the future-integrated
 finite empirical supremum.  Its assumptions mention only the primitive
-coordinate summands and their ordinary envelopes.-/
+coordinate summands and their ordinary envelopes.
+@isnad1 id=le.9h16v.s8.c314cef021ae from=translated src=- shape=35b22f12 vocab=e497437a
+-/
 theorem abs_finiteFutureValue_coordinateSumSupremum_sub_le
     {T : Type*} {mu : Measure Omega} {nu : Measure Z}
     [IsProbabilityMeasure mu] [IsProbabilityMeasure nu]

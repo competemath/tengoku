@@ -30,7 +30,9 @@ namespace RandomSetTheory
 variable {Ω : Type*} [MeasurableSpace Ω]
 
 /-- A real-valued compact convex random set has an Aumann expectation which
-is exactly a nonempty closed interval.-/
+is exactly a nonempty closed interval.
+@isnad1 id=ex.6h4v.s7.52bee7a0f97a from=translated src=- shape=cf6abae2 vocab=afcc1862
+-/
 theorem exists_Icc_eq_aumannExpectation_real
     {μ : Measure Ω} {S : Ω → Set ℝ}
     (hS : RandomSet.IsEffrosMeasurable S)
@@ -77,7 +79,9 @@ theorem exists_Icc_eq_aumannExpectation_real
   · exact hAconv.ordConnected.out ha hb
 
 /-- General compactness, before closure, for real-valued compact convex
-Effros correspondences with an integrable envelope.-/
+Effros correspondences with an integrable envelope.
+@isnad1 id=iscompac.6h4v.s7.40f524551320 from=translated src=- shape=18d104c6 vocab=780169b9
+-/
 theorem aumannExpectation_isCompact_real
     {μ : Measure Ω} {S : Ω → Set ℝ}
     (hS : RandomSet.IsEffrosMeasurable S)
@@ -93,7 +97,9 @@ theorem aumannExpectation_isCompact_real
   exact isCompact_Icc
 
 /-- Real-valued Aumann expectations under the standard hypotheses are
-closed without a `closure` wrapper.-/
+closed without a `closure` wrapper.
+@isnad1 id=isclosed.6h4v.s7.794e59cdcd01 from=translated src=- shape=21fd626f vocab=b149bde0
+-/
 theorem aumannExpectation_isClosed_real
     {μ : Measure Ω} {S : Ω → Set ℝ}
     (hS : RandomSet.IsEffrosMeasurable S)
@@ -106,7 +112,9 @@ theorem aumannExpectation_isClosed_real
   (aumannExpectation_isCompact_real hS hcompact hne hconv hg hdom).isClosed
 
 /-- The closure used by the ambient finite-dimensional theory disappears
-entirely in the real-valued convex case.-/
+entirely in the real-valued convex case.
+@isnad1 id=eq.6h4v.s7.84a9b88b012d from=translated src=- shape=2edca1d5 vocab=c70eadf7
+-/
 theorem closure_aumannExpectation_eq_real
     {μ : Measure Ω} {S : Ω → Set ℝ}
     (hS : RandomSet.IsEffrosMeasurable S)

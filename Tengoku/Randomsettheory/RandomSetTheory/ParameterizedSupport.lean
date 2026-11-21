@@ -31,7 +31,9 @@ noncomputable section
 namespace RandomSetTheory
 
 /-- A jointly measurable real integrand remains measurable in its external
-parameter after integrating over an `SFinite` measure.-/
+parameter after integrating over an `SFinite` measure.
+@isnad1 id=measurab.1h4v.s6.b7d895860530 from=translated src=- shape=92421cc1 vocab=a6d007de
+-/
 theorem measurable_integral_prod_right_of_measurable
     {A Ω : Type*} [MeasurableSpace A] [MeasurableSpace Ω]
     (μ : Measure Ω) [SFinite μ] {f : A × Ω → ℝ} (hf : Measurable f) :
@@ -39,7 +41,9 @@ theorem measurable_integral_prod_right_of_measurable
   hf.stronglyMeasurable.integral_prod_right'.measurable
 
 /-- Joint measurability in `(θ,u)` of the integrated support function of a
-parameter-dependent Carathéodory image.-/
+parameter-dependent Carathéodory image.
+@isnad1 id=measurab.5h7v.s8.09f7658a477a from=translated src=- shape=193ac29c vocab=a6eca656
+-/
 theorem measurable_integral_supportFunction_caratheodoryImage_param
     {Ω Θ X H : Type*} [MeasurableSpace Ω] [MeasurableSpace Θ]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -67,7 +71,9 @@ theorem measurable_integral_supportFunction_caratheodoryImage_param
 
 /-- In finite dimension, the preceding measurable integral is exactly the
 joint support function of the closed parameterized Aumann expectation.
-Compactness of each closure is discharged by the common integrable envelope.-/
+Compactness of each closure is discharged by the common integrable envelope.
+@isnad1 id=measurab.7h8v.s8.dc4af004b983 from=translated src=- shape=bac7d268 vocab=7d66de64
+-/
 theorem measurable_supportFunction_closure_aumannExpectation_caratheodoryImage_param
     {Ω Θ X H : Type*} [MeasurableSpace Ω] [MeasurableSpace Θ]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]

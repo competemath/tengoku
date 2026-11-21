@@ -44,7 +44,9 @@ variable {X : Type*}
 
 /-- Under weak convergence of laws on nonempty compact sets, the limiting
 probability of hitting an open test set is bounded above by the liminf of
-the approximating hitting probabilities.-/
+the approximating hitting probabilities.
+@isnad1 id=le.2h6v.s8.5ad7416b9ad0 from=translated src=- shape=03d2416a vocab=da7559b9
+-/
 theorem le_liminf_measure_hyperspaceHitEvent_open_of_tendsto
     {ι : Type*} {L : Filter ι}
     [MetricSpace X]
@@ -61,7 +63,9 @@ theorem le_liminf_measure_hyperspaceHitEvent_open_of_tendsto
 
 /-- Under weak convergence of laws on nonempty compact sets, the limsup of
 the probabilities of hitting a closed test set is bounded above by the
-limiting hitting probability.-/
+limiting hitting probability.
+@isnad1 id=le.2h6v.s8.e43d9530701b from=translated src=- shape=65a8f54b vocab=818f80d1
+-/
 theorem limsup_measure_hyperspaceHitEvent_closed_le_of_tendsto
     {ι : Type*} {L : Filter ι}
     [MetricSpace X]
@@ -77,7 +81,9 @@ theorem limsup_measure_hyperspaceHitEvent_closed_le_of_tendsto
     (TopologicalSpace.NonemptyCompacts.isClosed_inter_nonempty_of_isClosed hF)
 
 /-- Compact-test form of
-`limsup_measure_hyperspaceHitEvent_closed_le_of_tendsto`.-/
+`limsup_measure_hyperspaceHitEvent_closed_le_of_tendsto`.
+@isnad1 id=le.2h6v.s8.4255f0b49ec3 from=translated src=- shape=65a8f54b vocab=9403e2e3
+-/
 theorem limsup_measure_hyperspaceHitEvent_compact_le_of_tendsto
     {ι : Type*} {L : Filter ι}
     [MetricSpace X]
@@ -93,7 +99,9 @@ theorem limsup_measure_hyperspaceHitEvent_compact_le_of_tendsto
 
 /-- Weakly convergent hyperspace laws give convergent hitting
 probabilities at every hitting event whose frontier is null under the
-limiting law.-/
+limiting law.
+@isnad1 id=tendsto.2h6v.s8.ab818957dc00 from=translated src=- shape=6a932886 vocab=00d60c2c
+-/
 theorem tendsto_measure_hyperspaceHitEvent_of_null_frontier_of_tendsto
     {ι : Type*} {L : Filter ι}
     [MetricSpace X]
@@ -126,7 +134,9 @@ variable [MetricSpace X]
   {Klim : Ω' → NonemptyCompacts X} {L : Filter ι}
 
 /-- Portmanteau's open-set inequality, written as an inequality between
-capacity functionals of hyperspace-valued random variables.-/
+capacity functionals of hyperspace-valued random variables.
+@isnad1 id=le.2h12v.s7.d28282cef270 from=translated src=- shape=2c1b509b vocab=2c39dccf
+-/
 theorem le_liminf_capacityFunctional_open_of_tendstoInDistribution
     (hK : TendstoInDistribution K L Klim μ μ')
     {U : Set X} (hU : IsOpen U) :
@@ -144,7 +154,9 @@ theorem le_liminf_capacityFunctional_open_of_tendstoInDistribution
     Set.preimage_ofPred_eq] using hport
 
 /-- Portmanteau's closed-set inequality, written as an inequality between
-capacity functionals of hyperspace-valued random variables.-/
+capacity functionals of hyperspace-valued random variables.
+@isnad1 id=le.2h12v.s7.40efeb075901 from=translated src=- shape=7211c14a vocab=ccc8cb1b
+-/
 theorem limsup_capacityFunctional_closed_le_of_tendstoInDistribution
     (hK : TendstoInDistribution K L Klim μ μ')
     {F : Set X} (hF : IsClosed F) :
@@ -162,7 +174,9 @@ theorem limsup_capacityFunctional_closed_le_of_tendstoInDistribution
     Set.preimage_ofPred_eq] using hport
 
 /-- Compact-test form of
-`TendstoInDistribution.limsup_capacityFunctional_closed_le`.-/
+`TendstoInDistribution.limsup_capacityFunctional_closed_le`.
+@isnad1 id=le.2h12v.s7.8c4871a2dcc0 from=translated src=- shape=7211c14a vocab=1017991d
+-/
 theorem limsup_capacityFunctional_compact_le_of_tendstoInDistribution
     (hK : TendstoInDistribution K L Klim μ μ')
     {A : Set X} (hA : IsCompact A) :
@@ -173,7 +187,9 @@ theorem limsup_capacityFunctional_compact_le_of_tendstoInDistribution
 
 /-- At a hyperspace hitting event which is measurable and has null frontier
 under the limiting law, convergence in distribution gives convergence of
-the corresponding capacity functionals.-/
+the corresponding capacity functionals.
+@isnad1 id=tendsto.3h12v.s8.5d438c98b99a from=translated src=- shape=4a3b457d vocab=98909b33
+-/
 theorem tendsto_capacityFunctional_of_null_frontier_of_tendstoInDistribution
     (hK : TendstoInDistribution K L Klim μ μ')
     {A : Set X}
@@ -195,7 +211,9 @@ theorem tendsto_capacityFunctional_of_null_frontier_of_tendstoInDistribution
     Set.preimage_ofPred_eq] using hport
 
 /-- Open-test continuity-set form for hyperspace-valued convergence in
-distribution.-/
+distribution.
+@isnad1 id=tendsto.3h12v.s8.fab4c0425132 from=translated src=- shape=a7eb4c20 vocab=e211a864
+-/
 theorem tendsto_capacityFunctional_open_of_null_frontier_of_tendstoInDistribution
     (hK : TendstoInDistribution K L Klim μ μ')
     {U : Set X} (hU : IsOpen U)
@@ -211,7 +229,9 @@ theorem tendsto_capacityFunctional_open_of_null_frontier_of_tendstoInDistributio
     hUfrontier
 
 /-- Closed-test continuity-set form for hyperspace-valued convergence in
-distribution.-/
+distribution.
+@isnad1 id=tendsto.3h12v.s8.7e53bf1ea0d6 from=translated src=- shape=a7eb4c20 vocab=15c7300c
+-/
 theorem tendsto_capacityFunctional_closed_of_null_frontier_of_tendstoInDistribution
     (hK : TendstoInDistribution K L Klim μ μ')
     {F : Set X} (hF : IsClosed F)
@@ -227,7 +247,9 @@ theorem tendsto_capacityFunctional_closed_of_null_frontier_of_tendstoInDistribut
     hFfrontier
 
 /-- Compact-test continuity-set form for hyperspace-valued convergence in
-distribution.-/
+distribution.
+@isnad1 id=tendsto.3h12v.s8.68060a28cd2d from=translated src=- shape=a7eb4c20 vocab=16a071d0
+-/
 theorem tendsto_capacityFunctional_compact_of_null_frontier_of_tendstoInDistribution
     (hK : TendstoInDistribution K L Klim μ μ')
     {A : Set X} (hA : IsCompact A)
@@ -259,7 +281,9 @@ distribution of their bundled hyperspace-valued realizations.
 
 This is the bridge which lets all the capacity Portmanteau theorems above
 be applied without introducing a separate notion of weak convergence for
-random sets.-/
+random sets.
+@isnad1 id=tendstoi.7h9v.s8.c8346c017998 from=translated src=- shape=b62a266f vocab=3d9889fb
+-/
 theorem tendstoInDistribution_bundleNonemptyCompacts_of_tendsto_map
     {νs : ι → ProbabilityMeasure Ω} {ν : ProbabilityMeasure Ω'}
     {S : ι → Ω → Set X} {T : Ω' → Set X}
@@ -292,7 +316,9 @@ theorem tendstoInDistribution_bundleNonemptyCompacts_of_tendsto_map
 
 /-- Direct capacity form of Portmanteau for the pushforward laws of
 compact-valued Effros correspondences.  It packages both the open-test
-liminf inequality and the closed-test limsup inequality.-/
+liminf inequality and the closed-test limsup inequality.
+@isnad1 id=and.7h9v.s8.04ef1b66e2e4 from=translated src=- shape=cc1950d9 vocab=18ed6db2
+-/
 theorem capacity_portmanteau_effros_of_tendsto_map
     {νs : ι → ProbabilityMeasure Ω} {ν : ProbabilityMeasure Ω'}
     {S : ι → Ω → Set X} {T : Ω' → Set X}

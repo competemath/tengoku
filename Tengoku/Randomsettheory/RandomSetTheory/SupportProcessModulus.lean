@@ -46,6 +46,9 @@ def supportProcessDirectionConstant {I : Type*} (c : ℝ) (s : Finset I)
     (R : I → ℝ) (RL : ℝ) : ℝ :=
   |c| * (|(s.card : ℝ)⁻¹ * ∑ i ∈ s, R i| + |RL|)
 
+/--
+@isnad1 id=le.0h5v.s4.88d03a316aac from=translated src=- shape=44c9b96a vocab=acfdb43e
+-/
 @[simp]
 theorem supportProcessDirectionConstant_nonneg {I : Type*} (c : ℝ)
     (s : Finset I) (R : I → ℝ) (RL : ℝ) :
@@ -54,7 +57,9 @@ theorem supportProcessDirectionConstant_nonneg {I : Type*} (c : ℝ)
 
 /-- Radius control makes the centred and scaled empirical support process
 Lipschitz in its direction.  The estimate is pathwise and therefore applies
-equally to deterministic sets and to every realization of random sets.-/
+equally to deterministic sets and to every realization of random sets.
+@isnad1 id=le.6h10v.s7.b06565c3791b from=translated src=- shape=85d6c834 vocab=304aca3c
+-/
 theorem abs_scaledCenteredSupportProcess_sub_le
     {I : Type*} (c : ℝ) (s : Finset I) (K : I → Set E) (L : Set E)
     (R : I → ℝ) (RL : ℝ)
@@ -97,7 +102,9 @@ theorem abs_scaledCenteredSupportProcess_sub_le
 
 /-- The preceding pointwise estimate packaged as a genuine global
 `LipschitzWith` statement.  In particular, every realization of the scaled
-support process has a continuous sample path in the direction variable.-/
+support process has a continuous sample path in the direction variable.
+@isnad1 id=lipschit.6h8v.s7.ac3399d41550 from=translated src=- shape=347ed11a vocab=eb12e05a
+-/
 theorem lipschitzWith_scaledCenteredSupportProcess
     {I : Type*} (c : ℝ) (s : Finset I) (K : I → Set E) (L : Set E)
     (R : I → ℝ) (RL : ℝ)
@@ -121,7 +128,9 @@ theorem lipschitzWith_scaledCenteredSupportProcess
 
 /-- In finite dimension the absolute scaled support process attains its
 maximum on the unit sphere.  Thus the supremum occurring in pointwise
-random-set limit statements is an actual finite maximum for every sample.-/
+random-set limit statements is an actual finite maximum for every sample.
+@isnad1 id=ex.6h8v.s8.8b116bc24c37 from=translated src=- shape=3c26099c vocab=9595f433
+-/
 theorem exists_unitSphere_isMax_abs_scaledCenteredSupportProcess
     {I : Type*} [FiniteDimensional ℝ E] [Nontrivial E]
     (c : ℝ) (s : Finset I) (K : I → Set E) (L : Set E)
@@ -147,7 +156,9 @@ theorem exists_unitSphere_isMax_abs_scaledCenteredSupportProcess
 /-- Stability of the support process when both the empirical average and its
 centering target are changed.  The hypotheses may come from arbitrary
 support-function estimates; the next theorem supplies them automatically
-from Hausdorff distances.-/
+from Hausdorff distances.
+@isnad1 id=le.2h11v.s7.8c8d21d8e131 from=translated src=- shape=7ab75599 vocab=69fff529
+-/
 theorem abs_scaledCenteredSupportProcess_change_sets_le
     {I : Type*} (c : ℝ) (s : Finset I)
     (K K' : I → Set E) (L L' : Set E) (u : E) {a b : ℝ}
@@ -178,7 +189,9 @@ theorem abs_scaledCenteredSupportProcess_change_sets_le
 
 /-- Hausdorff perturbation bound for the centred and scaled support process.
 It controls changes in a parameter whenever the empirical averages and the
-population targets are Hausdorff-continuous in that parameter.-/
+population targets are Hausdorff-continuous in that parameter.
+@isnad1 id=le.8h9v.s8.42a32f68d321 from=translated src=- shape=57361aab vocab=8d423732
+-/
 theorem abs_scaledCenteredSupportProcess_change_sets_le_hausdorffDist
     {I : Type*} (c : ℝ) (s : Finset I)
     (K K' : I → Set E) (L L' : Set E)
@@ -220,7 +233,9 @@ theorem abs_scaledCenteredSupportProcess_change_sets_le_hausdorffDist
 /-- Finite-net interpolation for the scaled support process.  If its
 absolute value is at most `t` on an `eps`-net of the unit ball, it is at most
 `t + C * eps` everywhere on the unit ball, where `C` is the explicit
-pathwise directional modulus.-/
+pathwise directional modulus.
+@isnad1 id=le.9h12v.s8.b6221276e1b4 from=translated src=- shape=6f0c8f15 vocab=627002cc
+-/
 theorem abs_scaledCenteredSupportProcess_le_of_finset_net
     {I : Type*} (c : ℝ) (s : Finset I) (K : I → Set E) (L : Set E)
     (R : I → ℝ) (RL eps t : ℝ) (N : Finset E)
@@ -262,7 +277,9 @@ theorem abs_scaledCenteredSupportProcess_le_of_finset_net
 /-- Contrapositive form of finite-net interpolation: a deviation above the
 interpolated threshold somewhere on the unit ball is witnessed above `t` at
 one of the net points.  This is the exact deterministic inclusion used by
-finite-net probability bounds.-/
+finite-net probability bounds.
+@isnad1 id=ex.8h11v.s8.672640f0dfce from=translated src=- shape=3ea394aa vocab=90a10425
+-/
 theorem exists_finset_gt_of_exists_unitBall_gt_scaledCenteredSupportProcess
     {I : Type*} (c : ℝ) (s : Finset I) (K : I → Set E) (L : Set E)
     (R : I → ℝ) (RL eps t : ℝ) (N : Finset E)

@@ -39,12 +39,17 @@ variable {Omega : Type*} {m mOmega : MeasurableSpace Omega}
 def upperTruncationResidual (X : Omega → ℝ) (y : ℝ) : Omega → ℝ :=
   fun omega => X omega - upperTruncation X y omega
 
+/--
+@isnad1 id=eq.0h4v.s5.94e85a95864a from=translated src=- shape=9919ee3a vocab=583857d5
+-/
 @[simp] theorem upperTruncationResidual_apply
     (X : Omega → ℝ) (y : ℝ) (omega : Omega) :
     upperTruncationResidual X y omega = X omega - min (X omega) y := rfl
 
 /-- Upper truncation and its residual reconstruct the original variable
-pointwise.-/
+pointwise.
+@isnad1 id=eq.0h4v.s5.55bd592c258b from=translated src=- shape=8513dff0 vocab=6d9a085e
+-/
 theorem upperTruncation_add_residual
     (X : Omega → ℝ) (y : ℝ) (omega : Omega) :
     upperTruncation X y omega + upperTruncationResidual X y omega =
@@ -52,14 +57,18 @@ theorem upperTruncation_add_residual
   unfold upperTruncationResidual
   ring
 
-/-- The residual of an upper truncation is nonnegative.-/
+/-- The residual of an upper truncation is nonnegative.
+@isnad1 id=le.0h4v.s4.a4b13e19e0ed from=translated src=- shape=be7e24f4 vocab=1eed4bc0
+-/
 theorem upperTruncationResidual_nonneg
     (X : Omega → ℝ) (y : ℝ) (omega : Omega) :
     0 ≤ upperTruncationResidual X y omega := by
   unfold upperTruncationResidual upperTruncation
   exact sub_nonneg.mpr (min_le_left _ _)
 
-/-- The residual is the positive excess above the truncation height.-/
+/-- The residual is the positive excess above the truncation height.
+@isnad1 id=eq.0h4v.s5.2690927f18aa from=translated src=- shape=bf82df15 vocab=545a2fd8
+-/
 theorem upperTruncationResidual_eq_max_sub
     (X : Omega → ℝ) (y : ℝ) (omega : Omega) :
     upperTruncationResidual X y omega = max (X omega - y) 0 := by
@@ -72,7 +81,9 @@ theorem upperTruncationResidual_eq_max_sub
 
 /-- A positive `q`-moment controls the residual left by upper truncation.
 This is the deterministic Markov bound used in the strong-moment
-Fuk--Nagaev decomposition.-/
+Fuk--Nagaev decomposition.
+@isnad1 id=le.2h5v.s6.d80ca17a8255 from=translated src=- shape=14b4bdca vocab=ac690e26
+-/
 theorem upperTruncationResidual_le_pow_div
     (X : Omega → ℝ) {y : ℝ} (hy : 0 < y)
     (q : ℕ) (hq : 1 ≤ q) (omega : Omega) :
@@ -102,7 +113,9 @@ theorem upperTruncationResidual_le_pow_div
         rw [← pow_succ', hqEq]
 
 /-- Sharp form of the truncation-residual estimate.  Bernoulli's inequality
-gives the factor `1 / q` which appears in Rio's constant `beta_q`.-/
+gives the factor `1 / q` which appears in Rio's constant `beta_q`.
+@isnad1 id=le.2h5v.s6.f9434f5ad38e from=translated src=- shape=40e846af vocab=31441e77
+-/
 theorem upperTruncationResidual_le_pow_div_natCast_mul
     (X : Omega → ℝ) {y : ℝ} (hy : 0 < y)
     (q : ℕ) (hq : 1 ≤ q) (omega : Omega) :
@@ -143,7 +156,9 @@ theorem upperTruncationResidual_le_pow_div_natCast_mul
       _ ≤ y * X omega ^ q := hscaled
 
 /-- Integrability is preserved by passing from a variable to its upper
-truncation residual.-/
+truncation residual.
+@isnad1 id=integrab.1h5v.s6.a8d1cc8ebf40 from=translated src=- shape=82d6c675 vocab=fde3a70c
+-/
 theorem integrable_upperTruncationResidual [IsFiniteMeasure mu]
     {X : Omega → ℝ} (hX : Integrable X mu) (y : ℝ) :
     Integrable (upperTruncationResidual X y) mu := by
@@ -152,7 +167,9 @@ theorem integrable_upperTruncationResidual [IsFiniteMeasure mu]
 /-! ## Upper-truncation certificates -/
 
 /-- The ordinary upper-truncation estimate packaged as a one-sided MGF
-certificate with deterministic moment proxies.-/
+certificate with deterministic moment proxies.
+@isnad1 id=hasonesi.8h8v.s8.2e83a6afaf55 from=translated src=- shape=720b88d6 vocab=3c108b23
+-/
 theorem hasOneSidedMGF_upperTruncation_of_strongMoment
     [IsProbabilityMeasure mu]
     (D : Omega → ℝ) (q : ℕ) (hq : 3 ≤ q)
@@ -187,7 +204,9 @@ theorem hasOneSidedMGF_upperTruncation_of_strongMoment
       D q hq ht hy hD hDsq hpow hcenter hsecond moment hmoment
 
 /-- Conditional upper-truncation estimate packaged as a one-sided MGF
-certificate.-/
+certificate.
+@isnad1 id=hascondo.9h9v.s8.66bb09f9302a from=translated src=- shape=cc765d53 vocab=3609e608
+-/
 theorem hasCondOneSidedMGF_upperTruncation_of_strongMoment
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (hm : m ≤ mOmega) (D : Omega → ℝ) (q : ℕ) (hq : 3 ≤ q)
@@ -229,7 +248,9 @@ variable (filtration : Filtration ℕ mOmega)
 
 /-- A finite adapted sequence of upper-truncated martingale differences has
 the strong-moment Taylor exponent obtained by summing its deterministic
-moment proxies.-/
+moment proxies.
+@isnad1 id=hasonesi.13h10v.s9.c80106ae231f from=translated src=- shape=5c44b448 vocab=e59b47bb
+-/
 theorem hasOneSidedMGF_sum_upperTruncation_of_strongMoment
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (D : ℕ → Omega → ℝ) (hAdapted : StronglyAdapted filtration D)
@@ -294,7 +315,9 @@ theorem hasOneSidedMGF_sum_upperTruncation_of_strongMoment
 
 /-! ## Generic consequences of a one-sided MGF certificate -/
 
-/-- Chernoff bound associated with a generic one-sided exponent.-/
+/-- Chernoff bound associated with a generic one-sided exponent.
+@isnad1 id=le.2h7v.s6.b55a4c7e2745 from=translated src=- shape=81164f64 vocab=8f15fbf1
+-/
 theorem HasOneSidedMGF.measureReal_ge_le
     [IsFiniteMeasure mu] {X : Omega → ℝ} {psi : ℝ → ℝ}
     (hX : HasOneSidedMGF X psi mu) {epsilon t : ℝ} (ht : 0 ≤ t) :
@@ -308,7 +331,9 @@ theorem HasOneSidedMGF.measureReal_ge_le
       exact mul_le_mul_of_nonneg_left (hX.mgf_le t ht) (Real.exp_nonneg _)
     _ = Real.exp (-t * epsilon + psi t) := by rw [Real.exp_add]
 
-/-- CVaR bound associated with a generic one-sided exponent.-/
+/-- CVaR bound associated with a generic one-sided exponent.
+@isnad1 id=le.5h7v.s6.698c8c1c3232 from=translated src=- shape=a3341af6 vocab=9b4d56e5
+-/
 theorem HasOneSidedMGF.conditionalValueAtRisk_le
     [IsProbabilityMeasure mu]
     {X : Omega → ℝ} {psi : ℝ → ℝ}
@@ -341,7 +366,9 @@ theorem HasOneSidedMGF.conditionalValueAtRisk_le
 
 /-- The CVaR of a nonnegative integrable loss is at most its mean divided
 by the upper-tail mass.  This is the threshold-zero candidate in the
-Rockafellar--Uryasev variational formula.-/
+Rockafellar--Uryasev variational formula.
+@isnad1 id=le.4h5v.s7.10e7ab1d24ad from=translated src=- shape=4188cfcd vocab=ab624ab2
+-/
 theorem conditionalValueAtRisk_le_inv_mul_integral_of_nonneg
     [IsProbabilityMeasure mu]
     {X : Omega → ℝ} (hX : Integrable X mu) (hXnonneg : 0 ≤ᵐ[mu] X)
@@ -364,7 +391,9 @@ theorem conditionalValueAtRisk_le_inv_mul_integral_of_nonneg
       exact max_eq_left homega
 
 /-- CVaR bound for one upper-truncation residual in terms of its positive
-`q`-moment.-/
+`q`-moment.
+@isnad1 id=le.6h7v.s7.9d9628207237 from=translated src=- shape=84e91737 vocab=7569a708
+-/
 theorem conditionalValueAtRisk_upperTruncationResidual_le
     [IsProbabilityMeasure mu]
     (X : Omega → ℝ) (hX : Integrable X mu)
@@ -404,7 +433,9 @@ theorem conditionalValueAtRisk_upperTruncationResidual_le
           ((q : ℝ) * y ^ (q - 1))) := by
       rw [integral_div]
 
-/-- Finite-sum form of the residual CVaR estimate.-/
+/-- Finite-sum form of the residual CVaR estimate.
+@isnad1 id=le.6h8v.s8.bc03a882c305 from=translated src=- shape=28ad0fd6 vocab=0b65d303
+-/
 theorem conditionalValueAtRisk_sum_upperTruncationResidual_le
     [IsProbabilityMeasure mu]
     (D : ℕ → Omega → ℝ) (n q : ℕ) (hq : 1 ≤ q)
@@ -463,7 +494,9 @@ theorem conditionalValueAtRisk_sum_upperTruncationResidual_le
 
 /-- A one-sided MGF certificate for the upper-truncated sum, together with
 positive `q`-moments of the original summands, gives a parameterized CVaR
-bound for the original sum.  No optimization in `t` or `y` is performed.-/
+bound for the original sum.  No optimization in `t` or `y` is performed.
+@isnad1 id=le.8h10v.s8.0523c67b01cd from=translated src=- shape=2d63d991 vocab=35e9b08c
+-/
 theorem conditionalValueAtRisk_sum_le_of_upperTruncation_mgf
     [IsProbabilityMeasure mu]
     (D : ℕ → Omega → ℝ) (n q : ℕ) (hq : 1 ≤ q)
@@ -527,7 +560,9 @@ theorem conditionalValueAtRisk_sum_le_of_upperTruncation_mgf
 /-- The complete, unoptimized strong-moment martingale CVaR bound.  The
 first term is Rio's finite Taylor exponent for the upper-truncated
 martingale; the second term is the exact `q`-moment cost of restoring the
-discarded residuals.-/
+discarded residuals.
+@isnad1 id=le.16h12v.s9.94fca8ee6cd9 from=translated src=- shape=a98fd2e6 vocab=0c48dbbc
+-/
 theorem conditionalValueAtRisk_sum_le_strongMomentTaylorExponent_add_residual
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (D : ℕ → Omega → ℝ) (hAdapted : StronglyAdapted filtration D)

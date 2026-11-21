@@ -25,7 +25,9 @@ noncomputable section
 namespace ProbabilityTheory
 
 /-- A centered CVaR bound and a deterministic upper bound on the mean imply
-the corresponding upper-tail bound for the uncentered statistic.-/
+the corresponding upper-tail bound for the uncentered statistic.
+@isnad1 id=le.7h6v.s7.cad587eae3f0 from=translated src=- shape=7bfc9ff7 vocab=cda40b10
+-/
 theorem measureReal_add_lt_le_of_mean_le_of_centered_cvar
     {Omega : Type*} [MeasurableSpace Omega] {mu : Measure Omega}
     [IsProbabilityMeasure mu]

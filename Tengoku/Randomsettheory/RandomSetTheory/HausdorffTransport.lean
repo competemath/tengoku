@@ -23,7 +23,9 @@ noncomputable section
 namespace RandomSetTheory
 
 /-- A map which is `c`-Lipschitz on `K ∪ L` transports the Hausdorff
-distance between the two compact nonempty sets with factor `c`.-/
+distance between the two compact nonempty sets with factor `c`.
+@isnad1 id=le.5h6v.s6.9fab2aec8a2f from=translated src=- shape=b29d0fbf vocab=61c917d1
+-/
 theorem hausdorffDist_image_le_of_lipschitzOnWith
     {X Y : Type*} [PseudoMetricSpace X] [PseudoMetricSpace Y]
     {f : X → Y} {K L : Set X} {c : NNReal}
@@ -61,7 +63,9 @@ theorem hausdorffDist_image_le_of_lipschitzOnWith
         simpa [hausdorffEDist_comm] using hfin
 
 /-- A Lipschitz bound on a larger domain transports Hausdorff distance
-between any two compact nonempty subsets of that domain.-/
+between any two compact nonempty subsets of that domain.
+@isnad1 id=le.7h7v.s6.8f7f2851a67f from=translated src=- shape=e1c9e8de vocab=9b527a36
+-/
 theorem hausdorffDist_image_le_of_lipschitzOnWith_of_subset
     {X Y : Type*} [PseudoMetricSpace X] [PseudoMetricSpace Y]
     {f : X → Y} {D K L : Set X} {c : NNReal}
@@ -75,7 +79,9 @@ theorem hausdorffDist_image_le_of_lipschitzOnWith_of_subset
     (hf.mono (union_subset hKD hLD)) hK hL hKne hLne
 
 /-- The same transport bound holds after taking the closed convex hull of
-both images.-/
+both images.
+@isnad1 id=le.5h6v.s8.9aaac92f9bee from=translated src=- shape=6a87ef2c vocab=fde5ab95
+-/
 theorem hausdorffDist_closedConvexHull_image_le_of_lipschitzOnWith
     {X Y : Type*} [PseudoMetricSpace X]
     [NormedAddCommGroup Y] [NormedSpace ℝ Y]
@@ -102,7 +108,9 @@ theorem hausdorffDist_closedConvexHull_image_le_of_lipschitzOnWith
       hausdorffDist_image_le_of_lipschitzOnWith hf hK hL hKne hLne
 
 /-- Hausdorff convergence is preserved by a fixed map which is uniformly
-`c`-Lipschitz on each `K i ∪ L`.  The index filter is arbitrary.-/
+`c`-Lipschitz on each `K i ∪ L`.  The index filter is arbitrary.
+@isnad1 id=tendsto.6h8v.s7.96ad2c449ce3 from=translated src=- shape=2fa18cc9 vocab=979bbc32
+-/
 theorem tendsto_hausdorffDist_image_of_lipschitzOnWith
     {X Y ι : Type*} [PseudoMetricSpace X] [PseudoMetricSpace Y]
     {l : Filter ι} {f : X → Y} {K : ι → Set X} {L : Set X} {c : NNReal}
@@ -118,7 +126,9 @@ theorem tendsto_hausdorffDist_image_of_lipschitzOnWith
   simpa using hKL.const_mul (c : ℝ)
 
 /-- Hausdorff convergence remains true after mapping and closed
-convexification, under the same uniform local Lipschitz bound.-/
+convexification, under the same uniform local Lipschitz bound.
+@isnad1 id=tendsto.6h8v.s8.39b1282be975 from=translated src=- shape=f9489fdd vocab=c636dc9d
+-/
 theorem tendsto_hausdorffDist_closedConvexHull_image_of_lipschitzOnWith
     {X Y ι : Type*} [PseudoMetricSpace X]
     [NormedAddCommGroup Y] [NormedSpace ℝ Y]

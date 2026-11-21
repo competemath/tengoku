@@ -22,7 +22,9 @@ noncomputable section
 namespace RandomSetTheory
 
 /-- Every positive scale admits a finite strict net of the closed unit ball,
-whose centres also belong to the closed unit ball.-/
+whose centres also belong to the closed unit ball.
+@isnad1 id=ex.1h2v.s7.24caac9c2a36 from=translated src=- shape=5e8fef1d vocab=653242af
+-/
 theorem exists_finset_unitBall_net_with_centers
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] {ε : ℝ} (hε : 0 < ε) :
@@ -44,7 +46,9 @@ theorem exists_finset_unitBall_net_with_centers
     obtain ⟨v, hvt, huv⟩ := Set.mem_iUnion₂.mp (hcover hu')
     exact ⟨v, by simpa using hvt, by simpa [mem_ball] using huv⟩
 
-/-- Non-strict version of `exists_finset_unitBall_net_with_centers`.-/
+/-- Non-strict version of `exists_finset_unitBall_net_with_centers`.
+@isnad1 id=ex.1h2v.s7.d4243abb0a95 from=translated src=- shape=88b25611 vocab=653242af
+-/
 theorem exists_finset_unitBall_closedNet_with_centers
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] {ε : ℝ} (hε : 0 < ε) :

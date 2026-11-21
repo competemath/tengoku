@@ -44,12 +44,18 @@ def boundedEuclideanThreshold (sigma : ℝ) (d : ℕ) (x : ℝ)
   3 * sigma * ((1 / 2 : ℝ) ^ k) *
     Real.sqrt (2 * boundedEuclideanConfidence d x k)
 
+/--
+@isnad1 id=le.1h3v.s4.8af2370dee0c from=translated src=- shape=144bfabc vocab=0feed291
+-/
 theorem boundedEuclideanConfidence_nonneg (d : ℕ) {x : ℝ}
     (hx : 0 ≤ x) (k : ℕ) :
     0 ≤ boundedEuclideanConfidence d x k := by
   unfold boundedEuclideanConfidence
   positivity
 
+/--
+@isnad1 id=le.2h4v.s5.96dd900b2152 from=translated src=- shape=3e2053dd vocab=c2a01c0b
+-/
 theorem boundedEuclideanThreshold_nonneg {sigma : ℝ} (hsigma : 0 ≤ sigma)
     (d : ℕ) {x : ℝ} (hx : 0 ≤ x) (k : ℕ) :
     0 ≤ boundedEuclideanThreshold sigma d x k := by
@@ -58,7 +64,9 @@ theorem boundedEuclideanThreshold_nonneg {sigma : ℝ} (hsigma : 0 ≤ sigma)
 
 /-- Elementary square-root split used in the entropy sum.  We deliberately
 use the loose bound `sqrt (k+2) ≤ k+2`; it gives a clean universal constant
-and preserves the optimal `sqrt d + sqrt x` scale.-/
+and preserves the optimal `sqrt d + sqrt x` scale.
+@isnad1 id=le.1h3v.s6.ec80f737cded from=translated src=- shape=38ad0db2 vocab=8ed96188
+-/
 theorem sqrt_boundedEuclideanConfidence_le (d : ℕ) {x : ℝ}
     (hx : 0 ≤ x) (k : ℕ) :
     Real.sqrt (2 * boundedEuclideanConfidence d x k) ≤
@@ -90,7 +98,9 @@ theorem sqrt_boundedEuclideanConfidence_le (d : ℕ) {x : ℝ}
     nlinarith [Real.sqrt_nonneg (2 * x), Real.sqrt_nonneg (d + 1 : ℝ)]
 
 /-- The dyadic threshold series has the desired dimension/confidence order.
-The explicit constant is intentionally conservative.-/
+The explicit constant is intentionally conservative.
+@isnad1 id=summable.2h3v.s5.1e1c80152420 from=translated src=- shape=01644706 vocab=a0c7d66a
+-/
 theorem summable_boundedEuclideanThreshold {sigma : ℝ} (hsigma : 0 ≤ sigma)
     (d : ℕ) {x : ℝ} (hx : 0 ≤ x) :
     Summable (boundedEuclideanThreshold sigma d x) := by
@@ -127,7 +137,9 @@ theorem summable_boundedEuclideanThreshold {sigma : ℝ} (hsigma : 0 ≤ sigma)
 
 /-- Closed upper bound for the whole entropy integral/sum.  In particular it
 is `O(sigma * (sqrt x + sqrt d))`, independently of a sample size or a finest
-net level.-/
+net level.
+@isnad1 id=le.2h3v.s7.bc32c5de1718 from=translated src=- shape=577a9e9b vocab=795f2811
+-/
 theorem tsum_boundedEuclideanThreshold_le {sigma : ℝ} (hsigma : 0 ≤ sigma)
     (d : ℕ) {x : ℝ} (hx : 0 ≤ x) :
     ∑' k, boundedEuclideanThreshold sigma d x k ≤
@@ -192,6 +204,9 @@ def boundedEuclideanEntropyCost (d : ℕ) (x : ℝ) (k : ℕ) : ℝ :=
   Real.exp (4 * (d : ℝ) * (k + 2 : ℝ)) *
     (2 * Real.exp (-boundedEuclideanConfidence d x k))
 
+/--
+@isnad1 id=eq.0h3v.s6.cd9f039215b5 from=translated src=- shape=ee2bfeb1 vocab=1dafbe41
+-/
 theorem boundedEuclideanEntropyCost_eq (d : ℕ) (x : ℝ) (k : ℕ) :
     boundedEuclideanEntropyCost d x k =
       2 * Real.exp (-x) * (Real.exp (-2)) ^ 2 *
@@ -220,7 +235,9 @@ theorem boundedEuclideanEntropyCost_eq (d : ℕ) (x : ℝ) (k : ℕ) :
 
 /-- The confidence allocation pays for all dyadic entropy levels.  The
 right-hand side is a single `exp (-x)` tail, not a sample-size-dependent
-logarithmic penalty.-/
+logarithmic penalty.
+@isnad1 id=summable.0h2v.s4.9adb4258234a from=translated src=- shape=27343aff vocab=076249c0
+-/
 theorem summable_boundedEuclideanEntropyCost (d : ℕ) (x : ℝ) :
     Summable (boundedEuclideanEntropyCost d x) := by
   let q : ℝ := Real.exp (-2)
@@ -235,6 +252,9 @@ theorem summable_boundedEuclideanEntropyCost (d : ℕ) (x : ℝ) :
     symm
     simpa only [q] using boundedEuclideanEntropyCost_eq d x k)
 
+/--
+@isnad1 id=le.0h2v.s4.252dc98403cc from=translated src=- shape=92528953 vocab=ab6ef622
+-/
 theorem tsum_boundedEuclideanEntropyCost_le (d : ℕ) (x : ℝ) :
     ∑' k, boundedEuclideanEntropyCost d x k ≤ Real.exp (-x) := by
   let q : ℝ := Real.exp (-2)
@@ -292,7 +312,9 @@ uncountable process has a tail of order
 
 with no logarithm of a truncation or sample size.  The event remains
 existential, so its measure is meaningful without first proving that an
-uncountable supremum is measurable.-/
+uncountable supremum is measurable.
+@isnad1 id=le.9h10v.s9.187d21394156 from=translated src=- shape=0c6b5d80 vocab=1482a241
+-/
 theorem measureReal_boundedEuclideanProcess_largeDeviation_le
     [IsProbabilityMeasure mu]
     (Z : Omega → T → ℝ) (N0 : Finset T)
@@ -393,17 +415,25 @@ namespace RandomSetTheory
 /-- Radius of the `k`-th Euclidean net.-/
 def dyadicResolution (k : ℕ) : ℝ := (1 / 2 : ℝ) ^ k
 
+/--
+@isnad1 id=lt.0h1v.s3.078fbf227253 from=translated src=- shape=b9369acb vocab=aedeeed6
+-/
 theorem dyadicResolution_pos (k : ℕ) : 0 < dyadicResolution k := by
   unfold dyadicResolution
   positivity
 
+/--
+@isnad1 id=le.0h1v.s3.689ad5113efa from=translated src=- shape=a311c14d vocab=4e5ebe4a
+-/
 theorem dyadicResolution_le_one (k : ℕ) : dyadicResolution k ≤ 1 := by
   unfold dyadicResolution
   exact pow_le_one₀ (by norm_num) (by norm_num)
 
 /-- Simultaneous dyadic volumetric nets of a finite-dimensional unit ball.
 The coarsest net is fixed to `{0}`, which anchors processes satisfying
-`Z(0)=0`; every finer net enjoys the standard `(3/ε)^d` cardinality bound.-/
+`Z(0)=0`; every finer net enjoys the standard `(3/ε)^d` cardinality bound.
+@isnad1 id=ex.0h1v.s7.b80977a1c0fe from=translated src=- shape=4503729c vocab=ddab8faa
+-/
 theorem exists_unitBall_dyadic_finset_nets
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] :
@@ -460,6 +490,9 @@ def unitBallLocalDyadicEdges {E : Type*} [PseudoMetricSpace E]
   exact (N (k + 1) ×ˢ N k).filter fun e ↦
     dist e.1 e.2 ≤ dyadicResolution (k + 1) + dyadicResolution k
 
+/--
+@isnad1 id=iff.0h4v.s7.31bb4c45f24b from=translated src=- shape=52cee9d7 vocab=9422d300
+-/
 theorem mem_unitBallLocalDyadicEdges_iff
     {E : Type*} [PseudoMetricSpace E] (N : ℕ → Finset E)
     (k : ℕ) (e : E × E) :
@@ -470,6 +503,9 @@ theorem mem_unitBallLocalDyadicEdges_iff
   classical
   simp [unitBallLocalDyadicEdges, and_assoc]
 
+/--
+@isnad1 id=le.0h3v.s5.e8ab9110035f from=translated src=- shape=3a297b5d vocab=056cbab9
+-/
 theorem card_unitBallLocalDyadicEdges_le
     {E : Type*} [PseudoMetricSpace E] (N : ℕ → Finset E) (k : ℕ) :
     (unitBallLocalDyadicEdges N k).card ≤
@@ -477,6 +513,9 @@ theorem card_unitBallLocalDyadicEdges_le
   classical
   exact (Finset.card_filter_le _ _).trans_eq (Finset.card_product _ _)
 
+/--
+@isnad1 id=le.1h4v.s6.9478c1bfe7f5 from=translated src=- shape=c888bc96 vocab=ee769b76
+-/
 theorem dist_le_three_mul_dyadicResolution_of_mem_localEdges
     {E : Type*} [PseudoMetricSpace E] (N : ℕ → Finset E)
     {k : ℕ} {e : E × E} (he : e ∈ unitBallLocalDyadicEdges N k) :
@@ -491,7 +530,9 @@ theorem dist_le_three_mul_dyadicResolution_of_mem_localEdges
 
 /-- A convenient exponential restatement of the volumetric base
 `3 / 2⁻ᵏ`.  The factor `2` is deliberately loose and makes the subsequent
-adjacent-product estimate elementary.-/
+adjacent-product estimate elementary.
+@isnad1 id=le.0h1v.s5.0f326470f5a1 from=translated src=- shape=6666c554 vocab=93ec9fac
+-/
 theorem three_div_dyadicResolution_le_exp (k : ℕ) :
     3 / dyadicResolution k ≤
       Real.exp (2 * (k + 1 : ℝ)) := by
@@ -517,7 +558,9 @@ theorem three_div_dyadicResolution_le_exp (k : ℕ) :
       ring
 
 /-- Adjacent local edge graphs built from volumetric dyadic nets satisfy the
-exponential entropy hypothesis of the generic probabilistic theorem.-/
+exponential entropy hypothesis of the generic probabilistic theorem.
+@isnad1 id=le.1h4v.s6.aba3199dfd42 from=translated src=- shape=e0461630 vocab=1985865c
+-/
 theorem card_unitBallLocalDyadicEdges_real_le_exp
     {E : Type*} [PseudoMetricSpace E]
     (N : ℕ → Finset E) (d : ℕ)
@@ -568,7 +611,9 @@ theorem card_unitBallLocalDyadicEdges_real_le_exp
 /-- Dyadic nets, simultaneous projections and local edge graphs on the
 Euclidean unit ball.  This packages all deterministic geometry required by
 `measureReal_boundedEuclideanProcess_largeDeviation_le`, except for the
-elementary exponential restatement of the displayed volumetric card bound.-/
+elementary exponential restatement of the displayed volumetric card bound.
+@isnad1 id=ex.0h1v.s8.eea1649cb6e4 from=translated src=- shape=df5b2195 vocab=00ca3b75
+-/
 theorem exists_unitBall_dyadic_chainingData
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] :
@@ -645,7 +690,9 @@ volumetric estimate.
 
 The scalar hypothesis is the standard normalized increment tail.  It is
 required for every nonnegative confidence parameter so the theorem can
-allocate its entropy budget automatically.-/
+allocate its entropy budget automatically.
+@isnad1 id=le.5h6v.s8.ef62f06d731b from=translated src=- shape=2d2a816d vocab=b8643d0c
+-/
 theorem measureReal_unitBall_subgaussianProcess_largeDeviation_le
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]

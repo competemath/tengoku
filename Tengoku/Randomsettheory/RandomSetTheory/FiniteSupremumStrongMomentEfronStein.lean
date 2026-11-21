@@ -47,6 +47,9 @@ def replaceOneCenteredEnvelope (nu : Measure Z) (A : Z → ℝ) (z : Z) : ℝ :=
 def replaceOneCenteredMoment (nu : Measure Z) (A : Z → ℝ) (k : ℕ) : ℝ :=
   ∫ z, replaceOneCenteredEnvelope nu A z ^ k ∂nu
 
+/--
+@isnad1 id=le.1h4v.s5.debc88e84d50 from=translated src=- shape=be336941 vocab=9dd5c65d
+-/
 theorem replaceOneCenteredEnvelope_nonneg
     (A : Z → ℝ) (hA : ∀ z, 0 ≤ A z) (z : Z) :
     0 ≤ replaceOneCenteredEnvelope nu A z := by
@@ -54,7 +57,9 @@ theorem replaceOneCenteredEnvelope_nonneg
   exact add_nonneg (hA z) (integral_nonneg hA)
 
 /-- A replace-one modulus and one `L^q` envelope automatically put every
-scalar fibre in `L^q`; no separate fibre integrability assumption is needed.-/
+scalar fibre in `L^q`; no separate fibre integrability assumption is needed.
+@isnad1 id=memlp.4h5v.s7.3cc22616c9f2 from=translated src=- shape=16ed2969 vocab=702e92f2
+-/
 theorem memLp_fiber_of_abs_sub_le_add_envelopes
     [IsProbabilityMeasure nu] [Nonempty Z]
     (F A : Z → ℝ) (q : ℕ)
@@ -81,7 +86,9 @@ theorem memLp_fiber_of_abs_sub_le_add_envelopes
 
 /-- Pointwise ghost-centering inequality.  It is the positive-moment analogue
 of the variance identity: centring is represented as integration against an
-independent ghost copy and the replace-one modulus is then integrated.-/
+independent ghost copy and the replace-one modulus is then integrated.
+@isnad1 id=le.3h5v.s7.059c1840f5eb from=translated src=- shape=a668c684 vocab=c73de78e
+-/
 theorem max_sub_integral_le_replaceOneCenteredEnvelope
     [IsProbabilityMeasure nu]
     (F A : Z → ℝ) (hFint : Integrable F nu) (hAint : Integrable A nu)
@@ -116,7 +123,9 @@ theorem max_sub_integral_le_replaceOneCenteredEnvelope
     _ = replaceOneCenteredEnvelope nu A z := hright
 
 /-- `L^q` membership of the raw envelope supplies integrability of the
-deterministic centred-envelope power at every integer order `k ≤ q`.-/
+deterministic centred-envelope power at every integer order `k ≤ q`.
+@isnad1 id=integrab.3h5v.s7.3aea7dbf9164 from=translated src=- shape=e49980f7 vocab=7632f28f
+-/
 theorem integrable_pow_replaceOneCenteredEnvelope
     [IsProbabilityMeasure nu]
     (A : Z → ℝ) (q k : ℕ) (hkq : k ≤ q)
@@ -134,7 +143,9 @@ theorem integrable_pow_replaceOneCenteredEnvelope
     abs_of_nonneg (replaceOneCenteredEnvelope_nonneg A hA z)]
 
 /-- Unconditional strong-moment ghost bound.  The hypotheses `2 ≤ k ≤ q`
-match the range consumed by the strong-moment Taylor exponent.-/
+match the range consumed by the strong-moment Taylor exponent.
+@isnad1 id=le.6h6v.s7.14e88fb63f9a from=translated src=- shape=6d73cf40 vocab=ba304803
+-/
 theorem integral_pow_max_centeredFiber_le_replaceOneCenteredMoment
     [IsProbabilityMeasure nu] [Nonempty Z]
     (F A : Z → ℝ) (q k : ℕ) (hk : 2 ≤ k) (hkq : k ≤ q)
@@ -176,7 +187,9 @@ theorem integral_pow_max_centeredFiber_le_replaceOneCenteredMoment
 /-- The deterministic ghost proxies inherit Rio's exact interpolation
 between their aggregate orders two and `q`.  This discharges the
 intermediate-moment hypothesis of the optimized transform once aggregate
-second- and `q`-moment bounds are known.-/
+second- and `q`-moment bounds are known.
+@isnad1 id=le.9h9v.s7.face94c3399d from=translated src=- shape=19b0cc31 vocab=018b4e1e
+-/
 theorem sum_replaceOneCenteredMoment_le_interpolatedStrongMomentCoefficient
     {I : Type*} [IsProbabilityMeasure nu]
     (s : Finset I) (A : I → Z → ℝ)
@@ -221,7 +234,9 @@ theorem sum_replaceOneCenteredMoment_le_interpolatedStrongMomentCoefficient
 fibrewise estimate applies against the deterministic law `mu.map Y`.
 
 All integrability assumptions are discharged from the single envelope
-condition `A ∈ L^q(mu.map Y)` and joint strong measurability of `G`.-/
+condition `A ∈ L^q(mu.map Y)` and joint strong measurability of `G`.
+@isnad1 id=eventual.9h10v.s8.9da5d231f924 from=translated src=- shape=5bc32172 vocab=b7ce4eb6
+-/
 theorem condExp_pow_max_centeredGhostFiber_le
     {Omega Beta : Type*}
     [MeasurableSpace Omega] [MeasurableSpace Beta]
@@ -304,7 +319,9 @@ This is the order-`k` analogue of
 representation is deliberately abstract because, after the unrevealed future
 has been integrated out, the fibre `G b` need no longer be syntactically a
 finite supremum; its replace-one modulus is the invariant property used by
-the proof.-/
+the proof.
+@isnad1 id=eventual.11h13v.s8.56a488c83ead from=translated src=- shape=b6d25727 vocab=e276b711
+-/
 theorem condExp_pow_max_doobCenteredDifference_succ_le_of_centeredGhostFiber
     {Omega Beta : Type*}
     [MeasurableSpace Omega] [MeasurableSpace Beta]

@@ -24,7 +24,9 @@ noncomputable section
 namespace RandomSetTheory
 
 /-- Uniform support convergence on the unit ball is equivalent to Hausdorff
-convergence for a family of compact nonempty convex sets.-/
+convergence for a family of compact nonempty convex sets.
+@isnad1 id=iff.6h5v.s8.960617a854e8 from=translated src=- shape=336460a5 vocab=32a9ef86
+-/
 theorem tendsto_supportHausdorffGap_iff_hausdorffDist
     {ι E : Type*} {l : Filter ι}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -40,7 +42,9 @@ theorem tendsto_supportHausdorffGap_iff_hausdorffDist
   simp_rw [hEq]
 
 /-- Almost-sure support convergence transfers pointwise to almost-sure
-Hausdorff convergence.-/
+Hausdorff convergence.
+@isnad1 id=eventual.7h5v.s8.4cb7b36680b8 from=translated src=- shape=a48de33b vocab=634e4c7c
+-/
 theorem ae_tendsto_hausdorffDist_of_supportHausdorffGap
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -61,7 +65,9 @@ theorem ae_tendsto_hausdorffDist_of_supportHausdorffGap
     (fun n => hKconv n ω) (hLconv ω)).mp hω
 
 /-- The Hausdorff upper-tail event is exactly the corresponding uniform
-support-function upper-tail event.-/
+support-function upper-tail event.
+@isnad1 id=eq.6h5v.s8.47b4245697fa from=translated src=- shape=2576ef51 vocab=514feb89
+-/
 theorem hausdorffDist_ge_event_eq_supportHausdorffGap_ge_event
     {Ω E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {K L : Ω → Set E}
@@ -79,7 +85,9 @@ theorem hausdorffDist_ge_event_eq_supportHausdorffGap_ge_event
     (hKconv ω) (hLconv ω)]
 
 /-- Any probability or outer-measure bound proved for the uniform support gap
-immediately yields the identical Hausdorff bound.-/
+immediately yields the identical Hausdorff bound.
+@isnad1 id=le.7h7v.s8.0e405e8ef596 from=translated src=- shape=817e8f9e vocab=79e5fde5
+-/
 theorem measure_hausdorffDist_ge_le_of_supportHausdorffGap_ge_le
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -98,7 +106,9 @@ theorem measure_hausdorffDist_ge_le_of_supportHausdorffGap_ge_le
 
 /-- Finite-net union bound for Hausdorff deviations.  Any scalar tail bound
 available for the support functions at the net points can be summed directly
-to give a Hausdorff tail bound.-/
+to give a Hausdorff tail bound.
+@isnad1 id=le.12h11v.s9.f4fe0701263b from=translated src=- shape=3a522cdb vocab=7549bba9
+-/
 theorem measure_hausdorffDist_gt_le_finset_support
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]

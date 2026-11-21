@@ -27,12 +27,21 @@ namespace RandomSetTheory
 /-- Geometric accuracy used in the selection construction.-/
 def selectionAccuracy (n : ℕ) : ℝ := ((1 : ℝ) / 2) ^ n
 
+/--
+@isnad1 id=lt.0h1v.s3.f4d542ae9ac1 from=translated src=- shape=b9369acb vocab=39055bfa
+-/
 theorem selectionAccuracy_pos (n : ℕ) : 0 < selectionAccuracy n := by
   simp [selectionAccuracy]
 
+/--
+@isnad1 id=summable.0h0v.s3.a37d72fd4212 from=translated src=- shape=ef4b497d vocab=e798527a
+-/
 theorem summable_selectionAccuracy : Summable selectionAccuracy := by
   exact summable_geometric_of_lt_one (by norm_num) (by norm_num)
 
+/--
+@isnad1 id=tendsto.0h0v.s4.0e006b104f09 from=translated src=- shape=8e2810f0 vocab=272eee52
+-/
 theorem tendsto_selectionAccuracy_zero :
     Tendsto selectionAccuracy atTop (𝓝 0) := by
   exact tendsto_pow_atTop_nhds_zero_of_lt_one (by norm_num) (by norm_num)
@@ -94,6 +103,9 @@ def nextEffrosSelectionStage
   obtain ⟨x, hxG, hnextx⟩ := (infDist_lt_iff (hGne ω)).mp hnextG
   exact (infDist_le_dist_of_mem hxG.1).trans_lt hnextx
 
+/--
+@isnad1 id=lt.2h6v.s7.3c251f3e3da5 from=translated src=- shape=946c6ca0 vocab=d7419141
+-/
 theorem nextEffrosSelectionStage_dist_lt
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -151,6 +163,9 @@ def krnApproximation
     (hne : ∀ ω, (S ω).Nonempty) (n : ℕ) : Ω → E :=
   (krnStage hS hne n).toFun
 
+/--
+@isnad1 id=measurab.2h4v.s6.a7cdf74a33a4 from=translated src=- shape=6bdb56a0 vocab=4e95720c
+-/
 theorem krnApproximation_measurable
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -160,6 +175,9 @@ theorem krnApproximation_measurable
     Measurable (krnApproximation hS hne n) :=
   (krnStage hS hne n).measurable'
 
+/--
+@isnad1 id=lt.2h5v.s6.2e254e0d318a from=translated src=- shape=3ca15f60 vocab=e8f5a0d9
+-/
 theorem krnApproximation_close
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -169,6 +187,9 @@ theorem krnApproximation_close
     infDist (krnApproximation hS hne n ω) (S ω) < selectionAccuracy n :=
   (krnStage hS hne n).close' ω
 
+/--
+@isnad1 id=lt.2h5v.s7.3cdf5fdc8c1a from=translated src=- shape=9ee3b512 vocab=364d11eb
+-/
 theorem krnApproximation_dist_succ_lt
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -180,6 +201,9 @@ theorem krnApproximation_dist_succ_lt
       selectionAccuracy (n + 1) + selectionAccuracy n := by
   exact nextEffrosSelectionStage_dist_lt hS hne (krnStage hS hne n) ω
 
+/--
+@isnad1 id=cauchyse.2h4v.s6.c953e1d717e3 from=translated src=- shape=93738078 vocab=edfbdea4
+-/
 theorem krnApproximation_cauchySeq
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -207,7 +231,9 @@ def krnSelection
 
 /-- **Kuratowski--Ryll-Nardzewski theorem**: a nonempty closed-valued
 Effros-measurable correspondence into a complete separable metric space has a
-measurable selection.-/
+measurable selection.
+@isnad1 id=ismeasur.3h3v.s6.12eab189fff1 from=translated src=- shape=81493709 vocab=73f7093f
+-/
 theorem kuratowski_ryll_nardzewski
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -226,6 +252,9 @@ theorem kuratowski_ryll_nardzewski
       exact (krnApproximation_close hS hne n ω).le
     · exact tendsto_selectionAccuracy_zero
 
+/--
+@isnad1 id=ex.3h3v.s6.147bef733b99 from=translated src=- shape=78be4f9f vocab=bd269723
+-/
 theorem exists_measurableSelection
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]

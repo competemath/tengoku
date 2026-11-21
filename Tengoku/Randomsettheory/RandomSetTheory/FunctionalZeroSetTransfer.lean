@@ -36,7 +36,9 @@ deterministically dominated by the process norm.
 In the intended application, `X n ω` is the full scaled support-difference
 process and `Δ n ω` is the parameter-uniform Hausdorff error.  Thus `hlink`
 is precisely the deterministic support/Hausdorff comparison that connects
-the functional CLT to the set-valued estimation error.-/
+the functional CLT to the set-valued estimation error.
+@isnad1 id=isbounde.3h8v.s7.9063535fd584 from=translated src=- shape=1a8f184c vocab=c9c31b30
+-/
 theorem rootN_uniformError_isBoundedInProbability_of_processCLT
     {Ω Ω' F : Type*} [MeasurableSpace Ω] [MeasurableSpace Ω']
     [MeasurableSpace F] [NormedAddCommGroup F] [BorelSpace F]
@@ -64,7 +66,9 @@ theorem rootN_uniformError_isBoundedInProbability_of_processCLT
 /-- Functional-CLT-to-oracle-rate bridge.  Weak convergence of the full
 root-`n` scaled process, together with the explicit deterministic domination
 of the uniform Hausdorff error by its norm, implies root-`n` boundedness in
-probability of the oracle enlarged-zero-set Hausdorff error.-/
+probability of the oracle enlarged-zero-set Hausdorff error.
+@isnad1 id=isbounde.7h13v.s8.58407a81662e from=translated src=- shape=e5855ad7 vocab=c1fb9d26
+-/
 theorem rootN_enlargedZeroSet_of_processCLT
     {Ω Ω' Θ E F : Type*}
     [MeasurableSpace Ω] [MeasurableSpace Ω']

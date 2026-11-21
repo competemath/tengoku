@@ -27,7 +27,9 @@ namespace RandomSetTheory
 /-- Dimension-explicit Hausdorff Bernstein inequality.  Directional
 independence and Bernstein MGF bounds are required uniformly on the unit
 ball; the volumetric construction chooses the finite directions
-automatically.-/
+automatically.
+@isnad1 id=le.14h13v.s9.e59ff2582197 from=translated src=- shape=ba3b8268 vocab=089f04b6
+-/
 theorem hausdorffDist_minkowskiAverage_risk_bound_dimensional_of_bernstein
     {Ω ι E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -67,7 +69,9 @@ theorem hausdorffDist_minkowskiAverage_risk_bound_dimensional_of_bernstein
 
 /-- Dimension-explicit confidence-parameter form.  The Hausdorff deviation
 threshold is the finite-net interpolation error plus
-`(sqrt (2 V x) + 2 b x) / n`.-/
+`(sqrt (2 V x) + 2 b x) / n`.
+@isnad1 id=le.14h13v.s9.0a0e70c6c0ca from=translated src=- shape=264c2e43 vocab=314f7813
+-/
 theorem hausdorffDist_minkowskiAverage_risk_bound_dimensional_bernstein_sqrt_add
     {Ω ι E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -107,7 +111,9 @@ theorem hausdorffDist_minkowskiAverage_risk_bound_dimensional_bernstein_sqrt_add
 
 /-- Confidence-level form of the dimension-explicit Bernstein inequality.
 The logarithmic confidence parameter absorbs both the bilateral factor and
-the volumetric entropy factor, so the right-hand side is exactly `δ`.-/
+the volumetric entropy factor, so the right-hand side is exactly `δ`.
+@isnad1 id=le.15h13v.s9.7ffbf6b97134 from=translated src=- shape=1d14ec7b vocab=40a3b0ee
+-/
 theorem hausdorffDist_minkowskiAverage_risk_bound_dimensional_bernstein_confidence
     {Ω ι E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]

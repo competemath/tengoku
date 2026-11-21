@@ -28,7 +28,9 @@ namespace ProbabilityTheory
 variable {Omega : Type*} [MeasurableSpace Omega] {mu : Measure Omega}
 
 /-- A one-sided MGF certificate may be enlarged pointwise on nonnegative
-Laplace parameters.-/
+Laplace parameters.
+@isnad1 id=hasonesi.2h5v.s5.049889230c87 from=translated src=- shape=202bb9ad vocab=77ec820e
+-/
 theorem HasOneSidedMGF.mono_exponent
     {X : Omega → ℝ} {psi phi : ℝ → ℝ}
     (hmgf : HasOneSidedMGF X psi mu)
@@ -42,7 +44,9 @@ theorem HasOneSidedMGF.mono_exponent
   exact (hmgf.mgf_le t ht).trans (Real.exp_monotone (hpsi t ht))
 
 /-- Taking the infimum over all positive Laplace parameters turns the
-parameterized exponential CVaR estimate into a Chernoff transform.-/
+parameterized exponential CVaR estimate into a Chernoff transform.
+@isnad1 id=le.4h5v.s6.8d1aaf01097c from=translated src=- shape=42bdb22b vocab=fa5f459f
+-/
 theorem HasOneSidedMGF.conditionalValueAtRisk_le_chernoffTransform
     [IsProbabilityMeasure mu]
     {X : Omega → ℝ} {psi : ℝ → ℝ}
@@ -62,7 +66,9 @@ theorem HasOneSidedMGF.conditionalValueAtRisk_le_chernoffTransform
 
 /-- Optimized exact-series CVaR bound after interpolation of all moments
 between orders two and `q`.  The sole remaining deterministic term is Rio's
-finite intermediate series; it vanishes at `q = 3`.-/
+finite intermediate series; it vanishes at `q = 3`.
+@isnad1 id=le.12h10v.s8.c644de8703fb from=translated src=- shape=e7b29f55 vocab=132344f2
+-/
 theorem HasOneSidedMGF.conditionalValueAtRisk_le_rioStrongMoment
     [IsProbabilityMeasure mu]
     {X : Omega → ℝ} (hX : Integrable X mu)

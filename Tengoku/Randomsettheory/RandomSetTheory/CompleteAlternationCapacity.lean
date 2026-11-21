@@ -71,10 +71,16 @@ def iteratedUnionDifference : List (Set X) -> (Set X -> Real) -> Set X -> Real
       iteratedUnionDifference tests F K -
         iteratedUnionDifference tests F (K ∪ A)
 
+/--
+@isnad1 id=eq.0h3v.s4.1c47e0fe9164 from=translated src=- shape=40c6b9a6 vocab=16028be0
+-/
 @[simp] theorem iteratedUnionDifference_nil (F : Set X -> Real) (K : Set X) :
     iteratedUnionDifference [] F K = F K :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.07331f0e7a35 from=translated src=- shape=0a8e4d7b vocab=f561a2e7
+-/
 @[simp] theorem iteratedUnionDifference_cons (A : Set X)
     (tests : List (Set X)) (F : Set X -> Real) (K : Set X) :
     iteratedUnionDifference (A :: tests) F K =
@@ -88,17 +94,26 @@ def hitEveryEvent (S : Omega -> Set X) : List (Set X) -> Set Omega
   | A :: tests => hitEvent S A ∩ hitEveryEvent S tests
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=eq.0h3v.s4.aff1d0bf9534 from=translated src=- shape=6d66c8c8 vocab=ec87b497
+-/
 @[simp] theorem hitEveryEvent_nil (S : Omega -> Set X) :
     hitEveryEvent S [] = Set.univ :=
   rfl
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=eq.0h5v.s5.1eb2c14f15fc from=translated src=- shape=13e8c8bb vocab=dcce1a6b
+-/
 @[simp] theorem hitEveryEvent_cons (S : Omega -> Set X) (A : Set X)
     (tests : List (Set X)) :
     hitEveryEvent S (A :: tests) = hitEvent S A ∩ hitEveryEvent S tests :=
   rfl
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=iff.0h5v.s5.a19108c10a1a from=translated src=- shape=51753570 vocab=dace1b12
+-/
 @[simp] theorem mem_hitEveryEvent {S : Omega -> Set X}
     {tests : List (Set X)} {omega : Omega} :
     omega ∈ hitEveryEvent S tests <->
@@ -114,6 +129,9 @@ def alternationWitnessEvent (S : Omega -> Set X) (K : Set X)
   avoidEvent S K ∩ hitEveryEvent S tests
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=iff.0h6v.s6.93ce82cc46ca from=translated src=- shape=8c739d8b vocab=fa960e3d
+-/
 @[simp] theorem mem_alternationWitnessEvent {S : Omega -> Set X}
     {K : Set X} {tests : List (Set X)} {omega : Omega} :
     omega ∈ alternationWitnessEvent S K tests <->
@@ -122,7 +140,9 @@ omit [MeasurableSpace Omega] in
   simp [alternationWitnessEvent]
 
 omit [MeasurableSpace Omega] in
-/-- Enlarging the base test can only shrink the alternation witness event.-/
+/-- Enlarging the base test can only shrink the alternation witness event.
+@isnad1 id=le.0h6v.s5.04f1b8f4c364 from=translated src=- shape=3374f64f vocab=1cb373f5
+-/
 theorem alternationWitnessEvent_union_subset (S : Omega -> Set X)
     (K A : Set X) (tests : List (Set X)) :
     alternationWitnessEvent S (K ∪ A) tests ⊆
@@ -134,7 +154,9 @@ theorem alternationWitnessEvent_union_subset (S : Omega -> Set X)
 omit [MeasurableSpace Omega] in
 /-- Removing the witnesses that also avoid `A` is exactly the event that
 additionally hits `A`.  This is the event-level engine behind all finite
-orders of complete alternation.-/
+orders of complete alternation.
+@isnad1 id=eq.0h6v.s5.29a53d1cfbd8 from=translated src=- shape=cdfb8ef4 vocab=03cc3b4d
+-/
 theorem alternationWitnessEvent_sdiff_union (S : Omega -> Set X)
     (K A : Set X) (tests : List (Set X)) :
     alternationWitnessEvent S K tests \
@@ -160,6 +182,9 @@ theorem alternationWitnessEvent_sdiff_union (S : Omega -> Set X)
       rcases hAhit with ⟨x, hxS, hxA⟩
       exact ⟨x, hxS, Or.inr hxA⟩)
 
+/--
+@isnad1 id=measurab.1h4v.s5.f42fd9e5f13f from=translated src=- shape=6d9247e0 vocab=5e67e068
+-/
 theorem measurableSet_hitEveryEvent {S : Omega -> Set X}
     {tests : List (Set X)}
     (h : ∀ A ∈ tests, MeasurableSet (hitEvent S A)) :
@@ -169,6 +194,9 @@ theorem measurableSet_hitEveryEvent {S : Omega -> Set X}
   | cons A tests ih =>
       exact (h A (by simp)).inter (ih (fun B hB => h B (by simp [hB])))
 
+/--
+@isnad1 id=measurab.2h5v.s5.04410deb0f82 from=translated src=- shape=99327e38 vocab=e68593a0
+-/
 theorem measurableSet_alternationWitnessEvent {S : Omega -> Set X}
     {K : Set X} {tests : List (Set X)}
     (hK : MeasurableSet (hitEvent S K))
@@ -190,11 +218,17 @@ def avoidanceFunctionalReal (mu : Measure Omega) (S : Omega -> Set X)
     (K : Set X) : Real :=
   mu.real (avoidEvent S K)
 
+/--
+@isnad1 id=eq.0h5v.s5.b6c310495dd3 from=translated src=- shape=251f2cd1 vocab=b2fc643d
+-/
 @[simp] theorem capacityFunctionalReal_eq_toReal (mu : Measure Omega)
     (S : Omega -> Set X) (K : Set X) :
     capacityFunctionalReal mu S K = (capacityFunctional mu S K).toReal :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.b1bcce6efedd from=translated src=- shape=251f2cd1 vocab=87fd8a09
+-/
 @[simp] theorem avoidanceFunctionalReal_eq_toReal (mu : Measure Omega)
     (S : Omega -> Set X) (K : Set X) :
     avoidanceFunctionalReal mu S K = (avoidanceFunctional mu S K).toReal :=
@@ -203,7 +237,9 @@ def avoidanceFunctionalReal (mu : Measure Omega) (S : Omega -> Set X)
 /-! ## Exact complete monotonicity of avoidance -/
 
 /-- Every finite iterated union difference of the avoidance functional is
-exactly the measure of the alternation witness event.-/
+exactly the measure of the alternation witness event.
+@isnad1 id=eq.2h6v.s6.80b113216c8c from=translated src=- shape=2e020e35 vocab=ff48fcaf
+-/
 theorem iteratedUnionDifference_avoidanceFunctionalReal_eq
     (mu : Measure Omega) [IsFiniteMeasure mu] (S : Omega -> Set X)
     (K : Set X) (tests : List (Set X))
@@ -235,7 +271,9 @@ theorem iteratedUnionDifference_avoidanceFunctionalReal_eq
       exact congrArg mu.real (alternationWitnessEvent_sdiff_union S K A tests)
 
 /-- Complete monotonicity of the real avoidance functional under finite
-unions.-/
+unions.
+@isnad1 id=le.2h6v.s6.485d3a62618c from=translated src=- shape=6fafa878 vocab=b912dfe8
+-/
 theorem avoidanceFunctionalReal_completeMonotonicity
     (mu : Measure Omega) [IsFiniteMeasure mu] (S : Omega -> Set X)
     (K : Set X) (tests : List (Set X))
@@ -248,7 +286,9 @@ theorem avoidanceFunctionalReal_completeMonotonicity
 /-! ## Exact complete alternation of the hitting capacity -/
 
 /-- For a measurable hitting event, the real hitting and avoidance
-functionals add up to the mass of the whole space.-/
+functionals add up to the mass of the whole space.
+@isnad1 id=eq.1h5v.s5.286c41361f6f from=translated src=- shape=96ccc822 vocab=e2a21591
+-/
 theorem capacityFunctionalReal_add_avoidanceFunctionalReal
     (mu : Measure Omega) [IsFiniteMeasure mu] (S : Omega -> Set X)
     (K : Set X) (hK : MeasurableSet (hitEvent S K)) :
@@ -260,7 +300,9 @@ theorem capacityFunctionalReal_add_avoidanceFunctionalReal
 
 /-- Exact finite-order formula for the hitting capacity, including order
 zero.  At order zero the constant `mu.real univ` remains; every nonempty
-iteration cancels it and leaves the negative witness probability.-/
+iteration cancels it and leaves the negative witness probability.
+@isnad1 id=eq.2h6v.s6.b0ab83c20ece from=translated src=- shape=2cc16233 vocab=47ddc190
+-/
 theorem iteratedUnionDifference_capacityFunctionalReal_eq
     (mu : Measure Omega) [IsFiniteMeasure mu] (S : Omega -> Set X)
     (K : Set X) (tests : List (Set X))
@@ -303,7 +345,9 @@ theorem iteratedUnionDifference_capacityFunctionalReal_eq
 
 /-- At every positive finite order, the iterated hitting-capacity difference
 is the negative probability of avoiding the base while hitting all added
-tests.  This is the numerical complete-alternation identity.-/
+tests.  This is the numerical complete-alternation identity.
+@isnad1 id=eq.3h6v.s6.f5c2156b8d2e from=translated src=- shape=0108e3cf vocab=41dd1098
+-/
 theorem iteratedUnionDifference_capacityFunctionalReal_eq_neg
     (mu : Measure Omega) [IsFiniteMeasure mu] (S : Omega -> Set X)
     (K : Set X) (tests : List (Set X)) (htests : tests ≠ [])
@@ -315,7 +359,9 @@ theorem iteratedUnionDifference_capacityFunctionalReal_eq_neg
     mu S K tests hK hTests, ite_eq_right htests]
   ring
 
-/-- Complete alternation of the real hitting capacity under finite unions.-/
+/-- Complete alternation of the real hitting capacity under finite unions.
+@isnad1 id=le.3h6v.s6.271a2b24e12c from=translated src=- shape=c20e185e vocab=48871883
+-/
 theorem capacityFunctionalReal_completeAlternation
     (mu : Measure Omega) [IsFiniteMeasure mu] (S : Omega -> Set X)
     (K : Set X) (tests : List (Set X)) (htests : tests ≠ [])
@@ -328,7 +374,9 @@ theorem capacityFunctionalReal_completeAlternation
 
 /-- Numerical duality at every positive finite order: complete alternation of
 the hitting functional is the negative of complete monotonicity of the
-avoidance functional.-/
+avoidance functional.
+@isnad1 id=eq.3h6v.s6.a387180ebe1e from=translated src=- shape=0b224f24 vocab=e17852e5
+-/
 theorem iteratedUnionDifference_capacity_eq_neg_avoidance
     (mu : Measure Omega) [IsFiniteMeasure mu] (S : Omega -> Set X)
     (K : Set X) (tests : List (Set X)) (htests : tests ≠ [])
@@ -348,7 +396,9 @@ section EffrosCompact
 variable [MetricSpace X]
 
 /-- The compact-test form used for random closed sets: Effros measurability
-and closed values discharge every event-measurability hypothesis.-/
+and closed values discharge every event-measurability hypothesis.
+@isnad1 id=le.5h6v.s6.a3d79188c32e from=translated src=- shape=6f84f4fa vocab=d254b500
+-/
 theorem capacityFunctionalReal_completeAlternation_compact_of_effros
     (mu : Measure Omega) [IsFiniteMeasure mu]
     {S : Omega -> Set X} (hS : RandomSet.IsEffrosMeasurable S)
@@ -361,7 +411,9 @@ theorem capacityFunctionalReal_completeAlternation_compact_of_effros
   · intro A hA
     exact measurableSet_hitEvent_compact hS hSclosed (hTests A hA)
 
-/-- Exact compact-test avoidance identity for an Effros random closed set.-/
+/-- Exact compact-test avoidance identity for an Effros random closed set.
+@isnad1 id=eq.4h6v.s6.9d50aaa57e33 from=translated src=- shape=9e51e70d vocab=f7760a69
+-/
 theorem iteratedUnionDifference_avoidance_compact_of_effros_eq
     (mu : Measure Omega) [IsFiniteMeasure mu]
     {S : Omega -> Set X} (hS : RandomSet.IsEffrosMeasurable S)

@@ -31,7 +31,9 @@ namespace ProbabilityTheory
 variable {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
 /-- Bilateral sub-Gaussian tail for a finite sum of independent real random
-variables.  The variance proxy is the sum of the individual proxies.-/
+variables.  The variance proxy is the sum of the individual proxies.
+@isnad1 id=le.3h7v.s7.8991c0174dfa from=translated src=- shape=2d63d923 vocab=bad116fd
+-/
 theorem subgaussian_finset_sum_abs_real [IsProbabilityMeasure μ]
     (X : ι → Ω → ℝ) (c : ι → ℝ≥0)
     (h_indep : iIndepFun X μ)
@@ -69,7 +71,9 @@ theorem subgaussian_finset_sum_abs_real [IsProbabilityMeasure μ]
     _ = 2 * exp (-ε ^ 2 / (2 * (↑(∑ i ∈ s, c i) : ℝ))) := by ring
 
 /-- Bilateral sub-Gaussian tail for the arithmetic average over a nonempty
-finite set.  No common-proxy assumption is imposed.-/
+finite set.  No common-proxy assumption is imposed.
+@isnad1 id=le.4h7v.s7.1ae01a224fae from=translated src=- shape=c9ebff35 vocab=7e71b42b
+-/
 theorem subgaussian_finset_average_abs_real [IsProbabilityMeasure μ]
     (X : ι → Ω → ℝ) (c : ι → ℝ≥0)
     (h_indep : iIndepFun X μ)
@@ -101,7 +105,9 @@ variable {Ω ι E : Type*} [MeasurableSpace Ω]
 
 /-- Directional sub-Gaussian concentration for an empirical Minkowski
 average.  The centeredness of the directional deviations is encoded in the
-`HasSubgaussianMGF` hypotheses.-/
+`HasSubgaussianMGF` hypotheses.
+@isnad1 id=le.6h10v.s8.90b1ead17a8a from=translated src=- shape=4538fe32 vocab=2124d8c9
+-/
 theorem minkowskiAverage_support_subgaussian
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     (S : ι → Ω → Set E) (L : Set E) (u : E)
@@ -137,7 +143,9 @@ whose directional support deviations are independent and sub-Gaussian with
 direction-independent proxies `c i`.
 
 The radius assumptions are only used to control the interpolation error
-between directions of the finite net.-/
+between directions of the finite net.
+@isnad1 id=le.14h13v.s9.4cbc1a79cd06 from=translated src=- shape=0373d024 vocab=af6fddba
+-/
 theorem hausdorffDist_minkowskiAverage_risk_bound_of_subgaussian
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     (S : ι → Ω → Set E) (L : Set E)

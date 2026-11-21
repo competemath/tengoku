@@ -29,7 +29,9 @@ variable {Omega T Z : Type*} {mOmega : MeasurableSpace Omega}
   [TopologicalSpace T] [SeparableSpace T] [Nonempty T]
 
 /-- Rio's confidence bound for the centered supremum of a continuous
-coordinate-additive process.-/
+coordinate-additive process.
+@isnad1 id=le.15h15v.s8.56a458cc156a from=translated src=- shape=3393f924 vocab=d2afb1d5
+-/
 theorem conditionalValueAtRisk_iSup_finiteCoordinateSumProcess_le_rioConfidence
     {mu : Measure Omega} {nu : Measure Z}
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]

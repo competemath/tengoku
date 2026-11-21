@@ -36,7 +36,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   [FiniteDimensional ℝ E]
 
 /-- Volumetric packing inequality in `ℝ≥0∞`.  Writing it before cancelling
-the unit-ball volume avoids any division by extended-real quantities.-/
+the unit-ball volume avoids any division by extended-real quantities.
+@isnad1 id=le.3h4v.s8.32e930a2b7ed from=translated src=- shape=9c3bec11 vocab=e5f3bef9
+-/
 theorem finset_card_mul_ballVolume_le
     (s : Finset E) {R eps : ℝ} (heps : 0 < eps)
     (hs : ∀ c ∈ s, ‖c‖ ≤ R)
@@ -91,7 +93,9 @@ theorem finset_card_mul_ballVolume_le
       measure_ball_lt_top.ne).1 hmeasure
   simpa [δ, ρ] using hcancel
 
-/-- Real-valued form of the volumetric packing estimate.-/
+/-- Real-valued form of the volumetric packing estimate.
+@isnad1 id=le.4h4v.s8.bbff8b0a1fb6 from=translated src=- shape=24b42c37 vocab=876eb2c7
+-/
 theorem finset_card_le_volume_ratio
     (s : Finset E) {R eps : ℝ} (hR : 0 ≤ R) (heps : 0 < eps)
     (hs : ∀ c ∈ s, ‖c‖ ≤ R)
@@ -113,7 +117,9 @@ theorem finset_card_le_volume_ratio
   exact (le_div_iff₀ hδpow).2 h
 
 /-- A finite `ε`-separated family in the unit ball has at most
-`(1 + 2 / ε)^dim` points.-/
+`(1 + 2 / ε)^dim` points.
+@isnad1 id=le.3h3v.s7.3fb7a51056cd from=translated src=- shape=0180cdde vocab=876eb2c7
+-/
 theorem finset_card_le_one_add_two_div_pow
     (s : Finset E) {eps : ℝ} (heps : 0 < eps)
     (hs : ∀ c ∈ s, ‖c‖ ≤ 1)
@@ -132,7 +138,9 @@ theorem finset_card_le_one_add_two_div_pow
 
 end VolumetricPacking
 
-/-- Every compact set has finite packing number at positive radius.-/
+/-- Every compact set has finite packing number at positive radius.
+@isnad1 id=ne.2h3v.s5.baaac306e1d2 from=translated src=- shape=19567667 vocab=c9694eef
+-/
 theorem packingNumber_ne_top_of_isCompact
     {X : Type*} [PseudoMetricSpace X]
     (D : Set X) (hD : IsCompact D) {eps : ℝ≥0} (heps : 0 < eps) :
@@ -167,7 +175,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   [FiniteDimensional ℝ E]
 
 /-- Internal finite net of the unit ball with the standard volumetric
-cardinality bound.-/
+cardinality bound.
+@isnad1 id=ex.1h2v.s7.3ad146c5a1be from=translated src=- shape=43a18c24 vocab=5b044614
+-/
 theorem exists_unitBall_finset_net_card_le
     {eps : ℝ} (heps : 0 < eps) :
     ∃ N : Finset E,
@@ -219,7 +229,9 @@ theorem exists_unitBall_finset_net_card_le
   refine ⟨N, hNmem, hNcover, ?_⟩
   exact finset_card_le_one_add_two_div_pow N heps hNmem hNsep
 
-/-- For `ε ≤ 1`, the volumetric factor simplifies to `(3 / ε)^dim`.-/
+/-- For `ε ≤ 1`, the volumetric factor simplifies to `(3 / ε)^dim`.
+@isnad1 id=ex.2h2v.s7.b9dc2b0be50d from=translated src=- shape=02ab53e8 vocab=bd620544
+-/
 theorem exists_unitBall_finset_net_card_le_three_div
     {eps : ℝ} (heps : 0 < eps) (heps_one : eps ≤ 1) :
     ∃ N : Finset E,
@@ -240,7 +252,9 @@ end UnitBallNet
 
 /-! ## Dimension-explicit iid concentration -/
 
-/-- Iid random-set concentration with the volumetric entropy factor.-/
+/-- Iid random-set concentration with the volumetric entropy factor.
+@isnad1 id=le.10h10v.s8.70f5cd50e219 from=translated src=- shape=dad707c4 vocab=7b6aa76e
+-/
 theorem hausdorffDist_convexified_iid_risk_bound_dimensional
     {Ω Z E : Type*} [MeasurableSpace Ω] [MeasurableSpace Z]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
@@ -271,7 +285,9 @@ theorem hausdorffDist_convexified_iid_risk_bound_dimensional
     unfold symmetricSupportHoeffdingTail
     positivity))
 
-/-- Closed-form dimension-explicit iid random-set concentration.-/
+/-- Closed-form dimension-explicit iid random-set concentration.
+@isnad1 id=le.11h10v.s9.57324a91f82c from=translated src=- shape=d62f1a9d vocab=f3eaee58
+-/
 theorem hausdorffDist_convexified_iid_risk_bound_dimensional_standard
     {Ω Z E : Type*} [MeasurableSpace Ω] [MeasurableSpace Z]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]

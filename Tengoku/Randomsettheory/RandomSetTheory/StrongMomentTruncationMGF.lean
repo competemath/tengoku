@@ -29,7 +29,9 @@ variable {Omega : Type*} {m mOmega : MeasurableSpace Omega}
   {mu : Measure Omega}
 
 /-- Ordinary strong-moment MGF estimate for an upper-truncated centred
-variable.-/
+variable.
+@isnad1 id=le.9h9v.s8.b4f871b891dd from=translated src=- shape=672cd01f vocab=a308cd59
+-/
 theorem integral_exp_mul_upperTruncation_le_exp_strongMomentTaylorExponent
     [IsProbabilityMeasure mu]
     (D : Omega → ℝ) (q : ℕ) (hq : 3 ≤ q)
@@ -84,7 +86,9 @@ theorem integral_exp_mul_upperTruncation_le_exp_strongMomentTaylorExponent
 
 /-- Conditional strong-moment MGF estimate for an upper-truncated martingale
 difference.  All deterministic moment bounds are assumed for the original
-difference and inherited monotonically by the truncation.-/
+difference and inherited monotonically by the truncation.
+@isnad1 id=eventual.10h10v.s8.743fad556595 from=translated src=- shape=c3bc4e74 vocab=e62c2eef
+-/
 theorem condExp_exp_mul_upperTruncation_le_exp_strongMomentTaylorExponent
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (hm : m ≤ mOmega) (D : Omega → ℝ) (q : ℕ) (hq : 3 ≤ q)

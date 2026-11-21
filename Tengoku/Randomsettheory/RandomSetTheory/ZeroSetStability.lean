@@ -36,7 +36,9 @@ def enlargedSetValuedZeroSet
   {θ | infDist 0 (G θ) ≤ Δ}
 
 /-- A uniform Hausdorff bound puts every exact population zero in the
-corresponding enlarged empirical zero set.-/
+corresponding enlarged empirical zero set.
+@isnad1 id=le.2h5v.s6.c4fed97dfa2c from=translated src=- shape=2dc40877 vocab=a3183b02
+-/
 theorem setValuedZeroSet_subset_enlarged
     {Θ E : Type*} [SeminormedAddCommGroup E]
     (Ghat G : Θ → Set E) {Δ : ℝ}
@@ -56,7 +58,9 @@ theorem setValuedZeroSet_subset_enlarged
     _ ≤ Δ := hhaus θ
 
 /-- A version with distinct approximation error `δ` and enlargement
-threshold `τ`.  Population zeros are retained as soon as `δ ≤ τ`.-/
+threshold `τ`.  Population zeros are retained as soon as `δ ≤ τ`.
+@isnad1 id=le.3h6v.s6.cb12954a7ece from=translated src=- shape=5cc68940 vocab=a3183b02
+-/
 theorem setValuedZeroSet_subset_enlarged_of_le
     {Θ E : Type*} [SeminormedAddCommGroup E]
     (Ghat G : Θ → Set E) {δ τ : ℝ} (hδτ : δ ≤ τ)
@@ -68,7 +72,9 @@ theorem setValuedZeroSet_subset_enlarged_of_le
 
 /-- General thresholded oracle bound.  If the empirical correspondence is
 within `δ` of the population correspondence and the retained threshold is
-`τ ≥ δ`, the zero-set error is at most `(τ + δ) / κ`.-/
+`τ ≥ δ`, the zero-set error is at most `(τ + δ) / κ`.
+@isnad1 id=le.7h7v.s7.588e8aa59638 from=translated src=- shape=1db6c082 vocab=7d49ef7d
+-/
 theorem hausdorffDist_enlargedSetValuedZeroSet_le_add
     {Θ E : Type*} [PseudoMetricSpace Θ] [SeminormedAddCommGroup E]
     (Ghat G : Θ → Set E) {δ τ κ : ℝ}
@@ -99,7 +105,9 @@ theorem hausdorffDist_enlargedSetValuedZeroSet_le_add
 
 /-- Oracle enlarged-zero-set bound.  If the population minimum-distance
 criterion dominates `κ` times distance to its exact zero set, uniform
-Hausdorff error `Δ` yields the sharp deterministic factor `2 * Δ / κ`.-/
+Hausdorff error `Δ` yields the sharp deterministic factor `2 * Δ / κ`.
+@isnad1 id=le.5h6v.s7.1f24cfe843d3 from=translated src=- shape=71d9098c vocab=31f8a02b
+-/
 theorem hausdorffDist_enlargedSetValuedZeroSet_le
     {Θ E : Type*} [PseudoMetricSpace Θ] [SeminormedAddCommGroup E]
     (Ghat G : Θ → Set E) {Δ κ : ℝ}
@@ -116,7 +124,9 @@ theorem hausdorffDist_enlargedSetValuedZeroSet_le
 
 /-- Filter-level consistency corollary of the oracle bound.  In particular,
 any deterministic, almost-sure, or conditional path along which the uniform
-Hausdorff error tends to zero yields convergence of the enlarged zero set.-/
+Hausdorff error tends to zero yields convergence of the enlarged zero set.
+@isnad1 id=tendsto.6h8v.s7.1298f9fc5ae0 from=translated src=- shape=b6dc5ff4 vocab=9511790c
+-/
 theorem tendsto_hausdorffDist_enlargedSetValuedZeroSet
     {Θ E ι : Type*} [PseudoMetricSpace Θ] [SeminormedAddCommGroup E]
     {l : Filter ι} (Ghat : ι → Θ → Set E) (G : Θ → Set E)
@@ -139,7 +149,9 @@ theorem tendsto_hausdorffDist_enlargedSetValuedZeroSet
 
 /-- Failure of the oracle zero-set bound can only occur if the underlying
 correspondence error exceeds the prescribed uniform threshold somewhere in
-the parameter space.-/
+the parameter space.
+@isnad1 id=le.4h7v.s7.e223d5b369cb from=translated src=- shape=b0a2569c vocab=bfd65182
+-/
 theorem enlargedZeroSet_failure_subset_uniformHausdorff_failure
     {Ω Θ E : Type*} [PseudoMetricSpace Θ] [SeminormedAddCommGroup E]
     (Ghat : Ω → Θ → Set E) (G : Θ → Set E) {δ κ : ℝ}
@@ -161,7 +173,9 @@ theorem enlargedZeroSet_failure_subset_uniformHausdorff_failure
 
 /-- Probability/outer-measure transfer associated with the previous event
 inclusion.  No measurability assumption on an uncountable parameter supremum
-is hidden in the statement.-/
+is hidden in the statement.
+@isnad1 id=le.4h8v.s8.1b0354795124 from=translated src=- shape=cdc91b39 vocab=40b23b50
+-/
 theorem measure_enlargedZeroSet_failure_le_uniformHausdorff_failure
     {Ω Θ E : Type*} [MeasurableSpace Ω]
     [PseudoMetricSpace Θ] [SeminormedAddCommGroup E]
@@ -181,7 +195,9 @@ theorem measure_enlargedZeroSet_failure_le_uniformHausdorff_failure
 
 /-- Any stochastic boundedness rate for the uniform correspondence error is
 inherited by the oracle enlarged zero set.  Taking `r n = sqrt n` is the
-formal `O_P(n⁻¹/²)` conclusion; no functional CLT is assumed or hidden here.-/
+formal `O_P(n⁻¹/²)` conclusion; no functional CLT is assumed or hidden here.
+@isnad1 id=isbounde.7h11v.s8.37fd992a9549 from=translated src=- shape=d423371d vocab=99790fd7
+-/
 theorem isBoundedInProbability_scaled_enlargedZeroSet
     {Ω Θ E ι : Type*} [MeasurableSpace Ω]
     [PseudoMetricSpace Θ] [SeminormedAddCommGroup E]
@@ -222,7 +238,9 @@ theorem isBoundedInProbability_scaled_enlargedZeroSet
 /-- Root-`n` specialization of
 `isBoundedInProbability_scaled_enlargedZeroSet`.  Thus the exact conclusion
 of the oracle corollary follows as soon as the uniform Hausdorff error is
-root-`n` bounded in probability.-/
+root-`n` bounded in probability.
+@isnad1 id=isbounde.6h8v.s8.708504fbfe04 from=translated src=- shape=d44ff30e vocab=031460c6
+-/
 theorem rootN_enlargedZeroSet_of_rootN_uniformHausdorff
     {Ω Θ E : Type*} [MeasurableSpace Ω]
     [PseudoMetricSpace Θ] [SeminormedAddCommGroup E]

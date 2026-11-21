@@ -51,7 +51,9 @@ variable {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 def absoluteMoment (X : Ω → ℝ) (q : ℕ) (μ : Measure Ω) : ℝ :=
   ∫ ω, |X ω| ^ q ∂μ
 
-/-- Absolute moments depend only on the law of a real random variable.-/
+/-- Absolute moments depend only on the law of a real random variable.
+@isnad1 id=eq.1h7v.s5.b25964b1f848 from=translated src=- shape=17bbd797 vocab=57a87a86
+-/
 theorem IdentDistrib.absoluteMoment_eq
     {Ω' : Type*} [MeasurableSpace Ω'] {ν : Measure Ω'}
     {X : Ω → ℝ} {Y : Ω' → ℝ}
@@ -60,10 +62,16 @@ theorem IdentDistrib.absoluteMoment_eq
   unfold absoluteMoment
   simpa only [Real.norm_eq_abs] using h.norm.pow.integral_eq
 
+/--
+@isnad1 id=le.0h4v.s4.d9101f40971a from=translated src=- shape=813e58f6 vocab=d83ea033
+-/
 theorem absoluteMoment_nonneg (X : Ω → ℝ) (q : ℕ) (μ : Measure Ω) :
     0 ≤ absoluteMoment X q μ :=
   integral_nonneg fun _ => pow_nonneg (abs_nonneg _) _
 
+/--
+@isnad1 id=le.2h5v.s7.5a10d6366ac1 from=translated src=- shape=b50dbec1 vocab=bc8fdf87
+-/
 theorem measureReal_abs_ge_le_absoluteMoment_div
     [IsFiniteMeasure μ] (X : Ω → ℝ) (q : ℕ)
     (hX : Integrable (fun ω => |X ω| ^ q) μ)
@@ -92,6 +100,9 @@ theorem measureReal_abs_ge_le_absoluteMoment_div
   rw [hintf, ENNReal.toReal_ofReal hrhs] at hreal
   exact hreal
 
+/--
+@isnad1 id=le.3h6v.s7.1b0b5d7409a8 from=translated src=- shape=bf2fe85f vocab=bc8fdf87
+-/
 theorem measureReal_abs_ge_le_of_absoluteMoment_le
     [IsFiniteMeasure μ] (X : Ω → ℝ) {q : ℕ}
     (hX : Integrable (fun ω => |X ω| ^ q) μ)
@@ -100,6 +111,9 @@ theorem measureReal_abs_ge_le_of_absoluteMoment_le
   exact (measureReal_abs_ge_le_absoluteMoment_div X q hX ht).trans
     (div_le_div_of_nonneg_right hM (pow_nonneg ht.le q))
 
+/--
+@isnad1 id=le.1h4v.s6.847504351752 from=translated src=- shape=cadc4419 vocab=2f41bd11
+-/
 theorem abs_finset_sum_pow_le
     (x : ι → ℝ) (s : Finset ι) {q : ℕ} (hq : 0 < q) :
     |∑ i ∈ s, x i| ^ q ≤
@@ -115,6 +129,9 @@ theorem abs_finset_sum_pow_le
     _ = (s.card : ℝ) ^ ((n + 1) - 1) *
         ∑ i ∈ s, |x i| ^ (n + 1) := by simp
 
+/--
+@isnad1 id=integrab.3h6v.s7.1e4039a95cc5 from=translated src=- shape=0104130a vocab=1335d708
+-/
 theorem integrable_abs_finset_sum_pow
     (X : ι → Ω → ℝ) (s : Finset ι) {q : ℕ} (hq : 0 < q)
     (hX : ∀ i ∈ s, AEMeasurable (X i) μ)
@@ -132,6 +149,9 @@ theorem integrable_abs_finset_sum_pow
   rw [Real.norm_eq_abs, abs_of_nonneg (pow_nonneg (abs_nonneg _) _)]
   exact abs_finset_sum_pow_le (fun i => X i ω) s hq
 
+/--
+@isnad1 id=le.3h6v.s7.222c31ccd13b from=translated src=- shape=85351bac vocab=6698f8fb
+-/
 theorem absoluteMoment_finset_sum_le
     (X : ι → Ω → ℝ) (s : Finset ι) {q : ℕ} (hq : 0 < q)
     (hX : ∀ i ∈ s, AEMeasurable (X i) μ)
@@ -158,6 +178,9 @@ theorem absoluteMoment_finset_sum_le
       congr 1
       exact integral_finsetSum s hXq
 
+/--
+@isnad1 id=le.4h6v.s7.420ed276e5b7 from=translated src=- shape=ad3e1d8b vocab=3cfde867
+-/
 theorem absoluteMoment_finset_average_le
     (X : ι → Ω → ℝ) (s : Finset ι) (hs : s.Nonempty)
     {q : ℕ} (hq : 0 < q)
@@ -184,6 +207,9 @@ theorem absoluteMoment_finset_average_le
       simp only [Nat.succ_sub_one, pow_succ]
       field_simp
 
+/--
+@isnad1 id=le.5h7v.s7.06f5b5646dab from=translated src=- shape=f182ac97 vocab=757989fb
+-/
 theorem markov_finset_average_abs_real
     [IsFiniteMeasure μ]
     (X : ι → Ω → ℝ) (s : Finset ι) (hs : s.Nonempty)
@@ -225,7 +251,9 @@ theorem markov_finset_average_abs_real
 
 /-- Common-moment specialization of `markov_finset_average_abs_real`.
 It exposes the standard polynomial tail `M / t^q`.  No sample-size decay is
-claimed, since no independence or centering is assumed.-/
+claimed, since no independence or centering is assumed.
+@isnad1 id=le.6h8v.s7.672885f9f543 from=translated src=- shape=71367cd3 vocab=275dcfb4
+-/
 theorem markov_finset_average_abs_real_of_common_bound
     [IsFiniteMeasure μ]
     (X : ι → Ω → ℝ) (s : Finset ι) (hs : s.Nonempty)
@@ -257,7 +285,9 @@ theorem markov_finset_average_abs_real_of_common_bound
 moment bound.  Independence is not required.
 
 If `E |Xᵢ|^q ≤ K^q`, then
-`P(∃ i ∈ s, t < Xᵢ) ≤ |s| K^q / t^q`.-/
+`P(∃ i ∈ s, t < Xᵢ) ≤ |s| K^q / t^q`.
+@isnad1 id=le.3h8v.s7.1628f1d25b8c from=translated src=- shape=2e45dfe8 vocab=09e0743d
+-/
 theorem measureReal_exists_gt_le_card_mul_pow_div
     [IsFiniteMeasure μ]
     (X : ι → Ω → ℝ) (s : Finset ι) {q : ℕ}
@@ -293,7 +323,9 @@ and a union bound.  If `s` is nonempty, `q > 0`, `K > 0`, and
 `Xᵢ ≤ K * (|s| / δ)^(1/q)` for every `i ∈ s`.
 
 The power in the threshold is `Real.rpow`; neither independence nor
-centering is assumed.-/
+centering is assumed.
+@isnad1 id=le.7h8v.s8.a60f1be10981 from=translated src=- shape=d836d852 vocab=9f0dbf2e
+-/
 theorem one_sub_le_measureReal_forall_le_mul_card_div_rpow
     [IsProbabilityMeasure μ]
     (X : ι → Ω → ℝ) (s : Finset ι) (hs : s.Nonempty)
@@ -347,7 +379,9 @@ theorem one_sub_le_measureReal_forall_le_mul_card_div_rpow
 
 /-- Chebyshev's inequality for a centered finite average.  Unlike the
 general moment bound above, independence makes the variance additive and
-therefore gives the classical `1 / card` scale for a common variance.-/
+therefore gives the classical `1 / card` scale for a common variance.
+@isnad1 id=le.5h6v.s8.80c6c798a6c1 from=translated src=- shape=a8a31785 vocab=cdfc3821
+-/
 theorem chebyshev_finset_average_abs_real
     [IsProbabilityMeasure μ]
     (X : ι → Ω → ℝ) (h_indep : iIndepFun X μ)
@@ -398,7 +432,9 @@ theorem chebyshev_finset_average_abs_real
   exact hreal
 
 /-- Common-variance form of Chebyshev's inequality for a centered independent
-finite average.-/
+finite average.
+@isnad1 id=le.6h7v.s8.cfb154c26740 from=translated src=- shape=046aef58 vocab=cdfc3821
+-/
 theorem chebyshev_finset_average_abs_real_of_variance_le
     [IsProbabilityMeasure μ]
     (X : ι → Ω → ℝ) (h_indep : iIndepFun X μ)
@@ -428,7 +464,9 @@ theorem chebyshev_finset_average_abs_real_of_variance_le
 If independent variables have expectations at most `Kq`, variances at most
 `K2²`, and `K2 ≤ Kq`, then their average exceeds `2 Kq` with probability at
 most `δ` whenever `1 / δ ≤ |s|`.  The explicit constants expose the exact
-Chebyshev step used by polynomial-envelope arguments.-/
+Chebyshev step used by polynomial-envelope arguments.
+@isnad1 id=le.10h8v.s8.23632135f4f1 from=translated src=- shape=7fae0aaa vocab=5b9f0de3
+-/
 theorem chebyshev_finset_average_gt_two_mul_le
     [IsProbabilityMeasure μ]
     (X : ι → Ω → ℝ) (h_indep : iIndepFun X μ)
@@ -525,7 +563,9 @@ variable {Ω ι E : Type*} [MeasurableSpace Ω]
 /-- Polynomial directional tail for an empirical Minkowski average.  This
 result uses only finite absolute moments; independence and centering are not
 needed.  Consequently its scalar input is the deterministic convexity bound
-on the moment of an average, rather than a Rosenthal/Fuk--Nagaev estimate.-/
+on the moment of an average, rather than a Rosenthal/Fuk--Nagaev estimate.
+@isnad1 id=le.7h10v.s8.e508a46d121e from=translated src=- shape=25a9cd0d vocab=94e79067
+-/
 theorem minkowskiAverage_support_markov
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     (S : ι → Ω → Set E) (L : Set E) (u : E)
@@ -559,7 +599,9 @@ theorem minkowskiAverage_support_markov
 
 /-- Directional polynomial tail under explicit bounds on the individual
 absolute moments.  The bounds `m i` may vary with the sample index but are
-uniform in the selected direction.-/
+uniform in the selected direction.
+@isnad1 id=le.8h11v.s8.d30b6b3c63f0 from=translated src=- shape=458c7f11 vocab=94e79067
+-/
 theorem minkowskiAverage_support_markov_of_moment_le
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     (S : ι → Ω → Set E) (L : Set E) (u : E)
@@ -585,7 +627,9 @@ theorem minkowskiAverage_support_markov_of_moment_le
   · positivity
 
 /-- Common-moment directional specialization with the explicit polynomial
-tail `M / t^q`.-/
+tail `M / t^q`.
+@isnad1 id=le.8h11v.s8.30aa19247d6f from=translated src=- shape=8e461439 vocab=9560c4d1
+-/
 theorem minkowskiAverage_support_markov_of_common_moment_le
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     (S : ι → Ω → Set E) (L : Set E) (u : E)
@@ -621,7 +665,9 @@ theorem minkowskiAverage_support_markov_of_common_moment_le
 This is a union-bound theorem: the factor `N.card` is genuine, and no
 independence across directions is assumed.  It should not be confused with
 the sharper Fuk--Nagaev/chaining rate, which needs additional symmetrization
-and empirical-process input.-/
+and empirical-process input.
+@isnad1 id=le.16h14v.s9.8bfa42580eae from=translated src=- shape=894ada11 vocab=249db46a
+-/
 theorem hausdorffDist_minkowskiAverage_risk_bound_of_moment
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     (S : ι → Ω → Set E) (L : Set E)
@@ -690,7 +736,9 @@ theorem hausdorffDist_minkowskiAverage_risk_bound_of_moment
         (fun i _hi ω => hSne i ω) ht
 
 /-- Common-moment finite-net bound with the transparent union-bound form
-`N.card * (M / t^q)`.-/
+`N.card * (M / t^q)`.
+@isnad1 id=le.16h14v.s9.0a291484ea44 from=translated src=- shape=966421da vocab=f77278a6
+-/
 theorem hausdorffDist_minkowskiAverage_risk_bound_of_common_moment
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     (S : ι → Ω → Set E) (L : Set E)
@@ -733,7 +781,9 @@ theorem hausdorffDist_minkowskiAverage_risk_bound_of_common_moment
 /-- Dimension-explicit version of the finite-moment Hausdorff bound.  A
 volumetric net of the Euclidean unit ball contributes the entropy factor
 `(1 + 2 / eps)^finrank`.  This is still a one-scale union bound, not a
-chaining theorem.-/
+chaining theorem.
+@isnad1 id=le.15h13v.s9.e5676f529d47 from=translated src=- shape=6d32e75e vocab=5d89d908
+-/
 theorem hausdorffDist_minkowskiAverage_risk_bound_dimensional_of_moment
     [FiniteDimensional ℝ E]
     {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -777,7 +827,9 @@ theorem hausdorffDist_minkowskiAverage_risk_bound_dimensional_of_moment
   exact hprob.trans (mul_le_mul_of_nonneg_right hcard hrisk)
 
 /-- Dimension-explicit common-moment bound.  This is the precise
-`(1 + 2 / eps)^dim * M / t^q` one-net Markov estimate.-/
+`(1 + 2 / eps)^dim * M / t^q` one-net Markov estimate.
+@isnad1 id=le.15h13v.s9.51f7b9731778 from=translated src=- shape=9f95d172 vocab=f0abc3dd
+-/
 theorem hausdorffDist_minkowskiAverage_risk_bound_dimensional_of_common_moment
     [FiniteDimensional ℝ E]
     {μ : Measure Ω} [IsProbabilityMeasure μ]
@@ -821,7 +873,9 @@ theorem hausdorffDist_minkowskiAverage_risk_bound_dimensional_of_common_moment
 
 /-- Directional Chebyshev inequality for independent centered support
 deviations.  Variance additivity improves the denominator from the crude
-moment/triangle bound to `((card s) * t)^2`.-/
+moment/triangle bound to `((card s) * t)^2`.
+@isnad1 id=le.7h9v.s8.a370c0049db8 from=translated src=- shape=ff7ea26c vocab=09744474
+-/
 theorem minkowskiAverage_support_chebyshev
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     (S : ι → Ω → Set E) (L : Set E) (u : E)
@@ -854,7 +908,9 @@ theorem minkowskiAverage_support_chebyshev
   exact htail
 
 /-- Directional Chebyshev inequality with explicit upper bounds `v i` on
-the directional variances.-/
+the directional variances.
+@isnad1 id=le.8h10v.s8.0ce1b3df9ead from=translated src=- shape=55414783 vocab=09744474
+-/
 theorem minkowskiAverage_support_chebyshev_of_variance_le
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     (S : ι → Ω → Set E) (L : Set E) (u : E)
@@ -880,7 +936,9 @@ theorem minkowskiAverage_support_chebyshev_of_variance_le
   · positivity
 
 /-- Finite-net Hausdorff Chebyshev bound.  For a common variance bound
-`v i = σ²`, the directional factor simplifies to `σ² / (card s * t²)`.-/
+`v i = σ²`, the directional factor simplifies to `σ² / (card s * t²)`.
+@isnad1 id=le.16h13v.s9.d44cdae73084 from=translated src=- shape=c5360d3a vocab=53b4eae6
+-/
 theorem hausdorffDist_minkowskiAverage_risk_bound_of_variance
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     (S : ι → Ω → Set E) (L : Set E)
@@ -950,7 +1008,9 @@ theorem hausdorffDist_minkowskiAverage_risk_bound_of_variance
         (fun i _hi ω => hSne i ω) ht
 
 /-- Dimension-explicit Hausdorff Chebyshev bound obtained from the
-volumetric unit-ball net.-/
+volumetric unit-ball net.
+@isnad1 id=le.15h12v.s9.80a2185db4c0 from=translated src=- shape=f80cac1d vocab=4627515f
+-/
 theorem hausdorffDist_minkowskiAverage_risk_bound_dimensional_of_variance
     [FiniteDimensional ℝ E]
     {μ : Measure Ω} [IsProbabilityMeasure μ]

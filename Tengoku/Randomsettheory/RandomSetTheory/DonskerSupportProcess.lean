@@ -55,7 +55,9 @@ abbrev ContinuousSupportProcess (Θ E : Type*) [TopologicalSpace Θ]
 
 /-- The selected continuous-path process space is separable under the
 standard compact-metric assumptions used for the parameter set and the
-finite-dimensional support space.-/
+finite-dimensional support space.
+@isnad1 id=separabl.0h2v.s7.8bae18404987 from=translated src=- shape=002b91be vocab=e7aecc4f
+-/
 theorem continuousSupportProcess_separable
     (Θ E : Type*) [MetricSpace Θ] [CompactSpace Θ]
     [SecondCountableTopology Θ]
@@ -64,7 +66,9 @@ theorem continuousSupportProcess_separable
     TopologicalSpace.SeparableSpace (ContinuousSupportProcess Θ E) := by
   infer_instance
 
-/-- The selected continuous-path process space is complete.-/
+/-- The selected continuous-path process space is complete.
+@isnad1 id=complete.0h2v.s7.1eb620c11398 from=translated src=- shape=7d0eb44f vocab=3469828c
+-/
 theorem continuousSupportProcess_complete
     (Θ E : Type*) [MetricSpace Θ] [CompactSpace Θ]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -81,7 +85,9 @@ def parameterUniformHausdorffDist
   sSup (Set.range fun θ => hausdorffDist (K θ) (L θ))
 
 /-- A continuous support-difference path dominates the Hausdorff error at
-each parameter.  This is the first half of the deterministic uniform bridge.-/
+each parameter.  This is the first half of the deterministic uniform bridge.
+@isnad1 id=le.7h6v.s9.7f9234924fa4 from=translated src=- shape=7d9cfb55 vocab=5ed23428
+-/
 theorem hausdorffDist_le_norm_continuousSupportProcess
     {Θ E : Type*} [TopologicalSpace Θ] [CompactSpace Θ]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -111,7 +117,9 @@ theorem hausdorffDist_le_norm_continuousSupportProcess
 /-- The norm of a continuous parameter-direction support-difference process
 is exactly the supremum of the parameterwise Hausdorff distances.  Thus the
 definition of `Δₙ` in the report is not replaced by an unrelated process
-norm: the two quantities are proved equal.-/
+norm: the two quantities are proved equal.
+@isnad1 id=eq.7h5v.s9.0af82856b3db from=translated src=- shape=ac67e751 vocab=fe2c0649
+-/
 theorem norm_continuousSupportProcess_eq_parameterUniformHausdorffDist
     {Θ E : Type*} [TopologicalSpace Θ] [CompactSpace Θ] [Nonempty Θ]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -204,14 +212,18 @@ variable {Ω Ω' Θ E : Type*}
   {Z : Ω' → ContinuousSupportProcess Θ E}
 
 /-- Weak convergence in the separable Banach process space implies that the
-root-`n` scaled process itself is bounded in probability.-/
+root-`n` scaled process itself is bounded in probability.
+@isnad1 id=isbounde.1h10v.s9.f617767964a7 from=translated src=- shape=a70f9aa8 vocab=0f4a1687
+-/
 theorem rootN_process_isBoundedInProbability
     (h : IsPDonskerSupportClass μ μ' Ghat G U Z) :
     IsBoundedInProbability μ atTop (rootNScaledSupportProcess U) :=
   h.weakConvergence.isBoundedInProbability
 
 /-- Exact deterministic identification of the unscaled process norm with
-the report's parameter-uniform Hausdorff error.-/
+the report's parameter-uniform Hausdorff error.
+@isnad1 id=eq.7h12v.s9.a94c5fd3f37c from=translated src=- shape=e8c528ba vocab=87fd1ac3
+-/
 theorem norm_eq_parameterUniformHausdorffDist
     (h : IsPDonskerSupportClass μ μ' Ghat G U Z)
     (hGhatcompact : ∀ n ω θ, IsCompact (Ghat n ω θ))
@@ -226,7 +238,9 @@ theorem norm_eq_parameterUniformHausdorffDist
     (hGhatcompact n ω) hGcompact (hGhatne n ω) hGne
     (hGhatconv n ω) hGconv (U n ω) (h.supportDifference n ω)
 
-/-- Exact root-`n` support/Hausdorff link.-/
+/-- Exact root-`n` support/Hausdorff link.
+@isnad1 id=eq.7h12v.s9.0609f7a18d67 from=translated src=- shape=c6a9917d vocab=6e3f1a72
+-/
 theorem norm_rootNScaledSupportProcess_eq
     (h : IsPDonskerSupportClass μ μ' Ghat G U Z)
     (hGhatcompact : ∀ n ω θ, IsCompact (Ghat n ω θ))
@@ -246,7 +260,9 @@ theorem norm_rootNScaledSupportProcess_eq
 
 /-- Continuous-mapping form of the functional random-set CLT: the actual
 root-`n` parameter-uniform Hausdorff error converges in distribution to the
-uniform norm of the continuous Gaussian limit.-/
+uniform norm of the continuous Gaussian limit.
+@isnad1 id=tendstoi.7h10v.s9.af40820a71f6 from=translated src=- shape=e37408b0 vocab=fa95a14e
+-/
 theorem rootN_parameterUniformHausdorffDist_tendstoInDistribution
     (h : IsPDonskerSupportClass μ μ' Ghat G U Z)
     (hGhatcompact : ∀ n ω θ, IsCompact (Ghat n ω θ))
@@ -268,7 +284,9 @@ theorem rootN_parameterUniformHausdorffDist_tendstoInDistribution
   · exact Filter.Eventually.of_forall (fun _ => rfl)
 
 /-- The functional Donsker hypothesis implies
-`sqrt n * Δₙ = O_P(1)` for the actual parameter-uniform Hausdorff error.-/
+`sqrt n * Δₙ = O_P(1)` for the actual parameter-uniform Hausdorff error.
+@isnad1 id=isbounde.7h10v.s9.e2811c9f2984 from=translated src=- shape=3d74fa7c vocab=2c0a9d58
+-/
 theorem rootN_parameterUniformHausdorffDist_isBoundedInProbability
     (h : IsPDonskerSupportClass μ μ' Ghat G U Z)
     (hGhatcompact : ∀ n ω θ, IsCompact (Ghat n ω θ))
@@ -296,7 +314,9 @@ theorem rootN_parameterUniformHausdorffDist_isBoundedInProbability
 
 /-- Full formal version of the oracle part of Corollary 5.5.  The concrete
 Donsker verification remains in `h`; compactness/nonemptiness make all
-Hausdorff distances finite, and the metric error bound is explicit.-/
+Hausdorff distances finite, and the metric error bound is explicit.
+@isnad1 id=isbounde.9h11v.s9.1763c45081b3 from=translated src=- shape=8b01b40a vocab=9f4064f6
+-/
 theorem rootN_oracleEnlargedZeroSet_isBoundedInProbability
     (h : IsPDonskerSupportClass μ μ' Ghat G U Z)
     (hGhatcompact : ∀ n ω θ, IsCompact (Ghat n ω θ))

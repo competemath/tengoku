@@ -31,7 +31,9 @@ variable {Omega Z T iota : Type*} [MeasurableSpace Omega] [MeasurableSpace Z]
   [PseudoMetricSpace T] {mu : Measure Omega}
 
 omit [PseudoMetricSpace T] in
-/-- Directional measurability of the original anchored process.-/
+/-- Directional measurability of the original anchored process.
+@isnad1 id=measurab.2h11v.s6.9cdfff8cf19b from=translated src=- shape=cd6e052a vocab=b19b970e
+-/
 theorem measurable_centeredAnchoredEmpiricalProcess
     (H : Z → T → ℝ) (c : ℝ)
     (X : iota → Omega → Z) (hX : ∀ i, Measurable (X i))
@@ -45,7 +47,9 @@ theorem measurable_centeredAnchoredEmpiricalProcess
   exact Finset.measurable_fun_sum I fun i _hi ↦
     (measurable_lipschitzIncrement H X hX hH i t o).sub measurable_const
 
-/-- Directional measurability of the anchored truncated process.-/
+/-- Directional measurability of the anchored truncated process.
+@isnad1 id=measurab.3h13v.s6.7deea6d6eb67 from=translated src=- shape=ef7e4b09 vocab=3e0792d6
+-/
 theorem measurable_centeredAnchoredTruncatedEmpiricalProcess
     (H : Z → T → ℝ) (R : Z → ℝ) (M c : ℝ)
     (X : iota → Omega → Z) (hX : ∀ i, Measurable (X i))
@@ -66,7 +70,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   [FiniteDimensional ℝ E]
 
 /-- The bundled original empirical process is a measurable random element of
-the continuous path space.-/
+the continuous path space.
+@isnad1 id=measurab.6h8v.s8.cb0570bf3d13 from=translated src=- shape=5e085f5e vocab=f749a0ee
+-/
 theorem measurable_centeredAnchoredEmpiricalContinuousMap
     [IsProbabilityMeasure mu]
     [MeasurableSpace C(EuclideanUnitBall E, ℝ)]
@@ -96,7 +102,9 @@ theorem measurable_centeredAnchoredEmpiricalContinuousMap
         (Finset.range (n + 1)) 0 (t : E))
 
 /-- The bundled square-root-truncated empirical process is a measurable
-random element of the continuous path space.-/
+random element of the continuous path space.
+@isnad1 id=measurab.7h9v.s8.607b0eca86a7 from=translated src=- shape=32380ecb vocab=23dd4271
+-/
 theorem measurable_centeredTruncatedEmpiricalContinuousMap
     [IsProbabilityMeasure mu]
     [MeasurableSpace C(EuclideanUnitBall E, ℝ)]

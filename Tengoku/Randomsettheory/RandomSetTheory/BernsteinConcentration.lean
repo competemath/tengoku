@@ -51,7 +51,9 @@ structure HasBernsteinMGF (X : Ω → ℝ) (v b : ℝ≥0)
 
 namespace HasBernsteinMGF
 
-/-- A sub-Gaussian MGF is a Bernstein MGF with zero scale proxy.-/
+/-- A sub-Gaussian MGF is a Bernstein MGF with zero scale proxy.
+@isnad1 id=hasberns.1h4v.s5.476c0435432e from=translated src=- shape=cd90fa82 vocab=a0b9e432
+-/
 theorem of_hasSubgaussianMGF [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {v : ℝ≥0}
     (hX : HasSubgaussianMGF X v μ) :
@@ -61,14 +63,18 @@ theorem of_hasSubgaussianMGF [IsProbabilityMeasure μ]
   mgf_le t _ := by
     simpa using hX.mgf_le t
 
-/-- The zero random variable satisfies every zero-variance Bernstein bound.-/
+/-- The zero random variable satisfies every zero-variance Bernstein bound.
+@isnad1 id=hasberns.0h3v.s5.73fb643059c1 from=translated src=- shape=d7fcd9e3 vocab=45a77db9
+-/
 @[simp] theorem zero [IsProbabilityMeasure μ] (b : ℝ≥0) :
     HasBernsteinMGF (fun _ : Ω => 0) 0 b μ where
   aemeasurable := aemeasurable_const
   integrable_exp_mul t _ := by simp
   mgf_le t _ := by simp
 
-/-- Bernstein MGF bounds are invariant under sign change.-/
+/-- Bernstein MGF bounds are invariant under sign change.
+@isnad1 id=hasberns.1h5v.s5.59dbf2368491 from=translated src=- shape=a68e8c8a vocab=524efe4e
+-/
 theorem neg {X : Ω → ℝ} {v b : ℝ≥0}
     (hX : HasBernsteinMGF X v b μ) :
     HasBernsteinMGF (fun ω => -X ω) v b μ where
@@ -81,7 +87,9 @@ theorem neg {X : Ω → ℝ} {v b : ℝ≥0}
     rw [show (fun ω => -X ω) = -X from rfl, mgf_neg]
     simpa using hX.mgf_le (-t) ht'
 
-/-- Congruence under almost-everywhere equality.-/
+/-- Congruence under almost-everywhere equality.
+@isnad1 id=hasberns.2h6v.s5.fb71cc65028a from=translated src=- shape=c3b685bb vocab=d5c11269
+-/
 theorem congr {X Y : Ω → ℝ} {v b : ℝ≥0}
     (hX : HasBernsteinMGF X v b μ) (hXY : X =ᵐ[μ] Y) :
     HasBernsteinMGF Y v b μ where
@@ -94,12 +102,16 @@ theorem congr {X Y : Ω → ℝ} {v b : ℝ≥0}
     exact hX.mgf_le t ht
 
 /-- Internal congruence form with the equality argument first, convenient
-for finite-sum normalization.-/
+for finite-sum normalization.
+@isnad1 id=hasberns.2h6v.s5.fb71cc65028a from=translated src=- shape=c3b685bb vocab=d5c11269
+-/
 theorem congr' {X Y : Ω → ℝ} {v b : ℝ≥0}
     (hX : HasBernsteinMGF X v b μ) (hXY : X =ᵐ[μ] Y) :
     HasBernsteinMGF Y v b μ := hX.congr hXY
 
-/-- Bernstein MGF bounds are invariant under equality in distribution.-/
+/-- Bernstein MGF bounds are invariant under equality in distribution.
+@isnad1 id=hasberns.2h8v.s5.1e3ef9c7474e from=translated src=- shape=9d81a382 vocab=f3983643
+-/
 theorem congr_identDistrib
     {Ω' : Type*} [MeasurableSpace Ω'] {μ' : Measure Ω'}
     {X : Ω → ℝ} {Y : Ω' → ℝ} {v b : ℝ≥0}
@@ -117,7 +129,9 @@ theorem congr_identDistrib
     exact hX.mgf_le t ht
 
 /-- Independent Bernstein variables with a common scale proxy add their
-variance proxies.-/
+variance proxies.
+@isnad1 id=hasberns.3h7v.s6.d116329c266a from=translated src=- shape=1ff533a6 vocab=f7a1996b
+-/
 theorem add_of_indepFun {X Y : Ω → ℝ} {vX vY b : ℝ≥0}
     (hX : HasBernsteinMGF X vX b μ)
     (hY : HasBernsteinMGF Y vY b μ)
@@ -169,7 +183,9 @@ private theorem sum_of_iIndepFun_of_forall_aemeasurable
       simpa [Finset.sum_insert his] using hi.add_of_indepFun hsum hindep''
 
 /-- A finite sum of independent Bernstein variables has variance proxy equal
-to the sum of the individual proxies.-/
+to the sum of the individual proxies.
+@isnad1 id=hasberns.2h7v.s6.91aa8ee2c620 from=translated src=- shape=99c9731e vocab=50aa5a08
+-/
 theorem sum_of_iIndepFun [IsProbabilityMeasure μ]
     {X : ι → Ω → ℝ} (h_indep : iIndepFun X μ)
     {v : ι → ℝ≥0} (b : ℝ≥0) {s : Finset ι}
@@ -186,7 +202,9 @@ theorem sum_of_iIndepFun [IsProbabilityMeasure μ]
     Finset.sum_attach s (fun i => X i ω))
 
 /-- One-sided Bernstein inequality obtained by optimizing the Chernoff
-parameter at `t = ε / (v + b ε)`.-/
+parameter at `t = ε / (v + b ε)`.
+@isnad1 id=le.3h6v.s7.9b0cc1468c85 from=translated src=- shape=6f207c86 vocab=a6fe41f1
+-/
 theorem measure_ge_le [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {v b : ℝ≥0}
     (hX : HasBernsteinMGF X v b μ)
@@ -230,7 +248,9 @@ theorem measure_ge_le [IsProbabilityMeasure μ]
       rw [← exp_add, hexponent]
     _ = exp (-ε ^ 2 / (2 * ((v : ℝ) + (b : ℝ) * ε))) := rfl
 
-/-- Bilateral Bernstein inequality.-/
+/-- Bilateral Bernstein inequality.
+@isnad1 id=le.3h6v.s7.585974b44f1a from=translated src=- shape=d8d75d2c vocab=2c4339ba
+-/
 theorem measure_abs_ge_le [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {v b : ℝ≥0}
     (hX : HasBernsteinMGF X v b μ)
@@ -256,7 +276,9 @@ theorem measure_abs_ge_le [IsProbabilityMeasure μ]
 
 /-- Confidence-parameter form of the bilateral Bernstein inequality.  The
 square-root plus linear threshold is the form most often used in statistical
-applications.-/
+applications.
+@isnad1 id=le.3h6v.s7.db1760cfdbfa from=translated src=- shape=dfaf7016 vocab=44fbfdf4
+-/
 theorem measure_abs_ge_sqrt_add_le [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {v b : ℝ≥0}
     (hX : HasBernsteinMGF X v b μ)
@@ -304,7 +326,9 @@ theorem measure_abs_ge_sqrt_add_le [IsProbabilityMeasure μ]
 end HasBernsteinMGF
 
 /-- Bilateral Bernstein tail for a finite sum of independent real random
-variables with a common scale proxy.-/
+variables with a common scale proxy.
+@isnad1 id=le.4h8v.s7.2bc547a71159 from=translated src=- shape=d058d998 vocab=7280cb18
+-/
 theorem bernstein_finset_sum_abs_real [IsProbabilityMeasure μ]
     (X : ι → Ω → ℝ) (v : ι → ℝ≥0) (b : ℝ≥0)
     (h_indep : iIndepFun X μ)
@@ -318,7 +342,9 @@ theorem bernstein_finset_sum_abs_real [IsProbabilityMeasure μ]
   exact (HasBernsteinMGF.sum_of_iIndepFun h_indep b hB).measure_abs_ge_le hε hV
 
 /-- Bilateral Bernstein tail for an arithmetic average over a nonempty
-finite index set.-/
+finite index set.
+@isnad1 id=le.5h8v.s8.732fd1326e68 from=translated src=- shape=e85b323c vocab=9761e907
+-/
 theorem bernstein_finset_average_abs_real [IsProbabilityMeasure μ]
     (X : ι → Ω → ℝ) (v : ι → ℝ≥0) (b : ℝ≥0)
     (h_indep : iIndepFun X μ)
@@ -345,7 +371,9 @@ theorem bernstein_finset_average_abs_real [IsProbabilityMeasure μ]
 
 /-- Confidence-parameter form for a finite average.  The deviation threshold
 is `(sqrt (2 V x) + 2 b x) / n`, where `V` is the sum of the variance
-proxies.-/
+proxies.
+@isnad1 id=le.5h8v.s8.f37ade60dbd1 from=translated src=- shape=c7bc1c02 vocab=4d24a0f4
+-/
 theorem bernstein_finset_average_abs_sqrt_add_real [IsProbabilityMeasure μ]
     (X : ι → Ω → ℝ) (v : ι → ℝ≥0) (b : ℝ≥0)
     (h_indep : iIndepFun X μ)
@@ -386,7 +414,9 @@ variable {Ω ι E : Type*} [MeasurableSpace Ω]
 
 /-- Directional Bernstein concentration for an empirical Minkowski average.
 The variance proxies may depend on the observation index, while the scale
-proxy is common.-/
+proxy is common.
+@isnad1 id=le.7h11v.s8.1c65f1eece42 from=translated src=- shape=b5662cb4 vocab=8243b4c4
+-/
 theorem minkowskiAverage_support_bernstein
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     (S : ι → Ω → Set E) (L : Set E) (u : E)
@@ -419,7 +449,9 @@ theorem minkowskiAverage_support_bernstein
   rw [hset]
   exact htail
 
-/-- Directional confidence-parameter Bernstein bound.-/
+/-- Directional confidence-parameter Bernstein bound.
+@isnad1 id=le.7h11v.s8.8b82218653ef from=translated src=- shape=035fbf22 vocab=f82f8edb
+-/
 theorem minkowskiAverage_support_bernstein_sqrt_add
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     (S : ι → Ω → Set E) (L : Set E) (u : E)
@@ -461,7 +493,9 @@ theorem minkowskiAverage_support_bernstein_sqrt_add
 
 /-- Finite-net Hausdorff Bernstein concentration for empirical Minkowski
 averages.  This is the sub-exponential analogue of
-`hausdorffDist_minkowskiAverage_risk_bound_of_subgaussian`.-/
+`hausdorffDist_minkowskiAverage_risk_bound_of_subgaussian`.
+@isnad1 id=le.15h14v.s9.7d4cf92ee992 from=translated src=- shape=b4431ad6 vocab=f536a368
+-/
 theorem hausdorffDist_minkowskiAverage_risk_bound_of_bernstein
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     (S : ι → Ω → Set E) (L : Set E)
@@ -526,7 +560,9 @@ theorem hausdorffDist_minkowskiAverage_risk_bound_of_bernstein
         (fun i _hi ω => hSne i ω) ht
 
 /-- Finite-net Hausdorff Bernstein inequality in confidence-parameter form.
-It exhibits directly the classical square-root plus linear deviation rate.-/
+It exhibits directly the classical square-root plus linear deviation rate.
+@isnad1 id=le.15h14v.s9.4cd65f94498c from=translated src=- shape=2908da18 vocab=9c3235ea
+-/
 theorem hausdorffDist_minkowskiAverage_risk_bound_bernstein_sqrt_add
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     (S : ι → Ω → Set E) (L : Set E)

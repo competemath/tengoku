@@ -41,6 +41,9 @@ def measurableLiftingFiber
     (ω : Ω) : Set X :=
   S ω ∩ {x | φ (ω, x) = v ω}
 
+/--
+@isnad1 id=iff.0h8v.s6.bceb086e7ba5 from=translated src=- shape=e25641d7 vocab=54b0bacb
+-/
 @[simp]
 theorem mem_measurableLiftingFiber
     {Ω X Y : Type*} {S : Ω → Set X} {φ : Ω × X → Y} {v : Ω → Y}
@@ -49,6 +52,9 @@ theorem mem_measurableLiftingFiber
       x ∈ S ω ∧ φ (ω, x) = v ω :=
   Iff.rfl
 
+/--
+@isnad1 id=le.0h7v.s5.103e119e58a0 from=translated src=- shape=b7a26ddb vocab=738da2a1
+-/
 theorem measurableLiftingFiber_subset
     {Ω X Y : Type*} (S : Ω → Set X) (φ : Ω × X → Y) (v : Ω → Y)
     (ω : Ω) :
@@ -56,7 +62,9 @@ theorem measurableLiftingFiber_subset
   inter_subset_left
 
 /-- Exact inverse-image fibres of a continuous map inside compact feasible
-sets are compact.-/
+sets are compact.
+@isnad1 id=iscompac.2h7v.s6.047c472910f7 from=translated src=- shape=31eae218 vocab=991e5614
+-/
 theorem measurableLiftingFiber_isCompact
     {Ω X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y] [T2Space Y]
     {S : Ω → Set X} (hcompact : ∀ ω, IsCompact (S ω))
@@ -81,7 +89,9 @@ def MeasurableLiftingBasisEvent
           ((fun x => dist (φ (ω, x)) (v ω)) ''
             castaingLocalization S q r ω) = 0
 
-/-- The localized zero-residual basis events are measurable.-/
+/-- The localized zero-residual basis events are measurable.
+@isnad1 id=measurab.6h9v.s7.9b2673ad21ce from=translated src=- shape=f02b67b4 vocab=e1dde105
+-/
 theorem measurableSet_measurableLiftingBasisEvent
     {Ω X Y : Type*} [MeasurableSpace Ω]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -155,7 +165,9 @@ theorem measurableSet_measurableLiftingBasisEvent
 /-- **Effros measurability of exact Carathéodory inverse images.**  The zero
 fibre of a jointly measurable, fibrewise continuous map inside a compact
 random set is again an Effros-measurable correspondence.  The zero fibre is
-allowed to be empty; nonemptiness is needed only for measurable selection.-/
+allowed to be empty; nonemptiness is needed only for measurable selection.
+@isnad1 id=iseffros.6h6v.s7.dbad8bcf0940 from=translated src=- shape=f06b9a0f vocab=d3564bf4
+-/
 theorem effrosMeasurable_measurableLiftingFiber
     {Ω X Y : Type*} [MeasurableSpace Ω]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -259,7 +271,9 @@ def measurableLiftingSelection
       hφmeas hφcont hv)
     hfiberNe
 
-/-- The canonical lifting is measurable.-/
+/-- The canonical lifting is measurable.
+@isnad1 id=measurab.7h6v.s7.5424afd217fa from=translated src=- shape=80214872 vocab=6b8996a6
+-/
 theorem measurable_measurableLiftingSelection
     {Ω X Y : Type*} [MeasurableSpace Ω]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -281,7 +295,9 @@ theorem measurable_measurableLiftingSelection
     hfiberNe).1
 
 /-- The canonical lifting belongs to `S` and maps exactly to the prescribed
-target in every fibre.-/
+target in every fibre.
+@isnad1 id=and.7h7v.s8.63b3bc880512 from=translated src=- shape=9a4ae6ef vocab=70c4833c
+-/
 theorem measurableLiftingSelection_mem_and_map_eq
     {Ω X Y : Type*} [MeasurableSpace Ω]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -306,7 +322,9 @@ theorem measurableLiftingSelection_mem_and_map_eq
     hfiberNe).2 ω
 
 /-- Existential measurable-lifting theorem in the form most directly used
-by sharp representation arguments.-/
+by sharp representation arguments.
+@isnad1 id=ex.7h6v.s7.37e268998eb8 from=translated src=- shape=9d623c12 vocab=190a4f26
+-/
 theorem exists_measurable_lifting
     {Ω X Y : Type*} [MeasurableSpace Ω]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -330,7 +348,9 @@ theorem exists_measurable_lifting
 
 /-- A directly usable lifting theorem for a measurable selection of the
 Carathéodory image.  Pointwise membership in the image discharges the
-nonemptiness of every exact inverse-image fibre.-/
+nonemptiness of every exact inverse-image fibre.
+@isnad1 id=ex.7h6v.s7.278ad50d7906 from=translated src=- shape=3e82d0c6 vocab=2a8e6ca5
+-/
 theorem exists_measurable_lifting_of_mem_image
     {Ω X Y : Type*} [MeasurableSpace Ω]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -352,7 +372,9 @@ theorem exists_measurable_lifting_of_mem_image
 
 /-- The feasibility event of the exact inverse-image problem is measurable.
 This is the key fact allowing an almost-surely feasible target to be
-totalized on a measurable null exceptional set.-/
+totalized on a measurable null exceptional set.
+@isnad1 id=measurab.6h6v.s7.d476da730119 from=translated src=- shape=1b67337e vocab=ac8440dc
+-/
 theorem measurableSet_measurableLiftingFiber_nonempty
     {Ω X Y : Type*} [MeasurableSpace Ω]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -378,7 +400,9 @@ surely.
 On the measurable exceptional set where the original inverse-image fibre
 is empty, the proof first selects a measurable fallback point of `S` by KRN
 and replaces the target by its image.  The modified exact fibre is therefore
-nonempty everywhere, so the pointwise lifting theorem applies.-/
+nonempty everywhere, so the pointwise lifting theorem applies.
+@isnad1 id=ex.7h7v.s8.6c6bb2af5cb3 from=translated src=- shape=85ee9c3a vocab=aeca65e8
+-/
 theorem exists_measurable_lifting_of_ae_mem_image
     {Ω X Y : Type*} [MeasurableSpace Ω]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -448,7 +472,9 @@ measurable parameter `θ`.
 
 /-- Effros measurability of parameter-dependent exact inverse-image fibres.
 This is the correspondence on `Ω × Θ` whose value at `(ω, θ)` consists of
-the points `x ∈ S(ω)` satisfying `φ((ω, θ), x) = v(ω, θ)`.-/
+the points `x ∈ S(ω)` satisfying `φ((ω, θ), x) = v(ω, θ)`.
+@isnad1 id=iseffros.6h7v.s7.07a9c888fad2 from=translated src=- shape=71e6e189 vocab=46bc8f14
+-/
 theorem effrosMeasurable_measurableLiftingFiber_param
     {Ω Θ X Y : Type*} [MeasurableSpace Ω] [MeasurableSpace Θ]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -477,7 +503,9 @@ theorem effrosMeasurable_measurableLiftingFiber_param
 
 /-- Parameter-dependent measurable lifting.  If every observational fibre
 is nonempty, one can choose its latent representative jointly measurably in
-`(ω, θ)`.-/
+`(ω, θ)`.
+@isnad1 id=ex.7h7v.s8.8379915249d1 from=translated src=- shape=1719ea75 vocab=e6e68b97
+-/
 theorem exists_measurable_lifting_param
     {Ω Θ X Y : Type*} [MeasurableSpace Ω] [MeasurableSpace Θ]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -508,7 +536,9 @@ theorem exists_measurable_lifting_param
     hφmeas hφcont hv hfiberNe
 
 /-- Parameterized lifting stated for a jointly measurable selection of the
-parameter-dependent Carathéodory image.-/
+parameter-dependent Carathéodory image.
+@isnad1 id=ex.7h7v.s8.9522c365addd from=translated src=- shape=135ad353 vocab=453f2a3a
+-/
 theorem exists_measurable_lifting_param_of_mem_image
     {Ω Θ X Y : Type*} [MeasurableSpace Ω] [MeasurableSpace Θ]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -531,7 +561,9 @@ theorem exists_measurable_lifting_param_of_mem_image
 
 /-- Almost-sure parameter-dependent lifting for an arbitrary measure on the
 joint base `Ω × Θ`.  The selected latent point belongs to `S(ω)` everywhere
-and realizes the prescribed parameter-dependent target almost surely.-/
+and realizes the prescribed parameter-dependent target almost surely.
+@isnad1 id=ex.7h8v.s8.6745d70066db from=translated src=- shape=7c323ee4 vocab=e304c5bf
+-/
 theorem exists_measurable_lifting_param_of_ae_mem_image
     {Ω Θ X Y : Type*} [MeasurableSpace Ω] [MeasurableSpace Θ]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]

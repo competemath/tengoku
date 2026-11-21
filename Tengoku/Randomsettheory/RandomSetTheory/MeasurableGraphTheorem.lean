@@ -23,7 +23,9 @@ noncomputable section
 namespace RandomSetTheory
 
 /-- In the Polish closed-valued setting, the distance to the moving fibre is
-jointly measurable in the base point and the ambient point.-/
+jointly measurable in the base point and the ambient point.
+@isnad1 id=measurab.3h3v.s6.cd9f4605f62d from=translated src=- shape=3cfa3d78 vocab=aefa80c1
+-/
 theorem measurable_infDist_correspondence_joint
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -55,7 +57,9 @@ theorem measurable_infDist_correspondence_joint
     measurable_snd.dist ((hf n).comp measurable_fst)
 
 /-- The graph of a nonempty closed-valued Effros-measurable correspondence
-into a Polish space is measurable in the product sigma-algebra.-/
+into a Polish space is measurable in the product sigma-algebra.
+@isnad1 id=measurab.3h3v.s6.cc87448b852b from=translated src=- shape=beeee344 vocab=7a9c85c5
+-/
 theorem measurableSet_correspondenceGraph
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]

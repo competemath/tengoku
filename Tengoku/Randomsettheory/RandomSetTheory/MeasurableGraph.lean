@@ -27,7 +27,9 @@ def correspondenceGraph {Ω E : Type*} (S : Ω → Set E) : Set (Ω × E) :=
   {p | p.2 ∈ S p.1}
 
 /-- For a fixed point, the distance to a nonempty Effros-measurable
-correspondence is measurable.-/
+correspondence is measurable.
+@isnad1 id=measurab.2h4v.s5.1c26880590ae from=translated src=- shape=1242238a vocab=1fe3e782
+-/
 theorem measurable_infDist_correspondence
     {Ω E : Type*} [MeasurableSpace Ω] [PseudoMetricSpace E]
     {S : Ω → Set E} (hS : RandomSet.IsEffrosMeasurable S)

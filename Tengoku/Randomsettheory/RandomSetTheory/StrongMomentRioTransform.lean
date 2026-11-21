@@ -31,7 +31,9 @@ namespace ProbabilityTheory
 
 /-- Rescaling the Laplace parameter by a positive factor rescales the
 Chernoff transform by at most the same factor.  Equality also holds, but this
-one-sided form is exactly what is needed for homogenization.-/
+one-sided form is exactly what is needed for homogenization.
+@isnad1 id=le.3h3v.s6.91d4f6e1e23b from=translated src=- shape=48a6eca4 vocab=2362af4c
+-/
 theorem chernoffTransform_comp_mul_le_mul
     {psi : ℝ → ℝ} {a x : ℝ} (ha : 0 < a) (hx : 0 ≤ x)
     (hpsi : ∀ t, 0 < t → 0 ≤ psi t) :
@@ -72,12 +74,17 @@ moment `Q`.-/
 def strongMomentQScale (q : ℕ) (Q : ℝ) : ℝ :=
   Q ^ (1 / (q : ℝ))
 
+/--
+@isnad1 id=lt.1h2v.s4.da678e946130 from=translated src=- shape=696abc3b vocab=d456a097
+-/
 theorem strongMomentQScale_pos
     {q : ℕ} {Q : ℝ} (hQ : 0 < Q) :
     0 < strongMomentQScale q Q :=
   Real.rpow_pos_of_pos hQ _
 
-/-- Raising the natural scale back to order `q` recovers `Q`.-/
+/-- Raising the natural scale back to order `q` recovers `Q`.
+@isnad1 id=eq.2h2v.s5.db57e188c8e1 from=translated src=- shape=56a096fd vocab=4100bb4c
+-/
 theorem strongMomentQScale_pow
     {q : ℕ} (hq : 1 ≤ q) {Q : ℝ} (hQ : 0 < Q) :
     strongMomentQScale q Q ^ q = Q := by
@@ -85,7 +92,9 @@ theorem strongMomentQScale_pow
   simpa only [one_div] using
     (Real.rpow_inv_natCast_pow hQ.le (by omega : q ≠ 0))
 
-/-- Homogeneity of every interpolated moment coefficient.-/
+/-- Homogeneity of every interpolated moment coefficient.
+@isnad1 id=eq.3h4v.s6.1bb4a36bce66 from=translated src=- shape=933e533d vocab=bb32eb2e
+-/
 theorem interpolatedStrongMomentCoefficient_eq_scale_pow_mul
     (q k : ℕ) (hq : 3 ≤ q) {V Q : ℝ}
     (hV : 0 < V) (hQ : 0 < Q) :
@@ -131,7 +140,9 @@ theorem interpolatedStrongMomentCoefficient_eq_scale_pow_mul
         ((V / a ^ 2) ^ strongMomentSecondWeight q k * 1) := by ring
 
 /-- Homogeneity of the finite intermediate exponent under simultaneous
-rescaling of `V`, `Q`, and the Laplace parameter.-/
+rescaling of `V`, `Q`, and the Laplace parameter.
+@isnad1 id=eq.3h4v.s6.292c8d040d19 from=translated src=- shape=b1d544a9 vocab=58be1799
+-/
 theorem strongMomentIntermediateExponent_eq_scaled_one
     (q : ℕ) (hq : 3 ≤ q) {V Q t : ℝ}
     (hV : 0 < V) (hQ : 0 < Q) :
@@ -146,7 +157,9 @@ theorem strongMomentIntermediateExponent_eq_scaled_one
     mul_pow]
   ring
 
-/-- Homogeneity of the full deterministic Rio exponent.-/
+/-- Homogeneity of the full deterministic Rio exponent.
+@isnad1 id=eq.4h5v.s6.6c80cca16dc5 from=translated src=- shape=46c0c75d vocab=30e2dc32
+-/
 theorem rioStrongMomentExponent_eq_scaled_one
     (q : ℕ) (hq : 3 ≤ q) {V Q y t : ℝ}
     (hV : 0 < V) (hQ : 0 < Q) (hy : 0 < y) :
@@ -195,7 +208,9 @@ def normalizedStrongMomentIntermediateExponent
     t ^ (k - 2) / (k.factorial : ℝ) *
       interpolatedStrongMomentCoefficient q V Q k
 
-/-- Exact factorization `ℓ₁(t) = t² (t⁻² ℓ₁(t))`.-/
+/-- Exact factorization `ℓ₁(t) = t² (t⁻² ℓ₁(t))`.
+@isnad1 id=eq.0h4v.s5.415b1682f0e3 from=translated src=- shape=586b2597 vocab=9da3e753
+-/
 theorem strongMomentIntermediateExponent_eq_sq_mul_normalized
     (q : ℕ) (V Q t : ℝ) :
     strongMomentIntermediateExponent q V Q t =
@@ -216,7 +231,9 @@ theorem strongMomentIntermediateExponent_eq_sq_mul_normalized
   ring
 
 /-- Rio's observation that `t ↦ t⁻² ℓ₁(t)` is increasing on the
-nonnegative half-line.-/
+nonnegative half-line.
+@isnad1 id=monotone.2h3v.s5.f5e8968f1fc5 from=translated src=- shape=7f15fc97 vocab=35a87b83
+-/
 theorem monotoneOn_normalizedStrongMomentIntermediateExponent
     (q : ℕ) {V Q : ℝ} (hV : 0 ≤ V) (hQ : 0 ≤ Q) :
     MonotoneOn (normalizedStrongMomentIntermediateExponent q V Q)
@@ -234,7 +251,9 @@ theorem monotoneOn_normalizedStrongMomentIntermediateExponent
     (div_le_div_of_nonneg_right hpow hfac) hcoeff
 
 /-- A division-free consequence of the preceding monotonicity.  This is the
-precise comparison used between the Laplace parameters `x / y` and `q / e`.-/
+precise comparison used between the Laplace parameters `x / y` and `q / e`.
+@isnad1 id=le.5h5v.s7.17a469c761dd from=translated src=- shape=2ba70bae vocab=9a043dff
+-/
 theorem one_div_mul_strongMomentIntermediateExponent_le
     (q : ℕ) {V Q a b : ℝ}
     (hV : 0 ≤ V) (hQ : 0 ≤ Q)
@@ -260,7 +279,9 @@ theorem one_div_mul_strongMomentIntermediateExponent_le
 
 /-- If `exp x ≤ y^q`, then the evaluation parameter used for the tail
 branch satisfies `x/y ≤ q/e`.  This is (3.19), stated without introducing
-`z = exp x`.-/
+`z = exp x`.
+@isnad1 id=le.3h3v.s6.d05ee0a88eb0 from=translated src=- shape=ff6212d0 vocab=eec27af9
+-/
 theorem div_le_natCast_div_exp_one_of_exp_le_pow
     (q : ℕ) (hq : 1 ≤ q) {x y : ℝ}
     (hy : 0 < y) (hscale : Real.exp x ≤ y ^ q) :
@@ -283,7 +304,9 @@ theorem div_le_natCast_div_exp_one_of_exp_le_pow
     _ = ((q : ℝ) / Real.exp 1) * y := by ring
 
 /-- Under the same scale condition, the truncation level is at least one.
-The strict form is useful because `x > 0`.-/
+The strict form is useful because `x > 0`.
+@isnad1 id=lt.4h3v.s6.ea1293f959f8 from=translated src=- shape=4bc91855 vocab=fe9d106e
+-/
 theorem one_lt_of_exp_le_pow
     (q : ℕ) (hq : 1 ≤ q) {x y : ℝ}
     (hx : 0 < x) (hy : 0 < y) (hscale : Real.exp x ≤ y ^ q) :
@@ -294,7 +317,9 @@ theorem one_lt_of_exp_le_pow
 /-! ## The first transform branch (3.20) -/
 
 /-- The finite intermediate correction in the first branch is controlled by
-its value at `q/e`.  This is the polynomial calculation in (3.20).-/
+its value at `q/e`.  This is the polynomial calculation in (3.20).
+@isnad1 id=le.5h4v.s7.fb2f6f58e3f2 from=translated src=- shape=c0e23a46 vocab=7601e0af
+-/
 theorem scaled_strongMomentIntermediateExponent_le_exp_linear
     (q : ℕ) (hq : 3 ≤ q) {V y x : ℝ}
     (hV : 0 ≤ V) (hy : 0 < y) (hx : 0 < x)
@@ -343,7 +368,9 @@ theorem scaled_strongMomentIntermediateExponent_le_exp_linear
     (mul_le_mul_of_nonneg_right hcoeff hmidNonneg)
 
 /-- Rio's first branch (3.20), after splitting off and optimizing the
-Gaussian component.-/
+Gaussian component.
+@isnad1 id=le.5h4v.s7.98a9b523ac2e from=translated src=- shape=7986fc98 vocab=f156e7da
+-/
 theorem chernoffTransform_rioStrongMomentExponent_one_first_branch_le
     (q : ℕ) (hq : 3 ≤ q) {V y x : ℝ}
     (hV : 0 < V) (hy : 0 < y) (hx : 0 < x)
@@ -374,7 +401,9 @@ theorem chernoffTransform_rioStrongMomentExponent_one_first_branch_le
               ((q : ℝ) / Real.exp 1) := by ring
 
 /-- The two branches (3.20) and (3.21), combined exactly as in (3.22).
-The finite series remains only inside the minimum appearing in (3.23).-/
+The finite series remains only inside the minimum appearing in (3.23).
+@isnad1 id=le.5h4v.s8.39fcd17084be from=translated src=- shape=be1e1acd vocab=ca690f91
+-/
 theorem chernoffTransform_rioStrongMomentExponent_one_min_le
     (q : ℕ) (hq : 3 ≤ q) {V y x : ℝ}
     (hV : 0 < V) (hy : 0 < y) (hx : 0 < x)
@@ -412,7 +441,9 @@ theorem chernoffTransform_rioStrongMomentExponent_one_min_le
 `Q = 1`.  The explicit constant is exactly the one obtained by combining
 (3.20)--(3.23):
 
-`sqrt (2 V x) + (1 + 1/q) y + (e/3) x`.-/
+`sqrt (2 V x) + (1 + 1/q) y + (e/3) x`.
+@isnad1 id=le.5h4v.s7.7e63dd4826d9 from=translated src=- shape=3ffa8ba8 vocab=66f6377f
+-/
 theorem chernoffTransform_rioStrongMomentExponent_one_le
     (q : ℕ) (hq : 3 ≤ q) {V y x : ℝ}
     (hV : 0 < V) (hy : 0 < y) (hx : 0 < x)
@@ -434,7 +465,9 @@ aggregate `q`-th moment `Q`.  Homogeneity turns the normalized linear
 correction into `(e/3) Q^(1/q) x`.
 
 This is a deterministic Chernoff statement; obtaining a maximal-process
-inequality additionally requires a probabilistic MGF/comparison theorem.-/
+inequality additionally requires a probabilistic MGF/comparison theorem.
+@isnad1 id=le.6h5v.s7.b7afcc9dccfd from=translated src=- shape=922b3cc5 vocab=40a25240
+-/
 theorem chernoffTransform_rioStrongMomentExponent_le_explicit
     (q : ℕ) (hq : 3 ≤ q) {V Q y x : ℝ}
     (hV : 0 < V) (hQ : 0 < Q) (hy : 0 < y) (hx : 0 < x)

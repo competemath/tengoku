@@ -48,7 +48,9 @@ def positiveWeakMoment (X : Omega → ℝ) (q : ℕ)
     (mu : Measure Omega) : ℝ :=
   positiveWeakMomentPower X q mu ^ ((q : ℝ)⁻¹)
 
-/-- Each positive-tail term is bounded by the strong absolute moment.-/
+/-- Each positive-tail term is bounded by the strong absolute moment.
+@isnad1 id=le.2h5v.s6.88a426c41ce7 from=translated src=- shape=1a69b2eb vocab=540fdbbe
+-/
 theorem positiveTailPow_mul_measureReal_le_absoluteMoment
     [IsFiniteMeasure mu] (X : Omega → ℝ) {q : ℕ} (hq : 0 < q)
     (hXq : Integrable (fun omega ↦ |X omega| ^ q) mu)
@@ -74,7 +76,9 @@ theorem positiveTailPow_mul_measureReal_le_absoluteMoment
     _ = absoluteMoment X q mu := by
       field_simp [pow_ne_zero q ht]
 
-/-- The powered positive weak moment is at most the strong absolute moment.-/
+/-- The powered positive weak moment is at most the strong absolute moment.
+@isnad1 id=le.2h4v.s6.08a3057dba97 from=translated src=- shape=27d82d1c vocab=6f2bfb8e
+-/
 theorem positiveWeakMomentPower_le_absoluteMoment
     [IsFiniteMeasure mu] (X : Omega → ℝ) {q : ℕ} (hq : 0 < q)
     (hXq : Integrable (fun omega ↦ |X omega| ^ q) mu) :
@@ -86,7 +90,9 @@ theorem positiveWeakMomentPower_le_absoluteMoment
     exact positiveTailPow_mul_measureReal_le_absoluteMoment X hq hXq t
 
 /-- Under a finite strong moment, the powered positive weak moment is
-nonnegative.-/
+nonnegative.
+@isnad1 id=le.2h4v.s6.70ae61f28e18 from=translated src=- shape=0babdfb3 vocab=a1cee367
+-/
 theorem positiveWeakMomentPower_nonneg
     [IsFiniteMeasure mu] (X : Omega → ℝ) {q : ℕ} (hq : 0 < q)
     (hXq : Integrable (fun omega ↦ |X omega| ^ q) mu) :
@@ -104,7 +110,9 @@ theorem positiveWeakMomentPower_nonneg
   exact le_csSup hbdd hzero
 
 /-- Strong `L^q` controls the positive weak moment.  This is the comparison
-usually written `Lambda_q^+(X) ≤ ||X||_q`.-/
+usually written `Lambda_q^+(X) ≤ ||X||_q`.
+@isnad1 id=le.2h4v.s6.512f8aef447f from=translated src=- shape=2f608b24 vocab=2db337e0
+-/
 theorem positiveWeakMoment_le_lpNorm
     [IsFiniteMeasure mu] (X : Omega → ℝ) {q : ℕ} (hq : 0 < q)
     (hXq : MemLp X q mu) :
@@ -125,7 +133,9 @@ theorem positiveWeakMoment_le_lpNorm
       exact Real.pow_rpow_inv_natCast lpNorm_nonneg hq.ne'
 
 /-- The centred envelope used in empirical-process inequalities has positive
-weak moment at most twice that of the original strong envelope.-/
+weak moment at most twice that of the original strong envelope.
+@isnad1 id=le.2h4v.s6.52559f55af6d from=translated src=- shape=c49c7752 vocab=f121a0dc
+-/
 theorem positiveWeakMoment_centeredProcessEnvelope_le_two_mul
     [IsProbabilityMeasure mu] (A : Omega → ℝ) {q : ℕ} (hq : 1 ≤ q)
     (hAq : MemLp A q mu) :
@@ -137,7 +147,9 @@ theorem positiveWeakMoment_centeredProcessEnvelope_le_two_mul
       (memLp_centeredProcessEnvelope A hAq)).trans
     (lpNorm_centeredProcessEnvelope_le_two_mul A hq hAq)
 
-/-- Numerical specialization of the centred-envelope weak-moment bound.-/
+/-- Numerical specialization of the centred-envelope weak-moment bound.
+@isnad1 id=le.3h5v.s7.f0fdfa320337 from=translated src=- shape=9ed2ac36 vocab=f121a0dc
+-/
 theorem positiveWeakMoment_centeredProcessEnvelope_le
     [IsProbabilityMeasure mu] (A : Omega → ℝ) {q : ℕ} (hq : 1 ≤ q)
     (hAq : MemLp A q mu) {K : ℝ}

@@ -43,16 +43,25 @@ def IsIntegrableSelection (μ : Measure Ω) (S : Ω → Set E) (f : Ω → E) : 
 def aumannExpectation (μ : Measure Ω) (S : Ω → Set E) : Set E :=
   {x | ∃ f : Ω → E, IsIntegrableSelection μ S f ∧ ∫ ω, f ω ∂μ = x}
 
+/--
+@isnad1 id=iff.0h5v.s6.4c49df619e86 from=translated src=- shape=7375f8d4 vocab=b0379447
+-/
 theorem mem_aumannExpectation_iff {μ : Measure Ω} {S : Ω → Set E} {x : E} :
     x ∈ aumannExpectation μ S ↔
       ∃ f : Ω → E, IsIntegrableSelection μ S f ∧ ∫ ω, f ω ∂μ = x :=
   Iff.rfl
 
+/--
+@isnad1 id=nonempty.1h5v.s5.6983ffc11be5 from=translated src=- shape=34e66937 vocab=1b3914f3
+-/
 theorem aumannExpectation_nonempty_of_selection {μ : Measure Ω} {S : Ω → Set E}
     {f : Ω → E} (hf : IsIntegrableSelection μ S f) :
     (aumannExpectation μ S).Nonempty := by
   exact ⟨∫ ω, f ω ∂μ, f, hf, rfl⟩
 
+/--
+@isnad1 id=le.1h5v.s6.92fed920c9b1 from=translated src=- shape=656e642f vocab=27efaeb5
+-/
 theorem aumannExpectation_mono_ae {μ : Measure Ω} {S T : Ω → Set E}
     (hST : ∀ᵐ ω ∂μ, S ω ⊆ T ω) :
     aumannExpectation μ S ⊆ aumannExpectation μ T := by
@@ -61,17 +70,26 @@ theorem aumannExpectation_mono_ae {μ : Measure Ω} {S T : Ω → Set E}
   filter_upwards [hf.2, hST] with ω hfω hSTω
   exact hSTω hfω
 
+/--
+@isnad1 id=le.1h5v.s6.de06738a2b36 from=translated src=- shape=ab261f87 vocab=80942d5a
+-/
 theorem aumannExpectation_mono {μ : Measure Ω} {S T : Ω → Set E}
     (hST : ∀ ω, S ω ⊆ T ω) :
     aumannExpectation μ S ⊆ aumannExpectation μ T :=
   aumannExpectation_mono_ae (Filter.Eventually.of_forall hST)
 
+/--
+@isnad1 id=eq.1h5v.s6.f1edcff7b057 from=translated src=- shape=7045bdcf vocab=baa0bb0b
+-/
 theorem aumannExpectation_congr_ae {μ : Measure Ω} {S T : Ω → Set E}
     (hST : S =ᵐ[μ] T) : aumannExpectation μ S = aumannExpectation μ T := by
   apply Set.Subset.antisymm
   · exact aumannExpectation_mono_ae (hST.mono fun _ h => h.subset)
   · exact aumannExpectation_mono_ae (hST.symm.mono fun _ h => h.subset)
 
+/--
+@isnad1 id=eq.1h4v.s6.372bb9177378 from=translated src=- shape=57dff9a7 vocab=17628d17
+-/
 theorem aumannExpectation_singleton {μ : Measure Ω} {f : Ω → E}
     (hf : Integrable f μ) :
     aumannExpectation μ (fun ω => ({f ω} : Set E)) = {∫ ω, f ω ∂μ} := by
@@ -87,6 +105,9 @@ theorem aumannExpectation_singleton {μ : Measure Ω} {f : Ω → E}
     filter_upwards [] with ω
     simp
 
+/--
+@isnad1 id=eq.0h4v.s7.cc13eac509af from=translated src=- shape=1ce46af2 vocab=cca2c4a9
+-/
 theorem aumannExpectation_const_singleton {μ : Measure Ω} [IsFiniteMeasure μ]
     [CompleteSpace E]
     (x : E) :
@@ -95,7 +116,9 @@ theorem aumannExpectation_const_singleton {μ : Measure Ω} [IsFiniteMeasure μ]
   rw [MeasureTheory.integral_const]
 
 /-- On a probability space, the Aumann expectation of a constant closed
-convex set is the set itself.-/
+convex set is the set itself.
+@isnad1 id=eq.2h4v.s7.22a33c19e614 from=translated src=- shape=9cb48b8e vocab=8c121211
+-/
 theorem aumannExpectation_const {μ : Measure Ω} [IsProbabilityMeasure μ]
     [CompleteSpace E] {K : Set E} (hKconv : Convex ℝ K)
     (hKclosed : IsClosed K) :
@@ -110,6 +133,9 @@ theorem aumannExpectation_const {μ : Measure Ω} [IsProbabilityMeasure μ]
     · rw [MeasureTheory.integral_const]
       simp
 
+/--
+@isnad1 id=convex.1h4v.s7.8ada47393705 from=translated src=- shape=e60db30b vocab=6edc40ed
+-/
 theorem aumannExpectation_convex {μ : Measure Ω} {S : Ω → Set E}
     (hS : ∀ᵐ ω ∂μ, Convex ℝ (S ω)) : Convex ℝ (aumannExpectation μ S) := by
   intro x hx y hy a b ha hb hab
@@ -132,7 +158,9 @@ section SupportFunction
 
 variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
 
-/-- Every integrable selection satisfies the integrated support inequality.-/
+/-- Every integrable selection satisfies the integrated support inequality.
+@isnad1 id=le.3h6v.s7.cc2ed1760c5b from=translated src=- shape=22a565b4 vocab=4ce43193
+-/
 theorem inner_integral_selection_le_integral_supportFunction
     [CompleteSpace H]
     {μ : Measure Ω} {S : Ω → Set H} {f : Ω → H}
@@ -146,7 +174,9 @@ theorem inner_integral_selection_le_integral_supportFunction
   exact inner_le_supportFunction hcompactω hfω u
 
 /-- Every point of the Aumann expectation lies below the integral of the
-pointwise support functions.-/
+pointwise support functions.
+@isnad1 id=le.3h6v.s7.a4d893b89701 from=translated src=- shape=30f510c5 vocab=bf1de8c1
+-/
 theorem inner_le_integral_supportFunction_of_mem_aumannExpectation
     [CompleteSpace H]
     {μ : Measure Ω} {S : Ω → Set H}
@@ -166,7 +196,9 @@ def HasIntegrableSupportSelection
     ∀ᵐ ω ∂μ, ⟪u, f ω⟫_ℝ = supportFunction (S ω) u
 
 /-- A support-maximizing selection realizes the integrated support bound as a
-point of the Aumann expectation.-/
+point of the Aumann expectation.
+@isnad1 id=ex.1h5v.s6.638576cda75d from=translated src=- shape=5be150ac vocab=8dce7403
+-/
 theorem exists_mem_aumannExpectation_inner_eq_integral_supportFunction
     [CompleteSpace H]
     {μ : Measure Ω} {S : Ω → Set H} {u : H}
@@ -180,7 +212,9 @@ theorem exists_mem_aumannExpectation_inner_eq_integral_supportFunction
 
 /-- Sharp Aumann support identity under the exact hypotheses needed by the
 elementary proof: compactness of the Aumann expectation, integrability of the
-pointwise support, and an integrable maximizing selection.-/
+pointwise support, and an integrable maximizing selection.
+@isnad1 id=eq.5h5v.s7.316ed6df835f from=translated src=- shape=df7565fd vocab=686b9b64
+-/
 theorem supportFunction_aumannExpectation
     [CompleteSpace H]
     {μ : Measure Ω} {S : Ω → Set H}
@@ -211,6 +245,9 @@ def IsAtomlessMeasure (μ : Measure Ω) : Prop :=
   ∀ s : Set Ω, MeasurableSet s → 0 < μ s →
     ∃ t : Set Ω, t ⊆ s ∧ MeasurableSet t ∧ 0 < μ t ∧ μ t < μ s
 
+/--
+@isnad1 id=nullsing.1h2v.s4.1ee0a3a1204b from=translated src=- shape=bf4988ee vocab=269f8849
+-/
 theorem IsAtomlessMeasure.toNullSingletonClass
     [MeasurableSingletonClass Ω] {μ : Measure Ω} (hμ : IsAtomlessMeasure μ) :
     NullSingletonClass μ := by
@@ -223,7 +260,9 @@ theorem IsAtomlessMeasure.toNullSingletonClass
   · exact lt_irrefl _ htlt
 
 /-- A positive measurable set in an atomless measure space can be split
-into two disjoint measurable pieces of positive measure.-/
+into two disjoint measurable pieces of positive measure.
+@isnad1 id=ex.3h3v.s7.19e3c607a447 from=translated src=- shape=19511048 vocab=a982010a
+-/
 theorem IsAtomlessMeasure.exists_measurable_split
     {μ : Measure Ω} (hμ : IsAtomlessMeasure μ)
     {s : Set Ω} (hs : MeasurableSet s) (hspos : 0 < μ s) :
@@ -235,7 +274,9 @@ theorem IsAtomlessMeasure.exists_measurable_split
   exact tsub_pos_iff_lt.mpr htlt
 
 /-- Restricting an atomless measure to a measurable set preserves
-atomlessness.-/
+atomlessness.
+@isnad1 id=isatomle.2h3v.s4.ba247d4ae199 from=translated src=- shape=a6a6750d vocab=2f6022cb
+-/
 theorem IsAtomlessMeasure.restrict
     {μ : Measure Ω} (hμ : IsAtomlessMeasure μ)
     {s : Set Ω} (hs : MeasurableSet s) :
@@ -256,10 +297,16 @@ theorem IsAtomlessMeasure.restrict
 def measurableSetIntegralRange (μ : Measure Ω) (f : Ω → E) : Set E :=
   {x | ∃ A : Set Ω, MeasurableSet A ∧ ∫ ω in A, f ω ∂μ = x}
 
+/--
+@isnad1 id=mem.0h4v.s5.6649c896dc9e from=translated src=- shape=2b0b8088 vocab=3c780e8f
+-/
 theorem zero_mem_measurableSetIntegralRange (μ : Measure Ω) (f : Ω → E) :
     0 ∈ measurableSetIntegralRange μ f := by
   exact ⟨∅, MeasurableSet.empty, by simp⟩
 
+/--
+@isnad1 id=mem.0h4v.s5.eaa0acf456e4 from=translated src=- shape=17df5ca5 vocab=45aa2992
+-/
 theorem integral_mem_measurableSetIntegralRange (μ : Measure Ω) (f : Ω → E) :
     (∫ ω, f ω ∂μ) ∈ measurableSetIntegralRange μ f := by
   exact ⟨Set.univ, MeasurableSet.univ, by simp⟩
@@ -273,7 +320,9 @@ def HasLyapunovConvexity (μ : Measure Ω) (E : Type*)
 /-- Lyapunov convexity transports backwards through a continuous linear
 equivalence of target spaces.  This lets applications work with their natural
 norm while proving Lyapunov in any convenient finite-dimensional Euclidean
-realization.-/
+realization.
+@isnad1 id=haslyapu.1h5v.s6.47a81d86f865 from=translated src=- shape=05ae1418 vocab=a49614e4
+-/
 theorem HasLyapunovConvexity.of_continuousLinearEquiv
     {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
     {μ : Measure Ω} (hF : HasLyapunovConvexity μ F)
@@ -301,7 +350,9 @@ theorem HasLyapunovConvexity.of_continuousLinearEquiv
     _ = e (a • x + b • y) := by simp
 
 /-- Lyapunov convexity is invariant under continuous linear equivalence of
-the finite-dimensional target representation.-/
+the finite-dimensional target representation.
+@isnad1 id=iff.0h5v.s6.801018244ac1 from=translated src=- shape=247204d0 vocab=a49614e4
+-/
 theorem hasLyapunovConvexity_continuousLinearEquiv_iff
     {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
     {μ : Measure Ω} (e : E ≃L[ℝ] F) :
@@ -312,6 +363,9 @@ theorem hasLyapunovConvexity_continuousLinearEquiv_iff
   · intro hF
     exact hF.of_continuousLinearEquiv e
 
+/--
+@isnad1 id=ex.4h5v.s7.965ef1e57bfb from=translated src=- shape=f3faff96 vocab=35ad0d54
+-/
 theorem HasLyapunovConvexity.exists_setIntegral_eq_smul
     {μ : Measure Ω} (hμ : HasLyapunovConvexity μ E)
     {f : Ω → E} (hf : Integrable f μ) {a : ℝ} (ha0 : 0 ≤ a) (ha1 : a ≤ 1) :
@@ -324,6 +378,9 @@ theorem HasLyapunovConvexity.exists_setIntegral_eq_smul
   rcases hmem with ⟨A, hA, hEq⟩
   exact ⟨A, hA, by simpa using hEq⟩
 
+/--
+@isnad1 id=convex.1h4v.s6.ba34a6b0ae28 from=translated src=- shape=d4ea2bdb vocab=8478fd27
+-/
 theorem aumannExpectation_convex_of_lyapunov
     {μ : Measure Ω} (hμ : HasLyapunovConvexity μ E) (S : Ω → Set E) :
     Convex ℝ (aumannExpectation μ S) := by
@@ -348,6 +405,9 @@ theorem aumannExpectation_convex_of_lyapunov
     rw [hb']
     module
 
+/--
+@isnad1 id=convex.1h4v.s6.ddc7fa8b3cce from=translated src=- shape=6903c5d1 vocab=8a66f5ec
+-/
 theorem closure_aumannExpectation_convex_of_lyapunov
     {μ : Measure Ω} (hμ : HasLyapunovConvexity μ E) (S : Ω → Set E) :
     Convex ℝ (closure (aumannExpectation μ S)) :=
@@ -355,6 +415,9 @@ theorem closure_aumannExpectation_convex_of_lyapunov
 
 /-! ## Minkowski operations -/
 
+/--
+@isnad1 id=mem.2h7v.s7.4c70941b06d8 from=translated src=- shape=513ee652 vocab=1e0b7a89
+-/
 theorem add_mem_aumannExpectation {μ : Measure Ω} {S T : Ω → Set E}
     {x y : E} (hx : x ∈ aumannExpectation μ S)
     (hy : y ∈ aumannExpectation μ T) :
@@ -366,6 +429,9 @@ theorem add_mem_aumannExpectation {μ : Measure Ω} {S T : Ω → Set E}
     exact Set.add_mem_add hfω hgω
   · exact integral_add hf.1 hg.1
 
+/--
+@isnad1 id=le.0h5v.s6.30bb1beb8c05 from=translated src=- shape=db0293c0 vocab=6bbc0822
+-/
 theorem aumannExpectation_add_subset {μ : Measure Ω} {S T : Ω → Set E} :
     aumannExpectation μ S + aumannExpectation μ T ⊆
       aumannExpectation μ (fun ω => S ω + T ω) := by
@@ -385,7 +451,9 @@ def HasIntegrableMinkowskiDecomposition (μ : Measure Ω)
         f =ᵐ[μ] fun ω => g ω + h ω
 
 /-- Aumann expectation is exactly Minkowski additive whenever integrable
-selections of the pointwise sum can be decomposed measurably.-/
+selections of the pointwise sum can be decomposed measurably.
+@isnad1 id=eq.1h5v.s6.1eaf3c584eaf from=translated src=- shape=8018befb vocab=6aa52248
+-/
 theorem aumannExpectation_add
     {μ : Measure Ω} {S T : Ω → Set E}
     (hdecomp : HasIntegrableMinkowskiDecomposition μ S T) :
@@ -403,7 +471,9 @@ theorem aumannExpectation_add
       _ = x := hfx
   · exact aumannExpectation_add_subset
 
-/-- Exact translation by an integrable singleton-valued correspondence.-/
+/-- Exact translation by an integrable singleton-valued correspondence.
+@isnad1 id=eq.1h5v.s7.f19b4def332d from=translated src=- shape=5f44acb1 vocab=0a8fe4d5
+-/
 theorem aumannExpectation_add_singleton {μ : Measure Ω}
     {S : Ω → Set E} {g : Ω → E} (hg : Integrable g μ) :
     aumannExpectation μ (fun ω => S ω + ({g ω} : Set E)) =
@@ -434,6 +504,9 @@ theorem aumannExpectation_add_singleton {μ : Measure Ω}
       exact Set.mem_singleton _
     exact add_mem_aumannExpectation ha hgmem
 
+/--
+@isnad1 id=mem.1h6v.s7.cc1ae5831dce from=translated src=- shape=6c22889b vocab=48c5c54b
+-/
 theorem smul_mem_aumannExpectation {μ : Measure Ω} {S : Ω → Set E}
     (c : ℝ) {x : E} (hx : x ∈ aumannExpectation μ S) :
     c • x ∈ aumannExpectation μ (fun ω => c • S ω) := by
@@ -443,6 +516,9 @@ theorem smul_mem_aumannExpectation {μ : Measure Ω} {S : Ω → Set E}
     exact Set.smul_mem_smul_set hfω
   · exact integral_smul c f
 
+/--
+@isnad1 id=le.0h5v.s7.30b40048c7a6 from=translated src=- shape=9d846465 vocab=f24244a5
+-/
 theorem aumannExpectation_smul_subset {μ : Measure Ω} {S : Ω → Set E}
     (c : ℝ) :
     c • aumannExpectation μ S ⊆
@@ -450,6 +526,9 @@ theorem aumannExpectation_smul_subset {μ : Measure Ω} {S : Ω → Set E}
   rintro _ ⟨x, hx, rfl⟩
   exact smul_mem_aumannExpectation c hx
 
+/--
+@isnad1 id=eq.1h5v.s7.f18203ef9c8c from=translated src=- shape=593adb0f vocab=c44a1978
+-/
 theorem aumannExpectation_smul_of_ne {μ : Measure Ω} {S : Ω → Set E}
     (c : ℝ) (hc : c ≠ 0) :
     aumannExpectation μ (fun ω => c • S ω) =
@@ -466,6 +545,9 @@ theorem aumannExpectation_smul_of_ne {μ : Measure Ω} {S : Ω → Set E}
     simp [hc]
   · exact aumannExpectation_smul_subset c
 
+/--
+@isnad1 id=mem.1h4v.s6.ffa889deef42 from=translated src=- shape=dc23da75 vocab=d6fc4a5d
+-/
 theorem zero_mem_aumannExpectation {μ : Measure Ω} {S : Ω → Set E}
     (hzero : ∀ᵐ ω ∂μ, (0 : E) ∈ S ω) :
     0 ∈ aumannExpectation μ S := by
@@ -475,7 +557,9 @@ theorem zero_mem_aumannExpectation {μ : Measure Ω} {S : Ω → Set E}
 /-! ## Integrable envelopes and compact closure -/
 
 /-- Every integral of a selection is bounded by the integral of a common
-integrable envelope.-/
+integrable envelope.
+@isnad1 id=le.3h6v.s7.c9af2ecdeda2 from=translated src=- shape=8aa7c523 vocab=780a3161
+-/
 theorem norm_le_integral_envelope_of_mem_aumannExpectation
     {μ : Measure Ω} {S : Ω → Set E} {g : Ω → ℝ}
     (hg : Integrable g μ)
@@ -488,7 +572,9 @@ theorem norm_le_integral_envelope_of_mem_aumannExpectation
   exact hdomω (f ω) hfω
 
 /-- The same explicit envelope bound holds on the closure of the Aumann
-expectation.-/
+expectation.
+@isnad1 id=le.3h6v.s7.e1d182ba8289 from=translated src=- shape=2bca473a vocab=4d667457
+-/
 theorem norm_le_integral_envelope_of_mem_closure_aumannExpectation
     {μ : Measure Ω} {S : Ω → Set E} {g : Ω → ℝ}
     (hg : Integrable g μ)
@@ -501,6 +587,9 @@ theorem norm_le_integral_envelope_of_mem_closure_aumannExpectation
   exact closure_minimal hsub
     (isClosed_le continuous_norm continuous_const) hx
 
+/--
+@isnad1 id=isbounde.2h5v.s6.1a2fd404f59d from=translated src=- shape=8697adab vocab=4c3e4f6c
+-/
 theorem aumannExpectation_isBounded_of_integrable_envelope
     {μ : Measure Ω} {S : Ω → Set E} {g : Ω → ℝ}
     (hg : Integrable g μ)
@@ -511,6 +600,9 @@ theorem aumannExpectation_isBounded_of_integrable_envelope
   exact fun _ hx =>
     norm_le_integral_envelope_of_mem_aumannExpectation hg hdom hx
 
+/--
+@isnad1 id=iscompac.2h5v.s7.ebf1cd91ba26 from=translated src=- shape=dc06848c vocab=8ec6daf2
+-/
 theorem closure_aumannExpectation_compact_of_integrable_envelope
     [FiniteDimensional ℝ E]
     {μ : Measure Ω} {S : Ω → Set E} {g : Ω → ℝ}
@@ -519,6 +611,9 @@ theorem closure_aumannExpectation_compact_of_integrable_envelope
     IsCompact (closure (aumannExpectation μ S)) :=
   (aumannExpectation_isBounded_of_integrable_envelope hg hdom).isCompact_closure
 
+/--
+@isnad1 id=and.3h5v.s8.641b345800e0 from=translated src=- shape=115eb916 vocab=10190a12
+-/
 theorem closure_aumannExpectation_compact_convex
     [FiniteDimensional ℝ E]
     {μ : Measure Ω} {S : Ω → Set E} {g : Ω → ℝ}
@@ -530,6 +625,9 @@ theorem closure_aumannExpectation_compact_convex
   ⟨closure_aumannExpectation_compact_of_integrable_envelope hg hdom,
     (aumannExpectation_convex hconv).closure⟩
 
+/--
+@isnad1 id=and.3h5v.s7.0d878b8baf0f from=translated src=- shape=71e79a88 vocab=df8a1fcb
+-/
 theorem closure_aumannExpectation_compact_convex_of_lyapunov
     [FiniteDimensional ℝ E]
     {μ : Measure Ω} (hμ : HasLyapunovConvexity μ E)

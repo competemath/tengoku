@@ -44,7 +44,9 @@ variable {Ω E F : Type*} [MeasurableSpace Ω]
 /-- Every integrable selection of the pointwise continuous-linear image of a
 compact Effros correspondence admits an integrable selection lift.  The
 linear identity is required only almost everywhere, which is the natural
-notion for both Bochner integration and Aumann expectation.-/
+notion for both Bochner integration and Aumann expectation.
+@isnad1 id=ex.6h8v.s9.f4b72ad9ac56 from=translated src=- shape=20238a44 vocab=44add154
+-/
 theorem IsIntegrableSelection.exists_lift_continuousLinearMap
     {μ : Measure Ω} {S : Ω → Set E} {v : Ω → F}
     (L : E →L[ℝ] F)
@@ -69,7 +71,9 @@ theorem IsIntegrableSelection.exists_lift_continuousLinearMap
 
 Under compact nonempty Effros measurability and an integrable envelope of the
 source fibres, Aumann expectation commutes with every continuous linear map.
-No injectivity, surjectivity, or closed-range assumption is needed.-/
+No injectivity, surjectivity, or closed-range assumption is needed.
+@isnad1 id=eq.5h7v.s9.66ca1d86c242 from=translated src=- shape=91db42e1 vocab=63973977
+-/
 theorem aumannExpectation_image_continuousLinearMap
     [CompleteSpace F]
     {μ : Measure Ω} {S : Ω → Set E}
@@ -94,7 +98,9 @@ theorem aumannExpectation_image_continuousLinearMap
 
 /-- Exact affine image formula with a random integrable translation.  The
 translation may depend on `ω`; its contribution to the expectation is its
-Bochner integral.-/
+Bochner integral.
+@isnad1 id=eq.6h8v.s9.2d6cd878df32 from=translated src=- shape=e88076a5 vocab=b585e406
+-/
 theorem aumannExpectation_affine_image_continuousLinearMap
     [CompleteSpace F]
     {μ : Measure Ω} {S : Ω → Set E} {b : Ω → F}
@@ -135,7 +141,9 @@ theorem aumannExpectation_affine_image_continuousLinearMap
 /-- The closure of the image of the closed source Aumann expectation and the
 closure of the image Aumann expectation coincide.  Closing both sides is
 essential in general because a continuous linear map may have nonclosed
-range.-/
+range.
+@isnad1 id=eq.5h7v.s9.86e098b749de from=translated src=- shape=a72cf2e9 vocab=08a252d9
+-/
 theorem closure_image_closure_aumannExpectation_continuousLinearMap
     [CompleteSpace F]
     {μ : Measure Ω} {S : Ω → Set E}
@@ -156,7 +164,9 @@ theorem closure_image_closure_aumannExpectation_continuousLinearMap
 
 /-- Closed convexification is unchanged if one first closed-convexifies the
 source Aumann expectation before applying the continuous linear map.  The
-outer closed convex hull accounts for a possibly nonclosed image.-/
+outer closed convex hull accounts for a possibly nonclosed image.
+@isnad1 id=eq.5h7v.s9.6c0c7a6aa7c5 from=translated src=- shape=b8949252 vocab=36f0fe12
+-/
 theorem closedConvexHull_image_closedConvexHull_aumannExpectation_continuousLinearMap
     [CompleteSpace F]
     {μ : Measure Ω} {S : Ω → Set E}

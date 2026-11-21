@@ -57,12 +57,18 @@ def upperVietorisOpenGenerator [TopologicalSpace X] :
     Set (Set (NonemptyCompacts X)) :=
   upperVietorisEvent '' {U : Set X | IsOpen U}
 
+/--
+@isnad1 id=eq.0h1v.s4.b372c34e3239 from=translated src=- shape=012393c7 vocab=fa52b7c1
+-/
 @[simp]
 theorem upperVietorisEvent_univ [TopologicalSpace X] :
     upperVietorisEvent (X := X) Set.univ = Set.univ := by
   ext K
   simp [upperVietorisEvent]
 
+/--
+@isnad1 id=eq.0h3v.s5.e2f001ed438a from=translated src=- shape=8a19d33a vocab=c3267350
+-/
 theorem upperVietorisEvent_inter [TopologicalSpace X] (U V : Set X) :
     upperVietorisEvent (X := X) (U ∩ V) =
       upperVietorisEvent U ∩ upperVietorisEvent V := by
@@ -70,12 +76,18 @@ theorem upperVietorisEvent_inter [TopologicalSpace X] (U V : Set X) :
   simp only [upperVietorisEvent, Set.mem_ofPred_eq, Set.mem_inter_iff]
   exact Set.subset_inter_iff
 
+/--
+@isnad1 id=monotone.0h1v.s5.c85177dd1357 from=translated src=- shape=e4af06c3 vocab=9a5b7913
+-/
 theorem hyperspaceHitEvent_mono [TopologicalSpace X] :
     Monotone (hyperspaceHitEvent (X := X)) := by
   intro A B hAB K
   rintro ⟨x, hxK, hxA⟩
   exact ⟨x, hxK, hAB hxA⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.56d77d7e388f from=translated src=- shape=69e7188a vocab=9a434e14
+-/
 theorem hyperspaceHitEvent_iUnion [TopologicalSpace X]
     {ι : Sort*} (A : ι → Set X) :
     hyperspaceHitEvent (⋃ i, A i) =
@@ -89,6 +101,9 @@ theorem hyperspaceHitEvent_iUnion [TopologicalSpace X]
     rcases Set.mem_iUnion.mp hK with ⟨i, x, hxK, hxi⟩
     exact ⟨x, hxK, Set.mem_iUnion.mpr ⟨i, hxi⟩⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.c79b35b98c41 from=translated src=- shape=e9a4d241 vocab=1b074c11
+-/
 theorem hyperspaceHitEvent_eq_compl_upper_compl [TopologicalSpace X]
     (A : Set X) :
     hyperspaceHitEvent A = (upperVietorisEvent (X := X) Aᶜ)ᶜ := by
@@ -103,6 +118,9 @@ theorem hyperspaceHitEvent_eq_compl_upper_compl [TopologicalSpace X]
     intro x hxK hxA
     exact hnone ⟨x, hxK, hxA⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.3ff3d0619fa2 from=translated src=- shape=e9a4d241 vocab=1b074c11
+-/
 theorem upperVietorisEvent_eq_compl_hit_compl [TopologicalSpace X]
     (U : Set X) :
     upperVietorisEvent (X := X) U = (hyperspaceHitEvent Uᶜ)ᶜ := by
@@ -156,7 +174,9 @@ private theorem measurableSet_hyperspaceHitEvent_open_generate
     (Metric.isOpen_thickening :
       IsOpen (Metric.thickening (1 / (n + 1 : ℝ)) Uᶜ))
 
-/-- The open upper Vietoris events form a pi-system.-/
+/-- The open upper Vietoris events form a pi-system.
+@isnad1 id=ispisyst.0h1v.s3.52fec4ae8540 from=translated src=- shape=aa7e0af4 vocab=25e08aa5
+-/
 theorem isPiSystem_upperVietorisOpenGenerator [TopologicalSpace X] :
     IsPiSystem (upperVietorisOpenGenerator (X := X)) := by
   intro A hA B hB _hne
@@ -170,7 +190,9 @@ the Borel sigma-algebra on nonempty compact sets.
 
 This is a statement about sigma-algebras, not topologies: lower Vietoris
 opens are recovered as countable unions of complements of upper events by
-using metric inner approximations.-/
+using metric inner approximations.
+@isnad1 id=eq.0h1v.s6.9741c5e57fba from=translated src=- shape=9d71e0e1 vocab=1a54ea57
+-/
 theorem borel_nonemptyCompacts_eq_generateFrom_upperVietoris
     [MetricSpace X] [SecondCountableTopology X] :
     borel (NonemptyCompacts X) =
@@ -235,7 +257,9 @@ theorem borel_nonemptyCompacts_eq_generateFrom_upperVietoris
 /-! ## Uniqueness of finite hyperspace laws -/
 
 /-- Equality on all closed hitting events determines a finite hyperspace
-law, once the total masses agree.-/
+law, once the total masses agree.
+@isnad1 id=eq.2h3v.s8.8b63205724e8 from=translated src=- shape=27f9bcc4 vocab=56ac1dec
+-/
 theorem measure_nonemptyCompacts_eq_of_hit_closed_eq
     [MetricSpace X] [SecondCountableTopology X]
     [MeasurableSpace (NonemptyCompacts X)]
@@ -265,7 +289,9 @@ theorem measure_nonemptyCompacts_eq_of_hit_closed_eq
 /-- Equality on all open hitting events determines a finite hyperspace law.
 
 Closed hitting probabilities are first recovered by continuity from above
-along the open thickenings of the closed test.-/
+along the open thickenings of the closed test.
+@isnad1 id=eq.2h3v.s8.5235f1882551 from=translated src=- shape=27f9bcc4 vocab=79cc31ea
+-/
 theorem measure_nonemptyCompacts_eq_of_hit_open_eq
     [MetricSpace X] [SecondCountableTopology X]
     [MeasurableSpace (NonemptyCompacts X)]
@@ -302,7 +328,9 @@ theorem measure_nonemptyCompacts_eq_of_hit_open_eq
     h_hit _ Metric.isOpen_thickening
 
 /-- On a compact ambient metric space, equality on compact hitting tests is
-enough, since every closed test is compact.-/
+enough, since every closed test is compact.
+@isnad1 id=eq.2h3v.s8.f6231e0bd5d6 from=translated src=- shape=e963c365 vocab=8d7df1f2
+-/
 theorem measure_nonemptyCompacts_eq_of_hit_compact_eq
     [MetricSpace X] [SecondCountableTopology X] [CompactSpace X]
     [MeasurableSpace (NonemptyCompacts X)]
@@ -320,7 +348,9 @@ theorem measure_nonemptyCompacts_eq_of_hit_compact_eq
 
 /-- Equality of open-set capacity functionals determines the pushforward
 law of two nonempty compact-valued Effros correspondences.  The source
-spaces and source measures may be different.-/
+spaces and source measures may be different.
+@isnad1 id=eq.8h7v.s8.e86d07b0d433 from=translated src=- shape=037a60eb vocab=39f8202c
+-/
 theorem map_bundleNonemptyCompacts_eq_of_capacity_open_eq
     [MeasurableSpace Ω] [MeasurableSpace Ω']
     [MetricSpace X] [SecondCountableTopology X]
@@ -358,7 +388,9 @@ theorem map_bundleNonemptyCompacts_eq_of_capacity_open_eq
       h_capacity U hU
 
 /-- Closed-test version of law determination for random compact-valued
-Effros correspondences.-/
+Effros correspondences.
+@isnad1 id=eq.8h7v.s8.ef8cd805048f from=translated src=- shape=037a60eb vocab=ae196964
+-/
 theorem map_bundleNonemptyCompacts_eq_of_capacity_closed_eq
     [MeasurableSpace Ω] [MeasurableSpace Ω']
     [MetricSpace X] [SecondCountableTopology X]

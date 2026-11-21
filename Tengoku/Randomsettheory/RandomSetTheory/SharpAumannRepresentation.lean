@@ -69,7 +69,9 @@ def kernelBarycenter (kappa : ProbabilityTheory.Kernel O X)
   ∫ x, phi (o, x) ∂(kappa o)
 
 /-- A deterministic kernel is supported by `S` whenever its defining map is
-an almost-sure selection of `S`.-/
+an almost-sure selection of `S`.
+@isnad1 id=kernelsu.2h5v.s6.5e82c05c700b from=translated src=- shape=b50986fd vocab=d63df3d0
+-/
 theorem kernelSupportedOn_deterministic
     [MeasurableSingletonClass X]
     {mu : Measure O} {S : O → Set X} {T : O → X}
@@ -80,7 +82,9 @@ theorem kernelSupportedOn_deterministic
   simp [ProbabilityTheory.Kernel.deterministic_apply, ho]
 
 /-- Integrating against the joint law of a deterministic kernel is the same
-as integrating along the graph of its defining selection.-/
+as integrating along the graph of its defining selection.
+@isnad1 id=eq.2h6v.s7.e89f20f64e4d from=translated src=- shape=63654853 vocab=a384acb8
+-/
 theorem integral_compProd_deterministic
     [MeasurableSingletonClass X] [CompleteSpace E]
     {mu : Measure O} [SFinite mu] {T : O → X} (hT : Measurable T)
@@ -98,7 +102,9 @@ pointwise closed convex hull of the score correspondence.
 
 This is the precise conditional-expectation step in the sharp Aumann
 argument.  It needs no atomlessness: atomlessness enters only when removing
-the closed convex hull.-/
+the closed convex hull.
+@isnad1 id=isintegr.4h7v.s7.fcd59a0c46fa from=translated src=- shape=83058ec0 vocab=0993c897
+-/
 theorem kernelBarycenter_isIntegrableSelection_closedConvexHull
     [CompleteSpace E]
     {mu : Measure O} [SFinite mu]
@@ -135,7 +141,9 @@ theorem kernelBarycenter_isIntegrableSelection_closedConvexHull
   · exact hfiberInto
 
 /-- Every admissible-kernel moment belongs to the Aumann expectation of the
-pointwise closed convex hull of the score correspondence.-/
+pointwise closed convex hull of the score correspondence.
+@isnad1 id=mem.4h7v.s8.956b554e56c6 from=translated src=- shape=3f28b4a3 vocab=14b163b7
+-/
 theorem kernelMoment_mem_aumannExpectation_closedConvexHull
     [CompleteSpace E]
     {mu : Measure O} [SFinite mu]
@@ -153,7 +161,9 @@ theorem kernelMoment_mem_aumannExpectation_closedConvexHull
       hSmeas hsupp hphi hint, ?_⟩
   exact (Measure.integral_compProd hint).symm
 
-/-- Set-valued form of the preceding kernel-barycentre theorem.-/
+/-- Set-valued form of the preceding kernel-barycentre theorem.
+@isnad1 id=le.2h6v.s7.845a5f7c815e from=translated src=- shape=0f4b6fc0 vocab=3e7a64a7
+-/
 theorem kernelAttainableMoments_subset_aumannExpectation_closedConvexHull
     [CompleteSpace E]
     {mu : Measure O} [SFinite mu]
@@ -170,7 +180,9 @@ theorem kernelAttainableMoments_subset_aumannExpectation_closedConvexHull
 /-! ## Disintegration of admissible joint laws -/
 
 /-- Standard-Borel disintegration, stated in the orientation used for
-admissible joint laws.-/
+admissible joint laws.
+@isnad1 id=eq.0h3v.s6.384944127e24 from=translated src=- shape=bdbdcc8c vocab=18d48122
+-/
 theorem disintegrate_jointLaw
     [StandardBorelSpace X] [Nonempty X]
     (rho : Measure (O × X)) [IsFiniteMeasure rho] :
@@ -179,7 +191,9 @@ theorem disintegrate_jointLaw
 
 /-- If an admissible joint law gives full mass to the graph of a feasible
 correspondence, its regular conditional kernel is supported by every fibre
-almost surely.-/
+almost surely.
+@isnad1 id=kernelsu.3h4v.s7.885ecfddb213 from=translated src=- shape=d16d07e7 vocab=7de12cb9
+-/
 theorem condKernel_supportedOn_of_jointLaw
     [StandardBorelSpace X] [Nonempty X]
     {rho : Measure (O × X)} [IsProbabilityMeasure rho]
@@ -201,7 +215,9 @@ theorem condKernel_supportedOn_of_jointLaw
   exact (mem_ae_iff_prob_eq_one (hSmeas o)).mp ho
 
 /-- Fubini formula for the regular conditional kernel of a standard-Borel
-joint law.-/
+joint law.
+@isnad1 id=eq.1h5v.s7.8df6e4f59f41 from=translated src=- shape=ce576f6e vocab=accf48d3
+-/
 theorem integral_jointLaw_eq_integral_condKernel
     [StandardBorelSpace X] [Nonempty X] [CompleteSpace E]
     {rho : Measure (O × X)} [IsFiniteMeasure rho]
@@ -220,7 +236,9 @@ theorem integral_jointLaw_eq_integral_condKernel
       Measure.integral_compProd hphi'
 
 /-- Consequently, the moment of every admissible standard-Borel joint law
-belongs to the convexified Aumann expectation over its observed marginal.-/
+belongs to the convexified Aumann expectation over its observed marginal.
+@isnad1 id=mem.5h6v.s8.d8e3d398a5da from=translated src=- shape=6988c7bd vocab=9ea2a94f
+-/
 theorem jointLawMoment_mem_aumannExpectation_closedConvexHull
     [StandardBorelSpace X] [Nonempty X] [CompleteSpace E]
     {rho : Measure (O × X)} [IsProbabilityMeasure rho]
@@ -251,7 +269,9 @@ marginal is `P.map obs`, and standard-Borel disintegration then places its
 moment in the convexified Aumann expectation.
 
 This is the formal bridge from the report's definition
-`P ∘ Obs⁻¹ = P_obs` to admissible conditional kernels.-/
+`P ∘ Obs⁻¹ = P_obs` to admissible conditional kernels.
+@isnad1 id=mem.6h7v.s8.4865ad337511 from=translated src=- shape=5a26e61d vocab=36d67701
+-/
 theorem completeLawMoment_mem_aumannExpectation_closedConvexHull
     [StandardBorelSpace X] [Nonempty X] [CompleteSpace E]
     {P : Measure X} [IsProbabilityMeasure P]
@@ -297,7 +317,9 @@ theorem completeLawMoment_mem_aumannExpectation_closedConvexHull
 /-- Every Aumann moment of a Carathéodory score image is generated by an
 admissible deterministic conditional kernel.  This is the exact reverse
 inclusion in the sharp representation theorem and does not require
-atomlessness.-/
+atomlessness.
+@isnad1 id=le.5h6v.s7.2f820fb8fcea from=translated src=- shape=cb560edd vocab=dba3d28f
+-/
 theorem aumannExpectation_caratheodoryImage_subset_kernelAttainableMoments
     [MetricSpace X] [CompleteSpace X] [BorelSpace X]
     [SecondCountableTopology X] [Nonempty X]
@@ -354,7 +376,9 @@ theorem aumannExpectation_caratheodoryImage_subset_kernelAttainableMoments
 
 /-- Sharp Aumann representation under an explicitly isolated purification
 identity.  The two inclusions used here are the kernel-barycentre theorem
-and the measurable deterministic lifting theorem above.-/
+and the measurable deterministic lifting theorem above.
+@isnad1 id=eq.7h6v.s8.464526ddd0ef from=translated src=- shape=edb8ec06 vocab=01656c17
+-/
 theorem kernelAttainableMoments_eq_aumannExpectation_of_purification
     [MetricSpace X] [CompleteSpace X] [BorelSpace X]
     [SecondCountableTopology X] [Nonempty X]
@@ -383,7 +407,9 @@ theorem kernelAttainableMoments_eq_aumannExpectation_of_purification
 finite-dimensional target, atomlessness removes the pointwise closed convex
 hull introduced by conditional barycentres.  Unlike the Lyapunov interface
 below, this theorem needs no separate closedness assumption on either Aumann
-expectation: finite-depth binary purification supplies the equality directly.-/
+expectation: finite-depth binary purification supplies the equality directly.
+@isnad1 id=eq.9h7v.s8.053e9c620be7 from=translated src=- shape=92f4f821 vocab=63414e23
+-/
 theorem kernelAttainableMoments_eq_aumannExpectation_of_atomless
     {H : Type*}
     [MetricSpace X] [CompleteSpace X] [BorelSpace X]
@@ -423,7 +449,9 @@ theorem kernelAttainableMoments_eq_aumannExpectation_of_atomless
       (by simpa only [Phi] using hpurify)
 
 /-- Fully expanded sharp representation: Lyapunov convexity and closedness
-of the two Aumann expectations provide the purification identity.-/
+of the two Aumann expectations provide the purification identity.
+@isnad1 id=eq.11h7v.s9.79947abef399 from=translated src=- shape=c065c12c vocab=bec950e0
+-/
 theorem kernelAttainableMoments_eq_aumannExpectation_of_lyapunov
     {H : Type*}
     [MetricSpace X] [CompleteSpace X] [BorelSpace X]

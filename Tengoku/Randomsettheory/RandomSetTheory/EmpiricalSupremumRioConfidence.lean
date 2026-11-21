@@ -45,6 +45,9 @@ def empiricalNormalizedKernel (n : Nat) (W : Fin n → Z → T → Real)
   ((n : Real)⁻¹) * W i z t
 
 omit [MeasurableSpace Z] [TopologicalSpace T] [SeparableSpace T] [Nonempty T] in
+/--
+@isnad1 id=eq.0h7v.s5.3841c38764ee from=translated src=- shape=131f7d9d vocab=59d1a0d7
+-/
 @[simp]
 theorem empiricalNormalizedKernel_apply
     (n : Nat) (W : Fin n → Z → T → Real)
@@ -53,6 +56,9 @@ theorem empiricalNormalizedKernel_apply
   simp only [empiricalNormalizedKernel, div_eq_mul_inv, mul_comm]
 
 omit [MeasurableSpace Z] [TopologicalSpace T] [SeparableSpace T] [Nonempty T] in
+/--
+@isnad1 id=eq.0h8v.s6.9639f44c4b5a from=translated src=- shape=2e6007b9 vocab=45eed88d
+-/
 @[simp]
 theorem finiteCoordinateSumProcess_empiricalNormalizedKernel
     (n : Nat) (Y : Nat → Omega → Z) (W : Fin n → Z → T → Real)
@@ -67,7 +73,9 @@ empirical average, stated directly from uniform raw envelope moments.
 
 The strict positivity assumptions on `Ktwo` and `Kq` make the positive Rio
 parameters required by the underlying endpoint explicit.  They are harmless
-in applications, where one may always enlarge a non-strict moment bound.-/
+in applications, where one may always enlarge a non-strict moment bound.
+@isnad1 id=le.16h15v.s9.28a0c01cf077 from=translated src=- shape=eff63599 vocab=09977ac1
+-/
 theorem conditionalValueAtRisk_iSup_empiricalAverageProcess_le_rioConfidence
     {mu : Measure Omega} {nu : Measure Z}
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
@@ -134,7 +142,9 @@ theorem conditionalValueAtRisk_iSup_empiricalAverageProcess_le_rioConfidence
 
 /-- Polynomial-rate form of the preceding empirical-supremum estimate.
 The Gaussian contribution has scale `Ktwo / sqrt n`, while the strong-moment
-contribution has scale `Kq / n^(1 - 1/q) * alpha^(-1/q)`.-/
+contribution has scale `Kq / n^(1 - 1/q) * alpha^(-1/q)`.
+@isnad1 id=le.16h15v.s9.5e2e668c2c53 from=translated src=- shape=2f135293 vocab=eaacf065
+-/
 theorem conditionalValueAtRisk_iSup_empiricalAverageProcess_le_polynomialRate
     {mu : Measure Omega} {nu : Measure Z}
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]

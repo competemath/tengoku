@@ -35,7 +35,9 @@ variable {Ω : Type*} [MeasurableSpace Ω]
 a positive measurable subset of arbitrarily small prescribed upper mass.
 
 This is the key local lemma in the proof of Sierpiński's exact divisibility
-theorem.  It holds on an arbitrary measurable space.-/
+theorem.  It holds on an arbitrary measurable space.
+@isnad1 id=ex.4h4v.s6.6ecfd29c7a15 from=translated src=- shape=7ca8deaf vocab=e0888284
+-/
 theorem IsAtomlessMeasure.exists_subset_measureReal_pos_le
     {μ : Measure Ω} [IsFiniteMeasure μ] (hμ : IsAtomlessMeasure μ)
     {s : Set Ω} (hs : MeasurableSet s) (hspos : 0 < μ s)
@@ -103,7 +105,9 @@ theorem IsAtomlessMeasure.exists_subset_measureReal_pos_le
 /-- Among the positive subsets of `s` whose mass is at most `b`, one can
 choose a subset whose mass dominates every other admissible mass up to the
 factor `2`.  This harmless factor is what makes the subsequent greedy
-construction quantitative enough to force exhaustion of the target gap.-/
+construction quantitative enough to force exhaustion of the target gap.
+@isnad1 id=ex.4h4v.s7.7b9640883afa from=translated src=- shape=5bd0a3ff vocab=ce3d70c7
+-/
 theorem IsAtomlessMeasure.exists_subset_measureReal_quasiMax
     {μ : Measure Ω} [IsFiniteMeasure μ] (hμ : IsAtomlessMeasure μ)
     {s : Set Ω} (hs : MeasurableSet s) (hspos : 0 < μ s)
@@ -144,7 +148,9 @@ theorem IsAtomlessMeasure.exists_subset_measureReal_quasiMax
 
 For a finite atomless measure on an arbitrary measurable space, every real
 mass between `0` and the mass of a measurable set is attained by one of its
-measurable subsets.-/
+measurable subsets.
+@isnad1 id=ex.4h4v.s6.2672d7f6c39f from=translated src=- shape=97e3ea7f vocab=0885990b
+-/
 theorem IsAtomlessMeasure.exists_subset_measureReal_eq
     {μ : Measure Ω} [IsFiniteMeasure μ] (hμ : IsAtomlessMeasure μ)
     {s : Set Ω} (hs : MeasurableSet s)
@@ -303,7 +309,9 @@ theorem IsAtomlessMeasure.exists_subset_measureReal_eq
   linarith
 
 /-- ENNReal form of Sierpiński's theorem: every extended-real target below
-the finite mass of `s` is attained exactly.-/
+the finite mass of `s` is attained exactly.
+@isnad1 id=ex.3h4v.s6.590f440b6a45 from=translated src=- shape=aa7e294c vocab=36787617
+-/
 theorem IsAtomlessMeasure.exists_subset_measure_eq
     {μ : Measure Ω} [IsFiniteMeasure μ] (hμ : IsAtomlessMeasure μ)
     {s : Set Ω} (hs : MeasurableSet s)
@@ -320,7 +328,9 @@ theorem IsAtomlessMeasure.exists_subset_measure_eq
   simpa [Measure.real] using htMeasure
 
 /-- **General Sierpiński divisibility theorem.** Every finite atomless measure
-on an arbitrary measurable space is exactly divisible.-/
+on an arbitrary measurable space is exactly divisible.
+@isnad1 id=hasexact.1h2v.s4.b16f6bc42f8d from=translated src=- shape=d047bb62 vocab=b61a6e33
+-/
 theorem hasExactDivisibility_of_atomless
     {μ : Measure Ω} [IsFiniteMeasure μ]
     (hμ : IsAtomlessMeasure μ) :
@@ -335,7 +345,9 @@ theorem hasExactDivisibility_of_atomless
   exact ⟨A, hAs, hA, hmeasure⟩
 
 /-- For finite measures, the project's elementary atomlessness predicate is
-equivalent to exact measurable divisibility.-/
+equivalent to exact measurable divisibility.
+@isnad1 id=iff.0h2v.s4.180f7dcf4153 from=translated src=- shape=fdb44be3 vocab=b61a6e33
+-/
 theorem hasExactDivisibility_iff_isAtomlessMeasure
     (μ : Measure Ω) [IsFiniteMeasure μ] :
     HasExactDivisibility μ ↔ IsAtomlessMeasure μ := by
@@ -343,7 +355,9 @@ theorem hasExactDivisibility_iff_isAtomlessMeasure
     hasExactDivisibility_of_atomless⟩
 
 /-- Every finite atomless measure admits finite measurable partitions with
-arbitrary prescribed nonnegative real weights.-/
+arbitrary prescribed nonnegative real weights.
+@isnad1 id=ex.4h6v.s7.c2f32c645671 from=translated src=- shape=1703424f vocab=b8b2b2cb
+-/
 theorem IsAtomlessMeasure.exists_isMeasurableFinpartition_measureReal_eq
     {ι : Type*} {μ : Measure Ω} [IsFiniteMeasure μ]
     (hμ : IsAtomlessMeasure μ)

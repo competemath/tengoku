@@ -33,7 +33,9 @@ namespace RandomSetTheory
 /-- Subtracting the deterministic target support does not change the
 variance in a fixed direction.  This identifies the variance appearing in
 the directional Gaussian limit with the variance of the raw support
-function.-/
+function.
+@isnad1 id=eq.1h6v.s6.e75b4142192f from=translated src=- shape=31b9ae90 vocab=686dc252
+-/
 theorem variance_directionalSupportDeviation_eq_supportFunction
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -49,7 +51,9 @@ theorem variance_directionalSupportDeviation_eq_supportFunction
 
 /-- Centering two support directions by deterministic target supports does
 not change their covariance.  The right-hand side is the covariance kernel
-that would govern finite-dimensional Gaussian limits across directions.-/
+that would govern finite-dimensional Gaussian limits across directions.
+@isnad1 id=eq.2h7v.s7.84e702483f2b from=translated src=- shape=252cdbfd vocab=a24db2f3
+-/
 theorem covariance_directionalSupportDeviation_eq_supportFunction
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -71,7 +75,9 @@ theorem covariance_directionalSupportDeviation_eq_supportFunction
 This is the raw probabilistic statement underlying the random-set version
 below.  The limiting variance is the variance of the support deviation in
 the fixed direction `u`; Mathlib's Gaussian convention also covers the
-degenerate zero-variance case.-/
+degenerate zero-variance case.
+@isnad1 id=tendstoi.5h9v.s8.b1806d3e28eb from=translated src=- shape=8127ac94 vocab=b35c6b54
+-/
 theorem tendstoInDistribution_directionalSupportDeviation_sum
     {Omega Omega' E : Type*} [MeasurableSpace Omega] [MeasurableSpace Omega']
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -97,7 +103,9 @@ theorem tendstoInDistribution_directionalSupportDeviation_sum
 /-- Scalar CLT for the same sum, indexed by `Finset.range (n + 1)`.
 
 The shift avoids the empty empirical average and division by zero while
-leaving the limiting distribution unchanged.-/
+leaving the limiting distribution unchanged.
+@isnad1 id=tendstoi.5h9v.s8.914769effe5d from=translated src=- shape=a9a28472 vocab=24734004
+-/
 theorem tendstoInDistribution_directionalSupportDeviation_sum_succ
     {Omega Omega' E : Type*} [MeasurableSpace Omega] [MeasurableSpace Omega']
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -133,7 +141,9 @@ converges in distribution to the centered Gaussian whose variance is that
 of one directional support deviation.
 
 Compactness and nonemptiness are used only to identify the support of the
-Minkowski average with the average of the individual support functions.-/
+Minkowski average with the average of the individual support functions.
+@isnad1 id=tendstoi.7h9v.s8.8115023f2f08 from=translated src=- shape=fa9bfa2a vocab=ce557053
+-/
 theorem tendstoInDistribution_sqrt_mul_supportFunction_minkowskiAverage_sub
     {Omega Omega' E : Type*} [MeasurableSpace Omega] [MeasurableSpace Omega']
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -182,7 +192,9 @@ the observations are automatically transported to every fixed support
 direction.  The population support identity centers the scalar variables.
 
 The `L²` assumption is stated only for the resulting support deviation; it
-also supplies the integrability needed to justify centering.-/
+also supplies the integrability needed to justify centering.
+@isnad1 id=tendstoi.8h11v.s8.c2bb869100b9 from=translated src=- shape=773a3712 vocab=e5311ca2
+-/
 theorem tendstoInDistribution_iid_supportFunction_minkowskiAverage
     {Omega Omega' Z E : Type*}
     [MeasurableSpace Omega] [MeasurableSpace Omega'] [MeasurableSpace Z]

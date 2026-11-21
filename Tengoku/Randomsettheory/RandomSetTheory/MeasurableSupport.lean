@@ -23,7 +23,9 @@ noncomputable section
 namespace RandomSetTheory
 
 /-- The support function of an Effros-measurable compact nonempty
-correspondence is measurable in every fixed direction.-/
+correspondence is measurable in every fixed direction.
+@isnad1 id=measurab.3h4v.s6.36f34d652c0d from=translated src=- shape=773e2887 vocab=01fe9761
+-/
 theorem measurable_supportFunction
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -48,7 +50,9 @@ theorem measurable_supportFunction
   exact isOpen_lt continuous_const (by fun_prop)
 
 /-- An integrable envelope for the values makes every directional support
-function integrable.-/
+function integrable.
+@isnad1 id=integrab.5h6v.s7.00cbd4b5ad94 from=translated src=- shape=3c1ada57 vocab=71b64089
+-/
 theorem integrable_supportFunction_of_envelope
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -68,7 +72,9 @@ theorem integrable_supportFunction_of_envelope
     _ ≤ ‖u‖ * g ω :=
       mul_le_mul_of_nonneg_left (hdom ω x hx) (norm_nonneg u)
 
-/-- Wrapper for an Effros random closed set with compact nonempty values.-/
+/-- Wrapper for an Effros random closed set with compact nonempty values.
+@isnad1 id=measurab.2h4v.s6.684fc074956a from=translated src=- shape=d492910f vocab=fb269ca0
+-/
 theorem RandomSet.EffrosRandomClosedSet.measurable_supportFunction
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -78,6 +84,9 @@ theorem RandomSet.EffrosRandomClosedSet.measurable_supportFunction
     Measurable (fun ω => supportFunction (S ω) u) :=
   RandomSetTheory.measurable_supportFunction S.measurable' hcompact hne u
 
+/--
+@isnad1 id=integrab.4h6v.s7.a5bbd19d7b74 from=translated src=- shape=18570fd8 vocab=df64f5bd
+-/
 theorem RandomSet.EffrosRandomClosedSet.integrable_supportFunction_of_envelope
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]

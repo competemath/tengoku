@@ -34,6 +34,9 @@ moment `Q` and upper-tail mass `alpha`.-/
 def rioConfidenceScale (q : Nat) (Q alpha : Real) : Real :=
   strongMomentQScale q Q * (1 / alpha) ^ (1 / (q : Real))
 
+/--
+@isnad1 id=lt.2h3v.s5.79e9ab349677 from=translated src=- shape=1185f8fe vocab=60012d72
+-/
 theorem rioConfidenceScale_pos
     {q : Nat} {Q alpha : Real}
     (hQ : 0 < Q) (halpha : 0 < alpha) :
@@ -43,7 +46,9 @@ theorem rioConfidenceScale_pos
     (Real.rpow_pos_of_pos (one_div_pos.mpr halpha) _)
 
 /-- Raising the canonical confidence scale to order `q` gives exactly
-`Q / alpha`.-/
+`Q / alpha`.
+@isnad1 id=eq.3h3v.s6.ab43a6354183 from=translated src=- shape=70cf8a94 vocab=5f65561d
+-/
 theorem rioConfidenceScale_pow
     {q : Nat} (hq : 1 <= q) {Q alpha : Real}
     (hQ : 0 < Q) (halpha : 0 < alpha) :
@@ -57,7 +62,9 @@ theorem rioConfidenceScale_pow
   simp only [one_div]
 
 /-- The canonical confidence scale satisfies Rio's scale constraint with
-equality.-/
+equality.
+@isnad1 id=le.3h3v.s6.af71d37c20f0 from=translated src=- shape=3176f0b2 vocab=23536726
+-/
 theorem rio_scale_condition
     {q : Nat} (hq : 1 <= q) {Q alpha : Real}
     (hQ : 0 < Q) (halpha : 0 < alpha) :
@@ -75,7 +82,9 @@ def rioStrongMomentConfidenceRadius
       Real.exp 1 * strongMomentQScale q Q * (-Real.log alpha) / 3
 
 /-- The exact residual term in Rio's endpoint is absorbed by the confidence
-radius.-/
+radius.
+@isnad1 id=le.3h4v.s7.267f3cc0efbd from=translated src=- shape=6ded007f vocab=122a3b7e
+-/
 theorem rio_explicit_bound_le_confidenceRadius
     {q : Nat} (hq : 3 <= q) {V Q alpha : Real}
     (hQ : 0 < Q) (halpha0 : 0 < alpha) :
@@ -109,7 +118,9 @@ theorem rio_explicit_bound_le_confidenceRadius
       ring
 
 /-- Any CVaR estimate in the exact Rio form implies the packaged confidence
-radius.-/
+radius.
+@isnad1 id=le.4h7v.s8.bb00d80b4a73 from=translated src=- shape=4c9b33d3 vocab=d0307eae
+-/
 theorem conditionalValueAtRisk_le_rioStrongMomentConfidenceRadius
     {Omega : Type*} [MeasurableSpace Omega] {mu : Measure Omega}
     {X : Omega -> Real} {q : Nat} (hq : 3 <= q) {V Q alpha : Real}
@@ -126,7 +137,9 @@ theorem conditionalValueAtRisk_le_rioStrongMomentConfidenceRadius
   hRio.trans (rio_explicit_bound_le_confidenceRadius hq hQ halpha0)
 
 /-- On an atomless probability space, the packaged Rio CVaR estimate gives
-the corresponding strict upper-tail probability bound.-/
+the corresponding strict upper-tail probability bound.
+@isnad1 id=le.8h7v.s8.76dfb051da31 from=translated src=- shape=7b5f0562 vocab=3e9aece1
+-/
 theorem measureReal_rioStrongMomentConfidenceRadius_lt_le
     {Omega : Type*} [MeasurableSpace Omega] {mu : Measure Omega}
     [IsProbabilityMeasure mu]

@@ -24,7 +24,9 @@ noncomputable section
 
 namespace RandomSetTheory
 
-/-- An envelope valid on a set is still valid on its closed convex hull.-/
+/-- An envelope valid on a set is still valid on its closed convex hull.
+@isnad1 id=le.2h4v.s7.3bdfaa8fe091 from=translated src=- shape=fde6a01e vocab=a2d9c20b
+-/
 theorem norm_le_on_closedConvexHull_of_norm_le
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {K : Set E} {R : ℝ} (hR : ∀ x ∈ K, ‖x‖ ≤ R) :
@@ -43,7 +45,9 @@ theorem norm_le_on_closedConvexHull_of_norm_le
 Unlike the stronger purification identity, this theorem needs no atomless
 measure.  Effros measurability of the pointwise closed convex hull is kept as
 an explicit hypothesis until a general convex-hull measurability theorem is
-available in the library.-/
+available in the library.
+@isnad1 id=eq.6h5v.s8.8cc8de23e71a from=translated src=- shape=d52af28f vocab=06fd6b73
+-/
 theorem closedConvexHull_closure_aumannExpectation_eq
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]
@@ -106,7 +110,9 @@ theorem closedConvexHull_closure_aumannExpectation_eq
 outer convex hull in the preceding theorem; closedness of the two Aumann
 expectations removes their closures.  Thus the only missing ingredient for
 the usual atomless statement is the genuine atomless Lyapunov theorem and
-the standard Aumann closedness theorem.-/
+the standard Aumann closedness theorem.
+@isnad1 id=eq.9h5v.s9.92257d23ef21 from=translated src=- shape=50a05432 vocab=5f304e0f
+-/
 theorem aumannExpectation_closedConvexHull_eq_of_lyapunov
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]
@@ -141,7 +147,9 @@ theorem aumannExpectation_closedConvexHull_eq_of_lyapunov
 
 /-- Automatic Effros version of
 `closedConvexHull_closure_aumannExpectation_eq`.  Measurability of the
-pointwise closed convex hull is derived from the compact nonempty fibres.-/
+pointwise closed convex hull is derived from the compact nonempty fibres.
+@isnad1 id=eq.5h5v.s8.37767abcedbe from=translated src=- shape=0f562b45 vocab=06fd6b73
+-/
 theorem closedConvexHull_closure_aumannExpectation_eq_of_effros
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]
@@ -162,7 +170,9 @@ theorem closedConvexHull_closure_aumannExpectation_eq_of_effros
 
 /-- Automatic Effros form of the conditional purification theorem.  The
 only remaining non-constructive mathematical inputs are genuine Lyapunov
-convexity and closedness of the two Aumann expectations.-/
+convexity and closedness of the two Aumann expectations.
+@isnad1 id=eq.8h5v.s8.385881aefa40 from=translated src=- shape=6f991f0f vocab=5f304e0f
+-/
 theorem aumannExpectation_closedConvexHull_eq_of_lyapunov_of_effros
     {Ω H : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup H] [InnerProductSpace ℝ H] [CompleteSpace H]

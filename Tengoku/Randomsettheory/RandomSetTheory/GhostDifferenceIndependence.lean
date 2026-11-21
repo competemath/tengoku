@@ -32,7 +32,9 @@ variable {Omega T ι : Type*} [MeasurableSpace Omega]
 the coordinatewise difference of two independent copies.
 
 The finite set `N` is built into the codomain.  This is the exact form needed
-for finite-prefix symmetrization before passing to a dense continuous class.-/
+for finite-prefix symmetrization before passing to a dense continuous class.
+@isnad1 id=iindepfu.2h6v.s8.8019d545f3b3 from=translated src=- shape=b37a7399 vocab=cdb8ac12
+-/
 theorem iIndepFun_finiteProcess_ghostDifference
     [Fintype ι] [IsProbabilityMeasure mu]
     (X : ι → Omega → T → ℝ) (N : Finset T)
@@ -134,7 +136,9 @@ theorem iIndepFun_finiteProcess_ghostDifference
 measurable coordinatewise and dominated by one integrable envelope.
 
 This helper is intentionally phrased with `Finset.sup'`, so modules defining
-their own finite-vector supremum can use it without creating an import cycle.-/
+their own finite-vector supremum can use it without creating an import cycle.
+@isnad1 id=integrab.4h6v.s7.bf0ce86051a1 from=translated src=- shape=0fe74b52 vocab=ece4ca43
+-/
 theorem integrable_finsetSupAbs_of_le
     {Omega T : Type*} [MeasurableSpace Omega]
     {mu : Measure Omega}

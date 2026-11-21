@@ -27,7 +27,9 @@ namespace Tengoku.Randomsettheory.RandomSet
 
 /-- Effros measurability is preserved by a measurable change of the sample
 space.  In particular, an Effros random set may be evaluated along each
-measurable coordinate of a random sequence.-/
+measurable coordinate of a random sequence.
+@isnad1 id=iseffros.2h5v.s5.f508e8e5a21a from=translated src=- shape=21079e98 vocab=46f7a675
+-/
 theorem IsEffrosMeasurable.comp_measurable
     {Ω Ω' E : Type*} [MeasurableSpace Ω] [MeasurableSpace Ω']
     [TopologicalSpace E] {S : Ω → Set E} (hS : IsEffrosMeasurable S)
@@ -43,7 +45,9 @@ namespace RandomSetTheory
 
 /-- The closed unit ball of a finite-dimensional normed real vector space has
 a finite net at every positive scale.  The centres can themselves be chosen
-in the unit ball.-/
+in the unit ball.
+@isnad1 id=ex.1h2v.s6.3b9847a758ac from=translated src=- shape=20ee206b vocab=653242af
+-/
 theorem exists_finset_unitBall_net
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] {ε : ℝ} (hε : 0 < ε) :
@@ -62,7 +66,9 @@ theorem exists_finset_unitBall_net
 
 /-- In a separable finite-dimensional space, the finite net can be chosen
 from the canonical dense sequence.  This is the countable reduction needed
-to intersect the almost-sure scalar convergence events.-/
+to intersect the almost-sure scalar convergence events.
+@isnad1 id=ex.1h2v.s6.ab17bf6bdd72 from=translated src=- shape=e40e9355 vocab=e91f230c
+-/
 theorem exists_finset_denseSeq_unitBall_net
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] {ε : ℝ} (hε : 0 < ε) :
@@ -89,7 +95,9 @@ theorem exists_finset_denseSeq_unitBall_net
     _ = ε := by ring
 
 /-- Averaging sets contained in a closed ball preserves the same radius
-bound, including for the empty index set (whose Minkowski sum is `{0}`).-/
+bound, including for the empty index set (whose Minkowski sum is `{0}`).
+@isnad1 id=le.3h6v.s6.3eb70f1d9e14 from=translated src=- shape=50cd1443 vocab=976307be
+-/
 theorem norm_le_radius_of_mem_minkowskiAverage
     {E ι : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     (s : Finset ι) (K : ι → Set E) {R : ℝ} (hR : 0 ≤ R)
@@ -107,7 +115,9 @@ theorem norm_le_radius_of_mem_minkowskiAverage
 /-- Pointwise convergence of support functions on the canonical dense
 sequence implies Hausdorff convergence, provided all sets are compact,
 nonempty, convex and share a deterministic radius bound.  This is the
-deterministic core of the finite-dimensional Artstein--Vitale argument.-/
+deterministic core of the finite-dimensional Artstein--Vitale argument.
+@isnad1 id=tendsto.10h4v.s8.19e70ba6b284 from=translated src=- shape=e24799a0 vocab=e9b610e7
+-/
 theorem tendsto_hausdorffDist_of_tendsto_supportFunction_denseSeq
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E]
@@ -177,7 +187,9 @@ theorem tendsto_hausdorffDist_of_tendsto_supportFunction_denseSeq
 
 /-- Tail version of the deterministic support-to-Hausdorff theorem.  A
 common radius bound is needed only eventually, which is the form supplied by
-the scalar strong law for an integrable random envelope.-/
+the scalar strong law for an integrable random envelope.
+@isnad1 id=tendsto.10h4v.s8.20dad90769f1 from=translated src=- shape=66b87d92 vocab=56215597
+-/
 theorem tendsto_hausdorffDist_of_tendsto_supportFunction_denseSeq_eventually
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [FiniteDimensional ℝ E]
@@ -232,7 +244,9 @@ theorem tendsto_hausdorffDist_of_tendsto_supportFunction_denseSeq_eventually
 law for their support functions on the canonical dense sequence.  The
 independence and identical-distribution hypotheses are stated directly for
 those scalar processes, which is the exact interface consumed by Mathlib's
-real-valued SLLN.-/
+real-valued SLLN.
+@isnad1 id=eventual.13h6v.s9.554f4ca165b8 from=translated src=- shape=0c066b78 vocab=a7bd231c
+-/
 theorem ae_tendsto_hausdorffDist_minkowskiAverage_of_scalar_slln
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -307,7 +321,9 @@ theorem ae_tendsto_hausdorffDist_minkowskiAverage_of_scalar_slln
 original compact values: each realization is replaced by its closed convex
 hull.  Its support function is unchanged, so the scalar integrability,
 independence and identical-distribution hypotheses remain those of the
-original random sets.-/
+original random sets.
+@isnad1 id=eventual.12h6v.s9.642899bf51e5 from=translated src=- shape=a507d9d5 vocab=8ffdf4da
+-/
 theorem ae_tendsto_hausdorffDist_convexifiedAverage_of_scalar_slln
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -375,7 +391,9 @@ theorem ae_tendsto_hausdorffDist_convexifiedAverage_of_scalar_slln
 /-- Bounded iid-observation form of the convexified Artstein--Vitale law.
 All scalar SLLN hypotheses are derived from pairwise independence and
 identical distribution of the underlying observations.  The population
-target is the closed convex hull of the closed Aumann expectation.-/
+target is the closed convex hull of the closed Aumann expectation.
+@isnad1 id=eventual.8h7v.s8.358c6a912d48 from=translated src=- shape=97503031 vocab=5f0b0a89
+-/
 theorem ae_tendsto_hausdorffDist_convexified_iid
     {Ω Z E : Type*} [MeasurableSpace Ω] [MeasurableSpace Z]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
@@ -477,7 +495,9 @@ theorem ae_tendsto_hausdorffDist_convexified_iid
 Artstein--Vitale law.  Unlike
 `ae_tendsto_hausdorffDist_convexified_iid`, this theorem does not assume a
 deterministic bound on every realization.  The scalar strong law applied to
-the envelope supplies an eventual common radius for the empirical averages.-/
+the envelope supplies an eventual common radius for the empirical averages.
+@isnad1 id=eventual.9h7v.s9.2d8d5c3476c4 from=translated src=- shape=5c2d5615 vocab=bdcf2031
+-/
 theorem ae_tendsto_hausdorffDist_convexified_iid_of_integrable_envelope
     {Ω Z E : Type*} [MeasurableSpace Ω] [MeasurableSpace Z]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]

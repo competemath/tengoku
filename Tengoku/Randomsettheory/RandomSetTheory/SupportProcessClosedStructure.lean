@@ -40,7 +40,9 @@ def structuredSupportProcessSet :
 
 omit [FiniteDimensional ℝ E] in
 /-- The structural support-process constraints are closed for uniform
-convergence of continuous paths.-/
+convergence of continuous paths.
+@isnad1 id=isclosed.0h1v.s7.ae2a919d6906 from=translated src=- shape=aa10c48a vocab=32bcbeeb
+-/
 theorem isClosed_structuredSupportProcessSet :
     IsClosed (structuredSupportProcessSet (E := E)) := by
   change IsClosed
@@ -61,7 +63,9 @@ theorem isClosed_structuredSupportProcessSet :
           (continuous_eval_const x))
 
 omit [FiniteDimensional ℝ E] in
-/-- A scaled difference of support functions vanishes at the zero direction.-/
+/-- A scaled difference of support functions vanishes at the zero direction.
+@isnad1 id=eq.4h4v.s8.37ccd4f1154f from=translated src=- shape=62639145 vocab=e89a5ed8
+-/
 @[simp]
 theorem scaledSupportDifferenceContinuousMap_zero
     (c : ℝ) (K L : Set E) (hK : IsCompact K) (hL : IsCompact L)
@@ -75,7 +79,9 @@ theorem scaledSupportDifferenceContinuousMap_zero
 
 omit [FiniteDimensional ℝ E] in
 /-- A scaled difference of support functions is positively homogeneous on
-the closed unit ball.-/
+the closed unit ball.
+@isnad1 id=positive.4h4v.s6.2dd284167d33 from=translated src=- shape=b2703b83 vocab=ce32c019
+-/
 theorem scaledSupportDifferenceContinuousMap_positivelyHomogeneous
     (c : ℝ) (K L : Set E) (hK : IsCompact K) (hL : IsCompact L)
     (hKne : K.Nonempty) (hLne : L.Nonempty) :
@@ -89,7 +95,9 @@ theorem scaledSupportDifferenceContinuousMap_positivelyHomogeneous
 
 omit [FiniteDimensional ℝ E] in
 /-- Every scaled support-difference path belongs to the closed structural
-class.-/
+class.
+@isnad1 id=mem.4h4v.s8.fc03ec996bd3 from=translated src=- shape=a8f41ddb vocab=6aa2ac73
+-/
 theorem scaledSupportDifferenceContinuousMap_mem_structured
     (c : ℝ) (K L : Set E) (hK : IsCompact K) (hL : IsCompact L)
     (hKne : K.Nonempty) (hLne : L.Nonempty) :
@@ -100,7 +108,9 @@ theorem scaledSupportDifferenceContinuousMap_mem_structured
       c K L hK hL hKne hLne⟩
 
 /-- Portmanteau preserves any closed path constraint which holds pointwise
-for every member of the approximating family.-/
+for every member of the approximating family.
+@isnad1 id=eventual.3h12v.s7.918fb5c33aec from=translated src=- shape=4db55891 vocab=a17f86cd
+-/
 theorem TendstoInDistribution.ae_mem_closed_of_forall_mem
     {I Ω' F : Type*} {Omega : I → Type*}
     {mOmega : ∀ i, MeasurableSpace (Omega i)}
@@ -159,7 +169,9 @@ theorem TendstoInDistribution.ae_mem_closed_of_forall_mem
   simpa only [Set.mem_preimage] using hae
 
 /-- A weak limit of scaled support-difference paths vanishes at zero and is
-positively homogeneous almost surely.-/
+positively homogeneous almost surely.
+@isnad1 id=eventual.5h13v.s10.ca3a0399811c from=translated src=- shape=d9961f14 vocab=06f9d645
+-/
 theorem TendstoInDistribution.ae_structuredSupportProcess_of_supportDifferences
     {I Ω' : Type*} {Omega : I → Type*}
     {mOmega : ∀ i, MeasurableSpace (Omega i)}
@@ -192,7 +204,9 @@ theorem TendstoInDistribution.ae_structuredSupportProcess_of_supportDifferences
 /-- Sphere form of the pointwise random-set continuous-mapping theorem with
 no separate structural assumptions on the limiting process.  Closedness and
 Portmanteau derive those assumptions almost surely from the approximating
-support-difference paths themselves.-/
+support-difference paths themselves.
+@isnad1 id=and.8h13v.s10.149b68fbc50a from=translated src=- shape=bef1be06 vocab=2ce1883f
+-/
 theorem pointwiseRandomSetCLT_of_supportProcess_unitSphere_of_weakLimit
     [Nontrivial E]
     {I Ω' : Type*} {Omega : I → Type*}

@@ -37,7 +37,9 @@ variable {Omega T : Type*} {mOmega : MeasurableSpace Omega}
 variable (filtration : Filtration ℕ mOmega)
 
 /-- Optimized strong-moment CVaR bound for a finite process supremum around
-its expectation.  The finite class cardinality does not occur in the bound.-/
+its expectation.  The finite class cardinality does not occur in the bound.
+@isnad1 id=le.21h16v.s10.561a997fb71e from=translated src=- shape=3d3e0a8c vocab=04881728
+-/
 theorem conditionalValueAtRisk_finiteProcessSupremum_sub_integral_le_rioStrongMoment
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     [SigmaFiniteFiltration mu filtration]

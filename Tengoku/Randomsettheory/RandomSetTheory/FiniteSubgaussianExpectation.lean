@@ -33,6 +33,9 @@ def finiteSubgaussianSupAbs
   fun omega => N.sup' hN fun t => |X omega t|
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=le.2h6v.s5.bb6ca2c40ef8 from=translated src=- shape=367d16e1 vocab=d1f6195b
+-/
 theorem abs_le_finiteSubgaussianSupAbs
     (X : Omega → T → ℝ) (N : Finset T) (hN : N.Nonempty)
     {t : T} (ht : t ∈ N) (omega : Omega) :
@@ -40,6 +43,9 @@ theorem abs_le_finiteSubgaussianSupAbs
   exact Finset.le_sup' (fun u => |X omega u|) ht
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=le.1h5v.s5.79828d4081ca from=translated src=- shape=cd2d9164 vocab=a727905a
+-/
 theorem finiteSubgaussianSupAbs_nonneg
     (X : Omega → T → ℝ) (N : Finset T) (hN : N.Nonempty)
     (omega : Omega) :
@@ -47,7 +53,9 @@ theorem finiteSubgaussianSupAbs_nonneg
   exact (abs_nonneg (X omega hN.choose)).trans
     (abs_le_finiteSubgaussianSupAbs X N hN hN.choose_spec omega)
 
-/-- A finite absolute maximum of sub-Gaussian variables is integrable.-/
+/-- A finite absolute maximum of sub-Gaussian variables is integrable.
+@isnad1 id=integrab.2h6v.s6.8bffb9953b76 from=translated src=- shape=47d0b4ef vocab=9844afa3
+-/
 theorem integrable_finiteSubgaussianSupAbs
     (X : Omega → T → ℝ) (N : Finset T) (hN : N.Nonempty) (v : ℝ≥0)
     (hX : ∀ t ∈ N, HasSubgaussianMGF (fun omega => X omega t) v mu) :
@@ -67,7 +75,9 @@ theorem integrable_finiteSubgaussianSupAbs
 
 omit [MeasurableSpace Omega] in
 /-- The exponential of the finite absolute maximum is bounded pointwise by
-the sum of the positive and negative exponential tilts.-/
+the sum of the positive and negative exponential tilts.
+@isnad1 id=le.1h6v.s6.efca90906ce1 from=translated src=- shape=a7a84c48 vocab=da4a96ca
+-/
 theorem exp_mul_finiteSubgaussianSupAbs_le_sum
     (X : Omega → T → ℝ) (N : Finset T) (hN : N.Nonempty)
     (lambda : ℝ) (omega : Omega) :
@@ -96,7 +106,9 @@ theorem exp_mul_finiteSubgaussianSupAbs_le_sum
   exact hterm.trans hsingle
 
 /-- Exponential integrability of the finite maximum, obtained from the finite
-sum of the two exponential tilts of every variable.-/
+sum of the two exponential tilts of every variable.
+@isnad1 id=integrab.2h7v.s6.8447d16c6418 from=translated src=- shape=17c7c534 vocab=b4c3d9bd
+-/
 theorem integrable_exp_mul_finiteSubgaussianSupAbs
     (X : Omega → T → ℝ) (N : Finset T) (hN : N.Nonempty) (v : ℝ≥0)
     (hX : ∀ t ∈ N, HasSubgaussianMGF (fun omega => X omega t) v mu)
@@ -121,7 +133,9 @@ theorem integrable_exp_mul_finiteSubgaussianSupAbs
       exact exp_mul_finiteSubgaussianSupAbs_le_sum X N hN lambda omega
 
 /-- Common-proxy MGF bound for the absolute maximum of a finite sub-Gaussian
-family.  Dependence between the variables indexed by `N` is unrestricted.-/
+family.  Dependence between the variables indexed by `N` is unrestricted.
+@isnad1 id=le.2h7v.s7.af3443842a44 from=translated src=- shape=18f6e313 vocab=c9ed4670
+-/
 theorem integral_exp_mul_finiteSubgaussianSupAbs_le
     [IsProbabilityMeasure mu]
     (X : Omega → T → ℝ) (N : Finset T) (hN : N.Nonempty) (v : ℝ≥0)
@@ -178,7 +192,9 @@ theorem integral_exp_mul_finiteSubgaussianSupAbs_le
       ring
 
 /-- Parameterized expectation bound for a finite family with common
-sub-Gaussian proxy.-/
+sub-Gaussian proxy.
+@isnad1 id=le.3h7v.s7.7502487c2c2d from=translated src=- shape=0109809f vocab=698d206c
+-/
 theorem integral_finiteSubgaussianSupAbs_le
     [IsProbabilityMeasure mu]
     (X : Omega → T → ℝ) (N : Finset T) (hN : N.Nonempty) (v : ℝ≥0)
@@ -220,7 +236,9 @@ theorem integral_finiteSubgaussianSupAbs_le
       field_simp [hlambda.ne']
 
 /-- Optimized finite-class expectation bound.  The common proxy is assumed
-strictly positive only to make the optimizing tilt explicit.-/
+strictly positive only to make the optimizing tilt explicit.
+@isnad1 id=le.3h6v.s7.f9221a23b48f from=translated src=- shape=be349e00 vocab=c191960c
+-/
 theorem integral_finiteSubgaussianSupAbs_le_sqrt
     [IsProbabilityMeasure mu]
     (X : Omega → T → ℝ) (N : Finset T) (hN : N.Nonempty) (v : ℝ≥0)

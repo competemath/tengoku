@@ -36,7 +36,9 @@ noncomputable section
 namespace MeasureTheory
 
 /-- Continuous-mapping transfer from a normed-space-valued weak limit to
-the norm of the process.-/
+the norm of the process.
+@isnad1 id=tendstoi.1h11v.s7.3edf35c51cf2 from=translated src=- shape=2e120374 vocab=18f2f1a4
+-/
 theorem TendstoInDistribution.norm_comp
     {I F Omega' : Type*} {Omega : I → Type*}
     {mOmega : ∀ i, MeasurableSpace (Omega i)}
@@ -54,7 +56,9 @@ theorem TendstoInDistribution.norm_comp
 /-- For continuous real processes on a compact index space, convergence in
 law of the process implies convergence in law of its uniform norm.  This is
 only a continuous-mapping theorem: it assumes, rather than proves, process
-convergence.-/
+convergence.
+@isnad1 id=tendstoi.1h11v.s8.3a6af62f6b1f from=translated src=- shape=f2897bbb vocab=8f06ad5d
+-/
 theorem TendstoInDistribution.continuousMap_supNorm
     {I T Omega' : Type*} {Omega : I → Type*}
     {mOmega : ∀ i, MeasurableSpace (Omega i)}
@@ -82,17 +86,24 @@ zero without a separate convention.-/
 def finiteMaxAbs (x : EuclideanSpace ℝ kappa) : ℝ :=
   ‖x.ofLp‖
 
+/--
+@isnad1 id=eq.0h2v.s5.303e3d26da77 from=translated src=- shape=e0887e03 vocab=b11141e7
+-/
 @[simp]
 theorem finiteMaxAbs_toLp (f : kappa → ℝ) :
     finiteMaxAbs (toLp 2 f) = ‖f‖ := rfl
 
-/-- `finiteMaxAbs` is continuous for the Euclidean topology.-/
+/-- `finiteMaxAbs` is continuous for the Euclidean topology.
+@isnad1 id=continuo.0h1v.s5.de136f25ec54 from=translated src=- shape=61250228 vocab=332a60df
+-/
 theorem continuous_finiteMaxAbs :
     Continuous (finiteMaxAbs : EuclideanSpace ℝ kappa → ℝ) := by
   exact continuous_norm.comp (PiLp.continuous_ofLp 2 (fun _ : kappa => ℝ))
 
 /-- Continuous-mapping transfer from a finite-dimensional weak limit to the
-maximum absolute coordinate.-/
+maximum absolute coordinate.
+@isnad1 id=tendstoi.1h11v.s7.cfe3e4eb4309 from=translated src=- shape=8daf0074 vocab=63df20ce
+-/
 theorem TendstoInDistribution.finiteMaxAbs
     {I Omega' : Type*} {Omega : I → Type*}
     {mOmega : ∀ i, MeasurableSpace (Omega i)}
@@ -139,6 +150,9 @@ def supportDifferenceContinuousMap
           hK hL hKne hLne hRK hRL u v)
     exact hlip.continuous.comp continuous_subtype_val
 
+/--
+@isnad1 id=eq.4h4v.s8.0e2fed3a3f9a from=translated src=- shape=f99eb735 vocab=8edfe149
+-/
 @[simp]
 theorem supportDifferenceContinuousMap_apply
     (K L : Set E) (hK : IsCompact K) (hL : IsCompact L)
@@ -148,7 +162,9 @@ theorem supportDifferenceContinuousMap_apply
       supportFunction K u - supportFunction L u := rfl
 
 /-- For compact nonempty convex sets in finite dimension, the uniform norm
-of the support-difference path is exactly Hausdorff distance.-/
+of the support-difference path is exactly Hausdorff distance.
+@isnad1 id=eq.6h3v.s8.f30cdc6cf870 from=translated src=- shape=5fe6258d vocab=46d5e4ba
+-/
 theorem norm_supportDifferenceContinuousMap_eq_hausdorffDist
     [FiniteDimensional ℝ E]
     (K L : Set E) (hK : IsCompact K) (hL : IsCompact L)
@@ -180,7 +196,9 @@ theorem norm_supportDifferenceContinuousMap_eq_hausdorffDist
       (supportDifferenceContinuousMap K L hK hL hKne hLne) us
     simpa only [supportDifferenceContinuousMap_apply, Real.norm_eq_abs] using hnorm
 
-/-- The support gap is the norm of the bundled support-difference path.-/
+/-- The support gap is the norm of the bundled support-difference path.
+@isnad1 id=eq.6h3v.s8.c5fee1ee35f7 from=translated src=- shape=5fe6258d vocab=4c83f983
+-/
 theorem norm_supportDifferenceContinuousMap_eq_supportHausdorffGap
     [FiniteDimensional ℝ E]
     (K L : Set E) (hK : IsCompact K) (hL : IsCompact L)
@@ -200,6 +218,9 @@ def scaledSupportDifferenceContinuousMap
     C(Metric.closedBall (0 : E) 1, ℝ) :=
   c • supportDifferenceContinuousMap K L hK hL hKne hLne
 
+/--
+@isnad1 id=eq.4h5v.s8.affe0e5c3a54 from=translated src=- shape=5cc85ae4 vocab=e832b3e7
+-/
 @[simp]
 theorem scaledSupportDifferenceContinuousMap_apply
     (c : ℝ) (K L : Set E) (hK : IsCompact K) (hL : IsCompact L)
@@ -210,7 +231,9 @@ theorem scaledSupportDifferenceContinuousMap_apply
   simp [scaledSupportDifferenceContinuousMap]
 
 /-- Uniform norm of a scaled support-difference path, expressed as support
-gap.-/
+gap.
+@isnad1 id=eq.6h4v.s8.dd0a309ce313 from=translated src=- shape=968eaef0 vocab=96f3dd59
+-/
 theorem norm_scaledSupportDifferenceContinuousMap_eq_supportHausdorffGap
     [FiniteDimensional ℝ E]
     (c : ℝ) (K L : Set E) (hK : IsCompact K) (hL : IsCompact L)
@@ -223,7 +246,9 @@ theorem norm_scaledSupportDifferenceContinuousMap_eq_supportHausdorffGap
       K L hK hL hKne hLne hKconv hLconv]
 
 /-- Uniform norm of a scaled support-difference path, expressed as Hausdorff
-distance.-/
+distance.
+@isnad1 id=eq.6h4v.s8.acddd431901a from=translated src=- shape=968eaef0 vocab=7bbce64d
+-/
 theorem norm_scaledSupportDifferenceContinuousMap_eq_hausdorffDist
     [FiniteDimensional ℝ E]
     (c : ℝ) (K L : Set E) (hK : IsCompact K) (hL : IsCompact L)
@@ -237,7 +262,9 @@ theorem norm_scaledSupportDifferenceContinuousMap_eq_hausdorffDist
 
 /-- Functional continuous-mapping bridge for the support gap.  The premise
 is convergence in law of the entire continuous support process; no process
-CLT or tightness claim is made here.-/
+CLT or tightness claim is made here.
+@isnad1 id=tendstoi.7h13v.s10.502c94b1951c from=translated src=- shape=c9f2b814 vocab=373dbd79
+-/
 theorem tendstoInDistribution_absScale_mul_supportHausdorffGap_of_process
     [FiniteDimensional ℝ E]
     {I Omega' : Type*} {Omega : I → Type*}
@@ -277,7 +304,9 @@ theorem tendstoInDistribution_absScale_mul_supportHausdorffGap_of_process
 
 /-- Functional continuous-mapping bridge for Hausdorff distance.  It turns
 a functional weak-convergence theorem, if supplied separately, into the
-corresponding weak limit of the scaled Hausdorff error.-/
+corresponding weak limit of the scaled Hausdorff error.
+@isnad1 id=tendstoi.7h13v.s10.c9f5e23d5dbc from=translated src=- shape=c9f2b814 vocab=be46073d
+-/
 theorem tendstoInDistribution_absScale_mul_hausdorffDist_of_process
     [FiniteDimensional ℝ E]
     {I Omega' : Type*} {Omega : I → Type*}
@@ -322,7 +351,9 @@ variable {Omega : Type*} [MeasurableSpace Omega]
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 
 /-- The joint finite-direction support CLT implies convergence of the
-largest absolute directional error on that finite family.-/
+largest absolute directional error on that finite family.
+@isnad1 id=tendstoi.7h10v.s9.522dcb6d2909 from=translated src=- shape=71076b41 vocab=f364eb58
+-/
 theorem tendstoInDistribution_finiteMaxAbs_support_minkowskiAverage
     [DecidableEq kappa]
     {Omega' : Type*} [MeasurableSpace Omega']

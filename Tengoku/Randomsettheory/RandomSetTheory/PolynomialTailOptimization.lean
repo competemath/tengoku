@@ -62,12 +62,18 @@ def fukNagaevDeviation (r : ℕ) (V y u : ℝ) : ℝ :=
   fukNagaevGaussianDeviation V u +
     fukNagaevPolynomialDeviation r y u
 
+/--
+@isnad1 id=lt.2h3v.s5.d0a83d3ff03c from=translated src=- shape=1185f8fe vocab=2ee69873
+-/
 theorem fukNagaevTruncationLevel_pos (q : ℕ)
     {A u : ℝ} (hA : 0 < A) (hu : 0 < u) :
     0 < fukNagaevTruncationLevel q A u := by
   unfold fukNagaevTruncationLevel
   positivity
 
+/--
+@isnad1 id=eq.3h3v.s6.6573817d5578 from=translated src=- shape=51045405 vocab=fda8803d
+-/
 theorem fukNagaevTruncationLevel_pow {q : ℕ} (hq : q ≠ 0)
     {A u : ℝ} (hA : 0 ≤ A) (hu : 0 < u) :
     fukNagaevTruncationLevel q A u ^ q = 3 * A / u := by
@@ -76,7 +82,9 @@ theorem fukNagaevTruncationLevel_pow {q : ℕ} (hq : q ≠ 0)
 
 /-- Under the uniform moment bound `A = n * K^q`, the truncation level has
 exactly the desired `n^(1/q) K u^(-1/q)` scale (up to the fixed allocation
-constant `3^(1/q)`).-/
+constant `3^(1/q)`).
+@isnad1 id=eq.3h4v.s7.ac3cd5aaadbd from=translated src=- shape=075dbc5b vocab=d9695470
+-/
 theorem fukNagaevTruncationLevel_uniformMoment_eq
     {q n : ℕ} (hq : q ≠ 0) {K u : ℝ}
     (hK : 0 ≤ K) (hu : 0 < u) :
@@ -94,7 +102,9 @@ theorem fukNagaevTruncationLevel_uniformMoment_eq
 
 /-- At the optimized truncation level, the predictable moment-bias scale is
 exactly `(u/3) * y`; hence it is smaller than the main polynomial scale `y`
-for confidence parameters `u < 1`.-/
+for confidence parameters `u < 1`.
+@isnad1 id=eq.3h3v.s6.69a31be150bc from=translated src=- shape=3bf2119e vocab=8f4e6fbb
+-/
 theorem momentBias_at_fukNagaevTruncationLevel_eq
     {q : ℕ} (hq : q ≠ 0) {A u : ℝ}
     (hA : 0 < A) (hu : 0 < u) :
@@ -117,12 +127,18 @@ theorem momentBias_at_fukNagaevTruncationLevel_eq
       rw [hyPow]
       field_simp
 
+/--
+@isnad1 id=lt.2h3v.s5.7971102dd649 from=translated src=- shape=1185f8fe vocab=47773b12
+-/
 theorem fukNagaevPolynomialDeviation_pos (r : ℕ)
     {y u : ℝ} (hy : 0 < y) (hu : 0 < u) :
     0 < fukNagaevPolynomialDeviation r y u := by
   unfold fukNagaevPolynomialDeviation
   positivity
 
+/--
+@isnad1 id=eq.2h2v.s6.65a5617ba02c from=translated src=- shape=d2024ca3 vocab=37b87470
+-/
 theorem fukNagaevPolynomialRoot_pow {r : ℕ} (hr : r ≠ 0)
     {u : ℝ} (hu : 0 < u) :
     ((3 * (r.factorial : ℝ) / u) ^ ((r : ℝ)⁻¹) : ℝ) ^ r =
@@ -130,7 +146,9 @@ theorem fukNagaevPolynomialRoot_pow {r : ℕ} (hr : r ≠ 0)
   exact Real.rpow_inv_natCast_pow (by positivity) hr
 
 /-- The exact deterministic error-budget lemma.  It is deliberately stated
-independently of probability, so all divisions and constants are visible.-/
+independently of probability, so all divisions and constants are visible.
+@isnad1 id=le.7h7v.s8.d3a009c34552 from=translated src=- shape=c20f2280 vocab=fa2b7f47
+-/
 theorem fukNagaev_three_term_le
     {A V y t u : ℝ} {q r : ℕ}
     (hy : 0 < y) (ht : 0 < t) (hV : 0 < V) (hu : 0 < u)
@@ -171,10 +189,16 @@ theorem fukNagaev_three_term_le
 
 /-! ## Verification of the explicit choices -/
 
+/--
+@isnad1 id=le.0h2v.s4.e92f288d71a1 from=translated src=- shape=a120b2a8 vocab=fe1dbd92
+-/
 theorem fukNagaevGaussianDeviation_nonneg (V u : ℝ) :
     0 ≤ fukNagaevGaussianDeviation V u :=
   sqrt_nonneg _
 
+/--
+@isnad1 id=eq.3h2v.s6.386b67f6b770 from=translated src=- shape=1581e8da vocab=330f6c44
+-/
 theorem fukNagaevGaussianDeviation_sq
     {V u : ℝ} (hV : 0 ≤ V) (hu : 0 < u) (hu1 : u < 1) :
     fukNagaevGaussianDeviation V u ^ 2 =
@@ -187,7 +211,9 @@ theorem fukNagaevGaussianDeviation_sq
   exact mul_nonneg (mul_nonneg (by norm_num) hV) (Real.log_pos hratio).le
 
 /-- The explicit Gaussian-plus-polynomial deviation allocates `u/3` to each
-of the two bounded-martingale terms once the truncation level is fixed.-/
+of the two bounded-martingale terms once the truncation level is fixed.
+@isnad1 id=other.6h5v.s7.658d0aa4f370 from=translated src=- shape=ed04f989 vocab=095dd888
+-/
 theorem fukNagaev_explicit_allocation
     {A V u : ℝ} {q r : ℕ} (hq : q ≠ 0) (hr : r ≠ 0)
     (hA : 0 < A) (hV : 0 < V) (hu : 0 < u) (hu1 : u < 1) :
@@ -238,7 +264,9 @@ variable {Omega : Type*} {mOmega : MeasurableSpace Omega}
 
 /-- Controlling the polynomial Bernstein remainder by `u/3` forces the
 displayed power inequality.  This already shows that `t` cannot stay of the
-same order as `y` uniformly as `u` tends to zero.-/
+same order as `y` uniformly as `u` tends to zero.
+@isnad1 id=le.2h4v.s7.f7b557cfd1dc from=translated src=- shape=b266bff6 vocab=3d52eb29
+-/
 theorem polynomial_remainder_control_forces_power_deviation
     {r : ℕ} {y t u : ℝ} (ht : 0 < t)
     (hcontrol :
@@ -255,7 +283,9 @@ theorem polynomial_remainder_control_forces_power_deviation
 
 /-- Stronger root form of the obstruction.  For every fixed positive integer
 `r`, the required deviation contains exactly the extra factor
-`(3 r! / u)^(1/r)`.-/
+`(3 r! / u)^(1/r)`.
+@isnad1 id=le.4h4v.s7.c2c59d8caf87 from=translated src=- shape=6990440c vocab=674c95b1
+-/
 theorem polynomial_remainder_control_forces_deviation
     {r : ℕ} (hr : r ≠ 0) {y t u : ℝ}
     (ht : 0 < t) (hu : 0 < u)

@@ -47,7 +47,9 @@ variable {Ω X : Type*}
 /-! ## Closed hitting events for compact-valued correspondences -/
 
 /-- A compact set hits a closed set iff it hits every positive rational-scale
-open thickening of that closed set.-/
+open thickening of that closed set.
+@isnad1 id=eq.2h4v.s6.687ef0072043 from=translated src=- shape=7a149a84 vocab=2b60b513
+-/
 theorem hitEvent_closed_eq_iInter_thickening_of_compact_values
     [MetricSpace X] {S : Ω → Set X} (hScompact : ∀ ω, IsCompact (S ω))
     {F : Set X} (hF : IsClosed F) :
@@ -75,7 +77,9 @@ theorem hitEvent_closed_eq_iInter_thickening_of_compact_values
       (Metric.thickening_mono hn.le F hxF)
 
 /-- Closed hitting events are measurable for compact-valued Effros
-correspondences.-/
+correspondences.
+@isnad1 id=measurab.3h4v.s6.6849de417e7d from=translated src=- shape=837300ec vocab=2ac238de
+-/
 theorem measurableSet_hitEvent_closed_of_compact_values
     [MeasurableSpace Ω] [MetricSpace X] {S : Ω → Set X}
     (hS : RandomSet.IsEffrosMeasurable S)
@@ -86,7 +90,9 @@ theorem measurableSet_hitEvent_closed_of_compact_values
     measurableSet_hitEvent_open hS Metric.isOpen_thickening
 
 /-- For compact-valued Effros correspondences, containment in a deterministic
-open set is a measurable event.-/
+open set is a measurable event.
+@isnad1 id=measurab.3h4v.s6.be32aa99f3a0 from=translated src=- shape=2f7918ff vocab=2141c88a
+-/
 theorem measurableSet_subset_open_of_effros_of_compact_values
     [MeasurableSpace Ω] [MetricSpace X] {S : Ω → Set X}
     (hS : RandomSet.IsEffrosMeasurable S)
@@ -115,6 +121,9 @@ def bundleNonemptyCompacts [TopologicalSpace X] (S : Ω → Set X)
     Ω → NonemptyCompacts X :=
   fun ω => ⟨⟨S ω, hScompact ω⟩, hSne ω⟩
 
+/--
+@isnad1 id=eq.2h4v.s5.16edac5b2ebe from=translated src=- shape=80716365 vocab=d720b12e
+-/
 @[simp]
 theorem coe_bundleNonemptyCompacts [TopologicalSpace X] (S : Ω → Set X)
     (hScompact : ∀ ω, IsCompact (S ω)) (hSne : ∀ ω, (S ω).Nonempty)
@@ -165,7 +174,9 @@ map into `NonemptyCompacts X` equipped with the Vietoris/Hausdorff topology.
 
 The second-countability assumption is exactly what lets us pass from
 measurability of finite Vietoris basic events to arbitrary Borel sets using a
-countable basis.-/
+countable basis.
+@isnad1 id=measurab.3h3v.s6.591a02ee73a2 from=translated src=- shape=69f3708c vocab=552e59d4
+-/
 theorem measurable_bundleNonemptyCompacts
     [MeasurableSpace Ω] [MetricSpace X] [SecondCountableTopology X]
     [MeasurableSpace (NonemptyCompacts X)] [BorelSpace (NonemptyCompacts X)]
@@ -214,7 +225,9 @@ theorem measurable_bundleNonemptyCompacts
 
 /-- Canonical-Borel form of `measurable_bundleNonemptyCompacts`.  It makes no
 global measurable-space choice for the hyperspace: the codomain sigma-algebra
-is displayed explicitly as `borel (NonemptyCompacts X)`.-/
+is displayed explicitly as `borel (NonemptyCompacts X)`.
+@isnad1 id=measurab.3h3v.s6.e7ec5832b62b from=translated src=- shape=c7504f8a vocab=06384727
+-/
 theorem measurable_bundleNonemptyCompacts_borel
     [MeasurableSpace Ω] [MetricSpace X] [SecondCountableTopology X]
     {S : Ω → Set X} (hS : RandomSet.IsEffrosMeasurable S)
@@ -227,7 +240,9 @@ theorem measurable_bundleNonemptyCompacts_borel
 
 /-- Every measurable hyperspace-valued map gives an Effros-measurable
 set-valued map by forgetting the bundle.  This direction only uses that open
-subsets of the hyperspace are measurable.-/
+subsets of the hyperspace are measurable.
+@isnad1 id=iseffros.1h3v.s5.41fab4e0442f from=translated src=- shape=3feb85f2 vocab=014974a9
+-/
 theorem effrosMeasurable_coe_of_measurable_nonemptyCompacts
     [MeasurableSpace Ω] [TopologicalSpace X]
     [MeasurableSpace (NonemptyCompacts X)]
@@ -242,7 +257,9 @@ theorem effrosMeasurable_coe_of_measurable_nonemptyCompacts
 
 /-- On nonempty compact-valued correspondences in a second-countable metric
 space, Effros measurability is equivalent to Borel measurability as a map into
-the Hausdorff/Vietoris hyperspace.-/
+the Hausdorff/Vietoris hyperspace.
+@isnad1 id=iff.2h3v.s6.4209b2ea8432 from=translated src=- shape=498a3655 vocab=552e59d4
+-/
 theorem effrosMeasurable_iff_measurable_bundleNonemptyCompacts
     [MeasurableSpace Ω] [MetricSpace X] [SecondCountableTopology X]
     [MeasurableSpace (NonemptyCompacts X)] [BorelSpace (NonemptyCompacts X)]
@@ -257,7 +274,9 @@ theorem effrosMeasurable_iff_measurable_bundleNonemptyCompacts
     simpa only [coe_bundleNonemptyCompacts] using
       effrosMeasurable_coe_of_measurable_nonemptyCompacts hBundle
 
-/-- Canonical-Borel version of the Effros/hyperspace equivalence.-/
+/-- Canonical-Borel version of the Effros/hyperspace equivalence.
+@isnad1 id=iff.2h3v.s6.c8f2ada6b632 from=translated src=- shape=2d6fbd0e vocab=06384727
+-/
 theorem effrosMeasurable_iff_measurable_bundleNonemptyCompacts_borel
     [MeasurableSpace Ω] [MetricSpace X] [SecondCountableTopology X]
     {S : Ω → Set X} (hScompact : ∀ ω, IsCompact (S ω))
@@ -272,7 +291,9 @@ theorem effrosMeasurable_iff_measurable_bundleNonemptyCompacts_borel
 /-- Hausdorff distance between two compact-valued Effros correspondences is
 measurable directly from their hyperspace-valued realizations.  Unlike the
 Castaing proof in `MeasurableHausdorff`, this version does not require
-completeness or a measurable structure on `X` itself.-/
+completeness or a measurable structure on `X` itself.
+@isnad1 id=measurab.6h4v.s7.b1572240e948 from=translated src=- shape=e27e59ed vocab=cd30f571
+-/
 theorem measurable_hausdorffDist_compact_correspondence_hyperspace
     [MeasurableSpace Ω] [MetricSpace X] [SecondCountableTopology X]
     [MeasurableSpace (NonemptyCompacts X)] [BorelSpace (NonemptyCompacts X)]
@@ -291,7 +312,9 @@ theorem measurable_hausdorffDist_compact_correspondence_hyperspace
   simpa only [Metric.NonemptyCompacts.dist_eq, coe_bundleNonemptyCompacts] using hdist
 
 /-- The capacity functional on an open test set is the probability of the
-corresponding lower Vietoris open set under the hyperspace pushforward law.-/
+corresponding lower Vietoris open set under the hyperspace pushforward law.
+@isnad1 id=eq.4h5v.s7.5063025eb736 from=translated src=- shape=879dafe5 vocab=3bfe9735
+-/
 theorem capacityFunctional_eq_map_bundleNonemptyCompacts_hit_open
     [MeasurableSpace Ω] [MetricSpace X] [SecondCountableTopology X]
     [MeasurableSpace (NonemptyCompacts X)] [BorelSpace (NonemptyCompacts X)]
@@ -307,7 +330,9 @@ theorem capacityFunctional_eq_map_bundleNonemptyCompacts_hit_open
     (TopologicalSpace.NonemptyCompacts.isOpen_inter_nonempty_of_isOpen hU).measurableSet]
   rfl
 
-/-- Convenience form for the bundled classical random-closed-set object.-/
+/-- Convenience form for the bundled classical random-closed-set object.
+@isnad1 id=measurab.2h3v.s7.9eb9b4e8adb6 from=translated src=- shape=586b8a9e vocab=1c707a26
+-/
 theorem RandomSet.EffrosRandomClosedSet.measurable_bundleNonemptyCompacts
     [MeasurableSpace Ω] [MetricSpace X] [SecondCountableTopology X]
     [MeasurableSpace (NonemptyCompacts X)] [BorelSpace (NonemptyCompacts X)]
@@ -327,6 +352,9 @@ def bundleCompactConvexSet (S : Ω → Set E)
     (hSconvex : ∀ ω, Convex ℝ (S ω)) : Ω → CompactConvexSet E :=
   fun ω => CompactConvexSet.ofSet (S ω) (hScompact ω) (hSne ω) (hSconvex ω)
 
+/--
+@isnad1 id=eq.3h4v.s8.d590527807ba from=translated src=- shape=d94e9aad vocab=d971728d
+-/
 @[simp]
 theorem coe_bundleCompactConvexSet (S : Ω → Set E)
     (hScompact : ∀ ω, IsCompact (S ω)) (hSne : ∀ ω, (S ω).Nonempty)
@@ -336,7 +364,9 @@ theorem coe_bundleCompactConvexSet (S : Ω → Set E)
 
 /-- A compact convex-valued Effros correspondence is measurable as a
 `CompactConvexSet E`.  Its measurable structure is the subtype Borel
-structure inherited from `NonemptyCompacts E`.-/
+structure inherited from `NonemptyCompacts E`.
+@isnad1 id=measurab.4h3v.s7.240317209882 from=translated src=- shape=5bb194b9 vocab=9b5984b5
+-/
 theorem measurable_bundleCompactConvexSet
     [MeasurableSpace Ω] [SecondCountableTopology E]
     [MeasurableSpace (NonemptyCompacts E)] [BorelSpace (NonemptyCompacts E)]
@@ -361,7 +391,9 @@ theorem measurable_bundleCompactConvexSet
     (bundleNonemptyCompacts S hScompact hSne ⁻¹' U)
   exact hBundle hU.measurableSet
 
-/-- Canonical-Borel form of compact-convex hyperspace measurability.-/
+/-- Canonical-Borel form of compact-convex hyperspace measurability.
+@isnad1 id=measurab.4h3v.s7.ac40f6991b33 from=translated src=- shape=54dfd4a2 vocab=cc7ad2c3
+-/
 theorem measurable_bundleCompactConvexSet_borel
     [MeasurableSpace Ω] [SecondCountableTopology E]
     {S : Ω → Set E} (hS : RandomSet.IsEffrosMeasurable S)
@@ -377,7 +409,9 @@ theorem measurable_bundleCompactConvexSet_borel
     hS hScompact hSne hSconvex
 
 /-- After the Rådström embedding, a compact convex-valued Effros
-correspondence is a measurable random continuous support function.-/
+correspondence is a measurable random continuous support function.
+@isnad1 id=measurab.4h3v.s9.3412499607a5 from=translated src=- shape=974fe65f vocab=302c6e4b
+-/
 theorem measurable_radstromEmbedding_comp_bundleCompactConvexSet
     [MeasurableSpace Ω] [FiniteDimensional ℝ E] [SecondCountableTopology E]
     [MeasurableSpace (NonemptyCompacts E)] [BorelSpace (NonemptyCompacts E)]
@@ -392,7 +426,9 @@ theorem measurable_radstromEmbedding_comp_bundleCompactConvexSet
   exact (isometry_radstromEmbedding (E := E)).continuous.measurable.comp
     (measurable_bundleCompactConvexSet hS hScompact hSne hSconvex)
 
-/-- Canonical-Borel form of measurability after the Rådström embedding.-/
+/-- Canonical-Borel form of measurability after the Rådström embedding.
+@isnad1 id=measurab.4h3v.s8.45b9c4ec8150 from=translated src=- shape=95069b06 vocab=3698d0d7
+-/
 theorem measurable_radstromEmbedding_comp_bundleCompactConvexSet_borel
     [MeasurableSpace Ω] [FiniteDimensional ℝ E] [SecondCountableTopology E]
     {S : Ω → Set E} (hS : RandomSet.IsEffrosMeasurable S)

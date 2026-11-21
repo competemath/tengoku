@@ -25,7 +25,9 @@ namespace ProbabilityTheory
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
 /-- One-sided Hoeffding bound for an average indexed exactly by `Fin n`.
-Unlike `hoeffding_average_real`, it has no assumptions outside the sample.-/
+Unlike `hoeffding_average_real`, it has no assumptions outside the sample.
+@isnad1 id=le.6h7v.s8.6a8c7457aa9c from=translated src=- shape=ad504d1e vocab=c3dc6e1b
+-/
 lemma hoeffding_fin_average_real [IsProbabilityMeasure μ]
     {n : ℕ} (X : Fin n → Ω → ℝ) (a b : Fin n → ℝ)
     (h_indep : iIndepFun X μ)
@@ -49,7 +51,9 @@ lemma hoeffding_fin_average_real [IsProbabilityMeasure μ]
 
 /-- Bilateral Hoeffding bound for an average indexed exactly by `Fin n`.
 Independence, measurability, bounds and centering are required only for the
-finite sample family.-/
+finite sample family.
+@isnad1 id=le.6h7v.s8.03408394e442 from=translated src=- shape=fe08264f vocab=34b4b44c
+-/
 lemma hoeffding_fin_average_abs_real [IsProbabilityMeasure μ]
     {n : ℕ} (X : Fin n → Ω → ℝ) (a b : Fin n → ℝ)
     (h_indep : iIndepFun X μ)
@@ -110,6 +114,9 @@ variable {Ω E : Type*} [MeasurableSpace Ω]
 def empiricalMinkowskiAverage (S : ℕ → Ω → Set E) (n : ℕ) (ω : Ω) : Set E :=
   (n : ℝ)⁻¹ • ∑ i ∈ range n, S i ω
 
+/--
+@isnad1 id=iscompac.1h5v.s6.6d85f4106e30 from=translated src=- shape=7e4a93bd vocab=ad6ecf2a
+-/
 theorem empiricalMinkowskiAverage_compact
     (S : ℕ → Ω → Set E) (n : ℕ)
     (hS : ∀ i < n, ∀ ω, IsCompact (S i ω)) (ω : Ω) :
@@ -119,6 +126,9 @@ theorem empiricalMinkowskiAverage_compact
   intro i hi
   exact hS i (mem_range.mp hi) ω
 
+/--
+@isnad1 id=nonempty.1h5v.s5.71df5874b500 from=translated src=- shape=7e4a93bd vocab=fdaa99dd
+-/
 theorem empiricalMinkowskiAverage_nonempty
     (S : ℕ → Ω → Set E) (n : ℕ)
     (hS : ∀ i < n, ∀ ω, (S i ω).Nonempty) (ω : Ω) :
@@ -127,6 +137,9 @@ theorem empiricalMinkowskiAverage_nonempty
   exact (nonempty_finset_sum (range n) (fun i => S i ω)
     (fun i hi => hS i (mem_range.mp hi) ω)).smul_set
 
+/--
+@isnad1 id=convex.1h5v.s7.7dc705b0f4a0 from=translated src=- shape=7fe18ffd vocab=7379d339
+-/
 theorem empiricalMinkowskiAverage_convex
     (S : ℕ → Ω → Set E) (n : ℕ)
     (hS : ∀ i < n, ∀ ω, Convex ℝ (S i ω)) (ω : Ω) :
@@ -137,7 +150,9 @@ theorem empiricalMinkowskiAverage_convex
     (fun i hi => hS i (mem_range.mp hi) ω)
 
 /-- Averaging sets contained in the radius-`R` ball preserves the same
-radius, rather than accumulating an `nR` bound.-/
+radius, rather than accumulating an `nR` bound.
+@isnad1 id=le.3h7v.s6.66f6c89746f0 from=translated src=- shape=875677df vocab=53894c96
+-/
 theorem empiricalMinkowskiAverage_radius
     (S : ℕ → Ω → Set E) {n : ℕ} (hn : 0 < n) {R : ℝ}
     (hS : ∀ i < n, ∀ ω, ∀ x ∈ S i ω, ‖x‖ ≤ R) (ω : Ω) :
@@ -162,7 +177,9 @@ theorem empiricalMinkowskiAverage_radius
       field_simp [Nat.cast_ne_zero.mpr hn.ne']
 
 /-- Support functions commute with a nonnegative scalar dilation of a compact
-nonempty set.-/
+nonempty set.
+@isnad1 id=eq.3h4v.s7.675f34b192bb from=translated src=- shape=a97447f7 vocab=1ba1e4de
+-/
 theorem supportFunction_smul_set {K : Set E}
     (hK : IsCompact K) (hKne : K.Nonempty) {c : ℝ} (hc : 0 ≤ c) (u : E) :
     supportFunction (c • K) u = c * supportFunction K u := by
@@ -178,7 +195,9 @@ theorem supportFunction_smul_set {K : Set E}
     exact inner_le_supportFunction hCK (smul_mem_smul_set hx) u
 
 /-- The support function of an empirical Minkowski average is the ordinary
-empirical average of the individual support functions.-/
+empirical average of the individual support functions.
+@isnad1 id=eq.2h6v.s6.745d60292d62 from=translated src=- shape=674d72c8 vocab=73b8eb96
+-/
 theorem supportFunction_empiricalMinkowskiAverage
     (S : ℕ → Ω → Set E) {n : ℕ}
     (hScompact : ∀ i < n, ∀ ω, IsCompact (S i ω))
@@ -206,7 +225,9 @@ def directionalSupportDeviation
   supportFunction (S i ω) u - supportFunction L u
 
 /-- A compact set contained in a ball of radius `R` has support function at
-most `R` in absolute value along every unit direction.-/
+most `R` in absolute value along every unit direction.
+@isnad1 id=le.4h4v.s6.0ab8b6b76eb6 from=translated src=- shape=0323257c vocab=1cd043c0
+-/
 theorem abs_supportFunction_le_radius {K : Set E}
     (hK : IsCompact K) (hKne : K.Nonempty) {R : ℝ}
     (hR : ∀ x ∈ K, ‖x‖ ≤ R) {u : E} (hu : ‖u‖ ≤ 1) :
@@ -220,7 +241,9 @@ theorem abs_supportFunction_le_radius {K : Set E}
     _ = R := one_mul R
 
 /-- Radius bounds automatically give the symmetric interval needed by
-Hoeffding for a centered directional support contribution.-/
+Hoeffding for a centered directional support contribution.
+@isnad1 id=mem.7h9v.s7.1e0d77e3a002 from=translated src=- shape=50e85bce vocab=b7664d95
+-/
 theorem directionalSupportDeviation_mem_Icc_of_radius
     (S : ℕ → Ω → Set E) (L : Set E) (u : E) (i : ℕ) (ω : Ω)
     {RS RL : ℝ}
@@ -237,6 +260,9 @@ theorem directionalSupportDeviation_mem_Icc_of_radius
       neg_le_abs (supportFunction (S i ω) u),
       le_abs_self (supportFunction L u), neg_le_abs (supportFunction L u)]
 
+/--
+@isnad1 id=eq.3h7v.s7.33d9fa7112b2 from=translated src=- shape=a780a502 vocab=545682ff
+-/
 theorem supportFunction_empirical_sub_eq_average_deviation
     (S : ℕ → Ω → Set E) (L : Set E) {n : ℕ} (hn : 0 < n)
     (hScompact : ∀ i < n, ∀ ω, IsCompact (S i ω))
@@ -251,7 +277,9 @@ theorem supportFunction_empirical_sub_eq_average_deviation
 
 /-- Directional Hoeffding inequality for an empirical Minkowski average of
 independent random compact sets. This is directly usable as the `htail`
-hypothesis of the set-valued concentration theorems.-/
+hypothesis of the set-valued concentration theorems.
+@isnad1 id=le.8h10v.s8.949c0386c01f from=translated src=- shape=d747463c vocab=54d9ed1a
+-/
 theorem empiricalMinkowskiAverage_support_hoeffding
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     (S : ℕ → Ω → Set E) (L : Set E) (u : E)
@@ -291,7 +319,9 @@ def symmetricSupportHoeffdingTail (n : ℕ) (t B : ℝ) : ℝ :=
 
 /-- For a nonempty sample and a positive symmetric bound, the proxy sum in
 `symmetricSupportHoeffdingTail` reduces to `n B²`, giving the standard
-Hoeffding exponent.-/
+Hoeffding exponent.
+@isnad1 id=eq.2h3v.s6.d2d55ff1c28c from=translated src=- shape=e53a3fae vocab=d3a39f72
+-/
 theorem symmetricSupportHoeffdingTail_eq_standard
     {n : ℕ} (hn : 0 < n) (t : ℝ) {B : ℝ} (hB : 0 < B) :
     symmetricSupportHoeffdingTail n t B =
@@ -318,7 +348,9 @@ theorem symmetricSupportHoeffdingTail_eq_standard
   field_simp [Nat.cast_ne_zero.mpr hn.ne', hB.ne']
 
 /-- Fully geometric specialization: radius bounds discharge the boundedness
-hypothesis of Hoeffding in every unit direction.-/
+hypothesis of Hoeffding in every unit direction.
+@isnad1 id=le.12h10v.s8.58498b3475a6 from=translated src=- shape=e7ea1ac5 vocab=53a63034
+-/
 theorem empiricalMinkowskiAverage_support_hoeffding_of_radius
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     (S : ℕ → Ω → Set E) (L : Set E) (u : E)
@@ -354,7 +386,9 @@ theorem empiricalMinkowskiAverage_support_hoeffding_of_radius
 
 /-- Complete finite-net Hausdorff concentration theorem for empirical
 Minkowski averages. The only probabilistic assumptions left are independence,
-measurability and centering of the concrete scalar support contributions.-/
+measurability and centering of the concrete scalar support contributions.
+@isnad1 id=le.16h11v.s9.eff18bd49c79 from=translated src=- shape=51bb9e6c vocab=eac43037
+-/
 theorem hausdorffDist_empiricalMinkowskiAverage_risk_bound_of_hoeffding
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     (S : ℕ → Ω → Set E) (L : Set E)
@@ -397,7 +431,9 @@ theorem hausdorffDist_empiricalMinkowskiAverage_risk_bound_of_hoeffding
     (h_indep v hv) (h_meas v hv) (h_centered v hv) hn ht
 
 /-- Volumetric-net version of the preceding result. It supplies the standard
-`(3/eps)^dim` entropy factor and constructs the finite set of directions.-/
+`(3/eps)^dim` entropy factor and constructs the finite set of directions.
+@isnad1 id=ex.15h10v.s9.353c5534e5f6 from=translated src=- shape=e8178cd2 vocab=26f3dd6b
+-/
 theorem exists_hausdorffDist_empiricalMinkowskiAverage_risk_bound_of_hoeffding_net
     {μ : Measure Ω} [IsProbabilityMeasure μ] [FiniteDimensional ℝ E]
     (S : ℕ → Ω → Set E) (L : Set E)
@@ -445,7 +481,9 @@ theorem exists_hausdorffDist_empiricalMinkowskiAverage_risk_bound_of_hoeffding_n
 
 /-- Standard closed-form version of the volumetric-net bound. The probability
 is bounded by the entropy factor times
-`2 exp (-n t² / (2 (RS + RL)²))`.-/
+`2 exp (-n t² / (2 (RS + RL)²))`.
+@isnad1 id=ex.16h10v.s9.27ac6b158003 from=translated src=- shape=8eb63aa1 vocab=be4ec0ba
+-/
 theorem exists_hausdorffDist_empiricalMinkowskiAverage_risk_bound_standard
     {μ : Measure Ω} [IsProbabilityMeasure μ] [FiniteDimensional ℝ E]
     (S : ℕ → Ω → Set E) (L : Set E)
@@ -486,6 +524,9 @@ def finEmpiricalMinkowskiAverage {n : ℕ}
     (S : Fin n → Ω → Set E) (ω : Ω) : Set E :=
   (n : ℝ)⁻¹ • ∑ i, S i ω
 
+/--
+@isnad1 id=iscompac.1h5v.s6.2594843dd393 from=translated src=- shape=e478f201 vocab=36cf52e7
+-/
 theorem finEmpiricalMinkowskiAverage_compact {n : ℕ}
     (S : Fin n → Ω → Set E) (hS : ∀ i ω, IsCompact (S i ω)) (ω : Ω) :
     IsCompact (finEmpiricalMinkowskiAverage S ω) := by
@@ -494,6 +535,9 @@ theorem finEmpiricalMinkowskiAverage_compact {n : ℕ}
   intro i _hi
   exact hS i ω
 
+/--
+@isnad1 id=nonempty.1h5v.s5.905ea6dc2aeb from=translated src=- shape=e478f201 vocab=fd43ec82
+-/
 theorem finEmpiricalMinkowskiAverage_nonempty {n : ℕ}
     (S : Fin n → Ω → Set E) (hS : ∀ i ω, (S i ω).Nonempty) (ω : Ω) :
     (finEmpiricalMinkowskiAverage S ω).Nonempty := by
@@ -501,6 +545,9 @@ theorem finEmpiricalMinkowskiAverage_nonempty {n : ℕ}
   exact (nonempty_finset_sum Finset.univ (fun i => S i ω)
     (fun i _hi => hS i ω)).smul_set
 
+/--
+@isnad1 id=convex.1h5v.s7.99051d7c26a5 from=translated src=- shape=ab7dfba0 vocab=62715755
+-/
 theorem finEmpiricalMinkowskiAverage_convex {n : ℕ}
     (S : Fin n → Ω → Set E) (hS : ∀ i ω, Convex ℝ (S i ω)) (ω : Ω) :
     Convex ℝ (finEmpiricalMinkowskiAverage S ω) := by
@@ -508,7 +555,9 @@ theorem finEmpiricalMinkowskiAverage_convex {n : ℕ}
   apply Convex.smul
   exact convex_sum (fun i => S i ω) (fun i _hi => hS i ω)
 
-/-- A uniform radius is preserved by the exact finite-sample average.-/
+/-- A uniform radius is preserved by the exact finite-sample average.
+@isnad1 id=le.3h7v.s6.10cb5a57d56c from=translated src=- shape=06af8f63 vocab=e60bab41
+-/
 theorem finEmpiricalMinkowskiAverage_radius {n : ℕ}
     (S : Fin n → Ω → Set E) (hn : 0 < n) {R : ℝ}
     (hS : ∀ i ω, ∀ x ∈ S i ω, ‖x‖ ≤ R) (ω : Ω) :
@@ -532,7 +581,9 @@ theorem finEmpiricalMinkowskiAverage_radius {n : ℕ}
       field_simp [Nat.cast_ne_zero.mpr hn.ne']
 
 /-- Support functions turn the exact finite Minkowski average into the
-ordinary scalar sample average.-/
+ordinary scalar sample average.
+@isnad1 id=eq.2h6v.s6.bca1c52758c5 from=translated src=- shape=dab0b476 vocab=9eb0bf7e
+-/
 theorem supportFunction_finEmpiricalMinkowskiAverage
     {n : ℕ} (S : Fin n → Ω → Set E)
     (hScompact : ∀ i ω, IsCompact (S i ω))
@@ -558,6 +609,9 @@ def finDirectionalSupportDeviation {n : ℕ}
     (S : Fin n → Ω → Set E) (L : Set E) (u : E) (i : Fin n) (ω : Ω) : ℝ :=
   supportFunction (S i ω) u - supportFunction L u
 
+/--
+@isnad1 id=mem.7h10v.s7.349eb9968b03 from=translated src=- shape=e059dea1 vocab=9906158a
+-/
 theorem finDirectionalSupportDeviation_mem_Icc_of_radius {n : ℕ}
     (S : Fin n → Ω → Set E) (L : Set E) (u : E) (i : Fin n) (ω : Ω)
     {RS RL : ℝ}
@@ -575,6 +629,9 @@ theorem finDirectionalSupportDeviation_mem_Icc_of_radius {n : ℕ}
       neg_le_abs (supportFunction (S i ω) u),
       le_abs_self (supportFunction L u), neg_le_abs (supportFunction L u)]
 
+/--
+@isnad1 id=eq.3h7v.s7.60353b007909 from=translated src=- shape=afd82f5b vocab=4a1f4a15
+-/
 theorem supportFunction_finEmpirical_sub_eq_average_deviation
     {n : ℕ} (S : Fin n → Ω → Set E) (L : Set E) (hn : 0 < n)
     (hScompact : ∀ i ω, IsCompact (S i ω))
@@ -587,7 +644,9 @@ theorem supportFunction_finEmpirical_sub_eq_average_deviation
     card_univ, Fintype.card_fin, nsmul_eq_mul]
   field_simp [Nat.cast_ne_zero.mpr hn.ne']
 
-/-- Directional Hoeffding inequality with assumptions only on `Fin n`.-/
+/-- Directional Hoeffding inequality with assumptions only on `Fin n`.
+@isnad1 id=le.8h10v.s8.091e259c33aa from=translated src=- shape=1bd93660 vocab=41ce69ee
+-/
 theorem finEmpiricalMinkowskiAverage_support_hoeffding
     {μ : Measure Ω} [IsProbabilityMeasure μ] {n : ℕ}
     (S : Fin n → Ω → Set E) (L : Set E) (u : E)
@@ -622,7 +681,9 @@ theorem finEmpiricalMinkowskiAverage_support_hoeffding
   rw [hset]
   exact htail
 
-/-- Radius specialization of finite-sample directional Hoeffding.-/
+/-- Radius specialization of finite-sample directional Hoeffding.
+@isnad1 id=le.12h10v.s8.1f96711da2da from=translated src=- shape=94a0013c vocab=b69ede6b
+-/
 theorem finEmpiricalMinkowskiAverage_support_hoeffding_of_radius
     {μ : Measure Ω} [IsProbabilityMeasure μ] {n : ℕ}
     (S : Fin n → Ω → Set E) (L : Set E) (u : E)
@@ -655,7 +716,9 @@ theorem finEmpiricalMinkowskiAverage_support_hoeffding_of_radius
     Fintype.card_fin, card_range] using htail
 
 /-- Finite-net Hausdorff concentration with probabilistic assumptions only
-on the `Fin n` sample.-/
+on the `Fin n` sample.
+@isnad1 id=le.16h11v.s9.028e29297444 from=translated src=- shape=96b179ad vocab=5611d351
+-/
 theorem hausdorffDist_finEmpiricalMinkowskiAverage_risk_bound_of_hoeffding
     {μ : Measure Ω} [IsProbabilityMeasure μ] {n : ℕ}
     (S : Fin n → Ω → Set E) (L : Set E) (hn : 0 < n)
@@ -693,7 +756,9 @@ theorem hausdorffDist_finEmpiricalMinkowskiAverage_risk_bound_of_hoeffding
     S L v hScompact hSne hLcompact hLne hRS hRL (hN v hv)
     (h_indep v hv) (h_meas v hv) (h_centered v hv) hn ht
 
-/-- Volumetric-net Hausdorff concentration for an exact `Fin n` sample.-/
+/-- Volumetric-net Hausdorff concentration for an exact `Fin n` sample.
+@isnad1 id=ex.15h10v.s9.a11843df59fc from=translated src=- shape=cc81615d vocab=75a7c2b5
+-/
 theorem exists_hausdorffDist_finEmpiricalMinkowskiAverage_risk_bound_of_hoeffding_net
     {μ : Measure Ω} [IsProbabilityMeasure μ] [FiniteDimensional ℝ E]
     {n : ℕ} (S : Fin n → Ω → Set E) (L : Set E) (hn : 0 < n)
@@ -735,7 +800,9 @@ theorem exists_hausdorffDist_finEmpiricalMinkowskiAverage_risk_bound_of_hoeffdin
       S L u hScompact hSne hLcompact hLne hRS hRL hu
       (h_indep u hu) (h_meas u hu) (h_centered u hu) hn ht
 
-/-- Closed-form `Fin n` Hausdorff bound with the standard exponent.-/
+/-- Closed-form `Fin n` Hausdorff bound with the standard exponent.
+@isnad1 id=ex.16h10v.s9.aefb22c7da7c from=translated src=- shape=877b00e1 vocab=54b22d6b
+-/
 theorem exists_hausdorffDist_finEmpiricalMinkowskiAverage_risk_bound_standard
     {μ : Measure Ω} [IsProbabilityMeasure μ] [FiniteDimensional ℝ E]
     {n : ℕ} (S : Fin n → Ω → Set E) (L : Set E) (hn : 0 < n)

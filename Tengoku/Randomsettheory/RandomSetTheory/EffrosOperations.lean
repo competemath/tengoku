@@ -26,7 +26,9 @@ namespace Tengoku.Randomsettheory.RandomSet
 open RandomSetTheory
 
 /-- A measurable function, viewed as a singleton-valued correspondence, is
-Effros measurable.-/
+Effros measurable.
+@isnad1 id=iseffros.1h3v.s5.f38c2521ced9 from=translated src=- shape=24545ccf vocab=95cfdbea
+-/
 theorem isEffrosMeasurable_singleton
     {Ω X : Type*} [MeasurableSpace Ω] [TopologicalSpace X]
     [MeasurableSpace X] [BorelSpace X]
@@ -41,7 +43,9 @@ theorem isEffrosMeasurable_singleton
 
 /-- Products of nonempty closed-valued Effros correspondences are Effros
 measurable.  The proof pairs their two Castaing representations using the
-canonical enumeration of `ℕ × ℕ`.-/
+canonical enumeration of `ℕ × ℕ`.
+@isnad1 id=iseffros.6h5v.s7.14f64434a686 from=translated src=- shape=7ebb10da vocab=ee96ae5b
+-/
 theorem IsEffrosMeasurable.prod
     {Ω X Y : Type*} [MeasurableSpace Ω]
     [MetricSpace X] [CompleteSpace X] [MeasurableSpace X] [BorelSpace X]
@@ -81,7 +85,9 @@ theorem IsEffrosMeasurable.prod
     closure_range_castaingRepresentation hT hTclosed hTne ω]
 
 /-- The pointwise Minkowski sum of two nonempty closed-valued Effros
-correspondences in a separable Banach space is Effros measurable.-/
+correspondences in a separable Banach space is Effros measurable.
+@isnad1 id=iseffros.6h4v.s7.9d3006a51a6b from=translated src=- shape=e6aa5e73 vocab=61f79b67
+-/
 theorem IsEffrosMeasurable.add
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [CompleteSpace E]
@@ -96,7 +102,9 @@ theorem IsEffrosMeasurable.add
   have himage := hprod.image (continuous_fst.add continuous_snd)
   simpa only [Pi.add_apply, Set.add_image_prod] using himage
 
-/-- Deterministic scalar multiplication preserves Effros measurability.-/
+/-- Deterministic scalar multiplication preserves Effros measurability.
+@isnad1 id=iseffros.1h4v.s7.552a50cd17a4 from=translated src=- shape=569d1c6b vocab=55af5177
+-/
 theorem IsEffrosMeasurable.const_smul
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [NormedSpace ℝ E]

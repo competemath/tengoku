@@ -47,6 +47,9 @@ def dominatedContents (mu : Measure Omega) :
       Disjoint (s : Set Omega) (t : Set Omega) →
       m (unionMeasurableSubset s t) = m s + m t}
 
+/--
+@isnad1 id=isclosed.0h2v.s5.74e189c762d9 from=translated src=- shape=a7652890 vocab=4aa4f7c0
+-/
 theorem isClosed_dominatedContents (mu : Measure Omega) :
     IsClosed (dominatedContents mu) := by
   rw [dominatedContents]
@@ -100,6 +103,9 @@ theorem isClosed_dominatedContents (mu : Measure Omega) :
           (show Continuous (fun m : MeasurableSubset Omega → ℝ ↦ m s + m t) from
             (continuous_apply s).add (continuous_apply t))
 
+/--
+@isnad1 id=iscompac.0h2v.s5.4ac6e2cc6ecc from=translated src=- shape=a7652890 vocab=5210daf8
+-/
 theorem isCompact_dominatedContents (mu : Measure Omega) :
     IsCompact (dominatedContents mu) := by
   let box : Set (MeasurableSubset Omega → ℝ) :=
@@ -109,6 +115,9 @@ theorem isCompact_dominatedContents (mu : Measure Omega) :
   intro m hm s _hs
   exact hm.2.1 s
 
+/--
+@isnad1 id=convex.0h2v.s5.4d96582c5f52 from=translated src=- shape=064a832b vocab=dac515ec
+-/
 theorem convex_dominatedContents (mu : Measure Omega) :
     Convex ℝ (dominatedContents mu) := by
   intro m hm n hn a b ha hb hab
@@ -135,6 +144,9 @@ theorem convex_dominatedContents (mu : Measure Omega) :
 
 /-! ## From dominated contents to measures -/
 
+/--
+@isnad1 id=eq.3h5v.s7.f8487a5950e9 from=translated src=- shape=b96d7bc8 vocab=5e9e1a5b
+-/
 theorem dominatedContent_finsetRange_union
     {mu : Measure Omega} {m : MeasurableSubset Omega → ℝ}
     (hm : m ∈ dominatedContents mu)
@@ -169,7 +181,9 @@ theorem dominatedContent_finsetRange_union
       rw [Finset.sum_range_succ]
 
 /-- A nonnegative finitely additive content dominated by a finite measure is
-countably additive.-/
+countably additive.
+@isnad1 id=hassum.3h4v.s7.7066a049e408 from=translated src=- shape=c721d152 vocab=0687d3fc
+-/
 theorem dominatedContent_hasSum_iUnion
     {mu : Measure Omega} [IsFiniteMeasure mu]
     {m : MeasurableSubset Omega → ℝ}
@@ -260,6 +274,9 @@ theorem dominatedContent_hasSum_iUnion
       (fun i ↦ (hm.2.1 ⟨f i, hf i⟩).1) _).mpr hpartial
   exact hsum
 
+/--
+@isnad1 id=eq.3h4v.s7.5f03ff145e95 from=translated src=- shape=6b5170fa vocab=ab95915c
+-/
 theorem dominatedContent_iUnion
     {mu : Measure Omega} [IsFiniteMeasure mu]
     {m : MeasurableSubset Omega → ℝ}
@@ -289,6 +306,9 @@ def dominatedContentToMeasure
       rw [← hs.tsum_eq]
       exact ENNReal.ofReal_tsum_of_nonneg hnonneg hs.summable)
 
+/--
+@isnad1 id=eq.2h4v.s6.011b95bf5adf from=translated src=- shape=a81f477f vocab=ad14cd43
+-/
 @[simp]
 theorem dominatedContentToMeasure_apply
     (mu : Measure Omega) [IsFiniteMeasure mu]
@@ -298,6 +318,9 @@ theorem dominatedContentToMeasure_apply
     dominatedContentToMeasure mu m hm s = ENNReal.ofReal (m ⟨s, hs⟩) := by
   exact Measure.ofMeasurable_apply s hs
 
+/--
+@isnad1 id=eq.2h4v.s6.3e5a6fc6c8f9 from=translated src=- shape=a36bd654 vocab=22e3032d
+-/
 @[simp]
 theorem dominatedContentToMeasure_real_apply
     (mu : Measure Omega) [IsFiniteMeasure mu]
@@ -308,6 +331,9 @@ theorem dominatedContentToMeasure_real_apply
   rw [Measure.real, dominatedContentToMeasure_apply]
   exact ENNReal.toReal_ofReal (hm.2.1 ⟨s, hs⟩).1
 
+/--
+@isnad1 id=le.1h3v.s6.0f0c04497dbf from=translated src=- shape=14e4a272 vocab=8bdfaf98
+-/
 theorem dominatedContentToMeasure_le
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (m : MeasurableSubset Omega → ℝ)
@@ -323,6 +349,9 @@ theorem dominatedContentToMeasure_le
 def measureContent (nu : Measure Omega) : MeasurableSubset Omega → ℝ :=
   fun s ↦ nu.real (s : Set Omega)
 
+/--
+@isnad1 id=mem.1h3v.s5.aaf2f457e834 from=translated src=- shape=6a0c7419 vocab=0384e8a3
+-/
 theorem measureContent_mem_dominatedContents
     (mu nu : Measure Omega) [IsFiniteMeasure mu]
     (hnu : nu ≤ mu) : measureContent nu ∈ dominatedContents mu := by
@@ -338,6 +367,9 @@ theorem measureContent_mem_dominatedContents
       nu.real (s : Set Omega) + nu.real (t : Set Omega)
     exact measureReal_union hst t.property
 
+/--
+@isnad1 id=eq.1h3v.s5.608917b9d995 from=translated src=- shape=4e64fecb vocab=d18b0e1a
+-/
 @[simp]
 theorem dominatedContentToMeasure_measureContent
     (mu nu : Measure Omega) [IsFiniteMeasure mu]
@@ -351,6 +383,9 @@ theorem dominatedContentToMeasure_measureContent
     (measureContent_mem_dominatedContents mu nu hnu) s hs]
   simp [measureContent, Measure.real, ENNReal.ofReal_toReal (measure_ne_top nu s)]
 
+/--
+@isnad1 id=eq.1h3v.s5.fc762a5270b7 from=translated src=- shape=ad7ae386 vocab=c65f4551
+-/
 @[simp]
 theorem measureContent_dominatedContentToMeasure
     (mu : Measure Omega) [IsFiniteMeasure mu]
@@ -365,6 +400,9 @@ def restrictionContent (mu : Measure Omega) (A : Set Omega) :
     MeasurableSubset Omega → ℝ :=
   measureContent (mu.restrict A)
 
+/--
+@isnad1 id=mem.0h3v.s5.1aaefa404899 from=translated src=- shape=e8fa18ff vocab=b82df7a7
+-/
 theorem restrictionContent_mem_dominatedContents
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (A : Set Omega) : restrictionContent mu A ∈ dominatedContents mu :=
@@ -386,6 +424,9 @@ def dominatedContentIntegral (mu : Measure Omega) [IsFiniteMeasure mu]
   ∫ omega, f omega ∂(dominatedContentToMeasure mu m.1 m.2)
 
 omit [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E] in
+/--
+@isnad1 id=eq.0h5v.s7.778aaabe985e from=translated src=- shape=31db97f8 vocab=ba7b381f
+-/
 theorem dominatedContentIntegral_simple_eq
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (g : SimpleFunc Omega E) (m : dominatedContents mu) :
@@ -403,7 +444,9 @@ theorem dominatedContentIntegral_simple_eq
 
 omit [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E] in
 /-- A simple-function integral is a finite linear combination of coordinate
-evaluations, hence continuous for the setwise topology.-/
+evaluations, hence continuous for the setwise topology.
+@isnad1 id=continuo.0h4v.s7.7c161b1e25a4 from=translated src=- shape=3dd154ae vocab=abc63484
+-/
 theorem continuous_dominatedContentIntegral_simple
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (g : SimpleFunc Omega E) :
@@ -421,7 +464,9 @@ theorem continuous_dominatedContentIntegral_simple
 
 /-- Setwise integration is continuous on the compact space of submeasures
 dominated by `mu`, for every `mu`-integrable measurable vector function.
-The proof is uniform simple-function approximation in `L¹(mu)`.-/
+The proof is uniform simple-function approximation in `L¹(mu)`.
+@isnad1 id=continuo.2h4v.s7.d3aec6ceb43b from=translated src=- shape=7b5b8a26 vocab=dcd7ab24
+-/
 theorem continuous_dominatedContentIntegral
     (mu : Measure Omega) [IsFiniteMeasure mu]
     {f : Omega → E} (hf : Integrable f mu) (hfm : Measurable f) :
@@ -490,21 +535,33 @@ def densityContent (mu : Measure Omega) (g : Omega → ℝ) :
 def unitClip (g : Omega → ℝ) (omega : Omega) : ℝ :=
   max 0 (min 1 (g omega))
 
+/--
+@isnad1 id=measurab.1h2v.s4.494797197e88 from=translated src=- shape=d26e8805 vocab=160d9567
+-/
 theorem measurable_unitClip {g : Omega → ℝ} (hg : Measurable g) :
     Measurable (unitClip g) :=
   measurable_const.max (measurable_const.min hg)
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=le.0h3v.s4.9f84d60571e7 from=translated src=- shape=2e66be8c vocab=3e24aeeb
+-/
 theorem unitClip_nonneg (g : Omega → ℝ) (omega : Omega) :
     0 ≤ unitClip g omega :=
   le_max_left _ _
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=le.0h3v.s4.d4ec752fa055 from=translated src=- shape=9734203e vocab=3e24aeeb
+-/
 theorem unitClip_le_one (g : Omega → ℝ) (omega : Omega) :
     unitClip g omega ≤ 1 := by
   exact max_le zero_le_one (min_le_left _ _)
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=eq.2h3v.s5.6e7bcbe74ad3 from=translated src=- shape=06221e0d vocab=3e24aeeb
+-/
 theorem unitClip_eq_self {g : Omega → ℝ} {omega : Omega}
     (hg0 : 0 ≤ g omega) (hg1 : g omega ≤ 1) :
     unitClip g omega = g omega := by
@@ -516,6 +573,9 @@ def clippedDensityContent (mu : Measure Omega) (g : Omega → ℝ) :
     MeasurableSubset Omega → ℝ :=
   densityContent mu (unitClip g)
 
+/--
+@isnad1 id=le.1h3v.s5.ec0e7e63f9c1 from=translated src=- shape=7d977b39 vocab=ed16e36d
+-/
 theorem densityMeasure_le
     (mu : Measure Omega) {g : Omega → ℝ}
     (hg1 : ∀ omega, g omega ≤ 1) :
@@ -527,17 +587,26 @@ theorem densityMeasure_le
         ENNReal.ofReal_le_one.mpr (hg1 omega)
     _ = mu := withDensity_one
 
+/--
+@isnad1 id=mem.1h3v.s5.f48662a1cded from=translated src=- shape=39b73d7b vocab=80e9c108
+-/
 theorem densityContent_mem_dominatedContents
     (mu : Measure Omega) [IsFiniteMeasure mu]
     {g : Omega → ℝ} (hg1 : ∀ omega, g omega ≤ 1) :
     densityContent mu g ∈ dominatedContents mu :=
   measureContent_mem_dominatedContents mu _ (densityMeasure_le mu hg1)
 
+/--
+@isnad1 id=mem.0h3v.s5.75fed7111610 from=translated src=- shape=b75c5592 vocab=d69748da
+-/
 theorem clippedDensityContent_mem_dominatedContents
     (mu : Measure Omega) [IsFiniteMeasure mu] (g : Omega → ℝ) :
     clippedDensityContent mu g ∈ dominatedContents mu :=
   densityContent_mem_dominatedContents mu (unitClip_le_one g)
 
+/--
+@isnad1 id=eq.2h4v.s6.543a9f7ee795 from=translated src=- shape=82bd785e vocab=13d5791b
+-/
 @[simp]
 theorem densityContent_apply
     (mu : Measure Omega) [IsFiniteMeasure mu]
@@ -552,6 +621,9 @@ theorem densityContent_apply
   exact Filter.Eventually.of_forall fun omega ↦ by
     simp [ENNReal.toReal_ofReal (hg0 omega)]
 
+/--
+@isnad1 id=eq.3h5v.s7.6f3a48bceac8 from=translated src=- shape=c36a9bea vocab=f00c8ecc
+-/
 theorem dominatedContentIntegral_densityContent
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (f : Omega → E) {g : Omega → ℝ}
@@ -573,6 +645,9 @@ theorem dominatedContentIntegral_densityContent
       g omega • f omega
     rw [ENNReal.toReal_ofReal (hg0 omega)]
 
+/--
+@isnad1 id=eq.3h4v.s6.13a61726375a from=translated src=- shape=6a271028 vocab=228272b1
+-/
 theorem clippedDensityContent_apply
     (mu : Measure Omega) [IsFiniteMeasure mu]
     {g : Omega → ℝ} (hg : Measurable g)
@@ -587,6 +662,9 @@ theorem clippedDensityContent_apply
   filter_upwards [ae_restrict_of_ae hg0, ae_restrict_of_ae hg1] with omega h0 h1
   exact unitClip_eq_self h0 h1
 
+/--
+@isnad1 id=eq.3h5v.s7.bc23146157d9 from=translated src=- shape=9c2da199 vocab=07eb934b
+-/
 theorem dominatedContentIntegral_clippedDensityContent
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (f : Omega → E) {g : Omega → ℝ} (hg : Measurable g)
@@ -619,6 +697,9 @@ def relaxedIntegralRange (mu : Measure Omega) [IsFiniteMeasure mu]
     (f : Omega → E) : Set E :=
   Set.range (dominatedContentIntegral mu f)
 
+/--
+@isnad1 id=iscompac.2h4v.s6.c43ac784d406 from=translated src=- shape=51cd715c vocab=e7cfc8c1
+-/
 theorem isCompact_relaxedIntegralRange
     (mu : Measure Omega) [IsFiniteMeasure mu]
     {f : Omega → E} (hf : Integrable f mu) (hfm : Measurable f) :
@@ -630,6 +711,9 @@ theorem isCompact_relaxedIntegralRange
 
 omit [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
     [SecondCountableTopology E] in
+/--
+@isnad1 id=eq.0h5v.s6.3abeb95ba78d from=translated src=- shape=f2c0da3e vocab=b202c967
+-/
 theorem dominatedContentIntegral_restrictionContent
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (f : Omega → E) (A : Set Omega) :
@@ -644,6 +728,9 @@ theorem dominatedContentIntegral_restrictionContent
 
 omit [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
     [SecondCountableTopology E] in
+/--
+@isnad1 id=le.0h4v.s5.ca9b9623df44 from=translated src=- shape=1b398872 vocab=937f6e79
+-/
 theorem measurableSetIntegralRange_subset_relaxedIntegralRange
     (mu : Measure Omega) [IsFiniteMeasure mu] (f : Omega → E) :
     measurableSetIntegralRange mu f ⊆ relaxedIntegralRange mu f := by
@@ -654,7 +741,9 @@ theorem measurableSetIntegralRange_subset_relaxedIntegralRange
 
 /-- Every point in the closure of the raw range is attained by a dominated
 submeasure.  The remaining purification step will show that an extreme
-attainer is actually a restriction.-/
+attainer is actually a restriction.
+@isnad1 id=ex.3h5v.s7.50868a650de1 from=translated src=- shape=49a18fba vocab=11f4ee24
+-/
 theorem exists_dominatedContentIntegral_eq_of_mem_closure
     (mu : Measure Omega) [IsFiniteMeasure mu]
     {f : Omega → E} (hf : Integrable f mu) (hfm : Measurable f)
@@ -676,6 +765,9 @@ def dominatedIntegralFiber (mu : Measure Omega) [IsFiniteMeasure mu]
 
 omit [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
     [SecondCountableTopology E] in
+/--
+@isnad1 id=iff.0h6v.s7.ec81e2102ccc from=translated src=- shape=78033458 vocab=bbff3584
+-/
 theorem mem_dominatedIntegralFiber_iff
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (f : Omega → E) (z : E) (m : MeasurableSubset Omega → ℝ) :
@@ -688,6 +780,9 @@ theorem mem_dominatedIntegralFiber_iff
   · rintro ⟨hm, hint⟩
     exact ⟨⟨m, hm⟩, hint, rfl⟩
 
+/--
+@isnad1 id=iscompac.2h5v.s7.7f8488c04278 from=translated src=- shape=1478c1f5 vocab=df2e9684
+-/
 theorem isCompact_dominatedIntegralFiber
     (mu : Measure Omega) [IsFiniteMeasure mu]
     {f : Omega → E} (hf : Integrable f mu) (hfm : Measurable f)
@@ -699,6 +794,9 @@ theorem isCompact_dominatedIntegralFiber
     isClosed_eq (continuous_dominatedContentIntegral mu hf hfm) continuous_const
   exact hclosed.isCompact.image continuous_subtype_val
 
+/--
+@isnad1 id=nonempty.3h5v.s7.0fe110a5333a from=translated src=- shape=0730bb39 vocab=b08fd88b
+-/
 theorem dominatedIntegralFiber_nonempty_of_mem_closure
     (mu : Measure Omega) [IsFiniteMeasure mu]
     {f : Omega → E} (hf : Integrable f mu) (hfm : Measurable f)
@@ -712,7 +810,9 @@ theorem dominatedIntegralFiber_nonempty_of_mem_closure
 /-- A compact nonempty moment fiber has an extreme point.  Notice that this
 does not require proving convexity of the fiber: the version of
 Krein--Milman used here produces an extreme point of every nonempty compact
-subset of a locally convex space.-/
+subset of a locally convex space.
+@isnad1 id=ex.3h5v.s7.16a03b7a4421 from=translated src=- shape=f4e301e7 vocab=32635eb2
+-/
 theorem exists_extreme_dominatedIntegralFiber_of_mem_closure
     (mu : Measure Omega) [IsFiniteMeasure mu]
     {f : Omega → E} (hf : Integrable f mu) (hfm : Measurable f)
@@ -737,6 +837,9 @@ def finpartitionStep {ι : Type*} [Fintype ι]
     (A : ι → Set Omega) (c : ι → ℝ) (omega : Omega) : ℝ :=
   ∑ i, (A i).indicator (fun _ ↦ c i) omega
 
+/--
+@isnad1 id=measurab.1h4v.s5.6a4d98a8ba31 from=translated src=- shape=784a02ef vocab=ba756abd
+-/
 theorem measurable_finpartitionStep {ι : Type*} [Fintype ι]
     {A : ι → Set Omega} (hA : ∀ i, MeasurableSet (A i)) (c : ι → ℝ) :
     Measurable (finpartitionStep A c) := by
@@ -744,6 +847,9 @@ theorem measurable_finpartitionStep {ι : Type*} [Fintype ι]
     measurable_const.indicator (hA i)
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=eq.2h6v.s6.062752d57305 from=translated src=- shape=aa36e0bc vocab=b1fd3133
+-/
 theorem finpartitionStep_eq_on_piece {ι : Type*} [Fintype ι]
     {A : ι → Set Omega}
     (hAdisj : ∀ i j, i ≠ j → Disjoint (A i) (A j))
@@ -758,6 +864,9 @@ theorem finpartitionStep_eq_on_piece {ι : Type*} [Fintype ι]
   · simp
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=eq.1h5v.s5.08278df60d73 from=translated src=- shape=752f3d5b vocab=b4b21fea
+-/
 theorem finpartitionStep_eq_zero_of_not_mem {ι : Type*} [Fintype ι]
     (A : ι → Set Omega) (c : ι → ℝ) {omega : Omega}
     (homega : ∀ i, omega ∉ A i) :
@@ -765,6 +874,9 @@ theorem finpartitionStep_eq_zero_of_not_mem {ι : Type*} [Fintype ι]
   simp [finpartitionStep, Set.indicator_of_notMem, homega]
 
 omit [MeasurableSpace Omega] in
+/--
+@isnad1 id=le.0h5v.s5.af16647baa11 from=translated src=- shape=3e3f882d vocab=f673cfed
+-/
 theorem abs_finpartitionStep_le_sum {ι : Type*} [Fintype ι]
     (A : ι → Set Omega) (c : ι → ℝ) (omega : Omega) :
     |finpartitionStep A c omega| ≤ ∑ i, |c i| := by
@@ -781,6 +893,9 @@ theorem abs_finpartitionStep_le_sum {ι : Type*} [Fintype ι]
 
 omit [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
     [SecondCountableTopology E] in
+/--
+@isnad1 id=eq.2h7v.s8.e52962c5264d from=translated src=- shape=3c624aa6 vocab=f9764c18
+-/
 theorem integral_finpartitionStep_smul {ι : Type*} [Fintype ι]
     (mu : Measure Omega)
     {A : ι → Set Omega} (hA : ∀ i, MeasurableSet (A i))
@@ -805,7 +920,9 @@ theorem integral_finpartitionStep_smul {ι : Type*} [Fintype ι]
 
 /-- If a measurable unit-interval-valued density is not almost everywhere
 `0` or `1`, it is uniformly separated from both endpoints on a measurable
-set of positive measure.-/
+set of positive measure.
+@isnad1 id=ex.4h3v.s8.a79775b355c4 from=translated src=- shape=3b750fd3 vocab=045861ed
+-/
 theorem exists_fractional_density_strip
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (h : Omega → ℝ) (hh : Measurable h)
@@ -858,7 +975,9 @@ theorem exists_fractional_density_strip
   obtain ⟨n, hn⟩ := exists_measure_pos_of_not_measure_iUnion_null hUne
   exact ⟨n, hBmeas n, ENNReal.toReal_pos hn.ne' (by finiteness)⟩
 
-/-- Equal positive measurable partition into `d + 1` pieces.-/
+/-- Equal positive measurable partition into `d + 1` pieces.
+@isnad1 id=ex.3h4v.s7.c51ba67b054d from=translated src=- shape=869429f9 vocab=d3191fe9
+-/
 theorem IsAtomlessMeasure.exists_positive_equal_finpartition
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (hmu : IsAtomlessMeasure mu) (d : ℕ)
@@ -880,7 +999,9 @@ omit [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
     [SecondCountableTopology E] in
 /-- An extreme point of a fixed finite-dimensional moment fiber is a
 measurable restriction of the reference measure.  This is the purification
-(or bang--bang) step in Lyapunov's theorem.-/
+(or bang--bang) step in Lyapunov's theorem.
+@isnad1 id=ex.3h6v.s7.ad590702584e from=translated src=- shape=2d858414 vocab=42ca9cb0
+-/
 theorem extreme_dominatedIntegralFiber_is_restriction
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (hmu : IsAtomlessMeasure mu) [FiniteDimensional ℝ E]
@@ -1186,6 +1307,9 @@ theorem extreme_dominatedIntegralFiber_is_restriction
 
 omit [CompleteSpace E] [MeasurableSpace E] [BorelSpace E]
     [SecondCountableTopology E] in
+/--
+@isnad1 id=eq.1h5v.s6.b03ef6db5aa4 from=translated src=- shape=a615b638 vocab=161f61b7
+-/
 theorem measurableSetIntegralRange_congr_ae
     (mu : Measure Omega) {f g : Omega → E} (hfg : f =ᵐ[mu] g) :
     measurableSetIntegralRange mu f = measurableSetIntegralRange mu g := by
@@ -1205,7 +1329,9 @@ theorem measurableSetIntegralRange_congr_ae
       _ = z := hInt
 
 /-- For a measurable integrable density, every point in the closure of the
-raw vector-measure range is already represented by a measurable set.-/
+raw vector-measure range is already represented by a measurable set.
+@isnad1 id=ex.4h5v.s7.1d996a6c5633 from=translated src=- shape=f3745178 vocab=5b7a1617
+-/
 theorem exists_measurable_setIntegral_eq_of_mem_closure_of_atomless
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (hmu : IsAtomlessMeasure mu) [FiniteDimensional ℝ E]
@@ -1225,7 +1351,9 @@ theorem exists_measurable_setIntegral_eq_of_mem_closure_of_atomless
   exact hmz
 
 /-- Closedness of the raw range for a measurable integrable vector
-function on a finite atomless base.-/
+function on a finite atomless base.
+@isnad1 id=isclosed.3h4v.s7.020517004265 from=translated src=- shape=012772b5 vocab=04c9e452
+-/
 theorem isClosed_measurableSetIntegralRange_of_atomless_integrable_measurable
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (hmu : IsAtomlessMeasure mu) [FiniteDimensional ℝ E]
@@ -1242,7 +1370,9 @@ theorem isClosed_measurableSetIntegralRange_of_atomless_integrable_measurable
 
 /-- The raw range is closed for every integrable vector function; a
 measurable representative removes the inessential pointwise measurability
-assumption.-/
+assumption.
+@isnad1 id=isclosed.2h4v.s7.f02557adbffb from=translated src=- shape=fff9782f vocab=156685bd
+-/
 theorem isClosed_measurableSetIntegralRange_of_atomless_integrable
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (hmu : IsAtomlessMeasure mu) [FiniteDimensional ℝ E]
@@ -1256,7 +1386,9 @@ theorem isClosed_measurableSetIntegralRange_of_atomless_integrable
   exact isClosed_measurableSetIntegralRange_of_atomless_integrable_measurable
     mu hmu hg hgm
 
-/-- The finite-dimensional vector-measure range is compact.-/
+/-- The finite-dimensional vector-measure range is compact.
+@isnad1 id=iscompac.2h4v.s7.feb5e384dfd9 from=translated src=- shape=fff9782f vocab=fede786b
+-/
 theorem isCompact_measurableSetIntegralRange_of_atomless_integrable
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (hmu : IsAtomlessMeasure mu) [FiniteDimensional ℝ E]
@@ -1266,7 +1398,9 @@ theorem isCompact_measurableSetIntegralRange_of_atomless_integrable
     (isClosed_measurableSetIntegralRange_of_atomless_integrable mu hmu hf)
 
 /-- Compactness and convexity of the raw range, i.e. the classical
-finite-dimensional Lyapunov conclusion in set form.-/
+finite-dimensional Lyapunov conclusion in set form.
+@isnad1 id=and.2h4v.s7.5463aebde5d5 from=translated src=- shape=960a1227 vocab=e364e3cd
+-/
 theorem isCompact_convex_measurableSetIntegralRange_of_atomless
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (hmu : IsAtomlessMeasure mu) [FiniteDimensional ℝ E]
@@ -1282,7 +1416,9 @@ theorem isCompact_convex_measurableSetIntegralRange_of_atomless
   exact hclosure
 
 /-- Sequential attainment of limits of measurable set integrals on every
-finite atomless base in finite dimension.-/
+finite atomless base in finite dimension.
+@isnad1 id=hasseque.1h3v.s6.3ce2ae248215 from=translated src=- shape=98ae2550 vocab=ff01a24d
+-/
 theorem hasSequentialSetIntegralAttainment_of_atomless_finiteDimensional
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (hmu : IsAtomlessMeasure mu) [FiniteDimensional ℝ E] :
@@ -1293,7 +1429,9 @@ theorem hasSequentialSetIntegralAttainment_of_atomless_finiteDimensional
 
 /-- **Finite-dimensional Lyapunov convexity theorem.** Every integrable
 vector function on a finite atomless measurable space has a convex raw
-set-integral range.-/
+set-integral range.
+@isnad1 id=haslyapu.1h3v.s6.069234cce16e from=translated src=- shape=98ae2550 vocab=275236ea
+-/
 theorem hasLyapunovConvexity_of_atomless_finiteDimensional
     (mu : Measure Omega) [IsFiniteMeasure mu]
     (hmu : IsAtomlessMeasure mu) [FiniteDimensional ℝ E] :

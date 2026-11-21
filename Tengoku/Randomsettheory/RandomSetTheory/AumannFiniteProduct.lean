@@ -36,6 +36,9 @@ def piCorrespondence {E : ι → Type*}
   fun ω => Set.pi Set.univ fun i => S i ω
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=iff.0h6v.s6.743d8ccc0a42 from=translated src=- shape=a2767554 vocab=f64572a4
+-/
 @[simp]
 theorem mem_piCorrespondence {E : ι → Type*}
     {S : ∀ i, Ω → Set (E i)} {ω : Ω} {x : ∀ i, E i} :
@@ -44,7 +47,9 @@ theorem mem_piCorrespondence {E : ι → Type*}
 
 /-- Aumann expectation commutes exactly with finite products.  This requires
 no compactness, convexity, or measurable-selection theorem: it is a direct
-coordinatewise equivalence between integrable selections.-/
+coordinatewise equivalence between integrable selections.
+@isnad1 id=eq.0h5v.s7.05acfa87e1d1 from=translated src=- shape=2d681aa5 vocab=f6ccc131
+-/
 theorem aumannExpectation_piCorrespondence
     [Fintype ι]
     {E : ι → Type*}
@@ -92,7 +97,9 @@ theorem aumannExpectation_piCorrespondence
       _ = x i := hInt i
 
 /-- A finite product of standard real-valued random intervals has a compact
-Aumann expectation in the finite-dimensional product space.-/
+Aumann expectation in the finite-dimensional product space.
+@isnad1 id=iscompac.6h5v.s7.c8bb8fa72a58 from=translated src=- shape=d0c05ef9 vocab=043e037b
+-/
 theorem aumannExpectation_isCompact_pi_real
     [Fintype ι]
     {μ : Measure Ω} {S : ι → Ω → Set ℝ}
@@ -109,7 +116,9 @@ theorem aumannExpectation_isCompact_pi_real
       (hconv i) (hg i) (hdom i)
 
 /-- Hence finite products of real random intervals have closed Aumann
-expectations before taking a closure.-/
+expectations before taking a closure.
+@isnad1 id=isclosed.6h5v.s7.ca3d8752782a from=translated src=- shape=a798eb52 vocab=819cc819
+-/
 theorem aumannExpectation_isClosed_pi_real
     [Fintype ι]
     {μ : Measure Ω} {S : ι → Ω → Set ℝ}
@@ -123,7 +132,9 @@ theorem aumannExpectation_isClosed_pi_real
   (aumannExpectation_isCompact_pi_real hS hcompact hne hconv hg hdom).isClosed
 
 /-- Coordinatewise endpoint selections identify the Aumann expectation of a
-finite product as one closed order interval (an axis-aligned rectangle).-/
+finite product as one closed order interval (an axis-aligned rectangle).
+@isnad1 id=ex.6h5v.s8.753b3dc9e591 from=translated src=- shape=50401c98 vocab=e78c01ba
+-/
 theorem exists_Icc_eq_aumannExpectation_pi_real
     [Fintype ι]
     {μ : Measure Ω} {S : ι → Ω → Set ℝ}
@@ -146,7 +157,9 @@ theorem exists_Icc_eq_aumannExpectation_pi_real
   simp_rw [hEq]
   exact Set.pi_univ_Icc (x := a) (y := b)
 
-/-- Closure is redundant for finite products of real random intervals.-/
+/-- Closure is redundant for finite products of real random intervals.
+@isnad1 id=eq.6h5v.s8.0aec56b0fd0b from=translated src=- shape=e46350d8 vocab=3ad678b0
+-/
 theorem closure_aumannExpectation_eq_pi_real
     [Fintype ι]
     {μ : Measure Ω} {S : ι → Ω → Set ℝ}

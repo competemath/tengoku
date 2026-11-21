@@ -34,7 +34,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E]
 
 /-- **Blaschke compactness.** Nonempty compact convex subsets of a fixed
-compact set form a compact family for the Hausdorff metric.-/
+compact set form a compact family for the Hausdorff metric.
+@isnad1 id=iscompac.1h2v.s7.6d309d59510e from=translated src=- shape=6af3a1e5 vocab=1088566c
+-/
 theorem isCompact_nonemptyCompactConvex_subsets_of_isCompact
     {C : Set E} (hC : IsCompact C) :
     IsCompact {K : NonemptyCompacts E |
@@ -47,7 +49,9 @@ theorem isCompact_nonemptyCompactConvex_subsets_of_isCompact
   simpa only [Set.mem_ofPred_eq, Set.ofPred_and] using
     hsubsets.inter_right hconvex
 
-/-- Radius-bounded form of Blaschke compactness.-/
+/-- Radius-bounded form of Blaschke compactness.
+@isnad1 id=iscompac.0h2v.s7.81ceeeee986d from=translated src=- shape=e3af76ca vocab=416ff37b
+-/
 theorem isCompact_nonemptyCompactConvex_subsets_closedBall (R : ℝ) :
     IsCompact {K : NonemptyCompacts E |
       (K : Set E) ⊆ Metric.closedBall (0 : E) R ∧
@@ -55,14 +59,18 @@ theorem isCompact_nonemptyCompactConvex_subsets_closedBall (R : ℝ) :
   isCompact_nonemptyCompactConvex_subsets_of_isCompact
     (isCompact_closedBall (0 : E) R)
 
-/-- Pointwise norm-bound form of Blaschke compactness.-/
+/-- Pointwise norm-bound form of Blaschke compactness.
+@isnad1 id=iscompac.0h2v.s7.b56544933563 from=translated src=- shape=ec923565 vocab=6f72ec0d
+-/
 theorem isCompact_nonemptyCompactConvex_of_norm_le (R : ℝ) :
     IsCompact {K : NonemptyCompacts E |
       (∀ x ∈ (K : Set E), ‖x‖ ≤ R) ∧ Convex ℝ (K : Set E)} := by
   simpa only [Set.subset_def, Metric.mem_closedBall, dist_zero_right] using
     isCompact_nonemptyCompactConvex_subsets_closedBall (E := E) R
 
-/-- Sequential Blaschke selection inside an arbitrary fixed compact set.-/
+/-- Sequential Blaschke selection inside an arbitrary fixed compact set.
+@isnad1 id=ex.3h3v.s8.a54a42ca0573 from=translated src=- shape=ab64d75b vocab=9812e8d0
+-/
 theorem exists_hausdorff_tendsto_subseq_of_compactConvex_subsets
     {C : Set E} (hC : IsCompact C) (K : ℕ → NonemptyCompacts E)
     (hsubset : ∀ n, (K n : Set E) ⊆ C)
@@ -85,7 +93,9 @@ theorem exists_hausdorff_tendsto_subseq_of_compactConvex_subsets
   simpa only [Function.comp_apply, NonemptyCompacts.dist_eq] using hdist
 
 /-- Classical uniformly bounded sequential form of Blaschke's selection
-theorem.  The limit remains in the same closed ball.-/
+theorem.  The limit remains in the same closed ball.
+@isnad1 id=ex.2h3v.s8.b1a96e7a2ad6 from=translated src=- shape=8af50fce vocab=686fe68f
+-/
 theorem exists_hausdorff_tendsto_subseq_of_uniformlyBounded_compactConvex
     (K : ℕ → NonemptyCompacts E) (R : ℝ)
     (hbound : ∀ n, ∀ x ∈ (K n : Set E), ‖x‖ ≤ R)

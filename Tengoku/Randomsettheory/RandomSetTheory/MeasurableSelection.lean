@@ -35,6 +35,9 @@ def DenseHit {Ω E : Type*} [PseudoMetricSpace E] [SeparableSpace E] [Nonempty E
     (S : Ω → Set E) (ε : ℝ) (n : ℕ) (ω : Ω) : Prop :=
   (S ω ∩ Metric.ball (denseSeq E n) ε).Nonempty
 
+/--
+@isnad1 id=ex.2h5v.s5.a2f712e4fde3 from=translated src=- shape=9b865f10 vocab=e901cb1a
+-/
 theorem exists_denseHit
     {Ω E : Type*} [PseudoMetricSpace E] [SeparableSpace E] [Nonempty E]
     (S : Ω → Set E) (hne : ∀ ω, (S ω).Nonempty)
@@ -59,6 +62,9 @@ def IsDenseSeqValued {Ω E : Type*} [TopologicalSpace E]
     [SeparableSpace E] [Nonempty E] (f : Ω → E) : Prop :=
   ∀ ω, ∃ n, f ω = denseSeq E n
 
+/--
+@isnad1 id=isdenses.2h4v.s6.c02610d2d484 from=translated src=- shape=2c4cdc65 vocab=30a17d0d
+-/
 theorem isDenseSeqValued_effrosApproximateSelection
     {Ω E : Type*} [PseudoMetricSpace E] [SeparableSpace E] [Nonempty E]
     (S : Ω → Set E) (hne : ∀ ω, (S ω).Nonempty)
@@ -68,6 +74,9 @@ theorem isDenseSeqValued_effrosApproximateSelection
   intro ω
   exact ⟨Nat.find (exists_denseHit S hne hε ω), rfl⟩
 
+/--
+@isnad1 id=measurab.3h4v.s6.08831f0f56b1 from=translated src=- shape=3e1914c7 vocab=b71d4cf9
+-/
 theorem measurable_effrosApproximateSelection
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -85,6 +94,9 @@ theorem measurable_effrosApproximateSelection
         hS (Metric.ball (denseSeq E n) ε) Metric.isOpen_ball)
     (exists_denseHit S hne hε)
 
+/--
+@isnad1 id=lt.2h5v.s6.df584002ebb9 from=translated src=- shape=df66b4b5 vocab=c721534f
+-/
 theorem infDist_effrosApproximateSelection_lt
     {Ω E : Type*} [PseudoMetricSpace E] [SeparableSpace E] [Nonempty E]
     (S : Ω → Set E) (hne : ∀ ω, (S ω).Nonempty)
@@ -98,7 +110,9 @@ theorem infDist_effrosApproximateSelection_lt
 
 /-- Intersecting an Effros-measurable correspondence with a moving open ball
 preserves Effros measurability when the measurable center is countably valued
-in the canonical dense sequence.-/
+in the canonical dense sequence.
+@isnad1 id=iseffros.3h5v.s6.026cc43c493c from=translated src=- shape=fc492b6f vocab=337870ff
+-/
 theorem RandomSet.IsEffrosMeasurable.inter_ball_of_isDenseSeqValued
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -128,6 +142,9 @@ theorem RandomSet.IsEffrosMeasurable.inter_ball_of_isDenseSeqValued
   exact (hf (measurableSet_singleton (denseSeq E n))).inter
     (hS (Metric.ball (denseSeq E n) r ∩ U) (Metric.isOpen_ball.inter hU))
 
+/--
+@isnad1 id=nonempty.2h6v.s5.065cac2885cb from=translated src=- shape=e3fb2046 vocab=01e417d7
+-/
 theorem nonempty_inter_ball_of_infDist_lt
     {Ω E : Type*} [PseudoMetricSpace E]
     {S : Ω → Set E} (hne : ∀ ω, (S ω).Nonempty)
@@ -137,7 +154,9 @@ theorem nonempty_inter_ball_of_infDist_lt
   obtain ⟨x, hx, hdist⟩ := (infDist_lt_iff (hne ω)).mp (hclose ω)
   exact ⟨x, hx, by simpa [Metric.mem_ball, dist_comm] using hdist⟩
 
-/-- Packaged approximate measurable selection theorem.-/
+/-- Packaged approximate measurable selection theorem.
+@isnad1 id=ex.3h4v.s6.5c0082c97afe from=translated src=- shape=4b9ccc5b vocab=9aec1f43
+-/
 theorem exists_measurable_infDist_lt
     {Ω E : Type*} [MeasurableSpace Ω]
     [MetricSpace E] [MeasurableSpace E] [BorelSpace E]
@@ -151,7 +170,9 @@ theorem exists_measurable_infDist_lt
 
 /-- Limit criterion for an exact measurable selection: measurable
 approximations converging pointwise to `f`, with distance to the closed values
-tending to zero, force `f(ω) ∈ S(ω)`.-/
+tending to zero, force `f(ω) ∈ S(ω)`.
+@isnad1 id=ismeasur.5h5v.s7.d8d264702789 from=translated src=- shape=83dba372 vocab=6649d4db
+-/
 theorem isMeasurableSelection_of_tendsto_infDist_zero
     {Ω E : Type*} [MeasurableSpace Ω]
     [PseudoMetricSpace E] [MeasurableSpace E] [BorelSpace E]

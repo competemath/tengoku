@@ -34,7 +34,9 @@ namespace ProbabilityTheory
 /-! ## Deterministic monotonicity -/
 
 /-- The exact-series exponent is monotone in all of its deterministic
-moment proxies.-/
+moment proxies.
+@isnad1 id=le.5h7v.s6.e839d225a658 from=translated src=- shape=51a7ddfc vocab=95f32f73
+-/
 theorem strongMomentSeriesExponent_mono
     (q : ℕ) (hq : 3 ≤ q) {t y second second' : ℝ}
     (ht : 0 ≤ t) (hy : 0 < y) (hsecond : second ≤ second')
@@ -66,7 +68,9 @@ variable {Omega : Type*} {m mOmega : MeasurableSpace Omega}
 
 /-- Conditional-kernel lift of
 `integral_exp_mul_le_exp_strongMomentSeriesExponent`, with deterministic
-upper bounds on all conditional moment proxies.-/
+upper bounds on all conditional moment proxies.
+@isnad1 id=eventual.11h10v.s8.b3eba039c5af from=translated src=- shape=45e4210c vocab=511865ab
+-/
 theorem condExp_exp_mul_le_exp_strongMomentSeriesExponent
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (hm : m ≤ mOmega) (X : Omega → ℝ) (q : ℕ) (hq : 3 ≤ q)
@@ -184,7 +188,9 @@ theorem condExp_exp_mul_le_exp_strongMomentSeriesExponent
 /-! ## Upper truncation -/
 
 /-- The unconditional exact-series estimate for an upper-truncated centred
-variable.  Moment hypotheses refer to the original variable.-/
+variable.  Moment hypotheses refer to the original variable.
+@isnad1 id=le.9h9v.s8.65555bea8e3a from=translated src=- shape=2dc95ca6 vocab=b07f2264
+-/
 theorem integral_exp_mul_upperTruncation_le_exp_strongMomentSeriesExponent
     [IsProbabilityMeasure mu]
     (D : Omega → ℝ) (q : ℕ) (hq : 3 ≤ q)
@@ -241,7 +247,9 @@ theorem integral_exp_mul_upperTruncation_le_exp_strongMomentSeriesExponent
     (strongMomentSeriesExponent_mono q hq ht hy hsecondU hmomentU))
 
 /-- Conditional exact-series estimate for an upper-truncated martingale
-difference.-/
+difference.
+@isnad1 id=eventual.10h10v.s8.197f7f2e01c6 from=translated src=- shape=55768d0e vocab=6dc0eed4
+-/
 theorem condExp_exp_mul_upperTruncation_le_exp_strongMomentSeriesExponent
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (hm : m ≤ mOmega) (D : Omega → ℝ) (q : ℕ) (hq : 3 ≤ q)
@@ -295,7 +303,9 @@ theorem condExp_exp_mul_upperTruncation_le_exp_strongMomentSeriesExponent
 
 /-! ## One-sided MGF certificates -/
 
-/-- Ordinary exact-series MGF certificate for an upper truncation.-/
+/-- Ordinary exact-series MGF certificate for an upper truncation.
+@isnad1 id=hasonesi.8h8v.s8.f3c89c397e3e from=translated src=- shape=29aca9c2 vocab=31d2eb4d
+-/
 theorem hasOneSidedMGF_upperTruncation_of_strongMomentSeries
     [IsProbabilityMeasure mu]
     (D : Omega → ℝ) (q : ℕ) (hq : 3 ≤ q)
@@ -330,7 +340,9 @@ theorem hasOneSidedMGF_upperTruncation_of_strongMomentSeries
       integral_exp_mul_upperTruncation_le_exp_strongMomentSeriesExponent
         D q hq ht hy hD hDsq hpow hcenter hsecond moment hmoment
 
-/-- Conditional exact-series MGF certificate for an upper truncation.-/
+/-- Conditional exact-series MGF certificate for an upper truncation.
+@isnad1 id=hascondo.9h9v.s8.96f725e85792 from=translated src=- shape=d33d4ee0 vocab=664d1c68
+-/
 theorem hasCondOneSidedMGF_upperTruncation_of_strongMomentSeries
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (hm : m ≤ mOmega) (D : Omega → ℝ) (q : ℕ) (hq : 3 ≤ q)
@@ -373,7 +385,9 @@ variable (filtration : Filtration ℕ mOmega)
 
 /-- A finite adapted family of upper-truncated martingale differences has
 the exact-series exponent obtained by adding its deterministic conditional
-moment proxies.-/
+moment proxies.
+@isnad1 id=hasonesi.13h10v.s9.da9320b0c35c from=translated src=- shape=9fac85ac vocab=d04e3c71
+-/
 theorem hasOneSidedMGF_sum_upperTruncation_of_strongMomentSeries
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (D : ℕ → Omega → ℝ) (hAdapted : StronglyAdapted filtration D)
@@ -442,7 +456,9 @@ theorem hasOneSidedMGF_sum_upperTruncation_of_strongMomentSeries
 bound.  The first term controls the upper-truncated martingale sum and the
 second restores the residuals with the sharp factor `1 / q`.
 
-No choice of `t` or `y` is made here.-/
+No choice of `t` or `y` is made here.
+@isnad1 id=le.16h12v.s9.12b08986da3a from=translated src=- shape=a98fd2e6 vocab=c443bdbf
+-/
 theorem conditionalValueAtRisk_sum_le_strongMomentSeriesExponent_add_residual
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (D : ℕ → Omega → ℝ) (hAdapted : StronglyAdapted filtration D)

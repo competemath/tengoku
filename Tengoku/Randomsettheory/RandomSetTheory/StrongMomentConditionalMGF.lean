@@ -29,7 +29,9 @@ namespace ProbabilityTheory
 /-! ## Deterministic monotonicity -/
 
 /-- The strong-moment Taylor exponent is monotone in every moment parameter
-which it uses.-/
+which it uses.
+@isnad1 id=le.4h7v.s6.fa2dcdc7e1d9 from=translated src=- shape=dda8e428 vocab=a852ba49
+-/
 theorem strongMomentTaylorExponent_mono
     (q : ℕ) (hq : 3 ≤ q) {t y second second' : ℝ}
     (ht : 0 ≤ t) (hsecond : second ≤ second')
@@ -63,7 +65,9 @@ For `t ≥ 0`, an almost-sure upper bound and deterministic bounds on the
 conditional second and positive moments give the same Taylor exponent as in
 the unconditional theorem.  The conditional mean need only be nonpositive,
 which is the form naturally satisfied by one-sided upper truncations of
-martingale differences.-/
+martingale differences.
+@isnad1 id=eventual.11h10v.s8.45baa9b86059 from=translated src=- shape=6d22efd6 vocab=1497cd66
+-/
 theorem condExp_exp_mul_le_exp_strongMomentTaylorExponent
     [StandardBorelSpace Omega] [IsProbabilityMeasure mu]
     (hm : m ≤ mOmega) (X : Omega → ℝ) (q : ℕ) (hq : 3 ≤ q)

@@ -42,7 +42,9 @@ Gaussian, then the canonical coordinate process is a Gaussian process.
 This lemma performs the finite reindexing explicitly: a finite set `I` is
 enumerated by `Fin I.card`; its Euclidean (`PiLp`) evaluation vector is then
 mapped continuously back to the ordinary function space `I → ℝ` used in
-the definition of `IsGaussianProcess`.-/
+the definition of `IsGaussianProcess`.
+@isnad1 id=isgaussi.2h3v.s10.52882928954c from=translated src=- shape=1313770e vocab=43410bcd
+-/
 theorem isGaussianProcess_canonical_of_finiteEvaluationVector_isGaussian
     (mu0 : ProbabilityMeasure C(T, ℝ))
     (rho : ∀ k : ℕ, (Fin k → T) →

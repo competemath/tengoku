@@ -51,6 +51,9 @@ def euclideanCovarianceMatrix (X : Omega → EuclideanSpace ℝ kappa)
     (mu : Measure Omega) : Matrix kappa kappa ℝ :=
   fun i j => cov[fun omega => X omega i, fun omega => X omega j; mu]
 
+/--
+@isnad1 id=possemid.1h4v.s7.5950046e780b from=translated src=- shape=25737a1a vocab=d938987d
+-/
 theorem euclideanCovarianceMatrix_posSemidef
     {mu : Measure Omega} [IsFiniteMeasure mu]
     (X : Omega → EuclideanSpace ℝ kappa) (hX : MemLp X 2 mu) :
@@ -89,6 +92,9 @@ theorem euclideanCovarianceMatrix_posSemidef
         intro j _
         ring
 
+/--
+@isnad1 id=eq.1h5v.s8.1daf62b263e5 from=translated src=- shape=7d92708a vocab=51e06d2d
+-/
 theorem euclideanCovarianceMatrix_quadratic_eq_variance
     {mu : Measure Omega} [IsFiniteMeasure mu]
     (X : Omega → EuclideanSpace ℝ kappa) (hX : MemLp X 2 mu)
@@ -119,6 +125,9 @@ theorem euclideanCovarianceMatrix_quadratic_eq_variance
   · exact Finset.aemeasurable_fun_sum _
       (fun i _ => (hscaled i).aemeasurable)
 
+/--
+@isnad1 id=eq.1h5v.s8.93f9de19f934 from=translated src=- shape=5b7d0b2b vocab=ede1fa63
+-/
 theorem charFun_map_inner_eq_charFun_map_one
     {mu : Measure Omega} (X : Omega → EuclideanSpace ℝ kappa)
     (hX : AEMeasurable X mu) (t : EuclideanSpace ℝ kappa) :
@@ -130,7 +139,9 @@ theorem charFun_map_inner_eq_charFun_map_one
   simp [real_inner_comm]
 
 /-- Multivariate iid CLT in a finite Euclidean space, obtained from the
-one-dimensional CLT and Levy's theorem.-/
+one-dimensional CLT and Levy's theorem.
+@isnad1 id=tendstoi.4h7v.s9.ceb10a7fe1ed from=translated src=- shape=9349710e vocab=a8d1b4d9
+-/
 theorem tendstoInDistribution_euclidean_inv_sqrt_smul_sum_sub
     [DecidableEq kappa]
     {Omega' : Type*} [MeasurableSpace Omega']
@@ -236,6 +247,9 @@ def finiteDirectionalSupportCovariance
   euclideanCovarianceMatrix (finiteDirectionalSupportDeviation S L u 0) mu
 
 omit [Fintype kappa] in
+/--
+@isnad1 id=eq.0h9v.s6.43b394348913 from=translated src=- shape=2fe845fa vocab=2a9278da
+-/
 @[simp]
 theorem finiteDirectionalSupportCovariance_apply
     (S : ℕ → Omega → Set E) (L : Set E) (u : kappa → E)
@@ -246,7 +260,9 @@ theorem finiteDirectionalSupportCovariance_apply
 
 omit [Fintype kappa] in
 /-- The covariance matrix of the centered finite support vector is exactly
-the covariance kernel of the raw support functions.-/
+the covariance kernel of the raw support functions.
+@isnad1 id=eq.2h9v.s7.c58ba912babe from=translated src=- shape=f5b56ea0 vocab=3651cc5b
+-/
 theorem finiteDirectionalSupportCovariance_apply_eq_supportFunction
     {mu : Measure Omega} [IsProbabilityMeasure mu]
     (S : ℕ → Omega → Set E) (L : Set E) (u : kappa → E)
@@ -260,6 +276,9 @@ theorem finiteDirectionalSupportCovariance_apply_eq_supportFunction
   exact covariance_directionalSupportDeviation_eq_supportFunction
     S L (u j) (u l) hj hl
 
+/--
+@isnad1 id=possemid.1h7v.s7.c978f6063911 from=translated src=- shape=a58457e1 vocab=0e2d485c
+-/
 theorem finiteDirectionalSupportCovariance_posSemidef
     {mu : Measure Omega} [IsFiniteMeasure mu]
     (S : ℕ → Omega → Set E) (L : Set E) (u : kappa → E)
@@ -269,7 +288,9 @@ theorem finiteDirectionalSupportCovariance_posSemidef
 
 /-- Joint finite-dimensional CLT for support functions of empirical
 Minkowski averages.  This proves convergence of the whole vector indexed by
-`kappa`, not merely convergence of each coordinate separately.-/
+`kappa`, not merely convergence of each coordinate separately.
+@isnad1 id=tendstoi.7h10v.s9.544baaa002c9 from=translated src=- shape=de3ea212 vocab=b99996e9
+-/
 theorem tendstoInDistribution_finiteDirectionalSupport_minkowskiAverage
     [DecidableEq kappa]
     {Omega' : Type*} [MeasurableSpace Omega']
@@ -342,7 +363,9 @@ theorem tendstoInDistribution_finiteDirectionalSupport_minkowskiAverage
 
 /-- Observation-level iid specialization of the joint support-process CLT.
 Effros measurability transports iid observations to the entire finite vector;
-the population support identities center every coordinate automatically.-/
+the population support identities center every coordinate automatically.
+@isnad1 id=tendstoi.8h12v.s9.3bcf40ca818c from=translated src=- shape=0f993af8 vocab=e00f3b9e
+-/
 theorem tendstoInDistribution_iid_finiteDirectionalSupport_minkowskiAverage
     [DecidableEq kappa]
     {Omega' Z : Type*} [MeasurableSpace Omega'] [MeasurableSpace Z]

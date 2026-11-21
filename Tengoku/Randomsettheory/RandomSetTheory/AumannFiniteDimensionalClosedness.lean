@@ -48,7 +48,9 @@ open MeasureTheory Filter Metric
 namespace RandomSetTheory
 
 /-- A real Hilbert space is reflexive, expressed as surjectivity of its
-canonical embedding into the weak-star bidual.-/
+canonical embedding into the weak-star bidual.
+@isnad1 id=surjecti.0h1v.s12.6138c827b5ce from=translated src=- shape=0b77ecdc vocab=b23b4419
+-/
 theorem inclusionInDoubleDualWeak_surjective_real_hilbert
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
     [CompleteSpace H] :
@@ -80,7 +82,9 @@ theorem inclusionInDoubleDualWeak_surjective_real_hilbert
   rw [hellx, real_inner_comm, hx]
 
 /-- A closed convex bounded subset of a real Hilbert space is compact for the
-weak topology.-/
+weak topology.
+@isnad1 id=iscompac.3h2v.s9.525783e4e930 from=translated src=- shape=467fa67b vocab=b8a92275
+-/
 theorem isCompact_toWeakSpace_image_of_isClosed_convex_isBounded
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
     [CompleteSpace H] {C : Set H}
@@ -103,7 +107,9 @@ theorem isCompact_toWeakSpace_image_of_isClosed_convex_isBounded
     exact inclusionInDoubleDualWeak_surjective_real_hilbert z
 
 /-- The image of a closed convex bounded Hilbert subset under a continuous
-linear map to a finite-dimensional space is compact.-/
+linear map to a finite-dimensional space is compact.
+@isnad1 id=iscompac.3h4v.s8.16411eaee659 from=translated src=- shape=2a8edf62 vocab=09c9b2b8
+-/
 theorem isCompact_image_clm_of_isClosed_convex_isBounded_hilbert
     {H E : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
     [CompleteSpace H] [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -142,6 +148,9 @@ def l2SelectionSet
     (mu : Measure Omega) (S : Omega → Set E) : Set (Omega →₂[mu] E) :=
   {F | ∀ᵐ omega ∂mu, F omega ∈ S omega}
 
+/--
+@isnad1 id=convex.1h4v.s11.ee2131a10a77 from=translated src=- shape=b801474c vocab=c76f5cad
+-/
 theorem l2SelectionSet_convex
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -157,6 +166,9 @@ theorem l2SelectionSet_convex
   change a • F omega + b • G omega ∈ S omega
   exact hSconv omega hFomega hGomega ha hb hab
 
+/--
+@isnad1 id=isclosed.1h4v.s9.350f6e02f08c from=translated src=- shape=f0854e8c vocab=23012340
+-/
 theorem l2SelectionSet_isClosed
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -175,6 +187,9 @@ theorem l2SelectionSet_isClosed
   exact (hSclosed omega).mem_of_tendsto hconv
     (Filter.Eventually.of_forall fun n => hmem (phi n))
 
+/--
+@isnad1 id=isbounde.2h5v.s9.681e981f3019 from=translated src=- shape=f5139dde vocab=bdc1481b
+-/
 theorem l2SelectionSet_isBounded_of_memLp_envelope
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -226,6 +241,9 @@ def integralL2CLM
     (Omega →₂[mu] E) →L[ℝ] E :=
   L1.integralCLM.comp (l2ToL1CLM mu)
 
+/--
+@isnad1 id=eq.0h4v.s11.cae98c44d7d0 from=translated src=- shape=32460886 vocab=49a3d688
+-/
 theorem integralL2CLM_apply
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -242,7 +260,9 @@ theorem integralL2CLM_apply
   exact hFint.coeFn_toL1.symm
 
 /-- Under an `L²` envelope, the Aumann expectation is exactly the image under
-the continuous `L²` integral map of the closed selection set.-/
+the continuous `L²` integral map of the closed selection set.
+@isnad1 id=eq.2h5v.s11.3a982638eb13 from=translated src=- shape=0c9b125c vocab=6b87291e
+-/
 theorem aumannExpectation_eq_integralL2CLM_image
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -271,7 +291,9 @@ theorem aumannExpectation_eq_integralL2CLM_image
     exact (integralL2CLM_apply mu F).symm
 
 /-- A closed convex correspondence dominated by an `L²` envelope has compact
-Aumann expectation on a probability space.-/
+Aumann expectation on a probability space.
+@isnad1 id=iscompac.4h5v.s8.7ca443b2ced5 from=translated src=- shape=55793e49 vocab=696069cb
+-/
 theorem aumannExpectation_isCompact_of_memLp_two_envelope
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
@@ -299,6 +321,9 @@ def inverseDensityCorrespondence
 /- Changing simultaneously the base measure by a positive density and each
 fibre by the reciprocal density leaves the Aumann expectation unchanged. -/
 set_option maxHeartbeats 800000 in
+/--
+@isnad1 id=eq.2h5v.s6.edd136f433df from=translated src=- shape=7b208d57 vocab=73800210
+-/
 theorem aumannExpectation_inverseDensityCorrespondence
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -362,7 +387,9 @@ theorem aumannExpectation_inverseDensityCorrespondence
     simp [NNReal.smul_def, t, smul_smul, hrne]
 
 /-- A closed convex finite-dimensional correspondence dominated by a
-measurable integrable envelope has compact raw Aumann expectation.-/
+measurable integrable envelope has compact raw Aumann expectation.
+@isnad1 id=iscompac.6h5v.s8.4281a54bd6f3 from=translated src=- shape=b328ceaf vocab=c17cdfda
+-/
 theorem aumannExpectation_isCompact_of_integrable_envelope
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
@@ -457,7 +484,9 @@ theorem aumannExpectation_isCompact_of_integrable_envelope
 
 /-- The preceding compactness theorem without pointwise measurability of the
 integrable envelope.  A measurable representative and a null-fibre
-regularization discharge that technical issue.-/
+regularization discharge that technical issue.
+@isnad1 id=iscompac.5h5v.s8.f2b31b50ec05 from=translated src=- shape=09c07510 vocab=17ab3f3b
+-/
 theorem aumannExpectation_isCompact_of_integrable_envelope_ae
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
@@ -523,7 +552,9 @@ theorem aumannExpectation_isCompact_of_integrable_envelope_ae
 
 /-- Nonempty closed convex fibres automatically force their integrable
 envelope to be nonnegative, yielding compactness with no extra envelope
-hypothesis.-/
+hypothesis.
+@isnad1 id=iscompac.5h5v.s8.4d0323abb32d from=translated src=- shape=384fe8bd vocab=d655523a
+-/
 theorem aumannExpectation_isCompact_of_integrable_envelope_nonempty
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
@@ -544,7 +575,9 @@ theorem aumannExpectation_isCompact_of_integrable_envelope_nonempty
 
 /-- **Finite-dimensional Aumann compactness.**  On an atomless probability
 space, every compact nonempty Effros-measurable correspondence with an
-integrable envelope has compact raw Aumann expectation.-/
+integrable envelope has compact raw Aumann expectation.
+@isnad1 id=iscompac.6h5v.s7.5e7cccdf2d20 from=translated src=- shape=54636253 vocab=0321753d
+-/
 theorem aumannExpectation_isCompact_of_atomless
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
@@ -578,7 +611,9 @@ theorem aumannExpectation_isCompact_of_atomless
   rwa [hpur] at hCcompactA
 
 /-- The raw Aumann expectation in the atomless finite-dimensional setting is
-closed.-/
+closed.
+@isnad1 id=isclosed.6h5v.s7.9b6b4fd8f8d1 from=translated src=- shape=2d83922d vocab=af53fe84
+-/
 theorem aumannExpectation_isClosed_of_atomless
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
@@ -596,7 +631,9 @@ theorem aumannExpectation_isClosed_of_atomless
     mu hmu hS hcompact hne hgint hdom).isClosed
 
 /-- Closure is redundant for an atomless finite-dimensional Aumann
-expectation of an integrably bounded compact random set.-/
+expectation of an integrably bounded compact random set.
+@isnad1 id=eq.6h5v.s7.fef3575d15f3 from=translated src=- shape=ec1a97ff vocab=52f83ca7
+-/
 theorem closure_aumannExpectation_eq_of_atomless
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]

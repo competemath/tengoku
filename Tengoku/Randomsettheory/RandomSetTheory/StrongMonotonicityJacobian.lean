@@ -61,7 +61,9 @@ def UniformDerivativeLowerBoundOn (Theta : Set E) (kappa : ℝ)
 
 The derivative is allowed to be a derivative *within* `Theta`.  This makes
 the statement valid on closed convex domains and even on convex sets with
-empty ambient interior.-/
+empty ambient interior.
+@isnad1 id=strongmo.3h5v.s8.3ee1ed5801db from=translated src=- shape=36377c0c vocab=299adbb6
+-/
 theorem strongMonotonicityOn_of_hasFDerivWithinAt
     (Theta : Set E) (kappa : ℝ) (f : E → E) (Df : E → E →L[ℝ] E)
     (hTheta : Convex ℝ Theta)
@@ -117,7 +119,9 @@ theorem strongMonotonicityOn_of_hasFDerivWithinAt
     AffineMap.lineMap_apply_one, inner_sub_left] using hmvt
 
 /-- Family version of
-`strongMonotonicityOn_of_hasFDerivWithinAt`.-/
+`strongMonotonicityOn_of_hasFDerivWithinAt`.
+@isnad1 id=uniforms.3h6v.s8.459032b72639 from=translated src=- shape=7d497805 vocab=ecd2e143
+-/
 theorem uniformStrongMonotonicityOn_of_hasFDerivWithinAt
     (Theta : Set E) (kappa : ℝ) (g : P → E → E)
     (Dg : P → E → E →L[ℝ] E)
@@ -133,7 +137,9 @@ theorem uniformStrongMonotonicityOn_of_hasFDerivWithinAt
 /-- Version formulated solely with differentiability within `Theta` and
 `fderivWithin`.  Unlike the ambient `fderiv` corollary below, this theorem
 does not ask the map to be defined differentiably outside the parameter
-domain.-/
+domain.
+@isnad1 id=strongmo.3h4v.s9.f06c21d4e498 from=translated src=- shape=6e4af463 vocab=8c507a26
+-/
 theorem strongMonotonicityOn_of_fderivWithin_lowerBound
     (Theta : Set E) (kappa : ℝ) (f : E → E)
     (hTheta : Convex ℝ Theta)
@@ -145,7 +151,9 @@ theorem strongMonotonicityOn_of_fderivWithin_lowerBound
     (fun x ↦ fderivWithin ℝ f Theta x) hTheta
     (fun x hx ↦ (hdiff x hx).hasFDerivWithinAt) hlower
 
-/-- Uniform family version of the `fderivWithin` criterion.-/
+/-- Uniform family version of the `fderivWithin` criterion.
+@isnad1 id=uniforms.3h5v.s9.7fb750a57774 from=translated src=- shape=7846324f vocab=ada0b622
+-/
 theorem uniformStrongMonotonicityOn_of_fderivWithin_lowerBound
     (Theta : Set E) (kappa : ℝ) (g : P → E → E)
     (hTheta : Convex ℝ Theta)
@@ -162,7 +170,9 @@ of a convex parameter set and a lower bound on the quadratic form of `fderiv`
 imply strong monotonicity on that set.
 
 No continuity of `fderiv`, openness of `Theta`, or finite-dimensionality is
-required.-/
+required.
+@isnad1 id=strongmo.3h4v.s9.660d0f4f6a3b from=translated src=- shape=a50682c9 vocab=de8da8c8
+-/
 theorem strongMonotonicityOn_of_fderiv_lowerBound
     (Theta : Set E) (kappa : ℝ) (f : E → E)
     (hTheta : Convex ℝ Theta)
@@ -174,7 +184,9 @@ theorem strongMonotonicityOn_of_fderiv_lowerBound
     (fun x ↦ fderiv ℝ f x) hTheta
     (fun x hx ↦ (hdiff x hx).hasFDerivAt.hasFDerivWithinAt) hlower
 
-/-- Family form of the ambient `fderiv` criterion.-/
+/-- Family form of the ambient `fderiv` criterion.
+@isnad1 id=uniforms.3h5v.s9.dc0935b5f206 from=translated src=- shape=9fe2d026 vocab=c3396b15
+-/
 theorem uniformStrongMonotonicityOn_of_fderiv_lowerBound
     (Theta : Set E) (kappa : ℝ) (g : P → E → E)
     (hTheta : Convex ℝ Theta)
@@ -188,7 +200,9 @@ theorem uniformStrongMonotonicityOn_of_fderiv_lowerBound
 
 /-- Restrict an ambient uniformly strongly monotone family to the subtype
 `Theta`, obtaining exactly the predicate used by the zero-set stability
-theorems.-/
+theorems.
+@isnad1 id=uniforms.1h5v.s6.f002bcfea77f from=translated src=- shape=0f0f9e93 vocab=74e0d56d
+-/
 theorem uniformStrongMonotonicity_restrict
     (Theta : Set E) (kappa : ℝ) (g : P → E → E)
     (hmono : UniformStrongMonotonicityOn Theta kappa g) :
@@ -198,7 +212,9 @@ theorem uniformStrongMonotonicity_restrict
   exact hmono p theta.property theta'.property
 
 /-- Direct bridge from relative derivatives on `Theta` to the subtype
-predicate consumed by the zero-set results.-/
+predicate consumed by the zero-set results.
+@isnad1 id=uniforms.3h6v.s8.d95272da91e1 from=translated src=- shape=aaee66cf vocab=3b11fec1
+-/
 theorem uniformStrongMonotonicity_restrict_of_hasFDerivWithinAt
     (Theta : Set E) (kappa : ℝ) (g : P → E → E)
     (Dg : P → E → E →L[ℝ] E)
@@ -213,7 +229,9 @@ theorem uniformStrongMonotonicity_restrict_of_hasFDerivWithinAt
       Theta kappa g Dg hTheta hderiv hlower)
 
 /-- Direct bridge from the intrinsic `fderivWithin` criterion to the subtype
-predicate consumed by the zero-set results.-/
+predicate consumed by the zero-set results.
+@isnad1 id=uniforms.3h5v.s9.9568fcc13843 from=translated src=- shape=818c2ba6 vocab=3e11a5b9
+-/
 theorem uniformStrongMonotonicity_restrict_of_fderivWithin_lowerBound
     (Theta : Set E) (kappa : ℝ) (g : P → E → E)
     (hTheta : Convex ℝ Theta)
@@ -227,7 +245,9 @@ theorem uniformStrongMonotonicity_restrict_of_fderivWithin_lowerBound
       Theta kappa g hTheta hdiff hlower)
 
 /-- Direct bridge from the Jacobian criterion of the report to
-`UniformStrongMonotonicity` on the parameter subtype.-/
+`UniformStrongMonotonicity` on the parameter subtype.
+@isnad1 id=uniforms.3h5v.s9.6dfe713d2427 from=translated src=- shape=9f1a1afe vocab=535ab93f
+-/
 theorem uniformStrongMonotonicity_restrict_of_fderiv_lowerBound
     (Theta : Set E) (kappa : ℝ) (g : P → E → E)
     (hTheta : Convex ℝ Theta)

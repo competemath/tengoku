@@ -60,7 +60,9 @@ inequality used in the report.  In particular, this is not uniform in `q`.-/
 def fukNagaevConstant (q : ℕ) : ℝ :=
   3 * fukNagaevMu q
 
-/-- An equivalent form which makes the linear dependence on `q` manifest.-/
+/-- An equivalent form which makes the linear dependence on `q` manifest.
+@isnad1 id=eq.0h1v.s5.946b2eaf3a6e from=translated src=- shape=d6b177b6 vocab=285fafa4
+-/
 theorem fukNagaevConstant_eq_six_add_max (q : ℕ) :
     fukNagaevConstant q = 6 + max 4 (q : ℝ) := by
   unfold fukNagaevConstant fukNagaevMu
@@ -69,6 +71,9 @@ theorem fukNagaevConstant_eq_six_add_max (q : ℕ) :
   rw [mul_max_of_nonneg _ _ (by norm_num : (0 : ℝ) ≤ 3)]
   congr 1 <;> ring
 
+/--
+@isnad1 id=le.0h1v.s3.094c31625c23 from=translated src=- shape=b9369acb vocab=2ab9303c
+-/
 theorem one_le_fukNagaevConstant (q : ℕ) :
     1 ≤ fukNagaevConstant q := by
   unfold fukNagaevConstant fukNagaevMu
@@ -76,13 +81,18 @@ theorem one_le_fukNagaevConstant (q : ℕ) :
     exact (by norm_num : (0 : ℝ) ≤ 4 / 3) |>.trans (le_max_left _ _)
   nlinarith
 
+/--
+@isnad1 id=le.0h1v.s3.d4eb45730459 from=translated src=- shape=b9369acb vocab=2ab9303c
+-/
 theorem fukNagaevConstant_nonneg (q : ℕ) :
     0 ≤ fukNagaevConstant q :=
   (zero_le_one.trans (one_le_fukNagaevConstant q))
 
 /-- Marchina's coefficient dominates the moment order itself.  This makes
 precise why the cited theorem cannot furnish a numerical constant uniform in
-`q`.-/
+`q`.
+@isnad1 id=le.0h1v.s3.7287b61c9612 from=translated src=- shape=1ed09587 vocab=eaeaf238
+-/
 theorem natCast_le_fukNagaevConstant (q : ℕ) :
     (q : ℝ) ≤ fukNagaevConstant q := by
   rw [fukNagaevConstant_eq_six_add_max]
@@ -91,7 +101,9 @@ theorem natCast_le_fukNagaevConstant (q : ℕ) :
 /-- There is no finite real number which bounds all the coefficients
 `fukNagaevConstant q`.  Thus a conclusion advertised with a constant
 independent of `q` is not a consequence of Marchina's Theorem 2.1 with
-`p = q`.-/
+`p = q`.
+@isnad1 id=not.0h0v.s3.f784e5071343 from=translated src=- shape=e7309eea vocab=2ab9303c
+-/
 theorem not_exists_forall_fukNagaevConstant_le :
     ¬ ∃ C : ℝ, ∀ q : ℕ, fukNagaevConstant q ≤ C := by
   rintro ⟨C, hC⟩
@@ -105,6 +117,9 @@ def mixedEuclideanProcessBound (sigma2 sigma1 : ℝ) (d : ℕ) (x : ℝ) : ℝ :
     72 * sigma2 * Real.sqrt (d + 1 : ℝ) +
     12 * sigma1 * x + 144 * sigma1 * (d + 1 : ℝ)
 
+/--
+@isnad1 id=le.3h4v.s5.ef9cb3efd15e from=translated src=- shape=0d47e803 vocab=53f1bb43
+-/
 theorem mixedEuclideanProcessBound_nonneg
     {sigma2 sigma1 x : ℝ} (hsigma2 : 0 ≤ sigma2)
     (hsigma1 : 0 ≤ sigma1) (d : ℕ) (hx : 0 ≤ x) :
@@ -115,7 +130,9 @@ theorem mixedEuclideanProcessBound_nonneg
 /-- Fully geometric mixed-tail chaining on the Euclidean unit ball.  The
 dyadic nets, projections, and local edge graphs are constructed internally.
 This is the mixed Bernstein analogue of
-`measureReal_unitBall_subgaussianProcess_largeDeviation_le`.-/
+`measureReal_unitBall_subgaussianProcess_largeDeviation_le`.
+@isnad1 id=le.6h7v.s8.71bdba0d3604 from=translated src=- shape=f8be0369 vocab=6139a945
+-/
 theorem measureReal_unitBall_mixedProcess_largeDeviation_le
     {Omega E : Type*} [MeasurableSpace Omega]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
@@ -180,7 +197,9 @@ scalar envelope event, so its probability is not multiplied by the number of
 net points or edges.
 
 The factor `fukNagaevConstant q` is retained explicitly to match the
-q-dependent coefficient in the maximal inequality cited by the report.-/
+q-dependent coefficient in the maximal inequality cited by the report.
+@isnad1 id=le.10h12v.s9.0a98a242e325 from=translated src=- shape=57933837 vocab=00cece1c
+-/
 theorem measureReal_unitBall_mixedPolynomialProcess_largeDeviation_le
     (Z G : Omega → EuclideanUnitBall E → ℝ) (A : Omega → ℝ)
     {q : ℕ} {sigma2 sigma1 rho x y : ℝ}
@@ -263,7 +282,9 @@ theorem measureReal_unitBall_mixedPolynomialProcess_largeDeviation_le
 
 /-- Confidence form of the preceding Gaussian--polynomial bound.  If
 `E|A|^q ≤ K_q^q`, the single envelope event contributes at most `delta` at
-threshold `K_q delta^(-1/q)`.-/
+threshold `K_q delta^(-1/q)`.
+@isnad1 id=le.13h13v.s9.fb780bf52427 from=translated src=- shape=f1b66fca vocab=ac98239d
+-/
 theorem measureReal_unitBall_mixedPolynomialProcess_confidence_le
     (Z G : Omega → EuclideanUnitBall E → ℝ) (A : Omega → ℝ)
     {q : ℕ} (hq : 0 < q)
@@ -312,7 +333,9 @@ theorem measureReal_unitBall_mixedPolynomialProcess_confidence_le
   simpa only [y, r] using hbase.trans (add_le_add le_rfl hpoly)
 
 /-- Empirical-rate specialization.  The scale of the uniform heavy remainder
-is `n^(-1+1/q)`, making the polynomial term in the conclusion explicit.-/
+is `n^(-1+1/q)`, making the polynomial term in the conclusion explicit.
+@isnad1 id=le.13h13v.s9.248cb8d2e812 from=translated src=- shape=4de418b9 vocab=ac98239d
+-/
 theorem measureReal_unitBall_mixedPolynomialEmpiricalProcess_confidence_le
     (Z G : Omega → EuclideanUnitBall E → ℝ) (A : Omega → ℝ)
     {n q : ℕ} (hn : 0 < n) (hq : 0 < q)
@@ -354,7 +377,9 @@ Euclidean-ball interface with rate
   + C_q K_q delta^(-1/q) n^(-1+1/q)`.
 
 All constants are displayed in the formal statement, and the exceptional
-polynomial event is paid only once.-/
+polynomial event is paid only once.
+@isnad1 id=le.12h12v.s9.f13b5ac62b5f from=translated src=- shape=5b0fcde5 vocab=f658902a
+-/
 theorem measureReal_unitBall_subgaussianPolynomialEmpiricalProcess_confidence_le
     (Z G : Omega → EuclideanUnitBall E → ℝ) (A : Omega → ℝ)
     {n q : ℕ} (hn : 0 < n) (hq : 0 < q)

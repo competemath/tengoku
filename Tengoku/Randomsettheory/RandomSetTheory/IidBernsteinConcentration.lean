@@ -31,7 +31,9 @@ namespace RandomSetTheory
 
 /-- Dimension-explicit iid Bernstein concentration around the closed convex
 Aumann target.  It is enough to certify the Bernstein MGF bound for the
-zeroth observation, uniformly over unit directions.-/
+zeroth observation, uniformly over unit directions.
+@isnad1 id=le.12h12v.s9.7fc392534b9e from=translated src=- shape=a6e9e744 vocab=087c3a50
+-/
 theorem hausdorffDist_convexified_iid_risk_bound_dimensional_bernstein
     {Ω Z E : Type*} [MeasurableSpace Ω] [MeasurableSpace Z]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
@@ -195,7 +197,9 @@ theorem hausdorffDist_convexified_iid_risk_bound_dimensional_bernstein
 
 /-- Iid confidence-level Bernstein bound.  The entropy and bilateral-tail
 factors are absorbed into the logarithmic threshold, leaving failure
-probability exactly `δ`.-/
+probability exactly `δ`.
+@isnad1 id=le.13h12v.s9.b81cc39b5436 from=translated src=- shape=42e6db28 vocab=c5ae3e97
+-/
 theorem hausdorffDist_convexified_iid_risk_bound_bernstein_confidence
     {Ω Z E : Type*} [MeasurableSpace Ω] [MeasurableSpace Z]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]

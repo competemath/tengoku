@@ -36,7 +36,9 @@ variable {Ω E : Type*} [MeasurableSpace Ω]
 
 /-- **Binary Aumann purification.**  On a finite atomless base, the Aumann
 expectation of the pointwise self-convex-join equals that of the original
-compact-valued correspondence.-/
+compact-valued correspondence.
+@isnad1 id=eq.6h5v.s7.54e85654bdc6 from=translated src=- shape=ef6a0c3e vocab=1c6c852b
+-/
 theorem aumannExpectation_convexJoin_self_eq_of_atomless
     (μ : Measure Ω) [IsFiniteMeasure μ]
     (hμ : IsAtomlessMeasure μ) [FiniteDimensional ℝ E]
@@ -129,7 +131,9 @@ theorem aumannExpectation_convexJoin_self_eq_of_atomless
       subset_convexJoin_left (hne ω)
 
 /-- Every finite binary convexification stage has the same Aumann
-expectation as the original correspondence.-/
+expectation as the original correspondence.
+@isnad1 id=eq.6h6v.s7.3d20f2128ae5 from=translated src=- shape=01ad508b vocab=f1936a38
+-/
 theorem aumannExpectation_convexJoinIterate_eq_of_atomless
     (μ : Measure Ω) [IsFiniteMeasure μ]
     (hμ : IsAtomlessMeasure μ) [FiniteDimensional ℝ E]
@@ -173,7 +177,9 @@ pointwise closed convexification of a compact nonempty correspondence does
 not change its Aumann expectation.  Carathéodory's theorem makes the
 pointwise convexification finite (`finrank ℝ E + 1` binary stages), after
 which `aumannExpectation_convexJoinIterate_eq_of_atomless` purifies each
-stage.-/
+stage.
+@isnad1 id=eq.6h5v.s8.0bc8575645c8 from=translated src=- shape=e0da14ed vocab=4ea8101a
+-/
 theorem aumannExpectation_closedConvexHull_eq_of_atomless
     (μ : Measure Ω) [IsFiniteMeasure μ]
     (hμ : IsAtomlessMeasure μ) [FiniteDimensional ℝ E]

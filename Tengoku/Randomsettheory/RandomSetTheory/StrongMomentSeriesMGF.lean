@@ -37,7 +37,9 @@ def oneSidedExpSeriesTaylorBound (q : ℕ) (x : ℝ) : ℝ :=
     (∑ k ∈ Ico 3 q, (max x 0) ^ k / (k.factorial : ℝ)) +
     expSeriesTail q (max x 0)
 
-/-- Exact-series version of the one-sided Taylor majorant.-/
+/-- Exact-series version of the one-sided Taylor majorant.
+@isnad1 id=le.1h2v.s4.4d6c80a9f1ea from=translated src=- shape=530dc965 vocab=cf4e8c7a
+-/
 theorem exp_le_oneSidedExpSeriesTaylorBound
     (q : ℕ) (hq : 3 ≤ q) (x : ℝ) :
     Real.exp x ≤ oneSidedExpSeriesTaylorBound q x := by
@@ -72,7 +74,9 @@ theorem exp_le_oneSidedExpSeriesTaylorBound
     exact hbase
 
 /-- Pointwise exact-series estimate after rescaling by an upper bound `y`.
-Only the positive part enters at degrees at least three.-/
+Only the positive part enters at degrees at least three.
+@isnad1 id=le.4h4v.s8.af8307a5cb29 from=translated src=- shape=c5158698 vocab=26b7d8f9
+-/
 theorem exp_mul_le_exactStrongMomentMajorant
     (q : ℕ) (hq : 3 ≤ q) {t x y : ℝ}
     (ht : 0 ≤ t) (hy : 0 < y) (hxy : x ≤ y) :
@@ -136,7 +140,9 @@ def strongMomentSeriesExponent
     (∑ k ∈ Ico 3 q, t ^ k / (k.factorial : ℝ) * moment k) +
     expSeriesTail q (t * y) / y ^ q * moment q
 
-/-- Exact-series strong-moment exponents add when their moment proxies add.-/
+/-- Exact-series strong-moment exponents add when their moment proxies add.
+@isnad1 id=eq.0h7v.s6.9d5f118e1e78 from=translated src=- shape=75974dbf vocab=f2a11385
+-/
 theorem sum_strongMomentSeriesExponent
     {ι : Type*} (s : Finset ι) (q : ℕ) (t y : ℝ)
     (second : ι → ℝ) (moment : ι → ℕ → ℝ) :
@@ -170,7 +176,9 @@ theorem sum_strongMomentSeriesExponent
 
 The variable may have an unbounded negative tail.  Its upper bound `y` is
 strictly positive because the degree-`q` contraction is normalized by
-`y ^ q`.-/
+`y ^ q`.
+@isnad1 id=le.8h6v.s8.d372731d6f39 from=translated src=- shape=dad14768 vocab=0b497828
+-/
 theorem integral_exp_mul_le_exp_strongMomentSeriesExponent
     [IsProbabilityMeasure mu]
     (X : Omega → ℝ) (q : ℕ) (hq : 3 ≤ q)

@@ -51,7 +51,9 @@ namespace HasPsiOneNormBound
 
 /-- A `psi₁` certificate depends only on the law of the random variable.
 This transports the report's one-observation envelope assumption to every
-member of an identically distributed sample.-/
+member of an identically distributed sample.
+@isnad1 id=haspsion.2h7v.s5.dfe8d9c002a1 from=translated src=- shape=223227eb vocab=aec017e4
+-/
 theorem identDistrib
     {Ω' : Type*} [MeasurableSpace Ω'] {ν : Measure Ω'}
     {X : Ω → ℝ} {Y : Ω' → ℝ} {K : ℝ≥0}
@@ -178,7 +180,9 @@ private lemma exp_mul_le_one_add_add_sq_mul_exp_abs_div
   linarith
 
 /-- A psi-one certificate implies integrability of every exponential tilt
-strictly inside its natural domain.-/
+strictly inside its natural domain.
+@isnad1 id=integrab.2h5v.s6.5bad5312358f from=translated src=- shape=08399019 vocab=6e90b41d
+-/
 theorem integrable_exp_mul
     {X : Ω → ℝ} {K : ℝ≥0} (hX : HasPsiOneNormBound X K μ)
     {t : ℝ} (ht : (K : ℝ) * |t| < 1) :
@@ -198,7 +202,9 @@ theorem integrable_exp_mul
       _ = |X ω| / (K : ℝ) := by ring
 
 /-- A psi-one certificate in particular gives genuine integrability of the
-random variable, so the centering hypothesis below is not vacuous.-/
+random variable, so the centering hypothesis below is not vacuous.
+@isnad1 id=integrab.1h4v.s5.3bd35f5120f4 from=translated src=- shape=63c0410f vocab=2f398932
+-/
 theorem integrable
     {X : Ω → ℝ} {K : ℝ≥0} (hX : HasPsiOneNormBound X K μ) :
     Integrable X μ := by
@@ -218,7 +224,9 @@ theorem integrable
 
 /-- A concrete `psi₁` certificate controls the first absolute moment by
 its scale.  With the normalization `E exp (|X| / K) ≤ 2`, the constant is
-exactly `1`.-/
+exactly `1`.
+@isnad1 id=le.1h4v.s5.1dc061c0cc11 from=translated src=- shape=4a0d480e vocab=4d4a9afb
+-/
 theorem integral_abs_le_scale
     [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {K : ℝ≥0} (hX : HasPsiOneNormBound X K μ) :
@@ -255,7 +263,9 @@ theorem integral_abs_le_scale
         simpa only [G] using hX.integral_exp_abs_div_le_two
       nlinarith
 
-/-- The (signed) expectation is bounded above by the `psi₁` scale.-/
+/-- The (signed) expectation is bounded above by the `psi₁` scale.
+@isnad1 id=le.1h4v.s5.6047120bfe5c from=translated src=- shape=6893e249 vocab=debd9f02
+-/
 theorem integral_le_scale
     [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {K : ℝ≥0} (hX : HasPsiOneNormBound X K μ) :
@@ -270,7 +280,9 @@ theorem integral_le_scale
 
 If `|Y| ≤ c |X|` and `X` has scale `K`, then `Y` has scale `c K`.
 The positivity assumption on `c` is necessary because the concrete
-certificate records a strictly positive denominator.-/
+certificate records a strictly positive denominator.
+@isnad1 id=haspsion.4h6v.s6.7aadbd9d1d97 from=translated src=- shape=2fc0d820 vocab=922d48e3
+-/
 theorem mono_abs
     {X Y : Ω → ℝ} {K c : ℝ≥0}
     (hX : HasPsiOneNormBound X K μ) (hc : 0 < (c : ℝ))
@@ -312,7 +324,9 @@ The proof uses only the defining inequality `E exp (|X| / K) ≤ 2`.
 First `E|X| ≤ K`; convexity gives
 `E exp (|X| / (3K)) ≤ 4/3`, while
 `exp (|EX| / (3K)) ≤ exp (1/3) ≤ 3/2`.
-The product is at most `2`.-/
+The product is at most `2`.
+@isnad1 id=haspsion.1h4v.s6.6aa103d5c33d from=translated src=- shape=f26d66c9 vocab=d4882f3e
+-/
 theorem center
     [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {K : ℝ≥0} (hX : HasPsiOneNormBound X K μ) :
@@ -457,7 +471,9 @@ theorem center
 
 The constant is exactly `2`: exponential Markov at `1 / K` gives
 `P(X > t) ≤ 2 exp (-t / K)`.  No sign assumption on `X` is needed, since
-`X ≤ |X|`.-/
+`X ≤ |X|`.
+@isnad1 id=le.1h5v.s6.47ff35572ba8 from=translated src=- shape=53eaa524 vocab=95180bb9
+-/
 theorem measureReal_gt_le_two_mul_exp
     [IsFiniteMeasure μ]
     {X : Ω → ℝ} {K : ℝ≥0} (hX : HasPsiOneNormBound X K μ)
@@ -490,7 +506,9 @@ theorem measureReal_gt_le_two_mul_exp
 psi-one certificate.  Independence is not required.
 
 For a family indexed by `s`, this is the literal bound
-`P(∃ i ∈ s, Xᵢ > t) ≤ 2 |s| exp (-t / K)`.-/
+`P(∃ i ∈ s, Xᵢ > t) ≤ 2 |s| exp (-t / K)`.
+@isnad1 id=le.1h7v.s7.9576d91b2db8 from=translated src=- shape=ad5320c6 vocab=e7829983
+-/
 theorem measureReal_exists_gt_le_card_mul_two_mul_exp
     {I : Type*} [IsFiniteMeasure μ]
     (s : Finset I) (X : I → Ω → ℝ) (K : ℝ≥0)
@@ -516,7 +534,9 @@ all variables are at most
 Thus the multiplicative constant in front of `K log (2 |s| / δ)` is
 exactly `1` for `HasPsiOneNormBound`.  No independence hypothesis is used.
 The conclusion is stated with `Measure.real`; null-measurability follows
-from the `AEMeasurable` field of each certificate.-/
+from the `AEMeasurable` field of each certificate.
+@isnad1 id=le.3h7v.s7.0ed55ad86182 from=translated src=- shape=63f6b085 vocab=766120fa
+-/
 theorem one_sub_le_measureReal_forall_le_mul_log
     {I : Type*} [IsProbabilityMeasure μ]
     (s : Finset I) (hs : s.Nonempty) (X : I → Ω → ℝ) (K : ℝ≥0)
@@ -564,7 +584,9 @@ variance proxy `4 K²` and scale proxy `K`.
 The constants follow directly from
 `E exp (|X| / K) ≤ 2`: for `K |t| < 1`,
 `mgf X t ≤ exp (2 K² t²)`, which is stronger than the requested
-Bernstein denominator.-/
+Bernstein denominator.
+@isnad1 id=hasberns.2h4v.s6.dd54631f934f from=translated src=- shape=71dea458 vocab=a62593fd
+-/
 theorem hasBernsteinMGF_of_integral_eq_zero
     [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {K : ℝ≥0} (hX : HasPsiOneNormBound X K μ)
@@ -644,7 +666,9 @@ With the convention `E exp (|Xᵢ| / K) ≤ 2`, every expectation is at most
 `K`.  Centering costs the factor `3`; Bernstein at deviation `2K` then gives
 the explicit failure probability `2 exp (-|s| / 21)`.  Consequently the
 sample average is at most `3K` as soon as
-`21 log (2 / δ) ≤ |s|`.-/
+`21 log (2 / δ) ≤ |s|`.
+@isnad1 id=le.5h7v.s7.610c8e7cc2a4 from=translated src=- shape=28c1742f vocab=cd6ec543
+-/
 theorem measureReal_average_gt_three_mul_scale_le
     [IsProbabilityMeasure μ]
     {ι : Type*} (s : Finset ι) (hs : s.Nonempty)
@@ -776,7 +800,9 @@ uniform psi-one certificate for the zeroth directional deviation.
 
 The only extra assumption beyond exponential integrability is explicit
 centering.  Integrability of every deviation follows from its psi-one
-certificate, so this is a genuine expectation equality.-/
+certificate, so this is a genuine expectation equality.
+@isnad1 id=le.12h11v.s9.9d250c56786e from=translated src=- shape=98128b8e vocab=1f14d715
+-/
 theorem hausdorffDist_convexified_iid_risk_bound_dimensional_psiOne
     {Ω Z E : Type*} [MeasurableSpace Ω] [MeasurableSpace Z]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
@@ -832,7 +858,9 @@ theorem hausdorffDist_convexified_iid_risk_bound_dimensional_psiOne
 The population set is `iidAumannTarget`, so its support function is the
 integral of the support function of the zeroth random set.  Consequently the
 directional deviations are centered; users only need to provide the psi-one
-certificate itself.-/
+certificate itself.
+@isnad1 id=le.11h11v.s9.c2b431db676d from=translated src=- shape=3269252e vocab=bc2f363e
+-/
 theorem hausdorffDist_convexified_iid_risk_bound_dimensional_psiOne_auto
     {Ω Z E : Type*} [MeasurableSpace Ω] [MeasurableSpace Z]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E]
