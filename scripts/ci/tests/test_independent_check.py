@@ -107,6 +107,20 @@ class Parsing(unittest.TestCase):
         )
         self.assertEqual(I.sizes_by_namespace(text), {"Alpha": 1000, "Seed": 70})
 
+    def test_sizes_come_from_the_api_listing_too_and_a_truncated_one_is_refused(self):
+        doc = {
+            "truncated": False,
+            "tree": [
+                {"path": "Alpha.lean", "type": "blob", "size": 120},
+                {"path": "Alpha/Sub/A.lean", "type": "blob", "size": 880},
+                {"path": "Alpha/Sub", "type": "tree"},
+                {"path": "Seed/Algebra/X.lean", "type": "blob", "size": 70},
+            ],
+        }
+        self.assertEqual(I.sizes_from_api(doc), {"Alpha": 1000, "Seed": 70})
+        with self.assertRaises(SystemExit):
+            I.sizes_from_api({**doc, "truncated": True})
+
     def test_the_libraries_of_the_data_are_named_as_the_axiom_scan_names_them(self):
         paths = "data/trusted/mathlib-algebra.jsonl\ndata/trusted/competemath/pass1.jsonl\ndata/trusted/competemath/pass2.jsonl\ndata/intake/alpha/manifest.jsonl\ndata/intake/alpha/report.json\ndata/intake/alpha/parts/001.json\ndata/stats.json\n"
         self.assertEqual(I.data_libraries(paths), ({"mathlib-algebra", "competemath"}, {"alpha"}))
@@ -339,6 +353,43 @@ class CommandLine(unittest.TestCase):
             self.assertIn("3 shards", r.stdout)
             out = json.loads((t / "out.json").read_text())
             self.assertTrue(out["axiom_scan"]["passed"])
+
+    def test_plan_reads_the_api_listing_of_the_tree(self):
+        with tempfile.TemporaryDirectory() as d:
+            t = Path(d)
+            (t / "All.lean").write_text(ALL)
+            (t / "tree.json").write_text(
+                json.dumps({"truncated": False, "tree": [{"path": f"{ns}.lean", "type": "blob", "size": n} for ns, n in SIZES.items()]})
+            )
+            (t / "paths.txt").write_text(
+                "".join(f"data/trusted/{x}.jsonl\n" for x in TIER) + "".join(f"data/intake/{x}/manifest.jsonl\n" for x in INTAKE)
+            )
+            r = subprocess.run(
+                [
+                    sys.executable,
+                    str(CI / "independent_check.py"),
+                    "plan",
+                    "--all",
+                    "All.lean",
+                    "--tree-json",
+                    "tree.json",
+                    "--paths",
+                    "paths.txt",
+                    "--shards",
+                    "2",
+                    "--out",
+                    "plan.json",
+                    "--matrix",
+                    "matrix.json",
+                    "--commit",
+                    COMMIT,
+                ],
+                cwd=d,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            self.assertEqual(json.loads((t / "plan.json").read_text()), make_plan(2))
 
     def test_merge_writes_nothing_when_a_shard_is_missing(self):
         with tempfile.TemporaryDirectory() as d:

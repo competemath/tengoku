@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """independent_check.py - the independent check (.github/workflows/independent-check.yml) in shards. Standard library only.
 
-  independent_check.py plan  --all Tengoku/All.lean --sizes LS_TREE.txt --paths DATA_PATHS.txt --shards N --out plan.json --matrix matrix.json [--commit SHA]
+  independent_check.py plan  --all Tengoku/All.lean (--tree-json API_TREE.json | --sizes LS_TREE.txt) --paths DATA_PATHS.txt --shards N --out plan.json --matrix matrix.json [--commit SHA]
   independent_check.py merge --plan plan.json --reports DIR --commit SHA --lean4export-commit X --nanoda-commit Y --run URL --out independent-check.json
 
 One `lean4export Tengoku.All` of the whole tree is one process that writes about 13,000 lines a second: 4 h 04 min for 196.6 million lines on 2026-10-12, the last time the check passed. The tree has grown
@@ -52,6 +52,19 @@ def sizes_by_namespace(ls_tree: str) -> dict[str, int]:
             continue
         ns = path[len("Tengoku/") :].split("/", 1)[0]
         out[ns[: -len(".lean")] if ns.endswith(".lean") else ns] += int(parts[3])
+    return dict(out)
+
+
+def sizes_from_api(doc: dict) -> dict[str, int]:
+    """bytes of Lean source per `Tengoku/<Namespace>` from the GitHub API's listing of the `Tengoku` tree (`gh api repos/<repo>/git/trees/<tree>?recursive=1`: paths relative to Tengoku/). `git ls-tree -l`
+    would do, but in the blobless clone the job makes it fetches the blobs one at a time (48,000 of them) to read their sizes; the API has the sizes. A truncated listing is refused: a library's size would be wrong."""
+    if doc.get("truncated"):
+        raise SystemExit("the GitHub API's listing of the Tengoku tree is truncated: the sizes of the libraries are not all known")
+    out: dict[str, int] = defaultdict(int)
+    for e in doc.get("tree", []):
+        if e.get("type") == "blob":
+            ns = str(e["path"]).split("/", 1)[0]
+            out[ns[: -len(".lean")] if ns.endswith(".lean") else ns] += int(e.get("size", 0))
     return dict(out)
 
 
@@ -231,7 +244,9 @@ def main(argv: list[str] | None = None) -> int:
     sub = ap.add_subparsers(dest="cmd", required=True)
     pl = sub.add_parser("plan")
     pl.add_argument("--all", required=True, type=Path)
-    pl.add_argument("--sizes", required=True, type=Path)
+    src = pl.add_mutually_exclusive_group(required=True)
+    src.add_argument("--sizes", type=Path, help="the output of `git ls-tree -r -l <commit> -- Tengoku`")
+    src.add_argument("--tree-json", type=Path, help="the GitHub API's listing of the Tengoku tree (what the workflow uses)")
     pl.add_argument("--paths", required=True, type=Path)
     pl.add_argument("--shards", type=int, default=6)
     pl.add_argument("--out", required=True, type=Path)
@@ -248,9 +263,12 @@ def main(argv: list[str] | None = None) -> int:
     a = ap.parse_args(argv)
     if a.cmd == "plan":
         tier, intake = data_libraries(a.paths.read_text(encoding="utf-8"))
-        p = plan(
-            a.all.read_text(encoding="utf-8"), sizes_by_namespace(a.sizes.read_text(encoding="utf-8")), tier, intake, a.shards, a.commit
+        sizes = (
+            sizes_by_namespace(a.sizes.read_text(encoding="utf-8"))
+            if a.sizes
+            else sizes_from_api(json.loads(a.tree_json.read_text(encoding="utf-8")))
         )
+        p = plan(a.all.read_text(encoding="utf-8"), sizes, tier, intake, a.shards, a.commit)
         a.out.write_text(json.dumps(p, indent=1, sort_keys=True) + "\n", encoding="utf-8")
         a.matrix.write_text(json.dumps(matrix(p), separators=(",", ":")) + "\n", encoding="utf-8")
         for g in p["shards"]:
