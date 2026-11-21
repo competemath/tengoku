@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """independent_check.py - the independent check (.github/workflows/independent-check.yml) in shards. Standard library only.
 
-  independent_check.py plan  --all Tengoku/All.lean (--tree-json API_TREE.json | --sizes LS_TREE.txt) --paths DATA_PATHS.txt --shards N --out plan.json --matrix matrix.json [--commit SHA]
-  independent_check.py merge --plan plan.json --reports DIR --commit SHA --lean4export-commit X --nanoda-commit Y --run URL --out independent-check.json
+  independent_check.py plan  --shards N [--commit SHA]
+  independent_check.py merge --commit SHA --lean4export-commit X --nanoda-commit Y --run URL [--patch-sha256 H]
+
+The files it reads and writes are at fixed places under the directory it runs in (the workflow's workspace), not on the command line: plan reads Tengoku/All.lean, tengoku-tree.json (the GitHub API's listing of the
+Tengoku tree) and data-paths.txt (the files of data/trusted and data/intake) and writes plan.json and matrix.json; merge reads plan/plan.json and every shard-N.json under shards/ and writes independent-check.json.
 
 One `lean4export Tengoku.All` of the whole tree is one process that writes about 13,000 lines a second: 4 h 04 min for 196.6 million lines on 2026-10-12, the last time the check passed. The tree has grown
 since, and the job's 350 minutes ran out in the export on every night from 16 November. The tree is cut into SHARDS, each a job of its own:
@@ -41,19 +44,6 @@ def pascal(s: str) -> str:
 def all_roots(text: str) -> list[str]:
     """the modules Tengoku/All.lean imports: the seeded root `Tengoku` and `Tengoku.<Library>` for every library"""
     return [m.group(1) for ln in text.splitlines() if (m := IMPORT.match(ln))]
-
-
-def sizes_by_namespace(ls_tree: str) -> dict[str, int]:
-    """bytes of Lean source per `Tengoku/<Namespace>` from `git ls-tree -r -l <commit> -- Tengoku` (`<mode> blob <sha> <size>\\t<path>`); the umbrella `Tengoku/<Namespace>.lean` counts for its namespace"""
-    out: dict[str, int] = defaultdict(int)
-    for line in ls_tree.splitlines():
-        meta, _, path = line.partition("\t")
-        parts = meta.split()
-        if len(parts) != 4 or parts[1] != "blob" or not path.startswith("Tengoku/") or not parts[3].isdigit():
-            continue
-        ns = path[len("Tengoku/") :].split("/", 1)[0]
-        out[ns[: -len(".lean")] if ns.endswith(".lean") else ns] += int(parts[3])
-    return dict(out)
 
 
 def sizes_from_api(doc: dict) -> dict[str, int]:
@@ -268,22 +258,23 @@ def merge(
     }
 
 
+ALL_LEAN = Path("Tengoku/All.lean")
+TREE_JSON = Path("tengoku-tree.json")
+DATA_PATHS = Path("data-paths.txt")
+PLAN_JSON = Path("plan.json")
+MATRIX_JSON = Path("matrix.json")
+PLAN_IN = Path("plan") / "plan.json"
+SHARDS_DIR = Path("shards")
+REPORT_JSON = Path("independent-check.json")
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     pl = sub.add_parser("plan")
-    pl.add_argument("--all", required=True, type=Path)
-    src = pl.add_mutually_exclusive_group(required=True)
-    src.add_argument("--sizes", type=Path, help="the output of `git ls-tree -r -l <commit> -- Tengoku`")
-    src.add_argument("--tree-json", type=Path, help="the GitHub API's listing of the Tengoku tree (what the workflow uses)")
-    pl.add_argument("--paths", required=True, type=Path)
-    pl.add_argument("--shards", type=int, default=6)
-    pl.add_argument("--out", required=True, type=Path)
-    pl.add_argument("--matrix", required=True, type=Path)
+    pl.add_argument("--shards", type=int, default=12)
     pl.add_argument("--commit")
     mg = sub.add_parser("merge")
-    mg.add_argument("--plan", required=True, type=Path)
-    mg.add_argument("--reports", required=True, type=Path)
     mg.add_argument("--commit", required=True)
     mg.add_argument("--lean4export-commit", required=True)
     mg.add_argument("--nanoda-commit", required=True)
@@ -292,32 +283,27 @@ def main(argv: list[str] | None = None) -> int:
         "--patch-sha256",
         help="the sha256 of scripts/ci/lean4export-own.patch at the workflow's commit: the library shards must say they ran with it",
     )
-    mg.add_argument("--out", required=True, type=Path)
     a = ap.parse_args(argv)
     if a.cmd == "plan":
-        tier, intake = data_libraries(a.paths.read_text(encoding="utf-8"))
-        sizes = (
-            sizes_by_namespace(a.sizes.read_text(encoding="utf-8"))
-            if a.sizes
-            else sizes_from_api(json.loads(a.tree_json.read_text(encoding="utf-8")))
-        )
-        p = plan(a.all.read_text(encoding="utf-8"), sizes, tier, intake, a.shards, a.commit)
-        a.out.write_text(json.dumps(p, indent=1, sort_keys=True) + "\n", encoding="utf-8")
-        a.matrix.write_text(json.dumps(matrix(p), separators=(",", ":")) + "\n", encoding="utf-8")
+        tier, intake = data_libraries(DATA_PATHS.read_text(encoding="utf-8"))
+        sizes = sizes_from_api(json.loads(TREE_JSON.read_text(encoding="utf-8")))
+        p = plan(ALL_LEAN.read_text(encoding="utf-8"), sizes, tier, intake, a.shards, a.commit)
+        PLAN_JSON.write_text(json.dumps(p, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+        MATRIX_JSON.write_text(json.dumps(matrix(p), separators=(",", ":")) + "\n", encoding="utf-8")
         for g in p["shards"]:
             print(f"shard {g['shard']}: {len(g['roots'])} roots, {len(g['libraries'])} libraries, {g['bytes'] / 1e6:.1f} MB of sources")
         return 0
-    p = json.loads(a.plan.read_text(encoding="utf-8"))
+    p = json.loads(PLAN_IN.read_text(encoding="utf-8"))
     reports: dict[int, dict] = {}
-    for f in sorted(a.reports.rglob("shard-*.json")):
+    for f in sorted(SHARDS_DIR.rglob("shard-*.json")):
         r = json.loads(f.read_text(encoding="utf-8"))
         if r["shard"] in reports:
             raise SystemExit(f"shard {r['shard']} reported twice")
         reports[r["shard"]] = r
     merged = merge(p, reports, a.commit, a.lean4export_commit, a.nanoda_commit, a.run, patch_sha256=a.patch_sha256)
-    a.out.write_text(json.dumps(merged, indent=2) + "\n", encoding="utf-8")
+    REPORT_JSON.write_text(json.dumps(merged, indent=2) + "\n", encoding="utf-8")
     print(
-        f"independent check of {a.commit}: {len(reports)} shards, {merged['nanoda']['declarations_checked']} declarations checked by nanoda; the counts of records are in {a.out.name}"
+        f"independent check of {a.commit}: {len(reports)} shards, {merged['nanoda']['declarations_checked']} declarations checked by nanoda; the counts of records are in {REPORT_JSON.name}"
     )
     return 0
 

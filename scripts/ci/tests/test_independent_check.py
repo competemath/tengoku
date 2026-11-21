@@ -112,17 +112,7 @@ class Parsing(unittest.TestCase):
         )
         self.assertEqual(I.all_roots("import Lean\nimport Tengoku.Seed.Foo\n-- import Tengoku.X\n"), [])
 
-    def test_sizes_come_from_git_ls_tree(self):
-        text = (
-            "100644 blob aaaa     120\tTengoku/Alpha.lean\n"
-            "100644 blob bbbb     880\tTengoku/Alpha/Sub/A.lean\n"
-            "100644 blob cccc      70\tTengoku/Seed/Algebra/X.lean\n"
-            "040000 tree dddd       -\tTengoku/Alpha/Sub\n"
-            "100644 blob eeee      10\tREADME.md\n"
-        )
-        self.assertEqual(I.sizes_by_namespace(text), {"Alpha": 1000, "Seed": 70})
-
-    def test_sizes_come_from_the_api_listing_too_and_a_truncated_one_is_refused(self):
+    def test_sizes_come_from_the_api_listing_and_a_truncated_one_is_refused(self):
         doc = {
             "truncated": False,
             "tree": [
@@ -334,186 +324,84 @@ class Merge(unittest.TestCase):
         self.assertEqual(r["axiom_scan"]["resting_on_other_axioms"]["Lean.trustCompiler"], ["Lean.reduceBool", "Lean.reduceNat"])
 
 
+def cli(d: str, *args: str):
+    """the script as the workflow runs it: in a directory that holds its files at the places it names (nothing on the command line says where)"""
+    return subprocess.run([sys.executable, str(CI / "independent_check.py"), *args], cwd=d, capture_output=True, text=True)
+
+
+def merge_args(*extra: str) -> list[str]:
+    return [
+        "merge",
+        "--commit",
+        COMMIT,
+        "--lean4export-commit",
+        L4E,
+        "--nanoda-commit",
+        NANODA,
+        "--patch-sha256",
+        PATCH,
+        "--run",
+        "https://example/run/1",
+        *extra,
+    ]
+
+
+def write_plan_inputs(t: Path) -> None:
+    (t / "Tengoku").mkdir()
+    (t / "Tengoku" / "All.lean").write_text(ALL)
+    (t / "tengoku-tree.json").write_text(
+        json.dumps({"truncated": False, "tree": [{"path": f"{ns}.lean", "type": "blob", "size": n} for ns, n in SIZES.items()]})
+    )
+    (t / "data-paths.txt").write_text(
+        "".join(f"data/trusted/{x}.jsonl\n" for x in TIER) + "".join(f"data/intake/{x}/manifest.jsonl\n" for x in INTAKE)
+    )
+
+
 class CommandLine(unittest.TestCase):
     def test_plan_then_merge_through_files(self):
         with tempfile.TemporaryDirectory() as d:
             t = Path(d)
-            (t / "All.lean").write_text(ALL)
-            (t / "ls.txt").write_text("".join(f"100644 blob abc {n}\tTengoku/{ns}.lean\n" for ns, n in SIZES.items()))
-            (t / "paths.txt").write_text(
-                "".join(f"data/trusted/{x}.jsonl\n" for x in TIER) + "".join(f"data/intake/{x}/manifest.jsonl\n" for x in INTAKE)
-            )
-            r = subprocess.run(
-                [
-                    sys.executable,
-                    str(CI / "independent_check.py"),
-                    "plan",
-                    "--all",
-                    "All.lean",
-                    "--sizes",
-                    "ls.txt",
-                    "--paths",
-                    "paths.txt",
-                    "--shards",
-                    "2",
-                    "--out",
-                    "plan.json",
-                    "--matrix",
-                    "matrix.json",
-                    "--commit",
-                    COMMIT,
-                ],
-                cwd=d,
-                capture_output=True,
-                text=True,
-            )
+            write_plan_inputs(t)
+            r = cli(d, "plan", "--shards", "2", "--commit", COMMIT)
             self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
             plan = json.loads((t / "plan.json").read_text())
             self.assertEqual(plan, make_plan(2))
             matrix = json.loads((t / "matrix.json").read_text())
             self.assertEqual(len(matrix["include"]), 3)
-            (t / "reports").mkdir()
+            (t / "plan").mkdir()
+            (t / "plan" / "plan.json").write_text(json.dumps(plan))  # the plan job's artifact, downloaded
+            (t / "shards").mkdir()
             for g in plan["shards"]:
-                (t / "reports" / f"shard-{g['shard']}.json").write_text(json.dumps(shard_report(g)))
-            r = subprocess.run(
-                [
-                    sys.executable,
-                    str(CI / "independent_check.py"),
-                    "merge",
-                    "--plan",
-                    "plan.json",
-                    "--reports",
-                    "reports",
-                    "--commit",
-                    COMMIT,
-                    "--lean4export-commit",
-                    L4E,
-                    "--nanoda-commit",
-                    NANODA,
-                    "--patch-sha256",
-                    PATCH,
-                    "--run",
-                    "https://example/run/1",
-                    "--out",
-                    "out.json",
-                ],
-                cwd=d,
-                capture_output=True,
-                text=True,
-            )
+                (t / "shards" / f"shard-{g['shard']}.json").write_text(json.dumps(shard_report(g)))
+            r = cli(d, *merge_args())
             self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
             self.assertIn("3 shards", r.stdout)
-            out = json.loads((t / "out.json").read_text())
+            out = json.loads((t / "independent-check.json").read_text())
             self.assertTrue(out["axiom_scan"]["passed"])
-
-    def test_plan_reads_the_api_listing_of_the_tree(self):
-        with tempfile.TemporaryDirectory() as d:
-            t = Path(d)
-            (t / "All.lean").write_text(ALL)
-            (t / "tree.json").write_text(
-                json.dumps({"truncated": False, "tree": [{"path": f"{ns}.lean", "type": "blob", "size": n} for ns, n in SIZES.items()]})
-            )
-            (t / "paths.txt").write_text(
-                "".join(f"data/trusted/{x}.jsonl\n" for x in TIER) + "".join(f"data/intake/{x}/manifest.jsonl\n" for x in INTAKE)
-            )
-            r = subprocess.run(
-                [
-                    sys.executable,
-                    str(CI / "independent_check.py"),
-                    "plan",
-                    "--all",
-                    "All.lean",
-                    "--tree-json",
-                    "tree.json",
-                    "--paths",
-                    "paths.txt",
-                    "--shards",
-                    "2",
-                    "--out",
-                    "plan.json",
-                    "--matrix",
-                    "matrix.json",
-                    "--commit",
-                    COMMIT,
-                ],
-                cwd=d,
-                capture_output=True,
-                text=True,
-            )
-            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
-            self.assertEqual(json.loads((t / "plan.json").read_text()), make_plan(2))
 
     def test_merge_writes_nothing_when_a_shard_is_missing(self):
         with tempfile.TemporaryDirectory() as d:
             t = Path(d)
             plan = make_plan(2)
-            (t / "plan.json").write_text(json.dumps(plan))
-            (t / "reports").mkdir()
-            (t / "reports" / "shard-0.json").write_text(json.dumps(shard_report(plan["shards"][0])))
-            r = subprocess.run(
-                [
-                    sys.executable,
-                    str(CI / "independent_check.py"),
-                    "merge",
-                    "--plan",
-                    "plan.json",
-                    "--reports",
-                    "reports",
-                    "--commit",
-                    COMMIT,
-                    "--lean4export-commit",
-                    L4E,
-                    "--nanoda-commit",
-                    NANODA,
-                    "--patch-sha256",
-                    PATCH,
-                    "--run",
-                    "x",
-                    "--out",
-                    "out.json",
-                ],
-                cwd=d,
-                capture_output=True,
-                text=True,
-            )
+            (t / "plan").mkdir()
+            (t / "plan" / "plan.json").write_text(json.dumps(plan))
+            (t / "shards").mkdir()
+            (t / "shards" / "shard-0.json").write_text(json.dumps(shard_report(plan["shards"][0])))
+            r = cli(d, *merge_args())
             self.assertNotEqual(r.returncode, 0)
-            self.assertFalse((t / "out.json").exists())
+            self.assertFalse((t / "independent-check.json").exists())
 
     def test_a_shard_reported_twice_is_refused(self):
         with tempfile.TemporaryDirectory() as d:
             t = Path(d)
             plan = make_plan(2)
-            (t / "plan.json").write_text(json.dumps(plan))
-            (t / "reports" / "a").mkdir(parents=True)
-            (t / "reports" / "b").mkdir(parents=True)
+            (t / "plan").mkdir()
+            (t / "plan" / "plan.json").write_text(json.dumps(plan))
+            (t / "shards" / "a").mkdir(parents=True)
+            (t / "shards" / "b").mkdir(parents=True)
             for sub in ("a", "b"):
-                (t / "reports" / sub / "shard-0.json").write_text(json.dumps(shard_report(plan["shards"][0])))
-            r = subprocess.run(
-                [
-                    sys.executable,
-                    str(CI / "independent_check.py"),
-                    "merge",
-                    "--plan",
-                    "plan.json",
-                    "--reports",
-                    "reports",
-                    "--commit",
-                    COMMIT,
-                    "--lean4export-commit",
-                    L4E,
-                    "--nanoda-commit",
-                    NANODA,
-                    "--patch-sha256",
-                    PATCH,
-                    "--run",
-                    "x",
-                    "--out",
-                    "out.json",
-                ],
-                cwd=d,
-                capture_output=True,
-                text=True,
-            )
+                (t / "shards" / sub / "shard-0.json").write_text(json.dumps(shard_report(plan["shards"][0])))
+            r = cli(d, *merge_args())
             self.assertNotEqual(r.returncode, 0)
             self.assertIn("reported twice", r.stdout + r.stderr)
 
