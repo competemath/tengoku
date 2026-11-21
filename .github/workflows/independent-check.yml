@@ -30,7 +30,7 @@ on:
       shards:
         description: "How many shards the libraries that arrived as modules are cut into (the seed is shard 0 besides)"
         required: false
-        default: "12"
+        default: "24"
       parallel:
         description: "How many shards run at once (the merge queue's builds need runners too: the organization has 20 hosted runners)"
         required: false
@@ -66,7 +66,7 @@ jobs:
       commit: ${{ steps.plan.outputs.commit }}
     steps:
       - name: The commit, in full (the run title names it, and a release matches the title exactly)
-        env: { WANT: "${{ inputs.commit }}", SHARDS: "${{ inputs.shards || '12' }}", PARALLEL: "${{ inputs.parallel }}" }
+        env: { WANT: "${{ inputs.commit }}", SHARDS: "${{ inputs.shards || '24' }}", PARALLEL: "${{ inputs.parallel }}" }
         run: |
           [ -z "$WANT" ] || [[ "$WANT" =~ ^[0-9a-f]{40}$ ]] || { echo "::error::commit must be the full 40-character SHA: git rev-parse <commit>"; exit 1; }
           [[ "$SHARDS" =~ ^[0-9]+$ ]] && [ "$SHARDS" -ge 1 ] && [ "$SHARDS" -le 40 ] || { echo "::error::shards must be a number from 1 to 40"; exit 1; }
@@ -83,7 +83,7 @@ jobs:
           persist-credentials: false
       - name: The plan (which roots go to which shard)
         id: plan
-        env: { WANT: "${{ inputs.commit }}", SHARDS: "${{ inputs.shards || '12' }}", ONLY: "${{ inputs.only_shard }}", GH_TOKEN: "${{ github.token }}" }
+        env: { WANT: "${{ inputs.commit }}", SHARDS: "${{ inputs.shards || '24' }}", ONLY: "${{ inputs.only_shard }}", GH_TOKEN: "${{ github.token }}" }
         run: |
           [ "$(git rev-parse HEAD)" = "${WANT:-$GITHUB_SHA}" ] || { echo "::error::checked out $(git rev-parse HEAD), not ${WANT:-$GITHUB_SHA}"; exit 1; }
           git merge-base --is-ancestor HEAD origin/main || { echo "::error::$(git rev-parse HEAD) is not on main"; exit 1; }
