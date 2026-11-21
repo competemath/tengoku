@@ -74,15 +74,16 @@ jobs:
           persist-credentials: false
       - name: The plan (which roots go to which shard)
         id: plan
-        env: { WANT: "${{ inputs.commit }}", SHARDS: "${{ inputs.shards || '6' }}" }
+        env: { WANT: "${{ inputs.commit }}", SHARDS: "${{ inputs.shards || '6' }}", GH_TOKEN: "${{ github.token }}" }
         run: |
           [ "$(git rev-parse HEAD)" = "${WANT:-$GITHUB_SHA}" ] || { echo "::error::checked out $(git rev-parse HEAD), not ${WANT:-$GITHUB_SHA}"; exit 1; }
           git merge-base --is-ancestor HEAD origin/main || { echo "::error::$(git rev-parse HEAD) is not on main"; exit 1; }
           # the planner comes from this workflow's own commit, not from the (possibly older) commit being checked
           git show "$GITHUB_SHA:scripts/ci/independent_check.py" > "$RUNNER_TEMP/independent_check.py"
-          git ls-tree -r -l HEAD -- Tengoku > "$RUNNER_TEMP/ls-tree.txt"
+          # the sizes of the libraries' sources come from the API's listing of the Tengoku tree: `git ls-tree -l` fetches the blobs of a blobless clone one at a time
+          gh api "repos/$GITHUB_REPOSITORY/git/trees/$(git rev-parse HEAD:Tengoku)?recursive=1" > "$RUNNER_TEMP/tengoku-tree.json"
           git ls-tree -r --name-only HEAD -- data/trusted data/intake > "$RUNNER_TEMP/data-paths.txt"
-          python3 "$RUNNER_TEMP/independent_check.py" plan --all Tengoku/All.lean --sizes "$RUNNER_TEMP/ls-tree.txt" --paths "$RUNNER_TEMP/data-paths.txt" \
+          python3 "$RUNNER_TEMP/independent_check.py" plan --all Tengoku/All.lean --tree-json "$RUNNER_TEMP/tengoku-tree.json" --paths "$RUNNER_TEMP/data-paths.txt" \
             --shards "$SHARDS" --out plan.json --matrix "$RUNNER_TEMP/matrix.json" --commit "$(git rev-parse HEAD)" | tee -a "$GITHUB_STEP_SUMMARY"
           { echo "matrix=$(cat "$RUNNER_TEMP/matrix.json")"; echo "commit=$(git rev-parse HEAD)"; } >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
