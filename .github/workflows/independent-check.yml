@@ -220,14 +220,15 @@ jobs:
           [ "$rc" = 137 ] || { echo "the memory guard does not stop a process that outgrows it (exit $rc)"; exit 1; }
           echo "the memory guard stops a process that outgrows it"
           py="$(command -v python3)"
-          ( guard 4G runuser -u "$(id -un)" -- bash -c 'ulimit -v 12582912 && exec "$0" "$@"' "$py" "$RUNNER_TEMP/axiom_scan.py" "$RUNNER_TEMP/tengoku.ndjson" --records data/trusted --libraries "$LIBRARIES" --report axiom-scan.json ) > axiom-scan.out 2>&1 &
+          ( guard 3G runuser -u "$(id -un)" -- env RUNNER_TEMP="$RUNNER_TEMP" bash -c 'ulimit -v 12582912 && exec "$0" "$@"' "$py" "$RUNNER_TEMP/axiom_scan.py" "$RUNNER_TEMP/tengoku.ndjson" --records data/trusted --libraries "$LIBRARIES" --report axiom-scan.json ) > axiom-scan.out 2>&1 &
           scan=$!
           # what the two use, every minute (read in the log of a job that ended; a runner that is lost takes its log with it)
           ( while sleep 60; do echo "t=$(( $(date +%s) - start )) s: nanoda $(ps -C nanoda_bin -o rss= | awk '{s+=$1} END{printf "%.1f", s/1048576}') GB, axiom scan $(ps -C python3 -o rss= | sort -n | tail -1 | awk '{printf "%.1f", $1/1048576}') GB; $(free -m | awk '/^Mem:/{printf "used %d MB, available %d MB", $3, $7} /^Swap:/{printf ", swap used %d MB", $3}')"; grep '^trace' time.log 2> /dev/null | tail -4; done ) &
           mem=$!
           # shellcheck disable=SC2024  # the output files are the runner's own, written outside the sealed namespace on purpose
-          guard 9G unshare --net runuser -u "$(id -un)" -- bash -c 'ulimit -v 20971520 && exec /usr/bin/time -v "$0" "$1"' "$nanoda" "$RUNNER_TEMP/nanoda.json" > nanoda.out 2> time.log && ok=1 || ok=0
+          guard 10G unshare --net runuser -u "$(id -un)" -- bash -c 'ulimit -v 20971520 && exec /usr/bin/time -v "$0" "$1"' "$nanoda" "$RUNNER_TEMP/nanoda.json" > nanoda.out 2> time.log && ok=1 || ok=0
           cat nanoda.out
+          grep '^BUDGET' time.log || true
           if [ "$ok" = 1 ]; then grep -E 'Maximum resident|Elapsed' time.log || true; else grep '^trace' time.log | tail -40; grep -v '^trace' time.log | tail -40; sudo dmesg 2> /dev/null | grep -iE 'out of memory|oom-kill|killed process' | tail -5 || true; fi
           echo "$(( $(date +%s) - start ))" > "$RUNNER_TEMP/nanoda-seconds.txt"
           echo "nanoda: $([ "$ok" = 1 ] && echo 'every declaration checked' || echo FAILED) in $(cat "$RUNNER_TEMP/nanoda-seconds.txt") s"

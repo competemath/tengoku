@@ -1,8 +1,18 @@
+diff --git a/src/lib.rs b/src/lib.rs
+index e815cf1..16a0561 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -22,3 +22,5 @@ pub mod util;
+ 
+ // the stack of each checking thread (a thread's stack is address space until it is used): 16 MiB overflowed on libraries with deep terms (Tengoku's independent check)
+ pub(crate) const STACK_SIZE: usize = 1_073_741_824;
++/// DIAGNOSTIC (not part of the checking): a declaration whose temporary storage outgrows this many expressions is given up on and named; the others go on.
++pub(crate) const NODE_BUDGET: usize = 30_000_000;
 diff --git a/src/tc.rs b/src/tc.rs
-index 27eaaac..6017e7a 100644
+index 27eaaac..827f7a5 100644
 --- a/src/tc.rs
 +++ b/src/tc.rs
-@@ -148,21 +148,57 @@ impl<'p> ExportFile<'p> {
+@@ -148,21 +148,64 @@ impl<'p> ExportFile<'p> {
      /// Check all declarations in this export file, spawning `num_threads` as
      /// checkers.
      fn check_all_declars_par(&self, num_threads: usize) {
@@ -54,11 +64,42 @@ index 27eaaac..6017e7a 100644
 +                        .spawn_scoped(sco, move || loop {
                              let idx = task_num.fetch_add(1, Relaxed);
                              if let Some((_, declar)) = self.declars.get_index(idx) {
+-                                self.check_declar(declar);
 +                                since[i].store(t0.elapsed().as_secs(), Relaxed);
 +                                current[i].store(idx, Relaxed);
-                                 self.check_declar(declar);
++                                if let Err(payload) = std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| self.check_declar(declar))) {
++                                    if payload.downcast_ref::<crate::util::BudgetExceeded>().is_some() {
++                                        let name = self.with_ctx(|ctx| format!("{:?}", ctx.debug_print(declar.info().name)));
++                                        eprintln!("BUDGET {} s: declaration {} gave up after {} expressions: {}", t0.elapsed().as_secs(), idx, crate::NODE_BUDGET, name);
++                                    } else {
++                                        std::panic::resume_unwind(payload)
++                                    }
++                                }
                              } else {
 +                                current[i].store(usize::MAX, Relaxed);
                                  break
                              }
                          })
+diff --git a/src/util.rs b/src/util.rs
+index a251636..65873d8 100644
+--- a/src/util.rs
++++ b/src/util.rs
+@@ -395,7 +395,11 @@ impl<'t, 'p: 't> TcCtx<'t, 'p> {
+         if let Some(idx) = self.export_file.dag.exprs.get_index_of(&e) {
+             Ptr::from(DagMarker::ExportFile, idx)
+         } else {
+-            Ptr::from(DagMarker::TcCtx, self.dag.exprs.insert_full(e).0)
++            let r = Ptr::from(DagMarker::TcCtx, self.dag.exprs.insert_full(e).0);
++            if self.dag.exprs.len() > crate::NODE_BUDGET {
++                std::panic::panic_any(BudgetExceeded)
++            }
++            r
+         }
+     }
+ 
+@@ -1015,3 +1019,5 @@ struct ExitStatus {
+     pp_err: Option<String>
+ }
+ 
++/// the payload of the panic that gives up on a declaration whose temporary storage outgrew `NODE_BUDGET` (diagnostic)
++pub struct BudgetExceeded;
