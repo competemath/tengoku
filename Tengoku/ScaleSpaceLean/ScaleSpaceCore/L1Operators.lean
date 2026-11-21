@@ -1,0 +1,542 @@
+/-
+Copyright (c) 2026 Daniel Fagerström. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Daniel Fagerström
+-/
+import Tengoku.Seed.MeasureTheory.Group.Convolution
+import Tengoku.Seed.MeasureTheory.Group.Integral
+import Tengoku.Seed.MeasureTheory.Group.LIntegral
+import Tengoku.Seed.MeasureTheory.Group.Prod
+import Tengoku.Seed.MeasureTheory.Integral.Prod
+import Tengoku.Seed.MeasureTheory.Measure.Haar.NormedSpace
+import Tengoku.Seed.MeasureTheory.Measure.Haar.Unique
+import Tengoku.Seed.MeasureTheory.Measure.Lebesgue.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# `L¹(ℝ)`, translation, reflection, dilation, and convolution by a measure
+
+Home: none (standard analysis in Mathlib's types: the translation, reflection, dilation and
+measure-convolution operators on `L¹(ℝ)`, with no programme vocabulary in any statement; ref:
+@larsen1971introduction, Thm. 0.1.1, p. 2)
+
+Slice 1 of E-0009 (hub `proposals/E-0009.md`), moved from Paper I's `Operator.lean` /
+`OperatorL1.lean` / `Family.lean` and Paper V's `SpatialLine/Basic.lean` /
+`ConvolutionOperator.lean` / `Pairing.lean`, where the two developments carried this analysis as
+byte-identical copies (`offices/engineer/notes/2026-09-19-lean-duplication-survey.md` §§ 3, 6).
+Neither article is `require`d here; the two copies are collapsed into one, under `ScaleSpace`.
+
+## Reflection and dilation (Q-0301)
+
+Q-0187 left Paper V's reflection `reflL1`/`reflₗ` and dilation `dilate`/`dilₗ`/`dilL1` behind as
+spatial-specific. Q-0301 moved them in from `SpatialLine/Basic.lean` at Paper V's `v0.1`: a second
+spatial module (Paper VII) needs them, with the cascade-family vocabulary stated over them
+(`ScaleSpaceCore.Family`), which is case (c) of the second-demand test (hub `RELEASES.md`
+§ "Dependencies between modules"). What the convolution operator does against them
+(`mconvL1_reflL1`, `dilL1_comp_mconvL1`) is in `ScaleSpaceCore.Transport`, because the reflection
+clause is stated with `IsSymmetric` (`ScaleSpaceCore.Transform`).
+
+## Design
+
+* `X = ℝ →₁[volume] ℝ`, real, and the operators are `X →L[ℝ] X`.
+* `dilate lam f = lam⁻¹ f (lam⁻¹ ·)` — the mass-preserving normalisation, which is what makes
+  `dilL1` an isometry of `L¹` and matches the measure-side dilation, pushforward along
+  `x ↦ lam * x`.
+* `mconv μ f x = ∫ y, f (x - y) ∂μ`, packaged as the bounded operator `mconvL1`; the six
+  properties below are what a translation- and reflection-covariant, positivity- and
+  mass-preserving convolution family needs of it, short of the reflection clause.
+
+## References
+
+* @larsen1971introduction, Thm. 0.1.1 and Cor. 0.1.1, pp. 2–6: a continuous linear operator on
+  `L¹(G)` commutes with every translation iff it is convolution by a (unique) bounded measure
+  `μ ∈ M(G)`, with operator norm `‖μ‖` — the standard fact `mconvL1` realises and `norm_mconvL1_le`
+  states the inequality half of, for `G = ℝ`. Translation (`transL1`), reflection (`reflL1`) and
+  the mass-preserving dilation (`dilL1`) are elementary measure-preserving substitutions, not
+  separately cited.
+-/
+
+namespace ScaleSpace
+
+open MeasureTheory Set
+open scoped ENNReal
+
+/-- `X = L¹(ℝ)`.-/
+noncomputable abbrev X := ℝ →₁[volume] ℝ
+
+/-- The positive cone `L¹₊`.-/
+def IsNonneg (f : X) : Prop := 0 ≤ᵐ[volume] (f : ℝ → ℝ)
+
+/-! ## Translation -/
+
+/-- `x ↦ x - a` preserves Lebesgue measure.
+@isnad1 id=measurep.0h1v.s4.6831f8beef63 from=translated src=- shape=6bac59e7 vocab=decd8885
+-/
+theorem measurePreserving_sub_const (a : ℝ) :
+    MeasurePreserving (fun x : ℝ => x - a) volume volume := by
+  simpa [sub_eq_add_neg] using measurePreserving_add_right (volume : Measure ℝ) (-a)
+
+/--
+@isnad1 id=eventual.1h3v.s6.0c31f05e3c27 from=translated src=- shape=1bce8ed8 vocab=6f3fe1d5
+-/
+theorem translate_congr_ae (a : ℝ) {f g : ℝ → ℝ} (h : f =ᵐ[volume] g) :
+    (fun x => f (x - a)) =ᵐ[volume] fun x => g (x - a) :=
+  (measurePreserving_sub_const a).quasiMeasurePreserving.ae h
+
+/--
+@isnad1 id=integrab.1h2v.s6.8708e9968a4e from=translated src=- shape=b28f082c vocab=f7b7db0f
+-/
+theorem integrable_translate {f : ℝ → ℝ} (hf : Integrable f) (a : ℝ) :
+    Integrable (fun x => f (x - a)) :=
+  ((measurePreserving_sub_const a).integrable_comp hf.aestronglyMeasurable).mpr hf
+
+/-- `T_a f = f(· - a)` as a linear map on `L¹`.-/
+noncomputable def transₗ (a : ℝ) : (ℝ →₁[volume] ℝ) →ₗ[ℝ] (ℝ →₁[volume] ℝ) where
+  toFun f := (integrable_translate (L1.integrable_coeFn f) a).toL1 _
+  map_add' f g := by
+    rw [← Integrable.toL1_add]
+    exact (Integrable.toL1_eq_toL1_iff _ _ _ _).mpr (translate_congr_ae a (Lp.coeFn_add f g))
+  map_smul' c f := by
+    simp only [RingHom.id_apply]
+    rw [← Integrable.toL1_smul']
+    exact (Integrable.toL1_eq_toL1_iff _ _ _ _).mpr (translate_congr_ae a (Lp.coeFn_smul c f))
+
+/-- **Translation is an isometry of `L¹`** — Lebesgue measure is translation invariant.-/
+noncomputable def transL1 (a : ℝ) : (ℝ →₁[volume] ℝ) →L[ℝ] (ℝ →₁[volume] ℝ) :=
+  (transₗ a).mkContinuous 1 fun f => by
+    rw [transₗ, LinearMap.coe_mk, AddHom.coe_mk, Integrable.norm_toL1_eq_lintegral_enorm,
+      one_mul, Lp.norm_def, eLpNorm_one_eq_lintegral_enorm]
+    exact le_of_eq (congrArg ENNReal.toReal
+      (lintegral_sub_right_eq_self (fun x => ‖(f : ℝ → ℝ) x‖ₑ) a))
+
+/--
+@isnad1 id=eventual.0h2v.s12.eb8942803acb from=translated src=- shape=9c0a3188 vocab=ae382963
+-/
+lemma coeFn_transL1 (a : ℝ) (f : ℝ →₁[volume] ℝ) :
+    transL1 a f =ᵐ[volume] fun x => (f : ℝ → ℝ) (x - a) :=
+  Integrable.coeFn_toL1 (integrable_translate (L1.integrable_coeFn f) a)
+
+/-! ## Reflection
+
+`(R f)(x) = f(-x)`, an isometric involution of `L¹`, because Lebesgue measure on the line is
+invariant under `x ↦ -x`.
+-/
+
+/-- `x ↦ -x` preserves Lebesgue measure.
+@isnad1 id=measurep.0h0v.s4.47013b810af8 from=translated src=- shape=03e42864 vocab=6c64314c
+-/
+theorem measurePreserving_neg' : MeasurePreserving (fun x : ℝ => -x) volume volume :=
+  Measure.measurePreserving_neg (volume : Measure ℝ)
+
+/--
+@isnad1 id=eventual.1h2v.s6.1977203a3ad0 from=translated src=- shape=5cce1f58 vocab=9e73e2b6
+-/
+theorem reflect_congr_ae {f g : ℝ → ℝ} (h : f =ᵐ[volume] g) :
+    (fun x => f (-x)) =ᵐ[volume] fun x => g (-x) :=
+  measurePreserving_neg'.quasiMeasurePreserving.ae h
+
+/--
+@isnad1 id=integrab.1h1v.s6.cebc25b97e56 from=translated src=- shape=1aab83ad vocab=791032ab
+-/
+theorem integrable_reflect {f : ℝ → ℝ} (hf : Integrable f) :
+    Integrable (fun x => f (-x)) :=
+  (measurePreserving_neg'.integrable_comp hf.aestronglyMeasurable).mpr hf
+
+/-- `R f = f(-·)` as a linear map on `L¹`.-/
+noncomputable def reflₗ : (ℝ →₁[volume] ℝ) →ₗ[ℝ] (ℝ →₁[volume] ℝ) where
+  toFun f := (integrable_reflect (L1.integrable_coeFn f)).toL1 _
+  map_add' f g := by
+    rw [← Integrable.toL1_add]
+    exact (Integrable.toL1_eq_toL1_iff _ _ _ _).mpr (reflect_congr_ae (Lp.coeFn_add f g))
+  map_smul' c f := by
+    simp only [RingHom.id_apply]
+    rw [← Integrable.toL1_smul']
+    exact (Integrable.toL1_eq_toL1_iff _ _ _ _).mpr (reflect_congr_ae (Lp.coeFn_smul c f))
+
+/-- **Reflection is an isometry of `L¹`.** The change of variables is `x ↦ -x`, a measurable
+equivalence preserving Lebesgue measure, so the constant is `1`.-/
+noncomputable def reflL1 : (ℝ →₁[volume] ℝ) →L[ℝ] (ℝ →₁[volume] ℝ) :=
+  reflₗ.mkContinuous 1 fun f => by
+    rw [reflₗ, LinearMap.coe_mk, AddHom.coe_mk, Integrable.norm_toL1_eq_lintegral_enorm,
+      one_mul, Lp.norm_def, eLpNorm_one_eq_lintegral_enorm]
+    refine le_of_eq (congrArg ENNReal.toReal ?_)
+    exact measurePreserving_neg'.lintegral_comp_emb
+      (Homeomorph.neg ℝ).toMeasurableEquiv.measurableEmbedding fun x => ‖(f : ℝ → ℝ) x‖ₑ
+
+/--
+@isnad1 id=eventual.0h1v.s12.11415d19dd3e from=translated src=- shape=df1697ff vocab=eb8162ac
+-/
+lemma coeFn_reflL1 (f : ℝ →₁[volume] ℝ) :
+    reflL1 f =ᵐ[volume] fun x => (f : ℝ → ℝ) (-x) :=
+  Integrable.coeFn_toL1 (integrable_reflect (L1.integrable_coeFn f))
+
+/-! ## Dilation -/
+
+/-- Multiplication by a nonzero constant is quasi-measure-preserving.
+@isnad1 id=quasimea.1h1v.s5.65c0270ffaa1 from=translated src=- shape=ef915292 vocab=1f9430ff
+-/
+theorem quasiMeasurePreserving_const_mul {c : ℝ} (hc : c ≠ 0) :
+    Measure.QuasiMeasurePreserving (fun x : ℝ => c * x) volume volume := by
+  refine ⟨measurable_const_mul c, ?_⟩
+  rw [Real.map_volume_mul_left hc]
+  exact Measure.smul_absolutelyContinuous
+
+/-- `D_lam f = lam⁻¹ f(lam⁻¹ ·)`, the mass-preserving normalisation.-/
+noncomputable def dilate (lam : ℝ) (f : ℝ → ℝ) : ℝ → ℝ := fun x => lam⁻¹ * f (lam⁻¹ * x)
+
+/--
+@isnad1 id=eventual.2h3v.s6.93ae8792d450 from=translated src=- shape=07a986a5 vocab=952ad7c7
+-/
+theorem dilate_congr_ae {lam : ℝ} (hlam : lam ≠ 0) {f g : ℝ → ℝ} (h : f =ᵐ[volume] g) :
+    dilate lam f =ᵐ[volume] dilate lam g := by
+  filter_upwards [(quasiMeasurePreserving_const_mul (inv_ne_zero hlam)).ae h] with x hx
+  simp only [dilate, hx]
+
+/--
+@isnad1 id=integrab.2h2v.s6.a288a084734d from=translated src=- shape=93b8e303 vocab=66953190
+-/
+theorem integrable_dilate {f : ℝ → ℝ} (hf : Integrable f) {lam : ℝ} (hlam : lam ≠ 0) :
+    Integrable (dilate lam f) :=
+  (Integrable.comp_mul_left' hf (inv_ne_zero hlam)).const_mul lam⁻¹
+
+/-- The change of variables the isometry rests on: `∫⁻ g(c x) dx = |c⁻¹| ∫⁻ g`.
+@isnad1 id=eq.2h2v.s6.71ae6a3c9395 from=translated src=- shape=68a4f78c vocab=7579f264
+-/
+theorem lintegral_comp_const_mul {c : ℝ} (hc : c ≠ 0) {g : ℝ → ℝ≥0∞} (hg : AEMeasurable g) :
+    ∫⁻ x, g (c * x) = ENNReal.ofReal |c⁻¹| * ∫⁻ x, g x := by
+  have hmap := Real.map_volume_mul_left hc
+  calc ∫⁻ x, g (c * x)
+      = ∫⁻ y, g y ∂(Measure.map (fun x : ℝ => c * x) volume) := by
+        rw [lintegral_map' (hg.mono_ac (by rw [hmap]; exact Measure.smul_absolutelyContinuous))
+          (measurable_const_mul c).aemeasurable]
+    _ = ENNReal.ofReal |c⁻¹| * ∫⁻ x, g x := by
+        rw [hmap, lintegral_smul_measure, smul_eq_mul]
+
+/-- `D_lam` as a linear map on `L¹`.-/
+noncomputable def dilₗ {lam : ℝ} (hlam : lam ≠ 0) :
+    (ℝ →₁[volume] ℝ) →ₗ[ℝ] (ℝ →₁[volume] ℝ) where
+  toFun f := (integrable_dilate (L1.integrable_coeFn f) hlam).toL1 _
+  map_add' f g := by
+    rw [← Integrable.toL1_add]
+    refine (Integrable.toL1_eq_toL1_iff _ _ _ _).mpr ?_
+    refine (dilate_congr_ae hlam (Lp.coeFn_add f g)).trans ?_
+    filter_upwards with x
+    simp only [dilate, Pi.add_apply, mul_add]
+  map_smul' c f := by
+    simp only [RingHom.id_apply]
+    rw [← Integrable.toL1_smul']
+    refine (Integrable.toL1_eq_toL1_iff _ _ _ _).mpr ?_
+    refine (dilate_congr_ae hlam (Lp.coeFn_smul c f)).trans ?_
+    filter_upwards with x
+    simp only [dilate, Pi.smul_apply, smul_eq_mul]
+    ring
+
+/-- **Dilation is an isometry of `L¹`** for `lam > 0`.-/
+noncomputable def dilL1 {lam : ℝ} (hlam : 0 < lam) :
+    (ℝ →₁[volume] ℝ) →L[ℝ] (ℝ →₁[volume] ℝ) :=
+  (dilₗ hlam.ne').mkContinuous 1 fun f => by
+    rw [dilₗ, LinearMap.coe_mk, AddHom.coe_mk, Integrable.norm_toL1_eq_lintegral_enorm,
+      one_mul, Lp.norm_def, eLpNorm_one_eq_lintegral_enorm]
+    refine le_of_eq (congrArg ENNReal.toReal ?_)
+    have henorm : ∀ x : ℝ, ‖dilate lam (f : ℝ → ℝ) x‖ₑ
+        = ENNReal.ofReal lam⁻¹ * ‖(f : ℝ → ℝ) (lam⁻¹ * x)‖ₑ := by
+      intro x
+      simp only [dilate, enorm_mul, Real.enorm_eq_ofReal (inv_nonneg.mpr hlam.le)]
+    simp only [henorm]
+    rw [lintegral_const_mul' _ _ ENNReal.ofReal_ne_top,
+      lintegral_comp_const_mul (inv_ne_zero hlam.ne') (Lp.aestronglyMeasurable f).enorm,
+      ← mul_assoc, inv_inv, abs_of_pos hlam, ← ENNReal.ofReal_mul (le_of_lt (inv_pos.mpr hlam)),
+      inv_mul_cancel₀ hlam.ne', ENNReal.ofReal_one, one_mul]
+
+/--
+@isnad1 id=eventual.1h2v.s12.fa9bb0113e58 from=translated src=- shape=d2480ee3 vocab=03597730
+-/
+lemma coeFn_dilL1 {lam : ℝ} (hlam : 0 < lam) (f : ℝ →₁[volume] ℝ) :
+    dilL1 hlam f =ᵐ[volume] dilate lam (f : ℝ → ℝ) :=
+  Integrable.coeFn_toL1 (integrable_dilate (L1.integrable_coeFn f) hlam.ne')
+
+/-! ## Convolution by a measure -/
+
+/-- `(μ * f)(x) = ∫ f(x - y) μ(dy)`.-/
+noncomputable def mconv (μ : Measure ℝ) (f : ℝ → ℝ) : ℝ → ℝ := fun x => ∫ y, f (x - y) ∂μ
+
+/--
+@isnad1 id=eq.0h3v.s5.d9946153d72d from=translated src=- shape=33d51da9 vocab=250e32eb
+-/
+lemma mconv_apply (μ : Measure ℝ) (f : ℝ → ℝ) (x : ℝ) :
+    mconv μ f x = ∫ y, f (x - y) ∂μ := rfl
+
+/--
+@isnad1 id=eq.1h2v.s6.d4bed9675047 from=translated src=- shape=70a100e1 vocab=6d21b339
+-/
+theorem lintegral_lintegral_sub_eq (μ : Measure ℝ) [SFinite μ] {g : ℝ → ℝ≥0∞}
+    (hg : AEMeasurable g) :
+    ∫⁻ x, (∫⁻ y, g (x - y) ∂μ) = μ univ * ∫⁻ x, g x := by
+  have huncurry : AEMeasurable (Function.uncurry fun x y : ℝ => g (x - y)) (volume.prod μ) :=
+    hg.comp_quasiMeasurePreserving (quasiMeasurePreserving_sub volume μ)
+  calc ∫⁻ x, (∫⁻ y, g (x - y) ∂μ)
+      = ∫⁻ y, (∫⁻ x, g (x - y) ∂volume) ∂μ := lintegral_lintegral_swap huncurry
+    _ = ∫⁻ _, (∫⁻ x, g x) ∂μ := lintegral_congr fun y => lintegral_sub_right_eq_self _ y
+    _ = μ univ * ∫⁻ x, g x := by rw [lintegral_const, mul_comm]
+
+/--
+@isnad1 id=le.1h2v.s7.ed24faeacdf5 from=translated src=- shape=38edf45b vocab=1d756d79
+-/
+theorem lintegral_enorm_mconv_le (μ : Measure ℝ) [SFinite μ] {f : ℝ → ℝ}
+    (hf : AEStronglyMeasurable f) :
+    ∫⁻ x, ‖mconv μ f x‖ₑ ≤ μ univ * ∫⁻ x, ‖f x‖ₑ := by
+  calc ∫⁻ x, ‖mconv μ f x‖ₑ ≤ ∫⁻ x, (∫⁻ y, ‖f (x - y)‖ₑ ∂μ) :=
+        lintegral_mono fun x => enorm_integral_le_lintegral_enorm _
+    _ = μ univ * ∫⁻ x, ‖f x‖ₑ := lintegral_lintegral_sub_eq μ hf.enorm
+
+/--
+@isnad1 id=integrab.2h2v.s6.b14c252911a4 from=translated src=- shape=2f5b0347 vocab=00222220
+-/
+theorem integrable_uncurry_sub (μ : Measure ℝ) [IsFiniteMeasure μ] {f : ℝ → ℝ}
+    (hf : AEStronglyMeasurable f) (hfi : Integrable f) :
+    Integrable (Function.uncurry fun x y : ℝ => f (x - y)) (volume.prod μ) := by
+  have hm : AEStronglyMeasurable (Function.uncurry fun x y : ℝ => f (x - y)) (volume.prod μ) :=
+    hf.comp_quasiMeasurePreserving (quasiMeasurePreserving_sub volume μ)
+  refine ⟨hm, ?_⟩
+  have hprod : ∫⁻ p, ‖Function.uncurry (fun x y : ℝ => f (x - y)) p‖ₑ ∂(volume.prod μ)
+      = ∫⁻ x, (∫⁻ y, ‖f (x - y)‖ₑ ∂μ) := lintegral_prod _ hm.enorm
+  rw [hasFiniteIntegral_iff_enorm, hprod, lintegral_lintegral_sub_eq μ hf.enorm]
+  exact ENNReal.mul_lt_top (measure_lt_top μ univ) hfi.2
+
+/-- `μ * f` is integrable.
+@isnad1 id=integrab.2h2v.s6.88472e10837f from=translated src=- shape=c4a7cb53 vocab=c80c87e5
+-/
+theorem integrable_mconv (μ : Measure ℝ) [IsFiniteMeasure μ] {f : ℝ → ℝ}
+    (hf : AEStronglyMeasurable f) (hfi : Integrable f) : Integrable (mconv μ f) :=
+  (integrable_uncurry_sub μ hf hfi).integral_prod_left
+
+/--
+@isnad1 id=eventual.1h2v.s6.b5aa85f1dfc5 from=translated src=- shape=c7a11481 vocab=4ffdc0c9
+-/
+theorem ae_ae_sub_of_ae (μ : Measure ℝ) [SFinite μ] {p : ℝ → Prop} (h : ∀ᵐ u ∂volume, p u) :
+    ∀ᵐ x ∂volume, ∀ᵐ y ∂μ, p (x - y) :=
+  Measure.ae_ae_of_ae_prod ((quasiMeasurePreserving_sub volume μ).ae h)
+
+/--
+@isnad1 id=eventual.1h3v.s6.a9f474961a0a from=translated src=- shape=a1cf9f31 vocab=5f4ac64e
+-/
+theorem mconv_congr_ae (μ : Measure ℝ) [SFinite μ] {f g : ℝ → ℝ} (h : f =ᵐ[volume] g) :
+    mconv μ f =ᵐ[volume] mconv μ g := by
+  filter_upwards [ae_ae_sub_of_ae μ h] with x hx
+  exact integral_congr_ae hx
+
+/--
+@isnad1 id=eventual.4h3v.s7.029a172204b6 from=translated src=- shape=8ab363e0 vocab=d0fc3fcd
+-/
+theorem mconv_add_ae (μ : Measure ℝ) [IsFiniteMeasure μ] {f g : ℝ → ℝ}
+    (hf : AEStronglyMeasurable f) (hfi : Integrable f)
+    (hg : AEStronglyMeasurable g) (hgi : Integrable g) :
+    mconv μ (f + g) =ᵐ[volume] mconv μ f + mconv μ g := by
+  filter_upwards [(integrable_uncurry_sub μ hf hfi).prod_right_ae,
+    (integrable_uncurry_sub μ hg hgi).prod_right_ae] with x h1 h2
+  simp only [Function.uncurry] at h1 h2
+  simp only [mconv_apply, Pi.add_apply]
+  exact integral_add h1 h2
+
+/--
+@isnad1 id=eq.0h3v.s5.43f9c01a3e34 from=translated src=- shape=1f1cee11 vocab=b8a60674
+-/
+theorem mconv_smul (μ : Measure ℝ) (c : ℝ) (f : ℝ → ℝ) :
+    mconv μ (c • f) = c • mconv μ f := by
+  funext x
+  simp only [mconv_apply, Pi.smul_apply, smul_eq_mul, integral_const_mul]
+
+/-- `Φ f = μ * f` as a linear map on `L¹`.-/
+noncomputable def mconvₗ (μ : Measure ℝ) [IsFiniteMeasure μ] :
+    (ℝ →₁[volume] ℝ) →ₗ[ℝ] (ℝ →₁[volume] ℝ) where
+  toFun f := (integrable_mconv μ (Lp.aestronglyMeasurable f) (L1.integrable_coeFn f)).toL1 _
+  map_add' f g := by
+    rw [← Integrable.toL1_add]
+    refine (Integrable.toL1_eq_toL1_iff _ _ _ _).mpr ?_
+    refine (mconv_congr_ae μ (Lp.coeFn_add f g)).trans ?_
+    exact mconv_add_ae μ (Lp.aestronglyMeasurable f) (L1.integrable_coeFn f)
+      (Lp.aestronglyMeasurable g) (L1.integrable_coeFn g)
+  map_smul' c f := by
+    simp only [RingHom.id_apply]
+    rw [← Integrable.toL1_smul']
+    refine (Integrable.toL1_eq_toL1_iff _ _ _ _).mpr ?_
+    refine (mconv_congr_ae μ (Lp.coeFn_smul c f)).trans ?_
+    rw [mconv_smul]
+
+private lemma norm_L1_eq (f : ℝ →₁[volume] ℝ) : ‖f‖ = (∫⁻ x, ‖(f : ℝ → ℝ) x‖ₑ).toReal := by
+  rw [Lp.norm_def, eLpNorm_one_eq_lintegral_enorm]
+
+/-- **`Φ` is a bounded operator on `L¹`.**-/
+noncomputable def mconvL1 (μ : Measure ℝ) [IsFiniteMeasure μ] :
+    (ℝ →₁[volume] ℝ) →L[ℝ] (ℝ →₁[volume] ℝ) :=
+  (mconvₗ μ).mkContinuous (μ univ).toReal fun f => by
+    rw [mconvₗ, LinearMap.coe_mk, AddHom.coe_mk,
+      Integrable.norm_toL1_eq_lintegral_enorm, norm_L1_eq, ← ENNReal.toReal_mul]
+    refine ENNReal.toReal_mono ?_ (lintegral_enorm_mconv_le μ (Lp.aestronglyMeasurable f))
+    exact ENNReal.mul_ne_top (measure_ne_top μ univ) (L1.integrable_coeFn f).2.ne
+
+/--
+@isnad1 id=eventual.0h2v.s12.9de2136640c8 from=translated src=- shape=2ce31109 vocab=f9c3e961
+-/
+lemma coeFn_mconvL1 (μ : Measure ℝ) [IsFiniteMeasure μ] (f : ℝ →₁[volume] ℝ) :
+    mconvL1 μ f =ᵐ[volume] mconv μ (f : ℝ → ℝ) :=
+  Integrable.coeFn_toL1 (integrable_mconv μ (Lp.aestronglyMeasurable f) (L1.integrable_coeFn f))
+
+/-! ## What `mconvL1` does: translation covariance, positivity, mass, composition -/
+
+variable {μ : Measure ℝ}
+
+/--
+@isnad1 id=eq.0h3v.s5.0a452b359fca from=translated src=- shape=752135fb vocab=7f0578b2
+-/
+theorem mconv_comp_sub (μ : Measure ℝ) (f : ℝ → ℝ) (a : ℝ) :
+    mconv μ (fun x => f (x - a)) = fun x => mconv μ f (x - a) := by
+  funext x
+  simp only [mconv_apply, sub_right_comm]
+
+/--
+@isnad1 id=le.1h3v.s5.df66e902d7da from=translated src=- shape=2ba20eec vocab=cf5dfb33
+-/
+theorem mconv_nonneg (μ : Measure ℝ) {f : ℝ → ℝ} (hf : ∀ x, 0 ≤ f x) (x : ℝ) :
+    0 ≤ mconv μ f x := integral_nonneg fun _ => hf _
+
+/-- `∫ (μ * f) = ‖μ‖ ∫ f`.
+@isnad1 id=eq.2h2v.s7.4ecaed10ee07 from=translated src=- shape=255ac877 vocab=1ebe3a83
+-/
+theorem integral_mconv (μ : Measure ℝ) [IsFiniteMeasure μ] {f : ℝ → ℝ}
+    (hf : AEStronglyMeasurable f) (hfi : Integrable f) :
+    ∫ x, mconv μ f x = (μ univ).toReal * ∫ x, f x := by
+  simp only [mconv_apply]
+  rw [integral_integral_swap (integrable_uncurry_sub μ hf hfi)]
+  simp_rw [integral_sub_right_eq_self]
+  rw [integral_const, smul_eq_mul, measureReal_def]
+
+/-- `ν * (μ * f) = (μ ∗ ν) * f`, a.e.
+@isnad1 id=eventual.2h3v.s6.b18977ceadba from=translated src=- shape=757c7951 vocab=19692adf
+-/
+theorem mconv_conv (μ ν : Measure ℝ) [IsFiniteMeasure μ] [IsFiniteMeasure ν] {f : ℝ → ℝ}
+    (hf : AEStronglyMeasurable f) (hfi : Integrable f) :
+    mconv ν (mconv μ f) =ᵐ[volume] mconv (μ ∗ ν) f := by
+  filter_upwards [(integrable_uncurry_sub (μ ∗ ν) hf hfi).prod_right_ae] with x hx
+  simp only [Function.uncurry] at hx
+  have hadd : AEMeasurable (fun p : ℝ × ℝ => p.1 + p.2) (μ.prod ν) :=
+    (measurable_fst.add measurable_snd).aemeasurable
+  have hprod : Integrable (fun p : ℝ × ℝ => f (x - (p.1 + p.2))) (μ.prod ν) := by
+    rw [Measure.conv] at hx
+    exact (integrable_map_measure hx.aestronglyMeasurable hadd).mp hx
+  have hmap : ∫ u, f (x - u) ∂(μ ∗ ν) = ∫ p : ℝ × ℝ, f (x - (p.1 + p.2)) ∂(μ.prod ν) := by
+    rw [Measure.conv]
+    exact integral_map hadd (by rw [← Measure.conv]; exact hx.aestronglyMeasurable)
+  simp only [mconv_apply]
+  rw [hmap, integral_prod_symm _ hprod]
+  simp only [sub_add_eq_sub_sub, sub_right_comm]
+
+/--
+@isnad1 id=eq.0h1v.s4.221a40fed840 from=translated src=- shape=09f5a5a6 vocab=1389c72e
+-/
+theorem mconv_dirac_zero (f : ℝ → ℝ) : mconv (Measure.dirac 0) f = f := by
+  funext x
+  rw [mconv_apply, integral_dirac, sub_zero]
+
+/-- Equal measures give equal operators. Needed because `mconvL1` carries an `IsFiniteMeasure`
+instance argument, so `rw` on the measure produces an ill-typed motive.
+@isnad1 id=eq.1h2v.s11.2d1482f97e45 from=translated src=- shape=c7eb5b8f vocab=1edf85c3
+-/
+theorem mconvL1_congr {μ ν : Measure ℝ} [IsFiniteMeasure μ] [IsFiniteMeasure ν] (h : μ = ν) :
+    mconvL1 μ = mconvL1 ν := by
+  subst h
+  congr 1
+
+/-- `Φ` is a contraction for a probability measure.
+@isnad1 id=le.0h2v.s12.405735ad3309 from=translated src=- shape=b8929df7 vocab=729d3ea0
+-/
+theorem norm_mconvL1_le (μ : Measure ℝ) [IsProbabilityMeasure μ] (f : X) :
+    ‖mconvL1 μ f‖ ≤ ‖f‖ := by
+  have hop : ‖mconvL1 μ‖ ≤ 1 := by
+    rw [mconvL1]
+    refine le_trans (LinearMap.mkContinuous_norm_le _ ENNReal.toReal_nonneg _) ?_
+    rw [measure_univ, ENNReal.toReal_one]
+  calc ‖mconvL1 μ f‖ ≤ ‖mconvL1 μ‖ * ‖f‖ := ContinuousLinearMap.le_opNorm _ _
+    _ ≤ 1 * ‖f‖ := by nlinarith [norm_nonneg f]
+    _ = ‖f‖ := one_mul _
+
+/-- `mconvL1` commutes with translation.
+@isnad1 id=eq.0h3v.s14.77d9a2ff4d2f from=translated src=- shape=468a825e vocab=18f4bcc4
+-/
+theorem mconvL1_transL1 [IsFiniteMeasure μ] (a : ℝ) (f : X) :
+    mconvL1 μ (transL1 a f) = transL1 a (mconvL1 μ f) := by
+  refine Lp.ext ?_
+  refine (coeFn_mconvL1 μ (transL1 a f)).trans ?_
+  refine (mconv_congr_ae μ (coeFn_transL1 a f)).trans ?_
+  rw [mconv_comp_sub]
+  refine Filter.EventuallyEq.symm ?_
+  refine (coeFn_transL1 a (mconvL1 μ f)).trans ?_
+  exact translate_congr_ae a (coeFn_mconvL1 μ f)
+
+/--
+@isnad1 id=isnonneg.1h2v.s12.411a31c7f142 from=translated src=- shape=50f072d1 vocab=876bac6c
+-/
+theorem isNonneg_mconvL1 [IsFiniteMeasure μ] (f : X) (hf : IsNonneg f) :
+    IsNonneg (mconvL1 μ f) := by
+  filter_upwards [coeFn_mconvL1 μ f, ae_ae_sub_of_ae μ hf] with x hcoe hx
+  rw [Pi.zero_apply, hcoe, mconv_apply]
+  exact integral_nonneg_of_ae hx
+
+/-- `mconvL1` preserves total mass, for every `f`: the Tonelli identity does not see the sign.
+@isnad1 id=eq.0h2v.s12.1009209f91bd from=translated src=- shape=74e8dd41 vocab=cfcd285a
+-/
+theorem integral_mconvL1 [IsProbabilityMeasure μ] (f : X) :
+    ∫ x, ((mconvL1 μ f : X) : ℝ → ℝ) x = ∫ x, (f : ℝ → ℝ) x := by
+  rw [integral_congr_ae (coeFn_mconvL1 μ f),
+    integral_mconv μ (Lp.aestronglyMeasurable f) (L1.integrable_coeFn f),
+    measure_univ, ENNReal.toReal_one, one_mul]
+
+/-- Composing the operators convolves the measures.
+@isnad1 id=eq.0h2v.s12.c3155174416b from=translated src=- shape=6424b58f vocab=446a7319
+-/
+theorem mconvL1_comp (μ ν : Measure ℝ) [IsFiniteMeasure μ] [IsFiniteMeasure ν] :
+    (mconvL1 ν).comp (mconvL1 μ) = mconvL1 (μ ∗ ν) := by
+  refine ContinuousLinearMap.ext fun f => Lp.ext ?_
+  refine ((coeFn_mconvL1 ν (mconvL1 μ f)).trans
+    (mconv_congr_ae ν (coeFn_mconvL1 μ f))).trans ?_
+  refine Filter.EventuallyEq.trans ?_ (coeFn_mconvL1 (μ ∗ ν) f).symm
+  exact mconv_conv μ ν (Lp.aestronglyMeasurable f) (L1.integrable_coeFn f)
+
+/-- `δ₀` acts as the identity on `L¹`.
+@isnad1 id=eq.0h0v.s12.8945652fd6f3 from=translated src=- shape=1b460275 vocab=5a0e035c
+-/
+theorem mconvL1_dirac_zero : mconvL1 (Measure.dirac (0 : ℝ)) = ContinuousLinearMap.id ℝ X := by
+  refine ContinuousLinearMap.ext fun f => Lp.ext ?_
+  refine (coeFn_mconvL1 _ f).trans ?_
+  rw [mconv_dirac_zero]
+  rfl
+
+/-! ## Pairing against a bounded test function -/
+
+/-- **Pairing against a bounded function.** `∫ g · (μ * f) = ∫∫ g(t) f(t - r)`. The
+integrability Fubini needs is `integrable_uncurry_sub`, dominated by `C`, which is why `g` is
+asked to be bounded rather than integrable.
+@isnad1 id=eq.4h4v.s7.88c7167629c8 from=translated src=- shape=d104c161 vocab=50e14e39
+-/
+theorem integral_mul_mconv (μ : Measure ℝ) [IsFiniteMeasure μ] {f g : ℝ → ℝ}
+    (hf : AEStronglyMeasurable f) (hfi : Integrable f)
+    (hg : Measurable g) {C : ℝ} (hgb : ∀ t, |g t| ≤ C) :
+    ∫ t, g t * mconv μ f t = ∫ r, (∫ t, g t * f (t - r)) ∂μ := by
+  have hFm : AEStronglyMeasurable (fun p : ℝ × ℝ => g p.1 * f (p.1 - p.2)) (volume.prod μ) :=
+    ((hg.comp measurable_fst).aestronglyMeasurable).mul
+      (hf.comp_quasiMeasurePreserving (quasiMeasurePreserving_sub volume μ))
+  have hdom : Integrable (fun p : ℝ × ℝ => C * ‖f (p.1 - p.2)‖) (volume.prod μ) :=
+    ((integrable_uncurry_sub μ hf hfi).norm).const_mul C
+  have hFi : Integrable (fun p : ℝ × ℝ => g p.1 * f (p.1 - p.2)) (volume.prod μ) := by
+    refine hdom.mono' hFm (Filter.Eventually.of_forall fun p => ?_)
+    rw [norm_mul]
+    exact mul_le_mul_of_nonneg_right (by rw [Real.norm_eq_abs]; exact hgb p.1) (norm_nonneg _)
+  calc ∫ t, g t * mconv μ f t
+      = ∫ t, (∫ r, g t * f (t - r) ∂μ) := by
+        refine integral_congr_ae (Filter.Eventually.of_forall fun t => ?_)
+        change g t * mconv μ f t = ∫ r, g t * f (t - r) ∂μ
+        rw [mconv_apply, integral_const_mul]
+    _ = ∫ r, (∫ t, g t * f (t - r)) ∂μ := integral_integral_swap hFi
+
+end ScaleSpace

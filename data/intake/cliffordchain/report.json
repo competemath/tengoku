@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "0bb4e2370bebd35b306a0e572f848954c7504fbbe2401ab42b7039a5a4fd17bb",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "cliffordchain",
+ "lint_mode": "proposed",
+ "modules": 9,
+ "part": 1,
+ "theorems": 192
+}

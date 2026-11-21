@@ -1,0 +1,1 @@
+-- PartialRegularity: a factory bundle (data/intake/partial-regularity). This file only marks the library for Tengoku/All.lean.

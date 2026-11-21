@@ -1,0 +1,1 @@
+-- RcsrLeanProofs: a factory bundle (data/intake/rcsr-lean-proofs). This file only marks the library for Tengoku/All.lean.

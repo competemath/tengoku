@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "329fa15ffb96b2f0800805d4601814f1fee41b3322befbae0dcf949aba2ff8ec",
+ "factory_changes": {
+  "inert lines removed": 1,
+  "modules changed": 1
+ },
+ "gate2_unjudged": [],
+ "library": "alpoge-lean",
+ "lint_mode": "proposed",
+ "modules": 12,
+ "part": 1,
+ "theorems": 137
+}

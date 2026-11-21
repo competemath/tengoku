@@ -1,0 +1,1 @@
+-- OeisLean: a factory bundle (data/intake/oeis-lean). This file only marks the library for Tengoku/All.lean.

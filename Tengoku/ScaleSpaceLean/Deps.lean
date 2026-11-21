@@ -1,0 +1,1 @@
+-- ScaleSpaceLean: a factory bundle (data/intake/scale-space-lean). This file only marks the library for Tengoku/All.lean.

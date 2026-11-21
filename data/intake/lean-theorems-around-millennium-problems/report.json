@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "a4bb9551c55ef29c391a1703d94c8c60289fb29ee23e8fbc4de52273d55096aa",
+ "factory_changes": {
+  "modules changed": 1,
+  "print lines removed": 2
+ },
+ "gate2_unjudged": [],
+ "library": "lean-theorems-around-millennium-problems",
+ "lint_mode": "proposed",
+ "modules": 16,
+ "part": 1,
+ "theorems": 134
+}
