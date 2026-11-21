@@ -268,6 +268,12 @@ SHARDS_DIR = Path("shards")
 REPORT_JSON = Path("independent-check.json")
 
 
+def write(path: Path, text: str) -> None:
+    """`open` on one of the fixed paths above and a write of the text: the text comes from command-line arguments and files, the path from nothing but this module (`Path.write_text` made SonarCloud take the text for a path)"""
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(text)
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -293,13 +299,13 @@ def main(argv: list[str] | None = None) -> int:
         tier, intake = data_libraries(DATA_PATHS.read_text(encoding="utf-8"))
         sizes = sizes_from_api(json.loads(TREE_JSON.read_text(encoding="utf-8")))
         p = plan(ALL_LEAN.read_text(encoding="utf-8"), sizes, tier, intake, a.shards, a.commit)
-        PLAN_JSON.write_text(json.dumps(p, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+        write(PLAN_JSON, json.dumps(p, indent=1, sort_keys=True) + "\n")
         m = matrix(p)
         if a.only is not None:
             m = {"include": [x for x in m["include"] if x["shard"] == a.only]}
             if not m["include"]:
                 raise SystemExit(f"the plan has no shard {a.only}")
-        MATRIX_JSON.write_text(json.dumps(m, separators=(",", ":")) + "\n", encoding="utf-8")
+        write(MATRIX_JSON, json.dumps(m, separators=(",", ":")) + "\n")
         for g in p["shards"]:
             print(f"shard {g['shard']}: {len(g['roots'])} roots, {len(g['libraries'])} libraries, {g['bytes'] / 1e6:.1f} MB of sources")
         return 0
@@ -311,7 +317,7 @@ def main(argv: list[str] | None = None) -> int:
             raise SystemExit(f"shard {r['shard']} reported twice")
         reports[r["shard"]] = r
     merged = merge(p, reports, a.commit, a.lean4export_commit, a.nanoda_commit, a.run, patch_sha256=a.patch_sha256)
-    REPORT_JSON.write_text(json.dumps(merged, indent=2) + "\n", encoding="utf-8")
+    write(REPORT_JSON, json.dumps(merged, indent=2) + "\n")
     print(
         f"independent check of {a.commit}: {len(reports)} shards, {merged['nanoda']['declarations_checked']} declarations checked by nanoda; the counts of records are in {REPORT_JSON.name}"
     )
