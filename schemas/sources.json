@@ -327,7 +327,6 @@
     "https://github.com/arex1337/erdos-263-lean",
     "https://github.com/AxiomMath/ramanujan-tau-misses-primes",
     "https://github.com/qkkqk1234/jsp-000907-lean",
-    "https://github.com/erebos-labs/ordered-matrix-removal-4x4",
     "https://github.com/Riflonnade/RandomSetTheory",
     "https://github.com/urdvr/superpermutations-hunter",
     "https://github.com/jimpeebles/rainich-kaluza-reconstruction"
@@ -670,7 +669,6 @@
     "https://github.com/arex1337/erdos-263-lean": "Apache-2.0",
     "https://github.com/AxiomMath/ramanujan-tau-misses-primes": "MIT",
     "https://github.com/qkkqk1234/jsp-000907-lean": "Apache-2.0",
-    "https://github.com/erebos-labs/ordered-matrix-removal-4x4": "Apache-2.0",
     "https://github.com/Riflonnade/RandomSetTheory": "Apache-2.0",
     "https://github.com/urdvr/superpermutations-hunter": "Apache-2.0",
     "https://github.com/jimpeebles/rainich-kaluza-reconstruction": "MIT"
@@ -3259,13 +3257,6 @@
       "commit": "f820373fea69f3f959cdaaf3a1d9dd70ce6a3e1a",
       "roots": [
         "JSP907"
-      ]
-    },
-    "ordered-matrix-removal-4x4": {
-      "repo": "https://github.com/erebos-labs/ordered-matrix-removal-4x4",
-      "commit": "0d43f182f2ee12e27419ac4d5e32fd2d9b68ab43",
-      "roots": [
-        "OrderedMatrixRemoval4"
       ]
     },
     "randomsettheory": {
