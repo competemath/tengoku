@@ -1,9 +1,29 @@
 {
   "exempt": [
     {
+      "name": "AlbertLean.Generic.ParameterFamily.parameterResidualPair_rootSwapped",
+      "library": "albert-frame-triple-invariants",
+      "reason": "nanoda (3a24072) does not finish checking it: the temporary storage of its definitional-equality check passes 30 million expressions (diagnostic run 44934381803 of the independent-check workflow, on d3f4681, which gave up on it there); the Lean kernel accepts it (Tengoku/AlbertFrameTripleInvariants/AlbertLean/Generic/ParameterFamily.lean:245, a theorem about a rational parameter)"
+    },
+    {
+      "name": "AlbertLean.Generic.WitnessChart.witnessChartM_eq_reinsert",
+      "library": "albert-frame-triple-invariants",
+      "reason": "nanoda (3a24072) does not finish checking it: the temporary storage of its definitional-equality check passes 30 million expressions (diagnostic run 44934381803 of the independent-check workflow, on d3f4681, which gave up on it there); the Lean kernel accepts it (Tengoku/AlbertFrameTripleInvariants/AlbertLean/Generic/WitnessChart.lean:95)"
+    },
+    {
       "name": "NavierStokes.WholeDomainStageBounds.initialPotential_bound",
       "library": "navier-stokes-euler",
-      "reason": "nanoda (3a24072) does not finish checking it: its definitional-equality check unfolds without end and its memory grows by about 2 GB a minute until the runner is out of it (diagnostic runs 44929370267 and 44930520505 of the independent-check workflow, on d3f4681); the Lean kernel accepts it (Tengoku/NavierStokesEuler/NavierStokes/WholeDomainInitializationBounds.lean:38, four lines, `exact LogBound.of_bound ...`)"
+      "reason": "nanoda (3a24072) does not finish checking it: the temporary storage of its definitional-equality check passes 30 million expressions (diagnostic run 44930520505 and 44933605303 of the independent-check workflow, on d3f4681, which gave up on it there); the Lean kernel accepts it (Tengoku/NavierStokesEuler/NavierStokes/WholeDomainInitializationBounds.lean:38, four lines, `exact LogBound.of_bound ...`); with nothing else of that shard exempt nanoda checks its 152,152 declarations in five minutes"
+    },
+    {
+      "name": "PDT.Mahler.boxD4_all",
+      "library": "pdt-lean",
+      "reason": "nanoda (3a24072) does not finish checking it: the temporary storage of its definitional-equality check passes 30 million expressions (diagnostic run 44934391182 of the independent-check workflow, on d3f4681, which gave up on it there); the Lean kernel accepts it (Tengoku/PdtLean/PdtMahlerBox.lean:74, `by decide` over a table, which the file itself says takes about seven minutes in the kernel)"
+    },
+    {
+      "name": "PiIrrationality.candidateSectorLinearForm_wall_rat._proof_1_1",
+      "library": "piirrationalitymeasure",
+      "reason": "nanoda (3a24072) does not finish checking it: the temporary storage of its definitional-equality check passes 30 million expressions (diagnostic run 44934391182 of the independent-check workflow, on d3f4681, which gave up on it there); the Lean kernel accepts it (an auxiliary proof of the theorem at Tengoku/Piirrationalitymeasure/Formalization/EndpointSectorForms.lean:53)"
     }
   ]
 }

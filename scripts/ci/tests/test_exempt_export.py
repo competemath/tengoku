@@ -106,6 +106,13 @@ class Listing(unittest.TestCase):
             self.assertIn(why, str(cm.exception))
 
 
+class Repository(unittest.TestCase):
+    def test_the_list_the_check_runs_with_is_well_formed(self):
+        listed = E.load_exempt((CI / "independent_check_exempt.json").read_text(encoding="utf-8"))
+        for name, e in listed.items():
+            self.assertRegex(e["library"], r"^[a-z0-9][a-z0-9-]*$", name)  # a key of data/intake, as the plan names libraries
+
+
 class Occurs(unittest.TestCase):
     def test_the_scan_finds_the_last_component_in_the_name_table(self):
         with tempfile.TemporaryDirectory() as d:
