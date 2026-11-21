@@ -9,6 +9,7 @@ that mechanical: it decides from the files whether a PR is CI-class and, if it i
 | Path | Why |
 |---|---|
 | anything under `scripts/ci/`, anything under `.github/workflows/`, `.github/CODEOWNERS` | the gate and the queue themselves |
+| `schemas/` (except `schemas/sources.json`), `lean-toolchain`, `lakefile.toml`, `lake-manifest.json`, `tools/*.lean` | data the gates read to decide what they accept (`allowed-options.json`, `command-keywords.json`, the toolchain a bundle is checked against). `schemas/sources.json` is the registry itself: it grows with every registry PR and the append-only rule judges it |
 | any other script (`.py`, `.sh`, `.mjs`) that a workflow or a `scripts/ci/` entry point reaches | a gate dependency. The closure follows Python imports (also imports inside functions: `roots_check.py` imports `roots_tree.py` late) and `scripts/...` paths named in a script or a workflow, to a fixed point |
 | `*.md` | exempt (documentation) |
 
@@ -19,7 +20,7 @@ the cost is a waiver for a change that does not touch gate behaviour, the benefi
 ## What satisfies the check
 
 1. **A campaign for the head commit.** Not available yet (see "Not built"). `emissary-sandbox` has this (`campaign.yml` plus an attested result); `tengoku-sandbox` does not.
-2. **A waiver**: a review of the PR, **on the head commit**, by the approver account (`vars.TENGOKU_APPROVER`, default `mikaelbashir14096545`), whose body has a line
+2. **A waiver**: a review of the PR, **on the head commit**, by the approver account (the constant `APPROVER` in `scripts/ci/campaign_check.py`, `mikaelbashir14096545`; a constant on purpose, a repository variable could be changed by an admin with no pull request to see it), in state APPROVED or COMMENTED (a DISMISSED or CHANGES_REQUESTED review does not count), whose body has a line
 
    `campaign-waiver: <reason, at least 20 characters>`
 
