@@ -2,13 +2,13 @@
 """campaign_check.py: a CI-class change comes with a campaign, or with a waiver only the approver account can give.
 
 Run by .github/workflows/campaign-gate.yml (pull_request_target: the base branch's copy of this script, so a pull request cannot weaken its own gate; nothing of the PR is checked out or run).
-Environment: PR (number), REPO, SHA (the PR's head commit), APPROVER (the account whose approval the owners file asks for), GH_TOKEN.
+Environment: PR (number), REPO, SHA (the PR's head commit), GH_TOKEN. The approver is the constant APPROVER below.
 
   1. The PR's changed files are read from the API. scripts/ci/ci_paths.py says which are CI-class: none -> this check passes at once.
   2. A CI-class change needs ONE of:
      - a campaign for SHA: not available yet. The sandbox (competemath/tengoku-sandbox) has no workflow that runs the scenario campaign for a commit and attests the result, as
        competemath/emissary-sandbox's campaign.yml does for emissary (campaign-gate.yml there). Until it exists, the second way is the only one;
-     - a WAIVER: a review of the PR, on this very commit, by APPROVER, with a line `campaign-waiver: <reason of at least 20 characters>`. The agent that opens these PRs works as
+     - a WAIVER: a review of the PR (approved or commented, not dismissed or requesting changes), on this very commit, by APPROVER, with a line `campaign-waiver: <reason of at least 20 characters>`. The agent that opens these PRs works as
        the maintainer's main account and cannot act as the approver, which is why a label or a comment of the author would not bind it. A push after the waiver voids it (the review is
        on the old commit), like any approval.
 Exit 0: not CI-class, or waived. Exit 1: CI-class and neither.
@@ -26,6 +26,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import ci_paths
 
+# The account whose review can waive the campaign. A constant of this file on purpose: a repository variable could be edited by any admin, with no pull request to see it,
+# and the waiver may be a COMMENT review, which an author can write on their own PR. Changing it is a CI-class change like any other.
+APPROVER = "mikaelbashir14096545"
+ACCEPTED_STATES = {"APPROVED", "COMMENTED"}  # not CHANGES_REQUESTED, and a DISMISSED review keeps its body in the API but no longer counts
 MIN_REASON = 20
 WAIVER = re.compile(r"^[ \t]*campaign-waiver:[ \t]*(?P<reason>\S.*?)[ \t]*$", re.MULTILINE | re.IGNORECASE)
 
@@ -35,7 +39,7 @@ def waiver(reviews: list[dict], approver: str, sha: str) -> tuple[str | None, li
     problems: list[str] = []
     for r in sorted(reviews, key=lambda r: r.get("submitted_at") or "", reverse=True):
         m = WAIVER.search(r.get("body") or "")
-        if not m:
+        if not m or r.get("state") not in ACCEPTED_STATES:
             continue
         who = ((r.get("user") or {}).get("login") or "").lower()
         if who != approver.lower():
@@ -60,8 +64,11 @@ def tree_files(root: Path) -> dict[str, str]:
     files: dict[str, str] = {}
     for sub in (".github/workflows", "scripts"):
         for p in (root / sub).rglob("*"):
-            if p.is_file() and p.suffix in {".py", ".sh", ".mjs", ".yml", ".yaml"} and "/tests/" not in p.as_posix():
-                files[p.relative_to(root).as_posix()] = p.read_text(errors="replace")
+            rel = p.relative_to(
+                root
+            ).as_posix()  # the test is on the path inside the checkout: a checkout that itself sits under a folder named tests must not lose every file
+            if p.is_file() and p.suffix in {".py", ".sh", ".mjs", ".yml", ".yaml"} and "/tests/" not in "/" + rel:
+                files[rel] = p.read_text(errors="replace")
     return files
 
 
@@ -83,12 +90,11 @@ def verdict(changed: list[str], files: dict[str, str], reviews: list[dict], appr
 
 def main() -> int:
     pr, repo, sha = os.environ["PR"], os.environ["REPO"], os.environ["SHA"]
-    approver = os.environ.get("APPROVER") or "mikaelbashir14096545"
     # a rename out of a CI-class path changes that path too
     changed = [n for f in gh_list(f"repos/{repo}/pulls/{pr}/files") for n in (f["filename"], f.get("previous_filename")) if n]
     reviews = gh_list(f"repos/{repo}/pulls/{pr}/reviews")
     root = Path(os.environ.get("TENGOKU_CI_ROOT") or Path(__file__).resolve().parents[2])
-    ok, message = verdict(changed, tree_files(root), reviews, approver, sha)
+    ok, message = verdict(changed, tree_files(root), reviews, APPROVER, sha)
     print(message)
     return 0 if ok else 1
 

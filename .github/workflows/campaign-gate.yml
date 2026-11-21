@@ -40,5 +40,4 @@ jobs:
           PR: ${{ github.event.pull_request.number }}
           REPO: ${{ github.repository }}
           SHA: ${{ github.event.pull_request.head.sha }}
-          APPROVER: ${{ vars.TENGOKU_APPROVER || 'mikaelbashir14096545' }}
         run: python3 scripts/ci/campaign_check.py

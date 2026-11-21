@@ -5,6 +5,7 @@ classify.py imports roots_check: a change to it changes a gate. It went in witho
 """
 
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -77,8 +78,8 @@ class RealTree(unittest.TestCase):
         self.assertNotIn("scripts/harvest.py", cp.ci_files(["scripts/harvest.py"], files))  # a tool no gate reaches stays out
 
 
-def review(login, body, commit=SHA, at="2026-11-21T12:00:00Z"):
-    return {"user": {"login": login}, "body": body, "commit_id": commit, "submitted_at": at}
+def review(login, body, commit=SHA, at="2026-11-21T12:00:00Z", state="COMMENTED"):
+    return {"user": {"login": login}, "body": body, "commit_id": commit, "submitted_at": at, "state": state}
 
 
 GOOD = "campaign-waiver: only a comment of the roots_tree docstring changes, no behaviour"
@@ -131,6 +132,55 @@ class Waiver(unittest.TestCase):
     def test_an_approval_without_the_line_is_not_a_waiver(self):
         ok, _ = self.verdict(["scripts/roots_tree.py"], [review(APPROVER, "approved, looks good")])
         self.assertFalse(ok)
+
+    def test_only_an_approving_or_commenting_review_waives(self):
+        for state, ok_expected in (
+            ("APPROVED", True),
+            ("COMMENTED", True),
+            ("DISMISSED", False),
+            ("CHANGES_REQUESTED", False),
+            ("PENDING", False),
+        ):
+            ok, _ = self.verdict(["scripts/roots_tree.py"], [review(APPROVER, GOOD, state=state)])
+            self.assertEqual(ok, ok_expected, state)
+
+    def test_the_approver_is_a_constant_of_the_script_not_a_repository_variable(self):
+        self.assertEqual(cc.APPROVER, "mikaelbashir14096545")
+        workflow = Path(cc.__file__).resolve().parents[2] / ".github" / "workflows" / "campaign-gate.yml"
+        if workflow.exists():
+            self.assertNotIn("APPROVER", workflow.read_text())
+
+
+class GateData(unittest.TestCase):
+    def test_the_data_files_a_gate_reads_are_ci_class(self):
+        changed = [
+            "schemas/allowed-options.json",
+            "schemas/command-keywords.json",
+            "lean-toolchain",
+            "lakefile.toml",
+            "tools/CommandKeywords.lean",
+        ]
+        self.assertEqual(set(cp.ci_files(changed, TREE)), set(changed))
+
+    def test_the_registry_and_other_tools_are_not(self):
+        changed = ["schemas/sources.json", "tools/harvest.py", "data/staging/x.jsonl", "docs/pr-classes.md"]
+        self.assertEqual(cp.ci_files(changed, TREE), {})
+
+
+class TreeFiles(unittest.TestCase):
+    def test_a_checkout_under_a_folder_named_tests_keeps_its_files(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d) / "tests" / "checkout"
+            (root / "scripts" / "ci").mkdir(parents=True)
+            (root / "scripts" / "ci" / "gate.py").write_text("import roots_tree\n")
+            (root / "scripts" / "roots_tree.py").write_text("x = 1\n")
+            (root / "scripts" / "ci" / "tests").mkdir()
+            (root / "scripts" / "ci" / "tests" / "test_gate.py").write_text("")
+            files = cc.tree_files(root)
+            self.assertEqual(
+                set(files), {"scripts/ci/gate.py", "scripts/roots_tree.py"}
+            )  # the checkout's own tests folder is skipped, the one above it is not
+            self.assertIn("scripts/roots_tree.py", cp.ci_files(["scripts/roots_tree.py"], files))
 
 
 if __name__ == "__main__":

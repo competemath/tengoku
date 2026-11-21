@@ -1,6 +1,6 @@
 """ci_paths.py: which files of a pull request are CI, decided by the files, not by anyone's judgement.
 
-A change is CI-class when it touches a workflow, a file under scripts/ci/, the CODEOWNERS file, or any file a gate script depends on: a module or script that a workflow runs (or a gate script
+A change is CI-class when it touches a workflow, a file under scripts/ci/, the CODEOWNERS file, a data file the gates read (schemas/, the toolchain, tools/*.lean), or any file a gate script depends on: a module or script that a workflow runs (or a gate script
 under scripts/ci/ that it reaches) imports or calls, followed to the end. That last rule is the one that matters: scripts/roots_tree.py is no gate and lives outside scripts/ci/, but
 scripts/ci/roots_check.py imports it to recompute what a roots PR must be, so a change to it changes a gate (tengoku#1026 went in without a campaign because it was judged "a library module").
 
@@ -13,8 +13,12 @@ import ast
 import posixpath
 import re
 
-DIRECT_PREFIXES = ("scripts/ci/", ".github/workflows/")
-DIRECT_FILES = {".github/CODEOWNERS"}
+DIRECT_PREFIXES = ("scripts/ci/", ".github/workflows/", "schemas/")
+# data the gates read to decide what they accept (allowed-options.json, command-keywords.json, the toolchain they check a bundle against): editing one changes a gate as surely as editing a script
+DIRECT_FILES = {".github/CODEOWNERS", "lean-toolchain", "lakefile.toml", "lake-manifest.json"}
+DIRECT_PATTERNS = (re.compile(r"^tools/[^/]+\.lean$"),)  # tools/CommandKeywords.lean: what cmdkw_check compares against
+# the one data file under schemas/ that is NOT a gate input but the registry itself: it grows with every registry PR, and the append-only rule, the owners file and the registry class judge that
+DIRECT_EXEMPT = {"schemas/sources.json"}
 DOC_SUFFIXES = (".md",)  # a document under scripts/ci/ (the campaign README) is not a gate
 SEARCH_DIRS = (
     "scripts/ci",
@@ -89,8 +93,10 @@ def ci_files(changed: list[str], files: dict[str, str]) -> dict[str, str]:
     for p in changed:
         if is_doc(p):
             continue
-        if p in DIRECT_FILES or p.startswith(DIRECT_PREFIXES):
-            out[p] = "a workflow, a gate script or the owners file"
+        if p in DIRECT_EXEMPT:
+            continue
+        if p in DIRECT_FILES or p.startswith(DIRECT_PREFIXES) or any(rx.match(p) for rx in DIRECT_PATTERNS):
+            out[p] = "a workflow, a gate script, a file a gate reads, or the owners file"
         elif p in closure:
             out[p] = f"a gate dependency ({closure[p]})"
     return out
