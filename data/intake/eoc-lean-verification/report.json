@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "41f87ce8e39b1613b262616dbe7466302b246e18fc8b05a9f3ec538ffc5b549b",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "eoc-lean-verification",
+ "lint_mode": "proposed",
+ "modules": 98,
+ "part": 1,
+ "theorems": 1349
+}

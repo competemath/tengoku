@@ -238,6 +238,7 @@ import Tengoku.Erdos815Lean
 import Tengoku.Cslib
 import Tengoku.FormalMath
 import Tengoku.RiemannhypothesisFormalization
+import Tengoku.EocLeanVerification
 import Tengoku.LeanDescriptiveSetTheory
 import Tengoku.PdtLean
 import Tengoku.Ben27Formalization
