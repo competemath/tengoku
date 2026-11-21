@@ -1,5 +1,5 @@
 # Dataset schema 2 on the real data (docs/v2.md): migrates the 1.0.0 release, runs every test of scripts/tests/test_v2.py on its 198,172 records, and builds the
-# dataset and the release notes that `snapshot.yml -f schema=2` would publish from main, as artifacts. Manual. It publishes nothing and changes nothing.
+# dataset and the release notes that `snapshot.yml -f schema=2` would publish from the ref this workflow is dispatched on (`--ref <branch>`; main by default), as artifacts. Manual. It publishes nothing and changes nothing.
 name: v2-migration
 on:
   workflow_dispatch:
@@ -32,7 +32,7 @@ jobs:
           mkdir -p out
           python3 scripts/v2.py migrate v1 --out out/tengoku-dataset-v2-of-1.0.0.jsonl.gz | tee out/migration-report.json
           python3 scripts/v2.py check out/tengoku-dataset-v2-of-1.0.0.jsonl.gz
-      - name: What 2.0.0 would be, built from main (the dataset, its manifest and notes; nothing is published)
+      - name: What 2.0.0 would be, built from ${{ github.ref_name }} (the dataset, its manifest and notes; nothing is published)
         run: |
           python3 scripts/snapshot.py --out out/next --notes out/next.notes.md --schema 2 --previous v1 | tee out/next.log
           cat out/next.notes.md | tee -a "$GITHUB_STEP_SUMMARY"

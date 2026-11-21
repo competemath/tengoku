@@ -43,9 +43,7 @@ jobs:
         id: snap
         env: { SCHEMA_INPUT: "${{ inputs.schema || 'keep' }}" }
         run: |
-          schema=1
-          if [ "$SCHEMA_INPUT" = 2 ]; then schema=2
-          elif [ -f previous/snapshot.json ]; then schema="$(python3 -c 'import json; print(json.load(open("previous/snapshot.json")).get("schema", 1))')"; fi
+          schema="$(python3 scripts/ci/snapshot_schema.py "$SCHEMA_INPUT")"   # keep: the previous release's schema (the monthly run), 2: cuts a schema 2 dataset; tested
           echo "dataset schema $schema"
           args=(--out snapshot --notes release-notes.md --schema "$schema"); [ -d previous ] && args+=(--previous previous)
           python3 scripts/snapshot.py "${args[@]}"
