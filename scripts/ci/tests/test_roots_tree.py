@@ -737,5 +737,50 @@ class TwoWordDeclarationsAndAliases(unittest.TestCase):
         self.assertEqual(again, self.run_text(again, ["zeta", "dim"])[0])  # and it is idempotent
 
 
+TNORMS = """module
+
+public import Tengoku
+
+public section
+
+variable {α : Type*} {a b : α}
+
+theorem _root_.Tengoku.LeanTnorms.le_one_iff_eq_one [LE α] [One α] : a ≤ 1 ↔ a = 1 := sorry
+
+alias ⟨eq_one_of_one_le, _⟩ := le_one_iff_eq_one
+alias LE.le.eq_one' := eq_one_of_le_one
+alias ⟨_, lt_one_of_ne_one⟩ := lt_one_iff_ne_one
+alias ⟨keep_me, also_me⟩ := some_iff
+"""
+
+
+class AliasPair(unittest.TestCase):
+    """lean-tnorms (2026-11-21): `alias ⟨a, b⟩ := iff` declares both names; the leak scan listed `eq_one_of_one_le` and `lt_one_of_ne_one` as roots and nothing qualified them (the merge queue's roots gate refused tengoku#1012)"""
+
+    def run_on(self, text, roots, ns="Tengoku.LeanTnorms"):
+        f = rt.Lines(text)
+        done = rt.qualify_roots_in_file(f, set(roots), ns)
+        return "\n".join(f.text), done
+
+    def test_both_names_of_an_anonymous_constructor_alias_are_qualified(self):
+        out, done = self.run_on(TNORMS, {"eq_one_of_one_le", "lt_one_of_ne_one", "keep_me"})
+        self.assertIn("alias ⟨Tengoku.LeanTnorms.eq_one_of_one_le, _⟩ := le_one_iff_eq_one", out)
+        self.assertIn("alias ⟨_, Tengoku.LeanTnorms.lt_one_of_ne_one⟩ := lt_one_iff_ne_one", out)
+        self.assertIn("alias ⟨Tengoku.LeanTnorms.keep_me, also_me⟩ := some_iff", out)  # only the roots the scan names
+        self.assertEqual(len(out.splitlines()), len(TNORMS.splitlines()))  # no line moves
+        self.assertEqual(sorted(done["declared"]), ["eq_one_of_one_le", "keep_me", "lt_one_of_ne_one"])
+
+    def test_it_is_idempotent(self):
+        once, _ = self.run_on(TNORMS, {"eq_one_of_one_le", "lt_one_of_ne_one"})
+        twice, done = self.run_on(once, {"eq_one_of_one_le", "lt_one_of_ne_one"})
+        self.assertEqual(once, twice)
+        self.assertEqual(done["declared"], [])
+
+    def test_a_dotted_alias_and_the_single_name_alias_are_as_before(self):
+        out, _ = self.run_on("alias dim := HasDim.d\nalias Ne.lt_one := lt_one_of_ne_one\n", {"dim"}, ns="Tengoku.X")
+        self.assertIn("alias Tengoku.X.dim := HasDim.d", out)
+        self.assertIn("alias Ne.lt_one := lt_one_of_ne_one", out)
+
+
 if __name__ == "__main__":
     unittest.main()

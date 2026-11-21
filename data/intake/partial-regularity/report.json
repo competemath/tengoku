@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "d98da92a9608ae01154e58dfcb870565ed6d1ac4203d8f87387a46566152fec6",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "partial-regularity",
+ "lint_mode": "proposed",
+ "modules": 2,
+ "part": 1,
+ "theorems": 190
+}
