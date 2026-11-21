@@ -326,7 +326,10 @@
     "https://github.com/BrandonMYates/grlab",
     "https://github.com/arex1337/erdos-263-lean",
     "https://github.com/AxiomMath/ramanujan-tau-misses-primes",
-    "https://github.com/qkkqk1234/jsp-000907-lean"
+    "https://github.com/qkkqk1234/jsp-000907-lean",
+    "https://github.com/TJC-LP/goemans",
+    "https://github.com/innerlightr-wq/eoc-lean-verification",
+    "https://github.com/savarin/lean-spectral-theory"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -665,7 +668,10 @@
     "https://github.com/BrandonMYates/grlab": "Apache-2.0",
     "https://github.com/arex1337/erdos-263-lean": "Apache-2.0",
     "https://github.com/AxiomMath/ramanujan-tau-misses-primes": "MIT",
-    "https://github.com/qkkqk1234/jsp-000907-lean": "Apache-2.0"
+    "https://github.com/qkkqk1234/jsp-000907-lean": "Apache-2.0",
+    "https://github.com/TJC-LP/goemans": "MIT",
+    "https://github.com/innerlightr-wq/eoc-lean-verification": "Apache-2.0",
+    "https://github.com/savarin/lean-spectral-theory": "Apache-2.0"
   },
   "corpora": {
     "equational-theories": {
@@ -3251,6 +3257,29 @@
       "commit": "f820373fea69f3f959cdaaf3a1d9dd70ce6a3e1a",
       "roots": [
         "JSP907"
+      ]
+    },
+    "goemans": {
+      "repo": "https://github.com/TJC-LP/goemans",
+      "commit": "45d8ef778c8c68a3f0bf54f2382c295bef407444",
+      "roots": [
+        "Goemans"
+      ]
+    },
+    "eoc-lean-verification": {
+      "repo": "https://github.com/innerlightr-wq/eoc-lean-verification",
+      "commit": "6057a0d519566a32fc4153a8920e93f18d70b064",
+      "roots": [
+        "EOC"
+      ]
+    },
+    "lean-spectral-theory": {
+      "repo": "https://github.com/savarin/lean-spectral-theory",
+      "commit": "d19e279f0ab244657f02ce678e8d67fa69e2f407",
+      "roots": [
+        "Spectral",
+        "SpectralStoneChallenge",
+        "SpectralStoneSolution"
       ]
     }
   },
