@@ -83,9 +83,38 @@ FIELDS = (
 )
 
 
+def load_licences(root: Path) -> dict[str, str]:
+    """source_url prefix -> licence, from the registry"""
+    return json.loads((root / "schemas" / "sources.json").read_text(encoding="utf-8")).get("licences", {})
+
+
+def intake_rows(root: Path, licences: dict[str, str], ids: dict | None = None) -> tuple[list[dict], dict[str, int]]:
+    """schema 2 rows for the theorems that arrived in the tree as modules: one per line of `data/intake/<library>/manifest.jsonl` (docs/v2.md, "The theorems that arrived as modules").
+
+    The manifest of a library is exactly what the tree holds of it: a raze removes the lines of the modules it removes (docs/pr-classes.md, section 8), so nothing is retracted here. `ids` is the
+    optional table of `v2.load_ids`; an id goes to the theorem it names by its tree module, its upstream module or no module at all (a library's names are unique, so a name names one theorem)."""
+    rows: list[dict] = []
+    counts: dict[str, int] = {}
+    base = root / "data" / "intake"
+    for d in sorted(p for p in base.iterdir() if p.is_dir()) if base.is_dir() else []:
+        manifest = d / "manifest.jsonl"
+        if not manifest.is_file():
+            continue
+        for m in lines(manifest):
+            library = m.get("library") or d.name
+            keys = (
+                (library, m.get("name"), m.get("module")),
+                (library, m.get("name"), v2.module_of(m.get("source_url"))),
+                (library, m.get("name"), None),
+            )
+            ident = next((ids[k] for k in keys if ids and k in ids), None)
+            rows.append(v2.intake_row(m, licence_of(str(m.get("source_url", "")), licences), ident))
+            counts[library] = counts.get(library, 0) + 1
+    return rows, counts
+
+
 def dataset(root: Path) -> tuple[list[dict], dict[str, dict[str, int]]]:
-    sources = json.loads((root / "schemas" / "sources.json").read_text(encoding="utf-8"))
-    licences = sources.get("licences", {})
+    licences = load_licences(root)
     records: list[dict] = []
     counts: dict[str, dict[str, int]] = {}
     for tier in ("trusted", "staging", "tentative"):
@@ -258,6 +287,12 @@ def release_notes(
                 f"the dataset's schema changed from {old.get('schema', 1)} to {schema}: every record now has a `ref`, version 1's cut names are repaired and null fields are left out; "
                 "`scripts/v2.py migrate` turns a version 1 dataset (or a name, or a Lean file) into the new one, and `docs/v2.md` says what each reader has to do"
             )
+        tree = sum(1 for r in records if "tree_module" in r)
+        if tree:
+            why.append(
+                f"the dataset now holds every trusted theorem of the tree, {tree:,} of them theorems of libraries that arrived as modules: their rows have no `proof` field "
+                "(the proof is the module `tree_module` in the source release of the same version) and carry `via`, how Gate 2 related the statement to the original's"
+            )
         if gone:
             why.append(f"record fields were removed or renamed ({', '.join(gone)}): code reading the dataset must stop expecting them")
         lines.append("Major version: " + "; ".join(why) + ".")
@@ -301,7 +336,14 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
     records, counts = dataset(root)
     if args.schema == 2:
-        records, _ = v2.upgrade_dataset(records, v2.load_ids(v2.checked_path(Path(args.ids))) if args.ids else None)
+        ids = v2.load_ids(v2.checked_path(Path(args.ids))) if args.ids else None
+        records, _ = v2.upgrade_dataset(records, ids)
+        tree_rows, tree_counts = intake_rows(
+            root, load_licences(root), ids
+        )  # schema 2 holds every trusted theorem of the tree: the intake libraries too
+        records += tree_rows
+        for library, n in tree_counts.items():
+            counts.setdefault(library, {})["intake"] = n
         problems = v2.check(records)
         if problems:
             raise SystemExit("the schema 2 dataset breaks its own invariants: " + "; ".join(problems[:5]))
@@ -345,7 +387,10 @@ def main() -> None:
             "uncompressed_sha256": hashlib.sha256(raw).hexdigest(),
         },
         "libraries": {k: counts[k] for k in sorted(counts)},
-        "totals": {t: sum(c.get(t, 0) for c in counts.values()) for t in ("trusted", "staging", "tentative")},
+        "totals": {
+            t: sum(c.get(t, 0) for c in counts.values())
+            for t in (("trusted", "intake", "staging", "tentative") if args.schema == 2 else ("trusted", "staging", "tentative"))
+        },
     }
     (out / "snapshot.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     if args.notes:
