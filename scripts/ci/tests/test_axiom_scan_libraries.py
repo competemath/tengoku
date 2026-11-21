@@ -68,6 +68,24 @@ class Libraries(unittest.TestCase):
         self.assertEqual(code, 1, out)
         self.assertIn("trusted records of compiled libraries are not in the export", out)
 
+    def test_a_name_that_is_a_trusted_record_and_a_manifest_theorem_is_held_to_the_records_rule_in_every_shard(self):
+        # `Shared.thm` is a record of the tier library `lib` and a theorem of the bundle's manifest, and the export does not hold it: the whole tree's audit fails it (a record of a compiled library), so does the shard of
+        # either library; the shard of the bundle used to excuse it as a bundle theorem renamed in the tree (the record names were taken after the libraries narrowed the records)
+        x = self.export_with_bundle_only()
+        for libraries in (None, "bundle", "lib"):
+            with self.subTest(libraries=libraries):
+                code, out, _ = scan(x, ["Shared.thm"], ["Shared.thm", "Bundle.good"], libraries)
+                self.assertEqual(code, 1, out)
+                self.assertIn("trusted records of compiled libraries are not in the export", out)
+        # the control: when the export holds it, no shard fails
+        held = self.export_with_bundle_only()
+        p = held.const("propext")
+        held.decl("Shared.thm", p, p)
+        for libraries in (None, "bundle", "lib"):
+            with self.subTest(libraries=libraries, held=True):
+                code, out, _ = scan(held, ["Shared.thm"], ["Shared.thm", "Bundle.good"], libraries)
+                self.assertEqual(code, 0, out)
+
     def test_every_declaration_of_the_export_is_scanned_whatever_the_libraries_are(self):
         x = standard()
         x.axiom("sorryAx")

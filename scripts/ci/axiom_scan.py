@@ -319,11 +319,13 @@ def audit_records(s: Scan, records_dir: Path, by_name: dict[str, int], libraries
     """Every trusted record must be in the export and rest only on the standard axioms. Returns the report and the failures.
     With `libraries` only the records of those libraries are audited (a shard of the independent check, docs/releases.md: the shards' libraries are disjoint, so their reports add up)."""
     records = live_records(records_dir)
+    record_names = set(
+        records
+    )  # every trusted record, whatever the shard: a manifest name that is also a trusted record is held to the record's rule, in a shard as in the whole tree
     intake = intake_records(records_dir.parent / "intake")  # data/trusted -> data/intake
     if libraries is not None:
         records = {n: libs for n, libs in records.items() if libs & libraries}
         intake = {n: libs for n, libs in intake.items() if libs & libraries}
-    record_names = set(records)  # a manifest name that is also a trusted record is held to the record's rule
     for n_, libs in intake.items():
         records.setdefault(n_, set()).update(libs)
     by_last: dict[str, list[str]] = {}

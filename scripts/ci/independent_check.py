@@ -284,7 +284,7 @@ def merge(
             }
             for g, r in zip(p["shards"], rs, strict=True)
         ],
-        "note": "Every shard exports the roots it was given and what they import: the seed part of a shard's export is the same constants as another shard's, so `declarations_checked` and the `export` counts are sums over shards, not counts of distinct constants.",
+        "note": "Shard 0 exports every constant of the environment its roots make (Lean core and the seed); a library shard exports the constants declared in the modules of its own libraries and what they need (lean4export --own): the seed constants a library uses are exported again by its shard, so `declarations_checked` and the `export` counts are sums over shards, not counts of distinct constants. Coverage rests on shard 0 holding the whole seed and on the plan's roots being exactly the imports of Tengoku/All.lean.",
     }
 
 

@@ -15,10 +15,12 @@ name: independent-check
 # million lines of 2026-10-12, the last time this check passed; the tree has grown since, and the 350 minutes of the one job ran
 # out in the export on every night from 16 November. The plan job cuts the tree into shards (scripts/ci/independent_check.py:
 # shard 0 is the seeded root and the libraries of the tier files; the others are the libraries that arrived as modules, balanced
-# by the size of their sources), each shard is a job that exports its roots, has nanoda check the export and scans it, and the
+# by the size of their sources), each shard is a job that exports its constants, has nanoda check the export and scans it, and the
 # report job joins the shards' reports into the one `independent-check` artifact a release reads, unless a shard is missing,
-# failed, or was made for another commit or by other tools. Every shard exports the roots it was given and what they import, so the union
-# of the exports holds every constant `Tengoku.All` has (the plan refuses roots that are not exactly the imports of Tengoku/All.lean).
+# failed, or was made for another commit or by other tools. Shard 0 exports every constant of the environment its roots make (all of
+# Lean core and the seed); a library shard exports the constants declared in the modules of its own libraries and what they need
+# (`lean4export --own`, scripts/ci/lean4export-own.patch), so the union of the exports holds every constant `Tengoku.All` has: the seed
+# through shard 0, each library's own constants through its shard (the plan refuses roots that are not exactly the imports of Tengoku/All.lean).
 run-name: independent check of ${{ inputs.commit || github.sha }}   # release.yml looks runs up by this title
 on:
   workflow_dispatch:
