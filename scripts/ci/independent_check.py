@@ -282,7 +282,7 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     pl = sub.add_parser("plan")
-    pl.add_argument("--shards", type=int, default=12)
+    pl.add_argument("--shards", type=int, default=24)
     pl.add_argument("--commit")
     pl.add_argument(
         "--only",
