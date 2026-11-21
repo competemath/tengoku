@@ -102,6 +102,7 @@ jobs:
       SHARD: ${{ matrix.shard }}
       ROOTS: ${{ matrix.roots }}
       LIBRARIES: ${{ matrix.libraries }}
+      OWN: ${{ matrix.own }}
       CHECK_COMMIT: ${{ needs.plan.outputs.commit }}
     steps:
       - name: Free disk (the export is several GB)
@@ -143,6 +144,13 @@ jobs:
         run: |
           git clone -q https://github.com/leanprover/lean4export "$RUNNER_TEMP/lean4export"
           git -C "$RUNNER_TEMP/lean4export" checkout -q "$LEAN4EXPORT_COMMIT"
+          if [ "$OWN" = true ]; then
+            # a library shard exports the constants declared in its own libraries and what they need, not every constant of the environment it imports (the whole seed):
+            # scripts/ci/lean4export-own.patch adds `--own=<module prefix>` to lean4export's main (10 lines; the checker re-checks whatever is exported, the plan and the report vouch for the coverage)
+            git show "$GITHUB_SHA:scripts/ci/lean4export-own.patch" > "$RUNNER_TEMP/own.patch"
+            git -C "$RUNNER_TEMP/lean4export" apply "$RUNNER_TEMP/own.patch"
+            sha256sum "$RUNNER_TEMP/own.patch" | cut -d' ' -f1 > "$RUNNER_TEMP/own.patch.sha256"
+          fi
           (cd "$RUNNER_TEMP/lean4export" && lake build 2>&1 | tail -2)
           git clone -q https://github.com/ammkrn/nanoda_lib "$RUNNER_TEMP/nanoda"
           git -C "$RUNNER_TEMP/nanoda" checkout -q "$NANODA_COMMIT"
@@ -151,7 +159,8 @@ jobs:
         run: |
           start=$(date +%s)
           read -r -a roots <<< "$ROOTS"
-          lake env /usr/bin/time -v "$RUNNER_TEMP/lean4export/.lake/build/bin/lean4export" "${roots[@]}" > "$RUNNER_TEMP/tengoku.ndjson" 2> "$RUNNER_TEMP/export-time.txt" || { tail -20 "$RUNNER_TEMP/export-time.txt"; exit 1; }
+          own_args=(); if [ "$OWN" = true ]; then for r in "${roots[@]}"; do own_args+=("--own=$r"); done; fi
+          lake env /usr/bin/time -v "$RUNNER_TEMP/lean4export/.lake/build/bin/lean4export" "${own_args[@]}" "${roots[@]}" > "$RUNNER_TEMP/tengoku.ndjson" 2> "$RUNNER_TEMP/export-time.txt" || { tail -20 "$RUNNER_TEMP/export-time.txt"; exit 1; }
           echo "$(( $(date +%s) - start ))" > "$RUNNER_TEMP/export-seconds.txt"
           echo "exported $(wc -l < "$RUNNER_TEMP/tengoku.ndjson") lines, $(du -h "$RUNNER_TEMP/tengoku.ndjson" | cut -f1), in $(cat "$RUNNER_TEMP/export-seconds.txt") s"
           grep -E "Maximum resident|Elapsed|Major \(requiring I/O\) page faults|Swaps" "$RUNNER_TEMP/export-time.txt" || true   # the memory the exporter needed: a shard that outgrows the runner's RAM swaps and slows down by an order of magnitude
@@ -202,7 +211,12 @@ jobs:
               "libraries": [x for x in os.environ["LIBRARIES"].split(",") if x],
               "commit": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
               "toolchain": open("lean-toolchain").read().strip(),
-              "lean4export": {"repo": "https://github.com/leanprover/lean4export", "commit": os.environ["LEAN4EXPORT_COMMIT"]},
+              "export_mode": "own" if os.environ["OWN"] == "true" else "all",
+              "lean4export": {
+                  "repo": "https://github.com/leanprover/lean4export",
+                  "commit": os.environ["LEAN4EXPORT_COMMIT"],
+                  **({"patch_sha256": open(os.path.join(tmp, "own.patch.sha256")).read().strip()} if os.environ["OWN"] == "true" else {}),
+              },
               "nanoda": {
                   "repo": "https://github.com/ammkrn/nanoda_lib",
                   "commit": os.environ["NANODA_COMMIT"],
@@ -248,6 +262,7 @@ jobs:
           git show "$GITHUB_SHA:scripts/ci/independent_check.py" > "$RUNNER_TEMP/independent_check.py"
           python3 "$RUNNER_TEMP/independent_check.py" merge --plan plan/plan.json --reports shards --commit "$CHECK_COMMIT" \
             --lean4export-commit "$LEAN4EXPORT_COMMIT" --nanoda-commit "$NANODA_COMMIT" \
+            --patch-sha256 "$(git show "$GITHUB_SHA:scripts/ci/lean4export-own.patch" | sha256sum | cut -d' ' -f1)" \
             --run "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" --out independent-check.json | tee -a "$GITHUB_STEP_SUMMARY"
       - name: The report, for a release of this commit
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2

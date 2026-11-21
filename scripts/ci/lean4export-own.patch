@@ -1,0 +1,21 @@
+--- a/Main.lean
++++ b/Main.lean
+@@ -7,9 +7,17 @@
+   let (imports, constants) := args.span (· != "--")
+   let imports := imports.toArray.map fun mod => { module := Syntax.decodeNameLit ("`" ++ mod) |>.get! }
+   let env ← importModules imports {}
++  -- `--own=Tengoku.Foo` (repeatable): of the whole environment, export only the constants declared in the modules under these names (and what they need)
++  let own : List Name := opts.filterMap fun o => if o.startsWith "--own=" then some (o.drop 6).copy.toName else none
+   let constants := match constants.tail? with
+     | some cs => cs.map fun c => Syntax.decodeNameLit ("`" ++ c) |>.get!
+-    | none    => env.constants.toList.map Prod.fst |>.filter (!·.isInternal)
++    | none    =>
++      let all := env.constants.toList.map Prod.fst |>.filter (!·.isInternal)
++      if own.isEmpty then all
++      else all.filter fun n =>
++        match env.getModuleIdxFor? n with
++        | some i => own.any fun p => p.isPrefixOf env.header.moduleNames[i]!
++        | none => false
+   M.run env do
+     let _ ← initState env opts
+     dumpMetadata

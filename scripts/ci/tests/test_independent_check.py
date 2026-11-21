@@ -27,6 +27,7 @@ TIER = {"mathlib-algebra", "mathlib-order", "competemath", "equational-theories"
 INTAKE = {"alpha", "beta", "gamma", "delta"}
 SIZES = {"Alpha": 900, "Beta": 500, "Gamma": 450, "Delta": 100, "EquationalTheories": 300, "Seed": 10_000}
 L4E, NANODA = "a" * 40, "b" * 40
+PATCH = "d" * 64
 COMMIT = "c" * 40
 
 
@@ -41,7 +42,12 @@ def shard_report(g: dict, **kw) -> dict:
         "libraries": g["libraries"],
         "commit": COMMIT,
         "toolchain": "leanprover/lean4:v4.34.0-rc2",
-        "lean4export": {"repo": "https://github.com/leanprover/lean4export", "commit": L4E},
+        "lean4export": {
+            "repo": "https://github.com/leanprover/lean4export",
+            "commit": L4E,
+            **({"patch_sha256": PATCH} if g["shard"] else {}),
+        },
+        "export_mode": "own" if g["shard"] else "all",
         "nanoda": {
             "repo": "https://github.com/ammkrn/nanoda_lib",
             "commit": NANODA,
@@ -78,7 +84,16 @@ def merge_all(p: dict, mutate=None, **kw):
     reports = {g["shard"]: shard_report(g) for g in p["shards"]}
     if mutate:
         mutate(reports)
-    return I.merge(p, reports, kw.get("commit", COMMIT), L4E, NANODA, "https://example/run/1", now="2026-11-21T00:00:00Z")
+    return I.merge(
+        p,
+        reports,
+        kw.get("commit", COMMIT),
+        L4E,
+        NANODA,
+        "https://example/run/1",
+        now="2026-11-21T00:00:00Z",
+        patch_sha256=kw.get("patch", PATCH),
+    )
 
 
 class Parsing(unittest.TestCase):
@@ -184,7 +199,13 @@ class Plan(unittest.TestCase):
 
     def test_the_matrix_is_plain_strings(self):
         m = I.matrix(make_plan(2))
-        self.assertEqual(m["include"][0], {"shard": 0, "roots": "Tengoku Tengoku.EquationalTheories", "libraries": ",".join(sorted(TIER))})
+        self.assertEqual(
+            m["include"][0],
+            {"shard": 0, "roots": "Tengoku Tengoku.EquationalTheories", "libraries": ",".join(sorted(TIER)), "own": "false"},
+        )
+        self.assertEqual(
+            {e["own"] for e in m["include"][1:]}, {"true"}
+        )  # a library shard exports what its libraries declare and what that needs
         self.assertTrue(all(isinstance(v, (str, int)) for e in m["include"] for v in e.values()))
 
 
@@ -225,6 +246,35 @@ class Merge(unittest.TestCase):
         with self.assertRaises(SystemExit) as c:
             merge_all(make_plan(), other)
         self.assertIn("not made by the pinned lean4export and nanoda", str(c.exception))
+
+    def test_a_library_shard_that_did_not_export_its_own_constants_or_ran_another_patch_is_refused(self):
+        def wrong_mode(reps):
+            reps[1]["export_mode"] = "all"
+
+        with self.assertRaises(SystemExit) as c:
+            merge_all(make_plan(), wrong_mode)
+        self.assertIn("exported in mode 'all', the plan says 'own'", str(c.exception))
+
+        def seed_in_own_mode(reps):
+            reps[0]["export_mode"] = "own"
+
+        with self.assertRaises(SystemExit) as c:
+            merge_all(make_plan(), seed_in_own_mode)
+        self.assertIn("shard 0: exported in mode 'own', the plan says 'all'", str(c.exception))
+
+        def other_patch(reps):
+            reps[2]["lean4export"]["patch_sha256"] = "e" * 64
+
+        with self.assertRaises(SystemExit) as c:
+            merge_all(make_plan(), other_patch)
+        self.assertIn("shard 2: not made with the patch of this workflow's commit", str(c.exception))
+        with self.assertRaises(SystemExit):
+            merge_all(make_plan(), patch=None)  # a joiner that is not told the patch cannot vouch for the library shards
+
+    def test_the_merged_report_names_the_patch_the_library_shards_ran_with(self):
+        r = merge_all(make_plan())
+        self.assertEqual(r["lean4export"]["library_shards_patch_sha256"], PATCH)
+        self.assertEqual([s["export_mode"] for s in r["shards"]], ["all", "own", "own"])
 
     def test_a_failed_scan_or_a_nanoda_error_is_refused(self):
         def scan_failed(reps):
@@ -340,6 +390,8 @@ class CommandLine(unittest.TestCase):
                     L4E,
                     "--nanoda-commit",
                     NANODA,
+                    "--patch-sha256",
+                    PATCH,
                     "--run",
                     "https://example/run/1",
                     "--out",
@@ -413,6 +465,8 @@ class CommandLine(unittest.TestCase):
                     L4E,
                     "--nanoda-commit",
                     NANODA,
+                    "--patch-sha256",
+                    PATCH,
                     "--run",
                     "x",
                     "--out",
@@ -449,6 +503,8 @@ class CommandLine(unittest.TestCase):
                     L4E,
                     "--nanoda-commit",
                     NANODA,
+                    "--patch-sha256",
+                    PATCH,
                     "--run",
                     "x",
                     "--out",

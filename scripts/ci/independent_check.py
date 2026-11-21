@@ -143,11 +143,33 @@ def plan(all_text: str, sizes: dict[str, int], tier: set[str], intake: set[str],
 
 
 def matrix(p: dict) -> dict:
-    """the strategy matrix of the workflow: one entry a shard, the roots and the libraries as plain strings (the workflow puts them in the environment, never in a command line)"""
-    return {"include": [{"shard": g["shard"], "roots": " ".join(g["roots"]), "libraries": ",".join(g["libraries"])} for g in p["shards"]]}
+    """the strategy matrix of the workflow: one entry a shard, the roots and the libraries as plain strings (the workflow puts them in the environment, never in a command line).
+    `own` says how the shard exports: shard 0 exports every constant of the environment its roots make (all of Lean core and the seed); a library shard exports the constants DECLARED in its own
+    libraries' modules and what they need (`lean4export --own=`, scripts/ci/lean4export-own.patch): the environment it imports holds the whole seed, and exporting all of it in every shard
+    outgrew the runner's memory (a shard of the first trial: "the hosted runner lost communication with the server")."""
+    return {
+        "include": [
+            {
+                "shard": g["shard"],
+                "roots": " ".join(g["roots"]),
+                "libraries": ",".join(g["libraries"]),
+                "own": "false" if g["shard"] == 0 else "true",
+            }
+            for g in p["shards"]
+        ]
+    }
 
 
-def merge(p: dict, reports: dict[int, dict], commit: str, lean4export: str, nanoda: str, run: str, now: str | None = None) -> dict:
+def merge(
+    p: dict,
+    reports: dict[int, dict],
+    commit: str,
+    lean4export: str,
+    nanoda: str,
+    run: str,
+    now: str | None = None,
+    patch_sha256: str | None = None,
+) -> dict:
     """one report from the shards' reports; SystemExit listing every problem when the shards do not make a complete, passing check of `commit`"""
     problems: list[str] = []
     wanted = [g["shard"] for g in p["shards"]]
@@ -171,6 +193,11 @@ def merge(p: dict, reports: dict[int, dict], commit: str, lean4export: str, nano
             problems.append(f"{who}: checked {r.get('commit')}, not {commit}")
         if r.get("lean4export", {}).get("commit") != lean4export or r.get("nanoda", {}).get("commit") != nanoda:
             problems.append(f"{who}: not made by the pinned lean4export and nanoda")
+        want_mode = "all" if g["shard"] == 0 else "own"
+        if r.get("export_mode") != want_mode:
+            problems.append(f"{who}: exported in mode {r.get('export_mode')!r}, the plan says {want_mode!r}")
+        if want_mode == "own" and (not patch_sha256 or r.get("lean4export", {}).get("patch_sha256") != patch_sha256):
+            problems.append(f"{who}: not made with the patch of this workflow's commit")
         if r.get("nanoda", {}).get("errors") != 0 or not r.get("nanoda", {}).get("declarations_checked"):
             problems.append(f"{who}: nanoda did not check declarations without errors")
         scan = r.get("axiom_scan", {})
@@ -205,7 +232,7 @@ def merge(p: dict, reports: dict[int, dict], commit: str, lean4export: str, nano
         "toolchain": first["toolchain"],
         "checked_at": now or datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "run": run,
-        "lean4export": first["lean4export"],
+        "lean4export": {**first["lean4export"], **({"library_shards_patch_sha256": patch_sha256} if patch_sha256 else {})},
         "nanoda": {
             "repo": first["nanoda"]["repo"],
             "commit": nanoda,
@@ -229,6 +256,7 @@ def merge(p: dict, reports: dict[int, dict], commit: str, lean4export: str, nano
                 "libraries": g["libraries"],
                 "bytes": g["bytes"],
                 "declarations_checked": r["nanoda"]["declarations_checked"],
+                "export_mode": r["export_mode"],
                 "export_lines": r["axiom_scan"]["export"]["lines"],
                 "export_seconds": r.get("seconds", {}).get("export"),
                 "nanoda_seconds": r.get("seconds", {}).get("nanoda"),
@@ -259,6 +287,10 @@ def main(argv: list[str] | None = None) -> int:
     mg.add_argument("--lean4export-commit", required=True)
     mg.add_argument("--nanoda-commit", required=True)
     mg.add_argument("--run", required=True)
+    mg.add_argument(
+        "--patch-sha256",
+        help="the sha256 of scripts/ci/lean4export-own.patch at the workflow's commit: the library shards must say they ran with it",
+    )
     mg.add_argument("--out", required=True, type=Path)
     a = ap.parse_args(argv)
     if a.cmd == "plan":
@@ -281,7 +313,7 @@ def main(argv: list[str] | None = None) -> int:
         if r["shard"] in reports:
             raise SystemExit(f"shard {r['shard']} reported twice")
         reports[r["shard"]] = r
-    merged = merge(p, reports, a.commit, a.lean4export_commit, a.nanoda_commit, a.run)
+    merged = merge(p, reports, a.commit, a.lean4export_commit, a.nanoda_commit, a.run, patch_sha256=a.patch_sha256)
     a.out.write_text(json.dumps(merged, indent=2) + "\n", encoding="utf-8")
     print(
         f"independent check of {a.commit}: {len(reports)} shards, {merged['nanoda']['declarations_checked']} declarations checked by nanoda; the counts of records are in {a.out.name}"
