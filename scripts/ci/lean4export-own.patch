@@ -5,7 +5,7 @@
    let imports := imports.toArray.map fun mod => { module := Syntax.decodeNameLit ("`" ++ mod) |>.get! }
    let env ← importModules imports {}
 +  -- `--own=Tengoku.Foo` (repeatable): of the whole environment, export only the constants declared in the modules under these names (and what they need)
-+  let own : List Name := opts.filterMap fun o => if o.startsWith "--own=" then some (o.drop 6).copy.toName else none
++  let own : List Name := opts.filterMap fun o => if o.startsWith "--own=" then some (o.splitOn "=").getLast!.toName else none
    let constants := match constants.tail? with
      | some cs => cs.map fun c => Syntax.decodeNameLit ("`" ++ c) |>.get!
 -    | none    => env.constants.toList.map Prod.fst |>.filter (!·.isInternal)

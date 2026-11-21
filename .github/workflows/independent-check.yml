@@ -128,6 +128,21 @@ jobs:
         run: |
           curl -sSfL https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh | sh -s -- -y --default-toolchain none   # the installer at a fixed commit (as promote.yml)
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: lean4export and nanoda, at their pinned commits
+        run: |
+          git clone -q https://github.com/leanprover/lean4export "$RUNNER_TEMP/lean4export"
+          git -C "$RUNNER_TEMP/lean4export" checkout -q "$LEAN4EXPORT_COMMIT"
+          if [ "$OWN" = true ]; then
+            # a library shard exports the constants declared in its own libraries and what they need, not every constant of the environment it imports (the whole seed):
+            # scripts/ci/lean4export-own.patch adds `--own=<module prefix>` to lean4export's main (10 lines; the checker re-checks whatever is exported, the plan and the report vouch for the coverage)
+            git show "$GITHUB_SHA:scripts/ci/lean4export-own.patch" > "$RUNNER_TEMP/own.patch"
+            git -C "$RUNNER_TEMP/lean4export" apply "$RUNNER_TEMP/own.patch"
+            sha256sum "$RUNNER_TEMP/own.patch" | cut -d' ' -f1 > "$RUNNER_TEMP/own.patch.sha256"
+          fi
+          (cd "$RUNNER_TEMP/lean4export" && lake build 2>&1 | tail -40)   # all of it on a failure: the patch has to compile on the pinned toolchain
+          git clone -q https://github.com/ammkrn/nanoda_lib "$RUNNER_TEMP/nanoda"
+          git -C "$RUNNER_TEMP/nanoda" checkout -q "$NANODA_COMMIT"
+          (cd "$RUNNER_TEMP/nanoda" && cargo build --release --locked 2>&1 | tail -2)
       - name: The compiled tree (the published cache, then whatever this commit has beyond it)
         env: { GH_TOKEN: "${{ github.token }}" }   # gh attestation verify
         run: |
@@ -140,21 +155,6 @@ jobs:
           targets=(); for r in "${roots[@]}"; do targets+=("+$r"); done   # `+Tengoku` is the module; `Tengoku` alone is the whole library
           lake build "${targets[@]}" 2>&1 | tail -3
           echo "checking the tree at $(git rev-parse HEAD)"
-      - name: lean4export and nanoda, at their pinned commits
-        run: |
-          git clone -q https://github.com/leanprover/lean4export "$RUNNER_TEMP/lean4export"
-          git -C "$RUNNER_TEMP/lean4export" checkout -q "$LEAN4EXPORT_COMMIT"
-          if [ "$OWN" = true ]; then
-            # a library shard exports the constants declared in its own libraries and what they need, not every constant of the environment it imports (the whole seed):
-            # scripts/ci/lean4export-own.patch adds `--own=<module prefix>` to lean4export's main (10 lines; the checker re-checks whatever is exported, the plan and the report vouch for the coverage)
-            git show "$GITHUB_SHA:scripts/ci/lean4export-own.patch" > "$RUNNER_TEMP/own.patch"
-            git -C "$RUNNER_TEMP/lean4export" apply "$RUNNER_TEMP/own.patch"
-            sha256sum "$RUNNER_TEMP/own.patch" | cut -d' ' -f1 > "$RUNNER_TEMP/own.patch.sha256"
-          fi
-          (cd "$RUNNER_TEMP/lean4export" && lake build 2>&1 | tail -2)
-          git clone -q https://github.com/ammkrn/nanoda_lib "$RUNNER_TEMP/nanoda"
-          git -C "$RUNNER_TEMP/nanoda" checkout -q "$NANODA_COMMIT"
-          (cd "$RUNNER_TEMP/nanoda" && cargo build --release --locked 2>&1 | tail -2)
       - name: Export every declaration of this shard's roots
         run: |
           start=$(date +%s)
