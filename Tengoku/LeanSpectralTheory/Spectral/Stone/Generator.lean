@@ -110,7 +110,9 @@ noncomputable def generator
           rw [differenceQuotient_smul]
           exact (generatorLimit_spec U x).const_smul c } }
 
-/-- Membership in the generator domain is convergence of the Stone difference quotient.-/
+/-- Membership in the generator domain is convergence of the Stone difference quotient.
+@isnad1 id=iff.0h3v.s8.63e33623d9b3 from=translated src=- shape=cc37496f vocab=39d85a6d
+-/
 theorem mem_generator_domain_iff (U : StrongContUnitary E) (x : E) :
     x ∈ U.generator.domain ↔
       ∃ y, Filter.Tendsto
@@ -118,7 +120,9 @@ theorem mem_generator_domain_iff (U : StrongContUnitary E) (x : E) :
         (nhdsWithin 0 {0}ᶜ) (nhds y) :=
   Iff.rfl
 
-/-- On its domain, the Stone difference quotient converges to the generator.-/
+/-- On its domain, the Stone difference quotient converges to the generator.
+@isnad1 id=tendsto.0h3v.s9.0a702bf69bcd from=translated src=- shape=f15c1ed9 vocab=b32870b3
+-/
 theorem tendsto_generator (U : StrongContUnitary E) (x : U.generator.domain) :
     Filter.Tendsto
       (fun t : ℝ ↦ (Complex.I * (t : ℂ))⁻¹ • (U.toFun t (x : E) - x))

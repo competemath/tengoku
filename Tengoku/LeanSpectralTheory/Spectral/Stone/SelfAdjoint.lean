@@ -582,6 +582,9 @@ private theorem generator_sub_I_surjective (U : StrongContUnitary E) :
     _ = -(-z) := by rw [hyv]
     _ = z := neg_neg z
 
+/--
+@isnad1 id=isselfad.0h2v.s6.1812377f31fe from=translated src=- shape=c817260c vocab=c02986f8
+-/
 theorem generator_isSelfAdjoint
     (U : StrongContUnitary E) :
     IsSelfAdjoint U.generator :=

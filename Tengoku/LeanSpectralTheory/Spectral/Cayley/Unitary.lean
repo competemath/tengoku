@@ -26,6 +26,9 @@ private theorem cayleyTransform_surjective
   refine ⟨A x + Complex.I • (x : E), ?_⟩
   exact (cayleyTransform_apply_plus A hA x).trans hx
 
+/--
+@isnad1 id=mem.1h2v.s10.ccd5c6d392f7 from=translated src=- shape=ebdb7176 vocab=d58e4f70
+-/
 theorem _root_.Tengoku.LeanSpectralTheory.cayleyTransform_unitary
     (A : E →ₗ.[ℂ] E) (hA : IsSelfAdjoint A) :
     cayleyTransform A hA ∈ unitary (E →L[ℂ] E) := by
@@ -41,6 +44,9 @@ theorem _root_.Tengoku.LeanSpectralTheory.cayleyTransform_unitary
   rw [← hueq]
   exact u.property
 
+/--
+@isnad1 id=eq.2h3v.s8.881b8481e4f4 from=translated src=- shape=6877dee7 vocab=b20b8954
+-/
 theorem _root_.Tengoku.LeanSpectralTheory.one_not_mem_eigenvalues_cayleyTransform
     (A : E →ₗ.[ℂ] E) (hA : IsSelfAdjoint A) :
     ∀ x, cayleyTransform A hA x = x → x = 0 := by
@@ -73,6 +79,9 @@ theorem _root_.Tengoku.LeanSpectralTheory.one_not_mem_eigenvalues_cayleyTransfor
   change A (0 : A.domain) + Complex.I • ((0 : A.domain) : E) = 0
   rw [LinearPMap.map_zero A, Submodule.coe_zero, smul_zero, add_zero]
 
+/--
+@isnad1 id=denseran.1h2v.s8.a05460600d7b from=translated src=- shape=4eb5db84 vocab=a76cc847
+-/
 theorem _root_.Tengoku.LeanSpectralTheory.dense_range_one_sub_cayleyTransform
     (A : E →ₗ.[ℂ] E) (hA : IsSelfAdjoint A) :
     DenseRange (fun x => x - cayleyTransform A hA x) := by

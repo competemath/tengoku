@@ -316,7 +316,9 @@ private theorem scalarMeasure_eq_of_phaseGroup_eq (E₁ E₂ : PVM E)
 /-- Two PVM representations of the same self-adjoint operator agree on every measurable set.
 
 This is the extensional uniqueness statement supported by the current `PVM` definition, whose
-axioms constrain `proj` only on measurable sets.-/
+axioms constrain `proj` only on measurable sets.
+@isnad1 id=eq.4h5v.s8.ad2d520d93ab from=translated src=- shape=7280afb4 vocab=59611f3a
+-/
 theorem _root_.Tengoku.LeanSpectralTheory.spectral_theorem_uniqueness_on_measurable
     (A : E →ₗ.[ℂ] E) (hA : IsSelfAdjoint A)
     (E₁ E₂ : PVM E)
@@ -345,7 +347,9 @@ theorem _root_.Tengoku.LeanSpectralTheory.spectral_theorem_uniqueness_on_measura
 /-- Two PVM representations of the same self-adjoint operator agree on every measurable set.
 
 Literal equality of the `PVM` structures is not implied because their laws intentionally leave
-`proj S` unconstrained when `S` is nonmeasurable.-/
+`proj S` unconstrained when `S` is nonmeasurable.
+@isnad1 id=eq.4h5v.s8.ad2d520d93ab from=translated src=- shape=7280afb4 vocab=59611f3a
+-/
 theorem _root_.Tengoku.LeanSpectralTheory.spectral_theorem_uniqueness
     (A : E →ₗ.[ℂ] E) (hA : IsSelfAdjoint A)
     (E₁ E₂ : PVM E)

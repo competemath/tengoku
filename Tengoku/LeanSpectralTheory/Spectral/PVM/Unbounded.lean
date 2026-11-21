@@ -32,7 +32,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
 noncomputable def Tengoku.LeanSpectralTheory.PVM.scalarContent (E_pvm : PVM E) (x : E) (S : Set ℝ) : ℝ :=
   (@inner ℂ E _ (E_pvm.proj S x) x).re
 
-/-- Scalar PVM content is nonnegative for measurable sets.-/
+/-- Scalar PVM content is nonnegative for measurable sets.
+@isnad1 id=le.1h4v.s5.f49c90d2bfaa from=translated src=- shape=9801e65f vocab=7b169ebe
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.scalarContent_nonneg (E_pvm : PVM E) (x : E) (S : Set ℝ)
     (hS : MeasurableSet S) :
     0 ≤ E_pvm.scalarContent x S := by
@@ -41,13 +43,17 @@ theorem Tengoku.LeanSpectralTheory.PVM.scalarContent_nonneg (E_pvm : PVM E) (x :
   rw [E_pvm.empty, zero_apply, inner_zero_left, Complex.zero_re] at h
   exact h
 
-/-- Scalar PVM content vanishes on the empty set.-/
+/-- Scalar PVM content vanishes on the empty set.
+@isnad1 id=eq.0h3v.s5.2baaf9439aa7 from=translated src=- shape=fc794b8d vocab=76e4e787
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.scalarContent_empty (E_pvm : PVM E) (x : E) :
     E_pvm.scalarContent x ∅ = 0 := by
   change (@inner ℂ E _ (E_pvm.proj ∅ x) x).re = 0
   rw [E_pvm.empty, zero_apply, inner_zero_left, Complex.zero_re]
 
-/-- Scalar PVM content is additive on disjoint measurable sets.-/
+/-- Scalar PVM content is additive on disjoint measurable sets.
+@isnad1 id=eq.3h5v.s6.03913fe3470c from=translated src=- shape=616015d1 vocab=75e0134d
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.scalarContent_union (E_pvm : PVM E) (x : E) {S T : Set ℝ}
     (hS : MeasurableSet S) (hT : MeasurableSet T) (hdisj : Disjoint S T) :
     E_pvm.scalarContent x (S ∪ T) =
@@ -57,7 +63,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.scalarContent_union (E_pvm : PVM E) (x : 
       (@inner ℂ E _ (E_pvm.proj T x) x).re
   rw [E_pvm.proj_union hS hT hdisj, add_apply, inner_add_left, Complex.add_re]
 
-/-- Strong countable additivity of a PVM implies scalar countable-additivity convergence.-/
+/-- Strong countable additivity of a PVM implies scalar countable-additivity convergence.
+@isnad1 id=tendsto.2h4v.s7.0c1713531881 from=translated src=- shape=6d47c6e5 vocab=ffdc2fdb
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.scalarContent_countably_additive_tendsto (E_pvm : PVM E) (x : E)
     (S : ℕ → Set ℝ) (hmeas : ∀ i, MeasurableSet (S i))
     (hpair : Pairwise (Disjoint on S)) :
@@ -91,13 +99,17 @@ noncomputable def Tengoku.LeanSpectralTheory.PVM.scalarMeasure (E_pvm : PVM E) (
       rw [← hHasSum.tsum_eq,
         ENNReal.ofReal_tsum_of_nonneg hnonneg hHasSum.summable])
 
-/-- On measurable sets, the scalar measure agrees with the PVM quadratic form.-/
+/-- On measurable sets, the scalar measure agrees with the PVM quadratic form.
+@isnad1 id=eq.1h4v.s6.88afd9f41198 from=translated src=- shape=60a13a5f vocab=0fcba324
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.scalarMeasure_apply (E_pvm : PVM E) (x : E) (S : Set ℝ)
     (hS : MeasurableSet S) :
     E_pvm.scalarMeasure x S = ENNReal.ofReal (E_pvm.scalarContent x S) := by
   exact Measure.ofMeasurable_apply S hS
 
-/-- Scalar PVM content is the squared norm of the projected vector.-/
+/-- Scalar PVM content is the squared norm of the projected vector.
+@isnad1 id=eq.1h4v.s7.39eed4342588 from=translated src=- shape=55525f8c vocab=5ba84caf
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.scalarContent_eq_norm_sq (E_pvm : PVM E) (x : E) (S : Set ℝ)
     (hS : MeasurableSet S) :
     E_pvm.scalarContent x S = ‖E_pvm.proj S x‖ ^ 2 := by
@@ -107,14 +119,18 @@ theorem Tengoku.LeanSpectralTheory.PVM.scalarContent_eq_norm_sq (E_pvm : PVM E) 
   rw [hproj.1.adjoint_eq]
   exact congr_arg (fun T : E →L[ℂ] E => (@inner ℂ E _ (T x) x).re) hproj.2.symm
 
-/-- The total mass of the scalar measure is the squared norm of its vector.-/
+/-- The total mass of the scalar measure is the squared norm of its vector.
+@isnad1 id=eq.0h3v.s6.f1aeae86356a from=translated src=- shape=5829131a vocab=8377ae71
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.scalarMeasure_univ (E_pvm : PVM E) (x : E) :
     E_pvm.scalarMeasure x Set.univ = ENNReal.ofReal (‖x‖ ^ 2) := by
   rw [E_pvm.scalarMeasure_apply x Set.univ MeasurableSet.univ,
     E_pvm.scalarContent_eq_norm_sq x Set.univ MeasurableSet.univ,
     E_pvm.univ, one_apply_eq_self]
 
-/-- Every set has finite scalar measure.-/
+/-- Every set has finite scalar measure.
+@isnad1 id=lt.0h4v.s6.da9ab5b14774 from=translated src=- shape=793466d6 vocab=98002cf5
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.scalarMeasure_lt_top (E_pvm : PVM E) (x : E) (S : Set ℝ) :
     E_pvm.scalarMeasure x S < ⊤ := by
   calc
@@ -123,12 +139,16 @@ theorem Tengoku.LeanSpectralTheory.PVM.scalarMeasure_lt_top (E_pvm : PVM E) (x :
     _ = ENNReal.ofReal (‖x‖ ^ 2) := E_pvm.scalarMeasure_univ x
     _ < ⊤ := ENNReal.ofReal_lt_top
 
-/-- Scalar PVM measures are finite measures.-/
+/-- Scalar PVM measures are finite measures.
+@isnad1 id=isfinite.0h3v.s5.099fa94087bf from=translated src=- shape=56cb0fb5 vocab=9d61ac68
+-/
 noncomputable instance Tengoku.LeanSpectralTheory.PVM.scalarMeasure_isFiniteMeasure (E_pvm : PVM E) (x : E) :
     IsFiniteMeasure (E_pvm.scalarMeasure x) where
   measure_univ_lt_top := E_pvm.scalarMeasure_lt_top x Set.univ
 
-/-- Diagonal matrix coefficients of simple spectral integrals are scalar integrals.-/
+/-- Diagonal matrix coefficients of simple spectral integrals are scalar integrals.
+@isnad1 id=eq.0h4v.s8.2c5e63eaa066 from=translated src=- shape=4ee10ca1 vocab=908b8575
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.inner_simpleIntegral_self (E_pvm : PVM E)
     (f : SimpleFunc ℝ ℂ) (x : E) :
     @inner ℂ E _ x (E_pvm.simpleIntegral f x) =
@@ -175,7 +195,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.inner_simpleIntegral_self (E_pvm : PVM E)
   exact mul_comm _ _
 
 /-- Diagonal matrix coefficients of bounded measurable spectral integrals are scalar
-integrals.-/
+integrals.
+@isnad1 id=eq.2h4v.s8.2556ea88d46d from=translated src=- shape=c9423c62 vocab=844cffd8
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.inner_integral_self (E_pvm : PVM E)
     (f : ℝ → ℂ) (hf : Measurable f) (hbdd : ∃ C, ∀ t, ‖f t‖ ≤ C)
     (x : E) :
@@ -208,7 +230,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.inner_integral_self (E_pvm : PVM E)
   apply tendsto_nhds_unique hinner
   simpa only [E_pvm.inner_simpleIntegral_self] using hintegral
 
-/-- The simple spectral integral satisfies the pointwise `L²` norm identity.-/
+/-- The simple spectral integral satisfies the pointwise `L²` norm identity.
+@isnad1 id=eq.0h4v.s8.6e2831fcdb68 from=translated src=- shape=c4676260 vocab=e3cb2d57
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.ofReal_norm_sq_simpleIntegral (E_pvm : PVM E)
     (f : SimpleFunc ℝ ℂ) (x : E) :
     ENNReal.ofReal (‖E_pvm.simpleIntegral f x‖ ^ 2) =
@@ -231,7 +255,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.ofReal_norm_sq_simpleIntegral (E_pvm : PV
     ENNReal.ofReal_pow (norm_nonneg z) 2, ofReal_norm]
   rfl
 
-/-- The bounded spectral integral satisfies the pointwise `L²` norm identity.-/
+/-- The bounded spectral integral satisfies the pointwise `L²` norm identity.
+@isnad1 id=eq.2h4v.s8.b1b688cc0f30 from=translated src=- shape=df130a6f vocab=d3b2e227
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.ofReal_norm_sq_integral (E_pvm : PVM E)
     (f : ℝ → ℂ) (hf : Measurable f) (hbdd : ∃ C, ∀ t, ‖f t‖ ≤ C) (x : E) :
     ENNReal.ofReal (‖E_pvm.integral f hf hbdd x‖ ^ 2) =
@@ -286,7 +312,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.ofReal_norm_sq_integral (E_pvm : PVM E)
   ext n
   exact E_pvm.ofReal_norm_sq_simpleIntegral (s n) x
 
-/-- Scalar PVM content is quadratic under complex scalar multiplication.-/
+/-- Scalar PVM content is quadratic under complex scalar multiplication.
+@isnad1 id=eq.1h5v.s7.03fd284524ec from=translated src=- shape=228f1c1e vocab=e6e3f9e4
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.scalarContent_smul (E_pvm : PVM E) (c : ℂ) (x : E) (S : Set ℝ)
     (hS : MeasurableSet S) :
     E_pvm.scalarContent (c • x) S = ‖c‖ ^ 2 * E_pvm.scalarContent x S := by
@@ -294,7 +322,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.scalarContent_smul (E_pvm : PVM E) (c : �
     E_pvm.scalarContent_eq_norm_sq x S hS, map_smul, norm_smul]
   ring
 
-/-- Scalar content of a sum is controlled by the two summands.-/
+/-- Scalar content of a sum is controlled by the two summands.
+@isnad1 id=le.1h5v.s6.a31cb35300de from=translated src=- shape=0c446ba6 vocab=817809fa
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.scalarContent_add_le (E_pvm : PVM E) (x y : E) (S : Set ℝ)
     (hS : MeasurableSet S) :
     E_pvm.scalarContent (x + y) S ≤
@@ -305,7 +335,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.scalarContent_add_le (E_pvm : PVM E) (x y
   exact ((sq_le_sq₀ (norm_nonneg _) (add_nonneg (norm_nonneg _) (norm_nonneg _))).2
     (norm_add_le _ _)).trans add_sq_le
 
-/-- Projecting the vector restricts its scalar content to the projection set.-/
+/-- Projecting the vector restricts its scalar content to the projection set.
+@isnad1 id=eq.2h5v.s7.67b2681b5de0 from=translated src=- shape=c159b106 vocab=bf512fc8
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.scalarContent_proj (E_pvm : PVM E) (x : E) (S T : Set ℝ)
     (hS : MeasurableSet S) (hT : MeasurableSet T) :
     E_pvm.scalarContent (E_pvm.proj S x) T = E_pvm.scalarContent x (T ∩ S) := by
@@ -314,7 +346,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.scalarContent_proj (E_pvm : PVM E) (x : E
     E_pvm.inter T S hT hS]
   rfl
 
-/-- Projecting a vector restricts its scalar measure to the projection set.-/
+/-- Projecting a vector restricts its scalar measure to the projection set.
+@isnad1 id=eq.1h4v.s7.add5ccc1f07f from=translated src=- shape=190762ba vocab=a9990e66
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.scalarMeasure_proj (E_pvm : PVM E) (x : E) (S : Set ℝ)
     (hS : MeasurableSet S) :
     E_pvm.scalarMeasure (E_pvm.proj S x) = (E_pvm.scalarMeasure x).restrict S := by
@@ -324,7 +358,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.scalarMeasure_proj (E_pvm : PVM E) (x : E
     E_pvm.scalarContent_proj x S T hS hT, Measure.restrict_apply hT,
     E_pvm.scalarMeasure_apply x (T ∩ S) (hT.inter hS)]
 
-/-- The scalar measure associated to the zero vector is the zero measure.-/
+/-- The scalar measure associated to the zero vector is the zero measure.
+@isnad1 id=eq.0h2v.s6.9a6dc55b6f68 from=translated src=- shape=2866cfc0 vocab=36ef4ff6
+-/
 @[simp]
 theorem Tengoku.LeanSpectralTheory.PVM.scalarMeasure_zero (E_pvm : PVM E) :
     E_pvm.scalarMeasure (0 : E) = 0 := by
@@ -335,7 +371,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.scalarMeasure_zero (E_pvm : PVM E) :
     zero_pow (by omega), ENNReal.ofReal_zero]
   rfl
 
-/-- The scalar measure is quadratic under complex scalar multiplication.-/
+/-- The scalar measure is quadratic under complex scalar multiplication.
+@isnad1 id=eq.0h4v.s7.22466ec56a86 from=translated src=- shape=d2f6bcd8 vocab=f7ee3fd5
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.scalarMeasure_smul (E_pvm : PVM E) (c : ℂ) (x : E) :
     E_pvm.scalarMeasure (c • x) =
       ENNReal.ofReal (‖c‖ ^ 2) • E_pvm.scalarMeasure x := by
@@ -346,7 +384,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.scalarMeasure_smul (E_pvm : PVM E) (c : �
     ENNReal.ofReal_mul (sq_nonneg ‖c‖), Measure.smul_apply, smul_eq_mul,
     E_pvm.scalarMeasure_apply x S hS]
 
-/-- The scalar measure of a sum is dominated by twice the sum of the scalar measures.-/
+/-- The scalar measure of a sum is dominated by twice the sum of the scalar measures.
+@isnad1 id=le.0h4v.s7.a2cd8149f17c from=translated src=- shape=86c06fdc vocab=0fb33566
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.scalarMeasure_add_le (E_pvm : PVM E) (x y : E) :
     E_pvm.scalarMeasure (x + y) ≤
       (2 : ENNReal) • (E_pvm.scalarMeasure x + E_pvm.scalarMeasure y) := by
@@ -618,6 +658,9 @@ noncomputable def Tengoku.LeanSpectralTheory.PVM.unboundedIntegral (E_pvm : PVM 
           rw [hfun]
           exact hx.const_smul c } }
 
+/--
+@isnad1 id=iff.1h4v.s7.c01bd70ce887 from=translated src=- shape=b52ad897 vocab=d6e61fc8
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.mem_domain_unboundedIntegral (E_pvm : PVM E)
     (f : ℝ → ℂ) (hf : Measurable f) (x : E) :
     x ∈ (E_pvm.unboundedIntegral f hf).domain ↔
@@ -625,7 +668,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.mem_domain_unboundedIntegral (E_pvm : PVM
   Iff.rfl
 
 /-- The diagonal matrix coefficient of the coordinate spectral integral is
-the first moment of the associated scalar spectral measure.-/
+the first moment of the associated scalar spectral measure.
+@isnad1 id=eq.0h3v.s9.b26204e66449 from=translated src=- shape=b4083e4f vocab=f35de575
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.inner_coordinate_unboundedIntegral_self (E_pvm : PVM E)
     (x : (E_pvm.unboundedIntegral ((↑) : ℝ → ℂ)
       Complex.continuous_ofReal.measurable).domain) :
@@ -688,7 +733,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.inner_coordinate_unboundedIntegral_self (
     using hintegral
 
 /-- The pointwise `L²` identity comparing a bounded spectral integral with an unbounded
-spectral integral on the latter's domain.-/
+spectral integral on the latter's domain.
+@isnad1 id=eq.3h5v.s9.dd4545eb25e0 from=translated src=- shape=8dfd4c9c vocab=0b813300
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.ofReal_norm_sq_integral_sub_unboundedIntegral (E_pvm : PVM E)
     (f : ℝ → ℂ) (hf : Measurable f) (hbdd : ∃ C, ∀ r, ‖f r‖ ≤ C)
     (g : ℝ → ℂ) (hg : Measurable g)
@@ -892,7 +939,9 @@ private theorem Tengoku.LeanSpectralTheory.PVM.proj_mul_integral (E_pvm : PVM E)
     (complexIndicator_mul_bounded S f (Classical.choose_spec hbdd))
 
 /-- The scalar measure of a bounded spectral-integral vector is the original scalar measure
-weighted by the squared norm of the integrand.-/
+weighted by the squared norm of the integrand.
+@isnad1 id=eq.2h4v.s8.5c2ff418a468 from=translated src=- shape=fafd9605 vocab=5a655713
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.scalarMeasure_integral (E_pvm : PVM E)
     (f : ℝ → ℂ) (hf : Measurable f) (hbdd : ∃ C, ∀ r, ‖f r‖ ≤ C)
     (x : E) :
@@ -923,7 +972,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.scalarMeasure_integral (E_pvm : PVM E)
     norm_num
 
 /-- A bounded spectral integral lies in the domain of an unbounded spectral integral when
-the pointwise product of their integrands is bounded.-/
+the pointwise product of their integrands is bounded.
+@isnad1 id=mem.4h5v.s8.7c22d9f08990 from=translated src=- shape=24730327 vocab=f75f2d06
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.integral_mem_domain_unboundedIntegral
     (E_pvm : PVM E)
     (f : ℝ → ℂ) (hf : Measurable f) (hbdd : ∃ C, ∀ r, ‖f r‖ ≤ C)
@@ -1167,7 +1218,9 @@ private theorem Tengoku.LeanSpectralTheory.PVM.tendsto_integral_boundedTruncatio
     ENNReal.coe_pow] using hL2.symm
 
 /-- Unbounded spectral integration acts on bounded spectral-integral vectors by pointwise
-multiplication, provided the product integrand is bounded.-/
+multiplication, provided the product integrand is bounded.
+@isnad1 id=eq.4h5v.s9.d904f68c9992 from=translated src=- shape=44fc787d vocab=9b3ba30a
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.unboundedIntegral_integral
     (E_pvm : PVM E) (f : ℝ → ℂ) (hf : Measurable f)
     (hfBdd : ∃ C, ∀ r, ‖f r‖ ≤ C)
@@ -1353,7 +1406,9 @@ private theorem linearPMap_isFormalAdjoint_self_of_inner_real
   norm_num
   ring
 
-/-- Integration of the real coordinate against any PVM is a symmetric partial operator.-/
+/-- Integration of the real coordinate against any PVM is a symmetric partial operator.
+@isnad1 id=other.0h2v.s6.95d149dcec3b from=translated src=- shape=ff0e0851 vocab=842659d7
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.coordinate_unboundedIntegral_isFormalAdjoint (E_pvm : PVM E) :
     let A := E_pvm.unboundedIntegral ((↑) : ℝ → ℂ)
       Complex.continuous_ofReal.measurable
@@ -1394,7 +1449,9 @@ private theorem Tengoku.LeanSpectralTheory.PVM.integral_eq_of_proj_eq_on_measura
   funext n
   exact PVM.simpleIntegral_eq_of_proj_eq_on_measurable E₁ E₂ hproj _
 
-/-- Unbounded spectral integration depends only on a PVM's values on measurable sets.-/
+/-- Unbounded spectral integration depends only on a PVM's values on measurable sets.
+@isnad1 id=eq.2h4v.s7.b0be6a56a849 from=translated src=- shape=defed847 vocab=2074dc5c
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.unboundedIntegral_eq_of_proj_eq_on_measurable
     (E₁ E₂ : PVM E)
     (hproj : ∀ S : Set ℝ, MeasurableSet S → E₁.proj S = E₂.proj S)

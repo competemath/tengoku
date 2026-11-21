@@ -65,9 +65,15 @@ def PVM.ofRoot (p : _root_.Tengoku.LeanSpectralTheory.PVM E) : PVM E :=
 def PVM.toRoot (p : PVM E) : _root_.Tengoku.LeanSpectralTheory.PVM E :=
   ⟨p.proj, p.isOrthogonalProjection, p.empty, p.univ, p.inter, p.countably_additive⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.1328ae4e6c11 from=translated src=- shape=bdb869af vocab=db2df938
+-/
 theorem PVM.represents_ofRoot {p : _root_.Tengoku.LeanSpectralTheory.PVM E} {A : E →ₗ.[ℂ] E} :
     (PVM.ofRoot p).Represents A ↔ p.Represents A := Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s6.40de8ff14724 from=translated src=- shape=bdb869af vocab=93b6ec23
+-/
 theorem PVM.represents_toRoot {p : PVM E} {A : E →ₗ.[ℂ] E} :
     (PVM.toRoot p).Represents A ↔ p.Represents A := Iff.rfl
 
@@ -100,10 +106,16 @@ def StrongContUnitary.ofRoot (u : _root_.Tengoku.LeanSpectralTheory.StrongContUn
 def StrongContUnitary.toRoot (u : StrongContUnitary E) : _root_.Tengoku.LeanSpectralTheory.StrongContUnitary E :=
   ⟨u.toFun, u.isUnitary, u.zero, u.add, u.stronglyContinuous⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.4b2f0fce62bc from=translated src=- shape=bdb869af vocab=9f2f78db
+-/
 theorem StrongContUnitary.generates_ofRoot
     {u : _root_.Tengoku.LeanSpectralTheory.StrongContUnitary E} {A : E →ₗ.[ℂ] E} :
     (StrongContUnitary.ofRoot u).Generates A ↔ u.Generates A := Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s6.250a1d29728b from=translated src=- shape=bdb869af vocab=97a9492d
+-/
 theorem StrongContUnitary.generates_toRoot
     {u : StrongContUnitary E} {A : E →ₗ.[ℂ] E} :
     (StrongContUnitary.toRoot u).Generates A ↔ u.Generates A := Iff.rfl

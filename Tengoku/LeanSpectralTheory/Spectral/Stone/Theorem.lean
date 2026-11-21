@@ -641,7 +641,9 @@ private theorem spectralUnitaryGroup_generator (E_pvm : PVM E) :
 noncomputable def Tengoku.LeanSpectralTheory.PVM.phaseUnitaryGroup (E_pvm : PVM E) : StrongContUnitary E :=
   spectralUnitaryGroup E_pvm
 
-/-- The generator of the phase unitary group is integration against the real coordinate.-/
+/-- The generator of the phase unitary group is integration against the real coordinate.
+@isnad1 id=eq.0h2v.s6.6b797744dbc4 from=translated src=- shape=6278cf9a vocab=971d3375
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.phaseUnitaryGroup_generator (E_pvm : PVM E) :
     E_pvm.phaseUnitaryGroup.generator =
       E_pvm.unboundedIntegral ((↑) : ℝ → ℂ)

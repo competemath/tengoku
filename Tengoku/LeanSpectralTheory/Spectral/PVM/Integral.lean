@@ -28,7 +28,9 @@ noncomputable def Tengoku.LeanSpectralTheory.PVM.simpleIntegral (E_pvm : PVM E)
     (f : SimpleFunc ℝ ℂ) : E →L[ℂ] E :=
   ∑ z ∈ f.range, z • E_pvm.proj (f ⁻¹' {z})
 
-/-- The projections of finitely many fibers add to the projection of their union.-/
+/-- The projections of finitely many fibers add to the projection of their union.
+@isnad1 id=eq.0h5v.s8.0525c3cf93d2 from=translated src=- shape=d165655a vocab=7c91dc28
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.sum_proj_preimage (E_pvm : PVM E) {β : Type*}
     (f : SimpleFunc ℝ β) (s : Finset β) :
     ∑ y ∈ s, E_pvm.proj (f ⁻¹' {y}) = E_pvm.proj (f ⁻¹' (↑s : Set β)) := by
@@ -62,7 +64,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.sum_proj_preimage (E_pvm : PVM E) {β : T
       exact ⟨ht, rfl⟩
   rw [← E_pvm.proj_biUnion_finset s (fun y => f ⁻¹' {y}) hmeas hpair, hunion]
 
-/-- Reindexing a simple function groups the projections of fibers with the same new value.-/
+/-- Reindexing a simple function groups the projections of fibers with the same new value.
+@isnad1 id=eq.0h5v.s9.fcda180478fd from=translated src=- shape=f0d86f14 vocab=cb6423ae
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.simpleIntegral_map (E_pvm : PVM E) {β : Type*}
     (f : SimpleFunc ℝ β) (g : β → ℂ) :
     E_pvm.simpleIntegral (f.map g) =
@@ -76,7 +80,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.simpleIntegral_map (E_pvm : PVM E) {β : 
   intro z hz
   rw [(Finset.mem_filter.mp hz).2]
 
-/-- Simple spectral integration preserves addition.-/
+/-- Simple spectral integration preserves addition.
+@isnad1 id=eq.0h4v.s8.51c4a0ca6d65 from=translated src=- shape=34d3b578 vocab=59383f70
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.simpleIntegral_add (E_pvm : PVM E) (f g : SimpleFunc ℝ ℂ) :
     E_pvm.simpleIntegral (f + g) = E_pvm.simpleIntegral f + E_pvm.simpleIntegral g := by
   calc
@@ -98,7 +104,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.simpleIntegral_add (E_pvm : PVM E) (f g :
     _ = E_pvm.simpleIntegral f + E_pvm.simpleIntegral g := by
       rw [SimpleFunc.map_fst_pair, SimpleFunc.map_snd_pair]
 
-/-- Simple spectral integration preserves negation.-/
+/-- Simple spectral integration preserves negation.
+@isnad1 id=eq.0h3v.s8.c53491056262 from=translated src=- shape=f7dc5ec2 vocab=32206c14
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.simpleIntegral_neg (E_pvm : PVM E) (f : SimpleFunc ℝ ℂ) :
     E_pvm.simpleIntegral (-f) = -E_pvm.simpleIntegral f := by
   change E_pvm.simpleIntegral (f.map Neg.neg) = -E_pvm.simpleIntegral f
@@ -107,13 +115,17 @@ theorem Tengoku.LeanSpectralTheory.PVM.simpleIntegral_neg (E_pvm : PVM E) (f : S
   intro z hz
   rw [neg_smul]
 
-/-- Simple spectral integration preserves subtraction.-/
+/-- Simple spectral integration preserves subtraction.
+@isnad1 id=eq.0h4v.s8.c8a4d7923ea1 from=translated src=- shape=34d3b578 vocab=cacd83c4
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.simpleIntegral_sub (E_pvm : PVM E) (f g : SimpleFunc ℝ ℂ) :
     E_pvm.simpleIntegral (f - g) = E_pvm.simpleIntegral f - E_pvm.simpleIntegral g := by
   rw [sub_eq_add_neg, E_pvm.simpleIntegral_add, E_pvm.simpleIntegral_neg]
   rw [sub_eq_add_neg]
 
-/-- The projections of the fibers of a simple function sum to the identity.-/
+/-- The projections of the fibers of a simple function sum to the identity.
+@isnad1 id=eq.0h3v.s8.0305f5792e6b from=translated src=- shape=6c76b5d9 vocab=625028f9
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.sum_proj_fiber_eq_one (E_pvm : PVM E) (f : SimpleFunc ℝ ℂ) :
     (∑ z ∈ f.range, E_pvm.proj (f ⁻¹' {z})) = 1 := by
   have hpair : (↑f.range : Set ℂ).PairwiseDisjoint (fun z => f ⁻¹' {z}) := by
@@ -137,7 +149,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.sum_proj_fiber_eq_one (E_pvm : PVM E) (f 
   rw [← E_pvm.proj_biUnion_finset f.range (fun z => f ⁻¹' {z}) hmeas hpair,
     hunion, E_pvm.univ]
 
-/-- Projections onto two distinct fibers of a simple function multiply to zero.-/
+/-- Projections onto two distinct fibers of a simple function multiply to zero.
+@isnad1 id=eq.1h5v.s9.890d3f2bd9f9 from=translated src=- shape=904e3685 vocab=f50a9e27
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.proj_fiber_mul_proj_fiber (E_pvm : PVM E) (f : SimpleFunc ℝ ℂ)
     {z w : ℂ} (hzw : z ≠ w) :
     E_pvm.proj (f ⁻¹' {z}) * E_pvm.proj (f ⁻¹' {w}) = 0 := by
@@ -151,7 +165,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.proj_fiber_mul_proj_fiber (E_pvm : PVM E)
       exact False.elim ht
   rw [hinter, E_pvm.empty]
 
-/-- On a fixed simple partition, pointwise multiplication becomes operator multiplication.-/
+/-- On a fixed simple partition, pointwise multiplication becomes operator multiplication.
+@isnad1 id=eq.0h6v.s8.7f956be709b2 from=translated src=- shape=0e2ff285 vocab=5782dd96
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.simpleIntegral_map_mul_map (E_pvm : PVM E) {β : Type*}
     (f : SimpleFunc ℝ β) (a b : β → ℂ) :
     E_pvm.simpleIntegral (f.map a) * E_pvm.simpleIntegral (f.map b) =
@@ -181,7 +197,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.simpleIntegral_map_mul_map (E_pvm : PVM E
   · intro hznot
     exact (hznot hz).elim
 
-/-- Simple spectral integration preserves pointwise multiplication.-/
+/-- Simple spectral integration preserves pointwise multiplication.
+@isnad1 id=eq.0h4v.s8.4b21bfbecbbc from=translated src=- shape=34d3b578 vocab=7f68c651
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.simpleIntegral_mul (E_pvm : PVM E) (f g : SimpleFunc ℝ ℂ) :
     E_pvm.simpleIntegral (f * g) = E_pvm.simpleIntegral f * E_pvm.simpleIntegral g := by
   rw [SimpleFunc.mul_eq_map₂]
@@ -189,7 +207,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.simpleIntegral_mul (E_pvm : PVM E) (f g :
   simpa only [SimpleFunc.map_fst_pair, SimpleFunc.map_snd_pair] using
     E_pvm.simpleIntegral_map_mul_map (f.pair g) Prod.fst Prod.snd
 
-/-- Multiplying a simple spectral sum by its adjoint removes all cross-fiber terms.-/
+/-- Multiplying a simple spectral sum by its adjoint removes all cross-fiber terms.
+@isnad1 id=eq.0h3v.s10.88977bc35a95 from=translated src=- shape=92dcd7fd vocab=7f9937cf
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.star_simpleIntegral_mul (E_pvm : PVM E) (f : SimpleFunc ℝ ℂ) :
     star (E_pvm.simpleIntegral f) * E_pvm.simpleIntegral f =
       ∑ z ∈ f.range, (star z * z) • E_pvm.proj (f ⁻¹' {z}) := by
@@ -207,7 +227,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.star_simpleIntegral_mul (E_pvm : PVM E) (
   · intro hznot
     exact (hznot hz).elim
 
-/-- The squared norm of a simple spectral sum is the weighted sum over its fibers.-/
+/-- The squared norm of a simple spectral sum is the weighted sum over its fibers.
+@isnad1 id=eq.0h4v.s8.8c724cd73c3a from=translated src=- shape=668d0818 vocab=815fc759
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.norm_sq_simpleIntegral (E_pvm : PVM E) (f : SimpleFunc ℝ ℂ) (x : E) :
     ‖E_pvm.simpleIntegral f x‖ ^ 2 =
       ∑ z ∈ f.range, ‖z‖ ^ 2 * (@inner ℂ E _ (E_pvm.proj (f ⁻¹' {z}) x) x).re := by
@@ -234,7 +256,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.norm_sq_simpleIntegral (E_pvm : PVM E) (f
   simpa only [] using
     (Finset.sum_congr (s₁ := f.range) (s₂ := f.range) rfl (fun z hz => hterm z))
 
-/-- A uniform bound for a simple function bounds the norm of its spectral sum.-/
+/-- A uniform bound for a simple function bounds the norm of its spectral sum.
+@isnad1 id=le.1h4v.s7.c7b43099ae65 from=translated src=- shape=0fc05381 vocab=a3d29418
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.norm_simpleIntegral_le (E_pvm : PVM E) (f : SimpleFunc ℝ ℂ) {C : ℝ}
     (hbdd : ∀ t, ‖f t‖ ≤ C) : ‖E_pvm.simpleIntegral f‖ ≤ C := by
   have hC : 0 ≤ C := le_trans (norm_nonneg (f 0)) (hbdd 0)
@@ -284,7 +308,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.norm_simpleIntegral_le (E_pvm : PVM E) (f
       _ = (C * ‖x‖) ^ 2 := by ring
   exact (sq_le_sq₀ (norm_nonneg _) (mul_nonneg hC (norm_nonneg x))).mp hsquare
 
-/-- Uniform distance of simple functions controls the operator norm of their spectral sums.-/
+/-- Uniform distance of simple functions controls the operator norm of their spectral sums.
+@isnad1 id=le.1h5v.s9.ac20be63f6f1 from=translated src=- shape=46ba5443 vocab=a83a03fa
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.norm_simpleIntegral_sub_le (E_pvm : PVM E) (f g : SimpleFunc ℝ ℂ) {C : ℝ}
     (hbdd : ∀ t, ‖f t - g t‖ ≤ C) :
     ‖E_pvm.simpleIntegral f - E_pvm.simpleIntegral g‖ ≤ C := by
@@ -414,7 +440,9 @@ private theorem boundedApprox_tendstoUniformly (f : ℝ → ℂ) (hf : Measurabl
   exact h
 
 /-- A bounded measurable complex-valued function admits uniformly convergent simple
-approximations obeying the same pointwise norm bound.-/
+approximations obeying the same pointwise norm bound.
+@isnad1 id=ex.2h2v.s6.41d8eb0b8fee from=translated src=- shape=ac39fd04 vocab=dd64058d
+-/
 theorem _root_.Tengoku.LeanSpectralTheory.exists_bounded_simpleFunc_tendstoUniformly (f : ℝ → ℂ) (hf : Measurable f)
     (C : ℝ) (hbdd : ∀ t, ‖f t‖ ≤ C) :
     ∃ s : ℕ → SimpleFunc ℝ ℂ,
@@ -456,7 +484,9 @@ private theorem simpleIntegral_boundedApprox_cauchy (E_pvm : PVM E)
     (C := ε / 2) hpoint
   exact hop.trans_lt (by linarith)
 
-/-- The spectral sum of a constant simple function is the corresponding scalar operator.-/
+/-- The spectral sum of a constant simple function is the corresponding scalar operator.
+@isnad1 id=eq.0h3v.s9.90b1a9c43847 from=translated src=- shape=68bfc831 vocab=d2331f28
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.simpleIntegral_const (E_pvm : PVM E) (z : ℂ) :
     E_pvm.simpleIntegral (SimpleFunc.const ℝ z) = z • 1 := by
   rw [PVM.simpleIntegral, SimpleFunc.range_const, Finset.sum_singleton]
@@ -466,7 +496,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.simpleIntegral_const (E_pvm : PVM E) (z :
       Set.mem_univ]
   rw [hpre, E_pvm.univ]
 
-/-- The spectral sum of the zero simple function is zero.-/
+/-- The spectral sum of the zero simple function is zero.
+@isnad1 id=eq.0h2v.s8.e27ac87f6011 from=translated src=- shape=e4371f25 vocab=8beea72f
+-/
 @[simp]
 theorem Tengoku.LeanSpectralTheory.PVM.simpleIntegral_zero (E_pvm : PVM E) :
     E_pvm.simpleIntegral (0 : SimpleFunc ℝ ℂ) = 0 := by
@@ -475,7 +507,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.simpleIntegral_zero (E_pvm : PVM E) :
     rfl]
   rw [E_pvm.simpleIntegral_const, zero_smul]
 
-/-- The spectral sum of the unit simple function is the identity operator.-/
+/-- The spectral sum of the unit simple function is the identity operator.
+@isnad1 id=eq.0h2v.s8.e8b85ccbed5f from=translated src=- shape=e4371f25 vocab=8beea72f
+-/
 @[simp]
 theorem Tengoku.LeanSpectralTheory.PVM.simpleIntegral_one (E_pvm : PVM E) :
     E_pvm.simpleIntegral (1 : SimpleFunc ℝ ℂ) = 1 := by
@@ -484,7 +518,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.simpleIntegral_one (E_pvm : PVM E) :
     rfl]
   rw [E_pvm.simpleIntegral_const, one_smul]
 
-/-- The spectral sum of `z` on a measurable set and zero off it is `z • E(S)`.-/
+/-- The spectral sum of `z` on a measurable set and zero off it is `z • E(S)`.
+@isnad1 id=eq.1h4v.s8.3bc21651d520 from=translated src=- shape=9f19a6e0 vocab=c0463135
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.simpleIntegral_piecewise_const (E_pvm : PVM E)
     (S : Set ℝ) (hS : MeasurableSet S) (z : ℂ) :
     E_pvm.simpleIntegral
@@ -543,7 +579,9 @@ private theorem Tengoku.LeanSpectralTheory.PVM.tendsto_integralApprox (E_pvm : P
 
 /-- Spectral sums of any uniformly convergent simple approximation converge to the bounded
 spectral integral. In particular, the limit is independent of the chosen bound and approximation
-sequence.-/
+sequence.
+@isnad1 id=tendsto.3h4v.s8.3dfbc37590c8 from=translated src=- shape=155e6512 vocab=5433ddac
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.tendsto_simpleIntegral_of_tendstoUniformly (E_pvm : PVM E)
     (f : ℝ → ℂ) (hf : Measurable f) (hbdd : ∃ C, ∀ t, ‖f t‖ ≤ C)
     (s : ℕ → SimpleFunc ℝ ℂ)
@@ -591,7 +629,9 @@ private theorem Tengoku.LeanSpectralTheory.PVM.tendsto_simpleIntegral_boundedApp
   E_pvm.tendsto_simpleIntegral_of_tendstoUniformly f hf hbdd
     (boundedApprox f hf C hbddC) (boundedApprox_tendstoUniformly f hf C hbddC)
 
-/-- A pointwise bound on an integrand bounds the operator norm of its spectral integral.-/
+/-- A pointwise bound on an integrand bounds the operator norm of its spectral integral.
+@isnad1 id=le.2h4v.s7.e796abf33e5c from=translated src=- shape=48078b98 vocab=73648196
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.norm_integral_le (E_pvm : PVM E)
     (f : ℝ → ℂ) (hf : Measurable f) {C : ℝ} (hbdd : ∀ t, ‖f t‖ ≤ C) :
     ‖E_pvm.integral f hf ⟨C, hbdd⟩‖ ≤ C := by
@@ -670,7 +710,9 @@ private theorem boundedApprox_mul_tendstoUniformly
       dsimp [δ]
       exact div_mul_cancel₀ ε (ne_of_gt hK)
 
-/-- Bounded spectral integration preserves pointwise multiplication.-/
+/-- Bounded spectral integration preserves pointwise multiplication.
+@isnad1 id=eq.5h4v.s9.4ec07adb5d79 from=translated src=- shape=4570c2fb vocab=3b770ad1
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.integral_mul (E_pvm : PVM E)
     (f g : ℝ → ℂ) (hf : Measurable f) (hg : Measurable g)
     (hbddf : ∃ C, ∀ t, ‖f t‖ ≤ C) (hbddg : ∃ C, ∀ t, ‖g t‖ ≤ C)
@@ -694,7 +736,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.integral_mul (E_pvm : PVM E)
   exact tendsto_nhds_unique hfgLimit hprodLimit
 
 /-- Bounded spectral integration preserves pointwise subtraction, independently of the bound
-witnesses used in the three integrals.-/
+witnesses used in the three integrals.
+@isnad1 id=eq.5h4v.s9.2d47b28f40aa from=translated src=- shape=4570c2fb vocab=1a04cdff
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.integral_sub (E_pvm : PVM E)
     (f g : ℝ → ℂ) (hf : Measurable f) (hg : Measurable g)
     (hbddf : ∃ C, ∀ t, ‖f t‖ ≤ C) (hbddg : ∃ C, ∀ t, ‖g t‖ ≤ C)

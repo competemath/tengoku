@@ -371,7 +371,9 @@ private theorem complexPolarization_self (x : V) :
   rw [realPolarization_self q hq_smul, hzero]
   norm_num
 
-/-- The polarized sesquilinear form recovers the quadratic function on its diagonal.-/
+/-- The polarized sesquilinear form recovers the quadratic function on its diagonal.
+@isnad1 id=eq.4h3v.s9.6627c2c754b1 from=translated src=- shape=5a06a128 vocab=6ab81ed3
+-/
 theorem _root_.Tengoku.LeanSpectralTheory.boundedSesquilinearFormOfQuadratic_apply_self (x : V) :
     boundedSesquilinearFormOfQuadratic q hq_smul hq_para hq_nonneg hq_le x x = q x := by
   change complexPolarization q x x = q x

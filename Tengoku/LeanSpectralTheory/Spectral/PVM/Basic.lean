@@ -38,7 +38,9 @@ structure _root_.Tengoku.LeanSpectralTheory.PVM (E : Type*) [NormedAddCommGroup 
       Filter.atTop (nhds (proj (⋃ i, S i) x))
 
 /-- Inclusion of measurable sets makes the real scalar quadratic form of a PVM projection
-monotone.-/
+monotone.
+@isnad1 id=le.3h5v.s8.fa3ccb92122d from=translated src=- shape=f5e9a78f vocab=fc1e6502
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.monotone (E_pvm : PVM E) {S T : Set ℝ}
     (hS : MeasurableSet S) (hT : MeasurableSet T) (h : S ⊆ T) (x : E) :
     (@inner ℂ E _ (E_pvm.proj S x) x).re ≤ (@inner ℂ E _ (E_pvm.proj T x) x).re :=
@@ -63,7 +65,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.monotone (E_pvm : PVM E) {S T : Set ℝ}
     rw [sub_apply, inner_sub_left, map_sub, sub_nonneg] at hnonneg
     exact hnonneg
 
-/-- A PVM sends the union of two disjoint measurable sets to the sum of their projections.-/
+/-- A PVM sends the union of two disjoint measurable sets to the sum of their projections.
+@isnad1 id=eq.3h4v.s9.2f3cb59d0871 from=translated src=- shape=5aae2be9 vocab=202a5300
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.proj_union (E_pvm : PVM E) {S T : Set ℝ}
     (hS : MeasurableSet S) (hT : MeasurableSet T) (hdisj : Disjoint S T) :
     E_pvm.proj (S ∪ T) = E_pvm.proj S + E_pvm.proj T := by
@@ -133,7 +137,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.proj_union (E_pvm : PVM E) {S T : Set ℝ
   exact tendsto_nhds_unique hlim hconst
 
 /-- A PVM sends a finite pairwise-disjoint union of measurable sets to the sum of their
-projections.-/
+projections.
+@isnad1 id=eq.2h5v.s8.e1cf92936d46 from=translated src=- shape=dcc367fa vocab=dbe73249
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.proj_biUnion_finset {I : Type*} (E_pvm : PVM E)
     (s : Finset I) (A : I → Set ℝ) (hmeas : ∀ i ∈ s, MeasurableSet (A i))
     (hpair : (↑s : Set I).PairwiseDisjoint A) :

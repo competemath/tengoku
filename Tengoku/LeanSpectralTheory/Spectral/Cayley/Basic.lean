@@ -268,12 +268,16 @@ private theorem minusI_surjective (A : E →ₗ.[ℂ] E) (hA : IsSelfAdjoint A) 
   rw [htop]
   exact Submodule.mem_top
 
-/-- For a self-adjoint operator, `A + iI` maps its domain onto the ambient space.-/
+/-- For a self-adjoint operator, `A + iI` maps its domain onto the ambient space.
+@isnad1 id=surjecti.1h2v.s9.e49d459eb5bf from=translated src=- shape=c089432a vocab=a9921557
+-/
 theorem _root_.Tengoku.LeanSpectralTheory.add_I_surjective_of_isSelfAdjoint (A : E →ₗ.[ℂ] E) (hA : IsSelfAdjoint A) :
     Function.Surjective (fun x : A.domain => A x + Complex.I • (x : E)) := by
   exact plusI_surjective A hA
 
-/-- For a self-adjoint operator, `A - iI` maps its domain onto the ambient space.-/
+/-- For a self-adjoint operator, `A - iI` maps its domain onto the ambient space.
+@isnad1 id=surjecti.1h2v.s9.7f4bce699477 from=translated src=- shape=c089432a vocab=ae4338cd
+-/
 theorem _root_.Tengoku.LeanSpectralTheory.sub_I_surjective_of_isSelfAdjoint (A : E →ₗ.[ℂ] E) (hA : IsSelfAdjoint A) :
     Function.Surjective (fun x : A.domain => A x - Complex.I • (x : E)) := by
   exact minusI_surjective A hA
@@ -301,7 +305,9 @@ noncomputable def _root_.Tengoku.LeanSpectralTheory.cayleyTransform
     (A : E →ₗ.[ℂ] E) (hA : IsSelfAdjoint A) : E →L[ℂ] E :=
   (cayleyLinearMap A hA).mkContinuous 1 (cayleyLinearMap_norm_le A hA)
 
-/-- The Cayley transform sends `(A + iI)x` to `(A - iI)x`.-/
+/-- The Cayley transform sends `(A + iI)x` to `(A - iI)x`.
+@isnad1 id=eq.1h3v.s9.ce7198505f84 from=translated src=- shape=4ea62f13 vocab=8e3f6ba6
+-/
 theorem _root_.Tengoku.LeanSpectralTheory.cayleyTransform_apply_plus
     (A : E →ₗ.[ℂ] E) (hA : IsSelfAdjoint A) (x : A.domain) :
     cayleyTransform A hA (A x + Complex.I • (x : E)) =
@@ -311,7 +317,9 @@ theorem _root_.Tengoku.LeanSpectralTheory.cayleyTransform_apply_plus
   change minusI A (e.symm (e x)) = minusI A x
   rw [e.symm_apply_apply]
 
-/-- The Cayley transform preserves the norm.-/
+/-- The Cayley transform preserves the norm.
+@isnad1 id=eq.1h3v.s8.9a3ee88b08ae from=translated src=- shape=e36e2c38 vocab=ec726b47
+-/
 theorem _root_.Tengoku.LeanSpectralTheory.norm_cayleyTransform (A : E →ₗ.[ℂ] E) (hA : IsSelfAdjoint A)
     (y : E) : ‖cayleyTransform A hA y‖ = ‖y‖ := by
   let e := LinearEquiv.ofBijective (plusI A) ⟨plusI_injective A hA, plusI_surjective A hA⟩

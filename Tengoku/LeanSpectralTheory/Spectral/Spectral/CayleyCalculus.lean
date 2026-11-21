@@ -88,7 +88,9 @@ private theorem mul_bounded
   exact mul_le_mul (hC r) (hD r) (norm_nonneg (g r)) hC0
 
 /-- If a PVM integrates a bounded Cayley phase to the Cayley transform of a self-adjoint
-operator, then that operator is contained in the PVM's coordinate integral.-/
+operator, then that operator is contained in the PVM's coordinate integral.
+@isnad1 id=le.5h4v.s8.713f06c335ca from=translated src=- shape=d2ee2842 vocab=36412c0d
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.selfAdjoint_le_coordinate_unboundedIntegral_of_cayley
     (E_pvm : PVM E) (A : E →ₗ.[ℂ] E) (hA : IsSelfAdjoint A)
     (phase : ℝ → ℂ) (hphaseMeas : Measurable phase)

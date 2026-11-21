@@ -36,7 +36,9 @@ def Tengoku.LeanSpectralTheory.PVM.Represents (E_pvm : PVM E) (A : E →ₗ.[ℂ
         ∫ t, (t : ℂ) ∂(scalarMeasure (x : E)))
 
 /-- Equality with the coordinate spectral integral supplies an intrinsic
-representation.-/
+representation.
+@isnad1 id=represen.1h3v.s7.343a28d73820 from=translated src=- shape=6a9a98d7 vocab=4dc2912e
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.represents_of_unboundedIntegral_eq (E_pvm : PVM E)
     (A : E →ₗ.[ℂ] E)
     (h : E_pvm.unboundedIntegral ((↑) : ℝ → ℂ)
@@ -55,7 +57,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.represents_of_unboundedIntegral_eq (E_pvm
 /-- The intrinsic representation is equivalent to the library's spectral
 integral representation. In particular, its diagonal moment formulation does
 not weaken the operator equality: complex polarization recovers every mixed
-matrix coefficient.-/
+matrix coefficient.
+@isnad1 id=eq.2h3v.s7.a53d11e10abc from=translated src=- shape=de95d634 vocab=bf8d9057
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.Represents.unboundedIntegral_eq
     {E_pvm : PVM E} {A : E →ₗ.[ℂ] E} (hrep : E_pvm.Represents A)
     (hA : IsSelfAdjoint A) :
@@ -134,7 +138,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.Represents.unboundedIntegral_eq
     hquad_sub (aB - Complex.I • bB) (aA - Complex.I • bA) rfl]
 
 /-- For self-adjoint operators, the intrinsic and constructed spectral
-integral formulations are logically equivalent.-/
+integral formulations are logically equivalent.
+@isnad1 id=iff.1h3v.s7.2dc240e870a9 from=translated src=- shape=508a2350 vocab=bf8d9057
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.represents_iff_unboundedIntegral_eq (E_pvm : PVM E)
     (A : E →ₗ.[ℂ] E) (hA : IsSelfAdjoint A) :
     E_pvm.Represents A ↔
@@ -144,7 +150,9 @@ theorem Tengoku.LeanSpectralTheory.PVM.represents_iff_unboundedIntegral_eq (E_pv
     E_pvm.represents_of_unboundedIntegral_eq A⟩
 
 /-- Intrinsic representations of a self-adjoint operator have the same
-spectral projections on every measurable set.-/
+spectral projections on every measurable set.
+@isnad1 id=eq.4h5v.s7.a3df1c34cdb5 from=translated src=- shape=f43638d0 vocab=0d359a44
+-/
 theorem Tengoku.LeanSpectralTheory.PVM.Represents.proj_eq_on_measurable
     {A : E →ₗ.[ℂ] E} (hA : IsSelfAdjoint A)
     {E₁ E₂ : PVM E} (h₁ : E₁.Represents A) (h₂ : E₂.Represents A)

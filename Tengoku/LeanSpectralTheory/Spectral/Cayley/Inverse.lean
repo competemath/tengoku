@@ -76,7 +76,9 @@ private theorem range_oneSub_cayley_eq_domain
     rw [map_smul, oneSub_cayley_apply_plus A hA x, smul_smul,
       inv_mul_cancel₀ htwoI, one_smul]
 
-/-- Applying the inverse Cayley transform to the Cayley transform recovers the original operator.-/
+/-- Applying the inverse Cayley transform to the Cayley transform recovers the original operator.
+@isnad1 id=eq.1h2v.s7.da09d8e1d11c from=translated src=- shape=8e1e707d vocab=73818f33
+-/
 theorem _root_.Tengoku.LeanSpectralTheory.inverseCayley_cayleyTransform
     (A : E →ₗ.[ℂ] E) (hA : IsSelfAdjoint A) :
     inverseCayley (cayleyTransform A hA) (cayleyTransform_unitary A hA)
