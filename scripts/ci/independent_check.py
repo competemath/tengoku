@@ -2,7 +2,7 @@
 """independent_check.py - the independent check (.github/workflows/independent-check.yml) in shards. Standard library only.
 
   independent_check.py plan  --shards N [--commit SHA] [--only SHARD]
-  independent_check.py merge --commit SHA --lean4export-commit X --nanoda-commit Y --run URL [--patch-sha256 H]
+  independent_check.py merge --commit SHA --lean4export-commit X --nanoda-commit Y --run URL [--patch-sha256 H] [--nanoda-patch-sha256 H]
 
 The files it reads and writes are at fixed places under the directory it runs in (the workflow's workspace), not on the command line: plan reads Tengoku/All.lean, tengoku-tree.json (the GitHub API's listing of the
 Tengoku tree) and data-paths.txt (the files of data/trusted and data/intake) and writes plan.json and matrix.json; merge reads plan/plan.json and every shard-N.json under shards/ and writes independent-check.json.
@@ -160,6 +160,7 @@ def merge(
     run: str,
     now: str | None = None,
     patch_sha256: str | None = None,
+    nanoda_patch_sha256: str | None = None,
 ) -> dict:
     """one report from the shards' reports; SystemExit listing every problem when the shards do not make a complete, passing check of `commit`"""
     problems: list[str] = []
@@ -189,6 +190,8 @@ def merge(
             problems.append(f"{who}: exported in mode {r.get('export_mode')!r}, the plan says {want_mode!r}")
         if want_mode == "own" and (not patch_sha256 or r.get("lean4export", {}).get("patch_sha256") != patch_sha256):
             problems.append(f"{who}: not made with the patch of this workflow's commit")
+        if r.get("nanoda", {}).get("patch_sha256") != nanoda_patch_sha256:  # None for both: an unpatched checker
+            problems.append(f"{who}: nanoda was not built with the patch of this workflow's commit")
         if r.get("nanoda", {}).get("errors") != 0 or not r.get("nanoda", {}).get("declarations_checked"):
             problems.append(f"{who}: nanoda did not check declarations without errors")
         scan = r.get("axiom_scan", {})
@@ -227,6 +230,7 @@ def merge(
         "nanoda": {
             "repo": first["nanoda"]["repo"],
             "commit": nanoda,
+            **({"patch_sha256": nanoda_patch_sha256} if nanoda_patch_sha256 else {}),
             "declarations_checked": sum(r["nanoda"]["declarations_checked"] for r in rs),
             "errors": 0,
             "axioms_admitted": first["nanoda"]["axioms_admitted"],
@@ -291,6 +295,10 @@ def main(argv: list[str] | None = None) -> int:
     mg.add_argument("--nanoda-commit", required=True)
     mg.add_argument("--run", required=True)
     mg.add_argument(
+        "--nanoda-patch-sha256",
+        help="the sha256 of scripts/ci/nanoda-stack.patch at the workflow's commit (the stack size of nanoda's checking threads): every shard must say it built nanoda with it",
+    )
+    mg.add_argument(
         "--patch-sha256",
         help="the sha256 of scripts/ci/lean4export-own.patch at the workflow's commit: the library shards must say they ran with it",
     )
@@ -316,7 +324,16 @@ def main(argv: list[str] | None = None) -> int:
         if r["shard"] in reports:
             raise SystemExit(f"shard {r['shard']} reported twice")
         reports[r["shard"]] = r
-    merged = merge(p, reports, a.commit, a.lean4export_commit, a.nanoda_commit, a.run, patch_sha256=a.patch_sha256)
+    merged = merge(
+        p,
+        reports,
+        a.commit,
+        a.lean4export_commit,
+        a.nanoda_commit,
+        a.run,
+        patch_sha256=a.patch_sha256,
+        nanoda_patch_sha256=a.nanoda_patch_sha256,
+    )
     write(REPORT_JSON, json.dumps(merged, indent=2) + "\n")
     print(
         f"independent check of {a.commit}: {len(reports)} shards, {merged['nanoda']['declarations_checked']} declarations checked by nanoda; the counts of records are in {REPORT_JSON.name}"

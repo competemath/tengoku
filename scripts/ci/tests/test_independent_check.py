@@ -28,6 +28,7 @@ INTAKE = {"alpha", "beta", "gamma", "delta"}
 SIZES = {"Alpha": 900, "Beta": 500, "Gamma": 450, "Delta": 100, "EquationalTheories": 300, "Seed": 10_000}
 L4E, NANODA = "a" * 40, "b" * 40
 PATCH = "d" * 64
+NANODA_PATCH = "e" * 64
 COMMIT = "c" * 40
 
 
@@ -51,6 +52,7 @@ def shard_report(g: dict, **kw) -> dict:
         "nanoda": {
             "repo": "https://github.com/ammkrn/nanoda_lib",
             "commit": NANODA,
+            "patch_sha256": NANODA_PATCH,
             "declarations_checked": 1000 + g["shard"],
             "errors": 0,
             "axioms_admitted": ["propext", "sorryAx"],
@@ -93,6 +95,7 @@ def merge_all(p: dict, mutate=None, **kw):
         "https://example/run/1",
         now="2026-11-21T00:00:00Z",
         patch_sha256=kw.get("patch", PATCH),
+        nanoda_patch_sha256=kw.get("nanoda_patch", NANODA_PATCH),
     )
 
 
@@ -315,6 +318,19 @@ class Merge(unittest.TestCase):
         self.assertIn("shard 1: checked", str(c.exception))
         self.assertIn("shard 2: nanoda", str(c.exception))
 
+    def test_a_shard_whose_nanoda_was_not_built_with_the_patch_is_refused(self):
+        def unpatched(reps):
+            del reps[1]["nanoda"]["patch_sha256"]
+
+        with self.assertRaises(SystemExit) as c:
+            merge_all(make_plan(), unpatched)
+        self.assertIn("shard 1: nanoda was not built with the patch of this workflow's commit", str(c.exception))
+        with self.assertRaises(SystemExit):
+            merge_all(make_plan(), nanoda_patch="f" * 64)  # the workflow's patch is another one than the shards used
+
+    def test_the_merged_report_names_the_patch_of_the_checker(self):
+        self.assertEqual(merge_all(make_plan())["nanoda"]["patch_sha256"], NANODA_PATCH)
+
     def test_axioms_that_constants_rest_on_are_joined_across_shards(self):
         def users(reps):
             reps[0]["axiom_scan"]["resting_on_other_axioms"] = {"Lean.trustCompiler": ["Lean.reduceBool"]}
@@ -340,6 +356,8 @@ def merge_args(*extra: str) -> list[str]:
         NANODA,
         "--patch-sha256",
         PATCH,
+        "--nanoda-patch-sha256",
+        NANODA_PATCH,
         "--run",
         "https://example/run/1",
         *extra,

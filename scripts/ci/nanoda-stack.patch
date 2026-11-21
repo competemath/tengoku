@@ -1,0 +1,9 @@
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -20,4 +20,5 @@ mod tests;
+ pub mod unique_hasher;
+ pub mod util;
+ 
+-pub(crate) const STACK_SIZE: usize = 16_777_216;
++// the stack of each checking thread (a thread's stack is address space until it is used): 16 MiB overflowed on libraries with deep terms (Tengoku's independent check)
++pub(crate) const STACK_SIZE: usize = 1_073_741_824;
