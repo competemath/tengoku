@@ -16,6 +16,9 @@ TODOs:
 namespace Tengoku.LeanTnorms end Tengoku.LeanTnorms open Tengoku.LeanTnorms
 open unitInterval
 
+/--
+@isnad1 id=mem.3h5v.s6.094dc1debcd1 from=translated src=- shape=6e8a70cd vocab=72864702
+-/
 lemma _root_.Tengoku.LeanTnorms.interpolate_mem {a b c : ℝ} (p q : I) (hab : a ≤ b) (hbc : b ≤ c) (hac : a < c) :
     (q.1 - p.1) / (c - a) * (b - a) + p.1 ∈ I := by
   have hp := p.2
@@ -54,18 +57,30 @@ def _root_.Tengoku.LeanTnorms.interpolate (a c : ℝ) (p q : I) : ℝ → I :=
 noncomputable
 abbrev _root_.Tengoku.LeanTnorms.interpolate_n (d : ℕ → ℝ) (p : ℕ → I) (n : ℕ) := interpolate (d (n + 1)) (d n) (p (n + 1)) (p n)
 
+/--
+@isnad1 id=eq.3h4v.s5.164e7db6a56a from=translated src=- shape=2bbe75dc vocab=8ce9aa1e
+-/
 @[simp]
 lemma _root_.Tengoku.LeanTnorms.interpolate_self (a b c : ℝ) (p : I) (hab : a ≤ b) (hbc : b ≤ c) (hac : a < c) :
     interpolate a c p p b = p := by grind [interpolate]
 
+/--
+@isnad1 id=eq.1h4v.s4.fd6565714680 from=translated src=- shape=a538438d vocab=41e6e64c
+-/
 @[simp]
 lemma _root_.Tengoku.LeanTnorms.interpolate_right (a b : ℝ) (p q : I) (hab : a < b) :
     (interpolate a b p q) b = q := by grind [interpolate]
 
+/--
+@isnad1 id=eq.1h4v.s4.ae07d2cf90e1 from=translated src=- shape=b7a28ce8 vocab=41e6e64c
+-/
 @[simp]
 lemma _root_.Tengoku.LeanTnorms.interpolate_left (a b : ℝ) (p q : I) (hab : a < b) :
     (interpolate a b p q) a = p := by grind [interpolate]
 
+/--
+@isnad1 id=le.3h5v.s6.01f52deb6776 from=translated src=- shape=8311cadd vocab=a52638e6
+-/
 lemma _root_.Tengoku.LeanTnorms.min_le_interpolate (a b c : ℝ) (p q : I) (hab : a ≤ b) (hbc : b ≤ c) (hac : a < c) :
     min p q ≤ interpolate a c p q b := by
   simp [interpolate, hab, hbc, hac]
@@ -88,6 +103,9 @@ lemma _root_.Tengoku.LeanTnorms.min_le_interpolate (a b c : ℝ) (p q : I) (hab 
       exact hpq
     grind
 
+/--
+@isnad1 id=le.3h5v.s6.19f6c5cb24de from=translated src=- shape=a6de32b5 vocab=a0008b2e
+-/
 lemma _root_.Tengoku.LeanTnorms.interpolate_le_max (a b c : ℝ) (p q : I) (hab : a ≤ b) (hbc : b ≤ c) (hac : a < c) :
     interpolate a c p q b ≤ max p q := by
   simp [interpolate, hab, hbc, hac]
@@ -110,12 +128,18 @@ lemma _root_.Tengoku.LeanTnorms.interpolate_le_max (a b c : ℝ) (p q : I) (hab 
       exact hpq
     grind
 
+/--
+@isnad1 id=eq.3h5v.s6.66af00130c5a from=translated src=- shape=915efbc5 vocab=2b7ba277
+-/
 @[simp]
 lemma _root_.Tengoku.LeanTnorms.interpolate_add (a b c : ℝ) (p q : I) (hab : a ≤ b) (hbc : b ≤ c) (hac : a < c) :
     (interpolate a c p q b).1 + (interpolate a c q p b).1 = p.1 + q := by
   simp [interpolate, hab, hbc, hac]
   ring
 
+/--
+@isnad1 id=continuo.0h4v.s5.0dfaf78e092d from=translated src=- shape=7fef3bd0 vocab=ddec3c09
+-/
 lemma _root_.Tengoku.LeanTnorms.interpolate_continuousOn (a c : ℝ) (p q : I) :
     ContinuousOn (interpolate a c p q) (Set.Icc a c) := by
   by_cases! hac : ¬a ≤ c
@@ -144,6 +168,9 @@ lemma _root_.Tengoku.LeanTnorms.interpolate_continuousOn (a c : ℝ) (p q : I) :
   simp [interpolate, hab, hbc, hac, hx.1, hx.2]
   exact h
 
+/--
+@isnad1 id=eq.5h6v.s7.91e8fb0182b1 from=translated src=- shape=6e5ad2ce vocab=2c7cab70
+-/
 lemma _root_.Tengoku.LeanTnorms.interpolate_dist {a b x y : ℝ} {p q : I} (hab : a < b)
     (hax : a ≤ x) (hxb : x ≤ b) (hay : a ≤ y) (hyb : y ≤ b) :
     dist (interpolate a b p q x) (interpolate a b p q y) =
@@ -153,6 +180,9 @@ lemma _root_.Tengoku.LeanTnorms.interpolate_dist {a b x y : ℝ} {p q : I} (hab 
   rw [abs_div, abs_mul]
   grind
 
+/--
+@isnad1 id=eq.3h5v.s7.40281acf2372 from=translated src=- shape=8ad97bad vocab=2c7cab70
+-/
 lemma _root_.Tengoku.LeanTnorms.interpolate_dist_left {a b x : ℝ} {p q : I} (hab : a < b)
     (hax : a ≤ x) (hxb : x ≤ b) :
     dist p (interpolate a b p q x) =
@@ -160,6 +190,9 @@ lemma _root_.Tengoku.LeanTnorms.interpolate_dist_left {a b x : ℝ} {p q : I} (h
   simp [interpolate, hab, hax, hxb, Real.dist_eq, Subtype.dist_eq]
   grind
 
+/--
+@isnad1 id=eq.3h5v.s7.1953c6ce467a from=translated src=- shape=2c2c73f3 vocab=2c7cab70
+-/
 lemma _root_.Tengoku.LeanTnorms.interpolate_dist_right {a b x : ℝ} {p q : I} (hab : a < b)
     (hax : a ≤ x) (hxb : x ≤ b) :
     dist (interpolate a b p q x) q =
@@ -172,6 +205,9 @@ lemma _root_.Tengoku.LeanTnorms.interpolate_dist_right {a b x : ℝ} {p q : I} (
   rw [show 1 = (b - a) / (b - a) by grind, div_sub_div_same, abs_div]
   grind
 
+/--
+@isnad1 id=uniformc.1h4v.s6.0eb7be9a237c from=translated src=- shape=9318fceb vocab=f69e59ce
+-/
 lemma _root_.Tengoku.LeanTnorms.ite_interpolate_uniformContinuous (a b : ℝ) (p q : I) (hab : a < b) :
     UniformContinuous (fun x ↦ if x ≤ a then p else
       if a ≤ x ∧ x ≤ b then interpolate a b p q x else q) := by

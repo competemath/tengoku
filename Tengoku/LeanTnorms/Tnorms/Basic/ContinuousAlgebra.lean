@@ -27,6 +27,9 @@ section Archimedean
 variable [TopologicalSpace M] [CommMonoidWithZero M]
 
   -- Proposition 2.6
+/--
+@isnad1 id=iff.0h2v.s6.cbcc64372d44 from=translated src=- shape=ecc861a5 vocab=23d9cfb0
+-/
 lemma _root_.Tengoku.LeanTnorms.idempt_iff_exists_pow_seq_tendsto [Preorder M] [IsOrderedMonoid M] [IsTopOneClass M]
     [T2Space M] [RightContinuousMul M] (a : M) :
     IsIdempotentElem a ↔ ∃ p : M, Filter.Tendsto (p ^ ·) Filter.atTop (nhds a) := by
@@ -56,6 +59,9 @@ lemma _root_.Tengoku.LeanTnorms.idempt_iff_exists_pow_seq_tendsto [Preorder M] [
     · have := pow_right_anti₀ zero_le (le_one (a := p))
       exact antitone_continuous_mul _ (p ^ ·) (p ^ ·) a a this this hp hp
 
+/--
+@isnad1 id=ex.2h2v.s6.046cba47196b from=translated src=- shape=0a603210 vocab=9417abf1
+-/
 lemma _root_.Tengoku.LeanTnorms.exists_pow_tendsto [ConditionallyCompletePartialOrderInf M] [InfConvergenceClass M]
     [IsOrderedMonoid M]
     {p : M} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) :
@@ -72,6 +78,9 @@ lemma _root_.Tengoku.LeanTnorms.exists_pow_tendsto [ConditionallyCompletePartial
   · rw [← zero_pow hn]
     exact pow_le_pow_left' hp0 n
 
+/--
+@isnad1 id=lt.2h3v.s7.f292f28eb2a0 from=translated src=- shape=a6c31efc vocab=17c61ca7
+-/
 lemma _root_.Tengoku.LeanTnorms.lt_one_of_tendsto [PartialOrder M] [OrderTopology M] [IsTopOneClass M] [OrderTop M]
     [IsOrderedMonoid M]
     {p q : M} (hp1 : p < 1) (hq : Filter.Tendsto (p ^ ·) Filter.atTop (nhds q)) :
@@ -101,6 +110,9 @@ variable (M : Type*) [TopologicalSpace M]
 instance [MonoidWithZero M] [SubsingletonZeroOne M] [ContinuousMul M] : Nilpotent M where
   nilpt p hp := by simp [eq_zero_of_ne_one hp]
 
+/--
+@isnad1 id=not.0h1v.s5.11953bfc88a1 from=translated src=- shape=dc6ed318 vocab=d4781d45
+-/
 lemma _root_.Tengoku.LeanTnorms.not_isReduced_of_nilpotent [MonoidWithZero M] [Nilpotent M] [NontrivialZeroOne M] :
     ¬ IsReduced M := by
   simp only [isReduced_iff, not_forall]
@@ -109,6 +121,9 @@ lemma _root_.Tengoku.LeanTnorms.not_isReduced_of_nilpotent [MonoidWithZero M] [N
   simp only [exists_prop]
   grind [Nilpotent.nilpt]
 
+/--
+@isnad1 id=nilpoten.1h1v.s6.280a875e05c4 from=translated src=- shape=b3c60fbc vocab=27227561
+-/
 theorem _root_.Tengoku.LeanTnorms.nilpt_of_not_noZeroDivisors [SemilatticeInf M] [CommMonoidWithZero M]
     [ContinuousMul M] [MulArchimedeanDualWithZero M] [IsOrderedMonoid M] [IsTopOneClass M]
     (h : ¬ NoZeroDivisors M) : Nilpotent M := by
@@ -134,6 +149,9 @@ variable (M : Type*) [TopologicalSpace M] [CommMonoidWithZero M]
   [MulArchimedeanDualWithZero M] [IsOrderedMonoid M] [IsTopOneClass M]
   [NontrivialZeroOne M] [ContinuousMul M]
 
+/--
+@isnad1 id=tfae.0h1v.s7.3837c428b01d from=translated src=- shape=3da453ec vocab=b8e6a68f
+-/
 theorem _root_.Tengoku.LeanTnorms.nilpt_tfae' : [Nilpotent M, ¬ IsReduced M, ¬ NoZeroDivisors M].TFAE := by
   tfae_have 2 → 3 := by simp [isReduced_iff_noZeroDivisors_of_arch]
   tfae_have 3 → 1 := by
@@ -149,6 +167,9 @@ variable (M : Type*) [TopologicalSpace M] [CommMonoidWithZero M]
   [ContinuousMul M] [T2Space M]
   [OrderTopology M]
 
+/--
+@isnad1 id=strict.3h2v.s7.dc96012b2ecf from=translated src=- shape=9af94331 vocab=3c466825
+-/
 theorem _root_.Tengoku.LeanTnorms.strict_of_noZeroDivisors_of_tendsto
   (f : ℕ → M)
   (hf : Filter.Tendsto f Filter.atTop (nhds 1))
@@ -215,6 +236,9 @@ variable (M : Type*) [TopologicalSpace M] [CommMonoidWithZero M]
 -/
 -- TODO: I would like to have a counterexample showing that the LinearOrder assumption can't be
 --  weakened to a PartialOrder.
+/--
+@isnad1 id=tfae.0h1v.s7.08c59958c90d from=translated src=- shape=a7e72ce0 vocab=3b4ee951
+-/
 theorem _root_.Tengoku.LeanTnorms.nilpt_tfae : [Nilpotent M, ¬ IsReduced M, ¬ NoZeroDivisors M, ¬ Strict M].TFAE := by
   tfae_have 3 → 1 := nilpt_of_not_noZeroDivisors M
   tfae_have 2 → 4 := by
@@ -269,9 +293,15 @@ theorem _root_.Tengoku.LeanTnorms.nilpt_tfae : [Nilpotent M, ¬ IsReduced M, ¬ 
       exact pow_right_anti₀ zero_le le_one
   tfae_finish
 
+/--
+@isnad1 id=iff.0h1v.s7.6eb48d502d46 from=translated src=- shape=7de99851 vocab=fa55cc1f
+-/
 theorem _root_.Tengoku.LeanTnorms.nilpt_iff : Nilpotent M ↔ ¬ Strict M := by
   refine (nilpt_tfae M) (Nilpotent M) ?_ (¬ Strict M) ?_ <;> simp
 
+/--
+@isnad1 id=or.0h1v.s7.9e151739c922 from=translated src=- shape=a6628ba1 vocab=fa55cc1f
+-/
 theorem _root_.Tengoku.LeanTnorms.nilpt_or_strict_of_cont_arch : Nilpotent M ∨ Strict M := by
   grind [nilpt_iff]
 
@@ -283,6 +313,9 @@ variable {M : Type*} [TopologicalSpace M] [CommMonoidWithZero M]
   [NontrivialZeroOne M] [ContinuousMul M]
   [OrderTopology M] [PreconnectedSpace M]
 
+/--
+@isnad1 id=lt.2h3v.s7.b158a0a46653 from=translated src=- shape=60196df9 vocab=b4b3404d
+-/
 lemma _root_.Tengoku.LeanTnorms.mul_lt_right (p q : M) (hp1 : p ≠ 1) (hq0 : q ≠ 0) : p * q < q := by
   by_cases! hnt : ¬Nontrivial M
   · rw [not_nontrivial_iff_subsingleton] at hnt
@@ -304,10 +337,16 @@ lemma _root_.Tengoku.LeanTnorms.mul_lt_right (p q : M) (hp1 : p ≠ 1) (hq0 : q 
   · have := PosMulStrictMono.toMulPosStrictMono (α := M)
     exact mul_lt_of_lt_one_left (lt_of_le_of_ne' zero_le hq0) <| (lt_of_le_of_ne le_one hp1)
 
+/--
+@isnad1 id=lt.2h3v.s7.5d1d08213e0a from=translated src=- shape=fddbcf12 vocab=b4b3404d
+-/
 lemma _root_.Tengoku.LeanTnorms.mul_lt_left (p q : M) (hp0 : p ≠ 0) (hq1 : q ≠ 1) : p * q < p := by
   rw [mul_comm]
   exact mul_lt_right q p hq1 hp0
 
+/--
+@isnad1 id=lt.3h4v.s7.5fab5693cc52 from=translated src=- shape=beb79b52 vocab=0f3ef3f2
+-/
 theorem _root_.Tengoku.LeanTnorms.npow_right_strictAnti (p : M) (n m : ℕ) (hp1 : p ≠ 1) (hpn : p ^ n ≠ 0)
     (h : n < m) : p ^ m < p ^ n := by
   obtain ⟨k, hk0, hk⟩ := exists_pos_add_of_lt h
@@ -318,6 +357,9 @@ theorem _root_.Tengoku.LeanTnorms.npow_right_strictAnti (p : M) (n m : ℕ) (hp1
   nth_rw 2 [← npow_one p]
   exact pow_right_anti₀ zero_le le_one hk0
 
+/--
+@isnad1 id=eq.3h4v.s7.71b049c62ebf from=translated src=- shape=3143ad92 vocab=fd8f8557
+-/
 theorem _root_.Tengoku.LeanTnorms.npow_right_inj (p : M) (n m : ℕ) (hp1 : p ≠ 1) (hpn : p ^ n ≠ 0)
     (h : p ^ n = p ^ m) : n = m := by
   contrapose! h

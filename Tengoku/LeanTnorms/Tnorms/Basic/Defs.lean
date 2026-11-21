@@ -51,6 +51,9 @@ class _root_.Tengoku.LeanTnorms.Tnorm (M : Type*) [CompleteLinearOrder M] [Topol
 
 variable {M : Type*} [CompleteLinearOrder M] [TopologicalSpace M]
 
+/--
+@isnad1 id=eq.1h3v.s6.5442ec2b360a from=translated src=- shape=3741fc1c vocab=89324301
+-/
 @[ext high]
 lemma _root_.Tengoku.LeanTnorms.ext_mul {T₁ T₂ : Tnorm M} (h : ∀ a b : M, T₁.mul a b = T₂.mul a b) : T₁ = T₂ := by
   have h1 : T₁.one = T₂.one := by
@@ -101,6 +104,9 @@ class _root_.Tengoku.LeanTnorms.RightContinuousMul where
     → Filter.Tendsto y Filter.atTop (nhds q)
     → Filter.Tendsto (fun n => (x n) * (y n)) Filter.atTop (nhds (p * q))
 
+/--
+@isnad1 id=tendsto.4h5v.s6.7421c49ede37 from=translated src=- shape=7920f777 vocab=aab0bc1c
+-/
 lemma _root_.Tengoku.LeanTnorms.monotone_continuous_mul [LeftContinuousMul M] : ∀ x y : ℕ → M, ∀ p q : M,
     Monotone x → Monotone y →
     Filter.Tendsto x Filter.atTop (nhds p)
@@ -108,6 +114,9 @@ lemma _root_.Tengoku.LeanTnorms.monotone_continuous_mul [LeftContinuousMul M] : 
     → Filter.Tendsto (fun n => (x n) * (y n)) Filter.atTop (nhds (p * q)) := by
   exact fun x y p q a a_1 a_2 a_3 ↦ LeftContinuousMul.monotone_continuous_mul x y p q a a_1 a_2 a_3
 
+/--
+@isnad1 id=tendsto.4h5v.s6.2c4189d29129 from=translated src=- shape=7920f777 vocab=75d95061
+-/
 lemma _root_.Tengoku.LeanTnorms.antitone_continuous_mul [RightContinuousMul M] : ∀ x y : ℕ → M, ∀ p q : M,
     Antitone x → Antitone y →
     Filter.Tendsto x Filter.atTop (nhds p)
@@ -134,18 +143,30 @@ def _root_.Tengoku.LeanTnorms.LImp : M → M → M := fun p q => sSup {r : M | p
 
 local infixl:60 " ⇒ " => LImp
 
+/--
+@isnad1 id=eq.0h3v.s6.4430e9a7812f from=translated src=- shape=69562e2a vocab=86b6aa7c
+-/
 lemma _root_.Tengoku.LeanTnorms.LImp_def {p q : M} : p ⇒ q = sSup {r : M | p * r ≤ q} := by
   simp [LImp]
 
+/--
+@isnad1 id=eq.0h2v.s5.067c298bc0df from=translated src=- shape=6a5d68bb vocab=33993eba
+-/
 @[simp]
 lemma _root_.Tengoku.LeanTnorms.zero_LImp (p : M) : (0 : M) ⇒ p = (1 : M) := by
   simp [LImp_def, zero_le, one_eq_top]
 
+/--
+@isnad1 id=eq.0h2v.s5.edf8824178be from=translated src=- shape=4e95263a vocab=33993eba
+-/
 lemma _root_.Tengoku.LeanTnorms.LImp_self (p : M) : p ⇒ p = 1 := by
   simp [LImp_def, mul_le_left, one_eq_top]
 
 variable [IsFuzzyLogic M]
 
+/--
+@isnad1 id=le.0h3v.s6.da8b745b918e from=translated src=- shape=a43779cd vocab=62a88fdc
+-/
 lemma _root_.Tengoku.LeanTnorms.mul_LImp (p q : M) : p * (p ⇒ q) ≤ q := by
   simp only [LImp_def]
   have hre : {r | p * r ≤ q}.Nonempty := by
@@ -168,6 +189,9 @@ lemma _root_.Tengoku.LeanTnorms.mul_LImp (p q : M) : p * (p ⇒ q) ≤ q := by
   use n
   grind
 
+/--
+@isnad1 id=iff.0h4v.s6.ef1e2268eb4e from=translated src=- shape=179b3b3a vocab=62a88fdc
+-/
 lemma _root_.Tengoku.LeanTnorms.le_LImp_iff_mul_le (p q r : M) : r ≤ p ⇒ q ↔ r * p ≤ q := by
   constructor
   · intro h
@@ -177,10 +201,16 @@ lemma _root_.Tengoku.LeanTnorms.le_LImp_iff_mul_le (p q r : M) : r ≤ p ⇒ q �
     rw [LImp_def]
     exact le_sSup (by grind)
 
+/--
+@isnad1 id=iff.0h4v.s6.483827965a33 from=translated src=- shape=0c291911 vocab=c86d0a7e
+-/
 lemma _root_.Tengoku.LeanTnorms.LImp_lt_iff_lt_mul (p q r : M) : p ⇒ q < r ↔ q < r * p := by
   contrapose!
   exact le_LImp_iff_mul_le _ _ _
 
+/--
+@isnad1 id=eq.0h5v.s9.e470f2184038 from=translated src=- shape=8342ae6d vocab=ea615824
+-/
 lemma _root_.Tengoku.LeanTnorms.map_LImp (M N : Type*)
     [CompleteLinearOrder M] [CompleteLinearOrder N]
     [TopologicalSpace M] [TopologicalSpace N]

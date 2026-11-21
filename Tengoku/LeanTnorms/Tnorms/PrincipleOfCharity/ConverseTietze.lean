@@ -23,11 +23,17 @@ universe u v
 variable {M : Type v} [UniformSpace M]
 variable {X : Type u} [MetricSpace X] [WeaklyLocallyCompactSpace X]
 
+/--
+@isnad1 id=isclosed.1h3v.s5.f532a286370b from=translated src=- shape=ad7539b5 vocab=504a7f64
+-/
 lemma _root_.Tengoku.LeanTnorms.isClosed_seq_of_tendsto {X : Type*} [TopologicalSpace X] [T2Space X] {x : ℕ → X} {y : X}
     (h : Filter.Tendsto x Filter.atTop (nhds y)) : IsClosed (insert y (Set.range x)) := by
   refine IsCompact.isClosed ?_
   exact Filter.Tendsto.isCompact_insert_range h
 
+/--
+@isnad1 id=ex.1h3v.s5.d2ab6f802551 from=translated src=- shape=9af8910b vocab=9c152521
+-/
 lemma _root_.Tengoku.LeanTnorms.exists_subseq_of_infinite_indices {X : Type*} (x : ℕ → X) {A : Set ℕ}
     (h : A.Infinite) : ∃ φ : ℕ → ℕ, StrictMono φ ∧ x '' A = Set.range (x ∘ φ) := by
   have hA : Infinite A := Set.infinite_coe_iff.mpr h
@@ -47,6 +53,9 @@ lemma _root_.Tengoku.LeanTnorms.exists_subseq_of_infinite_indices {X : Type*} (x
       simp [hn, haxy]
     · grind
 
+/--
+@isnad1 id=continuo.5h8v.s7.660210cd26f8 from=translated src=- shape=08c4e5a7 vocab=5859d59d
+-/
 lemma _root_.Tengoku.LeanTnorms.continuousOn_seq_of_tendsto {X M : Type*} [TopologicalSpace X] [TopologicalSpace M]
     [T2Space X] {s : Set X} {g : s → M} {x : ℕ → s} {y : s} {p : ℕ → M} {q : M}
     (hxt : Filter.Tendsto x Filter.atTop (nhds y)) (hx : ∀ n, x n ≠ y)
@@ -85,6 +94,9 @@ lemma _root_.Tengoku.LeanTnorms.continuousOn_seq_of_tendsto {X M : Type*} [Topol
         simp [hyt, hx]
       · grind
 
+/--
+@isnad1 id=ex.1h3v.s6.5ba90e7ec1c1 from=translated src=- shape=2b7c8e9c vocab=baa22ee2
+-/
 lemma _root_.Tengoku.LeanTnorms.exists_open_containing_seq_with_compact_closure {x : ℕ → X} {y : X}
     (h : Filter.Tendsto x Filter.atTop (nhds y)) :
     ∃ U, y ∈ U ∧ Set.range x ⊆ U ∧ IsOpen U ∧ IsCompact (closure U) := by
