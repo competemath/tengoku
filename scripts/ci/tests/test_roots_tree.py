@@ -776,12 +776,20 @@ class AliasPair(unittest.TestCase):
         self.assertEqual(once, twice)
         self.assertEqual(done["declared"], [])
 
-    def test_a_name_already_spelled_from_the_root_is_left_to_the_explicit_pass(self):
-        text = "alias ⟨_root_.eq_one_of_one_le, _⟩ := le_one_iff_eq_one\n"
-        out, done = self.run_on(text, {"eq_one_of_one_le"})
-        self.assertIn("eq_one_of_one_le", done["heads"])  # recorded, so qualify_explicit_roots renames it
-        self.assertEqual(done["declared"], [])  # and not qualified twice here
-        self.assertNotIn("Tengoku.LeanTnorms._root_", out)
+    def test_a_name_already_spelled_from_the_root_is_renamed_and_counted(self):
+        for where in (
+            "",
+            "namespace Bar\n",
+            "section Bar\n",
+        ):  # top level, inside a namespace (where `_root_.` is normally written), inside a section
+            end = {"": "", "namespace Bar\n": "end Bar\n", "section Bar\n": "end Bar\n"}[where]
+            text = f"module\n\npublic section\n\n{where}alias ⟨_root_.eq_one_of_one_le, _⟩ := le_one_iff_eq_one\n{end}"
+            files = {"Tengoku/Foo/A.lean": text}
+            changed, rep = rt.qualify_files(files, {"Foo": "roots: 1 declarations\nroot: eq_one_of_one_le\n"})
+            out = changed["Tengoku/Foo/A.lean"]
+            self.assertIn("alias ⟨_root_.Tengoku.Foo.eq_one_of_one_le, _⟩ := le_one_iff_eq_one", out, where)
+            self.assertEqual(rep["Foo"]["unresolved"], [], where)  # counted as declared, so not reported as an unresolved root
+            self.assertEqual(rep["Foo"]["renamed"], ["eq_one_of_one_le"], where)
 
     def test_a_dotted_alias_and_the_single_name_alias_are_as_before(self):
         out, _ = self.run_on("alias dim := HasDim.d\nalias Ne.lt_one := lt_one_of_ne_one\n", {"dim"}, ns="Tengoku.X")
