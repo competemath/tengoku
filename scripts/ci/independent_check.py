@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """independent_check.py - the independent check (.github/workflows/independent-check.yml) in shards. Standard library only.
 
-  independent_check.py plan  --shards N [--commit SHA]
+  independent_check.py plan  --shards N [--commit SHA] [--only SHARD]
   independent_check.py merge --commit SHA --lean4export-commit X --nanoda-commit Y --run URL [--patch-sha256 H]
 
 The files it reads and writes are at fixed places under the directory it runs in (the workflow's workspace), not on the command line: plan reads Tengoku/All.lean, tengoku-tree.json (the GitHub API's listing of the
@@ -274,6 +274,11 @@ def main(argv: list[str] | None = None) -> int:
     pl = sub.add_parser("plan")
     pl.add_argument("--shards", type=int, default=12)
     pl.add_argument("--commit")
+    pl.add_argument(
+        "--only",
+        type=int,
+        help="run only this shard (a diagnosis of one shard: plan.json still holds all of them, so the run is not a check of the commit and has no report)",
+    )
     mg = sub.add_parser("merge")
     mg.add_argument("--commit", required=True)
     mg.add_argument("--lean4export-commit", required=True)
@@ -289,7 +294,12 @@ def main(argv: list[str] | None = None) -> int:
         sizes = sizes_from_api(json.loads(TREE_JSON.read_text(encoding="utf-8")))
         p = plan(ALL_LEAN.read_text(encoding="utf-8"), sizes, tier, intake, a.shards, a.commit)
         PLAN_JSON.write_text(json.dumps(p, indent=1, sort_keys=True) + "\n", encoding="utf-8")
-        MATRIX_JSON.write_text(json.dumps(matrix(p), separators=(",", ":")) + "\n", encoding="utf-8")
+        m = matrix(p)
+        if a.only is not None:
+            m = {"include": [x for x in m["include"] if x["shard"] == a.only]}
+            if not m["include"]:
+                raise SystemExit(f"the plan has no shard {a.only}")
+        MATRIX_JSON.write_text(json.dumps(m, separators=(",", ":")) + "\n", encoding="utf-8")
         for g in p["shards"]:
             print(f"shard {g['shard']}: {len(g['roots'])} roots, {len(g['libraries'])} libraries, {g['bytes'] / 1e6:.1f} MB of sources")
         return 0

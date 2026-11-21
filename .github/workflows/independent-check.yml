@@ -31,6 +31,10 @@ on:
         description: "How many shards the libraries that arrived as modules are cut into (the seed is shard 0 besides)"
         required: false
         default: "12"
+      only_shard:
+        description: "A diagnosis of one shard of that plan: only it runs, and there is no report (the run is not a check of the commit)"
+        required: false
+        default: ""
   schedule:
     - cron: "17 3 * * *"   # nightly, on the newest commit of main
 
@@ -74,7 +78,7 @@ jobs:
           persist-credentials: false
       - name: The plan (which roots go to which shard)
         id: plan
-        env: { WANT: "${{ inputs.commit }}", SHARDS: "${{ inputs.shards || '12' }}", GH_TOKEN: "${{ github.token }}" }
+        env: { WANT: "${{ inputs.commit }}", SHARDS: "${{ inputs.shards || '12' }}", ONLY: "${{ inputs.only_shard }}", GH_TOKEN: "${{ github.token }}" }
         run: |
           [ "$(git rev-parse HEAD)" = "${WANT:-$GITHUB_SHA}" ] || { echo "::error::checked out $(git rev-parse HEAD), not ${WANT:-$GITHUB_SHA}"; exit 1; }
           git merge-base --is-ancestor HEAD origin/main || { echo "::error::$(git rev-parse HEAD) is not on main"; exit 1; }
@@ -84,7 +88,9 @@ jobs:
           # (the planner reads Tengoku/All.lean, tengoku-tree.json and data-paths.txt from this directory and writes plan.json and matrix.json here: no path on its command line)
           gh api "repos/$GITHUB_REPOSITORY/git/trees/$(git rev-parse HEAD:Tengoku)?recursive=1" > tengoku-tree.json
           git ls-tree -r --name-only HEAD -- data/trusted data/intake > data-paths.txt
-          python3 "$RUNNER_TEMP/independent_check.py" plan --shards "$SHARDS" --commit "$(git rev-parse HEAD)" | tee -a "$GITHUB_STEP_SUMMARY"
+          only=(); [[ "$ONLY" =~ ^[0-9]+$ ]] && only=(--only "$ONLY")
+          [ -z "$ONLY" ] || [ "${#only[@]}" -gt 0 ] || { echo "::error::only_shard must be a shard number"; exit 1; }
+          python3 "$RUNNER_TEMP/independent_check.py" plan --shards "$SHARDS" --commit "$(git rev-parse HEAD)" "${only[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
           { echo "matrix=$(cat matrix.json)"; echo "commit=$(git rev-parse HEAD)"; } >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with: { name: plan, path: plan.json, retention-days: 90 }
@@ -159,9 +165,13 @@ jobs:
       - name: Export every declaration of this shard's roots
         run: |
           start=$(date +%s)
+          # how the export grows, every two minutes: a long export is slow throughout or stalls somewhere, and the log says which
+          ( while sleep 120; do echo "export, $(( $(date +%s) - start )) s: $(stat -c %s "$RUNNER_TEMP/tengoku.ndjson" 2>/dev/null || echo 0) bytes"; done ) &
+          progress=$!
           read -r -a roots <<< "$ROOTS"
           own_args=(); if [ "$OWN" = true ]; then for r in "${roots[@]}"; do own_args+=("--own=$r"); done; fi
           lake env /usr/bin/time -v "$RUNNER_TEMP/lean4export/.lake/build/bin/lean4export" "${own_args[@]}" "${roots[@]}" > "$RUNNER_TEMP/tengoku.ndjson" 2> "$RUNNER_TEMP/export-time.txt" || { tail -20 "$RUNNER_TEMP/export-time.txt"; exit 1; }
+          kill "$progress" 2>/dev/null || true
           echo "$(( $(date +%s) - start ))" > "$RUNNER_TEMP/export-seconds.txt"
           echo "exported $(wc -l < "$RUNNER_TEMP/tengoku.ndjson") lines, $(du -h "$RUNNER_TEMP/tengoku.ndjson" | cut -f1), in $(cat "$RUNNER_TEMP/export-seconds.txt") s"
           grep -E "Maximum resident|Elapsed|Major \(requiring I/O\) page faults|Swaps" "$RUNNER_TEMP/export-time.txt" || true   # the memory the exporter needed: a shard that outgrows the runner's RAM swaps and slows down by an order of magnitude
@@ -176,7 +186,7 @@ jobs:
             "use_stdin": false,
             "permitted_axioms": ["propext", "Classical.choice", "Quot.sound", "sorryAx", "Lean.ofReduceBool", "Lean.ofReduceNat", "Lean.trustCompiler"],
             "unpermitted_axiom_hard_error": true,
-            "num_threads": 4,
+            "num_threads": 1,
             "nat_extension": true,
             "string_extension": true,
             "print_success_message": true,
@@ -192,7 +202,9 @@ jobs:
           python3 "$RUNNER_TEMP/axiom_scan.py" "$RUNNER_TEMP/tengoku.ndjson" --records data/trusted --libraries "$LIBRARIES" --report axiom-scan.json > axiom-scan.out 2>&1 &
           scan=$!
           # shellcheck disable=SC2024  # the output files are the runner's own, written outside the sealed namespace on purpose
-          sudo unshare --net runuser -u "$(id -un)" -- /usr/bin/time -v "$nanoda" "$RUNNER_TEMP/nanoda.json" > nanoda.out 2> time.log && ok=1 || ok=0
+          # one thread, on the main thread, whose stack is the process's: nanoda's worker threads have a stack of 16 MiB compiled in (STACK_SIZE) and shard 4 of the first trial overflowed it
+          # ("thread_2 has overflowed its stack") on a library with deep terms. The limit is raised inside the sealed command (sudo and runuser may reset it); the checker itself is unmodified.
+          sudo unshare --net runuser -u "$(id -un)" -- bash -c 'ulimit -s 8388608 && exec /usr/bin/time -v "$0" "$1"' "$nanoda" "$RUNNER_TEMP/nanoda.json" > nanoda.out 2> time.log && ok=1 || ok=0
           cat nanoda.out
           if [ "$ok" = 1 ]; then grep -E 'Maximum resident|Elapsed' time.log || true; else cat time.log; fi
           echo "$(( $(date +%s) - start ))" > "$RUNNER_TEMP/nanoda-seconds.txt"
@@ -238,6 +250,7 @@ jobs:
   report:
     # runs only when every shard passed: a missing shard is a missing report, and a release refuses a commit with no report
     needs: [plan, check]
+    if: ${{ inputs.only_shard == '' }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions: { contents: read }
