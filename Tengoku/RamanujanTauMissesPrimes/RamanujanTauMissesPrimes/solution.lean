@@ -70,6 +70,9 @@ noncomputable def _root_.Tengoku.RamanujanTauMissesPrimes.tauWitness (R : Ramanu
   then R.τ (h.choose ^ (2 * k))
   else 0
 
+/--
+@isnad1 id=eq.1h3v.s5.14fc1b18b17f from=translated src=- shape=f448f0c7 vocab=f4ec47ae
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.tauWitness_natAbs (R : RamanujanTau) (k : ℕ) (ℓ : ℕ)
     (hw : ∃ p : ℕ+, (p : ℕ).Prime ∧ (R.τ (p ^ (2 * k))).natAbs = ℓ) :
     (tauWitness R k ℓ).natAbs = ℓ := by
@@ -77,6 +80,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.tauWitness_natAbs (R : RamanujanTa
   rw [dite_eq_left hw]
   exact hw.choose_spec.2
 
+/--
+@isnad1 id=mem.3h3v.s6.704b80f34ec1 from=translated src=- shape=664ab63e vocab=24e1a540
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.tauWitness_mem_oddPrimesSigned (R : RamanujanTau) (k : ℕ) (ℓ : ℕ)
     (hprime : Nat.Prime ℓ) (hne2 : ℓ ≠ 2)
     (hw : ∃ p : ℕ+, (p : ℕ).Prime ∧ (R.τ (p ^ (2 * k))).natAbs = ℓ) :
@@ -87,6 +93,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.tauWitness_mem_oddPrimesSigned (R 
   simp only [oddPrimesSigned, Set.mem_ofPred_eq]
   exact ⟨ℓ, hprime, hne2, hcases⟩
 
+/--
+@isnad1 id=mem.1h3v.s5.54595ecb1250 from=translated src=- shape=4cf97d02 vocab=4c98c1e5
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.tauWitness_mem_X2k (R : RamanujanTau) (k : ℕ) (ℓ : ℕ)
     (hw : ∃ p : ℕ+, (p : ℕ).Prime ∧ (R.τ (p ^ (2 * k))).natAbs = ℓ) :
     tauWitness R k ℓ ∈ X2k R k := by
@@ -95,6 +104,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.tauWitness_mem_X2k (R : RamanujanT
   rw [h₁]
   exact ⟨hw.choose, hw.choose_spec.1, rfl⟩
 
+/--
+@isnad1 id=le.2h4v.s6.848c0bdd0f73 from=translated src=- shape=90c158d4 vocab=d1daecf8
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.tauWitness_abs_le (R : RamanujanTau) (k : ℕ) (ℓ : ℕ) (X : ℝ) (hle : (ℓ : ℝ) ≤ X)
     (hw : ∃ p : ℕ+, (p : ℕ).Prime ∧ (R.τ (p ^ (2 * k))).natAbs = ℓ) :
     (|tauWitness R k ℓ| : ℝ) ≤ X := by
@@ -104,6 +116,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.tauWitness_abs_le (R : RamanujanTa
   rw [h2, h1]
   exact hle
 
+/--
+@isnad1 id=le.0h1v.s5.7c59a91e0ba2 from=translated src=- shape=6410c9b4 vocab=b8b6ad2d
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.int_abs_le_subset_Icc (X : ℝ) :
     {z : ℤ | (|z| : ℝ) ≤ X} ⊆ Set.Icc (-⌈X⌉) ⌈X⌉ := by
   intro z (hz : (|z| : ℝ) ≤ X)
@@ -113,12 +128,18 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.int_abs_le_subset_Icc (X : ℝ) :
   · exact_mod_cast show (z : ℝ) ≤ ⌈X⌉ by
       linarith [le_abs_self (z : ℝ), Int.le_ceil X]
 
+/--
+@isnad1 id=finite.1h3v.s5.ec875754a59a from=translated src=- shape=f7116722 vocab=598b4a65
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.target_set_finite (R : RamanujanTau) (k : ℕ) (X : ℝ) (hX : 0 < X) :
     (oddPrimesSigned ∩ X2k R k ∩ {z : ℤ | (|z| : ℝ) ≤ X}).Finite := by
   apply Set.Finite.subset (Set.finite_Icc (-⌈X⌉) ⌈X⌉)
   intro z hz
   exact int_abs_le_subset_Icc X (hz.2)
 
+/--
+@isnad1 id=injon.0h3v.s6.8a9cf8f8a035 from=translated src=- shape=2d11c879 vocab=242a74c3
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.tauWitness_injOn (R : RamanujanTau) (k : ℕ) (X : ℝ) :
     Set.InjOn (tauWitness R k) {ℓ : ℕ | Nat.Prime ℓ ∧ ℓ ≠ 2 ∧ (ℓ : ℝ) ≤ X ∧
       ∃ p : ℕ+, (p : ℕ).Prime ∧ (R.τ (p ^ (2 * k))).natAbs = ℓ} := by
@@ -131,6 +152,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.tauWitness_injOn (R : RamanujanTau
     _ = (tauWitness R k ℓ₂).natAbs := congrArg Int.natAbs heq
     _ = ℓ₂ := h₂
 
+/--
+@isnad1 id=le.1h3v.s6.1880215006b7 from=translated src=- shape=0a2d3846 vocab=ac76514b
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.per_k_odd_prime_ncard_le (R : RamanujanTau) (k : ℕ) (X : ℝ) (hX : 0 < X) :
     {ℓ : ℕ | Nat.Prime ℓ ∧ ℓ ≠ 2 ∧ (ℓ : ℝ) ≤ X ∧
       ∃ p : ℕ+, (p : ℕ).Prime ∧ (R.τ (p ^ (2 * k))).natAbs = ℓ}.ncard ≤
@@ -146,12 +170,18 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.per_k_odd_prime_ncard_le (R : Rama
     (tauWitness_injOn R k X)
     hfin
 
+/--
+@isnad1 id=le.0h2v.s6.751a8a5ea9b2 from=translated src=- shape=ad40adc6 vocab=354df180
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.even_prime_subset_singleton (R : RamanujanTau) (X : ℝ) :
     {ℓ : ℕ | Nat.Prime ℓ ∧ ℓ = 2 ∧ (ℓ : ℝ) ≤ X ∧
       ∃ p : ℕ+, (p : ℕ).Prime ∧ ∃ k : ℕ, 3 ≤ k ∧
         (R.τ (p ^ (2 * k))).natAbs = ℓ} ⊆ {2} := by
   grind
 
+/--
+@isnad1 id=le.1h2v.s6.5963d405e4e5 from=translated src=- shape=08136165 vocab=5087d5b3
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.even_prime_ncard_le (R : RamanujanTau) (X : ℝ) (hX : 0 < X) :
     {ℓ : ℕ | Nat.Prime ℓ ∧ ℓ = 2 ∧ (ℓ : ℝ) ≤ X ∧
       ∃ p : ℕ+, (p : ℕ).Prime ∧ ∃ k : ℕ, 3 ≤ k ∧
@@ -159,11 +189,17 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.even_prime_ncard_le (R : Ramanujan
   calc _ ≤ ({2} : Set ℕ).ncard := Set.ncard_le_ncard (even_prime_subset_singleton R X)
     _ = 1 := Set.ncard_singleton 2
 
+/--
+@isnad1 id=ne.2h2v.s4.46405125562c from=translated src=- shape=16527545 vocab=626584ab
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.natAbs_ne_zero_of_eq_prime {n : ℤ} {ℓ : ℕ} (hprime : Nat.Prime ℓ)
     (heq : n.natAbs = ℓ) : n.natAbs ≠ 0 := by
   rw [heq]
   exact Nat.Prime.ne_zero hprime
 
+/--
+@isnad1 id=le.6h6v.s7.986802e07284 from=translated src=- shape=f88fc690 vocab=dc76dd14
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.k_le_K_of_prime_witness (R : RamanujanTau) (X : ℝ) (K : ℕ)
     (hvanish : ∀ k : ℕ, K < k → ∀ p : ℕ+, (p : ℕ).Prime →
       (R.τ (p ^ (2 * k))).natAbs ≠ 0 → ¬((↑(R.τ (p ^ (2 * k))).natAbs : ℝ) ≤ X))
@@ -177,6 +213,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.k_le_K_of_prime_witness (R : Raman
   rw [heq] at habs
   exact habs (by exact_mod_cast hle)
 
+/--
+@isnad1 id=le.3h3v.s8.13cc6ff20289 from=translated src=- shape=764efea0 vocab=e51de48b
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.target_subset_finite_union (R : RamanujanTau) (X : ℝ) (hX : 0 < X)
     (K : ℕ) (hK : 3 ≤ K)
     (hvanish : ∀ k : ℕ, K < k → ∀ p : ℕ+, (p : ℕ).Prime →
@@ -193,6 +232,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.target_subset_finite_union (R : Ra
   simp only [Set.mem_iUnion]
   exact ⟨k, ⟨Finset.mem_Icc.mpr ⟨hk3, hkK⟩, hprime, hne2, hle, p, hp, heq⟩⟩
 
+/--
+@isnad1 id=finite.0h3v.s6.5d03f61a2a48 from=translated src=- shape=9d1dd85e vocab=9046e6fd
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.biUnion_per_k_finite (R : RamanujanTau) (X : ℝ) (K : ℕ) :
     (⋃ k ∈ Finset.Icc 3 K,
       {ℓ : ℕ | Nat.Prime ℓ ∧ ℓ ≠ 2 ∧ (ℓ : ℝ) ≤ X ∧
@@ -203,6 +245,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.biUnion_per_k_finite (R : Ramanuja
   obtain ⟨k, _, _, _, hle, _⟩ := hℓ
   exact Nat.le_floor hle
 
+/--
+@isnad1 id=le.3h3v.s7.e22e199f9553 from=translated src=- shape=c5817401 vocab=0dd57d27
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.target_ncard_le_sum_nat (R : RamanujanTau) (X : ℝ) (hX : 0 < X)
     (K : ℕ) (hK : 3 ≤ K)
     (hvanish : ∀ k : ℕ, K < k → ∀ p : ℕ+, (p : ℕ).Prime →
@@ -236,6 +281,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.target_ncard_le_sum_nat (R : Raman
     Finset.sum_le_sum (fun k _ => per_k_odd_prime_ncard_le R k X hX)
   exact le_trans (le_trans h1 h2) h3
 
+/--
+@isnad1 id=le.3h3v.s8.abed19fe3cb9 from=translated src=- shape=505a787e vocab=0dd57d27
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.odd_prime_ncard_le_sum (R : RamanujanTau) (X : ℝ) (hX : 0 < X)
     (K : ℕ) (hK : 3 ≤ K)
     (hvanish : ∀ k : ℕ, K < k → ∀ p : ℕ+, (p : ℕ).Prime →
@@ -247,6 +295,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.odd_prime_ncard_le_sum (R : Ramanu
       ((oddPrimesSigned ∩ X2k R k ∩ {z : ℤ | (|z| : ℝ) ≤ X}).ncard : ℝ) := by
   exact_mod_cast target_ncard_le_sum_nat R X hX K hK hvanish
 
+/--
+@isnad1 id=eq.0h2v.s7.7409aeb2fe7b from=translated src=- shape=51aa282d vocab=831fee17
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.target_eq_union (R : RamanujanTau) (X : ℝ) :
     {ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
       ∃ p : ℕ+, (p : ℕ).Prime ∧ ∃ k : ℕ, 3 ≤ k ∧
@@ -273,6 +324,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.target_eq_union (R : RamanujanTau)
     | inl h => exact ⟨h.1, h.2.2.1, h.2.2.2⟩
     | inr h => exact ⟨h.1, h.2.2.1, h.2.2.2⟩
 
+/--
+@isnad1 id=le.1h2v.s8.3cd9f71ca3cf from=translated src=- shape=4adccb8d vocab=8940e287
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.target_ncard_split (R : RamanujanTau) (X : ℝ) (hX : 0 < X) :
     {ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
       ∃ p : ℕ+, (p : ℕ).Prime ∧ ∃ k : ℕ, 3 ≤ k ∧
@@ -286,6 +340,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.target_ncard_split (R : RamanujanT
   rw [target_eq_union R X]
   exact Set.ncard_union_le _ _
 
+/--
+@isnad1 id=le.3h3v.s8.c442c6717592 from=translated src=- shape=534c0e02 vocab=b329fe41
+-/
 theorem _root_.Tengoku.RamanujanTauMissesPrimes.target_ncard_le_sum (R : RamanujanTau) (X : ℝ) (hX : 0 < X)
     (K : ℕ) (hK : 3 ≤ K)
     (hvanish : ∀ k : ℕ, K < k → ∀ p : ℕ+, (p : ℕ).Prime →
@@ -315,13 +372,22 @@ theorem _root_.Tengoku.RamanujanTauMissesPrimes.target_ncard_le_sum (R : Ramanuj
             (R.τ (p ^ (2 * k))).natAbs = ℓ}.ncard : ℝ) ≤ 1 := by exact_mod_cast heven
         linarith
 
+/--
+@isnad1 id=le.1h2v.s4.0634c55e770d from=translated src=- shape=8135bbf3 vocab=fc703633
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.nat_gt_floor_imp_ge (a : ℝ) (k : ℕ) (hk : ⌊a⌋₊ < k) : (k : ℝ) ≥ a := le_of_lt (Nat.lt_of_floor_lt hk)
 
+/--
+@isnad1 id=mem.1h3v.s5.5443b76a0eb7 from=translated src=- shape=05221b20 vocab=4cb21de6
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.tau_mem_X2k (R : RamanujanTau) (k : ℕ) (p : ℕ+) (hp : (p : ℕ).Prime) :
     R.τ (p ^ (2 * k)) ∈ X2k R k := by
   refine' ⟨p, hp, _⟩
   simp [mul_comm]
 
+/--
+@isnad1 id=not.2h4v.s6.f05dd6b3e7a7 from=translated src=- shape=ebd9460f vocab=f831cfba
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.not_abs_le_of_mem_empty_inter (R : RamanujanTau) (k : ℕ) (X : ℝ) (z : ℤ)
     (hmem : z ∈ X2k R k)
     (hempty : X2k R k ∩ {z : ℤ | (|z| : ℝ) ≤ X} = ∅) :
@@ -330,11 +396,17 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.not_abs_le_of_mem_empty_inter (R :
   have := hempty ▸ Set.mem_inter hmem (by simpa using h₃ : z ∈ {z : ℤ | (|z| : ℝ) ≤ X})
   exact Set.notMem_empty _ this
 
+/--
+@isnad1 id=eq.0h1v.s4.0c4d08609bba from=translated src=- shape=42609d41 vocab=16bfebe9
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.natAbs_cast_eq_abs_cast (n : ℤ) :
     (↑n.natAbs : ℝ) = (|↑n| : ℝ) := by
   norm_cast
   exact Nat.cast_natAbs n
 
+/--
+@isnad1 id=not.3h4v.s6.002bfb02a557 from=translated src=- shape=db348d45 vocab=c684ac2c
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.not_le_of_empty_inter (R : RamanujanTau) (k : ℕ) (X : ℝ)
     (hempty : X2k R k ∩ {z : ℤ | (|z| : ℝ) ≤ X} = ∅)
     (p : ℕ+) (hp : (p : ℕ).Prime)
@@ -345,6 +417,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.not_le_of_empty_inter (R : Ramanuj
   rw [natAbs_cast_eq_abs_cast]
   exact habs
 
+/--
+@isnad1 id=ex.1h1v.s8.4e588b9bf51b from=translated src=- shape=91248415 vocab=2586fa0b
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.vanishing_large_k (R : RamanujanTau) (h54_part2 : ∃ c₅ : ℝ, 0 < c₅ ∧
     ∀ N : ℝ, c₅ < N →
       ∀ k : ℕ, (k : ℝ) ≥ Real.log N / (2 * Real.log 2) →
@@ -359,6 +434,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.vanishing_large_k (R : RamanujanTa
       nat_gt_floor_imp_ge _ _ hk
     exact not_le_of_empty_inter R k X (hc₅ X hX k hge) p hp hne⟩
 
+/--
+@isnad1 id=le.1h1v.s5.8138f5d27114 from=translated src=- shape=a7767b81 vocab=3f88a965
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.six_mul_log_two_le_log (X : ℝ) (hX : 64 < X) :
     6 * Real.log 2 ≤ Real.log X := by
   have h₁ : Real.log 64 = 6 * Real.log 2 := by
@@ -372,23 +450,35 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.six_mul_log_two_le_log (X : ℝ) (
     exact Real.log_lt_log (by positivity) h₃
   linarith
 
+/--
+@isnad1 id=le.1h1v.s5.7d820813dad2 from=translated src=- shape=64427b06 vocab=3910d10d
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.log_div_two_log_two_gt_three (X : ℝ) (hX : 64 < X) :
     (3 : ℝ) ≤ Real.log X / (2 * Real.log 2) := by
   have h2log2 : (0 : ℝ) < 2 * Real.log 2 := by positivity
   rw [le_div_iff₀ h2log2]
   linarith [six_mul_log_two_le_log X hX]
 
+/--
+@isnad1 id=le.1h1v.s5.600ab807b095 from=translated src=- shape=46861fc7 vocab=210cda99
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_half_nonneg {X : ℝ} (hX : 0 < X) :
     0 ≤ X ^ ((1 : ℝ) / 2) := by
   have h : 0 ≤ (X : ℝ) := by positivity
   exact Real.rpow_nonneg h _
 
+/--
+@isnad1 id=eq.1h3v.s6.d3120505c1d8 from=translated src=- shape=d09aa331 vocab=cd7ad1c9
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.triple_inter_empty_of_X2k_inter_empty (R : RamanujanTau) (k : ℕ) (X : ℝ)
     (h : X2k R k ∩ {z : ℤ | (|z| : ℝ) ≤ X} = ∅) :
     oddPrimesSigned ∩ X2k R k ∩ {z : ℤ | (|z| : ℝ) ≤ X} = ∅ := by
   rw [Set.inter_assoc]
   exact Set.subset_eq_empty Set.inter_subset_right h
 
+/--
+@isnad1 id=ex.1h1v.s7.895410b49278 from=translated src=- shape=4b23349b vocab=6a445cff
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.per_k_ncard_le_rpow_half (R : RamanujanTau) (h54 : Proposition5_4 R) :
     ∃ C : ℝ, 0 < C ∧ ∃ X₀ : ℝ, 0 < X₀ ∧ ∀ X : ℝ, X₀ < X →
       ∀ k ∈ Finset.Icc 3 ⌊Real.log X / (2 * Real.log 2)⌋₊,
@@ -408,6 +498,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.per_k_ncard_le_rpow_half (R : Rama
     rw [triple_inter_empty_of_X2k_inter_empty R k X hempty, show ((∅ : Set ℤ).ncard : ℝ) = 0 by simp]
     exact mul_nonneg hC₄_pos.le (rpow_half_nonneg (lt_trans (lt_max_of_lt_left hc₄_pos) hX_gt))
 
+/--
+@isnad1 id=le.2h2v.s6.42cc24c053bd from=translated src=- shape=bfea3e6e vocab=88bb8a92
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.sum_const_le_floor_mul (a : ℝ) (ha : 0 ≤ a) (c : ℝ) (hc : 0 ≤ c) :
     ∑ k ∈ Finset.Icc 3 ⌊a⌋₊, c ≤ a * c := by
   rw [Finset.sum_const, nsmul_eq_mul]
@@ -415,6 +508,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.sum_const_le_floor_mul (a : ℝ) (
     simp only [Nat.card_Icc]; exact_mod_cast show ⌊a⌋₊ + 1 - 3 ≤ ⌊a⌋₊ by omega
   exact mul_le_mul_of_nonneg_right (this.trans (Nat.floor_le ha)) hc
 
+/--
+@isnad1 id=ex.1h1v.s7.bb2f9cf8378c from=translated src=- shape=ca78d9ed vocab=0def450d
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.sum_per_k_bound (R : RamanujanTau) (h54 : Proposition5_4 R) :
     ∃ C : ℝ, 0 < C ∧ ∃ X₀ : ℝ, 0 < X₀ ∧ ∀ X : ℝ, X₀ < X →
       ∑ k ∈ Finset.Icc 3 ⌊Real.log X / (2 * Real.log 2)⌋₊,
@@ -438,9 +534,15 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.sum_per_k_bound (R : RamanujanTau)
             (mul_nonneg hC_pos.le (rpow_half_nonneg hX_pos))
     _ = C * (Real.log X / (2 * Real.log 2) * X ^ ((1 : ℝ) / 2)) := by ring
 
+/--
+@isnad1 id=le.1h1v.s6.eb04119810ac from=translated src=- shape=da7f5743 vocab=65abf9f4
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.floor_log_ge_three (X : ℝ) (hX : 64 < X) :
     3 ≤ ⌊Real.log X / (2 * Real.log 2)⌋₊ := Nat.le_floor (log_div_two_log_two_gt_three X hX)
 
+/--
+@isnad1 id=le.1h1v.s6.43ba83bc5fa7 from=translated src=- shape=338b87b3 vocab=8e6a75c5
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.one_le_sqrt_mul_log (X : ℝ) (hX : Real.exp 1 < X) :
     1 ≤ X ^ ((1 : ℝ) / 2) * Real.log X := by
   have h₁ : 1 < Real.log X := by
@@ -452,6 +554,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.one_le_sqrt_mul_log (X : ℝ) (hX 
     · linarith
   nlinarith
 
+/--
+@isnad1 id=eq.1h1v.s7.1cb86f801f47 from=translated src=- shape=aa2aa4eb vocab=1385d4aa
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.log_div_mul_eq (X : ℝ) (hX : 0 < X) :
     Real.log X / (2 * Real.log 2) * X ^ ((1 : ℝ) / 2) =
     1 / (2 * Real.log 2) * (X ^ ((1 : ℝ) / 2) * Real.log X) := by
@@ -467,6 +572,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.log_div_mul_eq (X : ℝ) (hX : 0 <
       ring_nf
     _ = 1 / (2 * Real.log 2) * (X ^ ((1 : ℝ) / 2) * Real.log X) := by ring
 
+/--
+@isnad1 id=ex.1h1v.s7.af1fc7d21e62 from=translated src=- shape=513a8bd4 vocab=e0c65887
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.final_arithmetic_bound (A : ℝ) (hA : 0 < A) :
     ∃ C : ℝ, 0 < C ∧ ∃ X₀ : ℝ, 0 < X₀ ∧ ∀ X : ℝ, X₀ < X →
       1 + A * (Real.log X / (2 * Real.log 2) * X ^ ((1 : ℝ) / 2)) ≤
@@ -485,6 +593,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.final_arithmetic_bound (A : ℝ) (
           linarith
     _ = (1 + A / (2 * Real.log 2)) * (X ^ ((1 : ℝ) / 2) * Real.log X) := by ring
 
+/--
+@isnad1 id=ex.1h1v.s7.33bf1efa8948 from=translated src=- shape=be27d95a vocab=b4f9dc0d
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.k_ge3_contribution (R : RamanujanTau) (h54 : Proposition5_4 R) :
     ∃ C : ℝ, 0 < C ∧ ∃ X₀ : ℝ, 0 < X₀ ∧
       ∀ X : ℝ, X₀ < X →
@@ -521,6 +632,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.k_ge3_contribution (R : RamanujanT
     _ ≤ 1 + Csum * (Real.log X / (2 * Real.log 2) * X ^ ((1 : ℝ) / 2)) := by linarith
     _ ≤ C * (X ^ ((1 : ℝ) / 2) * Real.log X) := hstep3
 
+/--
+@isnad1 id=or.0h1v.s5.ae2a929ffbc7 from=translated src=- shape=3324bb4b vocab=5dc7c56d
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.tau_one_zero_or_one (R : RamanujanTau) : R.τ 1 = 0 ∨ R.τ 1 = 1 := by
   have h₁ : R.τ 1 = R.τ 1 * R.τ 1 := by
     have := R.hecke_mult 1 1 (by decide : Nat.Coprime 1 1)
@@ -530,17 +644,26 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.tau_one_zero_or_one (R : Ramanujan
   · exact Or.inl h
   · exact Or.inr (by linarith)
 
+/--
+@isnad1 id=ne.0h1v.s4.7c301d998145 from=translated src=- shape=59ae2d96 vocab=5dc7c56d
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.tau_one_ne_zero (R : RamanujanTau) : R.τ 1 ≠ 0 := by
   have h₁ : ¬(2 : ℤ) ∣ R.τ 1 :=
     (R.parity ⟨1, by norm_num⟩).mpr ⟨by decide, 1, by norm_num⟩
   intro h
   exact h₁ (h ▸ ⟨0, by ring⟩)
 
+/--
+@isnad1 id=eq.0h1v.s4.73c391fbab90 from=translated src=- shape=59ae2d96 vocab=5dc7c56d
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.tau_one_eq_one (R : RamanujanTau) : R.τ 1 = 1 := by
   rcases tau_one_zero_or_one R with h | h
   · exact absurd h (tau_one_ne_zero R)
   · exact h
 
+/--
+@isnad1 id=le.4h2v.s6.af5f36ed6d63 from=translated src=- shape=2f7fbec0 vocab=ab4cd2f1
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.ordCompl_ge_two_of_not_isPrimePow (n : ℕ) (hn : 2 ≤ n) (hnp : ¬ IsPrimePow n)
     (p : ℕ) (hp : Nat.Prime p) (_hpn : p ∣ n) :
     2 ≤ n / p ^ n.factorization p := by
@@ -553,6 +676,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.ordCompl_ge_two_of_not_isPrimePow 
     exact hnp this
   omega
 
+/--
+@isnad1 id=le.3h2v.s5.c8414c3509bd from=translated src=- shape=00ce4497 vocab=9a6e1388
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.ordProj_ge_two (n : ℕ) (p : ℕ) (hp : Nat.Prime p) (hn : n ≠ 0)
     (hpn : p ∣ n) : 2 ≤ p ^ n.factorization p := by
   have hfact : n.factorization p ≠ 0 :=
@@ -560,10 +686,16 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.ordProj_ge_two (n : ℕ) (p : ℕ)
   calc 2 ≤ p := hp.two_le
     _ ≤ p ^ n.factorization p := le_self_pow (Nat.one_le_iff_ne_zero.mpr hp.ne_zero) hfact
 
+/--
+@isnad1 id=coprime.3h2v.s6.8f2c001b74df from=translated src=- shape=cafe6f90 vocab=5ca342d7
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.ordProj_coprime_ordCompl (n : ℕ) (p : ℕ) (hp : Nat.Prime p) (hn : n ≠ 0)
     (hpn : p ∣ n) :
     Nat.Coprime (p ^ n.factorization p) (n / p ^ n.factorization p) := (Nat.coprime_pow_left_iff (hp.factorization_pos_of_dvd hn hpn) p _).mpr (Nat.coprime_ordCompl hp hn)
 
+/--
+@isnad1 id=ex.4h2v.s6.8996e3039392 from=translated src=- shape=2fb9c6e8 vocab=820caa46
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.lift_to_pnat_factorization (n : ℕ+) (hn : 2 ≤ (n : ℕ)) (hnp : ¬ IsPrimePow (n : ℕ))
     (p : ℕ) (hp : Nat.Prime p) (hpn : p ∣ (n : ℕ)) :
     ∃ (u v : ℕ+), (u : ℕ) * (v : ℕ) = (n : ℕ) ∧
@@ -581,6 +713,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.lift_to_pnat_factorization (n : �
   · exact hpe_ge
   · exact hnc_ge
 
+/--
+@isnad1 id=ex.2h1v.s6.1c9e16efee69 from=translated src=- shape=66be4b87 vocab=f394ac00
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.exists_coprime_factorization_of_not_isPrimePow (n : ℕ+) (hn : 2 ≤ (n : ℕ))
     (hnp : ¬ IsPrimePow (n : ℕ)) :
     ∃ (u v : ℕ+), (u : ℕ) * (v : ℕ) = (n : ℕ) ∧
@@ -589,6 +724,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.exists_coprime_factorization_of_no
   obtain ⟨p, hp, hpn⟩ := Nat.exists_prime_and_dvd hn1
   exact lift_to_pnat_factorization n hn hnp p hp hpn
 
+/--
+@isnad1 id=or.3h4v.s5.c78db6d3dd5b from=translated src=- shape=dba417bd vocab=97461cee
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.natAbs_tau_eq_one_of_coprime_factor (R : RamanujanTau) (u v : ℕ+)
     (hcop : Nat.Coprime (u : ℕ) (v : ℕ))
     (ℓ : ℕ) (hℓ : Nat.Prime ℓ) (hτ : (R.τ (u * v)).natAbs = ℓ) :
@@ -600,6 +738,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.natAbs_tau_eq_one_of_coprime_facto
   · exact Or.inl h
   · exact Or.inr (by nlinarith [hℓ.pos])
 
+/--
+@isnad1 id=isprimep.3h3v.s5.d3ca78c7fe57 from=translated src=- shape=11b3efd6 vocab=0adad6c9
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.tau_prime_imp_prime_power (R : RamanujanTau) (n : ℕ+) (hn : 2 ≤ (n : ℕ))
     (ℓ : ℕ) (hℓ : Nat.Prime ℓ) (hτ : (R.τ n).natAbs = ℓ) :
     IsPrimePow (n : ℕ) := by
@@ -617,6 +758,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.tau_prime_imp_prime_power (R : Ram
     have ⟨hne1, hne_neg1⟩ := R.non_unit v hv2
     rcases Int.isUnit_eq_one_or hv_unit with h1 | h1 <;> contradiction
 
+/--
+@isnad1 id=not.3h3v.s5.c8a36b343ff0 from=translated src=- shape=f9398758 vocab=c54227c4
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.tau_not_two_dvd_of_odd_prime (R : RamanujanTau) (n : ℕ+)
     (ℓ : ℕ) (hℓ : Nat.Prime ℓ) (hℓ_odd : ℓ ≠ 2)
     (hτ : (R.τ n).natAbs = ℓ) :
@@ -626,20 +770,32 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.tau_not_two_dvd_of_odd_prime (R : 
   have hndvd : ¬(2 ∣ ℓ) := hodd.not_two_dvd_nat
   exact hndvd (hτ ▸ Int.natCast_dvd.mp h2)
 
+/--
+@isnad1 id=and.3h3v.s5.52d213cbefd8 from=translated src=- shape=80cbadfb vocab=fa282880
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.tau_odd_prime_imp_odd_square (R : RamanujanTau) (n : ℕ+)
     (ℓ : ℕ) (hℓ : Nat.Prime ℓ) (hℓ_odd : ℓ ≠ 2)
     (hτ : (R.τ n).natAbs = ℓ) :
     Odd (n : ℕ) ∧ IsSquare (n : ℕ) := (R.parity n).mp (tau_not_two_dvd_of_odd_prime R n ℓ hℓ hℓ_odd hτ)
 
+/--
+@isnad1 id=eq.3h3v.s6.9866eea15442 from=translated src=- shape=f81cb7f5 vocab=742c7062
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.prime_pow_sq_even_exp_via_factorization (p a m : ℕ) (hp : Nat.Prime p) (ha : 0 < a)
     (hm : p ^ a = m ^ 2) : a = 2 * m.factorization p := by (try try?)
 
+/--
+@isnad1 id=ex.3h2v.s5.9c7c945654dc from=translated src=- shape=20a3fb2d vocab=a414e346
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.prime_pow_sq_even_exp (p a : ℕ) (hp : Nat.Prime p) (ha : 0 < a)
     (hsq : IsSquare (p ^ a)) : ∃ k, a = 2 * k := by
   rw [isSquare_iff_exists_sq] at hsq
   obtain ⟨m, hm⟩ := hsq
   exact ⟨m.factorization p, prime_pow_sq_even_exp_via_factorization p a m hp ha hm⟩
 
+/--
+@isnad1 id=ex.4h1v.s6.ca85873115fc from=translated src=- shape=8758d6c5 vocab=dc1f3a98
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.prime_power_odd_square_form (n : ℕ+) (hn : 2 ≤ (n : ℕ))
     (hpp : IsPrimePow (n : ℕ))
     (hodd : Odd (n : ℕ)) (hsq : IsSquare (n : ℕ)) :
@@ -672,6 +828,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.prime_power_odd_square_form (n : �
   rw [hk] at hna
   exact hna.symm
 
+/--
+@isnad1 id=le.2h3v.s4.3c431e45785f from=translated src=- shape=d65d2692 vocab=3cb035c8
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.witness_ge_two (R : RamanujanTau) (n : ℕ+) (ℓ : ℕ) (hℓ : Nat.Prime ℓ)
     (hτ : (R.τ n).natAbs = ℓ) : 2 ≤ (n : ℕ) := by
   by_contra h
@@ -682,6 +841,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.witness_ge_two (R : RamanujanTau) 
   simp at hτ
   linarith [hℓ.one_lt]
 
+/--
+@isnad1 id=eq.1h4v.s6.1afdb4ebb414 from=translated src=- shape=aab143c8 vocab=64d84754
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.tau_eq_of_pnat_eq_pow (R : RamanujanTau) (n : ℕ+) (p : ℕ+) (k : ℕ)
     (heq : (n : ℕ) = (p : ℕ) ^ (2 * k)) :
     R.τ n = R.τ (p ^ (2 * k)) := by
@@ -690,6 +852,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.tau_eq_of_pnat_eq_pow (R : Ramanuj
   rw [PNat.pow_coe]
   exact heq
 
+/--
+@isnad1 id=le.1h2v.s7.48aaa4fa94ec from=translated src=- shape=044fb57c vocab=e7487f52
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.S_set_subset_union (R : RamanujanTau) (X : ℝ) (hX : 1 < X) :
     S_set R X ⊆
       {2} ∪
@@ -722,11 +887,17 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.S_set_subset_union (R : RamanujanT
     · right
       exact ⟨hprime, hle, p, hp_prime, k, hk_ge, hτ'⟩
 
+/--
+@isnad1 id=finite.0h1v.s4.a4e66c77e45e from=translated src=- shape=ad0e61f7 vocab=6d0845ad
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.nat_bounded_by_real_finite (X : ℝ) : {n : ℕ | (n : ℝ) ≤ X}.Finite := by
   obtain ⟨k, hk⟩ := exists_nat_gt X
   exact (Set.finite_Iic k).subset fun n (hn : (n : ℝ) ≤ X) => by
     exact_mod_cast le_of_lt (lt_of_le_of_lt hn hk)
 
+/--
+@isnad1 id=finite.0h2v.s7.683b941ad7b6 from=translated src=- shape=82ece1a8 vocab=fd0e365a
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.A_sets_finite (X : ℝ) :
     ({ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
       ∃ p : ℕ+, (p : ℕ).Prime ∧ (R.τ (p ^ 2)).natAbs = ℓ} ∪
@@ -740,6 +911,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.A_sets_finite (X : ℝ) :
   simp only [Set.mem_union, Set.mem_ofPred_eq] at hℓ ⊢
   obtain (⟨-, hle, -⟩ | ⟨-, hle, -⟩) | ⟨-, hle, -⟩ := hℓ <;> exact hle
 
+/--
+@isnad1 id=finite.0h2v.s7.1fda5d7c98bf from=translated src=- shape=f6d22c4f vocab=3032d416
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.full_union_finite (R : RamanujanTau) (X : ℝ) :
     ({2} ∪
      {ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
@@ -762,6 +936,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.full_union_finite (R : RamanujanTa
     hA.subset Set.subset_union_right
   exact ((Set.finite_singleton 2).union hA1).union hA2 |>.union hA3
 
+/--
+@isnad1 id=le.1h5v.s6.12e63f2c0d91 from=translated src=- shape=c97fd044 vocab=42ea7ec0
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.ncard_four_union_le_nat (A B C D : Set ℕ) (a : ℕ) (hA : A = {a}) :
     (A ∪ B ∪ C ∪ D).ncard ≤ 1 + B.ncard + C.ncard + D.ncard := by
   have hA_card : A.ncard = 1 := by
@@ -788,6 +965,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.ncard_four_union_le_nat (A B C D :
     linarith
   exact h₃
 
+/--
+@isnad1 id=le.0h2v.s8.9cd539157199 from=translated src=- shape=5970602d vocab=5b6d1d51
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.ncard_four_union_le (R : RamanujanTau) (X : ℝ) :
     (({2} ∪
      {ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
@@ -813,6 +993,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.ncard_four_union_le (R : Ramanujan
     2 rfl
   exact_mod_cast h
 
+/--
+@isnad1 id=le.1h2v.s7.6bfdc0ee18a9 from=translated src=- shape=f00f68b1 vocab=9d737493
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.S_decomposition (R : RamanujanTau) (X : ℝ) (hX : 1 < X) :
     (S R X : ℝ) ≤ 1 +
       ({ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
@@ -838,6 +1021,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.S_decomposition (R : RamanujanTau)
         exact_mod_cast Set.ncard_le_ncard hsub hfin
     _ ≤ _ := hcard
 
+/--
+@isnad1 id=le.0h2v.s7.e054ba353ffd from=translated src=- shape=2137ceb6 vocab=9c629689
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.L_subset_union (R : RamanujanTau) (X : ℝ) :
     {ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
       ∃ p : ℕ+, (p : ℕ).Prime ∧
@@ -858,6 +1044,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.L_subset_union (R : RamanujanTau) 
   · left
     exact ⟨hprime, hle, p, hp, htau, h⟩
 
+/--
+@isnad1 id=finite.0h1v.s4.a4e66c77e45e from=translated src=- shape=ad0e61f7 vocab=6d0845ad
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.bounded_nat_set_finite (X : ℝ) : {ℓ : ℕ | (ℓ : ℝ) ≤ X}.Finite := by
   apply Set.Finite.subset (Set.finite_Iio (⌊X⌋₊ + 1))
   intro ℓ hℓ
@@ -865,6 +1054,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.bounded_nat_set_finite (X : ℝ) :
   simp only [Set.mem_Iio]
   exact Nat.lt_of_le_of_lt (Nat.le_floor hℓ) (Nat.lt_succ_iff.mpr le_rfl)
 
+/--
+@isnad1 id=finite.0h2v.s7.bbba406c23b3 from=translated src=- shape=82be6efc vocab=3d5bddab
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.L_union_finite (R : RamanujanTau) (X : ℝ) :
     ({ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
       ∃ p : ℕ+, (p : ℕ).Prime ∧
@@ -879,6 +1071,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.L_union_finite (R : RamanujanTau) 
   simp only [Set.mem_union, Set.mem_ofPred_eq] at hℓ ⊢
   rcases hℓ with ⟨_, hle, _⟩ | ⟨_, hle, _⟩ <;> exact hle
 
+/--
+@isnad1 id=le.0h2v.s8.dfc50343c094 from=translated src=- shape=47e5bd1f vocab=eb7fa42f
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.ell_split_large_small (R : RamanujanTau) (X : ℝ) :
     ({ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
       ∃ p : ℕ+, (p : ℕ).Prime ∧
@@ -916,6 +1111,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.ell_split_large_small (R : Ramanuj
         (p : ℝ) ≤ X ^ ((2 : ℝ) / 11)}
   exact_mod_cast le_trans h1 h2
 
+/--
+@isnad1 id=finite.0h1v.s4.a4e66c77e45e from=translated src=- shape=ad0e61f7 vocab=6d0845ad
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.bounded_nat_set_finite_real (B : ℝ) :
     {n : ℕ | (n : ℝ) ≤ B}.Finite := by
   by_cases hB : B < 0
@@ -927,10 +1125,16 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.bounded_nat_set_finite_real (B : �
     exact Set.Finite.subset (Finset.finite_toSet (Finset.range (⌊B⌋₊ + 1)))
       fun n hn => Finset.mem_coe.mpr (Finset.mem_range.mpr (Nat.lt_succ_of_le (Nat.le_floor hn)))
 
+/--
+@isnad1 id=finite.0h1v.s4.1512300be3bc from=translated src=- shape=a8214de1 vocab=b34c0869
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.pnat_bounded_finite (B : ℝ) :
     {p : ℕ+ | (p : ℝ) ≤ B}.Finite :=
   (bounded_nat_set_finite_real B).preimage PNat.coe_injective.injOn
 
+/--
+@isnad1 id=le.1h3v.s6.82b4cedca4df from=translated src=- shape=f3887a0d vocab=6001148f
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.bounded_pnat_int_subset (S : Set (ℕ+ × ℤ)) (N : ℕ) (M : ℕ)
     (hS : ∀ p ∈ S, (p.1 : ℕ) ≤ N ∧ |p.2| ≤ (M : ℤ)) :
     S ⊆ {q : ℕ+ | (q : ℝ) ≤ (N : ℝ)} ×ˢ Set.Icc (-(M : ℤ)) (M : ℤ) := by
@@ -939,15 +1143,24 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.bounded_pnat_int_subset (S : Set (
   simp only [Set.mem_prod, Set.mem_ofPred_eq, Set.mem_Icc]
   exact ⟨Nat.cast_le.mpr (Nat.cast_le.mpr h1), abs_le.mp h2⟩
 
+/--
+@isnad1 id=finite.1h3v.s5.53f42afa37fa from=translated src=- shape=fb1b6c38 vocab=3a45148c
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.bounded_pnat_int_set_finite (S : Set (ℕ+ × ℤ)) (N : ℕ) (M : ℕ)
     (hS : ∀ p ∈ S, (p.1 : ℕ) ≤ N ∧ |p.2| ≤ (M : ℤ)) : S.Finite := by
   have hfin1 : {p : ℕ+ | (p : ℝ) ≤ (N : ℝ)}.Finite := pnat_bounded_finite N
   have hfin2 : (Set.Icc (-(M : ℤ)) (M : ℤ)).Finite := Set.finite_Icc _ _
   exact (hfin1.prod hfin2).subset (bounded_pnat_int_subset S N M hS)
 
+/--
+@isnad1 id=le.1h2v.s5.68031c9410d8 from=translated src=- shape=4d8215a1 vocab=bdbab163
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.real_bound_to_nat_bound (p : ℕ+ × ℤ) (B : ℝ) (hB : (p.1 : ℝ) ≤ B) :
     (p.1 : ℕ) ≤ ⌈B⌉₊ := Nat.cast_le.mp (hB.trans (Nat.le_ceil B))
 
+/--
+@isnad1 id=ex.1h0v.s7.3fcc7ec66cf8 from=translated src=- shape=eda7d49c vocab=7ce1877b
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_specialize_half (habc : ABC) :
     ∃ K : ℝ, 0 < K ∧
       ∀ a b c : ℕ, 0 < a → 0 < b → 0 < c →
@@ -958,6 +1171,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_specialize_half (habc : ABC) :
     have := hABC a b c ha hb hc hcop heq
     rwa [show (1 : ℝ) + 1 / 2 = 3 / 2 from by norm_num] at this⟩
 
+/--
+@isnad1 id=le.1h2v.s7.69f4075112cc from=translated src=- shape=6c4755a8 vocab=f790ba42
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_ysq_le_x11_add_X_int_step (X : ℝ) (p : ℕ+ × ℤ)
     (h3 : (|(↑p.1 : ℤ) ^ 11 - p.2 ^ 2| : ℝ) ≤ X) :
     (p.2 : ℝ) ^ 2 - ((p.1 : ℕ) : ℝ) ^ 11 ≤ X := by
@@ -967,14 +1183,23 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_ysq_le_x11_add_X_int_step (X : 
     ring
   linarith [neg_le_abs ((↑↑p.1 : ℝ) ^ 11 - (↑p.2 : ℝ) ^ 2)]
 
+/--
+@isnad1 id=le.1h2v.s7.d33219c7c09b from=translated src=- shape=5158f3b7 vocab=98842d6d
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_ysq_le_x11_add_X_helper (X : ℝ) (p : ℕ+ × ℤ)
     (h3 : (|(↑p.1 : ℤ) ^ 11 - p.2 ^ 2| : ℝ) ≤ X) :
     (p.2 : ℝ) ^ 2 ≤ ((p.1 : ℕ) : ℝ) ^ 11 + X := by
   linarith [E2_ysq_le_x11_add_X_int_step X p h3]
 
+/--
+@isnad1 id=le.1h2v.s6.422bd7b19f84 from=translated src=- shape=ed766416 vocab=bcc5c8af
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_ysq_le_x11_add_X (X : ℝ) (p : ℕ+ × ℤ) (hp : p ∈ E2_set X) :
     (p.2 : ℝ) ^ 2 ≤ ((p.1 : ℕ) : ℝ) ^ 11 + X := E2_ysq_le_x11_add_X_helper X p hp.2.2
 
+/--
+@isnad1 id=le.3h3v.s6.f4b063351293 from=translated src=- shape=5d90eb7a vocab=ac21c5d5
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.int_diff_toNat_le_floor (z n : ℤ) (X : ℝ) (_hX : 0 ≤ X)
     (hnn : 0 ≤ z - n) (hle : (z : ℝ) - (n : ℝ) ≤ X) :
     (z - n).toNat ≤ ⌊X⌋₊ := by
@@ -984,6 +1209,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.int_diff_toNat_le_floor (z n : ℤ
     _ = (z : ℝ) - (n : ℝ) := by push_cast; ring
     _ ≤ X := hle
 
+/--
+@isnad1 id=le.2h3v.s6.279c94696e21 from=translated src=- shape=eaa782e7 vocab=5342c9d9
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.int_le_add_floor_of_toNat_le (z n : ℤ) (X : ℝ)
     (hnn : 0 ≤ z - n) (h : (z - n).toNat ≤ ⌊X⌋₊) :
     z ≤ n + ⌊X⌋₊ := by
@@ -993,6 +1221,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.int_le_add_floor_of_toNat_le (z n 
     exact_mod_cast h
   omega
 
+/--
+@isnad1 id=le.2h3v.s5.9d54582b481f from=translated src=- shape=e7a71a1e vocab=a52b03a5
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.int_le_int_add_floor_of_cast_le (z n : ℤ) (X : ℝ) (hX : 0 ≤ X)
     (h : (z : ℝ) ≤ (n : ℝ) + X) : z ≤ n + ⌊X⌋₊ := by
   by_cases hnn : 0 ≤ z - n
@@ -1003,16 +1234,25 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.int_le_int_add_floor_of_cast_le (z
     have : (0 : ℤ) ≤ ⌊X⌋₊ := Int.natCast_nonneg _
     omega
 
+/--
+@isnad1 id=le.1h2v.s5.77b8ca523be8 from=translated src=- shape=794a40aa vocab=6cd65a8c
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_X_nonneg (X : ℝ) (p : ℕ+ × ℤ) (hp : p ∈ E2_set X) : 0 ≤ X := by
   obtain ⟨_, h1, h2⟩ := hp
   have h3 : (1 : ℝ) ≤ (|(↑↑p.1 : ℤ) ^ 11 - p.2 ^ 2| : ℝ) := by exact_mod_cast h1
   linarith
 
+/--
+@isnad1 id=le.1h2v.s6.0923158fb46e from=translated src=- shape=223fc0c4 vocab=e0a7d5db
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_ysq_le_x11_add_floor (X : ℝ) (p : ℕ+ × ℤ) (hp : p ∈ E2_set X) :
     p.2 ^ 2 ≤ (↑p.1 : ℤ) ^ 11 + ⌊X⌋₊ := int_le_int_add_floor_of_cast_le (p.2 ^ 2) ((↑p.1 : ℤ) ^ 11) X
     (E2_X_nonneg X p hp)
     (by exact_mod_cast E2_ysq_le_x11_add_X X p hp)
 
+/--
+@isnad1 id=le.2h3v.s6.2e9ee7e66f71 from=translated src=- shape=af8f3c75 vocab=e0a7d5db
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_y_sq_le (X : ℝ) (N : ℕ) (p : ℕ+ × ℤ)
     (hp : p ∈ E2_set X) (hxN : (p.1 : ℕ) ≤ N) :
     p.2 ^ 2 ≤ (N ^ 11 + ⌊X⌋₊ : ℕ) := by
@@ -1024,6 +1264,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_y_sq_le (X : ℝ) (N : ℕ) (p 
     _ ≤ (N : ℤ) ^ 11 + ⌊X⌋₊ := h3
     _ = ↑(N ^ 11 + ⌊X⌋₊) := by push_cast; ring
 
+/--
+@isnad1 id=le.1h2v.s5.6c23a0093355 from=translated src=- shape=7c6b625c vocab=7fefe758
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.int_abs_le_of_sq_le (y : ℤ) (M : ℕ) (h : y ^ 2 ≤ (M : ℤ)) :
     |y| ≤ (M : ℤ) := by
   by_cases h2 : 2 ≤ |y|
@@ -1034,6 +1277,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.int_abs_le_of_sq_le (y : ℤ) (M :
     · simp
     · simp at h ⊢; exact h
 
+/--
+@isnad1 id=le.2h3v.s6.7a68f2acba63 from=translated src=- shape=cf471d03 vocab=e43f3696
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_y_bound (X : ℝ) (N : ℕ)
     (p : ℕ+ × ℤ) (hp : p ∈ E2_set X)
     (hxN : (p.1 : ℕ) ≤ N) :
@@ -1042,11 +1288,17 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_y_bound (X : ℝ) (N : ℕ)
   have hab := int_abs_le_of_sq_le p.2 (N ^ 11 + ⌊X⌋₊) (by exact_mod_cast hsq)
   exact_mod_cast le_trans hab (by exact_mod_cast Nat.le_succ _)
 
+/--
+@isnad1 id=eq.1h1v.s6.332792e9acac from=translated src=- shape=0d4e24ac vocab=57a6a273
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_pow_eleven_eq_sq (X : ℝ) (hX : 0 ≤ X) :
     (X ^ ((2 : ℝ) / 11)) ^ (11 : ℕ) = X ^ (2 : ℕ) := by
   rw [← Real.rpow_natCast X 2, ← Real.rpow_mul_natCast hX]
   norm_num
 
+/--
+@isnad1 id=lt.2h2v.s6.bc6796bd6eaa from=translated src=- shape=17132f6a vocab=e3616c33
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_x11_gt_Xsq (X : ℝ) (hX : 2 < X)
     (x : ℕ+) (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     (x : ℝ) ^ 11 > X ^ 2 := by
@@ -1057,6 +1309,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_x11_gt_Xsq (X : ℝ) (hX : 2 < 
   rw [rpow_pow_eleven_eq_sq X hX0] at h11
   exact h11
 
+/--
+@isnad1 id=ne.2h2v.s5.d9e27cfea5f4 from=translated src=- shape=4ac24890 vocab=197ab783
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_y_ne_zero (X : ℝ) (hX : 2 < X)
     (p : ℕ+ × ℤ) (hp : p ∈ E2_set X) :
     p.2 ≠ 0 := by
@@ -1072,6 +1327,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_y_ne_zero (X : ℝ) (hX : 2 < X
   rw [abs_of_pos (by positivity : (0 : ℝ) < ((↑↑p.1 : ℕ) : ℝ) ^ 11)] at h_abs_le
   linarith
 
+/--
+@isnad1 id=lt.2h2v.s6.32dce99fa7f4 from=translated src=- shape=7faf8999 vocab=9ff0b2d7
+-/
 theorem _root_.Tengoku.RamanujanTauMissesPrimes.E2_ysq_lt_2x11 (X : ℝ) (hX : 2 < X)
     (p : ℕ+ × ℤ) (hp : p ∈ E2_set X) :
     (p.2 : ℝ) ^ 2 < 2 * ((p.1 : ℕ) : ℝ) ^ 11 := by
@@ -1081,12 +1339,18 @@ theorem _root_.Tengoku.RamanujanTauMissesPrimes.E2_ysq_lt_2x11 (X : ℝ) (hX : 2
   have h3 : X < X ^ 2 := by nlinarith
   linarith
 
+/--
+@isnad1 id=dvd.3h4v.s5.6bd7c9cab265 from=translated src=- shape=8ada17f2 vocab=922e6df4
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.prime_factor_dvd_of_dvd_pow (m n : ℕ) (k : ℕ) (_hk : 0 < k) (h : m ∣ n ^ k)
     (p : ℕ) (hp : p ∈ m.primeFactors) : p ∣ n := by
   have hp_prime := (Nat.mem_primeFactors.mp hp).1
   have hp_dvd_m := (Nat.mem_primeFactors.mp hp).2.1
   exact hp_prime.dvd_of_dvd_pow (dvd_trans hp_dvd_m h)
 
+/--
+@isnad1 id=dvd.2h3v.s5.53b1a9bb8d6a from=translated src=- shape=471ec48e vocab=f82c898f
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_dvd_of_dvd_pow (m n : ℕ) (k : ℕ) (hk : 0 < k) (h : m ∣ n ^ k) :
     Nat.radical m ∣ n := by
   unfold Nat.radical
@@ -1099,32 +1363,53 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_dvd_of_dvd_pow (m n : ℕ)
       (fun p hp => (Nat.mem_primeFactors.mp hp).1.prime)
       (fun p hp => prime_factor_dvd_of_dvd_pow m n k hk h p hp)
 
+/--
+@isnad1 id=other.2h2v.s5.470c09c98e60 from=translated src=- shape=04d2c256 vocab=f545565a
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.gcd_quotients_coprime (M N : ℕ) (hM : 0 < M) (_hN : 0 < N) :
     let g := Nat.gcd M N
     Nat.Coprime (M / g) (N / g) := Nat.coprime_div_gcd_div_gcd (Nat.pos_of_ne_zero (by simp [Nat.gcd_eq_zero_iff]; omega))
 
+/--
+@isnad1 id=coprime.2h2v.s4.b69ad760e16a from=translated src=- shape=b148b3a2 vocab=d7b956c1
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.coprime_of_coprime_sub (a c : ℕ) (hac : Nat.Coprime a c) (hle : a ≤ c) :
     Nat.Coprime a (c - a) :=
   ((Nat.coprime_sub_self_left hle).mpr (hac.symm)).symm
 
+/--
+@isnad1 id=eq.1h2v.s4.b16d71d5b6e0 from=translated src=- shape=3e81fdaa vocab=a2e7c113
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.mul_div_cancel_of_dvd (g M : ℕ) (h : g ∣ M) : g * (M / g) = M := by
   rw [Nat.mul_div_cancel' h]
 
+/--
+@isnad1 id=eq.3h3v.s6.0e834fad696b from=translated src=- shape=51cb9840 vocab=d8729ab1
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.mul_sub_div_eq (g M N : ℕ) (hgM : g ∣ M) (hgN : g ∣ N) (_hle : M ≤ N) :
     g * (N / g - M / g) = N - M := by
   rw [mul_tsub, mul_div_cancel_of_dvd g N hgN, mul_div_cancel_of_dvd g M hgM]
 
+/--
+@isnad1 id=eq.2h2v.s6.9e84bf317271 from=translated src=- shape=2752066b vocab=e6a32ea1
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.sub_eq_gcd_mul_sub_div (M N : ℕ) (hM : 0 < M) (hle : M ≤ N) :
     N - M = Nat.gcd M N * (N / Nat.gcd M N - M / Nat.gcd M N) := by
   have _hg := Nat.gcd_pos_of_pos_left N hM
   exact (mul_sub_div_eq (Nat.gcd M N) M N (Nat.gcd_dvd_left M N) (Nat.gcd_dvd_right M N) hle).symm
 
+/--
+@isnad1 id=eq.2h2v.s6.9a3af740e262 from=translated src=- shape=5a3a7565 vocab=2b1255ff
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.sub_div_gcd (M N : ℕ) (hM : 0 < M) (hle : M ≤ N) :
     (N - M) / Nat.gcd M N = N / Nat.gcd M N - M / Nat.gcd M N := by
   have hg : 0 < Nat.gcd M N := Nat.gcd_pos_of_pos_left N hM
   rw [sub_eq_gcd_mul_sub_div M N hM hle]
   exact Nat.mul_div_cancel_left _ hg
 
+/--
+@isnad1 id=other.4h2v.s7.d97a21e651ab from=translated src=- shape=9efc94f0 vocab=f74c94c2
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.gcd_coprime_setup (M N : ℕ) (hM : 0 < M) (hN : 0 < N) (hle : M ≤ N) (hd : 0 < N - M) :
     let g := Nat.gcd M N
     let a := M / g
@@ -1160,11 +1445,20 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.gcd_coprime_setup (M N : ℕ) (hM 
   have hdiff_div : (N - M) / g = b := sub_div_gcd M N hM hle
   exact ⟨hg_pos, ha_pos, hc_pos, hb_pos, hab_cop, hab_sum, hNgc, hMga, hg_dvd_diff, hdiff_div⟩
 
+/--
+@isnad1 id=le.1h2v.s4.14715283ccfd from=translated src=- shape=e8bdf649 vocab=0cfb6452
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.primeFactors_mem_one_le (n : ℕ) (p : ℕ) (hp : p ∈ n.primeFactors) : 1 ≤ p := (Nat.mem_primeFactors.mp hp).1.one_le
 
+/--
+@isnad1 id=le.0h1v.s4.36233fedf2cb from=translated src=- shape=436f7df1 vocab=2e4b7a98
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.one_le_prod_primeFactors (n : ℕ) :
     1 ≤ ∏ p ∈ n.primeFactors, p := Finset.one_le_prod' (fun p hp => primeFactors_mem_one_le n p hp)
 
+/--
+@isnad1 id=le.2h2v.s6.770f155995a6 from=translated src=- shape=4200eef4 vocab=641436d3
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_mul_le_aux (m n : ℕ) (hm : 0 < m) (hn : 0 < n) :
     (∏ p ∈ (m * n).primeFactors, p) ≤
     (∏ p ∈ m.primeFactors, p) * (∏ p ∈ n.primeFactors, p) := by
@@ -1176,6 +1470,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_mul_le_aux (m n : ℕ) (hm
         le_mul_of_one_le_left' hgcd
     _ = (∏ p ∈ m.primeFactors, p) * (∏ p ∈ n.primeFactors, p) := key
 
+/--
+@isnad1 id=le.2h2v.s5.e57da282139c from=translated src=- shape=019488d2 vocab=327e4f3b
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_mul_le_pos (m n : ℕ) (hm : 0 < m) (hn : 0 < n) :
     Nat.radical (m * n) ≤ Nat.radical m * Nat.radical n := by
   have hm' : m ≠ 0 := ne_of_gt hm
@@ -1184,6 +1481,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_mul_le_pos (m n : ℕ) (hm
   simp only [Nat.radical, hmn', ↓reduceIte, hm', hn']
   exact radical_mul_le_aux m n hm hn
 
+/--
+@isnad1 id=le.0h2v.s4.78bfbfb89522 from=translated src=- shape=a13ca989 vocab=cfc0bee2
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_mul_le (a b : ℕ) :
     Nat.radical (a * b) ≤ Nat.radical a * Nat.radical b := by
   by_cases ha : a = 0
@@ -1192,10 +1492,16 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_mul_le (a b : ℕ) :
     · simp [hb, Nat.radical]
     · exact radical_mul_le_pos a b (Nat.pos_of_ne_zero ha) (Nat.pos_of_ne_zero hb)
 
+/--
+@isnad1 id=le.2h2v.s6.feedb5545abf from=translated src=- shape=26bc7a86 vocab=57a6a273
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_three_halves_mono
     (a b : ℝ) (ha : 0 ≤ a) (hab : a ≤ b) :
     a ^ ((3 : ℝ) / 2) ≤ b ^ ((3 : ℝ) / 2) := Real.rpow_le_rpow ha hab (by positivity)
 
+/--
+@isnad1 id=le.3h4v.s6.7a195eb4f0b6 from=translated src=- shape=a0150299 vocab=26a9ecc4
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.mul_K_t_mono_left
     (K : ℝ) (hK : 0 < K)
     (g d : ℕ) (h_g_le_d : g ≤ d)
@@ -1204,11 +1510,17 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.mul_K_t_mono_left
   apply mul_le_mul_of_nonneg_right _ (by positivity)
   exact_mod_cast h_g_le_d
 
+/--
+@isnad1 id=le.1h1v.s4.4231808db582 from=translated src=- shape=4d32bca1 vocab=ef720646
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_le_self (n : ℕ) (hn : 0 < n) : Nat.radical n ≤ n := by
   have h : n ≠ 0 := ne_of_gt hn
   rw [show Nat.radical n = ∏ p ∈ n.primeFactors, p by simp [h, Nat.radical]]
   exact Nat.le_of_dvd (by positivity) n.prod_primeFactors_dvd
 
+/--
+@isnad1 id=other.4h3v.s7.d7d4e2d50454 from=translated src=- shape=f926378f vocab=2abeea76
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_abc_bound
     (x : ℕ) (hx : 0 < x)
     (y_abs : ℕ) (hy : 0 < y_abs)
@@ -1245,6 +1557,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_abc_bound
       _ ≤ y_abs * d * x := Nat.mul_le_mul (Nat.mul_le_mul hrad_a_le hrad_b_le) hrad_c_le
   exact_mod_cast h_nat
 
+/--
+@isnad1 id=le.12h8v.s9.6a9a6a40f498 from=translated src=- shape=08c035ba vocab=ea948a4e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.assemble_abc_bound_chain
     (K : ℝ) (hK : 0 < K)
     (x : ℕ) (_hx : 0 < x)
@@ -1271,6 +1586,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.assemble_abc_bound_chain
     _ ≤ (d : ℝ) * (K * ((d : ℝ) * (x : ℝ) * (y_abs : ℝ)) ^ ((3 : ℝ) / 2)) := h_gd_mono
     _ = (d : ℝ) * K * ((d : ℝ) * (x : ℝ) * (y_abs : ℝ)) ^ ((3 : ℝ) / 2) := by ring
 
+/--
+@isnad1 id=le.16h8v.s8.941ac33d56bf from=translated src=- shape=36a67433 vocab=410ad05d
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.assemble_abc_bound
     (K : ℝ) (hK : 0 < K)
     (x : ℕ) (hx : 0 < x)
@@ -1304,6 +1622,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.assemble_abc_bound
   exact assemble_abc_bound_chain K hK x hx y_abs hy d hd g hg c hc a ha b hb
     h_x11_eq h_abc h_rad_mono h_gd_mono
 
+/--
+@isnad1 id=le.6h4v.s8.e8c5ed64e993 from=translated src=- shape=de97da4a vocab=410ad05d
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_gcd_bound_nat
     (K : ℝ) (hK : 0 < K)
     (hK_abc : ∀ a b c : ℕ, 0 < a → 0 < b → 0 < c →
@@ -1332,12 +1653,18 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_gcd_bound_nat
     (x ^ 11 / Nat.gcd (y_abs ^ 2) (x ^ 11) - y_abs ^ 2 / Nat.gcd (y_abs ^ 2) (x ^ 11)) hb
     hcop hab hNgc hMga hdgb hK_abc hrad
 
+/--
+@isnad1 id=eq.1h3v.s6.970db07ccf3a from=translated src=- shape=9471eb13 vocab=4cd1fc33
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.int_eq_from_diff
     (x : ℕ) (y : ℤ) (d : ℕ)
     (hd_eq : (d : ℤ) = (x : ℤ) ^ 11 - y ^ 2) :
     y ^ 2 + (d : ℤ) = (x : ℤ) ^ 11 := by
   grind
 
+/--
+@isnad1 id=eq.1h3v.s6.e5000701b412 from=translated src=- shape=1453b8e0 vocab=f46372f7
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.nat_eq_from_int_eq
     (x : ℕ) (y : ℤ) (d : ℕ)
     (hint : y ^ 2 + (d : ℤ) = (x : ℤ) ^ 11) :
@@ -1347,6 +1674,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.nat_eq_from_int_eq
     exact hint
   exact_mod_cast h1
 
+/--
+@isnad1 id=and.5h3v.s7.c68ca3fadd5d from=translated src=- shape=d3db32eb vocab=1c10efd3
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.cast_to_nat_setup
     (x : ℕ) (_hx : 0 < x)
     (y : ℤ) (hy : y ≠ 0)
@@ -1358,6 +1688,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.cast_to_nat_setup
   · exact nat_eq_from_int_eq x y d (int_eq_from_diff x y d hd_eq)
   · exact Int.natAbs_pos.mpr hy
 
+/--
+@isnad1 id=le.7h4v.s8.3999275d87a2 from=translated src=- shape=96199be9 vocab=80440b29
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_abc_applied_case1 (K : ℝ) (hK : 0 < K)
     (hK_abc : ∀ a b c : ℕ, 0 < a → 0 < b → 0 < c →
         Nat.Coprime a b → a + b = c →
@@ -1375,6 +1708,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_abc_applied_case1 (K : ℝ) (hK
   rw [habs_eq]
   exact abc_gcd_bound_nat K hK hK_abc x hx y.natAbs hy_pos d hd hsum
 
+/--
+@isnad1 id=le.1h2v.s6.e3d4b257a4e9 from=translated src=- shape=0e8ec653 vocab=339f261b
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.x11_le_natAbs_sq (x : ℕ) (y : ℤ) (hlt : (x : ℤ) ^ 11 < y ^ 2) :
     x ^ 11 ≤ y.natAbs ^ 2 := by
   have h : x ^ 11 < y.natAbs ^ 2 := by
@@ -1383,6 +1719,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.x11_le_natAbs_sq (x : ℕ) (y : �
          Nat.cast_lt] at hlt
   exact le_of_lt h
 
+/--
+@isnad1 id=eq.2h3v.s7.258b835d4a23 from=translated src=- shape=58db7d7d vocab=d9ff5524
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.d_eq_natAbs_diff (x : ℕ) (y : ℤ) (d : ℕ)
     (hd_eq : (d : ℤ) = y ^ 2 - (x : ℤ) ^ 11)
     (hlt : (x : ℤ) ^ 11 < y ^ 2) :
@@ -1395,16 +1734,25 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.d_eq_natAbs_diff (x : ℕ) (y : �
     linarith
   exact Nat.cast_injective key
 
+/--
+@isnad1 id=other.0h2v.s6.db446fc74611 from=translated src=- shape=b76cd7c5 vocab=279d6559
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.a_dvd_x11 (x : ℕ) (y : ℤ) :
     let g := Nat.gcd (y.natAbs ^ 2) (x ^ 11)
     let a := x ^ 11 / g
     a ∣ x ^ 11 := Nat.div_dvd_of_dvd (Nat.gcd_dvd_right (y.natAbs ^ 2) (x ^ 11))
 
+/--
+@isnad1 id=other.0h2v.s6.064dc4186e6d from=translated src=- shape=9cceefac vocab=279d6559
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.c_dvd_yabs2 (x : ℕ) (y : ℤ) :
     let g := Nat.gcd (y.natAbs ^ 2) (x ^ 11)
     let c := y.natAbs ^ 2 / g
     c ∣ y.natAbs ^ 2 := Nat.div_dvd_of_dvd (Nat.gcd_dvd_left _ _)
 
+/--
+@isnad1 id=le.0h3v.s5.a11e3307aa85 from=translated src=- shape=fd8d10c3 vocab=cfc0bee2
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_triple_le (a b c : ℕ) :
     Nat.radical (a * b * c) ≤ Nat.radical a * Nat.radical b * Nat.radical c := by
   calc Nat.radical (a * b * c)
@@ -1413,12 +1761,18 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_triple_le (a b c : ℕ) :
         apply Nat.mul_le_mul_right
         exact radical_mul_le a b
 
+/--
+@isnad1 id=le.3h6v.s6.d8debacefbfb from=translated src=- shape=953fa5f0 vocab=cfc0bee2
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.mul_radical_bounds (a b c x d yabs : ℕ)
     (ha : Nat.radical a ≤ x)
     (hb : Nat.radical b ≤ d)
     (hc : Nat.radical c ≤ yabs) :
     Nat.radical a * Nat.radical b * Nat.radical c ≤ x * d * yabs := mul_le_mul' (mul_le_mul' ha hb) hc
 
+/--
+@isnad1 id=le.3h6v.s6.42b539468fcf from=translated src=- shape=8e1b403e vocab=f57c036f
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_abc_le_dxy (a b c x d yabs : ℕ)
     (ha : Nat.radical a ≤ x)
     (hb : Nat.radical b ≤ d)
@@ -1434,9 +1788,15 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_abc_le_dxy (a b c x d yabs
       ≤ (x * d * yabs : ℝ) := h4
     _ = (d : ℝ) * (x : ℝ) * (yabs : ℝ) := by ring
 
+/--
+@isnad1 id=le.2h2v.s4.66e7bd041ce9 from=translated src=- shape=ae59828b vocab=ad6dd105
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_dvd_implies_le (m n : ℕ) (hn : 0 < n) (h : Nat.radical m ∣ n) :
     Nat.radical m ≤ n := Nat.le_of_dvd hn h
 
+/--
+@isnad1 id=other.5h3v.s8.04b88cde9f6a from=translated src=- shape=3fd56b00 vocab=4a644f02
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_bound_case2 (x : ℕ) (hx : 0 < x) (y : ℤ) (hy : y ≠ 0)
     (d : ℕ) (hd : 0 < d) (hd_nat : d = y.natAbs ^ 2 - x ^ 11)
     (_hlt : (x : ℤ) ^ 11 < y ^ 2) :
@@ -1474,6 +1834,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_bound_case2 (x : ℕ) (hx 
     le_trans (radical_le_self b hb_pos) (Nat.div_le_self d g)
   exact radical_abc_le_dxy a b c x d y.natAbs hrad_a_le hrad_b_le hrad_c_le
 
+/--
+@isnad1 id=le.6h5v.s7.4b11ab839349 from=translated src=- shape=475d8f8f vocab=bbfbc6af
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.yabs_sq_le_g_mul_K_rad
     (K : ℝ) (_hK : 0 < K)
     (g c yabs : ℕ) (_hg : 0 < g) (_hc : 0 < c) (_hyabs : 0 < yabs)
@@ -1484,6 +1847,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.yabs_sq_le_g_mul_K_rad
   rw [show (yabs : ℝ) ^ 2 = (g : ℝ) * (c : ℝ) from by exact_mod_cast h_gc]
   exact mul_le_mul_of_nonneg_left h_abc_bound (Nat.cast_nonneg g)
 
+/--
+@isnad1 id=le.10h6v.s8.c2cda5be9130 from=translated src=- shape=482839db vocab=ea948a4e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.assemble_case2_bound
     (K : ℝ) (hK : 0 < K)
     (g c d x yabs : ℕ) (hg : 0 < g) (hc : 0 < c) (_hd : 0 < d)
@@ -1515,6 +1881,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.assemble_case2_bound
     _ ≤ (d : ℝ) * (K * ((d : ℝ) * (x : ℝ) * (yabs : ℝ)) ^ ((3 : ℝ) / 2)) := step4
     _ = (d : ℝ) * K * ((d : ℝ) * (x : ℝ) * (yabs : ℝ)) ^ ((3 : ℝ) / 2) := by ring
 
+/--
+@isnad1 id=le.7h4v.s8.a36cc4d8d43d from=translated src=- shape=7df6fa05 vocab=80440b29
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_abc_applied_case2 (K : ℝ) (hK : 0 < K)
     (hK_abc : ∀ a b c : ℕ, 0 < a → 0 < b → 0 < c →
         Nat.Coprime a b → a + b = c →
@@ -1567,6 +1936,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_abc_applied_case2 (K : ℝ) (hK
     rw [hyabs_def, Nat.cast_natAbs y, Int.cast_abs]
   rw [h1, h2]; exact h
 
+/--
+@isnad1 id=eq.2h3v.s7.e60ddb82e3ef from=translated src=- shape=66a1f659 vocab=8be68c4c
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_abc_case_A_d_eq
     (x : ℕ) (y : ℤ)
     (d : ℕ) (hd_eq : (d : ℤ) = |((x : ℤ) ^ 11 - y ^ 2)|)
@@ -1574,12 +1946,18 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_abc_case_A_d_eq
     (d : ℤ) = (x : ℤ) ^ 11 - y ^ 2 := by
   rw [hd_eq, abs_of_nonneg (sub_nonneg.mpr hge)]
 
+/--
+@isnad1 id=le.1h2v.s6.8b00f8359082 from=translated src=- shape=f5ede9ba vocab=a336899e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_abc_case_A_cast_le
     (x : ℕ) (y : ℤ)
     (hge : y ^ 2 ≤ (x : ℤ) ^ 11) :
     (y : ℝ) ^ 2 ≤ (x : ℝ) ^ 11 := by
   exact_mod_cast hge
 
+/--
+@isnad1 id=le.7h4v.s8.ce55e05407f9 from=translated src=- shape=54014303 vocab=044e85e6
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_abc_case_A (K : ℝ) (hK : 0 < K)
     (x : ℕ) (hx : 0 < x)
     (y : ℤ) (hy : y ≠ 0)
@@ -1596,6 +1974,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_abc_case_A (K : ℝ) (hK : 0 < 
   have hy2_le := E2_abc_case_A_cast_le x y hge
   exact max_le hx11_le (le_trans hy2_le hx11_le)
 
+/--
+@isnad1 id=eq.2h3v.s7.0498bd87d120 from=translated src=- shape=d458c810 vocab=5d2e0f4b
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.d_eq_ysq_sub_x11 (x : ℕ) (y : ℤ) (d : ℕ)
     (hd_eq : (d : ℤ) = |((x : ℤ) ^ 11 - y ^ 2)|)
     (hlt : (x : ℤ) ^ 11 < y ^ 2) :
@@ -1603,11 +1984,17 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.d_eq_ysq_sub_x11 (x : ℕ) (y : �
   rw [hd_eq, abs_of_neg (sub_neg_of_lt hlt)]
   ring
 
+/--
+@isnad1 id=le.1h2v.s6.3058c86975de from=translated src=- shape=5d2db1d1 vocab=da0424cc
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.x11_le_y2_real (x : ℕ) (y : ℤ)
     (hlt : (x : ℤ) ^ 11 < y ^ 2) :
     ((x : ℤ) : ℝ) ^ 11 ≤ ((y : ℤ) : ℝ) ^ 2 := by
   exact_mod_cast hlt.le
 
+/--
+@isnad1 id=le.7h4v.s8.91b8cb3793de from=translated src=- shape=4c525307 vocab=044e85e6
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_abc_case_B (K : ℝ) (hK : 0 < K)
     (x : ℕ) (hx : 0 < x)
     (y : ℤ) (hy : y ≠ 0)
@@ -1624,6 +2011,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_abc_case_B (K : ℝ) (hK : 0 < 
   have hx11_le_y2 : ((x : ℤ) : ℝ) ^ 11 ≤ ((y : ℤ) : ℝ) ^ 2 := x11_le_y2_real x y hlt
   exact max_le (le_trans hx11_le_y2 hy2_bound) hy2_bound
 
+/--
+@isnad1 id=le.8h4v.s9.e6cc0524cc00 from=translated src=- shape=6afc20e3 vocab=8a752fef
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_abc_applied_from_cases (K : ℝ) (hK : 0 < K)
     (hK_abc : ∀ a b c : ℕ, 0 < a → 0 < b → 0 < c →
         Nat.Coprime a b → a + b = c →
@@ -1644,6 +2034,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_abc_applied_from_cases (K : ℝ
   · exact E2_abc_case_A K hK x hx y hy d hd hd_eq h1 hge
   · exact E2_abc_case_B K hK x hx y hy d hd hd_eq h2 hlt
 
+/--
+@isnad1 id=le.6h4v.s8.299cceb30562 from=translated src=- shape=f8d67ad5 vocab=8a752fef
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_abc_applied (K : ℝ) (hK : 0 < K)
     (hK_abc : ∀ a b c : ℕ, 0 < a → 0 < b → 0 < c →
         Nat.Coprime a b → a + b = c →
@@ -1657,17 +2050,26 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_abc_applied (K : ℝ) (hK : 0 <
     (fun hge hd1 => E2_abc_applied_case1 K hK hK_abc x hx y hy d hd hd1 hge)
     (fun hlt hd2 => E2_abc_applied_case2 K hK hK_abc x hx y hy d hd hd2 hlt)
 
+/--
+@isnad1 id=eq.3h3v.s7.82a91f3bf69e from=translated src=- shape=2d85e1c6 vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_mul_distrib (d x y_abs : ℝ) (hd : 0 < d) (hx : 1 ≤ x) (hy : 0 < y_abs) :
     (d * x * y_abs) ^ ((3 : ℝ) / 2) =
     d ^ ((3 : ℝ) / 2) * x ^ ((3 : ℝ) / 2) * y_abs ^ ((3 : ℝ) / 2) := by
   rw [Real.mul_rpow (mul_nonneg hd.le (by linarith)) hy.le]
   rw [Real.mul_rpow hd.le (by linarith)]
 
+/--
+@isnad1 id=eq.1h1v.s6.ccdc93ab4b29 from=translated src=- shape=1a49ac1d vocab=f3a5b989
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.d_mul_d_rpow (d : ℝ) (hd : 0 < d) :
     d * d ^ ((3 : ℝ) / 2) = d ^ ((5 : ℝ) / 2) := by
   have h : (1 : ℝ) + 3 / 2 = 5 / 2 := by norm_num
   rw [← h, Real.rpow_add hd, Real.rpow_one]
 
+/--
+@isnad1 id=eq.4h4v.s7.c220aa7e9b86 from=translated src=- shape=72b967ea vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.expand_abc_rhs_eq (K : ℝ) (hK : 0 < K)
     (x : ℝ) (hx : 1 ≤ x)
     (y_abs : ℝ) (hy : 0 < y_abs)
@@ -1679,6 +2081,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.expand_abc_rhs_eq (K : ℝ) (hK : 
       K * (d * d ^ ((3 : ℝ) / 2)) * x ^ ((3 : ℝ) / 2) * y_abs ^ ((3 : ℝ) / 2) by ring]
   rw [d_mul_d_rpow d hd_pos]
 
+/--
+@isnad1 id=le.5h4v.s8.8d3926c31dbc from=translated src=- shape=e76f7805 vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.expand_abc_rhs (K : ℝ) (hK : 0 < K)
     (x : ℝ) (hx : 1 ≤ x)
     (y_abs : ℝ) (hy : 0 < y_abs)
@@ -1691,6 +2096,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.expand_abc_rhs (K : ℝ) (hK : 0 <
     _ ≤ d * K * (d * x * y_abs) ^ ((3 : ℝ) / 2) := habc
     _ = K * d ^ ((5 : ℝ) / 2) * x ^ ((3 : ℝ) / 2) * y_abs ^ ((3 : ℝ) / 2) := heq
 
+/--
+@isnad1 id=lt.3h2v.s7.6094e73d1af9 from=translated src=- shape=dccebd5b vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_three_fourths_strict_mono (x : ℝ) (hx : 1 ≤ x)
     (y_abs : ℝ) (hy : 0 < y_abs)
     (hysq : y_abs ^ 2 < 2 * x ^ 11) :
@@ -1698,11 +2106,17 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_three_fourths_strict_mono (x 
   apply Real.rpow_lt_rpow (sq_nonneg y_abs) hysq
   positivity
 
+/--
+@isnad1 id=eq.1h1v.s6.1e95d25e86db from=translated src=- shape=6ded4d62 vocab=ffba070c
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.lhs_simplify (y_abs : ℝ) (hy : 0 < y_abs) :
     (y_abs ^ 2) ^ ((3 : ℝ) / 4) = y_abs ^ ((3 : ℝ) / 2) := by
   rw [← Real.rpow_natCast_mul (le_of_lt hy) 2 ((3 : ℝ) / 4)]
   norm_num
 
+/--
+@isnad1 id=eq.1h1v.s7.5373891c9ec9 from=translated src=- shape=6c76344c vocab=d46e17f2
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rhs_simplify (x : ℝ) (hx : 1 ≤ x) :
     (2 * x ^ 11) ^ ((3 : ℝ) / 4) = 2 ^ ((3 : ℝ) / 4) * x ^ ((33 : ℝ) / 4) := by
   have hx0 : (0 : ℝ) ≤ x := by linarith
@@ -1712,6 +2126,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.rhs_simplify (x : ℝ) (hx : 1 ≤
   rw [← Real.rpow_natCast_mul hx0 11 ((3 : ℝ) / 4)]
   norm_num
 
+/--
+@isnad1 id=lt.3h2v.s7.fb50568222b7 from=translated src=- shape=2d0e70bb vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.bound_y_three_halves (x : ℝ) (hx : 1 ≤ x)
     (y_abs : ℝ) (hy : 0 < y_abs)
     (hysq : y_abs ^ 2 < 2 * x ^ 11) :
@@ -1721,6 +2138,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.bound_y_three_halves (x : ℝ) (hx
   rw [rhs_simplify x hx] at h1
   exact h1
 
+/--
+@isnad1 id=lt.3h3v.s7.1d39223e5067 from=translated src=- shape=957a31ee vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.coeff_pos (K : ℝ) (hK : 0 < K)
     (x : ℝ) (hx : 1 ≤ x)
     (d : ℝ) (hd_pos : 0 < d) :
@@ -1730,11 +2150,17 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.coeff_pos (K : ℝ) (hK : 0 < K)
     exact Real.rpow_pos_of_pos hd_pos _
   · exact Real.rpow_pos_of_pos (lt_of_lt_of_le one_pos hx) _
 
+/--
+@isnad1 id=eq.1h1v.s6.231008722481 from=translated src=- shape=4059beeb vocab=f3a5b989
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_combine_x (x : ℝ) (hx : 0 < x) :
     x ^ ((3 : ℝ) / 2) * x ^ ((33 : ℝ) / 4) = x ^ ((39 : ℝ) / 4) := by
   rw [← Real.rpow_add hx]
   norm_num
 
+/--
+@isnad1 id=eq.3h3v.s8.5ab90566b13d from=translated src=- shape=abd030bd vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rearrange_rhs (K : ℝ) (hK : 0 < K)
     (x : ℝ) (hx : 1 ≤ x)
     (d : ℝ) (hd_pos : 0 < d) :
@@ -1746,6 +2172,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.rearrange_rhs (K : ℝ) (hK : 0 < 
     from by ring]
   rw [rpow_combine_x x hx_pos]
 
+/--
+@isnad1 id=le.6h4v.s8.7641ce1d9817 from=translated src=- shape=c215a541 vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.substitute_y_combine_x (K : ℝ) (hK : 0 < K)
     (x : ℝ) (hx : 1 ≤ x)
     (y_abs : ℝ) (_hy : 0 < y_abs)
@@ -1762,15 +2191,24 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.substitute_y_combine_x (K : ℝ) (
   rw [rearrange_rhs K hK x hx d hd_pos] at hlt
   exact le_of_lt hlt
 
+/--
+@isnad1 id=le.2h4v.s6.cbac292609a3 from=translated src=- shape=11f79593 vocab=35edd0f4
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_div_le_of_rpow_le (x : ℝ) (hx_pos : 0 < x)
     (a b : ℝ) (B : ℝ)
     (h : x ^ a ≤ B * x ^ b) :
     x ^ a / x ^ b ≤ B := by
   rwa [div_le_iff₀ (Real.rpow_pos_of_pos hx_pos b)]
 
+/--
+@isnad1 id=eq.1h3v.s6.95fd32fd7b33 from=translated src=- shape=ca54783f vocab=3b4d810b
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_sub_eq_div (x : ℝ) (hx_pos : 0 < x) (a b : ℝ) :
     x ^ (a - b) = x ^ a / x ^ b := Real.rpow_sub hx_pos a b
 
+/--
+@isnad1 id=le.3h4v.s6.e6cb2b00b70b from=translated src=- shape=8581e71d vocab=16eb2e26
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_cancel_general (x : ℝ) (hx : 1 ≤ x)
     (a b : ℝ) (B : ℝ) (hB : 0 < B)
     (h : x ^ a ≤ B * x ^ b) :
@@ -1779,6 +2217,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_cancel_general (x : ℝ) (hx 
   rw [rpow_sub_eq_div x hx_pos a b]
   exact rpow_div_le_of_rpow_le x hx_pos a b B h
 
+/--
+@isnad1 id=le.3h2v.s6.12ccec57debc from=translated src=- shape=fe655fe1 vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.divide_x_power (C : ℝ) (hC : 0 < C)
     (x : ℝ) (hx : 1 ≤ x)
     (h : x ^ (11 : ℝ) ≤ C * x ^ ((39 : ℝ) / 4)) :
@@ -1786,6 +2227,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.divide_x_power (C : ℝ) (hC : 0 <
   have key := rpow_cancel_general x hx 11 (39 / 4) C hC h
   rwa [show (11 : ℝ) - 39 / 4 = 5 / 4 from by norm_num] at key
 
+/--
+@isnad1 id=le.6h4v.s8.9774119fea82 from=translated src=- shape=099bed4e vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.cancel_x_powers (K : ℝ) (hK : 0 < K)
     (x : ℝ) (hx : 1 ≤ x)
     (y_abs : ℝ) (hy : 0 < y_abs)
@@ -1797,6 +2241,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.cancel_x_powers (K : ℝ) (hK : 0 
   exact divide_x_power (2 ^ ((3 : ℝ) / 4) * K * d ^ ((5 : ℝ) / 2))
     (by positivity) x hx hstep
 
+/--
+@isnad1 id=le.6h4v.s8.91f0e99763a2 from=translated src=- shape=0f533b0c vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.x_fifth_fourth_le (K : ℝ) (hK : 0 < K)
     (x : ℝ) (hx : 1 ≤ x)
     (y_abs : ℝ) (hy : 0 < y_abs)
@@ -1808,24 +2255,36 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.x_fifth_fourth_le (K : ℝ) (hK : 
   have h2 := bound_y_three_halves x hx y_abs hy hysq
   exact cancel_x_powers K hK x hx y_abs hy d hd_pos h1 h2
 
+/--
+@isnad1 id=eq.1h1v.s6.42ccaba746f6 from=translated src=- shape=0d4e24ac vocab=57a6a273
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_five_fourths_pow_four (x : ℝ) (hx : 0 ≤ x) :
     (x ^ ((5 : ℝ) / 4)) ^ 4 = x ^ 5 := by
   rw [← Real.rpow_natCast (x ^ ((5 : ℝ) / 4)) 4]
   rw [← Real.rpow_mul hx]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s6.2c9548ef2438 from=translated src=- shape=af93895a vocab=a597ff9e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.two_rpow_three_fourths_pow_four :
     ((2 : ℝ) ^ ((3 : ℝ) / 4)) ^ 4 = 8 := by
   rw [← Real.rpow_natCast ((2 : ℝ) ^ ((3 : ℝ) / 4)) 4]
   rw [← Real.rpow_mul (by norm_num : (0 : ℝ) ≤ 2)]
   norm_num
 
+/--
+@isnad1 id=eq.1h1v.s6.966d5e26e3de from=translated src=- shape=0d4e24ac vocab=57a6a273
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_five_halves_pow_four (d : ℝ) (hd : 0 ≤ d) :
     (d ^ ((5 : ℝ) / 2)) ^ 4 = d ^ 10 := by
   rw [← Real.rpow_natCast (d ^ ((5 : ℝ) / 2)) 4]
   rw [← Real.rpow_mul hd]
   norm_num
 
+/--
+@isnad1 id=eq.2h2v.s7.c2dc5da83c67 from=translated src=- shape=f142b0ef vocab=f3a5b989
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rhs_fourth_power (K : ℝ) (_hK : 0 < K) (d : ℝ) (hd : 0 < d) :
     (2 ^ ((3 : ℝ) / 4) * K * d ^ ((5 : ℝ) / 2)) ^ 4 = 8 * K ^ 4 * d ^ 10 := by
   have h1 : ((2 : ℝ) ^ ((3 : ℝ) / 4)) ^ 4 = 8 := two_rpow_three_fourths_pow_four
@@ -1835,12 +2294,21 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.rhs_fourth_power (K : ℝ) (_hK : 
   rw [mul_pow, mul_pow, h1, h2]
   ring
 
+/--
+@isnad1 id=le.2h2v.s5.5a8b6744270e from=translated src=- shape=47b8a3ea vocab=7ff6bede
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.pow_four_mono (a b : ℝ) (ha : 0 ≤ a) (hab : a ≤ b) : a ^ 4 ≤ b ^ 4 :=
   pow_le_pow_left₀ ha hab 4
 
+/--
+@isnad1 id=le.1h1v.s5.eb6824936bb6 from=translated src=- shape=10914bd8 vocab=57a6a273
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_five_fourths_nonneg (x : ℝ) (hx : 0 ≤ x) : 0 ≤ x ^ ((5 : ℝ) / 4) :=
   Real.rpow_nonneg hx _
 
+/--
+@isnad1 id=le.4h3v.s7.88765723046f from=translated src=- shape=12c6d567 vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.raise_to_fourth (K : ℝ) (hK : 0 < K)
     (x : ℝ) (hx : 1 ≤ x)
     (d : ℝ) (hd_pos : 0 < d)
@@ -1855,12 +2323,18 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.raise_to_fourth (K : ℝ) (hK : 0 
     pow_four_mono _ _ ha h
   linarith
 
+/--
+@isnad1 id=le.4h3v.s7.07b0541bcd0c from=translated src=- shape=6421d5f6 vocab=b2d07434
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.d_pow_le_X_pow (K : ℝ) (hK : 0 < K)
     (X : ℝ) (_hX : 0 < X)
     (d : ℝ) (hd_pos : 0 < d) (hd_le : d ≤ X) :
     8 * K ^ 4 * d ^ 10 ≤ 8 * K ^ 4 * X ^ 10 := by
   gcongr
 
+/--
+@isnad1 id=le.8h5v.s8.af146e0e64c5 from=translated src=- shape=0d994de0 vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_case1_bound (K : ℝ) (hK : 0 < K)
     (X : ℝ) (hX : 0 < X)
     (x : ℝ) (hx : 1 ≤ x)
@@ -1874,6 +2348,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_case1_bound (K : ℝ) (hK : 0 <
   have step3 := d_pow_le_X_pow K hK X hX d hd_pos hd_le
   linarith
 
+/--
+@isnad1 id=le.5h4v.s8.562304f7797f from=translated src=- shape=a7916f08 vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.expand_case2_rhs (K : ℝ) (hK : 0 < K)
     (x : ℝ) (hx : 1 ≤ x)
     (y_abs : ℝ) (hy : 0 < y_abs)
@@ -1884,6 +2361,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.expand_case2_rhs (K : ℝ) (hK : 0
   rw [expand_abc_rhs_eq K hK x hx y_abs hy d hd_pos] at habc
   exact habc
 
+/--
+@isnad1 id=le.2h2v.s6.7403949a8813 from=translated src=- shape=a2639524 vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_half_le_of_sq_le_mul_three_halves
     (y : ℝ) (hy : 0 < y) (A : ℝ)
     (h : y ^ (2 : ℝ) ≤ A * y ^ ((3 : ℝ) / 2)) :
@@ -1893,6 +2373,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_half_le_of_sq_le_mul_three_ha
     rwa [← Real.rpow_add hy, show (1 : ℝ) / 2 + 3 / 2 = 2 from by norm_num]
   exact le_of_mul_le_mul_right key hy_pos
 
+/--
+@isnad1 id=le.5h4v.s8.66b7c7df9345 from=translated src=- shape=7e73162e vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.div_y_three_halves (K : ℝ) (_hK : 0 < K)
     (x : ℝ) (_hx : 1 ≤ x)
     (y_abs : ℝ) (hy : 0 < y_abs)
@@ -1902,6 +2385,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.div_y_three_halves (K : ℝ) (_hK 
   apply rpow_half_le_of_sq_le_mul_three_halves y_abs hy
   linarith
 
+/--
+@isnad1 id=lt.3h2v.s7.6c22fb747728 from=translated src=- shape=cdfb7c4f vocab=210cda99
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_quarter_preserves_lt (x : ℝ) (hx : 1 ≤ x)
     (y_abs : ℝ) (_hy : 0 < y_abs)
     (hx11_lt_y2 : x ^ (11 : ℕ) < y_abs ^ (2 : ℕ)) :
@@ -1909,16 +2395,25 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_quarter_preserves_lt (x : ℝ
   apply Real.rpow_lt_rpow (pow_nonneg (le_trans zero_le_one hx) 11) hx11_lt_y2
   norm_num
 
+/--
+@isnad1 id=eq.1h1v.s6.6677c3a1df88 from=translated src=- shape=6ded4d62 vocab=57a6a273
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_nat_pow_quarter_lhs (x : ℝ) (hx : 0 ≤ x) :
     (x ^ (11 : ℕ) : ℝ) ^ ((1 : ℝ) / 4) = x ^ ((11 : ℝ) / 4) := by
   rw [← Real.rpow_natCast_mul hx]
   norm_num
 
+/--
+@isnad1 id=eq.1h1v.s6.186f347778f3 from=translated src=- shape=6ded4d62 vocab=57a6a273
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_nat_pow_quarter_rhs (y : ℝ) (hy : 0 ≤ y) :
     (y ^ (2 : ℕ) : ℝ) ^ ((1 : ℝ) / 4) = y ^ ((1 : ℝ) / 2) := by
   rw [← Real.rpow_natCast y 2, ← Real.rpow_mul hy]
   norm_num
 
+/--
+@isnad1 id=lt.3h2v.s7.ec9eadbe3a21 from=translated src=- shape=b2029765 vocab=210cda99
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.x_pow_lt_y_half (x : ℝ) (hx : 1 ≤ x)
     (y_abs : ℝ) (hy : 0 < y_abs)
     (hx11_lt_y2 : x ^ 11 < y_abs ^ 2) :
@@ -1929,6 +2424,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.x_pow_lt_y_half (x : ℝ) (hx : 1 
   rw [rpow_nat_pow_quarter_lhs x hx0, rpow_nat_pow_quarter_rhs y_abs hy0] at h1
   exact h1
 
+/--
+@isnad1 id=le.4h3v.s7.7dc922ae1215 from=translated src=- shape=7cb7a62c vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.combine_and_cancel_x (K : ℝ) (hK : 0 < K)
     (x : ℝ) (hx : 1 ≤ x)
     (d : ℝ) (hd_pos : 0 < d)
@@ -1940,6 +2438,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.combine_and_cancel_x (K : ℝ) (hK
   rw [← h_eq]
   exact rpow_cancel_general x hx ((11 : ℝ) / 4) ((3 : ℝ) / 2) (K * d ^ ((5 : ℝ) / 2)) hKd h
 
+/--
+@isnad1 id=le.4h3v.s7.b3558190aa6e from=translated src=- shape=4fc9436e vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.scale_up_by_two_pow (K : ℝ) (hK : 0 < K)
     (x : ℝ) (hx : 1 ≤ x)
     (d : ℝ) (hd_pos : 0 < d)
@@ -1952,6 +2453,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.scale_up_by_two_pow (K : ℝ) (hK 
           (Real.one_le_rpow (by norm_num : (1 : ℝ) ≤ 2) (by norm_num : (0 : ℝ) ≤ 3 / 4))
     _ = 2 ^ ((3 : ℝ) / 4) * K * d ^ ((5 : ℝ) / 2) := by ring
 
+/--
+@isnad1 id=le.6h4v.s8.a4276cff27b2 from=translated src=- shape=49628ba3 vocab=d8b90f1e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.case2_x_fifth_fourth_le (K : ℝ) (hK : 0 < K)
     (x : ℝ) (hx : 1 ≤ x)
     (y_abs : ℝ) (hy : 0 < y_abs)
@@ -1967,6 +2471,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.case2_x_fifth_fourth_le (K : ℝ) 
   have h5 := combine_and_cancel_x K hK x hx d hd_pos h4
   exact scale_up_by_two_pow K hK x hx d hd_pos h5
 
+/--
+@isnad1 id=le.9h5v.s8.861da5e363d8 from=translated src=- shape=90b593ea vocab=5c9d27ef
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_case2_bound (K : ℝ) (hK : 0 < K)
     (X : ℝ) (hX : 0 < X)
     (x : ℝ) (hx : 1 ≤ x)
@@ -1981,6 +2488,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_case2_bound (K : ℝ) (hK : 0 <
   have h3 := d_pow_le_X_pow K hK X hX d hd_pos hd_le
   linarith
 
+/--
+@isnad1 id=le.9h5v.s8.1f55f7e9a3e9 from=translated src=- shape=adfebc49 vocab=206798e9
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_x_fifth_le_of_max_bound (K : ℝ) (hK : 0 < K)
     (X : ℝ) (hX : 0 < X)
     (x : ℝ) (hx : 1 ≤ x)
@@ -1998,6 +2508,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_x_fifth_le_of_max_bound (K : �
       le_trans (le_max_right _ _) hmax
     exact E2_case2_bound K hK X hX x hx y_abs hy d hd_pos hd_le (gt_iff_lt.mp h) hysq_le_d hy2_le
 
+/--
+@isnad1 id=le.4h3v.s8.99eeb24cdfe4 from=translated src=- shape=d44ad3b0 vocab=497941fc
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_x_fifth_le (K : ℝ) (hK : 0 < K)
     (hK_abc : ∀ a b c : ℕ, 0 < a → 0 < b → 0 < c →
         Nat.Coprime a b → a + b = c →
@@ -2036,6 +2549,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_x_fifth_le (K : ℝ) (hK : 0 < 
     (by rw [sq_abs]; exact hysq_lt) (by rw [sq_abs]; exact hysq_le_d)
     (by rw [sq_abs]; exact hmax)
 
+/--
+@isnad1 id=le.3h2v.s6.2d7d34215d59 from=translated src=- shape=bbb35f6b vocab=57a6a273
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.fifth_root_bound (x C : ℝ) (hx : 0 ≤ x) (hC : 0 ≤ C)
     (h : x ^ 5 ≤ C) :
     x ≤ C ^ ((1 : ℝ) / 5) := by
@@ -2048,6 +2564,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.fifth_root_bound (x C : ℝ) (hx :
   rw [key]
   exact h
 
+/--
+@isnad1 id=le.4h3v.s8.ba99b7914a31 from=translated src=- shape=81c3dad6 vocab=497941fc
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_x_bound_real (K : ℝ) (hK : 0 < K)
     (hK_abc : ∀ a b c : ℕ, 0 < a → 0 < b → 0 < c →
         Nat.Coprime a b → a + b = c →
@@ -2058,6 +2577,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_x_bound_real (K : ℝ) (hK : 0 
   have h5 := E2_x_fifth_le K hK hK_abc X hX p hp
   exact fifth_root_bound (↑↑p.1) (8 * K ^ 4 * X ^ 10) (by positivity) (by positivity) h5
 
+/--
+@isnad1 id=ex.1h0v.s6.7bcf047d0ccd from=translated src=- shape=cbc1ab68 vocab=4b04c62f
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_set_bounded_of_abc (habc : ABC) :
     ∃ X₀ : ℝ, 0 < X₀ ∧ ∀ X : ℝ, X₀ < X →
       ∃ (N : ℕ) (M : ℕ),
@@ -2070,6 +2592,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_set_bounded_of_abc (habc : ABC)
   · exact real_bound_to_nat_bound p _ (E2_x_bound_real K hK hK_abc X hX p hp)
   · exact E2_y_bound X N p hp (real_bound_to_nat_bound p _ (E2_x_bound_real K hK hK_abc X hX p hp))
 
+/--
+@isnad1 id=ex.1h0v.s4.bc56c5718ccd from=translated src=- shape=e3adc4f5 vocab=a00113a1
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_set_finite_of_abc (habc : ABC) :
     ∃ X₀ : ℝ, 0 < X₀ ∧ ∀ X : ℝ, X₀ < X → (E2_set X).Finite := by
   obtain ⟨X₀, hX₀pos, hbounded⟩ := E2_set_bounded_of_abc habc
@@ -2077,6 +2602,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_set_finite_of_abc (habc : ABC) 
     obtain ⟨N, M, hNM⟩ := hbounded X hX
     exact bounded_pnat_int_set_finite _ N M hNM⟩
 
+/--
+@isnad1 id=eq.1h2v.s6.aea7e29b521a from=translated src=- shape=0dd61443 vocab=981832ce
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.tau_sq_formula (R : RamanujanTau) (p : ℕ+) (hp : (p : ℕ).Prime) :
     R.τ (p ^ 2) = R.τ p ^ 2 - (↑(p : ℕ) : ℤ) ^ 11 := by
   have h := R.hecke_rec p hp 2 (le_refl 2)
@@ -2084,11 +2612,17 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.tau_sq_formula (R : RamanujanTau) 
   rw [pow_one, pow_zero, tau_one_eq_one] at h
   linarith [sq (R.τ p)]
 
+/--
+@isnad1 id=eq.1h2v.s6.700ae85ed8ab from=translated src=- shape=d4e67bc6 vocab=925fc90d
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.p11_minus_tau_sq (R : RamanujanTau) (p : ℕ+) (hp : (p : ℕ).Prime) :
     (↑(p : ℕ) : ℤ) ^ 11 - R.τ p ^ 2 = -R.τ (p ^ 2) := by
   have h := tau_sq_formula R p hp
   linarith
 
+/--
+@isnad1 id=le.3h3v.s6.7c4f1c215230 from=translated src=- shape=cde5447f vocab=d6d8eea9
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_cond2 (R : RamanujanTau) (p : ℕ+) (hp : (p : ℕ).Prime)
     (ℓ : ℕ) (hℓ : Nat.Prime ℓ) (hτ : (R.τ (p ^ 2)).natAbs = ℓ) :
     1 ≤ |(↑(p : ℕ) : ℤ) ^ 11 - R.τ p ^ 2| := by
@@ -2098,6 +2632,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_cond2 (R : RamanujanTau) (p : �
   rw [hτ]
   exact_mod_cast hℓ.one_le
 
+/--
+@isnad1 id=le.3h4v.s6.00e5e13e4fa2 from=translated src=- shape=6aa56cb7 vocab=736cb8fe
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_cond3 (R : RamanujanTau) (X : ℝ) (p : ℕ+) (hp : (p : ℕ).Prime)
     (ℓ : ℕ) (hℓX : (ℓ : ℝ) ≤ X) (hτ : (R.τ (p ^ 2)).natAbs = ℓ) :
     (|(↑(p : ℕ) : ℤ) ^ 11 - R.τ p ^ 2| : ℝ) ≤ X := by
@@ -2112,6 +2649,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E2_cond3 (R : RamanujanTau) (X : �
   rw [this, hτ]
   exact hℓX
 
+/--
+@isnad1 id=mem.5h4v.s6.846801e90ca9 from=translated src=- shape=1e8083e2 vocab=30c2def5
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.witness_in_E2_set (R : RamanujanTau) (X : ℝ) (p : ℕ+)
     (hp : (p : ℕ).Prime) (hpX : (p : ℝ) > X ^ ((2 : ℝ) / 11))
     (ℓ : ℕ) (hℓ : Nat.Prime ℓ) (hℓX : (ℓ : ℝ) ≤ X)
@@ -2123,6 +2663,9 @@ noncomputable def _root_.Tengoku.RamanujanTauMissesPrimes.witnessP_E2 (R : Raman
   if h : ∃ p : ℕ+, (p : ℕ).Prime ∧ (R.τ (p ^ 2)).natAbs = ℓ ∧
     (p : ℝ) > X ^ ((2 : ℝ) / 11) then h.choose else 1
 
+/--
+@isnad1 id=and.1h3v.s7.bede761cba82 from=translated src=- shape=aa77e9a2 vocab=f5a94d2b
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.witnessP_E2_spec (R : RamanujanTau) (X : ℝ) (ℓ : ℕ)
     (h : ∃ p : ℕ+, (p : ℕ).Prime ∧ (R.τ (p ^ 2)).natAbs = ℓ ∧
       (p : ℝ) > X ^ ((2 : ℝ) / 11)) :
@@ -2136,6 +2679,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.witnessP_E2_spec (R : RamanujanTau
 noncomputable def _root_.Tengoku.RamanujanTauMissesPrimes.witnessMap_E2 (R : RamanujanTau) (X : ℝ) (ℓ : ℕ) : ℕ+ × ℤ :=
   (witnessP_E2 R X ℓ, R.τ (witnessP_E2 R X ℓ))
 
+/--
+@isnad1 id=mem.1h3v.s6.30a583170d82 from=translated src=- shape=70dce57e vocab=9d163ebb
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.witnessMap_E2_mapsTo (R : RamanujanTau) (X : ℝ) :
     ∀ ℓ ∈ {ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
       ∃ p : ℕ+, (p : ℕ).Prime ∧
@@ -2150,6 +2696,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.witnessMap_E2_mapsTo (R : Ramanuja
   obtain ⟨hw_prime, hw_τ, hw_large⟩ := witnessP_E2_spec R X ℓ h_ex
   exact witness_in_E2_set R X (witnessP_E2 R X ℓ) hw_prime hw_large ℓ hℓ_prime hℓX hw_τ
 
+/--
+@isnad1 id=injon.0h2v.s6.46037a768f00 from=translated src=- shape=bbbd9e4a vocab=4203d847
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.witnessMap_E2_injOn (R : RamanujanTau) (X : ℝ) :
     Set.InjOn (witnessMap_E2 R X)
       {ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
@@ -2165,6 +2714,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.witnessMap_E2_injOn (R : Ramanujan
   obtain ⟨hp_eq, _⟩ := heq
   rw [← spec₁.2.1, ← spec₂.2.1, hp_eq]
 
+/--
+@isnad1 id=le.1h2v.s6.64a7af0cfd4d from=translated src=- shape=c20c9ac9 vocab=e345852e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.L_large_ncard_le_E2 (R : RamanujanTau) (X : ℝ) (hfin : (E2_set X).Finite) :
     {ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
       ∃ p : ℕ+, (p : ℕ).Prime ∧
@@ -2172,6 +2724,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.L_large_ncard_le_E2 (R : Ramanujan
         (p : ℝ) > X ^ ((2 : ℝ) / 11)}.ncard ≤ E2 X := Set.ncard_le_ncard_of_injOn (witnessMap_E2 R X)
     (witnessMap_E2_mapsTo R X) (witnessMap_E2_injOn R X) hfin
 
+/--
+@isnad1 id=ex.1h1v.s7.b7116dd7bb88 from=translated src=- shape=d35d087b vocab=86eb8143
+-/
 theorem _root_.Tengoku.RamanujanTauMissesPrimes.large_ell_bound (R : RamanujanTau) (habc : ABC) :
     ∃ X₀ : ℝ, 0 < X₀ ∧
       ∀ X : ℝ, X₀ < X →
@@ -2184,6 +2739,9 @@ theorem _root_.Tengoku.RamanujanTauMissesPrimes.large_ell_bound (R : RamanujanTa
     have hfin := hX₀fin X hX
     exact Nat.cast_le.mpr (L_large_ncard_le_E2 R X hfin)⟩
 
+/--
+@isnad1 id=le.0h2v.s7.84b73bb27334 from=translated src=- shape=4aa569b8 vocab=02107bc5
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.target_subset_image_k1 (R : RamanujanTau) (X : ℝ) :
     {ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
       ∃ p : ℕ+, (p : ℕ).Prime ∧
@@ -2195,6 +2753,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.target_subset_image_k1 (R : Ramanu
   obtain ⟨_, _, p, hp_prime, hp_eq, hp_bd⟩ := hℓ
   exact ⟨p, ⟨hp_prime, hp_bd⟩, hp_eq⟩
 
+/--
+@isnad1 id=le.1h2v.s4.f73fee2fdc5c from=translated src=- shape=5043a599 vocab=706e0df2
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.nat_le_floor_of_cast_le (B : ℝ) (x : ℕ) (hx : (x : ℝ) ≤ B) : x ≤ ⌊B⌋₊ := by
   by_contra h
   push_neg at h
@@ -2202,10 +2763,16 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.nat_le_floor_of_cast_le (B : ℝ) 
   have hxge : (x : ℝ) ≥ ↑(⌊B⌋₊ + 1) := by exact_mod_cast h
   linarith
 
+/--
+@isnad1 id=finite.0h1v.s4.1512300be3bc from=translated src=- shape=a8214de1 vocab=b34c0869
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.pnat_bounded_finite_k1 (B : ℝ) :
     {p : ℕ+ | (p : ℝ) ≤ B}.Finite :=
   pnat_bounded_finite B
 
+/--
+@isnad1 id=finite.0h1v.s3.8c740e8f4100 from=translated src=- shape=4cfe8e1f vocab=24851894
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.pnat_bounded_finite_nat (M : ℕ) :
     {p : ℕ+ | (p : ℕ) ≤ M}.Finite := by
   apply Set.Finite.subset (pnat_bounded_finite_k1 (M : ℝ))
@@ -2213,6 +2780,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.pnat_bounded_finite_nat (M : ℕ) 
   simp only [Set.mem_ofPred_eq] at hp ⊢
   exact_mod_cast hp
 
+/--
+@isnad1 id=le.0h1v.s6.9cafce329f22 from=translated src=- shape=2546c357 vocab=b40a3b53
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.witness_set_subset_bounded (X : ℝ) :
     {p : ℕ+ | (p : ℕ).Prime ∧ (p : ℝ) ≤ X ^ ((2 : ℝ) / 11)} ⊆
     {p : ℕ+ | (p : ℕ) ≤ ⌊X ^ ((2 : ℝ) / 11)⌋₊} := by
@@ -2220,16 +2790,25 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.witness_set_subset_bounded (X : �
   simp only [Set.mem_ofPred_eq] at hp ⊢
   exact nat_le_floor_of_cast_le _ _ hp.2
 
+/--
+@isnad1 id=finite.0h1v.s5.398eb57cbb6b from=translated src=- shape=2527d746 vocab=9979ce1d
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.witness_set_finite_k1 (X : ℝ) :
     {p : ℕ+ | (p : ℕ).Prime ∧ (p : ℝ) ≤ X ^ ((2 : ℝ) / 11)}.Finite := by
   apply Set.Finite.subset (pnat_bounded_finite_nat ⌊X ^ ((2 : ℝ) / 11)⌋₊)
   exact witness_set_subset_bounded X
 
+/--
+@isnad1 id=eq.0h1v.s4.544a4fc6e4c6 from=translated src=- shape=51141c8c vocab=70d4486d
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.ncard_Icc_one_M (M : ℕ) :
     (↑(Finset.Icc 1 M) : Set ℕ).ncard = M := by
   rw [Set.ncard_coe_finset, Nat.card_Icc]
   omega
 
+/--
+@isnad1 id=mem.1h2v.s5.c6dcc7958fe7 from=translated src=- shape=050c5615 vocab=025956ea
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.pnat_val_mapsTo_Icc (M : ℕ) :
     ∀ a ∈ {p : ℕ+ | (p : ℕ) ≤ M}, (a : ℕ) ∈ (↑(Finset.Icc 1 M) : Set ℕ) := by
   intro a ha
@@ -2237,6 +2816,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.pnat_val_mapsTo_Icc (M : ℕ) :
   simp only [Finset.coe_Icc, Set.mem_Icc]
   exact ⟨a.one_le, ha⟩
 
+/--
+@isnad1 id=le.0h1v.s4.da46c020ae09 from=translated src=- shape=3a440b72 vocab=d2edf69e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.pnat_bounded_ncard_le (M : ℕ) :
     {p : ℕ+ | (p : ℕ) ≤ M}.ncard ≤ M := by
   calc {p : ℕ+ | (p : ℕ) ≤ M}.ncard
@@ -2247,6 +2829,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.pnat_bounded_ncard_le (M : ℕ) :
           (Set.toFinite _)
     _ = M := ncard_Icc_one_M M
 
+/--
+@isnad1 id=le.1h1v.s6.6026db278e33 from=translated src=- shape=04735634 vocab=9c584672
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.witness_set_ncard_le_k1 (X : ℝ) (_hX : 1 ≤ X) :
     {p : ℕ+ | (p : ℕ).Prime ∧ (p : ℝ) ≤ X ^ ((2 : ℝ) / 11)}.ncard ≤ ⌊X ^ ((2 : ℝ) / 11)⌋₊ := by
   calc {p : ℕ+ | (p : ℕ).Prime ∧ (p : ℝ) ≤ X ^ ((2 : ℝ) / 11)}.ncard
@@ -2255,9 +2840,15 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.witness_set_ncard_le_k1 (X : ℝ) 
           (pnat_bounded_finite_nat _)
     _ ≤ ⌊X ^ ((2 : ℝ) / 11)⌋₊ := pnat_bounded_ncard_le _
 
+/--
+@isnad1 id=le.1h1v.s6.02c1f79592e9 from=translated src=- shape=c04b628b vocab=b0448914
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.floor_rpow_le_k1 (X : ℝ) (hX : 1 ≤ X) :
     (⌊X ^ ((2 : ℝ) / 11)⌋₊ : ℝ) ≤ X ^ ((2 : ℝ) / 11) := Nat.floor_le (by positivity)
 
+/--
+@isnad1 id=le.1h2v.s7.bbfc9200a60b from=translated src=- shape=5050312c vocab=48f0668b
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.small_ell_bound (R : RamanujanTau) :
     ∀ X : ℝ, 1 ≤ X →
       ({ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
@@ -2291,9 +2882,15 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.small_ell_bound (R : RamanujanTau)
       ≤ (⌊X ^ ((2 : ℝ) / 11)⌋₊ : ℝ) := by exact_mod_cast h_ncard_le
     _ ≤ X ^ ((2 : ℝ) / 11) := h_floor_le
 
+/--
+@isnad1 id=le.2h3v.s5.10f4e3b4a9b0 from=translated src=- shape=48acbddf vocab=f90a57ae
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_le_rpow_of_le_exp {X a b : ℝ} (hX : 1 ≤ X) (hab : a ≤ b) :
     X ^ a ≤ X ^ b := Real.rpow_le_rpow_of_exponent_le hX hab
 
+/--
+@isnad1 id=ex.1h1v.s7.3082a0e638f5 from=translated src=- shape=53616fe5 vocab=03053829
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.k1_contribution_abc (R : RamanujanTau) (habc : ABC) :
     ∃ X₀ : ℝ, 0 < X₀ ∧
       ∀ X : ℝ, X₀ < X →
@@ -2325,6 +2922,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.k1_contribution_abc (R : Ramanujan
         have := rpow_le_rpow_of_le_exp hX1 (show (2 : ℝ) / 11 ≤ 13 / 22 by norm_num)
         linarith
 
+/--
+@isnad1 id=le.0h2v.s7.1035790586ab from=translated src=- shape=83eac8d6 vocab=02107bc5
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.target_subset_image (R : RamanujanTau) (X : ℝ) :
     {ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
       ∃ p : ℕ+, (p : ℕ).Prime ∧ (p : ℝ) ≤ X ^ ((1 : ℝ) / 11) ∧
@@ -2335,6 +2935,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.target_subset_image (R : Ramanujan
   obtain ⟨_, _, p, hp_prime, hp_bound, hp_eq⟩ := hℓ
   exact ⟨p, ⟨hp_prime, hp_bound⟩, hp_eq⟩
 
+/--
+@isnad1 id=finite.0h1v.s5.c66ac7b29d2e from=translated src=- shape=2527d746 vocab=9979ce1d
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.witness_set_finite (X : ℝ) :
     {p : ℕ+ | (p : ℕ).Prime ∧ (p : ℝ) ≤ X ^ ((1 : ℝ) / 11)}.Finite := by
   apply Set.Finite.subset (pnat_bounded_finite (X ^ ((1 : ℝ) / 11)))
@@ -2348,6 +2951,9 @@ private lemma prime_set_subset_bounded (X : ℝ) :
   simp only [Set.mem_ofPred_eq] at hp ⊢
   exact Nat.le_floor hp.2
 
+/--
+@isnad1 id=le.1h1v.s6.223aefe18101 from=translated src=- shape=3b89556d vocab=16fed855
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.witness_set_ncard_le (X : ℝ) (_hX : 1 < X) :
     {p : ℕ+ | (p : ℕ).Prime ∧ (p : ℝ) ≤ X ^ ((1 : ℝ) / 11)}.ncard ≤ ⌊X ^ ((1 : ℝ) / 11)⌋₊ := by
   calc {p : ℕ+ | (p : ℕ).Prime ∧ (p : ℝ) ≤ X ^ ((1 : ℝ) / 11)}.ncard
@@ -2355,9 +2961,15 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.witness_set_ncard_le (X : ℝ) (_h
         apply Set.ncard_le_ncard (prime_set_subset_bounded X) (pnat_bounded_finite_nat _)
     _ ≤ ⌊X ^ ((1 : ℝ) / 11)⌋₊ := pnat_bounded_ncard_le _
 
+/--
+@isnad1 id=le.1h1v.s6.9adee41cb1d5 from=translated src=- shape=50d1a043 vocab=fc9a7401
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.floor_rpow_le (X : ℝ) (hX : 0 < X) :
     (⌊X ^ ((1 : ℝ) / 11)⌋₊ : ℝ) ≤ X ^ ((1 : ℝ) / 11) := Nat.floor_le (Real.rpow_nonneg (le_of_lt hX) _)
 
+/--
+@isnad1 id=ex.0h1v.s7.25ef8d68680f from=translated src=- shape=48d7c4eb vocab=087e0d53
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.small_primes_k2_bound (R : RamanujanTau) :
     ∃ X₀ : ℝ, 0 < X₀ ∧ ∀ X : ℝ, X₀ < X →
       ({ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
@@ -2407,6 +3019,9 @@ private lemma tau_fourth_formula (R : RamanujanTau) (p : ℕ+) (hp : (p : ℕ).P
   rw [hrec]
   ring
 
+/--
+@isnad1 id=other.1h2v.s7.1b9a50edd8e6 from=translated src=- shape=dbdbdd8b vocab=638df5a4
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.hecke_u_identity (R : RamanujanTau) (p : ℕ+) (hp : (p : ℕ).Prime) :
     let u := 2 * (R.τ p) ^ 2 - 3 * (↑(p : ℕ) : ℤ) ^ 11
     u ^ 2 - 5 * (↑(p : ℕ) : ℤ) ^ 22 = 4 * R.τ (p ^ 4) := by
@@ -2414,21 +3029,33 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.hecke_u_identity (R : RamanujanTau
   rw [tau_fourth_formula R p hp]
   ring
 
+/--
+@isnad1 id=and.1h2v.s7.827f9576c1f8 from=translated src=- shape=65e406ba vocab=8f3018a0
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_set_D_bounds (X : ℝ) (p : ℕ+ × ℤ) (hp : p ∈ E4_set X) :
     (1 : ℝ) ≤ (|p.2 ^ 2 - 5 * (↑p.1 : ℤ) ^ 22| : ℝ) ∧
     (|p.2 ^ 2 - 5 * (↑p.1 : ℤ) ^ 22| : ℝ) ≤ 4 * X := by
   obtain ⟨_, h1, h2⟩ := hp
   exact ⟨by exact_mod_cast h1, h2⟩
 
+/--
+@isnad1 id=lt.2h2v.s5.3a86110d4ed9 from=translated src=- shape=853c5eae vocab=821135e2
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_11_strict_mono {a b : ℝ} (ha : 0 ≤ a) (hab : a < b) :
     a ^ (11 : ℕ) < b ^ (11 : ℕ) := pow_lt_pow_left₀ hab ha (by norm_num)
 
+/--
+@isnad1 id=eq.1h1v.s6.76216d4d822e from=translated src=- shape=c1ac3f40 vocab=57a6a273
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_one_div_11_pow_11 (X : ℝ) (hX : 0 ≤ X) :
     (X ^ ((1 : ℝ) / 11)) ^ (11 : ℕ) = X := by
   have h11 : (11 : ℕ) ≠ 0 := by norm_num
   rw [show (1 : ℝ) / 11 = (↑(11 : ℕ))⁻¹ by norm_num]
   exact Real.rpow_inv_natCast_pow hX h11
 
+/--
+@isnad1 id=lt.2h2v.s6.0da7d4098481 from=translated src=- shape=e1842f56 vocab=e3616c33
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.x11_gt_X_of_x_gt (X : ℝ) (hX : 1 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     (x : ℝ) ^ 11 > X := by
@@ -2440,35 +3067,56 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.x11_gt_X_of_x_gt (X : ℝ) (hX : 1
     rpow_11_strict_mono hXr_nonneg hx
   linarith
 
+/--
+@isnad1 id=lt.2h2v.s6.db0bdd874e6a from=translated src=- shape=e1842f56 vocab=e3616c33
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_x11_pow_gt_X (X : ℝ) (hX : 4 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     (↑↑x : ℝ) ^ 11 > X := x11_gt_X_of_x_gt X (by linarith) x hx
 
+/--
+@isnad1 id=lt.2h2v.s5.9f22f4fac45c from=translated src=- shape=47b8a3ea vocab=2b11fe84
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.sq_lt_sq_of_pos_lt (a b : ℝ) (ha : 0 < a) (hab : a < b) : a ^ 2 < b ^ 2 := (sq_lt_sq₀ (le_of_lt ha) (le_of_lt (lt_trans ha hab))).mpr hab
 
+/--
+@isnad1 id=lt.2h2v.s6.97b86dea4749 from=translated src=- shape=7ea1cffb vocab=276526a3
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.x22_gt_X2_of_x11_gt (X : ℝ) (hX : 0 < X) (x : ℕ+)
     (h : (x : ℝ) ^ 11 > X) :
     (x : ℝ) ^ 22 > X ^ 2 := by
   rw [show (x : ℝ) ^ 22 = ((x : ℝ) ^ 11) ^ 2 by ring]
   exact sq_lt_sq_of_pos_lt X ((x : ℝ) ^ 11) hX h
 
+/--
+@isnad1 id=lt.2h2v.s6.be38326f530b from=translated src=- shape=17132f6a vocab=e3616c33
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.x22_gt_X_sq (X : ℝ) (hX : 4 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     (↑↑x : ℝ) ^ 22 > X ^ 2 := by
   have h11 := E4_x11_pow_gt_X X hX x hx
   exact x22_gt_X2_of_x11_gt X (by linarith) x h11
 
+/--
+@isnad1 id=lt.2h2v.s6.58a210814072 from=translated src=- shape=7929e0d1 vocab=bb457908
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.x22_gt_four_mul_X (X : ℝ) (hX : 4 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     (↑↑x : ℝ) ^ 22 > 4 * X :=
   lt_trans (by nlinarith [sq_nonneg (X - 4), sq_nonneg (X - 2)]) (x22_gt_X_sq X hX x hx)
 
+/--
+@isnad1 id=lt.2h2v.s6.b011a85240f4 from=translated src=- shape=4585703e vocab=0f420395
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.five_x22_sub_4X_pos (X : ℝ) (hX : 4 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     5 * (↑↑x : ℝ) ^ 22 - 4 * X > 0 := by
   have h1 := x22_gt_four_mul_X X hX x hx
   linarith
 
+/--
+@isnad1 id=eq.3h2v.s6.0335c8c95277 from=translated src=- shape=8f498d37 vocab=e89f89bd
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.sqrt_sub_eq_div (a b : ℝ) (ha : 0 < a) (hb : 0 ≤ b) (_hab : b < a) :
     Real.sqrt a - Real.sqrt b = (a - b) / (Real.sqrt a + Real.sqrt b) := by
   have h1 : 0 < Real.sqrt a + Real.sqrt b := by
@@ -2480,12 +3128,18 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.sqrt_sub_eq_div (a b : ℝ) (ha : 
   field_simp [h1.ne'] at h2 ⊢
   nlinarith
 
+/--
+@isnad1 id=lt.2h2v.s7.f9f26d229bdc from=translated src=- shape=f6f44c95 vocab=0f420395
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.five_x22_sub_4X_ge_four_x22 (X : ℝ) (hX : 4 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     5 * (↑↑x : ℝ) ^ 22 - 4 * X > 4 * (↑↑x : ℝ) ^ 22 := by
   have h := x22_gt_four_mul_X X hX x hx
   linarith
 
+/--
+@isnad1 id=lt.2h2v.s7.da68c9bc8060 from=translated src=- shape=42ad9599 vocab=157effa1
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.sqrt_five_x22_sub_gt_two_x11 (X : ℝ) (hX : 4 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     Real.sqrt (5 * (↑↑x : ℝ) ^ 22 - 4 * X) > 2 * (↑↑x : ℝ) ^ 11 := by
@@ -2496,6 +3150,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.sqrt_five_x22_sub_gt_two_x11 (X : 
   rw [gt_iff_lt, ← Real.sqrt_sq h2x11_nonneg]
   exact Real.sqrt_lt_sqrt (sq_nonneg _) h_ge
 
+/--
+@isnad1 id=lt.2h2v.s7.067afacf68f1 from=translated src=- shape=42ad9599 vocab=18eac549
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.sqrt_five_x22_add_gt_two_x11 (X : ℝ) (hX : 4 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     Real.sqrt (5 * (↑↑x : ℝ) ^ 22 + 4 * X) > 2 * (↑↑x : ℝ) ^ 11 := by
@@ -2505,6 +3162,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.sqrt_five_x22_add_gt_two_x11 (X : 
   have h_sqrt_lt := Real.sqrt_lt_sqrt (le_of_lt hsub_pos) h_lt
   linarith
 
+/--
+@isnad1 id=lt.2h2v.s7.beda4e0c871e from=translated src=- shape=174f8405 vocab=1b2e84b0
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.denom_gt_four_x11 (X : ℝ) (hX : 4 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     Real.sqrt (5 * (↑↑x : ℝ) ^ 22 + 4 * X) + Real.sqrt (5 * (↑↑x : ℝ) ^ 22 - 4 * X) >
@@ -2513,6 +3173,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.denom_gt_four_x11 (X : ℝ) (hX : 
   have h2 := sqrt_five_x22_sub_gt_two_x11 X hX x hx
   linarith
 
+/--
+@isnad1 id=lt.2h2v.s7.723cc4644aae from=translated src=- shape=bfd93264 vocab=1b2e84b0
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_interval_length_lt_two (X : ℝ) (hX : 4 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     Real.sqrt (5 * (↑↑x : ℝ) ^ 22 + 4 * X) - Real.sqrt (5 * (↑↑x : ℝ) ^ 22 - 4 * X) < 2 := by
@@ -2535,14 +3198,23 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_interval_length_lt_two (X : ℝ
     _ < 2 * (Real.sqrt a + Real.sqrt b) := by
         apply mul_lt_mul_of_pos_left hdenom_bound (by norm_num : (0 : ℝ) < 2)
 
+/--
+@isnad1 id=le.0h2v.s6.8bcc56a80350 from=translated src=- shape=29906287 vocab=77e4c5e4
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.pos_int_subset_Icc (a b : ℝ) :
     {u : ℤ | 0 < u ∧ a ≤ (↑u : ℝ) ∧ (↑u : ℝ) ≤ b} ⊆ Set.Icc ⌈a⌉ ⌊b⌋ := by
   intro u ⟨_, ha, hb⟩
   exact ⟨Int.ceil_le.mpr ha, Int.le_floor.mpr hb⟩
 
+/--
+@isnad1 id=finite.0h2v.s5.186038ccca9e from=translated src=- shape=f5a407c6 vocab=e0913660
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.pos_int_in_interval_finite (a b : ℝ) :
     {u : ℤ | 0 < u ∧ a ≤ (↑u : ℝ) ∧ (↑u : ℝ) ≤ b}.Finite := Set.Finite.subset (Set.finite_Icc ⌈a⌉ ⌊b⌋) (pos_int_subset_Icc a b)
 
+/--
+@isnad1 id=false.12h5v.s7.1a3d1f290289 from=translated src=- shape=3f860ab0 vocab=55e962da
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.no_three_pos_ints_in_short_interval (a b : ℝ) (hlen : b - a < 2)
     (u₁ u₂ u₃ : ℤ)
     (_h1pos : 0 < u₁) (_h2pos : 0 < u₂) (_h3pos : 0 < u₃)
@@ -2556,6 +3228,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.no_three_pos_ints_in_short_interva
     exact_mod_cast this
   linarith
 
+/--
+@isnad1 id=ex.2h1v.s6.e04b91b2ecc3 from=translated src=- shape=a864cd82 vocab=adcb0571
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.exists_three_mem_of_three_le_ncard {S : Set ℤ} (_hfin : S.Finite)
     (hcard : 3 ≤ S.ncard) :
     ∃ a ∈ S, ∃ b ∈ S, ∃ c ∈ S, a ≠ b ∧ a ≠ c ∧ b ≠ c := by
@@ -2567,6 +3242,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.exists_three_mem_of_three_le_ncard
          z, hTS (hTeq ▸ Set.mem_insert_of_mem _ (Set.mem_insert_of_mem _ (Set.mem_singleton z))),
          hxy, hxz, hyz⟩
 
+/--
+@isnad1 id=ex.3h3v.s6.6ea5f94835cc from=translated src=- shape=d74a4fc2 vocab=8638649f
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.exists_strict_order_of_three_distinct_case_lt
     (a b c : ℤ) (hab : a < b) (hac : a ≠ c) (hbc : b ≠ c) :
     ∃ u₁ u₂ u₃, ({u₁, u₂, u₃} : Set ℤ) ⊆ {a, b, c} ∧ u₁ < u₂ ∧ u₂ < u₃ := by
@@ -2576,6 +3254,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.exists_strict_order_of_three_disti
     · exact ⟨a, c, b, by intro x hx; simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hx ⊢; tauto, hac', hcb⟩
     · exact ⟨a, b, c, by intro x hx; simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hx ⊢; tauto, hab, hbc'⟩
 
+/--
+@isnad1 id=ex.3h3v.s6.438bcccc502b from=translated src=- shape=aef58769 vocab=8638649f
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.exists_strict_order_of_three_distinct (a b c : ℤ) (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) :
     ∃ u₁ u₂ u₃, ({u₁, u₂, u₃} : Set ℤ) ⊆ {a, b, c} ∧ u₁ < u₂ ∧ u₂ < u₃ := by
   rcases lt_or_gt_of_ne hab with h | h
@@ -2584,6 +3265,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.exists_strict_order_of_three_disti
       exists_strict_order_of_three_distinct_case_lt b a c h hbc hac
     exact ⟨u₁, u₂, u₃, hsub.trans (by intro x hx; simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hx ⊢; rcases hx with rfl | rfl | rfl <;> simp), h1, h2⟩
 
+/--
+@isnad1 id=le.2h1v.s6.d8e932a7d388 from=translated src=- shape=118af541 vocab=e0122900
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.ncard_le_two_of_no_three_ordered {S : Set ℤ} (hfin : S.Finite)
     (h : ∀ u₁ ∈ S, ∀ u₂ ∈ S, ∀ u₃ ∈ S, u₁ < u₂ → u₂ < u₃ → False) :
     S.ncard ≤ 2 := by
@@ -2608,6 +3292,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.ncard_le_two_of_no_three_ordered {
     rcases this with rfl | rfl | rfl <;> assumption
   exact h u₁ hu₁ u₂ hu₂ u₃ hu₃ h12 h23
 
+/--
+@isnad1 id=le.1h2v.s6.079c16a2e75d from=translated src=- shape=31c2f76c vocab=07e9e5f2
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.ncard_pos_int_in_interval_lt_two (a b : ℝ) (hlen : b - a < 2) :
     {u : ℤ | 0 < u ∧ a ≤ (↑u : ℝ) ∧ (↑u : ℝ) ≤ b}.ncard ≤ 2 := by
   apply ncard_le_two_of_no_three_ordered (pos_int_in_interval_finite a b)
@@ -2615,6 +3302,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.ncard_pos_int_in_interval_lt_two (
   exact no_three_pos_ints_in_short_interval a b hlen u₁ u₂ u₃
     hu₁.1 hu₂.1 hu₃.1 hu₁.2.1 hu₁.2.2 hu₂.2.1 hu₂.2.2 hu₃.2.1 hu₃.2.2 h12 h23
 
+/--
+@isnad1 id=le.2h2v.s8.329e02d6a08f from=translated src=- shape=93b40450 vocab=959ea9b2
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_pos_fiber_subset_sqrt (X : ℝ) (_hX : 4 < X) (x : ℕ+)
     (_hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     {u : ℤ | 0 < u ∧ (↑u : ℝ) ^ 2 ≥ 5 * (↑↑x : ℝ) ^ 22 - 4 * X ∧
@@ -2626,11 +3316,17 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_pos_fiber_subset_sqrt (X : ℝ)
   · exact (Real.sqrt_le_left (le_of_lt (Int.cast_pos.mpr hu.1))).mpr hu.2.1
   · exact Real.le_sqrt_of_sq_le hu.2.2
 
+/--
+@isnad1 id=finite.2h2v.s7.e7f629433f96 from=translated src=- shape=35bf8488 vocab=7dc415b6
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_pos_sqrt_fiber_finite (X : ℝ) (_hX : 4 < X) (x : ℕ+)
     (_hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     {u : ℤ | 0 < u ∧ Real.sqrt (5 * (↑↑x : ℝ) ^ 22 - 4 * X) ≤ (↑u : ℝ) ∧
               (↑u : ℝ) ≤ Real.sqrt (5 * (↑↑x : ℝ) ^ 22 + 4 * X)}.Finite := pos_int_in_interval_finite _ _
 
+/--
+@isnad1 id=le.2h2v.s8.0a98d87c5fe8 from=translated src=- shape=72f3c617 vocab=81733681
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_pos_fiber_ncard_via_sqrt (X : ℝ) (hX : 4 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     {u : ℤ | 0 < u ∧ (↑u : ℝ) ^ 2 ≥ 5 * (↑↑x : ℝ) ^ 22 - 4 * X ∧
@@ -2638,6 +3334,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_pos_fiber_ncard_via_sqrt (X : �
     {u : ℤ | 0 < u ∧ Real.sqrt (5 * (↑↑x : ℝ) ^ 22 - 4 * X) ≤ (↑u : ℝ) ∧
               (↑u : ℝ) ≤ Real.sqrt (5 * (↑↑x : ℝ) ^ 22 + 4 * X)}.ncard := Set.ncard_le_ncard (E4_pos_fiber_subset_sqrt X hX x hx) (E4_pos_sqrt_fiber_finite X hX x hx)
 
+/--
+@isnad1 id=le.2h2v.s7.d47555b1922e from=translated src=- shape=7fd6d7c7 vocab=f8ffdd90
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_pos_fiber_ncard_le_two (X : ℝ) (hX : 4 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     {u : ℤ | 0 < u ∧ (↑u : ℝ) ^ 2 ≥ 5 * (↑↑x : ℝ) ^ 22 - 4 * X ∧
@@ -2658,6 +3357,9 @@ private def neg_fiber (X : ℝ) (x : ℕ+) : Set ℤ :=
   {u : ℤ | u < 0 ∧ (↑u : ℝ) ^ 2 ≥ 5 * (↑↑x : ℝ) ^ 22 - 4 * X ∧
             (↑u : ℝ) ^ 2 ≤ 5 * (↑↑x : ℝ) ^ 22 + 4 * X}
 
+/--
+@isnad1 id=mem.1h3v.s4.25873ea24320 from=translated src=- shape=86ef04c6 vocab=25abcd00
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.neg_maps_to_pos (X : ℝ) (x : ℕ+) :
     ∀ u ∈ neg_fiber X x, -u ∈ pos_fiber X x := by
   intro u hu
@@ -2676,6 +3378,9 @@ private lemma int_abs_le_ceil_sqrt (y : ℤ) (M : ℝ) (_hM : 0 ≤ M)
     _ ≤ Real.sqrt M := Real.abs_le_sqrt hy
     _ ≤ ↑⌈Real.sqrt M⌉ := Int.le_ceil _
 
+/--
+@isnad1 id=le.0h2v.s6.900141b12e4e from=translated src=- shape=ee617224 vocab=21700870
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.pos_fiber_subset_Icc (X : ℝ) (x : ℕ+) :
     pos_fiber X x ⊆ Set.Icc 1 ⌈Real.sqrt (5 * (↑↑x : ℝ) ^ 22 + 4 * X)⌉ := by
   intro u hu
@@ -2690,10 +3395,16 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.pos_fiber_subset_Icc (X : ℝ) (x 
       int_abs_le_ceil_sqrt u _ hM hu_sq_le
     rwa [abs_of_pos hu_pos] at h_abs
 
+/--
+@isnad1 id=finite.0h2v.s3.8a5be47736cf from=translated src=- shape=6ad8120f vocab=04d46aee
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.pos_fiber_finite (X : ℝ) (x : ℕ+) :
     (pos_fiber X x).Finite := (Set.finite_Icc 1 ⌈Real.sqrt (5 * (↑↑x : ℝ) ^ 22 + 4 * X)⌉).subset
     (pos_fiber_subset_Icc X x)
 
+/--
+@isnad1 id=le.0h2v.s8.5baeebde0c8e from=translated src=- shape=3b593071 vocab=8c083862
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_neg_fiber_ncard_le_pos_fiber (X : ℝ) (x : ℕ+) :
     {u : ℤ | u < 0 ∧ (↑u : ℝ) ^ 2 ≥ 5 * (↑↑x : ℝ) ^ 22 - 4 * X ∧
               (↑u : ℝ) ^ 2 ≤ 5 * (↑↑x : ℝ) ^ 22 + 4 * X}.ncard ≤
@@ -2707,6 +3418,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_neg_fiber_ncard_le_pos_fiber (X
     (neg_injective.injOn)
     h2
 
+/--
+@isnad1 id=le.2h2v.s7.158a2c7cd274 from=translated src=- shape=f9d84381 vocab=f8ffdd90
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_neg_fiber_ncard_le_two (X : ℝ) (hX : 4 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     {u : ℤ | u < 0 ∧ (↑u : ℝ) ^ 2 ≥ 5 * (↑↑x : ℝ) ^ 22 - 4 * X ∧
@@ -2717,6 +3431,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_neg_fiber_ncard_le_two (X : ℝ
               (↑u : ℝ) ^ 2 ≤ 5 * (↑↑x : ℝ) ^ 22 + 4 * X}.ncard := E4_neg_fiber_ncard_le_pos_fiber X x
     _ ≤ 2 := E4_pos_fiber_ncard_le_two X hX x hx
 
+/--
+@isnad1 id=le.1h3v.s7.145c9038a929 from=translated src=- shape=c6bc834b vocab=02629307
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.u_sq_le_of_abs_le (x : ℕ+) (u : ℤ) (X : ℝ)
     (habs_le : (|u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22| : ℝ) ≤ 4 * X) :
     (u : ℝ) ^ 2 ≤ 5 * (x : ℝ) ^ 22 + 4 * X := by
@@ -2730,6 +3447,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.u_sq_le_of_abs_le (x : ℕ+) (u : 
     exact h₄
   linarith
 
+/--
+@isnad1 id=le.1h3v.s7.881aaee9cc47 from=translated src=- shape=21e0c696 vocab=263fde88
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.u_sq_ge_of_abs_le (x : ℕ+) (u : ℤ) (X : ℝ)
     (habs_le : (|u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22| : ℝ) ≤ 4 * X) :
     5 * (↑↑x : ℝ) ^ 22 - 4 * X ≤ (↑u : ℝ) ^ 2 := by
@@ -2743,11 +3463,17 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.u_sq_ge_of_abs_le (x : ℕ+) (u : 
     exact h₃
   linarith
 
+/--
+@isnad1 id=and.1h3v.s8.6074bca6fc1f from=translated src=- shape=02d979fd vocab=02629307
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.u_sq_in_interval (X : ℝ) (x : ℕ+) (u : ℤ)
     (h : (|u ^ 2 - 5 * (↑x : ℤ) ^ 22| : ℝ) ≤ 4 * X) :
     5 * (↑↑x : ℝ) ^ 22 - 4 * X ≤ (↑u : ℝ) ^ 2 ∧
     (↑u : ℝ) ^ 2 ≤ 5 * (↑↑x : ℝ) ^ 22 + 4 * X := ⟨u_sq_ge_of_abs_le x u X h, u_sq_le_of_abs_le x u X h⟩
 
+/--
+@isnad1 id=ne.4h3v.s7.94b25e830c37 from=translated src=- shape=b36f6bb8 vocab=4e7b8c2c
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.u_ne_zero_of_fiber (X : ℝ) (_hX : 4 < X) (_x : ℕ+)
     (_hx : (_x : ℝ) > X ^ ((1 : ℝ) / 11)) (u : ℤ)
     (hu_lb : 5 * (↑↑_x : ℝ) ^ 22 - 4 * X ≤ (↑u : ℝ) ^ 2)
@@ -2759,6 +3485,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.u_ne_zero_of_fiber (X : ℝ) (_hX 
     simp [h_u_zero]
   linarith
 
+/--
+@isnad1 id=le.2h2v.s8.7323f09659c5 from=translated src=- shape=741832f5 vocab=cd044c07
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_fiber_subset_pos_neg (X : ℝ) (hX : 4 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     {u : ℤ | (x, u) ∈ E4_set X} ⊆
@@ -2777,6 +3506,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_fiber_subset_pos_neg (X : ℝ) 
   · left
     exact ⟨hpos, hinterval.1, hinterval.2⟩
 
+/--
+@isnad1 id=mem.2h2v.s6.887a068344e7 from=translated src=- shape=9e09bdf9 vocab=2e05b60a
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.int_mem_Icc_ceil_sqrt_of_sq_le (y : ℤ) (M : ℝ) (hM : 0 ≤ M)
     (hy : (y : ℝ) ^ 2 ≤ M) :
     y ∈ Set.Icc (-⌈Real.sqrt M⌉) (⌈Real.sqrt M⌉) := by
@@ -2785,6 +3517,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.int_mem_Icc_ceil_sqrt_of_sq_le (y 
   · linarith [neg_abs_le y, int_abs_le_ceil_sqrt y M hM hy]
   · exact le_trans (le_abs_self y) (int_abs_le_ceil_sqrt y M hM hy)
 
+/--
+@isnad1 id=finite.2h2v.s8.e508b0444099 from=translated src=- shape=b3e43103 vocab=d0cc5e8f
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_pos_neg_fiber_finite (X : ℝ) (hX : 4 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     ({u : ℤ | 0 < u ∧ (↑u : ℝ) ^ 2 ≥ 5 * (↑↑x : ℝ) ^ 22 - 4 * X ∧
@@ -2799,6 +3534,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_pos_neg_fiber_finite (X : ℝ) 
   | inr h =>
     exact int_mem_Icc_ceil_sqrt_of_sq_le u _ (by positivity) h.2.2
 
+/--
+@isnad1 id=le.2h2v.s6.3fa70ae32e40 from=translated src=- shape=ea5459fb vocab=8cb41b48
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_fiber_ncard_le_four (X : ℝ) (hX : 4 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     {u : ℤ | (x, u) ∈ E4_set X}.ncard ≤ 4 := by
@@ -2814,6 +3552,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_fiber_ncard_le_four (X : ℝ) (
   have hneg := E4_neg_fiber_ncard_le_two X hX x hx
   omega
 
+/--
+@isnad1 id=eq.1h2v.s6.82d0381ccb1b from=translated src=- shape=846cfbd3 vocab=cbf49f43
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_fiber_empty_of_le (X : ℝ) (x : ℕ+)
     (hx : ¬((x : ℝ) > X ^ ((1 : ℝ) / 11))) :
     {u : ℤ | (x, u) ∈ E4_set X} = ∅ := by
@@ -2821,6 +3562,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_fiber_empty_of_le (X : ℝ) (x 
   intro u hu
   exact hx hu.1
 
+/--
+@isnad1 id=lt.2h1v.s6.68fbbb8fe713 from=translated src=- shape=6792c52e vocab=103e99f5
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.denom_pos_E4 (ε : ℝ) (hε : 0 < ε) (hε_bound : ε ≤ 1 / 24) :
     0 < 10 - 12 * ε := by
   linarith
@@ -2832,6 +3576,9 @@ private lemma cleared_ineq_E4 (η ε : ℝ) (hη : 0 < η) (hε : 0 < ε)
   · nlinarith [sq_nonneg (η - 11 / 20)]
   · nlinarith
 
+/--
+@isnad1 id=le.4h2v.s7.54a4107329c7 from=translated src=- shape=7d83e7f9 vocab=8b7124b8
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.exponent_bound_E4 (η ε : ℝ) (hη : 0 < η) (hε : 0 < ε)
     (hε_η : ε ≤ η) (hε_bound : ε ≤ 1 / 24) :
     (2 + ε) / (10 - 12 * ε) ≤ 1 / 5 + η := by
@@ -2840,12 +3587,18 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.exponent_bound_E4 (η ε : ℝ) (h
   have h_cleared := cleared_ineq_E4 η ε hη hε hε_η hε_bound
   nlinarith
 
+/--
+@isnad1 id=lt.2h2v.s6.4f48d9b5ddc4 from=translated src=- shape=f78f1da2 vocab=bb457908
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.five_x22_gt_four_X_of_x_gt (X : ℝ) (hX : 1 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     5 * (x : ℝ) ^ 22 > 4 * X := by
   have h22 := x22_gt_X2_of_x11_gt X (by linarith) x (x11_gt_X_of_x_gt X hX x hx)
   nlinarith [sq_nonneg (X - 1)]
 
+/--
+@isnad1 id=le.3h3v.s7.29cb4582dc06 from=translated src=- shape=9ac9b1d4 vocab=01bec2df
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.product_upper_bound (x : ℕ+) (X : ℝ) (hX : 1 < X) (Y : ℝ) (hY : 0 ≤ Y)
     (h_Y : Y ≤ Real.sqrt 2 * (x : ℝ) ^ ((11 : ℝ) / 2)) :
     (x : ℝ) * Y * X ≤ Real.sqrt 2 * (x : ℝ) ^ ((13 : ℝ) / 2) * X := by
@@ -2864,13 +3617,22 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.product_upper_bound (x : ℕ+) (X 
     _ = Real.sqrt 2 * ((x : ℝ) * (x : ℝ) ^ ((11 : ℝ) / 2)) * X := by ring
     _ = Real.sqrt 2 * (x : ℝ) ^ ((13 : ℝ) / 2) * X := by rw [hx_mul]
 
+/--
+@isnad1 id=eq.3h4v.s6.df3353458777 from=translated src=- shape=9db889c5 vocab=d5744e9f
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_triple_mul_distrib (a b c e : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) :
     (a * b * c) ^ e = a ^ e * b ^ e * c ^ e := by
   rw [Real.mul_rpow (mul_nonneg ha hb) hc, Real.mul_rpow ha hb]
 
+/--
+@isnad1 id=eq.0h3v.s5.7ee1ce1c569e from=translated src=- shape=7e686392 vocab=d8832efc
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.pnat_rpow_mul (x : ℕ+) (p q : ℝ) :
     (x : ℝ) ^ (p * q) = ((x : ℝ) ^ p) ^ q := Real.rpow_mul (Nat.cast_nonneg' x) p q
 
+/--
+@isnad1 id=eq.2h3v.s7.bba80bec65c7 from=translated src=- shape=4bc3fe20 vocab=2a2c9599
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_product_expand (x : ℕ+) (X : ℝ) (hX : 1 < X) (ε : ℝ) (hε : 0 < ε) :
     (Real.sqrt 2 * (x : ℝ) ^ ((13 : ℝ) / 2) * X) ^ (1 + ε) =
     Real.sqrt 2 ^ (1 + ε) * (x : ℝ) ^ ((13 / 2 : ℝ) * (1 + ε)) * X ^ (1 + ε) := by
@@ -2878,6 +3640,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_product_expand (x : ℕ+) (X 
     (Real.rpow_nonneg (Nat.cast_nonneg' _) _) (le_of_lt (lt_trans one_pos hX))]
   rw [pnat_rpow_mul x (13 / 2) (1 + ε)]
 
+/--
+@isnad1 id=eq.2h4v.s8.3327555db2ea from=translated src=- shape=06bc5a31 vocab=2a2c9599
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.combine_X_powers (K : ℝ) (x : ℕ+) (X : ℝ) (hX : 1 < X) (ε : ℝ) (hε : 0 < ε) :
     K * X * (Real.sqrt 2 ^ (1 + ε) * (x : ℝ) ^ ((13 / 2 : ℝ) * (1 + ε)) * X ^ (1 + ε)) =
     K * Real.sqrt 2 ^ (1 + ε) * (x : ℝ) ^ ((13 / 2 : ℝ) * (1 + ε)) * X ^ (2 + ε) := by
@@ -2898,6 +3663,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.combine_X_powers (K : ℝ) (x : �
             ring_nf
       rw [h₄]
 
+/--
+@isnad1 id=le.6h5v.s8.0245db745577 from=translated src=- shape=b125f902 vocab=d500f586
+-/
 theorem _root_.Tengoku.RamanujanTauMissesPrimes.substitute_Y_bound (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε)
     (x : ℕ+) (X : ℝ) (hX : 1 < X) (Y : ℝ) (hY : 0 ≤ Y)
@@ -2917,6 +3685,9 @@ theorem _root_.Tengoku.RamanujanTauMissesPrimes.substitute_Y_bound (K : ℝ) (hK
   rw [combine_X_powers K x X hX ε hε] at h_chain
   exact le_trans h_x11 h_chain
 
+/--
+@isnad1 id=le.5h4v.s8.cf93b5d2425f from=translated src=- shape=90a4fed4 vocab=8dcc7373
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.cancel_common_rpow_factor (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε) (hε' : ε < 9 / 13)
     (x : ℕ+) (X : ℝ) (hX : 1 < X)
@@ -2946,9 +3717,15 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.cancel_common_rpow_factor (K : ℝ
     _ = K * Real.sqrt 2 ^ (1 + ε) * X ^ (2 + ε) := by
       field_simp [h₂.ne']
 
+/--
+@isnad1 id=eq.0h1v.s6.843f90407e7e from=translated src=- shape=23f1c78d vocab=ac5a4c9f
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.exponent_sum_eq_11 (ε : ℝ) :
     (13 / 2 : ℝ) * (1 + ε) + (9 - 13 * ε) / 2 = 11 := by grind
 
+/--
+@isnad1 id=eq.3h2v.s7.2cbdd1e99d1b from=translated src=- shape=17bead90 vocab=ebe756cd
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.lhs_eq_x_pow_11 (ε : ℝ) (hε : 0 < ε) (hε' : ε < 9 / 13)
     (x : ℕ+) (hx : (0 : ℝ) < (x : ℝ)) :
     (x : ℝ) ^ ((13 / 2 : ℝ) * (1 + ε)) * (x : ℝ) ^ ((9 - 13 * ε) / 2) =
@@ -2957,15 +3734,24 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.lhs_eq_x_pow_11 (ε : ℝ) (hε : 
   congr 1
   linarith [exponent_sum_eq_11 ε]
 
+/--
+@isnad1 id=eq.0h1v.s5.837f2fd6a14b from=translated src=- shape=40764441 vocab=43fd434c
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.nat_pow_eq_rpow (x : ℕ+) :
     (x : ℝ) ^ (11 : ℕ) = (x : ℝ) ^ (11 : ℝ) := (Real.rpow_natCast (x : ℝ) 11).symm
 
+/--
+@isnad1 id=eq.0h4v.s8.92f906ea85b7 from=translated src=- shape=f76f6436 vocab=a78dd866
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rhs_rearrange (K : ℝ) (ε : ℝ) (x : ℕ+) (X : ℝ) :
     K * Real.sqrt 2 ^ (1 + ε) *
       (x : ℝ) ^ ((13 / 2 : ℝ) * (1 + ε)) * X ^ (2 + ε) =
     (x : ℝ) ^ ((13 / 2 : ℝ) * (1 + ε)) * (K * Real.sqrt 2 ^ (1 + ε) * X ^ (2 + ε)) := by
   ring
 
+/--
+@isnad1 id=le.5h4v.s8.674794a24ba8 from=translated src=- shape=5ab8a54a vocab=8dcc7373
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rewrite_hypothesis (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε) (hε' : ε < 9 / 13)
     (x : ℕ+) (X : ℝ) (hX : 1 < X)
@@ -2978,6 +3764,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.rewrite_hypothesis (K : ℝ) (hK :
   rw [← rhs_rearrange K ε x X]
   exact h
 
+/--
+@isnad1 id=le.5h4v.s8.57a0a2f86854 from=translated src=- shape=46cf3a40 vocab=8dcc7373
+-/
 theorem _root_.Tengoku.RamanujanTauMissesPrimes.isolate_x_power (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε) (hε' : ε < 9 / 13)
     (x : ℕ+) (X : ℝ) (hX : 1 < X)
@@ -2988,15 +3777,27 @@ theorem _root_.Tengoku.RamanujanTauMissesPrimes.isolate_x_power (K : ℝ) (hK : 
   cancel_common_rpow_factor K hK ε hε hε' x X hX
     (rewrite_hypothesis K hK ε hε hε' x X hX h)
 
+/--
+@isnad1 id=lt.2h1v.s6.4f78dcbfd329 from=translated src=- shape=60a9ec80 vocab=03c2a7d7
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.denom_pos_general (ε : ℝ) (hε : 0 < ε) (hε' : ε < 9 / 13) :
     0 < 9 - 13 * ε := by grind
 
+/--
+@isnad1 id=eq.2h1v.s7.abfd817a5c4a from=translated src=- shape=12fe8f48 vocab=03c2a7d7
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.exponent_cancel (ε : ℝ) (hε : 0 < ε) (hε' : ε < 9 / 13) :
     (9 - 13 * ε) / 2 * (2 / (9 - 13 * ε)) = 1 := by grind
 
+/--
+@isnad1 id=eq.2h1v.s7.9b0758d48b65 from=translated src=- shape=cb1c83eb vocab=c6aab52d
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.X_exponent_eq (ε : ℝ) (hε : 0 < ε) (hε' : ε < 9 / 13) :
     (2 + ε) * (2 / (9 - 13 * ε)) = (4 + 2 * ε) / (9 - 13 * ε) := by grind
 
+/--
+@isnad1 id=le.5h4v.s8.291292f63c4e from=translated src=- shape=dc764f6b vocab=8dcc7373
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.raise_to_reciprocal_power (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε) (hε' : ε < 9 / 13)
     (x : ℕ+) (X : ℝ) (hX : 1 < X)
@@ -3021,6 +3822,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.raise_to_reciprocal_power (K : ℝ
   rw [X_exponent_eq ε hε hε'] at hstep
   exact hstep
 
+/--
+@isnad1 id=ne.2h2v.s5.417efaeeba2e from=translated src=- shape=4ac24890 vocab=b5519cd3
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.u_ne_zero_of_E4 (X : ℝ) (hX : 1 < X)
     (p : ℕ+ × ℤ) (hp : p ∈ E4_set X) : p.2 ≠ 0 := by
   have ⟨_, hD_upper⟩ := E4_set_D_bounds X p hp
@@ -3033,6 +3837,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.u_ne_zero_of_E4 (X : ℝ) (hX : 1 
   have h5 := five_x22_gt_four_X_of_x_gt X hX p.1 hx_lower
   linarith
 
+/--
+@isnad1 id=lt.2h2v.s6.62a7ff9c4e6f from=translated src=- shape=7b5a84bc vocab=e3616c33
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.x_pow11_gt_X (x : ℕ+) (X : ℝ) (hX : 1 < X)
     (hx_lower : (x : ℝ) > X ^ ((1 : ℝ) / 11)) :
     (x : ℝ) ^ 11 > X := by
@@ -3042,29 +3849,44 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.x_pow11_gt_X (x : ℕ+) (X : ℝ) 
       > (X ^ ((1 : ℝ) / 11)) ^ 11 := pow_lt_pow_left₀ hx_lower hrpow_nonneg (by norm_num)
     _ = X := rpow_one_div_11_pow_11 X hX0
 
+/--
+@isnad1 id=lt.2h2v.s6.2f9875f33fc7 from=translated src=- shape=5c83c94f vocab=276526a3
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.x11_gt_one (x : ℕ+) (X : ℝ) (hX : 1 < X)
     (hx11_gt : (x : ℝ) ^ 11 > X) :
     (x : ℝ) ^ 11 > 1 :=
   lt_trans hX hx11_gt
 
+/--
+@isnad1 id=lt.2h2v.s6.1e941b8f23d7 from=translated src=- shape=7ace5caa vocab=276526a3
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.x22_gt_X (x : ℕ+) (X : ℝ) (hX : 1 < X)
     (hx11_gt : (x : ℝ) ^ 11 > X) :
     (x : ℝ) ^ 22 > X := by
   have h1 : (x : ℝ) ^ 11 > 1 := x11_gt_one x X hX hx11_gt
   nlinarith [sq_nonneg ((x : ℝ) ^ 11 - 1), show (x : ℝ) ^ 22 = ((x : ℝ) ^ 11) ^ 2 by ring]
 
+/--
+@isnad1 id=lt.2h2v.s6.7d19c17f977c from=translated src=- shape=11716b01 vocab=0b98fd6b
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.four_X_le_four_x22 (x : ℕ+) (X : ℝ) (hX : 1 < X)
     (hx11_gt : (x : ℝ) ^ 11 > X) :
     4 * X < 4 * (x : ℝ) ^ 22 := by
   have h := x22_gt_X x X hX hx11_gt
   linarith
 
+/--
+@isnad1 id=lt.2h3v.s7.351ec3a40ca2 from=translated src=- shape=63b12d17 vocab=90e05e99
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.u_sq_lt_nine_x22 (x : ℕ+) (u : ℤ) (X : ℝ)
     (hu_sq : (u : ℝ) ^ 2 ≤ 5 * (x : ℝ) ^ 22 + 4 * X)
     (h4X : 4 * X < 4 * (x : ℝ) ^ 22) :
     (u : ℝ) ^ 2 < 9 * (x : ℝ) ^ 22 := by
   linarith
 
+/--
+@isnad1 id=le.1h2v.s6.60db60f9f268 from=translated src=- shape=c69df531 vocab=be835500
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.natAbs_le_of_sq_lt (x : ℕ+) (u : ℤ)
     (hu_sq : (u : ℝ) ^ 2 < 9 * (x : ℝ) ^ 22) :
     (Int.natAbs u : ℝ) ≤ 3 * (x : ℝ) ^ 11 := by
@@ -3079,6 +3901,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.natAbs_le_of_sq_lt (x : ℕ+) (u :
   rw [h₄]
   exact h₃
 
+/--
+@isnad1 id=le.3h3v.s7.30174c8100b4 from=translated src=- shape=e39b99e2 vocab=9df31127
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.u_bound_from_E4 (x : ℕ+) (u : ℤ) (X : ℝ) (hX : 1 < X)
     (hx_lower : (x : ℝ) > X ^ ((1 : ℝ) / 11))
     (habs_le : (|u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22| : ℝ) ≤ 4 * X) :
@@ -3089,6 +3914,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.u_bound_from_E4 (x : ℕ+) (u : �
   have h4 := u_sq_lt_nine_x22 x u X h1 h3
   exact natAbs_le_of_sq_lt x u h4
 
+/--
+@isnad1 id=eq.2h2v.s5.579751bc0827 from=translated src=- shape=947a8790 vocab=abad4ffc
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_pow (n : ℕ) (k : ℕ) (hn : 0 < n) (hk : 0 < k) :
     Nat.radical (n ^ k) = Nat.radical n := by
   have h₁ : (n ^ k).primeFactors = n.primeFactors := by
@@ -3101,9 +3929,15 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_pow (n : ℕ) (k : ℕ) (h
       simp_all [Nat.pow_eq_zero]
     · simp_all [Nat.radical]
 
+/--
+@isnad1 id=eq.1h1v.s3.e93ba65a977b from=translated src=- shape=5b131564 vocab=8356f74f
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_prime (p : ℕ) (hp : p.Prime) : Nat.radical p = p := by
   simp [Nat.radical, hp.ne_zero, hp.primeFactors]
 
+/--
+@isnad1 id=le.3h3v.s6.3a33430e0151 from=translated src=- shape=6964cd50 vocab=327e4f3b
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_factors_le (U x D : ℕ) (hU : 0 < U) (hx : 0 < x) (hD : 0 < D) :
     Nat.radical U * Nat.radical D * (Nat.radical 5 * Nat.radical x) ≤ U * D * (5 * x) := by
   have hU' := radical_le_self U hU
@@ -3117,6 +3951,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_factors_le (U x D : ℕ) (
         · exact Nat.mul_le_mul hU' hD'
         · exact Nat.mul_le_mul_left 5 hx'
 
+/--
+@isnad1 id=le.3h3v.s7.040a6a4f3553 from=translated src=- shape=a7c4322d vocab=ff240d2a
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_chain_bound (U x D : ℕ) (hU : 0 < U) (hx : 0 < x) (hD : 0 < D) :
     Nat.radical (U ^ 2 * D * (5 * x ^ 22)) ≤
     Nat.radical U * Nat.radical D * (Nat.radical 5 * Nat.radical x) := by
@@ -3133,6 +3970,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_chain_bound (U x D : ℕ) 
               _ = Nat.radical 5 * Nat.radical x := by rw [radical_pow x 22 hx (by norm_num)]
       _ = Nat.radical U * Nat.radical D * (Nat.radical 5 * Nat.radical x) := by ring
 
+/--
+@isnad1 id=le.3h3v.s7.36f90145870c from=translated src=- shape=4cf65f35 vocab=ff240d2a
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_E4_bound_nat (U x D : ℕ) (hU : 0 < U) (hx : 0 < x) (hD : 0 < D) :
     Nat.radical (U ^ 2 * D * (5 * x ^ 22)) ≤ U * D * (5 * x) := by
   calc Nat.radical (U ^ 2 * D * (5 * x ^ 22))
@@ -3141,11 +3981,17 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_E4_bound_nat (U x D : ℕ)
     _ ≤ U * D * (5 * x) :=
         radical_factors_le U x D hU hx hD
 
+/--
+@isnad1 id=le.3h3v.s7.47ef6be7395e from=translated src=- shape=3c9c7d3a vocab=9b5f13a7
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_E4_bound (U x D : ℕ) (hU : 0 < U) (hx : 0 < x) (hD : 0 < D) :
     (Nat.radical (U ^ 2 * D * (5 * x ^ 22)) : ℝ) ≤ (U : ℝ) * (D : ℝ) * (5 * (x : ℝ)) := by
   have h := radical_E4_bound_nat U x D hU hx hD
   exact_mod_cast h
 
+/--
+@isnad1 id=le.3h3v.s7.d933bc4875f6 from=translated src=- shape=afc83ef2 vocab=9b5f13a7
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_E4_bound' (U x D : ℕ) (hU : 0 < U) (hx : 0 < x) (hD : 0 < D) :
     (Nat.radical (5 * x ^ 22 * D * (U ^ 2)) : ℝ) ≤ (5 * (x : ℝ)) * (D : ℝ) * (U : ℝ) := by
   rw [show 5 * x ^ 22 * D * U ^ 2 = U ^ 2 * D * (5 * x ^ 22) by ring]
@@ -3153,6 +3999,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_E4_bound' (U x D : ℕ) (h
   have h_rhs_eq : (↑(U * D * (5 * x)) : ℝ) = 5 * (x : ℝ) * (D : ℝ) * (U : ℝ) := by push_cast; ring
   exact_mod_cast h_rhs_eq ▸ Nat.cast_le.mpr h_nat
 
+/--
+@isnad1 id=le.3h2v.s5.ad2311bd9e09 from=translated src=- shape=ca11daa9 vocab=ad6dd105
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_dvd_le (d n : ℕ) (hd : 0 < d) (hn : 0 < n) (hdvd : d ∣ n) :
     Nat.radical d ≤ Nat.radical n := by
   unfold Nat.radical
@@ -3162,21 +4011,39 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_dvd_le (d n : ℕ) (hd : 0
   · intro p hp _
     exact Nat.Prime.one_le (Nat.prime_of_mem_primeFactors hp)
 
+/--
+@isnad1 id=coprime.1h2v.s5.1a0c874917fe from=translated src=- shape=880d43ac vocab=f545565a
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.coprime_of_div_gcd (a b : ℕ) (h : 0 < Nat.gcd a b) :
     Nat.Coprime (a / Nat.gcd a b) (b / Nat.gcd a b) := Nat.coprime_div_gcd_div_gcd h
 
+/--
+@isnad1 id=coprime.1h2v.s5.a88bc2ae2bc0 from=translated src=- shape=e18ac854 vocab=f545565a
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.gcd_reduction_coprime (a b : ℕ) (ha : 0 < a) :
     Nat.Coprime (a / Nat.gcd a b) (b / Nat.gcd a b) := coprime_of_div_gcd a b (Nat.gcd_pos_of_pos_left b ha)
 
+/--
+@isnad1 id=lt.1h2v.s5.22ffc83a3bcf from=translated src=- shape=e4026740 vocab=f07a1922
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.gcd_reduction_pos_a_div (a b : ℕ) (ha : 0 < a) :
     0 < a / Nat.gcd a b := Nat.div_pos (Nat.le_of_dvd ha (Nat.gcd_dvd_left a b)) (Nat.gcd_pos_of_pos_left b ha)
 
+/--
+@isnad1 id=lt.1h2v.s5.fff97d20bbd2 from=translated src=- shape=dea76cee vocab=f07a1922
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.gcd_reduction_pos_b_div (a b : ℕ) (hb : 0 < b) :
     0 < b / Nat.gcd a b := Nat.div_pos (Nat.le_of_dvd hb (Nat.gcd_dvd_right a b)) (Nat.gcd_pos_of_pos_right a hb)
 
+/--
+@isnad1 id=dvd.0h2v.s4.68631767f26a from=translated src=- shape=895a5e7f vocab=1ee2ae3c
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.gcd_dvd_add (a b : ℕ) : Nat.gcd a b ∣ a + b :=
   dvd_add (Nat.gcd_dvd_left a b) (Nat.gcd_dvd_right a b)
 
+/--
+@isnad1 id=lt.2h3v.s5.74f78236f258 from=translated src=- shape=da53d9fa vocab=55b9e1af
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.gcd_pos_of_sum_pos (a b c : ℕ) (hc : 0 < c) (hsum : a + b = c) :
     0 < Nat.gcd a b := by
   rw [Nat.pos_iff_ne_zero]
@@ -3184,19 +4051,31 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.gcd_pos_of_sum_pos (a b c : ℕ) (
   rw [Nat.gcd_eq_zero_iff] at h
   omega
 
+/--
+@isnad1 id=lt.2h3v.s5.1da8e2fcd9ed from=translated src=- shape=71844818 vocab=5f85901e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.gcd_reduction_pos_c_div (a b c : ℕ) (hc : 0 < c) (hsum : a + b = c) :
     0 < c / Nat.gcd a b := Nat.div_pos
     (Nat.le_of_dvd hc (hsum ▸ dvd_add (Nat.gcd_dvd_left a b) (Nat.gcd_dvd_right a b)))
     (gcd_pos_of_sum_pos a b c hc hsum)
 
+/--
+@isnad1 id=dvd.1h3v.s4.5d210a2742ea from=translated src=- shape=e2598aab vocab=1ee2ae3c
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.gcd_reduction_dvd_c (a b c : ℕ) (hsum : a + b = c) :
     Nat.gcd a b ∣ c := by
   rw [← hsum]
   exact gcd_dvd_add a b
 
+/--
+@isnad1 id=eq.1h3v.s5.fd3af1955ba3 from=translated src=- shape=f0ba83ec vocab=a5f794c0
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.gcd_reduction_mul_div_cancel (a b c : ℕ) (hsum : a + b = c) :
     Nat.gcd a b * (c / Nat.gcd a b) = c := Nat.mul_div_cancel' (gcd_reduction_dvd_c a b c hsum)
 
+/--
+@isnad1 id=eq.4h3v.s7.5724b480e4e5 from=translated src=- shape=29535c79 vocab=fd0d236e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_eq_gcd_cubed_mul (a b c : ℕ) (ha : 0 < a) (hb : 0 < b)
     (hc : 0 < c) (hsum : a + b = c) :
     a * b * c = Nat.gcd a b ^ 3 *
@@ -3212,12 +4091,18 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_eq_gcd_cubed_mul (a b c : ℕ)
       = (a / g * g) * (b / g * g) * (c / g * g) := by rw [ha', hb', hc']
     _ = g ^ 3 * (a / g * (b / g) * (c / g)) := by ring
 
+/--
+@isnad1 id=dvd.4h3v.s6.27bd4274d808 from=translated src=- shape=35f8e4e7 vocab=5e557d72
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.gcd_reduction_product_dvd (a b c : ℕ) (ha : 0 < a) (hb : 0 < b)
     (hc : 0 < c) (hsum : a + b = c) :
     (a / Nat.gcd a b) * (b / Nat.gcd a b) * (c / Nat.gcd a b) ∣ a * b * c := by
   rw [abc_eq_gcd_cubed_mul a b c ha hb hc hsum]
   exact dvd_mul_left _ _
 
+/--
+@isnad1 id=other.4h3v.s7.73e24e30fda8 from=translated src=- shape=abdcd683 vocab=808944b1
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.gcd_reduction (a b c : ℕ) (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)
     (hsum : a + b = c) :
     let g := Nat.gcd a b
@@ -3236,6 +4121,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.gcd_reduction (a b c : ℕ) (ha : 
          gcd_reduction_mul_div_cancel a b c hsum,
          gcd_reduction_product_dvd a b c ha hb hc hsum⟩
 
+/--
+@isnad1 id=le.10h7v.s8.3f4772e8125a from=translated src=- shape=844ac660 vocab=70bc84ff
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_triple_to_bound (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε)
     (habc_ineq : ∀ a b c : ℕ, 0 < a → 0 < b → 0 < c →
@@ -3273,6 +4161,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_triple_to_bound (K : ℝ) (hK 
       ≤ g_bound * (K * rad_bound ^ (1 + ε)) := mul_le_mul hg_bound hc'_bound (by positivity) hg_bound_nn
     _ = g_bound * K * rad_bound ^ (1 + ε) := by ring
 
+/--
+@isnad1 id=eq.1h2v.s7.b11b32a317c4 from=translated src=- shape=e2811122 vocab=819e385f
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_E4_sum_eq (x : ℕ+) (u : ℤ)
     (hD_pos : u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22 > 0) :
     5 * (x : ℕ) ^ 22 + (u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22).natAbs = u.natAbs ^ 2 := by
@@ -3282,26 +4173,41 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_E4_sum_eq (x : ℕ+) (u : ℤ)
     ring
   · exact Nat.cast_injective
 
+/--
+@isnad1 id=lt.1h2v.s7.221553fdc134 from=translated src=- shape=39af5f42 vocab=064d50ce
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.D_pos_of_hD_pos (x : ℕ+) (u : ℤ)
     (hD_pos : u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22 > 0) :
     0 < (u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22).natAbs := Int.natAbs_pos.mpr (ne_of_gt hD_pos)
 
+/--
+@isnad1 id=le.1h2v.s7.2d27fe96a355 from=translated src=- shape=018fd3a0 vocab=7d8381c0
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.gcd_le_D (x : ℕ+) (u : ℤ)
     (hD_pos : u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22 > 0) :
     (Nat.gcd (5 * (x : ℕ) ^ 22) (u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22).natAbs : ℝ) ≤
       ((u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22).natAbs : ℝ) := by
   exact_mod_cast Nat.gcd_le_right _ (D_pos_of_hD_pos x u hD_pos)
 
+/--
+@isnad1 id=lt.1h2v.s6.7b9c24b4337e from=translated src=- shape=12a72df8 vocab=3eb3ca1c
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.int_ineq_from_sub_pos (x : ℕ+) (u : ℤ)
     (hD_pos : u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22 > 0) :
     5 * (↑(x : ℕ) : ℤ) ^ 22 < u ^ 2 := by
   linarith
 
+/--
+@isnad1 id=lt.1h2v.s6.314bf99e6519 from=translated src=- shape=c5dbe5dd vocab=7ee1041e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.cast_int_ineq_to_real (x : ℕ+) (u : ℤ)
     (h : 5 * (↑(x : ℕ) : ℤ) ^ 22 < u ^ 2) :
     5 * (x : ℝ) ^ 22 < (u : ℝ) ^ 2 := by
   exact_mod_cast h
 
+/--
+@isnad1 id=eq.0h1v.s5.73a966f1b136 from=translated src=- shape=09a4128e vocab=1b17785e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.natAbs_sq_real (u : ℤ) :
     (u.natAbs : ℝ) ^ 2 = (u : ℝ) ^ 2 := by
   have h := Int.natAbs_sq u
@@ -3309,12 +4215,18 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.natAbs_sq_real (u : ℤ) :
   rw [show (u : ℝ) ^ 2 = ((u : ℤ) : ℝ) ^ 2 from rfl]
   exact_mod_cast h
 
+/--
+@isnad1 id=lt.1h2v.s7.4e596e0d32ca from=translated src=- shape=58da43e2 vocab=7559f3e4
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.five_x22_lt_U_sq (x : ℕ+) (u : ℤ)
     (hD_pos : u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22 > 0) :
     5 * (x : ℝ) ^ 22 < (u.natAbs : ℝ) ^ 2 := by
   rw [natAbs_sq_real]
   exact cast_int_ineq_to_real x u (int_ineq_from_sub_pos x u hD_pos)
 
+/--
+@isnad1 id=le.3h3v.s7.186bcfb831be from=translated src=- shape=fbbe9ade vocab=9b5f13a7
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_E4_bound_reorder (U x D : ℕ) (hU : 0 < U) (hx : 0 < x) (hD : 0 < D) :
     (Nat.radical (5 * x ^ 22 * D * (U ^ 2)) : ℝ) ≤ (U : ℝ) * (D : ℝ) * (5 * (x : ℝ)) := by
   have h := radical_E4_bound' U x D hU hx hD
@@ -3322,6 +4234,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.radical_E4_bound_reorder (U x D : 
             mul_assoc (5 * (x : ℝ)) (D : ℝ) (U : ℝ),
             mul_assoc (U : ℝ) (D : ℝ) (5 * (x : ℝ))]
 
+/--
+@isnad1 id=other.5h4v.s8.1f27e4796147 from=translated src=- shape=2331bac4 vocab=fa44c141
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_E4_case_pos (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε)
     (habc_ineq : ∀ a b c : ℕ, 0 < a → 0 < b → 0 < c →
@@ -3351,18 +4266,27 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_E4_case_pos (K : ℝ) (hK : 0 
   rw [Nat.cast_pow] at hU2_bound
   exact le_trans (le_of_lt h5x22_lt) hU2_bound
 
+/--
+@isnad1 id=eq.2h2v.s8.ab01cac1ea84 from=translated src=- shape=2a26a6f6 vocab=fd2b23d9
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_neg_abc_sum_int (x : ℕ+) (u : ℤ)
     (habs_pos : 1 ≤ |u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22|)
     (hD_neg : u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22 ≤ 0) :
     (u.natAbs ^ 2 + (u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22).natAbs : ℤ) =
     (5 * (x : ℕ) ^ 22 : ℤ) := by grind
 
+/--
+@isnad1 id=eq.2h2v.s8.0c092b67c492 from=translated src=- shape=b5ff8cb4 vocab=fd2b23d9
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_neg_abc_sum (x : ℕ+) (u : ℤ)
     (habs_pos : 1 ≤ |u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22|)
     (hD_neg : u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22 ≤ 0) :
     u.natAbs ^ 2 + (u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22).natAbs = 5 * (x : ℕ) ^ 22 := by
   exact_mod_cast E4_neg_abc_sum_int x u habs_pos hD_neg
 
+/--
+@isnad1 id=lt.2h2v.s7.dd0f013a8be0 from=translated src=- shape=ea337743 vocab=687d8d51
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_neg_D_natAbs_pos (u : ℤ) (x : ℕ+)
     (habs_pos : 1 ≤ |u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22|)
     (hD_neg : u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22 ≤ 0) :
@@ -3371,8 +4295,14 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_neg_D_natAbs_pos (u : ℤ) (x :
   intro h
   linarith [abs_of_nonpos hD_neg]
 
+/--
+@isnad1 id=lt.1h1v.s4.55b92dd64847 from=translated src=- shape=c87724ab vocab=13778d90
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.natAbs_pos_of_ne_zero (y : ℤ) (hy : y ≠ 0) : 0 < Int.natAbs y := by grind
 
+/--
+@isnad1 id=le.2h2v.s8.23b84534840f from=translated src=- shape=165d27bd vocab=77e96b88
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_neg_gcd_le_D (x : ℕ+) (u : ℤ)
     (habs_pos : 1 ≤ |u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22|)
     (hD_neg : u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22 ≤ 0) :
@@ -3383,6 +4313,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_neg_gcd_le_D (x : ℕ+) (u : �
     simp [h] at habs_pos
   exact_mod_cast Nat.le_of_dvd (natAbs_pos_of_ne_zero _ hne) (Nat.gcd_dvd_right _ _)
 
+/--
+@isnad1 id=other.6h4v.s8.89c27b328bbe from=translated src=- shape=46b6e95d vocab=e3e4758a
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_E4_case_neg (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε)
     (habc_ineq : ∀ a b c : ℕ, 0 < a → 0 < b → 0 < c →
@@ -3422,6 +4355,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_E4_case_neg (K : ℝ) (hK : 0 
   rw [hc_cast] at h
   exact h
 
+/--
+@isnad1 id=eq.0h2v.s7.9f5212fcbf5c from=translated src=- shape=a55fb603 vocab=1f47a2ac
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.natAbs_D_eq_abs_cast (x : ℕ+) (u : ℤ) :
     ((u ^ 2 - 5 * (↑(x : ℕ) : ℤ) ^ 22).natAbs : ℝ) =
     |((u : ℤ) : ℝ) ^ 2 - 5 * ((↑(x : ℕ) : ℤ) : ℝ) ^ 22| := by
@@ -3429,6 +4365,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.natAbs_D_eq_abs_cast (x : ℕ+) (u
   push_cast
   ring_nf
 
+/--
+@isnad1 id=le.6h4v.s9.1c198dbb90d8 from=translated src=- shape=10fc4bcf vocab=8e050d6e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.combine_pos_case (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε)
     (habc_ineq : ∀ a b c : ℕ, 0 < a → 0 < b → 0 < c →
@@ -3453,6 +4392,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.combine_pos_case (K : ℝ) (hK : 0
   push_cast
   ring_nf
 
+/--
+@isnad1 id=le.6h4v.s9.6cd85ad99a9e from=translated src=- shape=2116d8a3 vocab=f02803ee
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.combine_neg_case (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε)
     (habc_ineq : ∀ a b c : ℕ, 0 < a → 0 < b → 0 < c →
@@ -3477,6 +4419,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.combine_neg_case (K : ℝ) (hK : 0
   calc 5 * (x : ℝ) ^ 22 ≤ _ := h
     _ = _ := by ring_nf
 
+/--
+@isnad1 id=le.7h5v.s9.85603c488a8a from=translated src=- shape=5632d2e2 vocab=f02803ee
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_gives_5x22_bound (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε)
     (habc_ineq : ∀ a b c : ℕ, 0 < a → 0 < b → 0 < c →
@@ -3495,6 +4440,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_gives_5x22_bound (K : ℝ) (hK
   · push_neg at hsgn
     exact combine_neg_case K hK ε hε habc_ineq x u hu_ne habs_pos hsgn
 
+/--
+@isnad1 id=le.2h3v.s7.e8051e2dab9d from=translated src=- shape=95fc226f vocab=081a854c
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.product_bound_E4 (x : ℕ+) (u : ℤ) (D : ℝ)
     (hD : 0 ≤ D)
     (hu_bound : (Int.natAbs u : ℝ) ≤ 3 * (x : ℝ) ^ 11) :
@@ -3507,6 +4455,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.product_bound_E4 (x : ℕ+) (u : �
       ring_nf
     _ = 15 * (x : ℝ) ^ 12 * D := by ring
 
+/--
+@isnad1 id=le.1h3v.s6.182c96e4ae04 from=translated src=- shape=ff3ea263 vocab=7e42f741
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.product_nonneg_E4 (x : ℕ+) (u : ℤ) (D : ℝ)
     (hD : 0 ≤ D) :
     0 ≤ 5 * (x : ℝ) * (Int.natAbs u : ℝ) * D := by
@@ -3518,6 +4469,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.product_nonneg_E4 (x : ℕ+) (u : 
   · exact Nat.cast_nonneg' _
   · exact hD
 
+/--
+@isnad1 id=le.3h4v.s7.4ebdee79df07 from=translated src=- shape=053017b2 vocab=d2180c05
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_product_bound (x : ℕ+) (u : ℤ) (D : ℝ) (ε : ℝ)
     (hε : 0 < ε) (hD : 0 ≤ D)
     (hu_bound : (Int.natAbs u : ℝ) ≤ 3 * (x : ℝ) ^ 11) :
@@ -3526,16 +4480,28 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_product_bound (x : ℕ+) (u :
   apply Real.rpow_le_rpow (product_nonneg_E4 x u D hD)
     (product_bound_E4 x u D hD hu_bound) (by linarith)
 
+/--
+@isnad1 id=eq.1h2v.s6.999e178855cb from=translated src=- shape=46ee4823 vocab=4daac01f
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.combine_D_powers (D ε : ℝ) (hD : 0 < D) :
     D * D ^ (1 + ε) = D ^ (2 + ε) := by
   conv_lhs => lhs; rw [show D = D ^ (1 : ℝ) from (Real.rpow_one D).symm]
   rw [← Real.rpow_add hD, show (1 : ℝ) + (1 + ε) = 2 + ε from by ring]
 
+/--
+@isnad1 id=le.0h1v.s4.68b393c7d0a0 from=translated src=- shape=2cbac45b vocab=a1c32a83
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.pnat_cast_nonneg (x : ℕ+) : (0 : ℝ) ≤ (x : ℝ) := by simp
 
+/--
+@isnad1 id=eq.0h2v.s6.d0ddf93721d0 from=translated src=- shape=6dc641fb vocab=f7ee7a1c
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.pnat_pow_rpow_eq (x : ℕ+) (ε : ℝ) :
     ((x : ℝ) ^ 12) ^ (1 + ε) = (x : ℝ) ^ (12 * (1 + ε)) := (Real.rpow_natCast_mul (pnat_cast_nonneg x) 12 (1 + ε)).symm
 
+/--
+@isnad1 id=eq.2h4v.s7.0daa0153a418 from=translated src=- shape=9488e298 vocab=38085961
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.expand_rhs (K : ℝ) (ε : ℝ) (hε : 0 < ε)
     (x : ℕ+) (D : ℝ) (hD_pos : 0 < D) :
     D * K * (15 * (x : ℝ) ^ 12 * D) ^ (1 + ε) =
@@ -3549,17 +4515,26 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.expand_rhs (K : ℝ) (ε : ℝ) (h
     K * 15 ^ (1 + ε) * (x : ℝ) ^ (12 * (1 + ε)) * (D * D ^ (1 + ε)) from by ring]
   rw [combine_D_powers D ε hD_pos]
 
+/--
+@isnad1 id=eq.1h2v.s6.5d5f38b04c5d from=translated src=- shape=25154881 vocab=39ed9922
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.nat_pow_div_rpow_eq (x : ℝ) (hx : 0 < x) (e : ℝ) :
     (x ^ 22 : ℝ) / x ^ e = x ^ ((22 : ℝ) - e) := by
   rw [show (22 : ℝ) = ((22 : ℕ) : ℝ) from by norm_num,
       ← Real.rpow_natCast x 22, ← Real.rpow_sub hx]
 
+/--
+@isnad1 id=le.2h3v.s6.198ee98f1c30 from=translated src=- shape=24fafc08 vocab=c96aef97
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.div_ineq_of_mul_le (a b c : ℝ) (hc : 0 < c)
     (h : 5 * a ≤ b * c) :
     a / c ≤ b / 5 := by
   rw [div_le_div_iff₀ hc (by norm_num : (0 : ℝ) < 5)]
   linarith
 
+/--
+@isnad1 id=le.5h4v.s8.66a682be0c78 from=translated src=- shape=f80b28d5 vocab=9972742e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.divide_and_simplify (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε) (hε_bound : ε ≤ 1 / 24)
     (x : ℕ+) (D : ℝ) (hD_pos : 0 < D)
@@ -3583,6 +4558,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.divide_and_simplify (K : ℝ) (hK 
   rw [hrhs] at h2
   exact h2
 
+/--
+@isnad1 id=le.5h4v.s8.0d388d3fc914 from=translated src=- shape=9eae74c9 vocab=9972742e
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rearrange_to_target (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε) (hε_bound : ε ≤ 1 / 24)
     (x : ℕ+) (D : ℝ)
@@ -3593,6 +4571,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.rearrange_to_target (K : ℝ) (hK 
   rw [hexp] at h
   exact divide_and_simplify K hK ε hε hε_bound x D hD_pos h
 
+/--
+@isnad1 id=le.5h5v.s8.3cbf54f6844d from=translated src=- shape=b16baa23 vocab=d2180c05
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.combine_h5x22_with_bound (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε)
     (x : ℕ+) (u : ℤ) (D : ℝ)
@@ -3607,6 +4588,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.combine_h5x22_with_bound (K : ℝ)
     _ ≤ D * K * (15 * (x : ℝ) ^ 12 * D) ^ (1 + ε) :=
         mul_le_mul_of_nonneg_left hrpow hDK
 
+/--
+@isnad1 id=le.7h5v.s8.a95ffa03d1b5 from=translated src=- shape=27783fd8 vocab=349c7cf3
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_algebraic_cleanup (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε) (hε_bound : ε ≤ 1 / 24)
     (x : ℕ+) (u : ℤ) (D : ℝ)
@@ -3617,6 +4601,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_algebraic_cleanup (K : ℝ) (hK
   have h_combined := combine_h5x22_with_bound K hK ε hε x u D hD_pos hu_bound h5x22
   exact rearrange_to_target K hK ε hε hε_bound x D hD_pos h_combined
 
+/--
+@isnad1 id=ex.3h2v.s9.20692a8278fd from=translated src=- shape=f88b3049 vocab=5bb7676b
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.exponent_cleanup_E4 (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε) (hε_bound : ε ≤ 1 / 24) :
     ∃ K₂ : ℝ, 0 < K₂ ∧ ∃ X₁ : ℝ, 0 < X₁ ∧
@@ -3641,6 +4628,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.exponent_cleanup_E4 (K : ℝ) (hK 
     exact_mod_cast habs_pos
   exact E4_algebraic_cleanup K hK ε hε hε_bound x u _ hD_pos hD_ge_one hu_bound h5x22
 
+/--
+@isnad1 id=ex.3h1v.s8.0ce9583025ea from=translated src=- shape=52196ab2 vocab=11f7b1b3
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_core_E4 (habc : ABC) (ε : ℝ) (hε : 0 < ε) (hε_bound : ε ≤ 1 / 24) :
     ∃ K₂ : ℝ, 0 < K₂ ∧ ∃ X₁ : ℝ, 0 < X₁ ∧
       ∀ X : ℝ, X₁ < X →
@@ -3673,6 +4663,9 @@ private lemma rpow_le_of_rpow_le (x K D α β : ℝ) (hx : 0 < x) (hK : 0 < K) (
     ← Real.rpow_mul (le_of_lt hD), show β * (1 / α) = β / α by field_simp] at h1
   exact h1
 
+/--
+@isnad1 id=ex.3h2v.s8.a340ae13c543 from=translated src=- shape=578664ab vocab=fdb3fe59
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.x_from_power_bound_E4 (ε : ℝ) (hε : 0 < ε) (hε_bound : ε ≤ 1 / 24)
     (K₂ : ℝ) (hK₂ : 0 < K₂) :
     ∃ K₃ : ℝ, 0 < K₃ ∧
@@ -3710,10 +4703,16 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.x_from_power_bound_E4 (ε : ℝ) (
         · exact le_of_lt (Real.rpow_pos_of_pos hK₂ _)
     _ = K₂ ^ (1 / α) * (4 : ℝ) ^ γ * X ^ γ := by ring
 
+/--
+@isnad1 id=le.2h3v.s5.10f4e3b4a9b0 from=translated src=- shape=48acbddf vocab=f90a57ae
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.rpow_le_rpow_of_le_exp' {X a b : ℝ} (hX : 1 ≤ X) (hab : a ≤ b) :
     X ^ a ≤ X ^ b :=
   Real.rpow_le_rpow_of_exponent_le hX hab
 
+/--
+@isnad1 id=ex.2h1v.s7.d123a7a04624 from=translated src=- shape=dc1e4888 vocab=dd84814a
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.x_bound_in_E4 (habc : ABC) (η : ℝ) (hη : 0 < η) :
     ∃ K₄ : ℝ, 0 < K₄ ∧ ∃ X₀ : ℝ, 0 < X₀ ∧
       ∀ X : ℝ, X₀ < X →
@@ -3736,11 +4735,17 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.x_bound_in_E4 (habc : ABC) (η : �
         apply mul_le_mul_of_nonneg_left _ hK₃_pos.le
         exact rpow_le_rpow_of_le_exp' hX1.le hexp
 
+/--
+@isnad1 id=eq.0h1v.s6.e538c20d1096 from=translated src=- shape=90f144eb vocab=e6063bcc
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.cast_coercion_eq (p₁ : ℕ+) :
     (5 : ℝ) * (↑(↑(↑p₁ : ℕ) : ℤ) : ℝ) ^ 22 = 5 * (↑(↑p₁ : ℕ) : ℝ) ^ 22 := by
   push_cast
   ring
 
+/--
+@isnad1 id=le.1h3v.s7.83869b9fafbb from=translated src=- shape=f11c0a08 vocab=02629307
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.abs_bound_to_upper_bound (u : ℤ) (p₁ : ℕ+) (X : ℝ)
     (h : (|u ^ 2 - 5 * (↑p₁ : ℤ) ^ 22| : ℝ) ≤ 4 * X) :
     (u ^ 2 : ℝ) ≤ 5 * (p₁ : ℝ) ^ 22 + 4 * X := by
@@ -3751,14 +4756,23 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.abs_bound_to_upper_bound (u : ℤ)
   have h2 := cast_coercion_eq p₁
   linarith
 
+/--
+@isnad1 id=le.1h2v.s6.826ac0d7b1a8 from=translated src=- shape=d24336a0 vocab=659197ba
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.u_sq_le_of_mem_E4 (X : ℝ) (p : ℕ+ × ℤ) (hmem : p ∈ E4_set X) :
     (p.2 ^ 2 : ℝ) ≤ 5 * (p.1 : ℝ) ^ 22 + 4 * X := abs_bound_to_upper_bound p.2 p.1 X hmem.2.2
 
+/--
+@isnad1 id=le.2h3v.s6.cb635ff38ea6 from=translated src=- shape=2c5ee88a vocab=659197ba
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.u_sq_le_bound (X : ℝ) (p : ℕ+ × ℤ)
     (hmem : p ∈ E4_set X) (N : ℕ) (hN : (p.1 : ℕ) ≤ N) :
     (p.2 ^ 2 : ℝ) ≤ 5 * (N : ℝ) ^ 22 + 4 * X :=
   le_trans (u_sq_le_of_mem_E4 X p hmem) (by gcongr)
 
+/--
+@isnad1 id=le.1h2v.s5.5fa2b6c88102 from=translated src=- shape=ecf38615 vocab=8b1c711f
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.cast_abs_le_sqrt_of_sq_le (u : ℤ) (B : ℝ)
     (hB : (u ^ 2 : ℝ) ≤ B) :
     (↑|u| : ℝ) ≤ Real.sqrt B := by
@@ -3766,6 +4780,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.cast_abs_le_sqrt_of_sq_le (u : ℤ
   rw [← Real.sqrt_sq (abs_nonneg (u : ℝ))]
   exact Real.sqrt_le_sqrt (by rwa [sq_abs])
 
+/--
+@isnad1 id=le.1h2v.s5.d16cc0375997 from=translated src=- shape=282584a5 vocab=b1496a87
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.abs_le_ceil_of_cast_le_sqrt (u : ℤ) (B : ℝ)
     (h : (↑|u| : ℝ) ≤ Real.sqrt B) :
     |u| ≤ ↑(⌈Real.sqrt B⌉₊) := by
@@ -3775,15 +4792,24 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.abs_le_ceil_of_cast_le_sqrt (u : �
     _ = ↑(↑⌈Real.sqrt B⌉₊ : ℤ) := by push_cast; ring
   exact Int.cast_le.mp h1
 
+/--
+@isnad1 id=le.1h2v.s5.99a19f6bb2d9 from=translated src=- shape=779ad366 vocab=9e2d0e41
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.abs_le_ceil_sqrt_of_sq_le (u : ℤ) (B : ℝ)
     (hB : (u ^ 2 : ℝ) ≤ B) :
     |u| ≤ ↑(⌈Real.sqrt B⌉₊) := abs_le_ceil_of_cast_le_sqrt u B (cast_abs_le_sqrt_of_sq_le u B hB)
 
+/--
+@isnad1 id=le.2h3v.s6.bdafabe2ba0c from=translated src=- shape=2c6d3318 vocab=9362fe15
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.u_bound_from_E4_membership (X : ℝ) (p : ℕ+ × ℤ)
     (hmem : p ∈ E4_set X) (N : ℕ) (hN : (p.1 : ℕ) ≤ N) :
     |p.2| ≤ ↑(⌈Real.sqrt (5 * (N : ℝ) ^ 22 + 4 * X)⌉₊) := abs_le_ceil_sqrt_of_sq_le p.2 (5 * (N : ℝ) ^ 22 + 4 * X)
     (u_sq_le_bound X p hmem N hN)
 
+/--
+@isnad1 id=ex.1h0v.s6.09f9520f83fb from=translated src=- shape=cbc1ab68 vocab=75855ede
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_set_bounded_of_abc (habc : ABC) :
     ∃ X₀ : ℝ, 0 < X₀ ∧ ∀ X : ℝ, X₀ < X →
       ∃ (N : ℕ) (M : ℕ),
@@ -3798,6 +4824,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_set_bounded_of_abc (habc : ABC)
     exact ⟨real_bound_to_nat_bound p B hp_real,
            u_bound_from_E4_membership X p hmem N (real_bound_to_nat_bound p B hp_real)⟩⟩
 
+/--
+@isnad1 id=ex.1h0v.s4.deea5b2e5b69 from=translated src=- shape=e3adc4f5 vocab=ed5ff29d
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.E4_set_finite_of_abc (habc : ABC) :
     ∃ X₀ : ℝ, 0 < X₀ ∧ ∀ X : ℝ, X₀ < X → (E4_set X).Finite := by
   obtain ⟨X₀, hX₀, hbnd⟩ := E4_set_bounded_of_abc habc
@@ -3863,6 +4892,9 @@ private lemma witness_in_E4_set_upper (R : RamanujanTau) (X : ℝ) (p : ℕ+)
   rw [h1]
   exact mul_le_mul_of_nonneg_left hℓ_le (show (0 : ℝ) ≤ 4 by norm_num)
 
+/--
+@isnad1 id=mem.5h4v.s7.b03aace3485c from=translated src=- shape=eff34d1c vocab=743cbcbe
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.witness_in_E4_set (R : RamanujanTau) (X : ℝ) (p : ℕ+)
     (hp : (p : ℕ).Prime) (hp_large : (p : ℝ) > X ^ ((1 : ℝ) / 11))
     (ℓ : ℕ) (hℓ_prime : Nat.Prime ℓ) (hℓ_le : (ℓ : ℝ) ≤ X)
@@ -3923,6 +4955,9 @@ private lemma witnessMap_injOn (R : RamanujanTau) (X : ℝ) :
   rw [hpeq] at h1
   exact h1.symm.trans (witnessP_spec R X ℓ₂ hex₂).2.2
 
+/--
+@isnad1 id=le.1h2v.s6.0fc33c533e3d from=translated src=- shape=38028fe5 vocab=aa9914e9
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.ncard_witness_le_E4 (R : RamanujanTau) (X : ℝ)
     (hfin : (E4_set X).Finite) :
     {ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
@@ -3932,6 +4967,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.ncard_witness_le_E4 (R : Ramanujan
   exact Set.ncard_le_ncard_of_injOn (witnessMap R X)
     (witnessMap_mapsTo R X) (witnessMap_injOn R X) hfin
 
+/--
+@isnad1 id=ex.1h1v.s7.ca5bca9539a0 from=translated src=- shape=8abb99b4 vocab=423c8484
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.large_primes_k2_bound (R : RamanujanTau) (habc : ABC) :
     ∃ X₀ : ℝ, 0 < X₀ ∧ ∀ X : ℝ, X₀ < X →
       ({ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
@@ -3942,6 +4980,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.large_primes_k2_bound (R : Ramanuj
   exact ⟨X₀, hX₀_pos, fun X hX => by
     exact Nat.cast_le.mpr (ncard_witness_le_E4 R X (hX₀_fin X hX))⟩
 
+/--
+@isnad1 id=le.0h2v.s7.e98beb42df84 from=translated src=- shape=a6ac2448 vocab=9c629689
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.k2_set_split (R : RamanujanTau) (X : ℝ) :
     {ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
       ∃ p : ℕ+, (p : ℕ).Prime ∧
@@ -3962,6 +5003,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.k2_set_split (R : RamanujanTau) (X
     push_neg at h
     exact ⟨hprime, hle, p, hp, h, htau⟩
 
+/--
+@isnad1 id=finite.0h2v.s5.ea19a2611807 from=translated src=- shape=83ca9440 vocab=31b681c9
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.k2_target_set_finite (R : RamanujanTau) (X : ℝ) :
     Set.Finite {ℓ : ℕ | Nat.Prime ℓ ∧ (ℓ : ℝ) ≤ X ∧
       ∃ p : ℕ+, (p : ℕ).Prime ∧
@@ -3971,6 +5015,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.k2_target_set_finite (R : Ramanuja
   simp only [Set.mem_ofPred_eq] at hℓ ⊢
   exact Nat.le_floor hℓ.2.1
 
+/--
+@isnad1 id=ex.1h1v.s7.099c98339ac7 from=translated src=- shape=53616fe5 vocab=ce6b2bd0
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.k2_contribution_abc (R : RamanujanTau) (habc : ABC) :
     ∃ X₀ : ℝ, 0 < X₀ ∧
       ∀ X : ℝ, X₀ < X →
@@ -4007,6 +5054,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.k2_contribution_abc (R : Ramanujan
     Real.rpow_le_rpow_of_exponent_le hX1.le (by norm_num : (1 : ℝ) / 11 ≤ 6 / 11)
   linarith
 
+/--
+@isnad1 id=ex.2h1v.s7.b338d4915537 from=translated src=- shape=ae8bc37d vocab=5217f0b5
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.reduction_lemma_core (R : RamanujanTau) (habc : ABC) (h54 : Proposition5_4 R) :
     ∃ C : ℝ, 0 < C ∧ ∃ X₀ : ℝ, 0 < X₀ ∧
       ∀ X : ℝ, X₀ < X →
@@ -4048,6 +5098,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.reduction_lemma_core (R : Ramanuja
              mul_nonneg (le_of_lt hC₃) (Real.rpow_nonneg hX_pos'.le ((6 : ℝ) / 11)),
              mul_nonneg (le_of_lt hC₃) (Nat.cast_nonneg (E2 X)),
              mul_nonneg (le_of_lt hC₃) (Nat.cast_nonneg (E4 X))]
+/--
+@isnad1 id=ex.2h1v.s7.b338d4915537 from=translated src=- shape=ae8bc37d vocab=5217f0b5
+-/
 theorem _root_.Tengoku.RamanujanTauMissesPrimes.reduction_lemma (habc : ABC) (h54 : Proposition5_4 R) :
     ∃ C : ℝ, 0 < C ∧ ∃ X₀ : ℝ, 0 < X₀ ∧
       ∀ X : ℝ, X₀ < X →
@@ -4057,6 +5110,9 @@ theorem _root_.Tengoku.RamanujanTauMissesPrimes.reduction_lemma (habc : ABC) (h5
   reduction_lemma_core R habc h54
 
 namespace E2Helpers
+/--
+@isnad1 id=ex.2h3v.s6.e0906f45bf10 from=translated src=- shape=c3d05670 vocab=14576583
+-/
 lemma eventually_rpow_ge_const {C a b : ℝ} (hC : 0 < C) (hab : a < b) :
     ∃ X₀ : ℝ, 0 < X₀ ∧ ∀ X : ℝ, X₀ < X → C ≤ X ^ (b - a) := by
   have h_tendsto : Filter.Tendsto (fun X : ℝ => X ^ (b - a)) Filter.atTop Filter.atTop := by
@@ -4087,6 +5143,9 @@ lemma eventually_rpow_ge_const {C a b : ℝ} (hC : 0 < C) (hab : a < b) :
       linarith
   exact h_main
 
+/--
+@isnad1 id=le.2h4v.s6.257fc25029bc from=translated src=- shape=7ac5a9b8 vocab=16eb2e26
+-/
 lemma rpow_diff_mul_rpow_le {C a b X : ℝ} (hX : 0 < X) (h : C ≤ X ^ (b - a)) :
     C * X ^ a ≤ X ^ b := by
   have h₁ : C * X ^ a ≤ (X ^ (b - a)) * X ^ a := by
@@ -4108,6 +5167,9 @@ lemma rpow_diff_mul_rpow_le {C a b X : ℝ} (hX : 0 < X) (h : C ≤ X ^ (b - a))
       _ = X ^ b := by norm_cast
   exact h₅
 
+/--
+@isnad1 id=mem.2h3v.s7.c0a645f44a66 from=translated src=- shape=c0de0b46 vocab=4b87d69e
+-/
 lemma E2_caseA_mem (X : ℝ) (x : ℕ+) (y : ℤ)
     (h_abs_le : (|(↑↑x : ℤ) ^ 11 - y ^ 2| : ℝ) ≤ X)
     (h_sign : y ^ 2 ≤ (↑↑x : ℤ) ^ 11 - 1) :
@@ -4115,6 +5177,9 @@ lemma E2_caseA_mem (X : ℝ) (x : ℕ+) (y : ℤ)
         (((↑↑x : ℤ) ^ 11 - y ^ 2 : ℤ) : ℝ) ≤ X}) := by
   grind
 
+/--
+@isnad1 id=mem.2h3v.s7.6a6adbccce61 from=translated src=- shape=da324e1b vocab=35402b99
+-/
 lemma E2_caseB_mem (X : ℝ) (x : ℕ+) (y : ℤ)
     (h_abs_le : (|(↑↑x : ℤ) ^ 11 - y ^ 2| : ℝ) ≤ X)
     (h_sign : (↑↑x : ℤ) ^ 11 + 1 ≤ y ^ 2) :
@@ -4122,6 +5187,9 @@ lemma E2_caseB_mem (X : ℝ) (x : ℕ+) (y : ℤ)
         ((y ^ 2 - (↑↑x : ℤ) ^ 11 : ℤ) : ℝ) ≤ X}) := by
   grind
 
+/--
+@isnad1 id=le.2h2v.s8.531915fe8960 from=translated src=- shape=609b10ef vocab=acaec923
+-/
 lemma E2_fiber_subset_union (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     {y : ℤ | (x, y) ∈ E2_set X} ⊆
@@ -4140,6 +5208,9 @@ lemma E2_fiber_subset_union (X : ℝ) (hX : 2 < X) (x : ℕ+)
   · right
     exact E2_caseB_mem X x y h_abs_le h_caseB
 
+/--
+@isnad1 id=mem.1h2v.s6.6084aaeabda6 from=translated src=- shape=2776878d vocab=0b66d6d2
+-/
 lemma sq_le_imp_mem_Icc (x : ℕ+) (y : ℤ)
     (hy : y ^ 2 ≤ (↑↑x : ℤ) ^ 11 - 1) :
     y ∈ Set.Icc (-(↑↑x : ℤ) ^ 11) ((↑↑x : ℤ) ^ 11) := by
@@ -4150,6 +5221,9 @@ lemma sq_le_imp_mem_Icc (x : ℕ+) (y : ℤ)
   · by_contra h
     nlinarith
 
+/--
+@isnad1 id=finite.2h2v.s7.d788ab45de9e from=translated src=- shape=6b419618 vocab=a7a73343
+-/
 lemma E2_caseA_finite (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     Set.Finite {y : ℤ | y ^ 2 ≤ (↑↑x : ℤ) ^ 11 - 1 ∧
@@ -4158,12 +5232,18 @@ lemma E2_caseA_finite (X : ℝ) (hX : 2 < X) (x : ℕ+)
   intro y hy
   exact sq_le_imp_mem_Icc x y hy.1
 
+/--
+@isnad1 id=finite.1h2v.s5.cbe3a45ba5e1 from=translated src=- shape=c96fb3f3 vocab=b78802e2
+-/
 lemma nonneg_int_short_interval_finite (a b : ℝ) (_hab : a ≤ b) :
     {n : ℤ | 0 ≤ n ∧ (a : ℝ) ≤ (n : ℝ) ∧ (n : ℝ) ≤ b}.Finite := by
   apply Set.Finite.subset (Set.finite_Icc ⌈a⌉ ⌊b⌋)
   intro n ⟨_, ha, hb⟩
   exact ⟨Int.ceil_le.mpr ha, Int.le_floor.mpr hb⟩
 
+/--
+@isnad1 id=eq.5h4v.s6.fda0dd145e32 from=translated src=- shape=8119c3e5 vocab=7f1acbf0
+-/
 lemma int_eq_of_cast_in_short_interval (n₁ n₂ : ℤ) (a b : ℝ)
     (hlen : b - a < 1)
     (ha1 : a ≤ (n₁ : ℝ)) (hb1 : (n₁ : ℝ) ≤ b)
@@ -4173,6 +5253,9 @@ lemma int_eq_of_cast_in_short_interval (n₁ n₂ : ℤ) (a b : ℝ)
   have h2 : (n₁ - n₂ : ℤ) > -1 := by exact_mod_cast show (n₁ - n₂ : ℝ) > -1 by linarith
   omega
 
+/--
+@isnad1 id=le.3h2v.s6.c2aeae98c336 from=translated src=- shape=1273db7b vocab=07e9e5f2
+-/
 lemma ncard_nonneg_int_in_short_interval (a b : ℝ) (hab : a ≤ b) (hlen : b - a < 1)
     (_ha : 0 ≤ a) :
     Set.ncard {n : ℤ | 0 ≤ n ∧ (a : ℝ) ≤ (n : ℝ) ∧ (n : ℝ) ≤ b} ≤ 1 := by
@@ -4181,17 +5264,26 @@ lemma ncard_nonneg_int_in_short_interval (a b : ℝ) (hab : a ≤ b) (hlen : b -
   intro n₁ n₂ hn₁ hn₂
   exact int_eq_of_cast_in_short_interval _ _ a b hlen hn₁.2.1 hn₁.2.2 hn₂.2.1 hn₂.2.2
 
+/--
+@isnad1 id=eq.1h1v.s6.a4d90caba667 from=translated src=- shape=0d4e24ac vocab=ffba070c
+-/
 lemma rpow_two_eleven_eq_sq (X : ℝ) (hX : 0 < X) :
     (X ^ ((2 : ℝ) / 11)) ^ (11 : ℕ) = X ^ (2 : ℕ) := by
   rw [show (X ^ ((2 : ℝ) / 11)) ^ (11 : ℕ) = (X ^ ((2 : ℝ) / 11)) ^ (11 : ℝ) from by norm_cast,
     ← Real.rpow_mul hX.le, show (2 : ℝ) / 11 * 11 = 2 from by norm_num]
   norm_cast
 
+/--
+@isnad1 id=lt.2h2v.s7.602b69bf5bd1 from=translated src=- shape=992619c8 vocab=e3616c33
+-/
 lemma pow_eleven_strict_mono (X : ℝ) (hX : 0 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     (X ^ ((2 : ℝ) / 11)) ^ (11 : ℕ) < (↑↑x : ℝ) ^ 11 :=
   pow_lt_pow_left₀ (by linarith) (Real.rpow_nonneg hX.le _) (by norm_num)
 
+/--
+@isnad1 id=lt.2h2v.s6.bc6796bd6eaa from=translated src=- shape=17132f6a vocab=e3616c33
+-/
 lemma x11_gt_X_sq (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     (↑↑x : ℝ) ^ 11 > X ^ 2 := by
@@ -4199,6 +5291,9 @@ lemma x11_gt_X_sq (X : ℝ) (hX : 2 < X) (x : ℕ+)
   calc X ^ 2 = (X ^ ((2 : ℝ) / 11)) ^ (11 : ℕ) := (rpow_two_eleven_eq_sq X hXpos).symm
     _ < (↑↑x : ℝ) ^ 11 := pow_eleven_strict_mono X hXpos x hx
 
+/--
+@isnad1 id=lt.2h2v.s6.b5c3e5afaa10 from=translated src=- shape=0880c788 vocab=89c66ac8
+-/
 lemma x11_sub_X_pos (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     (↑↑x : ℝ) ^ 11 - X > 0 := by
@@ -4206,12 +5301,18 @@ lemma x11_sub_X_pos (X : ℝ) (hX : 2 < X) (x : ℕ+)
   have : X ^ 2 > X := by nlinarith
   linarith
 
+/--
+@isnad1 id=lt.2h2v.s6.0f8e87a53fdc from=translated src=- shape=5b768223 vocab=89c66ac8
+-/
 lemma x11_sub_one_pos (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     (↑↑x : ℝ) ^ 11 - 1 > 0 := by
   have h := x11_gt_X_sq X hX x hx
   nlinarith
 
+/--
+@isnad1 id=lt.2h2v.s6.abf8cddde4e1 from=translated src=- shape=c408690a vocab=69e2daeb
+-/
 lemma sqrt_x11_sub_one_gt_one (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     Real.sqrt ((↑↑x : ℝ) ^ 11 - 1) > 1 := by
@@ -4220,12 +5321,18 @@ lemma sqrt_x11_sub_one_gt_one (X : ℝ) (hX : 2 < X) (x : ℕ+)
   calc 1 = Real.sqrt 1 := Real.sqrt_one.symm
     _ < Real.sqrt ((↑↑x : ℝ) ^ 11 - 1) := Real.sqrt_lt_sqrt (by norm_num) hx11_gt
 
+/--
+@isnad1 id=lt.2h2v.s6.8b5ab6c245d4 from=translated src=- shape=b3db4443 vocab=0f420395
+-/
 lemma x11_sub_X_gt_X_mul_X_sub_one (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     (↑↑x : ℝ) ^ 11 - X > X * (X - 1) := by
   have h := x11_gt_X_sq X hX x hx
   nlinarith [sq X]
 
+/--
+@isnad1 id=lt.2h2v.s6.5cf853f13486 from=translated src=- shape=f76add67 vocab=157effa1
+-/
 lemma sqrt_x11_sub_X_gt (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     Real.sqrt ((↑↑x : ℝ) ^ 11 - X) > Real.sqrt (X * (X - 1)) := by
@@ -4235,9 +5342,15 @@ lemma sqrt_x11_sub_X_gt (X : ℝ) (hX : 2 < X) (x : ℕ+)
     exact le_of_lt (mul_pos hX1 hX2)
   · exact x11_sub_X_gt_X_mul_X_sub_one X hX x hx
 
+/--
+@isnad1 id=lt.1h1v.s6.c85319db6b1b from=translated src=- shape=aea65fed vocab=51b12a76
+-/
 lemma sq_sub_two_lt_mul (X : ℝ) (hX : 2 < X) :
     (X - 2) ^ 2 < X * (X - 1) := by grind
 
+/--
+@isnad1 id=lt.1h1v.s6.af3c7715a668 from=translated src=- shape=4a7d6a66 vocab=fa6b1645
+-/
 lemma one_plus_sqrt_gt_X_sub_one (X : ℝ) (hX : 2 < X) :
     1 + Real.sqrt (X * (X - 1)) > X - 1 := by
   have h0 : (0 : ℝ) ≤ X - 2 := by linarith
@@ -4246,6 +5359,9 @@ lemma one_plus_sqrt_gt_X_sub_one (X : ℝ) (hX : 2 < X) :
     rwa [Real.lt_sqrt h0]
   linarith
 
+/--
+@isnad1 id=lt.2h2v.s7.0d88e306f855 from=translated src=- shape=46571aa0 vocab=f4ed2d04
+-/
 lemma denom_gt_X_sub_one (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     Real.sqrt ((↑↑x : ℝ) ^ 11 - 1) + Real.sqrt ((↑↑x : ℝ) ^ 11 - X) > X - 1 := by
@@ -4257,6 +5373,9 @@ lemma denom_gt_X_sub_one (X : ℝ) (hX : 2 < X) (x : ℕ+)
     one_plus_sqrt_gt_X_sub_one X hX
   linarith
 
+/--
+@isnad1 id=lt.2h2v.s7.6d75dde67c1f from=translated src=- shape=b3d38e32 vocab=69e2daeb
+-/
 lemma interval_length_lt_one (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     Real.sqrt ((↑↑x : ℝ) ^ 11 - 1) - Real.sqrt ((↑↑x : ℝ) ^ 11 - X) < 1 := by
@@ -4272,6 +5391,9 @@ lemma interval_length_lt_one (X : ℝ) (hX : 2 < X) (x : ℕ+)
   rw [show (↑↑x : ℝ) ^ 11 - 1 - ((↑↑x : ℝ) ^ 11 - X) = X - 1 by ring]
   exact denom_gt_X_sub_one X hX x hx
 
+/--
+@isnad1 id=le.0h1v.s5.5dcf559bdeff from=translated src=- shape=9501559b vocab=f7e5397c
+-/
 lemma pair_ncard_le_two (n : ℕ) :
     ({(n : ℤ), -(n : ℤ)} : Set ℤ).ncard ≤ 2 := by
   calc ({(n : ℤ), -(n : ℤ)} : Set ℤ).ncard
@@ -4279,6 +5401,9 @@ lemma pair_ncard_le_two (n : ℕ) :
     _ = 1 + 1 := by rw [Set.ncard_singleton]
     _ = 2 := by norm_num
 
+/--
+@isnad1 id=le.2h2v.s5.80d29d7d4c4a from=translated src=- shape=e59d1a35 vocab=bc5e96dd
+-/
 lemma subset_natAbs_eq_ncard_le_two (n : ℕ) (T : Set ℤ) (hfin : T.Finite)
     (hT : ∀ y ∈ T, y.natAbs = n) :
     T.ncard ≤ 2 := by
@@ -4288,6 +5413,9 @@ lemma subset_natAbs_eq_ncard_le_two (n : ℕ) (T : Set ℤ) (hfin : T.Finite)
   calc T.ncard ≤ ({(n : ℤ), -(n : ℤ)} : Set ℤ).ncard := Set.ncard_le_ncard hsub hfin2
     _ ≤ 2 := pair_ncard_le_two n
 
+/--
+@isnad1 id=le.2h1v.s5.5c9ac6862b4c from=translated src=- shape=e992af4b vocab=76340438
+-/
 lemma ncard_le_two_of_natAbs_image_le_one (S : Set ℤ) (hfin : S.Finite)
     (himg : Set.ncard (Int.natAbs '' S) ≤ 1) :
     S.ncard ≤ 2 := by
@@ -4301,11 +5429,17 @@ lemma ncard_le_two_of_natAbs_image_le_one (S : Set ℤ) (hfin : S.Finite)
     rw [hn] at this
     exact this
 
+/--
+@isnad1 id=eq.0h1v.s5.ac790b56e7e0 from=translated src=- shape=a8bfa7d9 vocab=1b17785e
+-/
 lemma natAbs_cast_sq_eq (y : ℤ) :
     ((Int.natAbs y : ℤ) : ℝ) ^ 2 = ((y ^ 2 : ℤ) : ℝ) := by
   have h := Int.natAbs_sq y
   exact_mod_cast h
 
+/--
+@isnad1 id=le.1h2v.s6.8926bf1d4c2e from=translated src=- shape=f50f8484 vocab=6bd63b15
+-/
 lemma natAbs_sq_le_cast_real (x : ℕ+) (y : ℤ)
     (hy_sq : y ^ 2 ≤ (↑↑x : ℤ) ^ 11 - 1) :
     ((Int.natAbs y : ℤ) : ℝ) ^ 2 ≤ (↑↑x : ℝ) ^ 11 - 1 := by
@@ -4314,6 +5448,9 @@ lemma natAbs_sq_le_cast_real (x : ℕ+) (y : ℤ)
     exact hy_sq
   exact_mod_cast h1
 
+/--
+@isnad1 id=le.3h3v.s7.01623d8368f1 from=translated src=- shape=84d4d6cc vocab=24b42ad0
+-/
 lemma upper_bound_from_sq_le (x : ℕ+) (y : ℤ) (X : ℝ) (hX : 2 < X)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11))
     (hy_sq : y ^ 2 ≤ (↑↑x : ℤ) ^ 11 - 1) :
@@ -4321,11 +5458,17 @@ lemma upper_bound_from_sq_le (x : ℕ+) (y : ℤ) (X : ℝ) (hX : 2 < X)
   rw [Real.le_sqrt (by positivity) (le_of_lt (x11_sub_one_pos X hX x hx))]
   exact natAbs_sq_le_cast_real x y hy_sq
 
+/--
+@isnad1 id=eq.0h1v.s5.5dd3f81852a8 from=translated src=- shape=c09c7dec vocab=1b17785e
+-/
 lemma natAbs_cast_sq_eq' (y : ℤ) :
     ((Int.natAbs y : ℤ) : ℝ) ^ 2 = ((y : ℤ) : ℝ) ^ 2 := by
   norm_cast
   exact_mod_cast Int.natAbs_sq y
 
+/--
+@isnad1 id=le.1h3v.s6.b4488d6e604f from=translated src=- shape=e7266c41 vocab=6bd63b15
+-/
 lemma rearrange_diff_le (x : ℕ+) (y : ℤ) (X : ℝ)
     (hy_diff : (((↑↑x : ℤ) ^ 11 - y ^ 2 : ℤ) : ℝ) ≤ X) :
     (↑↑x : ℝ) ^ 11 - X ≤ ((Int.natAbs y : ℤ) : ℝ) ^ 2 := by
@@ -4337,6 +5480,9 @@ lemma rearrange_diff_le (x : ℕ+) (y : ℤ) (X : ℝ)
   rw [h2] at hy_diff
   linarith
 
+/--
+@isnad1 id=le.3h3v.s7.85ab608dc4c0 from=translated src=- shape=89307d33 vocab=24b42ad0
+-/
 lemma lower_bound_from_diff_le (x : ℕ+) (y : ℤ) (X : ℝ) (hX : 2 < X)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11))
     (hy_diff : (((↑↑x : ℤ) ^ 11 - y ^ 2 : ℤ) : ℝ) ≤ X) :
@@ -4344,6 +5490,9 @@ lemma lower_bound_from_diff_le (x : ℕ+) (y : ℤ) (X : ℝ) (hX : 2 < X)
   rw [Real.sqrt_le_left (by positivity)]
   exact rearrange_diff_le x y X hy_diff
 
+/--
+@isnad1 id=le.2h2v.s8.0151a64d1e6f from=translated src=- shape=f7718f84 vocab=aa84ae96
+-/
 lemma natAbs_image_subset_nonneg_interval (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     (Nat.cast '' (Int.natAbs '' {y : ℤ | y ^ 2 ≤ (↑↑x : ℤ) ^ 11 - 1 ∧
@@ -4357,6 +5506,9 @@ lemma natAbs_image_subset_nonneg_interval (X : ℝ) (hX : 2 < X) (x : ℕ+)
   · exact lower_bound_from_diff_le x y X hX hx hy_diff
   · exact upper_bound_from_sq_le x y X hX hx hy_sq
 
+/--
+@isnad1 id=le.2h2v.s7.dffc5e0bf1ad from=translated src=- shape=c1e163d5 vocab=9d668f7a
+-/
 lemma E2_caseA_abs_image_ncard (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     Set.ncard (Int.natAbs '' {y : ℤ | y ^ 2 ≤ (↑↑x : ℤ) ^ 11 - 1 ∧
@@ -4383,12 +5535,18 @@ lemma E2_caseA_abs_image_ncard (X : ℝ) (hX : 2 < X) (x : ℕ+)
     le_trans (Set.ncard_le_ncard h_sub h_fin) h_ncard
   linarith
 
+/--
+@isnad1 id=le.2h2v.s7.fefc095dd74a from=translated src=- shape=e2115fba vocab=aa4857f2
+-/
 lemma E2_caseA_ncard (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     Set.ncard {y : ℤ | y ^ 2 ≤ (↑↑x : ℤ) ^ 11 - 1 ∧
       (((↑↑x : ℤ) ^ 11 - y ^ 2 : ℤ) : ℝ) ≤ X} ≤ 2 := ncard_le_two_of_natAbs_image_le_one _ (E2_caseA_finite X hX x hx)
     (E2_caseA_abs_image_ncard X hX x hx)
 
+/--
+@isnad1 id=le.2h2v.s5.639438468137 from=translated src=- shape=f934b402 vocab=c422bd60
+-/
 lemma int_abs_le_ceil_sqrt (y : ℤ) (M : ℝ) (_hM : 0 ≤ M)
     (hy : (y : ℝ) ^ 2 ≤ M) :
     |y| ≤ ⌈Real.sqrt M⌉ := by
@@ -4397,6 +5555,9 @@ lemma int_abs_le_ceil_sqrt (y : ℤ) (M : ℝ) (_hM : 0 ≤ M)
     _ ≤ Real.sqrt M := Real.abs_le_sqrt hy
     _ ≤ ↑⌈Real.sqrt M⌉ := Int.le_ceil _
 
+/--
+@isnad1 id=mem.2h2v.s6.887a068344e7 from=translated src=- shape=9e09bdf9 vocab=2e05b60a
+-/
 lemma int_mem_Icc_ceil_sqrt_of_sq_le (y : ℤ) (M : ℝ) (_hM : 0 ≤ M)
     (hy : (y : ℝ) ^ 2 ≤ M) :
     y ∈ Set.Icc (-⌈Real.sqrt M⌉) (⌈Real.sqrt M⌉) := by
@@ -4405,12 +5566,18 @@ lemma int_mem_Icc_ceil_sqrt_of_sq_le (y : ℤ) (M : ℝ) (_hM : 0 ≤ M)
   · linarith [neg_abs_le y, int_abs_le_ceil_sqrt y M _hM hy]
   · exact le_trans (le_abs_self y) (int_abs_le_ceil_sqrt y M _hM hy)
 
+/--
+@isnad1 id=le.1h3v.s6.f99d9ba9843e from=translated src=- shape=908b74fd vocab=850791c4
+-/
 lemma y_sq_le_x11_add_X_from_set (X : ℝ) (x : ℕ+) (y : ℤ)
     (h : ((y ^ 2 - (↑↑x : ℤ) ^ 11 : ℤ) : ℝ) ≤ X) :
     (y : ℝ) ^ 2 ≤ (↑↑x : ℝ) ^ 11 + X := by
   have h1 : (↑(y ^ 2 - (↑↑x : ℤ) ^ 11) : ℝ) = (y : ℝ) ^ 2 - (↑↑x : ℝ) ^ 11 := by push_cast; ring
   linarith [h1]
 
+/--
+@isnad1 id=le.2h2v.s8.3a64e4a23a05 from=translated src=- shape=b30ada6c vocab=a2a5cc81
+-/
 lemma E2_caseB_subset_Icc (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (_hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     {y : ℤ | (↑↑x : ℤ) ^ 11 + 1 ≤ y ^ 2 ∧
@@ -4421,24 +5588,39 @@ lemma E2_caseB_subset_Icc (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (add_nonneg (pow_nonneg (Nat.cast_nonneg' _) _) (by linarith))
     (y_sq_le_x11_add_X_from_set X x y hy.2)
 
+/--
+@isnad1 id=finite.2h2v.s7.79a5ca15a34f from=translated src=- shape=e74660fa vocab=49bd77f9
+-/
 lemma E2_caseB_finite (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     {y : ℤ | (↑↑x : ℤ) ^ 11 + 1 ≤ y ^ 2 ∧
       ((y ^ 2 - (↑↑x : ℤ) ^ 11 : ℤ) : ℝ) ≤ X}.Finite := Set.Finite.subset (Set.finite_Icc _ _) (E2_caseB_subset_Icc X hX x hx)
 
+/--
+@isnad1 id=lt.2h2v.s5.3c7e1c7f726e from=translated src=- shape=6a925972 vocab=748b4584
+-/
 lemma sqrt_x11_add_one_gt_X (X : ℝ) (_hX_pos : 0 < X) (x_pow : ℝ)
     (hx_pow : x_pow > X ^ 2) :
     X < Real.sqrt (x_pow + 1) := Real.lt_sqrt_of_sq_lt (by linarith)
 
+/--
+@isnad1 id=lt.2h2v.s6.9171d2b6c636 from=translated src=- shape=9a008526 vocab=9bf46a8b
+-/
 lemma sq_lt_xpow_add_X (X : ℝ) (_hX_pos : 0 < X) (x_pow : ℝ)
     (hx_pow : x_pow > X ^ 2) :
     X ^ 2 < x_pow + X := by
   grind
 
+/--
+@isnad1 id=lt.2h2v.s5.7102a51b1dbf from=translated src=- shape=218400bc vocab=748b4584
+-/
 lemma sqrt_x11_add_X_gt_X (X : ℝ) (hX_pos : 0 < X) (x_pow : ℝ)
     (hx_pow : x_pow > X ^ 2) :
     X < Real.sqrt (x_pow + X) := Real.lt_sqrt_of_sq_lt (sq_lt_xpow_add_X X hX_pos x_pow hx_pow)
 
+/--
+@isnad1 id=lt.2h2v.s7.3e9b317038cf from=translated src=- shape=44b6a4c3 vocab=18eac549
+-/
 lemma denom_gt_two_X (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     Real.sqrt ((↑↑x : ℝ) ^ 11 + X) + Real.sqrt ((↑↑x : ℝ) ^ 11 + 1) > 2 * X := by
@@ -4446,11 +5628,17 @@ lemma denom_gt_two_X (X : ℝ) (hX : 2 < X) (x : ℕ+)
   linarith [sqrt_x11_add_one_gt_X X (by linarith) _ hx11,
             sqrt_x11_add_X_gt_X X (by linarith) _ hx11]
 
+/--
+@isnad1 id=lt.1h1v.s5.0c7317a4f893 from=translated src=- shape=195f3024 vocab=03c2a7d7
+-/
 lemma X_sub_one_div_two_X_lt_one (X : ℝ) (hX : 2 < X) :
     (X - 1) / (2 * X) < 1 := by
   rw [div_lt_one (by linarith : (0 : ℝ) < 2 * X)]
   linarith
 
+/--
+@isnad1 id=lt.2h2v.s7.9f91bc2d018f from=translated src=- shape=dc5bfede vocab=f4ed2d04
+-/
 lemma caseB_interval_length_lt_one (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     Real.sqrt ((↑↑x : ℝ) ^ 11 + X) - Real.sqrt ((↑↑x : ℝ) ^ 11 + 1) < 1 := by
@@ -4467,18 +5655,27 @@ lemma caseB_interval_length_lt_one (X : ℝ) (hX : 2 < X) (x : ℕ+)
         apply div_le_div_of_nonneg_left h_X_sub_one_nonneg (by linarith) (le_of_lt h_denom)
     _ < 1 := X_sub_one_div_two_X_lt_one X hX
 
+/--
+@isnad1 id=le.1h2v.s6.e37cc81810c1 from=translated src=- shape=9c4710d2 vocab=8dfa4471
+-/
 lemma caseB_lower_bound_cast_ineq (x : ℕ+) (y : ℤ)
     (h : (↑↑x : ℤ) ^ 11 + 1 ≤ y ^ 2) :
     (↑↑x : ℝ) ^ 11 + 1 ≤ (y.natAbs : ℝ) ^ 2 := by
   rw [natAbs_sq_real]
   exact_mod_cast h
 
+/--
+@isnad1 id=le.1h2v.s6.89d7619565a8 from=translated src=- shape=e6a9b6e2 vocab=be868dfd
+-/
 lemma caseB_lower_bound (x : ℕ+) (y : ℤ)
     (hy_lower : (↑↑x : ℤ) ^ 11 + 1 ≤ y ^ 2) :
     Real.sqrt ((↑↑x : ℝ) ^ 11 + 1) ≤ (y.natAbs : ℝ) := by
   rw [Real.sqrt_le_left (Nat.cast_nonneg y.natAbs)]
   exact caseB_lower_bound_cast_ineq x y hy_lower
 
+/--
+@isnad1 id=le.2h3v.s7.db21f1c81aa7 from=translated src=- shape=7e0e1fea vocab=5072ec82
+-/
 lemma caseB_upper_bound (X : ℝ) (x : ℕ+) (y : ℤ)
     (_hy_lower : (↑↑x : ℤ) ^ 11 + 1 ≤ y ^ 2)
     (hy_upper : ((y ^ 2 - (↑↑x : ℤ) ^ 11 : ℤ) : ℝ) ≤ X) :
@@ -4491,6 +5688,9 @@ lemma caseB_upper_bound (X : ℝ) (x : ℕ+) (y : ℤ)
     rw [h_natAbs_sq]; exact h_ysq
   exact Real.le_sqrt_of_sq_le h_sq_le
 
+/--
+@isnad1 id=and.2h3v.s7.d20b9acbc8df from=translated src=- shape=50d8b493 vocab=5072ec82
+-/
 lemma caseB_natAbs_bounds (X : ℝ) (x : ℕ+) (y : ℤ)
     (hy_lower : (↑↑x : ℤ) ^ 11 + 1 ≤ y ^ 2)
     (hy_upper : ((y ^ 2 - (↑↑x : ℤ) ^ 11 : ℤ) : ℝ) ≤ X) :
@@ -4498,6 +5698,9 @@ lemma caseB_natAbs_bounds (X : ℝ) (x : ℕ+) (y : ℤ)
     (y.natAbs : ℝ) ≤ Real.sqrt ((↑↑x : ℝ) ^ 11 + X) :=
   ⟨caseB_lower_bound x y hy_lower, caseB_upper_bound X x y hy_lower hy_upper⟩
 
+/--
+@isnad1 id=le.2h2v.s8.ec087291c3f9 from=translated src=- shape=cd86160a vocab=51698d54
+-/
 lemma caseB_natAbs_image_subset (X : ℝ) (_hX : 2 < X) (x : ℕ+)
     (_hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     Int.natAbs '' {y : ℤ | (↑↑x : ℤ) ^ 11 + 1 ≤ y ^ 2 ∧
@@ -4508,6 +5711,9 @@ lemma caseB_natAbs_image_subset (X : ℝ) (_hX : 2 < X) (x : ℕ+)
   obtain ⟨y, ⟨hy_lower, hy_upper⟩, rfl⟩ := hn
   exact caseB_natAbs_bounds X x y hy_lower hy_upper
 
+/--
+@isnad1 id=le.0h2v.s6.57c16e1ac07f from=translated src=- shape=9d96cc9f vocab=9bf5c0a5
+-/
 lemma nat_image_subset_int_set (a b : ℝ) :
     (Nat.cast : ℕ → ℤ) '' {n : ℕ | (a : ℝ) ≤ (n : ℝ) ∧ (n : ℝ) ≤ b} ⊆
     {n : ℤ | 0 ≤ n ∧ (a : ℝ) ≤ (n : ℝ) ∧ (n : ℝ) ≤ b} := by
@@ -4516,6 +5722,9 @@ lemma nat_image_subset_int_set (a b : ℝ) :
   · exact_mod_cast ha
   · exact_mod_cast hb
 
+/--
+@isnad1 id=le.3h2v.s6.d9c26d497b75 from=translated src=- shape=11e4918a vocab=1fa76c58
+-/
 lemma ncard_nat_in_short_interval (a b : ℝ) (hab : a ≤ b) (hlen : b - a < 1)
     (ha : 0 ≤ a) :
     Set.ncard {n : ℕ | (a : ℝ) ≤ (n : ℝ) ∧ (n : ℝ) ≤ b} ≤ 1 := by
@@ -4527,6 +5736,9 @@ lemma ncard_nat_in_short_interval (a b : ℝ) (hab : a ≤ b) (hlen : b - a < 1)
           (nonneg_int_short_interval_finite a b hab)
     _ ≤ 1 := ncard_nonneg_int_in_short_interval a b hab hlen ha
 
+/--
+@isnad1 id=le.0h2v.s7.990b69bceef8 from=translated src=- shape=cb3af45a vocab=31aa4775
+-/
 lemma caseB_nat_interval_subset_Iic (X : ℝ) (x : ℕ+) :
     {n : ℕ | Real.sqrt ((↑↑x : ℝ) ^ 11 + 1) ≤ (n : ℝ) ∧
       (n : ℝ) ≤ Real.sqrt ((↑↑x : ℝ) ^ 11 + X)} ⊆
@@ -4535,12 +5747,18 @@ lemma caseB_nat_interval_subset_Iic (X : ℝ) (x : ℕ+) :
   simp only [Set.mem_ofPred_eq] at hn ⊢
   exact Nat.cast_le.mp (hn.2.trans (Nat.le_ceil _))
 
+/--
+@isnad1 id=finite.2h2v.s7.cf156f2d56e1 from=translated src=- shape=b1a35d4b vocab=81bf53e3
+-/
 lemma caseB_nat_interval_finite (X : ℝ) (_hX : 2 < X) (x : ℕ+)
     (_hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     {n : ℕ | Real.sqrt ((↑↑x : ℝ) ^ 11 + 1) ≤ (n : ℝ) ∧
       (n : ℝ) ≤ Real.sqrt ((↑↑x : ℝ) ^ 11 + X)}.Finite :=
   (Set.finite_le_nat _).subset (caseB_nat_interval_subset_Iic X x)
 
+/--
+@isnad1 id=le.2h2v.s7.aa55d1f74485 from=translated src=- shape=79b32e32 vocab=b4714296
+-/
 lemma E2_caseB_abs_image_ncard (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     Set.ncard (Int.natAbs '' {y : ℤ | (↑↑x : ℤ) ^ 11 + 1 ≤ y ^ 2 ∧
@@ -4557,6 +5775,9 @@ lemma E2_caseB_abs_image_ncard (X : ℝ) (hX : 2 < X) (x : ℕ+)
           (caseB_interval_length_lt_one X hX x hx)
           (Real.sqrt_nonneg _)
 
+/--
+@isnad1 id=other.2h2v.s7.f6c13a3ed762 from=translated src=- shape=05c8c4b6 vocab=798455f9
+-/
 lemma E2_caseB_finite_and_abs_image (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     let S := {y : ℤ | (↑↑x : ℤ) ^ 11 + 1 ≤ y ^ 2 ∧
@@ -4565,6 +5786,9 @@ lemma E2_caseB_finite_and_abs_image (X : ℝ) (hX : 2 < X) (x : ℕ+)
   intro S
   exact ⟨E2_caseB_finite X hX x hx, E2_caseB_abs_image_ncard X hX x hx⟩
 
+/--
+@isnad1 id=le.2h2v.s7.d0df76f31dbe from=translated src=- shape=b50f5e55 vocab=3b9911c4
+-/
 lemma E2_caseB_ncard (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     Set.ncard {y : ℤ | (↑↑x : ℤ) ^ 11 + 1 ≤ y ^ 2 ∧
@@ -4572,6 +5796,9 @@ lemma E2_caseB_ncard (X : ℝ) (hX : 2 < X) (x : ℕ+)
   have ⟨hfin, himg⟩ := E2_caseB_finite_and_abs_image X hX x hx
   exact ncard_le_two_of_natAbs_image_le_one _ hfin himg
 
+/--
+@isnad1 id=finite.2h2v.s8.4a775d3caf50 from=translated src=- shape=a0c983f3 vocab=7a825d94
+-/
 lemma E2_cases_finite (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     Set.Finite (
@@ -4583,6 +5810,9 @@ lemma E2_cases_finite (X : ℝ) (hX : 2 < X) (x : ℕ+)
   · exact E2_caseA_finite X hX x hx
   · exact (E2_caseB_finite_and_abs_image X hX x hx).1
 
+/--
+@isnad1 id=le.2h2v.s6.7816d29ad249 from=translated src=- shape=ea5459fb vocab=ea5ca2b9
+-/
 lemma E2_fiber_bound (X : ℝ) (hX : 2 < X) (x : ℕ+)
     (hx : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     Set.ncard {y : ℤ | (x, y) ∈ E2_set X} ≤ 4 := by
@@ -4600,9 +5830,15 @@ lemma E2_fiber_bound (X : ℝ) (hX : 2 < X) (x : ℕ+)
     _ = 4 := by norm_num
 namespace E2XBoundHelpers
 
+/--
+@isnad1 id=lt.2h1v.s6.b86f36e48db4 from=translated src=- shape=6792c52e vocab=103e99f5
+-/
 lemma denom_pos (ε : ℝ) (hε1 : 0 < ε) (hε3 : ε ≤ 1 / 10) :
     (0 : ℝ) < 9 - 13 * ε := show 0 < 9 - 13 * ε from by linarith
 
+/--
+@isnad1 id=lt.4h2v.s7.a660849983da from=translated src=- shape=2506a15d vocab=8b7124b8
+-/
 lemma cleared_ineq (η ε : ℝ) (hη : 0 < η)
     (hε1 : 0 < ε) (hε2 : ε ≤ η / 4) (hε3 : ε ≤ 1 / 10) :
     (4 : ℝ) + 2 * ε < (4 / 9 + η) * (9 - 13 * ε) := by
@@ -4610,6 +5846,9 @@ lemma cleared_ineq (η ε : ℝ) (hη : 0 < η)
     mul_nonneg hε1.le hη.le, mul_nonneg hε1.le (sub_nonneg.mpr hε2),
     mul_nonneg hε1.le (sub_nonneg.mpr hε3)]
 
+/--
+@isnad1 id=lt.1h1v.s5.d56e77e941cf from=translated src=- shape=59074f34 vocab=2b11fe84
+-/
 lemma X_lt_X_sq (X : ℝ) (hX : 1 < X) : X < X ^ (2 : ℕ) := by
   have h : X < X ^ 2 := by
     have h₁ : X ^ 2 - X > 0 := by
@@ -4620,6 +5859,9 @@ lemma X_lt_X_sq (X : ℝ) (hX : 1 < X) : X < X ^ (2 : ℕ) := by
     linarith
   simpa [pow_two] using h
 
+/--
+@isnad1 id=lt.2h2v.s6.43eadf7e027b from=translated src=- shape=7b5a84bc vocab=e3616c33
+-/
 lemma x11_pow_gt_X (x : ℕ+) (X : ℝ) (hX : 1 < X)
     (hx_lower : (x : ℝ) > X ^ ((2 : ℝ) / 11)) :
     (↑↑x : ℝ) ^ (11 : ℕ) > X := by
@@ -4631,6 +5873,9 @@ lemma x11_pow_gt_X (x : ℕ+) (X : ℝ) (hX : 1 < X)
   have h3 : X < X ^ (2 : ℕ) := X_lt_X_sq X hX
   linarith
 
+/--
+@isnad1 id=ne.4h3v.s7.ae3ef427b49a from=translated src=- shape=2eb2cfcc vocab=4b109f59
+-/
 lemma y_ne_zero_of_E2
     (x : ℕ+) (y : ℤ) (X : ℝ) (hX : 1 < X)
     (hx_lower : (x : ℝ) > X ^ ((2 : ℝ) / 11))
@@ -4643,6 +5888,9 @@ lemma y_ne_zero_of_E2
   rw [show (|(↑(x : ℕ) : ℤ) ^ 11 - (0 : ℤ) ^ 2| : ℝ) = (↑↑x : ℝ) ^ 11 from by norm_num] at habs_le
   linarith
 
+/--
+@isnad1 id=le.2h2v.s5.e57da282139c from=translated src=- shape=019488d2 vocab=327e4f3b
+-/
 lemma radical_mul_le (m n : ℕ) (hm : 0 < m) (hn : 0 < n) :
     Nat.radical (m * n) ≤ Nat.radical m * Nat.radical n := by
   have hm' : m ≠ 0 := ne_of_gt hm
@@ -4651,6 +5899,9 @@ lemma radical_mul_le (m n : ℕ) (hm : 0 < m) (hn : 0 < n) :
   simp only [Nat.radical, hmn', ↓reduceIte, hm', hn']
   exact radical_mul_le_aux m n hm hn
 
+/--
+@isnad1 id=le.3h3v.s6.c329d15147ea from=translated src=- shape=6ae2f20d vocab=9b5f13a7
+-/
 lemma radical_abc_bound (x : ℕ) (Y B : ℕ) (hx : 0 < x) (hY : 0 < Y) (hB : 0 < B) :
     (Nat.radical (Y ^ 2 * B * (x ^ 11)) : ℝ) ≤ (Y : ℝ) * (B : ℝ) * (x : ℝ) := by
   have h : (Y ^ 2 * B * x ^ 11).radical ≤ Y * B * x := by
@@ -4668,6 +5919,9 @@ lemma radical_abc_bound (x : ℕ) (Y B : ℕ) (hx : 0 < x) (hY : 0 < Y) (hB : 0 
   calc (Nat.radical (Y ^ 2 * B * x ^ 11) : ℝ) ≤ (Y * B * x : ℕ) := by exact_mod_cast h
     _ = (Y : ℝ) * (B : ℝ) * (x : ℝ) := by push_cast; ring
 
+/--
+@isnad1 id=le.3h3v.s6.2500ed0ca402 from=translated src=- shape=d1c1ffa2 vocab=ff240d2a
+-/
 lemma radical_abc_bound'_nat (x : ℕ) (Y B : ℕ) (hx : 0 < x) (hY : 0 < Y) (hB : 0 < B) :
     Nat.radical (x ^ 11 * B * (Y ^ 2)) ≤ x * B * Y := by
   calc Nat.radical (x ^ 11 * B * (Y ^ 2))
@@ -4682,11 +5936,17 @@ lemma radical_abc_bound'_nat (x : ℕ) (Y B : ℕ) (hx : 0 < x) (hY : 0 < Y) (hB
             (radical_le_self Y hY)
       _ = x * B * Y := by ring
 
+/--
+@isnad1 id=le.3h3v.s6.b128e7089234 from=translated src=- shape=2e7c1593 vocab=9b5f13a7
+-/
 lemma radical_abc_bound' (x : ℕ) (Y B : ℕ) (hx : 0 < x) (hY : 0 < Y) (hB : 0 < B) :
     (Nat.radical (x ^ 11 * B * (Y ^ 2)) : ℝ) ≤ (x : ℝ) * (B : ℝ) * (Y : ℝ) := by
   have h := radical_abc_bound'_nat x Y B hx hY hB
   exact_mod_cast h
 
+/--
+@isnad1 id=eq.1h2v.s7.c7fe05611433 from=translated src=- shape=c03e7673 vocab=ca6cc2a9
+-/
 lemma abc_triple_sum_case1
     (x : ℕ+) (y : ℤ)
     (hge : (↑(x : ℕ) : ℤ) ^ 11 ≥ y ^ 2) :
@@ -4697,6 +5957,9 @@ lemma abc_triple_sum_case1
   rw [abs_of_nonneg hsub_nonneg, sq_abs]
   ring
 
+/--
+@isnad1 id=lt.1h1v.s4.55b92dd64847 from=translated src=- shape=c87724ab vocab=13778d90
+-/
 lemma natAbs_pos_of_ne_zero (y : ℤ) (hy : y ≠ 0) : 0 < Int.natAbs y := by
   have h : y ≠ 0 := hy
   have h₁ : 0 < Int.natAbs y := by
@@ -4707,6 +5970,9 @@ lemma natAbs_pos_of_ne_zero (y : ℤ) (hy : y ≠ 0) : 0 < Int.natAbs y := by
       simp_all)
   exact h₁
 
+/--
+@isnad1 id=lt.1h2v.s6.9bfd4f7242f2 from=translated src=- shape=b1c6fc32 vocab=e19d7814
+-/
 lemma B_nat_pos
     (x : ℕ+) (y : ℤ)
     (habs_pos : 1 ≤ |(↑(x : ℕ) : ℤ) ^ 11 - y ^ 2|) :
@@ -4715,18 +5981,27 @@ lemma B_nat_pos
     linarith
   exact h₂
 
+/--
+@isnad1 id=le.2h3v.s7.c8930546c030 from=translated src=- shape=48e04d71 vocab=3f8bc256
+-/
 lemma natAbs_cast_le_X
     (x : ℕ+) (y : ℤ) (X : ℝ)
     (habs_le : (|(↑(x : ℕ) : ℤ) ^ 11 - y ^ 2| : ℝ) ≤ X)
     (hge : (↑(x : ℕ) : ℤ) ^ 11 ≥ y ^ 2) :
     (Int.natAbs ((↑(x : ℕ) : ℤ) ^ 11 - y ^ 2) : ℝ) ≤ X := by simp_all
 
+/--
+@isnad1 id=le.1h2v.s7.ad53c097cdad from=translated src=- shape=f235ff14 vocab=37d95445
+-/
 lemma gcd_le_natAbs
     (x : ℕ+) (y : ℤ)
     (hpos : 0 < ((↑(x : ℕ) : ℤ) ^ 11 - y ^ 2).natAbs) :
     Nat.gcd ((Int.natAbs y) ^ 2) ((↑(x : ℕ) : ℤ) ^ 11 - y ^ 2).natAbs ≤
     ((↑(x : ℕ) : ℤ) ^ 11 - y ^ 2).natAbs := by exact Nat.gcd_le_right (y.natAbs ^ 2) hpos
 
+/--
+@isnad1 id=le.3h3v.s7.8c042421fab6 from=translated src=- shape=430f9f4c vocab=0d1b4407
+-/
 lemma gcd_le_X_case1
     (x : ℕ+) (y : ℤ) (X : ℝ)
     (habs_pos : 1 ≤ |(↑(x : ℕ) : ℤ) ^ 11 - y ^ 2|)
@@ -4740,6 +6015,9 @@ lemma gcd_le_X_case1
     natAbs_cast_le_X x y X habs_le hge
   exact le_trans (Nat.cast_le.mpr h1) h2
 
+/--
+@isnad1 id=le.2h3v.s7.01cd7492ca3c from=translated src=- shape=1f642679 vocab=68774180
+-/
 lemma rad_bound_le_case1
     (x : ℕ+) (y : ℤ) (X : ℝ)
     (habs_le : (|(↑(x : ℕ) : ℤ) ^ 11 - y ^ 2| : ℝ) ≤ X)
@@ -4753,6 +6031,9 @@ lemma rad_bound_le_case1
   rw [h2, h1]
   gcongr
 
+/--
+@isnad1 id=le.5h5v.s8.084c601c166c from=translated src=- shape=7f9f89be vocab=b5ed34ce
+-/
 lemma chain_bound_case1 (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε)
     (x : ℕ+) (y : ℤ) (X : ℝ) (hX : 1 < X)
@@ -4766,6 +6047,9 @@ lemma chain_bound_case1 (K : ℝ) (hK : 0 < K)
     calc ((x : ℕ) ^ 11 : ℝ) ≤ X * K * ((Int.natAbs y : ℝ) * (Int.natAbs ((↑(x : ℕ) : ℤ) ^ 11 - y ^ 2) : ℝ) * (x : ℝ)) ^ (1 + ε) := h_abc
       _ ≤ X * K * ((x : ℝ) * (Int.natAbs y : ℝ) * X) ^ (1 + ε) := by gcongr]
 
+/--
+@isnad1 id=le.8h5v.s8.07a1137b132f from=translated src=- shape=77f7543c vocab=b2e0001a
+-/
 lemma abc_case_x11_ge_y2 (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε)
     (habc_ineq : ∀ a b c : ℕ, 0 < a → 0 < b → 0 < c →
@@ -4797,6 +6081,9 @@ lemma abc_case_x11_ge_y2 (K : ℝ) (hK : 0 < K)
     (by exact_mod_cast h_abc)
     (rad_bound_le_case1 x y X habs_le hge)
 
+/--
+@isnad1 id=le.1h2v.s6.d044af0a9a50 from=translated src=- shape=b90f7e14 vocab=8706bbda
+-/
 lemma x11_le_natAbs_sq (x : ℕ+) (y : ℤ)
     (hlt : (↑(x : ℕ) : ℤ) ^ 11 < y ^ 2) :
     (x : ℕ) ^ 11 ≤ y.natAbs ^ 2 := by
@@ -4805,6 +6092,9 @@ lemma x11_le_natAbs_sq (x : ℕ+) (y : ℤ)
     exact hlt
   exact_mod_cast h1.le
 
+/--
+@isnad1 id=lt.1h2v.s6.e2b4ae68a2c6 from=translated src=- shape=3dcec119 vocab=4f853192
+-/
 lemma B_pos_of_x11_lt_y2 (x : ℕ+) (y : ℤ)
     (hlt : (↑(x : ℕ) : ℤ) ^ 11 < y ^ 2) :
     0 < y.natAbs ^ 2 - (x : ℕ) ^ 11 := by
@@ -4812,12 +6102,18 @@ lemma B_pos_of_x11_lt_y2 (x : ℕ+) (y : ℤ)
   rw [← Int.natAbs_sq y] at hlt
   exact_mod_cast hlt
 
+/--
+@isnad1 id=eq.1h2v.s7.91af865103d1 from=translated src=- shape=3df02112 vocab=97733a77
+-/
 lemma abc_sum_eq_of_x11_lt_y2 (x : ℕ+) (y : ℤ)
     (hlt : (↑(x : ℕ) : ℤ) ^ 11 < y ^ 2) :
     (x : ℕ) ^ 11 + (y.natAbs ^ 2 - (x : ℕ) ^ 11) = y.natAbs ^ 2 := by
   have h₁ : (x : ℕ) ^ 11 ≤ y.natAbs ^ 2 := x11_le_natAbs_sq x y hlt
   omega
 
+/--
+@isnad1 id=le.1h2v.s7.1bcf7155dcbd from=translated src=- shape=a1fa04ad vocab=b629a00a
+-/
 lemma gcd_le_B (x : ℕ+) (y : ℤ)
     (hlt : (↑(x : ℕ) : ℤ) ^ 11 < y ^ 2) :
     (Nat.gcd ((x : ℕ) ^ 11) (y.natAbs ^ 2 - (x : ℕ) ^ 11) : ℝ) ≤
@@ -4825,15 +6121,24 @@ lemma gcd_le_B (x : ℕ+) (y : ℤ)
   have hB_pos := B_pos_of_x11_lt_y2 x y hlt
   exact_mod_cast Nat.le_of_dvd hB_pos (Nat.gcd_dvd_right _ _)
 
+/--
+@isnad1 id=eq.1h2v.s7.80fc3ae0abab from=translated src=- shape=835510ee vocab=56731d01
+-/
 lemma abs_int_sub_eq_reverse (x : ℕ+) (y : ℤ)
     (hlt : (↑(x : ℕ) : ℤ) ^ 11 < y ^ 2) :
     |(↑(x : ℕ) : ℤ) ^ 11 - y ^ 2| = y ^ 2 - (↑(x : ℕ) : ℤ) ^ 11 := by grind
 
+/--
+@isnad1 id=eq.1h2v.s7.b6d7ea45d1f2 from=translated src=- shape=48bc61e6 vocab=dc535d77
+-/
 lemma abs_eq_reverse_sub_real (x : ℕ+) (y : ℤ)
     (hlt : (↑(x : ℕ) : ℤ) ^ 11 < y ^ 2) :
     (|(↑(x : ℕ) : ℤ) ^ 11 - y ^ 2| : ℝ) = ((y ^ 2 - (↑(x : ℕ) : ℤ) ^ 11 : ℤ) : ℝ) := by
   exact_mod_cast abs_int_sub_eq_reverse x y hlt
 
+/--
+@isnad1 id=le.2h3v.s7.44faa03ffb63 from=translated src=- shape=bf96a854 vocab=12186919
+-/
 lemma B_cast_le_X (x : ℕ+) (y : ℤ) (X : ℝ)
     (habs_le : (|(↑(x : ℕ) : ℤ) ^ 11 - y ^ 2| : ℝ) ≤ X)
     (hlt : (↑(x : ℕ) : ℤ) ^ 11 < y ^ 2) :
@@ -4853,6 +6158,9 @@ lemma B_cast_le_X (x : ℕ+) (y : ℤ) (X : ℝ)
   rw [← h_abs_eq]
   exact habs_le
 
+/--
+@isnad1 id=le.2h3v.s7.126e23927c95 from=translated src=- shape=959caca9 vocab=f0e8ec8a
+-/
 lemma rad_bound_le (x : ℕ+) (y : ℤ) (X : ℝ)
     (habs_le : (|(↑(x : ℕ) : ℤ) ^ 11 - y ^ 2| : ℝ) ≤ X)
     (hlt : (↑(x : ℕ) : ℤ) ^ 11 < y ^ 2) :
@@ -4867,15 +6175,24 @@ lemma rad_bound_le (x : ℕ+) (y : ℤ) (X : ℝ)
         apply mul_le_mul_of_nonneg_left hB
         exact mul_nonneg hx_pos hy_pos
 
+/--
+@isnad1 id=le.1h2v.s6.1738822caec1 from=translated src=- shape=8cf95f9a vocab=04b9b2ff
+-/
 lemma x11_le_y2_real (x : ℕ+) (y : ℤ)
     (hlt : (↑(x : ℕ) : ℤ) ^ 11 < y ^ 2) :
     (x : ℝ) ^ 11 ≤ (↑(y.natAbs ^ 2) : ℝ) := by
   have h_nat := x11_le_natAbs_sq x y hlt
   exact_mod_cast h_nat
 
+/--
+@isnad1 id=le.1h3v.s5.78cb4caf40e8 from=translated src=- shape=1a2721ba vocab=63df2b4b
+-/
 lemma rad_bound_nonneg (x : ℕ+) (y : ℤ) (X : ℝ) (hX : 1 < X) :
     0 ≤ (↑(x : ℕ) : ℝ) * (↑y.natAbs : ℝ) * X := by positivity
 
+/--
+@isnad1 id=le.8h5v.s8.081cfe680556 from=translated src=- shape=fbf5f032 vocab=f02803ee
+-/
 lemma abc_case_x11_lt_y2 (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε)
     (habc_ineq : ∀ a b c : ℕ, 0 < a → 0 < b → 0 < c →
@@ -4914,6 +6231,9 @@ lemma abc_case_x11_lt_y2 (K : ℝ) (hK : 0 < K)
     _ ≤ X * K * ((x : ℝ) * (↑Y : ℝ) * X) ^ (1 + ε) := hC_bound
     _ = K * X * ((x : ℝ) * (↑Y : ℝ) * X) ^ (1 + ε) := by ring
 
+/--
+@isnad1 id=le.7h5v.s8.efce9015791b from=translated src=- shape=0b1cf751 vocab=7e6b8d77
+-/
 lemma abc_gives_x11_bound (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε)
     (habc_ineq : ∀ a b c : ℕ, 0 < a → 0 < b → 0 < c →
@@ -4929,6 +6249,9 @@ lemma abc_gives_x11_bound (K : ℝ) (hK : 0 < K)
   · exact abc_case_x11_ge_y2 K hK ε hε habc_ineq x y X hX hy_ne habs_pos habs_le hge
   · exact abc_case_x11_lt_y2 K hK ε hε habc_ineq x y X hX hy_ne habs_pos habs_le hgt
 
+/--
+@isnad1 id=le.1h3v.s6.13756961ef3b from=translated src=- shape=ffbdbc91 vocab=6d9404a5
+-/
 lemma y_sq_le_x11_add_X (x : ℕ+) (y : ℤ) (X : ℝ)
     (habs_le : (|(↑(x : ℕ) : ℤ) ^ 11 - y ^ 2| : ℝ) ≤ X) :
     (y : ℝ) ^ 2 ≤ (↑↑x : ℝ) ^ (11 : ℕ) + X := by
@@ -4938,6 +6261,9 @@ lemma y_sq_le_x11_add_X (x : ℕ+) (y : ℤ) (X : ℝ)
   have h_split := (abs_sub_le_iff.mp habs_real)
   linarith [h_split.2]
 
+/--
+@isnad1 id=le.3h3v.s7.c9b5cca26e3f from=translated src=- shape=a8e5d339 vocab=9df31127
+-/
 lemma natAbs_y_sq_le_two_mul_x11 (x : ℕ+) (y : ℤ) (X : ℝ) (hX : 1 < X)
     (hx_lower : (x : ℝ) > X ^ ((2 : ℝ) / 11))
     (habs_le : (|(↑(x : ℕ) : ℤ) ^ 11 - y ^ 2| : ℝ) ≤ X) :
@@ -4951,6 +6277,9 @@ lemma natAbs_y_sq_le_two_mul_x11 (x : ℕ+) (y : ℤ) (X : ℝ) (hX : 1 < X)
   rw [hnatabs]
   linarith
 
+/--
+@isnad1 id=eq.0h1v.s6.c6aac9aca150 from=translated src=- shape=799dd914 vocab=20e1af9f
+-/
 lemma sqrt_two_mul_x11_eq (x : ℕ+) :
     Real.sqrt (2 * (↑↑x : ℝ) ^ (11 : ℕ)) = Real.sqrt 2 * (↑↑x : ℝ) ^ ((11 : ℝ) / 2) := by
   rw [Real.sqrt_mul (by positivity)]
@@ -4960,6 +6289,9 @@ lemma sqrt_two_mul_x11_eq (x : ℕ+) :
     ← Real.rpow_mul (by positivity)]
   norm_num
 
+/--
+@isnad1 id=le.2h2v.s5.475a9739820a from=translated src=- shape=71c3839e vocab=fca51d6a
+-/
 lemma natAbs_le_sqrt_of_sq_le (y : ℤ) (b : ℝ)
     (hb : 0 ≤ b) (h : ((Int.natAbs y : ℕ) : ℝ) ^ 2 ≤ b) :
     (Int.natAbs y : ℝ) ≤ Real.sqrt b := by
@@ -4968,6 +6300,9 @@ lemma natAbs_le_sqrt_of_sq_le (y : ℤ) (b : ℝ)
   (try norm_num) <;>
   (try simpa [pow_two] using h)
 
+/--
+@isnad1 id=le.4h3v.s7.ceff14e56f16 from=translated src=- shape=6fca1f4f vocab=5640dc62
+-/
 lemma Y_bound_from_E2 (x : ℕ+) (y : ℤ) (X : ℝ) (hX : 1 < X)
     (hx_lower : (x : ℝ) > X ^ ((2 : ℝ) / 11))
     (habs_pos : 1 ≤ |(↑(x : ℕ) : ℤ) ^ 11 - y ^ 2|)
@@ -4978,6 +6313,9 @@ lemma Y_bound_from_E2 (x : ℕ+) (y : ℤ) (X : ℝ) (hX : 1 < X)
   rw [sqrt_two_mul_x11_eq] at hle
   exact hle
 
+/--
+@isnad1 id=le.7h5v.s8.b45a018c9cd1 from=translated src=- shape=bccbcd0e vocab=8dcc7373
+-/
 lemma combine_bounds_to_x_bound (K : ℝ) (hK : 0 < K)
     (ε : ℝ) (hε : 0 < ε) (hε' : ε < 9 / 13)
     (x : ℕ+) (X : ℝ) (hX : 1 < X) (Y : ℝ) (hY : 0 ≤ Y)
@@ -4989,6 +6327,9 @@ lemma combine_bounds_to_x_bound (K : ℝ) (hK : 0 < K)
   have step2 := isolate_x_power K hK ε hε hε' x X hX step1
   exact raise_to_reciprocal_power K hK ε hε hε' x X hX step2
 
+/--
+@isnad1 id=lt.3h2v.s7.13133ddd1042 from=translated src=- shape=b87c53ba vocab=aa1e8c7b
+-/
 lemma cx_pos (K : ℝ) (hK : 0 < K) (ε : ℝ) (hε : 0 < ε) (hε' : ε < 9 / 13) :
     0 < (K * Real.sqrt 2 ^ (1 + ε)) ^ ((2 : ℝ) / (9 - 13 * ε)) := by
   have h₁ : 0 < K * Real.sqrt 2 ^ (1 + ε) := show 0 < K * Real.sqrt 2 ^ (1 + ε) from by positivity
@@ -4996,6 +6337,9 @@ lemma cx_pos (K : ℝ) (hK : 0 < K) (ε : ℝ) (hε : 0 < ε) (hε' : ε < 9 / 1
     apply Real.rpow_pos_of_pos h₁ _
   exact h₄
 
+/--
+@isnad1 id=ex.3h1v.s7.00b25c39760b from=translated src=- shape=77613999 vocab=9e23e514
+-/
 lemma E2_x_bound_from_abc (habc : ABC) (ε : ℝ) (hε : 0 < ε) (hε' : ε < 9 / 13) :
     ∃ Cx : ℝ, 0 < Cx ∧ ∃ X₁ : ℝ, 0 < X₁ ∧
       ∀ X : ℝ, X₁ < X →
@@ -5013,6 +6357,9 @@ lemma E2_x_bound_from_abc (habc : ABC) (ε : ℝ) (hε : 0 < ε) (hε' : ε < 9 
     (Int.natAbs p.2 : ℝ) (Nat.cast_nonneg _) h_x11 hY
 end E2XBoundHelpers
 
+/--
+@isnad1 id=ex.3h1v.s7.00b25c39760b from=translated src=- shape=77613999 vocab=9e23e514
+-/
 lemma E2_x_bound_from_abc (habc : ABC) (ε : ℝ) (hε : 0 < ε) (hε' : ε < 9 / 13) :
     ∃ Cx : ℝ, 0 < Cx ∧ ∃ X₁ : ℝ, 0 < X₁ ∧
       ∀ X : ℝ, X₁ < X →
@@ -5030,6 +6377,9 @@ private lemma cleared_ineq (η ε : ℝ) (hη : 0 < η)
     mul_nonneg hε1.le hη.le, mul_nonneg hε1.le (sub_nonneg.mpr hε2),
     mul_nonneg hε1.le (sub_nonneg.mpr hε3)]
 
+/--
+@isnad1 id=lt.4h2v.s7.887861a858f2 from=translated src=- shape=39022d99 vocab=8b7124b8
+-/
 lemma exponent_comparison_strict (η ε : ℝ) (hη : 0 < η)
     (hε1 : 0 < ε) (hε2 : ε ≤ η / 4) (hε3 : ε ≤ 1 / 10) :
     ((4 : ℝ) + 2 * ε) / (9 - 13 * ε) < 4 / 9 + η := by
@@ -5050,10 +6400,16 @@ MATHLIB COVERAGE:
 - Cast: `Nat.cast_le` for ℕ → ℝ monotonicity
 -/
 
+/--
+@isnad1 id=finite.1h1v.s4.b1a0ff62d5b5 from=translated src=- shape=a3ba53fa vocab=c83683aa
+-/
 lemma pnat_bounded_finite (B : ℝ) (_hB : 0 < B) :
     {x : ℕ+ | (x : ℝ) ≤ B}.Finite :=
   _root_.Tengoku.RamanujanTauMissesPrimes.pnat_bounded_finite B
 
+/--
+@isnad1 id=le.1h3v.s6.13756961ef3b from=translated src=- shape=ffbdbc91 vocab=6d9404a5
+-/
 lemma y_sq_le_real_of_E2_cond (x : ℕ+) (y : ℤ) (X : ℝ)
     (h2 : (|(↑↑x : ℤ) ^ 11 - y ^ 2| : ℝ) ≤ X) :
     (y : ℝ) ^ 2 ≤ (↑↑x : ℝ) ^ 11 + X := by
@@ -5069,6 +6425,9 @@ lemma y_sq_le_real_of_E2_cond (x : ℕ+) (y : ℤ) (X : ℝ)
     linarith
   exact h5
 
+/--
+@isnad1 id=le.2h2v.s5.d85d3e2ef2d3 from=translated src=- shape=a7fc2608 vocab=dc4293cf
+-/
 lemma pnat_le_ceil_of_le (x : ℕ+) (B : ℝ) (hB : 0 < B) (hx : (x : ℝ) ≤ B) :
     (x : ℕ) ≤ ⌈B⌉₊ := by
   have h_ceil : (B : ℝ) ≤ ⌈B⌉₊ := Nat.le_ceil B
@@ -5080,6 +6439,9 @@ lemma pnat_le_ceil_of_le (x : ℕ+) (B : ℝ) (hB : 0 < B) (hx : (x : ℝ) ≤ B
     norm_cast at h_x_le_ceil ⊢
   exact h_main
 
+/--
+@isnad1 id=le.3h4v.s7.72acc7b3e6e5 from=translated src=- shape=89705ded vocab=dec77b30
+-/
 lemma y_sq_le_ceil_pow_add (x : ℕ+) (y : ℤ) (X B : ℝ) (hB : 0 < B)
     (hx_le_B : (x : ℝ) ≤ B)
     (hy_sq : (y : ℝ) ^ 2 ≤ (↑↑x : ℝ) ^ 11 + X) :
@@ -5090,6 +6452,9 @@ lemma y_sq_le_ceil_pow_add (x : ℕ+) (y : ℤ) (X B : ℝ) (hB : 0 < B)
     apply pow_le_pow_left₀ (by positivity) hxR
   linarith
 
+/--
+@isnad1 id=le.3h2v.s7.74460c7f4cfb from=translated src=- shape=660c43fe vocab=75664b21
+-/
 lemma E2_set_subset_bounded_prod (X B : ℝ) (hX : 2 < X) (hB : 0 < B)
     (hxbound : ∀ p : ℕ+ × ℤ, p ∈ E2_set X → (p.1 : ℝ) ≤ B) :
     E2_set X ⊆ {x : ℕ+ | (x : ℝ) ≤ B} ×ˢ (Set.Icc (-⌈Real.sqrt (↑⌈B⌉₊ ^ 11 + X)⌉) ⌈Real.sqrt (↑⌈B⌉₊ ^ 11 + X)⌉) := by
@@ -5106,11 +6471,17 @@ lemma E2_set_subset_bounded_prod (X B : ℝ) (hX : 2 < X) (hB : 0 < B)
     have hM_nonneg : (0 : ℝ) ≤ (↑⌈B⌉₊ : ℝ) ^ 11 + X := by positivity
     exact int_mem_Icc_ceil_sqrt_of_sq_le y _ hM_nonneg hy_sq_bound
 
+/--
+@isnad1 id=finite.3h2v.s6.96d5c3852c0b from=translated src=- shape=01970191 vocab=93631da9
+-/
 lemma E2_set_finite (X B : ℝ) (hX : 2 < X) (hB : 0 < B)
     (hxbound : ∀ p : ℕ+ × ℤ, p ∈ E2_set X → (p.1 : ℝ) ≤ B) :
     (E2_set X).Finite := (Set.Finite.prod (pnat_bounded_finite B hB) (Set.finite_Icc _ _)).subset
     (E2_set_subset_bounded_prod X B hX hB hxbound)
 
+/--
+@isnad1 id=lt.2h2v.s6.1aaca7bf21c2 from=translated src=- shape=6f3a06ae vocab=86fa84d1
+-/
 lemma E2_fst_gt_of_mem_image (X : ℝ) (hfin : (E2_set X).Finite)
     (x : ℕ+) (hx : x ∈ Finset.image Prod.fst hfin.toFinset) :
     (x : ℝ) > X ^ ((2 : ℝ) / 11) := by
@@ -5121,12 +6492,18 @@ lemma E2_fst_gt_of_mem_image (X : ℝ) (hfin : (E2_set X).Finite)
   rw [← ha_eq]
   exact h
 
+/--
+@isnad1 id=finite.1h2v.s5.64c7710020b9 from=translated src=- shape=c18b0ed4 vocab=233efa32
+-/
 lemma E2_fiber_finite (X : ℝ) (hfin : (E2_set X).Finite) (x : ℕ+) :
     Set.Finite {y : ℤ | (x, y) ∈ E2_set X} := by
   have : {y : ℤ | (x, y) ∈ E2_set X} = (fun y => (x, y)) ⁻¹' (E2_set X) := rfl
   rw [this]
   exact hfin.preimage (fun a _ b _ h => by exact congr_arg Prod.snd h)
 
+/--
+@isnad1 id=eq.2h2v.s6.25886c830592 from=translated src=- shape=381ee8c2 vocab=8327b911
+-/
 lemma E2_filter_eq_image (X : ℝ) (hfin : (E2_set X).Finite) (x : ℕ+)
     (hfib : Set.Finite {y : ℤ | (x, y) ∈ E2_set X}) :
     Finset.filter (fun a => a.1 = x) hfin.toFinset =
@@ -5141,6 +6518,9 @@ lemma E2_filter_eq_image (X : ℝ) (hfin : (E2_set X).Finite) (x : ℕ+)
     have h2 : a₂ = y := by have := congr_arg Prod.snd heq; simpa using this.symm
     exact ⟨by rw [h1, h2]; exact hymem, h1⟩
 
+/--
+@isnad1 id=le.1h2v.s6.cc574be67a4a from=translated src=- shape=e4feeafe vocab=48370ca5
+-/
 lemma E2_filter_card_le_fiber_ncard (X : ℝ) (hfin : (E2_set X).Finite)
     (x : ℕ+) :
     (Finset.filter (fun a => a.1 = x) hfin.toFinset).card ≤
@@ -5150,6 +6530,9 @@ lemma E2_filter_card_le_fiber_ncard (X : ℝ) (hfin : (E2_set X).Finite)
   rw [Finset.card_image_of_injective _ (fun a b h => by exact Prod.mk.inj h |>.2)]
   rw [Set.ncard_eq_toFinset_card _ hfib]
 
+/--
+@isnad1 id=le.4h2v.s7.8ed58066a17a from=translated src=- shape=2a6c876c vocab=cd68bd46
+-/
 lemma E2_finset_fiber_card_le (X : ℝ) (hX : 2 < X)
     (hfin : (E2_set X).Finite)
     (hfiber : ∀ x : ℕ+, (x : ℝ) > X ^ ((2 : ℝ) / 11) →
@@ -5160,6 +6543,9 @@ lemma E2_finset_fiber_card_le (X : ℝ) (hX : 2 < X)
   have hncard := hfiber x hgt
   exact le_trans (E2_filter_card_le_fiber_ncard X hfin x) hncard
 
+/--
+@isnad1 id=eq.0h1v.s4.2ddd9d5f5506 from=translated src=- shape=6eb23023 vocab=717f9701
+-/
 lemma pnat_image_val_card_eq (s : Finset ℕ+) :
     (Finset.image (fun x : ℕ+ => (x : ℕ)) s).card = s.card := by
   apply Finset.card_image_of_injective
@@ -5168,6 +6554,9 @@ lemma pnat_image_val_card_eq (s : Finset ℕ+) :
   apply PNat.coe_injective
   exact h₁
 
+/--
+@isnad1 id=le.3h2v.s6.764c50371502 from=translated src=- shape=a879dcbc vocab=9f4f539b
+-/
 lemma pnat_nat_image_subset_Icc (X B : ℝ) (hB : 0 < B)
     (hfin : (E2_set X).Finite)
     (hxbound : ∀ p : ℕ+ × ℤ, p ∈ E2_set X → (p.1 : ℝ) ≤ B) :
@@ -5183,12 +6572,18 @@ lemma pnat_nat_image_subset_Icc (X B : ℝ) (hB : 0 < B)
   · exact PNat.pos p.1
   · exact nat_le_floor_of_cast_le B (p.1 : ℕ) (hxbound p hp_mem)
 
+/--
+@isnad1 id=le.0h1v.s5.15556e32fc5a from=translated src=- shape=841f854c vocab=04530440
+-/
 lemma Icc_card_le_floor_add_one (B : ℝ) :
     (Finset.Icc 1 ⌊B⌋₊).card ≤ ⌊B⌋₊ + 1 := by
   have h₁ : (Finset.Icc 1 ⌊B⌋₊).card = (⌊B⌋₊ : ℕ) := by
     simp
   linarith
 
+/--
+@isnad1 id=le.3h2v.s6.2c3d126fe2da from=translated src=- shape=db954034 vocab=2be612ef
+-/
 theorem E2_fst_image_card_le (X B : ℝ) (hB : 0 < B)
     (hfin : (E2_set X).Finite)
     (hxbound : ∀ p : ℕ+ × ℤ, p ∈ E2_set X → (p.1 : ℝ) ≤ B) :
@@ -5199,6 +6594,9 @@ theorem E2_fst_image_card_le (X B : ℝ) (hB : 0 < B)
   have h4 := Icc_card_le_floor_add_one B
   omega
 
+/--
+@isnad1 id=le.5h2v.s7.f6b417251d34 from=translated src=- shape=53ab7c26 vocab=4255e0b8
+-/
 lemma E2_ncard_le_nat (X B : ℝ) (hX : 2 < X) (hB : 0 < B)
     (hfin : (E2_set X).Finite)
     (hfiber : ∀ x : ℕ+, (x : ℝ) > X ^ ((2 : ℝ) / 11) →
@@ -5216,6 +6614,9 @@ lemma E2_ncard_le_nat (X B : ℝ) (hX : 2 < X) (hB : 0 < B)
         apply Nat.mul_le_mul_left
         exact E2_fst_image_card_le X B hB hfin hxbound
 
+/--
+@isnad1 id=le.4h2v.s7.278c0002ff99 from=translated src=- shape=7090ef5e vocab=805cc1fd
+-/
 lemma E2_ncard_le_via_fibers (X B : ℝ) (hX : 2 < X) (hB : 0 < B)
     (hfiber : ∀ x : ℕ+, (x : ℝ) > X ^ ((2 : ℝ) / 11) →
       Set.ncard {y : ℤ | (x, y) ∈ E2_set X} ≤ 4)
@@ -5231,6 +6632,9 @@ lemma E2_ncard_le_via_fibers (X B : ℝ) (hX : 2 < X) (hB : 0 < B)
         exact Nat.floor_le (le_of_lt hB)
 end E2NcardHelpers
 
+/--
+@isnad1 id=le.4h2v.s7.278c0002ff99 from=translated src=- shape=7090ef5e vocab=805cc1fd
+-/
 lemma E2_ncard_le_via_fibers (X B : ℝ) (hX : 2 < X) (hB : 0 < B)
     (hfiber : ∀ x : ℕ+, (x : ℝ) > X ^ ((2 : ℝ) / 11) →
       Set.ncard {y : ℤ | (x, y) ∈ E2_set X} ≤ 4)
@@ -5241,6 +6645,9 @@ lemma E2_ncard_le_via_fibers (X B : ℝ) (hX : 2 < X) (hB : 0 < B)
 end E2Helpers
 
 open E2Helpers in
+/--
+@isnad1 id=ex.2h1v.s6.f4279259e063 from=translated src=- shape=03ed7cfa vocab=8383c8c9
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_bound_E2_core (habc : ABC) (η : ℝ) (hη : 0 < η) :
     ∃ C : ℝ, 0 < C ∧ ∃ X₀ : ℝ, 0 < X₀ ∧
       ∀ X : ℝ, X₀ < X →
@@ -5280,6 +6687,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_bound_E2_core (habc : ABC) (η
     _ = 4 * ((Cx + 1) * X ^ exp) := by ring
     _ ≤ 4 * X ^ ((4 : ℝ) / 9 + η) := by gcongr
     _ ≤ 8 * X ^ ((4 : ℝ) / 9 + η) := by nlinarith [Real.rpow_nonneg (le_of_lt hX_pos) ((4 : ℝ) / 9 + η)]
+/--
+@isnad1 id=ex.2h1v.s6.f4279259e063 from=translated src=- shape=03ed7cfa vocab=8383c8c9
+-/
 theorem _root_.Tengoku.RamanujanTauMissesPrimes.abc_bound_E2 (habc : ABC) (η : ℝ) (hη : 0 < η) :
     ∃ C : ℝ, 0 < C ∧ ∃ X₀ : ℝ, 0 < X₀ ∧
       ∀ X : ℝ, X₀ < X →
@@ -5288,6 +6698,9 @@ theorem _root_.Tengoku.RamanujanTauMissesPrimes.abc_bound_E2 (habc : ABC) (η : 
 
 namespace E4Helpers
 
+/--
+@isnad1 id=ex.0h0v.s5.c0c17c82e17c from=translated src=- shape=1046ed9a vocab=49644e22
+-/
 lemma u_fiber_bound :
     ∃ X₀ : ℝ, 0 < X₀ ∧
       ∀ X : ℝ, X₀ < X →
@@ -5301,19 +6714,31 @@ lemma u_fiber_bound :
   · rw [E4_fiber_empty_of_le X x hx, Set.ncard_empty]
     norm_num
 
+/--
+@isnad1 id=le.1h2v.s5.3522108711a2 from=translated src=- shape=f2907642 vocab=49644e22
+-/
 lemma E4_fiber_ncard_le (X : ℝ) (hX : 4 < X) (x : ℕ+) :
     {u : ℤ | (x, u) ∈ E4_set X}.ncard ≤ 4 := by
   by_cases hx : (x : ℝ) > X ^ ((1 : ℝ) / 11)
   · exact E4_fiber_ncard_le_four X hX x hx
   · simp [E4_fiber_empty_of_le X x hx]
 
+/--
+@isnad1 id=finite.1h1v.s4.b1a0ff62d5b5 from=translated src=- shape=a3ba53fa vocab=c83683aa
+-/
 lemma pnat_bounded_finite (B : ℝ) (_hB : 0 < B) :
     {x : ℕ+ | (x : ℝ) ≤ B}.Finite :=
   _root_.Tengoku.RamanujanTauMissesPrimes.pnat_bounded_finite B
 
+/--
+@isnad1 id=le.1h2v.s5.a7053c4cc869 from=translated src=- shape=44c36ada vocab=819d3159
+-/
 lemma pow22_le_of_le (x : ℕ+) (B : ℝ) (hxB : (x : ℝ) ≤ B) :
     (↑↑x : ℝ) ^ 22 ≤ B ^ 22 := pow_le_pow_left₀ (pnat_cast_nonneg x) hxB 22
 
+/--
+@isnad1 id=le.2h3v.s7.6ed8f66b3cf2 from=translated src=- shape=19b9b33f vocab=659197ba
+-/
 lemma u_sq_le_of_E4 (X B : ℝ) (hx : ∀ p ∈ E4_set X, (p.1 : ℝ) ≤ B)
     (p : ℕ+ × ℤ) (hp : p ∈ E4_set X) :
     (p.2 : ℝ) ^ 2 ≤ 5 * B ^ 22 + 4 * X := by
@@ -5325,17 +6750,26 @@ lemma u_sq_le_of_E4 (X B : ℝ) (hx : ∀ p ∈ E4_set X, (p.1 : ℝ) ≤ B)
       ≤ 5 * (↑↑p.1 : ℝ) ^ 22 + 4 * X := hinterval
     _ ≤ 5 * B ^ 22 + 4 * X := by linarith [hpow]
 
+/--
+@isnad1 id=le.2h3v.s6.654f575552a5 from=translated src=- shape=7599e77c vocab=b277b8fb
+-/
 lemma bound_nonneg_of_E4 (X B : ℝ) (hx : ∀ p ∈ E4_set X, (p.1 : ℝ) ≤ B)
     (p : ℕ+ × ℤ) (hp : p ∈ E4_set X) :
     0 ≤ 5 * B ^ 22 + 4 * X :=
   le_trans (sq_nonneg (p.2 : ℝ)) (u_sq_le_of_E4 X B hx p hp)
 
+/--
+@isnad1 id=mem.2h3v.s7.1bd4da4f6be5 from=translated src=- shape=a8b2dee1 vocab=cb30a461
+-/
 lemma u_in_Icc_of_E4 (X B : ℝ) (hx : ∀ p ∈ E4_set X, (p.1 : ℝ) ≤ B)
     (p : ℕ+ × ℤ) (hp : p ∈ E4_set X) :
     p.2 ∈ Set.Icc (-⌈Real.sqrt (5 * B ^ 22 + 4 * X)⌉)
                     ⌈Real.sqrt (5 * B ^ 22 + 4 * X)⌉ := int_mem_Icc_ceil_sqrt_of_sq_le p.2 (5 * B ^ 22 + 4 * X)
     (bound_nonneg_of_E4 X B hx p hp) (u_sq_le_of_E4 X B hx p hp)
 
+/--
+@isnad1 id=le.1h2v.s7.84ebebdd3e2a from=translated src=- shape=10cdb1f3 vocab=ca065492
+-/
 lemma E4_set_subset_prod (X B : ℝ) (hx : ∀ p ∈ E4_set X, (p.1 : ℝ) ≤ B) :
     E4_set X ⊆
       {x : ℕ+ | (x : ℝ) ≤ B} ×ˢ
@@ -5345,12 +6779,18 @@ lemma E4_set_subset_prod (X B : ℝ) (hx : ∀ p ∈ E4_set X, (p.1 : ℝ) ≤ B
   simp only [Set.mem_prod, Set.mem_ofPred_eq]
   exact ⟨hx p hp, u_in_Icc_of_E4 X B hx p hp⟩
 
+/--
+@isnad1 id=finite.3h2v.s6.ff94870a4ed5 from=translated src=- shape=1522183c vocab=380cdd68
+-/
 lemma E4_set_finite_of_bounded (X B : ℝ) (hB : 0 < B) (_hX : 4 < X)
     (hx : ∀ p ∈ E4_set X, (p.1 : ℝ) ≤ B) :
     (E4_set X).Finite := by
   apply Set.Finite.subset _ (E4_set_subset_prod X B hx)
   exact Set.Finite.prod (pnat_bounded_finite B hB) (Set.finite_Icc _ _)
 
+/--
+@isnad1 id=finite.1h2v.s5.4812935bf624 from=translated src=- shape=c18b0ed4 vocab=e7f467d1
+-/
 lemma E4_fiber_finite (X : ℝ) (hfin : (E4_set X).Finite) (x : ℕ+) :
     {u : ℤ | (x, u) ∈ E4_set X}.Finite := by
   have : {u : ℤ | (x, u) ∈ E4_set X} = Prod.mk x ⁻¹' (E4_set X) := by
@@ -5359,6 +6799,9 @@ lemma E4_fiber_finite (X : ℝ) (hfin : (E4_set X).Finite) (x : ℕ+) :
   apply Set.Finite.preimage _ hfin
   exact (Prod.mk_right_injective x).injOn
 
+/--
+@isnad1 id=le.1h2v.s6.90288fe79d0f from=translated src=- shape=95fcb364 vocab=74d88b5c
+-/
 lemma E4_filter_image_subset_fiber (X : ℝ) (hfin : (E4_set X).Finite) (x : ℕ+) :
     Finset.image Prod.snd (Finset.filter (fun a => a.1 = x) hfin.toFinset) ⊆
     (E4_fiber_finite X hfin x).toFinset := by
@@ -5371,12 +6814,18 @@ lemma E4_filter_image_subset_fiber (X : ℝ) (hfin : (E4_set X).Finite) (x : ℕ
   show (x, a.2) ∈ E4_set X
   rwa [← ha_fst, Prod.mk.eta]
 
+/--
+@isnad1 id=injon.1h2v.s5.6a65f49e8820 from=translated src=- shape=56db2280 vocab=522e6da6
+-/
 lemma E4_snd_injOn_filter (X : ℝ) (hfin : (E4_set X).Finite) (x : ℕ+) :
     Set.InjOn Prod.snd (↑(Finset.filter (fun a => a.1 = x) hfin.toFinset) : Set (ℕ+ × ℤ)) := by
   intro a ha b hb heq
   simp only [Finset.coe_filter, Set.mem_ofPred_eq] at ha hb
   exact Prod.ext (ha.2.trans hb.2.symm) heq
 
+/--
+@isnad1 id=le.1h2v.s6.dfda48f4a4eb from=translated src=- shape=e4feeafe vocab=264d29bb
+-/
 lemma E4_filter_card_le_fiber_ncard (X : ℝ) (hfin : (E4_set X).Finite)
     (x : ℕ+) :
     ({a ∈ hfin.toFinset | a.1 = x}).card ≤ {u : ℤ | (x, u) ∈ E4_set X}.ncard := by
@@ -5384,6 +6833,9 @@ lemma E4_filter_card_le_fiber_ncard (X : ℝ) (hfin : (E4_set X).Finite)
   have h1 := Finset.card_image_of_injOn (E4_snd_injOn_filter X hfin x)
   linarith [Finset.card_le_card (E4_filter_image_subset_fiber X hfin x)]
 
+/--
+@isnad1 id=le.2h2v.s6.0e657ec8747a from=translated src=- shape=77259d27 vocab=6f06250c
+-/
 lemma E4_finset_fiber_card_le (X : ℝ) (hX : 4 < X) (hfin : (E4_set X).Finite)
     (x : ℕ+) :
     ({a ∈ hfin.toFinset | a.1 = x}).card ≤ 4 := by
@@ -5391,6 +6843,9 @@ lemma E4_finset_fiber_card_le (X : ℝ) (hX : 4 < X) (hfin : (E4_set X).Finite)
       ≤ {u : ℤ | (x, u) ∈ E4_set X}.ncard := E4_filter_card_le_fiber_ncard X hfin x
     _ ≤ 4 := E4_fiber_ncard_le X hX x
 
+/--
+@isnad1 id=eq.0h1v.s4.2ddd9d5f5506 from=translated src=- shape=6eb23023 vocab=717f9701
+-/
 lemma pnat_image_val_card_eq (s : Finset ℕ+) :
     (Finset.image (fun x : ℕ+ => (x : ℕ)) s).card = s.card := by
   apply Finset.card_image_of_injective
@@ -5399,6 +6854,9 @@ lemma pnat_image_val_card_eq (s : Finset ℕ+) :
   apply PNat.coe_injective
   exact h₁
 
+/--
+@isnad1 id=le.1h2v.s5.6bf02b7a686b from=translated src=- shape=fb61eb6e vocab=593e594a
+-/
 lemma pnat_finset_card_le_floor_add_one (s : Finset ℕ+) (B : ℝ)
     (hs : ∀ x ∈ s, (x : ℝ) ≤ B) :
     s.card ≤ ⌊B⌋₊ + 1 := by
@@ -5411,6 +6869,9 @@ lemma pnat_finset_card_le_floor_add_one (s : Finset ℕ+) (B : ℝ)
     rw [Finset.mem_range]
     exact Nat.lt_add_one_iff.mpr (nat_le_floor_of_cast_le B x (hs x hx_mem))
 
+/--
+@isnad1 id=le.3h2v.s6.a4b71c0e201d from=translated src=- shape=db954034 vocab=7d76ac99
+-/
 lemma E4_fst_image_card_le (X B : ℝ) (hB : 0 < B) (hfin : (E4_set X).Finite)
     (hx : ∀ p ∈ E4_set X, (p.1 : ℝ) ≤ B) :
     (Finset.image Prod.fst hfin.toFinset).card ≤ ⌊B⌋₊ + 1 := by
@@ -5421,6 +6882,9 @@ lemma E4_fst_image_card_le (X B : ℝ) (hB : 0 < B) (hfin : (E4_set X).Finite)
   obtain ⟨p, hp_mem, rfl⟩ := hx_mem
   exact hx p (hfin.mem_toFinset.mp hp_mem)
 
+/--
+@isnad1 id=le.4h2v.s6.3d86c80c9df5 from=translated src=- shape=29512ac0 vocab=3e53b201
+-/
 lemma E4_ncard_le_mul_floor (X B : ℝ) (hB : 0 < B) (hX : 4 < X)
     (hfin : (E4_set X).Finite)
     (hx : ∀ p ∈ E4_set X, (p.1 : ℝ) ≤ B) :
@@ -5444,6 +6908,9 @@ lemma E4_ncard_le_mul_floor (X B : ℝ) (hB : 0 < B) (hX : 4 < X)
         exact E4_fst_image_card_le X B hB hfin hx
     _ = 4 * (⌊B⌋₊ + 1) := by ring
 
+/--
+@isnad1 id=le.2h2v.s6.3df8c113fd93 from=translated src=- shape=85d753be vocab=2b58b405
+-/
 lemma E4_real_bound_from_nat (X B : ℝ) (hB : 0 < B)
     (h : E4 X ≤ 4 * (⌊B⌋₊ + 1)) :
     (E4 X : ℝ) ≤ 4 * (B + 1) := by
@@ -5452,6 +6919,9 @@ lemma E4_real_bound_from_nat (X B : ℝ) (hB : 0 < B)
   have h₂ : (⌊B⌋₊ : ℝ) ≤ B := Nat.floor_le (by linarith)
   linarith
 
+/--
+@isnad1 id=ex.2h2v.s7.b931cb4bbb16 from=translated src=- shape=a8da02f8 vocab=5c9d27ef
+-/
 lemma absorb_additive_const (η K₄ : ℝ) (hη : 0 < η) (hK₄ : 0 < K₄) :
     ∃ X₀ : ℝ, 0 < X₀ ∧ ∀ X : ℝ, X₀ < X →
       4 * (K₄ * X ^ ((1 : ℝ) / 5 + η) + 1) ≤ 4 * (K₄ + 1) * X ^ ((1 : ℝ) / 5 + η) := by
@@ -5468,6 +6938,9 @@ lemma absorb_additive_const (η K₄ : ℝ) (hη : 0 < η) (hK₄ : 0 < K₄) :
     nlinarith
   exact h₆
 
+/--
+@isnad1 id=ex.6h4v.s8.f2e8b4f572a3 from=translated src=- shape=91e00930 vocab=0862a51e
+-/
 lemma E4_bound_from_x_and_fiber (η : ℝ) (hη : 0 < η)
     (K₄ : ℝ) (hK₄ : 0 < K₄)
     (X₀_x : ℝ) (hX₀_x : 0 < X₀_x)
@@ -5499,6 +6972,9 @@ lemma E4_bound_from_x_and_fiber (η : ℝ) (hη : 0 < η)
 end E4Helpers
 
 open E4Helpers in
+/--
+@isnad1 id=ex.2h1v.s6.b670303c1639 from=translated src=- shape=03ed7cfa vocab=ffabc2da
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_bound_E4_core (habc : ABC) (η : ℝ) (hη : 0 < η) :
     ∃ C : ℝ, 0 < C ∧ ∃ X₀ : ℝ, 0 < X₀ ∧
       ∀ X : ℝ, X₀ < X →
@@ -5506,12 +6982,18 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.abc_bound_E4_core (habc : ABC) (η
   obtain ⟨K₄, hK₄, X₀_x, hX₀_x, hx⟩ := x_bound_in_E4 habc η hη
   obtain ⟨X₀_u, hX₀_u, hu⟩ := E4Helpers.u_fiber_bound
   exact E4Helpers.E4_bound_from_x_and_fiber η hη K₄ hK₄ X₀_x hX₀_x hx X₀_u hX₀_u hu
+/--
+@isnad1 id=ex.2h1v.s6.b670303c1639 from=translated src=- shape=03ed7cfa vocab=ffabc2da
+-/
 theorem _root_.Tengoku.RamanujanTauMissesPrimes.abc_bound_E4 (habc : ABC) (η : ℝ) (hη : 0 < η) :
     ∃ C : ℝ, 0 < C ∧ ∃ X₀ : ℝ, 0 < X₀ ∧
       ∀ X : ℝ, X₀ < X →
         (E4 X : ℝ) ≤ C * X ^ ((1 : ℝ) / 5 + η) :=
   abc_bound_E4_core habc η hη
 
+/--
+@isnad1 id=ex.2h3v.s6.2d951b67bf93 from=translated src=- shape=f740e24e vocab=a9748312
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.absorb_const_rpow {C a b : ℝ} (hC : 0 < C) (hab : a < b) :
     ∃ X₀ : ℝ, 0 < X₀ ∧ ∀ X : ℝ, X₀ < X → C * X ^ a ≤ X ^ b := by
   have hba : 0 < b - a := by linarith
@@ -5536,6 +7018,9 @@ private lemma log_le_rpow_one_eleventh :
     rw [show X ^ ((1 : ℝ) / 22) / ((1 : ℝ) / 22) = 22 * X ^ ((1 : ℝ) / 22) by ring] at h1
     exact le_trans h1 (habs X hX)⟩
 
+/--
+@isnad1 id=ex.0h0v.s6.a5f85c039219 from=translated src=- shape=8af01865 vocab=a4334a53
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.half_log_le_13_22 :
     ∃ X₀ : ℝ, 0 < X₀ ∧ ∀ X : ℝ, X₀ < X →
       X ^ ((1 : ℝ) / 2) * Real.log X ≤ X ^ ((13 : ℝ) / 22) := by
@@ -5550,6 +7035,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.half_log_le_13_22 :
     _ = X ^ ((13 : ℝ) / 22) := by
         rw [← Real.rpow_add hXgt0, show (1 : ℝ) / 2 + 1 / 11 = 13 / 22 from by norm_num]
 
+/--
+@isnad1 id=le.7h8v.s7.2a4eab257096 from=translated src=- shape=6980a8b6 vocab=62f9b668
+-/
 lemma _root_.Tengoku.RamanujanTauMissesPrimes.combine_five_bounds {S t₁ t₂ t₃ t₄ t₅ B C₁ : ℝ}
     (hS : S ≤ C₁ * (t₁ + t₂ + t₃ + t₄ + t₅))
     (h1 : t₁ ≤ B) (h2 : t₂ ≤ B) (h3 : t₃ ≤ B) (h4 : t₄ ≤ B) (h5 : t₅ ≤ B)
@@ -5562,6 +7050,9 @@ lemma _root_.Tengoku.RamanujanTauMissesPrimes.combine_five_bounds {S t₁ t₂ t
     _ ≤ C₁ * (5 * B) := by gcongr
     _ = 5 * C₁ * B := by ring
 
+/--
+@isnad1 id=ex.2h1v.s6.833b4e3de1b2 from=translated src=- shape=2d81f8ab vocab=d3533f16
+-/
 theorem _root_.Tengoku.RamanujanTauMissesPrimes.main_theorem (habc : ABC) (h54 : Proposition5_4 R) :
     ∃ C : ℝ, 0 < C ∧ ∃ X₀ : ℝ, 0 < X₀ ∧
       ∀ X : ℝ, X₀ < X →
