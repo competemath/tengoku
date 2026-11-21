@@ -9,10 +9,11 @@ since, and the job's 350 minutes ran out in the export on every night from 16 No
 
   shard 0   the seeded root `Tengoku` (all of Lean core and the seed) and the compiled libraries of the tier files (`Tengoku.EquationalTheories`), and the audit of the records of every library of
             `data/trusted` (those whose libraries have no modules in the tree are counted, by library, as before);
-  shard 1.. the libraries that arrived as modules (`data/intake`), balanced by the size of their sources; a shard exports the libraries it was given, and the part of the seed they import.
+  shard 1.. the libraries that arrived as modules (`data/intake`), balanced by the size of their sources; a shard exports the constants declared in the modules of the libraries it was given, and what they
+            need (`lean4export --own=<module prefix>`, `scripts/ci/lean4export-own.patch`): a library shard that exported the whole seed it imports as well did not fit in the runner's memory.
 
-`lean4export` of a set of roots writes every constant of the environment they make, so the union of the shards holds every constant `Tengoku.All` has (`plan` checks that the roots of the shards are exactly the
-imports of `Tengoku/All.lean`, each once). Each shard is checked by nanoda on its own export and by `axiom_scan.py` (every declaration of it for sorryAx and axioms outside the prelude; the records of its own
+Shard 0's `lean4export` of its roots writes every constant of the environment they make (Lean core, the seed, the tier libraries); a library shard writes its own libraries' constants. So the union of the shards holds
+every constant `Tengoku.All` has (`plan` checks that the roots of the shards are exactly the imports of `Tengoku/All.lean`, each once). Each shard is checked by nanoda on its own export and by `axiom_scan.py` (every declaration of it for sorryAx and axioms outside the prelude; the records of its own
 libraries for the standard three). The libraries of the shards are disjoint, so their record audits add up. `merge` joins the shards' reports into the one report a release reads
 (`independent-check.json`: `commit`, `axiom_scan.passed`, ...), and refuses to write it unless every shard is there once, for this commit, by the pinned tools, and passed.
 """
