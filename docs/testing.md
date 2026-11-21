@@ -198,7 +198,7 @@ minutes ran out in the export every night, so no release could be cut (`release.
 
 Shard 0 exports every constant of the environment its roots make (all of Lean core and the seed). A library shard imports the whole seed too, and exporting all of it in every shard outgrew the runner's memory (a shard of the first trial:
 "the hosted runner lost communication with the server", after an hour of export; the seed alone is 110 million lines, 7 minutes, and fits): a library shard exports **the constants declared in the modules of its own libraries and what they need**.
-That is `lean4export --own=<module prefix>`, ten lines added to lean4export's main by `scripts/ci/lean4export-own.patch` (applied to the pinned commit; the report carries its sha256 and the joiner refuses a library shard that does not name it).
+That is `lean4export --own=<module prefix>`, a dozen lines added to lean4export's main by `scripts/ci/lean4export-own.patch` (applied to the pinned commit; the report carries its sha256 and the joiner refuses a library shard that does not name it).
 The exporter is not trusted (nanoda re-checks whatever it writes); what the patch could get wrong is coverage, which the plan and the report vouch for: the roots of the shards are exactly the imports of `All.lean`, and every trusted record and manifest theorem of a library is looked up by name in the export of its shard.
 The seed part of a shard's export is therefore only what its libraries use; the report's `declarations_checked` and `export` counts are sums over shards, not counts of distinct constants.
 
