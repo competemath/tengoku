@@ -28,7 +28,9 @@ def minkowskiMetric : Matrix4 :=
       0, 0, 1, 0;
       0, 0, 0, 1]
 
-/-- Determinant of the canonical Lorentz metric.-/
+/-- Determinant of the canonical Lorentz metric.
+@isnad1 id=eq.0h0v.s5.0196fd59a352 from=translated src=- shape=e5ac977b vocab=c80f4730
+-/
 theorem minkowskiMetric_det : Matrix.det minkowskiMetric = -1 := by
   rw [show minkowskiMetric = Matrix.diagonal minkowskiSign by
     ext i j
@@ -39,7 +41,9 @@ theorem minkowskiMetric_det : Matrix.det minkowskiMetric = -1 := by
 
 /-- **Dual-coframe metric identity.** If the columns of `E` are
 pseudo-orthonormal for the coordinate metric `G`, then the true dual coframe
-`E⁻¹` reconstructs `G` by congruence from the Minkowski metric.-/
+`E⁻¹` reconstructs `G` by congruence from the Minkowski metric.
+@isnad1 id=eq.1h2v.s8.4f6e101a330a from=translated src=- shape=ce9c451d vocab=9c00182b
+-/
 theorem inverseFrame_metric_of_frame_metric
     (E G : Matrix4) (hframe : Eᵀ * G * E = minkowskiMetric) :
     E⁻¹ᵀ * minkowskiMetric * E⁻¹ = G := by
@@ -77,7 +81,9 @@ def transportMixed (K X L : Matrix4) : Matrix4 :=
 
 set_option maxHeartbeats 800000 in
 /-- The trace formula agrees with the component Maxwell stress on the
-canonical two-form.-/
+canonical two-form.
+@isnad1 id=eq.0h2v.s3.a0c4d9eb3a47 from=translated src=- shape=2eb6dabf vocab=d48c25a6
+-/
 theorem matrixMaxwellStress_canonical (E B : ℝ) :
     matrixMaxwellStress minkowskiMetric (canonicalMaxwellTwoForm E B) =
       canonicalMaxwellStress E B := by
@@ -127,7 +133,9 @@ outside the two canonical principal-plane area forms. Its remaining electric
 and magnetic amplitudes lie on the circle `E²+B²=2q`.
 
 This is the converse algebraic Rainich statement missing from mere forward
-duality invariance.-/
+duality invariance.
+@isnad1 id=iff.1h2v.s7.c1d2437e62d5 from=translated src=- shape=30e78fa0 vocab=d34a8119
+-/
 theorem matrixMaxwellStress_eq_canonicalResidual_iff_amplitudeCircle
     (F : Matrix4) (q : ℝ) (hF : Fᵀ = -F) :
     matrixMaxwellStress minkowskiMetric F = canonicalMaxwellResidual q ↔
@@ -174,7 +182,9 @@ theorem matrixMaxwellStress_eq_canonicalResidual_iff_amplitudeCircle
     rfl
 
 /-- Equivalently, the complete canonical stress fibre is one unit duality
-orbit of the purely electric positive-`q` seed.-/
+orbit of the purely electric positive-`q` seed.
+@isnad1 id=ex.3h2v.s8.de8413f79f74 from=translated src=- shape=7d809dbc vocab=bf162b0e
+-/
 theorem exists_dualityParameter_of_matrixMaxwellStress_eq_canonicalResidual
     (F : Matrix4) (q : ℝ) (hq : 0 < q) (hF : Fᵀ = -F)
     (hstress : matrixMaxwellStress minkowskiMetric F =
@@ -216,7 +226,9 @@ noncomputable def canonicalStressFiberSine (q : ℝ) (F : Matrix4) : ℝ :=
 /-- **Constructive non-null Maxwell duality-orbit theorem.** The stress
 itself recovers smooth algebraic duality coordinates: the `01` and `23`
 components, normalized by the positive canonical amplitude, lie on the unit
-circle and reconstruct the entire two-form.-/
+circle and reconstruct the entire two-form.
+@isnad1 id=and.3h2v.s8.b4d502db7776 from=translated src=- shape=dad04dc8 vocab=6c1688c4
+-/
 theorem canonicalStressFiber_coordinates
     (F : Matrix4) (q : ℝ) (hq : 0 < q) (hF : Fᵀ = -F)
     (hstress : matrixMaxwellStress minkowskiMetric F =
@@ -257,7 +269,9 @@ noncomputable def canonicalStressFiberDualityParameter
   s := canonicalStressFiberSine q F
   unit := hunit
 
-/-- Congruence transport preserves antisymmetry of a two-form.-/
+/-- Congruence transport preserves antisymmetry of a two-form.
+@isnad1 id=eq.1h2v.s6.696fb94c3759 from=translated src=- shape=3af30cc7 vocab=8a6530da
+-/
 theorem transportTwoForm_transpose
     (L F : Matrix4) (hF : Fᵀ = -F) :
     (transportTwoForm L F)ᵀ = -transportTwoForm L F := by
@@ -266,7 +280,9 @@ theorem transportTwoForm_transpose
     hF]
   simp [Matrix.mul_assoc]
 
-/-- Lorentz identities transport the quadratic stress core by similarity.-/
+/-- Lorentz identities transport the quadratic stress core by similarity.
+@isnad1 id=eq.2h4v.s9.fd7b509c8573 from=translated src=- shape=1139e44f vocab=acda6d79
+-/
 theorem lorentzTransport_core
     (G L K F : Matrix4)
     (hGLt : G * Lᵀ = K * G)
@@ -280,7 +296,9 @@ theorem lorentzTransport_core
     _ = (K * G) * F * G * F * L := by rw [hGLt, hLGLt]
     _ = K * (G * F * G * F) * L := by noncomm_ring
 
-/-- Similarity by mutually inverse frame matrices preserves the core trace.-/
+/-- Similarity by mutually inverse frame matrices preserves the core trace.
+@isnad1 id=eq.3h4v.s9.72c4e5fd8913 from=translated src=- shape=d2871bd8 vocab=e8503724
+-/
 theorem lorentzTransport_core_trace
     (G L K F : Matrix4)
     (hLK : L * K = 1)
@@ -300,7 +318,9 @@ theorem lorentzTransport_core_trace
       exact (Matrix.mul_assoc L K (G * F * G * F)).symm
     _ = Matrix.trace (G * F * G * F) := by rw [hLK, one_mul]
 
-/-- **Lorentz covariance of Maxwell stress.**-/
+/-- **Lorentz covariance of Maxwell stress.**
+@isnad1 id=eq.4h4v.s8.e46c67f6fc87 from=translated src=- shape=dd1618fc vocab=1ef17d66
+-/
 theorem matrixMaxwellStress_lorentzTransport
     (G L K F : Matrix4)
     (hKL : K * L = 1) (hLK : L * K = 1)
@@ -324,7 +344,9 @@ theorem matrixMaxwellStress_lorentzTransport
 
 /-- **General basis covariance of Maxwell stress.** Unlike the Lorentz-frame
 specialization above, this theorem transforms the contravariant metric and
-covariant two-form together under an arbitrary invertible basis change.-/
+covariant two-form together under an arbitrary invertible basis change.
+@isnad1 id=eq.2h4v.s8.6ee4b89d10c6 from=translated src=- shape=4c38fde5 vocab=1ef17d66
+-/
 theorem matrixMaxwellStress_changeBasis
     (G L K F : Matrix4)
     (hKL : K * L = 1) (hLK : L * K = 1) :
@@ -366,7 +388,9 @@ theorem matrixMaxwellStress_changeBasis
 /-- **Arbitrary adapted-frame Maxwell duality-orbit theorem.** If an
 invertible coframe sends the inverse metric and physical Maxwell stress to
 their canonical Lorentz forms, then the pulled physical two-form is exactly
-a unit duality rotation of the positive curvature seed.-/
+a unit duality rotation of the positive curvature seed.
+@isnad1 id=ex.6h5v.s9.ed9134783970 from=translated src=- shape=fe1aba7d vocab=cd6f7cc3
+-/
 theorem exists_dualityParameter_of_adaptedMaxwellStress
     (GInv L K F : Matrix4) (q : ℝ) (hq : 0 < q)
     (hKL : K * L = 1) (hLK : L * K = 1)
@@ -390,7 +414,9 @@ theorem exists_dualityParameter_of_adaptedMaxwellStress
 
 /-- Constructive version of the arbitrary adapted-frame orbit theorem. The
 normalized `01/23` components of the pulled physical form are the smooth
-duality coordinates used by the differential splice.-/
+duality coordinates used by the differential splice.
+@isnad1 id=and.6h5v.s9.cd83a318d3ba from=translated src=- shape=a0843329 vocab=3903c2b9
+-/
 theorem adaptedMaxwellStressFiber_coordinates
     (GInv L K F : Matrix4) (q : ℝ) (hq : 0 < q)
     (hKL : K * L = 1) (hLK : L * K = 1)
@@ -415,7 +441,9 @@ theorem adaptedMaxwellStressFiber_coordinates
   exact canonicalStressFiber_coordinates
     (transportTwoForm K F) q hq hskew hcanonical
 
-/-- Similarity transport preserves a scalar square law.-/
+/-- Similarity transport preserves a scalar square law.
+@isnad1 id=eq.3h4v.s8.435cc50f4917 from=translated src=- shape=ae68375f vocab=21def645
+-/
 theorem transportMixed_sq
     (L K X : Matrix4) (qSq : ℝ)
     (hKL : K * L = 1) (hLK : L * K = 1)
@@ -431,7 +459,9 @@ theorem transportMixed_sq
     _ = qSq • (1 : Matrix4) := by
       rw [mul_smul_comm, smul_mul_assoc, mul_one, hKL]
 
-/-- Similarity transport preserves idempotence.-/
+/-- Similarity transport preserves idempotence.
+@isnad1 id=eq.2h3v.s7.60ea8f671881 from=translated src=- shape=7f7dc44f vocab=ee58ecbf
+-/
 theorem transportMixed_idempotent
     (L K P : Matrix4)
     (hLK : L * K = 1)
@@ -445,7 +475,9 @@ theorem transportMixed_idempotent
     _ = K * (P * P) * L := by rw [hLK]; noncomm_ring
     _ = K * P * L := by rw [hP]
 
-/-- A transported complementary projector pair still resolves the identity.-/
+/-- A transported complementary projector pair still resolves the identity.
+@isnad1 id=eq.2h4v.s7.866cbafc0a2d from=translated src=- shape=7449ca74 vocab=ed79cf27
+-/
 theorem transportMixed_projectors_sum
     (L K P Q : Matrix4)
     (hKL : K * L = 1)
@@ -459,7 +491,9 @@ theorem transportMixed_projectors_sum
 
 /-- **Transported local Maxwell seed.** Every positive canonical residual has
 an explicit real two-form square root in any supplied Lorentz frame, and its
-stress is the similarity transport of the canonical residual.-/
+stress is the similarity transport of the canonical residual.
+@isnad1 id=eq.5h3v.s8.23c45e749e14 from=translated src=- shape=3768f6c4 vocab=7a2abfcd
+-/
 theorem matrixMaxwellStress_transported_seed
     (L K : Matrix4) (q : ℝ) (hq : 0 < q)
     (hKL : K * L = 1) (hLK : L * K = 1)
@@ -484,7 +518,9 @@ theorem matrixMaxwellStress_transported_seed
   rw [hrho]
   rfl
 
-/-- The transported positive-`q` seed remains an antisymmetric two-form.-/
+/-- The transported positive-`q` seed remains an antisymmetric two-form.
+@isnad1 id=eq.0h2v.s6.7da66caf0701 from=translated src=- shape=736a567c vocab=c0890556
+-/
 theorem transported_seed_transpose
     (L : Matrix4) (q : ℝ) :
     (transportTwoForm L
@@ -512,7 +548,9 @@ def positivePlaneAreaScale (b00 b01 b10 b11 : ℝ) : ℝ :=
   b00 * b11 - b01 * b10
 
 /-- A principal-plane transition acts on the canonical electric seed by the
-oriented area scale of the negative principal plane.-/
+oriented area scale of the negative principal plane.
+@isnad1 id=eq.0h9v.s6.0aaa765788d0 from=translated src=- shape=4b7e2679 vocab=60c2e371
+-/
 theorem transportTwoForm_principalPlaneTransition_electric
     (a00 a01 a10 a11 b00 b01 b10 b11 E : ℝ) :
     transportTwoForm
@@ -527,7 +565,9 @@ theorem transportTwoForm_principalPlaneTransition_electric
       Fin.sum_univ_succ] <;> ring
 
 /-- The same transition acts on the canonical Hodge seed by the oriented area
-scale of the positive principal plane.-/
+scale of the positive principal plane.
+@isnad1 id=eq.0h9v.s6.1f51a38b5a6c from=translated src=- shape=a987324e vocab=d023170d
+-/
 theorem transportTwoForm_principalPlaneTransition_hodge
     (a00 a01 a10 a11 b00 b01 b10 b11 E : ℝ) :
     transportTwoForm
@@ -545,7 +585,9 @@ theorem transportTwoForm_principalPlaneTransition_hodge
 the relative orientation of the two principal planes, it multiplies the
 electric seed and its Hodge partner by one common factor.  For orthonormal
 orientation-matched tetrads that factor is necessarily one of `±1`; the
-separate determinant statement is left explicit here.-/
+separate determinant statement is left explicit here.
+@isnad1 id=and.2h10v.s7.19c8f66cc55f from=translated src=- shape=978b0ea9 vocab=e3ef3b29
+-/
 theorem transportTwoForm_principalPlaneTransition_seed_pair
     (a00 a01 a10 a11 b00 b01 b10 b11 E epsilon : ℝ)
     (hnegative : negativePlaneAreaScale a00 a01 a10 a11 = epsilon)
@@ -562,7 +604,9 @@ theorem transportTwoForm_principalPlaneTransition_seed_pair
   · rw [transportTwoForm_principalPlaneTransition_electric, hnegative]
   · rw [transportTwoForm_principalPlaneTransition_hodge, hpositive]
 
-/-- Congruence transport composes contravariantly in the frame matrices.-/
+/-- Congruence transport composes contravariantly in the frame matrices.
+@isnad1 id=eq.0h3v.s5.3c3c14a28405 from=translated src=- shape=9dcddf9b vocab=0982b80b
+-/
 theorem transportTwoForm_mul (L H F : Matrix4) :
     transportTwoForm (H * L) F =
       transportTwoForm L (transportTwoForm H F) := by
@@ -570,7 +614,9 @@ theorem transportTwoForm_mul (L H F : Matrix4) :
   rw [Matrix.transpose_mul]
   noncomm_ring
 
-/-- Transport is linear in the two-form representative.-/
+/-- Transport is linear in the two-form representative.
+@isnad1 id=eq.0h3v.s6.bb3be2e2396d from=translated src=- shape=2f4fc0ab vocab=787dc85d
+-/
 theorem transportTwoForm_smul (L F : Matrix4) (c : ℝ) :
     transportTwoForm L (c • F) = c • transportTwoForm L F := by
   unfold transportTwoForm
@@ -580,7 +626,9 @@ theorem transportTwoForm_smul (L F : Matrix4) (c : ℝ) :
 from the first by an orientation-matched principal-plane transition, then the
 two transported Maxwell seed pairs differ by one common factor.  This is the
 finite-dimensional probe/frame-independence statement consumed by the channel
-detector's common-scale invariance theorem.-/
+detector's common-scale invariance theorem.
+@isnad1 id=other.2h11v.s7.525764199b9f from=translated src=- shape=bae4af9e vocab=d9c85c12
+-/
 theorem transportedSeedPair_principalFrameOverlap
     (L : Matrix4)
     (a00 a01 a10 a11 b00 b01 b10 b11 E epsilon : ℝ)

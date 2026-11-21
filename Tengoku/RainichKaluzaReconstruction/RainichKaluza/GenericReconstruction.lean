@@ -33,7 +33,9 @@ noncomputable def reconstructedDiagonalA (a b qSq : ℝ) : ℝ :=
 noncomputable def reconstructedDiagonalB (a b qSq : ℝ) : ℝ :=
   (b ^ 2 - qSq) / (b - a)
 
-/-- The reconstructed `a` diagonal solves its Sylvester component equation.-/
+/-- The reconstructed `a` diagonal solves its Sylvester component equation.
+@isnad1 id=eq.1h3v.s6.91d2b209c970 from=translated src=- shape=89f30c21 vocab=2b59317b
+-/
 theorem reconstructedDiagonalA_solves
     (a b qSq : ℝ) (hab : a ≠ b) :
     (2 * a - (a + b)) * reconstructedDiagonalA a b qSq =
@@ -42,7 +44,9 @@ theorem reconstructedDiagonalA_solves
   field_simp [sub_ne_zero.mpr hab]
   ring
 
-/-- The reconstructed `b` diagonal solves its Sylvester component equation.-/
+/-- The reconstructed `b` diagonal solves its Sylvester component equation.
+@isnad1 id=eq.1h3v.s6.bfe1863ad7ca from=translated src=- shape=a1c8b165 vocab=84c1bbed
+-/
 theorem reconstructedDiagonalB_solves
     (a b qSq : ℝ) (hab : a ≠ b) :
     (2 * b - (a + b)) * reconstructedDiagonalB a b qSq =
@@ -52,7 +56,9 @@ theorem reconstructedDiagonalB_solves
   ring
 
 /-- **Trace compatibility.** The two forced diagonal entries automatically
-sum to the Ricci trace `a + b`; it is not an additional assumption.-/
+sum to the Ricci trace `a + b`; it is not an additional assumption.
+@isnad1 id=eq.1h3v.s5.3886b6d23f20 from=translated src=- shape=1228fdd9 vocab=5fede352
+-/
 theorem reconstructedDiagonal_sum
     (a b qSq : ℝ) (hab : a ≠ b) :
     reconstructedDiagonalA a b qSq +
@@ -62,7 +68,9 @@ theorem reconstructedDiagonal_sum
   ring
 
 /-- Product identity controlling real rank-one completion of the unprotected
-two-dimensional block.-/
+two-dimensional block.
+@isnad1 id=eq.1h3v.s6.5d7152560cdb from=translated src=- shape=ddbe5ee8 vocab=f58d3192
+-/
 theorem reconstructedDiagonal_product
     (a b qSq : ℝ) (hab : a ≠ b) :
     reconstructedDiagonalA a b qSq *
@@ -73,7 +81,9 @@ theorem reconstructedDiagonal_product
   ring
 
 /-- A symmetric two-by-two block has a real rank-one completion with prescribed
-diagonal entries exactly when their product is nonnegative.-/
+diagonal entries exactly when their product is nonnegative.
+@isnad1 id=iff.0h2v.s5.1bab0a907d58 from=translated src=- shape=49838cbd vocab=150e4428
+-/
 theorem exists_real_rankOne_completion_iff (u v : ℝ) :
     (∃ x : ℝ, x ^ 2 = u * v) ↔ 0 ≤ u * v := by
   constructor
@@ -86,7 +96,9 @@ theorem exists_real_rankOne_completion_iff (u v : ℝ) :
 /-- **Generic real-completion criterion.** A real symmetric rank-one completion
 of the forced block exists exactly when `qSq` lies between `a²` and `b²` in
 the product-order sense. This is an algebraic admissibility condition, before
-Lorentzian causal-sign restrictions are imposed.-/
+Lorentzian causal-sign restrictions are imposed.
+@isnad1 id=iff.1h3v.s6.99bcfb1af853 from=translated src=- shape=e437493a vocab=b133609f
+-/
 theorem exists_reconstructed_rankOne_completion_iff
     (a b qSq : ℝ) (hab : a ≠ b) :
     (∃ x : ℝ, x ^ 2 =
@@ -105,7 +117,9 @@ theorem exists_reconstructed_rankOne_completion_iff
     exact Or.inl ⟨by linarith, le_of_lt hgap⟩
 
 /-- Off-diagonal Sylvester components vanish away from the complementary
-eigenvalue resonance.-/
+eigenvalue resonance.
+@isnad1 id=eq.2h4v.s6.630bd62f6aa2 from=translated src=- shape=dabb0d28 vocab=b5c6e8b6
+-/
 theorem offDiagonal_eq_zero_of_nonresonant
     (trace lambda mu entry : ℝ)
     (hnonresonant : lambda + mu - trace ≠ 0)
@@ -114,14 +128,18 @@ theorem offDiagonal_eq_zero_of_nonresonant
   exact (mul_eq_zero.mp heq).resolve_left hnonresonant
 
 /-- The `a,b` off-diagonal component is algebraically unconstrained by the
-Sylvester equation because the two eigenvalues sum to the trace.-/
+Sylvester equation because the two eigenvalues sum to the trace.
+@isnad1 id=eq.0h3v.s5.cf366162ae24 from=translated src=- shape=5b9fae27 vocab=b5c6e8b6
+-/
 theorem complementary_offDiagonal_is_resonant
     (a b entry : ℝ) :
     (a + b - (a + b)) * entry = 0 := by
   ring
 
 /-- A protected diagonal component is forced to vanish when its Sylvester
-coefficient is nonzero.-/
+coefficient is nonzero.
+@isnad1 id=eq.3h4v.s7.00613af14a32 from=translated src=- shape=7f18c1b2 vocab=e8d9ab0e
+-/
 theorem protectedDiagonal_eq_zero
     (trace q qSq entry : ℝ)
     (hq : q ^ 2 = qSq)

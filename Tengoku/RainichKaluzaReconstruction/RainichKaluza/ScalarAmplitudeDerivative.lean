@@ -24,7 +24,9 @@ noncomputable def reconstructedQSqDerivative
   -((de3 * e1 - e3 * de1) / e1 ^ 2)
 
 /-- The reconstructed derivative is exactly the differentiated form of
-`e₁q²=-e₃`.-/
+`e₁q²=-e₃`.
+@isnad1 id=eq.1h4v.s6.cc7bba9381c4 from=translated src=- shape=d3dfa878 vocab=e9418ad1
+-/
 theorem reconstructedQSqDerivative_relation
     (e1 e3 de1 de3 : ℝ) (he1 : e1 ≠ 0) :
     de1 * (-e3 / e1) + e1 * reconstructedQSqDerivative e1 e3 de1 de3 =
@@ -46,7 +48,9 @@ noncomputable def reconstructedDiagonalBDerivative
     (b ^ 2 - qSq) * (db - da)) / (b - a) ^ 2
 
 /-- The `a` formula satisfies the differentiated Sylvester diagonal
-identity.-/
+identity.
+@isnad1 id=eq.1h6v.s6.49184802cfd1 from=translated src=- shape=3757f335 vocab=3f9fb41e
+-/
 theorem reconstructedDiagonalADerivative_relation
     (a b qSq da db dqSq : ℝ) (hab : a ≠ b) :
     (da - db) * reconstructedDiagonalA a b qSq +
@@ -57,7 +61,9 @@ theorem reconstructedDiagonalADerivative_relation
   ring
 
 /-- The `b` formula satisfies the differentiated Sylvester diagonal
-identity.-/
+identity.
+@isnad1 id=eq.1h6v.s6.b784b7174e24 from=translated src=- shape=3c52b79e vocab=811f4ae9
+-/
 theorem reconstructedDiagonalBDerivative_relation
     (a b qSq da db dqSq : ℝ) (hab : a ≠ b) :
     (db - da) * reconstructedDiagonalB a b qSq +
@@ -74,7 +80,9 @@ noncomputable def scalarAmplitudeDerivative
   epsilon * du / x
 
 /-- The amplitude formula solves the differentiated diagonal relation
-`du=εx dx`.-/
+`du=εx dx`.
+@isnad1 id=eq.2h3v.s6.1c5fd8fc350f from=translated src=- shape=8a28363e vocab=960b6ec4
+-/
 theorem scalarAmplitudeDerivative_relation
     (epsilon x du : ℝ) (hepsilon : epsilon ^ 2 = 1) (hx : x ≠ 0) :
     epsilon * x * scalarAmplitudeDerivative epsilon x du = du := by
@@ -99,7 +107,9 @@ noncomputable def reconstructedAmplitudeBDerivative
     (reconstructedDiagonalBDerivative a b qSq da db dqSq)
 
 /-- The reconstructed first-amplitude derivative differentiates its forced
-diagonal value.-/
+diagonal value.
+@isnad1 id=eq.2h8v.s6.a91bfc24ab1e from=translated src=- shape=6a001d55 vocab=93e50fd8
+-/
 theorem reconstructedAmplitudeADerivative_relation
     (epsilonA x a b qSq da db dqSq : ℝ)
     (hepsilonA : epsilonA ^ 2 = 1) (hx : x ≠ 0) :
@@ -110,7 +120,9 @@ theorem reconstructedAmplitudeADerivative_relation
     (reconstructedDiagonalADerivative a b qSq da db dqSq) hepsilonA hx
 
 /-- The reconstructed second-amplitude derivative differentiates its forced
-diagonal value.-/
+diagonal value.
+@isnad1 id=eq.2h8v.s6.96584cb0d9d4 from=translated src=- shape=6a001d55 vocab=9ad77404
+-/
 theorem reconstructedAmplitudeBDerivative_relation
     (epsilonB y a b qSq da db dqSq : ℝ)
     (hepsilonB : epsilonB ^ 2 = 1) (hy : y ≠ 0) :

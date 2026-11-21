@@ -26,7 +26,9 @@ variable {E W : Type*}
 
 /-- **Relative-sign differential selection theorem.** The sum and difference
 branches are simultaneously annihilated by a linear differential operator if
-and only if their two spectral components are annihilated separately.-/
+and only if their two spectral components are annihilated separately.
+@isnad1 id=iff.0h5v.s8.dfa65b113e17 from=translated src=- shape=1ecca7cf vocab=7ef7a1f4
+-/
 theorem both_relativeSign_branches_closed_iff
     (d : E →ₗ[ℝ] W) (alpha beta : E) :
     (d (alpha + beta) = 0 ∧ d (alpha - beta) = 0) ↔
@@ -51,7 +53,9 @@ theorem both_relativeSign_branches_closed_iff
     simp [halpha, hbeta]
 
 /-- If the sum branch is closed, then the reflected difference branch is
-closed exactly on the separately closed locus.-/
+closed exactly on the separately closed locus.
+@isnad1 id=iff.1h5v.s8.af982cb4e465 from=translated src=- shape=923aec7d vocab=7ef7a1f4
+-/
 theorem reflected_branch_closed_iff_of_branch_closed
     (d : E →ₗ[ℝ] W) (alpha beta : E)
     (hplus : d (alpha + beta) = 0) :
@@ -65,7 +69,9 @@ theorem reflected_branch_closed_iff_of_branch_closed
       hseparate |>.2
 
 /-- Away from the separately closed exceptional locus, existence of a closed
-relative-sign branch implies that exactly one of the two branches is closed.-/
+relative-sign branch implies that exactly one of the two branches is closed.
+@isnad1 id=or.2h5v.s9.51ef2ed65881 from=translated src=- shape=a2286236 vocab=7ef7a1f4
+-/
 theorem relativeSign_closed_branch_unique_of_exists
     (d : E →ₗ[ℝ] W) (alpha beta : E)
     (hexists : d (alpha + beta) = 0 ∨ d (alpha - beta) = 0)

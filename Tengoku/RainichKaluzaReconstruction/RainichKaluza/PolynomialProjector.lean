@@ -30,7 +30,9 @@ noncomputable def twoRootProjector (R : A) (a b : ℝ) : A :=
   (a - b)⁻¹ • twoRootProjectorNumerator R b
 
 /-- The quadratic relation gives the scaled idempotence relation for the
-projector numerator.-/
+projector numerator.
+@isnad1 id=eq.1h4v.s7.44f2ee1b1dbd from=translated src=- shape=0f964550 vocab=0cf8e9dc
+-/
 theorem twoRootProjectorNumerator_sq
     (R : A) (a b : ℝ)
     (hquad :
@@ -54,7 +56,9 @@ theorem twoRootProjectorNumerator_sq
             rw [twoRootProjectorNumerator, hquad]
     _ = (a - b) • twoRootProjectorNumerator R b := by simp
 
-/-- The polynomial projector is idempotent.-/
+/-- The polynomial projector is idempotent.
+@isnad1 id=eq.2h4v.s7.dc3fce6929f7 from=translated src=- shape=8ae54c9e vocab=a4979b48
+-/
 theorem twoRootProjector_sq
     (R : A) (a b : ℝ) (hab : a ≠ b)
     (hquad :
@@ -69,7 +73,9 @@ theorem twoRootProjector_sq
   congr 1
   field_simp
 
-/-- The projector numerator commutes with `R`.-/
+/-- The projector numerator commutes with `R`.
+@isnad1 id=eq.0h3v.s5.bf6a3c61ad26 from=translated src=- shape=5896089b vocab=75795a6c
+-/
 theorem twoRootProjectorNumerator_commutes
     (R : A) (b : ℝ) :
     twoRootProjectorNumerator R b * R =
@@ -82,7 +88,9 @@ theorem twoRootProjectorNumerator_commutes
     _ = R * R - R * (b • (1 : A)) := by simp
     _ = R * (R - b • (1 : A)) := by rw [mul_sub]
 
-/-- The polynomial projector commutes with `R`.-/
+/-- The polynomial projector commutes with `R`.
+@isnad1 id=eq.0h4v.s5.a7a7b64fc685 from=translated src=- shape=e2922e68 vocab=bb198c87
+-/
 theorem twoRootProjector_commutes
     (R : A) (a b : ℝ) :
     twoRootProjector R a b * R = R * twoRootProjector R a b := by
@@ -90,7 +98,9 @@ theorem twoRootProjector_commutes
   rw [smul_mul_assoc, mul_smul_comm]
   rw [twoRootProjectorNumerator_commutes]
 
-/-- The associated basis-independent reflection is involutive.-/
+/-- The associated basis-independent reflection is involutive.
+@isnad1 id=eq.2h4v.s7.6677edf26bf3 from=translated src=- shape=87d48a7f vocab=573bdae6
+-/
 theorem twoRootReflection_sq
     (R : A) (a b : ℝ) (hab : a ≠ b)
     (hquad :
@@ -99,7 +109,9 @@ theorem twoRootReflection_sq
       reflectionOfIdempotent (twoRootProjector R a b) = 1 :=
   reflectionOfIdempotent_sq _ (twoRootProjector_sq R a b hab hquad)
 
-/-- The associated reflection also commutes with `R`.-/
+/-- The associated reflection also commutes with `R`.
+@isnad1 id=eq.0h4v.s6.8a64c1411e17 from=translated src=- shape=26ea7427 vocab=daefccff
+-/
 theorem twoRootReflection_commutes
     (R : A) (a b : ℝ) :
     reflectionOfIdempotent (twoRootProjector R a b) * R =
@@ -110,7 +122,9 @@ section Endomorphism
 
 variable {E : Type*} [AddCommGroup E] [Module ℝ E]
 
-/-- On an `a` eigenvector, the polynomial projector acts as the identity.-/
+/-- On an `a` eigenvector, the polynomial projector acts as the identity.
+@isnad1 id=eq.2h5v.s7.844935328d70 from=translated src=- shape=fb964dbf vocab=fd2a162a
+-/
 theorem twoRootProjector_apply_eq_self
     (R : Module.End ℝ E) (a b : ℝ) (hab : a ≠ b) (y : E)
     (hy : R y = a • y) :
@@ -123,7 +137,9 @@ theorem twoRootProjector_apply_eq_self
         ((a - b)⁻¹ * (a - b)) • y := by module
     _ = y := by rw [inv_mul_cancel₀ hgap]; simp
 
-/-- On a `b` eigenvector, the polynomial projector vanishes.-/
+/-- On a `b` eigenvector, the polynomial projector vanishes.
+@isnad1 id=eq.2h5v.s7.19f1ebdbeeb5 from=translated src=- shape=3c0a7e1e vocab=fd2a162a
+-/
 theorem twoRootProjector_apply_eq_zero
     (R : Module.End ℝ E) (a b : ℝ) (_hab : a ≠ b) (y : E)
     (hy : R y = b • y) :

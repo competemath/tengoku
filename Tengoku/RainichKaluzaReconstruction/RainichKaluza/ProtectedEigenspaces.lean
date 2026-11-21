@@ -29,6 +29,9 @@ theorem below.-/
 def kernelCombination (f : E →ₗ[ℝ] ℝ) (y₁ y₂ : E) : E :=
   f y₂ • y₁ - f y₁ • y₂
 
+/--
+@isnad1 id=eq.0h4v.s6.0b94ec9e25e8 from=translated src=- shape=6a88a895 vocab=574dc1e5
+-/
 @[simp]
 theorem kernelCombination_mem_ker
     (f : E →ₗ[ℝ] ℝ) (y₁ y₂ : E) :
@@ -38,7 +41,9 @@ theorem kernelCombination_mem_ker
 
 /-- Every two-dimensional vector plane contains a nonzero vector annihilated
 by a given covector.  This is the elementary dimension mechanism behind the
-protected-eigenvalue result.-/
+protected-eigenvalue result.
+@isnad1 id=ex.1h4v.s7.2eacdff4bf23 from=translated src=- shape=3e0e81c0 vocab=7276c523
+-/
 theorem exists_nonzero_kernelVector_of_pair
     (f : E →ₗ[ℝ] ℝ) (y₁ y₂ : E)
     (hlin : LinearIndependent ℝ ![y₁, y₂]) :
@@ -53,7 +58,9 @@ theorem exists_nonzero_kernelVector_of_pair
     exact h₁ (neg_eq_zero.mp hcoeff.2)
 
 /-- **Protected eigendirection theorem.** A rank-one perturbation cannot remove
-an eigenvalue whose eigenspace contains two linearly independent vectors.-/
+an eigenvalue whose eigenspace contains two linearly independent vectors.
+@isnad1 id=ex.3h7v.s8.57ed7b0d0fb8 from=translated src=- shape=16c60993 vocab=e0045b15
+-/
 theorem exists_protected_eigenvector_of_pair
     (S : Module.End ℝ E) (f : E →ₗ[ℝ] ℝ) (x : E)
     (lambda : ℝ) (y₁ y₂ : E)
@@ -81,7 +88,9 @@ theorem exists_protected_eigenvector_of_pair
 
 /-- **Protected opposite-pair theorem.** If `S` has two-dimensional principal
 eigenplanes with eigenvalues `+q` and `-q`, then adding any rank-one
-endomorphism retains a nonzero eigenvector in each plane.-/
+endomorphism retains a nonzero eigenvector in each plane.
+@isnad1 id=and.6h9v.s9.4b032149efc0 from=translated src=- shape=d5b8887b vocab=d1c0aa1b
+-/
 theorem exists_protected_opposite_eigenvectors
     (S : Module.End ℝ E) (f : E →ₗ[ℝ] ℝ) (x : E) (q : ℝ)
     (p₁ p₂ m₁ m₂ : E)

@@ -24,7 +24,9 @@ def complexionRate (c s dc ds : ℝ) : ℝ :=
   c * ds - s * dc
 
 /-- The unit-circle tangency equation reconstructs both parameter derivatives
-from the complexion rate.-/
+from the complexion rate.
+@isnad1 id=and.2h4v.s7.36ba11929ac3 from=translated src=- shape=8caa3802 vocab=b2d66fed
+-/
 theorem dualityParameter_derivative_eq_complexionRate
     (c s dc ds : ℝ)
     (hunit : c ^ 2 + s ^ 2 = 1)
@@ -50,7 +52,9 @@ theorem dualityParameter_derivative_eq_complexionRate
     linarith
 
 /-- Any rate producing the two unit-circle derivatives equals the constructive
-complexion rate.-/
+complexion rate.
+@isnad1 id=eq.3h5v.s6.40427d0dc42d from=translated src=- shape=f6d28563 vocab=b2d66fed
+-/
 theorem complexionRate_unique
     (c s dc ds omega : ℝ)
     (hunit : c ^ 2 + s ^ 2 = 1)
@@ -63,7 +67,9 @@ theorem complexionRate_unique
     _ = c * (omega * c) - s * (-omega * s) := by ring
 
 /-- **Infinitesimal duality-orbit theorem.** Tangency to the unit circle is
-equivalent to existence of a unique complexion rate.-/
+equivalent to existence of a unique complexion rate.
+@isnad1 id=iff.1h4v.s6.d69c3b914d78 from=translated src=- shape=b8f91da2 vocab=73e037e7
+-/
 theorem duality_tangent_iff_existsUnique_complexionRate
     (c s dc ds : ℝ) (hunit : c ^ 2 + s ^ 2 = 1) :
     c * dc + s * ds = 0 ↔
@@ -81,7 +87,9 @@ theorem duality_tangent_iff_existsUnique_complexionRate
     ring
 
 /-- A constant change of duality seed preserves the infinitesimal complexion
-rate. This is the overlap invariance needed for local patching.-/
+rate. This is the overlap invariance needed for local patching.
+@isnad1 id=eq.0h5v.s5.dd2e0ce9c575 from=translated src=- shape=10dfc962 vocab=f022f95e
+-/
 theorem complexionRate_constant_duality_invariant
     (p : DualityParameter) (c s dc ds : ℝ) :
     complexionRate (dualityElectric p c s) (dualityMagnetic p c s)
@@ -110,7 +118,9 @@ def variableDualityMagneticDerivative
 
 /-- Before imposing the two unit-circle equations, the rate of a product of
 duality parameters splits into the two rates weighted by the opposite squared
-magnitudes.-/
+magnitudes.
+@isnad1 id=eq.0h8v.s7.133b3b8651b0 from=translated src=- shape=08ba95b0 vocab=21e951f5
+-/
 theorem complexionRate_variable_duality_weighted
     (u v du dv c s dc ds : ℝ) :
     complexionRate (u * c - v * s) (v * c + u * s)
@@ -124,7 +134,9 @@ theorem complexionRate_variable_duality_weighted
 
 /-- **Variable duality gauge law.** On an overlap, a unit transition with
 infinitesimal rate `tau` adds that rate to the original local complexion rate.
-This is the exact connection term absent for constant seed changes.-/
+This is the exact connection term absent for constant seed changes.
+@isnad1 id=eq.0h6v.s6.d9fe8a6bd724 from=translated src=- shape=a08c1c9b vocab=c217b643
+-/
 theorem complexionRate_variable_duality_add
     (p r : DualityParameter) (du dv dc ds : ℝ) :
     complexionRate (dualityElectric p r.c r.s)
@@ -148,7 +160,9 @@ def dualityComposeSDerivative
   variableDualityMagneticDerivative p.c p.s dpc dps r.c r.s drc drs
 
 /-- The infinitesimal transition rate is additive under the overlap group law.
-This is the differentiated cocycle identity on triple overlaps.-/
+This is the differentiated cocycle identity on triple overlaps.
+@isnad1 id=eq.0h6v.s5.33c6ad680c25 from=translated src=- shape=1661efd1 vocab=6dbe4595
+-/
 theorem complexionRate_dualityComposeDerivative
     (p r : DualityParameter) (dpc dps drc drs : ℝ) :
     complexionRate (dualityCompose p r).c (dualityCompose p r).s
@@ -164,7 +178,9 @@ theorem complexionRate_dualityComposeDerivative
   ring
 
 /-- The infinitesimal rate of the inverse transition is the negative of the
-original transition rate.-/
+original transition rate.
+@isnad1 id=eq.0h3v.s4.9fe414d3306b from=translated src=- shape=873e6255 vocab=ec8f4fc0
+-/
 theorem complexionRate_dualityInverseDerivative
     (p : DualityParameter) (dc ds : ℝ) :
     complexionRate (dualityInverse p).c (dualityInverse p).s dc (-ds) =
@@ -179,7 +195,9 @@ def gaugeCorrectedComplexionRate (omega connection : ℝ) : ℝ :=
 
 /-- The connection-corrected complexion rate is overlap invariant when both
 the raw rate and the local connection coefficient acquire the same transition
-rate.-/
+rate.
+@isnad1 id=eq.0h3v.s4.e111b69a3da2 from=translated src=- shape=8ba54cc2 vocab=a2f7a73a
+-/
 theorem gaugeCorrectedComplexionRate_invariant
     (omega connection tau : ℝ) :
     gaugeCorrectedComplexionRate (omega + tau) (connection + tau) =

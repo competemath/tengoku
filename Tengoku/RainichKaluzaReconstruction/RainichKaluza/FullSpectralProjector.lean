@@ -32,6 +32,9 @@ noncomputable def fourRootProjector
   (((a - b) * (a - c) * (a - d))⁻¹) •
     ((eigenFactor R b * eigenFactor R c) * eigenFactor R d)
 
+/--
+@isnad1 id=eq.1h5v.s7.ecff11ad83b9 from=translated src=- shape=1735ba2d vocab=5b593342
+-/
 @[simp]
 theorem eigenFactor_apply_of_eigenvector
     (R : Module.End ℝ E) (r a : ℝ) (y : E) (hy : R y = a • y) :
@@ -39,7 +42,9 @@ theorem eigenFactor_apply_of_eigenvector
   simp only [eigenFactor, LinearMap.sub_apply, LinearMap.smul_apply, hy]
   module
 
-/-- Evaluation of the four-root Lagrange polynomial on any eigenvector.-/
+/-- Evaluation of the four-root Lagrange polynomial on any eigenvector.
+@isnad1 id=eq.1h8v.s8.b49f1de575bc from=translated src=- shape=22d0866c vocab=55c683be
+-/
 theorem fourRootProjector_apply_of_eigenvector
     (R : Module.End ℝ E) (a b c d r : ℝ) (y : E)
     (hy : R y = r • y) :
@@ -56,7 +61,9 @@ theorem fourRootProjector_apply_of_eigenvector
   congr 1
   ring
 
-/-- The four-root projector is the identity on its target eigenspace.-/
+/-- The four-root projector is the identity on its target eigenspace.
+@isnad1 id=eq.4h7v.s7.43e8d205a1ab from=translated src=- shape=ae5bca42 vocab=efcd9def
+-/
 theorem fourRootProjector_apply_eq_self
     (R : Module.End ℝ E) (a b c d : ℝ)
     (hab : a ≠ b) (hac : a ≠ c) (had : a ≠ d)
@@ -69,7 +76,9 @@ theorem fourRootProjector_apply_eq_self
   rw [inv_mul_cancel₀ hden]
   simp
 
-/-- The four-root projector vanishes on its first complementary eigenspace.-/
+/-- The four-root projector vanishes on its first complementary eigenspace.
+@isnad1 id=eq.1h7v.s7.4bb5cd512f79 from=translated src=- shape=accef6d3 vocab=efcd9def
+-/
 theorem fourRootProjector_apply_eq_zero_of_second
     (R : Module.End ℝ E) (a b c d : ℝ) (y : E)
     (hy : R y = b • y) :
@@ -77,7 +86,9 @@ theorem fourRootProjector_apply_eq_zero_of_second
   rw [fourRootProjector_apply_of_eigenvector R a b c d b y hy]
   simp
 
-/-- The four-root projector vanishes on its second complementary eigenspace.-/
+/-- The four-root projector vanishes on its second complementary eigenspace.
+@isnad1 id=eq.1h7v.s7.ef2b4a3a2606 from=translated src=- shape=26856828 vocab=efcd9def
+-/
 theorem fourRootProjector_apply_eq_zero_of_third
     (R : Module.End ℝ E) (a b c d : ℝ) (y : E)
     (hy : R y = c • y) :
@@ -85,7 +96,9 @@ theorem fourRootProjector_apply_eq_zero_of_third
   rw [fourRootProjector_apply_of_eigenvector R a b c d c y hy]
   simp
 
-/-- The four-root projector vanishes on its third complementary eigenspace.-/
+/-- The four-root projector vanishes on its third complementary eigenspace.
+@isnad1 id=eq.1h7v.s7.99cb5010592a from=translated src=- shape=91701cbb vocab=efcd9def
+-/
 theorem fourRootProjector_apply_eq_zero_of_fourth
     (R : Module.End ℝ E) (a b c d : ℝ) (y : E)
     (hy : R y = d • y) :
@@ -94,7 +107,9 @@ theorem fourRootProjector_apply_eq_zero_of_fourth
   simp
 
 /-- Every polynomial Lagrange projector commutes with the operator from which
-it is constructed.-/
+it is constructed.
+@isnad1 id=eq.0h6v.s7.8d6cf1317448 from=translated src=- shape=9d21b99c vocab=2fd56ecd
+-/
 theorem fourRootProjector_commutes
     (R : Module.End ℝ E) (a b c d : ℝ) :
     fourRootProjector R a b c d * R =
@@ -138,7 +153,9 @@ def HasFourEigenspaceDecomposition
     R yc = c • yc ∧ R yd = d • yd
 
 /-- Under a four-eigenspace decomposition, the Lagrange projector extracts
-exactly its target component.-/
+exactly its target component.
+@isnad1 id=eq.8h11v.s9.92dc543a6723 from=translated src=- shape=5162293f vocab=eb582d8d
+-/
 theorem fourRootProjector_apply_eq_component
     (R : Module.End ℝ E) (a b c d : ℝ)
     (hab : a ≠ b) (hac : a ≠ c) (had : a ≠ d)
@@ -156,7 +173,9 @@ theorem fourRootProjector_apply_eq_component
   simp
 
 /-- With distinct target and complementary roots, the full Lagrange projector
-is idempotent whenever the stated four-eigenspace decomposition exists.-/
+is idempotent whenever the stated four-eigenspace decomposition exists.
+@isnad1 id=eq.4h6v.s7.82548476e93e from=translated src=- shape=f6c1610e vocab=09c973ba
+-/
 theorem fourRootProjector_sq
     (R : Module.End ℝ E) (a b c d : ℝ)
     (hab : a ≠ b) (hac : a ≠ c) (had : a ≠ d)
@@ -174,7 +193,9 @@ theorem fourRootProjector_sq
   exact fourRootProjector_apply_eq_self R a b c d hab hac had ya hya
 
 /-- Pairwise distinct roots give a basis-free resolution of the identity by
-the four Lagrange projectors.-/
+the four Lagrange projectors.
+@isnad1 id=eq.7h6v.s8.4d92845583c6 from=translated src=- shape=5a327753 vocab=dc3c7389
+-/
 theorem fourRootProjectors_sum_eq_one
     (R : Module.End ℝ E) (a b c d : ℝ)
     (hab : a ≠ b) (hac : a ≠ c) (had : a ≠ d)

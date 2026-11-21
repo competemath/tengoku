@@ -26,6 +26,9 @@ structure DualityParameter where
   s : ℝ
   unit : c ^ 2 + s ^ 2 = 1
 
+/--
+@isnad1 id=eq.2h2v.s4.5439149c0e82 from=translated src=- shape=04c0b690 vocab=438467e7
+-/
 @[ext]
 theorem DualityParameter.ext
     (p r : DualityParameter) (hc : p.c = r.c) (hs : p.s = r.s) :
@@ -47,7 +50,9 @@ pair. Overall normalization can be restored separately.-/
 def canonicalMaxwellMagnitude (E B : ℝ) : ℝ :=
   E ^ 2 + B ^ 2
 
-/-- Duality preserves the canonical Maxwell stress magnitude.-/
+/-- Duality preserves the canonical Maxwell stress magnitude.
+@isnad1 id=eq.0h3v.s4.b705ae43172c from=translated src=- shape=7841e249 vocab=19f96d93
+-/
 theorem canonicalMaxwellMagnitude_duality
     (p : DualityParameter) (E B : ℝ) :
     canonicalMaxwellMagnitude (dualityElectric p E B)
@@ -67,7 +72,9 @@ noncomputable def dualitySineBetween (E B E' B' : ℝ) : ℝ :=
   (E * B' - B * E') / canonicalMaxwellMagnitude E B
 
 /-- The normalized dot/determinant pair lies on the unit circle whenever the
-two nonzero amplitude pairs have equal magnitude.-/
+two nonzero amplitude pairs have equal magnitude.
+@isnad1 id=eq.2h4v.s6.f50ba8aa9a0c from=translated src=- shape=04158864 vocab=79ec65ac
+-/
 theorem dualityBetween_unit
     (E B E' B' : ℝ)
     (hmag : canonicalMaxwellMagnitude E B ≠ 0)
@@ -81,7 +88,9 @@ theorem dualityBetween_unit
     sq_nonneg (E * B' - B * E')]
 
 /-- The constructive parameter maps the source electric amplitude to the
-target amplitude.-/
+target amplitude.
+@isnad1 id=eq.1h4v.s5.7f97bdbf033a from=translated src=- shape=d41fc512 vocab=b6e751f8
+-/
 theorem dualityBetween_electric
     (E B E' B' : ℝ)
     (hmag : canonicalMaxwellMagnitude E B ≠ 0) :
@@ -94,7 +103,9 @@ theorem dualityBetween_electric
   ring
 
 /-- The constructive parameter maps the source magnetic amplitude to the
-target amplitude.-/
+target amplitude.
+@isnad1 id=eq.1h4v.s5.095d3dc91a3b from=translated src=- shape=b3705f51 vocab=8dd2ddc1
+-/
 theorem dualityBetween_magnetic
     (E B E' B' : ℝ)
     (hmag : canonicalMaxwellMagnitude E B ≠ 0) :
@@ -108,7 +119,9 @@ theorem dualityBetween_magnetic
 
 /-- **Canonical non-null Maxwell orbit theorem.** Two amplitude pairs with a
 nonzero source magnitude determine the same canonical stress magnitude if and
-only if a unit duality parameter maps one pair to the other.-/
+only if a unit duality parameter maps one pair to the other.
+@isnad1 id=iff.1h4v.s5.701428e50460 from=translated src=- shape=ce047f31 vocab=19f96d93
+-/
 theorem exists_dualityParameter_iff_same_magnitude
     (E B E' B' : ℝ) (hmag : canonicalMaxwellMagnitude E B ≠ 0) :
     (∃ p : DualityParameter,
@@ -126,7 +139,9 @@ theorem exists_dualityParameter_iff_same_magnitude
     · exact dualityBetween_electric E B E' B' hmag
     · exact dualityBetween_magnetic E B E' B' hmag
 
-/-- A duality parameter acting on a nonzero amplitude pair is unique.-/
+/-- A duality parameter acting on a nonzero amplitude pair is unique.
+@isnad1 id=eq.3h4v.s5.acdbc0d9f63d from=translated src=- shape=50da0802 vocab=19f96d93
+-/
 theorem dualityParameter_unique
     (p r : DualityParameter) (E B : ℝ)
     (hmag : canonicalMaxwellMagnitude E B ≠ 0)
@@ -171,7 +186,9 @@ def dualityInverse (p : DualityParameter) : DualityParameter where
   s := -p.s
   unit := by simpa using p.unit
 
-/-- The amplitude action respects composition.-/
+/-- The amplitude action respects composition.
+@isnad1 id=eq.0h4v.s4.92d505335632 from=translated src=- shape=4af7c3c9 vocab=c0c05af2
+-/
 theorem dualityElectric_compose
     (p r : DualityParameter) (E B : ℝ) :
     dualityElectric p (dualityElectric r E B) (dualityMagnetic r E B) =
@@ -179,7 +196,9 @@ theorem dualityElectric_compose
   unfold dualityElectric dualityMagnetic dualityCompose
   ring
 
-/-- The magnetic amplitude action respects composition.-/
+/-- The magnetic amplitude action respects composition.
+@isnad1 id=eq.0h4v.s4.4a0c44ebe585 from=translated src=- shape=4af7c3c9 vocab=c0c05af2
+-/
 theorem dualityMagnetic_compose
     (p r : DualityParameter) (E B : ℝ) :
     dualityMagnetic p (dualityElectric r E B) (dualityMagnetic r E B) =
@@ -187,23 +206,31 @@ theorem dualityMagnetic_compose
   unfold dualityElectric dualityMagnetic dualityCompose
   ring
 
-/-- Duality composition is associative.-/
+/-- Duality composition is associative.
+@isnad1 id=eq.0h3v.s4.3dc031f3829a from=translated src=- shape=b8c031c3 vocab=68f9d83b
+-/
 theorem dualityCompose_assoc (p r t : DualityParameter) :
     dualityCompose (dualityCompose p r) t =
       dualityCompose p (dualityCompose r t) := by
   apply DualityParameter.ext <;> simp [dualityCompose] <;> ring
 
-/-- Identity acts on the left.-/
+/-- Identity acts on the left.
+@isnad1 id=eq.0h1v.s3.3fcbae9bcad0 from=translated src=- shape=29edb2d9 vocab=f7845ae5
+-/
 theorem dualityCompose_identity_left (p : DualityParameter) :
     dualityCompose dualityIdentity p = p := by
   apply DualityParameter.ext <;> simp [dualityCompose, dualityIdentity]
 
-/-- Identity acts on the right.-/
+/-- Identity acts on the right.
+@isnad1 id=eq.0h1v.s3.4ee1adf59d0e from=translated src=- shape=9960b201 vocab=f7845ae5
+-/
 theorem dualityCompose_identity_right (p : DualityParameter) :
     dualityCompose p dualityIdentity = p := by
   apply DualityParameter.ext <;> simp [dualityCompose, dualityIdentity]
 
-/-- The constructed inverse cancels on the left.-/
+/-- The constructed inverse cancels on the left.
+@isnad1 id=eq.0h1v.s3.4bba553d7635 from=translated src=- shape=9d0ab98d vocab=b3997b87
+-/
 theorem dualityCompose_inverse_left (p : DualityParameter) :
     dualityCompose (dualityInverse p) p = dualityIdentity := by
   apply DualityParameter.ext
@@ -213,7 +240,9 @@ theorem dualityCompose_inverse_left (p : DualityParameter) :
     ring
 
 /-- **Duality overlap cocycle.** Successive local seed changes compose to the
-single parameter `p∘r`.-/
+single parameter `p∘r`.
+@isnad1 id=and.4h8v.s6.9a9aaf0d0805 from=translated src=- shape=75730e1f vocab=c0c05af2
+-/
 theorem duality_overlap_cocycle
     (p r : DualityParameter) (E B E' B' E'' B'' : ℝ)
     (hrE : dualityElectric r E B = E')

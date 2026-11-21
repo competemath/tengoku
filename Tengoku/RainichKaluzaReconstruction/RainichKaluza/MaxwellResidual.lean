@@ -25,14 +25,18 @@ def maxwellResidual (R V : A) : A :=
   R - V
 
 omit [Algebra ℝ A] in
-/-- The residual and scalar contribution reconstruct the original operator.-/
+/-- The residual and scalar contribution reconstruct the original operator.
+@isnad1 id=eq.0h3v.s4.94e73b788159 from=translated src=- shape=e1ae75d5 vocab=c8e88207
+-/
 theorem maxwellResidual_add_scalar (R V : A) :
     maxwellResidual R V + V = R := by
   unfold maxwellResidual
   abel
 
 /-- **Residual Maxwell square theorem.** The reconstruction equation and the
-rank-one scalar square law force the residual to square to `q²I`.-/
+rank-one scalar square law force the residual to square to `q²I`.
+@isnad1 id=eq.2h5v.s7.758914d87323 from=translated src=- shape=8316a0b1 vocab=afdc7929
+-/
 theorem maxwellResidual_sq_of_reconstructionEquation
     (R V : A) (traceV qSq : ℝ)
     (hV : V * V = traceV • V)
@@ -51,7 +55,9 @@ theorem maxwellResidual_sq_of_reconstructionEquation
 
 /-- **Exact algebraic Phase-III interface.** Under the scalar square law, the
 Sylvester reconstruction equation is equivalent to the Maxwell residual
-square identity.-/
+square identity.
+@isnad1 id=iff.1h5v.s7.7a40117ec407 from=translated src=- shape=4126e3ce vocab=afdc7929
+-/
 theorem reconstructionEquation_iff_maxwellResidual_sq
     (R V : A) (traceV qSq : ℝ)
     (hV : V * V = traceV • V) :
@@ -66,7 +72,9 @@ theorem reconstructionEquation_iff_maxwellResidual_sq
       traceV qSq (maxwellResidual_add_scalar R V).symm hresidual hV
 
 /-- If `R` and `V` have the same supplied trace, their residual is tracefree.
-This is stated for an arbitrary real-linear trace functional.-/
+This is stated for an arbitrary real-linear trace functional.
+@isnad1 id=eq.2h5v.s8.9cbadfb02d68 from=translated src=- shape=6b2d25e9 vocab=fd38b736
+-/
 theorem maxwellResidual_trace_zero
     (trace : A →ₗ[ℝ] ℝ) (R V : A) (traceV : ℝ)
     (hR : trace R = traceV) (hV : trace V = traceV) :

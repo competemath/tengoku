@@ -24,7 +24,9 @@ def kaluzaObstruction (d : CharacteristicData) : ℝ :=
   d.e1 ^ 2 * d.e4 - d.e1 * d.e2 * d.e3 + d.e3 ^ 2
 
 /-- **Exact algebraic theorem.** Every quartic with the proposed Kaluza
-factorization satisfies the candidate obstruction.-/
+factorization satisfies the candidate obstruction.
+@isnad1 id=eq.0h1v.s3.b88a2ffd6f84 from=translated src=- shape=f6b6ad72 vocab=84ea04df
+-/
 @[simp] theorem kaluzaObstruction_fromFactorization
     (p : FactorizationParameters) :
     kaluzaObstruction (.fromFactorization p) = 0 := by
@@ -42,7 +44,9 @@ noncomputable def reconstructedResidualConstant
   -d.e2 - reconstructedQSq d
 
 /-- The curvature-only formula recovers `qSq` on factored data whenever the
-Ricci trace is nonzero.-/
+Ricci trace is nonzero.
+@isnad1 id=eq.1h1v.s4.048a91f3c6c7 from=translated src=- shape=4fe0fc12 vocab=725f1669
+-/
 theorem reconstructedQSq_fromFactorization
     (p : FactorizationParameters) (hR : p.ricciTrace ≠ 0) :
     reconstructedQSq (.fromFactorization p) = p.qSq := by
@@ -51,7 +55,9 @@ theorem reconstructedQSq_fromFactorization
 
 /-- On the nonzero-trace branch, vanishing of the obstruction is equivalent
 to reconstructing the constant coefficient from the two quadratic factors.
-This is a coefficient identity, not yet a geometric sufficiency theorem.-/
+This is a coefficient identity, not yet a geometric sufficiency theorem.
+@isnad1 id=iff.1h1v.s5.6f8bd608fa1c from=translated src=- shape=01505c16 vocab=0f8db8c3
+-/
 theorem obstruction_zero_iff_reconstructed_constant
     (d : CharacteristicData) (hR : d.e1 ≠ 0) :
     kaluzaObstruction d = 0 ↔
@@ -72,7 +78,9 @@ def perfectFluidData (a b : ℝ) : CharacteristicData where
   e4 := a * b ^ 3
 
 /-- **Exact adversarial check.** A generic perfect-fluid spectrum does not
-silently satisfy the candidate Kaluza obstruction.-/
+silently satisfy the candidate Kaluza obstruction.
+@isnad1 id=eq.0h2v.s6.446fc8694e50 from=translated src=- shape=a89c02b7 vocab=83d19ce9
+-/
 theorem kaluzaObstruction_perfectFluid (a b : ℝ) :
     kaluzaObstruction (perfectFluidData a b) =
       -8 * b ^ 3 * (a + b) ^ 3 := by
@@ -86,14 +94,18 @@ def algebraicFalsePositive : CharacteristicData where
   e3 := 1
   e4 := -1
 
-/-- The false-positive data satisfy the polynomial obstruction exactly.-/
+/-- The false-positive data satisfy the polynomial obstruction exactly.
+@isnad1 id=eq.0h0v.s3.7e8bc5da3ac4 from=translated src=- shape=b0ae1d2b vocab=526d99d8
+-/
 @[simp] theorem kaluzaObstruction_algebraicFalsePositive :
     kaluzaObstruction algebraicFalsePositive = 0 := by
   norm_num [kaluzaObstruction, algebraicFalsePositive]
 
 /-- **Exact insufficiency witness.** Although the obstruction vanishes, the
 reconstructed `qSq` is negative and hence cannot equal `q²` for any real
-protected eigenvalue `q`.-/
+protected eigenvalue `q`.
+@isnad1 id=not.0h0v.s4.73b1d418a256 from=translated src=- shape=01987044 vocab=86cfc6bb
+-/
 theorem algebraicFalsePositive_has_no_real_protected_pair :
     ¬ ∃ q : ℝ, q ^ 2 = reconstructedQSq algebraicFalsePositive := by
   rintro ⟨q, hq⟩

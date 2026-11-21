@@ -70,7 +70,9 @@ def rotatedSeedDF : Three := J.c • J.dF0 + J.s • J.dG0
 /-- Seed-derivative contribution in the Hodge channel.-/
 def rotatedSeedDG : Three := (-J.s) • J.dF0 + J.c • J.dG0
 
-/-- **Exterior complexion product rule, first channel.**-/
+/-- **Exterior complexion product rule, first channel.**
+@isnad1 id=eq.2h6v.s8.129bdc77abd6 from=translated src=- shape=1ab9af20 vocab=240c76e9
+-/
 theorem rotatedDF_eq
     (wedge : OneWedgeTwo One Two Three) (omega : One)
     (hdc : J.dc = (-J.s) • omega) (hds : J.ds = J.c • omega) :
@@ -81,7 +83,9 @@ theorem rotatedDF_eq
   simp only [map_add, map_smul, LinearMap.smul_apply]
   module
 
-/-- **Exterior complexion product rule, Hodge channel.**-/
+/-- **Exterior complexion product rule, Hodge channel.**
+@isnad1 id=eq.2h6v.s8.aaa7ccbbb539 from=translated src=- shape=a5d3c4c0 vocab=b3b19d1f
+-/
 theorem rotatedDG_eq
     (wedge : OneWedgeTwo One Two Three) (omega : One)
     (hdc : J.dc = (-J.s) • omega) (hds : J.ds = J.c • omega) :
@@ -103,7 +107,9 @@ def EMDExteriorClosure
 
 /-- Scalar-orientation covariance of the rescaled EMD exterior system.
 Reversing the reconstructed scalar covector reverses the signed coupling and
-leaves both physical closure equations unchanged.-/
+leaves both physical closure equations unchanged.
+@isnad1 id=iff.0h10v.s6.788603337a83 from=translated src=- shape=9faec48a vocab=b7448c5a
+-/
 theorem emdExteriorClosure_neg_scalar_coupling
     (wedge : OneWedgeTwo One Two Three) (v : One) (a : ℝ)
     (F G : Two) (dF dG : Three) :
@@ -120,7 +126,9 @@ theorem emdExteriorClosure_neg_scalar_coupling
 /-- **Exterior-form complexion/coupling reduction.** Once the unit-circle
 derivatives are written using their one-form complexion `omega`, the full EMD
 closure equations are equivalent to two explicit equations for the seed
-derivative channels.-/
+derivative channels.
+@isnad1 id=iff.2h8v.s10.6d405ecbb3ba from=translated src=- shape=5fa285e2 vocab=2ea9cb4c
+-/
 theorem emdExteriorClosure_iff_seedChannels
     (wedge : OneWedgeTwo One Two Three)
     (J : ExteriorDualityJet One Two Three) (omega v : One) (a : ℝ)
@@ -156,7 +164,9 @@ theorem emdExteriorClosure_iff_seedChannels
 
 /-- If a seed pair and a constant duality rotation of it both satisfy the
 same EMD equations, the sine component is annihilated by both scalar-source
-channels.-/
+channels.
+@isnad1 id=and.4h12v.s10.e5795e30c493 from=translated src=- shape=2390dec2 vocab=d809d445
+-/
 theorem constantDuality_emd_obstruction
     (wedge : OneWedgeTwo One Two Three)
     (v : One) (F0 G0 : Two) (dF0 dG0 : Three)
@@ -188,7 +198,9 @@ theorem constantDuality_emd_obstruction
 
 /-- On a nonzero-coupling branch with at least one active scalar-source
 channel, a constant duality rotation preserving the EMD equations has
-vanishing sine component.-/
+vanishing sine component.
+@isnad1 id=eq.6h12v.s10.29b8490684bc from=translated src=- shape=fcdf5bd0 vocab=9458e0dc
+-/
 theorem constantDuality_s_eq_zero_of_emd
     (wedge : OneWedgeTwo One Two Three)
     (v : One) (F0 G0 : Two) (dF0 dG0 : Three)
@@ -210,7 +222,9 @@ theorem constantDuality_s_eq_zero_of_emd
   exact (mul_eq_zero.mp has).resolve_left ha
 
 /-- **Generic constant-duality collapse.** For a unit duality parameter, the
-same hypotheses reduce the full circle to the overall sign `(±1,0)`.-/
+same hypotheses reduce the full circle to the overall sign `(±1,0)`.
+@isnad1 id=and.7h12v.s10.7c9a4182fe22 from=translated src=- shape=a0341318 vocab=7e0c54c9
+-/
 theorem constantDuality_eq_sign_of_emd
     (wedge : OneWedgeTwo One Two Three)
     (v : One) (F0 G0 : Two) (dF0 dG0 : Three)
@@ -232,7 +246,9 @@ theorem constantDuality_eq_sign_of_emd
 
 /-- If both scalar-source wedge channels vanish, every constant duality
 rotation of a seed solution remains a solution.  This is the exceptional
-locus complementary to the generic sign-only theorem.-/
+locus complementary to the generic sign-only theorem.
+@isnad1 id=and.4h12v.s10.04664efc7001 from=translated src=- shape=8f79268c vocab=9458e0dc
+-/
 theorem constantDuality_emd_of_inactive_source
     (wedge : OneWedgeTwo One Two Three)
     (v : One) (F0 G0 : Two) (dF0 dG0 : Three)
@@ -249,7 +265,9 @@ theorem constantDuality_emd_of_inactive_source
   exact ⟨trivial, trivial⟩
 
 /-- In the uncoupled branch `a=0`, every constant duality rotation of a seed
-solution remains closed.-/
+solution remains closed.
+@isnad1 id=and.3h12v.s10.66fe2a9ea09f from=translated src=- shape=e36989a0 vocab=9458e0dc
+-/
 theorem constantDuality_emd_of_zero_coupling
     (wedge : OneWedgeTwo One Two Three)
     (v : One) (F0 G0 : Two) (dF0 dG0 : Three)

@@ -43,7 +43,9 @@ def CouplingCompatible
   (2 : ℝ) • dStarF = (-a) • vWedgeStarF
 
 /-- Reversing the reconstructed scalar orientation `v ↦ -v` reverses the
-signed coupling while preserving both differential equations.-/
+signed coupling while preserving both differential equations.
+@isnad1 id=coupling.1h6v.s6.1e3e942c0303 from=translated src=- shape=c78a3dd9 vocab=59f30c8c
+-/
 theorem couplingCompatible_neg_orientation
     (a : ℝ) (dF dStarF vWedgeF vWedgeStarF : W)
     (h : CouplingCompatible a dF dStarF vWedgeF vWedgeStarF) :
@@ -56,7 +58,9 @@ theorem couplingCompatible_neg_orientation
     module
 
 /-- A nonzero primal wedge channel uniquely determines the signed coupling
-after the scalar orientation has been fixed.-/
+after the scalar orientation has been fixed.
+@isnad1 id=eq.3h7v.s6.ec23ba37196c from=translated src=- shape=5c9df614 vocab=4a343fb9
+-/
 theorem couplingCompatible_unique_of_primal_ne_zero
     (a b : ℝ) (dF dStarF vWedgeF vWedgeStarF : W)
     (ha : CouplingCompatible a dF dStarF vWedgeF vWedgeStarF)
@@ -73,7 +77,9 @@ theorem couplingCompatible_unique_of_primal_ne_zero
   linarith
 
 /-- A nonzero dual wedge channel also uniquely determines the signed
-coupling.-/
+coupling.
+@isnad1 id=eq.3h7v.s6.5dfd1a354ef2 from=translated src=- shape=198ae6b4 vocab=4a343fb9
+-/
 theorem couplingCompatible_unique_of_dual_ne_zero
     (a b : ℝ) (dF dStarF vWedgeF vWedgeStarF : W)
     (ha : CouplingCompatible a dF dStarF vWedgeF vWedgeStarF)
@@ -91,7 +97,9 @@ theorem couplingCompatible_unique_of_dual_ne_zero
     (smul_eq_zero.mp hsmul).resolve_right hsource
   linarith
 
-/-- Either nonzero differential wedge channel suffices for uniqueness.-/
+/-- Either nonzero differential wedge channel suffices for uniqueness.
+@isnad1 id=eq.3h7v.s6.0951a8f59fe1 from=translated src=- shape=86e037dc vocab=4a343fb9
+-/
 theorem couplingCompatible_unique_of_nondegenerate
     (a b : ℝ) (dF dStarF vWedgeF vWedgeStarF : W)
     (ha : CouplingCompatible a dF dStarF vWedgeF vWedgeStarF)
@@ -111,6 +119,9 @@ noncomputable def couplingFromProbe
     (probe : W →ₗ[ℝ] ℝ) (dF vWedgeF : W) : ℝ :=
   2 * probe dF / probe vWedgeF
 
+/--
+@isnad1 id=eq.2h7v.s6.49e6a70e7aae from=translated src=- shape=d1e7f75f vocab=ab8aefb0
+-/
 theorem couplingFromProbe_eq_of_compatible
     (probe : W →ₗ[ℝ] ℝ)
     (a : ℝ) (dF dStarF vWedgeF vWedgeStarF : W)
@@ -127,6 +138,9 @@ noncomputable def couplingFromDualProbe
     (probe : W →ₗ[ℝ] ℝ) (dStarF vWedgeStarF : W) : ℝ :=
   -(2 * probe dStarF / probe vWedgeStarF)
 
+/--
+@isnad1 id=eq.2h7v.s6.eae7ce700360 from=translated src=- shape=0970efba vocab=6f3ccb0a
+-/
 theorem couplingFromDualProbe_eq_of_compatible
     (probe : W →ₗ[ℝ] ℝ)
     (a : ℝ) (dF dStarF vWedgeF vWedgeStarF : W)
@@ -144,7 +158,9 @@ theorem couplingFromDualProbe_eq_of_compatible
   unfold couplingFromDualProbe
   linarith
 
-/-- Any two nonvanishing primal probes recover the same coupling.-/
+/-- Any two nonvanishing primal probes recover the same coupling.
+@isnad1 id=eq.3h8v.s7.67b7a98d17d0 from=translated src=- shape=c738966e vocab=ab8aefb0
+-/
 theorem couplingFromProbe_independent_of_compatible
     (probe₁ probe₂ : W →ₗ[ℝ] ℝ)
     (a : ℝ) (dF dStarF vWedgeF vWedgeStarF : W)
@@ -158,7 +174,9 @@ theorem couplingFromProbe_independent_of_compatible
   rw [couplingFromProbe_eq_of_compatible probe₂ a dF dStarF
     vWedgeF vWedgeStarF h hprobe₂]
 
-/-- Nonvanishing primal and dual probes recover the same coupling.-/
+/-- Nonvanishing primal and dual probes recover the same coupling.
+@isnad1 id=eq.3h8v.s7.8175ce88663b from=translated src=- shape=8515793c vocab=1c2f3096
+-/
 theorem couplingFrom_primal_dual_probes_agree
     (primalProbe dualProbe : W →ₗ[ℝ] ℝ)
     (a : ℝ) (dF dStarF vWedgeF vWedgeStarF : W)
@@ -173,7 +191,9 @@ theorem couplingFrom_primal_dual_probes_agree
     vWedgeF vWedgeStarF h hdual]
 
 /-- The probe formula changes sign when the reconstructed scalar orientation,
-and hence the wedge source, is reversed.-/
+and hence the wedge source, is reversed.
+@isnad1 id=eq.0h4v.s6.01d4eddd93bb from=translated src=- shape=bcefb312 vocab=0eab9a27
+-/
 theorem couplingFromProbe_neg_source
     (probe : W →ₗ[ℝ] ℝ) (dF vWedgeF : W) :
     couplingFromProbe probe dF (-vWedgeF) =
@@ -186,6 +206,9 @@ noncomputable def couplingSqFromProbe
     (probe : W →ₗ[ℝ] ℝ) (dF vWedgeF : W) : ℝ :=
   couplingFromProbe probe dF vWedgeF ^ 2
 
+/--
+@isnad1 id=eq.2h7v.s7.daf5949c77aa from=translated src=- shape=0c68e9a1 vocab=b3e39125
+-/
 theorem couplingSqFromProbe_eq_of_compatible
     (probe : W →ₗ[ℝ] ℝ)
     (a : ℝ) (dF dStarF vWedgeF vWedgeStarF : W)
@@ -195,6 +218,9 @@ theorem couplingSqFromProbe_eq_of_compatible
   rw [couplingSqFromProbe, couplingFromProbe_eq_of_compatible
     probe a dF dStarF vWedgeF vWedgeStarF h hprobe]
 
+/--
+@isnad1 id=eq.3h8v.s7.76c627e397a9 from=translated src=- shape=c738966e vocab=76f71e3b
+-/
 theorem couplingSqFromProbe_independent_of_compatible
     (probe₁ probe₂ : W →ₗ[ℝ] ℝ)
     (a : ℝ) (dF dStarF vWedgeF vWedgeStarF : W)
@@ -208,6 +234,9 @@ theorem couplingSqFromProbe_independent_of_compatible
   rw [couplingSqFromProbe_eq_of_compatible probe₂ a dF dStarF
     vWedgeF vWedgeStarF h hprobe₂]
 
+/--
+@isnad1 id=eq.0h4v.s6.ffa5b439fc4f from=translated src=- shape=ef3b7d52 vocab=0c8970ac
+-/
 theorem couplingSqFromProbe_neg_source
     (probe : W →ₗ[ℝ] ℝ) (dF vWedgeF : W) :
     couplingSqFromProbe probe dF (-vWedgeF) =
@@ -217,7 +246,9 @@ theorem couplingSqFromProbe_neg_source
   ring
 
 /-- The convention-independent coupling magnitude is unchanged by reversing
-the scalar orientation.-/
+the scalar orientation.
+@isnad1 id=eq.0h1v.s5.4b765521950c from=translated src=- shape=9c8b14aa vocab=873040dc
+-/
 theorem couplingSq_neg_orientation (a : ℝ) :
     (-a) ^ 2 = a ^ 2 := by
   ring

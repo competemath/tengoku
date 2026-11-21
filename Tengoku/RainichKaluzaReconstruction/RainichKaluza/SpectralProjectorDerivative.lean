@@ -27,7 +27,9 @@ variable {A : Type*} [Ring A] [Algebra ℝ A]
 
 omit [Algebra ℝ A] in
 /-- Differentiating `p²=p` forces the derivative to have no target-to-target
-block.-/
+block.
+@isnad1 id=eq.2h3v.s6.578e42e3ca1e from=translated src=- shape=00962635 vocab=309b5614
+-/
 theorem projectorDerivative_target_block_zero
     (p dp : A) (hp : p * p = p)
     (hdiff : dp * p + p * dp = dp) :
@@ -36,7 +38,9 @@ theorem projectorDerivative_target_block_zero
   simpa only [mul_add, ← mul_assoc, hp, add_eq_right] using hleft
 
 /-- Left off-diagonal derivative identity obtained by differentiating
-`Rp=ap` and projecting with a complementary left eigenspace projector.-/
+`Rp=ap` and projecting with a complementary left eigenspace projector.
+@isnad1 id=eq.3h9v.s8.fb5fc81f3ffd from=translated src=- shape=f6226e3c vocab=dc89dc06
+-/
 theorem spectralProjectorDerivative_left_scaled
     (R dR p dp q : A) (a b da : ℝ)
     (hqR : q * R = b • q) (hqp : q * p = 0)
@@ -54,7 +58,9 @@ theorem spectralProjectorDerivative_left_scaled
     _ = q * dR * p := by abel
 
 /-- Right off-diagonal derivative identity obtained by differentiating
-`pR=ap` and projecting with a complementary right eigenspace projector.-/
+`pR=ap` and projecting with a complementary right eigenspace projector.
+@isnad1 id=eq.3h9v.s8.ab0833632412 from=translated src=- shape=c3086e48 vocab=dc89dc06
+-/
 theorem spectralProjectorDerivative_right_scaled
     (R dR p dp q : A) (a b da : ℝ)
     (hRq : R * q = b • q) (hpq : p * q = 0)
@@ -70,7 +76,9 @@ theorem spectralProjectorDerivative_right_scaled
     _ = p * dR * q := by abel
 
 /-- Division by a nonzero spectral gap explicitly reconstructs the left
-off-diagonal component of the projector derivative.-/
+off-diagonal component of the projector derivative.
+@isnad1 id=eq.4h9v.s8.ea5d8d90a43c from=translated src=- shape=65893d09 vocab=3d5934f5
+-/
 theorem spectralProjectorDerivative_left
     (R dR p dp q : A) (a b da : ℝ) (hab : a ≠ b)
     (hqR : q * R = b • q) (hqp : q * p = 0)
@@ -88,7 +96,9 @@ theorem spectralProjectorDerivative_left
     _ = (a - b)⁻¹ • (q * dR * p) := by rw [hscaled]
 
 /-- Division by a nonzero spectral gap explicitly reconstructs the right
-off-diagonal component of the projector derivative.-/
+off-diagonal component of the projector derivative.
+@isnad1 id=eq.4h9v.s8.b217f0889e0b from=translated src=- shape=09c10753 vocab=3d5934f5
+-/
 theorem spectralProjectorDerivative_right
     (R dR p dp q : A) (a b da : ℝ) (hab : a ≠ b)
     (hRq : R * q = b • q) (hpq : p * q = 0)
@@ -107,7 +117,9 @@ theorem spectralProjectorDerivative_right
 
 omit [Algebra ℝ A] in
 /-- The derivative of an idempotent has only off-diagonal blocks relative to
-the splitting `p + (1-p)`.-/
+the splitting `p + (1-p)`.
+@isnad1 id=eq.2h3v.s7.d5c9b0468840 from=translated src=- shape=cb1087b5 vocab=6f4456c2
+-/
 theorem projectorDerivative_eq_complement_blocks
     (p dp : A) (hp : p * p = p)
     (hdiff : dp * p + p * dp = dp) :
@@ -121,7 +133,9 @@ theorem projectorDerivative_eq_complement_blocks
 omit [Algebra ℝ A] in
 /-- If three complementary projectors resolve the identity with `p`, the
 derivative of `p` is the sum of its six target/complement off-diagonal
-blocks.-/
+blocks.
+@isnad1 id=eq.3h6v.s8.7a5354550c03 from=translated src=- shape=4fb76f10 vocab=309b5614
+-/
 theorem projectorDerivative_eq_three_complement_blocks
     (p dp q r s : A) (hp : p * p = p)
     (hsum : p + q + r + s = 1)
@@ -141,7 +155,9 @@ theorem projectorDerivative_eq_three_complement_blocks
       noncomm_ring
 
 /-- Sandwiched left derivative block, in the form used by the complete
-spectral derivative formula.-/
+spectral derivative formula.
+@isnad1 id=eq.5h9v.s8.a25beb73ccde from=translated src=- shape=b58d3d9f vocab=3d5934f5
+-/
 theorem spectralProjectorDerivative_left_block
     (R dR p dp q : A) (a b da : ℝ) (hab : a ≠ b)
     (hp : p * p = p)
@@ -152,7 +168,9 @@ theorem spectralProjectorDerivative_left_block
   rw [smul_mul_assoc, mul_assoc (q * dR) p p, hp]
 
 /-- Sandwiched right derivative block, in the form used by the complete
-spectral derivative formula.-/
+spectral derivative formula.
+@isnad1 id=eq.5h9v.s8.1d40a52ea5c1 from=translated src=- shape=9c368046 vocab=3d5934f5
+-/
 theorem spectralProjectorDerivative_right_block
     (R dR p dp q : A) (a b da : ℝ) (hab : a ≠ b)
     (hp : p * p = p)
@@ -166,7 +184,9 @@ theorem spectralProjectorDerivative_right_block
 /-- **Complete four-block spectral derivative formula.** Once `p,q,r,s`
 resolve the identity, the target projector derivative is completely
 reconstructed from `dR` and the three spectral gaps.  The scalar `da` occurs
-in the differentiated eigen-equations but cancels from the result.-/
+in the differentiated eigen-equations but cancels from the result.
+@isnad1 id=eq.20h13v.s10.15f0199efdce from=translated src=- shape=99da9a27 vocab=3d5934f5
+-/
 theorem spectralProjectorDerivative_fourBlock
     (R dR p dp q r s : A) (a b c d da : ℝ)
     (hab : a ≠ b) (hac : a ≠ c) (had : a ≠ d)

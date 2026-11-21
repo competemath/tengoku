@@ -33,7 +33,9 @@ noncomputable def couplingSqFromPairing
     (pairing : W →ₗ[ℝ] W →ₗ[ℝ] ℝ) (X Y : W) : ℝ :=
   4 * pairing X X / pairing Y Y
 
-/-- The pairing ratio recovers the signed coupling from `2X=aY`.-/
+/-- The pairing ratio recovers the signed coupling from `2X=aY`.
+@isnad1 id=eq.2h5v.s8.04fbeb4fc8ea from=translated src=- shape=47809977 vocab=9f8c9c87
+-/
 theorem couplingFromPairing_eq_of_smul
     (pairing : W →ₗ[ℝ] W →ₗ[ℝ] ℝ)
     (X Y : W) (a : ℝ)
@@ -46,7 +48,9 @@ theorem couplingFromPairing_eq_of_smul
   exact (div_eq_iff hnonnull).2 hpaired
 
 /-- The quadratic pairing ratio recovers `a²` directly, without fixing the
-orientation of `Y`.-/
+orientation of `Y`.
+@isnad1 id=eq.2h5v.s8.f2a9a2cd0f48 from=translated src=- shape=2f2de1b6 vocab=541e6673
+-/
 theorem couplingSqFromPairing_eq_of_smul
     (pairing : W →ₗ[ℝ] W →ₗ[ℝ] ℝ)
     (X Y : W) (a : ℝ)
@@ -59,7 +63,9 @@ theorem couplingSqFromPairing_eq_of_smul
   apply (div_eq_iff hnonnull).2
   nlinarith
 
-/-- Reversing the scalar orientation reverses the signed pairing formula.-/
+/-- Reversing the scalar orientation reverses the signed pairing formula.
+@isnad1 id=eq.0h4v.s7.d021627df283 from=translated src=- shape=5d38a599 vocab=8c07b850
+-/
 theorem couplingFromPairing_neg_source
     (pairing : W →ₗ[ℝ] W →ₗ[ℝ] ℝ) (X Y : W) :
     couplingFromPairing pairing X (-Y) =
@@ -68,7 +74,9 @@ theorem couplingFromPairing_neg_source
     (neg_div (pairing Y Y) (2 * pairing X Y))
 
 /-- The squared pairing formula is invariant under scalar-orientation
-reversal.-/
+reversal.
+@isnad1 id=eq.0h4v.s7.d4219df2772a from=translated src=- shape=00497147 vocab=cb0fef4e
+-/
 theorem couplingSqFromPairing_neg_source
     (pairing : W →ₗ[ℝ] W →ₗ[ℝ] ℝ) (X Y : W) :
     couplingSqFromPairing pairing X (-Y) =
@@ -77,7 +85,9 @@ theorem couplingSqFromPairing_neg_source
 
 /-- The primal and dual rescaled Maxwell channels yield the same `a²` whenever
 they satisfy the common coupling equations and both pairing denominators are
-non-null.-/
+non-null.
+@isnad1 id=eq.3h7v.s9.dc0c16be7623 from=translated src=- shape=fa37c7f4 vocab=1af96169
+-/
 theorem couplingSqFromPairing_primal_dual_agree
     (pairing : W →ₗ[ℝ] W →ₗ[ℝ] ℝ)
     (dF dStarF vWedgeF vWedgeStarF : W) (a : ℝ)

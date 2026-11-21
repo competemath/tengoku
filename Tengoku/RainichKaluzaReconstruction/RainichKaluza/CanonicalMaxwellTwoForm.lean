@@ -41,7 +41,9 @@ def canonicalMaxwellTwoForm (E B : ℝ) : Matrix (Fin 4) (Fin 4) ℝ :=
       0,  0,  0,  B;
       0,  0, -B,  0]
 
-/-- The canonical tensor is an actual two-form: it is antisymmetric.-/
+/-- The canonical tensor is an actual two-form: it is antisymmetric.
+@isnad1 id=eq.0h2v.s6.a31f84cdcd21 from=translated src=- shape=0dc5b459 vocab=7190802d
+-/
 theorem canonicalMaxwellTwoForm_transpose (E B : ℝ) :
     (canonicalMaxwellTwoForm E B)ᵀ = -canonicalMaxwellTwoForm E B := by
   ext i j
@@ -81,7 +83,9 @@ noncomputable def canonicalMaxwellStress (E B : ℝ) : Matrix (Fin 4) (Fin 4) �
          0,    0, rho,   0;
          0,    0,   0, rho]
 
-/-- Direct Lorentzian invariant calculation for the canonical two-form.-/
+/-- Direct Lorentzian invariant calculation for the canonical two-form.
+@isnad1 id=eq.0h2v.s6.cdeba1d9d1af from=translated src=- shape=4dcd1dcb vocab=f1efe714
+-/
 theorem canonicalMaxwellTwoForm_invariant (E B : ℝ) :
     twoFormQuadraticInvariant (canonicalMaxwellTwoForm E B) =
       2 * (B ^ 2 - E ^ 2) := by
@@ -89,7 +93,9 @@ theorem canonicalMaxwellTwoForm_invariant (E B : ℝ) :
     minkowskiSign, Fin.sum_univ_succ]
   ring
 
-/-- **Canonical Maxwell stress calculation.**-/
+/-- **Canonical Maxwell stress calculation.**
+@isnad1 id=eq.0h2v.s4.c07b160e1d87 from=translated src=- shape=8fdbb122 vocab=ea218a1d
+-/
 theorem maxwellStressMixed_canonical (E B : ℝ) :
     maxwellStressMixed (canonicalMaxwellTwoForm E B) =
       canonicalMaxwellStress E B := by
@@ -99,7 +105,9 @@ theorem maxwellStressMixed_canonical (E B : ℝ) :
       canonicalStressMagnitude, twoFormQuadraticInvariant, raiseBothIndices,
       canonicalMaxwellTwoForm, minkowskiSign, Fin.sum_univ_succ] <;> ring
 
-/-- The canonical stress obeys the non-null algebraic Rainich square law.-/
+/-- The canonical stress obeys the non-null algebraic Rainich square law.
+@isnad1 id=eq.0h2v.s7.f7ec168b263b from=translated src=- shape=f74e877e vocab=3671839b
+-/
 theorem canonicalMaxwellStress_sq (E B : ℝ) :
     canonicalMaxwellStress E B * canonicalMaxwellStress E B =
       canonicalStressMagnitude E B ^ 2 •
@@ -109,7 +117,9 @@ theorem canonicalMaxwellStress_sq (E B : ℝ) :
     simp [Matrix.mul_apply, canonicalMaxwellStress, canonicalStressMagnitude,
       Fin.sum_univ_succ] <;> ring
 
-/-- The canonical mixed stress is tracefree.-/
+/-- The canonical mixed stress is tracefree.
+@isnad1 id=eq.0h2v.s4.eba60a27b241 from=translated src=- shape=07e2c022 vocab=1b560b57
+-/
 theorem canonicalMaxwellStress_trace (E B : ℝ) :
     Matrix.trace (canonicalMaxwellStress E B) = 0 := by
   simp [Matrix.trace, canonicalMaxwellStress, canonicalStressMagnitude,
@@ -117,7 +127,9 @@ theorem canonicalMaxwellStress_trace (E B : ℝ) :
   ring
 
 /-- The canonical energy density is nonnegative.  In mixed components it is
-`-T⁰₀=ρ` for the selected `(-,+,+,+)` signature.-/
+`-T⁰₀=ρ` for the selected `(-,+,+,+)` signature.
+@isnad1 id=le.0h2v.s5.fdb880fa3687 from=translated src=- shape=73d31fbf vocab=4739473d
+-/
 theorem canonicalMaxwellStress_energy_nonneg (E B : ℝ) :
     0 ≤ -canonicalMaxwellStress E B 0 0 := by
   simp [canonicalMaxwellStress, canonicalStressMagnitude]
@@ -132,7 +144,9 @@ def canonicalMaxwellResidual (q : ℝ) : Matrix (Fin 4) (Fin 4) ℝ :=
 
 /-- **Real canonical square-root existence.** Every positive non-null
 canonical residual is the Maxwell stress of the explicit purely electric
-two-form with amplitude `sqrt(2q)`.-/
+two-form with amplitude `sqrt(2q)`.
+@isnad1 id=eq.1h1v.s5.7d501e2c98d7 from=translated src=- shape=b2feb0fe vocab=98c25f2e
+-/
 theorem exists_canonicalMaxwellTwoForm_of_pos
     (q : ℝ) (hq : 0 < q) :
     maxwellStressMixed
@@ -155,7 +169,9 @@ def canonicalHodgeStar
     (E B : ℝ) : Matrix (Fin 4) (Fin 4) ℝ :=
   canonicalMaxwellTwoForm (-B) E
 
-/-- The canonical Hodge star squares to `-1` on two-forms.-/
+/-- The canonical Hodge star squares to `-1` on two-forms.
+@isnad1 id=eq.0h2v.s5.dae6d9c80796 from=translated src=- shape=8da2c0ec vocab=a51438e1
+-/
 theorem canonicalHodgeStar_sq (E B : ℝ) :
     canonicalHodgeStar (-B) E = -canonicalMaxwellTwoForm E B := by
   ext i j
@@ -163,7 +179,9 @@ theorem canonicalHodgeStar_sq (E B : ℝ) :
     simp [canonicalHodgeStar, canonicalMaxwellTwoForm]
 
 /-- A unit duality transformation is exactly the linear combination
-`cF+s(*F)` in the canonical Hodge convention.-/
+`cF+s(*F)` in the canonical Hodge convention.
+@isnad1 id=eq.0h3v.s7.003bf32f50cb from=translated src=- shape=eec4096e vocab=9bbd5c58
+-/
 theorem canonicalTwoForm_duality
     (p : DualityParameter) (E B : ℝ) :
     canonicalMaxwellTwoForm (dualityElectric p E B)
@@ -175,7 +193,9 @@ theorem canonicalTwoForm_duality
     simp [dualityElectric, dualityMagnetic, canonicalHodgeStar,
       canonicalMaxwellTwoForm] <;> ring
 
-/-- Canonical duality rotations leave the Maxwell stress unchanged.-/
+/-- Canonical duality rotations leave the Maxwell stress unchanged.
+@isnad1 id=eq.0h3v.s5.9b96cac9c93c from=translated src=- shape=aa5b388c vocab=209c8d3a
+-/
 theorem maxwellStressMixed_canonical_duality
     (p : DualityParameter) (E B : ℝ) :
     maxwellStressMixed

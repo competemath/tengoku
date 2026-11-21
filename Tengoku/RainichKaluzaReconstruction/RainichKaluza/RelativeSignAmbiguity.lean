@@ -17,7 +17,9 @@ the genuinely two-component branch.
 
 namespace RainichKaluza
 
-/-- Extensionality for the lightweight mixed-block structure.-/
+/-- Extensionality for the lightweight mixed-block structure.
+@isnad1 id=eq.4h2v.s5.6b4a7c96d55d from=translated src=- shape=b72505ad vocab=a64ad705
+-/
 theorem mixedBlock_ext {left right : MixedBlock}
     (haa : left.aa = right.aa) (hab : left.ab = right.ab)
     (hba : left.ba = right.ba) (hbb : left.bb = right.bb) :
@@ -33,13 +35,18 @@ def flipRelativeSign (block : MixedBlock) : MixedBlock where
   ba := -block.ba
   bb := block.bb
 
+/--
+@isnad1 id=eq.0h1v.s3.ca38411a05cc from=translated src=- shape=47dcad53 vocab=c6820774
+-/
 @[simp]
 theorem flipRelativeSign_involutive (block : MixedBlock) :
     flipRelativeSign (flipRelativeSign block) = block := by
   cases block
   simp [flipRelativeSign]
 
-/-- Negating exactly one scalar component produces the relative-sign flip.-/
+/-- Negating exactly one scalar component produces the relative-sign flip.
+@isnad1 id=eq.0h4v.s4.ee406a99822d from=translated src=- shape=675f9311 vocab=916e3ae8
+-/
 theorem scalarMixedBlock_neg_second
     (epsilonA epsilonB x y : ℝ) :
     scalarMixedBlockOfComponents epsilonA epsilonB x (-y) =
@@ -50,7 +57,9 @@ theorem scalarMixedBlock_neg_second
       scalarMixedOffDiagonal, flipRelativeSign] <;>
     ring
 
-/-- The Sylvester equation is invariant under the relative-sign flip.-/
+/-- The Sylvester equation is invariant under the relative-sign flip.
+@isnad1 id=iff.0h4v.s4.3c8aee6a8141 from=translated src=- shape=b77ee48c vocab=3c278c14
+-/
 theorem solvesComplementaryBlock_flip_iff
     (a b qSq : ℝ) (block : MixedBlock) :
     SolvesComplementaryBlock a b qSq (flipRelativeSign block) ↔
@@ -58,7 +67,9 @@ theorem solvesComplementaryBlock_flip_iff
   simp [SolvesComplementaryBlock, flipRelativeSign]
 
 /-- Equal component squares give either the same scalar tensor or its unique
-relative-sign flip.  The simultaneous global sign does not change the tensor.-/
+relative-sign flip.  The simultaneous global sign does not change the tensor.
+@isnad1 id=or.2h6v.s6.ca7d62c8cce9 from=translated src=- shape=4d9c7f27 vocab=b1252bae
+-/
 theorem scalarMixedBlock_eq_or_flip_of_sq_eq_sq
     (epsilonA epsilonB x y x' y' : ℝ)
     (hxSq : x ^ 2 = x' ^ 2)
@@ -90,7 +101,9 @@ theorem scalarMixedBlock_eq_or_flip_of_sq_eq_sq
 
 /-- **Classification of scalar-generated reconstruction solutions.** On the
 generic branch `a ≠ b`, any two scalar-generated complementary solutions are
-the same mixed tensor or the relative-sign reflection of one another.-/
+the same mixed tensor or the relative-sign reflection of one another.
+@isnad1 id=or.5h9v.s6.c3d3bb9a7333 from=translated src=- shape=26b15d50 vocab=d96138ea
+-/
 theorem scalarComplementarySolutions_eq_or_flip
     (a b qSq epsilonA epsilonB x y x' y' : ℝ)
     (hab : a ≠ b)
@@ -128,7 +141,9 @@ theorem scalarComplementarySolutions_eq_or_flip
     (haa.resolve_right hepsilonA_ne) (hbb.resolve_right hepsilonB_ne)
 
 /-- On the genuinely two-component branch, the two relative-sign choices are
-distinct mixed tensors.-/
+distinct mixed tensors.
+@isnad1 id=ne.3h4v.s6.29b244547133 from=translated src=- shape=7342786f vocab=3c27441a
+-/
 theorem scalarMixedBlock_relative_sign_nonunique
     (epsilonA epsilonB x y : ℝ)
     (hepsilonA : epsilonA ^ 2 = 1)
@@ -147,7 +162,9 @@ theorem scalarMixedBlock_relative_sign_nonunique
 
 /-- **Pointwise uniqueness obstruction.** Every genuinely two-component
 scalar-generated solution produces a second, distinct solution with identical
-forced diagonal/Ricci data by reversing one component.-/
+forced diagonal/Ricci data by reversing one component.
+@isnad1 id=and.4h7v.s6.5e3bd46a5b9a from=translated src=- shape=a1e27f4b vocab=e9328779
+-/
 theorem exists_distinct_relative_sign_solution
     (a b qSq epsilonA epsilonB x y : ℝ)
     (hepsilonA : epsilonA ^ 2 = 1)
@@ -178,7 +195,9 @@ def secondSpectralReflection : Matrix (Fin 2) (Fin 2) ℝ :=
 def complementaryRicciMatrix (a b : ℝ) : Matrix (Fin 2) (Fin 2) ℝ :=
   !![a, 0; 0, b]
 
-/-- The spectral reflection is an involution.-/
+/-- The spectral reflection is an involution.
+@isnad1 id=eq.0h0v.s7.081344642cd7 from=translated src=- shape=af6c9ceb vocab=e9cb77bd
+-/
 theorem secondSpectralReflection_sq :
     secondSpectralReflection * secondSpectralReflection = 1 := by
   rw [show secondSpectralReflection = !![(1 : ℝ), 0; 0, -1] from rfl]
@@ -186,7 +205,9 @@ theorem secondSpectralReflection_sq :
   rw [Matrix.one_fin_two]
   norm_num
 
-/-- The reflection belongs to the centralizer of the Ricci block.-/
+/-- The reflection belongs to the centralizer of the Ricci block.
+@isnad1 id=eq.0h2v.s7.8100fa983742 from=translated src=- shape=f955734c vocab=73ad7971
+-/
 theorem secondSpectralReflection_commutes_with_Ricci (a b : ℝ) :
     secondSpectralReflection * complementaryRicciMatrix a b =
       complementaryRicciMatrix a b * secondSpectralReflection := by
@@ -195,7 +216,9 @@ theorem secondSpectralReflection_commutes_with_Ricci (a b : ℝ) :
   rw [Matrix.mul_fin_two, Matrix.mul_fin_two]
   norm_num
 
-/-- Conjugation by the reflection leaves the Ricci data unchanged.-/
+/-- Conjugation by the reflection leaves the Ricci data unchanged.
+@isnad1 id=eq.0h2v.s7.18270a7c28aa from=translated src=- shape=e49e8e95 vocab=73ad7971
+-/
 theorem secondSpectralReflection_preserves_Ricci (a b : ℝ) :
     secondSpectralReflection * complementaryRicciMatrix a b *
         secondSpectralReflection = complementaryRicciMatrix a b := by
@@ -203,7 +226,9 @@ theorem secondSpectralReflection_preserves_Ricci (a b : ℝ) :
   rw [mul_assoc, secondSpectralReflection_sq, mul_one]
 
 /-- **Basis-independent orbit interpretation.** Conjugating by the reflection
-of the second eigendirection realizes exactly the relative-sign flip.-/
+of the second eigendirection realizes exactly the relative-sign flip.
+@isnad1 id=eq.0h1v.s7.d9962bdf7dd6 from=translated src=- shape=b4737db4 vocab=04830a34
+-/
 theorem secondSpectralReflection_conjugates (block : MixedBlock) :
     secondSpectralReflection * mixedBlockMatrix block *
         secondSpectralReflection =

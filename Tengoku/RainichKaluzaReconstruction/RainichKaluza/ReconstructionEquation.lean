@@ -19,7 +19,9 @@ namespace RainichKaluza
 /-- **Exact noncommutative algebra theorem.** If `R = S + V`, the Maxwell part
 squares to a scalar multiple of the identity, and the rank-one scalar part
 squares to its trace times itself, then `V` satisfies the reconstruction
-equation used throughout the project.-/
+equation used throughout the project.
+@isnad1 id=other.2h5v.s7.f3aa455fa6cd from=translated src=- shape=1be863d5 vocab=dc89dc06
+-/
 theorem reconstructionEquation_of_decomposition
     {A : Type*} [Ring A] [Algebra ℝ A]
     (S V : A) (traceV qSq : ℝ)
@@ -37,7 +39,9 @@ theorem reconstructionEquation_of_decomposition
       simp only [add_mul, mul_add, hS, hV]
       abel
 
-/-- The same identity with the Ricci-like element supplied explicitly.-/
+/-- The same identity with the Ricci-like element supplied explicitly.
+@isnad1 id=eq.3h6v.s8.2df29065859a from=translated src=- shape=522be577 vocab=dc89dc06
+-/
 theorem reconstructionEquation_of_eq_add
     {A : Type*} [Ring A] [Algebra ℝ A]
     (R S V : A) (traceV qSq : ℝ)
@@ -51,7 +55,9 @@ theorem reconstructionEquation_of_eq_add
 /-- **Centralizer invariance.** An involution commuting with `R` sends every
 solution of the reconstruction equation to another solution by conjugation.
 Thus uniqueness can hold only modulo the involutive centralizer of the Ricci
-endomorphism unless additional geometric data break that symmetry.-/
+endomorphism unless additional geometric data break that symmetry.
+@isnad1 id=eq.3h6v.s8.a44938e8d6ad from=translated src=- shape=e055fd77 vocab=dc89dc06
+-/
 theorem reconstructionEquation_conjugation_invariant
     {A : Type*} [Ring A] [Algebra ℝ A]
     (R V C : A) (traceV qSq : ℝ)

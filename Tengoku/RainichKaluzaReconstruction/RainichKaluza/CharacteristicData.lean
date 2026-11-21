@@ -44,7 +44,9 @@ def CharacteristicData.fromFactorization
   e4 := p.qSq * p.residualConstant
 
 /-- **Exact algebraic theorem.** The encoded characteristic polynomial really
-is the proposed product.-/
+is the proposed product.
+@isnad1 id=eq.0h2v.s6.6711072fa9d4 from=translated src=- shape=979c2674 vocab=2099b8ee
+-/
 theorem monicQuartic_fromFactorization
     (p : FactorizationParameters) (x : ℝ) :
     monicQuartic (.fromFactorization p) x =
@@ -53,14 +55,18 @@ theorem monicQuartic_fromFactorization
   simp [monicQuartic, CharacteristicData.fromFactorization]
   ring
 
-/-- If `q² = qSq`, the positive member of the protected pair is a root.-/
+/-- If `q² = qSq`, the positive member of the protected pair is a root.
+@isnad1 id=eq.1h2v.s5.fc39f15668cb from=translated src=- shape=a1807166 vocab=536c0da9
+-/
 theorem protected_positive_root
     (p : FactorizationParameters) (q : ℝ) (hq : q ^ 2 = p.qSq) :
     monicQuartic (.fromFactorization p) q = 0 := by
   rw [monicQuartic_fromFactorization, hq]
   ring
 
-/-- If `q² = qSq`, the negative member of the protected pair is a root.-/
+/-- If `q² = qSq`, the negative member of the protected pair is a root.
+@isnad1 id=eq.1h2v.s5.458a05c8a667 from=translated src=- shape=174dfd9e vocab=0047c244
+-/
 theorem protected_negative_root
     (p : FactorizationParameters) (q : ℝ) (hq : q ^ 2 = p.qSq) :
     monicQuartic (.fromFactorization p) (-q) = 0 := by

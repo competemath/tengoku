@@ -18,7 +18,9 @@ namespace RainichKaluza
 def reflectionOfIdempotent {A : Type*} [Ring A] (P : A) : A :=
   1 - 2 * P
 
-/-- A reflection constructed from an idempotent is involutive.-/
+/-- A reflection constructed from an idempotent is involutive.
+@isnad1 id=eq.1h2v.s5.c808f68ee8b9 from=translated src=- shape=723b3b99 vocab=abe5c881
+-/
 theorem reflectionOfIdempotent_sq
     {A : Type*} [Ring A] (P : A) (hP : P * P = P) :
     reflectionOfIdempotent P * reflectionOfIdempotent P = 1 := by
@@ -28,7 +30,9 @@ theorem reflectionOfIdempotent_sq
       noncomm_ring
     _ = 1 := by rw [hP]; noncomm_ring
 
-/-- If a projector commutes with `R`, so does its reflection.-/
+/-- If a projector commutes with `R`, so does its reflection.
+@isnad1 id=eq.1h3v.s6.27db8870d215 from=translated src=- shape=7c06fd48 vocab=abe5c881
+-/
 theorem reflectionOfIdempotent_commutes
     {A : Type*} [Ring A] (P R : A)
     (hPR : P * R = R * P) :
@@ -40,7 +44,9 @@ theorem reflectionOfIdempotent_commutes
     _ = R * (1 - 2 * P) := by noncomm_ring
 
 /-- Conjugation by an idempotent reflection preserves every commuting Ricci
-element.-/
+element.
+@isnad1 id=eq.2h3v.s6.825028717556 from=translated src=- shape=16cdd7e8 vocab=abe5c881
+-/
 theorem reflectionOfIdempotent_preserves
     {A : Type*} [Ring A] (P R : A)
     (hP : P * P = P)
@@ -51,7 +57,9 @@ theorem reflectionOfIdempotent_preserves
 
 /-- **Basis-independent spectral-orbit theorem.** A commuting idempotent
 projector produces another reconstruction solution by reflecting the proposed
-scalar tensor.-/
+scalar tensor.
+@isnad1 id=other.3h6v.s8.4c7b83a623f6 from=translated src=- shape=23a8140f vocab=2e3e79c5
+-/
 theorem reconstructionEquation_reflectionOfIdempotent
     {A : Type*} [Ring A] [Algebra ℝ A]
     (R V P : A) (traceV qSq : ℝ)

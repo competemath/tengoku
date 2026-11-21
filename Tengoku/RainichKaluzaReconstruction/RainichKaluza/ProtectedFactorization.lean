@@ -16,7 +16,9 @@ quadratic fixed by its first two characteristic coefficients.
 namespace RainichKaluza
 
 /-- The odd characteristic coefficient is forced by a nonzero opposite root
-pair.-/
+pair.
+@isnad1 id=eq.3h2v.s6.e2b852e2325c from=translated src=- shape=2d76a5d3 vocab=6bcc4ebf
+-/
 theorem e3_eq_neg_e1_mul_sq_of_opposite_roots
     (d : CharacteristicData) (q : ℝ) (hq : q ≠ 0)
     (hplus : monicQuartic d q = 0)
@@ -30,7 +32,9 @@ theorem e3_eq_neg_e1_mul_sq_of_opposite_roots
   linarith
 
 /-- The constant characteristic coefficient is forced by the same opposite
-root pair.-/
+root pair.
+@isnad1 id=eq.2h2v.s6.d81b271ab08f from=translated src=- shape=b572ca0a vocab=eeb8faee
+-/
 theorem e4_eq_neg_sq_mul_add_of_opposite_roots
     (d : CharacteristicData) (q : ℝ)
     (hplus : monicQuartic d q = 0)
@@ -40,7 +44,9 @@ theorem e4_eq_neg_sq_mul_add_of_opposite_roots
   nlinarith
 
 /-- **Protected-pair factorization theorem.** A nonzero opposite root pair
-forces the proposed quadratic characteristic factorization.-/
+forces the proposed quadratic characteristic factorization.
+@isnad1 id=eq.3h3v.s7.97bb9da1c59a from=translated src=- shape=77436d97 vocab=0a0683bb
+-/
 theorem monicQuartic_factorization_of_opposite_roots
     (d : CharacteristicData) (q x : ℝ) (hq : q ≠ 0)
     (hplus : monicQuartic d q = 0)
@@ -54,7 +60,9 @@ theorem monicQuartic_factorization_of_opposite_roots
   ring
 
 /-- The characteristic data themselves are exactly those produced by the
-factorization parameters determined from the protected pair.-/
+factorization parameters determined from the protected pair.
+@isnad1 id=eq.3h2v.s6.9eb254bf17ce from=translated src=- shape=3d379bad vocab=fad4109a
+-/
 theorem characteristicData_eq_fromFactorization_of_opposite_roots
     (d : CharacteristicData) (q : ℝ) (hq : q ≠ 0)
     (hplus : monicQuartic d q = 0)
