@@ -39,7 +39,9 @@ noncomputable def harmonicWindowMass (Y Z : ℕ) : ℝ :=
   genEventProb (harmonicWindowWeight Y Z) Set.univ
 
 /-- **Exact finite-sum identity** for the harmonic window mass, in the exact endpoint
-convention (`Y ≤ m`, `m < Z` from `range Z`, `Odd m`) already used by `harmonicWindowWeight`.-/
+convention (`Y ≤ m`, `m < Z` from `range Z`, `Odd m`) already used by `harmonicWindowWeight`.
+@isnad1 id=eq.0h2v.s6.c25c198194ae from=translated src=- shape=41552cff vocab=30f9eb50
+-/
 theorem harmonicWindowMass_eq_sum (Y Z : ℕ) :
     harmonicWindowMass Y Z = ∑ m ∈ range Z, if Y ≤ m ∧ Odd m then (1 : ℝ) / (m : ℝ) else 0 := by
   unfold harmonicWindowMass
@@ -57,7 +59,9 @@ theorem harmonicWindowMass_eq_sum (Y Z : ℕ) :
 /-! ## Part 2: positivity -/
 
 /-- **Positivity from a witness.** If some odd `m ∈ [Y,Z)` exists, the harmonic window mass is
-positive. Not claimed for empty windows.-/
+positive. Not claimed for empty windows.
+@isnad1 id=lt.3h3v.s5.247d4ebeb840 from=translated src=- shape=092f7212 vocab=f8ced1b1
+-/
 theorem harmonicWindowMass_pos_of_mem (Y Z m : ℕ) (hYm : Y ≤ m) (hmZ : m < Z) (hodd : Odd m) :
     0 < harmonicWindowMass Y Z := by
   have hwm : harmonicWindowWeight Y Z m = 1 / (m : ℝ) := by
@@ -73,7 +77,9 @@ theorem harmonicWindowMass_pos_of_mem (Y Z m : ℕ) (hYm : Y ≤ m) (hmZ : m < Z
 
 /-- **Practical positivity for `[Y, Y+H)`.** If `Y` itself is odd and positive, or more
 generally some odd witness exists in `[Y,Y+H)`, the window has positive mass. Since `Y` odd
-already provides such a witness (`m := Y`), this is the direct corollary used downstream.-/
+already provides such a witness (`m := Y`), this is the direct corollary used downstream.
+@isnad1 id=lt.2h2v.s5.3ea4b408d902 from=translated src=- shape=1938b287 vocab=3ffab3a2
+-/
 theorem harmonicWindowMass_pos_of_odd_left (Y H : ℕ) (hYodd : Odd Y) (hHpos : 0 < H) :
     0 < harmonicWindowMass Y (Y + H) :=
   harmonicWindowMass_pos_of_mem Y (Y + H) Y (le_refl Y) (by omega) hYodd
@@ -88,6 +94,9 @@ relying on this convention.-/
 noncomputable def normalizedHarmonicWindowWeight (Y Z : ℕ) (m : ℕ) : ℝ :=
   harmonicWindowWeight Y Z m / harmonicWindowMass Y Z
 
+/--
+@isnad1 id=le.0h3v.s4.cfa74740b09a from=translated src=- shape=1995cd38 vocab=a72913e4
+-/
 theorem normalizedHarmonicWindowWeight_nonneg (Y Z : ℕ) (m : ℕ) :
     0 ≤ normalizedHarmonicWindowWeight Y Z m :=
   div_nonneg (harmonicWindowWeight_nonneg Y Z m) (by
@@ -97,6 +106,9 @@ theorem normalizedHarmonicWindowWeight_nonneg (Y Z : ℕ) (m : ℕ) :
     intro x
     exact Set.indicator_nonneg (fun y _ => harmonicWindowWeight_nonneg Y Z y) x)
 
+/--
+@isnad1 id=le.0h2v.s4.413e7dec757a from=translated src=- shape=9904d0b5 vocab=f754163d
+-/
 theorem normalizedHarmonicWindowWeight_supp (Y Z : ℕ) :
     Function.support (normalizedHarmonicWindowWeight Y Z) ⊆ ↑(range Z) := by
   intro m hm
@@ -114,7 +126,9 @@ theorem normalizedHarmonicWindowWeight_supp (Y Z : ℕ) :
 is exactly the raw harmonic weight's `E`-mass divided by the total mass — the bridge from the
 raw harmonic sums used throughout Milestones 1–12 to an actual probability law. Holds for
 every event, with no positivity hypothesis needed (both sides are consistently `0` under Lean's
-total division convention when the mass is `0`).-/
+total division convention when the mass is `0`).
+@isnad1 id=eq.0h3v.s5.a1b60fac3f04 from=translated src=- shape=98e2d61b vocab=0877f901
+-/
 theorem genEventProb_normalizedHarmonicWindowWeight_eq (Y Z : ℕ) (E : Set ℕ) :
     genEventProb (normalizedHarmonicWindowWeight Y Z) E
       = genEventProb (harmonicWindowWeight Y Z) E / harmonicWindowMass Y Z := by
@@ -131,7 +145,9 @@ theorem genEventProb_normalizedHarmonicWindowWeight_eq (Y Z : ℕ) (E : Set ℕ)
 
 /-- **Converse scaling identity.** Recovers the raw harmonic event mass from the normalized
 probability, valid whenever the total mass is positive (needed since `M * (x/M) = x` requires
-`M ≠ 0`).-/
+`M ≠ 0`).
+@isnad1 id=eq.1h3v.s5.c66b40b44c0e from=translated src=- shape=ae47cf83 vocab=626a786d
+-/
 theorem genEventProb_harmonicWindowWeight_eq_mass_mul (Y Z : ℕ) (hpos : 0 < harmonicWindowMass Y Z)
     (E : Set ℕ) :
     genEventProb (harmonicWindowWeight Y Z) E
@@ -142,7 +158,9 @@ theorem genEventProb_harmonicWindowWeight_eq_mass_mul (Y Z : ℕ) (hpos : 0 < ha
 /-- **The normalization theorem, proved (not assumed).** Whenever the total harmonic mass is
 positive, the normalized weight genuinely is a probability law: its total mass is exactly `1`.
 This is the theorem that closes the semantic gap Milestones 11–12 left as the explicit
-hypothesis `hnorm`.-/
+hypothesis `hnorm`.
+@isnad1 id=eq.1h2v.s5.38e404486c48 from=translated src=- shape=fb7ea0bb vocab=169bb140
+-/
 theorem genEventProb_normalizedHarmonicWindowWeight_univ (Y Z : ℕ)
     (hpos : 0 < harmonicWindowMass Y Z) :
     genEventProb (normalizedHarmonicWindowWeight Y Z) Set.univ = 1 := by
@@ -153,7 +171,9 @@ theorem genEventProb_normalizedHarmonicWindowWeight_univ (Y Z : ℕ)
 /-! ## Part 5: prefix-mass and prefix-conditional-weight scaling invariance -/
 
 /-- **Prefix-mass scaling.** The normalized weight's prefix mass is the raw prefix mass divided
-by the total mass — an immediate consequence of `Finset.sum_div`.-/
+by the total mass — an immediate consequence of `Finset.sum_div`.
+@isnad1 id=eq.0h4v.s5.61e5f082fbc7 from=translated src=- shape=08912f0e vocab=e028413e
+-/
 theorem prefixMass_normalizedHarmonicWindowWeight_eq (Y Z t : ℕ) (v : Fin t → ℕ) :
     prefixMass (normalizedHarmonicWindowWeight Y Z) Z t v
       = prefixMass (harmonicWindowWeight Y Z) Z t v / harmonicWindowMass Y Z := by
@@ -169,7 +189,9 @@ theorem prefixMass_normalizedHarmonicWindowWeight_eq (Y Z t : ℕ) (v : Fin t �
 cancels the global normalization constant exactly: the normalized weight's prefix-conditional
 law coincides with the raw weight's, on the nose. This is what lets Milestone 10's exact
 restart-law alignment (built entirely against `harmonicWindowWeight`) remain reusable without
-modification for the normalized law.-/
+modification for the normalized law.
+@isnad1 id=eq.1h4v.s5.395a2b9a7a66 from=translated src=- shape=184b4585 vocab=dce68ac0
+-/
 theorem prefixConditionalWeight_normalizedHarmonicWindowWeight_eq (Y Z t : ℕ) (v : Fin t → ℕ)
     (hpos : 0 < harmonicWindowMass Y Z) :
     prefixConditionalWeight (normalizedHarmonicWindowWeight Y Z) Z t v
@@ -196,7 +218,9 @@ theorem prefixConditionalWeight_normalizedHarmonicWindowWeight_eq (Y Z t : ℕ) 
 (Milestone 11), transported to the normalized weight by dividing both sides of the raw-weight
 inequality by the (positive) total mass and applying the event/prefix-mass scaling identities —
 the per-fiber inequality is homogeneous of degree `1` in the weight (`Bgood` does not itself
-depend on the mass), so no GOOD/BAD mathematics is re-derived.-/
+depend on the mass), so no GOOD/BAD mathematics is re-derived.
+@isnad1 id=le.14h11v.s9.f990fbd703af from=translated src=- shape=5df5afd4 vocab=81655e44
+-/
 theorem good_prefix_true_fiber_bound_normalized
     (Y H : ℕ) (hYpos : 0 < Y) (hMpos : 0 < harmonicWindowMass Y (Y + H))
     (t : ℕ) (ht : 1 ≤ t) (n : ℕ) (hn : 1 ≤ n) (c : ℝ)
@@ -232,7 +256,9 @@ theorem good_prefix_true_fiber_bound_normalized
 /-! ## Part 7: the normalized BAD-prefix and EARLY-shift bounds -/
 
 /-- The normalized weight vanishes off the odd naturals, by the same scaling identity applied
-to `harmonicWindowWeight_odd_zero`.-/
+to `harmonicWindowWeight_odd_zero`.
+@isnad1 id=eq.0h2v.s5.f2a860c5a6eb from=translated src=- shape=41e9f275 vocab=d10688a8
+-/
 theorem normalizedHarmonicWindowWeight_odd_zero (Y H : ℕ) :
     genEventProb (normalizedHarmonicWindowWeight Y (Y + H)) {m : ℕ | ¬ Odd m} = 0 := by
   rw [genEventProb_normalizedHarmonicWindowWeight_eq, harmonicWindowWeight_odd_zero, zero_div]
@@ -242,7 +268,9 @@ theorem normalizedHarmonicWindowWeight_odd_zero (Y H : ℕ) :
 generic in its weight parameter, so no re-derivation is needed, only the substitution of
 `normalizedHarmonicWindowWeight` for `harmonicWindowWeight`. The residue-closeness hypothesis
 is stated for the normalized weight, the mathematically natural object for a
-"closeness-to-uniform" hypothesis to be about.-/
+"closeness-to-uniform" hypothesis to be about.
+@isnad1 id=le.8h8v.s8.08a8df5bb082 from=translated src=- shape=3dc33f03 vocab=ee0bb503
+-/
 theorem bad_prefix_true_bound_normalized
     (Y H t : ℕ) (hMpos : 0 < harmonicWindowMass Y (Y + H))
     (ht : 1 ≤ t) (sMaxNat : ℕ)
@@ -277,7 +305,9 @@ theorem bad_prefix_true_bound_normalized
 
 /-- **EARLY-shift true bound, for the normalized law.** Same reasoning as
 `bad_prefix_true_bound_normalized`: `early_shift_persistence_upper_bound_of_constants` is
-already generic in its weight parameter.-/
+already generic in its weight parameter.
+@isnad1 id=le.5h8v.s8.2a78f29a84f8 from=translated src=- shape=839bbcb0 vocab=0f08c62d
+-/
 theorem early_shift_true_bound_normalized
     (Y H : ℕ) (hMpos : 0 < harmonicWindowMass Y (Y + H))
     (c0 : ℝ) (Kearly : TaoMixingConstants c0) (hKearly : TaoMixingProperty c0 Kearly)
@@ -311,7 +341,9 @@ re-derived — `good_prefix_true_fiber_bound_normalized` transports Milestone 11
 bound by exact scaling; the BAD-prefix mathematics is *not* re-derived either —
 `bad_prefix_true_bound_normalized` reapplies the already-generic Milestone 8 transfer directly
 to the normalized weight. Only the final GOOD/BAD combination step (subadditivity, monotonicity)
-is repeated, verbatim, for the normalized weight.-/
+is repeated, verbatim, for the normalized weight.
+@isnad1 id=le.18h14v.s9.74d14d4bed53 from=translated src=- shape=f6895514 vocab=b01d9279
+-/
 theorem fixed_late_shift_persistence_upper_bound_normalized
     (Y H : ℕ) (hYpos : 0 < Y) (hMpos : 0 < harmonicWindowMass Y (Y + H))
     (t : ℕ) (ht : 1 ≤ t) (n : ℕ) (hn : 1 ≤ n) (c : ℝ)
@@ -395,7 +427,9 @@ theorem fixed_late_shift_persistence_upper_bound_normalized
 harmonic probability law.** Same statement and same EARLY/LATE finite-sum conclusion as
 `all_shifts_averaged_persistence_finite`, but for `genEventProb (normalizedHarmonicWindowWeight
 Y (Y+H))` instead of the raw `harmonicWindowWeight`, replacing `hnorm` by the honest hypothesis
-`hMpos : 0 < harmonicWindowMass Y (Y+H)`.-/
+`hMpos : 0 < harmonicWindowMass Y (Y+H)`.
+@isnad1 id=le.24h18v.s10.0213085bc38b from=translated src=- shape=3b61bd6c vocab=6b3d4588
+-/
 theorem all_shifts_averaged_persistence_finite_normalized
     (Y H : ℕ) (hYpos : 0 < Y) (hMpos : 0 < harmonicWindowMass Y (Y + H))
     (Tearly Ttotal : ℕ) (hTearly_pos : 1 ≤ Tearly) (hTle : Tearly ≤ Ttotal)

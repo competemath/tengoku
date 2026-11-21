@@ -26,16 +26,24 @@ open Finset
 
 /-! ## First-divergence valuation -/
 
+/--
+@isnad1 id=eq.2h4v.s5.e1e937c746d2 from=translated src=- shape=e3872d8c vocab=4f2c9405
+-/
 theorem s_eq_of_agree {d e : ℕ → ℕ} {i : ℕ} (hagree : ∀ l < i, d l = e l) {l : ℕ} (hl : l ≤ i) :
     s d l = s e l := by
   unfold s
   exact sum_congr rfl fun m hm => hagree m (lt_of_lt_of_le (mem_range.mp hm) hl)
 
+/--
+@isnad1 id=le.1h3v.s4.1a7720370001 from=translated src=- shape=ce0fd851 vocab=85e6497a
+-/
 theorem s_mono' (d : ℕ → ℕ) {a b : ℕ} (h : a ≤ b) : s d a ≤ s d b := by
   unfold s
   exact sum_le_sum_of_subset (range_subset_range.mpr h)
 
-/-- Partial sums after the divergence step exceed `s d i + d i` strictly.-/
+/-- Partial sums after the divergence step exceed `s d i + d i` strictly.
+@isnad1 id=le.3h4v.s6.9f729de15a57 from=translated src=- shape=fd12d29a vocab=db051848
+-/
 theorem s_ge_of_late {d : ℕ → ℕ} {i j l : ℕ} (hij : i + 1 < j) (hd : ∀ m < j, 1 ≤ d m)
     (hl : i + 2 ≤ l) : s d i + d i + 1 ≤ s d l := by
   have h1 : s d (i + 2) = s d i + d i + d (i + 1) := by rw [s_succ, s_succ]
@@ -43,6 +51,9 @@ theorem s_ge_of_late {d : ℕ → ℕ} {i j l : ℕ} (hij : i + 1 < j) (hd : ∀
   have h3 := hd (i + 1) hij
   omega
 
+/--
+@isnad1 id=eq.0h3v.s7.c46b80aa272a from=translated src=- shape=1d06d912 vocab=af41d05b
+-/
 theorem q_sub_eq_sum (d e : ℕ → ℕ) (j : ℕ) :
     (q d j : ℤ) - q e j =
       ∑ l ∈ range j, (3 : ℤ) ^ (j - 1 - l) * ((2 : ℤ) ^ s d l - 2 ^ s e l) := by
@@ -52,7 +63,9 @@ theorem q_sub_eq_sum (d e : ℕ → ℕ) (j : ℕ) :
   rw [← sum_sub_distrib]
   exact sum_congr rfl fun l _ => by ring
 
-/-- **First-divergence valuation.**-/
+/-- **First-divergence valuation.**
+@isnad1 id=and.5h4v.s7.18a740302b10 from=translated src=- shape=9a5ad0ce vocab=0a799814
+-/
 theorem q_sub_valuation {d e : ℕ → ℕ} {i j : ℕ} (hagree : ∀ l < i, d l = e l) (hne : d i ≠ e i)
     (hij : i + 1 < j) (hd : ∀ l < j, 1 ≤ d l) (he : ∀ l < j, 1 ≤ e l) :
     (2 : ℤ) ^ (s d i + min (d i) (e i)) ∣ (q d j : ℤ) - q e j ∧
@@ -114,7 +127,9 @@ theorem q_sub_valuation {d e : ℕ → ℕ} {i j : ℕ} (hagree : ∀ l < i, d l
 /-! ## Late-divergence orthogonality on a dyadic frequency block -/
 
 /-- If `Lg ≤ M`, `2^(M−Lg) ∣ Δ` and `¬ 2^M ∣ Δ`, the frequency block `ℓ < 2^Lg` is orthogonal:
-`∑_{ℓ < 2^Lg} e(ℓ Δ / 2^M) = 0`.-/
+`∑_{ℓ < 2^Lg} e(ℓ Δ / 2^M) = 0`.
+@isnad1 id=eq.3h3v.s7.715bf19265b6 from=translated src=- shape=b9dac6f3 vocab=8d6a4486
+-/
 theorem sum_ee_shell_eq_zero {M Lg : ℕ} (hLM : Lg ≤ M) {Δ : ℤ} (hdvd : (2 : ℤ) ^ (M - Lg) ∣ Δ)
     (hnd : ¬ (2 : ℤ) ^ M ∣ Δ) :
     ∑ ℓ ∈ range (2 ^ Lg), SwapBound.ee ((ℓ : ℝ) * (Δ : ℝ) / (2 : ℝ) ^ M) = 0 := by
@@ -142,6 +157,9 @@ theorem sum_ee_shell_eq_zero {M Lg : ℕ} (hLM : Lg ≤ M) {Δ : ℤ} (hdvd : (2
 
 /-! ## Resonance count -/
 
+/--
+@isnad1 id=le.0h2v.s5.21fe7b3f4f5a from=translated src=- shape=a1eb40cc vocab=6a7bc6bc
+-/
 theorem card_filter_dvd_le (n p : ℕ) :
     ((range n).filter fun x => p ∣ x).card ≤ n / p + 1 := by
   rcases Nat.eq_zero_or_pos n with rfl | hn
@@ -161,7 +179,9 @@ theorem card_filter_dvd_le (n p : ℕ) :
     _ = N / p + 1 := by rw [Nat.card_multiples']
     _ ≤ (N + 1) / p + 1 := Nat.add_le_add_right (Nat.div_le_div_right (Nat.le_succ N)) 1
 
-/-- `#{λ < 2^t : 3^k ∣ λ} ≤ 2^t / 3^k + 1`.-/
+/-- `#{λ < 2^t : 3^k ∣ λ} ≤ 2^t / 3^k + 1`.
+@isnad1 id=le.0h2v.s7.54fcdf9d1f09 from=translated src=- shape=a41cf696 vocab=1630ddfb
+-/
 theorem card_filter_three_pow_dvd_le (t k : ℕ) :
     ((range (2 ^ t)).filter fun lam => 3 ^ k ∣ lam).card ≤ 2 ^ t / 3 ^ k + 1 :=
   card_filter_dvd_le (2 ^ t) (3 ^ k)

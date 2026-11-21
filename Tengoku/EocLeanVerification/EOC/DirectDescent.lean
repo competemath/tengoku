@@ -40,7 +40,9 @@ namespace DirectDescent
 
 open Finset HarmonicPacking
 
-/-- Under non-descent the carry product is at most `(1 + 1/(3M))^N`.-/
+/-- Under non-descent the carry product is at most `(1 + 1/(3M))^N`.
+@isnad1 id=le.2h2v.s6.e1c903d5808a from=translated src=- shape=668256e0 vocab=590e4645
+-/
 theorem carryU_le_of_nondescent {M N : ℕ} (hM : 0 < M) (h : ∀ i < N, M ≤ orbit M i) :
     carryU M N ≤ (1 + 1 / (3 * (M : ℝ))) ^ N := by
   have hM' : (0 : ℝ) < M := by exact_mod_cast hM
@@ -56,7 +58,9 @@ theorem carryU_le_of_nondescent {M N : ℕ} (hM : 0 < M) (h : ∀ i < N, M ≤ o
           linarith
     _ = (1 + 1 / (3 * (M : ℝ))) ^ N := by rw [prod_const, card_range]
 
-/-- Under non-descent through step `N`, the drift satisfies `R_N ≤ N / (3 M ln 2)`.-/
+/-- Under non-descent through step `N`, the drift satisfies `R_N ≤ N / (3 M ln 2)`.
+@isnad1 id=le.3h2v.s6.eb2ba6e5ea4d from=translated src=- shape=e8319ce9 vocab=1d39e575
+-/
 theorem R_le_of_nondescent {M N : ℕ} (hM : 0 < M) (hodd : Odd M) (h : ∀ i ≤ N, M ≤ orbit M i) :
     R (orbWord M) N ≤ (N : ℝ) / (3 * (M : ℝ) * Real.log 2) := by
   have hM' : (0 : ℝ) < M := by exact_mod_cast hM
@@ -103,7 +107,9 @@ theorem R_le_of_nondescent {M N : ℕ} (hM : 0 < M) (hodd : Odd M) (h : ∀ i �
 
 /-- **Non-descent gives a confined word.**  If `M` is never strictly exceeded downwards through step
 `N`
-and `N ≤ 3 c M ln 2`, then the own word of `M` is `c`-confined to depth `N`.-/
+and `N ≤ 3 c M ln 2`, then the own word of `M` is `c`-confined to depth `N`.
+@isnad1 id=confined.4h3v.s6.fa4b0636d6a3 from=translated src=- shape=703955b3 vocab=a20cbe78
+-/
 theorem confined_of_nondescent {M N : ℕ} {c : ℝ} (hM : 0 < M) (hodd : Odd M)
     (h : ∀ i ≤ N, M ≤ orbit M i) (hN : (N : ℝ) ≤ 3 * c * (M : ℝ) * Real.log 2) :
     Confined c (orbWord M) N := by
@@ -130,7 +136,9 @@ noncomputable def mstar (c A B : ℝ) (N0 : ℕ) : ℝ :=
 
 /-- **Linear realizer floor ⇒ strict descent above an explicit threshold.**  If `3 A c ln 2 > 1`,
 every
-odd `M > mstar c A B N₀` has an iterate strictly below `M`.-/
+odd `M > mstar c A B N₀` has an iterate strictly below `M`.
+@isnad1 id=ex.7h5v.s7.f7073e4f0225 from=translated src=- shape=a78bb711 vocab=ff7823ef
+-/
 theorem descent_of_linearFloor {c A B : ℝ} {N0 : ℕ} (hc : 0 < c) (hA : 0 < A)
     (hcrit : 1 < 3 * A * c * Real.log 2) (hfloor : LinearRealizerFloor c A B N0)
     {M : ℕ} (hM : 0 < M) (hodd : Odd M) (hMs : mstar c A B N0 < (M : ℝ)) :
@@ -170,6 +178,9 @@ theorem descent_of_linearFloor {c A B : ℝ} {N0 : ℕ} (hc : 0 < c) (hA : 0 < A
 /-- `M` reaches `1`.-/
 def ReachesOne (M : ℕ) : Prop := ∃ n, orbit M n = 1
 
+/--
+@isnad1 id=eq.0h3v.s4.51b8e0baedcb from=translated src=- shape=1f563a8e vocab=9f3d30f0
+-/
 theorem orbit_add (M n k : ℕ) : orbit M (n + k) = orbit (orbit M n) k := by
   induction k with
   | zero => simp
@@ -177,7 +188,9 @@ theorem orbit_add (M n k : ℕ) : orbit M (n + k) = orbit (orbit M n) k := by
 
 /-- **Floor + finite base check ⇒ every odd seed reaches 1.**  Minimal-counterexample induction on
 the
-strictly smaller iterate supplied by `descent_of_linearFloor`.-/
+strictly smaller iterate supplied by `descent_of_linearFloor`.
+@isnad1 id=reacheso.7h5v.s7.8ffe79c69cf2 from=translated src=- shape=35beabe8 vocab=65bce4e5
+-/
 theorem reachesOne_of_linearFloor {c A B : ℝ} {N0 : ℕ} (hc : 0 < c) (hA : 0 < A)
     (hcrit : 1 < 3 * A * c * Real.log 2) (hfloor : LinearRealizerFloor c A B N0)
     (hbase : ∀ M : ℕ, 0 < M → Odd M → (M : ℝ) ≤ mstar c A B N0 → ReachesOne M) :
@@ -198,7 +211,9 @@ theorem reachesOne_of_linearFloor {c A B : ℝ} {N0 : ℕ} (hc : 0 < c) (hA : 0 
 
 /-! ## Dyadic scales suffice -/
 
-/-- Confinement to depth `N` implies confinement to any smaller depth.-/
+/-- Confinement to depth `N` implies confinement to any smaller depth.
+@isnad1 id=confined.2h4v.s4.4da742da6151 from=translated src=- shape=f62a08dd vocab=079293f3
+-/
 theorem confined_mono {c : ℝ} {d : ℕ → ℕ} {N N' : ℕ} (h : Confined c d N) (hle : N' ≤ N) :
     Confined c d N' := fun j hj => h j (le_trans hj hle)
 
@@ -208,7 +223,9 @@ def DyadicRealizerFloor (c : ℝ) (k0 : ℕ) : Prop :=
   ∀ M k : ℕ, Odd M → k0 ≤ k → Confined c (orbWord M) (2 ^ k) → ((2 : ℝ) ^ k) ≤ (M : ℝ)
 
 /-- **Dyadic floor ⇒ linear floor with `A = 1/2`.**  For `2^k ≤ N < 2^{k+1}` confinement to depth `N`
-gives confinement to depth `2^k`, hence `M ≥ 2^k > N/2`.-/
+gives confinement to depth `2^k`, hence `M ≥ 2^k > N/2`.
+@isnad1 id=linearre.1h2v.s5.02ceed96d383 from=translated src=- shape=e44d7121 vocab=c89a3f7c
+-/
 theorem linearFloor_of_dyadic {c : ℝ} {k0 : ℕ} (h : DyadicRealizerFloor c k0) :
     LinearRealizerFloor c (1 / 2) 0 (2 ^ k0) := by
   intro M N hodd hN hconf
@@ -228,7 +245,9 @@ theorem linearFloor_of_dyadic {c : ℝ} {k0 : ℕ} (h : DyadicRealizerFloor c k0
   linarith
 
 /-- **Dyadic floor ⇒ every odd seed reaches 1** (at `c = 1`: `3·(1/2)·ln 2 = 1.0397… > 1`), given a
-finite base check.-/
+finite base check.
+@isnad1 id=reacheso.4h2v.s6.34181ebccd90 from=translated src=- shape=8bcbce4c vocab=d10ed373
+-/
 theorem reachesOne_of_dyadicFloor {k0 : ℕ} (h : DyadicRealizerFloor 1 k0)
     (hbase : ∀ M : ℕ, 0 < M → Odd M → (M : ℝ) ≤ mstar 1 (1 / 2) 0 (2 ^ k0) → ReachesOne M) :
     ∀ M : ℕ, 0 < M → Odd M → ReachesOne M := by
@@ -243,7 +262,9 @@ theorem reachesOne_of_dyadicFloor {k0 : ℕ} (h : DyadicRealizerFloor 1 k0)
 
 /-- **A minimal counterexample is automatically `1`-confined for `2m` steps.**  If the orbit of `M` never
 goes below `M` through step `2M`, then its own word is `1`-confined to depth `2M`, because
-`2/(3 ln 2) = 0.962… < 1`.-/
+`2/(3 ln 2) = 0.962… < 1`.
+@isnad1 id=confined.3h1v.s6.da359f101e24 from=translated src=- shape=9cd37240 vocab=ad5ce54e
+-/
 theorem confined_two_mul_of_nondescent {M : ℕ} (hM : 0 < M) (hodd : Odd M)
     (h : ∀ i ≤ 2 * M, M ≤ orbit M i) : Confined 1 (orbWord M) (2 * M) := by
   refine confined_of_nondescent hM hodd h ?_
@@ -256,7 +277,9 @@ theorem confined_two_mul_of_nondescent {M : ℕ} (hM : 0 < M) (hodd : Odd M)
 
 /-- **`L₁(m) < 2m` (eventually) ⇒ eventual strict descent.**  Contrapositive of
 `confined_two_mul_of_nondescent`: a seed with no smaller iterate through step `2M` would be `1`-confined to
-depth `2M`.  Combined with `reachesOne_of_linearFloor`-style induction this is the direct-Collatz target.-/
+depth `2M`.  Combined with `reachesOne_of_linearFloor`-style induction this is the direct-Collatz target.
+@isnad1 id=ex.4h2v.s6.3cd64cd4092d from=translated src=- shape=5a9dab63 vocab=ad5ce54e
+-/
 theorem descent_of_L1_lt_two_mul {M0 : ℕ}
     (h : ∀ M : ℕ, M0 ≤ M → 0 < M → Odd M → ¬ Confined 1 (orbWord M) (2 * M)) :
     ∀ M : ℕ, M0 ≤ M → 0 < M → Odd M → ∃ n, 1 ≤ n ∧ orbit M n < M := by
@@ -277,7 +300,9 @@ def MinimalConfined (c : ℝ) (M N : ℕ) : Prop :=
   Odd M ∧ Confined c (orbWord M) N ∧ ∀ M' : ℕ, M' < M → Odd M' → ¬ Confined c (orbWord M') N
 
 /-- **Record-only reduction.**  The linear realizer floor need only be checked on record seeds: if every
-minimally confined `M` at depth `N ≥ N₀` satisfies `A·N − B ≤ M`, the floor holds for *all* odd seeds.-/
+minimally confined `M` at depth `N ≥ N₀` satisfies `A·N − B ≤ M`, the floor holds for *all* odd seeds.
+@isnad1 id=linearre.1h4v.s5.184fcb73f40b from=translated src=- shape=692968e0 vocab=de7d154d
+-/
 theorem linearFloor_of_minimal {c A B : ℝ} {N0 : ℕ}
     (h : ∀ M N : ℕ, N0 ≤ N → MinimalConfined c M N → A * (N : ℝ) - B ≤ (M : ℝ)) :
     LinearRealizerFloor c A B N0 := by
@@ -294,7 +319,9 @@ theorem linearFloor_of_minimal {c A B : ℝ} {N0 : ℕ}
 /-! ## Track B: the `13/9` form (seed 27 is the observed extremizer) -/
 
 /-- A seed that never drops below itself through step `⌊13M/9⌋` is `1`-confined to that depth, since
-`13/9 = 1.444… < 3 ln 2 = 2.079…`.  (Seed 27 attains `L₁(27)/27 = 13/9` exactly.)-/
+`13/9 = 1.444… < 3 ln 2 = 2.079…`.  (Seed 27 attains `L₁(27)/27 = 13/9` exactly.)
+@isnad1 id=confined.3h1v.s6.65ca68c7c684 from=translated src=- shape=d7eeede4 vocab=4b3b7739
+-/
 theorem confined_thirteen_ninths_of_nondescent {M : ℕ} (hM : 0 < M) (hodd : Odd M)
     (h : ∀ i ≤ 13 * M / 9, M ≤ orbit M i) : Confined 1 (orbWord M) (13 * M / 9) := by
   refine confined_of_nondescent hM hodd h ?_
@@ -308,7 +335,9 @@ theorem confined_thirteen_ninths_of_nondescent {M : ℕ} (hM : 0 < M) (hodd : Od
   nlinarith [this, h2, hM']
 
 /-- **Track B target ⇒ descent.**  If `L₁(M) < ⌊13M/9⌋` for every large odd `M` — i.e. seed 27 is the ratio
-extremizer — then every such `M` has a strictly smaller iterate, hence Collatz via the part-8 induction.-/
+extremizer — then every such `M` has a strictly smaller iterate, hence Collatz via the part-8 induction.
+@isnad1 id=ex.4h2v.s6.11d4884fd322 from=translated src=- shape=01adefa6 vocab=4b3b7739
+-/
 theorem descent_of_L1_lt_thirteen_ninths {M0 : ℕ}
     (h : ∀ M : ℕ, M0 ≤ M → 0 < M → Odd M → ¬ Confined 1 (orbWord M) (13 * M / 9)) :
     ∀ M : ℕ, M0 ≤ M → 0 < M → Odd M → ∃ n, 1 ≤ n ∧ orbit M n < M := by

@@ -45,7 +45,9 @@ open Finset CapacityBounds OddBlack WhiteContraction ShapeUnconditional
 /-! ## 1. ShapeTail with a free budget -/
 
 open Classical in
-/-- `ShapeTail` is monotone in the required number `K` of shape-good blocks.-/
+/-- `ShapeTail` is monotone in the required number `K` of shape-good blocks.
+@isnad1 id=shapetai.2h7v.s5.ba23ff073fa7 from=translated src=- shape=8c6add2c vocab=faa59c52
+-/
 theorem shapeTail_mono {b : ℕ → ℕ} {j σ N0 K K' : ℕ} {ρ : ℝ} (hK : K' ≤ K)
     (h : ShapeTail b j σ N0 K ρ) : ShapeTail b j σ N0 K' ρ := by
   unfold ShapeTail at h ⊢
@@ -56,7 +58,9 @@ theorem shapeTail_mono {b : ℕ → ℕ} {j σ N0 K K' : ℕ} {ρ : ℝ} (hK : K
   · unfold BlockCubeInstance.nCls; positivity
 
 /-- **Unconditional ShapeTail with a free block budget.**  For every even `j ≥ 300`, every `N₀` and
-every `K` with `K + ⌊31j/100⌋ + ⌊σ/(N₀+2)⌋ ≤ j/2`.-/
+every `K` with `K + ⌊31j/100⌋ + ⌊σ/(N₀+2)⌋ ≤ j/2`.
+@isnad1 id=shapetai.3h3v.s7.104ab37b3357 from=translated src=- shape=ae52b091 vocab=08a9c236
+-/
 theorem shapeTail_allEven_budget {j N0 K : ℕ} (hj : 300 ≤ j) (hev : 2 ∣ j)
     (hK : K + 31 * j / 100 + collatzBarrier 0 j / (N0 + 2) ≤ j / 2) :
     ShapeTail (collatzBarrier 0) j (collatzBarrier 0 j) N0 K ((2 : ℝ) ^ (j / 300))⁻¹ := by
@@ -66,13 +70,17 @@ theorem shapeTail_allEven_budget {j N0 K : ℕ} (hj : 300 ≤ j) (hev : 2 ∣ j)
     (by omega) (by positivity) (by omega) (collatz_chord 0 (by omega))
     (le_collatzBarrier 0 j) le_rfl hK (real_of_nat h)
 
-/-- Budget for `N₀ = 30`, `K = ⌊7j/50⌋` (uses `200σ < 317j`).-/
+/-- Budget for `N₀ = 30`, `K = ⌊7j/50⌋` (uses `200σ < 317j`).
+@isnad1 id=le.1h1v.s6.706881fb09b2 from=translated src=- shape=0af4f6da vocab=1b0e6ec9
+-/
 theorem budget_30 (j : ℕ) (hj : 1 ≤ j) :
     7 * j / 50 + 31 * j / 100 + collatzBarrier 0 j / (30 + 2) ≤ j / 2 := by
   have := barrier_lt j hj
   omega
 
-/-- Budget for `N₀ = 100`, `K = ⌊17j/100⌋`.-/
+/-- Budget for `N₀ = 100`, `K = ⌊17j/100⌋`.
+@isnad1 id=le.1h1v.s6.3dd12622d210 from=translated src=- shape=0af4f6da vocab=1b0e6ec9
+-/
 theorem budget_100 (j : ℕ) (hj : 1 ≤ j) :
     17 * j / 100 + 31 * j / 100 + collatzBarrier 0 j / (100 + 2) ≤ j / 2 := by
   have := barrier_lt j hj
@@ -86,14 +94,18 @@ exponent `θ` per step with a logarithmic surplus `C`.-/
 def AverageOddDarkPressure (b : ℕ → ℕ) (j σ t U : ℕ) (d s θ C : ℝ) : Prop :=
   OddDarkPressure b j σ t U d s ((2 : ℝ) ^ (C * Real.logb 2 j + θ * j))
 
-/-- `OddDarkPressure` is monotone in `M`.-/
+/-- `OddDarkPressure` is monotone in `M`.
+@isnad1 id=odddarkp.2h9v.s5.5bd5a574bb03 from=translated src=- shape=7a241540 vocab=ea1377d8
+-/
 theorem oddDarkPressure_mono {b : ℕ → ℕ} {j σ t U : ℕ} {d s M M' : ℝ} (hM : M ≤ M')
     (h : OddDarkPressure b j σ t U d s M) : OddDarkPressure b j σ t U d s M' :=
   fun u hu lam hlam => (h u hu lam hlam).trans
     (mul_le_mul_of_nonneg_right hM (Nat.cast_nonneg _))
 
 /-- **Logarithmic absorption.**  Beyond `j ≥ (3C/(θ'−θ))²` the logarithmic surplus disappears into
-the slightly larger exponent `θ'`.-/
+the slightly larger exponent `θ'`.
+@isnad1 id=odddarkp.5h10v.s7.35635e080184 from=translated src=- shape=33cff2f4 vocab=7b171963
+-/
 theorem oddDarkPressure_of_average {b : ℕ → ℕ} {j σ t U : ℕ} {d s θ θ' C : ℝ}
     (hj : 1 ≤ j) (hC : 0 ≤ C) (hθ : θ < θ') (hlarge : (3 * C / (θ' - θ)) ^ 2 ≤ j)
     (h : AverageOddDarkPressure b j σ t U d s θ C) :
@@ -105,7 +117,9 @@ theorem oddDarkPressure_of_average {b : ℕ → ℕ} {j σ t U : ℕ} {d s θ θ
 /-- **Pressure-only `CriticalWhiteCount`.**  For every even `j ≥ 300` beyond the absorption
 threshold, every `N₀, K` within the block budget and every split `k + n ≤ K`:
 `AverageOddDarkPressure` with exponent `θ < θ'` gives `CriticalWhiteCount` at level `k` with
-`ρ = 2^{−⌊j/300⌋} + 2^{θ' j} / ((1+s)/2)^n`.  No `ShapeTail` hypothesis remains.-/
+`ρ = 2^{−⌊j/300⌋} + 2^{θ' j} / ((1+s)/2)^n`.  No `ShapeTail` hypothesis remains.
+@isnad1 id=critical.9h12v.s8.315fc3a15970 from=translated src=- shape=fc9305c4 vocab=de5f5137
+-/
 theorem criticalWhiteCount_of_averagePressure {j t U N0 K k n : ℕ} {d s θ θ' C : ℝ}
     (hj : 300 ≤ j) (hev : 2 ∣ j)
     (hK : K + 31 * j / 100 + collatzBarrier 0 j / (N0 + 2) ≤ j / 2) (hkn : k + n ≤ K)
@@ -119,7 +133,9 @@ theorem criticalWhiteCount_of_averagePressure {j t U N0 K k n : ℕ} {d s θ θ'
   exact criticalWhiteCount_of_shape_and_oddPressure (collatzBarrier 0) (by omega) hs hshape hodd
     (le_of_eq (div_mul_cancel₀ _ hpos.ne').symm)
 
-/-- The pressure term is exponentially small once `θ' + γ ≤ ν log₂((1+s)/2)` and `n ≥ ν j`.-/
+/-- The pressure term is exponentially small once `θ' + γ ≤ ν log₂((1+s)/2)` and `n ≥ ν j`.
+@isnad1 id=le.3h6v.s7.c43b6c05306d from=translated src=- shape=b2213c00 vocab=d7577e2e
+-/
 theorem pressure_term_le {j n : ℕ} {s θ' ν γ : ℝ} (hs : 1 ≤ s) (hn : ν * j ≤ n)
     (hθ : θ' + γ ≤ ν * Real.logb 2 ((1 + s) / 2)) :
     (2 : ℝ) ^ (θ' * j) / ((1 + s) / 2) ^ n ≤ (2 : ℝ) ^ (-(γ * j)) := by
@@ -144,7 +160,9 @@ theorem pressure_term_le {j n : ℕ} {s θ' ν γ : ℝ} (hs : 1 ≤ s) (hn : ν
         apply Real.rpow_le_rpow_of_exponent_le one_le_two
         nlinarith
 
-/-- **Pressure-only `CriticalWhiteCount` with explicit rates.**-/
+/-- **Pressure-only `CriticalWhiteCount` with explicit rates.**
+@isnad1 id=ex.11h14v.s8.93e6c01a756c from=translated src=- shape=1a1447a1 vocab=79ae7630
+-/
 theorem criticalWhiteCount_rate {j t U N0 K k n : ℕ} {d s θ θ' C ν γ : ℝ}
     (hj : 300 ≤ j) (hev : 2 ∣ j)
     (hK : K + 31 * j / 100 + collatzBarrier 0 j / (N0 + 2) ≤ j / 2) (hkn : k + n ≤ K)
@@ -158,7 +176,9 @@ theorem criticalWhiteCount_rate {j t U N0 K k n : ℕ} {d s θ θ' C ν γ : ℝ
 
 /-! ## 4. The elementary side conditions of `LowFreqDecay` -/
 
-/-- The Collatz shell is nonempty (chord rotation: `1 ≤ C(σ−1, j−1) ≤ j·|P_σ|`).-/
+/-- The Collatz shell is nonempty (chord rotation: `1 ≤ C(σ−1, j−1) ≤ j·|P_σ|`).
+@isnad1 id=nonempty.1h1v.s4.5e5ad79f4837 from=translated src=- shape=d5606a00 vocab=259186d5
+-/
 theorem shellP_nonempty {j : ℕ} (hj : 1 ≤ j) :
     (PrefixCollision.shellP (collatzBarrier 0) j (collatzBarrier 0 j)).Nonempty := by
   have hjs := le_collatzBarrier 0 j
@@ -169,7 +189,9 @@ theorem shellP_nonempty {j : ℕ} (hj : 1 ≤ j) :
     lt_of_lt_of_le hc h
   exact Nat.pos_of_mul_pos_left this
 
-/-- `1 − cos(π d) ≥ 2 d²` for `0 ≤ d ≤ 1/2` (via `sin y ≥ 2y/π`).-/
+/-- `1 − cos(π d) ≥ 2 d²` for `0 ≤ d ≤ 1/2` (via `sin y ≥ 2y/π`).
+@isnad1 id=le.2h1v.s6.e3b9329f07d5 from=translated src=- shape=f03757c9 vocab=231ec4bb
+-/
 theorem one_sub_cos_ge {d : ℝ} (hd0 : 0 ≤ d) (hd1 : d ≤ 1 / 2) :
     2 * d ^ 2 ≤ 1 - Real.cos (Real.pi * d) := by
   have hy0 : 0 ≤ Real.pi * d / 2 := by have := Real.pi_pos; positivity
@@ -187,7 +209,9 @@ theorem one_sub_cos_ge {d : ℝ} (hd0 : 0 ≤ d) (hd1 : d ≤ 1 / 2) :
   nlinarith
 
 /-- **The good-block factor decays.**  `κ(d,N₀)^{2k} ≤ exp(−8 k d²/N₀)` for `0 ≤ d ≤ 1/2` and
-`N₀ ≥ 2`.-/
+`N₀ ≥ 2`.
+@isnad1 id=le.3h3v.s7.90f0ddf600c6 from=translated src=- shape=5cc32806 vocab=1f2c686c
+-/
 theorem kappa_pow_le_exp {d : ℝ} {N0 : ℕ} (hd0 : 0 ≤ d) (hd1 : d ≤ 1 / 2) (hN : 2 ≤ N0) (k : ℕ) :
     kappa d N0 ^ (2 * k) ≤ Real.exp (-(8 * k * d ^ 2 / N0)) := by
   have hN0 : (2 : ℝ) ≤ N0 := by exact_mod_cast hN
@@ -221,7 +245,9 @@ theorem kappa_pow_le_exp {d : ℝ} {N0 : ℕ} (hd0 : 0 ≤ d) (hd1 : d ≤ 1 / 2
 
 /-- **Pressure-only `LowFreqDecay`.**  With `γ ≤ 1/300`, `θ' + γ ≤ ν log₂((1+s)/2)`, `n ≥ ν j` and
 `γ j ln 2 ≤ 8 k d²/N₀`, the averaged pressure bound gives `LowFreqDecay` with constant `4` and rate
-`γ`.  All remaining hypotheses are parameter inequalities.-/
+`γ`.  All remaining hypotheses are parameter inequalities.
+@isnad1 id=lowfreqd.16h14v.s9.296fdf8cc67a from=translated src=- shape=2a416db6 vocab=81631ac3
+-/
 theorem lowFreqDecay_of_averagePressure {j t U N0 K k n : ℕ} {d s θ θ' C ν γ : ℝ}
     (hj : 300 ≤ j) (hev : 2 ∣ j)
     (hK : K + 31 * j / 100 + collatzBarrier 0 j / (N0 + 2) ≤ j / 2) (hkn : k + n ≤ K)
@@ -248,7 +274,9 @@ theorem lowFreqDecay_of_averagePressure {j t U N0 K k n : ℕ} {d s θ θ' C ν 
 
 /-! ## 6. Concrete schedules -/
 
-/-- **`N₀ = 30`, `K = ⌊7j/50⌋`.**-/
+/-- **`N₀ = 30`, `K = ⌊7j/50⌋`.**
+@isnad1 id=ex.10h12v.s8.efd0bd93ee93 from=translated src=- shape=5238b42a vocab=79ae7630
+-/
 theorem criticalWhiteCount_N30 {j t U k n : ℕ} {d s θ θ' C ν γ : ℝ}
     (hj : 300 ≤ j) (hev : 2 ∣ j) (hkn : k + n ≤ 7 * j / 50)
     (hs : 1 ≤ s) (hC : 0 ≤ C) (hθ : θ < θ') (hlarge : (3 * C / (θ' - θ)) ^ 2 ≤ j)
@@ -258,7 +286,9 @@ theorem criticalWhiteCount_N30 {j t U k n : ℕ} {d s θ θ' C ν γ : ℝ}
       CriticalWhiteCount (collatzBarrier 0) j (collatzBarrier 0 j) t U 30 d k ρ :=
   criticalWhiteCount_rate hj hev (budget_30 j (by omega)) hkn hs hC hθ hlarge hn hγ hpress
 
-/-- **`N₀ = 100`, `K = ⌊17j/100⌋`.**-/
+/-- **`N₀ = 100`, `K = ⌊17j/100⌋`.**
+@isnad1 id=ex.10h12v.s8.9fd9050da8b5 from=translated src=- shape=5238b42a vocab=79ae7630
+-/
 theorem criticalWhiteCount_N100 {j t U k n : ℕ} {d s θ θ' C ν γ : ℝ}
     (hj : 300 ≤ j) (hev : 2 ∣ j) (hkn : k + n ≤ 17 * j / 100)
     (hs : 1 ≤ s) (hC : 0 ≤ C) (hθ : θ < θ') (hlarge : (3 * C / (θ' - θ)) ^ 2 ≤ j)
@@ -281,7 +311,9 @@ variable (b : ℕ → ℕ)
 
 open Classical in
 /-- **Per-frequency few-good bound.**  For a single `λ`, the class-weighted mass with fewer than `k`
-good blocks is at most `ρ₁|P_σ| + (∑_P s^{N_odd}) / ((1+s)/2)^n`.-/
+good blocks is at most `ρ₁|P_σ| + (∑_P s^{N_odd}) / ((1+s)/2)^n`.
+@isnad1 id=le.3h11v.s9.a182942d592a from=translated src=- shape=aec66ce8 vocab=a219dfaa
+-/
 theorem fewGood_le_single {j σ t N0 k n : ℕ} {d s ρ₁ : ℝ} (lam : ℕ) (hj : 1 ≤ j) (hs : 1 ≤ s)
     (hshape : ShapeTail b j σ N0 (k + n) ρ₁) :
     ∑ c ∈ (PrefixCollision.shellP b j σ).image (BlockCubeInstance.pairκ j) with
@@ -327,7 +359,9 @@ theorem fewGood_le_single {j σ t N0 k n : ℕ} {d s ρ₁ : ℝ} (lam : ℕ) (h
   exact hsplit.trans (add_le_add hsh hbad2)
 
 open Classical in
-/-- **`ShapeTail` + frequency-summed pressure ⇒ `LowFreqDecay`.**-/
+/-- **`ShapeTail` + frequency-summed pressure ⇒ `LowFreqDecay`.**
+@isnad1 id=lowfreqd.10h14v.s8.447f1c34f14b from=translated src=- shape=f212f916 vocab=bc1cafa1
+-/
 theorem lowFreqDecay_of_shape_and_summedPressure {j σ t U N0 k n : ℕ} {d s ρ₁ M C γ : ℝ}
     (hj : 1 ≤ j) (hne : (PrefixCollision.shellP b j σ).Nonempty) (hd0 : 0 ≤ d) (hd1 : d ≤ 1 / 2)
     (hN : 2 ≤ N0) (hs : 1 ≤ s) (hρ₁ : 0 ≤ ρ₁) (hshape : ShapeTail b j σ N0 (k + n) ρ₁)
@@ -408,6 +442,9 @@ def SummedOddDarkPressure (b : ℕ → ℕ) (j σ t U : ℕ) (d s θ C : ℝ) : 
       ∑ P ∈ PrefixCollision.shellP b j σ, s ^ Nodd b (σ + 1 + t) d lam P ≤
     2 ^ (u + 1) * (2 : ℝ) ^ (C * Real.logb 2 j + θ * j) * ((PrefixCollision.shellP b j σ).card : ℝ)
 
+/--
+@isnad1 id=summedod.1h9v.s5.90b0d2ba884c from=translated src=- shape=a568f3ba vocab=cc5c6f08
+-/
 theorem summed_of_average {b : ℕ → ℕ} {j σ t U : ℕ} {d s θ C : ℝ}
     (h : AverageOddDarkPressure b j σ t U d s θ C) : SummedOddDarkPressure b j σ t U d s θ C := by
   intro u hu
@@ -422,7 +459,9 @@ theorem summed_of_average {b : ℕ → ℕ} {j σ t U : ℕ} {d s θ C : ℝ}
     _ ≤ _ := by rw [mul_assoc]; exact mul_le_mul_of_nonneg_right hcard hnn
 
 /-- **Frequency-summed pressure ⇒ `LowFreqDecay` for the Collatz barrier.**  Same parameters as
-`lowFreqDecay_of_averagePressure`, with the λ-uniform hypothesis replaced by the summed one.-/
+`lowFreqDecay_of_averagePressure`, with the λ-uniform hypothesis replaced by the summed one.
+@isnad1 id=lowfreqd.16h14v.s9.bf4d3cc385f0 from=translated src=- shape=2a416db6 vocab=22c49f4c
+-/
 theorem lowFreqDecay_of_summedPressure {j t U N0 K k n : ℕ} {d s θ θ' C ν γ : ℝ}
     (hj : 300 ≤ j) (hev : 2 ∣ j)
     (hK : K + 31 * j / 100 + collatzBarrier 0 j / (N0 + 2) ≤ j / 2) (hkn : k + n ≤ K)

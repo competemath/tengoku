@@ -33,11 +33,17 @@ open SuffixTransport
 /-- The valuation word of the actual orbit of `μ`.-/
 noncomputable def orbitWord (μ : ℕ) : ℕ → ℕ := fun i => a (orbit μ i)
 
+/--
+@isnad1 id=eq.0h2v.s4.fd6c8180aa03 from=translated src=- shape=46fa6edf vocab=0dd3c299
+-/
 theorem orbitWord_orbit (μ t : ℕ) : orbitWord (orbit μ t) = shiftWord (orbitWord μ) t := by
   funext i
   simp only [orbitWord, shiftWord]
   rw [orbit_add μ t i]
 
+/--
+@isnad1 id=eq.0h3v.s5.997b43dda061 from=translated src=- shape=b8cda78b vocab=aa8c3dd1
+-/
 theorem R_shiftWord (d : ℕ → ℕ) (t n : ℕ) : R (shiftWord d t) n = R d (t + n) - R d t := by
   unfold R
   rw [s_add_shiftWord d t n]
@@ -45,7 +51,9 @@ theorem R_shiftWord (d : ℕ → ℕ) (t n : ℕ) : R (shiftWord d t) n = R d (t
   ring
 
 /-- **On-orbit survival.** `T^t μ` is `c`-confined for `N` steps iff `R_μ(t+n) ≤ R_μ(t) + c` for
-every `n ≤ N`.-/
+every `n ≤ N`.
+@isnad1 id=iff.0h4v.s5.e282b5753bf6 from=translated src=- shape=9bd47486 vocab=c8ef1f31
+-/
 theorem confined_orbit_iff (μ t N : ℕ) (c : ℝ) :
     Confined c (orbitWord (orbit μ t)) N ↔
       ∀ n ≤ N, R (orbitWord μ) (t + n) ≤ R (orbitWord μ) t + c := by
@@ -59,7 +67,9 @@ theorem confined_orbit_iff (μ t N : ℕ) (c : ℝ) :
     rw [R_shiftWord]
     linarith [h n hn]
 
-/-- The `d = 1` predecessor `(2y − 1)/3` of an odd `y ≡ 2 (mod 3)`.-/
+/-- The `d = 1` predecessor `(2y − 1)/3` of an odd `y ≡ 2 (mod 3)`.
+@isnad1 id=other.2h1v.s7.a2b115c1332c from=translated src=- shape=5a35d72e vocab=50ee729c
+-/
 theorem predecessor {y : ℕ} (hy : Odd y) (h3 : y % 3 = 2) :
     let x := (2 * y - 1) / 3
     Odd x ∧ x < y ∧ 3 * x + 1 = 2 * y ∧ a x = 1 ∧ T x = y := by
@@ -84,7 +94,9 @@ theorem predecessor {y : ℕ} (hy : Odd y) (h3 : y % 3 = 2) :
   omega
 
 /-- **Backward cluster step.** If odd `y ≡ 2 (mod 3)` is `c`-confined for `N` steps (`c ≥ 0`),
-its predecessor `x = (2y − 1)/3` is `c`-confined for `N + 1` steps.-/
+its predecessor `x = (2y − 1)/3` is `c`-confined for `N + 1` steps.
+@isnad1 id=confined.4h3v.s6.dad8d18aa073 from=translated src=- shape=f89cd8ac vocab=5eb97c95
+-/
 theorem confined_predecessor {y : ℕ} (hy : Odd y) (h3 : y % 3 = 2) {c : ℝ} (hc : 0 ≤ c) {N : ℕ}
     (hconf : Confined c (orbitWord y) N) :
     Confined c (orbitWord ((2 * y - 1) / 3)) (N + 1) := by
@@ -104,7 +116,9 @@ theorem confined_predecessor {y : ℕ} (hy : Odd y) (h3 : y % 3 = 2) {c : ℝ} (
     have hα := one_lt_alpha
     linarith
 
-/-- Odd seeds congruent to a realizer modulo `2^(S_k + 1)` realize the same first `k` digits.-/
+/-- Odd seeds congruent to a realizer modulo `2^(S_k + 1)` realize the same first `k` digits.
+@isnad1 id=realizes.4h4v.s6.746716f0d17f from=translated src=- shape=5a5bffc3 vocab=cb537ae8
+-/
 theorem realizes_of_modEq {d : ℕ → ℕ} {k x y : ℕ} (hx : Realizes d k x)
     (hd_pos : ∀ i < k, 1 ≤ d i) (hy : Odd y) (hxy : x ≡ y [MOD 2 ^ (S d k + 1)]) :
     Realizes d k y := by
@@ -115,7 +129,9 @@ theorem realizes_of_modEq {d : ℕ → ℕ} {k x y : ℕ} (hx : Realizes d k x)
   exact this.symm.trans hcx
 
 /-- **Shared prefix, shared survival.** If odd `x, y` are congruent modulo `2^(S_k(x) + 1)`, they
-have the same first `k` valuation digits, so they are `c`-confined through `k` simultaneously.-/
+have the same first `k` valuation digits, so they are `c`-confined through `k` simultaneously.
+@isnad1 id=and.3h4v.s6.0d669f60f48a from=translated src=- shape=6a665f6a vocab=f7e16dd5
+-/
 theorem confined_iff_of_modEq {k x y : ℕ} (hx : Odd x) (hy : Odd y)
     (hxy : x ≡ y [MOD 2 ^ (S (orbitWord x) k + 1)]) (c : ℝ) :
     (∀ i < k, orbitWord x i = orbitWord y i) ∧

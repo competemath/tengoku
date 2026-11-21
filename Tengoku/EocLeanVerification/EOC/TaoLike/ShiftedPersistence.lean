@@ -29,7 +29,9 @@ open Finset
 /-- **Fixed-witness AND fixed-window version.** Same as
 `conditional_shifted_persistence_upper_bound_of_constants`, but the restart-window parameters
 `kmin, N` (with `hmem`, `hNlb`) are ALSO supplied by the caller — e.g. Milestone 10's
-exhaustive window construction — instead of derived via `cylinder_window_reindex`.-/
+exhaustive window construction — instead of derived via `cylinder_window_reindex`.
+@isnad1 id=ex.13h13v.s9.90945f295669 from=translated src=- shape=8300276d vocab=9146e396
+-/
 theorem conditional_shifted_persistence_upper_bound_at_window_of_constants
     (c0 : ℝ) (K : TaoMixingConstants c0) (hK : TaoMixingProperty c0 K)
     (d : ℕ → ℕ) (t r : ℕ) (h : Realizes d t r) (ht : 1 ≤ t)
@@ -64,7 +66,9 @@ and bounds its iid term with `geometric_persistence_upper_bound`. Reuses Milesto
 black boxes: no unfolding of `iidGeom2VectorProb`, `conditionalRestartLaw`, `tsum`, the
 Chernoff proof, or the residue-TV mixing proof. `K` is supplied by the caller (with its
 defining `TaoMixingProperty hK`) rather than derived internally, so the same `K` reappears
-verbatim in the conclusion — enabling uniform reuse across many realized prefixes.-/
+verbatim in the conclusion — enabling uniform reuse across many realized prefixes.
+@isnad1 id=ex.11h11v.s9.c8beb6c7a5e8 from=translated src=- shape=d220a11d vocab=629d14b8
+-/
 theorem conditional_shifted_persistence_upper_bound_of_constants
     (c0 : ℝ) (K : TaoMixingConstants c0) (hK : TaoMixingProperty c0 K)
     (d : ℕ → ℕ) (t r : ℕ) (h : Realizes d t r) (ht : 1 ≤ t)
@@ -91,7 +95,9 @@ theorem conditional_shifted_persistence_upper_bound_of_constants
   exact ⟨kmin, N, W, hWpos, hWdef, hbound⟩
 
 /-- **Convenience wrapper** (unchanged public API): chooses `K` once from `tao`, then invokes
-the fixed-witness version.-/
+the fixed-witness version.
+@isnad1 id=ex.12h10v.s9.f5a677c7de6f from=translated src=- shape=b29870fe vocab=bb308545
+-/
 theorem conditional_shifted_persistence_upper_bound
     (tao : TaoMixingHypothesis)
     (d : ℕ → ℕ) (t r : ℕ) (h : Realizes d t r) (ht : 1 ≤ t)
@@ -116,7 +122,9 @@ theorem conditional_shifted_persistence_upper_bound
 /-- **Fixed-witness AND fixed-window version.** Same as
 `conditional_shifted_persistence_upper_bound_bits_of_constants`, but the restart-window
 parameters `kmin, N` (with `hmem`, `hNlb`) are ALSO supplied by the caller — e.g. Milestone
-10's exhaustive window construction — instead of derived via `cylinder_window_reindex`.-/
+10's exhaustive window construction — instead of derived via `cylinder_window_reindex`.
+@isnad1 id=ex.13h13v.s9.8cb7d33a0f47 from=translated src=- shape=4ee15aa6 vocab=64fdf917
+-/
 theorem conditional_shifted_persistence_upper_bound_bits_at_window_of_constants
     (c0 : ℝ) (K : TaoMixingConstants c0) (hK : TaoMixingProperty c0 K)
     (d : ℕ → ℕ) (t r : ℕ) (h : Realizes d t r) (ht : 1 ≤ t)
@@ -146,7 +154,9 @@ theorem conditional_shifted_persistence_upper_bound_bits_at_window_of_constants
   linarith [hreal, hiid]
 
 /-- **Fixed-witness bit-rate corollary.** Same statement, iid term expressed via `I0` and
-`Real.rpow`; `K` supplied explicitly as above.-/
+`Real.rpow`; `K` supplied explicitly as above.
+@isnad1 id=ex.11h11v.s9.d2f2f673544a from=translated src=- shape=852c6b5f vocab=0ced122a
+-/
 theorem conditional_shifted_persistence_upper_bound_bits_of_constants
     (c0 : ℝ) (K : TaoMixingConstants c0) (hK : TaoMixingProperty c0 K)
     (d : ℕ → ℕ) (t r : ℕ) (h : Realizes d t r) (ht : 1 ≤ t)
@@ -173,7 +183,9 @@ theorem conditional_shifted_persistence_upper_bound_bits_of_constants
   exact ⟨kmin, N, W, hWpos, hWdef, hbound⟩
 
 /-- **Convenience wrapper** (unchanged public API): chooses `K` once from `tao`, then invokes
-the fixed-witness version.-/
+the fixed-witness version.
+@isnad1 id=ex.12h10v.s9.d1f42fc20b0b from=translated src=- shape=b23611e3 vocab=a00f3184
+-/
 theorem conditional_shifted_persistence_upper_bound_bits
     (tao : TaoMixingHypothesis)
     (d : ℕ → ℕ) (t r : ℕ) (h : Realizes d t r) (ht : 1 ≤ t)

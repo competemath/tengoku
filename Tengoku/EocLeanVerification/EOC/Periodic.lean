@@ -16,12 +16,18 @@ open PeriodicCore
 
 /-! ### Transport: repository `s`/`q` agree with the core `sr`/`qr` -/
 
+/--
+@isnad1 id=eq.0h2v.s3.8f9925a9abed from=translated src=- shape=3517c150 vocab=4007c0de
+-/
 theorem s_eq_sr (d : ℕ → ℕ) : ∀ j, s d j = sr d j := by
   intro j
   induction j with
   | zero => simp
   | succ n ih => rw [s_succ, sr_succ, ih]
 
+/--
+@isnad1 id=eq.0h2v.s3.393357e5e7b2 from=translated src=- shape=3517c150 vocab=2cbd98d0
+-/
 theorem q_eq_qr (d : ℕ → ℕ) : ∀ j, q d j = qr d j := by
   intro j
   induction j with
@@ -30,6 +36,9 @@ theorem q_eq_qr (d : ℕ → ℕ) : ∀ j, q d j = qr d j := by
 
 /-! ### Orbit shift and the exact block identity along an actual orbit -/
 
+/--
+@isnad1 id=eq.0h3v.s4.51b8e0baedcb from=translated src=- shape=1f563a8e vocab=9f3d30f0
+-/
 theorem orbit_add (m0 j : ℕ) :
     ∀ i, orbit m0 (j + i) = orbit (orbit m0 j) i := by
   intro i
@@ -43,6 +52,9 @@ theorem orbit_add (m0 j : ℕ) :
         orbit_succ
       ]
 
+/--
+@isnad1 id=dvd.0h1v.s5.ea0928f9df93 from=translated src=- shape=a0a84957 vocab=f69196c9
+-/
 theorem two_pow_a_dvd (m : ℕ) : 2 ^ a m ∣ 3 * m + 1 :=
   pow_padicValNat_dvd
 
@@ -52,7 +64,9 @@ starting at `j`,
 
 `2^{S_B} * m_{j+L} = 3^L * m_j + C_B`.
 
-This is `iter_carry_eq` applied to the shifted orbit.-/
+This is `iter_carry_eq` applied to the shifted orbit.
+@isnad1 id=eq.0h3v.s6.8d5ba5fe3c67 from=translated src=- shape=7f0d3350 vocab=42a6fdc2
+-/
 theorem orbit_block_identity (m0 j L : ℕ) :
     2 ^ s (fun i => a (orbit m0 (j + i))) L * orbit m0 (j + L)
       =
@@ -90,6 +104,9 @@ For a positive integer orbit with an eventually periodic valuation block,
 the repeated block satisfies `3^L < 2^{S_B}`.
 -/
 
+/--
+@isnad1 id=lt.3h3v.s6.2a9a09c11040 from=translated src=- shape=e46d702a vocab=f7a08364
+-/
 theorem three_pow_lt_two_pow_of_evPeriodic_orbit
     (m0 j0 L : ℕ)
     (hm0 : Odd m0)
@@ -152,6 +169,9 @@ theorem three_pow_lt_two_pow_of_evPeriodic_orbit
 
 /-! ### Real drift: `3^L < 2^S` gives `alpha * L < S` -/
 
+/--
+@isnad1 id=lt.1h2v.s5.c12505687a0a from=translated src=- shape=fd39689d vocab=51b0f419
+-/
 theorem alpha_mul_lt_of_pow_lt
     (L S : ℕ)
     (h : 3 ^ L < 2 ^ S) :
@@ -180,6 +200,9 @@ theorem alpha_mul_lt_of_pow_lt
 
   simpa [mul_comm] using hlt
 
+/--
+@isnad1 id=eq.1h4v.s6.3a5e1d7d37a3 from=translated src=- shape=5d16eb94 vocab=380fa32f
+-/
 theorem R_periodic
     (d : ℕ → ℕ)
     (j0 L : ℕ)
@@ -201,7 +224,9 @@ theorem R_periodic
 A positive integer whose valuation word is eventually periodic is not
 `c`-confined forever, for any real `c`.
 
-The sign-sensitive input is the positivity of the repeated block carry.-/
+The sign-sensitive input is the positivity of the repeated block carry.
+@isnad1 id=ex.3h4v.s5.d9d6acf013e1 from=translated src=- shape=fa9060ee vocab=7736d778
+-/
 theorem not_confined_forever_of_evPeriodic_orbit
     (c : ℝ)
     (m0 j0 L : ℕ)
@@ -262,6 +287,9 @@ nondecreasing realizer sequence freezes at an integer realizing every
 prefix. Its valuation word is then exactly `d`.
 -/
 
+/--
+@isnad1 id=eq.3h4v.s5.e617304b225c from=translated src=- shape=19040cac vocab=a0d3c990
+-/
 theorem realizes_all_of_leastRealizer_const
     (d : ℕ → ℕ)
     (hd : ∀ i, 1 ≤ d i)
@@ -309,6 +337,9 @@ theorem realizes_all_of_leastRealizer_const
 
   exact hreal.2 j hj
 
+/--
+@isnad1 id=ex.4h5v.s5.4278e7360c30 from=translated src=- shape=28b18d53 vocab=5c6f62c7
+-/
 theorem leastRealizer_unbounded_of_confined_evPeriodic
     (c : ℝ)
     (d : ℕ → ℕ)
@@ -404,7 +435,9 @@ theorem leastRealizer_unbounded_of_confined_evPeriodic
 
   simpa [hword] using hjconf
 
-/-- Corollary: infinitely many positive lifts.-/
+/-- Corollary: infinitely many positive lifts.
+@isnad1 id=ex.4h5v.s6.6ed01b00aec3 from=translated src=- shape=0cc4ee16 vocab=fbfee977
+-/
 theorem infinitely_many_positive_lifts_of_confined_evPeriodic
     (c : ℝ)
     (d : ℕ → ℕ)

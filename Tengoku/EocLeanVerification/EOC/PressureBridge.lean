@@ -39,6 +39,9 @@ open Classical in
 noncomputable def oddW (m : ℕ) (d s : ℝ) (lam : ℕ) (r x y : ℕ) : ℝ :=
   ∑ z ∈ Bset b r x y, (if z + 1 ∈ Bset b r x y ∧ Dark m d lam r z then s else 1)
 
+/--
+@isnad1 id=le.1h8v.s5.c9f02e1d9a3b from=translated src=- shape=fdb8e663 vocab=5e269802
+-/
 theorem oddW_nonneg {m : ℕ} {d s : ℝ} {lam : ℕ} (hs : 0 ≤ s) (r x y : ℕ) :
     0 ≤ oddW b m d s lam r x y := by
   classical
@@ -46,7 +49,9 @@ theorem oddW_nonneg {m : ℕ} {d s : ℝ} {lam : ℕ} (hs : 0 ≤ s) (r x y : �
   exact sum_nonneg fun z _ => by split_ifs <;> linarith
 
 open Classical in
-/-- **Class product form of the moment.**-/
+/-- **Class product form of the moment.**
+@isnad1 id=eq.1h8v.s8.32d77eb38dd6 from=translated src=- shape=d305d726 vocab=26038373
+-/
 theorem sum_pow_nodd_eq_class {j σ t m : ℕ} {d s : ℝ} {lam : ℕ} (hj : 1 ≤ j) :
     ∑ P ∈ shellP b j σ, s ^ Nodd b m d lam P =
       ∑ c ∈ (shellP b j σ).image (pairκ j),
@@ -79,7 +84,9 @@ theorem sum_pow_nodd_eq_class {j σ t m : ℕ} {d s : ℝ} {lam : ℕ} (hj : 1 �
 /-! ## Classes inject into kernel paths (generic weight) -/
 
 open Classical in
-/-- **Any nonnegative class product is at most the pinned kernel.**-/
+/-- **Any nonnegative class product is at most the pinned kernel.**
+@isnad1 id=le.3h4v.s9.e65ed3837976 from=translated src=- shape=91415bf8 vocab=204b1fb4
+-/
 theorem class_prod_le_ker {j σ : ℕ} (F : ℕ → ℕ → ℕ → ℝ) (hF : ∀ r x y, 0 ≤ F r x y)
     (hj : 1 ≤ j) (hj2 : 2 * (j / 2) = j) :
     ∑ c ∈ (shellP b j σ).image (pairκ j),
@@ -163,7 +170,9 @@ theorem class_prod_le_ker {j σ : ℕ} (F : ℕ → ℕ → ℕ → ℝ) (hF : �
 noncomputable def geoW (p q : ℝ) (W : ℕ → ℕ → ℕ → ℝ) (σ : ℕ) : ℕ → Fin (σ + 1) → Fin (σ + 1) → ℝ :=
   fun r x y => p ^ 2 * q ^ ((y : ℤ) - x - 2) * W r x y
 
-/-- **Exact identity.**  `ker geoW l n x z = p^{2n} q^{z−x−2n} · ker W l n x z`.-/
+/-- **Exact identity.**  `ker geoW l n x z = p^{2n} q^{z−x−2n} · ker W l n x z`.
+@isnad1 id=eq.1h8v.s8.0f6b0c35dcb8 from=translated src=- shape=86890492 vocab=f45f5d13
+-/
 theorem ker_geo_eq {p q : ℝ} (hq : q ≠ 0) (W : ℕ → ℕ → ℕ → ℝ) (σ : ℕ) :
     ∀ (n l : ℕ) (x z : Fin (σ + 1)),
       ker (geoW p q W σ) l n x z =
@@ -196,7 +205,9 @@ theorem ker_geo_eq {p q : ℝ} (hq : q ≠ 0) (W : ℕ → ℕ → ℕ → ℝ) 
 /-! ## The bridge -/
 
 /-- **The pressure bridge.**  With `p = (j−1)/(σ−1)` and `q = (σ−j)/(σ−1)`:
-`∑_P s^{N_odd(P)} ≤ (σ j / p) · ker (geoW p q oddW) 0 (j/2) 0 σ · |P_σ|`.-/
+`∑_P s^{N_odd(P)} ≤ (σ j / p) · ker (geoW p q oddW) 0 (j/2) 0 σ · |P_σ|`.
+@isnad1 id=le.6h7v.s8.6c06a060bf99 from=translated src=- shape=b706ce42 vocab=53cf1111
+-/
 theorem sum_pow_nodd_le_geo {j σ m : ℕ} {d s : ℝ} {lam : ℕ} (hj : 2 ≤ j) (hj2 : 2 * (j / 2) = j)
     (hchord : ∀ i ≤ j, ∀ p : ℕ, j * p ≤ i * b j → p ≤ b i) (hjσ : j < σ) (hσ : σ ≤ b j)
     (hs : 0 ≤ s) :
@@ -265,7 +276,9 @@ theorem sum_pow_nodd_le_geo {j σ m : ℕ} {d s : ℝ} {lam : ℕ} (hj : 2 ≤ j
 
 /-- **Window form of the bridge.**  If every `K`-block window of the geometric kernel has mass at
 most `M` from every state, and the final `ρ` blocks have mass at most `Mrem`, then
-`∑_P s^{N_odd} ≤ (σ j / p) · M^W · Mrem · |P_σ|` where `j/2 = W K + ρ`.-/
+`∑_P s^{N_odd} ≤ (σ j / p) · M^W · Mrem · |P_σ|` where `j/2 = W K + ρ`.
+@isnad1 id=le.10h12v.s9.4a7ae6058bc3 from=translated src=- shape=689a9c84 vocab=ec926f20
+-/
 theorem sum_pow_nodd_le_windows {j σ m K W ρ : ℕ} {d s M Mrem : ℝ} {lam : ℕ} (hj : 2 ≤ j)
     (hj2 : 2 * (j / 2) = j) (hchord : ∀ i ≤ j, ∀ p : ℕ, j * p ≤ i * b j → p ≤ b i)
     (hjσ : j < σ) (hσ : σ ≤ b j) (hs : 0 ≤ s) (hR : j / 2 = W * K + ρ)

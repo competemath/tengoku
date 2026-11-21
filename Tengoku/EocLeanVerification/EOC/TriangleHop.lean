@@ -47,7 +47,9 @@ def DistinctTriangleHop (η : ℝ) (a' b d : ℕ) : Prop :=
   black (a' + d) b η ∧ black a' (b + 1) η ∧ ¬ SameTri a' b d
 
 /-- **Small digits keep the path in its triangle**: `(2^d + 3) η ≤ 1` and both cells black ⇒
-linked.-/
+linked.
+@isnad1 id=sametri.3h4v.s6.ee99ffdb5569 from=translated src=- shape=8994d7fc vocab=6dd298c8
+-/
 theorem sameTri_of_small_digit {η : ℝ} {a' b d : ℕ} (h : ((2 : ℝ) ^ d + 3) * η ≤ 1)
     (h1 : black (a' + d) b η) (h2 : black a' (b + 1) η) : SameTri a' b d := by
   unfold SameTri
@@ -65,14 +67,18 @@ theorem sameTri_of_small_digit {η : ℝ} {a' b d : ℕ} (h : ((2 : ℝ) ^ d + 3
       _ = 3 ^ b := one_mul _
   exact_mod_cast key
 
-/-- **Long-jump lemma.** A hop between distinct black triangles forces `(2^d + 3) η > 1`.-/
+/-- **Long-jump lemma.** A hop between distinct black triangles forces `(2^d + 3) η > 1`.
+@isnad1 id=lt.1h4v.s6.e26a2be26a9e from=translated src=- shape=f581c3d9 vocab=8164a6f6
+-/
 theorem black_distinct_imp_large_digit {η : ℝ} {a' b d : ℕ} (h : DistinctTriangleHop η a' b d) :
     1 < ((2 : ℝ) ^ d + 3) * η := by
   obtain ⟨h1, h2, h3⟩ := h
   by_contra hc
   exact h3 (sameTri_of_small_digit (not_lt.mp hc) h1 h2)
 
-/-- General threshold: `2^d > 1/η − 3`.-/
+/-- General threshold: `2^d > 1/η − 3`.
+@isnad1 id=lt.2h4v.s6.b26f718d3de3 from=translated src=- shape=7456d48b vocab=a4ff2416
+-/
 theorem distinct_hop_pow_gt {η : ℝ} (hη : 0 < η) {a' b d : ℕ} (h : DistinctTriangleHop η a' b d) :
     1 / η - 3 < (2 : ℝ) ^ d := by
   have h1 := black_distinct_imp_large_digit h
@@ -80,7 +86,9 @@ theorem distinct_hop_pow_gt {η : ℝ} (hη : 0 < η) {a' b d : ℕ} (h : Distin
     rw [div_lt_iff₀ hη]; linarith
   linarith
 
-/-- **`η = 1/54`: distinct-triangle hops need `d ≥ 6`.**-/
+/-- **`η = 1/54`: distinct-triangle hops need `d ≥ 6`.**
+@isnad1 id=le.1h3v.s5.6c14a88a395d from=translated src=- shape=fb544b1a vocab=610d5f76
+-/
 theorem distinct_hop_digit_ge_six {a' b d : ℕ} (h : DistinctTriangleHop (1 / 54) a' b d) :
     6 ≤ d := by
   have h1 := black_distinct_imp_large_digit h
@@ -90,7 +98,9 @@ theorem distinct_hop_digit_ge_six {a' b d : ℕ} (h : DistinctTriangleHop (1 / 5
   have h32' : (2 : ℝ) ^ d ≤ 32 := by exact_mod_cast h32
   linarith
 
-/-- A common generator `(a'+d+k, b+1+l)` of both cells forces the linked relation.-/
+/-- A common generator `(a'+d+k, b+1+l)` of both cells forces the linked relation.
+@isnad1 id=sametri.4h6v.s6.7be7a496d42c from=translated src=- shape=7eba2011 vocab=14e81d81
+-/
 theorem sameTri_of_common_corner {η : ℝ} (hη : 0 < η) (hη4 : η ≤ 1 / 4) {a' b d k l : ℕ}
     (h1 : InTri η (a' + d) b k (l + 1)) (h2 : InTri η a' (b + 1) (d + k) l) : SameTri a' b d := by
   have hsmall : ∀ {A B K : ℕ} (L : ℕ), InTri η A B K L →
@@ -115,7 +125,9 @@ theorem sameTri_of_common_corner {η : ℝ} (hη : 0 < η) (hη4 : η ≤ 1 / 4)
 
 /-- **Same-row separation.** Two black cells `(a+k, b)`, `(a, b)` of one row with
 `(2^k + 1) η ≤ 1` are linked (`y a b = 2^k y (a+k) b`); so distinct black triangles in a row at
-`η = 1/54` are at least `6` columns apart.-/
+`η = 1/54` are at least `6` columns apart.
+@isnad1 id=eq.3h4v.s6.2e275631dc96 from=translated src=- shape=3921e260 vocab=9d4dbaa3
+-/
 theorem sameRow_of_small_gap {η : ℝ} {a b k : ℕ} (h : ((2 : ℝ) ^ k + 1) * η ≤ 1)
     (h1 : black (a + k) b η) (h2 : black a b η) : y a b = 2 ^ k * y (a + k) b := by
   have hm := merge a b k 0
@@ -133,7 +145,9 @@ theorem sameRow_of_small_gap {η : ℝ} {a b k : ℕ} (h : ((2 : ℝ) ^ k + 1) *
       _ = 3 ^ b := one_mul _
   exact_mod_cast key
 
-/-- `u a b = c` from `2^a c = 1` in `ZMod (3^b)`.-/
+/-- `u a b = c` from `2^a c = 1` in `ZMod (3^b)`.
+@isnad1 id=eq.1h3v.s9.2b2519149418 from=translated src=- shape=db4d34aa vocab=afded890
+-/
 theorem u_eq_of {a b : ℕ} {c : ZMod (3 ^ b)} (h : (2 : ZMod (3 ^ b)) ^ a * c = 1) :
     u a b = c := by
   have h2 : ((2 : ZMod (3 ^ b))⁻¹) ^ a * (2 : ZMod (3 ^ b)) ^ a = 1 := by
@@ -143,15 +157,23 @@ theorem u_eq_of {a b : ℕ} {c : ZMod (3 ^ b)} (h : (2 : ZMod (3 ^ b)) ^ a * c =
     _ = c := by rw [h2, one_mul]
 
 set_option maxRecDepth 20000 in
+/--
+@isnad1 id=eq.0h0v.s4.b19921721c4a from=translated src=- shape=8640e5ff vocab=743ec522
+-/
 theorem y_160_5 : y 160 5 = 4 := by
   unfold y; rw [u_eq_of (c := 4) (by decide)]; decide
 
 set_option maxRecDepth 20000 in
+/--
+@isnad1 id=eq.0h0v.s4.41536123ae3c from=translated src=- shape=8640e5ff vocab=743ec522
+-/
 theorem y_154_6 : y 154 6 = 13 := by
   unfold y; rw [u_eq_of (c := 13) (by decide)]; decide
 
 /-- **Sharpness at `η = 1/54`**: cells `(160, 5)` (`y = 4`) and `(154, 6)` (`y = 13`) are black,
-lie in distinct triangles (`13 − 64·4 = −3^5`), and are joined by a digit `d = 6`.-/
+lie in distinct triangles (`13 − 64·4 = −3^5`), and are joined by a digit `d = 6`.
+@isnad1 id=distinct.0h0v.s5.16ee6435687c from=translated src=- shape=fae1dee4 vocab=0e1c6fb9
+-/
 theorem distinct_hop_witness_d6 : DistinctTriangleHop (1 / 54) 154 5 6 := by
   refine ⟨?_, ?_, ?_⟩
   · unfold black; rw [show 154 + 6 = 160 by rfl, y_160_5]; norm_num
@@ -162,7 +184,9 @@ theorem distinct_hop_witness_d6 : DistinctTriangleHop (1 / 54) 154 5 6 := by
 /-! ## 2. Corner and chain lemmas -/
 
 /-- **Corner lemma.** `y a (b+r) = 2^k y (a+k) b` ⇒ the corner `(a+k, b+r)` carries
-`y (a+k) b`.-/
+`y (a+k) b`.
+@isnad1 id=eq.1h4v.s6.7e54ac8b6e27 from=translated src=- shape=42bba406 vocab=260c521f
+-/
 theorem corner_eq {a b k r : ℕ} (h : y a (b + r) = 2 ^ k * y (a + k) b) :
     y (a + k) (b + r) = y (a + k) b := by
   have hb := (u (a + k) b).valMinAbs_mem_Ioc
@@ -185,11 +209,16 @@ theorem corner_eq {a b k r : ℕ} (h : y a (b + r) = 2 ^ k * y (a + k) b) :
 /-- `Link i`: cells `i` and `i+1` of the path carry linked values.-/
 def Link (a d : ℕ → ℕ) (b0 i : ℕ) : Prop := y (a (i + 1)) (b0 + i + 1) = 2 ^ d i * y (a i) (b0 + i)
 
+/--
+@isnad1 id=iff.1h4v.s6.6586f0b0dc99 from=translated src=- shape=9d0abf69 vocab=cafd7a09
+-/
 theorem link_iff_sameTri (a d : ℕ → ℕ) (ha : ∀ i, a (i + 1) + d i = a i) (b0 i : ℕ) :
     Link a d b0 i ↔ SameTri (a (i + 1)) (b0 + i) (d i) := by
   unfold Link SameTri; rw [ha i]
 
-/-- **Chain lemma.** Links on `[s, s+r)` ⇒ `y(cell (s+r)) = 2^{a s − a (s+r)} y(cell s)`.-/
+/-- **Chain lemma.** Links on `[s, s+r)` ⇒ `y(cell (s+r)) = 2^{a s − a (s+r)} y(cell s)`.
+@isnad1 id=and.2h5v.s7.388e63cbd9c3 from=translated src=- shape=c41d106d vocab=ad93ea3c
+-/
 theorem chain_value (a d : ℕ → ℕ) (b0 s : ℕ) (ha : ∀ i, a (i + 1) + d i = a i) :
     ∀ r, (∀ i, s ≤ i → i < s + r → Link a d b0 i) →
       a (s + r) ≤ a s ∧
@@ -211,6 +240,9 @@ theorem chain_value (a d : ℕ → ℕ) (b0 s : ℕ) (ha : ∀ i, a (i + 1) + d 
     congr 2
     omega
 
+/--
+@isnad1 id=lt.3h3v.s5.0aac5e7711db from=translated src=- shape=accbc265 vocab=cebcec05
+-/
 theorem size_pos_of_black {η : ℝ} (_hη : 0 < η) {a b : ℕ} (hb : 1 ≤ b) (h : black a b η) :
     0 < size η a b := by
   unfold size
@@ -220,7 +252,9 @@ theorem size_pos_of_black {η : ℝ} (_hη : 0 < η) {a b : ℕ} (hb : 1 ≤ b) 
   unfold black at h
   linarith
 
-/-- Size of a vertical translate of a cell with the same value.-/
+/-- Size of a vertical translate of a cell with the same value.
+@isnad1 id=eq.3h4v.s6.f10bacb8f397 from=translated src=- shape=b4c377d4 vocab=ba4b5bcd
+-/
 theorem size_up {η : ℝ} (hη : 0 < η) {a b r : ℕ} (hb : 1 ≤ b) (h : y a (b + r) = y a b) :
     size η a (b + r) = size η a b + r * Real.log 3 := by
   have hy := abs_y_pos (a := a) hb
@@ -246,7 +280,9 @@ def InBig (R₁ : ℝ) (i : ℕ) : Prop :=
   ∃ k l : ℕ, InTri η (a i) (b0 + i) k l ∧ R₁ ≤ size η (a i + k) (b0 + i + l)
 
 /-- A black cell that does not lie in a triangle of size `≥ R₁` is within `H₁ − 1` steps of the
-start of its linked run.-/
+start of its linked run.
+@isnad1 id=lt.8h7v.s7.98b77f636348 from=translated src=- shape=3591a5b7 vocab=fac53fff
+-/
 theorem run_offset_lt {R₁ : ℝ} (hη : 0 < η) (hb0 : 1 ≤ b0) (ha : ∀ i, a (i + 1) + d i = a i)
     {s j : ℕ} (hsj : s ≤ j) (hchain : ∀ i, s ≤ i → i < j → Blk η a b0 i ∧ Link a d b0 i)
     (hs : Blk η a b0 s) (hj : Blk η a b0 j) (hbig : ¬ InBig η a b0 R₁ j) :
@@ -292,7 +328,9 @@ theorem run_offset_lt {R₁ : ℝ} (hη : 0 < η) (hb0 : 1 ≤ b0) (ha : ∀ i, 
 /-- **Run decomposition.** For a path of `n` steps (`b0 ≥ 1`):
 `n ≤ W + Occ + H₁ · (1 + W + W' + J)`, where `W = #white`, `W' = #{i : cell i+1 white}`,
 `J = #{i : cells i, i+1 black and not linked}`, `Occ = #{black cells in a triangle of size ≥ R₁}`,
-`H₁ = ⌊R₁/log 3⌋ + 1`.-/
+`H₁ = ⌊R₁/log 3⌋ + 1`.
+@isnad1 id=le.3h6v.s8.dafb0ccca1a7 from=translated src=- shape=1aaf41ed vocab=c6f3cbb4
+-/
 theorem run_decomposition {R₁ : ℝ} (hη : 0 < η) (hb0 : 1 ≤ b0) (ha : ∀ i, a (i + 1) + d i = a i)
     (n : ℕ) :
     n ≤ ((range n).filter (fun i => ¬ Blk η a b0 i)).card +
@@ -398,7 +436,9 @@ theorem run_decomposition {R₁ : ℝ} (hη : 0 < η) (hb0 : 1 ≤ b0) (ha : ∀
       _ ≤ _ := by rw [Nat.mul_comm]; exact Nat.mul_le_mul_left H (by omega)
   omega
 
-/-- `W' ≤ W + 1`.-/
+/-- `W' ≤ W + 1`.
+@isnad1 id=le.0h4v.s6.b4dd1120bfbe from=translated src=- shape=d3fa8a9b vocab=47db4f53
+-/
 theorem card_white_next_le (n : ℕ) :
     ((range n).filter (fun i => ¬ Blk η a b0 (i + 1))).card ≤
       ((range n).filter (fun i => ¬ Blk η a b0 i)).card + 1 := by
@@ -421,7 +461,9 @@ theorem card_white_next_le (n : ℕ) :
     _ ≤ _ := card_insert_le _ _
 
 /-- **Run decomposition at `η = 1/54`**, with hops counted by digits `≥ 6`:
-`n ≤ (2H₁+1) W + Occ + H₁ N₆ + 2H₁`.-/
+`n ≤ (2H₁+1) W + Occ + H₁ N₆ + 2H₁`.
+@isnad1 id=le.2h5v.s9.905e35f0e244 from=translated src=- shape=2a745b7a vocab=dc9ff724
+-/
 theorem run_decomposition_54 {R₁ : ℝ} (hb0 : 1 ≤ b0) (ha : ∀ i, a (i + 1) + d i = a i) (n : ℕ) :
     n ≤ (2 * (⌊R₁ / Real.log 3⌋₊ + 1) + 1) *
         ((range n).filter (fun i => ¬ Blk (1 / 54) a b0 i)).card +
@@ -447,7 +489,9 @@ theorem run_decomposition_54 {R₁ : ℝ} (hb0 : 1 ≤ b0) (ha : ∀ i, a (i + 1
   nlinarith
 
 /-- Under `R_max(Ω) ≤ R₀ < R₁` (all path cells in `Ω`) no black cell lies in a triangle of size
-`≥ R₁`: the occupation term of the run decomposition vanishes.-/
+`≥ R₁`: the occupation term of the run decomposition vanishes.
+@isnad1 id=eq.3h7v.s6.c0efeb65af28 from=translated src=- shape=d3828156 vocab=a12f90d8
+-/
 theorem occ_eq_zero_of_maxTriangleLE {Ω : Set (ℕ × ℕ)} {R₀ R₁ : ℝ} (hR : R₀ < R₁)
     (hmax : MaxTriangleLE η Ω R₀) (n : ℕ) (hΩ : ∀ i < n, (a i, b0 + i) ∈ Ω) :
     ((range n).filter (fun i => Blk η a b0 i ∧ InBig η a b0 R₁ i)).card = 0 := by
@@ -462,7 +506,9 @@ end Runs
 /-! ## 4. Fixed-fraction large apexes are finitely many (from `SubspaceInstance`) -/
 
 /-- An apex of size `≥ 2δKL` over a cell with `D ≤ K L` is `δ`-exceptional (`δ ≤ 1/2`,
-`η ≤ 1/2`).-/
+`η ≤ 1/2`).
+@isnad1 id=mem.9h8v.s7.67508a9bfe72 from=translated src=- shape=29d7cdc9 vocab=57f217a0
+-/
 theorem mem_exc_of_large {η δ K L : ℝ} (hη : 0 < η) (hη2 : η ≤ 1 / 2) (hδ0 : 0 ≤ δ)
     (hδ1 : δ ≤ 1 / 2)
     {a b k l : ℕ} (ha : 1 ≤ a) (hb : 1 ≤ b) (hD : D a b ≤ K * L) (hin : InTri η a b k l)
@@ -500,7 +546,9 @@ def LargeApexes (η K ε : ℝ) : Set (ℕ × ℕ) :=
 
 /-- **Fixed-fraction large triangles are finitely many, uniformly in `L`** (from the Subspace
 instance at `δ = min (1/2) (ε/(2K))`).  (`R_max = o(L)` already forces none for `L ≥ L₀(ε)`; with a
-quantitative Subspace Theorem this finite set has an explicit cardinality bound.)-/
+quantitative Subspace Theorem this finite set has an explicit cardinality bound.)
+@isnad1 id=finite.5h3v.s7.01c243f21b7d from=translated src=- shape=24ba44c5 vocab=295a6e71
+-/
 theorem largeApexes_finite {η K ε : ℝ} (hη : 0 < η) (hη2 : η ≤ 1 / 2) (hK : 0 < K) (hε : 0 < ε)
     (h : SubspaceInstance (min (1 / 2) (ε / (2 * K)))) : (LargeApexes η K ε).Finite := by
   set δ := min (1 / 2) (ε / (2 * K)) with hδ
@@ -538,7 +586,9 @@ def TriangleOccupation (T : Finset ι) (w : ι → ℝ) (Occ : ι → ℕ) (Omax
 
 /-- **Glue.**  If every path satisfies the run bound `R ≤ (2H₁+1)·#good + Occ + H₁·J`, and
 `(2H₁+1) k + Omax + H₁ Jmax ≤ R`, then large-jump LD and occupation give
-`PositiveDensityGoodAngles` with `ρ = ρ₁ + ρ₂`.-/
+`PositiveDensityGoodAngles` with `ρ = ρ₁ + ρ₂`.
+@isnad1 id=positive.7h15v.s8.8d6b8d9961dd from=translated src=- shape=54764b1a vocab=263932c5
+-/
 theorem positiveDensityGoodAngles_of_runBound (T : Finset ι) (w : ι → ℝ) (W : ι → ℕ → ℝ)
     (good : ι → ℕ → Prop) [∀ P, DecidablePred (good P)] (R H₁ k Omax Jmax : ℕ) (Occ Jc : ι → ℕ)
     {ρ₁ ρ₂ κ : ℝ} (hw : ∀ P ∈ T, 0 ≤ w P) (hW : ∀ P ∈ T, ∀ r, 0 ≤ W P r ∧ W P r ≤ 1)

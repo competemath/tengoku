@@ -23,11 +23,17 @@ open Finset
 
 /-! ## Coprimality helpers -/
 
+/--
+@isnad1 id=iscoprim.0h1v.s4.8dc28665a34e from=translated src=- shape=476886e2 vocab=ba04a46d
+-/
 theorem isCoprime_two_pow_27 (M : ℕ) : IsCoprime ((2 : ℤ) ^ M) 27 := by
   have h : IsCoprime (2 : ℤ) 27 := by
     rw [Int.isCoprime_iff_gcd_eq_one]; rfl
   exact h.pow_left
 
+/--
+@isnad1 id=iscoprim.0h2v.s5.29413beb2a47 from=translated src=- shape=835ec349 vocab=ba04a46d
+-/
 theorem isCoprime_two_pow_three_pow (M n : ℕ) : IsCoprime ((2 : ℤ) ^ M) (3 ^ n) := by
   have h : IsCoprime (2 : ℤ) 3 := by
     rw [Int.isCoprime_iff_gcd_eq_one]; rfl
@@ -36,7 +42,9 @@ theorem isCoprime_two_pow_three_pow (M n : ℕ) : IsCoprime ((2 : ℤ) ^ M) (3 ^
 /-! ## (A′) continuation and (B′) exit -/
 
 /-- **(A′) Continuation.** If `2^{M'} ∣ 27 e' − e`, `27 ∣ e`, `e'` is centered (`2|e'| ≤ 2^{M'}`)
-and `2|e| < 27·2^{M'}`, then `e' · 27 = e`.-/
+and `2|e| < 27·2^{M'}`, then `e' · 27 = e`.
+@isnad1 id=eq.4h3v.s7.50f8b44838b2 from=translated src=- shape=efb45c0d vocab=12c94e4f
+-/
 theorem cont {M' : ℕ} {e e' : ℤ} (hd : (2 : ℤ) ^ M' ∣ 27 * e' - e) (h27 : (27 : ℤ) ∣ e)
     (he' : 2 * |e'| ≤ 2 ^ M') (he : 2 * |e| < 27 * 2 ^ M') : e' * 27 = e := by
   obtain ⟨f, rfl⟩ := h27
@@ -56,7 +64,9 @@ theorem cont {M' : ℕ} {e e' : ℤ} (hd : (2 : ℤ) ^ M' ∣ 27 * e' - e) (h27 
   linarith
 
 /-- **(B′) Exit.** If `2^{M'} ∣ 27 e' − e`, `27 ∤ e` and `2|e| ≤ 2^{M'}`, then
-`2^{M'} ≤ 54 |e'|` (the next angle `|e'|/2^{M'}` is at least `1/54`).-/
+`2^{M'} ≤ 54 |e'|` (the next angle `|e'|/2^{M'}` is at least `1/54`).
+@isnad1 id=le.3h3v.s7.314d41e2502c from=translated src=- shape=235441e9 vocab=5d5166d0
+-/
 theorem exit {M' : ℕ} {e e' : ℤ} (hd : (2 : ℤ) ^ M' ∣ 27 * e' - e) (h27 : ¬ (27 : ℤ) ∣ e)
     (he : 2 * |e| ≤ 2 ^ M') : 2 ^ M' ≤ 54 * |e'| := by
   obtain ⟨k, hk⟩ := hd
@@ -91,14 +101,18 @@ def white (j : ℕ) : Prop := 54 * |e j| < 2 ^ M (j + 1)
 
 variable {e M}
 
-/-- The size condition of (A′) is automatic in the white regime.-/
+/-- The size condition of (A′) is automatic in the white regime.
+@isnad1 id=lt.1h3v.s6.259630dee8ca from=translated src=- shape=bfaf3722 vocab=1947237d
+-/
 theorem size_automatic {j : ℕ} (hw : white e M j) : 2 * |e j| < 27 * 2 ^ M (j + 1) := by
   unfold white at hw
   have h0 : 0 ≤ |e j| := abs_nonneg _
   have hpos : (0 : ℤ) < 2 ^ M (j + 1) := by positivity
   nlinarith
 
-/-- **Dichotomy step.** Two consecutive white blocks force `27 ∣ e_j` and `e_{j+1}·27 = e_j`.-/
+/-- **Dichotomy step.** Two consecutive white blocks force `27 ∣ e_j` and `e_{j+1}·27 = e_j`.
+@isnad1 id=and.5h3v.s7.4fedf91dc98f from=translated src=- shape=89b766b2 vocab=727493d0
+-/
 theorem white_step (hrec : ∀ j, (2 : ℤ) ^ M (j + 1) ∣ 27 * e (j + 1) - e j)
     (hcen : ∀ j, 2 * |e j| ≤ 2 ^ M j) (hM : ∀ j, M (j + 1) ≤ M j) {j : ℕ}
     (hw : white e M j) (hw' : white e M (j + 1)) : (27 : ℤ) ∣ e j ∧ e (j + 1) * 27 = e j := by
@@ -115,7 +129,9 @@ theorem white_step (hrec : ∀ j, (2 : ℤ) ^ M (j + 1) ∣ 27 * e (j + 1) - e j
     linarith
   exact ⟨h27, cont (hrec j) h27 (hcen (j + 1)) (size_automatic hw)⟩
 
-/-- **Run length.** A white run `j = 0, …, k` forces `e_k · 27^k = e_0`.-/
+/-- **Run length.** A white run `j = 0, …, k` forces `e_k · 27^k = e_0`.
+@isnad1 id=eq.4h3v.s7.b5ec7d618e16 from=translated src=- shape=a887f712 vocab=727493d0
+-/
 theorem run_length (hrec : ∀ j, (2 : ℤ) ^ M (j + 1) ∣ 27 * e (j + 1) - e j)
     (hcen : ∀ j, 2 * |e j| ≤ 2 ^ M j) (hM : ∀ j, M (j + 1) ≤ M j) :
     ∀ k : ℕ, (∀ j ≤ k, white e M j) → e k * 27 ^ k = e 0 := by
@@ -129,7 +145,9 @@ theorem run_length (hrec : ∀ j, (2 : ℤ) ^ M (j + 1) ∣ 27 * e (j + 1) - e j
     rw [pow_succ, ← mul_assoc, ← hk, ← hs]; ring
 
 /-- **Run-length divisibility.** A white run of length `k + 1` starting at `0` forces
-`27^k ∣ e_0`.-/
+`27^k ∣ e_0`.
+@isnad1 id=dvd.4h3v.s7.2eddc62de99e from=translated src=- shape=d2266ae1 vocab=727493d0
+-/
 theorem run_dvd (hrec : ∀ j, (2 : ℤ) ^ M (j + 1) ∣ 27 * e (j + 1) - e j)
     (hcen : ∀ j, 2 * |e j| ≤ 2 ^ M j) (hM : ∀ j, M (j + 1) ≤ M j) (k : ℕ)
     (hw : ∀ j ≤ k, white e M j) : (27 : ℤ) ^ k ∣ e 0 :=
@@ -143,6 +161,9 @@ end Run
 def cres (x : ℤ) (M : ℕ) : ℤ :=
   if 2 * (x % 2 ^ M) ≤ 2 ^ M then x % 2 ^ M else x % 2 ^ M - 2 ^ M
 
+/--
+@isnad1 id=dvd.0h2v.s5.208a2a44d4fc from=translated src=- shape=614f37b0 vocab=b772450a
+-/
 theorem cres_dvd (x : ℤ) (M : ℕ) : (2 : ℤ) ^ M ∣ cres x M - x := by
   have hdef : x % 2 ^ M = x - 2 ^ M * (x / 2 ^ M) := Int.emod_def x _
   unfold cres
@@ -150,6 +171,9 @@ theorem cres_dvd (x : ℤ) (M : ℕ) : (2 : ℤ) ^ M ∣ cres x M - x := by
   · exact ⟨-(x / 2 ^ M), by rw [hdef]; ring⟩
   · exact ⟨-(x / 2 ^ M) - 1, by rw [hdef]; ring⟩
 
+/--
+@isnad1 id=le.0h2v.s5.fa6050a560d4 from=translated src=- shape=1ff99743 vocab=8fe3b1fb
+-/
 theorem abs_cres_le (x : ℤ) (M : ℕ) : 2 * |cres x M| ≤ 2 ^ M := by
   have hpos : (0 : ℤ) < 2 ^ M := by positivity
   have h0 : 0 ≤ x % 2 ^ M := Int.emod_nonneg _ hpos.ne'
@@ -161,7 +185,9 @@ theorem abs_cres_le (x : ℤ) (M : ℕ) : 2 * |cres x M| ≤ 2 ^ M := by
 
 /-- **Collatz instance of the recurrence.** If `w·3^{n+3} ≡ 1` and `v·3^n ≡ 1 (mod 2^M)` and
 `M' ≤ M`, the centered residues `e' = cres (λ w) M'`, `e = cres (λ v) M` satisfy
-`2^{M'} ∣ 27 e' − e`.-/
+`2^{M'} ∣ 27 e' − e`.
+@isnad1 id=dvd.3h6v.s7.f00cc2f3caad from=translated src=- shape=25e8fc1e vocab=2caa8239
+-/
 theorem cres_rec {lam w v : ℤ} {n M M' : ℕ} (hw : (2 : ℤ) ^ M ∣ w * 3 ^ (n + 3) - 1)
     (hv : (2 : ℤ) ^ M ∣ v * 3 ^ n - 1) (hM : M' ≤ M) :
     (2 : ℤ) ^ M' ∣ 27 * cres (lam * w) M' - cres (lam * v) M := by
@@ -182,7 +208,9 @@ theorem cres_rec {lam w v : ℤ} {n M M' : ℕ} (hw : (2 : ℤ) ^ M ∣ w * 3 ^ 
 /-! ## Counting -/
 
 /-- **Interval residue count.** A length-`H` interval contains at most `H/q + 1` integers of a
-given residue class.-/
+given residue class.
+@isnad1 id=le.0h4v.s6.96a808885322 from=translated src=- shape=ec07acdb vocab=2fdd578b
+-/
 theorem card_Ico_filter_mod_le (a H q c : ℕ) :
     ((Ico a (a + H)).filter (fun x => x % q = c)).card ≤ H / q + 1 := by
   have hmaps : ∀ x ∈ (Ico a (a + H)).filter (fun x => x % q = c),
@@ -209,7 +237,9 @@ theorem card_Ico_filter_mod_le (a H q c : ℕ) :
     _ = H / q + 1 := card_range _
 
 /-- **Fibre multiplicity.** If `X` is injective on `T` with values `≤ Xmax`, each residue class
-modulo `q` has at most `Xmax/q + 1` preimages in `T`.-/
+modulo `q` has at most `Xmax/q + 1` preimages in `T`.
+@isnad1 id=le.2h6v.s6.89f914fe4fde from=translated src=- shape=cff16c17 vocab=d100f619
+-/
 theorem card_fibre_mod_le {ι : Type*} (T : Finset ι) (X : ι → ℕ) (Xmax q c : ℕ)
     (hinj : Set.InjOn X ↑T) (hX : ∀ i ∈ T, X i ≤ Xmax) :
     (T.filter fun i => X i % q = c).card ≤ Xmax / q + 1 := by

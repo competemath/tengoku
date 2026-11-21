@@ -31,7 +31,9 @@ open Finset SwapBound
 /-! ## Class Cauchy–Schwarz -/
 
 /-- **Class Cauchy–Schwarz.** Splitting a finite exponential sum into classes and applying
-Cauchy–Schwarz (Sedrakyan's form) across classes.-/
+Cauchy–Schwarz (Sedrakyan's form) across classes.
+@isnad1 id=le.0h5v.s7.c2a13239c3b2 from=translated src=- shape=704d11d1 vocab=0fcef582
+-/
 theorem norm_sq_sum_le_classes {ι β : Type*} [DecidableEq β] (T : Finset ι) (κ : ι → β)
     (θ : ι → ℝ) :
     ‖∑ i ∈ T, ee (θ i)‖ ^ 2 ≤
@@ -69,6 +71,9 @@ theorem norm_sq_sum_le_classes {ι β : Type*} [DecidableEq β] (T : Finset ι) 
 
 /-! ## Product structure -/
 
+/--
+@isnad1 id=eq.0h3v.s5.4e5465f4cf5a from=translated src=- shape=b60f948b vocab=4fd46b1d
+-/
 theorem ee_sum {κ : Type*} (s : Finset κ) (f : κ → ℝ) :
     ee (∑ r ∈ s, f r) = ∏ r ∈ s, ee (f r) := by
   classical
@@ -77,7 +82,9 @@ theorem ee_sum {κ : Type*} (s : Finset κ) (f : κ → ℝ) :
   | insert a s ha ih => rw [sum_insert ha, prod_insert ha, TwistExpansion.ee_add, ih]
 
 /-- **Product structure.** If the class is a product set `∏_r B_r` and the phase is additive over
-the coordinates, the class sum factors, and so does its norm.-/
+the coordinates, the class sum factors, and so does its norm.
+@isnad1 id=eq.0h4v.s6.2156a20e2d23 from=translated src=- shape=2ee81d73 vocab=077d17b4
+-/
 theorem norm_sum_piFinset_eq_prod {R : ℕ} {κ : Fin R → Type*}
     (B : ∀ r, Finset (κ r)) (θ : ∀ r, κ r → ℝ) :
     ‖∑ f ∈ Fintype.piFinset B, ee (∑ r, θ r (f r))‖ = ∏ r, ‖∑ x ∈ B r, ee (θ r x)‖ := by
@@ -90,7 +97,9 @@ theorem norm_sum_piFinset_eq_prod {R : ℕ} {κ : Fin R → Type*}
 /-! ## Full-group Parseval -/
 
 /-- **Full-group orthogonality.** For `y` injective on `T` with values below `2^M`, the
-average of `‖∑_T e(λ y_i/2^M)‖^2` over all `λ < 2^M` is exactly `|T|`.-/
+average of `‖∑_T e(λ y_i/2^M)‖^2` over all `λ < 2^M` is exactly `|T|`.
+@isnad1 id=eq.2h4v.s7.52570c145c1d from=translated src=- shape=20e9e116 vocab=0d7a12f5
+-/
 theorem sum_sq_norm_eq_of_injOn {ι : Type*} (T : Finset ι) (M : ℕ) (y : ι → ℕ)
     (hy : ∀ i ∈ T, y i < 2 ^ M) (hinj : Set.InjOn y ↑T) :
     ∑ lam ∈ range (2 ^ M), ‖∑ i ∈ T, ee ((lam : ℝ) * y i / 2 ^ M)‖ ^ 2 =
@@ -110,7 +119,9 @@ open PrefixCollision WeightedChain
 variable {b : ℕ → ℕ} {j0 σ : ℕ}
 
 /-- The prefix phases `y'_P` are injective on the prefix shell (their low parts are the least
-realizers, which determine the word).-/
+realizers, which determine the word).
+@isnad1 id=injon.1h4v.s5.5ab2df33d00d from=translated src=- shape=30fc6c7a vocab=da67365e
+-/
 theorem yPrime_injOn (t : ℕ) (hj1 : 1 ≤ j0) :
     Set.InjOn (yPrime j0 σ t) ↑(shellP b j0 σ) := by
   intro P hP Q hQ he
@@ -124,7 +135,9 @@ theorem yPrime_injOn (t : ℕ) (hj1 : 1 ≤ j0) :
   exact ResidueDiscrepancy.word_eq_of_realizes hRP hRQ
 
 /-- **Full-group value of the prefix characteristic sums.** Over all `λ < 2^(σ+1+t)`, the
-average of `‖Ψ(λ)‖^2` is exactly `|P_σ|` (the random / ideal value).-/
+average of `‖Ψ(λ)‖^2` is exactly `|P_σ|` (the random / ideal value).
+@isnad1 id=eq.1h4v.s7.8152fb468292 from=translated src=- shape=a457a66c vocab=82d1856f
+-/
 theorem sum_sq_norm_Psi_eq (t : ℕ) (hj1 : 1 ≤ j0) :
     ∑ lam ∈ range (2 ^ (σ + 1 + t)),
       ‖TwistExpansion.Psi (shellP b j0 σ) (σ + 1) t (yPrime j0 σ t) lam‖ ^ 2 =
@@ -148,7 +161,9 @@ def BlockAverageBound (b : ℕ → ℕ) (N j0 s σ : ℕ) (ε : ℝ) (B : ℕ �
           (((shellP b j0 σ).card : ℝ) ^ 2 * B (g + 2 ^ (s - σ) * k)) ≤
       ε ^ 2 * ((shellP b j0 σ).card : ℝ) ^ 2 * (shellV b N j0 σ (s - σ)).card / 2 ^ (s - σ)
 
-/-- **Interface theorem.** A block-average bound implies the `WeightedFourier` hypothesis.-/
+/-- **Interface theorem.** A block-average bound implies the `WeightedFourier` hypothesis.
+@isnad1 id=weighted.1h7v.s5.ab24eefbbe41 from=translated src=- shape=f57e6a7b vocab=c00ec493
+-/
 theorem weightedFourier_of_blockAverageBound {N s : ℕ} {ε : ℝ} {B : ℕ → ℝ}
     (h : BlockAverageBound b N j0 s σ ε B) : WeightedFourier b N j0 s σ ε := by
   obtain ⟨hpt, hbud⟩ := h

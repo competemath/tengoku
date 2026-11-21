@@ -43,7 +43,9 @@ open Filter HarmonicPacking PeriodicCore UpperEscape
 /-- A wall `W : ℕ → ℝ` is sublinear if, for every `ε > 0`, eventually `W n ≤ ε n`.-/
 def SublinearWall (W : ℕ → ℝ) : Prop := ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, W n ≤ ε * n
 
-/-- **Sublinear upper wall ⇒ injective orbit.**-/
+/-- **Sublinear upper wall ⇒ injective orbit.**
+@isnad1 id=eq.4h4v.s5.03b1821a62ec from=translated src=- shape=c149156b vocab=fc9bd644
+-/
 theorem injective_of_sublinear_upper_wall (M : ℕ) (hM : Odd M) (W : ℕ → ℝ)
     (hW : SublinearWall W) (hup : ∀ n, R (orbWord M) n ≤ W n) :
     ∀ i j, orbit M i = orbit M j → i = j := by
@@ -73,7 +75,9 @@ theorem injective_of_sublinear_upper_wall (M : ℕ) (hM : Odd M) (W : ℕ → �
     rw [← hΔ] at h2
     linarith
 
-/-- `a log₂ n + C` is a sublinear wall.-/
+/-- `a log₂ n + C` is a sublinear wall.
+@isnad1 id=sublinea.0h2v.s5.662f75999901 from=translated src=- shape=0d247607 vocab=efe69f4c
+-/
 theorem logWall_sublinear (a C : ℝ) : SublinearWall (fun n => a * Real.logb 2 n + C) := by
   intro ε hε
   have hlog2 : 0 < Real.log 2 := Real.log_pos one_lt_two
@@ -111,7 +115,9 @@ theorem logWall_sublinear (a C : ℝ) : SublinearWall (fun n => a * Real.logb 2 
   linarith
 
 /-- **Divergence equivalence (fully verified).** An injective accelerated orbit exists iff some odd
-seed stays under the upper logarithmic wall `(1/9) log₂ n + 7/(9 ln 2)` forever.-/
+seed stays under the upper logarithmic wall `(1/9) log₂ n + 7/(9 ln 2)` forever.
+@isnad1 id=iff.0h0v.s7.fadbfc9ce12a from=translated src=- shape=359a2a7f vocab=e04f3f0d
+-/
 theorem divergence_iff_upperLogAnchor :
     (∃ M, Odd M ∧ ∀ i j, orbit M i = orbit M j → i = j) ↔
       ∃ μ, Odd μ ∧ ∀ n, R (orbWord μ) n ≤ (1 / 9) * Real.logb 2 (n : ℝ) + 7 / (9 * Real.log 2) := by
@@ -124,7 +130,9 @@ theorem divergence_iff_upperLogAnchor :
 
 /-! ## 2. Upper-exit certificates -/
 
-/-- **Exact block drift formula.** `R_{t+ℓ} = R_t + (S_{t+ℓ} − S_t − ℓ log₂3)`.-/
+/-- **Exact block drift formula.** `R_{t+ℓ} = R_t + (S_{t+ℓ} − S_t − ℓ log₂3)`.
+@isnad1 id=eq.0h3v.s6.57b1f69f01e9 from=translated src=- shape=3021519c vocab=3b34bedc
+-/
 theorem R_add_block (d : ℕ → ℕ) (t ℓ : ℕ) :
     R d (t + ℓ) = R d t + (((s d (t + ℓ) : ℝ) - s d t) - (ℓ : ℝ) * alpha) := by
   unfold R
@@ -132,7 +140,9 @@ theorem R_add_block (d : ℕ → ℕ) (t ℓ : ℕ) :
   ring
 
 /-- **Block certificate.** A block whose gain exceeds the current headroom `U − R_t` forces an
-upper exit after it.-/
+upper exit after it.
+@isnad1 id=lt.1h4v.s6.7fe20e3a20d5 from=translated src=- shape=42454ce1 vocab=1078bc26
+-/
 theorem block_certificate (d : ℕ → ℕ) (t ℓ : ℕ) (U : ℝ)
     (h : U - R d t < ((s d (t + ℓ) : ℝ) - s d t) - (ℓ : ℝ) * alpha) :
     U < R d (t + ℓ) := by
@@ -141,7 +151,9 @@ theorem block_certificate (d : ℕ → ℕ) (t ℓ : ℕ) (U : ℝ)
 
 /-- **Run certificate.** A run `1^r` followed by `q` starting at `t` has gain
 `r + q − (r+1) log₂3`; if `q > (U − R_t) + (r+1) log₂3 − r`, the drift exceeds `U` at
-step `t + r + 1`.-/
+step `t + r + 1`.
+@isnad1 id=lt.3h5v.s7.13cb6bb566b8 from=translated src=- shape=16e7c722 vocab=bf415d51
+-/
 theorem run_certificate (d : ℕ → ℕ) (t r q : ℕ) (U : ℝ)
     (hones : ∀ i < r, d (t + i) = 1) (hq : d (t + r) = q)
     (h : (U - R d t) + ((r : ℝ) + 1) * alpha - r < q) :
@@ -158,7 +170,9 @@ theorem run_certificate (d : ℕ → ℕ) (t r q : ℕ) (U : ℝ)
   push_cast
   linarith
 
-/-- **Contraction certificate.** If `2^H · m_{t'} < m_t` with `t ≤ t'`, then `R_{t'} − R_t > H`.-/
+/-- **Contraction certificate.** If `2^H · m_{t'} < m_t` with `t ≤ t'`, then `R_{t'} − R_t > H`.
+@isnad1 id=lt.3h4v.s6.36822d40e0f7 from=translated src=- shape=453a398c vocab=4564646b
+-/
 theorem contraction_drift_gain (M t t' : ℕ) (hM : Odd M) (htt' : t ≤ t') (H : ℝ)
     (h : (2 : ℝ) ^ H * (orbit M t' : ℝ) < (orbit M t : ℝ)) :
     H < R (orbWord M) t' - R (orbWord M) t := by
@@ -172,7 +186,9 @@ theorem contraction_drift_gain (M t t' : ℕ) (hM : Odd M) (htt' : t ≤ t') (H 
 /-! ## 3. The exceptional class: windows and headroom -/
 
 /-- **Sliding-window constraint.** A forever `U`-confined seed satisfies
-`S_{t+ℓ} − S_t ≤ ℓ log₂3 + (U − R_t)` on every window.-/
+`S_{t+ℓ} − S_t ≤ ℓ log₂3 + (U − R_t)` on every window.
+@isnad1 id=le.1h4v.s6.8240d2cc7af8 from=translated src=- shape=99647d08 vocab=c5ab8b39
+-/
 theorem exceptional_window (M : ℕ) (U : ℝ) (hE : UpperConfinedForever U M) (t ℓ : ℕ) :
     ((s (orbWord M) (t + ℓ) : ℝ) - s (orbWord M) t)
       ≤ (ℓ : ℝ) * alpha + (U - R (orbWord M) t) := by
@@ -182,7 +198,9 @@ theorem exceptional_window (M : ℕ) (U : ℝ) (hE : UpperConfinedForever U M) (
 
 /-- **Headroom is unbounded infinitely often.** For a forever `U`-confined odd seed, for every
 bound `H` there are arbitrarily late times with headroom `U − R_t > H`. Hence any fixed block,
-however large its gain, is compatible with confinement after infinitely many times.-/
+however large its gain, is compatible with confinement after infinitely many times.
+@isnad1 id=ex.2h4v.s5.7d09a15e35c9 from=translated src=- shape=9d3cb120 vocab=b852f8c6
+-/
 theorem exceptional_headroom_unbounded (M : ℕ) (hM : Odd M) (U : ℝ)
     (hE : UpperConfinedForever U M) (H : ℝ) (N₀ : ℕ) :
     ∃ t ≥ N₀, H < U - R (orbWord M) t := by

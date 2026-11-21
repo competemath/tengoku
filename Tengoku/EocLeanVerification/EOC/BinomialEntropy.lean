@@ -36,10 +36,15 @@ variable {n : ℕ} {p q : ℝ}
 /-- The terms of the binomial distribution.-/
 noncomputable def term (n : ℕ) (p q : ℝ) (j : ℕ) : ℝ := (n.choose j : ℝ) * p ^ j * q ^ (n - j)
 
+/--
+@isnad1 id=le.2h4v.s5.555e8607cd76 from=translated src=- shape=d4b431d1 vocab=9adabe11
+-/
 theorem term_nonneg (hp : 0 ≤ p) (hq : 0 ≤ q) (n j : ℕ) : 0 ≤ term n p q j := by
   unfold term; positivity
 
-/-- The binomial distribution sums to `1`.-/
+/-- The binomial distribution sums to `1`.
+@isnad1 id=eq.1h3v.s5.10ad9d4b99ce from=translated src=- shape=9fb3d95a vocab=75f0a3e0
+-/
 theorem sum_binom_eq_one (n : ℕ) (hpq : p + q = 1) :
     ∑ j ∈ range (n + 1), term n p q j = 1 := by
   have h := add_pow p q n
@@ -51,7 +56,9 @@ theorem sum_binom_eq_one (n : ℕ) (hpq : p + q = 1) :
     ring
   rw [hrw, ← h]
 
-/-- **Division-free recurrence.** `T (j+1) · ((j+1) · q) = T j · ((n-j) · p)` for `j < n`.-/
+/-- **Division-free recurrence.** `T (j+1) · ((j+1) · q) = T j · ((n-j) · p)` for `j < n`.
+@isnad1 id=eq.1h4v.s6.21dcccffe56a from=translated src=- shape=564487a3 vocab=c2569afe
+-/
 theorem term_succ_mul (n j : ℕ) (hj : j < n) (p q : ℝ) :
     term n p q (j + 1) * (((j : ℝ) + 1) * q) = term n p q j * (((n : ℝ) - j) * p) := by
   unfold term
@@ -79,7 +86,9 @@ private theorem cast_pos (hk0 : 0 < k) (hkn : k < n) : (0 : ℝ) < n := by
   have : 0 < n := by omega
   exact_mod_cast this
 
-/-- With `p = k/n`, the terms increase up to `j = k`.-/
+/-- With `p = k/n`, the terms increase up to `j = k`.
+@isnad1 id=le.5h5v.s6.d0efd0df9c75 from=translated src=- shape=5bc28623 vocab=2a0e6fe7
+-/
 theorem term_le_succ (hk0 : 0 < k) (hkn : k < n) (hjk : j < k)
     (hp : p = (k : ℝ) / n) (hq : q = ((n : ℝ) - k) / n) :
     term n p q j ≤ term n p q (j + 1) := by
@@ -107,7 +116,9 @@ theorem term_le_succ (hk0 : 0 < k) (hkn : k < n) (hjk : j < k)
       _ = term n p q (j + 1) * (((j : ℝ) + 1) * q) := hrec.symm
   exact le_of_mul_le_mul_right hstep hA
 
-/-- With `p = k/n`, the terms decrease after `j = k`.-/
+/-- With `p = k/n`, the terms decrease after `j = k`.
+@isnad1 id=le.6h5v.s6.b608d5901b56 from=translated src=- shape=794bf09c vocab=2a0e6fe7
+-/
 theorem term_succ_le (hk0 : 0 < k) (hkn : k < n) (hkj : k ≤ j) (hjn : j < n)
     (hp : p = (k : ℝ) / n) (hq : q = ((n : ℝ) - k) / n) :
     term n p q (j + 1) ≤ term n p q j := by
@@ -138,7 +149,9 @@ theorem term_succ_le (hk0 : 0 < k) (hkn : k < n) (hkj : k ≤ j) (hjn : j < n)
 
 end Ratio
 
-/-- **The maximum of the binomial terms is at `j = k`.**-/
+/-- **The maximum of the binomial terms is at `j = k`.**
+@isnad1 id=le.5h5v.s6.28c15823b172 from=translated src=- shape=5155cf21 vocab=54669f5f
+-/
 theorem term_le_term_max (n k : ℕ) (hk0 : 0 < k) (hkn : k < n)
     (hp : p = (k : ℝ) / n) (hq : q = ((n : ℝ) - k) / n) :
     ∀ j ≤ n, term n p q j ≤ term n p q k := by
@@ -170,7 +183,9 @@ theorem term_le_term_max (n k : ℕ) (hk0 : 0 < k) (hkn : k < n)
     exact aux (j - k) j (by omega) hj
 
 /-- **Binomial entropy bound, division-free form.**  For `0 < k < n`,
-`1 ≤ (n+1) · C(n,k) · (k/n)^k · ((n-k)/n)^(n-k)`.-/
+`1 ≤ (n+1) · C(n,k) · (k/n)^k · ((n-k)/n)^(n-k)`.
+@isnad1 id=le.2h2v.s7.d5e64566bc3b from=translated src=- shape=33f06fe5 vocab=4fd51726
+-/
 theorem one_le_succ_mul_choose_mul (n k : ℕ) (hk0 : 0 < k) (hkn : k < n) :
     (1 : ℝ) ≤ ((n : ℝ) + 1) * (n.choose k : ℝ) *
       ((k : ℝ) / n) ^ k * (((n : ℝ) - k) / n) ^ (n - k) := by
@@ -195,7 +210,9 @@ theorem one_le_succ_mul_choose_mul (n k : ℕ) (hk0 : 0 < k) (hkn : k < n) :
   calc (1 : ℝ) ≤ ((n : ℝ) + 1) * ((n.choose k : ℝ) * p ^ k * q ^ (n - k)) := hbound
     _ = ((n : ℝ) + 1) * (n.choose k : ℝ) * p ^ k * q ^ (n - k) := by ring
 
-/-- **Entropy bound, multiplicative form.**  `(n/k)^k · (n/(n-k))^(n-k) / (n+1) ≤ C(n,k)`.-/
+/-- **Entropy bound, multiplicative form.**  `(n/k)^k · (n/(n-k))^(n-k) / (n+1) ≤ C(n,k)`.
+@isnad1 id=le.2h2v.s7.fe0ceb0b30e7 from=translated src=- shape=c7458297 vocab=4fd51726
+-/
 theorem le_choose (n k : ℕ) (hk0 : 0 < k) (hkn : k < n) :
     ((n : ℝ) / k) ^ k * ((n : ℝ) / ((n : ℝ) - k)) ^ (n - k) / ((n : ℝ) + 1)
       ≤ (n.choose k : ℝ) := by

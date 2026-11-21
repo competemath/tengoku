@@ -36,10 +36,15 @@ section Windows
 
 variable {S : Type*} [Fintype S] [DecidableEq S]
 
+/--
+@isnad1 id=le.1h5v.s5.a39ba13ab99b from=translated src=- shape=6de292e3 vocab=3a0e24fe
+-/
 theorem val_nonneg {w : ℕ → S → S → ℝ} (hw : ∀ l x y, 0 ≤ w l x y) (l n : ℕ) (x : S) :
     0 ≤ val w l n x := sum_nonneg fun y _ => ker_nonneg hw l n x y
 
-/-- **Heterogeneous window product.**-/
+/-- **Heterogeneous window product.**
+@isnad1 id=le.3h6v.s7.f01fa07f34da from=translated src=- shape=134aa05f vocab=93cbb575
+-/
 theorem val_le_prod_windows {w : ℕ → S → S → ℝ} (hw : ∀ l x y, 0 ≤ w l x y) {K : ℕ}
     (M : ℕ → ℝ) (hM : ∀ i, 0 ≤ M i) :
     ∀ W, (∀ i < W, ∀ y, val w (i * K) K y ≤ M i) →
@@ -65,7 +70,9 @@ theorem val_le_prod_windows {w : ℕ → S → S → ℝ} (hw : ∀ l x y, 0 ≤
       _ ≤ (∏ i ∈ range W, M i) * M W :=
           mul_le_mul_of_nonneg_right (ih (fun i hi y => hwin i (by omega) y) x) (hM W)
 
-/-- Window product with a remainder of `ρ` blocks.-/
+/-- Window product with a remainder of `ρ` blocks.
+@isnad1 id=le.4h8v.s7.00240ad8cfdc from=translated src=- shape=12c965d4 vocab=6baf0dba
+-/
 theorem val_le_prod_windows_rem {w : ℕ → S → S → ℝ} (hw : ∀ l x y, 0 ≤ w l x y) {K W ρ : ℕ}
     (M : ℕ → ℝ) (hM : ∀ i, 0 ≤ M i) (hwin : ∀ i < W, ∀ y, val w (i * K) K y ≤ M i)
     {Mrem : ℝ} (hrem : ∀ y, val w (W * K) ρ y ≤ Mrem) (x : S) :
@@ -84,6 +91,9 @@ end Windows
 
 /-! ## 2. Geometric partial sums -/
 
+/--
+@isnad1 id=eq.0h2v.s7.c681ee7abd77 from=translated src=- shape=2e8c5ca3 vocab=da6165ae
+-/
 theorem sum_succ_mul_pow_mul_sq (q : ℝ) (N : ℕ) :
     (∑ k ∈ range N, ((k : ℝ) + 1) * q ^ k) * (1 - q) ^ 2 =
       1 - ((N : ℝ) + 1) * q ^ N + N * q ^ (N + 1) := by
@@ -92,6 +102,9 @@ theorem sum_succ_mul_pow_mul_sq (q : ℝ) (N : ℕ) :
   | succ N ih =>
     rw [sum_range_succ, add_mul, ih]; push_cast; ring
 
+/--
+@isnad1 id=eq.0h2v.s7.b26e00ca57c2 from=translated src=- shape=b67fba0f vocab=da6165ae
+-/
 theorem sum_mul_pow_mul_sq (q : ℝ) (N : ℕ) :
     (∑ k ∈ range N, (k : ℝ) * q ^ k) * (1 - q) ^ 2 =
       q - (N : ℝ) * q ^ N + ((N : ℝ) - 1) * q ^ (N + 1) := by
@@ -100,6 +113,9 @@ theorem sum_mul_pow_mul_sq (q : ℝ) (N : ℕ) :
   | succ N ih =>
     rw [sum_range_succ, add_mul, ih]; push_cast; ring
 
+/--
+@isnad1 id=le.3h3v.s7.45985f18f4c3 from=translated src=- shape=3606e7a8 vocab=12d102ed
+-/
 theorem geom_bound {q s : ℝ} (hq0 : 0 ≤ q) (hq1 : q < 1) (hs : 1 ≤ s) (N : ℕ) :
     (1 - q) ^ 2 * ∑ k ∈ range N, q ^ k * (((k : ℝ) + 1) + (s - 1) * k) ≤ 1 + (s - 1) * q := by
   have h1 := sum_succ_mul_pow_mul_sq q N
@@ -124,11 +140,17 @@ section Ceiling
 
 variable (b : ℕ → ℕ)
 
+/--
+@isnad1 id=le.0h4v.s5.129f48c70323 from=translated src=- shape=76f735db vocab=77685d66
+-/
 theorem card_Bset_le (r x y : ℕ) : (ShapeBridge.Bset b r x y).card ≤ y - x - 1 := by
   unfold ShapeBridge.Bset
   exact (card_filter_le _ _).trans (by rw [Nat.card_Ioo])
 
 open Classical in
+/--
+@isnad1 id=le.1h8v.s6.024dd0d0d238 from=translated src=- shape=36c9e9fc vocab=d820eb77
+-/
 theorem oddW_le {m : ℕ} {d s : ℝ} {lam : ℕ} (hs : 1 ≤ s) (r x y : ℕ) :
     oddW b m d s lam r x y ≤ ((y - x - 1 : ℕ) : ℝ) + (s - 1) * ((y - x - 2 : ℕ) : ℝ) := by
   unfold oddW
@@ -155,6 +177,9 @@ theorem oddW_le {m : ℕ} {d s : ℝ} {lam : ℕ} (hs : 1 ≤ s) (r x y : ℕ) :
           exact_mod_cast hel
         nlinarith
 
+/--
+@isnad1 id=eq.1h8v.s5.4732e81d7d46 from=translated src=- shape=55cc12f5 vocab=b42bb268
+-/
 theorem oddW_eq_zero_of_lt {m : ℕ} {d s : ℝ} {lam : ℕ} {r x y : ℕ} (hy : y < x + 2) :
     oddW b m d s lam r x y = 0 := by
   unfold oddW
@@ -165,7 +190,9 @@ theorem oddW_eq_zero_of_lt {m : ℕ} {d s : ℝ} {lam : ℕ} {r x y : ℕ} (hy :
     omega
   rw [this, sum_empty]
 
-/-- **Universal one-block ceiling** for the geometric odd-dark weight: `val ≤ 1 + (s−1) q`.-/
+/-- **Universal one-block ceiling** for the geometric odd-dark weight: `val ≤ 1 + (s−1) q`.
+@isnad1 id=le.3h9v.s7.b8f760ec9e9e from=translated src=- shape=d8f47ec7 vocab=8ace2192
+-/
 theorem val_one_le {σ m : ℕ} {d s q : ℝ} {lam : ℕ} (hq0 : 0 ≤ q) (hq1 : q < 1) (hs : 1 ≤ s)
     (l : ℕ) (x : Fin (σ + 1)) :
     val (geoW (1 - q) q (oddW b m d s lam) σ) l 1 x ≤ 1 + (s - 1) * q := by
@@ -219,7 +246,9 @@ theorem val_one_le {σ m : ℕ} {d s q : ℝ} {lam : ℕ} (hq0 : 0 ≤ q) (hq1 :
         omega
     _ ≤ 1 + (s - 1) * q := geom_bound hq0 hq1 hs _
 
-/-- `K`-block ceiling.-/
+/-- `K`-block ceiling.
+@isnad1 id=le.3h10v.s7.caa1c9aa262e from=translated src=- shape=2b817d83 vocab=59249478
+-/
 theorem val_le_ceiling {σ m : ℕ} {d s q : ℝ} {lam : ℕ} (hq0 : 0 ≤ q) (hq1 : q < 1) (hs : 1 ≤ s)
     (K l : ℕ) (x : Fin (σ + 1)) :
     val (geoW (1 - q) q (oddW b m d s lam) σ) l K x ≤ (1 + (s - 1) * q) ^ K := by
@@ -236,6 +265,9 @@ end Ceiling
 
 /-! ## 4. The Collatz barrier: `q ≤ 37/100` and the `2/5` ceiling -/
 
+/--
+@isnad1 id=le.1h1v.s6.9f376a63cd7e from=translated src=- shape=5436b1f9 vocab=d814fb3e
+-/
 theorem q_le {j : ℕ} (hj : 300 ≤ j) :
     ((collatzBarrier 0 j : ℝ) - j) / ((collatzBarrier 0 j : ℝ) - 1) ≤ 37 / 100 := by
   have h1 := ShapeUnconditional.barrier_lt j (by omega)
@@ -248,12 +280,18 @@ theorem q_le {j : ℕ} (hj : 300 ≤ j) :
   rw [div_le_iff₀ (by linarith)]
   linarith
 
+/--
+@isnad1 id=le.0h0v.s6.491005eefeec from=translated src=- shape=a1b178d8 vocab=57a6a273
+-/
 theorem ceiling_le_rpow : (174 / 100 : ℝ) ≤ (2 : ℝ) ^ ((4 : ℝ) / 5) := by
   have hb : (0 : ℝ) ≤ (2 : ℝ) ^ ((4 : ℝ) / 5) := by positivity
   refine le_of_pow_le_pow_left₀ (n := 5) (by norm_num) hb ?_
   rw [← Real.rpow_natCast ((2 : ℝ) ^ ((4 : ℝ) / 5)) 5, ← Real.rpow_mul (by norm_num)]
   norm_num
 
+/--
+@isnad1 id=lt.1h1v.s4.f8e0c4415b72 from=translated src=- shape=3c16155b vocab=2b50e38b
+-/
 theorem barrier_gt {j : ℕ} (hj : 2 ≤ j) : j < collatzBarrier 0 j := by
   have h3 := (ShapeUnconditional.barrier_pow_bounds j).2
   have h8 : 2 ^ (j + 1) ≤ 3 ^ j := by
@@ -273,7 +311,9 @@ If, for every frequency of every shell `u ≤ U`, all windows outside a set `bad
 `|bad| ≤ φ W + E` have geometric mass `≤ 2^{2Kθ_d}` from every state, then
 `SummedOddDarkPressure` holds with rate
 `θ_d + φ (2/5 − θ_d)` and any `C` absorbing `log₂(σ j / p) + (4/5 − 2θ_d) K E + (4/5) K`.
-Dangerous windows are paid for by the proved universal ceiling `2^{(4/5) K}`.-/
+Dangerous windows are paid for by the proved universal ceiling `2^{(4/5) K}`.
+@isnad1 id=summedod.9h11v.s9.cb71542ed4c1 from=translated src=- shape=9a3e7375 vocab=84c09722
+-/
 theorem summedPressure_of_dangerousWindows {j t U K W ρ : ℕ} {d θd φ E C : ℝ}
     (hj : 300 ≤ j) (hev : 2 ∣ j) (hR : j / 2 = W * K + ρ) (hρ : ρ ≤ K)
     (hθ0 : 0 ≤ θd) (hθ1 : θd ≤ 2 / 5) (hφ : 0 ≤ φ)
@@ -398,11 +438,16 @@ theorem summedPressure_of_dangerousWindows {j t U K W ρ : ℕ} {d θd φ E C : 
         mul_le_mul_of_nonneg_right hcard hB
     _ = _ := by ring
 
-/-- At `θ_d = 1/10` the dangerous fraction `φ = 2/9` gives exactly the target rate `1/6`.-/
+/-- At `θ_d = 1/10` the dangerous fraction `φ = 2/9` gives exactly the target rate `1/6`.
+@isnad1 id=eq.0h0v.s7.a30f7085c6cb from=translated src=- shape=c58c7041 vocab=ac5a4c9f
+-/
 theorem rate_at_tenth : (1 / 10 : ℝ) + 2 / 9 * (2 / 5 - 1 / 10) = 1 / 6 := by norm_num
 
 /-! ## 6. The concrete `1/10, 2/9, 1/6` chain with a logarithmic excess -/
 
+/--
+@isnad1 id=le.1h1v.s7.57ddf780f08f from=translated src=- shape=11bebabc vocab=bc4f5550
+-/
 theorem logb_bridge_le {j : ℕ} (hj : 300 ≤ j) :
     Real.logb 2 ((collatzBarrier 0 j : ℝ) * j / (((j : ℝ) - 1) / ((collatzBarrier 0 j : ℝ) - 1)))
       ≤ 2 * Real.logb 2 j + 2 := by
@@ -429,6 +474,9 @@ theorem logb_bridge_le {j : ℕ} (hj : 300 ≤ j) :
           Real.logb_rpow (by norm_num) (by norm_num), Real.logb_pow]
         push_cast; ring
 
+/--
+@isnad1 id=le.1h1v.s5.703dd09308d3 from=translated src=- shape=2c468144 vocab=5b61d28c
+-/
 theorem eight_le_logb {j : ℕ} (hj : 300 ≤ j) : (8 : ℝ) ≤ Real.logb 2 j := by
   rw [Real.le_logb_iff_rpow_le (by norm_num) (by positivity)]
   have : (256 : ℝ) ≤ j := by exact_mod_cast (by omega : 256 ≤ j)
@@ -437,7 +485,9 @@ theorem eight_le_logb {j : ℕ} (hj : 300 ≤ j) : (8 : ℝ) ≤ Real.logb 2 j :
 /-- **The concrete chain.**  Dangerous threshold `1/10`, allowed fraction `2/9`, universal ceiling
 `2/5`, output rate exactly `1/6`.  The excess over `(2/9) W` may be `(a log₂ j + b)/K` windows (its
 pressure cost is `(3/5)(a log₂ j + b)` bits, logarithmic for any `K`), and `K ≤ k₁ log₂ j + k₀`.
-The logarithmic constant is explicit.-/
+The logarithmic constant is explicit.
+@isnad1 id=summedod.9h11v.s9.fe12b6e6921e from=translated src=- shape=af084dca vocab=84c09722
+-/
 theorem summedPressure_of_tenth_twoNinths {j t U K W ρ : ℕ} {d a b k₁ k₀ : ℝ}
     (hj : 300 ≤ j) (hev : 2 ∣ j) (hR : j / 2 = W * K + ρ) (hρ : ρ ≤ K) (hK : 0 < K)
     (hb : 0 ≤ b) (hk₀ : 0 ≤ k₀) (hKlog : (K : ℝ) ≤ k₁ * Real.logb 2 j + k₀)
@@ -467,7 +517,9 @@ theorem summedPressure_of_tenth_twoNinths {j t U K W ρ : ℕ} {d a b k₁ k₀ 
 
 /-! ## 7. The `u = 0` companion frequency -/
 
-/-- `λ` and `2^m − λ` have the same dark pairs.-/
+/-- `λ` and `2^m − λ` have the same dark pairs.
+@isnad1 id=iff.1h5v.s6.41049fb0bb40 from=translated src=- shape=a7fd40b4 vocab=3934e90b
+-/
 theorem dark_companion {m : ℕ} {d : ℝ} {lam r z : ℕ} (hl : lam ≤ 2 ^ m) :
     OddBlack.Dark m d (2 ^ m - lam) r z ↔ OddBlack.Dark m d lam r z := by
   unfold OddBlack.Dark WhiteContraction.pairPhase
@@ -486,7 +538,9 @@ theorem dark_companion {m : ℕ} {d : ℝ} {lam r z : ℕ} (hl : lam ≤ 2 ^ m) 
   rw [hcast, WhiteContraction.distZ_add_int, WhiteContraction.distZ_neg]
 
 open Classical in
-/-- Consequently the odd-dark counts of `λ` and `2^m − λ` coincide.-/
+/-- Consequently the odd-dark counts of `λ` and `2^m − λ` coincide.
+@isnad1 id=eq.1h6v.s6.071e128293ce from=translated src=- shape=60bfb94f vocab=8231d569
+-/
 theorem nodd_companion (b : ℕ → ℕ) {m : ℕ} {d : ℝ} {lam : ℕ} (hl : lam ≤ 2 ^ m) {j : ℕ}
     (P : FiniteValuationWord j) :
     OddBlack.Nodd b m d (2 ^ m - lam) P = OddBlack.Nodd b m d lam P := by

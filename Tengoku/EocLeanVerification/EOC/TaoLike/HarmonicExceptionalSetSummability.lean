@@ -52,7 +52,9 @@ abbrev dyadicPersistenceExceptionalEvent (Ttotal n : ℕ) (c : ℝ) : Set ℕ :=
 `harmonicWindowMass_pos_of_odd_left` (which needs the *left endpoint* odd) does not apply
 directly; the witness used here is the next integer up. (`L = 0` gives the degenerate window
 `[1,2)`, whose only point `1` is already an odd left endpoint — not needed downstream, since
-the summability theorem only ever concerns sufficiently large `L`.)-/
+the summability theorem only ever concerns sufficiently large `L`.)
+@isnad1 id=lt.1h1v.s6.0bdfddb15e52 from=translated src=- shape=90654d71 vocab=192640b9
+-/
 theorem harmonicWindowMass_dyadic_pos (L : ℕ) (hL : 1 ≤ L) :
     0 < harmonicWindowMass (2 ^ L) (2 ^ L + 2 ^ L) := by
   have h2L : 2 ≤ 2 ^ L := by
@@ -73,7 +75,9 @@ theorem harmonicWindowMass_dyadic_pos (L : ℕ) (hL : 1 ≤ L) :
 `0 ≤ r < 1` and any constant `C` — a direct combination of Mathlib's
 `summable_pow_mul_geometric_of_norm_lt_one` (for the `L * r^L` piece) and
 `summable_geometric_of_lt_one` (for the `r^L` piece), with no geometric series reproved from
-scratch.-/
+scratch.
+@isnad1 id=summable.2h2v.s6.6fb28cb29769 from=translated src=- shape=846017e8 vocab=4b608e7a
+-/
 theorem summable_const_mul_succ_mul_geometric (C r : ℝ) (hr0 : 0 ≤ r) (hr1 : r < 1) :
     Summable (fun L : ℕ => C * ((L : ℝ) + 1) * r ^ L) := by
   have hnorm : ‖r‖ < 1 := by rwa [Real.norm_eq_abs, abs_of_nonneg hr0]
@@ -88,7 +92,9 @@ theorem summable_const_mul_succ_mul_geometric (C r : ℝ) (hr0 : 0 ≤ r) (hr1 :
   exact h3.mul_left C
 
 /-- **Linear-times-geometric summability, without the `+1`.** `Summable (fun L => C * L * r^L)`
-for `0 ≤ r < 1` — the direct `summable_pow_mul_geometric_of_norm_lt_one` instance.-/
+for `0 ≤ r < 1` — the direct `summable_pow_mul_geometric_of_norm_lt_one` instance.
+@isnad1 id=summable.2h2v.s6.e65f20bedb53 from=translated src=- shape=62d34657 vocab=f82de1eb
+-/
 theorem summable_const_mul_mul_geometric (C r : ℝ) (hr0 : 0 ≤ r) (hr1 : r < 1) :
     Summable (fun L : ℕ => C * (L : ℝ) * r ^ L) := by
   have hnorm : ‖r‖ < 1 := by rwa [Real.norm_eq_abs, abs_of_nonneg hr0]
@@ -100,7 +106,9 @@ theorem summable_const_mul_mul_geometric (C r : ℝ) (hr0 : 0 ≤ r) (hr1 : r < 
 
 /-- The iid persistence bit-rate `I0` is strictly positive — follows directly from
 `rateNats_pos` and `rateNats_eq_I0_mul_log_two`. Not previously stated as a standalone
-theorem; needed here to get a genuine geometric base `< 1` for the iid decay term.-/
+theorem; needed here to get a genuine geometric base `< 1` for the iid decay term.
+@isnad1 id=lt.0h0v.s3.afff697e9293 from=translated src=- shape=ff3a10fc vocab=125d9e1e
+-/
 theorem I0_pos : 0 < I0 := by
   have hlog2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
   have heq := rateNats_eq_I0_mul_log_two
@@ -113,7 +121,9 @@ warning): since `exp(theta) > 1` for `theta > 0`, the numerator `2·exp(theta) -
 `geomUpperMgf theta - 1` is positive, and the denominator `2 - exp(theta)` is positive by
 `theta < log 2`. Consequently `(geomUpperMgf theta)^t` is *increasing*, not decreasing, in `t` —
 exactly the reason the BAD-tail term needs `sMaxNat` to dominate `Ttotal`, not merely to be
-positive.-/
+positive.
+@isnad1 id=lt.2h1v.s5.b200bc165056 from=translated src=- shape=2c972c26 vocab=5616e4a4
+-/
 theorem geomUpperMgf_gt_one (theta : ℝ) (hθ0 : 0 < theta) (hθ1 : theta < Real.log 2) :
     1 < geomUpperMgf theta := by
   unfold geomUpperMgf
@@ -135,7 +145,9 @@ per-shift value): the EARLY-sum's Tao error is largest at `t = 0`, the LATE-sum'
 error is largest at `t = Tearly L` (smallest `t` in range), and the LATE-sum's mgf term is
 largest at `t = Ttotal L - 1` (largest `t` in range, since `geomUpperMgf theta > 1` makes it
 *increasing* in `t` — audited in `geomUpperMgf_gt_one`). No GOOD/BAD mathematics is re-derived;
-this is pure Finset/monotonicity bookkeeping on top of the already-proved M11/M12 bound.-/
+this is pure Finset/monotonicity bookkeeping on top of the already-proved M11/M12 bound.
+@isnad1 id=le.20h16v.s10.5198180dd032 from=translated src=- shape=96d6338b vocab=4fdd5f73
+-/
 theorem dyadic_persistence_probability_bound
     (n Tearly Ttotal sMaxNat Q Qpre Qearly : ℕ → ℕ)
     (L : ℕ) (hL : 1 ≤ L)
@@ -309,7 +321,9 @@ theorem dyadic_persistence_probability_bound
 
 /-- Converts a real-linear-in-`L` exponent of `2` into an ordinary natural power of a fixed
 base — the bridge letting each Tao-error term's `rpow` bound become a genuine geometric term
-`ρ^L` amenable to `summable_pow_mul_geometric_of_norm_lt_one`.-/
+`ρ^L` amenable to `summable_pow_mul_geometric_of_norm_lt_one`.
+@isnad1 id=eq.0h2v.s6.27ab051dbc43 from=translated src=- shape=da27b869 vocab=15c5cb7d
+-/
 theorem rpow_two_neg_mul_nat_eq_pow (a : ℝ) (L : ℕ) :
     (2 : ℝ) ^ (-(a * (L : ℝ))) = ((2 : ℝ) ^ (-a)) ^ L := by
   rw [show -(a * (L : ℝ)) = (-a) * (L : ℝ) by ring, Real.rpow_mul (by norm_num), Real.rpow_natCast]
@@ -328,7 +342,9 @@ the resulting dyadic exceptional probabilities are summable in the scale `L`. No
 mathematics, no Tao mixing theorem, and no new residue-closeness fact is (re-)proved here —
 only `dyadic_persistence_probability_bound`'s crude per-`L` bound is combined with the growth
 hypotheses into five explicit geometric-times-linear terms, each summable via
-`summable_const_mul_mul_geometric`.-/
+`summable_const_mul_mul_geometric`.
+@isnad1 id=summable.27h19v.s10.83bfe3e22d04 from=translated src=- shape=0de9b52d vocab=e472e66b
+-/
 theorem harmonic_exceptional_summability
     (n Tearly Ttotal sMaxNat Q Qpre Qearly : ℕ → ℕ)
     (L0 : ℕ) (hL0 : 1 ≤ L0)

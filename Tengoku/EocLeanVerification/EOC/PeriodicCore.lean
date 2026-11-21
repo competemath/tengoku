@@ -12,17 +12,31 @@ def sr (d : Nat → Nat) : Nat → Nat
   | 0 => 0
   | j + 1 => sr d j + d j
 
+/--
+@isnad1 id=eq.0h1v.s4.692c8faab015 from=translated src=- shape=b298c1f9 vocab=295d9cf9
+-/
 @[simp] theorem sr_zero (d : Nat → Nat) : sr d 0 = 0 := rfl
+/--
+@isnad1 id=eq.0h2v.s5.524ca96873f3 from=translated src=- shape=6d1f17e2 vocab=7fc001ef
+-/
 theorem sr_succ (d : Nat → Nat) (j : Nat) : sr d (j + 1) = sr d j + d j := rfl
 
 def qr (d : Nat → Nat) : Nat → Nat
   | 0 => 0
   | j + 1 => 3 * qr d j + 2 ^ sr d j
 
+/--
+@isnad1 id=eq.0h1v.s4.8e44973b40b9 from=translated src=- shape=b298c1f9 vocab=57423e22
+-/
 @[simp] theorem qr_zero (d : Nat → Nat) : qr d 0 = 0 := rfl
+/--
+@isnad1 id=eq.0h2v.s5.d8b8029bf28f from=translated src=- shape=78bb01bd vocab=86fc0f56
+-/
 theorem qr_succ (d : Nat → Nat) (j : Nat) : qr d (j + 1) = 3 * qr d j + 2 ^ sr d j := rfl
 
-/-- The carry of a nonempty block is positive: this is the `+C > 0` sign input.-/
+/-- The carry of a nonempty block is positive: this is the `+C > 0` sign input.
+@isnad1 id=lt.1h2v.s4.869fff115628 from=translated src=- shape=b5a9bceb vocab=0d5490b8
+-/
 theorem qr_pos (d : Nat → Nat) (L : Nat) (hL : 1 ≤ L) : 0 < qr d L := by
   cases L with
   | zero => omega
@@ -31,6 +45,9 @@ theorem qr_pos (d : Nat → Nat) (L : Nat) (hL : 1 ≤ L) : 0 < qr d L := by
     have : 0 < 2 ^ sr d n := Nat.pow_pos (by decide)
     omega
 
+/--
+@isnad1 id=eq.0h3v.s5.e40135343c1b from=translated src=- shape=2833a28c vocab=7fc001ef
+-/
 theorem sr_add_window (d : Nat → Nat) (j : Nat) :
     ∀ L, sr d (j + L) = sr d j + sr (fun i => d (j + i)) L := by
   intro L
@@ -42,6 +59,9 @@ theorem sr_add_window (d : Nat → Nat) (j : Nat) :
         = sr d j + (sr (fun i => d (j + i)) n + d (j + n))
     exact Nat.add_assoc _ _ _
 
+/--
+@isnad1 id=eq.1h3v.s5.377d8459c0f1 from=translated src=- shape=f6826cbd vocab=2793fe72
+-/
 theorem sr_congr (d d' : Nat → Nat) (L : Nat) (h : ∀ i, i < L → d i = d' i) :
     sr d L = sr d' L := by
   induction L with
@@ -49,7 +69,9 @@ theorem sr_congr (d d' : Nat → Nat) (L : Nat) (h : ∀ i, i < L → d i = d' i
   | succ n ih =>
     rw [sr_succ, sr_succ, ih (fun i hi => h i (by omega)), h n (by omega)]
 
-/-- Lower bound for a positive word: `sr d L ≥ L` when every digit is `≥ 1`.-/
+/-- Lower bound for a positive word: `sr d L ≥ L` when every digit is `≥ 1`.
+@isnad1 id=le.1h2v.s5.6c7016a77419 from=translated src=- shape=4dc8135d vocab=597f09e4
+-/
 theorem sr_ge_of_pos (d : Nat → Nat) (L : Nat) (hd : ∀ i, i < L → 1 ≤ d i) : L ≤ sr d L := by
   induction L with
   | zero => simp
@@ -63,6 +85,9 @@ theorem sr_ge_of_pos (d : Nat → Nat) (L : Nat) (hd : ∀ i, i < L → 1 ≤ d 
 
 def EvPeriodic (d : Nat → Nat) (j0 L : Nat) : Prop := ∀ i, j0 ≤ i → d (i + L) = d i
 
+/--
+@isnad1 id=eq.1h5v.s5.1c8bf0771aeb from=translated src=- shape=8d878faf vocab=2a47359d
+-/
 theorem evPeriodic_shift (d : Nat → Nat) (j0 L : Nat) (h : EvPeriodic d j0 L) :
     ∀ k i, d (j0 + k * L + i) = d (j0 + i) := by
   intro k
@@ -77,6 +102,9 @@ theorem evPeriodic_shift (d : Nat → Nat) (j0 L : Nat) (h : EvPeriodic d j0 L) 
 def blockSum (d : Nat → Nat) (j0 L : Nat) : Nat := sr (fun i => d (j0 + i)) L
 def blockCarry (d : Nat → Nat) (j0 L : Nat) : Nat := qr (fun i => d (j0 + i)) L
 
+/--
+@isnad1 id=eq.1h4v.s5.78d6b8ef84e4 from=translated src=- shape=ef2a6a83 vocab=db3022ac
+-/
 theorem sr_periodic (d : Nat → Nat) (j0 L : Nat) (h : EvPeriodic d j0 L) :
     ∀ k, sr d (j0 + k * L) = sr d j0 + k * blockSum d j0 L := by
   intro k
@@ -93,7 +121,9 @@ theorem sr_periodic (d : Nat → Nat) (j0 L : Nat) (h : EvPeriodic d j0 L) :
     rw [hwin, Nat.succ_mul]
     exact Nat.add_assoc _ _ _
 
-/-- The block starting at `j0 + k*L` has the same prefix sums and carry as the block at `j0`.-/
+/-- The block starting at `j0 + k*L` has the same prefix sums and carry as the block at `j0`.
+@isnad1 id=and.2h5v.s6.0306e3d32ea6 from=translated src=- shape=ded1bc61 vocab=88fc51ed
+-/
 theorem block_shift_invariant (d : Nat → Nat) (j0 L : Nat) (h : EvPeriodic d j0 L) (k : Nat) :
     ∀ M, M ≤ L →
       qr (fun i => d (j0 + k * L + i)) M = qr (fun i => d (j0 + i)) M ∧
@@ -132,7 +162,9 @@ private theorem shift_step (A B C yr yr1 : Nat) (hAB : B ≤ A)
 /-- **Sign-sensitive cycle/expansion theorem.** If `2^S * y(r+1) = 3^L * y r + C` for all
 `r`, with `C > 0`, `S ≥ 1`, then `3^L < 2^S`. Uses no positivity of `y` and no exact return
 `y (r+·) = y r`. Under the mirror `3m-1` the carry enters as `-C` and the statement is false
-(`y ≡ 1`, `L = 1`, `S = 1`: `2·1 = 3·1 - 1`).-/
+(`y ≡ 1`, `L = 1`, `S = 1`: `2·1 = 3·1 - 1`).
+@isnad1 id=lt.3h4v.s7.f9e042db1b8d from=translated src=- shape=f6cfe7ab vocab=3f16b8dd
+-/
 theorem three_pow_lt_two_pow_of_block_return
     (L S C : Nat) (y : Nat → Nat) (hS : 1 ≤ S) (hC : 0 < C)
     (hrec : ∀ r, 2 ^ S * y (r + 1) = 3 ^ L * y r + C) :
@@ -170,6 +202,9 @@ theorem three_pow_lt_two_pow_of_block_return
 
 /-! ### Theorem 2 (deterministic drift exit), exact integer form of `R_j ≤ c` -/
 
+/--
+@isnad1 id=le.0h2v.s6.e81356ef7063 from=translated src=- shape=80d465db vocab=f96c6fce
+-/
 theorem bernoulli_nat (A : Nat) : ∀ k, A ^ (k + 1) + (k + 1) * A ^ k ≤ (A + 1) ^ (k + 1) := by
   intro k
   induction k with
@@ -189,6 +224,9 @@ theorem bernoulli_nat (A : Nat) : ∀ k, A ^ (k + 1) + (k + 1) * A ^ k ≤ (A + 
       rw [e]; exact Nat.le_add_right _ _
     exact Nat.le_trans h2 h1
 
+/--
+@isnad1 id=lt.3h3v.s6.f5c8fd4edc3c from=translated src=- shape=341bb6b0 vocab=2a3f5b88
+-/
 theorem pow_dominates (A B M : Nat) (hA : 1 ≤ A) (hAB : A < B) (hM : 1 ≤ M) :
     M * A ^ (M * A) < B ^ (M * A) := by
   have hk : 1 ≤ M * A := Nat.mul_le_mul hM hA
@@ -202,6 +240,9 @@ theorem pow_dominates (A B M : Nat) (hA : 1 ≤ A) (hAB : A < B) (hM : 1 ≤ M) 
   have hApos : 0 < A ^ (k + 1) := Nat.pow_pos hA
   omega
 
+/--
+@isnad1 id=ex.2h4v.s7.3de70766c0d0 from=translated src=- shape=23487c67 vocab=c7a12e0a
+-/
 theorem exists_exit_of_block_growth (d : Nat → Nat) (j0 L : Nat) (h : EvPeriodic d j0 L)
     (hgrow : 3 ^ L < 2 ^ blockSum d j0 L) (c : Nat) :
     ∃ k, 3 ^ (j0 + k * L) * 2 ^ c < 2 ^ sr d (j0 + k * L) := by
@@ -223,6 +264,9 @@ theorem exists_exit_of_block_growth (d : Nat → Nat) (j0 L : Nat) (h : EvPeriod
 
 /-! ### Theorem 3: monotone bounded ℕ-sequences are eventually constant -/
 
+/--
+@isnad1 id=le.2h3v.s5.985767307d2b from=translated src=- shape=6e4b0f79 vocab=086a35fc
+-/
 theorem mono_of_step (r : Nat → Nat) (hmono : ∀ N, r N ≤ r (N + 1)) :
     ∀ i j, i ≤ j → r i ≤ r j := by
   intro i j hij
@@ -236,6 +280,9 @@ theorem mono_of_step (r : Nat → Nat) (hmono : ∀ N, r N ≤ r (N + 1)) :
     · have : i = n + 1 := by omega
       subst this; exact Nat.le_refl _
 
+/--
+@isnad1 id=ex.2h2v.s5.832dfaade9c5 from=translated src=- shape=17c5438d vocab=086a35fc
+-/
 theorem eventually_const_of_mono_bounded (r : Nat → Nat) (hmono : ∀ N, r N ≤ r (N + 1))
     (M : Nat) (hbd : ∀ N, r N ≤ M) :
     ∃ N0, ∀ N, N0 ≤ N → r N = r N0 := by

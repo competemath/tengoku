@@ -64,31 +64,49 @@ section Basic
 
 variable {N j0 : ℕ}
 
+/--
+@isnad1 id=eq.1h4v.s4.4fac484385a1 from=translated src=- shape=caf5bfa9 vocab=49948352
+-/
 theorem pre_toInfinite (w : FiniteValuationWord N) {i : ℕ} (hi : i < j0) :
     (pre j0 w).toInfinite i = w.toInfinite i := by
   rw [toInfinite_apply_of_lt _ hi]; rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.1be17fa3e39c from=translated src=- shape=66ed92da vocab=83836577
+-/
 theorem suf_toInfinite (w : FiniteValuationWord N) {i : ℕ} (hi : i < N - j0) :
     (suf j0 w).toInfinite i = shiftWord w.toInfinite j0 i := by
   rw [toInfinite_apply_of_lt _ hi]; rfl
 
+/--
+@isnad1 id=eq.2h5v.s5.7afb30640265 from=translated src=- shape=107d973e vocab=7aba4697
+-/
 theorem concat_toInfinite_lt (P : FiniteValuationWord j0) (v : FiniteValuationWord (N - j0))
     (hj : j0 ≤ N) {i : ℕ} (hi : i < j0) : (concat N P v).toInfinite i = P.toInfinite i := by
   rw [toInfinite_apply_of_lt _ (by omega)]
   simp [concat, hi]
 
+/--
+@isnad1 id=eq.2h5v.s5.85584ee13e53 from=translated src=- shape=bda43669 vocab=7aba4697
+-/
 theorem concat_toInfinite_ge (P : FiniteValuationWord j0) (v : FiniteValuationWord (N - j0))
     {i : ℕ} (hi : j0 ≤ i) (hiN : i < N) :
     (concat N P v).toInfinite i = v.toInfinite (i - j0) := by
   rw [toInfinite_apply_of_lt _ hiN]
   simp [concat, Nat.not_lt.mpr hi]
 
+/--
+@isnad1 id=eq.1h4v.s5.f01a1f104166 from=translated src=- shape=a97e1bd9 vocab=2b936d8f
+-/
 theorem pre_concat (P : FiniteValuationWord j0) (v : FiniteValuationWord (N - j0))
     (hj : j0 ≤ N) : pre j0 (concat N P v) = P := by
   funext i
   simp only [pre]
   rw [concat_toInfinite_lt P v hj i.isLt, toInfinite_apply_of_lt _ i.isLt]
 
+/--
+@isnad1 id=eq.1h4v.s5.5a33ae29e38a from=translated src=- shape=bc3f400a vocab=35514e82
+-/
 theorem suf_concat (P : FiniteValuationWord j0) (v : FiniteValuationWord (N - j0))
     (hj : j0 ≤ N) : suf j0 (concat N P v) = v := by
   funext i
@@ -96,6 +114,9 @@ theorem suf_concat (P : FiniteValuationWord j0) (v : FiniteValuationWord (N - j0
   rw [concat_toInfinite_ge P v (by omega) (by omega), toInfinite_apply_of_lt _ (by omega)]
   congr 1; ext; simp
 
+/--
+@isnad1 id=eq.1h3v.s4.94bc17ba0bde from=translated src=- shape=216fd27b vocab=e3789c14
+-/
 theorem concat_pre_suf (w : FiniteValuationWord N) (hj : j0 ≤ N) :
     concat N (pre j0 w) (suf j0 w) = w := by
   funext i
@@ -106,38 +127,61 @@ theorem concat_pre_suf (w : FiniteValuationWord N) (hj : j0 ≤ N) :
     rw [suf_toInfinite w (by omega), shiftWord, show j0 + (i - j0) = i by omega,
       toInfinite_apply_of_lt _ i.isLt]
 
-/-- `s` depends only on the digits below its length.-/
+/-- `s` depends only on the digits below its length.
+@isnad1 id=eq.1h3v.s5.7b5ccccc928f from=translated src=- shape=f6826cbd vocab=791a6b15
+-/
 theorem s_congr {d d' : ℕ → ℕ} {n : ℕ} (h : ∀ i < n, d i = d' i) : s d n = s d' n :=
   Finset.sum_congr rfl fun i hi => h i (Finset.mem_range.mp hi)
 
+/--
+@isnad1 id=eq.2h4v.s5.e2540d43f741 from=translated src=- shape=7e6f18fc vocab=24961584
+-/
 theorem prefixSum_pre (w : FiniteValuationWord N) (hj : j0 ≤ N) {i : ℕ} (hi : i ≤ j0) :
     (pre j0 w).prefixSum i = w.prefixSum i := by
   rw [prefixSum_eq_s _ hi, prefixSum_eq_s _ (by omega)]
   exact s_congr fun k hk => pre_toInfinite w (by omega)
 
+/--
+@isnad1 id=eq.2h4v.s6.b474f8d30eac from=translated src=- shape=37cc1b27 vocab=40441541
+-/
 theorem prefixSum_suf (w : FiniteValuationWord N) (hj : j0 ≤ N) {i : ℕ} (hi : i ≤ N - j0) :
     (suf j0 w).prefixSum i + w.prefixSum j0 = w.prefixSum (j0 + i) := by
   rw [prefixSum_eq_s _ hi, prefixSum_eq_s _ hj, prefixSum_eq_s _ (by omega),
     s_add_shiftWord w.toInfinite j0 i, s_congr fun k hk => suf_toInfinite w (by omega)]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s4.8825482815a4 from=translated src=- shape=ac32ca7f vocab=f5dc4e53
+-/
 theorem total_pre (w : FiniteValuationWord N) (hj : j0 ≤ N) :
     (pre j0 w).total = w.prefixSum j0 := prefixSum_pre w hj le_rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.daaa4c0153a1 from=translated src=- shape=fe2ea674 vocab=4eeb8040
+-/
 theorem total_suf (w : FiniteValuationWord N) (hj : j0 ≤ N) :
     (suf j0 w).total + w.prefixSum j0 = w.total := by
   have h := prefixSum_suf w hj (i := N - j0) le_rfl
   rw [show j0 + (N - j0) = N by omega] at h
   exact h
 
+/--
+@isnad1 id=positive.2h3v.s4.be2e6ef6812b from=translated src=- shape=8e3611a1 vocab=62575319
+-/
 theorem positive_pre {w : FiniteValuationWord N} (hw : w.Positive) (hj : j0 ≤ N) :
     (pre j0 w).Positive := fun i => by
   simp only [pre]; rw [toInfinite_apply_of_lt _ (by omega)]; exact hw _
 
+/--
+@isnad1 id=positive.1h3v.s4.27e574ea2d6a from=translated src=- shape=e87241ff vocab=370f03d3
+-/
 theorem positive_suf {w : FiniteValuationWord N} (hw : w.Positive) :
     (suf j0 w).Positive := fun i => by
   simp only [suf]; rw [toInfinite_apply_of_lt _ (by omega)]; exact hw _
 
+/--
+@isnad1 id=positive.2h4v.s5.3884c41569db from=translated src=- shape=466e7828 vocab=b98c0efb
+-/
 theorem positive_concat {P : FiniteValuationWord j0} {v : FiniteValuationWord (N - j0)}
     (hP : P.Positive) (hv : v.Positive) : (concat N P v).Positive := fun i => by
   simp only [concat]
@@ -145,6 +189,9 @@ theorem positive_concat {P : FiniteValuationWord j0} {v : FiniteValuationWord (N
   · rw [toInfinite_apply_of_lt _ h]; exact hP _
   · rw [toInfinite_apply_of_lt _ (by omega)]; exact hv _
 
+/--
+@isnad1 id=le.2h3v.s4.366a26b0b76c from=translated src=- shape=603c314f vocab=9e70d23a
+-/
 theorem prefixSum_ge_of_positive {n : ℕ} {w : FiniteValuationWord n} (hw : w.Positive)
     {i : ℕ} (hi : i ≤ n) : i ≤ w.prefixSum i := by
   rw [prefixSum_eq_s _ hi]
@@ -168,6 +215,9 @@ def shellP (b : ℕ → ℕ) (j0 σ : ℕ) : Finset (FiniteValuationWord j0) :=
 def shellV (b : ℕ → ℕ) (N j0 σ t : ℕ) : Finset (FiniteValuationWord (N - j0)) :=
   (confinedWords (N - j0) (shiftBarrier b j0 σ)).filter fun v => v.total = t
 
+/--
+@isnad1 id=iff.2h6v.s7.4c7fa627ba03 from=translated src=- shape=e4f00e0b vocab=55a6b6b3
+-/
 theorem mem_split (b : ℕ → ℕ) (hj1 : 1 ≤ j0) (hjN : j0 < N) {s σ : ℕ}
     {w : FiniteValuationWord N} :
     (w ∈ (confinedWords N b).filter (fun w => w.total = s) ∧ (pre j0 w).total = σ) ↔
@@ -201,7 +251,9 @@ theorem mem_split (b : ℕ → ℕ) (hj1 : 1 ≤ j0) (hjN : j0 < N) {s σ : ℕ}
 
 /-- **Word-level gluing.** A shell of confined words of length `N` is the disjoint union over the
 prefix total `σ` of products `P_{j0,σ} × V_{σ,s}` (prefix confined, suffix confined under the
-barrier shifted by `σ`), via `concat`.-/
+barrier shifted by `σ`), via `concat`.
+@isnad1 id=eq.2h6v.s7.b2a6257d7605 from=translated src=- shape=22f3088b vocab=be869e0b
+-/
 theorem sum_shell_eq_sum_split {R : Type*} [AddCommMonoid R] (b : ℕ → ℕ) (hj1 : 1 ≤ j0)
     (hjN : j0 < N) (s : ℕ) (F : FiniteValuationWord N → R) :
     ∑ w ∈ (confinedWords N b).filter (fun w => w.total = s), F w =
@@ -247,6 +299,9 @@ noncomputable def endState (P : FiniteValuationWord j0) : ℕ :=
 /-- `3^{-j0}` in `ZMod (2^t)`.-/
 noncomputable def invThree (j0 t : ℕ) : ZMod (2 ^ t) := ((3 ^ j0 : ℕ) : ZMod (2 ^ t))⁻¹
 
+/--
+@isnad1 id=eq.0h2v.s8.6ab7a6fb6780 from=translated src=- shape=6b00b834 vocab=96399c0f
+-/
 theorem three_pow_mul_invThree (j0 t : ℕ) :
     ((3 ^ j0 : ℕ) : ZMod (2 ^ t)) * invThree j0 t = 1 :=
   ZMod.coe_mul_inv_eq_one _ (Nat.Coprime.pow j0 t (by norm_num : Nat.Coprime 3 2))
@@ -259,42 +314,64 @@ noncomputable def alphaV (j0 t : ℕ) {L : ℕ} (v : FiniteValuationWord L) : ZM
 noncomputable def betaP (t : ℕ) (P : FiniteValuationWord j0) : ZMod (2 ^ t) :=
   invThree j0 t * (((endState P - 1) / 2 : ℕ) : ZMod (2 ^ t))
 
+/--
+@isnad1 id=le.2h3v.s4.6ce48a26bda6 from=translated src=- shape=00cd03ff vocab=e96cc627
+-/
 theorem positive_toInfinite_of_positive {n : ℕ} {w : FiniteValuationWord n} (hw : w.Positive) :
     ∀ i < n, 1 ≤ w.toInfinite i := (positive_iff_toInfinite w).mp hw
 
-/-- Prefix data of a concatenation are those of the prefix.-/
+/-- Prefix data of a concatenation are those of the prefix.
+@isnad1 id=eq.1h4v.s5.3170d0df76b1 from=translated src=- shape=95cbee99 vocab=4b64c023
+-/
 theorem leastRealizer_concat_pre (P : FiniteValuationWord j0) (v : FiniteValuationWord (N - j0))
     (hj : j0 ≤ N) :
     leastRealizer (concat N P v).toInfinite j0 = leastRealizer P.toInfinite j0 :=
   leastRealizer_eq_of_agree _ _ j0 fun _ hi => concat_toInfinite_lt P v hj hi
 
+/--
+@isnad1 id=eq.1h4v.s5.fdf4ef3c4d73 from=translated src=- shape=3806fa74 vocab=f17c8b29
+-/
 theorem S_concat_pre (P : FiniteValuationWord j0) (v : FiniteValuationWord (N - j0))
     (hj : j0 ≤ N) : S (concat N P v).toInfinite j0 = P.total := by
   rw [← ResidueDiscrepancy.total_eq_S P]
   exact s_congr fun _ hi => concat_toInfinite_lt P v hj hi
 
+/--
+@isnad1 id=eq.2h5v.s6.089f2da2b72e from=translated src=- shape=bb8a7521 vocab=3d8d2668
+-/
 theorem shift_concat_agree (P : FiniteValuationWord j0) (v : FiniteValuationWord (N - j0))
     (hj : j0 ≤ N) : ∀ i < N - j0, shiftWord (concat N P v).toInfinite j0 i = v.toInfinite i :=
   fun i _ => by
     simp only [shiftWord]
     rw [concat_toInfinite_ge P v (by omega) (by omega), Nat.add_sub_cancel_left]
 
+/--
+@isnad1 id=eq.1h4v.s6.ed2269f933bf from=translated src=- shape=215794cc vocab=4e6e5827
+-/
 theorem leastRealizer_concat_suf (P : FiniteValuationWord j0) (v : FiniteValuationWord (N - j0))
     (hj : j0 ≤ N) :
     leastRealizer (shiftWord (concat N P v).toInfinite j0) (N - j0) =
       leastRealizer v.toInfinite (N - j0) :=
   leastRealizer_eq_of_agree _ _ _ (shift_concat_agree P v hj)
 
+/--
+@isnad1 id=eq.1h4v.s5.f9620b257fe2 from=translated src=- shape=df400c16 vocab=c922cdbf
+-/
 theorem S_concat_suf (P : FiniteValuationWord j0) (v : FiniteValuationWord (N - j0))
     (hj : j0 ≤ N) : S (shiftWord (concat N P v).toInfinite j0) (N - j0) = v.total := by
   rw [← ResidueDiscrepancy.total_eq_S v]
   exact s_congr (shift_concat_agree P v hj)
 
+/--
+@isnad1 id=odd.1h2v.s4.9b526b77240c from=translated src=- shape=21f3d76e vocab=794f49b7
+-/
 theorem odd_leastRealizer_of_positive {n : ℕ} {w : FiniteValuationWord n} (hw : w.Positive) :
     Odd (leastRealizer w.toInfinite n) :=
   (leastRealizer_realizes_all _ n (positive_toInfinite_of_positive hw)).1
 
-/-- The key congruence in `ZMod (2^t)`: the concatenation block `k` equals `α_v − β_P`.-/
+/-- The key congruence in `ZMod (2^t)`: the concatenation block `k` equals `α_v − β_P`.
+@isnad1 id=eq.4h4v.s9.057f750904fc from=translated src=- shape=946e23fe vocab=07e49e57
+-/
 theorem concatBlock_cast (P : FiniteValuationWord j0) (v : FiniteValuationWord (N - j0))
     (hj1 : 1 ≤ j0) (hjN : j0 < N) (hP : P.Positive) (hv : v.Positive) :
     ((concatBlock (concat N P v).toInfinite j0 N : ℕ) : ZMod (2 ^ v.total)) =
@@ -332,7 +409,9 @@ theorem concatBlock_cast (P : FiniteValuationWord j0) (v : FiniteValuationWord (
   rw [add_sub_cancel_left, ← mul_assoc, mul_comm (invThree j0 t), h4, one_mul]
 
 /-- **Incidence form.** For `S_P = σ < K ≤ s = σ + t`, the concatenation `P·v` has least
-realizer below `2^K` iff `(α_v − β_P) mod 2^t < 2^(K − σ − 1)`.-/
+realizer below `2^K` iff `(α_v − β_P) mod 2^t < 2^(K − σ − 1)`.
+@isnad1 id=iff.5h5v.s8.387ac9a2adc2 from=translated src=- shape=abf08762 vocab=2a2ea3ea
+-/
 theorem lt_pow_iff_incidence (P : FiniteValuationWord j0) (v : FiniteValuationWord (N - j0))
     (hj1 : 1 ≤ j0) (hjN : j0 < N) (hP : P.Positive) (hv : v.Positive) {K : ℕ}
     (hK : P.total < K) :
@@ -347,7 +426,9 @@ theorem lt_pow_iff_incidence (P : FiniteValuationWord j0) (v : FiniteValuationWo
   have := concat_lt (d := d) hj
   rwa [S_concat_suf P v hj] at this
 
-/-- Distinct suffix words of the same shell have distinct coordinates `α_v`.-/
+/-- Distinct suffix words of the same shell have distinct coordinates `α_v`.
+@isnad1 id=injon.1h4v.s6.2c8bf7defd08 from=translated src=- shape=b05f7933 vocab=2acce8dc
+-/
 theorem alphaV_injOn {L j0 t : ℕ} (V : Finset (FiniteValuationWord L))
     (hV : ∀ v ∈ V, v.Positive ∧ v.total = t) :
     Set.InjOn (alphaV j0 t) (↑V : Set (FiniteValuationWord L)) := by
@@ -389,6 +470,9 @@ variable {N j0 : ℕ}
 noncomputable def prefixCount (b : ℕ → ℕ) (j0 σ t : ℕ) (z : ZMod (2 ^ t)) : ℝ :=
   (((shellP b j0 σ).filter fun P => betaP t P = z).card : ℝ)
 
+/--
+@isnad1 id=eq.0h4v.s6.19302b83cfa2 from=translated src=- shape=d701e6ba vocab=d14ffb3a
+-/
 theorem sum_prefixCount (b : ℕ → ℕ) (j0 σ t : ℕ) :
     ∑ z, prefixCount b j0 σ t z = ((shellP b j0 σ).card : ℝ) := by
   unfold prefixCount
@@ -404,17 +488,25 @@ def PrefixCollisionBound (b : ℕ → ℕ) (N j0 K : ℕ) (ε : ℝ) : Prop :=
       ((shellP b j0 σ).card : ℝ) ^ 2 *
         (1 + ε ^ 2 * (shellV b N j0 σ (s - σ)).card / 2 ^ (s - σ))
 
+/--
+@isnad1 id=and.2h4v.s5.2700151e8ff9 from=translated src=- shape=dc843a41 vocab=7053940a
+-/
 theorem mem_shellP {b : ℕ → ℕ} (hj1 : 1 ≤ j0) {σ : ℕ} {P : FiniteValuationWord j0}
     (hP : P ∈ shellP b j0 σ) : P.Positive ∧ BarrierConfined b P ∧ P.total = σ := by
   simp only [shellP, mem_filter, mem_confinedWords hj1] at hP
   exact ⟨hP.1.1, hP.1.2, hP.2⟩
 
+/--
+@isnad1 id=and.2h6v.s6.f73d8bd4102a from=translated src=- shape=39e55823 vocab=77c1ae3c
+-/
 theorem mem_shellV {b : ℕ → ℕ} (hjN : j0 < N) {σ t : ℕ} {v : FiniteValuationWord (N - j0)}
     (hv : v ∈ shellV b N j0 σ t) : v.Positive ∧ v.total = t := by
   simp only [shellV, mem_filter, mem_confinedWords (by omega : 1 ≤ N - j0)] at hv
   exact ⟨hv.1.1, hv.2⟩
 
-/-- The dyadic interval `{0, …, M−1} ⊆ ℤ/2^t`.-/
+/-- The dyadic interval `{0, …, M−1} ⊆ ℤ/2^t`.
+@isnad1 id=iff.1h3v.s8.0109b345b82b from=translated src=- shape=000e1bb6 vocab=35740ada
+-/
 theorem mem_image_range_iff {t M : ℕ} (hM : M ≤ 2 ^ t) (x : ZMod (2 ^ t)) :
     x ∈ (range M).image (fun i : ℕ => (i : ZMod (2 ^ t))) ↔ x.val < M := by
   constructor
@@ -425,6 +517,9 @@ theorem mem_image_range_iff {t M : ℕ} (hM : M ≤ 2 ^ t) (x : ZMod (2 ^ t)) :
   · intro hx
     exact mem_image.mpr ⟨x.val, mem_range.mpr hx, ZMod.natCast_zmod_val x⟩
 
+/--
+@isnad1 id=eq.1h2v.s7.d6f9f9fefcdd from=translated src=- shape=8387a8bb vocab=185b120b
+-/
 theorem card_image_range {t M : ℕ} (hM : M ≤ 2 ^ t) :
     ((range M).image (fun i : ℕ => (i : ZMod (2 ^ t)))).card = M := by
   rw [card_image_of_injOn, card_range]
@@ -437,7 +532,9 @@ theorem card_image_range {t M : ℕ} (hM : M ≤ 2 ^ t) :
 
 /-- **One prefix shell × one suffix shell.** Under the collision bound at `(s, σ)`, the number of
 pairs `(P, v)` whose concatenation has least realizer below `2^K` is at most `(1 + ε)` times the
-Haar share.-/
+Haar share.
+@isnad1 id=le.6h7v.s9.38cb4a427d8c from=translated src=- shape=1efc5ab4 vocab=6350053c
+-/
 theorem split_count_le (b : ℕ → ℕ) (hj1 : 1 ≤ j0) (hjN : j0 < N) {K s σ : ℕ} (ε : ℝ)
     (hε : 0 ≤ ε) (hKs : K ≤ s) (hσK : σ < K)
     (hcoll : (2 : ℝ) ^ (s - σ) * ∑ z : ZMod (2 ^ (s - σ)), prefixCount b j0 σ (s - σ) z ^ 2 ≤
@@ -529,7 +626,9 @@ theorem split_count_le (b : ℕ → ℕ) (hj1 : 1 ≤ j0) (hjN : j0 < N) {K s σ
       = (1 + ε) * (PS.card * (VS.card * ((M : ℝ) / 2 ^ t))) := by ring
     _ = _ := by rw [hexpo]
 
-/-- Prefix shells above the barrier value `b j0` are empty.-/
+/-- Prefix shells above the barrier value `b j0` are empty.
+@isnad1 id=eq.2h3v.s5.e5cf01ee41ec from=translated src=- shape=d4837f56 vocab=8ac81bb7
+-/
 theorem shellP_eq_empty {b : ℕ → ℕ} (hj1 : 1 ≤ j0) {σ : ℕ} (hσ : b j0 < σ) :
     shellP b j0 σ = ∅ := by
   ext P
@@ -541,7 +640,9 @@ theorem shellP_eq_empty {b : ℕ → ℕ} (hj1 : 1 ≤ j0) {σ : ℕ} (hσ : b j
   exact absurd this (by unfold FiniteValuationWord.total at hσ; omega)
 
 /-- **One word shell.** Under the prefix collision bound, the post-fresh words of total `s ≥ K`
-whose least realizer lies below `2^K` are at most `(1 + ε)` times their Haar share.-/
+whose least realizer lies below `2^K` are at most `(1 + ε)` times their Haar share.
+@isnad1 id=le.6h6v.s8.fa083d4f53e8 from=translated src=- shape=ffd9a7d9 vocab=c6375f9f
+-/
 theorem shell_count_le_of_collision (b : ℕ → ℕ) (hj1 : 1 ≤ j0) (hjN : j0 < N) {K s : ℕ}
     (hbK : b j0 < K) (ε : ℝ) (hε : 0 ≤ ε) (hKs : K ≤ s)
     (hcoll : PrefixCollisionBound b N j0 K ε) :
@@ -558,7 +659,9 @@ theorem shell_count_le_of_collision (b : ℕ → ℕ) (hj1 : 1 ≤ j0) (hjN : j0
 
 open Classical in
 /-- **Prefix collision bound ⇒ least-realizer counting bound** (the hypothesis of
-`ResidueDiscrepancy.exceptional_count_le_of_leastRealizerBound`, with `C = 1 + ε`).-/
+`ResidueDiscrepancy.exceptional_count_le_of_leastRealizerBound`, with `C = 1 + ε`).
+@isnad1 id=le.5h5v.s8.dde45feff73e from=translated src=- shape=3cea6241 vocab=80f2a7e7
+-/
 theorem leastRealizerBound_of_prefixCollision (U N K j0 : ℕ) (ε : ℝ) (hε : 0 ≤ ε)
     (hj1 : 1 ≤ j0) (hjN : j0 < N) (hbK : collatzBarrier U j0 < K)
     (hcoll : PrefixCollisionBound (collatzBarrier U) N j0 K ε) :
@@ -596,7 +699,9 @@ open Classical in
 /-- **The full chain: prefix collision bound ⇒ exceptional exponent.** If the prefix end states
 at depth `j0` (with `⌊j0 α + U⌋ < K`, i.e. all prefixes fresh) satisfy the collision bound with
 constant `ε`, and `N ≥ A K`, then
-`#(E_U ∩ [0, 2^K)) ≤ ((1 + ε) e^{λ* U}/2) · (2^K)^{1 − I₀ A}`.-/
+`#(E_U ∩ [0, 2^K)) ≤ ((1 + ε) e^{λ* U}/2) · (2^K)^{1 − I₀ A}`.
+@isnad1 id=le.6h6v.s8.e06305fb3e39 from=translated src=- shape=9384558b vocab=c13cfd39
+-/
 theorem exceptional_count_le_of_prefixCollision (U K j0 : ℕ) {N : ℕ} (A ε : ℝ) (hε : 0 ≤ ε)
     (hj1 : 1 ≤ j0) (hjN : j0 < N) (hbK : collatzBarrier U j0 < K) (hNA : A * K ≤ N)
     (hcoll : PrefixCollisionBound (collatzBarrier U) N j0 K ε) :

@@ -57,7 +57,9 @@ private theorem R_eq_of_agree {d e : ℕ → ℕ} {t : ℕ} (h : ∀ i < t, d i 
 
 /-- **Prescribed matching = split depth.** A positive block `e` of length `m` whose first
 disagreement with the anchor word is at `k < m` satisfies
-`v₂(leastRealizer e m − μ_j) = S_k(e) + min (e⋆ k) (e k)`.-/
+`v₂(leastRealizer e m − μ_j) = S_k(e) + min (e⋆ k) (e k)`.
+@isnad1 id=eq.4h5v.s6.15dcf280ba9f from=translated src=- shape=c403612d vocab=bcebda3c
+-/
 theorem prescribed_matching_split (d e : ℕ → ℕ) (j m k : ℕ) (hk : k < m)
     (he : ∀ i < m, 1 ≤ e i)
     (hagree : ∀ i < k, anchorWord d j i = e i) (hne : anchorWord d j k ≠ e k) :
@@ -78,7 +80,9 @@ theorem prescribed_matching_split (d e : ℕ → ℕ) (j m k : ℕ) (hk : k < m)
   rfl
 
 /-- **Full-block detectability.** For odd `μ_j`, a positive block `e` of length `m` satisfies
-`leastRealizer e m ≡ μ_j (mod 2^(S_m(e)+1))` iff it equals the anchor word on all `m` digits.-/
+`leastRealizer e m ≡ μ_j (mod 2^(S_m(e)+1))` iff it equals the anchor word on all `m` digits.
+@isnad1 id=iff.2h4v.s6.60d92b969883 from=translated src=- shape=af05bb63 vocab=b6a3273f
+-/
 theorem prescribed_full_match_iff (d e : ℕ → ℕ) (j m : ℕ) (he : ∀ i < m, 1 ≤ e i)
     (hodd : Odd (anchorState d j)) :
     leastRealizer e m ≡ anchorState d j [MOD 2 ^ (S e m + 1)]
@@ -97,7 +101,9 @@ theorem prescribed_full_match_iff (d e : ℕ → ℕ) (j m : ℕ) (he : ∀ i < 
 
 /-- **Forced-divergence bound for confined prescribed futures.** If the positive block `e`
 (length `m`) is `c`-confined and the anchor word violates `c`-confinement at step `L + 1 ≤ m`,
-then `v₂(leastRealizer e m − μ_j) ≤ c + (L + 1)·log₂3`.-/
+then `v₂(leastRealizer e m − μ_j) ≤ c + (L + 1)·log₂3`.
+@isnad1 id=le.4h6v.s7.60043f3a91d2 from=translated src=- shape=322dde11 vocab=3741b8ea
+-/
 theorem confined_prescribed_matching_le (d e : ℕ → ℕ) (j m L : ℕ) (c : ℝ) (hLm : L + 1 ≤ m)
     (he : ∀ i < m, 1 ≤ e i) (hconf : Confined c e m)
     (hviol : c < R (anchorWord d j) (L + 1)) :
@@ -139,7 +145,9 @@ theorem confined_prescribed_matching_le (d e : ℕ → ℕ) (j m L : ℕ) (c : �
 /-! ## Two-sided corridors: unconditional forced divergence -/
 
 /-- **The anchor future leaves every two-sided drift corridor.** For odd `μ_j`, no bounds
-`−G ≤ R_N ≤ c` can hold for every `N` along the anchor word.-/
+`−G ≤ R_N ≤ c` can hold for every `N` along the anchor word.
+@isnad1 id=not.1h4v.s5.92fc6fcf9473 from=translated src=- shape=1c687bbf vocab=547bb176
+-/
 theorem anchor_exits_corridor (d : ℕ → ℕ) (j : ℕ) (hodd : Odd (anchorState d j)) (c G : ℝ) :
     ¬ (∀ N, R (anchorWord d j) N ≤ c ∧ -G ≤ R (anchorWord d j) N) := by
   intro h
@@ -153,7 +161,9 @@ theorem anchor_exits_corridor (d : ℕ → ℕ) (j : ℕ) (hodd : Odd (anchorSta
   omega
 
 /-- No prescribed future confined to a two-sided corridor can agree with the anchor future at
-every digit.-/
+every digit.
+@isnad1 id=ex.2h5v.s5.413f6b4070e5 from=translated src=- shape=0ed92a47 vocab=547bb176
+-/
 theorem corridor_prescribed_diverges (d e : ℕ → ℕ) (j : ℕ) (hodd : Odd (anchorState d j))
     (c G : ℝ) (he : ∀ N, R e N ≤ c ∧ -G ≤ R e N) :
     ∃ i, anchorWord d j i ≠ e i := by
@@ -167,7 +177,9 @@ theorem corridor_prescribed_diverges (d e : ℕ → ℕ) (j : ℕ) (hodd : Odd (
 /-! ## Quantitative shadowing bound on injective anchor windows -/
 
 /-- A prescribed future with drift floor `−g` that follows the anchor word for `2^L` digits, along
-an anchor orbit that is injective on `[0, 2^L]`, forces `2^(2(L+1)) ≤ 2^g · μ_j · 3^(L+1)`.-/
+an anchor orbit that is injective on `[0, 2^L]`, forces `2^(2(L+1)) ≤ 2^g · μ_j · 3^(L+1)`.
+@isnad1 id=le.5h5v.s8.72405d609e64 from=translated src=- shape=3f987134 vocab=407229be
+-/
 theorem shadow_injective_floor_bound (d e : ℕ → ℕ) (j L g : ℕ) (hL : 1 ≤ L)
     (hodd : Odd (anchorState d j))
     (hagree : ∀ i < 2 ^ L, anchorWord d j i = e i)

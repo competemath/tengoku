@@ -11,6 +11,9 @@ namespace FiniteValuationWord
 def ofList (l : List ℕ) (hl : l.length = N) : FiniteValuationWord N :=
   fun i ↦ l.get ⟨i, by omega⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.ba90fd28e2b3 from=translated src=- shape=8cd236cc vocab=141ea6cf
+-/
 @[simp] theorem ofFn_ofList (l : List ℕ) (hl : l.length = N) :
     List.ofFn (ofList l hl) = l := by
   subst N
@@ -20,14 +23,23 @@ def ofList (l : List ℕ) (hl : l.length = N) : FiniteValuationWord N :=
 def rotate (w : FiniteValuationWord N) (r : ℕ) : FiniteValuationWord N :=
   ofList ((List.ofFn w).rotate r) (by simp)
 
+/--
+@isnad1 id=eq.0h3v.s4.a99c59b8ac8a from=translated src=- shape=5211be90 vocab=4ffaa1a6
+-/
 @[simp] theorem ofFn_rotate (w : FiniteValuationWord N) (r : ℕ) :
     List.ofFn (w.rotate r) = (List.ofFn w).rotate r := by
   simp [rotate]
 
+/--
+@isnad1 id=eq.0h2v.s4.ee88252f4f6d from=translated src=- shape=5bdfd7f1 vocab=7ef671e0
+-/
 @[simp] theorem rotate_zero (w : FiniteValuationWord N) : w.rotate 0 = w := by
   apply_fun List.ofFn using List.ofFn_injective
   simp
 
+/--
+@isnad1 id=injectiv.0h2v.s4.db526ea3521c from=translated src=- shape=3b54d3f4 vocab=c4d342da
+-/
 theorem rotate_injective (r : ℕ) :
     Function.Injective (fun w : FiniteValuationWord N ↦ w.rotate r) := by
   intro w v h
@@ -35,6 +47,9 @@ theorem rotate_injective (r : ℕ) :
   simp only [ofFn_rotate] at h'
   exact List.ofFn_injective (List.rotate_injective r h')
 
+/--
+@isnad1 id=iff.0h3v.s4.9e5a8000704f from=translated src=- shape=91943eac vocab=c4afb8a1
+-/
 @[simp] theorem rotate_positive (w : FiniteValuationWord N) (r : ℕ) :
     (w.rotate r).Positive ↔ w.Positive := by
   constructor <;> intro h
@@ -55,6 +70,9 @@ theorem rotate_injective (r : ℕ) :
     rw [← hk]
     exact h k
 
+/--
+@isnad1 id=eq.0h3v.s4.61ccaa7048da from=translated src=- shape=0d268503 vocab=7140a45c
+-/
 @[simp] theorem rotate_total (w : FiniteValuationWord N) (r : ℕ) :
     (w.rotate r).total = w.total := by
   simp only [total, prefixSum, ofFn_rotate]
@@ -77,11 +95,17 @@ def rotate {s : ℕ} (q : ValuationShell N s) (r : ℕ) : ValuationShell N s :=
     rw [List.length_rotate]
     exact q.2⟩
 
+/--
+@isnad1 id=eq.0h4v.s4.b696a8e714ed from=translated src=- shape=66e81d03 vocab=9a905e61
+-/
 @[simp] theorem rotate_toWord {s : ℕ} (q : ValuationShell N s) (r : ℕ) :
     (q.rotate r).toWord = q.toWord.rotate r := by
   apply_fun List.ofFn using List.ofFn_injective
   simp [ValuationShell.ofFn_toWord, FiniteValuationWord.ofFn_rotate, rotate]
 
+/--
+@isnad1 id=injectiv.0h3v.s4.f0adea0c291a from=translated src=- shape=b27cfcf0 vocab=b90d5de1
+-/
 theorem rotate_injective {s : ℕ} (r : ℕ) :
     Function.Injective (fun q : ValuationShell N s ↦ q.rotate r) := by
   intro q t h
@@ -149,7 +173,9 @@ private theorem exists_rotate_int_prefix_nonpos (l : List ℤ) (hl : 0 < l.lengt
     linarith
 
 /-- Zero-sum cyclic-list lemma: some rotation of a nonempty integer list with sum `0` has every
-prefix sum `≤ 0`.  Public form of the internal helper above, with `intPrefix` unfolded.-/
+prefix sum `≤ 0`.  Public form of the internal helper above, with `intPrefix` unfolded.
+@isnad1 id=ex.2h1v.s6.c6990bdd5589 from=translated src=- shape=5a075c7c vocab=d10ad332
+-/
 theorem exists_rotate_take_sum_nonpos (l : List ℤ) (hl : 0 < l.length) (hsum : l.sum = 0) :
     ∃ r < l.length, ∀ j ≤ l.length, ((l.rotate r).take j).sum ≤ 0 :=
   exists_rotate_int_prefix_nonpos l hl hsum
@@ -164,7 +190,9 @@ private theorem sum_centered (l : List ℕ) (N s : ℕ) :
       linarith
 
 /-- Rotation-below-the-chord lemma, division-free form.  There is a cyclic rotation lying below
-the chord joining `(0,0)` to `(N,s)`.-/
+the chord joining `(0,0)` to `(N,s)`.
+@isnad1 id=ex.2h3v.s6.c59d82a825c0 from=translated src=- shape=92079b41 vocab=13f6fa17
+-/
 theorem chord_rotation_nat (hN : 0 < N) (w : FiniteValuationWord N) (s : ℕ)
     (htotal : w.total = s) :
     ∃ r < N, ∀ j ≤ N, N * (w.rotate r).prefixSum j ≤ j * s := by
@@ -199,7 +227,9 @@ theorem chord_rotation_nat (hN : 0 < N) (w : FiniteValuationWord N) (s : ℕ)
   exact_mod_cast (show
     (N : ℤ) * (((l.rotate r).take j).sum : ℤ) ≤ (j : ℤ) * (s : ℤ) by linarith)
 
-/-- Rotation-below-the-chord lemma, real-valued chord form.-/
+/-- Rotation-below-the-chord lemma, real-valued chord form.
+@isnad1 id=ex.2h3v.s6.cb4ffc588fc4 from=translated src=- shape=df2bbe51 vocab=987a8b61
+-/
 theorem chord_rotation_real (hN : 0 < N) (w : FiniteValuationWord N) (s : ℕ)
     (htotal : w.total = s) :
     ∃ r < N, ∀ j ≤ N,

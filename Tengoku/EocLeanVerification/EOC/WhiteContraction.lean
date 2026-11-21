@@ -40,15 +40,30 @@ noncomputable section
 /-- Distance of `t` to the nearest integer.-/
 def distZ (t : ℝ) : ℝ := |t - round t|
 
+/--
+@isnad1 id=le.0h1v.s3.435b09d138d4 from=translated src=- shape=8a62b088 vocab=dda40af5
+-/
 theorem distZ_nonneg (t : ℝ) : 0 ≤ distZ t := abs_nonneg _
 
+/--
+@isnad1 id=le.0h2v.s4.81abd8ad2e27 from=translated src=- shape=5027d4b1 vocab=48b67568
+-/
 theorem distZ_le (t : ℝ) (z : ℤ) : distZ t ≤ |t - z| := round_le t z
 
+/--
+@isnad1 id=le.0h1v.s4.72e3b31de47c from=translated src=- shape=45b89831 vocab=b22db961
+-/
 theorem distZ_le_half (t : ℝ) : distZ t ≤ 1 / 2 := abs_sub_round t
 
+/--
+@isnad1 id=eq.0h2v.s4.a459ff439795 from=translated src=- shape=1dc88c11 vocab=936cdf26
+-/
 theorem distZ_add_int (t : ℝ) (z : ℤ) : distZ (t + z) = distZ t := by
   unfold distZ; rw [round_add_intCast]; push_cast; ring_nf
 
+/--
+@isnad1 id=eq.0h1v.s3.8b181b9d5b22 from=translated src=- shape=cd419dad vocab=46d1752a
+-/
 theorem distZ_neg (t : ℝ) : distZ (-t) = distZ t := by
   apply le_antisymm
   · calc distZ (-t) ≤ |-t - ((-round t : ℤ) : ℝ)| := distZ_le _ _
@@ -56,13 +71,18 @@ theorem distZ_neg (t : ℝ) : distZ (-t) = distZ t := by
   · calc distZ t ≤ |t - ((-round (-t) : ℤ) : ℝ)| := distZ_le _ _
       _ = distZ (-t) := by unfold distZ; push_cast; rw [← abs_neg]; ring_nf
 
-/-- `distZ` is 1-Lipschitz.-/
+/-- `distZ` is 1-Lipschitz.
+@isnad1 id=le.0h2v.s4.e4998ce20a37 from=translated src=- shape=a7ecc5df vocab=0b4bf6a5
+-/
 theorem distZ_le_add (t s : ℝ) : distZ t ≤ distZ s + |t - s| := by
   calc distZ t ≤ |t - (round s : ℝ)| := distZ_le t (round s)
     _ = |(t - s) + (s - round s)| := by ring_nf
     _ ≤ |t - s| + |s - round s| := abs_add_le _ _
     _ = distZ s + |t - s| := by unfold distZ; ring
 
+/--
+@isnad1 id=eq.1h1v.s5.6053b9f829af from=translated src=- shape=9ed50383 vocab=aa0dbb53
+-/
 theorem distZ_eq_abs {t : ℝ} (ht : |t| ≤ 1 / 2) : distZ t = |t| := by
   apply le_antisymm
   · simpa using distZ_le t 0
@@ -76,7 +96,9 @@ theorem distZ_eq_abs {t : ℝ} (ht : |t| ≤ 1 / 2) : distZ t = |t| := by
           _ = |t - round t| + |t| := by rw [abs_neg]
       linarith
 
-/-- `|cos(π t)| ≤ cos(π d)` when `t` is at distance `≥ d` from `ℤ` (`d ≥ 0`).-/
+/-- `|cos(π t)| ≤ cos(π d)` when `t` is at distance `≥ d` from `ℤ` (`d ≥ 0`).
+@isnad1 id=le.2h2v.s5.76c4799723fb from=translated src=- shape=34badd6c vocab=1f2a5edb
+-/
 theorem abs_cos_pi_le {t d : ℝ} (hd0 : 0 ≤ d) (hdt : d ≤ distZ t) :
     |Real.cos (π * t)| ≤ Real.cos (π * d) := by
   set s := t - round t with hs
@@ -97,7 +119,9 @@ theorem abs_cos_pi_le {t d : ℝ} (hd0 : 0 ≤ d) (hdt : d ≤ distZ t) :
   apply Real.cos_le_cos_of_nonneg_of_le_pi (by positivity) (by nlinarith)
   rw [hsabs]; exact mul_le_mul_of_nonneg_left hdt hpi.le
 
-/-- Two consecutive terms: `‖e(a) + e(b)‖ ≤ 2 cos(π d)` if `distZ (a − b) ≥ d ≥ 0`.-/
+/-- Two consecutive terms: `‖e(a) + e(b)‖ ≤ 2 cos(π d)` if `distZ (a − b) ≥ d ≥ 0`.
+@isnad1 id=le.2h3v.s6.f4202c330354 from=translated src=- shape=53edc8f9 vocab=e32b4844
+-/
 theorem norm_ee_add_ee_le {a b d : ℝ} (hd0 : 0 ≤ d) (hd : d ≤ distZ (a - b)) :
     ‖ee a + ee b‖ ≤ 2 * Real.cos (π * d) := by
   rw [norm_ee_add_ee]
@@ -106,6 +130,9 @@ theorem norm_ee_add_ee_le {a b d : ℝ} (hd0 : 0 ≤ d) (hd : d ≤ distZ (a - b
 
 /-! ## 2. The block factor bound -/
 
+/--
+@isnad1 id=le.2h3v.s6.1c0e66615cd5 from=translated src=- shape=a7cfee87 vocab=ba88c6e5
+-/
 theorem norm_sum_le_pair (B : Finset ℕ) (φ : ℕ → ℝ) {x : ℕ} (hx : x ∈ B) (hx1 : x + 1 ∈ B) :
     ‖∑ z ∈ B, ee (φ z)‖ ≤ ((B.card : ℕ) : ℝ) - 2 + ‖ee (φ x) + ee (φ (x + 1))‖ := by
   have hx1' : x + 1 ∈ B.erase x := mem_erase.mpr ⟨by omega, hx1⟩
@@ -134,7 +161,9 @@ theorem norm_sum_le_pair (B : Finset ℕ) (φ : ℕ → ℝ) {x : ℕ} (hx : x �
     _ ≤ _ := by rw [hcard] at hrest; linarith
 
 /-- **Block-factor contraction.** `x, x+1 ∈ B`, `distZ (φ x − φ (x+1)) ≥ d ≥ 0` ⇒
-`‖∑_B e(φ)‖/|B| ≤ 1 − 2(1 − cos(π d))/|B|`.-/
+`‖∑_B e(φ)‖/|B| ≤ 1 − 2(1 − cos(π d))/|B|`.
+@isnad1 id=le.4h4v.s7.62176be0f5cc from=translated src=- shape=e26ccc7e vocab=b458d2d5
+-/
 theorem wfac_le_of_pair {B : Finset ℕ} {φ : ℕ → ℝ} {x : ℕ} (hx : x ∈ B) (hx1 : x + 1 ∈ B)
     {d : ℝ} (hd0 : 0 ≤ d) (hd : d ≤ distZ (φ x - φ (x + 1))) :
     ‖∑ z ∈ B, ee (φ z)‖ / (B.card : ℝ) ≤ 1 - 2 * (1 - Real.cos (π * d)) / (B.card : ℝ) := by
@@ -147,12 +176,18 @@ theorem wfac_le_of_pair {B : Finset ℕ} {φ : ℕ → ℝ} {x : ℕ} (hx : x �
 /-- The explicit contraction constant `κ(d, N₀) = 1 − 2(1 − cos(π d))/N₀`.-/
 def kappa (d : ℝ) (N0 : ℕ) : ℝ := 1 - 2 * (1 - Real.cos (π * d)) / N0
 
+/--
+@isnad1 id=le.0h2v.s4.d34c6a60357d from=translated src=- shape=1884bda8 vocab=2ca20665
+-/
 theorem kappa_le_one (d : ℝ) (N0 : ℕ) : kappa d N0 ≤ 1 := by
   unfold kappa
   have : 0 ≤ 2 * (1 - Real.cos (π * d)) / (N0 : ℝ) := by
     have := Real.cos_le_one (π * d); positivity
   linarith
 
+/--
+@isnad1 id=le.3h2v.s6.94abffef4fab from=translated src=- shape=edab8bde vocab=12538de7
+-/
 theorem kappa_nonneg {d : ℝ} (hd0 : 0 ≤ d) (hd1 : d ≤ 1 / 2) {N0 : ℕ} (hN : 2 ≤ N0) :
     0 ≤ kappa d N0 := by
   unfold kappa
@@ -164,6 +199,9 @@ theorem kappa_nonneg {d : ℝ} (hd0 : 0 ≤ d) (hd1 : d ≤ 1 / 2) {N0 : ℕ} (h
     rw [div_le_one (by linarith)]; linarith
   linarith
 
+/--
+@isnad1 id=lt.3h2v.s6.80d427a29e25 from=translated src=- shape=5e3353f7 vocab=e800468e
+-/
 theorem kappa_lt_one {d : ℝ} (hd0 : 0 < d) (hd1 : d ≤ 1 / 2) {N0 : ℕ} (hN : 1 ≤ N0) :
     kappa d N0 < 1 := by
   unfold kappa
@@ -177,7 +215,9 @@ theorem kappa_lt_one {d : ℝ} (hd0 : 0 < d) (hd1 : d ≤ 1 / 2) {N0 : ℕ} (hN 
     apply div_pos _ hN'; linarith
   linarith
 
-/-- `‖∑_B e(φ)‖ / |B| ∈ [0, 1]`.-/
+/-- `‖∑_B e(φ)‖ / |B| ∈ [0, 1]`.
+@isnad1 id=and.0h2v.s6.a776de2bcdd3 from=translated src=- shape=b54d3d60 vocab=6b588685
+-/
 theorem wfac_mem_unit (B : Finset ℕ) (φ : ℕ → ℝ) :
     0 ≤ ‖∑ z ∈ B, ee (φ z)‖ / (B.card : ℝ) ∧ ‖∑ z ∈ B, ee (φ z)‖ / (B.card : ℝ) ≤ 1 := by
   refine ⟨by positivity, ?_⟩
@@ -193,7 +233,9 @@ theorem wfac_mem_unit (B : Finset ℕ) (φ : ℕ → ℝ) :
 /-- The pair-block phase at internal prefix sum `x`.-/
 def pairPhase (lam m i x : ℕ) : ℝ := SwapCollatz.collatzPhase lam m (WeightedChain.uInv m) i x
 
-/-- Consecutive phases differ by `λ u_i 2^x / 2^m` modulo `ℤ`.-/
+/-- Consecutive phases differ by `λ u_i 2^x / 2^m` modulo `ℤ`.
+@isnad1 id=ex.0h5v.s7.d8ee26fcf00d from=translated src=- shape=a900db9d vocab=12942853
+-/
 theorem collatzPhase_sub_succ (h m : ℕ) (u : ℕ → ℕ) (i x : ℕ) :
     ∃ z : ℤ, SwapCollatz.collatzPhase h m u i x - SwapCollatz.collatzPhase h m u i (x + 1) =
       ((h * u i * 2 ^ x : ℕ) : ℝ) / 2 ^ m + z := by
@@ -206,7 +248,9 @@ theorem collatzPhase_sub_succ (h m : ℕ) (u : ℕ → ℕ) (i x : ℕ) :
   unfold Int.fract; push_cast; ring
 
 /-- **Reciprocity at a cell.**  For `x ≤ m`:
-`λ u_i 2^x/2^m + λ y(m−x, i+1)/3^{i+1} − λ 2^x/(2^m 3^{i+1}) ∈ ℤ`.-/
+`λ u_i 2^x/2^m + λ y(m−x, i+1)/3^{i+1} − λ 2^x/(2^m 3^{i+1}) ∈ ℤ`.
+@isnad1 id=ex.1h4v.s8.9fc53b9c13d4 from=translated src=- shape=8d635ab6 vocab=1136e4a5
+-/
 theorem phase_reciprocity (lam m i x : ℕ) (hx : x ≤ m) :
     ∃ z : ℤ, ((lam * WeightedChain.uInv m i * 2 ^ x : ℕ) : ℝ) / 2 ^ m +
         (lam : ℝ) * (y (m - x) (i + 1) : ℝ) / 3 ^ (i + 1) -
@@ -253,7 +297,9 @@ theorem phase_reciprocity (lam m i x : ℕ) (hx : x ≤ m) :
     _ = (lam : ℝ) * z := by rw [key]
 
 /-- **Phase difference vs. Tao cell.**  For `x ≤ m`:
-`distZ(φ(x) − φ(x+1)) ≥ distZ(λ y(m−x, i+1)/3^{i+1}) − λ 2^x/(2^m 3^{i+1})`.-/
+`distZ(φ(x) − φ(x+1)) ≥ distZ(λ y(m−x, i+1)/3^{i+1}) − λ 2^x/(2^m 3^{i+1})`.
+@isnad1 id=le.1h4v.s7.a036499385c1 from=translated src=- shape=a7881fbd vocab=0243879a
+-/
 theorem distZ_phase_ge (lam m i x : ℕ) (hx : x ≤ m) :
     distZ ((lam : ℝ) * (y (m - x) (i + 1) : ℝ) / 3 ^ (i + 1)) -
         (lam : ℝ) * 2 ^ x / (2 ^ m * 3 ^ (i + 1)) ≤
@@ -274,7 +320,9 @@ theorem distZ_phase_ge (lam m i x : ℕ) (hx : x ≤ m) :
   linarith
 
 /-- **At `λ = 1`: a Tao-white cell gives a large phase difference.**  If `(m − x, i+1)` is not black
-at threshold `η` then `distZ(φ(x) − φ(x+1)) ≥ η − 2^x/(2^m 3^{i+1})`.-/
+at threshold `η` then `distZ(φ(x) − φ(x+1)) ≥ η − 2^x/(2^m 3^{i+1})`.
+@isnad1 id=le.2h4v.s7.510d0fccc435 from=translated src=- shape=0d882bf6 vocab=acb51043
+-/
 theorem distZ_phase_ge_of_white {m i x : ℕ} (hx : x ≤ m) {η : ℝ}
     (hwhite : ¬ black (m - x) (i + 1) η) :
     η - 2 ^ x / (2 ^ m * 3 ^ (i + 1)) ≤ distZ (pairPhase 1 m i x - pairPhase 1 m i (x + 1)) := by
@@ -307,7 +355,9 @@ def GoodPair (m N0 : ℕ) (d : ℝ) (lam : ℕ) {j0 : ℕ} (c : Fin (j0 + 1) →
     ∃ x, x ∈ BlockCubeInstance.pairB b c r ∧ x + 1 ∈ BlockCubeInstance.pairB b c r ∧
       d ≤ distZ (pairPhase lam m (2 * r + 1) x - pairPhase lam m (2 * r + 1) (x + 1))
 
-/-- **White-cell contraction for the actual pair-block factor.**-/
+/-- **White-cell contraction for the actual pair-block factor.**
+@isnad1 id=le.2h8v.s7.0a4c8ae92c68 from=translated src=- shape=941b90a3 vocab=e38ae36a
+-/
 theorem pair_factor_le_of_good {m N0 : ℕ} {d : ℝ} (hd0 : 0 ≤ d) {lam j0 : ℕ}
     {c : Fin (j0 + 1) → ℕ} {r : ℕ} (hg : GoodPair b m N0 d lam c r) :
     BlockCubeInstance.Wfac (BlockCubeInstance.pairB b)
@@ -327,6 +377,9 @@ theorem pair_factor_le_of_good {m N0 : ℕ} {d : ℝ} (hd0 : 0 ≤ d) {lam j0 : 
   simp only [pairPhase] at h
   linarith
 
+/--
+@isnad1 id=le.2h4v.s5.d2b4d3f3678b from=translated src=- shape=4ef843e5 vocab=0ec85e75
+-/
 theorem prefixSum_le_prefixSum {N : ℕ} (w : FiniteValuationWord N) {j : ℕ} :
     ∀ k, j ≤ k → k ≤ N → w.prefixSum j ≤ w.prefixSum k := by
   intro k
@@ -344,7 +397,9 @@ theorem prefixSum_le_prefixSum {N : ℕ} (w : FiniteValuationWord N) {j : ℕ} :
 word `P` (total `σ`, `m = σ + 1 + t`), pair block `r`: if the word's cell at odd step `2r+1`,
 namely `(m − S_{2r+1}, 2r+2)`, is Tao-white at threshold `η`, the next internal choice
 `S_{2r+1} + 1` is admissible, the block has at most `N₀` choices, and the correction
-`2^{S_{2r+1}}/(2^m 3^{2r+2}) ≤ η/2`, then the block of `P`'s class is good with `d = η/2`.-/
+`2^{S_{2r+1}}/(2^m 3^{2r+2}) ≤ η/2`, then the block of `P`'s class is good with `d = η/2`.
+@isnad1 id=goodpair.7h8v.s8.b3ada0d81de6 from=translated src=- shape=c9d10538 vocab=5d68d923
+-/
 theorem goodPair_of_white_step {j0 σ t N0 : ℕ} (hj : 1 ≤ j0) {P : FiniteValuationWord j0}
     (hP : P ∈ shellP b j0 σ) {r : ℕ} (hr : r < j0 / 2) {η : ℝ}
     (hcard : (BlockCubeInstance.pairB b (BlockCubeInstance.pairκ j0 P) r).card ≤ N0)
@@ -380,7 +435,9 @@ def CriticalWhiteCount (j0 σ t U N0 : ℕ) (d : ℝ) (k : ℕ) (ρ : ℝ) : Pro
     ρ * ∑ c ∈ (shellP b j0 σ).image (BlockCubeInstance.pairκ j0),
       BlockCubeInstance.nCls (shellP b j0 σ) (BlockCubeInstance.pairκ j0) c
 
-/-- The class-weighted bad mass is the number of confined prefix words with few good blocks.-/
+/-- The class-weighted bad mass is the number of confined prefix words with few good blocks.
+@isnad1 id=eq.0h5v.s6.cadfe4ee28b9 from=translated src=- shape=2d2d5994 vocab=5a094841
+-/
 theorem sum_nCls_filter_eq_card {ι β : Type*} [DecidableEq β] (T : Finset ι) (κ : ι → β)
     (p : β → Prop) [DecidablePred p] :
     ∑ c ∈ (T.image κ).filter p, BlockCubeInstance.nCls T κ c =
@@ -403,7 +460,9 @@ theorem sum_nCls_filter_eq_card {ι β : Type*} [DecidableEq β] (T : Finset ι)
 
 open Classical in
 /-- **`CriticalWhiteCount ⇒ LowFreqDecay`**, with the actual pair-block factor and contraction
-`κ(d, N₀)`: if `κ^{2k} + ρ ≤ C·2^{−γ j0}` then `LowFreqDecay b j0 σ t U C γ`.-/
+`κ(d, N₀)`: if `κ^{2k} + ρ ≤ C·2^{−γ j0}` then `LowFreqDecay b j0 σ t U C γ`.
+@isnad1 id=lowfreqd.8h11v.s7.843e8791b0de from=translated src=- shape=e71e5348 vocab=29c1bf3c
+-/
 theorem lowFreqDecay_of_criticalWhiteCount {j0 σ t U N0 k : ℕ} {d ρ C γ : ℝ} (hj : 1 ≤ j0)
     (hne : (shellP b j0 σ).Nonempty) (hd0 : 0 ≤ d) (hd1 : d ≤ 1 / 2) (hN : 2 ≤ N0)
     (hcw : CriticalWhiteCount b j0 σ t U N0 d k ρ) (hC0 : 0 ≤ C)
@@ -426,7 +485,9 @@ theorem lowFreqDecay_of_criticalWhiteCount {j0 σ t U N0 k : ℕ} {d ρ C γ : �
   · have := hcw u hu lam hlam
     convert this using 2
 
-/-- **`CriticalWhiteCount ⇒ WeightedFourier`** (through `LowFreqDecay` and the (C3) sieve).-/
+/-- **`CriticalWhiteCount ⇒ WeightedFourier`** (through `LowFreqDecay` and the (C3) sieve).
+@isnad1 id=weighted.12h14v.s9.32e9f5f629e2 from=translated src=- shape=bf436e4b vocab=5b5f7ca0
+-/
 theorem weightedFourier_of_criticalWhiteCount {N j0 s σ U N0 k : ℕ} {ε d ρ C γ : ℝ}
     (Nsplit : ℕ → ℕ) (hj : 1 ≤ j0) (hne : (shellP b j0 σ).Nonempty) (hd0 : 0 ≤ d) (hd1 : d ≤ 1 / 2)
     (hN : 2 ≤ N0)

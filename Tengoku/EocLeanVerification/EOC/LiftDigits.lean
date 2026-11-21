@@ -38,18 +38,29 @@ open Finset SuffixTransport SurvivorClusters
 
 variable {d : ℕ → ℕ}
 
+/--
+@isnad1 id=realizes.2h4v.s4.47c5f7a69813 from=translated src=- shape=9847aa08 vocab=1315c558
+-/
 theorem realizes_restrict {N t x : ℕ} (h : Realizes d N x) (ht : t ≤ N) : Realizes d t x :=
   ⟨h.1, fun j hj => h.2 j (by omega)⟩
 
+/--
+@isnad1 id=le.1h3v.s4.57b4b547ae06 from=translated src=- shape=ce0fd851 vocab=ed3d9fa6
+-/
 theorem S_mono (d : ℕ → ℕ) {j N : ℕ} (h : j ≤ N) : S d j ≤ S d N := by
   simp only [S, s]
   exact Finset.sum_le_sum_of_subset (Finset.range_subset_range.mpr h)
 
+/--
+@isnad1 id=eq.0h2v.s5.cba08c3ab3a2 from=translated src=- shape=6d1f17e2 vocab=19bf2ca5
+-/
 theorem S_succ' (d : ℕ → ℕ) (j : ℕ) : S d (j + 1) = S d j + d j := by
   simp only [S]
   exact s_succ d j
 
-/-- Prefix least realizers are residues of longer ones.-/
+/-- Prefix least realizers are residues of longer ones.
+@isnad1 id=eq.2h3v.s6.7d612a0b4c00 from=translated src=- shape=acac0f0e vocab=73b2ff10
+-/
 theorem leastRealizer_mod {N j : ℕ} (hd : ∀ i < N, 1 ≤ d i) (hj : j ≤ N) :
     leastRealizer d N % 2 ^ (S d j + 1) = leastRealizer d j :=
   mod_eq_leastRealizer_of_realizes (realizes_restrict (leastRealizer_realizes_all d N hd) hj)
@@ -57,12 +68,17 @@ theorem leastRealizer_mod {N j : ℕ} (hd : ∀ i < N, 1 ≤ d i) (hj : j ≤ N)
 /-- The lift digit `τ_j`: the block of `r_{j+1}` above position `S_j`.-/
 def liftDigit (d : ℕ → ℕ) (j : ℕ) : ℕ := leastRealizer d (j + 1) / 2 ^ (S d j + 1)
 
-/-- **Append recursion.** `r_{j+1} = r_j + 2^(S_j+1)·τ_j`.-/
+/-- **Append recursion.** `r_{j+1} = r_j + 2^(S_j+1)·τ_j`.
+@isnad1 id=eq.1h2v.s6.3e490826a90c from=translated src=- shape=fe6e8138 vocab=0e02f69d
+-/
 theorem leastRealizer_succ {j : ℕ} (hd : ∀ i < j + 1, 1 ≤ d i) :
     leastRealizer d (j + 1) = leastRealizer d j + 2 ^ (S d j + 1) * liftDigit d j := by
   have h := leastRealizer_mod hd (Nat.le_succ j)
   rw [liftDigit, ← h, Nat.mod_add_div]
 
+/--
+@isnad1 id=lt.0h2v.s5.29c275bfdb56 from=translated src=- shape=891f5335 vocab=b2eab7eb
+-/
 theorem liftDigit_lt (j : ℕ) : liftDigit d j < 2 ^ d j := by
   unfold liftDigit
   rw [Nat.div_lt_iff_lt_mul (by positivity), ← pow_add]
@@ -71,6 +87,9 @@ theorem liftDigit_lt (j : ℕ) : liftDigit d j < 2 ^ d j := by
   calc leastRealizer d (j + 1) < 2 ^ (S d j + d j + 1) := h
     _ = 2 ^ (d j + (S d j + 1)) := by ring_nf
 
+/--
+@isnad1 id=eq.0h1v.s4.42b9e6707aed from=translated src=- shape=b298c1f9 vocab=ac69caf8
+-/
 theorem leastRealizer_zero (d : ℕ → ℕ) : leastRealizer d 0 = 1 := by
   have hodd := (leastRealizer_realizes_all d 0 (fun i hi => absurd hi (Nat.not_lt_zero i))).1
   have hlt := leastRealizer_lt d 0
@@ -78,7 +97,9 @@ theorem leastRealizer_zero (d : ℕ → ℕ) : leastRealizer d 0 = 1 := by
   obtain ⟨k, hk⟩ := hodd
   omega
 
-/-- **Block expansion** `r_N = 1 + ∑_{j<N} 2^(S_j+1)·τ_j`.-/
+/-- **Block expansion** `r_N = 1 + ∑_{j<N} 2^(S_j+1)·τ_j`.
+@isnad1 id=eq.1h2v.s6.51748cf64e3b from=translated src=- shape=b8989ab3 vocab=1651c1a5
+-/
 theorem leastRealizer_eq_sum {N : ℕ} (hd : ∀ i < N, 1 ≤ d i) :
     leastRealizer d N = 1 + ∑ j ∈ range N, 2 ^ (S d j + 1) * liftDigit d j := by
   induction N with
@@ -103,7 +124,9 @@ theorem eq_iff_realizes {N j : ℕ} (hd : ∀ i < N, 1 ≤ d i) (hj : j ≤ N) :
     exact hm.symm
 
 /-- **Suffix memory (dyadic-interval criterion).** For `j ≤ N`:
-`r_N < 2^(S_j+1)` iff the prefix least realizer `r_j` realizes the whole word through `N`.-/
+`r_N < 2^(S_j+1)` iff the prefix least realizer `r_j` realizes the whole word through `N`.
+@isnad1 id=iff.2h3v.s6.3cdd5c0a4426 from=translated src=- shape=edaf22e9 vocab=2a758cdb
+-/
 theorem suffix_memory {N j : ℕ} (hd : ∀ i < N, 1 ≤ d i) (hj : j ≤ N) :
     leastRealizer d N < 2 ^ (S d j + 1) ↔ Realizes d N (leastRealizer d j) := by
   rw [← eq_iff_realizes hd hj]
@@ -115,7 +138,9 @@ theorem suffix_memory {N j : ℕ} (hd : ∀ i < N, 1 ≤ d i) (hj : j ≤ N) :
     exact leastRealizer_lt d j
 
 /-- Splicing: a realizer of the first `j` digits whose `j`-th orbit value realizes the suffix
-realizes the whole word.-/
+realizes the whole word.
+@isnad1 id=realizes.3h4v.s5.70ba44b54fe5 from=translated src=- shape=cac00f70 vocab=f39bcd77
+-/
 theorem realizes_of_prefix_suffix {N j x : ℕ} (hj : j ≤ N) (hx : Realizes d j x)
     (hs : Realizes (shiftWord d j) (N - j) (orbit x j)) : Realizes d N x := by
   refine ⟨hx.1, fun i hi => ?_⟩
@@ -126,7 +151,9 @@ theorem realizes_of_prefix_suffix {N j x : ℕ} (hj : j ≤ N) (hx : Realizes d 
     simpa [shiftWord, show j + (i - j) = i by omega] using h
 
 /-- **Suffix memory, SuffixTransport form.** `r_N < 2^(S_j+1)` iff the restart state `T^j(r_j)`
-realizes the suffix word `σ^j d` for `N − j` steps.-/
+realizes the suffix word `σ^j d` for `N − j` steps.
+@isnad1 id=iff.2h3v.s6.351f5f228950 from=translated src=- shape=4d64c18e vocab=bf9c33c5
+-/
 theorem suffix_memory_transport {N j : ℕ} (hd : ∀ i < N, 1 ≤ d i) (hj : j ≤ N) :
     leastRealizer d N < 2 ^ (S d j + 1) ↔
       Realizes (shiftWord d j) (N - j) (orbit (leastRealizer d j) j) := by
@@ -136,7 +163,9 @@ theorem suffix_memory_transport {N j : ℕ} (hd : ∀ i < N, 1 ≤ d i) (hj : j 
   exact ⟨fun h => realizes_shiftWord h hj, fun h => realizes_of_prefix_suffix hj hrj h⟩
 
 /-- **Suffix memory, congruence form.** `r_N < 2^(S_j+1)` iff the restart state `T^j(r_j)` is
-congruent to the least realizer of the suffix word modulo `2^(S_N − S_j + 1)`.-/
+congruent to the least realizer of the suffix word modulo `2^(S_N − S_j + 1)`.
+@isnad1 id=iff.2h3v.s7.cb1c8168a997 from=translated src=- shape=37f054eb vocab=17d17181
+-/
 theorem suffix_memory_modEq {N j : ℕ} (hd : ∀ i < N, 1 ≤ d i) (hj : j ≤ N) :
     leastRealizer d N < 2 ^ (S d j + 1) ↔
       orbit (leastRealizer d j) j ≡ leastRealizer (shiftWord d j) (N - j)
@@ -150,7 +179,9 @@ theorem suffix_memory_modEq {N j : ℕ} (hd : ∀ i < N, 1 ≤ d i) (hj : j ≤ 
   · intro h
     exact realizes_of_modEq (leastRealizer_realizes_all _ _ hsd) hsd hodd h.symm
 
-/-- Realizers of a positive word are exactly its least-realizer residue class.-/
+/-- Realizers of a positive word are exactly its least-realizer residue class.
+@isnad1 id=iff.1h3v.s6.6ea224764901 from=translated src=- shape=360c9650 vocab=39644cc8
+-/
 theorem realizes_iff_modEq {N μ : ℕ} (hd : ∀ i < N, 1 ≤ d i) :
     Realizes d N μ ↔ μ ≡ leastRealizer d N [MOD 2 ^ (S d N + 1)] := by
   have hr := leastRealizer_realizes_all d N hd
@@ -165,7 +196,9 @@ theorem realizes_iff_modEq {N μ : ℕ} (hd : ∀ i < N, 1 ≤ d i) :
     exact realizes_of_modEq hr hd hμodd h.symm
 
 /-- **Exact residue-count identity.**
-`#{μ < X : μ realizes d through N} = ⌊X / 2^(S_N+1)⌋ + [r_N < X mod 2^(S_N+1)]`.-/
+`#{μ < X : μ realizes d through N} = ⌊X / 2^(S_N+1)⌋ + [r_N < X mod 2^(S_N+1)]`.
+@isnad1 id=eq.1h3v.s7.3ea1b9cab610 from=translated src=- shape=5204ea28 vocab=a6866694
+-/
 theorem card_realizers_exact (N X : ℕ) (hd : ∀ i < N, 1 ≤ d i)
     [DecidablePred fun μ => Realizes d N μ] :
     ((range X).filter fun μ => Realizes d N μ).card =
@@ -180,7 +213,9 @@ theorem card_realizers_exact (N X : ℕ) (hd : ∀ i < N, 1 ≤ d i)
     Nat.mod_eq_of_lt (leastRealizer_lt d N)]
 
 /-- **Post-fresh-bit (dyadic) regime.** For `X = 2^K` with `K ≤ S_N`, a word contributes a seed
-below `X` iff its least realizer is below `X`.-/
+below `X` iff its least realizer is below `X`.
+@isnad1 id=eq.2h3v.s7.139b773bd1e8 from=translated src=- shape=eb576ef3 vocab=7aedf24d
+-/
 theorem card_realizers_dyadic (N K : ℕ) (hd : ∀ i < N, 1 ≤ d i) (hK : K ≤ S d N)
     [DecidablePred fun μ => Realizes d N μ] :
     ((range (2 ^ K)).filter fun μ => Realizes d N μ).card =

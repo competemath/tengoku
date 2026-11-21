@@ -28,7 +28,9 @@ open EOC.PeriodicCore EOC.BoundedDriftCore
 
 /-- PLUS: a block that does not increase the state is contracting. Only `C > 0` is needed:
 no positivity of the states, no `L ≥ 1`, no `S ≥ 1` (the strict product inequality already
-forces `mN > 0`).-/
+forces `mN > 0`).
+@isnad1 id=lt.3h5v.s6.7f8cc14aba9e from=translated src=- shape=10930618 vocab=3f16b8dd
+-/
 theorem plus_block_pow_lt_of_endpoint_le (L S C mj mN : Nat) (hC : 0 < C)
     (h : 2 ^ S * mN = 3 ^ L * mj + C) (hle : mN ≤ mj) : 3 ^ L < 2 ^ S := by
   have h1 : 3 ^ L * mN < 2 ^ S * mN := by
@@ -38,7 +40,9 @@ theorem plus_block_pow_lt_of_endpoint_le (L S C mj mN : Nat) (hC : 0 < C)
   exact Nat.lt_of_mul_lt_mul_right h1
 
 /-- PLUS, contrapositive: a non-contracting (in particular a negative-drift) block strictly
-increases the state.-/
+increases the state.
+@isnad1 id=lt.3h5v.s6.ba6aa24119d2 from=translated src=- shape=276596d1 vocab=3f16b8dd
+-/
 theorem plus_endpoint_lt_of_pow_le (L S C mj mN : Nat) (hC : 0 < C)
     (h : 2 ^ S * mN = 3 ^ L * mj + C) (hpow : 2 ^ S ≤ 3 ^ L) : mj < mN := by
   apply Classical.byContradiction
@@ -46,7 +50,9 @@ theorem plus_endpoint_lt_of_pow_le (L S C mj mN : Nat) (hC : 0 < C)
   have := plus_block_pow_lt_of_endpoint_le L S C mj mN hC h (Nat.le_of_not_lt hnot)
   omega
 
-/-- MINUS: a block that does not decrease the state is expanding.-/
+/-- MINUS: a block that does not decrease the state is expanding.
+@isnad1 id=lt.3h5v.s6.488741e34ce1 from=translated src=- shape=9dc2f22e vocab=3f16b8dd
+-/
 theorem minus_block_pow_lt_of_endpoint_ge (L S C mj mN : Nat) (hC : 0 < C)
     (h : 2 ^ S * mN + C = 3 ^ L * mj) (hge : mj ≤ mN) : 2 ^ S < 3 ^ L := by
   have h1 : 2 ^ S * mN < 3 ^ L * mN := by
@@ -55,7 +61,9 @@ theorem minus_block_pow_lt_of_endpoint_ge (L S C mj mN : Nat) (hC : 0 < C)
       _ ≤ 3 ^ L * mN := Nat.mul_le_mul_left _ hge
   exact Nat.lt_of_mul_lt_mul_right h1
 
-/-- MINUS, contrapositive: a non-expanding block strictly decreases the state.-/
+/-- MINUS, contrapositive: a non-expanding block strictly decreases the state.
+@isnad1 id=lt.3h5v.s6.9541373e2c05 from=translated src=- shape=5f6b8575 vocab=3f16b8dd
+-/
 theorem minus_endpoint_lt_of_pow_le (L S C mj mN : Nat) (hC : 0 < C)
     (h : 2 ^ S * mN + C = 3 ^ L * mj) (hpow : 3 ^ L ≤ 2 ^ S) : mN < mj := by
   apply Classical.byContradiction
@@ -65,10 +73,16 @@ theorem minus_endpoint_lt_of_pow_le (L S C mj mN : Nat) (hC : 0 < C)
 
 /-! ### Saturation (fixed-block) equations -/
 
+/--
+@isnad1 id=eq.1h4v.s6.f6650a34f516 from=translated src=- shape=ab6f8569 vocab=6278b6cd
+-/
 theorem plus_fixed_block_saturation (L S C y : Nat) (h : 2 ^ S * y = 3 ^ L * y + C) :
     (2 ^ S - 3 ^ L) * y = C := by
   rw [Nat.sub_mul]; omega
 
+/--
+@isnad1 id=eq.1h4v.s6.9171fdc62699 from=translated src=- shape=f0d5f84b vocab=6278b6cd
+-/
 theorem minus_fixed_block_saturation (L S C y : Nat) (h : 2 ^ S * y + C = 3 ^ L * y) :
     (3 ^ L - 2 ^ S) * y = C := by
   rw [Nat.sub_mul]; omega
@@ -76,6 +90,9 @@ theorem minus_fixed_block_saturation (L S C y : Nat) (h : 2 ^ S * y + C = 3 ^ L 
 /-! ### Integer form of normalized-state monotonicity
 `Z_N = m_N 2^{S_N} / 3^N` satisfies `Z_{N+1} − Z_N = ± 2^{S_N} / 3^{N+1}`; cleared of denominators: -/
 
+/--
+@isnad1 id=eq.1h5v.s7.8184e8d66f7b from=translated src=- shape=ce17d21d vocab=30ba1354
+-/
 theorem plus_normalized_step (N S d m m' : Nat) (h : 2 ^ d * m' = 3 * m + 1) :
     3 ^ N * (2 ^ (S + d) * m') = 3 ^ (N + 1) * (2 ^ S * m) + 3 ^ N * 2 ^ S := by
   rw [Nat.pow_add, Nat.pow_succ]
@@ -84,6 +101,9 @@ theorem plus_normalized_step (N S d m m' : Nat) (h : 2 ^ d * m' = 3 * m + 1) :
     _ = 3 ^ N * 3 * (2 ^ S * m) + 3 ^ N * 2 ^ S := by
         rw [Nat.mul_add, Nat.mul_one]; ac_rfl
 
+/--
+@isnad1 id=eq.1h5v.s7.c362bcc479d5 from=translated src=- shape=e91168bc vocab=30ba1354
+-/
 theorem minus_normalized_step (N S d m m' : Nat) (h : 2 ^ d * m' + 1 = 3 * m) :
     3 ^ N * (2 ^ (S + d) * m') + 3 ^ N * 2 ^ S = 3 ^ (N + 1) * (2 ^ S * m) := by
   rw [Nat.pow_add, Nat.pow_succ]
@@ -94,7 +114,9 @@ theorem minus_normalized_step (N S d m m' : Nat) (h : 2 ^ d * m' + 1 = 3 * m) :
 
 /-! ### MINUS repeated-block chain -/
 
-/-- An infinite positive `−C` chain forces `2^S < 3^L` (otherwise the chain strictly decreases).-/
+/-- An infinite positive `−C` chain forces `2^S < 3^L` (otherwise the chain strictly decreases).
+@isnad1 id=lt.3h4v.s7.714e6fbb102d from=translated src=- shape=8af3350b vocab=b9e5bafd
+-/
 theorem minus_two_pow_lt_three_pow_of_block_return (L S C : Nat) (y : Nat → Nat)
     (hC : 0 < C) (hy : ∀ r, 0 < y r)
     (hrec : ∀ r, 2 ^ S * y (r + 1) + C = 3 ^ L * y r) : 2 ^ S < 3 ^ L := by
@@ -148,7 +170,9 @@ private theorem step_ge (L S C : Nat) (X X' : Nat) (h2S : 0 < 2 ^ S)
 
 /-- **MINUS rigidity.** An infinite positive `−C` chain with `S ≥ 1` satisfies `2^S < 3^L`,
 the saturation equation `(3^L − 2^S)·y 0 = C`, and is constant: `y r = y 0` for all `r`.
-(`S ≥ 1` is necessary: with `S = 0`, `y_{r+1} = 3 y_r − 1` gives `1,2,5,14,…`.)-/
+(`S ≥ 1` is necessary: with `S = 0`, `y_{r+1} = 3 y_r − 1` gives `1,2,5,14,…`.)
+@isnad1 id=and.4h4v.s7.e56337b5eb04 from=translated src=- shape=81770100 vocab=62399aff
+-/
 theorem minus_block_return_rigid (L S C : Nat) (y : Nat → Nat) (hS : 1 ≤ S)
     (hC : 0 < C) (hy : ∀ r, 0 < y r)
     (hrec : ∀ r, 2 ^ S * y (r + 1) + C = 3 ^ L * y r) :

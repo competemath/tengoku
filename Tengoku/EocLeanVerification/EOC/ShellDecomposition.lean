@@ -36,6 +36,9 @@ open Finset TwistExpansion PrefixCollision WeightedChain
 
 /-! ## Fibre sum = sum over non-multiples of `2^t` -/
 
+/--
+@isnad1 id=eq.0h4v.s7.bf53a1ec6a41 from=translated src=- shape=9433c489 vocab=69522533
+-/
 theorem sum_fibre_eq_sum_nondvd {M : Type*} [AddCommMonoid M] (r t : ℕ) (F : ℕ → M) :
     ∑ g ∈ Ico 1 (2 ^ t), ∑ k ∈ range (2 ^ r), F (g + 2 ^ t * k) =
       ∑ lam ∈ (Ico 1 (2 ^ (r + t))).filter (fun lam => ¬ 2 ^ t ∣ lam), F lam := by
@@ -73,6 +76,9 @@ theorem sum_fibre_eq_sum_nondvd {M : Type*} [AddCommMonoid M] (r t : ℕ) (F : �
 
 /-! ## Bit-length shells -/
 
+/--
+@isnad1 id=eq.0h3v.s6.20e0d53b376d from=translated src=- shape=de4cff81 vocab=c7280022
+-/
 theorem sum_Ico_one_two_pow {M : Type*} [AddCommMonoid M] (n : ℕ) (f : ℕ → M) :
     ∑ lam ∈ Ico 1 (2 ^ n), f lam = ∑ u ∈ range n, ∑ lam ∈ Ico (2 ^ u) (2 ^ (u + 1)), f lam := by
   induction n with
@@ -81,7 +87,9 @@ theorem sum_Ico_one_two_pow {M : Type*} [AddCommMonoid M] (n : ℕ) (f : ℕ →
       rw [sum_range_succ, ← ih, sum_Ico_consecutive f Nat.one_le_two_pow
         (Nat.pow_le_pow_right (by norm_num) (Nat.le_succ n))]
 
-/-- **Bit-length shell form** of the fibre double sum.-/
+/-- **Bit-length shell form** of the fibre double sum.
+@isnad1 id=eq.0h4v.s8.71854b8aa365 from=translated src=- shape=a25b2217 vocab=69522533
+-/
 theorem sum_fibre_eq_sum_shells {M : Type*} [AddCommMonoid M] (r t : ℕ) (F : ℕ → M) :
     ∑ g ∈ Ico 1 (2 ^ t), ∑ k ∈ range (2 ^ r), F (g + 2 ^ t * k) =
       ∑ u ∈ range (r + t),
@@ -91,7 +99,9 @@ theorem sum_fibre_eq_sum_shells {M : Type*} [AddCommMonoid M] (r t : ℕ) (F : �
   exact sum_congr rfl fun u _ => (sum_filter _ _).symm
 
 /-- The `WeightedFourier` left-hand side (without the prefactor `1 + (σ+1)/2`) in bit-length
-shell form.-/
+shell form.
+@isnad1 id=eq.0h4v.s9.e2dae76d1dfc from=translated src=- shape=04177b5e vocab=98d3dc1f
+-/
 theorem weightedFourier_lhs_shells (b : ℕ → ℕ) (j0 s σ : ℕ) :
     ∑ g ∈ Ico 1 (2 ^ (s - σ)), ∑ k ∈ range (2 ^ (σ + 1)),
       ‖coef (σ + 1) (s - σ) (g + 2 ^ (s - σ) * k)‖ *
@@ -116,15 +126,23 @@ def nondvd (r t : ℕ) : Finset ℕ := (Ico 1 (2 ^ (r + t))).filter (fun lam => 
 def cshell (r t u : ℕ) : Finset ℕ :=
   (nondvd r t).filter (fun lam => Nat.log 2 (cdist (2 ^ (r + t)) lam) = u)
 
+/--
+@isnad1 id=lt.1h3v.s5.987ee72fc740 from=translated src=- shape=8e8a2714 vocab=b79d6ae5
+-/
 theorem cdist_pos {r t lam : ℕ} (h : lam ∈ nondvd r t) : 0 < cdist (2 ^ (r + t)) lam := by
   simp only [nondvd, mem_filter, mem_Ico] at h
   unfold cdist; omega
 
+/--
+@isnad1 id=lt.1h3v.s6.f8375e0c5712 from=translated src=- shape=7d31cfc5 vocab=b79d6ae5
+-/
 theorem cdist_lt {r t lam : ℕ} (h : lam ∈ nondvd r t) : cdist (2 ^ (r + t)) lam < 2 ^ (r + t) := by
   simp only [nondvd, mem_filter, mem_Ico] at h
   unfold cdist; omega
 
-/-- **Centered-shell decomposition.**-/
+/-- **Centered-shell decomposition.**
+@isnad1 id=eq.0h4v.s5.414bd4ff94ad from=translated src=- shape=48510db8 vocab=40437e2d
+-/
 theorem sum_nondvd_eq_sum_cshell {M : Type*} [AddCommMonoid M] (r t : ℕ) (F : ℕ → M) :
     ∑ lam ∈ nondvd r t, F lam = ∑ u ∈ range (r + t), ∑ lam ∈ cshell r t u, F lam := by
   have hmap : ∀ lam ∈ nondvd r t, Nat.log 2 (cdist (2 ^ (r + t)) lam) ∈ range (r + t) := by
@@ -132,6 +150,9 @@ theorem sum_nondvd_eq_sum_cshell {M : Type*} [AddCommMonoid M] (r t : ℕ) (F : 
     exact mem_range.mpr (Nat.log_lt_of_lt_pow (cdist_pos h).ne' (cdist_lt h))
   exact (sum_fiberwise_of_maps_to hmap F).symm
 
+/--
+@isnad1 id=and.1h4v.s7.c38467f289a6 from=translated src=- shape=4a3e2182 vocab=691797bd
+-/
 theorem mem_cshell_bounds {r t u lam : ℕ} (h : lam ∈ cshell r t u) :
     2 ^ u ≤ cdist (2 ^ (r + t)) lam ∧ cdist (2 ^ (r + t)) lam < 2 ^ (u + 1) := by
   simp only [cshell, mem_filter] at h
@@ -143,6 +164,9 @@ theorem mem_cshell_bounds {r t u lam : ℕ} (h : lam ∈ cshell r t u) :
   · have := Nat.lt_pow_succ_log_self (by norm_num : 1 < 2) (cdist (2 ^ (r + t)) lam)
     rwa [hlog] at this
 
+/--
+@isnad1 id=le.0h3v.s5.ec34f3794343 from=translated src=- shape=79e74ebc vocab=08194d4c
+-/
 theorem card_cshell_le (r t u : ℕ) : (cshell r t u).card ≤ 2 ^ (u + 1) := by
   set M := 2 ^ (r + t)
   have hsub : cshell r t u ⊆
@@ -168,7 +192,9 @@ theorem card_cshell_le (r t u : ℕ) : (cshell r t u).card ≤ 2 ^ (u + 1) := by
     _ = 2 ^ (u + 1) := by rw [Nat.card_Ico, pow_succ]; omega
 
 /-- **Weight bound on a centered shell.** For `λ ∈ cshell r t u`:
-`‖coef r t λ‖ ≤ 2^t / (2 · 2^u)`.-/
+`‖coef r t λ‖ ≤ 2^t / (2 · 2^u)`.
+@isnad1 id=le.1h4v.s6.0130d1ffb632 from=translated src=- shape=5241eb82 vocab=b49948e1
+-/
 theorem norm_coef_le_cshell {r t u lam : ℕ} (h : lam ∈ cshell r t u) :
     ‖coef r t lam‖ ≤ 2 ^ t / (2 * 2 ^ u) := by
   have hn : lam ∈ nondvd r t := (mem_filter.mp h).1
@@ -191,7 +217,9 @@ theorem norm_coef_le_cshell {r t u lam : ℕ} (h : lam ∈ cshell r t u) :
 
 /-- **Shell-average bound.** If `F ≥ 0` and every centered shell satisfies
 `∑_{λ ∈ shell_u} F λ ≤ #shell_u · a_u` (with `a_u ≥ 0`), then
-`∑_{1≤g<2^t} ∑_{k<2^r} ‖coef(g + 2^t k)‖ F(g + 2^t k) ≤ 2^t ∑_{u < r+t} a_u`.-/
+`∑_{1≤g<2^t} ∑_{k<2^r} ‖coef(g + 2^t k)‖ F(g + 2^t k) ≤ 2^t ∑_{u < r+t} a_u`.
+@isnad1 id=le.3h4v.s8.17659d90d88f from=translated src=- shape=d45696a1 vocab=98782626
+-/
 theorem weighted_sum_le_of_shell_averages (r t : ℕ) (F : ℕ → ℝ) (a : ℕ → ℝ)
     (hF : ∀ lam, 0 ≤ F lam) (ha : ∀ u, 0 ≤ a u)
     (hshell : ∀ u ∈ range (r + t), ∑ lam ∈ cshell r t u, F lam ≤ (cshell r t u).card * a u) :
@@ -217,7 +245,9 @@ theorem weighted_sum_le_of_shell_averages (r t : ℕ) (F : ℕ → ℝ) (a : ℕ
 /-- **`WeightedFourier` from per-shell averages.** With `t = s − σ`, `r = σ + 1`: if every
 centered shell satisfies `∑_{λ ∈ shell_u} ‖Ψ λ‖^2 ≤ #shell_u · a_u · |P_σ|^2` (normalized shell
 averages `a_u ≥ 0`) and `(1 + (σ+1)/2) · 2^t · ∑_u a_u ≤ ε^2 |V_{σ,s}| / 2^t`, then
-`WeightedFourier b N j0 s σ ε`.-/
+`WeightedFourier b N j0 s σ ε`.
+@isnad1 id=weighted.3h7v.s8.800c4d9a38e6 from=translated src=- shape=47b92df9 vocab=2638e0a5
+-/
 theorem weightedFourier_of_shell_averages (b : ℕ → ℕ) (N j0 s σ : ℕ) (ε : ℝ) (a : ℕ → ℝ)
     (ha : ∀ u, 0 ≤ a u)
     (hshell : ∀ u ∈ range (σ + 1 + (s - σ)),

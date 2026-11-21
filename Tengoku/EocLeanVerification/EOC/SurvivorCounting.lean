@@ -32,7 +32,9 @@ namespace SurvivorCounting
 
 open Finset SuffixTransport
 
-/-- Realizers below `X` of a length-`N` word: at most `X / 2^(S_N+1) + 1`.-/
+/-- Realizers below `X` of a length-`N` word: at most `X / 2^(S_N+1) + 1`.
+@isnad1 id=le.0h3v.s6.19a2fe1cb3a8 from=translated src=- shape=2cd1df11 vocab=bc81c959
+-/
 theorem card_realizers_le (d : ℕ → ℕ) (N X : ℕ) [DecidablePred (fun μ => Realizes d N μ)] :
     ((range X).filter (fun μ => Realizes d N μ)).card ≤ X / 2 ^ (S d N + 1) + 1 := by
   set Q := 2 ^ (S d N + 1) with hQdef
@@ -57,7 +59,9 @@ theorem card_realizers_le (d : ℕ → ℕ) (N X : ℕ) [DecidablePred (fun μ =
 
 /-- **Exact count in the fresh-bit regime.** For a positive word with `N ≥ 1`, if `2^(S_N+1)`
 divides `X`, the realizers below `X` are exactly `leastRealizer + 2^(S_N+1) k` with
-`k < X / 2^(S_N+1)`.-/
+`k < X / 2^(S_N+1)`.
+@isnad1 id=eq.3h3v.s7.5a1f71f0b83f from=translated src=- shape=a01099b9 vocab=247295a9
+-/
 theorem card_realizers_eq_of_dvd (d : ℕ → ℕ) (N X : ℕ) (hN : 1 ≤ N) (hd_pos : ∀ i < N, 1 ≤ d i)
     [DecidablePred (fun μ => Realizes d N μ)] (hdvd : 2 ^ (S d N + 1) ∣ X) :
     ((range X).filter (fun μ => Realizes d N μ)).card = X / 2 ^ (S d N + 1) := by
@@ -93,6 +97,9 @@ theorem card_realizers_eq_of_dvd (d : ℕ → ℕ) (N X : ℕ) (hN : 1 ≤ N) (h
 /-- The first `N` valuations of `μ`, as a finite word.-/
 noncomputable def prefixWord (N μ : ℕ) : FiniteValuationWord N := fun i => a (orbit μ i)
 
+/--
+@isnad1 id=realizes.1h2v.s4.32937e3d551f from=translated src=- shape=8f50b033 vocab=b1ac6d39
+-/
 theorem realizes_prefixWord (N μ : ℕ) (hμ : Odd μ) :
     Realizes (FiniteValuationWord.toInfinite (prefixWord N μ)) N μ :=
   ⟨hμ, fun i hi => by
@@ -101,7 +108,9 @@ theorem realizes_prefixWord (N μ : ℕ) (hμ : Odd μ) :
 
 /-- **Union bound over words.** Any finite set `W` of length-`N` words containing the prefix word
 of every odd `μ < X` with property `P` bounds the number of such seeds by
-`∑_{w ∈ W} (X / 2^(S_N(w)+1) + 1)`.-/
+`∑_{w ∈ W} (X / 2^(S_N(w)+1) + 1)`.
+@isnad1 id=le.1h4v.s7.227dae78982b from=translated src=- shape=8fc5291f vocab=61ca6746
+-/
 theorem card_seeds_le_sum (N X : ℕ) (P : ℕ → Prop) [DecidablePred P]
     (W : Finset (FiniteValuationWord N))
     (hW : ∀ μ < X, Odd μ → P μ → prefixWord N μ ∈ W) :

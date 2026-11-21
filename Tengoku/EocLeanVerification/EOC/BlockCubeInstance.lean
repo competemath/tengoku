@@ -43,15 +43,23 @@ variable {ι β : Type*} [DecidableEq β]
 /-- Class sizes.-/
 def nCls (T : Finset ι) (κ : ι → β) (c : β) : ℝ := ((T.filter (fun i => κ i = c)).card : ℝ)
 
+/--
+@isnad1 id=eq.0h4v.s5.fc21c73cd256 from=translated src=- shape=7ea831f9 vocab=bc6b420b
+-/
 theorem sum_nCls (T : Finset ι) (κ : ι → β) : ∑ c ∈ T.image κ, nCls T κ c = T.card := by
   unfold nCls
   rw [← Nat.cast_sum, ← card_eq_sum_card_fiberwise (fun i hi => mem_image_of_mem κ hi)]
 
+/--
+@isnad1 id=lt.1h5v.s5.4bc701a56f2c from=translated src=- shape=ca84e8c9 vocab=79f89df1
+-/
 theorem nCls_pos {T : Finset ι} {κ : ι → β} {c : β} (hc : c ∈ T.image κ) : 0 < nCls T κ c := by
   obtain ⟨i, hi, rfl⟩ := mem_image.mp hc
   exact Nat.cast_pos.mpr (card_pos.mpr ⟨i, mem_filter.mpr ⟨hi, rfl⟩⟩)
 
-/-- **Abstract block-cube bound.**-/
+/-- **Abstract block-cube bound.**
+@isnad1 id=le.1h7v.s7.291b5e59c81e from=translated src=- shape=671ac8aa vocab=0773242a
+-/
 theorem norm_sq_le_classAvg (T : Finset ι) (κ : ι → β) (θ : ι → ℝ) (R : ℕ) (W : β → ℕ → ℝ)
     (hfac : ∀ c ∈ T.image κ,
       ‖∑ i ∈ T.filter (fun i => κ i = c), ee (θ i)‖ = nCls T κ c * ∏ r ∈ range R, W c r) :
@@ -99,10 +107,15 @@ structure ClassProduct (T : Finset ι) (θ : ι → ℝ) (R : ℕ) where
 noncomputable def Wfac (B : β → ℕ → Finset ℕ) (φ : β → ℕ → ℕ → ℝ) (c : β) (r : ℕ) : ℝ :=
   ‖∑ x ∈ B c r, ee (φ c r x)‖ / ((B c r).card : ℝ)
 
+/--
+@isnad1 id=eq.0h2v.s4.93bcc30f2baa from=translated src=- shape=00241260 vocab=834f414c
+-/
 theorem ee_add_int (x : ℝ) (z : ℤ) : ee (x + z) = ee x := by
   rw [ee_add, ee_int, mul_one]
 
-/-- **Class factorization.** Each product class sum factors.-/
+/-- **Class factorization.** Each product class sum factors.
+@isnad1 id=eq.1h7v.s7.a8cf90737342 from=translated src=- shape=7f6445d5 vocab=4475f994
+-/
 theorem norm_class_sum_eq {T : Finset ι} {θ : ι → ℝ} {R : ℕ}
     (D : ClassProduct (β := β) T θ R) {c : β} (hc : c ∈ T.image D.κ) :
     ‖∑ i ∈ T.filter (fun i => D.κ i = c), ee (θ i)‖ =
@@ -139,7 +152,9 @@ theorem norm_class_sum_eq {T : Finset ι} {θ : ι → ℝ} {R : ℕ}
   unfold Wfac
   field_simp
 
-/-- **Block-cube bound for a product class decomposition.**-/
+/-- **Block-cube bound for a product class decomposition.**
+@isnad1 id=le.0h6v.s7.d05761dc74cd from=translated src=- shape=60db1d74 vocab=b322dc92
+-/
 theorem norm_sq_le_of_classProduct {T : Finset ι} {θ : ι → ℝ} {R : ℕ}
     (D : ClassProduct (β := β) T θ R) :
     ‖∑ i ∈ T, ee (θ i)‖ ^ 2 ≤
@@ -189,7 +204,9 @@ def BlockDecomposition.at {β : Type*} [DecidableEq β] {j0 σ t R : ℕ}
   phase := D.phase lam
 
 /-- **`BlockCubeHyp` from a block decomposition.** Classes `T = P_σ.image κ`, weights = class
-sizes, block factors `W λ c r = ‖∑_{x ∈ B c r} e(φ λ c r x)‖ / |B c r|`.-/
+sizes, block factors `W λ c r = ‖∑_{x ∈ B c r} e(φ λ c r x)‖ / |B c r|`.
+@isnad1 id=blockcub.1h8v.s6.66626f66df1c from=translated src=- shape=f5460248 vocab=e4870004
+-/
 theorem blockCubeHyp_of_decomposition {β : Type*} [DecidableEq β] {j0 σ t R : ℕ}
     (D : BlockDecomposition (β := β) b j0 σ t R) (U : ℕ) (hne : (shellP b j0 σ).Nonempty) :
     GoodAngles.BlockCubeHyp b j0 σ t U ((shellP b j0 σ).image D.κ)
@@ -226,6 +243,9 @@ noncomputable def trivialDecomposition (j0 σ t : ℕ) :
     intro lam P _
     simp
 
+/--
+@isnad1 id=blockcub.1h5v.s7.eae3cbf8b529 from=translated src=- shape=55e7e5d3 vocab=0ee98481
+-/
 theorem blockCubeHyp_trivial (j0 σ t U : ℕ) (hne : (shellP b j0 σ).Nonempty) :
     GoodAngles.BlockCubeHyp b j0 σ t U ((shellP b j0 σ).image id)
       (nCls (shellP b j0 σ) id) (fun lam => Wfac (trivialDecomposition b j0 σ t).B
@@ -234,9 +254,15 @@ theorem blockCubeHyp_trivial (j0 σ t U : ℕ) (hne : (shellP b j0 σ).Nonempty)
 
 /-! ## 5. Word-level lemmas -/
 
+/--
+@isnad1 id=eq.0h2v.s4.e2aba0892415 from=translated src=- shape=bd46b78e vocab=a1208104
+-/
 theorem prefixSum_zero' {N : ℕ} (w : FiniteValuationWord N) : w.prefixSum 0 = 0 := by
   simp [FiniteValuationWord.prefixSum]
 
+/--
+@isnad1 id=eq.1h3v.s5.2aac14b38d75 from=translated src=- shape=7e0bf618 vocab=f5973525
+-/
 theorem prefixSum_succ' {N : ℕ} (w : FiniteValuationWord N) {k : ℕ} (hk : k < N) :
     w.prefixSum (k + 1) = w.prefixSum k + w ⟨k, hk⟩ := by
   rw [FiniteValuationWord.prefixSum, List.sum_take_succ _ _ (by simpa using hk)]
@@ -253,7 +279,9 @@ theorem eq_of_prefixSum_eq {N : ℕ} {w v : FiniteValuationWord N}
   simp only [Fin.eta] at h1 h2
   omega
 
-/-- Per-word form of `Psi_eq_pathProduct`.-/
+/-- Per-word form of `Psi_eq_pathProduct`.
+@isnad1 id=eq.0h5v.s7.20cd09a25593 from=translated src=- shape=35125839 vocab=ced2d057
+-/
 theorem ee_yPrime_eq (j0 σ t lam : ℕ) (P : FiniteValuationWord j0) :
     SwapBound.ee ((lam : ℝ) * (yPrime j0 σ t P : ℕ) / 2 ^ (σ + 1 + t)) =
       SwapBound.ee ((lam : ℝ) * cSig (σ + 1 + t) j0 σ / 2 ^ (σ + 1 + t)) *
@@ -294,7 +322,9 @@ theorem ee_yPrime_eq (j0 σ t lam : ℕ) (P : FiniteValuationWord j0) :
     ring
   rw [this, ee_add, ee_int, mul_one]
 
-/-- Splitting a product over `range n` into even and odd indices.-/
+/-- Splitting a product over `range n` into even and odd indices.
+@isnad1 id=eq.0h3v.s7.a20020bf7084 from=translated src=- shape=85d22b4b vocab=5eedfb96
+-/
 theorem prod_range_even_odd {M : Type*} [CommMonoid M] (g : ℕ → M) (n : ℕ) :
     ∏ i ∈ range n, g i =
       (∏ k ∈ range ((n + 1) / 2), g (2 * k)) * ∏ r ∈ range (n / 2), g (2 * r + 1) := by
@@ -333,14 +363,23 @@ def cget {j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (j : ℕ) : ℕ := if h : j < j0 
 def pairB {j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (r : ℕ) : Finset ℕ :=
   (Ioo (cget c (2 * r)) (cget c (2 * r + 2))).filter (fun x => x ≤ b (2 * r + 1))
 
+/--
+@isnad1 id=eq.2h3v.s5.d3378204f9ad from=translated src=- shape=338036da vocab=2e8ce761
+-/
 theorem cget_pairκ {j0 : ℕ} (P : FiniteValuationWord j0) {j : ℕ} (hj : j ≤ j0) (he : j % 2 = 0) :
     cget (pairκ j0 P) j = P.prefixSum j := by
   simp [cget, pairκ, Nat.lt_succ_of_le hj, he]
 
+/--
+@isnad1 id=lt.2h3v.s5.9e4f66481747 from=translated src=- shape=fc0f261f vocab=38ea9069
+-/
 theorem prefixSum_lt_succ {N : ℕ} {w : FiniteValuationWord N} (hw : w.Positive) {k : ℕ}
     (hk : k < N) : w.prefixSum k < w.prefixSum (k + 1) := by
   rw [prefixSum_succ' w hk]; have := hw ⟨k, hk⟩; omega
 
+/--
+@isnad1 id=iff.1h4v.s5.f8c921df3f41 from=translated src=- shape=7d4605db vocab=7053940a
+-/
 theorem mem_shellP_iff {j0 σ : ℕ} (hj : 1 ≤ j0) {P : FiniteValuationWord j0} :
     P ∈ shellP b j0 σ ↔ P.Positive ∧ BarrierConfined b P ∧ P.total = σ := by
   rw [shellP, mem_filter, mem_confinedWords hj, and_assoc]
@@ -357,6 +396,9 @@ def recT (P0 : FiniteValuationWord j0) (f : Fin (j0 / 2) → ℕ) (j : ℕ) : �
 def recW (P0 : FiniteValuationWord j0) (f : Fin (j0 / 2) → ℕ) : FiniteValuationWord j0 :=
   fun i => recT P0 f ((i : ℕ) + 1) - recT P0 f i
 
+/--
+@isnad1 id=lt.4h6v.s8.a111de6c6b8f from=translated src=- shape=ffb0e11d vocab=82b6a7b8
+-/
 theorem recT_lt (hj : 1 ≤ j0) {P0 : FiniteValuationWord j0} (hP0 : P0 ∈ shellP b j0 σ)
     {f : Fin (j0 / 2) → ℕ} (hf : f ∈ Fintype.piFinset (fun r : Fin (j0 / 2) => pairB b (pairκ j0 P0) r))
     {j : ℕ} (hjl : j < j0) : recT P0 f j < recT P0 f (j + 1) := by
@@ -396,6 +438,9 @@ theorem recT_lt (hj : 1 ≤ j0) {P0 : FiniteValuationWord j0} (hP0 : P0 ∈ shel
       cget_pairκ P0 (by omega) (by omega)] at this
     exact this
 
+/--
+@isnad1 id=eq.4h6v.s8.936f594e3a06 from=translated src=- shape=993b43dc vocab=d5916ffc
+-/
 theorem prefixSum_recW (hj : 1 ≤ j0) {P0 : FiniteValuationWord j0} (hP0 : P0 ∈ shellP b j0 σ)
     {f : Fin (j0 / 2) → ℕ} (hf : f ∈ Fintype.piFinset (fun r : Fin (j0 / 2) => pairB b (pairκ j0 P0) r))
     {j : ℕ} (hjl : j ≤ j0) : (recW P0 f).prefixSum j = recT P0 f j := by
@@ -409,6 +454,9 @@ theorem prefixSum_recW (hj : 1 ≤ j0) {P0 : FiniteValuationWord j0} (hP0 : P0 �
     simp only [recW]
     omega
 
+/--
+@isnad1 id=mem.3h5v.s8.a912eaf08a16 from=translated src=- shape=fd3b44ca vocab=38219ccd
+-/
 theorem recW_mem (hj : 1 ≤ j0) {P0 : FiniteValuationWord j0} (hP0 : P0 ∈ shellP b j0 σ)
     {f : Fin (j0 / 2) → ℕ} (hf : f ∈ Fintype.piFinset (fun r : Fin (j0 / 2) => pairB b (pairκ j0 P0) r)) :
     recW P0 f ∈ shellP b j0 σ := by
@@ -432,6 +480,9 @@ theorem recW_mem (hj : 1 ≤ j0) {P0 : FiniteValuationWord j0} (hP0 : P0 ∈ she
   · rw [FiniteValuationWord.total, prefixSum_recW b hj hP0 hf le_rfl]
     unfold recT; rw [dite_eq_right (by omega)]; exact htot
 
+/--
+@isnad1 id=eq.3h5v.s8.952e9150c949 from=translated src=- shape=5e7c923d vocab=cca94cb5
+-/
 theorem pairκ_recW (hj : 1 ≤ j0) {P0 : FiniteValuationWord j0} (hP0 : P0 ∈ shellP b j0 σ)
     {f : Fin (j0 / 2) → ℕ} (hf : f ∈ Fintype.piFinset (fun r : Fin (j0 / 2) => pairB b (pairκ j0 P0) r)) :
     pairκ j0 (recW P0 f) = pairκ j0 P0 := by
@@ -442,6 +493,9 @@ theorem pairκ_recW (hj : 1 ≤ j0) {P0 : FiniteValuationWord j0} (hP0 : P0 ∈ 
     unfold recT; rw [dite_eq_right (by omega)]
   · rfl
 
+/--
+@isnad1 id=eq.3h5v.s8.d441a758ae51 from=translated src=- shape=0526fae4 vocab=92c5de96
+-/
 theorem pairπ_recW (hj : 1 ≤ j0) {P0 : FiniteValuationWord j0} (hP0 : P0 ∈ shellP b j0 σ)
     {f : Fin (j0 / 2) → ℕ} (hf : f ∈ Fintype.piFinset (fun r : Fin (j0 / 2) => pairB b (pairκ j0 P0) r)) :
     pairπ j0 (recW P0 f) = f := by
@@ -452,7 +506,9 @@ theorem pairπ_recW (hj : 1 ≤ j0) {P0 : FiniteValuationWord j0} (hP0 : P0 ∈ 
   unfold recT; rw [dite_eq_left (by omega)]
   first | (congr 1; ext; simp; done) | (congr 1; ext; simp; omega)
 
-/-- Membership of the choice in the product set.-/
+/-- Membership of the choice in the product set.
+@isnad1 id=mem.2h4v.s7.0162776aaae4 from=translated src=- shape=c1c18c13 vocab=29a5f122
+-/
 theorem pairπ_mem (hj : 1 ≤ j0) {P : FiniteValuationWord j0} (hP : P ∈ shellP b j0 σ) :
     pairπ j0 P ∈ Fintype.piFinset (fun r : Fin (j0 / 2) => pairB b (pairκ j0 P) r) := by
   obtain ⟨hpos, hbar, _⟩ := (mem_shellP_iff b hj).mp hP
@@ -463,7 +519,9 @@ theorem pairπ_mem (hj : 1 ≤ j0) {P : FiniteValuationWord j0} (hP : P ∈ shel
   refine ⟨⟨prefixSum_lt_succ hpos (by omega), ?_⟩, hbar _ (mem_Icc.mpr ⟨by omega, by omega⟩)⟩
   exact prefixSum_lt_succ hpos (by omega)
 
-/-- Words with the same coarse class and the same internal choices coincide.-/
+/-- Words with the same coarse class and the same internal choices coincide.
+@isnad1 id=eq.5h5v.s6.bb96567c98ef from=translated src=- shape=3bacff3f vocab=5dec8edd
+-/
 theorem pair_inj (hj : 1 ≤ j0) {P Q : FiniteValuationWord j0} (hP : P ∈ shellP b j0 σ)
     (hQ : Q ∈ shellP b j0 σ) (hκ : pairκ j0 P = pairκ j0 Q) (hπ : pairπ j0 P = pairπ j0 Q) :
     P = Q := by
@@ -524,7 +582,9 @@ noncomputable def pairDecomposition (j0 σ t : ℕ) (hj : 1 ≤ j0) :
 nonempty prefix shell: `‖Ψ λ‖² ≤ |P_σ|² · (∑_c |c| ∏_{r < j0/2} W λ c r²) / ∑_c |c|`, where `c`
 ranges over the coarse classes (even prefix sums) and
 `W λ c r = ‖∑_{x ∈ B c r} e(φ_{2r+1}(x))‖ / |B c r|` is the normalized internal sum of pair-block
-`r` (internal odd prefix sum `x`).-/
+`r` (internal odd prefix sum `x`).
+@isnad1 id=blockcub.2h5v.s8.b9eac0ff4162 from=translated src=- shape=a6a87f52 vocab=e19a6649
+-/
 theorem blockCubeHyp_pair (j0 σ t U : ℕ) (hj : 1 ≤ j0) (hne : (shellP b j0 σ).Nonempty) :
     GoodAngles.BlockCubeHyp b j0 σ t U ((shellP b j0 σ).image (pairκ j0))
       (nCls (shellP b j0 σ) (pairκ j0))

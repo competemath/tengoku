@@ -30,13 +30,17 @@ open Finset SuffixTransport
 
 variable {d e : ℕ → ℕ}
 
-/-- The carry identity at the least realizer: `2^(S_j) · T^j(r_j) = 3^j · r_j + q_j`.-/
+/-- The carry identity at the least realizer: `2^(S_j) · T^j(r_j) = 3^j · r_j + q_j`.
+@isnad1 id=eq.1h2v.s6.cb6b1300d7bc from=translated src=- shape=6fea00b9 vocab=fc590d5d
+-/
 theorem endState_carry (j : ℕ) (hd : ∀ i < j, 1 ≤ d i) :
     2 ^ S d j * orbit (leastRealizer d j) j = 3 ^ j * leastRealizer d j + q d j :=
   realizes_carry (leastRealizer_realizes_all d j hd) le_rfl
 
 /-- **Collision criterion.** For two positive words with the same prefix total `σ`,
-`T^j r ≡ T^j r' (mod 2^(t+1))` iff `3^j r + q ≡ 3^j r' + q' (mod 2^(σ+t+1))`.-/
+`T^j r ≡ T^j r' (mod 2^(t+1))` iff `3^j r + q ≡ 3^j r' + q' (mod 2^(σ+t+1))`.
+@isnad1 id=iff.3h4v.s7.3862998f7a76 from=translated src=- shape=b0d1294f vocab=994aa656
+-/
 theorem endState_modEq_iff (j t : ℕ) (hd : ∀ i < j, 1 ≤ d i) (he : ∀ i < j, 1 ≤ e i)
     (hS : S d j = S e j) :
     orbit (leastRealizer d j) j ≡ orbit (leastRealizer e j) j [MOD 2 ^ (t + 1)] ↔
@@ -49,7 +53,9 @@ theorem endState_modEq_iff (j t : ℕ) (hd : ∀ i < j, 1 ≤ d i) (he : ∀ i <
   · exact fun h => Nat.ModEq.mul_left_cancel' (by positivity) h
 
 /-- **Prefix-state formula (integer form).** If `2^σ m = 3^j r + q` and
-`3^j (r + 2^(σ+1) B) ≡ 2^σ − q (mod 2^(σ+t+1))`, then `m ≡ 1 − 2·3^j B (mod 2^(t+1))`.-/
+`3^j (r + 2^(σ+1) B) ≡ 2^σ − q (mod 2^(σ+t+1))`, then `m ≡ 1 − 2·3^j B (mod 2^(t+1))`.
+@isnad1 id=modeq.2h7v.s8.76be1e32bca0 from=translated src=- shape=9e764f14 vocab=e7fc8681
+-/
 theorem endState_int_formula {σ t j : ℕ} {m r q : ℕ} {B : ℤ}
     (hcarry : 2 ^ σ * m = 3 ^ j * r + q)
     (hB : (3 : ℤ) ^ j * (r + 2 ^ (σ + 1) * B) ≡ 2 ^ σ - q [ZMOD 2 ^ (σ + t + 1)]) :
@@ -63,7 +69,9 @@ theorem endState_int_formula {σ t j : ℕ} {m r q : ℕ} {B : ℤ}
   rw [hid, show σ + t + 1 = σ + (t + 1) by omega, pow_add] at hB
   exact (Int.dvd_of_mul_dvd_mul_left (by positivity) hB)
 
-/-- The block `B` of the prefix-state formula exists.-/
+/-- The block `B` of the prefix-state formula exists.
+@isnad1 id=ex.2h6v.s7.ce57c2f61840 from=translated src=- shape=4073abd1 vocab=b5b686d7
+-/
 theorem exists_block {σ t j : ℕ} {m r q : ℕ} (hcarry : 2 ^ σ * m = 3 ^ j * r + q)
     (hm : Odd m) :
     ∃ B : ℤ, (3 : ℤ) ^ j * (r + 2 ^ (σ + 1) * B) ≡ 2 ^ σ - q [ZMOD 2 ^ (σ + t + 1)] := by
@@ -91,11 +99,16 @@ section Parseval
 
 variable {ι : Type*} {n : ℕ} [NeZero n]
 
+/--
+@isnad1 id=eq.0h2v.s6.da52a5d51aa0 from=translated src=- shape=86fd08a5 vocab=6b61d454
+-/
 theorem norm_stdAddChar (x : ZMod n) : ‖(ZMod.stdAddChar x : ℂ)‖ = 1 := by
   rw [ZMod.stdAddChar_apply]; exact Circle.norm_coe _
 
 /-- **Parseval for collision counts.**
-`∑_g ‖∑_{i∈T} e(g β_i/n)‖^2 = n · #{(i,i') ∈ T×T : β_i = β_{i'}}`.-/
+`∑_g ‖∑_{i∈T} e(g β_i/n)‖^2 = n · #{(i,i') ∈ T×T : β_i = β_{i'}}`.
+@isnad1 id=eq.0h4v.s7.3669bcf2c275 from=translated src=- shape=420814ee vocab=b88f79f0
+-/
 theorem sum_sq_norm_eq_card_pairs (T : Finset ι) (β : ι → ZMod n) :
     ∑ g : ZMod n, ‖∑ i ∈ T, (ZMod.stdAddChar (g * β i) : ℂ)‖ ^ 2 =
       n * (((T ×ˢ T).filter fun p => β p.1 = β p.2).card : ℝ) := by

@@ -35,7 +35,9 @@ section Product
 variable {ι : Type*}
 
 /-- A product of factors in `[0,1]` is at most the product over the good factors, which is at most
-`κ^{#good}`.-/
+`κ^{#good}`.
+@isnad1 id=le.4h4v.s6.6ec779bf30dd from=translated src=- shape=37df2ee3 vocab=370d2322
+-/
 theorem prod_le_pow_card_good (W : ℕ → ℝ) (good : ℕ → Prop) [DecidablePred good] (R : ℕ)
     {κ : ℝ} (hκ0 : 0 ≤ κ) (hW0 : ∀ r, 0 ≤ W r) (hW1 : ∀ r, W r ≤ 1)
     (hgood : ∀ r, good r → W r ≤ κ) :
@@ -53,7 +55,9 @@ theorem prod_le_pow_card_good (W : ℕ → ℝ) (good : ℕ → Prop) [Decidable
     _ ≤ κ ^ ((range R).filter good).card := hgoodκ
 
 /-- **Product-of-contractions lemma.**  Weighted sum of `∏_{r<R} W P r` is at most
-`κ^k · ∑ w + ∑_{P bad} w P`, where `P` is bad if it has fewer than `k` good blocks.-/
+`κ^k · ∑ w + ∑_{P bad} w P`, where `P` is bad if it has fewer than `k` good blocks.
+@isnad1 id=le.6h8v.s8.d04303a467bb from=translated src=- shape=f7a7b204 vocab=873b0c70
+-/
 theorem avg_prod_le (T : Finset ι) (w : ι → ℝ) (W : ι → ℕ → ℝ) (good : ι → ℕ → Prop)
     [∀ P, DecidablePred (good P)] (R k : ℕ) {κ : ℝ} (hκ0 : 0 ≤ κ) (hκ1 : κ ≤ 1)
     (hw : ∀ P ∈ T, 0 ≤ w P) (hW0 : ∀ P ∈ T, ∀ r, 0 ≤ W P r) (hW1 : ∀ P ∈ T, ∀ r, W P r ≤ 1)
@@ -86,7 +90,9 @@ theorem avg_prod_le (T : Finset ι) (w : ι → ℝ) (W : ι → ℕ → ℝ) (g
     _ = κ ^ k * ∑ P ∈ T, w P + ∑ P ∈ T.filter bad, w P := by
         rw [sum_add_distrib, ← mul_sum, sum_filter]
 
-/-- **Squared version**: factors `W²`, contraction `κ²` on good blocks.-/
+/-- **Squared version**: factors `W²`, contraction `κ²` on good blocks.
+@isnad1 id=le.6h8v.s8.0a701bd1858c from=translated src=- shape=7ce5ef06 vocab=873b0c70
+-/
 theorem avg_prod_sq_le (T : Finset ι) (w : ι → ℝ) (W : ι → ℕ → ℝ) (good : ι → ℕ → Prop)
     [∀ P, DecidablePred (good P)] (R k : ℕ) {κ : ℝ} (hκ0 : 0 ≤ κ) (hκ1 : κ ≤ 1)
     (hw : ∀ P ∈ T, 0 ≤ w P) (hW0 : ∀ P ∈ T, ∀ r, 0 ≤ W P r) (hW1 : ∀ P ∈ T, ∀ r, W P r ≤ 1)
@@ -116,7 +122,9 @@ def PositiveDensityGoodAngles (T : Finset ι) (w : ι → ℝ) (W : ι → ℕ �
   (∀ P ∈ T, ∀ r, 0 ≤ W P r ∧ W P r ≤ 1) ∧ (∀ P ∈ T, ∀ r, good P r → W P r ≤ κ) ∧
     ∑ P ∈ T.filter (fun P => ((range R).filter (good P)).card < k), w P ≤ ρ * ∑ P ∈ T, w P
 
-/-- **Good angles ⇒ average squared product `≤ (κ^{2k} + ρ) · ∑ w`.**-/
+/-- **Good angles ⇒ average squared product `≤ (κ^{2k} + ρ) · ∑ w`.**
+@isnad1 id=le.4h9v.s7.b348bf4d1b0b from=translated src=- shape=b2531df1 vocab=9860cf70
+-/
 theorem avg_prod_sq_le_of_goodAngles (T : Finset ι) (w : ι → ℝ) (W : ι → ℕ → ℝ)
     (good : ι → ℕ → Prop) [∀ P, DecidablePred (good P)] (R k : ℕ) {ρ κ : ℝ}
     (hκ0 : 0 ≤ κ) (hκ1 : κ ≤ 1) (hw : ∀ P ∈ T, 0 ≤ w P)
@@ -149,7 +157,9 @@ def BlockCubeHyp {κι : Type*} (j0 σ t U : ℕ) (T : Finset κι) (w : κι �
 
 /-- **Good angles on every low frequency ⇒ `LowFreqDecay`.**  If the block-cube hypothesis holds
 and `PositiveDensityGoodAngles` holds (with fixed `k, ρ, κ`) at every frequency of the shells
-`u ≤ U`, and `0 ≤ C`, `κ^{2k} + ρ ≤ C · 2^{−γ j0}`, then `LowFreqDecay b j0 σ t U C γ`.-/
+`u ≤ U`, and `0 ≤ C`, `κ^{2k} + ρ ≤ C · 2^{−γ j0}`, then `LowFreqDecay b j0 σ t U C γ`.
+@isnad1 id=lowfreqd.7h16v.s8.83e9a5548abe from=translated src=- shape=c63276da vocab=74a252fa
+-/
 theorem lowFreqDecay_of_goodAngles {κι : Type*} (j0 σ t U : ℕ) (T : Finset κι) (w : κι → ℝ)
     (W : ℕ → κι → ℕ → ℝ) (good : ℕ → κι → ℕ → Prop) [∀ lam c, DecidablePred (good lam c)]
     (R k : ℕ) {ρ κ C γ : ℝ} (hκ0 : 0 ≤ κ) (hκ1 : κ ≤ 1) (hw : ∀ c ∈ T, 0 ≤ w c)
@@ -186,7 +196,9 @@ theorem lowFreqDecay_of_goodAngles {κι : Type*} (j0 σ t U : ℕ) (T : Finset 
     _ = 2 ^ (u + 1) * C * (2 : ℝ) ^ (-(γ * j0)) * ((shellP b j0 σ).card : ℝ) ^ 2 := by
         simp only [P2]; ring
 
-/-- **Good angles on low shells + (C3) sieve elsewhere ⇒ `WeightedFourier`.**-/
+/-- **Good angles on low shells + (C3) sieve elsewhere ⇒ `WeightedFourier`.**
+@isnad1 id=weighted.11h19v.s9.4c811f77c67b from=translated src=- shape=dfa99c1f vocab=702cc6f5
+-/
 theorem weightedFourier_of_goodAngles {κι : Type*} (N j0 s σ U : ℕ) (ε : ℝ) (Nsplit : ℕ → ℕ)
     (T : Finset κι) (w : κι → ℝ) (W : ℕ → κι → ℕ → ℝ) (good : ℕ → κι → ℕ → Prop)
     [∀ lam c, DecidablePred (good lam c)] (R k : ℕ) {ρ κ C γ : ℝ} (hκ0 : 0 ≤ κ) (hκ1 : κ ≤ 1)

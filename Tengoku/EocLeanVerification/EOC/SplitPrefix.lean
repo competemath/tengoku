@@ -35,6 +35,9 @@ namespace SplitPrefix
 
 open Finset SurvivorClusters CapacityBounds SuffixTransport
 
+/--
+@isnad1 id=le.1h2v.s4.75b38176a20b from=translated src=- shape=364793c8 vocab=2b2ab8e8
+-/
 theorem le_S_orbitWord {r : ℕ} (hr : Odd r) (j : ℕ) : j ≤ S (orbitWord r) j := by
   induction j with
   | zero => exact Nat.zero_le _
@@ -45,6 +48,9 @@ theorem le_S_orbitWord {r : ℕ} (hr : Odd r) (j : ℕ) : j ≤ S (orbitWord r) 
       simp only [orbitWord]
       omega
 
+/--
+@isnad1 id=ex.1h2v.s5.10daea9b1a93 from=translated src=- shape=3921cbdd vocab=720851f5
+-/
 theorem exists_crossing (Q : ℕ) {r : ℕ} (hr : Odd r) : ∃ k, Q ≤ S (orbitWord r) (k + 1) :=
   ⟨Q, le_trans (Nat.le_succ Q) (le_S_orbitWord hr (Q + 1))⟩
 
@@ -53,12 +59,18 @@ open Classical in
 noncomputable def prefixLen (Q r : ℕ) : ℕ :=
   if hr : Odd r then Nat.find (exists_crossing Q hr) else 0
 
+/--
+@isnad1 id=eq.0h2v.s5.022f09b98ac2 from=translated src=- shape=e8e5f45c vocab=b2475087
+-/
 theorem S_succ_orbitWord (r k : ℕ) :
     S (orbitWord r) (k + 1) = S (orbitWord r) k + a (orbit r k) := by
   simp only [S]
   rw [s_succ]
   rfl
 
+/--
+@isnad1 id=and.2h2v.s7.e904a02b8208 from=translated src=- shape=c9eef66d vocab=e31cacce
+-/
 theorem prefixLen_spec {Q r : ℕ} (hQ : 1 ≤ Q) (hr : Odd r) :
     S (orbitWord r) (prefixLen Q r) + 1 ≤ Q ∧ Q ≤ S (orbitWord r) (prefixLen Q r + 1) ∧
       prefixLen Q r < Q ∧
@@ -81,7 +93,9 @@ theorem prefixLen_spec {Q r : ℕ} (hQ : 1 ≤ Q) (hr : Odd r) :
     exact (pow_dvd_pow 2 (by omega)).trans (two_pow_a_dvd (orbit r k))
   exact ⟨h1, h2, h3, h4⟩
 
-/-- Characterization: `prefixLen Q r` is the unique `k` with `S_k + 1 ≤ Q ≤ S_{k+1}`.-/
+/-- Characterization: `prefixLen Q r` is the unique `k` with `S_k + 1 ≤ Q ≤ S_{k+1}`.
+@isnad1 id=eq.4h3v.s6.10e6a62bba2c from=translated src=- shape=8a3effbc vocab=96cee198
+-/
 theorem prefixLen_eq_of {Q r k : ℕ} (_hQ : 1 ≤ Q) (hr : Odd r) (h1 : S (orbitWord r) k + 1 ≤ Q)
     (h2 : Q ≤ S (orbitWord r) (k + 1)) : prefixLen Q r = k := by
   classical
@@ -99,7 +113,9 @@ theorem prefixLen_eq_of {Q r k : ℕ} (_hQ : 1 ≤ Q) (hr : Odd r) (h1 : S (orbi
     exact Finset.sum_le_sum_of_subset (Finset.range_subset_range.mpr (by omega))
   omega
 
-/-- The carry identity along a shared prefix: `2^{S_k} (T^k y − T^k x) = 3^k (y − x)`.-/
+/-- The carry identity along a shared prefix: `2^{S_k} (T^k y − T^k x) = 3^k (y − x)`.
+@isnad1 id=eq.3h3v.s6.9d53b61c2979 from=translated src=- shape=ef823078 vocab=7c816ca7
+-/
 theorem carry_diff {x y k : ℕ} (hx : Odd x) (hy : Odd y)
     (hag : ∀ i < k, orbitWord x i = orbitWord y i) :
     (2 : ℤ) ^ S (orbitWord x) k * ((orbit y k : ℤ) - orbit x k) = 3 ^ k * ((y : ℤ) - x) := by
@@ -132,7 +148,9 @@ private theorem dvd_state_diff {g : ℕ} {m m' : ℕ} (h : 2 ^ g ∣ 3 * m + 1)
     IsCoprime.pow_left (Int.isCoprime_iff_gcd_eq_one.mpr (by decide))
   exact hcop.dvd_of_dvd_mul_left h1
 
-/-- **The `Q`-prefix depends only on `r mod 2^Q`.**-/
+/-- **The `Q`-prefix depends only on `r mod 2^Q`.**
+@isnad1 id=and.4h3v.s6.410f2139ea80 from=translated src=- shape=9feb3acd vocab=448f8f4e
+-/
 theorem prefix_of_modEq {Q x y : ℕ} (hQ : 1 ≤ Q) (hx : Odd x) (hy : Odd y)
     (hxy : x ≡ y [MOD 2 ^ Q]) :
     prefixLen Q y = prefixLen Q x ∧ ∀ i < prefixLen Q x, orbitWord x i = orbitWord y i := by
@@ -172,7 +190,9 @@ theorem prefix_of_modEq {Q x y : ℕ} (hQ : 1 ≤ Q) (hx : Odd x) (hy : Odd y)
   have h1y : S (orbitWord y) k + 1 ≤ Q := by rw [hSeq]; exact h1
   exact ⟨prefixLen_eq_of hQ hy h1y h2y, hag⟩
 
-/-- Distinct odd residues below `2^Q` have distinct `Q`-prefixes.-/
+/-- Distinct odd residues below `2^Q` have distinct `Q`-prefixes.
+@isnad1 id=eq.7h3v.s6.21e7ee495088 from=translated src=- shape=ca892d65 vocab=107d3655
+-/
 theorem prefix_injective {Q x y : ℕ} (hQ : 1 ≤ Q) (hx : Odd x) (hy : Odd y) (hxQ : x < 2 ^ Q)
     (hyQ : y < 2 ^ Q) (hlen : prefixLen Q x = prefixLen Q y)
     (hag : ∀ i < prefixLen Q x, orbitWord x i = orbitWord y i) : x = y := by
@@ -218,12 +238,18 @@ noncomputable def prefixMap (Q r : ℕ) : Σ k : ℕ, FiniteValuationWord k :=
 def prefixTarget (Q : ℕ) : Finset (Σ k : ℕ, FiniteValuationWord k) :=
   (range Q).sigma fun k => feasibleWords k (Q - 1)
 
+/--
+@isnad1 id=eq.0h2v.s3.4fd6564dbdb6 from=translated src=- shape=eda3a670 vocab=8a8a0557
+-/
 theorem total_prefixWord (k r : ℕ) :
     (SurvivorCounting.prefixWord k r).total = S (orbitWord r) k := by
   rw [FiniteValuationWord.total_eq_sum_univ]
   simp only [S, s, orbitWord, SurvivorCounting.prefixWord]
   exact Fin.sum_univ_eq_sum_range (fun i => a (orbit r i)) k
 
+/--
+@isnad1 id=eq.0h1v.s4.32b2ed15e7e9 from=translated src=- shape=622a6678 vocab=d3d1293c
+-/
 theorem card_feasibleWords_zero (B : ℕ) : (feasibleWords 0 B).card = 1 := by
   rw [Finset.card_eq_one]
   refine ⟨fun i => i.elim0, ?_⟩
@@ -233,6 +259,9 @@ theorem card_feasibleWords_zero (B : ℕ) : (feasibleWords 0 B).card = 1 := by
   · intro _; funext i; exact i.elim0
   · intro _; exact ⟨fun i => i.elim0, by simp [FiniteValuationWord.total_eq_sum_univ]⟩
 
+/--
+@isnad1 id=eq.1h1v.s5.6936d4838787 from=translated src=- shape=cb11a3ac vocab=8d4cb2bd
+-/
 theorem card_prefixTarget {Q : ℕ} (hQ : 1 ≤ Q) : (prefixTarget Q).card = 2 ^ (Q - 1) := by
   rw [prefixTarget, card_sigma]
   have : ∀ k ∈ range Q, (feasibleWords k (Q - 1)).card = Nat.choose (Q - 1) k := by
@@ -244,6 +273,9 @@ theorem card_prefixTarget {Q : ℕ} (hQ : 1 ≤ Q) : (prefixTarget Q).card = 2 ^
   have h := Nat.sum_range_choose (Q - 1)
   rwa [Nat.sub_add_cancel hQ] at h
 
+/--
+@isnad1 id=eq.1h1v.s6.bf2ea362cb36 from=translated src=- shape=f9310176 vocab=584938f2
+-/
 theorem card_odd_range {Q : ℕ} (hQ : 1 ≤ Q) : ((range (2 ^ Q)).filter Odd).card = 2 ^ (Q - 1) := by
   have himg : (range (2 ^ Q)).filter Odd = (range (2 ^ (Q - 1))).image fun i => 2 * i + 1 := by
     have h2 : 2 ^ Q = 2 * 2 ^ (Q - 1) := by
@@ -259,6 +291,9 @@ theorem card_odd_range {Q : ℕ} (hQ : 1 ≤ Q) : ((range (2 ^ Q)).filter Odd).c
       exact ⟨by omega, ⟨i, rfl⟩⟩
   rw [himg, card_image_of_injective _ (fun i j h => by simpa using h), card_range]
 
+/--
+@isnad1 id=mem.2h2v.s5.aa4238427abf from=translated src=- shape=88d4745f vocab=1ac5db33
+-/
 theorem prefixMap_mem {Q r : ℕ} (hQ : 1 ≤ Q) (hr : Odd r) : prefixMap Q r ∈ prefixTarget Q := by
   obtain ⟨h1, -, h3, -⟩ := prefixLen_spec hQ hr
   rw [prefixTarget, mem_sigma]
@@ -268,7 +303,9 @@ theorem prefixMap_mem {Q r : ℕ} (hQ : 1 ≤ Q) (hr : Odd r) : prefixMap Q r �
   omega
 
 /-- **The split-depth bijection.** The `Q`-prefix map is a bijection from the odd residues below
-`2^Q` onto the positive words of length `< Q` and total `≤ Q − 1`.-/
+`2^Q` onto the positive words of length `< Q` and total `≤ Q − 1`.
+@isnad1 id=bijon.1h1v.s6.de5f76bb4cbf from=translated src=- shape=81b403f9 vocab=1a29f667
+-/
 theorem prefix_bijective {Q : ℕ} (hQ : 1 ≤ Q) :
     Set.BijOn (prefixMap Q) ((range (2 ^ Q)).filter Odd : Set ℕ) (prefixTarget Q : Set _) := by
   have hmaps : Set.MapsTo (prefixMap Q) ((range (2 ^ Q)).filter Odd : Set ℕ) (prefixTarget Q) := by
@@ -296,7 +333,9 @@ theorem prefix_bijective {Q : ℕ} (hQ : 1 ≤ Q) :
   exact ⟨r, by simpa using hr, hrp.symm⟩
 
 /-- **Finite pair-survival theorem.** Odd seeds congruent mod `2^Q` share their first
-`k = prefixLen Q x` valuation digits, hence are `c`-confined through `k` simultaneously.-/
+`k = prefixLen Q x` valuation digits, hence are `c`-confined through `k` simultaneously.
+@isnad1 id=and.4h4v.s6.d9df4d81197b from=translated src=- shape=6788b8cf vocab=474db2aa
+-/
 theorem pair_shared_survival {Q x y : ℕ} (hQ : 1 ≤ Q) (hx : Odd x) (hy : Odd y)
     (hxy : x ≡ y [MOD 2 ^ Q]) (c : ℝ) :
     prefixLen Q y = prefixLen Q x ∧

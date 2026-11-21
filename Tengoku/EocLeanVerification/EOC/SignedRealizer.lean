@@ -30,7 +30,9 @@ private theorem odd_three_pow_signed (N : ℕ) : Odd (3 ^ N) := by
 Existence of a representative below `2^M` solving
 `2^M ∣ 3^N x + A`.
 
-This is the same Hensel-style induction used in `EOC.Realizer`.-/
+This is the same Hensel-style induction used in `EOC.Realizer`.
+@isnad1 id=ex.0h3v.s6.db3f94e4aab8 from=translated src=- shape=9191127b vocab=f44551df
+-/
 theorem exists_lt_dvd' (N M A : ℕ) :
     ∃ x, x < 2 ^ M ∧ 2 ^ M ∣ 3 ^ N * x + A := by
   induction M with
@@ -61,7 +63,9 @@ theorem exists_lt_dvd' (N M A : ℕ) :
         rw [step1, hc, hw, hw3, pow_succ]
         ring
 
-/-- Uniqueness of a solution below the modulus.-/
+/-- Uniqueness of a solution below the modulus.
+@isnad1 id=eq.4h5v.s7.8aa3933b2e05 from=translated src=- shape=d1857efa vocab=f44551df
+-/
 theorem unique_lt_dvd
     (N M A x y : ℕ)
     (hx : x < 2 ^ M)
@@ -96,11 +100,17 @@ def minusTarget (d : ℕ → ℕ) (N : ℕ) : ℕ :=
 noncomputable def leastRealizerMinus (d : ℕ → ℕ) (N : ℕ) : ℕ :=
   Nat.find (exists_lt_dvd' N (S d N + 1) (minusTarget d N))
 
+/--
+@isnad1 id=lt.0h2v.s5.c820c0024c56 from=translated src=- shape=17e0884d vocab=dabb1a45
+-/
 theorem leastRealizerMinus_lt (d : ℕ → ℕ) (N : ℕ) :
     leastRealizerMinus d N < 2 ^ (S d N + 1) :=
   (Nat.find_spec
     (exists_lt_dvd' N (S d N + 1) (minusTarget d N))).1
 
+/--
+@isnad1 id=dvd.0h2v.s6.a865e222a17f from=translated src=- shape=18d6b2f5 vocab=3b18c7b4
+-/
 theorem leastRealizerMinus_dvd (d : ℕ → ℕ) (N : ℕ) :
     2 ^ (S d N + 1) ∣
       3 ^ N * leastRealizerMinus d N + minusTarget d N :=
@@ -115,7 +125,9 @@ For a nonempty positive valuation word,
 `r₊(D) + r₋(D) = 2^{S_N+1}`.
 
 Equivalently, the two representatives are negatives of one another
-modulo `2^{S_N+1}`.-/
+modulo `2^{S_N+1}`.
+@isnad1 id=eq.2h2v.s6.e699a5bf32cc from=translated src=- shape=28897ae7 vocab=f702de42
+-/
 theorem realizer_complement
     (d : ℕ → ℕ)
     (N : ℕ)
@@ -188,7 +200,9 @@ theorem realizer_complement
 
 /--
 No nonempty positive valuation word has the same representative in
-both signs.-/
+both signs.
+@isnad1 id=ne.2h2v.s5.6841af29a7c6 from=translated src=- shape=4d3daa49 vocab=cb33783f
+-/
 theorem realizer_plus_ne_minus
     (d : ℕ → ℕ)
     (N : ℕ)
@@ -233,7 +247,9 @@ noncomputable def am (m : ℕ) : ℕ :=
   padicValNat 2 (3 * m - 1)
 
 /--
-If `m ≡ 3 (mod 4)`, then `v₂(3m+1)=1`.-/
+If `m ≡ 3 (mod 4)`, then `v₂(3m+1)=1`.
+@isnad1 id=eq.1h1v.s5.f0094ba30f8f from=translated src=- shape=2157008b vocab=25f2e31e
+-/
 theorem plus_val_eq_one_of_mod_four_eq_three
     (m : ℕ)
     (hm : m % 4 = 3) :
@@ -263,7 +279,9 @@ theorem plus_val_eq_one_of_mod_four_eq_three
   omega
 
 /--
-If `m ≡ 3 (mod 4)`, then `v₂(3m-1) ≥ 2`.-/
+If `m ≡ 3 (mod 4)`, then `v₂(3m-1) ≥ 2`.
+@isnad1 id=le.1h1v.s5.49fa7118b0e4 from=translated src=- shape=ddf048a0 vocab=44ddfed9
+-/
 theorem minus_val_ge_two_of_mod_four_eq_three
     (m : ℕ)
     (hm : m % 4 = 3) :
@@ -285,7 +303,9 @@ theorem minus_val_ge_two_of_mod_four_eq_three
   exact (padicValNat_dvd_iff_le hne).1 hdvd22
 
 /--
-If `m ≡ 1 (mod 4)`, then `v₂(3m-1)=1`.-/
+If `m ≡ 1 (mod 4)`, then `v₂(3m-1)=1`.
+@isnad1 id=eq.1h1v.s5.d0adb76577ef from=translated src=- shape=2157008b vocab=64fe4d95
+-/
 theorem minus_val_eq_one_of_mod_four_eq_one
     (m : ℕ)
     (hm : m % 4 = 1) :
@@ -325,7 +345,9 @@ theorem minus_val_eq_one_of_mod_four_eq_one
   omega
 
 /--
-If `m ≡ 1 (mod 4)`, then `v₂(3m+1) ≥ 2`.-/
+If `m ≡ 1 (mod 4)`, then `v₂(3m+1) ≥ 2`.
+@isnad1 id=le.1h1v.s5.9ddba6eeecdf from=translated src=- shape=ddf048a0 vocab=b799e262
+-/
 theorem plus_val_ge_two_of_mod_four_eq_one
     (m : ℕ)
     (hm : m % 4 = 1) :
@@ -351,7 +373,9 @@ theorem plus_val_ge_two_of_mod_four_eq_one
 
 For every odd `m`,
 
-`min (v₂(3m+1)) (v₂(3m-1)) = 1`.-/
+`min (v₂(3m+1)) (v₂(3m-1)) = 1`.
+@isnad1 id=eq.1h1v.s4.a02133be8118 from=translated src=- shape=6520af43 vocab=eb15fa92
+-/
 theorem joint_val_two_min
     (m : ℕ)
     (hm : Odd m) :

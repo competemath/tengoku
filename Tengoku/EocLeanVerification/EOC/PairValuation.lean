@@ -46,11 +46,17 @@ namespace PairValuation
 
 /-! ## Prefix-agreement bookkeeping -/
 
+/--
+@isnad1 id=eq.1h3v.s5.7b5ccccc928f from=translated src=- shape=f6826cbd vocab=791a6b15
+-/
 theorem s_eq_of_prefix_agree {d e : ℕ → ℕ} {k : ℕ} (hagree : ∀ i < k, d i = e i) :
     s d k = s e k := by
   unfold s
   exact Finset.sum_congr rfl (fun i hi => hagree i (Finset.mem_range.mp hi))
 
+/--
+@isnad1 id=eq.1h3v.s5.0de8a8afa084 from=translated src=- shape=f6826cbd vocab=6815283f
+-/
 theorem q_eq_of_prefix_agree {d e : ℕ → ℕ} :
     ∀ k, (∀ i < k, d i = e i) → q d k = q e k := by
   intro k
@@ -63,7 +69,9 @@ theorem q_eq_of_prefix_agree {d e : ℕ → ℕ} :
 
 /-- **The carry at depth `k+1` does not read digit `k`.** `q _ (k+1) = 3 q_k + 2^{s_k}` only
 involves digits `< k`, so two words agreeing below `k` have equal carries at depth `k+1`,
-whatever their digits at index `k`.-/
+whatever their digits at index `k`.
+@isnad1 id=eq.1h3v.s5.1fa46a34ca7a from=translated src=- shape=f86656f4 vocab=f1e6c648
+-/
 theorem q_succ_eq_of_agree {d e : ℕ → ℕ} {k : ℕ} (hagree : ∀ i < k, d i = e i) :
     q d (k + 1) = q e (k + 1) := by
   rw [q_succ, q_succ, q_eq_of_prefix_agree k hagree, s_eq_of_prefix_agree hagree]
@@ -71,7 +79,9 @@ theorem q_succ_eq_of_agree {d e : ℕ → ℕ} {k : ℕ} (hagree : ∀ i < k, d 
 /-! ## The carry identity along an actual orbit (no parity hypothesis) -/
 
 /-- The carry identity for a seed's own valuation word: `2^{s_j} · orbit x j = 3^j x + q_j`.
-Valid for every natural `x` (the exact divisibility `2^{a m} ∣ 3m + 1` holds by definition).-/
+Valid for every natural `x` (the exact divisibility `2^{a m} ∣ 3m + 1` holds by definition).
+@isnad1 id=eq.0h2v.s6.943332bc7fe9 from=translated src=- shape=a5d5fe4b vocab=42a6fdc2
+-/
 theorem orbit_carry (x j : ℕ) :
     2 ^ s (fun i => a (orbit x i)) j * orbit x j
       = 3 ^ j * x + q (fun i => a (orbit x i)) j := by
@@ -88,7 +98,9 @@ theorem orbit_carry (x j : ℕ) :
 /-! ## A pure 2-adic lemma -/
 
 /-- For odd `y, y'` and `α ≠ β`, the number `2^{β − min α β} y' − 2^{α − min α β} y` is odd:
-exactly one of the two exponents is `0`.-/
+exactly one of the two exponents is `0`.
+@isnad1 id=odd.3h4v.s6.b61fa700d0cb from=translated src=- shape=0b901798 vocab=07a5819f
+-/
 theorem odd_two_pow_sub_two_pow {α β : ℕ} {y y' : ℤ} (hy : Odd y) (hy' : Odd y')
     (hne : α ≠ β) :
     Odd ((2 : ℤ) ^ (β - min α β) * y' - 2 ^ (α - min α β) * y) := by
@@ -108,7 +120,9 @@ theorem odd_two_pow_sub_two_pow {α β : ℕ} {y y' : ℤ} (hy : Odd y) (hy' : O
       exact ⟨2 ^ t * y, by ring⟩
     exact hy'.sub_even heven
 
-/-- `v₂(2^n · Q) = n` for odd `Q`.-/
+/-- `v₂(2^n · Q) = n` for odd `Q`.
+@isnad1 id=eq.1h2v.s5.42e31cf4f636 from=translated src=- shape=aa950355 vocab=bcce04bf
+-/
 theorem padicValInt_two_pow_mul_odd (n : ℕ) {Q : ℤ} (hQ : Odd Q) :
     padicValInt 2 ((2 : ℤ) ^ n * Q) = n := by
   have hQ0 : Q ≠ 0 := by
@@ -129,7 +143,9 @@ theorem padicValInt_two_pow_mul_odd (n : ℕ) {Q : ℤ} (hQ : Odd Q) :
 `k`, then
 `3^{k+1} (x' − x) = 2^{S_k} (2^{b} · orbit x' (k+1) − 2^{a} · orbit x (k+1))`
 with `a = a (orbit x k)`, `b = a (orbit x' k)`. No parity, minimality, or distinctness
-hypothesis.-/
+hypothesis.
+@isnad1 id=eq.1h3v.s7.bb21b79af0b3 from=translated src=- shape=ea7a823e vocab=4d2e6b73
+-/
 theorem orbit_pair_carry_identity (x x' k : ℕ)
     (hagree : ∀ j < k, a (orbit x j) = a (orbit x' j)) :
     (3 : ℤ) ^ (k + 1) * ((x' : ℤ) - x)
@@ -158,7 +174,9 @@ theorem orbit_pair_carry_identity (x x' k : ℕ)
 /-- **Structural factorization (orbit form).** If the actual valuation words of `x`, `x'`
 agree below `k` and differ at `k` (`a ≠ b`), then `x' − x = 2^{S_k + min a b} · Q` for an odd
 integer `Q`, which is determined exactly by the orbit values after step `k+1`:
-`3^{k+1} Q = 2^{b − min a b} · orbit x' (k+1) − 2^{a − min a b} · orbit x (k+1)`.-/
+`3^{k+1} Q = 2^{b − min a b} · orbit x' (k+1) − 2^{a − min a b} · orbit x (k+1)`.
+@isnad1 id=ex.2h3v.s8.2d62eac0245e from=translated src=- shape=0f623f30 vocab=2faabfd3
+-/
 theorem orbit_pair_factorization (x x' k : ℕ)
     (hagree : ∀ j < k, a (orbit x j) = a (orbit x' j))
     (hne : a (orbit x k) ≠ a (orbit x' k)) :
@@ -210,7 +228,9 @@ theorem orbit_pair_factorization (x x' k : ℕ)
 
 /-- **Exact pair valuation (orbit form).** If the actual valuation words of two natural seeds
 `x`, `x'` agree below `k` and differ at `k`, then `v₂(x' − x) = S_k + min a b`. No parity
-hypothesis on the seeds.-/
+hypothesis on the seeds.
+@isnad1 id=eq.2h3v.s6.ef3a29d7ab19 from=translated src=- shape=233253c0 vocab=b665894b
+-/
 theorem orbit_pair_valuation (x x' k : ℕ)
     (hagree : ∀ j < k, a (orbit x j) = a (orbit x' j))
     (hne : a (orbit x k) ≠ a (orbit x' k)) :
@@ -236,7 +256,9 @@ private theorem orbit_data_of_realizes {d e : ℕ → ℕ} {k x x' : ℕ}
 /-- **Structural factorization (word form).** Seeds `x`, `x'` realizing words `d`, `e` through
 step `k+1`, where `d`, `e` agree below `k` and `d k ≠ e k`, satisfy
 `x' − x = 2^{S_k + min (d k) (e k)} · Q` with `Q` odd and
-`3^{k+1} Q = 2^{e k − min} · orbit x' (k+1) − 2^{d k − min} · orbit x (k+1)`.-/
+`3^{k+1} Q = 2^{e k − min} · orbit x' (k+1) − 2^{d k − min} · orbit x (k+1)`.
+@isnad1 id=ex.4h5v.s8.24c38689c079 from=translated src=- shape=10871ddc vocab=ab84a2a7
+-/
 theorem realizes_pair_factorization (d e : ℕ → ℕ) (k x x' : ℕ)
     (hx : Realizes d (k + 1) x) (hx' : Realizes e (k + 1) x')
     (hagree : ∀ i < k, d i = e i) (hne : d k ≠ e k) :
@@ -249,7 +271,9 @@ theorem realizes_pair_factorization (d e : ℕ → ℕ) (k x x' : ℕ)
   have h := orbit_pair_factorization x x' k hag (by rw [hak, hak']; exact hne)
   rwa [hs, hak, hak'] at h
 
-/-- **Exact pair valuation (word form).**-/
+/-- **Exact pair valuation (word form).**
+@isnad1 id=eq.4h5v.s6.beb8de728b43 from=translated src=- shape=ac4fe245 vocab=8165d9da
+-/
 theorem realizes_pair_valuation (d e : ℕ → ℕ) (k x x' : ℕ)
     (hx : Realizes d (k + 1) x) (hx' : Realizes e (k + 1) x')
     (hagree : ∀ i < k, d i = e i) (hne : d k ≠ e k) :
@@ -260,7 +284,9 @@ theorem realizes_pair_valuation (d e : ℕ → ℕ) (k x x' : ℕ)
 
 /-- **Normalized quotient (word form).** Under the hypotheses of `realizes_pair_valuation`,
 `2^{S_k+1} ∣ x' − x` and the quotient has `v₂ = min (d k) (e k) − 1`. Here `min ≥ 1` is not
-assumed: it follows from `Realizes` (realizing seeds are odd, so every realized digit is `≥ 1`).-/
+assumed: it follows from `Realizes` (realizing seeds are odd, so every realized digit is `≥ 1`).
+@isnad1 id=and.4h5v.s7.12f96063d0b3 from=translated src=- shape=32dfd129 vocab=4d873f62
+-/
 theorem realizes_pair_quotient_valuation (d e : ℕ → ℕ) (k x x' : ℕ)
     (hx : Realizes d (k + 1) x) (hx' : Realizes e (k + 1) x')
     (hagree : ∀ i < k, d i = e i) (hne : d k ≠ e k) :
@@ -288,7 +314,9 @@ private theorem realizes_restrict {d : ℕ → ℕ} {N t x : ℕ} (h : Realizes 
 
 /-- **Structural factorization for least realizers.** Positive words `d` (length `N`) and `e`
 (length `M`) agreeing below `k` and differing at `k`, with `k < N` and `k < M`. Lengths and
-terminal sums `S d N`, `S e M` are arbitrary and need not match.-/
+terminal sums `S d N`, `S e M` are arbitrary and need not match.
+@isnad1 id=ex.6h5v.s8.7a45630e053f from=translated src=- shape=20016825 vocab=e8a6daaf
+-/
 theorem leastRealizer_pair_factorization (d e : ℕ → ℕ) (N M k : ℕ) (hkN : k < N) (hkM : k < M)
     (hd_pos : ∀ i < N, 1 ≤ d i) (he_pos : ∀ i < M, 1 ≤ e i)
     (hagree : ∀ i < k, d i = e i) (hne : d k ≠ e k) :
@@ -302,7 +330,9 @@ theorem leastRealizer_pair_factorization (d e : ℕ → ℕ) (N M k : ℕ) (hkN 
     (realizes_restrict (leastRealizer_realizes e M (by omega) he_pos) hkM) hagree hne
 
 /-- **Exact pair valuation for least realizers:**
-`v₂(r(E) − r(D)) = S_k + min (d k) (e k)`.-/
+`v₂(r(E) − r(D)) = S_k + min (d k) (e k)`.
+@isnad1 id=eq.6h5v.s7.8896634e0a08 from=translated src=- shape=c1103e82 vocab=aa78cb6e
+-/
 theorem leastRealizer_pair_valuation (d e : ℕ → ℕ) (N M k : ℕ) (hkN : k < N) (hkM : k < M)
     (hd_pos : ∀ i < N, 1 ≤ d i) (he_pos : ∀ i < M, 1 ≤ e i)
     (hagree : ∀ i < k, d i = e i) (hne : d k ≠ e k) :
@@ -312,7 +342,9 @@ theorem leastRealizer_pair_valuation (d e : ℕ → ℕ) (N M k : ℕ) (hkN : k 
     (realizes_restrict (leastRealizer_realizes e M (by omega) he_pos) hkM) hagree hne
 
 /-- **Normalized quotient for least realizers:** `2^{S_k+1} ∣ r(E) − r(D)` and
-`v₂((r(E) − r(D)) / 2^{S_k+1}) = min (d k) (e k) − 1`.-/
+`v₂((r(E) − r(D)) / 2^{S_k+1}) = min (d k) (e k) − 1`.
+@isnad1 id=and.6h5v.s7.2a2ccdf58184 from=translated src=- shape=4d2f45c4 vocab=84e87ef4
+-/
 theorem leastRealizer_pair_quotient_valuation (d e : ℕ → ℕ) (N M k : ℕ) (hkN : k < N)
     (hkM : k < M) (hd_pos : ∀ i < N, 1 ≤ d i) (he_pos : ∀ i < M, 1 ≤ e i)
     (hagree : ∀ i < k, d i = e i) (hne : d k ≠ e k) :

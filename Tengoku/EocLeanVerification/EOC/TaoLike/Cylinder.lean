@@ -27,7 +27,9 @@ open Finset
 
 /-! ### Exact division facts about `T` -/
 
-/-- Exact factorisation `3m + 1 = 2^(a m) * T m`.-/
+/-- Exact factorisation `3m + 1 = 2^(a m) * T m`.
+@isnad1 id=eq.0h1v.s5.43bb02999151 from=translated src=- shape=12f3fd38 vocab=96c11f3e
+-/
 theorem three_mul_add_one_eq (m : ℕ) : 3 * m + 1 = 2 ^ a m * T m := by
   obtain ⟨c, hc0⟩ := (pow_padicValNat_dvd : 2 ^ padicValNat 2 (3 * m + 1) ∣ 3 * m + 1)
   have hc : 3 * m + 1 = 2 ^ a m * c := hc0
@@ -37,12 +39,16 @@ theorem three_mul_add_one_eq (m : ℕ) : 3 * m + 1 = 2 ^ a m * T m := by
   rw [hT]
   exact hc
 
-/-- If `3m + 1 = 2^(a m) * c` then `T m = c`.-/
+/-- If `3m + 1 = 2^(a m) * c` then `T m = c`.
+@isnad1 id=eq.1h2v.s6.dbd9fd1e8252 from=translated src=- shape=94bad284 vocab=96c11f3e
+-/
 theorem T_eq_of_eq (m c : ℕ) (h : 3 * m + 1 = 2 ^ a m * c) : T m = c := by
   unfold T
   rw [h, Nat.mul_div_cancel_left c (by positivity)]
 
-/-- `T m` is always odd (the cofactor of the exact 2-power is odd).-/
+/-- `T m` is always odd (the cofactor of the exact 2-power is odd).
+@isnad1 id=odd.0h1v.s2.6f56546018b9 from=translated src=- shape=6da4ece3 vocab=2c7c1fe5
+-/
 theorem T_odd (m : ℕ) : Odd (T m) := by
   have hne : 3 * m + 1 ≠ 0 := by omega
   have hnot0 : ¬ 2 ^ (padicValNat 2 (3 * m + 1) + 1) ∣ 3 * m + 1 :=
@@ -63,7 +69,9 @@ theorem T_odd (m : ℕ) : Odd (T m) := by
 `a (m + 2^(s+1) k) = d` and `T (m + 2^(s+1) k) = T m + 2^(s-d+1) * (3k)`.
 
 The modulus must be `2^(s+1)`, not `2^s`: after dividing by `2^d` the perturbation is
-`3 * 2^(s+1-d) * k`, which is even because `s + 1 - d ≥ 1`.-/
+`3 * 2^(s+1-d) * k`, which is even because `s + 1 - d ≥ 1`.
+@isnad1 id=and.1h3v.s7.2591f49abb3f from=translated src=- shape=f2ee8587 vocab=04bba1a9
+-/
 theorem restart_step (m k s : ℕ) (hs : a m ≤ s) :
     a (m + 2 ^ (s + 1) * k) = a m ∧
     T (m + 2 ^ (s + 1) * k) = T m + 2 ^ (s - a m + 1) * (3 * k) := by
@@ -103,14 +111,18 @@ theorem restart_step (m k s : ℕ) (hs : a m ≤ s) :
 
 /-! ### Orbit bookkeeping -/
 
-/-- Shifting the orbit by one step equals iterating from `T m`.-/
+/-- Shifting the orbit by one step equals iterating from `T m`.
+@isnad1 id=eq.0h2v.s4.57c9639c3eb2 from=translated src=- shape=f03ca6bd vocab=8a8dd5d3
+-/
 theorem orbit_succ_left (m : ℕ) : ∀ j, orbit m (j + 1) = orbit (T m) j := by
   intro j
   induction j with
   | zero => rfl
   | succ j ih => rw [orbit_succ, ih, orbit_succ]
 
-/-- Prefix sum of the orbit's own valuation word, peeled at the first step.-/
+/-- Prefix sum of the orbit's own valuation word, peeled at the first step.
+@isnad1 id=eq.0h2v.s5.d86a1bfe1a38 from=translated src=- shape=21fe5ec4 vocab=31eec028
+-/
 theorem S_orbWord_succ (m t : ℕ) :
     S (fun j => a (orbit m j)) (t + 1) = a m + S (fun j => a (orbit (T m) j)) t := by
   unfold S s
@@ -122,7 +134,9 @@ theorem S_orbWord_succ (m t : ℕ) :
 
 /-- **Cylinder restart (orbit-word form).** With `S_t := ∑_{j<t} a(orbit m j)`, every
 `m' = m + 2^(S_t+1) k` has the same first `t` valuations as `m`, and
-`orbit m' t = orbit m t + 2 * 3^t * k`. No parity hypothesis is required.-/
+`orbit m' t = orbit m t + 2 * 3^t * k`. No parity hypothesis is required.
+@isnad1 id=and.0h3v.s7.56d0a8c1647b from=translated src=- shape=83e464ff vocab=04d6802f
+-/
 theorem orbit_cylinder_restart : ∀ (t m k : ℕ),
     (∀ j < t, a (orbit (m + 2 ^ (S (fun i => a (orbit m i)) t + 1) * k) j) = a (orbit m j)) ∧
     orbit (m + 2 ^ (S (fun i => a (orbit m i)) t + 1) * k) t = orbit m t + 2 * 3 ^ t * k := by
@@ -161,7 +175,9 @@ theorem orbit_cylinder_restart : ∀ (t m k : ℕ),
 
 /-- **Cylinder restart.** If `m` realizes the length-`t` word `d`, then for every `k : ℕ`
 the seed `m + 2^(S d t + 1) * k` also realizes `d`, and its `t`-th iterate is translated
-by exactly `2 * 3^t * k`. `k` is arbitrary; there is no upper bound.-/
+by exactly `2 * 3^t * k`. `k` is arbitrary; there is no upper bound.
+@isnad1 id=and.1h4v.s7.27bccfd18fcc from=translated src=- shape=a02e7085 vocab=a0774f56
+-/
 theorem cylinder_restart (d : ℕ → ℕ) (t m k : ℕ) (h : Realizes d t m) :
     Realizes d t (m + 2 ^ (S d t + 1) * k) ∧
     orbit (m + 2 ^ (S d t + 1) * k) t = orbit m t + 2 * 3 ^ t * k := by
@@ -181,7 +197,9 @@ theorem cylinder_restart (d : ℕ → ℕ) (t m k : ℕ) (h : Realizes d t m) :
 
 /-! ### Canonical-class corollary -/
 
-/-- The least realizer realizes its word (for positive words of positive length).-/
+/-- The least realizer realizes its word (for positive words of positive length).
+@isnad1 id=realizes.2h2v.s5.53468371fccc from=translated src=- shape=6bc5d519 vocab=211b62ba
+-/
 theorem leastRealizer_realizes (d : ℕ → ℕ) (t : ℕ) (ht : 1 ≤ t)
     (hd_pos : ∀ i < t, 1 ≤ d i) :
     Realizes d t (leastRealizer d t) :=
@@ -189,7 +207,9 @@ theorem leastRealizer_realizes (d : ℕ → ℕ) (t : ℕ) (ht : 1 ≤ t)
     (leastRealizer_modEq d t)
 
 /-- **Cylinder parameterisation.** Every element `leastRealizer d t + 2^(S d t + 1) k` of the
-realizer class realizes `d`, with `t`-th iterate translated by `2 * 3^t * k`.-/
+realizer class realizes `d`, with `t`-th iterate translated by `2 * 3^t * k`.
+@isnad1 id=and.2h3v.s7.45db8ba358a1 from=translated src=- shape=7283bccb vocab=2d0bd7a4
+-/
 theorem cylinder_restart_leastRealizer (d : ℕ → ℕ) (t k : ℕ) (ht : 1 ≤ t)
     (hd_pos : ∀ i < t, 1 ≤ d i) :
     Realizes d t (leastRealizer d t + 2 ^ (S d t + 1) * k) ∧

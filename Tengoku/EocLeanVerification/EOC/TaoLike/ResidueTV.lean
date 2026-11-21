@@ -20,7 +20,9 @@ open Finset
 /-! ### Oddness of the restarted state -/
 
 /-- The accelerated orbit is odd after at least one step: `orbit m0 t = T (orbit m0 (t-1))`
-and `T` always produces an odd cofactor.-/
+and `T` always produces an odd cofactor.
+@isnad1 id=odd.1h2v.s4.3a1b98a5ec47 from=translated src=- shape=24da0823 vocab=474d1103
+-/
 theorem orbit_odd_of_pos (m0 t : ℕ) (ht : 1 ≤ t) : Odd (orbit m0 t) := by
   have hteq : t = (t - 1) + 1 := by omega
   rw [hteq, orbit_succ]
@@ -32,7 +34,9 @@ theorem orbit_odd_of_pos (m0 t : ℕ) (ht : 1 ≤ t) : Odd (orbit m0 t) := by
 and an odd target residue `v`. For `Q ≥ 1`, the restarted-state condition
 `C + 2 * 3^t * k ≡ v (mod 2^Q)` is equivalent to a *single* residue condition on `k` modulo
 `2^(Q-1)` — one power of `2` less than the naive guess `2^Q`, because the restart map
-`2 * 3^t * k` carries a forced factor of `2` while `3^t` is a unit modulo `2^(Q-1)`.-/
+`2 * 3^t * k` carries a forced factor of `2` while `3^t` is a unit modulo `2^(Q-1)`.
+@isnad1 id=ex.3h4v.s7.f09c58aa15b5 from=translated src=- shape=67963ec3 vocab=87745601
+-/
 theorem restart_residue_iff (C : ℕ) (hCodd : Odd C) (t Q v : ℕ) (hvodd : Odd v) (hQ : 1 ≤ Q) :
     ∃ u_v < 2 ^ (Q - 1), ∀ k : ℕ,
       (C + 2 * 3 ^ t * k) % 2 ^ Q = v % 2 ^ Q ↔ k % 2 ^ (Q - 1) = u_v := by
@@ -128,7 +132,9 @@ theorem restart_residue_iff (C : ℕ) (hCodd : Odd C) (t Q v : ℕ) (hvodd : Odd
 `t ≥ 1` with base seed `r`. Reindex cylinder seeds as `m_{kmin+j} = r + 2^(S d t + 1) *
 (kmin + j)` for `j < N`. For any odd target residue `v` modulo `2^Q` (`Q ≥ 1`), the
 harmonic mass carried by `{k : orbit m_k t ≡ v (mod 2^Q)}` among the first `N` restarts
-differs from `1/2^(Q-1)` of the total harmonic mass by at most `1 / m_{kmin}`.-/
+differs from `1/2^(Q-1)` of the total harmonic mass by at most `1 / m_{kmin}`.
+@isnad1 id=le.4h7v.s9.432ff74cbe83 from=translated src=- shape=df3e8648 vocab=331631d8
+-/
 theorem residue_harmonic_mass_discrepancy
     (d : ℕ → ℕ) (t r : ℕ) (h : Realizes d t r) (ht : 1 ≤ t)
     (Q : ℕ) (hQ : 1 ≤ Q) (v : ℕ) (hvodd : Odd v)
@@ -187,7 +193,9 @@ uniform target distribution `U(v) = 1/2^(Q-1)`.-/
 def oddResidues (Q : ℕ) : Finset ℕ := (range (2 ^ Q)).filter (fun v => v % 2 = 1)
 
 /-- There are exactly `2^(Q-1)` odd residues modulo `2^Q`, for `Q ≥ 1` — an *exact* count
-(no discrepancy term), since `2 ∣ 2^Q`.-/
+(no discrepancy term), since `2 ∣ 2^Q`.
+@isnad1 id=eq.1h1v.s5.4b3598d8cc0e from=translated src=- shape=cfcddccb vocab=af41dca5
+-/
 theorem oddResidues_card (Q : ℕ) (hQ : 1 ≤ Q) : (oddResidues Q).card = 2 ^ (Q - 1) := by
   unfold oddResidues
   have hfilter_eq : (range (2 ^ Q)).filter (fun v => v % 2 = 1)
@@ -213,7 +221,9 @@ conditional harmonic mass on residue class `v` and `U(v) := 1/2^(Q-1)` the unifo
 distribution on odd residues, this is the explicit finite TV bound: conditioned on the
 realized prefix `d` (length `t ≥ 1`, base seed `r`), the restarted state's residue modulo
 `2^Q` is within `2^(Q-1) / (2 * m_{kmin} * W)` of uniform on odd residues, where
-`W = ∑_{j<N} 1/m_{kmin+j}` is the total conditional harmonic mass in the window.-/
+`W = ∑_{j<N} 1/m_{kmin+j}` is the total conditional harmonic mass in the window.
+@isnad1 id=le.5h7v.s9.4b7ec9e7609c from=translated src=- shape=29e91d7a vocab=1ded23fa
+-/
 theorem conditional_residue_tv_explicit
     (d : ℕ → ℕ) (t r : ℕ) (h : Realizes d t r) (ht : 1 ≤ t)
     (Q : ℕ) (hQ : 1 ≤ Q) (kmin N : ℕ)
@@ -281,7 +291,9 @@ theorem conditional_residue_tv_explicit
 /-- **Cylinder window reindexing.** For a window `Y ≤ m < Z` (with `r ≤ Y ≤ Z`), the
 cylinder points `m = r + Dcyl * k` landing in the window are exactly `r + Dcyl*(kmin+j)` for
 `j < N`, for an explicit `kmin` and `N` satisfying the explicit lower bound
-`Z - Y ≤ (N + 2) * Dcyl`. No asymptotic notation: `N ≥ (Z-Y)/Dcyl - 2` is exact and finite.-/
+`Z - Y ≤ (N + 2) * Dcyl`. No asymptotic notation: `N ≥ (Z-Y)/Dcyl - 2` is exact and finite.
+@isnad1 id=ex.3h4v.s7.f2e29c418d6c from=translated src=- shape=09d1069f vocab=554f40e3
+-/
 theorem cylinder_window_reindex (r Dcyl Y Z : ℕ) (hDcyl : 0 < Dcyl) (hYr : r ≤ Y) (hYZ : Y ≤ Z) :
     ∃ kmin N : ℕ,
       (∀ j < N, Y ≤ r + Dcyl * (kmin + j) ∧ r + Dcyl * (kmin + j) < Z) ∧
@@ -346,7 +358,9 @@ recovers exactly the paper's fixed-ratio window `Y ≤ m < λY = Y + H`. The ext
 `2 * 2^(S d t + 1) < η * Y` ("the window is thick relative to the cylinder spacing") is what
 guarantees the window contains at least one cylinder point, i.e. `W > 0`; without some such
 hypothesis the intersection can genuinely be empty (Part 13's "empty cylinder intersection"
-edge case), so this is stated honestly as a hypothesis rather than derived.-/
+edge case), so this is stated honestly as a hypothesis rather than derived.
+@isnad1 id=ex.7h7v.s9.dabaed3f381f from=translated src=- shape=fb0fe326 vocab=1ded23fa
+-/
 theorem thick_window_conditional_residue_tv
     (d : ℕ → ℕ) (t r : ℕ) (h : Realizes d t r) (ht : 1 ≤ t)
     (Q : ℕ) (hQ : 1 ≤ Q) (Y H : ℕ) (hYr : r ≤ Y) (η : ℝ) (hη : 0 < η)
@@ -385,7 +399,9 @@ theorem thick_window_conditional_residue_tv
 
 /-- **Harmonic window mass lower bound.** If every window point `A0 + D*j` (`j < N`) lies
 below `Y + H`, the total harmonic mass is at least `N / (Y+H)` — a generic finite fact, no
-Collatz structure involved.-/
+Collatz structure involved.
+@isnad1 id=le.3h5v.s7.494a88d0d9b2 from=translated src=- shape=105dccbb vocab=65d4a8b8
+-/
 theorem harmonic_window_mass_lower_bound (A0 D Y H : ℝ) (N : ℕ)
     (hA0pos : 0 < A0) (hDnn : 0 ≤ D)
     (hmem : ∀ j < N, A0 + D * j < Y + H) :
@@ -403,7 +419,9 @@ theorem harmonic_window_mass_lower_bound (A0 D Y H : ℝ) (N : ℕ)
 
 /-- **Cylinder count lower bound (thickness `≥ 4D`).** Combining the generic window count
 bound `H ≤ (N+2)D` (from `cylinder_window_reindex`) with a thickness hypothesis `4D ≤ H`
-gives the sharper multiplicative bound `H ≤ 2*N*D` — Lean-friendlier than a division.-/
+gives the sharper multiplicative bound `H ≤ 2*N*D` — Lean-friendlier than a division.
+@isnad1 id=le.2h3v.s6.ba7babb6e107 from=translated src=- shape=ea7c00ff vocab=c0715d49
+-/
 theorem cylinder_count_lower_bound_half (D N : ℕ) (H : ℝ)
     (h4D : 4 * (D : ℝ) ≤ H) (hNub : H ≤ ((N : ℝ) + 2) * (D : ℝ)) :
     H ≤ 2 * (N : ℝ) * (D : ℝ) := by
@@ -411,7 +429,9 @@ theorem cylinder_count_lower_bound_half (D N : ℕ) (H : ℝ)
 
 /-- **Normalization product lower bound.** Given `Y ≤ A0`, a harmonic-mass lower bound
 `N/(Y+H) ≤ W`, and the sharpened count bound `H ≤ 2ND`, the product `A0 * W` is bounded
-below multiplicatively (avoiding nested division): `Y*H ≤ 2*D*(Y+H)*(A0*W)`.-/
+below multiplicatively (avoiding nested division): `Y*H ≤ 2*D*(Y+H)*(A0*W)`.
+@isnad1 id=le.7h6v.s7.6b05d1ea67f3 from=translated src=- shape=92758b01 vocab=3a4e774d
+-/
 theorem window_normalization_lower_bound (A0 D Y H : ℝ) (N : ℕ) (W : ℝ)
     (hAY : Y ≤ A0) (hWnn : 0 ≤ W) (hWN : (N : ℝ) / (Y + H) ≤ W)
     (hND : H ≤ 2 * (N : ℝ) * D) (hYHpos : 0 < Y + H) (hYpos : 0 < Y) (hDnn : 0 ≤ D) :
@@ -437,7 +457,9 @@ open Classical in
 the cylinder-window parameters `kmin, N` — together with the exact membership fact `hmem` and
 size lower bound `hNlb` that `cylinder_window_reindex` would otherwise supply internally — are
 given directly by the caller (e.g. Milestone 10's exhaustive window construction). `kmin, N`
-appear verbatim in the conclusion; no internal re-selection.-/
+appear verbatim in the conclusion; no internal re-selection.
+@isnad1 id=ex.10h9v.s9.e7beafd4016c from=translated src=- shape=75196d98 vocab=1ded23fa
+-/
 theorem conditional_residue_tv_window_bound_at_window
     (d : ℕ → ℕ) (t r : ℕ) (h : Realizes d t r) (ht : 1 ≤ t)
     (Q : ℕ) (hQ : 1 ≤ Q) (Y H : ℕ) (hYr : r ≤ Y) (hYpos : 0 < Y) (η : ℝ) (hη : 0 < η)
@@ -547,7 +569,9 @@ theorem conditional_residue_tv_window_bound_at_window
     _ ≤ (2:ℝ) ^ (Q + S d t) * ((Y:ℝ) + H) / ((Y:ℝ) * H) := hstep
 
 /-- **Convenience wrapper** (unchanged public API): derives `kmin, N` (with `hmem`, `hNlb`) via
-`cylinder_window_reindex`, then invokes the fixed-window version.-/
+`cylinder_window_reindex`, then invokes the fixed-window version.
+@isnad1 id=ex.8h7v.s9.bdffd0b6a9c4 from=translated src=- shape=81437552 vocab=1ded23fa
+-/
 theorem conditional_residue_tv_window_bound
     (d : ℕ → ℕ) (t r : ℕ) (h : Realizes d t r) (ht : 1 ≤ t)
     (Q : ℕ) (hQ : 1 ≤ Q) (Y H : ℕ) (hYr : r ≤ Y) (hYpos : 0 < Y) (η : ℝ) (hη : 0 < η)
@@ -572,7 +596,9 @@ theorem conditional_residue_tv_window_bound
   exact ⟨kmin, N, W, hWpos, hWdef, hbound⟩
 
 /-- **Fixed-window version of `conditional_residue_tv_eta_bound`.** `kmin, N` (with `hmem`,
-`hNlb`) are supplied by the caller instead of derived via `cylinder_window_reindex`.-/
+`hNlb`) are supplied by the caller instead of derived via `cylinder_window_reindex`.
+@isnad1 id=ex.10h9v.s9.92fe823712c3 from=translated src=- shape=af7cab78 vocab=1ded23fa
+-/
 theorem conditional_residue_tv_eta_bound_at_window
     (d : ℕ → ℕ) (t r : ℕ) (h : Realizes d t r) (ht : 1 ≤ t)
     (Q : ℕ) (hQ : 1 ≤ Q) (Y H : ℕ) (hYr : r ≤ Y) (hYpos : 0 < Y) (η : ℝ) (hη : 0 < η)
@@ -613,7 +639,9 @@ theorem conditional_residue_tv_eta_bound_at_window
   exact mul_le_mul_of_nonneg_left hstep h2pos.le
 
 /-- **Convenience wrapper** (unchanged public API): derives `kmin, N` (with `hmem`, `hNlb`) via
-`cylinder_window_reindex`, then invokes the fixed-window version.-/
+`cylinder_window_reindex`, then invokes the fixed-window version.
+@isnad1 id=ex.8h7v.s9.2ea0278956b1 from=translated src=- shape=db485e42 vocab=1ded23fa
+-/
 theorem conditional_residue_tv_eta_bound
     (d : ℕ → ℕ) (t r : ℕ) (h : Realizes d t r) (ht : 1 ≤ t)
     (Q : ℕ) (hQ : 1 ≤ Q) (Y H : ℕ) (hYr : r ≤ Y) (hYpos : 0 < Y) (η : ℝ) (hη : 0 < η)

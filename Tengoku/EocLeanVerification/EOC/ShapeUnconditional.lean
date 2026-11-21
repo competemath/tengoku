@@ -39,12 +39,18 @@ open Finset CapacityBounds OddBlack ShapeCertificate
 
 /-! ## 1. The barrier as an integer logarithm -/
 
+/--
+@isnad1 id=le.1h2v.s5.17861bb198f9 from=translated src=- shape=8afba475 vocab=25a78025
+-/
 theorem alpha_mul_ge_of_pow_le (j s : ℕ) (h : 2 ^ s ≤ 3 ^ j) : (s : ℝ) ≤ j * alpha := by
   have hcast : (2 : ℝ) ^ s ≤ (3 : ℝ) ^ j := by exact_mod_cast h
   have hl := Real.logb_le_logb_of_le (b := 2) (by norm_num) (by positivity) hcast
   rw [Real.logb_pow, Real.logb_pow, Real.logb_self_eq_one (by norm_num)] at hl
   simpa [alpha] using hl
 
+/--
+@isnad1 id=eq.2h2v.s6.92e56523304a from=translated src=- shape=a52f2fc8 vocab=0dc053b7
+-/
 theorem barrier_eq_of_pow {j s : ℕ} (h1 : 2 ^ s ≤ 3 ^ j) (h2 : 3 ^ j < 2 ^ (s + 1)) :
     collatzBarrier 0 j = s := by
   unfold collatzBarrier
@@ -54,10 +60,16 @@ theorem barrier_eq_of_pow {j s : ℕ} (h1 : 2 ^ s ≤ 3 ^ j) (h2 : 3 ^ j < 2 ^ (
   push_cast at hhi ⊢
   constructor <;> linarith
 
+/--
+@isnad1 id=eq.0h1v.s5.36000e4b891f from=translated src=- shape=aeb7953c vocab=9d817cae
+-/
 theorem barrier_eq_log (j : ℕ) : collatzBarrier 0 j = Nat.log 2 (3 ^ j) :=
   barrier_eq_of_pow (Nat.pow_log_le_self 2 (pow_pos (by norm_num) j).ne')
     (Nat.lt_pow_succ_log_self (by norm_num) _)
 
+/--
+@isnad1 id=and.0h1v.s6.7537f973849d from=translated src=- shape=f07ea94b vocab=0dc053b7
+-/
 theorem barrier_pow_bounds (j : ℕ) :
     2 ^ collatzBarrier 0 j ≤ 3 ^ j ∧ 3 ^ j < 2 ^ (collatzBarrier 0 j + 1) := by
   rw [barrier_eq_log]
@@ -66,10 +78,16 @@ theorem barrier_pow_bounds (j : ℕ) :
 
 /-! ## 2. The `+300` barrier recurrence, in `ℕ` -/
 
+/--
+@isnad1 id=lt.1h2v.s5.d41180a322fe from=translated src=- shape=813f289e vocab=7ddce274
+-/
 theorem lt_of_two_pow_lt {a b : ℕ} (h : 2 ^ a < 2 ^ b) : a < b := by
   by_contra hc
   exact absurd h (not_lt.mpr (Nat.pow_le_pow_right (by norm_num) (by omega)))
 
+/--
+@isnad1 id=le.3h5v.s7.d65a9806affb from=translated src=- shape=713bf301 vocab=3f16b8dd
+-/
 theorem add_le_of_pow {A s s' u v : ℕ} (h1 : 2 ^ s ≤ A) (hk : 2 ^ u < 3 ^ v)
     (h2 : A * 3 ^ v < 2 ^ (s' + 1)) : s + u ≤ s' := by
   have h : 2 ^ (s + u) < 2 ^ (s' + 1) := by
@@ -78,6 +96,9 @@ theorem add_le_of_pow {A s s' u v : ℕ} (h1 : 2 ^ s ≤ A) (hk : 2 ^ u < 3 ^ v)
   have := lt_of_two_pow_lt h
   omega
 
+/--
+@isnad1 id=lt.3h5v.s7.9e4d74971ed2 from=translated src=- shape=2ec75f25 vocab=3f16b8dd
+-/
 theorem lt_add_of_pow {A s s' u v : ℕ} (h1 : 2 ^ s' ≤ A * 3 ^ v) (hA : A < 2 ^ (s + 1))
     (hk : 3 ^ v < 2 ^ u) : s' < s + 1 + u := by
   have h : 2 ^ s' < 2 ^ (s + 1 + u) := by
@@ -85,19 +106,33 @@ theorem lt_add_of_pow {A s s' u v : ℕ} (h1 : 2 ^ s' ≤ A * 3 ^ v) (hA : A < 2
     exact lt_of_le_of_lt h1 (mul_lt_mul'' hA hk (Nat.zero_le _) (Nat.zero_le _))
   exact lt_of_two_pow_lt h
 
+/--
+@isnad1 id=lt.0h0v.s5.89dafa31de1f from=translated src=- shape=d88261e9 vocab=7ddce274
+-/
 theorem pow_475_lt : 2 ^ 475 < 3 ^ 300 := by decide +kernel
+/--
+@isnad1 id=lt.0h0v.s5.39a8b85c4533 from=translated src=- shape=d88261e9 vocab=7ddce274
+-/
 theorem pow_476_gt : 3 ^ 300 < 2 ^ 476 := by decide +kernel
 
+/--
+@isnad1 id=le.0h1v.s5.d86a34e3c65e from=translated src=- shape=04fb8d4c vocab=61331bff
+-/
 theorem barrier_add_lower (j : ℕ) : collatzBarrier 0 j + 475 ≤ collatzBarrier 0 (j + 300) :=
   add_le_of_pow (barrier_pow_bounds j).1 pow_475_lt
     (by rw [← pow_add]; exact (barrier_pow_bounds (j + 300)).2)
 
+/--
+@isnad1 id=le.0h1v.s5.beaba5ae0a6d from=translated src=- shape=66d4245f vocab=61331bff
+-/
 theorem barrier_add_upper (j : ℕ) : collatzBarrier 0 (j + 300) ≤ collatzBarrier 0 j + 476 := by
   have h := lt_add_of_pow (by rw [← pow_add]; exact (barrier_pow_bounds (j + 300)).1)
     (barrier_pow_bounds j).2 pow_476_gt
   omega
 
-/-- `200 σ < 317 j`, i.e. `σ < 1.585 j` (from `3^200 < 2^317`).-/
+/-- `200 σ < 317 j`, i.e. `σ < 1.585 j` (from `3^200 < 2^317`).
+@isnad1 id=lt.1h1v.s5.111ce95f9e54 from=translated src=- shape=8a210c48 vocab=9a70e19d
+-/
 theorem barrier_lt (j : ℕ) (hj : 1 ≤ j) : 200 * collatzBarrier 0 j < 317 * j := by
   have h1 := (barrier_pow_bounds j).1
   have hk : 3 ^ 200 < 2 ^ 317 := by decide +kernel
@@ -111,6 +146,9 @@ theorem barrier_lt (j : ℕ) (hj : 1 ≤ j) : 200 * collatzBarrier 0 j < 317 * j
 
 /-! ## 3. Block binomial growth (Vandermonde) -/
 
+/--
+@isnad1 id=le.0h4v.s5.e82f76f5e1ce from=translated src=- shape=161bda52 vocab=6e3d1898
+-/
 theorem choose_mul_le_choose_add (n m k l : ℕ) :
     n.choose k * m.choose l ≤ (n + m).choose (k + l) := by
   rw [Nat.add_choose_eq]
@@ -120,21 +158,31 @@ theorem choose_mul_le_choose_add (n m k l : ℕ) :
       Nat.zero_le (n.choose ij.1 * m.choose ij.2)) hm
 
 /-- Vandermonde block product with the sums supplied as equations, so that literal targets such as
-`C(190,120)` are never matched against `C(95+95,60+60)` by unfolding `Nat.choose`.-/
+`C(190,120)` are never matched against `C(95+95,60+60)` by unfolding `Nat.choose`.
+@isnad1 id=le.2h6v.s5.d53a2ddeddb1 from=translated src=- shape=141cb7ea vocab=6e3d1898
+-/
 theorem choose_mul_le_choose_of_eq {n m k l N L : ℕ} (hN : n + m = N) (hL : k + l = L) :
     n.choose k * m.choose l ≤ N.choose L := by
   subst hN hL
   exact choose_mul_le_choose_add n m k l
 
+/--
+@isnad1 id=le.0h0v.s5.70be84fa95ee from=translated src=- shape=bec3b7c0 vocab=e48516f8
+-/
 theorem choose95_lower : 2 ^ 86 ≤ Nat.choose 95 60 := by
   rw [Nat.choose_eq_factorial_div_factorial (by decide)]
   decide +kernel
 
+/--
+@isnad1 id=le.0h0v.s5.c339ecc0147f from=translated src=- shape=bec3b7c0 vocab=e48516f8
+-/
 theorem choose94_lower : 2 ^ 85 ≤ Nat.choose 94 59 := by
   rw [Nat.choose_eq_factorial_div_factorial (by decide)]
   decide +kernel
 
-/-- Abstract five-fold product chain (no literals, so `calc` is safe here).-/
+/-- Abstract five-fold product chain (no literals, so `calc` is safe here).
+@isnad1 id=le.4h5v.s6.4e8a6cd1cd4c from=translated src=- shape=2f422cf1 vocab=45880164
+-/
 theorem pow5_le_of_chain {c x2 x3 x4 x5 : ℕ} (h2 : c * c ≤ x2) (h3 : x2 * c ≤ x3)
     (h4 : x3 * c ≤ x4) (h5 : x4 * c ≤ x5) : c ^ 5 ≤ x5 := by
   calc c ^ 5 = (((c * c) * c) * c) * c := by ring
@@ -144,7 +192,9 @@ theorem pow5_le_of_chain {c x2 x3 x4 x5 : ℕ} (h2 : c * c ≤ x2) (h3 : x2 * c 
     _ ≤ x4 * c := Nat.mul_le_mul_right _ h4
     _ ≤ x5 := h5
 
-/-- Abstract four-fold product chain with a different last factor.-/
+/-- Abstract four-fold product chain with a different last factor.
+@isnad1 id=le.4h6v.s6.4dc9362c7927 from=translated src=- shape=35812a1d vocab=45880164
+-/
 theorem pow4_mul_le_of_chain {c d x2 x3 x4 x5 : ℕ} (h2 : c * c ≤ x2) (h3 : x2 * c ≤ x3)
     (h4 : x3 * c ≤ x4) (h5 : x4 * d ≤ x5) : c ^ 4 * d ≤ x5 := by
   calc c ^ 4 * d = (((c * c) * c) * c) * d := by ring
@@ -154,7 +204,9 @@ theorem pow4_mul_le_of_chain {c d x2 x3 x4 x5 : ℕ} (h2 : c * c ≤ x2) (h3 : x
     _ ≤ x4 * d := Nat.mul_le_mul_right _ h4
     _ ≤ x5 := h5
 
-/-- `C(95,60)^5 ≤ C(475,300)`.-/
+/-- `C(95,60)^5 ≤ C(475,300)`.
+@isnad1 id=le.0h0v.s5.52de523f6c5d from=translated src=- shape=18353e0d vocab=e48516f8
+-/
 theorem choose475_ge : Nat.choose 95 60 ^ 5 ≤ Nat.choose 475 300 :=
   pow5_le_of_chain
     (choose_mul_le_choose_of_eq (n := 95) (m := 95) (k := 60) (l := 60)
@@ -166,7 +218,9 @@ theorem choose475_ge : Nat.choose 95 60 ^ 5 ≤ Nat.choose 475 300 :=
     (choose_mul_le_choose_of_eq (n := 380) (m := 95) (k := 240) (l := 60)
       (N := 475) (L := 300) rfl rfl)
 
-/-- `C(95,60)^4 · C(94,59) ≤ C(474,299)`.-/
+/-- `C(95,60)^4 · C(94,59) ≤ C(474,299)`.
+@isnad1 id=le.0h0v.s5.69835e1d2e06 from=translated src=- shape=b1018e16 vocab=fe4bc797
+-/
 theorem choose474_ge : Nat.choose 95 60 ^ 4 * Nat.choose 94 59 ≤ Nat.choose 474 299 :=
   pow4_mul_le_of_chain
     (choose_mul_le_choose_of_eq (n := 95) (m := 95) (k := 60) (l := 60)
@@ -178,12 +232,17 @@ theorem choose474_ge : Nat.choose 95 60 ^ 4 * Nat.choose 94 59 ≤ Nat.choose 47
     (choose_mul_le_choose_of_eq (n := 380) (m := 94) (k := 240) (l := 59)
       (N := 474) (L := 299) rfl rfl)
 
-/-- **Block constant.** `2 · 3^150 · 2^477 ≤ 2^150 · 3^93 · C(475,300)`.-/
+/-- **Block constant.** `2 · 3^150 · 2^477 ≤ 2^150 · 3^93 · C(475,300)`.
+@isnad1 id=le.0h0v.s7.fba05628e191 from=translated src=- shape=600c5030 vocab=fe4bc797
+-/
 theorem block_constant : 2 * 3 ^ 150 * 2 ^ 477 ≤ 2 ^ 150 * 3 ^ 93 * Nat.choose 475 300 := by
   have hn : 2 * 3 ^ 150 * 2 ^ 477 ≤ 2 ^ 150 * 3 ^ 93 * (2 ^ 86) ^ 5 := by decide +kernel
   exact hn.trans (Nat.mul_le_mul_left _
     ((Nat.pow_le_pow_left choose95_lower 5).trans choose475_ge))
 
+/--
+@isnad1 id=le.3h3v.s7.bb9e6ceb6793 from=translated src=- shape=a0e95750 vocab=c34e61fd
+-/
 theorem choose_step (j s s' : ℕ) (hj : 1 ≤ j) (hs1 : 1 ≤ s) (hs : s + 475 ≤ s') :
     (s - 1).choose (j - 1) * Nat.choose 475 300 ≤ (s' - 1).choose (j + 300 - 1) := by
   rw [show j + 300 - 1 = j - 1 + 300 by omega]
@@ -196,7 +255,9 @@ theorem choose_step (j s s' : ℕ) (hj : 1 ≤ j) (hs1 : 1 ≤ s) (hs : s + 475 
 def Arith (j s e : ℕ) : Prop :=
   j * 3 ^ (j / 2) * 2 ^ (s + e) ≤ 2 ^ (j / 2) * 3 ^ (31 * j / 100) * (s - 1).choose (j - 1)
 
-/-- The induction step with every exponent abstract (no literal powers are ever normalized).-/
+/-- The induction step with every exponent abstract (no literal powers are ever normalized).
+@isnad1 id=le.5h14v.s8.c3561b554ae9 from=translated src=- shape=096ad48c vocab=f96c6fce
+-/
 theorem step_core {j j' m t s s' e e' C C' B a c d : ℕ}
     (hj : j' ≤ 2 * j) (hs : s' + e' ≤ s + e + c) (hC : C * B ≤ C')
     (hblock : 2 * 3 ^ a * 2 ^ c ≤ 2 ^ a * 3 ^ d * B)
@@ -211,7 +272,9 @@ theorem step_core {j j' m t s s' e e' C C' B a c d : ℕ}
     _ ≤ 2 ^ (m + a) * 3 ^ (t + d) * C' := Nat.mul_le_mul_left _ hC
 
 /-- **The residue-independent `+300` step.**  Each block gains `≥ 11` bits
-(`log₂` of `2^150 3^93 2^430 / (2 · 3^150 · 2^477)`), which pays one extra bit of rate.-/
+(`log₂` of `2^150 3^93 2^430 / (2 · 3^150 · 2^477)`), which pays one extra bit of rate.
+@isnad1 id=arith.2h2v.s6.64857b4b4860 from=translated src=- shape=909a6086 vocab=bdb5462a
+-/
 theorem arith_step {j e : ℕ} (hj : 300 ≤ j) (h : Arith j (collatzBarrier 0 j) e) :
     Arith (j + 300) (collatzBarrier 0 (j + 300)) (e + 1) := by
   unfold Arith at h ⊢
@@ -223,6 +286,9 @@ theorem arith_step {j e : ℕ} (hj : 300 ≤ j) (h : Arith j (collatzBarrier 0 j
   exact step_core (a := 150) (c := 477) (d := 93) (by omega) (by omega)
     (choose_step j _ _ (by omega) (by omega) hlo) block_constant h
 
+/--
+@isnad1 id=arith.1h2v.s7.1235aa541f4d from=translated src=- shape=813598e5 vocab=509d27fc
+-/
 theorem arith_of_base {r : ℕ} (hbase : Arith (300 + r) (collatzBarrier 0 (300 + r)) 1) (q : ℕ) :
     Arith (300 + r + 300 * q) (collatzBarrier 0 (300 + r + 300 * q)) (q + 1) := by
   induction q with
@@ -233,9 +299,15 @@ theorem arith_of_base {r : ℕ} (hbase : Arith (300 + r) (collatzBarrier 0 (300 
 
 /-! ## 5. Cofinal base `j = 300` (block-product constants only) -/
 
+/--
+@isnad1 id=eq.0h0v.s4.6594f27595bf from=translated src=- shape=7226d0ee vocab=37e71566
+-/
 theorem barrier_300 : collatzBarrier 0 300 = 475 :=
   barrier_eq_of_pow (by decide +kernel) (by decide +kernel)
 
+/--
+@isnad1 id=arith.0h0v.s4.f0c18323ece6 from=translated src=- shape=dae89bba vocab=d37be54b
+-/
 theorem arith_base_300 : Arith 300 (collatzBarrier 0 300) 1 := by
   unfold Arith
   rw [barrier_300, show (300 : ℕ) / 2 = 150 from rfl, show 31 * 300 / 100 = 93 from rfl,
@@ -245,6 +317,9 @@ theorem arith_base_300 : Arith 300 (collatzBarrier 0 300) 1 := by
   exact hn.trans (Nat.mul_le_mul_left _
     ((Nat.mul_le_mul (Nat.pow_le_pow_left choose95_lower 4) choose94_lower).trans choose474_ge))
 
+/--
+@isnad1 id=arith.0h1v.s6.06fc4cb43e7d from=translated src=- shape=372c0cd0 vocab=509d27fc
+-/
 theorem arith_cofinal (q : ℕ) :
     Arith (300 * (q + 1)) (collatzBarrier 0 (300 * (q + 1))) (q + 1) := by
   have h := arith_of_base (r := 0) arith_base_300 q
@@ -267,6 +342,9 @@ def checkAt (j s : ℕ) : Bool :=
 
 def baseOK (j : ℕ) : Bool := checkAt j (bitLen (2 * j + 2) (3 ^ j) - 1)
 
+/--
+@isnad1 id=arith.1h2v.s4.4b2e0d49dc99 from=translated src=- shape=5d828bbe vocab=f20a1390
+-/
 theorem arith_of_checkAt {j s : ℕ} (h : checkAt j s = true) : Arith j (collatzBarrier 0 j) 1 := by
   simp only [checkAt, Bool.and_eq_true, decide_eq_true_eq] at h
   obtain ⟨⟨⟨⟨hj1, hjs⟩, h1⟩, h2⟩, h3⟩ := h
@@ -274,13 +352,21 @@ theorem arith_of_checkAt {j s : ℕ} (h : checkAt j s = true) : Arith j (collatz
   unfold Arith
   rwa [Nat.choose_eq_factorial_div_factorial (by omega), show s - 1 - (j - 1) = s - j by omega]
 
+/--
+@isnad1 id=arith.1h1v.s4.3307a6a95b3b from=translated src=- shape=3f52ae73 vocab=1c5d5da6
+-/
 theorem arith_of_baseOK {j : ℕ} (h : baseOK j = true) : Arith j (collatzBarrier 0 j) 1 :=
   arith_of_checkAt h
 
 set_option maxRecDepth 100000 in
-/-- **The 150 even base certificates**, `j = 300, 302, …, 598`, checked by the kernel.-/
+/-- **The 150 even base certificates**, `j = 300, 302, …, 598`, checked by the kernel.
+@isnad1 id=eq.1h1v.s5.1f57598cc3be from=translated src=- shape=ad871366 vocab=9fbadec8
+-/
 theorem bases_ok : ∀ i < 150, baseOK (300 + 2 * i) = true := by decide +kernel
 
+/--
+@isnad1 id=arith.2h1v.s5.7cf5ed595bf8 from=translated src=- shape=0a97ac42 vocab=51c31e64
+-/
 theorem arith_allEven {j : ℕ} (hj : 300 ≤ j) (hev : 2 ∣ j) :
     Arith j (collatzBarrier 0 j) (j / 300) := by
   obtain ⟨i, hi, q, rfl⟩ : ∃ i < 150, ∃ q, j = 300 + 2 * i + 300 * q :=
@@ -290,12 +376,17 @@ theorem arith_allEven {j : ℕ} (hj : 300 ≤ j) (hev : 2 ∣ j) :
 
 /-! ## 7. Side conditions and the real-valued certificate -/
 
+/--
+@isnad1 id=le.1h1v.s6.6e2a65e6c4f2 from=translated src=- shape=44913b8c vocab=1b0e6ec9
+-/
 theorem budget (j : ℕ) (hj : 300 ≤ j) :
     j / 25 + 31 * j / 100 + collatzBarrier 0 j / (10 + 2) ≤ j / 2 := by
   have := barrier_lt j (by omega)
   omega
 
-/-- Clearing denominators, with all quantities abstract.-/
+/-- Clearing denominators, with all quantities abstract.
+@isnad1 id=le.1h6v.s8.8e57f13afce6 from=translated src=- shape=0cf57cdf vocab=da962dc8
+-/
 theorem real_of_nat {j m s e t C : ℕ} (h : j * 3 ^ m * 2 ^ (s + e) ≤ 2 ^ m * 3 ^ t * C) :
     (j : ℝ) * ((3 / 2 : ℝ) ^ m * (2 : ℝ) ^ s) ≤ ((2 : ℝ) ^ e)⁻¹ * 3 ^ t * (C : ℝ) := by
   have hr : (j : ℝ) * 3 ^ m * 2 ^ (s + e) ≤ 2 ^ m * 3 ^ t * C := by exact_mod_cast h
@@ -309,7 +400,9 @@ theorem real_of_nat {j m s e t C : ℕ} (h : j * 3 ^ m * 2 ^ (s + e) ≤ 2 ^ m *
   rw [e1, e2]
   exact div_le_div_of_nonneg_right hr hpos.le
 
-/-- ShapeTail from the certificate at any rate exponent `e`, all other hypotheses discharged.-/
+/-- ShapeTail from the certificate at any rate exponent `e`, all other hypotheses discharged.
+@isnad1 id=shapetai.3h2v.s6.ee8c27ea558a from=translated src=- shape=3b5a888f vocab=342816ff
+-/
 theorem shapeTail_of_Arith {j e : ℕ} (hj : 300 ≤ j) (hev : 2 ∣ j)
     (h : Arith j (collatzBarrier 0 j) e) :
     ShapeTail (collatzBarrier 0) j (collatzBarrier 0 j) 10 (j / 25) ((2 : ℝ) ^ e)⁻¹ := by
@@ -321,7 +414,9 @@ theorem shapeTail_of_Arith {j e : ℕ} (hj : 300 ≤ j) (hev : 2 ∣ j)
 /-! ## 8. Main theorems -/
 
 /-- **Cofinal unconditional ShapeTail.** `j₀ = 300(q+1)`, `σ = ⌊j₀ log₂ 3⌋`, `N₀ = 10`,
-`K = 12(q+1)`, `ρ₁ = 2^{-(q+1)}` (with `T = 93(q+1)` in the certificate).-/
+`K = 12(q+1)`, `ρ₁ = 2^{-(q+1)}` (with `T = 93(q+1)` in the certificate).
+@isnad1 id=shapetai.0h1v.s7.57be08a983c3 from=translated src=- shape=8d1f8f10 vocab=34e3ae28
+-/
 theorem shapeTail_cofinal (q : ℕ) :
     ShapeTail (collatzBarrier 0) (300 * (q + 1)) (collatzBarrier 0 (300 * (q + 1))) 10
       (12 * (q + 1)) ((2 : ℝ) ^ (q + 1))⁻¹ := by
@@ -329,11 +424,16 @@ theorem shapeTail_cofinal (q : ℕ) :
   rwa [show 300 * (q + 1) / 25 = 12 * (q + 1) by omega] at h
 
 /-- **All-even unconditional ShapeTail.** For every even `j₀ ≥ 300`: `σ = ⌊j₀ log₂ 3⌋`,
-`N₀ = 10`, `K = ⌊j₀/25⌋`, `ρ₁ = 2^{-⌊j₀/300⌋}` (with `T = ⌊31 j₀/100⌋` in the certificate).-/
+`N₀ = 10`, `K = ⌊j₀/25⌋`, `ρ₁ = 2^{-⌊j₀/300⌋}` (with `T = ⌊31 j₀/100⌋` in the certificate).
+@isnad1 id=shapetai.2h1v.s6.078faf51cb03 from=translated src=- shape=bf1f14bf vocab=d9bbdb63
+-/
 theorem shapeTail_allEven {j : ℕ} (hj : 300 ≤ j) (hev : 2 ∣ j) :
     ShapeTail (collatzBarrier 0) j (collatzBarrier 0 j) 10 (j / 25) ((2 : ℝ) ^ (j / 300))⁻¹ :=
   shapeTail_of_Arith hj hev (arith_allEven hj hev)
 
+/--
+@isnad1 id=le.0h1v.s6.cd75910ca0eb from=translated src=- shape=7f304bf4 vocab=3b6e6a9e
+-/
 theorem rho_le_rate (j : ℕ) : ((2 : ℝ) ^ (j / 300))⁻¹ ≤ 2 * (2 : ℝ) ^ (-(j : ℝ) / 300) := by
   have hn : (j : ℝ) < 300 * ((j / 300 : ℕ) : ℝ) + 300 := by
     have : j < 300 * (j / 300) + 300 := by omega
@@ -344,7 +444,9 @@ theorem rho_le_rate (j : ℕ) : ((2 : ℝ) ^ (j / 300))⁻¹ ≤ 2 * (2 : ℝ) ^
     _ = 2 * (2 : ℝ) ^ (-(j : ℝ) / 300) := by
         rw [Real.rpow_add (by norm_num), Real.rpow_one]
 
-/-- **All-even ShapeTail with an explicit exponential rate** `ρ₁ ≤ 2 · 2^{-j₀/300}`.-/
+/-- **All-even ShapeTail with an explicit exponential rate** `ρ₁ ≤ 2 · 2^{-j₀/300}`.
+@isnad1 id=ex.2h1v.s6.511938334893 from=translated src=- shape=6fc404cc vocab=eeadc78e
+-/
 theorem shapeTail_allEven_rate :
     ∀ j : ℕ, 300 ≤ j → 2 ∣ j →
       ∃ ρ₁ : ℝ, ρ₁ ≤ 2 * (2 : ℝ) ^ (-(j : ℝ) / 300) ∧

@@ -71,7 +71,9 @@ private theorem aggregate_dvd_step (d : ℕ → ℕ) (m0 j : ℕ)
     dvd_of_dvd_add_self_right (by positivity) h'
   exact cancel_three_dvd_pow_two (s d j) (3 ^ j * m0 + q d j) h3A
 
-/-- **Descending integrality** (Prop 5.2 part (a), literal conclusion).-/
+/-- **Descending integrality** (Prop 5.2 part (a), literal conclusion).
+@isnad1 id=dvd.2h4v.s7.facb6c90700f from=translated src=- shape=ffc05354 vocab=d6d3b534
+-/
 theorem aggregate_dvd_of_aggregate (d : ℕ → ℕ) (m0 N : ℕ)
     (hagg : 2 ^ S d N ∣ (3 ^ N * m0 + q d N)) :
     ∀ j, j ≤ N → 2 ^ s d j ∣ (3 ^ j * m0 + q d j) := by
@@ -94,7 +96,9 @@ theorem aggregate_dvd_of_aggregate (d : ℕ → ℕ) (m0 N : ℕ)
     rw [hNi] at hstep
     exact aggregate_dvd_step d m0 (N - (i + 1)) hstep
 
-/-- **Integrality transferred to `iter`.**-/
+/-- **Integrality transferred to `iter`.**
+@isnad1 id=eq.2h4v.s7.7b9232312b0b from=translated src=- shape=e54ef8d9 vocab=3f28d519
+-/
 theorem iter_matches_closed_form (d : ℕ → ℕ) (m0 N : ℕ)
     (hagg : 2 ^ S d N ∣ (3 ^ N * m0 + q d N)) :
     ∀ j, j ≤ N → 2 ^ s d j * iter d m0 j = 3 ^ j * m0 + q d j := by
@@ -121,7 +125,9 @@ theorem iter_matches_closed_form (d : ℕ → ℕ) (m0 N : ℕ)
     rw [s_succ, pow_add, hiter_succ, hid, hk]
     ring
 
-/-- **The deliverable: `hdvd`, derived rather than assumed.**-/
+/-- **The deliverable: `hdvd`, derived rather than assumed.**
+@isnad1 id=dvd.2h4v.s6.cda0fc3b231d from=translated src=- shape=facf3354 vocab=5117eabe
+-/
 theorem hdvd_of_aggregate (d : ℕ → ℕ) (m0 N : ℕ)
     (hagg : 2 ^ S d N ∣ (3 ^ N * m0 + q d N)) :
     ∀ i, i < N → 2 ^ d i ∣ (3 * iter d m0 i + 1) := by
@@ -142,7 +148,9 @@ theorem hdvd_of_aggregate (d : ℕ → ℕ) (m0 N : ℕ)
 
 /-! ### Proposition 5.2, part (b): interior oddness -/
 
-/-- **Interior oddness** (Prop 5.2 part (b)).-/
+/-- **Interior oddness** (Prop 5.2 part (b)).
+@isnad1 id=odd.3h4v.s6.4bc9c20c0c78 from=translated src=- shape=523986ca vocab=37bf9ebc
+-/
 theorem interior_odd (d : ℕ → ℕ) (m0 N : ℕ)
     (hagg : 2 ^ S d N ∣ (3 ^ N * m0 + q d N))
     (hd_pos : ∀ i < N, 1 ≤ d i) :
@@ -166,7 +174,9 @@ theorem interior_odd (d : ℕ → ℕ) (m0 N : ℕ)
   rw [Nat.odd_iff]
   omega
 
-/-- Corollary: for `N ≥ 1`, the seed `m0` itself is forced odd.-/
+/-- Corollary: for `N ≥ 1`, the seed `m0` itself is forced odd.
+@isnad1 id=odd.3h3v.s6.0be401f47785 from=translated src=- shape=44724693 vocab=567a9182
+-/
 theorem m0_odd_of_aggregate (d : ℕ → ℕ) (m0 N : ℕ) (hN : 1 ≤ N)
     (hagg : 2 ^ S d N ∣ (3 ^ N * m0 + q d N))
     (hd_pos : ∀ i < N, 1 ≤ d i) :
@@ -176,7 +186,9 @@ theorem m0_odd_of_aggregate (d : ℕ → ℕ) (m0 N : ℕ) (hN : 1 ≤ N)
 
 /-! ### Proposition 5.2, part (c): exact valuations -/
 
-/-- **Interior exact valuation** (Prop 5.2 part (c), first half).-/
+/-- **Interior exact valuation** (Prop 5.2 part (c), first half).
+@isnad1 id=eq.3h4v.s6.5480a0d0ca01 from=translated src=- shape=d6300515 vocab=10791426
+-/
 theorem exact_val_interior (d : ℕ → ℕ) (m0 N : ℕ)
     (hagg : 2 ^ S d N ∣ (3 ^ N * m0 + q d N))
     (hd_pos : ∀ i < N, 1 ≤ d i) :
@@ -197,7 +209,9 @@ theorem exact_val_interior (d : ℕ → ℕ) (m0 N : ℕ)
   omega
 
 /-- **Terminal exactness ⟺ terminal parity** (Prop 5.2 part (c), second half,
-`N ≥ 1`).-/
+`N ≥ 1`).
+@isnad1 id=iff.3h3v.s7.cc28c79d7bce from=translated src=- shape=b11125f2 vocab=a290da5a
+-/
 theorem exact_val_iff_terminal_odd (d : ℕ → ℕ) (m0 N : ℕ) (hN : 1 ≤ N)
     (hagg : 2 ^ S d N ∣ (3 ^ N * m0 + q d N))
     (hd_pos : ∀ i < N, 1 ≤ d i) :
@@ -284,7 +298,9 @@ private theorem dvd_of_modEq_two_pow_succ (S : ℕ) {q : ℕ}
       exact hdecomp.symm⟩
   exact ⟨2 * c + 1, by rw [hc, pow_succ]; ring⟩
 
-/-- **Proposition 5.2 (Exact realizer congruence) — the full statement.**-/
+/-- **Proposition 5.2 (Exact realizer congruence) — the full statement.**
+@isnad1 id=iff.2h3v.s6.c16542c3cdd4 from=translated src=- shape=fe1e2e1b vocab=94bf5682
+-/
 theorem realizerCongruence (d : ℕ → ℕ) (N m0 : ℕ) (hm0 : Odd m0)
     (hd_pos : ∀ i < N, 1 ≤ d i) :
     Realizes d N m0 ↔ 3 ^ N * m0 + q d N ≡ 2 ^ S d N [MOD 2 ^ (S d N + 1)] := by
@@ -444,13 +460,22 @@ private theorem dvd_add_pow_of_modEq (S A : ℕ) (h : A ≡ 2 ^ S [MOD 2 ^ (S + 
 def coarseAnchor (d : ℕ → ℕ) (N S : ℕ) : ℕ :=
   Nat.find (exists_lt_dvd N S (q d N))
 
+/--
+@isnad1 id=lt.0h3v.s5.ab60f9dce145 from=translated src=- shape=87ad5f29 vocab=8f76f776
+-/
 theorem coarseAnchor_lt (d : ℕ → ℕ) (N S : ℕ) : coarseAnchor d N S < 2 ^ S :=
   (Nat.find_spec (exists_lt_dvd N S (q d N))).1
 
+/--
+@isnad1 id=dvd.0h3v.s6.aa09fbe773bc from=translated src=- shape=d4ba44b1 vocab=27c2b9ed
+-/
 theorem coarseAnchor_dvd (d : ℕ → ℕ) (N S : ℕ) :
     2 ^ S ∣ (3 ^ N * coarseAnchor d N S + q d N) :=
   (Nat.find_spec (exists_lt_dvd N S (q d N))).2
 
+/--
+@isnad1 id=eq.2h4v.s6.5843456be9c2 from=translated src=- shape=3a68d6ef vocab=5b046c3c
+-/
 theorem coarseAnchor_unique (d : ℕ → ℕ) (N S x : ℕ) (hxlt : x < 2 ^ S)
     (hxd : 2 ^ S ∣ (3 ^ N * x + q d N)) : x = coarseAnchor d N S :=
   eq_of_lt_dvd N S (q d N) x (coarseAnchor d N S) hxlt (coarseAnchor_lt d N S) hxd
@@ -461,13 +486,22 @@ theorem coarseAnchor_unique (d : ℕ → ℕ) (N S x : ℕ) (hxlt : x < 2 ^ S)
 def leastRealizer (d : ℕ → ℕ) (N : ℕ) : ℕ :=
   Nat.find (exists_lt_dvd N (S d N + 1) (q d N + 2 ^ S d N))
 
+/--
+@isnad1 id=lt.0h2v.s5.288868cdd6fc from=translated src=- shape=17e0884d vocab=0a460e54
+-/
 theorem leastRealizer_lt (d : ℕ → ℕ) (N : ℕ) : leastRealizer d N < 2 ^ (S d N + 1) :=
   (Nat.find_spec (exists_lt_dvd N (S d N + 1) (q d N + 2 ^ S d N))).1
 
+/--
+@isnad1 id=dvd.0h2v.s6.bc7bdc586c6f from=translated src=- shape=d136bfc9 vocab=851bf6a1
+-/
 theorem leastRealizer_dvd (d : ℕ → ℕ) (N : ℕ) :
     2 ^ (S d N + 1) ∣ (3 ^ N * leastRealizer d N + (q d N + 2 ^ S d N)) :=
   (Nat.find_spec (exists_lt_dvd N (S d N + 1) (q d N + 2 ^ S d N))).2
 
+/--
+@isnad1 id=modeq.0h2v.s6.2116d40acd58 from=translated src=- shape=9ca42664 vocab=a71e3d97
+-/
 theorem leastRealizer_modEq (d : ℕ → ℕ) (N : ℕ) :
     3 ^ N * leastRealizer d N + q d N ≡ 2 ^ S d N [MOD 2 ^ (S d N + 1)] := by
   have h := leastRealizer_dvd d N
@@ -477,6 +511,9 @@ theorem leastRealizer_modEq (d : ℕ → ℕ) (N : ℕ) :
     rwa [heq] at h
   exact modEq_of_dvd_add_pow (S d N) (3 ^ N * leastRealizer d N + q d N) h'
 
+/--
+@isnad1 id=eq.2h3v.s7.fedf6922d6dd from=translated src=- shape=66bf6c49 vocab=7f16a138
+-/
 theorem leastRealizer_unique (d : ℕ → ℕ) (N x : ℕ) (hxlt : x < 2 ^ (S d N + 1))
     (hxmod : 3 ^ N * x + q d N ≡ 2 ^ S d N [MOD 2 ^ (S d N + 1)]) :
     x = leastRealizer d N := by
@@ -487,6 +524,9 @@ theorem leastRealizer_unique (d : ℕ → ℕ) (N x : ℕ) (hxlt : x < 2 ^ (S d 
   exact eq_of_lt_dvd N (S d N + 1) (q d N + 2 ^ S d N) x (leastRealizer d N) hxlt
     (leastRealizer_lt d N) hxdvd' (leastRealizer_dvd d N)
 
+/--
+@isnad1 id=odd.2h2v.s5.56c250c6e57f from=translated src=- shape=372205eb vocab=0748e290
+-/
 theorem leastRealizer_odd (d : ℕ → ℕ) (N : ℕ) (hN : 1 ≤ N) (hd_pos : ∀ i < N, 1 ≤ d i) :
     Odd (leastRealizer d N) := by
   have hdvd1 := leastRealizer_dvd d N
@@ -502,6 +542,9 @@ theorem leastRealizer_odd (d : ℕ → ℕ) (N : ℕ) (hN : 1 ≤ N) (hd_pos : �
 
 /-! ### Remark 5.4 -/
 
+/--
+@isnad1 id=or.0h2v.s5.5c9c07b4585d from=translated src=- shape=1ab4defd vocab=01db9d9a
+-/
 theorem leastRealizer_eq_or_eq_add (d : ℕ → ℕ) (N : ℕ) :
     leastRealizer d N = coarseAnchor d N (S d N) ∨
     leastRealizer d N = coarseAnchor d N (S d N) + 2 ^ S d N := by
@@ -531,6 +574,9 @@ theorem leastRealizer_eq_or_eq_add (d : ℕ → ℕ) (N : ℕ) :
     have heqr' : r' = coarseAnchor d N (S d N) := coarseAnchor_unique d N (S d N) r' hr'lt hagg_r'
     rw [hr', heqr']; ring
 
+/--
+@isnad1 id=le.0h2v.s4.e78f261d4984 from=translated src=- shape=2f3aad97 vocab=50d739ca
+-/
 theorem coarseAnchor_le_realizer (d : ℕ → ℕ) (N : ℕ) :
     coarseAnchor d N (S d N) ≤ leastRealizer d N := by
   rcases leastRealizer_eq_or_eq_add d N with h | h
@@ -542,6 +588,9 @@ theorem coarseAnchor_le_realizer (d : ℕ → ℕ) (N : ℕ) :
 
 /-! ### Lemma 5.6 (residue pinning) -/
 
+/--
+@isnad1 id=eq.3h2v.s6.6f7946f55381 from=translated src=- shape=aaa11b4a vocab=2f131011
+-/
 theorem residue_pinning (m0 N : ℕ) (hm0 : Odd m0)
     (hd_pos : ∀ i < N, 1 ≤ a (orbit m0 i))
     (hbound : m0 < 2 ^ (S (fun i => a (orbit m0 i)) N + 1)) :

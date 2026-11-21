@@ -26,7 +26,9 @@ open Finset
 /-- **Exhaustive AP window parametrization.** For a residue class `r mod D` and a window
 `[Y,Z)` with `r ≤ Y ≤ Z`, there is an explicit `kmin, N` such that a point `m ∈ [Y,Z)` lies in
 the class **iff** it is one of the `N` explicit points `r + D*(kmin+j)`. Proved fresh via
-`Nat.find` (least-witness), independent of `cylinder_window_reindex`'s internal construction.-/
+`Nat.find` (least-witness), independent of `cylinder_window_reindex`'s internal construction.
+@isnad1 id=ex.3h4v.s7.63bac29e43cf from=translated src=- shape=4ccc1261 vocab=f66c1ba1
+-/
 theorem modEq_window_exact (r D Y Z : ℕ) (hD : 0 < D) (hYr : r ≤ Y) (_hYZ : Y ≤ Z) :
     ∃ kmin N : ℕ, (∀ j < N, Y ≤ r + D * (kmin + j) ∧ r + D * (kmin + j) < Z) ∧
       ∀ m : ℕ, Y ≤ m → m < Z →
@@ -86,7 +88,9 @@ theorem modEq_window_exact (r D Y Z : ℕ) (hD : 0 < D) (hYr : r ≤ Y) (_hYZ : 
 the `_at_window` theorems built on `cylinder_window_reindex`'s two conclusions. Proved by a
 fresh, self-contained `Nat.find` argument (not by reusing `modEq_window_exact` as a black box,
 since the bound needs the internal minimality facts `hkmin_min`/`hN_min`, which are not part of
-`modEq_window_exact`'s exposed conclusion).-/
+`modEq_window_exact`'s exposed conclusion).
+@isnad1 id=ex.3h4v.s7.510be7dbaf5b from=translated src=- shape=9b6dfdd2 vocab=6fde71f1
+-/
 theorem modEq_window_exact_with_bound (r D Y Z : ℕ) (hD : 0 < D) (hYr : r ≤ Y) (hYZ : Y ≤ Z) :
     ∃ kmin N : ℕ, (∀ j < N, Y ≤ r + D * (kmin + j) ∧ r + D * (kmin + j) < Z) ∧
       (∀ m : ℕ, Y ≤ m → m < Z →
@@ -161,14 +165,18 @@ theorem modEq_window_exact_with_bound (r D Y Z : ℕ) (hD : 0 < D) (hYr : r ≤ 
   nlinarith [h1, h2]
 
 /-- **Uniqueness of the index.** For fixed `r, D > 0, kmin`, the index `j` with
-`m = r + D*(kmin+j)` is unique.-/
+`m = r + D*(kmin+j)` is unique.
+@isnad1 id=eq.2h5v.s6.54c7304f5eb7 from=translated src=- shape=3039e1b3 vocab=304a85f3
+-/
 theorem reindexed_index_unique (r D kmin j1 j2 : ℕ) (hD : 0 < D)
     (heq : r + D * (kmin + j1) = r + D * (kmin + j2)) : j1 = j2 := by
   have hmul : D * (kmin + j1) = D * (kmin + j2) := by omega
   have hsum : kmin + j1 = kmin + j2 := Nat.eq_of_mul_eq_mul_left hD hmul
   omega
 
-/-- **Exhaustive AP window parametrization, with uniqueness.**-/
+/-- **Exhaustive AP window parametrization, with uniqueness.**
+@isnad1 id=ex.3h4v.s6.e5cb10063b46 from=translated src=- shape=08f33254 vocab=15582d00
+-/
 theorem modEq_window_exact_unique (r D Y Z : ℕ) (hD : 0 < D) (hYr : r ≤ Y) (hYZ : Y ≤ Z) :
     ∃ kmin N : ℕ, ∀ m : ℕ, Y ≤ m → m < Z → m ≡ r [MOD D] →
       ∃! j, j < N ∧ m = r + D * (kmin + j) := by
@@ -185,7 +193,9 @@ theorem modEq_window_exact_unique (r D Y Z : ℕ) (hD : 0 < D) (hYr : r ≤ Y) (
 /-- **Exhaustive prefix-cylinder window parametrization.** Combines `modEq_window_exact` with
 `realizes_iff_modEq` (Milestone 9): every `m` in the window realizing the length-`t` word `d`
 is exactly one of the `N` explicit points `r + 2^(S d t+1)*(kmin+j)`. This is the converse
-Milestone 9 identified as missing.-/
+Milestone 9 identified as missing.
+@isnad1 id=ex.4h5v.s8.af7479c3621d from=translated src=- shape=9cd76811 vocab=15224660
+-/
 theorem realizes_window_exact (d : ℕ → ℕ) (t r Y Z : ℕ) (hd_pos : ∀ i < t, 1 ≤ d i)
     (hr : Realizes d t r) (hYr : r ≤ Y) (hYZ : Y ≤ Z) :
     ∃ kmin N : ℕ, (∀ j < N, Y ≤ r + 2 ^ (S d t + 1) * (kmin + j)
@@ -210,7 +220,9 @@ theorem realizes_window_exact (d : ℕ → ℕ) (t r Y Z : ℕ) (hd_pos : ∀ i 
 
 /-- **Exhaustive prefix-cylinder window parametrization, with size bound.** Same as
 `realizes_window_exact`, plus the extra `(Z:ℝ)-(Y:ℝ) ≤ (N+2)*2^(S d t+1)` fact from
-`modEq_window_exact_with_bound`.-/
+`modEq_window_exact_with_bound`.
+@isnad1 id=ex.4h5v.s8.faf3f0f62bb1 from=translated src=- shape=a15bb22c vocab=21a6ccde
+-/
 theorem realizes_window_exact_with_bound (d : ℕ → ℕ) (t r Y Z : ℕ) (hd_pos : ∀ i < t, 1 ≤ d i)
     (hr : Realizes d t r) (hYr : r ≤ Y) (hYZ : Y ≤ Z) :
     ∃ kmin N : ℕ, (∀ j < N, Y ≤ r + 2 ^ (S d t + 1) * (kmin + j)
@@ -247,11 +259,17 @@ duplicate.-/
 noncomputable def harmonicWindowWeight (Y Z : ℕ) (m : ℕ) : ℝ :=
   if Y ≤ m ∧ m < Z ∧ Odd m then 1 / (m : ℝ) else 0
 
+/--
+@isnad1 id=le.0h3v.s4.95c5b72aa157 from=translated src=- shape=1995cd38 vocab=1348674f
+-/
 theorem harmonicWindowWeight_nonneg (Y Z m : ℕ) : 0 ≤ harmonicWindowWeight Y Z m := by
   unfold harmonicWindowWeight; split_ifs with h
   · positivity
   · exact le_refl 0
 
+/--
+@isnad1 id=le.0h2v.s4.8ed7d927715d from=translated src=- shape=9904d0b5 vocab=ce06899e
+-/
 theorem harmonicWindowWeight_supp (Y Z : ℕ) :
     Function.support (harmonicWindowWeight Y Z) ⊆ ↑(range Z) := by
   intro m hm
@@ -264,7 +282,9 @@ theorem harmonicWindowWeight_supp (Y Z : ℕ) :
 
 /-- **`Realizes` in terms of `valuationVector` equality.** `Realizes d t m` unfolds
 (definitionally, via `valuationVector_apply`) to exactly `Odd m` plus `valuationVector m t`
-agreeing pointwise with `d`.-/
+agreeing pointwise with `d`.
+@isnad1 id=iff.0h3v.s5.59e195fd1313 from=translated src=- shape=a61bd7bb vocab=434faa90
+-/
 theorem realizes_iff_valuationVector_eq (d : ℕ → ℕ) (t m : ℕ) :
     Realizes d t m ↔ Odd m ∧ valuationVector m t = fun i : Fin t => d i.val := by
   unfold Realizes
@@ -277,7 +297,9 @@ theorem realizes_iff_valuationVector_eq (d : ℕ → ℕ) (t m : ℕ) :
     simpa using this
 
 /-- **`Realizes d t m` vs. matching `r`'s prefix vector.** Given a fixed realizer `r`, realizing
-`d` is exactly matching `r`'s own `valuationVector` (plus oddness).-/
+`d` is exactly matching `r`'s own `valuationVector` (plus oddness).
+@isnad1 id=iff.1h4v.s5.8b277f371aff from=translated src=- shape=c7514f88 vocab=fb962c47
+-/
 theorem realizes_iff_valuationVector_eq_of_realizer (d : ℕ → ℕ) (t r m : ℕ) (hr : Realizes d t r) :
     Realizes d t m ↔ (valuationVector m t = valuationVector r t ∧ Odd m) := by
   have hr' := (realizes_iff_valuationVector_eq d t r).mp hr
@@ -288,7 +310,9 @@ open Classical in
 /-- **Normalization identity.** The prefix mass of the harmonic window weight, on the prefix
 realized by `r`, equals exactly the restart normalizer `W` already used by
 `conditional_future_valuation_mixing`/`conditional_future_event_bound` (Milestone 5/7) — via
-reindexing along the exhaustive bijection `j ↦ r + 2^(S d t+1)*(kmin+j)`.-/
+reindexing along the exhaustive bijection `j ↦ r + 2^(S d t+1)*(kmin+j)`.
+@isnad1 id=ex.4h5v.s8.733bba38b763 from=translated src=- shape=0e969d1e vocab=607ae606
+-/
 theorem harmonic_prefixMass_eq_W (d : ℕ → ℕ) (t r Y Z : ℕ) (hd_pos : ∀ i < t, 1 ≤ d i)
     (hr : Realizes d t r) (hYr : r ≤ Y) (hYZ : Y ≤ Z) :
     ∃ kmin N : ℕ, (∀ j < N, Y ≤ r + 2 ^ (S d t + 1) * (kmin + j)
@@ -352,7 +376,9 @@ extra `(Z:ℝ)-(Y:ℝ) ≤ (N+2)*2^(S d t+1)` fact from `realizes_window_exact_w
 the two facts (`hmem`, `hNlb`) the `_at_window` theorems (`ConditionalMixing.lean`,
 `ResidueTV.lean`, `ShiftedPersistence.lean`) require of a caller-supplied window, so Milestone
 10's own `kmin, N, W` can be fed into them directly without re-deriving a second window via
-`cylinder_window_reindex`.-/
+`cylinder_window_reindex`.
+@isnad1 id=ex.4h5v.s8.2efc01d2eb38 from=translated src=- shape=d6e06ea1 vocab=6e5f9386
+-/
 theorem harmonic_prefixMass_eq_W_with_bound (d : ℕ → ℕ) (t r Y Z : ℕ) (hd_pos : ∀ i < t, 1 ≤ d i)
     (hr : Realizes d t r) (hYr : r ≤ Y) (hYZ : Y ≤ Z) :
     ∃ kmin N : ℕ, (∀ j < N, Y ≤ r + 2 ^ (S d t + 1) * (kmin + j)
@@ -419,7 +445,9 @@ the true harmonic prefix-conditional weight (`prefixConditionalWeight` applied t
 window weight, at the prefix realized by `r`) is *exactly* `conditionalIndexWeight` — the
 weight `conditionalRestartLaw` is built from — with `W` instantiated to the prefix mass
 (equal, by `harmonic_prefixMass_eq_W`, to the closed-form normalizer). **EXACT ALIGNMENT**,
-not merely comparable or normalized-up-to-a-constant.-/
+not merely comparable or normalized-up-to-a-constant.
+@isnad1 id=eq.3h8v.s8.685ccda6185b from=translated src=- shape=faa6f6d9 vocab=f5169aff
+-/
 theorem prefixConditionalWeight_reindex_eq_conditionalIndexWeight
     (d : ℕ → ℕ) (t r Y Z : ℕ) (kmin N : ℕ)
     (hmem : ∀ j < N, Y ≤ r + 2 ^ (S d t + 1) * (kmin + j)
@@ -464,7 +492,9 @@ theorem prefixConditionalWeight_reindex_eq_conditionalIndexWeight
 
 open Classical in
 /-- **Support characterization.** The true harmonic prefix-conditional weight vanishes at every
-seed that is *not* one of the `N` exhaustive AP cylinder points.-/
+seed that is *not* one of the `N` exhaustive AP cylinder points.
+@isnad1 id=eq.3h8v.s7.00bfa4b36ebf from=translated src=- shape=d3314ebc vocab=7f5d3810
+-/
 theorem prefixConditionalWeight_support_reindexed
     (d : ℕ → ℕ) (t r Y Z : ℕ) (kmin N : ℕ)
     (hiff : ∀ m, Y ≤ m → m < Z →
@@ -497,7 +527,9 @@ open Classical in
 `harmonic_prefixMass_eq_W`. Needed so Milestone 11's GOOD-prefix argument can obtain
 `kmin, N, hmem, hNlb` ONCE (from `harmonic_prefixMass_eq_W_with_bound`) and reuse the exact
 same local constants both here and in the `_at_window` M7 chain — no second, syntactically
-distinct existential witness is ever introduced for the same prefix.-/
+distinct existential witness is ever introduced for the same prefix.
+@isnad1 id=eq.3h8v.s8.b97cdb0c49b0 from=translated src=- shape=fa08f6fe vocab=1451a861
+-/
 theorem genEventProb_prefixConditional_eq_reindexed_at_window
     (d : ℕ → ℕ) (t r Y Z : ℕ) (hr : Realizes d t r)
     (kmin N : ℕ)
@@ -557,7 +589,9 @@ theorem genEventProb_prefixConditional_eq_reindexed_at_window
 open Classical in
 /-- **Seed-law reindexing identity.** The true harmonic prefix-conditional law, as an event law
 on starting seeds, equals `genEventProb (conditionalIndexWeight ...)` pulled back along the
-reindexing `j ↦ r + D*(kmin+j)`.-/
+reindexing `j ↦ r + D*(kmin+j)`.
+@isnad1 id=ex.4h5v.s7.0958ff342068 from=translated src=- shape=49479fd6 vocab=1451a861
+-/
 theorem genEventProb_prefixConditional_eq_reindexed
     (d : ℕ → ℕ) (t r Y Z : ℕ) (hd_pos : ∀ i < t, 1 ≤ d i)
     (hr : Realizes d t r) (hYr : r ≤ Y) (hYZ : Y ≤ Z) :
@@ -572,7 +606,9 @@ theorem genEventProb_prefixConditional_eq_reindexed
 
 /-- **Restart-state law identity, fixed-window version.** Same as
 `prefixConditional_restart_eq_conditionalRestartLaw`, with `kmin, N, hmem, hiff` supplied by
-the caller instead of derived internally.-/
+the caller instead of derived internally.
+@isnad1 id=eq.3h8v.s8.09689974a522 from=translated src=- shape=bc1fb1bd vocab=1dffb542
+-/
 theorem prefixConditional_restart_eq_conditionalRestartLaw_at_window
     (d : ℕ → ℕ) (t r Y Z : ℕ) (hr : Realizes d t r)
     (kmin N : ℕ)
@@ -597,7 +633,9 @@ theorem prefixConditional_restart_eq_conditionalRestartLaw_at_window
 
 /-- **Restart-state law identity.** The true harmonic prefix-conditional law, pushed forward
 along the restart map `orbit ·t`, is *exactly* `conditionalRestartLaw` — the law Milestone 7 is
-built on.-/
+built on.
+@isnad1 id=ex.4h5v.s7.4d266386de38 from=translated src=- shape=eee750a9 vocab=2bfa8315
+-/
 theorem prefixConditional_restart_eq_conditionalRestartLaw
     (d : ℕ → ℕ) (t r Y Z : ℕ) (hd_pos : ∀ i < t, 1 ≤ d i)
     (hr : Realizes d t r) (hYr : r ≤ Y) (hYZ : Y ≤ Z) :
@@ -615,7 +653,9 @@ theorem prefixConditional_restart_eq_conditionalRestartLaw
 caller instead of derived internally — the exact theorem Milestone 11's GOOD-prefix argument
 consumes, fed the SAME `kmin, N, hmem` (with `hNlb`) obtained once from
 `harmonic_prefixMass_eq_W_with_bound`, so no second, independently-derived window witness is
-ever introduced for the same realized prefix.-/
+ever introduced for the same realized prefix.
+@isnad1 id=eq.3h9v.s8.6eca56942a91 from=translated src=- shape=5db7cedb vocab=6ab834f4
+-/
 theorem prefix_conditional_future_eq_restart_future_at_window
     (d : ℕ → ℕ) (t r Y Z n : ℕ) (hr : Realizes d t r)
     (kmin N : ℕ)
@@ -636,7 +676,9 @@ theorem prefix_conditional_future_eq_restart_future_at_window
   exact hstate ((fun x => valuationVector x n) ⁻¹' E)
 
 /-- **Future valuation corollary.** The exact theorem Milestone 11 should consume: the true
-prefix-conditional law's future valuation vector law equals `conditionalRestartLaw`'s.-/
+prefix-conditional law's future valuation vector law equals `conditionalRestartLaw`'s.
+@isnad1 id=ex.4h6v.s7.5698289ac7bf from=translated src=- shape=de8913ca vocab=b424abbf
+-/
 theorem prefix_conditional_future_eq_restart_future
     (d : ℕ → ℕ) (t r Y Z n : ℕ) (hd_pos : ∀ i < t, 1 ≤ d i)
     (hr : Realizes d t r) (hYr : r ≤ Y) (hYZ : Y ≤ Z) :

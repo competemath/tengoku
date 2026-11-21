@@ -50,28 +50,45 @@ noncomputable def ker (w : ℕ → σ → σ → ℝ) : ℕ → ℕ → σ → �
 /-- `val w l n x`: total weight of all `n`-layer paths from `x`.-/
 noncomputable def val (w : ℕ → σ → σ → ℝ) (l n : ℕ) (x : σ) : ℝ := ∑ y : σ, ker w l n x y
 
+/--
+@isnad1 id=eq.0h5v.s5.2e884185487a from=translated src=- shape=b9098919 vocab=4155ba3a
+-/
 theorem ker_zero (w : ℕ → σ → σ → ℝ) (l : ℕ) (x y : σ) :
     ker w l 0 x y = if x = y then 1 else 0 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.82d49dafbb36 from=translated src=- shape=4de4afb7 vocab=6ebcc6e7
+-/
 theorem ker_succ (w : ℕ → σ → σ → ℝ) (l n : ℕ) (x z : σ) :
     ker w l (n + 1) x z = ∑ y : σ, w l x y * ker w (l + 1) n y z := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.52ea451a84c3 from=translated src=- shape=f29b89e5 vocab=a6cc108f
+-/
 theorem val_zero (w : ℕ → σ → σ → ℝ) (l : ℕ) (x : σ) : val w l 0 x = 1 := by
   unfold val
   simp only [ker_zero]
   rw [Finset.sum_ite_eq univ x (fun _ => (1 : ℝ))]
   simp
 
+/--
+@isnad1 id=le.1h6v.s5.6aa16ed436f6 from=translated src=- shape=ae510d26 vocab=743a422c
+-/
 theorem ker_nonneg {w : ℕ → σ → σ → ℝ} (hw : ∀ l x y, 0 ≤ w l x y) (l n : ℕ) (x y : σ) :
     0 ≤ ker w l n x y := by
   induction n generalizing l x with
   | zero => rw [ker_zero]; split_ifs <;> norm_num
   | succ n ih => rw [ker_succ]; exact sum_nonneg fun y _ => mul_nonneg (hw l x y) (ih _ _)
 
+/--
+@isnad1 id=le.1h5v.s5.a39ba13ab99b from=translated src=- shape=6de292e3 vocab=3a0e24fe
+-/
 theorem val_nonneg {w : ℕ → σ → σ → ℝ} (hw : ∀ l x y, 0 ≤ w l x y) (l n : ℕ) (x : σ) :
     0 ≤ val w l n x := sum_nonneg fun y _ => ker_nonneg hw l n x y
 
-/-- **Chapman–Kolmogorov** for the layered kernel.-/
+/-- **Chapman–Kolmogorov** for the layered kernel.
+@isnad1 id=eq.0h7v.s6.c061c2de759d from=translated src=- shape=aa46ba0f vocab=6ebcc6e7
+-/
 theorem ker_add (w : ℕ → σ → σ → ℝ) (l m n : ℕ) (x z : σ) :
     ker w l (m + n) x z = ∑ y : σ, ker w l m x y * ker w (l + m) n y z := by
   induction m generalizing l x with
@@ -90,13 +107,18 @@ theorem ker_add (w : ℕ → σ → σ → ℝ) (l m n : ℕ) (x z : σ) :
     rw [show l + 1 + m = l + (m + 1) by omega]
     ring
 
-/-- The total mass splits at the intermediate layer.-/
+/-- The total mass splits at the intermediate layer.
+@isnad1 id=eq.0h6v.s6.c6f459aa50ba from=translated src=- shape=e3b6abd0 vocab=654c1a3a
+-/
 theorem val_add (w : ℕ → σ → σ → ℝ) (l m n : ℕ) (x : σ) :
     val w l (m + n) x = ∑ y : σ, ker w l m x y * val w (l + m) n y := by
   unfold val
   rw [sum_congr rfl (fun z _ => ker_add w l m n x z), sum_comm]
   exact sum_congr rfl fun y _ => by rw [mul_sum]
 
+/--
+@isnad1 id=le.2h7v.s6.d6b6b2a5e0f6 from=translated src=- shape=e6d3bea7 vocab=60ab785f
+-/
 theorem val_le_of_le {w : ℕ → σ → σ → ℝ} (hw : ∀ l x y, 0 ≤ w l x y) {l m n : ℕ} {B : ℝ}
     (hB : ∀ y, val w (l + m) n y ≤ B) (x : σ) : val w l (m + n) x ≤ val w l m x * B := by
   rw [val_add]
@@ -107,7 +129,9 @@ theorem val_le_of_le {w : ℕ → σ → σ → ℝ} (hw : ∀ l x y, 0 ≤ w l 
 
 /-- **Window product bound.**  If every `K`-layer window (any anchor, any state) has mass at most
 `M`, then a
-`W*K`-layer sum has mass at most `M ^ W`: `W = n/K` windows, each contributing `M` — no `1/K` loss.-/
+`W*K`-layer sum has mass at most `M ^ W`: `W = n/K` windows, each contributing `M` — no `1/K` loss.
+@isnad1 id=le.2h7v.s6.ecc5a5e92e47 from=translated src=- shape=951bb6ac vocab=94760d88
+-/
 theorem val_le_pow_of_window {w : ℕ → σ → σ → ℝ} (hw : ∀ l x y, 0 ≤ w l x y) {K : ℕ} {M : ℝ}
     (hM : ∀ l y, val w l K y ≤ M) (W l : ℕ) (x : σ) : val w l (W * K) x ≤ M ^ W := by
   have hM0 : 0 ≤ M := le_trans (val_nonneg hw l K x) (hM l x)
@@ -120,7 +144,9 @@ theorem val_le_pow_of_window {w : ℕ → σ → σ → ℝ} (hw : ∀ l x y, 0 
       _ ≤ M * M ^ W := mul_le_mul_of_nonneg_right (hM l x) (pow_nonneg hM0 W)
       _ = M ^ (W + 1) := by ring
 
-/-- **With a remainder.**  `n = W*K + ρ` layers: the windows give `M ^ W`, the remainder `Mrem`.-/
+/-- **With a remainder.**  `n = W*K + ρ` layers: the windows give `M ^ W`, the remainder `Mrem`.
+@isnad1 id=le.4h8v.s7.d375bd8105fb from=translated src=- shape=89750da4 vocab=fbd4e185
+-/
 theorem val_le_of_window_rem {w : ℕ → σ → σ → ℝ} (hw : ∀ l x y, 0 ≤ w l x y) {K W ρ : ℕ}
     {M Mrem : ℝ}
     (hM : ∀ l y, val w l K y ≤ M) (hMrem : ∀ y, val w (W * K) ρ y ≤ Mrem)
@@ -130,6 +156,9 @@ theorem val_le_of_window_rem {w : ℕ → σ → σ → ℝ} (hw : ∀ l x y, 0 
 
 /-! ## Collatz–Wielandt relaxation: a super-eigenvector replaces the supremum -/
 
+/--
+@isnad1 id=eq.0h5v.s6.820467a06ee9 from=translated src=- shape=e7129d3b vocab=ab7eac33
+-/
 theorem val_succ (w : ℕ → σ → σ → ℝ) (l n : ℕ) (x : σ) :
     val w l (n + 1) x = ∑ y : σ, w l x y * val w (l + 1) n y := by
   have h : val w l (1 + n) x = ∑ y : σ, ker w l 1 x y * val w (l + 1) n y := val_add w l 1 n x
@@ -144,7 +173,9 @@ theorem val_succ (w : ℕ → σ → σ → ℝ) (l n : ℕ) (x : σ) :
 /-- **Collatz–Wielandt / super-eigenvector bound.**  A positive weight `h` with
 `∑_y w l x y * h (l+1) y ≤ M * h l x` replaces the supremum hypothesis: states where the window mass
 is large are allowed, provided `h` is large there.  Then `val w l n x ≤ M ^ n * h l x / c` whenever
-`c ≤ h` at the final layer.  (`h ≡ 1` recovers the crude sup bound.)-/
+`c ≤ h` at the final layer.  (`h ≡ 1` recovers the crude sup bound.)
+@isnad1 id=le.5h8v.s7.05eb03333e40 from=translated src=- shape=29c8c77a vocab=8cb7fa99
+-/
 theorem val_le_of_superEigen {w : ℕ → σ → σ → ℝ} (hw : ∀ l x y, 0 ≤ w l x y) {h : ℕ → σ → ℝ}
     {M c : ℝ} (hc : 0 < c) (hM : 0 ≤ M)
     (hsuper : ∀ l x, ∑ y : σ, w l x y * h (l + 1) y ≤ M * h l x)
@@ -172,7 +203,9 @@ theorem val_le_of_superEigen {w : ℕ → σ → σ → ℝ} (hw : ∀ l x y, 0 
 /-- **Pinned super-eigenvector bound.**  Same hypothesis as `val_le_of_superEigen`, but for the
 kernel with *both* endpoints fixed: `ker w l n x z ≤ M ^ n * h l x / h (l+n) z`.  This is the form
 needed for conditional (endpoint-pinned) large deviations, where `val`'s free endpoint is not
-available.-/
+available.
+@isnad1 id=le.4h8v.s7.f6c439b9dffd from=translated src=- shape=91a0c42d vocab=be4e3f9d
+-/
 theorem ker_le_of_superEigen {w : ℕ → σ → σ → ℝ} (hw : ∀ l x y, 0 ≤ w l x y) {h : ℕ → σ → ℝ}
     {M : ℝ} (hh : ∀ l y, 0 < h l y) (hM : 0 ≤ M)
     (hsuper : ∀ l x, ∑ y : σ, w l x y * h (l + 1) y ≤ M * h l x)
@@ -201,7 +234,9 @@ theorem ker_le_of_superEigen {w : ℕ → σ → σ → ℝ} (hw : ∀ l x y, 0 
 /-- **Sub-eigenvector lower bound** (dual of `val_le_of_superEigen`).  A positive weight `h` with
 `M * h l x ≤ ∑_y w l x y * h (l+1) y` forces `M ^ n * h l x / C ≤ val w l n x` whenever `h ≤ C` at
 the final layer.  This is the certificate form needed to bound a layered *count* from below (e.g.
-the denominator `|C_J|` of a conditional large-deviation statement).-/
+the denominator `|C_J|` of a conditional large-deviation statement).
+@isnad1 id=le.5h8v.s7.5262dd4c05f8 from=translated src=- shape=bb4a9418 vocab=8cb7fa99
+-/
 theorem val_ge_of_subEigen {w : ℕ → σ → σ → ℝ} (hw : ∀ l x y, 0 ≤ w l x y) {h : ℕ → σ → ℝ}
     {M C : ℝ} (hC : 0 < C) (hM : 0 ≤ M)
     (hsub : ∀ l x, M * h l x ≤ ∑ y : σ, w l x y * h (l + 1) y)
@@ -228,7 +263,9 @@ theorem val_ge_of_subEigen {w : ℕ → σ → σ → ℝ} (hw : ∀ l x y, 0 �
 /-- **From the local exponent to the global one.**  If each of the `W` windows of `K` blocks
 contributes
 `2^(2Kθ)`, the remainder at most `s ^ K`, and `J = 2 * (W * K + ρ)` steps, then
-`(1/J) log₂ (total) ≤ θ + K log₂ s / J`.-/
+`(1/J) log₂ (total) ≤ θ + K log₂ s / J`.
+@isnad1 id=le.6h7v.s7.2b072f2ab6e3 from=translated src=- shape=e9104dda vocab=f0822ce5
+-/
 theorem logBookkeeping {K W ρ J : ℕ} {θ s Total : ℝ} (hs : 1 ≤ s) (hθ : 0 ≤ θ)
     (hJ : (J : ℝ) = 2 * (W * K + ρ)) (hJ0 : 0 < J)
     (hTotal : Total ≤ ((2 : ℝ) ^ (2 * (K : ℝ) * θ)) ^ W * s ^ K) (hTot0 : 0 < Total) :

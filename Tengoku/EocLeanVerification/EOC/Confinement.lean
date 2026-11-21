@@ -51,7 +51,9 @@ private theorem R_eq_of_agree {d1 d2 : ℕ → ℕ} {N : ℕ} (hagree : ∀ i < 
   unfold R
   rw [s_eq_of_agree hagree hj]
 
-/-- Confinement transfers along agreement of the underlying words on `[0,N)`.-/
+/-- Confinement transfers along agreement of the underlying words on `[0,N)`.
+@isnad1 id=confined.2h4v.s5.5d171cc3839f from=translated src=- shape=c62646ff vocab=357f7f95
+-/
 theorem confined_congr {d1 d2 : ℕ → ℕ} {N : ℕ} {c : ℝ}
     (hagree : ∀ i < N, d1 i = d2 i) (h1 : Confined c d1 N) : Confined c d2 N := by
   intro j hj
@@ -60,6 +62,9 @@ theorem confined_congr {d1 d2 : ℕ → ℕ} {N : ℕ} {c : ℝ}
 
 /-! ### Infrastructure: every odd orbit is a valid word -/
 
+/--
+@isnad1 id=le.1h1v.s4.ec9b8ddaf232 from=translated src=- shape=5b5afa8d vocab=c366601a
+-/
 theorem a_pos_of_odd {m : ℕ} (hm : Odd m) : 1 ≤ a m := by
   unfold a
   have h2dvd : (2 : ℕ) ∣ (3 * m + 1) := by
@@ -73,6 +78,9 @@ theorem a_pos_of_odd {m : ℕ} (hm : Odd m) : 1 ≤ a m := by
     · exact h1 h2dvd
   omega
 
+/--
+@isnad1 id=odd.1h1v.s3.bb3b62c9fc64 from=translated src=- shape=bd20d954 vocab=2c7c1fe5
+-/
 theorem odd_T {m : ℕ} (hm : Odd m) : Odd (T m) := by
   obtain ⟨k, hk0⟩ := (pow_padicValNat_dvd : 2 ^ a m ∣ (3 * m + 1))
   have hk : 3 * m + 1 = 2 ^ a m * k := hk0
@@ -98,6 +106,9 @@ theorem odd_T {m : ℕ} (hm : Odd m) : Odd (T m) := by
   · exact absurd h1 hkne
   · omega
 
+/--
+@isnad1 id=odd.1h2v.s3.4d94fc54d4be from=translated src=- shape=f30b87b7 vocab=287ee035
+-/
 theorem odd_orbit {m : ℕ} (hm : Odd m) : ∀ i, Odd (orbit m i) := by
   intro i
   induction i with
@@ -106,6 +117,9 @@ theorem odd_orbit {m : ℕ} (hm : Odd m) : ∀ i, Odd (orbit m i) := by
     rw [orbit_succ]
     exact odd_T ih
 
+/--
+@isnad1 id=le.1h2v.s4.dd18658ffe27 from=translated src=- shape=3158791b vocab=de8fee3f
+-/
 theorem hd_pos_of_orbit {m : ℕ} (hm : Odd m) : ∀ i, 1 ≤ a (orbit m i) :=
   fun i => a_pos_of_odd (odd_orbit hm i)
 
@@ -139,6 +153,9 @@ statement, with equivalence to that notation conditional on the missing
 boundedness/finiteness fact discussed at `L` above. `hne` and `hN` are
 explicit, flagged hypotheses not literally written in the paper's statement
 of Prop 5.7. -/
+/--
+@isnad1 id=eq.2h2v.s6.358c2d380c70 from=translated src=- shape=d15153ab vocab=27115b58
+-/
 theorem record_chronology (c : ℝ) (N : ℕ) (hN : 1 ≤ N)
     (hne : ∃ d : ℕ → ℕ, (∀ i < N, 1 ≤ d i) ∧ Confined c d N) :
     rmin c N = sInf {m : ℕ | Odd m ∧ Confined c (fun i => a (orbit m i)) N} := by
@@ -182,7 +199,9 @@ theorem record_chronology (c : ℝ) (N : ℕ) (hN : 1 ≤ N)
     exact hle3
 /-! ### Proposition 5.8 (Monotonicity) -/
 
-/-- $\alpha = \log_2 3 > 1$.-/
+/-- $\alpha = \log_2 3 > 1$.
+@isnad1 id=lt.0h0v.s3.e4c68fadd6c9 from=translated src=- shape=ff3a10fc vocab=4f5f0e84
+-/
 theorem one_lt_alpha : 1 < alpha := by
   unfold alpha
   unfold Real.logb
@@ -231,7 +250,9 @@ private theorem exists_confined_succ {c : ℝ} {d : ℕ → ℕ} {N : ℕ}
       have hcN : R d N ≤ c := hconf N (le_refl N)
       linarith [one_lt_alpha]
 
-/-- `leastRealizer` is monotone in its length argument, for a fixed word `d`.-/
+/-- `leastRealizer` is monotone in its length argument, for a fixed word `d`.
+@isnad1 id=le.1h2v.s5.e57f4d8287dd from=translated src=- shape=a308a1c4 vocab=e07b5014
+-/
 theorem leastRealizer_mono (d : ℕ → ℕ) (N : ℕ)
     (hd_pos : ∀ i < N + 1, 1 ≤ d i) :
     leastRealizer d N ≤ leastRealizer d (N + 1) := by
@@ -247,7 +268,9 @@ theorem leastRealizer_mono (d : ℕ → ℕ) (N : ℕ)
   exact leastRealizer_le_of_modEq d N (leastRealizer d (N + 1)) hcongN
 
 /-- **Proposition 5.8 (Monotonicity).** Exact restatement: `hne` alone, at
-the base `N`, propagates to `N+1` via `exists_confined_succ`.-/
+the base `N`, propagates to `N+1` via `exists_confined_succ`.
+@isnad1 id=le.1h2v.s5.fdac92599635 from=translated src=- shape=5206fa23 vocab=d5157a59
+-/
 theorem rmin_mono (c : ℝ) (N : ℕ)
     (hne : ∃ d : ℕ → ℕ, (∀ i < N, 1 ≤ d i) ∧ Confined c d N) :
     rmin c N ≤ rmin c (N + 1) := by
@@ -296,7 +319,9 @@ private theorem orbit_one : ∀ j, orbit 1 j = 1 := by
   | succ j ih => rw [orbit_succ, ih, T_one]
 
 /-- Elementary route to "least realizer 1 ↔ constant word (2,2,...,2)",
-avoiding Pillar 4 entirely.-/
+avoiding Pillar 4 entirely.
+@isnad1 id=iff.2h2v.s6.021797b1c5a8 from=translated src=- shape=615eee73 vocab=fe701e51
+-/
 theorem leastRealizer_eq_one_iff (d : ℕ → ℕ) (N : ℕ) (hN : 1 ≤ N)
     (hd_pos : ∀ i < N, 1 ≤ d i) :
     leastRealizer d N = 1 ↔ ∀ i < N, d i = 2 := by
@@ -386,7 +411,9 @@ private theorem logb2_two_pow (k : ℕ) : Real.logb 2 ((2:ℝ)^k) = (k:ℝ) := b
 /-- **Proposition 5.9, logarithmic core.** `hc`, `hε_pos` retained per the
 paper's stated hypotheses even though this proof may not need either — to be
 recorded as an audit finding if confirmed unused. The `L_c(m)` side is
-expressed via bounded confined prefixes; `L` is unused.-/
+expressed via bounded confined prefixes; `L` is unused.
+@isnad1 id=iff.3h2v.s7.3567b6b85f57 from=translated src=- shape=2f70042f vocab=14a04d7b
+-/
 theorem single_window_equiv_log
     (c ε : ℝ) (hc : 0 < c) (hε_pos : 0 < ε) (hε_le : ε ≤ 2) :
     (∀ N : ℕ, 1 ≤ N →
@@ -500,7 +527,9 @@ sidestepped as the postponed corollary). Statement (ii) is still expressed
 via bounded confined prefixes rather than literal `L_c(m)`, for the same
 reason as `record_chronology`/`rmin_mono`: `L`'s sSup finiteness is
 uncertified. So overall this is exact for (i), faithful reformulation for
-(ii) — same status as everything since Proposition 5.7.-/
+(ii) — same status as everything since Proposition 5.7.
+@isnad1 id=iff.3h2v.s7.c73f7783bf80 from=translated src=- shape=c9513f01 vocab=75c0b084
+-/
 theorem single_window_equiv
     (c ε : ℝ) (hc : 0 < c) (hε_pos : 0 < ε) (hε_le : ε ≤ 2) :
     (∀ N : ℕ, 1 ≤ N →
@@ -561,7 +590,9 @@ interior-positivity hypothesis and no oddness hypothesis, since this
 direction never invokes `interior_odd` at all. Proof is the identical
 derivation already used inside `exact_val_iff_terminal_odd`
 (`Realizer.lean`), stopped one step earlier: that theorem needs the full
-equality-vs-strictly-larger dichotomy, this one needs only the "≥" half.-/
+equality-vs-strictly-larger dichotomy, this one needs only the "≥" half.
+@isnad1 id=le.2h3v.s6.23b24f1388f0 from=translated src=- shape=d158d807 vocab=dfb2debe
+-/
 theorem terminal_valuation_ge (d : ℕ → ℕ) (m0 N : ℕ) (hN : 1 ≤ N)
     (hagg : 2 ^ S d N ∣ (3 ^ N * m0 + q d N)) :
     d (N - 1) ≤ a (iter d m0 (N - 1)) := by
@@ -580,7 +611,9 @@ theorem terminal_valuation_ge (d : ℕ → ℕ) (m0 N : ℕ) (hN : 1 ≤ N)
 /-- **Phase 3 (`drift_mono_of_le`).** Elementary, not Collatz-specific:
 increasing a single digit's contribution to drift can only increase drift,
 for an arbitrary fixed baseline `Rprev` and fixed shift `shift` (in the
-intended use, `shift = alpha`, but nothing here depends on that).-/
+intended use, `shift = alpha`, but nothing here depends on that).
+@isnad1 id=le.1h4v.s5.6215ec9490a0 from=translated src=- shape=7de33cf5 vocab=acab6c6b
+-/
 theorem drift_mono_of_le {Rprev shift : ℝ} {d d' : ℕ} (hdd' : d ≤ d') :
     Rprev + (d : ℝ) - shift ≤ Rprev + (d' : ℝ) - shift := by
   have hcast : (d : ℝ) ≤ (d' : ℝ) := by exact_mod_cast hdd'
@@ -588,7 +621,9 @@ theorem drift_mono_of_le {Rprev shift : ℝ} {d d' : ℕ} (hdd' : d ≤ d') :
 
 /-- **Phase 4 (`coarse_exit_of_ge`).** If a prescribed digit `d` already
 forces strict exit past threshold `c`, any true digit `d' ≥ d` forces exit
-too. Pure order theory, generic in `Rprev`, `shift`, `c`.-/
+too. Pure order theory, generic in `Rprev`, `shift`, `c`.
+@isnad1 id=lt.2h5v.s6.ddf1fc7cf3d4 from=translated src=- shape=495859c2 vocab=4152daf3
+-/
 theorem coarse_exit_of_ge {Rprev shift c : ℝ} {d d' : ℕ} (hdd' : d ≤ d')
     (hexit : c < Rprev + (d : ℝ) - shift) :
     c < Rprev + (d' : ℝ) - shift := by
@@ -607,7 +642,9 @@ valuation `a (iter d m0 (N-1))`, which may differ from `d (N-1)` exactly
 when the two lifts modulo `2^(S_N+1)` disagree — is *also* confined through
 the same interior and *also* exits strictly at step `N`. The exact value of
 the terminal digit is invisible to this decision; only the "≥" is used,
-which is exactly what the extra bit at `2^(S_N+1)` does *not* resolve.-/
+which is exactly what the extra bit at `2^(S_N+1)` does *not* resolve.
+@isnad1 id=and.4h4v.s7.5160c3fb9401 from=translated src=- shape=6d0fbb7a vocab=5f8b754c
+-/
 theorem coarse_depth_window (d : ℕ → ℕ) (m0 N : ℕ) (c : ℝ) (hN : 1 ≤ N)
     (hagg : 2 ^ S d N ∣ (3 ^ N * m0 + q d N))
     (hconf : Confined c d (N - 1))

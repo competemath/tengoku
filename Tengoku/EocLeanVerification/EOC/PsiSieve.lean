@@ -30,6 +30,9 @@ open Finset CapacityBounds FiniteValuationWord PrefixCollision
 
 /-! ## 1. Reciprocity -/
 
+/--
+@isnad1 id=ex.2h4v.s8.e9533145986d from=translated src=- shape=d21248a3 vocab=e50011b5
+-/
 theorem reciprocity {k m : ℕ} {u v : ℤ} (hu : u * 3 ^ k ≡ 1 [ZMOD 2 ^ m])
     (hv : v * 2 ^ m ≡ 1 [ZMOD 3 ^ k]) :
     ∃ z : ℤ, (u : ℝ) / 2 ^ m + v / 3 ^ k - 1 / (3 ^ k * 2 ^ m) = z := by
@@ -49,7 +52,9 @@ theorem reciprocity {k m : ℕ} {u v : ℤ} (hu : u * 3 ^ k ≡ 1 [ZMOD 2 ^ m])
   field_simp
   linear_combination hzR
 
-/-- A sum of terms each an integer plus `g i` is an integer plus `∑ g`.-/
+/-- A sum of terms each an integer plus `g i` is an integer plus `∑ g`.
+@isnad1 id=ex.1h4v.s6.69444c45ccc8 from=translated src=- shape=47a0e272 vocab=cd8cc53c
+-/
 theorem sum_int_add {ι : Type*} (T : Finset ι) (f g : ι → ℝ)
     (h : ∀ i ∈ T, ∃ z : ℤ, f i = z + g i) : ∃ z : ℤ, ∑ i ∈ T, f i = z + ∑ i ∈ T, g i := by
   classical
@@ -66,6 +71,9 @@ theorem sum_int_add {ι : Type*} (T : Finset ι) (f g : ι → ℝ)
 /-- Upper bound for the prefix map under the barrier `b`.-/
 def Xmax (b : ℕ → ℕ) (N : ℕ) : ℕ := ∑ i ∈ range N, 3 ^ (N - 1 - i) * 2 ^ b i
 
+/--
+@isnad1 id=le.2h4v.s5.a861f2f43d56 from=translated src=- shape=cfbd9175 vocab=9e2685b7
+-/
 theorem X_le_Xmax {b : ℕ → ℕ} {N S : ℕ} (hN : 1 ≤ N) {P : FiniteValuationWord N}
     (hP : P ∈ shellP b N S) : C P.toInfinite N ≤ Xmax b N := by
   rw [shellP, mem_filter, mem_confinedWords hN] at hP
@@ -79,6 +87,9 @@ theorem X_le_Xmax {b : ℕ → ℕ} {N S : ℕ} (hN : 1 ≤ N) {P : FiniteValuat
   · rw [← prefixSum_eq_s P hi'.le]
     exact hbar i (mem_Icc.mpr ⟨hpos, hi'.le⟩)
 
+/--
+@isnad1 id=injon.1h3v.s5.c044f2e564ef from=translated src=- shape=f5b43e98 vocab=d2be400a
+-/
 theorem X_injOn (b : ℕ → ℕ) {N : ℕ} (hN : 1 ≤ N) (S : ℕ) :
     Set.InjOn (fun P : FiniteValuationWord N => C P.toInfinite N) ↑(shellP b N S) := by
   intro P hP P' hP' hX
@@ -122,6 +133,9 @@ theorem X_injOn (b : ℕ → ℕ) {N : ℕ} (hN : 1 ≤ N) (S : ℕ) :
 
 /-! ## 3. Grid form of the prefix phase -/
 
+/--
+@isnad1 id=modeq.0h2v.s6.bcee79127ff3 from=translated src=- shape=e1f1c339 vocab=89246ffb
+-/
 theorem uInv_modEq (m i : ℕ) :
     ((WeightedChain.uInv m i : ℕ) : ℤ) * 3 ^ (i + 1) ≡ 1 [ZMOD 2 ^ m] := by
   have h : ((WeightedChain.uInv m i * 3 ^ (i + 1) : ℕ) : ZMod (2 ^ m)) = ((1 : ℕ) : ZMod (2 ^ m)) := by
@@ -138,6 +152,9 @@ theorem uInv_modEq (m i : ℕ) :
 /-- An integer inverse of `2^m` modulo `3^N`.-/
 noncomputable def W (m N : ℕ) : ℕ := (((2 ^ m : ℕ) : ZMod (3 ^ N))⁻¹).val
 
+/--
+@isnad1 id=modeq.0h2v.s5.b667904988a9 from=translated src=- shape=eb153045 vocab=4b1ad37c
+-/
 theorem W_modEq (m N : ℕ) : ((W m N : ℕ) : ℤ) * 2 ^ m ≡ 1 [ZMOD 3 ^ N] := by
   have hc : Nat.Coprime (2 ^ m) (3 ^ N) :=
     Nat.Coprime.pow m N (by norm_num : Nat.Coprime 2 3)
@@ -157,6 +174,9 @@ theorem W_modEq (m N : ℕ) : ((W m N : ℕ) : ℤ) * 2 ^ m ≡ 1 [ZMOD 3 ^ N] :
 noncomputable def Zpre (m N : ℕ) (P : FiniteValuationWord N) : ℕ :=
   ∑ i ∈ range N, WeightedChain.uInv m i * 2 ^ P.prefixSum i
 
+/--
+@isnad1 id=ex.0h3v.s7.e8c1ad3d1bbb from=translated src=- shape=945b0065 vocab=63adacb5
+-/
 theorem prefix_phase_grid (m N : ℕ) (P : FiniteValuationWord N) :
     ∃ z : ℤ, (Zpre m N P : ℝ) / 2 ^ m =
       z + ((-(W m N : ℤ) * C P.toInfinite N : ℤ) : ℝ) / 3 ^ N +
@@ -222,10 +242,16 @@ noncomputable def Fpre (m N S lam : ℕ) : ℂ :=
 noncomputable def Gsuf (m j0 N σ S lam : ℕ) : ℂ :=
   ∑ v ∈ shellV b j0 N S (σ - S), ∏ k ∈ range (j0 - N), ee (cp lam m (N + k) (S + v.prefixSum k))
 
+/--
+@isnad1 id=eq.2h5v.s5.9453beadc15c from=translated src=- shape=545fe426 vocab=c173a521
+-/
 theorem prefixSum_concat_lt {N j0 : ℕ} (P : FiniteValuationWord N) (v : FiniteValuationWord (j0 - N))
     (hj : N ≤ j0) {i : ℕ} (hi : i ≤ N) : (concat j0 P v).prefixSum i = P.prefixSum i := by
   rw [← prefixSum_pre (concat j0 P v) hj hi, pre_concat P v hj]
 
+/--
+@isnad1 id=eq.2h5v.s6.c98e19e549c5 from=translated src=- shape=67c972f2 vocab=54afe530
+-/
 theorem prefixSum_concat_ge {N j0 : ℕ} (P : FiniteValuationWord N) (v : FiniteValuationWord (j0 - N))
     (hj : N ≤ j0) {k : ℕ} (hk : k ≤ j0 - N) :
     (concat j0 P v).prefixSum (N + k) = P.total + v.prefixSum k := by
@@ -234,7 +260,9 @@ theorem prefixSum_concat_ge {N j0 : ℕ} (P : FiniteValuationWord N) (v : Finite
   change _ = P.prefixSum N + _
   omega
 
-/-- **Path splitting** of the `Ψ` path product at step `N`.-/
+/-- **Path splitting** of the `Ψ` path product at step `N`.
+@isnad1 id=eq.2h6v.s6.7c88c046f8ee from=translated src=- shape=e318b52b vocab=d31d19e9
+-/
 theorem psi_split (m j0 N σ lam : ℕ) (hN1 : 1 ≤ N) (hNj : N < j0) :
     ∑ P ∈ shellP b j0 σ, ∏ i ∈ range j0, ee (cp lam m i (P.prefixSum i)) =
       ∑ S ∈ range (σ + 1), Fpre b m N S lam * Gsuf b m j0 N σ S lam := by
@@ -252,12 +280,18 @@ theorem psi_split (m j0 N σ lam : ℕ) (hN1 : 1 ≤ N) (hNj : N < j0) :
   · exact prod_congr rfl fun k hk => by
       rw [prefixSum_concat_ge P v hNj.le (mem_range.mp hk).le, hPS]
 
+/--
+@isnad1 id=eq.0h3v.s5.2e71f5debf8d from=translated src=- shape=dddaf337 vocab=4fd46b1d
+-/
 theorem ee_prod {ι : Type*} (T : Finset ι) (x : ι → ℝ) : ∏ i ∈ T, ee (x i) = ee (∑ i ∈ T, x i) := by
   classical
   induction T using Finset.induction_on with
   | empty => simp [TwistExpansion.ee_zero]
   | insert a T ha ih => rw [prod_insert ha, sum_insert ha, ih, TwistExpansion.ee_add]
 
+/--
+@isnad1 id=le.0h7v.s5.13b38708e34c from=translated src=- shape=48ea74f2 vocab=633e3b98
+-/
 theorem norm_Gsuf_le (m j0 N σ S lam : ℕ) :
     ‖Gsuf b m j0 N σ S lam‖ ≤ (shellV b j0 N S (σ - S)).card := by
   unfold Gsuf
@@ -267,6 +301,9 @@ theorem norm_Gsuf_le (m j0 N σ S lam : ℕ) :
   rw [norm_prod]
   simp [norm_ee]
 
+/--
+@isnad1 id=le.0h5v.s5.9b8fe3a18d72 from=translated src=- shape=d66d1c14 vocab=0ee681e5
+-/
 theorem norm_Fpre_le (m N S lam : ℕ) : ‖Fpre b m N S lam‖ ≤ (shellP b N S).card := by
   unfold Fpre
   refine (norm_sum_le _ _).trans ?_
@@ -275,7 +312,9 @@ theorem norm_Fpre_le (m N S lam : ℕ) : ‖Fpre b m N S lam‖ ≤ (shellP b N 
   rw [norm_prod]
   simp [norm_ee]
 
-/-- The prefix product is a single character of the prefix numerator.-/
+/-- The prefix product is a single character of the prefix numerator.
+@isnad1 id=eq.0h4v.s6.5b949fbdc439 from=translated src=- shape=9fb05e57 vocab=e4113351
+-/
 theorem prod_cp_eq (lam m N : ℕ) (P : FiniteValuationWord N) :
     ∏ i ∈ range N, ee (cp lam m i (P.prefixSum i)) = ee (-((lam : ℝ) * ((Zpre m N P : ℝ) / 2 ^ m))) := by
   simp only [cp, SwapCollatz.collatzPhase, WeightedChain.ee_neg_fract]
@@ -286,7 +325,9 @@ theorem prod_cp_eq (lam m N : ℕ) (P : FiniteValuationWord N) :
   rw [sum_div, mul_sum]
   exact sum_congr rfl fun i _ => by ring
 
-/-- `‖Fpre‖` in grid form.-/
+/-- `‖Fpre‖` in grid form.
+@isnad1 id=eq.0h5v.s7.ccd7dd1c209f from=translated src=- shape=e1698774 vocab=ca2aaa88
+-/
 theorem norm_Fpre_eq_grid (m N S lam : ℕ) :
     ‖Fpre b m N S lam‖ = ‖∑ P ∈ shellP b N S, ee ((lam : ℝ) *
       (((-(W m N : ℤ) * C P.toInfinite N : ℤ) : ℝ) / ((3 ^ N : ℕ) : ℝ) +
@@ -307,7 +348,9 @@ theorem norm_Fpre_eq_grid (m N S lam : ℕ) :
   push_cast
   rw [mul_add, TwistExpansion.ee_add]
 
-/-- **Sieve bound for the prefix sums.**-/
+/-- **Sieve bound for the prefix sums.**
+@isnad1 id=le.2h6v.s8.08e871dea478 from=translated src=- shape=37e7c1f1 vocab=4a43dfc2
+-/
 theorem sum_sq_norm_Fpre_le (m N S : ℕ) (hN : 1 ≤ N) (hX : 2 * Xmax b N ≤ 2 ^ m) (a H : ℕ) :
     ∑ k ∈ range H, ‖Fpre b m N S (a + k)‖ ^ 2 ≤
       (shellP b N S).card * (Xmax b N / 3 ^ N + 1 : ℕ) *
@@ -369,7 +412,9 @@ theorem sum_sq_norm_Fpre_le (m N S : ℕ) (hN : 1 ≤ N) (hX : 2 * Xmax b N ≤ 
 
 /-- **(C3) for `Ψ`.**  On any `H` consecutive frequencies `a, …, a+H−1`, splitting the prefix
 paths at step `N` (`1 ≤ N < j0`) with `2·Xmax(N) ≤ 2^m`, `m = σ + 1 + t`:
-`√(∑ ‖Ψ‖²) ≤ ∑_S g_S · min(√H·p_S, √(p_S μ (H + 2·3^N (1 + log 3^N))))`.-/
+`√(∑ ‖Ψ‖²) ≤ ∑_S g_S · min(√H·p_S, √(p_S μ (H + 2·3^N (1 + log 3^N))))`.
+@isnad1 id=le.3h7v.s8.773900c0e4c8 from=translated src=- shape=26eb6e5e vocab=1986615f
+-/
 theorem psi_shell_sieve (j0 σ t N : ℕ) (hN1 : 1 ≤ N) (hNj : N < j0)
     (hX : 2 * Xmax b N ≤ 2 ^ (σ + 1 + t)) (a H : ℕ) :
     √(∑ k ∈ range H, ‖TwistExpansion.Psi (shellP b j0 σ) (σ + 1) t (WeightedChain.yPrime j0 σ t) (a + k)‖ ^ 2) ≤

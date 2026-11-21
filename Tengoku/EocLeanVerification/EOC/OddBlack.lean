@@ -39,6 +39,9 @@ open Finset TriangleArray MaxTriangle PrefixCollision ShellDecomposition WhiteCo
 
 /-! ## 1. Finite Chernoff bounds -/
 
+/--
+@isnad1 id=le.1h5v.s6.8f9d863b23c9 from=translated src=- shape=554d47d5 vocab=9359d34d
+-/
 theorem card_filter_ge_mul_pow_le {ι : Type*} (T : Finset ι) (f : ι → ℕ) {s : ℝ} (hs : 1 ≤ s)
     (n : ℕ) : ((T.filter (fun i => n ≤ f i)).card : ℝ) * s ^ n ≤ ∑ i ∈ T, s ^ f i := by
   have h0 : ∀ i ∈ T, (0 : ℝ) ≤ s ^ f i := fun i _ => by positivity
@@ -49,6 +52,9 @@ theorem card_filter_ge_mul_pow_le {ι : Type*} (T : Finset ι) (f : ι → ℕ) 
     _ ≤ ∑ i ∈ T, s ^ f i := sum_le_sum_of_subset_of_nonneg (filter_subset _ _)
         (fun i hi _ => h0 i hi)
 
+/--
+@isnad1 id=le.2h5v.s6.e11fd23fd1b8 from=translated src=- shape=cd6fc456 vocab=80935715
+-/
 theorem card_filter_le_mul_pow_le {ι : Type*} (T : Finset ι) (f : ι → ℕ) {t : ℝ} (ht0 : 0 < t)
     (ht1 : t ≤ 1) (n : ℕ) :
     ((T.filter (fun i => f i ≤ n)).card : ℝ) * t ^ n ≤ ∑ i ∈ T, t ^ f i := by
@@ -62,7 +68,9 @@ theorem card_filter_le_mul_pow_le {ι : Type*} (T : Finset ι) (f : ι → ℕ) 
 
 /-! ## 2. Product classes -/
 
-/-- The class sum of a block product is the product of the block sums.-/
+/-- The class sum of a block product is the product of the block sums.
+@isnad1 id=eq.2h9v.s7.0ae216d40dfe from=translated src=- shape=5b5401e1 vocab=1abdfe0d
+-/
 theorem sum_class_prod {ι β : Type*} [DecidableEq β] (T : Finset ι) (κ : ι → β)
     (B : β → ℕ → Finset ℕ) {R : ℕ} (π : ι → Fin R → ℕ) {c : β}
     (hinj : Set.InjOn π ↑(T.filter (fun i => κ i = c)))
@@ -82,10 +90,15 @@ variable (b : ℕ → ℕ)
 def Elig {j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (r : ℕ) : Finset ℕ :=
   (BlockCubeInstance.pairB b c r).filter (fun x => x + 1 ∈ BlockCubeInstance.pairB b c r)
 
+/--
+@isnad1 id=le.0h4v.s5.83b2f656d05b from=translated src=- shape=5ae828f6 vocab=699e5566
+-/
 theorem elig_subset {j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (r : ℕ) :
     Elig b c r ⊆ BlockCubeInstance.pairB b c r := filter_subset _ _
 
-/-- The choice set is an interval: at most one admissible choice is not eligible.-/
+/-- The choice set is an interval: at most one admissible choice is not eligible.
+@isnad1 id=le.0h4v.s5.ebd2c85f8152 from=translated src=- shape=eecfd791 vocab=02824557
+-/
 theorem card_pairB_le_elig_add_one {j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (r : ℕ) :
     (BlockCubeInstance.pairB b c r).card ≤ (Elig b c r).card + 1 := by
   set B := BlockCubeInstance.pairB b c r
@@ -104,7 +117,9 @@ theorem card_pairB_le_elig_add_one {j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (r : �
   change B.card ≤ (B.filter (fun x => x + 1 ∈ B)).card + 1
   omega
 
-/-- If some choice is eligible, at least half of the choices are eligible.-/
+/-- If some choice is eligible, at least half of the choices are eligible.
+@isnad1 id=le.1h4v.s5.a0ddf4fb6c42 from=translated src=- shape=5aa1dddc vocab=938db90f
+-/
 theorem card_pairB_le_two_mul_elig {j0 : ℕ} {c : Fin (j0 + 1) → ℕ} {r : ℕ}
     (hne : (Elig b c r).Nonempty) :
     (BlockCubeInstance.pairB b c r).card ≤ 2 * (Elig b c r).card := by
@@ -127,6 +142,9 @@ def ShapeGood (N0 : ℕ) {j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (r : ℕ) : Prop 
 def BadPair (m N0 : ℕ) (d : ℝ) (lam : ℕ) {j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (r : ℕ) : Prop :=
   ShapeGood b N0 c r ∧ ∀ x ∈ Elig b c r, Dark m d lam r x
 
+/--
+@isnad1 id=goodpair.2h8v.s5.fef200a87d8f from=translated src=- shape=0fcb8e52 vocab=9caef906
+-/
 theorem goodPair_of_shape_not_bad {m N0 : ℕ} {d : ℝ} {lam j0 : ℕ} {c : Fin (j0 + 1) → ℕ} {r : ℕ}
     (hs : ShapeGood b N0 c r) (hnb : ¬ BadPair b m N0 d lam c r) :
     GoodPair b m N0 d lam c r := by
@@ -139,7 +157,9 @@ theorem goodPair_of_shape_not_bad {m N0 : ℕ} {d : ℝ} {lam j0 : ℕ} {c : Fin
   exact not_lt.mp hnd
 
 open Classical in
-/-- `#good ≥ #shape − #bad`, over any index set.-/
+/-- `#good ≥ #shape − #bad`, over any index set.
+@isnad1 id=le.0h8v.s6.5de8999e5091 from=translated src=- shape=38e7ed6e vocab=ab0ee7fe
+-/
 theorem goodCount_ge {m N0 : ℕ} {d : ℝ} {lam j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (I : Finset ℕ) :
     (I.filter (ShapeGood b N0 c)).card ≤
       (I.filter (GoodPair b m N0 d lam c)).card + (I.filter (BadPair b m N0 d lam c)).card := by
@@ -165,6 +185,9 @@ noncomputable def Nodd (m : ℕ) (d : ℝ) (lam : ℕ) {j0 : ℕ} (P : FiniteVal
   ((range (j0 / 2)).filter (OwnDark b m d lam P)).card
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s6.067b81882c18 from=translated src=- shape=dfd236bf vocab=efc0af08
+-/
 theorem pow_card_filter_eq_prod {s : ℝ} (n : ℕ) (p : ℕ → Prop) :
     s ^ ((range n).filter p).card = ∏ r : Fin n, (if p r then s else 1) := by
   rw [Fin.prod_univ_eq_prod_range (fun r => if p r then s else 1), prod_ite, prod_const_one,
@@ -172,7 +195,9 @@ theorem pow_card_filter_eq_prod {s : ℝ} (n : ℕ) (p : ℕ → Prop) :
 
 open Classical in
 /-- **Class lower bound.**  For `s ≥ 1` and a class `c` of the confined prefix shell,
-`∑_{P ∈ c} s^{N_odd(P)} ≥ |c| · ((1+s)/2)^{#bad blocks of c}`.-/
+`∑_{P ∈ c} s^{N_odd(P)} ≥ |c| · ((1+s)/2)^{#bad blocks of c}`.
+@isnad1 id=le.3h10v.s9.e7eff2b5b0c0 from=translated src=- shape=68979775 vocab=3e64b9aa
+-/
 theorem sum_class_pow_nodd_ge {j0 σ t : ℕ} (hj : 1 ≤ j0) {m N0 : ℕ} {d s : ℝ} {lam : ℕ}
     (hs : 1 ≤ s) {c : Fin (j0 + 1) → ℕ}
     (hc : c ∈ (shellP b j0 σ).image (BlockCubeInstance.pairκ j0)) :
@@ -264,7 +289,9 @@ def OddDarkPressure (j0 σ t U : ℕ) (d s M : ℝ) : Prop :=
 open Classical in
 /-- **`ShapeTail + OddDarkPressure ⇒ CriticalWhiteCount`.**  If fewer than `k + n` shape-good blocks
 has class-weighted frequency `≤ ρ₁`, and `∑ s^{N_odd} ≤ M |P_σ|` with `M ≤ ρ₂ ((1+s)/2)^n`, then at
-most a `ρ₁ + ρ₂` fraction has fewer than `k` good blocks.-/
+most a `ρ₁ + ρ₂` fraction has fewer than `k` good blocks.
+@isnad1 id=critical.5h13v.s7.031f81545e52 from=translated src=- shape=cf4b5774 vocab=d644bbd3
+-/
 theorem criticalWhiteCount_of_shape_and_oddPressure {j0 σ t U N0 k n : ℕ} {d s M ρ₁ ρ₂ : ℝ}
     (hj : 1 ≤ j0) (hs : 1 ≤ s) (hshape : ShapeTail b j0 σ N0 (k + n) ρ₁)
     (hodd : OddDarkPressure b j0 σ t U d s M) (hM : M ≤ ρ₂ * ((1 + s) / 2) ^ n) :
@@ -317,7 +344,9 @@ theorem criticalWhiteCount_of_shape_and_oddPressure {j0 σ t U N0 k n : ℕ} {d 
   rw [htot]
   linarith
 
-/-- **`ShapeTail + OddDarkPressure ⇒ WeightedFourier`** (through `CriticalWhiteCount`).-/
+/-- **`ShapeTail + OddDarkPressure ⇒ WeightedFourier`** (through `CriticalWhiteCount`).
+@isnad1 id=weighted.15h18v.s9.6e89c1dbdc77 from=translated src=- shape=d5e8a221 vocab=2b69802e
+-/
 theorem weightedFourier_of_shape_and_oddPressure {N j0 s σ U N0 k n : ℕ} {ε d sv M ρ₁ ρ₂ C γ : ℝ}
     (Nsplit : ℕ → ℕ) (hj : 1 ≤ j0) (hne : (shellP b j0 σ).Nonempty) (hd0 : 0 ≤ d) (hd1 : d ≤ 1 / 2)
     (hN : 2 ≤ N0) (hsv : 1 ≤ sv) (hshape : ShapeTail b j0 σ N0 (k + n) ρ₁)
@@ -344,7 +373,9 @@ noncomputable def Ntao (m : ℕ) (η : ℝ) {j0 : ℕ} (P : FiniteValuationWord 
 
 open Classical in
 /-- At `λ = 1` and `d = η/2`, under the smallness side condition, a dark own cell is Tao-black:
-`N_odd ≤ N_tao`.-/
+`N_odd ≤ N_tao`.
+@isnad1 id=le.2h5v.s8.91c32eac01ee from=translated src=- shape=8f8db3e5 vocab=3a4cf3ff
+-/
 theorem nodd_one_le_ntao {j0 : ℕ} (P : FiniteValuationWord j0) {m : ℕ} {η : ℝ}
     (hxm : ∀ r < j0 / 2, P.prefixSum (2 * r + 1) ≤ m)
     (hsmall : ∀ r < j0 / 2,

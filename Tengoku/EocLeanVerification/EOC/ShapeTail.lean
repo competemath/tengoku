@@ -43,7 +43,9 @@ variable (b : ℕ → ℕ)
 /-! ## 1. Shape-good means `2 ≤ |B_r| ≤ N₀` -/
 
 /-- The choice set of a pair block is an interval, so it has an eligible element iff it has at
-least two elements.-/
+least two elements.
+@isnad1 id=iff.0h4v.s5.f10e423b95ea from=translated src=- shape=35688d64 vocab=a3f298f0
+-/
 theorem elig_nonempty_iff {j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (r : ℕ) :
     (Elig b c r).Nonempty ↔ 2 ≤ (pairB b c r).card := by
   constructor
@@ -62,7 +64,9 @@ theorem elig_nonempty_iff {j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (r : ℕ) :
     · exact ⟨u, mem_filter.mpr ⟨hu, step u v hu hv h⟩⟩
     · exact ⟨v, mem_filter.mpr ⟨hv, step v u hv hu h⟩⟩
 
-/-- **Shape-good is a pure cardinality condition**: `2 ≤ |B_r| ≤ N₀`.-/
+/-- **Shape-good is a pure cardinality condition**: `2 ≤ |B_r| ≤ N₀`.
+@isnad1 id=iff.0h5v.s5.516139fac791 from=translated src=- shape=9123f4ad vocab=38b397b1
+-/
 theorem shapeGood_iff {N0 j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (r : ℕ) :
     ShapeGood b N0 c r ↔ 2 ≤ (pairB b c r).card ∧ (pairB b c r).card ≤ N0 := by
   unfold ShapeGood
@@ -81,7 +85,9 @@ instance {j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (r : ℕ) : Decidable (Tight b c 
 instance {N0 j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (r : ℕ) : Decidable (Big b N0 c r) := by
   unfold Big; infer_instance
 
-/-- Tightness is exactly "the digit pair is `(1,1)`" or "the barrier cuts the block".-/
+/-- Tightness is exactly "the digit pair is `(1,1)`" or "the barrier cuts the block".
+@isnad1 id=iff.0h4v.s7.e2a364e07c6d from=translated src=- shape=078112a1 vocab=2173bdfb
+-/
 theorem tight_iff {j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (r : ℕ) :
     Tight b c r ↔ cget c (2 * r + 2) ≤ cget c (2 * r) + 2 ∨ b (2 * r + 1) ≤ cget c (2 * r) + 1 := by
   unfold Tight
@@ -118,7 +124,9 @@ theorem tight_iff {j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (r : ℕ) :
 
 /-! ## 2. The exact block budget -/
 
-/-- One block's choice set costs at least `|B_r| + 1` of the prefix-sum budget.-/
+/-- One block's choice set costs at least `|B_r| + 1` of the prefix-sum budget.
+@isnad1 id=le.2h4v.s6.8e403726ab24 from=translated src=- shape=54d92def vocab=600b1b53
+-/
 theorem card_pairB_add_le_diff {j0 : ℕ} {P : FiniteValuationWord j0} (hpos : P.Positive) {r : ℕ}
     (h : 2 * r + 2 ≤ j0) :
     (pairB b (pairκ j0 P) r).card + 1 ≤ P.prefixSum (2 * r + 2) - P.prefixSum (2 * r) := by
@@ -138,7 +146,9 @@ theorem card_pairB_add_le_diff {j0 : ℕ} {P : FiniteValuationWord j0} (hpos : P
   omega
 
 /-- **Block budget.**  The `R = j₀/2` blocks of a confined word of total `σ` satisfy
-`∑_r (|B_r| + 1) ≤ σ`.-/
+`∑_r (|B_r| + 1) ≤ σ`.
+@isnad1 id=le.2h4v.s6.22327d8d5ed3 from=translated src=- shape=ba770514 vocab=306d177e
+-/
 theorem sum_card_pairB_add_le {j0 σ : ℕ} (hj : 1 ≤ j0) {P : FiniteValuationWord j0}
     (hP : P ∈ shellP b j0 σ) :
     ∑ r ∈ range (j0 / 2), ((pairB b (pairκ j0 P) r).card + 1) ≤ σ := by
@@ -167,7 +177,9 @@ theorem sum_card_pairB_add_le {j0 σ : ℕ} (hj : 1 ≤ j0) {P : FiniteValuation
   omega
 
 /-- **Big blocks are deterministically few.**  A confined word of total `σ` has at most
-`σ/(N₀+2)` blocks with more than `N₀` internal choices.-/
+`σ/(N₀+2)` blocks with more than `N₀` internal choices.
+@isnad1 id=le.2h5v.s6.89496a88cc9f from=translated src=- shape=196334e6 vocab=f4b8bd8a
+-/
 theorem card_big_mul_le {j0 σ N0 : ℕ} (hj : 1 ≤ j0) {P : FiniteValuationWord j0}
     (hP : P ∈ shellP b j0 σ) :
     ((range (j0 / 2)).filter (Big b N0 (pairκ j0 P))).card * (N0 + 2) ≤ σ := by
@@ -188,7 +200,9 @@ theorem card_big_mul_le {j0 σ N0 : ℕ} (hj : 1 ≤ j0) {P : FiniteValuationWor
 /-! ## 3. Every block is shape-good, tight, or big -/
 
 open Classical in
-/-- The three classes exhaust the blocks.-/
+/-- The three classes exhaust the blocks.
+@isnad1 id=le.0h5v.s6.c6b2706831ce from=translated src=- shape=51deddb7 vocab=f11b0e64
+-/
 theorem card_le_good_add_tight_add_big {N0 j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (I : Finset ℕ) :
     I.card ≤ (I.filter (ShapeGood b N0 c)).card + (I.filter (Tight b c)).card
       + (I.filter (Big b N0 c)).card := by
@@ -229,7 +243,9 @@ def TightTail (j0 σ T : ℕ) (ρ₁ : ℝ) : Prop :=
 open Classical in
 /-- **`TightTail ⇒ ShapeTail`.**  If few words have `T` or more tight blocks, and
 `K + T + σ/(N₀+2) ≤ j₀/2`, then few words have fewer than `K` shape-good blocks: the *big* blocks
-are paid for deterministically by the block budget.-/
+are paid for deterministically by the block budget.
+@isnad1 id=shapetai.3h7v.s6.ef5e5fdcfe7f from=translated src=- shape=56744c85 vocab=fc45586f
+-/
 theorem shapeTail_of_tightTail {j0 σ N0 K T : ℕ} {ρ₁ : ℝ} (hj : 1 ≤ j0)
     (hK : K + T + σ / (N0 + 2) ≤ j0 / 2) (htight : TightTail b j0 σ T ρ₁) :
     ShapeTail b j0 σ N0 K ρ₁ := by
@@ -253,7 +269,9 @@ theorem shapeTail_of_tightTail {j0 σ N0 K T : ℕ} {ρ₁ : ℝ} (hj : 1 ≤ j0
 /-! ## 5. The class-level form of `TightTail` -/
 
 /-- **Class cardinality.**  A coarse class of the prefix shell is the product of its blocks'
-choice sets, so its size is `∏_r |B_r|`.-/
+choice sets, so its size is `∏_r |B_r|`.
+@isnad1 id=eq.2h5v.s8.3b32110fd1ba from=translated src=- shape=b04c831c vocab=038e9381
+-/
 theorem card_class_eq_prod {j0 σ t : ℕ} (hj : 1 ≤ j0) {c : Fin (j0 + 1) → ℕ}
     (hc : c ∈ (shellP b j0 σ).image (pairκ j0)) :
     (((shellP b j0 σ).filter (fun P => pairκ j0 P = c)).card : ℝ)
@@ -266,7 +284,9 @@ theorem card_class_eq_prod {j0 σ t : ℕ} (hj : 1 ≤ j0) {c : Fin (j0 + 1) →
 open Classical in
 /-- **`TightTail` is a class-level statement.**  The tilted word count splits into a sum over
 coarse classes weighted by `∏_r |B_r|` — the quantity computed by the block transfer operator
-(`EOC.LocalWindow.ker`), since `tightCount` depends on the word only through its class.-/
+(`EOC.LocalWindow.ker`), since `tightCount` depends on the word only through its class.
+@isnad1 id=eq.1h5v.s8.dae9b28e60f1 from=translated src=- shape=55873a21 vocab=3206495b
+-/
 theorem sum_pow_tight_eq_class_sum {j0 σ t : ℕ} (hj : 1 ≤ j0) (u : ℝ) :
     ∑ P ∈ shellP b j0 σ, u ^ tightCount b j0 P
       = ∑ c ∈ (shellP b j0 σ).image (pairκ j0),
@@ -291,7 +311,9 @@ obeys `∑_c (∏_r |B_r|) u^{#tight(c)} ≤ ρ₁ u^T |P_σ|`, then `TightTail 
 
 The left side is exactly the tilted partition function computed by the block transfer operator
 (state = even prefix sum, weight `|B_r|·u^{[|B_r| ≤ 1]}`), so a finite spectral certificate
-(`LocalWindow.val_le_of_superEigen` for the numerator, `val_ge_of_subEigen` for `|P_σ|`) suffices.-/
+(`LocalWindow.val_le_of_superEigen` for the numerator, `val_ge_of_subEigen` for `|P_σ|`) suffices.
+@isnad1 id=tighttai.3h7v.s8.b11578867827 from=translated src=- shape=4ee85791 vocab=f804b73b
+-/
 theorem tightTail_of_tilted {j0 σ t T : ℕ} {u ρ₁ : ℝ} (hj : 1 ≤ j0) (hu : 1 ≤ u)
     (htilt : ∑ c ∈ (shellP b j0 σ).image (pairκ j0),
         (∏ r : Fin (j0 / 2), ((pairB b c (r : ℕ)).card : ℝ)) *
@@ -313,7 +335,9 @@ theorem tightTail_of_tilted {j0 σ t T : ℕ} {u ρ₁ : ℝ} (hj : 1 ≤ j0) (h
 
 /-- **Shell lower bound for the prefix shell.**  Specialization of
 `CapacityBounds.shell_choose_le_mul_card` (chord rotation / cycle lemma, already in the repo) to
-`shellP`: `C(σ−1, j₀−1) ≤ j₀ · |P_σ|`.-/
+`shellP`: `C(σ−1, j₀−1) ≤ j₀ · |P_σ|`.
+@isnad1 id=le.4h3v.s6.6f8913553950 from=translated src=- shape=7f33d1ea vocab=e179ef87
+-/
 theorem choose_le_mul_card_shellP {j0 σ : ℕ} (hj : 1 ≤ j0)
     (hchord : ∀ j ≤ j0, ∀ p : ℕ, j0 * p ≤ j * b j0 → p ≤ b j)
     (hjσ : j0 ≤ σ) (hσ : σ ≤ b j0) :
@@ -323,7 +347,9 @@ theorem choose_le_mul_card_shellP {j0 σ : ℕ} (hj : 1 ≤ j0)
 open Classical in
 /-- **`TightTail` from an explicit tilted-sum bound.**  The denominator is replaced by the binomial
 coefficient supplied by the chord rotation, so the remaining obligation is a comparison of two
-explicit finite quantities: the tilted class sum on the left, `C(σ−1, j₀−1)` on the right.-/
+explicit finite quantities: the tilted class sum on the left, `C(σ−1, j₀−1)` on the right.
+@isnad1 id=tighttai.7h7v.s8.a359ad9dfa89 from=translated src=- shape=5fe07aad vocab=55f88a68
+-/
 theorem tightTail_of_tilted_choose {j0 σ t T : ℕ} {u ρ₁ : ℝ} (hj : 1 ≤ j0) (hu : 1 ≤ u)
     (hρ : 0 ≤ ρ₁)
     (hchord : ∀ j ≤ j0, ∀ p : ℕ, j0 * p ≤ j * b j0 → p ≤ b j)
@@ -349,7 +375,9 @@ theorem tightTail_of_tilted_choose {j0 σ t T : ℕ} {u ρ₁ : ℝ} (hj : 1 ≤
 
 open Classical in
 /-- **Single-hypothesis wrapper.**  With the shape hypothesis replaced by `TightTail`, the critical
-white count follows from `TightTail` and `OddDarkPressure` alone.-/
+white count follows from `TightTail` and `OddDarkPressure` alone.
+@isnad1 id=critical.6h14v.s7.086ec565d7d8 from=translated src=- shape=d3c24713 vocab=08b3fd34
+-/
 theorem criticalWhiteCount_of_tight_and_oddPressure {j0 σ t U N0 k n T : ℕ} {d s M ρ₁ ρ₂ : ℝ}
     (hj : 1 ≤ j0) (hs : 1 ≤ s)
     (hK : (k + n) + T + σ / (N0 + 2) ≤ j0 / 2)

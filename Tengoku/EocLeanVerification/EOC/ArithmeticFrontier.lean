@@ -39,7 +39,9 @@ open Finset LocalWindow PressureBridge CapacityBounds DangerousWindows
 
 /-! ## 1. Stable helpers -/
 
-/-- The dark predicate is a distance-to-integer condition on `λ u 2^z / 2^m`.-/
+/-- The dark predicate is a distance-to-integer condition on `λ u 2^z / 2^m`.
+@isnad1 id=iff.0h5v.s6.ec5b6884b495 from=translated src=- shape=4c2d98bd vocab=419af262
+-/
 theorem dark_iff_distZ {m : ℕ} {d : ℝ} {lam r z : ℕ} :
     OddBlack.Dark m d lam r z ↔
       WhiteContraction.distZ
@@ -49,6 +51,9 @@ theorem dark_iff_distZ {m : ℕ} {d : ℝ} {lam r z : ℕ} :
     WhiteContraction.collatzPhase_sub_succ lam m (WeightedChain.uInv m) (2 * r + 1) z
   rw [hk, WhiteContraction.distZ_add_int]
 
+/--
+@isnad1 id=modeq.0h3v.s5.2f142ccc8817 from=translated src=- shape=730bc67f vocab=1a5843ac
+-/
 theorem uInv_modEq_shift (m t i : ℕ) :
     (WeightedChain.uInv (m + t) i : ℤ) ≡ WeightedChain.uInv m i [ZMOD 2 ^ m] := by
   have h1 := PsiSieve.uInv_modEq (m + t) i
@@ -65,7 +70,9 @@ theorem uInv_modEq_shift (m t i : ℕ) :
   exact (Int.ModEq.symm ((Int.modEq_iff_dvd).mpr this))
 
 /-- **Shift translation.**  Raising the modulus exponent `m` and the column `z` by the same `t`
-leaves the dark predicate unchanged: only `a = m − z` matters.-/
+leaves the dark predicate unchanged: only `a = m − z` matters.
+@isnad1 id=iff.0h6v.s5.661a447a1a58 from=translated src=- shape=dae1fec7 vocab=42f9f271
+-/
 theorem dark_shift {m t : ℕ} {d : ℝ} {lam r z : ℕ} :
     OddBlack.Dark (m + t) d lam r (z + t) ↔ OddBlack.Dark m d lam r z := by
   rw [dark_iff_distZ, dark_iff_distZ]
@@ -87,7 +94,9 @@ theorem dark_shift {m t : ℕ} {d : ℝ} {lam r z : ℕ} :
 
 /-- **Tao-black at `η = 1/54` is a three-digit condition.**  `black a b (1/54)` holds iff
 `2|y| < 3^{b−3}`, i.e. (for the centered representative `y`, `|y| ≤ (3^b − 1)/2`) iff the three
-leading balanced-ternary digits of `y` vanish.-/
+leading balanced-ternary digits of `y` vanish.
+@isnad1 id=iff.1h2v.s6.5c9018d5ddc0 from=translated src=- shape=37dbf216 vocab=c58231a5
+-/
 theorem black_fiftyfourth_iff {a b : ℕ} (hb : 3 ≤ b) :
     TriangleArray.black a b (1 / 54) ↔ 2 * |(TriangleArray.y a b : ℝ)| < 3 ^ (b - 3) := by
   unfold TriangleArray.black
@@ -119,7 +128,9 @@ def PowerOfTwoDangerousWindowSparsity (j t U K : ℕ) (d a b : ℝ) : Prop :=
 /-! ## 3. End-to-end: the hypothesis implies `LowFreqDecay` -/
 
 /-- **`PowerOfTwoDangerousWindowSparsity ⇒ SummedOddDarkPressure (1/6)`** for logarithmic
-windows.-/
+windows.
+@isnad1 id=summedod.6h8v.s8.36f49829dd6f from=translated src=- shape=1a98ffcb vocab=63451a41
+-/
 theorem summedPressure_of_powerOfTwoSparsity {j t U K : ℕ} {d a b A : ℝ}
     (hj : 300 ≤ j) (hev : 2 ∣ j) (hK : 0 < K) (hKlog : (K : ℝ) ≤ A * Real.logb 2 j + 1)
     (hb : 0 ≤ b) (h : PowerOfTwoDangerousWindowSparsity j t U K d a b) :
@@ -133,7 +144,9 @@ theorem summedPressure_of_powerOfTwoSparsity {j t U K : ℕ} {d a b A : ℝ}
 /-- **End to end: `PowerOfTwoDangerousWindowSparsity ⇒ LowFreqDecay`.**  The only non-arithmetic
 inputs are the parameter inequalities of `AverageOddDark.lowFreqDecay_of_summedPressure` (block
 budget for `N₀`, split `k + n`, dark threshold `d`, rate `θ' > 1/6`, finite cutoff
-`(3C/(θ' − 1/6))² ≤ j`, and the rate conditions for `γ`).-/
+`(3C/(θ' − 1/6))² ≤ j`, and the rate conditions for `γ`).
+@isnad1 id=lowfreqd.19h15v.s9.4d7ce7c849c8 from=translated src=- shape=7b3f875e vocab=e402e08a
+-/
 theorem lowFreqDecay_of_powerOfTwoSparsity {j t U K N0 Kb k n : ℕ} {d a b A θ' ν γ : ℝ}
     (hj : 300 ≤ j) (hev : 2 ∣ j) (hK : 0 < K) (hKlog : (K : ℝ) ≤ A * Real.logb 2 j + 1)
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hA : 0 ≤ A)

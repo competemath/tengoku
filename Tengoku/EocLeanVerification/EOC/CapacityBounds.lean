@@ -44,22 +44,37 @@ variable {N : ℕ}
 def box (N B : ℕ) : Finset (FiniteValuationWord N) :=
   Fintype.piFinset fun _ => Finset.Icc 1 B
 
+/--
+@isnad1 id=iff.0h3v.s5.e60545e8b619 from=translated src=- shape=b150ec2a vocab=133b2589
+-/
 theorem mem_box {B : ℕ} {w : FiniteValuationWord N} :
     w ∈ box N B ↔ ∀ i, 1 ≤ w i ∧ w i ≤ B := by
   simp [box, Fintype.mem_piFinset]
 
+/--
+@isnad1 id=le.0h3v.s4.96ecc078260d from=translated src=- shape=6f794638 vocab=30619fdc
+-/
 theorem digit_le_total (w : FiniteValuationWord N) (i : Fin N) : w i ≤ w.total := by
   rw [total_eq_sum_univ]
   exact Finset.single_le_sum (fun j _ => Nat.zero_le (w j)) (Finset.mem_univ i)
 
+/--
+@isnad1 id=mem.2h3v.s5.229e8378421e from=translated src=- shape=7cf2df81 vocab=93534401
+-/
 theorem mem_box_of_positive {B : ℕ} {w : FiniteValuationWord N} (hw : w.Positive)
     (hB : w.total ≤ B) : w ∈ box N B :=
   mem_box.mpr fun i => ⟨hw i, (digit_le_total w i).trans hB⟩
 
+/--
+@isnad1 id=positive.1h3v.s4.357e6122020b from=translated src=- shape=81cc1060 vocab=ba9bcd5a
+-/
 theorem positive_of_mem_box {B : ℕ} {w : FiniteValuationWord N} (h : w ∈ box N B) :
     w.Positive :=
   fun i => (mem_box.mp h i).1
 
+/--
+@isnad1 id=le.1h2v.s4.b370abdd21b7 from=translated src=- shape=fd3a4629 vocab=a583f59f
+-/
 theorem le_total_of_positive {w : FiniteValuationWord N} (hw : w.Positive) : N ≤ w.total := by
   rw [total_eq_sum_univ]
   calc N = ∑ _i : Fin N, 1 := by simp
@@ -77,10 +92,16 @@ instance (K : ℕ → ℕ) : DecidablePred (BarrierConfined (N := N) K) := fun w
 def confinedWords (N : ℕ) (K : ℕ → ℕ) : Finset (FiniteValuationWord N) :=
   (box N (K N)).filter (BarrierConfined K)
 
+/--
+@isnad1 id=le.2h3v.s5.f092339b7a90 from=translated src=- shape=983f18d2 vocab=385b8d1d
+-/
 theorem total_le_of_barrierConfined (hN : 1 ≤ N) {K : ℕ → ℕ} {w : FiniteValuationWord N}
     (h : BarrierConfined K w) : w.total ≤ K N :=
   h N (mem_Icc.mpr ⟨hN, le_rfl⟩)
 
+/--
+@isnad1 id=iff.1h3v.s5.8d49852608e5 from=translated src=- shape=5e160ffc vocab=c569e30a
+-/
 theorem mem_confinedWords (hN : 1 ≤ N) {K : ℕ → ℕ} {w : FiniteValuationWord N} :
     w ∈ confinedWords N K ↔ w.Positive ∧ BarrierConfined K w := by
   constructor
@@ -100,6 +121,9 @@ def shellWords (N s : ℕ) : Finset (FiniteValuationWord N) :=
 def feasibleWords (N B : ℕ) : Finset (FiniteValuationWord N) :=
   (box N B).filter fun w => w.total ≤ B
 
+/--
+@isnad1 id=iff.0h3v.s5.22e07bd5d884 from=translated src=- shape=3f91ee2d vocab=4803e693
+-/
 theorem mem_shellWords {s : ℕ} {w : FiniteValuationWord N} :
     w ∈ shellWords N s ↔ w.Positive ∧ w.total = s := by
   constructor
@@ -109,6 +133,9 @@ theorem mem_shellWords {s : ℕ} {w : FiniteValuationWord N} :
   · rintro ⟨hp, ht⟩
     exact mem_filter.mpr ⟨mem_box_of_positive hp ht.le, ht⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.d1ed39e8f5ed from=translated src=- shape=3f91ee2d vocab=607cd153
+-/
 theorem mem_feasibleWords {B : ℕ} {w : FiniteValuationWord N} :
     w ∈ feasibleWords N B ↔ w.Positive ∧ w.total ≤ B := by
   constructor
@@ -118,7 +145,9 @@ theorem mem_feasibleWords {B : ℕ} {w : FiniteValuationWord N} :
   · rintro ⟨hp, ht⟩
     exact mem_filter.mpr ⟨mem_box_of_positive hp ht, ht⟩
 
-/-- A shell of positive words is the image of the composition shell `ValuationShell N s`.-/
+/-- A shell of positive words is the image of the composition shell `ValuationShell N s`.
+@isnad1 id=eq.2h2v.s5.8bf2618864d7 from=translated src=- shape=2d3ee364 vocab=74cbc5f1
+-/
 theorem card_shellWords (hN : 1 ≤ N) {s : ℕ} (hNs : N ≤ s) :
     (shellWords N s).card = Nat.choose (s - 1) (N - 1) := by
   rw [← valuationShell_card hN hNs, ← Finset.card_univ]
@@ -140,6 +169,9 @@ theorem card_shellWords (hN : 1 ≤ N) {s : ℕ} (hNs : N ≤ s) :
       exact ⟨q.toWord_positive, q.toWord_total⟩
   rw [himage, card_image_of_injective _ ValuationShell.toWord_injective]
 
+/--
+@isnad1 id=eq.0h2v.s5.84d983b8e455 from=translated src=- shape=29defdbb vocab=b58294ca
+-/
 theorem feasibleWords_eq_biUnion (N B : ℕ) :
     feasibleWords N B = (Icc N B).biUnion (shellWords N) := by
   ext w
@@ -151,7 +183,9 @@ theorem feasibleWords_eq_biUnion (N B : ℕ) :
     obtain ⟨hp, ht⟩ := mem_shellWords.mp hw
     exact ⟨hp, ht ▸ (mem_Icc.mp hs).2⟩
 
-/-- **Terminal-only count** (paper Prop 4.1): `#{w positive : S_N ≤ B} = C(B, N)`.-/
+/-- **Terminal-only count** (paper Prop 4.1): `#{w positive : S_N ≤ B} = C(B, N)`.
+@isnad1 id=eq.1h2v.s4.1a94247e0564 from=translated src=- shape=d5e4bc5e vocab=7ae79e41
+-/
 theorem card_feasibleWords (hN : 1 ≤ N) (B : ℕ) :
     (feasibleWords N B).card = Nat.choose B N := by
   rw [feasibleWords_eq_biUnion, card_biUnion]
@@ -164,16 +198,25 @@ theorem card_feasibleWords (hN : 1 ≤ N) (B : ℕ) :
 
 /-! ## 3. Rotation algebra -/
 
+/--
+@isnad1 id=eq.0h4v.s4.8be51b923e1b from=translated src=- shape=1fff291c vocab=28762354
+-/
 theorem rotate_rotate (w : FiniteValuationWord N) (r k : ℕ) :
     (w.rotate r).rotate k = w.rotate (r + k) := by
   apply List.ofFn_injective
   simp [ofFn_rotate, List.rotate_rotate]
 
+/--
+@isnad1 id=eq.0h2v.s3.aef6522c7c18 from=translated src=- shape=2941f127 vocab=7ef671e0
+-/
 theorem rotate_self_length (w : FiniteValuationWord N) : w.rotate N = w := by
   apply List.ofFn_injective
   rw [ofFn_rotate]
   simpa using List.rotate_length (List.ofFn w)
 
+/--
+@isnad1 id=eq.0h3v.s4.e38434b65fc7 from=translated src=- shape=3b58f087 vocab=12b9b7a9
+-/
 theorem rotate_mod (w : FiniteValuationWord N) (k : ℕ) : w.rotate (k % N) = w.rotate k := by
   apply List.ofFn_injective
   rw [ofFn_rotate, ofFn_rotate]
@@ -183,13 +226,18 @@ theorem rotate_mod (w : FiniteValuationWord N) (k : ℕ) : w.rotate (k % N) = w.
 noncomputable def chordRot (hN : 0 < N) (w : FiniteValuationWord N) : ℕ :=
   Classical.choose (ChordRotation.chord_rotation_nat hN w w.total rfl)
 
+/--
+@isnad1 id=and.1h2v.s6.b20140d11b81 from=translated src=- shape=3cb610e0 vocab=93b74ebf
+-/
 theorem chordRot_spec (hN : 0 < N) (w : FiniteValuationWord N) :
     chordRot hN w < N ∧
       ∀ j ≤ N, N * (w.rotate (chordRot hN w)).prefixSum j ≤ j * w.total :=
   Classical.choose_spec (ChordRotation.chord_rotation_nat hN w w.total rfl)
 
 /-- A rotation lying below the chord of a word with total `≤ K N` is `K`-confined, provided the
-barrier dominates the chord (`hchord`).-/
+barrier dominates the chord (`hchord`).
+@isnad1 id=barrierc.3h4v.s6.6fd8b2b5c7c1 from=translated src=- shape=4771d8c7 vocab=005d63b7
+-/
 theorem barrierConfined_of_chord {K : ℕ → ℕ}
     (hchord : ∀ j ≤ N, ∀ p : ℕ, N * p ≤ j * K N → p ≤ K j)
     {w : FiniteValuationWord N} (hw : w.total ≤ K N) {r : ℕ}
@@ -202,7 +250,9 @@ theorem barrierConfined_of_chord {K : ℕ → ℕ}
 /-! ## 4. Rotation counting -/
 
 /-- **Rotation counting.** Feasible words whose total satisfies `P` number at most `N` times the
-confined words whose total satisfies `P`.-/
+confined words whose total satisfies `P`.
+@isnad1 id=le.2h3v.s7.5239703901bc from=translated src=- shape=1661b7b6 vocab=3200c077
+-/
 theorem card_filter_le_mul_card (hN : 0 < N) (K : ℕ → ℕ)
     (hchord : ∀ j ≤ N, ∀ p : ℕ, N * p ≤ j * K N → p ≤ K j) (P : ℕ → Prop) [DecidablePred P] :
     ((feasibleWords N (K N)).filter fun w => P w.total).card ≤
@@ -233,7 +283,9 @@ theorem card_filter_le_mul_card (hN : 0 < N) (K : ℕ → ℕ)
 
 /-! ## 5. The sandwich -/
 
-/-- Upper half: `#confined ≤ C(K N, N)`.-/
+/-- Upper half: `#confined ≤ C(K N, N)`.
+@isnad1 id=le.1h2v.s4.60e6513cd1f1 from=translated src=- shape=3a10312d vocab=82684c33
+-/
 theorem card_confinedWords_le_choose (hN : 1 ≤ N) (K : ℕ → ℕ) :
     (confinedWords N K).card ≤ Nat.choose (K N) N := by
   rw [← card_feasibleWords hN]
@@ -242,7 +294,9 @@ theorem card_confinedWords_le_choose (hN : 1 ≤ N) (K : ℕ → ℕ) :
   obtain ⟨hp, hc⟩ := (mem_confinedWords hN).mp hw
   exact mem_feasibleWords.mpr ⟨hp, total_le_of_barrierConfined hN hc⟩
 
-/-- Lower half, summed over shells: `C(K N, N) ≤ N · #confined`.-/
+/-- Lower half, summed over shells: `C(K N, N) ≤ N · #confined`.
+@isnad1 id=le.2h2v.s6.4f8af262ac6f from=translated src=- shape=cd04201e vocab=6e98dab7
+-/
 theorem choose_le_mul_card_confinedWords (hN : 1 ≤ N) (K : ℕ → ℕ)
     (hchord : ∀ j ≤ N, ∀ p : ℕ, N * p ≤ j * K N → p ≤ K j) :
     Nat.choose (K N) N ≤ N * (confinedWords N K).card := by
@@ -251,7 +305,9 @@ theorem choose_le_mul_card_confinedWords (hN : 1 ≤ N) (K : ℕ → ℕ)
     card_feasibleWords hN] at h
   exact h
 
-/-- Per-shell lower bound (paper Thm 5.2): `C(s-1, N-1) ≤ N · #{confined, S_N = s}`.-/
+/-- Per-shell lower bound (paper Thm 5.2): `C(s-1, N-1) ≤ N · #{confined, S_N = s}`.
+@isnad1 id=le.4h3v.s7.0059152c92b0 from=translated src=- shape=3759eed1 vocab=b253ad97
+-/
 theorem shell_choose_le_mul_card (hN : 1 ≤ N) (K : ℕ → ℕ)
     (hchord : ∀ j ≤ N, ∀ p : ℕ, N * p ≤ j * K N → p ≤ K j) {s : ℕ} (hNs : N ≤ s)
     (hsK : s ≤ K N) :
@@ -272,11 +328,20 @@ theorem shell_choose_le_mul_card (hN : 1 ≤ N) (K : ℕ → ℕ)
 /-- The Collatz barrier `⌊jα + c⌋₊`.-/
 noncomputable def collatzBarrier (c : ℕ) (j : ℕ) : ℕ := ⌊(j : ℝ) * alpha + c⌋₊
 
+/--
+@isnad1 id=lt.0h0v.s3.3a2f8958b89d from=translated src=- shape=ff3a10fc vocab=4f5f0e84
+-/
 theorem alpha_pos : 0 < alpha := lt_trans zero_lt_one one_lt_alpha
 
+/--
+@isnad1 id=le.0h2v.s5.384269d0bb01 from=translated src=- shape=0ece4484 vocab=905ce75f
+-/
 theorem barrier_arg_nonneg (c j : ℕ) : 0 ≤ (j : ℝ) * alpha + c :=
   add_nonneg (mul_nonneg (Nat.cast_nonneg _) alpha_pos.le) (Nat.cast_nonneg _)
 
+/--
+@isnad1 id=iff.0h3v.s4.22ad8b6a3b6f from=translated src=- shape=512ad071 vocab=384782d6
+-/
 theorem barrierConfined_collatz_iff (c : ℕ) (w : FiniteValuationWord N) :
     BarrierConfined (collatzBarrier c) w ↔ PaperConfined alpha c w := by
   unfold BarrierConfined PaperConfined collatzBarrier
@@ -291,7 +356,9 @@ theorem barrierConfined_collatz_iff (c : ℕ) (w : FiniteValuationWord N) :
     have := h j hj.1 hj.2
     linarith
 
-/-- The Collatz barrier dominates every chord from `(0, 0)` to `(N, s_N)` (needs `c ≥ 0`).-/
+/-- The Collatz barrier dominates every chord from `(0, 0)` to `(N, s_N)` (needs `c ≥ 0`).
+@isnad1 id=le.3h4v.s5.c90948d04116 from=translated src=- shape=efc92789 vocab=9a70e19d
+-/
 theorem collatz_chord (c : ℕ) (hN : 0 < N) :
     ∀ j ≤ N, ∀ p : ℕ, N * p ≤ j * collatzBarrier c N → p ≤ collatzBarrier c j := by
   intro j hj p hp
@@ -308,11 +375,16 @@ theorem collatz_chord (c : ℕ) (hN : 0 < N) :
   have hkey : (N : ℝ) * p ≤ N * (j * alpha + c) := by nlinarith
   exact le_of_mul_le_mul_left hkey hNr
 
-/-- Membership in the Collatz confined set is paper-faithful confinement of a positive word.-/
+/-- Membership in the Collatz confined set is paper-faithful confinement of a positive word.
+@isnad1 id=iff.1h3v.s5.8483916e7b1b from=translated src=- shape=b0b6cd18 vocab=59c5ee5c
+-/
 theorem mem_collatzConfinedWords (c : ℕ) (hN : 1 ≤ N) {w : FiniteValuationWord N} :
     w ∈ confinedWords N (collatzBarrier c) ↔ w.Positive ∧ PaperConfined alpha c w := by
   rw [mem_confinedWords hN, barrierConfined_collatz_iff]
 
+/--
+@isnad1 id=le.0h2v.s3.5dabb7d46cd1 from=translated src=- shape=86c6c8ca vocab=a836d346
+-/
 theorem le_collatzBarrier (c : ℕ) (N : ℕ) : N ≤ collatzBarrier c N := by
   unfold collatzBarrier
   rw [Nat.le_floor_iff (barrier_arg_nonneg c N)]
@@ -323,7 +395,9 @@ theorem le_collatzBarrier (c : ℕ) (N : ℕ) : N ≤ collatzBarrier c N := by
 
 /-- **Collatz capacity sandwich** (paper Cor 6.1, summed form): with `s_N = ⌊Nα + c⌋₊` and
 `W_c(N) = #confinedWords N (collatzBarrier c)`,
-`C(s_N - 1, N - 1) ≤ C(s_N, N) ≤ N · W_c(N) ≤ N · C(s_N, N)`.-/
+`C(s_N - 1, N - 1) ≤ C(s_N, N) ≤ N · W_c(N) ≤ N · C(s_N, N)`.
+@isnad1 id=and.1h2v.s6.3889e2496f32 from=translated src=- shape=f02344ab vocab=ddfd64bb
+-/
 theorem collatz_capacity_sandwich (c : ℕ) (hN : 1 ≤ N) :
     Nat.choose (collatzBarrier c N - 1) (N - 1) ≤ Nat.choose (collatzBarrier c N) N ∧
       Nat.choose (collatzBarrier c N) N ≤ N * (confinedWords N (collatzBarrier c)).card ∧
@@ -337,7 +411,9 @@ theorem collatz_capacity_sandwich (c : ℕ) (hN : 1 ≤ N) :
   exact Nat.le_add_right _ _
 
 /-- Per-shell Collatz lower bound (paper Thm 5.2): for `N ≤ s ≤ s_N`,
-`C(s - 1, N - 1) ≤ N · A_N(c, s)`.-/
+`C(s - 1, N - 1) ≤ N · A_N(c, s)`.
+@isnad1 id=le.3h3v.s6.89eeca5d08a9 from=translated src=- shape=c750a72f vocab=bdae63ab
+-/
 theorem collatz_shell_lower (c : ℕ) (hN : 1 ≤ N) {s : ℕ} (hNs : N ≤ s)
     (hs : s ≤ collatzBarrier c N) :
     Nat.choose (s - 1) (N - 1) ≤

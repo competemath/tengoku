@@ -53,19 +53,29 @@ def sameLabel : Finset (Ω × Ω) := (s ×ˢ s).filter fun p => z p.1 = z p.2
 def candidates [DecidableEq Ω] : Finset (Ω × Ω) :=
   (s ×ˢ s).filter fun p => p.1 = p.2 ∨ z p.1 ≠ z p.2
 
+/--
+@isnad1 id=iff.0h5v.s6.0b703b390274 from=translated src=- shape=e26a7545 vocab=fdac9ffc
+-/
 @[simp] theorem mem_sameLabel {p : Ω × Ω} :
     p ∈ sameLabel s z ↔ (p.1 ∈ s ∧ p.2 ∈ s) ∧ z p.1 = z p.2 := by
   unfold sameLabel; rw [mem_filter, Finset.mem_product]
 
+/--
+@isnad1 id=iff.0h5v.s6.5d2ed45c446c from=translated src=- shape=3bc54923 vocab=b025b1dd
+-/
 @[simp] theorem mem_candidates [DecidableEq Ω] {p : Ω × Ω} :
     p ∈ candidates s z ↔ (p.1 ∈ s ∧ p.2 ∈ s) ∧ (p.1 = p.2 ∨ z p.1 ≠ z p.2) := by
   unfold candidates; rw [mem_filter, Finset.mem_product]
 
-/-- The occupancies sum to the size of `s`.-/
+/-- The occupancies sum to the size of `s`.
+@isnad1 id=eq.0h4v.s5.a5efbbdfd951 from=translated src=- shape=6d8efb83 vocab=4c357d2d
+-/
 theorem sum_nOcc : ∑ y ∈ s.image z, nOcc s z y = s.card :=
   (card_eq_sum_card_fiberwise fun _ hw => mem_image_of_mem z hw).symm
 
-/-- The label-equal pairs are counted by the sum of squared occupancies.-/
+/-- The label-equal pairs are counted by the sum of squared occupancies.
+@isnad1 id=eq.0h4v.s5.7b0d4a5734be from=translated src=- shape=57a4b1b6 vocab=7bb164da
+-/
 theorem card_sameLabel :
     (sameLabel s z).card = ∑ y ∈ s.image z, (nOcc s z y) ^ 2 := by
   classical
@@ -86,7 +96,9 @@ theorem card_sameLabel :
   rfl
 
 /-- **The pair-counting identity.**  The diagonal is label-equal and every pair is either
-label-equal or label-distinct, so the candidate count and the label-equal count add to `n^2 + n`.-/
+label-equal or label-distinct, so the candidate count and the label-equal count add to `n^2 + n`.
+@isnad1 id=eq.0h4v.s6.626f0c9adc99 from=translated src=- shape=cf92fa54 vocab=b7260842
+-/
 theorem card_candidates_add_card_sameLabel [DecidableEq Ω] :
     (candidates s z).card + (sameLabel s z).card = s.card ^ 2 + s.card := by
   classical
@@ -120,7 +132,9 @@ theorem card_candidates_add_card_sameLabel [DecidableEq Ω] :
   rw [hsplit, card_union_of_disjoint hdisj, hdiag]
   omega
 
-/-- If every occupancy is at most `q`, the squared occupancies sum to at most `q * n`.-/
+/-- If every occupancy is at most `q`, the squared occupancies sum to at most `q * n`.
+@isnad1 id=le.1h5v.s6.7ef9a300a008 from=translated src=- shape=038bc844 vocab=bc3d7d55
+-/
 theorem sum_sq_nOcc_le {q : ℕ} (hq : ∀ y, nOcc s z y ≤ q) :
     ∑ y ∈ s.image z, (nOcc s z y) ^ 2 ≤ q * s.card := by
   calc ∑ y ∈ s.image z, (nOcc s z y) ^ 2
@@ -130,7 +144,9 @@ theorem sum_sq_nOcc_le {q : ℕ} (hq : ∀ y, nOcc s z y ≤ q) :
         exact Nat.mul_le_mul_right _ (hq y)
     _ = q * s.card := by rw [← mul_sum, sum_nOcc]
 
-/-- **`n(n+1) ≤ P + q·n`** — the subtraction-free form of the obstruction.-/
+/-- **`n(n+1) ≤ P + q·n`** — the subtraction-free form of the obstruction.
+@isnad1 id=le.1h5v.s6.b51ec6720ec4 from=translated src=- shape=2a475529 vocab=82f1d8bc
+-/
 theorem mul_succ_le_candidates_add [DecidableEq Ω] {q : ℕ} (hq : ∀ y, nOcc s z y ≤ q) :
     s.card * (s.card + 1) ≤ (candidates s z).card + q * s.card := by
   have h1 := card_candidates_add_card_sameLabel s z
@@ -142,7 +158,9 @@ theorem mul_succ_le_candidates_add [DecidableEq Ω] {q : ℕ} (hq : ∀ y, nOcc 
 
 /-- **Capacity comparison.**  If `s` is nonempty and `q + h < n + 1`, the candidate count strictly
 exceeds the capacity `n * h`.  With `h = H / 2` for an even interval length `H`, this is the
-statement that label-distinctness rejection alone cannot beat the capacity bound `n * H / 2`.-/
+statement that label-distinctness rejection alone cannot beat the capacity bound `n * H / 2`.
+@isnad1 id=lt.3h6v.s6.3074c890bffd from=translated src=- shape=0712d2f9 vocab=68382f3c
+-/
 theorem capacity_lt_candidates [DecidableEq Ω] {q h : ℕ} (hq : ∀ y, nOcc s z y ≤ q)
     (hpos : 0 < s.card) (hcard : q + h < s.card + 1) :
     s.card * h < (candidates s z).card := by

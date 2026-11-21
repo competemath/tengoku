@@ -27,6 +27,9 @@ open Finset
 
 /-! ## 1. LTE for `3 ∣ 2^d − 1` -/
 
+/--
+@isnad1 id=eq.1h1v.s6.75b8eb675faa from=translated src=- shape=17ace757 vocab=f9504951
+-/
 theorem padicValNat_three_two_pow_sub_one {d : ℕ} (hd : 1 ≤ d) :
     padicValNat 3 (2 ^ d - 1) = if Even d then 1 + padicValNat 3 d else 0 := by
   have : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
@@ -50,6 +53,9 @@ theorem padicValNat_three_two_pow_sub_one {d : ℕ} (hd : 1 ≤ d) :
     have hpos : 1 ≤ 4 ^ e := Nat.one_le_pow _ _ (by norm_num)
     omega
 
+/--
+@isnad1 id=iff.1h2v.s6.f75f192a8942 from=translated src=- shape=dec6c213 vocab=05cfea79
+-/
 theorem three_pow_dvd_two_pow_sub_one_iff {n d : ℕ} (hn : 1 ≤ n) :
     3 ^ n ∣ 2 ^ d - 1 ↔ 2 * 3 ^ (n - 1) ∣ d := by
   have : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
@@ -75,6 +81,9 @@ theorem three_pow_dvd_two_pow_sub_one_iff {n d : ℕ} (hn : 1 ≤ n) :
     have := (padicValNat_dvd_iff_le hd.ne').mp h3
     omega
 
+/--
+@isnad1 id=iff.1h2v.s9.4a59595fc2bf from=translated src=- shape=40a2dff9 vocab=602e640d
+-/
 theorem two_pow_eq_one_iff {n d : ℕ} (hn : 1 ≤ n) :
     (2 : ZMod (3 ^ n)) ^ d = 1 ↔ 2 * 3 ^ (n - 1) ∣ d := by
   rw [← three_pow_dvd_two_pow_sub_one_iff hn]
@@ -83,7 +92,9 @@ theorem two_pow_eq_one_iff {n d : ℕ} (hn : 1 ≤ n) :
   push_cast
   exact eq_comm
 
-/-- **Exact order**: `2` has order `2·3^{n−1}` modulo `3^n`.-/
+/-- **Exact order**: `2` has order `2·3^{n−1}` modulo `3^n`.
+@isnad1 id=eq.1h1v.s8.3c6500f22563 from=translated src=- shape=11737eb9 vocab=e22a6fa8
+-/
 theorem orderOf_two_zmod_three_pow {n : ℕ} (hn : 1 ≤ n) :
     orderOf (2 : ZMod (3 ^ n)) = 2 * 3 ^ (n - 1) := by
   apply Nat.dvd_antisymm
@@ -92,18 +103,27 @@ theorem orderOf_two_zmod_three_pow {n : ℕ} (hn : 1 ≤ n) :
 
 /-! ## 2. Orbit collision hierarchy -/
 
+/--
+@isnad1 id=isunit.0h2v.s8.6b25cc5367ac from=translated src=- shape=2427e28d vocab=c07cf9e8
+-/
 theorem isUnit_two_pow {r a : ℕ} : IsUnit ((2 : ZMod (3 ^ r)) ^ a) := by
   have h2 : IsUnit (2 : ZMod (3 ^ r)) := by
     have := (ZMod.unitOfCoprime 2 (Nat.Coprime.pow_right r (by norm_num : Nat.Coprime 2 3))).isUnit
     simpa using this
   exact h2.pow a
 
+/--
+@isnad1 id=iff.2h3v.s9.48141b975327 from=translated src=- shape=ecbd835e vocab=602e640d
+-/
 theorem two_pow_eq_two_pow_iff_of_le {r a a' : ℕ} (hr : 1 ≤ r) (h : a ≤ a') :
     (2 : ZMod (3 ^ r)) ^ a = 2 ^ a' ↔ 2 * 3 ^ (r - 1) ∣ a' - a := by
   rw [← two_pow_eq_one_iff hr, show a' = a + (a' - a) by omega, pow_add, eq_comm,
     Nat.add_sub_cancel_left]
   exact isUnit_two_pow.mul_eq_left
 
+/--
+@isnad1 id=iff.1h3v.s9.2a396cba921a from=translated src=- shape=371d0c55 vocab=2a0e3a7d
+-/
 theorem two_pow_eq_two_pow_iff {r a a' : ℕ} (hr : 1 ≤ r) :
     (2 : ZMod (3 ^ r)) ^ a = 2 ^ a' ↔ ((2 * 3 ^ (r - 1) : ℕ) : ℤ) ∣ (a' : ℤ) - a := by
   rcases le_total a a' with h | h
@@ -112,7 +132,9 @@ theorem two_pow_eq_two_pow_iff {r a a' : ℕ} (hr : 1 ≤ r) :
       ← dvd_neg, neg_sub]
 
 /-- The pairs of a window `range W` colliding modulo `3^r` are exactly the pairs whose exponent
-difference is divisible by `2·3^{r−1}`.-/
+difference is divisible by `2·3^{r−1}`.
+@isnad1 id=eq.1h2v.s10.ed9a1b79b07e from=translated src=- shape=41f23baa vocab=242a9c63
+-/
 theorem card_orbit_collisions_eq {r : ℕ} (hr : 1 ≤ r) (W : ℕ) :
     ((range W ×ˢ range W).filter fun p : ℕ × ℕ => (2 : ZMod (3 ^ r)) ^ p.1 = 2 ^ p.2).card =
       ((range W ×ˢ range W).filter fun p : ℕ × ℕ =>
@@ -120,6 +142,9 @@ theorem card_orbit_collisions_eq {r : ℕ} (hr : 1 ≤ r) (W : ℕ) :
   congr 1
   exact filter_congr fun p _ => two_pow_eq_two_pow_iff hr
 
+/--
+@isnad1 id=le.1h2v.s10.366946b6cadf from=translated src=- shape=cda09551 vocab=94a212a0
+-/
 theorem card_orbit_collisions_le {r : ℕ} (hr : 1 ≤ r) (W : ℕ) :
     ((range W ×ˢ range W).filter fun p : ℕ × ℕ => (2 : ZMod (3 ^ r)) ^ p.1 = 2 ^ p.2).card ≤
       W * (W / (2 * 3 ^ (r - 1)) + 1) := by
@@ -151,7 +176,9 @@ open WeightedChain TwistExpansion PrefixCollision
 
 variable {j0 : ℕ}
 
-/-- Consistency of the phase points under reduction: `y'_{t+1} mod 2^{σ+1+t} = y'_t`.-/
+/-- Consistency of the phase points under reduction: `y'_{t+1} mod 2^{σ+1+t} = y'_t`.
+@isnad1 id=eq.0h4v.s6.2bb7d99f375e from=translated src=- shape=9b8cd863 vocab=f281ea99
+-/
 theorem yPrime_succ_mod (σ t : ℕ) (P : FiniteValuationWord j0) :
     yPrime j0 σ (t + 1) P % 2 ^ (σ + 1 + t) = yPrime j0 σ t P := by
   set M : ℕ := 2 ^ (σ + 1 + t) with hM
@@ -179,7 +206,9 @@ theorem yPrime_succ_mod (σ t : ℕ) (P : FiniteValuationWord j0) :
     exact_mod_cast this
   rw [hnat, Nat.mod_eq_of_lt hlt]
 
-/-- **Shell shift**: `Ψ_t(λ) = Ψ_{t+1}(2λ)` for the phase points of `P_σ`.-/
+/-- **Shell shift**: `Ψ_t(λ) = Ψ_{t+1}(2λ)` for the phase points of `P_σ`.
+@isnad1 id=eq.0h5v.s6.a5dc196a1b81 from=translated src=- shape=d385cdf9 vocab=52461467
+-/
 theorem Psi_shell_shift (T : Finset (FiniteValuationWord j0)) (σ t lam : ℕ) :
     Psi T (σ + 1) t (yPrime j0 σ t) lam =
       Psi T (σ + 1) (t + 1) (yPrime j0 σ (t + 1)) (2 * lam) := by
@@ -224,7 +253,9 @@ def ContinuationSpreading (j0 σ t : ℕ) (Nsplit : ℕ → ℕ) (C θ : ℝ) : 
       C * 2 ^ u * (2 : ℝ) ^ (-(θ * u)) * ((shellP b j0 σ).card : ℝ) ^ 2
 
 /-- Under `ContinuationSpreading`, every centered shell sum of `‖Ψ‖²` is at most
-`2·C·2^u·2^{−θu}·|P_σ|²`.-/
+`2·C·2^u·2^{−θu}·|P_σ|²`.
+@isnad1 id=le.4h8v.s8.c904692db601 from=translated src=- shape=2cc92de8 vocab=dc8bad3c
+-/
 theorem shell_sum_le_of_continuationSpreading {j0 σ t : ℕ} {Nsplit : ℕ → ℕ} {C θ : ℝ}
     (hN1 : ∀ u ∈ range (σ + 1 + t), 1 ≤ Nsplit u)
     (hNj : ∀ u ∈ range (σ + 1 + t), Nsplit u < j0)
@@ -251,7 +282,9 @@ theorem shell_sum_le_of_continuationSpreading {j0 σ t : ℕ} {Nsplit : ℕ → 
         exact add_le_add (hint _ (by simp)) (hint _ (by simp))
 
 /-- **`ContinuationSpreading ⇒ WeightedFourier`** (with `t = s − σ`), with the explicit budget
-`(1 + (σ+1)/2) · ∑_u min 1 (2^t/(2·2^u)) · 2·C·2^u·2^{−θu}·|P_σ|² ≤ ε² |P_σ|² |V_{σ,s}| / 2^t`.-/
+`(1 + (σ+1)/2) · ∑_u min 1 (2^t/(2·2^u)) · 2·C·2^u·2^{−θu}·|P_σ|² ≤ ε² |P_σ|² |V_{σ,s}| / 2^t`.
+@isnad1 id=weighted.4h9v.s9.fb4a15bb8b75 from=translated src=- shape=279ede4b vocab=b82e2adb
+-/
 theorem weightedFourier_of_continuationSpreading (N j0 s σ : ℕ) (ε : ℝ) (Nsplit : ℕ → ℕ) (C θ : ℝ)
     (hN1 : ∀ u ∈ range (σ + 1 + (s - σ)), 1 ≤ Nsplit u)
     (hNj : ∀ u ∈ range (σ + 1 + (s - σ)), Nsplit u < j0)

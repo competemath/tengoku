@@ -30,7 +30,9 @@ namespace CylinderCounting
 open Finset
 
 /-- **Residue counting lemma.** Exactly half of `Finset.range (2 * M)` satisfy a fixed residue
-condition mod `2`. Purely combinatorial; no connection to `a`/`T`/cylinders yet.-/
+condition mod `2`. Purely combinatorial; no connection to `a`/`T`/cylinders yet.
+@isnad1 id=eq.1h2v.s6.6a70ca25cd34 from=translated src=- shape=405a2c6a vocab=b6b91416
+-/
 theorem card_filter_mod_two (M r : ℕ) (hr : r < 2) :
     ((Finset.range (2 * M)).filter (fun k => k % 2 = r)).card = M := by
   have himg : (Finset.range (2 * M)).filter (fun k => k % 2 = r)
@@ -48,14 +50,18 @@ theorem card_filter_mod_two (M r : ℕ) (hr : r < 2) :
     omega
   rw [himg, Finset.card_image_of_injective _ hinj, Finset.card_range]
 
-/-- `padicValNat 2 2 = 1`.-/
+/-- `padicValNat 2 2 = 1`.
+@isnad1 id=eq.0h0v.s4.054743fdf757 from=translated src=- shape=7226d0ee vocab=e29fc3cb
+-/
 theorem padicValNat_two_two : padicValNat 2 2 = 1 := by
   have h := padicValNat_base_pow (p := 2) (by norm_num) 1
   simpa using h
 
 /-- **One-step valuation dichotomy.** For `0 < B` even and `C` odd, `padicValNat 2 (B + 2*C*k)`
 equals `1` exactly when `k`'s parity differs from `(B/2)`'s parity, and is `≠ 1` (in fact `≥ 2`)
-otherwise. The specific odd value of `C` never matters, only its parity.-/
+otherwise. The specific odd value of `C` never matters, only its parity.
+@isnad1 id=iff.3h3v.s6.979830b2d40a from=translated src=- shape=1fd42761 vocab=368ea548
+-/
 theorem padicValNat_affine_eq_one_iff_mod_two (B C k : ℕ) (hBpos : 0 < B) (hB : Even B)
     (hC : Odd C) :
     padicValNat 2 (B + 2 * C * k) = 1 ↔ k % 2 ≠ (B / 2) % 2 := by
@@ -95,7 +101,9 @@ theorem padicValNat_affine_eq_one_iff_mod_two (B C k : ℕ) (hBpos : 0 < B) (hB 
 
 /-- **Exact one-step marginal, `q = 1` case.** For `0 < B` even, `C` odd, `K ≥ 1`: among
 `k ∈ Finset.range (2^K)`, exactly `2^(K-1)` give `padicValNat 2 (B + 2*C*k) = 1`. This is the
-finite-counting form of the `q=1` instance of `P(\text{next digit}=1) = 2^{-1}`.-/
+finite-counting form of the `q=1` instance of `P(\text{next digit}=1) = 2^{-1}`.
+@isnad1 id=eq.4h3v.s7.728d268bb0f9 from=translated src=- shape=64219b71 vocab=5e811ce3
+-/
 theorem card_filter_padicValNat_affine_eq_one (B C K : ℕ) (hBpos : 0 < B) (hB : Even B)
     (hC : Odd C) (hK : 1 ≤ K) :
     ((Finset.range (2 ^ K)).filter (fun k => padicValNat 2 (B + 2 * C * k) = 1)).card
@@ -125,7 +133,9 @@ theorem card_filter_padicValNat_affine_eq_one (B C K : ℕ) (hBpos : 0 < B) (hB 
 /-- **Cylinder-lift form.** For a realizer `m` of a length-`t` prefix `d`, among the `2^K`
 lift parameters `k ∈ Finset.range (2^K)`, exactly half (`2^(K-1)`) give a shifted realizer
 `m + 2^(S d t + 1) * k` whose depth-`t` valuation digit equals `1`. This is the finite-counting
-theorem underlying `P(d_t = 1) = 1/2` from `ROUND1_REPORT.md` Part VI, restricted to `q = 1`.-/
+theorem underlying `P(d_t = 1) = 1/2` from `ROUND1_REPORT.md` Part VI, restricted to `q = 1`.
+@isnad1 id=eq.2h4v.s7.9aba36dba192 from=translated src=- shape=030c0013 vocab=16e542eb
+-/
 theorem cylinder_next_digit_eq_one_card (d : ℕ → ℕ) (t m K : ℕ) (h : Realizes d t m)
     (hK : 1 ≤ K) :
     ((Finset.range (2 ^ K)).filter

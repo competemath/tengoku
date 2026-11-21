@@ -33,6 +33,9 @@ open Finset FiniteValuationWord CapacityBounds SurvivorDensity LiftDigits Suffix
 
 variable {N : ℕ}
 
+/--
+@isnad1 id=eq.2h4v.s4.7ae5da1d5133 from=translated src=- shape=c44cab6b vocab=9c98d34d
+-/
 theorem word_eq_of_realizes {w w' : FiniteValuationWord N} {μ : ℕ}
     (h : Realizes w.toInfinite N μ) (h' : Realizes w'.toInfinite N μ) : w = w' := by
   funext i
@@ -41,12 +44,17 @@ theorem word_eq_of_realizes {w w' : FiniteValuationWord N} {μ : ℕ}
   rw [toInfinite_apply_of_lt _ i.isLt] at e1 e2
   exact e1.symm.trans e2
 
+/--
+@isnad1 id=eq.0h2v.s3.7e18804be35c from=translated src=- shape=9d9c6b43 vocab=5c93db11
+-/
 theorem total_eq_S (w : FiniteValuationWord N) : S w.toInfinite N = w.total := by
   rw [S, ← w.prefixSum_eq_s le_rfl]
   rfl
 
 open Classical in
-/-- Confined seeds below `X` are partitioned by their length-`N` word.-/
+/-- Confined seeds below `X` are partitioned by their length-`N` word.
+@isnad1 id=eq.1h3v.s6.16a2a9b72dae from=translated src=- shape=ae97c0f3 vocab=1bbe201a
+-/
 theorem seed_count_eq_sum (c : ℕ) (hN : 1 ≤ N) (X : ℕ) :
     ((range X).filter fun μ => Odd μ ∧ Confined (c : ℝ) (fun i => a (orbit μ i)) N).card =
       ∑ w ∈ confinedWords N (collatzBarrier c),
@@ -70,12 +78,17 @@ theorem seed_count_eq_sum (c : ℕ) (hN : 1 ≤ N) (X : ℕ) :
   refine disjoint_left.mpr fun μ hμ hμ' => hne ?_
   exact word_eq_of_realizes (mem_filter.mp hμ).2 (mem_filter.mp hμ').2
 
+/--
+@isnad1 id=le.3h4v.s5.878621dd54f7 from=translated src=- shape=85ade7a3 vocab=73d63aef
+-/
 theorem positive_toInfinite {c : ℕ} (hN : 1 ≤ N) {w : FiniteValuationWord N}
     (hw : w ∈ confinedWords N (collatzBarrier c)) : ∀ i < N, 1 ≤ w.toInfinite i :=
   (positive_iff_toInfinite w).mp ((mem_collatzConfinedWords c hN).mp hw).1
 
 open Classical in
-/-- **Exact residue-discrepancy decomposition.**-/
+/-- **Exact residue-discrepancy decomposition.**
+@isnad1 id=eq.1h3v.s7.8f5fe807fed3 from=translated src=- shape=2a0cafa7 vocab=779dc455
+-/
 theorem seed_count_eq_residue_sum (c : ℕ) (hN : 1 ≤ N) (X : ℕ) :
     ((range X).filter fun μ => Odd μ ∧ Confined (c : ℝ) (fun i => a (orbit μ i)) N).card =
       ∑ w ∈ confinedWords N (collatzBarrier c),
@@ -87,7 +100,9 @@ theorem seed_count_eq_residue_sum (c : ℕ) (hN : 1 ≤ N) (X : ℕ) :
 
 open Classical in
 /-- **Dyadic form.** For `X = 2^K`: fresh-bit words (`S_w + 1 ≤ K`) contribute `2^(K−S_w−1)`
-exactly; every other word contributes `1` iff its least realizer is below `2^K`.-/
+exactly; every other word contributes `1` iff its least realizer is below `2^K`.
+@isnad1 id=eq.1h3v.s7.f500801b1686 from=translated src=- shape=740c1854 vocab=f92a3907
+-/
 theorem seed_count_dyadic (c : ℕ) (hN : 1 ≤ N) (K : ℕ) :
     ((range (2 ^ K)).filter fun μ => Odd μ ∧ Confined (c : ℝ) (fun i => a (orbit μ i)) N).card =
       ∑ w ∈ confinedWords N (collatzBarrier c),
@@ -103,7 +118,9 @@ theorem seed_count_dyadic (c : ℕ) (hN : 1 ≤ N) (K : ℕ) :
     rw [Nat.div_eq_of_lt hlt, Nat.mod_eq_of_lt hlt, zero_add]
     simp [h]
 
-/-- The orbit value of `r_{j+1}` at step `j` is the restarted state `T^j(r_j) + 2·3^j·τ_j`.-/
+/-- The orbit value of `r_{j+1}` at step `j` is the restarted state `T^j(r_j) + 2·3^j·τ_j`.
+@isnad1 id=eq.2h2v.s6.4e192a17c2b5 from=translated src=- shape=ff32ddb7 vocab=7b01b983
+-/
 theorem orbit_leastRealizer_succ {d : ℕ → ℕ} {j : ℕ} (hj : 1 ≤ j) (hd : ∀ i < j + 1, 1 ≤ d i) :
     orbit (leastRealizer d (j + 1)) j =
       orbit (leastRealizer d j) j + 2 * 3 ^ j * liftDigit d j := by
@@ -112,7 +129,9 @@ theorem orbit_leastRealizer_succ {d : ℕ → ℕ} {j : ℕ} (hj : 1 ≤ j) (hd 
     fun i hi => hd i (by omega)).2
 
 /-- **Lift-digit characterization.** The restarted state `T^j(r_j) + 2·3^j·τ_j` has next valuation
-exactly `d_j`.-/
+exactly `d_j`.
+@isnad1 id=eq.2h2v.s6.50d24602e7f6 from=translated src=- shape=0d67d8e8 vocab=2c4fec26
+-/
 theorem liftDigit_valuation {d : ℕ → ℕ} {j : ℕ} (hj : 1 ≤ j) (hd : ∀ i < j + 1, 1 ≤ d i) :
     a (orbit (leastRealizer d j) j + 2 * 3 ^ j * liftDigit d j) = d j := by
   rw [← orbit_leastRealizer_succ hj hd]
@@ -123,7 +142,9 @@ open Classical in
 post-fresh-bit words (`S_w ≥ K`) whose least realizer lies below `X` are at most `C` times their
 Haar share `∑_{S_w ≥ K} 2^K · 2^{-(S_w+1)}` (with `C ≥ 1`), and `N ≥ A·K`, then
 `#(E_U ∩ [0, 2^K)) ≤ (C e^{λ* U}/2) · (2^K)^{1 − I₀ A}`.  (Exact dyadic decomposition
-`seed_count_dyadic` + `ExceptionalPowerBound.exceptional_count_le_of_firstMoment`.)-/
+`seed_count_dyadic` + `ExceptionalPowerBound.exceptional_count_le_of_firstMoment`.)
+@isnad1 id=le.4h5v.s8.9074281848cf from=translated src=- shape=d76b9136 vocab=b9833c54
+-/
 theorem exceptional_count_le_of_leastRealizerBound (U K : ℕ) {N : ℕ} (hN : 1 ≤ N) (A C : ℝ)
     (hC : 1 ≤ C) (hNA : A * K ≤ N)
     (hyp : ((((confinedWords N (collatzBarrier U)).filter fun w =>

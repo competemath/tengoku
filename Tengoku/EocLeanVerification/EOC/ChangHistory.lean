@@ -51,12 +51,24 @@ def changWord (ys : List Bool) : ℕ → ℕ := fun i => (changWordList ys).getD
 
 /-! ## Stage A.2 — basic combinatorial lemmas -/
 
+/--
+@isnad1 id=eq.0h0v.s4.4622508d8d51 from=translated src=- shape=e87beb2f vocab=2832bbb2
+-/
 @[simp] theorem changBlock_true : changBlock true = [2, 1, 2] := rfl
+/--
+@isnad1 id=eq.0h0v.s4.47dfb5303d6c from=translated src=- shape=e87beb2f vocab=b50f3e66
+-/
 @[simp] theorem changBlock_false : changBlock false = [2, 1, 1] := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.ff8745a51426 from=translated src=- shape=562e4a6d vocab=2a7856dd
+-/
 @[simp] theorem changBlock_length (b : Bool) : (changBlock b).length = 3 := by
   cases b <;> rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.7af6ceade15f from=translated src=- shape=0c84c373 vocab=affe3997
+-/
 theorem changWordList_length (ys : List Bool) :
     (changWordList ys).length = 3 * ys.length := by
   induction ys with
@@ -65,7 +77,9 @@ theorem changWordList_length (ys : List Bool) :
     simp only [changWordList, List.length_append, changBlock_length, ih, List.length_cons]
     ring
 
-/-- Every entry of the constructed word list is `1` or `2`.-/
+/-- Every entry of the constructed word list is `1` or `2`.
+@isnad1 id=or.1h2v.s5.73441537e416 from=translated src=- shape=53cf665d vocab=8bc26e6d
+-/
 theorem changWordList_mem (ys : List Bool) :
     ∀ x ∈ changWordList ys, x = 1 ∨ x = 2 := by
   induction ys with
@@ -80,7 +94,9 @@ theorem changWordList_mem (ys : List Bool) :
         omega
     · exact ih x hx
 
-/-- Positivity of every digit (in fact for every index, thanks to the default).-/
+/-- Positivity of every digit (in fact for every index, thanks to the default).
+@isnad1 id=le.0h2v.s4.4637405325a3 from=translated src=- shape=81e36898 vocab=3549f6b4
+-/
 theorem one_le_changWord (ys : List Bool) (i : ℕ) : 1 ≤ changWord ys i := by
   unfold changWord
   by_cases h : i < (changWordList ys).length
@@ -88,11 +104,16 @@ theorem one_le_changWord (ys : List Bool) (i : ℕ) : 1 ≤ changWord ys i := by
     rcases changWordList_mem ys _ (List.getElem_mem h) with h1 | h1 <;> omega
   · rw [List.getD_eq_default _ _ (not_lt.mp h)]
 
+/--
+@isnad1 id=le.1h2v.s5.7fb446143c6a from=translated src=- shape=994bd917 vocab=fd3eb054
+-/
 theorem changWord_pos (ys : List Bool) :
     ∀ i < 3 * ys.length, 1 ≤ changWord ys i :=
   fun i _ => one_le_changWord ys i
 
-/-- Shift past one block: `changWord (b :: bs) (i + 3) = changWord bs i`.-/
+/-- Shift past one block: `changWord (b :: bs) (i + 3) = changWord bs i`.
+@isnad1 id=eq.0h3v.s4.99c55e0f83a4 from=translated src=- shape=80da4732 vocab=aad4b2c6
+-/
 theorem changWord_cons_add (b : Bool) (bs : List Bool) (i : ℕ) :
     changWord (b :: bs) (i + 3) = changWord bs i := by
   unfold changWord
@@ -101,19 +122,30 @@ theorem changWord_cons_add (b : Bool) (bs : List Bool) (i : ℕ) :
       (by rw [changBlock_length]; omega),
     changBlock_length, Nat.add_sub_cancel]
 
+/--
+@isnad1 id=eq.0h2v.s4.21b31e8febb2 from=translated src=- shape=a2166d9b vocab=30bad25b
+-/
 @[simp] theorem changWord_cons_zero (b : Bool) (bs : List Bool) :
     changWord (b :: bs) 0 = 2 := by
   cases b <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.c575a34f5218 from=translated src=- shape=a2166d9b vocab=30bad25b
+-/
 @[simp] theorem changWord_cons_one (b : Bool) (bs : List Bool) :
     changWord (b :: bs) 1 = 1 := by
   cases b <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.6a2cb8e8bd37 from=translated src=- shape=e49570ba vocab=247eaf5f
+-/
 @[simp] theorem changWord_cons_two (b : Bool) (bs : List Bool) :
     changWord (b :: bs) 2 = if b then 2 else 1 := by
   cases b <;> rfl
 
-/-- Coordinate of the first digit of block `t`.-/
+/-- Coordinate of the first digit of block `t`.
+@isnad1 id=eq.1h2v.s5.034c8d6d7443 from=translated src=- shape=b839f388 vocab=653244ef
+-/
 theorem changWord_block_zero (ys : List Bool) (t : ℕ) (ht : t < ys.length) :
     changWord ys (3 * t) = 2 := by
   induction ys generalizing t with
@@ -126,7 +158,9 @@ theorem changWord_block_zero (ys : List Bool) (t : ℕ) (ht : t < ys.length) :
       rw [h3, changWord_cons_add]
       exact ih t (by simpa using ht)
 
-/-- Coordinate of the second digit of block `t`.-/
+/-- Coordinate of the second digit of block `t`.
+@isnad1 id=eq.1h2v.s5.5e2d47d68557 from=translated src=- shape=570477d0 vocab=a36fa8be
+-/
 theorem changWord_block_one (ys : List Bool) (t : ℕ) (ht : t < ys.length) :
     changWord ys (3 * t + 1) = 1 := by
   induction ys generalizing t with
@@ -139,7 +173,9 @@ theorem changWord_block_one (ys : List Bool) (t : ℕ) (ht : t < ys.length) :
       rw [h3, changWord_cons_add]
       exact ih t (by simpa using ht)
 
-/-- Coordinate of the third digit of block `t` — carries the Chang label.-/
+/-- Coordinate of the third digit of block `t` — carries the Chang label.
+@isnad1 id=eq.1h2v.s6.7a3440220b99 from=translated src=- shape=cf964717 vocab=3ac382bd
+-/
 theorem changWord_block_two (ys : List Bool) (t : ℕ) (ht : t < ys.length) :
     changWord ys (3 * t + 2) = if ys.getD t false then 2 else 1 := by
   induction ys generalizing t with
@@ -154,9 +190,15 @@ theorem changWord_block_two (ys : List Bool) (t : ℕ) (ht : t < ys.length) :
 
 /-! ## Stage A.2 — cumulative valuation -/
 
+/--
+@isnad1 id=eq.0h1v.s4.0d76947d7a83 from=translated src=- shape=a2c5595c vocab=46857a01
+-/
 @[simp] theorem changBlock_sum (b : Bool) : (changBlock b).sum = if b then 5 else 4 := by
   cases b <;> rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.5bea39b650db from=translated src=- shape=1335b0e7 vocab=ca27edd8
+-/
 theorem changWordList_sum (ys : List Bool) :
     (changWordList ys).sum = 4 * ys.length + ys.count true := by
   induction ys with
@@ -166,7 +208,9 @@ theorem changWordList_sum (ys : List Bool) :
       List.count_cons]
     cases b <;> simp <;> ring
 
-/-- The prefix sum over `range (3·|ys|)` equals the list sum.-/
+/-- The prefix sum over `range (3·|ys|)` equals the list sum.
+@isnad1 id=eq.0h1v.s5.3b2e60059ba1 from=translated src=- shape=c31e5a48 vocab=6693f440
+-/
 theorem changWord_range_sum (ys : List Bool) :
     ∑ i ∈ range (3 * ys.length), changWord ys i = (changWordList ys).sum := by
   induction ys with
@@ -186,7 +230,9 @@ theorem changWord_range_sum (ys : List Bool) :
       rw [add_comm 3 x, changWord_cons_add]
     rw [h1, h2, ih, changWordList, List.sum_append]
 
-/-- Cumulative valuation of the constructed word.-/
+/-- Cumulative valuation of the constructed word.
+@isnad1 id=eq.0h1v.s5.1f7727bdd010 from=translated src=- shape=c8e0d008 vocab=4a3a8c33
+-/
 theorem changWord_S (ys : List Bool) :
     S (changWord ys) (3 * ys.length) = 4 * ys.length + ys.count true := by
   unfold S s
@@ -198,6 +244,9 @@ theorem changWord_S (ys : List Bool) :
 noncomputable def changSeed (ys : List Bool) : ℕ :=
   leastRealizer (changWord ys) (3 * ys.length)
 
+/--
+@isnad1 id=eq.0h1v.s4.501d316d67ae from=translated src=- shape=5cc5b123 vocab=93ac1a6d
+-/
 theorem changSeed_def (ys : List Bool) :
     changSeed ys = leastRealizer (changWord ys) (3 * ys.length) := rfl
 
@@ -207,11 +256,17 @@ private theorem length_pos_of_ne_nil {ys : List Bool} (h : ys ≠ []) :
   · exact absurd rfl h
   · exact Nat.succ_pos _
 
+/--
+@isnad1 id=odd.1h1v.s3.1281f86067c2 from=translated src=- shape=48a134d4 vocab=023f609f
+-/
 theorem changSeed_odd (ys : List Bool) (hys : ys ≠ []) : Odd (changSeed ys) := by
   have hN : 1 ≤ 3 * ys.length := by
     have := length_pos_of_ne_nil hys; omega
   exact leastRealizer_odd (changWord ys) (3 * ys.length) hN (changWord_pos ys)
 
+/--
+@isnad1 id=realizes.1h1v.s4.01330cbb7ef8 from=translated src=- shape=7177bb3e vocab=06c9ee1d
+-/
 theorem changSeed_realizes (ys : List Bool) (hys : ys ≠ []) :
     Realizes (changWord ys) (3 * ys.length) (changSeed ys) := by
   refine (realizerCongruence (changWord ys) (3 * ys.length) (changSeed ys)
@@ -220,7 +275,9 @@ theorem changSeed_realizes (ys : List Bool) (hys : ys ≠ []) :
 
 /-- **Stage A — finite Chang-history realizability.**
 Every nonempty finite binary history determines a positive odd integer whose
-accelerated valuation word begins with the constructed word `changWord ys`.-/
+accelerated valuation word begins with the constructed word `changWord ys`.
+@isnad1 id=ex.1h1v.s5.06076ba6d299 from=translated src=- shape=53255a6d vocab=0a5f801b
+-/
 theorem changWord_realizable (ys : List Bool) (hys : ys ≠ []) :
     ∃ m : ℕ, 0 < m ∧ Odd m ∧ Realizes (changWord ys) (3 * ys.length) m := by
   refine ⟨changSeed ys, ?_, changSeed_odd ys hys, changSeed_realizes ys hys⟩
@@ -228,10 +285,16 @@ theorem changWord_realizable (ys : List Bool) (hys : ys ≠ []) :
 
 /-! ## Stage A.4 — rigorous seed upper bound (upper bound only) -/
 
+/--
+@isnad1 id=lt.0h1v.s5.2267fab684ac from=translated src=- shape=a147dc4b vocab=048d90a6
+-/
 theorem changSeed_lt (ys : List Bool) :
     changSeed ys < 2 ^ (S (changWord ys) (3 * ys.length) + 1) :=
   leastRealizer_lt (changWord ys) (3 * ys.length)
 
+/--
+@isnad1 id=lt.0h1v.s6.9c770921f5b8 from=translated src=- shape=dd5061a2 vocab=c1d60664
+-/
 theorem changSeed_lt' (ys : List Bool) :
     changSeed ys < 2 ^ (4 * ys.length + ys.count true + 1) := by
   have := changSeed_lt ys
@@ -251,12 +314,18 @@ private theorem a_ge_iff_dvd (n k : ℕ) : k ≤ a n ↔ (2 : ℕ) ^ k ∣ (3 * 
   unfold a
   exact (padicValNat_dvd_iff_le (p := 2) (three_add_one_ne_zero n)).symm
 
+/--
+@isnad1 id=iff.0h1v.s5.f6c064c9ca2d from=translated src=- shape=6d7318a1 vocab=b799e262
+-/
 theorem a_ge_two_iff (n : ℕ) : 2 ≤ a n ↔ n % 4 = 1 := by
   rw [a_ge_iff_dvd]
   constructor
   · rintro ⟨c, hc⟩; omega
   · intro h; exact ⟨(3 * n + 1) / 4, by omega⟩
 
+/--
+@isnad1 id=iff.0h1v.s5.75820d86e7da from=translated src=- shape=f6f33501 vocab=25f2e31e
+-/
 theorem a_eq_one_iff (n : ℕ) : a n = 1 ↔ n % 4 = 3 := by
   have h1 : (1 ≤ a n ↔ (2 : ℕ) ^ 1 ∣ (3 * n + 1)) := a_ge_iff_dvd n 1
   have h2 : (2 ≤ a n ↔ n % 4 = 1) := a_ge_two_iff n
@@ -271,6 +340,9 @@ theorem a_eq_one_iff (n : ℕ) : a n = 1 ↔ n % 4 = 3 := by
     have hlt : ¬ (2 ≤ a n) := fun hh => by have := h2.mp hh; omega
     omega
 
+/--
+@isnad1 id=iff.0h1v.s5.7f081b14f075 from=translated src=- shape=f6f33501 vocab=25f2e31e
+-/
 theorem a_eq_two_iff (n : ℕ) : a n = 2 ↔ n % 8 = 1 := by
   have h2 : (2 ≤ a n ↔ (2 : ℕ) ^ 2 ∣ (3 * n + 1)) := a_ge_iff_dvd n 2
   have h3 : (3 ≤ a n ↔ (2 : ℕ) ^ 3 ∣ (3 * n + 1)) := a_ge_iff_dvd n 3
@@ -289,15 +361,21 @@ theorem a_eq_two_iff (n : ℕ) : a n = 2 ↔ n % 8 = 1 := by
       obtain ⟨c, hc⟩ := h3.mp hh; omega
     omega
 
-/-- `T n = (3n+1)/4` when `v₂(3n+1) = 2`.-/
+/-- `T n = (3n+1)/4` when `v₂(3n+1) = 2`.
+@isnad1 id=eq.1h1v.s5.b2cf870d5ccc from=translated src=- shape=1af05480 vocab=14d7d47d
+-/
 theorem T_of_a_eq_two {n : ℕ} (h : a n = 2) : T n = (3 * n + 1) / 4 := by
   unfold T; rw [h]; norm_num
 
-/-- `T n = (3n+1)/2` when `v₂(3n+1) = 1`.-/
+/-- `T n = (3n+1)/2` when `v₂(3n+1) = 1`.
+@isnad1 id=eq.1h1v.s5.3cf3e8271073 from=translated src=- shape=1af05480 vocab=14d7d47d
+-/
 theorem T_of_a_eq_one {n : ℕ} (h : a n = 1) : T n = (3 * n + 1) / 2 := by
   unfold T; rw [h]; norm_num
 
-/-- **Event lemma.**  `n ≡ 9 (mod 16)` iff the first two valuations are `(2,1)`.-/
+/-- **Event lemma.**  `n ≡ 9 (mod 16)` iff the first two valuations are `(2,1)`.
+@isnad1 id=iff.0h1v.s5.3cc07a6c7a7f from=translated src=- shape=646c9d46 vocab=5afc73fb
+-/
 theorem event_iff (n : ℕ) : n % 16 = 9 ↔ a n = 2 ∧ a (T n) = 1 := by
   constructor
   · intro h
@@ -311,7 +389,9 @@ theorem event_iff (n : ℕ) : n % 16 = 9 ↔ a n = 2 ∧ a (T n) = 1 := by
     omega
 
 /-- **Label lemma.**  For a Chang event `n ≡ 9 (mod 16)`, the label bit is `1`
-(`n ≡ 25 mod 32`) iff the third valuation is `≥ 2`.-/
+(`n ≡ 25 mod 32`) iff the third valuation is `≥ 2`.
+@isnad1 id=iff.1h1v.s5.58ed2b895619 from=translated src=- shape=8f83a34b vocab=7e27a2e8
+-/
 theorem label_iff (n : ℕ) (hn : n % 16 = 9) :
     n % 32 = 25 ↔ 2 ≤ a (T (T n)) := by
   obtain ⟨ha2, ha1⟩ := (event_iff n).mp hn
@@ -322,7 +402,9 @@ theorem label_iff (n : ℕ) (hn : n % 16 = 9) :
 
 /-- At each designated position `3t`, the realized orbit sits in the Chang
 burst-ending class `n ≡ 9 (mod 16)`, and its `mod 32` label equals the
-prescribed bit `ys[t]`.-/
+prescribed bit `ys[t]`.
+@isnad1 id=and.2h3v.s6.35af1c8999a8 from=translated src=- shape=ac68f27a vocab=05b57dcd
+-/
 theorem chang_history_labels (ys : List Bool) (m : ℕ)
     (hm : Realizes (changWord ys) (3 * ys.length) m) (t : ℕ) (ht : t < ys.length) :
     orbit m (3 * t) % 16 = 9 ∧
@@ -352,7 +434,9 @@ theorem chang_history_labels (ys : List Bool) (m : ℕ)
 /-! ## Stage C — the designated positions are the only Chang events -/
 
 /-- **C1 — pure word theorem.**  Inside the controlled prefix, the pattern
-`(2, 1)` occurs exactly at the block boundaries `j = 3t`.-/
+`(2, 1)` occurs exactly at the block boundaries `j = 3t`.
+@isnad1 id=iff.1h2v.s6.df834c49dd5b from=translated src=- shape=da016251 vocab=a36fa8be
+-/
 theorem changWord_event_positions (ys : List Bool) (j : ℕ)
     (hj : j + 1 < 3 * ys.length) :
     (changWord ys j = 2 ∧ changWord ys (j + 1) = 1) ↔ ∃ t, t < ys.length ∧ j = 3 * t := by
@@ -374,7 +458,9 @@ theorem changWord_event_positions (ys : List Bool) (j : ℕ)
     exact ⟨changWord_block_zero ys t htK, changWord_block_one ys t htK⟩
 
 /-- **C2 — transfer to the orbit.**  Inside the controlled prefix, the orbit is
-in the Chang burst-ending class `≡ 9 (mod 16)` exactly at the block boundaries.-/
+in the Chang burst-ending class `≡ 9 (mod 16)` exactly at the block boundaries.
+@isnad1 id=iff.2h3v.s6.234deb73d77d from=translated src=- shape=5e5f86a3 vocab=e2c6b631
+-/
 theorem chang_event_positions (ys : List Bool) (m : ℕ)
     (hm : Realizes (changWord ys) (3 * ys.length) m) (j : ℕ)
     (hj : j + 1 < 3 * ys.length) :
@@ -387,7 +473,9 @@ theorem chang_event_positions (ys : List Bool) (m : ℕ)
   exact changWord_event_positions ys j hj
 
 /-- **C3 — no internal events.**  There is no Chang event strictly between two
-consecutive block boundaries `3t` and `3(t+1)`.-/
+consecutive block boundaries `3t` and `3(t+1)`.
+@isnad1 id=ne.4h4v.s6.792ae9033645 from=translated src=- shape=6e4306ba vocab=e2c6b631
+-/
 theorem no_internal_chang_event (ys : List Bool) (m : ℕ)
     (hm : Realizes (changWord ys) (3 * ys.length) m) (t : ℕ)
     (ht1 : t + 1 < ys.length) (j : ℕ) (hlo : 3 * t < j) (hhi : j < 3 * (t + 1)) :
@@ -405,7 +493,9 @@ whose accelerated orbit:
 * is in the Chang burst-ending class `≡ 9 (mod 16)`, inside the controlled
   length-`3·|ys|` prefix, **exactly** at the block boundaries `0, 3, …, 3(K-1)`
   (hence the first `K` Chang events are consecutive, with none in between); and
-* carries at boundary `3t` the prescribed `mod 32` label `ys[t]`.-/
+* carries at boundary `3t` the prescribed `mod 32` label `ys[t]`.
+@isnad1 id=ex.1h1v.s7.b9e67bf163af from=translated src=- shape=07ce7c70 vocab=5e57a027
+-/
 theorem finite_chang_history_realizable (ys : List Bool) (hys : ys ≠ []) :
     ∃ m : ℕ, 0 < m ∧ Odd m ∧
       (∀ j, j + 1 < 3 * ys.length →
@@ -423,7 +513,9 @@ theorem finite_chang_history_realizable (ys : List Bool) (hys : ys ≠ []) :
 /-- **Every finite binary list occurs as a consecutive Chang history.**
 No finite binary history is forbidden: for each `ys` there is a positive odd
 `m` whose first `|ys|` Chang events are consecutive (at `0, 3, …`) and whose
-`mod 32` labels there read off `ys` bit for bit.-/
+`mod 32` labels there read off `ys` bit for bit.
+@isnad1 id=ex.1h1v.s7.7dbd9b0b0280 from=translated src=- shape=82ff78ee vocab=7e4a2afd
+-/
 theorem every_finite_history_is_a_consecutive_chang_history
     (ys : List Bool) (hys : ys ≠ []) :
     ∃ m : ℕ, 0 < m ∧

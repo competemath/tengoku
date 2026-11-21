@@ -58,7 +58,9 @@ open Finset
 /-! ## Part 1: arithmetic glue between `S d t` and `vecRealSum` -/
 
 /-- The word `S`-sum and the `Fin`-indexed real vector sum agree, for the word built from a
-seed's own actual orbit valuations.-/
+seed's own actual orbit valuations.
+@isnad1 id=eq.0h2v.s4.60f1ff7ca2f0 from=translated src=- shape=4411635c vocab=ad488b2c
+-/
 theorem S_eq_vecRealSum (m t : ℕ) :
     ((S (fun i => a (orbit m i)) t : ℕ) : ℝ) = vecRealSum t (valuationVector m t) := by
   unfold S s vecRealSum valuationVector
@@ -68,7 +70,9 @@ theorem S_eq_vecRealSum (m t : ℕ) :
 /-! ## Part 2: recovering a representative seed from a positive-mass prefix -/
 
 /-- **Representative extraction.** Any realized prefix `v` with positive prefix mass under the
-harmonic window weight is witnessed by some concrete odd seed `r0 ∈ [Y, Nwin)` realizing it.-/
+harmonic window weight is witnessed by some concrete odd seed `r0 ∈ [Y, Nwin)` realizing it.
+@isnad1 id=ex.1h4v.s5.ff316972be74 from=translated src=- shape=01b727fa vocab=d89a35e5
+-/
 theorem exists_realizer_of_prefixMass_pos (Y Nwin t : ℕ) (v : Fin t → ℕ)
     (hpos : 0 < prefixMass (harmonicWindowWeight Y Nwin) Nwin t v) :
     ∃ r0 : ℕ, r0 < Nwin ∧ Y ≤ r0 ∧ Odd r0 ∧ valuationVector r0 t = v := by
@@ -92,7 +96,9 @@ theorem exists_realizer_of_prefixMass_pos (Y Nwin t : ℕ) (v : Fin t → ℕ)
 
 /-- A `genEventProb`-shaped event probability, for a finitely-supported weight, equals a finite
 `Finset.sum` over its support window — the bookkeeping fact underlying monotonicity and
-subadditivity below.-/
+subadditivity below.
+@isnad1 id=eq.1h3v.s5.0eae74a481c6 from=translated src=- shape=792d7162 vocab=d117073c
+-/
 theorem genEventProb_eq_finsum_of_supp (w : ℕ → ℝ) (Nwin : ℕ)
     (hw_supp : Function.support w ⊆ ↑(range Nwin)) (S : Set ℕ) :
     genEventProb w S = ∑ m ∈ range Nwin, Set.indicator S w m := by
@@ -105,7 +111,9 @@ theorem genEventProb_eq_finsum_of_supp (w : ℕ → ℝ) (Nwin : ℕ)
   exact tsum_eq_sum' hind_supp
 
 /-- **Monotonicity.** For a finitely-supported nonnegative weight, `genEventProb` is monotone
-under set inclusion.-/
+under set inclusion.
+@isnad1 id=le.3h4v.s6.f8e8ea511ff5 from=translated src=- shape=3175da7d vocab=7f8fe715
+-/
 theorem genEventProb_mono_of_supp (w : ℕ → ℝ) (hw_nonneg : ∀ m, 0 ≤ w m) (Nwin : ℕ)
     (hw_supp : Function.support w ⊆ ↑(range Nwin)) (A B : Set ℕ) (hAB : A ⊆ B) :
     genEventProb w A ≤ genEventProb w B := by
@@ -121,7 +129,9 @@ theorem genEventProb_mono_of_supp (w : ℕ → ℝ) (hw_nonneg : ∀ m, 0 ≤ w 
     · simp [Set.indicator, hmA, hmB]
 
 /-- **Subadditivity.** For a finitely-supported nonnegative weight, `genEventProb` of a union is
-at most the sum of the individual event probabilities.-/
+at most the sum of the individual event probabilities.
+@isnad1 id=le.2h4v.s6.8b537f5851b3 from=translated src=- shape=1d55bc40 vocab=aea25fed
+-/
 theorem genEventProb_union_le_of_supp (w : ℕ → ℝ) (hw_nonneg : ∀ m, 0 ≤ w m) (Nwin : ℕ)
     (hw_supp : Function.support w ⊆ ↑(range Nwin)) (A B : Set ℕ) :
     genEventProb w (A ∪ B) ≤ genEventProb w A + genEventProb w B := by
@@ -145,7 +155,9 @@ the prefix mass — with `Bgood` depending on neither `v` nor any representative
 witness `kmin, N, hmem, hNlb`, threaded verbatim into BOTH
 `conditional_shifted_persistence_upper_bound_bits_at_window_of_constants` (Milestone 7) and
 `prefix_conditional_future_eq_restart_future_at_window` (Milestone 10) — no second,
-independently-derived window witness is introduced.-/
+independently-derived window witness is introduced.
+@isnad1 id=le.13h11v.s9.2a3a45737933 from=translated src=- shape=67c278c5 vocab=86366ecb
+-/
 theorem good_prefix_true_fiber_bound
     (Y H : ℕ) (hYpos : 0 < Y)
     (t : ℕ) (ht : 1 ≤ t) (n : ℕ) (hn : 1 ≤ n) (c : ℝ)
@@ -234,7 +246,9 @@ theorem good_prefix_true_fiber_bound
 /-- **BAD-prefix true bound.** Under the TRUE harmonic seed law on `[Y, Y+H)`, the probability
 that the realized length-`t` prefix is BAD (`S d t ≥ sMaxNat`) is bounded by the iid Chernoff
 tail plus a Tao mixing error at length `t`, directly via `prefix_bad_tao_transfer_of_constants`
-(Milestone 8) — no new mixing argument, no reproving of `iid_geom_sum_upper_tail`.-/
+(Milestone 8) — no new mixing argument, no reproving of `iid_geom_sum_upper_tail`.
+@isnad1 id=le.8h8v.s8.cd770b43f210 from=translated src=- shape=50d0ddfe vocab=3de27163
+-/
 theorem bad_prefix_true_bound
     (Y H t : ℕ) (ht : 1 ≤ t) (sMaxNat : ℕ)
     (hnorm : genEventProb (harmonicWindowWeight Y (Y + H)) Set.univ = 1)
@@ -287,7 +301,9 @@ bounded by the GOOD contribution (iid persistence Chernoff rate plus a future Ta
 error, Milestones 6/7) plus the BAD contribution (iid Chernoff tail plus a prefix Tao mixing
 error, Milestone 8). `Kfuture` is chosen ONCE, outside the GOOD-prefix aggregation, and reused
 unchanged for every realized GOOD prefix (via `good_prefix_true_fiber_bound`); `Kprefix` is an
-independently-chosen witness for the (possibly different) prefix-level parameter `cPrefix`.-/
+independently-chosen witness for the (possibly different) prefix-level parameter `cPrefix`.
+@isnad1 id=le.18h14v.s9.157f84fe4606 from=translated src=- shape=70ebe219 vocab=a946a286
+-/
 theorem fixed_late_shift_persistence_upper_bound
     (Y H : ℕ) (hYpos : 0 < Y)
     (t : ℕ) (ht : 1 ≤ t) (n : ℕ) (hn : 1 ≤ n) (c : ℝ)

@@ -29,7 +29,9 @@ namespace PsiShellBound
 
 open Finset TwistExpansion PrefixCollision WeightedChain ShellDecomposition
 
-/-- Sum over a union is at most the sum of the sums (nonnegative terms).-/
+/-- Sum over a union is at most the sum of the sums (nonnegative terms).
+@isnad1 id=le.1h4v.s6.cada63e2b61b from=translated src=- shape=04457504 vocab=f2f3f2b3
+-/
 theorem sum_union_le_of_nonneg {ι : Type*} [DecidableEq ι] {A B : Finset ι}
     {F : ι → ℝ} (hF : ∀ x ∈ A ∪ B, 0 ≤ F x) :
     ∑ x ∈ A ∪ B, F x ≤ ∑ x ∈ A, F x + ∑ x ∈ B, F x := by
@@ -38,7 +40,9 @@ theorem sum_union_le_of_nonneg {ι : Type*} [DecidableEq ι] {A B : Finset ι}
     sum_nonneg fun x hx => hF x (mem_union_left _ (mem_inter.mp hx).1)
   linarith
 
-/-- Centered shells lie in two intervals of length `2^u`.-/
+/-- Centered shells lie in two intervals of length `2^u`.
+@isnad1 id=le.0h3v.s8.7af44bed4c8a from=translated src=- shape=e304c9af vocab=3183b1c9
+-/
 theorem cshell_subset_two_intervals (r t u : ℕ) :
     cshell r t u ⊆ Ico (2 ^ u) (2 ^ u + 2 ^ u) ∪
       Ico (2 ^ (r + t) + 1 - 2 ^ (u + 1)) (2 ^ (r + t) + 1 - 2 ^ (u + 1) + 2 ^ u) := by
@@ -53,7 +57,9 @@ theorem cshell_subset_two_intervals (r t u : ℕ) :
   · left; rw [min_eq_left hc] at hb; omega
   · right; rw [min_eq_right (by omega)] at hb; omega
 
-/-- For `F ≥ 0`, a centered-shell sum is at most the sums over the two covering intervals.-/
+/-- For `F ≥ 0`, a centered-shell sum is at most the sums over the two covering intervals.
+@isnad1 id=le.1h4v.s7.10f3c4ac37e9 from=translated src=- shape=3371066e vocab=e9b7a8a0
+-/
 theorem sum_cshell_le_two_intervals (r t u : ℕ) (F : ℕ → ℝ) (hF : ∀ lam, 0 ≤ F lam) :
     ∑ lam ∈ cshell r t u, F lam ≤
       ∑ k ∈ range (2 ^ u), F (2 ^ u + k) +
@@ -76,7 +82,9 @@ noncomputable def sieveBound (b : ℕ → ℕ) (j0 σ N H : ℕ) : ℝ :=
       √((shellP b N S).card * (PsiSieve.Xmax b N / 3 ^ N + 1 : ℕ) *
         (H + 2 * (3 ^ N : ℕ) * (1 + Real.log (3 ^ N : ℕ))))
 
-/-- An interval sum of `‖Ψ‖²` is at most `sieveBound²`.-/
+/-- An interval sum of `‖Ψ‖²` is at most `sieveBound²`.
+@isnad1 id=le.3h7v.s7.e67ec1e94099 from=translated src=- shape=487cb0ec vocab=2c160959
+-/
 theorem sum_interval_le_sieveBound_sq (b : ℕ → ℕ) (j0 σ t N : ℕ) (hN1 : 1 ≤ N) (hNj : N < j0)
     (hX : 2 * PsiSieve.Xmax b N ≤ 2 ^ (σ + 1 + t)) (a H : ℕ) :
     ∑ k ∈ range H, ‖Psi (shellP b j0 σ) (σ + 1) t (yPrime j0 σ t) (a + k)‖ ^ 2 ≤
@@ -88,7 +96,9 @@ theorem sum_interval_le_sieveBound_sq (b : ℕ → ℕ) (j0 σ t N : ℕ) (hN1 :
   rw [← hs]
   exact pow_le_pow_left₀ (Real.sqrt_nonneg _) h 2
 
-/-- **(C3) on a centered shell.** `∑_{λ ∈ shell_u} ‖Ψ λ‖² ≤ 2 · sieveBound(N, 2^u)²`.-/
+/-- **(C3) on a centered shell.** `∑_{λ ∈ shell_u} ‖Ψ λ‖² ≤ 2 · sieveBound(N, 2^u)²`.
+@isnad1 id=le.3h6v.s7.b5c004444c6a from=translated src=- shape=f444a6f0 vocab=382dd375
+-/
 theorem psi_cshell_sieve (b : ℕ → ℕ) (j0 σ t N u : ℕ) (hN1 : 1 ≤ N) (hNj : N < j0)
     (hX : 2 * PsiSieve.Xmax b N ≤ 2 ^ (σ + 1 + t)) :
     ∑ lam ∈ cshell (σ + 1) t u, ‖Psi (shellP b j0 σ) (σ + 1) t (yPrime j0 σ t) lam‖ ^ 2 ≤
@@ -100,7 +110,9 @@ theorem psi_cshell_sieve (b : ℕ → ℕ) (j0 σ t N u : ℕ) (hN1 : 1 ≤ N) (
   linarith
 
 /-- **Refined weighted sum from per-shell sums.** If `F ≥ 0` and `∑_{λ ∈ shell_u} F λ ≤ s_u`
-(with `s_u ≥ 0`), then `∑_g ∑_k ‖coef(g + 2^t k)‖ F(g + 2^t k) ≤ ∑_u min 1 (2^t/(2·2^u)) · s_u`.-/
+(with `s_u ≥ 0`), then `∑_g ∑_k ‖coef(g + 2^t k)‖ F(g + 2^t k) ≤ ∑_u min 1 (2^t/(2·2^u)) · s_u`.
+@isnad1 id=le.2h4v.s8.57f436df4390 from=translated src=- shape=90835672 vocab=c7371123
+-/
 theorem weighted_sum_le_of_shell_sums_refined (r t : ℕ) (F : ℕ → ℝ) (sb : ℕ → ℝ)
     (hF : ∀ lam, 0 ≤ F lam)
     (hshell : ∀ u ∈ range (r + t), ∑ lam ∈ cshell r t u, F lam ≤ sb u) :
@@ -123,7 +135,9 @@ theorem weighted_sum_le_of_shell_sums_refined (r t : ℕ) (F : ℕ → ℝ) (sb 
 /-- **`WeightedFourier` from the (C3) sieve for `Ψ`.** With `t = s − σ`: choose a split `N_u`
 for every centered shell `u < σ + 1 + t` with `1 ≤ N_u < j0` and `2·Xmax(N_u) ≤ 2^{σ+1+t}`.
 If `(1 + (σ+1)/2) · ∑_u min 1 (2^t/(2·2^u)) · 2·sieveBound(N_u, 2^u)² ≤ ε² |P_σ|² |V_{σ,s}| / 2^t`,
-then `WeightedFourier b N j0 s σ ε`.-/
+then `WeightedFourier b N j0 s σ ε`.
+@isnad1 id=weighted.4h7v.s9.2448da7c54a7 from=translated src=- shape=a7232074 vocab=d05e387c
+-/
 theorem weightedFourier_of_psiSieve (b : ℕ → ℕ) (N j0 s σ : ℕ) (ε : ℝ) (Nsplit : ℕ → ℕ)
     (hN1 : ∀ u ∈ range (σ + 1 + (s - σ)), 1 ≤ Nsplit u)
     (hNj : ∀ u ∈ range (σ + 1 + (s - σ)), Nsplit u < j0)

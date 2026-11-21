@@ -96,7 +96,9 @@ private theorem exists_shift_residue (M k0 u : ℕ) (hM : 0 < M) :
 
 /-- **Residue count discrepancy.** For any modulus `M ≥ 1`, starting point `k0`, target
 residue `u`, and window length `N`, the count of `j < N` with `k0 + j ≡ u (mod M)` differs
-from the expected fraction `N / M` by at most `1`.-/
+from the expected fraction `N / M` by at most `1`.
+@isnad1 id=le.1h4v.s6.5507669662f1 from=translated src=- shape=e4d044ad vocab=174235ea
+-/
 theorem residue_count_discrepancy (M : ℕ) (hM : 1 ≤ M) (k0 u N : ℕ) :
     |(((range N).filter (fun j => (k0 + j) % M = u % M)).card : ℝ)
         - (N : ℝ) / (M : ℝ)| ≤ (1 : ℝ) := by
@@ -144,7 +146,9 @@ private theorem telescoping_sub (g : ℕ → ℝ) (n : ℕ) :
 
 /-- **Generic weighted discrepancy (Abel summation).** If every prefix sum of `c` is bounded
 by `1` in absolute value, and `g` is a nonnegative sequence that is decreasing on
-`Finset.range N`, then the weighted sum `∑ j < N, c j * g j` is bounded by `g 0`.-/
+`Finset.range N`, then the weighted sum `∑ j < N, c j * g j` is bounded by `g 0`.
+@isnad1 id=le.4h3v.s7.a4adcd9d410f from=translated src=- shape=7200b5a5 vocab=5018eba6
+-/
 theorem weighted_residue_discrepancy (c g : ℕ → ℝ) (N : ℕ)
     (hbound : ∀ n ≤ N, |∑ j ∈ range n, c j| ≤ 1)
     (hg0 : 0 ≤ g 0)
@@ -199,7 +203,9 @@ theorem weighted_residue_discrepancy (c g : ℕ → ℝ) (N : ℕ)
 /-- **Harmonic arithmetic-progression discrepancy.** For a modulus `M ≥ 1`, starting point
 `k0`, target residue `u`, window length `N`, and harmonic weight `1 / (A0 + D * j)` with
 `A0 > 0` and `D ≥ 0`, the harmonic mass carried by one residue class differs from `1/M` of
-the total harmonic mass by at most `1 / A0`.-/
+the total harmonic mass by at most `1 / A0`.
+@isnad1 id=le.3h6v.s7.7b09cdb8acd8 from=translated src=- shape=0b983f89 vocab=1b46fe51
+-/
 theorem harmonic_ap_discrepancy (M : ℕ) (hM : 1 ≤ M) (k0 u N : ℕ) (A0 D : ℝ)
     (hA0 : 0 < A0) (hD : 0 ≤ D) :
     |∑ j ∈ range N, (if (k0 + j) % M = u % M then (1 : ℝ) / (A0 + D * j) else 0)

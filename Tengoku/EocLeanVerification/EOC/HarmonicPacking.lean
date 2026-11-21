@@ -41,7 +41,9 @@ open Finset
 /-! ## 1. A rearrangement bound for antitone functions on finite sets of naturals -/
 
 /-- For an antitone `f`, the sum of `f` over any finite set `T` of naturals is at most the sum of
-`f` over the initial segment `{0, …, |T| - 1}` of the same cardinality.-/
+`f` over the initial segment `{0, …, |T| - 1}` of the same cardinality.
+@isnad1 id=le.1h2v.s5.e758cecd769c from=translated src=- shape=b4221763 vocab=901ef8d7
+-/
 theorem sum_le_sum_range_card_of_antitone (f : ℕ → ℝ) (hf : Antitone f) (T : Finset ℕ) :
     ∑ x ∈ T, f x ≤ ∑ j ∈ range T.card, f j := by
   induction T using Finset.induction_on_max with
@@ -57,6 +59,9 @@ theorem sum_le_sum_range_card_of_antitone (f : ℕ → ℝ) (hf : Antitone f) (T
 
 /-! ## 2. The harmonic sum of the progression `3j + 1` has leading coefficient `1/3` -/
 
+/--
+@isnad1 id=antitone.0h0v.s5.3696c15272a8 from=translated src=- shape=edd7a2a9 vocab=0c66ab79
+-/
 theorem inv_three_mul_add_one_antitone :
     Antitone (fun j : ℕ => (1 : ℝ) / (3 * (j : ℝ) + 1)) := by
   intro i j hij
@@ -67,7 +72,9 @@ theorem inv_three_mul_add_one_antitone :
 
 /-- **Harmonic bound.** `∑_{i<n} 1/(i+1) ≤ 1 + log n` for every `n` (the classical bound
 `H_n ≤ 1 + log n`). Integral-free: telescope `1/(j+2) ≤ log (j+2) - log (j+1)`, which is
-`1 - x⁻¹ ≤ log x` at `x = (j+2)/(j+1)`.-/
+`1 - x⁻¹ ≤ log x` at `x = (j+2)/(j+1)`.
+@isnad1 id=le.0h1v.s5.735472ae66d2 from=translated src=- shape=4f41b6e6 vocab=cc9d4737
+-/
 theorem sum_range_inv_succ_le_one_add_log (n : ℕ) :
     ∑ i ∈ range n, ((i : ℝ) + 1)⁻¹ ≤ 1 + Real.log n := by
   rcases n with _ | n
@@ -91,7 +98,9 @@ theorem sum_range_inv_succ_le_one_add_log (n : ℕ) :
 
 /-- **Explicit finite harmonic bound.** `∑_{j<n} 1/(3j+1) ≤ 4/3 + (1/3) log n` for every `n`.
 The leading coefficient `1/3` is exact: for `j ≥ 1`, `1/(3j+1) ≤ (1/3)(1/j)`, and
-`∑_{i<n} 1/(i+1) ≤ 1 + log n` (`sum_range_inv_succ_le_one_add_log`).-/
+`∑_{i<n} 1/(i+1) ≤ 1 + log n` (`sum_range_inv_succ_le_one_add_log`).
+@isnad1 id=le.0h1v.s6.51699b22a443 from=translated src=- shape=f9943dfb vocab=4d1e4a62
+-/
 theorem sum_range_inv_three_mul_add_one_le (n : ℕ) :
     ∑ j ∈ range n, (1 : ℝ) / (3 * (j : ℝ) + 1) ≤ 4 / 3 + (1 / 3) * Real.log n := by
   rcases n with _ | n
@@ -122,7 +131,9 @@ theorem sum_range_inv_three_mul_add_one_le (n : ℕ) :
 /-! ## 3. Distinct-state harmonic packing over the integers coprime to `6` -/
 
 /-- A value `x` that is odd and not divisible by `3` satisfies `3 (rank x - 1) + 1 ≤ x`, where
-`rank = coprimeSixRank` enumerates `1, 5, 7, 11, 13, …` as `1, 2, 3, 4, 5, …`.-/
+`rank = coprimeSixRank` enumerates `1, 5, 7, 11, 13, …` as `1, 2, 3, 4, 5, …`.
+@isnad1 id=le.2h1v.s5.a22e37c72be4 from=translated src=- shape=c9a3a691 vocab=3202d030
+-/
 theorem three_mul_rank_pred_add_one_le {x : ℕ} (hodd : Odd x) (hthree : ¬ 3 ∣ x) :
     3 * (coprimeSixRank x - 1) + 1 ≤ x := by
   have h1 := coprimeSixRank_pos x
@@ -132,7 +143,9 @@ theorem three_mul_rank_pred_add_one_le {x : ℕ} (hodd : Odd x) (hthree : ¬ 3 �
 /-- **Harmonic packing (finite form).** If `m 0, …, m (n-1)` are pairwise distinct, odd and not
 divisible by `3`, then `∑_{k<n} 1/m_k ≤ ∑_{j<n} 1/(3j+1)`: the extremal configuration is the
 initial segment `1, 5, 7, 11, …` of the integers coprime to `6`, whose `j`-th element is at least
-`3j + 1`.-/
+`3j + 1`.
+@isnad1 id=le.3h2v.s7.b40734c74ae9 from=translated src=- shape=ce0399d9 vocab=de6ef551
+-/
 theorem sum_inv_le_sum_inv_three_mul_add_one (m : ℕ → ℕ) (n : ℕ)
     (hinj : ∀ i < n, ∀ j < n, m i = m j → i = j)
     (hodd : ∀ i < n, Odd (m i)) (hthree : ∀ i < n, ¬ 3 ∣ m i) :
@@ -168,7 +181,9 @@ theorem sum_inv_le_sum_inv_three_mul_add_one (m : ℕ → ℕ) (n : ℕ)
 odd orbit of `M` are pairwise distinct, then `∑_{k<N} 1/m_k ≤ 7/3 + (1/3) log N`.
 
 The initial state contributes at most `1`; the post-initial states are distinct integers coprime
-to `6` and are packed by `sum_inv_le_sum_inv_three_mul_add_one`.-/
+to `6` and are packed by `sum_inv_le_sum_inv_three_mul_add_one`.
+@isnad1 id=le.2h2v.s7.8a20a51fa860 from=translated src=- shape=966b0e32 vocab=43257268
+-/
 theorem sum_inv_orbit_le (M N : ℕ) (hM : Odd M)
     (hinj : ∀ i < N, ∀ j < N, orbit M i = orbit M j → i = j) :
     ∑ k ∈ range N, (1 : ℝ) / (orbit M k : ℝ) ≤ 7 / 3 + (1 / 3) * Real.log N := by
@@ -206,18 +221,30 @@ noncomputable def carryU (M N : ℕ) : ℝ := ∏ k ∈ range N, (1 + 1 / (3 * (
 noncomputable def carryE (M N : ℕ) : ℝ :=
   ∑ k ∈ range N, Real.logb 2 (1 + 1 / (3 * (orbit M k : ℝ)))
 
+/--
+@isnad1 id=lt.0h1v.s5.2947fa7acdfe from=translated src=- shape=93af28a6 vocab=9ab66c22
+-/
 theorem carry_factor_pos (x : ℕ) : 0 < 1 + 1 / (3 * (x : ℝ)) := by
   have : 0 ≤ 1 / (3 * (x : ℝ)) := by positivity
   linarith
 
+/--
+@isnad1 id=lt.0h2v.s4.5ef2d6cbc3d2 from=translated src=- shape=5ffe46ab vocab=33ebfa5e
+-/
 theorem carryU_pos (M N : ℕ) : 0 < carryU M N :=
   prod_pos fun k _ => carry_factor_pos (orbit M k)
 
+/--
+@isnad1 id=eq.0h2v.s6.80b0d5e677ee from=translated src=- shape=f3a64deb vocab=c04fc559
+-/
 theorem carryU_succ (M k : ℕ) :
     carryU M (k + 1) = carryU M k * (1 + 1 / (3 * (orbit M k : ℝ))) := by
   unfold carryU
   rw [prod_range_succ]
 
+/--
+@isnad1 id=eq.0h2v.s4.6ba969154674 from=translated src=- shape=efb1be09 vocab=c2a96cb9
+-/
 theorem carryE_eq_logb_carryU (M N : ℕ) : carryE M N = Real.logb 2 (carryU M N) := by
   induction N with
   | zero => simp [carryE, carryU]
@@ -226,17 +253,23 @@ theorem carryE_eq_logb_carryU (M N : ℕ) : carryE M N = Real.logb 2 (carryU M N
     unfold carryE
     rw [sum_range_succ]
 
-/-- `U_N = 2^{E_N}` (the manuscript's definition of `U`).-/
+/-- `U_N = 2^{E_N}` (the manuscript's definition of `U`).
+@isnad1 id=eq.0h2v.s4.5e0be8f96e65 from=translated src=- shape=019f50d6 vocab=c7035e92
+-/
 theorem carryU_eq_two_rpow_carryE (M N : ℕ) : carryU M N = (2 : ℝ) ^ carryE M N := by
   rw [carryE_eq_logb_carryU, Real.rpow_logb (by norm_num) (by norm_num) (carryU_pos M N)]
 
-/-- Cast of the core range product.-/
+/-- Cast of the core range product.
+@isnad1 id=eq.0h2v.s4.fc56add6859a from=translated src=- shape=6bb824ef vocab=947aafb0
+-/
 theorem cast_pr (f : ℕ → ℕ) (n : ℕ) : ((pr f n : ℕ) : ℝ) = ∏ i ∈ range n, (f i : ℝ) := by
   induction n with
   | zero => simp
   | succ n ih => rw [pr_succ, Nat.cast_mul, ih, prod_range_succ]
 
-/-- `2^{R_k} = 2^{s_k} / 3^k`, with `R_k = s_k - k log₂ 3` the repository's real drift.-/
+/-- `2^{R_k} = 2^{s_k} / 3^k`, with `R_k = s_k - k log₂ 3` the repository's real drift.
+@isnad1 id=eq.0h2v.s6.f3a4bc4534bb from=translated src=- shape=3cbde169 vocab=5a155095
+-/
 theorem two_rpow_R (d : ℕ → ℕ) (k : ℕ) :
     (2 : ℝ) ^ (R d k) = (2 : ℝ) ^ (s d k) / (3 : ℝ) ^ k := by
   have h3 : (3 : ℝ) ^ k = (2 : ℝ) ^ ((k : ℝ) * alpha) := by
@@ -248,7 +281,9 @@ theorem two_rpow_R (d : ℕ → ℕ) (k : ℕ) :
 
 /-- **Eliahou–Rozier identity (exponentiated form, manuscript Lemma 2.2).** For odd `M`,
 `m_k · 2^{R_k} = m_0 · U_k`. Derived from the exact natural-number identity
-`BoundedDriftCore.orbit_product_identity`.-/
+`BoundedDriftCore.orbit_product_identity`.
+@isnad1 id=eq.1h2v.s5.a5836634a1c3 from=translated src=- shape=7fc82c3a vocab=d7f4be30
+-/
 theorem orbit_mul_two_rpow_R (M k : ℕ) (hM : Odd M) :
     (orbit M k : ℝ) * (2 : ℝ) ^ (R (orbWord M) k) = (M : ℝ) * carryU M k := by
   have hid := orbit_product_identity (orbit M) (orbWord M) (orbit_step M) k
@@ -275,7 +310,9 @@ theorem orbit_mul_two_rpow_R (M k : ℕ) (hM : Odd M) :
   field_simp
   linear_combination hid'
 
-/-- **Carry demand (manuscript Lemma 4.4).** `U_{k+1} - U_k = 2^{R_k} / (3 m_0)` exactly.-/
+/-- **Carry demand (manuscript Lemma 4.4).** `U_{k+1} - U_k = 2^{R_k} / (3 m_0)` exactly.
+@isnad1 id=eq.1h2v.s6.a881db3db228 from=translated src=- shape=4571cd61 vocab=736eef8f
+-/
 theorem carryU_succ_sub (M k : ℕ) (hM : Odd M) :
     carryU M (k + 1) - carryU M k = (2 : ℝ) ^ (R (orbWord M) k) / (3 * (M : ℝ)) := by
   have hmk : (0 : ℝ) < (orbit M k : ℝ) := by exact_mod_cast (odd_orbit hM k).pos
@@ -292,7 +329,9 @@ theorem carryU_succ_sub (M k : ℕ) (hM : Odd M) :
 
 /-! ## 5. Carry budget: the `1/9` exponent (manuscript Lemma 4.3) -/
 
-/-- `log₂ (1 + x) ≤ x / ln 2` for `x ≥ 0`.-/
+/-- `log₂ (1 + x) ≤ x / ln 2` for `x ≥ 0`.
+@isnad1 id=le.1h1v.s5.e1dfc85a29e3 from=translated src=- shape=851f7e6e vocab=cb199da2
+-/
 theorem logb_two_one_add_le (x : ℝ) (hx : 0 ≤ x) : Real.logb 2 (1 + x) ≤ x / Real.log 2 := by
   unfold Real.logb
   apply div_le_div_of_nonneg_right _ (Real.log_pos one_lt_two).le
@@ -304,7 +343,9 @@ odd orbit of `M` are pairwise distinct, then
 `E_N ≤ (1/9) log₂ N + 7 / (9 ln 2)`.
 
 The coefficient `1/9 = (1/3) · (1/3)`: one factor `1/3` is the `1/(3 m_k)` inside the carry
-factor, the other is the harmonic density of the integers coprime to `6` (`sum_inv_orbit_le`).-/
+factor, the other is the harmonic density of the integers coprime to `6` (`sum_inv_orbit_le`).
+@isnad1 id=le.2h2v.s7.fba593248159 from=translated src=- shape=fa4e85ec vocab=d4557057
+-/
 theorem carryE_le (M N : ℕ) (hM : Odd M)
     (hinj : ∀ i < N, ∀ j < N, orbit M i = orbit M j → i = j) :
     carryE M N ≤ (1 / 9) * Real.logb 2 N + 7 / (9 * Real.log 2) := by
@@ -327,7 +368,9 @@ theorem carryE_le (M N : ℕ) (hM : Odd M)
         ring
 
 /-- **Carry budget, product form.** Under the same hypotheses and `N ≥ 1`,
-`U_N = 2^{E_N} ≤ e^{7/9} · N^{1/9}`.-/
+`U_N = 2^{E_N} ≤ e^{7/9} · N^{1/9}`.
+@isnad1 id=le.3h2v.s6.5a7803721977 from=translated src=- shape=abbf6d73 vocab=e694160b
+-/
 theorem carryU_le (M N : ℕ) (hM : Odd M) (hN : 1 ≤ N)
     (hinj : ∀ i < N, ∀ j < N, orbit M i = orbit M j → i = j) :
     carryU M N ≤ Real.exp (7 / 9) * (N : ℝ) ^ ((1 : ℝ) / 9) := by
@@ -345,7 +388,9 @@ theorem carryU_le (M N : ℕ) (hM : Odd M) (hN : 1 ≤ N)
         ring
 
 /-- Asymptotic packaging of the carry budget: for an injective orbit, `2^{E_N} = O(N^{1/9})`.
-This is a corollary of the explicit bound `carryU_le`; no asymptotic statement is assumed.-/
+This is a corollary of the explicit bound `carryU_le`; no asymptotic statement is assumed.
+@isnad1 id=isbigo.2h1v.s6.d0386d984745 from=translated src=- shape=0bcd118d vocab=01671d6e
+-/
 theorem carryU_isBigO (M : ℕ) (hM : Odd M) (hinj : ∀ i j, orbit M i = orbit M j → i = j) :
     (fun N : ℕ => carryU M N) =O[Filter.atTop] (fun N : ℕ => (N : ℝ) ^ ((1 : ℝ) / 9)) := by
   refine Asymptotics.IsBigO.of_bound (Real.exp (7 / 9)) ?_
@@ -356,7 +401,9 @@ theorem carryU_isBigO (M : ℕ) (hM : Odd M) (hinj : ∀ i j, orbit M i = orbit 
 
 /-! ## 6. The `8/9` logarithmic-floor exclusion (manuscript Theorem 4.5) -/
 
-/-- Telescoped carry demand: `U_{N₁+t} = U_{N₁} + ∑_{i<t} 2^{R_{N₁+i}} / (3 m_0)`.-/
+/-- Telescoped carry demand: `U_{N₁+t} = U_{N₁} + ∑_{i<t} 2^{R_{N₁+i}} / (3 m_0)`.
+@isnad1 id=eq.1h3v.s6.554cc1090372 from=translated src=- shape=05f4aade vocab=1ed64874
+-/
 theorem carryU_telescope (M N₁ : ℕ) (hM : Odd M) (t : ℕ) :
     carryU M (N₁ + t)
       = carryU M N₁ + ∑ i ∈ range t, (2 : ℝ) ^ (R (orbWord M) (N₁ + i)) / (3 * (M : ℝ)) := by
@@ -368,7 +415,9 @@ theorem carryU_telescope (M N₁ : ℕ) (hM : Odd M) (t : ℕ) :
     linarith
 
 /-- **Demand side.** An eventual floor `R_k ≥ -B log₂ k` (`k ≥ N₁ ≥ 1`, `B ≥ 0`) forces
-`t · (N₁+t)^{-B} ≤ 3 m_0 · U_{N₁+t}`: the carry product grows at least like `N^{1-B}`.-/
+`t · (N₁+t)^{-B} ≤ 3 m_0 · U_{N₁+t}`: the carry product grows at least like `N^{1-B}`.
+@isnad1 id=le.4h4v.s7.d00a136d8be0 from=translated src=- shape=4f83bed1 vocab=29869d1b
+-/
 theorem floor_lower_accumulation (M : ℕ) (hM : Odd M) (B : ℝ) (hB0 : 0 ≤ B) (N₁ : ℕ)
     (hN₁ : 1 ≤ N₁) (hfloor : ∀ k ≥ N₁, -B * Real.logb 2 k ≤ R (orbWord M) k) (t : ℕ) :
     (t : ℝ) * ((N₁ + t : ℕ) : ℝ) ^ (-B) ≤ 3 * (M : ℝ) * carryU M (N₁ + t) := by
@@ -408,7 +457,9 @@ theorem floor_lower_accumulation (M : ℕ) (hM : Odd M) (B : ℝ) (hB0 : 0 ≤ B
   nlinarith
 
 /-- The exponent comparison behind Theorem 4.5: the demand exponent `1 - B` exceeds the budget
-exponent `1/9` exactly when `B < 8/9`.-/
+exponent `1/9` exactly when `B < 8/9`.
+@isnad1 id=iff.0h1v.s6.ea3688eefe41 from=translated src=- shape=2ddaa1d8 vocab=495dff0b
+-/
 theorem exponent_gap_iff (B : ℝ) : (1 : ℝ) / 9 < 1 - B ↔ B < 8 / 9 := by
   constructor <;> intro h <;> linarith
 
@@ -418,7 +469,9 @@ injective accelerated orbit (manuscript Definition 4.1). For every real `B < 8/9
 
 Proof outline: an eventual floor forces `(N/2) · N^{-B} ≤ 3 m_0 U_N` (`floor_lower_accumulation`),
 while the carry budget gives `U_N ≤ e^{7/9} N^{1/9}` (`carryU_le`). Hence `N^{(1-B) - 1/9}` stays
-bounded, which is impossible because `(1 - B) - 1/9 > 0` (`exponent_gap_iff`).-/
+bounded, which is impossible because `(1 - B) - 1/9 > 0` (`exponent_gap_iff`).
+@isnad1 id=not.3h2v.s6.8b1dfec0363c from=translated src=- shape=1f11549e vocab=9de40b5d
+-/
 theorem injective_orbit_not_eventually_log_floor (M : ℕ) (hM : Odd M)
     (hinj : ∀ i j, orbit M i = orbit M j → i = j) (B : ℝ) (hB : B < 8 / 9) :
     ¬ ∃ N₀ : ℕ, ∀ k ≥ N₀, -B * Real.logb 2 k ≤ R (orbWord M) k := by
@@ -481,7 +534,9 @@ theorem injective_orbit_not_eventually_log_floor (M : ℕ) (hM : Odd M)
 
 /-- **Theorem 4.5, "infinitely often" form.** Equivalent restatement of
 `injective_orbit_not_eventually_log_floor`: for every `B < 8/9` and every threshold `N₀` there is
-`k ≥ N₀` with `R_k < -B log₂ k`, i.e. the floor fails for infinitely many `k`.-/
+`k ≥ N₀` with `R_k < -B log₂ k`, i.e. the floor fails for infinitely many `k`.
+@isnad1 id=ex.3h3v.s6.953839b5d967 from=translated src=- shape=f85b8851 vocab=7643025c
+-/
 theorem injective_orbit_log_floor_fails_infinitely_often (M : ℕ) (hM : Odd M)
     (hinj : ∀ i j, orbit M i = orbit M j → i = j) (B : ℝ) (hB : B < 8 / 9) :
     ∀ N₀ : ℕ, ∃ k ≥ N₀, R (orbWord M) k < -B * Real.logb 2 k := by

@@ -31,7 +31,9 @@ namespace ExceptionalPowerBound
 
 open Real Finset CapacityBounds EntropyBounds SurvivorDensity TaoExternal
 
-/-- Tangent-line bound for the concave function `f`.-/
+/-- Tangent-line bound for the concave function `f`.
+@isnad1 id=le.2h2v.s6.59757728a265 from=translated src=- shape=72b60090 vocab=a51b6c34
+-/
 theorem f_le_tangent {x y : ℝ} (hx : 1 < x) (hy : 1 ≤ y) :
     f y ≤ f x + (y - x) * (log x - log (x - 1)) + (y - x) ^ 2 / x := by
   have hx0 : 0 < x := by linarith
@@ -63,12 +65,17 @@ theorem f_le_tangent {x y : ℝ} (hx : 1 < x) (hy : 1 ≤ y) :
     ring
   linarith
 
+/--
+@isnad1 id=lt.0h0v.s5.aa6760cd4f0c from=translated src=- shape=60e475f0 vocab=9d5f58fa
+-/
 theorem log_alpha_ratio_pos : 0 < log alpha - log (alpha - 1) := by
   have hα := one_lt_alpha
   have := Real.log_lt_log (by linarith : (0 : ℝ) < alpha - 1) (by linarith : alpha - 1 < alpha)
   linarith
 
-/-- `log C(s_N, N) ≤ N f(α) + c log(α/(α−1)) + (c+1)²`.-/
+/-- `log C(s_N, N) ≤ N f(α) + c log(α/(α−1)) + (c+1)²`.
+@isnad1 id=le.1h2v.s6.e34b01062bf6 from=translated src=- shape=4cea04d1 vocab=2dcf4ef7
+-/
 theorem log_choose_barrier_le (c : ℕ) {N : ℕ} (hN : 1 ≤ N) :
     log (Nat.choose (collatzBarrier c N) N) ≤
       N * f alpha + c * (log alpha - log (alpha - 1)) + ((c : ℝ) + 1) ^ 2 := by
@@ -107,22 +114,33 @@ theorem log_choose_barrier_le (c : ℕ) {N : ℕ} (hN : 1 ≤ N) :
     mul_le_mul_of_nonneg_right he_hi hL.le
   linarith
 
+/--
+@isnad1 id=eq.0h0v.s4.f3caf7817f8b from=translated src=- shape=e66835f9 vocab=3eb1d0d2
+-/
 theorem f_alpha_div_log_two : f alpha / log 2 = alpha - I0 := by
   have hl2 : log 2 ≠ 0 := (Real.log_pos (by norm_num)).ne'
   unfold f I0 collatzAlpha Real.logb
   field_simp
   ring
 
+/--
+@isnad1 id=lt.0h0v.s3.329fb07ba220 from=translated src=- shape=a1bca669 vocab=257ca93d
+-/
 theorem f_alpha_pos : 0 < f alpha := by
   have hα := one_lt_alpha
   rw [alpha_entropy_eq]
   exact mul_pos (by linarith) (Real.binEntropy_pos (by positivity) (inv_lt_one_of_one_lt₀ hα))
 
+/--
+@isnad1 id=lt.0h0v.s3.afff697e9293 from=translated src=- shape=ff3a10fc vocab=125d9e1e
+-/
 theorem I0_pos' : 0 < I0 := by
   have hlog2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
   nlinarith [rateNats_pos, rateNats_eq_I0_mul_log_two, hlog2]
 
-/-- The exponent `1 − I₀/α` is the binary entropy `H₂(1/α)` in bits.-/
+/-- The exponent `1 − I₀/α` is the binary entropy `H₂(1/α)` in bits.
+@isnad1 id=eq.0h0v.s5.6c956f9b0d4b from=translated src=- shape=eeb3cbd1 vocab=c4464360
+-/
 theorem one_sub_I0_div_alpha_eq : 1 - I0 / alpha = Real.binEntropy alpha⁻¹ / log 2 := by
   have hα : alpha ≠ 0 := by linarith [one_lt_alpha]
   have hl2 : log 2 ≠ 0 := (Real.log_pos (by norm_num)).ne'
@@ -139,6 +157,9 @@ noncomputable def Cconst (c : ℕ) : ℝ :=
   Real.exp (lambdaStar * c) * (2 : ℝ) ^ I0 / 2 +
     Real.exp (((c : ℝ) + 1) ^ 2 + c * (log alpha - log (alpha - 1)))
 
+/--
+@isnad1 id=le.1h1v.s4.36305b2a6350 from=translated src=- shape=35bd48ee vocab=87dfaf66
+-/
 theorem one_le_Nstar {X : ℕ} (hX : 4 ≤ X) : 1 ≤ Nstar X := by
   unfold Nstar
   have hα := one_lt_alpha
@@ -154,7 +175,9 @@ theorem one_le_Nstar {X : ℕ} (hX : 4 ≤ X) : 1 ≤ Nstar X := by
 
 open Classical in
 /-- **Baseline power bound.** For `X ≥ 4`, the odd seeds below `X` that stay `c`-confined for
-`N_X = ⌊log₂ X / α⌋₊` steps number at most `Cconst c · X^{1 − I₀/α}`.-/
+`N_X = ⌊log₂ X / α⌋₊` steps number at most `Cconst c · X^{1 − I₀/α}`.
+@isnad1 id=le.1h2v.s6.6bf3f6c34935 from=translated src=- shape=093d87b7 vocab=becae642
+-/
 theorem survivor_count_le_rpow (c : ℕ) {X : ℕ} (hX : 4 ≤ X) :
     (((range X).filter fun μ =>
         Odd μ ∧ Confined (c : ℝ) (fun i => a (orbit μ i)) (Nstar X)).card : ℝ) ≤
@@ -231,7 +254,9 @@ theorem survivor_count_le_rpow (c : ℕ) {X : ℕ} (hX : 4 ≤ X) :
 
 open Classical in
 /-- **Exceptional class, baseline power bound.** The odd seeds below `X` that stay `U`-confined
-forever number at most `Cconst U · X^{1 − I₀/α}`, `1 − I₀/α = H₂(1/α) ≈ 0.949956`.-/
+forever number at most `Cconst U · X^{1 − I₀/α}`, `1 − I₀/α = H₂(1/α) ≈ 0.949956`.
+@isnad1 id=le.1h2v.s7.8aba8a32b5ad from=translated src=- shape=bb306e5f vocab=1f809ca1
+-/
 theorem exceptional_count_le_rpow (U : ℕ) {X : ℕ} (hX : 4 ≤ X) :
     (((range X).filter fun μ =>
         Odd μ ∧ ∀ N, Confined (U : ℝ) (fun i => a (orbit μ i)) N).card : ℝ) ≤
@@ -246,7 +271,9 @@ open Classical in
 depth `N ≥ A·log₂ X` the confined seeds below `X` satisfy the first-moment bound
 `S_X(N) ≤ C·(X/2)·p_N(U)` (`p_N(U)` = the iid `Geom(2)` persistence probability), then the
 exceptional class below `X` has at most `(C e^{λ* U}/2)·X^{1 − I₀ A}` elements. For `A = 1/α` this
-is the unconditional baseline; any `A > 1/α` would improve the exponent.-/
+is the unconditional baseline; any `A > 1/α` would improve the exponent.
+@isnad1 id=le.5h5v.s8.e54d5eacbfaf from=translated src=- shape=9464de05 vocab=a01f05fe
+-/
 theorem exceptional_count_le_of_firstMoment (U : ℕ) {X N : ℕ} (hN : 1 ≤ N) (hX : 1 ≤ X)
     (A C : ℝ) (hC : 0 ≤ C) (hNA : A * Real.logb 2 X ≤ N)
     (hyp : (((range X).filter fun μ =>

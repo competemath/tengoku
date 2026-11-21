@@ -46,6 +46,9 @@ unconstrained.-/
 def jointShiftedPersistenceEvent (t n : ℕ) (c : ℝ) : Set (Fin (t + n) → ℕ) :=
   suffixVector t n ⁻¹' geomPersistenceEvent collatzAlpha c n
 
+/--
+@isnad1 id=eq.0h3v.s5.8b46bca1915e from=translated src=- shape=fd5cdd23 vocab=8bdd1873
+-/
 theorem atomWeight_eq_prefix_mul_suffix (t n : ℕ) (a : Fin (t + n) → ℕ) :
     atomWeight (t + n) a = atomWeight t (prefixVector t n a) * atomWeight n (suffixVector t n a) := by
   unfold atomWeight prefixVector suffixVector
@@ -53,7 +56,9 @@ theorem atomWeight_eq_prefix_mul_suffix (t n : ℕ) (a : Fin (t + n) → ℕ) :
 
 /-- **IID suffix marginalization.** The prefix coordinates, being unconstrained, marginalize
 out (their total iid mass is `1`, `atomWeight_tsum_eq_one`), leaving exactly the length-`n`
-suffix law.-/
+suffix law.
+@isnad1 id=eq.0h3v.s4.be7c506bc68b from=translated src=- shape=fd8d1587 vocab=9b3b985a
+-/
 theorem iidGeom2VectorProb_joint_eq (t n : ℕ) (c : ℝ) :
     iidGeom2VectorProb (t + n) (jointShiftedPersistenceEvent t n c)
       = iidGeom2VectorProb n (geomPersistenceEvent collatzAlpha c n) := by
@@ -108,7 +113,9 @@ exactly what makes the EARLY case free of the restart machinery: apply it once, 
 but `K` (with its defining `TaoMixingProperty hK`) is supplied by the caller instead of derived
 internally from `tao` — so a single `Kearly` can be chosen once and reused uniformly across
 every shift `t` in a finite early range (Milestone 12), instead of each call to
-`tao.finite_valuation_mixing c0 hc0` producing a separately-opaque existential witness.-/
+`tao.finite_valuation_mixing c0 hc0` producing a separately-opaque existential witness.
+@isnad1 id=le.8h8v.s8.eb03f3de6c01 from=translated src=- shape=3a2be750 vocab=fbebf168
+-/
 theorem early_shift_persistence_upper_bound_of_constants
     (c0 : ℝ) (K : TaoMixingConstants c0) (hK : TaoMixingProperty c0 K)
     (w : ℕ → ℝ) (hw_nonneg : ∀ m, 0 ≤ w m) (Nwin : ℕ)
@@ -175,7 +182,9 @@ theorem early_shift_persistence_upper_bound_of_constants
 (`Function.support w ⊆ range Nwin`), nonnegative, odd-supported starting weight `w`,
 transferring the *entire* length-`(t+n)`
 joint valuation vector directly bounds the shifted persistence probability by the iid rate
-plus a single Tao mixing error at length `t+n` — no restart, no prefix/GOOD-BAD split.-/
+plus a single Tao mixing error at length `t+n` — no restart, no prefix/GOOD-BAD split.
+@isnad1 id=ex.8h7v.s9.c16e6975fbca from=translated src=- shape=8aeb6398 vocab=402a1f1c
+-/
 theorem early_shift_persistence_upper_bound
     (tao : TaoMixingHypothesis)
     (w : ℕ → ℝ) (hw_nonneg : ∀ m, 0 ≤ w m) (Nwin : ℕ)
@@ -213,9 +222,15 @@ noncomputable def geomUpperMgf (theta : ℝ) : ℝ := Real.exp theta / (2 - Real
 /-- The exponentially-tilted single-digit weight for the upper tail: `geom2(k)·exp(θk)`.-/
 noncomputable def tiltedUpperWeight (theta : ℝ) (k : ℕ) : ℝ := geom2 k * Real.exp (theta * (k : ℝ))
 
+/--
+@isnad1 id=le.0h2v.s4.48e395bef3cb from=translated src=- shape=25b8bdde vocab=07f5abf0
+-/
 theorem tiltedUpperWeight_nonneg (theta : ℝ) (k : ℕ) : 0 ≤ tiltedUpperWeight theta k :=
   mul_nonneg (geom2_nonneg k) (Real.exp_pos _).le
 
+/--
+@isnad1 id=le.0h2v.s5.20331ad5df7c from=translated src=- shape=e18ce6ae vocab=abd4e856
+-/
 theorem tiltedUpperWeight_le (theta : ℝ) (k : ℕ) :
     tiltedUpperWeight theta k ≤ (Real.exp theta / 2) ^ k := by
   unfold tiltedUpperWeight
@@ -228,6 +243,9 @@ theorem tiltedUpperWeight_le (theta : ℝ) (k : ℕ) :
   rw [h2, div_pow, le_div_iff₀ (by positivity : (0:ℝ) < 2 ^ k)]
   nlinarith [mul_le_mul_of_nonneg_right h1 (pow_pos (Real.exp_pos theta) k).le]
 
+/--
+@isnad1 id=summable.1h1v.s4.3f1794ed65b1 from=translated src=- shape=e9675d53 vocab=e9c5251a
+-/
 theorem tiltedUpperWeight_summable (theta : ℝ) (hθ1 : theta < Real.log 2) :
     Summable (tiltedUpperWeight theta) := by
   have hr_lt : Real.exp theta / 2 < 1 := by
@@ -240,6 +258,9 @@ theorem tiltedUpperWeight_summable (theta : ℝ) (hθ1 : theta < Real.log 2) :
     summable_geometric_of_lt_one hr_nonneg hr_lt
   exact Summable.of_nonneg_of_le (tiltedUpperWeight_nonneg theta) (tiltedUpperWeight_le theta) hsum0
 
+/--
+@isnad1 id=eq.2h1v.s5.bd1ca67a8ec6 from=translated src=- shape=cbf31679 vocab=81301a54
+-/
 theorem tiltedUpperWeight_tsum (theta : ℝ) (_hθ0 : 0 < theta) (hθ1 : theta < Real.log 2) :
     ∑' k, tiltedUpperWeight theta k = geomUpperMgf theta := by
   unfold geomUpperMgf
@@ -266,7 +287,9 @@ theorem tiltedUpperWeight_tsum (theta : ℝ) (_hθ0 : 0 < theta) (hθ1 : theta <
   field_simp
 
 /-- **IID BAD-prefix Chernoff tail.** For `0 < θ < log 2`, `P_iid(S_t ≥ s) ≤ e^(-θs)·M_up(θ)^t`.
-Priority: exact positive exponential decay in `t`, not the sharp large-deviation rate.-/
+Priority: exact positive exponential decay in `t`, not the sharp large-deviation rate.
+@isnad1 id=le.2h3v.s6.3808d46fa665 from=translated src=- shape=d617eb54 vocab=d11ce8b8
+-/
 theorem iid_geom_sum_upper_tail (theta : ℝ) (hθ0 : 0 < theta) (hθ1 : theta < Real.log 2)
     (t : ℕ) (s : ℝ) :
     iidGeom2VectorProb t (sumAtLeastEvent t s)
@@ -335,7 +358,9 @@ the exponential info-budget inequality already holds at `sMaxNat` — implies it
 `S d t ≤ sMaxNat`, via monotonicity of `2^x`. This is exactly Milestone 7's
 `conditional_shifted_persistence_upper_bound`/`_bits` admissibility hypothesis
 `2·(1+1/η)·2^(S d t+2Q) ≤ K.Cres·Y`, isolated so the (later) GOOD-prefix argument can invoke
-Milestone 7 without re-deriving this inequality.-/
+Milestone 7 without re-deriving this inequality.
+@isnad1 id=le.3h7v.s7.2816a970217a from=translated src=- shape=4583504e vocab=d3547fb9
+-/
 theorem good_prefix_implies_info_budget
     (sMaxNat : ℕ) (d : ℕ → ℕ) (t : ℕ) (hS_le : S d t ≤ sMaxNat)
     (η : ℝ) (hη : 0 < η) (Y : ℕ) (K_Cres : ℝ) (Q : ℕ)
@@ -360,7 +385,9 @@ its defining `TaoMixingProperty hK`) is supplied by the caller instead of derive
 from `tao` — so a single `K` can be chosen once (e.g. via `tao.finite_valuation_mixing cPrefix
 hcPrefix`) and its residue-closeness hypothesis stated as an explicit top-level hypothesis
 (needed for Milestone 11's BAD-prefix bound, since `K` is not otherwise available before the
-proof begins).-/
+proof begins).
+@isnad1 id=le.10h8v.s8.3a5cba947eee from=translated src=- shape=4a6c80ea vocab=fc4e2f31
+-/
 theorem prefix_bad_tao_transfer_of_constants
     (c0 : ℝ) (K : TaoMixingConstants c0) (hK : TaoMixingProperty c0 K)
     (w : ℕ → ℝ) (hw_nonneg : ∀ m, 0 ≤ w m) (Nwin : ℕ)
@@ -420,7 +447,9 @@ theorem prefix_bad_tao_transfer_of_constants
         linarith [htail]
 
 /-- **BAD-prefix Tao transfer.** `P_real(BAD_t) ≤ P_iid(BAD_t) + K.A·2^(-K.c1·t)`, then bounded
-further by the iid Chernoff tail: `P_real(BAD_t) ≤ e^(-θ·sMax)·M_up(θ)^t + K.A·2^(-K.c1·t)`.-/
+further by the iid Chernoff tail: `P_real(BAD_t) ≤ e^(-θ·sMax)·M_up(θ)^t + K.A·2^(-K.c1·t)`.
+@isnad1 id=ex.10h7v.s8.8b762b210e2c from=translated src=- shape=85303800 vocab=5e117451
+-/
 theorem prefix_bad_tao_transfer
     (tao : TaoMixingHypothesis)
     (w : ℕ → ℝ) (hw_nonneg : ∀ m, 0 ≤ w m) (Nwin : ℕ)

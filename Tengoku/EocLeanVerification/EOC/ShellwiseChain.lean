@@ -47,9 +47,15 @@ noncomputable def incCount (b : ℕ → ℕ) (N j0 K s σ : ℕ) : ℝ :=
 noncomputable def haarShare (b : ℕ → ℕ) (N j0 K s σ : ℕ) : ℝ :=
   ∑ _P ∈ shellP b j0 σ, ∑ _v ∈ shellV b N j0 σ (s - σ), (2 : ℝ) ^ K * (1 / 2 : ℝ) ^ (s + 1)
 
+/--
+@isnad1 id=le.0h6v.s4.f5ad8f35d5a5 from=translated src=- shape=833d2373 vocab=1ac66cb9
+-/
 theorem haarShare_nonneg (b : ℕ → ℕ) (N j0 K s σ : ℕ) : 0 ≤ haarShare b N j0 K s σ :=
   sum_nonneg fun _ _ => sum_nonneg fun _ _ => by positivity
 
+/--
+@isnad1 id=eq.0h6v.s7.b9c063dbd5ca from=translated src=- shape=34794363 vocab=745dc916
+-/
 theorem haarShare_eq (b : ℕ → ℕ) (N j0 K s σ : ℕ) :
     haarShare b N j0 K s σ = ((shellP b j0 σ).card : ℝ) * (shellV b N j0 σ (s - σ)).card *
       ((2 : ℝ) ^ K * (1 / 2 : ℝ) ^ (s + 1)) := by
@@ -57,7 +63,9 @@ theorem haarShare_eq (b : ℕ → ℕ) (N j0 K s σ : ℕ) :
   ring
 
 /-- **Trivial bound.** For `s ≥ K`, the incidence count is at most `2^(s+1−K)` times its Haar
-share (each pair contributes at most `1 = 2^(s+1−K) · 2^K 2^{-(s+1)}`).-/
+share (each pair contributes at most `1 = 2^(s+1−K) · 2^K 2^{-(s+1)}`).
+@isnad1 id=le.1h6v.s6.4901d79681ad from=translated src=- shape=98ad7d95 vocab=597666e6
+-/
 theorem split_count_le_trivial (b : ℕ → ℕ) (N j0 : ℕ) {K s : ℕ} (σ : ℕ) (hKs : K ≤ s) :
     incCount b N j0 K s σ ≤ 2 ^ (s + 1 - K) * haarShare b N j0 K s σ := by
   have hone : (2 : ℝ) ^ (s + 1 - K) * ((2 : ℝ) ^ K * (1 / 2 : ℝ) ^ (s + 1)) = 1 := by
@@ -77,7 +85,9 @@ def CollisionAt (b : ℕ → ℕ) (N j0 s σ : ℕ) (ε : ℝ) : Prop :=
     ((shellP b j0 σ).card : ℝ) ^ 2 * (1 + ε ^ 2 * (shellV b N j0 σ (s - σ)).card / 2 ^ (s - σ))
 
 /-- **Per pair, either alternative.** For `σ < K ≤ s`: a collision bound with `1 + ε ≤ c`, or the
-trivial `2^(s+1−K) ≤ c`, gives `incCount ≤ c · haarShare`.-/
+trivial `2^(s+1−K) ≤ c`, gives `incCount ≤ c · haarShare`.
+@isnad1 id=le.5h7v.s7.c4ad2c9b4133 from=translated src=- shape=c6bc5dc7 vocab=fc4e755e
+-/
 theorem incCount_le_of_collision_or_trivial (b : ℕ → ℕ) {N j0 : ℕ} (hj1 : 1 ≤ j0) (hjN : j0 < N)
     {K s σ : ℕ} (hKs : K ≤ s) (hσK : σ < K) {c : ℝ}
     (h : (∃ ε : ℝ, 0 ≤ ε ∧ 1 + ε ≤ c ∧ CollisionAt b N j0 s σ ε) ∨ (2 : ℝ) ^ (s + 1 - K) ≤ c) :
@@ -95,7 +105,9 @@ def ShellwiseBound (b : ℕ → ℕ) (N j0 K : ℕ) (c : ℕ → ℕ → ℝ) : 
   ∀ s σ, K ≤ s → σ < K → incCount b N j0 K s σ ≤ c s σ * haarShare b N j0 K s σ
 
 /-- For `s ≥ K > b j0`, a sum over the word shell `s` splits over the fresh prefix shells
-`σ < K` (shells `σ ≥ K` are empty).-/
+`σ < K` (shells `σ ≥ K` are empty).
+@isnad1 id=eq.4h7v.s7.3172cfe5f042 from=translated src=- shape=a3c36568 vocab=f3fde093
+-/
 theorem sum_fresh_split {R : Type*} [AddCommMonoid R] (b : ℕ → ℕ) {N j0 : ℕ} (hj1 : 1 ≤ j0)
     (hjN : j0 < N) {K s : ℕ} (hbK : b j0 < K) (hKs : K ≤ s) (F : FiniteValuationWord N → R) :
     ∑ w ∈ (confinedWords N b).filter (fun w => w.total = s), F w =
@@ -109,7 +121,9 @@ theorem sum_fresh_split {R : Type*} [AddCommMonoid R] (b : ℕ → ℕ) {N j0 : 
     simp
   rw [hz, add_zero]
 
-/-- The Haar shares of a word shell add up to its Haar mass.-/
+/-- The Haar shares of a word shell add up to its Haar mass.
+@isnad1 id=eq.4h5v.s7.5dffe7ab69a8 from=translated src=- shape=c709de2a vocab=4c199972
+-/
 theorem sum_haarShare (b : ℕ → ℕ) {N j0 : ℕ} (hj1 : 1 ≤ j0) (hjN : j0 < N) {K s : ℕ}
     (hbK : b j0 < K) (hKs : K ≤ s) :
     ∑ σ ∈ range K, haarShare b N j0 K s σ =
@@ -121,7 +135,9 @@ theorem sum_haarShare (b : ℕ → ℕ) {N j0 : ℕ} (hj1 : 1 ≤ j0) (hjN : j0 
   rw [h]
   rfl
 
-/-- The post-fresh words of a fixed total `s ≥ K`.-/
+/-- The post-fresh words of a fixed total `s ≥ K`.
+@isnad1 id=eq.1h4v.s6.e489964a63f6 from=translated src=- shape=1cb37bf2 vocab=ced9fc61
+-/
 theorem fiber_eq (W : Finset (FiniteValuationWord N)) {K s : ℕ} (hKs : K ≤ s) :
     (W.filter fun w => K ≤ w.total).filter (fun w => w.total = s) =
       W.filter fun w => w.total = s := by
@@ -131,12 +147,17 @@ theorem fiber_eq (W : Finset (FiniteValuationWord N)) {K s : ℕ} (hKs : K ≤ s
   · rintro ⟨⟨h1, _⟩, h3⟩; exact ⟨h1, h3⟩
   · rintro ⟨h1, h3⟩; exact ⟨⟨h1, h3 ▸ hKs⟩, h3⟩
 
+/--
+@isnad1 id=mem.2h4v.s6.09335bd7f8c9 from=translated src=- shape=3a1e0ae9 vocab=a8f55f6d
+-/
 theorem total_mem_Icc {b : ℕ → ℕ} {N : ℕ} (hN : 1 ≤ N) {K : ℕ} {w : FiniteValuationWord N}
     (hw : w ∈ (confinedWords N b).filter fun w => K ≤ w.total) : w.total ∈ Icc K (b N) := by
   obtain ⟨hW, hK⟩ := mem_filter.mp hw
   exact mem_Icc.mpr ⟨hK, total_le_of_barrierConfined hN ((mem_confinedWords hN).mp hW).2⟩
 
-/-- The Haar mass of the post-fresh words, organized by word shell and prefix shell.-/
+/-- The Haar mass of the post-fresh words, organized by word shell and prefix shell.
+@isnad1 id=eq.3h4v.s7.93b5f3a0438d from=translated src=- shape=a093d868 vocab=f836b700
+-/
 theorem haar_mass_eq (b : ℕ → ℕ) {N j0 : ℕ} (hj1 : 1 ≤ j0) (hjN : j0 < N) {K : ℕ}
     (hbK : b j0 < K) :
     ∑ w ∈ (confinedWords N b).filter (fun w => K ≤ w.total),
@@ -152,7 +173,9 @@ theorem haar_mass_eq (b : ℕ → ℕ) {N j0 : ℕ} (hj1 : 1 ≤ j0) (hjN : j0 <
     sum_congr rfl fun w hw => by rw [(mem_filter.mp hw).2], sum_const, nsmul_eq_mul]
 
 open Classical in
-/-- **Shellwise bound ⇒ least-realizer counting bound.**-/
+/-- **Shellwise bound ⇒ least-realizer counting bound.**
+@isnad1 id=le.5h6v.s8.2b4baa8fbbdc from=translated src=- shape=c3231052 vocab=75720585
+-/
 theorem leastRealizerBound_of_shellwise (U N K j0 : ℕ) (c : ℕ → ℕ → ℝ) (C : ℝ)
     (hj1 : 1 ≤ j0) (hjN : j0 < N) (hbK : collatzBarrier U j0 < K)
     (hsw : ShellwiseBound (collatzBarrier U) N j0 K c)
@@ -179,7 +202,9 @@ theorem leastRealizerBound_of_shellwise (U N K j0 : ℕ) (c : ℕ → ℕ → �
   exact sum_le_sum fun σ hσ => hsw s σ hKs (mem_range.mp hσ)
 
 /-- The weighted condition holds with `C` whenever every constant `c s σ` on the index set is at
-most `C`.-/
+most `C`.
+@isnad1 id=le.4h6v.s7.c9f0723bb143 from=translated src=- shape=2a6bb2f5 vocab=bb9a0d91
+-/
 theorem weighted_of_le (U N K j0 : ℕ) (c : ℕ → ℕ → ℝ) (C : ℝ) (hj1 : 1 ≤ j0) (hjN : j0 < N)
     (hbK : collatzBarrier U j0 < K)
     (hc : ∀ s ∈ Icc K (collatzBarrier U N), ∀ σ ∈ range K, c s σ ≤ C) :
@@ -195,7 +220,9 @@ theorem weighted_of_le (U N K j0 : ℕ) (c : ℕ → ℕ → ℝ) (C : ℝ) (hj1
 
 open Classical in
 /-- **The full shellwise chain.** Shellwise bound + weighted condition (e.g. `weighted_of_le`),
-`1 ≤ C`, `N ≥ A K` ⇒ `#(E_U ∩ [0, 2^K)) ≤ (C e^{λ* U}/2) · (2^K)^{1 − I₀ A}`.-/
+`1 ≤ C`, `N ≥ A K` ⇒ `#(E_U ∩ [0, 2^K)) ≤ (C e^{λ* U}/2) · (2^K)^{1 − I₀ A}`.
+@isnad1 id=le.7h7v.s8.8f2b88365647 from=translated src=- shape=7eef8c93 vocab=dbcfac70
+-/
 theorem exceptional_count_le_of_shellwise (U K j0 : ℕ) {N : ℕ} (A C : ℝ) (c : ℕ → ℕ → ℝ)
     (hC : 1 ≤ C) (hj1 : 1 ≤ j0) (hjN : j0 < N) (hbK : collatzBarrier U j0 < K)
     (hNA : A * K ≤ N) (hsw : ShellwiseBound (collatzBarrier U) N j0 K c)

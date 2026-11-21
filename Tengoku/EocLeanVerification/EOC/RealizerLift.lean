@@ -76,7 +76,9 @@ private theorem q_eq_of_agree (d d' : ℕ → ℕ) :
     rw [q_succ, q_succ, ih hagree', hsn]
 
 /-- Two words agreeing on `[0,N)` have the same canonical length-`N` realizer: `leastRealizer`
-depends only on the prefix, not on any tail data. No positivity hypothesis is needed.-/
+depends only on the prefix, not on any tail data. No positivity hypothesis is needed.
+@isnad1 id=eq.1h3v.s5.7354480691ed from=translated src=- shape=f6826cbd vocab=19fcf40c
+-/
 theorem leastRealizer_eq_of_agree (d d' : ℕ → ℕ) (N : ℕ) (hagree : ∀ i < N, d i = d' i) :
     leastRealizer d N = leastRealizer d' N := by
   have hSeq : S d N = S d' N := s_eq_of_agree_le d d' N hagree N le_rfl
@@ -91,7 +93,9 @@ theorem leastRealizer_eq_of_agree (d d' : ℕ → ℕ) (N : ℕ) (hagree : ∀ i
 
 /-- The two canonical realizers of a common prefix (length `N` vs. `N+1`) are congruent
 modulo `2^(S d N + 1)`: extending the word by one more (positive) digit only ever adjusts the
-representative by a multiple of the modulus attached to the shorter prefix.-/
+representative by a multiple of the modulus attached to the shorter prefix.
+@isnad1 id=modeq.1h2v.s6.b6443b17e034 from=translated src=- shape=f7540f64 vocab=b444edb6
+-/
 theorem leastRealizer_succ_modEq (d : ℕ → ℕ) (N : ℕ) (hd_pos : ∀ i < N + 1, 1 ≤ d i) :
     leastRealizer d (N + 1) ≡ leastRealizer d N [MOD 2 ^ (S d N + 1)] := by
   have hodd : Odd (leastRealizer d (N + 1)) :=
@@ -114,7 +118,9 @@ theorem leastRealizer_succ_modEq (d : ℕ → ℕ) (N : ℕ) (hd_pos : ∀ i < N
   exact Nat.ModEq.cancel_left_of_coprime hcop hcancel1
 
 /-- Same fact, in `%`-form: since `leastRealizer d N` is already below the modulus, it is
-literally the residue of `leastRealizer d (N+1)`.-/
+literally the residue of `leastRealizer d (N+1)`.
+@isnad1 id=eq.1h2v.s6.e780f8ee2636 from=translated src=- shape=7113c150 vocab=73b2ff10
+-/
 theorem leastRealizer_succ_mod_eq (d : ℕ → ℕ) (N : ℕ) (hd_pos : ∀ i < N + 1, 1 ≤ d i) :
     leastRealizer d (N + 1) % 2 ^ (S d N + 1) = leastRealizer d N := by
   have hmod := leastRealizer_succ_modEq d N hd_pos
@@ -127,7 +133,9 @@ theorem leastRealizer_succ_mod_eq (d : ℕ → ℕ) (N : ℕ) (hd_pos : ∀ i < 
 def liftDigit (d : ℕ → ℕ) (N : ℕ) : ℕ := leastRealizer d (N + 1) / 2 ^ (S d N + 1)
 
 /-- **The exact extension relation** (Phase 2 target):
-`r_{N+1} = r_N + k_N · 2^{S_N+1}`.-/
+`r_{N+1} = r_N + k_N · 2^{S_N+1}`.
+@isnad1 id=eq.1h2v.s6.3531fb9e60a9 from=translated src=- shape=4d6fe005 vocab=21047d8c
+-/
 theorem leastRealizer_succ_eq (d : ℕ → ℕ) (N : ℕ) (hd_pos : ∀ i < N + 1, 1 ≤ d i) :
     leastRealizer d (N + 1) = leastRealizer d N + liftDigit d N * 2 ^ (S d N + 1) := by
   unfold liftDigit
@@ -138,7 +146,9 @@ theorem leastRealizer_succ_eq (d : ℕ → ℕ) (N : ℕ) (hd_pos : ∀ i < N + 
   omega
 
 /-- **The exact range** `0 ≤ k_N < 2^{d_N}` (unconditionally — no positivity hypothesis
-needed for this direction).-/
+needed for this direction).
+@isnad1 id=lt.0h2v.s5.9b829f5219ed from=translated src=- shape=891f5335 vocab=e7b7dfd9
+-/
 theorem liftDigit_lt (d : ℕ → ℕ) (N : ℕ) :
     liftDigit d N < 2 ^ d N := by
   have hlt := leastRealizer_lt d (N + 1)
@@ -152,7 +162,9 @@ theorem liftDigit_lt (d : ℕ → ℕ) (N : ℕ) :
   unfold liftDigit
   exact (Nat.div_lt_iff_lt_mul hpos).mpr hlt
 
-/-- **Uniqueness** of the lift digit in its exact range.-/
+/-- **Uniqueness** of the lift digit in its exact range.
+@isnad1 id=eq.2h3v.s6.b1a4ab5356cd from=translated src=- shape=532e5a81 vocab=21047d8c
+-/
 theorem liftDigit_unique (d : ℕ → ℕ) (N k : ℕ) (hd_pos : ∀ i < N + 1, 1 ≤ d i)
     (heq : leastRealizer d (N + 1) = leastRealizer d N + k * 2 ^ (S d N + 1)) :
     k = liftDigit d N := by
@@ -167,7 +179,9 @@ theorem liftDigit_unique (d : ℕ → ℕ) (N k : ℕ) (hd_pos : ∀ i < N + 1, 
 `leastRealizer d (N+1) = leastRealizer d N` — holds exactly when the canonical length-`N`
 realizer's own *actual* dynamics already produces the prescribed next digit `d N`.
 **FORMALLY VERIFIED COMPATIBILITY**: this is a restatement, not new information — see the
-module's research report.-/
+module's research report.
+@isnad1 id=iff.2h2v.s6.c3349b1a76e6 from=translated src=- shape=80e214a9 vocab=e243c1f2
+-/
 theorem liftDigit_eq_zero_iff (d : ℕ → ℕ) (N : ℕ) (hN : 1 ≤ N)
     (hd_pos : ∀ i < N + 1, 1 ≤ d i) :
     liftDigit d N = 0 ↔ a (orbit (leastRealizer d N) N) = d N := by
@@ -207,7 +221,9 @@ theorem liftDigit_eq_zero_iff (d : ℕ → ℕ) (N : ℕ) (hN : 1 ≤ N)
 /-! ## Phase 4: first-differing-digit geometry -/
 
 /-- Two words sharing a prefix through `N` and differing at digit `N` have **distinct**
-length-`(N+1)` realizers.-/
+length-`(N+1)` realizers.
+@isnad1 id=ne.3h3v.s6.7f7fad983ca7 from=translated src=- shape=941070a5 vocab=e07b5014
+-/
 theorem leastRealizer_succ_ne_of_digit_ne (d d' : ℕ → ℕ) (N : ℕ)
     (hd_pos : ∀ i < N + 1, 1 ≤ d i) (hd'_pos : ∀ i < N + 1, 1 ≤ d' i)
     (hne : d N ≠ d' N) :
@@ -229,7 +245,9 @@ theorem leastRealizer_succ_ne_of_digit_ne (d d' : ℕ → ℕ) (N : ℕ)
 realizers congruent modulo `2^(S d N+1)`: a **2-adic separation lower bound**. Combined with
 `leastRealizer_succ_ne_of_digit_ne`, a differing digit at `N` forces
 `v₂(leastRealizer d (N+1) - leastRealizer d' (N+1)) ≥ S d N + 1` — but, in general, *not*
-exact equality (see the research report).-/
+exact equality (see the research report).
+@isnad1 id=modeq.3h3v.s7.b8540bbdb42a from=translated src=- shape=56d32ff2 vocab=b444edb6
+-/
 theorem leastRealizer_succ_modEq_of_agree (d d' : ℕ → ℕ) (N : ℕ)
     (hagree : ∀ i < N, d i = d' i)
     (hd_pos : ∀ i < N + 1, 1 ≤ d i) (hd'_pos : ∀ i < N + 1, 1 ≤ d' i) :
@@ -247,7 +265,9 @@ theorem leastRealizer_succ_modEq_of_agree (d d' : ℕ → ℕ) (N : ℕ)
 realizer, their carries must agree mod `2^(S d N+1)` too. Contrapositive form: a carry
 mismatch (mod the same modulus) forces distinct realizers, **even though `S`/`R` are equal**
 — this is the precise sense in which cumulative drift is a strictly coarser invariant than
-the exact realizer.-/
+the exact realizer.
+@isnad1 id=modeq.2h3v.s6.46e936346917 from=translated src=- shape=4dc21785 vocab=dfcd3c36
+-/
 theorem q_modEq_of_leastRealizer_eq (d d' : ℕ → ℕ) (N : ℕ) (hS : S d N = S d' N)
     (hLeq : leastRealizer d N = leastRealizer d' N) :
     q d N ≡ q d' N [MOD 2 ^ (S d N + 1)] := by
@@ -279,7 +299,9 @@ private theorem two_pow_ne_modEq (u v : ℕ) (huv : u ≠ v) :
 the length-`2` words `(u,v,…)` and `(v,u,…)` have the **same** total valuation `S _ 2 = u+v`
 (hence the same drift `R _ 2`), yet **distinct** canonical realizers `leastRealizer _ 2`. So
 `S`/`R` alone do not determine the realizer — cumulative drift is a strictly coarser
-projection than the exact 2-adic/carry data.-/
+projection than the exact 2-adic/carry data.
+@isnad1 id=and.1h2v.s6.5d689672538a from=translated src=- shape=ce4ad600 vocab=5e8efc77
+-/
 theorem swap_two_digits_leastRealizer_ne (u v : ℕ) (huv : u ≠ v) :
     S (fun i => if i = 0 then u else v) 2 = S (fun i => if i = 0 then v else u) 2 ∧
     leastRealizer (fun i => if i = 0 then u else v) 2
@@ -353,7 +375,9 @@ private theorem extendDigit_pos (d : ℕ → ℕ) (N e : ℕ) (hd_pos : ∀ i < 
   · exact hd_pos i (by omega)
 
 /-- For any candidate next digit `e ≥ 1`, extending the prefix by `e` has zero lift exactly
-when `e` is the prefix's own actual next valuation.-/
+when `e` is the prefix's own actual next valuation.
+@isnad1 id=iff.3h3v.s6.87a1669b2689 from=translated src=- shape=46c0a3e9 vocab=b32c9930
+-/
 theorem liftDigit_extendDigit_eq_zero_iff (d : ℕ → ℕ) (N e : ℕ) (hN : 1 ≤ N)
     (hd_pos : ∀ i < N, 1 ≤ d i) (he : 1 ≤ e) :
     liftDigit (extendDigit d N e) N = 0 ↔ a (orbit (leastRealizer d N) N) = e := by
@@ -367,7 +391,9 @@ theorem liftDigit_extendDigit_eq_zero_iff (d : ℕ → ℕ) (N e : ℕ) (hN : 1 
 /-- **Unique zero-lift digit** (Phase 1 target): exactly one positive candidate next digit
 gives zero lift, namely the prefix's own actual next valuation. Any prefix-local criterion
 correctly separating that one candidate from every other is exactly as hard as computing
-`a (orbit (leastRealizer d N) N)` directly — **FORMALLY VERIFIED STRUCTURAL CIRCULARITY**.-/
+`a (orbit (leastRealizer d N) N)` directly — **FORMALLY VERIFIED STRUCTURAL CIRCULARITY**.
+@isnad1 id=existsun.2h2v.s5.e3a4c6bf87a9 from=translated src=- shape=de68ab7c vocab=719beb4e
+-/
 theorem existsUnique_zero_lift_digit (d : ℕ → ℕ) (N : ℕ) (hN : 1 ≤ N)
     (hd_pos : ∀ i < N, 1 ≤ d i) :
     ∃! e : ℕ, 1 ≤ e ∧ liftDigit (extendDigit d N e) N = 0 := by
@@ -381,7 +407,9 @@ theorem existsUnique_zero_lift_digit (d : ℕ → ℕ) (N : ℕ) (hN : 1 ≤ N)
 /-! ## Phase 2: candidate digit ↦ lift digit is injective -/
 
 /-- **Injectivity** (Phase 2 target, answered positively): distinct candidate next digits
-*always* give distinct lift digits — no collision `k(e1) = k(e2)` is possible for `e1 ≠ e2`.-/
+*always* give distinct lift digits — no collision `k(e1) = k(e2)` is possible for `e1 ≠ e2`.
+@isnad1 id=ne.4h4v.s6.cfc23458ec26 from=translated src=- shape=9b50c399 vocab=cd4efe75
+-/
 theorem liftDigit_extendDigit_injective (d : ℕ → ℕ) (N : ℕ) (hd_pos : ∀ i < N, 1 ≤ d i)
     (e1 e2 : ℕ) (he1 : 1 ≤ e1) (he2 : 1 ≤ e2) (hne : e1 ≠ e2) :
     liftDigit (extendDigit d N e1) N ≠ liftDigit (extendDigit d N e2) N := by
@@ -413,7 +441,9 @@ theorem liftDigit_extendDigit_injective (d : ℕ → ℕ) (N : ℕ) (hd_pos : �
 target modulus `2^(S d N + e + 1)` changes with `e`, never the carry `q _ (N+1)` itself. This is
 the precise structural reason the zero-lift question is circular: the *only* data a
 prefix-local computation can access at level `N+1` (namely `q _ (N+1)`) is exactly the same for
-every candidate digit, so nothing prefix-local can distinguish which candidate is realized.-/
+every candidate digit, so nothing prefix-local can distinguish which candidate is realized.
+@isnad1 id=eq.0h4v.s5.d53a081bcc25 from=translated src=- shape=e693354f vocab=061720a3
+-/
 theorem q_succ_extendDigit_eq (d : ℕ → ℕ) (N e1 e2 : ℕ) :
     q (extendDigit d N e1) (N + 1) = q (extendDigit d N e2) (N + 1) := by
   have hq1 : q (extendDigit d N e1) N = q d N :=

@@ -12,12 +12,21 @@ open Finset
 def q (d : ℕ → ℕ) : ℕ → ℕ :=
   fun n => Nat.rec 0 (fun j qj => 3 * qj + 2 ^ s d j) n
 
+/--
+@isnad1 id=eq.0h1v.s4.ce49db4d4606 from=translated src=- shape=b298c1f9 vocab=5a00102a
+-/
 @[simp] theorem q_zero (d : ℕ → ℕ) : q d 0 = 0 := rfl
+/--
+@isnad1 id=eq.0h2v.s6.3a30d8df5a5c from=translated src=- shape=78bb01bd vocab=958b0c48
+-/
 theorem q_succ (d : ℕ → ℕ) (j : ℕ) : q d (j + 1) = 3 * q d j + 2 ^ s d j := rfl
 
 /-- Closed-form carry sum `C_N(D) = Σ_{j=0}^{N-1} 3^{N-1-j} 2^{s_j}` (Def 5.1).-/
 def C (d : ℕ → ℕ) (N : ℕ) : ℕ := ∑ j ∈ range N, 3 ^ (N - 1 - j) * 2 ^ s d j
 
+/--
+@isnad1 id=eq.0h1v.s4.558dce7d3cc2 from=translated src=- shape=b298c1f9 vocab=2ba4d00a
+-/
 theorem C_zero (d : ℕ → ℕ) : C d 0 = 0 := by
   unfold C; simp
 
@@ -30,7 +39,9 @@ private theorem factor_mul_sum (M : ℕ) (f : ℕ → ℕ) :
   | zero => simp
   | succ M ih => simp only [Finset.sum_range_succ, Nat.mul_add, ih]
 
-/-- `q_N = C_N(D)`: the recursion and the closed form agree.-/
+/-- `q_N = C_N(D)`: the recursion and the closed form agree.
+@isnad1 id=eq.0h2v.s3.c1fbe6cc44d8 from=translated src=- shape=3517c150 vocab=d4bca31b
+-/
 theorem q_eq_C (d : ℕ → ℕ) : ∀ N, q d N = C d N := by
   intro N
   induction N with
@@ -59,7 +70,9 @@ each step up to `N` is exact. This hypothesis is *assumed*, not derived, here;
 Proposition 5.2 part (a) is precisely the theorem deriving it, for all `i < N`
 at once, from the single aggregate condition at depth `S_N` (by descending
 induction). Under this hypothesis, `2^(s_j) * iter d m0 j = 3^j * m0 + q_j`
-for every `j ≤ N`.-/
+for every `j ≤ N`.
+@isnad1 id=eq.2h4v.s7.98fcc99888e2 from=translated src=- shape=57e0b761 vocab=de5185ef
+-/
 theorem iter_carry_eq (d : ℕ → ℕ) (m0 N : ℕ)
     (hdvd : ∀ i < N, 2 ^ d i ∣ (3 * iter d m0 i + 1)) :
     ∀ j, j ≤ N → 2 ^ s d j * iter d m0 j = 3 ^ j * m0 + q d j := by

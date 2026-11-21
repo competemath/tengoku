@@ -50,6 +50,9 @@ noncomputable def blockWeyl {ι : Type*} (T : Finset ι) (r : ι → ℕ) (K n :
     (g : ZMod (2 ^ n)) : ℂ :=
   ∑ i ∈ T, ZMod.stdAddChar (g * topBlock K n (r i))
 
+/--
+@isnad1 id=iff.1h3v.s7.f7e0163c7481 from=translated src=- shape=818fb0b6 vocab=525f886e
+-/
 theorem topBlock_eq_zero_iff {K n r : ℕ} (hr : r < 2 ^ (K + n)) :
     topBlock K n r = 0 ↔ r < 2 ^ K := by
   unfold topBlock
@@ -65,7 +68,9 @@ theorem topBlock_eq_zero_iff {K n r : ℕ} (hr : r < 2 ^ (K + n)) :
     exact dvd_zero _
 
 /-- **Exact discrete Fourier identity.** If every `r_i < 2^(K+n)`, then
-`#{i ∈ T : r_i < 2^K} = 2^{-n} ∑_g blockWeyl T r K n g`.-/
+`#{i ∈ T : r_i < 2^K} = 2^{-n} ∑_g blockWeyl T r K n g`.
+@isnad1 id=eq.1h5v.s7.4c399d03c22c from=translated src=- shape=3cfdcdf0 vocab=5bb24f67
+-/
 theorem card_filter_lt_eq_fourier {ι : Type*} (T : Finset ι) (r : ι → ℕ) (K n : ℕ)
     (hr : ∀ i ∈ T, r i < 2 ^ (K + n)) :
     (((T.filter fun i => r i < 2 ^ K).card : ℕ) : ℂ) =
@@ -80,7 +85,9 @@ theorem card_filter_lt_eq_fourier {ι : Type*} (T : Finset ι) (r : ι → ℕ) 
   rw [sum_comm, sum_congr rfl horth, ← sum_filter, sum_const, nsmul_eq_mul]
   field_simp
 
-/-- **Discrepancy inequality** (the `g = 0` term is the Haar share `#T / 2^n`).-/
+/-- **Discrepancy inequality** (the `g = 0` term is the Haar share `#T / 2^n`).
+@isnad1 id=le.1h5v.s8.e2ef27af4f1e from=translated src=- shape=e836e6e2 vocab=a3af78fe
+-/
 theorem card_filter_lt_le {ι : Type*} (T : Finset ι) (r : ι → ℕ) (K n : ℕ)
     (hr : ∀ i ∈ T, r i < 2 ^ (K + n)) :
     (((T.filter fun i => r i < 2 ^ K).card : ℕ) : ℝ) ≤
@@ -111,7 +118,9 @@ theorem card_filter_lt_le {ι : Type*} (T : Finset ι) (r : ι → ℕ) (K n : �
   linarith
 
 /-- Shell form of the discrepancy inequality: a Weyl bound `∑_{g≠0} ‖V(g)‖ ≤ (C−1)·#T` gives
-`#{r_i < 2^K} ≤ C · #T / 2^n`.-/
+`#{r_i < 2^K} ≤ C · #T / 2^n`.
+@isnad1 id=le.2h6v.s8.91b65369c852 from=translated src=- shape=0a9035e4 vocab=70bb63f8
+-/
 theorem card_filter_lt_le_of_weyl {ι : Type*} (T : Finset ι) (r : ι → ℕ) (K n : ℕ) (C : ℝ)
     (hr : ∀ i ∈ T, r i < 2 ^ (K + n))
     (hW : ∑ g ∈ univ.erase (0 : ZMod (2 ^ n)), ‖blockWeyl T r K n g‖ ≤ (C - 1) * T.card) :
@@ -126,7 +135,9 @@ theorem card_filter_lt_le_of_weyl {ι : Type*} (T : Finset ι) (r : ι → ℕ) 
   linarith
 
 /-- Pointwise form: `‖V(g)‖ ≤ (C − 1) · 2^{-n} · #T` for every `g ≠ 0` implies the summed Weyl
-hypothesis of `card_filter_lt_le_of_weyl` (there are `2^n − 1 < 2^n` nonzero frequencies).-/
+hypothesis of `card_filter_lt_le_of_weyl` (there are `2^n − 1 < 2^n` nonzero frequencies).
+@isnad1 id=le.2h6v.s9.bcdd3273d070 from=translated src=- shape=c8750044 vocab=5282bdd0
+-/
 theorem sum_norm_le_of_pointwise {ι : Type*} (T : Finset ι) (r : ι → ℕ) (K n : ℕ) (C : ℝ)
     (hC : 1 ≤ C)
     (hW : ∀ g : ZMod (2 ^ n), g ≠ 0 → ‖blockWeyl T r K n g‖ ≤ (C - 1) * T.card / 2 ^ n) :
@@ -154,7 +165,9 @@ section Cutoff
 
 variable {d : ℕ → ℕ}
 
-/-- `r_N = r_j + 2^(S_j+1) · ∑_{j ≤ i < N} 2^(S_i − S_j) τ_i`.-/
+/-- `r_N = r_j + 2^(S_j+1) · ∑_{j ≤ i < N} 2^(S_i − S_j) τ_i`.
+@isnad1 id=eq.2h3v.s7.3d3d742a6acf from=translated src=- shape=06faa48b vocab=398dd35b
+-/
 theorem leastRealizer_eq_prefix_add {j N : ℕ} (hd : ∀ i < N, 1 ≤ d i) (hj : j ≤ N) :
     leastRealizer d N = leastRealizer d j +
       2 ^ (S d j + 1) * ∑ i ∈ Ico j N, 2 ^ (S d i - S d j) * liftDigit d i := by
@@ -168,7 +181,9 @@ theorem leastRealizer_eq_prefix_add {j N : ℕ} (hd : ∀ i < N, 1 ≤ d i) (hj 
 
 /-- **Suffix cutoff for top blocks.** The part of `r_N` above position `S_j + 1` is determined by
 the lift digits of the suffix `[j, N)` alone:
-`⌊r_N / 2^(S_j+1)⌋ = ∑_{j ≤ i < N} 2^(S_i−S_j) τ_i`.-/
+`⌊r_N / 2^(S_j+1)⌋ = ∑_{j ≤ i < N} 2^(S_i−S_j) τ_i`.
+@isnad1 id=eq.2h3v.s7.4bdc27e774e9 from=translated src=- shape=c22fd6c1 vocab=c16d8e1e
+-/
 theorem topBlock_eq_suffix {j N : ℕ} (hd : ∀ i < N, 1 ≤ d i) (hj : j ≤ N) :
     leastRealizer d N / 2 ^ (S d j + 1) =
       ∑ i ∈ Ico j N, 2 ^ (S d i - S d j) * liftDigit d i := by
@@ -179,7 +194,9 @@ theorem topBlock_eq_suffix {j N : ℕ} (hd : ∀ i < N, 1 ≤ d i) (hj : j ≤ N
 frequency `2^(S_N − S_J)·h` modulo `2^(S_N+1)` equals the phase of the prefix least realizer `r_J`
 at frequency `h` modulo `2^(S_J+1)`:
 `(2^(S_N−S_J) h r_N) mod 2^(S_N+1) = 2^(S_N−S_J) · ((h r_J) mod 2^(S_J+1))`,
-i.e. `e(2^(S_N−S_J) h r_N / 2^(S_N+1)) = e(h r_J / 2^(S_J+1))`.-/
+i.e. `e(2^(S_N−S_J) h r_N / 2^(S_N+1)) = e(h r_J / 2^(S_J+1))`.
+@isnad1 id=eq.2h4v.s7.ca529d976fa8 from=translated src=- shape=26e165a1 vocab=b818bd91
+-/
 theorem dyadicPhase_eq_prefix {J N : ℕ} (hd : ∀ i < N, 1 ≤ d i) (hJ : J ≤ N) (h : ℕ) :
     (2 ^ (S d N - S d J) * h * leastRealizer d N) % 2 ^ (S d N + 1) =
       2 ^ (S d N - S d J) * ((h * leastRealizer d J) % 2 ^ (S d J + 1)) := by
@@ -205,6 +222,9 @@ def WeylBound (U N K : ℕ) (C : ℝ) : Prop :=
   ∀ s, K ≤ s → ∑ g ∈ univ.erase (0 : ZMod (2 ^ (s + 1 - K))), ‖shellWeyl U N K s g‖ ≤
     (C - 1) * (shell U N s).card
 
+/--
+@isnad1 id=lt.2h5v.s6.80662fadf381 from=translated src=- shape=74e6a02d vocab=46e4cbc0
+-/
 theorem leastRealizer_lt_shell {U N s : ℕ} {w : FiniteValuationWord N} (hw : w ∈ shell U N s)
     (K : ℕ) (hK : K ≤ s) : leastRealizer w.toInfinite N < 2 ^ (K + (s + 1 - K)) := by
   have h := leastRealizer_lt w.toInfinite N
@@ -213,7 +233,9 @@ theorem leastRealizer_lt_shell {U N s : ℕ} {w : FiniteValuationWord N} (hw : w
   rw [hs] at h
   rwa [show K + (s + 1 - K) = s + 1 by omega]
 
-/-- One shell: a Weyl bound gives `#{w ∈ shell : r_w < 2^K} ≤ C ∑_{w ∈ shell} 2^K 2^{-(S_w+1)}`.-/
+/-- One shell: a Weyl bound gives `#{w ∈ shell : r_w < 2^K} ≤ C ∑_{w ∈ shell} 2^K 2^{-(S_w+1)}`.
+@isnad1 id=le.2h5v.s9.c779d3f90281 from=translated src=- shape=94dfe20c vocab=7c5fadcf
+-/
 theorem shell_count_le {U N K s : ℕ} (C : ℝ) (hK : K ≤ s)
     (hW : ∑ g ∈ univ.erase (0 : ZMod (2 ^ (s + 1 - K))), ‖shellWeyl U N K s g‖ ≤
       (C - 1) * (shell U N s).card) :
@@ -231,7 +253,9 @@ theorem shell_count_le {U N K s : ℕ} (C : ℝ) (hK : K ≤ s)
   rw [div_pow, one_pow, hpow]
   field_simp
 
-/-- **Conditional theorem: Weyl bound ⇒ least-realizer counting bound.**-/
+/-- **Conditional theorem: Weyl bound ⇒ least-realizer counting bound.**
+@isnad1 id=le.1h4v.s7.5a6c7dcbf2d2 from=translated src=- shape=be040831 vocab=d5e38026
+-/
 theorem leastRealizerBound_of_weyl (U N K : ℕ) (C : ℝ) (hW : WeylBound U N K C) :
     ((((confinedWords N (collatzBarrier U)).filter fun w =>
         K ≤ w.total ∧ leastRealizer w.toInfinite N < 2 ^ K).card : ℕ) : ℝ) ≤
@@ -274,7 +298,9 @@ theorem leastRealizerBound_of_weyl (U N K : ℕ) (C : ℝ) (hW : WeylBound U N K
 
 open Classical in
 /-- **The full conditional chain.** Weyl bound at depth `N ≥ A·K` ⇒
-`#(E_U ∩ [0, 2^K)) ≤ (C e^{λ* U}/2) · (2^K)^{1 − I₀ A}`.-/
+`#(E_U ∩ [0, 2^K)) ≤ (C e^{λ* U}/2) · (2^K)^{1 − I₀ A}`.
+@isnad1 id=le.4h5v.s7.b65876c677f1 from=translated src=- shape=0d3eeecb vocab=edbc62b5
+-/
 theorem exceptional_count_le_of_weyl (U K : ℕ) {N : ℕ} (hN : 1 ≤ N) (A C : ℝ) (hC : 1 ≤ C)
     (hNA : A * K ≤ N) (hW : WeylBound U N K C) :
     (((range (2 ^ K)).filter fun μ =>
@@ -285,7 +311,9 @@ theorem exceptional_count_le_of_weyl (U K : ℕ) {N : ℕ} (hN : 1 ≤ N) (A C :
     (leastRealizerBound_of_weyl U N K C hW)
 
 /-- **Pointwise power-saving form.** If every nonzero frequency on every post-fresh-bit shell has
-`‖shellWeyl g‖ ≤ (C − 1) · 2^{-(s+1−K)} · #shell`, the Weyl hypothesis holds.-/
+`‖shellWeyl g‖ ≤ (C − 1) · 2^{-(s+1−K)} · #shell`, the Weyl hypothesis holds.
+@isnad1 id=weylboun.2h4v.s8.68ffcb43a349 from=translated src=- shape=a448b909 vocab=e029970e
+-/
 theorem weylBound_of_pointwise (U N K : ℕ) (C : ℝ) (hC : 1 ≤ C)
     (hP : ∀ s, K ≤ s → ∀ g : ZMod (2 ^ (s + 1 - K)), g ≠ 0 →
       ‖shellWeyl U N K s g‖ ≤ (C - 1) * (shell U N s).card / 2 ^ (s + 1 - K)) :

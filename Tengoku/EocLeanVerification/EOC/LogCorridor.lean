@@ -60,7 +60,9 @@ private theorem R_eq_of_agree {d e : ℕ → ℕ} {t : ℕ} (h : ∀ i < t, d i 
 
 /-- **Harmonic window bound.** If `orbit M` is injective on `[0, N)` and stays above the floor
 `−B log₂(k+1) − C` for every `k < N` (`B ≥ 0`), then
-`N · N^(−B) · 2^(−C) ≤ 3M · e^(7/9) · N^(1/9)`.-/
+`N · N^(−B) · 2^(−C) ≤ 3M · e^(7/9) · N^(1/9)`.
+@isnad1 id=le.5h4v.s8.4803054b0b27 from=translated src=- shape=fbfd5d8d vocab=126b0560
+-/
 theorem logFloor_window_bound (M N : ℕ) (hM : Odd M) (hN : 1 ≤ N)
     (hinj : ∀ i < N, ∀ j < N, orbit M i = orbit M j → i = j)
     (B C : ℝ) (hB : 0 ≤ B)
@@ -99,7 +101,9 @@ theorem logFloor_window_bound (M N : ℕ) (hM : Odd M) (hN : 1 ≤ N)
   rw [div_le_iff₀ (by positivity)] at hmain
   linarith
 
-/-- The window bound in exponent form: `N^(8/9 − B) ≤ 3 e^(7/9) · 2^C · M`.-/
+/-- The window bound in exponent form: `N^(8/9 − B) ≤ 3 e^(7/9) · 2^C · M`.
+@isnad1 id=le.5h4v.s7.0f576a6fc922 from=translated src=- shape=5d0ef9d8 vocab=126b0560
+-/
 theorem logFloor_window_bound' (M N : ℕ) (hM : Odd M) (hN : 1 ≤ N)
     (hinj : ∀ i < N, ∀ j < N, orbit M i = orbit M j → i = j)
     (B C : ℝ) (hB : 0 ≤ B)
@@ -137,7 +141,9 @@ def LogFloorExclusion (Bstar : ℝ) : Prop :=
       ¬ ∃ N₀ : ℕ, ∀ n ≥ N₀, -B * Real.logb 2 (n : ℝ) - K ≤ R (orbWord M) n
 
 /-- The interface holds unconditionally at `Bstar = 8/9` (from the repository's harmonic packing):
-additive constants are absorbed by slightly increasing `B`.-/
+additive constants are absorbed by slightly increasing `B`.
+@isnad1 id=logfloor.0h0v.s4.bc083350bcac from=translated src=- shape=7e23c0af vocab=dd9143ab
+-/
 theorem logFloorExclusion_eight_ninths : LogFloorExclusion (8 / 9) := by
   intro M hM hinj B hB K ⟨N₀, hfl⟩
   set B₀ : ℝ := max B 0 with hB₀
@@ -183,7 +189,9 @@ private theorem logb_succ_le (n : ℕ) (hn : 1 ≤ n) :
   linarith
 
 /-- **Forced exit, conditional form.** Under `LogFloorExclusion Bstar`, no odd seed has its whole
-drift inside a logarithmic corridor with `B < Bstar`.-/
+drift inside a logarithmic corridor with `B < Bstar`.
+@isnad1 id=not.3h5v.s5.f7b943413366 from=translated src=- shape=b0167081 vocab=5fdcb968
+-/
 theorem exits_logCorridor_of_exclusion {Bstar : ℝ} (hX : LogFloorExclusion Bstar)
     (M : ℕ) (hM : Odd M) (B C U : ℝ) (hB : B < Bstar) :
     ¬ ∀ n, InLogCorridor B C U (orbWord M) n := by
@@ -205,7 +213,9 @@ theorem exits_logCorridor_of_exclusion {Bstar : ℝ} (hX : LogFloorExclusion Bst
     obtain ⟨N, hN⟩ := noninjective_orbit_not_upper_confined U M hM ⟨i, j, hne, heq⟩
     exact hN (fun k _ => (h k).2)
 
-/-- **Forced exit, unconditional for `B < 8/9`.**-/
+/-- **Forced exit, unconditional for `B < 8/9`.**
+@isnad1 id=not.2h4v.s5.56f791a29d2f from=translated src=- shape=d01edb4c vocab=a04c5adf
+-/
 theorem exits_logCorridor (M : ℕ) (hM : Odd M) (B C U : ℝ) (hB : B < 8 / 9) :
     ¬ ∀ n, InLogCorridor B C U (orbWord M) n :=
   exits_logCorridor_of_exclusion logFloorExclusion_eight_ninths M hM B C U hB
@@ -213,7 +223,9 @@ theorem exits_logCorridor (M : ℕ) (hM : Odd M) (B C U : ℝ) (hB : B < 8 / 9) 
 /-! ## 4. Translation to prescribed matching -/
 
 /-- Under `LogFloorExclusion Bstar`, no prescribed future confined to a logarithmic corridor with
-`B < Bstar` agrees with an odd anchor future at every digit.-/
+`B < Bstar` agrees with an odd anchor future at every digit.
+@isnad1 id=ex.4h7v.s5.cf21268e6a03 from=translated src=- shape=8af97ae5 vocab=1705f0a6
+-/
 theorem logCorridor_prescribed_diverges_of_exclusion {Bstar : ℝ} (hX : LogFloorExclusion Bstar)
     (d e : ℕ → ℕ) (j : ℕ) (hodd : Odd (anchorState d j)) (B C U : ℝ) (hB : B < Bstar)
     (he : ∀ n, InLogCorridor B C U e n) :
@@ -227,7 +239,9 @@ theorem logCorridor_prescribed_diverges_of_exclusion {Bstar : ℝ} (hX : LogFloo
   rw [hR]
   exact he n
 
-/-- Unconditional version for `B < 8/9`.-/
+/-- Unconditional version for `B < 8/9`.
+@isnad1 id=ex.3h6v.s6.c70f4a2e7c87 from=translated src=- shape=db822e9f vocab=7ede25d8
+-/
 theorem logCorridor_prescribed_diverges (d e : ℕ → ℕ) (j : ℕ) (hodd : Odd (anchorState d j))
     (B C U : ℝ) (hB : B < 8 / 9) (he : ∀ n, InLogCorridor B C U e n) :
     ∃ i, anchorWord d j i ≠ e i :=
@@ -236,7 +250,9 @@ theorem logCorridor_prescribed_diverges (d e : ℕ → ℕ) (j : ℕ) (hodd : Od
 
 /-- **Matching bound from a drift mismatch.** If a positive block `e` (length `m`) keeps
 `R ≤ U` through `m` and its drift at some `L ≤ m` differs from the anchor future's, then the
-prescribed matching is at most `U + L·log₂3`.-/
+prescribed matching is at most `U + L·log₂3`.
+@isnad1 id=le.4h6v.s6.60912fea9e07 from=translated src=- shape=0d38cf68 vocab=9fe7190e
+-/
 theorem matching_le_of_R_ne (d e : ℕ → ℕ) (j m L : ℕ) (U : ℝ) (hLm : L ≤ m)
     (he_pos : ∀ i < m, 1 ≤ e i) (hU : ∀ n ≤ m, R e n ≤ U)
     (hne : R e L ≠ R (anchorWord d j) L) :
@@ -273,7 +289,9 @@ theorem matching_le_of_R_ne (d e : ℕ → ℕ) (j m L : ℕ) (U : ℝ) (hLm : L
 
 /-- **Log-corridor matching bound at the anchor's exit step.** If the anchor future is outside the
 corridor at step `L` while a positive prescribed block `e` (length `m ≥ L`) is inside it at every
-step `≤ m`, then the prescribed matching is at most `U + L·log₂3`.-/
+step `≤ m`, then the prescribed matching is at most `U + L·log₂3`.
+@isnad1 id=le.4h8v.s6.f475693dd4a2 from=translated src=- shape=53cc76f8 vocab=ab2fc382
+-/
 theorem logCorridor_matching_le_exit (d e : ℕ → ℕ) (j m L : ℕ) (B C U : ℝ) (hLm : L ≤ m)
     (he_pos : ∀ i < m, 1 ≤ e i) (he : ∀ n ≤ m, InLogCorridor B C U e n)
     (hexit : ¬ InLogCorridor B C U (anchorWord d j) L) :
@@ -288,7 +306,9 @@ theorem logCorridor_matching_le_exit (d e : ℕ → ℕ) (j m L : ℕ) (B C U : 
 
 /-- **Prescribed window bound.** A prescribed future with log floor `−B log₂(k+1) − C` (`B ≥ 0`)
 that follows the anchor future on `[0, N)`, along an anchor orbit injective on `[0, N)`, forces
-`N^(8/9 − B) ≤ 3 e^(7/9) · 2^C · μ_j`.-/
+`N^(8/9 − B) ≤ 3 e^(7/9) · 2^C · μ_j`.
+@isnad1 id=le.6h6v.s8.35843608c726 from=translated src=- shape=06a03b15 vocab=b0016b96
+-/
 theorem logCorridor_shadow_window_bound (d e : ℕ → ℕ) (j N : ℕ) (hN : 1 ≤ N)
     (hodd : Odd (anchorState d j)) (hagree : ∀ i < N, anchorWord d j i = e i)
     (hinj : ∀ i < N, ∀ i' < N, orbit (anchorState d j) i = orbit (anchorState d j) i' → i = i')

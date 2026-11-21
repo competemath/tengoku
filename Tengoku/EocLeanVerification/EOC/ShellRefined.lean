@@ -23,15 +23,24 @@ namespace ShellRefined
 
 open Finset TwistExpansion PrefixCollision WeightedChain ShellDecomposition
 
+/--
+@isnad1 id=le.0h3v.s4.b519e12d2453 from=translated src=- shape=62338dc4 vocab=18561f3b
+-/
 theorem norm_coef_le_one (r t lam : ℕ) : ‖coef r t lam‖ ≤ 1 := by
   rw [norm_coef]
   unfold cosProd
   exact prod_le_one (fun _ _ => abs_nonneg _) (fun _ _ => Real.abs_cos_le_one _)
 
+/--
+@isnad1 id=le.1h4v.s6.3b35cbbe71a1 from=translated src=- shape=cc5362ee vocab=edede491
+-/
 theorem norm_coef_le_cshell_refined {r t u lam : ℕ} (h : lam ∈ cshell r t u) :
     ‖coef r t lam‖ ≤ min 1 (2 ^ t / (2 * 2 ^ u)) :=
   le_min (norm_coef_le_one r t lam) (norm_coef_le_cshell h)
 
+/--
+@isnad1 id=le.0h3v.s7.4db167396b13 from=translated src=- shape=46dce0b6 vocab=d5d44e93
+-/
 theorem card_mul_weight_le (r t u : ℕ) :
     ((cshell r t u).card : ℝ) * min 1 (2 ^ t / (2 * 2 ^ u)) ≤ min (2 ^ (u + 1)) (2 ^ t) := by
   have hcard : ((cshell r t u).card : ℝ) ≤ 2 ^ (u + 1) := by exact_mod_cast card_cshell_le r t u
@@ -49,7 +58,9 @@ theorem card_mul_weight_le (r t u : ℕ) :
 
 /-- **Refined shell-average bound.** If `F ≥ 0` and every centered shell satisfies
 `∑_{λ ∈ shell_u} F λ ≤ #shell_u · a_u` (with `a_u ≥ 0`), then
-`∑_g ∑_k ‖coef(g + 2^t k)‖ F(g + 2^t k) ≤ ∑_{u < r+t} min (2^(u+1)) (2^t) · a_u`.-/
+`∑_g ∑_k ‖coef(g + 2^t k)‖ F(g + 2^t k) ≤ ∑_{u < r+t} min (2^(u+1)) (2^t) · a_u`.
+@isnad1 id=le.3h4v.s8.ea218f5ed180 from=translated src=- shape=917a78bb vocab=f28fc8ab
+-/
 theorem weighted_sum_le_of_shell_averages_refined (r t : ℕ) (F : ℕ → ℝ) (a : ℕ → ℝ)
     (hF : ∀ lam, 0 ≤ F lam) (ha : ∀ u, 0 ≤ a u)
     (hshell : ∀ u ∈ range (r + t), ∑ lam ∈ cshell r t u, F lam ≤ (cshell r t u).card * a u) :
@@ -75,7 +86,9 @@ theorem weighted_sum_le_of_shell_averages_refined (r t : ℕ) (F : ℕ → ℝ) 
 `r = σ + 1`: if every centered shell satisfies
 `∑_{λ ∈ shell_u} ‖Ψ λ‖^2 ≤ #shell_u · a_u · |P_σ|^2` (with `a_u ≥ 0`) and
 `(1 + (σ+1)/2) · ∑_u min (2^(u+1)) (2^t) · a_u ≤ ε^2 |V_{σ,s}| / 2^t`, then
-`WeightedFourier b N j0 s σ ε`.-/
+`WeightedFourier b N j0 s σ ε`.
+@isnad1 id=weighted.3h7v.s9.1e37d1facf25 from=translated src=- shape=42bf7ebc vocab=c456d266
+-/
 theorem weightedFourier_of_shell_averages_refined (b : ℕ → ℕ) (N j0 s σ : ℕ) (ε : ℝ)
     (a : ℕ → ℝ) (ha : ∀ u, 0 ≤ a u)
     (hshell : ∀ u ∈ range (σ + 1 + (s - σ)),

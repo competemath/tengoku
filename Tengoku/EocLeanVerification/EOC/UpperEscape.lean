@@ -53,7 +53,9 @@ open Finset HarmonicPacking PrescribedMatching TransportCollapse LogCorridor Per
 
 /-! ## 1. Orbit types -/
 
-/-- A bounded orbit repeats a value (pigeonhole on `K + 2` times into `K + 1` values).-/
+/-- A bounded orbit repeats a value (pigeonhole on `K + 2` times into `K + 1` values).
+@isnad1 id=ex.1h2v.s5.0d480fd1f6d2 from=translated src=- shape=b9b1ce6b vocab=51522e10
+-/
 theorem bounded_orbit_not_injective (M K : ℕ) (hb : ∀ n, orbit M n ≤ K) :
     ∃ i j, i ≠ j ∧ orbit M i = orbit M j := by
   obtain ⟨x, _, y, _, hxy, heq⟩ :=
@@ -61,7 +63,9 @@ theorem bounded_orbit_not_injective (M K : ℕ) (hb : ∀ n, orbit M n ≤ K) :
       (by simp) (fun n _ => by simpa [Nat.lt_succ_iff] using hb n)
   exact ⟨x, y, hxy, heq⟩
 
-/-- An injective orbit tends to infinity: each value bound is exceeded from some time on.-/
+/-- An injective orbit tends to infinity: each value bound is exceeded from some time on.
+@isnad1 id=ex.1h2v.s5.25a2a940abad from=translated src=- shape=8843d6e5 vocab=53bfe2c1
+-/
 theorem injective_orbit_tendsto (M : ℕ) (hinj : ∀ i j, orbit M i = orbit M j → i = j) (K : ℕ) :
     ∃ N₀, ∀ n ≥ N₀, K < orbit M n := by
   have hfin : (orbit M ⁻¹' Set.Iic K).Finite :=
@@ -73,7 +77,9 @@ theorem injective_orbit_tendsto (M : ℕ) (hinj : ∀ i j, orbit M i = orbit M j
   have := hB (show n ∈ orbit M ⁻¹' Set.Iic K from h)
   omega
 
-/-- **Orbit dichotomy.** Every orbit is injective or has an eventually periodic word.-/
+/-- **Orbit dichotomy.** Every orbit is injective or has an eventually periodic word.
+@isnad1 id=or.0h1v.s5.c4d3dde00bbb from=translated src=- shape=1794f59e vocab=f917629a
+-/
 theorem orbit_dichotomy (M : ℕ) :
     (∀ i j, orbit M i = orbit M j → i = j) ∨
       ∃ j0 L, 1 ≤ L ∧ EvPeriodic (orbWord M) j0 L := by
@@ -88,6 +94,9 @@ theorem orbit_dichotomy (M : ℕ) :
 
 /-! ## 2. Size–drift identity consequences -/
 
+/--
+@isnad1 id=le.0h3v.s4.1cd470e3a11f from=translated src=- shape=d2642528 vocab=b8567eb2
+-/
 theorem carryU_mono (M t : ℕ) : ∀ k, carryU M t ≤ carryU M (t + k) := by
   intro k
   induction k with
@@ -99,9 +108,14 @@ theorem carryU_mono (M t : ℕ) : ∀ k, carryU M t ≤ carryU M (t + k) := by
       linarith
     nlinarith [carryU_pos M (t + k)]
 
+/--
+@isnad1 id=eq.0h1v.s4.2d7b0e78a66d from=translated src=- shape=ab70bd0f vocab=7bb10480
+-/
 theorem R_zero (d : ℕ → ℕ) : R d 0 = 0 := by simp [R]
 
-/-- `m_t · 2^{R_t}` is nondecreasing along the orbit.-/
+/-- `m_t · 2^{R_t}` is nondecreasing along the orbit.
+@isnad1 id=le.2h3v.s6.9cfabbb529b1 from=translated src=- shape=8b7713f0 vocab=283b1998
+-/
 theorem orbit_mul_two_rpow_R_mono (M t t' : ℕ) (hM : Odd M) (h : t ≤ t') :
     (orbit M t : ℝ) * (2 : ℝ) ^ R (orbWord M) t
       ≤ (orbit M t' : ℝ) * (2 : ℝ) ^ R (orbWord M) t' := by
@@ -110,14 +124,18 @@ theorem orbit_mul_two_rpow_R_mono (M t t' : ℕ) (hM : Odd M) (h : t ≤ t') :
   obtain ⟨k, rfl⟩ : ∃ k, t' = t + k := ⟨t' - t, by omega⟩
   exact mul_le_mul_of_nonneg_left (carryU_mono M t k) hM0
 
-/-- `m_0 ≤ m_n · 2^{R_n}` for every `n`.-/
+/-- `m_0 ≤ m_n · 2^{R_n}` for every `n`.
+@isnad1 id=le.1h2v.s5.085dffc6463f from=translated src=- shape=f99f8200 vocab=283b1998
+-/
 theorem seed_le_orbit_mul_two_rpow_R (M n : ℕ) (hM : Odd M) :
     (M : ℝ) ≤ (orbit M n : ℝ) * (2 : ℝ) ^ R (orbWord M) n := by
   have h := orbit_mul_two_rpow_R_mono M 0 n hM (Nat.zero_le n)
   rwa [R_zero, orbit_zero, Real.rpow_zero, mul_one] at h
 
 /-- **Window drift gain.** For `t ≤ t'`, `m_t ≤ m_{t'} · 2^{R_{t'} − R_t}`: a contraction of the
-orbit by a factor `2^c` raises the drift by at least `c`.-/
+orbit by a factor `2^c` raises the drift by at least `c`.
+@isnad1 id=le.2h3v.s6.27a25190c83f from=translated src=- shape=37055d0b vocab=c4f85eb0
+-/
 theorem window_drift_gain (M t t' : ℕ) (hM : Odd M) (h : t ≤ t') :
     (orbit M t : ℝ) ≤ (orbit M t' : ℝ) * (2 : ℝ) ^ (R (orbWord M) t' - R (orbWord M) t) := by
   have hmono := orbit_mul_two_rpow_R_mono M t t' hM h
@@ -126,7 +144,9 @@ theorem window_drift_gain (M t t' : ℕ) (hM : Odd M) (h : t ≤ t') :
   rw [mul_div_assoc', le_div_iff₀ hpos]
   exact hmono
 
-/-- **Upper exit is a modified stopping time.** `c < R_n ↔ 2^c · m_n < m_0 · U_n`.-/
+/-- **Upper exit is a modified stopping time.** `c < R_n ↔ 2^c · m_n < m_0 · U_n`.
+@isnad1 id=iff.1h3v.s6.8d13561c9cbf from=translated src=- shape=5904de9a vocab=12b313ed
+-/
 theorem R_gt_iff (M n : ℕ) (hM : Odd M) (c : ℝ) :
     c < R (orbWord M) n ↔ (2 : ℝ) ^ c * (orbit M n : ℝ) < (M : ℝ) * carryU M n := by
   have hid := orbit_mul_two_rpow_R M n hM
@@ -134,7 +154,9 @@ theorem R_gt_iff (M n : ℕ) (hM : Odd M) (c : ℝ) :
   rw [← hid, mul_comm ((orbit M n : ℝ)), mul_lt_mul_iff_left₀ hmpos,
     Real.rpow_lt_rpow_left_iff (by norm_num)]
 
-/-- **Descent forces upper exit.** If `2^c · m_n < m_0` then `c < R_n`.-/
+/-- **Descent forces upper exit.** If `2^c · m_n < m_0` then `c < R_n`.
+@isnad1 id=lt.2h3v.s5.0d929906fffd from=translated src=- shape=cc549a84 vocab=63b0332d
+-/
 theorem upper_exit_of_descent (M n : ℕ) (hM : Odd M) (c : ℝ)
     (h : (2 : ℝ) ^ c * (orbit M n : ℝ) < (M : ℝ)) : c < R (orbWord M) n := by
   have hle := seed_le_orbit_mul_two_rpow_R M n hM
@@ -146,14 +168,18 @@ theorem upper_exit_of_descent (M n : ℕ) (hM : Odd M) (c : ℝ)
 
 /-! ## 3. Periodic anchors: explicit upper-wall exit -/
 
-/-- The per-period drift gain of an eventually periodic genuine orbit is positive.-/
+/-- The per-period drift gain of an eventually periodic genuine orbit is positive.
+@isnad1 id=lt.3h3v.s5.1faaa4132b7d from=translated src=- shape=7893c42c vocab=b264f4bb
+-/
 theorem cycle_gain_pos (m0 j0 L : ℕ) (hm0 : Odd m0) (hL : 1 ≤ L)
     (hper : EvPeriodic (orbWord m0) j0 L) :
     0 < (blockSum (orbWord m0) j0 L : ℝ) - alpha * L := by
   have := alpha_mul_lt_of_pow_lt L _ (three_pow_lt_two_pow_of_evPeriodic_orbit m0 j0 L hm0 hL hper)
   linarith
 
-/-- Exit at any `k` with `k · Δ > c − R_{j0}`.-/
+/-- Exit at any `k` with `k · Δ > c − R_{j0}`.
+@isnad1 id=lt.2h5v.s6.9b1616144846 from=translated src=- shape=578ca5cf vocab=7c0d2016
+-/
 theorem evPeriodic_orbit_exit_at (m0 j0 L : ℕ) (hper : EvPeriodic (orbWord m0) j0 L) (c : ℝ)
     (k : ℕ) (hk : c - R (orbWord m0) j0
       < (k : ℝ) * ((blockSum (orbWord m0) j0 L : ℝ) - alpha * L)) :
@@ -162,7 +188,9 @@ theorem evPeriodic_orbit_exit_at (m0 j0 L : ℕ) (hper : EvPeriodic (orbWord m0)
   linarith
 
 /-- **Explicit upper-wall exit for eventually periodic anchors.** With
-`Δ = blockSum − L·log₂3 > 0`, the drift exceeds `c` at step `j0 + (⌈(c − R_{j0})/Δ⌉ + 1)·L`.-/
+`Δ = blockSum − L·log₂3 > 0`, the drift exceeds `c` at step `j0 + (⌈(c − R_{j0})/Δ⌉ + 1)·L`.
+@isnad1 id=lt.3h4v.s6.6a357037d1d3 from=translated src=- shape=61ea52ce vocab=eb7937c0
+-/
 theorem evPeriodic_orbit_exit (m0 j0 L : ℕ) (hm0 : Odd m0) (hL : 1 ≤ L)
     (hper : EvPeriodic (orbWord m0) j0 L) (c : ℝ) :
     c < R (orbWord m0)
@@ -177,7 +205,9 @@ theorem evPeriodic_orbit_exit (m0 j0 L : ℕ) (hm0 : Odd m0) (hL : 1 ≤ L)
     push_cast; linarith
   rwa [div_lt_iff₀ hΔpos] at h1
 
-/-- **Bounded orbits cross every upper wall.**-/
+/-- **Bounded orbits cross every upper wall.**
+@isnad1 id=ex.2h3v.s4.d8e26f811c78 from=translated src=- shape=a764384f vocab=754801ee
+-/
 theorem bounded_orbit_not_upper_confined (M K : ℕ) (hM : Odd M) (hb : ∀ n, orbit M n ≤ K)
     (c : ℝ) : ∃ N, ¬ Confined c (orbWord M) N := by
   obtain ⟨i, j, hne, heq⟩ := bounded_orbit_not_injective M K hb
@@ -185,26 +215,39 @@ theorem bounded_orbit_not_upper_confined (M K : ℕ) (hM : Odd M) (hb : ∀ n, o
 
 /-! ## 4. Anchors reaching 1 -/
 
+/--
+@isnad1 id=eq.0h0v.s3.c3618a5f92e8 from=translated src=- shape=3c26ae4f vocab=0b2d2679
+-/
 theorem a_one : a 1 = 2 := by
   change padicValNat 2 (3 * 1 + 1) = 2
   rw [show 3 * 1 + 1 = 2 ^ 2 by norm_num, padicValNat.prime_pow]
 
+/--
+@isnad1 id=eq.0h0v.s3.8d4fb36f49df from=translated src=- shape=3c26ae4f vocab=ddf8ebb1
+-/
 theorem T_one : T 1 = 1 := by
   unfold T
   rw [a_one]
   norm_num
 
+/--
+@isnad1 id=eq.0h1v.s4.9b9c8273ecf2 from=translated src=- shape=fe2c2146 vocab=adf1cd18
+-/
 theorem orbit_one (t : ℕ) : orbit 1 t = 1 := by
   induction t with
   | zero => rfl
   | succ t ih => rw [orbit_succ, ih, T_one]
 
-/-- After hitting `1`, every valuation is `2`.-/
+/-- After hitting `1`, every valuation is `2`.
+@isnad1 id=eq.1h3v.s5.d2732e197cf7 from=translated src=- shape=c1261997 vocab=824c4e35
+-/
 theorem word_after_one (m0 h : ℕ) (hh : orbit m0 h = 1) (t : ℕ) : orbWord m0 (h + t) = 2 := by
   change a (orbit m0 (h + t)) = 2
   rw [orbit_add, hh, orbit_one, a_one]
 
-/-- After hitting `1` at time `h`, `R_{h+t} = R_h + t·(2 − log₂3)`.-/
+/-- After hitting `1` at time `h`, `R_{h+t} = R_h + t·(2 − log₂3)`.
+@isnad1 id=eq.1h3v.s6.a7b8e105873d from=translated src=- shape=e484b7cc vocab=09331c6f
+-/
 theorem R_after_one (m0 h : ℕ) (hh : orbit m0 h = 1) (t : ℕ) :
     R (orbWord m0) (h + t) = R (orbWord m0) h + (t : ℝ) * (2 - alpha) := by
   have hs : ∀ t, s (orbWord m0) (h + t) = s (orbWord m0) h + 2 * t := by
@@ -217,14 +260,18 @@ theorem R_after_one (m0 h : ℕ) (hh : orbit m0 h = 1) (t : ℕ) :
   push_cast
   ring
 
-/-- At the hitting time of `1`, the drift already satisfies `m_0 ≤ 2^{R_h}`.-/
+/-- At the hitting time of `1`, the drift already satisfies `m_0 ≤ 2^{R_h}`.
+@isnad1 id=le.2h2v.s5.f3ef1fb43587 from=translated src=- shape=0188d767 vocab=eaeaecac
+-/
 theorem two_rpow_R_at_one (m0 h : ℕ) (hm0 : Odd m0) (hh : orbit m0 h = 1) :
     (m0 : ℝ) ≤ (2 : ℝ) ^ R (orbWord m0) h := by
   have := seed_le_orbit_mul_two_rpow_R m0 h hm0
   rwa [hh, Nat.cast_one, one_mul] at this
 
 /-- **Reach-1 upper exit.** If the orbit hits `1` at time `h`, the drift exceeds `c` at every
-`h + t` with `t·(2 − log₂3) > c − R_h`; if moreover `2^c < m_0`, already at `h`.-/
+`h + t` with `t·(2 − log₂3) > c − R_h`; if moreover `2^c < m_0`, already at `h`.
+@isnad1 id=and.2h3v.s6.e962441c2a46 from=translated src=- shape=64c233a9 vocab=b33c62bf
+-/
 theorem reach_one_upper_exit (m0 h : ℕ) (hm0 : Odd m0) (hh : orbit m0 h = 1) (c : ℝ) :
     (∀ t : ℕ, c - R (orbWord m0) h < (t : ℝ) * (2 - alpha) → c < R (orbWord m0) (h + t)) ∧
     ((2 : ℝ) ^ c < (m0 : ℝ) → c < R (orbWord m0) h) := by
@@ -240,7 +287,9 @@ def UpperConfinedForever (U : ℝ) (M : ℕ) : Prop := ∀ n, R (orbWord M) n �
 
 /-- **Exceptional-class characterization (conditional form).** Under `LogFloorExclusion Bstar`, a
 forever `U`-confined odd seed has an injective, divergent orbit that never descends below
-`m_0 · 2^{−U}` and crosses every lower wall `−B log₂ n − K` (`B < Bstar`) infinitely often.-/
+`m_0 · 2^{−U}` and crosses every lower wall `−B log₂ n − K` (`B < Bstar`) infinitely often.
+@isnad1 id=and.3h3v.s7.b62907d2cb0f from=translated src=- shape=4f7ef395 vocab=a0aebd46
+-/
 theorem exceptional_class_of_exclusion {Bstar : ℝ} (hX : LogFloorExclusion Bstar)
     (M : ℕ) (hM : Odd M) (U : ℝ) (hE : UpperConfinedForever U M) :
     (∀ i j, orbit M i = orbit M j → i = j) ∧
@@ -265,7 +314,9 @@ theorem exceptional_class_of_exclusion {Bstar : ℝ} (hX : LogFloorExclusion Bst
     obtain ⟨n, hn, hlt⟩ := h N₀
     exact ⟨n, hn, hlt⟩
 
-/-- **Exceptional-class characterization (unconditional, `B < 8/9`).**-/
+/-- **Exceptional-class characterization (unconditional, `B < 8/9`).**
+@isnad1 id=and.2h2v.s7.50033c803ffd from=translated src=- shape=28008897 vocab=ab4614c6
+-/
 theorem exceptional_class (M : ℕ) (hM : Odd M) (U : ℝ) (hE : UpperConfinedForever U M) :
     (∀ i j, orbit M i = orbit M j → i = j) ∧
     (∀ K, ∃ N₀, ∀ n ≥ N₀, K < orbit M n) ∧
@@ -277,7 +328,9 @@ theorem exceptional_class (M : ℕ) (hM : Odd M) (U : ℝ) (hE : UpperConfinedFo
 /-- **Rebasing an injective orbit at its minimum.** If `orbit M` is injective, then from the time
 `n₀` of its global minimum the rebased seed `μ = orbit M n₀` has drift under the upper logarithmic
 wall `R_n ≤ (1/9)·log₂ n + 7/(9 ln 2)` for every `n` (unconditional; from the carry budget
-`carryE_le`). So a divergent orbit, if one exists, produces a forever upper-log-confined anchor.-/
+`carryE_le`). So a divergent orbit, if one exists, produces a forever upper-log-confined anchor.
+@isnad1 id=ex.2h1v.s7.4d4b2d644bcb from=translated src=- shape=d93716a8 vocab=e04f3f0d
+-/
 theorem rebased_upper_log_wall (M : ℕ) (hM : Odd M)
     (hinj : ∀ i j, orbit M i = orbit M j → i = j) :
     ∃ n₀, ∀ n,
@@ -310,7 +363,9 @@ theorem rebased_upper_log_wall (M : ℕ) (hM : Odd M)
 
 /-- **Descent bounds prescribed matching.** If the anchor orbit has contracted by more than `2^U`
 at step `L` (`2^U · m_L < μ_j`), every prescribed block `e` (length `m ≥ L`) with `R ≤ U` through
-`m` has prescribed matching at most `U + L·log₂3`.-/
+`m` has prescribed matching at most `U + L·log₂3`.
+@isnad1 id=le.5h6v.s7.41d0f096a8dd from=translated src=- shape=e521d800 vocab=be677071
+-/
 theorem descent_prescribed_matching_le (d e : ℕ → ℕ) (j m L : ℕ) (U : ℝ) (hLm : L ≤ m)
     (he_pos : ∀ i < m, 1 ≤ e i) (hU : ∀ n ≤ m, R e n ≤ U) (hodd : Odd (anchorState d j))
     (hdesc : (2 : ℝ) ^ U * (orbit (anchorState d j) L : ℝ) < (anchorState d j : ℝ)) :
@@ -325,7 +380,9 @@ theorem descent_prescribed_matching_le (d e : ℕ → ℕ) (j m L : ℕ) (U : �
 
 /-- **Reach-1 bound on prescribed matching.** If the anchor orbit hits `1` at step `h ≤ m` and
 `2^U < μ_j`, every `U`-confined prescribed block of length `m` has matching at most
-`U + h·log₂3`.-/
+`U + h·log₂3`.
+@isnad1 id=le.6h6v.s7.7a3ff9a4c255 from=translated src=- shape=5b8a629d vocab=be677071
+-/
 theorem reach_one_prescribed_matching_le (d e : ℕ → ℕ) (j m h : ℕ) (U : ℝ) (hhm : h ≤ m)
     (he_pos : ∀ i < m, 1 ≤ e i) (hU : ∀ n ≤ m, R e n ≤ U) (hodd : Odd (anchorState d j))
     (hh : orbit (anchorState d j) h = 1) (hbig : (2 : ℝ) ^ U < (anchorState d j : ℝ)) :

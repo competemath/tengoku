@@ -41,7 +41,9 @@ variable {S : Type*} [Fintype S] [DecidableEq S]
 /-- **Path sum ≤ pinned kernel.**  Any finite family `C` of paths `Fin (n+1) → S` with `c 0 = x` and
 `c (last n) = z` satisfies `∑_{c ∈ C} ∏_r w (l+r) (c r) (c (r+1)) ≤ ker w l n x z`.  Distinct paths
 contribute distinct terms and the kernel sums over *all* paths, so no characterization of `C` is
-needed — only nonnegativity of the weights.-/
+needed — only nonnegativity of the weights.
+@isnad1 id=le.3h7v.s8.7d6b3fe2ad02 from=translated src=- shape=d81d5a3c vocab=57e01de2
+-/
 theorem sum_prod_le_ker {w : ℕ → S → S → ℝ} (hw : ∀ l x y, 0 ≤ w l x y) :
     ∀ (n l : ℕ) (x z : S) (C : Finset (Fin (n + 1) → S)),
       (∀ c ∈ C, c 0 = x) → (∀ c ∈ C, c (Fin.last n) = z) →
@@ -137,6 +139,9 @@ variable (b : ℕ → ℕ)
 /-- The choice set of pair block `r` as a function of the two even prefix sums.-/
 def Bset (r x y : ℕ) : Finset ℕ := (Ioo x y).filter (fun z => z ≤ b (2 * r + 1))
 
+/--
+@isnad1 id=eq.0h4v.s6.14457b2cf61e from=translated src=- shape=dd8ebb16 vocab=e43db86f
+-/
 theorem pairB_eq_Bset {j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (r : ℕ) :
     pairB b c r = Bset b r (cget c (2 * r)) (cget c (2 * r + 2)) := rfl
 
@@ -144,6 +149,9 @@ theorem pairB_eq_Bset {j0 : ℕ} (c : Fin (j0 + 1) → ℕ) (r : ℕ) :
 noncomputable def blockW (u : ℝ) (σ : ℕ) : ℕ → Fin (σ + 1) → Fin (σ + 1) → ℝ :=
   fun r x y => ((Bset b r x y).card : ℝ) * (if (Bset b r x y).card ≤ 1 then u else 1)
 
+/--
+@isnad1 id=le.1h6v.s6.75e9256986df from=translated src=- shape=2ad30914 vocab=07a0ff2d
+-/
 theorem blockW_nonneg {u : ℝ} (hu : 0 ≤ u) (σ r : ℕ) (x y : Fin (σ + 1)) :
     0 ≤ blockW b u σ r x y := by
   unfold blockW
@@ -156,7 +164,9 @@ theorem blockW_nonneg {u : ℝ} (hu : 0 ≤ u) (σ r : ℕ) (x y : Fin (σ + 1))
 def classPath (σ : ℕ) {j0 : ℕ} (c : Fin (j0 + 1) → ℕ) : Fin (j0 / 2 + 1) → Fin (σ + 1) :=
   fun r => ⟨min (cget c (2 * (r : ℕ))) σ, by omega⟩
 
-/-- On classes of the prefix shell, the even prefix sums are at most `σ`.-/
+/-- On classes of the prefix shell, the even prefix sums are at most `σ`.
+@isnad1 id=and.3h5v.s6.18108b432f69 from=translated src=- shape=4621ab8a vocab=36e363e5
+-/
 theorem cget_pairκ_le {j0 σ : ℕ} (hj : 1 ≤ j0) {P : FiniteValuationWord j0}
     (hP : P ∈ shellP b j0 σ) {r : ℕ} (hr : 2 * r ≤ j0) :
     cget (pairκ j0 P) (2 * r) = P.prefixSum (2 * r) ∧ P.prefixSum (2 * r) ≤ σ := by
@@ -168,7 +178,9 @@ theorem cget_pairκ_le {j0 σ : ℕ} (hj : 1 ≤ j0) {P : FiniteValuationWord j0
 
 /-- **The bridge.**  The tilted class sum is at most the pinned layered kernel of the block
 weight.  Nonnegativity of the weights is all that is needed: the classes inject into the kernel's
-paths, and the kernel sums over *all* paths.-/
+paths, and the kernel sums over *all* paths.
+@isnad1 id=le.3h4v.s8.c89e2c3ad0ab from=translated src=- shape=16611dfa vocab=5c898ec4
+-/
 theorem class_sum_le_ker {j0 σ : ℕ} {u : ℝ} (hj : 1 ≤ j0) (hu : 0 ≤ u)
     (hj2 : 2 * (j0 / 2) = j0) :
     ∑ c ∈ (shellP b j0 σ).image (pairκ j0),
@@ -274,7 +286,9 @@ theorem class_sum_le_ker {j0 σ : ℕ} {u : ℝ} (hj : 1 ≤ j0) (hu : 0 ≤ u)
 
 /-- **Certificate ⇒ `TightTail`.**  A positive layer-dependent weight `h` with
 `∑_y blockW(l,x,y) h(l+1,y) ≤ M h(l,x)` bounds the tilted class sum by `M^R h(0,0)/h(R,σ)`; if that
-is small against `ρ₁ u^T C(σ−1, j₀−1)/j₀`, then `TightTail` holds.-/
+is small against `ρ₁ u^T C(σ−1, j₀−1)/j₀`, then `TightTail` holds.
+@isnad1 id=tighttai.11h9v.s9.cb9bd2054e8a from=translated src=- shape=cb5e0fa8 vocab=fad3c8cb
+-/
 theorem tightTail_of_superEigen {j0 σ t T : ℕ} {u ρ₁ M : ℝ} {h : ℕ → Fin (σ + 1) → ℝ}
     (hj : 1 ≤ j0) (hu : 1 ≤ u) (hρ : 0 ≤ ρ₁) (hj2 : 2 * (j0 / 2) = j0)
     (hchord : ∀ j ≤ j0, ∀ p : ℕ, j0 * p ≤ j * b j0 → p ≤ b j)
@@ -299,7 +313,9 @@ theorem tightTail_of_superEigen {j0 σ t T : ℕ} {u ρ₁ M : ℝ} {h : ℕ →
 
 /-- **Certificate ⇒ `ShapeTail`.**  The whole shape hypothesis now follows from one finite
 super-eigenvector certificate for the block kernel, together with the arithmetic side condition
-`K + T + σ/(N₀+2) ≤ j₀/2`.-/
+`K + T + σ/(N₀+2) ≤ j₀/2`.
+@isnad1 id=shapetai.12h11v.s9.3d36c981d940 from=translated src=- shape=f637d4d6 vocab=52f873b4
+-/
 theorem shapeTail_of_superEigen {j0 σ t N0 K T : ℕ} {u ρ₁ M : ℝ} {h : ℕ → Fin (σ + 1) → ℝ}
     (hj : 1 ≤ j0) (hu : 1 ≤ u) (hρ : 0 ≤ ρ₁) (hj2 : 2 * (j0 / 2) = j0)
     (hchord : ∀ j ≤ j0, ∀ p : ℕ, j0 * p ≤ j * b j0 → p ≤ b j)

@@ -44,9 +44,14 @@ noncomputable section
 
 /-! ## 1. The apex relation -/
 
+/--
+@isnad1 id=eq.0h1v.s7.e27b3041e9e6 from=translated src=- shape=44db9c73 vocab=d5d2520b
+-/
 theorem u_zero (b : ℕ) : u 0 b = 1 := by simp [u]
 
-/-- `y(a,b) ≠ 0` for `b ≥ 1` (`2^{-a}` is a unit mod `3^b`).-/
+/-- `y(a,b) ≠ 0` for `b ≥ 1` (`2^{-a}` is a unit mod `3^b`).
+@isnad1 id=ne.1h2v.s4.de46276477e6 from=translated src=- shape=06da2e0b vocab=4477c42d
+-/
 theorem y_ne_zero {a b : ℕ} (hb : 1 ≤ b) : y a b ≠ 0 := by
   intro h
   have h1 : ((y a b : ℤ) : ZMod (3 ^ b)) = u a b := ZMod.coe_valMinAbs _
@@ -61,7 +66,9 @@ theorem y_ne_zero {a b : ℕ} (hb : 1 ≤ b) : y a b ≠ 0 := by
       _ ≤ 3 ^ b := Nat.pow_le_pow_right (by norm_num) hb
   omega
 
-/-- **Apex relation.** `3^b ∣ 2^a y(a,b) − 1`.-/
+/-- **Apex relation.** `3^b ∣ 2^a y(a,b) − 1`.
+@isnad1 id=dvd.0h2v.s6.40ad163f62be from=translated src=- shape=84d72d36 vocab=6fb75bb6
+-/
 theorem three_pow_dvd (a b : ℕ) : (3 : ℤ) ^ b ∣ 2 ^ a * y a b - 1 := by
   have h1 := cast_two_pow_mul_y 0 b a 0
   simp only [zero_add, Nat.add_zero] at h1
@@ -71,7 +78,9 @@ theorem three_pow_dvd (a b : ℕ) : (3 : ℤ) ^ b ∣ 2 ^ a * y a b - 1 := by
   have := (ZMod.intCast_zmod_eq_zero_iff_dvd _ _).1 h2
   exact_mod_cast this
 
-/-- `Y = 2^a y − 1 ≠ 0` for `a ≥ 1` (it is odd).-/
+/-- `Y = 2^a y − 1 ≠ 0` for `a ≥ 1` (it is odd).
+@isnad1 id=ne.1h2v.s5.3c3bb3a7a19e from=translated src=- shape=a5a76e54 vocab=2c8d8b2f
+-/
 theorem Y_ne_zero {a b : ℕ} (ha : 1 ≤ a) : 2 ^ a * y a b - 1 ≠ 0 := by
   intro h
   have h2 : (2 : ℤ) ∣ 2 ^ a * y a b := Dvd.dvd.mul_right (dvd_pow_self 2 (by omega)) _
@@ -80,8 +89,14 @@ theorem Y_ne_zero {a b : ℕ} (ha : 1 ≤ a) : 2 ^ a * y a b - 1 ≠ 0 := by
     rwa [e] at h2
   norm_num at this
 
+/--
+@isnad1 id=le.1h2v.s4.d50c9e57da49 from=translated src=- shape=76c12a40 vocab=a7a3752b
+-/
 theorem one_le_abs_y {a b : ℕ} (hb : 1 ≤ b) : (1 : ℤ) ≤ |y a b| := Int.one_le_abs (y_ne_zero hb)
 
+/--
+@isnad1 id=le.0h2v.s5.3416cf13b829 from=translated src=- shape=b1a0321c vocab=cef9d65d
+-/
 theorem two_abs_y_le (a b : ℕ) : 2 * |y a b| ≤ 3 ^ b := by
   have h := (u a b).valMinAbs_mem_Ioc
   obtain ⟨h1, h2⟩ := h
@@ -113,7 +128,9 @@ def Exc (δ : ℝ) : Set (ℕ × ℕ) :=
   {p | 1 ≤ p.1 ∧ 1 ≤ p.2 ∧
     2 * |((y p.1 p.2 : ℤ) : ℝ)| * ((2 : ℝ) ^ p.1 * 3 ^ p.2) ^ δ ≤ 3 ^ p.2}
 
-/-- `P(X, X−1) ≤ 2 |U(a,b)|` for `X = 2^a y(a,b)`.-/
+/-- `P(X, X−1) ≤ 2 |U(a,b)|` for `X = 2^a y(a,b)`.
+@isnad1 id=le.2h2v.s7.1c2b41e56d4c from=translated src=- shape=2cacd7f1 vocab=4c4615b1
+-/
 theorem subspaceProd_le {a b : ℕ} (_ha : 1 ≤ a) (hb : 1 ≤ b) :
     subspaceProd (2 ^ a * y a b) (2 ^ a * y a b - 1) ≤ 2 * |((y a b : ℤ) : ℝ)| / 3 ^ b := by
   set X : ℤ := 2 ^ a * y a b with hX
@@ -164,7 +181,9 @@ theorem subspaceProd_le {a b : ℕ} (_ha : 1 ≤ a) (hb : 1 ≤ b) :
         mul_le_mul hYabs hq' hq0 (by positivity)
     _ = 2 * |((y a b : ℤ) : ℝ)| / 3 ^ b := by field_simp
 
-/-- `1 ≤ H ≤ 2^a 3^b` for `H = max(|X|, |X − 1|)`.-/
+/-- `1 ≤ H ≤ 2^a 3^b` for `H = max(|X|, |X − 1|)`.
+@isnad1 id=and.2h2v.s8.d7dfd7a843e0 from=translated src=- shape=21b07dd6 vocab=7fc27575
+-/
 theorem H_bounds {a b : ℕ} (ha : 1 ≤ a) (hb : 1 ≤ b) :
     1 ≤ max |(((2 ^ a * y a b : ℤ)) : ℝ)| |(((2 ^ a * y a b - 1 : ℤ)) : ℝ)| ∧
       max |(((2 ^ a * y a b : ℤ)) : ℝ)| |(((2 ^ a * y a b - 1 : ℤ)) : ℝ)| ≤
@@ -184,7 +203,9 @@ theorem H_bounds {a b : ℕ} (ha : 1 ≤ a) (hb : 1 ≤ b) :
   · rw [hXabs]; nlinarith
   · nlinarith
 
-/-- An exceptional cell gives a solution of the Subspace inequality.-/
+/-- An exceptional cell gives a solution of the Subspace inequality.
+@isnad1 id=le.4h3v.s8.aa03b43a80c7 from=translated src=- shape=c4d31004 vocab=dcf81fe1
+-/
 theorem subspace_ineq_of_exc {δ : ℝ} (hδ : 0 ≤ δ) {a b : ℕ} (ha : 1 ≤ a) (hb : 1 ≤ b)
     (hexc : 2 * |((y a b : ℤ) : ℝ)| * ((2 : ℝ) ^ a * 3 ^ b) ^ δ ≤ 3 ^ b) :
     subspaceProd (2 ^ a * y a b) (2 ^ a * y a b - 1) ≤
@@ -202,7 +223,9 @@ theorem subspace_ineq_of_exc {δ : ℝ} (hδ : 0 ≤ δ) {a b : ℕ} (ha : 1 ≤
     Real.rpow_le_rpow_of_nonpos (by linarith) hHZ (by linarith)
   exact (subspaceProd_le ha hb).trans (h1.trans h2)
 
-/-- A line through `v ≠ 0` meets `X − Y = 1` in at most one point, and there `|X| ≤ |v₁|`.-/
+/-- A line through `v ≠ 0` meets `X − Y = 1` in at most one point, and there `|X| ≤ |v₁|`.
+@isnad1 id=le.2h2v.s6.d8d8af67f5ca from=translated src=- shape=e4f5a80a vocab=57f60b34
+-/
 theorem abs_le_of_line {X : ℤ} {v : ℤ × ℤ} (hv : v ≠ (0, 0)) (h : X * v.2 = (X - 1) * v.1) :
     |X| ≤ |v.1| := by
   have h1 : X * (v.1 - v.2) = v.1 := by linear_combination (-1 : ℤ) * h
@@ -218,7 +241,9 @@ theorem abs_le_of_line {X : ℤ} {v : ℤ × ℤ} (hv : v ≠ (0, 0)) (h : X * v
       _ ≤ |X| * |v.1 - v.2| := mul_le_mul_of_nonneg_left this (abs_nonneg _)
       _ = |v.1| := by rw [← abs_mul, h1]
 
-/-- **Finiteness of exceptional cells** from the Subspace instance.-/
+/-- **Finiteness of exceptional cells** from the Subspace instance.
+@isnad1 id=finite.2h1v.s4.620b52d72189 from=translated src=- shape=69aebee5 vocab=24601f85
+-/
 theorem exc_finite {δ : ℝ} (hδ : 0 ≤ δ) (h : SubspaceInstance δ) : (Exc δ).Finite := by
   obtain ⟨F, hF⟩ := h
   set M : ℤ := ∑ v ∈ F, |v.1| with hM
@@ -270,20 +295,31 @@ def ApexBound (η δ C : ℝ) : Prop := ∀ a b : ℕ, 1 ≤ a → 1 ≤ b → s
 on `a, b ≥ 1`.-/
 def SublinearMaxTriangle (η : ℝ) : Prop := ∀ δ > 0, ∃ C, ApexBound η δ C
 
+/--
+@isnad1 id=lt.1h2v.s5.4f66e9465881 from=translated src=- shape=2c2fae6f vocab=e9387e53
+-/
 theorem abs_y_pos {a b : ℕ} (hb : 1 ≤ b) : 0 < |((y a b : ℤ) : ℝ)| :=
   abs_pos.mpr (by exact_mod_cast y_ne_zero hb)
 
+/--
+@isnad1 id=eq.2h3v.s6.535d6eac0f7b from=translated src=- shape=d4046198 vocab=2595f55f
+-/
 theorem size_eq {η : ℝ} (hη : 0 < η) {a b : ℕ} (hb : 1 ≤ b) :
     size η a b = Real.log η + b * Real.log 3 - Real.log |((y a b : ℤ) : ℝ)| := by
   unfold size
   rw [Real.log_div (by positivity) (abs_y_pos hb).ne', Real.log_mul hη.ne' (by positivity),
     Real.log_pow]
 
+/--
+@isnad1 id=eq.0h2v.s5.4e28d0c270a0 from=translated src=- shape=1ce6f20b vocab=0eb4db8b
+-/
 theorem log_Z (a b : ℕ) : Real.log ((2 : ℝ) ^ a * 3 ^ b) = D a b := by
   unfold D
   rw [Real.log_mul (by positivity) (by positivity), Real.log_pow, Real.log_pow]
 
-/-- **Finite exceptional set ⇒ apex bound.**-/
+/-- **Finite exceptional set ⇒ apex bound.**
+@isnad1 id=ex.2h2v.s4.f451badc06bd from=translated src=- shape=5e5c39e8 vocab=fa4a4ead
+-/
 theorem apexBound_of_exc_finite {η δ : ℝ} (hη : 0 < η) (hE : (Exc δ).Finite) :
     ∃ C, ApexBound η δ C := by
   set f : ℕ × ℕ → ℝ := fun p => size η p.1 p.2 - δ * D p.1 p.2
@@ -305,7 +341,9 @@ theorem apexBound_of_exc_finite {η δ : ℝ} (hη : 0 < η) (hE : (Exc δ).Fini
     have h2η : Real.log (2 * η) = Real.log 2 + Real.log η := Real.log_mul (by norm_num) hη.ne'
     linarith [le_max_left (Real.log (2 * η)) M]
 
-/-- **Subspace instance ⇒ `SublinearMaxTriangle`.**-/
+/-- **Subspace instance ⇒ `SublinearMaxTriangle`.**
+@isnad1 id=sublinea.2h1v.s4.724cb8d5e0bc from=translated src=- shape=9a4d294e vocab=d16635b5
+-/
 theorem sublinearMaxTriangle_of_subspace {η : ℝ} (hη : 0 < η)
     (h : ∀ δ > 0, SubspaceInstance δ) : SublinearMaxTriangle η :=
   fun δ hδ => apexBound_of_exc_finite hη (exc_finite hδ.le (h δ hδ))
@@ -314,16 +352,24 @@ theorem sublinearMaxTriangle_of_subspace {η : ℝ} (hη : 0 < η)
 def InTri (η : ℝ) (a b k l : ℕ) : Prop :=
   (2 : ℝ) ^ k * 3 ^ l * |((y (a + k) (b + l) : ℤ) : ℝ)| ≤ η * 3 ^ (b + l)
 
+/--
+@isnad1 id=eq.0h4v.s6.715bfb60d694 from=translated src=- shape=a966e52a vocab=d6cf07bb
+-/
 theorem D_add (a b k l : ℕ) :
     D (a + k) (b + l) = D a b + (k * Real.log 2 + l * Real.log 3) := by
   unfold D; push_cast; ring
 
+/--
+@isnad1 id=le.0h2v.s5.ac3b79970d01 from=translated src=- shape=03bcfb6d vocab=45c294fc
+-/
 theorem kl_nonneg (k l : ℕ) : 0 ≤ (k : ℝ) * Real.log 2 + l * Real.log 3 := by
   have h2 := Real.log_nonneg (by norm_num : (1 : ℝ) ≤ 2)
   have h3 := Real.log_nonneg (by norm_num : (1 : ℝ) ≤ 3)
   positivity
 
-/-- **Apex size of any triangle through `(a,b)`**: `s* ≤ (δ D(a,b) + C)/(1 − δ)`.-/
+/-- **Apex size of any triangle through `(a,b)`**: `s* ≤ (δ D(a,b) + C)/(1 − δ)`.
+@isnad1 id=le.7h7v.s7.4342eeb6aff9 from=translated src=- shape=58b5868a vocab=cee2d1bd
+-/
 theorem apex_size_le {η δ C : ℝ} (_hη : 0 < η) (hδ0 : 0 ≤ δ) (hδ1 : δ < 1)
     (hA : ApexBound η δ C) {a b k l : ℕ} (ha : 1 ≤ a) (hb : 1 ≤ b) (h : InTri η a b k l) :
     size η (a + k) (b + l) ≤ (δ * D a b + C) / (1 - δ) := by
@@ -340,7 +386,9 @@ theorem apex_size_le {η δ C : ℝ} (_hη : 0 < η) (hδ0 : 0 ≤ δ) (hδ1 : �
   rw [le_div_iff₀ (by linarith)]
   nlinarith
 
-/-- **Depth bound** for the existing `inLargeTriangle`: `R ≤ δ D(a,b) + C` (`δ ≤ 1`).-/
+/-- **Depth bound** for the existing `inLargeTriangle`: `R ≤ δ D(a,b) + C` (`δ ≤ 1`).
+@isnad1 id=le.7h6v.s6.66509ed3d07b from=translated src=- shape=f41ca5e8 vocab=eebe2f0c
+-/
 theorem depth_le {η δ C R : ℝ} (_hη : 0 < η) (_hδ0 : 0 ≤ δ) (hδ1 : δ ≤ 1) (hA : ApexBound η δ C)
     {a b : ℕ} (ha : 1 ≤ a) (hb : 1 ≤ b) (h : inLargeTriangle a b η R) : R ≤ δ * D a b + C := by
   obtain ⟨k, l, hkl⟩ := h
@@ -371,7 +419,9 @@ corners `(a+k, b+l)` with `InTri`).-/
 def MaxTriangleLE (η : ℝ) (Ω : Set (ℕ × ℕ)) (R₀ : ℝ) : Prop :=
   ∀ p ∈ Ω, ∀ k l : ℕ, InTri η p.1 p.2 k l → size η (p.1 + k) (p.2 + l) ≤ R₀
 
-/-- **`R_max = o(L)`** on any region with `a, b ≥ 1` and `a log 2 + b log 3 ≤ K L`.-/
+/-- **`R_max = o(L)`** on any region with `a, b ≥ 1` and `a log 2 + b log 3 ≤ K L`.
+@isnad1 id=ex.4h3v.s7.4eb8f8b54540 from=translated src=- shape=e09a3917 vocab=797829b1
+-/
 theorem eventually_maxTriangleLE {η : ℝ} (hη : 0 < η) (h : SublinearMaxTriangle η) {K ε : ℝ}
     (hK : 0 < K) (hε : 0 < ε) :
     ∃ L₀ : ℝ, ∀ L ≥ L₀, ∀ Ω : Set (ℕ × ℕ),
@@ -402,7 +452,9 @@ theorem eventually_maxTriangleLE {η : ℝ} (hη : 0 < η) (h : SublinearMaxTria
 /-- The corridor/path box `1 ≤ a ≤ m`, `1 ≤ b ≤ L`.-/
 def box (m L : ℕ) : Set (ℕ × ℕ) := {p | 1 ≤ p.1 ∧ p.1 ≤ m ∧ 1 ≤ p.2 ∧ p.2 ≤ L}
 
-/-- **Box form.** If `m ≤ c L` then `R_max(box m L) ≤ ε L` for `L ≥ L₀(ε)`.-/
+/-- **Box form.** If `m ≤ c L` then `R_max(box m L) ≤ ε L` for `L ≥ L₀(ε)`.
+@isnad1 id=ex.4h3v.s6.5abac40d3c78 from=translated src=- shape=c2a67e5e vocab=1f4879bc
+-/
 theorem maxTriangleLE_box {η : ℝ} (hη : 0 < η) (h : SublinearMaxTriangle η) {c ε : ℝ}
     (hc : 0 ≤ c) (hε : 0 < ε) :
     ∃ L₀ : ℝ, ∀ m L : ℕ, L₀ ≤ L → (m : ℝ) ≤ c * L → MaxTriangleLE η (box m L) (ε * L) := by
@@ -424,7 +476,9 @@ theorem maxTriangleLE_box {η : ℝ} (hη : 0 < η) (h : SublinearMaxTriangle η
 def GoodGap {ι : Type*} (T : Finset ι) (good : ι → ℕ → Prop) (R G : ℕ) : Prop :=
   ∀ P ∈ T, ∀ r₀, r₀ + (G + 1) ≤ R → ∃ r, r₀ ≤ r ∧ r < r₀ + (G + 1) ∧ good P r
 
-/-- **Gap ⇒ count.**  Gaps `≤ G` force at least `⌊R/(G+1)⌋` good blocks.-/
+/-- **Gap ⇒ count.**  Gaps `≤ G` force at least `⌊R/(G+1)⌋` good blocks.
+@isnad1 id=le.1h3v.s6.2a00c0a4b397 from=translated src=- shape=30b596e1 vocab=8ef7035a
+-/
 theorem card_good_ge (good : ℕ → Prop) [DecidablePred good] (R G : ℕ)
     (h : ∀ r₀, r₀ + (G + 1) ≤ R → ∃ r, r₀ ≤ r ∧ r < r₀ + (G + 1) ∧ good r) :
     R / (G + 1) ≤ ((range R).filter good).card := by
@@ -459,7 +513,9 @@ theorem card_good_ge (good : ℕ → Prop) [DecidablePred good] (R G : ℕ)
     card_le_card (filter_subset_filter _ (range_subset_range.mpr hq))
   exact le_trans (key _ hq) hmono
 
-/-- **Gap ⇒ `PositiveDensityGoodAngles`** with `k = ⌊R/(G+1)⌋`, `ρ = 0`.-/
+/-- **Gap ⇒ `PositiveDensityGoodAngles`** with `k = ⌊R/(G+1)⌋`, `ρ = 0`.
+@isnad1 id=positive.3h8v.s7.54c481e861c6 from=translated src=- shape=6ad35bc9 vocab=ef8f7aee
+-/
 theorem positiveDensityGoodAngles_of_gap {ι : Type*} (T : Finset ι) (w : ι → ℝ) (W : ι → ℕ → ℝ)
     (good : ι → ℕ → Prop) [∀ P, DecidablePred (good P)] (R G : ℕ) {κ : ℝ}
     (hW : ∀ P ∈ T, ∀ r, 0 ≤ W P r ∧ W P r ≤ 1) (hgood : ∀ P ∈ T, ∀ r, good P r → W P r ≤ κ)
@@ -474,7 +530,9 @@ theorem positiveDensityGoodAngles_of_gap {ι : Type*} (T : Finset ι) (w : ι �
 
 variable (b : ℕ → ℕ)
 
-/-- **Gap ⇒ `LowFreqDecay`** at rate `κ^{2⌊R/(G+1)⌋}`.-/
+/-- **Gap ⇒ `LowFreqDecay`** at rate `κ^{2⌊R/(G+1)⌋}`.
+@isnad1 id=lowfreqd.9h15v.s8.72be557cf456 from=translated src=- shape=fa9a4cf1 vocab=4ac17e3d
+-/
 theorem lowFreqDecay_of_gap {κι : Type*} (j0 σ t U : ℕ) (T : Finset κι) (w : κι → ℝ)
     (W : ℕ → κι → ℕ → ℝ) (good : ℕ → κι → ℕ → Prop) [∀ lam c, DecidablePred (good lam c)]
     (R G : ℕ) {κ C γ : ℝ} (hκ0 : 0 ≤ κ) (hκ1 : κ ≤ 1) (hw : ∀ c ∈ T, 0 ≤ w c)
@@ -499,7 +557,9 @@ def TriangleGapBridge (η : ℝ) (Ω : Set (ℕ × ℕ)) {ι : Type*} (T : Finse
   ∀ R₀, MaxTriangleLE η Ω R₀ → GoodGap T good R (G R₀)
 
 /-- **`SublinearMaxTriangle` + bridge ⇒ `LowFreqDecay`** at rate `κ^{2⌊R/(G(εL)+1)⌋}` for
-`L ≥ L₀(ε)`.  With `G(R₀) ≈ R₀/log 3` this factor tends to `0` but at no computable rate.-/
+`L ≥ L₀(ε)`.  With `G(R₀) ≈ R₀/log 3` this factor tends to `0` but at no computable rate.
+@isnad1 id=ex.4h4v.s9.323da4db5858 from=translated src=- shape=7a405794 vocab=be5b6738
+-/
 theorem lowFreqDecay_of_sublinearMaxTriangle {η : ℝ} (hη : 0 < η) (hsub : SublinearMaxTriangle η)
     {c ε : ℝ} (hc : 0 ≤ c) (hε : 0 < ε) :
     ∃ L₀ : ℝ, ∀ m L : ℕ, L₀ ≤ L → (m : ℝ) ≤ c * L →

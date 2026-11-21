@@ -34,6 +34,9 @@ length-`t` valuation prefix `v`.-/
 noncomputable def prefixMass (w : ℕ → ℝ) (Nwin t : ℕ) (v : Fin t → ℕ) : ℝ :=
   ∑ j ∈ range Nwin, if valuationVector j t = v then w j else 0
 
+/--
+@isnad1 id=eq.1h3v.s5.98a0e353f58a from=translated src=- shape=20d1a58d vocab=1123559c
+-/
 theorem pushforward_eq_genEventProb_prefixMass (Nwin t : ℕ) (w : ℕ → ℝ)
     (hw_supp : Function.support w ⊆ ↑(range Nwin)) :
     pushforward (genEventProb w) (fun m => valuationVector m t)
@@ -42,7 +45,9 @@ theorem pushforward_eq_genEventProb_prefixMass (Nwin t : ℕ) (w : ℕ → ℝ)
 
 /-- **Prefix mass normalization**: if the global law has total mass `1`, the prefix masses sum
 to `1` over the (finitely many) realized prefixes. Immediate from
-`pushforward_eq_genEventProb_prefixMass` applied to `Set.univ`, plus `genEventProb_univ`.-/
+`pushforward_eq_genEventProb_prefixMass` applied to `Set.univ`, plus `genEventProb_univ`.
+@isnad1 id=eq.2h3v.s6.6f4fb9e4bace from=translated src=- shape=463c27ec vocab=6a41f2b5
+-/
 theorem prefixMass_tsum_eq_one (Nwin t : ℕ) (w : ℕ → ℝ)
     (hw_supp : Function.support w ⊆ ↑(range Nwin))
     (hw_univ : genEventProb w Set.univ = 1) :
@@ -65,7 +70,9 @@ noncomputable def prefixConditionalWeight (w : ℕ → ℝ) (Nwin t : ℕ) (v : 
 
 /-- **Finite conditional-probability identity.** `genEventProb` of the normalized conditional
 weight recovers exactly `P(E ∩ cylinder) / P(cylinder)`, for every event `E` — no positivity
-hypothesis is needed (both sides are `0` when the mass is `0`, by real division convention).-/
+hypothesis is needed (both sides are `0` when the mass is `0`, by real division convention).
+@isnad1 id=eq.0h5v.s5.41736e0f5292 from=translated src=- shape=76dea07c vocab=7d204c61
+-/
 theorem genEventProb_prefixConditionalWeight_eq (w : ℕ → ℝ) (Nwin t : ℕ) (v : Fin t → ℕ)
     (E : Set ℕ) :
     genEventProb (prefixConditionalWeight w Nwin t v) E
@@ -87,7 +94,9 @@ theorem genEventProb_prefixConditionalWeight_eq (w : ℕ → ℝ) (Nwin t : ℕ)
 
 /-- `genEventProb` of the `E`-restricted weight recovers `P(E ∩ S)` for any set `S` — the
 general identity making the rest of this section a matter of bookkeeping, not new probability
-theory.-/
+theory.
+@isnad1 id=eq.0h3v.s4.2f5321ed2259 from=translated src=- shape=256e6e88 vocab=f6a3ce76
+-/
 theorem genEventProb_indicator_inter (w : ℕ → ℝ) (E S : Set ℕ) :
     genEventProb (Set.indicator E w) S = genEventProb w (E ∩ S) := by
   unfold genEventProb
@@ -97,7 +106,9 @@ theorem genEventProb_indicator_inter (w : ℕ → ℝ) (E S : Set ℕ) :
     simp [Set.indicator, hS, hE, Set.mem_inter_iff]
 
 /-- The joint mass of `E` and a prefix cylinder, expressed as the prefix mass of the
-`E`-restricted weight.-/
+`E`-restricted weight.
+@isnad1 id=eq.1h5v.s6.92435c39d632 from=translated src=- shape=9ec1ba48 vocab=3545dc11
+-/
 theorem prefixMass_indicator_eq (w : ℕ → ℝ) (Nwin t : ℕ)
     (hw_supp : Function.support w ⊆ ↑(range Nwin)) (v : Fin t → ℕ) (E : Set ℕ) :
     prefixMass (Set.indicator E w) Nwin t v
@@ -112,7 +123,9 @@ theorem prefixMass_indicator_eq (w : ℕ → ℝ) (Nwin t : ℕ)
   congr 2
 
 /-- **Law of total probability over prefixes.** The `E`-mass of the global law equals the sum,
-over all realized prefixes, of the joint `E`-and-cylinder mass.-/
+over all realized prefixes, of the joint `E`-and-cylinder mass.
+@isnad1 id=eq.1h4v.s6.15fa3ed6191f from=translated src=- shape=126001b6 vocab=a56fe66a
+-/
 theorem genEventProb_eq_tsum_prefixMass_indicator (w : ℕ → ℝ) (Nwin t : ℕ)
     (hw_supp : Function.support w ⊆ ↑(range Nwin)) (E : Set ℕ) :
     genEventProb w E = ∑' v : Fin t → ℕ, genEventProb w (E ∩ {m | valuationVector m t = v}) := by
@@ -131,7 +144,9 @@ open Classical in
 /-- **GOOD-prefix aggregation.** If the conditional `E`-probability on every positive-mass
 GOOD prefix is bounded by `B`, the joint mass of `E` and the union of GOOD cylinders is
 bounded by `B` times the total GOOD mass — the exact aggregation step Milestone 8 needed to
-combine Milestone 7's fixed-prefix bound over all admissible prefixes.-/
+combine Milestone 7's fixed-prefix bound over all admissible prefixes.
+@isnad1 id=le.4h6v.s7.a977b7160fee from=translated src=- shape=f185b43f vocab=abe6ada1
+-/
 theorem good_prefix_event_bound_of_conditional_bound
     (w : ℕ → ℝ) (Nwin t : ℕ) (hw_supp : Function.support w ⊆ ↑(range Nwin))
     (hw_nonneg : ∀ m, 0 ≤ w m) (Good : (Fin t → ℕ) → Prop) (E : Set ℕ) (B : ℝ) (hB : 0 ≤ B)
@@ -230,6 +245,9 @@ cancellable. Combined with the existing `cylinder_window_reindex` (ResidueTV.lea
 the exact finite `k`-parametrization of every same-prefix seed in a window — no new
 window-counting machinery needs to be built, only this congruence-class identification. -/
 
+/--
+@isnad1 id=iff.2h4v.s6.06c790345925 from=translated src=- shape=22fd18b8 vocab=cb537ae8
+-/
 theorem realizes_iff_modEq (d : ℕ → ℕ) (t r m : ℕ) (hd_pos : ∀ i < t, 1 ≤ d i)
     (hr : Realizes d t r) :
     Realizes d t m ↔ Odd m ∧ m ≡ r [MOD 2 ^ (S d t + 1)] := by
@@ -270,7 +288,9 @@ internal construction. Completing this exhaustiveness is the precise remaining s
 central bridge theorem (Part 5's `E`/`possibility A` case) and would require either
 strengthening `cylinder_window_reindex` (e.g. exposing `kmin`'s minimality) or a fresh
 from-scratch bound; deliberately not forced here, per the "do not assume the converse" and
-"do not force an equality that is mathematically false" instructions.-/
+"do not force an equality that is mathematically false" instructions.
+@isnad1 id=ex.3h5v.s8.8a05099107ae from=translated src=- shape=b0b8675c vocab=21a6ccde
+-/
 theorem cylinder_point_realizes (d : ℕ → ℕ) (t r Y Z : ℕ) (hr : Realizes d t r)
     (hYr : r ≤ Y) (hYZ : Y ≤ Z) :
     ∃ kmin N : ℕ,

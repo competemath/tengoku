@@ -32,7 +32,9 @@ namespace LogAbsorb
 
 open Real
 
-/-- `log x ≤ 2 √x` for `x > 0`.-/
+/-- `log x ≤ 2 √x` for `x > 0`.
+@isnad1 id=le.1h1v.s5.40e189de859e from=translated src=- shape=07dccf84 vocab=71d83edf
+-/
 theorem log_le_two_mul_sqrt {x : ℝ} (hx : 0 < x) : Real.log x ≤ 2 * Real.sqrt x := by
   have hs : 0 < Real.sqrt x := Real.sqrt_pos.mpr hx
   have h := Real.log_le_sub_one_of_pos hs
@@ -40,7 +42,9 @@ theorem log_le_two_mul_sqrt {x : ℝ} (hx : 0 < x) : Real.log x ≤ 2 * Real.sqr
   rw [hlog] at h
   linarith
 
-/-- `logb 2 x ≤ 3 √x` for `x > 0`: from `log x ≤ 2√x` and `2 / log 2 ≤ 3`.-/
+/-- `logb 2 x ≤ 3 √x` for `x > 0`: from `log x ≤ 2√x` and `2 / log 2 ≤ 3`.
+@isnad1 id=le.1h1v.s5.31558917b8ec from=translated src=- shape=0ae71c5d vocab=d8cb0bbf
+-/
 theorem logb_le_three_mul_sqrt {x : ℝ} (hx : 0 < x) : Real.logb 2 x ≤ 3 * Real.sqrt x := by
   have hlog2 : (0 : ℝ) < Real.log 2 := Real.log_pos one_lt_two
   have hl2 : (0.6931471803 : ℝ) < Real.log 2 := by
@@ -52,7 +56,9 @@ theorem logb_le_three_mul_sqrt {x : ℝ} (hx : 0 < x) : Real.logb 2 x ≤ 3 * Re
   nlinarith
 
 /-- **Log absorption with an explicit threshold.**  If `0 ≤ C`, `θ < θ'` and
-`n ≥ (3C/(θ'-θ))²`, then `C · log₂ n + θ · n ≤ θ' · n`.-/
+`n ≥ (3C/(θ'-θ))²`, then `C · log₂ n + θ · n ≤ θ' · n`.
+@isnad1 id=le.4h4v.s7.e000884e42fb from=translated src=- shape=0a522f71 vocab=2bb8d5d0
+-/
 theorem log_absorb {C θ θ' : ℝ} (hC : 0 ≤ C) (hθ : θ < θ') {n : ℝ} (hn0 : 0 < n)
     (hn : (3 * C / (θ' - θ)) ^ 2 ≤ n) :
     C * Real.logb 2 n + θ * n ≤ θ' * n := by
@@ -74,7 +80,9 @@ theorem log_absorb {C θ θ' : ℝ} (hC : 0 ≤ C) (hθ : θ < θ') {n : ℝ} (h
 
 /-- **Exponential form.**  Under the same hypotheses, `2^(C log₂ n + θ n) ≤ 2^(θ' n)`; i.e. the
 polynomial factor `n^C` produced by a logarithmic surplus is absorbed by any strictly larger
-exponential rate beyond the explicit threshold.-/
+exponential rate beyond the explicit threshold.
+@isnad1 id=le.4h4v.s7.6411dbc382e7 from=translated src=- shape=318bdcf3 vocab=2bb8d5d0
+-/
 theorem rpow_log_absorb {C θ θ' : ℝ} (hC : 0 ≤ C) (hθ : θ < θ') {n : ℝ} (hn0 : 0 < n)
     (hn : (3 * C / (θ' - θ)) ^ 2 ≤ n) :
     (2 : ℝ) ^ (C * Real.logb 2 n + θ * n) ≤ (2 : ℝ) ^ (θ' * n) :=

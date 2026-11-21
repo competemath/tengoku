@@ -36,6 +36,9 @@ variable (b : ℕ → ℕ)
 
 /-! ## 1. The block choice set is an interval -/
 
+/--
+@isnad1 id=eq.0h4v.s6.9a51eff12b3a from=translated src=- shape=ea97d6eb vocab=78110ce8
+-/
 theorem card_Bset (l x y : ℕ) :
     (Bset b l x y).card = min (y - x - 1) (b (2 * l + 1) - x) := by
   classical
@@ -67,7 +70,9 @@ theorem card_Bset (l x y : ℕ) :
 
 /-! ## 2. Two exact dyadic identities -/
 
-/-- `∑_{i<n} 2^{-(i+2)} = 1/2 - 2^{-(n+1)}`.-/
+/-- `∑_{i<n} 2^{-(i+2)} = 1/2 - 2^{-(n+1)}`.
+@isnad1 id=eq.0h1v.s7.aa5feacefb03 from=translated src=- shape=9f31de07 vocab=d978ee86
+-/
 theorem sum_inv_two_pow_eq (n : ℕ) :
     ∑ i ∈ range n, (1 : ℝ) / 2 ^ (i + 2) = 1 / 2 - 1 / 2 ^ (n + 1) := by
   induction n with
@@ -79,13 +84,18 @@ theorem sum_inv_two_pow_eq (n : ℕ) :
     field_simp
     ring
 
+/--
+@isnad1 id=le.0h1v.s6.fe504784127a from=translated src=- shape=bdf5bf1f vocab=53354fcd
+-/
 theorem sum_inv_two_pow_le (n : ℕ) :
     ∑ i ∈ range n, (1 : ℝ) / 2 ^ (i + 2) ≤ 1 / 2 := by
   rw [sum_inv_two_pow_eq]
   have : (0 : ℝ) < 1 / 2 ^ (n + 1) := by positivity
   linarith
 
-/-- `∑_{i<n} (i+2)·2^{-(i+3)} = 3/4 - (n+3)·2^{-(n+2)}`.-/
+/-- `∑_{i<n} (i+2)·2^{-(i+3)} = 3/4 - (n+3)·2^{-(n+2)}`.
+@isnad1 id=eq.0h1v.s7.9d980a3e120e from=translated src=- shape=07f8386f vocab=b6812a7b
+-/
 theorem sum_succ_mul_inv_two_pow_eq (n : ℕ) :
     ∑ i ∈ range n, ((i : ℝ) + 2) / 2 ^ (i + 3) = 3 / 4 - ((n : ℝ) + 3) / 2 ^ (n + 2) := by
   induction n with
@@ -98,6 +108,9 @@ theorem sum_succ_mul_inv_two_pow_eq (n : ℕ) :
     field_simp
     ring
 
+/--
+@isnad1 id=le.0h1v.s6.6a4c73ce02b4 from=translated src=- shape=c8ddc77b vocab=e139705d
+-/
 theorem sum_succ_mul_inv_two_pow_le (n : ℕ) :
     ∑ i ∈ range n, ((i : ℝ) + 2) / 2 ^ (i + 3) ≤ 3 / 4 := by
   rw [sum_succ_mul_inv_two_pow_eq]
@@ -109,11 +122,16 @@ theorem sum_succ_mul_inv_two_pow_le (n : ℕ) :
 /-- The certificate weight `h(l,x) = 2^(σ-x)`.-/
 noncomputable def hcert (σ : ℕ) : ℕ → Fin (σ + 1) → ℝ := fun _ x => (2 : ℝ) ^ (σ - (x : ℕ))
 
+/--
+@isnad1 id=lt.0h3v.s5.23b57805768f from=translated src=- shape=1fcdd445 vocab=172f9403
+-/
 theorem hcert_pos (σ : ℕ) (l : ℕ) (y : Fin (σ + 1)) : 0 < hcert σ l y := by
   unfold hcert; positivity
 
 /-- **The super-eigenvector inequality.**  With tilt `u = 3` and `h = 2^(σ-x)`, the block kernel
-satisfies `∑_y blockW(l,x,y) h(l+1,y) ≤ (3/2) h(l,x)` at every layer and every state.-/
+satisfies `∑_y blockW(l,x,y) h(l+1,y) ≤ (3/2) h(l,x)` at every layer and every state.
+@isnad1 id=le.0h4v.s7.aaecdc9a1996 from=translated src=- shape=e6c75740 vocab=573b52ad
+-/
 theorem blockW_superEigen (σ : ℕ) (l : ℕ) (x : Fin (σ + 1)) :
     ∑ y : Fin (σ + 1), blockW b 3 σ l x y * hcert σ (l + 1) y ≤ (3 / 2) * hcert σ l x := by
   classical
@@ -226,7 +244,9 @@ theorem blockW_superEigen (σ : ℕ) (l : ℕ) (x : Fin (σ + 1)) :
 open ShapeBridge in
 /-- **`ShapeTail` from the explicit certificate.**  No super-eigenvector hypothesis remains: with
 tilt `u = 3` the shape tail holds with any `ρ₁` satisfying the single arithmetic inequality
-`j₀ · (3/2)^(j₀/2) · 2^σ ≤ ρ₁ · 3^T · C(σ-1, j₀-1)`.-/
+`j₀ · (3/2)^(j₀/2) · 2^σ ≤ ρ₁ · 3^T · C(σ-1, j₀-1)`.
+@isnad1 id=shapetai.8h8v.s8.0b3955dbffb2 from=translated src=- shape=83fd398b vocab=6fb95268
+-/
 theorem shapeTail_of_arith {j0 σ t N0 K T : ℕ} {ρ₁ : ℝ}
     (hj : 1 ≤ j0) (hρ : 0 ≤ ρ₁) (hj2 : 2 * (j0 / 2) = j0)
     (hchord : ∀ j ≤ j0, ∀ p : ℕ, j0 * p ≤ j * b j0 → p ≤ b j)

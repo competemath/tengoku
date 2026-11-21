@@ -42,7 +42,9 @@ open Finset HarmonicPacking
 /-! ## 1. A lower bound for the coprime-to-`6` rank -/
 
 /-- Companion to `three_mul_coprimeSixRank_le_add_two`: for `x` coprime to `6`,
-`x ≤ 3 · rank x` (the enumeration `1, 5, 7, 11, …` has density `1/3`).-/
+`x ≤ 3 · rank x` (the enumeration `1, 5, 7, 11, …` has density `1/3`).
+@isnad1 id=le.2h1v.s5.2b9ea982985c from=translated src=- shape=a863c0a4 vocab=0b365315
+-/
 theorem le_three_mul_coprimeSixRank {x : ℕ} (hodd : Odd x) (hthree : ¬ 3 ∣ x) :
     x ≤ 3 * coprimeSixRank x := by
   rcases mod_six_eq_one_or_five hodd hthree with hmod | hmod
@@ -60,7 +62,9 @@ theorem le_three_mul_coprimeSixRank {x : ℕ} (hodd : Odd x) (hthree : ¬ 3 ∣ 
 /-- For an antitone `f` and a finite set `T` of naturals all of whose elements are `≥ r₀`, the sum
 of `f` over `T` is at most the sum of `f` over the shifted initial segment
 `{r₀, r₀+1, …, r₀ + |T| - 1}`.  (The `r₀ = 0` case is
-`HarmonicPacking.sum_le_sum_range_card_of_antitone`.)-/
+`HarmonicPacking.sum_le_sum_range_card_of_antitone`.)
+@isnad1 id=le.2h3v.s6.491973e40040 from=translated src=- shape=db14b617 vocab=f8b448f3
+-/
 theorem sum_le_sum_range_shift_of_antitone (f : ℕ → ℝ) (hf : Antitone f) (r₀ : ℕ) :
     ∀ T : Finset ℕ, (∀ x ∈ T, r₀ ≤ x) → ∑ x ∈ T, f x ≤ ∑ j ∈ range T.card, f (r₀ + j) := by
   intro T
@@ -84,7 +88,9 @@ theorem sum_le_sum_range_shift_of_antitone (f : ℕ → ℝ) (hf : Antitone f) (
 /-- **Packing distinct coprime-to-`6` values above a floor.**  If `m 0, …, m (n-1)` are pairwise
 distinct, odd, not divisible by `3` and all at least `M ≥ 3`, then
 `∑_{k<n} 1/m_k ≤ ∑_{j<n} 1/((M-2) + 3j)`: the extremal configuration is the initial segment of the
-integers coprime to `6` starting at `M`.-/
+integers coprime to `6` starting at `M`.
+@isnad1 id=le.5h3v.s7.29044b4043ec from=translated src=- shape=df90acb8 vocab=3efcc443
+-/
 theorem sum_inv_le_sum_inv_shift (m : ℕ → ℕ) (n M : ℕ) (hM3 : 3 ≤ M)
     (hinj : ∀ i < n, ∀ j < n, m i = m j → i = j)
     (hodd : ∀ i < n, Odd (m i)) (hthree : ∀ i < n, ¬ 3 ∣ m i)
@@ -153,7 +159,9 @@ theorem sum_inv_le_sum_inv_shift (m : ℕ → ℕ) (n M : ℕ) (hM3 : 3 ≤ M)
 
 /-! ## 4. The shifted harmonic sum is logarithmic -/
 
-/-- Telescoping bound: `∑_{j<n} 1/(b + 3(j+1)) ≤ (1/3)(log (b+3n) - log b)` for `b > 0`.-/
+/-- Telescoping bound: `∑_{j<n} 1/(b + 3(j+1)) ≤ (1/3)(log (b+3n) - log b)` for `b > 0`.
+@isnad1 id=le.1h2v.s7.c83f5fb5277e from=translated src=- shape=9414dec0 vocab=6622b9a4
+-/
 theorem sum_range_inv_shift_succ_le (b : ℝ) (hb : 0 < b) (n : ℕ) :
     ∑ j ∈ range n, (1 : ℝ) / (b + 3 * ((j : ℝ) + 1))
       ≤ (1 / 3) * (Real.log (b + 3 * (n : ℝ)) - Real.log b) := by
@@ -180,7 +188,9 @@ theorem sum_range_inv_shift_succ_le (b : ℝ) (hb : 0 < b) (n : ℕ) :
     push_cast at ih hstep ⊢
     linarith
 
-/-- **The shifted harmonic sum.** `∑_{j<n} 1/(b + 3j) ≤ 1/b + (1/3) log (1 + 3n/b)` for `b > 0`.-/
+/-- **The shifted harmonic sum.** `∑_{j<n} 1/(b + 3j) ≤ 1/b + (1/3) log (1 + 3n/b)` for `b > 0`.
+@isnad1 id=le.1h2v.s7.97e78b5cae39 from=translated src=- shape=2ac5492e vocab=5d88ef15
+-/
 theorem sum_range_inv_shift_le (b : ℝ) (hb : 0 < b) (n : ℕ) :
     ∑ j ∈ range n, (1 : ℝ) / (b + 3 * (j : ℝ))
       ≤ 1 / b + (1 / 3) * Real.log (1 + 3 * (n : ℝ) / b) := by
@@ -215,7 +225,9 @@ are pairwise distinct and all at least `M`, then
 `∑_{k<N} 1/m_k ≤ 2/(M-2) + (1/3) log (1 + 3N/(M-2))`.
 
 Compare `HarmonicPacking.sum_inv_orbit_le`, which uses only distinctness and gives
-`7/3 + (1/3) log N`; and the trivial floor bound `N/M`.-/
+`7/3 + (1/3) log N`; and the trivial floor bound `N/M`.
+@isnad1 id=le.4h2v.s7.39e503f2d57f from=translated src=- shape=1541c1b5 vocab=6caaaef8
+-/
 theorem sum_inv_orbit_le_of_nondescent (M N : ℕ) (hM : Odd M) (hM3 : 3 ≤ M)
     (hinj : ∀ i < N, ∀ j < N, orbit M i = orbit M j → i = j)
     (hge : ∀ i < N, M ≤ orbit M i) :
@@ -267,7 +279,9 @@ theorem sum_inv_orbit_le_of_nondescent (M N : ℕ) (hM : Odd M) (hM3 : 3 ≤ M)
           + (1 / 3) * Real.log (1 + 3 * ((n + 1 : ℕ) : ℝ) / ((M : ℝ) - 2)) := by linarith
 
 /-- **The harmonic carry bound.** Under non-descent with distinct states,
-`E_N = log₂ U_N ≤ (1/9) log₂ (1 + 3N/(M-2)) + 2/(3 ln 2 (M-2))`.-/
+`E_N = log₂ U_N ≤ (1/9) log₂ (1 + 3N/(M-2)) + 2/(3 ln 2 (M-2))`.
+@isnad1 id=le.4h2v.s7.51e68ba6cd4f from=translated src=- shape=fad75d5a vocab=6f918c25
+-/
 theorem carryE_le_of_nondescent (M N : ℕ) (hM : Odd M) (hM3 : 3 ≤ M)
     (hinj : ∀ i < N, ∀ j < N, orbit M i = orbit M j → i = j)
     (hge : ∀ i < N, M ≤ orbit M i) :
@@ -300,7 +314,9 @@ step `N`, none of which is below `M`, then
 
 This replaces the linear ceiling `R_N ≤ N/(3M ln 2)` of `DirectDescent.R_le_of_nondescent`; the two
 agree to first order for `N ≪ M`, and for `N = C·M` the new one is `(1/9) log₂(1+3C) + O(1/M)`
-instead of `C/(3 ln 2)`.-/
+instead of `C/(3 ln 2)`.
+@isnad1 id=le.4h2v.s7.b08577eea2c8 from=translated src=- shape=680f4399 vocab=48944753
+-/
 theorem R_le_of_nondescent_harmonic (M N : ℕ) (hM : Odd M) (hM3 : 3 ≤ M)
     (hinj : ∀ i ≤ N, ∀ j ≤ N, orbit M i = orbit M j → i = j)
     (hge : ∀ i ≤ N, M ≤ orbit M i) :
@@ -326,7 +342,9 @@ theorem R_le_of_nondescent_harmonic (M N : ℕ) (hM : Odd M) (hM3 : 3 ≤ M)
 /-! ## 6. Band occupancy: the drift cannot stay high -/
 
 /-- The carry product is nondecreasing along an odd orbit (proved again below as strict
-monotonicity; this weak form is what the occupancy bound needs).-/
+monotonicity; this weak form is what the occupancy bound needs).
+@isnad1 id=le.2h3v.s4.190b9e8b3629 from=translated src=- shape=ab0d77d8 vocab=568584b5
+-/
 theorem carryU_le_of_le (M : ℕ) (hM : Odd M) {i j : ℕ} (hij : i ≤ j) :
     carryU M i ≤ carryU M j := by
   induction j with
@@ -343,7 +361,9 @@ theorem carryU_le_of_le (M : ℕ) (hM : Odd M) {i j : ℕ} (hij : i ≤ j) :
       subst this; exact le_rfl
 
 /-- **The weighted observable.** `∑_{j<N} 2^{R_j} ≤ M · U_N · ∑_{j<N} 1/m_j`, from the
-Eliahou–Rozier identity `2^{R_j} = M U_j / m_j` and `U_j ≤ U_N`.-/
+Eliahou–Rozier identity `2^{R_j} = M U_j / m_j` and `U_j ≤ U_N`.
+@isnad1 id=le.1h2v.s6.3b4da3953a7e from=translated src=- shape=f6775f4c vocab=a0e3e2e4
+-/
 theorem sum_two_rpow_R_le (M N : ℕ) (hM : Odd M) :
     ∑ j ∈ range N, (2 : ℝ) ^ (R (orbWord M) j)
       ≤ (M : ℝ) * carryU M N * ∑ j ∈ range N, (1 : ℝ) / (orbit M j : ℝ) := by
@@ -367,7 +387,9 @@ theorem sum_two_rpow_R_le (M N : ℕ) (hM : Odd M) :
 drift stays above `-A` is at most `2^A · M · U_N · (2/(M-2) + (1/3) log (1 + 3N/(M-2)))`.
 
 With `N = C·M` and `U_N ≤ e^{C/3}` this is a bound of the form `(const) · M`: the drift must spend
-a definite fraction of a long non-descending prefix strictly below any fixed level.-/
+a definite fraction of a long non-descending prefix strictly below any fixed level.
+@isnad1 id=le.4h3v.s8.d01b11ba72ad from=translated src=- shape=5e9dc590 vocab=cc87ad76
+-/
 theorem band_occupancy (M N : ℕ) (hM : Odd M) (hM3 : 3 ≤ M) (A : ℝ)
     (hinj : ∀ i < N, ∀ j < N, orbit M i = orbit M j → i = j)
     (hge : ∀ i < N, M ≤ orbit M i) :
@@ -403,13 +425,18 @@ theorem band_occupancy (M N : ℕ) (hM : Odd M) (hM3 : 3 ≤ M) (A : ℝ)
 
 /-! ## 7. The distinctness hypothesis: a repeat is a cycle with strictly increasing drift -/
 
-/-- The carry product is strictly increasing along an odd orbit.-/
+/-- The carry product is strictly increasing along an odd orbit.
+@isnad1 id=lt.1h2v.s4.57c106dad666 from=translated src=- shape=0e81886a vocab=78b56fec
+-/
 theorem carryU_lt_succ (M k : ℕ) (hM : Odd M) : carryU M k < carryU M (k + 1) := by
   have hpos := carryU_pos M k
   have hmk : (0 : ℝ) < (orbit M k : ℝ) := by exact_mod_cast (odd_orbit hM k).pos
   rw [carryU_succ]
   nlinarith [one_div_pos.mpr (by positivity : (0 : ℝ) < 3 * (orbit M k : ℝ))]
 
+/--
+@isnad1 id=strictmo.1h1v.s3.8987199b7049 from=translated src=- shape=94c2c63c vocab=b29abc28
+-/
 theorem carryU_strictMono (M : ℕ) (hM : Odd M) : StrictMono (carryU M) := by
   apply strictMono_nat_of_lt_succ
   exact fun k => carryU_lt_succ M k hM
@@ -417,7 +444,9 @@ theorem carryU_strictMono (M : ℕ) (hM : Odd M) : StrictMono (carryU M) := by
 /-- **A repeated state forces strictly increasing drift.**  If `m_i = m_j` with `i < j`, then
 `R_i < R_j`.  (Consequently an orbit that revisits a state is periodic with a strictly positive
 drift per period, so it cannot stay confined: distinctness fails only for genuine nontrivial
-cycles.)-/
+cycles.)
+@isnad1 id=lt.3h3v.s5.1491f7430cd6 from=translated src=- shape=e86fa492 vocab=2d2fa0e1
+-/
 theorem R_lt_of_orbit_eq (M i j : ℕ) (hM : Odd M) (hij : i < j) (heq : orbit M i = orbit M j) :
     R (orbWord M) i < R (orbWord M) j := by
   have hidi := orbit_mul_two_rpow_R M i hM

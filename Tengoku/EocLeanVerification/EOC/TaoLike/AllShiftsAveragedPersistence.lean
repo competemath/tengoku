@@ -39,7 +39,9 @@ def allShiftsPersistenceEvent (T n : ℕ) (c : ℝ) : Set ℕ :=
 /-- **Finite union bound.** For a finitely-supported nonnegative weight `w`, the probability of
 `∃ t ∈ Tset, m ∈ E t` is at most the sum, over `Tset`, of the individual event probabilities —
 a plain finite-combinatorics fact about `genEventProb`, with no reference to Tao's hypothesis or
-any Collatz-specific structure.-/
+any Collatz-specific structure.
+@isnad1 id=le.2h4v.s6.c5427e905783 from=translated src=- shape=a20eedb5 vocab=137bd65d
+-/
 theorem genEventProb_biUnion_le_sum_of_supp (w : ℕ → ℝ) (hw_nonneg : ∀ m, 0 ≤ w m) (Nwin : ℕ)
     (hw_supp : Function.support w ⊆ ↑(range Nwin)) (Tset : Finset ℕ) (E : ℕ → Set ℕ) :
     genEventProb w {m : ℕ | ∃ t ∈ Tset, m ∈ E t} ≤ ∑ t ∈ Tset, genEventProb w (E t) := by
@@ -66,7 +68,9 @@ theorem genEventProb_biUnion_le_sum_of_supp (w : ℕ → ℝ) (hw_nonneg : ∀ m
 
 /-- **Orbit flow / restart compatibility.** The length-`n` suffix of the length-`(t+n)`
 valuation vector is exactly the length-`n` valuation vector of the restarted state
-`orbit m t` — via the orbit flow property `orbit_add`.-/
+`orbit m t` — via the orbit flow property `orbit_add`.
+@isnad1 id=eq.0h3v.s4.982009ce41f3 from=translated src=- shape=50c70016 vocab=8aa5c97c
+-/
 theorem suffixVector_valuationVector_eq (m t n : ℕ) :
     suffixVector t n (valuationVector m (t + n)) = valuationVector (orbit m t) n := by
   funext i
@@ -76,7 +80,9 @@ theorem suffixVector_valuationVector_eq (m t n : ℕ) :
 
 /-- **EARLY-shift event identification.** `early_shift_persistence_upper_bound_of_constants`'s
 pushforward event coincides exactly with the per-shift event used in
-`allShiftsPersistenceEvent`.-/
+`allShiftsPersistenceEvent`.
+@isnad1 id=eq.0h4v.s6.2b5cb8d66e3a from=translated src=- shape=f51a597a vocab=c5ba8d19
+-/
 theorem pushforward_jointShifted_eq_shiftEvent (w : ℕ → ℝ) (t n : ℕ) (c : ℝ) :
     pushforward (genEventProb w) (fun m => valuationVector m (t + n))
         (jointShiftedPersistenceEvent t n c)
@@ -89,7 +95,9 @@ theorem pushforward_jointShifted_eq_shiftEvent (w : ℕ → ℝ) (t n : ℕ) (c 
   rw [suffixVector_valuationVector_eq m t n]
 
 /-- The harmonic window weight vanishes off the odd naturals, so its total mass is unaffected by
-restricting to `{m | ¬ Odd m}`.-/
+restricting to `{m | ¬ Odd m}`.
+@isnad1 id=eq.0h2v.s5.7ee5f3a1f14b from=translated src=- shape=41e9f275 vocab=4f2960cb
+-/
 theorem harmonicWindowWeight_odd_zero (Y H : ℕ) :
     genEventProb (harmonicWindowWeight Y (Y + H)) {m : ℕ | ¬ Odd m} = 0 := by
   unfold genEventProb
@@ -110,7 +118,9 @@ theorem harmonicWindowWeight_odd_zero (Y H : ℕ) :
 joint-vector Tao transfer (Milestone 8, fixed-witness form) bounds the probability that the
 length-`n` future valuation block after `t` accelerated steps persists — for a *fixed* early
 shift `t`, no restart, no GOOD/BAD split. `Kearly` is supplied by the caller and reused
-identically across every early shift.-/
+identically across every early shift.
+@isnad1 id=le.5h8v.s8.beb8262b8262 from=translated src=- shape=f55631dd vocab=c0166eae
+-/
 theorem early_shift_true_bound
     (Y H : ℕ) (c0 : ℝ) (Kearly : TaoMixingConstants c0) (hKearly : TaoMixingProperty c0 Kearly)
     (hnorm : genEventProb (harmonicWindowWeight Y (Y + H)) Set.univ = 1)
@@ -145,7 +155,9 @@ unmodified, across every late shift. Every per-shift hypothesis of the two under
 that does not genuinely depend on `t` (residue-closeness, information budget, window thickness,
 normalization) is stated ONCE, uniformly over the whole shift range, and the two hypotheses
 that do depend on `t` (`hQrel` for EARLY, `hQprerel` for LATE) are derived here from a single
-uniform bound via monotonicity in `t`.-/
+uniform bound via monotonicity in `t`.
+@isnad1 id=le.24h18v.s10.bb7f793c94c4 from=translated src=- shape=764838de vocab=009b5010
+-/
 theorem all_shifts_averaged_persistence_finite
     (Y H : ℕ) (hYpos : 0 < Y)
     (Tearly Ttotal : ℕ) (hTearly_pos : 1 ≤ Tearly) (hTle : Tearly ≤ Ttotal)

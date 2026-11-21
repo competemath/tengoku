@@ -41,11 +41,16 @@ variable {d : ℕ → ℕ}
 /-- The block of `r_N` above position `S_j`: `k = ⌊r_N / 2^(S_j+1)⌋`.-/
 def concatBlock (d : ℕ → ℕ) (j N : ℕ) : ℕ := leastRealizer d N / 2 ^ (S d j + 1)
 
+/--
+@isnad1 id=eq.2h3v.s6.048ce003268f from=translated src=- shape=bb7d5641 vocab=05ad827e
+-/
 theorem leastRealizer_eq_concat {j N : ℕ} (hd : ∀ i < N, 1 ≤ d i) (hj : j ≤ N) :
     leastRealizer d N = leastRealizer d j + 2 ^ (S d j + 1) * concatBlock d j N := by
   rw [concatBlock, ← leastRealizer_mod hd hj, Nat.mod_add_div]
 
-/-- `k < 2^(S_v)` with `S_v = S_N − S_j = S (σ^j d) (N − j)`.-/
+/-- `k < 2^(S_v)` with `S_v = S_N − S_j = S (σ^j d) (N − j)`.
+@isnad1 id=lt.1h3v.s5.f4abc2d2d8df from=translated src=- shape=43bb2598 vocab=cd111970
+-/
 theorem concat_lt {j N : ℕ} (hj : j ≤ N) :
     concatBlock d j N < 2 ^ (S (shiftWord d j) (N - j)) := by
   rw [S_shiftWord d hj, concatBlock, Nat.div_lt_iff_lt_mul (by positivity), ← pow_add]
@@ -54,7 +59,9 @@ theorem concat_lt {j N : ℕ} (hj : j ≤ N) :
   calc leastRealizer d N < 2 ^ (S d N + 1) := h
     _ = 2 ^ (S d N - S d j + (S d j + 1)) := by congr 1; omega
 
-/-- **Concatenation congruence.** `T^j(r_j) + 2·3^j·k ≡ r_v (mod 2^(S_v+1))`.-/
+/-- **Concatenation congruence.** `T^j(r_j) + 2·3^j·k ≡ r_v (mod 2^(S_v+1))`.
+@isnad1 id=modeq.3h3v.s7.181fd990baa5 from=translated src=- shape=7599c905 vocab=50e2590b
+-/
 theorem concat_modEq {j N : ℕ} (hj1 : 1 ≤ j) (hd : ∀ i < N, 1 ≤ d i) (hj : j ≤ N) :
     orbit (leastRealizer d j) j + 2 * 3 ^ j * concatBlock d j N ≡
       leastRealizer (shiftWord d j) (N - j) [MOD 2 ^ (S (shiftWord d j) (N - j) + 1)] := by
@@ -66,7 +73,9 @@ theorem concat_modEq {j N : ℕ} (hj1 : 1 ≤ j) (hd : ∀ i < N, 1 ≤ d i) (hj
     (realizes_shiftWord (leastRealizer_realizes_all d N hd) hj)
 
 /-- **Uniqueness.** `k` is the only residue below `2^(S_v)` satisfying the congruence, so
-`k ≡ ((r_v − T^j r_j)/2) · 3^{−j} (mod 2^(S_v))`.-/
+`k ≡ ((r_v − T^j r_j)/2) · 3^{−j} (mod 2^(S_v))`.
+@isnad1 id=eq.5h4v.s7.70613d9218df from=translated src=- shape=0a816ce5 vocab=50e2590b
+-/
 theorem concat_unique {j N k : ℕ} (hj1 : 1 ≤ j) (hd : ∀ i < N, 1 ≤ d i) (hj : j ≤ N)
     (hk : k < 2 ^ (S (shiftWord d j) (N - j)))
     (hmod : orbit (leastRealizer d j) j + 2 * 3 ^ j * k ≡
@@ -83,7 +92,9 @@ theorem concat_unique {j N k : ℕ} (hj1 : 1 ≤ j) (hd : ∀ i < N, 1 ≤ d i) 
     Nat.Coprime.pow t j (by norm_num : Nat.Coprime 2 3)
   exact (Nat.ModEq.cancel_left_of_coprime hcop h3).eq_of_lt_of_lt hk (concat_lt hj)
 
-/-- **Cutoff transfer.** For `S_j < K`, `r_N < 2^K ↔ k < 2^(K − S_j − 1)`.-/
+/-- **Cutoff transfer.** For `S_j < K`, `r_N < 2^K ↔ k < 2^(K − S_j − 1)`.
+@isnad1 id=iff.3h4v.s6.bb969275607b from=translated src=- shape=1fb010e1 vocab=577bf111
+-/
 theorem lt_pow_iff_concat {j N K : ℕ} (hd : ∀ i < N, 1 ≤ d i) (hj : j ≤ N) (hK : S d j < K) :
     leastRealizer d N < 2 ^ K ↔ concatBlock d j N < 2 ^ (K - S d j - 1) := by
   rw [leastRealizer_eq_concat hd hj]
@@ -111,7 +122,9 @@ section Bilinear
 variable {G : Type*} [AddCommGroup G] [Fintype G]
 
 /-- **Bilinear incidence bound (squared form).**  With `μ = (∑_z N z)/|G|`,
-`(∑_{y∈Y} ∑_{i∈I} N(y − i) − |Y|·|I|·μ)^2 ≤ |I|^2 · |Y| · ∑_z (N z − μ)^2`.-/
+`(∑_{y∈Y} ∑_{i∈I} N(y − i) − |Y|·|I|·μ)^2 ≤ |I|^2 · |Y| · ∑_z (N z − μ)^2`.
+@isnad1 id=le.0h4v.s7.0ea88e14175a from=translated src=- shape=46b992a2 vocab=97a8b83a
+-/
 theorem bilinear_incidence_sq_le (Y I : Finset G) (N : G → ℝ) :
     (∑ y ∈ Y, ∑ i ∈ I, N (y - i) -
         (Y.card : ℝ) * I.card * ((∑ z, N z) / Fintype.card G)) ^ 2 ≤
@@ -152,7 +165,9 @@ theorem bilinear_incidence_sq_le (Y I : Finset G) (N : G → ℝ) :
 /-- **Bilinear incidence bound (constant form).** If `∑_z (N z − μ)^2 ≤ ε^2 · |Y| · μ^2` —
 equivalently `|G| · δ ≤ ε^2 · |Y|`, where `δ = |G| ∑ N^2/(∑ N)^2 − 1` is the relative collision
 excess of the weights — then the incidence count is at most `(1 + ε)` times its mean
-`|Y| |I| μ`.-/
+`|Y| |I| μ`.
+@isnad1 id=le.3h5v.s8.ebc506557875 from=translated src=- shape=20f4219d vocab=4734a17a
+-/
 theorem bilinear_incidence_le (Y I : Finset G) (N : G → ℝ) (ε : ℝ) (hε : 0 ≤ ε)
     (hμ : 0 ≤ (∑ z, N z) / Fintype.card G)
     (hcoll : ∑ z, (N z - (∑ z, N z) / Fintype.card G) ^ 2 ≤

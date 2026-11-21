@@ -34,23 +34,40 @@ open Finset Real SwapBound TwistExpansion
 /-- Distance from `x` to the nearest integer.-/
 noncomputable def dZ (x : ℝ) : ℝ := |x - round x|
 
+/--
+@isnad1 id=le.0h1v.s3.994e073cacf8 from=translated src=- shape=8a62b088 vocab=54704b3c
+-/
 theorem dZ_nonneg (x : ℝ) : 0 ≤ dZ x := abs_nonneg _
 
+/--
+@isnad1 id=le.0h1v.s4.9cffdcb53592 from=translated src=- shape=45b89831 vocab=00c5c34a
+-/
 theorem dZ_le_half (x : ℝ) : dZ x ≤ 1 / 2 := abs_sub_round x
 
+/--
+@isnad1 id=le.0h2v.s4.1f3dc0a4db90 from=translated src=- shape=5027d4b1 vocab=bf64f77d
+-/
 theorem dZ_le (x : ℝ) (z : ℤ) : dZ x ≤ |x - z| := round_le x z
 
+/--
+@isnad1 id=eq.0h0v.s5.80cb354ee54f from=translated src=- shape=ac8d3eb5 vocab=87f03e0e
+-/
 theorem ee_half : ee (1 / 2) = -1 := by
   unfold ee
   rw [show 2 * (π : ℂ) * Complex.I * ((1 / 2 : ℝ) : ℂ) = π * Complex.I by push_cast; ring]
   exact Complex.exp_pi_mul_I
 
+/--
+@isnad1 id=eq.0h1v.s5.6cf79307df8d from=translated src=- shape=cf17dbdc vocab=6b45c706
+-/
 theorem norm_ee_sub_one (x : ℝ) : ‖ee x - 1‖ = 2 * |Real.sin (π * x)| := by
   have h := norm_ee_add_ee x (1 / 2)
   rw [ee_half, ← sub_eq_add_neg] at h
   rw [h, show π * (x - 1 / 2) = π * x - π / 2 by ring, Real.cos_sub_pi_div_two]
 
-/-- `|sin(π r)| ≥ 2|r|` for `|r| ≤ 1/2`.-/
+/-- `|sin(π r)| ≥ 2|r|` for `|r| ≤ 1/2`.
+@isnad1 id=le.1h1v.s6.79618c092abc from=translated src=- shape=b5b5a8c1 vocab=21d3c126
+-/
 theorem two_abs_le_abs_sin {r : ℝ} (hr : |r| ≤ 1 / 2) : 2 * |r| ≤ |Real.sin (π * r)| := by
   have hpi := Real.pi_pos
   have key : ∀ y : ℝ, 0 ≤ y → y ≤ 1 / 2 → 2 * y ≤ Real.sin (π * y) := by
@@ -66,25 +83,38 @@ theorem two_abs_le_abs_sin {r : ℝ} (hr : |r| ≤ 1 / 2) : 2 * |r| ≤ |Real.si
     rw [show π * -r = -(π * r) by ring, Real.sin_neg] at this
     exact this.trans (neg_le_abs _)
 
+/--
+@isnad1 id=eq.0h1v.s4.e444d4d56cc9 from=translated src=- shape=7b2b28be vocab=86caabf0
+-/
 theorem ee_sub_round (x : ℝ) : ee (x - round x) = ee x := by
   rw [sub_eq_add_neg, ee_add, show -((round x : ℤ) : ℝ) = ((-round x : ℤ) : ℝ) by push_cast; ring,
     ee_int, mul_one]
 
+/--
+@isnad1 id=le.0h1v.s5.afffdde0fd1a from=translated src=- shape=b8d8db9c vocab=b29b36bc
+-/
 theorem norm_ee_sub_one_ge (x : ℝ) : 4 * dZ x ≤ ‖ee x - 1‖ := by
   rw [← ee_sub_round, norm_ee_sub_one]
   have := two_abs_le_abs_sin (dZ_le_half x)
   unfold dZ at this ⊢
   linarith
 
+/--
+@isnad1 id=eq.0h3v.s5.058fa1b3f90a from=translated src=- shape=7638cea1 vocab=95adf539
+-/
 theorem ee_mul_add (a x : ℝ) (k : ℕ) : ee ((a + k) * x) = ee (a * x) * ee x ^ k := by
   rw [add_mul, ee_add, ← ee_nat_mul]
 
-/-- The trivial bound.-/
+/-- The trivial bound.
+@isnad1 id=le.0h3v.s5.43306ff1a195 from=translated src=- shape=ee068b50 vocab=bfcfd003
+-/
 theorem norm_sum_ee_le_card (H : ℕ) (a x : ℝ) : ‖∑ k ∈ range H, ee ((a + k) * x)‖ ≤ H := by
   calc ‖∑ k ∈ range H, ee ((a + k) * x)‖ ≤ ∑ k ∈ range H, ‖ee ((a + k) * x)‖ := norm_sum_le _ _
     _ = H := by simp [norm_ee]
 
-/-- **Dirichlet-kernel bound.**-/
+/-- **Dirichlet-kernel bound.**
+@isnad1 id=le.1h3v.s6.4e9df0444b7e from=translated src=- shape=42a14acc vocab=7e8b17ff
+-/
 theorem norm_sum_ee_le_dirichlet (H : ℕ) (a x : ℝ) (hd : 0 < dZ x) :
     ‖∑ k ∈ range H, ee ((a + k) * x)‖ ≤ 1 / (2 * dZ x) := by
   set w := ee x
@@ -104,6 +134,9 @@ theorem norm_sum_ee_le_dirichlet (H : ℕ) (a x : ℝ) (hd : 0 < dZ x) :
 
 /-! ## Pair expansion -/
 
+/--
+@isnad1 id=eq.0h1v.s5.b79a98d8d144 from=translated src=- shape=c7368a4d vocab=28bdbed4
+-/
 theorem conj_ee (y : ℝ) : (starRingEnd ℂ) (ee y) = ee (-y) := by
   unfold ee
   rw [← Complex.exp_conj]
@@ -111,13 +144,18 @@ theorem conj_ee (y : ℝ) : (starRingEnd ℂ) (ee y) = ee (-y) := by
   simp only [map_mul, Complex.conj_ofReal, Complex.conj_I, map_ofNat]
   push_cast; ring
 
+/--
+@isnad1 id=eq.0h3v.s6.b870042db04c from=translated src=- shape=27e296c9 vocab=6f5bcde2
+-/
 theorem sq_norm_sum_eq {ι : Type*} (T : Finset ι) (z : ι → ℂ) :
     ‖∑ i ∈ T, z i‖ ^ 2 = (∑ i ∈ T, ∑ j ∈ T, z i * (starRingEnd ℂ) (z j)).re := by
   rw [Complex.sq_norm, ← Complex.ofReal_re (Complex.normSq _), ← Complex.mul_conj, map_sum,
     sum_mul]
   simp_rw [mul_sum]
 
-/-- **Pair expansion** of an interval-averaged energy.-/
+/-- **Pair expansion** of an interval-averaged energy.
+@isnad1 id=le.0h5v.s7.80aef8baac19 from=translated src=- shape=cfe69848 vocab=d6f2b6ad
+-/
 theorem sum_sq_norm_le_pairs {ι : Type*} (T : Finset ι) (ζ : ι → ℝ) (H : ℕ) (a : ℝ) :
     ∑ k ∈ range H, ‖∑ i ∈ T, ee ((a + k) * ζ i)‖ ^ 2 ≤
       ∑ i ∈ T, ∑ j ∈ T, ‖∑ k ∈ range H, ee ((a + k) * (ζ i - ζ j))‖ := by
@@ -135,7 +173,9 @@ theorem sum_sq_norm_le_pairs {ι : Type*} (T : Finset ι) (ζ : ι → ℝ) (H :
 
 /-! ## Grid-spacing sieve -/
 
-/-- An integer in the residue class `c = n mod q` has absolute value `≥ min c (q − c)`.-/
+/-- An integer in the residue class `c = n mod q` has absolute value `≥ min c (q − c)`.
+@isnad1 id=le.1h3v.s6.6f3ea2f624e1 from=translated src=- shape=d69dca27 vocab=2f6f127a
+-/
 theorem min_le_abs_sub {n q : ℤ} (z : ℤ) (hq : 0 < q) :
     min (n % q) (q - n % q) ≤ |n - q * z| := by
   have h0 : 0 ≤ n % q := Int.emod_nonneg n hq.ne'
@@ -151,7 +191,9 @@ theorem min_le_abs_sub {n q : ℤ} (z : ℤ) (hq : 0 < q) :
   · have : q * k ≤ -q := by nlinarith
     rw [abs_of_neg (by omega)]; exact (min_le_right _ _).trans (by linarith)
 
-/-- Kernel bound for a pair on the grid `(1/q)ℤ` perturbed by at most `1/(2q)`.-/
+/-- Kernel bound for a pair on the grid `(1/q)ℤ` perturbed by at most `1/(2q)`.
+@isnad1 id=le.4h6v.s7.b09ff60cf93d from=translated src=- shape=382670b6 vocab=6b2a2517
+-/
 theorem kernel_le_of_grid (H : ℕ) (a : ℝ) {q : ℕ} (hq : 1 ≤ q) (n : ℤ) {d : ℝ}
     (hd : |d| ≤ 1 / (2 * q)) {c : ℕ} (hc : (c : ℤ) = n % q) (hc0 : c ≠ 0) :
     ‖∑ k ∈ range H, ee ((a + k) * ((n : ℝ) / q + d))‖ ≤ q / c + q / (q - c) := by
@@ -193,6 +235,9 @@ theorem kernel_le_of_grid (H : ℕ) (a : ℝ) {q : ℕ} (hq : 1 ≤ q) (n : ℤ)
       · rw [hm_def, h]; linarith
       · rw [hm_def, h]; linarith
 
+/--
+@isnad1 id=le.0h1v.s5.ca95b4e9193e from=translated src=- shape=d1a1014a vocab=bb8cf46f
+-/
 theorem sum_Ico_one_div_le (q : ℕ) : ∑ c ∈ Ico 1 q, (1 : ℝ) / c ≤ 1 + Real.log q := by
   have h1 : ∑ c ∈ Ico 1 q, (1 : ℝ) / c = ∑ k ∈ range (q - 1), (1 : ℝ) / ((1 + k : ℕ) : ℝ) := by
     rw [sum_Ico_eq_sum_range]
@@ -205,6 +250,9 @@ theorem sum_Ico_one_div_le (q : ℕ) : ∑ c ∈ Ico 1 q, (1 : ℝ) / c ≤ 1 + 
     exact sum_congr rfl fun k _ => by rw [one_div, add_comm]
   linarith [harmonic_le_one_add_log q]
 
+/--
+@isnad1 id=eq.0h1v.s6.8ddb41e428e0 from=translated src=- shape=51f358ab vocab=e8f3af8a
+-/
 theorem sum_Ico_one_div_reflect (q : ℕ) :
     ∑ c ∈ Ico 1 q, (1 : ℝ) / ((q : ℝ) - c) = ∑ c ∈ Ico 1 q, (1 : ℝ) / c := by
   refine sum_nbij' (fun c => q - c) (fun c => q - c) ?_ ?_ ?_ ?_ ?_
@@ -219,6 +267,9 @@ theorem sum_Ico_one_div_reflect (q : ℕ) :
 /-- The per-residue kernel majorant.-/
 noncomputable def kb (H q c : ℕ) : ℝ := if c = 0 then (H : ℝ) else q / c + q / (q - c)
 
+/--
+@isnad1 id=le.1h3v.s4.07cf867f429e from=translated src=- shape=cd89b624 vocab=f2aaa84b
+-/
 theorem kb_nonneg (H q c : ℕ) (hc : c < q) : 0 ≤ kb H q c := by
   unfold kb
   have : (c : ℝ) < q := by exact_mod_cast hc
@@ -226,6 +277,9 @@ theorem kb_nonneg (H q c : ℕ) (hc : c < q) : 0 ≤ kb H q c := by
   · positivity
   · exact add_nonneg (by positivity) (div_nonneg (by positivity) (by linarith))
 
+/--
+@isnad1 id=le.1h2v.s6.d330cf10a08a from=translated src=- shape=9c77624f vocab=dca57587
+-/
 theorem sum_kb_le (H q : ℕ) (hq : 1 ≤ q) :
     ∑ c ∈ range q, kb H q c ≤ H + 2 * q * (1 + Real.log q) := by
   rw [range_eq_Ico, sum_eq_sum_Ico_succ_bot (by omega : 0 < q)]
@@ -242,7 +296,9 @@ theorem sum_kb_le (H q : ℕ) (hq : 1 ≤ q) :
   nlinarith
 
 /-- **Grid-spacing sieve.**  Points `ζ_i = A_i/q + δ_i` with `0 ≤ δ_i ≤ 1/(2q)` whose residues
-`A_i mod q` have fibres of size `≤ μ` inside `T`.-/
+`A_i mod q` have fibres of size `≤ μ` inside `T`.
+@isnad1 id=le.4h8v.s8.77f00d320203 from=translated src=- shape=9a54d4e4 vocab=1d74b3c1
+-/
 theorem grid_sieve {ι : Type*} (T : Finset ι) {q : ℕ} (hq : 1 ≤ q) (A : ι → ℤ) (δ : ι → ℝ)
     (hδ0 : ∀ i ∈ T, 0 ≤ δ i) (hδ1 : ∀ i ∈ T, δ i ≤ 1 / (2 * q)) (μ : ℕ)
     (hμ : ∀ c : ℤ, (T.filter fun j => A j % q = c).card ≤ μ) (H : ℕ) (a : ℝ) :
@@ -309,6 +365,9 @@ theorem grid_sieve {ι : Type*} (T : Finset ι) {q : ℕ} (hq : 1 ≤ q) (A : ι
 
 /-! ## Minkowski step -/
 
+/--
+@isnad1 id=le.0h4v.s6.d453aa2b7be3 from=translated src=- shape=7b8f2f2d vocab=d014b1b9
+-/
 theorem sqrt_sum_sq_add_le {α : Type*} (I : Finset α) (x y : α → ℝ) :
     √(∑ l ∈ I, (x l + y l) ^ 2) ≤ √(∑ l ∈ I, x l ^ 2) + √(∑ l ∈ I, y l ^ 2) := by
   have hcs := Real.sum_mul_le_sqrt_mul_sqrt I x y
@@ -322,7 +381,9 @@ theorem sqrt_sum_sq_add_le {α : Type*} (I : Finset α) (x y : α → ℝ) :
         apply Real.sqrt_le_sqrt; rw [hexp]; nlinarith
     _ = √(∑ l ∈ I, x l ^ 2) + √(∑ l ∈ I, y l ^ 2) := Real.sqrt_sq (by positivity)
 
-/-- **Minkowski** for finite families.-/
+/-- **Minkowski** for finite families.
+@isnad1 id=le.0h5v.s6.a57680787147 from=translated src=- shape=bdebbf9e vocab=15e84a9c
+-/
 theorem sqrt_sum_sq_sum_le {α β : Type*} (I : Finset α) (U : Finset β) (b : β → α → ℝ) :
     √(∑ l ∈ I, (∑ S ∈ U, b S l) ^ 2) ≤ ∑ S ∈ U, √(∑ l ∈ I, b S l ^ 2) := by
   classical
@@ -332,7 +393,9 @@ theorem sqrt_sum_sq_sum_le {α β : Type*} (I : Finset α) (U : Finset β) (b : 
     simp only [sum_insert hs]
     exact (sqrt_sum_sq_add_le I (b s) (fun l => ∑ S ∈ U, b S l)).trans (by linarith)
 
-/-- **Minkowski step** of the interval sieve: trivially bounded continuation sums `G_S`.-/
+/-- **Minkowski step** of the interval sieve: trivially bounded continuation sums `G_S`.
+@isnad1 id=le.2h7v.s7.35be4c4fb4eb from=translated src=- shape=8eaa47dd vocab=c0bff357
+-/
 theorem minkowski_step {α β : Type*} (I : Finset α) (U : Finset β) (F G : β → α → ℂ) (g : β → ℝ)
     (hg : ∀ S ∈ U, 0 ≤ g S) (hG : ∀ S ∈ U, ∀ l ∈ I, ‖G S l‖ ≤ g S) :
     √(∑ l ∈ I, ‖∑ S ∈ U, F S l * G S l‖ ^ 2) ≤ ∑ S ∈ U, g S * √(∑ l ∈ I, ‖F S l‖ ^ 2) := by

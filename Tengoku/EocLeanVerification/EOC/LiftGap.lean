@@ -34,6 +34,9 @@ open LiftDigits
 
 variable {d : ℕ → ℕ}
 
+/--
+@isnad1 id=le.1h3v.s4.57b4b547ae06 from=translated src=- shape=ce0fd851 vocab=ed3d9fa6
+-/
 theorem S_mono {j N : ℕ} (hj : j ≤ N) : S d j ≤ S d N := by
   induction N with
   | zero =>
@@ -44,7 +47,9 @@ theorem S_mono {j N : ℕ} (hj : j ≤ N) : S d j ≤ S d N := by
     · exact le_rfl
     · exact le_trans (ih (by omega)) (by rw [S_succ' d n]; omega)
 
-/-- Prefix least realizers are nondecreasing.-/
+/-- Prefix least realizers are nondecreasing.
+@isnad1 id=le.2h3v.s5.c5e1030cd71a from=translated src=- shape=7d89e1c7 vocab=fe701e51
+-/
 theorem leastRealizer_mono {j N : ℕ} (hd : ∀ i < N, 1 ≤ d i) (hj : j ≤ N) :
     leastRealizer d j ≤ leastRealizer d N := by
   have h := leastRealizer_mod hd hj
@@ -53,7 +58,9 @@ theorem leastRealizer_mono {j N : ℕ} (hd : ∀ i < N, 1 ≤ d i) (hj : j ≤ N
 
 /-- **Lift gap.**  If the final least realizer is at most `B` and the modulus at step `j` already
 exceeds `B`,
-the lift digit at `j` vanishes.-/
+the lift digit at `j` vanishes.
+@isnad1 id=eq.4h4v.s6.83de3e120844 from=translated src=- shape=3284ed66 vocab=fa7732bd
+-/
 theorem liftDigit_eq_zero_of_gap {N j B : ℕ} (hd : ∀ i < N, 1 ≤ d i)
     (hB : leastRealizer d N ≤ B) (hj : j < N) (hgap : B < 2 ^ (S d j + 1)) :
     liftDigit d j = 0 := by
@@ -69,7 +76,9 @@ theorem liftDigit_eq_zero_of_gap {N j B : ℕ} (hd : ∀ i < N, 1 ≤ d i)
   omega
 
 /-- **Stabilization.**  With the same hypotheses, every prefix from `j` on has the *same* least
-realizer.-/
+realizer.
+@isnad1 id=eq.4h4v.s6.83597cd7cdb9 from=translated src=- shape=3739c161 vocab=fec16622
+-/
 theorem leastRealizer_eq_of_gap {N j B : ℕ} (hd : ∀ i < N, 1 ≤ d i)
     (hB : leastRealizer d N ≤ B) (hgap : B < 2 ^ (S d j + 1)) (hj : j ≤ N) :
     leastRealizer d j = leastRealizer d N := by

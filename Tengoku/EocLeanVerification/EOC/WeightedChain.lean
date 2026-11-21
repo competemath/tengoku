@@ -52,11 +52,16 @@ noncomputable def yPrime (j0 σ t : ℕ) (P : FiniteValuationWord j0) : ℕ :=
     (((2 ^ σ : ℕ) : ZMod (2 ^ (σ + 1 + t))) - ((q P.toInfinite j0 : ℕ) : ZMod (2 ^ (σ + 1 + t)))))
     ).val
 
+/--
+@isnad1 id=lt.0h4v.s5.52cf8f3adef1 from=translated src=- shape=154511e4 vocab=5fd45ca1
+-/
 theorem yPrime_lt (j0 σ t : ℕ) (P : FiniteValuationWord j0) :
     yPrime j0 σ t P < 2 ^ (σ + 1 + t) :=
   ZMod.val_lt _
 
-/-- The defining congruence `3^{j0} y'_P ≡ 2^σ − q (mod 2^(σ+1+t))`.-/
+/-- The defining congruence `3^{j0} y'_P ≡ 2^σ − q (mod 2^(σ+1+t))`.
+@isnad1 id=modeq.0h4v.s6.a638e36d6895 from=translated src=- shape=f9a2d1b6 vocab=4466e955
+-/
 theorem yPrime_spec (j0 σ t : ℕ) (P : FiniteValuationWord j0) :
     (3 : ℤ) ^ j0 * (yPrime j0 σ t P : ℤ) ≡ 2 ^ σ - (q P.toInfinite j0 : ℤ)
       [ZMOD ((2 ^ (σ + 1 + t) : ℕ) : ℤ)] := by
@@ -71,30 +76,46 @@ theorem yPrime_spec (j0 σ t : ℕ) (P : FiniteValuationWord j0) :
 
 variable {b : ℕ → ℕ} {σ : ℕ}
 
+/--
+@isnad1 id=le.3h5v.s5.c8ca7e7d06c2 from=translated src=- shape=8d958452 vocab=23a44989
+-/
 theorem pos_of_shellP (hj1 : 1 ≤ j0) {P : FiniteValuationWord j0} (hP : P ∈ shellP b j0 σ) :
     ∀ i < j0, 1 ≤ P.toInfinite i :=
   positive_toInfinite_of_positive (mem_shellP hj1 hP).1
 
+/--
+@isnad1 id=eq.2h4v.s5.0b38322be7a4 from=translated src=- shape=10414f05 vocab=35de865e
+-/
 theorem S_of_shellP (hj1 : 1 ≤ j0) {P : FiniteValuationWord j0} (hP : P ∈ shellP b j0 σ) :
     S P.toInfinite j0 = σ := by
   rw [ResidueDiscrepancy.total_eq_S]; exact (mem_shellP hj1 hP).2.2
 
-/-- The carry identity on the prefix shell: `2^σ m_P = 3^{j0} r_P + q`.-/
+/-- The carry identity on the prefix shell: `2^σ m_P = 3^{j0} r_P + q`.
+@isnad1 id=eq.2h4v.s6.8cce5ab717cf from=translated src=- shape=6b82428a vocab=6034cd2e
+-/
 theorem carry_of_shellP (hj1 : 1 ≤ j0) {P : FiniteValuationWord j0} (hP : P ∈ shellP b j0 σ) :
     2 ^ σ * endState P = 3 ^ j0 * leastRealizer P.toInfinite j0 + q P.toInfinite j0 := by
   have h := PrefixStateFormula.endState_carry (d := P.toInfinite) j0 (pos_of_shellP hj1 hP)
   rwa [S_of_shellP hj1 hP] at h
 
+/--
+@isnad1 id=odd.2h4v.s5.64a793ba4f19 from=translated src=- shape=4c4ab76e vocab=17d8a979
+-/
 theorem endState_odd (hj1 : 1 ≤ j0) {P : FiniteValuationWord j0} (hP : P ∈ shellP b j0 σ) :
     Odd (endState P) :=
   odd_orbit (odd_leastRealizer_of_positive (mem_shellP hj1 hP).1) j0
 
+/--
+@isnad1 id=lt.2h4v.s6.0c7bb982f341 from=translated src=- shape=9b70316d vocab=640e6e26
+-/
 theorem leastRealizer_lt_shellP (hj1 : 1 ≤ j0) {P : FiniteValuationWord j0}
     (hP : P ∈ shellP b j0 σ) : leastRealizer P.toInfinite j0 < 2 ^ (σ + 1) := by
   have h := leastRealizer_lt P.toInfinite j0
   rwa [S_of_shellP hj1 hP] at h
 
-/-- **Low part:** `y'_P mod 2^(σ+1) = r_P`.-/
+/-- **Low part:** `y'_P mod 2^(σ+1) = r_P`.
+@isnad1 id=eq.2h5v.s6.b64aa1b38cc2 from=translated src=- shape=cb64d4ec vocab=1438cf8b
+-/
 theorem yPrime_mod (t : ℕ) (hj1 : 1 ≤ j0) {P : FiniteValuationWord j0}
     (hP : P ∈ shellP b j0 σ) :
     yPrime j0 σ t P % 2 ^ (σ + 1) = leastRealizer P.toInfinite j0 := by
@@ -134,12 +155,17 @@ theorem yPrime_mod (t : ℕ) (hj1 : 1 ≤ j0) {P : FiniteValuationWord j0}
 noncomputable def topB (j0 σ t : ℕ) (P : FiniteValuationWord j0) : ℕ :=
   yPrime j0 σ t P / 2 ^ (σ + 1)
 
+/--
+@isnad1 id=lt.0h4v.s5.4dbfd1745a18 from=translated src=- shape=446c65f7 vocab=83ef601a
+-/
 theorem topB_lt (j0 σ t : ℕ) (P : FiniteValuationWord j0) : topB j0 σ t P < 2 ^ t := by
   unfold topB
   rw [Nat.div_lt_iff_lt_mul (by positivity), ← pow_add, add_comm t]
   exact yPrime_lt j0 σ t P
 
-/-- **`β_P = −B_P`** in `ZMod (2^t)`.-/
+/-- **`β_P = −B_P`** in `ZMod (2^t)`.
+@isnad1 id=eq.2h5v.s8.634b6a538d86 from=translated src=- shape=65436ff0 vocab=420476bf
+-/
 theorem betaP_eq_neg_topB (t : ℕ) (hj1 : 1 ≤ j0) {P : FiniteValuationWord j0}
     (hP : P ∈ shellP b j0 σ) : betaP t P = -((topB j0 σ t P : ℕ) : ZMod (2 ^ t)) := by
   have hmod : yPrime j0 σ t P % 2 ^ (σ + 1) = leastRealizer P.toInfinite j0 := yPrime_mod t hj1 hP
@@ -178,7 +204,9 @@ theorem betaP_eq_neg_topB (t : ℕ) (hj1 : 1 ≤ j0) {P : FiniteValuationWord j0
 
 /-! ## Collision identification -/
 
-/-- `∑_z #{i : f i = z}^2 = #{(i,j) : f i = f j}` for any finite family.-/
+/-- `∑_z #{i : f i = z}^2 = #{(i,j) : f i = f j}` for any finite family.
+@isnad1 id=eq.0h4v.s7.0f0564843101 from=translated src=- shape=5a2c7030 vocab=c2db678b
+-/
 theorem sum_sq_fiber_card {ι α : Type*} [Fintype α] [DecidableEq α] (T : Finset ι) (f : ι → α) :
     ∑ z, (((T.filter fun i => f i = z).card : ℕ) : ℝ) ^ 2 =
       ((((T ×ˢ T).filter fun p => f p.1 = f p.2).card : ℕ) : ℝ) := by
@@ -196,7 +224,9 @@ theorem sum_sq_fiber_card {ι α : Type*} [Fintype α] [DecidableEq α] (T : Fin
   push_cast
   ring
 
-/-- On the prefix shell, `β_P = β_Q ↔ B_P = B_Q`.-/
+/-- On the prefix shell, `β_P = β_Q ↔ B_P = B_Q`.
+@isnad1 id=iff.3h6v.s6.1545d07dda09 from=translated src=- shape=7025125d vocab=126dd043
+-/
 theorem betaP_eq_iff (t : ℕ) (hj1 : 1 ≤ j0) {P Q : FiniteValuationWord j0}
     (hP : P ∈ shellP b j0 σ) (hQ : Q ∈ shellP b j0 σ) :
     betaP t P = betaP t Q ↔ topB j0 σ t P = topB j0 σ t Q := by
@@ -205,7 +235,9 @@ theorem betaP_eq_iff (t : ℕ) (hj1 : 1 ≤ j0) {P Q : FiniteValuationWord j0}
     Nat.mod_eq_of_lt (topB_lt _ _ _ _)]
 
 /-- **Collision identification:** the prefix collision count is the top-block collision count of
-the family `y'_P`.-/
+the family `y'_P`.
+@isnad1 id=eq.1h4v.s8.fb3e0821218e from=translated src=- shape=278603d7 vocab=5b5454a2
+-/
 theorem sum_sq_prefixCount (t : ℕ) (hj1 : 1 ≤ j0) :
     ∑ z : ZMod (2 ^ t), prefixCount b j0 σ t z ^ 2 =
       (((((shellP b j0 σ) ×ˢ (shellP b j0 σ)).filter fun p =>
@@ -227,7 +259,9 @@ def WeightedFourier (b : ℕ → ℕ) (N j0 s σ : ℕ) (ε : ℝ) : Prop :=
         ‖Psi (shellP b j0 σ) (σ + 1) (s - σ) (yPrime j0 σ (s - σ)) (g + 2 ^ (s - σ) * k)‖ ^ 2 ≤
     ε ^ 2 * ((shellP b j0 σ).card : ℝ) ^ 2 * (shellV b N j0 σ (s - σ)).card / 2 ^ (s - σ)
 
-/-- **Weighted Fourier bound ⇒ collision bound.**-/
+/-- **Weighted Fourier bound ⇒ collision bound.**
+@isnad1 id=collisio.2h6v.s5.3688806fbb4b from=translated src=- shape=43cdae33 vocab=31f7f65a
+-/
 theorem collisionAt_of_weightedFourier {N s : ℕ} {ε : ℝ} (hj1 : 1 ≤ j0)
     (hW : WeightedFourier b N j0 s σ ε) : CollisionAt b N j0 s σ ε := by
   unfold CollisionAt
@@ -247,7 +281,9 @@ open Classical in
 /-- **The whole chain with one analytic hypothesis.** For each post-fresh word shell `s` and fresh
 prefix shell `σ < K`, either the weighted Fourier bound holds with some `ε ≥ 0`, `1 + ε ≤ c s σ`,
 or `c s σ ≥ 2^(s+1−K)` (trivial counting); if the Haar-weighted average of `c` is at most `C`,
-then `#(E_U ∩ [0, 2^K)) ≤ (C e^{λ* U}/2) · (2^K)^{1 − I₀ A}` whenever `N ≥ A K`.-/
+then `#(E_U ∩ [0, 2^K)) ≤ (C e^{λ* U}/2) · (2^K)^{1 − I₀ A}` whenever `N ≥ A K`.
+@isnad1 id=le.7h7v.s9.3f5f69ab5fa6 from=translated src=- shape=da6fbc49 vocab=c4b69f15
+-/
 theorem weighted_phi_decay_implies_exceptional_bound (U K j0 : ℕ) {N : ℕ} (A C : ℝ)
     (c : ℕ → ℕ → ℝ) (hC : 1 ≤ C) (hj1 : 1 ≤ j0) (hjN : j0 < N) (hbK : collatzBarrier U j0 < K)
     (hNA : A * K ≤ N)
@@ -278,6 +314,9 @@ noncomputable def uInv (m i : ℕ) : ℕ := (((3 ^ (i + 1) : ℕ) : ZMod (2 ^ m)
 noncomputable def cSig (m j0 σ : ℕ) : ℕ :=
   ((((3 ^ j0 : ℕ) : ZMod (2 ^ m))⁻¹) * ((2 ^ σ : ℕ) : ZMod (2 ^ m))).val
 
+/--
+@isnad1 id=eq.0h2v.s10.fd6cdd24125a from=translated src=- shape=dc5ef1ae vocab=337c1d8a
+-/
 theorem three_pow_mul_inv (m a : ℕ) :
     (3 : ZMod (2 ^ m)) ^ a * ((3 : ZMod (2 ^ m)) ^ a)⁻¹ = 1 := by
   have h := ZMod.coe_mul_inv_eq_one (n := 2 ^ m) (3 ^ a)
@@ -285,7 +324,9 @@ theorem three_pow_mul_inv (m a : ℕ) :
   simp only [Nat.cast_pow, Nat.cast_ofNat] at h
   exact h
 
-/-- In `ZMod (2^m)`: `y'_P = c_σ − ∑_{i<j0} u_i 2^{S_i(P)}` (all `P`, `m = σ+1+t`).-/
+/-- In `ZMod (2^m)`: `y'_P = c_σ − ∑_{i<j0} u_i 2^{S_i(P)}` (all `P`, `m = σ+1+t`).
+@isnad1 id=eq.0h4v.s11.08c047e8924e from=translated src=- shape=2d5ce9a8 vocab=33e93fe1
+-/
 theorem yPrime_zmod (σ t : ℕ) (P : FiniteValuationWord j0) :
     ((yPrime j0 σ t P : ℕ) : ZMod (2 ^ (σ + 1 + t))) =
       ((cSig (σ + 1 + t) j0 σ : ℕ) : ZMod (2 ^ (σ + 1 + t))) -
@@ -317,9 +358,15 @@ theorem yPrime_zmod (σ t : ℕ) (P : FiniteValuationWord j0) :
         hsplit
   rw [← mul_assoc, key]
 
+/--
+@isnad1 id=eq.0h1v.s4.96ba20e11e6c from=translated src=- shape=0659c542 vocab=1ce7bf47
+-/
 theorem ee_neg_fract (x : ℝ) : SwapBound.ee (-Int.fract x) = SwapBound.ee (-x) := by
   rw [show -Int.fract x = -x + ((⌊x⌋ : ℤ) : ℝ) by rw [Int.fract]; ring, ee_add, ee_int, mul_one]
 
+/--
+@isnad1 id=eq.0h2v.s5.3c844ab76117 from=translated src=- shape=b671cb5b vocab=fed79f4b
+-/
 theorem prod_ee (s : Finset ℕ) (f : ℕ → ℝ) :
     ∏ i ∈ s, SwapBound.ee (f i) = SwapBound.ee (∑ i ∈ s, f i) := by
   unfold SwapBound.ee
@@ -330,7 +377,9 @@ theorem prod_ee (s : Finset ℕ) (f : ℕ → ℝ) :
 
 /-- **`Ψ = Φ` (exact).** The twist-expansion characters of the family `y'_P` are, up to a
 unimodular factor, the Collatz path products with phases
-`−frac(λ u_i 2^{S_i} / 2^m)`, `u_i = 3^{−(i+1)} mod 2^m`, `m = σ+1+t`.-/
+`−frac(λ u_i 2^{S_i} / 2^m)`, `u_i = 3^{−(i+1)} mod 2^m`, `m = σ+1+t`.
+@isnad1 id=eq.0h5v.s7.9f8adf6c4075 from=translated src=- shape=0612d80f vocab=3a59b755
+-/
 theorem Psi_eq_pathProduct (σ t lam : ℕ) :
     Psi (shellP b j0 σ) (σ + 1) t (yPrime j0 σ t) lam =
       SwapBound.ee ((lam : ℝ) * cSig (σ + 1 + t) j0 σ / 2 ^ (σ + 1 + t)) *
@@ -375,7 +424,9 @@ theorem Psi_eq_pathProduct (σ t lam : ℕ) :
     ring
   rw [this, ee_add, ee_int, mul_one]
 
-/-- `‖Ψ‖ = ‖Φ‖`.-/
+/-- `‖Ψ‖ = ‖Φ‖`.
+@isnad1 id=eq.0h5v.s6.0aee0f9c3ee5 from=translated src=- shape=551e6c90 vocab=a2f29d28
+-/
 theorem norm_Psi_eq (σ t lam : ℕ) :
     ‖Psi (shellP b j0 σ) (σ + 1) t (yPrime j0 σ t) lam‖ =
       ‖∑ P ∈ shellP b j0 σ, ∏ i ∈ range j0,
@@ -383,7 +434,9 @@ theorem norm_Psi_eq (σ t lam : ℕ) :
             (P.prefixSum i))‖ := by
   rw [Psi_eq_pathProduct, norm_mul, SwapBound.norm_ee, one_mul]
 
-/-- The characteristic sums in the hypothesis are dominated by the swap DP of `SwapBound`.-/
+/-- The characteristic sums in the hypothesis are dominated by the swap DP of `SwapBound`.
+@isnad1 id=le.0h5v.s6.8a09c15693c6 from=translated src=- shape=1d75cc83 vocab=371f92ac
+-/
 theorem norm_Psi_le_G (σ t lam : ℕ) :
     ‖Psi (shellP b j0 σ) (σ + 1) t (yPrime j0 σ t) lam‖ ≤
       SwapBound.G b (SwapCollatz.collatzPhase lam (σ + 1 + t) (uInv (σ + 1 + t))) σ 0 j0 0 := by
@@ -392,7 +445,9 @@ theorem norm_Psi_le_G (σ t lam : ℕ) :
 
 /-! ## Resonance count -/
 
-/-- `#{λ < n : d ∣ λ} ≤ n / d + 1`.-/
+/-- `#{λ < n : d ∣ λ} ≤ n / d + 1`.
+@isnad1 id=le.1h2v.s5.dccd11277373 from=translated src=- shape=298906f8 vocab=d2f587b5
+-/
 theorem card_filter_dvd_le (n d : ℕ) (hd : 0 < d) :
     ((range n).filter fun lam => d ∣ lam).card ≤ n / d + 1 := by
   have hsub : (range n).filter (fun lam => d ∣ lam) ⊆
@@ -405,7 +460,9 @@ theorem card_filter_dvd_le (n d : ℕ) (hd : 0 < d) :
     omega
   exact (card_le_card hsub).trans (card_image_le.trans (by simp))
 
-/-- **Resonance count:** `#{λ < 2^t : 3^k ∣ λ} ≤ 2^t / 3^k + 1`.-/
+/-- **Resonance count:** `#{λ < 2^t : 3^k ∣ λ} ≤ 2^t / 3^k + 1`.
+@isnad1 id=le.0h2v.s7.54fcdf9d1f09 from=translated src=- shape=a41cf696 vocab=1630ddfb
+-/
 theorem card_resonant_le (t k : ℕ) :
     ((range (2 ^ t)).filter fun lam => 3 ^ k ∣ lam).card ≤ 2 ^ t / 3 ^ k + 1 :=
   card_filter_dvd_le _ _ (by positivity)

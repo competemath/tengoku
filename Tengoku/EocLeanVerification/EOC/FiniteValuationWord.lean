@@ -29,10 +29,16 @@ irrelevant to all prefix statements below; choosing `1` preserves positivity.-/
 def toInfinite (w : FiniteValuationWord N) : ℕ → ℕ :=
   fun i ↦ if h : i < N then w ⟨i, h⟩ else 1
 
+/--
+@isnad1 id=eq.1h3v.s4.603bf332d0a4 from=translated src=- shape=3406367a vocab=65229fb0
+-/
 @[simp] theorem toInfinite_apply_of_lt (w : FiniteValuationWord N) {i : ℕ} (hi : i < N) :
     w.toInfinite i = w ⟨i, hi⟩ := by
   simp [toInfinite, hi]
 
+/--
+@isnad1 id=eq.1h3v.s4.060ff339a659 from=translated src=- shape=b6323b41 vocab=28732cca
+-/
 @[simp] theorem toInfinite_apply_of_le (w : FiniteValuationWord N) {i : ℕ} (hi : N ≤ i) :
     w.toInfinite i = 1 := by
   simp [toInfinite, Nat.not_lt.mpr hi]
@@ -44,6 +50,9 @@ def prefixSum (w : FiniteValuationWord N) (j : ℕ) : ℕ :=
 /-- The total sum `S_N` of a finite word of length `N`.-/
 def total (w : FiniteValuationWord N) : ℕ := w.prefixSum N
 
+/--
+@isnad1 id=eq.1h3v.s4.568c41ebc718 from=translated src=- shape=34f6cbcc vocab=f420ca2c
+-/
 theorem prefixSum_eq_s (w : FiniteValuationWord N) {j : ℕ} (hj : j ≤ N) :
     w.prefixSum j = s w.toInfinite j := by
   induction j with
@@ -54,11 +63,16 @@ theorem prefixSum_eq_s (w : FiniteValuationWord N) {j : ℕ} (hj : j ≤ N) :
       rw [prefixSum, List.sum_take_succ _ _ (by simpa using hjN)]
       simp [prefixSum, toInfinite, hjN]
 
+/--
+@isnad1 id=eq.0h2v.s4.2b44cdab7da3 from=translated src=- shape=16e8f07d vocab=44a32c71
+-/
 theorem total_eq_sum_univ (w : FiniteValuationWord N) :
     w.total = ∑ i, w i := by
   rw [total, prefixSum, List.take_of_length_le (by simp), List.sum_ofFn]
 
-/-- Positivity of the finite word is exactly positivity of its infinite extension on `[0,N)`.-/
+/-- Positivity of the finite word is exactly positivity of its infinite extension on `[0,N)`.
+@isnad1 id=iff.0h2v.s4.2b5853b4f306 from=translated src=- shape=276bc2e4 vocab=e96cc627
+-/
 theorem positive_iff_toInfinite (w : FiniteValuationWord N) :
     w.Positive ↔ ∀ i < N, 1 ≤ w.toInfinite i := by
   constructor
@@ -80,7 +94,9 @@ def PaperConfined (a c : ℝ) (w : FiniteValuationWord N) : Prop :=
 
 /-- For `c ≥ 0`, paper-faithful confinement at the Collatz slope is equivalent to the
 repository's existing `EOC.Confined`.  The sign condition is exactly what supplies its extra
-`j = 0` endpoint.-/
+`j = 0` endpoint.
+@isnad1 id=iff.1h3v.s4.11f4bded5fc4 from=translated src=- shape=607b81a0 vocab=35e0fe83
+-/
 theorem paperConfined_alpha_iff_confined {c : ℝ} (hc : 0 ≤ c)
     (w : FiniteValuationWord N) :
     PaperConfined alpha c w ↔ Confined c w.toInfinite N := by

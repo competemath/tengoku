@@ -31,7 +31,9 @@ open Finset
 variable {ι : Type*} {q : ℕ} [DecidableEq (ZMod q)]
 
 /-- The fibre of `T = Z + c` over `t`, for a carry `c` valued in `{0, 1}`, is contained in the
-union of the fibres of `Z` over `t` and over `t - 1`.-/
+union of the fibres of `Z` over `t` and over `t - 1`.
+@isnad1 id=le.2h7v.s8.78e9bc6264c7 from=translated src=- shape=1b3c134b vocab=f12dae3c
+-/
 theorem filter_subset_union [DecidableEq ι] (s : Finset ι) (Z c T : ι → ZMod q)
     (hc : ∀ i, c i = 0 ∨ c i = 1) (hT : ∀ i, T i = Z i + c i) (t : ZMod q) :
     s.filter (fun i => T i = t) ⊆
@@ -51,7 +53,9 @@ theorem filter_subset_union [DecidableEq ι] (s : Finset ι) (Z c T : ι → ZMo
     exact eq_sub_of_add_eq hit
 
 /-- **Two-class domination.** A one-bit carry costs at most a factor two in an upper count:
-`#{i | T i = t} ≤ #{i | Z i = t} + #{i | Z i = t - 1}` for every target residue `t`.-/
+`#{i | T i = t} ≤ #{i | Z i = t} + #{i | Z i = t - 1}` for every target residue `t`.
+@isnad1 id=le.2h7v.s8.3f36fe19f5fd from=translated src=- shape=53592c92 vocab=22a90597
+-/
 theorem card_filter_le (s : Finset ι) (Z c T : ι → ZMod q)
     (hc : ∀ i, c i = 0 ∨ c i = 1) (hT : ∀ i, T i = Z i + c i) (t : ZMod q) :
     (s.filter (fun i => T i = t)).card

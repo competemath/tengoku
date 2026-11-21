@@ -34,7 +34,9 @@ open Finset SwapBound TwistExpansion PrefixCollision WeightedChain ShellDecompos
 
 /-! ## 1. Dyadic kernel summation -/
 
-/-- Per-distance dyadic majorant of the interval kernel (`c` a centered distance in `[0, 2^V)`).-/
+/-- Per-distance dyadic majorant of the interval kernel (`c` a centered distance in `[0, 2^V)`).
+@isnad1 id=le.3h3v.s8.479c91022d6e from=translated src=- shape=49c0fe8d vocab=36843f58
+-/
 theorem kern_le_dyadic (V : ℕ) (c : ℤ) (_hc0 : 0 ≤ c) (hcV : c < 2 ^ V) :
     ∀ u, u ≤ V →
       (if c = 0 then (2 : ℝ) ^ u else min ((2 : ℝ) ^ u) ((2 : ℝ) ^ V / (2 * (c : ℝ)))) ≤
@@ -92,12 +94,17 @@ theorem kern_le_dyadic (V : ℕ) (c : ℤ) (_hc0 : 0 ≤ c) (hcV : c < 2 ^ V) :
         simp only [hB, ite_false, mul_zero, zero_add] at hih
         linarith
 
+/--
+@isnad1 id=lt.1h2v.s4.196034a74680 from=translated src=- shape=7155da86 vocab=0d950fd2
+-/
 theorem centDistZ_lt {M : ℤ} (hM : 0 < M) (n : ℤ) : centDistZ M n < M := by
   unfold centDistZ
   have h1 : n % M < M := Int.emod_lt_of_pos n hM
   exact lt_of_le_of_lt (min_le_left _ _) h1
 
-/-- The dyadic majorant for `kerZ` with `H = 2^u`, `M = 2^V`.-/
+/-- The dyadic majorant for `kerZ` with `H = 2^u`, `M = 2^V`.
+@isnad1 id=le.1h3v.s8.ec658c06bb69 from=translated src=- shape=58ec83c5 vocab=2b7db2b8
+-/
 theorem kerZ_pow_le (V u : ℕ) (hu : u ≤ V) (n : ℤ) :
     kerZ (2 ^ u) (2 ^ V) n ≤
       (2 : ℝ) ^ u * (if centDistZ (2 ^ V) n < 2 ^ (V - u) then 1 else 0) +
@@ -108,7 +115,9 @@ theorem kerZ_pow_le (V u : ℕ) (hu : u ≤ V) (n : ℤ) :
   push_cast
   exact h
 
-/-- **Dyadic kernel summation** over pairs.-/
+/-- **Dyadic kernel summation** over pairs.
+@isnad1 id=le.1h5v.s8.93d27da67761 from=translated src=- shape=283da7fd vocab=0bfd2bdf
+-/
 theorem sum_kerZ_le_dyadic {ι : Type*} (T : Finset ι) (y : ι → ℤ) (V u : ℕ) (hu : u ≤ V) :
     ∑ i ∈ T, ∑ j ∈ T, kerZ (2 ^ u) (2 ^ V) (y i - y j) ≤
       (2 : ℝ) ^ u * pairSpacing T y (2 ^ V) (2 ^ (V - u)) +
@@ -133,7 +142,9 @@ theorem sum_kerZ_le_dyadic {ι : Type*} (T : Finset ι) (y : ι → ℤ) (V u : 
         congr 1
         exact sum_congr rfl fun v _ => by rw [hcount v]
 
-/-- `2^v · 2^{−θv} ≤ 2^u · 2^{−θu}` for `v ≤ u`, `θ ≤ 1`.-/
+/-- `2^v · 2^{−θv} ≤ 2^u · 2^{−θu}` for `v ≤ u`, `θ ≤ 1`.
+@isnad1 id=le.2h3v.s7.f457b3a91d9e from=translated src=- shape=a2db0a30 vocab=829ae272
+-/
 theorem two_pow_mul_rpow_le {θ : ℝ} (hθ : θ ≤ 1) {v u : ℕ} (hvu : v ≤ u) :
     (2 : ℝ) ^ v * (2 : ℝ) ^ (-(θ * v)) ≤ (2 : ℝ) ^ u * (2 : ℝ) ^ (-(θ * u)) := by
   have h2 : (0 : ℝ) < 2 := by norm_num
@@ -146,6 +157,9 @@ theorem two_pow_mul_rpow_le {θ : ℝ} (hθ : θ ≤ 1) {v u : ℕ} (hvu : v ≤
   have hvu' : (v : ℝ) ≤ u := by exact_mod_cast hvu
   nlinarith
 
+/--
+@isnad1 id=le.0h1v.s5.f37f9b93e49b from=translated src=- shape=ecea5046 vocab=0a11eac7
+-/
 theorem sum_range_two_pow_le (u : ℕ) : ∑ v ∈ range u, (2 : ℝ) ^ v ≤ 2 ^ u := by
   induction u with
   | zero => simp
@@ -155,7 +169,9 @@ theorem sum_range_two_pow_le (u : ℕ) : ∑ v ∈ range u, (2 : ℝ) ^ v ≤ 2 
 
 /-- **Spacing exponent ⇒ interval energy** (dyadic kernel summation). With `M = 2^V`, `H = 2^u`,
 `u ≤ V`, `0 ≤ C`, `θ ≤ 1`: if `pairSpacing T y M (2^{V−v}) ≤ C·(#T)²·2^{−θv} + #T` for all `v ≤ u`,
-then `∑_{k<2^u} ‖∑_{i∈T} e((a+k) y_i / M)‖² ≤ C·(u+1)·2^u·2^{−θu}·(#T)² + 2·2^u·#T`.-/
+then `∑_{k<2^u} ‖∑_{i∈T} e((a+k) y_i / M)‖² ≤ C·(u+1)·2^u·2^{−θu}·(#T)² + 2·2^u·#T`.
+@isnad1 id=le.4h8v.s8.08c5cf788690 from=translated src=- shape=f7c2ac39 vocab=7e8c30d7
+-/
 theorem sum_sq_le_of_spacingExponent {ι : Type*} (T : Finset ι) (y : ι → ℤ) (a : ℝ) (V u : ℕ)
     (hu : u ≤ V) (C θ : ℝ) (hC : 0 ≤ C) (hθ : θ ≤ 1)
     (hE : ∀ v ≤ u, (pairSpacing T y (2 ^ V) (2 ^ (V - v)) : ℝ) ≤
@@ -211,7 +227,9 @@ section Mixed
 
 variable (b : ℕ → ℕ)
 
-/-- **`WeightedFourier` from arbitrary per-shell sum bounds** (refined weights).-/
+/-- **`WeightedFourier` from arbitrary per-shell sum bounds** (refined weights).
+@isnad1 id=weighted.2h7v.s8.2755c67347bc from=translated src=- shape=a93995d2 vocab=c456d266
+-/
 theorem weightedFourier_of_shell_sums (N j0 s σ : ℕ) (ε : ℝ) (sb : ℕ → ℝ)
     (hshell : ∀ u ∈ range (σ + 1 + (s - σ)),
       ∑ lam ∈ cshell (σ + 1) (s - σ) u,
@@ -235,7 +253,9 @@ noncomputable def mixedBound (j0 σ : ℕ) (Nsplit : ℕ → ℕ) (hasD : ℕ �
   else 2 * sieveBound b j0 σ (Nsplit u) (2 ^ u) ^ 2
 
 /-- **Mixed interface.** Every shell uses the (C3) sieve; shells with an extra hypothesis bound
-`D u` use the better of the two.-/
+`D u` use the better of the two.
+@isnad1 id=weighted.5h9v.s9.dd292bdbf173 from=translated src=- shape=141f9d0d vocab=99752076
+-/
 theorem weightedFourier_of_mixed (N j0 s σ : ℕ) (ε : ℝ) (Nsplit : ℕ → ℕ)
     (hasD : ℕ → Prop) [DecidablePred hasD] (D : ℕ → ℝ)
     (hN1 : ∀ u ∈ range (σ + 1 + (s - σ)), 1 ≤ Nsplit u)
@@ -262,7 +282,9 @@ def LowFreqDecay (j0 σ t U : ℕ) (C γ : ℝ) : Prop :=
   ∀ u ≤ U, ∑ lam ∈ cshell (σ + 1) t u, ‖Psi (shellP b j0 σ) (σ + 1) t (yPrime j0 σ t) lam‖ ^ 2 ≤
     2 ^ (u + 1) * C * (2 : ℝ) ^ (-(γ * j0)) * ((shellP b j0 σ).card : ℝ) ^ 2
 
-/-- **Low-frequency decay on shells `u ≤ U` + (C3) sieve elsewhere ⇒ `WeightedFourier`.**-/
+/-- **Low-frequency decay on shells `u ≤ U` + (C3) sieve elsewhere ⇒ `WeightedFourier`.**
+@isnad1 id=weighted.5h10v.s9.ab3a6727c450 from=translated src=- shape=1e0343d2 vocab=2efb93e5
+-/
 theorem weightedFourier_of_lowFreqDecay_and_sieve (N j0 s σ U : ℕ) (ε C γ : ℝ)
     (Nsplit : ℕ → ℕ)
     (hN1 : ∀ u ∈ range (σ + 1 + (s - σ)), 1 ≤ Nsplit u)
@@ -281,7 +303,9 @@ theorem weightedFourier_of_lowFreqDecay_and_sieve (N j0 s σ U : ℕ) (ε C γ :
 /-! ## 3. `ContinuationSpreading` feeds the mixed interface -/
 
 /-- Per-shell bounds from `PowerOrbit.ContinuationSpreading`, in the form used by
-`weightedFourier_of_mixed`.-/
+`weightedFourier_of_mixed`.
+@isnad1 id=le.5h8v.s8.2dee7038d14b from=translated src=- shape=6f434bde vocab=dc8bad3c
+-/
 theorem shellBounds_of_continuationSpreading {j0 σ t : ℕ} {Nsplit : ℕ → ℕ} {C θ : ℝ}
     (hN1 : ∀ u ∈ range (σ + 1 + t), 1 ≤ Nsplit u)
     (hNj : ∀ u ∈ range (σ + 1 + t), Nsplit u < j0)
@@ -292,7 +316,9 @@ theorem shellBounds_of_continuationSpreading {j0 σ t : ℕ} {Nsplit : ℕ → �
   fun u hu _ => PowerOrbit.shell_sum_le_of_continuationSpreading b hN1 hNj h u hu
 
 /-- **`ContinuationSpreading` + (C3) sieve ⇒ `WeightedFourier`**, shellwise minimum of the two
-bounds.-/
+bounds.
+@isnad1 id=weighted.5h9v.s9.8eabdc250675 from=translated src=- shape=cf0c1c9b vocab=008eb081
+-/
 theorem weightedFourier_of_spreading_and_sieve (N j0 s σ : ℕ) (ε C θ : ℝ) (Nsplit : ℕ → ℕ)
     (hN1 : ∀ u ∈ range (σ + 1 + (s - σ)), 1 ≤ Nsplit u)
     (hNj : ∀ u ∈ range (σ + 1 + (s - σ)), Nsplit u < j0)

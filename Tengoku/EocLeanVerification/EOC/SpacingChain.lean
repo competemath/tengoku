@@ -33,7 +33,9 @@ open Finset SwapBound TwistExpansion PrefixCollision WeightedChain ShellDecompos
 
 /-! ## The first-divergence odd quotient -/
 
-/-- **First-divergence odd quotient.**-/
+/-- **First-divergence odd quotient.**
+@isnad1 id=ex.5h4v.s7.2fb1b57292d5 from=translated src=- shape=5189805e vocab=9769abff
+-/
 theorem odd_quotient {d e : ℕ → ℕ} {i j : ℕ} (hagree : ∀ l < i, d l = e l) (hne : d i ≠ e i)
     (hij : i + 1 < j) (hd : ∀ l < j, 1 ≤ d l) (he : ∀ l < j, 1 ≤ e l) :
     ∃ Δ : ℤ, Odd Δ ∧ (q d j : ℤ) - q e j = 2 ^ (s d i + min (d i) (e i)) * Δ := by
@@ -54,13 +56,18 @@ def centDistZ (M n : ℤ) : ℤ := min (n % M) (M - n % M)
 def pairSpacing {ι : Type*} (T : Finset ι) (y : ι → ℤ) (M D : ℤ) : ℕ :=
   ((T ×ˢ T).filter fun p => centDistZ M (y p.1 - y p.2) < D).card
 
+/--
+@isnad1 id=le.1h2v.s4.697de0c26940 from=translated src=- shape=1852429d vocab=c2b8c866
+-/
 theorem centDistZ_nonneg {M : ℤ} (hM : 0 < M) (n : ℤ) : 0 ≤ centDistZ M n := by
   unfold centDistZ
   have h0 : 0 ≤ n % M := Int.emod_nonneg n hM.ne'
   have h1 : n % M < M := Int.emod_lt_of_pos n hM
   exact le_min h0 (by linarith)
 
-/-- The centered distance controls the distance to the nearest integer.-/
+/-- The centered distance controls the distance to the nearest integer.
+@isnad1 id=le.1h2v.s5.449f571284b0 from=translated src=- shape=99c9544e vocab=f1983816
+-/
 theorem centDistZ_div_le_dZ {M : ℤ} (hM : 0 < M) (n : ℤ) :
     (centDistZ M n : ℝ) / M ≤ dZ ((n : ℝ) / M) := by
   have hMr : (0 : ℝ) < M := by exact_mod_cast hM
@@ -82,11 +89,17 @@ theorem centDistZ_div_le_dZ {M : ℤ} (hM : 0 < M) (n : ℤ) :
 noncomputable def kerZ (H : ℕ) (M n : ℤ) : ℝ :=
   if centDistZ M n = 0 then (H : ℝ) else min (H : ℝ) ((M : ℝ) / (2 * centDistZ M n))
 
+/--
+@isnad1 id=le.0h3v.s4.2f748ebbd0de from=translated src=- shape=b049bbaa vocab=e6aa1361
+-/
 theorem kerZ_le_H (H : ℕ) (M n : ℤ) : kerZ H M n ≤ H := by
   unfold kerZ; split_ifs
   · exact le_rfl
   · exact min_le_left _ _
 
+/--
+@isnad1 id=le.1h4v.s6.c3a717fa72d7 from=translated src=- shape=2083e491 vocab=e8d794e2
+-/
 theorem pair_kernel_le (H : ℕ) (a : ℝ) {M : ℤ} (hM : 0 < M) (n : ℤ) :
     ‖∑ k ∈ range H, ee ((a + k) * ((n : ℝ) / M))‖ ≤ kerZ H M n := by
   unfold kerZ
@@ -104,7 +117,9 @@ theorem pair_kernel_le (H : ℕ) (a : ℝ) {M : ℤ} (hM : 0 < M) (n : ℤ) :
           apply one_div_le_one_div_of_le (by positivity); linarith
       _ = (M : ℝ) / (2 * centDistZ M n) := by field_simp
 
-/-- **Spacing ⇒ interval energy**, exact pair-kernel form.-/
+/-- **Spacing ⇒ interval energy**, exact pair-kernel form.
+@isnad1 id=le.1h6v.s7.038f0ec40ec9 from=translated src=- shape=201218df vocab=6c287edb
+-/
 theorem sum_sq_le_kernel {ι : Type*} (T : Finset ι) (y : ι → ℤ) (H : ℕ) (a : ℝ) {M : ℤ}
     (hM : 0 < M) :
     ∑ k ∈ range H, ‖∑ i ∈ T, ee ((a + k) * ((y i : ℝ) / M))‖ ^ 2 ≤
@@ -117,7 +132,9 @@ theorem sum_sq_le_kernel {ι : Type*} (T : Finset ι) (y : ι → ℤ) (H : ℕ)
   exact pair_kernel_le H a hM _
 
 /-- **Spacing ⇒ interval energy**, threshold form: pairs at centered distance `< D` cost `H`,
-all others cost at most `M/(2D)`.-/
+all others cost at most `M/(2D)`.
+@isnad1 id=le.2h7v.s7.8ea403d3e9f3 from=translated src=- shape=bcfe3225 vocab=f8d92b14
+-/
 theorem sum_sq_le_pairSpacing {ι : Type*} (T : Finset ι) (y : ι → ℤ) (H : ℕ) (a : ℝ) {M D : ℤ}
     (hM : 0 < M) (hD : 0 < D) :
     ∑ k ∈ range H, ‖∑ i ∈ T, ee ((a + k) * ((y i : ℝ) / M))‖ ^ 2 ≤
@@ -159,7 +176,9 @@ theorem sum_sq_le_pairSpacing {ι : Type*} (T : Finset ι) (y : ι → ℤ) (H :
 /-! ## Spacing exponent ⇒ `WeightedFourier` -/
 
 /-- `WeightedFourier` from shell averages `a_u = C · 2^(−θu)` for any `ε` above the explicit
-budget.-/
+budget.
+@isnad1 id=weighted.4h8v.s9.d7f2aca39656 from=translated src=- shape=f0b26156 vocab=8fc7a855
+-/
 theorem weightedFourier_of_shell_bound (b : ℕ → ℕ) (N j0 s σ : ℕ) (ε C θ : ℝ) (hC : 0 ≤ C)
     (hV : 0 < (shellV b N j0 σ (s - σ)).card)
     (hshell : ∀ u ∈ range (σ + 1 + (s - σ)),
@@ -186,7 +205,9 @@ theorem weightedFourier_of_shell_bound (b : ℕ → ℕ) (N j0 s σ : ℕ) (ε C
     _ = ε ^ 2 * (shellV b N j0 σ (s - σ)).card := rfl
 
 /-- **Spacing exponent ⇒ `WeightedFourier`** with the explicit
-`ε = √((1 + (σ+1)/2) · (∑_u min(2^(u+1), 2^t) · C · 2^(−θu)) · 2^t / |V_{σ,s}|)`.-/
+`ε = √((1 + (σ+1)/2) · (∑_u min(2^(u+1), 2^t) · C · 2^(−θu)) · 2^t / |V_{σ,s}|)`.
+@isnad1 id=weighted.3h7v.s9.872ddfbcfb3a from=translated src=- shape=1cabe4e3 vocab=2fb81ed9
+-/
 theorem spacingExponent_implies_weightedFourier (b : ℕ → ℕ) (N j0 s σ : ℕ) (C θ : ℝ) (hC : 0 ≤ C)
     (hV : 0 < (shellV b N j0 σ (s - σ)).card)
     (hshell : ∀ u ∈ range (σ + 1 + (s - σ)),

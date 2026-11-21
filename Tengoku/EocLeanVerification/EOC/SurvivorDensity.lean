@@ -37,7 +37,9 @@ open Finset FiniteValuationWord CapacityBounds TaoExternal
 
 variable {N : ℕ}
 
-/-- The repository's real-valued digit sum is the finite word's prefix sum.-/
+/-- The repository's real-valued digit sum is the finite word's prefix sum.
+@isnad1 id=eq.1h3v.s4.6b7f9214e7e0 from=translated src=- shape=1c323581 vocab=7d645551
+-/
 theorem digitSum_eq_prefixSum (w : FiniteValuationWord N) {j : ℕ} (hj : j ≤ N) :
     digitSum N w j = (w.prefixSum j : ℝ) := by
   rw [w.prefixSum_eq_s hj, s, Nat.cast_sum, digitSum, Finset.sum_filter]
@@ -55,7 +57,9 @@ theorem digitSum_eq_prefixSum (w : FiniteValuationWord N) {j : ℕ} (hj : j ≤ 
   refine Finset.sum_congr rfl fun i _ => ?_
   split_ifs <;> simp
 
-/-- The iid persistence event, restricted to finite words, is paper-faithful confinement.-/
+/-- The iid persistence event, restricted to finite words, is paper-faithful confinement.
+@isnad1 id=iff.0h3v.s4.269167d41f29 from=translated src=- shape=a1592d39 vocab=d9f4e99f
+-/
 theorem mem_persistenceEvent_iff (c : ℝ) (w : FiniteValuationWord N) :
     w ∈ geomPersistenceEvent collatzAlpha c N ↔ PaperConfined alpha c w := by
   unfold geomPersistenceEvent PaperConfined centeredSum
@@ -68,11 +72,17 @@ theorem mem_persistenceEvent_iff (c : ℝ) (w : FiniteValuationWord N) :
     rw [digitSum_eq_prefixSum w hjN]
     exact h j hj1 hjN
 
+/--
+@isnad1 id=eq.1h2v.s5.e3faf0a13782 from=translated src=- shape=c4a9991d vocab=e0334912
+-/
 theorem atomWeight_eq_of_positive (w : FiniteValuationWord N) (hw : w.Positive) :
     atomWeight N w = (1 / 2 : ℝ) ^ w.total := by
   rw [atomWeight, total_eq_sum_univ, ← Finset.prod_pow_eq_pow_sum]
   exact Finset.prod_congr rfl fun i _ => geom2_eq_of_pos (hw i)
 
+/--
+@isnad1 id=eq.1h2v.s4.6bcb79f8c838 from=translated src=- shape=649311cf vocab=cab8d6c6
+-/
 theorem atomWeight_eq_zero_of_not_positive (w : FiniteValuationWord N) (hw : ¬ w.Positive) :
     atomWeight N w = 0 := by
   simp only [Positive, not_forall, not_le] at hw
@@ -82,7 +92,9 @@ theorem atomWeight_eq_zero_of_not_positive (w : FiniteValuationWord N) (hw : ¬ 
   exact Finset.prod_eq_zero (mem_univ i) (by rw [h0, geom2_eq_zero])
 
 /-- **Mass identity.** The iid `Geom(2)` persistence probability is the finite dyadic sum over
-the confined words: `p_N(c) = ∑_{w ∈ W_c(N)} 2^{-S_N(w)}`.-/
+the confined words: `p_N(c) = ∑_{w ∈ W_c(N)} 2^{-S_N(w)}`.
+@isnad1 id=eq.1h2v.s6.556839b6018f from=translated src=- shape=a1173fa7 vocab=1fd6669c
+-/
 theorem sum_half_pow_confined_eq (c : ℕ) (hN : 1 ≤ N) :
     ∑ w ∈ confinedWords N (collatzBarrier c), (1 / 2 : ℝ) ^ w.total =
       iidGeom2VectorProb N (geomPersistenceEvent collatzAlpha c N) := by
@@ -100,7 +112,9 @@ theorem sum_half_pow_confined_eq (c : ℕ) (hN : 1 ≤ N) :
       rw [Set.indicator_of_mem hE, atomWeight_eq_zero_of_not_positive w hnp]
     · exact Set.indicator_of_notMem hE _
 
-/-- The prefix word of a confined odd seed is a confined positive word.-/
+/-- The prefix word of a confined odd seed is a confined positive word.
+@isnad1 id=mem.3h3v.s5.9d83793e6e7e from=translated src=- shape=aa910954 vocab=825d0ad4
+-/
 theorem prefixWord_mem (c : ℕ) (hN : 1 ≤ N) {μ : ℕ} (hμ : Odd μ)
     (hconf : Confined (c : ℝ) (fun i => a (orbit μ i)) N) :
     SurvivorCounting.prefixWord N μ ∈ confinedWords N (collatzBarrier c) := by
@@ -113,7 +127,9 @@ theorem prefixWord_mem (c : ℕ) (hN : 1 ≤ N) {μ : ℕ} (hμ : Odd μ)
 
 open Classical in
 /-- **Finite survivor-density bound.** For every `X`, the odd seeds below `X` that stay
-`c`-confined for `N` steps number at most `(X/2) · e^{λ* c} · 2^{-I₀ N} + C(⌊Nα + c⌋₊, N)`.-/
+`c`-confined for `N` steps number at most `(X/2) · e^{λ* c} · 2^{-I₀ N} + C(⌊Nα + c⌋₊, N)`.
+@isnad1 id=le.1h3v.s7.3294b151dd6b from=translated src=- shape=bda4f9fe vocab=9518d1e9
+-/
 theorem survivor_count_le (c : ℕ) (hN : 1 ≤ N) (X : ℕ) :
     (((range X).filter fun μ => Odd μ ∧ Confined (c : ℝ) (fun i => a (orbit μ i)) N).card : ℝ) ≤
       (X : ℝ) / 2 * (Real.exp (lambdaStar * c) * (2 : ℝ) ^ (-(I0 * (N : ℝ)))) +

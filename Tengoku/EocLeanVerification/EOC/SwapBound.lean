@@ -42,11 +42,17 @@ open Finset Real
 /-- `e(x) = exp(2πi x)`.-/
 noncomputable def ee (x : ℝ) : ℂ := Complex.exp (2 * π * Complex.I * x)
 
+/--
+@isnad1 id=eq.0h1v.s3.b2a384cd86e4 from=translated src=- shape=0cfb200e vocab=3263654f
+-/
 theorem norm_ee (x : ℝ) : ‖ee x‖ = 1 := by
   unfold ee
   rw [show 2 * (π : ℂ) * Complex.I * x = ((2 * π * x : ℝ) : ℂ) * Complex.I by push_cast; ring]
   exact Complex.norm_exp_ofReal_mul_I _
 
+/--
+@isnad1 id=eq.0h2v.s6.27e0475a8b4f from=translated src=- shape=3ce62351 vocab=e2715ff0
+-/
 theorem ee_add_ee (a b : ℝ) :
     ee a + ee b = ee ((a + b) / 2) * (2 * Complex.cos ((π * (a - b) : ℝ) : ℂ)) := by
   rw [Complex.two_cos, mul_add]
@@ -54,6 +60,9 @@ theorem ee_add_ee (a b : ℝ) :
   rw [← Complex.exp_add, ← Complex.exp_add]
   congr 1 <;> congr 1 <;> push_cast <;> ring
 
+/--
+@isnad1 id=eq.0h2v.s5.2ae69a189e27 from=translated src=- shape=6ea4e68d vocab=5e37aece
+-/
 theorem norm_ee_add_ee (a b : ℝ) : ‖ee a + ee b‖ = 2 * |Real.cos (π * (a - b))| := by
   rw [ee_add_ee, norm_mul, norm_ee, one_mul, norm_mul, ← Complex.ofReal_cos, Complex.norm_real,
     Real.norm_eq_abs]
@@ -73,6 +82,9 @@ def hi : Finset ℕ := A.filter fun d => ¬ (2 * d < u ∧ u - d ∈ A) ∧ (u <
 def single : Finset ℕ :=
   A.filter fun d => ¬ (2 * d < u ∧ u - d ∈ A) ∧ ¬ (u < 2 * d ∧ u - d ∈ A)
 
+/--
+@isnad1 id=eq.0h4v.s6.5365092bf59f from=translated src=- shape=d0f60a2b vocab=fab17d69
+-/
 theorem sum_split {M : Type*} [AddCommMonoid M] (f : ℕ → M) :
     ∑ d ∈ A, f d = ∑ d ∈ lo A u, f d + ∑ d ∈ hi A u, f d + ∑ d ∈ single A u, f d := by
   rw [← sum_filter_add_sum_filter_not A (fun d => 2 * d < u ∧ u - d ∈ A) f,
@@ -82,6 +94,9 @@ theorem sum_split {M : Type*} [AddCommMonoid M] (f : ℕ → M) :
 
 variable {A u}
 
+/--
+@isnad1 id=eq.1h4v.s6.5617ba2c6d94 from=translated src=- shape=738cc087 vocab=b56f6302
+-/
 theorem sum_hi_eq {M : Type*} [AddCommMonoid M] (hA : ∀ d ∈ A, d < u) (f : ℕ → M) :
     ∑ d ∈ hi A u, f d = ∑ d ∈ lo A u, f (u - d) := by
   symm
@@ -108,7 +123,9 @@ theorem sum_hi_eq {M : Type*} [AddCommMonoid M] (hA : ∀ d ∈ A, d < u) (f : �
     have := hA d hd.1
     omega
 
-/-- `#A = 2·#lo + #single`.-/
+/-- `#A = 2·#lo + #single`.
+@isnad1 id=eq.1h2v.s6.311c2b21a37d from=translated src=- shape=61f97ca7 vocab=3328de38
+-/
 theorem card_eq (hA : ∀ d ∈ A, d < u) :
     (A.card : ℝ) = 2 * (lo A u).card + (single A u).card := by
   have h := sum_split A u (fun _ => (1 : ℝ))
@@ -122,6 +139,9 @@ variable (A u)
 noncomputable def swapWeight (ψ : ℕ → ℝ) : ℝ :=
   ∑ d ∈ lo A u, 2 * |Real.cos (π * (ψ d - ψ (u - d)))| + (single A u).card
 
+/--
+@isnad1 id=le.0h3v.s4.c065aaa75c66 from=translated src=- shape=35da922c vocab=5d04a7d8
+-/
 theorem swapWeight_nonneg (ψ : ℕ → ℝ) : 0 ≤ swapWeight A u ψ := by
   unfold swapWeight
   have : 0 ≤ ∑ d ∈ lo A u, 2 * |Real.cos (π * (ψ d - ψ (u - d)))| :=
@@ -130,7 +150,9 @@ theorem swapWeight_nonneg (ψ : ℕ → ℝ) : 0 ≤ swapWeight A u ψ := by
 
 variable {A u}
 
-/-- **Swap bound.**-/
+/-- **Swap bound.**
+@isnad1 id=le.1h3v.s5.49afc0de69f7 from=translated src=- shape=fbd7be70 vocab=dffb7163
+-/
 theorem norm_sum_ee_le_swapWeight (hA : ∀ d ∈ A, d < u) (ψ : ℕ → ℝ) :
     ‖∑ d ∈ A, ee (ψ d)‖ ≤ swapWeight A u ψ := by
   rw [sum_split A u, sum_hi_eq hA, ← sum_add_distrib]
@@ -140,6 +162,9 @@ theorem norm_sum_ee_le_swapWeight (hA : ∀ d ∈ A, d < u) (ψ : ℕ → ℝ) :
   · refine (norm_sum_le _ _).trans (le_of_eq ?_)
     simp [norm_ee]
 
+/--
+@isnad1 id=le.1h3v.s5.1dfd34d650e2 from=translated src=- shape=931dda69 vocab=38e81638
+-/
 theorem swapWeight_le_card (hA : ∀ d ∈ A, d < u) (ψ : ℕ → ℝ) :
     swapWeight A u ψ ≤ A.card := by
   rw [card_eq hA]
@@ -152,7 +177,9 @@ theorem swapWeight_le_card (hA : ∀ d ∈ A, d < u) (ψ : ℕ → ℝ) :
   linarith
 
 /-- If every pair of the block has `|cos| ≤ c`, the swap weight is at most
-`2c·#lo + #single`.-/
+`2c·#lo + #single`.
+@isnad1 id=le.1h4v.s6.907220e68e11 from=translated src=- shape=bcfe188b vocab=a915ce70
+-/
 theorem swapWeight_le_of_cos_le (ψ : ℕ → ℝ) {c : ℝ}
     (hc : ∀ d ∈ lo A u, |Real.cos (π * (ψ d - ψ (u - d)))| ≤ c) :
     swapWeight A u ψ ≤ 2 * c * (lo A u).card + (single A u).card := by
@@ -184,16 +211,24 @@ noncomputable def N : ℕ → ℕ → ℕ → ℝ
 def blockSet (i S u : ℕ) : Finset ℕ :=
   (Icc 1 (b (i + 1) - S)).filter fun d => d < u ∧ u - d ≤ b (i + 2) - (S + d)
 
+/--
+@isnad1 id=lt.1h5v.s5.84a51681e7aa from=translated src=- shape=af90f777 vocab=9749b81a
+-/
 theorem lt_of_mem_blockSet {i S u d : ℕ} (hd : d ∈ blockSet b i S u) : d < u :=
   (mem_filter.mp hd).2.1
 
+/--
+@isnad1 id=le.0h5v.s4.f6572c694553 from=translated src=- shape=82fe6d81 vocab=f55d9643
+-/
 theorem N_nonneg : ∀ n i S, 0 ≤ N b σ i n S
   | 0, i, S => by simp only [N]; split_ifs <;> norm_num
   | n + 1, i, S => by
       simp only [N]
       exact sum_nonneg fun d _ => N_nonneg n (i + 1) (S + d)
 
-/-- **Regrouping two steps by their total.**-/
+/-- **Regrouping two steps by their total.**
+@isnad1 id=eq.0h6v.s8.53667254e651 from=translated src=- shape=cc901c28 vocab=0c1a728a
+-/
 theorem regroup {R : Type*} [CommSemiring R] (B1 B2 S : ℕ) (g F : ℕ → R) :
     ∑ d ∈ Icc 1 (B1 - S), g d * ∑ e ∈ Icc 1 (B2 - (S + d)), F (S + d + e) =
       ∑ u ∈ range (B2 + 1), F (S + u) *
@@ -221,7 +256,9 @@ theorem regroup {R : Type*} [CommSemiring R] (B1 B2 S : ℕ) (g F : ℕ → R) :
   refine sum_congr rfl fun u _ => sum_congr rfl fun d _ => ?_
   split_ifs <;> simp [mul_comm]
 
-/-- Two steps of `T`, regrouped by the block total.-/
+/-- Two steps of `T`, regrouped by the block total.
+@isnad1 id=eq.0h6v.s7.c78013ba211a from=translated src=- shape=15d98868 vocab=c3d0917d
+-/
 theorem T_two (i n S : ℕ) :
     T b φ σ i (n + 2) S = ee (φ i S) *
       ∑ u ∈ range (b (i + 2) + 1), T b φ σ (i + 2) n (S + u) *
@@ -232,7 +269,9 @@ theorem T_two (i n S : ℕ) :
   exact regroup (b (i + 1)) (b (i + 2)) S (fun d => ee (φ (i + 1) (S + d)))
     (fun x => T b φ σ (i + 2) n x)
 
-/-- Two steps of `N`, regrouped by the block total.-/
+/-- Two steps of `N`, regrouped by the block total.
+@isnad1 id=eq.0h5v.s6.099e7250f339 from=translated src=- shape=4f349930 vocab=63ce00cd
+-/
 theorem N_two (i n S : ℕ) :
     N b σ i (n + 2) S =
       ∑ u ∈ range (b (i + 2) + 1), N b σ (i + 2) n (S + u) * (blockSet b i S u).card := by
@@ -242,7 +281,9 @@ theorem N_two (i n S : ℕ) :
   rw [h]
   rfl
 
-/-- **Two-step block inequality.**-/
+/-- **Two-step block inequality.**
+@isnad1 id=le.0h6v.s7.b5fbb0c02dac from=translated src=- shape=d1f4e337 vocab=7551dd64
+-/
 theorem norm_T_two_le (i n S : ℕ) :
     ‖T b φ σ i (n + 2) S‖ ≤ ∑ u ∈ range (b (i + 2) + 1),
       ‖T b φ σ (i + 2) n (S + u)‖ * ‖∑ d ∈ blockSet b i S u, ee (φ (i + 1) (S + d))‖ := by
@@ -254,13 +295,22 @@ theorem norm_T_two_le (i n S : ℕ) :
 noncomputable def blockWeight (i S u : ℕ) : ℝ :=
   swapWeight (blockSet b i S u) u (fun d => φ (i + 1) (S + d))
 
+/--
+@isnad1 id=le.0h5v.s4.9422992a16fb from=translated src=- shape=e711aca0 vocab=0f191fe8
+-/
 theorem blockWeight_nonneg (i S u : ℕ) : 0 ≤ blockWeight b φ i S u :=
   swapWeight_nonneg _ _ _
 
+/--
+@isnad1 id=le.0h5v.s6.c0b57b765919 from=translated src=- shape=a7a66a48 vocab=4aced4cd
+-/
 theorem norm_block_le (i S u : ℕ) :
     ‖∑ d ∈ blockSet b i S u, ee (φ (i + 1) (S + d))‖ ≤ blockWeight b φ i S u :=
   norm_sum_ee_le_swapWeight (fun _ hd => lt_of_mem_blockSet b hd) (fun d => φ (i + 1) (S + d))
 
+/--
+@isnad1 id=le.0h5v.s5.4a3c70051c4c from=translated src=- shape=a9f065d9 vocab=ede14274
+-/
 theorem blockWeight_le_card (i S u : ℕ) :
     blockWeight b φ i S u ≤ (blockSet b i S u).card :=
   swapWeight_le_card (fun _ hd => lt_of_mem_blockSet b hd) _
@@ -271,7 +321,9 @@ noncomputable def G : ℕ → ℕ → ℕ → ℝ
   | i, 1, S => ∑ d ∈ Icc 1 (b (i + 1) - S), (if S + d = σ then 1 else 0)
   | i, n + 2, S => ∑ u ∈ range (b (i + 2) + 1), blockWeight b φ i S u * G (i + 2) n (S + u)
 
-/-- **Swap domination:** `‖T i n S‖ ≤ G i n S`.-/
+/-- **Swap domination:** `‖T i n S‖ ≤ G i n S`.
+@isnad1 id=le.0h6v.s5.f2a5253c4141 from=translated src=- shape=23daba4e vocab=561a2768
+-/
 theorem norm_T_le_G : ∀ n i S, ‖T b φ σ i n S‖ ≤ G b φ σ i n S
   | 0, i, S => by
       simp only [T, G]; split_ifs <;> simp
@@ -301,7 +353,9 @@ variable (b : ℕ → ℕ) (φ : ℕ → ℕ → ℝ) (σ : ℕ)
 `blockWeight ≤ κ · #A_u`.  Let `r i n S` be a potential with `r i 0 S = r i 1 S = 0` and, for
 every nonempty block `(i, S, u)` whose continuation can still reach `σ`,
 `r i (n+2) S ≤ r (i+2) n (S+u) + [good i S u]` (so `r` lower-bounds the number of good blocks
-on every admissible continuation).  Then `G i n S ≤ κ^(r i n S) · N i n S`.-/
+on every admissible continuation).  Then `G i n S ≤ κ^(r i n S) · N i n S`.
+@isnad1 id=le.6h9v.s8.04fb1ad86d69 from=translated src=- shape=11cf0499 vocab=a2a04021
+-/
 theorem G_le_pow_mul_N (κ : ℝ) (hκ0 : 0 ≤ κ) (hκ1 : κ ≤ 1) (good : ℕ → ℕ → ℕ → Prop)
     [∀ i S u, Decidable (good i S u)]
     (hgood : ∀ i S u, good i S u → blockWeight b φ i S u ≤ κ * (blockSet b i S u).card)
@@ -361,7 +415,9 @@ theorem G_le_pow_mul_N (κ : ℝ) (hκ0 : 0 ≤ κ) (hκ1 : κ ≤ 1) (good : �
                 _ = κ ^ r i (n + 2) S * (N b σ (i + 2) n (S + u) * (blockSet b i S u).card) := by
                     ring
 
-/-- **Characteristic decay from good blocks:** `‖T i n S‖ ≤ κ^(r i n S) · N i n S`.-/
+/-- **Characteristic decay from good blocks:** `‖T i n S‖ ≤ κ^(r i n S) · N i n S`.
+@isnad1 id=le.6h9v.s8.2f37ffc32a5e from=translated src=- shape=ce7aa753 vocab=3cd240bd
+-/
 theorem norm_T_le_pow_mul_N (κ : ℝ) (hκ0 : 0 ≤ κ) (hκ1 : κ ≤ 1) (good : ℕ → ℕ → ℕ → Prop)
     [∀ i S u, Decidable (good i S u)]
     (hgood : ∀ i S u, good i S u → blockWeight b φ i S u ≤ κ * (blockSet b i S u).card)
@@ -375,7 +431,9 @@ theorem norm_T_le_pow_mul_N (κ : ℝ) (hκ0 : 0 ≤ κ) (hκ1 : κ ≤ 1) (good
 
 /-- A sufficient criterion for a good block: every swap pair has `|cos(π Δ)| ≤ cos(π η)` and the
 unpaired digits are at most a fraction `f` of the block, giving
-`blockWeight ≤ (f + (1 − f) cos(π η)) · #A_u`.-/
+`blockWeight ≤ (f + (1 − f) cos(π η)) · #A_u`.
+@isnad1 id=le.3h7v.s7.d356bd60e09b from=translated src=- shape=66f5d5ae vocab=d645f1df
+-/
 theorem blockWeight_le_of_pairs (i S u : ℕ) {c f : ℝ} (hc1 : c ≤ 1)
     (hc : ∀ d ∈ lo (blockSet b i S u) u,
       |Real.cos (π * (φ (i + 1) (S + d) - φ (i + 1) (S + (u - d))))| ≤ c)

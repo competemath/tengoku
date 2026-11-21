@@ -18,7 +18,9 @@ open PeriodicCore BoundedDriftCore
 /-! ## Finite-horizon drift and state bounds -/
 
 /-- A lower drift bound through `N` gives the corresponding integer power
-inequality through `N`.-/
+inequality through `N`.
+@isnad1 id=le.2h4v.s6.f85251b5789a from=translated src=- shape=f567f47a vocab=c026cecf
+-/
 theorem three_pow_le_of_drift_upto (d : ℕ → ℕ) (G : ℝ) (N : ℕ)
     (hlow : ∀ j ≤ N, -G ≤ R d j) :
     ∀ j ≤ N, 3 ^ j ≤ 2 ^ (Nat.ceil G) * 2 ^ s d j := by
@@ -45,7 +47,9 @@ theorem three_pow_le_of_drift_upto (d : ℕ → ℕ) (G : ℝ) (N : ℕ)
   exact_mod_cast hreal
 
 /-- Natural-valued specialization of `three_pow_le_of_drift_upto`, avoiding
-the ceiling in the main integer theorem.-/
+the ceiling in the main integer theorem.
+@isnad1 id=le.2h4v.s6.2634aefebebe from=translated src=- shape=6f1a01a7 vocab=eb72b379
+-/
 theorem three_pow_le_of_nat_drift_upto (d : ℕ → ℕ) (g N : ℕ)
     (hlow : ∀ j ≤ N, -((g : ℝ)) ≤ R d j) :
     ∀ j ≤ N, 3 ^ j ≤ 2 ^ g * 2 ^ s d j := by
@@ -95,7 +99,9 @@ private theorem pr_congr_upto (f g : ℕ → ℕ) (N : ℕ)
       rw [pr_succ, pr_succ, ih (fun i hi ↦ hfg i (by omega)), hfg N (by omega)]
 
 /-- Finite-prefix form of `BoundedDriftCore.packing_bound`: only the values
-with indices below `N` need be positive and pairwise distinct.-/
+with indices below `N` need be positive and pairwise distinct.
+@isnad1 id=le.3h3v.s7.fcd7f19dbf7a from=translated src=- shape=5e024749 vocab=cbabc324
+-/
 theorem packing_bound_upto (m : ℕ → ℕ)
     (N L : ℕ)
     (hm : ∀ i < N, 1 ≤ m i)
@@ -117,7 +123,9 @@ theorem packing_bound_upto (m : ℕ → ℕ)
   simpa only [hplus, hplain] using hpack
 
 /-- Finite-horizon form of `BoundedDriftCore.state_bound`.  Its lower-power
-hypothesis is needed only at indices `j ≤ N`.-/
+hypothesis is needed only at indices `j ≤ N`.
+@isnad1 id=le.6h6v.s8.093cab494a33 from=translated src=- shape=ec8f1624 vocab=59757a4e
+-/
 theorem state_bound_upto (m d : ℕ → ℕ) (G : ℕ)
     (N L : ℕ)
     (hm : ∀ i, 1 ≤ m i)
@@ -190,14 +198,18 @@ theorem state_bound_upto (m d : ℕ → ℕ) (G : ℕ)
 
 /-! ## Post-initial residue restriction -/
 
-/-- No accelerated Collatz successor is divisible by `3`.-/
+/-- No accelerated Collatz successor is divisible by `3`.
+@isnad1 id=not.0h2v.s4.14323dd73a20 from=translated src=- shape=3a797477 vocab=2ad9fa47
+-/
 theorem three_not_dvd_orbit_succ (M j : ℕ) : ¬ 3 ∣ orbit M (j + 1) := by
   intro hdiv
   have hleft : 3 ∣ 2 ^ a (orbit M j) * orbit M (j + 1) := dvd_mul_of_dvd_right hdiv _
   rw [orbit_step M j] at hleft
   omega
 
-/-- Every post-initial state of an odd accelerated orbit is coprime to `6`.-/
+/-- Every post-initial state of an odd accelerated orbit is coprime to `6`.
+@isnad1 id=coprime.1h2v.s4.cc16fdcc0f81 from=translated src=- shape=9ec31dce vocab=83688eab
+-/
 theorem orbit_succ_coprime_six (M j : ℕ) (hM : Odd M) :
     Nat.Coprime (orbit M (j + 1)) 6 := by
   rw [show 6 = 2 * 3 by norm_num, Nat.coprime_mul_iff_right]
@@ -211,6 +223,9 @@ theorem orbit_succ_coprime_six (M j : ℕ) (hM : Odd M) :
 def coprimeSixRank (x : ℕ) : ℕ :=
   2 * (x / 6) + if x % 6 = 1 then 1 else 2
 
+/--
+@isnad1 id=or.2h1v.s5.3305cadc8c43 from=translated src=- shape=370b75aa vocab=a0280335
+-/
 theorem mod_six_eq_one_or_five {x : ℕ} (hodd : Odd x) (hthree : ¬ 3 ∣ x) :
     x % 6 = 1 ∨ x % 6 = 5 := by
   rw [Nat.odd_iff] at hodd
@@ -220,10 +235,16 @@ theorem mod_six_eq_one_or_five {x : ℕ} (hodd : Odd x) (hthree : ¬ 3 ∣ x) :
   have hlt := Nat.mod_lt x (by decide : 0 < 6)
   omega
 
+/--
+@isnad1 id=le.0h1v.s3.bfa9a6cd9699 from=translated src=- shape=8a62b088 vocab=1134bb8c
+-/
 theorem coprimeSixRank_pos (x : ℕ) : 1 ≤ coprimeSixRank x := by
   unfold coprimeSixRank
   split_ifs <;> omega
 
+/--
+@isnad1 id=le.2h1v.s5.1dd70eb3aacb from=translated src=- shape=21b47280 vocab=22008e80
+-/
 theorem three_mul_coprimeSixRank_le_add_two {x : ℕ}
     (hodd : Odd x) (hthree : ¬ 3 ∣ x) :
     3 * coprimeSixRank x ≤ x + 2 := by
@@ -237,6 +258,9 @@ theorem three_mul_coprimeSixRank_le_add_two {x : ℕ}
     have hdecomp := Nat.mod_add_div x 6
     omega
 
+/--
+@isnad1 id=eq.5h2v.s5.8e18ebd6f6e1 from=translated src=- shape=3232ccc6 vocab=88c5fb33
+-/
 theorem coprimeSixRank_injective_on {x y : ℕ}
     (hxodd : Odd x) (hxthree : ¬ 3 ∣ x)
     (hyodd : Odd y) (hythree : ¬ 3 ∣ y)
@@ -261,7 +285,9 @@ theorem coprimeSixRank_injective_on {x y : ℕ}
     omega
 
 /-- `N` distinct positive integers bounded by `B`, all odd and not divisible
-by `3`, force the sharp uniform bound `3*N ≤ B+2`.-/
+by `3`, force the sharp uniform bound `3*N ≤ B+2`.
+@isnad1 id=le.4h3v.s6.4d03229ae9cb from=translated src=- shape=30062b3d vocab=875b95d4
+-/
 theorem coprime_six_packing (m : ℕ → ℕ) (N B : ℕ)
     (hinj : ∀ i < N, ∀ j < N, m i = m j → i = j)
     (hodd : ∀ i < N, Odd (m i))
@@ -307,7 +333,9 @@ theorem coprime_six_packing (m : ℕ → ℕ) (N B : ℕ)
 /-! ## Main finite-prefix theorem -/
 
 /-- Finite-prefix injective drift-depth bound with the strongest uniform
-mod-`6` counting constant.-/
+mod-`6` counting constant.
+@isnad1 id=le.3h3v.s8.7a6b9648115b from=translated src=- shape=423ff5d3 vocab=36b07712
+-/
 theorem finite_prefix_injective_drift_depth_bound
     (M L g : ℕ) (hM : Odd M)
     (hinj : ∀ i ≤ 2 ^ L, ∀ j ≤ 2 ^ L, orbit M i = orbit M j → i = j)
@@ -348,7 +376,9 @@ theorem finite_prefix_injective_drift_depth_bound
     _ = 2 ^ g * M * 3 ^ (L + 1) := by rfl
 
 /-- A power-only corollary exposing the two powers of `2` contributed by
-the horizon and the state denominator when `L ≥ 1`.-/
+the horizon and the state denominator when `L ≥ 1`.
+@isnad1 id=le.4h3v.s7.292ee983bae3 from=translated src=- shape=083e74e9 vocab=6915dd4a
+-/
 theorem finite_prefix_injective_drift_depth_power_bound
     (M L g : ℕ) (hL : 1 ≤ L) (hM : Odd M)
     (hinj : ∀ i ≤ 2 ^ L, ∀ j ≤ 2 ^ L, orbit M i = orbit M j → i = j)
@@ -371,7 +401,9 @@ theorem finite_prefix_injective_drift_depth_power_bound
     _ ≤ 2 ^ g * M * 3 ^ (L + 1) := hmain
 
 /-- Real drift-floor version of `finite_prefix_injective_drift_depth_bound`.
-The integer loss is exactly the natural ceiling of `G`.-/
+The integer loss is exactly the natural ceiling of `G`.
+@isnad1 id=le.3h3v.s8.83897c69bd0a from=translated src=- shape=9114e189 vocab=b001cb70
+-/
 theorem finite_prefix_injective_real_drift_depth_bound
     (M L : ℕ) (G : ℝ) (hM : Odd M)
     (hinj : ∀ i ≤ 2 ^ L, ∀ j ≤ 2 ^ L, orbit M i = orbit M j → i = j)

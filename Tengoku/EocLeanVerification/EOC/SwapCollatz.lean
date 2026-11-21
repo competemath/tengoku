@@ -38,6 +38,9 @@ variable (b : ℕ → ℕ) (σ : ℕ)
 
 /-! ## Digit strings and their partial sums -/
 
+/--
+@isnad1 id=eq.0h4v.s6.0b8e94f66527 from=translated src=- shape=233d749e vocab=9687e17d
+-/
 theorem toInfinite_cons_succ {n : ℕ} (d : ℕ) (v : Fin n → ℕ) (k : ℕ) :
     FiniteValuationWord.toInfinite (Fin.cons d v : Fin (n + 1) → ℕ) (k + 1) =
       FiniteValuationWord.toInfinite v k := by
@@ -46,12 +49,17 @@ theorem toInfinite_cons_succ {n : ℕ} (d : ℕ) (v : Fin n → ℕ) (k : ℕ) :
     exact Fin.cons_succ (α := fun _ => ℕ) d v ⟨k, hk⟩
   · rw [toInfinite_apply_of_le _ (by omega), toInfinite_apply_of_le _ (by omega)]
 
+/--
+@isnad1 id=eq.0h3v.s5.951eb0ae1878 from=translated src=- shape=627a13de vocab=9687e17d
+-/
 theorem toInfinite_cons_zero {n : ℕ} (d : ℕ) (v : Fin n → ℕ) :
     FiniteValuationWord.toInfinite (Fin.cons d v : Fin (n + 1) → ℕ) 0 = d := by
   rw [toInfinite_apply_of_lt _ (by omega)]
   exact Fin.cons_zero (α := fun _ => ℕ) d v
 
-/-- `S_{k+1}(d :: v) = d + S_k(v)`.-/
+/-- `S_{k+1}(d :: v) = d + S_k(v)`.
+@isnad1 id=eq.0h4v.s6.2e2bead95543 from=translated src=- shape=6892dfd1 vocab=ea2569dc
+-/
 theorem s_cons_succ {n : ℕ} (d : ℕ) (v : Fin n → ℕ) (k : ℕ) :
     s (FiniteValuationWord.toInfinite (Fin.cons d v : Fin (n + 1) → ℕ)) (k + 1) =
       d + s (FiniteValuationWord.toInfinite v) k := by
@@ -66,12 +74,18 @@ def cont (i n S : ℕ) : Finset (Fin n → ℕ) :=
     (∀ k < n, S + s (FiniteValuationWord.toInfinite v) (k + 1) ≤ b (i + k + 1)) ∧
       S + s (FiniteValuationWord.toInfinite v) n = σ
 
+/--
+@isnad1 id=iff.0h6v.s7.0ba9dd3da4f7 from=translated src=- shape=b2a266c4 vocab=22982392
+-/
 theorem mem_cont {i n S : ℕ} {v : Fin n → ℕ} :
     v ∈ cont b σ i n S ↔ (∀ a, 1 ≤ v a ∧ v a ≤ σ) ∧
       (∀ k < n, S + s (FiniteValuationWord.toInfinite v) (k + 1) ≤ b (i + k + 1)) ∧
       S + s (FiniteValuationWord.toInfinite v) n = σ := by
   simp [cont, Fintype.mem_piFinset]
 
+/--
+@isnad1 id=iff.0h7v.s7.7ee488829ffc from=translated src=- shape=448116f4 vocab=33311c48
+-/
 theorem mem_cont_cons {i n S d : ℕ} {v : Fin n → ℕ} :
     (Fin.cons d v : Fin (n + 1) → ℕ) ∈ cont b σ i (n + 1) S ↔
       d ∈ Icc 1 (b (i + 1) - S) ∧ v ∈ cont b σ (i + 1) n (S + d) := by
@@ -96,7 +110,9 @@ theorem mem_cont_cons {i n S d : ℕ} {v : Fin n → ℕ} :
       rw [show i + 1 + k + 1 = i + (k + 1) + 1 by omega] at this
       omega
 
-/-- Splitting a sum over `cont … (n+1)` by the first digit.-/
+/-- Splitting a sum over `cont … (n+1)` by the first digit.
+@isnad1 id=eq.0h7v.s7.b5adeecc6d66 from=translated src=- shape=28bb69de vocab=f64145e6
+-/
 theorem sum_cont_succ {M : Type*} [AddCommMonoid M] (i n S : ℕ) (F : (Fin (n + 1) → ℕ) → M) :
     ∑ w ∈ cont b σ i (n + 1) S, F w =
       ∑ d ∈ Icc 1 (b (i + 1) - S), ∑ v ∈ cont b σ (i + 1) n (S + d),
@@ -119,7 +135,9 @@ theorem sum_cont_succ {M : Type*} [AddCommMonoid M] (i n S : ℕ) (F : (Fin (n +
 /-! ## The path-sum identity -/
 
 /-- **Path-sum identity.**
-`SwapBound.T b φ σ i n S = ∑_{v ∈ cont} ∏_{k<n} e(φ (i+k) (S + S_k(v)))`.-/
+`SwapBound.T b φ σ i n S = ∑_{v ∈ cont} ∏_{k<n} e(φ (i+k) (S + S_k(v)))`.
+@isnad1 id=eq.0h6v.s6.6192f1ffe848 from=translated src=- shape=1dd171a4 vocab=ae2cea75
+-/
 theorem T_eq_sum_cont (φ : ℕ → ℕ → ℝ) :
     ∀ n i S, SwapBound.T b φ σ i n S = ∑ v ∈ cont b σ i n S,
       ∏ k ∈ range n, ee (φ (i + k) (S + s (FiniteValuationWord.toInfinite v) k))
@@ -149,7 +167,9 @@ theorem T_eq_sum_cont (φ : ℕ → ℕ → ℝ) :
       rw [s_cons_succ]
       congr 2 <;> omega
 
-/-- With zero phases the transfer sum is the path count.-/
+/-- With zero phases the transfer sum is the path count.
+@isnad1 id=eq.0h5v.s5.31afd7ad2f7a from=translated src=- shape=507dd540 vocab=a2240aa1
+-/
 theorem T_zero_eq_N :
     ∀ n i S, SwapBound.T b (fun _ _ => 0) σ i n S = (SwapBound.N b σ i n S : ℂ)
   | 0, i, S => by simp only [SwapBound.T, SwapBound.N]; split_ifs <;> simp
@@ -159,6 +179,9 @@ theorem T_zero_eq_N :
       rw [Complex.ofReal_sum, this, one_mul]
       exact sum_congr rfl fun d _ => T_zero_eq_N n (i + 1) (S + d)
 
+/--
+@isnad1 id=eq.0h5v.s5.04ebbfeca874 from=translated src=- shape=969893be vocab=cb94f0e1
+-/
 theorem N_eq_card_cont (n i S : ℕ) : SwapBound.N b σ i n S = (cont b σ i n S).card := by
   have h := T_eq_sum_cont b σ (fun _ _ => 0) n i S
   rw [T_zero_eq_N] at h
@@ -168,6 +191,9 @@ theorem N_eq_card_cont (n i S : ℕ) : SwapBound.N b σ i n S = (cont b σ i n S
 
 /-! ## Word level -/
 
+/--
+@isnad1 id=eq.0h3v.s5.5d12687a32b2 from=translated src=- shape=f954b2bc vocab=62a4a195
+-/
 theorem cont_zero_eq_shellP (j0 : ℕ) : cont b σ 0 j0 0 = shellP b j0 σ := by
   ext P
   rw [mem_cont, shellP, mem_filter, confinedWords, mem_filter, mem_box]
@@ -195,7 +221,9 @@ theorem cont_zero_eq_shellP (j0 : ℕ) : cont b σ 0 j0 0 = shellP b j0 σ := by
     · rw [← hps _ (by omega)]; exact hbar (k + 1) ⟨by omega, by omega⟩
 
 /-- **Word-level path-sum identity.**
-`SwapBound.T b φ σ 0 j0 0 = ∑_{P ∈ shellP b j0 σ} ∏_{i<j0} e(φ i (S_i(P)))`.-/
+`SwapBound.T b φ σ 0 j0 0 = ∑_{P ∈ shellP b j0 σ} ∏_{i<j0} e(φ i (S_i(P)))`.
+@isnad1 id=eq.0h4v.s5.cacca8e6dccf from=translated src=- shape=0537e625 vocab=fcb3d49f
+-/
 theorem T_eq_sum_shellP (φ : ℕ → ℕ → ℝ) (j0 : ℕ) :
     SwapBound.T b φ σ 0 j0 0 =
       ∑ P ∈ shellP b j0 σ, ∏ i ∈ range j0, ee (φ i (FiniteValuationWord.prefixSum P i)) := by
@@ -203,6 +231,9 @@ theorem T_eq_sum_shellP (φ : ℕ → ℕ → ℝ) (j0 : ℕ) :
   refine sum_congr rfl fun P _ => prod_congr rfl fun k hk => ?_
   rw [zero_add, zero_add, FiniteValuationWord.prefixSum_eq_s P (by have := mem_range.mp hk; omega)]
 
+/--
+@isnad1 id=eq.0h3v.s5.add7ca6d6459 from=translated src=- shape=1e6132c7 vocab=c43dd7c9
+-/
 theorem N_eq_card_shellP (j0 : ℕ) : SwapBound.N b σ 0 j0 0 = (shellP b j0 σ).card := by
   rw [N_eq_card_cont, cont_zero_eq_shellP]
 
@@ -213,7 +244,9 @@ theorem N_eq_card_shellP (j0 : ℕ) : SwapBound.N b σ 0 j0 0 = (shellP b j0 σ)
 noncomputable def collatzPhase (h m : ℕ) (u : ℕ → ℕ) (i S : ℕ) : ℝ :=
   -Int.fract (((h * u i * 2 ^ S : ℕ) : ℝ) / 2 ^ m)
 
-/-- The confined characteristic sum is dominated by the swap DP.-/
+/-- The confined characteristic sum is dominated by the swap DP.
+@isnad1 id=le.0h6v.s6.1e213c321934 from=translated src=- shape=8b70cec4 vocab=fe89e440
+-/
 theorem norm_sum_shellP_le_G (h m : ℕ) (u : ℕ → ℕ) (j0 : ℕ) :
     ‖∑ P ∈ shellP b j0 σ, ∏ i ∈ range j0,
         ee (collatzPhase h m u i (FiniteValuationWord.prefixSum P i))‖ ≤
@@ -222,7 +255,9 @@ theorem norm_sum_shellP_le_G (h m : ℕ) (u : ℕ → ℕ) (j0 : ℕ) :
   exact norm_T_le_G b (collatzPhase h m u) σ j0 0 0
 
 /-- **Good-block decay for confined words.** Under the hypotheses of
-`SwapBound.norm_T_le_pow_mul_N`, `‖∑_{P ∈ shellP} ∏ e(φ_i(S_i P))‖ ≤ κ^(r 0 j0 0) · #shellP`.-/
+`SwapBound.norm_T_le_pow_mul_N`, `‖∑_{P ∈ shellP} ∏ e(φ_i(S_i P))‖ ≤ κ^(r 0 j0 0) · #shellP`.
+@isnad1 id=le.6h9v.s8.f89cde65d4a3 from=translated src=- shape=bcdc997f vocab=4797dcef
+-/
 theorem norm_sum_shellP_le_pow_mul_card (h m : ℕ) (u : ℕ → ℕ) (j0 : ℕ) (κ : ℝ) (hκ0 : 0 ≤ κ)
     (hκ1 : κ ≤ 1) (good : ℕ → ℕ → ℕ → Prop) [∀ i S u, Decidable (good i S u)]
     (hgood : ∀ i S u', good i S u' →

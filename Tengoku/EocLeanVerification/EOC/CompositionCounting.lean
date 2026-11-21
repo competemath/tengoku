@@ -22,21 +22,33 @@ namespace ValuationShell
 def toWord {s : ℕ} (q : ValuationShell N s) : FiniteValuationWord N :=
   fun i ↦ q.1.blocksFun (Fin.cast q.2.symm i)
 
+/--
+@isnad1 id=positive.0h3v.s3.bdd6d62d2ec7 from=translated src=- shape=4b0e41af vocab=4ae3edba
+-/
 @[simp] theorem toWord_positive {s : ℕ} (q : ValuationShell N s) : q.toWord.Positive := by
   intro i
   simp [toWord]
 
+/--
+@isnad1 id=eq.0h3v.s4.52911ceb6b3b from=translated src=- shape=02bf338e vocab=89b4ba3e
+-/
 @[simp] theorem toWord_total {s : ℕ} (q : ValuationShell N s) : q.toWord.total = s := by
   rcases q with ⟨q, hq⟩
   subst N
   simpa [toWord, FiniteValuationWord.total_eq_sum_univ] using q.sum_blocksFun
 
+/--
+@isnad1 id=eq.0h3v.s5.1a94a1b03956 from=translated src=- shape=f17ad47e vocab=614f792d
+-/
 @[simp] theorem ofFn_toWord {s : ℕ} (q : ValuationShell N s) :
     List.ofFn q.toWord = q.1.blocks := by
   rcases q with ⟨q, hq⟩
   subst N
   exact q.ofFn_blocksFun
 
+/--
+@isnad1 id=injectiv.0h2v.s3.38ea9fbd880a from=translated src=- shape=c722f8e0 vocab=bb24af13
+-/
 theorem toWord_injective {s : ℕ} : Function.Injective (toWord : ValuationShell N s → FiniteValuationWord N) := by
   intro q r h
   apply Subtype.ext
@@ -48,7 +60,9 @@ end ValuationShell
 namespace Composition
 
 /-- Removing the two endpoint boundaries of a positive-total composition leaves one boundary
-per gap between consecutive blocks.  This is the length bookkeeping used by stars and bars.-/
+per gap between consecutive blocks.  This is the length bookkeeping used by stars and bars.
+@isnad1 id=eq.1h2v.s7.7c07eff3e663 from=translated src=- shape=8e6b4fb4 vocab=3a943a67
+-/
 theorem card_compositionAsSetEquiv {s : ℕ} (q : Composition s) (hs : 0 < s) :
     ((compositionAsSetEquiv s) ((compositionEquiv s) q)).card = q.length - 1 := by
   let d : CompositionAsSet s := (compositionEquiv s) q
@@ -139,7 +153,9 @@ noncomputable def valuationShellEquivCuts {s : ℕ} (hN : 1 ≤ N) (hNs : N ≤ 
     apply Subtype.ext
     exact e.apply_symm_apply t.1
 
-/-- Exact fixed-sum shell count: positive words of length `N` and sum `s`.-/
+/-- Exact fixed-sum shell count: positive words of length `N` and sum `s`.
+@isnad1 id=eq.2h2v.s6.4937556ce0ab from=translated src=- shape=d206512d vocab=c8c67f0a
+-/
 theorem valuationShell_card {s : ℕ} (hN : 1 ≤ N) (hNs : N ≤ s) :
     Fintype.card (ValuationShell N s) = Nat.choose (s - 1) (N - 1) := by
   classical
@@ -160,7 +176,9 @@ theorem valuationShell_card {s : ℕ} (hN : 1 ≤ N) (hNs : N ≤ s) :
 def terminalCount (N B : ℕ) : ℕ :=
   ∑ s ∈ Finset.Icc N B, Fintype.card (ValuationShell N s)
 
-/-- Cumulative shell count: exact terminal-only count, i.e. the hockey-stick identity.-/
+/-- Cumulative shell count: exact terminal-only count, i.e. the hockey-stick identity.
+@isnad1 id=eq.1h2v.s4.05851cb64a18 from=translated src=- shape=932516da vocab=c49fb3ba
+-/
 theorem terminalCount_eq_choose (hN : 1 ≤ N) (B : ℕ) :
     terminalCount N B = Nat.choose B N := by
   unfold terminalCount

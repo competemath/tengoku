@@ -43,19 +43,34 @@ open Finset Real SwapBound
 
 /-! ## Basic facts about `e` -/
 
+/--
+@isnad1 id=eq.0h2v.s4.36a9ac2e0f57 from=translated src=- shape=0438c7a3 vocab=50f5b3df
+-/
 theorem ee_add (a b : ℝ) : ee (a + b) = ee a * ee b := by
   unfold ee; rw [← Complex.exp_add]; congr 1; push_cast; ring
 
+/--
+@isnad1 id=eq.0h0v.s3.3c80c2a4dd20 from=translated src=- shape=1ac31801 vocab=ff34ca7b
+-/
 theorem ee_zero : ee 0 = 1 := by simp [ee]
 
+/--
+@isnad1 id=eq.0h1v.s3.839c4d843edc from=translated src=- shape=85dfed03 vocab=b4c0ebb3
+-/
 theorem ee_int (n : ℤ) : ee n = 1 := by
   unfold ee
   rw [show 2 * (π : ℂ) * Complex.I * ((n : ℝ) : ℂ) = n * (2 * π * Complex.I) by push_cast; ring]
   exact Complex.exp_int_mul_two_pi_mul_I n
 
+/--
+@isnad1 id=eq.0h2v.s5.468bcfa8e66a from=translated src=- shape=0193b439 vocab=51cddc3e
+-/
 theorem ee_nat_mul (k : ℕ) (x : ℝ) : ee (k * x) = ee x ^ k := by
   unfold ee; rw [← Complex.exp_nat_mul]; congr 1; push_cast; ring
 
+/--
+@isnad1 id=iff.0h1v.s4.c0e734e599a5 from=translated src=- shape=e0a93ec6 vocab=b4c0ebb3
+-/
 theorem ee_eq_one_iff (x : ℝ) : ee x = 1 ↔ ∃ n : ℤ, x = n := by
   unfold ee
   rw [Complex.exp_eq_one_iff]
@@ -71,6 +86,9 @@ theorem ee_eq_one_iff (x : ℝ) : ee x = 1 ↔ ∃ n : ℤ, x = n := by
   · rintro ⟨n, rfl⟩
     exact ⟨n, by push_cast; ring⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.b79a98d8d144 from=translated src=- shape=c7368a4d vocab=28bdbed4
+-/
 theorem conj_ee (x : ℝ) : (starRingEnd ℂ) (ee x) = ee (-x) := by
   unfold ee
   rw [← Complex.exp_conj]
@@ -78,7 +96,9 @@ theorem conj_ee (x : ℝ) : (starRingEnd ℂ) (ee x) = ee (-x) := by
   simp only [map_mul, Complex.conj_I, Complex.conj_ofReal, map_ofNat]
   push_cast; ring
 
-/-- For `a, b < n`: `n ∣ a − b` (in `ℤ`) iff `a = b`.-/
+/-- For `a, b < n`: `n ∣ a − b` (in `ℤ`) iff `a = b`.
+@isnad1 id=iff.2h3v.s5.d044cae426fa from=translated src=- shape=3f3d493d vocab=715ee514
+-/
 theorem int_dvd_sub_iff {n a b : ℕ} (ha : a < n) (hb : b < n) :
     (n : ℤ) ∣ (a : ℤ) - b ↔ a = b := by
   constructor
@@ -90,7 +110,9 @@ theorem int_dvd_sub_iff {n a b : ℕ} (ha : a < n) (hb : b < n) :
     exact_mod_cast hm.symm
   · rintro rfl; simp
 
-/-- **Orthogonality.** `∑_{k<N} e(k a / N) = N · [N ∣ a]`.-/
+/-- **Orthogonality.** `∑_{k<N} e(k a / N) = N · [N ∣ a]`.
+@isnad1 id=eq.1h2v.s6.3c7e227165b2 from=translated src=- shape=22878a41 vocab=9e81909a
+-/
 theorem sum_ee_orth (N : ℕ) (hN : 0 < N) (a : ℤ) :
     ∑ k ∈ range N, ee (k * a / N) = if (N : ℤ) ∣ a then (N : ℂ) else 0 := by
   have hk : ∀ k : ℕ, ee (k * a / N) = ee (a / N) ^ k := fun k => by
@@ -124,6 +146,9 @@ noncomputable def coef (r t lam : ℕ) : ℂ :=
 noncomputable def Psi {ι : Type*} (T : Finset ι) (r t : ℕ) (y : ι → ℕ) (lam : ℕ) : ℂ :=
   ∑ i ∈ T, ee ((lam : ℝ) * y i / 2 ^ (r + t))
 
+/--
+@isnad1 id=iff.1h3v.s6.4ca9cd7d0aa3 from=translated src=- shape=6aee0a5a vocab=b34298d7
+-/
 theorem mem_range_dvd_iff {r y x : ℕ} (hx : x < 2 ^ r) :
     ((2 ^ r : ℕ) : ℤ) ∣ (y : ℤ) - x ↔ x = y % 2 ^ r := by
   have hsplit : (y : ℤ) - x = ((y % 2 ^ r : ℕ) : ℤ) - x + ((2 ^ r : ℕ) : ℤ) * (y / 2 ^ r : ℕ) := by
@@ -134,7 +159,9 @@ theorem mem_range_dvd_iff {r y x : ℕ} (hx : x < 2 ^ r) :
   rw [hsplit, dvd_add_left (dvd_mul_right _ _), int_dvd_sub_iff (Nat.mod_lt _ (by positivity)) hx]
   exact eq_comm
 
-/-- **Twist expansion (one point).**-/
+/-- **Twist expansion (one point).**
+@isnad1 id=eq.0h4v.s7.2506933273ec from=translated src=- shape=275d77e4 vocab=26ef1584
+-/
 theorem ee_topBlock (r t g y : ℕ) :
     ee ((g : ℝ) * (y / 2 ^ r : ℕ) / 2 ^ t) =
       ∑ k ∈ range (2 ^ r), coef r t (g + 2 ^ t * k) *
@@ -191,7 +218,9 @@ theorem ee_topBlock (r t g y : ℕ) :
   rw [hy, pow_add]
   field_simp
 
-/-- **Twist expansion (family).**-/
+/-- **Twist expansion (family).**
+@isnad1 id=eq.0h6v.s7.2fa504c4eed9 from=translated src=- shape=1e8a0c30 vocab=de349a3b
+-/
 theorem sum_ee_topBlock {ι : Type*} (T : Finset ι) (r t : ℕ) (y : ι → ℕ) (g : ℕ) :
     ∑ i ∈ T, ee ((g : ℝ) * (y i / 2 ^ r : ℕ) / 2 ^ t) =
       ∑ k ∈ range (2 ^ r), coef r t (g + 2 ^ t * k) * Psi T r t y (g + 2 ^ t * k) := by
@@ -200,7 +229,9 @@ theorem sum_ee_topBlock {ι : Type*} (T : Finset ι) (r t : ℕ) (y : ι → ℕ
 
 /-! ## Product formula, pointwise and ℓ¹ bounds for the twist coefficients -/
 
-/-- Binary product formula `∑_{x<2^r} z^x = ∏_{j<r} (1 + z^(2^j))`.-/
+/-- Binary product formula `∑_{x<2^r} z^x = ∏_{j<r} (1 + z^(2^j))`.
+@isnad1 id=eq.0h2v.s6.fc09831e6c68 from=translated src=- shape=e5562534 vocab=2b399a1a
+-/
 theorem geom_sum_two_pow (z : ℂ) (r : ℕ) :
     ∑ x ∈ range (2 ^ r), z ^ x = ∏ j ∈ range r, (1 + z ^ (2 ^ j)) := by
   induction r with
@@ -215,6 +246,9 @@ theorem geom_sum_two_pow (z : ℂ) (r : ℕ) :
 noncomputable def cosProd (r t lam : ℕ) : ℝ :=
   ∏ j ∈ range r, |cos (π * ((lam : ℝ) * 2 ^ j / 2 ^ (r + t)))|
 
+/--
+@isnad1 id=eq.0h3v.s4.e08596583d39 from=translated src=- shape=599147d5 vocab=047fdfcd
+-/
 theorem norm_coef (r t lam : ℕ) : ‖coef r t lam‖ = cosProd r t lam := by
   set w := ee (-(lam : ℝ) / 2 ^ (r + t))
   have hx : ∀ x : ℕ, ee (-((lam : ℝ) * x) / 2 ^ (r + t)) = w ^ x := fun x => by
@@ -231,7 +265,9 @@ theorem norm_coef (r t lam : ℕ) : ‖coef r t lam‖ = cosProd r t lam := by
   rw [prod_mul_distrib, prod_const, card_range]
   field_simp
 
-/-- Telescoping `sin(2^r x) = 2^r sin x ∏_{j<r} cos(2^j x)`.-/
+/-- Telescoping `sin(2^r x) = 2^r sin x ∏_{j<r} cos(2^j x)`.
+@isnad1 id=eq.0h2v.s6.3a3736e769e0 from=translated src=- shape=53236216 vocab=9e8d2360
+-/
 theorem sin_two_pow_mul (r : ℕ) (x : ℝ) :
     sin (2 ^ r * x) = 2 ^ r * sin x * ∏ j ∈ range r, cos (2 ^ j * x) := by
   induction r with
@@ -240,7 +276,9 @@ theorem sin_two_pow_mul (r : ℕ) (x : ℝ) :
     rw [prod_range_succ, pow_succ, show 2 ^ r * 2 * x = 2 * (2 ^ r * x) by ring, sin_two_mul, ih]
     ring
 
-/-- Jordan-type lower bound: for `0 < λ < M`, `sin(π λ/M) ≥ 2 min(λ, M−λ)/M`.-/
+/-- Jordan-type lower bound: for `0 < λ < M`, `sin(π λ/M) ≥ 2 min(λ, M−λ)/M`.
+@isnad1 id=le.3h2v.s6.7f4b87df0fb0 from=translated src=- shape=a5b8f738 vocab=100c2af5
+-/
 theorem sin_ge_dist {L M : ℝ} (hM : 0 < M) (hL0 : 0 ≤ L) (hLM : L ≤ M) :
     2 * min L (M - L) / M ≤ sin (π * (L / M)) := by
   rcases le_total L (M - L) with h | h
@@ -262,7 +300,9 @@ theorem sin_ge_dist {L M : ℝ} (hM : 0 < M) (hL0 : 0 ≤ L) (hLM : L ≤ M) :
       _ ≤ _ := h1
 
 /-- **Pointwise twist bound.** For `0 < λ < 2^(r+t)`:
-`‖coef r t λ‖ ≤ 2^t / (2 min(λ, 2^(r+t) − λ))`.-/
+`‖coef r t λ‖ ≤ 2^t / (2 min(λ, 2^(r+t) − λ))`.
+@isnad1 id=le.2h3v.s7.115adc7de1ec from=translated src=- shape=674e941c vocab=a26dacff
+-/
 theorem norm_coef_le (r t lam : ℕ) (h0 : 0 < lam) (h1 : lam < 2 ^ (r + t)) :
     ‖coef r t lam‖ ≤ 2 ^ t / (2 * min (lam : ℝ) (2 ^ (r + t) - lam)) := by
   have hM : (0 : ℝ) < 2 ^ (r + t) := by positivity
@@ -306,6 +346,9 @@ theorem norm_coef_le (r t lam : ℕ) (h0 : 0 < lam) (h1 : lam < 2 ^ (r + t)) :
 noncomputable def Sfun (r : ℕ) (θ : ℝ) : ℝ :=
   ∑ k ∈ range (2 ^ r), ∏ j ∈ range r, |cos (π * ((θ + k) * 2 ^ j / 2 ^ r))|
 
+/--
+@isnad1 id=eq.0h3v.s6.5268fc23c2f4 from=translated src=- shape=60e37bf1 vocab=d361aece
+-/
 theorem sum_range_two_mul {M : Type*} [AddCommMonoid M] (f : ℕ → M) (n : ℕ) :
     ∑ k ∈ range (2 * n), f k = ∑ k ∈ range n, (f (2 * k) + f (2 * k + 1)) := by
   induction n with
@@ -314,6 +357,9 @@ theorem sum_range_two_mul {M : Type*} [AddCommMonoid M] (f : ℕ → M) (n : ℕ
     rw [show 2 * (n + 1) = 2 * n + 1 + 1 by ring, sum_range_succ, sum_range_succ, ih,
       sum_range_succ, add_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s8.91dafe3a513f from=translated src=- shape=d2949e71 vocab=aa465edf
+-/
 theorem Sfun_term (r : ℕ) (θ : ℝ) (b k : ℕ) :
     ∏ j ∈ range (r + 1), |cos (π * ((θ + ((2 * k + b : ℕ) : ℝ)) * 2 ^ j / 2 ^ (r + 1)))| =
       (∏ j ∈ range r, |cos (π * (((θ + b) / 2 + k) * 2 ^ j / 2 ^ r))|) *
@@ -326,7 +372,9 @@ theorem Sfun_term (r : ℕ) (θ : ℝ) (b k : ℕ) :
         π * ((θ + b) / 2) + (k : ℕ) * π by push_cast; rw [pow_succ]; field_simp; ring,
       cos_add_nat_mul_pi, abs_mul, abs_pow, abs_neg, abs_one, one_pow, one_mul]
 
-/-- Exact recursion for the fibre mass.-/
+/-- Exact recursion for the fibre mass.
+@isnad1 id=eq.0h2v.s7.bbea74de9549 from=translated src=- shape=9c11c5c4 vocab=6eaac562
+-/
 theorem Sfun_succ (r : ℕ) (θ : ℝ) :
     Sfun (r + 1) θ = |cos (π * (θ / 2))| * Sfun r (θ / 2) +
       |cos (π * ((θ + 1) / 2))| * Sfun r ((θ + 1) / 2) := by
@@ -338,7 +386,9 @@ theorem Sfun_succ (r : ℕ) (θ : ℝ) :
   rw [sum_congr rfl fun k _ => by rw [e0 k, e1 k], sum_add_distrib, ← sum_mul, ← sum_mul]
   ring
 
-/-- `Sfun r θ ≤ 1 + (r/2) sin(πθ)` on `[0,1]`.-/
+/-- `Sfun r θ ≤ 1 + (r/2) sin(πθ)` on `[0,1]`.
+@isnad1 id=le.2h2v.s6.b710eb4ed92c from=translated src=- shape=7ca5b697 vocab=f6905fa2
+-/
 theorem Sfun_le (r : ℕ) : ∀ θ : ℝ, 0 ≤ θ → θ ≤ 1 → Sfun r θ ≤ 1 + r / 2 * sin (π * θ) := by
   induction r with
   | zero => intro θ _ _; simp [Sfun]
@@ -366,13 +416,18 @@ theorem Sfun_le (r : ℕ) : ∀ θ : ℝ, 0 ≤ θ → θ ≤ 1 → Sfun r θ �
     nlinarith [mul_nonneg (sub_nonneg.2 (sin_le_one a)) (sub_nonneg.2 (cos_le_one a)),
       mul_nonneg hs hc]
 
+/--
+@isnad1 id=eq.0h3v.s6.cffdca45ccaa from=translated src=- shape=f3c0c021 vocab=34a590b7
+-/
 theorem sum_cosProd_eq (r t g : ℕ) :
     ∑ k ∈ range (2 ^ r), cosProd r t (g + 2 ^ t * k) = Sfun r ((g : ℝ) / 2 ^ t) := by
   unfold cosProd Sfun
   refine sum_congr rfl fun k _ => prod_congr rfl fun j _ => ?_
   congr 2; push_cast; rw [pow_add]; field_simp
 
-/-- **ℓ¹ bound on a fibre.** For `g ≤ 2^t`: `∑_{k<2^r} ‖coef r t (g + 2^t k)‖ ≤ 1 + r/2`.-/
+/-- **ℓ¹ bound on a fibre.** For `g ≤ 2^t`: `∑_{k<2^r} ‖coef r t (g + 2^t k)‖ ≤ 1 + r/2`.
+@isnad1 id=le.1h3v.s7.cab001c3dc12 from=translated src=- shape=b141375f vocab=def1b637
+-/
 theorem sum_norm_coef_le (r t g : ℕ) (hg : g ≤ 2 ^ t) :
     ∑ k ∈ range (2 ^ r), ‖coef r t (g + 2 ^ t * k)‖ ≤ 1 + r / 2 := by
   simp_rw [norm_coef]
@@ -385,10 +440,15 @@ theorem sum_norm_coef_le (r t g : ℕ) (hg : g ≤ 2 ^ t) :
 
 /-! ## Parseval and the collision bound -/
 
+/--
+@isnad1 id=eq.0h1v.s6.b3e111fc3c25 from=translated src=- shape=0a60bfce vocab=799257d2
+-/
 theorem sq_norm_eq_re (z : ℂ) : ‖z‖ ^ 2 = (z * (starRingEnd ℂ) z).re := by
   rw [Complex.mul_conj, Complex.ofReal_re, Complex.normSq_eq_norm_sq]
 
-/-- **Parseval for collisions** of a family with values `< 2^t`.-/
+/-- **Parseval for collisions** of a family with values `< 2^t`.
+@isnad1 id=eq.1h4v.s7.a66bdde262cd from=translated src=- shape=47519dfa vocab=87782f3f
+-/
 theorem sum_sq_norm_ee_eq_card_pairs {ι : Type*} (T : Finset ι) (t : ℕ) (B : ι → ℕ)
     (hB : ∀ i ∈ T, B i < 2 ^ t) :
     ∑ g ∈ range (2 ^ t), ‖∑ i ∈ T, ee ((g : ℝ) * B i / 2 ^ t)‖ ^ 2 =
@@ -421,7 +481,9 @@ theorem sum_sq_norm_ee_eq_card_pairs {ι : Type*} (T : Finset ι) (t : ℕ) (B :
       ((2 ^ t * ((((T ×ˢ T).filter fun p => B p.1 = B p.2).card : ℕ) : ℝ) : ℝ) : ℂ) by
     push_cast; ring, Complex.ofReal_re]
 
-/-- **Weighted twist bound for one frequency** (`g ≤ 2^t`).-/
+/-- **Weighted twist bound for one frequency** (`g ≤ 2^t`).
+@isnad1 id=le.1h6v.s8.41aba9460f0d from=translated src=- shape=5ab653c4 vocab=251c9e73
+-/
 theorem sq_norm_topBlock_le {ι : Type*} (T : Finset ι) (r t : ℕ) (y : ι → ℕ) (g : ℕ)
     (hg : g ≤ 2 ^ t) :
     ‖∑ i ∈ T, ee ((g : ℝ) * (y i / 2 ^ r : ℕ) / 2 ^ t)‖ ^ 2 ≤
@@ -446,7 +508,9 @@ theorem sq_norm_topBlock_le {ι : Type*} (T : Finset ι) (r t : ℕ) (y : ι →
 
 /-- **Collision bound, weighted form (main result).** With `B i = ⌊y i / 2^r⌋`:
 `2^t · #{(i,j) : B_i = B_j} ≤ |T|^2 + (1 + r/2) ∑_{1 ≤ g < 2^t} ∑_{k<2^r}
-‖coef(g + 2^t k)‖ ‖Psi(g + 2^t k)‖^2`.-/
+‖coef(g + 2^t k)‖ ‖Psi(g + 2^t k)‖^2`.
+@isnad1 id=le.1h5v.s8.5c28f49e1594 from=translated src=- shape=8bd7e07b vocab=4523e97c
+-/
 theorem collision_le_weighted {ι : Type*} (T : Finset ι) (r t : ℕ) (y : ι → ℕ)
     (hy : ∀ i ∈ T, y i < 2 ^ (r + t)) :
     (2 : ℝ) ^ t * ((((T ×ˢ T).filter fun p => y p.1 / 2 ^ r = y p.2 / 2 ^ r).card : ℕ) : ℝ) ≤
@@ -464,7 +528,9 @@ theorem collision_le_weighted {ι : Type*} (T : Finset ι) (r t : ℕ) (y : ι �
   exact sq_norm_topBlock_le T r t y g (by rw [mem_Ico] at hg; omega)
 
 /-- **Uniform corollary.** If `‖Psi λ‖ ≤ η |T|` for every `λ < 2^(r+t)` not divisible by `2^t`,
-then `2^t · #{(i,j) : B_i = B_j} ≤ |T|^2 (1 + (1 + r/2)^2 2^t η^2)`.-/
+then `2^t · #{(i,j) : B_i = B_j} ≤ |T|^2 (1 + (1 + r/2)^2 2^t η^2)`.
+@isnad1 id=le.2h6v.s8.5a7f0815bed0 from=translated src=- shape=a2fae460 vocab=d8cf78bc
+-/
 theorem collision_le_of_psi {ι : Type*} (T : Finset ι) (r t : ℕ) (y : ι → ℕ)
     (hy : ∀ i ∈ T, y i < 2 ^ (r + t)) (η : ℝ)
     (hΨ : ∀ lam, lam < 2 ^ (r + t) → ¬ 2 ^ t ∣ lam → ‖Psi T r t y lam‖ ≤ η * T.card) :

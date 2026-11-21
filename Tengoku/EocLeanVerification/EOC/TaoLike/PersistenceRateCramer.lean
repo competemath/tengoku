@@ -42,7 +42,9 @@ noncomputable def geom2CramerRate (a : ℝ) : ℝ :=
   a - a * Real.logb 2 a + (a - 1) * Real.logb 2 (a - 1)
 
 /-- `I0` is literally the `a = collatzAlpha` instance of `geom2CramerRate` — the two formulas
-are definitionally the same expression.-/
+are definitionally the same expression.
+@isnad1 id=eq.0h0v.s2.f184faa4465f from=translated src=- shape=8a3f668c vocab=2539fda9
+-/
 theorem I0_eq_geom2CramerRate_collatzAlpha : I0 = geom2CramerRate collatzAlpha := rfl
 
 /-- The Legendre-transform integrand, in base-`2` log units: `(a-1) logb2 t + logb2 (2-t)`. This
@@ -55,11 +57,17 @@ noncomputable def geom2LegendreIntegrand (a t : ℝ) : ℝ :=
 up to the change of variables `t = 2 e^{lam}`).-/
 noncomputable def tStar (a : ℝ) : ℝ := 2 * (a - 1) / a
 
+/--
+@isnad1 id=lt.1h1v.s4.178fb1e51f3d from=translated src=- shape=35bd48ee vocab=3d61b968
+-/
 theorem tStar_pos {a : ℝ} (ha : 1 < a) : 0 < tStar a := by
   unfold tStar
   have ha0 : 0 < a := by linarith
   positivity
 
+/--
+@isnad1 id=lt.2h1v.s5.9d406fac5b6b from=translated src=- shape=6690a03d vocab=3886f12e
+-/
 theorem tStar_lt_two {a : ℝ} (ha1 : 1 < a) (ha2 : a < 2) : tStar a < 2 := by
   have ha0 : 0 < a := by linarith
   have hsub : (2:ℝ) - tStar a = 2 / a := by unfold tStar; field_simp [ha0.ne'] <;> ring
@@ -69,7 +77,9 @@ theorem tStar_lt_two {a : ℝ} (ha1 : 1 < a) (ha2 : a < 2) : tStar a < 2 := by
 /-- **Upper bound half of the Legendre transform**: the integrand is bounded above by
 `geom2CramerRate a` at *every* `t ∈ (0,2)`, for every level `a ∈ (1,2)`. Proved via the two-point
 weighted AM-GM inequality (`Real.geom_mean_le_arith_mean2_weighted`), with weights
-`w₁ = (a-1)/a`, `w₂ = 1/a` and points `p₁ = t/w₁`, `p₂ = (2-t)/w₂`.-/
+`w₁ = (a-1)/a`, `w₂ = 1/a` and points `p₁ = t/w₁`, `p₂ = (2-t)/w₂`.
+@isnad1 id=le.4h2v.s5.d046fb09d180 from=translated src=- shape=c0b798f8 vocab=6eafee53
+-/
 theorem geom2LegendreIntegrand_le (a t : ℝ) (ha1 : 1 < a) (ha2 : a < 2)
     (ht0 : 0 < t) (ht2 : t < 2) :
     geom2LegendreIntegrand a t ≤ geom2CramerRate a := by
@@ -123,7 +133,9 @@ theorem geom2LegendreIntegrand_le (a t : ℝ) (ha1 : 1 < a) (ha2 : a < 2)
 
 /-- **The bound is attained exactly at `t = tStar a`.** Together with the previous theorem this
 shows `geom2CramerRate a` is exactly the maximum (hence supremum) of the Legendre-transform
-integrand over `t ∈ (0,2)`.-/
+integrand over `t ∈ (0,2)`.
+@isnad1 id=eq.2h1v.s5.a416fef7a15c from=translated src=- shape=caf80b79 vocab=05766761
+-/
 theorem geom2LegendreIntegrand_tStar_eq (a : ℝ) (ha1 : 1 < a) (ha2 : a < 2) :
     geom2LegendreIntegrand a (tStar a) = geom2CramerRate a := by
   have ha0 : 0 < a := by linarith
@@ -146,7 +158,9 @@ theorem geom2LegendreIntegrand_tStar_eq (a : ℝ) (ha1 : 1 < a) (ha2 : a < 2) :
 
 /-- **`geom2CramerRate a` is the exact supremum** of the Legendre-transform integrand over
 `t ∈ (0,2)`, for every level `a ∈ (1,2)`: it is an upper bound (previous theorem) that is also
-attained (this theorem), hence `IsGreatest`.-/
+attained (this theorem), hence `IsGreatest`.
+@isnad1 id=isgreate.2h1v.s6.c279be9d816a from=translated src=- shape=5ad05dbd vocab=752fb3ec
+-/
 theorem geom2CramerRate_isGreatest (a : ℝ) (ha1 : 1 < a) (ha2 : a < 2) :
     IsGreatest {v : ℝ | ∃ t ∈ Set.Ioo (0:ℝ) 2, v = geom2LegendreIntegrand a t}
       (geom2CramerRate a) := by
@@ -158,14 +172,18 @@ theorem geom2CramerRate_isGreatest (a : ℝ) (ha1 : 1 < a) (ha2 : a < 2) :
 
 /-- **Headline identity**: `geom2CramerRate a` equals the supremum (`sSup`) of the Legendre-
 transform integrand over `t ∈ (0,2)`, i.e. it *is* the Geom(2) Cramér/large-deviation rate at
-level `a`, for every `a ∈ (1,2)`.-/
+level `a`, for every `a ∈ (1,2)`.
+@isnad1 id=eq.2h1v.s6.9d73cd1d388b from=translated src=- shape=42dcedb4 vocab=80e1121b
+-/
 theorem geom2CramerRate_eq_sSup (a : ℝ) (ha1 : 1 < a) (ha2 : a < 2) :
     geom2CramerRate a
       = sSup {v : ℝ | ∃ t ∈ Set.Ioo (0:ℝ) 2, v = geom2LegendreIntegrand a t} :=
   (geom2CramerRate_isGreatest a ha1 ha2).csSup_eq.symm
 
 /-- **Specialization to `α = log₂3`**: the repository's own persistence rate `I0` is exactly the
-Geom(2) Cramér rate at the Collatz level `α`.-/
+Geom(2) Cramér rate at the Collatz level `α`.
+@isnad1 id=eq.0h0v.s5.02421e424a0d from=translated src=- shape=ef9c9665 vocab=c78195f0
+-/
 theorem I0_eq_geom2_cramer_rate :
     I0 = sSup {v : ℝ | ∃ t ∈ Set.Ioo (0:ℝ) 2, v = geom2LegendreIntegrand collatzAlpha t} := by
   rw [I0_eq_geom2CramerRate_collatzAlpha]

@@ -19,6 +19,9 @@ open PeriodicCore BoundedDriftCore
 
 /-! ### Step law along an actual orbit -/
 
+/--
+@isnad1 id=eq.0h2v.s6.3ef6481919d2 from=translated src=- shape=25d8a51e vocab=4797a0fc
+-/
 theorem orbit_step (m0 : ℕ) : ∀ i, 2 ^ a (orbit m0 i) * orbit m0 (i + 1) = 3 * orbit m0 i + 1 := by
   intro i
   rw [orbit_succ]
@@ -27,6 +30,9 @@ theorem orbit_step (m0 : ℕ) : ∀ i, 2 ^ a (orbit m0 i) * orbit m0 (i + 1) = 3
 
 /-! ### Non-injective orbits are eventually periodic words -/
 
+/--
+@isnad1 id=evperiod.2h3v.s5.3f656ba9a7e0 from=translated src=- shape=c17da680 vocab=56edfa58
+-/
 theorem evPeriodic_of_noninj (m0 i j : ℕ) (hij : i < j) (heq : orbit m0 i = orbit m0 j) :
     EvPeriodic (fun n => a (orbit m0 n)) i (j - i) := by
   intro n hn
@@ -38,7 +44,9 @@ theorem evPeriodic_of_noninj (m0 i j : ℕ) (hij : i < j) (heq : orbit m0 i = or
   show a (orbit m0 (i + t + (j - i))) = a (orbit m0 (i + t))
   rw [key t]
 
-/-- **Case A.** A non-injective orbit is not permanently upper-confined.-/
+/-- **Case A.** A non-injective orbit is not permanently upper-confined.
+@isnad1 id=ex.2h2v.s5.74f0f7e731ce from=translated src=- shape=9eee5d3c vocab=8ac2580c
+-/
 theorem noninjective_orbit_not_upper_confined (c : ℝ) (m0 : ℕ) (hm0 : Odd m0)
     (hnoninj : ∃ i j, i ≠ j ∧ orbit m0 i = orbit m0 j) :
     ∃ N, ¬ Confined c (fun n => a (orbit m0 n)) N := by
@@ -49,7 +57,9 @@ theorem noninjective_orbit_not_upper_confined (c : ℝ) (m0 : ℕ) (hm0 : Odd m0
   · exact not_confined_forever_of_evPeriodic_orbit c m0 j (i - j) hm0 (by omega)
       (evPeriodic_of_noninj m0 j i hij heq.symm)
 
-/-- **Case B (integer form).** An injective orbit has no integer lower drift bound.-/
+/-- **Case B (integer form).** An injective orbit has no integer lower drift bound.
+@isnad1 id=false.3h2v.s6.a6d533665512 from=translated src=- shape=2ebb8526 vocab=b88bf6ad
+-/
 theorem injective_orbit_no_lower_drift (m0 : ℕ) (hm0 : Odd m0) (Gn : ℕ)
     (hinj : ∀ i j, orbit m0 i = orbit m0 j → i = j)
     (hlow : ∀ j, 3 ^ j ≤ 2 ^ Gn * 2 ^ s (fun n => a (orbit m0 n)) j) : False :=
@@ -60,6 +70,9 @@ theorem injective_orbit_no_lower_drift (m0 : ℕ) (hm0 : Odd m0) (Gn : ℕ)
 
 /-! ### Real drift bound ⇒ integer drift bound -/
 
+/--
+@isnad1 id=le.1h3v.s6.f06429af335b from=translated src=- shape=f66fec4c vocab=c026cecf
+-/
 theorem three_pow_le_of_drift (d : ℕ → ℕ) (G : ℝ) (hlow : ∀ N, -G ≤ R d N) :
     ∀ j, 3 ^ j ≤ 2 ^ (Nat.ceil G) * 2 ^ s d j := by
   intro j
@@ -82,7 +95,9 @@ theorem three_pow_le_of_drift (d : ℕ → ℕ) (G : ℝ) (hlow : ∀ N, -G ≤ 
 
 /-! ### Main theorem -/
 
-/-- **Bounded-drift realizer escape (integer lower bound).**-/
+/-- **Bounded-drift realizer escape (integer lower bound).**
+@isnad1 id=ex.3h4v.s6.96411e62f4c1 from=translated src=- shape=d3e9b2fd vocab=42e9550f
+-/
 theorem leastRealizer_unbounded_of_int_drift (c : ℝ) (Gn : ℕ) (d : ℕ → ℕ) (hd : ∀ i, 1 ≤ d i)
     (hup : ∀ N, R d N ≤ c) (hlow : ∀ j, 3 ^ j ≤ 2 ^ Gn * 2 ^ s d j) :
     ∀ M, ∃ N, M < leastRealizer d N := by
@@ -110,7 +125,9 @@ theorem leastRealizer_unbounded_of_int_drift (c : ℝ) (Gn : ℕ) (d : ℕ → �
     rw [hwordeq]
     exact hup k
 
-/-- **Bounded-drift realizer escape (real form).**-/
+/-- **Bounded-drift realizer escape (real form).**
+@isnad1 id=ex.3h4v.s5.6aabb6249f50 from=translated src=- shape=2869ac43 vocab=62b4a963
+-/
 theorem leastRealizer_unbounded_of_two_sided_drift (c G : ℝ) (d : ℕ → ℕ) (hd : ∀ i, 1 ≤ d i)
     (hup : ∀ N, R d N ≤ c) (hlow : ∀ N, -G ≤ R d N) :
     ∀ M, ∃ N, M < leastRealizer d N :=

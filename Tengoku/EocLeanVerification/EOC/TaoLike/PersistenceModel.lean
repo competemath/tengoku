@@ -42,18 +42,26 @@ noncomputable def totalSum (n : ℕ) (a : Fin n → ℕ) : ℝ := ∑ i : Fin n,
 noncomputable def totalCenteredSum (α : ℝ) (n : ℕ) (a : Fin n → ℕ) : ℝ :=
   totalSum n a - (n : ℝ) * α
 
+/--
+@isnad1 id=eq.0h2v.s4.4b66f850b034 from=translated src=- shape=c93af49c vocab=314a3fa7
+-/
 theorem digitSum_eq_totalSum (n : ℕ) (a : Fin n → ℕ) : digitSum n a n = totalSum n a := by
   unfold digitSum totalSum
   congr 1
   exact Finset.filter_true_of_mem (fun i _ => i.isLt)
 
+/--
+@isnad1 id=eq.0h3v.s4.28df7b4d8f02 from=translated src=- shape=c66446be vocab=f2f8aafc
+-/
 theorem centeredSum_eq_totalCenteredSum (α : ℝ) (n : ℕ) (a : Fin n → ℕ) :
     centeredSum α n a n = totalCenteredSum α n a := by
   unfold centeredSum totalCenteredSum
   rw [digitSum_eq_totalSum]
 
 /-- **Endpoint-event reduction.** The persistence event is contained in the (weaker) endpoint
-event `{a | totalCenteredSum α n a ≤ c}` — it suffices to Chernoff-bound the latter.-/
+event `{a | totalCenteredSum α n a ≤ c}` — it suffices to Chernoff-bound the latter.
+@isnad1 id=le.2h4v.s5.429e16a025e3 from=translated src=- shape=ff90f831 vocab=dfee27f5
+-/
 theorem geomPersistenceEvent_subset_endpoint (α c : ℝ) (n : ℕ) (hn : 1 ≤ n) (a : Fin n → ℕ)
     (ha : a ∈ geomPersistenceEvent α c n) : totalCenteredSum α n a ≤ c := by
   have h := ha n hn (le_refl n)
@@ -64,6 +72,9 @@ theorem geomPersistenceEvent_subset_endpoint (α c : ℝ) (n : ℕ) (hn : 1 ≤ 
 Generalizes `atomWeight_tsum_eq_one`'s induction pattern to an arbitrary nonnegative summable
 single-digit weight `w`, rather than rebuilding independence machinery from scratch. -/
 
+/--
+@isnad1 id=eq.0h4v.s6.eeea31b4c65e from=translated src=- shape=a99657ff vocab=195c6893
+-/
 theorem genProdWeight_cons {w : ℕ → ℝ} (n k : ℕ) (a : Fin n → ℕ) :
     (∏ i, w ((Fin.cons k a : Fin (n + 1) → ℕ) i)) = w k * ∏ i, w (a i) := by
   rw [Fin.prod_univ_succ]
@@ -72,6 +83,9 @@ theorem genProdWeight_cons {w : ℕ → ℝ} (n k : ℕ) (a : Fin n → ℕ) :
 set_option maxHeartbeats 1000000 in
 -- w is an abstract (uninterpreted) weight function, so unification here is
 -- much slower than for the concrete geom2/atomWeight case it generalizes.
+/--
+@isnad1 id=summable.2h2v.s6.c0c00c0aa40f from=translated src=- shape=8918c3aa vocab=004e8eeb
+-/
 theorem genProdWeight_summable {w : ℕ → ℝ} (hw_nonneg : ∀ k, 0 ≤ w k) (hw_summable : Summable w)
     (n : ℕ) : Summable (fun a : Fin n → ℕ => ∏ i, w (a i)) := by
   induction n with
@@ -92,6 +106,9 @@ theorem genProdWeight_summable {w : ℕ → ℝ} (hw_nonneg : ∀ k, 0 ≤ w k) 
 
 set_option maxHeartbeats 1000000 in
 -- same reason as genProdWeight_summable above: w is abstract.
+/--
+@isnad1 id=eq.2h2v.s7.99d819573a18 from=translated src=- shape=545d4239 vocab=9d6cc45e
+-/
 theorem genProdWeight_tsum_succ {w : ℕ → ℝ} (hw_nonneg : ∀ k, 0 ≤ w k) (hw_summable : Summable w)
     (n : ℕ) :
     ∑' a : Fin (n + 1) → ℕ, ∏ i, w (a i)
@@ -109,7 +126,9 @@ theorem genProdWeight_tsum_succ {w : ℕ → ℝ} (hw_nonneg : ∀ k, 0 ≤ w k)
 
 /-- **Generic product-tsum-equals-power** (generalizing `atomWeight_tsum_eq_one`): for any
 nonnegative summable single-digit weight `w`, the length-`n` iid product law normalizes to
-`(Σ' w)^n`.-/
+`(Σ' w)^n`.
+@isnad1 id=eq.2h2v.s6.48f15d43f094 from=translated src=- shape=03378721 vocab=6d46106e
+-/
 theorem genProdWeight_tsum_eq_pow {w : ℕ → ℝ} (hw_nonneg : ∀ k, 0 ≤ w k)
     (hw_summable : Summable w) (n : ℕ) :
     ∑' a : Fin n → ℕ, ∏ i, w (a i) = (∑' k, w k) ^ n := by
@@ -127,9 +146,15 @@ noncomputable def tiltedDigitWeight (α lam : ℝ) (k : ℕ) : ℝ :=
 /-- The moment generating function value `M(lam) = exp(lamα) / (2·exp(lam) - 1)`.-/
 noncomputable def Mfun (α lam : ℝ) : ℝ := Real.exp (lam * α) / (2 * Real.exp lam - 1)
 
+/--
+@isnad1 id=le.0h3v.s4.f7747169995c from=translated src=- shape=bad53a6c vocab=ea08b663
+-/
 theorem tiltedDigitWeight_nonneg (α lam : ℝ) (k : ℕ) : 0 ≤ tiltedDigitWeight α lam k :=
   mul_nonneg (geom2_nonneg k) (Real.exp_pos _).le
 
+/--
+@isnad1 id=le.1h3v.s5.e1c5db96a147 from=translated src=- shape=8aa84d4c vocab=7c243bff
+-/
 theorem tiltedDigitWeight_le_geom2_mul_const (α lam : ℝ) (hlam : 0 ≤ lam) (k : ℕ) :
     tiltedDigitWeight α lam k ≤ Real.exp (lam * α) * geom2 k := by
   unfold tiltedDigitWeight
@@ -147,12 +172,18 @@ theorem tiltedDigitWeight_le_geom2_mul_const (α lam : ℝ) (hlam : 0 ≤ lam) (
         nlinarith [Nat.cast_nonneg (α := ℝ) k]
     _ = Real.exp (lam * α) * geom2 k := by ring
 
+/--
+@isnad1 id=summable.1h2v.s4.5cff63ae3c2c from=translated src=- shape=09b6a055 vocab=7098e560
+-/
 theorem tiltedDigitWeight_summable (α lam : ℝ) (hlam : 0 ≤ lam) :
     Summable (tiltedDigitWeight α lam) := by
   apply Summable.of_nonneg_of_le (tiltedDigitWeight_nonneg α lam)
     (tiltedDigitWeight_le_geom2_mul_const α lam hlam)
   exact geom2_summable.mul_left _
 
+/--
+@isnad1 id=eq.1h2v.s5.bf63eefac88a from=translated src=- shape=beebb8e4 vocab=9640c771
+-/
 theorem tiltedDigitWeight_tsum (α lam : ℝ) (hlam : 0 < lam) :
     ∑' k, tiltedDigitWeight α lam k = Mfun α lam := by
   unfold Mfun
@@ -203,6 +234,9 @@ theorem tiltedDigitWeight_tsum (α lam : ℝ) (hlam : 0 < lam) :
 
 /-! ## Part 7: the pointwise Chernoff inequality and the generic Chernoff bound -/
 
+/--
+@isnad1 id=eq.0h4v.s5.44409dd3e0a5 from=translated src=- shape=0466160d vocab=612a5ca0
+-/
 theorem tiltedAtomWeight_eq (α lam : ℝ) (n : ℕ) (a : Fin n → ℕ) :
     (∏ i, tiltedDigitWeight α lam (a i))
       = atomWeight n a * Real.exp (-lam * totalCenteredSum α n a) := by
@@ -213,6 +247,9 @@ theorem tiltedAtomWeight_eq (α lam : ℝ) (n : ℕ) (a : Fin n → ℕ) :
     Fintype.card_fin, nsmul_eq_mul, ← Finset.mul_sum]
   ring
 
+/--
+@isnad1 id=le.2h5v.s6.fad2dbd16b0a from=translated src=- shape=4a5fdf18 vocab=7712eb83
+-/
 theorem geom_persistence_pointwise_chernoff (α c lam : ℝ) (hlam : 0 < lam) (n : ℕ) (hn : 1 ≤ n)
     (a : Fin n → ℕ) :
     Set.indicator (geomPersistenceEvent α c n) (atomWeight n) a
@@ -233,12 +270,16 @@ theorem geom_persistence_pointwise_chernoff (α c lam : ℝ) (hlam : 0 < lam) (n
 /-- **Concrete specialized helper** (fixes `w := tiltedDigitWeight α lam` once, rather than
 letting `iid_geom_chernoff_bound` repeatedly instantiate the fully generic
 `genProdWeight_summable` machinery inline — this is what keeps that theorem's elaboration
-cost practical).-/
+cost practical).
+@isnad1 id=summable.1h3v.s5.c6db29450586 from=translated src=- shape=8f5c48c2 vocab=a6b589ac
+-/
 theorem tiltedVectorWeight_summable (α lam : ℝ) (hlam : 0 ≤ lam) (n : ℕ) :
     Summable (fun a : Fin n → ℕ => ∏ i, tiltedDigitWeight α lam (a i)) :=
   genProdWeight_summable (tiltedDigitWeight_nonneg α lam) (tiltedDigitWeight_summable α lam hlam) n
 
-/-- **Concrete specialized helper**, companion to `tiltedVectorWeight_summable`.-/
+/-- **Concrete specialized helper**, companion to `tiltedVectorWeight_summable`.
+@isnad1 id=eq.1h3v.s6.cbbfef2db3c7 from=translated src=- shape=7f724112 vocab=d740f76a
+-/
 theorem tiltedVectorWeight_tsum (α lam : ℝ) (hlam : 0 < lam) (n : ℕ) :
     ∑' a : Fin n → ℕ, ∏ i, tiltedDigitWeight α lam (a i) = (Mfun α lam) ^ n := by
   rw [genProdWeight_tsum_eq_pow (tiltedDigitWeight_nonneg α lam)
@@ -253,7 +294,9 @@ subsequent `=`-steps under `Trans` resolution) was measured to blow up elaborati
 this abstract `Fin n → ℕ`-indexed goal — plausibly the `SummationFilter`/`[L.NeBot]` instance
 search this Mathlib's generalized `Summable.tsum_mono` carries, compounded across the several
 pending metavariables from neighboring `have`s. The `tsum_nonneg`/`Summable.tsum_sub`/`linarith`
-route proves the identical inequality without ever invoking that lemma.-/
+route proves the identical inequality without ever invoking that lemma.
+@isnad1 id=le.2h4v.s6.04c664592d1f from=translated src=- shape=07578f5a vocab=1c2fbf82
+-/
 theorem iid_geom_chernoff_bound (α c lam : ℝ) (hlam : 0 < lam) (n : ℕ) (hn : 1 ≤ n) :
     iidGeom2VectorProb n (geomPersistenceEvent α c n) ≤ Real.exp (lam * c) * (Mfun α lam) ^ n := by
   unfold iidGeom2VectorProb genEventProb
@@ -296,12 +339,20 @@ definition — so this milestone's Layer B statements can use the name the brief
 
 noncomputable def collatzAlpha : ℝ := alpha
 
+/--
+@isnad1 id=eq.0h0v.s4.3b407ec6e371 from=translated src=- shape=b1ada3a6 vocab=f6a1e4dd
+-/
 theorem collatzAlpha_eq_log_div_log : collatzAlpha = Real.log 3 / Real.log 2 := by
   rfl
 
+/--
+@isnad1 id=lt.0h0v.s3.d2922cb34006 from=translated src=- shape=ff3a10fc vocab=f456223c
+-/
 theorem one_lt_collatzAlpha : 1 < collatzAlpha := one_lt_alpha
 
-/-- `3 < 4 = 2^2` gives `log 3 < 2 log 2`, i.e. `collatzAlpha < 2`.-/
+/-- `3 < 4 = 2^2` gives `log 3 < 2 log 2`, i.e. `collatzAlpha < 2`.
+@isnad1 id=lt.0h0v.s3.02c5181bf555 from=translated src=- shape=ffdda526 vocab=368f9a30
+-/
 theorem collatzAlpha_lt_two : collatzAlpha < 2 := by
   rw [collatzAlpha_eq_log_div_log, div_lt_iff₀ (Real.log_pos (by norm_num : (1:ℝ) < 2))]
   have h4 : Real.log (4:ℝ) = 2 * Real.log 2 := by
@@ -310,7 +361,9 @@ theorem collatzAlpha_lt_two : collatzAlpha < 2 := by
     _ = 2 * Real.log 2 := h4
 
 /-- `2^4 = 16 < 27 = 3^3` gives `4 log 2 < 3 log 3`, i.e. `4/3 < collatzAlpha`. Used to prove
-`rateNats > 0` via the factorization `-3(α-2)²(α-4/3) ≤ 0`.-/
+`rateNats > 0` via the factorization `-3(α-2)²(α-4/3) ≤ 0`.
+@isnad1 id=lt.0h0v.s4.94093e22486d from=translated src=- shape=5ccaf027 vocab=3a9a64ce
+-/
 theorem four_thirds_lt_collatzAlpha : (4:ℝ) / 3 < collatzAlpha := by
   rw [collatzAlpha_eq_log_div_log, lt_div_iff₀ (Real.log_pos (by norm_num : (1:ℝ) < 2))]
   have h27 : Real.log (27:ℝ) = 3 * Real.log 3 := by
@@ -320,34 +373,54 @@ theorem four_thirds_lt_collatzAlpha : (4:ℝ) / 3 < collatzAlpha := by
   have hlt : Real.log (16:ℝ) < Real.log (27:ℝ) := Real.log_lt_log (by norm_num) (by norm_num)
   nlinarith [hlt, h27, h16]
 
+/--
+@isnad1 id=lt.0h0v.s4.7297d67d9561 from=translated src=- shape=3b25bc41 vocab=be69854b
+-/
 theorem collatzAlpha_sub_one_pos : 0 < collatzAlpha - 1 := by linarith [one_lt_collatzAlpha]
 
 /-! ## Part 9: the optimal tilt `lambdaStar` -/
 
+/--
+@isnad1 id=lt.0h0v.s5.8d7b707013ed from=translated src=- shape=c1494c87 vocab=52081518
+-/
 theorem collatzAlpha_div_pos : 0 < collatzAlpha / (2 * (collatzAlpha - 1)) :=
   div_pos (by linarith [one_lt_collatzAlpha]) (by linarith [collatzAlpha_sub_one_pos])
 
-/-- `α / (2(α-1)) > 1 ⟺ α > 2(α-1) ⟺ 2 > α`, i.e. this is exactly `collatzAlpha_lt_two`.-/
+/-- `α / (2(α-1)) > 1 ⟺ α > 2(α-1) ⟺ 2 > α`, i.e. this is exactly `collatzAlpha_lt_two`.
+@isnad1 id=lt.0h0v.s5.f6505c8e75d9 from=translated src=- shape=c1494c87 vocab=52081518
+-/
 theorem collatzAlpha_div_gt_one : 1 < collatzAlpha / (2 * (collatzAlpha - 1)) := by
   rw [lt_div_iff₀ (by linarith [collatzAlpha_sub_one_pos] : (0:ℝ) < 2 * (collatzAlpha - 1))]
   nlinarith [collatzAlpha_lt_two]
 
 noncomputable def lambdaStar : ℝ := Real.log (collatzAlpha / (2 * (collatzAlpha - 1)))
 
+/--
+@isnad1 id=lt.0h0v.s3.2fb7220af669 from=translated src=- shape=ff3a10fc vocab=519b9ea5
+-/
 theorem lambdaStar_pos : 0 < lambdaStar :=
   Real.log_pos collatzAlpha_div_gt_one
 
+/--
+@isnad1 id=eq.0h0v.s5.0fe7b83110e5 from=translated src=- shape=718f6602 vocab=a2aafe42
+-/
 theorem exp_lambdaStar : Real.exp lambdaStar = collatzAlpha / (2 * (collatzAlpha - 1)) :=
   Real.exp_log collatzAlpha_div_pos
 
 /-! ## Part 10: `rateNats` and its positivity -/
 
+/--
+@isnad1 id=lt.0h0v.s5.37845ec0f0cd from=translated src=- shape=a4e990a1 vocab=777c5cea
+-/
 theorem two_exp_lambdaStar_sub_one_pos : 0 < 2 * Real.exp lambdaStar - 1 := by
   have h1 : (1:ℝ) < Real.exp lambdaStar := by
     rw [show (1:ℝ) = Real.exp 0 by simp]
     exact Real.exp_lt_exp.mpr lambdaStar_pos
   linarith
 
+/--
+@isnad1 id=lt.0h0v.s3.0d3c129bfead from=translated src=- shape=7164367e vocab=6890d4c3
+-/
 theorem Mfun_collatzAlpha_lambdaStar_pos : 0 < Mfun collatzAlpha lambdaStar := by
   unfold Mfun
   exact div_pos (Real.exp_pos _) two_exp_lambdaStar_sub_one_pos
@@ -356,7 +429,9 @@ theorem Mfun_collatzAlpha_lambdaStar_pos : 0 < Mfun collatzAlpha lambdaStar := b
 `exp` (the exponent `collatzAlpha * lambdaStar` is the convex combination
 `(collatzAlpha/2) • (2·lambdaStar) + (1 - collatzAlpha/2) • 0`, since `0 < collatzAlpha < 2`),
 which reduces the claim to the purely algebraic fact `3(α-2)²(α-4/3) ≥ 0` — true since
-`α > 4/3` (`four_thirds_lt_collatzAlpha`).-/
+`α > 4/3` (`four_thirds_lt_collatzAlpha`).
+@isnad1 id=lt.0h0v.s3.f34590d3d4f8 from=translated src=- shape=b3c4969c vocab=6890d4c3
+-/
 theorem Mfun_collatzAlpha_lambdaStar_lt_one : Mfun collatzAlpha lambdaStar < 1 := by
   unfold Mfun
   rw [div_lt_one two_exp_lambdaStar_sub_one_pos]
@@ -389,11 +464,17 @@ theorem Mfun_collatzAlpha_lambdaStar_lt_one : Mfun collatzAlpha lambdaStar < 1 :
 
 noncomputable def rateNats : ℝ := -Real.log (Mfun collatzAlpha lambdaStar)
 
+/--
+@isnad1 id=lt.0h0v.s3.c38010909ca4 from=translated src=- shape=ff3a10fc vocab=fc52dd5c
+-/
 theorem rateNats_pos : 0 < rateNats := by
   unfold rateNats
   have := Real.log_neg Mfun_collatzAlpha_lambdaStar_pos Mfun_collatzAlpha_lambdaStar_lt_one
   linarith
 
+/--
+@isnad1 id=eq.0h0v.s3.bb971480eda9 from=translated src=- shape=2117893d vocab=8274c737
+-/
 theorem Mfun_collatzAlpha_lambdaStar_eq_exp_neg_rateNats :
     Mfun collatzAlpha lambdaStar = Real.exp (-rateNats) := by
   unfold rateNats
@@ -406,7 +487,9 @@ lower bound, no matching asymptotics. This is a statement about the abstract iid
 law only, not (yet) about real Collatz trajectories. -/
 
 /-- Specializes `iid_geom_chernoff_bound` at the optimal tilt `lambdaStar`, exposing the exact
-positive natural-log rate `rateNats`.-/
+positive natural-log rate `rateNats`.
+@isnad1 id=le.1h2v.s5.caa95051d8f3 from=translated src=- shape=0b6dc42f vocab=1b66fecf
+-/
 theorem geometric_persistence_upper_bound (c : ℝ) (n : ℕ) (hn : 1 ≤ n) :
     iidGeom2VectorProb n (geomPersistenceEvent collatzAlpha c n)
       ≤ Real.exp (lambdaStar * c) * Real.exp (-(rateNats * (n : ℝ))) := by
@@ -425,12 +508,18 @@ noncomputable def I0 : ℝ :=
   collatzAlpha - collatzAlpha * Real.logb 2 collatzAlpha
     + (collatzAlpha - 1) * Real.logb 2 (collatzAlpha - 1)
 
+/--
+@isnad1 id=eq.0h0v.s5.38f2b9339cf8 from=translated src=- shape=a275eebf vocab=08e7e5d0
+-/
 theorem two_exp_lambdaStar_sub_one_eq_inv : 2 * Real.exp lambdaStar - 1 = (collatzAlpha - 1)⁻¹ := by
   have hd0 : (collatzAlpha - 1) ≠ 0 := ne_of_gt collatzAlpha_sub_one_pos
   rw [exp_lambdaStar]
   field_simp
   ring
 
+/--
+@isnad1 id=eq.0h0v.s4.b7216f859d95 from=translated src=- shape=08abebb0 vocab=11239e3c
+-/
 theorem rateNats_eq_I0_mul_log_two : rateNats = I0 * Real.log 2 := by
   have hd0 : (collatzAlpha - 1) ≠ 0 := ne_of_gt collatzAlpha_sub_one_pos
   have ha0 : collatzAlpha ≠ 0 := ne_of_gt (by linarith [one_lt_collatzAlpha])
@@ -449,7 +538,9 @@ theorem rateNats_eq_I0_mul_log_two : rateNats = I0 * Real.log 2 := by
 /-! ## Part 13 (optional): bit-rate corollary -/
 
 /-- Same bound as `geometric_persistence_upper_bound`, expressed in bits via `(2:ℝ)^(-I0·n)`
-(`Real.rpow`, forced by the real-valued exponent `-(I0 * (n:ℝ))`).-/
+(`Real.rpow`, forced by the real-valued exponent `-(I0 * (n:ℝ))`).
+@isnad1 id=le.1h2v.s6.88127d3081a6 from=translated src=- shape=25427186 vocab=c61a1af6
+-/
 theorem geometric_persistence_upper_bound_bits (c : ℝ) (n : ℕ) (hn : 1 ≤ n) :
     iidGeom2VectorProb n (geomPersistenceEvent collatzAlpha c n)
       ≤ Real.exp (lambdaStar * c) * (2:ℝ) ^ (-(I0 * (n : ℝ))) := by

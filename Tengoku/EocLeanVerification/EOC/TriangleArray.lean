@@ -26,6 +26,9 @@ namespace EOC.TriangleArray
 
 noncomputable section
 
+/--
+@isnad1 id=nezero.0h1v.s4.05b2fb850725 from=translated src=- shape=ac75faaa vocab=780e3f12
+-/
 instance neZero_three_pow (b : ℕ) : NeZero (3 ^ b) := ⟨pow_ne_zero _ (by norm_num)⟩
 
 /-- `2^{-a}` in `ZMod (3^b)`.-/
@@ -34,15 +37,23 @@ def u (a b : ℕ) : ZMod (3 ^ b) := ((2 : ZMod (3 ^ b))⁻¹) ^ a
 /-- Centered representative of `2^{-a} mod 3^b`.-/
 def y (a b : ℕ) : ℤ := (u a b).valMinAbs
 
+/--
+@isnad1 id=eq.0h1v.s9.08e3e81ec401 from=translated src=- shape=8fcf1e82 vocab=337c1d8a
+-/
 theorem two_mul_inv (b : ℕ) : (2 : ZMod (3 ^ b)) * (2 : ZMod (3 ^ b))⁻¹ = 1 := by
   have h := ZMod.coe_mul_inv_eq_one (n := 3 ^ b) 2 (Nat.Coprime.pow_right b (by norm_num))
   exact_mod_cast h
 
-/-- `2^k · 2^{-(a+k)} = 2^{-a}`.-/
+/-- `2^k · 2^{-(a+k)} = 2^{-a}`.
+@isnad1 id=eq.0h3v.s9.c90728a6eb58 from=translated src=- shape=c2fc29a8 vocab=6fea042d
+-/
 theorem two_pow_mul_u (a b k : ℕ) : (2 : ZMod (3 ^ b)) ^ k * u (a + k) b = u a b := by
   unfold u
   rw [pow_add, mul_left_comm, ← mul_pow, two_mul_inv, one_pow, mul_one]
 
+/--
+@isnad1 id=eq.1h4v.s10.48dde1cd2f6d from=translated src=- shape=e47460af vocab=b9644773
+-/
 theorem two_pow_mul_cancel {b k : ℕ} {x x' : ZMod (3 ^ b)}
     (h : (2 : ZMod (3 ^ b)) ^ k * x = 2 ^ k * x') : x = x' := by
   have hk : ((2 : ZMod (3 ^ b))⁻¹) ^ k * (2 : ZMod (3 ^ b)) ^ k = 1 := by
@@ -51,7 +62,9 @@ theorem two_pow_mul_cancel {b k : ℕ} {x x' : ZMod (3 ^ b)}
     _ = ((2 : ZMod (3 ^ b))⁻¹) ^ k * (2 ^ k * x') := by rw [h]
     _ = x' := by rw [← mul_assoc, hk, one_mul]
 
-/-- The reduction map `ZMod (3^b') → ZMod (3^b)` sends `2⁻¹` to `2⁻¹`.-/
+/-- The reduction map `ZMod (3^b') → ZMod (3^b)` sends `2⁻¹` to `2⁻¹`.
+@isnad1 id=eq.1h2v.s9.b88f06af6a25 from=translated src=- shape=8dade132 vocab=b17de877
+-/
 theorem castHom_inv_two {b b' : ℕ} (h : b ≤ b') :
     ZMod.castHom (pow_dvd_pow 3 h) (ZMod (3 ^ b)) ((2 : ZMod (3 ^ b'))⁻¹) =
       (2 : ZMod (3 ^ b))⁻¹ := by
@@ -64,7 +77,9 @@ theorem castHom_inv_two {b b' : ℕ} (h : b ≤ b') :
         rw [hc, one_mul]
     _ = (2 : ZMod (3 ^ b))⁻¹ := by rw [mul_assoc, h2, mul_one]
 
-/-- Reduction: `y a b' ≡ 2^{-a} (mod 3^b)` for `b ≤ b'`.-/
+/-- Reduction: `y a b' ≡ 2^{-a} (mod 3^b)` for `b ≤ b'`.
+@isnad1 id=eq.1h3v.s7.fba59a133f14 from=translated src=- shape=143a8e8e vocab=8d9315a3
+-/
 theorem cast_y (a : ℕ) {b b' : ℕ} (h : b ≤ b') : ((y a b' : ℤ) : ZMod (3 ^ b)) = u a b := by
   set φ := ZMod.castHom (pow_dvd_pow 3 h) (ZMod (3 ^ b))
   have h1 : ((y a b' : ℤ) : ZMod (3 ^ b')) = u a b' := ZMod.coe_valMinAbs _
@@ -74,12 +89,17 @@ theorem cast_y (a : ℕ) {b b' : ℕ} (h : b ≤ b') : ((y a b' : ℤ) : ZMod (3
   unfold u
   rw [map_pow, castHom_inv_two h]
 
+/--
+@isnad1 id=eq.0h4v.s7.ed3a9bff90fe from=translated src=- shape=cc4bff08 vocab=4f792383
+-/
 theorem cast_two_pow_mul_y (a b k l : ℕ) :
     ((2 ^ k * y (a + k) (b + l) : ℤ) : ZMod (3 ^ b)) = u a b := by
   push_cast
   rw [cast_y (a + k) (Nat.le_add_right b l), two_pow_mul_u]
 
-/-- **Triangle propagation.**  A small apex value determines every cell below/left of it.-/
+/-- **Triangle propagation.**  A small apex value determines every cell below/left of it.
+@isnad1 id=eq.1h4v.s7.bd569775e259 from=translated src=- shape=67f82aa7 vocab=8bd56e19
+-/
 theorem propagate (a b k l : ℕ) (h : 2 * (2 ^ k * |y (a + k) (b + l)|) < 3 ^ b) :
     y a b = 2 ^ k * y (a + k) (b + l) := by
   unfold y
@@ -94,7 +114,9 @@ theorem propagate (a b k l : ℕ) (h : 2 * (2 ^ k * |y (a + k) (b + l)|) < 3 ^ b
   · push_cast; linarith [habs.1]
   · push_cast; linarith [habs.2]
 
-/-- Horizontal recurrence: `2 y(a+1,b) ≡ y(a,b) (mod 3^b)`.-/
+/-- Horizontal recurrence: `2 y(a+1,b) ≡ y(a,b) (mod 3^b)`.
+@isnad1 id=modeq.0h2v.s5.0dcccdbb5380 from=translated src=- shape=93dac986 vocab=aa1c1589
+-/
 theorem y_succ_modEq (a b : ℕ) : 2 * y (a + 1) b ≡ y a b [ZMOD 3 ^ b] := by
   have h1 := cast_two_pow_mul_y a b 1 0
   have h2 : ((y a b : ℤ) : ZMod (3 ^ b)) = u a b := cast_y a le_rfl
@@ -102,26 +124,34 @@ theorem y_succ_modEq (a b : ℕ) : 2 * y (a + 1) b ≡ y a b [ZMOD 3 ^ b] := by
   have := (ZMod.intCast_eq_intCast_iff _ _ _).1 (h1.trans h2.symm)
   exact_mod_cast this
 
-/-- Doubling inside the black region.-/
+/-- Doubling inside the black region.
+@isnad1 id=eq.1h2v.s6.69c05e457fd0 from=translated src=- shape=78e3f909 vocab=8bd56e19
+-/
 theorem y_eq_two_mul (a b : ℕ) (h : 4 * |y (a + 1) b| < 3 ^ b) : y a b = 2 * y (a + 1) b := by
   have h' : 2 * (2 ^ 1 * |y (a + 1) (b + 0)|) < (3 : ℤ) ^ b := by
     simp only [Nat.add_zero, pow_one]; linarith
   have := propagate a b 1 0 h'
   simpa using this
 
-/-- Vertical recurrence: `y(a,b+1) ≡ y(a,b) (mod 3^b)`.-/
+/-- Vertical recurrence: `y(a,b+1) ≡ y(a,b) (mod 3^b)`.
+@isnad1 id=modeq.0h2v.s5.ab3aa9d1cba8 from=translated src=- shape=31abf8f2 vocab=7e57e55d
+-/
 theorem y_modEq_succ (a b : ℕ) : y a (b + 1) ≡ y a b [ZMOD 3 ^ b] := by
   have h1 : ((y a (b + 1) : ℤ) : ZMod (3 ^ b)) = u a b := cast_y a (Nat.le_succ b)
   have h2 : ((y a b : ℤ) : ZMod (3 ^ b)) = u a b := cast_y a le_rfl
   have := (ZMod.intCast_eq_intCast_iff _ _ _).1 (h1.trans h2.symm)
   exact_mod_cast this
 
-/-- Vertical tripling inside the black region: `U(a,b) = 3 U(a,b+1)` when small.-/
+/-- Vertical tripling inside the black region: `U(a,b) = 3 U(a,b+1)` when small.
+@isnad1 id=eq.1h2v.s6.cef3c5d43bb2 from=translated src=- shape=cbcaf84b vocab=8bd56e19
+-/
 theorem y_eq_of_small (a b : ℕ) (h : 2 * |y a (b + 1)| < 3 ^ b) : y a b = y a (b + 1) := by
   have := propagate a b 0 1 (by simpa using h)
   simpa using this
 
-/-- **Merge lemma.**  Cells `(a+k, b)` and `(a, b+l)` with small values are linked exactly.-/
+/-- **Merge lemma.**  Cells `(a+k, b)` and `(a, b+l)` with small values are linked exactly.
+@isnad1 id=eq.1h4v.s7.38d8468eb692 from=translated src=- shape=27c2a1bd vocab=8bd56e19
+-/
 theorem merge (a b k l : ℕ) (h : |y a (b + l)| + 2 ^ k * |y (a + k) b| < 3 ^ b) :
     y a (b + l) = 2 ^ k * y (a + k) b := by
   rw [← sub_eq_zero]
@@ -139,7 +169,9 @@ theorem merge (a b k l : ℕ) (h : |y a (b + l)| + 2 ^ k * |y (a + k) b| < 3 ^ b
       _ < 3 ^ b := h
 
 /-- **Merge ⇒ common apex.**  Under the merge hypothesis the corner `(a+k, b+l)` carries the same
-value as `(a+k, b)`, so both cells lie in the triangle with apex `(a+k, b+l)`.-/
+value as `(a+k, b)`, so both cells lie in the triangle with apex `(a+k, b+l)`.
+@isnad1 id=eq.1h4v.s6.6e3934197fad from=translated src=- shape=e408ae6f vocab=8bd56e19
+-/
 theorem merge_apex (a b k l : ℕ) (h : |y a (b + l)| + 2 ^ k * |y (a + k) b| < 3 ^ b) :
     y (a + k) (b + l) = y (a + k) b := by
   rcases Nat.eq_zero_or_pos l with rfl | hl
@@ -172,7 +204,9 @@ def black (a b : ℕ) (η : ℝ) : Prop := |((y a b : ℤ) : ℝ)| < η * 3 ^ b
 def inLargeTriangle (a b : ℕ) (η R : ℝ) : Prop :=
   ∃ k l : ℕ, (2 : ℝ) ^ k * 3 ^ l * |((y (a + k) (b + l) : ℤ) : ℝ)| ≤ η * 3 ^ (b + l) * Real.exp (-R)
 
-/-- A cell deep inside a triangle is black, and its value is dictated by the apex.-/
+/-- A cell deep inside a triangle is black, and its value is dictated by the apex.
+@isnad1 id=ex.4h4v.s6.091a77b9deec from=translated src=- shape=e3271fb1 vocab=c1df319c
+-/
 theorem black_of_inLargeTriangle {a b : ℕ} {η R : ℝ} (hη : 0 < η) (hη4 : η ≤ 1 / 4) (hR : 0 < R)
     (h : inLargeTriangle a b η R) :
     ∃ k l : ℕ, y a b = 2 ^ k * y (a + k) (b + l) ∧ black a b η := by

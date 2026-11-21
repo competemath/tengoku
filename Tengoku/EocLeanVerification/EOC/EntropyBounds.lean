@@ -37,18 +37,26 @@ open Finset Real Filter Topology CapacityBounds
 /-- Binomial term `C(n,j) · k^j · (n-k)^(n-j)`.-/
 def T (n k j : ℕ) : ℕ := n.choose j * k ^ j * (n - k) ^ (n - j)
 
+/--
+@isnad1 id=eq.1h2v.s5.2cfbab26bc12 from=translated src=- shape=b8b1edf5 vocab=d97483ba
+-/
 theorem sum_T (n k : ℕ) (hk : k ≤ n) : ∑ j ∈ range (n + 1), T n k j = n ^ n := by
   have h := add_pow k (n - k) n
   rw [Nat.add_sub_cancel' hk] at h
   rw [h]
   exact sum_congr rfl fun j _ => by unfold T; rw [Nat.cast_id]; ring
 
-/-- `C(n,k) · k^k · (n-k)^(n-k) ≤ n^n`.-/
+/-- `C(n,k) · k^k · (n-k)^(n-k) ≤ n^n`.
+@isnad1 id=le.1h2v.s6.1e56d43d9451 from=translated src=- shape=c91a89eb vocab=29ce789a
+-/
 theorem choose_mul_pow_le (n k : ℕ) (hk : k ≤ n) :
     n.choose k * k ^ k * (n - k) ^ (n - k) ≤ n ^ n := by
   rw [← sum_T n k hk]
   exact single_le_sum (f := T n k) (fun _ _ => Nat.zero_le _) (mem_range.mpr (Nat.lt_succ_of_le hk))
 
+/--
+@isnad1 id=eq.1h3v.s6.300c68c69ba3 from=translated src=- shape=370041de vocab=bd94dcc2
+-/
 theorem T_succ (n k j : ℕ) (hj : j < n) :
     T n k (j + 1) * ((j + 1) * (n - k)) = T n k j * ((n - j) * k) := by
   unfold T
@@ -62,6 +70,9 @@ theorem T_succ (n k j : ℕ) (hj : j < n) :
     _ = (n.choose j * (m + 1)) * (k ^ j * k) * ((n - k) ^ m * (n - k)) := by rw [hc]
     _ = n.choose j * k ^ j * (n - k) ^ (m + 1) * ((m + 1) * k) := by ring
 
+/--
+@isnad1 id=le.2h3v.s5.da0809ead787 from=translated src=- shape=17122d06 vocab=a36d3321
+-/
 theorem T_succ_le (n k j : ℕ) (hkj : k ≤ j) (hkn : k < n) : T n k (j + 1) ≤ T n k j := by
   by_cases hj : j < n
   · have h := T_succ n k j hj
@@ -77,6 +88,9 @@ theorem T_succ_le (n k j : ℕ) (hkj : k ≤ j) (hkn : k < n) : T n k (j + 1) �
   · have h0 : n.choose (j + 1) = 0 := Nat.choose_eq_zero_of_lt (by omega)
     simp [T, h0]
 
+/--
+@isnad1 id=le.2h3v.s5.12ccfb6ebbcd from=translated src=- shape=28f6020b vocab=a36d3321
+-/
 theorem T_le_succ (n k j : ℕ) (hjk : j < k) (hkn : k ≤ n) : T n k j ≤ T n k (j + 1) := by
   have hj : j < n := by omega
   by_cases hnk : n - k = 0
@@ -93,7 +107,9 @@ theorem T_le_succ (n k j : ℕ) (hjk : j < k) (hkn : k ≤ n) : T n k j ≤ T n 
       exact Nat.mul_le_mul_left _ hle
     exact Nat.le_of_mul_le_mul_right hmul hpos
 
-/-- The binomial terms are maximal at `j = k`.-/
+/-- The binomial terms are maximal at `j = k`.
+@isnad1 id=le.1h3v.s4.482314e3d0fd from=translated src=- shape=e5018ae7 vocab=9adcf7f8
+-/
 theorem T_le_T_self (n k j : ℕ) (hk : k ≤ n) : T n k j ≤ T n k k := by
   rcases le_or_gt j k with hjk | hkj
   · have key : ∀ d, d ≤ k → T n k (k - d) ≤ T n k k := by
@@ -117,7 +133,9 @@ theorem T_le_T_self (n k j : ℕ) (hk : k ≤ n) : T n k j ≤ T n k k := by
             simp [T, h0]
     simpa [Nat.add_sub_cancel' hkj.le] using key (j - k)
 
-/-- `n^n ≤ (n+1) · C(n,k) · k^k · (n-k)^(n-k)`.-/
+/-- `n^n ≤ (n+1) · C(n,k) · k^k · (n-k)^(n-k)`.
+@isnad1 id=le.1h2v.s6.65928ef78440 from=translated src=- shape=50056a4d vocab=32545042
+-/
 theorem pow_le_succ_mul_choose_mul_pow (n k : ℕ) (hk : k ≤ n) :
     n ^ n ≤ (n + 1) * (n.choose k * k ^ k * (n - k) ^ (n - k)) := by
   rw [← sum_T n k hk]
@@ -132,16 +150,25 @@ theorem pow_le_succ_mul_choose_mul_pow (n k : ℕ) (hk : k ≤ n) :
 noncomputable def ent (n k : ℕ) : ℝ :=
   n * log n - k * log k - ((n - k : ℕ) : ℝ) * log ((n - k : ℕ) : ℝ)
 
+/--
+@isnad1 id=lt.0h1v.s4.8252175ea1a9 from=translated src=- shape=33c64777 vocab=7ddce274
+-/
 theorem self_pow_pos (k : ℕ) : 0 < k ^ k := by
   rcases Nat.eq_zero_or_pos k with rfl | hk
   · simp
   · exact pow_pos hk k
 
+/--
+@isnad1 id=lt.1h2v.s6.2c3d9ba961e9 from=translated src=- shape=f532f6ff vocab=20e79b39
+-/
 theorem cast_prod_pos (n k : ℕ) (hk : k ≤ n) :
     (0 : ℝ) < ((n.choose k * k ^ k * (n - k) ^ (n - k) : ℕ) : ℝ) := by
   exact_mod_cast Nat.mul_pos (Nat.mul_pos (Nat.choose_pos hk) (self_pow_pos k))
     (self_pow_pos (n - k))
 
+/--
+@isnad1 id=eq.1h2v.s7.596e8d52e12d from=translated src=- shape=a5b27b0a vocab=231fc931
+-/
 theorem log_prod (n k : ℕ) (hk : k ≤ n) :
     log ((n.choose k * k ^ k * (n - k) ^ (n - k) : ℕ) : ℝ) =
       log (n.choose k) + k * log k + ((n - k : ℕ) : ℝ) * log ((n - k : ℕ) : ℝ) := by
@@ -151,7 +178,9 @@ theorem log_prod (n k : ℕ) (hk : k ≤ n) :
   rw [Nat.cast_mul, Nat.cast_mul, Real.log_mul (mul_ne_zero h1 h2) h3, Real.log_mul h1 h2,
     Nat.cast_pow, Nat.cast_pow, Real.log_pow, Real.log_pow]
 
-/-- `log C(n,k) ≤ n · H(k/n)`.-/
+/-- `log C(n,k) ≤ n · H(k/n)`.
+@isnad1 id=le.1h2v.s4.ec375e99585b from=translated src=- shape=5ac89d09 vocab=201e4f3b
+-/
 theorem log_choose_le_ent (n k : ℕ) (hk : k ≤ n) : log (n.choose k) ≤ ent n k := by
   have hle : ((n.choose k * k ^ k * (n - k) ^ (n - k) : ℕ) : ℝ) ≤ ((n ^ n : ℕ) : ℝ) := by
     exact_mod_cast choose_mul_pow_le n k hk
@@ -160,7 +189,9 @@ theorem log_choose_le_ent (n k : ℕ) (hk : k ≤ n) : log (n.choose k) ≤ ent 
   unfold ent
   linarith
 
-/-- `n · H(k/n) ≤ log (n+1) + log C(n,k)`.-/
+/-- `n · H(k/n) ≤ log (n+1) + log C(n,k)`.
+@isnad1 id=le.1h2v.s5.44b4a4f5a45c from=translated src=- shape=ca59d8e3 vocab=ac39ab74
+-/
 theorem ent_le_log_succ_add_log_choose (n k : ℕ) (hk : k ≤ n) :
     ent n k ≤ log ((n : ℝ) + 1) + log (n.choose k) := by
   have hle : ((n ^ n : ℕ) : ℝ) ≤
@@ -179,6 +210,9 @@ theorem ent_le_log_succ_add_log_choose (n k : ℕ) (hk : k ≤ n) :
 /-- `W_c(N) = #confinedWords N (collatzBarrier c)`.-/
 noncomputable abbrev W (c N : ℕ) : ℕ := (confinedWords N (collatzBarrier c)).card
 
+/--
+@isnad1 id=le.1h2v.s4.6c5bacfe1b94 from=translated src=- shape=61bdc3e7 vocab=090b0e4d
+-/
 theorem one_le_W (c : ℕ) {N : ℕ} (hN : 1 ≤ N) : 1 ≤ W c N := by
   have h := (collatz_capacity_sandwich c hN).2.1
   have hc : 0 < Nat.choose (collatzBarrier c N) N := Nat.choose_pos (le_collatzBarrier c N)
@@ -188,7 +222,9 @@ theorem one_le_W (c : ℕ) {N : ℕ} (hN : 1 ≤ N) : 1 ≤ W c N := by
     omega
   · exact h0
 
-/-- **Upper entropy bound.** `log W_c(N) ≤ s_N · H(N/s_N)` (as `ent s_N N`).-/
+/-- **Upper entropy bound.** `log W_c(N) ≤ s_N · H(N/s_N)` (as `ent s_N N`).
+@isnad1 id=le.1h2v.s4.0e1ae0b085ad from=translated src=- shape=3ad4e42d vocab=fcad0340
+-/
 theorem log_W_le (c : ℕ) {N : ℕ} (hN : 1 ≤ N) :
     log (W c N) ≤ ent (collatzBarrier c N) N := by
   have hW : (0 : ℝ) < W c N := by exact_mod_cast one_le_W c hN
@@ -196,7 +232,9 @@ theorem log_W_le (c : ℕ) {N : ℕ} (hN : 1 ≤ N) :
         Real.log_le_log hW (by exact_mod_cast card_confinedWords_le_choose hN _)
     _ ≤ ent (collatzBarrier c N) N := log_choose_le_ent _ _ (le_collatzBarrier c N)
 
-/-- **Lower entropy bound.** `s_N · H(N/s_N) − log (s_N+1) − log N ≤ log W_c(N)`.-/
+/-- **Lower entropy bound.** `s_N · H(N/s_N) − log (s_N+1) − log N ≤ log W_c(N)`.
+@isnad1 id=le.1h2v.s6.ba9cfa8f27bb from=translated src=- shape=c92ad342 vocab=b889993c
+-/
 theorem log_W_ge (c : ℕ) {N : ℕ} (hN : 1 ≤ N) :
     ent (collatzBarrier c N) N - log ((collatzBarrier c N : ℝ) + 1) - log N ≤ log (W c N) := by
   have hW : (0 : ℝ) < W c N := by exact_mod_cast one_le_W c hN
@@ -214,9 +252,15 @@ theorem log_W_ge (c : ℕ) {N : ℕ} (hN : 1 ≤ N) :
 /-- `f t = t log t − (t−1) log (t−1)`, so that `ent s N = N · f (s/N)`.-/
 noncomputable def f (t : ℝ) : ℝ := t * log t - (t - 1) * log (t - 1)
 
+/--
+@isnad1 id=continuo.0h0v.s3.2f2cac1d84c9 from=translated src=- shape=e3d48bcb vocab=07f43a03
+-/
 theorem f_continuous : Continuous f :=
   continuous_mul_log.sub (continuous_mul_log.comp (continuous_sub_right 1))
 
+/--
+@isnad1 id=eq.2h2v.s5.eb8506b264c5 from=translated src=- shape=17f3fcc6 vocab=e12957ba
+-/
 theorem ent_eq_mul_f {s N : ℕ} (hN : 1 ≤ N) (hNs : N ≤ s) :
     ent s N = N * f ((s : ℝ) / N) := by
   have hNr : (0 : ℝ) < N := by exact_mod_cast hN
@@ -236,6 +280,9 @@ theorem ent_eq_mul_f {s N : ℕ} (hN : 1 ≤ N) (hNs : N ≤ s) :
     field_simp
     ring
 
+/--
+@isnad1 id=tendsto.0h1v.s5.59dbdc96e242 from=translated src=- shape=73c522d1 vocab=1a6a200a
+-/
 theorem tendsto_barrier_div (c : ℕ) :
     Tendsto (fun N : ℕ => (collatzBarrier c N : ℝ) / N) atTop (𝓝 alpha) := by
   have hlo : Tendsto (fun N : ℕ => alpha + ((c : ℝ) - 1) / N) atTop (𝓝 alpha) := by
@@ -257,6 +304,9 @@ theorem tendsto_barrier_div (c : ℕ) :
     rw [div_le_iff₀ hNr, add_mul, div_mul_cancel₀ _ hNr.ne']
     linarith
 
+/--
+@isnad1 id=tendsto.0h0v.s5.255b24d33c72 from=translated src=- shape=69636548 vocab=95411f06
+-/
 theorem tendsto_log_nat_div : Tendsto (fun N : ℕ => log (N : ℝ) / N) atTop (𝓝 0) := by
   have h := (tendsto_pow_log_div_mul_add_atTop 1 0 1 one_ne_zero).comp
     tendsto_natCast_atTop_atTop
@@ -264,7 +314,9 @@ theorem tendsto_log_nat_div : Tendsto (fun N : ℕ => log (N : ℝ) / N) atTop (
   simp
 
 /-- **Confined-language entropy** (paper Thm 6.2), natural logarithms:
-`log W_c(N) / N → α log α − (α−1) log (α−1)`.-/
+`log W_c(N) / N → α log α − (α−1) log (α−1)`.
+@isnad1 id=tendsto.0h1v.s5.f1784eb6164d from=translated src=- shape=e3a0505d vocab=c5e4dfd0
+-/
 theorem tendsto_log_card_confined (c : ℕ) :
     Tendsto (fun N : ℕ => log (W c N) / N) atTop (𝓝 (f alpha)) := by
   have hf : Tendsto (fun N : ℕ => f ((collatzBarrier c N : ℝ) / N)) atTop (𝓝 (f alpha)) :=
@@ -319,7 +371,9 @@ theorem tendsto_log_card_confined (c : ℕ) :
     rw [div_le_iff₀ hNr]
     linarith
 
-/-- The limit constant is `α · H(1/α)`.-/
+/-- The limit constant is `α · H(1/α)`.
+@isnad1 id=eq.0h0v.s4.a95554382de8 from=translated src=- shape=b71eb29e vocab=5c3f4c83
+-/
 theorem alpha_entropy_eq : f alpha = alpha * Real.binEntropy alpha⁻¹ := by
   have ha : 1 < alpha := one_lt_alpha
   have ha0 : alpha ≠ 0 := by linarith
