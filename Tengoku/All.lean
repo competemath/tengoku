@@ -104,6 +104,7 @@ import Tengoku.DamianFormalizare
 import Tengoku.Arklib
 import Tengoku.InverseGeneratorLean
 import Tengoku.Vcvio
+import Tengoku.Goemans
 import Tengoku.Jsp000958Lean
 import Tengoku.PcfCyclotomicLean
 import Tengoku.LanaPi1
