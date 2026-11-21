@@ -54,13 +54,18 @@ def vertexTrace (a : V) (l : List A) : List V := a :: l.map dst
 
 variable {src dst}
 
+/--
+@isnad1 id=eq.0h6v.s5.0d60f1660eb3 from=translated src=- shape=26af623a vocab=b57af831
+-/
 theorem vertexTrace_append (a : V) (l₁ l₂ : List A) :
     vertexTrace dst a (l₁ ++ l₂) = vertexTrace dst a l₁ ++ l₂.map dst := by
   simp [vertexTrace]
 
 namespace IsWalk
 
-/-- Concatenating two compatible walks gives a walk.-/
+/-- Concatenating two compatible walks gives a walk.
+@isnad1 id=iswalk.2h9v.s5.f2d842146d1c from=translated src=- shape=5a2bd698 vocab=ce2f1610
+-/
 theorem append {a b c : V} {l₁ l₂ : List A}
     (h₁ : IsWalk src dst a b l₁) (h₂ : IsWalk src dst b c l₂) :
     IsWalk src dst a c (l₁ ++ l₂) := by
@@ -71,6 +76,9 @@ theorem append {a b c : V} {l₁ l₂ : List A}
   | cons e l ih =>
     exact ⟨h₁.1, ih h₁.2⟩
 
+/--
+@isnad1 id=ex.1h8v.s6.b7a243e627cd from=translated src=- shape=5445fe48 vocab=ce2f1610
+-/
 theorem append_inv {a b : V} {l₁ l₂ : List A}
     (h : IsWalk src dst a b (l₁ ++ l₂)) :
     ∃ c, IsWalk src dst a c l₁ ∧ IsWalk src dst c b l₂ := by
@@ -80,6 +88,9 @@ theorem append_inv {a b : V} {l₁ l₂ : List A}
     obtain ⟨c, hc, hb⟩ := ih h.2
     exact ⟨c, ⟨h.1, hc⟩, hb⟩
 
+/--
+@isnad1 id=mem.1h7v.s5.224759877309 from=translated src=- shape=0d8becf0 vocab=52996f4c
+-/
 theorem end_mem_vertexTrace {a b : V} {l : List A}
     (h : IsWalk src dst a b l) : b ∈ vertexTrace dst a l := by
   induction l generalizing a with
@@ -89,7 +100,9 @@ theorem end_mem_vertexTrace {a b : V} {l : List A}
     simp only [vertexTrace, List.map_cons, List.mem_cons] at h' ⊢
     exact Or.inr h'
 
-/-- Walks strictly increase `rank`, one per arc.-/
+/-- Walks strictly increase `rank`, one per arc.
+@isnad1 id=le.2h8v.s6.02a3c6d9d596 from=translated src=- shape=35257dea vocab=7955de07
+-/
 theorem rank_add_length_le {rank : V → ℕ}
     (hrank : ∀ e, rank (src e) < rank (dst e)) {a b : V} {l : List A}
     (h : IsWalk src dst a b l) : rank a + l.length ≤ rank b := by
@@ -112,6 +125,9 @@ theorem eq_nil_of_self {rank : V → ℕ}
   have h2 : l.length = 0 := by omega
   exact List.eq_nil_of_length_eq_zero h2
 
+/--
+@isnad1 id=ex.2h8v.s6.58bfdee18e90 from=translated src=- shape=c81b02fa vocab=a4ebe8c6
+-/
 theorem exists_prefix_of_mem_vertexTrace {a b v : V} {l : List A}
     (h : IsWalk src dst a b l) (hv : v ∈ vertexTrace dst a l) :
     ∃ l₁ l₂, l = l₁ ++ l₂ ∧ IsWalk src dst a v l₁ := by
@@ -127,7 +143,9 @@ theorem exists_prefix_of_mem_vertexTrace {a b v : V} {l : List A}
     · obtain ⟨l₁, l₂, hl, hw⟩ := ih h.2 (by simpa [vertexTrace] using hv')
       exact ⟨e :: l₁, l₂, by rw [hl, List.cons_append], h.1, hw⟩
 
-/-- An arc occurring in a walk has a prefix ending at its source.-/
+/-- An arc occurring in a walk has a prefix ending at its source.
+@isnad1 id=ex.2h8v.s6.ae3da2923140 from=translated src=- shape=036587a1 vocab=fc3cab60
+-/
 theorem exists_prefix_cons_of_mem {a b : V} {l : List A} {e : A}
     (h : IsWalk src dst a b l) (he : e ∈ l) :
     ∃ q r, l = q ++ e :: r ∧ IsWalk src dst a (src e) q := by
@@ -136,7 +154,9 @@ theorem exists_prefix_cons_of_mem {a b : V} {l : List A} {e : A}
   exact ⟨q, r, rfl, by simpa only [her.1] using hq⟩
 
 /-- An arc occurring in a walk has a prefix through that arc, ending at its
-destination.-/
+destination.
+@isnad1 id=ex.2h8v.s6.4725776cff82 from=translated src=- shape=7ca362f6 vocab=76905bcb
+-/
 theorem exists_prefix_through_of_mem {a b : V} {l : List A} {e : A}
     (h : IsWalk src dst a b l) (he : e ∈ l) :
     ∃ q r, l = (q ++ [e]) ++ r ∧
@@ -147,7 +167,9 @@ theorem exists_prefix_through_of_mem {a b : V} {l : List A} {e : A}
   · exact ⟨rfl, rfl⟩
 
 /-- **Prefix determinism** in a ranked digraph: two walk prefixes of the same
-arc list with the same endpoints are equal.-/
+arc list with the same endpoints are equal.
+@isnad1 id=eq.4h11v.s6.9b898a3b3beb from=translated src=- shape=4af5dad1 vocab=a9777f83
+-/
 theorem prefix_unique {rank : V → ℕ}
     (hrank : ∀ e, rank (src e) < rank (dst e)) {a v : V}
     {q₁ s₁ q₂ s₂ : List A} (hq : q₁ ++ s₁ = q₂ ++ s₂)
@@ -176,7 +198,9 @@ variable {rank : V → ℕ}
 
 /-- **Proposition 5.1, core.** If the common vertices of `Zᵢ` and `Zⱼ` all lie
 on a common initial subpath `p`, then any two walk prefixes of `Zᵢ` and `Zⱼ`
-ending at the same vertex coincide.-/
+ending at the same vertex coincide.
+@isnad1 id=eq.9h17v.s7.71832b6b4291 from=translated src=- shape=db182aee vocab=99898ff2
+-/
 theorem splice_prefix_eq (hrank : ∀ e, rank (src e) < rank (dst e))
     {sV ti v : V} {Zi Zj p ri rj qi si qj sj : List A}
     (hZi : IsWalk src dst sV ti Zi)
@@ -210,7 +234,9 @@ theorem splice_prefix_eq (hrank : ∀ e, rank (src e) < rank (dst e))
 cheap paths diverge they never share a vertex again (their common vertices
 lie on the shared initial subpath `p`), then every splice — an initial
 segment of `Zⱼ` up to a common vertex `v`, continued by the tail of `Zᵢ`
-from `v` — is `Zᵢ` itself.-/
+from `v` — is `Zᵢ` itself.
+@isnad1 id=eq.9h17v.s7.d087d60ab8ee from=translated src=- shape=410dca4c vocab=99898ff2
+-/
 theorem splice_eq (hrank : ∀ e, rank (src e) < rank (dst e))
     {sV ti v : V} {Zi Zj p ri rj qi si qj sj : List A}
     (hZi : IsWalk src dst sV ti Zi)
@@ -239,12 +265,16 @@ def CommonInitialPrefix (dst : A → V) (sV : V) (Zi Zj : List A) : Prop :=
     ∀ x, x ∈ vertexTrace dst sV Zi → x ∈ vertexTrace dst sV Zj →
       x ∈ vertexTrace dst sV p
 
-/-- Every path has itself as a common initial prefix.-/
+/-- Every path has itself as a common initial prefix.
+@isnad1 id=commonin.0h5v.s4.197b4d63c2a9 from=translated src=- shape=db5e07d7 vocab=68a7f39a
+-/
 @[refl] theorem CommonInitialPrefix.refl (dst : A → V) (sV : V) (Z : List A) :
     CommonInitialPrefix dst sV Z Z := by
   exact ⟨Z, [], [], by simp, by simp, fun _ hx _ => hx⟩
 
-/-- The common-initial-prefix relation is symmetric.-/
+/-- The common-initial-prefix relation is symmetric.
+@isnad1 id=commonin.1h6v.s4.cf9bd0bd1abd from=translated src=- shape=dbd662b2 vocab=68a7f39a
+-/
 @[symm] theorem CommonInitialPrefix.symm
     {dst : A → V} {sV : V} {Zi Zj : List A}
     (h : CommonInitialPrefix dst sV Zi Zj) :
@@ -257,7 +287,9 @@ def PairwiseNoReconvergence (dst : A → V) (sV : V) (Z : ι → List A) : Prop 
   ∀ i j, CommonInitialPrefix dst sV (Z i) (Z j)
 
 /-- To establish pairwise no-reconvergence it suffices to check distinct
-indices; the diagonal cases are automatic.-/
+indices; the diagonal cases are automatic.
+@isnad1 id=pairwise.1h6v.s5.b2b1ed3f2f8f from=translated src=- shape=a6d0b3f0 vocab=640c7e0c
+-/
 theorem PairwiseNoReconvergence.of_ne
     {dst : A → V} {sV : V} {Z : ι → List A}
     (hno : ∀ i j, i ≠ j → CommonInitialPrefix dst sV (Z i) (Z j)) :
@@ -273,7 +305,9 @@ both parameters so the induced quiver instance is determined by this type.-/
 def PathUnionVertex (_src dst : A → V) (sV : V) (Z : ι → List A) : Type _ :=
   {v : V // ∃ i, v ∈ vertexTrace dst sV (Z i)}
 
-/-- Union vertices are equal when their ambient vertices are equal.-/
+/-- Union vertices are equal when their ambient vertices are equal.
+@isnad1 id=eq.1h9v.s6.c3567e65b250 from=translated src=- shape=8169e840 vocab=e0285ff0
+-/
 @[ext]
 theorem PathUnionVertex.ext {Z : ι → List A}
     {u v : PathUnionVertex src dst sV Z} (h : u.1 = v.1) : u = v := by
@@ -301,7 +335,9 @@ def pathUnionRoot (src dst : A → V) (sV : V) (Z : ι → List A) (i₀ : ι) :
   ⟨sV, ⟨i₀, by simp [vertexTrace]⟩⟩
 
 /-- Pairwise no-reconvergence makes source-to-vertex prefixes agree even
-when the prefixes come from different family paths.-/
+when the prefixes come from different family paths.
+@isnad1 id=eq.7h16v.s7.b8a8c8b864cc from=translated src=- shape=954758c3 vocab=54e4eed0
+-/
 theorem path_prefix_eq
     (hrank : ∀ e, rank (src e) < rank (dst e))
     {Z : ι → List A} (hZ : ∀ i, IsWalk src dst sV (terminal i) (Z i))
@@ -314,7 +350,9 @@ theorem path_prefix_eq
   exact splice_prefix_eq hrank (hZ i) hpi hpj hcommon hqi hwi hqj hwj
 
 /-- Every arrow in the path-union quiver strictly increases the ambient
-rank.-/
+rank.
+@isnad1 id=lt.1h11v.s7.b529da2137ac from=translated src=- shape=313cba73 vocab=3b5ec9a5
+-/
 theorem pathUnionArrow_rank_lt
     (hrank : ∀ e, rank (src e) < rank (dst e))
     {Z : ι → List A} {u v : PathUnionVertex src dst sV Z}
@@ -323,7 +361,9 @@ theorem pathUnionArrow_rank_lt
   simpa only [e.source_eq, e.target_eq] using hrank e.edge
 
 /-- In a pairwise no-reconverging family, two union arrows with the same
-target are the same ambient arc and therefore have the same source.-/
+target are the same ambient arc and therefore have the same source.
+@isnad1 id=and.3h14v.s7.78930c9da144 from=translated src=- shape=22d85cd5 vocab=d3e73541
+-/
 theorem pathUnion_unique_incoming
     (hrank : ∀ e, rank (src e) < rank (dst e))
     {Z : ι → List A} (hZ : ∀ i, IsWalk src dst sV (terminal i) (Z i))
@@ -357,7 +397,9 @@ theorem pathUnion_unique_incoming
   exact hedge.symm
 
 /-- Every path-union vertex is the common source or has an incoming union
-arrow. This is the reachability premise used by `Quiver.arborescenceMk`.-/
+arrow. This is the reachability premise used by `Quiver.arborescenceMk`.
+@isnad1 id=or.1h10v.s6.43e69dfb06f9 from=translated src=- shape=00e13b97 vocab=4828bff3
+-/
 theorem pathUnion_root_or_incoming
     {Z : ι → List A} (hZ : ∀ i, IsWalk src dst sV (terminal i) (Z i))
     (i₀ : ι) (v : PathUnionVertex src dst sV Z) :
@@ -400,7 +442,9 @@ noncomputable def pathUnionArborescence
     (pathUnion_root_or_incoming (src := src) (dst := dst) (sV := sV)
       (terminal := terminal) hZ i₀)
 
-/-- The root stored in the path-union arborescence is the common source.-/
+/-- The root stored in the path-union arborescence is the common source.
+@isnad1 id=eq.3h10v.s6.79e3eadc39b6 from=translated src=- shape=9b57a4ea vocab=0421cd9f
+-/
 theorem pathUnion_arborescence_root
     (hrank : ∀ e, rank (src e) < rank (dst e))
     {Z : ι → List A} (hZ : ∀ i, IsWalk src dst sV (terminal i) (Z i))
@@ -410,7 +454,9 @@ theorem pathUnion_arborescence_root
   unfold pathUnionArborescence Quiver.arborescenceMk
   rfl
 
-/-- Every vertex in the path union is reachable from the common source.-/
+/-- Every vertex in the path union is reachable from the common source.
+@isnad1 id=nonempty.3h11v.s6.4c5141c48fcb from=translated src=- shape=f841555d vocab=b4601fdd
+-/
 theorem pathUnion_root_reachable
     (hrank : ∀ e, rank (src e) < rank (dst e))
     {Z : ι → List A} (hZ : ∀ i, IsWalk src dst sV (terminal i) (Z i))
@@ -421,7 +467,9 @@ theorem pathUnion_root_reachable
   rw [pathUnion_arborescence_root hrank hZ hno i₀] at hUnique
   exact ⟨hUnique.default⟩
 
-/-- The directed path from the common source to a union vertex is unique.-/
+/-- The directed path from the common source to a union vertex is unique.
+@isnad1 id=eq.3h13v.s7.79d6f8c9727b from=translated src=- shape=8254c675 vocab=1ceb15d8
+-/
 theorem pathUnion_root_path_unique
     (hrank : ∀ e, rank (src e) < rank (dst e))
     {Z : ι → List A} (hZ : ∀ i, IsWalk src dst sV (terminal i) (Z i))

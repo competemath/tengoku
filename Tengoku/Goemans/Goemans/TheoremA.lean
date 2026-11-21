@@ -48,17 +48,26 @@ variable (I : FlowInstance ℝ)
 `aᵢ = 1 - zᵢ`).-/
 noncomputable def af (i : Terminal) : ℝ := 1 - I.f i / I.d i
 
+/--
+@isnad1 id=le.0h2v.s4.68c04bb5fbae from=translated src=- shape=4328188d vocab=45aea91e
+-/
 theorem af_nonneg (i : Terminal) : 0 ≤ I.af i := by
   have hd := I.d_pos i
   have hf := I.f_le_d i
   rw [af, sub_nonneg]
   exact (div_le_one hd).mpr hf
 
+/--
+@isnad1 id=le.0h2v.s4.2eaa6bd91bce from=translated src=- shape=da955437 vocab=45aea91e
+-/
 theorem af_le_one (i : Terminal) : I.af i ≤ 1 := by
   have h : 0 ≤ I.f i / I.d i := div_nonneg (I.f_nonneg i) (I.d_pos i).le
   rw [af]
   linarith
 
+/--
+@isnad1 id=eq.0h2v.s5.5a38d8b35857 from=translated src=- shape=e6ebc7fb vocab=af2c783d
+-/
 theorem af_mul_d (i : Terminal) : I.af i * I.d i = I.d i - I.f i := by
   have hd := (I.d_pos i).ne'
   rw [af]
@@ -66,7 +75,9 @@ theorem af_mul_d (i : Terminal) : I.af i * I.d i = I.d i - I.f i := by
 
 /-! ### Blocked patterns force lower bounds on the expensive fractions -/
 
-/-- Strict Lemma 2 for the pair `{0,1}`.-/
+/-- Strict Lemma 2 for the pair `{0,1}`.
+@isnad1 id=lt.1h1v.s6.332db4727ccd from=translated src=- shape=fbd3ef94 vocab=ab7e2154
+-/
 theorem blocked_af01_lt (h : ¬ I.Admissible {0, 1}) : 1 < I.af 0 + I.af 1 := by
   have hb := I.blocked_pair01_lt h
   have key := pair_bound_lt (I.d_pos 0) (I.d_pos 1) (I.f_nonneg 0) (I.f_nonneg 1)
@@ -74,11 +85,15 @@ theorem blocked_af01_lt (h : ¬ I.Admissible {0, 1}) : 1 < I.af 0 + I.af 1 := by
   simp only [af]
   linarith
 
-/-- Closed Lemma 2 for the pair `{0,1}`.-/
+/-- Closed Lemma 2 for the pair `{0,1}`.
+@isnad1 id=le.1h1v.s6.8d96b5050d46 from=translated src=- shape=fbd3ef94 vocab=c31b55a9
+-/
 theorem blocked_af01 (h : ¬ I.Admissible {0, 1}) : 1 ≤ I.af 0 + I.af 1 :=
   (I.blocked_af01_lt h).le
 
-/-- Strict Lemma 2 for the pair `{1,2}`.-/
+/-- Strict Lemma 2 for the pair `{1,2}`.
+@isnad1 id=lt.1h1v.s6.10591d0494c5 from=translated src=- shape=fbd3ef94 vocab=ab7e2154
+-/
 theorem blocked_af12_lt (h : ¬ I.Admissible {1, 2}) : 1 < I.af 1 + I.af 2 := by
   have hb := I.blocked_pair12_lt h
   have key := pair_bound_lt (I.d_pos 1) (I.d_pos 2) (I.f_nonneg 1) (I.f_nonneg 2)
@@ -86,11 +101,15 @@ theorem blocked_af12_lt (h : ¬ I.Admissible {1, 2}) : 1 < I.af 1 + I.af 2 := by
   simp only [af]
   linarith
 
-/-- Closed Lemma 2 for the pair `{1,2}`.-/
+/-- Closed Lemma 2 for the pair `{1,2}`.
+@isnad1 id=le.1h1v.s6.8bfc7e5c7b6b from=translated src=- shape=fbd3ef94 vocab=c31b55a9
+-/
 theorem blocked_af12 (h : ¬ I.Admissible {1, 2}) : 1 ≤ I.af 1 + I.af 2 :=
   (I.blocked_af12_lt h).le
 
-/-- Strict Lemma 2 for the pair `{0,2}`.-/
+/-- Strict Lemma 2 for the pair `{0,2}`.
+@isnad1 id=lt.1h1v.s6.e5f0c6f84f49 from=translated src=- shape=fbd3ef94 vocab=ab7e2154
+-/
 theorem blocked_af02_lt (h : ¬ I.Admissible {0, 2}) : 1 < I.af 0 + I.af 2 := by
   have hb := I.blocked_pair02_lt h
   have hb' : I.f 0 + I.f 2 < I.d 0 + I.d 2 - I.dmax := by
@@ -100,12 +119,16 @@ theorem blocked_af02_lt (h : ¬ I.Admissible {0, 2}) : 1 < I.af 0 + I.af 2 := by
   simp only [af]
   linarith
 
-/-- Closed Lemma 2 for the pair `{0,2}`.-/
+/-- Closed Lemma 2 for the pair `{0,2}`.
+@isnad1 id=le.1h1v.s6.3a9ae57f795a from=translated src=- shape=fbd3ef94 vocab=c31b55a9
+-/
 theorem blocked_af02 (h : ¬ I.Admissible {0, 2}) : 1 ≤ I.af 0 + I.af 2 :=
   (I.blocked_af02_lt h).le
 
 /-- Strict Lemma 3: all three pairs blocked forces
-`Σ af > 2√2 - 1`.-/
+`Σ af > 2√2 - 1`.
+@isnad1 id=lt.3h1v.s7.fb6d49de122c from=translated src=- shape=e46cc2c2 vocab=9e628536
+-/
 theorem all_blocked_af_lt (h01 : ¬ I.Admissible {0, 1})
     (h12 : ¬ I.Admissible {1, 2})
     (h02 : ¬ I.Admissible {0, 2}) :
@@ -119,14 +142,18 @@ theorem all_blocked_af_lt (h01 : ¬ I.Admissible {0, 1})
   simp only [af]
   linarith
 
-/-- Closed form of Lemma 3.-/
+/-- Closed form of Lemma 3.
+@isnad1 id=le.3h1v.s7.e64b0aab150b from=translated src=- shape=e46cc2c2 vocab=f60a6cb2
+-/
 theorem all_blocked_af (h01 : ¬ I.Admissible {0, 1})
     (h12 : ¬ I.Admissible {1, 2}) (h02 : ¬ I.Admissible {0, 2}) :
     2 * Real.sqrt 2 - 1 ≤ I.af 0 + I.af 1 + I.af 2 :=
   (I.all_blocked_af_lt h01 h12 h02).le
 
 /-- Strict case (d) of Lemma 5a: a blocked triple over admissible pairs
-forces `Σ af > 1`.-/
+forces `Σ af > 1`.
+@isnad1 id=lt.3h1v.s7.9c974121455d from=translated src=- shape=bb7c079a vocab=a6aada30
+-/
 theorem triple_blocked_af_lt (h01 : I.Admissible {0, 1})
     (h12 : I.Admissible {1, 2})
     (h : ¬ I.Admissible Finset.univ) :
@@ -141,7 +168,9 @@ theorem triple_blocked_af_lt (h01 : I.Admissible {0, 1})
   have hD := I.dmax_pos
   nlinarith [I.af_mul_d 0, I.af_mul_d 1, I.af_mul_d 2, t0, t1, t2]
 
-/-- Closed case-(d) expensive-fraction bound.-/
+/-- Closed case-(d) expensive-fraction bound.
+@isnad1 id=le.3h1v.s7.dce07b11c0f5 from=translated src=- shape=bb7c079a vocab=4860a6c6
+-/
 theorem triple_blocked_af (h01 : I.Admissible {0, 1})
     (h12 : I.Admissible {1, 2}) (h : ¬ I.Admissible Finset.univ) :
     1 ≤ I.af 0 + I.af 1 + I.af 2 :=
@@ -152,7 +181,9 @@ theorem triple_blocked_af (h01 : I.Admissible {0, 1})
 /-- **Lemma 5a (the weight inequality).** For every nonnegative savings vector
 `m` there is an admissible routing forgoing at most `ρ*·Σ mᵢ·afᵢ` of savings.
 The four cases of the paper correspond to the admissibility pattern of the
-three pairs.-/
+three pairs.
+@isnad1 id=ex.1h2v.s6.bfbdfd3c5cb7 from=translated src=- shape=21a1f86b vocab=264aab2d
+-/
 theorem exists_admissible_weight (m : Terminal → ℝ) (hm : ∀ i, 0 ≤ m i) :
     ∃ S : Finset Terminal, I.Admissible S ∧
       (∑ i, if i ∈ S then 0 else m i) ≤ rhoStar * ∑ i, m i * I.af i := by
@@ -366,7 +397,9 @@ positive, some admissible routing forgoes strictly less than the sharp
 factor times that weight. The strictness comes from inadmissibility itself:
 outside the all-pairs-blocked case the same routing cores work already at
 factor `1`; in the remaining case `weight_core_a_lt` retains the strict
-blocked-pair and split-LP slacks.-/
+blocked-pair and split-LP slacks.
+@isnad1 id=ex.2h2v.s7.f2357bc6a1b3 from=translated src=- shape=0207bea2 vocab=174b6bda
+-/
 theorem exists_admissible_weight_lt (m : Terminal → ℝ) (hm : ∀ i, 0 ≤ m i)
     (hW : 0 < ∑ i, m i * I.af i) :
     ∃ S : Finset Terminal, I.Admissible S ∧
@@ -611,7 +644,9 @@ theorem exists_admissible_weight_lt (m : Terminal → ℝ) (hm : ∀ i, 0 ≤ m 
 
 /-! ### The reduction to nonnegative savings (Lemma 4) and the upper bound -/
 
-/-- `fcost = base + Σᵢ afᵢ·savᵢ` (division form of `fcost_eq_base`).-/
+/-- `fcost = base + Σᵢ afᵢ·savᵢ` (division form of `fcost_eq_base`).
+@isnad1 id=eq.0h1v.s7.bfe803851b38 from=translated src=- shape=6dd2a8f7 vocab=c23ec8b7
+-/
 theorem fcost_af :
     I.fcost = I.base +
       (I.af 0 * I.sav 0 + I.af 1 * I.sav 1 + I.af 2 * I.sav 2) := by
@@ -624,7 +659,9 @@ theorem fcost_af :
 
 /-- **Theorem A, upper bound** (`ρ(H*) ≤ ρ*`): every SSUF instance on `H*`
 admits an admissible unsplittable routing of cost at most
-`ρ* = 2/(2√2 - 1)` times the fractional cost.-/
+`ρ* = 2/(2√2 - 1)` times the fractional cost.
+@isnad1 id=ex.0h1v.s5.6493ab57ed40 from=translated src=- shape=3e118fb1 vocab=333e21b9
+-/
 theorem exists_admissible_ucost_le :
     ∃ S : Finset Terminal, I.Admissible S ∧ I.ucost S ≤ rhoStar * I.fcost := by
   classical
@@ -701,7 +738,9 @@ theorem exists_admissible_ucost_le :
 
 /-- The negative-saving part of the signed reduction, isolated from the
 routing choice. Its contribution together with the all-cheap base is at
-most `ρ*` times the corresponding fractional-flow contribution.-/
+most `ρ*` times the corresponding fractional-flow contribution.
+@isnad1 id=le.0h1v.s6.6543fc80cfe7 from=translated src=- shape=b00fc000 vocab=3616829a
+-/
 theorem base_negative_savings_le :
     I.base + ∑ i, min (I.sav i) 0 ≤
       rhoStar * (I.base + ∑ i, I.af i * min (I.sav i) 0) := by
@@ -740,7 +779,9 @@ theorem base_negative_savings_le :
 /-- **Theorem A, strict upper bound.** Every positive-cost SSUF instance on
 `H*` has an admissible unsplittable routing whose cost is strictly below
 `ρ*` times the fractional cost. Consequently the sharp supremum is not
-attained by any finite instance.-/
+attained by any finite instance.
+@isnad1 id=ex.1h1v.s5.7d6ebd8c70d3 from=translated src=- shape=60cba97d vocab=0cf27cd2
+-/
 theorem exists_admissible_ucost_lt (hfc : 0 < I.fcost) :
     ∃ S : Finset Terminal, I.Admissible S ∧ I.ucost S < rhoStar * I.fcost := by
   classical

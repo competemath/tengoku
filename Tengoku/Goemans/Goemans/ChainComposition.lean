@@ -46,10 +46,16 @@ def admissibleRoutings (I : Instance ι m) : Finset (Finset ι) :=
     classical
     exact Finset.univ.filter I.Admissible
 
+/--
+@isnad1 id=iff.0h4v.s5.973cf8d7bddb from=translated src=- shape=2058aac5 vocab=5be6e137
+-/
 theorem mem_admissibleRoutings (I : Instance ι m) (S : Finset ι) :
     S ∈ I.admissibleRoutings ↔ I.Admissible S := by
   simp [admissibleRoutings]
 
+/--
+@isnad1 id=nonempty.0h3v.s4.cf79691d8ad6 from=translated src=- shape=ff79e3e1 vocab=635503b5
+-/
 theorem admissibleRoutings_nonempty (I : Instance ι m) :
     I.admissibleRoutings.Nonempty :=
   ⟨∅, I.mem_admissibleRoutings ∅ |>.2 I.admissible_empty⟩
@@ -66,7 +72,9 @@ instance.-/
 def optimalRoutingCost (I : Instance ι m) : ℝ :=
   I.admissibleCosts.min' I.admissibleCosts_nonempty
 
-/-- An optimal admissible routing exists.-/
+/-- An optimal admissible routing exists.
+@isnad1 id=ex.0h3v.s5.3a459dcf2cbf from=translated src=- shape=4bb1c5f0 vocab=a3f0bc0f
+-/
 theorem exists_optimalRouting (I : Instance ι m) :
     ∃ S : Finset ι,
       I.Admissible S ∧ I.routingCost S = I.optimalRoutingCost := by
@@ -75,7 +83,9 @@ theorem exists_optimalRouting (I : Instance ι m) :
   rcases Finset.mem_image.mp hmem with ⟨S, hS, hcost⟩
   exact ⟨S, (I.mem_admissibleRoutings S).1 hS, hcost⟩
 
-/-- The optimum is no larger than the cost of any admissible routing.-/
+/-- The optimum is no larger than the cost of any admissible routing.
+@isnad1 id=le.1h4v.s5.03ec3fe1f3ef from=translated src=- shape=b9cebd24 vocab=3249f3e3
+-/
 theorem optimalRoutingCost_le (I : Instance ι m) {S : Finset ι}
     (hS : I.Admissible S) :
     I.optimalRoutingCost ≤ I.routingCost S := by
@@ -84,7 +94,9 @@ theorem optimalRoutingCost_le (I : Instance ι m) {S : Finset ι}
     ⟨S, (I.mem_admissibleRoutings S).2 hS, rfl⟩
 
 omit [Nonempty ι] in
-/-- Every routing cost is nonnegative.-/
+/-- Every routing cost is nonnegative.
+@isnad1 id=le.0h4v.s5.2e8a57423715 from=translated src=- shape=f13bb475 vocab=afddc100
+-/
 theorem routingCost_nonneg (I : Instance ι m) (S : Finset ι) :
     0 ≤ I.routingCost S := by
   apply Finset.sum_nonneg
@@ -93,7 +105,9 @@ theorem routingCost_nonneg (I : Instance ι m) (S : Finset ι) :
   · exact le_rfl
   · exact mul_nonneg (I.c_nonneg i) (I.d_pos i).le
 
-/-- The minimum admissible routing cost is nonnegative.-/
+/-- The minimum admissible routing cost is nonnegative.
+@isnad1 id=le.0h3v.s5.d9b803b2a80c from=translated src=- shape=04f7d038 vocab=f6032248
+-/
 theorem optimalRoutingCost_nonneg (I : Instance ι m) :
     0 ≤ I.optimalRoutingCost := by
   obtain ⟨S, _, hcost⟩ := I.exists_optimalRouting
@@ -131,7 +145,9 @@ def demand (I : Instance ι m) (J : Instance κ n) : ι ⊕ κ → ℝ
   | .inr j => J.d j
 
 omit [DecidableEq ι] [DecidableEq κ] in
-/-- Every union demand is at most the stated union maximum.-/
+/-- Every union demand is at most the stated union maximum.
+@isnad1 id=le.0h7v.s5.4133144b7822 from=translated src=- shape=9d71b251 vocab=df41e4c8
+-/
 theorem demand_le_dmax (I : Instance ι m) (J : Instance κ n)
     (q : ι ⊕ κ) :
     demand I J q ≤ dmax I J := by
@@ -141,7 +157,9 @@ theorem demand_le_dmax (I : Instance ι m) (J : Instance κ n)
 
 omit [DecidableEq ι] [DecidableEq κ] in
 /-- `dmax` is not merely an allowance chosen for the proof: it is exactly the
-maximum demand over the sum-tagged terminal type of the disjoint union.-/
+maximum demand over the sum-tagged terminal type of the disjoint union.
+@isnad1 id=eq.0h6v.s6.eb9801e69a70 from=translated src=- shape=592dd02c vocab=c9fdaa0c
+-/
 theorem dmax_eq_sup_demand (I : Instance ι m) (J : Instance κ n) :
     dmax I J =
       Finset.univ.sup' Finset.univ_nonempty (demand I J) := by
@@ -196,7 +214,9 @@ def Admissible (I : Instance ι m) (J : Instance κ n)
   ∀ a, load I J R a ≤ x I J a + dmax I J
 
 omit [DecidableEq ι] [Nonempty ι] [DecidableEq κ] [Nonempty κ] in
-/-- The componentwise definitions are literal ordinary arc-cost sums.-/
+/-- The componentwise definitions are literal ordinary arc-cost sums.
+@isnad1 id=eq.0h6v.s6.9829548ed423 from=translated src=- shape=c1633365 vocab=3b3451d3
+-/
 theorem fractionalCost_eq_sum_arc (I : Instance ι m) (J : Instance κ n) :
     fractionalCost I J =
       ∑ a : Arc ι κ m n, arcCost I J a * x I J a := by
@@ -205,7 +225,9 @@ theorem fractionalCost_eq_sum_arc (I : Instance ι m) (J : Instance κ n) :
   rw [← I.fractionalCost_eq_sum_arc, ← J.fractionalCost_eq_sum_arc]
 
 omit [Nonempty ι] [Nonempty κ] in
-/-- The paired routing cost is the literal ordinary cost sum on union arcs.-/
+/-- The paired routing cost is the literal ordinary cost sum on union arcs.
+@isnad1 id=eq.0h7v.s6.0db5dbdca388 from=translated src=- shape=20b55647 vocab=b6b8ee17
+-/
 theorem routingCost_eq_sum_arc (I : Instance ι m) (J : Instance κ n)
     (R : Routing ι κ) :
     routingCost I J R =
@@ -215,7 +237,9 @@ theorem routingCost_eq_sum_arc (I : Instance ι m) (J : Instance κ n)
   rw [← I.routingCost_eq_sum_arc, ← J.routingCost_eq_sum_arc]
 
 /-- Union admissibility is exactly the pair of component arc inequalities at
-the common union allowance.-/
+the common union allowance.
+@isnad1 id=iff.0h7v.s7.bc9aaf3f89ab from=translated src=- shape=2ed538ee vocab=6485d227
+-/
 theorem admissible_iff (I : Instance ι m) (J : Instance κ n)
     (R : Routing ι κ) :
     Admissible I J R ↔
@@ -229,7 +253,9 @@ theorem admissible_iff (I : Instance ι m) (J : Instance κ n)
     · exact hJ a
 
 /-- Native-admissible component routings combine into a union-admissible
-routing because the union allowance dominates both component allowances.-/
+routing because the union allowance dominates both component allowances.
+@isnad1 id=admissib.2h8v.s6.4e97c7d38c02 from=translated src=- shape=6245456e vocab=ab871016
+-/
 theorem admissible_of_components (I : Instance ι m) (J : Instance κ n)
     {S : Finset ι} {T : Finset κ}
     (hS : I.Admissible S) (hT : J.Admissible T) :
@@ -252,11 +278,17 @@ def admissibleRoutings (I : Instance ι m) (J : Instance κ n) :
     classical
     exact Finset.univ.filter (Admissible I J)
 
+/--
+@isnad1 id=iff.0h7v.s6.c7e457dd96f3 from=translated src=- shape=e6dece11 vocab=b9756003
+-/
 theorem mem_admissibleRoutings (I : Instance ι m) (J : Instance κ n)
     (R : Routing ι κ) :
     R ∈ admissibleRoutings I J ↔ Admissible I J R := by
   simp [admissibleRoutings]
 
+/--
+@isnad1 id=nonempty.0h6v.s5.f1eddc021d44 from=translated src=- shape=9d173651 vocab=f7840257
+-/
 theorem admissibleRoutings_nonempty (I : Instance ι m) (J : Instance κ n) :
     (admissibleRoutings I J).Nonempty :=
   ⟨(∅, ∅), (mem_admissibleRoutings I J _).2
@@ -276,7 +308,9 @@ def optimalRoutingCost (I : Instance ι m) (J : Instance κ n) : ℝ :=
   (admissibleCosts I J).min' (admissibleCosts_nonempty I J)
 
 /-- The union optimum is no larger than any exhibited admissible paired
-routing.-/
+routing.
+@isnad1 id=le.1h7v.s6.5f02916232d1 from=translated src=- shape=2423f506 vocab=f4baee7a
+-/
 theorem optimalRoutingCost_le (I : Instance ι m) (J : Instance κ n)
     {R : Routing ι κ} (hR : Admissible I J R) :
     optimalRoutingCost I J ≤ routingCost I J R := by
@@ -285,7 +319,9 @@ theorem optimalRoutingCost_le (I : Instance ι m) (J : Instance κ n)
     ⟨R, (mem_admissibleRoutings I J R).2 hR, rfl⟩
 
 /-- Combining native optimal component routings proves the numerator bound in
-Lemma 6.4.-/
+Lemma 6.4.
+@isnad1 id=le.0h6v.s6.e7a48ad50a8c from=translated src=- shape=943bbac3 vocab=6810e691
+-/
 theorem optimalRoutingCost_le_add (I : Instance ι m) (J : Instance κ n) :
     optimalRoutingCost I J ≤ I.optimalRoutingCost + J.optimalRoutingCost := by
   obtain ⟨S, hS, hScost⟩ := I.exists_optimalRouting
@@ -296,7 +332,9 @@ theorem optimalRoutingCost_le_add (I : Instance ι m) (J : Instance κ n) :
     _ = I.optimalRoutingCost + J.optimalRoutingCost := by
       simp only [routingCost, hScost, hTcost]
 
-/-- Positive-denominator mediant inequality.-/
+/-- Positive-denominator mediant inequality.
+@isnad1 id=le.2h4v.s6.72e5a20920a6 from=translated src=- shape=67fcc7b6 vocab=1fc97192
+-/
 theorem add_div_add_le_max_div {U₁ U₂ F₁ F₂ : ℝ}
     (hF₁ : 0 < F₁) (hF₂ : 0 < F₂) :
     (U₁ + U₂) / (F₁ + F₂) ≤ max (U₁ / F₁) (U₂ / F₂) := by
@@ -313,7 +351,9 @@ def ratio (I : Instance ι m) (J : Instance κ n) : ℝ :=
 
 /-- **Lemma 6.4 (parallel composition never helps).** For two positive-cost
 chain instances placed in disjoint parallel components, the union ratio is at
-most the larger component ratio.-/
+most the larger component ratio.
+@isnad1 id=le.2h6v.s6.0414c1e2578a from=translated src=- shape=efdbd648 vocab=e034b4e4
+-/
 theorem ratio_le_max (I : Instance ι m) (J : Instance κ n)
     (hI : 0 < I.fractionalCost) (hJ : 0 < J.fractionalCost) :
     ratio I J ≤ max I.ratio J.ratio := by
@@ -348,21 +388,33 @@ def restrictRouting (T : Finset (ι ⊕ PUnit)) : Finset ι :=
   Finset.univ.filter fun i => Sum.inl i ∈ T
 
 omit [Fintype ι] [DecidableEq ι] [Nonempty ι] in
+/--
+@isnad1 id=iff.0h3v.s5.3d5223c7e7b3 from=translated src=- shape=bee30d6a vocab=afe14add
+-/
 @[simp] theorem mem_liftRouting (S : Finset ι) (i : ι) :
     Sum.inl i ∈ liftRouting S ↔ i ∈ S := by
   simp [liftRouting, oldEmbedding]
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=not.0h2v.s5.c556cd00270d from=translated src=- shape=56be723c vocab=637b900e
+-/
 @[simp] theorem dummy_not_mem_liftRouting (S : Finset ι) :
     Sum.inr PUnit.unit ∉ liftRouting S := by
   simp [liftRouting, oldEmbedding]
 
 omit [Nonempty ι] in
+/--
+@isnad1 id=iff.0h3v.s5.4285bc879d2d from=translated src=- shape=713729b4 vocab=5f539483
+-/
 @[simp] theorem mem_restrictRouting (T : Finset (ι ⊕ PUnit)) (i : ι) :
     i ∈ restrictRouting T ↔ Sum.inl i ∈ T := by
   simp [restrictRouting]
 
 omit [Nonempty ι] in
+/--
+@isnad1 id=eq.0h2v.s4.048903e02110 from=translated src=- shape=e17ccb0b vocab=d7ff3d4f
+-/
 @[simp] theorem restrictRouting_liftRouting (S : Finset ι) :
     restrictRouting (liftRouting S) = S := by
   ext i
@@ -407,36 +459,54 @@ def dummyEmbed (I : Instance ι m) (δ : ℝ)
     | .inr _ => le_rfl
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.2h5v.s6.e9579c2db256 from=translated src=- shape=d50a782c vocab=67c49db2
+-/
 @[simp] theorem dummyEmbed_d_old (I : Instance ι m) (δ : ℝ)
     (hδ_pos : 0 < δ) (hδ_le : δ ≤ I.dmax) (i : ι) :
     (I.dummyEmbed δ hδ_pos hδ_le).d (.inl i) = I.d i :=
   rfl
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.2h4v.s6.35008506e468 from=translated src=- shape=81c1b2c9 vocab=aaf89a88
+-/
 @[simp] theorem dummyEmbed_d_dummy (I : Instance ι m) (δ : ℝ)
     (hδ_pos : 0 < δ) (hδ_le : δ ≤ I.dmax) :
     (I.dummyEmbed δ hδ_pos hδ_le).d (.inr PUnit.unit) = δ :=
   rfl
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.2h5v.s6.ec2d2cabdccc from=translated src=- shape=d50a782c vocab=b5683419
+-/
 @[simp] theorem dummyEmbed_f_old (I : Instance ι m) (δ : ℝ)
     (hδ_pos : 0 < δ) (hδ_le : δ ≤ I.dmax) (i : ι) :
     (I.dummyEmbed δ hδ_pos hδ_le).f (.inl i) = I.f i :=
   rfl
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.2h4v.s6.afc969b6fa8d from=translated src=- shape=dedf8411 vocab=f03d378d
+-/
 @[simp] theorem dummyEmbed_f_dummy (I : Instance ι m) (δ : ℝ)
     (hδ_pos : 0 < δ) (hδ_le : δ ≤ I.dmax) :
     (I.dummyEmbed δ hδ_pos hδ_le).f (.inr PUnit.unit) = 0 :=
   rfl
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.2h5v.s6.87c9e13e25c5 from=translated src=- shape=4f45244e vocab=70024c09
+-/
 @[simp] theorem dummyEmbed_e_old (I : Instance ι m) (δ : ℝ)
     (hδ_pos : 0 < δ) (hδ_le : δ ≤ I.dmax) (i : ι) :
     (I.dummyEmbed δ hδ_pos hδ_le).e (.inl i) = (I.e i).castSucc :=
   rfl
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.2h4v.s6.93b732053c95 from=translated src=- shape=1314270d vocab=aa9398d4
+-/
 @[simp] theorem dummyEmbed_e_dummy (I : Instance ι m) (δ : ℝ)
     (hδ_pos : 0 < δ) (hδ_le : δ ≤ I.dmax) :
     (I.dummyEmbed δ hδ_pos hδ_le).e (.inr PUnit.unit) =
@@ -444,12 +514,18 @@ omit [DecidableEq ι] in
   rfl
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.2h5v.s6.c06b841cfabd from=translated src=- shape=4f45244e vocab=e7baa679
+-/
 @[simp] theorem dummyEmbed_p_old (I : Instance ι m) (δ : ℝ)
     (hδ_pos : 0 < δ) (hδ_le : δ ≤ I.dmax) (i : ι) :
     (I.dummyEmbed δ hδ_pos hδ_le).p (.inl i) = (I.p i).castSucc :=
   rfl
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.2h4v.s6.13507d176e0f from=translated src=- shape=980be85f vocab=9957931c
+-/
 @[simp] theorem dummyEmbed_p_dummy (I : Instance ι m) (δ : ℝ)
     (hδ_pos : 0 < δ) (hδ_le : δ ≤ I.dmax) :
     (I.dummyEmbed δ hδ_pos hδ_le).p (.inr PUnit.unit) =
@@ -457,19 +533,27 @@ omit [DecidableEq ι] in
   rfl
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.2h5v.s6.ccfb162c98d2 from=translated src=- shape=d50a782c vocab=94936cfb
+-/
 @[simp] theorem dummyEmbed_c_old (I : Instance ι m) (δ : ℝ)
     (hδ_pos : 0 < δ) (hδ_le : δ ≤ I.dmax) (i : ι) :
     (I.dummyEmbed δ hδ_pos hδ_le).c (.inl i) = I.c i :=
   rfl
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=eq.2h4v.s6.1a1989785747 from=translated src=- shape=dedf8411 vocab=3e942e87
+-/
 @[simp] theorem dummyEmbed_c_dummy (I : Instance ι m) (δ : ℝ)
     (hδ_pos : 0 < δ) (hδ_le : δ ≤ I.dmax) :
     (I.dummyEmbed δ hδ_pos hδ_le).c (.inr PUnit.unit) = 0 :=
   rfl
 
 omit [DecidableEq ι] in
-/-- The dummy demand does not change the maximum demand.-/
+/-- The dummy demand does not change the maximum demand.
+@isnad1 id=eq.2h4v.s6.cbd20c1295a5 from=translated src=- shape=240bf423 vocab=c1ddf4f6
+-/
 @[simp] theorem dummyEmbed_dmax (I : Instance ι m) (δ : ℝ)
     (hδ_pos : 0 < δ) (hδ_le : δ ≤ I.dmax) :
     (I.dummyEmbed δ hδ_pos hδ_le).dmax = I.dmax := by
@@ -489,7 +573,9 @@ omit [DecidableEq ι] in
     simpa [E] using E.d_le_dmax (Sum.inl i)
 
 omit [DecidableEq ι] in
-/-- The fresh zero-cost exit contributes nothing to fractional cost.-/
+/-- The fresh zero-cost exit contributes nothing to fractional cost.
+@isnad1 id=eq.2h4v.s6.b9e71b53efba from=translated src=- shape=ef2dd8b0 vocab=89e710b4
+-/
 @[simp] theorem dummyEmbed_fractionalCost (I : Instance ι m) (δ : ℝ)
     (hδ_pos : 0 < δ) (hδ_le : δ ≤ I.dmax) :
     (I.dummyEmbed δ hδ_pos hδ_le).fractionalCost =
@@ -497,7 +583,9 @@ omit [DecidableEq ι] in
   rw [fractionalCost, Fintype.sum_sum_type]
   simp [fractionalCost]
 
-/-- Lifting a routing and sending the dummy expensively preserves its cost.-/
+/-- Lifting a routing and sending the dummy expensively preserves its cost.
+@isnad1 id=eq.2h5v.s6.6f849596ba22 from=translated src=- shape=76076e3d vocab=16d6898e
+-/
 theorem dummyEmbed_routingCost_lift (I : Instance ι m) (δ : ℝ)
     (hδ_pos : 0 < δ) (hδ_le : δ ≤ I.dmax) (S : Finset ι) :
     (I.dummyEmbed δ hδ_pos hδ_le).routingCost (liftRouting S) =
@@ -506,7 +594,9 @@ theorem dummyEmbed_routingCost_lift (I : Instance ι m) (δ : ℝ)
   simp [routingCost]
 
 /-- More generally, the enlarged routing cost depends only on its restriction
-to the old terminals; the dummy costs zero on either path.-/
+to the old terminals; the dummy costs zero on either path.
+@isnad1 id=eq.2h5v.s6.a857d38ab1e4 from=translated src=- shape=aacc046c vocab=e82a3d1d
+-/
 @[simp] theorem dummyEmbed_routingCost_restrict (I : Instance ι m) (δ : ℝ)
     (hδ_pos : 0 < δ) (hδ_le : δ ≤ I.dmax)
     (T : Finset (ι ⊕ PUnit)) :
@@ -516,7 +606,9 @@ to the old terminals; the dummy costs zero on either path.-/
   simp [routingCost]
 
 omit [DecidableEq ι] in
-/-- The appended stage carries no fractional load.-/
+/-- The appended stage carries no fractional load.
+@isnad1 id=eq.2h4v.s6.bc5ab4af2d47 from=translated src=- shape=ad67aeb8 vocab=d22e8dd4
+-/
 @[simp] theorem dummyEmbed_stageX_last (I : Instance ι m) (δ : ℝ)
     (hδ_pos : 0 < δ) (hδ_le : δ ≤ I.dmax) :
     (I.dummyEmbed δ hδ_pos hδ_le).stageX (Fin.last m) = 0 := by
@@ -528,7 +620,9 @@ omit [DecidableEq ι] in
   simp [hp, he]
 
 /-- On the appended stage only a cheaply routed dummy has load, namely its
-demand `δ`.-/
+demand `δ`.
+@isnad1 id=eq.2h5v.s7.33aace4fc32b from=translated src=- shape=9886a54b vocab=3cb4121e
+-/
 @[simp] theorem dummyEmbed_stageLoad_last (I : Instance ι m) (δ : ℝ)
     (hδ_pos : 0 < δ) (hδ_le : δ ≤ I.dmax)
     (T : Finset (ι ⊕ PUnit)) :

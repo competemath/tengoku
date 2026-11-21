@@ -49,25 +49,35 @@ def rybin : FlowInstance ℤ where
   f_le_d := by decide
   c_nonneg := by decide
 
-/-- The fractional flow costs 58.-/
+/-- The fractional flow costs 58.
+@isnad1 id=eq.0h0v.s3.e5009ef0c5a4 from=translated src=- shape=3701a056 vocab=0a9df2c6
+-/
 theorem rybin_fcost : rybin.fcost = 58 := by decide
 
-/-- The admissible routings are exactly `∅` and the three singletons.-/
+/-- The admissible routings are exactly `∅` and the three singletons.
+@isnad1 id=iff.0h1v.s4.63471f302fe2 from=translated src=- shape=14e7f7ca vocab=e73349f6
+-/
 theorem rybin_admissible_iff :
     ∀ S : Finset Terminal, rybin.Admissible S ↔ S.card ≤ 1 := by decide
 
-/-- Every admissible unsplittable routing costs at least 60.-/
+/-- Every admissible unsplittable routing costs at least 60.
+@isnad1 id=le.1h1v.s4.7690dd9dc41d from=translated src=- shape=84f1e369 vocab=cfc5fec3
+-/
 theorem rybin_min : ∀ S : Finset Terminal, rybin.Admissible S → 60 ≤ rybin.ucost S := by
   decide
 
-/-- Cost 60 is attained: route `t₃` on its cheap path, `t₁, t₂` expensive.-/
+/-- Cost 60 is attained: route `t₃` on its cheap path, `t₁, t₂` expensive.
+@isnad1 id=and.0h0v.s5.7aa64d4c8de6 from=translated src=- shape=043a060c vocab=ddfe56ff
+-/
 theorem rybin_min_attained :
     rybin.Admissible {2} ∧ rybin.ucost {2} = 60 := by decide
 
 /-- **Goemans's cost conjecture is false** (Rybin, July 22, 2026):
 there is an instance on `H*` in which *every* unsplittable flow obeying the
 capacity bound `y_a ≤ x_a + d_max` costs strictly more than the fractional
-flow.-/
+flow.
+@isnad1 id=ex.0h0v.s5.aaa97e4f426e from=translated src=- shape=3d303efa vocab=480500bd
+-/
 theorem cost_conjecture_false :
     ∃ I : FlowInstance ℤ, ∀ S : Finset Terminal,
       I.Admissible S → I.fcost < I.ucost S :=
@@ -75,7 +85,9 @@ theorem cost_conjecture_false :
 
 /-- Quantitative form (division-free): on Rybin's instance the optimum
 admissible unsplittable cost is exactly `30/29` times the fractional cost:
-`30·fcost ≤ 29·ucost S` for every admissible `S`, with equality attained.-/
+`30·fcost ≤ 29·ucost S` for every admissible `S`, with equality attained.
+@isnad1 id=and.0h0v.s6.1c83ca979acf from=translated src=- shape=e688a40f vocab=7bd1743d
+-/
 theorem rybin_ratio :
     (0 < rybin.fcost ∧
       ∀ S : Finset Terminal, rybin.Admissible S →
@@ -89,13 +101,22 @@ theorem rybin_ratio :
 /-- Rybin's integral instance embedded in the real-valued model.-/
 noncomputable def rybinReal : FlowInstance ℝ := rybin.toReal
 
+/--
+@isnad1 id=eq.0h0v.s3.8e66a55796aa from=translated src=- shape=3701a056 vocab=26430018
+-/
 @[simp] theorem rybinReal_fcost : rybinReal.fcost = 58 := by
   simp [rybinReal, rybin_fcost]
 
+/--
+@isnad1 id=iff.0h1v.s4.3ce7b4d83866 from=translated src=- shape=14e7f7ca vocab=435e87a4
+-/
 theorem rybinReal_admissible_iff (S : Finset Terminal) :
     rybinReal.Admissible S ↔ S.card ≤ 1 := by
   simpa [rybinReal] using rybin_admissible_iff S
 
+/--
+@isnad1 id=le.1h1v.s4.3338262d4314 from=translated src=- shape=84f1e369 vocab=30e1276f
+-/
 theorem rybinReal_min (S : Finset Terminal) (hS : rybinReal.Admissible S) :
     60 ≤ rybinReal.ucost S := by
   have hSint : rybin.Admissible S := by simpa [rybinReal] using hS
@@ -103,6 +124,9 @@ theorem rybinReal_min (S : Finset Terminal) (hS : rybinReal.Admissible S) :
     exact_mod_cast rybin_min S hSint
   simpa [rybinReal] using hcost
 
+/--
+@isnad1 id=and.0h0v.s5.6fcc97c44ffe from=translated src=- shape=043a060c vocab=d2485cd9
+-/
 theorem rybinReal_min_attained :
     rybinReal.Admissible {2} ∧ rybinReal.ucost {2} = 60 := by
   constructor
@@ -111,14 +135,18 @@ theorem rybinReal_min_attained :
       exact_mod_cast rybin_min_attained.2
     simpa [rybinReal] using hcost
 
-/-- The optimal admissible cost of Rybin's real instance is exactly `60`.-/
+/-- The optimal admissible cost of Rybin's real instance is exactly `60`.
+@isnad1 id=eq.0h0v.s3.66db7ac4e7a7 from=translated src=- shape=b0ae1d2b vocab=68db31d0
+-/
 theorem rybinReal_optimalUCost : rybinReal.optimalUCost = 60 := by
   apply le_antisymm
   · exact rybinReal.optimalUCost_le rybinReal_min_attained.1 |>.trans_eq
       rybinReal_min_attained.2
   · exact rybinReal.le_optimalUCost rybinReal_min
 
-/-- The exact optimum-to-fractional-cost ratio of Rybin's instance.-/
+/-- The exact optimum-to-fractional-cost ratio of Rybin's instance.
+@isnad1 id=eq.0h0v.s5.e5f0f1c20793 from=translated src=- shape=414a9f2d vocab=b153e84c
+-/
 theorem rybinReal_ratio :
     rybinReal.optimalUCost / rybinReal.fcost = (30 : ℝ) / 29 := by
   rw [rybinReal_optimalUCost, rybinReal_fcost]
@@ -128,11 +156,16 @@ theorem rybinReal_ratio :
 noncomputable def rybinPositive : PositiveCostInstance :=
   ⟨rybinReal, by rw [rybinReal_fcost]; norm_num⟩
 
+/--
+@isnad1 id=eq.0h0v.s4.227ebdd49512 from=translated src=- shape=c29dca45 vocab=8a3c58e7
+-/
 @[simp] theorem rybinPositive_ratio :
     rybinPositive.ratio = (30 : ℝ) / 29 := by
   exact rybinReal_ratio
 
-/-- Real-valued formulation of Rybin's counterexample.-/
+/-- Real-valued formulation of Rybin's counterexample.
+@isnad1 id=ex.0h0v.s5.1ea51f6d22d6 from=translated src=- shape=de43055e vocab=dfae11a1
+-/
 theorem cost_conjecture_false_real :
     ∃ I : FlowInstance ℝ, 0 < I.fcost ∧ ∀ S : Finset Terminal,
       I.Admissible S → I.fcost < I.ucost S := by

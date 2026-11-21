@@ -38,12 +38,18 @@ def WZ (i : Terminal) : K := ∑ a, if onZ i a then I.c a else 0
 /-- Per-unit cost of the expensive path `E i`.-/
 def WE (i : Terminal) : K := ∑ a, if onE i a then I.c a else 0
 
+/--
+@isnad1 id=le.0h3v.s6.cc2f42f7a95b from=translated src=- shape=5775c815 vocab=d65a5f28
+-/
 theorem WZ_nonneg [IsStrictOrderedRing K] (i : Terminal) : 0 ≤ I.WZ i :=
   Finset.sum_nonneg fun a _ => by
     split_ifs
     · exact I.c_nonneg a
     · exact le_refl 0
 
+/--
+@isnad1 id=le.0h3v.s6.f1238c380587 from=translated src=- shape=5775c815 vocab=b114eaf5
+-/
 theorem WE_nonneg [IsStrictOrderedRing K] (i : Terminal) : 0 ≤ I.WE i :=
   Finset.sum_nonneg fun a _ => by
     split_ifs
@@ -57,14 +63,18 @@ def base : K := ∑ i, I.d i * I.WZ i
 negative).-/
 def sav (i : Terminal) : K := I.d i * (I.WE i - I.WZ i)
 
-/-- `sav i ≥ -dᵢ·WZᵢ` (since the expensive path costs at least `0`).-/
+/-- `sav i ≥ -dᵢ·WZᵢ` (since the expensive path costs at least `0`).
+@isnad1 id=le.0h3v.s6.763f6bf8dda9 from=translated src=- shape=8e9a747c vocab=2e0a238f
+-/
 theorem sav_lower [IsStrictOrderedRing K] (i : Terminal) :
     -(I.d i * I.WZ i) ≤ I.sav i := by
   have h : 0 ≤ I.d i * I.WE i := mul_nonneg (I.d_pos i).le (I.WE_nonneg i)
   rw [sav]
   nlinarith [h]
 
-/-- Routing cost through path costs: `ucost S = Σᵢ dᵢ·(WZᵢ or WEᵢ)`.-/
+/-- Routing cost through path costs: `ucost S = Σᵢ dᵢ·(WZᵢ or WEᵢ)`.
+@isnad1 id=eq.0h3v.s6.125ef180ebbf from=translated src=- shape=3d9cefe6 vocab=a0f350a6
+-/
 theorem ucost_eq (S : Finset Terminal) :
     I.ucost S = ∑ i, I.d i * (if i ∈ S then I.WZ i else I.WE i) := by
   rw [ucost]
@@ -77,7 +87,9 @@ theorem ucost_eq (S : Finset Terminal) :
   · simp only [hi, ite_false, WE, Finset.mul_sum]
     exact Finset.sum_congr rfl fun a _ => by split_ifs <;> ring
 
-/-- Fractional cost through path costs: `fcost = Σᵢ (fᵢ·WZᵢ + (dᵢ-fᵢ)·WEᵢ)`.-/
+/-- Fractional cost through path costs: `fcost = Σᵢ (fᵢ·WZᵢ + (dᵢ-fᵢ)·WEᵢ)`.
+@isnad1 id=eq.0h2v.s7.0f5c2c769edc from=translated src=- shape=14ddc4cd vocab=dc532d19
+-/
 theorem fcost_eq :
     I.fcost = ∑ i, (I.f i * I.WZ i + (I.d i - I.f i) * I.WE i) := by
   rw [fcost]
@@ -88,7 +100,9 @@ theorem fcost_eq :
   refine Finset.sum_congr rfl fun a _ => ?_
   split_ifs <;> ring
 
-/-- `ucost S = base + Σ_{i ∉ S} sav i`.-/
+/-- `ucost S = base + Σ_{i ∉ S} sav i`.
+@isnad1 id=eq.0h3v.s6.297442a988fc from=translated src=- shape=12c1c6d3 vocab=89a08dc5
+-/
 theorem ucost_eq_base (S : Finset Terminal) :
     I.ucost S = I.base + ∑ i, (if i ∈ S then 0 else I.sav i) := by
   rw [ucost_eq, base, ← Finset.sum_add_distrib]
@@ -96,7 +110,9 @@ theorem ucost_eq_base (S : Finset Terminal) :
   rw [sav]
   split_ifs <;> ring
 
-/-- `fcost = base + Σᵢ (dᵢ - fᵢ)(WEᵢ - WZᵢ)`.-/
+/-- `fcost = base + Σᵢ (dᵢ - fᵢ)(WEᵢ - WZᵢ)`.
+@isnad1 id=eq.0h2v.s7.f483d7c0685c from=translated src=- shape=0b740d86 vocab=891e5892
+-/
 theorem fcost_eq_base :
     I.fcost = I.base + ∑ i, (I.d i - I.f i) * (I.WE i - I.WZ i) := by
   rw [fcost_eq, base, ← Finset.sum_add_distrib]

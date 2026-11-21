@@ -35,10 +35,16 @@ bound.-/
 def admissibleRoutings (I : FlowInstance ℝ) : Finset (Finset Terminal) :=
   Finset.univ.filter I.Admissible
 
+/--
+@isnad1 id=iff.0h2v.s5.ed0617307287 from=translated src=- shape=28d0ea48 vocab=477d3936
+-/
 theorem mem_admissibleRoutings (I : FlowInstance ℝ) (S : Finset Terminal) :
     S ∈ I.admissibleRoutings ↔ I.Admissible S := by
   simp [admissibleRoutings]
 
+/--
+@isnad1 id=nonempty.0h1v.s3.120ac75d66db from=translated src=- shape=a49a2ba2 vocab=0e219260
+-/
 theorem admissibleRoutings_nonempty (I : FlowInstance ℝ) :
     I.admissibleRoutings.Nonempty :=
   ⟨∅, I.mem_admissibleRoutings ∅ |>.2 I.admissible_empty⟩
@@ -55,7 +61,9 @@ private theorem admissibleCosts_nonempty (I : FlowInstance ℝ) :
 def optimalUCost (I : FlowInstance ℝ) : ℝ :=
   I.admissibleCosts.min' I.admissibleCosts_nonempty
 
-/-- An optimal admissible routing exists.-/
+/-- An optimal admissible routing exists.
+@isnad1 id=ex.0h1v.s4.612db22d8196 from=translated src=- shape=a36d5bec vocab=292690dd
+-/
 theorem exists_optimalRouting (I : FlowInstance ℝ) :
     ∃ S : Finset Terminal, I.Admissible S ∧ I.ucost S = I.optimalUCost := by
   have hmem :
@@ -64,7 +72,9 @@ theorem exists_optimalRouting (I : FlowInstance ℝ) :
   rcases Finset.mem_image.mp hmem with ⟨S, hS, hcost⟩
   exact ⟨S, I.mem_admissibleRoutings S |>.1 hS, hcost⟩
 
-/-- The optimum is no larger than the cost of any admissible routing.-/
+/-- The optimum is no larger than the cost of any admissible routing.
+@isnad1 id=le.1h2v.s4.58faaa1cccc8 from=translated src=- shape=80831287 vocab=4dfe11bc
+-/
 theorem optimalUCost_le (I : FlowInstance ℝ) {S : Finset Terminal}
     (hS : I.Admissible S) :
     I.optimalUCost ≤ I.ucost S := by
@@ -72,7 +82,9 @@ theorem optimalUCost_le (I : FlowInstance ℝ) {S : Finset Terminal}
   exact Finset.mem_image.mpr
     ⟨S, I.mem_admissibleRoutings S |>.2 hS, rfl⟩
 
-/-- A common lower bound for all admissible routing costs bounds the optimum.-/
+/-- A common lower bound for all admissible routing costs bounds the optimum.
+@isnad1 id=le.1h2v.s5.7f07189ac310 from=translated src=- shape=5d4991c6 vocab=4dfe11bc
+-/
 theorem le_optimalUCost (I : FlowInstance ℝ) {r : ℝ}
     (h : ∀ S : Finset Terminal, I.Admissible S → r ≤ I.ucost S) :
     r ≤ I.optimalUCost := by
@@ -80,7 +92,9 @@ theorem le_optimalUCost (I : FlowInstance ℝ) {r : ℝ}
   rw [← hcost]
   exact h S hS
 
-/-- The minimum admissible unsplittable-routing cost is nonnegative.-/
+/-- The minimum admissible unsplittable-routing cost is nonnegative.
+@isnad1 id=le.0h1v.s4.c6f553d1d35a from=translated src=- shape=b29cab32 vocab=868baf65
+-/
 theorem optimalUCost_nonneg (I : FlowInstance ℝ) :
     0 ≤ I.optimalUCost :=
   I.le_optimalUCost fun S _ => I.ucost_nonneg S

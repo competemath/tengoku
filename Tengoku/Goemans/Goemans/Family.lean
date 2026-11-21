@@ -108,24 +108,45 @@ def flow (P : FamilyParams K) : FlowInstance K where
     intro e
     cases e <;> simp [P.b_pos.le, (lt_trans P.b_pos P.b_lt_a).le]
 
+/--
+@isnad1 id=eq.0h2v.s6.001cfbef157e from=translated src=- shape=6c0b2884 vocab=56b1b5f7
+-/
 @[simp] theorem flow_d_zero (P : FamilyParams K) :
     P.flow.d 0 = P.a * P.M := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.96972d1c45af from=translated src=- shape=6c0b2884 vocab=289e85c3
+-/
 @[simp] theorem flow_d_one (P : FamilyParams K) :
     P.flow.d 1 = P.b * P.M := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.ff465f5a477a from=translated src=- shape=6c0b2884 vocab=56b1b5f7
+-/
 @[simp] theorem flow_d_two (P : FamilyParams K) :
     P.flow.d 2 = P.a * P.M := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.0a1a085d6f79 from=translated src=- shape=835ce18d vocab=f4ea2cc6
+-/
 @[simp] theorem flow_f_zero (P : FamilyParams K) :
     P.flow.f 0 = (P.a - P.b) * P.M - 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.5fa188a77cc0 from=translated src=- shape=7a9b8d92 vocab=f4ea2cc6
+-/
 @[simp] theorem flow_f_one (P : FamilyParams K) :
     P.flow.f 1 = (2 * P.b - P.a) * P.M := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.71342b8f6fb9 from=translated src=- shape=835ce18d vocab=f4ea2cc6
+-/
 @[simp] theorem flow_f_two (P : FamilyParams K) :
     P.flow.f 2 = (P.a - P.b) * P.M - 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.2be69dcd9f0f from=translated src=- shape=46bdd8c6 vocab=170d7e5d
+-/
 theorem flow_dmax (P : FamilyParams K) :
     P.flow.dmax = P.a * P.M := by
   have hba : P.b * P.M ≤ P.a * P.M :=
@@ -134,7 +155,9 @@ theorem flow_dmax (P : FamilyParams K) :
   rw [max_eq_right hba, max_self]
 
 /-- The only admissible family routings are the empty routing and the three
-singletons.-/
+singletons.
+@isnad1 id=iff.0h2v.s5.a6d582d48968 from=translated src=- shape=3a611f7b vocab=cc3a505b
+-/
 theorem flow_admissible_iff (P : FamilyParams ℝ) (S : Finset Terminal) :
     P.flow.Admissible S ↔ S.card ≤ 1 := by
   classical
@@ -177,26 +200,40 @@ theorem flow_admissible_iff (P : FamilyParams ℝ) (S : Finset Terminal) :
     obtain ⟨i, hi⟩ := Finset.card_le_one_iff_subset_singleton.mp hcard
     exact P.flow.admissible_mono hi (P.flow.admissible_singleton i)
 
+/--
+@isnad1 id=eq.0h3v.s5.89f5657925a9 from=translated src=- shape=815dc88d vocab=511d0059
+-/
 @[simp] theorem flow_WZ (P : FamilyParams K) (i : Terminal) :
     P.flow.WZ i = 0 := by
   fin_cases i <;> rw [FlowInstance.WZ, sum_arc] <;> simp [flow, onZ]
 
+/--
+@isnad1 id=eq.0h2v.s5.2bc7ed6b8eb3 from=translated src=- shape=89ca3c07 vocab=3ebf23b0
+-/
 @[simp] theorem flow_WE_zero (P : FamilyParams K) :
     P.flow.WE 0 = P.b := by
   rw [FlowInstance.WE, sum_arc]
   simp [flow, onE]
 
+/--
+@isnad1 id=eq.0h2v.s5.b578f702091a from=translated src=- shape=89ca3c07 vocab=3ca0ce6b
+-/
 @[simp] theorem flow_WE_one (P : FamilyParams K) :
     P.flow.WE 1 = P.a := by
   rw [FlowInstance.WE, sum_arc]
   simp [flow, onE]
 
+/--
+@isnad1 id=eq.0h2v.s5.0b131332cca9 from=translated src=- shape=89ca3c07 vocab=3ebf23b0
+-/
 @[simp] theorem flow_WE_two (P : FamilyParams K) :
     P.flow.WE 2 = P.b := by
   rw [FlowInstance.WE, sum_arc]
   simp [flow, onE]
 
-/-- Closed form for the fractional cost of a family member.-/
+/-- Closed form for the fractional cost of a family member.
+@isnad1 id=eq.0h2v.s8.deb062cb2838 from=translated src=- shape=1046dae2 vocab=08ca5176
+-/
 theorem flow_fcost (P : FamilyParams K) :
     P.flow.fcost =
       (P.a ^ 2 - P.a * P.b + 2 * P.b ^ 2) * P.M + 2 * P.b := by
@@ -204,7 +241,9 @@ theorem flow_fcost (P : FamilyParams K) :
   simp
   ring
 
-/-- Closed form for the cost of any routing in the family.-/
+/-- Closed form for the cost of any routing in the family.
+@isnad1 id=eq.0h3v.s8.470dfa96cb9d from=translated src=- shape=91e294cd vocab=e159ff07
+-/
 theorem flow_ucost (P : FamilyParams K) (S : Finset Terminal) :
     P.flow.ucost S =
       (if 0 ∈ S then 0 else P.a * P.b * P.M) +
@@ -214,6 +253,9 @@ theorem flow_ucost (P : FamilyParams K) (S : Finset Terminal) :
   simp
   split_ifs <;> ring
 
+/--
+@isnad1 id=lt.0h1v.s4.0cb28c119677 from=translated src=- shape=2a42b25f vocab=9d6e6c7a
+-/
 theorem flow_fcost_pos (P : FamilyParams ℝ) : 0 < P.flow.fcost := by
   rw [P.flow_fcost]
   have ha : 0 < P.a := lt_trans P.b_pos P.b_lt_a
@@ -225,6 +267,9 @@ theorem flow_fcost_pos (P : FamilyParams ℝ) : 0 < P.flow.fcost := by
   rw [hrewrite]
   exact add_pos (mul_pos hcoef P.M_pos) (mul_pos (by norm_num) P.b_pos)
 
+/--
+@isnad1 id=le.1h2v.s6.8d49db634401 from=translated src=- shape=5dbf3086 vocab=2ff64d51
+-/
 theorem flow_ucost_lower (P : FamilyParams ℝ) (S : Finset Terminal)
     (hS : P.flow.Admissible S) :
     2 * P.a * P.b * P.M ≤ P.flow.ucost S := by
@@ -234,6 +279,9 @@ theorem flow_ucost_lower (P : FamilyParams ℝ) (S : Finset Terminal)
     mul_nonneg (mul_nonneg (lt_trans P.b_pos P.b_lt_a).le P.b_pos.le) P.M_pos.le
   fin_cases S <;> simp at hS ⊢ <;> nlinarith
 
+/--
+@isnad1 id=and.0h1v.s6.5e7aab7c8935 from=translated src=- shape=650311fd vocab=a3ad8b09
+-/
 theorem flow_ucost_attained (P : FamilyParams ℝ) :
     P.flow.Admissible {2} ∧ P.flow.ucost {2} = 2 * P.a * P.b * P.M := by
   constructor
@@ -243,7 +291,9 @@ theorem flow_ucost_attained (P : FamilyParams ℝ) :
     simp
     ring
 
-/-- Every family member has exact optimum `2abM`.-/
+/-- Every family member has exact optimum `2abM`.
+@isnad1 id=eq.0h1v.s5.07d35a423c54 from=translated src=- shape=9e00919c vocab=7b782d7a
+-/
 theorem flow_optimalUCost (P : FamilyParams ℝ) :
     P.flow.optimalUCost = 2 * P.a * P.b * P.M := by
   apply le_antisymm
@@ -251,7 +301,9 @@ theorem flow_optimalUCost (P : FamilyParams ℝ) :
       P.flow_ucost_attained.2
   · exact P.flow.le_optimalUCost P.flow_ucost_lower
 
-/-- Exact ratio formula for the symbolic family.-/
+/-- Exact ratio formula for the symbolic family.
+@isnad1 id=eq.0h1v.s7.f300876483bc from=translated src=- shape=b8b8955f vocab=9ccf0c56
+-/
 theorem flow_ratio (P : FamilyParams ℝ) :
     P.flow.optimalUCost / P.flow.fcost =
       (2 * P.a * P.b * P.M) /
@@ -262,6 +314,9 @@ theorem flow_ratio (P : FamilyParams ℝ) :
 noncomputable def positiveFlow (P : FamilyParams ℝ) : PositiveCostInstance :=
   ⟨P.flow, P.flow_fcost_pos⟩
 
+/--
+@isnad1 id=eq.0h1v.s7.5f7ef96650a6 from=translated src=- shape=bb187424 vocab=056e872a
+-/
 @[simp] theorem positiveFlow_ratio (P : FamilyParams ℝ) :
     P.positiveFlow.ratio =
       (2 * P.a * P.b * P.M) /
@@ -283,12 +338,21 @@ def ofInt (a b M : ℤ) (hb : 0 < b) (hba : b < a) (hab : a < 2 * b)
     have hprod : 0 < (a - b) * M := mul_pos (sub_pos.mpr hba) hM
     omega
 
+/--
+@isnad1 id=eq.4h3v.s6.2a51efb861bf from=translated src=- shape=26e0dfb4 vocab=008c7069
+-/
 @[simp] theorem ofInt_a (a b M : ℤ) (hb hba hab hM) :
     (ofInt a b M hb hba hab hM).a = a := rfl
 
+/--
+@isnad1 id=eq.4h3v.s6.df536856ef6a from=translated src=- shape=ac4d191b vocab=c3c2a003
+-/
 @[simp] theorem ofInt_b (a b M : ℤ) (hb hba hab hM) :
     (ofInt a b M hb hba hab hM).b = b := rfl
 
+/--
+@isnad1 id=eq.4h3v.s6.cc3929be352f from=translated src=- shape=6d89db53 vocab=db06fde4
+-/
 @[simp] theorem ofInt_M (a b M : ℤ) (hb hba hab hM) :
     (ofInt a b M hb hba hab hM).M = M := rfl
 
@@ -303,7 +367,9 @@ noncomputable def toReal (P : FamilyParams ℤ) : FamilyParams ℝ where
   M_pos := by exact_mod_cast P.M_pos
   gap := by exact_mod_cast P.gap
 
-/-- Building the family commutes with the integer-to-real model bridge.-/
+/-- Building the family commutes with the integer-to-real model bridge.
+@isnad1 id=eq.0h1v.s4.1e47e8655ee7 from=translated src=- shape=c841f62f vocab=39a3a2c0
+-/
 theorem flow_toReal (P : FamilyParams ℤ) :
     P.flow.toReal = P.toReal.flow := by
   rw [FlowInstance.mk.injEq]
@@ -334,7 +400,9 @@ def family17x12 : FlowInstance ℤ where
 
 /-- The `(17,12,1000)` member: fractional cost `373024`, admissible routings
 are exactly `∅` and singletons, minimum admissible cost `408000`;
-ratio `408000/373024 ≈ 1.09376`.-/
+ratio `408000/373024 ≈ 1.09376`.
+@isnad1 id=and.0h0v.s6.28d23471175f from=translated src=- shape=9800fc1f vocab=a545ea52
+-/
 theorem family17_12_verified :
     family17x12.fcost = 373024 ∧
       (∀ S : Finset Terminal, family17x12.Admissible S ↔ S.card ≤ 1) ∧
@@ -362,7 +430,9 @@ def family577x408 : FlowInstance ℤ where
 
 /-- The Pell member `(577, 408, 10⁶)`: ratio
 `470832000000 / 430441000816 = 1.09383632087… > 1.0938363`, within `2.1·10⁻⁹`
-of `ρ* = 1.09383632135…`. Kernel-checked record: `ρ(H*) > 1.0938363`.-/
+of `ρ* = 1.09383632135…`. Kernel-checked record: `ρ(H*) > 1.0938363`.
+@isnad1 id=and.0h0v.s6.1dfe93b05fef from=translated src=- shape=1fe42a12 vocab=99184a87
+-/
 theorem family577_408_verified :
     family577x408.fcost = 430441000816 ∧
       (∀ S : Finset Terminal, family577x408.Admissible S →
@@ -373,7 +443,9 @@ theorem family577_408_verified :
 
 /-- Lower-bound record extracted from the Pell member: there is an instance
 whose every admissible routing costs more than `1.0938363 = 10938363/10⁷`
-times the fractional cost (compare `ρ* ≈ 1.0938363213`, Theorem A).-/
+times the fractional cost (compare `ρ* ≈ 1.0938363213`, Theorem A).
+@isnad1 id=ex.0h0v.s6.f476e88e3c85 from=translated src=- shape=5cb5f1b1 vocab=9e915b3b
+-/
 theorem ratio_record :
     ∃ I : FlowInstance ℤ, 0 < I.fcost ∧
       ∀ S : Finset Terminal, I.Admissible S →

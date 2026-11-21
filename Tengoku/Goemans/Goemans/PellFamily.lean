@@ -46,12 +46,20 @@ def pellA (n : ℕ) : ℕ := (pellPair n).1
 /-- The numerator coordinate of the `n`th Pell pair.-/
 def pellB (n : ℕ) : ℕ := (pellPair n).2
 
+/--
+@isnad1 id=eq.0h0v.s3.01b77f383ba2 from=translated src=- shape=3c26ae4f vocab=4352a3e6
+-/
 @[simp] theorem pellA_zero : pellA 0 = 3 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.d8b8b6d0839a from=translated src=- shape=3c26ae4f vocab=e84bd368
+-/
 @[simp] theorem pellB_zero : pellB 0 = 2 := rfl
 
 /-- The first four recurrence values, including the two concrete records
-checked independently in `Goemans.Family`.-/
+checked independently in `Goemans.Family`.
+@isnad1 id=and.0h0v.s6.a0c8c2405b9a from=translated src=- shape=f405d94d vocab=3283dcf5
+-/
 theorem pellPair_first_four :
     pellPair 0 = (3, 2) ∧
       pellPair 1 = (17, 12) ∧
@@ -59,15 +67,23 @@ theorem pellPair_first_four :
       pellPair 3 = (577, 408) := by
   decide
 
+/--
+@isnad1 id=eq.0h1v.s5.74a28f0a528d from=translated src=- shape=e29cd903 vocab=8db213fe
+-/
 @[simp] theorem pellA_succ (n : ℕ) :
     pellA (n + 1) = 3 * pellA n + 4 * pellB n := by
   simp [pellA, pellB, pellPair]
 
+/--
+@isnad1 id=eq.0h1v.s5.c20cf99d8f9a from=translated src=- shape=4e39f835 vocab=8db213fe
+-/
 @[simp] theorem pellB_succ (n : ℕ) :
     pellB (n + 1) = 2 * pellA n + 3 * pellB n := by
   simp [pellA, pellB, pellPair]
 
-/-- Every Pell pair satisfies the inequalities needed by `FamilyParams`.-/
+/-- Every Pell pair satisfies the inequalities needed by `FamilyParams`.
+@isnad1 id=and.0h1v.s5.7f702e138010 from=translated src=- shape=9c27d146 vocab=6975c39f
+-/
 theorem pell_bounds (n : ℕ) :
     0 < pellB n ∧ pellB n < pellA n ∧ pellA n < 2 * pellB n := by
   induction n with
@@ -76,20 +92,37 @@ theorem pell_bounds (n : ℕ) :
       rw [pellA_succ, pellB_succ]
       omega
 
+/--
+@isnad1 id=lt.0h1v.s3.692844ec5463 from=translated src=- shape=8a62b088 vocab=f508d8f9
+-/
 theorem pellB_pos (n : ℕ) : 0 < pellB n := (pell_bounds n).1
 
+/--
+@isnad1 id=lt.0h1v.s3.a4efb3a60f4d from=translated src=- shape=0fc427d2 vocab=b86bb684
+-/
 theorem pellB_lt_pellA (n : ℕ) : pellB n < pellA n := (pell_bounds n).2.1
 
+/--
+@isnad1 id=lt.0h1v.s4.6ff140bbeef6 from=translated src=- shape=ffd9fe76 vocab=6975c39f
+-/
 theorem pellA_lt_two_pellB (n : ℕ) : pellA n < 2 * pellB n :=
   (pell_bounds n).2.2
 
+/--
+@isnad1 id=lt.0h1v.s3.5e3575fb39f8 from=translated src=- shape=8a62b088 vocab=aa4a8c31
+-/
 theorem pellA_pos (n : ℕ) : 0 < pellA n :=
   (pellB_pos n).trans (pellB_lt_pellA n)
 
+/--
+@isnad1 id=le.0h1v.s3.1d8c0fdcb511 from=translated src=- shape=8a62b088 vocab=d8f2f7b6
+-/
 theorem one_le_pellA (n : ℕ) : 1 ≤ pellA n := by
   exact pellA_pos n
 
-/-- The recurrence stays on the Pell conic `a² - 2b² = 1`.-/
+/-- The recurrence stays on the Pell conic `a² - 2b² = 1`.
+@isnad1 id=eq.0h1v.s6.514f2ac88d94 from=translated src=- shape=aabec9c9 vocab=be30250f
+-/
 theorem pell_equation (n : ℕ) :
     pellA n ^ 2 = 2 * pellB n ^ 2 + 1 := by
   induction n with
@@ -108,14 +141,23 @@ def pellFamilyParams (n : ℕ) : FamilyParams ℤ :=
     (by exact_mod_cast pellA_lt_two_pellB n)
     (by positivity)
 
+/--
+@isnad1 id=eq.0h1v.s4.115e39a350cf from=translated src=- shape=58a91df6 vocab=7d63c055
+-/
 @[simp] theorem pellFamilyParams_a (n : ℕ) :
     (pellFamilyParams n).a = (pellA n : ℤ) := by
   simp [pellFamilyParams]
 
+/--
+@isnad1 id=eq.0h1v.s4.7634615d3c03 from=translated src=- shape=58a91df6 vocab=737ae73f
+-/
 @[simp] theorem pellFamilyParams_b (n : ℕ) :
     (pellFamilyParams n).b = (pellB n : ℤ) := by
   simp [pellFamilyParams]
 
+/--
+@isnad1 id=eq.0h1v.s4.09a221ce7315 from=translated src=- shape=7125b3ab vocab=f22fed99
+-/
 @[simp] theorem pellFamilyParams_M (n : ℕ) :
     (pellFamilyParams n).M = (n : ℤ) + 1 := by
   simp [pellFamilyParams]
@@ -128,7 +170,9 @@ noncomputable def pellFamilyInstance (n : ℕ) : PositiveCostInstance :=
     rw [FamilyParams.flow_toReal]
     exact (pellFamilyParams n).toReal.flow_fcost_pos⟩
 
-/-- Exact closed form for the ratio of the `n`th Pell instance.-/
+/-- Exact closed form for the ratio of the `n`th Pell instance.
+@isnad1 id=eq.0h1v.s7.b8c8ec5bef91 from=translated src=- shape=cdd3b3e2 vocab=8df31f18
+-/
 theorem pellFamily_ratio_formula (n : ℕ) :
     (pellFamilyInstance n).ratio =
       (2 * (pellA n : ℝ) * (pellB n : ℝ) * ((n : ℝ) + 1)) /
@@ -147,15 +191,23 @@ theorem pellFamily_ratio_formula (n : ℕ) :
 /-- The rational slope `bₙ/aₙ` of the `n`th Pell pair.-/
 def pellDelta (n : ℕ) : ℝ := (pellB n : ℝ) / (pellA n : ℝ)
 
+/--
+@isnad1 id=lt.0h1v.s3.6b8bb6cbde31 from=translated src=- shape=b9369acb vocab=c75dbaf0
+-/
 theorem pellDelta_pos (n : ℕ) : 0 < pellDelta n := by
   exact div_pos (by exact_mod_cast pellB_pos n)
     (by exact_mod_cast pellA_pos n)
 
+/--
+@isnad1 id=le.0h1v.s3.5c633b2b600a from=translated src=- shape=a311c14d vocab=a169d4b9
+-/
 theorem pellDelta_le_one (n : ℕ) : pellDelta n ≤ 1 := by
   rw [pellDelta, div_le_one (by exact_mod_cast pellA_pos n)]
   exact_mod_cast (pellB_lt_pellA n).le
 
-/-- Ratio formula after normalizing by `aₙ² Mₙ`.-/
+/-- Ratio formula after normalizing by `aₙ² Mₙ`.
+@isnad1 id=eq.0h1v.s7.f4f56951efd9 from=translated src=- shape=8882f89a vocab=15787e37
+-/
 theorem pellFamily_ratio_normalized (n : ℕ) :
     (pellFamilyInstance n).ratio =
       (2 * pellDelta n) /
@@ -173,16 +225,24 @@ theorem pellFamily_ratio_normalized (n : ℕ) :
 /-- The contracting conjugate `3 - 2√2` of the Pell unit `3 + 2√2`.-/
 def pellContraction : ℝ := 3 - 2 * Real.sqrt 2
 
+/--
+@isnad1 id=le.0h0v.s3.6d418886b39f from=translated src=- shape=ff3a10fc vocab=d6a03b14
+-/
 theorem pellContraction_nonneg : 0 ≤ pellContraction := by
   rw [pellContraction]
   linarith [sqrt2_lt_bound]
 
+/--
+@isnad1 id=lt.0h0v.s3.c39f3671e8c3 from=translated src=- shape=ffdda526 vocab=0260c829
+-/
 theorem pellContraction_lt_one : pellContraction < 1 := by
   rw [pellContraction]
   linarith [one_lt_sqrt2]
 
 /-- Exact error formula
-`aₙ - √2 bₙ = (3 - 2√2)^(n+1)`.-/
+`aₙ - √2 bₙ = (3 - 2√2)^(n+1)`.
+@isnad1 id=eq.0h1v.s5.29f10a4c34a4 from=translated src=- shape=13003081 vocab=78df2537
+-/
 theorem pell_error_eq_pow (n : ℕ) :
     (pellA n : ℝ) - Real.sqrt 2 * (pellB n : ℝ) =
       pellContraction ^ (n + 1) := by
@@ -231,6 +291,9 @@ private theorem tendsto_pellDeltaCorrection :
     nlinarith
   · simpa using tendsto_pellError.div_const (Real.sqrt 2)
 
+/--
+@isnad1 id=eq.0h1v.s6.b07304f3e97c from=translated src=- shape=0b35252e vocab=0689fe44
+-/
 theorem pellDelta_eq (n : ℕ) :
     pellDelta n =
       1 / Real.sqrt 2 -
@@ -243,7 +306,9 @@ theorem pellDelta_eq (n : ℕ) :
   field_simp [hs, ha]
   nlinarith [pell_error_eq_pow n]
 
-/-- The explicit Pell slopes converge to `1/√2`.-/
+/-- The explicit Pell slopes converge to `1/√2`.
+@isnad1 id=tendsto.0h0v.s5.45e39482aac6 from=translated src=- shape=d907a9df vocab=fbf716f1
+-/
 theorem tendsto_pellDelta :
     Tendsto pellDelta atTop (𝓝 (1 / Real.sqrt 2)) := by
   have hconst :
@@ -307,7 +372,9 @@ private theorem pell_limit_identity :
   field_simp [hs, hr]
   nlinarith [sqrt2_mul_self]
 
-/-- The exact ratios of the computable integral Pell family converge to `ρ*`.-/
+/-- The exact ratios of the computable integral Pell family converge to `ρ*`.
+@isnad1 id=tendsto.0h0v.s4.e6417aab6869 from=translated src=- shape=b19f7695 vocab=18fc937e
+-/
 theorem tendsto_pellFamily_ratio :
     Tendsto (fun n => (pellFamilyInstance n).ratio) atTop (𝓝 rhoStar) := by
   let delta : ℝ := 1 / Real.sqrt 2
@@ -351,6 +418,9 @@ theorem tendsto_pellFamily_ratio :
   filter_upwards [] with n
   exact (pellFamily_ratio_normalized n).symm
 
+/--
+@isnad1 id=mem.0h1v.s3.6ab189b71064 from=translated src=- shape=07d19bab vocab=136bd644
+-/
 theorem pellFamily_ratio_mem (n : ℕ) :
     (pellFamilyInstance n).ratio ∈ hStarRatios :=
   ⟨pellFamilyInstance n, rfl⟩

@@ -54,10 +54,16 @@ private theorem exists_extremalRats :
 /-- Rational approximants strictly between `1/2` and `1/√2`.-/
 noncomputable def extremalRats : ℕ → ℚ := Classical.choose exists_extremalRats
 
+/--
+@isnad1 id=mem.0h1v.s5.a4df68529289 from=translated src=- shape=2da24e46 vocab=448777ee
+-/
 theorem extremalRats_bounds (n : ℕ) :
     (extremalRats n : ℝ) ∈ Set.Ioo ((1 : ℝ) / 2) (1 / Real.sqrt 2) :=
   (Classical.choose_spec exists_extremalRats).1 n
 
+/--
+@isnad1 id=tendsto.0h0v.s5.109b7d0b8d28 from=translated src=- shape=05ae7112 vocab=8c65a12c
+-/
 theorem tendsto_extremalRats :
     Tendsto (fun n => (extremalRats n : ℝ)) atTop
       (𝓝 (1 / Real.sqrt 2)) :=
@@ -99,18 +105,30 @@ noncomputable def integralFamilyInstance (n : ℕ) : PositiveCostInstance :=
     rw [FamilyParams.flow_toReal]
     exact (integralFamilyParams n).toReal.flow_fcost_pos⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.242d10c2a308 from=translated src=- shape=2b5e007e vocab=365bf3d9
+-/
 @[simp] theorem integralFamilyParams_a (n : ℕ) :
     (integralFamilyParams n).a = (extremalRats n).den := by
   simp [integralFamilyParams]
 
+/--
+@isnad1 id=eq.0h1v.s3.d024ad15dbb5 from=translated src=- shape=1e5faf68 vocab=52f1e188
+-/
 @[simp] theorem integralFamilyParams_b (n : ℕ) :
     (integralFamilyParams n).b = (extremalRats n).num := by
   simp [integralFamilyParams]
 
+/--
+@isnad1 id=eq.0h1v.s4.b7fdd987fcf6 from=translated src=- shape=7125b3ab vocab=0a933531
+-/
 @[simp] theorem integralFamilyParams_M (n : ℕ) :
     (integralFamilyParams n).M = (n : ℤ) + 1 := by
   simp [integralFamilyParams]
 
+/--
+@isnad1 id=eq.0h1v.s7.b1a89b336cfe from=translated src=- shape=455f1005 vocab=09d4f9a2
+-/
 theorem integralFamily_ratio_formula (n : ℕ) :
     (integralFamilyInstance n).ratio =
       (2 * ((extremalRats n).den : ℝ) * ((extremalRats n).num : ℝ) *
@@ -127,6 +145,9 @@ theorem integralFamily_ratio_formula (n : ℕ) :
   rw [FamilyParams.flow_optimalUCost, FamilyParams.flow_fcost]
   simp [FamilyParams.toReal]
 
+/--
+@isnad1 id=eq.0h1v.s7.618aa25a4028 from=translated src=- shape=5229096d vocab=c29bcd62
+-/
 theorem integralFamily_ratio_normalized (n : ℕ) :
     (integralFamilyInstance n).ratio =
       (2 * (extremalRats n : ℝ)) /
@@ -169,7 +190,9 @@ private theorem tendsto_integralCorrection :
       tendsto_const_nhds
     convert htwo.mul hinv using 1 <;> norm_num [div_eq_mul_inv]
 
-/-- The exact integral family ratios converge to `ρ*`.-/
+/-- The exact integral family ratios converge to `ρ*`.
+@isnad1 id=tendsto.0h0v.s4.4ba0e92b746f from=translated src=- shape=b19f7695 vocab=151cb701
+-/
 theorem tendsto_integralFamily_ratio :
     Tendsto (fun n => (integralFamilyInstance n).ratio) atTop (𝓝 rhoStar) := by
   let δ : ℝ := 1 / Real.sqrt 2
@@ -219,6 +242,9 @@ theorem tendsto_integralFamily_ratio :
   filter_upwards [] with n
   exact (integralFamily_ratio_normalized n).symm
 
+/--
+@isnad1 id=mem.0h1v.s3.a857bffa1a97 from=translated src=- shape=07d19bab vocab=eac7fb5d
+-/
 theorem integralFamily_ratio_mem (n : ℕ) :
     (integralFamilyInstance n).ratio ∈ hStarRatios :=
   ⟨integralFamilyInstance n, rfl⟩
@@ -243,6 +269,9 @@ def extremalFamilyParams (n : ℕ) : FamilyParams ℝ where
 def extremalFamilyInstance (n : ℕ) : PositiveCostInstance :=
   (extremalFamilyParams n).positiveFlow
 
+/--
+@isnad1 id=eq.0h1v.s7.dbf89fc62f37 from=translated src=- shape=894a14e0 vocab=1926284b
+-/
 theorem extremalFamily_ratio_eq (n : ℕ) :
     (extremalFamilyInstance n).ratio =
       (2 * Real.sqrt 2 * ((n : ℝ) + 3)) /
@@ -261,7 +290,9 @@ private theorem extremal_limit_identity :
   field_simp [h₁, h₂]
   nlinarith [sqrt2_mul_self]
 
-/-- The family ratios tend to the exact extremal constant.-/
+/-- The family ratios tend to the exact extremal constant.
+@isnad1 id=tendsto.0h0v.s4.aafec0415f8c from=translated src=- shape=b19f7695 vocab=f7250100
+-/
 theorem tendsto_extremalFamily_ratio :
     Tendsto (fun n => (extremalFamilyInstance n).ratio) atTop (𝓝 rhoStar) := by
   have hM : Tendsto (fun n : ℕ => (n : ℝ) + 3) atTop atTop :=
@@ -299,6 +330,9 @@ theorem tendsto_extremalFamily_ratio :
   have hMn : (n : ℝ) + 3 ≠ 0 := by positivity
   field_simp
 
+/--
+@isnad1 id=mem.0h1v.s3.7575614c398b from=translated src=- shape=07d19bab vocab=62bc3a32
+-/
 theorem extremalFamily_ratio_mem (n : ℕ) :
     (extremalFamilyInstance n).ratio ∈ hStarRatios :=
   ⟨extremalFamilyInstance n, rfl⟩

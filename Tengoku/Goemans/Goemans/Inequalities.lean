@@ -36,7 +36,9 @@ open Real
 /-! ### Lemma 2: blocked pairs -/
 
 /-- **Lemma 2 pattern.** If a pair is blocked, `f₁ + f₂ ≤ d₁ + d₂ - D`
-(closure form), then the cheap fractions satisfy `f₁/d₁ + f₂/d₂ ≤ 1`.-/
+(closure form), then the cheap fractions satisfy `f₁/d₁ + f₂/d₂ ≤ 1`.
+@isnad1 id=le.7h5v.s7.ba43fdc4e872 from=translated src=- shape=7cb7a2b9 vocab=39238a67
+-/
 theorem pair_bound {d1 d2 f1 f2 D : ℝ} (hd1 : 0 < d1) (hd2 : 0 < d2)
     (hf1 : 0 ≤ f1) (hf2 : 0 ≤ f2)
     (hD1 : d1 ≤ D) (hD2 : d2 ≤ D)
@@ -50,7 +52,9 @@ theorem pair_bound {d1 d2 f1 f2 D : ℝ} (hd1 : 0 < d1) (hd2 : 0 < d2)
       mul_le_mul_of_nonneg_left hblock hd1.le]
 
 /-- Strict form of `pair_bound`, retaining the slack in a blocked-pair
-constraint.-/
+constraint.
+@isnad1 id=lt.7h5v.s7.907adc5700fa from=translated src=- shape=739f2200 vocab=39238a67
+-/
 theorem pair_bound_lt {d1 d2 f1 f2 D : ℝ}
     (hd1 : 0 < d1) (hd2 : 0 < d2)
     (hf1 : 0 ≤ f1) (hf2 : 0 ≤ f2)
@@ -71,7 +75,9 @@ theorem pair_bound_lt {d1 d2 f1 f2 D : ℝ}
 
 /-- **Lemma 3, shifted core.** With `d₁ = d₃ = D` and `δ = d₂`, the all-blocked
 closure system forces `Σ z ≤ 4 - 2√2`. The extremal certificate is
-`(√2·δ - D)² ≥ 0`.-/
+`(√2·δ - D)² ≥ 0`.
+@isnad1 id=le.7h5v.s7.2efe99a19e7b from=translated src=- shape=55508fd2 vocab=e9f5dc2a
+-/
 theorem splitLP_shifted {D δ f1 f2 f3 : ℝ} (hD : 0 < D) (hδ : 0 < δ) (hδD : δ ≤ D)
     (hf2δ : f2 ≤ δ)
     (h12 : f1 + f2 ≤ δ) (h23 : f2 + f3 ≤ δ) (h123 : f1 + f2 + f3 ≤ D) :
@@ -106,7 +112,9 @@ theorem splitLP_shifted {D δ f1 f2 f3 : ℝ} (hD : 0 < D) (hδ : 0 < δ) (hδD 
 /-- **Lemma 3 (the split LP).** If all three pairs are blocked (closure form),
 then `z₁ + z₂ + z₃ ≤ 4 - 2√2`. The proof shifts `(d₁, f₁)` and `(d₃, f₃)` up
 to demand `D` — which only increases each `zᵢ` — and applies the shifted
-core with `δ = d₂`.-/
+core with `δ = d₂`.
+@isnad1 id=le.12h7v.s8.7a2b2e22e728 from=translated src=- shape=ace54b57 vocab=e9f5dc2a
+-/
 theorem splitLP {d1 d2 d3 f1 f2 f3 D : ℝ}
     (hd1 : 0 < d1) (hd2 : 0 < d2) (hd3 : 0 < d3)
     (hf1d : f1 ≤ d1) (hf2d : f2 ≤ d2) (hf3d : f3 ≤ d3)
@@ -129,7 +137,9 @@ theorem splitLP {d1 d2 d3 f1 f2 f3 D : ℝ}
 
 /-- Strict form of the split LP. Increasing the first shifted flow by a
 positive amount smaller than the two relevant constraint slacks reduces the
-claim to the closed split LP while strictly increasing its objective.-/
+claim to the closed split LP while strictly increasing its objective.
+@isnad1 id=lt.14h7v.s8.7e77a48520df from=translated src=- shape=e43fa80a vocab=e9f5dc2a
+-/
 theorem splitLP_lt {d1 d2 d3 f1 f2 f3 D : ℝ}
     (hd1 : 0 < d1) (hd2 : 0 < d2) (hd3 : 0 < d3)
     (hf1 : 0 ≤ f1) (hf3 : 0 ≤ f3)
@@ -199,7 +209,9 @@ appropriate exhibited left side. -/
 /-- **Case (a) core** (all pairs blocked; routing the largest saving `m₃`
 cheap). Given the endpoint facts `1 ≤ r(a₁+a₃)` and `2 ≤ r(a₁+a₂+a₃)`, with
 `m₂ ≤ m₁ ≤ m₃`: `m₁ + m₂ ≤ r(m₁a₁ + m₂a₂ + m₃a₃)`. This is the affinity-in-β
-argument of the paper.-/
+argument of the paper.
+@isnad1 id=le.7h7v.s7.a65f68e989e6 from=translated src=- shape=52875397 vocab=805e4ba8
+-/
 theorem weight_core_a {r a1 a2 a3 m1 m2 m3 : ℝ}
     (hm2 : 0 ≤ m2) (hm12 : m2 ≤ m1) (hm13 : m1 ≤ m3)
     (ha3 : 0 ≤ a3) (hr : 0 ≤ r)
@@ -212,7 +224,9 @@ theorem weight_core_a {r a1 a2 a3 m1 m2 m3 : ℝ}
   nlinarith [t1, t2, t3]
 
 /-- Strict case-(a) core. Strict endpoint inequalities make the certificate
-strict whenever the weighted expensive-fraction sum is positive.-/
+strict whenever the weighted expensive-fraction sum is positive.
+@isnad1 id=lt.8h7v.s7.9d88fbe27c99 from=translated src=- shape=3683ff09 vocab=62f9b668
+-/
 theorem weight_core_a_lt {r a1 a2 a3 m1 m2 m3 : ℝ}
     (hm2 : 0 ≤ m2) (hm12 : m2 ≤ m1) (hm13 : m1 ≤ m3)
     (ha3 : 0 ≤ a3) (hr : 0 ≤ r)
@@ -248,7 +262,9 @@ theorem weight_core_a_lt {r a1 a2 a3 m1 m2 m3 : ℝ}
 /-- **Case (b) core** (exactly the pair `{i,j}` admissible, `k` the third
 index, so `{i,k}` and `{j,k}` are blocked): the cheaper of the two available
 routings — `{i,j}` (paying `m_k`) or `{k}` (paying `m_i + m_j`) — is within
-`r·(Σ m a)`. Only `1 ≤ r` and the two blocked-pair endpoints are used.-/
+`r·(Σ m a)`. Only `1 ≤ r` and the two blocked-pair endpoints are used.
+@isnad1 id=le.9h7v.s7.3336f1fdfa7d from=translated src=- shape=160d4f76 vocab=918d1345
+-/
 theorem weight_core_b {r ai aj ak mi mj mk : ℝ}
     (hmi : 0 ≤ mi) (hmj : 0 ≤ mj) (hmk : 0 ≤ mk)
     (hai : 0 ≤ ai) (haj : 0 ≤ aj) (hak : 0 ≤ ak) (hr : 1 ≤ r)
@@ -294,7 +310,9 @@ theorem weight_core_b {r ai aj ak mi mj mk : ℝ}
 
 /-- **Case (c) core** (the pair `{i,k}` blocked, the other two pairs
 admissible): the cheaper of the routings `{j,k}` (paying `mi`) and `{i,j}`
-(paying `mk`) is within `r·(Σ m a)`.-/
+(paying `mk`) is within `r·(Σ m a)`.
+@isnad1 id=le.8h7v.s7.c6c153d00ac9 from=translated src=- shape=143c28a8 vocab=918d1345
+-/
 theorem weight_core_c {r ai aj ak mi mj mk : ℝ}
     (hmi : 0 ≤ mi) (hmj : 0 ≤ mj) (hmk : 0 ≤ mk)
     (hai : 0 ≤ ai) (haj : 0 ≤ aj) (hak : 0 ≤ ak) (hr : 1 ≤ r)
@@ -314,7 +332,9 @@ theorem weight_core_c {r ai aj ak mi mj mk : ℝ}
 
 /-- **Case (d) core** (all pairs admissible, triple blocked, which forces
 `1 ≤ r(a₁+a₂+a₃)` — indeed `Σ dᵢaᵢ > D`): routing the two largest savings
-cheap pays `min m`, which is within `r·(Σ m a)`.-/
+cheap pays `min m`, which is within `r·(Σ m a)`.
+@isnad1 id=le.8h7v.s7.a2e588f67084 from=translated src=- shape=893ed487 vocab=918d1345
+-/
 theorem weight_core_d {r a1 a2 a3 m1 m2 m3 : ℝ}
     (hm1 : 0 ≤ m1) (hm2 : 0 ≤ m2) (hm3 : 0 ≤ m3)
     (ha1 : 0 ≤ a1) (ha2 : 0 ≤ a2) (ha3 : 0 ≤ a3) (hr : 0 ≤ r)

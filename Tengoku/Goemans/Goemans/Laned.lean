@@ -165,11 +165,15 @@ def dmax : ℝ :=
   Finset.univ.sup'
     ⟨⟨0, I.terminal_nonempty⟩, Finset.mem_univ _⟩ I.d
 
-/-- Every demand is at most `dmax`.-/
+/-- Every demand is at most `dmax`.
+@isnad1 id=le.0h4v.s4.c875fb35c645 from=translated src=- shape=eb4eea45 vocab=72770205
+-/
 theorem d_le_dmax (i : Fin k) : I.d i ≤ I.dmax :=
   Finset.le_sup' I.d (Finset.mem_univ i)
 
-/-- The maximum demand is positive.-/
+/-- The maximum demand is positive.
+@isnad1 id=lt.0h3v.s4.01f87903d212 from=translated src=- shape=d11c6b12 vocab=9db7bc3f
+-/
 theorem dmax_pos : 0 < I.dmax := by
   let i : Fin k := ⟨0, I.terminal_nonempty⟩
   exact lt_of_lt_of_le (I.d_pos i) (I.d_le_dmax i)
@@ -199,7 +203,9 @@ def fractionalCost : ℝ :=
 def routingCost (S : Finset (Fin k)) : ℝ :=
   ∑ i, if i ∈ S then 0 else I.c i * I.d i
 
-/-- Every complete arc has nonnegative cost.-/
+/-- Every complete arc has nonnegative cost.
+@isnad1 id=le.0h4v.s4.a5545ac90553 from=translated src=- shape=d337d439 vocab=b0b8a08c
+-/
 theorem arcCost_nonneg (a : I.CompleteArc) : 0 ≤ I.arcCost a := by
   cases a with
   | lane _ _ => simp [arcCost]
@@ -207,7 +213,9 @@ theorem arcCost_nonneg (a : I.CompleteArc) : 0 ≤ I.arcCost a := by
   | expensiveExit i => simpa [arcCost] using I.c_nonneg i
 
 /-- The shorthand fractional cost is exactly the cost obtained by summing
-`arcCost * x` over the complete arc type.-/
+`arcCost * x` over the complete arc type.
+@isnad1 id=eq.0h3v.s5.c781c73e2b45 from=translated src=- shape=70e7ae25 vocab=ea89910f
+-/
 theorem fractionalCost_eq_sum_arc :
     I.fractionalCost = ∑ a, I.arcCost a * I.x a := by
   rw [sum_arc]
@@ -222,6 +230,9 @@ def laneLoad (S : Finset (Fin k)) (R : I.Routing)
     (t : Fin m) (l : Fin (I.lanes t)) : ℝ :=
   ∑ i, if I.Transits S i t ∧ R.lane t i = l then I.d i else 0
 
+/--
+@isnad1 id=eq.0h7v.s5.32f319e9386a from=translated src=- shape=37753210 vocab=d9265569
+-/
 @[simp] theorem load_lane (S : Finset (Fin k)) (R : I.Routing)
     (t : Fin m) (l : Fin (I.lanes t)) :
     I.load S R (.lane t l) = I.laneLoad S R t l := by
@@ -231,6 +242,9 @@ def laneLoad (S : Finset (Fin k)) (R : I.Routing)
   by_cases h : I.Transits S i t ∧ R.lane t i = l <;>
     simp [UsesArc, h]
 
+/--
+@isnad1 id=eq.0h6v.s6.70c969020683 from=translated src=- shape=7284f0be vocab=1edc56ec
+-/
 @[simp] theorem load_cheapExit (S : Finset (Fin k)) (R : I.Routing)
     (i : Fin k) :
     I.load S R (.cheapExit i) = if i ∈ S then I.d i else 0 := by
@@ -254,6 +268,9 @@ def laneLoad (S : Finset (Fin k)) (R : I.Routing)
       simp [UsesArc, hi]
     · simp [UsesArc, hji]
 
+/--
+@isnad1 id=eq.0h6v.s6.717862ccc0da from=translated src=- shape=61814a5d vocab=2660b5b3
+-/
 @[simp] theorem load_expensiveExit (S : Finset (Fin k)) (R : I.Routing)
     (i : Fin k) :
     I.load S R (.expensiveExit i) = if i ∈ S then 0 else I.d i := by
@@ -278,40 +295,57 @@ def laneLoad (S : Finset (Fin k)) (R : I.Routing)
       _ = I.d i := by simp [UsesArc, hi]
 
 /-- The shorthand routing cost is exactly the cost obtained by summing
-`arcCost * load` over the complete arc type.-/
+`arcCost * load` over the complete arc type.
+@isnad1 id=eq.0h5v.s6.223dbee6cf1e from=translated src=- shape=078d7347 vocab=0244b684
+-/
 theorem routingCost_eq_sum_arc
     (S : Finset (Fin k)) (R : I.Routing) :
     I.routingCost S = ∑ a, I.arcCost a * I.load S R a := by
   rw [sum_arc]
   simp [routingCost, arcCost]
 
+/--
+@isnad1 id=eq.0h5v.s5.f744199e5d96 from=translated src=- shape=9c6250fb vocab=5589b187
+-/
 @[simp] theorem x_lane (t : Fin m) (l : Fin (I.lanes t)) :
     I.x (.lane t l) = I.laneX t l :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.c4dc91eca2ac from=translated src=- shape=beea4298 vocab=76cc9784
+-/
 @[simp] theorem x_cheapExit (i : Fin k) :
     I.x (.cheapExit i) = I.f i :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.57af603e0175 from=translated src=- shape=b93e147d vocab=14bca851
+-/
 @[simp] theorem x_expensiveExit (i : Fin k) :
     I.x (.expensiveExit i) = I.d i - I.f i :=
   rfl
 
-/-- Fractional load is nonnegative on every complete arc.-/
+/-- Fractional load is nonnegative on every complete arc.
+@isnad1 id=le.0h4v.s4.4f180ddfedc7 from=translated src=- shape=d337d439 vocab=fe6e4256
+-/
 theorem x_nonneg (a : I.CompleteArc) : 0 ≤ I.x a := by
   cases a with
   | lane t l => exact I.laneX_nonneg t l
   | cheapExit i => exact I.f_nonneg i
   | expensiveExit i => exact sub_nonneg.mpr (I.f_le_d i)
 
-/-- Routing load is nonnegative on every complete arc.-/
+/-- Routing load is nonnegative on every complete arc.
+@isnad1 id=le.0h6v.s5.a5220f4ea3f5 from=translated src=- shape=fdbd8eda vocab=616bc116
+-/
 theorem load_nonneg (S : Finset (Fin k)) (R : I.Routing) (a : I.CompleteArc) :
     0 ≤ I.load S R a := by
   rw [load]
   exact Finset.sum_nonneg fun i _ => by
     split <;> simp [(I.d_pos i).le]
 
-/-- Private cheap exits can never violate the capacity allowance.-/
+/-- Private cheap exits can never violate the capacity allowance.
+@isnad1 id=le.0h6v.s5.1c5cc446d31b from=translated src=- shape=1a88c7de vocab=6848cbed
+-/
 theorem cheapExit_safe (S : Finset (Fin k)) (R : I.Routing) (i : Fin k) :
     I.load S R (.cheapExit i) ≤ I.x (.cheapExit i) + I.dmax := by
   rw [load_cheapExit, x_cheapExit]
@@ -319,7 +353,9 @@ theorem cheapExit_safe (S : Finset (Fin k)) (R : I.Routing) (i : Fin k) :
   · linarith [I.f_nonneg i, I.d_le_dmax i]
   · linarith [I.f_nonneg i, I.dmax_pos]
 
-/-- Private expensive exits can never violate the capacity allowance.-/
+/-- Private expensive exits can never violate the capacity allowance.
+@isnad1 id=le.0h6v.s5.fdc886b482e1 from=translated src=- shape=1a88c7de vocab=c15af345
+-/
 theorem expensiveExit_safe (S : Finset (Fin k)) (R : I.Routing) (i : Fin k) :
     I.load S R (.expensiveExit i) ≤ I.x (.expensiveExit i) + I.dmax := by
   rw [load_expensiveExit, x_expensiveExit]
@@ -328,7 +364,9 @@ theorem expensiveExit_safe (S : Finset (Fin k)) (R : I.Routing) (i : Fin k) :
   · linarith [I.f_le_d i, I.d_le_dmax i]
 
 /-- Full admissibility is equivalent to the capacity inequalities on the
-parallel lane arcs; private exits are automatically safe.-/
+parallel lane arcs; private exits are automatically safe.
+@isnad1 id=iff.0h5v.s5.66c74509a4dd from=translated src=- shape=b9e8e4f6 vocab=9bdb9464
+-/
 theorem admissible_iff_lanes (S : Finset (Fin k)) (R : I.Routing) :
     I.Admissible S R ↔
       ∀ t l, I.laneLoad S R t l ≤ I.laneX t l + I.dmax := by
@@ -364,7 +402,9 @@ be packed into capacities `laneX t l + dmax` independently at every stage.
 
 The reverse implication uses the full-reconvergence property encoded by
 `Routing`: stage assignments may be selected independently and concatenate
-without a consistency condition.-/
+without a consistency condition.
+@isnad1 id=iff.0h4v.s5.d8acfe21e153 from=translated src=- shape=b98c098f vocab=af3015af
+-/
 theorem exists_admissibleRouting_iff_forall_stageCanPack
     (S : Finset (Fin k)) :
     (∃ R : I.Routing, I.Admissible S R) ↔
@@ -411,22 +451,34 @@ def ofChain [Nonempty (Fin k)] (C : Chain.Instance (Fin k) m) :
   laneX_sum := fun t => by
     simp [Chain.Instance.stageX]
 
+/--
+@isnad1 id=eq.0h4v.s5.80483a1ed4f0 from=translated src=- shape=1cee4455 vocab=d7179f2b
+-/
 @[simp] theorem ofChain_lanes [Nonempty (Fin k)]
     (C : Chain.Instance (Fin k) m) (t : Fin m) :
     (ofChain C).lanes t = 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.bbd7525c5e00 from=translated src=- shape=494a8e23 vocab=2f94a81d
+-/
 @[simp] theorem ofChain_laneX [Nonempty (Fin k)]
     (C : Chain.Instance (Fin k) m) (t : Fin m)
     (l : Fin ((ofChain C).lanes t)) :
     (ofChain C).laneX t l = C.stageX t :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.fd8ce527f7f4 from=translated src=- shape=39b46a6a vocab=f7a4f831
+-/
 @[simp] theorem ofChain_dmax [Nonempty (Fin k)]
     (C : Chain.Instance (Fin k) m) :
     (ofChain C).dmax = C.dmax :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.32e5bf57d0c7 from=translated src=- shape=b9d7f860 vocab=e8ef847f
+-/
 @[simp] theorem ofChain_laneLoad [Nonempty (Fin k)]
     (C : Chain.Instance (Fin k) m)
     (S : Finset (Fin k)) (R : (ofChain C).Routing)
@@ -473,7 +525,9 @@ variable (I : Instance k 1)
 
 /-- In the one-stage unit-demand specialization with expensive exits before
 the stage and cheap exits after it, the terminals transiting the unique stage
-are exactly the cheap-exit set.-/
+are exactly the cheap-exit set.
+@isnad1 id=iff.2h4v.s7.ddb1f95e05f4 from=translated src=- shape=ddd20e01 vocab=0bfa6d43
+-/
 theorem transits_zero_iff_mem
     (he : ∀ i, I.e i = (0 : Fin 2))
     (hp : ∀ i, I.p i = (1 : Fin 2))

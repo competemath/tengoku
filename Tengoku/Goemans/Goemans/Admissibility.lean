@@ -31,7 +31,9 @@ variable (I : FlowInstance K)
 three chain-arc inequalities hold:
 (i) `Σ_{i∈S∩{0,1}} dᵢ ≤ f₀ + f₁ + D` (arc `s→u`, after cancelling `d₂`);
 (ii) `Σ_{i∈S} dᵢ ≤ f₀ + f₁ + f₂ + D` (arc `u→v`);
-(iii) `Σ_{i∈S∩{1,2}} dᵢ ≤ f₁ + f₂ + D` (arc `v→w`).-/
+(iii) `Σ_{i∈S∩{1,2}} dᵢ ≤ f₁ + f₂ + D` (arc `v→w`).
+@isnad1 id=iff.0h3v.s9.943145e5ea78 from=translated src=- shape=2d6155a5 vocab=10c787bd
+-/
 theorem admissible_iff (S : Finset Terminal) :
     I.Admissible S ↔
       ((if 0 ∈ S then I.d 0 else 0) + (if 1 ∈ S then I.d 1 else 0)
@@ -66,7 +68,9 @@ theorem admissible_iff (S : Finset Terminal) :
         x_vw, x_wt2, x_wt3] <;>
       split_ifs at h1 h2 h3 ⊢ <;> linarith
 
-/-- The empty routing (everything expensive) is always admissible.-/
+/-- The empty routing (everything expensive) is always admissible.
+@isnad1 id=admissib.0h2v.s5.813fe7db6cb9 from=translated src=- shape=b4ab3652 vocab=bc975d5b
+-/
 theorem admissible_empty : I.Admissible ∅ := by
   rw [admissible_iff]
   have hf0 := I.f_nonneg 0
@@ -103,13 +107,17 @@ private lemma adm_single2 : I.Admissible {2} := by
   have hD := I.dmax_pos
   refine ⟨?_, ?_, ?_⟩ <;> simp <;> linarith
 
-/-- Every singleton routing is admissible.-/
+/-- Every singleton routing is admissible.
+@isnad1 id=admissib.0h3v.s5.f6ed03267f7d from=translated src=- shape=4b34a79a vocab=a430570c
+-/
 theorem admissible_singleton (k : Terminal) : I.Admissible {k} := by
   fin_cases k
   exacts [adm_single0 I, adm_single1 I, adm_single2 I]
 
 /-- Admissibility is downward closed (subsets of admissible sets are
-admissible).-/
+admissible).
+@isnad1 id=admissib.2h4v.s5.ac074185c560 from=translated src=- shape=d67059e7 vocab=e1cc8ec9
+-/
 theorem admissible_mono {S T : Finset Terminal} (hST : S ⊆ T)
     (hT : I.Admissible T) : I.Admissible S := by
   rw [admissible_iff] at hT ⊢
@@ -132,6 +140,9 @@ following extraction lemmas retain the strict inequalities supplied by
 inadmissibility. Closed variants are provided for compatibility with the
 non-strict upper-bound argument. -/
 
+/--
+@isnad1 id=lt.1h2v.s7.a4ccb9e5b34a from=translated src=- shape=011683e9 vocab=075bdffd
+-/
 theorem blocked_pair01_lt (h : ¬ I.Admissible {0, 1}) :
     I.f 0 + I.f 1 < I.d 0 + I.d 1 - I.dmax := by
   by_contra! hc
@@ -142,10 +153,16 @@ theorem blocked_pair01_lt (h : ¬ I.Admissible {0, 1}) :
   have hf2 := I.f_nonneg 2
   refine ⟨?_, ?_, ?_⟩ <;> simp <;> linarith
 
+/--
+@isnad1 id=le.1h2v.s7.610e32456297 from=translated src=- shape=011683e9 vocab=d158f80c
+-/
 theorem blocked_pair01 (h : ¬ I.Admissible {0, 1}) :
     I.f 0 + I.f 1 ≤ I.d 0 + I.d 1 - I.dmax :=
   (I.blocked_pair01_lt h).le
 
+/--
+@isnad1 id=lt.1h2v.s7.b6197787be44 from=translated src=- shape=011683e9 vocab=075bdffd
+-/
 theorem blocked_pair12_lt (h : ¬ I.Admissible {1, 2}) :
     I.f 1 + I.f 2 < I.d 1 + I.d 2 - I.dmax := by
   by_contra! hc
@@ -156,10 +173,16 @@ theorem blocked_pair12_lt (h : ¬ I.Admissible {1, 2}) :
   have hf1 := I.f_nonneg 1
   refine ⟨?_, ?_, ?_⟩ <;> simp <;> linarith
 
+/--
+@isnad1 id=le.1h2v.s7.2a00b8fe81fc from=translated src=- shape=011683e9 vocab=d158f80c
+-/
 theorem blocked_pair12 (h : ¬ I.Admissible {1, 2}) :
     I.f 1 + I.f 2 ≤ I.d 1 + I.d 2 - I.dmax :=
   (I.blocked_pair12_lt h).le
 
+/--
+@isnad1 id=lt.1h2v.s7.747a5e642e61 from=translated src=- shape=ddf38934 vocab=075bdffd
+-/
 theorem blocked_pair02_lt (h : ¬ I.Admissible {0, 2}) :
     I.f 0 + I.f 1 + I.f 2 < I.d 0 + I.d 2 - I.dmax := by
   by_contra! hc
@@ -172,13 +195,18 @@ theorem blocked_pair02_lt (h : ¬ I.Admissible {0, 2}) :
   have hf2 := I.f_nonneg 2
   refine ⟨?_, ?_, ?_⟩ <;> simp <;> linarith
 
+/--
+@isnad1 id=le.1h2v.s7.75c9df037f98 from=translated src=- shape=ddf38934 vocab=d158f80c
+-/
 theorem blocked_pair02 (h : ¬ I.Admissible {0, 2}) :
     I.f 0 + I.f 1 + I.f 2 ≤ I.d 0 + I.d 2 - I.dmax :=
   (I.blocked_pair02_lt h).le
 
 /-- If both `{0,1}` and `{1,2}` are admissible but the full routing is
 blocked, then constraint (ii) fails for the triple: the total demand exceeds
-the total cheap flow plus `D` (strictly).-/
+the total cheap flow plus `D` (strictly).
+@isnad1 id=lt.3h2v.s8.44a0313d83c4 from=translated src=- shape=e0691c72 vocab=36ac559e
+-/
 theorem blocked_triple (h01 : I.Admissible {0, 1}) (h12 : I.Admissible {1, 2})
     (h : ¬ I.Admissible Finset.univ) :
     I.f 0 + I.f 1 + I.f 2 + I.dmax < I.d 0 + I.d 1 + I.d 2 := by

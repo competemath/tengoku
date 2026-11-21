@@ -99,7 +99,9 @@ private theorem card_cast_sum_one {α : Type*} (S : Finset α) :
 omit [DecidableEq ι] in
 /-- Uniform-cardinality weighted rounding.  A fractional point of
 `{x | 0 ≤ x ≤ 1, ∑ x ≤ r}` is dominated, for every nonnegative linear
-objective, by an indicator of a set of cardinality at most `r`.-/
+objective, by an indicator of a set of cardinality at most `r`.
+@isnad1 id=ex.4h4v.s6.fa0640155bc6 from=translated src=- shape=5204efd2 vocab=da64bb2f
+-/
 theorem exists_weighted_selection (c f : ι → ℝ) (r : ℕ)
     (hc : ∀ i, 0 ≤ c i)
     (hf0 : ∀ i, 0 ≤ f i)
@@ -173,7 +175,9 @@ omit [DecidableEq ι] in
 /-- Strict uniform-cardinality rounding.  If the total fractional mass is
 strictly below the integer rank and some residual weighted value remains,
 the selected integral set has strictly larger weight than the fractional
-point.-/
+point.
+@isnad1 id=ex.5h4v.s7.dbda08c08182 from=translated src=- shape=05eac517 vocab=9ada1ef1
+-/
 theorem exists_strict_weighted_selection (c f : ι → ℝ) (r : ℕ)
     (hc : ∀ i, 0 ≤ c i)
     (hf0 : ∀ i, 0 ≤ f i)
@@ -265,7 +269,9 @@ theorem exists_strict_weighted_selection (c f : ι → ℝ) (r : ℕ)
     linarith
 
 /-- Cost-form corollary of strict weighted selection.  The cost of all
-unselected indices is strictly smaller than the fractional residual cost.-/
+unselected indices is strictly smaller than the fractional residual cost.
+@isnad1 id=ex.5h4v.s7.65dc326b026b from=translated src=- shape=f6dbbd8d vocab=d9904d5f
+-/
 theorem exists_strict_residual_selection (c f : ι → ℝ) (r : ℕ)
     (hc : ∀ i, 0 ≤ c i)
     (hf0 : ∀ i, 0 ≤ f i)

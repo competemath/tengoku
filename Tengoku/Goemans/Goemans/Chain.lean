@@ -109,12 +109,16 @@ def dmax : ℝ :=
   Finset.univ.sup' Finset.univ_nonempty I.d
 
 omit [DecidableEq ι] in
-/-- Every demand is at most `dmax`.-/
+/-- Every demand is at most `dmax`.
+@isnad1 id=le.0h4v.s4.f9bc96a1d68f from=translated src=- shape=5b036231 vocab=765b35d5
+-/
 theorem d_le_dmax (i : ι) : I.d i ≤ I.dmax :=
   Finset.le_sup' I.d (Finset.mem_univ i)
 
 omit [DecidableEq ι] in
-/-- The maximum demand is positive.-/
+/-- The maximum demand is positive.
+@isnad1 id=lt.0h3v.s4.841391242829 from=translated src=- shape=0793b414 vocab=41cb8ae9
+-/
 theorem dmax_pos : 0 < I.dmax := by
   rcases ‹Nonempty ι› with ⟨i⟩
   exact lt_of_lt_of_le (I.d_pos i) (I.d_le_dmax i)
@@ -122,7 +126,9 @@ theorem dmax_pos : 0 < I.dmax := by
 omit [Fintype ι] [DecidableEq ι] in
 /-- With at least one terminal, the exit-before-peel invariant rules out a
 zero-stage chain. This records the `m = 0` boundary explicitly rather than
-letting later theorems appear to cover a realizable degenerate instance.-/
+letting later theorems appear to cover a realizable degenerate instance.
+@isnad1 id=false.0h2v.s3.ab79e9e39839 from=translated src=- shape=4795f636 vocab=2cecc761
+-/
 theorem false_of_zero_stages (I : Instance ι 0) : False := by
   rcases ‹Nonempty ι› with ⟨i⟩
   have h := I.e_lt_p i
@@ -169,7 +175,9 @@ def arcCost : Arc ι m → ℝ
   | .expensiveExit i => I.c i
 
 omit [Fintype ι] [DecidableEq ι] [Nonempty ι] in
-/-- Every arc cost is nonnegative.-/
+/-- Every arc cost is nonnegative.
+@isnad1 id=le.0h4v.s4.4f29c54d4483 from=translated src=- shape=4563df6a vocab=8f77fb79
+-/
 theorem arcCost_nonneg (a : Arc ι m) : 0 ≤ I.arcCost a := by
   cases a with
   | stage _ => simp [arcCost]
@@ -187,7 +195,9 @@ def routingCost (S : Finset ι) : ℝ :=
 omit [DecidableEq ι] [Nonempty ι] in
 /-- The exit-cost shorthand `fractionalCost` is exactly the ordinary cost
 sum over every arc of the complete chain graph. Stage and cheap-exit terms
-vanish because their per-unit costs are zero.-/
+vanish because their per-unit costs are zero.
+@isnad1 id=eq.0h3v.s5.e352f1a77004 from=translated src=- shape=af92aff4 vocab=ab32f9f4
+-/
 theorem fractionalCost_eq_sum_arc :
     I.fractionalCost = ∑ a : Arc ι m, I.arcCost a * I.x a := by
   rw [sum_arc]
@@ -195,7 +205,9 @@ theorem fractionalCost_eq_sum_arc :
 
 omit [Nonempty ι] in
 /-- The exit-cost shorthand `routingCost S` is exactly the ordinary cost
-sum over every arc of the complete unsplittable routing load.-/
+sum over every arc of the complete unsplittable routing load.
+@isnad1 id=eq.0h4v.s6.e09990a14c5b from=translated src=- shape=c0d1780d vocab=e42ae619
+-/
 theorem routingCost_eq_sum_arc (S : Finset ι) :
     I.routingCost S = ∑ a : Arc ι m, I.arcCost a * I.load S a := by
   rw [sum_arc]
@@ -237,19 +249,25 @@ private theorem terminal_stage_diff (S : Finset ι) (t : Fin m) (i : ι) :
 omit [Nonempty ι] in
 /-- **Lemma 6.2, cancellation identity.** On every stage arc, routing load
 minus fractional load is the sum of the active terminals' signed
-contributions. Terminals at or before their expensive exit are load-neutral.-/
+contributions. Terminals at or before their expensive exit are load-neutral.
+@isnad1 id=eq.0h5v.s5.3957c6f2b9ae from=translated src=- shape=cf89d0d7 vocab=36056f08
+-/
 theorem stageLoad_sub_stageX (S : Finset ι) (t : Fin m) :
     I.stageLoad S t - I.stageX t = I.stageExcess S t := by
   rw [stageLoad, stageX, stageExcess, ← Finset.sum_sub_distrib]
   exact Finset.sum_congr rfl fun i _ => I.terminal_stage_diff S t i
 
 omit [Nonempty ι] in
-/-- The same cancellation identity through the complete-arc API.-/
+/-- The same cancellation identity through the complete-arc API.
+@isnad1 id=eq.0h5v.s5.1094051e6aa5 from=translated src=- shape=8aab788b vocab=636d0ae9
+-/
 theorem load_sub_x_stage (S : Finset ι) (t : Fin m) :
     I.load S (.stage t) - I.x (.stage t) = I.stageExcess S t :=
   I.stageLoad_sub_stageX S t
 
-/-- A private cheap exit can never violate `x + dmax`.-/
+/-- A private cheap exit can never violate `x + dmax`.
+@isnad1 id=le.0h5v.s5.d6f52225cb64 from=translated src=- shape=92ba30f8 vocab=01530dd4
+-/
 theorem cheapExit_safe (S : Finset ι) (i : ι) :
     I.load S (.cheapExit i) ≤ I.x (.cheapExit i) + I.dmax := by
   rw [load, x]
@@ -257,7 +275,9 @@ theorem cheapExit_safe (S : Finset ι) (i : ι) :
   · linarith [I.f_nonneg i, I.d_le_dmax i]
   · linarith [I.f_nonneg i, I.dmax_pos]
 
-/-- A private expensive exit can never violate `x + dmax`.-/
+/-- A private expensive exit can never violate `x + dmax`.
+@isnad1 id=le.0h5v.s5.3d2392bb9f35 from=translated src=- shape=92ba30f8 vocab=7b6943fb
+-/
 theorem expensiveExit_safe (S : Finset ι) (i : ι) :
     I.load S (.expensiveExit i) ≤ I.x (.expensiveExit i) + I.dmax := by
   rw [load, x]
@@ -265,7 +285,9 @@ theorem expensiveExit_safe (S : Finset ι) (i : ι) :
   · linarith [I.f_le_d i, I.dmax_pos]
   · linarith [I.f_le_d i, I.d_le_dmax i]
 
-/-- Full admissibility is equivalent to checking only stage arcs.-/
+/-- Full admissibility is equivalent to checking only stage arcs.
+@isnad1 id=iff.0h4v.s5.212453e44dae from=translated src=- shape=b0ff46b0 vocab=d7a2ca4f
+-/
 theorem admissible_iff_stage (S : Finset ι) :
     I.Admissible S ↔ ∀ t, I.stageLoad S t ≤ I.stageX t + I.dmax := by
   constructor
@@ -292,7 +314,9 @@ private theorem excessTerm_mono {S T : Finset ι} (hST : S ⊆ T)
   · simp [excessTerm, ha]
 
 omit [Nonempty ι] in
-/-- Stage excess is monotone in the set of cheaply routed terminals.-/
+/-- Stage excess is monotone in the set of cheaply routed terminals.
+@isnad1 id=le.1h6v.s5.ecb332ee20b0 from=translated src=- shape=574b90e9 vocab=5caedaf8
+-/
 theorem stageExcess_mono {S T : Finset ι} (hST : S ⊆ T) (t : Fin m) :
     I.stageExcess S t ≤ I.stageExcess T t := by
   apply Finset.sum_le_sum
@@ -302,7 +326,9 @@ theorem stageExcess_mono {S T : Finset ι} (hST : S ⊆ T) (t : Fin m) :
 omit [Nonempty ι] in
 /-- Removing a terminal that is inactive at a stage does not change the
 stage excess. This makes precise that routing choices matter only on the
-terminal's cancellation interval.-/
+terminal's cancellation interval.
+@isnad1 id=eq.1h6v.s5.279e8c7d8f8d from=translated src=- shape=a7452e28 vocab=32085bda
+-/
 theorem stageExcess_erase_of_not_active (S : Finset ι) (i : ι) (t : Fin m)
     (hi : ¬ I.ActiveAt i t) :
     I.stageExcess (S.erase i) t = I.stageExcess S t := by
@@ -315,7 +341,9 @@ theorem stageExcess_erase_of_not_active (S : Finset ι) (i : ι) (t : Fin m)
   · simp [excessTerm, hli]
 
 omit [Nonempty ι] in
-/-- Stage load is monotone in the set of cheaply routed terminals.-/
+/-- Stage load is monotone in the set of cheaply routed terminals.
+@isnad1 id=le.1h6v.s5.4eb290540cd1 from=translated src=- shape=574b90e9 vocab=8b1dc393
+-/
 theorem stageLoad_mono {S T : Finset ι} (hST : S ⊆ T) (t : Fin m) :
     I.stageLoad S t ≤ I.stageLoad T t := by
   have hS := I.stageLoad_sub_stageX S t
@@ -324,7 +352,9 @@ theorem stageLoad_mono {S T : Finset ι} (hST : S ⊆ T) (t : Fin m) :
 
 /-- **Lemma 6.2, monotonicity.** Subsets of admissible cheap-routing sets are
 admissible. Private expensive exits cause no exception because they are
-automatically safe.-/
+automatically safe.
+@isnad1 id=admissib.2h5v.s5.98cdad25a961 from=translated src=- shape=9209258a vocab=e0ca86a5
+-/
 theorem admissible_mono {S T : Finset ι} (hST : S ⊆ T)
     (hT : I.Admissible T) : I.Admissible S := by
   rw [I.admissible_iff_stage] at hT ⊢
@@ -332,7 +362,9 @@ theorem admissible_mono {S T : Finset ι} (hST : S ⊆ T)
   exact le_trans (I.stageLoad_mono hST t) (hT t)
 
 omit [Nonempty ι] in
-/-- Stage excess is bounded by the total demand routed cheaply.-/
+/-- Stage excess is bounded by the total demand routed cheaply.
+@isnad1 id=le.0h5v.s5.5945c046d32a from=translated src=- shape=97412362 vocab=30cbafb9
+-/
 theorem stageExcess_le_routedDemand (S : Finset ι) (t : Fin m) :
     I.stageExcess S t ≤ ∑ i ∈ S, I.d i := by
   rw [stageExcess]
@@ -353,13 +385,17 @@ theorem stageExcess_le_routedDemand (S : Finset ι) (t : Fin m) :
 
 omit [Nonempty ι] in
 /-- A coarse but useful stage bound: excess is at most the total demand of
-the terminals routed cheaply.-/
+the terminals routed cheaply.
+@isnad1 id=le.0h5v.s5.3f13e7282c40 from=translated src=- shape=7cf493d2 vocab=dc315bd3
+-/
 theorem stageLoad_le_stageX_add_routedDemand (S : Finset ι) (t : Fin m) :
     I.stageLoad S t ≤ I.stageX t + ∑ i ∈ S, I.d i := by
   have hdiff := I.stageLoad_sub_stageX S t
   linarith [I.stageExcess_le_routedDemand S t]
 
-/-- **Lemma 6.2.** The all-expensive routing is always admissible.-/
+/-- **Lemma 6.2.** The all-expensive routing is always admissible.
+@isnad1 id=admissib.0h3v.s4.b4956b44d614 from=translated src=- shape=af3efc68 vocab=299ba466
+-/
 theorem admissible_empty : I.Admissible ∅ := by
   rw [I.admissible_iff_stage]
   intro t
@@ -367,7 +403,9 @@ theorem admissible_empty : I.Admissible ∅ := by
   simp only [Finset.sum_empty, add_zero] at h
   linarith [I.dmax_pos]
 
-/-- **Lemma 6.2.** Every singleton cheap-routing set is admissible.-/
+/-- **Lemma 6.2.** Every singleton cheap-routing set is admissible.
+@isnad1 id=admissib.0h4v.s5.571d5121a60d from=translated src=- shape=1afd7ddf vocab=a3a37d83
+-/
 theorem admissible_singleton (i : ι) : I.Admissible {i} := by
   rw [I.admissible_iff_stage]
   intro t
@@ -376,7 +414,9 @@ theorem admissible_singleton (i : ι) : I.Admissible {i} := by
   linarith [I.d_le_dmax i]
 
 /-- On a singleton terminal type every routing is admissible. This is the
-non-vacuous one-terminal boundary case of downward monotonicity.-/
+non-vacuous one-terminal boundary case of downward monotonicity.
+@isnad1 id=admissib.0h4v.s4.31fe2a1ff303 from=translated src=- shape=7add2534 vocab=7d715f65
+-/
 theorem admissible_of_subsingleton [Subsingleton ι] (S : Finset ι) :
     I.Admissible S := by
   rcases ‹Nonempty ι› with ⟨i⟩
@@ -386,7 +426,9 @@ theorem admissible_of_subsingleton [Subsingleton ι] (S : Finset ι) :
 
 omit [Nonempty ι] in
 /-- Stage excess is bounded by the sum of the un-routed cheap fractions
-`d i - f i` over the cheaply routed terminals.-/
+`d i - f i` over the cheaply routed terminals.
+@isnad1 id=le.0h5v.s5.a66b078ac038 from=translated src=- shape=44264aec vocab=9bfa70ba
+-/
 theorem stageExcess_le_routedRemainder (S : Finset ι) (t : Fin m) :
     I.stageExcess S t ≤ ∑ i ∈ S, (I.d i - I.f i) := by
   rw [stageExcess]
@@ -404,7 +446,9 @@ theorem stageExcess_le_routedRemainder (S : Finset ι) (t : Fin m) :
       · simp [excessTerm, ha, hi]
     _ = ∑ i ∈ S, (I.d i - I.f i) := by simp
 
-/-- A blocked pair has the strict split margin used in Lemma 6.2.-/
+/-- A blocked pair has the strict split margin used in Lemma 6.2.
+@isnad1 id=lt.2h5v.s6.8a8c46cd8d86 from=translated src=- shape=0f9e32aa vocab=a350e5eb
+-/
 theorem blockedPair_margin_lt {i j : ι} (hij : i ≠ j)
     (hblocked : ¬ I.Admissible {i, j}) :
     I.f i + I.f j < I.d i + I.d j - I.dmax := by
@@ -419,7 +463,9 @@ theorem blockedPair_margin_lt {i j : ι} (hij : i ≠ j)
 /-- A blocked pair has a violating stage in both terminals' cancellation
 intervals. The interval conclusion is essential for the Helly argument in
 Lemma 6.3; it follows from singleton admissibility, not from an extra model
-assumption.-/
+assumption.
+@isnad1 id=ex.2h5v.s6.7547455fce40 from=translated src=- shape=5cb6125c vocab=2dbeb2a8
+-/
 theorem blockedPair_violation_stage {i j : ι} (hij : i ≠ j)
     (hblocked : ¬ I.Admissible {i, j}) :
     ∃ t, I.stageX t + I.dmax < I.stageLoad {i, j} t ∧
@@ -452,7 +498,9 @@ theorem blockedPair_violation_stage {i j : ι} (hij : i ≠ j)
 omit [Nonempty ι] in
 /-- If every terminal is active at a stage, the excess of a two-terminal
 cheap routing contains the negative cheap-flow contribution of every
-terminal.-/
+terminal.
+@isnad1 id=eq.2h6v.s6.82c883889cbb from=translated src=- shape=54af2ed9 vocab=4c7cc162
+-/
 theorem stageExcess_pair_eq_fullSum {i j : ι} (hij : i ≠ j) (t : Fin m)
     (hall : ∀ l, I.ActiveAt l t) :
     I.stageExcess {i, j} t =
@@ -480,7 +528,9 @@ theorem stageExcess_pair_eq_fullSum {i j : ι} (hij : i ≠ j) (t : Fin m)
 
 /-- A fully active violating pair gives all of the numerical conclusions of
 Lemma 6.3. The first equality records the full aggregation, while the
-remaining conjuncts are its strict margin and demand bounds.-/
+remaining conjuncts are its strict margin and demand bounds.
+@isnad1 id=and.3h6v.s8.1486701a7d33 from=translated src=- shape=efcab4bb vocab=0b565d19
+-/
 theorem fullAggregation_bounds {i j : ι} (hij : i ≠ j) (t : Fin m)
     (hviolate : I.stageX t + I.dmax < I.stageLoad {i, j} t)
     (hall : ∀ l, I.ActiveAt l t) :
@@ -502,7 +552,9 @@ theorem fullAggregation_bounds {i j : ι} (hij : i ≠ j) (t : Fin m)
 two terminals, if every distinct pair is blocked, some blocked pair has a
 violating stage in every terminal's cancellation interval. At that stage the
 pair constraint aggregates the cheap flow of every terminal and yields the
-strict full-sum inequality and both demand bounds from the paper.-/
+strict full-sum inequality and both demand bounds from the paper.
+@isnad1 id=ex.1h3v.s8.0ef06e14c68f from=translated src=- shape=11e832ac vocab=9a51b1d5
+-/
 theorem helly_full_aggregation [Nontrivial ι]
     (hblocked : ∀ i j, i ≠ j → ¬ I.Admissible {i, j}) :
     ∃ i j t, i ≠ j ∧
@@ -568,7 +620,9 @@ private theorem ratio_sum_lt_one_of_sum_lt_both {a b x y : ℝ}
     exact (div_lt_one (mul_pos ha hb)).2 hnum
 
 /-- **Lemma 6.2, blocked-pair fraction bound (strict form).** A blocked pair
-has cheap fractions summing strictly below one.-/
+has cheap fractions summing strictly below one.
+@isnad1 id=lt.2h5v.s6.65b49f38faec from=translated src=- shape=9ca4b403 vocab=a2639ffa
+-/
 theorem blockedPair_cheapFraction_lt_one {i j : ι} (hij : i ≠ j)
     (hblocked : ¬ I.Admissible {i, j}) :
     I.f i / I.d i + I.f j / I.d j < 1 := by
@@ -580,20 +634,26 @@ theorem blockedPair_cheapFraction_lt_one {i j : ι} (hij : i ≠ j)
   · linarith
   · linarith
 
-/-- The paper's stated closed form `z_i + z_j ≤ 1`.-/
+/-- The paper's stated closed form `z_i + z_j ≤ 1`.
+@isnad1 id=le.2h5v.s6.7c4cf6bd4381 from=translated src=- shape=9ca4b403 vocab=d15c9a7e
+-/
 theorem blockedPair_cheapFraction_le_one {i j : ι} (hij : i ≠ j)
     (hblocked : ¬ I.Admissible {i, j}) :
     I.f i / I.d i + I.f j / I.d j ≤ 1 :=
   (I.blockedPair_cheapFraction_lt_one hij hblocked).le
 
 /-- Equivalent expensive-fraction form: a blocked pair has
-`1 < a_i + a_j`.-/
+`1 < a_i + a_j`.
+@isnad1 id=lt.2h5v.s7.126583d80a0c from=translated src=- shape=3e2b5f93 vocab=fd5f0c5e
+-/
 theorem one_lt_blockedPair_expensiveFraction {i j : ι} (hij : i ≠ j)
     (hblocked : ¬ I.Admissible {i, j}) :
     1 < (1 - I.f i / I.d i) + (1 - I.f j / I.d j) := by
   linarith [I.blockedPair_cheapFraction_lt_one hij hblocked]
 
-/-- Closed expensive-fraction form `1 ≤ a_i + a_j`.-/
+/-- Closed expensive-fraction form `1 ≤ a_i + a_j`.
+@isnad1 id=le.2h5v.s7.e49a83551665 from=translated src=- shape=3e2b5f93 vocab=f25ed3ae
+-/
 theorem one_le_blockedPair_expensiveFraction {i j : ι} (hij : i ≠ j)
     (hblocked : ¬ I.Admissible {i, j}) :
     1 ≤ (1 - I.f i / I.d i) + (1 - I.f j / I.d j) :=

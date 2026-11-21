@@ -143,7 +143,9 @@ def fcost : K := ∑ a, I.c a * I.x a
 /-! ### Nonnegativity -/
 
 /-- Every fractional arc load is nonnegative. This needs only monotonicity of
-addition, beyond the ordered commutative-ring structure carried by the model.-/
+addition, beyond the ordered commutative-ring structure carried by the model.
+@isnad1 id=le.0h3v.s6.0c3fa168471b from=translated src=- shape=5775c815 vocab=a93dff00
+-/
 theorem x_nonneg [AddLeftMono K] (a : Arc) : 0 ≤ I.x a := by
   rw [x]
   apply Finset.sum_nonneg
@@ -152,7 +154,9 @@ theorem x_nonneg [AddLeftMono K] (a : Arc) : 0 ≤ I.x a := by
   · split <;> simp [I.f_nonneg]
   · split <;> simp [sub_nonneg.mpr (I.f_le_d i)]
 
-/-- Every unsplittable routing load is nonnegative on every arc.-/
+/-- Every unsplittable routing load is nonnegative on every arc.
+@isnad1 id=le.0h4v.s6.9207aae1ed66 from=translated src=- shape=c4b1f7d3 vocab=89f6d8a9
+-/
 theorem load_nonneg [AddLeftMono K] (S : Finset Terminal) (a : Arc) :
     0 ≤ I.load S a := by
   rw [load]
@@ -162,14 +166,18 @@ theorem load_nonneg [AddLeftMono K] (S : Finset Terminal) (a : Arc) :
   · split <;> simp [(I.d_pos i).le]
   · split <;> simp [(I.d_pos i).le]
 
-/-- Every unsplittable routing has nonnegative cost.-/
+/-- Every unsplittable routing has nonnegative cost.
+@isnad1 id=le.0h3v.s6.6f1128de41bc from=translated src=- shape=ed5be90a vocab=763c0d8b
+-/
 theorem ucost_nonneg [AddLeftMono K] [PosMulMono K] (S : Finset Terminal) :
     0 ≤ I.ucost S := by
   rw [ucost]
   exact Finset.sum_nonneg fun a _ =>
     mul_nonneg (I.c_nonneg a) (I.load_nonneg S a)
 
-/-- The fractional flow has nonnegative cost.-/
+/-- The fractional flow has nonnegative cost.
+@isnad1 id=le.0h2v.s6.7bdfd0ccada4 from=translated src=- shape=fcbef44f vocab=f11faabf
+-/
 theorem fcost_nonneg [AddLeftMono K] [PosMulMono K] :
     0 ≤ I.fcost := by
   rw [fcost]
@@ -178,12 +186,18 @@ theorem fcost_nonneg [AddLeftMono K] [PosMulMono K] :
 
 /-! ### Demands are bounded by `dmax` -/
 
+/--
+@isnad1 id=le.0h3v.s5.00660660dcd9 from=translated src=- shape=0663d373 vocab=dd8c53e7
+-/
 theorem d_le_dmax (i : Terminal) : I.d i ≤ I.dmax := by
   fin_cases i
   · exact le_max_left _ _
   · exact le_trans (le_max_left _ _) (le_max_right _ _)
   · exact le_trans (le_max_right _ _) (le_max_right _ _)
 
+/--
+@isnad1 id=lt.0h2v.s5.4a76b82be72d from=translated src=- shape=7eb03384 vocab=5b8f1062
+-/
 theorem dmax_pos : 0 < I.dmax := lt_of_lt_of_le (I.d_pos 0) (I.d_le_dmax 0)
 
 /-! ### Per-arc values of the fractional flow
@@ -191,22 +205,49 @@ theorem dmax_pos : 0 < I.dmax := lt_of_lt_of_le (I.d_pos 0) (I.d_le_dmax 0)
 The nine evaluation lemmas below unfold `x` on each arc.  These are the
 identities used silently throughout Section 3 of the paper. -/
 
+/--
+@isnad1 id=eq.0h2v.s6.9bb67a3d7dc3 from=translated src=- shape=4a494476 vocab=422d3898
+-/
 theorem x_st1 : I.x st1 = I.d 0 - I.f 0 := by
   simp [x, Fin.sum_univ_three, onZ, onE]
+/--
+@isnad1 id=eq.0h2v.s6.aa1ab2dc8368 from=translated src=- shape=4a494476 vocab=870064f1
+-/
 theorem x_st2 : I.x st2 = I.d 1 - I.f 1 := by
   simp [x, Fin.sum_univ_three, onZ, onE]
+/--
+@isnad1 id=eq.0h2v.s6.8aca8447373f from=translated src=- shape=025ec0a3 vocab=148a90b5
+-/
 theorem x_su : I.x su = I.f 0 + I.f 1 + I.d 2 := by
   simp [x, Fin.sum_univ_three, onZ, onE]
+/--
+@isnad1 id=eq.0h2v.s6.1374eb42b954 from=translated src=- shape=4a494476 vocab=c7705ae8
+-/
 theorem x_ut3 : I.x ut3 = I.d 2 - I.f 2 := by
   simp [x, Fin.sum_univ_three, onZ, onE]
+/--
+@isnad1 id=eq.0h2v.s6.97be6273815d from=translated src=- shape=328da91c vocab=defe9c66
+-/
 theorem x_uv : I.x uv = I.f 0 + I.f 1 + I.f 2 := by
   simp [x, Fin.sum_univ_three, onZ, onE]
+/--
+@isnad1 id=eq.0h2v.s5.b62ba9a3afa8 from=translated src=- shape=d519d91d vocab=3c413ce6
+-/
 theorem x_vt1 : I.x vt1 = I.f 0 := by
   simp [x, Fin.sum_univ_three, onZ, onE]
+/--
+@isnad1 id=eq.0h2v.s6.2408d24f63fa from=translated src=- shape=4ef344cc vocab=3594f207
+-/
 theorem x_vw : I.x vw = I.f 1 + I.f 2 := by
   simp [x, Fin.sum_univ_three, onZ, onE]
+/--
+@isnad1 id=eq.0h2v.s5.f1053844d631 from=translated src=- shape=d519d91d vocab=4be8e73d
+-/
 theorem x_wt2 : I.x wt2 = I.f 1 := by
   simp [x, Fin.sum_univ_three, onZ, onE]
+/--
+@isnad1 id=eq.0h2v.s5.52ee9432f7ce from=translated src=- shape=d519d91d vocab=8d6774d1
+-/
 theorem x_wt3 : I.x wt3 = I.f 2 := by
   simp [x, Fin.sum_univ_three, onZ, onE]
 
@@ -214,36 +255,63 @@ theorem x_wt3 : I.x wt3 = I.f 2 := by
 
 variable (S : Finset Terminal)
 
+/--
+@isnad1 id=eq.0h3v.s6.f2c1ad6ee35f from=translated src=- shape=85b918be vocab=39be81c9
+-/
 theorem load_st1 : I.load S st1 = if 0 ∈ S then 0 else I.d 0 := by
   simp only [load, Fin.sum_univ_three]
   simp [onZ, onE]
+/--
+@isnad1 id=eq.0h3v.s6.88ad411c5a88 from=translated src=- shape=85b918be vocab=f0ab9dc4
+-/
 theorem load_st2 : I.load S st2 = if 1 ∈ S then 0 else I.d 1 := by
   simp only [load, Fin.sum_univ_three]
   simp [onZ, onE]
+/--
+@isnad1 id=eq.0h3v.s7.cf91b5d131e6 from=translated src=- shape=ad02fa0a vocab=8ce4370e
+-/
 theorem load_su :
     I.load S su =
       (if 0 ∈ S then I.d 0 else 0) + (if 1 ∈ S then I.d 1 else 0) + I.d 2 := by
   simp only [load, Fin.sum_univ_three]
   simp [onZ, onE]
+/--
+@isnad1 id=eq.0h3v.s6.62e5eaa87104 from=translated src=- shape=85b918be vocab=49d430ad
+-/
 theorem load_ut3 : I.load S ut3 = if 2 ∈ S then 0 else I.d 2 := by
   simp only [load, Fin.sum_univ_three]
   simp [onZ, onE]
+/--
+@isnad1 id=eq.0h3v.s8.65f2ceb030bf from=translated src=- shape=017b55fe vocab=9948426d
+-/
 theorem load_uv :
     I.load S uv =
       (if 0 ∈ S then I.d 0 else 0) + (if 1 ∈ S then I.d 1 else 0) +
         (if 2 ∈ S then I.d 2 else 0) := by
   simp only [load, Fin.sum_univ_three]
   simp [onZ, onE]
+/--
+@isnad1 id=eq.0h3v.s6.65e3dc62a8ff from=translated src=- shape=5b7987a6 vocab=89029dec
+-/
 theorem load_vt1 : I.load S vt1 = if 0 ∈ S then I.d 0 else 0 := by
   simp only [load, Fin.sum_univ_three]
   simp [onZ, onE]
+/--
+@isnad1 id=eq.0h3v.s7.9626d62ea5e4 from=translated src=- shape=016e5e27 vocab=a7ab2a06
+-/
 theorem load_vw :
     I.load S vw = (if 1 ∈ S then I.d 1 else 0) + (if 2 ∈ S then I.d 2 else 0) := by
   simp only [load, Fin.sum_univ_three]
   simp [onZ, onE]
+/--
+@isnad1 id=eq.0h3v.s6.0c106576b020 from=translated src=- shape=5b7987a6 vocab=84cf8e28
+-/
 theorem load_wt2 : I.load S wt2 = if 1 ∈ S then I.d 1 else 0 := by
   simp only [load, Fin.sum_univ_three]
   simp [onZ, onE]
+/--
+@isnad1 id=eq.0h3v.s6.61652cb7273b from=translated src=- shape=5b7987a6 vocab=40528970
+-/
 theorem load_wt3 : I.load S wt3 = if 2 ∈ S then I.d 2 else 0 := by
   simp only [load, Fin.sum_univ_three]
   simp [onZ, onE]
@@ -261,27 +329,48 @@ noncomputable def toReal (I : FlowInstance ℤ) : FlowInstance ℝ where
   f_le_d i := by exact_mod_cast I.f_le_d i
   c_nonneg a := by exact_mod_cast I.c_nonneg a
 
+/--
+@isnad1 id=eq.0h2v.s4.f8f46e0af60e from=translated src=- shape=9176dc35 vocab=c6ae139d
+-/
 @[simp] theorem toReal_d (I : FlowInstance ℤ) (i : Terminal) :
     I.toReal.d i = (I.d i : ℝ) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.28cccb216706 from=translated src=- shape=9176dc35 vocab=718b4482
+-/
 @[simp] theorem toReal_f (I : FlowInstance ℤ) (i : Terminal) :
     I.toReal.f i = (I.f i : ℝ) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.0e9846fd9d08 from=translated src=- shape=9176dc35 vocab=d0888e06
+-/
 @[simp] theorem toReal_c (I : FlowInstance ℤ) (a : Arc) :
     I.toReal.c a = (I.c a : ℝ) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.5bbb18ce2709 from=translated src=- shape=36f9a6b5 vocab=cd5721fe
+-/
 @[simp] theorem toReal_dmax (I : FlowInstance ℤ) :
     I.toReal.dmax = (I.dmax : ℝ) := by
   simp [dmax, toReal]
 
+/--
+@isnad1 id=eq.0h2v.s4.da950d8bee21 from=translated src=- shape=9176dc35 vocab=86a6c833
+-/
 @[simp] theorem toReal_x (I : FlowInstance ℤ) (a : Arc) :
     I.toReal.x a = (I.x a : ℝ) := by
   simp [x, toReal]
 
+/--
+@isnad1 id=eq.0h3v.s4.b144ba7806fb from=translated src=- shape=156686a8 vocab=8ea17b7a
+-/
 @[simp] theorem toReal_load (I : FlowInstance ℤ) (S : Finset Terminal) (a : Arc) :
     I.toReal.load S a = (I.load S a : ℝ) := by
   simp [load, toReal]
 
+/--
+@isnad1 id=iff.0h2v.s4.0a15587d876c from=translated src=- shape=4105f6e1 vocab=5214e545
+-/
 @[simp] theorem toReal_admissible (I : FlowInstance ℤ) (S : Finset Terminal) :
     I.toReal.Admissible S ↔ I.Admissible S := by
   simp only [Admissible, toReal_load, toReal_x, toReal_dmax]
@@ -291,12 +380,18 @@ noncomputable def toReal (I : FlowInstance ℤ) : FlowInstance ℝ where
   · intro h a
     exact_mod_cast h a
 
+/--
+@isnad1 id=eq.0h2v.s4.eefdf868655c from=translated src=- shape=00f54418 vocab=2668f1d7
+-/
 @[simp] theorem toReal_ucost (I : FlowInstance ℤ) (S : Finset Terminal) :
     I.toReal.ucost S = (I.ucost S : ℝ) := by
   change (∑ a, I.toReal.c a * I.toReal.load S a) =
     ((∑ a, I.c a * I.load S a : ℤ) : ℝ)
   simp
 
+/--
+@isnad1 id=eq.0h1v.s4.5f296b107102 from=translated src=- shape=36f9a6b5 vocab=450bf7f1
+-/
 @[simp] theorem toReal_fcost (I : FlowInstance ℤ) :
     I.toReal.fcost = (I.fcost : ℝ) := by
   change (∑ a, I.toReal.c a * I.toReal.x a) =
