@@ -151,9 +151,11 @@ jobs:
         run: |
           start=$(date +%s)
           read -r -a roots <<< "$ROOTS"
-          lake env "$RUNNER_TEMP/lean4export/.lake/build/bin/lean4export" "${roots[@]}" > "$RUNNER_TEMP/tengoku.ndjson"
+          lake env /usr/bin/time -v "$RUNNER_TEMP/lean4export/.lake/build/bin/lean4export" "${roots[@]}" > "$RUNNER_TEMP/tengoku.ndjson" 2> "$RUNNER_TEMP/export-time.txt" || { tail -20 "$RUNNER_TEMP/export-time.txt"; exit 1; }
           echo "$(( $(date +%s) - start ))" > "$RUNNER_TEMP/export-seconds.txt"
           echo "exported $(wc -l < "$RUNNER_TEMP/tengoku.ndjson") lines, $(du -h "$RUNNER_TEMP/tengoku.ndjson" | cut -f1), in $(cat "$RUNNER_TEMP/export-seconds.txt") s"
+          grep -E "Maximum resident|Elapsed|Major \(requiring I/O\) page faults|Swaps" "$RUNNER_TEMP/export-time.txt" || true   # the memory the exporter needed: a shard that outgrows the runner's RAM swaps and slows down by an order of magnitude
+          free -g | head -3
           head -c 300 "$RUNNER_TEMP/tengoku.ndjson"; echo
           df -h / | tail -1
       - name: Check it again with nanoda (sealed, no network)
