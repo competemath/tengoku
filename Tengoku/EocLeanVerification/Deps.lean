@@ -1,0 +1,1 @@
+-- EocLeanVerification: a factory bundle (data/intake/eoc-lean-verification). This file only marks the library for Tengoku/All.lean.
