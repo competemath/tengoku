@@ -26,8 +26,14 @@ namespace Erdos263
 /-- The Q1 sequence `a_n = 2^(2^n)` (natural-number valued).-/
 def a₂₂ (n : ℕ) : ℕ := 2 ^ 2 ^ n
 
+/--
+@isnad1 id=lt.0h1v.s3.d59a92127fd3 from=translated src=- shape=8a62b088 vocab=c5defaf8
+-/
 lemma a₂₂_pos (n : ℕ) : 0 < a₂₂ n := pow_pos (by norm_num) _
 
+/--
+@isnad1 id=le.0h1v.s3.8c175485023b from=translated src=- shape=8a62b088 vocab=5c1aa6a6
+-/
 lemma a₂₂_ge_two (n : ℕ) : 2 ≤ a₂₂ n := by
   have h : (2 : ℕ) ^ 1 ≤ 2 ^ 2 ^ n :=
     pow_le_pow_right₀ (by norm_num) (Nat.one_le_two_pow)
@@ -36,13 +42,17 @@ lemma a₂₂_ge_two (n : ℕ) : 2 ≤ a₂₂ n := by
 
 /-- **Exact-boundary identity:** for `a_n = 2^(2^n)`, `a_{n+1} = a_n²` EXACTLY.
 This is why both known criteria miss Q1 by an epsilon: Kovač–Tao needs
-`a_{n+1}/a_n² → 0`, the folklore criterion needs `a_{n+1}/a_n^{2+ε} ↛ 0`.-/
+`a_{n+1}/a_n² → 0`, the folklore criterion needs `a_{n+1}/a_n^{2+ε} ↛ 0`.
+@isnad1 id=eq.0h1v.s5.5fd133c25cb0 from=translated src=- shape=530baa75 vocab=f746a723
+-/
 theorem a₂₂_succ_sq (n : ℕ) : a₂₂ (n + 1) = (a₂₂ n) ^ 2 := by
   show (2 : ℕ) ^ (2 ^ (n + 1)) = (2 ^ 2 ^ n) ^ 2
   rw [pow_succ 2 n, pow_mul]
 
 /-- The sequence `2^(2^n)` is strictly increasing — so Q1's instance satisfies
-the (corrected) increasing hypothesis.-/
+the (corrected) increasing hypothesis.
+@isnad1 id=strictmo.0h0v.s2.084181e6575c from=translated src=- shape=e3d48bcb vocab=46d3a72a
+-/
 theorem a₂₂_strictMono : StrictMono a₂₂ := by
   apply strictMono_nat_of_lt_succ
   intro n
@@ -52,14 +62,22 @@ theorem a₂₂_strictMono : StrictMono a₂₂ := by
   calc a₂₂ n = a₂₂ n * 1 := (mul_one _).symm
   _ < a₂₂ n * a₂₂ n := mul_lt_mul_of_pos_left h2 hpos
 
+/--
+@isnad1 id=le.0h1v.s4.eed40ca8a680 from=translated src=- shape=82643d74 vocab=515df3f0
+-/
 lemma a₂₂_ge_two_pow (n : ℕ) : 2 ^ n ≤ a₂₂ n := by
   have h : n ≤ 2 ^ n := Nat.le_of_lt Nat.lt_two_pow_self
   exact pow_le_pow_right₀ (by norm_num) h
 
+/--
+@isnad1 id=lt.0h1v.s4.12c8b8a41c5f from=translated src=- shape=ab3dd0ae vocab=6998a099
+-/
 lemma one_div_a₂₂_pos (n : ℕ) : (0 : ℝ) < 1 / (a₂₂ n : ℝ) :=
   one_div_pos.mpr (by exact_mod_cast a₂₂_pos n)
 
-/-- `∑ 1/2^(2^n)` converges.-/
+/-- `∑ 1/2^(2^n)` converges.
+@isnad1 id=summable.0h0v.s5.c435f2444381 from=translated src=- shape=c6d48187 vocab=536241fc
+-/
 theorem summable_one_div_a₂₂ : Summable (fun n => 1 / (a₂₂ n : ℝ)) := by
   apply Summable.of_nonneg_of_le (f := fun n => (1 / 2 : ℝ) ^ n)
   · intro n
@@ -71,7 +89,9 @@ theorem summable_one_div_a₂₂ : Summable (fun n => 1 / (a₂₂ n : ℝ)) := 
     _ = (1 / 2 : ℝ) ^ n := by rw [div_pow, one_pow]
   · exact summable_geometric_of_lt_one (by norm_num) (by norm_num)
 
-/-- Helper: `n + 1 ≤ 2^n` (self-contained, avoids reliance on Mathlib naming).-/
+/-- Helper: `n + 1 ≤ 2^n` (self-contained, avoids reliance on Mathlib naming).
+@isnad1 id=le.0h1v.s5.410df46afbf6 from=translated src=- shape=0c72263b vocab=94889561
+-/
 lemma two_pow_ge_succ (n : ℕ) : n + 1 ≤ 2 ^ n := by
   induction n with
   | zero => norm_num
@@ -79,7 +99,9 @@ lemma two_pow_ge_succ (n : ℕ) : n + 1 ≤ 2 ^ n := by
       rw [pow_succ]
       omega
 
-/-- Key exponent inequality: `2^(N+1) + i ≤ 2^i * 2^(N+1)`.-/
+/-- Key exponent inequality: `2^(N+1) + i ≤ 2^i * 2^(N+1)`.
+@isnad1 id=le.0h2v.s6.91c217954aca from=translated src=- shape=0086ac07 vocab=f96c6fce
+-/
 lemma exponent_ineq (N i : ℕ) : 2 ^ (N + 1) + i ≤ 2 ^ i * 2 ^ (N + 1) := by
   have hi : i + 1 ≤ 2 ^ i := two_pow_ge_succ i
   have hM : 1 ≤ 2 ^ (N + 1) := Nat.one_le_two_pow
@@ -93,7 +115,9 @@ lemma exponent_ineq (N i : ℕ) : 2 ^ (N + 1) + i ≤ 2 ^ i * 2 ^ (N + 1) := by
   _ ≤ 2 ^ (N + 1) * 2 ^ i := mul_le_mul_right hi _
   _ = 2 ^ i * 2 ^ (N + 1) := by ring
 
-/-- Strict version for `i ≥ 1`.-/
+/-- Strict version for `i ≥ 1`.
+@isnad1 id=lt.1h2v.s6.ad8a178f6dd2 from=translated src=- shape=83048068 vocab=3f16b8dd
+-/
 lemma exponent_ineq_strict (N : ℕ) {i : ℕ} (hi : 1 ≤ i) :
     2 ^ (N + 1) + i < 2 ^ i * 2 ^ (N + 1) := by
   have h2i : i + 1 ≤ 2 ^ i := two_pow_ge_succ i
@@ -112,7 +136,9 @@ lemma exponent_ineq_strict (N : ℕ) {i : ℕ} (hi : 1 ≤ i) :
   _ ≤ 2 ^ (N + 1) * 2 ^ i := mul_le_mul_right h2i _
   _ = 2 ^ i * 2 ^ (N + 1) := by ring
 
-/-- Per-term tail estimate: `1/a₂₂(i + (N+1)) ≤ (1/2^(2^(N+1))) * (1/2)^i`.-/
+/-- Per-term tail estimate: `1/a₂₂(i + (N+1)) ≤ (1/2^(2^(N+1))) * (1/2)^i`.
+@isnad1 id=le.0h2v.s7.495df71d135d from=translated src=- shape=432ad929 vocab=f4e1e485
+-/
 lemma term_bound (N i : ℕ) :
     (1 / (a₂₂ (i + (N + 1)) : ℝ)) ≤ (1 / (2 : ℝ) ^ (2 ^ (N + 1))) * (1 / 2 : ℝ) ^ i := by
   have hexp : 2 ^ (N + 1) + i ≤ 2 ^ (i + (N + 1)) := by
@@ -129,7 +155,9 @@ lemma term_bound (N i : ℕ) :
   _ = (1 / (2 : ℝ) ^ (2 ^ (N + 1))) * (1 / 2 : ℝ) ^ i := by
         rw [div_pow, one_pow, one_div, one_div, mul_inv, one_div]
 
-/-- Per-term strict tail estimate at `i ≥ 1`.-/
+/-- Per-term strict tail estimate at `i ≥ 1`.
+@isnad1 id=lt.1h2v.s7.d6142d248bf7 from=translated src=- shape=47ec454b vocab=13306e90
+-/
 lemma term_bound_strict (N : ℕ) {i : ℕ} (hi : 1 ≤ i) :
     (1 / (a₂₂ (i + (N + 1)) : ℝ)) < (1 / (2 : ℝ) ^ (2 ^ (N + 1))) * (1 / 2 : ℝ) ^ i := by
   have hexp : 2 ^ (N + 1) + i < 2 ^ (i + (N + 1)) := by
@@ -147,7 +175,9 @@ lemma term_bound_strict (N : ℕ) {i : ℕ} (hi : 1 ≤ i) :
         rw [div_pow, one_pow, one_div, one_div, mul_inv, one_div]
 
 /-- **Effective tail bound:** `∑_{i ≥ N+1} 1/2^(2^i) < 2 / 2^(2^(N+1))`.
-Written for the shifted series `∑' i, 1/a₂₂(i + (N+1))`.-/
+Written for the shifted series `∑' i, 1/a₂₂(i + (N+1))`.
+@isnad1 id=lt.0h1v.s6.f3f551d7e855 from=translated src=- shape=ac5f1fd6 vocab=33629e3b
+-/
 theorem tail_bound (N : ℕ) :
     ∑' i, (1 / (a₂₂ (i + (N + 1)) : ℝ)) < 2 / (2 : ℝ) ^ (2 ^ (N + 1)) := by
   set c : ℝ := 1 / (2 : ℝ) ^ (2 ^ (N + 1)) with hc
@@ -172,7 +202,9 @@ theorem tail_bound (N : ℕ) :
   _ = 2 / (2 : ℝ) ^ (2 ^ (N + 1)) := by rw [hc]; ring
 
 /-- The partial sum times `2^(2^N)` is a natural number:
-`2^(2^N) * ∑_{n ≤ N} 1/2^(2^n) = ∑_{n ≤ N} 2^(2^N - 2^n)`.-/
+`2^(2^N) * ∑_{n ≤ N} 1/2^(2^n) = ∑_{n ≤ N} 2^(2^N - 2^n)`.
+@isnad1 id=ex.0h1v.s6.a0d143532e76 from=translated src=- shape=66c8dbf9 vocab=cd1fbc72
+-/
 lemma partial_sum_int (N : ℕ) :
     ∃ K : ℕ, (2 : ℝ) ^ (2 ^ N) *
       (∑ n ∈ Finset.range (N + 1), (1 / (a₂₂ n : ℝ))) = K := by
@@ -189,7 +221,9 @@ lemma partial_sum_int (N : ℕ) :
   rw [hcast, one_div, ← pow_sub₀ (2 : ℝ) (by norm_num) hexp]
 
 /-- **Main supporting theorem (Lean-verified target):**
-`∑_n 1/2^(2^n)` is irrational — the base case `b_n = a_n` of Q1.-/
+`∑_n 1/2^(2^n)` is irrational — the base case `b_n = a_n` of Q1.
+@isnad1 id=irration.0h0v.s5.e8cabda645ca from=translated src=- shape=5de2b35c vocab=d6cb1a04
+-/
 theorem irrational_tsum_one_div_a₂₂ : Irrational (∑' n, 1 / (a₂₂ n : ℝ)) := by
   rintro ⟨r, hr⟩
   have hq0 : (0 : ℝ) < r.den := by exact_mod_cast r.den_pos
@@ -269,7 +303,9 @@ theorem irrational_tsum_one_div_a₂₂ : Irrational (∑' n, 1 / (a₂₂ n : �
 /-- **Boundary witness:** the ratio `a_{n+1}/a_n²` is CONSTANT 1, hence tends to 1 —
 not to 0 (Kovač–Tao's non-example hypothesis) and not to +∞; and
 `liminf a_{n+1}/a_n^{2+ε} = 0` for every ε > 0 (folklore sufficiency hypothesis).
-This is the precise sense in which Q1 sits exactly at the boundary.-/
+This is the precise sense in which Q1 sits exactly at the boundary.
+@isnad1 id=tendsto.0h0v.s6.5520a978cf62 from=translated src=- shape=e632ebfc vocab=1ceafdcd
+-/
 theorem a₂₂_ratio_boundary :
     Tendsto (fun n => (a₂₂ (n + 1) : ℝ) / (a₂₂ n : ℝ) ^ 2) atTop (𝓝 1) := by
   have h : ∀ n : ℕ, (a₂₂ (n + 1) : ℝ) / (a₂₂ n : ℝ) ^ 2 = 1 := by

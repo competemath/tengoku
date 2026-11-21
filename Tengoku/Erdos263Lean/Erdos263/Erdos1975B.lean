@@ -45,7 +45,9 @@ variable {a : ℕ → ℕ}
 /-! ### The doubly-exponential tail bound at an arbitrary threshold -/
 
 /-- One-sided growth at threshold `B`: eventually `B^{2^n} ≤ a_n`
-(generalization of `eventually_ge_of_oneSidedGrowth`, which is `B = 2`).-/
+(generalization of `eventually_ge_of_oneSidedGrowth`, which is `B = 2`).
+@isnad1 id=eventual.2h2v.s6.ab6764f6bcb6 from=translated src=- shape=d0140fe7 vocab=2aa28df9
+-/
 lemma eventually_rpow_ge_of_oneSidedGrowth (hg : OneSidedGrowth a) (B : ℝ)
     (hB : 0 ≤ B) :
     ∀ᶠ n in atTop, B ^ (2 ^ n) ≤ (a n : ℝ) := by
@@ -68,7 +70,9 @@ lemma eventually_rpow_ge_of_oneSidedGrowth (hg : OneSidedGrowth a) (B : ℝ)
   exact le_trans hle' hle
 
 /-- **Tail bound at threshold `B`:** if `B^{2^i} ≤ a_i` for all `i ≥ M+1`
-with `2 ≤ B`, then `T_M ≤ 2·(1/B)^{2^{M+1}}`.-/
+with `2 ≤ B`, then `T_M ≤ 2·(1/B)^{2^{M+1}}`.
+@isnad1 id=le.4h3v.s8.bf4a6b7d5492 from=translated src=- shape=dc517e9a vocab=b7df50e3
+-/
 lemma tail_le_of_ge_rpow (_hapos : ∀ n, 0 < a n)
     (hsum : Summable (fun n => 1 / (a n : ℝ))) {B : ℝ} (hB : 2 ≤ B) {M : ℕ}
     (hge : ∀ i ≥ M + 1, B ^ (2 ^ i) ≤ (a i : ℝ)) :
@@ -126,7 +130,9 @@ lemma tail_le_of_ge_rpow (_hapos : ∀ n, 0 < a n)
 
 /-! ### The cap induction: `P_k ≤ l^{c·2^k}` -/
 
-/-- Auxiliary: `x ≤ l^x` for `2 ≤ l` and `0 ≤ x`.-/
+/-- Auxiliary: `x ≤ l^x` for `2 ≤ l` and `0 ≤ x`.
+@isnad1 id=le.2h2v.s5.c0c385c95a7e from=translated src=- shape=b111d1be vocab=7ff6bede
+-/
 lemma le_rpow_self {l : ℝ} (hl : 2 ≤ l) (x : ℝ) (hx : 0 ≤ x) : x ≤ l ^ x := by
   have hl1 : (1 : ℝ) ≤ l := by linarith
   by_cases hx1 : x ≤ 1
@@ -146,7 +152,9 @@ lemma le_rpow_self {l : ℝ} (hl : 2 ≤ l) (x : ℝ) (hx : 0 ≤ x) : x ≤ l ^
     calc x ≤ (2 : ℝ) ^ x := h1
       _ ≤ l ^ x := Real.rpow_le_rpow (by norm_num) (by linarith) hx
 
-/-- The `2^n`-th root raised back: `((a_n)^{1/2^n})^{2^n} = a_n`.-/
+/-- The `2^n`-th root raised back: `((a_n)^{1/2^n})^{2^n} = a_n`.
+@isnad1 id=eq.0h2v.s6.e9b758ca9f5e from=translated src=- shape=2ee21ea5 vocab=de10b17f
+-/
 lemma rpow_root_two_pow_self (n : ℕ) :
     ((a n : ℝ) ^ (1 / (2 : ℝ) ^ n)) ^ (2 ^ n) = (a n : ℝ) := by
   have hbase : (0 : ℝ) ≤ (a n : ℝ) := by positivity
@@ -157,7 +165,9 @@ lemma rpow_root_two_pow_self (n : ℕ) :
   have hmul : (1 / (2 : ℝ) ^ n) * (2 : ℝ) ^ n = 1 := div_mul_cancel₀ (1 : ℝ) h2n.ne'
   rw [hmul, Real.rpow_one]
 
-/-- `∑_{j ≤ k} 2^j = 2^{k+1} - 1` (ℕ, self-contained).-/
+/-- `∑_{j ≤ k} 2^j = 2^{k+1} - 1` (ℕ, self-contained).
+@isnad1 id=eq.0h1v.s6.135d6a37685c from=translated src=- shape=2ed08a66 vocab=dd17969a
+-/
 lemma sum_range_two_pow (k : ℕ) :
     ∑ j ∈ Finset.range (k + 1), (2 : ℕ) ^ j = 2 ^ (k + 1) - 1 := by
   induction k with
@@ -171,7 +181,9 @@ lemma sum_range_two_pow (k : ℕ) :
 /-- **Product bound at a near-record index** (the product-side of Erdős's
 (14)-machinery): writing `L_j := a_j^{1/2^j}`, if
 `(1 - 1/(k+1)²)·L_j < L_{k+1}` for all `j ≤ k`, then
-`∏_{j ≤ k} a_j ≤ ((1 - 1/(k+1)²)⁻¹·L_{k+1})^{2^{k+1}}`.-/
+`∏_{j ≤ k} a_j ≤ ((1 - 1/(k+1)²)⁻¹·L_{k+1})^{2^{k+1}}`.
+@isnad1 id=le.3h2v.s8.664ac550ab49 from=translated src=- shape=0ea5df44 vocab=d1d3173d
+-/
 lemma prod_le_of_near_record (hapos : ∀ n, 0 < a n) {k : ℕ} (hk : 1 ≤ k)
     (hrec : ∀ j ≤ k, (1 - 1 / ((k : ℝ) + 1) ^ 2) *
       ((a j : ℝ) ^ (1 / (2 : ℝ) ^ j)) <

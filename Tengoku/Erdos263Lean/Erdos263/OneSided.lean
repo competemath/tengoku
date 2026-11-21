@@ -85,7 +85,9 @@ def PerNGap (a : ℕ → ℕ) : Prop :=
     (B * ∏ n ∈ Finset.range (N + 1), (a n : ℝ)) ^ (2 ^ k) ≤ (a (N + 1 + k) : ℝ)
 
 /-- One-sided growth implies `a_n ≥ 2^{2^n}` eventually (take the threshold
-`u_n := a_n^{1/2^n} ≥ 2` and raise back to the `2^n`-th power).-/
+`u_n := a_n^{1/2^n} ≥ 2` and raise back to the `2^n`-th power).
+@isnad1 id=eventual.1h1v.s4.9f1c23fed547 from=translated src=- shape=7ba00feb vocab=b41ac37d
+-/
 lemma eventually_ge_of_oneSidedGrowth (hg : OneSidedGrowth a) :
     ∀ᶠ n in atTop, (a₂₂ n : ℝ) ≤ (a n : ℝ) := by
   obtain ⟨N₀, hN₀⟩ := (tendsto_atTop_atTop.1 hg.2) 2
@@ -109,7 +111,9 @@ lemma eventually_ge_of_oneSidedGrowth (hg : OneSidedGrowth a) :
   exact hle
 
 /-- One-sided growth implies summability of `∑ 1/a_n` (compare with
-`∑ 1/2^{2^n}`, `Basic.summable_one_div_a₂₂`).-/
+`∑ 1/2^{2^n}`, `Basic.summable_one_div_a₂₂`).
+@isnad1 id=summable.1h1v.s5.750e0abe6451 from=translated src=- shape=a90b52e6 vocab=e9783aab
+-/
 lemma summable_one_div_of_oneSidedGrowth (hg : OneSidedGrowth a) :
     Summable (fun n => 1 / (a n : ℝ)) := by
   obtain ⟨N₀, hN₀⟩ := eventually_atTop.1 (eventually_ge_of_oneSidedGrowth hg)
@@ -124,7 +128,9 @@ lemma summable_one_div_of_oneSidedGrowth (hg : OneSidedGrowth a) :
   exact (_root_.summable_nat_add_iff N₀).1 hsum
 
 /-- The gap property implies summability (the tail is dominated by a
-geometric series with ratio `1/2`).-/
+geometric series with ratio `1/2`).
+@isnad1 id=summable.2h1v.s5.3fac991f4ff7 from=translated src=- shape=a92d91a8 vocab=a07d9aad
+-/
 lemma summable_one_div_of_gap (hapos : ∀ n, 0 < a n) (hgap : PerNGap a) :
     Summable (fun n => 1 / (a n : ℝ)) := by
   obtain ⟨N, hN⟩ := hgap 2 (le_refl 2)
@@ -159,7 +165,9 @@ lemma summable_one_div_of_gap (hapos : ∀ n, 0 < a n) (hgap : PerNGap a) :
 
 /-- **Tail bound at a gap index:** if `a_{N+1+k} ≥ x^{2^k}` for all `k` with
 `x := B·P_N ≥ 2`, then the tail `∑_{k ≥ 0} 1/a_{N+1+k}` is at most `2/x`
-(geometric comparison, `2^k ≥ k+1`).-/
+(geometric comparison, `2^k ≥ k+1`).
+@isnad1 id=le.3h3v.s7.73fa21cd5795 from=translated src=- shape=f981db27 vocab=602ad39d
+-/
 lemma tail_le_of_gap (hapos : ∀ n, 0 < a n) {B : ℝ} (hB : 2 ≤ B) {N : ℕ}
     (hgap : ∀ k : ℕ, (B * ∏ n ∈ Finset.range (N + 1), (a n : ℝ)) ^ (2 ^ k) ≤
       (a (N + 1 + k) : ℝ)) :
@@ -221,7 +229,9 @@ positive integers satisfies the per-index gap property `PerNGap`, then its
 reciprocal sum is irrational. Proof: if `∑ 1/a_n = r ∈ ℚ`, integrality
 (`key_integrality` with `b := a`) gives a positive integer
 `z = r.den · P_N · T_N ≥ 1`; the gap at `B := 4·r.den` forces
-`r.den · P_N · T_N ≤ 1/2` — contradiction.-/
+`r.den · P_N · T_N ≤ 1/2` — contradiction.
+@isnad1 id=irration.2h1v.s5.0c9060a7b2d0 from=translated src=- shape=e2820e3b vocab=7bde2725
+-/
 theorem irrational_tsum_one_div_of_perNGap (hapos : ∀ n, 0 < a n) (hgap : PerNGap a) :
     Irrational (∑' n, 1 / (a n : ℝ)) := by
   have hsuma : Summable (fun n => 1 / (a n : ℝ)) := summable_one_div_of_gap hapos hgap

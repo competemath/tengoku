@@ -49,7 +49,9 @@ variable {a : ℕ → ℕ}
 
 /-- **Mono-anchored loglog tail bound.** For `a` monotone with
 `2^{2^i} ≤ a_i` from `M+1` on and `k ≥ M+1`:
-`T_k := ∑' i, 1/a_{i+(k+1)} ≤ (log₂(2·log₂ a_{k+1}) + 4)/a_{k+1}`.-/
+`T_k := ∑' i, 1/a_{i+(k+1)} ≤ (log₂(2·log₂ a_{k+1}) + 4)/a_{k+1}`.
+@isnad1 id=le.5h3v.s8.40c2991afa03 from=translated src=- shape=879aaebe vocab=7b90ca11
+-/
 lemma tail_le_loglog_of_monotone (hapos : ∀ n, 0 < a n)
     (hsum : Summable (fun n => 1 / (a n : ℝ))) (hmono : Monotone a)
     {M : ℕ} (hge : ∀ i ≥ M + 1, (2 : ℝ) ^ (2 ^ i) ≤ (a i : ℝ)) (k : ℕ)
@@ -214,7 +216,9 @@ lemma tail_le_loglog_of_monotone (hapos : ∀ n, 0 < a n)
 
 /-! ### Case (9): the spike case, closed under `Monotone a` -/
 
-/-- `n² ≤ 2^{n+1}` for all `n` (self-contained induction).-/
+/-- `n² ≤ 2^{n+1}` for all `n` (self-contained induction).
+@isnad1 id=le.0h1v.s5.2fa4369cc6ed from=translated src=- shape=a28ade85 vocab=94889561
+-/
 lemma sq_le_two_pow_succ (n : ℕ) : n ^ 2 ≤ 2 ^ (n + 1) := by
   induction n with
   | zero => norm_num
@@ -228,7 +232,9 @@ lemma sq_le_two_pow_succ (n : ℕ) : n ^ 2 ≤ 2 ^ (n + 1) := by
       rw [h4, h1]
       omega
 
-/-- `n³ ≤ 2^n` for `n ≥ 10` (self-contained induction).-/
+/-- `n³ ≤ 2^n` for `n ≥ 10` (self-contained induction).
+@isnad1 id=le.1h1v.s5.72ab783986fa from=translated src=- shape=1c629de4 vocab=74f5fafa
+-/
 lemma two_pow_ge_cub (n : ℕ) (hn : 10 ≤ n) : n ^ 3 ≤ 2 ^ n := by
   induction n, hn using Nat.le_induction with
   | base => norm_num
@@ -258,7 +264,9 @@ lemma two_pow_ge_cub (n : ℕ) (hn : 10 ≤ n) : n ^ 3 ≤ 2 ^ n := by
         _ ≤ 2 * 2 ^ k := by gcongr
         _ = 2 ^ (k + 1) := by ring
 
-/-- `log₂ A ≤ 2·√A` (from `2^{log₂ A} ≤ A` and `n² ≤ 2^{n+1}`; no `logb`).-/
+/-- `log₂ A ≤ 2·√A` (from `2^{log₂ A} ≤ A` and `n² ≤ 2^{n+1}`; no `logb`).
+@isnad1 id=le.1h1v.s5.a4da94225d56 from=translated src=- shape=400710c4 vocab=635a0c41
+-/
 lemma log2_le_two_sqrt (A : ℕ) (hA : 0 < A) :
     (Nat.log 2 A : ℝ) ≤ 2 * Real.sqrt (A : ℝ) := by
   have hn : (Nat.log 2 A : ℝ) ^ 2 ≤ 2 * (A : ℝ) := by
@@ -289,7 +297,9 @@ Proof: the loglog tail bound caps the spike: `a_{j+1} ≤ q·P_j·(i*+4)`
 (with `i* = log₂(2·log₂ a_{j+1})`); the bootstrap `i*+4 ≤ 8·√(a_{j+1})`
 yields `a_{j+1} ≤ 64·(q·P_j)²`; the spike at `l' := 64·q²+1` gives
 `(64q²+1)^{P_j} < 64·(q·P_j)² ≤ P_j³ ≤ 2^{P_j} ≤ l'^{P_j}` — contradiction
-once `P_j ≥ max 10 (64q²+1)`.-/
+once `P_j ≥ max 10 (64q²+1)`.
+@isnad1 id=irration.3h1v.s7.ecf99e2ee36a from=translated src=- shape=67f7c790 vocab=2192efdb
+-/
 theorem irrational_of_monotone_growth_and_spike (hg : OneSidedGrowth a)
     (hmono : Monotone a)
     (hspike : ∀ l : ℝ, 2 ≤ l → ∃ᶠ j in atTop,

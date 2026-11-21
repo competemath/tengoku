@@ -59,7 +59,9 @@ variable {a : ℕ → ℕ}
 /-! ### The tail recursion and the product recurrence -/
 
 /-- **Tail recursion:** `T_N = 1/a_{N+1} + T_{N+1}` where
-`T_N := ∑' i, 1/a_{i+(N+1)}`.-/
+`T_N := ∑' i, 1/a_{i+(N+1)}`.
+@isnad1 id=eq.1h2v.s7.ecf66bd83133 from=translated src=- shape=b3dced17 vocab=3c1781e8
+-/
 lemma tail_succ (hsum : Summable (fun n => 1 / (a n : ℝ))) (N : ℕ) :
     (∑' i, 1 / (a (i + (N + 1)) : ℝ)) =
       1 / (a (N + 1) : ℝ) + ∑' i, 1 / (a (i + (N + 2)) : ℝ) := by
@@ -76,7 +78,9 @@ lemma tail_succ (hsum : Summable (fun n => 1 / (a n : ℝ))) (N : ℕ) :
 /-- **The denominator-product recurrence** (Erdős 1975, Theorem 1 machinery):
 with `P_N = ∏_{n ≤ N} a_n` and `T_N` the tail,
 `a_{N+1}·(q·P_N·T_N) = q·P_N + q·P_{N+1}·T_{N+1}`.
-This is definition-chasing from `tail_succ` and `P_{N+1} = P_N·a_{N+1}`.-/
+This is definition-chasing from `tail_succ` and `P_{N+1} = P_N·a_{N+1}`.
+@isnad1 id=eq.2h3v.s8.975e0d242559 from=translated src=- shape=7a90fcfe vocab=f8726c2a
+-/
 lemma prod_tail_recurrence (hapos : ∀ n, 0 < a n)
     (hsum : Summable (fun n => 1 / (a n : ℝ))) (q : ℝ) (N : ℕ) :
     (a (N + 1) : ℝ) * (q * (∏ n ∈ Finset.range (N + 1), (a n : ℝ)) *
@@ -103,7 +107,9 @@ lemma prod_tail_recurrence (hapos : ∀ n, 0 < a n)
 
 /-- **Integrality packaging:** if `∑' 1/a = r ∈ ℚ`, then
 `1 ≤ r.den·P_N·T_N` (the positive integer `m_N` of Erdős's proof; run-2
-`key_integrality` at `b := a`).-/
+`key_integrality` at `b := a`).
+@isnad1 id=le.3h3v.s7.d56d1c9cfb0e from=translated src=- shape=d7c2682f vocab=d11fc81d
+-/
 lemma one_le_prod_tail (hapos : ∀ n, 0 < a n)
     (hsum : Summable (fun n => 1 / (a n : ℝ))) {r : ℚ}
     (hr : (r : ℝ) = ∑' n, 1 / (a n : ℝ)) (N : ℕ) :
@@ -130,7 +136,9 @@ lemma one_le_prod_tail (hapos : ∀ n, 0 < a n)
 /-- **The conditional growth cap** (Erdős 1975's `(10)`-case content, made
 conditional): if `m_N = q·P_N·T_N ≥ 1` and the next tail is small,
 `T_{N+1} ≤ 1/(2·q·P_N)`, then `a_{N+1} ≤ 2·q·P_N`.
-Proof: `1/a_{N+1} = T_N − T_{N+1} ≥ 1/(q·P_N) − 1/(2·q·P_N) = 1/(2·q·P_N)`.-/
+Proof: `1/a_{N+1} = T_N − T_{N+1} ≥ 1/(q·P_N) − 1/(2·q·P_N) = 1/(2·q·P_N)`.
+@isnad1 id=le.5h3v.s8.e426b0d6fb67 from=translated src=- shape=eeca95b9 vocab=3ec49f83
+-/
 lemma cap_of_tail_small (hapos : ∀ n, 0 < a n)
     (hsum : Summable (fun n => 1 / (a n : ℝ))) {q : ℝ} (hq : 1 ≤ q) (N : ℕ)
     (hm : (1 : ℝ) ≤ q * (∏ n ∈ Finset.range (N + 1), (a n : ℝ)) *
@@ -173,7 +181,9 @@ lemma cap_of_tail_small (hapos : ∀ n, 0 < a n)
 
 /-- **Tail bound in the doubly-exponential regime:** if `2^{2^i} ≤ a_i` for
 all `i ≥ M+1`, then `T_M ≤ 2·(1/2)^{2^{M+1}}` (termwise comparison with a
-geometric series; uses `2^{M+1} + i ≤ 2^{i+(M+1)}`).-/
+geometric series; uses `2^{M+1} + i ≤ 2^{i+(M+1)}`).
+@isnad1 id=le.3h2v.s8.9c5ce358b8a5 from=translated src=- shape=ad5cc0de vocab=b7df50e3
+-/
 lemma tail_le_two_pow (_hapos : ∀ n, 0 < a n)
     (hsum : Summable (fun n => 1 / (a n : ℝ))) {M : ℕ}
     (hge : ∀ i ≥ M + 1, (2 : ℝ) ^ (2 ^ i) ≤ (a i : ℝ)) :
@@ -223,7 +233,9 @@ lemma tail_le_two_pow (_hapos : ∀ n, 0 < a n)
 /-- **Cap iteration (ℕ):** if `a_{n+1} ≤ C·P_n` for all `n ≥ N₂`, then
 `a_{N₂+1+k} ≤ (C·P_{N₂})^{2^k}` (via `Q_{k+1} ≤ Q_k²` for
 `Q_k := C·P_{N₂+k}`). No positivity or summability needed — the cap alone
-drives the induction.-/
+drives the induction.
+@isnad1 id=le.1h4v.s7.781eaed9b05d from=translated src=- shape=8475b6cb vocab=8108b8f5
+-/
 lemma prod_cap_iter {N₂ C : ℕ}
     (hcap : ∀ n ≥ N₂, a (n + 1) ≤ C * ∏ i ∈ Finset.range (n + 1), a i) (k : ℕ) :
     a (N₂ + 1 + k) ≤ (C * ∏ i ∈ Finset.range (N₂ + 1), a i) ^ (2 ^ k) := by
@@ -256,7 +268,9 @@ lemma prod_cap_iter {N₂ C : ℕ}
 
 /-- **Bounded roots from a cap:** an eventual constant-factor product cap
 `a_{n+1} ≤ C·P_n` forces `a_n^{1/2^n}` to stay below the constant
-`(C·P_{N₂})^{1/2^{N₂+1}}`, contradicting any tendency to `∞`.-/
+`(C·P_{N₂})^{1/2^{N₂+1}}`, contradicting any tendency to `∞`.
+@isnad1 id=not.2h3v.s7.5400bc68f7c3 from=translated src=- shape=705c6c28 vocab=15a0f05f
+-/
 lemma not_tendsto_root_of_cap (hapos : ∀ n, 0 < a n) {N₂ C : ℕ}
     (hcap : ∀ n ≥ N₂, a (n + 1) ≤ C * ∏ i ∈ Finset.range (n + 1), a i) :
     ¬ Tendsto (fun n => (a n : ℝ) ^ (1 / (2 : ℝ) ^ n)) atTop atTop := by
@@ -309,7 +323,9 @@ lemma not_tendsto_root_of_cap (hapos : ∀ n, 0 < a n) {N₂ C : ℕ}
 /-- **No constant-factor product cap can hold eventually** under the one-sided
 hypothesis: for every `C`, the inequality `a_{n+1} ≤ C·P_n` must fail
 infinitely often. (Machine-checks that the naive recurrence route's cap
-hypothesis is never free — the missing tail lemma is necessary.)-/
+hypothesis is never free — the missing tail lemma is necessary.)
+@isnad1 id=not.1h2v.s6.5c5f60e4836b from=translated src=- shape=edbf5604 vocab=a681d0fb
+-/
 theorem cap_fails_often_of_oneSidedGrowth (hg : OneSidedGrowth a) (C : ℕ) :
     ¬ (∀ᶠ n : ℕ in atTop, a (n + 1) ≤ C * ∏ i ∈ Finset.range (n + 1), a i) := by
   intro h
@@ -325,7 +341,9 @@ hypothesis the sum is irrational. The tail hypothesis is EXACTLY the missing
 lemma for the folklore form: it supplies the growth cap `a_{n+1} ≤ 2·q·P_n`
 with `q` the assumed denominator, and `not_tendsto_root_of_cap` closes.
 WARNING (PROGRESS-onesided.md): the hypothesis fails at spike indices; the
-full folklore theorem needs Erdős's record-subsequence endgame.-/
+full folklore theorem needs Erdős's record-subsequence endgame.
+@isnad1 id=irration.4h1v.s8.8b850398eb0b from=translated src=- shape=18b6d484 vocab=b7aa3a31
+-/
 theorem irrational_of_tail_small (hapos : ∀ n, 0 < a n)
     (hsum : Summable (fun n => 1 / (a n : ℝ)))
     (hL : Tendsto (fun n => (a n : ℝ) ^ (1 / (2 : ℝ) ^ n)) atTop atTop)
@@ -370,7 +388,9 @@ whose next term beats every scaled-down previous term:
 two forms are equivalent).
 Proof: otherwise each new term from `k₀` on is below the scaled value of some
 earlier term, hence below some value of the initial segment `[0, k₀]` — so `L`
-is bounded, contradicting `L → ∞`.-/
+is bounded, contradicting `L → ∞`.
+@isnad1 id=ex.2h2v.s7.4989ab5b6eae from=translated src=- shape=f5005f79 vocab=7c74760b
+-/
 theorem exists_near_record {L : ℕ → ℝ} (hL : Tendsto L atTop atTop)
     (hL0 : ∀ n, 0 ≤ L n) (k₀ : ℕ) :
     ∃ k ≥ k₀, ∀ j ≤ k, (1 - 1 / ((k : ℝ) + 1) ^ 2) * L j < L (k + 1) := by

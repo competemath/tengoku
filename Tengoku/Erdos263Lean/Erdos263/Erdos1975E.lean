@@ -54,7 +54,9 @@ with `2^{2^i} ≤ a_i` from `M+1` on, `k ≥ M+1`, and `m` a positive lower
 bound of the window `[k+1, i*]` with `i* := log₂(2·log₂ a_{k+1})`:
 `T_k := ∑' i, 1/a_{i+(k+1)} ≤ (i* + 4)/m`.
 This is `tail_le_loglog_of_monotone` with `Monotone a` dropped; the initial
-segment is anchored at `m` instead of `a_{k+1}`.-/
+segment is anchored at `m` instead of `a_{k+1}`.
+@isnad1 id=le.6h4v.s8.b3b10d71c36e from=translated src=- shape=91c495b8 vocab=355c3022
+-/
 lemma tail_le_loglog_of_future_min (hapos : ∀ n, 0 < a n)
     (hsum : Summable (fun n => 1 / (a n : ℝ)))
     {M : ℕ} (hge : ∀ i ≥ M + 1, (2 : ℝ) ^ (2 ^ i) ≤ (a i : ℝ)) (k : ℕ)

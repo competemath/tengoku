@@ -25,6 +25,9 @@ the root-growth hypothesis used by `formalConjectures_folklore`.-/
 def normalizeZeros (a : ℕ → ℕ) (n : ℕ) : ℕ :=
   if a n = 0 then 1 else a n
 
+/--
+@isnad1 id=lt.0h2v.s4.6f32e22d41ef from=translated src=- shape=d51b80ee vocab=a24fcb7b
+-/
 lemma normalizeZeros_pos (a : ℕ → ℕ) (n : ℕ) : 0 < normalizeZeros a n := by
   simp only [normalizeZeros]
   split <;> omega
@@ -35,7 +38,9 @@ google-deepmind/formal-conjectures PR #4679's head.
 Unlike `erdos_263_one_sided_folklore_proof`, this statement has no explicit
 positivity hypothesis. The limit forces eventual positivity; normalizing the
 finite exceptional prefix changes the sum by a rational number, which
-preserves irrationality.-/
+preserves irrationality.
+@isnad1 id=irration.1h1v.s6.14e9fd4c6562 from=translated src=- shape=eee34a6a vocab=19dd0ac3
+-/
 theorem formalConjectures_folklore (a : ℕ → ℕ)
     (ha : Tendsto (fun n : ℕ => (a n : ℝ) ^ (1 / (2 ^ n : ℝ))) atTop atTop) :
     Irrational (∑' n, 1 / (a n : ℝ)) := by

@@ -37,7 +37,9 @@ variable {a : ℕ → ℕ}
 /-- The counting function: number of indices with `a i ≤ X`.-/
 noncomputable def countLE (a : ℕ → ℕ) (X : ℕ) : ℕ := Set.ncard {i : ℕ | a i ≤ X}
 
-/-- `(Iio k).ncard = k` for naturals.-/
+/-- `(Iio k).ncard = k` for naturals.
+@isnad1 id=eq.0h1v.s3.78e2cd596460 from=translated src=- shape=0be00840 vocab=7bf306f0
+-/
 lemma ncard_Iio_nat (k : ℕ) : (Set.Iio k).ncard = k := by
   rw [Set.ncard_eq_toFinset_card _ (Set.finite_Iio k)]
   have hT : (Set.finite_Iio k).toFinset = Finset.range k := by
@@ -46,7 +48,9 @@ lemma ncard_Iio_nat (k : ℕ) : (Set.Iio k).ncard = k := by
   rw [hT, Finset.card_range]
 
 /-- The minimum in `asort` is over a nonempty set: the first `m+1` indices
-all have value at most their sup.-/
+all have value at most their sup.
+@isnad1 id=ex.1h2v.s5.15615b76f043 from=translated src=- shape=fbf64349 vocab=a47a1579
+-/
 lemma asort_exists (a : ℕ → ℕ) (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}.Finite) (m : ℕ) :
     ∃ X : ℕ, m + 1 ≤ countLE a X := by
   refine ⟨(Finset.range (m + 1)).sup a, ?_⟩
@@ -65,7 +69,9 @@ noncomputable def asort (a : ℕ → ℕ) (hf : ∀ X : ℕ, {i : ℕ | a i ≤ 
     (m : ℕ) : ℕ :=
   Nat.find (asort_exists a hf m)
 
-/-- The defining equivalence of the rearrangement.-/
+/-- The defining equivalence of the rearrangement.
+@isnad1 id=iff.1h3v.s5.10dea1079ed9 from=translated src=- shape=8d4d4844 vocab=924d8604
+-/
 lemma asort_le_iff (a : ℕ → ℕ) (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}.Finite) (m X : ℕ) :
     asort a hf m ≤ X ↔ m + 1 ≤ countLE a X := by
   constructor
@@ -79,14 +85,18 @@ lemma asort_le_iff (a : ℕ → ℕ) (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}.Fi
   · intro h
     exact Nat.find_min' (asort_exists a hf m) h
 
-/-- The rearrangement is non-decreasing.-/
+/-- The rearrangement is non-decreasing.
+@isnad1 id=monotone.1h1v.s4.40c06b5668df from=translated src=- shape=9bd5b4db vocab=44e9d4d5
+-/
 lemma asort_mono (a : ℕ → ℕ) (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}.Finite) :
     Monotone (asort a hf) := by
   intro m m' hmm'
   rw [asort_le_iff a hf m (asort a hf m')]
   exact le_trans (by omega) (Nat.find_spec (asort_exists a hf m'))
 
-/-- The rearrangement stays positive.-/
+/-- The rearrangement stays positive.
+@isnad1 id=lt.2h2v.s5.38a88a4deab5 from=translated src=- shape=017267ba vocab=11bf2b62
+-/
 lemma asort_pos (hapos : ∀ n, 0 < a n) (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}.Finite)
     (m : ℕ) : 0 < asort a hf m := by
   have h0 : countLE a 0 = 0 := by
@@ -102,7 +112,9 @@ lemma asort_pos (hapos : ∀ n, 0 < a n) (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X
   rw [h0] at h2
   omega
 
-/-- The sorted window below `X` is finite.-/
+/-- The sorted window below `X` is finite.
+@isnad1 id=finite.1h2v.s5.5c4d1ee79a97 from=translated src=- shape=c0c9ccc4 vocab=aedd82e1
+-/
 lemma finite_asort_le (a : ℕ → ℕ) (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}.Finite) (X : ℕ) :
     {m : ℕ | asort a hf m ≤ X}.Finite := by
   refine Set.Finite.subset (Set.finite_Iio (countLE a X)) ?_
@@ -113,7 +125,9 @@ lemma finite_asort_le (a : ℕ → ℕ) (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}
   omega
 
 /-- **The count identity:** the number of sorted positions with value ≤ X
-equals the number of indices with value ≤ X.-/
+equals the number of indices with value ≤ X.
+@isnad1 id=eq.1h2v.s5.495059ca252d from=translated src=- shape=5d2d162c vocab=6b565fec
+-/
 lemma ncard_asort_le (a : ℕ → ℕ) (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}.Finite) (X : ℕ) :
     Set.ncard {m : ℕ | asort a hf m ≤ X} = countLE a X := by
   have hfin := finite_asort_le a hf X
@@ -130,7 +144,9 @@ lemma ncard_asort_le (a : ℕ → ℕ) (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}.
   rw [hT, Finset.card_range]
 
 /-- **Fiber equality:** each value occurs exactly as often in `asort` as in
-`a` (multiplicity preservation).-/
+`a` (multiplicity preservation).
+@isnad1 id=eq.2h2v.s5.0314788200c2 from=translated src=- shape=cdc020f4 vocab=21bb9028
+-/
 lemma ncard_fiber_eq (hapos : ∀ n, 0 < a n) (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}.Finite)
     (x : ℕ) :
     Set.ncard {m : ℕ | asort a hf m = x} = Set.ncard {i : ℕ | a i = x} := by
@@ -171,7 +187,9 @@ lemma ncard_fiber_eq (hapos : ∀ n, 0 < a n) (hf : ∀ X : ℕ, {i : ℕ | a i 
     rfl
 
 /-- Small-value index sets are finite under one-sided growth (each value has
-finitely many predecessors): eventually `a i ≥ (X+2)^{2^i} > X`.-/
+finitely many predecessors): eventually `a i ≥ (X+2)^{2^i} > X`.
+@isnad1 id=finite.1h2v.s4.94484366e42c from=translated src=- shape=18c26efc vocab=9fbbeb60
+-/
 lemma finite_smallSet_of_oneSidedGrowth (hg : OneSidedGrowth a) (X : ℕ) :
     {i : ℕ | a i ≤ X}.Finite := by
   obtain ⟨N, hN⟩ := (tendsto_atTop_atTop.1 hg.2) (X + 2)
@@ -205,7 +223,9 @@ lemma finite_smallSet_of_oneSidedGrowth (hg : OneSidedGrowth a) (X : ℕ) :
 /-- **The counting core** (orchestrator's step ii): for `B ≥ 2`, eventually
 the sorted `2^m`-th root exceeds `B`. If `asort m ≤ B^{2^m}` for `m ≥ N`,
 then the `≥ m+1` indices with `a i ≤ asort m` would all satisfy `i < N` or
-`N ≤ i < m` — at most `m` of them.-/
+`N ≤ i < m` — at most `m` of them.
+@isnad1 id=ex.3h2v.s6.44d94032c0de from=translated src=- shape=03639ee3 vocab=342fb19a
+-/
 lemma asort_core (hg : OneSidedGrowth a) (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}.Finite)
     (B : ℝ) (hB : 2 ≤ B) :
     ∃ N : ℕ, ∀ m ≥ N, B ≤ (asort a hf m : ℝ) ^ (1 / (2 : ℝ) ^ m) := by
@@ -283,7 +303,9 @@ lemma asort_core (hg : OneSidedGrowth a) (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X
   rw [← key2]
   exact Real.rpow_le_rpow (pow_nonneg h0 _) (le_of_lt hgt) (by positivity)
 
-/-- **Growth transfers to the rearrangement** (the sorting lemma proper).-/
+/-- **Growth transfers to the rearrangement** (the sorting lemma proper).
+@isnad1 id=tendsto.2h1v.s6.b192184e07bd from=translated src=- shape=367d7675 vocab=cd847f20
+-/
 lemma asort_tendsto (hg : OneSidedGrowth a) (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}.Finite) :
     Tendsto (fun m => (asort a hf m : ℝ) ^ (1 / (2 : ℝ) ^ m)) atTop atTop := by
   rw [tendsto_atTop_atTop]
@@ -291,12 +313,16 @@ lemma asort_tendsto (hg : OneSidedGrowth a) (hf : ∀ X : ℕ, {i : ℕ | a i �
   obtain ⟨N, hN⟩ := asort_core hg hf (max B 2) (le_max_right B 2)
   exact ⟨N, fun m hm => le_trans (le_max_left B 2) (hN m hm)⟩
 
-/-- The `a`-fiber of a value is finite.-/
+/-- The `a`-fiber of a value is finite.
+@isnad1 id=finite.1h2v.s5.c4e514f5a9cd from=translated src=- shape=5c17f205 vocab=b9b2aec4
+-/
 lemma finite_fiber_a (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}.Finite) (x : ℕ) :
     {i : ℕ | a i = x}.Finite :=
   (hf x).subset (fun i hi => by simpa using le_of_eq hi)
 
-/-- The `asort`-fiber of a value is finite.-/
+/-- The `asort`-fiber of a value is finite.
+@isnad1 id=finite.2h2v.s5.4d4370501c2a from=translated src=- shape=44f204b3 vocab=11bf2b62
+-/
 lemma finite_fiber_asort (hapos : ∀ n, 0 < a n) (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}.Finite)
     (x : ℕ) : {m : ℕ | asort a hf m = x}.Finite :=
   (finite_asort_le a hf x).subset (fun m hm => by simpa using le_of_eq hm)
@@ -321,7 +347,9 @@ noncomputable def sortSigmaEquiv (hapos : ∀ n, 0 < a n)
 
 /-- The assembled map `i ↦ sorted position of i` is a bijection: it is the
 composite of the value-tagging bijection, the fiber equiv, and the
-position projection.-/
+position projection.
+@isnad1 id=bijectiv.2h1v.s7.11e381a78e06 from=translated src=- shape=8f0e4eca vocab=c9274b26
+-/
 lemma sortPerm_bijective (hapos : ∀ n, 0 < a n)
     (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}.Finite) :
     Function.Bijective (fun i => ((fiberEquiv hapos hf (a i)) ⟨i, rfl⟩).1) := by
@@ -352,14 +380,18 @@ noncomputable def sortPerm (hapos : ∀ n, 0 < a n)
     (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}.Finite) : ℕ ≃ ℕ :=
   Equiv.ofBijective _ (sortPerm_bijective hapos hf)
 
-/-- The permutation indeed re-sorts: `asort (sortPerm i) = a i`.-/
+/-- The permutation indeed re-sorts: `asort (sortPerm i) = a i`.
+@isnad1 id=eq.2h2v.s6.56232208775c from=translated src=- shape=f27f1869 vocab=f7356257
+-/
 lemma sortPerm_spec (hapos : ∀ n, 0 < a n) (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}.Finite)
     (i : ℕ) : asort a hf (sortPerm hapos hf i) = a i := by
   show asort a hf ((fiberEquiv hapos hf (a i)) ⟨i, rfl⟩).1 = a i
   exact ((fiberEquiv hapos hf (a i)) ⟨i, rfl⟩).2
 
 /-- **Tsum invariance under rearrangement** (positive terms): the reciprocal
-sums of `a` and of its non-decreasing rearrangement coincide.-/
+sums of `a` and of its non-decreasing rearrangement coincide.
+@isnad1 id=eq.2h1v.s6.8f43a431a397 from=translated src=- shape=3e5dacb2 vocab=f251f850
+-/
 lemma tsum_asort_eq (hapos : ∀ n, 0 < a n) (hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}.Finite) :
     (∑' i, 1 / (a i : ℝ)) = ∑' m, 1 / (asort a hf m : ℝ) := by
   have h2 : (∑' i, 1 / (a i : ℝ)) =
@@ -374,7 +406,9 @@ lemma tsum_asort_eq (hapos : ∀ n, 0 < a n) (hf : ∀ X : ℕ, {i : ℕ | a i �
 `erdos_263_one_sided_folklore` holds — every positive integer sequence with
 `a_n^{1/2^n} → ∞` has irrational reciprocal sum, no monotonicity assumed.
 Via the sorting lemma (`asort_tendsto`), tsum invariance (`tsum_asort_eq`),
-and the run-4 monotone headline `irrational_of_oneSidedGrowth_monotone`.-/
+and the run-4 monotone headline `irrational_of_oneSidedGrowth_monotone`.
+@isnad1 id=erdos263.0h0v.s0.5c536a2df8a3 from=translated src=- shape=45709ebd vocab=5c536a2d
+-/
 theorem erdos_263_one_sided_folklore_proof : erdos_263_one_sided_folklore := by
   intro a hg
   have hf : ∀ X : ℕ, {i : ℕ | a i ≤ X}.Finite := finite_smallSet_of_oneSidedGrowth hg

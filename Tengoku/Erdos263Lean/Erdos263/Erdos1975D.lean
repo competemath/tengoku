@@ -29,7 +29,9 @@ variable {a : ℕ → ℕ}
 
 /-! ### The convergent product `∏ (1 + 1/j²)` -/
 
-/-- Telescoping product: `∏_{i<n} (i+2)/(i+1) = n+1` (in ℝ).-/
+/-- Telescoping product: `∏_{i<n} (i+2)/(i+1) = n+1` (in ℝ).
+@isnad1 id=eq.0h1v.s6.c79cd2ab450d from=translated src=- shape=6e216b73 vocab=85bd5f90
+-/
 lemma prod_ratio_succ (n : ℕ) :
     ∏ i ∈ Finset.range n, ((i : ℝ) + 2) / ((i : ℝ) + 1) = (n : ℝ) + 1 := by
   induction n with
@@ -41,7 +43,9 @@ lemma prod_ratio_succ (n : ℕ) :
       push_cast
       ring
 
-/-- Telescoping product: `∏_{i<n} (i+2)/(i+3) = 2/(n+2)` (in ℝ).-/
+/-- Telescoping product: `∏_{i<n} (i+2)/(i+3) = 2/(n+2)` (in ℝ).
+@isnad1 id=eq.0h1v.s6.b29cb626f8f5 from=translated src=- shape=1137d6d7 vocab=85bd5f90
+-/
 lemma prod_ratio_succ' (n : ℕ) :
     ∏ i ∈ Finset.range n, ((i : ℝ) + 2) / ((i : ℝ) + 3) = 2 / ((n : ℝ) + 2) := by
   induction n with
@@ -54,7 +58,9 @@ lemma prod_ratio_succ' (n : ℕ) :
       push_cast
       ring
 
-/-- **Convergent product bound:** `∏_{i<n} (1 + 1/(i+2)²) ≤ 2`.-/
+/-- **Convergent product bound:** `∏_{i<n} (1 + 1/(i+2)²) ≤ 2`.
+@isnad1 id=le.0h1v.s6.12471469d90d from=translated src=- shape=09c24ddf vocab=80deb3b9
+-/
 lemma prod_one_add_inv_sq_le_two (n : ℕ) :
     ∏ i ∈ Finset.range n, (1 + 1 / (((i : ℝ) + 2) ^ 2)) ≤ 2 := by
   have hfactor : ∀ i ∈ Finset.range n,
@@ -92,7 +98,9 @@ lemma prod_one_add_inv_sq_le_two (n : ℕ) :
         nlinarith [h5]
 
 /-- **The accumulating escape factor is bounded:**
-`∏_{j<m} (1 + 1/(k₀+1+j)²) ≤ 4`.-/
+`∏_{j<m} (1 + 1/(k₀+1+j)²) ≤ 4`.
+@isnad1 id=le.0h2v.s6.ed66ca7953ab from=translated src=- shape=d330fb1a vocab=80deb3b9
+-/
 lemma prod_escape_factor_le_four (k₀ m : ℕ) :
     ∏ j ∈ Finset.range m, (1 + 1 / (((k₀ : ℝ) + 1 + (j : ℝ)) ^ 2)) ≤ 4 := by
   have hper : ∀ j ∈ Finset.range m,
@@ -132,14 +140,18 @@ lemma prod_escape_factor_le_four (k₀ m : ℕ) :
         nlinarith [h3, hnn]
   exact le_trans hprod hbound2
 
-/-- Every factor of the escape product is at least 1.-/
+/-- Every factor of the escape product is at least 1.
+@isnad1 id=le.0h2v.s6.6db7742acc6f from=translated src=- shape=2041467f vocab=80deb3b9
+-/
 lemma one_le_prod_escape_factor (k₀ m : ℕ) :
     (1 : ℝ) ≤ ∏ j ∈ Finset.range m, (1 + 1 / (((k₀ : ℝ) + 1 + (j : ℝ)) ^ 2)) := by
   apply Finset.one_le_prod
   intro j _
   nlinarith [show (0 : ℝ) < 1 / (((k₀ : ℝ) + 1 + (j : ℝ)) ^ 2) from by positivity]
 
-/-- The escape-factor product is monotone in the length.-/
+/-- The escape-factor product is monotone in the length.
+@isnad1 id=le.1h3v.s7.b0ff347b73d7 from=translated src=- shape=284cbb2a vocab=80deb3b9
+-/
 lemma prod_escape_factor_mono (k₀ : ℕ) {m₁ m₂ : ℕ} (h : m₁ ≤ m₂) :
     (∏ j ∈ Finset.range m₁, (1 + 1 / (((k₀ : ℝ) + 1 + (j : ℝ)) ^ 2))) ≤
       (∏ j ∈ Finset.range m₂, (1 + 1 / (((k₀ : ℝ) + 1 + (j : ℝ)) ^ 2))) := by
@@ -156,7 +168,9 @@ lemma prod_escape_factor_mono (k₀ : ℕ) {m₁ m₂ : ℕ} (h : m₁ ≤ m₂)
 /-- **Escape records exist** (Erdős 1975, eq. (14) as transcribed from the
 page image; Borel's idea): if `L → ∞` and `L ≥ 0`, then for every `k₀`
 there is a `k ≥ k₀` whose next term escapes every previous term by the
-factor `1 + 1/(k+1)²`: `(1 + 1/(k+1)²)·L_j < L_{k+1}` for all `j ≤ k`.-/
+factor `1 + 1/(k+1)²`: `(1 + 1/(k+1)²)·L_j < L_{k+1}` for all `j ≤ k`.
+@isnad1 id=ex.2h2v.s7.fdb430778732 from=translated src=- shape=0b38e945 vocab=97b56f61
+-/
 theorem exists_escape_record {L : ℕ → ℝ} (hL : Tendsto L atTop atTop)
     (hL0 : ∀ n, 0 ≤ L n) (k₀ : ℕ) :
     ∃ k ≥ k₀, ∀ j ≤ k, (1 + 1 / ((k : ℝ) + 1) ^ 2) * L j < L (k + 1) := by
@@ -255,7 +269,9 @@ theorem exists_escape_record {L : ℕ → ℝ} (hL : Tendsto L atTop atTop)
 
 /-! ### The (17) product bound at an escape record -/
 
-/-- `((2^{2^t})^{1/2^t}) = 2`.-/
+/-- `((2^{2^t})^{1/2^t}) = 2`.
+@isnad1 id=eq.0h1v.s6.05a063d5a708 from=translated src=- shape=3dc6bc56 vocab=a597ff9e
+-/
 lemma two_pow_root_self (t : ℕ) :
     (((2 : ℝ) ^ (2 ^ t)) ^ (1 / (2 : ℝ) ^ t)) = 2 := by
   have h1 : ((2 : ℝ) ^ (2 ^ t)) = ((2 : ℝ) ^ (((2 ^ t : ℕ)) : ℝ)) := by
@@ -267,7 +283,9 @@ lemma two_pow_root_self (t : ℕ) :
   rw [h2, Real.rpow_one]
 
 /-- **Product bound at an escape record** (the paper's (17)
-`n_{k+1} > M_k·(1+1/k²)^{2^{k+1}}`, restated).-/
+`n_{k+1} > M_k·(1+1/k²)^{2^{k+1}}`, restated).
+@isnad1 id=le.4h2v.s9.d8c8f3be3263 from=translated src=- shape=55c5cbb7 vocab=b333fd55
+-/
 lemma prod_le_of_escape_record (hapos : ∀ n, 0 < a n) {k : ℕ} (hk : 1 ≤ k)
     (hrec : ∀ j ≤ k, (1 + 1 / ((k : ℝ) + 1) ^ 2) *
       ((a j : ℝ) ^ (1 / (2 : ℝ) ^ j)) <
@@ -335,7 +353,9 @@ lemma prod_le_of_escape_record (hapos : ∀ n, 0 < a n) {k : ℕ} (hk : 1 ≤ k)
 
 /-- **The paper's (11):** if `a_{j+1} ≤ P_j^l` for all `j ≥ J₀` (the power
 cap (10)), then `P_k ≤ P_{J₀}^{(l+1)^{k-J₀}}` for all `k ≥ J₀` — singly
-exponential log-growth (NOT a tower).-/
+exponential log-growth (NOT a tower).
+@isnad1 id=le.3h4v.s7.40a706a9de78 from=translated src=- shape=afc6356e vocab=3a49f039
+-/
 lemma cap_pow_tower (hapos : ∀ n, 0 < a n) {l : ℕ} {J₀ : ℕ}
     (hcap : ∀ j ≥ J₀, (a (j + 1) : ℝ) ≤ (∏ i ∈ Finset.range (j + 1), (a i : ℝ)) ^ l)
     (k : ℕ) (hk : J₀ ≤ k) :
@@ -371,7 +391,9 @@ lemma cap_pow_tower (hapos : ∀ n, 0 < a n) {l : ℕ} {J₀ : ℕ}
 
 /-! ### Helpers for the case-(12) assembly -/
 
-/-- `n⁴ ≤ 2^n` for `n ≥ 16` (self-contained induction).-/
+/-- `n⁴ ≤ 2^n` for `n ≥ 16` (self-contained induction).
+@isnad1 id=le.1h1v.s5.ce4b8ad718e0 from=translated src=- shape=1c629de4 vocab=74f5fafa
+-/
 lemma two_pow_ge_four (n : ℕ) (hn : 16 ≤ n) : n ^ 4 ≤ 2 ^ n := by
   induction n, hn using Nat.le_induction with
   | base => norm_num
@@ -389,7 +411,9 @@ lemma two_pow_ge_four (n : ℕ) (hn : 16 ≤ n) : n ^ 4 ≤ 2 ^ n := by
         _ ≤ 2 * 2 ^ k := by gcongr
         _ = 2 ^ (k + 1) := by ring
 
-/-- `Nat.log b (x^n) ≤ n·(Nat.log b x + 1)` for `b ≥ 2`, `x ≥ 1`.-/
+/-- `Nat.log b (x^n) ≤ n·(Nat.log b x + 1)` for `b ≥ 2`, `x ≥ 1`.
+@isnad1 id=le.2h3v.s6.0129869cc538 from=translated src=- shape=df8fd154 vocab=5c37b5a1
+-/
 lemma nat_log_pow_le {b x : ℕ} (hb : 1 < b) (hx : 1 ≤ x) (n : ℕ) :
     Nat.log b (x ^ n) ≤ n * (Nat.log b x + 1) := by
   have h1 : x < b ^ (Nat.log b x + 1) := Nat.lt_pow_succ_log_self hb x
@@ -408,7 +432,9 @@ lemma nat_log_pow_le {b x : ℕ} (hb : 1 < b) (hx : 1 ≤ x) (n : ℕ) :
   have h9 : (Nat.log b x + 1) * n = n * (Nat.log b x + 1) := by ring
   omega
 
-/-- `Nat.log b (x·y) ≤ Nat.log b x + Nat.log b y + 1` for `b ≥ 2`, `x, y ≥ 1`.-/
+/-- `Nat.log b (x·y) ≤ Nat.log b x + Nat.log b y + 1` for `b ≥ 2`, `x, y ≥ 1`.
+@isnad1 id=le.3h3v.s6.0099e90860c7 from=translated src=- shape=a96b0edc vocab=d0e4c074
+-/
 lemma nat_log_mul_le {b x y : ℕ} (hb : 1 < b) (hx : 1 ≤ x) (hy : 1 ≤ y) :
     Nat.log b (x * y) ≤ Nat.log b x + Nat.log b y + 1 := by
   have h1 : x < b ^ (Nat.log b x + 1) := Nat.lt_pow_succ_log_self hb x
@@ -433,7 +459,9 @@ lemma nat_log_mul_le {b x y : ℕ} (hb : 1 < b) (hx : 1 ≤ x) (hy : 1 ≤ y) :
     exact not_lt_of_ge h8 h5
   omega
 
-/-- `(1 + 1/(k+1)²)^{(k+1)²} ≥ 2`.-/
+/-- `(1 + 1/(k+1)²)^{(k+1)²} ≥ 2`.
+@isnad1 id=le.0h1v.s6.3e55bd2f7c62 from=translated src=- shape=6b66ebcb vocab=e3b18836
+-/
 lemma one_add_inv_sq_pow_ge_two (k : ℕ) :
     (2 : ℝ) ≤ (1 + 1 / (((k : ℝ) + 1) ^ 2)) ^ ((k + 1) ^ 2) := by
   have h2 := one_add_mul_le_pow
@@ -449,7 +477,9 @@ lemma one_add_inv_sq_pow_ge_two (k : ℕ) :
     _ = 1 + (((k + 1) ^ 2 : ℕ) : ℝ) * (1 / ((k : ℝ) + 1) ^ 2) := by rw [h3]
     _ ≤ (1 + 1 / ((k : ℝ) + 1) ^ 2) ^ ((k + 1) ^ 2) := h2
 
-/-- **The escape lower bound:** `(1+1/(k+1)²)^{2^{k+1}} ≥ 2^{2^k/(k+1)²}`.-/
+/-- **The escape lower bound:** `(1+1/(k+1)²)^{2^{k+1}} ≥ 2^{2^k/(k+1)²}`.
+@isnad1 id=le.0h1v.s7.68fa34762881 from=translated src=- shape=c7475747 vocab=e3b18836
+-/
 lemma escape_factor_pow_ge (k : ℕ) :
     (2 : ℝ) ^ (2 ^ k / (k + 1) ^ 2) ≤
       (1 + 1 / ((k : ℝ) + 1) ^ 2) ^ (2 ^ (k + 1)) := by
@@ -472,7 +502,9 @@ lemma escape_factor_pow_ge (k : ℕ) :
     _ ≤ (1 + 1 / ((k : ℝ) + 1) ^ 2) ^ (2 ^ (k + 1)) :=
         pow_le_pow_right₀ hbase1 hdiv
 
-/-- `Nat.log 2` is monotone.-/
+/-- `Nat.log 2` is monotone.
+@isnad1 id=le.1h2v.s4.5a159176d50e from=translated src=- shape=d193f606 vocab=5ebedd50
+-/
 lemma nat_log_mono {x y : ℕ} (h : x ≤ y) : Nat.log 2 x ≤ Nat.log 2 y := by
   rcases eq_or_ne y 0 with rfl | hy
   · have hx : x = 0 := by omega
@@ -489,7 +521,9 @@ lemma nat_log_mono {x y : ℕ} (h : x ≤ y) : Nat.log 2 x ≤ Nat.log 2 y := by
     have h3 : y < 2 ^ (Nat.log 2 y + 1) := Nat.lt_pow_succ_log_self (by norm_num) y
     omega
 
-/-- **The loglog bound under the tower.**-/
+/-- **The loglog bound under the tower.**
+@isnad1 id=le.4h4v.s8.bfec7c0136e3 from=translated src=- shape=411f5032 vocab=7679846b
+-/
 lemma istar_bound (hapos : ∀ n, 0 < a n) {l J₀ k : ℕ} (hkJ : J₀ ≤ k)
     (hcapN : a (k + 1) ≤ (∏ i ∈ Finset.range (k + 1), a i) ^ l)
     (htowN : (∏ i ∈ Finset.range (k + 1), a i) ≤
@@ -549,6 +583,9 @@ lemma istar_bound (hapos : ∀ n, 0 < a n) {l J₀ k : ℕ} (hkJ : J₀ ≤ k)
     _ = (2 * l * (Nat.log 2 (∏ i ∈ Finset.range (J₀ + 1), a i) + 1) : ℝ) *
           (((l + 1 : ℕ) : ℝ) ^ k) + (2 * l + 4 : ℝ) := by push_cast; ring
 
+/--
+@isnad1 id=irration.3h2v.s6.233bcd9d5b48 from=translated src=- shape=4cde94bf vocab=27b49037
+-/
 theorem irrational_of_monotone_growth_case10 (hg : OneSidedGrowth a)
     (hmono : Monotone a) {l : ℕ}
     (hcap : ∀ᶠ j in atTop, (a (j + 1) : ℝ) ≤ (∏ i ∈ Finset.range (j + 1), (a i : ℝ)) ^ l) :
@@ -812,7 +849,9 @@ if `a` is monotone with `a_n^{1/2^n} → ∞` and the spike
 `(∏_{i≤j} a_i)³ < a_{j+1}` happens frequently, then `∑' 1/a` is
 irrational. (The loglog cap `a_{j+1} ≤ q·P_j·(i*+4)` bootstraps to
 `a_{j+1} ≤ 64·(q·P_j)²`; the cubic spike then forces `P_j < 64·q²`,
-contradicting `P_j ≥ 2^{2^j}`.)-/
+contradicting `P_j ≥ 2^{2^j}`.)
+@isnad1 id=irration.3h1v.s6.ba988cd74297 from=translated src=- shape=aa2b21c7 vocab=f6b22122
+-/
 theorem irrational_of_monotone_growth_and_spike_pow (hg : OneSidedGrowth a)
     (hmono : Monotone a)
     (hspike : ∃ᶠ j in atTop, (∏ i ∈ Finset.range (j + 1), (a i : ℝ)) ^ 3 <
@@ -964,7 +1003,9 @@ This is the full folklore form for monotone sequences, proved via
 Erdős's (9)/(10) dichotomy on the power-of-product cap: the cap case is
 `irrational_of_monotone_growth_case10` (the (11) tower + escape records
 + (15)–(17)), and the spike case (take `l = 3`) is
-`irrational_of_monotone_growth_and_spike_pow`.-/
+`irrational_of_monotone_growth_and_spike_pow`.
+@isnad1 id=irration.2h1v.s5.dee6f28a66ba from=translated src=- shape=f3353306 vocab=d10685b1
+-/
 theorem irrational_of_oneSidedGrowth_monotone (hg : OneSidedGrowth a)
     (hmono : Monotone a) :
     Irrational (∑' n, 1 / (a n : ℝ)) := by

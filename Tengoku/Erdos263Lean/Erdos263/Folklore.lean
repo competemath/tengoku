@@ -67,42 +67,64 @@ them (`le_mul_of_one_le_left`, `le_mul_of_one_le_right`, `pow_le_pow_left'`,
 `mul_lt_mul''`) cannot be used here. These local replacements are proved
 directly from `mul_nonneg`/`mul_pos`. -/
 
+/--
+@isnad1 id=le.2h3v.s5.c0789724952d from=translated src=- shape=d9978c36 vocab=373ada53
+-/
 lemma mul_le_mul_nn_left {x y c : ℝ} (h : x ≤ y) (hc : 0 ≤ c) : c * x ≤ c * y := by
   have h2 : 0 ≤ c * (y - x) := mul_nonneg hc (sub_nonneg_of_le h)
   linarith [h2]
 
+/--
+@isnad1 id=le.2h3v.s5.f77fbaa0fce1 from=translated src=- shape=3ae85cdd vocab=373ada53
+-/
 lemma mul_le_mul_nn_right {x y c : ℝ} (h : x ≤ y) (hc : 0 ≤ c) : x * c ≤ y * c := by
   have h2 : 0 ≤ (y - x) * c := mul_nonneg (sub_nonneg_of_le h) hc
   linarith [h2]
 
+/--
+@isnad1 id=le.2h2v.s5.c49af86bf4da from=translated src=- shape=bf14f899 vocab=373ada53
+-/
 lemma le_mul_of_one_le_right_nn {x c : ℝ} (hx : 0 ≤ x) (hc : 1 ≤ c) : x ≤ x * c := by
   have h2 : 0 ≤ x * (c - 1) := mul_nonneg hx (sub_nonneg_of_le hc)
   linarith [h2]
 
+/--
+@isnad1 id=le.2h2v.s5.8056a25f58a4 from=translated src=- shape=6e1fe3fa vocab=373ada53
+-/
 lemma le_mul_of_one_le_left_nn {x c : ℝ} (hx : 0 ≤ x) (hc : 1 ≤ c) : x ≤ c * x := by
   have h2 : 0 ≤ (c - 1) * x := mul_nonneg (sub_nonneg_of_le hc) hx
   linarith [h2]
 
+/--
+@isnad1 id=lt.2h3v.s5.60fa9869770b from=translated src=- shape=3ae85cdd vocab=edc71203
+-/
 lemma mul_lt_mul_pos_right {x y c : ℝ} (h : x < y) (hc : 0 < c) : x * c < y * c := by
   have h2 : 0 < (y - x) * c := mul_pos (sub_pos_of_lt h) hc
   linarith [h2]
 
 /-! ### Elementary growth facts -/
 
-/-- A strictly increasing `f : ℕ → ℕ` dominates the identity.-/
+/-- A strictly increasing `f : ℕ → ℕ` dominates the identity.
+@isnad1 id=le.1h2v.s4.6fd147d1f8b4 from=translated src=- shape=2c0de881 vocab=69fc0278
+-/
 lemma self_le_of_strictMono {f : ℕ → ℕ} (hf : StrictMono f) (n : ℕ) : n ≤ f n := by
   induction n with
   | zero => exact Nat.zero_le _
   | succ k ih =>
       exact Nat.succ_le_of_lt (lt_of_le_of_lt ih (hf (Nat.lt_succ_self k)))
 
+/--
+@isnad1 id=tendsto.1h1v.s4.2735f057721a from=translated src=- shape=adb23859 vocab=f663f049
+-/
 lemma tendsto_atTop_of_strictMono {f : ℕ → ℕ} (hf : StrictMono f) :
     Tendsto (fun n => (f n : ℝ)) atTop atTop := by
   apply tendsto_atTop_mono (f := fun n : ℕ => ((n : ℝ))) (g := fun n => (f n : ℝ))
     (fun n => by exact_mod_cast self_le_of_strictMono hf n)
   exact tendsto_natCast_atTop_atTop
 
-/-- `2^n ≥ (n+1)²` for `n ≥ 6` (self-contained exp-beats-polynomial step).-/
+/-- `2^n ≥ (n+1)²` for `n ≥ 6` (self-contained exp-beats-polynomial step).
+@isnad1 id=le.1h1v.s5.971660ef7aa9 from=translated src=- shape=50c575c3 vocab=94889561
+-/
 lemma two_pow_ge_sq_add_one (n : ℕ) (hn : 6 ≤ n) : (n + 1) ^ 2 ≤ 2 ^ n := by
   induction n, hn using Nat.le_induction with
   | base => norm_num
@@ -115,7 +137,9 @@ lemma two_pow_ge_sq_add_one (n : ℕ) (hn : 6 ≤ n) : (n + 1) ^ 2 ≤ 2 ^ n := 
       _ ≤ 2 ^ k + 2 ^ k := by exact Nat.add_le_add_left (le_trans h2 ih) _
       _ = 2 ^ (k + 1) := by ring
 
-/-- For any fixed `t`, eventually `(n+1)·t ≤ 2^n` (exponential dominates linear).-/
+/-- For any fixed `t`, eventually `(n+1)·t ≤ 2^n` (exponential dominates linear).
+@isnad1 id=eventual.0h1v.s5.53924d3d0421 from=translated src=- shape=85014af4 vocab=ef36f5d1
+-/
 lemma two_pow_eventually_dominates (t : ℝ) :
     ∀ᶠ n : ℕ in atTop, ((n : ℝ) + 1) * t ≤ 2 ^ n := by
   obtain ⟨m, hm⟩ := exists_nat_gt (max t 0)
@@ -137,7 +161,9 @@ lemma two_pow_eventually_dominates (t : ℝ) :
 /-! ### The quadratic bootstrap and forward growth -/
 
 /-- The growth condition `c·a_n^{2+ε} ≤ a_{n+1}` with `a_n → ∞` eventually
-yields the quadratic step `a_n² ≤ a_{n+1}` (the `c·a_n^ε ≥ 1` bootstrap).-/
+yields the quadratic step `a_n² ≤ a_{n+1}` (the `c·a_n^ε ≥ 1` bootstrap).
+@isnad1 id=eventual.5h3v.s7.43674743974c from=translated src=- shape=9275f0b6 vocab=12bd19cc
+-/
 lemma eventually_sq_le (hapos : ∀ n, 0 < a n) (hmono : StrictMono a)
     {ε : ℝ} (hε : 0 < ε) {c : ℝ} (hc : 0 < c)
     (hgrowth : ∀ᶠ n in atTop, c * (a n : ℝ) ^ (2 + ε) ≤ (a (n + 1) : ℝ)) :
@@ -158,7 +184,9 @@ lemma eventually_sq_le (hapos : ∀ n, 0 < a n) (hmono : StrictMono a)
   _ = c * ((a n : ℝ) ^ 2 * (a n : ℝ) ^ ε) := by ring
   _ ≤ (a (n + 1) : ℝ) := hn
 
-/-- Forward iteration of the quadratic step: `a (M+k) ≥ a_M^{2^k}`.-/
+/-- Forward iteration of the quadratic step: `a (M+k) ≥ a_M^{2^k}`.
+@isnad1 id=le.2h3v.s7.9f0e2e7c6a39 from=translated src=- shape=46f3e170 vocab=0f9cf28d
+-/
 lemma pow_growth (_hapos : ∀ n, 0 < a n) {M : ℕ}
     (hsq : ∀ m ≥ M, (a m : ℝ) ^ 2 ≤ (a (m + 1) : ℝ)) (k : ℕ) :
     (a M : ℝ) ^ (2 ^ k) ≤ (a (M + k) : ℝ) := by
@@ -178,7 +206,9 @@ lemma pow_growth (_hapos : ∀ n, 0 < a n) {M : ℕ}
 /-! ### Summability and the tail bound -/
 
 /-- Summability of `∑ 1/a_n` from the quadratic step (comparison with the
-geometric series, using `2^k ≥ k+1`).-/
+geometric series, using `2^k ≥ k+1`).
+@isnad1 id=summable.3h2v.s6.30043b3f8e3d from=translated src=- shape=6ff920ff vocab=cf7422c1
+-/
 lemma summable_one_div_of_sq (hapos : ∀ n, 0 < a n) {M : ℕ} (hM2 : 2 ≤ a M)
     (hsq : ∀ m ≥ M, (a m : ℝ) ^ 2 ≤ (a (m + 1) : ℝ)) :
     Summable (fun n => 1 / (a n : ℝ)) := by
@@ -206,7 +236,9 @@ lemma summable_one_div_of_sq (hapos : ∀ n, 0 < a n) {M : ℕ} (hM2 : 2 ≤ a M
   exact (summable_nat_add_iff M).1 hsumm
 
 /-- The folklore growth condition implies `∑ 1/a_n` converges (no separate
-convergence hypothesis is needed in the criterion).-/
+convergence hypothesis is needed in the criterion).
+@isnad1 id=summable.5h3v.s7.32cb7cde5869 from=translated src=- shape=89d99cf7 vocab=eeb99553
+-/
 lemma summable_one_div_of_growth (hapos : ∀ n, 0 < a n) (hmono : StrictMono a)
     {ε : ℝ} (hε : 0 < ε) {c : ℝ} (hc : 0 < c)
     (hgrowth : ∀ᶠ n in atTop, c * (a n : ℝ) ^ (2 + ε) ≤ (a (n + 1) : ℝ)) :
@@ -223,7 +255,9 @@ lemma summable_one_div_of_growth (hapos : ∀ n, 0 < a n) (hmono : StrictMono a)
 
 /-- **Tail domination (the T2 core lemma):** under the quadratic step from `M`
 on, the tail of `∑ 1/a_n` after `M` is at most `2 / a_{M+1}`. This is the
-general-`a` analogue of `tail_bound` in `Basic.lean`.-/
+general-`a` analogue of `tail_bound` in `Basic.lean`.
+@isnad1 id=le.3h2v.s7.65d413fd70c9 from=translated src=- shape=8ad85592 vocab=bfacbd04
+-/
 lemma tail_le_two_div (hapos : ∀ n, 0 < a n) {M : ℕ} (hM2 : 2 ≤ a M)
     (hsq : ∀ m ≥ M, (a m : ℝ) ^ 2 ≤ (a (m + 1) : ℝ)) :
     ∑' i, (1 / (a (i + (M + 1)) : ℝ)) ≤ 2 / (a (M + 1) : ℝ) := by
@@ -284,7 +318,9 @@ lemma tail_le_two_div (hapos : ∀ n, 0 < a n) {M : ℕ} (hM2 : 2 ≤ a M)
   _ ≤ 2 / (a (M + 1) : ℝ) := hbound
 
 /-- Tail positivity (needed to make the integer in the final contradiction
-strictly positive).-/
+strictly positive).
+@isnad1 id=lt.3h2v.s7.fe1ca0dfc30c from=translated src=- shape=fdc9a58e vocab=bfacbd04
+-/
 lemma tail_pos (hapos : ∀ n, 0 < a n) {M : ℕ} (hM2 : 2 ≤ a M)
     (hsq : ∀ m ≥ M, (a m : ℝ) ^ 2 ≤ (a (m + 1) : ℝ)) :
     (0 : ℝ) < ∑' i, (1 / (a (i + (M + 1)) : ℝ)) := by
@@ -301,7 +337,9 @@ lemma tail_pos (hapos : ∀ n, 0 < a n) {M : ℕ} (hM2 : 2 ≤ a M)
 /-- Backward control: from `c'·a_n^{2+ε} ≤ a_{n+1}` for `n ≥ N₀` (with
 `0 < c' ≤ 1`) and `θ` with `(2+ε)·θ = 1`, each earlier term is bounded by a
 later one: `a_{N-k} ≤ K·a_N^{θ^k}` for a constant `K ≥ 1`. The constant
-works because `σ·θ + 1 = σ` for `σ := 1/(1-θ)`.-/
+works because `σ·θ + 1 = σ` for `σ := 1/(1-θ)`.
+@isnad1 id=ex.8h5v.s8.6b68be6483ba from=translated src=- shape=3922d2aa vocab=3e187a18
+-/
 lemma backward_bound (hapos : ∀ n, 0 < a n) {ε : ℝ} (hε : 0 < ε)
     {θ : ℝ} (hθ0 : 0 < θ) (hθ1 : θ < 1) (hθ : (2 + ε) * θ = 1)
     {c' : ℝ} (hc'0 : 0 < c') (hc'1 : c' ≤ 1) {N₀ : ℕ}
@@ -376,7 +414,9 @@ lemma backward_bound (hapos : ∀ n, 0 < a n) {ε : ℝ} (hε : 0 < ε)
 
 /-- **Product bound:** the product of the first `N+1` terms is
 sub-`a_{N+1}`: `∏_{n ≤ N} a_n ≤ C^{N+1}·a_N^{σ}` with
-`σ = (2+ε)/(1+ε) < 2+ε`. This is the analytic heart of the criterion.-/
+`σ = (2+ε)/(1+ε) < 2+ε`. This is the analytic heart of the criterion.
+@isnad1 id=ex.5h3v.s7.095cb899cdb0 from=translated src=- shape=6bba8408 vocab=0128b497
+-/
 lemma prod_bound (hapos : ∀ n, 0 < a n) (hmono : StrictMono a)
     {ε : ℝ} (hε : 0 < ε) {c : ℝ} (hc : 0 < c)
     (hgrowth : ∀ᶠ n in atTop, c * (a n : ℝ) ^ (2 + ε) ≤ (a (n + 1) : ℝ)) :
@@ -503,7 +543,9 @@ lemma prod_bound (hapos : ∀ n, 0 < a n) (hmono : StrictMono a)
 /-! ### The beat lemma: doubly-exponential growth beats any geometric factor -/
 
 /-- From the quadratic step, `a_N ≥ 2^{2^{N-M}}`; hence for ANY constant
-`D ≥ 1` and any `η > 0`, eventually `D^{N+1} ≤ a_N^η`.-/
+`D ≥ 1` and any `η > 0`, eventually `D^{N+1} ≤ a_N^η`.
+@isnad1 id=eventual.5h3v.s7.0ec77df1d82b from=translated src=- shape=1a4e8a16 vocab=39dfccd7
+-/
 lemma eventually_pow_le_rpow (hapos : ∀ n, 0 < a n) (hmono : StrictMono a)
     (hsq : ∀ᶠ n in atTop, (a n : ℝ) ^ 2 ≤ (a (n + 1) : ℝ))
     {D : ℝ} (hD : 1 ≤ D) {η : ℝ} (hη : 0 < η) :
@@ -573,7 +615,9 @@ lemma eventually_pow_le_rpow (hapos : ∀ n, 0 < a n) (hmono : StrictMono a)
 
 /-! ### The b-side: comparison from `b_n / a_n → 1` -/
 
-/-- From `b_n/a_n → 1`, eventually `a_n/2 ≤ b_n ≤ 2a_n`.-/
+/-- From `b_n/a_n → 1`, eventually `a_n/2 ≤ b_n ≤ 2a_n`.
+@isnad1 id=and.2h2v.s7.180aa3201183 from=translated src=- shape=1beef249 vocab=65085d75
+-/
 lemma eventually_b_bounds (hapos : ∀ n, 0 < a n) {b : ℕ → ℕ}
     (hlim : Tendsto (fun n => (b n : ℝ) / (a n : ℝ)) atTop (𝓝 1)) :
     (∀ᶠ n in atTop, (a n : ℝ) / 2 ≤ (b n : ℝ)) ∧
@@ -595,7 +639,9 @@ lemma eventually_b_bounds (hapos : ∀ n, 0 < a n) {b : ℕ → ℕ}
     rw [div_lt_iff₀ (hpos n)] at h3
     linarith [h3]
 
-/-- Summability of `∑ 1/b_n` by comparison with `2/a_n`.-/
+/-- Summability of `∑ 1/b_n` by comparison with `2/a_n`.
+@isnad1 id=summable.4h2v.s7.a2452a625042 from=translated src=- shape=28d11997 vocab=96483512
+-/
 lemma summable_one_div_b (hapos : ∀ n, 0 < a n) {b : ℕ → ℕ} (_hbpos : ∀ n, 0 < b n)
     (hsuma : Summable (fun n => 1 / (a n : ℝ)))
     (hlim : Tendsto (fun n => (b n : ℝ) / (a n : ℝ)) atTop (𝓝 1)) :
@@ -615,7 +661,9 @@ lemma summable_one_div_b (hapos : ∀ n, 0 < a n) {b : ℕ → ℕ} (_hbpos : �
     · exact (((_root_.summable_nat_add_iff N₁).2 hsuma).mul_left 2)
   exact (summable_nat_add_iff N₁).1 hsumm
 
-/-- The b-tail is at most twice the a-tail.-/
+/-- The b-tail is at most twice the a-tail.
+@isnad1 id=le.5h4v.s8.7ade90f23b6d from=translated src=- shape=9a8b6bc0 vocab=44d01a1c
+-/
 lemma tail_b_le_two_tail_a (hapos : ∀ n, 0 < a n) {b : ℕ → ℕ}
     (hsuma : Summable (fun n => 1 / (a n : ℝ)))
     (hsumb : Summable (fun n => 1 / (b n : ℝ))) {N₁ : ℕ}
@@ -636,7 +684,9 @@ lemma tail_b_le_two_tail_a (hapos : ∀ n, 0 < a n) {b : ℕ → ℕ}
   have hle := Summable.tsum_le_tsum hterm hsb hsa
   rwa [tsum_mul_left] at hle
 
-/-- The b-tail is strictly positive.-/
+/-- The b-tail is strictly positive.
+@isnad1 id=lt.2h2v.s6.6d0bc6406dee from=translated src=- shape=11b9b65c vocab=f96a05b8
+-/
 lemma tail_b_pos {b : ℕ → ℕ} (hbpos : ∀ n, 0 < b n)
     (hsumb : Summable (fun n => 1 / (b n : ℝ))) (N : ℕ) :
     (0 : ℝ) < ∑' i, (1 / (b (i + (N + 1)) : ℝ)) := by
@@ -651,7 +701,9 @@ lemma tail_b_pos {b : ℕ → ℕ} (hbpos : ∀ n, 0 < b n)
 /-! ### The integrality machine -/
 
 /-- If `∑ 1/b_n = r ∈ ℚ`, then `q·P_N·T_N ∈ ℤ` where `q = r.den`,
-`P_N = ∏_{n ≤ N} b_n` and `T_N` is the tail.-/
+`P_N = ∏_{n ≤ N} b_n` and `T_N` is the tail.
+@isnad1 id=ex.3h3v.s7.d35e53927f68 from=translated src=- shape=6f03a305 vocab=80fc65d1
+-/
 lemma key_integrality {b : ℕ → ℕ} (hbpos : ∀ n, 0 < b n)
     (hsumb : Summable (fun n => 1 / (b n : ℝ))) (r : ℚ)
     (hr : (r : ℝ) = ∑' n, 1 / (b n : ℝ)) (N : ℕ) :
@@ -698,7 +750,9 @@ positive integers and `liminf a_{n+1}/a_n^{2+ε} > 0` for some `ε > 0`
 irrationality sequence: for EVERY positive `b` with `b_n/a_n → 1`,
 `∑' 1/b_n` is irrational. This is the criterion stated on
 erdosproblems.com/263 (fetched 2026-08-01), which the site derives from the
-folklore result on `lim a_n^{1/2^n} = ∞`.-/
+folklore result on `lim a_n^{1/2^n} = ∞`.
+@isnad1 id=isirrati.5h3v.s6.f4d438fbe657 from=translated src=- shape=0021cb56 vocab=ef412fb8
+-/
 theorem folklore_criterion (hapos : ∀ n, 0 < a n) (hmono : StrictMono a)
     {ε : ℝ} (hε : 0 < ε) {c : ℝ} (hc : 0 < c)
     (hgrowth : ∀ᶠ n in atTop, c * (a n : ℝ) ^ (2 + ε) ≤ (a (n + 1) : ℝ)) :
