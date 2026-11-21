@@ -16,7 +16,7 @@ carries those assets and the commands below have not been tried against a real o
 A source release is a version of the library you can pin, verify and build on. It is cut by
 `.github/workflows/release.yml` from a commit of `main` that the nightly build has already compiled and
 published, so every release comes with a compiled cache built from exactly its commit. The commit must also
-have passed the independent check (`.github/workflows/independent-check.yml`, nightly and on demand): every
+have passed the independent check (`.github/workflows/independent-check.yml`, nightly and on demand, in shards: [testing](testing.md#the-independent-check)): every
 declaration of the tree exported with lean4export and type-checked again by
 [nanoda](https://github.com/ammkrn/nanoda_lib), a kernel that shares no code with Lean, and every trusted record
 shown, from the same export, to rest only on `propext`, `Classical.choice` and `Quot.sound`. To release a commit
