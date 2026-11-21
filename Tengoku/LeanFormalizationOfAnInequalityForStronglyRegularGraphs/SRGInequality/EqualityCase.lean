@@ -4,7 +4,9 @@ import Tengoku
 
 namespace SRGInequality
 
-/-- If the spectral gap factor is zero, the target inequality is an equality.-/
+/-- If the spectral gap factor is zero, the target inequality is an equality.
+@isnad1 id=eq.3h5v.s7.991e0f2c84a6 from=translated src=- shape=737155e2 vocab=4d09f77c
+-/
 theorem target_of_absolute_gap_eq_zero_standalone
     {t k f g v : Real} (ht : t ≠ 0)
     (hv : v = f + g + 1)
