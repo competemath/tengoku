@@ -166,9 +166,14 @@ def declaration_proof(text: str, statement: str, words: frozenset[str]) -> str |
             pass
         elif line.startswith("/-") and not line.startswith(("/--", "/-!")):
             close = comment_end(text, nxt)
-            eol = text.find(
-                "\n", close
-            )  # a block comment at column 0: skipped, and not part of the proof unless the proof goes on after it
+            eol = text.find("\n", close)
+            # a block comment at column 0 is skipped, and not part of the proof unless the proof goes on after it: on the line where it closes, a command
+            # begins the next declaration (`/- note -/ theorem bar ...`), any other code goes on with the proof above
+            rest = text[close : len(text) if eol < 0 else eol]
+            if rest.strip():
+                if starts_command(rest.lstrip(), words):
+                    break
+                end = len(text) if eol < 0 else eol
         elif line[0].isspace():
             end = line_end
         elif starts_command(line, words):

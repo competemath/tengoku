@@ -994,6 +994,26 @@ class DeclarationProof(unittest.TestCase):
         eqn = "theorem f : ∀ n : Nat, n = n\n  | 0 => rfl\n  | n + 1 => rfl"  # equation-style: the header has the arms, there is no `:=`
         self.assertIsNone(self.proof(eqn + "\n\ntheorem g : True := trivial\n", eqn))
 
+    def test_code_after_a_block_comment_on_a_column_0_line_is_read(self):
+        header = "theorem foo : 1 = 1"
+        # a command after the comment begins the next declaration, whatever follows it: foo's proof stops above the comment
+        text = f"{header} := by\n  simp\n/- note -/ theorem bar : 2 = 2 := by\n  simp\n"
+        self.assertEqual(self.proof(text, header), ":= by\n  simp")
+        self.assertEqual(
+            self.proof(text, "theorem bar : 2 = 2"), None
+        )  # its header is not at the beginning of its line, so it is not read (nothing is guessed)
+        # the comment may span lines and close in the middle of one
+        text = f"{header} := by\n  simp\n/- a note\n   over two lines -/ theorem bar : 2 = 2 := rfl\n"
+        self.assertEqual(self.proof(text, header), ":= by\n  simp")
+        # anything else after the comment goes on with the proof above, and the comment with it
+        text = f"{header} := by\n  simp\n/- note -/ exact trivial\n\ntheorem baz : 3 = 3 := rfl\n"
+        self.assertEqual(self.proof(text, header), ":= by\n  simp\n/- note -/ exact trivial")
+        # a comment alone on its line is still skipped, and the proof ends above it
+        text = f"{header} := by\n  simp\n/- note -/\ntheorem baz : 3 = 3 := rfl\n"
+        self.assertEqual(self.proof(text, header), ":= by\n  simp")
+        # a docstring or an attribute after the comment is a command too
+        self.assertEqual(self.proof(f"{header} := by\n  simp\n/- note -/ @[simp] theorem q : 1 = 1 := rfl\n", header), ":= by\n  simp")
+
     def test_a_block_comment_that_never_closes_ends_the_proof_where_the_comment_began(self):
         self.assertEqual(
             self.proof("theorem foo : True := by\n  trivial\n/- never closed\n  theorem x", "theorem foo : True"), ":= by\n  trivial"
