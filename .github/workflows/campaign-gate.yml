@@ -30,9 +30,10 @@ jobs:
       - if: github.event_name == 'pull_request_target'
         uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
         with: { egress-policy: audit }
-      - if: github.event_name == 'pull_request_target'
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with: { ref: main, persist-credentials: false }   # the branches filter above admits main only: no value of the pull request picks what runs
+      # main's tip, by a plain clone of the public repository: the checks are main's, nothing of the pull request is fetched, and no token is kept
+      - name: The checks, from main
+        if: github.event_name == 'pull_request_target'
+        run: git clone -q --depth 1 --branch main --no-tags "https://github.com/$GITHUB_REPOSITORY" base
       - name: A CI-class change needs a campaign or the approver's waiver
         if: github.event_name == 'pull_request_target'
         env:
@@ -40,4 +41,5 @@ jobs:
           PR: ${{ github.event.pull_request.number }}
           REPO: ${{ github.repository }}
           SHA: ${{ github.event.pull_request.head.sha }}
+        working-directory: base
         run: python3 scripts/ci/campaign_check.py
