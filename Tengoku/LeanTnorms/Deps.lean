@@ -1,0 +1,1 @@
+-- LeanTnorms: a factory bundle (data/intake/lean-tnorms). This file only marks the library for Tengoku/All.lean.
