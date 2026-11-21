@@ -62,48 +62,76 @@ def rotClass (w : List ℕ) : RotClass := Quotient.mk _ w
 
 /-! ## Ported basic API (proofs come along for free) -/
 
+/--
+@isnad1 id=nodup.1h2v.s3.fae11cbe9ee4 from=translated src=- shape=1fb49929 vocab=0c1fefc9
+-/
 theorem IsPermWord.nodup {k : ℕ} {w : List ℕ} (h : IsPermWord k w) : w.Nodup := h.1
 
+/--
+@isnad1 id=eq.1h2v.s4.ca7dbcf98da3 from=translated src=- shape=d2b800b8 vocab=8ef2a5cf
+-/
 theorem IsPermWord.toFinset_eq {k : ℕ} {w : List ℕ} (h : IsPermWord k w) :
     w.toFinset = Finset.Icc 1 k := h.2
 
+/--
+@isnad1 id=eq.1h2v.s3.0cec980691ba from=translated src=- shape=90664a9c vocab=3b04796f
+-/
 theorem IsPermWord.length {k : ℕ} {w : List ℕ} (h : IsPermWord k w) : w.length = k := by
   have h1 := List.toFinset_card_of_nodup h.1
   rw [h.2, Nat.card_Icc] at h1
   omega
 
+/--
+@isnad1 id=ne.2h2v.s4.a3073651ac7e from=translated src=- shape=43d52e2d vocab=d4774bd0
+-/
 theorem IsPermWord.ne_nil {k : ℕ} {w : List ℕ} (h : IsPermWord k w) (hk : 1 ≤ k) :
     w ≠ [] := by
   intro hw
   have hlen := h.length
   rw [hw] at hlen; simp at hlen; omega
 
+/--
+@isnad1 id=ispermwo.1h3v.s4.dc03f6ae3235 from=translated src=- shape=fdc5dd0e vocab=c9bca887
+-/
 theorem isPermWord_rotate {k : ℕ} {w : List ℕ} (h : IsPermWord k w) (j : ℕ) :
     IsPermWord k (w.rotate j) := by
   refine ⟨(List.rotate_perm w j).nodup_iff.mpr h.1, ?_⟩
   rw [List.toFinset_eq_of_perm _ _ (List.rotate_perm w j), h.2]
 
-/-- Permutation-words are preserved by list permutations (same multiset of symbols).-/
+/-- Permutation-words are preserved by list permutations (same multiset of symbols).
+@isnad1 id=ispermwo.2h3v.s4.3d336ef90593 from=translated src=- shape=9823251d vocab=1c27d540
+-/
 theorem IsPermWord.perm {k : ℕ} {w w' : List ℕ} (h : IsPermWord k w) (hp : w ~ w') :
     IsPermWord k w' :=
   ⟨hp.nodup_iff.mp h.1, by rw [← List.toFinset_eq_of_perm _ _ hp, h.2]⟩
 
+/--
+@isnad1 id=ispermwo.2h3v.s4.8c27c4bf5b98 from=translated src=- shape=9823251d vocab=11bee09a
+-/
 theorem isPermWord_of_isRotated {k : ℕ} {w w' : List ℕ} (h : IsPermWord k w)
     (hr : w ~r w') : IsPermWord k w' := by
   obtain ⟨j, rfl⟩ := hr; exact isPermWord_rotate h j
 
 /-! ## Weight basics (ported) -/
 
+/--
+@isnad1 id=and.2h3v.s6.37b20d6881a1 from=translated src=- shape=cfa72111 vocab=6ccc195f
+-/
 theorem wt_spec {k : ℕ} {u v : List ℕ} (hk : 1 ≤ k) (hu : u.length ≤ k) :
     1 ≤ wt k u v ∧ wt k u v ≤ k ∧ u.drop (wt k u v) = v.take (k - wt k u v) :=
   Nat.sInf_mem (⟨k, hk, le_refl k, by simp [List.drop_eq_nil_of_le hu]⟩ :
     {d | 1 ≤ d ∧ d ≤ k ∧ u.drop d = v.take (k - d)}.Nonempty)
 
+/--
+@isnad1 id=le.3h4v.s5.968bf09b5e11 from=translated src=- shape=428c9c07 vocab=0e43e39e
+-/
 theorem wt_le {k : ℕ} {u v : List ℕ} {d : ℕ} (h1 : 1 ≤ d) (h2 : d ≤ k)
     (h3 : u.drop d = v.take (k - d)) : wt k u v ≤ d :=
   Nat.sInf_le ⟨h1, h2, h3⟩
 
-/-- The rotation `σ` has weight 1.-/
+/-- The rotation `σ` has weight 1.
+@isnad1 id=eq.2h2v.s4.e048223849fc from=translated src=- shape=4440057f vocab=02a131ab
+-/
 theorem wt_rho {k : ℕ} {u : List ℕ} (hk : 1 ≤ k) (hu : IsPermWord k u) :
     wt k u (rho u) = 1 := by
   have hlen : u.length = k := hu.length
@@ -152,6 +180,9 @@ theorem eq_rho_of_wt_one {k : ℕ} {u v : List ℕ} (hk : 1 ≤ k) (hu : IsPermW
 
 /-! ## Rotation classes (ported) -/
 
+/--
+@isnad1 id=iff.0h2v.s4.cd9f65fe4284 from=translated src=- shape=204223db vocab=6f5e5d9a
+-/
 theorem rotClass_eq_iff {w w' : List ℕ} : rotClass w = rotClass w' ↔ w ~r w' := by
   constructor
   · intro h; exact Quotient.exact h
@@ -163,6 +194,9 @@ theorem rotClass_eq_iff {w w' : List ℕ} : rotClass w = rotClass w' ↔ w ~r w'
 noncomputable def permsOf (S : Finset ℕ) : Finset (List ℕ) :=
   (S.sort (· ≤ ·)).permutations.toFinset
 
+/--
+@isnad1 id=iff.0h2v.s5.c494f7c27321 from=translated src=- shape=a8c5ef63 vocab=dacf9830
+-/
 theorem mem_permsOf {S : Finset ℕ} {w : List ℕ} :
     w ∈ permsOf S ↔ w.Nodup ∧ w.toFinset = S := by
   rw [permsOf, List.mem_toFinset, List.mem_permutations]
@@ -174,6 +208,9 @@ theorem mem_permsOf {S : Finset ℕ} {w : List ℕ} :
     exact List.perm_of_nodup_nodup_toFinset_eq hnd (S.sort_nodup _)
       (by rw [hS, S.sort_toFinset])
 
+/--
+@isnad1 id=finite.0h1v.s3.3f5e59a9e570 from=translated src=- shape=000de317 vocab=268c86c7
+-/
 theorem permWords_finite (k : ℕ) : {w | IsPermWord k w}.Finite := by
   have hset : {w | IsPermWord k w} = ↑(permsOf (Finset.Icc 1 k)) := by
     ext w
@@ -183,7 +220,9 @@ theorem permWords_finite (k : ℕ) : {w | IsPermWord k w}.Finite := by
 
 /-! ## `door`/`alphaWord` are permutations of the underlying word (closure lemmas) -/
 
-/-- `door w` is a list-permutation of `w` (for `|w| ≥ 2`); hence preserves `IsPermWord`.-/
+/-- `door w` is a list-permutation of `w` (for `|w| ≥ 2`); hence preserves `IsPermWord`.
+@isnad1 id=perm.1h1v.s4.06eac2ad7ed9 from=translated src=- shape=1690d7ff vocab=404caff9
+-/
 theorem door_perm {w : List ℕ} (hw : 2 ≤ w.length) : door w ~ w := by
   obtain ⟨a, b, s, rfl⟩ : ∃ a b s, w = a :: b :: s := by
     rcases w with _ | ⟨a, _ | ⟨b, s⟩⟩
@@ -196,11 +235,16 @@ theorem door_perm {w : List ℕ} (hw : 2 ≤ w.length) : door w ~ w := by
     _ ~ [a, b] ++ s := ((List.Perm.swap b a []).append_right s).symm
     _ = a :: b :: s := rfl
 
+/--
+@isnad1 id=ispermwo.2h2v.s4.2c2a23f5bf53 from=translated src=- shape=6ea2118d vocab=e561e25d
+-/
 theorem door_isPermWord {k : ℕ} {w : List ℕ} (hk : 2 ≤ k) (hw : IsPermWord k w) :
     IsPermWord k (door w) :=
   hw.perm (door_perm (by rw [hw.length]; omega)).symm
 
-/-- `alphaWord w` is a list-permutation of `w` (for `|w| ≥ 3`).-/
+/-- `alphaWord w` is a list-permutation of `w` (for `|w| ≥ 3`).
+@isnad1 id=perm.0h1v.s3.0b3642331b99 from=translated src=- shape=77afba9e vocab=5eb1d6fb
+-/
 theorem alphaWord_perm {w : List ℕ} : alphaWord w ~ w := by
   have h1 : alphaWord w ~ w.drop 3 ++ w.take 3 :=
     (List.perm_append_left_iff _).mpr (List.reverse_perm _)
@@ -208,6 +252,9 @@ theorem alphaWord_perm {w : List ℕ} : alphaWord w ~ w := by
   rw [List.take_append_drop] at h2
   exact h1.trans h2
 
+/--
+@isnad1 id=ispermwo.1h2v.s3.7eb6efe7e30e from=translated src=- shape=cd29e5e1 vocab=3b8d8896
+-/
 theorem alphaWord_isPermWord {k : ℕ} {w : List ℕ} (hw : IsPermWord k w) :
     IsPermWord k (alphaWord w) :=
   hw.perm alphaWord_perm.symm

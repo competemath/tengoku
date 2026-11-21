@@ -49,7 +49,9 @@ here under its census name as the file's primitive. -/
 
 /-- **Necklace-erase invariance** (deliverable 1).  Erasing a fixed value `c` from a word is
 invariant, at the `rotClass` level, under cyclic rotation of the word.  General `k`, clean `List`
-lemma.-/
+lemma.
+@isnad1 id=eq.1h3v.s5.c7d34cd09d78 from=translated src=- shape=07c69bd4 vocab=4efcd078
+-/
 theorem necklace_erase_invariance {c : ℕ} {W : List ℕ} (hnd : W.Nodup) (r : ℕ) :
     rotClass ((W.rotate r).erase c) = rotClass (W.erase c) :=
   ProofsConfinement.rotClass_erase_rotate hnd r
@@ -57,7 +59,9 @@ theorem necklace_erase_invariance {c : ℕ} {W : List ℕ} (hnd : W.Nodup) (r : 
 /-- **Necklace-erase invariance, `Vset3` form.**  Membership of a vertex in a marked 3-loop
 `Vset3 α₁ α₂ K` is unchanged if the vertex word is replaced by any cyclic rotation of it — the
 double-erase `((v.erase α₁).erase α₂)` has a rotation-invariant class.  (This is the two-marker
-iterate of `necklace_erase_invariance`, the closure fact behind `ProofsExcess.sigma_mem_Vset3`.)-/
+iterate of `necklace_erase_invariance`, the closure fact behind `ProofsExcess.sigma_mem_Vset3`.)
+@isnad1 id=eq.1h4v.s5.b3c26d24cb40 from=translated src=- shape=18d15700 vocab=4efcd078
+-/
 theorem necklace_erase_invariance₂ {α₁ α₂ : ℕ} {W : List ℕ} (hnd : W.Nodup) (r : ℕ) :
     rotClass (((W.rotate r).erase α₁).erase α₂) = rotClass ((W.erase α₁).erase α₂) := by
   -- erase α₁ of a rotation is a rotation of the erase (up to rotClass), then erase α₂ + invariance
@@ -82,17 +86,23 @@ so this is the block-start.  Its 1-cycle class is `rotClass (markBlock base m j)
 The **rotate helper** `(P ++ Q).rotate P.length = Q ++ P` is the only list computation the
 shared-class census needs. -/
 
-/-- Rotating a concatenation by the length of its left part swaps the two parts.-/
+/-- Rotating a concatenation by the length of its left part swaps the two parts.
+@isnad1 id=eq.0h2v.s5.4e6b4888a6de from=translated src=- shape=0b349e73 vocab=9255a61f
+-/
 theorem rotate_append_left (P Q : List ℕ) : (P ++ Q).rotate P.length = Q ++ P := by
   rw [List.rotate_eq_drop_append_take (by simp)]
   simp
 
 /-- `rotate_append_left` with the amount supplied explicitly (so it matches a numeral in the
-goal rather than the reducible `P.length`).-/
+goal rather than the reducible `P.length`).
+@isnad1 id=eq.1h3v.s5.c908cf3aac33 from=translated src=- shape=7c03f326 vocab=9255a61f
+-/
 theorem rotate_append_left' (P Q : List ℕ) {n : ℕ} (hn : n = P.length) :
     (P ++ Q).rotate n = Q ++ P := by subst hn; exact rotate_append_left P Q
 
-/-- `rotClass` is rotation-invariant: any rotation of a word has the same 1-cycle class.-/
+/-- `rotClass` is rotation-invariant: any rotation of a word has the same 1-cycle class.
+@isnad1 id=eq.0h2v.s3.fc9d9f6b712f from=translated src=- shape=3f6df2cf vocab=6c177b7f
+-/
 theorem rotClass_rotate (w : List ℕ) (m : ℕ) : rotClass (w.rotate m) = rotClass w :=
   (rotClass_eq_iff.mpr ⟨m, rfl⟩).symm
 
@@ -146,7 +156,9 @@ Matches `results.json` COMPLETE_exit_opens (`mm_a` share 2, `mm_b` share 1, both
 `mm_c`/`mm_d` not fresh) and `measure_caps.py` RESET-cap max `= k−3` for `k = 5,6,7`. -/
 
 /-- **`mm_a`, first shared class.**  Landing door-position `k − 3` (`= s.length`) has the 1-cycle
-class of source block 1.-/
+class of source block 1.
+@isnad1 id=eq.0h4v.s4.cfb06c95bc8c from=translated src=- shape=42cda569 vocab=35396d49
+-/
 theorem mm_a_share1 : rotClass (mmaBlock a b c s s.length) = rotClass (srcBlock a b c s 1) := by
   have h : (mmaBlock a b c s s.length).rotate 1 = srcBlock a b c s 1 := by
     unfold mmaBlock srcBlock markBlock
@@ -160,7 +172,9 @@ theorem mm_a_share1 : rotClass (mmaBlock a b c s s.length) = rotClass (srcBlock 
   rw [← h, rotClass_rotate]
 
 /-- **`mm_a`, second shared class.**  Landing door-position `k − 2` (`= s.length + 1`) has the
-1-cycle class of source block 0 (the source-loop base `A`).-/
+1-cycle class of source block 0 (the source-loop base `A`).
+@isnad1 id=eq.0h4v.s5.842d94bb80d1 from=translated src=- shape=4fcb2f58 vocab=ef881be5
+-/
 theorem mm_a_share2 :
     rotClass (mmaBlock a b c s (s.length + 1)) = rotClass (srcBlock a b c s 0) := by
   have h : (mmaBlock a b c s (s.length + 1)).rotate (s.length + 2) = srcBlock a b c s 0 := by
@@ -175,7 +189,9 @@ theorem mm_a_share2 :
   rw [← h, rotClass_rotate]
 
 /-- **`mm_b`, shared class.**  Landing door-position `k − 3` (`= s.length`) has the 1-cycle class
-of source block 2.-/
+of source block 2.
+@isnad1 id=eq.0h4v.s4.09d8fe94959b from=translated src=- shape=42cda569 vocab=c97dff9c
+-/
 theorem mm_b_share : rotClass (mmbBlock a b c s s.length) = rotClass (srcBlock a b c s 2) := by
   have h : (srcBlock a b c s 2).rotate (s.length + 1) = mmbBlock a b c s s.length := by
     unfold mmbBlock srcBlock markBlock
@@ -188,7 +204,9 @@ theorem mm_b_share : rotClass (mmbBlock a b c s s.length) = rotClass (srcBlock a
   rw [← h, rotClass_rotate]
 
 /-- **`mm_c`, shared class.**  The landing entry itself (door-position `0`) has the 1-cycle class
-of source block 0 — the landing is *not fresh*.-/
+of source block 0 — the landing is *not fresh*.
+@isnad1 id=eq.0h4v.s5.8f0968585306 from=translated src=- shape=cdcb751a vocab=8c0838f6
+-/
 theorem mm_c_share : rotClass (mmcBlock a b c s 0) = rotClass (srcBlock a b c s 0) := by
   have h : (srcBlock a b c s 0).rotate 2 = mmcBlock a b c s 0 := by
     unfold mmcBlock srcBlock markBlock
@@ -199,7 +217,9 @@ theorem mm_c_share : rotClass (mmcBlock a b c s 0) = rotClass (srcBlock a b c s 
   rw [← h, rotClass_rotate]
 
 /-- **`mm_d`, shared class.**  The landing entry itself (door-position `0`) has the 1-cycle class
-of source block 1 — the landing is *not fresh*.-/
+of source block 1 — the landing is *not fresh*.
+@isnad1 id=eq.0h4v.s5.37c95dbd0fe1 from=translated src=- shape=cdcb751a vocab=a9803bd1
+-/
 theorem mm_d_share : rotClass (mmdBlock a b c s 0) = rotClass (srcBlock a b c s 1) := by
   have h : (srcBlock a b c s 1).rotate 1 = mmdBlock a b c s 0 := by
     unfold mmdBlock srcBlock markBlock
@@ -231,7 +251,9 @@ def SourceVisited (a b c : ℕ) (s : List ℕ) (K : RotClass) : Prop :=
   ∃ j, K = rotClass (srcBlock a b c s j)
 
 /-- **Fresh-run cap (ordering core).**  If a door-run `blk` has a visited class at position `p`,
-any initial segment of `F` fresh (non-visited) blocks has `F ≤ p`.-/
+any initial segment of `F` fresh (non-visited) blocks has `F ≤ p`.
+@isnad1 id=le.1h5v.s5.578141b70fb7 from=translated src=- shape=9d558783 vocab=f175bccb
+-/
 theorem fresh_run_le {blk : ℕ → List ℕ} {vis : RotClass → Prop} {p F : ℕ}
     (hp : vis (rotClass (blk p)))
     (hfresh : ∀ j, j < F → ¬ vis (rotClass (blk j))) : F ≤ p := by
@@ -239,7 +261,9 @@ theorem fresh_run_le {blk : ℕ → List ℕ} {vis : RotClass → Prop} {p F : �
   exact hfresh p (by omega) hp
 
 /-- **The fill bound, packaged.**  Given a visited landing door-position `p ≤ s.length`, any fresh
-run has length `≤ s.length`.-/
+run has length `≤ s.length`.
+@isnad1 id=le.2h7v.s6.bf3d30988e79 from=translated src=- shape=95cd1d17 vocab=ca254ab9
+-/
 theorem fill_le_of_visited {a b c : ℕ} {s base : List ℕ} {m F : ℕ}
     (hvis : ∃ p, p ≤ s.length ∧ SourceVisited a b c s (rotClass (markBlock base m p)))
     (hfresh : ∀ j, j < F → ¬ SourceVisited a b c s (rotClass (markBlock base m j))) :
@@ -251,7 +275,9 @@ theorem fill_le_of_visited {a b c : ℕ} {s base : List ℕ} {m F : ℕ}
 marker-moving landing leaving a **complete** source loop (new marker `x₂ = b` for `mm_a`/`mm_b`,
 `x₃ = c` for `mm_c`/`mm_d`, per `ProofsLanding.weight3_markerMove_last`) opens a 2-loop whose
 door-run meets a visited source 1-cycle at position `≤ s.length = k − 3`.  Hence at most
-`k − 3` (`= s.length`) fresh blocks of the landing loop can ever be traversed.-/
+`k − 3` (`= s.length`) fresh blocks of the landing loop can ever be traversed.
+@isnad1 id=le.2h7v.s7.b3dd891cf81e from=translated src=- shape=d1a32dbb vocab=45f1474f
+-/
 theorem markerMove_from_complete_fill_le (base : List ℕ) (m F : ℕ)
     (hfam : (base = s ++ [a, c] ∧ m = b) ∨ (base = s ++ [c, a] ∧ m = b) ∨
             (base = s ++ [a, b] ∧ m = c) ∨ (base = s ++ [b, a] ∧ m = c))
@@ -276,7 +302,9 @@ is exactly `symbolic_anchor.py`'s "`K = rotClass(A[:-1].erase c)`, `srcOK` for e
 /-- **`anchor_source_membership`** (deliverable 4, stretch).  For every source depth `r`, the
 double marker-erasure `((u.rotate r ++ [μ]).erase μ).erase c` of the source block-start has the
 fixed class `rotClass (u.erase c)` — the landing `Vset3(μ, c, ·)` key (`mem_Vset3_iff_erase`).  So
-all source blocks lie in the one landing marked-3-loop, at every depth.-/
+all source blocks lie in the one landing marked-3-loop, at every depth.
+@isnad1 id=eq.2h4v.s6.f1fd7a553e0e from=translated src=- shape=a08c8420 vocab=431d2336
+-/
 theorem anchor_source_membership {u : List ℕ} (hu : u.Nodup) (μ c : ℕ) (hμ : μ ∉ u) (r : ℕ) :
     rotClass (((u.rotate r ++ [μ]).erase μ).erase c) = rotClass (u.erase c) := by
   have hμr : μ ∉ u.rotate r := fun h => hμ ((List.rotate_perm u r).mem_iff.mp h)

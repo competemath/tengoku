@@ -29,7 +29,9 @@ variable {k : ℕ}
 
 /-! ## Helpers for `bridge_wEdges_edges_eq_wtP` -/
 
-/-- `(l.zip l').map (fun e => f e.1 e.2) = l.zipWith f l'`.-/
+/-- `(l.zip l').map (fun e => f e.1 e.2) = l.zipWith f l'`.
+@isnad1 id=eq.0h6v.s5.3914495b9d09 from=translated src=- shape=8b08615e vocab=93601afd
+-/
 theorem zip_map_eq_zipWith {α β γ : Type*} (f : α → β → γ) :
     ∀ (l : List α) (l' : List β), (l.zip l').map (fun e => f e.1 e.2) = l.zipWith f l'
   | [], _ => rfl
@@ -37,7 +39,9 @@ theorem zip_map_eq_zipWith {α β γ : Type*} (f : α → β → γ) :
   | a :: l, b :: l' => by
       rw [List.zip_cons_cons, List.map_cons, List.zipWith_cons_cons, zip_map_eq_zipWith f l l']
 
-/-- The pair-list `verts.zip verts.tail` is duplicate-free when `verts` is.-/
+/-- The pair-list `verts.zip verts.tail` is duplicate-free when `verts` is.
+@isnad1 id=nodup.0h2v.s4.427b0659e891 from=translated src=- shape=92930457 vocab=084700f0
+-/
 theorem zip_tail_nodup {p : HPath k} : (p.verts.zip p.verts.tail).Nodup := by
   apply List.Nodup.of_map Prod.snd
   rw [List.map_snd_zip (by rw [List.length_tail]; omega)]
@@ -45,29 +49,40 @@ theorem zip_tail_nodup {p : HPath k} : (p.verts.zip p.verts.tail).Nodup := by
 
 /-! ## Helpers for `bridge_compMinto_eq_minto` -/
 
+/--
+@isnad1 id=iff.0h3v.s6.a7a9e81c3459 from=translated src=- shape=09d8846f vocab=814e0ac9
+-/
 theorem mem_edges_iff {p : HPath k} {e : Vtx k × Vtx k} :
     e ∈ p.edges ↔ e ∈ p.verts.zip p.verts.tail := List.mem_toFinset
 
-/-- `p.first` is the head of the underlying `verts` list.-/
+/-- `p.first` is the head of the underlying `verts` list.
+@isnad1 id=eq.1h4v.s5.b5fed5eaa88c from=translated src=- shape=bc85e76f vocab=64da2326
+-/
 theorem first_eq {p : HPath k} {a : Vtx k} {t : List (Vtx k)} (hvts : p.verts = a :: t) :
     p.first = a := by
   rw [← p.vert_zero, HPath.vert]
   simp only [hvts, List.getD_cons_zero]
 
-/-- The start vertex of a path is never a tail-position vertex.-/
+/-- The start vertex of a path is never a tail-position vertex.
+@isnad1 id=not.0h2v.s4.11715cbfafb7 from=translated src=- shape=be26dfc3 vocab=c033f75f
+-/
 theorem first_not_mem_tail (p : HPath k) : p.first ∉ p.verts.tail := by
   obtain ⟨a, t, hv⟩ := List.exists_cons_of_ne_nil p.ne
   have hnd : (a :: t).Nodup := hv ▸ p.nodup
   rw [first_eq hv, hv, List.tail_cons]
   exact (List.nodup_cons.mp hnd).1
 
-/-- The target of an edge of `p` lies in the tail vertex list.-/
+/-- The target of an edge of `p` lies in the tail vertex list.
+@isnad1 id=mem.1h3v.s6.ef0bc1bf39c6 from=translated src=- shape=d3c6815c vocab=a93e9fd7
+-/
 theorem snd_mem_tail {p : HPath k} {e : Vtx k × Vtx k}
     (h : e ∈ p.verts.zip p.verts.tail) : e.2 ∈ p.verts.tail := by
   have hmem : e.2 ∈ (p.verts.zip p.verts.tail).map Prod.snd := List.mem_map.mpr ⟨e, h, rfl⟩
   rwa [List.map_snd_zip (by rw [List.length_tail]; omega)] at hmem
 
-/-- Every non-start vertex of a path has an in-edge.-/
+/-- Every non-start vertex of a path has an in-edge.
+@isnad1 id=ex.2h3v.s6.77aec162b58c from=translated src=- shape=5df0b84f vocab=e999944b
+-/
 theorem exists_pred {p : HPath k} {v : Vtx k} (hv : v ∈ p.verts) (hne : v ≠ p.first) :
     ∃ u, (u, v) ∈ p.edges := by
   obtain ⟨a, t, hvts⟩ := List.exists_cons_of_ne_nil p.ne
@@ -86,7 +101,9 @@ theorem exists_pred {p : HPath k} {v : Vtx k} (hv : v ∈ p.verts) (hne : v ≠ 
   have : (e.1, v) = e := by rw [← hesnd]
   rw [this]; exact he
 
-/-- On a path-component `p` of `X`, the (component-)tails are exactly `{p[1]}`.-/
+/-- On a path-component `p` of `X`, the (component-)tails are exactly `{p[1]}`.
+@isnad1 id=eq.1h3v.s5.9ce01f54b1ef from=translated src=- shape=e7f732c3 vocab=1e4bbf1b
+-/
 theorem compTails_eq {p : HPath k} {X : Finset (Vtx k × Vtx k)}
     (hp : IsPathComponent p X) : compTails X p.vertsFinset = {p.first} := by
   ext v
@@ -115,6 +132,9 @@ theorem compTails_eq {p : HPath k} {X : Finset (Vtx k × Vtx k)}
 
 /-! ## A simple path has out-degree ≤ 1 and in-degree ≤ 1 (for `clm_degree`) -/
 
+/--
+@isnad1 id=le.0h3v.s4.da40f95e5a4b from=translated src=- shape=e7a3eee2 vocab=493e678f
+-/
 theorem path_out_le_one (P : HPath k) (v : Vtx k) : (outV P.edges v).card ≤ 1 := by
   rw [Finset.card_le_one]
   intro a ha b hb
@@ -131,6 +151,9 @@ theorem path_out_le_one (P : HPath k) (v : Vtx k) : (outV P.edges v).card ≤ 1 
   subst hij
   exact hia.symm.trans hjb
 
+/--
+@isnad1 id=le.0h3v.s4.49686278d4d6 from=translated src=- shape=e7a3eee2 vocab=837fb368
+-/
 theorem path_into_le_one (P : HPath k) (v : Vtx k) : (intoV P.edges v).card ≤ 1 := by
   rw [Finset.card_le_one]
   intro a ha b hb
@@ -152,7 +175,9 @@ theorem path_into_le_one (P : HPath k) (v : Vtx k) : (intoV P.edges v).card ≤ 
 
 /-! ## Edge weights are `≥ 1` (for `lem_weightrule`) -/
 
-/-- A duplicate-free list over a subsingleton type has length `≤ 1`.-/
+/-- A duplicate-free list over a subsingleton type has length `≤ 1`.
+@isnad1 id=le.1h2v.s4.a40ce1802c8d from=translated src=- shape=3e5c8985 vocab=2f11d0ec
+-/
 theorem length_le_one_of_subsingleton {α : Type*} [Subsingleton α] {l : List α}
     (h : l.Nodup) : l.length ≤ 1 := by
   match l, h with
@@ -163,7 +188,9 @@ theorem length_le_one_of_subsingleton {α : Type*} [Subsingleton α] {l : List �
         (Subsingleton.elim a b ▸ (List.nodup_cons.mp h).1)
 
 /-- Over the empty alphabet (`k = 0`) the vertex set is a singleton, so any `HPath` has no
-edges.-/
+edges.
+@isnad1 id=eq.0h1v.s5.9a647e463643 from=translated src=- shape=1f77394b vocab=82d15ec0
+-/
 theorem edges_eq_empty_zero (P : HPath 0) : P.edges = ∅ := by
   have hsub : Subsingleton (Vtx 0) := ⟨fun x y => Subtype.ext (by
     have hx : x.1 = [] := (List.toFinset_eq_empty_iff x.1).mp
@@ -180,7 +207,9 @@ theorem edges_eq_empty_zero (P : HPath 0) : P.edges = ∅ := by
   rw [List.length_tail] at hpos
   omega
 
-/-- Every edge of a path has weight `≥ 1`.-/
+/-- Every edge of a path has weight `≥ 1`.
+@isnad1 id=le.1h3v.s6.6d46fc3df8c7 from=translated src=- shape=053f9f8f vocab=f56780da
+-/
 theorem one_le_ew_of_mem_edges {P : HPath k} {e : Vtx k × Vtx k}
     (he : e ∈ P.edges) : 1 ≤ ew k e.1 e.2 := by
   rcases Nat.eq_zero_or_pos k with rfl | hk
@@ -189,23 +218,37 @@ theorem one_le_ew_of_mem_edges {P : HPath k} {e : Vtx k × Vtx k}
 
 /-! ## Degree bounds for the transformed graph `f(P,S)` (`clm_degree`) -/
 
+/--
+@isnad1 id=injectiv.0h1v.s3.169dcaa4cc2f from=translated src=- shape=2f9cf4fe vocab=f500c2cc
+-/
 theorem sigma_inj : Function.Injective (sigma : Vtx k → Vtx k) := by
   intro a b h
   apply Subtype.ext
   have hval : a.1.rotate 1 = b.1.rotate 1 := congrArg Subtype.val h
   exact List.rotate_injective 1 hval
 
+/--
+@isnad1 id=le.1h4v.s6.8bc7121a3922 from=translated src=- shape=3c990b99 vocab=73d1574c
+-/
 theorem outV_mono {X Y : Finset (Vtx k × Vtx k)} (h : X ⊆ Y) (v : Vtx k) :
     outV X v ⊆ outV Y v := Finset.filter_subset_filter _ h
 
+/--
+@isnad1 id=le.1h4v.s6.0e95e0c89700 from=translated src=- shape=3c990b99 vocab=58e54095
+-/
 theorem intoV_mono {X Y : Finset (Vtx k × Vtx k)} (h : X ⊆ Y) (v : Vtx k) :
     intoV X v ⊆ intoV Y v := Finset.filter_subset_filter _ h
 
+/--
+@isnad1 id=eq.0h4v.s7.37c2c9a80bbd from=translated src=- shape=972d5e88 vocab=c45b379b
+-/
 theorem intoV_union (X Y : Finset (Vtx k × Vtx k)) (v : Vtx k) :
     intoV (X ∪ Y) v = intoV X v ∪ intoV Y v := by
   simp only [intoV, into, Finset.filter_union]
 
-/-- At most one added 1-edge points at any given vertex (`σ` is injective).-/
+/-- At most one added 1-edge points at any given vertex (`σ` is injective).
+@isnad1 id=le.0h3v.s4.70cea20907f4 from=translated src=- shape=078f6220 vocab=e9af69db
+-/
 theorem intoV_addedEdges_le_one (S : Finset (Vtx k)) (v : Vtx k) :
     (intoV (addedEdges S) v).card ≤ 1 := by
   rw [Finset.card_le_one]
@@ -220,7 +263,9 @@ theorem intoV_addedEdges_le_one (S : Finset (Vtx k)) (v : Vtx k) :
   have hww : w = w' := sigma_inj (hs2.trans hs'2.symm)
   rw [hww]
 
-/-- Out-degree of the Step-1 graph is `≤ 1`.-/
+/-- Out-degree of the Step-1 graph is `≤ 1`.
+@isnad1 id=le.0h4v.s5.f960a4eda9d5 from=translated src=- shape=38744f87 vocab=83bcf353
+-/
 theorem outV_Xstep1_le_one (P : HPath k) (S : Finset (Vtx k)) (v : Vtx k) :
     (outV (Xstep1 P S) v).card ≤ 1 := by
   by_cases hvS : v ∈ S
@@ -251,12 +296,16 @@ theorem outV_Xstep1_le_one (P : HPath k) (S : Finset (Vtx k)) (v : Vtx k) :
       have hwv : w = v := by rw [← hwe] at he1; exact he1
       exact hvS (hwv ▸ hwS)
 
-/-- Out-degree of `f(P,S)` is `≤ 1` (Step 1 gives each vertex a unique out-edge).-/
+/-- Out-degree of `f(P,S)` is `≤ 1` (Step 1 gives each vertex a unique out-edge).
+@isnad1 id=le.0h4v.s5.29907e6ef943 from=translated src=- shape=38744f87 vocab=8cf2593a
+-/
 theorem outV_fPS_le_one (P : HPath k) (S : Finset (Vtx k)) (v : Vtx k) :
     (outV (fPS P S) v).card ≤ 1 :=
   le_trans (Finset.card_le_card (outV_mono (fPS_subset_step1 P S) v)) (outV_Xstep1_le_one P S v)
 
-/-- In-degree of `f(P,S)` is `≤ 1` (Step 2 deletes the doubled `P`-in-edge).-/
+/-- In-degree of `f(P,S)` is `≤ 1` (Step 2 deletes the doubled `P`-in-edge).
+@isnad1 id=le.1h4v.s5.9040a491e471 from=translated src=- shape=7cdbec4a vocab=6535a9aa
+-/
 theorem intoV_fPS_le_one (P : HPath k) (S : Finset (Vtx k)) (_hS : SPrecond P S) (v : Vtx k) :
     (intoV (fPS P S) v).card ≤ 1 := by
   have hAle : (intoV (P.edges \ E1removed P S) v).card ≤ 1 :=
@@ -289,7 +338,9 @@ theorem intoV_fPS_le_one (P : HPath k) (S : Finset (Vtx k)) (_hS : SPrecond P S)
     · exact ⟨hA, he2⟩
 
 /-- If `b` is a Step-2 vertex (a `double`), then in `f(P,S)` it still has an in-edge — the
-added 1-edge survives Step 2 (it is not a `P`-edge, by the S-precondition).-/
+added 1-edge survives Step 2 (it is not a `P`-edge, by the S-precondition).
+@isnad1 id=nonempty.2h4v.s5.b2615b0c8bf4 from=translated src=- shape=0214de53 vocab=d7ceb44d
+-/
 theorem double_has_surviving_inedge (P : HPath k) (S : Finset (Vtx k)) (hS : SPrecond P S)
     {b : Vtx k} (hb : b ∈ doubles P S) : (intoV (fPS P S) b).Nonempty := by
   simp only [doubles, Finset.mem_filter] at hb
@@ -320,7 +371,9 @@ theorem double_has_surviving_inedge (P : HPath k) (S : Finset (Vtx k)) (hS : SPr
   exact hS w hwS hmemP
 
 /-- If `a ∈ S`, its added 1-edge `(a → σa)` survives into `f(P,S)` (S-precondition), so `a`
-has an out-edge.-/
+has an out-edge.
+@isnad1 id=nonempty.2h4v.s5.70bbe78224e3 from=translated src=- shape=dc51ed4e vocab=ba8aed4b
+-/
 theorem outV_fPS_ne_empty_of_mem_S (P : HPath k) (S : Finset (Vtx k)) (hS : SPrecond P S)
     {a : Vtx k} (ha : a ∈ S) : (outV (fPS P S) a).Nonempty := by
   refine ⟨(a, sigma a), ?_⟩
@@ -334,7 +387,9 @@ theorem outV_fPS_ne_empty_of_mem_S (P : HPath k) (S : Finset (Vtx k)) (hS : SPre
     exact hS a ha (E2removed_subset P S hcon)
 
 /-- The bridge behind `clm-e2`: for a `P`-edge `e`, its target is a `double` iff its source
-becomes a head (out-degree 0) of `f(P,S)`.-/
+becomes a head (out-degree 0) of `f(P,S)`.
+@isnad1 id=iff.2h4v.s6.1711f1e7da6d from=translated src=- shape=cf08c3e8 vocab=2933c834
+-/
 theorem key_doubles_iff (P : HPath k) (S : Finset (Vtx k)) (hS : SPrecond P S)
     {e : Vtx k × Vtx k} (heP : e ∈ P.edges) :
     e.2 ∈ doubles P S ↔ outV (fPS P S) e.1 = ∅ := by
@@ -394,7 +449,9 @@ theorem key_doubles_iff (P : HPath k) (S : Finset (Vtx k)) (hS : SPrecond P S)
 
 /-! ## Existence of a Hamiltonian path (for `b1`) -/
 
-/-- `Vtx k` is always inhabited: `[1,…,k]` is a permutation word.-/
+/-- `Vtx k` is always inhabited: `[1,…,k]` is a permutation word.
+@isnad1 id=nonempty.0h1v.s2.534bfef30eb7 from=translated src=- shape=76a08d12 vocab=be208c8f
+-/
 theorem vtx_nonempty (k : ℕ) : Nonempty (Vtx k) := by
   refine ⟨⟨(List.range k).map (· + 1), ?_, ?_⟩⟩
   · exact (List.nodup_range).map (fun a b h => by omega)
@@ -405,7 +462,9 @@ theorem vtx_nonempty (k : ℕ) : Nonempty (Vtx k) := by
     · rintro ⟨h1, h2⟩; exact ⟨x - 1, by omega, by omega⟩
 
 /-- The complete digraph `𝒮_k` has a Hamiltonian path (any ordering of all vertices, since
-`HPath` imposes no per-edge constraint).-/
+`HPath` imposes no per-edge constraint).
+@isnad1 id=ex.0h1v.s3.b7f468c66279 from=translated src=- shape=1c0aca99 vocab=e77b6889
+-/
 theorem exists_ham (k : ℕ) : ∃ P : HPath k, P.IsHamiltonian := by
   haveI := vtx_nonempty k
   refine ⟨⟨Finset.univ.toList, ?_, Finset.nodup_toList _⟩, ?_⟩
@@ -416,13 +475,17 @@ end ProofsSpine
 
 namespace Proved
 
-/-- **bridge: w(E(p)) = w(p)**.-/
+/-- **bridge: w(E(p)) = w(p)**.
+@isnad1 id=eq.0h2v.s3.a3d21c20b59d from=translated src=- shape=74148a6e vocab=5a614c9f
+-/
 theorem bridge_wEdges_edges_eq_wtP {k : ℕ} (p : HPath k) : wEdges p.edges = p.wtP := by
   rw [wEdges, HPath.edges, HPath.wtP,
     List.sum_toFinset _ ProofsSpine.zip_tail_nodup,
     ProofsSpine.zip_map_eq_zipWith (ew k)]
 
-/-- **bridge: compMinto agrees with minto** on a path-component.-/
+/-- **bridge: compMinto agrees with minto** on a path-component.
+@isnad1 id=eq.1h3v.s4.ccd92a342df7 from=translated src=- shape=7d30c5dc vocab=4e812ed7
+-/
 theorem bridge_compMinto_eq_minto {k : ℕ} {p : HPath k} {X : Finset (Vtx k × Vtx k)}
     (hp : IsPathComponent p X) : compMinto X p.vertsFinset = p.minto := by
   rw [compMinto, ProofsSpine.compTails_eq hp, HPath.minto]
@@ -438,13 +501,17 @@ theorem bridge_compMinto_eq_minto {k : ℕ} {p : HPath k} {X : Finset (Vtx k × 
     exact ⟨v, fun h => hv (HPath.mem_vertsFinset.mp h), p.first, Finset.mem_singleton_self _, hew⟩
 
 /-- **clm-degree** — `Comps(f(P,S))` is a set of directed paths and cycles: every vertex has
-out-degree `≤ 1` and in-degree `≤ 1` in `X = f(P,S)`.  [PROVED outright].-/
+out-degree `≤ 1` and in-degree `≤ 1` in `X = f(P,S)`.  [PROVED outright].
+@isnad1 id=and.1h4v.s5.3ffc9ee597b2 from=translated src=- shape=3f3c4103 vocab=16a40312
+-/
 theorem clm_degree {k : ℕ} {P : HPath k} {S : Finset (Vtx k)} (hS : SPrecond P S) :
     ∀ v : Vtx k, (outV (fPS P S) v).card ≤ 1 ∧ (intoV (fPS P S) v).card ≤ 1 :=
   fun v => ⟨ProofsSpine.outV_fPS_le_one P S v, ProofsSpine.intoV_fPS_le_one P S hS v⟩
 
 /-- **clm-e1** — `into(P, T(X) ∖ T(P)) ⊆ E₁`.  [PROVED outright] — from `clm_degree`'s
-Step-2 analysis (a doubled target keeps its added in-edge) and the S-precondition.-/
+Step-2 analysis (a doubled target keeps its added in-edge) and the S-precondition.
+@isnad1 id=le.1h3v.s6.c22dcaab6371 from=translated src=- shape=69698232 vocab=86bd8d35
+-/
 theorem clm_e1 {k : ℕ} {P : HPath k} {S : Finset (Vtx k)} (hS : SPrecond P S) :
     into P.edges (tails (fPS P S) \ tails P.edges) ⊆ E1removed P S := by
   intro e he
@@ -471,7 +538,9 @@ theorem clm_e1 {k : ℕ} {P : HPath k} {S : Finset (Vtx k)} (hS : SPrecond P S) 
     rw [hempty] at hmem; exact absurd hmem (Finset.notMem_empty _)
 
 /-- **clm-e2** — `E₂ = out(P, H(X) ∖ H(P))`.  [PROVED outright] — from `clm_degree`
-(via `key_doubles_iff`: a `P`-edge's target doubles iff its source becomes a head).-/
+(via `key_doubles_iff`: a `P`-edge's target doubles iff its source becomes a head).
+@isnad1 id=eq.1h3v.s6.d8ce19e0487b from=translated src=- shape=50e11e65 vocab=92025360
+-/
 theorem clm_e2 {k : ℕ} {P : HPath k} {S : Finset (Vtx k)} (hS : SPrecond P S) :
     E2removed P S = out P.edges (heads (fPS P S) \ heads P.edges) := by
   ext e
@@ -490,7 +559,9 @@ theorem clm_e2 {k : ℕ} {P : HPath k} {S : Finset (Vtx k)} (hS : SPrecond P S) 
     exact ⟨heP, (ProofsSpine.key_doubles_iff P S hS heP).mpr hhead.2⟩
 
 /-- **b1** — Bound 1.  Proved taking `prp_wPgivenX` (a §5 target owned by this track but not
-yet discharged outright) as an explicit hypothesis `h_wP`.-/
+yet discharged outright) as an explicit hypothesis `h_wP`.
+@isnad1 id=le.1h1v.s7.0b437e6a63e9 from=translated src=- shape=bc0a4e16 vocab=9bbd9f3a
+-/
 theorem b1 {k : ℕ}
     (h_wP : ∀ (P : HPath k), P.IsHamiltonian →
       P.wtP ≥ (numComps (F P) - 1) + MinThrough (F P) + wEdges (F P)) :
@@ -508,7 +579,9 @@ theorem b1 {k : ℕ}
 
 /-- **lem-weightrule** — proved from `clm_eqq` (taken as the explicit hypothesis `h_eqq`,
 the one §4 weight-bookkeeping target it builds on) plus the proved `clm_e1`, `clm_e2` and
-`ew ≥ 1`.-/
+`ew ≥ 1`.
+@isnad1 id=le.2h3v.s8.10d8fe7f5c74 from=translated src=- shape=44a97c57 vocab=a3de86ea
+-/
 theorem lem_weightrule {k : ℕ} {P : HPath k} {S : Finset (Vtx k)} (hS : SPrecond P S)
     (h_eqq : (P.wtP : ℤ) = (wEdges (fPS P S) : ℤ)
       + ∑ e ∈ E1removed P S, ((ew k e.1 e.2 : ℤ) - 1)

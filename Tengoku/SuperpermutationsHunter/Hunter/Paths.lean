@@ -44,6 +44,9 @@ namespace HPath
 /-- Hunter §2.4: `|p| = x`, the number of **vertices**.-/
 def numVerts (p : HPath k) : ℕ := p.verts.length
 
+/--
+@isnad1 id=lt.0h2v.s4.7aec0cbf52ca from=translated src=- shape=179c2224 vocab=f9cf8d0d
+-/
 theorem numVerts_pos (p : HPath k) : 0 < p.numVerts :=
   List.length_pos_of_ne_nil p.ne
 
@@ -111,19 +114,34 @@ noncomputable def minto (p : HPath k) : ℕ :=
 
 /-! ## Small free lemmas -/
 
+/--
+@isnad1 id=eq.0h2v.s4.c2e2eb31a553 from=translated src=- shape=f8e753f1 vocab=49134b6c
+-/
 theorem vert_zero (p : HPath k) : p.vert 0 = p.first := by
   obtain ⟨a, t, h⟩ := List.exists_cons_of_ne_nil p.ne
   simp only [vert, first, h, List.getD_cons_zero, List.head_cons]
 
+/--
+@isnad1 id=mem.0h2v.s4.fde97470dfc1 from=translated src=- shape=c57939ea vocab=96f18866
+-/
 theorem first_mem (p : HPath k) : p.first ∈ p.verts := by
   rw [first]; exact List.head_mem p.ne
 
+/--
+@isnad1 id=mem.0h2v.s4.57a601ff254a from=translated src=- shape=c57939ea vocab=b14eccee
+-/
 theorem last_mem (p : HPath k) : p.last ∈ p.verts := by
   rw [last]; exact List.getLast_mem p.ne
 
+/--
+@isnad1 id=iff.0h3v.s5.025ce41a1f08 from=translated src=- shape=fe188c54 vocab=26ebaf5c
+-/
 @[simp] theorem mem_vertsFinset {p : HPath k} {v : Vtx k} :
     v ∈ p.vertsFinset ↔ v ∈ p.verts := List.mem_toFinset
 
+/--
+@isnad1 id=eq.1h2v.s4.589699a7f675 from=translated src=- shape=1a39019e vocab=cf454a79
+-/
 theorem numVerts_eq_card_of_hamiltonian {p : HPath k} (h : p.IsHamiltonian) :
     p.numVerts = Fintype.card (Vtx k) := by
   rw [numVerts, ← List.toFinset_card_of_nodup p.nodup]

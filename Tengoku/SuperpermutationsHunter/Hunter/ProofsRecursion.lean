@@ -53,7 +53,9 @@ variable {k : ℕ}
 
 /-! ## The unconditional-length summation bound `w(p) ≥ jbase(ℓ)` -/
 
-/-- The edge weight never exceeds `k` (permutation words have length `k`).-/
+/-- The edge weight never exceeds `k` (permutation words have length `k`).
+@isnad1 id=le.1h3v.s4.8fc648d6d9c8 from=translated src=- shape=0445e275 vocab=5f96ec61
+-/
 theorem ew_le_k (hk : 1 ≤ k) (u v : Vtx k) : ew k u v ≤ k := by
   have hlen : (u : List ℕ).length = k := u.2.length
   exact (wt_spec hk (le_of_eq hlen)).2.1
@@ -61,7 +63,9 @@ theorem ew_le_k (hk : 1 ≤ k) (u v : Vtx k) : ew k u v ≤ k := by
 /-- The summation lower bound, **for every exitless path**, without the base-region
 restriction: `w(p) ≥ ℓ + ⌈ℓ/k⌉ + ⌈ℓ/(k(k−1))⌉ − 3` where `ℓ = |p|`.  (This is `wtP_ge_j`
 with the `j_base` unfolding deleted; the RHS is the base *formula* value `jbase(ℓ)`, which is
-`≤ j_k(ℓ)`, so this alone does **not** settle the recursion region.)-/
+`≤ j_k(ℓ)`, so this alone does **not** settle the recursion region.)
+@isnad1 id=le.3h2v.s7.d88568974c87 from=translated src=- shape=aec2a518 vocab=84a42cd9
+-/
 theorem wtP_ge_jbase {k : ℕ} (hk : 3 ≤ k) {p : HPath k} (hp : p.Exitless)
     (hℓ0 : 0 < p.numVerts) :
     p.numVerts + (p.numVerts ⌈/⌉ k) + (p.numVerts ⌈/⌉ (k * (k - 1))) - 3 ≤ p.wtP := by
@@ -82,7 +86,9 @@ theorem wtP_ge_jbase {k : ℕ} (hk : 3 ≤ k) {p : HPath k} (hp : p.Exitless)
 
 /-! ## The exact weight decomposition -/
 
-/-- Auxiliary: `∑_{q=1}^{k} [q ≤ e] = e` when `1 ≤ e ≤ k`.-/
+/-- Auxiliary: `∑_{q=1}^{k} [q ≤ e] = e` when `1 ≤ e ≤ k`.
+@isnad1 id=eq.2h2v.s5.9eb3aa9e67b9 from=translated src=- shape=4cd9a18c vocab=b4ee8147
+-/
 theorem sum_indicator_Icc {e : ℕ} (he1 : 1 ≤ e) (hek : e ≤ k) :
     ∑ q ∈ Finset.Icc 1 k, (if q ≤ e then (1 : ℕ) else 0) = e := by
   rw [← Finset.card_filter]
@@ -95,7 +101,9 @@ theorem sum_indicator_Icc {e : ℕ} (he1 : 1 ≤ e) (hek : e ≤ k) :
 
 /-- **Exact full weight split.**  `w(p) = Σ_{q=1}^{k} #{q+-edges}` — the layer-cake identity
 for the path weight (each edge of weight `w` contributes `1` to every layer `q ≤ w`, and edge
-weights are `≤ k`).-/
+weights are `≤ k`).
+@isnad1 id=eq.1h2v.s5.13879825f2b0 from=translated src=- shape=254cae25 vocab=d259a522
+-/
 theorem wtP_eq_sum_edgeCountGe {k : ℕ} (hk : 1 ≤ k) (p : HPath k) :
     p.wtP = ∑ q ∈ Finset.Icc 1 k, edgeCountGe p q := by
   have key : ∀ q : ℕ, edgeCountGe p q = ∑ i ∈ Finset.range (p.numVerts - 1),
@@ -115,7 +123,9 @@ noncomputable def excess (p : HPath k) : ℕ := ∑ r ∈ Finset.Icc 3 k, edgeCo
 /-- **Weight decomposition into the fixed part plus the excess.**  For an exitless path,
 `w(p) = (ℓ−1) + (⌈ℓ/k⌉−1) + excess(p)`, where the first two summands are `prp_1edgebound`
 and `prp_2edgebound` (the `1+`- and `2+`-edge counts) and the excess collects everything of
-weight `≥3`.  This pins the entire recursion gap onto `excess`.-/
+weight `≥3`.  This pins the entire recursion gap onto `excess`.
+@isnad1 id=eq.2h2v.s6.8712b5d36a50 from=translated src=- shape=242cf395 vocab=dbabb780
+-/
 theorem wtP_decompose {k : ℕ} (hk : 3 ≤ k) {p : HPath k} (hp : p.Exitless) :
     p.wtP = (p.numVerts - 1) + (p.numVerts ⌈/⌉ k - 1) + excess p := by
   have hk1 : 1 ≤ k := by omega
@@ -136,7 +146,9 @@ theorem wtP_decompose {k : ℕ} (hk : 3 ≤ k) {p : HPath k} (hp : p.Exitless) :
 
 /-! ## The frontier and the reduction of `thm2` to it -/
 
-/-- `edgeCountGe p 3 ≤ excess p` (the excess dominates its first layer).-/
+/-- `edgeCountGe p 3 ≤ excess p` (the excess dominates its first layer).
+@isnad1 id=le.1h2v.s4.99113fc52599 from=translated src=- shape=175b7f3b vocab=d58aaacb
+-/
 theorem edgeCountGe3_le_excess {k : ℕ} (hk : 3 ≤ k) (p : HPath k) :
     edgeCountGe p 3 ≤ excess p := by
   apply Finset.single_le_sum (f := fun r => edgeCountGe p r) (fun i _ => Nat.zero_le _)
@@ -153,7 +165,9 @@ def ExcessFrontier (k : ℕ) : Prop :=
 
 /-- **Base-region frontier** — the frontier inequality holds whenever `ℓ ≤ k(k−1)(k−2)`.
 This is exactly `prp_3edgebound` repackaged through the exact weight split, and it re-derives
-`thm2_base_unconditional` via `thm2_of_frontier`.-/
+`thm2_base_unconditional` via `thm2_of_frontier`.
+@isnad1 id=le.4h2v.s7.c10176e2e9a3 from=translated src=- shape=af200e75 vocab=ad11376b
+-/
 theorem excess_frontier_base {k : ℕ} (hk : 3 ≤ k) {q : HPath k} (hq : q.Exitless)
     (h0 : 0 < q.numVerts) (hle : q.numVerts ≤ k * (k - 1) * (k - 2)) :
     j k q.numVerts ≤ (q.numVerts - 1) + (q.numVerts ⌈/⌉ k - 1) + excess q := by
@@ -171,7 +185,9 @@ theorem excess_frontier_base {k : ℕ} (hk : 3 ≤ k) {q : HPath k} (hq : q.Exit
 /-- **Reduction of `thm2` to the frontier.**  Given `ExcessFrontier k`, Hunter's Theorem 2
 holds for *all* lengths: `j_k(ℓ) ≤ i_k(ℓ)`.  The proof is the exact weight split
 `wtP_decompose` applied to the weight-minimising exitless witness, so all `sInf`/`j`-recursion
-bookkeeping is discharged here and only the combinatorial `ExcessFrontier` remains open.-/
+bookkeeping is discharged here and only the combinatorial `ExcessFrontier` remains open.
+@isnad1 id=le.3h2v.s4.846e79dc6021 from=translated src=- shape=ca171c50 vocab=27a8095e
+-/
 theorem thm2_of_frontier {k ℓ : ℕ} (hk : 3 ≤ k) (hfr : ExcessFrontier k)
     (hex : HasExitlessPath k ℓ) :
     j k ℓ ≤ iExitless k ℓ := by
@@ -187,7 +203,9 @@ theorem thm2_of_frontier {k ℓ : ℕ} (hk : 3 ≤ k) (hfr : ExcessFrontier k)
 
 /-! ## The recursion unfolding and the size of the frontier gap -/
 
-/-- `ℓ₀ = k(k−1)(k−2) − k > 0` for `k ≥ 3`.-/
+/-- `ℓ₀ = k(k−1)(k−2) − k > 0` for `k ≥ 3`.
+@isnad1 id=lt.1h1v.s4.8142cfb40507 from=translated src=- shape=a8dc2df9 vocab=e687650a
+-/
 theorem ell0_pos {k : ℕ} (hk : 3 ≤ k) : 0 < ell0 k := by
   have hm : 2 ≤ (k - 1) * (k - 2) := by
     have h := Nat.mul_le_mul (show 2 ≤ k - 1 by omega) (show 1 ≤ k - 2 by omega)
@@ -198,7 +216,9 @@ theorem ell0_pos {k : ℕ} (hk : 3 ≤ k) : 0 < ell0 k := by
   rw [ell0]; omega
 
 /-- **Clean one-step recursion unfolding.**  For `ℓ` in the recursion region the messy
-`¬(… ∨ …)` guard of `j_rec` is discharged, giving `j_k(ℓ) = j_k(ℓ−ℓ₀) + j_k(ℓ₀) + 3`.-/
+`¬(… ∨ …)` guard of `j_rec` is discharged, giving `j_k(ℓ) = j_k(ℓ−ℓ₀) + j_k(ℓ₀) + 3`.
+@isnad1 id=eq.2h2v.s6.3ba1eb32c047 from=translated src=- shape=9ed37a9c vocab=1ea4d67e
+-/
 theorem j_rec_unfold_one {k ℓ : ℕ} (hk : 3 ≤ k) (hℓ : k * (k - 1) * (k - 2) < ℓ) :
     j k ℓ = j k (ℓ - ell0 k) + j k (ell0 k) + 3 := by
   apply j_rec
@@ -209,13 +229,17 @@ theorem j_rec_unfold_one {k ℓ : ℕ} (hk : 3 ≤ k) (hℓ : k * (k - 1) * (k -
 
 /-! ## `thm2` for `k ≤ 4` (the recursion region is vacuous there) -/
 
-/-- `|permsOf S| = |S|!` — the number of duplicate-free words with symbol set `S`.-/
+/-- `|permsOf S| = |S|!` — the number of duplicate-free words with symbol set `S`.
+@isnad1 id=eq.0h1v.s3.4ce74f3860ef from=translated src=- shape=3316eea8 vocab=6ad92102
+-/
 theorem card_permsOf (S : Finset ℕ) : (permsOf S).card = Nat.factorial S.card := by
   rw [permsOf, List.toFinset_card_of_nodup
       (List.nodup_permutations _ (S.sort_nodup (· ≤ ·))),
       List.length_permutations, Finset.length_sort]
 
-/-- The vertex set has exactly `k!` elements.-/
+/-- The vertex set has exactly `k!` elements.
+@isnad1 id=eq.0h1v.s3.e0446f2b429d from=translated src=- shape=c52356c6 vocab=c2d7143b
+-/
 theorem card_Vtx (k : ℕ) : Fintype.card (Vtx k) = Nat.factorial k := by
   have e : Vtx k ≃ {w // w ∈ permsOf (Finset.Icc 1 k)} :=
     Equiv.subtypeEquivRight (fun w =>
@@ -225,7 +249,9 @@ theorem card_Vtx (k : ℕ) : Fintype.card (Vtx k) = Nat.factorial k := by
 
 /-- **thm2 for `k ≤ 4`.**  For `k ∈ {3,4}` the recursion region `ℓ > k(k−1)(k−2)` is empty
 (every exitless path has `≤ k! = k(k−1)(k−2)` vertices), so Theorem 2 reduces entirely to the
-base region and is fully proved unconditionally.-/
+base region and is fully proved unconditionally.
+@isnad1 id=le.3h2v.s5.13ece5f021f3 from=translated src=- shape=e7791979 vocab=d77aa092
+-/
 theorem thm2_small {k ℓ : ℕ} (hk : 3 ≤ k) (hk4 : k ≤ 4) (hex : HasExitlessPath k ℓ) :
     j k ℓ ≤ iExitless k ℓ := by
   obtain ⟨p, hpe, hpv⟩ := hex

@@ -97,16 +97,26 @@ noncomputable def Rk (k : ℕ) : ℝ :=
 
 /-! ## Small free lemmas -/
 
+/--
+@isnad1 id=eq.0h1v.s4.30c3d0358e64 from=translated src=- shape=5d930500 vocab=063bf5b5
+-/
 theorem lstar_eq (k : ℕ) : Lstar k = L k + k := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.c68922181271 from=translated src=- shape=b82588d3 vocab=e81991b3
+-/
 theorem ell0_eq (k : ℕ) : ell0 k = k * (k - 1) * (k - 2) - k := rfl
 
-/-- The base branch of `j` (unfolding lemma).-/
+/-- The base branch of `j` (unfolding lemma).
+@isnad1 id=eq.1h2v.s7.9c3d1daba92d from=translated src=- shape=071ccb03 vocab=ff0dbf29
+-/
 theorem j_base {k ℓ : ℕ} (h : ℓ ≤ k * (k - 1) * (k - 2) ∨ k * (k - 1) * (k - 2) - k = 0) :
     j k ℓ = ℓ + (ℓ ⌈/⌉ k) + (ℓ ⌈/⌉ (k * (k - 1))) - 3 := by
   rw [j]; exact dite_eq_left h
 
-/-- The recursive branch of `j` (unfolding lemma).-/
+/-- The recursive branch of `j` (unfolding lemma).
+@isnad1 id=eq.1h2v.s7.8c3ce36d3833 from=translated src=- shape=0812af3f vocab=eeff3e7c
+-/
 theorem j_rec {k ℓ : ℕ}
     (h : ¬ (ℓ ≤ k * (k - 1) * (k - 2) ∨ k * (k - 1) * (k - 2) - k = 0)) :
     j k ℓ = j k (ℓ - ell0 k) + j k (ell0 k) + 3 := by

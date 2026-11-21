@@ -51,7 +51,9 @@ disjointnesses and `addedEdges S ⊆ X`, then `f(P,S) = X`.
 Concretely, in the unwinding: `addedEdges S = FE` = the restored first-edges
 `pᵢ[1]→pᵢ[2]`, `E₁ = HC` = the head-chain `pᵢ[1]→p_{i+1}[1]`, `E₂ = BL` = the back-links
 `p_{i+1}[last]→pᵢ[2]`.  Step 1 turns `E(P)` into `(X ∖ FE) ∪ BL ∪ FE = X ∪ BL`; Step 2
-removes `BL`, leaving `X`.-/
+removes `BL`, leaving `X`.
+@isnad1 id=eq.5h4v.s8.c118dd5ccc26 from=translated src=- shape=edef89a5 vocab=e55adf41
+-/
 theorem fPS_eq_of_edges (P : HPath k) (S : Finset (Vtx k)) (X : Finset (Vtx k × Vtx k))
     (hEdges : P.edges = (X \ addedEdges S) ∪ E1removed P S ∪ E2removed P S)
     (hFEsub : addedEdges S ⊆ X)
@@ -87,7 +89,9 @@ the head block (before all tails) and the rest of `pᵢ` sits, in forward order,
 contiguous block of the tail flatten. -/
 
 /-- Within a duplicate-free `flatten`, elements of one block are ordered by their order in
-that block.-/
+that block.
+@isnad1 id=lt.5h5v.s6.e516a61257aa from=translated src=- shape=49f22ea8 vocab=6d94a471
+-/
 theorem idxOf_flatten_lt {α : Type*} [BEq α] [LawfulBEq α] {blocks : List (List α)}
     (hnd : blocks.flatten.Nodup) {D : List α} (hD : D ∈ blocks) {a b : α}
     (ha : a ∈ D) (hb : b ∈ D) (hab : D.idxOf a < D.idxOf b) :
@@ -105,12 +109,16 @@ theorem idxOf_flatten_lt {α : Type*} [BEq α] [LawfulBEq α] {blocks : List (Li
   omega
 
 /-- `unwindVerts ps = heads ++ tails` with `heads = ps.map first`, `tails` the reversed
-remainder flatten.-/
+remainder flatten.
+@isnad1 id=eq.0h2v.s6.d3513459daaa from=translated src=- shape=718f79cf vocab=d00c8ad1
+-/
 theorem unwindVerts_eq (ps : List (HPath k)) :
     unwindVerts ps = ps.map HPath.first ++ (ps.reverse.map (fun p => p.verts.drop 1)).flatten :=
   rfl
 
-/-- A tail vertex (one lying in some `p.verts.drop 1`) is not a head.-/
+/-- A tail vertex (one lying in some `p.verts.drop 1`) is not a head.
+@isnad1 id=not.2h3v.s6.b9d8f6435199 from=translated src=- shape=5f268ac5 vocab=e9cfbfd5
+-/
 theorem tail_not_mem_heads {ps : List (HPath k)} (hnd : (unwindVerts ps).Nodup)
     {v : Vtx k} (hv : v ∈ ((ps.reverse.map (fun p => p.verts.drop 1)).flatten)) :
     v ∉ ps.map HPath.first :=
@@ -121,7 +129,9 @@ theorem tail_not_mem_heads {ps : List (HPath k)} (hnd : (unwindVerts ps).Nodup)
 component `p ∈ ps` agrees with `p`'s own order: `p.pos a < p.pos b ⟹ P.pos a < P.pos b`.
 
 (Stated on the raw `idxOf`, since `(unwindP ps _ _).pos v = (unwindVerts ps).idxOf v`
-definitionally.)-/
+definitionally.)
+@isnad1 id=lt.5h5v.s6.6c145b62a31f from=translated src=- shape=675a63d4 vocab=03643d86
+-/
 theorem idxOf_lt_of_comp_pos_lt {ps : List (HPath k)} (hnd : (unwindVerts ps).Nodup)
     {p : HPath k} (hp : p ∈ ps) {a b : Vtx k}
     (ha : a ∈ p.verts) (hb : b ∈ p.verts) (hab : p.pos a < p.pos b) :
@@ -183,13 +193,18 @@ theorem idxOf_lt_of_comp_pos_lt {ps : List (HPath k)} (hnd : (unwindVerts ps).No
 
 `(unwindP ps _ _).pos v = (unwindVerts ps).idxOf v` definitionally. -/
 
+/--
+@isnad1 id=eq.2h3v.s5.35efc3d43800 from=translated src=- shape=192191e1 vocab=26dffc8a
+-/
 theorem unwindP_pos {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup) (v : Vtx k) :
     (unwindP ps hps hnd).pos v = (unwindVerts ps).idxOf v := rfl
 
 /-- **Lifting `firstInCycle`.**  A `p`-first-in-cycle vertex (of a strongly exitless
 component `p ∈ ps`) is `P`-first-in-cycle, since its whole 1-cycle lies inside `p` and the
-`P`-order restricted to `p` is `p`'s order.-/
+`P`-order restricted to `p` is `p`'s order.
+@isnad1 id=firstinc.6h4v.s6.c75d27eddfed from=translated src=- shape=961cf374 vocab=fd9d9337
+-/
 theorem firstInCycle_lift {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup) {p : HPath k} (hp : p ∈ ps)
     (hpSE : p.StronglyExitless) {w : Vtx k} (hw : w ∈ p.verts)
@@ -210,7 +225,9 @@ theorem firstInCycle_lift {ps : List (HPath k)} (hps : ps ≠ [])
       rw [← h1, ← h2, heq]
     rw [hwu]
 
-/-- `pᵢ[1] ∈ C₀(P)`: the first vertex of each component is first-in-cycle.-/
+/-- `pᵢ[1] ∈ C₀(P)`: the first vertex of each component is first-in-cycle.
+@isnad1 id=mem.5h3v.s6.75915a5f25c2 from=translated src=- shape=30657bb5 vocab=2e601566
+-/
 theorem first_mem_C0 {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup) {p : HPath k} (hp : p ∈ ps)
     (hpSE : p.StronglyExitless) (hk : 1 ≤ k) :
@@ -226,7 +243,9 @@ theorem first_mem_C0 {ps : List (HPath k)} (hps : ps ≠ [])
   exact firstInCycle_lift hps hnd hp hpSE p.first_mem hfic0
 
 /-- `pᵢ[1] ∉ C₋₁(P)`: since `σ(pᵢ[1]) = pᵢ[2]` is *not* first-in-cycle (`pᵢ[1]` is, and comes
-earlier).  Needs `2 ≤ k`.-/
+earlier).  Needs `2 ≤ k`.
+@isnad1 id=not.5h3v.s6.fb830b1ee608 from=translated src=- shape=18f0febd vocab=47212b30
+-/
 theorem first_not_mem_Cm1 {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup) {p : HPath k} (hp : p ∈ ps)
     (hpSE : p.StronglyExitless) (hk : 2 ≤ k) :
@@ -258,7 +277,9 @@ theorem first_not_mem_Cm1 {ps : List (HPath k)} (hps : ps ≠ [])
   omega
 
 /-- Any *non-first* block start of a component is `P`-first-in-cycle (the general form used
-for the `C₋₁` analysis of `Sset`).-/
+for the `C₋₁` analysis of `Sset`).
+@isnad1 id=mem.7h4v.s6.a458a599e12b from=translated src=- shape=aefc6324 vocab=de6667ba
+-/
 theorem blockStart_mem_C0 {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup) {p : HPath k} (hp : p ∈ ps)
     (hpSE : p.StronglyExitless) (hk : 1 ≤ k) {B : ℕ} (hdvd : k ∣ B)
@@ -275,7 +296,9 @@ theorem blockStart_mem_C0 {ps : List (HPath k)} (hps : ps ≠ [])
 The last ingredient: which ordered pairs are consecutive in `heads ++ tails`.  `(NEG)` the
 detoured first-edges are absent; `(POS)` every other component-edge survives. -/
 
-/-- A vertex at component-index `≥ 1` lies in that component's tail `drop 1`.-/
+/-- A vertex at component-index `≥ 1` lies in that component's tail `drop 1`.
+@isnad1 id=mem.2h3v.s5.7660c723df9e from=translated src=- shape=e9a37925 vocab=dd5daf08
+-/
 theorem vert_mem_drop1 {p : HPath k} {j : ℕ} (hj1 : 1 ≤ j) (hj : j < p.numVerts) :
     p.vert j ∈ p.verts.drop 1 := by
   rw [List.drop_one]
@@ -292,14 +315,18 @@ theorem vert_mem_drop1 {p : HPath k} {j : ℕ} (hj1 : 1 ≤ j) (hj : j < p.numVe
   · exact absurd (h.trans (ProofsSpine.first_eq hct).symm) hne_first
   · exact h
 
-/-- Membership in the tail flatten from membership in one component's `drop 1`.-/
+/-- Membership in the tail flatten from membership in one component's `drop 1`.
+@isnad1 id=mem.2h4v.s6.3d9cff85dbfa from=translated src=- shape=fdc2a7ce vocab=038d24ae
+-/
 theorem mem_tails {ps : List (HPath k)} {p : HPath k} (hp : p ∈ ps) {v : Vtx k}
     (hv : v ∈ p.verts.drop 1) :
     v ∈ (ps.reverse.map (fun p => p.verts.drop 1)).flatten :=
   List.mem_flatten.mpr ⟨p.verts.drop 1, List.mem_map.mpr ⟨p, List.mem_reverse.mpr hp, rfl⟩, hv⟩
 
 /-- **(NEG).**  For a non-last component `p ∈ ps.dropLast`, its first-edge `pᵢ[1]→σ(pᵢ[1])`
-is detoured away and is *not* an edge of `P`.-/
+is detoured away and is *not* an edge of `P`.
+@isnad1 id=not.5h3v.s6.503e0c48b311 from=translated src=- shape=568ae36f vocab=adcaac73
+-/
 theorem first_edge_not_mem_edges {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup) {p : HPath k} (hp_dl : p ∈ ps.dropLast)
     (hpSE : p.StronglyExitless) (hk : 2 ≤ k) :
@@ -335,7 +362,9 @@ theorem first_edge_not_mem_edges {ps : List (HPath k)} (hps : ps ≠ [])
   rw [e1, e2] at hsucc
   omega
 
-/-- Within a nodup `flatten`, a within-block successor is a global successor.-/
+/-- Within a nodup `flatten`, a within-block successor is a global successor.
+@isnad1 id=eq.5h5v.s6.4330ddaa0fe3 from=translated src=- shape=33cef880 vocab=4667a351
+-/
 theorem idxOf_flatten_succ {α : Type*} [BEq α] [LawfulBEq α] {blocks : List (List α)}
     (hnd : blocks.flatten.Nodup) {D : List α} (hD : D ∈ blocks) {a b : α}
     (ha : a ∈ D) (hb : b ∈ D) (hab : D.idxOf b = D.idxOf a + 1) :
@@ -351,7 +380,9 @@ theorem idxOf_flatten_succ {α : Type*} [BEq α] [LawfulBEq α] {blocks : List (
     List.idxOf_append_of_mem ha, List.idxOf_append_of_mem hb]
   omega
 
-/-- `idxOf` of `p[j]` inside `p.verts.drop 1` is `j - 1` (for `j ≥ 1`).-/
+/-- `idxOf` of `p[j]` inside `p.verts.drop 1` is `j - 1` (for `j ≥ 1`).
+@isnad1 id=eq.2h3v.s6.94f5e3653975 from=translated src=- shape=2759de99 vocab=000986ef
+-/
 theorem idxOf_drop1_vert {p : HPath k} {j : ℕ} (hj1 : 1 ≤ j) (hj : j < p.numVerts) :
     (p.verts.drop 1).idxOf (p.vert j) = j - 1 := by
   have hnd1 : (p.verts.drop 1).Nodup := p.nodup.sublist (List.drop_sublist _ _)
@@ -363,7 +394,9 @@ theorem idxOf_drop1_vert {p : HPath k} {j : ℕ} (hj1 : 1 ≤ j) (hj : j < p.num
   rw [← hget]; exact hnd1.idxOf_getElem (j - 1) hlen
 
 /-- **(POS, interior).**  Every component-edge `p[j]→p[j+1]` with `j ≥ 1` survives in `P`
-(it lies inside the contiguous tail block `p.verts.drop 1`).-/
+(it lies inside the contiguous tail block `p.verts.drop 1`).
+@isnad1 id=mem.5h4v.s7.cc283eb87b5f from=translated src=- shape=64851532 vocab=095785f0
+-/
 theorem interior_edge_mem {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup) {p : HPath k} (hp : p ∈ ps) {j : ℕ}
     (hj1 : 1 ≤ j) (hj : j + 1 < p.numVerts) :
@@ -405,7 +438,9 @@ theorem interior_edge_mem {ps : List (HPath k)} (hps : ps ≠ [])
   exact key
 
 /-- **(POS, junction).**  The *last* component's first-edge `pₙ[1]→σ(pₙ[1])` survives — it is
-the head→tail junction of the walk.-/
+the head→tail junction of the walk.
+@isnad1 id=mem.4h2v.s6.c1d40a437ae1 from=translated src=- shape=0c95376e vocab=542a648c
+-/
 theorem junction_edge_mem {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup) (hSE : ∀ p ∈ ps, p.StronglyExitless) (hk : 2 ≤ k) :
     ((ps.getLast hps).first, sigma (ps.getLast hps).first) ∈ (unwindP ps hps hnd).edges := by
@@ -481,7 +516,9 @@ theorem junction_edge_mem {ps : List (HPath k)} (hps : ps ≠ [])
 /-- **`S(unwindP ps) = {pᵢ[1] : i < n}`** — the firsts of all but the last component.  This is
 the paper's asserted `S(P)`.  ⊇ from `first_not_mem_Cm1` + `(NEG)`; ⊆ by the `sset_empty`
 dichotomy (block-interior ⇒ its edge survives by `(POS)`; block-end ⇒ `∈ C₋₁`), with the
-`j=0` case pinned to a non-last component via `(POS, junction)`.-/
+`j=0` case pinned to a non-last component via `(POS, junction)`.
+@isnad1 id=eq.5h2v.s7.4ffd356d92cd from=translated src=- shape=521b4480 vocab=ffefcef6
+-/
 theorem Sset_eq_headSet {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup)
     (hcover : ∀ v : Vtx k, ∃ p ∈ ps, v ∈ p.verts)
@@ -553,7 +590,9 @@ accounting lemma `fPS_eq_of_edges` reduces `f(P, headSet) = X` to the **edge dec
 `E₂ = E2removed` with the head-chain / back-links (the `doubles` in-degree bookkeeping). -/
 
 /-- `F(unwindP ps) = X` given the edge decomposition of `P` (the accounting-lemma inputs, with
-`S = headSet`).  The `S(P)` computation and the Step-1/Step-2 algebra are discharged.-/
+`S = headSet`).  The `S(P)` computation and the Step-1/Step-2 algebra are discharged.
+@isnad1 id=eq.10h3v.s9.adf670311240 from=translated src=- shape=7758b672 vocab=2cade33a
+-/
 theorem F_unwindP_eq_of_edges {X : Finset (Vtx k × Vtx k)} {ps : List (HPath k)}
     (hps : ps ≠ []) (hnd : (unwindVerts ps).Nodup)
     (hcover : ∀ v : Vtx k, ∃ p ∈ ps, v ∈ p.verts)
@@ -587,7 +626,9 @@ variable {k : ℕ}
 unwound path.**  Compared to `prp_Xk_se_sufficiency_unwind`, the mathematical `F(P) = X`
 hypothesis `hFPX` is replaced by the *elementary list-adjacency* decomposition of `E(P)` (plus
 the natural disjointnesses): the entire `S(P) = {pᵢ[1]}` computation and the Step-1/Step-2
-surgery are now discharged (`Sset_eq_headSet`, `fPS_eq_of_edges`).-/
+surgery are now discharged (`Sset_eq_headSet`, `fPS_eq_of_edges`).
+@isnad1 id=mem.10h3v.s9.3ec5e2e801a8 from=translated src=- shape=364fba16 vocab=219cd630
+-/
 theorem prp_Xk_se_sufficiency_unwind2 {X : Finset (Vtx k × Vtx k)} {ps : List (HPath k)}
     (hps : ps ≠ []) (hnd : (unwindVerts ps).Nodup)
     (hcover : ∀ v : Vtx k, ∃ p ∈ ps, v ∈ p.verts)

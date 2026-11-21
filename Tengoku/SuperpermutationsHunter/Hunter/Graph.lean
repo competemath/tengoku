@@ -101,18 +101,28 @@ noncomputable def wEdges (S : Finset (Vtx k × Vtx k)) : ℕ :=
 
 /-! ## Small unfolding / free lemmas -/
 
+/--
+@isnad1 id=iff.0h4v.s6.d50a2ae9be49 from=translated src=- shape=1c5ec7bd vocab=00c4f268
+-/
 @[simp] theorem mem_out {X : Finset (Vtx k × Vtx k)} {U : Finset (Vtx k)} {e} :
     e ∈ out X U ↔ e ∈ X ∧ e.1 ∈ U := Finset.mem_filter
 
+/--
+@isnad1 id=iff.0h4v.s6.e25134fa90e7 from=translated src=- shape=1c5ec7bd vocab=e5f50f49
+-/
 @[simp] theorem mem_into {X : Finset (Vtx k × Vtx k)} {U : Finset (Vtx k)} {e} :
     e ∈ into X U ↔ e ∈ X ∧ e.2 ∈ U := Finset.mem_filter
 
-/-- Hunter §2.2: `σ` is the weight-1 successor, `w(v → σv) = 1` (for `k ≥ 1`).-/
+/-- Hunter §2.2: `σ` is the weight-1 successor, `w(v → σv) = 1` (for `k ≥ 1`).
+@isnad1 id=eq.1h2v.s4.066f87973c3d from=translated src=- shape=4eab2c07 vocab=89c834ab
+-/
 theorem ew_sigma (hk : 1 ≤ k) (v : Vtx k) : ew k v (sigma v) = 1 :=
   wt_rho hk v.2
 
 /-- The `tau` map is the door on its underlying word once the door is a permutation word
-(in particular for `k ≥ 2`).-/
+(in particular for `k ≥ 2`).
+@isnad1 id=eq.1h2v.s5.ae363d94dbfa from=translated src=- shape=9f35ea5a vocab=14299a51
+-/
 theorem tau_val_of_door {v : Vtx k} (h : IsPermWord k (door v.1)) :
     (tau v).1 = door v.1 := by
   rw [tau, dite_eq_left h]

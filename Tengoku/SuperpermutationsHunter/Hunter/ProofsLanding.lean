@@ -67,7 +67,9 @@ variable {k : ℕ}
 overlap `x.drop 3 = v.take (k − 3)` — whose last symbol is *not* the run marker
 `a = (rho x).getLastD 0 = x₁` moves the marker to one of the **two** other leading symbols
 `x₂ = x.getD 1 0` or `x₃ = x.getD 2 0`.  Thus a marker-move from a block-last word `x` can send
-the marker to only 2 of the `k − 2` a-priori candidates — the exact `census.py` result.-/
+the marker to only 2 of the `k − 2` a-priori candidates — the exact `census.py` result.
+@isnad1 id=or.5h3v.s6.083f946312e3 from=translated src=- shape=d8d2b013 vocab=e2e25da3
+-/
 theorem weight3_markerMove_last {x v : List ℕ} (hk : 3 ≤ k) (hx : IsPermWord k x)
     (hv : IsPermWord k v) (hover : x.drop 3 = v.take (k - 3))
     (hmark : v.getLastD 0 ≠ (rho x).getLastD 0) :
@@ -140,7 +142,9 @@ theorem weight3_markerMove_last {x v : List ℕ} (hk : 3 ≤ k) (hx : IsPermWord
 /-- **Corollary — the marker-move reaches at most 2 markers.**  Restated as membership in the
 2-element candidate list `[x₂, x₃]`: from any block-last word `x`, a marker-moving weight-3
 boundary lands with its new marker in `[x.getD 1 0, x.getD 2 0]`.  Since this list has length 2,
-a marker-move can send the run marker to only 2 of the `k − 2` candidate values.-/
+a marker-move can send the run marker to only 2 of the `k − 2` candidate values.
+@isnad1 id=mem.5h3v.s6.070c64c0fb40 from=translated src=- shape=4c589719 vocab=22e39754
+-/
 theorem weight3_markerMove_mem {x v : List ℕ} (hk : 3 ≤ k) (hx : IsPermWord k x)
     (hv : IsPermWord k v) (hover : x.drop 3 = v.take (k - 3))
     (hmark : v.getLastD 0 ≠ (rho x).getLastD 0) :

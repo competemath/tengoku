@@ -167,17 +167,29 @@ def Xk' (k : ℕ) : Set (HPath k) :=
 
 /-! ## Small free lemmas -/
 
+/--
+@isnad1 id=sprecond.0h2v.s3.44ffd01ccb65 from=translated src=- shape=e4b23468 vocab=9375b6fd
+-/
 theorem sset_sPrecond (P : HPath k) : SPrecond P (Sset P) := by
   intro v hv
   rw [Sset, Finset.mem_filter] at hv
   exact hv.2.2
 
+/--
+@isnad1 id=le.0h3v.s5.aeac51bdd260 from=translated src=- shape=707fc1ca vocab=1ab1345e
+-/
 theorem fPS_subset_step1 (P : HPath k) (S : Finset (Vtx k)) :
     fPS P S ⊆ Xstep1 P S := Finset.sdiff_subset
 
+/--
+@isnad1 id=le.0h3v.s5.c2538c484a42 from=translated src=- shape=2c24ff45 vocab=69fb6b76
+-/
 theorem E1removed_subset (P : HPath k) (S : Finset (Vtx k)) :
     E1removed P S ⊆ P.edges := Finset.filter_subset _ _
 
+/--
+@isnad1 id=le.0h3v.s5.fdc1b9d447dd from=translated src=- shape=2c24ff45 vocab=f0ba19d1
+-/
 theorem E2removed_subset (P : HPath k) (S : Finset (Vtx k)) :
     E2removed P S ⊆ P.edges := Finset.filter_subset _ _
 

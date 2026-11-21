@@ -52,7 +52,9 @@ def finalExit (A' : List ℕ) (z b c : ℕ) : List ℕ := c :: b :: z :: A'
 
 variable (A' : List ℕ) (z b c : ℕ)
 
-/-- `rotClass` is invariant under `rotate` (a rotation is a rotation).-/
+/-- `rotClass` is invariant under `rotate` (a rotation is a rotation).
+@isnad1 id=eq.0h2v.s3.fc9d9f6b712f from=translated src=- shape=3f6df2cf vocab=6c177b7f
+-/
 theorem rotClass_rotate (w : List ℕ) (n : ℕ) : rotClass (w.rotate n) = rotClass w :=
   Quotient.sound (List.IsRotated.forall w n)
 
@@ -61,15 +63,24 @@ theorem rotClass_rotate (w : List ℕ) (n : ℕ) : rotClass (w.rotate n) = rotCl
 Chart index witnesses (in `[0,m) × [0,m]`, `m = n+1`): `(0,0)`, `(0,n)=(0,m-1)`, `(0,n+1)=(0,m)`,
 `(n,0)=(m-1,0)`, `(n,1)=(m-1,1)`, `(n,n+1)=(m-1,m)`. -/
 
+/--
+@isnad1 id=eq.0h4v.s5.beb8524f74cb from=translated src=- shape=af599744 vocab=e01a41fa
+-/
 theorem chartWord_00 : chartWord A' z b c 0 0 = A' ++ [z, b, c] := by
   simp [chartWord, List.rotate_zero, List.append_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s5.c4d20b6c599f from=translated src=- shape=cbe7bf19 vocab=830e912d
+-/
 theorem chartWord_0n : chartWord A' z b c 0 A'.length = z :: b :: A' ++ [c] := by
   unfold chartWord
   rw [List.rotate_zero, show (A' ++ [z]) ++ [b] = A' ++ [z, b] by simp,
     List.rotate_append_length_eq]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.c5372230e9ad from=translated src=- shape=7b14dcfe vocab=a73a2be6
+-/
 theorem chartWord_0n1 :
     chartWord A' z b c 0 (A'.length + 1) = b :: A' ++ [z, c] := by
   unfold chartWord
@@ -77,11 +88,17 @@ theorem chartWord_0n1 :
     List.rotate_append_length_eq]
   simp [List.append_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s5.10ce0d01bda5 from=translated src=- shape=a327e386 vocab=830e912d
+-/
 theorem chartWord_n0 : chartWord A' z b c A'.length 0 = z :: A' ++ [b, c] := by
   unfold chartWord
   rw [List.rotate_append_length_eq, List.rotate_zero]
   simp [List.append_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s5.8710ee8dc19e from=translated src=- shape=c38800ef vocab=830e912d
+-/
 theorem chartWord_n1 : chartWord A' z b c A'.length 1 = A' ++ [b, z, c] := by
   unfold chartWord
   rw [List.rotate_append_length_eq,
@@ -89,6 +106,9 @@ theorem chartWord_n1 : chartWord A' z b c A'.length 1 = A' ++ [b, z, c] := by
     show (1 : ℕ) = ([z] : List ℕ).length from rfl, List.rotate_append_length_eq]
   simp
 
+/--
+@isnad1 id=eq.0h4v.s5.695159bb930c from=translated src=- shape=e03ef74f vocab=a73a2be6
+-/
 theorem chartWord_nn1 :
     chartWord A' z b c A'.length (A'.length + 1) = b :: z :: A' ++ [c] := by
   unfold chartWord
@@ -98,15 +118,21 @@ theorem chartWord_nn1 :
 
 /-! ## `door` and `σ²` of the final exit -/
 
-/-- The fresh weight-2 successor of `x`: `door x = z A' b c  (= C_{m-1,0})`.-/
+/-- The fresh weight-2 successor of `x`: `door x = z A' b c  (= C_{m-1,0})`.
+@isnad1 id=eq.0h4v.s5.ffa218edc4b1 from=translated src=- shape=af7edb5a vocab=4dc3fc34
+-/
 theorem door_finalExit : door (finalExit A' z b c) = z :: A' ++ [b, c] := rfl
 
-/-- The `σ²` weight-2 successor of `x`: `x.rotate 2 = z A' c b`.-/
+/-- The `σ²` weight-2 successor of `x`: `x.rotate 2 = z A' c b`.
+@isnad1 id=eq.0h4v.s5.c30da342df35 from=translated src=- shape=16aa1c8b vocab=80901b79
+-/
 theorem rotate2_finalExit : (finalExit A' z b c).rotate 2 = z :: A' ++ [c, b] := by
   rw [show finalExit A' z b c = [c, b] ++ (z :: A') from rfl,
     show (2 : ℕ) = ([c, b] : List ℕ).length from rfl, List.rotate_append_length_eq]
 
-/-- `x` itself is a rotation of the last chart entry: `x.rotate 1 = C_{m-1,m}`.-/
+/-- `x` itself is a rotation of the last chart entry: `x.rotate 1 = C_{m-1,m}`.
+@isnad1 id=eq.0h4v.s5.c8e71dca35bc from=translated src=- shape=00de4308 vocab=3918aa71
+-/
 theorem finalExit_rotate1 :
     (finalExit A' z b c).rotate 1 = chartWord A' z b c A'.length (A'.length + 1) := by
   rw [chartWord_nn1]
@@ -115,7 +141,9 @@ theorem finalExit_rotate1 :
 
 /-! ## Permutation-word transfer for the final exit -/
 
-/-- The final exit is a list-permutation of the start `A' ++ [z,b,c]`.-/
+/-- The final exit is a list-permutation of the start `A' ++ [z,b,c]`.
+@isnad1 id=perm.0h4v.s5.6beb8dd17aa3 from=translated src=- shape=8a5dd56a vocab=9a3cc0b0
+-/
 theorem perm_finalExit_start : (finalExit A' z b c) ~ (A' ++ [z, b, c]) := by
   show c :: b :: z :: A' ~ A' ++ [z, b, c]
   have h1 : c :: b :: z :: A' ~ A' ++ [c, b, z] :=
@@ -125,7 +153,9 @@ theorem perm_finalExit_start : (finalExit A' z b c) ~ (A' ++ [z, b, c]) := by
   exact (List.Perm.cons c (List.Perm.swap z b [])).trans
     ((List.Perm.swap z c [b]).trans (List.Perm.cons z (List.Perm.swap b c [])))
 
-/-- Hence the final exit is a permutation word whenever the start is.-/
+/-- Hence the final exit is a permutation word whenever the start is.
+@isnad1 id=ispermwo.1h4v.s6.048fd4b5a965 from=translated src=- shape=b5fae1ff vocab=d58abd92
+-/
 theorem isPermWord_finalExit (hs : IsPermWord (A'.length + 3) (A' ++ [z, b, c])) :
     IsPermWord (A'.length + 3) (finalExit A' z b c) :=
   hs.perm (perm_finalExit_start A' z b c).symm
@@ -139,19 +169,25 @@ theorem isPermWord_finalExit (hs : IsPermWord (A'.length + 3) (A' ++ [z, b, c]))
 def VisitedByChart (A' : List ℕ) (z b c : ℕ) (K : RotClass) : Prop :=
   ∃ j i, j ≤ A'.length ∧ i ≤ A'.length + 1 ∧ K = rotClass (chartWord A' z b c j i)
 
-/-- The final exit's own class is visited (`x.rotate 1 = C_{m-1,m}`).-/
+/-- The final exit's own class is visited (`x.rotate 1 = C_{m-1,m}`).
+@isnad1 id=visitedb.0h4v.s4.a5945901d1b3 from=translated src=- shape=29261ece vocab=16a1ad4e
+-/
 theorem visited_finalExit :
     VisitedByChart A' z b c (rotClass (finalExit A' z b c)) :=
   ⟨A'.length, A'.length + 1, le_refl _, le_refl _, by
     rw [← finalExit_rotate1, rotClass_rotate]⟩
 
-/-- The fresh weight-2 door `door x` is visited (`= C_{m-1,0}`).-/
+/-- The fresh weight-2 door `door x` is visited (`= C_{m-1,0}`).
+@isnad1 id=visitedb.0h4v.s4.73374a7c3215 from=translated src=- shape=3a9053df vocab=15e05c7d
+-/
 theorem visited_door :
     VisitedByChart A' z b c (rotClass (door (finalExit A' z b c))) :=
   ⟨A'.length, 0, le_refl _, by omega, by rw [door_finalExit, chartWord_n0]⟩
 
 /-- **Weight-2 closure.**  Every word sharing the length-`(k−2)` overlap of `x`
-(in particular every weight-2 successor of `x`) lies in a chart-visited rotation class.-/
+(in particular every weight-2 successor of `x`) lies in a chart-visited rotation class.
+@isnad1 id=visitedb.3h5v.s6.83af9a37033f from=translated src=- shape=e69f3383 vocab=2bd33cf2
+-/
 theorem chart_closure_w2 (hs : IsPermWord (A'.length + 3) (A' ++ [z, b, c]))
     {v : List ℕ} (hv : IsPermWord (A'.length + 3) v)
     (hover : (finalExit A' z b c).drop 2 = v.take (A'.length + 3 - 2)) :
@@ -172,9 +208,15 @@ theorem chart_closure_w2 (hs : IsPermWord (A'.length + 3) (A' ++ [z, b, c]))
 `V1 = A'zbc = C₀₀`, `V2 = A'zcb = σ(C_{0,m})`, `V3 = A'bzc = C_{m-1,1}`,
 `V4 = A'bcz = σ(C_{m-1,0})`, `V5 = A'czb = σ²(C_{0,m-1})`, `V6 = A'cbz = σ²(C_{m-1,m})`. -/
 
+/--
+@isnad1 id=visitedb.0h4v.s5.df9ba68f2274 from=translated src=- shape=a64f34f2 vocab=944b4876
+-/
 theorem visited_V1 : VisitedByChart A' z b c (rotClass (A' ++ [z, b, c])) :=
   ⟨0, 0, by omega, by omega, by rw [chartWord_00]⟩
 
+/--
+@isnad1 id=visitedb.0h4v.s5.b674880de6db from=translated src=- shape=1d647284 vocab=944b4876
+-/
 theorem visited_V2 : VisitedByChart A' z b c (rotClass (A' ++ [z, c, b])) := by
   refine ⟨0, A'.length + 1, by omega, le_refl _, ?_⟩
   rw [← rotClass_rotate (chartWord A' z b c 0 (A'.length + 1)) 1, chartWord_0n1,
@@ -182,9 +224,15 @@ theorem visited_V2 : VisitedByChart A' z b c (rotClass (A' ++ [z, c, b])) := by
     show (1 : ℕ) = ([b] : List ℕ).length from rfl, List.rotate_append_length_eq,
     show (A' ++ [z, c]) ++ [b] = A' ++ [z, c, b] by simp]
 
+/--
+@isnad1 id=visitedb.0h4v.s5.0c03a748a99c from=translated src=- shape=75d9a2e5 vocab=944b4876
+-/
 theorem visited_V3 : VisitedByChart A' z b c (rotClass (A' ++ [b, z, c])) :=
   ⟨A'.length, 1, le_refl _, by omega, by rw [chartWord_n1]⟩
 
+/--
+@isnad1 id=visitedb.0h4v.s5.20b4c4e145c2 from=translated src=- shape=e36c010c vocab=944b4876
+-/
 theorem visited_V4 : VisitedByChart A' z b c (rotClass (A' ++ [b, c, z])) := by
   refine ⟨A'.length, 0, le_refl _, by omega, ?_⟩
   rw [← rotClass_rotate (chartWord A' z b c A'.length 0) 1, chartWord_n0,
@@ -192,6 +240,9 @@ theorem visited_V4 : VisitedByChart A' z b c (rotClass (A' ++ [b, c, z])) := by
     show (1 : ℕ) = ([z] : List ℕ).length from rfl, List.rotate_append_length_eq,
     show (A' ++ [b, c]) ++ [z] = A' ++ [b, c, z] by simp]
 
+/--
+@isnad1 id=visitedb.0h4v.s5.a4f45ef52004 from=translated src=- shape=db618fdf vocab=944b4876
+-/
 theorem visited_V5 : VisitedByChart A' z b c (rotClass (A' ++ [c, z, b])) := by
   refine ⟨0, A'.length, by omega, by omega, ?_⟩
   rw [← rotClass_rotate (chartWord A' z b c 0 A'.length) 2, chartWord_0n,
@@ -199,6 +250,9 @@ theorem visited_V5 : VisitedByChart A' z b c (rotClass (A' ++ [c, z, b])) := by
     show (2 : ℕ) = ([z, b] : List ℕ).length from rfl, List.rotate_append_length_eq,
     show (A' ++ [c]) ++ [z, b] = A' ++ [c, z, b] by simp]
 
+/--
+@isnad1 id=visitedb.0h4v.s5.23d4dc40a521 from=translated src=- shape=a0b4b274 vocab=944b4876
+-/
 theorem visited_V6 : VisitedByChart A' z b c (rotClass (A' ++ [c, b, z])) := by
   refine ⟨A'.length, A'.length + 1, le_refl _, le_refl _, ?_⟩
   rw [← rotClass_rotate (chartWord A' z b c A'.length (A'.length + 1)) 2, chartWord_nn1,
@@ -211,6 +265,9 @@ theorem visited_V6 : VisitedByChart A' z b c (rotClass (A' ++ [c, b, z])) := by
 A weight-3 successor `v` of `x = c b z A'` shares the length-`(k−3)` prefix `A'` with `x`, and
 its last three letters are a permutation of the three missing symbols `{z,b,c} = x.take 3`.
 Hence `v` is exactly one of `V1…V6`. -/
+/--
+@isnad1 id=or.3h5v.s8.7bbe09345455 from=translated src=- shape=c98f6432 vocab=66ecbaf3
+-/
 theorem w3_six_cases (hx : IsPermWord (A'.length + 3) (finalExit A' z b c))
     {v : List ℕ} (hv : IsPermWord (A'.length + 3) v)
     (hover : (finalExit A' z b c).drop 3 = v.take (A'.length + 3 - 3)) :
@@ -285,7 +342,9 @@ theorem w3_six_cases (hx : IsPermWord (A'.length + 3) (finalExit A' z b c))
       | tauto
 
 /-- **Weight-3 closure.**  Every word sharing the length-`(k−3)` overlap of `x`
-(in particular every weight-3 successor of `x`) lies in a chart-visited rotation class.-/
+(in particular every weight-3 successor of `x`) lies in a chart-visited rotation class.
+@isnad1 id=visitedb.3h5v.s6.c9a03163763e from=translated src=- shape=e69f3383 vocab=2bd33cf2
+-/
 theorem chart_closure_w3 (hs : IsPermWord (A'.length + 3) (A' ++ [z, b, c]))
     {v : List ℕ} (hv : IsPermWord (A'.length + 3) v)
     (hover : (finalExit A' z b c).drop 3 = v.take (A'.length + 3 - 3)) :
@@ -304,7 +363,9 @@ theorem chart_closure_w3 (hs : IsPermWord (A'.length + 3) (A' ++ [z, b, c]))
 /-- **§3 CLOSURE LEMMA.**  From the completed chart's final exit `x = c b aₘ a₁…a_{m-1}`
 (`k = |A'| + 3 ≥ 4`), any successor `v` whose rotation class the chart has *not* visited has
 edge weight `≥ 4`.  Equivalently (Sections 4–5 of `PROOF_S3.md`): every weight-1, weight-2, and
-weight-3 successor of `x` is already in a visited class, so the τ₃-orbit closes.-/
+weight-3 successor of `x` is already in a visited class, so the τ₃-orbit closes.
+@isnad1 id=le.4h5v.s6.584bc86711a9 from=translated src=- shape=ab9b3198 vocab=9ded77b7
+-/
 theorem chart_closure (hn : 1 ≤ A'.length)
     (hs : IsPermWord (A'.length + 3) (A' ++ [z, b, c]))
     {v : List ℕ} (hv : IsPermWord (A'.length + 3) v)
@@ -339,7 +400,9 @@ namespace Hunter.Proved
 abbrev ChartVisited := Hunter.ProofsClosure3.VisitedByChart
 
 /-- `Hunter.Proved.chart_closure` — the §3 closure lemma: from the final exit, any successor to an
-unvisited rotation class has weight `≥ 4`.-/
+unvisited rotation class has weight `≥ 4`.
+@isnad1 id=le.4h5v.s6.0a07bef1dbcd from=translated src=- shape=ab9b3198 vocab=be918f5a
+-/
 theorem chart_closure (A' : List ℕ) (z b c : ℕ) (hn : 1 ≤ A'.length)
     (hs : IsPermWord (A'.length + 3) (A' ++ [z, b, c]))
     {v : List ℕ} (hv : IsPermWord (A'.length + 3) v)
@@ -347,7 +410,9 @@ theorem chart_closure (A' : List ℕ) (z b c : ℕ) (hn : 1 ≤ A'.length)
     4 ≤ wt (A'.length + 3) (Hunter.ProofsClosure3.finalExit A' z b c) v :=
   Hunter.ProofsClosure3.chart_closure A' z b c hn hs hv hvis
 
-/-- `Hunter.Proved.chart_closure_w2` — every weight-2 successor of the final exit is chart-visited.-/
+/-- `Hunter.Proved.chart_closure_w2` — every weight-2 successor of the final exit is chart-visited.
+@isnad1 id=chartvis.3h5v.s6.d6b1cd587329 from=translated src=- shape=e69f3383 vocab=4ff27988
+-/
 theorem chart_closure_w2 (A' : List ℕ) (z b c : ℕ)
     (hs : IsPermWord (A'.length + 3) (A' ++ [z, b, c]))
     {v : List ℕ} (hv : IsPermWord (A'.length + 3) v)
@@ -355,7 +420,9 @@ theorem chart_closure_w2 (A' : List ℕ) (z b c : ℕ)
     ChartVisited A' z b c (rotClass v) :=
   Hunter.ProofsClosure3.chart_closure_w2 A' z b c hs hv hover
 
-/-- `Hunter.Proved.chart_closure_w3` — every weight-3 successor of the final exit is chart-visited.-/
+/-- `Hunter.Proved.chart_closure_w3` — every weight-3 successor of the final exit is chart-visited.
+@isnad1 id=chartvis.3h5v.s6.0cd17257cc6b from=translated src=- shape=e69f3383 vocab=4ff27988
+-/
 theorem chart_closure_w3 (A' : List ℕ) (z b c : ℕ)
     (hs : IsPermWord (A'.length + 3) (A' ++ [z, b, c]))
     {v : List ℕ} (hv : IsPermWord (A'.length + 3) v)

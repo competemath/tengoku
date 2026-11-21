@@ -51,7 +51,9 @@ last").  Repeated from a run start it enumerates the run entries.-/
 def tau2 (k : ℕ) (w : List ℕ) : List ℕ := door (bexit k w)
 
 /-- **The `τ₂` recurrence.**  If `|P| = k − 1`, then `τ₂` advances the rotation index of a word of
-the form `P.rotate i ++ [x]` by one: `τ₂(rot_i P · x) = rot_{i+1} P · x`.  (`PROOF_S2 §1`.)-/
+the form `P.rotate i ++ [x]` by one: `τ₂(rot_i P · x) = rot_{i+1} P · x`.  (`PROOF_S2 §1`.)
+@isnad1 id=eq.2h4v.s6.b3930640636e from=translated src=- shape=ef228c40 vocab=b30125f1
+-/
 theorem tau2_step (hk : 2 ≤ k) {P : List ℕ} (hP : P.length = k - 1) (x : ℕ) (i : ℕ) :
     tau2 k (P.rotate i ++ [x]) = P.rotate (i + 1) ++ [x] := by
   have hWlen : (P.rotate i).length = k - 1 := by rw [List.length_rotate, hP]
@@ -74,7 +76,9 @@ theorem tau2_step (hk : 2 ≤ k) {P : List ℕ} (hP : P.length = k - 1) (x : ℕ
     rw [List.rotate_cons_succ, List.rotate_zero]
   rw [hr1]; simp
 
-/-- Iterating `τ₂` from a run start `P ++ [x]` (`|P| = k − 1`) gives the run entries.-/
+/-- Iterating `τ₂` from a run start `P ++ [x]` (`|P| = k − 1`) gives the run entries.
+@isnad1 id=eq.2h4v.s6.3a772d93d894 from=translated src=- shape=2550d98a vocab=054bec6f
+-/
 theorem tau2_iter (hk : 2 ≤ k) {P : List ℕ} (hP : P.length = k - 1) (x : ℕ) (n : ℕ) :
     (tau2 k)^[n] (P ++ [x]) = P.rotate n ++ [x] := by
   induction n with
@@ -85,23 +89,31 @@ theorem tau2_iter (hk : 2 ≤ k) {P : List ℕ} (hP : P.length = k - 1) (x : ℕ
 /-- The run entry `D_i` of the run started at `A ++ [b, c]` (`A = a₁…aₘ`), in closed form.-/
 def runW (A : List ℕ) (b c : ℕ) (i : ℕ) : List ℕ := (A ++ [b]).rotate i ++ [c]
 
-/-- `D_0 = A ++ [b, c]` is the run start.-/
+/-- `D_0 = A ++ [b, c]` is the run start.
+@isnad1 id=eq.0h3v.s5.c3dd2094f1e2 from=translated src=- shape=a8082dc8 vocab=682193cb
+-/
 theorem runW_zero (A : List ℕ) (b c : ℕ) : runW A b c 0 = A ++ [b, c] := by
   simp [runW]
 
-/-- The run entries are the `τ₂`-iterates of the run start (`PROOF_S2 §1/§3`).-/
+/-- The run entries are the `τ₂`-iterates of the run start (`PROOF_S2 §1/§3`).
+@isnad1 id=eq.2h5v.s6.6350ce01e8ba from=translated src=- shape=bd35d8d2 vocab=2f7f18fa
+-/
 theorem runW_eq_iter (hk : 2 ≤ k) {A : List ℕ} (hA : A.length = k - 2) (b c : ℕ) (i : ℕ) :
     runW A b c i = (tau2 k)^[i] (A ++ [b, c]) := by
   have hP : (A ++ [b]).length = k - 1 := by rw [List.length_append]; simp; omega
   rw [runW, show A ++ [b, c] = (A ++ [b]) ++ [c] by simp, tau2_iter hk hP c i]
 
-/-- The last run entry: `D_m = b :: A ++ [c]` (`m = k − 2 = |A|`).-/
+/-- The last run entry: `D_m = b :: A ++ [c]` (`m = k − 2 = |A|`).
+@isnad1 id=eq.0h3v.s5.fb18e734b6b8 from=translated src=- shape=f385edec vocab=5e7b9392
+-/
 theorem runW_last (A : List ℕ) (b c : ℕ) : runW A b c A.length = b :: A ++ [c] := by
   unfold runW
   rw [List.rotate_append_length_eq]
   simp
 
-/-- The run exit `e = exit(D_m) = c :: b :: A` (`PROOF_S2 §3`).-/
+/-- The run exit `e = exit(D_m) = c :: b :: A` (`PROOF_S2 §3`).
+@isnad1 id=eq.2h4v.s5.eed48ab87f53 from=translated src=- shape=b6a00bd0 vocab=f060cb11
+-/
 theorem bexit_runW_last (hk : 2 ≤ k) {A : List ℕ} (hA : A.length = k - 2) (b c : ℕ) :
     bexit k (runW A b c A.length) = c :: b :: A := by
   rw [runW_last]
@@ -112,18 +124,24 @@ theorem bexit_runW_last (hk : 2 ≤ k) {A : List ℕ} (hA : A.length = k - 2) (b
 
 /-! ## §1. Permutation-word transfer for run entries and the run exit -/
 
-/-- Each run entry is a list-permutation of the run start `A ++ [b, c]`.-/
+/-- Each run entry is a list-permutation of the run start `A ++ [b, c]`.
+@isnad1 id=perm.0h4v.s5.1c350ef81619 from=translated src=- shape=ef05961d vocab=abe98f99
+-/
 theorem runW_perm (A : List ℕ) (b c : ℕ) (i : ℕ) : runW A b c i ~ A ++ [b, c] := by
   have h1 : runW A b c i ~ (A ++ [b]) ++ [c] :=
     (List.perm_append_right_iff _).mpr (List.rotate_perm (A ++ [b]) i)
   simpa [List.append_assoc] using h1
 
-/-- Run entries are permutation words when the run start is.-/
+/-- Run entries are permutation words when the run start is.
+@isnad1 id=ispermwo.1h5v.s5.81fab6cb32f7 from=translated src=- shape=2c0aa8f5 vocab=824b6810
+-/
 theorem isPermWord_runW {A : List ℕ} {b c : ℕ}
     (hu : IsPermWord k (A ++ [b, c])) (i : ℕ) : IsPermWord k (runW A b c i) :=
   hu.perm (runW_perm A b c i).symm
 
-/-- The run exit is a permutation word when the run start is.-/
+/-- The run exit is a permutation word when the run start is.
+@isnad1 id=ispermwo.1h2v.s3.edebf107fe7a from=translated src=- shape=6dee7e5a vocab=876718d2
+-/
 theorem isPermWord_bexit {w : List ℕ} (hw : IsPermWord k w) : IsPermWord k (bexit k w) :=
   isPermWord_rotate hw (k - 1)
 
@@ -136,31 +154,41 @@ collision identities of `PROOF_S2 §3` directly. -/
 
 variable {As : List ℕ} {a₁ b c : ℕ}
 
-/-- `T3 = runW A b c 1 = D₁`.-/
+/-- `T3 = runW A b c 1 = D₁`.
+@isnad1 id=eq.0h4v.s5.1451719525a7 from=translated src=- shape=45fa3835 vocab=682193cb
+-/
 theorem T3_eq : runW (a₁ :: As) b c 1 = As ++ [b, a₁, c] := by
   rw [runW, show (a₁ :: As) ++ [b] = [a₁] ++ (As ++ [b]) by simp,
     show (1 : ℕ) = ([a₁] : List ℕ).length from rfl, List.rotate_append_length_eq]
   simp
 
-/-- `T4 = σ(D₀) = (runW A b c 0).rotate 1`.-/
+/-- `T4 = σ(D₀) = (runW A b c 0).rotate 1`.
+@isnad1 id=eq.0h4v.s5.77daf88e1718 from=translated src=- shape=fc034ca7 vocab=bea4a38c
+-/
 theorem T4_eq : (runW (a₁ :: As) b c 0).rotate 1 = As ++ [b, c, a₁] := by
   rw [runW_zero, show (a₁ :: As) ++ [b, c] = [a₁] ++ (As ++ [b, c]) by simp,
     show (1 : ℕ) = ([a₁] : List ℕ).length from rfl, List.rotate_append_length_eq]
   simp
 
-/-- `T6 = σ²(D_m) = (runW A b c m).rotate 2`.-/
+/-- `T6 = σ²(D_m) = (runW A b c m).rotate 2`.
+@isnad1 id=eq.0h4v.s5.ba8d4d9d8e69 from=translated src=- shape=7db8f1d7 vocab=33dff149
+-/
 theorem T6_eq : (runW (a₁ :: As) b c (a₁ :: As).length).rotate 2 = As ++ [c, b, a₁] := by
   rw [runW_last, show b :: (a₁ :: As) ++ [c] = [b, a₁] ++ (As ++ [c]) by simp,
     show (2 : ℕ) = ([b, a₁] : List ℕ).length from rfl, List.rotate_append_length_eq]
   simp
 
-/-- `T1 = τ₃(u) = runW (A.rotate 1) b c 0`, the next run's start.-/
+/-- `T1 = τ₃(u) = runW (A.rotate 1) b c 0`, the next run's start.
+@isnad1 id=eq.0h4v.s5.6d1eefec80b0 from=translated src=- shape=8867877f vocab=bea4a38c
+-/
 theorem T1_eq : runW ((a₁ :: As).rotate 1) b c 0 = As ++ [a₁, b, c] := by
   rw [runW_zero, show (a₁ :: As).rotate 1 = As ++ [a₁] by
     rw [List.rotate_cons_succ, List.rotate_zero]]
   simp
 
-/-- `τ₂^{m−1}(T2)` collides with the run: same class as `D₁ = runW A b c 1` (`PROOF_S2 §3`).-/
+/-- `τ₂^{m−1}(T2)` collides with the run: same class as `D₁ = runW A b c 1` (`PROOF_S2 §3`).
+@isnad1 id=eq.0h4v.s6.037640cd8d84 from=translated src=- shape=52924e6b vocab=01ed0f0f
+-/
 theorem T2_collide :
     rotClass ((tau2 (As.length + 3))^[As.length] (As ++ [a₁, c, b]))
       = rotClass (runW (a₁ :: As) b c 1) := by
@@ -174,7 +202,9 @@ theorem T2_collide :
     simp
   rw [← key, ProofsClosure3.rotClass_rotate]
 
-/-- `τ₂^{m−1}(T5)` collides with the run: same class as `D₀ = runW A b c 0` (`PROOF_S2 §3`).-/
+/-- `τ₂^{m−1}(T5)` collides with the run: same class as `D₀ = runW A b c 0` (`PROOF_S2 §3`).
+@isnad1 id=eq.0h4v.s6.9c69da2398ff from=translated src=- shape=06acf7cb vocab=01ed0f0f
+-/
 theorem T5_collide :
     rotClass ((tau2 (As.length + 3))^[As.length] (As ++ [c, a₁, b]))
       = rotClass (runW (a₁ :: As) b c 0) := by
@@ -192,7 +222,9 @@ theorem T5_collide :
 
 /-- **Weight-2 determinism.**  A fresh weight-2 successor of the block exit `exit u` (a weight-2
 edge to a *different* rotation class) must be the `τ₂` step `door (exit u)`.  (`PROOF_S2 §1`: the
-two weight-2 successors are `σ u` — same class — and `τ₂ u`.)-/
+two weight-2 successors are `σ u` — same class — and `τ₂ u`.)
+@isnad1 id=eq.5h3v.s5.010b3a3ffa19 from=translated src=- shape=ba5e3754 vocab=b5749150
+-/
 theorem fresh_w2_forced {u v : List ℕ} (hk : 2 ≤ k) (hu : IsPermWord k u) (hv : IsPermWord k v)
     (hw2 : bwt k u v = 2) (hfresh : rotClass v ≠ rotClass u) : v = tau2 k u := by
   have hx : IsPermWord k (bexit k u) := isPermWord_bexit hu
@@ -207,7 +239,9 @@ theorem fresh_w2_forced {u v : List ℕ} (hk : 2 ≤ k) (hu : IsPermWord k u) (h
   · rw [hdoor]; rfl
 
 /-- **The `τ₂` period.**  `τ₂^{k−1}` fixes any run start `A ++ [b, c]` with `|A| = k − 2`; hence a
-maximal weight-2 run visits at most `k − 1` distinct blocks (`PROOF_S2 §1`).-/
+maximal weight-2 run visits at most `k − 1` distinct blocks (`PROOF_S2 §1`).
+@isnad1 id=eq.2h4v.s6.107f175567b4 from=translated src=- shape=8252b930 vocab=60a234bd
+-/
 theorem tau2_period (hk : 2 ≤ k) {A : List ℕ} (hA : A.length = k - 2) (b c : ℕ) :
     (tau2 k)^[k - 1] (A ++ [b, c]) = A ++ [b, c] := by
   have hP : (A ++ [b]).length = k - 1 := by rw [List.length_append]; simp; omega
@@ -218,7 +252,9 @@ theorem tau2_period (hk : 2 ≤ k) {A : List ℕ} (hA : A.length = k - 2) (b c :
 
 /-- **Zero-slack pigeonhole (run lengths).**  If `r ≤ m` maximal weight-2 runs, each of length at
 most `n`, together contain `n · m` blocks, then there are exactly `m` runs and every run has the
-full length `n`.  (`PROOF_S2 §2`, the `N = Σ Lᵢ ≤ r·n ≤ m·n = N` collapse.)-/
+full length `n`.  (`PROOF_S2 §2`, the `N = Σ Lᵢ ≤ r·n ≤ m·n = N` collapse.)
+@isnad1 id=and.4h4v.s6.1aa904151c4f from=translated src=- shape=812a6ba6 vocab=f28e408c
+-/
 theorem runlen_pigeonhole {r m n : ℕ} (hn : 1 ≤ n) (hr : r ≤ m) (L : Fin r → ℕ)
     (hcap : ∀ i, L i ≤ n) (hsum : (∑ i, L i) = n * m) : r = m ∧ ∀ i, L i = n := by
   have hle : (∑ i, L i) ≤ r * n := by
@@ -237,7 +273,9 @@ theorem runlen_pigeonhole {r m n : ℕ} (hn : 1 ≤ n) (hr : r ≤ m) (L : Fin r
 
 /-- **Zero-slack pigeonhole (boundary weights).**  If `p` positive boundaries each contribute at
 least `1` to the excess and together contribute exactly `p`, then every one contributes exactly `1`
-— i.e. every weight-`≥3` boundary has weight exactly `3`.  (`PROOF_S2 §2`.)-/
+— i.e. every weight-`≥3` boundary has weight exactly `3`.  (`PROOF_S2 §2`.)
+@isnad1 id=eq.2h3v.s5.d3de94ca2400 from=translated src=- shape=0406bea9 vocab=bec9494f
+-/
 theorem boundary_exact {p : ℕ} (w : Fin p → ℕ) (hge : ∀ i, 1 ≤ w i)
     (hsum : (∑ i, w i) = p) : ∀ i, w i = 1 := by
   have heq : (∑ i, w i) = ∑ _i : Fin p, 1 := by
@@ -257,7 +295,9 @@ length-`(k−3)` overlap `As`) that is *fresh* (its class is not in the run) **a
 `τ₂`-iterate is *also* fresh (would-be next-run block, not in the run) must be `τ₃(u) = runW
 (A.rotate 1) b c 0` — the next run's start.  The other five successors are excluded: `T3, T4, T6`
 are already in the run (fail freshness of `v`); `T2, T5` collide with the run at step `m−1` (fail
-freshness of the iterate).-/
+freshness of the iterate).
+@isnad1 id=eq.5h5v.s7.fa0dc8e64294 from=translated src=- shape=e1804819 vocab=f64d4952
+-/
 theorem forced_step
     (he : IsPermWord (As.length + 3) (c :: b :: a₁ :: As))
     {v : List ℕ} (hv : IsPermWord (As.length + 3) v)
@@ -302,7 +342,9 @@ counting layer) weight-2 profile of the run are fixed, the whole run equals `D�
 /-- **Intra-run determinism (`PROOF_S2 §1/§4`).**  A block sequence `q` whose `0`-th entry is a run
 start `A ++ [b, c]` (`|A| = k − 2`), whose consecutive entries have distinct rotation classes, and
 whose first `m = |A|` boundaries all have weight `2`, is forced to be the run `q i = D_i = runW A b
-c i` for `0 ≤ i ≤ m`.  (Iterated `fresh_w2_forced`.)-/
+c i` for `0 ≤ i ≤ m`.  (Iterated `fresh_w2_forced`.)
+@isnad1 id=eq.7h6v.s7.192c8d8540ee from=translated src=- shape=2e3c0f15 vocab=6e4e03ac
+-/
 theorem run_forced (hk : 2 ≤ k) {A : List ℕ} (hA : A.length = k - 2) {b c : ℕ}
     {q : ℕ → List ℕ} (h0 : q 0 = A ++ [b, c])
     (hperm : ∀ i, IsPermWord k (q i))
@@ -332,14 +374,18 @@ namespace Hunter.Proved
 abbrev RunVisited := Hunter.ProofsRigidity2.RunVisited
 
 /-- `Hunter.Proved.tau2_forced` — **weight-2 determinism** (`PROOF_S2 §1`): a fresh weight-2
-successor of a block exit is the `τ₂` step.-/
+successor of a block exit is the `τ₂` step.
+@isnad1 id=eq.5h3v.s5.010b3a3ffa19 from=translated src=- shape=ba5e3754 vocab=b5749150
+-/
 theorem tau2_forced {k : ℕ} {u v : List ℕ} (hk : 2 ≤ k) (hu : IsPermWord k u)
     (hv : IsPermWord k v) (hw2 : Hunter.ProofsRigidity2.bwt k u v = 2)
     (hfresh : rotClass v ≠ rotClass u) : v = Hunter.ProofsRigidity2.tau2 k u :=
   Hunter.ProofsRigidity2.fresh_w2_forced hk hu hv hw2 hfresh
 
 /-- `Hunter.Proved.tau3_forced` — **the forced step** (`PROOF_S2 §3`): the unique fresh full-run
-weight-3 continuation of a completed run is `τ₃` (the next run's start).-/
+weight-3 continuation of a completed run is `τ₃` (the next run's start).
+@isnad1 id=eq.5h5v.s7.e19f5c6a7b99 from=translated src=- shape=e1804819 vocab=046a134e
+-/
 theorem tau3_forced {As : List ℕ} {a₁ b c : ℕ}
     (he : IsPermWord (As.length + 3) (c :: b :: a₁ :: As))
     {v : List ℕ} (hv : IsPermWord (As.length + 3) v)
@@ -351,7 +397,9 @@ theorem tau3_forced {As : List ℕ} {a₁ b c : ℕ}
   Hunter.ProofsRigidity2.forced_step he hv hover hvfresh hlast
 
 /-- `Hunter.Proved.run_forced` — **intra-run determinism**: a run with fixed start and weight-2
-profile is `D₀,…,D_m`.-/
+profile is `D₀,…,D_m`.
+@isnad1 id=eq.7h6v.s7.192c8d8540ee from=translated src=- shape=2e3c0f15 vocab=6e4e03ac
+-/
 theorem run_forced {k : ℕ} (hk : 2 ≤ k) {A : List ℕ} (hA : A.length = k - 2) {b c : ℕ}
     {q : ℕ → List ℕ} (h0 : q 0 = A ++ [b, c]) (hperm : ∀ i, IsPermWord k (q i))
     (hdist : ∀ i, i < A.length → rotClass (q (i + 1)) ≠ rotClass (q i))
@@ -360,7 +408,9 @@ theorem run_forced {k : ℕ} (hk : 2 ≤ k) {A : List ℕ} (hA : A.length = k - 
   Hunter.ProofsRigidity2.run_forced hk hA h0 hperm hdist hw2
 
 /-- `Hunter.Proved.runlen_pigeonhole` — **the counting collapse** (`PROOF_S2 §2`): `r ≤ m` runs of
-length `≤ n` totalling `n·m` forces `m` full runs.-/
+length `≤ n` totalling `n·m` forces `m` full runs.
+@isnad1 id=and.4h4v.s6.1aa904151c4f from=translated src=- shape=812a6ba6 vocab=f28e408c
+-/
 theorem runlen_pigeonhole {r m n : ℕ} (hn : 1 ≤ n) (hr : r ≤ m) (L : Fin r → ℕ)
     (hcap : ∀ i, L i ≤ n) (hsum : (∑ i, L i) = n * m) : r = m ∧ ∀ i, L i = n :=
   Hunter.ProofsRigidity2.runlen_pigeonhole hn hr L hcap hsum

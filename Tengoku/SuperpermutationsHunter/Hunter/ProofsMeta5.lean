@@ -104,7 +104,9 @@ window step now consumes the *potential-carrying* inequality: the `Φ p` on the 
 by the `Φ q` released from the prefix, so a window that carries only `k − 3` units of raw supply
 still closes provided the prefix banked the missing unit.  All `j`/`Dfr`-recursion bookkeeping
 (`j_rec_unfold_one`, `ceilDiv_add_dvd`, `ceilDiv_ell0`, `k_dvd_ell0`) is discharged here; the sole
-residue is `AmortizedWindow k Φ` for a concrete `Φ`.-/
+residue is `AmortizedWindow k Φ` for a concrete `Φ`.
+@isnad1 id=excessfr.3h2v.s4.b86d001aa8e3 from=translated src=- shape=b828ab63 vocab=3fe6bacf
+-/
 theorem excessFrontier_of_amortizedWindow (hk : 3 ≤ k) (Φ : HPath k → ℕ)
     (hbase : BaseBound k Φ) (hstep : AmortizedWindow k Φ) :
     ExcessFrontier k := by
@@ -179,7 +181,9 @@ the missing `+1` (the run-terminator, or the banked surplus released from an ear
 what forces the *cumulative* form. -/
 
 /-- **Supply aggregation.**  If a family `f` pays exactly `1` at each index `c` with `1 ≤ c < m`
-(the α-transition payment clause of `Proved.runs_pay`), the total banked over the run is `m − 1`.-/
+(the α-transition payment clause of `Proved.runs_pay`), the total banked over the run is `m − 1`.
+@isnad1 id=eq.1h2v.s6.2a4f77fcd74f from=translated src=- shape=acacc615 vocab=b136bdca
+-/
 theorem run_supply_sum {m : ℕ} {f : ℕ → ℕ} (hpay : ∀ c, 1 ≤ c → c < m → f c = 1) :
     ∑ c ∈ Finset.Ico 1 m, f c = m - 1 := by
   have hcongr : ∀ c ∈ Finset.Ico 1 m, f c = 1 := by
@@ -192,7 +196,9 @@ theorem run_supply_sum {m : ℕ} {f : ℕ → ℕ} (hpay : ∀ c, 1 ≤ c → c 
 exitless path banks exactly `m − 1` units of `≥3`-weight excess across its interior α-transitions,
 and `m ≤ k − 2` — so a single run supplies at most `k − 3` of the `k − 2` demand growth per
 `ℓ₀`-window.  Aggregates `Proved.runs_pay`'s pointwise payment via `run_supply_sum`; this is the
-supply term the amortized telescope sums per group.-/
+supply term the amortized telescope sums per group.
+@isnad1 id=and.5h4v.s9.7d6931b6f317 from=translated src=- shape=b3f92a8d vocab=7b75abe1
+-/
 theorem run_banks (hk : 3 ≤ k) {p : HPath k} (hp : p.Exitless) (t₀ m : ℕ)
     (hN : k * (t₀ + m * (k - 1)) ≤ p.numVerts)
     (hdoor : ∀ j r, j < m → 1 ≤ r → r ≤ k - 2 →
@@ -219,12 +225,16 @@ Setting `Φ ≡ 0`, `AmortizedWindow k 0` is definitionally `WindowExcess k` and
 *generalization*, not a different statement — the amortized frontier weakens the (refuted) uniform
 one by exactly the banked-surplus potential. -/
 
-/-- `BaseBound k (fun _ => 0)` holds unconditionally — it is `excess_frontier_base`.-/
+/-- `BaseBound k (fun _ => 0)` holds unconditionally — it is `excess_frontier_base`.
+@isnad1 id=baseboun.1h1v.s4.275c30421407 from=translated src=- shape=e8e458af vocab=e72fdd7f
+-/
 theorem baseBound_zero (hk : 3 ≤ k) : BaseBound k (fun _ => 0) := by
   intro p hpe h0 hle
   simpa using excess_frontier_base hk hpe h0 hle
 
-/-- `WindowExcess k` is exactly `AmortizedWindow k (fun _ => 0)`.-/
+/-- `WindowExcess k` is exactly `AmortizedWindow k (fun _ => 0)`.
+@isnad1 id=iff.0h1v.s3.c2658fd9e5b0 from=translated src=- shape=53d5293b vocab=b6e0cbbe
+-/
 theorem amortizedWindow_zero_iff_windowExcess :
     AmortizedWindow k (fun _ => 0) ↔ WindowExcess k := by
   constructor
@@ -234,7 +244,9 @@ theorem amortizedWindow_zero_iff_windowExcess :
     have := h p q hpe hqe hlt hpre; simpa using this
 
 /-- **Recovery of the uniform reduction.**  `excessFrontier_of_amortizedWindow` at `Φ ≡ 0`
-reproduces `ProofsDeficit.excessFrontier_of_windowExcess`.-/
+reproduces `ProofsDeficit.excessFrontier_of_windowExcess`.
+@isnad1 id=excessfr.2h1v.s4.3629efb34866 from=translated src=- shape=4963a319 vocab=68b3906d
+-/
 theorem excessFrontier_of_windowExcess' (hk : 3 ≤ k) (hw : WindowExcess k) :
     ExcessFrontier k :=
   excessFrontier_of_amortizedWindow hk (fun _ => 0) (baseBound_zero hk)
@@ -248,7 +260,9 @@ from the two amortized obligations. -/
 /-- **`thm2` conditional on the amortized frontier.**  For any potential `Φ`, `BaseBound k Φ` +
 `AmortizedWindow k Φ` give `j_k(ℓ) ≤ i_k(ℓ)` (the verbatim `Statements.thm2` conclusion) for all
 `ℓ`.  A sorry-free discharge of `AmortizedWindow k Φ` for one concrete `Φ ∈ {0,1}` completes
-Theorem 2 for all `k`.-/
+Theorem 2 for all `k`.
+@isnad1 id=le.4h3v.s5.521a37f0087b from=translated src=- shape=b363fcde vocab=e3580f2a
+-/
 theorem thm2_of_amortizedWindow {k ℓ : ℕ} (hk : 3 ≤ k) (Φ : HPath k → ℕ)
     (hbase : BaseBound k Φ) (hstep : AmortizedWindow k Φ) (hℓ : HasExitlessPath k ℓ) :
     j k ℓ ≤ iExitless k ℓ :=
@@ -275,7 +289,9 @@ holds — `4 + (k−2) + 0 ≤ 6 + 1`, i.e. `7 ≤ 7`, tight — while the unifo
 inequality `4 + (k−2) ≤ 6`, i.e. `7 ≤ 6`, FAILS on the very same data.  The banked value
 `Φ q = 1 = s(65)` is the front-loaded surplus the cumulative telescope carries and the per-window
 form cannot.  Lean-certifies that the `AmortizedWindow` residual is satisfiable exactly where
-`WindowExcess` is refuted (`Refutations.windowExcess_false`).-/
+`WindowExcess` is refuted (`Refutations.windowExcess_false`).
+@isnad1 id=ex.0h0v.s8.39e5d02364c9 from=translated src=- shape=f945a605 vocab=2f74d4a1
+-/
 theorem amortizedWindow_holds_at_witness :
     ∃ (P q : HPath 5),
       P.Exitless ∧ q.Exitless ∧

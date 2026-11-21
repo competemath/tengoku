@@ -52,7 +52,9 @@ variable {k : ℕ}
 /-- **Flatten-indexing lemma (`getElem?` form).**  In the flatten of the uniform blocks
 `vs.map (v ↦ [v, σv, …, σ^{k-1}v])`, the entry at flat position `k·s + r` (`s < |vs|`,
 `r < k`) is `σ^r(vs[s])`.  Proved by induction on `vs` at the `getElem?` level (free indices,
-no proof-carrying `getElem`).-/
+no proof-carrying `getElem`).
+@isnad1 id=eq.2h4v.s7.01040b8e953d from=translated src=- shape=399bfe6e vocab=c20afbd1
+-/
 theorem getElem?_flatten_blocks (vs : List (Vtx k)) {s : ℕ} (hs : s < vs.length)
     {r : ℕ} (hr : r < k) :
     (vs.map (fun v => (List.range k).map (fun r => sigma^[r] v))).flatten[k * s + r]?
@@ -83,7 +85,9 @@ theorem getElem?_flatten_blocks (vs : List (Vtx k)) {s : ℕ} (hs : s < vs.lengt
       rw [ih hs']
       simp
 
-/-- Every `φ`-form path has `|p| = k·|vs|` (each of the `|vs|` blocks has length `k`).-/
+/-- Every `φ`-form path has `|p| = k·|vs|` (each of the `|vs|` blocks has length `k`).
+@isnad1 id=eq.1h3v.s5.5c3e2e1dee9f from=translated src=- shape=a99e739d vocab=ff19aa2e
+-/
 theorem phi_numVerts {p : HPath k} {vs : List (Vtx k)}
     (hverts : p.verts
       = (vs.map (fun v => (List.range k).map (fun r => sigma^[r] v))).flatten) :
@@ -97,7 +101,9 @@ theorem phi_numVerts {p : HPath k} {vs : List (Vtx k)}
   rw [hmap, List.map_const', List.sum_replicate, smul_eq_mul, Nat.mul_comm]
 
 /-- **Flatten-indexing lemma (`vert` form).**  For a `φ`-form path, `p[k·s + r] = σ^r(vs[s])`
-(`s < |vs|`, `r < k`).-/
+(`s < |vs|`, `r < k`).
+@isnad1 id=eq.3h5v.s6.eeeafd7f5cab from=translated src=- shape=7744d397 vocab=36f7d3a6
+-/
 theorem phi_vert {p : HPath k} {vs : List (Vtx k)}
     (hverts : p.verts
       = (vs.map (fun v => (List.range k).map (fun r => sigma^[r] v))).flatten)
@@ -125,7 +131,9 @@ open HPath ProofsExitless ProofsPhi
 
 /-- **clm-phi (sufficiency)** — Hunter §6 l.523, ⟸.  Every `φ(c⃗,v⃗)` is a strongly exitless
 path.  Delivered *unguarded* (verbatim to the paper): at `k = 0`, `IsPhiForm p` forces
-`p.verts = []`, contradicting `p.ne`, so that case is vacuous.-/
+`p.verts = []`, contradicting `p.ne`, so that case is vacuous.
+@isnad1 id=strongly.1h2v.s3.dd30dc789569 from=translated src=- shape=b28a8773 vocab=f06eba5b
+-/
 theorem clm_phi_sufficiency {k : ℕ} {p : HPath k} (hp : IsPhiForm p) : p.StronglyExitless := by
   obtain ⟨vs, _hnodup, hverts⟩ := hp
   rcases Nat.eq_zero_or_pos k with hk0 | hk
@@ -208,7 +216,9 @@ theorem clm_phi_sufficiency {k : ℕ} {p : HPath k} (hp : IsPhiForm p) : p.Stron
 /-- **StronglyExitless ↔ IsPhiForm** (guard `1 ≤ k`).  The genuine composition of
 necessity (`clm_phi_necessity_amended`) and sufficiency (`clm_phi_sufficiency`).  This is the
 clean characterization the paper's `clm-phi` states; the `1 ≤ k` guard is inherited from
-necessity (false at `k = 0`, see `Hunter/ProofsExitless.lean`).-/
+necessity (false at `k = 0`, see `Hunter/ProofsExitless.lean`).
+@isnad1 id=iff.1h2v.s4.287c346d98b0 from=translated src=- shape=2b3dbf42 vocab=07375102
+-/
 theorem bridge_stronglyExitless_iff_phiForm {k : ℕ} (hk : 1 ≤ k) {p : HPath k} :
     p.StronglyExitless ↔ IsPhiForm p :=
   ⟨Proved.clm_phi_necessity_amended hk, clm_phi_sufficiency⟩

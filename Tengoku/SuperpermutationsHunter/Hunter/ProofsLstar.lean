@@ -35,6 +35,9 @@ open scoped Classical
 
 variable {k : ℕ}
 
+/--
+@isnad1 id=nonempty.0h1v.s2.534bfef30eb7 from=translated src=- shape=76a08d12 vocab=be208c8f
+-/
 instance instNonemptyVtx : Nonempty (Vtx k) :=
   ⟨⟨(Finset.Icc 1 k).sort (· ≤ ·),
     Finset.sort_nodup _ _, Finset.sort_toFinset _ _⟩⟩
@@ -42,7 +45,9 @@ instance instNonemptyVtx : Nonempty (Vtx k) :=
 /-! ## Ported overlap machinery (from `Coeff2/Auxiliary.lean`, `wt`/`wt_spec` are Hunter's) -/
 
 /-- The overlap-position bound (Coeff2 `wt_le_pos_gap`): consecutive permutation windows of a
-word at positions `p < q` overlap in all but `q − p` symbols.-/
+word at positions `p < q` overlap in all but `q − p` symbols.
+@isnad1 id=le.4h4v.s6.4220c2168810 from=translated src=- shape=232e25b5 vocab=d3224fb8
+-/
 theorem wt_le_pos_gap {w : List ℕ} {p q : ℕ} (hk : 1 ≤ k) (hpq : p < q)
     (_hq : q + k ≤ w.length) (hup : IsPermWord k ((w.drop p).take k)) :
     wt k ((w.drop p).take k) ((w.drop q).take k) ≤ q - p := by
@@ -64,7 +69,9 @@ noncomputable def wordOf (k : ℕ) : List (List ℕ) → List ℕ
   | [σ] => σ
   | σ :: τ :: rest => σ.take (wt k σ τ) ++ wordOf k (τ :: rest)
 
-/-- Coeff2 `wordOf_length`: `|wordOf l| = k + Σ wt`.-/
+/-- Coeff2 `wordOf_length`: `|wordOf l| = k + Σ wt`.
+@isnad1 id=eq.3h2v.s6.8e2a72db1e49 from=translated src=- shape=3ddad026 vocab=832a3d31
+-/
 theorem wordOf_length (hk : 1 ≤ k) :
     ∀ (l : List (List ℕ)), l ≠ [] → (∀ x ∈ l, IsPermWord k x) →
       (wordOf k l).length = k + (List.zipWith (wt k) l l.tail).sum
@@ -85,7 +92,9 @@ theorem wordOf_length (hk : 1 ≤ k) :
       = k + (wt k σ τ + (List.zipWith (wt k) (τ :: rest) rest).sum)
     omega
 
-/-- Coeff2 `word_prefix_wordOf`: the head vertex's word is a prefix of the walk word.-/
+/-- Coeff2 `word_prefix_wordOf`: the head vertex's word is a prefix of the walk word.
+@isnad1 id=isprefix.3h3v.s5.625a3ecb7e68 from=translated src=- shape=103639a5 vocab=faaed45a
+-/
 theorem word_prefix_wordOf (hk : 1 ≤ k) :
     ∀ (l : List (List ℕ)) (σ : List ℕ), IsPermWord k σ → (∀ x ∈ l, IsPermWord k x) →
       σ <+: wordOf k (σ :: l)
@@ -106,7 +115,9 @@ theorem word_prefix_wordOf (hk : 1 ≤ k) :
           rw [← List.append_assoc (τ.take (k - wt k σ τ)), List.take_append_drop]
       _ = σ.take (wt k σ τ) ++ wordOf k (τ :: rest) := by rw [ht]
 
-/-- Coeff2 `word_infix_wordOf`: every visited vertex's word is a factor of the walk word.-/
+/-- Coeff2 `word_infix_wordOf`: every visited vertex's word is a factor of the walk word.
+@isnad1 id=isinfix.3h3v.s5.9e37bff84ae2 from=translated src=- shape=e0e97473 vocab=7f920cf1
+-/
 theorem word_infix_wordOf (hk : 1 ≤ k) :
     ∀ (l : List (List ℕ)) (v : List ℕ), v ∈ l → (∀ x ∈ l, IsPermWord k x) →
       v <:+: wordOf k l
@@ -124,7 +135,9 @@ theorem word_infix_wordOf (hk : 1 ≤ k) :
 
 /-! ## `zipWith` over mapped vertex lists -/
 
-/-- `zipWith wt` over the underlying words equals `zipWith ew` over the vertices.-/
+/-- `zipWith wt` over the underlying words equals `zipWith ew` over the vertices.
+@isnad1 id=eq.0h3v.s6.23da0b2986a5 from=translated src=- shape=758b8480 vocab=3541e680
+-/
 theorem zipWith_wt_map_val : ∀ (A B : List (Vtx k)),
     List.zipWith (wt k) (A.map Subtype.val) (B.map Subtype.val) = List.zipWith (ew k) A B
   | [], _ => by simp
@@ -133,7 +146,9 @@ theorem zipWith_wt_map_val : ∀ (A B : List (Vtx k)),
     simp only [List.map_cons, List.zipWith_cons_cons, ew]
     rw [zipWith_wt_map_val A B]
 
-/-- The overlap-sum over a mapped vertex list is the path weight.-/
+/-- The overlap-sum over a mapped vertex list is the path weight.
+@isnad1 id=eq.0h2v.s6.d6ad2527973a from=translated src=- shape=8969040c vocab=1f7d9b5c
+-/
 theorem zipWith_wt_tail_eq (l : List (Vtx k)) :
     (List.zipWith (wt k) (l.map Subtype.val) (l.map Subtype.val).tail).sum
       = (l.zipWith (ew k) l.tail).sum := by
@@ -146,6 +161,9 @@ theorem zipWith_wt_tail_eq (l : List (Vtx k)) :
 noncomputable def fpos (w : List ℕ) (v : Vtx k) : ℕ :=
   sInf {p | (w.drop p).take k = v.1}
 
+/--
+@isnad1 id=nonempty.1h3v.s5.06a08124a49e from=translated src=- shape=5485a81e vocab=00d6edc9
+-/
 theorem fpos_mem_set {w : List ℕ} (hw : IsSuperperm k w) (v : Vtx k) :
     {p | (w.drop p).take k = v.1}.Nonempty := by
   obtain ⟨s, t, hst⟩ := hw v.1 v.2
@@ -155,10 +173,16 @@ theorem fpos_mem_set {w : List ℕ} (hw : IsSuperperm k w) (v : Vtx k) :
   show (w.drop s.length).take k = v.1
   rw [hdrop, List.take_left' v.2.length]
 
+/--
+@isnad1 id=eq.1h3v.s5.8a0de34b1904 from=translated src=- shape=8027630f vocab=565e4067
+-/
 theorem fpos_spec {w : List ℕ} (hw : IsSuperperm k w) (v : Vtx k) :
     (w.drop (fpos w v)).take k = v.1 :=
   Nat.sInf_mem (fpos_mem_set hw v)
 
+/--
+@isnad1 id=le.2h3v.s5.90a2b62ef79a from=translated src=- shape=068724dd vocab=8e74535b
+-/
 theorem fpos_bound {w : List ℕ} (hk : 1 ≤ k) (hw : IsSuperperm k w) (v : Vtx k) :
     fpos w v + k ≤ w.length := by
   have h := fpos_spec hw v
@@ -167,6 +191,9 @@ theorem fpos_bound {w : List ℕ} (hk : 1 ≤ k) (hw : IsSuperperm k w) (v : Vtx
   have h2 : k ≤ w.length - fpos w v := min_eq_left_iff.mp hlen
   omega
 
+/--
+@isnad1 id=injectiv.1h2v.s4.38f4177b39ec from=translated src=- shape=0846b50d vocab=312f8c6c
+-/
 theorem fpos_injective {w : List ℕ} (hw : IsSuperperm k w) :
     Function.Injective (fpos (k := k) w) := by
   intro a b hab
@@ -178,7 +205,9 @@ theorem fpos_injective {w : List ℕ} (hw : IsSuperperm k w) :
 /-! ## The telescoping bound -/
 
 /-- Telescoping: along a list of vertices strictly increasing in `fpos`, the total overlap
-weight plus the first `fpos` is bounded by the last `fpos`.-/
+weight plus the first `fpos` is bounded by the last `fpos`.
+@isnad1 id=le.4h4v.s7.1e2cd95411ae from=translated src=- shape=1912c0ee vocab=8c033c5b
+-/
 theorem tele (w : List ℕ) (hk : 1 ≤ k) :
     ∀ (a : Vtx k) (rest : List (Vtx k)),
       (a :: rest).Pairwise (fun x y => fpos w x < fpos w y) →
@@ -210,6 +239,9 @@ theorem tele (w : List ℕ) (hk : 1 ≤ k) :
 
 /-! ## Direction A: word → path, giving `Lstar ≤ Ssuper` -/
 
+/--
+@isnad1 id=le.2h2v.s5.fc3e25af3580 from=translated src=- shape=b9cf99d0 vocab=f4d6667c
+-/
 theorem dirA {w : List ℕ} (hk : 1 ≤ k) (hw : IsSuperperm k w) : L k + k ≤ w.length := by
   classical
   have hinj : Function.Injective (fpos w) := fpos_injective hw
@@ -250,7 +282,9 @@ theorem dirA {w : List ℕ} (hk : 1 ≤ k) (hw : IsSuperperm k w) : L k + k ≤ 
 
 /-! ## Direction B: path → word, giving `Ssuper ≤ Lstar` -/
 
-/-- The overlap-word of a Hamiltonian path is a superpermutation of length `w(P) + k`.-/
+/-- The overlap-word of a Hamiltonian path is a superpermutation of length `w(P) + k`.
+@isnad1 id=and.2h2v.s6.a6056c8d8772 from=translated src=- shape=e9b3e77d vocab=4873e49f
+-/
 theorem exists_superperm_of_ham (hk : 1 ≤ k) {P : HPath k} (hHam : P.IsHamiltonian) :
     IsSuperperm k (wordOf k (P.verts.map Subtype.val)) ∧
       (wordOf k (P.verts.map Subtype.val)).length = P.wtP + k := by
@@ -272,6 +306,9 @@ theorem exists_superperm_of_ham (hk : 1 ≤ k) {P : HPath k} (hHam : P.IsHamilto
 
 /-! ## Existence of a Hamiltonian path (seed for both `sInf`s being nonempty) -/
 
+/--
+@isnad1 id=ex.0h1v.s3.b7f468c66279 from=translated src=- shape=1c0aca99 vocab=e77b6889
+-/
 theorem exists_ham : ∃ P : HPath k, P.IsHamiltonian := by
   have hne : (Finset.univ : Finset (Vtx k)).toList ≠ [] := by
     have : 0 < (Finset.univ : Finset (Vtx k)).toList.length := by
@@ -289,7 +326,9 @@ namespace Proved
 open ProofsLstar
 
 /-- **bridge: L\*(k) = L(k) + k** — the library's `Lstar := L + k` equals the direct
-superpermutation minimum `Ssuper` (Hunter's `L*(k) = k + L(k)`).  Proved outright.-/
+superpermutation minimum `Ssuper` (Hunter's `L*(k) = k + L(k)`).  Proved outright.
+@isnad1 id=eq.1h1v.s4.a0d47a732c5c from=translated src=- shape=9c8b14d8 vocab=f6e70feb
+-/
 theorem bridge_Lstar_eq_Ssuper {k : ℕ} (hk : 1 ≤ k) : Lstar k = Ssuper k := by
   classical
   obtain ⟨P₀, hP₀⟩ := (ProofsLstar.exists_ham : ∃ P : HPath k, P.IsHamiltonian)

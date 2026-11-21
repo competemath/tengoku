@@ -42,13 +42,17 @@ variable {k : ℕ}
 
 /-! ## Word-level micro-lemmas: last symbol of `door`/`rho` -/
 
-/-- The last symbol of `door w` is the head `w[0]` of `w`.-/
+/-- The last symbol of `door w` is the head `w[0]` of `w`.
+@isnad1 id=eq.0h1v.s4.cfe476771732 from=translated src=- shape=61815e57 vocab=62bb5740
+-/
 theorem door_getLastD (w : List ℕ) : (door w).getLastD 0 = w.getD 0 0 := by
   show (w.drop 2 ++ [w.getD 1 0, w.getD 0 0]).getLastD 0 = w.getD 0 0
   rw [show w.drop 2 ++ [w.getD 1 0, w.getD 0 0]
         = (w.drop 2 ++ [w.getD 1 0]) ++ [w.getD 0 0] from by simp, List.getLastD_concat]
 
-/-- The last symbol of `rho w = w.rotate 1` is the head `w[0]` of `w`.-/
+/-- The last symbol of `rho w = w.rotate 1` is the head `w[0]` of `w`.
+@isnad1 id=eq.0h1v.s4.eca28e00bc0a from=translated src=- shape=61815e57 vocab=a81153af
+-/
 theorem rho_getLastD (w : List ℕ) : (rho w).getLastD 0 = w.getD 0 0 := by
   cases w with
   | nil => rfl
@@ -63,14 +67,18 @@ At the boundary edge into block `t` (source position `k·t − 1`, the last vert
 This is what turns the *dynamic* marker `(rho (p.vert (k·t−1))).getLastD 0` into the previous
 block-start's marker — the key to the marker reconciliation. -/
 
-/-- Rotating a length-`k` vertex word by `k` is the identity.-/
+/-- Rotating a length-`k` vertex word by `k` is the identity.
+@isnad1 id=eq.0h2v.s4.f5a9df45b92d from=translated src=- shape=ff2d9a2b vocab=4a3e8ae0
+-/
 theorem rotate_len_eq (v : Vtx k) : (v : List ℕ).rotate k = v := by
   have hrl : (v : List ℕ).rotate k = (v : List ℕ).rotate (v : List ℕ).length := by
     rw [v.2.length]
   rw [hrl, List.rotate_length]
 
 /-- **Boundary rho.**  For an exitless path, `rho (p.vert (k·t − 1)) = p.vert (k·(t − 1))`
-(the last vertex of block `t − 1` rotated once is the block start).-/
+(the last vertex of block `t − 1` rotated once is the block start).
+@isnad1 id=eq.4h3v.s6.15a99162e819 from=translated src=- shape=5dd9d592 vocab=374a5b3e
+-/
 theorem rho_boundary_prev (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) {t : ℕ}
     (ht : 1 ≤ t) (hN : k * t ≤ p.numVerts) :
     (rho (p.vert (k * t - 1) : List ℕ)) = (p.vert (k * (t - 1)) : List ℕ) := by
@@ -90,7 +98,9 @@ theorem rho_boundary_prev (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) {t : �
 
 /-- **Meta-σ block step (fixed marker).**  Across a weight-2 (door) boundary into block `t`,
 if the previous block-start's marker is `α₁`, the meta-word advances by `rotate 1` — stated with
-the *fixed* `α₁`, not the dynamic marker.-/
+the *fixed* `α₁`, not the dynamic marker.
+@isnad1 id=eq.6h4v.s7.cba97d7f7794 from=translated src=- shape=35466cb9 vocab=6f0ac3cb
+-/
 theorem metaWord_door_block (hk : 2 ≤ k) {p : HPath k} (hp : p.Exitless) {t α₁ : ℕ}
     (ht : 1 ≤ t) (hN : k * t < p.numVerts)
     (hw : ew k (p.vert (k * t - 1)) (p.vert (k * t)) = 2)
@@ -108,7 +118,9 @@ theorem metaWord_door_block (hk : 2 ≤ k) {p : HPath k} (hp : p.Exitless) {t α
 
 /-- **Meta-door block step (fixed marker).**  Across an α boundary into block `t` (weight-3,
 marker-preserving, landing on `alphaWord`), if the previous block-start's marker is `α₁`, the
-meta-word advances by `door` — stated with the fixed `α₁`.-/
+meta-word advances by `door` — stated with the fixed `α₁`.
+@isnad1 id=eq.8h4v.s8.060c32c21a84 from=translated src=- shape=c0513e8a vocab=240d8564
+-/
 theorem metaWord_alpha_block (hk : 3 ≤ k) {p : HPath k} (hp : p.Exitless) {t α₁ : ℕ}
     (ht : 1 ≤ t) (hN : k * t < p.numVerts)
     (hw : ew k (p.vert (k * t - 1)) (p.vert (k * t)) = 3)
@@ -128,7 +140,9 @@ theorem metaWord_alpha_block (hk : 3 ≤ k) {p : HPath k} (hp : p.Exitless) {t �
   exact hstep
 
 /-- **Door preserves the block marker.**  A weight-2 boundary into block `t` keeps the
-block-start's last symbol equal to the previous block-start's (`= α₁`).-/
+block-start's last symbol equal to the previous block-start's (`= α₁`).
+@isnad1 id=eq.6h4v.s7.f2c1b947abf9 from=translated src=- shape=3faf882b vocab=7303bf33
+-/
 theorem marker_door_step (hk : 2 ≤ k) {p : HPath k} (hp : p.Exitless) {t α₁ : ℕ}
     (ht : 1 ≤ t) (hN : k * t < p.numVerts)
     (hw : ew k (p.vert (k * t - 1)) (p.vert (k * t)) = 2)
@@ -144,7 +158,9 @@ theorem marker_door_step (hk : 2 ≤ k) {p : HPath k} (hp : p.Exitless) {t α₁
   rw [hdoor, door_getLastD, ← rho_getLastD, hrho]; exact hmk
 
 /-- **α preserves the block marker.**  A marker-preserving boundary into block `t` keeps the
-block-start's last symbol equal to the previous block-start's (`= α₁`).-/
+block-start's last symbol equal to the previous block-start's (`= α₁`).
+@isnad1 id=eq.6h4v.s7.31566c6f174d from=translated src=- shape=2f51881d vocab=39299e3c
+-/
 theorem marker_alpha_step (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) {t α₁ : ℕ}
     (ht : 1 ≤ t) (hN : k * t ≤ p.numVerts)
     (hmark : (p.vert (k * t) : List ℕ).getLastD 0
@@ -162,7 +178,9 @@ bounded meta-run induction (`meta_hinv` with `< m` bounds) and hand the confined
 `ProofsMeta2.meta_pigeonhole` — the pigeonhole itself is reused verbatim, not forked. -/
 
 /-- **Bounded meta-confinement.**  As `ProofsMeta2.meta_confinement`, but `hlen`/`hstep` are only
-required inside the run (`j < m`, `j + 1 < m`).-/
+required inside the run (`j < m`, `j + 1 < m`).
+@isnad1 id=le.8h7v.s8.f9435995c8db from=translated src=- shape=e6584e12 vocab=2680d39c
+-/
 theorem meta_confinement' (hk : 3 ≤ k) {α₁ α₂ : ℕ} {K : RotClass}
     {Astar : ℕ → Vtx k} {m : ℕ} (blk : Fin m × Fin (k - 1) → Vtx k)
     (hα1 : α₁ = (Astar 0 : List ℕ).getLastD 0)
@@ -213,7 +231,9 @@ Block indices: 2-loop `j` starts at block `t₀ + j·(k−1)`; its blocks are
 into `t₀ + c·(k−1)` (start of 2-loop `c`, `1 ≤ c < m`) is the terminating α of 2-loop `c − 1`. -/
 
 /-- **α-run bound (path level).**  A maximal α-run of `m` complete 2-loops inside an exitless
-path has `m ≤ k − 2` 2-loops.-/
+path has `m ≤ k − 2` 2-loops.
+@isnad1 id=le.5h4v.s9.4b71cc0d6926 from=translated src=- shape=c89150ef vocab=22f3e982
+-/
 theorem alpha_run_bound (hk : 3 ≤ k) {p : HPath k} (hp : p.Exitless) (t₀ m : ℕ)
     (hN : k * (t₀ + m * (k - 1)) ≤ p.numVerts)
     (hdoor : ∀ j r, j < m → 1 ≤ r → r ≤ k - 2 →
@@ -410,7 +430,9 @@ namespace Proved
 open ProofsMeta4 HPath
 
 /-- **α-run bound (path level)** — re-export of `ProofsMeta4.alpha_run_bound` into `Hunter.Proved`:
-any maximal α-run of `m` complete 2-loops in an exitless path has `m ≤ k − 2`.-/
+any maximal α-run of `m` complete 2-loops in an exitless path has `m ≤ k − 2`.
+@isnad1 id=le.5h4v.s9.4b71cc0d6926 from=translated src=- shape=c89150ef vocab=22f3e982
+-/
 theorem alpha_run_bound {k : ℕ} (hk : 3 ≤ k) {p : HPath k} (hp : p.Exitless) (t₀ m : ℕ)
     (hN : k * (t₀ + m * (k - 1)) ≤ p.numVerts)
     (hdoor : ∀ j r, j < m → 1 ≤ r → r ≤ k - 2 →
@@ -434,7 +456,9 @@ complete 2-loops (interior door boundaries `hdoor`, α terminators `halpha`) sat
 
 So per `≤ (k − 2)` complete 2-loops of a run, the run's α-transitions bank `m − 1` excess units,
 and the run cannot extend past `k − 2` 2-loops without a fresh paying (marker-moving / weight-`≥4`)
-event — matching the frontier's `(k − 2)`-per-window growth.-/
+event — matching the frontier's `(k − 2)`-per-window growth.
+@isnad1 id=and.5h4v.s9.8b459fabf7fd from=translated src=- shape=749b633e vocab=22f3e982
+-/
 theorem runs_pay {k : ℕ} (hk : 3 ≤ k) {p : HPath k} (hp : p.Exitless) (t₀ m : ℕ)
     (hN : k * (t₀ + m * (k - 1)) ≤ p.numVerts)
     (hdoor : ∀ j r, j < m → 1 ≤ r → r ≤ k - 2 →

@@ -39,7 +39,9 @@ variable {k : ℕ}
 /-! ## Ported: rotations by distinct amounts `< length` differ (from Coeff2/Auxiliary) -/
 
 /-- Left-rotations of a duplicate-free word by distinct amounts `< length` differ.
-Ported verbatim from `Coeff2/Auxiliary.lean` (`rotate_injOn_lt`).-/
+Ported verbatim from `Coeff2/Auxiliary.lean` (`rotate_injOn_lt`).
+@isnad1 id=eq.4h3v.s5.4526a296db95 from=translated src=- shape=c6fa5e47 vocab=27f94518
+-/
 theorem rotate_injOn_lt {w : List ℕ} (hnd : w.Nodup) {a b : ℕ} (ha : a < w.length)
     (hb : b < w.length) (heq : w.rotate a = w.rotate b) : a = b := by
   have h0 : 0 < w.length := by omega
@@ -51,7 +53,9 @@ theorem rotate_injOn_lt {w : List ℕ} (hnd : w.Nodup) {a b : ℕ} (ha : a < w.l
 
 /-! ## `σ` iteration and the 1-cycle orbit -/
 
-/-- `σ^r` acts on the underlying word as rotation by `r`.-/
+/-- `σ^r` acts on the underlying word as rotation by `r`.
+@isnad1 id=eq.0h3v.s5.e91a7a461a77 from=translated src=- shape=b677acd0 vocab=5e059f06
+-/
 theorem sigma_iter_val (r : ℕ) (v : Vtx k) : (sigma^[r] v).1 = (v : List ℕ).rotate r := by
   induction r with
   | zero => simp
@@ -60,21 +64,27 @@ theorem sigma_iter_val (r : ℕ) (v : Vtx k) : (sigma^[r] v).1 = (v : List ℕ).
     change ((sigma^[n] v : Vtx k) : List ℕ).rotate 1 = (v : List ℕ).rotate (n + 1)
     rw [ih, List.rotate_rotate, Nat.add_comm]
 
-/-- `σ^r v` reduces mod the word length (`= k`).-/
+/-- `σ^r v` reduces mod the word length (`= k`).
+@isnad1 id=eq.0h3v.s5.c885d12f1c94 from=translated src=- shape=e289fb85 vocab=58528dab
+-/
 theorem sigma_iter_mod (r : ℕ) (v : Vtx k) : sigma^[r % k] v = sigma^[r] v := by
   apply Subtype.ext
   rw [sigma_iter_val, sigma_iter_val]
   have h : r % k = r % (v : List ℕ).length := by rw [v.2.length]
   rw [h, List.rotate_mod]
 
-/-- `σ^k v = v` (rotate by the length).-/
+/-- `σ^k v = v` (rotate by the length).
+@isnad1 id=eq.0h2v.s4.080da0e08c77 from=translated src=- shape=8203c2de vocab=51d4ed3d
+-/
 theorem sigma_iter_period (v : Vtx k) : sigma^[k] v = v := by
   apply Subtype.ext
   rw [sigma_iter_val]
   have h : (v : List ℕ).rotate k = (v : List ℕ).rotate (v : List ℕ).length := by rw [v.2.length]
   rw [h, List.rotate_length]
 
-/-- On a permutation word, rotations by distinct amounts `< k` are distinct.-/
+/-- On a permutation word, rotations by distinct amounts `< k` are distinct.
+@isnad1 id=eq.3h4v.s5.f0e68bf7747f from=translated src=- shape=28514d7c vocab=ba42f264
+-/
 theorem sigma_iter_inj (v : Vtx k) {a b : ℕ} (ha : a < k) (hb : b < k)
     (h : sigma^[a] v = sigma^[b] v) : a = b := by
   have hlen : (v : List ℕ).length = k := v.2.length
@@ -87,30 +97,51 @@ theorem sigma_iter_inj (v : Vtx k) {a b : ℕ} (ha : a < k) (hb : b < k)
 
 open HPath
 
+/--
+@isnad1 id=eq.1h3v.s5.1db31bdbe811 from=translated src=- shape=0b683a06 vocab=ed287ee1
+-/
 theorem vert_getElem (p : HPath k) {t : ℕ} (ht : t < p.numVerts) :
     p.vert t = p.verts[t]'ht := by
   have ht' : t < p.verts.length := ht
   rw [HPath.vert]; exact List.getD_eq_getElem _ _ ht'
 
+/--
+@isnad1 id=mem.1h3v.s4.08ce5c41768a from=translated src=- shape=b30071bc vocab=4069e8eb
+-/
 theorem vert_mem (p : HPath k) {t : ℕ} (ht : t < p.numVerts) : p.vert t ∈ p.verts := by
   rw [vert_getElem p ht]; exact List.getElem_mem _
 
+/--
+@isnad1 id=lt.1h3v.s5.fe594aed43f2 from=translated src=- shape=aae73bfd vocab=debb80d8
+-/
 theorem pos_lt (p : HPath k) {v : Vtx k} (hv : v ∈ p.verts) : p.pos v < p.numVerts :=
   List.idxOf_lt_length_of_mem hv
 
+/--
+@isnad1 id=eq.1h3v.s5.154b48008ae7 from=translated src=- shape=cd2560cf vocab=ebe2c4b5
+-/
 theorem pos_of_not_mem (p : HPath k) {v : Vtx k} (hv : v ∉ p.verts) :
     p.pos v = p.numVerts :=
   List.idxOf_of_notMem hv
 
+/--
+@isnad1 id=eq.1h3v.s5.02241d140515 from=translated src=- shape=ef6bcc4d vocab=371c31e8
+-/
 theorem vert_pos (p : HPath k) {v : Vtx k} (hv : v ∈ p.verts) : p.vert (p.pos v) = v := by
   show p.verts.getD (p.verts.idxOf v) (p.verts.head p.ne) = v
   rw [List.getD_eq_getElem _ _ (List.idxOf_lt_length_of_mem hv)]
   exact List.getElem_idxOf _
 
+/--
+@isnad1 id=eq.1h3v.s4.e6eaaa706955 from=translated src=- shape=0164637c vocab=4efd46a7
+-/
 theorem pos_vert (p : HPath k) {t : ℕ} (ht : t < p.numVerts) : p.pos (p.vert t) = t := by
   rw [vert_getElem p ht]
   exact p.nodup.idxOf_getElem t ht
 
+/--
+@isnad1 id=eq.3h4v.s5.13c6242520c9 from=translated src=- shape=6fc8cc72 vocab=83a1a618
+-/
 theorem vert_inj (p : HPath k) {a b : ℕ} (ha : a < p.numVerts) (hb : b < p.numVerts)
     (h : p.vert a = p.vert b) : a = b := by
   have := congrArg p.pos h
@@ -118,18 +149,30 @@ theorem vert_inj (p : HPath k) {a b : ℕ} (ha : a < p.numVerts) (hb : b < p.num
 
 /-! ## The 1-cycle `cyc` as the `σ`-orbit -/
 
+/--
+@isnad1 id=iff.0h3v.s5.713416a3f29e from=translated src=- shape=93e7c2f5 vocab=6e3600b5
+-/
 theorem mem_cyc {u v : Vtx k} : u ∈ cyc v ↔ rotClass u.1 = rotClass v.1 := by
   rw [cyc, Finset.mem_filter]; exact ⟨fun h => h.2, fun h => ⟨Finset.mem_univ _, h⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.fabb38c7635f from=translated src=- shape=c839cb71 vocab=646ecabc
+-/
 theorem rotClass_sigma_iter (r : ℕ) (v : Vtx k) :
     rotClass (sigma^[r] v).1 = rotClass v.1 := by
   rw [sigma_iter_val]
   have h1 : (v : List ℕ) ~r (v : List ℕ).rotate r := ⟨r, rfl⟩
   exact rotClass_eq_iff.mpr h1.symm
 
+/--
+@isnad1 id=mem.0h3v.s5.4e72b2d0f176 from=translated src=- shape=f55d34a3 vocab=d64cc6c0
+-/
 theorem sigma_iter_mem_cyc (r : ℕ) (v : Vtx k) : sigma^[r] v ∈ cyc v :=
   mem_cyc.mpr (rotClass_sigma_iter r v)
 
+/--
+@isnad1 id=iff.1h3v.s5.7c185d9d2ec2 from=translated src=- shape=6e3d3dd6 vocab=6ac98f05
+-/
 theorem mem_cyc_iff_exists (hk : 1 ≤ k) {u v : Vtx k} :
     u ∈ cyc v ↔ ∃ r < k, u = sigma^[r] v := by
   rw [mem_cyc]
@@ -144,6 +187,9 @@ theorem mem_cyc_iff_exists (hk : 1 ≤ k) {u v : Vtx k} :
   · rintro ⟨r, -, rfl⟩
     exact rotClass_sigma_iter r v
 
+/--
+@isnad1 id=eq.1h2v.s5.0db4e4b51891 from=translated src=- shape=6182ce0b vocab=eb3e00db
+-/
 theorem cyc_eq_image (hk : 1 ≤ k) (v : Vtx k) :
     cyc v = (Finset.range k).image (fun r => sigma^[r] v) := by
   ext u
@@ -152,6 +198,9 @@ theorem cyc_eq_image (hk : 1 ≤ k) (v : Vtx k) :
   · rintro ⟨r, hr, rfl⟩; exact ⟨r, Finset.mem_range.mpr hr, rfl⟩
   · rintro ⟨r, hr, rfl⟩; exact ⟨r, Finset.mem_range.mp hr, rfl⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.09cc8ee3898c from=translated src=- shape=fa6080fc vocab=15c0038c
+-/
 theorem card_cyc (hk : 1 ≤ k) (v : Vtx k) : (cyc v).card = k := by
   rw [cyc_eq_image hk, Finset.card_image_of_injOn, Finset.card_range]
   intro a ha b hb hab
@@ -159,9 +208,15 @@ theorem card_cyc (hk : 1 ≤ k) (v : Vtx k) : (cyc v).card = k := by
 
 /-! ## Weight-1 edges are exactly the `σ`-steps; the operational exitless rule -/
 
+/--
+@isnad1 id=le.1h3v.s4.23c03b431879 from=translated src=- shape=0e93ae29 vocab=5f96ec61
+-/
 theorem ew_ge_one (hk : 1 ≤ k) (u v : Vtx k) : 1 ≤ ew k u v :=
   (wt_spec hk (le_of_eq u.2.length)).1
 
+/--
+@isnad1 id=iff.1h3v.s5.25a6abfc9d1c from=translated src=- shape=f9fdb66e vocab=89c834ab
+-/
 theorem ew_eq_one_iff (hk : 1 ≤ k) {u v : Vtx k} : ew k u v = 1 ↔ v = sigma u := by
   constructor
   · intro h
@@ -171,7 +226,9 @@ theorem ew_eq_one_iff (hk : 1 ≤ k) {u v : Vtx k} : ew k u v = 1 ↔ v = sigma 
   · rintro rfl; exact ew_sigma hk u
 
 /-- The operational form of the exitless rule: across each edge, either we take the
-weight-1 `σ`-step, or `σ` of the source has already been visited (at position `≤ i`).-/
+weight-1 `σ`-step, or `σ` of the source has already been visited (at position `≤ i`).
+@isnad1 id=or.3h3v.s6.31277f2048a7 from=translated src=- shape=c6f82a2f vocab=d13e0b7a
+-/
 theorem exitless_step (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) {i : ℕ}
     (hi : i + 1 < p.numVerts) :
     p.vert (i + 1) = sigma (p.vert i) ∨ p.pos (sigma (p.vert i)) ≤ i := by
@@ -188,9 +245,15 @@ theorem exitless_step (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) {i : ℕ}
 
 /-! ## Arithmetic helpers for the block decomposition -/
 
+/--
+@isnad1 id=eq.1h3v.s5.a332f8aa8f9a from=translated src=- shape=f0f47149 vocab=cb088a8e
+-/
 theorem mul_add_mod_lt (a b c : ℕ) (h : c < b) : (b * a + c) % b = c := by
   rw [Nat.mul_add_mod, Nat.mod_eq_of_lt h]
 
+/--
+@isnad1 id=eq.2h3v.s6.bcb45216ad1a from=translated src=- shape=49cd0532 vocab=749684c7
+-/
 theorem mul_add_div_lt (a b c : ℕ) (hb : 0 < b) (h : c < b) :
     b * ((b * a + c) / b) = b * a := by
   rw [Nat.mul_add_div hb, Nat.div_eq_of_lt h, Nat.add_zero]
@@ -202,7 +265,9 @@ traversals of distinct 1-cycles: the vertex at position `i` is the `(i mod k)`-t
 of the start of its block `k·⌊i/k⌋`.  All three normal-form facts — fresh-cycle forcing,
 no-re-entry, and the blockwise decomposition — are consequences. -/
 
-/-- **Rotation-structure lemma.**  For an exitless path, `p[i] = σ^{i mod k}(p[k·⌊i/k⌋])`.-/
+/-- **Rotation-structure lemma.**  For an exitless path, `p[i] = σ^{i mod k}(p[k·⌊i/k⌋])`.
+@isnad1 id=eq.3h3v.s6.f690ebb30c4f from=translated src=- shape=c28c694e vocab=696910d3
+-/
 theorem vert_eq_sigma_iter (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) :
     ∀ i, i < p.numVerts → p.vert i = sigma^[i % k] (p.vert (k * (i / k))) := by
   intro i
@@ -316,7 +381,9 @@ theorem vert_eq_sigma_iter (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) :
 
 /-- **Fresh-cycle forcing (normal form).**  Every position inside a block equals the
 corresponding `σ`-rotation of the block's start — so entering a fresh 1-cycle forces a
-complete traversal.-/
+complete traversal.
+@isnad1 id=eq.5h4v.s6.2c3eeaf8295e from=translated src=- shape=6029efe0 vocab=5a8baa14
+-/
 theorem block_is_full_cycle (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) {B r : ℕ}
     (hdvd : k ∣ B) (hr : r < k) (hB : B + r < p.numVerts) :
     p.vert (B + r) = sigma^[r] (p.vert B) := by
@@ -325,7 +392,9 @@ theorem block_is_full_cycle (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) {B r 
   rwa [mul_add_mod_lt q k r hr, mul_add_div_lt q k r hk hr] at S
 
 /-- **No re-entry (normal form).**  An earlier *complete* block (`B + k ≤ B'`) and any later
-block start `B'` lie in distinct 1-cycles: a 1-cycle is never re-entered.-/
+block start `B'` lie in distinct 1-cycles: a 1-cycle is never re-entered.
+@isnad1 id=ne.5h4v.s6.42cf57de091c from=translated src=- shape=a9091969 vocab=1f1cc63e
+-/
 theorem no_reentry (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) {B B' : ℕ}
     (hdvd : k ∣ B) (hBk : B + k ≤ B') (hB'n : B' < p.numVerts) :
     rotClass (p.vert B).1 ≠ rotClass (p.vert B').1 := by
@@ -340,6 +409,9 @@ theorem no_reentry (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) {B B' : ℕ}
 
 /-! ## Arithmetic on `%`/`/` for the periodic-edge structure -/
 
+/--
+@isnad1 id=eq.2h2v.s5.ba8bbfc08ba4 from=translated src=- shape=7bfb114d vocab=2514b546
+-/
 theorem mod_eq_pred_of_dvd_succ (hk : 1 ≤ k) {i : ℕ} (h : k ∣ (i + 1)) :
     i % k = k - 1 := by
   obtain ⟨q, hq⟩ := h
@@ -354,6 +426,9 @@ theorem mod_eq_pred_of_dvd_succ (hk : 1 ≤ k) {i : ℕ} (h : k ∣ (i + 1)) :
   have hirepr : i = k * (q - 1) + (k - 1) := by omega
   rw [hirepr, mul_add_mod_lt (q - 1) k (k - 1) (by omega)]
 
+/--
+@isnad1 id=and.2h2v.s6.cf4f6d165b11 from=translated src=- shape=d05ea6da vocab=05a4a4fd
+-/
 theorem succ_mod_div_of_not_dvd (hk : 1 ≤ k) {i : ℕ} (h : ¬ k ∣ (i + 1)) :
     (i + 1) % k = i % k + 1 ∧ (i + 1) / k = i / k := by
   have hik : i % k < k := Nat.mod_lt i hk
@@ -370,7 +445,9 @@ theorem succ_mod_div_of_not_dvd (hk : 1 ≤ k) {i : ℕ} (h : ¬ k ∣ (i + 1)) 
   · rw [hrepr, mul_add_mod_lt (i / k) k (i % k + 1) hlt]
   · rw [hrepr, Nat.mul_add_div hk, Nat.div_eq_of_lt hlt, Nat.add_zero]
 
-/-- Within a block, the next vertex is the `σ`-step (a weight-1 edge).-/
+/-- Within a block, the next vertex is the `σ`-step (a weight-1 edge).
+@isnad1 id=eq.4h3v.s6.23eaa7d8fd1e from=translated src=- shape=b253af3d vocab=15af7fef
+-/
 theorem vert_succ (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) {i : ℕ}
     (hi : i + 1 < p.numVerts) (hnd : ¬ k ∣ (i + 1)) :
     p.vert (i + 1) = sigma (p.vert i) := by
@@ -381,7 +458,9 @@ theorem vert_succ (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) {i : ℕ}
   rw [S1, hdiv, hmod, Function.iterate_succ_apply', ← S0]
 
 /-- At a block boundary the step is *not* a `σ`-step (hence weight `≥ 2`): `σ(p[i])` is the
-already-visited block start.-/
+already-visited block start.
+@isnad1 id=ne.4h3v.s6.a09575c74057 from=translated src=- shape=e49a67ec vocab=15af7fef
+-/
 theorem vert_succ_ne (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) {i : ℕ}
     (hi : i + 1 < p.numVerts) (hd : k ∣ (i + 1)) :
     p.vert (i + 1) ≠ sigma (p.vert i) := by
@@ -411,14 +490,23 @@ open scoped Classical
 
 /-! ### A few more helpers -/
 
+/--
+@isnad1 id=eq.0h3v.s5.f32df7ea0dd7 from=translated src=- shape=6506a2b4 vocab=ef4af4da
+-/
 theorem sigma_iter_succ' {k : ℕ} (n : ℕ) (v : Vtx k) :
     sigma (sigma^[n] v) = sigma^[n + 1] v := by rw [Function.iterate_succ_apply']
 
+/--
+@isnad1 id=eq.0h2v.s4.97d0e8ab7b3e from=translated src=- shape=2f27d478 vocab=3d8f61b2
+-/
 theorem last_eq_vert {k : ℕ} (p : HPath k) : p.last = p.vert (p.numVerts - 1) := by
   have h : p.numVerts - 1 < p.numVerts := by have := p.numVerts_pos; omega
   rw [HPath.last]
   exact (List.getLast_eq_getElem p.ne).trans (vert_getElem p h).symm
 
+/--
+@isnad1 id=eq.0h2v.s4.d275c460263a from=translated src=- shape=21a6dc73 vocab=3dad01c9
+-/
 theorem vtx_zero_elim (u v : Vtx 0) : u = v := by
   apply Subtype.ext
   have hu : (u : List ℕ).toFinset = ∅ := by
@@ -429,7 +517,9 @@ theorem vtx_zero_elim (u v : Vtx 0) : u = v := by
   rw [hu, hv]
 
 /-- **strongly exitless ⇒ `k ∣ |p|`**: no partial terminal block, since `σ` of the last
-vertex would be an unvisited fresh rotation (or force re-entry).-/
+vertex would be an unvisited fresh rotation (or force re-entry).
+@isnad1 id=dvd.2h2v.s4.0943fc808aa2 from=translated src=- shape=90863596 vocab=91fcff9e
+-/
 theorem dvd_numVerts_of_stronglyExitless {k : ℕ} (hk : 1 ≤ k) {p : HPath k}
     (hp : p.StronglyExitless) : k ∣ p.numVerts := by
   obtain ⟨hpe, hlast⟩ := hp
@@ -491,7 +581,9 @@ theorem dvd_numVerts_of_stronglyExitless {k : ℕ} (hk : 1 ≤ k) {p : HPath k}
     have := sigma_iter_inj (p.vert B) hrk hjb2 hww
     omega
 
-/-- **clm-1cyclesubset** — a strongly exitless path is a disjoint union of full 1-cycles.-/
+/-- **clm-1cyclesubset** — a strongly exitless path is a disjoint union of full 1-cycles.
+@isnad1 id=isuniono.1h2v.s3.9a830b0f26b7 from=translated src=- shape=b28a8773 vocab=46ce685b
+-/
 theorem clm_1cyclesubset {k : ℕ} {p : HPath k} (hp : p.StronglyExitless) :
     p.IsUnionOfCycles := by
   rcases Nat.eq_zero_or_pos k with hk0 | hk
@@ -528,7 +620,9 @@ theorem clm_1cyclesubset {k : ℕ} {p : HPath k} (hp : p.StronglyExitless) :
     rw [HPath.mem_vertsFinset, ← hbc]
     exact vert_mem p (by omega)
 
-/-- **clm-prefix** — the `(|p|−1)`-vertex prefix of an exitless path is exitless.-/
+/-- **clm-prefix** — the `(|p|−1)`-vertex prefix of an exitless path is exitless.
+@isnad1 id=ex.2h2v.s5.1b515673691d from=translated src=- shape=469818a3 vocab=86d06c1c
+-/
 theorem clm_prefix {k : ℕ} {p : HPath k} (hp : p.Exitless) (h2 : 2 ≤ p.numVerts) :
     ∃ q : HPath k, q.verts = p.verts.dropLast ∧ q.Exitless := by
   have h2' : 2 ≤ p.verts.length := h2
@@ -564,7 +658,9 @@ theorem clm_prefix {k : ℕ} {p : HPath k} (hp : p.Exitless) (h2 : 2 ≤ p.numVe
   · rw [← hvi]; exact lt_of_lt_of_le hi3 (hqpos _)
 
 /-- **prp-periodicedges** — the backbone fact: a path edge has weight 1 iff it is not a
-block-boundary edge.-/
+block-boundary edge.
+@isnad1 id=iff.3h3v.s6.c15b8697375a from=translated src=- shape=f1cc3469 vocab=34fbfea5
+-/
 theorem prp_periodicedges {k : ℕ} (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless)
     {i : ℕ} (hi : i + 1 < p.numVerts) :
     ew k (p.vert i) (p.vert (i + 1)) = 1 ↔ ¬ (k ∣ (i + 1)) := by
@@ -575,20 +671,27 @@ theorem prp_periodicedges {k : ℕ} (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitles
   · intro hnd
     exact vert_succ hk hp hi hnd
 
-/-- **prp-1edgebound** — every edge has weight `≥ 1`, so there are `ℓ − 1` of them.-/
+/-- **prp-1edgebound** — every edge has weight `≥ 1`, so there are `ℓ − 1` of them.
+@isnad1 id=eq.2h2v.s5.079f57280363 from=translated src=- shape=f6879cb1 vocab=77dfa3c7
+-/
 theorem prp_1edgebound {k : ℕ} (hk : 1 ≤ k) {p : HPath k} (_hp : p.Exitless) :
     edgeCountGe p 1 = p.numVerts - 1 := by
   rw [edgeCountGe,
     Finset.filter_true_of_mem (fun i _ => ew_ge_one hk (p.vert i) (p.vert (i + 1))),
     Finset.card_range]
 
+/--
+@isnad1 id=eq.2h2v.s6.da5eb397ec82 from=translated src=- shape=e896b91a vocab=ad19bc3e
+-/
 theorem ceilDiv_succ_pred {N k : ℕ} (hN : 1 ≤ N) (hk : 0 < k) :
     N ⌈/⌉ k = (N - 1) / k + 1 := by
   obtain ⟨n, rfl⟩ : ∃ n, N = n + 1 := ⟨N - 1, by omega⟩
   rw [Nat.ceilDiv_eq_add_pred_div, show n + 1 + k - 1 = n + k from by omega,
       show n + 1 - 1 = n from by omega, Nat.add_div_right _ hk]
 
-/-- **prp-2edgebound** — the `2+`-edges are exactly the block-boundary edges, `⌈ℓ/k⌉ − 1`.-/
+/-- **prp-2edgebound** — the `2+`-edges are exactly the block-boundary edges, `⌈ℓ/k⌉ − 1`.
+@isnad1 id=eq.2h2v.s5.c5251a7c51b8 from=translated src=- shape=7d760557 vocab=fc64be15
+-/
 theorem prp_2edgebound {k : ℕ} (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) :
     edgeCountGe p 2 = p.numVerts ⌈/⌉ k - 1 := by
   have hN : 1 ≤ p.numVerts := p.numVerts_pos
@@ -613,14 +716,18 @@ theorem prp_2edgebound {k : ℕ} (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) 
       have hne : ew k (p.vert i) (p.vert (i + 1)) ≠ 1 := fun he => (hpe.mp he) hd
       omega
 
-/-- Exact `ceilDiv` when the divisor divides.-/
+/-- Exact `ceilDiv` when the divisor divides.
+@isnad1 id=eq.2h2v.s5.963c45b062bf from=translated src=- shape=71b5f256 vocab=9c5dff06
+-/
 theorem ceilDiv_of_dvd {a b : ℕ} (hb : 0 < b) (h : b ∣ a) : a ⌈/⌉ b = a / b := by
   obtain ⟨c, rfl⟩ := h
   rw [Nat.ceilDiv_eq_add_pred_div, show b * c + b - 1 = b * c + (b - 1) from by omega,
       Nat.mul_add_div hb, Nat.div_eq_of_lt (by omega : b - 1 < b), Nat.add_zero,
       Nat.mul_div_cancel_left c hb]
 
-/-- **j-at-pivot** — `j_k(k(k−1)(k−2)) = k²(k−2) − 3`.-/
+/-- **j-at-pivot** — `j_k(k(k−1)(k−2)) = k²(k−2) − 3`.
+@isnad1 id=eq.1h1v.s6.7bb7284fcff3 from=translated src=- shape=179ada7d vocab=2d28d066
+-/
 theorem j_at_pivot {k : ℕ} (hk : 3 ≤ k) :
     j k (k * (k - 1) * (k - 2)) = k ^ 2 * (k - 2) - 3 := by
   rw [j_base (Or.inl (le_refl _))]
@@ -646,6 +753,9 @@ theorem j_at_pivot {k : ℕ} (hk : 3 ≤ k) :
 
 /-! ### Weight = sum of edge weights; the summation bound `w(p) ≥ Σ_q #{q+-edges}` -/
 
+/--
+@isnad1 id=eq.0h3v.s5.67b99c21fd17 from=translated src=- shape=f0f7b9b1 vocab=98dcbbb1
+-/
 theorem list_range_map_sum {M : Type*} [AddCommMonoid M] (f : ℕ → M) (n : ℕ) :
     ((List.range n).map f).sum = ∑ i ∈ Finset.range n, f i := by
   induction n with
@@ -654,7 +764,9 @@ theorem list_range_map_sum {M : Type*} [AddCommMonoid M] (f : ℕ → M) (n : �
     rw [List.range_succ, List.map_append, List.sum_append, ih, Finset.sum_range_succ]
     simp
 
-/-- `w(p) = Σ_{i} w(p[i] → p[i+1])` as a `Finset` sum over the `|p|−1` edges.-/
+/-- `w(p) = Σ_{i} w(p[i] → p[i+1])` as a `Finset` sum over the `|p|−1` edges.
+@isnad1 id=eq.0h2v.s5.a89bc4a4aca7 from=translated src=- shape=80874957 vocab=fddc18f0
+-/
 theorem wtP_eq_sum {k : ℕ} (p : HPath k) :
     p.wtP = ∑ i ∈ Finset.range (p.numVerts - 1), ew k (p.vert i) (p.vert (i + 1)) := by
   rw [HPath.wtP]
@@ -682,11 +794,16 @@ theorem wtP_eq_sum {k : ℕ} (p : HPath k) :
       exact (congrArg₂ (ew k) (vert_getElem p hi1) (vert_getElem p hi2)).symm
 
 /-- **Summation bound** — the weight of an exitless path is at least the total count of
-`1+`, `2+`, and `3+` edges.-/
+`1+`, `2+`, and `3+` edges.
+@isnad1 id=le.0h1v.s6.7f8eb6bfc848 from=translated src=- shape=399dd073 vocab=25cd9b8c
+-/
 theorem indicator_sum_le (e : ℕ) :
     (if 1 ≤ e then 1 else 0) + (if 2 ≤ e then 1 else 0) + (if 3 ≤ e then 1 else 0) ≤ e := by
   split_ifs <;> omega
 
+/--
+@isnad1 id=le.1h2v.s5.5140d67fcf83 from=translated src=- shape=f584214c vocab=bd98f691
+-/
 theorem wtP_ge_edgeCounts {k : ℕ} (_hk : 1 ≤ k) {p : HPath k} :
     edgeCountGe p 1 + edgeCountGe p 2 + edgeCountGe p 3 ≤ p.wtP := by
   have key : ∀ q : ℕ, edgeCountGe p q = ∑ i ∈ Finset.range (p.numVerts - 1),
@@ -698,7 +815,9 @@ theorem wtP_ge_edgeCounts {k : ℕ} (_hk : 1 ≤ k) {p : HPath k} :
   exact indicator_sum_le _
 
 /-- The greedy lower bound `w(p) ≥ j_k(|p|)` on the base interval — modulo the `3+`-edge
-count (`prp_3edgebound`), supplied as `h3`.-/
+count (`prp_3edgebound`), supplied as `h3`.
+@isnad1 id=le.5h2v.s7.d942c28742bd from=translated src=- shape=7951439c vocab=69a4a894
+-/
 theorem wtP_ge_j {k : ℕ} (hk : 3 ≤ k) {p : HPath k} (hp : p.Exitless)
     (hℓ0 : 0 < p.numVerts) (hℓ : p.numVerts ≤ k * (k - 1) * (k - 2))
     (h3 : p.numVerts ⌈/⌉ (k * (k - 1)) - 1 ≤ edgeCountGe p 3) :
@@ -719,7 +838,9 @@ theorem wtP_ge_j {k : ℕ} (hk : 3 ≤ k) {p : HPath k} (hp : p.Exitless)
   omega
 
 /-- **thm2 (base region)** — `j_k(ℓ) ≤ i_k(ℓ)` for `0 < ℓ ≤ k(k−1)(k−2)`, modulo the
-`3+`-edge count `h3` (`prp_3edgebound`).-/
+`3+`-edge count `h3` (`prp_3edgebound`).
+@isnad1 id=le.5h2v.s7.846e1f20e7e1 from=translated src=- shape=3d258a39 vocab=321b4e48
+-/
 theorem thm2_base {k ℓ : ℕ} (hk : 3 ≤ k) (hℓ0 : 0 < ℓ) (hℓ : ℓ ≤ k * (k - 1) * (k - 2))
     (hex : HasExitlessPath k ℓ)
     (h3 : ∀ q : HPath k, q.Exitless → q.numVerts ⌈/⌉ (k * (k - 1)) - 1 ≤ edgeCountGe q 3) :
@@ -735,6 +856,9 @@ theorem thm2_base {k ℓ : ℕ} (hk : 3 ≤ k) (hℓ0 : 0 < ℓ) (hℓ : ℓ ≤
 
 /-! ### `clm-phi` — the `φ(c⃗,v⃗)` characterization of strongly exitless paths -/
 
+/--
+@isnad1 id=eq.0h2v.s4.050b633f109e from=translated src=- shape=16e2445e vocab=92eeda42
+-/
 theorem verts_eq_map_vert {k : ℕ} (p : HPath k) :
     p.verts = (List.range p.numVerts).map (fun i => p.vert i) := by
   apply List.ext_getElem
@@ -744,6 +868,9 @@ theorem verts_eq_map_vert {k : ℕ} (p : HPath k) :
     have hi : i < p.numVerts := by rw [List.length_map, List.length_range] at h2; exact h2
     exact (vert_getElem p hi).symm
 
+/--
+@isnad1 id=eq.0h4v.s5.f9a8a079e3b9 from=translated src=- shape=c126a77e vocab=00a52963
+-/
 theorem range_reshape {α : Type*} (f : ℕ → α) (k t : ℕ) :
     (List.range (k * t)).map f
       = ((List.range t).map (fun s => (List.range k).map (fun r => f (k * s + r)))).flatten := by
@@ -756,7 +883,9 @@ theorem range_reshape {α : Type*} (f : ℕ → α) (k t : ℕ) :
       List.append_nil, List.map_map]
     rfl
 
-/-- **clm-phi (necessity)**, amended with `1 ≤ k` (false at `k = 0`, see PROGRESS).-/
+/-- **clm-phi (necessity)**, amended with `1 ≤ k` (false at `k = 0`, see PROGRESS).
+@isnad1 id=isphifor.2h2v.s4.c84b190e4242 from=translated src=- shape=42887298 vocab=07375102
+-/
 theorem clm_phi_necessity_amended {k : ℕ} (hk : 1 ≤ k) {p : HPath k}
     (hp : p.StronglyExitless) : IsPhiForm p := by
   have hdvd := dvd_numVerts_of_stronglyExitless hk hp

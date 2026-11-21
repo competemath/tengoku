@@ -53,7 +53,9 @@ boundary in every `(k−1)`-block window" into a count.  Applying both to a *sub
 
 /-- **Windowed heavy count.**  Among the `M` block boundaries `t ∈ (a, a+M]` of an exitless
 path (all lying below `numVerts`), at least `M ⌈/⌉ (k−1) − 1` carry weight `≥ 3`.  Local
-version of `prp_3edgebound`, proved by `confinement` + `cover_bound` on the block sub-range.-/
+version of `prp_3edgebound`, proved by `confinement` + `cover_bound` on the block sub-range.
+@isnad1 id=le.3h4v.s7.8e1be54dba33 from=translated src=- shape=dcf15b5c vocab=ef87cd77
+-/
 theorem window_heavy_count (hk : 3 ≤ k) {p : HPath k} (hp : p.Exitless)
     (a M : ℕ) (hM : k * (a + M) < p.numVerts) :
     M ⌈/⌉ (k - 1) - 1 ≤
@@ -109,7 +111,9 @@ mapping the block boundaries into the `ℓ₀`-window and comparing with the pre
 unconditionally.  This is the honest floor under the (refuted-at-`k−2`) `WindowExcess`; the
 remaining `+1` is exactly the still-open meta-confinement. -/
 
-/-- `M ⌈/⌉ (k−1) = k − 2` for `M = (k−1)(k−2) − 1` (the block count of an `ℓ₀`-window).-/
+/-- `M ⌈/⌉ (k−1) = k − 2` for `M = (k−1)(k−2) − 1` (the block count of an `ℓ₀`-window).
+@isnad1 id=eq.1h1v.s6.f459605f7657 from=translated src=- shape=d1906242 vocab=5030fcc3
+-/
 theorem windowM_ceilDiv (hk : 3 ≤ k) : ((k - 1) * (k - 2) - 1) ⌈/⌉ (k - 1) = k - 2 := by
   obtain ⟨m, rfl⟩ : ∃ m, k = m + 3 := ⟨k - 3, by omega⟩
   have e1 : m + 3 - 1 = m + 2 := by omega
@@ -130,7 +134,9 @@ theorem windowM_ceilDiv (hk : 3 ≤ k) : ((k - 1) * (k - 2) - 1) ⌈/⌉ (k - 1)
 /-- **The windowed heavy-edge floor.**  For an exitless `p` in the recursion region and its
 `(|p|−ℓ₀)`-prefix `q`, the last `ℓ₀`-window carries at least `k − 3` weight-`≥3` edges:
 `edgeCountGe q 3 + (k − 3) ≤ edgeCountGe p 3`.  This is the confinement floor (`WindowHeavy3` is
-this with `k − 2`; it is off by exactly the meta-confinement `+1`).-/
+this with `k − 2`; it is off by exactly the meta-confinement `+1`).
+@isnad1 id=le.4h3v.s7.77a391cbb382 from=translated src=- shape=7124697d vocab=bafda5ef
+-/
 theorem window_heavy3_ge (hk : 3 ≤ k) {p q : HPath k} (hp : p.Exitless)
     (hlt : k * (k - 1) * (k - 2) < p.numVerts)
     (hprefix : q.verts = p.verts.take (p.numVerts - ell0 k)) :
@@ -240,7 +246,9 @@ theorem window_heavy3_ge (hk : 3 ≤ k) {p q : HPath k} (hp : p.Exitless)
 exitless recursion-region path.  The layer decomposition `excess = Σ_{r≥3} edgeCountGe·r` is
 prefix-monotone, so the excess gap dominates the `r = 3` layer gap, bounded below by
 `window_heavy3_ge`.  This is the LP-feasible floor: `WindowExcess` (the `k − 2` version) is
-refuted, but its `k − 3` weakening holds unconditionally.-/
+refuted, but its `k − 3` weakening holds unconditionally.
+@isnad1 id=le.4h3v.s6.097be9af7845 from=translated src=- shape=94837fe3 vocab=2f74d4a1
+-/
 theorem windowExcess_ge_km3 (hk : 3 ≤ k) {p q : HPath k} (hp : p.Exitless)
     (hlt : k * (k - 1) * (k - 2) < p.numVerts)
     (hprefix : q.verts = p.verts.take (p.numVerts - ell0 k)) :
@@ -289,7 +297,9 @@ def MetaWindowSupply (k : ℕ) (Φ : HPath k → ℕ) : Prop :=
 
 /-- **`MetaWindowSupply k Φ → AmortizedWindow k Φ`.**  The windowed floor `windowExcess_ge_km3`
 (`excess q + (k−3) ≤ excess p`) discharges the release windows (`Φ p + 1 ≤ Φ q`); the rest is the
-`MetaWindowSupply` residual verbatim.  Holds for *any* `Φ`.-/
+`MetaWindowSupply` residual verbatim.  Holds for *any* `Φ`.
+@isnad1 id=amortize.2h2v.s4.018cae6c3899 from=translated src=- shape=15615e21 vocab=498553ed
+-/
 theorem amortizedWindow_of_metaSupply (hk : 3 ≤ k) {Φ : HPath k → ℕ}
     (hsupply : MetaWindowSupply k Φ) : AmortizedWindow k Φ := by
   intro p q hpe hqe hlt hprefix
@@ -313,7 +323,9 @@ noncomputable def PhiSurplus (k : ℕ) (p : HPath k) : ℕ :=
   min 1 (excess p - (p.numVerts ⌈/⌉ (k * (k - 1)) - 1))
 
 /-- **`BaseBound` for the surplus potential.**  Unconditional, from `excess_ge_Dbase`:
-`D_base + Φ_surplus ≤ excess`, and on the base region `j = jbase = (ℓ−1)+(⌈ℓ/k⌉−1)+D_base`.-/
+`D_base + Φ_surplus ≤ excess`, and on the base region `j = jbase = (ℓ−1)+(⌈ℓ/k⌉−1)+D_base`.
+@isnad1 id=baseboun.1h1v.s4.3b9833fb4d4f from=translated src=- shape=c807ce13 vocab=db239e13
+-/
 theorem baseBound_phiSurplus (hk : 3 ≤ k) : BaseBound k (PhiSurplus k) := by
   intro p hpe h0 hle
   have hDb : (p.numVerts ⌈/⌉ (k * (k - 1)) - 1) ≤ excess p := excess_ge_Dbase hk hpe
@@ -334,7 +346,9 @@ theorem baseBound_phiSurplus (hk : 3 ≤ k) : BaseBound k (PhiSurplus k) := by
 base-region invariant and the (floor-weakened) meta-supply gives Hunter's Theorem 2
 (`j_k(ℓ) ≤ i_k(ℓ)`) for every `ℓ`.  This is a strictly smaller residual than
 `ProofsMeta5.thm2_of_amortizedWindow`: the release windows (where `WindowExcess` is refuted) are
-already closed by `windowExcess_ge_km3`.-/
+already closed by `windowExcess_ge_km3`.
+@isnad1 id=le.4h3v.s5.7920024e499d from=translated src=- shape=b363fcde vocab=c7263662
+-/
 theorem thm2_of_metaSupply {k ℓ : ℕ} (hk : 3 ≤ k) (Φ : HPath k → ℕ)
     (hbase : BaseBound k Φ) (hsupply : MetaWindowSupply k Φ) (hℓ : HasExitlessPath k ℓ) :
     j k ℓ ≤ iExitless k ℓ :=

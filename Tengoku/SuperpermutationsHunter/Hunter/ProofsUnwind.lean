@@ -37,7 +37,9 @@ variable {k : ℕ}
 
 /-- For an exitless path, the start of a **complete** block (`k ∣ B`, `B + k ≤ |p|`) is the
 `P.pos`-earliest vertex of its 1-cycle — i.e. it is `firstInCycle`.  This is the reason the
-paper's `p_i[1]` become `C₀` vertices in the unwinding, and the reason `S(p) = ∅`.-/
+paper's `p_i[1]` become `C₀` vertices in the unwinding, and the reason `S(p) = ∅`.
+@isnad1 id=firstinc.4h3v.s5.71c52d1dcb22 from=translated src=- shape=1b241891 vocab=251213f2
+-/
 theorem firstInCycle_block_start (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless)
     {B : ℕ} (hdvd : k ∣ B) (hB : B + k ≤ p.numVerts) :
     firstInCycle p (p.vert B) := by
@@ -82,7 +84,9 @@ theorem firstInCycle_block_start (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless)
 /-- **Base of the unwinding.**  For a strongly exitless **Hamiltonian** path `p`, the
 S-construction set `S(p)` is empty: every vertex either already carries its 1-edge inside
 `p` (block-interior vertices) or lies in `C₋₁` (block-end vertices, whose `σ` is the
-`C₀`/first-in-cycle vertex).  Hence `F(p) = p.edges` (see `F_eq_edges_of_sset_empty`).-/
+`C₀`/first-in-cycle vertex).  Hence `F(p) = p.edges` (see `F_eq_edges_of_sset_empty`).
+@isnad1 id=eq.3h2v.s5.f3ca36d7cd58 from=translated src=- shape=923a78a2 vocab=503f3016
+-/
 theorem sset_empty_of_stronglyExitless (hk : 1 ≤ k) {p : HPath k}
     (hham : p.IsHamiltonian) (hp : p.StronglyExitless) : Sset p = ∅ := by
   rw [Sset, Finset.eq_empty_iff_forall_notMem]
@@ -134,7 +138,9 @@ theorem sset_empty_of_stronglyExitless (hk : 1 ≤ k) {p : HPath k}
 /-! ## `f(P, ∅) = E(P)` and `F(p) = E(p)` for exitless-Hamiltonian `p` -/
 
 /-- The transformation with an empty `S` is the identity on the edge set (Step 1 removes and
-adds nothing; Step 2 has no doubles because a path has in-degree `≤ 1`).-/
+adds nothing; Step 2 has no doubles because a path has in-degree `≤ 1`).
+@isnad1 id=eq.0h2v.s4.bf0caa224c55 from=translated src=- shape=6ee2cfa4 vocab=73e18e5f
+-/
 theorem fPS_empty (p : HPath k) : fPS p (∅ : Finset (Vtx k)) = p.edges := by
   have hE1 : E1removed p ∅ = ∅ := by
     rw [E1removed]; apply Finset.filter_false_of_mem
@@ -151,7 +157,9 @@ theorem fPS_empty (p : HPath k) : fPS p (∅ : Finset (Vtx k)) = p.edges := by
     intro e _; exact Finset.notMem_empty _
   rw [fPS, hstep1, hE2, Finset.sdiff_empty]
 
-/-- For a strongly exitless **Hamiltonian** path, `F` fixes it: `F(p) = E(p)`.-/
+/-- For a strongly exitless **Hamiltonian** path, `F` fixes it: `F(p) = E(p)`.
+@isnad1 id=eq.3h2v.s5.ed2aabb720f1 from=translated src=- shape=034bdf94 vocab=7da59125
+-/
 theorem F_eq_edges_of_sset_empty (hk : 1 ≤ k) {p : HPath k}
     (hham : p.IsHamiltonian) (hp : p.StronglyExitless) : F p = p.edges := by
   rw [F, sset_empty_of_stronglyExitless hk hham hp, fPS_empty]
@@ -174,7 +182,9 @@ single component is a strongly exitless path `p`, then `p` is a strongly exitles
 
 Guarded by `1 ≤ k` (the `k = 0` alphabet is degenerate — `Vtx 0` is a singleton and the
 verbatim statement is vacuous there; the paper's regime is `k ≥ 3`, and the pathrule track
-already amends the companion `necessity` direction to `2 ≤ k`).-/
+already amends the companion `necessity` direction to `2 ≤ k`).
+@isnad1 id=mem.4h2v.s6.53b95027142a from=translated src=- shape=1087f65c vocab=8e23655a
+-/
 theorem prp_Xk_se_sufficiency_single (hk : 1 ≤ k)
     {X : Finset (Vtx k × Vtx k)}
     (hspan : vertsOf X = Finset.univ) (hse : IsUnionOfStronglyExitlessPaths X)
@@ -247,7 +257,9 @@ component-remainders.  See the section comment for the exact form.-/
 def unwindVerts (ps : List (HPath k)) : List (Vtx k) :=
   ps.map HPath.first ++ (ps.reverse.map (fun p => p.verts.drop 1)).flatten
 
-/-- Membership in the unwinding: `v` occurs iff it occurs in some component.-/
+/-- Membership in the unwinding: `v` occurs iff it occurs in some component.
+@isnad1 id=iff.0h3v.s5.d57cc8c63129 from=translated src=- shape=c9ef680b vocab=cecb213e
+-/
 theorem mem_unwindVerts {ps : List (HPath k)} {v : Vtx k} :
     v ∈ unwindVerts ps ↔ ∃ p ∈ ps, v ∈ p.verts := by
   rw [unwindVerts, List.mem_append, List.mem_flatten]
@@ -270,7 +282,9 @@ theorem mem_unwindVerts {ps : List (HPath k)} {v : Vtx k} :
     · refine Or.inr ⟨p.verts.drop 1, ?_, by rw [hdrop]; exact hv⟩
       exact List.mem_map.mpr ⟨p, List.mem_reverse.mpr hp, rfl⟩
 
-/-- The unwinding list is nonempty when there is at least one component.-/
+/-- The unwinding list is nonempty when there is at least one component.
+@isnad1 id=ne.1h2v.s4.0fddcdc1264a from=translated src=- shape=9b65b429 vocab=f825a406
+-/
 theorem unwindVerts_ne {ps : List (HPath k)} (hps : ps ≠ []) : unwindVerts ps ≠ [] := by
   cases ps with
   | nil => exact absurd rfl hps
@@ -286,7 +300,9 @@ def unwindP (ps : List (HPath k)) (hps : ps ≠ [])
 
 /-- **The unwinding is Hamiltonian** whenever the components cover `V(𝒮_k)`.  (This is the
 one non-trivial fact about the *vertex list* of `P(p₁,…,pₙ)`; it needs nothing about the
-ordering.)-/
+ordering.)
+@isnad1 id=ishamilt.3h2v.s6.ecc619f820e6 from=translated src=- shape=20606d02 vocab=079bb54c
+-/
 theorem unwind_isHamiltonian {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup)
     (hcover : ∀ v : Vtx k, ∃ p ∈ ps, v ∈ p.verts) :
@@ -313,7 +329,9 @@ Hamiltonian path; if additionally its `F`-image is `X` — the paper's asserted-
 
 The two well-formedness hypotheses `hps`/`hnd`/`hcover` are discharge-able from the fact
 that `Comps(X)` is a disjoint cover of `V(X) = V(𝒮_k)` (see `PROGRESS-unwind.md`); the sole
-mathematical gap is `hFPX`, which is precisely the content the paper omits.-/
+mathematical gap is `hFPX`, which is precisely the content the paper omits.
+@isnad1 id=mem.4h3v.s6.e70dca173d2d from=translated src=- shape=28f6a3d0 vocab=47dbe800
+-/
 theorem prp_Xk_se_sufficiency_unwind {X : Finset (Vtx k × Vtx k)}
     {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup)

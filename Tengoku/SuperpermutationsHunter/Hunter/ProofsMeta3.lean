@@ -44,7 +44,9 @@ variable {k : ℕ}
 the excess is literally the total weight carried by edges *beyond their first two units*. -/
 
 /-- Layer-cake for the excess: `∑_{q=3}^{k} [q ≤ e] = e − 2` whenever `e ≤ k` (truncated ℕ
-subtraction, so also correct for `e < 3`).-/
+subtraction, so also correct for `e < 3`).
+@isnad1 id=eq.1h2v.s5.a519f40f849d from=translated src=- shape=47a7e100 vocab=89ed710f
+-/
 theorem sum_indicator_Icc3 {e : ℕ} (hek : e ≤ k) :
     ∑ q ∈ Finset.Icc 3 k, (if q ≤ e then (1 : ℕ) else 0) = e - 2 := by
   rw [← Finset.card_filter]
@@ -57,7 +59,9 @@ theorem sum_indicator_Icc3 {e : ℕ} (hek : e ≤ k) :
 
 /-- **The excess counting identity.**  `excess p = Σ_i (ew_i − 2)`, the per-edge "weight beyond
 two" sum over all `numVerts − 1` edges.  This is the exact analogue of `wtP_eq_sum_edgeCountGe`
-one layer up (starting the layer-cake at `r = 3` instead of `r = 1`).-/
+one layer up (starting the layer-cake at `r = 3` instead of `r = 1`).
+@isnad1 id=eq.1h2v.s6.6176cd117f4d from=translated src=- shape=60391dfc vocab=7c8c311f
+-/
 theorem excess_eq_sum_edgeWeight (hk : 1 ≤ k) (p : HPath k) :
     excess p = ∑ i ∈ Finset.range (p.numVerts - 1),
       (ew k (p.vert i) (p.vert (i + 1)) - 2) := by
@@ -92,7 +96,9 @@ def marker (p : HPath k) (i : ℕ) : ℕ := (rho (p.vert i : List ℕ)).getLastD
 
 /-- **Block-boundary classification.**  For an exitless path, every boundary edge falls into
 exactly one of the four structural kinds, each pinned to its `ew` value (hence to its `excess`
-contribution `ew − 2`).-/
+contribution `ew − 2`).
+@isnad1 id=or.4h3v.s8.86e9910d3293 from=translated src=- shape=49e9877e vocab=535763e8
+-/
 theorem boundary_classify (hk : 3 ≤ k) {p : HPath k} (hp : p.Exitless) {i : ℕ}
     (hi : i + 1 < p.numVerts) (hd : k ∣ (i + 1)) :
     ((p.vert (i + 1) : List ℕ) = door (p.vert i : List ℕ) ∧
@@ -120,7 +126,9 @@ theorem boundary_classify (hk : 3 ≤ k) {p : HPath k} (hp : p.Exitless) {i : �
 /-- **Excess contribution ledger.**  A door boundary contributes `0` to the excess, a weight-3
 boundary (α, σ²-sibling, or meta-heavy) contributes exactly `1`, a weight-`≥4` boundary
 contributes `≥ 2`.  The per-edge summand of `excess_eq_sum_edgeWeight` is `ew − 2`; the
-classification pins it to `{0, 1, ≥2}`.-/
+classification pins it to `{0, 1, ≥2}`.
+@isnad1 id=or.4h3v.s7.39cb3385fcb1 from=translated src=- shape=ab7375c2 vocab=f7988056
+-/
 theorem boundary_contribution (hk : 3 ≤ k) {p : HPath k} (hp : p.Exitless) {i : ℕ}
     (hi : i + 1 < p.numVerts) (hd : k ∣ (i + 1)) :
     (ew k (p.vert i) (p.vert (i + 1)) - 2 = 0 ∧

@@ -35,14 +35,21 @@ variable {k : ℕ}
 
 /-! ## Basic unfolding and `σ`/`σ⁻¹` facts -/
 
+/--
+@isnad1 id=eq.0h2v.s4.5296c87e23ae from=translated src=- shape=a0524aa8 vocab=d73bbadb
+-/
 theorem F_eq (P : HPath k) : F P = fPS P (Sset P) := rfl
 
-/-- `getElem` at definitionally-equal indices agrees (avoids index-rewrite motive issues).-/
+/-- `getElem` at definitionally-equal indices agrees (avoids index-rewrite motive issues).
+@isnad1 id=eq.3h4v.s6.dd68b12870ad from=translated src=- shape=35c08d77 vocab=aa97bf7b
+-/
 theorem getElem_eq_of_index_eq {α : Type*} {l : List α} {a b : ℕ}
     (hab : a = b) (ha : a < l.length) (hb : b < l.length) : l[a]'ha = l[b]'hb := by
   subst hab; rfl
 
-/-- `σ ∘ σ⁻¹ = id` on vertices (rotate by `k−1` then by `1` is rotate by `k = length`).-/
+/-- `σ ∘ σ⁻¹ = id` on vertices (rotate by `k−1` then by `1` is rotate by `k = length`).
+@isnad1 id=eq.0h2v.s3.7624dde78e6c from=translated src=- shape=6ddf6d3e vocab=cfcef923
+-/
 theorem sigma_sigmaInv (v : Vtx k) : sigma (sigmaInv v) = v := by
   apply Subtype.ext
   show ((v : List ℕ).rotate (k - 1)).rotate 1 = (v : List ℕ)
@@ -57,12 +64,16 @@ theorem sigma_sigmaInv (v : Vtx k) : sigma (sigmaInv v) = v := by
     have hr := List.rotate_length (v : List ℕ)
     rwa [hlen] at hr
 
-/-- `σ` preserves rotation class.-/
+/-- `σ` preserves rotation class.
+@isnad1 id=eq.0h2v.s4.13a017a3ee45 from=translated src=- shape=27bad557 vocab=75c358b4
+-/
 theorem rotClass_sigma (v : Vtx k) : rotClass (sigma v).1 = rotClass v.1 := by
   have h := ProofsExitless.rotClass_sigma_iter 1 v
   simpa using h
 
-/-- A `P`-edge advances position by exactly one: `(a→b) ∈ E(P) ⟹ P⁻¹[b] = P⁻¹[a]+1`.-/
+/-- A `P`-edge advances position by exactly one: `(a→b) ∈ E(P) ⟹ P⁻¹[b] = P⁻¹[a]+1`.
+@isnad1 id=eq.1h4v.s6.a2b20fa9c186 from=translated src=- shape=2e9dc7a3 vocab=91ac7566
+-/
 theorem edge_pos_succ {P : HPath k} {a b : Vtx k} (h : (a, b) ∈ P.edges) :
     P.pos b = P.pos a + 1 := by
   rw [HPath.edges, List.mem_toFinset] at h
@@ -81,7 +92,9 @@ theorem edge_pos_succ {P : HPath k} {a b : Vtx k} (h : (a, b) ∈ P.edges) :
   show P.verts.idxOf b = P.verts.idxOf a + 1
   rw [hidxa, hidxb]
 
-/-- Consecutive vertices of a path form a path-edge.-/
+/-- Consecutive vertices of a path form a path-edge.
+@isnad1 id=mem.1h3v.s7.70443d3a3521 from=translated src=- shape=8edac3ce vocab=8f6b3fcb
+-/
 theorem consec_mem_edges {p : HPath k} {i : ℕ} (hi : i + 1 < p.verts.length) :
     (p.verts[i]'(by omega), p.verts[i + 1]'hi) ∈ p.edges := by
   rw [HPath.edges, List.mem_toFinset]
@@ -90,7 +103,9 @@ theorem consec_mem_edges {p : HPath k} {i : ℕ} (hi : i + 1 < p.verts.length) :
   refine List.mem_iff_getElem.mpr ⟨i, hzip, ?_⟩
   rw [List.getElem_zip, List.getElem_tail]
 
-/-- Consecutive vertices of a path form a path-edge (vertex form).-/
+/-- Consecutive vertices of a path form a path-edge (vertex form).
+@isnad1 id=mem.1h3v.s6.09a7f319c8ad from=translated src=- shape=26927550 vocab=97690eae
+-/
 theorem vert_consec_mem_edges {p : HPath k} {i : ℕ} (hi : i + 1 < p.numVerts) :
     (p.vert i, p.vert (i + 1)) ∈ p.edges := by
   have hb : i + 1 < p.verts.length := hi
@@ -98,12 +113,17 @@ theorem vert_consec_mem_edges {p : HPath k} {i : ℕ} (hi : i + 1 < p.numVerts) 
   rw [ProofsExitless.vert_getElem p hi0, ProofsExitless.vert_getElem p hi]
   exact consec_mem_edges (p := p) (i := i) hb
 
-/-- The start vertex has position `0`.-/
+/-- The start vertex has position `0`.
+@isnad1 id=eq.0h2v.s4.9b01cee27da5 from=translated src=- shape=ccca0cdd vocab=a432a75c
+-/
 theorem pos_first (p : HPath k) : p.pos p.first = 0 := by
   rw [← p.vert_zero]; exact ProofsExitless.pos_vert p p.numVerts_pos
 
 /-! ## `Vtx k` for `k ≤ 1` is a subsingleton -/
 
+/--
+@isnad1 id=subsingl.1h1v.s3.a72fd6d4de7b from=translated src=- shape=01e184dd vocab=9b2845d9
+-/
 theorem vtx_subsingleton (hk : k ≤ 1) : Subsingleton (Vtx k) := by
   refine ⟨fun a b => Subtype.ext ?_⟩
   have hla : (a : List ℕ).length = k := a.2.length
@@ -117,7 +137,9 @@ theorem vtx_subsingleton (hk : k ≤ 1) : Subsingleton (Vtx k) := by
     rw [Finset.mem_Icc] at hax hby
     rw [hx, hy]; congr 1; omega
 
-/-- For `k ≤ 1` every vertex lies in `C₋₁` (its 1-cycle is a fixed point).-/
+/-- For `k ≤ 1` every vertex lies in `C₋₁` (its 1-cycle is a fixed point).
+@isnad1 id=mem.1h3v.s5.06a384ad3fe3 from=translated src=- shape=5e2ea418 vocab=020843e8
+-/
 theorem mem_Cm1_of_le_one (hk : k ≤ 1) (P : HPath k) (v : Vtx k) : v ∈ Cm1 P := by
   have hsub := vtx_subsingleton hk
   rw [Cm1, Finset.mem_filter]
@@ -127,14 +149,18 @@ theorem mem_Cm1_of_le_one (hk : k ≤ 1) (P : HPath k) (v : Vtx k) : v ∈ Cm1 P
   intro u _
   rw [Subsingleton.elim u (sigma v)]
 
-/-- Contrapositive: `v ∉ C₋₁ ⟹ k ≥ 2`.-/
+/-- Contrapositive: `v ∉ C₋₁ ⟹ k ≥ 2`.
+@isnad1 id=le.1h3v.s5.d686b131b242 from=translated src=- shape=ffb6f49c vocab=020843e8
+-/
 theorem two_le_of_not_Cm1 {P : HPath k} {v : Vtx k} (hv : v ∉ Cm1 P) : 2 ≤ k := by
   by_contra hc
   exact hv (mem_Cm1_of_le_one (by omega) P v)
 
 /-! ## The core membership fact: `(v → σv) ∈ F(P)` for `v ∉ C₋₁` -/
 
-/-- If `u` is a `double` then some added 1-edge points at `u`.-/
+/-- If `u` is a `double` then some added 1-edge points at `u`.
+@isnad1 id=nonempty.1h4v.s5.339a40e92ca0 from=translated src=- shape=ccd6898d vocab=0f5b324e
+-/
 theorem double_imp_added_inedge {P : HPath k} {S : Finset (Vtx k)} {u : Vtx k}
     (hu : u ∈ doubles P S) : (intoV (addedEdges S) u).Nonempty := by
   simp only [doubles, Finset.mem_filter] at hu
@@ -150,7 +176,9 @@ theorem double_imp_added_inedge {P : HPath k} {S : Finset (Vtx k)} {u : Vtx k}
   rw [hdecomp, hB, Finset.union_empty] at hu2
   omega
 
-/-- If `σv` is a `double`, then `v ∈ S`.-/
+/-- If `σv` is a `double`, then `v ∈ S`.
+@isnad1 id=mem.1h4v.s5.9153665d6202 from=translated src=- shape=ef7cf0b5 vocab=bfd25764
+-/
 theorem mem_S_of_sigma_double {P : HPath k} {S : Finset (Vtx k)} {v : Vtx k}
     (hd : sigma v ∈ doubles P S) : v ∈ S := by
   obtain ⟨e, he⟩ := double_imp_added_inedge hd
@@ -161,7 +189,9 @@ theorem mem_S_of_sigma_double {P : HPath k} {S : Finset (Vtx k)} {v : Vtx k}
   rw [ProofsSpine.sigma_inj hww] at hwS
   exact hwS
 
-/-- **Core fact** — for `v ∉ C₋₁`, the 1-edge `(v → σv)` is an edge of `F(P)`.-/
+/-- **Core fact** — for `v ∉ C₋₁`, the 1-edge `(v → σv)` is an edge of `F(P)`.
+@isnad1 id=mem.1h3v.s6.1ec777556b9f from=translated src=- shape=8dca5c93 vocab=56721158
+-/
 theorem mem_F_sigma_of_not_Cm1 {P : HPath k} {v : Vtx k} (hv : v ∉ Cm1 P) :
     (v, sigma v) ∈ F P := by
   rw [F_eq, fPS, Finset.mem_sdiff]
@@ -188,7 +218,9 @@ theorem mem_F_sigma_of_not_Cm1 {P : HPath k} {v : Vtx k} (hv : v ∉ Cm1 P) :
     have hd : sigma v ∈ doubles P S := hc.2
     exact hvnS (mem_S_of_sigma_double hd)
 
-/-- For `k ≥ 2`, `C₀` and `C₋₁` are disjoint (a cycle has a unique first vertex).-/
+/-- For `k ≥ 2`, `C₀` and `C₋₁` are disjoint (a cycle has a unique first vertex).
+@isnad1 id=not.3h3v.s5.4b136a15e1dd from=translated src=- shape=841e6a08 vocab=a54e7939
+-/
 theorem C0_not_Cm1 {P : HPath k} (hP : P.IsHamiltonian) (hk : 2 ≤ k) {v : Vtx k}
     (hv : v ∈ C0 P) : v ∉ Cm1 P := by
   intro hvm
@@ -213,7 +245,9 @@ theorem C0_not_Cm1 {P : HPath k} (hP : P.IsHamiltonian) (hk : 2 ≤ k) {v : Vtx 
   exact hne hveq.symm
 
 /-- Every vertex of `𝒮_k` is incident to an edge of `F(P)` (for `k ≥ 2`), so
-`V(F(P)) = V(𝒮_k)`.-/
+`V(F(P)) = V(𝒮_k)`.
+@isnad1 id=eq.2h2v.s5.1d7f46f895ec from=translated src=- shape=eb8a410e vocab=73e3bc7f
+-/
 theorem vertsOf_F_eq_univ {P : HPath k} (hP : P.IsHamiltonian) (hk : 2 ≤ k) :
     vertsOf (F P) = Finset.univ := by
   apply Finset.eq_univ_of_forall
@@ -231,15 +265,23 @@ theorem vertsOf_F_eq_univ {P : HPath k} (hP : P.IsHamiltonian) (hk : 2 ≤ k) :
 
 /-! ## Weight-bookkeeping helpers (for `clm_eqq`) -/
 
+/--
+@isnad1 id=eq.1h3v.s7.f647bf3fc6f7 from=translated src=- shape=5224a461 vocab=dd7d28e9
+-/
 theorem wEdges_union_disjoint {A B : Finset (Vtx k × Vtx k)} (h : Disjoint A B) :
     wEdges (A ∪ B) = wEdges A + wEdges B := by
   simp only [wEdges]; exact Finset.sum_union h
 
+/--
+@isnad1 id=eq.1h3v.s7.11a55203655c from=translated src=- shape=f64168ad vocab=29593a99
+-/
 theorem wEdges_sdiff {A B : Finset (Vtx k × Vtx k)} (h : B ⊆ A) :
     wEdges (A \ B) + wEdges B = wEdges A := by
   simp only [wEdges]; exact Finset.sum_sdiff h
 
-/-- `E₂` is genuinely removed from the Step-1 graph (its edges survive Step 1).-/
+/-- `E₂` is genuinely removed from the Step-1 graph (its edges survive Step 1).
+@isnad1 id=le.0h3v.s5.61c2ae2bad11 from=translated src=- shape=707fc1ca vocab=8358e6d0
+-/
 theorem E2removed_subset_Xstep1 {P : HPath k} {S : Finset (Vtx k)} :
     E2removed P S ⊆ Xstep1 P S := by
   intro e he
@@ -265,19 +307,25 @@ theorem E2removed_subset_Xstep1 {P : HPath k} {S : Finset (Vtx k)} :
       (by simp only [intoV, mem_into, Finset.mem_singleton]; exact ⟨heP, trivial⟩)
   rw [← hxe, Xstep1, Finset.mem_union]; exact Or.inl hxPE1
 
-/-- Every added 1-edge has weight one, so `w(addedEdges) = |S|` (for `k ≥ 1`).-/
+/-- Every added 1-edge has weight one, so `w(addedEdges) = |S|` (for `k ≥ 1`).
+@isnad1 id=eq.1h2v.s4.3ef6c186fb14 from=translated src=- shape=779214ce vocab=92c7d29c
+-/
 theorem wEdges_addedEdges {S : Finset (Vtx k)} (hk : 1 ≤ k) :
     wEdges (addedEdges S) = S.card := by
   rw [wEdges, addedEdges,
     Finset.sum_image (by intro a _ b _ hab; exact (Prod.ext_iff.mp hab).1)]
   rw [Finset.sum_congr rfl (fun v _ => ew_sigma hk v), Finset.sum_const, smul_eq_mul, mul_one]
 
-/-- Position of the last vertex is `|p| − 1`.-/
+/-- Position of the last vertex is `|p| − 1`.
+@isnad1 id=eq.0h2v.s4.c12a927e166e from=translated src=- shape=15cee328 vocab=8a6689d9
+-/
 theorem pos_last (p : HPath k) : p.pos p.last = p.numVerts - 1 := by
   rw [Proved.last_eq_vert]
   exact ProofsExitless.pos_vert p (by have := p.numVerts_pos; omega)
 
-/-- The source of a path-edge is never the last (head) vertex.-/
+/-- The source of a path-edge is never the last (head) vertex.
+@isnad1 id=ne.1h4v.s5.466b2e030e36 from=translated src=- shape=f9440d50 vocab=45e8703a
+-/
 theorem ne_last_of_out_edge {P : HPath k} {a b : Vtx k} (h : (a, b) ∈ P.edges) :
     a ≠ P.last := by
   intro hcon
@@ -291,7 +339,9 @@ theorem ne_last_of_out_edge {P : HPath k} {a b : Vtx k} (h : (a, b) ∈ P.edges)
   have := P.numVerts_pos
   omega
 
-/-- A non-last vertex of `P` (that lies on `P`) has an out-edge.-/
+/-- A non-last vertex of `P` (that lies on `P`) has an out-edge.
+@isnad1 id=ex.2h3v.s6.c06e0949fd73 from=translated src=- shape=9c1b45cd vocab=21bd13bb
+-/
 theorem out_edge_of_ne_last {P : HPath k} {v : Vtx k} (hv : v ∈ P.verts)
     (hne : v ≠ P.last) : ∃ w, (v, w) ∈ P.edges := by
   have hpos : P.pos v < P.numVerts := ProofsExitless.pos_lt P hv
@@ -308,7 +358,9 @@ theorem out_edge_of_ne_last {P : HPath k} {v : Vtx k} (hv : v ∈ P.verts)
   rw [ProofsExitless.vert_pos P hv] at hedge
   exact ⟨P.vert (P.pos v + 1), hedge⟩
 
-/-- The Step-1 edge count `|E₁| + I = |S|` (needs `S ⊆ V(P)`).-/
+/-- The Step-1 edge count `|E₁| + I = |S|` (needs `S ⊆ V(P)`).
+@isnad1 id=eq.1h3v.s5.647705826569 from=translated src=- shape=28d6ac87 vocab=0c67172e
+-/
 theorem E1removed_card {P : HPath k} {S : Finset (Vtx k)} (hSV : S ⊆ P.vertsFinset) :
     (E1removed P S).card + indicatorI P S = S.card := by
   have hinj : Set.InjOn Prod.fst (E1removed P S : Set (Vtx k × Vtx k)) := by
@@ -345,7 +397,9 @@ open scoped Classical
 
 variable {k : ℕ}
 
-/-- **clm-rule2** — `v ∉ C₋₁ ⟹ out(X,v) = {(v→σv)}`.-/
+/-- **clm-rule2** — `v ∉ C₋₁ ⟹ out(X,v) = {(v→σv)}`.
+@isnad1 id=eq.2h3v.s6.b5d03d95c5d2 from=translated src=- shape=96298281 vocab=920b07f7
+-/
 theorem clm_rule2 {P : HPath k} (_hP : P.IsHamiltonian) {v : Vtx k}
     (hv : v ∉ Cm1 P) :
     outV (F P) v = {(v, sigma v)} := by
@@ -359,13 +413,17 @@ theorem clm_rule2 {P : HPath k} (_hP : P.IsHamiltonian) {v : Vtx k}
     rw [F_eq]; exact ProofsSpine.outV_fPS_le_one P (Sset P) v
   exact Finset.card_le_one.mp hle x hx (v, sigma v) hmem
 
-/-- **clm-rule2.75** — every `u ∉ C₋₁` has its 1-edge `(u→σu) ∈ X`.-/
+/-- **clm-rule2.75** — every `u ∉ C₋₁` has its 1-edge `(u→σu) ∈ X`.
+@isnad1 id=mem.2h3v.s6.d0079b6bf90a from=translated src=- shape=b839717c vocab=b1e73f07
+-/
 theorem clm_rule2_75 {P : HPath k} (_hP : P.IsHamiltonian) {u : Vtx k}
     (hu : u ∉ Cm1 P) :
     (u, sigma u) ∈ F P :=
   mem_F_sigma_of_not_Cm1 hu
 
-/-- **clm-rule1** — `v ∈ C₋₁` with an out-edge keeps its `P`-out-edge.-/
+/-- **clm-rule1** — `v ∈ C₋₁` with an out-edge keeps its `P`-out-edge.
+@isnad1 id=eq.3h3v.s6.ec0331244a5b from=translated src=- shape=36fda22b vocab=f1ced6b0
+-/
 theorem clm_rule1 {P : HPath k} (_hP : P.IsHamiltonian) {v : Vtx k}
     (hv : v ∈ Cm1 P) (hne : outV (F P) v ≠ ∅) :
     outV (F P) v = outV P.edges v := by
@@ -390,7 +448,9 @@ theorem clm_rule1 {P : HPath k} (_hP : P.IsHamiltonian) {v : Vtx k}
     Finset.Nonempty.card_pos (Finset.nonempty_iff_ne_empty.mpr hne)
   exact Finset.eq_of_subset_of_card_le hsub (le_trans hcard hpos)
 
-/-- **clm-rule2.5** — `v ∉ C₀ ⟹ into(X,v) = {(σ⁻¹v→v)}`.-/
+/-- **clm-rule2.5** — `v ∉ C₀ ⟹ into(X,v) = {(σ⁻¹v→v)}`.
+@isnad1 id=eq.2h3v.s6.5c27568607b6 from=translated src=- shape=b4cfc8a1 vocab=2ffbedf9
+-/
 theorem clm_rule2_5 {P : HPath k} (_hP : P.IsHamiltonian) {v : Vtx k}
     (hv : v ∉ C0 P) :
     intoV (F P) v = {(sigmaInv v, v)} := by
@@ -410,7 +470,9 @@ theorem clm_rule2_5 {P : HPath k} (_hP : P.IsHamiltonian) {v : Vtx k}
     rw [F_eq]; exact ProofsSpine.intoV_fPS_le_one P (Sset P) (sset_sPrecond P) v
   exact Finset.card_le_one.mp hle x hx (sigmaInv v, v) hmem
 
-/-- **clm-rule3** — `u ∈ C₋₁` with an out-edge leaves to a `C₀`-vertex.-/
+/-- **clm-rule3** — `u ∈ C₋₁` with an out-edge leaves to a `C₀`-vertex.
+@isnad1 id=ex.3h3v.s6.8c5bdd9e5534 from=translated src=- shape=52f8c90c vocab=0059971e
+-/
 theorem clm_rule3 {P : HPath k} (hP : P.IsHamiltonian) {u : Vtx k}
     (hu : u ∈ Cm1 P) (hne : outV (F P) u ≠ ∅) :
     ∃ v, v ∈ C0 P ∧ outV (F P) u = {(u, v)} := by
@@ -443,7 +505,9 @@ theorem clm_rule3 {P : HPath k} (hP : P.IsHamiltonian) {u : Vtx k}
     intro x hx
     exact Finset.card_le_one.mp (ProofsSpine.path_out_le_one P u) x hx e he |>.trans hev
 
-/-- **rmk-rule3** — the `C₀`-target of `u ∈ C₋₁`'s out-edge is never `σ(u)`.-/
+/-- **rmk-rule3** — the `C₀`-target of `u ∈ C₋₁`'s out-edge is never `σ(u)`.
+@isnad1 id=ne.3h4v.s6.a82c88f771f1 from=translated src=- shape=9ce7847d vocab=b1e73f07
+-/
 theorem rmk_rule3 {P : HPath k} (hP : P.IsHamiltonian) {u v : Vtx k}
     (hu : u ∈ Cm1 P) (h : (u, v) ∈ F P) : v ≠ sigma u := by
   intro hvsu
@@ -469,7 +533,9 @@ theorem rmk_rule3 {P : HPath k} (hP : P.IsHamiltonian) {u v : Vtx k}
 
 /-- Auxiliary for `lem_walking` / `clm_ordering`, phrased over `getElem` indices with strong
 induction on the gap `j − i`.  The *start* `D[i]` must be a `C₀ ∪ C₋₁` vertex; the endpoint
-`D[j]` is arbitrary (this is what lets it prove `clm_ordering` for a non-special `u`).-/
+`D[j]` is arbitrary (this is what lets it prove `clm_ordering` for a non-special `u`).
+@isnad1 id=lt.7h6v.s7.19284b1deadc from=translated src=- shape=b32c8ba4 vocab=6401daeb
+-/
 theorem walking_aux {P : HPath k} (hP : P.IsHamiltonian) {D : List (Vtx k)}
     (hD : IsWalk (F P) D) :
     ∀ (g i j : ℕ) (hi : i < D.length) (hj : j < D.length), j - i = g → i < j →
@@ -581,7 +647,9 @@ theorem walking_aux {P : HPath k} (hP : P.IsHamiltonian) {D : List (Vtx k)}
         omega
 
 /-- **lem-walking** — central lemma: order along a directed walk in `F(P)` (restricted to
-`C₀ ∪ C₋₁`) refines the order in `P`.-/
+`C₀ ∪ C₋₁`) refines the order in `P`.
+@isnad1 id=lt.7h5v.s7.6954edc12b0f from=translated src=- shape=6b1b45b5 vocab=c73b03f0
+-/
 theorem lem_walking {P : HPath k} (hP : P.IsHamiltonian)
     {D : List (Vtx k)} (hD : IsWalk (F P) D) {u v : Vtx k}
     (hu : u ∈ C0 P ∪ Cm1 P) (_hv : v ∈ C0 P ∪ Cm1 P)
@@ -595,14 +663,18 @@ theorem lem_walking {P : HPath k} (hP : P.IsHamiltonian)
     (by rw [hgu]; exact hu)
   rwa [hgu, hgv] at key
 
-/-- The vertex list of a path-component of `F(P)` is a directed walk in `F(P)`.-/
+/-- The vertex list of a path-component of `F(P)` is a directed walk in `F(P)`.
+@isnad1 id=iswalk.1h3v.s4.5b1bdd05003c from=translated src=- shape=9f46ec16 vocab=37dcf9b5
+-/
 theorem isWalk_verts {P : HPath k} {p : HPath k} (hp : IsPathComponent p (F P)) :
     IsWalk (F P) p.verts := by
   rw [IsWalk, List.isChain_iff_getElem]
   intro i hi
   exact hp.1 (ProofsStructure.consec_mem_edges hi)
 
-/-- **clm-ordering** — order along a path-component (from a `C₀ ∪ C₋₁` vertex) refines `P`.-/
+/-- **clm-ordering** — order along a path-component (from a `C₀ ∪ C₋₁` vertex) refines `P`.
+@isnad1 id=lt.6h5v.s7.614b574338ed from=translated src=- shape=a14c795a vocab=2d635e5e
+-/
 theorem clm_ordering {P : HPath k} (hP : P.IsHamiltonian)
     {p : HPath k} (hp : IsPathComponent p (F P)) {v u : Vtx k}
     (hv : v ∈ C0 P ∪ Cm1 P) (hvp : v ∈ p.verts) (hup : u ∈ p.verts)
@@ -618,7 +690,9 @@ theorem clm_ordering {P : HPath k} (hP : P.IsHamiltonian)
     (by rw [hgv]; exact hv)
   rwa [hgv, hgu] at key
 
-/-- **cor-pathfirst** — `p[1]` is the `P`-earliest vertex of a path-component `p` of `F(P)`.-/
+/-- **cor-pathfirst** — `p[1]` is the `P`-earliest vertex of a path-component `p` of `F(P)`.
+@isnad1 id=le.3h4v.s5.99d9c944cbfd from=translated src=- shape=7a69647d vocab=8788c670
+-/
 theorem cor_pathfirst {P : HPath k} (hP : P.IsHamiltonian)
     {p : HPath k} (hp : IsPathComponent p (F P)) {u : Vtx k} (hu : u ∈ p.verts) :
     P.pos p.first ≤ P.pos u := by
@@ -651,7 +725,9 @@ theorem cor_pathfirst {P : HPath k} (hP : P.IsHamiltonian)
 /-- **clm-eqq** (amended) — the exact weight bookkeeping for `X = f(P,S)`.  The verbatim
 statement is FALSE at `k = 0` (self-loop `w = 0`) and for `S ⊄ V(P)` (uncounted added
 edges); see `PROGRESS-structure.md`.  With `1 ≤ k` and `S ⊆ V(P)` (both implied by the
-paper's Hamiltonian `P`, `k ≥ 3` regime) it holds.-/
+paper's Hamiltonian `P`, `k ≥ 3` regime) it holds.
+@isnad1 id=eq.3h3v.s7.e3d49dbd50f1 from=translated src=- shape=3252238d vocab=d2e0bf14
+-/
 theorem clm_eqq_amended {P : HPath k} {S : Finset (Vtx k)} (hk : 1 ≤ k)
     (hSV : S ⊆ P.vertsFinset) (hS : SPrecond P S) :
     (P.wtP : ℤ) = (wEdges (fPS P S) : ℤ)
@@ -701,7 +777,9 @@ theorem clm_eqq_amended {P : HPath k} {S : Finset (Vtx k)} (hk : 1 ≤ k)
 /-- **prp-Xk-se (necessity)** (amended) — proved taking `cor_exitlessrule` (`h_se`, a §5
 target routed through the unproved `lem_pathrule`) as an explicit hypothesis, and with the
 `k ≥ 2` guard the `V(X) = V(𝒮_k)` half genuinely needs (it is FALSE at `k = 1`, where
-`F(P) = ∅`).  The `V(F(P)) = V(𝒮_k)` half is discharged outright via `vertsOf_F_eq_univ`.-/
+`F(P) = ∅`).  The `V(F(P)) = V(𝒮_k)` half is discharged outright via `vertsOf_F_eq_univ`.
+@isnad1 id=and.3h2v.s6.75e48fd648ee from=translated src=- shape=5bb30977 vocab=57e6a236
+-/
 theorem prp_Xk_se_necessity_amended {k : ℕ} {X : Finset (Vtx k × Vtx k)} (hk : 2 ≤ k)
     (h_se : ∀ P : HPath k, P.IsHamiltonian → IsUnionOfStronglyExitlessPaths (F P))
     (hX : X ∈ Xk k) :

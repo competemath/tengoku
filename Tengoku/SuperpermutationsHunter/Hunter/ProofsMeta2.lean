@@ -54,7 +54,9 @@ membership:
 
 /-- **Door meta-step preserves `Vset3`.**  If the meta-word (marker-erasure by the run-constant
 `α₁`) of `B` is a single rotation of that of `A`, then `B` lies in the same level-3 marked loop
-as `A`.  This is the meta analogue of `sigma_mem_Vset` (rotation-closure) for the door boundary.-/
+as `A`.  This is the meta analogue of `sigma_mem_Vset` (rotation-closure) for the door boundary.
+@isnad1 id=mem.2h6v.s6.0b1205179495 from=translated src=- shape=0ac8ee6f vocab=ab3d951f
+-/
 theorem Vset3_of_metaWord_rotate {α₁ α₂ : ℕ} {K : RotClass} {A B : Vtx k}
     (hA : A ∈ Vset3 k α₁ α₂ K)
     (hstep : (B : List ℕ).erase α₁ = ((A : List ℕ).erase α₁).rotate 1) :
@@ -67,7 +69,9 @@ theorem Vset3_of_metaWord_rotate {α₁ α₂ : ℕ} {K : RotClass} {A B : Vtx k
 the 2-loop's first block (`|w| = k−1`), and `(α₂, K) = genLoop w` its level-`(k−1)` marked
 loop.  After the 2-loop's `k−2` door boundaries the meta-word is `w.rotate (k−2)`, and the `α`
 boundary sends it to `door (w.rotate (k−2)) = B.erase α₁`.  Then `B ∈ Vset3 k α₁ α₂ K`: the
-completeness (`ρ (w.rotate (k−2)) = w`) restores the doubly-erased class to `K`.-/
+completeness (`ρ (w.rotate (k−2)) = w`) restores the doubly-erased class to `K`.
+@isnad1 id=mem.5h6v.s7.ac62994f3d13 from=translated src=- shape=9b603d49 vocab=7752f341
+-/
 theorem Vset3_of_metaWord_complete_alpha {α₁ α₂ : ℕ} {K : RotClass} {A B : Vtx k}
     (hk : 3 ≤ k)
     (hα2 : α₂ = ((A : List ℕ).erase α₁).getLastD 0)
@@ -108,7 +112,9 @@ exact shape of `ProofsConfinement.confinement`'s `hinv` (`genLoop_door_eq_genLoo
 /-- **Meta-run `genLoop` invariant.**  Along an `α`-run of complete 2-loops, the level-`(k−1)`
 `genLoop` of the meta-block-start's meta-word `(Astar j).erase α₁` is constant.  The `succ`
 step is the complete-2-loop `α`-transition; completeness (`|w| = k−1 ⇒ w.rotate (k−1) = w`)
-turns the `door`-successor's `genLoop` back into `genLoop w` via `genLoop_door_eq_rho_of_len`.-/
+turns the `door`-successor's `genLoop` back into `genLoop w` via `genLoop_door_eq_rho_of_len`.
+@isnad1 id=eq.4h6v.s7.a8f302ef4f7f from=translated src=- shape=12c8d456 vocab=8e2fd35f
+-/
 theorem meta_hinv {α₁ α₂ : ℕ} {K : RotClass} {Astar : ℕ → Vtx k} (hk : 3 ≤ k)
     (hlen : ∀ j, ((Astar j : List ℕ).erase α₁).length = k - 1)
     (hg0 : genLoop ((Astar 0 : List ℕ).erase α₁) = (α₂, K))
@@ -130,7 +136,9 @@ theorem meta_hinv {α₁ α₂ : ℕ} {K : RotClass} {Astar : ℕ → Vtx k} (hk
     rw [hrot]; exact ih
 
 /-- A vertex whose meta-word has level-`(k−1)` `genLoop` `(α₂, K)` lies in the level-3 marked
-loop `Vset3 k α₁ α₂ K`.  (The meta analogue of `mem_Vset_of_genLoop`.)-/
+loop `Vset3 k α₁ α₂ K`.  (The meta analogue of `mem_Vset_of_genLoop`.)
+@isnad1 id=mem.1h5v.s5.ded0e168efd4 from=translated src=- shape=bc33a378 vocab=8859a529
+-/
 theorem mem_Vset3_of_genLoop_metaWord {α₁ α₂ : ℕ} {K : RotClass} {A : Vtx k}
     (h : genLoop ((A : List ℕ).erase α₁) = (α₂, K)) : A ∈ Vset3 k α₁ α₂ K := by
   rw [mem_Vset3]
@@ -140,7 +148,9 @@ theorem mem_Vset3_of_genLoop_metaWord {α₁ α₂ : ℕ} {K : RotClass} {A : Vt
   exact h2
 
 /-- **Meta-block-starts are confined.**  Combining `meta_hinv` with membership: every
-meta-block-start of the `α`-run lies in one level-3 marked loop `Vset3 k α₁ α₂ K`.-/
+meta-block-start of the `α`-run lies in one level-3 marked loop `Vset3 k α₁ α₂ K`.
+@isnad1 id=mem.4h6v.s7.c3be2e464265 from=translated src=- shape=d3d6a989 vocab=55354d44
+-/
 theorem meta_hinv_mem_Vset3 {α₁ α₂ : ℕ} {K : RotClass} {Astar : ℕ → Vtx k} (hk : 3 ≤ k)
     (hlen : ∀ j, ((Astar j : List ℕ).erase α₁).length = k - 1)
     (hg0 : genLoop ((Astar 0 : List ℕ).erase α₁) = (α₂, K))
@@ -151,7 +161,9 @@ theorem meta_hinv_mem_Vset3 {α₁ α₂ : ℕ} {K : RotClass} {Astar : ℕ → 
 
 /-- **Intra-2-loop confinement.**  Every block-start of a 2-loop has meta-word a rotation of
 the 2-loop's first meta-word (successive door boundaries rotate it), so it lies in the same
-level-3 marked loop.  (Rotation preserves the doubly-erased class, `rotClass_erase_rotate`.)-/
+level-3 marked loop.  (Rotation preserves the doubly-erased class, `rotClass_erase_rotate`.)
+@isnad1 id=mem.2h7v.s6.10d7377350e6 from=translated src=- shape=417e648e vocab=ab3d951f
+-/
 theorem Vset3_of_metaWord_rotate_iter {α₁ α₂ : ℕ} {K : RotClass} {A B : Vtx k} {r : ℕ}
     (hA : A ∈ Vset3 k α₁ α₂ K)
     (hstep : (B : List ℕ).erase α₁ = ((A : List ℕ).erase α₁).rotate r) :
@@ -170,7 +182,9 @@ so `m ≤ k−2`. -/
 /-- **Meta-pigeonhole.**  If the `k−1` block-starts of each of `m` complete 2-loops of an
 `α`-run all lie in one level-3 marked loop `Vset3 k α₁ α₂ K` (markers/class read off a base
 word `A`) and carry pairwise-distinct 1-cycles, then the number of complete 2-loops is
-`m ≤ k−2`.  (`(k−1)·m` distinct 1-cycles in a `(k−1)(k−2)`-cycle budget.)-/
+`m ≤ k−2`.  (`(k−1)·m` distinct 1-cycles in a `(k−1)(k−2)`-cycle budget.)
+@isnad1 id=le.6h7v.s7.600a6b0a6ea9 from=translated src=- shape=a0f1400b vocab=77c3f10f
+-/
 theorem meta_pigeonhole (hk : 3 ≤ k) {α₁ α₂ : ℕ} {K : RotClass} {A : Vtx k}
     (hα1 : α₁ = (A : List ℕ).getLastD 0)
     (hα2 : α₂ = ((A : List ℕ).dropLast).getLastD 0)
@@ -207,7 +221,9 @@ at strictly-increasing block positions carry pairwise-distinct 1-cycles.  This i
 
 /-- **Meta-no-reentry (position form).**  Block-starts of an exitless path at a family of
 strictly-increasing block positions (multiples of `k`, at least `k` apart) carry
-pairwise-distinct 1-cycles.-/
+pairwise-distinct 1-cycles.
+@isnad1 id=ne.6h6v.s7.495a59d95dcc from=translated src=- shape=5fb8db37 vocab=d7efa392
+-/
 theorem meta_no_reentry (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) {ι : Type*}
     [LinearOrder ι] (pos : ι → ℕ) (hdvd : ∀ i, k ∣ pos i)
     (hmono : ∀ i i', i < i' → pos i + k ≤ pos i')
@@ -235,7 +251,9 @@ This is `ProofsConfinement.confinement` lifted one meta-level: there, `k` blocks
 /-- **Meta-confinement.**  An `α`-run of `m` complete 2-loops, whose meta-block-starts obey the
 complete-2-loop `α`-transition (`hstep`) and whose blocks obey the intra-2-loop rotation
 relation (`hblk`) with pairwise-distinct 1-cycles (`hcyc`), has `m ≤ k−2`.  The markers `α₁, α₂`
-and class `K` are read off the run's first block-start `Astar 0`.-/
+and class `K` are read off the run's first block-start `Astar 0`.
+@isnad1 id=le.8h7v.s8.6db192fe7147 from=translated src=- shape=f5ac0c08 vocab=c679361c
+-/
 theorem meta_confinement (hk : 3 ≤ k) {α₁ α₂ : ℕ} {K : RotClass}
     {Astar : ℕ → Vtx k} {m : ℕ} (blk : Fin m × Fin (k - 1) → Vtx k)
     (hα1 : α₁ = (Astar 0 : List ℕ).getLastD 0)
@@ -272,7 +290,9 @@ lost confinement) and introduces **no hole** in the meta-genLoop frame. -/
 /-- **σ²-sibling stays confined.**  If the previous block-start `σx` (`= ρx`) lies in the level-3
 marked loop and `B` is the `sigmaSqWord` successor, then `B` is still in the same `Vset3`: the
 meta-`σ²` (`rotate 2`) preserves the doubly-erased rotation class.  Hence the σ²-sibling does not
-break the meta-run invariant.-/
+break the meta-run invariant.
+@isnad1 id=mem.4h6v.s6.2e336165b99b from=translated src=- shape=099f41b3 vocab=1a305ef7
+-/
 theorem Vset3_of_sigmaSq_step {α₁ α₂ : ℕ} {K : RotClass} {x B : Vtx k} (hk : 3 ≤ k)
     (hA : sigma x ∈ Vset3 k α₁ α₂ K)
     (hα1 : α₁ = (sigma x : List ℕ).getLastD 0)

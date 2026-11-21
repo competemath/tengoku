@@ -67,7 +67,9 @@ variable {k : ℕ}
 /-! ## Prefix stability of `vert` and monotonicity of the `≥r`-edge counts -/
 
 /-- On the common index range, a prefix path agrees with the original: if `q.verts` is the
-length-`n` prefix of `p.verts` then `q.vert i = p.vert i` for every `i < n`.-/
+length-`n` prefix of `p.verts` then `q.vert i = p.vert i` for every `i < n`.
+@isnad1 id=eq.3h5v.s5.6e61dcf55e72 from=translated src=- shape=66794274 vocab=4ab72ca8
+-/
 theorem prefix_vert_eq {p q : HPath k} {n : ℕ} (hn : q.verts = p.verts.take n)
     (hnle : n ≤ p.numVerts) {i : ℕ} (hi : i < n) : q.vert i = p.vert i := by
   have hNlen : p.verts.length = p.numVerts := rfl
@@ -81,7 +83,9 @@ theorem prefix_vert_eq {p q : HPath k} {n : ℕ} (hn : q.verts = p.verts.take n)
 
 /-- **Prefix-monotonicity of the `≥r`-edge count.**  If `q` is the length-`n` prefix of `p`
 (and `q.numVerts = n`), then `edgeCountGe q r ≤ edgeCountGe p r` for every `r`: the window
-`[n−1, |p|−2]` only adds edges.-/
+`[n−1, |p|−2]` only adds edges.
+@isnad1 id=le.3h5v.s5.0e8c9ab15cac from=translated src=- shape=ad3cc71a vocab=3a5f2822
+-/
 theorem edgeCountGe_prefix_le {p q : HPath k} {n : ℕ} (hn : q.verts = p.verts.take n)
     (hnle : n ≤ p.numVerts) (hqn : q.numVerts = n) (r : ℕ) :
     edgeCountGe q r ≤ edgeCountGe p r := by
@@ -119,7 +123,9 @@ def WindowHeavy3 (k : ℕ) : Prop :=
 /-- **The reduction `WindowHeavy3 k → WindowExcess k`.**  `excess = Σ_{r=3}^{k} edgeCountGe·r`.
 Each layer is prefix-monotone (`edgeCountGe_prefix_le`), so `excess p − excess q` dominates the
 `r = 3` layer's contribution `edgeCountGe p 3 − edgeCountGe q 3`, which `WindowHeavy3` bounds
-below by `k−2`.  Hence `excess q + (k−2) ≤ excess p`.-/
+below by `k−2`.  Hence `excess q + (k−2) ≤ excess p`.
+@isnad1 id=windowex.2h1v.s4.cb9d418c5f26 from=translated src=- shape=4963a319 vocab=202e72bf
+-/
 theorem windowExcess_of_windowHeavy3 (hk : 3 ≤ k) (hw : WindowHeavy3 k) :
     WindowExcess k := by
   intro p q hpe hqe hlt hprefix
@@ -144,7 +150,9 @@ theorem windowExcess_of_windowHeavy3 (hk : 3 ≤ k) (hw : WindowHeavy3 k) :
   omega
 
 /-- **thm2 conditional on the sharpened residual.**  Hunter's Theorem 2 for every `ℓ`,
-assuming only `WindowHeavy3 k` ("each `ℓ₀`-window has `≥ k−2` heavy edges").-/
+assuming only `WindowHeavy3 k` ("each `ℓ₀`-window has `≥ k−2` heavy edges").
+@isnad1 id=le.3h2v.s4.cf6f1f26faa9 from=translated src=- shape=ca171c50 vocab=d9eef03f
+-/
 theorem thm2_of_windowHeavy3 {k ℓ : ℕ} (hk : 3 ≤ k) (hw : WindowHeavy3 k)
     (hℓ : HasExitlessPath k ℓ) :
     j k ℓ ≤ iExitless k ℓ :=
@@ -153,7 +161,9 @@ theorem thm2_of_windowHeavy3 {k ℓ : ℕ} (hk : 3 ≤ k) (hw : WindowHeavy3 k)
 /-! ## Reusable structural bricks for the (still-open) meta-confinement -/
 
 /-- **Boundary edges are heavy-ish.**  At every block boundary (`k ∣ i+1`) of an exitless path
-the edge weight is `≥ 2` (it leaves a fully-traversed 1-cycle, so it is not the `σ`-step).-/
+the edge weight is `≥ 2` (it leaves a fully-traversed 1-cycle, so it is not the `σ`-step).
+@isnad1 id=le.4h3v.s6.bed73b1c4f66 from=translated src=- shape=f1515a8b vocab=34fbfea5
+-/
 theorem boundary_ge_two (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) {i : ℕ}
     (hin : i + 1 < p.numVerts) (hd : k ∣ (i + 1)) :
     2 ≤ ew k (p.vert i) (p.vert (i + 1)) := by
@@ -165,7 +175,9 @@ theorem boundary_ge_two (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) {i : ℕ}
 /-- **Every heavy edge is a block boundary.**  A weight-`≥3` (indeed weight-`≥2`) edge of an
 exitless path sits at a block boundary (`k ∣ i+1`): the interior edges of a block are the
 forced `σ`-steps of weight `1`.  This is the contrapositive of `prp_periodicedges`, and it is
-what lets the heavy-edge count of `WindowHeavy3` be organised block by block (the meta level).-/
+what lets the heavy-edge count of `WindowHeavy3` be organised block by block (the meta level).
+@isnad1 id=dvd.4h3v.s6.20e99265f694 from=translated src=- shape=6d2fb53e vocab=34fbfea5
+-/
 theorem heavy_is_boundary (hk : 1 ≤ k) {p : HPath k} (hp : p.Exitless) {i : ℕ}
     (hin : i + 1 < p.numVerts) (hh : 2 ≤ ew k (p.vert i) (p.vert (i + 1))) :
     k ∣ (i + 1) := by

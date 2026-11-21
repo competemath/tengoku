@@ -50,14 +50,18 @@ variable {k : ℕ}
 
 /-- **Unconditional excess bound.**  For *every* exitless path (all lengths, no base-region
 restriction) the `≥3`-weight excess is at least `⌈ℓ/(k(k−1))⌉−1`.  This is `prp_3edgebound`
-(level-2 confinement) composed with `excess ≥ edgeCountGe · 3`.-/
+(level-2 confinement) composed with `excess ≥ edgeCountGe · 3`.
+@isnad1 id=le.2h2v.s6.93770752a0b8 from=translated src=- shape=0c37e43e vocab=3a47f5fb
+-/
 theorem excess_ge_Dbase {k : ℕ} (hk : 3 ≤ k) {q : HPath k} (hq : q.Exitless) :
     q.numVerts ⌈/⌉ (k * (k - 1)) - 1 ≤ excess q :=
   le_trans (Proved.prp_3edgebound (by omega) hq) (edgeCountGe3_le_excess hk q)
 
 /-- **Frontier at `q` when `j ≤ jbase`.**  The `ExcessFrontier` inequality holds at any
 exitless `q` whose length satisfies `j_k(ℓ) ≤ jbase(ℓ) = ℓ+⌈ℓ/k⌉+⌈ℓ/(k(k−1))⌉−3` — in
-particular on the whole base region and on every deficit-0 length of the recursion region.-/
+particular on the whole base region and on every deficit-0 length of the recursion region.
+@isnad1 id=le.4h2v.s7.52b0a229fe93 from=translated src=- shape=7c7dc820 vocab=ad11376b
+-/
 theorem excess_frontier_of_j_le_jbase {k : ℕ} (hk : 3 ≤ k) {q : HPath k} (hq : q.Exitless)
     (h0 : 0 < q.numVerts)
     (hj : j k q.numVerts ≤
@@ -78,7 +82,9 @@ theorem excess_frontier_of_j_le_jbase {k : ℕ} (hk : 3 ≤ k) {q : HPath k} (hq
 with an exitless witness and `j_k(ℓ) ≤ jbase(ℓ)`, Hunter's Theorem 2 holds:
 `j_k(ℓ) ≤ i_k(ℓ)`.  Since `j_k = jbase` on the base region this subsumes
 `thm2_base_unconditional`, and it additionally settles every deficit-0 length above
-`k(k−1)(k−2)` (the 45/60 majority of the k=5 recursion region).-/
+`k(k−1)(k−2)` (the 45/60 majority of the k=5 recursion region).
+@isnad1 id=le.3h2v.s6.fb7a9ac68b8a from=translated src=- shape=999b122e vocab=409228dc
+-/
 theorem thm2_of_j_le_jbase {k ℓ : ℕ} (hk : 3 ≤ k)
     (hj : j k ℓ ≤ ℓ + (ℓ ⌈/⌉ k) + (ℓ ⌈/⌉ (k * (k - 1))) - 3)
     (hex : HasExitlessPath k ℓ) :
@@ -99,7 +105,9 @@ theorem thm2_of_j_le_jbase {k ℓ : ℕ} (hk : 3 ≤ k)
 
 /-- Dropping tail vertices preserves `Exitless`: for every `d < |p|` there is an exitless
 path whose vertex list is the length-`(|p|−d)` prefix of `p`.  Proved by iterating the
-one-step `clm_prefix`.-/
+one-step `clm_prefix`.
+@isnad1 id=ex.2h3v.s5.71fb54626c3e from=translated src=- shape=1c04625d vocab=14dddd93
+-/
 theorem prefix_exitless_aux {k : ℕ} {p : HPath k} (hp : p.Exitless) :
     ∀ d, d < p.numVerts →
       ∃ q : HPath k, q.verts = p.verts.take (p.numVerts - d) ∧ q.Exitless := by
@@ -128,7 +136,9 @@ theorem prefix_exitless_aux {k : ℕ} {p : HPath k} (hp : p.Exitless) :
     omega
 
 /-- **Prefix exitless.**  For `1 ≤ n ≤ |p|`, the length-`n` prefix of an exitless path is
-(the vertex list of) an exitless path.-/
+(the vertex list of) an exitless path.
+@isnad1 id=ex.3h3v.s5.e455e76778d9 from=translated src=- shape=47a8567f vocab=625aba77
+-/
 theorem prefix_exitless {k : ℕ} {p : HPath k} (hp : p.Exitless) {n : ℕ} (hn : 1 ≤ n)
     (hnle : n ≤ p.numVerts) :
     ∃ q : HPath k, q.verts = p.verts.take n ∧ q.Exitless := by
@@ -149,13 +159,18 @@ level-3 confinement (whose move algebra lives in the contracted graph `S'_k`; se
 noncomputable def Vset3 (k : ℕ) (α₁ α₂ : ℕ) (K : RotClass) : Finset (Vtx k) :=
   Finset.univ.filter (fun v => rotClass (((v : List ℕ).erase α₁).erase α₂) = K)
 
+/--
+@isnad1 id=iff.0h5v.s5.525affab57ac from=translated src=- shape=36f40c87 vocab=481f3d5a
+-/
 theorem mem_Vset3 {α₁ α₂ : ℕ} {K : RotClass} {v : Vtx k} :
     v ∈ Vset3 k α₁ α₂ K ↔ rotClass (((v : List ℕ).erase α₁).erase α₂) = K := by
   rw [Vset3, Finset.mem_filter]
   exact ⟨fun h => h.2, fun h => ⟨Finset.mem_univ _, h⟩⟩
 
 /-- `Vset3` is closed under `σ`: rotating `v` rotates `v.erase α₁` (up to a further
-rotation), which fixes the class of `(v.erase α₁).erase α₂`.-/
+rotation), which fixes the class of `(v.erase α₁).erase α₂`.
+@isnad1 id=mem.1h5v.s5.f8c2df07efa2 from=translated src=- shape=089e8310 vocab=70540196
+-/
 theorem sigma_mem_Vset3 {α₁ α₂ : ℕ} {K : RotClass} {v : Vtx k}
     (h : v ∈ Vset3 k α₁ α₂ K) : sigma v ∈ Vset3 k α₁ α₂ K := by
   rw [mem_Vset3] at h ⊢
@@ -166,14 +181,18 @@ theorem sigma_mem_Vset3 {α₁ α₂ : ℕ} {K : RotClass} {v : Vtx k}
   rw [← hs, rotClass_erase_rotate (v.2.nodup.erase α₁) s]
   exact h
 
-/-- `Vset3` is closed under all `σ`-iterates.-/
+/-- `Vset3` is closed under all `σ`-iterates.
+@isnad1 id=mem.1h6v.s5.e6242f6ad85c from=translated src=- shape=a923d4f5 vocab=20509eaa
+-/
 theorem sigma_iter_mem_Vset3 {α₁ α₂ : ℕ} {K : RotClass} {v : Vtx k}
     (h : v ∈ Vset3 k α₁ α₂ K) (r : ℕ) : sigma^[r] v ∈ Vset3 k α₁ α₂ K := by
   induction r with
   | zero => simpa using h
   | succ r ih => rw [Function.iterate_succ_apply']; exact sigma_mem_Vset3 ih
 
-/-- A whole 1-cycle lies in `Vset3` once its base point does.-/
+/-- A whole 1-cycle lies in `Vset3` once its base point does.
+@isnad1 id=le.2h5v.s6.376baa2b13aa from=translated src=- shape=564cc1d2 vocab=406a3299
+-/
 theorem cyc_subset_Vset3 {α₁ α₂ : ℕ} {K : RotClass} {v : Vtx k} (hk1 : 1 ≤ k)
     (h : v ∈ Vset3 k α₁ α₂ K) : cyc v ⊆ Vset3 k α₁ α₂ K := by
   intro u hu
@@ -183,7 +202,9 @@ theorem cyc_subset_Vset3 {α₁ α₂ : ℕ} {K : RotClass} {v : Vtx k} (hk1 : 1
 /-- **Cardinality of the marked-3-loop.**  With the two markers taken as the last two symbols
 of a base word `A` and `K` the rotation class of the remaining `k−2` symbols, the marked
 3-loop `Vset3` has at most `k(k−1)(k−2)` vertices.  Level-3 analog of `card_Vset_le`, via a
-double insertion surjection `(r, j₂, j₁) ↦ insert α₁ (insert α₂ (u₀₀.rotate r))`.-/
+double insertion surjection `(r, j₂, j₁) ↦ insert α₁ (insert α₂ (u₀₀.rotate r))`.
+@isnad1 id=le.4h5v.s7.c94d2e0f2521 from=translated src=- shape=7e983ad0 vocab=f5114217
+-/
 theorem card_Vset3_le {A : Vtx k} (hk : 3 ≤ k) {α₁ α₂ : ℕ} {K : RotClass}
     (hα1 : α₁ = (A : List ℕ).getLastD 0)
     (hα2 : α₂ = ((A : List ℕ).dropLast).getLastD 0)
@@ -291,7 +312,9 @@ the base region, and a short ceiling computation gives `j_k(ℓ) = ℓ+⌈ℓ/k�
 (the last step because `⌈ℓ/(k(k−1))⌉ ≥ k−1` once `ℓ > k(k−1)(k−2)`).  Feeding this through
 `thm2_of_j_le_jbase` extends Theorem 2 from `ℓ ≤ k(k−1)(k−2)` to `ℓ ≤ k²(k−2)`. -/
 
-/-- `(a + b) ⌈/⌉ k = a ⌈/⌉ k + b / k` when `k ∣ b`.-/
+/-- `(a + b) ⌈/⌉ k = a ⌈/⌉ k + b / k` when `k ∣ b`.
+@isnad1 id=eq.2h3v.s6.02fa23601799 from=translated src=- shape=2a9d5bd7 vocab=d73ebf63
+-/
 theorem ceilDiv_add_dvd {a b k : ℕ} (hk : 0 < k) (hb : k ∣ b) :
     (a + b) ⌈/⌉ k = a ⌈/⌉ k + b / k := by
   obtain ⟨t, rfl⟩ := hb
@@ -299,7 +322,9 @@ theorem ceilDiv_add_dvd {a b k : ℕ} (hk : 0 < k) (hb : k ∣ b) :
       show a + k * t + k - 1 = (a + k - 1) + k * t from by omega,
       Nat.add_mul_div_left _ _ hk]
 
-/-- `⌈ℓ₀ / (k(k−1))⌉ = k − 2` for the pivot `ℓ₀ = k(k−1)(k−2) − k`.-/
+/-- `⌈ℓ₀ / (k(k−1))⌉ = k − 2` for the pivot `ℓ₀ = k(k−1)(k−2) − k`.
+@isnad1 id=eq.1h1v.s6.c59a291c319d from=translated src=- shape=0eb27c51 vocab=99a7ea54
+-/
 theorem ceilDiv_ell0 {k : ℕ} (hk : 3 ≤ k) : ell0 k ⌈/⌉ (k * (k - 1)) = k - 2 := by
   have hN1 : 1 ≤ ell0 k := ProofsRecursion.ell0_pos hk
   obtain ⟨m, rfl⟩ : ∃ m, k = m + 3 := ⟨k - 3, by omega⟩
@@ -317,7 +342,9 @@ theorem ceilDiv_ell0 {k : ℕ} (hk : 3 ≤ k) : ell0 k ⌈/⌉ (k * (k - 1)) = k
   rw [hval, Nat.mul_add_div hDpos, Nat.div_eq_of_lt hlt]
   omega
 
-/-- `k ∣ ℓ₀`.-/
+/-- `k ∣ ℓ₀`.
+@isnad1 id=dvd.1h1v.s4.7ef71f8d35ae from=translated src=- shape=0cbbc473 vocab=7b0b4b49
+-/
 theorem k_dvd_ell0 {k : ℕ} (hk : 3 ≤ k) : k ∣ ell0 k := by
   obtain ⟨m, rfl⟩ : ∃ m, k = m + 3 := ⟨k - 3, by omega⟩
   simp only [ell0, show m + 3 - 1 = m + 2 from by omega, show m + 3 - 2 = m + 1 from by omega]

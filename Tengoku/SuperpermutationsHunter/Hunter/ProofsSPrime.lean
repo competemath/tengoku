@@ -52,7 +52,9 @@ fixed by both the door and the `α` boundary.  Erasing `α₁` collapses the `k`
 into a `(k−1)`-letter step: a door boundary becomes the rotation `σ`, an `α` boundary becomes a
 `door`. -/
 
-/-- The door boundary fixes the marker (last symbol of the block start).-/
+/-- The door boundary fixes the marker (last symbol of the block start).
+@isnad1 id=eq.2h2v.s5.c82c7e00de42 from=translated src=- shape=b2d73b2d vocab=9659bb3b
+-/
 theorem door_marker {x : List ℕ} (hk : 2 ≤ k) (hx : IsPermWord k x) :
     (door x).getLastD 0 = (rho x).getLastD 0 := by
   obtain ⟨a, t, rfl⟩ := List.exists_cons_of_ne_nil (hx.ne_nil (by omega))
@@ -68,7 +70,9 @@ theorem door_marker {x : List ℕ} (hk : 2 ≤ k) (hx : IsPermWord k x) :
       show (b :: t') ++ [a] = ((b :: t') ++ [a]) by rfl, List.getLastD_concat]
 
 /-- **Marker-erasure of the door boundary is `σ` on `k−1` letters.**  Erasing the marker
-`α₁` from the door successor `door x` yields the single rotation of `(rho x).erase α₁`.-/
+`α₁` from the door successor `door x` yields the single rotation of `(rho x).erase α₁`.
+@isnad1 id=eq.2h2v.s5.02b2c404193d from=translated src=- shape=e52bc8c1 vocab=a7480e48
+-/
 theorem door_erase_marker {x : List ℕ} (hk : 2 ≤ k) (hx : IsPermWord k x) :
     (door x).erase ((rho x).getLastD 0) =
       ((rho x).erase ((rho x).getLastD 0)).rotate 1 := by
@@ -98,7 +102,9 @@ theorem door_erase_marker {x : List ℕ} (hk : 2 ≤ k) (hx : IsPermWord k x) :
   show t' ++ [b] = (b :: t').rotate 1
   simp
 
-/-- The `α` boundary fixes the marker (last symbol of the block start).-/
+/-- The `α` boundary fixes the marker (last symbol of the block start).
+@isnad1 id=eq.2h2v.s5.5943bff208c6 from=translated src=- shape=b2d73b2d vocab=881d4954
+-/
 theorem alpha_marker {x : List ℕ} (hk : 3 ≤ k) (hx : IsPermWord k x) :
     (alphaWord x).getLastD 0 = (rho x).getLastD 0 := by
   obtain ⟨a, t, rfl⟩ := List.exists_cons_of_ne_nil (hx.ne_nil (by omega))
@@ -115,7 +121,9 @@ theorem alpha_marker {x : List ℕ} (hk : 3 ≤ k) (hx : IsPermWord k x) :
       show (b :: c :: t'') ++ [a] = ((b :: c :: t'') ++ [a]) by rfl, List.getLastD_concat]
 
 /-- **Marker-erasure of the `α` boundary is `door` on `k−1` letters.**  Erasing the marker
-`α₁` from the `α` successor `alphaWord x` yields the door of `(rho x).erase α₁`.-/
+`α₁` from the `α` successor `alphaWord x` yields the door of `(rho x).erase α₁`.
+@isnad1 id=eq.2h2v.s5.484553007ba9 from=translated src=- shape=74fc3716 vocab=a59f435a
+-/
 theorem alpha_erase_marker {x : List ℕ} (hk : 3 ≤ k) (hx : IsPermWord k x) :
     (alphaWord x).erase ((rho x).getLastD 0) =
       door ((rho x).erase ((rho x).getLastD 0)) := by
@@ -158,7 +166,9 @@ marked 2-loop `(α₂,K)`.  Combined with `door_erase_marker`/`alpha_erase_marke
 makes a door/α block-run project to a `σ`/door walk on `k−1` letters. -/
 
 /-- `v ∈ Vset3 k α₁ α₂ K` iff the marker-erasure `v.erase α₁` lies in the level-2 marked loop
-`{ w | rotClass (w.erase α₂) = K }` (the `Vset` predicate on `k−1` letters).-/
+`{ w | rotClass (w.erase α₂) = K }` (the `Vset` predicate on `k−1` letters).
+@isnad1 id=iff.0h5v.s5.525affab57ac from=translated src=- shape=36f40c87 vocab=481f3d5a
+-/
 theorem mem_Vset3_iff_erase {α₁ α₂ : ℕ} {K : RotClass} {v : Vtx k} :
     v ∈ Vset3 k α₁ α₂ K ↔ rotClass (((v : List ℕ).erase α₁).erase α₂) = K :=
   mem_Vset3
@@ -172,7 +182,9 @@ in one marked 3-loop `Vset3` and represent pairwise-distinct 1-cycles has at mos
 cannot fit in a `k(k−1)`-vertex marked 2-loop" pigeonhole. -/
 
 /-- **Level-3 confinement (cardinality form).**  A `Vset3`-confined set of blocks with
-pairwise-distinct 1-cycles has `≤ (k−1)(k−2)` elements.-/
+pairwise-distinct 1-cycles has `≤ (k−1)(k−2)` elements.
+@isnad1 id=le.6h6v.s7.fa1ed3bd29df from=translated src=- shape=96bc514c vocab=cb23ed22
+-/
 theorem card_le_of_mem_Vset3 (hk : 3 ≤ k) {α₁ α₂ : ℕ} {K : RotClass} {A : Vtx k}
     (hα1 : α₁ = (A : List ℕ).getLastD 0)
     (hα2 : α₂ = ((A : List ℕ).dropLast).getLastD 0)
@@ -219,7 +231,9 @@ def ExcessFrontierDeficit (k : ℕ) : Prop :=
 
 /-- **The full frontier reduces to the deficit-band frontier.**  Combining the deficit-band
 hypothesis with the unconditional level-2 bound (`excess_frontier_of_j_le_jbase`, deficit 0)
-recovers `ExcessFrontier k` for all lengths.-/
+recovers `ExcessFrontier k` for all lengths.
+@isnad1 id=excessfr.2h1v.s4.cfb6cc2308d7 from=translated src=- shape=4963a319 vocab=5cd37089
+-/
 theorem excessFrontier_of_deficit {k : ℕ} (hk : 3 ≤ k)
     (hdef : ExcessFrontierDeficit k) : ExcessFrontier k := by
   intro q hqe h0
@@ -231,7 +245,9 @@ theorem excessFrontier_of_deficit {k : ℕ} (hk : 3 ≤ k)
 /-- **thm2 from the deficit-band frontier.**  Hunter's Theorem 2 (`j_k(ℓ) ≤ i_k(ℓ)`, all `ℓ`)
 follows from `ExcessFrontierDeficit k` alone — the deficit bands are the entire residue.
 Discharging `ExcessFrontierDeficit` (via the S'_k meta-confinement of this file) would complete
-Theorem 2 for every `k`.-/
+Theorem 2 for every `k`.
+@isnad1 id=le.3h2v.s4.22e0b3bbfaff from=translated src=- shape=ca171c50 vocab=8c39d95a
+-/
 theorem thm2_of_deficitFrontier {k ℓ : ℕ} (hk : 3 ≤ k)
     (hdef : ExcessFrontierDeficit k) (hex : HasExitlessPath k ℓ) :
     j k ℓ ≤ iExitless k ℓ :=

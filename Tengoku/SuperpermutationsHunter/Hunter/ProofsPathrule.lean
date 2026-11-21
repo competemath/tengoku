@@ -32,16 +32,24 @@ variable {k : ℕ}
 
 /-! ## Small membership unfoldings for `C₀`, `C₋₁` -/
 
+/--
+@isnad1 id=iff.0h3v.s5.1d674983811c from=translated src=- shape=783f8f72 vocab=6250d9e5
+-/
 theorem mem_C0_iff {P : HPath k} {v : Vtx k} : v ∈ C0 P ↔ firstInCycle P v := by
   rw [C0, Finset.mem_filter]; exact ⟨fun h => h.2, fun h => ⟨Finset.mem_univ _, h⟩⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.4f26453bfda4 from=translated src=- shape=529ec9c1 vocab=5b587076
+-/
 theorem mem_Cm1_iff {P : HPath k} {v : Vtx k} : v ∈ Cm1 P ↔ sigma v ∈ C0 P := by
   rw [Cm1, Finset.mem_filter]; exact ⟨fun h => h.2, fun h => ⟨Finset.mem_univ _, h⟩⟩
 
 /-! ## The `C₀` representative of a 1-cycle and the σ-exponent -/
 
 /-- Every vertex's 1-cycle contains a `firstInCycle` (i.e. `C₀`) vertex — the `P.pos`-minimum
-of the cycle.-/
+of the cycle.
+@isnad1 id=ex.0h3v.s5.939cd8d9ea89 from=translated src=- shape=71dc18d5 vocab=cf8bd5a6
+-/
 theorem exists_c0_in_cyc (P : HPath k) (v : Vtx k) :
     ∃ c, firstInCycle P c ∧ rotClass c.1 = rotClass v.1 := by
   have hne : (cyc v).Nonempty := ⟨v, ProofsExitless.mem_cyc.mpr rfl⟩
@@ -55,16 +63,27 @@ theorem exists_c0_in_cyc (P : HPath k) (v : Vtx k) :
 /-- The `C₀` representative of `v`'s 1-cycle.-/
 noncomputable def c0rep (P : HPath k) (v : Vtx k) : Vtx k := (exists_c0_in_cyc P v).choose
 
+/--
+@isnad1 id=firstinc.0h3v.s3.af4685fe8336 from=translated src=- shape=7acbe642 vocab=3e4de7aa
+-/
 theorem c0rep_first (P : HPath k) (v : Vtx k) : firstInCycle P (c0rep P v) :=
   (exists_c0_in_cyc P v).choose_spec.1
 
+/--
+@isnad1 id=eq.0h3v.s5.640f9755c4e0 from=translated src=- shape=d39c969e vocab=f765f515
+-/
 theorem c0rep_rotClass (P : HPath k) (v : Vtx k) :
     rotClass (c0rep P v).1 = rotClass v.1 := (exists_c0_in_cyc P v).choose_spec.2
 
+/--
+@isnad1 id=mem.0h3v.s4.dae83acac24a from=translated src=- shape=29d31d66 vocab=60881fd5
+-/
 theorem c0rep_mem_C0 (P : HPath k) (v : Vtx k) : c0rep P v ∈ C0 P :=
   mem_C0_iff.mpr (c0rep_first P v)
 
-/-- Uniqueness of the `C₀` vertex in a 1-cycle (needs `P` Hamiltonian: `P.pos` is injective).-/
+/-- Uniqueness of the `C₀` vertex in a 1-cycle (needs `P` Hamiltonian: `P.pos` is injective).
+@isnad1 id=eq.4h4v.s5.f1518feae646 from=translated src=- shape=6e2a9ce2 vocab=deee36fe
+-/
 theorem c0_unique {P : HPath k} (hP : P.IsHamiltonian) {a b : Vtx k}
     (ha : firstInCycle P a) (hb : firstInCycle P b) (hr : rotClass a.1 = rotClass b.1) :
     a = b := by
@@ -73,13 +92,17 @@ theorem c0_unique {P : HPath k} (hP : P.IsHamiltonian) {a b : Vtx k}
   have hpos : P.pos a = P.pos b := le_antisymm h1 h2
   rw [← ProofsExitless.vert_pos P (hP a), hpos, ProofsExitless.vert_pos P (hP b)]
 
-/-- `c0rep` is constant on a 1-cycle: `c0rep (σv) = c0rep v`.-/
+/-- `c0rep` is constant on a 1-cycle: `c0rep (σv) = c0rep v`.
+@isnad1 id=eq.1h3v.s4.db1c9940624b from=translated src=- shape=103b126d vocab=ee277193
+-/
 theorem c0rep_sigma {P : HPath k} (hP : P.IsHamiltonian) (v : Vtx k) :
     c0rep P (sigma v) = c0rep P v := by
   apply c0_unique hP (c0rep_first P (sigma v)) (c0rep_first P v)
   rw [c0rep_rotClass, c0rep_rotClass, ProofsStructure.rotClass_sigma]
 
-/-- If `v ∈ C₀`, it is its own `C₀` representative.-/
+/-- If `v ∈ C₀`, it is its own `C₀` representative.
+@isnad1 id=eq.2h3v.s5.ce42ff076a33 from=translated src=- shape=f7d564d2 vocab=dd720597
+-/
 theorem c0rep_of_mem_C0 {P : HPath k} (hP : P.IsHamiltonian) {v : Vtx k} (hv : v ∈ C0 P) :
     c0rep P v = v :=
   c0_unique hP (c0rep_first P v) (mem_C0_iff.mp hv) (c0rep_rotClass P v)
@@ -88,6 +111,9 @@ theorem c0rep_of_mem_C0 {P : HPath k} (hP : P.IsHamiltonian) {v : Vtx k} (hv : v
 noncomputable def aExp (P : HPath k) (v : Vtx k) : ℕ :=
   if h : ∃ r, r < k ∧ v = sigma^[r] (c0rep P v) then h.choose else 0
 
+/--
+@isnad1 id=and.1h3v.s5.e8ee60a24732 from=translated src=- shape=8ffe4348 vocab=44206205
+-/
 theorem aExp_spec (hk : 1 ≤ k) (P : HPath k) (v : Vtx k) :
     aExp P v < k ∧ v = sigma^[aExp P v] (c0rep P v) := by
   have hmem : v ∈ cyc (c0rep P v) := ProofsExitless.mem_cyc.mpr (c0rep_rotClass P v).symm
@@ -102,7 +128,9 @@ theorem aExp_spec (hk : 1 ≤ k) (P : HPath k) (v : Vtx k) :
 `(cycle position of the C₀ vertex, σ-distance within the cycle)`).-/
 noncomputable def pot (P : HPath k) (v : Vtx k) : ℕ := k * P.pos (c0rep P v) + aExp P v
 
-/-- `pot` strictly increases along every edge of `F(P)`.-/
+/-- `pot` strictly increases along every edge of `F(P)`.
+@isnad1 id=lt.3h4v.s6.8d6cfa3e76b2 from=translated src=- shape=ff90affa vocab=9b1a1612
+-/
 theorem pot_lt_of_edge {P : HPath k} (hP : P.IsHamiltonian) (hk : 2 ≤ k) {u w : Vtx k}
     (h : (u, w) ∈ F P) : pot P u < pot P w := by
   by_cases hu : u ∈ Cm1 P
@@ -178,7 +206,9 @@ theorem pot_lt_of_edge {P : HPath k} (hP : P.IsHamiltonian) (hk : 2 ≤ k) {u w 
     rw [hcsig, haweq, ← hc]
     omega
 
-/-- Any list `D` whose consecutive image under `g : α → ℕ` strictly increases is `Nodup`.-/
+/-- Any list `D` whose consecutive image under `g : α → ℕ` strictly increases is `Nodup`.
+@isnad1 id=nodup.1h3v.s6.6489b30a5445 from=translated src=- shape=bb9c2fc1 vocab=939cb28f
+-/
 theorem nodup_of_strictmono {α : Type*} {D : List α} {g : α → ℕ}
     (h : ∀ i (hi : i + 1 < D.length), g (D[i]'(by omega)) < g (D[i + 1]'hi)) : D.Nodup := by
   have hc : List.IsChain (· < ·) (D.map g) := by
@@ -190,7 +220,9 @@ theorem nodup_of_strictmono {α : Type*} {D : List α} {g : α → ℕ}
   have hp : List.Pairwise (· < ·) (D.map g) := List.isChain_iff_pairwise.mp hc
   exact List.Nodup.of_map g (hp.imp (fun hlt => Nat.ne_of_lt hlt))
 
-/-- Companion of `nodup_of_strictmono` for a strictly *decreasing* image.-/
+/-- Companion of `nodup_of_strictmono` for a strictly *decreasing* image.
+@isnad1 id=nodup.1h3v.s6.9d3d71beb890 from=translated src=- shape=5fe345a2 vocab=939cb28f
+-/
 theorem nodup_of_strictanti {α : Type*} {D : List α} {g : α → ℕ}
     (h : ∀ i (hi : i + 1 < D.length), g (D[i + 1]'hi) < g (D[i]'(by omega))) : D.Nodup := by
   have hc : List.IsChain (· > ·) (D.map g) := by
@@ -202,7 +234,9 @@ theorem nodup_of_strictanti {α : Type*} {D : List α} {g : α → ℕ}
   have hp : List.Pairwise (· > ·) (D.map g) := List.isChain_iff_pairwise.mp hc
   exact List.Nodup.of_map g (hp.imp (fun hgt => (Nat.ne_of_lt hgt).symm))
 
-/-- **Acyclicity**: every directed walk in `F(P)` is `Nodup` (`F(P)` is a DAG).-/
+/-- **Acyclicity**: every directed walk in `F(P)` is `Nodup` (`F(P)` is a DAG).
+@isnad1 id=nodup.3h3v.s5.15ebb5d26275 from=translated src=- shape=3195df27 vocab=a18e6132
+-/
 theorem acyc {P : HPath k} (hP : P.IsHamiltonian) (hk : 2 ≤ k) {D : List (Vtx k)}
     (hD : IsWalk (F P) D) : D.Nodup := by
   apply nodup_of_strictmono (g := pot P)
@@ -220,6 +254,9 @@ noncomputable def succ (X : Finset (Vtx k × Vtx k)) (v : Vtx k) : Option (Vtx k
 noncomputable def pred (X : Finset (Vtx k × Vtx k)) (v : Vtx k) : Option (Vtx k) :=
   if h : ∃ u, (u, v) ∈ X then some h.choose else none
 
+/--
+@isnad1 id=mem.1h4v.s6.e4b6957a8257 from=translated src=- shape=202be959 vocab=51bbb7a0
+-/
 theorem edge_of_succ_some {X : Finset (Vtx k × Vtx k)} {v w : Vtx k}
     (h : succ X v = some w) : (v, w) ∈ X := by
   unfold succ at h
@@ -230,6 +267,9 @@ theorem edge_of_succ_some {X : Finset (Vtx k × Vtx k)} {v w : Vtx k}
     rwa [hw] at this
   · rw [dite_eq_right hex] at h; exact absurd h (by simp)
 
+/--
+@isnad1 id=eq.2h4v.s6.030a55ea0023 from=translated src=- shape=736623ab vocab=a0c95365
+-/
 theorem succ_some_of_edge {X : Finset (Vtx k × Vtx k)} {v w : Vtx k}
     (hcard : (outV X v).card ≤ 1) (h : (v, w) ∈ X) : succ X v = some w := by
   have hex : ∃ w, (v, w) ∈ X := ⟨w, h⟩
@@ -242,6 +282,9 @@ theorem succ_some_of_edge {X : Finset (Vtx k × Vtx k)} {v w : Vtx k}
   have := Finset.card_le_one.mp hcard _ hcw _ hvw
   exact (Prod.ext_iff.mp this).2
 
+/--
+@isnad1 id=mem.1h4v.s6.94cba02f7f92 from=translated src=- shape=283d44c7 vocab=268863c0
+-/
 theorem edge_of_pred_some {X : Finset (Vtx k × Vtx k)} {v u : Vtx k}
     (h : pred X v = some u) : (u, v) ∈ X := by
   unfold pred at h
@@ -252,6 +295,9 @@ theorem edge_of_pred_some {X : Finset (Vtx k × Vtx k)} {v u : Vtx k}
     rwa [hu] at this
   · rw [dite_eq_right hex] at h; exact absurd h (by simp)
 
+/--
+@isnad1 id=iff.0h3v.s5.ebaa8f89bc31 from=translated src=- shape=3d5c6404 vocab=c8f60d8d
+-/
 theorem pred_eq_none_iff {X : Finset (Vtx k × Vtx k)} {v : Vtx k} :
     pred X v = none ↔ intoV X v = ∅ := by
   unfold pred
@@ -275,27 +321,45 @@ noncomputable def iterOpt (f : Vtx k → Option (Vtx k)) : ℕ → Vtx k → Lis
   | 0, v => [v]
   | (n + 1), v => v :: (match f v with | none => [] | some w => iterOpt f n w)
 
+/--
+@isnad1 id=eq.1h4v.s5.befc4263c492 from=translated src=- shape=cb8d936a vocab=20fb111e
+-/
 theorem iterOpt_succ_none (f : Vtx k → Option (Vtx k)) {n : ℕ} {v : Vtx k} (h : f v = none) :
     iterOpt f (n + 1) v = [v] := by simp only [iterOpt, h]
 
+/--
+@isnad1 id=eq.1h5v.s5.5940b999395e from=translated src=- shape=dbc9b77b vocab=8b4ce978
+-/
 theorem iterOpt_succ_some (f : Vtx k → Option (Vtx k)) {n : ℕ} {v w : Vtx k} (h : f v = some w) :
     iterOpt f (n + 1) v = v :: iterOpt f n w := by simp only [iterOpt, h]
 
+/--
+@isnad1 id=ex.0h4v.s5.e6dd1d8cf15d from=translated src=- shape=aa285328 vocab=3402d1d2
+-/
 theorem iterOpt_head (f : Vtx k → Option (Vtx k)) (n : ℕ) (v : Vtx k) :
     ∃ t, iterOpt f n v = v :: t := by
   cases n with
   | zero => exact ⟨[], rfl⟩
   | succ n => exact ⟨_, rfl⟩
 
+/--
+@isnad1 id=ne.0h4v.s4.798093d99c27 from=translated src=- shape=a4865f84 vocab=47b4c191
+-/
 theorem iterOpt_ne_nil (f : Vtx k → Option (Vtx k)) (n : ℕ) (v : Vtx k) :
     iterOpt f n v ≠ [] := by
   obtain ⟨t, ht⟩ := iterOpt_head f n v; rw [ht]; exact List.cons_ne_nil v t
 
+/--
+@isnad1 id=eq.0h4v.s4.84d116ec6d5c from=translated src=- shape=2ec2c3dc vocab=85fe9278
+-/
 theorem iterOpt_head_eq (f : Vtx k → Option (Vtx k)) (n : ℕ) (v : Vtx k) :
     (iterOpt f n v).head (iterOpt_ne_nil f n v) = v := by
   obtain ⟨t, ht⟩ := iterOpt_head f n v
   simp only [ht, List.head_cons]
 
+/--
+@isnad1 id=ischain.0h4v.s5.c0f7c53848fb from=translated src=- shape=801d251a vocab=c4c8d9b1
+-/
 theorem iterOpt_chain (f : Vtx k → Option (Vtx k)) (n : ℕ) (v : Vtx k) :
     List.IsChain (fun a b => f a = some b) (iterOpt f n v) := by
   induction n generalizing v with
@@ -311,6 +375,9 @@ theorem iterOpt_chain (f : Vtx k → Option (Vtx k)) (n : ℕ) (v : Vtx k) :
       refine ⟨hfv, ?_⟩
       rw [← ht]; exact ih w
 
+/--
+@isnad1 id=le.0h4v.s5.f09dc38fd91c from=translated src=- shape=80737a21 vocab=11220202
+-/
 theorem iterOpt_length_le (f : Vtx k → Option (Vtx k)) (n : ℕ) (v : Vtx k) :
     (iterOpt f n v).length ≤ n + 1 := by
   induction n generalizing v with
@@ -322,6 +389,9 @@ theorem iterOpt_length_le (f : Vtx k → Option (Vtx k)) (n : ℕ) (v : Vtx k) :
       rw [iterOpt_succ_some f hfv, List.length_cons]
       have := ih w; omega
 
+/--
+@isnad1 id=mem.3h6v.s6.a40c35a9e2b9 from=translated src=- shape=a30c0f72 vocab=37e67a65
+-/
 theorem iterOpt_mem_closed (f : Vtx k → Option (Vtx k)) {C : Finset (Vtx k)}
     (hstep : ∀ a b, f a = some b → a ∈ C → b ∈ C) :
     ∀ (n : ℕ) (v : Vtx k), v ∈ C → ∀ x ∈ iterOpt f n v, x ∈ C := by
@@ -338,6 +408,9 @@ theorem iterOpt_mem_closed (f : Vtx k → Option (Vtx k)) {C : Finset (Vtx k)}
       · rwa [hx]
       · exact ih w (hstep v w hfv hv) x hx
 
+/--
+@isnad1 id=or.0h4v.s6.4b3737f02896 from=translated src=- shape=589a4442 vocab=0b01a9f8
+-/
 theorem iterOpt_last_spec (f : Vtx k → Option (Vtx k)) (n : ℕ) (v : Vtx k) :
     (∀ z, (iterOpt f n v).getLast? = some z → f z = none) ∨
       (iterOpt f n v).length = n + 1 := by
@@ -361,7 +434,9 @@ theorem iterOpt_last_spec (f : Vtx k → Option (Vtx k)) (n : ℕ) (v : Vtx k) :
       · right
         rw [hcons, List.length_cons, hR]
 
-/-- Consecutive elements of an `f`-chain are `f`-related.-/
+/-- Consecutive elements of an `f`-chain are `f`-related.
+@isnad1 id=var.2h5v.s6.f9b2ac25147b from=translated src=- shape=4417e6d8 vocab=9cbbf9a2
+-/
 theorem chain_rel_of_zip {R : Vtx k → Vtx k → Prop} {L : List (Vtx k)}
     (hL : L.IsChain R) {a b : Vtx k} (h : (a, b) ∈ L.zip L.tail) : R a b := by
   induction L with
@@ -378,7 +453,9 @@ theorem chain_rel_of_zip {R : Vtx k → Vtx k → Prop} {L : List (Vtx k)}
       · exact ih hL.2 (by rw [List.tail_cons]; exact h)
 
 /-- In a completed `f`-chain (last vertex has `f = none`), any member with a defined `f`-value
-has that value as its list-successor.-/
+has that value as its list-successor.
+@isnad1 id=mem.4h5v.s6.67a1477067ca from=translated src=- shape=72fd5761 vocab=691d2650
+-/
 theorem chain_step_mem {f : Vtx k → Option (Vtx k)} {L : List (Vtx k)}
     (hL : L.IsChain (fun a b => f a = some b))
     (hlast : ∀ z, L.getLast? = some z → f z = none) {x y : Vtx k}
@@ -406,7 +483,9 @@ theorem chain_step_mem {f : Vtx k → Option (Vtx k)} {L : List (Vtx k)}
         have := ih hL.2 hlast' hx
         rwa [List.tail_cons] at this
 
-/-- In an `f`-chain, any non-head member has a list-predecessor.-/
+/-- In an `f`-chain, any non-head member has a list-predecessor.
+@isnad1 id=ex.3h4v.s6.65ebb1ae30e7 from=translated src=- shape=ca3e15b8 vocab=352b76d7
+-/
 theorem chain_prev_mem {f : Vtx k → Option (Vtx k)} {L : List (Vtx k)}
     (hL : L.IsChain (fun a b => f a = some b)) {x : Vtx k}
     (hx : x ∈ L) (hxh : L.head? ≠ some x) : ∃ b, (b, x) ∈ L.zip L.tail := by
@@ -435,6 +514,9 @@ theorem chain_prev_mem {f : Vtx k → Option (Vtx k)} {L : List (Vtx k)}
         obtain ⟨c, hc⟩ := ih hL.2 (List.mem_cons_of_mem b hxt) hxh'
         exact ⟨c, List.mem_cons_of_mem _ (by rwa [List.tail_cons] at hc)⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.b540fd5c152f from=translated src=- shape=3d5c6404 vocab=13029cc9
+-/
 theorem succ_eq_none_iff {X : Finset (Vtx k × Vtx k)} {v : Vtx k} :
     succ X v = none ↔ outV X v = ∅ := by
   unfold succ
@@ -455,19 +537,27 @@ theorem succ_eq_none_iff {X : Finset (Vtx k × Vtx k)} {v : Vtx k} :
 
 /-! ## Weak connectivity is symmetric; weak components are closed -/
 
+/--
+@isnad1 id=weakstep.1h4v.s4.332c245798b0 from=translated src=- shape=7e11959e vocab=60f8a1d1
+-/
 theorem weakStep_symm {X : Finset (Vtx k × Vtx k)} {a b : Vtx k} (h : weakStep X a b) :
     weakStep X b a := by
   rcases h with h | h
   · exact Or.inr h
   · exact Or.inl h
 
+/--
+@isnad1 id=weakconn.1h4v.s4.bbc7b7167a06 from=translated src=- shape=7e11959e vocab=1cf49790
+-/
 theorem weakConn_symm {X : Finset (Vtx k × Vtx k)} {a b : Vtx k} (h : weakConn X a b) :
     weakConn X b a := by
   induction h with
   | refl => exact Relation.ReflTransGen.refl
   | tail _ hstep ih => exact Relation.ReflTransGen.head (weakStep_symm hstep) ih
 
-/-- A weakly incident vertex lies in `vertsOf X`.-/
+/-- A weakly incident vertex lies in `vertsOf X`.
+@isnad1 id=mem.1h4v.s5.7e60e49c51b6 from=translated src=- shape=c8472a2a vocab=c760271c
+-/
 theorem mem_vertsOf_of_weakStep {X : Finset (Vtx k × Vtx k)} {a b : Vtx k}
     (h : weakStep X a b) : b ∈ vertsOf X := by
   rw [vertsOf, Finset.mem_filter]
@@ -476,7 +566,9 @@ theorem mem_vertsOf_of_weakStep {X : Finset (Vtx k × Vtx k)} {a b : Vtx k}
   · exact ⟨(a, b), h, Or.inr rfl⟩
   · exact ⟨(b, a), h, Or.inl rfl⟩
 
-/-- For `k ≥ 2` an `F(P)`-edge exists only if `k ≥ 2`.-/
+/-- For `k ≥ 2` an `F(P)`-edge exists only if `k ≥ 2`.
+@isnad1 id=le.2h3v.s5.ed68da6dcb4a from=translated src=- shape=c37f5874 vocab=60a06e23
+-/
 theorem two_le_of_mem_F {P : HPath k} (hP : P.IsHamiltonian) {e : Vtx k × Vtx k}
     (he : e ∈ F P) : 2 ≤ k := by
   by_contra hc
@@ -498,7 +590,9 @@ theorem two_le_of_mem_F {P : HPath k} (hP : P.IsHamiltonian) {e : Vtx k × Vtx k
 /-! ## The linearization of a weak component -/
 
 /-- **Core of `lem_pathrule`**: every `C ∈ Comps(F P)` is `V(p)` for an `HPath`
-path-component `p`.-/
+path-component `p`.
+@isnad1 id=ex.2h3v.s5.c2abc5453265 from=translated src=- shape=85d3e91e vocab=ba25d6b5
+-/
 theorem lem_pathrule_core {P : HPath k} (hP : P.IsHamiltonian) :
     ∀ C ∈ Comps (F P), ∃ p : HPath k, p.vertsFinset = C ∧ IsPathComponent p (F P) := by
   intro C hC
@@ -650,13 +744,18 @@ theorem lem_pathrule_core {P : HPath k} (hP : P.IsHamiltonian) :
 
 /-! ## Each component of `F(P)` contains full 1-cycles (`cor_exitlessrule`) -/
 
-/-- The vertex set of a path-component is closed under `weakStep` (both edge orientations).-/
+/-- The vertex set of a path-component is closed under `weakStep` (both edge orientations).
+@isnad1 id=mem.3h5v.s6.29aa41a3ceba from=translated src=- shape=1f7bc7bc vocab=ec82029b
+-/
 theorem pc_vertsFinset_weakstep {P p : HPath k} (hp : IsPathComponent p (F P)) {x y : Vtx k}
     (hx : x ∈ p.vertsFinset) (hxy : weakStep (F P) x y) : y ∈ p.vertsFinset := by
   rcases hxy with h | h
   · exact (hp.2.1 (x, y) h).mp hx
   · exact (hp.2.1 (y, x) h).mpr hx
 
+/--
+@isnad1 id=mem.3h5v.s6.2877a150cf93 from=translated src=- shape=1f7bc7bc vocab=982b2dce
+-/
 theorem pc_vertsFinset_weakconn {P p : HPath k} (hp : IsPathComponent p (F P)) {x y : Vtx k}
     (hx : x ∈ p.vertsFinset) (hxy : weakConn (F P) x y) : y ∈ p.vertsFinset := by
   induction hxy with
@@ -664,7 +763,9 @@ theorem pc_vertsFinset_weakconn {P p : HPath k} (hp : IsPathComponent p (F P)) {
   | tail _ hstep ih => exact pc_vertsFinset_weakstep hp ih hstep
 
 /-- The 1-edge chain `c₀ → σc₀ → ⋯` from a `C₀` vertex stays weakly connected in `F(P)`
-(the whole 1-cycle sits in one component).-/
+(the whole 1-cycle sits in one component).
+@isnad1 id=weakconn.3h4v.s5.841f1780a673 from=translated src=- shape=fe6e6fa4 vocab=eaf9b9c0
+-/
 theorem weakConn_c0_forward {P : HPath k} (hP : P.IsHamiltonian) {c0 : Vtx k}
     (hc0 : c0 ∈ C0 P) : ∀ b, b < k → weakConn (F P) c0 (sigma^[b] c0) := by
   intro b
@@ -688,7 +789,9 @@ theorem weakConn_c0_forward {P : HPath k} (hP : P.IsHamiltonian) {c0 : Vtx k}
     have hstep : weakConn (F P) c0 (sigma (sigma^[n] c0)) := hcn.tail (Or.inl hedge)
     rwa [← Function.iterate_succ_apply' sigma n c0] at hstep
 
-/-- Each path-component `p` of `F(P)` contains every full 1-cycle of its vertices.-/
+/-- Each path-component `p` of `F(P)` contains every full 1-cycle of its vertices.
+@isnad1 id=le.4h4v.s6.66fef97a9f97 from=translated src=- shape=dbc0bef7 vocab=e1e84fc2
+-/
 theorem cyc_subset_pc {P p : HPath k} (hP : P.IsHamiltonian) (hk : 2 ≤ k)
     (hp : IsPathComponent p (F P)) {v : Vtx k} (hv : v ∈ p.vertsFinset) :
     cyc v ⊆ p.vertsFinset := by
@@ -713,12 +816,16 @@ end ProofsPathrule
 namespace Proved
 
 /-- **lem-pathrule** — `Comps(F(P))` is a set of paths: every component is `V(p)` for a
-path-component `p`.-/
+path-component `p`.
+@isnad1 id=ex.2h3v.s5.c2abc5453265 from=translated src=- shape=85d3e91e vocab=ba25d6b5
+-/
 theorem lem_pathrule {k : ℕ} {P : HPath k} (hP : P.IsHamiltonian) :
     ∀ C ∈ Comps (F P), ∃ p : HPath k, p.vertsFinset = C ∧ IsPathComponent p (F P) :=
   ProofsPathrule.lem_pathrule_core hP
 
-/-- **cor-exitlessrule** — `Comps(F(P))` is a set of strongly exitless paths.-/
+/-- **cor-exitlessrule** — `Comps(F(P))` is a set of strongly exitless paths.
+@isnad1 id=isuniono.1h2v.s3.9bbb5e4f4b1b from=translated src=- shape=08ded1e7 vocab=d2441e96
+-/
 theorem cor_exitlessrule {k : ℕ} {P : HPath k} (hP : P.IsHamiltonian) :
     IsUnionOfStronglyExitlessPaths (F P) := by
   intro C hC
@@ -774,7 +881,9 @@ theorem cor_exitlessrule {k : ℕ} {P : HPath k} (hP : P.IsHamiltonian) :
 statement is FALSE at `k ≤ 1`: there every vertex is in `C₋₁`, so `F(P) = ∅`, giving
 `vertsOf (F P) = ∅ ≠ Finset.univ` (a singleton for `k = 1`).  This just re-exposes the
 structure track's `prp_Xk_se_necessity_amended`, now with its cross-track hypothesis `h_se`
-discharged by `cor_exitlessrule` (proved above).  See `PROGRESS-pathrule.md`.-/
+discharged by `cor_exitlessrule` (proved above).  See `PROGRESS-pathrule.md`.
+@isnad1 id=and.2h2v.s5.ea13c018f777 from=translated src=- shape=6544d7d3 vocab=237f4195
+-/
 theorem prp_Xk_se_necessity_amended' {k : ℕ} {X : Finset (Vtx k × Vtx k)} (hk : 2 ≤ k)
     (hX : X ∈ Xk k) : vertsOf X = Finset.univ ∧ IsUnionOfStronglyExitlessPaths X :=
   prp_Xk_se_necessity_amended hk (fun _ hP => cor_exitlessrule hP) hX

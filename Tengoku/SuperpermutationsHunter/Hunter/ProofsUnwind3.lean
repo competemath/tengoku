@@ -39,7 +39,9 @@ variable {k : ℕ}
 /-! ## Component-edge basics: the first-edge of an SE component -/
 
 /-- For a strongly exitless component, `p[2] = σ(p[1])` — the second vertex is the σ-successor
-of the first.-/
+of the first.
+@isnad1 id=eq.2h2v.s5.0641e9c726a3 from=translated src=- shape=ac480534 vocab=8f55aef0
+-/
 theorem vert1_eq_sigma_first {p : HPath k} (hpSE : p.StronglyExitless) (hk : 2 ≤ k) :
     p.vert 1 = sigma p.first := by
   have hk1 : 1 ≤ k := by omega
@@ -51,7 +53,9 @@ theorem vert1_eq_sigma_first {p : HPath k} (hpSE : p.StronglyExitless) (hk : 2 �
   have h := ProofsExitless.vert_succ hk1 hpSE.1 (i := 0) (show 0 + 1 < p.numVerts by omega) hkndvd
   rwa [p.vert_zero] at h
 
-/-- `1 < |p|` for an SE component (needs `2 ≤ k`).-/
+/-- `1 < |p|` for an SE component (needs `2 ≤ k`).
+@isnad1 id=lt.2h2v.s4.1189fdc0d545 from=translated src=- shape=ecc5075d vocab=9e01663c
+-/
 theorem one_lt_numVerts {p : HPath k} (hpSE : p.StronglyExitless) (hk : 2 ≤ k) :
     1 < p.numVerts := by
   have hk1 : 1 ≤ k := by omega
@@ -59,7 +63,9 @@ theorem one_lt_numVerts {p : HPath k} (hpSE : p.StronglyExitless) (hk : 2 ≤ k)
   have hkle : k ≤ p.numVerts := Nat.le_of_dvd p.numVerts_pos hdvd
   omega
 
-/-- The first-edge `p[1] → σ(p[1])` is a genuine edge of `p`.-/
+/-- The first-edge `p[1] → σ(p[1])` is a genuine edge of `p`.
+@isnad1 id=mem.2h2v.s6.d67a08d18100 from=translated src=- shape=c05efa80 vocab=203c65d0
+-/
 theorem first_edge_mem_self {p : HPath k} (hpSE : p.StronglyExitless) (hk : 2 ≤ k) :
     (p.first, sigma p.first) ∈ p.edges := by
   have h1lt : 1 < p.numVerts := one_lt_numVerts hpSE hk
@@ -67,7 +73,9 @@ theorem first_edge_mem_self {p : HPath k} (hpSE : p.StronglyExitless) (hk : 2 �
   rwa [p.vert_zero, vert1_eq_sigma_first hpSE hk] at h01
 
 /-- An edge of `p` is a consecutive pair `(p[j], p[j+1])` with `j = pos(e.1)` and
-`j + 1 < |p|`.-/
+`j + 1 < |p|`.
+@isnad1 id=and.1h3v.s6.a24d1255e345 from=translated src=- shape=557b35c4 vocab=e0582cf2
+-/
 theorem edge_eq_consec {p : HPath k} {e : Vtx k × Vtx k} (he : e ∈ p.edges) :
     e = (p.vert (p.pos e.1), p.vert (p.pos e.1 + 1)) ∧ p.pos e.1 + 1 < p.numVerts := by
   have hpos := ProofsStructure.edge_pos_succ he
@@ -90,12 +98,16 @@ theorem edge_eq_consec {p : HPath k} {e : Vtx k × Vtx k} (he : e ∈ p.edges) :
 @[reducible] def headSet (ps : List (HPath k)) : Finset (Vtx k) :=
   (ps.dropLast.map HPath.first).toFinset
 
-/-- `v ∈ headSet ↔ v` is a first-vertex of some non-last component.-/
+/-- `v ∈ headSet ↔ v` is a first-vertex of some non-last component.
+@isnad1 id=iff.0h3v.s5.9fcf4e4cabdc from=translated src=- shape=907fb5ab vocab=91bdf6be
+-/
 theorem mem_headSet {ps : List (HPath k)} {v : Vtx k} :
     v ∈ headSet ps ↔ ∃ q ∈ ps.dropLast, q.first = v := by
   rw [headSet, List.mem_toFinset, List.mem_map]
 
-/-- The first-edge of a non-last component is an added 1-edge.-/
+/-- The first-edge of a non-last component is an added 1-edge.
+@isnad1 id=mem.1h3v.s6.27e6832bf63a from=translated src=- shape=e547f743 vocab=aab8129e
+-/
 theorem first_edge_mem_addedEdges {ps : List (HPath k)} {p : HPath k}
     (hpdl : p ∈ ps.dropLast) :
     (p.first, sigma p.first) ∈ addedEdges (headSet ps) := by
@@ -103,7 +115,9 @@ theorem first_edge_mem_addedEdges {ps : List (HPath k)} {p : HPath k}
   exact ⟨p.first, mem_headSet.mpr ⟨p, hpdl, rfl⟩, rfl⟩
 
 /-- An added 1-edge `(v, σv)` has `v = q.first` for a non-last component `q`, and equals that
-component's first-edge.-/
+component's first-edge.
+@isnad1 id=iff.0h3v.s6.0d9cd438d419 from=translated src=- shape=ea4d4c8e vocab=aab8129e
+-/
 theorem mem_addedEdges_iff {ps : List (HPath k)} {e : Vtx k × Vtx k} :
     e ∈ addedEdges (headSet ps) ↔ ∃ q ∈ ps.dropLast, e = (q.first, sigma q.first) := by
   rw [addedEdges, Finset.mem_image]
@@ -119,7 +133,9 @@ theorem mem_addedEdges_iff {ps : List (HPath k)} {e : Vtx k × Vtx k} :
 /-- **Every component-edge not detoured survives in `P`.**  A `p`-edge `e` (for `p ∈ ps`) that
 is not one of the removed first-edges (`e ∉ addedEdges (headSet)`) is an edge of the unwound
 path.  Interior edges survive by `interior_edge_mem`; the last component's first-edge by
-`junction_edge_mem`; a non-last component's first-edge is exactly the removed one.-/
+`junction_edge_mem`; a non-last component's first-edge is exactly the removed one.
+@isnad1 id=mem.7h4v.s7.5d55a66ed8c5 from=translated src=- shape=56e9a068 vocab=d44261cd
+-/
 theorem component_edge_mem_P {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup) (hSE : ∀ p ∈ ps, p.StronglyExitless) (hk : 2 ≤ k)
     {p : HPath k} (hp : p ∈ ps) {e : Vtx k × Vtx k} (he : e ∈ p.edges)
@@ -147,7 +163,9 @@ theorem component_edge_mem_P {ps : List (HPath k)} (hps : ps ≠ [])
     exact interior_edge_mem hps hnd hp hj1 hlt
 
 /-- **`X ∖ FE ⊆ E(P)`.**  With `X = ⋃ᵢ E(pᵢ)`, every edge of `X` that is not a removed
-first-edge is an edge of the unwound path.-/
+first-edge is an edge of the unwound path.
+@isnad1 id=le.5h3v.s8.d5ba330b179b from=translated src=- shape=1ed0c67f vocab=4d58c0b3
+-/
 theorem sdiff_subset_edges {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup) (hSE : ∀ p ∈ ps, p.StronglyExitless) (hk : 2 ≤ k)
     {X : Finset (Vtx k × Vtx k)} (hXdef : ∀ e, e ∈ X ↔ ∃ p ∈ ps, e ∈ p.edges) :
@@ -158,7 +176,9 @@ theorem sdiff_subset_edges {ps : List (HPath k)} (hps : ps ≠ [])
   exact component_edge_mem_P hps hnd hSE hk hp hep he.2
 
 /-- **`addedEdges (headSet) ⊆ X`.**  Each removed first-edge `(pᵢ[1], σpᵢ[1])` is a genuine
-edge of its component `pᵢ`, hence in `X`.-/
+edge of its component `pᵢ`, hence in `X`.
+@isnad1 id=le.3h3v.s7.9afe3ee07df6 from=translated src=- shape=b457cc38 vocab=effd14dc
+-/
 theorem addedEdges_subset_X {ps : List (HPath k)}
     (hSE : ∀ p ∈ ps, p.StronglyExitless) (hk : 2 ≤ k)
     {X : Finset (Vtx k × Vtx k)} (hXdef : ∀ e, e ∈ X ↔ ∃ p ∈ ps, e ∈ p.edges) :
@@ -172,7 +192,9 @@ theorem addedEdges_subset_X {ps : List (HPath k)}
 
 /-- **Creating a double.**  If `(a,b)` is a `P`-edge whose source `a ∉ S`, and some `v ∈ S`
 has `σv = b`, then `b` has in-degree 2 in `Xstep1` (the surviving `P`-in-edge `(a,b)` plus the
-added 1-edge `(v,b)`), i.e. `b ∈ doubles P S`.-/
+added 1-edge `(v,b)`), i.e. `b ∈ doubles P S`.
+@isnad1 id=mem.4h6v.s6.ab3b4ab32348 from=translated src=- shape=53afb131 vocab=c42832af
+-/
 theorem mem_doubles_of (P : HPath k) (S : Finset (Vtx k)) {a b v : Vtx k}
     (hab : (a, b) ∈ P.edges) (haS : a ∉ S) (hvS : v ∈ S) (hσ : sigma v = b) :
     b ∈ doubles P S := by
@@ -213,7 +235,9 @@ theorem mem_doubles_of (P : HPath k) (S : Finset (Vtx k)) {a b v : Vtx k}
   omega
 
 /-- **A double has an incoming added 1-edge.**  If `b ∈ doubles P S`, then `b = σv` for some
-`v ∈ S`.-/
+`v ∈ S`.
+@isnad1 id=ex.1h4v.s6.6eb60193c6b5 from=translated src=- shape=7fa121e5 vocab=bfd25764
+-/
 theorem mem_doubles_imp {P : HPath k} {S : Finset (Vtx k)} {b : Vtx k}
     (hb : b ∈ doubles P S) : ∃ v ∈ S, sigma v = b := by
   have hne := ProofsStructure.double_imp_added_inedge hb
@@ -227,7 +251,9 @@ theorem mem_doubles_imp {P : HPath k} {S : Finset (Vtx k)} {b : Vtx k}
 /-! ## Component vertex-disjointness (well-formedness) -/
 
 /-- From pairwise vertex-disjointness of the components, a vertex shared by two components
-forces the components to coincide.-/
+forces the components to coincide.
+@isnad1 id=eq.5h5v.s6.e67ecd0d05bc from=translated src=- shape=8b09eb7e vocab=aebe51fd
+-/
 theorem comp_eq_of_shared {ps : List (HPath k)}
     (hpair : ps.Pairwise (fun p q : HPath k => Disjoint p.vertsFinset q.vertsFinset))
     {p q : HPath k} (hp : p ∈ ps) (hq : q ∈ ps) {v : Vtx k}
@@ -245,7 +271,9 @@ theorem comp_eq_of_shared {ps : List (HPath k)}
 
 /-- If the target of a `P`-edge is a head (a component first-vertex), then its source is a
 non-last head, i.e. lies in `headSet`.  (In the walk, the predecessor of a head is the previous
-head.)-/
+head.)
+@isnad1 id=mem.4h3v.s6.bdc173aaf3f4 from=translated src=- shape=792ddcb9 vocab=3b1aba43
+-/
 theorem head_pred_mem_headSet {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup) {e : Vtx k × Vtx k}
     (he : e ∈ (unwindP ps hps hnd).edges) (hb : e.2 ∈ ps.map HPath.first) :
@@ -284,7 +312,9 @@ theorem head_pred_mem_headSet {ps : List (HPath k)} (hps : ps ≠ [])
 
 /-- **The edge classification.**  Every edge of the unwound path `P` is one of:
 (1) a surviving component edge (`∈ X`); (2) a head-chain edge (source in `headSet`); or
-(3) a back-link (its target is `σv` for some `v ∈ headSet`, so it doubles that vertex).-/
+(3) a back-link (its target is `σv` for some `v ∈ headSet`, so it doubles that vertex).
+@isnad1 id=or.6h4v.s8.30a475e1290b from=translated src=- shape=142069f1 vocab=473cf332
+-/
 theorem edge_classify {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup) (hSE : ∀ p ∈ ps, p.StronglyExitless) (hk : 2 ≤ k)
     {X : Finset (Vtx k × Vtx k)} (hXdef : ∀ e, e ∈ X ↔ ∃ p ∈ ps, e ∈ p.edges)
@@ -344,7 +374,9 @@ theorem edge_classify {ps : List (HPath k)} (hps : ps ≠ [])
 
 /-! ## Assembling `hdec` and the disjointnesses -/
 
-/-- **The edge decomposition `hdec`.**  `E(P) = (X ∖ FE) ∪ E1removed ∪ E2removed`.-/
+/-- **The edge decomposition `hdec`.**  `E(P) = (X ∖ FE) ∪ E1removed ∪ E2removed`.
+@isnad1 id=eq.5h3v.s8.56ee6236b9a1 from=translated src=- shape=9a1a69f0 vocab=001ea48c
+-/
 theorem edges_decomp {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup) (hSE : ∀ p ∈ ps, p.StronglyExitless) (hk : 2 ≤ k)
     {X : Finset (Vtx k × Vtx k)} (hXdef : ∀ e, e ∈ X ↔ ∃ p ∈ ps, e ∈ p.edges) :
@@ -380,7 +412,9 @@ theorem edges_decomp {ps : List (HPath k)} (hps : ps ≠ [])
     · exact E1removed_subset _ _
     · exact E2removed_subset _ _
 
-/-- `Disjoint (E1removed) X` — a head-chain edge is not a component edge.-/
+/-- `Disjoint (E1removed) X` — a head-chain edge is not a component edge.
+@isnad1 id=disjoint.6h3v.s7.37bcda380e2b from=translated src=- shape=0f32beef vocab=12746072
+-/
 theorem disjoint_E1_X {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup) (hSE : ∀ p ∈ ps, p.StronglyExitless) (hk : 2 ≤ k)
     (hpair : ps.Pairwise (fun p q : HPath k => Disjoint p.vertsFinset q.vertsFinset))
@@ -404,7 +438,9 @@ theorem disjoint_E1_X {ps : List (HPath k)} (hps : ps ≠ [])
     vert1_eq_sigma_first (hSE q hqmem) hk] at heqc
   exact first_edge_not_mem_edges hps hnd hq (hSE q hqmem) hk (heqc ▸ heP)
 
-/-- `Disjoint X (E2removed)` — a back-link is not a component edge.-/
+/-- `Disjoint X (E2removed)` — a back-link is not a component edge.
+@isnad1 id=disjoint.6h3v.s7.93d89a87f1cd from=translated src=- shape=1ab54ca0 vocab=3dcea973
+-/
 theorem disjoint_X_E2 {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup) (hSE : ∀ p ∈ ps, p.StronglyExitless) (hk : 2 ≤ k)
     (hpair : ps.Pairwise (fun p q : HPath k => Disjoint p.vertsFinset q.vertsFinset))
@@ -444,7 +480,9 @@ theorem disjoint_X_E2 {ps : List (HPath k)} (hps : ps ≠ [])
 
 /-- `Disjoint (E1removed) (E2removed)` — a removed head-chain edge cannot be a removed
 back-link (the target of a back-link keeps its unique `P`-in-edge, which is *not* the
-`E1removed` edge).-/
+`E1removed` edge).
+@isnad1 id=disjoint.2h2v.s5.ae585955b5db from=translated src=- shape=334a62f1 vocab=4722b290
+-/
 theorem disjoint_E1_E2 {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup) :
     Disjoint (E1removed (unwindP ps hps hnd) (headSet ps))
@@ -508,7 +546,9 @@ outright from the concrete unwinding, given only:
   `prp_Xk_se_sufficiency` `X`, whose edges partition into its path-components).
 
 This is the paper's `ADD DIAGRAM` step, computed from the explicit list adjacency
-(`edge_classify`) and the `doubles` in-degree-2 bookkeeping (`mem_doubles_of`).-/
+(`edge_classify`) and the `doubles` in-degree-2 bookkeeping (`mem_doubles_of`).
+@isnad1 id=mem.7h3v.s7.781671075218 from=translated src=- shape=e71f200b vocab=12ab26d6
+-/
 theorem prp_Xk_se_sufficiency_unwind3 {X : Finset (Vtx k × Vtx k)}
     {ps : List (HPath k)} (hps : ps ≠ [])
     (hnd : (unwindVerts ps).Nodup)

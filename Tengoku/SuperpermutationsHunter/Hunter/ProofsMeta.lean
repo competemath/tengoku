@@ -64,7 +64,9 @@ def sigmaSqWord (w : List ℕ) : List ℕ :=
 `x.drop 3` (the defining overlap of a weight-3 successor) and keeps the marker
 `α₁ = (rho x).getLastD 0 = x₁` as its last symbol, then `v` is either `alphaWord x` or its
 σ²-sibling `sigmaSqWord x`.  These are the only two weight-3 boundaries that continue a
-marker-fixed run; the other four move the marker and open a new meta-window.-/
+marker-fixed run; the other four move the marker and open a new meta-window.
+@isnad1 id=or.5h3v.s6.f38300bb0c13 from=translated src=- shape=b1e3025e vocab=4cbf3f75
+-/
 theorem weight3_marker_cases {x v : List ℕ} (hk : 3 ≤ k) (hx : IsPermWord k x)
     (hv : IsPermWord k v) (hover : x.drop 3 = v.take (k - 3))
     (hmark : v.getLastD 0 = (rho x).getLastD 0) :
@@ -148,7 +150,9 @@ theorem weight3_marker_cases {x v : List ℕ} (hk : 3 ≤ k) (hx : IsPermWord k 
     · exact absurd hcfalse hcne
   · exact absurd hbfalse hbne
 
-/-- The σ²-sibling fixes the marker (last symbol of the block start), like `door` and `α`.-/
+/-- The σ²-sibling fixes the marker (last symbol of the block start), like `door` and `α`.
+@isnad1 id=eq.2h2v.s5.82f6aa7d6c1d from=translated src=- shape=b2d73b2d vocab=74284190
+-/
 theorem sigmaSqWord_marker {x : List ℕ} (hk : 3 ≤ k) (hx : IsPermWord k x) :
     (sigmaSqWord x).getLastD 0 = (rho x).getLastD 0 := by
   obtain ⟨a, t, rfl⟩ := List.exists_cons_of_ne_nil (hx.ne_nil (by omega))
@@ -167,7 +171,9 @@ theorem sigmaSqWord_marker {x : List ℕ} (hk : 3 ≤ k) (hx : IsPermWord k x) :
 /-- **Marker-erasure of the σ²-sibling is `σ²` (`rotate 2`) on `k − 1` letters.**  The
 level-`(k−1)` weight-2 partner of `ProofsSPrime.alpha_erase_marker` (which sends `alphaWord`
 to `door`): the two marker-preserving weight-3 boundaries erase to the two weight-2 successors
-on `k − 1` letters (`ProofsConfinement.wt_two_word_cases`).-/
+on `k − 1` letters (`ProofsConfinement.wt_two_word_cases`).
+@isnad1 id=eq.2h2v.s5.b6c507750b92 from=translated src=- shape=e52bc8c1 vocab=548a4515
+-/
 theorem sigmaSqWord_erase_marker {x : List ℕ} (hk : 3 ≤ k) (hx : IsPermWord k x) :
     (sigmaSqWord x).erase ((rho x).getLastD 0) =
       ((rho x).erase ((rho x).getLastD 0)).rotate 2 := by
@@ -217,7 +223,9 @@ this exact `wt_two_word_cases`-shaped dichotomy one level down. -/
 /-- **Packaged meta-reduction (word level).**  A marker-preserving weight-3 successor `v` of `x`
 erases (deleting the marker `α₁ = (rho x).getLastD 0`) to a weight-2 successor of
 `u = (rho x).erase α₁` on `k − 1` letters: either `door u` (exactly when `v = alphaWord x`, the
-meta-door) or `u.rotate 2` (exactly when `v = sigmaSqWord x`, the meta-`σ²`).-/
+meta-door) or `u.rotate 2` (exactly when `v = sigmaSqWord x`, the meta-`σ²`).
+@isnad1 id=or.5h3v.s7.a9e84d10b7ab from=translated src=- shape=d6c54838 vocab=cf5eb28a
+-/
 theorem weight3_marker_erase_cases {x v : List ℕ} (hk : 3 ≤ k) (hx : IsPermWord k x)
     (hv : IsPermWord k v) (hover : x.drop 3 = v.take (k - 3))
     (hmark : v.getLastD 0 = (rho x).getLastD 0) :
@@ -241,7 +249,9 @@ p.vert (i+1)` whose target keeps the marker `(rho (p.vert i)).getLastD 0` is `al
 `sigmaSqWord` of the source; its marker-erasure is `door` resp. `rotate 2` on `k − 1` letters.
 (The overlap hypothesis of `weight3_marker_cases` is automatic from `wt_spec` at weight 3, and
 marker-preservation already excludes the `σ³`-shape, so no boundary/`k ∣ i+1` hypothesis is
-needed.)-/
+needed.)
+@isnad1 id=or.3h3v.s7.f5ca35602910 from=translated src=- shape=ce115265 vocab=51e594eb
+-/
 theorem weight3_marker_edge_cases (hk : 3 ≤ k) {p : HPath k} {i : ℕ}
     (hw : ew k (p.vert i) (p.vert (i + 1)) = 3)
     (hmark : (p.vert (i + 1) : List ℕ).getLastD 0 = (rho (p.vert i : List ℕ)).getLastD 0) :
@@ -268,7 +278,9 @@ applies verbatim to meta-words.  This removes the single biggest friction flagge
 `PROGRESS-sprime` for lifting `confinement` to `k − 1` letters. -/
 
 /-- **Length-only `genLoop` door/σ identity.**  `genLoop (door w) = genLoop (rho w)` for any
-word with `2 ≤ |w|` — no `IsPermWord` needed.  Ready for meta-words on `k − 1` letters.-/
+word with `2 ≤ |w|` — no `IsPermWord` needed.  Ready for meta-words on `k − 1` letters.
+@isnad1 id=eq.1h1v.s4.f5197686cf78 from=translated src=- shape=412c12e2 vocab=0eb1c7ea
+-/
 theorem genLoop_door_eq_rho_of_len {w : List ℕ} (hw : 2 ≤ w.length) :
     genLoop (door w) = genLoop (rho w) := by
   obtain ⟨a, b, s, rfl⟩ : ∃ a b s, w = a :: b :: s := by
@@ -314,7 +326,9 @@ level-`(k−1)` confinement needs:
 alternative). -/
 
 /-- **Meta-σ step.**  Across a door boundary the meta-word (marker-erasure of the block start)
-advances by a single rotation, `σ` on `k − 1` letters.-/
+advances by a single rotation, `σ` on `k − 1` letters.
+@isnad1 id=eq.5h3v.s7.9af10ab5966e from=translated src=- shape=560970ff vocab=0f45a4a7
+-/
 theorem metaWord_door_step (hk : 2 ≤ k) {p : HPath k} (hp : p.Exitless) {i : ℕ}
     (hi : i + 1 < p.numVerts) (hd : k ∣ (i + 1))
     (hw : ew k (p.vert i) (p.vert (i + 1)) = 2) :
@@ -325,7 +339,9 @@ theorem metaWord_door_step (hk : 2 ≤ k) {p : HPath k} (hp : p.Exitless) {i : �
 
 /-- **Meta-door step.**  Across an `α` boundary (a marker-preserving weight-3 edge that lands on
 `alphaWord`) the meta-word advances by `door` on `k − 1` letters — the meta-level weight-2
-successor.  The `σ²`-sibling alternative advances by `rotate 2` (`sigmaSqWord_erase_marker`).-/
+successor.  The `σ²`-sibling alternative advances by `rotate 2` (`sigmaSqWord_erase_marker`).
+@isnad1 id=eq.5h3v.s8.1fbdc80b2fc4 from=translated src=- shape=ade90c93 vocab=d1019179
+-/
 theorem metaWord_alpha_step (hk : 3 ≤ k) {p : HPath k} {i : ℕ}
     (_hi : i + 1 < p.numVerts) (_hw : ew k (p.vert i) (p.vert (i + 1)) = 3)
     (_hmark : (p.vert (i + 1) : List ℕ).getLastD 0 = (rho (p.vert i : List ℕ)).getLastD 0)

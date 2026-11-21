@@ -68,7 +68,9 @@ def WindowExcess (k : ℕ) : Prop :=
 `ExcessFrontier k`.  Base region: `excess_frontier_base`.  Recursion step: peel one
 `ℓ₀`-window, apply the induction hypothesis to the prefix, and close with the exact
 `D`-recursion arithmetic (`j_rec_unfold_one`, `ceilDiv_add_dvd`, `ceilDiv_ell0`,
-`k_dvd_ell0`).-/
+`k_dvd_ell0`).
+@isnad1 id=excessfr.2h1v.s4.3629efb34866 from=translated src=- shape=4963a319 vocab=68b3906d
+-/
 theorem excessFrontier_of_windowExcess (hk : 3 ≤ k) (hw : WindowExcess k) :
     ExcessFrontier k := by
   have main : ∀ ℓ : ℕ, ∀ p : HPath k, p.Exitless → p.numVerts = ℓ →
@@ -134,7 +136,9 @@ theorem excessFrontier_of_windowExcess (hk : 3 ≤ k) (hw : WindowExcess k) :
 /-- **`WindowExcess k → ExcessFrontierDeficit k`.**  The deficit-band frontier is a weakening
 of the full `ExcessFrontier k` (it adds the deficit-band hypothesis `jbase < j`), so it
 follows immediately from `excessFrontier_of_windowExcess`.  Discharging `WindowExcess k`
-therefore discharges the sole remaining open sub-goal of Theorem 2.-/
+therefore discharges the sole remaining open sub-goal of Theorem 2.
+@isnad1 id=excessfr.2h1v.s4.55aa1fb5278d from=translated src=- shape=4963a319 vocab=8b762569
+-/
 theorem excessFrontierDeficit_of_windowExcess (hk : 3 ≤ k) (hw : WindowExcess k) :
     ExcessFrontierDeficit k := by
   intro q hqe h0 _
@@ -143,7 +147,9 @@ theorem excessFrontierDeficit_of_windowExcess (hk : 3 ≤ k) (hw : WindowExcess 
 /-- **`thm2` conditional on `WindowExcess`.**  Hunter's Theorem 2 (`j_k(ℓ) ≤ i_k(ℓ)`, the
 verbatim `Statements.thm2` conclusion) for every `ℓ`, assuming the single meta-confinement
 inequality `WindowExcess k`.  This is the exact residue: a sorry-free proof of `WindowExcess k`
-completes Theorem 2 for all `k`.-/
+completes Theorem 2 for all `k`.
+@isnad1 id=le.3h2v.s4.7448fac6b4e0 from=translated src=- shape=ca171c50 vocab=1655268e
+-/
 theorem thm2_of_windowExcess {k ℓ : ℕ} (hk : 3 ≤ k) (hw : WindowExcess k)
     (hℓ : HasExitlessPath k ℓ) :
     j k ℓ ≤ iExitless k ℓ :=

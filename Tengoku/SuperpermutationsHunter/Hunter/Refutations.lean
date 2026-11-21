@@ -66,7 +66,9 @@ def wtc5 (u v : List ℕ) : ℕ :=
   else 5
 
 /-- **Lower bound on `wt`.**  If every smaller offset `d' < d` fails the overlap test, then
-`d ≤ wt 5 u v`.  (Dual to `wt_le`; together they pin `wt` exactly.)-/
+`d ≤ wt 5 u v`.  (Dual to `wt_le`; together they pin `wt` exactly.)
+@isnad1 id=le.2h3v.s6.2d28c053506b from=translated src=- shape=3af4f576 vocab=dce9c15a
+-/
 theorem le_wt {u v : List ℕ} {d : ℕ} (hu : u.length ≤ 5)
     (h : ∀ d', 1 ≤ d' → d' < d → u.drop d' ≠ v.take (5 - d')) : d ≤ wt 5 u v := by
   by_contra hlt
@@ -74,7 +76,9 @@ theorem le_wt {u v : List ℕ} {d : ℕ} (hu : u.length ≤ 5)
   obtain ⟨h1, _, h3⟩ := wt_spec (by norm_num : (1 : ℕ) ≤ 5) hu (v := v)
   exact h _ h1 hlt h3
 
-/-- **The bridge.**  `wt 5 u v = wtc5 u v` for any `u` of length `5`.-/
+/-- **The bridge.**  `wt 5 u v = wtc5 u v` for any `u` of length `5`.
+@isnad1 id=eq.1h2v.s4.6773c70ece75 from=translated src=- shape=11480bf4 vocab=b40e4915
+-/
 theorem wt_eq_wtc5 {u v : List ℕ} (hu : u.length = 5) : wt 5 u v = wtc5 u v := by
   have hule : u.length ≤ 5 := by omega
   have hge1 : 1 ≤ wt 5 u v := (wt_spec (by norm_num) hule (v := v)).1
@@ -110,7 +114,9 @@ theorem wt_eq_wtc5 {u v : List ℕ} (hu : u.length = 5) : wt 5 u v = wtc5 u v :=
       interval_cases d' <;> simp_all)
     omega
 
-/-- `ew 5 u v = wtc5 u.1 v.1` for vertices of `𝒮_5` (words have length `5`).-/
+/-- `ew 5 u v = wtc5 u.1 v.1` for vertices of `𝒮_5` (words have length `5`).
+@isnad1 id=eq.0h2v.s5.b1405400bfeb from=translated src=- shape=6f05c025 vocab=819c8460
+-/
 theorem ew5_eq (u v : Vtx 5) : ew 5 u v = wtc5 u.1 v.1 :=
   wt_eq_wtc5 u.2.length
 
@@ -123,7 +129,9 @@ underlying words.  Equals the semantic weight list `zipWith (ew 5)` (`ewcList_eq
 def ewcList (L : List (Vtx 5)) : List ℕ :=
   L.zipWith (fun u v => wtc5 u.1 v.1) L.tail
 
-/-- The semantic edge-weight list `zipWith (ew 5) verts tail` equals its index-map form.-/
+/-- The semantic edge-weight list `zipWith (ew 5) verts tail` equals its index-map form.
+@isnad1 id=eq.0h1v.s6.d68fc9a9b123 from=translated src=- shape=277f48fd vocab=51481175
+-/
 theorem zipWith_ew_eq_map (p : HPath 5) :
     p.verts.zipWith (ew 5) p.verts.tail
       = (List.range (p.numVerts - 1)).map (fun i => ew 5 (p.vert i) (p.vert (i + 1))) := by
@@ -147,7 +155,9 @@ theorem zipWith_ew_eq_map (p : HPath 5) :
     rw [List.getElem_zipWith, List.getElem_map, List.getElem_range, List.getElem_tail]
     exact (congrArg₂ (ew 5) (vert_getElem p hi1) (vert_getElem p hi2)).symm
 
-/-- The semantic and computable edge-weight lists agree (pointwise `ew5_eq`).-/
+/-- The semantic and computable edge-weight lists agree (pointwise `ew5_eq`).
+@isnad1 id=eq.0h1v.s5.854c35d61514 from=translated src=- shape=e7dcfe62 vocab=fc4e06ca
+-/
 theorem ewcList_eq (p : HPath 5) :
     p.verts.zipWith (ew 5) p.verts.tail = ewcList p.verts := by
   have hfun : (ew 5 : Vtx 5 → Vtx 5 → ℕ) = (fun u v => wtc5 u.1 v.1) :=
@@ -155,7 +165,9 @@ theorem ewcList_eq (p : HPath 5) :
   rw [ewcList, hfun]
 
 /-- **Reflection of `edgeCountGe`.**  The `≥r`-edge count equals the sum of indicators over the
-computable weight list `ewcList p.verts`.-/
+computable weight list `ewcList p.verts`.
+@isnad1 id=eq.0h2v.s5.f897d670d3c3 from=translated src=- shape=bbc15769 vocab=c392114f
+-/
 theorem edgeCountGe_eq (p : HPath 5) (r : ℕ) :
     edgeCountGe p r
       = ((ewcList p.verts).map (fun w => if r ≤ w then (1 : ℕ) else 0)).sum := by
@@ -170,7 +182,9 @@ theorem edgeCountGe_eq (p : HPath 5) (r : ℕ) :
   rw [← List.map_map, ← zipWith_ew_eq_map, ewcList_eq]
 
 /-- **Reflection of `excess`.**  `excess p = Σ_{r=3}^{5} (indicator sum over `ewcList p.verts`)`,
-a fully computable expression.-/
+a fully computable expression.
+@isnad1 id=eq.0h1v.s6.d03668b8249c from=translated src=- shape=e518d398 vocab=50b33922
+-/
 theorem excess_eq (p : HPath 5) :
     excess p
       = ∑ r ∈ Finset.Icc 3 5,
@@ -192,12 +206,16 @@ def hasEarlyExit (L : List (Vtx 5)) : Bool :=
     decide (2 ≤ wtc5 (L.getD i vtx0).1 (L.getD (i + 1) vtx0).1) &&
     decide (i < L.idxOf (sigma (L.getD i vtx0))))
 
-/-- On the in-range indices, `getD … vtx0` recovers the semantic vertex `p.vert`.-/
+/-- On the in-range indices, `getD … vtx0` recovers the semantic vertex `p.vert`.
+@isnad1 id=eq.1h2v.s5.c592d650ee26 from=translated src=- shape=ec2ad135 vocab=b4609ad1
+-/
 theorem getD_vtx0_eq (p : HPath 5) {i : ℕ} (hi : i < p.numVerts) :
     p.verts.getD i vtx0 = p.vert i := by
   rw [HPath.vert, List.getD_eq_getElem _ _ hi, List.getD_eq_getElem _ _ hi]
 
-/-- **The bridge.**  Any semantic early exit is witnessed by the computable scan.-/
+/-- **The bridge.**  Any semantic early exit is witnessed by the computable scan.
+@isnad1 id=eq.1h1v.s4.d96e16b72d1d from=translated src=- shape=9614cfab vocab=f985d0fb
+-/
 theorem hasEarlyExit_of_earlyExit {p : HPath 5} (h : EarlyExit p) :
     hasEarlyExit p.verts = true := by
   obtain ⟨i, hi, hw, hpos⟩ := h
@@ -213,7 +231,9 @@ theorem hasEarlyExit_of_earlyExit {p : HPath 5} (h : EarlyExit p) :
     exact ⟨hw, hpos⟩
 
 /-- **`hasEarlyExit p.verts = false → p.Exitless`.**  The computable check certifies
-exitlessness.-/
+exitlessness.
+@isnad1 id=exitless.1h1v.s4.da1f963dfaf2 from=translated src=- shape=319f6ce9 vocab=565f277b
+-/
 theorem exitless_of_hasEarlyExit_false {p : HPath 5}
     (h : hasEarlyExit p.verts = false) : p.Exitless := by
   intro hee
@@ -260,15 +280,21 @@ def theVerts : List (Vtx 5) :=
 /-- The witness path `P` as an `HPath 5`.-/
 def P : HPath 5 := ⟨theVerts, by decide, by decide⟩
 
-/-- `P` is exitless (its computable early-exit scan returns `false`).-/
+/-- `P` is exitless (its computable early-exit scan returns `false`).
+@isnad1 id=exitless.0h0v.s2.dc073276e171 from=translated src=- shape=cef8a6bf vocab=4eefa6a7
+-/
 theorem P_exitless : P.Exitless :=
   exitless_of_hasEarlyExit_false (by decide)
 
-/-- `P` has `120 > 60 = 5·4·3` vertices, so it lies in the recursion region.-/
+/-- `P` has `120 > 60 = 5·4·3` vertices, so it lies in the recursion region.
+@isnad1 id=eq.0h0v.s3.f86d4baa270a from=translated src=- shape=e67f34a4 vocab=4837c173
+-/
 theorem P_numVerts : P.numVerts = 120 := rfl
 
 /-- `P.numVerts − ℓ₀(5) = 120 − 55 = 65`: the exitless prefix length demanded by the window
-inequalities.-/
+inequalities.
+@isnad1 id=eq.0h0v.s4.fc2a5aec6aeb from=translated src=- shape=d9c4ed38 vocab=6f6f8fba
+-/
 theorem prefix_len : P.numVerts - ell0 5 = 65 := by decide
 
 /-! ## The two refutations -/
@@ -278,7 +304,9 @@ theorem prefix_len : P.numVerts - ell0 5 = 65 := by decide
 
 Discharged entirely by kernel `decide` (via the computable reflections `excess_eq` and
 `hasEarlyExit`); the axiom set is the project standard `[propext, Classical.choice, Quot.sound]`
-— no `native_decide`, no `Lean.ofReduceBool`.-/
+— no `native_decide`, no `Lean.ofReduceBool`.
+@isnad1 id=not.0h0v.s2.2fd236277033 from=translated src=- shape=8d7dbbf6 vocab=6a664649
+-/
 theorem windowExcess_false : ¬ WindowExcess 5 := by
   intro hW
   have hp : P.Exitless := P_exitless
@@ -297,7 +325,9 @@ weight-`≥3` edges (`edgeCountGe P 3 − edgeCountGe q 3 = 5 − 3 = 2`), while
 demands `k − 2 = 3`.  So `edgeCountGe q 3 + 3 = 3 + 3 = 6 ≰ 5 = edgeCountGe P 3`.
 
 Discharged entirely by kernel `decide` (via the computable reflection `edgeCountGe_eq`); axiom set
-is the project standard `[propext, Classical.choice, Quot.sound]` — no `native_decide`.-/
+is the project standard `[propext, Classical.choice, Quot.sound]` — no `native_decide`.
+@isnad1 id=not.0h0v.s2.3c5a943775fc from=translated src=- shape=8d7dbbf6 vocab=0cbb044d
+-/
 theorem windowHeavy3_false : ¬ WindowHeavy3 5 := by
   intro hW
   have hp : P.Exitless := P_exitless
