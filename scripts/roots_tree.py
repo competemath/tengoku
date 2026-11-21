@@ -317,6 +317,9 @@ def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = 
         if pair := ALIAS_PAIR.match(code):
             for g in ("b", "a"):  # right to left: an insertion shifts the columns after it
                 nm = pair.group(g)
+                if nm.startswith("_root_.") and head_of_token(nm[len("_root_.") :]) in roots:
+                    done["heads"].add(head_of_token(nm[len("_root_.") :]))  # spelled from the root already: qualify_explicit_roots renames it, as for a `_root_.x` declaration (cubic on emissary#237)
+                    continue
                 if nm != "_" and head_of(nm) in roots:
                     f.insert(i, pair.start(g), ns + ".")
                     done["heads"].add(head_of(nm))

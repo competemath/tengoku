@@ -776,6 +776,13 @@ class AliasPair(unittest.TestCase):
         self.assertEqual(once, twice)
         self.assertEqual(done["declared"], [])
 
+    def test_a_name_already_spelled_from_the_root_is_left_to_the_explicit_pass(self):
+        text = "alias ⟨_root_.eq_one_of_one_le, _⟩ := le_one_iff_eq_one\n"
+        out, done = self.run_on(text, {"eq_one_of_one_le"})
+        self.assertIn("eq_one_of_one_le", done["heads"])  # recorded, so qualify_explicit_roots renames it
+        self.assertEqual(done["declared"], [])  # and not qualified twice here
+        self.assertNotIn("Tengoku.LeanTnorms._root_", out)
+
     def test_a_dotted_alias_and_the_single_name_alias_are_as_before(self):
         out, _ = self.run_on("alias dim := HasDim.d\nalias Ne.lt_one := lt_one_of_ne_one\n", {"dim"}, ns="Tengoku.X")
         self.assertIn("alias Tengoku.X.dim := HasDim.d", out)
