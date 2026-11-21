@@ -171,6 +171,7 @@ import Tengoku.RamanujanTauMissesPrimes
 import Tengoku.SalemTheorem
 import Tengoku.Apap
 import Tengoku.Sendov
+import Tengoku.SuperpermutationsHunter
 import Tengoku.DgLean
 import Tengoku.SquarefreeFugledeLean
 import Tengoku.LeanEvalPiSuccSphereNMulequivZmodTwo
