@@ -1,5 +1,7 @@
 # Migration support: a proposal
 
+> **See also [dataset version 2](v2.md)**, which implements the dataset-level half of this proposal (the migration record of a version change, `scripts/v2.py diff`, and a codemod for Lean sources). Everything about the tree, the `migration` PR class and the pin guard below is still a proposal.
+>
 > **This is a proposal, not a status the tree has.** Nothing in the gates, the queue or the scripts uses it, and no `data/migrations/` folder exists. It
 > says how a library bump (a reseed such as Tau Ceti's) could be made safe for projects that build on Tengoku. Anything marked *assumed* was not checked.
 
