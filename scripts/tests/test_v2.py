@@ -1000,6 +1000,48 @@ class DeclarationProof(unittest.TestCase):
         )
 
 
+TAG = "@isnad1 id=eq.1h3v.s4.01215b3d171d from=translated src=- shape=3fa9c1d2 vocab=b27e40a1"
+
+
+class DeclarationTag(unittest.TestCase):
+    """snapshot.declaration_tag: the statement id in the isnad tag of the docstring right above a theorem, or nothing"""
+
+    def tag(self, text, statement="theorem foo : 1 = 1"):
+        return snapshot.declaration_tag(text, statement)
+
+    def test_the_tag_in_the_docstring_right_above_the_header_is_read(self):
+        text = f"namespace A\n\n/-- Foo is one.\n\n{TAG} -/\ntheorem foo : 1 = 1 := rfl\n"
+        self.assertEqual(self.tag(text), "eq.1h3v.s4.01215b3d171d")
+        self.assertEqual(self.tag(f"/--\n{TAG}\n-/\ntheorem foo : 1 = 1 := rfl\n"), "eq.1h3v.s4.01215b3d171d")
+
+    def test_attributes_are_part_of_the_header_so_the_docstring_is_still_right_above(self):
+        statement = "@[simp]\ntheorem foo : 1 = 1"
+        self.assertEqual(self.tag(f"/-- doc\n{TAG} -/\n{statement} := rfl\n", statement), "eq.1h3v.s4.01215b3d171d")
+
+    def test_another_declarations_docstring_is_not_this_ones(self):
+        text = f"/-- doc\n{TAG} -/\ntheorem bar : 2 = 2 := rfl\n\ntheorem foo : 1 = 1 := rfl\n"
+        self.assertIsNone(self.tag(text))
+
+    def test_no_tag_no_docstring_or_a_tag_that_is_not_the_last_line_is_nothing(self):
+        self.assertIsNone(self.tag("theorem foo : 1 = 1 := rfl\n"))
+        self.assertIsNone(self.tag("/-- just a doc -/\ntheorem foo : 1 = 1 := rfl\n"))
+        self.assertIsNone(self.tag(f"/-- doc\n{TAG}\nand more -/\ntheorem foo : 1 = 1 := rfl\n"))
+        self.assertIsNone(self.tag("/- an ordinary comment -/\ntheorem foo : 1 = 1 := rfl\n"))
+
+    def test_an_id_that_is_not_shaped_like_one_is_nothing(self):
+        self.assertIsNone(
+            self.tag("/-- doc\n@isnad1 id=nonsense from=seed src=0 shape=00000000 vocab=00000000 -/\ntheorem foo : 1 = 1 := rfl\n")
+        )
+
+    def test_a_header_that_is_not_found_once_at_the_start_of_a_line_has_no_tag(self):
+        self.assertIsNone(self.tag(f"/-- doc\n{TAG} -/\ntheorem foo : 1 = 1 := rfl\n\ntheorem foo : 1 = 1 := rfl\n"))  # twice
+        self.assertIsNone(self.tag(f"/-- doc\n{TAG} -/\n-- theorem foo : 1 = 1 := rfl\n"))  # in a comment, in the middle of a line
+
+    def test_two_docstrings_are_not_taken_for_one(self):
+        text = f"/-- first {TAG} -/ /-- second -/\ntheorem foo : 1 = 1 := rfl\n"
+        self.assertIsNone(self.tag(text))
+
+
 def manifest_line(name="TauCeti.A.foo", library="tauceti", path="TauCeti/A.lean", via="equal", **kw):
     """one line of data/intake/<library>/manifest.jsonl as the tree has them (name = the full Lean name, statement = the header, module = the TREE's module)"""
     m = {
@@ -1238,7 +1280,7 @@ class SnapshotWithTheTree(unittest.TestCase):
         d = self.root / "Tengoku" / "Tauceti" / "TauCeti"
         d.mkdir(parents=True)
         (d / "A.lean").write_text(
-            "import Tengoku.Seed.Init\n\nnamespace TauCeti.A\n\ntheorem t0 : True := trivial\n\n/-- doc -/\ntheorem t2 : True := by\n  -- a note\n  trivial\n\nend TauCeti.A\n"
+            "import Tengoku.Seed.Init\n\nnamespace TauCeti.A\n\ntheorem t0 : True := trivial\n\n/-- doc\n@isnad1 id=eq.1h3v.s4.01215b3d171d from=translated src=- shape=3fa9c1d2 vocab=b27e40a1 -/\ntheorem t2 : True := by\n  -- a note\n  trivial\n\nend TauCeti.A\n"
         )
         (d / "B.lean").write_text(
             "theorem t1 : True := rfl\n\ntheorem t3 : True := rfl\n\ntheorem t3 : True := by\n  rfl\n"
@@ -1254,16 +1296,19 @@ class SnapshotWithTheTree(unittest.TestCase):
         self.assertEqual(by["TauCeti.A.t1"]["proof"], ":= rfl")
         self.assertNotIn("proof", by["TauCeti.A.t3"])
         self.assertEqual(v2.check(list(by.values())), [])
-        self.assertEqual(json.loads((out / "snapshot.json").read_text())["tree"], {"theorems": 4, "with_proof": 3})
+        self.assertEqual(json.loads((out / "snapshot.json").read_text())["tree"], {"theorems": 4, "with_proof": 3, "with_id": 1})
+        self.assertEqual(by["TauCeti.A.t2"]["id"], "eq.1h3v.s4.01215b3d171d")
+        self.assertNotIn("id", by["TauCeti.A.t0"])
         self.snap(self.root / "r1")
         text = self.snap(self.root / "r2", "--schema", "2", "--previous", str(self.root / "r1")).read_text()
         self.assertIn("3 of those rows have a `proof` read from their module", text)
+        self.assertIn("1 have an `id`, the statement id of the isnad tag", text)
         self.assertTrue(notes.exists())
 
     def test_a_module_that_is_not_there_gives_a_row_with_no_proof(self):
         out = self.root / "out2"
         self.snap(out, "--schema", "2")
-        self.assertEqual(json.loads((out / "snapshot.json").read_text())["tree"], {"theorems": 4, "with_proof": 0})
+        self.assertEqual(json.loads((out / "snapshot.json").read_text())["tree"], {"theorems": 4, "with_proof": 0, "with_id": 0})
 
     def test_a_manifest_line_without_a_source_url_stops_the_cut(self):
         bad = dict(self.lines[0])
