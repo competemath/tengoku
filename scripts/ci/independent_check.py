@@ -283,10 +283,8 @@ def main(argv: list[str] | None = None) -> int:
         reports[r["shard"]] = r
     merged = merge(p, reports, a.commit, a.lean4export_commit, a.nanoda_commit, a.run)
     a.out.write_text(json.dumps(merged, indent=2) + "\n", encoding="utf-8")
-    t = merged["axiom_scan"]["trusted_records"]
     print(
-        f"independent check of {a.commit}: {len(reports)} shards, {merged['nanoda']['declarations_checked']} declarations checked by nanoda, "
-        f"{t['in_export']} of {t['total']} trusted records in the exports, all on the standard axioms"
+        f"independent check of {a.commit}: {len(reports)} shards, {merged['nanoda']['declarations_checked']} declarations checked by nanoda; the counts of records are in {a.out.name}"
     )
     return 0
 
