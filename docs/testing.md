@@ -196,7 +196,11 @@ minutes ran out in the export every night, so no release could be cut (`release.
 | `check` (one per shard, four at a time) | builds its roots at the commit, exports them and what they import, has nanoda check the export (sealed, no network), and runs the axiom scan on it |
 | `report` | runs only when every shard passed, and joins the shards' reports into the one `independent-check` artifact a release reads; it refuses a shard that is missing, reported twice, made for another commit, made by other tools than the pinned lean4export and nanoda, or that audited other libraries than the plan's |
 
-Every shard exports the roots it was given and what they import, so the seed part of one shard's export is the same constants as another's: the report's `declarations_checked` and `export` counts are sums over shards, not counts of distinct constants.
+Shard 0 exports every constant of the environment its roots make (all of Lean core and the seed). A library shard imports the whole seed too, and exporting all of it in every shard outgrew the runner's memory (a shard of the first trial:
+"the hosted runner lost communication with the server", after an hour of export; the seed alone is 110 million lines, 7 minutes, and fits): a library shard exports **the constants declared in the modules of its own libraries and what they need**.
+That is `lean4export --own=<module prefix>`, ten lines added to lean4export's main by `scripts/ci/lean4export-own.patch` (applied to the pinned commit; the report carries its sha256 and the joiner refuses a library shard that does not name it).
+The exporter is not trusted (nanoda re-checks whatever it writes); what the patch could get wrong is coverage, which the plan and the report vouch for: the roots of the shards are exactly the imports of `All.lean`, and every trusted record and manifest theorem of a library is looked up by name in the export of its shard.
+The seed part of a shard's export is therefore only what its libraries use; the report's `declarations_checked` and `export` counts are sums over shards, not counts of distinct constants.
 
 - [nanoda](https://github.com/ammkrn/nanoda_lib), an independent type checker written in Rust, checks every
   declaration of the export again in a sandbox without network. It admits the
