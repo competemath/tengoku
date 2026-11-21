@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "75422304bc28ae961dfe806865e2eabea366dfe044b9d109cfe1906ef017a5c9",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "superpermutations-hunter",
+ "lint_mode": "proposed",
+ "modules": 35,
+ "part": 1,
+ "theorems": 449
+}
