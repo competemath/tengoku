@@ -32,7 +32,7 @@ jobs:
         with: { egress-policy: audit }
       - if: github.event_name == 'pull_request_target'
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with: { ref: "${{ github.event.pull_request.base.ref }}", persist-credentials: false }
+        with: { ref: main, persist-credentials: false }   # the branches filter above admits main only: no value of the pull request picks what runs
       - name: A CI-class change needs a campaign or the approver's waiver
         if: github.event_name == 'pull_request_target'
         env:

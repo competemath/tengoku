@@ -121,6 +121,18 @@ class Waiver(unittest.TestCase):
         self.assertFalse(ok)
         self.assertIn("under 20 characters", msg)
 
+    def test_trailing_spaces_do_not_make_a_short_reason_long(self):
+        ok, msg = self.verdict(["scripts/roots_tree.py"], [review(APPROVER, "campaign-waiver: fine" + " " * 40)])
+        self.assertFalse(ok)
+        self.assertIn("under 20 characters", msg)
+
+    def test_a_crafted_body_of_spaces_is_handled_at_once(self):
+        import time
+
+        t = time.time()
+        cc.waiver([review(APPROVER, "campaign-waiver: x" + " \t" * 20000 + "y\n" * 3)], APPROVER, SHA)
+        self.assertLess(time.time() - t, 1.0)
+
     def test_the_account_name_is_compared_without_case(self):
         ok, _ = self.verdict(["scripts/roots_tree.py"], [review(APPROVER.upper(), GOOD)])
         self.assertTrue(ok)

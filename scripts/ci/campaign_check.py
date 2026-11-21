@@ -31,7 +31,8 @@ import ci_paths
 APPROVER = "mikaelbashir14096545"
 ACCEPTED_STATES = {"APPROVED", "COMMENTED"}  # not CHANGES_REQUESTED, and a DISMISSED review keeps its body in the API but no longer counts
 MIN_REASON = 20
-WAIVER = re.compile(r"^[ \t]*campaign-waiver:[ \t]*(?P<reason>\S.*?)[ \t]*$", re.MULTILINE | re.IGNORECASE)
+# no lazy quantifier in front of a trailing-space class (it backtracks, super-linear on a crafted body): the reason is taken whole and stripped
+WAIVER = re.compile(r"^[ \t]*campaign-waiver:[ \t]*(?P<reason>\S.*)$", re.MULTILINE | re.IGNORECASE)
 
 
 def waiver(reviews: list[dict], approver: str, sha: str) -> tuple[str | None, list[str]]:
@@ -46,10 +47,10 @@ def waiver(reviews: list[dict], approver: str, sha: str) -> tuple[str | None, li
             problems.append(f"a waiver by {who or 'nobody'}, not by {approver}")
         elif r.get("commit_id") != sha:
             problems.append(f"a waiver on commit {(r.get('commit_id') or '?')[:8]}, not on the head {sha[:8]} (a push voids it)")
-        elif len(m.group("reason")) < MIN_REASON:
+        elif len(m.group("reason").strip()) < MIN_REASON:
             problems.append(f"a waiver whose reason is under {MIN_REASON} characters")
         else:
-            return m.group("reason"), problems
+            return m.group("reason").strip(), problems
     return None, problems
 
 
