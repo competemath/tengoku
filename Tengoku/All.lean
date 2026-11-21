@@ -237,6 +237,7 @@ import Tengoku.CaratheodoryLoewner
 import Tengoku.Erdos815Lean
 import Tengoku.Cslib
 import Tengoku.FormalMath
+import Tengoku.LeanSpectralTheory
 import Tengoku.RiemannhypothesisFormalization
 import Tengoku.LeanDescriptiveSetTheory
 import Tengoku.PdtLean
