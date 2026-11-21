@@ -128,6 +128,19 @@ jobs:
         run: |
           curl -sSfL https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh | sh -s -- -y --default-toolchain none   # the installer at a fixed commit (as promote.yml)
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: The compiled tree (the published cache, then whatever this commit has beyond it)
+        env: { GH_TOKEN: "${{ github.token }}" }   # gh attestation verify
+        run: |
+          scripts/cache.sh get 2>&1 | tail -20
+          # swap after the cache is unpacked and before the build: a module at the edge of the runner's memory (tengoku#779). scripts/ci/add_swap.sh
+          scripts/ci/add_swap.sh 48 40
+          # the cache may predate this commit (an older top-up is an ancestor too): build the roots of this shard, so the export below is
+          # the tree at exactly this commit, not the cache's
+          read -r -a roots <<< "$ROOTS"
+          targets=(); for r in "${roots[@]}"; do targets+=("+$r"); done   # `+Tengoku` is the module; `Tengoku` alone is the whole library
+          lake build "${targets[@]}" 2>&1 | tail -3
+          echo "checking the tree at $(git rev-parse HEAD)"
+      # after the swap (scripts/ci/add_swap.sh, above): the workflow rule is that no `lake build` of a job that holds the tree runs before it (test_tree_swap.py)
       - name: lean4export and nanoda, at their pinned commits
         run: |
           git clone -q https://github.com/leanprover/lean4export "$RUNNER_TEMP/lean4export"
@@ -143,18 +156,6 @@ jobs:
           git clone -q https://github.com/ammkrn/nanoda_lib "$RUNNER_TEMP/nanoda"
           git -C "$RUNNER_TEMP/nanoda" checkout -q "$NANODA_COMMIT"
           (cd "$RUNNER_TEMP/nanoda" && cargo build --release --locked 2>&1 | tail -2)
-      - name: The compiled tree (the published cache, then whatever this commit has beyond it)
-        env: { GH_TOKEN: "${{ github.token }}" }   # gh attestation verify
-        run: |
-          scripts/cache.sh get 2>&1 | tail -20
-          # swap after the cache is unpacked and before the build: a module at the edge of the runner's memory (tengoku#779). scripts/ci/add_swap.sh
-          scripts/ci/add_swap.sh 48 40
-          # the cache may predate this commit (an older top-up is an ancestor too): build the roots of this shard, so the export below is
-          # the tree at exactly this commit, not the cache's
-          read -r -a roots <<< "$ROOTS"
-          targets=(); for r in "${roots[@]}"; do targets+=("+$r"); done   # `+Tengoku` is the module; `Tengoku` alone is the whole library
-          lake build "${targets[@]}" 2>&1 | tail -3
-          echo "checking the tree at $(git rev-parse HEAD)"
       - name: Export every declaration of this shard's roots
         run: |
           start=$(date +%s)
