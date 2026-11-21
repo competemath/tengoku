@@ -379,6 +379,16 @@ class CommandLine(unittest.TestCase):
             out = json.loads((t / "independent-check.json").read_text())
             self.assertTrue(out["axiom_scan"]["passed"])
 
+    def test_only_one_shard_in_the_matrix_for_a_diagnosis(self):
+        with tempfile.TemporaryDirectory() as d:
+            t = Path(d)
+            write_plan_inputs(t)
+            r = cli(d, "plan", "--shards", "2", "--commit", COMMIT, "--only", "1")
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            self.assertEqual(json.loads((t / "plan.json").read_text()), make_plan(2))  # the plan keeps every shard
+            self.assertEqual([m["shard"] for m in json.loads((t / "matrix.json").read_text())["include"]], [1])
+            self.assertNotEqual(cli(d, "plan", "--shards", "2", "--only", "9").returncode, 0)  # no such shard
+
     def test_merge_writes_nothing_when_a_shard_is_missing(self):
         with tempfile.TemporaryDirectory() as d:
             t = Path(d)
