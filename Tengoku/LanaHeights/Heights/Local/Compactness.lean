@@ -39,7 +39,9 @@ namespace Heights.Local
 open Filter Topology Polynomial
 
 /-- **Infinite pigeonhole**: a sequence with values in a finite type is constant along a
-subsequence. -/
+subsequence.
+@isnad1 id=ex.0h2v.s5.336f4ee82829 from=translated src=- shape=367078fa vocab=e64e7b07
+-/
 theorem exists_strictMono_eq {α : Type*} [Finite α] (f : ℕ → α) :
     ∃ (c : α) (φ : ℕ → ℕ), StrictMono φ ∧ ∀ n, f (φ n) = c := by
   obtain ⟨c, hc⟩ := Finite.exists_infinite_fiber f
@@ -47,19 +49,25 @@ theorem exists_strictMono_eq {α : Type*} [Finite α] (f : ℕ → α) :
   exact ⟨c, Nat.nth (fun n => f n = c), Nat.nth_strictMono hinf,
     fun n => Nat.nth_mem_of_infinite hinf n⟩
 
-/-- A subsequence of the terms satisfying a predicate that holds infinitely often. -/
+/-- A subsequence of the terms satisfying a predicate that holds infinitely often.
+@isnad1 id=ex.1h1v.s5.b1b3b4d35ec6 from=translated src=- shape=939c1c73 vocab=389ad366
+-/
 theorem exists_strictMono_forall_of_infinite {P : ℕ → Prop} (h : (Set.ofPred P).Infinite) :
     ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∀ n, P (φ n) :=
   ⟨Nat.nth P, Nat.nth_strictMono h, fun n => Nat.nth_mem_of_infinite h n⟩
 
-/-- Pigeonhole for a sequence of natural numbers bounded by `d`. -/
+/-- Pigeonhole for a sequence of natural numbers bounded by `d`.
+@isnad1 id=ex.1h2v.s5.89fe6d00de2f from=translated src=- shape=c75a4eb4 vocab=69fc0278
+-/
 theorem exists_strictMono_eq_of_le {f : ℕ → ℕ} {d : ℕ} (hf : ∀ n, f n ≤ d) :
     ∃ (c : ℕ) (φ : ℕ → ℕ), StrictMono φ ∧ ∀ n, f (φ n) = c := by
   obtain ⟨c, φ, hφ, hc⟩ := exists_strictMono_eq (fun n => (⟨f n, Nat.lt_succ_of_le (hf n)⟩ :
     Fin (d + 1)))
   exact ⟨c, φ, hφ, fun n => congrArg Fin.val (hc n)⟩
 
-/-- If `t n ^ c ≤ ε n` with `t n ≥ 0`, `c ≠ 0` and `ε n → 0`, then `t n → 0`. -/
+/-- If `t n ^ c ≤ ε n` with `t n ≥ 0`, `c ≠ 0` and `ε n → 0`, then `t n → 0`.
+@isnad1 id=tendsto.4h3v.s6.fac41f63c103 from=translated src=- shape=64bfcf60 vocab=3e4693a5
+-/
 theorem tendsto_zero_of_pow_le {t ε : ℕ → ℝ} {c : ℕ} (hc : c ≠ 0) (ht : ∀ n, 0 ≤ t n)
     (hle : ∀ n, t n ^ c ≤ ε n) (hε : Tendsto ε atTop (𝓝 0)) : Tendsto t atTop (𝓝 0) := by
   rw [Metric.tendsto_atTop] at hε ⊢
@@ -79,25 +87,33 @@ section Padic
 
 variable {p : ℕ} [Fact p.Prime]
 
-/-- The norm of `ℚ̄_p` is the spectral norm. -/
+/-- The norm of `ℚ̄_p` is the spectral norm.
+@isnad1 id=eq.0h2v.s6.7fad6ef348d4 from=translated src=- shape=d08b1cb5 vocab=860475dd
+-/
 theorem PadicAlgCl.norm_eq_spectralNorm (x : PadicAlgCl p) :
     ‖x‖ = spectralNorm ℚ_[p] (PadicAlgCl p) x := rfl
 
 /-- If `‖x‖ ≤ 1` in `ℚ̄_p`, the coefficients of the minimal polynomial of `x` over `ℚ_p`
-are `p`-adic integers. -/
+are `p`-adic integers.
+@isnad1 id=le.1h3v.s6.81957e41bad8 from=translated src=- shape=055f85d6 vocab=44e7976d
+-/
 theorem PadicAlgCl.norm_coeff_minpoly_le_one {x : PadicAlgCl p} (hx : ‖x‖ ≤ 1) (i : ℕ) :
     ‖(minpoly ℚ_[p] x).coeff i‖ ≤ 1 := by
   have hint : IsIntegral ℚ_[p] x := (Algebra.IsAlgebraic.isAlgebraic x).isIntegral
   rw [PadicAlgCl.norm_eq_spectralNorm, spectralNorm] at hx
   exact (spectralValue_le_one_iff (minpoly.monic hint)).mp hx i
 
-/-- A monic polynomial written with its coefficients. -/
+/-- A monic polynomial written with its coefficients.
+@isnad1 id=eq.1h2v.s8.572cde3045e4 from=translated src=- shape=04304ba0 vocab=c33b6b98
+-/
 theorem monic_eq_sum {R : Type*} [CommRing R] {P : R[X]} (hP : P.Monic) :
     P = X ^ P.natDegree + ∑ i : Fin P.natDegree, C (P.coeff i) * X ^ (i : ℕ) := by
   conv_lhs => rw [hP.as_sum]
   rw [Fin.sum_univ_eq_sum_range (fun i => C (P.coeff i) * X ^ i)]
 
-/-- The inverse of an element has the same degree. -/
+/-- The inverse of an element has the same degree.
+@isnad1 id=eq.0h3v.s6.fb581479d9b0 from=translated src=- shape=8535e77d vocab=188877e7
+-/
 theorem natDegree_minpoly_inv {K L : Type*} [Field K] [Field L] [Algebra K L] (x : L) :
     (minpoly K x⁻¹).natDegree = (minpoly K x).natDegree := by
   by_cases hx : IsIntegral K x
@@ -122,7 +138,9 @@ theorem natDegree_minpoly_inv {K L : Type*} [Field K] [Field L] [Algebra K L] (x
     rw [minpoly.eq_zero hx, minpoly.eq_zero hxi]
 
 /-- In an algebraically closed normed field, a monic polynomial `G` of positive degree has a
-root `r` with `‖x − r‖ ^ deg G ≤ ‖G(x)‖`. -/
+root `r` with `‖x − r‖ ^ deg G ≤ ‖G(x)‖`.
+@isnad1 id=ex.2h3v.s7.d89a9f94a44b from=translated src=- shape=8dab2d21 vocab=608af667
+-/
 theorem exists_mem_roots_norm_sub_pow_le {K : Type*} [NormedField K] [IsAlgClosed K]
     {G : K[X]} (hG : G.Monic) (hdeg : 0 < G.natDegree) (x : K) :
     ∃ r ∈ G.roots, ‖x - r‖ ^ G.natDegree ≤ ‖G.eval x‖ := by
@@ -152,7 +170,9 @@ theorem exists_mem_roots_norm_sub_pow_le {K : Type*} [NormedField K] [IsAlgClose
   rwa [← hsplit, hcard] at this
 
 /-- **The bounded case**: a sequence in the closed unit ball of `ℚ̄_p` whose terms have
-degree at most `d` over `ℚ_p` has a convergent subsequence. -/
+degree at most `d` over `ℚ_p` has a convergent subsequence.
+@isnad1 id=ex.2h3v.s7.ad38d2ea24b3 from=translated src=- shape=31e5a6d7 vocab=3508b925
+-/
 theorem PadicAlgCl.exists_tendsto_of_norm_le_one (d : ℕ) (a : ℕ → PadicAlgCl p)
     (hdeg : ∀ n, (minpoly ℚ_[p] (a n)).natDegree ≤ d) (hnorm : ∀ n, ‖a n‖ ≤ 1) :
     ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∃ b, Tendsto (a ∘ φ) atTop (𝓝 b) := by
@@ -260,7 +280,9 @@ theorem PadicAlgCl.exists_tendsto_of_norm_le_one (d : ℕ) (a : ℕ → PadicAlg
   exact this
 
 /-- **The dichotomy in `ℚ̄_p`**: a sequence in `ℚ̄_p = PadicAlgCl p` whose terms have degree
-at most `d` over `ℚ_p` has a subsequence which converges or whose norm tends to `∞`. -/
+at most `d` over `ℚ_p` has a subsequence which converges or whose norm tends to `∞`.
+@isnad1 id=ex.1h3v.s7.e9b3917bde5f from=translated src=- shape=f44c6b54 vocab=3508b925
+-/
 theorem PadicAlgCl.exists_tendsto_or_tendsto_norm_atTop (d : ℕ) (a : ℕ → PadicAlgCl p)
     (hdeg : ∀ n, (minpoly ℚ_[p] (a n)).natDegree ≤ d) :
     ∃ φ : ℕ → ℕ, StrictMono φ ∧
@@ -316,7 +338,9 @@ theorem PadicAlgCl.exists_tendsto_or_tendsto_norm_atTop (d : ℕ) (a : ℕ → P
 end Padic
 
 /-- **The dichotomy in a proper normed field** (e.g. `ℂ`): every sequence has a subsequence
-which converges or whose norm tends to `∞`. -/
+which converges or whose norm tends to `∞`.
+@isnad1 id=ex.0h2v.s6.48b1b91686da from=translated src=- shape=71ddd88f vocab=284062e5
+-/
 theorem exists_tendsto_or_tendsto_norm_atTop {K : Type*} [NormedField K] [ProperSpace K]
     (a : ℕ → K) :
     ∃ φ : ℕ → ℕ, StrictMono φ ∧

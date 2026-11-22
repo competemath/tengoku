@@ -54,24 +54,34 @@ def complexWeierstrassInfinityEquationV (W : WeierstrassCurve ℂ)
   1 + W.a₁ * p.1 + 2 * W.a₃ * p.2 -
     (W.a₂ * p.1 ^ 2 + 2 * W.a₄ * p.1 * p.2 + 3 * W.a₆ * p.2 ^ 2)
 
+/--
+@isnad1 id=eq.0h1v.s4.704d6fc8930a from=translated src=- shape=1a4defd7 vocab=3bf744c9
+-/
 @[simp] theorem complexWeierstrassInfinityEquation_zero
     (W : WeierstrassCurve ℂ) :
     complexWeierstrassInfinityEquation W (0, 0) = 0 := by
   simp [complexWeierstrassInfinityEquation]
 
+/--
+@isnad1 id=eq.0h1v.s4.080c45278308 from=translated src=- shape=1a4defd7 vocab=85ffc33e
+-/
 @[simp] theorem complexWeierstrassInfinityEquationV_zero
     (W : WeierstrassCurve ℂ) :
     complexWeierstrassInfinityEquationV W (0, 0) = 1 := by
   simp [complexWeierstrassInfinityEquationV]
 
-/-- The projective-chart equation is entire. -/
+/-- The projective-chart equation is entire.
+@isnad1 id=contdiff.0h1v.s6.628441557be1 from=translated src=- shape=d173f0b9 vocab=7f1e7bc3
+-/
 theorem contDiff_complexWeierstrassInfinityEquation
     (W : WeierstrassCurve ℂ) :
     ContDiff ℂ ω (complexWeierstrassInfinityEquation W) := by
   unfold complexWeierstrassInfinityEquation
   fun_prop
 
-/-- The exact complex Fréchet derivative of the projective-chart equation. -/
+/-- The exact complex Fréchet derivative of the projective-chart equation.
+@isnad1 id=hasfderi.0h2v.s9.6baa1887ae1b from=translated src=- shape=70ebc313 vocab=15cb1062
+-/
 theorem hasFDerivAt_complexWeierstrassInfinityEquation
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ) :
     HasFDerivAt (complexWeierstrassInfinityEquation W)
@@ -115,7 +125,9 @@ private theorem isInvertible_smulRight_one :
   simp [u]
 
 /-- The partial Fréchet derivative in the `v` direction is invertible at
-projective infinity. -/
+projective infinity.
+@isnad1 id=isinvert.0h1v.s8.06f0ec835c8f from=translated src=- shape=dcb8061d vocab=2e87f48d
+-/
 theorem isInvertible_fderiv_inr_complexWeierstrassInfinityEquation
     (W : WeierstrassCurve ℂ) :
     (fderiv ℂ (complexWeierstrassInfinityEquation W) (0, 0) ∘L
@@ -140,13 +152,18 @@ def complexWeierstrassInfinityImplicitV (W : WeierstrassCurve ℂ) : ℂ → ℂ
   (contDiff_complexWeierstrassInfinityEquation W).contDiffAt.implicitFunction
     (by simp) (isInvertible_fderiv_inr_complexWeierstrassInfinityEquation W)
 
+/--
+@isnad1 id=eq.0h1v.s4.ee0de9b7289e from=translated src=- shape=6279936e vocab=e798f423
+-/
 @[simp] theorem complexWeierstrassInfinityImplicitV_zero
     (W : WeierstrassCurve ℂ) :
     complexWeierstrassInfinityImplicitV W 0 = 0 :=
   (contDiff_complexWeierstrassInfinityEquation W).contDiffAt.implicitFunction_apply_self
     (by simp) (isInvertible_fderiv_inr_complexWeierstrassInfinityEquation W)
 
-/-- The implicit projective coordinate is holomorphic at infinity. -/
+/-- The implicit projective coordinate is holomorphic at infinity.
+@isnad1 id=contdiff.0h1v.s5.3846f99d9c0c from=translated src=- shape=337f490a vocab=e8888230
+-/
 theorem contDiffAt_complexWeierstrassInfinityImplicitV
     (W : WeierstrassCurve ℂ) :
     ContDiffAt ℂ ω (complexWeierstrassInfinityImplicitV W) 0 :=
@@ -154,7 +171,9 @@ theorem contDiffAt_complexWeierstrassInfinityImplicitV
     (by simp) (isInvertible_fderiv_inr_complexWeierstrassInfinityEquation W)
 
 /-- Near zero, the graph of the implicit function lies on the homogenized
-Weierstrass equation. -/
+Weierstrass equation.
+@isnad1 id=eventual.0h1v.s5.176bb8f3a1e0 from=translated src=- shape=61617c2d vocab=0a2c8a2b
+-/
 theorem eventually_complexWeierstrassInfinityImplicitV_equation
     (W : WeierstrassCurve ℂ) :
     ∀ᶠ u in 𝓝 0,
@@ -189,12 +208,18 @@ def complexWeierstrassInfinityAmbientHomeomorph
     unfold complexWeierstrassInfinityEquationV
     fun_prop)
 
+/--
+@isnad1 id=eq.0h2v.s6.7fe2f9e0e1ae from=translated src=- shape=24f23ed7 vocab=ca5a257d
+-/
 @[simp] theorem complexWeierstrassInfinityAmbientHomeomorph_apply
     (W : WeierstrassCurve ℂ) (q : ℂ × ℂ) :
     complexWeierstrassInfinityAmbientHomeomorph W q =
       (complexWeierstrassInfinityEquation W q, q.1) :=
   rfl
 
+/--
+@isnad1 id=mem.0h1v.s7.0a338fde9205 from=translated src=- shape=31af819a vocab=757e21cb
+-/
 theorem complexWeierstrassInfinityAmbientHomeomorph_origin_mem_source
     (W : WeierstrassCurve ℂ) :
     (0, 0) ∈ (complexWeierstrassInfinityAmbientHomeomorph W).source := by
@@ -203,7 +228,9 @@ theorem complexWeierstrassInfinityAmbientHomeomorph_origin_mem_source
   exact ⟨ImplicitFunctionData.pt_mem_toOpenPartialHomeomorph_source _, by simp⟩
 
 /-- The inverse ambient map is holomorphic at every point of the restricted
-target. -/
+target.
+@isnad1 id=contdiff.1h2v.s8.d88e85e7ddad from=translated src=- shape=986cca02 vocab=74fc8f44
+-/
 theorem contDiffAt_complexWeierstrassInfinityAmbientHomeomorph_symm
     (W : WeierstrassCurve ℂ) (z : ℂ × ℂ)
     (hz : z ∈ (complexWeierstrassInfinityAmbientHomeomorph W).target) :
@@ -321,11 +348,17 @@ def complexWeierstrassInfinityBranchChart (W : WeierstrassCurve ℂ) :
     rw [heq]
     exact hg
 
+/--
+@isnad1 id=eq.0h2v.s6.f82e7a8c527b from=translated src=- shape=e493fee3 vocab=357a89cd
+-/
 @[simp] theorem complexWeierstrassInfinityBranchChart_apply
     (W : WeierstrassCurve ℂ) (Q : ComplexWeierstrassInfinityBranch W) :
     complexWeierstrassInfinityBranchChart W Q = Q.1.1 :=
   rfl
 
+/--
+@isnad1 id=mem.0h1v.s7.80d917d3b7da from=translated src=- shape=e0fad414 vocab=ba8dc719
+-/
 theorem complexWeierstrassInfinityBranchOrigin_mem_chart_source
     (W : WeierstrassCurve ℂ) :
     complexWeierstrassInfinityBranchOrigin W ∈
@@ -333,7 +366,9 @@ theorem complexWeierstrassInfinityBranchOrigin_mem_chart_source
   complexWeierstrassInfinityAmbientHomeomorph_origin_mem_source W
 
 /-- On the chart target, the inverse branch is the graph of the implicit
-holomorphic function constructed at the origin. -/
+holomorphic function constructed at the origin.
+@isnad1 id=eq.1h2v.s8.db4ab836e719 from=translated src=- shape=7e972c97 vocab=72d910fc
+-/
 theorem complexWeierstrassInfinityBranchChart_symm_coe_of_mem
     (W : WeierstrassCurve ℂ) (u : ℂ)
     (hu : u ∈ (complexWeierstrassInfinityBranchChart W).target) :
@@ -350,7 +385,9 @@ theorem complexWeierstrassInfinityBranchChart_symm_coe_of_mem
     simp
 
 /-- Every inverse chart branch is holomorphic in ambient projective
-coordinates. -/
+coordinates.
+@isnad1 id=contdiff.1h2v.s8.1abfae63aec3 from=translated src=- shape=48856d79 vocab=4d42b187
+-/
 theorem contDiffAt_complexWeierstrassInfinityBranchChart_symm_coe_of_mem
     (W : WeierstrassCurve ℂ) (u : ℂ)
     (hu : u ∈ (complexWeierstrassInfinityBranchChart W).target) :
@@ -369,7 +406,9 @@ theorem contDiffAt_complexWeierstrassInfinityBranchChart_symm_coe_of_mem
 
 /-- The origin is the only point of the projective branch with `v = 0`.
 Thus deleting the point at infinity is exactly the locus on which the affine
-overlap formulas are defined. -/
+overlap formulas are defined.
+@isnad1 id=iff.0h2v.s5.1a126e800576 from=translated src=- shape=316a2e3f vocab=c676a774
+-/
 theorem complexWeierstrassInfinityBranch_snd_eq_zero_iff
     (W : WeierstrassCurve ℂ) (Q : ComplexWeierstrassInfinityBranch W) :
     Q.1.2 = 0 ↔ Q = complexWeierstrassInfinityBranchOrigin W := by
@@ -386,7 +425,9 @@ theorem complexWeierstrassInfinityBranch_snd_eq_zero_iff
     rfl
 
 /-- A nonzero local parameter has nonzero projective `v`-coordinate on the
-inverse infinity chart. -/
+inverse infinity chart.
+@isnad1 id=ne.2h2v.s8.68c8c79c54c5 from=translated src=- shape=68f2a8ed vocab=9cf3d6c5
+-/
 theorem complexWeierstrassInfinityBranchChart_symm_snd_ne_zero
     (W : WeierstrassCurve ℂ) (u : ℂ)
     (hu : u ∈ (complexWeierstrassInfinityBranchChart W).target)
@@ -483,6 +524,9 @@ noncomputable def complexWeierstrassInfinityBranchToOnePoint
     ((complexWeierstrassInfinityPuncturedHomeomorph W ⟨Q, hv⟩).1 :
       ComplexWeierstrassAffine W)
 
+/--
+@isnad1 id=eq.0h1v.s3.91b0ff623522 from=translated src=- shape=c238469b vocab=1741399a
+-/
 @[simp] theorem complexWeierstrassInfinityBranchToOnePoint_origin
     (W : WeierstrassCurve ℂ) :
     complexWeierstrassInfinityBranchToOnePoint W
@@ -493,7 +537,9 @@ noncomputable def complexWeierstrassInfinityBranchToOnePoint
 
 /-- The projective-to-one-point map is continuous at the branch origin.
 Compact subsets of the affine curve have bounded `y`-coordinate, whereas
-`y=1/v` diverges as the projective coordinate `v` tends to zero. -/
+`y=1/v` diverges as the projective coordinate `v` tends to zero.
+@isnad1 id=continuo.0h1v.s6.1cc6fab84d2f from=translated src=- shape=c5e898d5 vocab=64ddebd0
+-/
 theorem continuousAt_complexWeierstrassInfinityBranchToOnePoint_origin
     (W : WeierstrassCurve ℂ) :
     ContinuousAt (complexWeierstrassInfinityBranchToOnePoint W)
@@ -699,9 +745,15 @@ noncomputable def complexWeierstrassOnePointToInfinityBranch (W : WeierstrassCur
         complexWeierstrassInfinityBranchOrigin W
       else (complexWeierstrassInfinityPuncturedHomeomorph W).symm ⟨P, hy⟩ |>.1
 
+/--
+@isnad1 id=eq.0h1v.s3.c365f94142a9 from=translated src=- shape=cc42b0b2 vocab=88333053
+-/
 @[simp] theorem complexWeierstrassOnePointToInfinityBranch_infty (W : WeierstrassCurve ℂ) :
     complexWeierstrassOnePointToInfinityBranch W ∞ = complexWeierstrassInfinityBranchOrigin W := rfl
 
+/--
+@isnad1 id=eq.1h2v.s9.3746781f8df3 from=translated src=- shape=2a7e44d5 vocab=8952a0cb
+-/
 @[simp] theorem complexWeierstrassOnePointToInfinityBranch_coe_of_ne (W : WeierstrassCurve ℂ)
     (P : ComplexWeierstrassAffine W) (hy : P.1.2 ≠ 0) :
     complexWeierstrassOnePointToInfinityBranch W (P : OnePoint _) =
@@ -711,6 +763,9 @@ noncomputable def complexWeierstrassOnePointToInfinityBranch (W : WeierstrassCur
     else ((complexWeierstrassInfinityPuncturedHomeomorph W).symm ⟨P, h⟩).1) = _
   rw [dite_eq_right hy]
 
+/--
+@isnad1 id=eq.1h2v.s9.961aaa62260a from=translated src=- shape=6374d328 vocab=5d174c31
+-/
 @[simp] theorem complexWeierstrassInfinityBranchToOnePoint_of_snd_ne_zero
     (W : WeierstrassCurve ℂ) (Q : ComplexWeierstrassInfinityBranch W)
     (hv : Q.1.2 ≠ 0) :
@@ -721,7 +776,9 @@ noncomputable def complexWeierstrassOnePointToInfinityBranch (W : WeierstrassCur
 
 /-- The projective branch map is continuous everywhere, not only at its
 origin.  Away from the origin this follows from the punctured overlap
-homeomorphism. -/
+homeomorphism.
+@isnad1 id=continuo.0h1v.s6.9c44195e044c from=translated src=- shape=eb315f44 vocab=31ed95a5
+-/
 theorem continuous_complexWeierstrassInfinityBranchToOnePoint
     (W : WeierstrassCurve ℂ) :
     Continuous (complexWeierstrassInfinityBranchToOnePoint W) := by
@@ -819,7 +876,9 @@ private theorem continuousAt_complexWeierstrassOnePointToInfinityBranch_coe_of_n
   exact hj.continuousAt_iff.mp hc
 
 /-- The affine points with `y = 0` form a compact locus.  The proof uses the
-same explicit cubic root bound as reverse continuity at infinity. -/
+same explicit cubic root bound as reverse continuity at infinity.
+@isnad1 id=iscompac.0h1v.s6.c569074a3c1c from=translated src=- shape=51672644 vocab=2c988338
+-/
 theorem isCompact_complexWeierstrassAffine_snd_eq_zero
     (W : WeierstrassCurve ℂ) :
     IsCompact {P : ComplexWeierstrassAffine W | P.1.2 = 0} := by
@@ -933,6 +992,9 @@ noncomputable def complexWeierstrassInfinityBranchToPoint
   (complexWeierstrassPointHomeomorph W).symm ∘
     complexWeierstrassInfinityBranchToOnePoint W
 
+/--
+@isnad1 id=eq.0h1v.s4.060e33f8afe0 from=translated src=- shape=fc69df4b vocab=4ad6ccae
+-/
 @[simp] theorem complexWeierstrassInfinityBranchToPoint_origin
     (W : WeierstrassCurve ℂ) [W.IsElliptic] :
     complexWeierstrassInfinityBranchToPoint W
@@ -942,7 +1004,9 @@ noncomputable def complexWeierstrassInfinityBranchToPoint
 
 /-- The projective branch is an open subspace of the compact curve topology.
 Its image is exactly the neighborhood obtained by deleting the affine points
-with `y = 0`. -/
+with `y = 0`.
+@isnad1 id=isopenem.0h1v.s6.af6b2936ca20 from=translated src=- shape=446b478a vocab=9d88cdc9
+-/
 theorem isOpenEmbedding_complexWeierstrassInfinityBranchToPoint
     (W : WeierstrassCurve ℂ) [W.IsElliptic] :
     Topology.IsOpenEmbedding (complexWeierstrassInfinityBranchToPoint W) := by
@@ -959,7 +1023,9 @@ noncomputable def complexWeierstrassInfinityPointChart
     (isOpenEmbedding_complexWeierstrassInfinityBranchToPoint W)
 
 /-- The compact point at infinity belongs to the source of the intrinsic
-infinity chart. -/
+infinity chart.
+@isnad1 id=mem.0h1v.s6.d54d86987a5f from=translated src=- shape=943d7f5d vocab=72e9eb40
+-/
 theorem complexWeierstrassPointInfinity_mem_infinityPointChart_source
     (W : WeierstrassCurve ℂ) [W.IsElliptic] :
     complexWeierstrassPointInfinity W ∈
@@ -971,7 +1037,9 @@ theorem complexWeierstrassPointInfinity_mem_infinityPointChart_source
   exact complexWeierstrassInfinityBranchToPoint_origin W
 
 /-- On the embedded projective branch, the compact infinity chart is the
-projective coordinate `u`. -/
+projective coordinate `u`.
+@isnad1 id=eq.0h2v.s5.cd0f0397fdb1 from=translated src=- shape=24ae110a vocab=390a130f
+-/
 @[simp] theorem complexWeierstrassInfinityPointChart_apply_branch
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (Q : ComplexWeierstrassInfinityBranch W) :
@@ -982,7 +1050,9 @@ projective coordinate `u`. -/
   rfl
 
 /-- Away from the branch origin, the open projective embedding agrees with
-its explicit rational affine point. -/
+its explicit rational affine point.
+@isnad1 id=eq.1h2v.s9.8025f36e1209 from=translated src=- shape=e033b732 vocab=e7cf0237
+-/
 theorem complexWeierstrassInfinityBranchToPoint_eq_affine
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (Q : ComplexWeierstrassInfinityBranch W) (hv : Q.1.2 ≠ 0) :
@@ -996,7 +1066,9 @@ theorem complexWeierstrassInfinityBranchToPoint_eq_affine
   exact complexWeierstrassInfinityBranchToOnePoint_of_snd_ne_zero W Q hv
 
 /-- A projective branch point representing an affine compact-curve point is
-not the branch origin. -/
+not the branch origin.
+@isnad1 id=ne.1h3v.s5.f793e09c42d2 from=translated src=- shape=654b7afb vocab=bd9fa67c
+-/
 theorem complexWeierstrassInfinityBranch_snd_ne_zero_of_toPoint_eq_affine
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (Q : ComplexWeierstrassInfinityBranch W)
@@ -1013,7 +1085,9 @@ theorem complexWeierstrassInfinityBranch_snd_ne_zero_of_toPoint_eq_affine
   exact OnePoint.infty_ne_coe P hh
 
 /-- If a projective branch point and an affine point represent the same
-compact-curve point, their coordinates satisfy the rational overlap formula. -/
+compact-curve point, their coordinates satisfy the rational overlap formula.
+@isnad1 id=eq.1h3v.s7.1635213530d8 from=translated src=- shape=88fa6b80 vocab=446154f7
+-/
 theorem complexWeierstrassAffine_coe_eq_of_branchToPoint_eq
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (Q : ComplexWeierstrassInfinityBranch W)
@@ -1032,7 +1106,9 @@ theorem complexWeierstrassAffine_coe_eq_of_branchToPoint_eq
   rfl
 
 /-- The rational projective-to-affine overlap formula is holomorphic wherever
-`v ≠ 0`. -/
+`v ≠ 0`.
+@isnad1 id=contdiff.0h0v.s7.11c255b63e10 from=translated src=- shape=6fcc09ba vocab=9fb25393
+-/
 theorem contDiffOn_complexWeierstrassInfinity_toAffine :
     ContDiffOn ℂ ω (fun uv : ℂ × ℂ => (uv.1 / uv.2, 1 / uv.2))
       {uv | uv.2 ≠ 0} := by
@@ -1042,7 +1118,9 @@ theorem contDiffOn_complexWeierstrassInfinity_toAffine :
       (fun uv huv => huv))
 
 /-- The affine-to-projective overlap uses the same rational formula and is
-holomorphic wherever `y ≠ 0`. -/
+holomorphic wherever `y ≠ 0`.
+@isnad1 id=contdiff.0h0v.s7.11c255b63e10 from=translated src=- shape=6fcc09ba vocab=9fb25393
+-/
 theorem contDiffOn_complexWeierstrassInfinity_toProjective :
     ContDiffOn ℂ ω (fun xy : ℂ × ℂ => (xy.1 / xy.2, 1 / xy.2))
       {xy | xy.2 ≠ 0} :=

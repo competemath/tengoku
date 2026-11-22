@@ -123,7 +123,9 @@ private lemma algebraMap_two_ne_zero (h2 : (2 : F) ≠ 0) : (2 : L) ≠ 0 := by
 
 This is `WeierstrassCurve.map_Ψ₂Sq` — `(W⁄L).Ψ₂Sq` is `W.Ψ₂Sq` mapped along `F → L` — together with
 the defining property of `L`. It takes no hypothesis on the characteristic and does not need
-`[W.IsElliptic]`. -/
+`[W.IsElliptic]`.
+@isnad1 id=splits.0h3v.s6.5a30f4b3ed2d from=translated src=- shape=e7e01307 vocab=fc6d07d2
+-/
 theorem splits_Ψ₂Sq_baseChange : (W⁄L).Ψ₂Sq.Splits := by
   change ((W.map (algebraMap F L)).Ψ₂Sq).Splits
   rw [WeierstrassCurve.map_Ψ₂Sq]
@@ -136,7 +138,9 @@ Mathlib's `Polynomial.IsSplittingField.finiteDimensional`, recorded here because
 the half of *"finite Galois"* that Mathlib's Hilbert 90
 (`groupCohomology.isMulCoboundary₁_of_isMulCocycle₁_of_aut_to_units`) takes as a hypothesis, and a
 consumer reaching for that theorem should not have to rediscover which of the two lemmas supplies
-it. It takes no hypothesis on the characteristic and does not need `[W.IsElliptic]`. -/
+it. It takes no hypothesis on the characteristic and does not need `[W.IsElliptic]`.
+@isnad1 id=finitedi.0h3v.s6.755007459d15 from=translated src=- shape=8646ee56 vocab=3155f07e
+-/
 theorem finiteDimensional_of_isSplittingField_Ψ₂Sq : FiniteDimensional F L :=
   IsSplittingField.finiteDimensional L W.Ψ₂Sq
 
@@ -144,14 +148,18 @@ theorem finiteDimensional_of_isSplittingField_Ψ₂Sq : FiniteDimensional F L :=
 field of characteristic `≠ 2`.
 
 `card_torsion_two_of_splits` over `L`, whose splitting hypothesis is discharged by
-`splits_Ψ₂Sq_baseChange` rather than by an algebraic closure. -/
+`splits_Ψ₂Sq_baseChange` rather than by an algebraic closure.
+@isnad1 id=eq.1h3v.s8.749be29138b2 from=translated src=- shape=70157f93 vocab=37df05ec
+-/
 theorem card_torsion_two_baseChange_of_isSplittingField [W.IsElliptic] [DecidableEq L]
     (h2 : (2 : F) ≠ 0) : Nat.card ((W⁄L).torsion 2) = 4 := by
   haveI : (W⁄L).IsElliptic := inferInstanceAs (W.map (algebraMap F L)).IsElliptic
   exact card_torsion_two_of_splits (algebraMap_two_ne_zero h2) (splits_Ψ₂Sq_baseChange W L)
 
 /-- **`E[2] ≃+ ZMod 2 × ZMod 2` over a splitting field of the `2`-torsion cubic**, for an elliptic
-curve over a field of characteristic `≠ 2`. -/
+curve over a field of characteristic `≠ 2`.
+@isnad1 id=nonempty.1h3v.s8.4572d704a0b2 from=translated src=- shape=d8c4e91d vocab=da64dc0c
+-/
 theorem nonempty_torsionTwo_addEquiv_baseChange_of_isSplittingField [W.IsElliptic] [DecidableEq L]
     (h2 : (2 : F) ≠ 0) : Nonempty (((W⁄L).torsion 2) ≃+ ZMod 2 × ZMod 2) := by
   haveI : (W⁄L).IsElliptic := inferInstanceAs (W.map (algebraMap F L)).IsElliptic

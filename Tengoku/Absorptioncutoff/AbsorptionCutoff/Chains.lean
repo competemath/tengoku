@@ -58,11 +58,16 @@ instance (N : ℕ) : IsProbabilityMeasure (gaussianVec N) := by
 noncomputable def Fmap (A : ℝ) (N : ℕ) (q : ℝ) (g : Fin N → ℝ) : ℝ :=
   (N : ℝ)⁻¹ * ∑ i, Real.tanh (A * Real.sqrt q * g i) ^ 2
 
+/--
+@isnad1 id=le.0h4v.s4.cd83fc575e84 from=translated src=- shape=086fe816 vocab=4ef07e63
+-/
 lemma Fmap_nonneg (A : ℝ) (N : ℕ) (q : ℝ) (g : Fin N → ℝ) : 0 ≤ Fmap A N q g := by
   unfold Fmap; positivity
 
 /-- `F_{A,N}(q,g) < 1` (`N ≥ 1`): the average of `N` values each `< 1`. So the
-squared-radius chain takes values in `[0,1)` (paper: "`Z` takes values in `[0,1]`"). -/
+squared-radius chain takes values in `[0,1)` (paper: "`Z` takes values in `[0,1]`").
+@isnad1 id=lt.1h4v.s5.faa10f0352a8 from=translated src=- shape=6e47d061 vocab=e3f3108e
+-/
 lemma Fmap_lt_one {A : ℝ} {N : ℕ} (hN : 0 < N) (q : ℝ) (g : Fin N → ℝ) : Fmap A N q g < 1 := by
   have hNpos : (0 : ℝ) < N := by exact_mod_cast hN
   haveI : Nonempty (Fin N) := ⟨⟨0, hN⟩⟩
@@ -74,7 +79,9 @@ lemma Fmap_lt_one {A : ℝ} {N : ℕ} (hN : 0 < N) (q : ℝ) (g : Fin N → ℝ)
   rw [show (1 : ℝ) = (N : ℝ)⁻¹ * (N : ℝ) by field_simp]
   exact mul_lt_mul_of_pos_left hsum (inv_pos.mpr hNpos)
 
-/-- `F_{A,N}` is jointly measurable in `(q, g)` (it is even continuous). -/
+/-- `F_{A,N}` is jointly measurable in `(q, g)` (it is even continuous).
+@isnad1 id=measurab.0h2v.s5.62df7b23cb00 from=translated src=- shape=8bb1dd25 vocab=162cd03d
+-/
 lemma measurable_Fmap (A : ℝ) (N : ℕ) :
     Measurable (fun p : ℝ × (Fin N → ℝ) => Fmap A N p.1 p.2) := by
   apply Continuous.measurable
@@ -100,17 +107,24 @@ instance (A : ℝ) (N : ℕ) : IsMarkovKernel (Kchain A N) := by
 noncomputable def Hmap (A ρ : ℝ) (N : ℕ) (h : ℝ) (g : Fin N → ℝ) : ℝ :=
   (N : ℝ)⁻¹ * ∑ i, ((Q₁ (ρ⁻¹ * Real.tanh (ρ * A * Real.sqrt h * g i)) : ℤ) : ℝ) ^ 2
 
+/--
+@isnad1 id=le.0h5v.s4.83239c7687b3 from=translated src=- shape=4054f4d0 vocab=67e114ce
+-/
 lemma Hmap_nonneg (A ρ : ℝ) (N : ℕ) (h : ℝ) (g : Fin N → ℝ) : 0 ≤ Hmap A ρ N h g := by
   unfold Hmap; positivity
 
 /-- From `h = 0` the map collapses to `0`: `√0 = 0`, so every coordinate is
-`Q₁(ρ⁻¹·tanh 0) = Q₁ 0 = 0`. This is what makes the origin absorbing. -/
+`Q₁(ρ⁻¹·tanh 0) = Q₁ 0 = 0`. This is what makes the origin absorbing.
+@isnad1 id=eq.0h4v.s4.f657caa26ed4 from=translated src=- shape=fb9d9ffa vocab=301b2a7d
+-/
 lemma Hmap_zero (A ρ : ℝ) (N : ℕ) (g : Fin N → ℝ) : Hmap A ρ N 0 g = 0 := by
   have hQ : Q₁ (0 : ℝ) = 0 := (Q₁_zero_iff 0).mpr (by norm_num)
   unfold Hmap
   simp [Real.sqrt_zero, Real.tanh_zero, hQ]
 
-/-- `H_{A,ρ,N}` is jointly measurable (`Q₁` is measurable, though not continuous). -/
+/-- `H_{A,ρ,N}` is jointly measurable (`Q₁` is measurable, though not continuous).
+@isnad1 id=measurab.0h3v.s5.d855400ae27b from=translated src=- shape=753da7ee vocab=640958ea
+-/
 lemma measurable_Hmap (A ρ : ℝ) (N : ℕ) :
     Measurable (fun p : ℝ × (Fin N → ℝ) => Hmap A ρ N p.1 p.2) := by
   unfold Hmap
@@ -139,7 +153,9 @@ instance (A ρ : ℝ) (N : ℕ) : IsMarkovKernel (Hkernel A ρ N) := by
 (paper §2, the zero grid bin is a trap). Instantiating the abstract absorption
 identity `tvDist_pow_dirac` at `Hkernel A ρ N` with this `a = 0` gives the
 total-variation cutoff driver `eq:tv-absorption`. Proof: `Hkernel 0` is the law of
-`Hmap A ρ N 0 · = 0` (a.e. constant), hence `δ_0`. -/
+`Hmap A ρ N 0 · = 0` (a.e. constant), hence `δ_0`.
+@isnad1 id=isabsorb.0h3v.s4.24ab2bc3b652 from=translated src=- shape=fd2836a0 vocab=ca75a2f9
+-/
 lemma isAbsorbing_Hkernel (A ρ : ℝ) (N : ℕ) : IsAbsorbing (Hkernel A ρ N) 0 := by
   unfold IsAbsorbing Hkernel
   rw [Kernel.map_apply _ (measurable_Hmap A ρ N), Kernel.prod_apply,
@@ -153,7 +169,9 @@ lemma isAbsorbing_Hkernel (A ρ : ℝ) (N : ℕ) : IsAbsorbing (Hkernel A ρ N) 
 /-- **`eq:tv-absorption` for the rounded chain.** The TV distance from the `t`-step
 law started at `x` to the absorbing point mass `δ_0` equals the survival mass off the
 origin, `ℙ(τ_ρ > t)`: `‖H^t(x,·) − δ_0‖_TV = H^t(x, {0}ᶜ)`. Instantiation of the
-abstract `tvDist_pow_dirac`. -/
+abstract `tvDist_pow_dirac`.
+@isnad1 id=eq.0h5v.s7.f99f2a388c2f from=translated src=- shape=eac86cc5 vocab=6be18560
+-/
 lemma tvDist_Hkernel_pow_dirac (A ρ : ℝ) (N : ℕ) (x : ℝ) (t : ℕ) :
     tvDist (((Hkernel A ρ N) ^ t) x) (Measure.dirac 0)
       = ((((Hkernel A ρ N) ^ t) x) ({0}ᶜ)).toReal :=
@@ -161,7 +179,9 @@ lemma tvDist_Hkernel_pow_dirac (A ρ : ℝ) (N : ℕ) (x : ℝ) (t : ℕ) :
 
 /-- The distance of the rounded chain to the absorbing origin is nonincreasing in
 time (paper `rem:intro-profile-mixing`). Combines `isAbsorbing_Hkernel` with the
-abstract `dSeq_dirac_antitone`. -/
+abstract `dSeq_dirac_antitone`.
+@isnad1 id=antitone.0h4v.s4.af0036ab02e6 from=translated src=- shape=fd4197a4 vocab=40ab8818
+-/
 lemma dSeq_Hkernel_dirac_antitone (A ρ : ℝ) (N : ℕ) (x : ℝ) :
     Antitone (dSeq (Hkernel A ρ N) x (Measure.dirac 0)) :=
   dSeq_dirac_antitone (measurableSet_singleton 0) (isAbsorbing_Hkernel A ρ N) x
@@ -169,7 +189,9 @@ lemma dSeq_Hkernel_dirac_antitone (A ρ : ℝ) (N : ℕ) (x : ℝ) :
 /-- **The one-step mean of the squared-radius chain is `V_A`**
 (paper `eq:gaussian-q-moments`, `𝔼[Z_{t+1} ∣ Z_t = q] = V_A(q)`): each coordinate is
 a `𝒢_N`-marginal `∼ N(0,1)`, so `∫ F_{A,N}(q,·) d𝒢_N = N⁻¹·N·V_A(q) = V_A(q)`. This
-links the chain to the mean map studied in `MeanMap.lean`. -/
+links the chain to the mean map studied in `MeanMap.lean`.
+@isnad1 id=eq.1h3v.s5.a48b4f26ba9e from=translated src=- shape=f0265f55 vocab=7ab5750c
+-/
 lemma integral_Fmap {A : ℝ} {N : ℕ} (hN : N ≠ 0) (q : ℝ) :
     ∫ g, Fmap A N q g ∂(gaussianVec N) = V A q := by
   have hInt : ∀ i : Fin N, Integrable

@@ -6,6 +6,9 @@ open Classical
 
 section completeness
 
+/--
+@isnad1 id=iff.1h3v.s6.cae3aa0a2858 from=translated src=- shape=e56656d4 vocab=95b6f1bf
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.complete_simplex_iff {SC} m I(hs : simplex SC m I) :
     complete_simplex SC m I ↔ ∀ c, c≤m → ∃ i, SC.RL (I i) = c := by {
   apply Iff.intro
@@ -39,6 +42,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.complete_simplex_iff {SC} m I(hs : 
   }
 }
 
+/--
+@isnad1 id=eq.2h5v.s6.31eefe73b665 from=translated src=- shape=b5d3a7c9 vocab=cace5d53
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.rl_inj_of_complete {SC} m I (hcs : complete_simplex SC m I):
     ∀ i1 i2, SC.RL (I i1) = SC.RL (I i2) → i1 = i2 := by {
   let f1 : Fin (m+1) → Fin (m+1) := fun j ↦ Fin.ofNat _ (SC.RL (I j))
@@ -60,6 +66,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.rl_inj_of_complete {SC} m I (hcs : 
   exact Fin.cast_val_eq_self c
 }
 
+/--
+@isnad1 id=iff.2h4v.s7.bab52243e9a3 from=translated src=- shape=18613c55 vocab=c4676608
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.char_complete_face {SC n1 hn1} I J (hs : simplex SC SC.n J) :
     complete_simplex SC n1 I ∧ is_face SC I J
     ↔ ∃ i, I = @delete_vertex SC n1 hn1 i J
@@ -103,6 +112,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.char_complete_face {SC n1 hn1} I J 
   }
 }
 
+/--
+@isnad1 id=existsun.2h3v.s6.3c662cbdd9f1 from=translated src=- shape=7fd9ee84 vocab=cd57722d
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.complete_child_uniq {SC n1} {hn1 : n1 + 1 = SC.n} J (hcs : complete_simplex SC SC.n J) :
     ∃! (I : Fin (n1+1) → SC.G), complete_simplex SC n1 I ∧ is_face SC I J := by {
   have h4 : ∃ i, SC.RL (J i) = SC.n := by {
@@ -163,6 +175,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.complete_child_uniq {SC n1} {hn1 : 
   exact (Eq.symm hi)
 }
 
+/--
+@isnad1 id=even.3h3v.s7.6e6eba5955f1 from=translated src=- shape=60ca24f5 vocab=19cf44a3
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.incomplete_childs {SC n1} {hn1 : n1 + 1 = SC.n} J (hs : simplex SC SC.n J)
     (hnc : ¬ complete_simplex SC SC.n J):
     Even (Finset.card { I : Fin (n1 + 1) → SC.G | complete_simplex SC n1 I ∧ is_face SC I J}) := by {
@@ -283,6 +298,9 @@ section handshake
 variable {A B : Type*}
 variable [Fintype A] [Fintype B]
 
+/--
+@isnad1 id=iff.1h4v.s6.3c827c0fb541 from=translated src=- shape=a87c78c8 vocab=377f8fbf
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.handshake_3 (r : A → B → Prop) (c : A → Prop)
     (h1 : ∀ a, c a ↔ Odd (Finset.card {b | r a b}))
     : Odd (Finset.card {a | c a}) ↔ Odd (∑ a, Finset.card {b | r a b}) := by {
@@ -293,6 +311,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.handshake_3 (r : A → B → Prop) 
   exact h1 a
 }
 
+/--
+@isnad1 id=odd.3h5v.s6.cd220e09a439 from=translated src=- shape=26f404d6 vocab=1e958042
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.handshake_2 (r : A → B → Prop)
     (c : A → Prop) (d : B → Prop)
     (h1 : ∀ a, c a ↔ Odd (Finset.card {b | r a b}))
@@ -307,6 +328,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.handshake_2 (r : A → B → Prop)
   rwa [←handshake_3 r c h1]
 }
 
+/--
+@isnad1 id=odd.5h10v.s7.ff722d2f3997 from=translated src=- shape=4b3cf195 vocab=bf0ffeee
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.handshake_1 (r : A → B → Prop)
     (c1 c2 c3: A → Prop) (d1 d2: B → Prop)
     (h1 : ∀ b, d1 b → ∃! a, c2 a ∧ r a b)
@@ -397,6 +421,9 @@ def _root_.Tengoku.FixedPointTheoremsLean4.child_map (v : Fin n1 → Fin (SC.p+1
   | 0 => Fin.last SC.p
   | Nat.succ _ => if i.1 + 1 = SC.n then Fin.last SC.p else v (Fin.ofNat _ i.1)
 
+/--
+@isnad1 id=eq.1h4v.s6.aad268030612 from=translated src=- shape=f286f88e vocab=43df3754
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.child_map_last (v : Fin n1 → Fin (SC.p +1 ))
     : ∀ j, j.1 + 1 = SC.n → child_map SC v j = SC.p := by {
   intro j hj
@@ -406,6 +433,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.child_map_last (v : Fin n1 → Fin 
   simp only [hj, ↓reduceIte, Fin.val_last]
 }
 
+/--
+@isnad1 id=eq.1h4v.s6.dab9caa4344a from=translated src=- shape=801291a5 vocab=4278800d
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.child_map_applied [NeZero SC.n] {hn1 : n1 + 1 = SC.n} (v : Fin n1 → Fin (SC.p + 1))
     : ∀ (i : Fin n1), child_map SC v (Fin.ofNat _ i.1) = v i := by {
   intro i
@@ -422,6 +452,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.child_map_applied [NeZero SC.n] {hn
   simp only [h6, ↓reduceIte, Fin.ofNat_eq_cast, Fin.cast_val_eq_self]
 }
 
+/--
+@isnad1 id=injectiv.1h2v.s5.29b5ae5ce266 from=translated src=- shape=c60840fa vocab=64592a9b
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.child_map_inj {hn1 : n1 + 1 = SC.n }: Function.Injective (@child_map SC n1) := by {
   intro v1 v2 h1
   ext i
@@ -435,6 +468,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.child_map_inj {hn1 : n1 + 1 = SC.n 
   exact hn1
 }
 
+/--
+@isnad1 id=ex.2h3v.s6.b987de742eab from=translated src=- shape=e6518ac0 vocab=3e05914f
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.child_map_surj_on {hn1 : n1 + 1 = SC.n} w
     (h1 : ∀ j, j.1 + 1 = SC.n → w j = SC.p)
     : ∃ v, @child_map SC n1 v = w := by {
@@ -518,6 +554,9 @@ def _root_.Tengoku.FixedPointTheoremsLean4.child_cube {hn1 : n1 + 1 = SC.n}: Spe
 
 end induction_step
 
+/--
+@isnad1 id=odd.1h1v.s7.69f33a5b3cb5 from=translated src=- shape=25a13bc7 vocab=778bbd59
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.induction_start (SC : SpernerCube) (h0 : 0 = SC.n)
     : Odd (Finset.card { I | complete_simplex SC SC.n I}) := by {
   use 0

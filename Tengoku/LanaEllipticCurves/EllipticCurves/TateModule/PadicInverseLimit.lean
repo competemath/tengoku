@@ -74,6 +74,9 @@ def compatSeq : Subring (∀ k : ℕ, ZMod (p ^ k)) where
 
 variable {p}
 
+/--
+@isnad1 id=iff.0h2v.s9.18236a0d3304 from=translated src=- shape=26676966 vocab=2b4dfe27
+-/
 @[simp]
 lemma mem_compatSeq_iff {s : ∀ k, ZMod (p ^ k)} :
     s ∈ compatSeq p ↔ ∀ k, red p k.le_succ (s (k + 1)) = s k := Iff.rfl
@@ -84,7 +87,9 @@ private lemma red_comp_red {m n l : ℕ} (h₁ : m ≤ n) (h₂ : n ≤ l) :
   RingHom.ext_zmod _ _
 
 /-- General compatibility of a compatible sequence: the reduction `ZMod (p^n) → ZMod (p^m)` sends
-`s n` to `s m` whenever `m ≤ n` (not just for `n = m + 1`). -/
+`s n` to `s m` whenever `m ≤ n` (not just for `n = m + 1`).
+@isnad1 id=eq.2h4v.s9.5025ae3c10a4 from=translated src=- shape=4a33d7d3 vocab=140b9d35
+-/
 lemma compatSeq.cast_apply {s : ∀ k, ZMod (p ^ k)} (hs : s ∈ compatSeq p) {m n : ℕ} (h : m ≤ n) :
     red p h (s n) = s m := by
   induction n, h using Nat.le_induction with
@@ -105,11 +110,16 @@ variable (p) in
 def proj (k : ℕ) : compatSeq p →+* ZMod (p ^ k) :=
   (Pi.evalRingHom (fun k => ZMod (p ^ k)) k).comp (compatSeq p).subtype
 
+/--
+@isnad1 id=eq.0h3v.s11.c1782812622b from=translated src=- shape=65ef9f1e vocab=99b7e991
+-/
 @[simp]
 lemma proj_apply (k : ℕ) (s : compatSeq p) : proj p k s = (s : ∀ k, ZMod (p ^ k)) k := rfl
 
 /-- The projections form a compatible family for `PadicInt.lift`: reducing the `n`-th projection to
-level `m` gives the `m`-th projection, for `m ≤ n`. -/
+level `m` gives the `m`-th projection, for `m ≤ n`.
+@isnad1 id=eq.1h3v.s11.8f8372f4ad00 from=translated src=- shape=c7f8dfaa vocab=325b341e
+-/
 lemma red_comp_proj {m n : ℕ} (h : m ≤ n) : (red p h).comp (proj p n) = proj p m := by
   ext s
   simpa [proj, proj_apply] using compatSeq.cast_apply s.2 h
@@ -130,6 +140,9 @@ noncomputable def toCompatSeq : ℤ_[p] →+* compatSeq p where
   map_zero' := Subtype.ext (funext fun k => by simp)
   map_add' x y := Subtype.ext (funext fun k => by simp)
 
+/--
+@isnad1 id=eq.0h3v.s11.ad92fb3fcd89 from=translated src=- shape=a416179f vocab=e11185ab
+-/
 @[simp]
 lemma coe_toCompatSeq_apply (z : ℤ_[p]) (k : ℕ) :
     ((toCompatSeq p z : ∀ k, ZMod (p ^ k)) k) = toZModPow k z := rfl
@@ -139,6 +152,9 @@ as the projective limit applied to the projection family. -/
 noncomputable def ofCompatSeq : compatSeq p →+* ℤ_[p] :=
   lift (f := compatSeq.proj p) fun _ _ h => compatSeq.red_comp_proj h
 
+/--
+@isnad1 id=eq.0h3v.s12.974c4dea8d45 from=translated src=- shape=7bc30ab2 vocab=177cd4e6
+-/
 @[simp]
 lemma toZModPow_ofCompatSeq (n : ℕ) (s : compatSeq p) :
     toZModPow n (ofCompatSeq s) = (s : ∀ k, ZMod (p ^ k)) n := by
@@ -162,10 +178,16 @@ noncomputable def compatSeqEquiv : ℤ_[p] ≃+* compatSeq p where
   map_mul' := map_mul _
   map_add' := map_add _
 
+/--
+@isnad1 id=eq.0h3v.s13.a7610ba7654a from=translated src=- shape=f2e00a07 vocab=51268990
+-/
 @[simp]
 lemma coe_compatSeqEquiv_apply (z : ℤ_[p]) (n : ℕ) :
     ((compatSeqEquiv z : ∀ k, ZMod (p ^ k)) n) = toZModPow n z := rfl
 
+/--
+@isnad1 id=eq.0h2v.s13.ba9c15e1960f from=translated src=- shape=3112ea42 vocab=13981bbd
+-/
 @[simp]
 lemma compatSeqEquiv_symm_apply (s : compatSeq p) : compatSeqEquiv.symm s = ofCompatSeq s := rfl
 

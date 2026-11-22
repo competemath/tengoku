@@ -33,6 +33,9 @@ open NumberField IsDedekindDomain Module
 noncomputable def logDisc (K : Type*) [Field K] [NumberField K] : ℝ :=
   Real.log |(discr K : ℝ)| / finrank ℚ K
 
+/--
+@isnad1 id=le.0h1v.s4.8566726d8b04 from=translated src=- shape=31b077a1 vocab=893e07cd
+-/
 lemma logDisc_nonneg (K : Type*) [Field K] [NumberField K] : 0 ≤ logDisc K :=
   div_nonneg (Real.log_nonneg (by exact_mod_cast Int.one_le_abs (discr_ne_zero K)))
     (by positivity)
@@ -41,19 +44,28 @@ section Tower
 
 variable (F L : Type*) [Field F] [NumberField F] [Field L] [NumberField L] [Algebra F L]
 
-/-- The different is a nonzero ideal. -/
+/-- The different is a nonzero ideal.
+@isnad1 id=ne.0h2v.s7.f93535fe87d8 from=translated src=- shape=5fbb09e8 vocab=8a55cb6c
+-/
 lemma differentIdeal_ne_bot' : differentIdeal (𝓞 F) (𝓞 L) ≠ ⊥ := differentIdeal_ne_bot
 
+/--
+@isnad1 id=lt.0h2v.s8.d451c40c4e3b from=translated src=- shape=7ac39d24 vocab=a977d0ce
+-/
 lemma absNorm_differentIdeal_pos : 0 < Ideal.absNorm (differentIdeal (𝓞 F) (𝓞 L)) :=
   Nat.pos_of_ne_zero (Ideal.absNorm_eq_zero_iff.not.mpr differentIdeal_ne_bot)
 
-/-- `0 ≤ log N(𝔇_{L/F}) / [L : ℚ]`. -/
+/-- `0 ≤ log N(𝔇_{L/F}) / [L : ℚ]`.
+@isnad1 id=le.0h2v.s8.12ba7cca652e from=translated src=- shape=5d2d01ae vocab=5d8d8d23
+-/
 lemma log_absNorm_differentIdeal_div_nonneg :
     0 ≤ Real.log (Ideal.absNorm (differentIdeal (𝓞 F) (𝓞 L))) / finrank ℚ L :=
   div_nonneg (Real.log_nonneg (by exact_mod_cast absNorm_differentIdeal_pos F L))
     (by positivity)
 
-/-- **The tower formula**: `logDisc L = logDisc F + log N(𝔇_{L/F}) / [L : ℚ]`. -/
+/-- **The tower formula**: `logDisc L = logDisc F + log N(𝔇_{L/F}) / [L : ℚ]`.
+@isnad1 id=eq.0h2v.s8.9369c2590a55 from=translated src=- shape=b86daddb vocab=7c3411df
+-/
 theorem logDisc_eq_add :
     logDisc L = logDisc F +
       Real.log (Ideal.absNorm (differentIdeal (𝓞 F) (𝓞 L))) / finrank ℚ L := by
@@ -79,22 +91,32 @@ section Multiplicity
 
 variable {R : Type*} [CommRing R] [IsDedekindDomain R]
 
+/--
+@isnad1 id=finitemu.2h3v.s7.0fd53ef13df5 from=translated src=- shape=608fd22d vocab=4f50644a
+-/
 lemma finiteMultiplicity_of_isPrime {P I : Ideal R} [P.IsPrime] (hP : P ≠ ⊥) (hI : I ≠ ⊥) :
     FiniteMultiplicity P I :=
   FiniteMultiplicity.of_prime_left (Ideal.prime_of_isPrime hP inferInstance) hI
 
-/-- `P^n ∣ I ↔ n ≤ ord_P(I)` for a nonzero prime `P` and `I ≠ 0`. -/
+/-- `P^n ∣ I ↔ n ≤ ord_P(I)` for a nonzero prime `P` and `I ≠ 0`.
+@isnad1 id=iff.2h4v.s8.89a5e83e3f7d from=translated src=- shape=2f7fe1fd vocab=0f54c398
+-/
 lemma pow_dvd_iff_le_multiplicity {P I : Ideal R} [P.IsPrime] (hP : P ≠ ⊥) (hI : I ≠ ⊥)
     {n : ℕ} : P ^ n ∣ I ↔ n ≤ multiplicity P I :=
   (finiteMultiplicity_of_isPrime hP hI).pow_dvd_iff_le_multiplicity
 
-/-- `ord_P(I) ≤ n` if `P^{n+1} ∤ I`. -/
+/-- `ord_P(I) ≤ n` if `P^{n+1} ∤ I`.
+@isnad1 id=le.3h4v.s8.7bab55fc5be5 from=translated src=- shape=9d768864 vocab=d77b7c1b
+-/
 lemma multiplicity_le_of_not_pow_dvd {P I : Ideal R} [P.IsPrime] (hP : P ≠ ⊥) (hI : I ≠ ⊥)
     {n : ℕ} (h : ¬ P ^ (n + 1) ∣ I) : multiplicity P I ≤ n := by
   rw [pow_dvd_iff_le_multiplicity hP hI] at h
   omega
 
 omit [IsDedekindDomain R] in
+/--
+@isnad1 id=eq.1h3v.s6.4913c41578b4 from=translated src=- shape=76be7c6d vocab=a8358c1f
+-/
 lemma multiplicity_eq_zero_of_not_dvd {P I : Ideal R} (h : ¬ P ∣ I) : multiplicity P I = 0 :=
   multiplicity_eq_zero.mpr h
 
@@ -106,9 +128,15 @@ section Local
 
 variable {K : Type*} [Field K] [NumberField K]
 
+/--
+@isnad1 id=lt.0h2v.s7.f7f552292c8c from=translated src=- shape=0bd4bc8f vocab=ec07a487
+-/
 lemma one_lt_absNorm (P : HeightOneSpectrum (𝓞 K)) : 1 < Ideal.absNorm P.asIdeal :=
   NumberField.HeightOneSpectrum.one_lt_absNorm P
 
+/--
+@isnad1 id=le.0h2v.s7.cc43868999a6 from=translated src=- shape=579f144a vocab=e9876c6b
+-/
 lemma log_absNorm_nonneg (I : Ideal (𝓞 K)) : 0 ≤ Real.log (Ideal.absNorm I) :=
   Real.log_natCast_nonneg _
 
@@ -117,11 +145,16 @@ noncomputable def primeSupport {I : Ideal (𝓞 K)} (hI : I ≠ ⊥) :
     Finset (HeightOneSpectrum (𝓞 K)) :=
   (Ideal.finite_factors hI).toFinset
 
+/--
+@isnad1 id=iff.1h3v.s8.42c402f43272 from=translated src=- shape=f90d2d33 vocab=ffc4fd9c
+-/
 lemma mem_primeSupport {I : Ideal (𝓞 K)} (hI : I ≠ ⊥) (P : HeightOneSpectrum (𝓞 K)) :
     P ∈ primeSupport hI ↔ P.asIdeal ∣ I := by
   simp [primeSupport]
 
-/-- **The local decomposition of the norm**: `log N(I) = ∑ᶠ P, ord_P(I)·log N(P)`. -/
+/-- **The local decomposition of the norm**: `log N(I) = ∑ᶠ P, ord_P(I)·log N(P)`.
+@isnad1 id=eq.1h2v.s9.ce71cdddcd30 from=translated src=- shape=e9aa1b9c vocab=45fe02a2
+-/
 theorem log_absNorm_eq_finsum {I : Ideal (𝓞 K)} (hI : I ≠ ⊥) :
     Real.log (Ideal.absNorm I) = ∑ᶠ P : HeightOneSpectrum (𝓞 K),
       (multiplicity P.asIdeal I : ℝ) * Real.log (Ideal.absNorm P.asIdeal) := by
@@ -172,11 +205,17 @@ noncomputable def diffContrib (𝔭 : Ideal (𝓞 F)) : ℝ :=
 variable {L}
 
 omit [NumberField F] in
+/--
+@isnad1 id=le.0h3v.s5.49a087966599 from=translated src=- shape=792c603f vocab=20767f1d
+-/
 lemma diffContrib_nonneg (𝔭 : Ideal (𝓞 F)) : 0 ≤ diffContrib L 𝔭 :=
   Finset.sum_nonneg fun _ _ => div_nonneg (mul_nonneg (by positivity)
     (log_absNorm_nonneg _)) (by positivity)
 
 omit [NumberField F] in
+/--
+@isnad1 id=iff.1h4v.s8.b10008b85d77 from=translated src=- shape=90f6b91e vocab=de91c0e1
+-/
 lemma mem_primesOverFinset_iff' {𝔭 : Ideal (𝓞 F)} [𝔭.IsMaximal] (h𝔭 : 𝔭 ≠ ⊥)
     {P : Ideal (𝓞 L)} :
     P ∈ IsDedekindDomain.primesOverFinset 𝔭 (𝓞 L) ↔ P.IsPrime ∧ P.LiesOver 𝔭 := by
@@ -190,7 +229,9 @@ noncomputable def diffTerm (P : HeightOneSpectrum (𝓞 L)) : ℝ :=
     Real.log (Ideal.absNorm P.asIdeal) / finrank ℚ L
 
 open scoped Classical in
-/-- `diffContrib 𝔭` as a sum over the primes of `L` dividing `𝔇` and lying over `𝔭`. -/
+/-- `diffContrib 𝔭` as a sum over the primes of `L` dividing `𝔇` and lying over `𝔭`.
+@isnad1 id=eq.0h3v.s7.19ab38e40091 from=translated src=- shape=b029dfee vocab=ef2f1db9
+-/
 lemma diffContrib_eq_sum_filter (𝔭 : HeightOneSpectrum (𝓞 F)) :
     diffContrib L 𝔭.asIdeal = ∑ P ∈ (primeSupport (differentIdeal_ne_bot' F L)).filter
       (fun P => primeBelow L P = 𝔭), diffTerm F L P := by
@@ -226,7 +267,9 @@ lemma diffContrib_eq_sum_filter (𝔭 : HeightOneSpectrum (𝓞 F)) :
 
 variable (L) in
 /-- **The grouped local decomposition**:
-`log N(𝔇_{L/F}) / [L : ℚ] = ∑ᶠ 𝔭, diffContrib 𝔭`. -/
+`log N(𝔇_{L/F}) / [L : ℚ] = ∑ᶠ 𝔭, diffContrib 𝔭`.
+@isnad1 id=eq.0h2v.s8.d911a9789cb5 from=translated src=- shape=d2e4e07f vocab=6c4a5c6d
+-/
 theorem log_absNorm_differentIdeal_div_eq_finsum :
     Real.log (Ideal.absNorm (differentIdeal (𝓞 F) (𝓞 L))) / finrank ℚ L =
       ∑ᶠ 𝔭 : HeightOneSpectrum (𝓞 F), diffContrib L 𝔭.asIdeal := by
@@ -254,7 +297,9 @@ theorem log_absNorm_differentIdeal_div_eq_finsum :
     exact ⟨P, hP.1, hP.2⟩
 
 variable (L) in
-/-- Only finitely many primes of `F` contribute to the different. -/
+/-- Only finitely many primes of `F` contribute to the different.
+@isnad1 id=finite.0h2v.s6.f8dfd181b093 from=translated src=- shape=32155d85 vocab=486b664c
+-/
 theorem diffContrib_support_finite :
     (Function.support fun 𝔭 : HeightOneSpectrum (𝓞 F) =>
       diffContrib L 𝔭.asIdeal).Finite := by

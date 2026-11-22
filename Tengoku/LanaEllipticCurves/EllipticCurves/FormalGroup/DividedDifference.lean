@@ -60,14 +60,18 @@ private def punitEmb {σ : Type*} (i : σ) : Unit ↪ σ :=
   ⟨fun _ => i, fun _ _ _ => Subsingleton.elim _ _⟩
 
 /-- The `single i k` coefficient of the one-variable embedding `f(zᵢ) = f.toMvPowerSeries i` is the
-`k`-th coefficient of `f`. -/
+`k`-th coefficient of `f`.
+@isnad1 id=eq.0h5v.s8.ec27f808e936 from=translated src=- shape=34f803fe vocab=6823e532
+-/
 theorem coeff_toMvPowerSeries_single {σ : Type*} (f : R⟦X⟧) (i : σ) (k : ℕ) :
     MvPowerSeries.coeff (Finsupp.single i k) (f.toMvPowerSeries i) = coeff k f := by
   rw [PowerSeries.coeff_def (s := Finsupp.single () k) (by simp), PowerSeries.toMvPowerSeries_apply]
   have h := MvPowerSeries.coeff_embDomain_rename (R := R) (punitEmb i) f (Finsupp.single () k)
   rwa [Finsupp.embDomain_single] at h
 
-/-- Off the axis `{single i k}`, the one-variable embedding `f(zᵢ)` has vanishing coefficients. -/
+/-- Off the axis `{single i k}`, the one-variable embedding `f(zᵢ)` has vanishing coefficients.
+@isnad1 id=eq.1h5v.s8.d4b20e2c6625 from=translated src=- shape=6d50d703 vocab=23dc8940
+-/
 theorem coeff_toMvPowerSeries_of_ne {σ : Type*} (f : R⟦X⟧) (i : σ) {d : σ →₀ ℕ}
     (hd : d ≠ Finsupp.single i (d i)) : MvPowerSeries.coeff d (f.toMvPowerSeries i) = 0 := by
   rw [PowerSeries.toMvPowerSeries_apply]
@@ -86,17 +90,25 @@ series `f`, realised as a genuine bivariate power series: its `z₀^a z₁^b`-co
 noncomputable def dividedDiff (f : R⟦X⟧) : MvPowerSeries (Fin 2) R :=
   fun d => coeff (d 0 + d 1 + 1) f
 
+/--
+@isnad1 id=eq.0h3v.s9.b2efe41da6a5 from=translated src=- shape=7c7070f7 vocab=025ed921
+-/
 @[simp]
 theorem coeff_dividedDiff (f : R⟦X⟧) (d : Fin 2 →₀ ℕ) :
     MvPowerSeries.coeff d (dividedDiff f) = coeff (d 0 + d 1 + 1) f := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.89333e88b325 from=translated src=- shape=e657d88a vocab=33a53c06
+-/
 theorem constantCoeff_dividedDiff (f : R⟦X⟧) :
     MvPowerSeries.constantCoeff (dividedDiff f) = coeff 1 f := by
   rw [← MvPowerSeries.coeff_zero_eq_constantCoeff_apply, coeff_dividedDiff]
   simp
 
 /-- **Regularity of the divided difference.** The naive quotient is a genuine power series:
-`(z₁ − z₀) · Δf = f(z₁) − f(z₀)`. -/
+`(z₁ − z₀) · Δf = f(z₁) − f(z₀)`.
+@isnad1 id=eq.0h2v.s9.d3d089534808 from=translated src=- shape=d7224d63 vocab=4981e112
+-/
 theorem dividedDiff_spec (f : R⟦X⟧) :
     (MvPowerSeries.X 1 - MvPowerSeries.X 0) * dividedDiff f
       = f.toMvPowerSeries 1 - f.toMvPowerSeries 0 := by
@@ -167,7 +179,9 @@ theorem dividedDiff_spec (f : R⟦X⟧) :
       ite_eq_right (by omega : ¬ d 0 = 0), ite_eq_right (by omega : ¬ d 1 = 0)]; ring
 
 /-- A lower bound on the order of the divided difference: if `f` has order `≥ n + 1` then `Δf` has
-order `≥ n`. -/
+order `≥ n`.
+@isnad1 id=le.1h3v.s5.edbabfef51b1 from=translated src=- shape=d023ae9c vocab=852db03d
+-/
 theorem le_order_dividedDiff (f : R⟦X⟧) (n : ℕ) (hf : (n : ℕ∞) + 1 ≤ f.order) :
     (n : ℕ∞) ≤ (dividedDiff f).order := by
   apply MvPowerSeries.le_order
@@ -195,14 +209,18 @@ noncomputable def formalWDividedDiff : MvPowerSeries (Fin 2) R :=
   PowerSeries.dividedDiff W.formalW
 
 /-- The slope series regularises the difference quotient of `w`:
-`(z₁ − z₀) · λ = w(z₁) − w(z₀)`. -/
+`(z₁ − z₀) · λ = w(z₁) − w(z₀)`.
+@isnad1 id=eq.0h2v.s9.46c3c916d31e from=translated src=- shape=e241f652 vocab=ab45c835
+-/
 theorem formalWDividedDiff_spec :
     (MvPowerSeries.X 1 - MvPowerSeries.X 0) * W.formalWDividedDiff
       = W.formalW.toMvPowerSeries 1 - W.formalW.toMvPowerSeries 0 :=
   PowerSeries.dividedDiff_spec W.formalW
 
 /-- The slope series has order at least `2` (since `w` has order at least `3`). In particular its
-constant coefficient vanishes, so it is a legitimate substitutand/parameter. -/
+constant coefficient vanishes, so it is a legitimate substitutand/parameter.
+@isnad1 id=le.0h2v.s5.638a5d46457e from=translated src=- shape=9c15738c vocab=c5ace1af
+-/
 theorem two_le_order_formalWDividedDiff : (2 : ℕ∞) ≤ W.formalWDividedDiff.order := by
   refine PowerSeries.le_order_dividedDiff W.formalW 2 ?_
   have h32 : ((2 : ℕ) : ℕ∞) + 1 = 3 := by norm_num

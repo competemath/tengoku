@@ -29,7 +29,9 @@ section QuotientBasis
 
 variable {R S ι : Type*} [CommRing R] [CommRing S] [Algebra R S]
 
-/-- The coordinates of an element of `I·S` lie in `I`. -/
+/-- The coordinates of an element of `I·S` lie in `I`.
+@isnad1 id=mem.1h7v.s9.a42593429002 from=translated src=- shape=23e11095 vocab=e8dfd7b9
+-/
 lemma repr_mem_of_mem_map (b : Basis ι R S) (I : Ideal R) {x : S}
     (hx : x ∈ I.map (algebraMap R S)) (i : ι) : b.repr x i ∈ I := by
   have hx' : x ∈ I • (⊤ : Submodule R S) := by
@@ -43,7 +45,9 @@ lemma repr_mem_of_mem_map (b : Basis ι R S) (I : Ideal R) {x : S}
     rw [map_add, Finsupp.add_apply]
     exact I.add_mem hx hy
 
-/-- `(r mod I) • (s mod IS) = (r • s) mod IS`. -/
+/-- `(r mod I) • (s mod IS) = (r • s) mod IS`.
+@isnad1 id=eq.0h5v.s11.417ffe493618 from=translated src=- shape=4c4465fe vocab=87af0e97
+-/
 lemma mk_smul_mk (I : Ideal R) (r : R) (s : S) :
     Ideal.Quotient.mk I r • Ideal.Quotient.mk (I.map (algebraMap R S)) s =
       Ideal.Quotient.mk (I.map (algebraMap R S)) (r • s) := by
@@ -52,7 +56,9 @@ lemma mk_smul_mk (I : Ideal R) (r : R) (s : S) :
 
 variable [Fintype ι]
 
-/-- `x mod IS = ∑ (c_i mod I)·(b_i mod IS)` for the coordinates `c_i` of `x`. -/
+/-- `x mod IS = ∑ (c_i mod I)·(b_i mod IS)` for the coordinates `c_i` of `x`.
+@isnad1 id=eq.0h6v.s11.6384ce71b792 from=translated src=- shape=48b7719a vocab=2a2c5758
+-/
 lemma mk_eq_sum_repr_smul (b : Basis ι R S) (I : Ideal R) (x : S) :
     Ideal.Quotient.mk (I.map (algebraMap R S)) x =
       ∑ i, Ideal.Quotient.mk I (b.repr x i) •
@@ -61,7 +67,9 @@ lemma mk_eq_sum_repr_smul (b : Basis ι R S) (I : Ideal R) (x : S) :
   rw [map_sum]
   exact Finset.sum_congr rfl fun i _ => (mk_smul_mk I _ _).symm
 
-/-- The induced family `b_i mod IS` is linearly independent over `R/I`. -/
+/-- The induced family `b_i mod IS` is linearly independent over `R/I`.
+@isnad1 id=linearin.0h5v.s10.fae316b201dd from=translated src=- shape=c1903197 vocab=12e08b3d
+-/
 lemma linearIndependent_mk_basis (b : Basis ι R S) (I : Ideal R) :
     LinearIndependent (R ⧸ I) fun i => Ideal.Quotient.mk (I.map (algebraMap R S)) (b i) := by
   rw [Fintype.linearIndependent_iff]
@@ -86,10 +94,16 @@ noncomputable def basisQuotientMap (b : Basis ι R S) (I : Ideal R) :
     exact Submodule.sum_mem _ fun i _ =>
       Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩))
 
+/--
+@isnad1 id=eq.0h6v.s10.048d5e04be8f from=translated src=- shape=abb09c89 vocab=4cadedae
+-/
 @[simp] lemma basisQuotientMap_apply (b : Basis ι R S) (I : Ideal R) (i : ι) :
     basisQuotientMap b I i = Ideal.Quotient.mk (I.map (algebraMap R S)) (b i) :=
   Basis.mk_apply _ _ _
 
+/--
+@isnad1 id=eq.0h7v.s11.38a032cc9c45 from=translated src=- shape=5c86dc14 vocab=a0fe46b8
+-/
 lemma basisQuotientMap_repr (b : Basis ι R S) (I : Ideal R) (x : S) (i : ι) :
     (basisQuotientMap b I).repr (Ideal.Quotient.mk (I.map (algebraMap R S)) x) i =
       Ideal.Quotient.mk I (b.repr x i) := by
@@ -100,7 +114,9 @@ lemma basisQuotientMap_repr (b : Basis ι R S) (I : Ideal R) (x : S) (i : ι) :
   rw [h, (basisQuotientMap b I).repr_sum_self]
 
 /-- **The trace modulo an ideal**: `Tr_{(S/IS)/(R/I)}(x mod IS) = Tr_{S/R}(x) mod I` for a
-finite free algebra `S/R`. -/
+finite free algebra `S/R`.
+@isnad1 id=eq.0h4v.s11.3c78cbed8f6e from=translated src=- shape=c0d92340 vocab=c026ec5d
+-/
 lemma trace_quotient_mk_map [Module.Free R S] [Module.Finite R S] (I : Ideal R) (x : S) :
     Algebra.trace (R ⧸ I) (S ⧸ I.map (algebraMap R S))
         (Ideal.Quotient.mk (I.map (algebraMap R S)) x) =
@@ -120,7 +136,9 @@ section Nilpotent
 
 variable {R : Type*} [CommRing R]
 
-/-- A ring is `I`-adically complete for an ideal with `I ^ n = ⊥`. -/
+/-- A ring is `I`-adically complete for an ideal with `I ^ n = ⊥`.
+@isnad1 id=isadicco.1h3v.s6.b8413fe6fa3f from=translated src=- shape=f6beffd6 vocab=c771c607
+-/
 lemma isAdicComplete_of_pow_eq_bot (I : Ideal R) (n : ℕ) (hI : I ^ n = ⊥) :
     IsAdicComplete I R where
   haus' x hx := by

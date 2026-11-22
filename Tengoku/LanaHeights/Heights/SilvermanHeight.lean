@@ -30,20 +30,26 @@ noncomputable def logIdealNorm
   Real.log (Ideal.absNorm I)
 
 /-- A nonzero integral ideal has strictly positive absolute norm, so its norm
-is a legitimate logarithm argument. -/
+is a legitimate logarithm argument.
+@isnad1 id=lt.1h2v.s8.e6bb0a3102d1 from=translated src=- shape=e6d4aee3 vocab=45666427
+-/
 theorem absNorm_pos_of_ne_bot
     {K : Type*} [Field K] [NumberField K]
     (I : Ideal (𝓞 K)) (hI : I ≠ ⊥) :
     0 < (Ideal.absNorm I : ℝ) := by
   exact_mod_cast Nat.pos_of_ne_zero (Ideal.absNorm_eq_zero_iff.not.mpr hI)
 
-/-- The logarithmic norm of the unit ideal vanishes. -/
+/-- The logarithmic norm of the unit ideal vanishes.
+@isnad1 id=eq.0h1v.s6.4ecb3c1b209c from=translated src=- shape=066f9b3f vocab=635f925f
+-/
 @[simp] theorem logIdealNorm_top
     {K : Type*} [Field K] [NumberField K] :
     logIdealNorm (⊤ : Ideal (𝓞 K)) = 0 := by
   simp [logIdealNorm]
 
-/-- The logarithmic norm of a nonzero integral ideal is nonnegative. -/
+/-- The logarithmic norm of a nonzero integral ideal is nonnegative.
+@isnad1 id=le.1h2v.s6.192095ac365b from=translated src=- shape=fc5417e1 vocab=13969f3d
+-/
 theorem logIdealNorm_nonneg
     {K : Type*} [Field K] [NumberField K]
     (I : Ideal (𝓞 K)) (hI : I ≠ ⊥) :
@@ -76,7 +82,9 @@ noncomputable def silvermanHeight
 /-- The formula-defined height is independent of the qualifying period data.
 This is canonicity of the displayed modular expression. The parameters do
 algebraically realize the embedded curve, but no period-integration or
-Arakelov interpretation is used here. -/
+Arakelov interpretation is used here.
+@isnad1 id=eq.0h5v.s5.893c1d88e74a from=translated src=- shape=d994ae99 vocab=7ac1d712
+-/
 theorem silvermanHeight_periodData_independent
     {K : Type*} [Field K] [NumberField K]
     (W : WeierstrassCurve K) [W.IsElliptic]
@@ -119,7 +127,9 @@ noncomputable def silvermanHeightOfCurve
   silvermanHeightOfPeriods W (archimedeanPeriodData W)
 
 /-- Every qualifying period datum computes the canonical formula-defined
-curve height. -/
+curve height.
+@isnad1 id=eq.0h3v.s5.c137655d1ec4 from=translated src=- shape=99c00841 vocab=64e9c26a
+-/
 theorem silvermanHeightOfPeriods_eq_silvermanHeightOfCurve
     {K : Type*} [Field K] [NumberField K]
     (W : WeierstrassCurve K) [W.IsElliptic]
@@ -129,7 +139,9 @@ theorem silvermanHeightOfPeriods_eq_silvermanHeightOfCurve
     p (archimedeanPeriodData W)
 
 /-- Every archimedean logarithm argument in `silvermanHeight` is strictly
-positive. -/
+positive.
+@isnad1 id=lt.0h4v.s6.cf08a225a68d from=translated src=- shape=f4cc813c vocab=d833d1b7
+-/
 theorem silvermanHeight_archimedean_log_arg_pos
     {K : Type*} [Field K] [NumberField K]
     (W : WeierstrassCurve K) [W.IsElliptic]
@@ -138,7 +150,9 @@ theorem silvermanHeight_archimedean_log_arg_pos
   exact mul_pos (silvermanModularDiscriminant_norm_pos _)
     (pow_pos (p.τ v).im_pos _)
 
-/-- The denominator in `silvermanHeight` is strictly positive. -/
+/-- The denominator in `silvermanHeight` is strictly positive.
+@isnad1 id=lt.0h1v.s6.b67aaa683efd from=translated src=- shape=3e992223 vocab=9d3bf0e7
+-/
 theorem silvermanHeight_denominator_pos
     (K : Type*) [Field K] [NumberField K] :
     (0 : ℝ) < 12 * Module.finrank ℚ K := by

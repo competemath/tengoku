@@ -66,7 +66,9 @@ noncomputable def adicEval {x : A} (hx : x ∈ I) : PowerSeries A →+* A :=
 
 variable {I}
 
-/-- The underlying function of `adicEval` is `PowerSeries.eval₂` at the identity coefficient map. -/
+/-- The underlying function of `adicEval` is `PowerSeries.eval₂` at the identity coefficient map.
+@isnad1 id=eq.1h3v.s7.13160be0dfea from=translated src=- shape=b6730eda vocab=d8dc71e6
+-/
 theorem coe_adicEval {x : A} (hx : x ∈ I) :
     letI : WithIdeal A := ⟨I⟩
     ⇑(adicEval I hx) = eval₂ (RingHom.id A) x := by
@@ -75,19 +77,30 @@ theorem coe_adicEval {x : A} (hx : x ∈ I) :
   haveI : T2Space A := ((IsAdic.isAdicComplete_iff (I := I) rfl).mp ‹_›).2
   exact coe_eval₂Hom continuous_id (WithIdeal.isTopologicallyNilpotent_of_mem hx)
 
+/--
+@isnad1 id=eq.1h3v.s7.260af7b62cac from=translated src=- shape=6846a0e4 vocab=1d13eb63
+-/
 @[simp]
 theorem adicEval_X {x : A} (hx : x ∈ I) : adicEval I hx (X : PowerSeries A) = x := by
   rw [coe_adicEval hx, eval₂_X]
 
+/--
+@isnad1 id=eq.1h4v.s7.ccb9b33e1a27 from=translated src=- shape=4d2f65e1 vocab=b26b5518
+-/
 @[simp]
 theorem adicEval_C {x : A} (hx : x ∈ I) (a : A) : adicEval I hx (C a) = a := by
   rw [coe_adicEval hx, eval₂_C, RingHom.id_apply]
 
+/--
+@isnad1 id=eq.1h3v.s7.59b9b095283d from=translated src=- shape=c4015deb vocab=1a7e06a7
+-/
 @[simp]
 theorem adicEval_one {x : A} (hx : x ∈ I) : adicEval I hx (1 : PowerSeries A) = 1 :=
   map_one _
 
-/-- Series form of the `I`-adic evaluation: `f(x) = ∑ₙ (coeff n f) · xⁿ`. -/
+/-- Series form of the `I`-adic evaluation: `f(x) = ∑ₙ (coeff n f) · xⁿ`.
+@isnad1 id=eq.1h4v.s8.64ca3d6a1c1a from=translated src=- shape=a4de79a0 vocab=02ad7a32
+-/
 theorem adicEval_eq_tsum {x : A} (hx : x ∈ I) (f : PowerSeries A) :
     letI : WithIdeal A := ⟨I⟩
     adicEval I hx f = ∑' n : ℕ, coeff n f * x ^ n := by
@@ -102,7 +115,9 @@ theorem adicEval_eq_tsum {x : A} (hx : x ∈ I) (f : PowerSeries A) :
 
 This is the key statement for the formal group `Ê(𝔪)`: substituting elements of `𝔪` into the
 formal group law (which has zero constant coefficient) keeps us inside `𝔪`.  The proof avoids all
-topology: `constantCoeff f = 0` means `X ∣ f`, so `f = X * g` and `f(x) = x · g(x) ∈ I`. -/
+topology: `constantCoeff f = 0` means `X ∣ f`, so `f = X * g` and `f(x) = x · g(x) ∈ I`.
+@isnad1 id=mem.2h4v.s7.a0cd575104b9 from=translated src=- shape=df43b102 vocab=727205ce
+-/
 theorem adicEval_mem {x : A} (hx : x ∈ I) {f : PowerSeries A}
     (hf : constantCoeff f = 0) : adicEval I hx f ∈ I := by
   obtain ⟨g, rfl⟩ := X_dvd_iff.mpr hf
@@ -130,7 +145,9 @@ noncomputable def adicEvalMv (I : Ideal A) [IsAdicComplete I A] {a : σ → A}
       rw [Filter.cofinite_eq_bot]; exact Filter.tendsto_bot⟩
 
 /-- The underlying function of `adicEvalMv` is `MvPowerSeries.eval₂` at the identity coefficient
-map. -/
+map.
+@isnad1 id=eq.1h4v.s7.8e592a993b10 from=translated src=- shape=88c84712 vocab=0612854d
+-/
 theorem coe_adicEvalMv (I : Ideal A) [IsAdicComplete I A] {a : σ → A} (ha : ∀ s, a s ∈ I) :
     letI : WithIdeal A := ⟨I⟩
     ⇑(adicEvalMv I ha) = MvPowerSeries.eval₂ (RingHom.id A) a := by
@@ -141,12 +158,18 @@ theorem coe_adicEvalMv (I : Ideal A) [IsAdicComplete I A] {a : σ → A} (ha : �
     ⟨fun s ↦ WithIdeal.isTopologicallyNilpotent_of_mem (ha s), by
       rw [Filter.cofinite_eq_bot]; exact Filter.tendsto_bot⟩
 
+/--
+@isnad1 id=eq.1h5v.s7.95d20d773461 from=translated src=- shape=dc699488 vocab=bc10079c
+-/
 @[simp]
 theorem adicEvalMv_X (I : Ideal A) [IsAdicComplete I A] {a : σ → A} (ha : ∀ s, a s ∈ I) (s : σ) :
     adicEvalMv I ha (MvPowerSeries.X s) = a s := by
   letI : WithIdeal A := ⟨I⟩
   rw [coe_adicEvalMv I ha, MvPowerSeries.eval₂_X]
 
+/--
+@isnad1 id=eq.1h5v.s7.e09831f71509 from=translated src=- shape=292c7231 vocab=93dc220f
+-/
 @[simp]
 theorem adicEvalMv_C (I : Ideal A) [IsAdicComplete I A] {a : σ → A} (ha : ∀ s, a s ∈ I) (r : A) :
     adicEvalMv I ha (MvPowerSeries.C r : MvPowerSeries σ A) = r := by
@@ -155,7 +178,9 @@ theorem adicEvalMv_C (I : Ideal A) [IsAdicComplete I A] {a : σ → A} (ha : ∀
 
 /-- The multivariate `I`-adic evaluation of a power series with vanishing constant coefficient lands
 in `I`.  This is the group-law closure statement for `Ê(𝔪)`: with `a = ![x, y]` and `F` the formal
-group law (which has zero constant coefficient), `F(x, y) ∈ I`. -/
+group law (which has zero constant coefficient), `F(x, y) ∈ I`.
+@isnad1 id=mem.2h5v.s8.d4883a8102bd from=translated src=- shape=8d2917bd vocab=676f3452
+-/
 theorem adicEvalMv_mem (I : Ideal A) [IsAdicComplete I A] {a : σ → A} (ha : ∀ s, a s ∈ I)
     {f : MvPowerSeries σ A} (hf : MvPowerSeries.constantCoeff f = 0) :
     adicEvalMv I ha f ∈ I := by

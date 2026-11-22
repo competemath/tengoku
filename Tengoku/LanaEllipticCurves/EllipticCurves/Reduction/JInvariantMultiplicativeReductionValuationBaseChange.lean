@@ -71,7 +71,9 @@ of `j` at the base place is exactly `(v_A Δ)⁻¹`. This strengthens
 `not_mem_j_of_hasMultiplicativeReduction_baseChange` (#505, which records only
 `algebraMap K L W.j ∉ A`) to the exact value — the base-change reflection of the sharp identity
 `valuation_j_of_hasMultiplicativeReduction` (`v(j) = (v Δ)⁻¹`), and the multiplicative mirror of
-the good-reduction reflection `valuation_j_of_hasGoodReduction_baseChange` (#507). -/
+the good-reduction reflection `valuation_j_of_hasGoodReduction_baseChange` (#507).
+@isnad1 id=eq.1h4v.s8.88b9e8a8f894 from=translated src=- shape=6d1a1226 vocab=adaa5eee
+-/
 theorem valuation_j_of_hasMultiplicativeReduction_baseChange
     (h : HasMultiplicativeReduction A (W⁄L)) :
     valuation L (maximalIdeal A) (algebraMap K L W.j) =

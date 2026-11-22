@@ -49,7 +49,9 @@ variable {R : Type*} [CommRing R]
 /-- To identify `embedDoubleLaurent gen` with a target Laurent series `target`, it suffices to check
 that `target` is pole-free in both gradings and that the reader `ofDoubleLaurent` sends it back to
 `gen`. This routes every generator computation through the unconditional left inverse
-`embedDoubleLaurent_ofDoubleLaurent`. -/
+`embedDoubleLaurent_ofDoubleLaurent`.
+@isnad1 id=eq.3h3v.s8.792d088b20c6 from=translated src=- shape=961869fb vocab=3e077e55
+-/
 theorem embedDoubleLaurent_of_ofDoubleLaurent
     {gen : MvPowerSeries (Fin 2) R} {target : (R⸨X⸩)⸨X⸩}
     (hout : ∀ n < 0, target.coeff n = 0)
@@ -80,7 +82,9 @@ private lemma finTwo_eq_single_one_axis_iff (d : Fin 2 →₀ ℕ) :
 /-! ### The constant -/
 
 /-- `embedDoubleLaurent (C r) = C (C r)`: the writer sends the `MvPowerSeries` constant to the
-double `HahnSeries` constant. -/
+double `HahnSeries` constant.
+@isnad1 id=eq.0h2v.s9.229954716e64 from=translated src=- shape=717673d3 vocab=f4488c89
+-/
 theorem embedDoubleLaurent_C (r : R) :
     embedDoubleLaurent (MvPowerSeries.C r : MvPowerSeries (Fin 2) R)
       = HahnSeries.C (HahnSeries.C r) := by
@@ -95,7 +99,9 @@ theorem embedDoubleLaurent_C (r : R) :
 /-! ### The two variables -/
 
 /-- `embedDoubleLaurent (X 0) = C (single 1 1)`: the inner variable maps to the inner uniformiser
-of `R⸨z₁⸩⸨z₂⸩`. -/
+of `R⸨z₁⸩⸨z₂⸩`.
+@isnad1 id=eq.0h1v.s9.ec8013c9f04d from=translated src=- shape=d02afc09 vocab=8f906e6c
+-/
 theorem embedDoubleLaurent_X_zero :
     embedDoubleLaurent (MvPowerSeries.X 0 : MvPowerSeries (Fin 2) R)
       = HahnSeries.C (HahnSeries.single (1 : ℤ) (1 : R)) := by
@@ -116,7 +122,9 @@ theorem embedDoubleLaurent_X_zero :
     · rw [coeff_single, ite_eq_right (by exact_mod_cast h1), coeff_zero,
         ite_eq_right (fun h => h1 ((finTwo_eq_single_zero_iff d).1 h).2)]
 
-/-- `embedDoubleLaurent (X 1) = single 1 1`: the outer variable maps to the outer uniformiser. -/
+/-- `embedDoubleLaurent (X 1) = single 1 1`: the outer variable maps to the outer uniformiser.
+@isnad1 id=eq.0h1v.s8.c1a5a9a23a97 from=translated src=- shape=d68a5aa6 vocab=f4d5f126
+-/
 theorem embedDoubleLaurent_X_one :
     embedDoubleLaurent (MvPowerSeries.X 1 : MvPowerSeries (Fin 2) R)
       = HahnSeries.single (1 : ℤ) (1 : R⸨X⸩) := by
@@ -139,7 +147,9 @@ theorem embedDoubleLaurent_X_one :
 /-! ### The axis embeddings of a univariate power series -/
 
 /-- `embedDoubleLaurent (f(z₁)) = (f : R⸨X⸩)` embedded as an inner constant: the `z₁`-axis
-embedding `PowerSeries.toMvPowerSeries 0` of `f` maps to `C (f : R⸨X⸩)`. -/
+embedding `PowerSeries.toMvPowerSeries 0` of `f` maps to `C (f : R⸨X⸩)`.
+@isnad1 id=eq.0h2v.s9.d9acfcccf335 from=translated src=- shape=739be290 vocab=41223b9a
+-/
 theorem embedDoubleLaurent_toMvPowerSeries_zero (f : R⟦X⟧) :
     embedDoubleLaurent (f.toMvPowerSeries (0 : Fin 2)) = HahnSeries.C (f : R⸨X⸩) := by
   refine embedDoubleLaurent_of_ofDoubleLaurent (fun n hn => ?_) (fun n g hg => ?_) ?_
@@ -163,7 +173,9 @@ theorem embedDoubleLaurent_toMvPowerSeries_zero (f : R⟦X⟧) :
       rw [hrhs, coeff_single, ite_eq_right (by exact_mod_cast h1), coeff_zero]
 
 /-- `embedDoubleLaurent (f(z₂))` embedded along the outer variable: the `z₂`-axis embedding
-`PowerSeries.toMvPowerSeries 1` of `f` maps to `map C` of its coercion `(f : R⸨X⸩)`. -/
+`PowerSeries.toMvPowerSeries 1` of `f` maps to `map C` of its coercion `(f : R⸨X⸩)`.
+@isnad1 id=eq.0h2v.s9.2a3bb712e6b3 from=translated src=- shape=94daffc5 vocab=6f6fdbaf
+-/
 theorem embedDoubleLaurent_toMvPowerSeries_one (f : R⟦X⟧) :
     embedDoubleLaurent (f.toMvPowerSeries (1 : Fin 2))
       = (f : R⸨X⸩).map (HahnSeries.C : R →+* R⸨X⸩) := by
@@ -192,22 +204,30 @@ namespace WeierstrassCurve
 
 variable {R : Type*} [CommRing R] (W : WeierstrassCurve R)
 
-/-- `embedDoubleLaurent (X 0) = z₁`: the inner variable maps to the inner uniformiser `biZ₁`. -/
+/-- `embedDoubleLaurent (X 0) = z₁`: the inner variable maps to the inner uniformiser `biZ₁`.
+@isnad1 id=eq.0h2v.s6.137256c5385c from=translated src=- shape=3bb30182 vocab=254ea5d9
+-/
 theorem embedDoubleLaurent_biZ₁ :
     HahnSeries.embedDoubleLaurent (MvPowerSeries.X 0 : MvPowerSeries (Fin 2) R) = W.biZ₁ := by
   rw [HahnSeries.embedDoubleLaurent_X_zero, biZ₁, cConstRingHom]
 
-/-- `embedDoubleLaurent (X 1) = z₂`: the outer variable maps to the outer uniformiser `biZ₂`. -/
+/-- `embedDoubleLaurent (X 1) = z₂`: the outer variable maps to the outer uniformiser `biZ₂`.
+@isnad1 id=eq.0h2v.s6.556836a55395 from=translated src=- shape=3bb30182 vocab=6337fc0b
+-/
 theorem embedDoubleLaurent_biZ₂ :
     HahnSeries.embedDoubleLaurent (MvPowerSeries.X 1 : MvPowerSeries (Fin 2) R) = W.biZ₂ := by
   rw [HahnSeries.embedDoubleLaurent_X_one, biZ₂]
 
-/-- `embedDoubleLaurent (w(z₁)) = w₁`: the inner `w`-embedding maps to `biW₁`. -/
+/-- `embedDoubleLaurent (w(z₁)) = w₁`: the inner `w`-embedding maps to `biW₁`.
+@isnad1 id=eq.0h2v.s7.bf8f14d72703 from=translated src=- shape=420ddac9 vocab=70240747
+-/
 theorem embedDoubleLaurent_biW₁ :
     HahnSeries.embedDoubleLaurent (W.formalW.toMvPowerSeries (0 : Fin 2)) = W.biW₁ := by
   rw [HahnSeries.embedDoubleLaurent_toMvPowerSeries_zero W.formalW, biW₁, cConstRingHom]
 
-/-- `embedDoubleLaurent (w(z₂)) = w₂`: the outer `w`-embedding maps to `biW₂`. -/
+/-- `embedDoubleLaurent (w(z₂)) = w₂`: the outer `w`-embedding maps to `biW₂`.
+@isnad1 id=eq.0h2v.s7.dea036b44023 from=translated src=- shape=420ddac9 vocab=182febde
+-/
 theorem embedDoubleLaurent_biW₂ :
     HahnSeries.embedDoubleLaurent (W.formalW.toMvPowerSeries (1 : Fin 2)) = W.biW₂ := by
   rw [HahnSeries.embedDoubleLaurent_toMvPowerSeries_one W.formalW, biW₂, cLaurentRingHom,

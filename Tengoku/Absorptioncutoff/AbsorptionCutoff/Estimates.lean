@@ -41,7 +41,9 @@ open scoped ENNReal
 namespace AbsorptionCutoff
 
 /-- Hölder interpolation bounds a fractional moment on a measurable set by the
-full first moment and the measure of the set. -/
+full first moment and the measure of the set.
+@isnad1 id=and.5h5v.s7.1b12a1065042 from=translated src=- shape=8cab8c2f vocab=09ef9fe8
+-/
 theorem integrableOn_rpow_and_setIntegral_rpow_le
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsFiniteMeasure μ]
     {f : Ω → ℝ} (hf : Integrable f μ) (hf0 : 0 ≤ᵐ[μ] f)
@@ -97,7 +99,9 @@ theorem integrableOn_rpow_and_setIntegral_rpow_le
 
 /-- Hölder interpolation for negative powers: a smaller negative moment on a
 measurable set is controlled by a larger full negative moment and the measure
-of the set. -/
+of the set.
+@isnad1 id=and.6h7v.s8.d31a282917b1 from=translated src=- shape=e2f16a59 vocab=931d03c7
+-/
 theorem integrableOn_neg_rpow_and_setIntegral_neg_rpow_le
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsFiniteMeasure μ]
     {X : Ω → ℝ} (hXpos : ∀ᵐ ω ∂μ, 0 < X ω)
@@ -130,7 +134,9 @@ theorem integrableOn_neg_rpow_and_setIntegral_neg_rpow_le
           (μ.real s) ^ (1 - γ / α) := hholder.2
 
 /-- A strict multiplicative gap remains strict after small positive losses in
-both factors. -/
+both factors.
+@isnad1 id=ex.2h2v.s6.278a25616d20 from=translated src=- shape=da85fd3a vocab=6216d1cc
+-/
 lemma exists_eps_delta_of_one_lt_mul {a μ : ℝ}
     (ha : 0 < a) (h : 1 < a * μ) :
     ∃ ε δ : ℝ, ε ∈ Set.Ioo 0 1 ∧ 0 < δ ∧
@@ -163,7 +169,9 @@ lemma exists_eps_delta_of_one_lt_mul {a μ : ℝ}
 
 /-- Iterating a geometric-type recursion `m (t+1) ≤ a t · m t + b t` with nonnegative
 multipliers gives the explicit killed-moment bound (paper `eq:common-killed-orbit-tracking`):
-`m t ≤ (∏_{u<t} a u) · m 0 + ∑_{s<t} (∏_{s<u<t} a u) · b s`. -/
+`m t ≤ (∏_{u<t} a u) · m 0 + ∑_{s<t} (∏_{s<u<t} a u) · b s`.
+@isnad1 id=le.2h4v.s7.7cf85f0daa5b from=translated src=- shape=03d713a7 vocab=021686ab
+-/
 lemma geom_recursion_bound {m a b : ℕ → ℝ} (ha : ∀ u, 0 ≤ a u)
     (hrec : ∀ t, m (t + 1) ≤ a t * m t + b t) (t : ℕ) :
     m t ≤ (∏ u ∈ range t, a u) * m 0
@@ -193,7 +201,9 @@ lemma geom_recursion_bound {m a b : ℕ → ℝ} (ha : ∀ u, 0 ≤ a u)
 
 /-- A scalar affine recursion with contraction factor `0 ≤ a < 1` stays below the
 larger of its initial value and the fixed point `B / (1 - a)`. No sign assumption on
-`B` or on the sequence is needed. -/
+`B` or on the sequence is needed.
+@isnad1 id=le.3h4v.s6.e89b77e4241f from=translated src=- shape=0947f63a vocab=67ba57c7
+-/
 lemma geom_recursion_bound_contraction {m : ℕ → ℝ} {a B : ℝ}
     (ha0 : 0 ≤ a) (ha1 : a < 1)
     (hrec : ∀ t, m (t + 1) ≤ a * m t + B) (t : ℕ) :
@@ -214,7 +224,9 @@ lemma geom_recursion_bound_contraction {m : ℕ → ℝ} {a B : ℝ}
         _ = M := by ring
 
 /-- Finite-horizon version of `geom_recursion_bound_contraction`: the same
-fixed-point bound at time `t` only needs the affine recursion before `t`. -/
+fixed-point bound at time `t` only needs the affine recursion before `t`.
+@isnad1 id=le.3h4v.s6.71773add151e from=translated src=- shape=bf83ab12 vocab=67ba57c7
+-/
 lemma geom_recursion_bound_contraction_of_lt
     {m : ℕ → ℝ} {a B : ℝ}
     (ha0 : 0 ≤ a) (ha1 : a < 1) {t : ℕ}
@@ -239,7 +251,9 @@ lemma geom_recursion_bound_contraction_of_lt
         _ = M := by ring
 
 /-- Finite iteration of a contractive affine recursion while retaining the
-geometric decay of the initial value. -/
+geometric decay of the initial value.
+@isnad1 id=le.4h4v.s7.66bdf968b485 from=translated src=- shape=1a665a43 vocab=762a6581
+-/
 lemma geom_recursion_bound_contraction_pow_of_lt
     {m : ℕ → ℝ} {a B : ℝ}
     (ha0 : 0 ≤ a) (ha1 : a < 1) (hB : 0 ≤ B) {t : ℕ}
@@ -262,7 +276,9 @@ lemma geom_recursion_bound_contraction_pow_of_lt
           ring
 
 /-- Every positive exponential rate eventually absorbs one natural factor
-and leaves an inverse-natural bound. -/
+and leaves an inverse-natural bound.
+@isnad1 id=eventual.1h1v.s6.1acad42aeb73 from=translated src=- shape=f0f59059 vocab=9dc190b1
+-/
 lemma eventually_nat_mul_exp_neg_le_inv_nat
     {c : ℝ} (hc : 0 < c) :
     ∀ᶠ N : ℕ in Filter.atTop,
@@ -302,7 +318,9 @@ lemma eventually_nat_mul_exp_neg_le_inv_nat
     _ ≤ 1 := hsq
 
 /-- A varying natural horizon bounded by `C N` can be absorbed into the same
-inverse-dimension envelope. -/
+inverse-dimension envelope.
+@isnad1 id=eventual.3h3v.s7.369e5455002f from=translated src=- shape=7e9ac8e6 vocab=9dc190b1
+-/
 lemma eventually_two_nat_horizon_mul_exp_neg_le_mul_inv_nat
     {T : ℕ → ℕ} {C c : ℝ}
     (hC : 0 ≤ C) (hc : 0 < c)
@@ -328,7 +346,9 @@ lemma eventually_two_nat_horizon_mul_exp_neg_le_mul_inv_nat
 
 /-- Uniform version: with `a u ≤ α` (`α ≥ 1`) and `b s ≤ β`, the killed-moment bound
 simplifies to `m t ≤ αᵗ · m 0 + t · αᵗ · β` — the form applied with the amplification
-bound `K_N` in the paper. -/
+bound `K_N` in the paper.
+@isnad1 id=le.7h6v.s7.a534e884aa2f from=translated src=- shape=4414c4b8 vocab=72589b2f
+-/
 lemma geom_recursion_bound_const {m a b : ℕ → ℝ} {α β : ℝ}
     (hα : 1 ≤ α) (hm0 : 0 ≤ m 0) (ha0 : ∀ u, 0 ≤ a u) (haα : ∀ u, a u ≤ α)
     (hb0 : ∀ s, 0 ≤ b s) (hbβ : ∀ s, b s ≤ β)
@@ -369,32 +389,46 @@ nonincreasing in `t`, satisfy `W_T = 1`, and dominate the forward multiplier via
 /-- Backward weights `W_t = ∏_{u=t}^{T-1} (1 ⊔ α_u²)` for the stopped-moment telescoping. -/
 def backWeight (α : ℕ → ℝ) (T t : ℕ) : ℝ := ∏ u ∈ Ico t T, ((1 : ℝ) ⊔ α u ^ 2)
 
+/--
+@isnad1 id=eq.0h2v.s4.e04ace67b2b4 from=translated src=- shape=5b6b3f39 vocab=4bc240f0
+-/
 @[simp] lemma backWeight_self (α : ℕ → ℝ) (T : ℕ) : backWeight α T T = 1 := by
   simp [backWeight]
 
-/-- Each backward weight is `≥ 1` (every factor `1 ⊔ α_u² ≥ 1`). -/
+/-- Each backward weight is `≥ 1` (every factor `1 ⊔ α_u² ≥ 1`).
+@isnad1 id=le.0h3v.s4.aeb323c4eb67 from=translated src=- shape=e1810563 vocab=0fbe6925
+-/
 lemma one_le_backWeight (α : ℕ → ℝ) (T t : ℕ) : (1 : ℝ) ≤ backWeight α T t := by
   rw [backWeight]
   calc (1 : ℝ) = ∏ _u ∈ Ico t T, (1 : ℝ) := (Finset.prod_const_one).symm
     _ ≤ ∏ u ∈ Ico t T, (1 ⊔ α u ^ 2) :=
         Finset.prod_le_prod (fun _ _ => zero_le_one) (fun u _ => le_max_left _ _)
 
+/--
+@isnad1 id=le.0h3v.s4.72c18075ba63 from=translated src=- shape=e1810563 vocab=0fbe6925
+-/
 lemma backWeight_nonneg (α : ℕ → ℝ) (T t : ℕ) : 0 ≤ backWeight α T t :=
   le_trans zero_le_one (one_le_backWeight α T t)
 
-/-- Peel the bottom factor: `W_t = (1 ⊔ α_t²) · W_{t+1}` for `t < T`. -/
+/-- Peel the bottom factor: `W_t = (1 ⊔ α_t²) · W_{t+1}` for `t < T`.
+@isnad1 id=eq.1h3v.s6.88e09c1e33c4 from=translated src=- shape=d794b45f vocab=5adc201d
+-/
 lemma backWeight_eq_mul_succ {α : ℕ → ℝ} {T t : ℕ} (ht : t < T) :
     backWeight α T t = (1 ⊔ α t ^ 2) * backWeight α T (t + 1) := by
   unfold backWeight
   rw [Finset.prod_eq_prod_Ico_succ_bot ht]
 
-/-- The backward weights are nonincreasing: `W_{t+1} ≤ W_t` for `t < T`. -/
+/-- The backward weights are nonincreasing: `W_{t+1} ≤ W_t` for `t < T`.
+@isnad1 id=le.1h3v.s5.679a9827ae73 from=translated src=- shape=b389524f vocab=8a7ed9a9
+-/
 lemma backWeight_succ_le {α : ℕ → ℝ} {T t : ℕ} (ht : t < T) :
     backWeight α T (t + 1) ≤ backWeight α T t := by
   rw [backWeight_eq_mul_succ ht]
   exact le_mul_of_one_le_left (backWeight_nonneg α T (t + 1)) (le_max_left _ _)
 
-/-- The weights dominate the forward multiplier: `α_t² · W_{t+1} ≤ W_t` for `t < T`. -/
+/-- The weights dominate the forward multiplier: `α_t² · W_{t+1} ≤ W_t` for `t < T`.
+@isnad1 id=le.1h3v.s6.3e132ded12aa from=translated src=- shape=91f73eb9 vocab=77d9b6e3
+-/
 lemma sq_mul_backWeight_succ_le {α : ℕ → ℝ} {T t : ℕ} (ht : t < T) :
     α t ^ 2 * backWeight α T (t + 1) ≤ backWeight α T t := by
   rw [backWeight_eq_mul_succ ht]
@@ -410,7 +444,9 @@ def trackingAmplification (α σ : ℕ → ℝ) (T : ℕ) : ℝ :=
       (∏ u ∈ Finset.Ico s t, (1 ⊔ α u))
         ⊔ (σ s * ∏ u ∈ Finset.Ico (s + 1) t, (1 ⊔ α u))
 
-/-- The tracking amplification scalar includes `1` among its defining candidates. -/
+/-- The tracking amplification scalar includes `1` among its defining candidates.
+@isnad1 id=le.0h3v.s4.b7ace648bb78 from=translated src=- shape=19f029fa vocab=74af3f9a
+-/
 lemma one_le_trackingAmplification (α σ : ℕ → ℝ) (T : ℕ) :
     1 ≤ trackingAmplification α σ T := by
   unfold trackingAmplification
@@ -418,7 +454,9 @@ lemma one_le_trackingAmplification (α σ : ℕ → ℝ) (T : ℕ) :
   exact Or.inl le_rfl
 
 /-- A uniform bound on the sum of the multiplier and noise-amplification products
-bounds the tracking amplification scalar. -/
+bounds the tracking amplification scalar.
+@isnad1 id=le.3h4v.s7.ff5a1e23df22 from=translated src=- shape=0b0640c9 vocab=7eb8affb
+-/
 lemma trackingAmplification_le_of_combination_le
     {α σ : ℕ → ℝ} {T : ℕ} {K : ℝ}
     (hK : 1 ≤ K)
@@ -449,7 +487,9 @@ lemma trackingAmplification_le_of_combination_le
     (le_add_of_nonneg_left hp0).trans hsum⟩
 
 /-- Every multiplier product in the defining finite horizon is bounded by the tracking
-amplification scalar. -/
+amplification scalar.
+@isnad1 id=le.2h5v.s5.4c88b60ee390 from=translated src=- shape=24d7379a vocab=af3934d8
+-/
 lemma tracking_product_le {α σ : ℕ → ℝ} {T s t : ℕ} (hst : s < t) (ht : t ≤ T) :
     (∏ u ∈ Finset.Ico s t, (1 ⊔ α u)) ≤ trackingAmplification α σ T := by
   have hsT : s < T := lt_of_lt_of_le hst ht
@@ -466,7 +506,9 @@ lemma tracking_product_le {α σ : ℕ → ℝ} {T s t : ℕ} (hst : s < t) (ht 
   exact Or.inr ⟨s, Finset.mem_range.mpr hsT, hinner⟩
 
 /-- Every noise-amplification product in the defining finite horizon is bounded by the
-tracking amplification scalar. -/
+tracking amplification scalar.
+@isnad1 id=le.2h5v.s6.9edd055dc48b from=translated src=- shape=5b7574e4 vocab=7eb8affb
+-/
 lemma tracking_noise_product_le {α σ : ℕ → ℝ} {T s t : ℕ} (hst : s < t) (ht : t ≤ T) :
     σ s * (∏ u ∈ Finset.Ico (s + 1) t, (1 ⊔ α u))
       ≤ trackingAmplification α σ T := by
@@ -484,7 +526,9 @@ lemma tracking_noise_product_le {α σ : ℕ → ℝ} {T s t : ℕ} (hst : s < t
   exact Or.inr ⟨s, Finset.mem_range.mpr hsT, hinner⟩
 
 /-- For nonnegative multipliers, every backward weight is the square of its corresponding
-unsquared suffix product. -/
+unsquared suffix product.
+@isnad1 id=eq.1h3v.s6.4929bb644159 from=translated src=- shape=e9e4d2aa vocab=4dfc9e50
+-/
 lemma backWeight_eq_tracking_product_sq {α : ℕ → ℝ} {T s : ℕ}
     (hα : ∀ u, u < T → 0 ≤ α u) :
     backWeight α T s = (∏ u ∈ Finset.Ico s T, (1 ⊔ α u)) ^ 2 := by
@@ -501,14 +545,18 @@ lemma backWeight_eq_tracking_product_sq {α : ℕ → ℝ} {T s : ℕ}
       rw [max_eq_right hs, max_eq_right h1]
   rw [Finset.prod_congr rfl hfactor, ← Finset.prod_pow]
 
-/-- Zero-start specialization of `backWeight_eq_tracking_product_sq`. -/
+/-- Zero-start specialization of `backWeight_eq_tracking_product_sq`.
+@isnad1 id=eq.1h2v.s6.831d495840dd from=translated src=- shape=f94ad0cc vocab=4dfc9e50
+-/
 lemma backWeight_zero_eq_tracking_product_sq {α : ℕ → ℝ} {T : ℕ}
     (hα : ∀ u, u < T → 0 ≤ α u) :
     backWeight α T 0 = (∏ u ∈ Finset.Ico 0 T, (1 ⊔ α u)) ^ 2 :=
   backWeight_eq_tracking_product_sq hα
 
 /-- The initial backward weight is bounded by the square of the tracking amplification
-scalar. -/
+scalar.
+@isnad1 id=le.1h3v.s5.4ae4ddfbc9be from=translated src=- shape=3cf7226f vocab=ba46110f
+-/
 lemma backWeight_zero_le_trackingAmplification_sq {α σ : ℕ → ℝ} {T : ℕ}
     (hα : ∀ u, u < T → 0 ≤ α u) :
     backWeight α T 0 ≤ trackingAmplification α σ T ^ 2 := by
@@ -528,7 +576,9 @@ lemma backWeight_zero_le_trackingAmplification_sq {α σ : ℕ → ℝ} {T : ℕ
     exact (sq_le_sq₀ hp0 hK).mpr hp
 
 /-- Each backward-weighted noise scale is bounded by the square of the tracking
-amplification scalar. -/
+amplification scalar.
+@isnad1 id=le.3h4v.s6.a2fbab40bc14 from=translated src=- shape=6e15d1e6 vocab=98435984
+-/
 lemma backWeight_mul_sigma_sq_le_trackingAmplification_sq
     {α σ : ℕ → ℝ} {T t : ℕ}
     (hα : ∀ u, u < T → 0 ≤ α u) (ht : t < T) (hσ : 0 ≤ σ t) :

@@ -47,6 +47,9 @@ def complexWeierstrassEquationX (W : WeierstrassCurve ℂ) (p : ℂ × ℂ) : �
 def complexWeierstrassEquationY (W : WeierstrassCurve ℂ) (p : ℂ × ℂ) : ℂ :=
   2 * p.2 + W.a₁ * p.1 + W.a₃
 
+/--
+@isnad1 id=iff.0h2v.s5.956cc5ab8b8e from=translated src=- shape=3239fea4 vocab=fa1ffb9b
+-/
 @[simp] theorem complexWeierstrassEquation_eq_zero_iff
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ) :
     complexWeierstrassEquation W p = 0 ↔
@@ -54,6 +57,9 @@ def complexWeierstrassEquationY (W : WeierstrassCurve ℂ) (p : ℂ × ℂ) : �
   rw [WeierstrassCurve.Affine.equation_iff']
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.22338e93842e from=translated src=- shape=15c6ce88 vocab=2262672a
+-/
 @[simp] theorem complexWeierstrassEquationX_eq_polynomialX
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ) :
     complexWeierstrassEquationX W p =
@@ -61,6 +67,9 @@ def complexWeierstrassEquationY (W : WeierstrassCurve ℂ) (p : ℂ × ℂ) : �
   rw [WeierstrassCurve.Affine.evalEval_polynomialX]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.4da654fd6419 from=translated src=- shape=15c6ce88 vocab=327b5863
+-/
 @[simp] theorem complexWeierstrassEquationY_eq_polynomialY
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ) :
     complexWeierstrassEquationY W p =
@@ -68,13 +77,17 @@ def complexWeierstrassEquationY (W : WeierstrassCurve ℂ) (p : ℂ × ℂ) : �
   rw [WeierstrassCurve.Affine.evalEval_polynomialY]
   rfl
 
-/-- The affine equation is an entire function on `ℂ × ℂ`. -/
+/-- The affine equation is an entire function on `ℂ × ℂ`.
+@isnad1 id=contdiff.0h1v.s5.b7ca1f2781f8 from=translated src=- shape=d173f0b9 vocab=e5da47bf
+-/
 theorem contDiff_complexWeierstrassEquation (W : WeierstrassCurve ℂ) :
     ContDiff ℂ ω (complexWeierstrassEquation W) := by
   unfold complexWeierstrassEquation
   fun_prop
 
-/-- The exact complex Fréchet derivative of the affine equation. -/
+/-- The exact complex Fréchet derivative of the affine equation.
+@isnad1 id=hasfderi.0h2v.s9.3f969c566106 from=translated src=- shape=70ebc313 vocab=9546a304
+-/
 theorem hasFDerivAt_complexWeierstrassEquation
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ) :
     HasFDerivAt (complexWeierstrassEquation W)
@@ -119,7 +132,9 @@ private theorem isInvertible_smulRight_id (a : ℂ) (ha : a ≠ 0) :
   simp [u, mul_comm]
 
 /-- If the `y`-derivative is nonzero, the partial Fréchet derivative in the
-second factor is invertible. -/
+second factor is invertible.
+@isnad1 id=isinvert.1h2v.s8.ed0e2a5dbdbf from=translated src=- shape=038cefd5 vocab=4383b1e4
+-/
 theorem isInvertible_fderiv_inr_complexWeierstrassEquation
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ)
     (hy : complexWeierstrassEquationY W p ≠ 0) :
@@ -146,6 +161,9 @@ def complexWeierstrassImplicitY (W : WeierstrassCurve ℂ) (p : ℂ × ℂ)
   (contDiff_complexWeierstrassEquation W).contDiffAt.implicitFunction
     (by simp) (isInvertible_fderiv_inr_complexWeierstrassEquation W p hy)
 
+/--
+@isnad1 id=eq.1h2v.s5.60b39867a02e from=translated src=- shape=8ce5558b vocab=7c7c6b34
+-/
 @[simp] theorem complexWeierstrassImplicitY_apply_self
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ)
     (hy : complexWeierstrassEquationY W p ≠ 0) :
@@ -154,7 +172,9 @@ def complexWeierstrassImplicitY (W : WeierstrassCurve ℂ) (p : ℂ × ℂ)
     (by simp) (isInvertible_fderiv_inr_complexWeierstrassEquation W p hy)
 
 /-- Near its base point, the implicit `y`-function parametrizes the same level
-set of the Weierstrass equation. -/
+set of the Weierstrass equation.
+@isnad1 id=eventual.1h2v.s6.6f69ede1b7d1 from=translated src=- shape=af7ef254 vocab=189229d9
+-/
 theorem eventually_complexWeierstrassEquation_iff_implicitY
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ)
     (hy : complexWeierstrassEquationY W p ≠ 0) :
@@ -165,7 +185,9 @@ theorem eventually_complexWeierstrassEquation_iff_implicitY
     (by simp) (isInvertible_fderiv_inr_complexWeierstrassEquation W p hy)
 
 /-- If the base point lies on the curve, the graph of the implicit `y`-function
-lies on the curve near the base coordinate. -/
+lies on the curve near the base coordinate.
+@isnad1 id=eventual.2h2v.s6.46f4201d273f from=translated src=- shape=9ccac7d1 vocab=26b2ad58
+-/
 theorem eventually_complexWeierstrassImplicitY_equation
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ)
     (hp : W.toAffine.Equation p.1 p.2)
@@ -183,7 +205,9 @@ theorem eventually_complexWeierstrassImplicitY_equation
     (x, complexWeierstrassImplicitY W p hy x)).1
   simpa [hp0, complexWeierstrassImplicitY] using hx
 
-/-- The implicit `y`-coordinate is complex analytic at its base coordinate. -/
+/-- The implicit `y`-coordinate is complex analytic at its base coordinate.
+@isnad1 id=contdiff.1h2v.s5.3d62a9451bfe from=translated src=- shape=21f921b8 vocab=28602d94
+-/
 theorem contDiffAt_complexWeierstrassImplicitY
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ)
     (hy : complexWeierstrassEquationY W p ≠ 0) :
@@ -197,13 +221,17 @@ def complexWeierstrassEquationSwap (W : WeierstrassCurve ℂ)
     (p : ℂ × ℂ) : ℂ :=
   complexWeierstrassEquation W (p.2, p.1)
 
-/-- The swapped equation is entire. -/
+/-- The swapped equation is entire.
+@isnad1 id=contdiff.0h1v.s5.1264e8d27cfe from=translated src=- shape=d173f0b9 vocab=197d7498
+-/
 theorem contDiff_complexWeierstrassEquationSwap (W : WeierstrassCurve ℂ) :
     ContDiff ℂ ω (complexWeierstrassEquationSwap W) := by
   unfold complexWeierstrassEquationSwap
   exact (contDiff_complexWeierstrassEquation W).comp (by fun_prop)
 
-/-- The exact derivative of the equation after exchanging coordinates. -/
+/-- The exact derivative of the equation after exchanging coordinates.
+@isnad1 id=hasfderi.0h2v.s9.2e3cf2637261 from=translated src=- shape=61dcae22 vocab=c8603a51
+-/
 theorem hasFDerivAt_complexWeierstrassEquationSwap
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ) :
     HasFDerivAt (complexWeierstrassEquationSwap W)
@@ -231,7 +259,9 @@ theorem hasFDerivAt_complexWeierstrassEquationSwap
   rwa [hfd] at hd
 
 /-- If the `x`-derivative is nonzero, the second-factor derivative of the
-swapped equation is invertible. -/
+swapped equation is invertible.
+@isnad1 id=isinvert.1h2v.s8.06cbb655fe20 from=translated src=- shape=b61912f6 vocab=9978cbe0
+-/
 theorem isInvertible_fderiv_inr_complexWeierstrassEquationSwap
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ)
     (hx : complexWeierstrassEquationX W (p.2, p.1) ≠ 0) :
@@ -260,6 +290,9 @@ def complexWeierstrassImplicitX (W : WeierstrassCurve ℂ) (p : ℂ × ℂ)
     (by simp) (isInvertible_fderiv_inr_complexWeierstrassEquationSwap W
       (p.2, p.1) hx)
 
+/--
+@isnad1 id=eq.1h2v.s5.1b185be797a7 from=translated src=- shape=8ce5558b vocab=e1b0d0df
+-/
 @[simp] theorem complexWeierstrassImplicitX_apply_self
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ)
     (hx : complexWeierstrassEquationX W p ≠ 0) :
@@ -269,7 +302,9 @@ def complexWeierstrassImplicitX (W : WeierstrassCurve ℂ) (p : ℂ × ℂ)
       (p.2, p.1) hx)
 
 /-- Near its base point, the implicit `x`-function parametrizes the same level
-set of the Weierstrass equation. -/
+set of the Weierstrass equation.
+@isnad1 id=eventual.1h2v.s6.476093132f7f from=translated src=- shape=af7ef254 vocab=433f2ac8
+-/
 theorem eventually_complexWeierstrassEquation_iff_implicitX
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ)
     (hx : complexWeierstrassEquationX W p ≠ 0) :
@@ -286,7 +321,9 @@ theorem eventually_complexWeierstrassEquation_iff_implicitX
   simpa [complexWeierstrassEquationSwap, complexWeierstrassImplicitX] using hq
 
 /-- If the base point lies on the curve, the graph of the implicit `x`-function
-lies on the curve near the base coordinate. -/
+lies on the curve near the base coordinate.
+@isnad1 id=eventual.2h2v.s6.8c1cd649842d from=translated src=- shape=4bf92a70 vocab=13fc6ded
+-/
 theorem eventually_complexWeierstrassImplicitX_equation
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ)
     (hp : W.toAffine.Equation p.1 p.2)
@@ -306,7 +343,9 @@ theorem eventually_complexWeierstrassImplicitX_equation
     (y, complexWeierstrassImplicitX W p hx y) = 0
   exact hy.trans hp0
 
-/-- The implicit `x`-coordinate is complex analytic at its base coordinate. -/
+/-- The implicit `x`-coordinate is complex analytic at its base coordinate.
+@isnad1 id=contdiff.1h2v.s5.94014ff68df5 from=translated src=- shape=21f921b8 vocab=4b6e386f
+-/
 theorem contDiffAt_complexWeierstrassImplicitX
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ)
     (hx : complexWeierstrassEquationX W p ≠ 0) :
@@ -331,6 +370,9 @@ def complexWeierstrassImplicitYAmbientHomeomorph
     unfold complexWeierstrassEquationY
     fun_prop)
 
+/--
+@isnad1 id=mem.1h2v.s7.060f829584ed from=translated src=- shape=1955f1a9 vocab=ac89a1e3
+-/
 theorem complexWeierstrassImplicitYAmbientHomeomorph_mem_source
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ)
     (hy : complexWeierstrassEquationY W p ≠ 0) :
@@ -339,6 +381,9 @@ theorem complexWeierstrassImplicitYAmbientHomeomorph_mem_source
     OpenPartialHomeomorph.restrOpen_source]
   exact ⟨ImplicitFunctionData.pt_mem_toOpenPartialHomeomorph_source _, hy⟩
 
+/--
+@isnad1 id=eq.1h3v.s6.5293269e6ded from=translated src=- shape=64a90479 vocab=3e5055d3
+-/
 @[simp] theorem complexWeierstrassImplicitYAmbientHomeomorph_apply
     (W : WeierstrassCurve ℂ) (p q : ℂ × ℂ)
     (hy : complexWeierstrassEquationY W p ≠ 0) :
@@ -349,7 +394,9 @@ theorem complexWeierstrassImplicitYAmbientHomeomorph_mem_source
 /-- The inverse of the restricted ambient implicit-function neighborhood is
 complex analytic at every point of its target, not only at its original
 center.  Restricting the source to `∂F/∂y ≠ 0` is what makes this whole-target
-statement available. -/
+statement available.
+@isnad1 id=contdiff.2h3v.s8.afaa0db3078a from=translated src=- shape=50bcdd80 vocab=f510ff21
+-/
 theorem contDiffAt_complexWeierstrassImplicitYAmbientHomeomorph_symm
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ)
     (hy : complexWeierstrassEquationY W p ≠ 0) (z : ℂ × ℂ)
@@ -473,12 +520,18 @@ def complexWeierstrassImplicitYChart
   · exact e.open_source.preimage continuous_subtype_val
   · exact e.open_target.preimage (continuous_const.prodMk continuous_id)
 
+/--
+@isnad1 id=eq.1h3v.s7.b16bd3c460d1 from=translated src=- shape=a5740e51 vocab=8a967797
+-/
 @[simp] theorem complexWeierstrassImplicitYChart_apply
     (W : WeierstrassCurve ℂ) (P Q : ComplexWeierstrassAffine W)
     (hy : complexWeierstrassEquationY W P.1 ≠ 0) :
     complexWeierstrassImplicitYChart W P hy Q = Q.1.1 :=
   rfl
 
+/--
+@isnad1 id=mem.1h2v.s7.24e075765061 from=translated src=- shape=386508ee vocab=b7542e18
+-/
 theorem complexWeierstrassImplicitYChart_mem_source
     (W : WeierstrassCurve ℂ) (P : ComplexWeierstrassAffine W)
     (hy : complexWeierstrassEquationY W P.1 ≠ 0) :
@@ -486,7 +539,9 @@ theorem complexWeierstrassImplicitYChart_mem_source
   complexWeierstrassImplicitYAmbientHomeomorph_mem_source W P.1 hy
 
 /-- On its target, the inverse topological chart is exactly the graph of the
-implicit analytic `y`-function constructed above. -/
+implicit analytic `y`-function constructed above.
+@isnad1 id=eq.2h3v.s8.c648a363d851 from=translated src=- shape=f50d95c6 vocab=8be43bb0
+-/
 theorem complexWeierstrassImplicitYChart_symm_coe_of_mem
     (W : WeierstrassCurve ℂ) (P : ComplexWeierstrassAffine W)
     (hy : complexWeierstrassEquationY W P.1 ≠ 0) (x : ℂ)
@@ -507,7 +562,9 @@ theorem complexWeierstrassImplicitYChart_symm_coe_of_mem
     rw [hzero]
 
 /-- The inverse of the finite `x`-coordinate chart is complex analytic at
-every point of its target, in ambient affine coordinates. -/
+every point of its target, in ambient affine coordinates.
+@isnad1 id=contdiff.2h3v.s8.1b8090ab713b from=translated src=- shape=fbe62eb1 vocab=1a05730f
+-/
 theorem contDiffAt_complexWeierstrassImplicitYChart_symm_coe_of_mem
     (W : WeierstrassCurve ℂ) (P : ComplexWeierstrassAffine W)
     (hy : complexWeierstrassEquationY W P.1 ≠ 0) (x : ℂ)
@@ -529,7 +586,9 @@ theorem contDiffAt_complexWeierstrassImplicitYChart_symm_coe_of_mem
   exact hcomp.congr_of_eventuallyEq heq
 
 /-- The inverse of the finite `x`-coordinate chart is complex analytic at its
-center, for the ambient affine coordinates. -/
+center, for the ambient affine coordinates.
+@isnad1 id=contdiff.1h2v.s8.125b993f26de from=translated src=- shape=7605fcc0 vocab=489c7f1d
+-/
 theorem contDiffAt_complexWeierstrassImplicitYChart_symm_coe
     (W : WeierstrassCurve ℂ) (P : ComplexWeierstrassAffine W)
     (hy : complexWeierstrassEquationY W P.1 ≠ 0) :
@@ -564,6 +623,9 @@ def complexWeierstrassImplicitXAmbientHomeomorph
     unfold complexWeierstrassEquationX
     fun_prop)
 
+/--
+@isnad1 id=mem.1h2v.s7.2974e7e997e0 from=translated src=- shape=c1a182ce vocab=e4b91666
+-/
 theorem complexWeierstrassImplicitXAmbientHomeomorph_mem_source
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ)
     (hx : complexWeierstrassEquationX W p ≠ 0) :
@@ -573,6 +635,9 @@ theorem complexWeierstrassImplicitXAmbientHomeomorph_mem_source
     OpenPartialHomeomorph.restrOpen_source]
   exact ⟨ImplicitFunctionData.pt_mem_toOpenPartialHomeomorph_source _, hx⟩
 
+/--
+@isnad1 id=eq.1h3v.s6.d09798743c8d from=translated src=- shape=64a90479 vocab=f6c63de2
+-/
 @[simp] theorem complexWeierstrassImplicitXAmbientHomeomorph_apply
     (W : WeierstrassCurve ℂ) (p q : ℂ × ℂ)
     (hx : complexWeierstrassEquationX W p ≠ 0) :
@@ -581,7 +646,9 @@ theorem complexWeierstrassImplicitXAmbientHomeomorph_mem_source
   rfl
 
 /-- The inverse of the swapped ambient implicit-function neighborhood is
-complex analytic everywhere on its target. -/
+complex analytic everywhere on its target.
+@isnad1 id=contdiff.2h3v.s8.8bfba1d927f3 from=translated src=- shape=50bcdd80 vocab=e4867253
+-/
 theorem contDiffAt_complexWeierstrassImplicitXAmbientHomeomorph_symm
     (W : WeierstrassCurve ℂ) (p : ℂ × ℂ)
     (hx : complexWeierstrassEquationX W p ≠ 0) (z : ℂ × ℂ)
@@ -712,12 +779,18 @@ def complexWeierstrassImplicitXChart
       (continuous_subtype_val.snd.prodMk continuous_subtype_val.fst)
   · exact e.open_target.preimage (continuous_const.prodMk continuous_id)
 
+/--
+@isnad1 id=eq.1h3v.s7.e524bb49978c from=translated src=- shape=d4c5a5de vocab=a30deeeb
+-/
 @[simp] theorem complexWeierstrassImplicitXChart_apply
     (W : WeierstrassCurve ℂ) (P Q : ComplexWeierstrassAffine W)
     (hx : complexWeierstrassEquationX W P.1 ≠ 0) :
     complexWeierstrassImplicitXChart W P hx Q = Q.1.2 :=
   rfl
 
+/--
+@isnad1 id=mem.1h2v.s7.cbf2dffebcac from=translated src=- shape=386508ee vocab=0735f4e0
+-/
 theorem complexWeierstrassImplicitXChart_mem_source
     (W : WeierstrassCurve ℂ) (P : ComplexWeierstrassAffine W)
     (hx : complexWeierstrassEquationX W P.1 ≠ 0) :
@@ -725,7 +798,9 @@ theorem complexWeierstrassImplicitXChart_mem_source
   complexWeierstrassImplicitXAmbientHomeomorph_mem_source W P.1 hx
 
 /-- On its target, the inverse topological chart is exactly the graph of the
-implicit analytic `x`-function, written back in `(x,y)` order. -/
+implicit analytic `x`-function, written back in `(x,y)` order.
+@isnad1 id=eq.2h3v.s8.be434a10ed36 from=translated src=- shape=ea221d79 vocab=6bc56412
+-/
 theorem complexWeierstrassImplicitXChart_symm_coe_of_mem
     (W : WeierstrassCurve ℂ) (P : ComplexWeierstrassAffine W)
     (hx : complexWeierstrassEquationX W P.1 ≠ 0) (y : ℂ)
@@ -747,7 +822,9 @@ theorem complexWeierstrassImplicitXChart_symm_coe_of_mem
   exact Prod.ext hfirst hsecond
 
 /-- The inverse of the finite `y`-coordinate chart is complex analytic at
-every point of its target, in ambient affine coordinates. -/
+every point of its target, in ambient affine coordinates.
+@isnad1 id=contdiff.2h3v.s8.4ecb4cdff2b3 from=translated src=- shape=fbe62eb1 vocab=8a412ea0
+-/
 theorem contDiffAt_complexWeierstrassImplicitXChart_symm_coe_of_mem
     (W : WeierstrassCurve ℂ) (P : ComplexWeierstrassAffine W)
     (hx : complexWeierstrassEquationX W P.1 ≠ 0) (y : ℂ)
@@ -771,7 +848,9 @@ theorem contDiffAt_complexWeierstrassImplicitXChart_symm_coe_of_mem
   exact hcomp.congr_of_eventuallyEq heq
 
 /-- The inverse of the finite `y`-coordinate chart is complex analytic at its
-center, for the ambient affine coordinates. -/
+center, for the ambient affine coordinates.
+@isnad1 id=contdiff.1h2v.s8.49c7f92557c7 from=translated src=- shape=3f748ddf vocab=8223e06c
+-/
 theorem contDiffAt_complexWeierstrassImplicitXChart_symm_coe
     (W : WeierstrassCurve ℂ) (P : ComplexWeierstrassAffine W)
     (hx : complexWeierstrassEquationX W P.1 ≠ 0) :
@@ -791,7 +870,9 @@ theorem contDiffAt_complexWeierstrassImplicitXChart_symm_coe
   simpa [c] using heq
 
 /-- At every finite point of a nonsingular complex Weierstrass equation, one
-of the two analytic implicit-coordinate constructions applies. -/
+of the two analytic implicit-coordinate constructions applies.
+@isnad1 id=or.0h2v.s6.284f867880b2 from=translated src=- shape=78717387 vocab=1c0559ff
+-/
 theorem complexWeierstrassAffine_derivative_ne_zero
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (P : ComplexWeierstrassAffine W) :
@@ -806,7 +887,9 @@ theorem complexWeierstrassAffine_derivative_ne_zero
 open partial homeomorphisms to `ℂ`.  Their forward maps are the corresponding
 coordinate projections, so their topology is the existing subtype topology.
 This is the topological chart layer; holomorphic transition packaging is still
-separate. -/
+separate.
+@isnad1 id=or.0h2v.s9.840ec1c6e4bd from=translated src=- shape=b749726c vocab=056ad89a
+-/
 theorem complexWeierstrassAffine_exists_openPartialHomeomorph
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (P : ComplexWeierstrassAffine W) :
@@ -825,7 +908,9 @@ theorem complexWeierstrassAffine_exists_openPartialHomeomorph
 /-- Every finite curve point admits an honest complex-analytic graph germ in
 one of the two coordinate directions.  This packages the analytic output next
 to the open topological charts, without pretending that a complex atlas has
-already been assembled. -/
+already been assembled.
+@isnad1 id=or.0h2v.s9.160ad970694a from=translated src=- shape=9a729e19 vocab=f4922c94
+-/
 theorem complexWeierstrassAffine_exists_analytic_graph_germ
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (P : ComplexWeierstrassAffine W) :

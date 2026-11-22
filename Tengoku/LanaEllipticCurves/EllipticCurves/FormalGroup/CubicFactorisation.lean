@@ -48,7 +48,9 @@ third root `z = -(B·a) - x - y` is again a root. -/
 
 /-- **Abstract Vieta third root.** Let `F : T → T` be a cubic through its divided difference:
 `F u - F v = (u - v) · (A·(u² + u·v + v²) + B·(u + v) + Cc)`.  If `x, y` are roots, `A · a = 1`,
-`z = -(B·a) - x - y`, and multiplication by `x - y` is injective, then `F z = 0`. -/
+`z = -(B·a) - x - y`, and multiplication by `x - y` is injective, then `F z = 0`.
+@isnad1 id=eq.6h9v.s8.8b1114a3eea5 from=translated src=- shape=61943180 vocab=2ee55b10
+-/
 theorem _root_.Tengoku.LanaEllipticCurves.vieta_root_of_regular {T : Type*} [CommRing T] (F : T → T) (A B Cc x y z a : T)
     (hdiff : ∀ u v : T, F u - F v = (u - v) * (A * (u ^ 2 + u * v + v ^ 2) + B * (u + v) + Cc))
     (hFx : F x = 0) (hFy : F y = 0) (hA : A * a = 1) (hz : z = -(B * a) - x - y)
@@ -155,7 +157,9 @@ private theorem constantCoeff_formalGroupLead' :
 /-- **Vieta third root is a root of the substituted cubic.**  The Vieta third root
 `z₃' = W.formalThirdRoot = -(B·A⁻¹) - z₁ - z₂` solves the substituted `z`-cubic, exactly like the
 two known roots `z₁ = X 0`, `z₂ = X 1` (`formalCubicResidual_root_zero` / `_one`).  This is the
-`z`-cubic Vieta factorisation crux of #314. -/
+`z`-cubic Vieta factorisation crux of #314.
+@isnad1 id=eq.0h2v.s11.b1584727de53 from=translated src=- shape=4393ebaf vocab=247194e0
+-/
 theorem formalCubicResidual_root_thirdRoot :
     W.formalThirdRoot ^ 3
       + (C W.a₁ * W.formalThirdRoot + C W.a₂ * W.formalThirdRoot ^ 2)

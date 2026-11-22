@@ -58,8 +58,14 @@ noncomputable def wIter (W : WeierstrassCurve R) : ℕ → R⟦X⟧
   | 0 => 0
   | (n + 1) => W.wOp (W.wIter n)
 
+/--
+@isnad1 id=eq.0h2v.s5.cd667860c48a from=translated src=- shape=217e3f21 vocab=fcb79ae1
+-/
 @[simp] lemma wIter_zero : W.wIter 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.701397679117 from=translated src=- shape=905b91be vocab=babc9929
+-/
 @[simp] lemma wIter_succ (n : ℕ) : W.wIter (n + 1) = W.wOp (W.wIter n) := rfl
 
 /-- A three-term sum has order at least `k` if each summand does. -/
@@ -95,7 +101,9 @@ private lemma le_order_mul_right {a b : R⟦X⟧} {k : ℕ∞} (hb : k ≤ b.ord
 
 /-- The key contraction estimate: applying `T` increases the order of agreement by one.
 If `u, v` have positive order and agree up to order `m`, then `T u, T v` agree up to
-order `m + 1`. -/
+order `m + 1`.
+@isnad1 id=le.3h5v.s7.64b95c4b06a7 from=translated src=- shape=74ace21a vocab=eeda81ec
+-/
 lemma order_wOp_sub (u v : R⟦X⟧) (hu : 1 ≤ u.order) (hv : 1 ≤ v.order) {m : ℕ}
     (hm : (m : ℕ∞) ≤ (u - v).order) : (m : ℕ∞) + 1 ≤ (W.wOp u - W.wOp v).order := by
   have hcu : constantCoeff u = 0 := constCoeff_eq_zero_of_one_le_order hu
@@ -135,7 +143,9 @@ lemma order_wOp_sub (u v : R⟦X⟧) (hu : 1 ≤ u.order) (hv : 1 ≤ v.order) {
           add_le_add le_rfl (le_order_mul _ _)
       _ ≤ _ := le_order_mul _ _
 
-/-- Each approximation `wₙ` has order at least `3` (its expansion starts at `z³`). -/
+/-- Each approximation `wₙ` has order at least `3` (its expansion starts at `z³`).
+@isnad1 id=le.0h3v.s5.91e0fc3ce325 from=translated src=- shape=286db272 vocab=4b10b980
+-/
 lemma order_three_le_wIter (n : ℕ) : (3 : ℕ∞) ≤ (W.wIter n).order := by
   induction n with
   | zero => simp
@@ -159,7 +169,9 @@ private lemma one_le_order_wIter (n : ℕ) : (1 : ℕ∞) ≤ (W.wIter n).order 
   le_trans (by exact_mod_cast (by norm_num : (1 : ℕ) ≤ 3)) (W.order_three_le_wIter n)
 
 /-- The iteration is `z`-adically Cauchy: `wₙ` and `wₙ₊₁` agree up to order `n`. This is the
-contraction property, iterated from `w₀ = 0`. -/
+contraction property, iterated from `w₀ = 0`.
+@isnad1 id=le.0h3v.s6.e53f575b7428 from=translated src=- shape=68585c7a vocab=4f01a3f3
+-/
 lemma order_wIter_sub_succ (n : ℕ) : (n : ℕ∞) ≤ (W.wIter n - W.wIter (n + 1)).order := by
   induction n with
   | zero => exact zero_le
@@ -170,7 +182,9 @@ lemma order_wIter_sub_succ (n : ℕ) : (n : ℕ∞) ≤ (W.wIter n - W.wIter (n 
     exact key
 
 /-- The coefficients of the iterates stabilise: for `k ≥ n + 1`, the `n`-th coefficient of `wₖ`
-no longer changes. -/
+no longer changes.
+@isnad1 id=eq.1h4v.s8.fdd65db8b1e0 from=translated src=- shape=5baa7125 vocab=48a6c85c
+-/
 lemma coeff_wIter_stable {n k : ℕ} (hk : n + 1 ≤ k) :
     coeff n (W.wIter k) = coeff n (W.wIter (n + 1)) := by
   induction k with
@@ -192,15 +206,22 @@ functional equation `w = z³ + (a₁z + a₂z²)w + (a₃ + a₄z)w² + a₆w³`
 noncomputable def formalW (W : WeierstrassCurve R) : R⟦X⟧ :=
   PowerSeries.mk fun n => coeff n (W.wIter (n + 1))
 
+/--
+@isnad1 id=eq.0h3v.s8.8acb60afa737 from=translated src=- shape=05514d6d vocab=c601d9d4
+-/
 lemma coeff_formalW (n : ℕ) : coeff n W.formalW = coeff n (W.wIter (n + 1)) := by
   rw [formalW, coeff_mk]
 
-/-- The `n`-th coefficient of `w` agrees with that of every sufficiently advanced iterate. -/
+/-- The `n`-th coefficient of `w` agrees with that of every sufficiently advanced iterate.
+@isnad1 id=eq.1h4v.s8.8b4e87fb7761 from=translated src=- shape=a2ae4968 vocab=f346c100
+-/
 lemma coeff_formalW_eq_wIter {n k : ℕ} (hk : n + 1 ≤ k) :
     coeff n W.formalW = coeff n (W.wIter k) := by
   rw [coeff_formalW, ← W.coeff_wIter_stable hk]
 
-/-- The expansion has order at least `3`: `w = c₃ z³ + …`. -/
+/-- The expansion has order at least `3`: `w = c₃ z³ + …`.
+@isnad1 id=le.0h2v.s4.13548c9dc31d from=translated src=- shape=e1606677 vocab=98a10c00
+-/
 lemma order_formalW : (3 : ℕ∞) ≤ W.formalW.order := by
   refine nat_le_order _ 3 (fun i hi => ?_)
   rw [coeff_formalW]
@@ -211,7 +232,9 @@ private lemma one_le_order_formalW : (1 : ℕ∞) ≤ W.formalW.order :=
   le_trans (by exact_mod_cast (by norm_num : (1 : ℕ) ≤ 3)) W.order_formalW
 
 /-- **The Weierstrass functional equation.** The expansion `w` is a fixed point of the operator
-`T`, i.e. `w = z³ + (a₁z + a₂z²)w + (a₃ + a₄z)w² + a₆w³`. -/
+`T`, i.e. `w = z³ + (a₁z + a₂z²)w + (a₃ + a₄z)w² + a₆w³`.
+@isnad1 id=eq.0h2v.s4.c6d76e950d0d from=translated src=- shape=ea6b900b vocab=bf735049
+-/
 theorem formalW_eq : W.formalW = W.wOp W.formalW := by
   ext n
   have hm : (n : ℕ∞) ≤ (W.formalW - W.wIter n).order := by
@@ -260,7 +283,9 @@ private lemma coeff_mul_eq_zero_of_lt {a b : R⟦X⟧} {n : ℕ}
   coeff_of_lt_order n (lt_of_lt_of_le h (le_order_mul a b))
 
 /-- The leading coefficient of the expansion is `1`: `w = z³ + a₁z⁴ + …`. Combined with
-`order_formalW`, this shows `w` has order exactly `3`. -/
+`order_formalW`, this shows `w` has order exactly `3`.
+@isnad1 id=eq.0h2v.s7.5144368247a1 from=translated src=- shape=bc3cb118 vocab=c914567c
+-/
 theorem coeff_formalW_three : coeff 3 W.formalW = 1 := by
   have hP1 : coeff 3 ((C W.a₁ * X + C W.a₂ * X ^ 2) * W.formalW) = 0 :=
     coeff_mul_eq_zero_of_lt (lt_of_lt_of_le
@@ -289,7 +314,9 @@ theorem coeff_formalW_three : coeff 3 W.formalW = 1 := by
 private lemma coeff_formalW_of_lt {n : ℕ} (hn : n < 3) : coeff n W.formalW = 0 :=
   coeff_of_lt_order n (lt_of_lt_of_le (by exact_mod_cast hn) W.order_formalW)
 
-/-- The coefficient of `z⁴` in the expansion is `a₁`: `w = z³ + a₁z⁴ + …`. -/
+/-- The coefficient of `z⁴` in the expansion is `a₁`: `w = z³ + a₁z⁴ + …`.
+@isnad1 id=eq.0h2v.s7.ab3403d071f1 from=translated src=- shape=6f1cbf0d vocab=c47e0caf
+-/
 theorem coeff_formalW_four : coeff 4 W.formalW = W.a₁ := by
   have hXw : coeff 4 (X * W.formalW) = coeff 3 W.formalW := coeff_succ_X_mul 3 W.formalW
   have hX2w : coeff 4 (X ^ 2 * W.formalW) = coeff 2 W.formalW := by
@@ -316,7 +343,9 @@ theorem coeff_formalW_four : coeff 4 W.formalW = W.a₁ := by
   rw [hX, hlin, hP2, hP3]
   ring
 
-/-- The coefficient of `z⁵` in the expansion is `a₁² + a₂`: `w = z³ + a₁z⁴ + (a₁² + a₂)z⁵ + …`. -/
+/-- The coefficient of `z⁵` in the expansion is `a₁² + a₂`: `w = z³ + a₁z⁴ + (a₁² + a₂)z⁵ + …`.
+@isnad1 id=eq.0h2v.s7.d270a96838b2 from=translated src=- shape=6a81053a vocab=5da564d3
+-/
 theorem coeff_formalW_five : coeff 5 W.formalW = W.a₁ ^ 2 + W.a₂ := by
   have hXw : coeff 5 (X * W.formalW) = coeff 4 W.formalW := coeff_succ_X_mul 4 W.formalW
   have hX2w : coeff 5 (X ^ 2 * W.formalW) = coeff 3 W.formalW := by
@@ -346,7 +375,9 @@ theorem coeff_formalW_five : coeff 5 W.formalW = W.a₁ ^ 2 + W.a₂ := by
 
 /-- The `z⁶`-coefficient of the expansion is `a₁³ + 2a₁a₂ + a₃`. Here the `w²` term first
 contributes (its leading term `z⁶` has coefficient `1`), so unlike the lower coefficients this one
-is not simply linear in the `aᵢ`. -/
+is not simply linear in the `aᵢ`.
+@isnad1 id=eq.0h2v.s8.e4a5c219e737 from=translated src=- shape=dcd2bc7a vocab=bdfab124
+-/
 theorem coeff_formalW_six :
     coeff 6 W.formalW = W.a₁ ^ 3 + 2 * W.a₁ * W.a₂ + W.a₃ := by
   have h0 := W.coeff_formalW_of_lt (show (0 : ℕ) < 3 by norm_num)

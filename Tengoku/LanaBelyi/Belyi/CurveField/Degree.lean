@@ -43,12 +43,17 @@ section Normalised
 variable (P : Place K) (w : Valuation K ℤᵐ⁰) (hw : ∀ x, x ∈ P.1 ↔ w x ≤ 1)
 include hw
 
+/--
+@isnad1 id=eq.2h4v.s8.e762002c39b0 from=translated src=- shape=3d75b91b vocab=596729b1
+-/
 theorem ord_eq_zero_of_valuation_eq_one {y : K} (hy : w y = 1) : P.ord y = 0 := by
   have hy0 : y ≠ 0 := by rintro rfl; simp at hy
   refine (P.ord_eq_zero_iff hy0).mpr ⟨(hw y).mpr hy.le, (hw _).mpr ?_⟩
   rw [map_inv₀, hy, inv_one]
 
-/-- `ord_P` is the unique normalised discrete valuation with valuation ring `O_P`. -/
+/-- `ord_P` is the unique normalised discrete valuation with valuation ring `O_P`.
+@isnad1 id=eq.2h4v.s8.b379c85d9600 from=translated src=- shape=91035600 vocab=7d9b07de
+-/
 theorem ord_eq_neg_log (hπ : ∃ π, w π = WithZero.exp (-1)) (x : K) :
     P.ord x = -WithZero.log (w x) := by
   obtain ⟨π, hπ⟩ := hπ
@@ -95,7 +100,9 @@ section Chart
 variable (t : K) [Fact (Transcendental ℚ t)]
 
 /-- At the place attached to a height-one prime `v` of the chart ring, `ord` is the `v`-adic
-valuation. -/
+valuation.
+@isnad1 id=eq.0h4v.s10.95a6ffb90da6 from=translated src=- shape=070020a6 vocab=48e9dfa1
+-/
 theorem ord_ofChart (v : HeightOneSpectrum (chartRing t)) (x : K) :
     (ofChart t v).ord x = -WithZero.log (v.valuation K x) := by
   refine (ofChart t v).ord_eq_neg_log (v.valuation K) (fun y ↦ ?_)
@@ -103,6 +110,9 @@ theorem ord_ofChart (v : HeightOneSpectrum (chartRing t)) (x : K) :
   rw [ofChart_val, HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s14.d81287363c12 from=translated src=- shape=60b47309 vocab=b6715033
+-/
 theorem ord_ofChart_algebraMap (v : HeightOneSpectrum (chartRing t)) {r : chartRing t}
     (hr : r ≠ 0) :
     (ofChart t v).ord (algebraMap (chartRing t) K r) =
@@ -116,10 +126,16 @@ noncomputable def chartResidue (v : HeightOneSpectrum (chartRing t)) :
   (ofChart t v).residue.comp ((algebraMap (chartRing t) K).codRestrict
     (ofChart t v).1 ((ofChart t v).algebraMap_chartRing_mem t (self_mem_ofChart t v)))
 
+/--
+@isnad1 id=surjecti.0h3v.s12.5242da70e0f5 from=translated src=- shape=37517919 vocab=b396b03c
+-/
 theorem chartResidue_surjective (v : HeightOneSpectrum (chartRing t)) :
     Function.Surjective (chartResidue t v) :=
   (ofChart t v).residue_comp_surjective t (self_mem_ofChart t v)
 
+/--
+@isnad1 id=eq.0h3v.s12.3e0d1151a794 from=translated src=- shape=56033908 vocab=ea93c798
+-/
 theorem ker_chartResidue (v : HeightOneSpectrum (chartRing t)) :
     RingHom.ker (chartResidue t v) = v.asIdeal := by
   ext r
@@ -135,6 +151,9 @@ noncomputable def quotientEquivResidueField (v : HeightOneSpectrum (chartRing t)
   (Ideal.quotEquivOfEq (ker_chartResidue t v).symm).trans
     (RingHom.quotientKerEquivOfSurjective (chartResidue_surjective t v))
 
+/--
+@isnad1 id=eq.0h3v.s13.ab14dd2f1934 from=translated src=- shape=3681bd06 vocab=21514035
+-/
 theorem finrank_quotient_eq_deg (v : HeightOneSpectrum (chartRing t)) :
     Module.finrank ℚ (chartRing t ⧸ v.asIdeal) = (ofChart t v).deg := by
   let e : (chartRing t ⧸ v.asIdeal) ≃ₐ[ℚ] (ofChart t v).ResidueField :=
@@ -160,6 +179,9 @@ end Belyi.CurveField.Place
 
 namespace Belyi.CurveField
 
+/--
+@isnad1 id=eq.0h2v.s6.8cd2c9298718 from=translated src=- shape=a4c7a5b7 vocab=65834b26
+-/
 theorem adjoin_inv_eq {K : Type*} [Field K] [CharZero K] (t : K) : ℚ⟮t⁻¹⟯ = ℚ⟮t⟯ := by
   apply le_antisymm
   · rw [IntermediateField.adjoin_simple_le_iff]

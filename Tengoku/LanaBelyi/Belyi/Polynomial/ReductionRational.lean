@@ -157,7 +157,9 @@ private lemma reduction_key (d : ℕ) : ∀ (n : ℕ) (S : Finset K),
 
 /-- **Belyi reduction I** (statement B6 of `references/proof-outline.md`): for every finite
 set `S` of elements of `K` algebraic over `ℚ`, there is a non-constant polynomial
-`g ∈ ℚ[X]` mapping `S` into `ℚ` whose critical values are all rational. -/
+`g ∈ ℚ[X]` mapping `S` into `ℚ` whose critical values are all rational.
+@isnad1 id=ex.0h2v.s8.6adca55956d7 from=translated src=- shape=8c3cbc5f vocab=5e65cf28
+-/
 theorem exists_aeval_mem_range_and_critVal_mem_range (S : Finset K) :
     ∃ g : ℚ[X], g.natDegree ≠ 0 ∧
       (∀ s ∈ S, aeval s g ∈ (algebraMap ℚ K).range) ∧

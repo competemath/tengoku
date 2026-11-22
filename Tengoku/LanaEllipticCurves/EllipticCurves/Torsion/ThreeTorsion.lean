@@ -93,7 +93,9 @@ numerator and denominator `N = 3x² + 2a₂x + a₄ - a₁y` and `d = 2y + a₁x
 satisfy `N² + a₁ N d - (a₂ + 3x) d² = -Ψ₃(x)`.
 
 The left-hand side is `(ℓ² + a₁ℓ - a₂ - 3x) d²` for `ℓ = N / d`, i.e. `d²` times the defect of
-`W.addX x x ℓ = x`; see `addX_self_sub`. -/
+`W.addX x x ℓ = x`; see `addX_self_sub`.
+@isnad1 id=eq.1h4v.s9.25ef5f1954c9 from=translated src=- shape=7624d7a7 vocab=3354e841
+-/
 lemma Ψ₃_eval_eq_neg {x y : F} (h : W.Equation x y) :
     (3 * x ^ 2 + 2 * W.a₂ * x + W.a₄ - W.a₁ * y) ^ 2
         + W.a₁ * (3 * x ^ 2 + 2 * W.a₂ * x + W.a₄ - W.a₁ * y) * (2 * y + W.a₁ * x + W.a₃)
@@ -104,7 +106,9 @@ lemma Ψ₃_eval_eq_neg {x y : F} (h : W.Equation x y) :
   linear_combination (-(W.a₁ ^ 2 + 4 * W.a₂) - 12 * x) * h
 
 /-- A point is fixed by negation exactly when the `2`-division polynomial `2y + a₁x + a₃` vanishes
-at it; so `y ≠ W.negY x y` is the nonvanishing of the tangent denominator. -/
+at it; so `y ≠ W.negY x y` is the nonvanishing of the tangent denominator.
+@isnad1 id=ne.1h4v.s7.1c2c43ed37f2 from=translated src=- shape=245c9ad7 vocab=91b73d20
+-/
 lemma two_mul_add_ne_zero_of_Y_ne {x y : F} (hy : y ≠ W.negY x y) :
     2 * y + W.a₁ * x + W.a₃ ≠ 0 := by
   rw [negY] at hy
@@ -114,12 +118,16 @@ lemma two_mul_add_ne_zero_of_Y_ne {x y : F} (hy : y ≠ W.negY x y) :
 /-! ## The roots of the `3`-division polynomial -/
 
 variable (W) in
-/-- Away from characteristic `3` the quartic `Ψ₃` is nonzero, so its root set is finite. -/
+/-- Away from characteristic `3` the quartic `Ψ₃` is nonzero, so its root set is finite.
+@isnad1 id=finite.1h2v.s6.a7263db9d3dd from=translated src=- shape=3e5f1d91 vocab=f89c3b8f
+-/
 lemma finite_setOf_Ψ₃_root (h3 : (3 : F) ≠ 0) : {x : F | W.Ψ₃.eval x = 0}.Finite :=
   Polynomial.finite_setOfPred_isRoot (W.Ψ₃_ne_zero h3)
 
 variable (W) in
-/-- Away from characteristic `3` the quartic `Ψ₃` has at most four roots. -/
+/-- Away from characteristic `3` the quartic `Ψ₃` has at most four roots.
+@isnad1 id=le.1h2v.s6.e6fda4a4147a from=translated src=- shape=22085d4a vocab=0385a0ea
+-/
 lemma ncard_setOf_Ψ₃_root_le (h3 : (3 : F) ≠ 0) : {x : F | W.Ψ₃.eval x = 0}.ncard ≤ 4 := by
   classical
   have hne : W.Ψ₃ ≠ 0 := W.Ψ₃_ne_zero h3
@@ -132,14 +140,18 @@ lemma ncard_setOf_Ψ₃_root_le (h3 : (3 : F) ≠ 0) : {x : F | W.Ψ₃.eval x =
 
 variable [DecidableEq F]
 
-/-- The tangent slope at `(x, y)`, cleared of its denominator. -/
+/-- The tangent slope at `(x, y)`, cleared of its denominator.
+@isnad1 id=eq.1h4v.s8.85650e7000c0 from=translated src=- shape=1866cf1e vocab=6fd3e608
+-/
 lemma slope_self_mul {x y : F} (hy : y ≠ W.negY x y) :
     W.slope x x y y * (2 * y + W.a₁ * x + W.a₃) = 3 * x ^ 2 + 2 * W.a₂ * x + W.a₄ - W.a₁ * y := by
   rw [slope_of_Y_ne rfl hy, div_mul_eq_mul_div, div_eq_iff (sub_ne_zero.mpr hy), negY]
   ring
 
 /-- The defect of the doubling identity `x(2P) = x(P)` at an affine point `P = (x, y)` with
-`y ≠ W.negY x y`: it is `-Ψ₃(x)` divided by the square of `2y + a₁x + a₃`. -/
+`y ≠ W.negY x y`: it is `-Ψ₃(x)` divided by the square of `2y + a₁x + a₃`.
+@isnad1 id=eq.2h4v.s7.f702280f83e1 from=translated src=- shape=210e1cdf vocab=57a61cb0
+-/
 lemma addX_self_sub {x y : F} (h : W.Equation x y) (hy : y ≠ W.negY x y) :
     W.addX x x (W.slope x x y y) - x = -W.Ψ₃.eval x / (2 * y + W.a₁ * x + W.a₃) ^ 2 := by
   rw [eq_div_iff (pow_ne_zero 2 (two_mul_add_ne_zero_of_Y_ne hy)), addX]
@@ -148,7 +160,9 @@ lemma addX_self_sub {x y : F} (h : W.Equation x y) (hy : y ≠ W.negY x y) :
     + W.a₁ * (2 * y + W.a₁ * x + W.a₃)) * slope_self_mul hy
 
 /-- **The doubling criterion.** For an affine point `(x, y)` of `W` not fixed by negation, the
-`x`-coordinate of `2 • (x, y)` equals `x` exactly when `x` is a root of `Ψ₃`. -/
+`x`-coordinate of `2 • (x, y)` equals `x` exactly when `x` is a root of `Ψ₃`.
+@isnad1 id=iff.2h4v.s6.774150e58c95 from=translated src=- shape=bb10c64d vocab=def7d6ec
+-/
 lemma addX_self_eq_iff {x y : F} (h : W.Equation x y) (hy : y ≠ W.negY x y) :
     W.addX x x (W.slope x x y y) = x ↔ W.Ψ₃.eval x = 0 := by
   rw [← sub_eq_zero, addX_self_sub h hy, div_eq_zero_iff, neg_eq_zero]
@@ -160,13 +174,17 @@ lemma addX_self_eq_iff {x y : F} (h : W.Equation x y) (hy : y ≠ W.negY x y) :
 
 ⚠️ As at `n = 2`, this is not the normal form the `FunctionField/` consumers take as a hypothesis
 binder; that is `P ⊕ P ⊕ P = O`, i.e. `add_add_self_eq_zero_of_mem_torsion_three`
-(`EllipticCurves.Torsion.Defs`). -/
+(`EllipticCurves.Torsion.Defs`).
+@isnad1 id=iff.0h3v.s7.050bd1c138e6 from=translated src=- shape=e78cecbf vocab=edbd286f
+-/
 lemma mem_torsion_three_iff_add_self_eq_neg {P : W.Point} : P ∈ W.torsion 3 ↔ P + P = -P := by
   rw [mem_torsion_iff, show (3 : ℕ) = 2 + 1 from rfl, succ_nsmul, two_nsmul,
     add_eq_zero_iff_eq_neg]
 
 /-- A nonzero `3`-torsion point is never fixed by negation: if it were, doubling would already kill
-it, so `3 • P = P`, forcing `P = 0`. -/
+it, so `3 • P = P`, forcing `P = 0`.
+@isnad1 id=ne.2h4v.s6.28497da907ff from=translated src=- shape=61318c02 vocab=a5eb52ba
+-/
 lemma ne_negY_of_mem_torsion_three {x y : F} {h : W.Nonsingular x y}
     (hP : Point.some x y h ∈ W.torsion 3) : y ≠ W.negY x y := by
   intro hy
@@ -176,7 +194,9 @@ lemma ne_negY_of_mem_torsion_three {x y : F} {h : W.Nonsingular x y}
   rw [← neg_eq_zero, ← h3]
 
 /-- **The `3`-torsion points are the points above the roots of `Ψ₃`.** An affine point `(x, y)` not
-fixed by negation is `3`-torsion exactly when `x` is a root of the `3`-division polynomial. -/
+fixed by negation is `3`-torsion exactly when `x` is a root of the `3`-division polynomial.
+@isnad1 id=iff.2h4v.s7.d7d63a09c875 from=translated src=- shape=5be1b247 vocab=68ce16aa
+-/
 lemma mem_torsion_three_some_iff {x y : F} {h : W.Nonsingular x y} (hy : y ≠ W.negY x y) :
     Point.some x y h ∈ W.torsion 3 ↔ W.Ψ₃.eval x = 0 := by
   rw [mem_torsion_three_iff_add_self_eq_neg, Point.add_self_of_Y_ne hy, Point.neg_some]
@@ -192,7 +212,9 @@ lemma mem_torsion_three_some_iff {x y : F} {h : W.Nonsingular x y} (hy : y ≠ W
       exact add_right_cancel (hPP.trans (zero_add _).symm)
     · rw [hc, Point.neg_some]
 
-/-- The `x`-coordinate of a nonzero `3`-torsion point is a root of `Ψ₃`. -/
+/-- The `x`-coordinate of a nonzero `3`-torsion point is a root of `Ψ₃`.
+@isnad1 id=eq.2h4v.s7.9e12c4eab496 from=translated src=- shape=437a00dc vocab=33497ba3
+-/
 lemma Ψ₃_eval_eq_zero_of_mem_torsion_three {x y : F} {h : W.Nonsingular x y}
     (hP : Point.some x y h ∈ W.torsion 3) : W.Ψ₃.eval x = 0 :=
   (mem_torsion_three_some_iff (ne_negY_of_mem_torsion_three hP)).mp hP
@@ -200,7 +222,9 @@ lemma Ψ₃_eval_eq_zero_of_mem_torsion_three {x y : F} {h : W.Nonsingular x y}
 /-! ## Finiteness and the bound `#E[3] ≤ 9` -/
 
 variable (W) in
-/-- Away from characteristic `3` the `3`-torsion subgroup is finite. -/
+/-- Away from characteristic `3` the `3`-torsion subgroup is finite.
+@isnad1 id=finite.1h2v.s7.07589245e26a from=translated src=- shape=c4e72760 vocab=abd655ce
+-/
 lemma finite_torsion_three (h3 : (3 : F) ≠ 0) : Finite (W.torsion 3) :=
   W.finite_torsion_of_xCoords (W.finite_setOf_Ψ₃_root h3)
     fun _ _ _ hP => Ψ₃_eval_eq_zero_of_mem_torsion_three hP
@@ -210,7 +234,9 @@ variable (W) in
 roots of `Ψ₃`, with at most two points above each, plus the point at infinity.
 
 This is the `n = 3` instance of the bound `#E[n] ≤ n²` (Silverman, *AEC*, III.6, Corollary 6.4),
-proved here without the multiplication-by-`n` coordinate formula. -/
+proved here without the multiplication-by-`n` coordinate formula.
+@isnad1 id=le.1h2v.s7.d186f2e38af7 from=translated src=- shape=f9e94b69 vocab=754d07a8
+-/
 theorem card_torsion_three_le (h3 : (3 : F) ≠ 0) : Nat.card (W.torsion 3) ≤ 9 :=
   (W.card_torsion_le_of_xCoords (W.finite_setOf_Ψ₃_root h3)
       fun _ _ _ hP => Ψ₃_eval_eq_zero_of_mem_torsion_three hP).trans <| by

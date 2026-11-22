@@ -52,7 +52,9 @@ variable (k : Type u) [CommRing k] {R : Type u} [CommRing R] [Algebra k R]
 base commutative ring. For `t : R` transcendental over `k`, the evaluation
 `awayEval k t : (k[X₀,X₁]_{X₁})₀ →+* R` sending `X₀/X₁ ↦ t` is injective. This is the
 `CommRing` generalisation of `Belyi.P1.awayEval_injective`; the proof is identical, as it
-never uses that the rings are fields. -/
+never uses that the rings are fields.
+@isnad1 id=injectiv.1h3v.s11.85d7f039be75 from=translated src=- shape=703789d6 vocab=9a3628b5
+-/
 theorem awayEval_injective_of_transcendental {t : R} (ht : Transcendental k t) :
     Function.Injective (awayEval k t) := by
   rw [injective_iff_map_eq_zero]
@@ -67,7 +69,9 @@ theorem awayEval_injective_of_transcendental {t : R} (ht : Transcendental k t) :
     Localization.mk_zero]
 
 /-- The chart evaluation at `Polynomial.X` is surjective: its image is a `k`-subalgebra
-containing the affine coordinate (which maps to `Polynomial.X`), hence is everything. -/
+containing the affine coordinate (which maps to `Polynomial.X`), hence is everything.
+@isnad1 id=surjecti.0h1v.s11.df018b6a1e3c from=translated src=- shape=0d3d7cfa vocab=a81851e6
+-/
 theorem awayEvalₐ_surjective :
     Function.Surjective (awayEvalₐ k (Polynomial.X : Polynomial k)) := by
   rw [← AlgHom.range_eq_top, eq_top_iff, ← Polynomial.adjoin_X, Algebra.adjoin_le_iff]
@@ -85,6 +89,9 @@ noncomputable def awayChartEquivOne :
     ⟨awayEval_injective_of_transcendental k (Polynomial.transcendental_X k),
       awayEvalₐ_surjective k⟩
 
+/--
+@isnad1 id=eq.0h1v.s11.50b82aed2ee5 from=translated src=- shape=ddfbf7e7 vocab=d1e86afa
+-/
 @[simp]
 lemma awayChartEquivOne_affineCoord :
     awayChartEquivOne k (affineCoord k) = (Polynomial.X : Polynomial k) :=
@@ -111,7 +118,9 @@ noncomputable def awayEval0 (t : R) : Away (P1Grading k) (X 0 : MvPolynomial (Fi
     (algebraMap (Away (P1Grading k) (X 0)) (Localization.Away (X 0 : MvPolynomial (Fin 2) k)))
 
 /-- The chart-ring evaluation `awayEval0 k t` on a homogeneous fraction `a / (X₀)^n`
-returns `aeval ![1, t] a`: the denominator `X₀` evaluates to `1`, so it drops out. -/
+returns `aeval ![1, t] a`: the denominator `X₀` evaluates to `1`, so it drops out.
+@isnad1 id=eq.1h5v.s11.23d2b2d241da from=translated src=- shape=e45afb48 vocab=b9575b39
+-/
 lemma awayEval0_mk (t : R) (n : ℕ) (a : MvPolynomial (Fin 2) k)
     (ha : a ∈ P1Grading k (n • 1)) :
     awayEval0 k t (Away.mk (P1Grading k) (X_mem_P1Grading k 0) n a ha) = aeval ![1, t] a := by
@@ -120,6 +129,9 @@ lemma awayEval0_mk (t : R) (n : ℕ) (a : MvPolynomial (Fin 2) k)
   rw [Localization.awayLift_mk (v := 1) (hv := by simp)]
   simp
 
+/--
+@isnad1 id=eq.0h4v.s13.dceaca8a1770 from=translated src=- shape=d1441fcc vocab=d78f852c
+-/
 lemma awayEval0_fromZeroRingHom (t : R) (x : P1Grading k 0) :
     awayEval0 k t (fromZeroRingHom (P1Grading k) _ x) =
       aeval ![1, t] (x : MvPolynomial (Fin 2) k) := by
@@ -140,6 +152,9 @@ noncomputable def awayEvalₐ0 (t : R) :
       simp only [SetLike.GradeZero.coe_algebraMap, MvPolynomial.algebraMap_eq, aeval_C] at h
       exact h }
 
+/--
+@isnad1 id=eq.0h3v.s11.e3f6d16d9835 from=translated src=- shape=556a6205 vocab=7de1cda7
+-/
 @[simp]
 lemma awayEvalₐ0_toRingHom (t : R) : (awayEvalₐ0 k t : _ →+* R) = awayEval0 k t := rfl
 
@@ -148,7 +163,9 @@ noncomputable def affineCoord0 : Away (P1Grading k) (X 0 : MvPolynomial (Fin 2) 
   HomogeneousLocalization.mk
     ⟨1, ⟨X 1, X_mem_P1Grading k 1⟩, ⟨X 0, X_mem_P1Grading k 0⟩, 1, pow_one _⟩
 
-/-- Evaluation at `t` sends the affine coordinate `X₁/X₀` to `t`. -/
+/-- Evaluation at `t` sends the affine coordinate `X₁/X₀` to `t`.
+@isnad1 id=eq.0h3v.s11.df385033dfb9 from=translated src=- shape=f86a84be vocab=ef95276a
+-/
 lemma awayEval0_affineCoord (t : R) : awayEval0 k t (affineCoord0 k) = t := by
   have hv : ((aeval ![1, t] : MvPolynomial (Fin 2) k →ₐ[k] R) :
       MvPolynomial (Fin 2) k →+* R) (X 0) * 1 = 1 := by simp
@@ -163,7 +180,9 @@ lemma awayEval0_affineCoord (t : R) : awayEval0 k t (affineCoord0 k) = t := by
   simp
 
 /-- Evaluating at `(1, t)` factors, via the coordinate swap `X₀ ↔ X₁`, through evaluation
-at `(t, 1)`: `aeval ![1, t] a = aeval ![t, 1] (rename (swap 0 1) a)`. -/
+at `(t, 1)`: `aeval ![1, t] a = aeval ![t, 1] (rename (swap 0 1) a)`.
+@isnad1 id=eq.0h4v.s10.975df0a749a1 from=translated src=- shape=8c025397 vocab=029cb82c
+-/
 lemma aeval_cons_swap (t : R) (a : MvPolynomial (Fin 2) k) :
     (aeval ![1, t] : MvPolynomial (Fin 2) k →ₐ[k] R) a =
       aeval ![t, 1] (rename (Equiv.swap 0 1) a) := by
@@ -174,7 +193,9 @@ lemma aeval_cons_swap (t : R) (a : MvPolynomial (Fin 2) k) :
   rw [hfun]
 
 /-- **Injectivity of the `D₊(X₀)` chart evaluation at a transcendental point.** Reduced to
-the `D₊(X₁)` case by the coordinate swap. -/
+the `D₊(X₁)` case by the coordinate swap.
+@isnad1 id=injectiv.1h3v.s11.bc9e9fba8125 from=translated src=- shape=703789d6 vocab=70330ff7
+-/
 theorem awayEval0_injective_of_transcendental {t : R} (ht : Transcendental k t) :
     Function.Injective (awayEval0 k t) := by
   rw [injective_iff_map_eq_zero]
@@ -193,7 +214,9 @@ theorem awayEval0_injective_of_transcendental {t : R} (ht : Transcendental k t) 
   rw [HomogeneousLocalization.Away.val_mk, ha0, HomogeneousLocalization.val_zero,
     Localization.mk_zero]
 
-/-- The `D₊(X₀)` chart evaluation at `Polynomial.X` is surjective. -/
+/-- The `D₊(X₀)` chart evaluation at `Polynomial.X` is surjective.
+@isnad1 id=surjecti.0h1v.s11.7efadd0ae64b from=translated src=- shape=0d3d7cfa vocab=f31fe52c
+-/
 theorem awayEvalₐ0_surjective :
     Function.Surjective (awayEvalₐ0 k (Polynomial.X : Polynomial k)) := by
   rw [← AlgHom.range_eq_top, eq_top_iff, ← Polynomial.adjoin_X, Algebra.adjoin_le_iff]
@@ -211,6 +234,9 @@ noncomputable def awayChartEquivZero :
     ⟨awayEval0_injective_of_transcendental k (Polynomial.transcendental_X k),
       awayEvalₐ0_surjective k⟩
 
+/--
+@isnad1 id=eq.0h1v.s11.a8a4a3023581 from=translated src=- shape=ddfbf7e7 vocab=7edf1b23
+-/
 @[simp]
 lemma awayChartEquivZero_affineCoord :
     awayChartEquivZero k (affineCoord0 k) = (Polynomial.X : Polynomial k) :=

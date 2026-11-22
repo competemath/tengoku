@@ -207,7 +207,9 @@ private lemma constantCoeff_formalGroupDen :
 
 /-! ### Swap-invariance of the addition data -/
 
-/-- The slope `λ` is invariant under `z₁ ↔ z₂`. -/
+/-- The slope `λ` is invariant under `z₁ ↔ z₂`.
+@isnad1 id=eq.0h2v.s8.d2c05260e90f from=translated src=- shape=cbb02689 vocab=4b591d4d
+-/
 theorem formalWDividedDiff_swap :
     MvPowerSeries.rename (⇑(Equiv.swap (0 : Fin 2) 1)) W.formalWDividedDiff
       = W.formalWDividedDiff := by
@@ -238,20 +240,26 @@ private lemma rename_swap_toMvPowerSeries_zero :
     rw [PowerSeries.coeff_toMvPowerSeries_of_ne W.formalW 0 hne_d',
         PowerSeries.coeff_toMvPowerSeries_of_ne W.formalW 1 hne_d]
 
-/-- The intercept `ν` is invariant under `z₁ ↔ z₂` (via divided-difference regularity). -/
+/-- The intercept `ν` is invariant under `z₁ ↔ z₂` (via divided-difference regularity).
+@isnad1 id=eq.0h2v.s8.4048eb299447 from=translated src=- shape=cbb02689 vocab=0dd8b9b6
+-/
 theorem formalGroupNu_swap :
     MvPowerSeries.rename (⇑(Equiv.swap (0 : Fin 2) 1)) W.formalGroupNu = W.formalGroupNu := by
   simp only [WeierstrassCurve.formalGroupNu, map_sub, map_mul,
     W.rename_swap_toMvPowerSeries_zero, W.formalWDividedDiff_swap, rename_swap_X_zero]
   linear_combination -W.formalWDividedDiff_spec
 
-/-- The cubic leading coefficient `A` is invariant under `z₁ ↔ z₂`. -/
+/-- The cubic leading coefficient `A` is invariant under `z₁ ↔ z₂`.
+@isnad1 id=eq.0h2v.s8.2c4756c37ed2 from=translated src=- shape=cbb02689 vocab=39cd9f25
+-/
 theorem formalGroupLead_swap :
     MvPowerSeries.rename (⇑(Equiv.swap (0 : Fin 2) 1)) W.formalGroupLead = W.formalGroupLead := by
   simp only [WeierstrassCurve.formalGroupLead, map_add, map_mul, map_pow, map_one,
     rename_swap_C, W.formalWDividedDiff_swap]
 
-/-- The cubic subleading coefficient `B` is invariant under `z₁ ↔ z₂`. -/
+/-- The cubic subleading coefficient `B` is invariant under `z₁ ↔ z₂`.
+@isnad1 id=eq.0h2v.s8.dff8ddfbffb5 from=translated src=- shape=cbb02689 vocab=3f061987
+-/
 theorem formalGroupSub_swap :
     MvPowerSeries.rename (⇑(Equiv.swap (0 : Fin 2) 1)) W.formalGroupSub = W.formalGroupSub := by
   simp only [WeierstrassCurve.formalGroupSub, map_add, map_mul, map_pow, map_ofNat,
@@ -264,14 +272,18 @@ private lemma rename_swap_invOfUnit_formalGroupLead :
   rw [rename_swap_invOfUnit W.formalGroupLead W.constantCoeff_formalGroupLead,
       W.formalGroupLead_swap]
 
-/-- The Vieta third root `z₃'` is invariant under `z₁ ↔ z₂`. -/
+/-- The Vieta third root `z₃'` is invariant under `z₁ ↔ z₂`.
+@isnad1 id=eq.0h2v.s8.69199cd8a614 from=translated src=- shape=cbb02689 vocab=f5e95cd3
+-/
 theorem formalThirdRoot_swap :
     MvPowerSeries.rename (⇑(Equiv.swap (0 : Fin 2) 1)) W.formalThirdRoot = W.formalThirdRoot := by
   simp only [WeierstrassCurve.formalThirdRoot, map_sub, map_neg, map_mul, W.formalGroupSub_swap,
     W.rename_swap_invOfUnit_formalGroupLead, rename_swap_X_zero, rename_swap_X_one]
   ring
 
-/-- The negation denominator `D` is invariant under `z₁ ↔ z₂`. -/
+/-- The negation denominator `D` is invariant under `z₁ ↔ z₂`.
+@isnad1 id=eq.0h2v.s8.b29960d64bc2 from=translated src=- shape=cbb02689 vocab=8fafbbf4
+-/
 theorem formalGroupDen_swap :
     MvPowerSeries.rename (⇑(Equiv.swap (0 : Fin 2) 1)) W.formalGroupDen = W.formalGroupDen := by
   simp only [WeierstrassCurve.formalGroupDen, map_sub, map_mul, map_add, map_one,
@@ -290,14 +302,18 @@ private lemma rename_swap_invOfUnit_formalGroupDen :
 `F(z₁, z₂) = W.formalGroupZW` is invariant under the interchange `z₁ ↔ z₂`, i.e.
 `F(z₁, z₂) = F(z₂, z₁)`. All of the `(z, w)`-plane addition data (`λ`, `ν`, `A`, `B`, `z₃'`, `D`) is
 symmetric in the two formal points, so the negation `F = −z₃' · D⁻¹` is too.
-(Silverman AEC IV.1, Theorem 1.1.) -/
+(Silverman AEC IV.1, Theorem 1.1.)
+@isnad1 id=eq.0h2v.s8.c5e4b65c8071 from=translated src=- shape=cbb02689 vocab=cd81a652
+-/
 theorem formalGroupZW_comm :
     MvPowerSeries.rename (⇑(Equiv.swap (0 : Fin 2) 1)) W.formalGroupZW = W.formalGroupZW := by
   simp only [WeierstrassCurve.formalGroupZW, map_mul, map_neg, W.formalThirdRoot_swap,
     W.rename_swap_invOfUnit_formalGroupDen]
 
 /-- The coefficient form of commutativity: swapping the two exponents leaves every coefficient of
-`F` unchanged. -/
+`F` unchanged.
+@isnad1 id=eq.0h3v.s8.fd2043c924d6 from=translated src=- shape=41ff4650 vocab=f4b8a2d3
+-/
 theorem coeff_formalGroupZW_swap (d : Fin 2 →₀ ℕ) :
     MvPowerSeries.coeff (Finsupp.equivMapDomain (Equiv.swap (0 : Fin 2) 1) d) W.formalGroupZW
       = MvPowerSeries.coeff d W.formalGroupZW := by

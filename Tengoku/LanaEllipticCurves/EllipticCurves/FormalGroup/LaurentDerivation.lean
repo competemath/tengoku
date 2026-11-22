@@ -52,7 +52,9 @@ namespace LaurentSeries
 variable {R : Type*} [CommRing R]
 
 /-- The coefficient formula for the Laurent-series derivative, with the binomial coefficient
-`Ring.choose (n + 1) 1` simplified to `n + 1`. -/
+`Ring.choose (n + 1) 1` simplified to `n + 1`.
+@isnad1 id=eq.0h3v.s8.b61a07e0ca1a from=translated src=- shape=0068ea38 vocab=c7461f9f
+-/
 theorem coeff_derivative (f : R⸨X⸩) (n : ℤ) :
     (derivative ℤ f).coeff n = (n + 1) • f.coeff (n + 1) := by
   rw [derivative_apply, hasseDeriv_coeff, Ring.choose_one_right, Nat.cast_one]
@@ -125,7 +127,9 @@ private lemma coeff_derivative_mul_left (f g : R⸨X⸩) (n : ℤ) :
     dsimp only
     rw [coeff_derivative, smul_mul_assoc]
 
-/-- **Product (Leibniz) rule** for the Laurent-series derivative. -/
+/-- **Product (Leibniz) rule** for the Laurent-series derivative.
+@isnad1 id=eq.0h3v.s10.d86b95866353 from=translated src=- shape=72dc511a vocab=c9fb9739
+-/
 theorem derivative_mul (f g : R⸨X⸩) :
     derivative ℤ (f * g) = f * derivative ℤ g + derivative ℤ f * g := by
   rw [← HahnSeries.coeff_inj]
@@ -138,13 +142,17 @@ theorem derivative_mul (f g : R⸨X⸩) :
   rw [← hij.2.2, add_smul]
   exact add_comm _ _
 
-/-- The derivative of a constant Laurent series `HahnSeries.C c` vanishes. -/
+/-- The derivative of a constant Laurent series `HahnSeries.C c` vanishes.
+@isnad1 id=eq.0h2v.s9.7fca87194d6b from=translated src=- shape=df86615d vocab=40fa604b
+-/
 theorem derivative_C (c : R) : derivative ℤ (HahnSeries.C c : R⸨X⸩) = 0 := by
   rw [HahnSeries.C_apply, derivative_apply, hasseDeriv_single, Ring.choose_one_right,
     zero_smul, HahnSeries.single_eq_zero]
 
 /-- **Quotient rule** for the `Ring.inverse` of a unit: differentiating `u⁻¹` from
-`u * u⁻¹ = 1`. -/
+`u * u⁻¹ = 1`.
+@isnad1 id=eq.1h2v.s9.f07b668f7b81 from=translated src=- shape=3f45585b vocab=4fce9358
+-/
 theorem derivative_inverse {u : R⸨X⸩} (hu : IsUnit u) :
     derivative ℤ (Ring.inverse u) = - Ring.inverse u * derivative ℤ u * Ring.inverse u := by
   have huv : u * Ring.inverse u = 1 := Ring.mul_inverse_cancel u hu
@@ -163,7 +171,9 @@ variable {R : Type*} [CommRing R]
 
 /-- The outer (`z₂`-grading) coefficient of `embedDoubleLaurent ψ`: it vanishes in negative outer
 degree, and in nonnegative outer degree `N` is the inner Laurent series whose `z₁^m` coefficient is
-`MvPowerSeries.coeff (single 0 m + single 1 N.natAbs) ψ`. -/
+`MvPowerSeries.coeff (single 0 m + single 1 N.natAbs) ψ`.
+@isnad1 id=eq.0h3v.s9.5f7c87f65f69 from=translated src=- shape=afb583bb vocab=981867cd
+-/
 lemma coeff_embedDoubleLaurent (ψ : MvPowerSeries (Fin 2) R) (N : ℤ) :
     (embedDoubleLaurent ψ).coeff N
       = if N < 0 then 0 else

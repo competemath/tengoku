@@ -43,7 +43,9 @@ This specializes the general fact that, for `IsLocalization M S`, the quotient
 `S ⧸ K.map (algebraMap R S)` is a localization of `R ⧸ K` at the image of `M`
 (`IsLocalization.of_surjective`), to the
 case `M = Submonoid.powers f`, using that the image of `Submonoid.powers f` in `R ⧸ K` is
-`Submonoid.powers (Ideal.Quotient.mk K f)`. -/
+`Submonoid.powers (Ideal.Quotient.mk K f)`.
+@isnad1 id=away.0h3v.s9.497da3ad161f from=translated src=- shape=8d65a0f1 vocab=ef5ac15a
+-/
 instance away_quotient :
     IsLocalization.Away (Ideal.Quotient.mk K f)
       (Localization.Away f ⧸ K.map (algebraMap R (Localization.Away f))) := by
@@ -76,7 +78,9 @@ noncomputable def awayQuotientEquiv :
 
 /-- `Localization.awayQuotientEquiv` is an `R ⧸ K`-algebra map: it sends the image of `x : R ⧸ K`
 in `Localization.Away (Ideal.Quotient.mk K f)` to its image in `Localization.Away f ⧸ K·A`. This is
-the naturality input needed downstream (e.g. to identify the tower of quotients level by level). -/
+the naturality input needed downstream (e.g. to identify the tower of quotients level by level).
+@isnad1 id=eq.0h4v.s14.77da4b99528a from=translated src=- shape=9adf584a vocab=df123991
+-/
 @[simp]
 theorem awayQuotientEquiv_algebraMap (x : R ⧸ K) :
     awayQuotientEquiv f K (algebraMap (R ⧸ K) (Localization.Away (Ideal.Quotient.mk K f)) x)

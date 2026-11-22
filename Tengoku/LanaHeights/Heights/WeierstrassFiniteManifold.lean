@@ -27,7 +27,9 @@ noncomputable section
 namespace Heights
 
 /-- Transition between two finite `x`-coordinate charts is analytic on the
-whole overlap. -/
+whole overlap.
+@isnad1 id=contdiff.2h3v.s9.56d1eb0d0885 from=translated src=- shape=e8007604 vocab=4c56aeb1
+-/
 theorem contDiffOn_complexWeierstrassImplicitYChart_transition
     (W : WeierstrassCurve ℂ) (P Q : ComplexWeierstrassAffine W)
     (hP : complexWeierstrassEquationY W P.1 ≠ 0)
@@ -45,7 +47,9 @@ theorem contDiffOn_complexWeierstrassImplicitYChart_transition
   exact (complexWeierstrassImplicitYChart W P hP).right_inv hz.1
 
 /-- Transition from an `x`-coordinate chart to a `y`-coordinate chart is
-analytic on the whole overlap. -/
+analytic on the whole overlap.
+@isnad1 id=contdiff.2h3v.s9.0d09ca45d6f9 from=translated src=- shape=1c21708d vocab=86e3d934
+-/
 theorem contDiffOn_complexWeierstrassImplicitYChart_ImplicitXChart_transition
     (W : WeierstrassCurve ℂ) (P Q : ComplexWeierstrassAffine W)
     (hP : complexWeierstrassEquationY W P.1 ≠ 0)
@@ -76,7 +80,9 @@ theorem contDiffOn_complexWeierstrassImplicitYChart_ImplicitXChart_transition
   exact h
 
 /-- Transition from a `y`-coordinate chart to an `x`-coordinate chart is
-analytic on the whole overlap. -/
+analytic on the whole overlap.
+@isnad1 id=contdiff.2h3v.s9.e166afde8ea3 from=translated src=- shape=1c21708d vocab=86e3d934
+-/
 theorem contDiffOn_complexWeierstrassImplicitXChart_ImplicitYChart_transition
     (W : WeierstrassCurve ℂ) (P Q : ComplexWeierstrassAffine W)
     (hP : complexWeierstrassEquationX W P.1 ≠ 0)
@@ -107,7 +113,9 @@ theorem contDiffOn_complexWeierstrassImplicitXChart_ImplicitYChart_transition
   exact h
 
 /-- Transition between two finite `y`-coordinate charts is analytic on the
-whole overlap. -/
+whole overlap.
+@isnad1 id=contdiff.2h3v.s9.eba1f3754f90 from=translated src=- shape=e8007604 vocab=e0f7997c
+-/
 theorem contDiffOn_complexWeierstrassImplicitXChart_transition
     (W : WeierstrassCurve ℂ) (P Q : ComplexWeierstrassAffine W)
     (hP : complexWeierstrassEquationX W P.1 ≠ 0)
@@ -137,6 +145,9 @@ noncomputable def complexWeierstrassAffineChartAt
     complexWeierstrassImplicitXChart W P
       ((complexWeierstrassAffine_derivative_ne_zero W P).resolve_right hP)
 
+/--
+@isnad1 id=eq.1h2v.s6.7c83738aadc9 from=translated src=- shape=6f24f0c0 vocab=1953dd34
+-/
 theorem complexWeierstrassAffineChartAt_eq_implicitY
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (P : ComplexWeierstrassAffine W)
@@ -145,6 +156,9 @@ theorem complexWeierstrassAffineChartAt_eq_implicitY
       complexWeierstrassImplicitYChart W P hP := by
   rw [complexWeierstrassAffineChartAt, dite_eq_left hP]
 
+/--
+@isnad1 id=eq.1h2v.s6.7f1be104e4c3 from=translated src=- shape=9574eb1b vocab=96970aba
+-/
 theorem complexWeierstrassAffineChartAt_eq_implicitX
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (P : ComplexWeierstrassAffine W)
@@ -154,6 +168,9 @@ theorem complexWeierstrassAffineChartAt_eq_implicitX
         ((complexWeierstrassAffine_derivative_ne_zero W P).resolve_right hP) := by
   rw [complexWeierstrassAffineChartAt, dite_eq_right hP]
 
+/--
+@isnad1 id=mem.0h2v.s7.8007378da3e8 from=translated src=- shape=9a7c3b34 vocab=23e5054d
+-/
 @[simp] theorem complexWeierstrassAffineChartAt_mem_source
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (P : ComplexWeierstrassAffine W) :
@@ -177,7 +194,9 @@ noncomputable instance complexWeierstrassAffineChartedSpace
   chart_mem_atlas := fun P => Set.mem_range_self P
 
 /-- The inverse of a preferred finite chart is analytic in ambient
-coordinates at every point of its target. -/
+coordinates at every point of its target.
+@isnad1 id=contdiff.1h3v.s8.2eb090bc63ab from=translated src=- shape=283249ea vocab=7adf5a8e
+-/
 theorem contDiffAt_complexWeierstrassAffineChartAt_symm_coe_of_mem
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (P : ComplexWeierstrassAffine W) (z : ℂ)
@@ -194,7 +213,9 @@ theorem contDiffAt_complexWeierstrassAffineChartAt_symm_coe_of_mem
     exact contDiffAt_complexWeierstrassImplicitXChart_symm_coe_of_mem W P hX z hz
 
 /-- Any transition between two preferred finite charts is analytic on its
-whole overlap. -/
+whole overlap.
+@isnad1 id=contdiff.0h3v.s8.9f1da8f728a0 from=translated src=- shape=1f9041c4 vocab=99beb516
+-/
 theorem contDiffOn_complexWeierstrassAffineChartAt_transition
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (P Q : ComplexWeierstrassAffine W) :
@@ -225,7 +246,9 @@ theorem contDiffOn_complexWeierstrassAffineChartAt_transition
 
 /-- The intrinsic finite affine charted space is a one-dimensional complex
 analytic manifold.  Compatibility is proved from the four explicit
-whole-overlap transition theorems above. -/
+whole-overlap transition theorems above.
+@isnad1 id=ismanifo.0h1v.s6.68ea13c83af5 from=translated src=- shape=e99c01ad vocab=3d13b6f5
+-/
 noncomputable instance complexWeierstrassAffineIsManifold
     (W : WeierstrassCurve ℂ) [W.IsElliptic] :
     IsManifold 𝓘(ℂ) ω (ComplexWeierstrassAffine W) := by
@@ -263,7 +286,9 @@ noncomputable instance complexWeierstrassAffineIsManifold
 
 /-- The intrinsic affine manifold embeds analytically in its ambient
 coordinate plane.  This is proved in the preferred implicit chart at each
-point, using the whole-target analyticity of both graph parametrizations. -/
+point, using the whole-target analyticity of both graph parametrizations.
+@isnad1 id=contmdif.0h1v.s8.822cee3faef1 from=translated src=- shape=9b1a38fd vocab=2d595520
+-/
 theorem contMDiff_complexWeierstrassAffine_coe
     (W : WeierstrassCurve ℂ) [W.IsElliptic] :
     ContMDiff 𝓘(ℂ) 𝓘(ℂ, ℂ × ℂ) ω
@@ -287,7 +312,9 @@ theorem contMDiff_complexWeierstrassAffine_coe
 
 /-- A map into the intrinsic affine curve is analytic when its two ambient
 coordinate functions are analytic.  The equation proof carried by the
-subtype contributes no extra analytic data. -/
+subtype contributes no extra analytic data.
+@isnad1 id=contmdif.1h3v.s8.e2dddb34bf66 from=translated src=- shape=93a5eb11 vocab=4246b66d
+-/
 theorem contMDiff_complexWeierstrassAffine_of_contMDiff_coe
     {M : Type*} [TopologicalSpace M] [ChartedSpace ℂ M]
     (W : WeierstrassCurve ℂ) [W.IsElliptic]

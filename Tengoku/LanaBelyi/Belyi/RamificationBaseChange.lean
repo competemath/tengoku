@@ -64,7 +64,9 @@ change `f'`. Since `Smooth` is stable under base change, restricting `pr` to the
 `smoothLocus f ⊆ X` and pasting with the base-change square exhibits the restriction of `f'`
 to `pr⁻¹ (smoothLocus f)` as the base change of the smooth morphism
 `(smoothLocus f).ι ≫ f`, hence smooth; no descent (stalk-of-base-change) argument is
-required. -/
+required.
+@isnad1 id=le.1h8v.s8.e7f840655de0 from=translated src=- shape=3983da84 vocab=c6d0a1e0
+-/
 lemma smoothLocus_preimage_subset (hsq : IsPullback pr f' f q)
     [LocallyOfFinitePresentation f] [LocallyOfFinitePresentation f'] :
     ((pr ⁻¹ᵁ f.smoothLocus : X'.Opens) : Set X') ⊆ (f'.smoothLocus : Set X') := by
@@ -91,7 +93,9 @@ lemma smoothLocus_preimage_subset (hsq : IsPullback pr f' f q)
 
 /-- **Forward inclusion of B2b (ramification locus).** For a pullback square
 `IsPullback pr f' f q`, the ramification locus of the base change `f'` is contained in the
-preimage under `pr` of the ramification locus of `f`. -/
+preimage under `pr` of the ramification locus of `f`.
+@isnad1 id=le.1h8v.s8.1ece69f454d2 from=translated src=- shape=a26118db vocab=b1fceb6b
+-/
 lemma ram_subset_preimage (hsq : IsPullback pr f' f q)
     [LocallyOfFinitePresentation f] [LocallyOfFinitePresentation f'] :
     Ram f' ⊆ pr ⁻¹' Ram f := by
@@ -104,7 +108,9 @@ lemma ram_subset_preimage (hsq : IsPullback pr f' f q)
 `IsPullback pr f' f q`, the branch locus of the base change `f'` lies over the branch locus
 of `f`: `Branch f' ⊆ q⁻¹ (Branch f)`. This is the input the forward direction of Belyi's
 theorem uses to base-change a Belyi map (`Branch f ⊆ {0, 1, ∞}`) while keeping its branch
-locus inside `{0, 1, ∞}`. -/
+locus inside `{0, 1, ∞}`.
+@isnad1 id=le.1h8v.s8.66d100c643cc from=translated src=- shape=f2d96569 vocab=1da99d2d
+-/
 theorem branch_subset_preimage (hsq : IsPullback pr f' f q)
     [LocallyOfFinitePresentation f] [LocallyOfFinitePresentation f'] :
     Branch f' ⊆ q ⁻¹' Branch f := by
@@ -125,7 +131,9 @@ the underlying-space fibre product, packaged by mathlib as
 `AlgebraicGeometry.Scheme.Pullback.image_preimage_eq_of_isPullback`
 (`f'.base '' pr.base⁻¹ s = q.base⁻¹ (f.base '' s)`) applied at `s = Ram f`. It upgrades the
 forward inclusion `branch_subset_preimage` to an equality, and is exactly what the converse
-direction (B3d/#48 → #53) consumes to identify `Branch f` as the preimage of `Branch f₀`. -/
+direction (B3d/#48 → #53) consumes to identify `Branch f` as the preimage of `Branch f₀`.
+@isnad1 id=eq.2h8v.s8.8e2ddbab8dd6 from=translated src=- shape=3c9eff5a vocab=d80efc62
+-/
 theorem branch_preimage_eq (hsq : IsPullback pr f' f q)
     [LocallyOfFinitePresentation f] [LocallyOfFinitePresentation f']
     (hram : Ram f' = pr ⁻¹' Ram f) :

@@ -34,7 +34,9 @@ open scoped IntermediateField
 
 namespace Belyi.CurveField
 
-/-- A finite extension of a curve field is a curve field. -/
+/-- A finite extension of a curve field is a curve field.
+@isnad1 id=iscurvef.0h2v.s6.c3fcb0e737e1 from=translated src=- shape=8a6a52a4 vocab=f3b158ed
+-/
 theorem isCurveField_of_finite (K F : Type*) [Field K] [CharZero K] [IsCurveField K]
     [Field F] [CharZero F] [Algebra K F] [FiniteDimensional K F] : IsCurveField F := by
   obtain ⟨t, ht⟩ := exists_transcendental K
@@ -86,7 +88,9 @@ variable {K M L : Type*} [Field K] [Field M] [Field L] [Algebra K M] [Algebra M 
   [IsScalarTower K M L] [Algebra.IsIntegral K M] [Algebra.IsIntegral M L]
   [Algebra.IsIntegral K L]
 
-/-- Restriction of places is transitive in a tower `K ⊆ M ⊆ L`. -/
+/-- Restriction of places is transitive in a tower `K ⊆ M ⊆ L`.
+@isnad1 id=eq.0h4v.s7.3392c5166af9 from=translated src=- shape=9be3c090 vocab=60e0fa5b
+-/
 theorem Place.restrict_restrict (Q : Place L) : (Q.restrict M).restrict K = Q.restrict K := by
   ext x
   simp only [mem_restrict_iff, ← IsScalarTower.algebraMap_apply]
@@ -94,7 +98,9 @@ theorem Place.restrict_restrict (Q : Place L) : (Q.restrict M).restrict K = Q.re
 variable [CharZero K] [CharZero M] [CharZero L] [IsCurveField K] [IsCurveField M]
   [IsCurveField L]
 
-/-- Multiplicativity of ramification indices in a tower `K ⊆ M ⊆ L`. -/
+/-- Multiplicativity of ramification indices in a tower `K ⊆ M ⊆ L`.
+@isnad1 id=eq.0h4v.s8.9f93e3bfc556 from=translated src=- shape=1e82fee5 vocab=736466b9
+-/
 theorem Place.ramificationIdx_tower (Q : Place L) :
     Q.ramificationIdx K = Q.ramificationIdx M * (Q.restrict M).ramificationIdx K := by
   have h1 := Q.ord_algebraMap_eq_mul (K := K) (Q.restrict K).uniformizer
@@ -117,7 +123,9 @@ variable (t : K) [Fact (Transcendental ℚ t)]
 set_option synthInstance.maxHeartbeats 400000 in
 -- instance search on `integralClosure (chartRing t) L` is slow
 /-- Mathlib's ramification index of `w` over the prime of `A_t` below `P` is `e(Q|P)` for the
-place `Q` of `L` at `w`. -/
+place `Q` of `L` at `w`.
+@isnad1 id=eq.1h5v.s15.1464de5aa12f from=translated src=- shape=7d556c4b vocab=08405e4d
+-/
 theorem ramificationIdx'_eq_ramificationIdx (P : Place K)
     (htP : t ∈ P.1) (w : HeightOneSpectrum (chartRingExt K L t))
     [w.asIdeal.LiesOver (P.toChart t htP).asIdeal] :
@@ -137,7 +145,9 @@ theorem ramificationIdx'_eq_ramificationIdx (P : Place K)
 set_option synthInstance.maxHeartbeats 400000 in
 -- instance search on `integralClosure (chartRing t) L` is slow
 omit [CharZero L] [IsCurveField L] in
-/-- The prime of `A_t^L` below a place `Q` lies over the prime of `A_t` below `Q ∩ K`. -/
+/-- The prime of `A_t^L` below a place `Q` lies over the prime of `A_t` below `Q ∩ K`.
+@isnad1 id=liesover.1h4v.s14.18b1721e8ac4 from=translated src=- shape=d7e563c7 vocab=d07a6755
+-/
 theorem liesOver_heightOneBelow (Q : Place L) (htQ : t ∈ (Q.restrict K).1) :
     (heightOneBelow (R := chartRingExt K L t) Q.1 Q.ne_top
       (algebraMap_chartRingExt_mem t Q htQ)).asIdeal.LiesOver
@@ -152,7 +162,9 @@ set_option maxHeartbeats 800000 in
 set_option synthInstance.maxHeartbeats 400000 in
 -- instance search on `integralClosure (chartRing t) L` is slow
 /-- If `L = K(x)` with `x ∈ A_t^L` and `g'(x)` is a unit at `Q` (`g` the minimal polynomial of
-`x` over `A_t`), then `Q` is unramified over `Q ∩ K`. -/
+`x` over `A_t`), then `Q` is unramified over `Q ∩ K`.
+@isnad1 id=eq.3h5v.s17.2d166a97c620 from=translated src=- shape=2de0d1eb vocab=491f9030
+-/
 theorem ramificationIdx_eq_one_of_aeval_derivative (x : chartRingExt K L t)
     (hx : Algebra.adjoin K {algebraMap (chartRingExt K L t) L x} = ⊤)
     (Q : Place L) (htQ : t ∈ (Q.restrict K).1)
@@ -199,7 +211,9 @@ variable {K L : Type*} [Field K] [CharZero K] [IsCurveField K] [Field L] [CharZe
 
 namespace Place
 
-/-- For `a ∈ O_P` there is a chart `A_t` with `t ∈ O_P` and `a ∈ A_t`. -/
+/-- For `a ∈ O_P` there is a chart `A_t` with `t ∈ O_P` and `a ∈ A_t`.
+@isnad1 id=ex.1h3v.s9.819ce4eca2d6 from=translated src=- shape=ecd91ca4 vocab=e989f61b
+-/
 theorem exists_chart_mem (P : Place K) {a : K} (ha : a ∈ P.1) :
     ∃ t : K, Transcendental ℚ t ∧ t ∈ P.1 ∧ a ∈ chartRing t := by
   by_cases hta : Transcendental ℚ a
@@ -212,7 +226,9 @@ theorem exists_chart_mem (P : Place K) {a : K} (ha : a ∈ P.1) :
 variable {w : L} {a : K} {N : ℕ}
 
 /-- If `w ^ N = a` with `ord_P a = 0`, then `w` is regular at every `Q` over `P`, and either
-`w = 0` or `ord_Q w = 0`. -/
+`w = 0` or `ord_Q w = 0`.
+@isnad1 id=and.3h6v.s8.4b6a3b7e1174 from=translated src=- shape=33eca337 vocab=1b2c6e69
+-/
 theorem mem_of_pow_eq (hN : 0 < N) (hw : w ^ N = algebraMap K L a) (Q : Place L)
     (ha : (Q.restrict K).ord a = 0) : w ∈ Q.1 ∧ (w = 0 ∨ Q.ord w = 0) := by
   rcases eq_or_ne w 0 with rfl | hw0
@@ -230,7 +246,9 @@ set_option maxHeartbeats 800000 in
 set_option synthInstance.maxHeartbeats 400000 in
 -- instance search on `integralClosure (chartRing t) L` is slow
 /-- The Kummer generator `w` (with `w ^ N = a`, `a` a unit or zero at `P`) is an element of
-some `A_t^L` whose minimal polynomial over `A_t` has derivative a unit at `Q`. -/
+some `A_t^L` whose minimal polynomial over `A_t` has derivative a unit at `Q`.
+@isnad1 id=ex.3h6v.s17.a4367dce49bf from=translated src=- shape=9caa408f vocab=fd1d8089
+-/
 theorem exists_chart_aeval_derivative (hN : 0 < N) (hw : w ^ N = algebraMap K L a)
     (Q : Place L) (ha : (Q.restrict K).ord a = 0) :
     ∃ (t : K) (_ : Fact (Transcendental ℚ t)) (_ : t ∈ (Q.restrict K).1)
@@ -306,7 +324,9 @@ theorem exists_chart_aeval_derivative (hN : 0 < N) (hw : w ^ N = algebraMap K L 
   omega
 
 omit [CharZero K] [IsCurveField K] [CharZero L] [IsCurveField L] in
-/-- `K(w) = L` as fields implies `K[w] = L` (`L / K` is algebraic). -/
+/-- `K(w) = L` as fields implies `K[w] = L` (`L / K` is algebraic).
+@isnad1 id=eq.1h3v.s9.895838fe0b0a from=translated src=- shape=d6ff1ec5 vocab=2c86d463
+-/
 theorem algebra_adjoin_eq_top_of_adjoin_eq_top (hgen : K⟮w⟯ = ⊤) :
     Algebra.adjoin K {w} = ⊤ := by
   have := IntermediateField.adjoin_simple_toSubalgebra_of_isAlgebraic
@@ -315,7 +335,9 @@ theorem algebra_adjoin_eq_top_of_adjoin_eq_top (hgen : K⟮w⟯ = ⊤) :
   exact this.symm
 
 /-- **Kummer extensions are unramified at units.** If `L = K(w)` with `w ^ N = a` and `a` is a
-unit (or zero) at `P = Q ∩ K`, then `e(Q|P) = 1`. -/
+unit (or zero) at `P = Q ∩ K`, then `e(Q|P) = 1`.
+@isnad1 id=eq.4h6v.s8.42f845fe53d4 from=translated src=- shape=8ddfd0ae vocab=37350159
+-/
 theorem ramificationIdx_eq_one_of_pow_eq (hN : 0 < N) (hw : w ^ N = algebraMap K L a)
     (hgen : K⟮w⟯ = ⊤) (Q : Place L) (ha : (Q.restrict K).ord a = 0) :
     Q.ramificationIdx K = 1 := by

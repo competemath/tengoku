@@ -69,29 +69,51 @@ namespace IsRationalGenerator
 variable {t : K} (ht : IsRationalGenerator t)
 include ht
 
+/--
+@isnad1 id=mem.1h3v.s6.df6065778a8c from=translated src=- shape=963b74d3 vocab=900e657e
+-/
 theorem mem_adjoin (f : K) : f ∈ ℚ⟮t⟯ := by
   rw [ht.adjoin_eq_top]; trivial
 
+/--
+@isnad1 id=bijectiv.1h2v.s9.c44a22fba5fa from=translated src=- shape=15529951 vocab=23cdc146
+-/
 theorem algebraMap_bijective : Function.Bijective (algebraMap ℚ⟮t⟯ K) :=
   ⟨(algebraMap ℚ⟮t⟯ K).injective, fun f ↦ ⟨⟨f, ht.mem_adjoin f⟩, rfl⟩⟩
 
+/--
+@isnad1 id=finitedi.1h2v.s7.709edab1018e from=translated src=- shape=4ce244a0 vocab=9e02087b
+-/
 theorem finiteDimensional : FiniteDimensional ℚ⟮t⟯ K :=
   Module.Finite.of_surjective (Algebra.linearMap ℚ⟮t⟯ K) ht.algebraMap_bijective.2
 
+/--
+@isnad1 id=eq.1h2v.s8.ac8fea9bda5c from=translated src=- shape=d3a90a7c vocab=dafc2df1
+-/
 theorem finrank_eq_one : Module.finrank ℚ⟮t⟯ K = 1 := by
   rw [← (LinearEquiv.ofBijective (Algebra.linearMap ℚ⟮t⟯ K)
     ht.algebraMap_bijective).finrank_eq, Module.finrank_self]
 
-/-- The rational function field `ℚ(t)` is a curve field. -/
+/-- The rational function field `ℚ(t)` is a curve field.
+@isnad1 id=iscurvef.1h2v.s4.1b2d742e9502 from=translated src=- shape=715e5f06 vocab=675ad497
+-/
 theorem isCurveField : IsCurveField K :=
   ⟨⟨t, ht.transcendental, ht.finiteDimensional⟩⟩
 
+/--
+@isnad1 id=ne.1h2v.s5.a2a9f2f03c81 from=translated src=- shape=a5ea0a41 vocab=db47450c
+-/
 theorem ne_zero : t ≠ 0 := ne_zero_of_transcendental ht.transcendental
 
+/--
+@isnad1 id=ne.2h3v.s7.d34b52db682f from=translated src=- shape=e87f3bd8 vocab=065232af
+-/
 theorem aeval_ne_zero {p : ℚ[X]} (hp : p ≠ 0) : aeval t p ≠ 0 :=
   fun h ↦ ht.transcendental ⟨p, hp, h⟩
 
-/-- Every element of `ℚ(t)` is a reduced fraction `p(t) / q(t)`. -/
+/-- Every element of `ℚ(t)` is a reduced fraction `p(t) / q(t)`.
+@isnad1 id=ex.1h3v.s8.b47fe227f4a6 from=translated src=- shape=ca351644 vocab=6fddde8a
+-/
 theorem exists_coprime (f : K) :
     ∃ p q : ℚ[X], q ≠ 0 ∧ IsCoprime p q ∧ f = aeval t p / aeval t q := by
   obtain ⟨r, s, rfl⟩ := (IntermediateField.mem_adjoin_simple_iff (F := ℚ) f).mp (ht.mem_adjoin f)
@@ -104,11 +126,15 @@ theorem exists_coprime (f : K) :
   set g := gcd r s
   rw [hr, hs', map_mul, map_mul, mul_div_mul_left _ _ (ht.aeval_ne_zero hg)]
 
-/-- `t⁻¹` is a rational generator. -/
+/-- `t⁻¹` is a rational generator.
+@isnad1 id=isration.1h2v.s5.2e293ad983aa from=translated src=- shape=3c7422c8 vocab=8361b8f3
+-/
 theorem inv : IsRationalGenerator t⁻¹ :=
   ⟨transcendental_inv ht.transcendental, by rw [adjoin_inv_eq, ht.adjoin_eq_top]⟩
 
-/-- `t - q` is a rational generator for `q ∈ ℚ`. -/
+/-- `t - q` is a rational generator for `q ∈ ℚ`.
+@isnad1 id=isration.1h3v.s5.d45a739f42ef from=translated src=- shape=1c995235 vocab=3cf999d7
+-/
 theorem sub_ratCast (q : ℚ) : IsRationalGenerator (t - q) := by
   refine ⟨?_, ?_⟩
   · have := ht.transcendental.aeval (X - C q) (by rw [natDegree_X_sub_C]; exact one_ne_zero)
@@ -119,6 +145,9 @@ theorem sub_ratCast (q : ℚ) : IsRationalGenerator (t - q) := by
       (IntermediateField.algebraMap_mem ℚ⟮t - q⟯ (-q))
     simpa using h
 
+/--
+@isnad1 id=isration.1h2v.s6.70671a6184e2 from=translated src=- shape=3a47b3ba vocab=54bca79a
+-/
 theorem sub_one : IsRationalGenerator (t - 1) := by
   simpa using ht.sub_ratCast 1
 
@@ -126,6 +155,9 @@ end IsRationalGenerator
 
 /-! ### Evaluation of polynomials and rational functions in `t` -/
 
+/--
+@isnad1 id=mem.1h4v.s7.76f0b01ee1ac from=translated src=- shape=fc850a72 vocab=dc23ad48
+-/
 theorem Place.aeval_mem (P : Place K) {t : K} (ht : t ∈ P.1) (p : ℚ[X]) : aeval t p ∈ P.1 := by
   induction p using Polynomial.induction_on' with
   | add p q hp hq => rw [map_add]; exact add_mem hp hq
@@ -138,7 +170,9 @@ namespace QbarPoint
 variable (x : QbarPoint K) {t : K} (hx : t ∈ x.P.1)
 include hx
 
-/-- The value of `p(t)` at `x` is `p(t(x))`. -/
+/-- The value of `p(t)` at `x` is `p(t(x))`.
+@isnad1 id=eq.1h4v.s8.6398877021b9 from=translated src=- shape=36d7a5c2 vocab=47a01ae3
+-/
 theorem eval_aeval (p : ℚ[X]) :
     x.eval (aeval t p) (x.P.aeval_mem hx p) = aeval (x.eval t hx) p := by
   induction p using Polynomial.induction_on' with
@@ -151,21 +185,27 @@ theorem eval_aeval (p : ℚ[X]) :
       aeval_monomial]
 
 omit hx in
-/-- A regular function with nonzero value is a unit at the point. -/
+/-- A regular function with nonzero value is a unit at the point.
+@isnad1 id=mem.2h3v.s7.200d5cecc97a from=translated src=- shape=0792ec6c vocab=ac1e2ffa
+-/
 theorem inv_mem_of_eval_ne_zero {f : K} (hf : f ∈ x.P.1) (h : x.eval f hf ≠ 0) :
     f⁻¹ ∈ x.P.1 := by
   rw [Ne, eval_eq_zero_iff_mem_maximalIdeal, ← ValuationSubring.coe_mem_nonunits_iff,
     ValuationSubring.mem_nonunits_iff_or, not_or, not_not] at h
   exact h.2
 
-/-- `p(t)/q(t)` is regular at `x` if `q(t(x)) ≠ 0`. -/
+/-- `p(t)/q(t)` is regular at `x` if `q(t(x)) ≠ 0`.
+@isnad1 id=mem.2h5v.s9.93a64038ad86 from=translated src=- shape=2882fd95 vocab=41dd7f06
+-/
 theorem div_mem {p q : ℚ[X]} (hq : aeval (x.eval t hx) q ≠ 0) :
     aeval t p / aeval t q ∈ x.P.1 := by
   rw [← x.eval_aeval hx q] at hq
   rw [div_eq_mul_inv]
   exact mul_mem (x.P.aeval_mem hx p) (x.inv_mem_of_eval_ne_zero _ hq)
 
-/-- The value of `p(t)/q(t)` at `x` is `p(z)/q(z)`, `z = t(x)`, if `q(z) ≠ 0`. -/
+/-- The value of `p(t)/q(t)` at `x` is `p(z)/q(z)`, `z = t(x)`, if `q(z) ≠ 0`.
+@isnad1 id=eq.2h5v.s9.77496a12d183 from=translated src=- shape=d7d3488e vocab=4c4b3e30
+-/
 theorem eval_div {p q : ℚ[X]} (hq : aeval (x.eval t hx) q ≠ 0) :
     x.eval (aeval t p / aeval t q) (x.div_mem hx hq) =
       aeval (x.eval t hx) p / aeval (x.eval t hx) q := by
@@ -175,7 +215,9 @@ theorem eval_div {p q : ℚ[X]} (hq : aeval (x.eval t hx) q ≠ 0) :
   rw [x.eval_congr (div_eq_mul_inv _ _), x.eval_mul (x.P.aeval_mem hx p) hi,
     x.eval_inv (x.P.aeval_mem hx q) hi, x.eval_aeval hx, x.eval_aeval hx, div_eq_mul_inv]
 
-/-- A reduced fraction `p(t)/q(t)` is not regular at a point where `q(t(x)) = 0`. -/
+/-- A reduced fraction `p(t)/q(t)` is not regular at a point where `q(t(x)) = 0`.
+@isnad1 id=not.5h5v.s9.a829d36a9079 from=translated src=- shape=1a88ce0b vocab=30db3e6f
+-/
 theorem div_notMem (htr : Transcendental ℚ t) {p q : ℚ[X]} (hq0 : q ≠ 0) (hpq : IsCoprime p q)
     (hq : aeval (x.eval t hx) q = 0) : aeval t p / aeval t q ∉ x.P.1 := by
   set z := x.eval t hx
@@ -196,20 +238,31 @@ theorem div_notMem (htr : Transcendental ℚ t) {p q : ℚ[X]} (hq0 : q ≠ 0) (
   rw [x.eval_congr h1, eval_one, x.eval_div hx hp, hq, zero_div, mul_zero] at this
   exact one_ne_zero this
 
-/-- A reduced fraction `p(t)/q(t)` is regular at `x` iff `q(t(x)) ≠ 0`. -/
+/-- A reduced fraction `p(t)/q(t)` is regular at `x` iff `q(t(x)) ≠ 0`.
+@isnad1 id=iff.4h5v.s9.47b640552f3b from=translated src=- shape=722f6b03 vocab=30db3e6f
+-/
 theorem div_mem_iff (htr : Transcendental ℚ t) {p q : ℚ[X]} (hq0 : q ≠ 0)
     (hpq : IsCoprime p q) : aeval t p / aeval t q ∈ x.P.1 ↔ aeval (x.eval t hx) q ≠ 0 :=
   ⟨fun h hq ↦ x.div_notMem hx htr hq0 hpq hq h, x.div_mem hx⟩
 
+/--
+@isnad1 id=eq.2h3v.s7.1b047ca70d6b from=translated src=- shape=528a06a3 vocab=efb0ee42
+-/
 theorem eval_inv_self (hz : x.eval t hx ≠ 0) :
     x.eval t⁻¹ (x.inv_mem_of_eval_ne_zero hx hz) = (x.eval t hx)⁻¹ :=
   x.eval_inv hx _
 
+/--
+@isnad1 id=mem.2h3v.s7.a39e3ef8d9e0 from=translated src=- shape=eaa1fa69 vocab=12c4c71a
+-/
 theorem one_sub_mem (hz : x.eval t hx ≠ 1) : (1 - t)⁻¹ ∈ x.P.1 := by
   refine x.inv_mem_of_eval_ne_zero (sub_mem x.P.1.one_mem hx) ?_
   rw [x.eval_sub x.P.1.one_mem hx, eval_one, sub_ne_zero]
   exact hz.symm
 
+/--
+@isnad1 id=eq.2h3v.s8.ba61db246b77 from=translated src=- shape=5a3d050c vocab=4ec79a51
+-/
 theorem eval_one_sub_inv (hz : x.eval t hx ≠ 1) :
     x.eval (1 - t)⁻¹ (x.one_sub_mem hx hz) = (1 - x.eval t hx)⁻¹ := by
   rw [x.eval_inv (sub_mem x.P.1.one_mem hx), x.eval_sub x.P.1.one_mem hx, eval_one]
@@ -223,6 +276,9 @@ namespace QbarPoint
 variable {t : K} (ht : IsRationalGenerator t)
 include ht
 
+/--
+@isnad1 id=iff.4h5v.s8.9a13edd1ee7a from=translated src=- shape=ec656f49 vocab=498129bb
+-/
 theorem mem_iff_of_eval_eq {x y : QbarPoint K} {hx : t ∈ x.P.1} {hy : t ∈ y.P.1}
     (h : x.eval t hx = y.eval t hy) (f : K) : f ∈ x.P.1 ↔ f ∈ y.P.1 := by
   obtain ⟨p, q, hq0, hpq, rfl⟩ := ht.exists_coprime f
@@ -240,7 +296,9 @@ theorem eq_of_eval_eq {x y : QbarPoint K} {hx : t ∈ x.P.1} {hy : t ∈ y.P.1}
   have hqy : aeval (y.eval t hy) q ≠ 0 := h ▸ hqx
   rw [x.eval_congr hf, x.eval_div hx hqx, y.eval_congr hf, y.eval_div hy hqy, h]
 
-/-- For every `z ∈ ℚ̄` there is a point `x` with `t` regular at `x` and `t(x) = z`. -/
+/-- For every `z ∈ ℚ̄` there is a point `x` with `t` regular at `x` and `t(x) = z`.
+@isnad1 id=ex.1h3v.s7.0c69205ea09a from=translated src=- shape=37b9215a vocab=45649638
+-/
 theorem exists_eval_eq [IsCurveField K] (z : Qbar) :
     ∃ (x : QbarPoint K) (hx : t ∈ x.P.1), x.eval t hx = z := by
   have hz : IsIntegral ℚ z := (Algebra.IsAlgebraic.isAlgebraic z).isIntegral
@@ -281,17 +339,25 @@ noncomputable def equivQbar [IsCurveField K] : {x : QbarPoint K // t ∈ x.P.1} 
       let ⟨x, hx, h⟩ := exists_eval_eq ht z; ⟨⟨x, hx⟩, h⟩⟩
 
 omit ht in
+/--
+@isnad1 id=eq.1h3v.s9.5844af53ae42 from=translated src=- shape=bb2fac4a vocab=9f661d47
+-/
 @[simp]
 theorem equivQbar_apply [IsCurveField K] (ht : IsRationalGenerator t)
     (x : {x : QbarPoint K // t ∈ x.P.1}) : equivQbar ht x = x.1.eval t x.2 := rfl
 
 omit ht in
+/--
+@isnad1 id=eq.1h3v.s9.2acfebf71246 from=translated src=- shape=6483ccfd vocab=0846289e
+-/
 @[simp]
 theorem eval_equivQbar_symm [IsCurveField K] (ht : IsRationalGenerator t) (z : Qbar) :
     ((equivQbar ht).symm z).1.eval t ((equivQbar ht).symm z).2 = z :=
   (equivQbar ht).apply_symm_apply z
 
-/-- The field of definition of a point with `t` regular is `ℚ(t(x))`. -/
+/-- The field of definition of a point with `t` regular is `ℚ(t(x))`.
+@isnad1 id=eq.2h3v.s7.96f06014de42 from=translated src=- shape=1631432b vocab=0ad41b85
+-/
 theorem fieldOf_eq_adjoin (x : QbarPoint K) (hx : t ∈ x.P.1) :
     x.fieldOf = ℚ⟮x.eval t hx⟯ := by
   refine le_antisymm ?_ (IntermediateField.adjoin_simple_le_iff.mpr (x.eval_mem_fieldOf hx))
@@ -304,12 +370,16 @@ theorem fieldOf_eq_adjoin (x : QbarPoint K) (hx : t ∈ x.P.1) :
   rw [x.eval_congr hf, x.eval_div hx hqx]
   exact (IntermediateField.mem_adjoin_simple_iff (F := ℚ) _).mpr ⟨p, q, rfl⟩
 
-/-- The degree of a point with `t` regular is `[ℚ(t(x)) : ℚ]`. -/
+/-- The degree of a point with `t` regular is `[ℚ(t(x)) : ℚ]`.
+@isnad1 id=eq.2h3v.s9.8810feb97377 from=translated src=- shape=9eab4dd9 vocab=16d13aaa
+-/
 theorem deg_eq_finrank_adjoin (x : QbarPoint K) (hx : t ∈ x.P.1) :
     x.deg = Module.finrank ℚ ℚ⟮x.eval t hx⟯ := by
   rw [deg, fieldOf_eq_adjoin ht x hx]
 
-/-- The degree of a point with `t` regular is the degree of the minimal polynomial of `t(x)`. -/
+/-- The degree of a point with `t` regular is the degree of the minimal polynomial of `t(x)`.
+@isnad1 id=eq.2h3v.s7.8e0454735595 from=translated src=- shape=e726f280 vocab=3aa92220
+-/
 theorem deg_eq_natDegree_minpoly (x : QbarPoint K) (hx : t ∈ x.P.1) :
     x.deg = (minpoly ℚ (x.eval t hx)).natDegree := by
   rw [deg_eq_finrank_adjoin ht x hx,
@@ -324,7 +394,9 @@ section Chart
 variable {t : K} (ht : IsRationalGenerator t)
 include ht
 
-/-- A function regular at every place containing `t` is a polynomial in `t`. -/
+/-- A function regular at every place containing `t` is a polynomial in `t`.
+@isnad1 id=mem.2h3v.s7.db7da75129c9 from=translated src=- shape=43e3ab19 vocab=b09838f9
+-/
 theorem mem_adjoin_of_forall_mem [IsCurveField K] {f : K} (hf : ∀ P : Place K, t ∈ P.1 → f ∈ P.1) :
     f ∈ Algebra.adjoin ℚ {t} := by
   obtain ⟨p, q, hq0, hpq, rfl⟩ := ht.exists_coprime f
@@ -337,6 +409,9 @@ theorem mem_adjoin_of_forall_mem [IsCurveField K] {f : K} (hf : ∀ P : Place K,
   exact mul_mem (Algebra.adjoin_singleton_eq_range_aeval ℚ t ▸ ⟨p, rfl⟩)
     (Subalgebra.algebraMap_mem _ _)
 
+/--
+@isnad1 id=iff.1h3v.s7.6fcfbbe119f1 from=translated src=- shape=14708b4d vocab=b09838f9
+-/
 theorem forall_mem_iff [IsCurveField K] (f : K) :
     (∀ P : Place K, t ∈ P.1 → f ∈ P.1) ↔ f ∈ Algebra.adjoin ℚ {t} := by
   refine ⟨mem_adjoin_of_forall_mem ht, fun hf P hP ↦ ?_⟩
@@ -344,7 +419,9 @@ theorem forall_mem_iff [IsCurveField K] (f : K) :
   obtain ⟨p, rfl⟩ := hf
   exact P.aeval_mem hP p
 
-/-- The chart ring `A_t` (the integral closure of `ℚ[t]` in `K`) is `ℚ[t]`. -/
+/-- The chart ring `A_t` (the integral closure of `ℚ[t]` in `K`) is `ℚ[t]`.
+@isnad1 id=iff.1h3v.s9.ec6c7bd69df1 from=translated src=- shape=28746e00 vocab=086cf796
+-/
 theorem mem_chartRing_iff (f : K) : f ∈ chartRing t ↔ f ∈ Algebra.adjoin ℚ {t} := by
   have := ht.isCurveField
   refine ⟨fun hf ↦ mem_adjoin_of_forall_mem ht fun P hP ↦ ?_, mem_chartRing_of_mem_adjoin⟩
@@ -370,12 +447,21 @@ noncomputable def infPlace (t : K) : Place K := Classical.epsilon fun P : Place 
 variable {t : K} (ht : IsRationalGenerator t)
 include ht
 
+/--
+@isnad1 id=not.1h2v.s6.c144696f25da from=translated src=- shape=19e78cc9 vocab=2e15e396
+-/
 theorem notMem_infPlace : t ∉ (infPlace t).1 :=
   Classical.epsilon_spec (Place.exists_notMem ht.transcendental)
 
+/--
+@isnad1 id=lt.1h2v.s5.5aba1e31c4ff from=translated src=- shape=36d16abc vocab=85adaa3d
+-/
 theorem ord_infPlace_neg : (infPlace t).ord t < 0 :=
   (Place.ord_neg_iff _).mpr (notMem_infPlace ht)
 
+/--
+@isnad1 id=mem.1h2v.s6.e9a35de325a6 from=translated src=- shape=c478d97d vocab=7aee587d
+-/
 theorem inv_mem_infPlace : t⁻¹ ∈ (infPlace t).1 :=
   ((infPlace t).mem_or_inv_mem t).resolve_left (notMem_infPlace ht)
 
@@ -393,21 +479,31 @@ noncomputable def minpolyAt (P : Place K) (hP : t ∈ P.1) : ℚ[X] :=
   minpoly ℚ (P.residue ⟨t, hP⟩)
 
 omit ht in
+/--
+@isnad1 id=monic.1h3v.s6.f2426bbcf379 from=translated src=- shape=b07c14c3 vocab=0deb5f93
+-/
 theorem minpolyAt_monic (P : Place K) (hP : t ∈ P.1) : (P.minpolyAt hP).Monic :=
   minpoly.monic (Algebra.IsIntegral.isIntegral _)
 
 omit ht in
+/--
+@isnad1 id=irreduci.1h3v.s6.1cb517b97946 from=translated src=- shape=59a5347f vocab=009ee30b
+-/
 theorem minpolyAt_irreducible (P : Place K) (hP : t ∈ P.1) : Irreducible (P.minpolyAt hP) :=
   minpoly.irreducible (Algebra.IsIntegral.isIntegral _)
 
 omit ht [IsCurveField K] in
-/-- The minimal polynomial of `t` at `x.P` is the minimal polynomial of `t(x)`. -/
+/-- The minimal polynomial of `t` at `x.P` is the minimal polynomial of `t(x)`.
+@isnad1 id=eq.1h3v.s7.125f123b4653 from=translated src=- shape=9095ecfa vocab=544ce406
+-/
 theorem _root_.Belyi.CurveField.QbarPoint.minpolyAt_P (x : QbarPoint K) (hx : t ∈ x.P.1) :
     x.P.minpolyAt hx = minpoly ℚ (x.eval t hx) :=
   (minpoly.algHom_eq x.σ.toRatAlgHom x.σ.injective _).symm
 
 omit ht in
-/-- A root `z` of the minimal polynomial of `t` at `P` is `t(x)` for a point `x` over `P`. -/
+/-- A root `z` of the minimal polynomial of `t` at `P` is `t(x)` for a point `x` over `P`.
+@isnad1 id=ex.2h4v.s8.9e798deece93 from=translated src=- shape=d5e5451d vocab=b214a72b
+-/
 theorem exists_P_eq_eval_eq (P : Place K) (hP : t ∈ P.1) {z : Qbar}
     (hz : aeval z (P.minpolyAt hP) = 0) :
     ∃ x : QbarPoint K, ∃ hx : x.P = P, x.eval t (hx ▸ hP) = z := by

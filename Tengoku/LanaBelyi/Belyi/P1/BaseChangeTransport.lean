@@ -45,7 +45,9 @@ variable {R : Type u} [CommRing R] [Algebra k₀ R] [Algebra K R] [IsScalarTower
 
 /-- The `k₀`-valued point `point k₀ t` is a morphism over `Spec k₀` in the way required to
 lift `point K t` into the base change: its composite with the structure morphism agrees,
-across `specAlgebraMap`, with the `Spec K`-side leg. -/
+across `specAlgebraMap`, with the `Spec K`-side leg.
+@isnad1 id=eq.0h4v.s7.dc31886c1822 from=translated src=- shape=34ffa2f9 vocab=38231a13
+-/
 lemma point_structMap_specAlgebraMap_compat (t : R) :
     point k₀ t ≫ (P1 k₀ ↘ Spec (CommRingCat.of k₀)) =
       Spec.map (CommRingCat.ofHom (algebraMap K R)) ≫ specAlgebraMap k₀ K := by
@@ -57,7 +59,9 @@ For a `K`-algebra `R` (a `k₀`-algebra by restriction) and `t : R`, the `K`-val
 affine coordinate `t` maps, under the comparison isomorphism `toPullback`, to the point of
 the base change whose `ℙ¹_{k₀}`-leg is the `k₀`-valued point of the same coordinate `t` and
 whose `Spec K`-leg is `Spec (algebraMap K R)`. This is the naturality of valued points under
-the canonical identification, consumed by the pair version of B3 (#48). -/
+the canonical identification, consumed by the pair version of B3 (#48).
+@isnad1 id=eq.0h4v.s8.ba40139b6fc6 from=translated src=- shape=45486568 vocab=2ed0ad05
+-/
 lemma point_comp_toPullback (t : R) :
     point K t ≫ toPullback k₀ K =
       pullback.lift (point k₀ t) (Spec.map (CommRingCat.ofHom (algebraMap K R)))

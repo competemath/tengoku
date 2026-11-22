@@ -63,7 +63,9 @@ variable (W : WeierstrassCurve K) [W.IsElliptic]
 base change `W⁄L` has multiplicative reduction over the discrete valuation subring `A ⊆ L`, then the
 image of the `j`-invariant `algebraMap K L W.j` lies *outside* `A`. This is the base-change
 reflection of `not_isIntegral_j_of_hasMultiplicativeReduction` — the multiplicative-reduction
-companion of `isIntegral_j_of_hasGoodReduction_baseChange` (#501). -/
+companion of `isIntegral_j_of_hasGoodReduction_baseChange` (#501).
+@isnad1 id=not.1h4v.s7.0309d22a79f9 from=translated src=- shape=f290a658 vocab=62f4bed0
+-/
 theorem not_mem_j_of_hasMultiplicativeReduction_baseChange
     (h : HasMultiplicativeReduction A (W⁄L)) : algebraMap K L W.j ∉ A := by
   haveI : HasMultiplicativeReduction A (W⁄L) := h
@@ -75,7 +77,9 @@ theorem not_mem_j_of_hasMultiplicativeReduction_baseChange
 
 /-- **The `j`-invariant is not integral at the contracted place.** Restatement of
 `not_mem_j_of_hasMultiplicativeReduction_baseChange` as non-membership in the contracted valuation
-ring `A.comap (algebraMap K L)` of `K`. -/
+ring `A.comap (algebraMap K L)` of `K`.
+@isnad1 id=not.1h4v.s7.f8ecd1ca91e0 from=translated src=- shape=8561be71 vocab=d7af4a00
+-/
 theorem not_mem_comap_j_of_hasMultiplicativeReduction_baseChange
     (h : HasMultiplicativeReduction A (W⁄L)) : W.j ∉ A.comap (algebraMap K L) :=
   fun hmem => not_mem_j_of_hasMultiplicativeReduction_baseChange A W h
@@ -84,7 +88,9 @@ theorem not_mem_comap_j_of_hasMultiplicativeReduction_baseChange
 /-- **A `j`-invariant that is integral at the base place rules out multiplicative reduction over
 `A`.** Contrapositive of `not_mem_j_of_hasMultiplicativeReduction_baseChange`: if
 `algebraMap K L W.j ∈ A`, then the base change `W⁄L` cannot have multiplicative reduction over
-`A`. -/
+`A`.
+@isnad1 id=not.1h4v.s7.c00671f07ead from=translated src=- shape=9dc45d96 vocab=62f4bed0
+-/
 theorem not_hasMultiplicativeReduction_baseChange_of_j_mem
     (h : algebraMap K L W.j ∈ A) : ¬ HasMultiplicativeReduction A (W⁄L) :=
   fun hmult => not_mem_j_of_hasMultiplicativeReduction_baseChange A W hmult h

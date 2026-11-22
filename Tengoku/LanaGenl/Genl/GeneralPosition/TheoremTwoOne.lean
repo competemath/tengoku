@@ -57,7 +57,9 @@ variable (T : HeightTheory.{u})
 
 /-- The divisor free case of the implication (ii) ⇒ (i) of Theorem 2.1 of
 [mochizuki2010], on the locus of points of degree exactly `d` (second half of the proof
-of Theorem 2.1, pp. 13–14 of loc. cit.). -/
+of Theorem 2.1, pp. 13–14 of loc. cit.).
+@isnad1 id=discrepa.4h5v.s6.81b699001342 from=translated src=- shape=3b6a67a9 vocab=51013006
+-/
 theorem le_of_statementII_ptEQ (A : T.ProofPackage) (hII : T.StatementII) {X : T.Curve}
     (hX : T.Hyperbolic X) (hD : T.DivisorFree X) (d : ℕ) {ε : ℝ} (hε : 0 < ε) :
     T.htCan X ≲[T.ptEQ X d] (1 + ε) • T.logDiff X := by
@@ -118,7 +120,9 @@ theorem le_of_statementII_ptEQ (A : T.ProofPackage) (hII : T.StatementII) {X : T
   linarith
 
 /-- The divisor free case of the implication (ii) ⇒ (i) of Theorem 2.1 of
-[mochizuki2010], on the locus of points of degree at most `d`. -/
+[mochizuki2010], on the locus of points of degree at most `d`.
+@isnad1 id=discrepa.4h5v.s6.2018951d7fe9 from=translated src=- shape=3b6a67a9 vocab=c642e69d
+-/
 theorem le_of_statementII_divisorFree (A : T.ProofPackage) (hII : T.StatementII)
     {X : T.Curve} (hX : T.Hyperbolic X) (hD : T.DivisorFree X) (d : ℕ) {ε : ℝ}
     (hε : 0 < ε) : T.htCan X ≲[T.ptLE X d] (1 + ε) • T.logDiff X := by
@@ -132,7 +136,9 @@ theorem le_of_statementII_divisorFree (A : T.ProofPackage) (hII : T.StatementII)
 
 /-- The reduction of statement (i) of Theorem 2.1 of [mochizuki2010] to the divisor free
 case, via coverings ramified exactly over `D` with large ramification index (first
-paragraph of the proof of Theorem 2.1, p. 13 of loc. cit.). -/
+paragraph of the proof of Theorem 2.1, p. 13 of loc. cit.).
+@isnad1 id=statemen.1h2v.s6.a00f99352fca from=translated src=- shape=d1755876 vocab=ac220f34
+-/
 theorem statementI_of_divisorFree (A : T.ProofPackage)
     (hfree : ∀ Y, T.Hyperbolic Y → T.DivisorFree Y → ∀ (d : ℕ) (ε : ℝ), 0 < ε →
       T.htCan Y ≲[T.ptLE Y d] (1 + ε) • T.logDiff Y) :
@@ -165,7 +171,9 @@ theorem statementI_of_divisorFree (A : T.ProofPackage)
 /-- **Theorem 2.1 of [mochizuki2010], (ii) ⇒ (i)**: for a height formalism satisfying
 the arithmetic-geometric inputs of `ProofPackage`, the ABC conjecture for `Σ`-supported
 compactly bounded subsets of the tripod implies the Effective Mordell/ABC/Vojta
-conjecture for arbitrary hyperbolic curves over number fields. -/
+conjecture for arbitrary hyperbolic curves over number fields.
+@isnad1 id=statemen.1h2v.s3.5fb4595dcc7d from=translated src=- shape=cbe5c5ba vocab=72aff36d
+-/
 theorem statementII_implies_statementI (A : T.ProofPackage) (hII : T.StatementII) :
     T.StatementI :=
   T.statementI_of_divisorFree A fun _ hY hD d _ hε ↦
@@ -173,12 +181,16 @@ theorem statementII_implies_statementI (A : T.ProofPackage) (hII : T.StatementII
 
 /-- **Theorem 2.1 of [mochizuki2010], (i) ⇒ (ii)**: the Effective Mordell/ABC/Vojta
 conjecture restricts to compactly bounded subsets of the tripod. This implication is
-immediate from the definitions. -/
+immediate from the definitions.
+@isnad1 id=statemen.1h1v.s2.7ceb96dbdeda from=translated src=- shape=6321fd23 vocab=37b70d37
+-/
 theorem statementI_implies_statementII (hI : T.StatementI) : T.StatementII := by
   intro d ε hε K
   exact (hI T.tripod T.hyperbolic_tripod d ε hε).mono Set.inter_subset_right
 
-/-- **Theorem 2.1 of [mochizuki2010]**: statements (i) and (ii) are equivalent. -/
+/-- **Theorem 2.1 of [mochizuki2010]**: statements (i) and (ii) are equivalent.
+@isnad1 id=iff.0h2v.s3.6e811e3b9cff from=translated src=- shape=2b510e99 vocab=72aff36d
+-/
 theorem statementI_iff_statementII (A : T.ProofPackage) :
     T.StatementI ↔ T.StatementII :=
   ⟨T.statementI_implies_statementII, T.statementII_implies_statementI A⟩

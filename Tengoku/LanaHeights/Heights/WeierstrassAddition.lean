@@ -241,7 +241,9 @@ private theorem frequently_eq_of_eventuallyEq_ofReal {f g : ℂ → ℂ}
 
 /-- Local form of the Weierstrass addition theorem for the `x`-coordinate.
 For a non-pole `w`, the removable secant candidate for addition by the curve
-point represented by `w` agrees near zero with `z ↦ ℘(w+z)`. -/
+point represented by `w` agrees near zero with `z ↦ ℘(w+z)`.
+@isnad1 id=eventual.1h2v.s6.8b88d8dcb039 from=translated src=- shape=ff7ae574 vocab=ad9b2e4c
+-/
 theorem weierstrassSecantAddXAtZero_eventuallyEq_translate
     (L : PeriodPair) (w : ℂ) (hw : w ∉ L.lattice) :
     weierstrassSecantAddXAtZero L (L.weierstrassP w)
@@ -268,7 +270,9 @@ theorem weierstrassSecantAddXAtZero_eventuallyEq_translate
   exact (hx.frequently_eq_iff_eventually_eq ht).mp hfreq
 
 /-- Local form of the Weierstrass addition theorem for the `y`-coordinate,
-with the short-Weierstrass normalization `y = ℘′/2`. -/
+with the short-Weierstrass normalization `y = ℘′/2`.
+@isnad1 id=eventual.1h2v.s6.68ffa4637a26 from=translated src=- shape=0501ead3 vocab=b40bcf76
+-/
 theorem weierstrassSecantAddYAtZero_eventuallyEq_translate
     (L : PeriodPair) (w : ℂ) (hw : w ∉ L.lattice) :
     weierstrassSecantAddYAtZero L (L.weierstrassP w)
@@ -308,7 +312,9 @@ theorem weierstrassSecantAddYAtZero_eventuallyEq_translate
 
 /-- The global Weierstrass secant addition formula away from its genuine
 exceptional points.  The hypotheses exclude poles of the two inputs and their
-sum, and exclude a vertical secant. -/
+sum, and exclude a vertical secant.
+@isnad1 id=and.4h3v.s7.c429f8b65bbf from=translated src=- shape=0b36e81e vocab=5746f788
+-/
 theorem weierstrass_addition_coordinates (L : PeriodPair) (z w : ℂ)
     (hz : z ∉ L.lattice) (hw : w ∉ L.lattice) (hzw : z + w ∉ L.lattice)
     (hne : L.weierstrassP z ≠ L.weierstrassP w) :

@@ -54,7 +54,9 @@ open scoped nonZeroDivisors
 
 /-- **Free + torsion ⟹ zero, locally.** If a finite... (no finiteness needed) `A`-module `M`
 over a domain `A` is torsion and is free after localizing at a prime `p`, then it localizes to
-`0` at `p`: a nonzero free module over the domain `Aₚ` is torsion-free, contradicting torsion. -/
+`0` at `p`: a nonzero free module over the domain `Aₚ` is torsion-free, contradicting torsion.
+@isnad1 id=subsingl.2h3v.s8.b0d7d382f57d from=translated src=- shape=0373b565 vocab=7dd52190
+-/
 lemma subsingleton_localizedModule_of_free_of_isTorsion
     {A : Type*} [CommRing A] [IsDomain A] {M : Type*} [AddCommGroup M] [Module A M]
     (htor : Module.IsTorsion A M) (p : PrimeSpectrum A)
@@ -89,7 +91,9 @@ lemma subsingleton_localizedModule_of_free_of_isTorsion
       · exact h
   exact subsingleton_of_forall_eq 0 fun z => h0 z
 
-/-- A torsion module over a domain is supported nowhere it is free: `freeLocus ⊆ (support)ᶜ`. -/
+/-- A torsion module over a domain is supported nowhere it is free: `freeLocus ⊆ (support)ᶜ`.
+@isnad1 id=le.1h2v.s6.2908891906e4 from=translated src=- shape=abbc6c79 vocab=70673177
+-/
 lemma freeLocus_subset_compl_support_of_isTorsion
     {A : Type*} [CommRing A] [IsDomain A] {M : Type*} [AddCommGroup M] [Module A M]
     (htor : Module.IsTorsion A M) :
@@ -109,7 +113,9 @@ torsion `A`-module then the smooth and étale loci coincide.
 `etaleLocus ⊆ smoothLocus` is formal (étale = unramified ∧ smooth). For the reverse: on the
 smooth locus `Ω` is locally free (`smoothLocus_eq_compl_support_inter`), and a free torsion
 module over the domain `Aₚ` vanishes, so `Ω` has empty support there — landing the point in the
-étale locus (`etaleLocus_eq_compl_support`). -/
+étale locus (`etaleLocus_eq_compl_support`).
+@isnad1 id=eq.1h2v.s6.7be05c3413c7 from=translated src=- shape=6aaaf704 vocab=bf573a57
+-/
 theorem smoothLocus_eq_etaleLocus_of_isTorsion_kaehler
     {R A : Type*} [CommRing R] [CommRing A] [Algebra R A] [IsDomain A] [EssFiniteType R A]
     (htor : Module.IsTorsion A Ω[A⁄R]) :
@@ -138,7 +144,9 @@ of) a nonzero element of `R`.
 
 This is the torsion input to `smoothLocus_eq_etaleLocus_of_isTorsion_kaehler`. Unlike
 `Algebra.FormallyUnramified.of_formallySmooth_of_finite_charZero`, it needs **no** global
-formal-smoothness hypothesis: the smooth locus supplies local freeness pointwise. -/
+formal-smoothness hypothesis: the smooth locus supplies local freeness pointwise.
+@isnad1 id=istorsio.0h2v.s7.59fceecc49d3 from=translated src=- shape=e7e528f1 vocab=049baf14
+-/
 theorem isTorsion_kaehlerDifferential_of_finite_charZero
     {R S : Type u} [CommRing R] [IsDomain R] [CharZero R]
     [CommRing S] [IsDomain S] [Algebra R S] [FaithfulSMul R S] [Module.Finite R S] :
@@ -186,7 +194,9 @@ theorem isTorsion_kaehlerDifferential_of_finite_charZero
 Combines `Algebra.smoothLocus_eq_etaleLocus_of_isTorsion_kaehler` with the torsion of `Ω`
 (`isTorsion_kaehlerDifferential_of_finite_charZero`). This is the ring-level content of
 follow-up piece (1) of issue #168: for a finite (relative dimension `0`) morphism in
-characteristic zero, smoothness at a point is the same as étaleness at a point. -/
+characteristic zero, smoothness at a point is the same as étaleness at a point.
+@isnad1 id=eq.0h2v.s6.e16de5866d18 from=translated src=- shape=986693ad vocab=51cd1632
+-/
 theorem smoothLocus_eq_etaleLocus_of_finite_charZero
     {R S : Type u} [CommRing R] [IsDomain R] [CharZero R]
     [CommRing S] [IsDomain S] [Algebra R S] [FaithfulSMul R S] [Module.Finite R S]

@@ -76,7 +76,9 @@ end WeierstrassCurve
 namespace WeierstrassCurve
 
 /-- Over the universal (char-`0` domain) base, `x₃ - x₁ ≠ 0`: its bidegree-`(1, -3)` coefficient is
-`-2 ≠ 0`. -/
+`-2 ≠ 0`.
+@isnad1 id=ne.0h0v.s10.aa2bdbc36993 from=translated src=- shape=91e1afed vocab=8b7b626f
+-/
 theorem univ_formalXThree_sub_biX₁_ne_zero :
     univ.formalXThree - univ.biX₁ ≠ 0 := by
   intro h
@@ -88,7 +90,9 @@ theorem univ_formalXThree_sub_biX₁_ne_zero :
   simp only [HahnSeries.coeff_zero] at hc
   exact (by norm_num : (-2 : MvPolynomial (Fin 5) ℤ) ≠ 0) hc.symm
 
-/-- Over the universal (char-`0` domain) base, `x₃ - x₂ ≠ 0`. -/
+/-- Over the universal (char-`0` domain) base, `x₃ - x₂ ≠ 0`.
+@isnad1 id=ne.0h0v.s10.2906d1896e93 from=translated src=- shape=91e1afed vocab=825eb486
+-/
 theorem univ_formalXThree_sub_biX₂_ne_zero :
     univ.formalXThree - univ.biX₂ ≠ 0 := by
   intro h
@@ -101,7 +105,9 @@ theorem univ_formalXThree_sub_biX₂_ne_zero :
   simp only [HahnSeries.coeff_zero] at hc
   exact (by norm_num : (-2 : MvPolynomial (Fin 5) ℤ) ≠ 0) hc.symm
 
-/-- Over the universal base, `z_c - z₁ ≠ 0`. -/
+/-- Over the universal base, `z_c - z₁ ≠ 0`.
+@isnad1 id=ne.0h0v.s10.0344b439fe5e from=translated src=- shape=91e1afed vocab=9613ff50
+-/
 theorem univ_coordChangeZ_sub_biZ₁_ne_zero :
     univ.coordChangeZ - univ.biZ₁ ≠ 0 := by
   intro h
@@ -113,7 +119,9 @@ theorem univ_coordChangeZ_sub_biZ₁_ne_zero :
   · exact univ.isUnit_formalNu.ne_zero h1
   · exact univ_formalXThree_sub_biX₁_ne_zero h2
 
-/-- Over the universal base, `z_c - z₂ ≠ 0`. -/
+/-- Over the universal base, `z_c - z₂ ≠ 0`.
+@isnad1 id=ne.0h0v.s10.db3bbde45aef from=translated src=- shape=91e1afed vocab=1f8797cf
+-/
 theorem univ_coordChangeZ_sub_biZ₂_ne_zero :
     univ.coordChangeZ - univ.biZ₂ ≠ 0 := by
   intro h
@@ -129,7 +137,9 @@ theorem univ_coordChangeZ_sub_biZ₂_ne_zero :
 `S = MvPolynomial (Fin 5) ℤ`
 the `(z, w)`- and Laurent formal group laws agree, unconditionally.  The two regularity hypotheses
 of `embedDoubleLaurent_formalGroupZW_of_regular` follow from the nonvanishing of the coordinate
-differences via `NoZeroDivisors` in the double Laurent domain. -/
+differences via `NoZeroDivisors` in the double Laurent domain.
+@isnad1 id=eq.0h0v.s7.9d9c39957519 from=translated src=- shape=9fee4721 vocab=29dcc683
+-/
 theorem embedDoubleLaurent_formalGroupZW_univ :
     HahnSeries.embedDoubleLaurent univ.formalGroupZW = univ.formalGroupLaurent := by
   refine univ.embedDoubleLaurent_formalGroupZW_of_regular ?_ ?_

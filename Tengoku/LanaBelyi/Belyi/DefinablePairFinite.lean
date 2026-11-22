@@ -58,7 +58,9 @@ the square
 ```
 is cartesian. Obtained by pasting the two standard pullback squares (of `p₀` resp.
 `ℙ¹_{k₀} ↘ Spec k₀` along `specAlgebraMap k₀ K`) vertically via `IsPullback.of_bot`, using
-`baseChangeModelHom_snd`/`_fst` and `hf₀`. -/
+`baseChangeModelHom_snd`/`_fst` and `hf₀`.
+@isnad1 id=ispullba.1h5v.s7.c0b2bd99f656 from=translated src=- shape=dbf42a90 vocab=04275516
+-/
 lemma isPullback_baseChangeModelHom :
     IsPullback (pullback.fst p₀ (specAlgebraMap k₀ K))
       (baseChangeModelHom k₀ K p₀ f₀ hf₀) f₀
@@ -73,7 +75,9 @@ lemma isPullback_baseChangeModelHom :
   exact s.of_bot (baseChangeModelHom_fst k₀ K p₀ f₀ hf₀).symm t
 
 /-- **Base-change direction of B3d (finiteness), core form.** The base change of a finite model
-morphism is finite. -/
+morphism is finite.
+@isnad1 id=isfinite.2h5v.s7.63a2f133b5df from=translated src=- shape=21a4c4d0 vocab=907a857e
+-/
 lemma isFinite_baseChangeModelHom (hfin : IsFinite f₀) :
     IsFinite (baseChangeModelHom k₀ K p₀ f₀ hf₀) :=
   MorphismProperty.of_isPullback (P := @IsFinite)
@@ -87,7 +91,9 @@ base change of the model source, and the pair condition
 `f ≫ toPullback = e.hom ≫ baseChangeModelHom …` — finiteness of `f₀` implies finiteness of `f`.
 
 `f` is `e.hom ≫ baseChangeModelHom … ≫ inv toPullback`, a composite of two isomorphisms with the
-(finite) base change of `f₀`; finiteness is stable under composition and contains isomorphisms. -/
+(finite) base change of `f₀`; finiteness is stable under composition and contains isomorphisms.
+@isnad1 id=isfinite.3h8v.s8.593ad8a771ad from=translated src=- shape=bf329bfe vocab=4706796d
+-/
 lemma isFinite_of_isFinite_model {X₀ : Scheme.{u}} {p₀ : X₀ ⟶ Spec (CommRingCat.of k₀)}
     {f₀ : X₀ ⟶ P1 k₀} (hf₀ : f₀ ≫ (P1 k₀ ↘ Spec (CommRingCat.of k₀)) = p₀)
     {X : Scheme.{u}} [X.Over (Spec (CommRingCat.of K))] {f : X ⟶ P1 K}

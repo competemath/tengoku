@@ -37,6 +37,9 @@ attribute [local instance] MvPolynomial.gradedAlgebra
 
 variable (k : Type u) [CommRing k]
 
+/--
+@isnad1 id=mem.0h2v.s8.c6f2d55e30d8 from=translated src=- shape=30ae986e vocab=037d0a7f
+-/
 lemma X_mem_P1Grading (i : Fin 2) : (X i : MvPolynomial (Fin 2) k) ∈ P1Grading k 1 :=
   (mem_homogeneousSubmodule _ _).mpr (isHomogeneous_X k i)
 
@@ -49,6 +52,9 @@ noncomputable def awayEval (t : R) : Away (P1Grading k) (X 1) →+* R :=
       (X 1) (by simp)).comp
     (algebraMap (Away (P1Grading k) (X 1)) (Localization.Away (X 1 : MvPolynomial (Fin 2) k)))
 
+/--
+@isnad1 id=eq.0h4v.s13.323ea8afbc50 from=translated src=- shape=4bf287fc vocab=0e7b9e33
+-/
 lemma awayEval_fromZeroRingHom (t : R) (x : P1Grading k 0) :
     awayEval k t (fromZeroRingHom (P1Grading k) _ x) =
       aeval ![t, 1] (x : MvPolynomial (Fin 2) k) := by
@@ -67,7 +73,9 @@ noncomputable def point (t : R) : Spec (CommRingCat.of R) ⟶ P1 k :=
   Spec.map (CommRingCat.ofHom (awayEval k t)) ≫
     Proj.awayι (P1Grading k) (X 1) (X_mem_P1Grading k 1) one_pos
 
-/-- The valued points of the projective line are morphisms over `Spec k`. -/
+/-- The valued points of the projective line are morphisms over `Spec k`.
+@isnad1 id=eq.0h3v.s6.9d151d65fbf3 from=translated src=- shape=72182b8e vocab=ab5253ce
+-/
 @[reassoc]
 lemma point_structMap (t : R) :
     point k t ≫ structMap k = Spec.map (CommRingCat.ofHom (algebraMap k R)) := by

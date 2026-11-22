@@ -113,7 +113,9 @@ emphatically *not* true of `rel W p q r s` for `s ≠ 0`, whose products need **
 anything: `rel W 1 1 1 1 = W 3 * W 0 * W 2 * W 1` reads four distinct indices, and that is what
 `sqZeroSeq` exploits.  ⚠️ It is *one* surviving relator that a witness needs, not a whole surviving
 layer — plenty of `s ≠ 0` relators do repeat a factor and so vanish here too, for instance at
-`s = -2 * q`, where the first product is again a square `W (p - q) ^ 2 * W (r + s) * W r`. -/
+`s = -2 * q`, where the first product is again a square `W (p - q) ^ 2 * W (r + s) * W r`.
+@isnad1 id=isellipt.1h2v.s5.f12419be19b1 from=translated src=- shape=6203d3c7 vocab=fb99c3cb
+-/
 theorem isEllipticSequence_of_mul_self_eq_zero {R : Type*} [CommRing R] {W : ℤ → R}
     (h : ∀ n : ℤ, W n * W n = 0) : IsEllipticSequence W := by
   intro p q r
@@ -155,33 +157,52 @@ def sqZeroGen₂ : SqZeroRing := inl (inr 1)
 /-- The `ε` of the outermost dual-number layer. -/
 def sqZeroGen₃ : SqZeroRing := inr 1
 
+/--
+@isnad1 id=eq.0h0v.s10.0744ea44906b from=translated src=- shape=73cd6f0b vocab=3735b9c0
+-/
 lemma sqZeroGen₀_mul_self : sqZeroGen₀ * sqZeroGen₀ = 0 := by
   rw [sqZeroGen₀, inl_mul_inl, inl_mul_inl, inl_mul_inl,
     show (2 : ZMod 4) * 2 = 0 from by decide, inl_zero, inl_zero, inl_zero]
 
 /-- `2 + 2 = 0` in `ZMod 4`, which is what lets `sqZeroSeq` be odd at the index `0`, where oddness
-forces `W 0 = - W 0`. -/
+forces `W 0 = - W 0`.
+@isnad1 id=eq.0h0v.s9.06dbb57e3bdd from=translated src=- shape=73cd6f0b vocab=a91f69d1
+-/
 lemma sqZeroGen₀_add_self : sqZeroGen₀ + sqZeroGen₀ = 0 := by
   rw [sqZeroGen₀, ← inl_add, ← inl_add, ← inl_add, show (2 : ZMod 4) + 2 = 0 from by decide,
     inl_zero, inl_zero, inl_zero]
 
+/--
+@isnad1 id=eq.0h0v.s10.997ca98010c4 from=translated src=- shape=73cd6f0b vocab=efa3a6e9
+-/
 lemma sqZeroGen₁_mul_self : sqZeroGen₁ * sqZeroGen₁ = 0 := by
   rw [sqZeroGen₁, inl_mul_inl, inl_mul_inl, inr_mul_inr, inl_zero, inl_zero]
 
+/--
+@isnad1 id=eq.0h0v.s10.4519acff2efe from=translated src=- shape=73cd6f0b vocab=3f0f638f
+-/
 lemma sqZeroGen₂_mul_self : sqZeroGen₂ * sqZeroGen₂ = 0 := by
   rw [sqZeroGen₂, inl_mul_inl, inr_mul_inr, inl_zero]
 
+/--
+@isnad1 id=eq.0h0v.s10.906f363cd51d from=translated src=- shape=73cd6f0b vocab=6bd36ac8
+-/
 lemma sqZeroGen₃_mul_self : sqZeroGen₃ * sqZeroGen₃ = 0 := by rw [sqZeroGen₃, inr_mul_inr]
 
 /-- **The product of the four generators is `inr (inr (inr 2))`**, one `inr` per layer: each
 multiplication moves a generator out of the `inl` part it sits in and into the `inr` part of its
-own layer, which is exactly why the product survives although every factor squares to zero. -/
+own layer, which is exactly why the product survives although every factor squares to zero.
+@isnad1 id=eq.0h0v.s12.f43ee2c69f34 from=translated src=- shape=1d46484f vocab=1423b7bf
+-/
 lemma sqZeroGen_prod :
     sqZeroGen₀ * sqZeroGen₁ * sqZeroGen₂ * sqZeroGen₃ = inr (inr (inr 2)) := by
   rw [sqZeroGen₀, sqZeroGen₁, sqZeroGen₂, sqZeroGen₃, inl_mul_inl, inl_mul_inl, inl_mul_inr,
     inl_mul_inl, inl_mul_inr, inl_mul_inr]
   simp
 
+/--
+@isnad1 id=ne.0h0v.s12.6dff2037e1c8 from=translated src=- shape=585251b4 vocab=fb3cb72e
+-/
 lemma sqZeroGen_prod_ne_zero : sqZeroGen₀ * sqZeroGen₁ * sqZeroGen₂ * sqZeroGen₃ ≠ 0 := by
   rw [sqZeroGen_prod]
   intro h
@@ -207,6 +228,9 @@ Its values square to zero at every index, so it is an elliptic sequence
 does not vanish (`not_isEllipticNet_sqZeroSeq`). -/
 def sqZeroSeq : ℤ → SqZeroRing := fun n => if 0 ≤ n then sqZeroVal n else -sqZeroVal (-n)
 
+/--
+@isnad1 id=eq.0h1v.s10.6a3bc5cc9d4f from=translated src=- shape=7bab346c vocab=bd19464c
+-/
 lemma sqZeroVal_mul_self (n : ℤ) : sqZeroVal n * sqZeroVal n = 0 := by
   unfold sqZeroVal
   split_ifs
@@ -216,6 +240,9 @@ lemma sqZeroVal_mul_self (n : ℤ) : sqZeroVal n * sqZeroVal n = 0 := by
   · exact sqZeroGen₃_mul_self
   · exact mul_zero 0
 
+/--
+@isnad1 id=eq.0h1v.s10.8c7c2dc52c3f from=translated src=- shape=7bab346c vocab=4b2e775e
+-/
 lemma sqZeroSeq_mul_self (n : ℤ) : sqZeroSeq n * sqZeroSeq n = 0 := by
   unfold sqZeroSeq
   split_ifs
@@ -224,7 +251,9 @@ lemma sqZeroSeq_mul_self (n : ℤ) : sqZeroSeq n * sqZeroSeq n = 0 := by
 
 /-- **The witness is odd**, so the failure of `isEllipticNet_of_isEllipticSequence` without `hreg`
 is not an artefact of dropping `Function.Odd`.  ⚠️ The index `0` is the only case with content:
-there oddness asks for `W 0 = - W 0`, which is `sqZeroGen₀_add_self`. -/
+there oddness asks for `W 0 = - W 0`, which is `sqZeroGen₀_add_self`.
+@isnad1 id=odd.0h0v.s8.2724aaa83dae from=translated src=- shape=54c8eceb vocab=7e17d873
+-/
 lemma sqZeroSeq_odd : Function.Odd sqZeroSeq := by
   intro n
   rcases lt_trichotomy n 0 with h | rfl | h
@@ -234,20 +263,37 @@ lemma sqZeroSeq_odd : Function.Odd sqZeroSeq := by
     exact sqZeroGen₀_add_self
   · rw [sqZeroSeq, sqZeroSeq, ite_eq_right (by omega), ite_eq_left (by omega), neg_neg]
 
+/--
+@isnad1 id=isellipt.0h0v.s2.eb411374051a from=translated src=- shape=25b03439 vocab=1d4bcfa6
+-/
 theorem isEllipticSequence_sqZeroSeq : IsEllipticSequence sqZeroSeq :=
   isEllipticSequence_of_mul_self_eq_zero sqZeroSeq_mul_self
 
+/--
+@isnad1 id=eq.0h0v.s3.6277bd0074d3 from=translated src=- shape=d3a93718 vocab=566da12e
+-/
 lemma sqZeroSeq_zero : sqZeroSeq 0 = sqZeroGen₀ := by norm_num [sqZeroSeq, sqZeroVal]
 
+/--
+@isnad1 id=eq.0h0v.s3.f38193544e08 from=translated src=- shape=d3a93718 vocab=5cbaac7a
+-/
 lemma sqZeroSeq_one : sqZeroSeq 1 = sqZeroGen₁ := by norm_num [sqZeroSeq, sqZeroVal]
 
+/--
+@isnad1 id=eq.0h0v.s3.13a77579e201 from=translated src=- shape=d3a93718 vocab=a4adaedd
+-/
 lemma sqZeroSeq_two : sqZeroSeq 2 = sqZeroGen₂ := by norm_num [sqZeroSeq, sqZeroVal]
 
+/--
+@isnad1 id=eq.0h0v.s3.119b2725b54e from=translated src=- shape=d3a93718 vocab=41c9fd8a
+-/
 lemma sqZeroSeq_three : sqZeroSeq 3 = sqZeroGen₃ := by norm_num [sqZeroSeq, sqZeroVal]
 
 /-- **`rel W 1 1 1 1 = W 3 * W 0 * W 2 * W 1`**, evaluated at the witness.  Two of the three
 products of `rel` are equal and cancel; the surviving one reads four *distinct* indices, which is
-the whole difference between this relator and the `s = 0` layer. -/
+the whole difference between this relator and the `s = 0` layer.
+@isnad1 id=eq.0h0v.s12.1486e7315e4a from=translated src=- shape=2fd9a456 vocab=b05f3f3a
+-/
 lemma rel_sqZeroSeq_one :
     rel sqZeroSeq 1 1 1 1 = sqZeroGen₀ * sqZeroGen₁ * sqZeroGen₂ * sqZeroGen₃ := by
   have h : rel sqZeroSeq 1 1 1 1 =
@@ -257,12 +303,17 @@ lemma rel_sqZeroSeq_one :
     ring
   rw [h, sqZeroSeq_zero, sqZeroSeq_one, sqZeroSeq_two, sqZeroSeq_three]
 
+/--
+@isnad1 id=not.0h0v.s2.16333fd54511 from=translated src=- shape=049cd614 vocab=8eb5b743
+-/
 theorem not_isEllipticNet_sqZeroSeq : ¬ IsEllipticNet sqZeroSeq := fun h =>
   sqZeroGen_prod_ne_zero (rel_sqZeroSeq_one ▸ h 1 1 1 1)
 
 /-- ⚠️ **The witness is not normalised, and cannot be**: `W 1 * W 1 = 0` and `SqZeroRing` is
 nontrivial.  This is why the file says nothing about `isEllipticNet_iff_rel_one`, whose hypotheses
-include `W 1 = 1`. -/
+include `W 1 = 1`.
+@isnad1 id=ne.0h0v.s8.b5938bffb53f from=translated src=- shape=1ac31801 vocab=8f3e3091
+-/
 lemma sqZeroSeq_one_ne_one : sqZeroSeq 1 ≠ 1 := by
   have hone : (1 : SqZeroRing) ≠ 0 := by
     intro h
@@ -281,7 +332,9 @@ necessary**: there is an odd elliptic sequence over a `CommRing` that is not an 
 
 ⚠️ Read the bound on this.  It says `hreg` cannot be **deleted**; it does not say `hreg` is the
 weakest hypothesis that works, and it does not touch `isEllipticNet_iff_rel_one`, which also assumes
-`W 1 = 1` — see `sqZeroSeq_one_ne_one` and the module docstring. -/
+`W 1 = 1` — see `sqZeroSeq_one_ne_one` and the module docstring.
+@isnad1 id=ex.0h0v.s5.8e0f13e83a67 from=translated src=- shape=282a4aae vocab=87054600
+-/
 theorem exists_odd_isEllipticSequence_not_isEllipticNet :
     ∃ (R : Type) (_ : CommRing R) (W : ℤ → R),
       Function.Odd W ∧ IsEllipticSequence W ∧ ¬ IsEllipticNet W :=

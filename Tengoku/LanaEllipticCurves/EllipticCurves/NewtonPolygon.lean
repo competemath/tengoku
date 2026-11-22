@@ -65,7 +65,9 @@ the left, first `1 < v y` (else every term has valuation `≤ v x < (v x) ^ 3`),
 `(v y) ^ 2` against `v (a₁xy + a₃y)` shows `(v y) ^ 2` is the strictly dominant term.
 
 Every comparison is between integer powers of `v x` and `v y`; nothing is halved, so no
-discreteness of `v` is used or needed. -/
+discreteness of `v` is used or needed.
+@isnad1 id=and.7h6v.s9.eda99f2df770 from=translated src=- shape=4c339d97 vocab=40812eaf
+-/
 theorem valuation_pow_two_eq_pow_three_of_valuation_le_one (v : Valuation K Γ₀)
     (W : WeierstrassCurve K) (ha1 : v W.a₁ ≤ 1) (ha2 : v W.a₂ ≤ 1) (ha3 : v W.a₃ ≤ 1)
     (ha4 : v W.a₄ ≤ 1) (ha6 : v W.a₆ ≤ 1) {x y : K} (heqn : W.toAffine.Equation x y)
@@ -195,7 +197,9 @@ proof below avoids any integral-closure API.  If `1 < v y` then `v (y²) = (v y)
 both `v (a₁xy) ≤ v y` and `v (a₃y) ≤ v y`, so the left side of the Weierstrass equation has
 valuation `(v y)² > 1`, while every term on the right is `v`-integral.
 
-As with the other branch, no discreteness of `v` is used. -/
+As with the other branch, no discreteness of `v` is used.
+@isnad1 id=le.7h6v.s9.9d6c67a1ae22 from=translated src=- shape=87fee62b vocab=5a36ebe2
+-/
 theorem valuation_le_one_of_valuation_le_one (v : Valuation K Γ₀) (W : WeierstrassCurve K)
     (ha1 : v W.a₁ ≤ 1) (ha2 : v W.a₂ ≤ 1) (ha3 : v W.a₃ ≤ 1) (ha4 : v W.a₄ ≤ 1)
     (ha6 : v W.a₆ ≤ 1) {x y : K} (heqn : W.toAffine.Equation x y) (hx : v x ≤ 1) :

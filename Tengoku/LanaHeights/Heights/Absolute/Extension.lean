@@ -46,6 +46,9 @@ noncomputable def infPart (x : ι → K) : ℝ :=
 noncomputable def finPart (x : ι → K) : ℝ :=
   ∏ᶠ v : FinitePlace K, ⨆ i, v (x i)
 
+/--
+@isnad1 id=eq.1h3v.s6.8ea0662721ee from=translated src=- shape=d4cb58c0 vocab=d84e4887
+-/
 lemma mulHeight_eq_infPart_mul_finPart {x : ι → K} (hx : x ≠ 0) :
     mulHeight x = infPart x * finPart x :=
   NumberField.mulHeight_eq hx
@@ -61,7 +64,9 @@ open InfinitePlace
 variable {K : Type*} [Field K] [NumberField K]
 
 /-- A product over infinite places weighted by multiplicity is a product over complex
-embeddings. -/
+embeddings.
+@isnad1 id=eq.0h3v.s6.bd920dd472f6 from=translated src=- shape=9e4083a1 vocab=6040a27a
+-/
 lemma prod_pow_mult_eq_prod_embeddings {M : Type*} [CommMonoid M] (g : InfinitePlace K → M) :
     ∏ w : InfinitePlace K, g w ^ w.mult = ∏ φ : K →+* ℂ, g (mk φ) := by
   classical
@@ -74,7 +79,9 @@ lemma prod_pow_mult_eq_prod_embeddings {M : Type*} [CommMonoid M] (g : InfiniteP
 variable {k : Type*} [Field k] [NumberField k] [Algebra k K]
 
 open scoped Classical in
-/-- Every complex embedding of `k` has exactly `[K : k]` extensions to `K`. -/
+/-- Every complex embedding of `k` has exactly `[K : k]` extensions to `K`.
+@isnad1 id=eq.0h3v.s8.d52853b35022 from=translated src=- shape=ab11e2c1 vocab=7c363362
+-/
 lemma card_filter_comp_algebraMap_eq (φ : k →+* ℂ) :
     #{ψ : K →+* ℂ | ψ.comp (algebraMap k K) = φ} = finrank k K := by
   classical
@@ -90,7 +97,9 @@ lemma card_filter_comp_algebraMap_eq (φ : k →+* ℂ) :
     refine ⟨⟨ψ, fun x => ?_⟩, by simp, rfl⟩
     simp [RingHom.algebraMap_toAlgebra, ← hψ]
 
-/-- Summing over the complex embeddings of `K` a function of the restriction to `k`. -/
+/-- Summing over the complex embeddings of `K` a function of the restriction to `k`.
+@isnad1 id=eq.0h4v.s8.b95cdf674547 from=translated src=- shape=af63aed3 vocab=a3223e5f
+-/
 lemma prod_comp_algebraMap {M : Type*} [CommMonoid M] (g : (k →+* ℂ) → M) :
     ∏ ψ : K →+* ℂ, g (ψ.comp (algebraMap k K)) = (∏ φ : k →+* ℂ, g φ) ^ finrank k K := by
   classical
@@ -101,6 +110,9 @@ lemma prod_comp_algebraMap {M : Type*} [CommMonoid M] (g : (k →+* ℂ) → M) 
       g (ψ.comp (algebraMap k K)) = g φ := fun ψ hψ => by rw [(Finset.mem_filter.mp hψ).2]
   rw [Finset.prod_congr rfl this, Finset.prod_const, card_filter_comp_algebraMap_eq]
 
+/--
+@isnad1 id=eq.0h4v.s7.72b9a91b0902 from=translated src=- shape=324e91cb vocab=897cd458
+-/
 lemma infPart_algebraMap {ι : Type*} (y : ι → k) :
     infPart (fun i => algebraMap k K (y i)) = infPart y ^ finrank k K := by
   simp only [infPart]
@@ -129,7 +141,9 @@ variable {k K : Type*} [Field k] [NumberField k] [Field K] [NumberField K] [Alge
 variable {ι : Type*} [Finite ι]
 
 /-- Every tuple of elements of a number field has a nonzero integer multiple with integral
-coordinates. -/
+coordinates.
+@isnad1 id=ex.0h3v.s6.c96a2cc78774 from=translated src=- shape=7d0a3bfa vocab=df853e4c
+-/
 lemma exists_int_smul_integral (y : ι → k) :
     ∃ d : ℤ, d ≠ 0 ∧ ∃ z : ι → 𝓞 k, ∀ i, (z i : k) = (d : k) * y i := by
   classical
@@ -148,18 +162,26 @@ section Local
 variable {K : Type*} [Field K] [NumberField K] {ι : Type*} [Finite ι]
 
 omit [NumberField K] in
+/--
+@isnad1 id=lt.1h4v.s6.6a11425a8c84 from=translated src=- shape=6a031125 vocab=83aaae54
+-/
 lemma iSup_infinitePlace_pos {x : ι → K} (hx : x ≠ 0) (w : InfinitePlace K) :
     0 < ⨆ i, w (x i) := by
   obtain ⟨i, hi⟩ := Function.ne_iff.mp hx
   exact lt_of_lt_of_le (InfinitePlace.pos_iff.mpr hi) (Finite.le_ciSup_of_le i le_rfl)
 
+/--
+@isnad1 id=lt.1h4v.s6.fbc6b98ef7f4 from=translated src=- shape=626fdd3e vocab=a783b2a4
+-/
 lemma iSup_finitePlace_pos {x : ι → K} (hx : x ≠ 0) (v : FinitePlace K) :
     0 < ⨆ i, v (x i) := by
   obtain ⟨i, hi⟩ := Function.ne_iff.mp hx
   exact lt_of_lt_of_le (FinitePlace.pos_iff.mpr hi) (Finite.le_ciSup_of_le i le_rfl)
 
 /-- **The local formula for the relative logarithmic height** of a nonzero tuple:
-`h_K(x) = ∑_{w | ∞} mult w · log max_i |x_i|_w + ∑_{v ∤ ∞} log max_i |x_i|_v`. -/
+`h_K(x) = ∑_{w | ∞} mult w · log max_i |x_i|_w + ∑_{v ∤ ∞} log max_i |x_i|_v`.
+@isnad1 id=eq.1h3v.s7.da296494b2d8 from=translated src=- shape=68d07272 vocab=53e0875d
+-/
 theorem logHeight_eq_sum {x : ι → K} (hx : x ≠ 0) :
     logHeight x = ∑ w : InfinitePlace K, (w.mult : ℝ) * Real.log (⨆ i, w (x i)) +
       ∑ᶠ v : FinitePlace K, Real.log (⨆ i, v (x i)) := by

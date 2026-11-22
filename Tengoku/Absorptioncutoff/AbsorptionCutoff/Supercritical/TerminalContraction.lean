@@ -21,7 +21,9 @@ open MeasureTheory ProbabilityTheory
 namespace AbsorptionCutoff
 
 /-- The arbitrary-law terminal contraction estimate specialized to the
-shrinking radius and varying contraction factor at one dimension. -/
+shrinking radius and varying contraction factor at one dimension.
+@isnad1 id=le.12h10v.s9.610ac1805b35 from=translated src=- shape=b0c99680 vocab=6507612e
+-/
 lemma
     integral_abs_fst_sub_snd_eval_blockStart_prod_le_terminalContraction_pow_mul_add_of_localization
     {A q qStar L B₁ B₂ : ℝ} {N s ℓ : ℕ}
@@ -70,7 +72,9 @@ lemma
       hA hRq hκ0 hκ1 hB₁ hB₂ hderiv hN hq ν hνsupport hbad₁ hbad₂
 
 /-- A second-moment bound around a nearby deterministic center controls
-escape from the stable interval around the fixed point. -/
+escape from the stable interval around the fixed point.
+@isnad1 id=le.4h6v.s8.142f7fca2662 from=translated src=- shape=a05d497c vocab=da17c024
+-/
 lemma
     measureReal_not_mem_stableInterval_le_four_mul_div_sq_div_nat_of_center
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
@@ -108,7 +112,9 @@ lemma
     _ = (4 * C / R ^ 2) / (N : ℝ) := by ring
 
 /-- A path-law second moment around a nearby deterministic center controls
-fixed-time escape from the stable interval around the fixed point. -/
+fixed-time escape from the stable interval around the fixed point.
+@isnad1 id=le.4h8v.s8.a2b951c61fc5 from=translated src=- shape=d0ecc37f vocab=9df8f8f0
+-/
 lemma
     markovPathMeasure_measureReal_eval_not_mem_stableInterval_le_four_mul_div_sq_div_nat_of_center
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
@@ -180,7 +186,9 @@ lemma
           ν m qStar hR hcenter hνsq hνbound
 
 /-- Uniform displaced-center localization transfers to every time of a fresh
-terminal-block path started from the original path's block-start marginal. -/
+terminal-block path started from the original path's block-start marginal.
+@isnad1 id=eventual.3h6v.s8.adffc950642d from=translated src=- shape=d44ca2b4 vocab=e3930536
+-/
 lemma
     eventually_forall_shifted_eval_not_mem_terminalInterval_le_of_center
     {A qStar C : ℝ}
@@ -269,7 +277,9 @@ lemma
         (N : ℝ) := hlocal
 
 /-- The dynamic orbit moment bound is uniform over every time through a
-linearly bounded varying horizon. -/
+linearly bounded varying horizon.
+@isnad1 id=eventual.12h9v.s8.67c3daa9762c from=translated src=- shape=996ee6c6 vocab=f6cb157a
+-/
 lemma eventually_forall_integral_sq_eval_sub_V_iterate_le_inv_nat
     {A qStar R κ η δ C : ℝ}
     (hA : A ≠ 0)
@@ -332,7 +342,9 @@ lemma eventually_forall_integral_sq_eval_sub_V_iterate_le_inv_nat
       field_simp [hNreal.ne', (sub_pos.mpr hκsq).ne']
 
 /-- The uniform dynamic moment bound restricts to every time in a terminal
-block contained in the varying horizon. -/
+block contained in the varying horizon.
+@isnad1 id=eventual.13h11v.s9.d6a995c61a0d from=translated src=- shape=07d4ec3b vocab=f6cb157a
+-/
 lemma eventually_forall_integral_sq_eval_blockStart_add_le_inv_nat
     {A qStar R κ η δ C : ℝ}
     (hA : A ≠ 0)
@@ -371,7 +383,9 @@ lemma eventually_forall_integral_sq_eval_blockStart_add_le_inv_nat
   exact hdynamicN (s N + u) (by omega)
 
 /-- The deterministic block-start scale is negligible compared with the
-shrinking terminal radius. -/
+shrinking terminal radius.
+@isnad1 id=tendsto.4h4v.s7.17d21e169d90 from=translated src=- shape=83b5a2cb vocab=09b990e0
+-/
 lemma
     tendsto_mul_rpow_sub_terminalBlockLength_div_sqrt_div_terminalRadius_zero
     {μ b D c : ℝ}

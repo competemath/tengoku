@@ -47,6 +47,9 @@ noncomputable scoped instance instAlgebraFunctionField : Algebra k X.functionFie
   ((Scheme.ΓSpecIso (CommRingCat.of k)).inv ≫ (X ↘ Spec (CommRingCat.of k)).appTop ≫
     X.presheaf.germ ⊤ (genericPoint X) trivial).hom.toAlgebra
 
+/--
+@isnad1 id=eq.0h2v.s10.c2a37dfe2ad6 from=translated src=- shape=391b9963 vocab=8a1b51b2
+-/
 lemma ofHom_algebraMap_functionField :
     CommRingCat.ofHom (algebraMap k X.functionField) =
       (Scheme.ΓSpecIso (CommRingCat.of k)).inv ≫ (X ↘ Spec (CommRingCat.of k)).appTop ≫
@@ -54,7 +57,9 @@ lemma ofHom_algebraMap_functionField :
   rfl
 
 /-- Under `Spec`, the algebra map `k → K(X)` is the canonical morphism
-`Spec K(X) ⟶ Spec k` through `Spec 𝒪_{X,η} ⟶ X`. -/
+`Spec K(X) ⟶ Spec k` through `Spec 𝒪_{X,η} ⟶ X`.
+@isnad1 id=eq.0h2v.s7.579a58a4f5de from=translated src=- shape=da683597 vocab=60c5a832
+-/
 lemma specMap_algebraMap_functionField :
     Spec.map (CommRingCat.ofHom (algebraMap k X.functionField)) =
       X.fromSpecStalk (genericPoint X) ≫ (X ↘ Spec (CommRingCat.of k)) := by
@@ -64,7 +69,9 @@ lemma specMap_algebraMap_functionField :
   rw [← Scheme.toSpecΓ_naturality_assoc, toSpecΓ_SpecMap_ΓSpecIso_inv, Category.comp_id]
 
 /-- The `Over`-structure morphism of `Spec K(X)` over `Spec k` is `Spec` of the
-algebra map. -/
+algebra map.
+@isnad1 id=eq.0h2v.s7.819555e63bfb from=translated src=- shape=8ff8e642 vocab=ac2de452
+-/
 lemma functionField_over_eq :
     (Spec X.functionField ↘ Spec (CommRingCat.of k)) =
       Spec.map (CommRingCat.ofHom (algebraMap k X.functionField)) :=

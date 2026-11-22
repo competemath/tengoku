@@ -71,7 +71,9 @@ open Classical in
 `P = (x₁, y₁)`, `Q = (x₂, y₂)` reducing to the origin with `x₁ ≠ x₂` (the secant case), the affine
 sum `P + Q` again reduces to the origin — with **no** non-degeneracy hypothesis on the third
 `x`-coordinate `X₃` (the `hd`-free version of `reducesToZero_add_of_X_ne_of_distinct`, using the
-unconditional matching `addX_eq_thirdChordX_of_secant` of #376). -/
+unconditional matching `addX_eq_thirdChordX_of_secant` of #376).
+@isnad1 id=reducest.6h7v.s8.f13b104f9dcc from=translated src=- shape=1ee71afd vocab=3f8126a7
+-/
 theorem reducesToZero_add_of_X_ne [W.IsElliptic]
     {x₁ y₁ : K} {h₁ : W.toAffine.Nonsingular x₁ y₁} (hR1 : ReducesToZero R W (.some x₁ y₁ h₁))
     {x₂ y₂ : K} {h₂ : W.toAffine.Nonsingular x₂ y₂} (hR2 : ReducesToZero R W (.some x₂ y₂ h₂))

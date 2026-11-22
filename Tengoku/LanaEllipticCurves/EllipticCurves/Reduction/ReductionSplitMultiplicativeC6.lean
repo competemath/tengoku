@@ -71,7 +71,9 @@ variable (R) in
 residue field has characteristic `≠ 2`, `W` has split multiplicative reduction iff it has
 multiplicative reduction and `−c̃₆` is a square in the residue field.  This is the `c₆`-only form
 of `hasSplitMultiplicativeReduction_iff_isSquare`: at a node `c̃₄` is a nonzero square
-(`c̃₄ = c̃₆²/c̃₄²` from `c̃₆² = c̃₄³`), so `IsSquare (−c̃₄·c̃₆) ↔ IsSquare (−c̃₆)`. -/
+(`c̃₄ = c̃₆²/c̃₄²` from `c̃₆² = c̃₄³`), so `IsSquare (−c̃₄·c̃₆) ↔ IsSquare (−c̃₆)`.
+@isnad1 id=iff.0h3v.s8.82b6aae5ec3e from=translated src=- shape=e169a612 vocab=ae206f8e
+-/
 theorem hasSplitMultiplicativeReduction_iff_isSquare_neg_c₆ [NeZero (2 : ResidueField R)]
     (W : WeierstrassCurve K) [IsMinimal R W] :
     W.HasSplitMultiplicativeReduction R ↔

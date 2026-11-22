@@ -168,7 +168,9 @@ with `x(nP) = x₀`, is monic of degree `n²`: `Φₙ` is monic of degree `n²` 
 most `n² − 1`.
 
 **No hypothesis on `(n : F)`**: both Mathlib inputs, `natDegree_Φ` and `natDegree_ΨSq_le`, are
-unconditional. -/
+unconditional.
+@isnad1 id=eq.1h4v.s8.de7436882907 from=translated src=- shape=45af3bd0 vocab=88773709
+-/
 lemma natDegree_Φ_sub_C_mul_ΨSq {n : ℕ} (hn : n ≠ 0) (x₀ : F) :
     (W.Φ n - C x₀ * W.ΨSq n).natDegree = n ^ 2 := by
   have hpos : 0 < n ^ 2 := Nat.pos_of_ne_zero (pow_ne_zero 2 hn)
@@ -192,7 +194,9 @@ is a descent problem and is not this lemma's business.
 
 ⚠️ `Polynomial.Splits` takes **one** argument in this Mathlib — the `RingHom` form is gone.  A
 `Splits` obligation appearing inside a proof as `(f.map φ).Splits` says something about the API that
-consumes it, not about the arity of the predicate. -/
+consumes it, not about the arity of the predicate.
+@isnad1 id=ex.2h4v.s8.6588307972b8 from=translated src=- shape=09b706ab vocab=c134530d
+-/
 lemma exists_eval_Φ_eq_of_splits {n : ℕ} (hn : n ≠ 0) (x₀ : F)
     (hsplits : (W.Φ n - C x₀ * W.ΨSq n).Splits) :
     ∃ x : F, (W.Φ n).eval x = x₀ * (W.ΨSq n).eval x := by
@@ -206,7 +210,9 @@ lemma exists_eval_Φ_eq_of_splits {n : ℕ} (hn : n ≠ 0) (x₀ : F)
 /-- **Every value of `x` solves the multiplication-by-`n` equation.**  Over an algebraically closed
 field the degree-`n²` polynomial `Φₙ − x₀·ΨSqₙ` has a root.
 
-The splitting hypothesis of `exists_eval_Φ_eq_of_splits`, discharged by `IsAlgClosed.splits`. -/
+The splitting hypothesis of `exists_eval_Φ_eq_of_splits`, discharged by `IsAlgClosed.splits`.
+@isnad1 id=ex.1h4v.s6.56b02b03f89b from=translated src=- shape=2cc472db vocab=bbbc24a8
+-/
 lemma exists_eval_Φ_eq [IsAlgClosed F] {n : ℕ} (hn : n ≠ 0) (x₀ : F) :
     ∃ x : F, (W.Φ n).eval x = x₀ * (W.ΨSq n).eval x :=
   exists_eval_Φ_eq_of_splits hn x₀ (IsAlgClosed.splits _)
@@ -240,7 +246,9 @@ call site; and the general form is already a public lemma in this tree,
 `Polynomial.eval_ne_zero_of_isCoprime` (`EllipticCurves.DivisionPolynomial.Coprime`), which this
 file **cannot see** — restating it here would turn a specialisation into a literal duplicate, which
 is the worse of the two shapes.  See *"The de-duplication question, decided"* in that file for the
-priced alternatives. -/
+priced alternatives.
+@isnad1 id=ne.2h4v.s6.322f8c6cb491 from=translated src=- shape=2cc82c53 vocab=48478c13
+-/
 lemma eval_Φ_ne_zero_of_isCoprime {n : ℕ} (h : IsCoprime (W.Φ n) (W.ΨSq n)) {x : F}
     (hx : (W.ΨSq n).eval x = 0) : (W.Φ n).eval x ≠ 0 := by
   have h' := Polynomial.aeval_ne_zero_of_isCoprime (S := F) h x
@@ -286,7 +294,9 @@ arguments, and that is the whole design content of the finite-level form.
 ⚠️ **`h2` and `hn` are gone as well, and that is not an oversight.**  In the merged statement
 `(2 : F) ≠ 0` is consumed only by `exists_equation` and `n ≠ 0` only by the degree count inside
 `exists_eval_Φ_eq`.  Promote both uses and neither hypothesis has a consumer left: what is stated
-here holds in every characteristic, at every `n`, over every field. -/
+here holds in every characteristic, at every `n`, over every field.
+@isnad1 id=ex.4h6v.s8.76e40ebd6d05 from=translated src=- shape=ead34968 vocab=66c86eef
+-/
 theorem exists_nsmul_some_of_hasXCoordFormula_of_root [W.IsElliptic] {n : ℕ}
     (hroot : ∀ x : F, (W.ΨSq n).eval x = 0 → (W.Φ n).eval x ≠ 0)
     (hform : HasXCoordFormula W n) {x₀ x y : F} (hxy : W.Equation x y)
@@ -310,7 +320,9 @@ than for some point sharing its `x`-coordinate.
 
 ⚠️ `exists_nsmul_eq_of_hasXCoordFormula` below is **not** routed through this lemma.  Its `none`
 branch has nothing in common with it, and the indirection would hide the two-case split that is the
-point of that proof. -/
+point of that proof.
+@isnad1 id=ex.5h7v.s8.8610785703b1 from=translated src=- shape=7ab722b6 vocab=66c86eef
+-/
 theorem exists_nsmul_eq_some_of_hasXCoordFormula_of_root [W.IsElliptic] {n : ℕ}
     (hroot : ∀ x : F, (W.ΨSq n).eval x = 0 → (W.Φ n).eval x ≠ 0)
     (hform : HasXCoordFormula W n) {x₀ y₀ : F} (hQ : W.Nonsingular x₀ y₀) {x y : F}
@@ -326,7 +338,9 @@ closed field of characteristic `≠ 2`, given the coordinate formula at `n` and 
 common root of `Φₙ` and `ΨSqₙ`, every `x₀` is `x(nP)` for some point `P`.
 
 `exists_nsmul_three_some` (`EllipticCurves.Torsion.TriplingSurjective`) is its only direct consumer;
-at `n = 2` the tree consumes `exists_nsmul_eq_of_hasXCoordFormula` below instead. -/
+at `n = 2` the tree consumes `exists_nsmul_eq_of_hasXCoordFormula` below instead.
+@isnad1 id=ex.4h4v.s8.b9d799ef4b57 from=translated src=- shape=41989ce6 vocab=ab1e2eb9
+-/
 theorem exists_nsmul_some_of_hasXCoordFormula [IsAlgClosed F] [W.IsElliptic] (h2 : (2 : F) ≠ 0)
     {n : ℕ}
     (hn : n ≠ 0) (hroot : ∀ x : F, (W.ΨSq n).eval x = 0 → (W.Φ n).eval x ≠ 0)
@@ -339,7 +353,9 @@ theorem exists_nsmul_some_of_hasXCoordFormula [IsAlgClosed F] [W.IsElliptic] (h2
 /-- **Multiplication by `n` is surjective on `E(F̄)`**, given the coordinate formula at `n`.  The
 point at infinity is `n • 0`; an affine `Q` is matched by `exists_nsmul_some_of_hasXCoordFormula`,
 which pins the `x`-coordinate, leaving the sign ambiguity `nP = ±Q` that `Point.X_eq_iff` resolves
-and `−P` absorbs. -/
+and `−P` absorbs.
+@isnad1 id=ex.4h4v.s7.ec6133a190a9 from=translated src=- shape=eb30ecec vocab=82fa9a46
+-/
 theorem exists_nsmul_eq_of_hasXCoordFormula [IsAlgClosed F] [W.IsElliptic] (h2 : (2 : F) ≠ 0)
     {n : ℕ} (hn : n ≠ 0)
     (hroot : ∀ x : F, (W.ΨSq n).eval x = 0 → (W.Φ n).eval x ≠ 0)
@@ -353,7 +369,9 @@ theorem exists_nsmul_eq_of_hasXCoordFormula [IsAlgClosed F] [W.IsElliptic] (h2 :
 
 /-- **Multiplication by `n` is surjective on `E(F̄)`**, stated as `Function.Surjective` — the form
 `EllipticCurves.Torsion.Divisible`'s `torsionSmulHom_surjective` consumes.  `nsmul_two_surjective`
-and `nsmul_three_surjective` are its two instances. -/
+and `nsmul_three_surjective` are its two instances.
+@isnad1 id=surjecti.4h3v.s7.4d3e74bb43e2 from=translated src=- shape=3a1b9c24 vocab=6c08219d
+-/
 theorem nsmul_surjective_of_hasXCoordFormula [IsAlgClosed F] [W.IsElliptic] (h2 : (2 : F) ≠ 0)
     {n : ℕ} (hn : n ≠ 0)
     (hroot : ∀ x : F, (W.ΨSq n).eval x = 0 → (W.Φ n).eval x ≠ 0)

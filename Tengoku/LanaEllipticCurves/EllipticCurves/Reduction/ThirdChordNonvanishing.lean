@@ -64,7 +64,9 @@ variable (ha : ∀ s : Fin 2, ![z₁, z₂] s ∈ (maximalIdeal R).asIdeal)
 `(z, w)`-plane value of the chord line at the Vieta third root `t`) and `wParam t` solve the numeric
 Weierstrass functional equation with parameter `t = thirdRootNum` and lie in `𝔪`; by uniqueness of
 the small solution (`wFunctionalEq_unique`) they coincide.  Requires `z₁ ≠ z₂` (the secant case,
-where `(t, w₃)` is on the curve). -/
+where `(t, w₃)` is on the curve).
+@isnad1 id=eq.2h5v.s7.0df6deb80317 from=translated src=- shape=7a977e5f vocab=fc70ca2b
+-/
 theorem thirdChordW_eq_wParam (hz : z₁ ≠ z₂) :
     thirdChordW R W ha = wParam R W (thirdRootNum_mem R W ha) := by
   refine IsFractionRing.injective R K ?_
@@ -94,7 +96,9 @@ include hz₁ hz₂ hz₁0 hz₂0 hx in
 /-- **The Vieta third root is nonzero (secant case).**  If `t = thirdRootNum = 0` then
 `w₃ = λ·0 + ν = ν`, while `w₃ = wParam 0 = 0³ · unit = 0`; so `ν = 0`, contradicting
 `chordIntercept_ne_zero_secant`.  Geometrically: `t = 0` would place the third chord point at the
-origin (`P + Q = O`), impossible when the chord is a genuine secant (`xParam z₁ ≠ xParam z₂`). -/
+origin (`P + Q = O`), impossible when the chord is a genuine secant (`xParam z₁ ≠ xParam z₂`).
+@isnad1 id=ne.6h5v.s8.ad40b2eb7ada from=translated src=- shape=155f5099 vocab=cc44f741
+-/
 theorem thirdRootNum_ne_zero : thirdRootNum R W ha ≠ 0 := by
   intro ht0
   have hz : z₁ ≠ z₂ := fun h => hx (by subst h; rfl)
@@ -114,7 +118,9 @@ include hz₁ hz₂ hz₁0 hz₂0 hx in
 /-- **The third chord point is not at infinity (`w₃ ≠ 0`, secant case).**  Since `w₃ = wParam t`
 (`thirdChordW_eq_wParam`) and `t ≠ 0` (`thirdRootNum_ne_zero`), the factorisation
 `wParam t = t³ · unit` gives `w₃ ≠ 0`.  This discharges the `hw` hypothesis of the secant
-coordinate additivity `localParam_add_secant` / `localParam_add_of_X_ne`. -/
+coordinate additivity `localParam_add_secant` / `localParam_add_of_X_ne`.
+@isnad1 id=ne.6h5v.s8.ff16ceff0f2a from=translated src=- shape=155f5099 vocab=ffdf0e89
+-/
 theorem thirdChordW_ne_zero : thirdChordW R W ha ≠ 0 := by
   rw [thirdChordW_eq_wParam R W ha (fun h => hx (by subst h; rfl))]
   exact wParam_ne_zero R W _ (thirdRootNum_ne_zero R W ha hz₁ hz₂ hz₁0 hz₂0 hx)

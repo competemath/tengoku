@@ -56,7 +56,9 @@ polynomial ring `k[X]`, with `S` an `R`-algebra whose structure map is `Y ↦ g(
 `hstruct` through the chosen isomorphisms `eR, eS`).  If `t : S` corresponds to the derivative
 `g'` under `eS`, then the localization of `S` away from `t` is smooth over `R`.
 
-Concretely: the affine chart map `k[Y] → k[X]`, `Y ↦ g(X)`, is smooth away from `g'(X) = 0`. -/
+Concretely: the affine chart map `k[Y] → k[X]`, `Y ↦ g(X)`, is smooth away from `g'(X) = 0`.
+@isnad1 id=smooth.3h7v.s10.60e94e677d95 from=translated src=- shape=911cb700 vocab=f6dfabe7
+-/
 theorem smooth_localizationAway_derivative
     {R S : Type*} [CommRing R] [CommRing S]
     [Algebra k R] [Algebra k S] [Algebra R S] [IsScalarTower k R S]
@@ -219,7 +221,9 @@ theorem smooth_localizationAway_derivative
   exact Algebra.Smooth.of_equiv (e1.trans e2)
 
 /-- The smooth-locus form of `smooth_localizationAway_derivative`: away from the derivative
-`t = g'(X)`, the affine chart algebra `S ≃ k[X]` lies in the smooth locus over `R ≃ k[Y]`. -/
+`t = g'(X)`, the affine chart algebra `S ≃ k[X]` lies in the smooth locus over `R ≃ k[Y]`.
+@isnad1 id=le.3h7v.s10.f042c7b68fa1 from=translated src=- shape=67ea7633 vocab=a88f4d86
+-/
 theorem basicOpen_derivative_subset_smoothLocus
     {R S : Type*} [CommRing R] [CommRing S]
     [Algebra k R] [Algebra k S] [Algebra R S] [IsScalarTower k R S]

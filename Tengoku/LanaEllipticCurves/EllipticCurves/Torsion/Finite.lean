@@ -64,7 +64,9 @@ variable {F : Type*} [Field F] (W : Affine F)
 
 /-- The `y`-fibre of the Weierstrass equation over a fixed `x` is contained in the two-element set
 `{y₀, W.negY x y₀}` cut out by any single solution `y₀`: the equation is quadratic in `y`, and
-`Y_eq_of_X_eq` says any two solutions coincide up to the `negY` involution. -/
+`Y_eq_of_X_eq` says any two solutions coincide up to the `negY` involution.
+@isnad1 id=le.1h4v.s5.75afc4313075 from=translated src=- shape=217bcf31 vocab=bf9e412e
+-/
 lemma setOf_equation_subset_pair {x y₀ : F} (h₀ : W.Equation x y₀) :
     {y : F | W.Equation x y} ⊆ {y₀, W.negY x y₀} := by
   intro y hy
@@ -73,14 +75,18 @@ lemma setOf_equation_subset_pair {x y₀ : F} (h₀ : W.Equation x y₀) :
   · exact Or.inr h
 
 /-- For each fixed `x`, only finitely many `y` satisfy the Weierstrass equation `W.Equation x y`
-(at most two). -/
+(at most two).
+@isnad1 id=finite.0h3v.s4.d97aaa73dc50 from=translated src=- shape=2ecdd28d vocab=547447cc
+-/
 lemma setOf_equation_finite (x : F) : {y : F | W.Equation x y}.Finite := by
   rcases Set.eq_empty_or_nonempty {y : F | W.Equation x y} with h | ⟨y₀, h₀⟩
   · rw [h]; exact Set.finite_empty
   · exact ((Set.finite_singleton _).insert _).subset
       (W.setOf_equation_subset_pair h₀)
 
-/-- The `y`-fibre over a fixed `x` has at most two elements. -/
+/-- The `y`-fibre over a fixed `x` has at most two elements.
+@isnad1 id=le.0h3v.s5.b8d1864cb0c1 from=translated src=- shape=9299e4b5 vocab=53d508d2
+-/
 lemma setOf_equation_ncard_le_two (x : F) : {y : F | W.Equation x y}.ncard ≤ 2 := by
   rcases Set.eq_empty_or_nonempty {y : F | W.Equation x y} with h | ⟨y₀, h₀⟩
   · rw [h, Set.ncard_empty]; norm_num
@@ -109,7 +115,9 @@ private lemma coordTag_injective : Function.Injective W.coordTag := by
 
 This is the geometric heart of the `#E[n] ≤ n²` finiteness argument (#252): the Weierstrass
 equation is quadratic in `y`, so each `x ∈ S` supports at most two points, and `A` embeds into the
-finite set of such coordinate pairs (plus the identity). -/
+finite set of such coordinate pairs (plus the identity).
+@isnad1 id=finite.2h4v.s6.f3a09ca3090c from=translated src=- shape=a56bc867 vocab=f9620edc
+-/
 theorem finite_of_xCoords {A : Set W.Point} {S : Set F} (hS : S.Finite)
     (hx : ∀ ⦃x y : F⦄ ⦃h : W.Nonsingular x y⦄, (.some x y h : W.Point) ∈ A → x ∈ S) :
     A.Finite := by
@@ -138,7 +146,9 @@ one of them, so the other is distinguished from it by a single `Bool`. -/
 noncomputable def someY (x : F) : F :=
   if h : ∃ y : F, W.Equation x y then h.choose else 0
 
-/-- `someY x` does lie on `W` as soon as some point of `W` does. -/
+/-- `someY x` does lie on `W` as soon as some point of `W` does.
+@isnad1 id=equation.1h4v.s5.dccee8ebc491 from=translated src=- shape=5b41d6cd vocab=d9226e8c
+-/
 lemma equation_someY {x y : F} (h : W.Equation x y) : W.Equation x (W.someY x) := by
   classical
   rw [someY, dite_eq_left ⟨y, h⟩]
@@ -178,7 +188,9 @@ each `x ∈ S`, plus the point at infinity.
 
 This is the sharp companion of `WeierstrassCurve.Affine.finite_of_xCoords`, and the shape in which
 the `#E[n] ≤ n²` bound (#252) is proved: for odd `n` the `x`-support has `≤ (n² − 1)/2` elements and
-`2 * (n² − 1)/2 + 1 = n²`. -/
+`2 * (n² − 1)/2 + 1 = n²`.
+@isnad1 id=le.2h4v.s6.a68c3c845c14 from=translated src=- shape=6282ef12 vocab=f3a1bee5
+-/
 theorem ncard_le_of_xCoords {A : Set W.Point} {S : Set F} (hS : S.Finite)
     (hx : ∀ ⦃x y : F⦄ ⦃h : W.Nonsingular x y⦄, (.some x y h : W.Point) ∈ A → x ∈ S) :
     A.ncard ≤ 2 * S.ncard + 1 := by
@@ -208,7 +220,9 @@ is the `Y_eq_of_X_eq` step inside the proof.
 
 This is what turns the `2n² − 1` of `ncard_le_of_xCoords` into the sharp `#E[n] ≤ n²` at an **even**
 index, where `S₀` is the three-element root set of `Ψ₂Sq` — see
-`EllipticCurves.Torsion.XSupport`. -/
+`EllipticCurves.Torsion.XSupport`.
+@isnad1 id=le.4h5v.s7.e6dad2ba1eb3 from=translated src=- shape=b5d7bcf8 vocab=e682b484
+-/
 theorem ncard_le_of_xCoords_of_selfNeg {A : Set W.Point} {S S₀ : Set F} (hS : S.Finite)
     (hS₀ : S₀.Finite)
     (hx : ∀ ⦃x y : F⦄ ⦃h : W.Nonsingular x y⦄, (.some x y h : W.Point) ∈ A → x ∈ S ∪ S₀)
@@ -250,7 +264,9 @@ variable [DecidableEq F]
 /-- Specialisation of `finite_of_xCoords` to the `n`-torsion subgroup `E[n]`: if every nonzero
 `n`-torsion point has `x`-coordinate in a finite set `S`, then `E[n]` is finite (as a set of
 points). This is the exact interface the `#E[n] ≤ n²` counting (#252) consumes; #251 provides the
-finite root set of `W.ΨSq n` as `S` and is closed (`EllipticCurves.Torsion.XSupport`). -/
+finite root set of `W.ΨSq n` as `S` and is closed (`EllipticCurves.Torsion.XSupport`).
+@isnad1 id=finite.2h4v.s7.29acc84201c1 from=translated src=- shape=c264619f vocab=c475e36e
+-/
 theorem torsion_finite_of_xCoords {n : ℕ} {S : Set F} (hS : S.Finite)
     (hx : ∀ ⦃x y : F⦄ ⦃h : W.Nonsingular x y⦄,
       (.some x y h : W.Point) ∈ W.torsion n → x ∈ S) :
@@ -258,7 +274,9 @@ theorem torsion_finite_of_xCoords {n : ℕ} {S : Set F} (hS : S.Finite)
   W.finite_of_xCoords hS hx
 
 /-- The subtype form of `torsion_finite_of_xCoords`: `E[n]` is a `Finite` type once its nonzero
-points have `x`-coordinates in a finite set. -/
+points have `x`-coordinates in a finite set.
+@isnad1 id=finite.2h4v.s7.7f70913524a2 from=translated src=- shape=79133732 vocab=a76ca989
+-/
 theorem finite_torsion_of_xCoords {n : ℕ} {S : Set F} (hS : S.Finite)
     (hx : ∀ ⦃x y : F⦄ ⦃h : W.Nonsingular x y⦄,
       (.some x y h : W.Point) ∈ W.torsion n → x ∈ S) :
@@ -266,7 +284,9 @@ theorem finite_torsion_of_xCoords {n : ℕ} {S : Set F} (hS : S.Finite)
   Set.finite_coe_iff.mpr (W.torsion_finite_of_xCoords hS hx)
 
 /-- Specialisation of `ncard_le_of_xCoords` to the `n`-torsion subgroup `E[n]`: if every nonzero
-`n`-torsion point has `x`-coordinate in a finite set `S`, then `#E[n] ≤ 2 * S.ncard + 1`. -/
+`n`-torsion point has `x`-coordinate in a finite set `S`, then `#E[n] ≤ 2 * S.ncard + 1`.
+@isnad1 id=le.2h4v.s7.37a015256043 from=translated src=- shape=d2f1b57b vocab=9e1c6222
+-/
 theorem card_torsion_le_of_xCoords {n : ℕ} {S : Set F} (hS : S.Finite)
     (hx : ∀ ⦃x y : F⦄ ⦃h : W.Nonsingular x y⦄,
       (.some x y h : W.Point) ∈ W.torsion n → x ∈ S) :
@@ -277,7 +297,9 @@ theorem card_torsion_le_of_xCoords {n : ℕ} {S : Set F} (hS : S.Finite)
 /-- Specialisation of `ncard_le_of_xCoords_of_selfNeg` to `E[n]`: the `x`-support is split into a
 part `S` counted with two points per fibre and a part `S₀` of `x`-coordinates of `2`-torsion points,
 each of which carries a single point.  This is the shape in which the **sharp** `#E[n] ≤ n²` is
-proved at an even index (`EllipticCurves.Torsion.XSupport`). -/
+proved at an even index (`EllipticCurves.Torsion.XSupport`).
+@isnad1 id=le.4h5v.s8.c63d17470302 from=translated src=- shape=f3c2cffa vocab=31687848
+-/
 theorem card_torsion_le_of_xCoords_of_selfNeg {n : ℕ} {S S₀ : Set F} (hS : S.Finite)
     (hS₀ : S₀.Finite)
     (hx : ∀ ⦃x y : F⦄ ⦃h : W.Nonsingular x y⦄,

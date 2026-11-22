@@ -24,7 +24,9 @@ open Polynomial Finset
 
 variable {F : Type*} [Field F] (v : AbsoluteValue F ℝ)
 
-/-- For a root `z` of a monic `p` of degree `n`, `z^n = -∑_{i<n} c_i z^i`. -/
+/-- For a root `z` of a monic `p` of degree `n`, `z^n = -∑_{i<n} c_i z^i`.
+@isnad1 id=eq.2h3v.s7.d9b0b479e0f9 from=translated src=- shape=b1005f89 vocab=646c3061
+-/
 lemma pow_natDegree_eq_neg_sum {p : F[X]} (hp : p.Monic) {z : F} (hz : p.eval z = 0) :
     z ^ p.natDegree = -∑ i ∈ range p.natDegree, p.coeff i * z ^ i := by
   have h := congrArg (eval z) hp.as_sum
@@ -32,7 +34,9 @@ lemma pow_natDegree_eq_neg_sum {p : F[X]} (hp : p.Monic) {z : F} (hz : p.eval z 
   simp only [eval_mul, eval_C, eval_pow, eval_X] at h
   exact eq_neg_of_add_eq_zero_left h.symm
 
-/-- A root of a monic polynomial has positive degree. -/
+/-- A root of a monic polynomial has positive degree.
+@isnad1 id=lt.2h3v.s6.bfa37796306f from=translated src=- shape=44ffd5b3 vocab=6a7cecf9
+-/
 lemma natDegree_pos_of_root {p : F[X]} (hp : p.Monic) {z : F} (hz : p.eval z = 0) :
     0 < p.natDegree := by
   rcases Nat.eq_zero_or_pos p.natDegree with h | h
@@ -41,7 +45,9 @@ lemma natDegree_pos_of_root {p : F[X]} (hp : p.Monic) {z : F} (hz : p.eval z = 0
     simp at this
   · exact h
 
-/-- In a nonarchimedean absolute value, a finite sum of terms of size `≤ M` has size `≤ M`. -/
+/-- In a nonarchimedean absolute value, a finite sum of terms of size `≤ M` has size `≤ M`.
+@isnad1 id=le.3h6v.s8.2c0fa20c92da from=translated src=- shape=0eeb2daf vocab=98617807
+-/
 lemma apply_sum_le_of_isNonarchimedean (hv : ∀ a b, v (a + b) ≤ max (v a) (v b))
     {ι : Type*} (s : Finset ι) (f : ι → F) {M : ℝ} (hM : 0 ≤ M) (hf : ∀ i ∈ s, v (f i) ≤ M) :
     v (∑ i ∈ s, f i) ≤ M := by
@@ -55,7 +61,9 @@ lemma apply_sum_le_of_isNonarchimedean (hv : ∀ a b, v (a + b) ≤ max (v a) (v
 
 /-- **Nonarchimedean root bound**: if `v` is nonarchimedean, `1 ≤ B` and every non-leading
 coefficient of the monic polynomial `p` has `v c_i ≤ B`, then every root `z` of `p` satisfies
-`v z ≤ B`. -/
+`v z ≤ B`.
+@isnad1 id=le.5h5v.s8.39f97e556acb from=translated src=- shape=98230c03 vocab=9c07d366
+-/
 theorem apply_le_of_isNonarchimedean (hv : ∀ a b, v (a + b) ≤ max (v a) (v b))
     {p : F[X]} (hp : p.Monic) {z : F} (hz : p.eval z = 0) {B : ℝ} (hB : 1 ≤ B)
     (hc : ∀ i < p.natDegree, v (p.coeff i) ≤ B) : v z ≤ B := by
@@ -84,13 +92,17 @@ theorem apply_le_of_isNonarchimedean (hv : ∀ a b, v (a + b) ≤ max (v a) (v b
   linarith
 
 /-- If `v` is nonarchimedean and all non-leading coefficients of the monic `p` have
-`v c_i ≤ 1`, then every root of `p` has `v z ≤ 1`. -/
+`v c_i ≤ 1`, then every root of `p` has `v z ≤ 1`.
+@isnad1 id=le.4h4v.s8.6793f29eb626 from=translated src=- shape=cc6a2d60 vocab=9c07d366
+-/
 theorem apply_le_one_of_isNonarchimedean (hv : ∀ a b, v (a + b) ≤ max (v a) (v b))
     {p : F[X]} (hp : p.Monic) {z : F} (hz : p.eval z = 0)
     (hc : ∀ i < p.natDegree, v (p.coeff i) ≤ 1) : v z ≤ 1 :=
   apply_le_of_isNonarchimedean v hv hp hz le_rfl hc
 
-/-- **Nonarchimedean root bound**, maximum form: `v z ≤ max 1 (max_{i < n} v c_i)`. -/
+/-- **Nonarchimedean root bound**, maximum form: `v z ≤ max 1 (max_{i < n} v c_i)`.
+@isnad1 id=le.3h4v.s8.5a24505a5b72 from=translated src=- shape=45b4ca7e vocab=70d7eb6c
+-/
 theorem apply_le_max_one_iSup_of_isNonarchimedean (hv : ∀ a b, v (a + b) ≤ max (v a) (v b))
     {p : F[X]} (hp : p.Monic) {z : F} (hz : p.eval z = 0) :
     v z ≤ max 1 (⨆ i : Fin p.natDegree, v (p.coeff i)) := by
@@ -98,7 +110,9 @@ theorem apply_le_max_one_iSup_of_isNonarchimedean (hv : ∀ a b, v (a + b) ≤ m
   exact le_max_of_le_right (Finite.le_ciSup_of_le (⟨i, hi⟩ : Fin p.natDegree) le_rfl)
 
 /-- **Cauchy's root bound** for an arbitrary absolute value:
-`v z ≤ max 1 (∑_{i < n} v c_i)`. -/
+`v z ≤ max 1 (∑_{i < n} v c_i)`.
+@isnad1 id=le.2h4v.s7.33486b984795 from=translated src=- shape=c2a18eaa vocab=33b9dc32
+-/
 theorem apply_le_max_one_sum {p : F[X]} (hp : p.Monic) {z : F} (hz : p.eval z = 0) :
     v z ≤ max 1 (∑ i ∈ range p.natDegree, v (p.coeff i)) := by
   rcases le_or_gt (v z) 1 with h | h
@@ -125,7 +139,9 @@ theorem apply_le_max_one_sum {p : F[X]} (hp : p.Monic) {z : F} (hz : p.eval z = 
   rw [this] at hsum
   exact le_of_mul_le_mul_right hsum (by positivity)
 
-/-- **Cauchy's root bound**: `v z ≤ 1 + ∑_{i < n} v c_i`. -/
+/-- **Cauchy's root bound**: `v z ≤ 1 + ∑_{i < n} v c_i`.
+@isnad1 id=le.2h4v.s7.d20117a9d154 from=translated src=- shape=f43f7591 vocab=17fe3165
+-/
 theorem apply_le_one_add_sum {p : F[X]} (hp : p.Monic) {z : F} (hz : p.eval z = 0) :
     v z ≤ 1 + ∑ i ∈ range p.natDegree, v (p.coeff i) := by
   refine (apply_le_max_one_sum v hp hz).trans (max_le ?_ ?_)
@@ -133,7 +149,9 @@ theorem apply_le_one_add_sum {p : F[X]} (hp : p.Monic) {z : F} (hz : p.eval z = 
   · linarith
 
 /-- Cauchy's bound in terms of a uniform bound on the coefficients:
-if `v c_i ≤ B` for all `i < n`, then `v z ≤ max 1 (n * B)`. -/
+if `v c_i ≤ B` for all `i < n`, then `v z ≤ max 1 (n * B)`.
+@isnad1 id=le.3h5v.s7.743edf01b339 from=translated src=- shape=688007bd vocab=5f4ff1a6
+-/
 theorem apply_le_max_one_mul {p : F[X]} (hp : p.Monic) {z : F} (hz : p.eval z = 0) {B : ℝ}
     (hc : ∀ i < p.natDegree, v (p.coeff i) ≤ B) : v z ≤ max 1 (p.natDegree * B) := by
   refine (apply_le_max_one_sum v hp hz).trans (max_le_max le_rfl ?_)

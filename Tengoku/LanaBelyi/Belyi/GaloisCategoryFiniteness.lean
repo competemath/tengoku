@@ -79,6 +79,9 @@ variable (d : ℕ)
 noncomputable def fiberEmb (X : C) (hX : Nat.card (F.obj X) ≤ d) : (F.obj X) ↪ Fin (d + 1) :=
   (Finite.equivFin (F.obj X)).toEmbedding.trans (Fin.castLEEmb (Nat.le_succ_of_le hX))
 
+/--
+@isnad1 id=eq.1h5v.s8.c9225bf6b1c6 from=translated src=- shape=b466c79a vocab=37dc28a0
+-/
 @[simp]
 lemma fiberEmb_coe_apply (X : C) (hX : Nat.card (F.obj X) ≤ d) (x : F.obj X) :
     ((fiberEmb F d X hX x : Fin (d + 1)) : ℕ) = (Finite.equivFin (F.obj X) x : ℕ) := by
@@ -90,11 +93,17 @@ noncomputable def fiberPermHom (X : C) (hX : Nat.card (F.obj X) ≤ d) :
     Aut F →* Equiv.Perm (Fin (d + 1)) :=
   (Equiv.Perm.viaEmbeddingHom (fiberEmb F d X hX)).comp (MulAction.toPermHom (Aut F) (F.obj X))
 
+/--
+@isnad1 id=continuo.1h4v.s9.1937760241c7 from=translated src=- shape=f7ce3d32 vocab=4f8bb3f4
+-/
 lemma continuous_fiberPermHom (X : C) (hX : Nat.card (F.obj X) ≤ d) :
     Continuous ⇑(fiberPermHom F d X hX) := by
   rw [fiberPermHom, MonoidHom.coe_comp]
   exact continuous_of_discreteTopology.comp Belyi.continuous_toPermHom
 
+/--
+@isnad1 id=eq.1h6v.s10.8aae02bfe9e9 from=translated src=- shape=02c71c0d vocab=d3764e37
+-/
 lemma fiberPermHom_emb (X : C) (hX : Nat.card (F.obj X) ≤ d) (σ : Aut F) (x : F.obj X) :
     fiberPermHom F d X hX σ (fiberEmb F d X hX x) = fiberEmb F d X hX (σ • x) := by
   simp only [fiberPermHom, MonoidHom.coe_comp, Function.comp_apply,
@@ -112,7 +121,9 @@ noncomputable def invEl (X : C) (hX : Nat.card (F.obj X) ≤ d) :
 variable [GaloisCategory C] [FiberFunctor F]
 
 /-- **Injectivity up to isomorphism.** Two bounded objects with the same invariant are isomorphic:
-their fibers are `Aut F`-equivariantly bijective, and the fiber functor is fully faithful. -/
+their fibers are `Aut F`-equivariantly bijective, and the fiber functor is fully faithful.
+@isnad1 id=nonempty.3h5v.s8.e23f54cf2991 from=translated src=- shape=148ac377 vocab=9b388a81
+-/
 theorem iso_of_invEl_eq {X Y : C} (hX : Nat.card (F.obj X) ≤ d) (hY : Nat.card (F.obj Y) ≤ d)
     (h : invEl F d X hX = invEl F d Y hY) : Nonempty (X ≅ Y) := by
   obtain ⟨hfst, hsnd⟩ := Prod.ext_iff.mp h
@@ -151,7 +162,9 @@ Galois category `C` is topologically finitely generated, then for every `d` ther
 many isomorphism classes of objects `X : C` with `Nat.card (F.obj X) ≤ d`.
 
 This is the abstract engine (route step 2 of taxis #211) that, instantiated at
-`C := FiniteEtale (ℙ¹_k ∖ {0,1,∞})`, feeds the finiteness of bounded-degree Belyi covers. -/
+`C := FiniteEtale (ℙ¹_k ∖ {0,1,∞})`, feeds the finiteness of bounded-degree Belyi covers.
+@isnad1 id=finite.1h3v.s7.ad2ca38a8b68 from=translated src=- shape=3e0d9233 vocab=6aa1b661
+-/
 theorem finite_isoClasses_of_card_le
     (hFG : Belyi.TopologicallyFinitelyGenerated (Aut F)) (d : ℕ) :
     Finite (Quotient (isIsomorphicSetoid

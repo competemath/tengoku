@@ -48,7 +48,9 @@ variable {X Y S : Scheme.{u}}
 section Specializes
 
 /-- `Opens.fromSpecStalkOfMem` is compatible with specialization: the canonical maps
-`Spec 𝒪_{X,x} ⟶ Spec 𝒪_{X,y} ⟶ U` and `Spec 𝒪_{X,x} ⟶ U` agree for `x ⤳ y ∈ U`. -/
+`Spec 𝒪_{X,x} ⟶ Spec 𝒪_{X,y} ⟶ U` and `Spec 𝒪_{X,x} ⟶ U` agree for `x ⤳ y ∈ U`.
+@isnad1 id=eq.2h4v.s8.509ad53933ea from=translated src=- shape=7be3f524 vocab=022b73e1
+-/
 lemma Opens.fromSpecStalkOfMem_specializes (U : X.Opens) {x y : X} (h : x ⤳ y)
     (hy : y ∈ U) :
     Spec.map (X.presheaf.stalkSpecializes h) ≫ U.fromSpecStalkOfMem y hy =
@@ -56,7 +58,9 @@ lemma Opens.fromSpecStalkOfMem_specializes (U : X.Opens) {x y : X} (h : x ⤳ y)
   rw [← cancel_mono U.ι, Category.assoc, Opens.fromSpecStalkOfMem_ι,
     Opens.fromSpecStalkOfMem_ι, SpecMap_stalkSpecializes_fromSpecStalk]
 
-/-- `PartialMap.fromSpecStalkOfMem` is compatible with specialization. -/
+/-- `PartialMap.fromSpecStalkOfMem` is compatible with specialization.
+@isnad1 id=eq.2h5v.s8.7bb755b1352c from=translated src=- shape=07318b5e vocab=afd7a57f
+-/
 lemma PartialMap.fromSpecStalkOfMem_specializes (f : X.PartialMap Y) {x y : X}
     (h : x ⤳ y) (hy : y ∈ f.domain) :
     Spec.map (X.presheaf.stalkSpecializes h) ≫ f.fromSpecStalkOfMem hy =
@@ -65,7 +69,9 @@ lemma PartialMap.fromSpecStalkOfMem_specializes (f : X.PartialMap Y) {x y : X}
   rw [← Category.assoc, Opens.fromSpecStalkOfMem_specializes]
 
 /-- The germ of a partial map at the generic point factors through the germ at any
-point of its domain. -/
+point of its domain.
+@isnad1 id=eq.1h4v.s8.330959f21113 from=translated src=- shape=9c27422b vocab=4978d0dc
+-/
 lemma PartialMap.fromFunctionField_eq [IrreducibleSpace X] (f : X.PartialMap Y) {x : X}
     (hx : x ∈ f.domain) :
     f.fromFunctionField =
@@ -84,7 +90,9 @@ defined at every point whose local ring is a valuation ring (for instance at eve
 point of a regular integral scheme of dimension `≤ 1`).
 
 This is the classical extension theorem for rational maps into proper schemes, via the
-valuative criterion applied to the stalk. -/
+valuative criterion applied to the stalk.
+@isnad1 id=mem.0h5v.s7.0e096f128f01 from=translated src=- shape=bc8b7ab6 vocab=15accb4c
+-/
 theorem RationalMap.mem_domain_of_valuationRing [IsIntegral X] [IsProper (Y ↘ S)]
     (f : X ⤏ Y) [f.IsOver S] (x : X) [ValuationRing (X.presheaf.stalk x)] :
     x ∈ f.domain := by
@@ -133,7 +141,9 @@ theorem RationalMap.mem_domain_of_valuationRing [IsIntegral X] [IsProper (Y ↘ 
 
 variable (S) in
 /-- A rational map over `S` from an integral scheme all of whose local rings are
-valuation rings into a scheme proper over `S` is defined everywhere. -/
+valuation rings into a scheme proper over `S` is defined everywhere.
+@isnad1 id=eq.1h4v.s7.7595013e7701 from=translated src=- shape=8decd558 vocab=a49977fc
+-/
 theorem RationalMap.domain_eq_top_of_valuationRing [IsIntegral X] [IsProper (Y ↘ S)]
     (f : X ⤏ Y) [f.IsOver S] (hX : ∀ x : X, ValuationRing (X.presheaf.stalk x)) :
     f.domain = ⊤ :=
@@ -141,7 +151,9 @@ theorem RationalMap.domain_eq_top_of_valuationRing [IsIntegral X] [IsProper (Y �
     letI := hX x
     f.mem_domain_of_valuationRing (S := S) x
 
-/-- A scheme separated over a separated scheme is separated. -/
+/-- A scheme separated over a separated scheme is separated.
+@isnad1 id=issepara.0h2v.s4.c1d519e67580 from=translated src=- shape=d6a49c03 vocab=242527d9
+-/
 lemma _root_.AlgebraicGeometry.Scheme.isSeparated_of_isSeparated_over (S : Scheme.{u})
     [S.IsSeparated] (Y : Scheme.{u}) [Y.Over S] [IsSeparated (Y ↘ S)] : Y.IsSeparated :=
   ⟨by rw [← terminal.comp_from (Y ↘ S)]; infer_instance⟩

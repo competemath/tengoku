@@ -22,7 +22,9 @@ open MeasureTheory ProbabilityTheory
 namespace AbsorptionCutoff
 
 /-- Separate scalar delocalization bounds on the two coordinates control
-delocalization of the synchronous pair from the common stable interval. -/
+delocalization of the synchronous pair from the common stable interval.
+@isnad1 id=le.2h8v.s8.dc13a22c5194 from=translated src=- shape=4097f5da vocab=b07bcece
+-/
 lemma markovPathMeasure_measureReal_eval_not_mem_stableInterval_prod_le_add
     {A qStar R B₁ B₂ : ℝ} {N : ℕ} {q : ℝ × ℝ} {t : ℕ}
     (h₁ :
@@ -44,7 +46,9 @@ lemma markovPathMeasure_measureReal_eval_not_mem_stableInterval_prod_le_add
         (add_le_add h₁ h₂)
 
 /-- Uniform scalar localization of both marginals through a terminal block
-gives synchronous contraction with the sum of their localization errors. -/
+gives synchronous contraction with the sum of their localization errors.
+@isnad1 id=le.11h9v.s9.651555bd0ec7 from=translated src=- shape=a0fe9808 vocab=1de40aed
+-/
 lemma integral_abs_fst_sub_snd_eval_le_pow_mul_add_of_scalar_localization
     {A qStar R κ B₁ B₂ : ℝ} {N : ℕ}
     (hA : A ≠ 0) (hRq : R < qStar) (hκ0 : 0 ≤ κ) (hκ1 : κ < 1)
@@ -73,7 +77,9 @@ lemma integral_abs_fst_sub_snd_eval_le_pow_mul_add_of_scalar_localization
 
 /-- At each fixed time, the first-coordinate marginal of a synchronous path
 with an arbitrary initial pair law is the scalar path started from the
-first-coordinate marginal of that law. -/
+first-coordinate marginal of that law.
+@isnad1 id=eq.0h4v.s7.887c6b8d34d0 from=translated src=- shape=487e904b vocab=73f8c03f
+-/
 lemma markovPathMeasure_map_eval_synchronousKchain_map_fst_of_measure
     (A : ℝ) (N : ℕ) (μ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ]
     (t : ℕ) :
@@ -107,7 +113,9 @@ lemma markovPathMeasure_map_eval_synchronousKchain_map_fst_of_measure
 
 /-- At each fixed time, the second-coordinate marginal of a synchronous path
 with an arbitrary initial pair law is the scalar path started from the
-second-coordinate marginal of that law. -/
+second-coordinate marginal of that law.
+@isnad1 id=eq.0h4v.s7.1d2ffaa1279e from=translated src=- shape=487e904b vocab=e0aa0457
+-/
 lemma markovPathMeasure_map_eval_synchronousKchain_map_snd_of_measure
     (A : ℝ) (N : ℕ) (μ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ]
     (t : ℕ) :
@@ -141,7 +149,9 @@ lemma markovPathMeasure_map_eval_synchronousKchain_map_snd_of_measure
 
 /-- For an arbitrary initial pair law, the probability of leaving `J × J`
 at a fixed time is at most the sum of the two scalar marginal
-delocalization probabilities. -/
+delocalization probabilities.
+@isnad1 id=le.1h5v.s7.73810914798c from=translated src=- shape=e2cc059e vocab=2edb455a
+-/
 lemma markovPathMeasure_measureReal_eval_not_mem_prod_le_of_measure
     (A : ℝ) (N : ℕ) (ξ : Measure (ℝ × ℝ)) [IsProbabilityMeasure ξ]
     (t : ℕ) (J : Set ℝ) (hJ : MeasurableSet J) :
@@ -205,7 +215,9 @@ lemma markovPathMeasure_measureReal_eval_not_mem_prod_le_of_measure
 
 /-- Separate scalar stable-interval bounds from the two initial marginals
 control delocalization of a synchronous path with an arbitrary initial pair
-law. -/
+law.
+@isnad1 id=le.2h8v.s8.c01a9360f6a3 from=translated src=- shape=5ce6ebe5 vocab=cc7e8688
+-/
 lemma
     markovPathMeasure_measureReal_eval_not_mem_stableInterval_prod_le_add_of_measure
     {A qStar R B₁ B₂ : ℝ} {N : ℕ}
@@ -229,7 +241,9 @@ lemma
         (add_le_add h₁ h₂)
 
 /-- A synchronous path whose arbitrary initial pair law is supported on
-`[0,1]²` remains there at every fixed time almost surely. -/
+`[0,1]²` remains there at every fixed time almost surely.
+@isnad1 id=eventual.2h4v.s8.04d779dbcd96 from=translated src=- shape=34232852 vocab=95d349d3
+-/
 lemma markovPathMeasure_ae_eval_mem_synchronousKchain_prod_Icc_of_measure
     {A : ℝ} {N : ℕ} (hN : 0 < N)
     (μ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ]
@@ -266,7 +280,9 @@ lemma markovPathMeasure_ae_eval_mem_synchronousKchain_prod_Icc_of_measure
         hN μ t
 
 /-- Coordinate distance at every fixed time is integrable along a synchronous
-path with an arbitrary probability initial pair law supported on `[0,1]²`. -/
+path with an arbitrary probability initial pair law supported on `[0,1]²`.
+@isnad1 id=integrab.2h4v.s7.c18b5b08b93d from=translated src=- shape=56ab216f vocab=d9f771cb
+-/
 lemma integrable_abs_fst_sub_snd_eval_synchronousKchain_of_measure
     {A : ℝ} {N : ℕ} (hN : 0 < N)
     (μ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ]
@@ -287,7 +303,9 @@ lemma integrable_abs_fst_sub_snd_eval_synchronousKchain_of_measure
 
 /-- Along a synchronous path with an arbitrary supported probability initial
 pair law, the conditional expected next coordinate distance is the distance
-between the current mean-map images. -/
+between the current mean-map images.
+@isnad1 id=eventual.2h4v.s8.1c180bb102a9 from=translated src=- shape=52c24e82 vocab=b2bf3753
+-/
 lemma condExp_abs_fst_sub_snd_eval_succ_eq_abs_V_sub_of_measure
     {A : ℝ} {N : ℕ} (hN : 0 < N)
     (μ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ]
@@ -321,7 +339,9 @@ lemma condExp_abs_fst_sub_snd_eval_succ_eq_abs_V_sub_of_measure
 
 /-- The synchronous conditional distance for an arbitrary supported initial
 pair law contracts on a common stable interval; outside that interval, the
-global `[0,1]²` support pays one bad-event indicator. -/
+global `[0,1]²` support pays one bad-event indicator.
+@isnad1 id=eventual.6h7v.s9.d261537db3cc from=translated src=- shape=b5b768bf vocab=9c52c711
+-/
 lemma
     condExp_abs_fst_sub_snd_eval_succ_le_mul_add_indicator_of_measure
     {A qStar R κ : ℝ} {N : ℕ}
@@ -368,7 +388,9 @@ lemma
 
 /-- Integrating the arbitrary-law localized conditional estimate gives the
 synchronous distance recursion with the current bad-localization probability
-as its additive error. -/
+as its additive error.
+@isnad1 id=le.6h7v.s9.6e33d7af6cbf from=translated src=- shape=0aa7e629 vocab=727d998f
+-/
 lemma
     integral_abs_fst_sub_snd_eval_succ_le_mul_add_measureReal_of_measure
     {A qStar R κ : ℝ} {N : ℕ}
@@ -438,7 +460,9 @@ lemma
 
 /-- A uniform bad-localization bound through time `t` iterates the
 arbitrary-law synchronous recursion while retaining geometric decay of the
-initial expected distance. -/
+initial expected distance.
+@isnad1 id=le.9h8v.s9.4fd27069d3b2 from=translated src=- shape=f86e2428 vocab=ae227a9a
+-/
 lemma integral_abs_fst_sub_snd_eval_le_pow_mul_add_of_measure
     {A qStar R κ B : ℝ} {N : ℕ}
     (hA : A ≠ 0) (hRq : R < qStar) (hκ0 : 0 ≤ κ) (hκ1 : κ < 1)
@@ -489,7 +513,9 @@ lemma integral_abs_fst_sub_snd_eval_le_pow_mul_add_of_measure
 
 /-- Uniform scalar localization of both random-start marginals through a
 terminal block gives synchronous contraction with the sum of their
-localization errors. -/
+localization errors.
+@isnad1 id=le.11h9v.s9.16bac200afde from=translated src=- shape=86cbd27b vocab=1a982496
+-/
 lemma
     integral_abs_fst_sub_snd_eval_le_pow_mul_add_of_measure_of_scalar_localization
     {A qStar R κ B₁ B₂ : ℝ} {N : ℕ}
@@ -521,7 +547,9 @@ lemma
       μ₀ (hbad₁ s hs) (hbad₂ s hs)
 
 /-- The product of two probability measures supported on `[0,1]` is
-supported on `[0,1]²`. -/
+supported on `[0,1]²`.
+@isnad1 id=eq.2h2v.s7.2d21acdc7bea from=translated src=- shape=a9ad2169 vocab=8131569a
+-/
 lemma Measure.prod_apply_compl_prod_Icc_eq_zero
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (hμ : μ ((Set.Icc (0 : ℝ) 1)ᶜ) = 0)
@@ -544,7 +572,9 @@ lemma Measure.prod_apply_compl_prod_Icc_eq_zero
   exact measure_mono_null hsubset (measure_union_null hleft hright)
 
 /-- On a probability space, a centered first absolute moment is bounded by
-the square root of the corresponding second moment. -/
+the square root of the corresponding second moment.
+@isnad1 id=le.1h2v.s7.16e01bd51d26 from=translated src=- shape=69122ac0 vocab=f201143d
+-/
 lemma integral_abs_sub_le_sqrt_integral_sq
     (μ : Measure ℝ) [IsProbabilityMeasure μ] (qStar : ℝ)
     (hsq : Integrable (fun q => (q - qStar) ^ 2) μ) :
@@ -568,7 +598,9 @@ lemma integral_abs_sub_le_sqrt_integral_sq
     one_pow, Real.one_rpow, Real.sqrt_eq_rpow] using hcs
 
 /-- Under an independent product law, the expected distance between the
-two coordinates is bounded by their centered root second moments. -/
+two coordinates is bounded by their centered root second moments.
+@isnad1 id=le.2h3v.s8.ada41fe5bdd9 from=translated src=- shape=daa3d5c0 vocab=fbc88296
+-/
 lemma integral_abs_fst_sub_snd_prod_le_add_sqrt_integral_sq
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (qStar : ℝ)
@@ -639,7 +671,9 @@ lemma integral_abs_fst_sub_snd_prod_le_add_sqrt_integral_sq
         (integral_abs_sub_le_sqrt_integral_sq ν qStar hνsq)
 
 /-- Explicit inverse-dimension second-moment envelopes give an
-inverse-square-root bound on the initial product-law distance. -/
+inverse-square-root bound on the initial product-law distance.
+@isnad1 id=le.6h6v.s8.741ff7244166 from=translated src=- shape=888ed75d vocab=34536f9f
+-/
 lemma integral_abs_fst_sub_snd_prod_le_add_sqrt_div_sqrt_nat
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (qStar : ℝ) {C₁ C₂ : ℝ} {N : ℕ}
@@ -665,7 +699,9 @@ lemma integral_abs_fst_sub_snd_prod_le_add_sqrt_div_sqrt_nat
       rw [Real.sqrt_div hC₁, Real.sqrt_div hC₂, add_div]
 
 /-- Product-law distance can be estimated around two different centers,
-paying the deterministic distance between those centers. -/
+paying the deterministic distance between those centers.
+@isnad1 id=le.2h4v.s8.feda73ebf0cc from=translated src=- shape=f2285cad vocab=fbc88296
+-/
 lemma integral_abs_fst_sub_snd_prod_le_sqrt_add_abs_add_sqrt
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (a b : ℝ)
@@ -753,7 +789,9 @@ lemma integral_abs_fst_sub_snd_prod_le_sqrt_add_abs_add_sqrt
 
 /-- Inverse-dimension moment bounds at two centers, together with an
 inverse-square-root bound between the centers, control product-law distance
-at the same inverse-square-root scale. -/
+at the same inverse-square-root scale.
+@isnad1 id=le.7h8v.s8.710512810c18 from=translated src=- shape=a1a6feac vocab=34536f9f
+-/
 lemma
     integral_abs_fst_sub_snd_prod_le_sqrt_add_const_add_sqrt_div_sqrt_nat
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
@@ -787,7 +825,9 @@ lemma
       ring
 
 /-- A path-law second moment transfers to its fixed-time marginal before
-forming the independent product with a second probability law. -/
+forming the independent product with a second probability law.
+@isnad1 id=le.7h9v.s8.b1c665bd8e64 from=translated src=- shape=9d4bd627 vocab=072e7878
+-/
 lemma
     integral_abs_fst_sub_snd_map_eval_prod_le_sqrt_add_const_add_sqrt_div_sqrt_nat
     (ρ : Measure (ℕ → ℝ)) [IsProbabilityMeasure ρ]
@@ -835,7 +875,9 @@ lemma
 /-- The eventual dynamic orbit-moment estimate controls the evolving
 fixed-time marginal's contribution to the independent block-start distance.
 The stationary moment and deterministic center separation remain explicit
-inputs for the subsequent invariant-law specialization. -/
+inputs for the subsequent invariant-law specialization.
+@isnad1 id=eventual.17h13v.s9.488b9ef85002 from=translated src=- shape=c2c82f20 vocab=368e56c2
+-/
 lemma eventually_integral_abs_fst_sub_snd_blockStart_prod_le_inv_sqrt_nat
     {A qStar R κ η δ C C₀ C₂ : ℝ}
     (hA : A ≠ 0)
@@ -918,7 +960,9 @@ lemma eventually_integral_abs_fst_sub_snd_blockStart_prod_le_inv_sqrt_nat
       hCdynamic hC₂ hρsq hνsqN hdynamicN hνboundN hcentersN
 
 /-- The per-dimension invariant measures with inverse-dimension fixed-point
-moment can be selected as one family carrying the full eventual package. -/
+moment can be selected as one family carrying the full eventual package.
+@isnad1 id=ex.3h2v.s8.28d7c2a5a6f0 from=translated src=- shape=122f198b vocab=7302ddaa
+-/
 theorem
     exists_eventually_invariant_Kchain_family_integral_sq_sub_fixed_le_inv_nat
     {A qStar : ℝ} (hA : 1 < A)
@@ -969,7 +1013,9 @@ theorem
 
 /-- The selected stationary family can be inserted directly into the
 dynamic block-start estimate, with only the deterministic orbit hypotheses
-left to be supplied by the cutoff-time choice. -/
+left to be supplied by the cutoff-time choice.
+@isnad1 id=ex.3h2v.s9.497d4764a513 from=translated src=- shape=00403614 vocab=07f68fcf
+-/
 theorem
     exists_stationary_family_eventually_blockStart_prod_le_inv_sqrt_nat
     {A qStar : ℝ} (hA : 1 < A)
@@ -1035,7 +1081,9 @@ theorem
       ν hνsq hνbound hcenters
 
 /-- A centered second moment controls the probability of leaving the
-corresponding interval. -/
+corresponding interval.
+@isnad1 id=le.2h3v.s7.d002f1bfa27c from=translated src=- shape=2139ec43 vocab=e4c717ad
+-/
 lemma measureReal_abs_sub_gt_le_integral_sq_div
     (μ : Measure ℝ) [IsProbabilityMeasure μ] (qStar : ℝ) {R : ℝ}
     (hR : 0 < R)
@@ -1067,7 +1115,9 @@ lemma measureReal_abs_sub_gt_le_integral_sq_div
       (div_le_div_iff_of_pos_right (sq_pos_of_pos hR)).2 hmul
 
 /-- An inverse-dimension centered second-moment envelope gives an
-inverse-dimension stable-interval escape bound. -/
+inverse-dimension stable-interval escape bound.
+@isnad1 id=le.3h5v.s7.3c3afe7e1116 from=translated src=- shape=befe048e vocab=829cbd1b
+-/
 lemma measureReal_abs_sub_gt_le_div_sq_div_nat
     (μ : Measure ℝ) [IsProbabilityMeasure μ] (qStar : ℝ) {R C : ℝ}
     {N : ℕ} (hR : 0 < R)
@@ -1085,7 +1135,9 @@ lemma measureReal_abs_sub_gt_le_div_sq_div_nat
     _ = (C / R ^ 2) / (N : ℝ) := by ring
 
 /-- A canonical Markov path started from an invariant probability measure
-has that same measure as every fixed-time marginal. -/
+has that same measure as every fixed-time marginal.
+@isnad1 id=eq.1h4v.s6.55c4b53a89ef from=translated src=- shape=12b27fbd vocab=8671d1ce
+-/
 lemma markovPathMeasure_map_eval_eq_of_invariant
     {E : Type*} [MeasurableSpace E]
     (ν : Measure E) [IsProbabilityMeasure ν]
@@ -1099,7 +1151,9 @@ lemma markovPathMeasure_map_eval_eq_of_invariant
       rw [markovPathMeasure_map_eval_succ, ih, hν.def]
 
 /-- The probability of any measurable fixed-time event under an
-invariant-start path equals its probability under the invariant law. -/
+invariant-start path equals its probability under the invariant law.
+@isnad1 id=eq.2h5v.s6.62a730a8fa6e from=translated src=- shape=26983b1d vocab=a0be4f6b
+-/
 lemma markovPathMeasure_measureReal_eval_mem_eq_of_invariant
     {E : Type*} [MeasurableSpace E]
     (ν : Measure E) [IsProbabilityMeasure ν]
@@ -1119,7 +1173,9 @@ lemma markovPathMeasure_measureReal_eval_mem_eq_of_invariant
       rw [markovPathMeasure_map_eval_eq_of_invariant ν κ hν t]
 
 /-- An invariant centered-moment bound localizes every fixed-time
-coordinate of the stationary canonical path with the same constant. -/
+coordinate of the stationary canonical path with the same constant.
+@isnad1 id=le.4h7v.s7.6e8b1ccceae5 from=translated src=- shape=c1159d7a vocab=24979001
+-/
 lemma
     markovPathMeasure_measureReal_abs_eval_sub_gt_le_div_sq_div_nat
     {A qStar R C : ℝ} {N : ℕ}
@@ -1152,7 +1208,9 @@ lemma
         ν qStar hR hsq hbound
 
 /-- Eventual invariant moment control for a dimension-indexed family gives
-a localization estimate uniform over every stationary path time. -/
+a localization estimate uniform over every stationary path time.
+@isnad1 id=eventual.4h5v.s8.236a443a4ba7 from=translated src=- shape=585d6d63 vocab=0f24f619
+-/
 lemma
     eventually_forall_markovPathMeasure_measureReal_abs_eval_sub_gt_le_div_sq_div_nat
     {A qStar R C : ℝ} (hR : 0 < R)
@@ -1179,7 +1237,9 @@ lemma
       (ν N : Measure ℝ) hνinvN hR hνsqN hνboundN t
 
 /-- Restarting a canonical Markov path from its time-`s` marginal and
-running for `t` further steps gives the original time-`s+t` marginal. -/
+running for `t` further steps gives the original time-`s+t` marginal.
+@isnad1 id=eq.0h5v.s6.23975cb1e1e8 from=translated src=- shape=e9fa0c06 vocab=3d575058
+-/
 lemma markovPathMeasure_map_eval_of_map_eval
     {E : Type*} [MeasurableSpace E]
     (μ : Measure E) [IsProbabilityMeasure μ]
@@ -1203,7 +1263,9 @@ lemma markovPathMeasure_map_eval_of_map_eval
         (markovPathMeasure_map_eval_succ μ κ (s + t)).symm
 
 /-- The measurable fixed-time events of a path restarted at time `s`
-coincide with the corresponding original-path events at time `s+t`. -/
+coincide with the corresponding original-path events at time `s+t`.
+@isnad1 id=eq.1h6v.s7.9a816cd86a40 from=translated src=- shape=99760dc2 vocab=63206b55
+-/
 lemma markovPathMeasure_measureReal_eval_mem_of_map_eval
     {E : Type*} [MeasurableSpace E]
     (μ : Measure E) [IsProbabilityMeasure μ]
@@ -1240,7 +1302,9 @@ lemma markovPathMeasure_measureReal_eval_mem_of_map_eval
       map_measureReal_apply (measurable_pi_apply (s + t)) hS
 
 /-- The fixed-time probability of leaving the stable interval is bounded by
-the existing finite-horizon exit estimate. -/
+the existing finite-horizon exit estimate.
+@isnad1 id=le.10h10v.s8.bafea11deeb5 from=translated src=- shape=a240aaa7 vocab=21da9357
+-/
 lemma markovPathMeasure_measureReal_eval_not_mem_stableInterval_le_exp
     {A q qStar R κ η δ : ℝ} {N T t : ℕ}
     (hA : A ≠ 0) (hN : 0 < N)
@@ -1277,7 +1341,9 @@ lemma markovPathMeasure_measureReal_eval_not_mem_stableInterval_le_exp
         hA hN hκ0 hη0 hδ hRq hderiv hbuffer horbit)
 
 /-- For linearly bounded varying horizons, dynamic stable-interval
-localization is eventually uniform in time at inverse-dimension scale. -/
+localization is eventually uniform in time at inverse-dimension scale.
+@isnad1 id=eventual.10h9v.s8.cb4e17c6cdb5 from=translated src=- shape=62fc9e98 vocab=1db4c667
+-/
 lemma
     eventually_forall_markovPathMeasure_measureReal_eval_not_mem_stableInterval_le_inv_nat
     {A qStar R κ η δ C : ℝ}
@@ -1324,7 +1390,9 @@ lemma
     _ ≤ 2 * C / (N : ℝ) := hdecayN
 
 /-- Uniform dynamic localization transfers to a fresh terminal-block path
-started from the original path's block-start marginal. -/
+started from the original path's block-start marginal.
+@isnad1 id=eventual.11h11v.s8.fb65ab2023b4 from=translated src=- shape=5fc64399 vocab=faa6ae55
+-/
 lemma
     eventually_forall_markovPathMeasure_shifted_measureReal_eval_not_mem_stableInterval_le_inv_nat
     {A qStar R κ η δ C : ℝ}
@@ -1381,7 +1449,9 @@ lemma
     _ ≤ 2 * C / (N : ℝ) := hdynamicN (s N + u) htime
 
 /-- Every fixed-time marginal of a supported Dirac-start scalar path is
-supported on `[0,1]`. -/
+supported on `[0,1]`.
+@isnad1 id=eq.2h4v.s6.ad438ed211df from=translated src=- shape=3202e768 vocab=30131f91
+-/
 lemma markovPathMeasure_dirac_map_eval_apply_compl_Icc_eq_zero
     {A q : ℝ} {N : ℕ}
     (hq : q ∈ Set.Icc (0 : ℝ) 1) (hN : 0 < N) (t : ℕ) :
@@ -1395,7 +1465,9 @@ lemma markovPathMeasure_dirac_map_eval_apply_compl_Icc_eq_zero
 
 /-- An evolving fixed-time marginal paired independently with a supported
 stationary law satisfies the arbitrary-law terminal contraction estimate as
-soon as the two scalar path localizations are available. -/
+soon as the two scalar path localizations are available.
+@isnad1 id=le.12h11v.s9.912620ea5f14 from=translated src=- shape=fb4dcd99 vocab=3552ad3c
+-/
 lemma
     integral_abs_fst_sub_snd_eval_blockStart_prod_le_pow_mul_add_of_localization
     {A q qStar R κ B₁ B₂ : ℝ} {N s ℓ : ℕ}
@@ -1476,7 +1548,9 @@ lemma
 
 /-- Eventual dynamic and stationary localization bounds insert directly into
 the terminal product-law recursion, while retaining the block-start expected
-distance. -/
+distance.
+@isnad1 id=eventual.19h13v.s9.74ea8d474968 from=translated src=- shape=58084289 vocab=b9bbcce0
+-/
 lemma
     eventually_integral_abs_fst_sub_snd_eval_blockStart_prod_le_pow_mul_add_inv_nat
     {A qStar R κ η δ C C₂ : ℝ}
@@ -1583,7 +1657,9 @@ lemma
   exact hterminal
 
 /-- The inverse-square-root block-start product estimate closes the initial
-term in the eventual terminal recursion. -/
+term in the eventual terminal recursion.
+@isnad1 id=eventual.20h14v.s9.0fdb7db614cb from=translated src=- shape=adcd46de vocab=64bff5ff
+-/
 lemma
     eventually_integral_abs_fst_sub_snd_eval_blockStart_prod_le_pow_mul_inv_sqrt_add_inv_nat
     {A qStar R κ η δ C C₀ C₂ : ℝ}

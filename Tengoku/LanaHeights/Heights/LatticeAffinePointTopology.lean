@@ -39,7 +39,9 @@ noncomputable def latticeAffineCurvePointMap (τ : ℍ) :
     LatticeComplement τ → LatticeCurvePoint τ :=
   latticeCurvePointOfAffine τ ∘ latticeAffineCoordinateMap τ
 
-/-- The underlying coordinate pair of `latticeAffineCoordinateMap`. -/
+/-- The underlying coordinate pair of `latticeAffineCoordinateMap`.
+@isnad1 id=eq.0h2v.s7.6ef96bc2048f from=translated src=- shape=9face432 vocab=943a41f3
+-/
 @[simp] theorem latticeAffineCoordinateMap_val (τ : ℍ) (z : LatticeComplement τ) :
     (latticeAffineCoordinateMap τ z : ℂ × ℂ) =
       ((periodPairOfUpperHalfPlane τ).weierstrassP z,
@@ -47,13 +49,17 @@ noncomputable def latticeAffineCurvePointMap (τ : ℍ) :
   rfl
 
 /-- Repackaging through the affine equation locus does not change the existing
-algebraic point map. -/
+algebraic point map.
+@isnad1 id=eq.0h2v.s3.40a83fd53537 from=translated src=- shape=8927bd27 vocab=443054e3
+-/
 @[simp] theorem latticeAffineCurvePointMap_eq (τ : ℍ) (z : LatticeComplement τ) :
     latticeAffineCurvePointMap τ z = latticeAffinePointMap τ z := by
   rfl
 
 /-- Under the target homeomorphism, the pole-free point map lies in the affine
-chart with its explicit coordinate value. -/
+chart with its explicit coordinate value.
+@isnad1 id=eq.0h2v.s7.0168e83ff167 from=translated src=- shape=0ebca4c1 vocab=873f6583
+-/
 @[simp] theorem latticeAffineCurvePointMap_homeomorph (τ : ℍ)
     (z : LatticeComplement τ) :
     latticeCurvePointHomeomorph τ (latticeAffineCurvePointMap τ z) =
@@ -61,7 +67,9 @@ chart with its explicit coordinate value. -/
   exact latticeCurvePointHomeomorph_affine τ _
 
 /-- The coordinate-valued Weierstrass map is continuous away from the period
-lattice. -/
+lattice.
+@isnad1 id=continuo.0h1v.s6.9a4068430b05 from=translated src=- shape=ca92e646 vocab=71165b0a
+-/
 @[fun_prop] theorem continuous_latticeAffineCoordinateMap (τ : ℍ) :
     Continuous (latticeAffineCoordinateMap τ) := by
   let L := periodPairOfUpperHalfPlane τ
@@ -74,7 +82,9 @@ lattice. -/
   exact (hp.prodMk hp').subtype_mk _
 
 /-- The explicit lattice point map is continuous on the complement of its
-poles, for the one-point-compactification topology on its target. -/
+poles, for the one-point-compactification topology on its target.
+@isnad1 id=continuo.0h1v.s5.9f27e1c71f07 from=translated src=- shape=ca92e646 vocab=255ac11e
+-/
 @[fun_prop] theorem continuous_latticeAffineCurvePointMap (τ : ℍ) :
     Continuous (latticeAffineCurvePointMap τ) :=
   (isOpenEmbedding_latticeCurvePointOfAffine τ).continuous.comp

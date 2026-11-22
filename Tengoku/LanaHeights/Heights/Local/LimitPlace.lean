@@ -50,13 +50,18 @@ def TendstoP1 (a : ℕ → Option E) : Option E → Prop
   | some β => ∀ ε > 0, ∀ᶠ n in atTop, ∃ α, a n = some α ∧ ‖α - β‖ < ε
   | none => ∀ R : ℝ, ∀ᶠ n in atTop, ∀ α, a n = some α → R < ‖α‖
 
+/--
+@isnad1 id=tendstop.2h4v.s5.55553d33aed4 from=translated src=- shape=cb9ce1d4 vocab=dc9d1e63
+-/
 theorem TendstoP1.comp_of_tendsto {a : ℕ → Option E} {b : Option E} (h : TendstoP1 a b)
     {φ : ℕ → ℕ} (hφ : Tendsto φ atTop atTop) : TendstoP1 (a ∘ φ) b := by
   cases b with
   | none => exact fun R => hφ.eventually (h R)
   | some β => exact fun ε hε => hφ.eventually (h ε hε)
 
-/-- Convergence only depends on the tail. -/
+/-- Convergence only depends on the tail.
+@isnad1 id=tendstop.2h4v.s5.55a6cce417a7 from=translated src=- shape=5796e12a vocab=9d608d30
+-/
 theorem TendstoP1.congr_eventually {a a' : ℕ → Option E} {b : Option E} (h : TendstoP1 a b)
     (h' : ∀ᶠ n in atTop, a n = a' n) : TendstoP1 a' b := by
   cases b with
@@ -70,7 +75,9 @@ theorem TendstoP1.congr_eventually {a a' : ℕ → Option E} {b : Option E} (h :
     obtain ⟨α, hα, hlt⟩ := hn
     exact ⟨α, hn' ▸ hα, hlt⟩
 
-/-- Limits in `ℙ¹(E)` are unique. -/
+/-- Limits in `ℙ¹(E)` are unique.
+@isnad1 id=eq.2h4v.s5.fae70b7bdad1 from=translated src=- shape=b82ab0ce vocab=6b490ce1
+-/
 theorem TendstoP1.unique {a : ℕ → Option E} {b b' : Option E} (h : TendstoP1 a b)
     (h' : TendstoP1 a b') : b = b' := by
   cases b with
@@ -114,7 +121,9 @@ theorem TendstoP1.unique {a : ℕ → Option E} {b b' : Option E} (h : TendstoP1
           _ = ‖α - β‖ + ‖α - β'‖ := add_comm _ _
       linarith
 
-/-- Convergence to a finite value, in terms of `Tendsto`. -/
+/-- Convergence to a finite value, in terms of `Tendsto`.
+@isnad1 id=iff.0h3v.s5.0e3db7ed4eb8 from=translated src=- shape=b7557419 vocab=933aab8f
+-/
 theorem tendstoP1_some_iff {a : ℕ → E} {β : E} :
     TendstoP1 (fun n => some (a n)) (some β) ↔ Tendsto a atTop (𝓝 β) := by
   rw [Metric.tendsto_atTop]
@@ -130,7 +139,9 @@ theorem tendstoP1_some_iff {a : ℕ → E} {β : E} :
     exact eventually_atTop.mpr ⟨N, fun n hn => ⟨a n, rfl, by rw [← dist_eq_norm]; exact hN n hn⟩⟩
 
 /-- **Sequential compactness in `ℙ¹(E)`**, from the dichotomy "convergent or unbounded" for
-the finite values in a class `Good`. -/
+the finite values in a class `Good`.
+@isnad1 id=ex.1h4v.s7.7c003c345d00 from=translated src=- shape=ed5ad82d vocab=de67081c
+-/
 theorem exists_tendstoP1 {Good : E → Prop}
     (hcpt : ∀ a : ℕ → E, (∀ n, Good (a n)) → ∃ φ : ℕ → ℕ, StrictMono φ ∧
       ((∃ b, Tendsto (a ∘ φ) atTop (𝓝 b)) ∨ Tendsto (fun n => ‖a (φ n)‖) atTop atTop))
@@ -174,7 +185,9 @@ end Convergence
 
 section Diagonal
 
-/-- A family of strictly monotone maps refining each other. -/
+/-- A family of strictly monotone maps refining each other.
+@isnad1 id=ex.1h2v.s7.09e6e9d49e20 from=translated src=- shape=c28314d5 vocab=617563c4
+-/
 theorem exists_diagonal {P : ℕ → (ℕ → ℕ) → Prop}
     (hP : ∀ k (φ : ℕ → ℕ), StrictMono φ → ∃ ψ : ℕ → ℕ, StrictMono ψ ∧ P k (φ ∘ ψ))
     (hmono : ∀ k (φ : ℕ → ℕ) (ψ : ℕ → ℕ), P k φ → Tendsto ψ atTop atTop → P k (φ ∘ ψ)) :
@@ -247,18 +260,30 @@ open Classical in
 noncomputable def val (x : EPlace K E) (f : K) : Option E :=
   if h : f ∈ x.O then some (x.ψ ⟨f, h⟩) else none
 
+/--
+@isnad1 id=eq.1h4v.s8.da1f091c4399 from=translated src=- shape=5373d814 vocab=35f0062c
+-/
 theorem val_of_mem (x : EPlace K E) {f : K} (h : f ∈ x.O) : x.val f = some (x.ψ ⟨f, h⟩) := by
   simp [val, h]
 
+/--
+@isnad1 id=eq.1h4v.s5.aad75721f060 from=translated src=- shape=6f2225b8 vocab=551d0b1c
+-/
 theorem val_of_notMem (x : EPlace K E) {f : K} (h : f ∉ x.O) : x.val f = none := by
   simp [val, h]
 
+/--
+@isnad1 id=iff.0h5v.s8.17ecad830837 from=translated src=- shape=07f660d7 vocab=35f0062c
+-/
 theorem val_eq_some_iff (x : EPlace K E) {f : K} {α : E} :
     x.val f = some α ↔ ∃ h : f ∈ x.O, x.ψ ⟨f, h⟩ = α := by
   by_cases h : f ∈ x.O
   · simp [val, h]
   · simp [val, h]
 
+/--
+@isnad1 id=eq.2h7v.s6.1e59b124a159 from=translated src=- shape=0ae44e4e vocab=2044c9c2
+-/
 theorem val_add (x : EPlace K E) {f g : K} {α β : E} (hf : x.val f = some α)
     (hg : x.val g = some β) : x.val (f + g) = some (α + β) := by
   obtain ⟨hf', rfl⟩ := (val_eq_some_iff x).mp hf
@@ -268,6 +293,9 @@ theorem val_add (x : EPlace K E) {f g : K} {α β : E} (hf : x.val f = some α)
   rw [← map_add]
   rfl
 
+/--
+@isnad1 id=eq.2h7v.s6.cb0293fc73df from=translated src=- shape=0ae44e4e vocab=2ea1c991
+-/
 theorem val_mul (x : EPlace K E) {f g : K} {α β : E} (hf : x.val f = some α)
     (hg : x.val g = some β) : x.val (f * g) = some (α * β) := by
   obtain ⟨hf', rfl⟩ := (val_eq_some_iff x).mp hf
@@ -277,6 +305,9 @@ theorem val_mul (x : EPlace K E) {f g : K} {α β : E} (hf : x.val f = some α)
   rw [← map_mul]
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.b00e534d05f9 from=translated src=- shape=da31b134 vocab=5b808609
+-/
 theorem val_neg (x : EPlace K E) {f : K} {α : E} (hf : x.val f = some α) :
     x.val (-f) = some (-α) := by
   obtain ⟨hf', rfl⟩ := (val_eq_some_iff x).mp hf
@@ -285,17 +316,25 @@ theorem val_neg (x : EPlace K E) {f : K} {α : E} (hf : x.val f = some α) :
   rw [← map_neg]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.7f7fde893aa3 from=translated src=- shape=573fb2a5 vocab=62cf4b50
+-/
 theorem val_one (x : EPlace K E) : x.val 1 = some 1 := by
   rw [val_of_mem x (one_mem _)]
   congr 1
   exact map_one x.ψ
 
+/--
+@isnad1 id=eq.0h3v.s5.00b30c9c172a from=translated src=- shape=573fb2a5 vocab=62cf4b50
+-/
 theorem val_zero (x : EPlace K E) : x.val 0 = some 0 := by
   rw [val_of_mem x (zero_mem _)]
   congr 1
   exact map_zero x.ψ
 
-/-- Inversion: if `f(x) = α ≠ 0` then `f⁻¹(x) = α⁻¹`. -/
+/-- Inversion: if `f(x) = α ≠ 0` then `f⁻¹(x) = α⁻¹`.
+@isnad1 id=eq.2h5v.s6.763fa3500699 from=translated src=- shape=f6050a00 vocab=d6589d56
+-/
 theorem val_inv_of_ne_zero (x : EPlace K E) {f : K} {α : E} (hf : x.val f = some α)
     (hα : α ≠ 0) : x.val f⁻¹ = some α⁻¹ := by
   obtain ⟨hf', rfl⟩ := (val_eq_some_iff x).mp hf
@@ -315,7 +354,9 @@ theorem val_inv_of_ne_zero (x : EPlace K E) {f : K} {α : E} (hf : x.val f = som
     exact Subtype.ext (mul_inv_cancel₀ hf0)
   exact eq_inv_of_mul_eq_one_right h1
 
-/-- If `f(x) = 0` with `f ≠ 0`, then `f⁻¹(x) = ∞`. -/
+/-- If `f(x) = 0` with `f ≠ 0`, then `f⁻¹(x) = ∞`.
+@isnad1 id=eq.2h4v.s6.b15db024e048 from=translated src=- shape=535c966a vocab=b9367ee0
+-/
 theorem val_inv_of_eq_zero (x : EPlace K E) {f : K} (hf0 : f ≠ 0) (hf : x.val f = some 0) :
     x.val f⁻¹ = none := by
   obtain ⟨hf', hzero⟩ := (val_eq_some_iff x).mp hf
@@ -326,7 +367,9 @@ theorem val_inv_of_eq_zero (x : EPlace K E) {f : K} (hf0 : f ≠ 0) (hf : x.val 
   exact ⟨⟨⟨f, hf'⟩, ⟨f⁻¹, hinv⟩, Subtype.ext (mul_inv_cancel₀ hf0),
     Subtype.ext (inv_mul_cancel₀ hf0)⟩, rfl⟩
 
-/-- If `f(x) = ∞` then `f⁻¹(x) = 0`. -/
+/-- If `f(x) = ∞` then `f⁻¹(x) = 0`.
+@isnad1 id=eq.1h4v.s6.8d3aa56acc6d from=translated src=- shape=920ec6a3 vocab=b9367ee0
+-/
 theorem val_inv_of_eq_none (x : EPlace K E) {f : K} (hf : x.val f = none) :
     x.val f⁻¹ = some 0 := by
   have hf' : f ∉ x.O := by
@@ -353,7 +396,9 @@ section Limit
 
 variable {K : Type*} [Field K] {E : Type*} [NormedField E]
 
-/-- Convergence to a finite value via eventually finite values. -/
+/-- Convergence to a finite value via eventually finite values.
+@isnad1 id=iff.0h3v.s6.c0a0e823683a from=translated src=- shape=aa304cd3 vocab=3cc3f93d
+-/
 theorem tendstoP1_some_iff' {a : ℕ → Option E} {β : E} :
     TendstoP1 a (some β) ↔ ∃ α : ℕ → E, (∀ᶠ n in atTop, a n = some (α n)) ∧
       Tendsto α atTop (𝓝 β) := by
@@ -386,7 +431,9 @@ theorem tendstoP1_some_iff' {a : ℕ → Option E} {β : E} :
 
 /-- **Diagonal subsequence**: for a sequence of families of `E`-valued places of a countable
 field whose finite values lie in a sequentially compact class, there is a subsequence along
-which all values converge in `ℙ¹(E)`. -/
+which all values converge in `ℙ¹(E)`.
+@isnad1 id=ex.1h6v.s7.ef5e613107ed from=translated src=- shape=4df1e6c7 vocab=a0d5f42b
+-/
 theorem exists_limit [Countable K] {ι : Type*} [Countable ι] [Nonempty ι] {Good : E → Prop}
     (hcpt : ∀ a : ℕ → E, (∀ n, Good (a n)) → ∃ φ : ℕ → ℕ, StrictMono φ ∧
       ((∃ b, Tendsto (a ∘ φ) atTop (𝓝 b)) ∨ Tendsto (fun n => ‖a (φ n)‖) atTop atTop))
@@ -421,7 +468,9 @@ theorem exists_limit [Countable K] {ι : Type*} [Countable ι] [Nonempty ι] {Go
 
 variable {x : ℕ → EPlace K E} {ξ : K → Option E}
 
-/-- Limits of values are additive. -/
+/-- Limits of values are additive.
+@isnad1 id=eq.3h8v.s6.74d11ddde4dc from=translated src=- shape=b1191e03 vocab=65623f40
+-/
 theorem limit_add (h : ∀ f, TendstoP1 (fun n => (x n).val f) (ξ f)) {f g : K} {α β : E}
     (hf : ξ f = some α) (hg : ξ g = some β) : ξ (f + g) = some (α + β) := by
   have hf' := h f
@@ -434,7 +483,9 @@ theorem limit_add (h : ∀ f, TendstoP1 (fun n => (x n).val f) (ξ f)) {f g : K}
   filter_upwards [ha, hb] with n hna hnb
   exact (x n).val_add hna hnb
 
-/-- Limits of values are multiplicative. -/
+/-- Limits of values are multiplicative.
+@isnad1 id=eq.3h8v.s6.f721d7331fb8 from=translated src=- shape=b1191e03 vocab=8436382b
+-/
 theorem limit_mul (h : ∀ f, TendstoP1 (fun n => (x n).val f) (ξ f)) {f g : K} {α β : E}
     (hf : ξ f = some α) (hg : ξ g = some β) : ξ (f * g) = some (α * β) := by
   have hf' := h f
@@ -447,6 +498,9 @@ theorem limit_mul (h : ∀ f, TendstoP1 (fun n => (x n).val f) (ξ f)) {f g : K}
   filter_upwards [ha, hb] with n hna hnb
   exact (x n).val_mul hna hnb
 
+/--
+@isnad1 id=eq.2h6v.s6.ad57a8f28948 from=translated src=- shape=6c5514cc vocab=a3f4bdbf
+-/
 theorem limit_neg (h : ∀ f, TendstoP1 (fun n => (x n).val f) (ξ f)) {f : K} {α : E}
     (hf : ξ f = some α) : ξ (-f) = some (-α) := by
   have hf' := h f
@@ -456,15 +510,23 @@ theorem limit_neg (h : ∀ f, TendstoP1 (fun n => (x n).val f) (ξ f)) {f : K} {
   filter_upwards [ha] with n hna
   exact (x n).val_neg hna
 
+/--
+@isnad1 id=eq.1h4v.s6.49fb386162fa from=translated src=- shape=072e2148 vocab=8a835667
+-/
 theorem limit_one (h : ∀ f, TendstoP1 (fun n => (x n).val f) (ξ f)) : ξ 1 = some 1 :=
   (h 1).unique (tendstoP1_some_iff'.mpr ⟨fun _ => 1,
     Eventually.of_forall fun n => (x n).val_one, tendsto_const_nhds⟩)
 
+/--
+@isnad1 id=eq.1h4v.s6.1861a940a9bf from=translated src=- shape=072e2148 vocab=8a835667
+-/
 theorem limit_zero (h : ∀ f, TendstoP1 (fun n => (x n).val f) (ξ f)) : ξ 0 = some 0 :=
   (h 0).unique (tendstoP1_some_iff'.mpr ⟨fun _ => 0,
     Eventually.of_forall fun n => (x n).val_zero, tendsto_const_nhds⟩)
 
-/-- `ξ f = 0` implies `ξ f⁻¹ = ∞`. -/
+/-- `ξ f = 0` implies `ξ f⁻¹ = ∞`.
+@isnad1 id=eq.3h5v.s6.db87dc4fc8b9 from=translated src=- shape=4caa18aa vocab=75995acd
+-/
 theorem limit_inv_of_eq_zero (h : ∀ f, TendstoP1 (fun n => (x n).val f) (ξ f)) {f : K}
     (hf0 : f ≠ 0) (hf : ξ f = some 0) : ξ f⁻¹ = none := by
   have hf' := h f
@@ -490,7 +552,9 @@ theorem limit_inv_of_eq_zero (h : ∀ f, TendstoP1 (fun n => (x n).val f) (ξ f)
       exact hsm
     exact lt_of_le_of_lt (le_max_left _ _) h2
 
-/-- `ξ f = ∞` implies `ξ f⁻¹ = 0`. -/
+/-- `ξ f = ∞` implies `ξ f⁻¹ = 0`.
+@isnad1 id=eq.2h5v.s6.699a54f67461 from=translated src=- shape=39cf64bf vocab=75995acd
+-/
 theorem limit_inv_of_eq_none (h : ∀ f, TendstoP1 (fun n => (x n).val f) (ξ f)) {f : K}
     (hf : ξ f = none) : ξ f⁻¹ = some 0 := by
   have hf' := h f
@@ -532,11 +596,16 @@ def limitSubring (h : ∀ f, TendstoP1 (fun n => (x n).val f) (ξ f)) : Valuatio
       simp [limit_inv_of_eq_none h hf]
     · exact Or.inl hf
 
+/--
+@isnad1 id=iff.1h5v.s6.7028eaacfc1f from=translated src=- shape=dd5623ac vocab=8be0ce7e
+-/
 theorem mem_limitSubring (h : ∀ f, TendstoP1 (fun n => (x n).val f) (ξ f)) {f : K} :
     f ∈ limitSubring h ↔ ξ f ≠ none := Iff.rfl
 
 /-- **Bounds away from `0`, `1`, `∞`**: if `ξ f ∉ {0, 1, ∞}`, then eventually
-`|log ‖f(x n)‖|` and `|log ‖f(x n) − 1‖|` are bounded. -/
+`|log ‖f(x n)‖|` and `|log ‖f(x n) − 1‖|` are bounded.
+@isnad1 id=ex.4h6v.s7.f05441624d7e from=translated src=- shape=61085104 vocab=727f9c80
+-/
 theorem eventually_abs_log_le (h : ∀ f, TendstoP1 (fun n => (x n).val f) (ξ f)) {f : K} {β : E}
     (hf : ξ f = some β) (hβ0 : β ≠ 0) (hβ1 : β ≠ 1) :
     ∃ C : ℝ, ∀ᶠ n in atTop, ∃ α, (x n).val f = some α ∧

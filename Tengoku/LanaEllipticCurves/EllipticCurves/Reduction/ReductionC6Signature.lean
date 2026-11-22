@@ -61,7 +61,9 @@ variable [IsDomain R] [IsDiscreteValuationRing R] [IsFractionRing R K]
 variable (R) in
 /-- **The `c₆`-invariant of the reduced curve vanishes iff `c₆` has positive valuation.**
 `(W.reduction R).c₆ = 0` exactly when `v(c₆) < 1`.
-The `c₆` sibling of `reduction_c₄_eq_zero_iff`. -/
+The `c₆` sibling of `reduction_c₄_eq_zero_iff`.
+@isnad1 id=iff.0h3v.s7.d129b6b017f3 from=translated src=- shape=4d2fc06e vocab=11fac92d
+-/
 theorem reduction_c₆_eq_zero_iff (W : WeierstrassCurve K) [IsMinimal R W] :
     (W.reduction R).c₆ = 0 ↔ valuation K (maximalIdeal R) W.c₆ < 1 := by
   rw [reduction_c₆_eq R W, residue_eq_zero_iff, ← integralModel_c₆_eq R W]
@@ -69,7 +71,9 @@ theorem reduction_c₆_eq_zero_iff (W : WeierstrassCurve K) [IsMinimal R W] :
 
 /-- **A cusp has vanishing `c₆`.** For a minimal model with additive (cusp) reduction, the reduced
 curve's `c₆`-invariant vanishes: from `Δ̃ = 0` and `c̃₄ = 0`, the invariant relation
-`1728 · Δ̃ = c̃₄³ − c̃₆²` collapses to `c̃₆² = 0`. -/
+`1728 · Δ̃ = c̃₄³ − c̃₆²` collapses to `c̃₆² = 0`.
+@isnad1 id=eq.1h3v.s7.489787354bb1 from=translated src=- shape=e0e5449e vocab=c3086991
+-/
 theorem HasAdditiveReduction.reduction_c₆_eq_zero (W : WeierstrassCurve K) [IsMinimal R W]
     (h : W.HasAdditiveReduction R) : (W.reduction R).c₆ = 0 := by
   obtain ⟨hΔ, hc₄⟩ := (hasAdditiveReduction_iff_reduction R W).mp h
@@ -81,7 +85,9 @@ theorem HasAdditiveReduction.reduction_c₆_eq_zero (W : WeierstrassCurve K) [Is
 variable (R) in
 /-- **A cusp is exactly the total collapse of the reduced invariants.** For a minimal model,
 additive (cusp) reduction holds iff all three invariants `c̃₄, c̃₆, Δ̃` of the reduced curve
-vanish. -/
+vanish.
+@isnad1 id=iff.0h3v.s8.cf39235c4f20 from=translated src=- shape=58298ba0 vocab=d0d32270
+-/
 theorem hasAdditiveReduction_iff_reduction_invariants_eq_zero (W : WeierstrassCurve K)
     [IsMinimal R W] :
     W.HasAdditiveReduction R ↔
@@ -94,7 +100,9 @@ theorem hasAdditiveReduction_iff_reduction_invariants_eq_zero (W : WeierstrassCu
     exact (hasAdditiveReduction_iff_reduction R W).mpr ⟨hΔ, hc₄⟩
 
 /-- **At a node `c̃₆² = c̃₄³`.** For a minimal model with multiplicative (node) reduction, `Δ̃ = 0`
-turns the invariant relation `1728 · Δ̃ = c̃₄³ − c̃₆²` into `c̃₆² = c̃₄³`. -/
+turns the invariant relation `1728 · Δ̃ = c̃₄³ − c̃₆²` into `c̃₆² = c̃₄³`.
+@isnad1 id=eq.1h3v.s7.871a46bdfdbc from=translated src=- shape=ec67db97 vocab=ec4a7d50
+-/
 theorem HasMultiplicativeReduction.reduction_c₆_sq_eq (W : WeierstrassCurve K) [IsMinimal R W]
     (h : W.HasMultiplicativeReduction R) :
     (W.reduction R).c₆ ^ 2 = (W.reduction R).c₄ ^ 3 := by
@@ -104,7 +112,9 @@ theorem HasMultiplicativeReduction.reduction_c₆_sq_eq (W : WeierstrassCurve K)
   linear_combination hrel
 
 /-- **A node has non-vanishing `c₆`.** For a minimal model with multiplicative (node) reduction,
-`c̃₆ ≠ 0`: were `c̃₆ = 0` then `c̃₄³ = c̃₆² = 0` would force `c̃₄ = 0`, contradicting the node. -/
+`c̃₆ ≠ 0`: were `c̃₆ = 0` then `c̃₄³ = c̃₆² = 0` would force `c̃₄ = 0`, contradicting the node.
+@isnad1 id=ne.1h3v.s7.1bd9f2e81648 from=translated src=- shape=e0e5449e vocab=3be72604
+-/
 theorem HasMultiplicativeReduction.reduction_c₆_ne_zero (W : WeierstrassCurve K) [IsMinimal R W]
     (h : W.HasMultiplicativeReduction R) : (W.reduction R).c₆ ≠ 0 := by
   obtain ⟨_, hc₄⟩ := (hasMultiplicativeReduction_iff_reduction R W).mp h
@@ -117,7 +127,9 @@ theorem HasMultiplicativeReduction.reduction_c₆_ne_zero (W : WeierstrassCurve 
 /-- **At a node `c̃₄` is a square.** For a minimal model with multiplicative (node) reduction, the
 reduced `c̃₄` is a square in the residue field, in every characteristic: `c̃₄ ≠ 0` together with
 `c̃₆² = c̃₄³` exhibits `c̃₄ = (c̃₆ · c̃₄⁻¹)²`. This is the positive sibling of
-`reduction_c₆_ne_zero`. -/
+`reduction_c₆_ne_zero`.
+@isnad1 id=issquare.1h3v.s7.2b2ee52916a3 from=translated src=- shape=630f7639 vocab=f0f43985
+-/
 theorem HasMultiplicativeReduction.reduction_c₄_isSquare (W : WeierstrassCurve K) [IsMinimal R W]
     (h : W.HasMultiplicativeReduction R) : IsSquare (W.reduction R).c₄ := by
   have hc₄ : (W.reduction R).c₄ ≠ 0 := ((hasMultiplicativeReduction_iff_reduction R W).mp h).2

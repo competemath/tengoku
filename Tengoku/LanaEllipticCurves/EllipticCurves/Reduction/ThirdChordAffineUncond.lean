@@ -70,7 +70,9 @@ open Classical in
 third-intersection `x`-coordinate `addX` of the two recovered points equals the transported third
 chord `x`-coordinate `X₃ = t / w₃`, with **no** non-degeneracy hypothesis (`hd`) on `X₃`.  Proven as
 a direct field identity via the `(z, w)`-level Vieta symmetric functions (the two distinct roots
-`z₁ ≠ z₂`), sidestepping affine root-selection. -/
+`z₁ ≠ z₂`), sidestepping affine root-selection.
+@isnad1 id=eq.8h5v.s8.3a0b5d92e0c3 from=translated src=- shape=fef9ea7b vocab=40b16f7c
+-/
 theorem addX_eq_thirdChordX_of_secant :
     W.toAffine.addX (xParam R W hz₁) (xParam R W hz₂)
         (W.toAffine.slope (xParam R W hz₁) (xParam R W hz₂) (yParam R W hz₁) (yParam R W hz₂))

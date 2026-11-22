@@ -36,7 +36,9 @@ variable {J : Type v} [Category.{v} J] {F : J ⥤ CommRingCat.{max v u}} {c : Co
 
 /-- In a limit of commutative rings, an element all of whose projections are units is a unit:
 the inverses of the projections form a compatible family, hence an element of the limit, which
-is inverse to the given element. -/
+is inverse to the given element.
+@isnad1 id=isunit.1h5v.s8.7e40096ea595 from=translated src=- shape=2b51d480 vocab=b1275d8f
+-/
 theorem isUnit_of_forall_isUnit_π (hc : IsLimit c) (x : c.pt)
     (h : ∀ j : J, IsUnit (c.π.app j x)) : IsUnit x := by
   classical

@@ -46,7 +46,9 @@ flat and surjective and `X` is integral, then `Y` is integral.
 Reducedness descends because each stalk map `𝒪_{Y, p x} ⟶ 𝒪_{X, x}` is a flat local
 homomorphism of local rings, hence faithfully flat and injective, so a reduced stalk of `X`
 forces the corresponding stalk of `Y` to be reduced. Irreducibility descends because `Y` is
-the continuous surjective image of the irreducible space `X`. -/
+the continuous surjective image of the irreducible space `X`.
+@isnad1 id=isintegr.0h3v.s4.87c00af66d49 from=translated src=- shape=e150ce23 vocab=8a12dacf
+-/
 theorem IsIntegral.of_flat_surjective (p : X ⟶ Y) [Flat p] [Surjective p] [IsIntegral X] :
     IsIntegral Y := by
   have hsurj : Function.Surjective p.base := ‹Surjective p›.surj

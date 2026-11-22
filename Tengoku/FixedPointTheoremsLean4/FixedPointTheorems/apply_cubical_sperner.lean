@@ -20,6 +20,9 @@ noncomputable def _root_.Tengoku.FixedPointTheoremsLean4.rl_point {f : @unit_cub
     | some k => k.1
     | none => n
 
+/--
+@isnad1 id=and.0h3v.s8.0ed6526b5bb7 from=translated src=- shape=487e05a4 vocab=b8f4202a
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.reduced_label_props_1 (f : @unit_cube n → @unit_cube n) (x : @unit_cube n)
     : @rl_point n f x ≤ n ∧ ∀ k,
     (@rl_point n f x = k.1 → (f x).1 k < x.1 k ∨ x.1 k = 1)
@@ -85,6 +88,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.reduced_label_props_1 (f : @unit_cu
   }
 }
 
+/--
+@isnad1 id=and.0h3v.s7.b962c8f19301 from=translated src=- shape=a9cd7d4e vocab=bda1bc77
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.reduced_label_props_2 (f : @unit_cube n → @unit_cube n) (x : @unit_cube n)
     : @rl_point n f x ≤ n ∧
     ∀ k, (x.1 k = 0 → @rl_point n f x ≠ k.1) ∧ (x.1 k = 1 → @rl_point n f x ≤ k.1):= by {
@@ -107,6 +113,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.reduced_label_props_2 (f : @unit_cu
   }
 }
 
+/--
+@isnad1 id=and.0h4v.s7.34a004bc68fc from=translated src=- shape=b90a6b95 vocab=85a12b9e
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.reduced_label_props_3 (f : @unit_cube n → @unit_cube n) (x : @unit_cube n) (k : Fin n)
     : (@rl_point n f x = k → (f x).1 k ≤ x.1 k) ∧ (@rl_point n f x > k → (f x).1 k ≥ x.1 k) := by {
   have h1 := (reduced_label_props_1 f x).2 k
@@ -171,6 +180,9 @@ noncomputable def _root_.Tengoku.FixedPointTheoremsLean4.sperner_cube_of_functio
     }
   }
 
+/--
+@isnad1 id=le.2h4v.s7.b46705be8968 from=translated src=- shape=14ce6a1d vocab=d3f9164c
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.dist_discrete_map p (ppos: 0 < p) (v1 v2 : Fin n → Fin (p+1))
     (h1 : ∀ k, (v1 k).1 ≤ (v2 k).1 + 1 ∧ (v2 k).1 ≤ (v1 k).1 + 1) :
     dist (discrete_map p v1) (discrete_map p v2) ≤ 1 / p := by {

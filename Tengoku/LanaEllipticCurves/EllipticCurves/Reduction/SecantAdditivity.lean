@@ -70,7 +70,9 @@ This strengthens `localParam_add_of_X_ne` by discharging its `hw : w₃ ≠ 0` a
 hypotheses internally: in the secant case both are unconditional, from `thirdChordW_ne_zero`
 (`w₃ = wParam t` with `t ≠ 0`) and `adicEvalMv_formalGroupDen_ne_zero` (`den ≡ 1 mod 𝔪`).  The
 remaining `hd1, hd2` fail exactly in the `2P + Q = O` / `P + 2Q = O` configurations and are the
-honestly-degenerate conditions the full case analysis of #367 must still address. -/
+honestly-degenerate conditions the full case analysis of #367 must still address.
+@isnad1 id=eq.9h7v.s9.d1312c2d90cb from=translated src=- shape=93606284 vocab=582d8d0a
+-/
 theorem localParam_add_of_X_ne_of_distinct [W.IsElliptic]
     {x₁ y₁ : K} {h₁ : W.toAffine.Nonsingular x₁ y₁} (hR1 : ReducesToZero R W (.some x₁ y₁ h₁))
     {x₂ y₂ : K} {h₂ : W.toAffine.Nonsingular x₂ y₂} (hR2 : ReducesToZero R W (.some x₂ y₂ h₂))

@@ -55,6 +55,9 @@ def _root_.Tengoku.FixedPointTheoremsLean4.case_C (I : Fin (n1 +1) → SC.G) :=
 
 def _root_.Tengoku.FixedPointTheoremsLean4.case_D (I : Fin (n1 +1) → SC.G) := ∀ j, ∀ q, ∃ k,I k j ≠ q
 
+/--
+@isnad1 id=or.0h3v.s5.24b9b764a9c0 from=translated src=- shape=b93470e3 vocab=a359e177
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.one_of_ABCD (I : Fin (n1 +1) → SC.G) :
     case_A SC I ∨ case_B SC I ∨ case_C SC I ∨ case_D SC I := by {
   by_cases h1 : case_D SC I
@@ -83,6 +86,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.one_of_ABCD (I : Fin (n1 +1) → SC
 
 section simplex_properties
 
+/--
+@isnad1 id=le.2h6v.s7.19424ee7ff41 from=translated src=- shape=d58a631d vocab=55a234e5
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.monotone_1_of_simplex {m:ℕ } (I : Fin (m+1)→ SC.G) (hs : simplex SC m I) (i1 i2 : Fin (m+1))
     (h1 : i1 ≤ i2) : ∀ j, I i1 j ≤ I i2 j := by {
   intro j
@@ -97,6 +103,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.monotone_1_of_simplex {m:ℕ } (I :
   convert h3 <;> ext <;> simp [Fin.ofNat_eq_cast, Nat.mod_eq_of_lt]
 }
 
+/--
+@isnad1 id=iff.1h5v.s7.bcc0cd2fc3d4 from=translated src=- shape=00f635a6 vocab=55a234e5
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.monotone_2_of_simplex {m:ℕ } (I : Fin (m+1)→ SC.G) (hs : simplex SC m I) (i1 i2 : Fin (m+1)) :
     i1 ≤ i2 ↔ ∀ j, I i1 j ≤ I i2 j := by {
   apply Iff.intro
@@ -117,6 +126,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.monotone_2_of_simplex {m:ℕ } (I :
   }
 }
 
+/--
+@isnad1 id=le.1h4v.s6.1424778eac34 from=translated src=- shape=6af3e1f5 vocab=0c40c878
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.last_of_simplex {m: ℕ} I (hs : simplex SC m I) j :
     (I (Fin.last m) j).1 ≤ (I 0 j).1 + 1 := by {
   cases m
@@ -126,6 +138,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.last_of_simplex {m: ℕ} I (hs : si
   exact (hs.2 0 h3 j).2
 }
 
+/--
+@isnad1 id=le.1h6v.s6.838ef41ec24b from=translated src=- shape=97d2e9ed vocab=cbd397b5
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.le_add_one_of_simplex {m: ℕ} I (hs : simplex SC m I) (i1 i2 : Fin (m+1)) j :
     (I i1 j).1 ≤ (I i2 j).1 + 1 := by {
   have h1 := last_of_simplex SC I hs j
@@ -137,6 +152,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.le_add_one_of_simplex {m: ℕ} I (h
 
 end simplex_properties
 
+/--
+@isnad1 id=ne.1h2v.s6.0b07e88ecbc6 from=translated src=- shape=3c85bc7b vocab=a7b4774f
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.p_ne_zero_of_cube {hn1 : n1 + 1 = SC.n}: Fin.last SC.p ≠ 0 := by {
   simp only [ne_eq, Fin.last_eq_zero_iff]
   intro h1
@@ -171,6 +189,9 @@ def _root_.Tengoku.FixedPointTheoremsLean4.insert_index (j : Fin (SC.n+1)) (a: F
 def _root_.Tengoku.FixedPointTheoremsLean4.delete_vertex (j: Fin (SC.n+1)) (I : Fin (SC.n+1)→ SC.G) : Fin (n1 + 1) → SC.G :=
   fun a ↦ I (@insert_index SC n1 hn1 j a)
 
+/--
+@isnad1 id=ne.1h4v.s6.d31630ce845c from=translated src=- shape=550d3113 vocab=69984048
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.insert_index_ne j a : @insert_index SC n1 hn1 j a ≠ j := by {
   apply Fin.ne_of_val_ne
   unfold insert_index
@@ -185,6 +206,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.insert_index_ne j a : @insert_index
   }
 }
 
+/--
+@isnad1 id=ex.2h4v.s6.0c3f241213c3 from=translated src=- shape=862c9be1 vocab=69984048
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.almost_surjective_of_insert_index (j : Fin (SC.n+1)) (a : Fin (SC.n+1)) (h : a ≠ j)
     : ∃ k : Fin (n1 + 1) , a = @insert_index SC n1 hn1 j k := by {
   unfold insert_index
@@ -233,6 +257,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.almost_surjective_of_insert_index (
   }
 }
 
+/--
+@isnad1 id=strictmo.1h3v.s7.dec679ea59e4 from=translated src=- shape=6a88b380 vocab=e8b74aa8
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.insert_index_strict_mono j : StrictMono (@insert_index SC n1 hn1 j) := by {
   intro a b h1
   have h2 : a.1 < b.1 := by {exact h1}
@@ -259,11 +286,17 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.insert_index_strict_mono j : Strict
   }
 }
 
+/--
+@isnad1 id=injectiv.1h3v.s6.1b2e92d2b0a3 from=translated src=- shape=6a88b380 vocab=44c6c0d5
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.insert_index_inj j : Function.Injective (@insert_index SC n1 hn1 j) := by {
   apply StrictMono.injective
   apply insert_index_strict_mono
 }
 
+/--
+@isnad1 id=eq.3h5v.s7.154f45eddd63 from=translated src=- shape=2e64bb15 vocab=69c6b517
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.delete_vertex_inj J {hs : simplex SC SC.n J} i1 i2
     (h1 : @delete_vertex SC n1 hn1 i1 J = @delete_vertex SC n1 hn1 i2 J ) : i1 = i2 := by {
   by_contra h2
@@ -274,6 +307,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.delete_vertex_inj J {hs : simplex S
   exact (congrFun h1) k
 }
 
+/--
+@isnad1 id=simplex.2h4v.s6.a6b8273176c8 from=translated src=- shape=db0c3405 vocab=69c6b517
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.delete_vertex_simplex J {hs : simplex SC SC.n J} i :
     simplex SC n1 (@delete_vertex SC n1 hn1 i J) := by {
   apply And.intro
@@ -300,6 +336,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.delete_vertex_simplex J {hs : simpl
   }
 }
 
+/--
+@isnad1 id=isface.2h4v.s6.b476026ee664 from=translated src=- shape=1e2aa341 vocab=ebb706d9
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.delete_vertex_is_face J {hs : simplex SC SC.n J} i :
     is_face SC (@delete_vertex SC n1 hn1 i J) J := by {
   apply And.intro
@@ -316,6 +355,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.delete_vertex_is_face J {hs : simpl
   }
 }
 
+/--
+@isnad1 id=eq.1h3v.s5.ffb2a0e27dfd from=translated src=- shape=4471f984 vocab=cb588b24
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.is_id_of_strict_mono (m: ℕ ) (f : Fin m → Fin m) (hsm : StrictMono f)
     : ∀ k, f k = k := by {
   suffices h1 : ∀ (a : ℕ), ∀ k, k.1 < a → f k = k by {
@@ -351,6 +393,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.is_id_of_strict_mono (m: ℕ ) (f :
   }
 }
 
+/--
+@isnad1 id=ex.2h3v.s7.57c33893404e from=translated src=- shape=6b82f0ee vocab=e8b74aa8
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.is_insert_index_of_strict_mono f (hsm : StrictMono f)
     : ∃ j, f = @insert_index SC n1 hn1 j := by {
   have h31 : Function.Injective f := by {exact hsm.injective}
@@ -385,6 +430,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.is_insert_index_of_strict_mono f (h
   rw [hg k, h3 k]
 }
 
+/--
+@isnad1 id=iff.2h4v.s7.5e2bf8644e88 from=translated src=- shape=13fdd52e vocab=ebb706d9
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.child_simplex_char (I : Fin (n1 +1) → SC.G) J {hs : simplex SC SC.n J}
     : is_face SC I J ↔ ∃ i, I = @delete_vertex SC n1 hn1 i J := by {
   apply Iff.intro
@@ -435,6 +483,9 @@ end simplex_child
 
 section cases_ABCD
 
+/--
+@isnad1 id=ex.1h5v.s7.afe29d18e9b4 from=translated src=- shape=ae6814c2 vocab=7c4475bf
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.insert_vertex I (v : SC.G) j :
     ∃ J, I = @delete_vertex SC n1 hn1 j J ∧ J j = v := by {
   have h1 : ∀ j2, ∃ w, (j2 = j → w = v)
@@ -472,6 +523,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.insert_vertex I (v : SC.G) j :
   exact (h2 j).1 rfl
 }
 
+/--
+@isnad1 id=and.3h4v.s8.7fb365dc122f from=translated src=- shape=0f10b4b9 vocab=13cac73b
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.surround_index (j : Fin (SC.n + 1)) (i : Fin (n1 + 1)) (hij : i.1 + 1 = j.1 )
     (hj1 : j ≠ Fin.last SC.n): ((@insert_index SC n1 hn1 j i).1 + 1 = j.1
     ∧ j.1 + 1 = @insert_index SC n1 hn1 j (i+1)) := by {
@@ -492,6 +546,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.surround_index (j : Fin (SC.n + 1))
   simp only [h3, hij, lt_self_iff_false, ↓reduceIte]
 }
 
+/--
+@isnad1 id=injectiv.4h5v.s7.85e5fc0007d9 from=translated src=- shape=4608d616 vocab=cb0f6b17
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.parent_injective I (hs : simplex SC n1 I) J j
     (h1 : I = @delete_vertex SC n1 hn1 j J) (h2 : J j ∉ Set.range I)
     : Function.Injective J := by {
@@ -526,6 +583,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.parent_injective I (hs : simplex SC
   rw [← hi1,← hi2, h4]
 }
 
+/--
+@isnad1 id=isface.5h4v.s8.381c81497a86 from=translated src=- shape=58f8df14 vocab=a45544c8
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.parent_simplex_case_BC I (hs : simplex SC n1 I) J
     (h1 : I = @delete_vertex SC n1 hn1 0 J) (h2 : J 0 ≠ I 0)
     (h3 : ∀ k, J 0 k ≤ I 0 k ∧ (I (Fin.last n1) k).1 ≤ (J 0 k).1 + 1) : is_face SC I J := by {
@@ -584,6 +644,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.parent_simplex_case_BC I (hs : simp
   }
 }
 
+/--
+@isnad1 id=isface.6h5v.s8.2b8f014bcf03 from=translated src=- shape=8b401d10 vocab=a45544c8
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.parent_simplex_case_AC I (hs : simplex SC n1 I) J j (hj : j = Fin.last SC.n)
     (h1 : I = @delete_vertex SC n1 hn1 j J) (h2 : J j ≠ I (Fin.last n1))
     (h3 : ∀ k, I (Fin.last n1) k ≤ J j k ∧ (J j k).1 ≤ (I 0 k).1 + 1) : is_face SC I J := by {
@@ -659,6 +722,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.parent_simplex_case_AC I (hs : simp
   }
 }
 
+/--
+@isnad1 id=isface.6h6v.s8.136cf589264c from=translated src=- shape=a7914b13 vocab=d1245db5
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.parent_simplex_case_D I (hs : simplex SC n1 I) J j i
     (hij : i.1 + 1 = j.1 ) (h1 : I = @delete_vertex SC n1 hn1 j J) (h2 : J j ∉ Set.range I)
     (h3 : ∀ k, I i k ≤ J j k ∧ J j k ≤ I (i+1) k) : is_face SC I J := by {
@@ -779,6 +845,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.parent_simplex_case_D I (hs : simpl
 
 noncomputable def _root_.Tengoku.FixedPointTheoremsLean4.coord_change_count (v1 v2 : SC.G) := Finset.card {i | v1 i ≠ v2 i}
 
+/--
+@isnad1 id=eq.2h6v.s7.6bec9be29658 from=translated src=- shape=2c3e5384 vocab=4156ffe4
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.ccc_add {m} I (hs : simplex SC m I) (i1 i2 i3) (h1 : i1 ≤ i2 ∧ i2 ≤ i3) :
     coord_change_count SC (I i1) (I i3) =
     coord_change_count SC (I i1) (I i2) + coord_change_count SC (I i2) (I i3) := by {
@@ -818,6 +887,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.ccc_add {m} I (hs : simplex SC m I)
   }
 }
 
+/--
+@isnad1 id=lt.2h5v.s6.2f7966e3e77e from=translated src=- shape=f17148b6 vocab=5a1692ac
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.ccc_pos {m} I (hs : simplex SC m I) i1 i2 (h1 : i1 ≠ i2)
     : 0 < coord_change_count SC (I i1) (I i2) := by {
   unfold coord_change_count
@@ -838,6 +910,9 @@ noncomputable def _root_.Tengoku.FixedPointTheoremsLean4.ccc_fun {m} (I : Fin (m
       exact card_finset_fin_le {i_1 | I 0 i_1 ≠ I i i_1}
     } ⟩
 
+/--
+@isnad1 id=strictmo.1h3v.s6.f89dd1f8102b from=translated src=- shape=f786bd9b vocab=391a5656
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.ccc_fun_strict_mono {m} I (hs : simplex SC m I) :
     StrictMono (ccc_fun SC I) := by {
   intro i1 i2 h1
@@ -849,12 +924,18 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.ccc_fun_strict_mono {m} I (hs : sim
   apply ccc_pos SC I hs _ _ $ Fin.ne_of_lt h1
 }
 
+/--
+@isnad1 id=ex.2h3v.s6.d97956c74364 from=translated src=- shape=d71e069f vocab=f86cbe30
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.ccc_fun_is_insert_index I (hs : simplex SC n1 I) :
     ∃ j, ccc_fun SC I = @insert_index SC n1 hn1 j := by {
   apply is_insert_index_of_strict_mono
   apply ccc_fun_strict_mono SC I hs
 }
 
+/--
+@isnad1 id=and.3h5v.s8.95393f0369ec from=translated src=- shape=c9a327e3 vocab=11ad7a00
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.delete_vertex_ccc_fun_match J (hs : simplex SC SC.n J) j1 j2
     ( h1 : ccc_fun SC (@delete_vertex SC n1 hn1 j1 J) = @insert_index SC n1 hn1 j2)
     : (j1 = 0 → j2 = Fin.last SC.n) ∧ (j1 ≠ 0 → j1 = j2) := by {
@@ -939,6 +1020,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.delete_vertex_ccc_fun_match J (hs :
   apply insert_index_ne
 }
 
+/--
+@isnad1 id=iff.2h5v.s7.d5958c7b69b4 from=translated src=- shape=2d45234e vocab=7c4475bf
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.same_delete_index_eq_iff J1 J2 j
     (h1 : @delete_vertex SC n1 hn1 j J1 = @delete_vertex SC n1 hn1 j J2)
     : J1 = J2 ↔ J1 j = J2 j := by {
@@ -952,6 +1036,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.same_delete_index_eq_iff J1 J2 j
   exact congrFun h1 i1
 }
 
+/--
+@isnad1 id=ne.4h6v.s7.70b62b131631 from=translated src=- shape=213326ae vocab=2e023ecf
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.unique_const_ABC {hn1 : n1 + 1 = SC.n} I (hs : simplex SC n1 I) k1 q1
     (h1 : ∀ i, I i k1 = q1): ∀ k2, k1 ≠ k2 → I 0 k2 ≠ I (Fin.last n1) k2 := by {
   intro k2 h3 h2
@@ -983,6 +1070,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.unique_const_ABC {hn1 : n1 + 1 = SC
   simp only [Nat.not_ofNat_le_one] at h7
 }
 
+/--
+@isnad1 id=ne.1h2v.s6.50e173d7ecb6 from=translated src=- shape=49435fc8 vocab=c17de0b9
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.zero_ne_last {hn1 : n1 + 1 = SC.n} : 0 ≠ Fin.last SC.n := by {
   simp only [ne_eq, Fin.zero_eq_last_iff]
   rw [←hn1]

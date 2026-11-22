@@ -77,7 +77,9 @@ variable {F : Type*} [Field F] [DecidableEq F] {W : Affine F}
 
 /-- The ideal class of the divisor `(P) − (O)` attached to a point `P` is `n`-torsion in the class
 group of `F[W]` whenever `P` lies in the `n`-torsion `E[n]`: pushing `n • P = 0` through the group
-homomorphism `toClass : W.Point →+ Additive (ClassGroup F[W])`. -/
+homomorphism `toClass : W.Point →+ Additive (ClassGroup F[W])`.
+@isnad1 id=eq.1h4v.s10.48d986d2f1a8 from=translated src=- shape=27d5b8b9 vocab=08eb548e
+-/
 theorem toClass_nsmul_eq_zero_of_torsion {n : ℕ} {P : W.Point} (hP : P ∈ W.torsion n) :
     n • Point.toClass P = 0 := by
   rw [← map_nsmul, mem_torsion_iff.mp hP, map_zero]
@@ -89,7 +91,9 @@ is a rational function `f_P ∈ F(W)` with `div f_P = n·(P) − n·(O)`, the fu
 divisor-theoretic Weil pairing consumes.
 
 This needs only that `F` is a field (so `F[W]` is a domain); it does **not** use Dedekindness /
-normality of `F[W]`, nor the elliptic-net (Ward) recurrence. -/
+normality of `F[W]`, nor the elliptic-net (Ward) recurrence.
+@isnad1 id=isprinci.2h5v.s13.fba6dfff8ea8 from=translated src=- shape=eb7a0978 vocab=65a51009
+-/
 theorem XYIdeal'_pow_isPrincipal_of_torsion {x y : F} (h : W.Nonsingular x y) {n : ℕ}
     (hP : Point.some x y h ∈ W.torsion n) :
     (↑(CoordinateRing.XYIdeal' (W := W) h ^ n) :
@@ -107,7 +111,9 @@ whose divisor is `n·(P) − n·(O)` — the input the divisor-theoretic Weil pa
 generator of the principal ideal produced by `XYIdeal'_pow_isPrincipal_of_torsion`).
 
 Like that lemma this needs only `[Field F]`; it uses neither Dedekindness/normality of `F[W]` nor
-the elliptic-net (Ward) recurrence. -/
+the elliptic-net (Ward) recurrence.
+@isnad1 id=ex.2h5v.s13.9dda3d124005 from=translated src=- shape=5758411e vocab=9b4073ad
+-/
 theorem exists_generator_XYIdeal'_pow_of_torsion {x y : F} (h : W.Nonsingular x y) {n : ℕ}
     (hP : Point.some x y h ∈ W.torsion n) :
     ∃ f : W.FunctionField, f ≠ 0 ∧

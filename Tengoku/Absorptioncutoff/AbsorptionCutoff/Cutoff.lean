@@ -59,13 +59,21 @@ variable {E : Type*} [MeasurableSpace E]
 noncomputable def tvDist (μ ν : Measure E) : ℝ :=
   ⨆ s : {s : Set E // MeasurableSet s}, |(μ s.1).toReal - (ν s.1).toReal|
 
+/--
+@isnad1 id=le.0h3v.s4.8bf49f56b0bd from=translated src=- shape=f29d4371 vocab=de4cb53c
+-/
 lemma tvDist_nonneg (μ ν : Measure E) : 0 ≤ tvDist μ ν :=
   Real.iSup_nonneg (fun _ => abs_nonneg _)
 
+/--
+@isnad1 id=eq.0h2v.s4.f178bcc1b3dc from=translated src=- shape=b81717d3 vocab=ebd8b2a1
+-/
 lemma tvDist_self (μ : Measure E) : tvDist μ μ = 0 := by
   simp only [tvDist, sub_self, abs_zero, ciSup_const]
 
-/-- Total-variation distance is symmetric (`|a − b| = |b − a|`). -/
+/-- Total-variation distance is symmetric (`|a − b| = |b − a|`).
+@isnad1 id=eq.0h3v.s4.9c958c260016 from=translated src=- shape=04554202 vocab=ebd8b2a1
+-/
 lemma tvDist_comm (μ ν : Measure E) : tvDist μ ν = tvDist ν μ :=
   iSup_congr (fun _ => abs_sub_comm _ _)
 
@@ -81,14 +89,18 @@ private lemma tvDist_term_le_one (μ ν : Measure E) [IsProbabilityMeasure μ]
     by linarith [ENNReal.toReal_nonneg (a := μ s), ENNReal.toReal_nonneg (a := ν s)]⟩
 
 /-- The set of set-discrepancies is bounded above (by `1`) for probability measures,
-so the defining `iSup` of `tvDist` is a genuine supremum (needed for `le_ciSup`). -/
+so the defining `iSup` of `tvDist` is a genuine supremum (needed for `le_ciSup`).
+@isnad1 id=bddabove.0h3v.s6.f95ef846464f from=translated src=- shape=2b16a257 vocab=f98ed271
+-/
 lemma tvDist_bddAbove (μ ν : Measure E) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν] :
     BddAbove (Set.range fun s : {s : Set E // MeasurableSet s} =>
       |(μ s.1).toReal - (ν s.1).toReal|) :=
   ⟨1, by rintro _ ⟨s, rfl⟩; exact tvDist_term_le_one μ ν s.1⟩
 
 /-- Total-variation distance between probability measures is at most `1`
-(the `sup_B |μ(B) − ν(B)|` convention). -/
+(the `sup_B |μ(B) − ν(B)|` convention).
+@isnad1 id=le.0h3v.s5.0c27cc540c53 from=translated src=- shape=82cdf752 vocab=8f7c70ae
+-/
 lemma tvDist_le_one (μ ν : Measure E) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν] :
     tvDist μ ν ≤ 1 := by
   haveI : Nonempty {s : Set E // MeasurableSet s} := ⟨⟨∅, MeasurableSet.empty⟩⟩
@@ -97,7 +109,9 @@ lemma tvDist_le_one (μ ν : Measure E) [IsProbabilityMeasure μ] [IsProbability
 /-- **Total variation contracts under measurable maps**: pushing two probability
 measures forward by the same measurable function cannot increase their total-variation
 distance. This is the data-processing step used for the lower bound in
-`eq:gaussian-tv-bracket`. -/
+`eq:gaussian-tv-bracket`.
+@isnad1 id=le.1h5v.s6.fda26e5b9773 from=translated src=- shape=e3b6be62 vocab=1cd3e474
+-/
 lemma tvDist_map_le {F : Type*} [MeasurableSpace F]
     (μ ν : Measure E) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (f : E → F) (hf : Measurable f) :
@@ -109,7 +123,9 @@ lemma tvDist_map_le {F : Type*} [MeasurableSpace F]
     ⟨f ⁻¹' s.1, hf s.prop⟩
 
 /-- Every individual measurable-set discrepancy is bounded by total variation. This is
-the pointwise input for the layer-cake proof that Markov kernels contract `tvDist`. -/
+the pointwise input for the layer-cake proof that Markov kernels contract `tvDist`.
+@isnad1 id=le.1h4v.s6.6159e429561b from=translated src=- shape=4b2362c4 vocab=defd7ea3
+-/
 lemma abs_measure_toReal_sub_le_tvDist (μ ν : Measure E)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (s : Set E) (hs : MeasurableSet s) :
@@ -119,7 +135,9 @@ lemma abs_measure_toReal_sub_le_tvDist (μ ν : Measure E)
 
 /-- The one-sided bounded-test form of the total-variation inequality: the difference
 of the expectations of any measurable `[0,1]`-valued function is at most `tvDist`.
-This is the layer-cake step in the proof that Markov kernels contract total variation. -/
+This is the layer-cake step in the proof that Markov kernels contract total variation.
+@isnad1 id=le.3h4v.s6.b44f822413a4 from=translated src=- shape=1d718579 vocab=46537e4f
+-/
 lemma integral_sub_le_tvDist (μ ν : Measure E)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (f : E → ℝ) (hf : Measurable f) (hf_nonneg : ∀ x, 0 ≤ f x)
@@ -167,7 +185,9 @@ lemma integral_sub_le_tvDist (μ ν : Measure E)
       rw [setIntegral_const, Real.volume_real_Ioc]
       norm_num
 
-/-- Absolute-value form of the bounded-test total-variation inequality. -/
+/-- Absolute-value form of the bounded-test total-variation inequality.
+@isnad1 id=le.3h4v.s6.48f0d8f9f2bf from=translated src=- shape=9d689cef vocab=28be0644
+-/
 lemma abs_integral_sub_le_tvDist (μ ν : Measure E)
     [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (f : E → ℝ) (hf : Measurable f) (hf_nonneg : ∀ x, 0 ≤ f x)
@@ -181,7 +201,9 @@ lemma abs_integral_sub_le_tvDist (μ ν : Measure E)
   · exact integral_sub_le_tvDist μ ν f hf hf_nonneg hf_le_one
 
 /-- **Total variation contracts under Markov kernels**: evolving two probability
-measures through the same Markov kernel cannot increase their total-variation distance. -/
+measures through the same Markov kernel cannot increase their total-variation distance.
+@isnad1 id=le.0h5v.s6.1f0c30bf1dca from=translated src=- shape=7734a5a9 vocab=a488b147
+-/
 lemma tvDist_comp_le {F : Type*} [MeasurableSpace F]
     (κ : Kernel E F) [IsMarkovKernel κ]
     (μ ν : Measure E) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν] :
@@ -207,7 +229,9 @@ lemma tvDist_comp_le {F : Type*} [MeasurableSpace F]
 /-- **Core of `eq:tv-absorption`.** For a probability measure, the total-variation
 distance to a point mass `δ_a` equals the survival mass `μ({a}ᶜ)` off that point.
 Applied to `μ = P^t(x,·)` with `a` the absorbing state, this is exactly
-`‖P^t(x,·) − δ_a‖_TV = ℙ(τ > t)`. -/
+`‖P^t(x,·) − δ_a‖_TV = ℙ(τ > t)`.
+@isnad1 id=eq.1h3v.s6.5ca72b48716b from=translated src=- shape=43c5d3b1 vocab=6c135ee6
+-/
 lemma tvDist_dirac (μ : Measure E) [IsProbabilityMeasure μ] {a : E}
     (ha : MeasurableSet ({a} : Set E)) :
     tvDist μ (Measure.dirac a) = (μ {a}ᶜ).toReal := by
@@ -261,7 +285,9 @@ def IsAbsorbing (κ : Kernel E E) (a : E) : Prop := κ a = Measure.dirac a
 
 /-- For an absorbing state, the mass at `a` is nondecreasing in time; equivalently
 the survival mass is nonincreasing, so `d(t)` is nonincreasing
-(paper `rem:intro-profile-mixing`). -/
+(paper `rem:intro-profile-mixing`).
+@isnad1 id=le.2h5v.s7.a8efa1c9ca96 from=translated src=- shape=d28023ad vocab=5a8856c2
+-/
 lemma absorb_mass_mono {κ : Kernel E E} {a : E}
     (ha : MeasurableSet ({a} : Set E)) (habs : IsAbsorbing κ a) (x : E) (t : ℕ) :
     (κ ^ t) x {a} ≤ (κ ^ (t + 1)) x {a} := by
@@ -277,7 +303,9 @@ lemma absorb_mass_mono {κ : Kernel E E} {a : E}
 
 /-- A power of a Markov kernel is a Markov kernel (so `κ^t(x,·)` is a probability
 measure). Not automatic in Mathlib: `*` on kernels does not trigger the `comp`
-instance, so we recurse through `∘ₖ`. -/
+instance, so we recurse through `∘ₖ`.
+@isnad1 id=ismarkov.0h3v.s5.14c44d355137 from=translated src=- shape=7b080c25 vocab=b42687c7
+-/
 instance instMarkovPow {κ : Kernel E E} [IsMarkovKernel κ] (n : ℕ) :
     IsMarkovKernel (κ ^ n) := by
   induction n with
@@ -286,14 +314,18 @@ instance instMarkovPow {κ : Kernel E E} [IsMarkovKernel κ] (n : ℕ) :
 
 /-- **`eq:tv-absorption`, kernel form.** The TV distance from `κ^t(x,·)` to the
 point mass at an absorbing state equals the survival mass `κ^t(x, {a}ᶜ)`; for the
-rounded chain with absorbing origin this is `‖P^t(x,·) − δ₀‖_TV = ℙ(τ > t)`. -/
+rounded chain with absorbing origin this is `‖P^t(x,·) − δ₀‖_TV = ℙ(τ > t)`.
+@isnad1 id=eq.1h5v.s7.8b1cd507f9ef from=translated src=- shape=18a7c3d7 vocab=e11eeba6
+-/
 lemma tvDist_pow_dirac {κ : Kernel E E} [IsMarkovKernel κ] {a : E}
     (ha : MeasurableSet ({a} : Set E)) (x : E) (t : ℕ) :
     tvDist ((κ ^ t) x) (Measure.dirac a) = (((κ ^ t) x) {a}ᶜ).toReal :=
   tvDist_dirac _ ha
 
 /-- The distance to an absorbing point mass is nonincreasing in time
-(paper `rem:intro-profile-mixing`: `d_r` is nonincreasing). -/
+(paper `rem:intro-profile-mixing`: `d_r` is nonincreasing).
+@isnad1 id=antitone.2h4v.s5.721589e8e2e7 from=translated src=- shape=f683ef8f vocab=1ed59353
+-/
 lemma dSeq_dirac_antitone {κ : Kernel E E} [IsMarkovKernel κ] {a : E}
     (ha : MeasurableSet ({a} : Set E)) (habs : IsAbsorbing κ a) (x : E) :
     Antitone (dSeq κ x (Measure.dirac a)) := by
@@ -327,43 +359,70 @@ definition: an admissible center/window together with the two cutoff limits. -/
 def HasCutoff (d : ℕ → ℕ → ℝ) (tCut w : ℕ → ℝ) : Prop :=
   IsCutoffWindow tCut w ∧ HasCutoffLimits d tCut w
 
+/--
+@isnad1 id=iff.0h3v.s4.5989801a6ce8 from=translated src=- shape=37dd713f vocab=06507f54
+-/
 lemma hasCutoff_iff (d : ℕ → ℕ → ℝ) (tCut w : ℕ → ℝ) :
     HasCutoff d tCut w ↔ IsCutoffWindow tCut w ∧ HasCutoffLimits d tCut w :=
   Iff.rfl
 
 namespace HasCutoff
 
+/--
+@isnad1 id=hascutof.2h3v.s4.0123d5823b7c from=translated src=- shape=fa00b712 vocab=06507f54
+-/
 lemma of {d : ℕ → ℕ → ℝ} {tCut w : ℕ → ℝ}
     (hwindow : IsCutoffWindow tCut w) (hlimits : HasCutoffLimits d tCut w) :
     HasCutoff d tCut w :=
   ⟨hwindow, hlimits⟩
 
+/--
+@isnad1 id=iscutoff.1h3v.s4.1f21fa8ac350 from=translated src=- shape=e20de98b vocab=8818adef
+-/
 lemma isCutoffWindow {d : ℕ → ℕ → ℝ} {tCut w : ℕ → ℝ}
     (h : HasCutoff d tCut w) : IsCutoffWindow tCut w :=
   h.1
 
+/--
+@isnad1 id=hascutof.1h3v.s4.e6e68632ca56 from=translated src=- shape=5abcc188 vocab=01d67593
+-/
 lemma limits {d : ℕ → ℕ → ℝ} {tCut w : ℕ → ℝ}
     (h : HasCutoff d tCut w) : HasCutoffLimits d tCut w :=
   h.2
 
+/--
+@isnad1 id=tendsto.1h3v.s4.22834c2abd16 from=translated src=- shape=5e860ad6 vocab=df0e9d6e
+-/
 lemma tendsto_center {d : ℕ → ℕ → ℝ} {tCut w : ℕ → ℝ}
     (h : HasCutoff d tCut w) : Tendsto tCut atTop atTop :=
   h.1.1
 
+/--
+@isnad1 id=eventual.1h3v.s5.4e6d6eb86027 from=translated src=- shape=02f2a419 vocab=d3316f93
+-/
 lemma eventually_window_pos {d : ℕ → ℕ → ℝ} {tCut w : ℕ → ℝ}
     (h : HasCutoff d tCut w) : ∀ᶠ n in atTop, 0 < w n :=
   h.1.2.1
 
+/--
+@isnad1 id=islittle.1h3v.s4.becba72e3b04 from=translated src=- shape=416c1342 vocab=49fb3fe5
+-/
 lemma window_isLittleO {d : ℕ → ℕ → ℝ} {tCut w : ℕ → ℝ}
     (h : HasCutoff d tCut w) : Asymptotics.IsLittleO atTop w tCut :=
   h.1.2.2
 
+/--
+@isnad1 id=tendsto.1h3v.s6.8b924107d857 from=translated src=- shape=1462e65f vocab=be0e747a
+-/
 lemma early_limit {d : ℕ → ℕ → ℝ} {tCut w : ℕ → ℝ}
     (h : HasCutoff d tCut w) :
     Tendsto (fun c : ℝ => liminf (fun n => d n ⌊tCut n - c * w n⌋₊) atTop)
       atTop (𝓝 1) :=
   h.2.1
 
+/--
+@isnad1 id=tendsto.1h3v.s6.f0f68d6d6c51 from=translated src=- shape=1462e65f vocab=318ddd13
+-/
 lemma late_limit {d : ℕ → ℕ → ℝ} {tCut w : ℕ → ℝ}
     (h : HasCutoff d tCut w) :
     Tendsto (fun c : ℝ => limsup (fun n => d n ⌊tCut n + c * w n⌋₊) atTop)

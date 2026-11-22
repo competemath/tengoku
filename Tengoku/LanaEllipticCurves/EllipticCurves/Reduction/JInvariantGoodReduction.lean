@@ -53,7 +53,9 @@ variable [IsDomain R] [IsDiscreteValuationRing R] [IsFractionRing R K]
 variable (R) in
 /-- A Weierstrass curve with good reduction over a discrete valuation ring `R` is elliptic: its
 discriminant `Δ` is a unit in the fraction field `K`, because the discriminant of its integral
-minimal model is a unit in `R`. -/
+minimal model is a unit in `R`.
+@isnad1 id=isellipt.0h3v.s6.dc3ab53db1d7 from=translated src=- shape=e47e2870 vocab=8f2e14e3
+-/
 theorem isElliptic_of_hasGoodReduction (W : WeierstrassCurve K) [HasGoodReduction R W] :
     W.IsElliptic := by
   refine ⟨?_⟩
@@ -63,7 +65,9 @@ theorem isElliptic_of_hasGoodReduction (W : WeierstrassCurve K) [HasGoodReductio
 variable (R) in
 /-- **The `j`-invariant of a curve with good reduction is integral** (`v(j) ≥ 0`): there is `r : R`
 with `algebraMap R K r = W.j`. Since `j = Δ'⁻¹ · c₄³` and both the discriminant (a unit `u : Rˣ`)
-and `c₄` of the integral minimal model lie in `R`, the witness is `↑u⁻¹ · c₄³ ∈ R`. -/
+and `c₄` of the integral minimal model lie in `R`, the witness is `↑u⁻¹ · c₄³ ∈ R`.
+@isnad1 id=ex.0h3v.s7.da10f4745abd from=translated src=- shape=469a7f72 vocab=0076f751
+-/
 theorem isIntegral_j_of_hasGoodReduction (W : WeierstrassCurve K)
     [HasGoodReduction R W] [W.IsElliptic] :
     ∃ r : R, algebraMap R K r = W.j := by

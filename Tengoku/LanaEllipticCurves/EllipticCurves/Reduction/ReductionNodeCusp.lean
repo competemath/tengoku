@@ -62,7 +62,9 @@ variable [IsDomain R] [IsDiscreteValuationRing R] [IsFractionRing R K]
 variable (R) in
 /-- **The discriminant of the reduced curve vanishes iff the discriminant has positive valuation.**
 `(W.reduction R).Δ = 0` (the reduced curve is singular) exactly when `v(Δ) < 1`, i.e. `W` does not
-have good reduction. -/
+have good reduction.
+@isnad1 id=iff.0h3v.s7.1258ca18291e from=translated src=- shape=4d2fc06e vocab=ea1c9480
+-/
 theorem reduction_Δ_eq_zero_iff (W : WeierstrassCurve K) [IsMinimal R W] :
     (W.reduction R).Δ = 0 ↔ valuation K (maximalIdeal R) W.Δ < 1 := by
   rw [reduction_Δ_eq R W, residue_eq_zero_iff, ← integralModel_Δ_eq R W]
@@ -70,14 +72,18 @@ theorem reduction_Δ_eq_zero_iff (W : WeierstrassCurve K) [IsMinimal R W] :
 
 variable (R) in
 /-- **The `c₄`-invariant of the reduced curve vanishes iff `c₄` has positive valuation.**
-`(W.reduction R).c₄ = 0` exactly when `v(c₄) < 1`. -/
+`(W.reduction R).c₄ = 0` exactly when `v(c₄) < 1`.
+@isnad1 id=iff.0h3v.s7.ea07a62eac36 from=translated src=- shape=4d2fc06e vocab=017db05c
+-/
 theorem reduction_c₄_eq_zero_iff (W : WeierstrassCurve K) [IsMinimal R W] :
     (W.reduction R).c₄ = 0 ↔ valuation K (maximalIdeal R) W.c₄ < 1 := by
   rw [reduction_c₄_eq R W, residue_eq_zero_iff, ← integralModel_c₄_eq R W]
   exact (valuation_lt_one_iff_mem (K := K) (maximalIdeal R) (integralModel R W).c₄).symm
 
 variable (R) in
-/-- Under a minimal model, `v(c₄) ≤ 1`: `c₄` is integral, so its valuation is at most `1`. -/
+/-- Under a minimal model, `v(c₄) ≤ 1`: `c₄` is integral, so its valuation is at most `1`.
+@isnad1 id=le.0h3v.s7.033666056bf5 from=translated src=- shape=c8be7ae1 vocab=04186feb
+-/
 theorem valuation_c₄_le_one (W : WeierstrassCurve K) [IsMinimal R W] :
     valuation K (maximalIdeal R) W.c₄ ≤ 1 := by
   rw [← integralModel_c₄_eq R W]; exact valuation_le_one (maximalIdeal R) _
@@ -85,7 +91,9 @@ theorem valuation_c₄_le_one (W : WeierstrassCurve K) [IsMinimal R W] :
 variable (R) in
 /-- **Good reduction is detected by the reduced discriminant.** `W` has good reduction iff the
 discriminant of the reduced curve is nonzero (equivalently, the reduced curve is elliptic).  This is
-`hasGoodReduction_iff_isElliptic_reduction` phrased through `Δ̃ ≠ 0`. -/
+`hasGoodReduction_iff_isElliptic_reduction` phrased through `Δ̃ ≠ 0`.
+@isnad1 id=iff.0h3v.s7.97a770a6a9e4 from=translated src=- shape=ffba2d8c vocab=76d62fc2
+-/
 theorem hasGoodReduction_iff_reduction_Δ_ne_zero (W : WeierstrassCurve K) [IsMinimal R W] :
     W.HasGoodReduction R ↔ (W.reduction R).Δ ≠ 0 := by
   rw [hasGoodReduction_iff_isElliptic_reduction, isElliptic_iff, isUnit_iff_ne_zero]
@@ -93,7 +101,9 @@ theorem hasGoodReduction_iff_reduction_Δ_ne_zero (W : WeierstrassCurve K) [IsMi
 variable (R) in
 /-- **Multiplicative reduction is a node.** For a minimal model, `W` has multiplicative reduction
 iff the reduced curve is singular (`Δ̃ = 0`) with a nonvanishing `c₄`-invariant (`c̃₄ ≠ 0`) — the
-invariant-theoretic signature of a node. -/
+invariant-theoretic signature of a node.
+@isnad1 id=iff.0h3v.s7.075c83e00e25 from=translated src=- shape=af88495b vocab=4687103b
+-/
 theorem hasMultiplicativeReduction_iff_reduction (W : WeierstrassCurve K) [IsMinimal R W] :
     W.HasMultiplicativeReduction R ↔ (W.reduction R).Δ = 0 ∧ (W.reduction R).c₄ ≠ 0 := by
   constructor
@@ -109,7 +119,9 @@ theorem hasMultiplicativeReduction_iff_reduction (W : WeierstrassCurve K) [IsMin
 variable (R) in
 /-- **Additive reduction is a cusp.** For a minimal model, `W` has additive reduction iff the
 reduced curve is singular (`Δ̃ = 0`) with a vanishing `c₄`-invariant (`c̃₄ = 0`) — the
-invariant-theoretic signature of a cusp. -/
+invariant-theoretic signature of a cusp.
+@isnad1 id=iff.0h3v.s7.8a82aeaf7eb7 from=translated src=- shape=db50987b vocab=66a561c4
+-/
 theorem hasAdditiveReduction_iff_reduction (W : WeierstrassCurve K) [IsMinimal R W] :
     W.HasAdditiveReduction R ↔ (W.reduction R).Δ = 0 ∧ (W.reduction R).c₄ = 0 := by
   constructor

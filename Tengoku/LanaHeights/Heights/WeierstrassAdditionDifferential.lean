@@ -52,7 +52,9 @@ that `(a,b/2)` lies on `y² = x³ - g₂x/4 - g₃/4`.
 
 The explicit `HasDerivAt` parameters select the canonical complex normed-space
 module, avoiding the two definitionally different `Module ℂ ℂ` instance paths
-available in mathlib. -/
+available in mathlib.
+@isnad1 id=hasderiv.3h4v.s7.440c0e04548b from=translated src=- shape=f53467f0 vocab=218797a1
+-/
 theorem hasDerivAt_weierstrassSecantSlope (L : PeriodPair) (a b z : ℂ)
     (hz : z ∉ L.lattice) (hpa : L.weierstrassP z ≠ a)
     (hab : b ^ 2 = 4 * a ^ 3 - L.g₂ * a - L.g₃) :
@@ -95,7 +97,9 @@ theorem hasDerivAt_weierstrassSecantSlope (L : PeriodPair) (a b z : ℂ)
   exact hm
 
 /-- The secant candidate satisfies `X′ = 2Y` away from its poles and vertical
-secants. -/
+secants.
+@isnad1 id=hasderiv.3h4v.s7.82423d802745 from=translated src=- shape=0670b293 vocab=ebf0f28b
+-/
 theorem hasDerivAt_weierstrassSecantAddX (L : PeriodPair) (a b z : ℂ)
     (hz : z ∉ L.lattice) (hpa : L.weierstrassP z ≠ a)
     (hab : b ^ 2 = 4 * a ^ 3 - L.g₂ * a - L.g₃) :
@@ -121,7 +125,9 @@ theorem hasDerivAt_weierstrassSecantAddX (L : PeriodPair) (a b z : ℂ)
 
 /-- The secant candidate satisfies `Y′ = 3X² - g₂/4` away from its poles and
 vertical secants.  Consequently `(X,2Y)` obeys the same polynomial first-order
-system as `(℘,℘′)`. -/
+system as `(℘,℘′)`.
+@isnad1 id=hasderiv.3h4v.s8.4a79053dafee from=translated src=- shape=ab8db46b vocab=299da1cc
+-/
 theorem hasDerivAt_weierstrassSecantAddY (L : PeriodPair) (a b z : ℂ)
     (hz : z ∉ L.lattice) (hpa : L.weierstrassP z ≠ a)
     (hab : b ^ 2 = 4 * a ^ 3 - L.g₂ * a - L.g₃) :
@@ -159,7 +165,9 @@ theorem hasDerivAt_weierstrassSecantAddY (L : PeriodPair) (a b z : ℂ)
       (32 * (L.weierstrassP z - a) ^ 3) * hab
 
 /-- The previously proved removable limit for the secant `x`-candidate,
-rephrased using the named definition in this file. -/
+rephrased using the named definition in this file.
+@isnad1 id=tendsto.0h3v.s6.b3a1b83e024f from=translated src=- shape=e61d144d vocab=f413ef1d
+-/
 theorem tendsto_weierstrassSecantAddX_zero (L : PeriodPair) (a b : ℂ) :
     Tendsto (weierstrassSecantAddX L a b) (𝓝[≠] 0) (𝓝 a) := by
   change Tendsto (fun z : ℂ ↦
@@ -169,7 +177,9 @@ theorem tendsto_weierstrassSecantAddX_zero (L : PeriodPair) (a b : ℂ) :
   exact tendsto_weierstrass_secant_addX_zero L a b
 
 /-- The previously proved removable limit for the secant `y`-candidate,
-rephrased using the named definition in this file. -/
+rephrased using the named definition in this file.
+@isnad1 id=tendsto.0h3v.s6.65969f663ca5 from=translated src=- shape=ba000e27 vocab=fc7d75ed
+-/
 theorem tendsto_weierstrassSecantAddY_zero (L : PeriodPair) (a b : ℂ) :
     Tendsto (weierstrassSecantAddY L a b) (𝓝[≠] 0) (𝓝 (b / 2)) := by
   change Tendsto (fun z : ℂ ↦
@@ -180,6 +190,9 @@ theorem tendsto_weierstrassSecantAddY_zero (L : PeriodPair) (a b : ℂ) :
     (𝓝[≠] 0) (𝓝 (b / 2))
   exact tendsto_weierstrass_secant_addY_zero L a b
 
+/--
+@isnad1 id=eventual.0h2v.s6.58be4f03e4e1 from=translated src=- shape=fb7c4b74 vocab=be894c76
+-/
 theorem eventually_weierstrassSecant_domain (L : PeriodPair) (a : ℂ) :
     ∀ᶠ z : ℂ in 𝓝[≠] 0, z ∉ L.lattice ∧ L.weierstrassP z ≠ a := by
   have hz : Tendsto (fun z : ℂ ↦ z) (𝓝[≠] 0) (𝓝 0) :=
@@ -216,18 +229,26 @@ noncomputable def weierstrassSecantAddYAtZero
     (L : PeriodPair) (a b : ℂ) : ℂ → ℂ :=
   Function.update (weierstrassSecantAddY L a b) 0 (b / 2)
 
+/--
+@isnad1 id=eq.0h3v.s4.ab0c5a46d0b1 from=translated src=- shape=5ab7b874 vocab=88cee753
+-/
 @[simp] theorem weierstrassSecantAddXAtZero_zero
     (L : PeriodPair) (a b : ℂ) :
     weierstrassSecantAddXAtZero L a b 0 = a := by
   simp [weierstrassSecantAddXAtZero]
 
+/--
+@isnad1 id=eq.0h3v.s5.b8021c4034d7 from=translated src=- shape=b659a661 vocab=251e9d6f
+-/
 @[simp] theorem weierstrassSecantAddYAtZero_zero
     (L : PeriodPair) (a b : ℂ) :
     weierstrassSecantAddYAtZero L a b 0 = b / 2 := by
   simp [weierstrassSecantAddYAtZero]
 
 /-- Installing the limiting value `a` makes the secant `x`-candidate analytic
-at zero.  This is only a local removable-singularity statement. -/
+at zero.  This is only a local removable-singularity statement.
+@isnad1 id=analytic.1h3v.s7.7cd8db6f8bd0 from=translated src=- shape=ecbc7719 vocab=b561f6f8
+-/
 theorem analyticAt_weierstrassSecantAddXAtZero (L : PeriodPair) (a b : ℂ)
     (hab : b ^ 2 = 4 * a ^ 3 - L.g₂ * a - L.g₃) :
     AnalyticAt ℂ (weierstrassSecantAddXAtZero L a b) 0 := by
@@ -243,7 +264,9 @@ theorem analyticAt_weierstrassSecantAddXAtZero (L : PeriodPair) (a b : ℂ)
     exact tendsto_weierstrassSecantAddX_zero L a b
 
 /-- Installing the limiting value `b/2` makes the secant `y`-candidate
-analytic at zero.  This is only a local removable-singularity statement. -/
+analytic at zero.  This is only a local removable-singularity statement.
+@isnad1 id=analytic.1h3v.s7.673bcbcbd1eb from=translated src=- shape=ecbc7719 vocab=7267b861
+-/
 theorem analyticAt_weierstrassSecantAddYAtZero (L : PeriodPair) (a b : ℂ)
     (hab : b ^ 2 = 4 * a ^ 3 - L.g₂ * a - L.g₃) :
     AnalyticAt ℂ (weierstrassSecantAddYAtZero L a b) 0 := by

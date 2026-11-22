@@ -24,7 +24,9 @@ namespace AbsorptionCutoff
 positive random variable controls its negative real moment.
 
 The almost-everywhere positivity assumption is essential: Mathlib defines
-`0 ^ (-p) = 0` for `Real.rpow`, whereas the Mellin integral at zero diverges. -/
+`0 ^ (-p) = 0` for `Real.rpow`, whereas the Mellin integral at zero diverges.
+@isnad1 id=and.5h5v.s8.a919e63d7bc3 from=translated src=- shape=fb107479 vocab=97b3d1d6
+-/
 theorem integrable_neg_rpow_and_integral_le_of_laplace_le
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsFiniteMeasure μ]
     {X : Ω → ℝ} (hX : Measurable X) (hXpos : ∀ᵐ ω ∂μ, 0 < X ω)
@@ -168,7 +170,9 @@ theorem integrable_neg_rpow_and_integral_le_of_laplace_le
 /-- A unit interval below the peak scale gives an elementary lower bound for
 the Gamma function.  This bound is sufficient to turn the truncated-Gaussian
 moment estimate into an exponential-in-dimension estimate without invoking
-Stirling's formula. -/
+Stirling's formula.
+@isnad1 id=le.1h1v.s6.fe86a6e34fa0 from=translated src=- shape=f90eb084 vocab=3dfa8ef2
+-/
 lemma exp_neg_add_one_mul_self_rpow_le_Gamma_add_one
     {p : ℝ} (hp : 0 < p) :
     Real.exp (-(p + 1)) * p ^ p ≤ Real.Gamma (p + 1) := by
@@ -210,7 +214,9 @@ lemma exp_neg_add_one_mul_self_rpow_le_Gamma_add_one
         (Real.Gamma_eq_integral (s := p + 1) (by linarith)).symm
 
 /-- The elementary Gamma lower bound controls the Gamma-normalized power by
-an explicit exponential factor. -/
+an explicit exponential factor.
+@isnad1 id=le.2h2v.s6.201751c9c7db from=translated src=- shape=e410448d vocab=e9f713de
+-/
 lemma rpow_div_Gamma_add_one_le_exp_mul_div_rpow
     {n p : ℝ} (hn : 0 ≤ n) (hp : 0 < p) :
     n ^ p / Real.Gamma (p + 1) ≤

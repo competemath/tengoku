@@ -33,17 +33,23 @@ abbrev latticeQuotientMk (τ : ℍ) : ℂ → LatticeQuotient τ :=
   QuotientAddGroup.mk'
     (periodPairOfUpperHalfPlane τ).lattice.toAddSubgroup
 
-/-- The canonical projection to the lattice quotient is continuous. -/
+/-- The canonical projection to the lattice quotient is continuous.
+@isnad1 id=continuo.0h1v.s5.00498ded7b6c from=translated src=- shape=b70c6bb1 vocab=f8f1943b
+-/
 @[fun_prop] theorem continuous_latticeQuotientMk (τ : ℍ) :
     Continuous (latticeQuotientMk τ) :=
   QuotientAddGroup.continuous_mk
 
-/-- The canonical projection to the lattice quotient is an open map. -/
+/-- The canonical projection to the lattice quotient is an open map.
+@isnad1 id=isopenma.0h1v.s5.487ba129b3cc from=translated src=- shape=b70c6bb1 vocab=ca55a739
+-/
 theorem isOpenMap_latticeQuotientMk (τ : ℍ) :
     IsOpenMap (latticeQuotientMk τ) :=
   QuotientAddGroup.isOpenMap_coe
 
-/-- The canonical projection equips `ℂ / L` with the quotient topology. -/
+/-- The canonical projection equips `ℂ / L` with the quotient topology.
+@isnad1 id=isquotie.0h1v.s5.c1cdb718a283 from=translated src=- shape=b70c6bb1 vocab=5511cc76
+-/
 theorem isQuotientMap_latticeQuotientMk (τ : ℍ) :
     Topology.IsQuotientMap (latticeQuotientMk τ) :=
   QuotientAddGroup.isQuotientMap_mk _
@@ -51,7 +57,9 @@ theorem isQuotientMap_latticeQuotientMk (τ : ℍ) :
 /-- The canonical projection is the quotient covering map for translation by
 its discrete period lattice. This is the topological input used by
 `Heights.LatticeQuotientManifold`; no manifold structure is asserted in this
-file itself. -/
+file itself.
+@isnad1 id=isaddquo.0h1v.s6.cd79bcd1414d from=translated src=- shape=7f2e5da0 vocab=441c03f3
+-/
 theorem isAddQuotientCoveringMap_latticeQuotientMk (τ : ℍ) :
     IsAddQuotientCoveringMap (latticeQuotientMk τ)
       (periodPairOfUpperHalfPlane τ).lattice.toAddSubgroup := by
@@ -61,13 +69,17 @@ theorem isAddQuotientCoveringMap_latticeQuotientMk (τ : ℍ) :
   infer_instance
 
 /-- The canonical projection from `ℂ` to its period-lattice quotient is a
-covering map. -/
+covering map.
+@isnad1 id=iscoveri.0h1v.s5.6d99cbc74602 from=translated src=- shape=b70c6bb1 vocab=2d8b8884
+-/
 theorem isCoveringMap_latticeQuotientMk (τ : ℍ) :
     IsCoveringMap (latticeQuotientMk τ) :=
   (isAddQuotientCoveringMap_latticeQuotientMk τ).isCoveringMap
 
 /-- Neighborhoods of a quotient class are the images of neighborhoods of any
-chosen representative under the canonical projection. -/
+chosen representative under the canonical projection.
+@isnad1 id=eq.0h2v.s6.17bc57bf6bba from=translated src=- shape=f526c77d vocab=892350cf
+-/
 theorem latticeQuotient_nhds_mk (τ : ℍ) (z : ℂ) :
     𝓝 (latticeQuotientMk τ z) = Filter.map (latticeQuotientMk τ) (𝓝 z) :=
   QuotientAddGroup.nhds_eq

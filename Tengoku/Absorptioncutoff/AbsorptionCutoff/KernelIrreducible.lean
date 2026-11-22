@@ -27,7 +27,9 @@ namespace AbsorptionCutoff
 variable {α : Type*} [MeasurableSpace α]
 
 /-- A measure invariant under a kernel is invariant under every iterate of
-that kernel. -/
+that kernel.
+@isnad1 id=invarian.1h4v.s5.430a29335e34 from=translated src=- shape=dc43a044 vocab=bd774a4d
+-/
 lemma invariant_pow {κ : Kernel α α} {μ : Measure α}
     (hμ : κ.Invariant μ) (n : ℕ) :
     (κ ^ n).Invariant μ := by
@@ -40,7 +42,9 @@ lemma invariant_pow {κ : Kernel α α} {μ : Measure α}
       exact ih.comp hμ
 
 /-- The irreducibility measure is absolutely continuous with respect to every
-nonzero finite invariant measure. -/
+nonzero finite invariant measure.
+@isnad1 id=absolute.2h4v.s5.85f81d61080f from=translated src=- shape=9cc14a65 vocab=85cc8be7
+-/
 lemma irreducibleMeasure_absolutelyContinuous_invariant
     {φ μ : Measure α} {κ : Kernel α α} [Kernel.IsIrreducible φ κ]
     [IsFiniteMeasure μ] (hμ_ne : μ ≠ 0) (hμ : κ.Invariant μ) :
@@ -76,7 +80,9 @@ lemma irreducibleMeasure_absolutelyContinuous_invariant
   exact hμt_pos.ne' hμt
 
 /-- A Markov kernel irreducible with respect to a nonzero measure has at most
-one invariant probability measure. -/
+one invariant probability measure.
+@isnad1 id=eq.3h5v.s6.4c8b6e34b423 from=translated src=- shape=3a764159 vocab=1600277c
+-/
 theorem invariant_probability_unique
     {φ μ ν : Measure α} {κ : Kernel α α}
     [IsMarkovKernel κ] [Kernel.IsIrreducible φ κ]

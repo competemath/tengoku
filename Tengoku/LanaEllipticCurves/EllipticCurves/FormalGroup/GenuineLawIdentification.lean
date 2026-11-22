@@ -96,7 +96,9 @@ private lemma cc_formalGroupDen : MvPowerSeries.constantCoeff W.formalGroupDen =
 
 /-! ### The pushforward dictionary: `φ` applied to the `(z, w)` addition data -/
 
-/-- `φ(ν) = w₁ - λ_L · z₁`. -/
+/-- `φ(ν) = w₁ - λ_L · z₁`.
+@isnad1 id=eq.0h2v.s8.4fcb66103112 from=translated src=- shape=14d135d4 vocab=d52b7f88
+-/
 theorem embedDoubleLaurent_formalGroupNu :
     HahnSeries.embedDoubleLaurent W.formalGroupNu
       = W.biW₁ - HahnSeries.embedDoubleLaurent W.formalWDividedDiff * W.biZ₁ := by
@@ -104,7 +106,9 @@ theorem embedDoubleLaurent_formalGroupNu :
   simp only [HahnSeries.embedDoubleLaurentRingHom_apply, W.embedDoubleLaurent_biZ₁,
     W.embedDoubleLaurent_biW₁]
 
-/-- The slope bridge: `(z₂ - z₁)·λ_L = w₂ - w₁` (the `φ`-image of `formalWDividedDiff_spec`). -/
+/-- The slope bridge: `(z₂ - z₁)·λ_L = w₂ - w₁` (the `φ`-image of `formalWDividedDiff_spec`).
+@isnad1 id=eq.0h2v.s9.f2f5befe9d0a from=translated src=- shape=8e4745c8 vocab=3d7fe4a2
+-/
 theorem embedDoubleLaurent_formalWDividedDiff_spec :
     (W.biZ₂ - W.biZ₁) * HahnSeries.embedDoubleLaurent W.formalWDividedDiff = W.biW₂ - W.biW₁ := by
   have h := congrArg (HahnSeries.embedDoubleLaurentRingHom) W.formalWDividedDiff_spec
@@ -113,7 +117,9 @@ theorem embedDoubleLaurent_formalWDividedDiff_spec :
     W.embedDoubleLaurent_biW₂] at h
   exact h
 
-/-- `φ(A) = 1 + a₂ λ_L + a₄ λ_L² + a₆ λ_L³`. -/
+/-- `φ(A) = 1 + a₂ λ_L + a₄ λ_L² + a₆ λ_L³`.
+@isnad1 id=eq.0h2v.s12.29779462b751 from=translated src=- shape=40e9bf3c vocab=7d89af69
+-/
 theorem embedDoubleLaurent_formalGroupLead :
     HahnSeries.embedDoubleLaurent W.formalGroupLead
       = 1 + HahnSeries.C (HahnSeries.C W.a₂) * HahnSeries.embedDoubleLaurent W.formalWDividedDiff
@@ -125,7 +131,9 @@ theorem embedDoubleLaurent_formalGroupLead :
   simp only [map_add, map_mul, map_pow, map_one, HahnSeries.embedDoubleLaurentRingHom_apply,
     HahnSeries.embedDoubleLaurent_C]
 
-/-- `φ(B) = a₁ λ_L + a₂ ν_L + a₃ λ_L² + 2 a₄ λ_L ν_L + 3 a₆ λ_L² ν_L`. -/
+/-- `φ(B) = a₁ λ_L + a₂ ν_L + a₃ λ_L² + 2 a₄ λ_L ν_L + 3 a₆ λ_L² ν_L`.
+@isnad1 id=eq.0h2v.s13.b170ae8dd9c8 from=translated src=- shape=0a56fe47 vocab=0ae23f33
+-/
 theorem embedDoubleLaurent_formalGroupSub :
     HahnSeries.embedDoubleLaurent W.formalGroupSub
       = HahnSeries.C (HahnSeries.C W.a₁) * HahnSeries.embedDoubleLaurent W.formalWDividedDiff
@@ -144,7 +152,9 @@ theorem embedDoubleLaurent_formalGroupSub :
 
 /-! ### Pushing `φ` through the inverses `invOfUnit A 1`, `invOfUnit D 1` -/
 
-/-- `φ(invOfUnit A 1) = Ring.inverse (φ A)` (`A = formalGroupLead`, constant coefficient `1`). -/
+/-- `φ(invOfUnit A 1) = Ring.inverse (φ A)` (`A = formalGroupLead`, constant coefficient `1`).
+@isnad1 id=eq.0h2v.s7.b067d0d08b59 from=translated src=- shape=b1b7bb7f vocab=fdf7b2b4
+-/
 theorem embedDoubleLaurent_invOfUnit_formalGroupLead :
     HahnSeries.embedDoubleLaurent (invOfUnit W.formalGroupLead 1)
       = Ring.inverse (HahnSeries.embedDoubleLaurent W.formalGroupLead) := by
@@ -165,7 +175,9 @@ theorem embedDoubleLaurent_invOfUnit_formalGroupLead :
             * HahnSeries.embedDoubleLaurent (invOfUnit W.formalGroupLead 1)) := by rw [mul_assoc]
     _ = Ring.inverse (HahnSeries.embedDoubleLaurent W.formalGroupLead) := by rw [hone, mul_one]
 
-/-- `φ(invOfUnit D 1) = Ring.inverse (φ D)` (`D = formalGroupDen`, constant coefficient `1`). -/
+/-- `φ(invOfUnit D 1) = Ring.inverse (φ D)` (`D = formalGroupDen`, constant coefficient `1`).
+@isnad1 id=eq.0h2v.s7.dd2d3b99183d from=translated src=- shape=b1b7bb7f vocab=dfff7113
+-/
 theorem embedDoubleLaurent_invOfUnit_formalGroupDen :
     HahnSeries.embedDoubleLaurent (invOfUnit W.formalGroupDen 1)
       = Ring.inverse (HahnSeries.embedDoubleLaurent W.formalGroupDen) := by
@@ -186,7 +198,9 @@ theorem embedDoubleLaurent_invOfUnit_formalGroupDen :
             * HahnSeries.embedDoubleLaurent (invOfUnit W.formalGroupDen 1)) := by rw [mul_assoc]
     _ = Ring.inverse (HahnSeries.embedDoubleLaurent W.formalGroupDen) := by rw [hone, mul_one]
 
-/-- `φ(D)` is a unit of `(R⸨X⸩)⸨X⸩`. -/
+/-- `φ(D)` is a unit of `(R⸨X⸩)⸨X⸩`.
+@isnad1 id=isunit.0h2v.s6.e1a0dd1b79b3 from=translated src=- shape=b90ac62e vocab=3b1a0e38
+-/
 theorem isUnit_embedDoubleLaurent_formalGroupDen :
     IsUnit (HahnSeries.embedDoubleLaurent W.formalGroupDen) := by
   have hone : HahnSeries.embedDoubleLaurent W.formalGroupDen
@@ -196,7 +210,9 @@ theorem isUnit_embedDoubleLaurent_formalGroupDen :
         (by rw [W.cc_formalGroupDen, Units.val_one]), map_one]
   exact IsUnit.of_mul_eq_one _ hone
 
-/-- `φ(z₃') = -(φ(B) · Ring.inverse (φ A)) - z₁ - z₂`. -/
+/-- `φ(z₃') = -(φ(B) · Ring.inverse (φ A)) - z₁ - z₂`.
+@isnad1 id=eq.0h2v.s9.c9c3e3d82ac7 from=translated src=- shape=f7f95874 vocab=7d7d0aa6
+-/
 theorem embedDoubleLaurent_formalThirdRoot :
     HahnSeries.embedDoubleLaurent W.formalThirdRoot
       = -(HahnSeries.embedDoubleLaurent W.formalGroupSub
@@ -207,7 +223,9 @@ theorem embedDoubleLaurent_formalThirdRoot :
   simp only [HahnSeries.embedDoubleLaurentRingHom_apply, W.embedDoubleLaurent_biZ₁,
     W.embedDoubleLaurent_biZ₂, W.embedDoubleLaurent_invOfUnit_formalGroupLead]
 
-/-- `φ(D) = 1 - a₁ φ(z₃') - a₃ (λ_L φ(z₃') + ν_L)`. -/
+/-- `φ(D) = 1 - a₁ φ(z₃') - a₃ (λ_L φ(z₃') + ν_L)`.
+@isnad1 id=eq.0h2v.s11.a7e034097bcd from=translated src=- shape=c51e5a78 vocab=839ee25d
+-/
 theorem embedDoubleLaurent_formalGroupDen :
     HahnSeries.embedDoubleLaurent W.formalGroupDen
       = 1 - HahnSeries.C (HahnSeries.C W.a₁) * HahnSeries.embedDoubleLaurent W.formalThirdRoot
@@ -221,7 +239,9 @@ theorem embedDoubleLaurent_formalGroupDen :
 
 /-! ### The reduction of the identification to the single core identity `(★)` -/
 
-/-- `φ(F) = -φ(z₃') · Ring.inverse (φ D)` — the `(z, w)` law written with a genuine inverse. -/
+/-- `φ(F) = -φ(z₃') · Ring.inverse (φ D)` — the `(z, w)` law written with a genuine inverse.
+@isnad1 id=eq.0h2v.s8.50557ba355f9 from=translated src=- shape=b3c1b5fe vocab=b22f5f1c
+-/
 theorem embedDoubleLaurent_formalGroupZW_eq :
     HahnSeries.embedDoubleLaurent W.formalGroupZW
       = -(HahnSeries.embedDoubleLaurent W.formalThirdRoot)
@@ -232,7 +252,9 @@ theorem embedDoubleLaurent_formalGroupZW_eq :
 
 /-- **Reduction to the core identity `(★)`.** Given `φ(z₃') · y₃ = x₃ · φ(D)`, the two formal group
 law constructions agree: `embedDoubleLaurent W.formalGroupZW = W.formalGroupLaurent`. Both `y₃` and
-`φ(D)` are units, so the two "fractions" `-φ(z₃')/φ(D)` and `-x₃/y₃` coincide. -/
+`φ(D)` are units, so the two "fractions" `-φ(z₃')/φ(D)` and `-x₃/y₃` coincide.
+@isnad1 id=eq.1h2v.s8.ca3173f2facf from=translated src=- shape=7de77a2c vocab=3fa42efc
+-/
 theorem embedDoubleLaurent_formalGroupZW_of_core
     (hcore : HahnSeries.embedDoubleLaurent W.formalThirdRoot * W.formalYThree
       = W.formalXThree * HahnSeries.embedDoubleLaurent W.formalGroupDen) :

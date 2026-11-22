@@ -69,7 +69,9 @@ namespace WeierstrassCurve.Affine
 variable {F : Type*} [Field F] {W : Affine F} [IsDedekindDomain W.CoordinateRing]
 
 /-- Two nonzero rational functions with the same order of vanishing at every closed point generate
-the same principal fractional ideal of `F[W]`. -/
+the same principal fractional ideal of `F[W]`.
+@isnad1 id=eq.3h4v.s11.87fbdd2e0446 from=translated src=- shape=3e514107 vocab=623ac2af
+-/
 theorem spanSingleton_eq_of_ord_eq {f g : W.FunctionField} (hf : f ≠ 0) (hg : g ≠ 0)
     (h : ∀ v, ord v f = ord v g) :
     spanSingleton W.CoordinateRing⁰ f = spanSingleton W.CoordinateRing⁰ g := by
@@ -79,7 +81,9 @@ theorem spanSingleton_eq_of_ord_eq {f g : W.FunctionField} (hf : f ≠ 0) (hg : 
 
 /-- **The divisor determines a rational function up to a unit** (order form). If nonzero
 `f, g ∈ F(W)` have the same order of vanishing at every closed point, they differ by a unit of the
-coordinate ring `F[W]`: `u • f = g` for some `u : F[W]ˣ`. -/
+coordinate ring `F[W]`: `u • f = g` for some `u : F[W]ˣ`.
+@isnad1 id=ex.3h4v.s10.ca06a54d9bb4 from=translated src=- shape=84b2ca83 vocab=ab2ca5a6
+-/
 theorem exists_unit_of_ord_eq {f g : W.FunctionField} (hf : f ≠ 0) (hg : g ≠ 0)
     (h : ∀ v, ord v f = ord v g) :
     ∃ u : W.CoordinateRingˣ, (u : W.CoordinateRing) • f = g :=
@@ -87,7 +91,9 @@ theorem exists_unit_of_ord_eq {f g : W.FunctionField} (hf : f ≠ 0) (hg : g ≠
     (spanSingleton_eq_of_ord_eq hf hg h)
 
 /-- **The divisor determines a rational function up to a unit** (divisor form). If nonzero
-`f, g ∈ F(W)` have the same divisor, they differ by a unit of `F[W]`. -/
+`f, g ∈ F(W)` have the same divisor, they differ by a unit of `F[W]`.
+@isnad1 id=ex.3h4v.s10.ce6bb8360e85 from=translated src=- shape=953adc10 vocab=4ba92e6e
+-/
 theorem exists_unit_of_divisor_eq {f g : W.FunctionField} (hf : f ≠ 0) (hg : g ≠ 0)
     (h : divisor W f = divisor W g) :
     ∃ u : W.CoordinateRingˣ, (u : W.CoordinateRing) • f = g := by

@@ -69,7 +69,9 @@ open Classical in
 `-addX / addY = z₁ ⊕ z₂` in `K`, the `hd`-free version of `localParam_add_secant`: the affine
 matching `addX = X₃` is supplied by the unconditional `addX_eq_thirdChordX_of_secant` (#376), so no
 distinctness `X₃ ∉ {x₁, x₂}` is needed.  Only the secant non-degeneracy (`z₁ ≠ z₂`,
-`xParam z₁ ≠ xParam z₂`, `w₃ ≠ 0`) and `den ≠ 0` remain. -/
+`xParam z₁ ≠ xParam z₂`, `w₃ ≠ 0`) and `den ≠ 0` remain.
+@isnad1 id=eq.9h5v.s9.1e2503d3cd03 from=translated src=- shape=9035b053 vocab=9159ba54
+-/
 theorem localParam_add_secant_uncond {z₁ z₂ : R}
     (ha : ∀ s : Fin 2, ![z₁, z₂] s ∈ (maximalIdeal R).asIdeal)
     (hz : z₁ ≠ z₂) (hz₁ : z₁ ∈ (maximalIdeal R).asIdeal) (hz₂ : z₂ ∈ (maximalIdeal R).asIdeal)
@@ -127,7 +129,9 @@ open Classical in
 sum `P + Q` also reduces to the origin, `z(P + Q) = z(P) ⊕ z(Q) = adicEvalMv 𝔪 ![z₁, z₂]
 formalGroupZW`.  This is `localParam_add_of_X_ne` with **all** side conditions discharged: `hw` and
 `hden` are unconditional in the secant case (`thirdChordW_ne_zero`,
-`adicEvalMv_formalGroupDen_ne_zero`) and the distinctness `hd₁, hd₂` is removed by #376. -/
+`adicEvalMv_formalGroupDen_ne_zero`) and the distinctness `hd₁, hd₂` is removed by #376.
+@isnad1 id=eq.7h7v.s9.a4b66caaf392 from=translated src=- shape=b3400316 vocab=1a4b2c87
+-/
 theorem localParam_add_of_X_ne_uncond [W.IsElliptic]
     {x₁ y₁ : K} {h₁ : W.toAffine.Nonsingular x₁ y₁} (hR1 : ReducesToZero R W (.some x₁ y₁ h₁))
     {x₂ y₂ : K} {h₂ : W.toAffine.Nonsingular x₂ y₂} (hR2 : ReducesToZero R W (.some x₂ y₂ h₂))

@@ -50,21 +50,33 @@ noncomputable def inverseMomentTruncation (k : ℕ) :
       rw [Real.norm_eq_abs, abs_of_pos (inv_pos.mpr hden)]
       exact inv_le_one_of_one_le₀ hone)
 
+/--
+@isnad1 id=eq.0h2v.s6.9dd4318e092b from=translated src=- shape=3023249d vocab=5df359ca
+-/
 @[simp]
 lemma inverseMomentTruncation_apply (k : ℕ) (q : ℝ) :
     inverseMomentTruncation k q = (1 + (k + 1 : ℝ) * |q|)⁻¹ :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.88d892b0f542 from=translated src=- shape=19a70549 vocab=3e7b0114
+-/
 @[simp]
 lemma inverseMomentTruncation_zero (k : ℕ) :
     inverseMomentTruncation k 0 = 1 := by
   simp
 
+/--
+@isnad1 id=le.0h2v.s5.1d4641543784 from=translated src=- shape=be66049c vocab=c0658e5f
+-/
 lemma inverseMomentTruncation_nonneg (k : ℕ) (q : ℝ) :
     0 ≤ inverseMomentTruncation k q := by
   rw [inverseMomentTruncation_apply]
   exact inv_nonneg.mpr (inverseMomentTruncation_den_pos k q).le
 
+/--
+@isnad1 id=le.0h2v.s5.915b73425fe2 from=translated src=- shape=afa3c0c4 vocab=c0658e5f
+-/
 lemma inverseMomentTruncation_le_one (k : ℕ) (q : ℝ) :
     inverseMomentTruncation k q ≤ 1 := by
   rw [inverseMomentTruncation_apply]
@@ -73,7 +85,9 @@ lemma inverseMomentTruncation_le_one (k : ℕ) (q : ℝ) :
       (mul_nonneg (inverseMomentTruncation_coeff_pos k).le (abs_nonneg q))
 
 /-- At every positive radius, the truncation is bounded by the reciprocal moment
-rescaled by `(k+1)⁻¹`. -/
+rescaled by `(k+1)⁻¹`.
+@isnad1 id=le.1h2v.s6.4a9843b84ba9 from=translated src=- shape=e77ebfef vocab=01b6862d
+-/
 lemma inverseMomentTruncation_le_scaled_inv (k : ℕ) {q : ℝ} (hq : 0 < q) :
     inverseMomentTruncation k q ≤ (k + 1 : ℝ)⁻¹ * q⁻¹ := by
   rw [inverseMomentTruncation_apply, abs_of_pos hq, ← mul_inv]
@@ -82,7 +96,9 @@ lemma inverseMomentTruncation_le_scaled_inv (k : ℕ) {q : ℝ} (hq : 0 < q) :
 
 /-- A weak limit of probability measures with uniformly bounded reciprocal moments
 has no atom at the origin, provided the approximating measures are supported on
-the positive half-line. -/
+the positive half-line.
+@isnad1 id=eq.4h3v.s7.195a4de24efa from=translated src=- shape=433f4611 vocab=d81f45c2
+-/
 theorem apply_singleton_zero_of_tendsto_of_uniform_integral_inv
     (μs : ℕ → ProbabilityMeasure ℝ) (ν : ProbabilityMeasure ℝ)
     (hconv : Tendsto μs atTop (𝓝 ν))
@@ -144,6 +160,9 @@ noncomputable def negativeMomentAtomTruncation
     BoundedContinuousFunction ℝ ℝ :=
   ((k + 1 : ℝ) ^ (-p)) • negativeMomentTruncation p hp k
 
+/--
+@isnad1 id=eq.1h3v.s6.35db549406d4 from=translated src=- shape=f7b164a5 vocab=6bf674f8
+-/
 @[simp]
 lemma negativeMomentAtomTruncation_apply
     (p : ℝ) (hp : 0 ≤ p) (k : ℕ) (q : ℝ) :
@@ -151,6 +170,9 @@ lemma negativeMomentAtomTruncation_apply
       (k + 1 : ℝ) ^ (-p) * negativeMomentTruncation p hp k q :=
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.89b2657dfe47 from=translated src=- shape=d70487cd vocab=a5f47a6e
+-/
 @[simp]
 lemma negativeMomentAtomTruncation_zero
     {p : ℝ} (hp : 0 ≤ p) (k : ℕ) :
@@ -162,6 +184,9 @@ lemma negativeMomentAtomTruncation_zero
     simp
   · positivity
 
+/--
+@isnad1 id=le.1h3v.s5.9655a7003c6b from=translated src=- shape=0f15d77e vocab=a5f47a6e
+-/
 lemma negativeMomentAtomTruncation_nonneg
     (p : ℝ) (hp : 0 ≤ p) (k : ℕ) (q : ℝ) :
     0 ≤ negativeMomentAtomTruncation p hp k q := by
@@ -169,6 +194,9 @@ lemma negativeMomentAtomTruncation_nonneg
   exact mul_nonneg (Real.rpow_nonneg (by positivity) _)
     (negativeMomentTruncation_nonneg p hp k q)
 
+/--
+@isnad1 id=le.2h3v.s6.b89bec64db47 from=translated src=- shape=425031c1 vocab=012e8e3a
+-/
 lemma negativeMomentAtomTruncation_le_scaled
     {p q : ℝ} (hp : 0 ≤ p) (hq : 0 < q) (k : ℕ) :
     negativeMomentAtomTruncation p hp k q ≤
@@ -178,7 +206,9 @@ lemma negativeMomentAtomTruncation_le_scaled
     (Real.rpow_nonneg (by positivity) _)
 
 /-- A weak limit of positive laws with a uniformly bounded negative
-`p`-moment, for any `p > 0`, has no atom at the origin. -/
+`p`-moment, for any `p > 0`, has no atom at the origin.
+@isnad1 id=eq.5h4v.s7.632e28adbe4f from=translated src=- shape=76ea0f35 vocab=12f2100e
+-/
 theorem apply_singleton_zero_of_tendsto_of_uniform_integral_neg_rpow
     {p : ℝ} (hp : 0 < p)
     (μs : ℕ → ProbabilityMeasure ℝ) (ν : ProbabilityMeasure ℝ)
@@ -241,7 +271,9 @@ theorem apply_singleton_zero_of_tendsto_of_uniform_integral_neg_rpow
 
 /-- A uniform negative-moment bound passes to a weak probability limit when
 both the approximating laws and the limit are carried by the positive
-half-line. -/
+half-line.
+@isnad1 id=and.6h4v.s8.93365356a785 from=translated src=- shape=91d13dce vocab=08097426
+-/
 theorem integrable_neg_rpow_of_tendsto_of_uniform_integral
     {p : ℝ} (hp : 0 ≤ p)
     (μs : ℕ → ProbabilityMeasure ℝ) (ν : ProbabilityMeasure ℝ)
@@ -329,7 +361,9 @@ theorem integrable_neg_rpow_of_tendsto_of_uniform_integral
     (Eventually.of_forall hlimit_bound)
 
 /-- Every power of `Kchain` started in the open interior remains in the open
-interior almost surely. -/
+interior almost surely.
+@isnad1 id=eq.3h4v.s7.7dd4e261cb2d from=translated src=- shape=85856cc7 vocab=a318961f
+-/
 lemma Kchain_pow_apply_Ioo_eq_one
     {A : ℝ} {N : ℕ} (hA : 0 < A) (hN : 0 < N) {q : ℝ}
     (hq : q ∈ Set.Ioo (0 : ℝ) 1) (t : ℕ) :
@@ -351,7 +385,9 @@ lemma Kchain_pow_apply_Ioo_eq_one
         _ = 1 := by simp
 
 /-- Every positive-length Cesàro average of `Kchain` started in the open
-interior remains in the open interior almost surely. -/
+interior remains in the open interior almost surely.
+@isnad1 id=eq.3h4v.s6.95f506326fd7 from=translated src=- shape=990598d2 vocab=ce650246
+-/
 lemma cesaroPM_apply_Ioo_eq_one
     {A : ℝ} {N : ℕ} (hA : 0 < A) (hN : 0 < N) {q : ℝ}
     (hq : q ∈ Set.Ioo (0 : ℝ) 1) (n : ℕ) :
@@ -363,7 +399,9 @@ lemma cesaroPM_apply_Ioo_eq_one
   exact ENNReal.inv_mul_cancel (Nat.cast_ne_zero.2 n.succ_ne_zero) (by simp)
 
 /-- A uniform negative-moment estimate for the Cesàro laws passes to an
-invariant subsequential limit, with the same bound. -/
+invariant subsequential limit, with the same bound.
+@isnad1 id=ex.5h5v.s8.d99c8ee785a3 from=translated src=- shape=b60ed787 vocab=d87ad6f5
+-/
 theorem exists_invariant_Kchain_integrable_neg_rpow_of_uniform_cesaro
     {A p C : ℝ} {N : ℕ} (hA : 0 < A) (hN : 0 < N) (hp : 0 < p)
     {q : ℝ} (hq : q ∈ Set.Ioo (0 : ℝ) 1)
@@ -421,7 +459,9 @@ theorem exists_invariant_Kchain_integrable_neg_rpow_of_uniform_cesaro
   exact ⟨ν, hν, hνsupport, hν0, hmoment.1, hmoment.2⟩
 
 /-- A negative moment controls the mass of a fixed interval near the origin.
-This is the paper's Markov-inequality step for localization. -/
+This is the paper's Markov-inequality step for localization.
+@isnad1 id=le.4h3v.s7.68828c5abbcd from=translated src=- shape=9c8b4438 vocab=0231f4ae
+-/
 lemma measureReal_Ioc_le_rpow_mul_integral_neg_rpow
     {μ : Measure ℝ} [IsFiniteMeasure μ] {p r : ℝ}
     (hp : 0 ≤ p) (hr : 0 < r)
@@ -451,7 +491,9 @@ lemma measureReal_Ioc_le_rpow_mul_integral_neg_rpow
       rw [Real.rpow_neg hr.le, div_inv_eq_mul, mul_comm]
 
 /-- For a positive exponent, the fixed small-radius threshold can be chosen
-below any prescribed cap so that its logarithmic moment exponent is negative. -/
+below any prescribed cap so that its logarithmic moment exponent is negative.
+@isnad1 id=ex.2h3v.s6.8a1c26de577a from=translated src=- shape=9dc1fb9b vocab=083d2ae6
+-/
 lemma exists_pos_lt_and_add_mul_log_neg
     {R₀ γ : ℝ} (hR₀ : 0 < R₀) (hγ : 0 < γ) (b : ℝ) :
     ∃ r ∈ Set.Ioo (0 : ℝ) R₀, b + γ * Real.log r < 0 := by
@@ -480,7 +522,9 @@ lemma exists_pos_lt_and_add_mul_log_neg
   nlinarith [le_abs_self b]
 
 /-- The explicit invariant-moment maximum is bounded by one fixed prefactor
-times one exponential rate in every positive dimension. -/
+times one exponential rate in every positive dimension.
+@isnad1 id=ex.1h3v.s7.0ef4b6ceb8f1 from=translated src=- shape=db07eac9 vocab=4ff476b5
+-/
 lemma exists_exponential_envelope_invariant_moment_max
     {γ κ b : ℝ} (hκ : 0 < κ) :
     ∃ C B : ℝ, 0 < C ∧ ∀ N : ℕ, 0 < N →
@@ -557,7 +601,9 @@ lemma exists_exponential_envelope_invariant_moment_max
   exact max_le hfirst hsecond
 
 /-- Paper-facing invariant-law negative-moment bound in every sufficiently
-large dimension. -/
+large dimension.
+@isnad1 id=ex.3h3v.s8.7b75101e6eed from=translated src=- shape=4370cfdf vocab=ccf14b65
+-/
 theorem exists_eventually_invariant_Kchain_integrable_neg_rpow
     {A qStar R : ℝ} (hA : 1 < A)
     (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -605,7 +651,9 @@ theorem exists_eventually_invariant_Kchain_integrable_neg_rpow
   simpa only [q₀, hCeq] using hνbound
 
 /-- In every sufficiently large dimension, an invariant origin-free radius
-law has exponentially small mass below one fixed positive threshold. -/
+law has exponentially small mass below one fixed positive threshold.
+@isnad1 id=ex.3h3v.s8.9b47e3f0d563 from=translated src=- shape=4d203527 vocab=1dee2d84
+-/
 theorem exists_eventually_invariant_Kchain_small_ball_le_exp
     {A qStar R : ℝ} (hA : 1 < A)
     (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -686,7 +734,9 @@ noncomputable def FmapSubgaussianParameter (N : ℕ) : NNReal :=
     ∑ _i : Fin N, ((‖(1 : ℝ)‖₊ / 2) ^ 2)
 
 /-- For positive dimension, the unrounded empirical-average proxy is
-`1 / (4N)`. -/
+`1 / (4N)`.
+@isnad1 id=eq.1h1v.s5.b182879b314b from=translated src=- shape=e53fed4a vocab=7cdd9299
+-/
 lemma coe_FmapSubgaussianParameter {N : ℕ} (hN : 0 < N) :
     (FmapSubgaussianParameter N : ℝ) = 1 / (4 * N) := by
   unfold FmapSubgaussianParameter
@@ -698,7 +748,9 @@ lemma coe_FmapSubgaussianParameter {N : ℕ} (hN : 0 < N) :
   field_simp
 
 /-- The centered one-step unrounded radius has second moment at most `1/(4N)`,
-by independence and the `[0,1]` coordinate variance bound. -/
+by independence and the `[0,1]` coordinate variance bound.
+@isnad1 id=le.1h3v.s6.10113ba3e20c from=translated src=- shape=33aeaee2 vocab=ce60ce9f
+-/
 lemma integral_sq_Fmap_sub_V_le
     {A q : ℝ} {N : ℕ} (hN : 0 < N) :
     ∫ g, (Fmap A N q g - V A q) ^ 2 ∂(gaussianVec N) ≤
@@ -756,7 +808,9 @@ lemma integral_sq_Fmap_sub_V_le
       field_simp
 
 /-- The one-step squared error about a fixed point splits into the squared
-deterministic error and the centered noise variance. -/
+deterministic error and the centered noise variance.
+@isnad1 id=eq.1h4v.s7.9954f0ea6324 from=translated src=- shape=596e8002 vocab=db852a40
+-/
 lemma integral_sq_Fmap_sub_fixed_eq
     {A q qStar : ℝ} {N : ℕ} (hN : 0 < N) :
     ∫ g, (Fmap A N q g - qStar) ^ 2 ∂(gaussianVec N) =
@@ -812,7 +866,9 @@ lemma integral_sq_Fmap_sub_fixed_eq
       rw [hvarShift, hvarF, add_comm]
 
 /-- A supported invariant radius law transports squared error through one
-`Kchain` step, written as the Gaussian double integral of `Fmap`. -/
+`Kchain` step, written as the Gaussian double integral of `Fmap`.
+@isnad1 id=eq.4h4v.s7.a9660d712107 from=translated src=- shape=24dd1213 vocab=086a5b11
+-/
 lemma invariant_integral_sq_sub_fixed_eq_integral_integral_Fmap
     {A qStar : ℝ} {N : ℕ} (hN : 0 < N)
     (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -874,7 +930,9 @@ lemma invariant_integral_sq_sub_fixed_eq_integral_integral_Fmap
         ∂(gaussianVec N)) ∂ν := hright
 
 /-- Combining stationary transport with the conditional error decomposition
-gives the stationary deterministic-plus-noise second-moment recursion. -/
+gives the stationary deterministic-plus-noise second-moment recursion.
+@isnad1 id=eq.4h4v.s8.c31f20962e1e from=translated src=- shape=79cb34e5 vocab=42a181dd
+-/
 lemma invariant_integral_sq_sub_fixed_eq_integral_add_noise
     {A qStar : ℝ} {N : ℕ} (hN : 0 < N)
     (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -892,7 +950,9 @@ lemma invariant_integral_sq_sub_fixed_eq_integral_add_noise
   exact integral_sq_Fmap_sub_fixed_eq hN
 
 /-- The stationary second moment is bounded by the deterministic squared
-error integral plus the uniform one-step noise variance `1/(4N)`. -/
+error integral plus the uniform one-step noise variance `1/(4N)`.
+@isnad1 id=le.4h4v.s7.186b2503d661 from=translated src=- shape=4e6d398e vocab=7553012a
+-/
 lemma invariant_integral_sq_sub_fixed_le_integral_sq_V_add
     {A qStar : ℝ} {N : ℕ} (hN : 0 < N)
     (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -966,7 +1026,9 @@ lemma invariant_integral_sq_sub_fixed_le_integral_sq_V_add
         1 / (4 * (N : ℝ)) := by rfl
 
 /-- A derivative bound on a positive interval centered at a fixed point
-implies the corresponding secant contraction throughout that interval. -/
+implies the corresponding secant contraction throughout that interval.
+@isnad1 id=le.6h5v.s7.f456d485af8b from=translated src=- shape=5b68a770 vocab=414b32da
+-/
 lemma abs_V_sub_fixed_le_mul_abs_sub_fixed_of_deriv_le
     {A qStar κ R x : ℝ}
     (hA : A ≠ 0) (hfix : V A qStar = qStar)
@@ -1000,7 +1062,9 @@ lemma abs_V_sub_fixed_le_mul_abs_sub_fixed_of_deriv_le
   simpa only [Real.norm_eq_abs, hfix] using hmv
 
 /-- Split the deterministic squared error over a stable interval and its bad
-complement, using contraction on the former and the unit bound on the latter. -/
+complement, using contraction on the former and the unit bound on the latter.
+@isnad1 id=le.8h5v.s8.b1183cf3ad23 from=translated src=- shape=62bd49bf vocab=11343bc5
+-/
 lemma integral_sq_V_sub_fixed_le_sq_mul_integral_add_measureReal
     {A qStar κ R : ℝ}
     (hA : A ≠ 0) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -1107,7 +1171,9 @@ lemma integral_sq_V_sub_fixed_le_sq_mul_integral_add_measureReal
         ν.real {q : ℝ | R < |q - qStar|} := by rfl
 
 /-- The centered unrounded empirical Gaussian radius update has the exact
-Hoeffding sub-Gaussian parameter `1 / (4N)`. -/
+Hoeffding sub-Gaussian parameter `1 / (4N)`.
+@isnad1 id=hassubga.1h3v.s5.06b1bca03e04 from=translated src=- shape=26e43a15 vocab=a025567c
+-/
 lemma hasSubgaussianMGF_Fmap_sub_V
     {A q : ℝ} {N : ℕ} (hN : 0 < N) :
     HasSubgaussianMGF
@@ -1183,7 +1249,9 @@ lemma hasSubgaussianMGF_Fmap_sub_V
   field_simp
 
 /-- The unrounded empirical Gaussian radius update is exponentially
-concentrated about the deterministic mean map, uniformly in the input radius. -/
+concentrated about the deterministic mean map, uniformly in the input radius.
+@isnad1 id=le.2h4v.s7.e11bff038434 from=translated src=- shape=c6f89678 vocab=9b57d139
+-/
 lemma measureReal_abs_Fmap_sub_V_gt_le
     {A q ε : ℝ} {N : ℕ} (hN : 0 < N) (hε : 0 < ε) :
     (gaussianVec N).real
@@ -1280,7 +1348,9 @@ lemma measureReal_abs_Fmap_sub_V_gt_le
       add_le_add hlower hupper
     _ = _ := by ring
 
-/-- Kernel form of the unrounded one-step Hoeffding estimate. -/
+/-- Kernel form of the unrounded one-step Hoeffding estimate.
+@isnad1 id=le.2h4v.s7.817675456e76 from=translated src=- shape=97dc3074 vocab=72485d6d
+-/
 lemma Kchain_measureReal_abs_sub_V_gt_le
     {A q ε : ℝ} {N : ℕ} (hN : 0 < N) (hε : 0 < ε) :
     (Kchain A N q).real {y : ℝ | |y - V A q| > ε} ≤
@@ -1293,7 +1363,9 @@ lemma Kchain_measureReal_abs_sub_V_gt_le
   exact measureReal_abs_Fmap_sub_V_gt_le hN hε
 
 /-- Every positive-time coordinate of a canonical unrounded radius path lies
-in `[0,1]` almost surely. -/
+in `[0,1]` almost surely.
+@isnad1 id=eventual.1h4v.s6.f48941d26fcd from=translated src=- shape=62abb434 vocab=27bd620c
+-/
 lemma markovPathMeasure_ae_eval_succ_mem_Kchain_Icc
     {A : ℝ} {N : ℕ} (hN : 0 < N)
     (μ₀ : Measure ℝ) [IsProbabilityMeasure μ₀] (t : ℕ) :
@@ -1317,7 +1389,9 @@ lemma markovPathMeasure_ae_eval_succ_mem_Kchain_Icc
   simp only [hzero, lintegral_zero]
 
 /-- A canonical unrounded radius path started in `[0,1]` remains there at
-every fixed time almost surely. -/
+every fixed time almost surely.
+@isnad1 id=eventual.2h4v.s6.01794d935d39 from=translated src=- shape=7d75d370 vocab=0bda9de1
+-/
 lemma markovPathMeasure_dirac_ae_eval_mem_Kchain_Icc
     {A q : ℝ} {N : ℕ} (hq : q ∈ Set.Icc (0 : ℝ) 1)
     (hN : 0 < N) (t : ℕ) :
@@ -1347,7 +1421,9 @@ lemma markovPathMeasure_dirac_ae_eval_mem_Kchain_Icc
         hN (Measure.dirac q) t
 
 /-- Through every fixed horizon, all coordinates of a canonical unrounded
-radius path started in `[0,1]` remain there almost surely. -/
+radius path started in `[0,1]` remain there almost surely.
+@isnad1 id=eventual.2h4v.s6.b1210777120b from=translated src=- shape=1e187898 vocab=b8c81b8b
+-/
 lemma markovPathMeasure_dirac_ae_forall_le_mem_Kchain_Icc
     {A q : ℝ} {N : ℕ} (hq : q ∈ Set.Icc (0 : ℝ) 1)
     (hN : 0 < N) (T : ℕ) :
@@ -1365,7 +1441,9 @@ lemma markovPathMeasure_dirac_ae_forall_le_mem_Kchain_Icc
   exact hω s (Finset.mem_range.mpr (Nat.lt_succ_iff.mpr hsT))
 
 /-- Under the canonical unrounded path law, every transition obeys the same
-Hoeffding bound as the state-dependent kernel. -/
+Hoeffding bound as the state-dependent kernel.
+@isnad1 id=le.2h5v.s7.321e1d26e860 from=translated src=- shape=13caedf8 vocab=e45a6506
+-/
 lemma markovPathMeasure_measureReal_abs_next_sub_V_gt_le
     {A q ε : ℝ} {N : ℕ} (hN : 0 < N) (hε : 0 < ε) (t : ℕ) :
     (markovPathMeasure (Measure.dirac q) (Kchain A N)).real
@@ -1473,7 +1551,9 @@ def finiteHorizonKchainStepDeviationEvent
     {ω : ℕ → ℝ | |ω (s + 1) - V A (ω s)| > ε}
 
 /-- A union bound upgrades the unrounded one-step Hoeffding estimate to every
-transition in a fixed finite horizon. -/
+transition in a fixed finite horizon.
+@isnad1 id=le.2h5v.s7.e72ceaccc376 from=translated src=- shape=be04e487 vocab=1db177ab
+-/
 lemma markovPathMeasure_measureReal_finiteHorizonKchainStepDeviationEvent_le
     {A q ε : ℝ} {N T : ℕ} (hN : 0 < N) (hε : 0 < ε) :
     (markovPathMeasure (Measure.dirac q) (Kchain A N)).real
@@ -1500,7 +1580,9 @@ lemma markovPathMeasure_measureReal_finiteHorizonKchainStepDeviationEvent_le
       ring
 
 /-- At every fixed horizon, one positive step tolerance makes all
-`[0,1]`-valued perturbed paths uniformly track the deterministic `V` orbit. -/
+`[0,1]`-valued perturbed paths uniformly track the deterministic `V` orbit.
+@isnad1 id=ex.1h3v.s7.3206d2ed725a from=translated src=- shape=f8aa5562 vocab=958dd8bc
+-/
 lemma exists_pos_uniform_V_tracking_tolerance
     (A : ℝ) (T : ℕ) {η : ℝ} (hη : 0 < η) :
     ∃ δ : ℝ, 0 < δ ∧
@@ -1563,7 +1645,9 @@ lemma exists_pos_uniform_V_tracking_tolerance
         _ = η := by ring
 
 /-- Through every fixed horizon, a canonical unrounded path tracks its
-deterministic orbit with exponentially high probability. -/
+deterministic orbit with exponentially high probability.
+@isnad1 id=ex.1h3v.s7.c3e595908ce4 from=translated src=- shape=fc216141 vocab=3b83e792
+-/
 lemma exists_pos_markovPathMeasure_measureReal_abs_sub_iterate_V_ge_le
     (A : ℝ) (T : ℕ) {η : ℝ} (hη : 0 < η) :
     ∃ δ : ℝ, 0 < δ ∧
@@ -1624,7 +1708,9 @@ lemma exists_pos_markovPathMeasure_measureReal_abs_sub_iterate_V_ge_le
       hN hδ
 
 /-- Uniform canonical-path entrance into the deterministic stable interval
-has exponentially small failure probability. -/
+has exponentially small failure probability.
+@isnad1 id=ex.4h3v.s8.f7434a5898cf from=translated src=- shape=50a2a8c4 vocab=ab196a67
+-/
 theorem exists_uniform_markovPathMeasure_stable_entrance_exp_bound
     {A qStar r : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -1687,7 +1773,9 @@ theorem exists_uniform_markovPathMeasure_stable_entrance_exp_bound
       gcongr
       norm_num
 
-/-- The common fixed-time stable entrance estimate in `m`-step kernel form. -/
+/-- The common fixed-time stable entrance estimate in `m`-step kernel form.
+@isnad1 id=ex.4h3v.s8.43624648da0b from=translated src=- shape=11cd989c vocab=fcfe111c
+-/
 theorem exists_uniform_Kchain_pow_stable_entrance_exp_bound
     {A qStar r : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -1719,7 +1807,9 @@ theorem exists_uniform_Kchain_pow_stable_entrance_exp_bound
   simpa only [measureReal_def] using hpath N hN q hq
 
 /-- Split an invariant target probability into mass on a bad starting set and
-a uniform iterate bound from its complement. -/
+a uniform iterate bound from its complement.
+@isnad1 id=le.5h7v.s7.c6c4df0567d2 from=translated src=- shape=d455900a vocab=3e4438d3
+-/
 lemma invariant_measureReal_le_add_of_ae_kernel_pow_measureReal_le
     {α : Type*} [MeasurableSpace α]
     {κ : Kernel α α} [IsMarkovKernel κ]
@@ -1782,7 +1872,9 @@ lemma invariant_measureReal_le_add_of_ae_kernel_pow_measureReal_le
       exact hB
 
 /-- A sum of two exponential errors is bounded by their combined coefficient
-at the slower of the two rates. -/
+at the slower of the two rates.
+@isnad1 id=le.3h5v.s7.2288bbb16bcd from=translated src=- shape=2476d2ea vocab=8da5d583
+-/
 lemma add_mul_exp_neg_le_mul_add_exp_neg_min
     {C₀ c₀ C₁ c₁ n : ℝ}
     (hC₀ : 0 ≤ C₀) (hC₁ : 0 ≤ C₁) (hn : 0 ≤ n) :
@@ -1803,7 +1895,9 @@ lemma add_mul_exp_neg_le_mul_add_exp_neg_min
 
 /-- In every sufficiently large dimension, a stationary origin-free radius
 law has exponentially small mass outside one stable interval, up to the sum
-of the near-zero and finite-time entrance estimates. -/
+of the near-zero and finite-time entrance estimates.
+@isnad1 id=ex.3h2v.s8.20852f241e8e from=translated src=- shape=4c78cac8 vocab=f25dd71b
+-/
 theorem exists_eventually_invariant_Kchain_stable_interval_le_exp_add
     {A qStar : ℝ} (hA : 1 < A)
     (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -1876,7 +1970,9 @@ theorem exists_eventually_invariant_Kchain_stable_interval_le_exp_add
 
 /-- In every sufficiently large dimension, a stationary origin-free radius
 law is exponentially localized in one stable interval about the positive
-fixed point. -/
+fixed point.
+@isnad1 id=ex.3h2v.s8.b95803f70e46 from=translated src=- shape=98b2e84d vocab=aab335a0
+-/
 theorem exists_eventually_invariant_Kchain_stable_interval_le_exp
     {A qStar : ℝ} (hA : 1 < A)
     (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -1916,7 +2012,9 @@ theorem exists_eventually_invariant_Kchain_stable_interval_le_exp
       hC₀.le hC₁.le (Nat.cast_nonneg N))
 
 /-- The exponential stationary localization estimate implies the paper's
-weaker `N⁻¹` localization bound after enlarging its coefficient. -/
+weaker `N⁻¹` localization bound after enlarging its coefficient.
+@isnad1 id=ex.3h2v.s8.01ff4ab78e5b from=translated src=- shape=b3e55cc7 vocab=a5790cb3
+-/
 theorem exists_eventually_invariant_Kchain_stable_interval_le_inv_nat
     {A qStar : ℝ} (hA : 1 < A)
     (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -1968,7 +2066,9 @@ theorem exists_eventually_invariant_Kchain_stable_interval_le_inv_nat
       field_simp
 
 /-- In every sufficiently large dimension, the selected stationary radius law
-has fixed-point second moment of order `N⁻¹`. -/
+has fixed-point second moment of order `N⁻¹`.
+@isnad1 id=ex.3h2v.s8.797f87bc3e60 from=translated src=- shape=2fe28089 vocab=e1eb8689
+-/
 theorem exists_eventually_invariant_Kchain_integral_sq_sub_fixed_le_inv_nat
     {A qStar : ℝ} (hA : 1 < A)
     (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -2045,7 +2145,9 @@ theorem exists_eventually_invariant_Kchain_integral_sq_sub_fixed_le_inv_nat
   rw [htarget, le_div_iff₀ hden]
   nlinarith [hrec]
 
-/-- Any two origin-free invariant probabilities of `Kchain` agree. -/
+/-- Any two origin-free invariant probabilities of `Kchain` agree.
+@isnad1 id=eq.6h4v.s7.15a3c33eeecd from=translated src=- shape=d1f31cbd vocab=04824888
+-/
 theorem invariant_probability_unique_Kchain_of_apply_singleton_zero
     {A : ℝ} {N : ℕ} (hA : 0 < A) (hN : 0 < N)
     (μ ν : ProbabilityMeasure ℝ)
@@ -2070,7 +2172,9 @@ theorem invariant_probability_unique_Kchain_of_apply_singleton_zero
   exact hparts
 
 /-- Any two supported, nontrivial invariant squared-radius probabilities
-reconstruct the same nonzero invariant vector law. -/
+reconstruct the same nonzero invariant vector law.
+@isnad1 id=eq.8h4v.s8.4972e58da3aa from=translated src=- shape=3e0656b7 vocab=93a3c879
+-/
 theorem invariant_Pkernel_nonzeroPart_unique
     {A : ℝ} {N : ℕ} (hA : 0 < A) (hN : 0 < N)
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
@@ -2087,7 +2191,9 @@ theorem invariant_Pkernel_nonzeroPart_unique
       hμ hν hμ_support hν_support hμ0 hν0)
 
 /-- Any two nontrivial invariant vector probabilities have the same invariant vector law
-reconstructed from the normalized nonzero components of their squared-radius laws. -/
+reconstructed from the normalized nonzero components of their squared-radius laws.
+@isnad1 id=eq.6h4v.s9.468a0aa7564d from=translated src=- shape=ea7c319e vocab=902a68e8
+-/
 theorem invariant_Pkernel_nonzeroPart_unique_of_invariant_Pkernel
     {A : ℝ} {N : ℕ} (hA : 0 < A) (hN : 0 < N)
     (π ρ : Measure (Fin N → ℝ))
@@ -2117,7 +2223,9 @@ theorem invariant_Pkernel_nonzeroPart_unique_of_invariant_Pkernel
     (by simpa only [map_radiusSq_apply_singleton_zero hN] using hρ0)
 
 /-- The unrounded vector kernel has at most one invariant probability with no mass at
-the absorbing origin. -/
+the absorbing origin.
+@isnad1 id=eq.6h4v.s8.a96db8d1d19d from=translated src=- shape=a2451c9c vocab=be04dec1
+-/
 theorem invariant_probability_unique_Pkernel_of_apply_singleton_zero
     {A : ℝ} {N : ℕ} (hA : 0 < A) (hN : 0 < N)
     (π ρ : Measure (Fin N → ℝ))

@@ -43,18 +43,24 @@ unit (`WeierstrassCurve.isUnit_formalYThree`). (Silverman AEC IV.1.) -/
 noncomputable def formalGroupLaurent : (R⸨X⸩)⸨X⸩ :=
   (-W.formalXThree) * Ring.inverse W.formalYThree
 
-/-- `y₃ · y₃⁻¹ = 1` (the inverse used in `F_E` is a genuine inverse, since `y₃` is a unit). -/
+/-- `y₃ · y₃⁻¹ = 1` (the inverse used in `F_E` is a genuine inverse, since `y₃` is a unit).
+@isnad1 id=eq.0h2v.s8.63e6b645716f from=translated src=- shape=cc4b2992 vocab=09a7a19f
+-/
 theorem formalYThree_mul_inverse : W.formalYThree * Ring.inverse W.formalYThree = 1 :=
   Ring.mul_inverse_cancel _ W.isUnit_formalYThree
 
-/-- **Defining identity of the formal group law.** `F_E · y₃ = -x₃`. -/
+/-- **Defining identity of the formal group law.** `F_E · y₃ = -x₃`.
+@isnad1 id=eq.0h2v.s8.17a4069e1aa7 from=translated src=- shape=5dc151d9 vocab=c751d1af
+-/
 theorem formalGroupLaurent_mul_formalYThree :
     W.formalGroupLaurent * W.formalYThree = -W.formalXThree := by
   rw [formalGroupLaurent, mul_assoc, Ring.inverse_mul_cancel _ W.isUnit_formalYThree, mul_one]
 
 /-- **`F_E` is pole-free in `z₂`.** The Weierstrass formal group law has `z₂`-order `0`: its poles
 in `x₃` and `y₃` have equal `z₂`-order `0`, so the quotient has order `0`. (This is the first step
-towards `F_E = z₁ + z₂ - ⋯`; that `F_E` is a power series in both gradings is issue #265.) -/
+towards `F_E = z₁ + z₂ - ⋯`; that `F_E` is a power series in both gradings is issue #265.)
+@isnad1 id=eq.0h2v.s6.30b9e26aac61 from=translated src=- shape=8b011ba7 vocab=a4dba17f
+-/
 theorem orderTop_formalGroupLaurent [Nontrivial R] :
     W.formalGroupLaurent.orderTop = (0 : WithTop ℤ) := by
   have hxne : W.formalXThree ≠ 0 :=

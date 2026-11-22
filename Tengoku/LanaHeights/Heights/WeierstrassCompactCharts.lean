@@ -37,7 +37,9 @@ noncomputable def complexWeierstrassFinitePointChart
   (complexWeierstrassAffineChartAt W P).lift_openEmbedding
     (isOpenEmbedding_complexWeierstrassPointOfAffine W)
 
-/-- The affine point defining a lifted finite chart belongs to its source. -/
+/-- The affine point defining a lifted finite chart belongs to its source.
+@isnad1 id=mem.0h2v.s6.60ef84bc5288 from=translated src=- shape=5ac7d7d7 vocab=ed5e40ae
+-/
 theorem complexWeierstrassPointOfAffine_mem_finitePointChart_source
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (P : ComplexWeierstrassAffine W) :
@@ -47,7 +49,9 @@ theorem complexWeierstrassPointOfAffine_mem_finitePointChart_source
     OpenPartialHomeomorph.lift_openEmbedding_source]
   exact ⟨P, complexWeierstrassAffineChartAt_mem_source W P, rfl⟩
 
-/-- A lifted finite chart has the same coordinate as its affine ancestor. -/
+/-- A lifted finite chart has the same coordinate as its affine ancestor.
+@isnad1 id=eq.0h3v.s6.afcccb486a98 from=translated src=- shape=e95707d1 vocab=932f98ee
+-/
 @[simp] theorem complexWeierstrassFinitePointChart_apply_affine
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (P Q : ComplexWeierstrassAffine W) :
@@ -85,12 +89,18 @@ noncomputable def complexWeierstrassPointChartAt
   complexWeierstrassPointChartOfOnePoint W
     (complexWeierstrassPointHomeomorph W Q)
 
+/--
+@isnad1 id=eq.0h1v.s5.6980d4f102ab from=translated src=- shape=7a5cfe4a vocab=59cdb5b6
+-/
 @[simp] theorem complexWeierstrassPointChartAt_infinity
     (W : WeierstrassCurve ℂ) [W.IsElliptic] :
     complexWeierstrassPointChartAt W (complexWeierstrassPointInfinity W) =
       complexWeierstrassInfinityPointChart W := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.9ddb083afaa5 from=translated src=- shape=ca685db7 vocab=12ee3baa
+-/
 @[simp] theorem complexWeierstrassPointChartAt_affine
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (P : ComplexWeierstrassAffine W) :
@@ -103,6 +113,9 @@ noncomputable def complexWeierstrassPointChartAt
   rw [complexWeierstrassPointHomeomorph_affine]
   rfl
 
+/--
+@isnad1 id=mem.0h2v.s6.0679294b691a from=translated src=- shape=9a7c3b34 vocab=206bfaea
+-/
 @[simp] theorem complexWeierstrassPointChartAt_mem_source
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (Q : ComplexWeierstrassPoint W) :
@@ -157,7 +170,9 @@ private theorem complexWeierstrassFinitePointChart_infinityPointChart_apply
   field_simp
 
 /-- The transition from any preferred finite chart to the infinity chart is
-analytic on its whole overlap. -/
+analytic on its whole overlap.
+@isnad1 id=contdiff.0h2v.s8.6e0679902ceb from=translated src=- shape=44d01c33 vocab=9c6877df
+-/
 theorem contDiffOn_complexWeierstrassFinitePointChart_infinityPointChart_transition
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (P : ComplexWeierstrassAffine W) :
@@ -252,7 +267,9 @@ private theorem complexWeierstrassInfinityPointChart_finitePointChart_apply_impl
     (complexWeierstrassAffine_coe_eq_of_branchToPoint_eq W Q R hRQ.symm)
 
 /-- The transition from the infinity chart to any preferred finite chart is
-analytic on its whole overlap. -/
+analytic on its whole overlap.
+@isnad1 id=contdiff.0h2v.s8.eb00e215c7cf from=translated src=- shape=612e58a3 vocab=9c6877df
+-/
 theorem contDiffOn_complexWeierstrassInfinityPointChart_finitePointChart_transition
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (P : ComplexWeierstrassAffine W) :

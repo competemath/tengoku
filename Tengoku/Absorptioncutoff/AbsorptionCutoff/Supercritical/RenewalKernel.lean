@@ -51,7 +51,9 @@ identities that stay bandlimited.
 
 The proof is the change of variables `u = a v` under the Fourier integral. Because
 `rw` cannot see through the beta-redex `∫ v, (fun u => …) (a * v)`,
-`Measure.integral_comp_mul_left` is instantiated as a `have` first. -/
+`Measure.integral_comp_mul_left` is instantiated as a `have` first.
+@isnad1 id=eq.1h3v.s7.e2f57573587e from=translated src=- shape=cfc63e1c vocab=a6046513
+-/
 theorem fourier_comp_mul_left (f : ℝ → ℂ) {a : ℝ} (ha : 0 < a) (ξ : ℝ) :
     𝓕 (fun t => f (a * t)) ξ = (a⁻¹ : ℝ) • 𝓕 f (ξ / a) := by
   have ha0 : (a : ℂ) ≠ 0 := by exact_mod_cast ne_of_gt ha
@@ -69,7 +71,9 @@ theorem fourier_comp_mul_left (f : ℝ → ℂ) {a : ℝ} (ha : 0 < a) (ξ : ℝ
   rw [integral_congr_ae (Filter.Eventually.of_forall h1), h2, abs_inv, abs_of_pos ha]
 
 /-- The band of a dilate: if `𝓕f` vanishes outside `[-T,T]`, then `𝓕(f(a·))`
-vanishes outside `[-aT, aT]`. -/
+vanishes outside `[-aT, aT]`.
+@isnad1 id=eq.3h4v.s7.874a298f25b5 from=translated src=- shape=83fe17e3 vocab=2974df1c
+-/
 theorem fourier_comp_mul_left_eq_zero {f : ℝ → ℂ} {a T : ℝ} (ha : 0 < a)
     (hf : ∀ t : ℝ, T < |t| → 𝓕 f t = 0) {ξ : ℝ} (hξ : a * T < |ξ|) :
     𝓕 (fun t => f (a * t)) ξ = 0 := by
@@ -82,6 +86,9 @@ theorem fourier_comp_mul_left_eq_zero {f : ℝ → ℂ} {a T : ℝ} (ha : 0 < a)
 /-- The unit box `1_{[-1,1]}`, the building block of the smoothing kernel. -/
 noncomputable def unitBox : ℝ → ℂ := Set.indicator (Set.Icc (-1 : ℝ) 1) (fun _ => (1 : ℂ))
 
+/--
+@isnad1 id=integrab.0h0v.s5.e17831a169a4 from=translated src=- shape=c57f8401 vocab=1043523a
+-/
 lemma integrable_unitBox : Integrable unitBox := by
   rw [unitBox]
   refine (integrable_indicator_iff measurableSet_Icc).2 ?_
@@ -91,7 +98,9 @@ lemma integrable_unitBox : Integrable unitBox := by
 `𝓕 1_{[-1,1]}(t) = sin (2πt) / (πt)`.
 
 In particular it is real-valued, so its square — the kernel used below — is
-nonnegative. -/
+nonnegative.
+@isnad1 id=eq.1h1v.s6.6da1d7105e89 from=translated src=- shape=bba57950 vocab=79251592
+-/
 theorem fourier_unitBox {t : ℝ} (ht : t ≠ 0) :
     𝓕 unitBox t = ((Real.sin (2 * Real.pi * t) / (Real.pi * t) : ℝ) : ℂ) := by
   have hstep : 𝓕 unitBox t
@@ -140,7 +149,9 @@ theorem fourier_unitBox {t : ℝ} (ht : t ≠ 0) :
   field_simp
 
 /-- The removable singularity of `fourier_unitBox` at the origin: the transform
-takes the value `|[-1,1]| = 2` there. -/
+takes the value `|[-1,1]| = 2` there.
+@isnad1 id=eq.0h0v.s5.2541efda7bd5 from=translated src=- shape=114401b7 vocab=a87d2b3b
+-/
 theorem fourier_unitBox_zero : 𝓕 unitBox 0 = 2 := by
   rw [Real.fourier_eq', unitBox]
   simp only [Real.inner_apply, mul_zero, Complex.ofReal_zero, zero_mul, Complex.exp_zero,
@@ -155,10 +166,15 @@ open scoped Convolution
 transform is the smoothing kernel used to prove Blackwell's theorem. -/
 noncomputable def triangle : ℝ → ℂ := unitBox ⋆[ContinuousLinearMap.mul ℂ ℂ] unitBox
 
+/--
+@isnad1 id=integrab.0h0v.s5.30970307484e from=translated src=- shape=c57f8401 vocab=33ddc5bf
+-/
 lemma integrable_triangle : Integrable triangle :=
   integrable_unitBox.integrable_convolution _ integrable_unitBox
 
-/-- The convolution theorem for the triangle: `𝓕(1_{[-1,1]} ⋆ 1_{[-1,1]}) = (𝓕 1_{[-1,1]})²`. -/
+/-- The convolution theorem for the triangle: `𝓕(1_{[-1,1]} ⋆ 1_{[-1,1]}) = (𝓕 1_{[-1,1]})²`.
+@isnad1 id=eq.0h1v.s6.9b9640cd3489 from=translated src=- shape=5b62fd02 vocab=4a32d031
+-/
 lemma fourier_triangle (t : ℝ) : 𝓕 triangle t = (𝓕 unitBox t) ^ 2 := by
   rw [triangle, Real.fourier_mul_convolution_eq integrable_unitBox integrable_unitBox, sq]
 
@@ -173,12 +189,20 @@ square, and compact support of `𝓕 sincSq` will come from
 noncomputable def sincSq (t : ℝ) : ℝ :=
   if t = 0 then 4 else (Real.sin (2 * Real.pi * t) / (Real.pi * t)) ^ 2
 
+/--
+@isnad1 id=eq.0h0v.s4.1698171d3506 from=translated src=- shape=3c26ae4f vocab=7c78db74
+-/
 @[simp] lemma sincSq_zero : sincSq 0 = 4 := by simp [sincSq]
 
+/--
+@isnad1 id=le.0h1v.s3.1eee3fde47fe from=translated src=- shape=8a62b088 vocab=02d0aa2a
+-/
 lemma sincSq_nonneg (t : ℝ) : 0 ≤ sincSq t := by
   unfold sincSq; split <;> positivity
 
-/-- The kernel is exactly the Fourier transform of the triangle. -/
+/-- The kernel is exactly the Fourier transform of the triangle.
+@isnad1 id=eq.0h1v.s5.97bd886847e6 from=translated src=- shape=6c7597f6 vocab=1451519e
+-/
 lemma ofReal_sincSq (t : ℝ) : ((sincSq t : ℝ) : ℂ) = 𝓕 triangle t := by
   rw [fourier_triangle]
   unfold sincSq
@@ -190,21 +214,33 @@ lemma ofReal_sincSq (t : ℝ) : ((sincSq t : ℝ) : ℂ) = 𝓕 triangle t := by
     push_cast
     ring
 
+/--
+@isnad1 id=continuo.0h0v.s5.c598c45896eb from=translated src=- shape=acfde41a vocab=5569e011
+-/
 lemma continuous_fourier_triangle : Continuous (𝓕 triangle) :=
   VectorFourier.fourierIntegral_continuous Real.continuous_fourierChar
     (innerSL ℝ).continuous₂ integrable_triangle
 
+/--
+@isnad1 id=continuo.0h0v.s3.236408e33a06 from=translated src=- shape=e3d48bcb vocab=e88c3139
+-/
 lemma continuous_sincSq : Continuous sincSq := by
   have h : sincSq = fun t => (𝓕 triangle t).re := by
     funext t; rw [← ofReal_sincSq]; simp
   rw [h]
   exact Complex.continuous_re.comp continuous_fourier_triangle
 
+/--
+@isnad1 id=eq.0h0v.s4.0b887dbdd0f9 from=translated src=- shape=9a6f0bd2 vocab=70649846
+-/
 lemma support_unitBox : Function.support unitBox = Set.Icc (-1 : ℝ) 1 := by
   rw [unitBox]
   ext x
   by_cases hx : x ∈ Set.Icc (-1 : ℝ) 1 <;> simp [Function.mem_support, hx]
 
+/--
+@isnad1 id=le.0h0v.s5.b007764018c8 from=translated src=- shape=9a6f0bd2 vocab=b409abf1
+-/
 lemma support_triangle_subset : Function.support triangle ⊆ Set.Icc (-2 : ℝ) 2 := by
   refine (support_convolution_subset (ContinuousLinearMap.mul ℂ ℂ) (f := unitBox)
     (g := unitBox) (μ := volume)).trans ?_
@@ -213,7 +249,9 @@ lemma support_triangle_subset : Function.support triangle ⊆ Set.Icc (-2 : ℝ)
 
 /-- The triangle has compact support — this is what makes the Fourier transform
 of the kernel compactly supported, and hence the Riemann–Lebesgue step in
-Blackwell's theorem legitimate without any decay of `charFun μ` at infinity. -/
+Blackwell's theorem legitimate without any decay of `charFun μ` at infinity.
+@isnad1 id=hascompa.0h0v.s3.0a08e734e7f5 from=translated src=- shape=54c8eceb vocab=cd6076e7
+-/
 lemma hasCompactSupport_triangle : HasCompactSupport triangle := by
   refine HasCompactSupport.intro (isCompact_Icc (a := (-2 : ℝ)) (b := 2)) fun x hx => ?_
   by_contra hne
@@ -221,7 +259,9 @@ lemma hasCompactSupport_triangle : HasCompactSupport triangle := by
 
 /-- The kernel is dominated by a multiple of the Cauchy density: `|sin| ≤ |·|`
 near the origin gives the bound `4`, and `|sin| ≤ 1` gives `(πt)^{-2}` away from
-it. This is what makes it integrable. -/
+it. This is what makes it integrable.
+@isnad1 id=le.0h1v.s5.0cfc4c2a29da from=translated src=- shape=1f9e3479 vocab=6579a409
+-/
 lemma sincSq_le (t : ℝ) : sincSq t ≤ 8 * (1 + t ^ 2)⁻¹ := by
   have hpi : (0 : ℝ) < Real.pi := Real.pi_pos
   have hpi2 : (2 : ℝ) ≤ Real.pi := Real.two_le_pi
@@ -265,19 +305,27 @@ lemma sincSq_le (t : ℝ) : sincSq t ≤ 8 * (1 + t ^ 2)⁻¹ := by
           _ = 8 * (1 + t ^ 2)⁻¹ * (Real.pi * t) ^ 2 := by ring
       linarith
 
+/--
+@isnad1 id=integrab.0h0v.s4.51a09e2b5788 from=translated src=- shape=e14394ff vocab=27de2b36
+-/
 lemma integrable_sincSq : Integrable sincSq := by
   refine Integrable.mono' (integrable_inv_one_add_sq.const_mul 8)
     continuous_sincSq.aestronglyMeasurable (Filter.Eventually.of_forall fun t => ?_)
   rw [Real.norm_of_nonneg (sincSq_nonneg t)]
   exact sincSq_le t
 
-/-- Integrability of `𝓕 triangle`, the hypothesis Fourier inversion needs. -/
+/-- Integrability of `𝓕 triangle`, the hypothesis Fourier inversion needs.
+@isnad1 id=integrab.0h0v.s5.48e1fe401654 from=translated src=- shape=7e11132f vocab=5f3904f9
+-/
 lemma integrable_fourier_triangle : Integrable (𝓕 triangle) := by
   have h : (𝓕 triangle) = fun t => ((sincSq t : ℝ) : ℂ) := by
     funext t; rw [ofReal_sincSq]
   rw [h]
   exact integrable_sincSq.ofReal
 
+/--
+@isnad1 id=integrab.0h0v.s5.5fb7114c38d2 from=translated src=- shape=253d5a95 vocab=496e3955
+-/
 lemma integrable_ofReal_sincSq : Integrable (fun t : ℝ => ((sincSq t : ℝ) : ℂ)) :=
   integrable_sincSq.ofReal
 
@@ -289,7 +337,9 @@ is continuity there. Mathlib's continuity lemmas for convolutions
 `BddAbove.continuous_convolution_right_of_integrable`) all require one factor to
 be *continuous*, which the box is not — so the closed form is computed instead.
 The integrand is the indicator of `[-1,1] ∩ [x-1,x+1] = [max(-1,x-1), min(1,x+1)]`,
-whose length is `2 - |x|` when positive. -/
+whose length is `2 - |x|` when positive.
+@isnad1 id=eq.0h1v.s5.1cafdc39b803 from=translated src=- shape=aa0ef347 vocab=49beccb6
+-/
 theorem triangle_eq (x : ℝ) : triangle x = ((max (2 - |x|) 0 : ℝ) : ℂ) := by
   have hpt : ∀ t : ℝ, (ContinuousLinearMap.mul ℂ ℂ) (unitBox t) (unitBox (x - t))
       = Set.indicator (Set.Icc (max (-1) (x - 1)) (min 1 (x + 1))) (fun _ => (1 : ℂ)) t := by
@@ -321,6 +371,9 @@ theorem triangle_eq (x : ℝ) : triangle x = ((max (2 - |x|) 0 : ℝ) : ℂ) := 
   · rw [abs_of_nonpos hx, min_eq_right (by linarith), max_eq_left (by linarith)]
     ring
 
+/--
+@isnad1 id=continuo.0h0v.s4.ac534c6e9a6a from=translated src=- shape=54c8eceb vocab=895e35e0
+-/
 lemma continuous_triangle : Continuous triangle := by
   have h : triangle = fun x => ((max (2 - |x|) 0 : ℝ) : ℂ) := funext triangle_eq
   rw [h]
@@ -331,7 +384,9 @@ compactly supported (`support_triangle_subset`). This is the property that makes
 the Riemann–Lebesgue step of Blackwell's theorem work: the `t`-integral in the
 Parseval atom `integral_comp_sub_eq_integral_charFun` runs over a compact set,
 where `1 - charFun μ` is bounded away from `0` off the origin
-(`charFun_ne_one_of_nonlattice` plus continuity). -/
+(`charFun_ne_one_of_nonlattice` plus continuity).
+@isnad1 id=eq.0h1v.s5.2c04554d164b from=translated src=- shape=e18dbc4a vocab=a688a78e
+-/
 theorem fourier_fourier_triangle (x : ℝ) : 𝓕 (𝓕 triangle) x = triangle (-x) := by
   have h : 𝓕⁻ (𝓕 triangle) (-x) = triangle (-x) :=
     integrable_triangle.fourierInv_fourier_eq integrable_fourier_triangle
@@ -340,7 +395,9 @@ theorem fourier_fourier_triangle (x : ℝ) : 𝓕 (𝓕 triangle) x = triangle (
   simpa using h
 
 /-- The same statement with the kernel written as the real-valued `sincSq`, the
-form `integral_comp_sub_eq_integral_charFun` consumes. -/
+form `integral_comp_sub_eq_integral_charFun` consumes.
+@isnad1 id=eq.0h1v.s5.e7ab290c2a90 from=translated src=- shape=1829fc39 vocab=a895e611
+-/
 theorem fourier_ofReal_sincSq (x : ℝ) :
     𝓕 (fun t : ℝ => ((sincSq t : ℝ) : ℂ)) x = triangle (-x) := by
   have h : (fun t : ℝ => ((sincSq t : ℝ) : ℂ)) = 𝓕 triangle := by
@@ -349,7 +406,9 @@ theorem fourier_ofReal_sincSq (x : ℝ) :
 
 /-- The kernel is bounded below on a neighbourhood of the origin — all that the
 domination step `A-4e` needs, and cheaper than any explicit sinc inequality:
-it follows from continuity and `sincSq 0 = 4`. -/
+it follows from continuity and `sincSq 0 = 4`.
+@isnad1 id=ex.0h0v.s5.1f3a0c0bc60a from=translated src=- shape=cd85028c vocab=ef61473d
+-/
 lemma exists_pos_le_sincSq : ∃ δ > 0, ∀ t ∈ Set.Icc (-δ) δ, 2 ≤ sincSq t := by
   have h : ∀ᶠ t in nhds (0 : ℝ), 2 < sincSq t := by
     refine continuous_sincSq.continuousAt.eventually_const_lt ?_

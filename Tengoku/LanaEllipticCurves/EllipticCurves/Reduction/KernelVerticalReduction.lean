@@ -94,7 +94,9 @@ end KernelKernel
 
 open Classical in
 /-- **Literal vertical.**  If `x₁ = x₂` and `y₁ = negY x₂ y₂` over `K`, then `P + Q = O` by the
-Weierstrass group law, so `redPt (P + Q) = 0`. -/
+Weierstrass group law, so `redPt (P + Q) = 0`.
+@isnad1 id=eq.4h7v.s8.6a773d4636b6 from=translated src=- shape=908b71b0 vocab=fbf41672
+-/
 theorem redPt_add_of_Y_eq (W : WeierstrassCurve K) [HasGoodReduction R W]
     {x₁ y₁ : K} {h₁ : W.toAffine.Nonsingular x₁ y₁}
     {x₂ y₂ : K} {h₂ : W.toAffine.Nonsingular x₂ y₂}
@@ -115,7 +117,9 @@ differ — the single valuation hypothesis being `v (x₁ - x₂) < v (y₁ - y�
 `redPt (P + Q) = 0`.
 
 This is the "reduced points are negatives" secant configuration, whenever the reduced points are
-*not* `2`-torsion (equivalently `v (y₁ - y₂) < 1`, so `ȳ₁ ≠ ȳ₂`). -/
+*not* `2`-torsion (equivalently `v (y₁ - y₂) < 1`, so `ȳ₁ ≠ ȳ₂`).
+@isnad1 id=eq.6h7v.s9.38333059cb4e from=translated src=- shape=2d7862a7 vocab=d3cf4a41
+-/
 theorem redPt_add_of_secant_vertical (W : WeierstrassCurve K) [HasGoodReduction R W]
     {x₁ y₁ : K} {h₁ : W.toAffine.Nonsingular x₁ y₁}
     {x₂ y₂ : K} {h₂ : W.toAffine.Nonsingular x₂ y₂}

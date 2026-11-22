@@ -96,13 +96,17 @@ private lemma cc_formalGroupDen : MvPowerSeries.constantCoeff W.formalGroupDen =
 /-! ### The `invOfUnit` factors are genuine inverses -/
 
 /-- `formalGroupLead · (formalGroupLead)⁻¹ = 1` (the leading cubic coefficient is a unit, with
-constant coefficient `1`). -/
+constant coefficient `1`).
+@isnad1 id=eq.0h2v.s7.b5fcd4bdce4b from=translated src=- shape=16352f41 vocab=0554ff42
+-/
 theorem formalGroupLead_mul_invOfUnit :
     W.formalGroupLead * invOfUnit W.formalGroupLead 1 = 1 :=
   MvPowerSeries.mul_invOfUnit _ 1 (by rw [W.cc_formalGroupLead, Units.val_one])
 
 /-- `formalGroupDen · (formalGroupDen)⁻¹ = 1` (the negation denominator is a unit, with constant
-coefficient `1`). -/
+coefficient `1`).
+@isnad1 id=eq.0h2v.s7.49936ca27d02 from=translated src=- shape=16352f41 vocab=8eb8cebf
+-/
 theorem formalGroupDen_mul_invOfUnit :
     W.formalGroupDen * invOfUnit W.formalGroupDen 1 = 1 :=
   MvPowerSeries.mul_invOfUnit _ 1 (by rw [W.cc_formalGroupDen, Units.val_one])
@@ -113,7 +117,9 @@ theorem formalGroupDen_mul_invOfUnit :
 `φ : MvPowerSeries (Fin 2) R →+* R`, pushing `φ` through the chord construction
 `formalGroupZW = -z₃' · (formalGroupDen)⁻¹`, `z₃' = -B·A⁻¹ - z₁ - z₂`, gives
 
-`φ formalGroupZW = (φ B · φ A⁻¹ + φ z₁ + φ z₂) · φ (formalGroupDen)⁻¹`. -/
+`φ formalGroupZW = (φ B · φ A⁻¹ + φ z₁ + φ z₂) · φ (formalGroupDen)⁻¹`.
+@isnad1 id=eq.0h3v.s9.70c00ec76583 from=translated src=- shape=fbb5d00f vocab=0ba77316
+-/
 theorem ringHom_formalGroupZW (φ : MvPowerSeries (Fin 2) R →+* R) :
     φ W.formalGroupZW =
       (φ W.formalGroupSub * φ (invOfUnit W.formalGroupLead 1) + φ (X 0) + φ (X 1))
@@ -123,13 +129,17 @@ theorem ringHom_formalGroupZW (φ : MvPowerSeries (Fin 2) R →+* R) :
   ring
 
 /-- Under any ring homomorphism `φ`, the image of `(formalGroupLead)⁻¹` is a genuine inverse of
-`φ formalGroupLead`. -/
+`φ formalGroupLead`.
+@isnad1 id=eq.0h3v.s8.0059833bd8b3 from=translated src=- shape=ffdb6042 vocab=49aa0385
+-/
 theorem ringHom_formalGroupLead_mul_inv (φ : MvPowerSeries (Fin 2) R →+* R) :
     φ W.formalGroupLead * φ (invOfUnit W.formalGroupLead 1) = 1 := by
   rw [← map_mul, W.formalGroupLead_mul_invOfUnit, map_one]
 
 /-- Under any ring homomorphism `φ`, the image of `(formalGroupDen)⁻¹` is a genuine inverse of
-`φ formalGroupDen`. -/
+`φ formalGroupDen`.
+@isnad1 id=eq.0h3v.s8.0260c5adb21b from=translated src=- shape=ffdb6042 vocab=36c7ac8f
+-/
 theorem ringHom_formalGroupDen_mul_inv (φ : MvPowerSeries (Fin 2) R →+* R) :
     φ W.formalGroupDen * φ (invOfUnit W.formalGroupDen 1) = 1 := by
   rw [← map_mul, W.formalGroupDen_mul_invOfUnit, map_one]
@@ -150,7 +160,9 @@ omit [IsFractionRing R K] in
 /-- **The formal group law evaluates into `𝔪`.** For `z₁, z₂ ∈ 𝔪`, the numeric value
 `adicEvalMv 𝔪 ![z₁, z₂] (integralModel R W).formalGroupZW` — the local parameter of the formal sum
 `z₁ ⊕ z₂` in `Ê(𝔪)` — lies in the maximal ideal, since `formalGroupZW` has zero constant
-coefficient. -/
+coefficient.
+@isnad1 id=mem.1h5v.s8.e2a32d90d7f6 from=translated src=- shape=9a1df41d vocab=323c00fa
+-/
 theorem adicEvalMv_formalGroupZW_mem (W : WeierstrassCurve K) [IsIntegral R W] {z₁ z₂ : R}
     (ha : ∀ s : Fin 2, ![z₁, z₂] s ∈ (maximalIdeal R).asIdeal) :
     adicEvalMv (maximalIdeal R).asIdeal ha (integralModel R W).formalGroupZW
@@ -185,7 +197,9 @@ noncomputable def wLineOne (W : WeierstrassCurve K) [IsIntegral R W] {z₁ z₂ 
 omit [IsFractionRing R K] in
 /-- **Numeric collinearity at `z₁`.** The line value `w(z₁)` solves the Weierstrass functional
 equation `w = z₁³ + (a₁z₁ + a₂z₁²)w + (a₃ + a₄z₁)w² + a₆w³` with the integral-model coefficients —
-the `adicEvalMv`-image of `formalCubicResidual_root_zero`. -/
+the `adicEvalMv`-image of `formalCubicResidual_root_zero`.
+@isnad1 id=eq.1h5v.s9.c162bcfe0f59 from=translated src=- shape=7a53e504 vocab=08fca958
+-/
 theorem wLineZero_functional_eq (W : WeierstrassCurve K) [IsIntegral R W] {z₁ z₂ : R}
     (ha : ∀ s : Fin 2, ![z₁, z₂] s ∈ (maximalIdeal R).asIdeal) :
     wLineZero R W ha = z₁ ^ 3
@@ -202,7 +216,9 @@ theorem wLineZero_functional_eq (W : WeierstrassCurve K) [IsIntegral R W] {z₁ 
 
 omit [IsFractionRing R K] in
 /-- **Numeric collinearity at `z₂`.** The line value `w(z₂)` solves the Weierstrass functional
-equation with parameter `z₂` — the `adicEvalMv`-image of `formalCubicResidual_root_one`. -/
+equation with parameter `z₂` — the `adicEvalMv`-image of `formalCubicResidual_root_one`.
+@isnad1 id=eq.1h5v.s9.a7ae996a1982 from=translated src=- shape=7f95f050 vocab=5309db05
+-/
 theorem wLineOne_functional_eq (W : WeierstrassCurve K) [IsIntegral R W] {z₁ z₂ : R}
     (ha : ∀ s : Fin 2, ![z₁, z₂] s ∈ (maximalIdeal R).asIdeal) :
     wLineOne R W ha = z₂ ^ 3
@@ -219,7 +235,9 @@ theorem wLineOne_functional_eq (W : WeierstrassCurve K) [IsIntegral R W] {z₁ z
 
 omit [IsFractionRing R K] in
 /-- The line value `w(z₁)` lies in `𝔪`: `formalWDividedDiff · X 0 + formalGroupNu` has zero constant
-coefficient (both summands have positive order). -/
+coefficient (both summands have positive order).
+@isnad1 id=mem.1h5v.s7.474b6df554ec from=translated src=- shape=3ec07408 vocab=d28f459e
+-/
 theorem wLineZero_mem (W : WeierstrassCurve K) [IsIntegral R W] {z₁ z₂ : R}
     (ha : ∀ s : Fin 2, ![z₁, z₂] s ∈ (maximalIdeal R).asIdeal) :
     wLineZero R W ha ∈ (maximalIdeal R).asIdeal := by
@@ -228,7 +246,9 @@ theorem wLineZero_mem (W : WeierstrassCurve K) [IsIntegral R W] {z₁ z₂ : R}
     (integralModel R W).cc_formalGroupNu]
 
 omit [IsFractionRing R K] in
-/-- The line value `w(z₂)` lies in `𝔪`. -/
+/-- The line value `w(z₂)` lies in `𝔪`.
+@isnad1 id=mem.1h5v.s7.443ae83b02b0 from=translated src=- shape=3ec07408 vocab=2afc6c5a
+-/
 theorem wLineOne_mem (W : WeierstrassCurve K) [IsIntegral R W] {z₁ z₂ : R}
     (ha : ∀ s : Fin 2, ![z₁, z₂] s ∈ (maximalIdeal R).asIdeal) :
     wLineOne R W ha ∈ (maximalIdeal R).asIdeal := by
@@ -249,7 +269,9 @@ private theorem wParam_mem (W : WeierstrassCurve K) [IsIntegral R W] {z : R}
 `wLineZero` (the `(z, w)`-plane value of the chord line at `z₁`) and `wParam z₁` solve the numeric
 Weierstrass functional equation with parameter `z₁` and lie in `𝔪`; by uniqueness of the small
 solution (`wFunctionalEq_unique`) they coincide.  This connects the formal chord data of
-`formalGroupZW` to the coordinate expansions `xParam`/`yParam` of the reduction theory. -/
+`formalGroupZW` to the coordinate expansions `xParam`/`yParam` of the reduction theory.
+@isnad1 id=eq.2h5v.s7.c3ba8810f2c9 from=translated src=- shape=7b5fe730 vocab=570eee88
+-/
 theorem wLineZero_eq_wParam (W : WeierstrassCurve K) [IsIntegral R W] {z₁ z₂ : R}
     (ha : ∀ s : Fin 2, ![z₁, z₂] s ∈ (maximalIdeal R).asIdeal)
     (hz₁ : z₁ ∈ (maximalIdeal R).asIdeal) :
@@ -269,7 +291,9 @@ theorem wLineZero_eq_wParam (W : WeierstrassCurve K) [IsIntegral R W] {z₁ z₂
     simpa only [map_add, map_mul, map_pow, integralModel_a₁_eq, integralModel_a₂_eq,
       integralModel_a₃_eq, integralModel_a₄_eq, integralModel_a₆_eq] using h
 
-/-- **The chord line value at `z₂` is the coordinate expansion `wParam z₂`.** -/
+/-- **The chord line value at `z₂` is the coordinate expansion `wParam z₂`.**
+@isnad1 id=eq.2h5v.s7.0d26a4015550 from=translated src=- shape=50b02346 vocab=aec16ad0
+-/
 theorem wLineOne_eq_wParam (W : WeierstrassCurve K) [IsIntegral R W] {z₁ z₂ : R}
     (ha : ∀ s : Fin 2, ![z₁, z₂] s ∈ (maximalIdeal R).asIdeal)
     (hz₂ : z₂ ∈ (maximalIdeal R).asIdeal) :

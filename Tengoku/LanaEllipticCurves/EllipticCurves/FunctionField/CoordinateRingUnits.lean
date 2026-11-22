@@ -52,7 +52,9 @@ is the image `algebraMap F F[W] c` of a scalar `c : F`.
 The norm `N x ∈ F[X]` of a unit is a unit of `F[X]`, hence a nonzero constant with
 `deg (N x) = 0`.  Writing `x = p • 1 + q • Y`, the degree formula
 `deg (N x) = max (2 • deg p) (2 • deg q + 3)` (`degree_norm_smul_basis`) forces `q = 0` and
-`deg p = 0`, so `x = C (p.coeff 0)` is a constant. -/
+`deg p = 0`, so `x = C (p.coeff 0)` is a constant.
+@isnad1 id=ex.1h3v.s8.29c69faf9dab from=translated src=- shape=4159a5ec vocab=458006f5
+-/
 theorem exists_eq_algebraMap_of_isUnit {x : W.CoordinateRing} (hx : IsUnit x) :
     ∃ c : F, x = algebraMap F W.CoordinateRing c := by
   -- The norm to `F[X]` of a unit is a unit of `F[X]`, hence has degree `0`.
@@ -83,7 +85,9 @@ theorem exists_eq_algebraMap_of_isUnit {x : W.CoordinateRing} (hx : IsUnit x) :
     IsScalarTower.algebraMap_apply F F[X] W.CoordinateRing, ← Polynomial.C_eq_algebraMap, ← hp]
 
 /-- **Unit characterisation of `F[W]`.**  An element `x` of the affine coordinate ring is a unit iff
-it is `algebraMap F F[W] c` for a nonzero constant `c : F`. -/
+it is `algebraMap F F[W] c` for a nonzero constant `c : F`.
+@isnad1 id=iff.0h3v.s8.184537cad84b from=translated src=- shape=e585f923 vocab=458006f5
+-/
 theorem isUnit_iff_exists_eq_algebraMap {x : W.CoordinateRing} :
     IsUnit x ↔ ∃ c : F, c ≠ 0 ∧ x = algebraMap F W.CoordinateRing c := by
   constructor

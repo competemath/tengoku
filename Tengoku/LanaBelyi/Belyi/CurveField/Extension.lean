@@ -40,6 +40,9 @@ section Restrict
 
 variable [Algebra.IsIntegral K L]
 
+/--
+@isnad1 id=ne.0h3v.s6.4d39ae549e9c from=translated src=- shape=694d88ca vocab=d5e3ef32
+-/
 theorem comap_ne_top (Q : Place L) : Q.1.comap (algebraMap K L) ≠ ⊤ := by
   intro h
   apply Q.ne_top
@@ -58,11 +61,20 @@ def restrict (Q : Place L) : Place K :=
 
 variable (Q : Place L)
 
+/--
+@isnad1 id=eq.0h3v.s7.8896275c077e from=translated src=- shape=36bf0c16 vocab=99b03dd4
+-/
 theorem restrict_val : (Q.restrict K).1 = Q.1.comap (algebraMap K L) := rfl
 
+/--
+@isnad1 id=iff.0h4v.s7.cb600cb09d04 from=translated src=- shape=3368e13e vocab=47ccd843
+-/
 @[simp]
 theorem mem_restrict_iff {x : K} : x ∈ (Q.restrict K).1 ↔ algebraMap K L x ∈ Q.1 := Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s8.a7a58fe99e9c from=translated src=- shape=cacc3260 vocab=7b837d8b
+-/
 theorem mem_restrict_nonunits_iff {x : K} :
     x ∈ (Q.restrict K).1.nonunits ↔ algebraMap K L x ∈ Q.1.nonunits := by
   rw [ValuationSubring.mem_nonunits_iff_or, ValuationSubring.mem_nonunits_iff_or,
@@ -73,6 +85,9 @@ variable (K) in
 noncomputable def restrictHom : (Q.restrict K).1 →+* Q.1 :=
   ((algebraMap K L).comp (Q.restrict K).1.subtype).codRestrict Q.1 fun x ↦ x.2
 
+/--
+@isnad1 id=eq.0h4v.s10.3f57fc94e19b from=translated src=- shape=44aa787c vocab=c80f4295
+-/
 @[simp]
 theorem coe_restrictHom (a : (Q.restrict K).1) :
     (Q.restrictHom K a : L) = algebraMap K L a := rfl
@@ -95,10 +110,16 @@ variable [CharZero K] [IsCurveField K]
 /-- A (chosen) uniformiser of a place: `ord_P π_P = 1`. -/
 noncomputable def uniformizer (P : Place K) : K := Classical.choose P.exists_ord_eq_one
 
+/--
+@isnad1 id=eq.0h2v.s5.2e5a4aac7521 from=translated src=- shape=b2307c79 vocab=b9eb5044
+-/
 @[simp]
 theorem ord_uniformizer (P : Place K) : P.ord P.uniformizer = 1 :=
   Classical.choose_spec P.exists_ord_eq_one
 
+/--
+@isnad1 id=ne.0h2v.s5.c04f88168e3b from=translated src=- shape=b1b5223d vocab=ff7b1109
+-/
 theorem uniformizer_ne_zero (P : Place K) : P.uniformizer ≠ 0 := by
   intro h
   have := P.ord_uniformizer
@@ -112,10 +133,16 @@ section Ord
 variable [CharZero K] [CharZero L] [IsCurveField K] [IsCurveField L] [Algebra.IsIntegral K L]
 variable (Q : Place L)
 
+/--
+@isnad1 id=iff.0h4v.s7.03567150c7b9 from=translated src=- shape=f5a830c5 vocab=eeeaddfd
+-/
 theorem ord_restrict_pos_iff (x : K) :
     0 < (Q.restrict K).ord x ↔ 0 < Q.ord (algebraMap K L x) := by
   rw [ord_pos_iff, ord_pos_iff, mem_restrict_nonunits_iff, Ne, Ne, map_eq_zero]
 
+/--
+@isnad1 id=iff.1h4v.s7.3a4908425237 from=translated src=- shape=621e0fc5 vocab=bcc819b6
+-/
 theorem ord_restrict_eq_zero_iff {x : K} (hx : x ≠ 0) :
     (Q.restrict K).ord x = 0 ↔ Q.ord (algebraMap K L x) = 0 := by
   rw [ord_eq_zero_iff _ hx, ord_eq_zero_iff _ ((map_ne_zero _).mpr hx), mem_restrict_iff,
@@ -126,18 +153,26 @@ variable (K) in
 noncomputable def ramificationIdx : ℕ :=
   (Q.ord (algebraMap K L (Q.restrict K).uniformizer)).toNat
 
+/--
+@isnad1 id=eq.0h3v.s7.c1546a344b89 from=translated src=- shape=57a0cd3e vocab=dfe65a63
+-/
 theorem ord_algebraMap_uniformizer :
     Q.ord (algebraMap K L (Q.restrict K).uniformizer) = Q.ramificationIdx K := by
   rw [ramificationIdx, Int.toNat_of_nonneg]
   exact ((Q.ord_restrict_pos_iff _).mp (by rw [ord_uniformizer]; exact one_pos)).le
 
+/--
+@isnad1 id=lt.0h3v.s6.361d8e8a32b2 from=translated src=- shape=3b30f09e vocab=cf66af96
+-/
 theorem ramificationIdx_pos : 0 < Q.ramificationIdx K := by
   have := (Q.ord_restrict_pos_iff (Q.restrict K).uniformizer).mp
     (by rw [ord_uniformizer]; exact one_pos)
   rw [ord_algebraMap_uniformizer] at this
   exact_mod_cast this
 
-/-- `ord_Q (f) = e(Q|P) · ord_P (f)` for `f ∈ K`, where `P = Q ∩ K`. -/
+/-- `ord_Q (f) = e(Q|P) · ord_P (f)` for `f ∈ K`, where `P = Q ∩ K`.
+@isnad1 id=eq.0h4v.s7.1897b2c93cd4 from=translated src=- shape=8d590773 vocab=1426dc08
+-/
 theorem ord_algebraMap_eq_mul (x : K) :
     Q.ord (algebraMap K L x) = Q.ramificationIdx K * (Q.restrict K).ord x := by
   rcases eq_or_ne x 0 with rfl | hx
@@ -158,12 +193,17 @@ theorem ord_algebraMap_eq_mul (x : K) :
   ring
 
 omit [CharZero K] [CharZero L] [IsCurveField K] [IsCurveField L] in
+/--
+@isnad1 id=mem.2h5v.s8.a9691d52a407 from=translated src=- shape=55e28e45 vocab=7b837d8b
+-/
 theorem nonunits_subset_of_restrict_eq {P : Place K} (hQ : Q.restrict K = P) {x : K}
     (hx : x ∈ P.1.nonunits) : algebraMap K L x ∈ Q.1.nonunits := by
   subst hQ; exact (mem_restrict_nonunits_iff Q).mp hx
 
 variable (K) in
-/-- The fibre of the restriction map over a place is finite. -/
+/-- The fibre of the restriction map over a place is finite.
+@isnad1 id=finite.0h3v.s6.a12b2c8235d1 from=translated src=- shape=6a7ff708 vocab=f72a544e
+-/
 theorem finite_setOf_restrict_eq (P : Place K) : {Q : Place L | Q.restrict K = P}.Finite := by
   refine (finite_setOf_ord_pos (algebraMap K L P.uniformizer)).subset fun Q hQ ↦ ?_
   have hQ' : Q.restrict K = P := hQ
@@ -172,7 +212,9 @@ theorem finite_setOf_restrict_eq (P : Place K) : {Q : Place L | Q.restrict K = P
 
 omit [IsCurveField L] [CharZero L] in
 variable (L) in
-/-- Every place of `K` is the restriction of a place of `L`. -/
+/-- Every place of `K` is the restriction of a place of `L`.
+@isnad1 id=ex.0h3v.s6.188c9cbc154c from=translated src=- shape=3a02bd2e vocab=67d0af4f
+-/
 theorem exists_restrict_eq (P : Place K) : ∃ Q : Place L, Q.restrict K = P := by
   set π := P.uniformizer
   have hπ0 : π ≠ 0 := P.uniformizer_ne_zero
@@ -218,6 +260,9 @@ variable (K) in
 noncomputable def residueFieldMap : (Q.restrict K).ResidueField →+* Q.ResidueField :=
   IsLocalRing.ResidueField.map (Q.restrictHom K)
 
+/--
+@isnad1 id=eq.0h4v.s11.f795fc3acd6d from=translated src=- shape=be0a9b8b vocab=d821be9c
+-/
 theorem residueFieldMap_residue (a : (Q.restrict K).1) :
     Q.residueFieldMap K ((Q.restrict K).residue a) = Q.residue (Q.restrictHom K a) :=
   IsLocalRing.ResidueField.map_residue _ a
@@ -233,6 +278,9 @@ noncomputable def inertiaDeg : ℕ :=
   letI := Q.residueAlgebra K
   finrank (Q.restrict K).ResidueField Q.ResidueField
 
+/--
+@isnad1 id=eq.0h4v.s11.dc8e1c7137e8 from=translated src=- shape=45bff24e vocab=4dd99ca0
+-/
 theorem algebraMap_residue (a : (Q.restrict K).1) :
     letI := Q.residueAlgebra K
     algebraMap (Q.restrict K).ResidueField Q.ResidueField ((Q.restrict K).residue a) =
@@ -241,19 +289,26 @@ theorem algebraMap_residue (a : (Q.restrict K).1) :
 
 variable [CharZero K] [CharZero L] [IsCurveField K] [IsCurveField L]
 
-/-- `deg Q = f(Q|P) · deg P`. -/
+/-- `deg Q = f(Q|P) · deg P`.
+@isnad1 id=eq.0h3v.s6.5050d3d67687 from=translated src=- shape=c3d5f801 vocab=d45b5fcd
+-/
 theorem deg_eq_inertiaDeg_mul : Q.deg = Q.inertiaDeg K * (Q.restrict K).deg := by
   letI := Q.residueAlgebra K
   rw [deg, deg, inertiaDeg, mul_comm,
     Module.finrank_mul_finrank ℚ (Q.restrict K).ResidueField Q.ResidueField]
 
+/--
+@isnad1 id=lt.0h3v.s6.f2d0fd198de1 from=translated src=- shape=7490d5c3 vocab=a0061fa7
+-/
 theorem inertiaDeg_pos : 0 < Q.inertiaDeg K := by
   have h := Q.deg_eq_inertiaDeg_mul (K := K)
   rcases Nat.eq_zero_or_pos (Q.inertiaDeg K) with h0 | h0
   · rw [h0, zero_mul] at h; exact absurd h Q.deg_pos.ne'
   · exact h0
 
-/-- `f(Q|P) ≤ [L : K]`: lifts of a `κ(P)`-basis of `κ(Q)` are `K`-linearly independent. -/
+/-- `f(Q|P) ≤ [L : K]`: lifts of a `κ(P)`-basis of `κ(Q)` are `K`-linearly independent.
+@isnad1 id=le.0h3v.s7.9bedde454878 from=translated src=- shape=ab66db3e vocab=8eab0749
+-/
 theorem inertiaDeg_le_finrank [FiniteDimensional K L] : Q.inertiaDeg K ≤ finrank K L := by
   classical
   dsimp only [inertiaDeg]
@@ -318,10 +373,15 @@ noncomputable def restrict (y : QbarPoint L) : QbarPoint K :=
 
 variable (y : QbarPoint L)
 
+/--
+@isnad1 id=eq.0h3v.s6.7be96f7324ec from=translated src=- shape=20528478 vocab=ebcf7fdd
+-/
 @[simp]
 theorem restrict_P : (y.restrict K).P = y.P.restrict K := rfl
 
-/-- `f(y|_K) = f(y)` for `f ∈ K` regular at `y|_K`. -/
+/-- `f(y|_K) = f(y)` for `f ∈ K` regular at `y|_K`.
+@isnad1 id=eq.1h4v.s7.b6886bb559c9 from=translated src=- shape=2225897a vocab=1797d9c6
+-/
 theorem eval_restrict (f : K) (hf : f ∈ (y.restrict K).P.1) :
     (y.restrict K).eval f hf = y.eval (algebraMap K L f) hf := by
   change y.σ (y.P.residueFieldMap K ((y.P.restrict K).residue ⟨f, hf⟩)) =
@@ -329,6 +389,9 @@ theorem eval_restrict (f : K) (hf : f ∈ (y.restrict K).P.1) :
   rw [Place.residueFieldMap_residue]
   rfl
 
+/--
+@isnad1 id=le.0h3v.s7.6fb07827bda3 from=translated src=- shape=193732c6 vocab=850ce537
+-/
 theorem fieldOf_restrict_le : (y.restrict K).fieldOf ≤ y.fieldOf := by
   rintro _ ⟨a, rfl⟩
   exact ⟨y.P.residueFieldMap K a, rfl⟩
@@ -336,7 +399,9 @@ theorem fieldOf_restrict_le : (y.restrict K).fieldOf ≤ y.fieldOf := by
 variable [IsCurveField K] [IsCurveField L]
 
 /-- Every algebraic point of `K` lifts to an algebraic point of `L` of degree at most
-`[L : K]` times its degree. -/
+`[L : K]` times its degree.
+@isnad1 id=ex.0h3v.s7.d85e9f442575 from=translated src=- shape=c3e8e74e vocab=32663944
+-/
 theorem exists_restrict_eq [FiniteDimensional K L] (x : QbarPoint K) :
     ∃ y : QbarPoint L, y.restrict K = x ∧ y.deg ≤ finrank K L * x.deg := by
   obtain ⟨P, σ⟩ := x

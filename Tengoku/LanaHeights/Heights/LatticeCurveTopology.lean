@@ -62,34 +62,50 @@ noncomputable def latticeCurvePointOfAffine (τ : ℍ) :
     LatticeCurveAffine τ → LatticeCurvePoint τ :=
   complexWeierstrassPointOfAffine (latticeWeierstrassCurve τ)
 
+/--
+@isnad1 id=eq.0h1v.s7.b6bfc4bff96e from=translated src=- shape=6db7a983 vocab=59205f31
+-/
 @[simp] theorem latticeCurvePointHomeomorph_infinity (τ : ℍ) :
     latticeCurvePointHomeomorph τ (latticeCurvePointInfinity τ) =
       (∞ : OnePoint (LatticeCurveAffine τ)) :=
   complexWeierstrassPointHomeomorph_infinity (latticeWeierstrassCurve τ)
 
+/--
+@isnad1 id=eq.0h2v.s7.2c2f160d6155 from=translated src=- shape=da2d1bc7 vocab=19f1809e
+-/
 @[simp] theorem latticeCurvePointHomeomorph_affine (τ : ℍ)
     (xy : LatticeCurveAffine τ) :
     latticeCurvePointHomeomorph τ (latticeCurvePointOfAffine τ xy) =
       (xy : OnePoint (LatticeCurveAffine τ)) :=
   complexWeierstrassPointHomeomorph_affine (latticeWeierstrassCurve τ) xy
 
+/--
+@isnad1 id=eq.0h2v.s6.cad8ce98b9a0 from=translated src=- shape=8e28d520 vocab=31c49da4
+-/
 @[simp] theorem latticeCurvePointOfAffine_eq_mk (τ : ℍ)
     (xy : LatticeCurveAffine τ) :
     latticeCurvePointOfAffine τ xy =
       WeierstrassCurve.Affine.Point.mk xy.2 :=
   complexWeierstrassPointOfAffine_eq_mk (latticeWeierstrassCurve τ) xy
 
+/--
+@isnad1 id=eq.0h1v.s8.e5b000f2780d from=translated src=- shape=60e6c8de vocab=9cfa7ccb
+-/
 @[simp] theorem latticeCurvePointHomeomorph_symm_infinity (τ : ℍ) :
     (latticeCurvePointHomeomorph τ).symm
         (∞ : OnePoint (LatticeCurveAffine τ)) = latticeCurvePointInfinity τ :=
   complexWeierstrassPointHomeomorph_symm_infinity (latticeWeierstrassCurve τ)
 
-/-- The affine chart is an open embedding. -/
+/-- The affine chart is an open embedding.
+@isnad1 id=isopenem.0h1v.s5.1cca7eca8d13 from=translated src=- shape=ca92e646 vocab=69cc5778
+-/
 theorem isOpenEmbedding_latticeCurvePointOfAffine (τ : ℍ) :
     IsOpenEmbedding (latticeCurvePointOfAffine τ) :=
   isOpenEmbedding_complexWeierstrassPointOfAffine (latticeWeierstrassCurve τ)
 
-/-- The affine equation locus is closed in `ℂ × ℂ`. -/
+/-- The affine equation locus is closed in `ℂ × ℂ`.
+@isnad1 id=isclosed.0h1v.s5.3e0f4f5b6df0 from=translated src=- shape=915faeb8 vocab=7294ac5c
+-/
 theorem isClosed_latticeCurveAffine (τ : ℍ) :
     IsClosed {xy : ℂ × ℂ |
       (latticeWeierstrassCurve τ).toAffine.Equation xy.1 xy.2} :=

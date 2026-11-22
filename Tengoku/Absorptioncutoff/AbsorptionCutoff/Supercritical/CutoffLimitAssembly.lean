@@ -22,7 +22,9 @@ namespace AbsorptionCutoff
 
 /-- The paper's constant-one supercritical window is admissible: the cutoff
 center diverges, the window is positive, and it is negligible relative to the
-center. -/
+center.
+@isnad1 id=iscutoff.3h3v.s5.492966ed1467 from=translated src=- shape=ba11d8a0 vocab=cf5b57f8
+-/
 lemma isCutoffWindow_supercriticalCutoffTime_one
     {A qStar q₀ : ℝ}
     (hA : 1 < A)
@@ -39,7 +41,9 @@ lemma isCutoffWindow_supercriticalCutoffTime_one
   exact Or.inr (tendsto_norm_atTop_atTop.comp hcenter)
 
 /-- The terminal synchronous distance has one inverse-square-root cutoff
-profile constant for every fixed shift. -/
+profile constant for every fixed shift.
+@isnad1 id=ex.13h7v.s9.8bbc021f253f from=translated src=- shape=1f09712e vocab=e725df44
+-/
 theorem
     exists_forall_eventually_sqrt_nat_mul_terminalBlock_distance_le_rpow_add
     {A qStar q₀ b C₂ : ℝ} (q : ℕ → ℝ)
@@ -232,7 +236,9 @@ theorem
       hupperN.le
 
 /-- One centered moment envelope localizes the evolving coordinate at the
-endpoint of every fixed-shift terminal block. -/
+endpoint of every fixed-shift terminal block.
+@isnad1 id=ex.8h5v.s8.48f73437a0ec from=translated src=- shape=40539203 vocab=caf5d352
+-/
 theorem
     exists_forall_eventually_shifted_eval_terminalBlockLength_not_mem_terminalInterval_le
     {A qStar q₀ b : ℝ} (q : ℕ → ℝ)
@@ -388,7 +394,9 @@ theorem
         (N : ℝ) := hlocal
 
 /-- One endpoint-localization constant controls the terminal synchronous pair
-for every fixed shift. -/
+for every fixed shift.
+@isnad1 id=ex.12h7v.s9.54ffc20c2beb from=translated src=- shape=c125c4d4 vocab=2f762690
+-/
 theorem
     exists_forall_eventually_terminalBlock_endpoint_not_mem_prod_le
     {A qStar q₀ b C₂ : ℝ} (q : ℕ → ℝ)
@@ -502,7 +510,9 @@ theorem
         (N : ℝ) := by ring
 
 /-- One-step score smoothing gives one terminal TV profile constant for every
-fixed shift. -/
+fixed shift.
+@isnad1 id=ex.13h7v.s9.75f5b4a3a8cb from=translated src=- shape=0748ccca vocab=adce2217
+-/
 theorem
     exists_forall_eventually_terminalBlock_smoothed_tvDist_le_rpow_add_of_tendsto
     {A qStar q₀ b C₂ : ℝ} (q : ℕ → ℝ)
@@ -766,7 +776,9 @@ theorem
       ring
 
 /-- The evolving scalar law has one upper cutoff profile constant against the
-invariant family for every fixed shift. -/
+invariant family for every fixed shift.
+@isnad1 id=ex.13h7v.s9.8b17197dce70 from=translated src=- shape=40b0cc2a vocab=3cb99698
+-/
 theorem
     exists_forall_eventually_tvDist_cutoff_marginal_invariant_le_rpow_add_of_tendsto
     {A qStar q₀ b C₂ : ℝ} (q : ℕ → ℝ)
@@ -847,7 +859,9 @@ theorem
   exact hsmoothN
 
 /-- One stationary scalar family and one pair of constants carry the upper
-cutoff profile for every fixed shift. -/
+cutoff profile for every fixed shift.
+@isnad1 id=ex.8h5v.s9.dcb1eeab13c5 from=translated src=- shape=ac52c665 vocab=39dbcbb0
+-/
 theorem
     exists_stationary_family_forall_eventually_tvDist_cutoff_marginal_le_rpow_add_of_tendsto
     {A qStar q₀ b : ℝ} (q : ℕ → ℝ)
@@ -907,7 +921,9 @@ theorem
   exact ⟨C, D, ν, hC, hD, hν, hupper⟩
 
 /-- The reconstructed invariant vector family has one successor-time upper
-cutoff profile constant for every fixed shift. -/
+cutoff profile constant for every fixed shift.
+@isnad1 id=ex.8h5v.s10.694812242b90 from=translated src=- shape=3f249ee0 vocab=7d6deef5
+-/
 theorem
     exists_reconstructed_invariant_vector_family_forall_eventually_tvDist_cutoff_succ_le_rpow_add
     {A qStar q₀ b : ℝ}
@@ -977,7 +993,9 @@ theorem
         (supercriticalIntegerCutoffTime A qStar q₀ N c)).trans hscalarN
 
 /-- Shifting the real cutoff parameter down by one removes the successor in
-the vector upper bound once the translated cutoff center is nonnegative. -/
+the vector upper bound once the translated cutoff center is nonnegative.
+@isnad1 id=eventual.3h4v.s6.6a257cbc5d8f from=translated src=- shape=aabed635 vocab=f8a70633
+-/
 lemma
     eventually_supercriticalIntegerCutoffTime_sub_one_add_one_eq
     {A qStar q₀ : ℝ}
@@ -1013,7 +1031,9 @@ lemma
       ring
 
 /-- The reconstructed invariant vector family has one upper cutoff profile
-constant at the integer cutoff time itself for every fixed shift. -/
+constant at the integer cutoff time itself for every fixed shift.
+@isnad1 id=ex.8h5v.s10.db4ebcd92f8d from=translated src=- shape=aa4e78f9 vocab=7d6deef5
+-/
 theorem
     exists_reconstructed_invariant_vector_family_forall_eventually_tvDist_cutoff_le_rpow_add
     {A qStar q₀ b : ℝ}
@@ -1086,7 +1106,9 @@ theorem
       field_simp [hμ.1.ne']
 
 /-- Two eventually invariant scalar probability families supported on
-`[0,1]` and carrying no mass at the origin are eventually equal. -/
+`[0,1]` and carrying no mass at the origin are eventually equal.
+@isnad1 id=eventual.3h3v.s8.628a2f074e6f from=translated src=- shape=b80654ce vocab=50eca4bc
+-/
 lemma eventually_eq_of_invariant_Kchain_family_apply_singleton_zero
     {A : ℝ} (ν ρ : ℕ → ProbabilityMeasure ℝ)
     (hA : 0 < A)
@@ -1121,7 +1143,9 @@ lemma eventually_eq_of_invariant_Kchain_family_apply_singleton_zero
   exact hparts
 
 /-- One reconstructed invariant vector family carries both fixed-shift
-cutoff profiles, with every constant selected before the shift. -/
+cutoff profiles, with every constant selected before the shift.
+@isnad1 id=ex.8h5v.s10.13371f6c097d from=translated src=- shape=0c5b8ee0 vocab=5624ef0c
+-/
 theorem
     exists_reconstructed_invariant_vector_family_forall_eventually_two_sided_tvDist_cutoff_profile
     {A qStar q₀ b : ℝ}
@@ -1212,7 +1236,9 @@ theorem
       hνupper, hvectorUpper, hlowerUpper, hupper⟩
 
 /-- The two-sided eventual profile gives fixed-shift inner liminf and limsup
-bounds against the same reconstructed invariant family. -/
+bounds against the same reconstructed invariant family.
+@isnad1 id=ex.8h5v.s10.0276fe8b6e8a from=translated src=- shape=16f2e7c9 vocab=98698c59
+-/
 theorem
     exists_reconstructed_invariant_vector_family_forall_liminf_limsup_tvDist_cutoff_profile
     {A qStar q₀ b : ℝ}
@@ -1309,7 +1335,9 @@ theorem
       hν, hvector, hlowerLimit, hupperLimit⟩
 
 /-- The inner cutoff profiles converge to one on the early side and zero on
-the late side of the cutoff window. -/
+the late side of the cutoff window.
+@isnad1 id=ex.8h5v.s10.c67947d9f5bc from=translated src=- shape=ecf33ad2 vocab=62ef7244
+-/
 theorem
     exists_reconstructed_invariant_vector_family_tendsto_outer_tvDist_cutoff_profile
     {A qStar q₀ b : ℝ}
@@ -1441,7 +1469,9 @@ theorem
       hν, hvector, hlowerOuter, hupperOuter⟩
 
 /-- The reconstructed invariant vector family exhibits total-variation
-cutoff at the supercritical center with constant window one. -/
+cutoff at the supercritical center with constant window one.
+@isnad1 id=ex.8h5v.s10.4a3b6af35f81 from=translated src=- shape=a2462f49 vocab=574b6316
+-/
 theorem
     exists_reconstructed_invariant_vector_family_hasCutoff
     {A qStar q₀ b : ℝ}
@@ -1490,7 +1520,9 @@ theorem
     mul_one, sub_eq_add_neg] using And.intro hearly hlate
 
 /-- A vector whose coordinates lie in `[-1,1]` has normalized squared radius
-at most one. -/
+at most one.
+@isnad1 id=le.1h2v.s5.4b9d90081102 from=translated src=- shape=519f5f03 vocab=c7693f21
+-/
 lemma radiusSq_le_one_of_forall_mem_Icc
     {N : ℕ} (x : Fin N → ℝ)
     (hx : ∀ i, x i ∈ Set.Icc (-1 : ℝ) 1) :
@@ -1514,7 +1546,9 @@ lemma radiusSq_le_one_of_forall_mem_Icc
     _ = 1 := inv_mul_cancel₀ (Nat.cast_ne_zero.mpr hN)
 
 /-- Radius convergence to a positive limit and an eventual coordinate-box
-bound imply the eventual scalar state-space hypothesis. -/
+bound imply the eventual scalar state-space hypothesis.
+@isnad1 id=eventual.3h2v.s6.a126e81d3cfd from=translated src=- shape=3418ff98 vocab=680fdcc1
+-/
 lemma eventually_radiusSq_mem_Ioc_of_tendsto_of_forall_mem_Icc
     {q₀ : ℝ} (x : (N : ℕ) → Fin N → ℝ)
     (hq₀ : 0 < q₀)
@@ -1534,7 +1568,9 @@ lemma eventually_radiusSq_mem_Ioc_of_tendsto_of_forall_mem_Icc
   exact ⟨hpositiveN, radiusSq_le_one_of_forall_mem_Icc (x N) hboxN⟩
 
 /-- Under the manuscript's coordinate-box and radius-convergence assumptions,
-the vector chain has supercritical total-variation cutoff with window one. -/
+the vector chain has supercritical total-variation cutoff with window one.
+@isnad1 id=ex.8h5v.s10.b25ab7359770 from=translated src=- shape=b4235838 vocab=c93f3f15
+-/
 theorem
     exists_reconstructed_invariant_vector_family_hasCutoff_of_forall_mem_Icc
     {A qStar q₀ b : ℝ}
@@ -1585,7 +1621,9 @@ theorem
 /-- Under the manuscript's coordinate-box and radius-convergence assumptions,
 the vector chain has a unique nonzero invariant probability in every sufficiently
 large dimension and has supercritical total-variation cutoff with window one
-against that family. -/
+against that family.
+@isnad1 id=ex.7h4v.s9.5411cdc20532 from=translated src=- shape=c2e1aef6 vocab=dc143b3f
+-/
 theorem
     exists_unique_nonzero_invariant_vector_family_cutoff_of_forall_mem_Icc
     {A qStar q₀ : ℝ}
@@ -1637,7 +1675,9 @@ theorem
   · simpa [π] using hcutoff
 
 /-- One origin-free invariant scalar family carries both fixed-shift cutoff
-profiles, with every constant selected before the shift. -/
+profiles, with every constant selected before the shift.
+@isnad1 id=ex.8h5v.s9.75fb405d0e75 from=translated src=- shape=97842995 vocab=2b5b8351
+-/
 theorem
     exists_stationary_family_forall_eventually_two_sided_tvDist_cutoff_profile
     {A qStar q₀ b : ℝ} (q : ℕ → ℝ)
@@ -1720,7 +1760,9 @@ theorem
       hCupper, hDlower, hDupper, hνupper, hlowerUpper, hupper⟩
 
 /-- The scalar inner cutoff profiles converge to one on the early side and
-zero on the late side of the cutoff window. -/
+zero on the late side of the cutoff window.
+@isnad1 id=ex.8h5v.s9.0cc4e9f18048 from=translated src=- shape=1255202f vocab=47d64df2
+-/
 theorem
     exists_stationary_family_tendsto_outer_tvDist_cutoff_profile
     {A qStar q₀ b : ℝ} (q : ℕ → ℝ)
@@ -1879,7 +1921,9 @@ theorem
       hν, hlowerOuter, hupperOuter⟩
 
 /-- The origin-free invariant scalar family exhibits total-variation cutoff
-at the supercritical center with constant window one. -/
+at the supercritical center with constant window one.
+@isnad1 id=ex.8h5v.s8.94198c319bd7 from=translated src=- shape=e1bf217e vocab=d73ff023
+-/
 theorem
     exists_stationary_family_hasCutoff
     {A qStar q₀ b : ℝ} (q : ℕ → ℝ)
@@ -1920,7 +1964,9 @@ theorem
 
 /-- Under the manuscript's coordinate-box and radius-convergence assumptions,
 the scalar squared-radius chain has supercritical total-variation cutoff with
-window one. -/
+window one.
+@isnad1 id=ex.8h5v.s8.dbf9e07c8c51 from=translated src=- shape=081cf958 vocab=74625f44
+-/
 theorem
     exists_stationary_family_hasCutoff_of_forall_mem_Icc
     {A qStar q₀ b : ℝ}
@@ -1969,7 +2015,9 @@ the scalar squared-radius chain has a unique origin-free invariant law in every
 sufficiently large dimension, and cutoff relative to those laws. This is the
 paper-facing form of `exists_stationary_family_hasCutoff_of_forall_mem_Icc`;
 the latter additionally records support and variance estimates used in its
-proof. -/
+proof.
+@isnad1 id=ex.7h4v.s8.d24afb2c1b87 from=translated src=- shape=8f978594 vocab=c5fb77e2
+-/
 theorem
     exists_eventually_unique_nonzero_invariant_family_hasCutoff_of_forall_mem_Icc
     {A qStar q₀ : ℝ}
@@ -2012,7 +2060,9 @@ theorem
 
 /-- Paper-facing scalar cutoff theorem. In every sufficiently large dimension,
 `ν N` is characterized as the unique probability law that is both nonzero and
-invariant for `Kchain A N`; cutoff holds relative to this same family. -/
+invariant for `Kchain A N`; cutoff holds relative to this same family.
+@isnad1 id=ex.7h4v.s8.29366e78fed9 from=translated src=- shape=68f540b1 vocab=c5fb77e2
+-/
 theorem
     exists_unique_nonzero_invariant_family_hasCutoff_of_forall_mem_Icc
     {A qStar q₀ : ℝ}

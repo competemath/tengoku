@@ -93,7 +93,9 @@ structure ArchimedeanPeriodData
 archimedean certificate at every infinite place. The fundamental-domain
 condition follows from modular invariance. The later algebraic-realization
 theorem uses same-`j` classification; no integration theorem is hidden in this
-reduction. -/
+reduction.
+@isnad1 id=nonempty.1h2v.s4.7b2d82e56c79 from=translated src=- shape=01451786 vocab=ab5f39e6
+-/
 theorem nonempty_archimedeanPeriodData_of_modularJ_surjective
     {K : Type*} [Field K] [NumberField K]
     (W : WeierstrassCurve K) [W.IsElliptic]
@@ -106,7 +108,9 @@ theorem nonempty_archimedeanPeriodData_of_modularJ_surjective
 /-- The minimal archimedean certificate exists for every elliptic Weierstrass
 curve over a number field. This uses modular-`j` surjectivity; algebraic
 realization over `ℂ` is proved separately, while analytic integration is not
-claimed. -/
+claimed.
+@isnad1 id=nonempty.0h2v.s4.5d027a3a2369 from=translated src=- shape=c320fd9f vocab=c4a9cea5
+-/
 theorem nonempty_archimedeanPeriodData
     {K : Type*} [Field K] [NumberField K]
     (W : WeierstrassCurve K) [W.IsElliptic] :
@@ -144,7 +148,9 @@ structure ReducedPrincipalIdealData
       FractionalIdeal.coeIdeal denominator
 
 /-- An equation integral over the global ring of integers is integral at
-every height-one prime in the valuation sense used by the certificates. -/
+every height-one prime in the valuation sense used by the certificates.
+@isnad1 id=isintegr.1h3v.s5.3eb8d31fa9b3 from=translated src=- shape=f4cb98fb vocab=eb721350
+-/
 theorem integralAt_of_isIntegral
     {K : Type*} [Field K] [NumberField K]
     (v : HeightOneSpectrum (𝓞 K)) {W : WeierstrassCurve K}
@@ -168,7 +174,9 @@ theorem integralAt_of_isIntegral
 For a nonzero `x`, first write `x = n / d`. The sum of the principal ideals
 `(n)` and `(d)` is their ideal-theoretic gcd. Cancelling it from both ideals
 produces a coprime numerator and denominator. At zero we use the normalization
-specified by `ReducedPrincipalIdealData`: numerator `⊥` and denominator `⊤`. -/
+specified by `ReducedPrincipalIdealData`: numerator `⊥` and denominator `⊤`.
+@isnad1 id=nonempty.0h2v.s4.2a044c00e97b from=translated src=- shape=fbe8d132 vocab=63fd8fcd
+-/
 theorem exists_reducedPrincipalIdealData
     (K : Type*) [Field K] [NumberField K] (x : K) :
     Nonempty (ReducedPrincipalIdealData K x) := by
@@ -244,7 +252,9 @@ noncomputable def reducedPrincipalIdealData
 
 This is the elementary polynomial part of the finite-place argument: all
 coefficients occurring in `c₄` have valuation at most one, and a valuation is
-nonarchimedean. -/
+nonarchimedean.
+@isnad1 id=le.1h3v.s7.94a09385819f from=translated src=- shape=8178e058 vocab=5acb054f
+-/
 theorem IsIntegralAt.valuation_c₄_le_one
     {K : Type*} [Field K] [NumberField K]
     {v : HeightOneSpectrum (𝓞 K)} {W : WeierstrassCurve K}
@@ -278,7 +288,9 @@ theorem IsIntegralAt.valuation_c₄_le_one
 nonnegative additive order: it is `exp (-n)` for some natural number `n`.
 
 This is the elementary value-group conversion needed to record the
-nonnegative discriminant order of an integral local equation. -/
+nonnegative discriminant order of an integral local equation.
+@isnad1 id=ex.2h1v.s6.1c681382445e from=translated src=- shape=c2ec9c6c vocab=b4bfd08e
+-/
 lemma exists_eq_exp_neg_nat
     {x : WithZero (Multiplicative ℤ)} (hx : x ≠ 0) (h : x ≤ 1) :
     ∃ n : ℕ, x = WithZero.exp (-(n : ℤ)) := by
@@ -290,7 +302,9 @@ lemma exists_eq_exp_neg_nat
   simp [hx]
 
 /-- If a chosen localization denominator of `x` divides `D`, then
-multiplying `x` by `D` gives an algebraic integer. -/
+multiplying `x` by `D` gives an algebraic integer.
+@isnad1 id=ex.2h5v.s9.45e23ab1925f from=translated src=- shape=1aa0c85a vocab=a648dc00
+-/
 lemma exists_integer_mul_of_dvd
     {K : Type*} [Field K] [NumberField K]
     (x : K) (n : 𝓞 K) (d : (𝓞 K)⁰) (D : 𝓞 K)
@@ -307,7 +321,9 @@ after a single scaling change.
 
 Choose a localization denominator for each of the five coefficients and use
 their product as a common denominator. Its powers clear the weighted
-denominators of `a₁`, `a₂`, `a₃`, `a₄`, and `a₆`. -/
+denominators of `a₁`, `a₂`, `a₃`, `a₄`, and `a₆`.
+@isnad1 id=ex.0h2v.s5.a9bce98a6efd from=translated src=- shape=7c3629e2 vocab=882a0c68
+-/
 theorem exists_integralModel_change
     {K : Type*} [Field K] [NumberField K] (W : WeierstrassCurve K) :
     ∃ C : WeierstrassCurve.VariableChange K,
@@ -353,7 +369,9 @@ theorem exists_integralModel_change
   · exact exists_integer_mul_of_dvd W.a₆ n6 d6 (d ^ 6) h6
       (hd6.trans (dvd_pow_self d (by omega)))
 
-/-- Compatibility specialization of `exists_integralModel_change` to `ℚ`. -/
+/-- Compatibility specialization of `exists_integralModel_change` to `ℚ`.
+@isnad1 id=ex.0h1v.s5.467f50e6f93b from=translated src=- shape=252d4ae1 vocab=fc158edb
+-/
 theorem exists_integralModel_change_rat (W : WeierstrassCurve ℚ) :
     ∃ C : WeierstrassCurve.VariableChange ℚ,
       WeierstrassCurve.IsIntegral (𝓞 ℚ) (C • W) :=
@@ -364,7 +382,9 @@ theorem exists_integralModel_change_rat (W : WeierstrassCurve ℚ) :
 The proof applies mathlib's DVR minimal-model theorem to the valuation subring
 of the prime valuation. It then transfers integrality and discriminant
 maximality back to the repository's normalized prime valuation. This theorem
-is local: it does not assemble the resulting exponents into an ideal. -/
+is local: it does not assemble the resulting exponents into an ideal.
+@isnad1 id=nonempty.0h3v.s5.424bbf94fdeb from=translated src=- shape=c7a66e13 vocab=5b0c86bf
+-/
 theorem exists_localMinimalDiscriminantExponent
     {K : Type*} [Field K] [NumberField K]
     (v : HeightOneSpectrum (𝓞 K)) (W : WeierstrassCurve K) [W.IsElliptic] :
@@ -502,7 +522,9 @@ noncomputable def localMinimalDiscriminantCertificate
 
 /-- The multiplicity of a prime in a finite product of powers of distinct
 height-one primes is the selected exponent, provided the finite set contains
-the support of the exponent function. -/
+the support of the exponent function.
+@isnad1 id=eq.1h4v.s7.e148a83936b7 from=translated src=- shape=eae9e2ff vocab=b5eed0f4
+-/
 theorem multiplicity_finset_product
     {R : Type*} [CommRing R] [IsDedekindDomain R]
     (f : HeightOneSpectrum R → ℕ) (S : Finset (HeightOneSpectrum R))
@@ -542,7 +564,9 @@ theorem multiplicity_finset_product
     · exact fun h => (h hvS).elim
 
 /-- Any family of nonnegative prime exponents bounded by the multiplicities of
-a fixed nonzero ideal is realized by a nonzero integral ideal. -/
+a fixed nonzero ideal is realized by a nonzero integral ideal.
+@isnad1 id=ex.2h3v.s7.4270e803fd70 from=translated src=- shape=698cbdce vocab=8bf88931
+-/
 theorem exists_ideal_with_multiplicities_of_le
     {R : Type*} [CommRing R] [IsDedekindDomain R]
     (f : HeightOneSpectrum R → ℕ) (J : Ideal R) (hJ : J ≠ ⊥)
@@ -581,7 +605,9 @@ minimal-discriminant data.
 Choose a local minimal exponent at every finite prime. A single globally
 integral scaling of the original equation bounds all these exponents by the
 prime multiplicities of its nonzero discriminant ideal. The bounded-exponent
-assembly theorem then produces the required nonzero ideal. -/
+assembly theorem then produces the required nonzero ideal.
+@isnad1 id=nonempty.0h2v.s4.7db38bbf91ff from=translated src=- shape=c320fd9f vocab=6de9741a
+-/
 theorem nonempty_globalMinimalDiscriminantData
     {K : Type*} [Field K] [NumberField K]
     (W : WeierstrassCurve K) [W.IsElliptic] :
@@ -632,7 +658,9 @@ noncomputable def globalMinimalDiscriminantData
     GlobalMinimalDiscriminantData K W :=
   Classical.choice (nonempty_globalMinimalDiscriminantData W)
 
-/-- Compatibility specialization of global assembly to `ℚ`. -/
+/-- Compatibility specialization of global assembly to `ℚ`.
+@isnad1 id=nonempty.0h1v.s3.4afa240b3b7b from=translated src=- shape=404fc68e vocab=a6379f53
+-/
 theorem nonempty_globalMinimalDiscriminantData_rat
     (W : WeierstrassCurve ℚ) [W.IsElliptic] :
     Nonempty (GlobalMinimalDiscriminantData ℚ W) :=
@@ -649,7 +677,9 @@ discriminant exponent.
 
 For the integral equation supplied by the certificate,
 `j = Δ⁻¹ c₄³`; the preceding lemma bounds the `c₄` factor by one, while
-the certificate identifies the discriminant valuation with `exp (-n)`. -/
+the certificate identifies the discriminant valuation with `exp (-n)`.
+@isnad1 id=le.0h5v.s7.949fb673a08b from=translated src=- shape=f6266005 vocab=3ccb2587
+-/
 theorem IsLocalMinimalDiscriminantExponent.valuation_j_le_exp
     {K : Type*} [Field K] [NumberField K]
     {v : HeightOneSpectrum (𝓞 K)} {W : WeierstrassCurve K}

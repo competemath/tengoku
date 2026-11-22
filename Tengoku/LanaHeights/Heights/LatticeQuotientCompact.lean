@@ -25,7 +25,9 @@ noncomputable section
 namespace Heights
 
 /-- The range of the projection from `ℂ` to its quotient by the period lattice
-is compact. -/
+is compact.
+@isnad1 id=iscompac.0h1v.s5.f680fb56b3a5 from=translated src=- shape=c4ebaee7 vocab=ecc973a7
+-/
 theorem isCompact_range_latticeQuotientMk (τ : ℍ) :
     IsCompact (Set.range (latticeQuotientMk τ)) := by
   apply IsZLattice.isCompact_range_of_periodic
@@ -36,7 +38,9 @@ theorem isCompact_range_latticeQuotientMk (τ : ℍ) :
   rw [QuotientAddGroup.eq_iff_sub_mem]
   simpa using hw
 
-/-- The whole lattice quotient is compact. -/
+/-- The whole lattice quotient is compact.
+@isnad1 id=iscompac.0h1v.s5.90b0ca161988 from=translated src=- shape=2517b0e8 vocab=eaaf7a4a
+-/
 theorem isCompact_univ_latticeQuotient (τ : ℍ) :
     IsCompact (Set.univ : Set (LatticeQuotient τ)) := by
   rw [← (QuotientAddGroup.mk'_surjective

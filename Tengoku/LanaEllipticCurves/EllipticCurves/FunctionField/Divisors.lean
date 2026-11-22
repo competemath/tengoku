@@ -85,14 +85,23 @@ convention `ord v 0 = 0`. -/
 noncomputable def ord (f : W.FunctionField) : ℤ :=
   FractionalIdeal.count W.FunctionField v (spanSingleton W.CoordinateRing⁰ f)
 
+/--
+@isnad1 id=eq.0h3v.s8.31d27bd0d7cc from=translated src=- shape=a16d5d88 vocab=15c42343
+-/
 @[simp]
 lemma ord_zero : ord v (0 : W.FunctionField) = 0 := by
   rw [ord, spanSingleton_zero, count_zero]
 
+/--
+@isnad1 id=eq.0h3v.s8.495a202fc5a1 from=translated src=- shape=a16d5d88 vocab=15c42343
+-/
 @[simp]
 lemma ord_one : ord v (1 : W.FunctionField) = 0 := by
   rw [ord, spanSingleton_one, count_one]
 
+/--
+@isnad1 id=eq.2h5v.s9.5ec64ef1b43d from=translated src=- shape=bef0de76 vocab=2d7dfaf6
+-/
 lemma ord_mul {f g : W.FunctionField} (hf : f ≠ 0) (hg : g ≠ 0) :
     ord v (f * g) = ord v f + ord v g := by
   have hf' : spanSingleton W.CoordinateRing⁰ f ≠ 0 := by
@@ -101,17 +110,29 @@ lemma ord_mul {f g : W.FunctionField} (hf : f ≠ 0) (hg : g ≠ 0) :
     rwa [ne_eq, spanSingleton_eq_zero_iff]
   rw [ord, ord, ord, ← spanSingleton_mul_spanSingleton, count_mul _ _ hf' hg']
 
+/--
+@isnad1 id=eq.0h4v.s7.74e7ceabc200 from=translated src=- shape=b57334de vocab=db75a132
+-/
 @[simp]
 lemma ord_inv (f : W.FunctionField) : ord v f⁻¹ = -ord v f := by
   rw [ord, ord, ← spanSingleton_inv, count_inv]
 
+/--
+@isnad1 id=eq.2h5v.s9.8aa8b5b32c16 from=translated src=- shape=bef0de76 vocab=94cbe014
+-/
 lemma ord_div {f g : W.FunctionField} (hf : f ≠ 0) (hg : g ≠ 0) :
     ord v (f / g) = ord v f - ord v g := by
   rw [div_eq_mul_inv, ord_mul v hf (inv_ne_zero hg), ord_inv, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.0h5v.s8.22b1a21434b9 from=translated src=- shape=147a1bcb vocab=428abbb0
+-/
 lemma ord_pow (f : W.FunctionField) (n : ℕ) : ord v (f ^ n) = n * ord v f := by
   rw [ord, ord, ← spanSingleton_pow, count_pow]
 
+/--
+@isnad1 id=eq.0h5v.s8.dde2f9b99baa from=translated src=- shape=5cc2efb7 vocab=fcdfabe6
+-/
 lemma ord_zpow (f : W.FunctionField) (n : ℤ) : ord v (f ^ n) = n * ord v f := by
   cases n with
   | ofNat k =>
@@ -121,7 +142,9 @@ lemma ord_zpow (f : W.FunctionField) (n : ℤ) : ord v (f ^ n) = n * ord v f := 
     push_cast; ring
 
 /-- The order-of-vanishing function `v ↦ ord v f` has finite support: a rational function has
-zeros and poles at only finitely many closed points. -/
+zeros and poles at only finitely many closed points.
+@isnad1 id=finite.0h3v.s7.0bdb5db61e4c from=translated src=- shape=7bdd28a5 vocab=531eb3c3
+-/
 lemma ord_finite (f : W.FunctionField) :
     (Function.support fun v : HeightOneSpectrum W.CoordinateRing => ord v f).Finite :=
   Filter.eventually_cofinite.mp (finite_factors (spanSingleton W.CoordinateRing⁰ f))
@@ -132,27 +155,45 @@ closed point `v` to the order of vanishing `ord v f`. -/
 noncomputable def divisor (f : W.FunctionField) : HeightOneSpectrum W.CoordinateRing →₀ ℤ :=
   Finsupp.ofSupportFinite (fun v => ord v f) (ord_finite f)
 
+/--
+@isnad1 id=eq.0h4v.s7.628b3ab84613 from=translated src=- shape=29c83b54 vocab=cb33d7b5
+-/
 @[simp]
 lemma divisor_apply (f : W.FunctionField) (v : HeightOneSpectrum W.CoordinateRing) :
     divisor W f v = ord v f :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.4dbbc1581388 from=translated src=- shape=458049ec vocab=b003a167
+-/
 @[simp]
 lemma divisor_zero : divisor W (0 : W.FunctionField) = 0 := by
   ext v; simp
 
+/--
+@isnad1 id=eq.0h2v.s8.227c63768b5d from=translated src=- shape=458049ec vocab=b003a167
+-/
 @[simp]
 lemma divisor_one : divisor W (1 : W.FunctionField) = 0 := by
   ext v; simp
 
+/--
+@isnad1 id=eq.2h4v.s10.fca7b5abafa8 from=translated src=- shape=56db10bb vocab=f0911061
+-/
 lemma divisor_mul {f g : W.FunctionField} (hf : f ≠ 0) (hg : g ≠ 0) :
     divisor W (f * g) = divisor W f + divisor W g := by
   ext v; simp [ord_mul v hf hg]
 
+/--
+@isnad1 id=eq.0h3v.s8.5a5e76f13442 from=translated src=- shape=e8f539b4 vocab=7a9a6ae8
+-/
 @[simp]
 lemma divisor_inv (f : W.FunctionField) : divisor W f⁻¹ = -divisor W f := by
   ext v; simp
 
+/--
+@isnad1 id=eq.2h4v.s10.6da14ab7c498 from=translated src=- shape=56db10bb vocab=e86084d4
+-/
 lemma divisor_div {f g : W.FunctionField} (hf : f ≠ 0) (hg : g ≠ 0) :
     divisor W (f / g) = divisor W f - divisor W g := by
   ext v; simp [ord_div v hf hg, sub_eq_add_neg]

@@ -48,7 +48,9 @@ noncomputable abbrev tensorRightAlgebra (M : Type u) [CommRing M] [Algebra k M] 
   (Algebra.TensorProduct.map (AlgHom.id k M) (IsScalarTower.toAlgHom k R B₀)).toRingHom.toAlgebra
 
 attribute [local instance] Algebra.TensorProduct.rightAlgebra in
-/-- `M ⊗[k] B₀` is the base change of the `R`-algebra `B₀` along `R → M ⊗[k] R`. -/
+/-- `M ⊗[k] B₀` is the base change of the `R`-algebra `B₀` along `R → M ⊗[k] R`.
+@isnad1 id=ispushou.0h4v.s9.d520b59ff492 from=translated src=- shape=0851383c vocab=9d9c35a2
+-/
 theorem isPushout_tensorRight (M : Type u) [CommRing M] [Algebra k M] (B₀ : Type u)
     [CommRing B₀] [Algebra k B₀] [Algebra R B₀] [IsScalarTower k R B₀] :
     letI := tensorRightAlgebra k R M B₀
@@ -82,7 +84,9 @@ noncomputable def tensorRightEquiv (M : Type u) [CommRing M] [Algebra k M] (B₀
   haveI := isPushout_tensorRight (k := k) (R := R) M B₀
   Algebra.IsPushout.equiv R (M ⊗[k] R) B₀ (M ⊗[k] B₀)
 
-/-- The constant family `M ⊗[k] B₀` is étale over `M ⊗[k] R` if `B₀` is étale over `R`. -/
+/-- The constant family `M ⊗[k] B₀` is étale over `M ⊗[k] R` if `B₀` is étale over `R`.
+@isnad1 id=etale.0h4v.s7.ff35dac7fa03 from=translated src=- shape=a2f3abce vocab=499ee718
+-/
 theorem etale_tensorRight (M : Type u) [CommRing M] [Algebra k M] (B₀ : Type u)
     [CommRing B₀] [Algebra k B₀] [Algebra R B₀] [IsScalarTower k R B₀] [Algebra.Etale R B₀] :
     letI := tensorRightAlgebra k R M B₀
@@ -90,7 +94,9 @@ theorem etale_tensorRight (M : Type u) [CommRing M] [Algebra k M] (B₀ : Type u
   letI := tensorRightAlgebra k R M B₀
   .of_equiv (tensorRightEquiv M B₀)
 
-/-- The constant family `M ⊗[k] B₀` is finite over `M ⊗[k] R` if `B₀` is finite over `R`. -/
+/-- The constant family `M ⊗[k] B₀` is finite over `M ⊗[k] R` if `B₀` is finite over `R`.
+@isnad1 id=finite.0h4v.s8.f02b7b4c1905 from=translated src=- shape=a2f3abce vocab=187dcf08
+-/
 theorem finite_tensorRight (M : Type u) [CommRing M] [Algebra k M] (B₀ : Type u)
     [CommRing B₀] [Algebra k B₀] [Algebra R B₀] [IsScalarTower k R B₀] [Module.Finite R B₀] :
     letI := tensorRightAlgebra k R M B₀
@@ -106,7 +112,9 @@ noncomputable abbrev evalTensor (s : A →ₐ[k] k) : A ⊗[k] R →ₐ[k] R :=
 attribute [local instance] Algebra.TensorProduct.rightAlgebra in
 /-- Let `s` be a `k`-point of `A`, `B` an `A ⊗[k] R`-algebra and `B₀ := R ⊗[A ⊗[k] R] B` its fibre
 at `s` (with `R` an `A ⊗[k] R`-algebra via `evalTensor R s`). Then the base change of `B` along
-`A → k → M` is the constant family `M ⊗[k] B₀`, via `b ↦ 1 ⊗ (1 ⊗ b)`. -/
+`A → k → M` is the constant family `M ⊗[k] B₀`, via `b ↦ 1 ⊗ (1 ⊗ b)`.
+@isnad1 id=isbasech.0h6v.s14.52e6332fa93f from=translated src=- shape=2cd1bff3 vocab=7aacd086
+-/
 theorem isBaseChangeAlong_fibre (s : A →ₐ[k] k) (M : Type u) [CommRing M] [Algebra k M]
     (B : Type u) [CommRing B] [Algebra (A ⊗[k] R) B] :
     letI := (evalTensor R s).toRingHom.toAlgebra
@@ -161,7 +169,9 @@ theorem isBaseChangeAlong_fibre (s : A →ₐ[k] k) (M : Type u) [CommRing M] [A
   exact (Algebra.IsPushout.comp_iff (A ⊗[k] R) R B B₀ (T := M ⊗[k] R) (T' := M ⊗[k] B₀)).mpr H
 
 /-- The base change of the constant family `A ⊗[k] B₀` along `φ : A → L` is the constant family
-`L ⊗[k] B₀`, via `φ ⊗ id`. -/
+`L ⊗[k] B₀`, via `φ ⊗ id`.
+@isnad1 id=isbasech.0h6v.s9.158e81311a42 from=translated src=- shape=f6f0f13b vocab=6817b455
+-/
 theorem isBaseChangeAlong_map (φ : A →ₐ[k] L) (B₀ : Type u) [CommRing B₀] [Algebra k B₀]
     [Algebra R B₀] [IsScalarTower k R B₀] :
     letI := tensorRightAlgebra k R A B₀

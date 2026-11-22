@@ -71,7 +71,9 @@ open scoped PowerSeries
 /-- **The differentiated Weierstrass functional equation.**  Applying the formal derivative
 `d⁄dX` to the fixed-point equation `formalW_eq` (`w = z³ + (a₁z + a₂z²)w + (a₃ + a₄z)w² + a₆w³`)
 yields the tangency identity for `w′ = d⁄dX w`:
-`w′ = 3z² + (a₁ + 2a₂z)w + (a₁z + a₂z²)w′ + a₄w² + 2(a₃ + a₄z)w·w′ + 3a₆w²·w′`. -/
+`w′ = 3z² + (a₁ + 2a₂z)w + (a₁z + a₂z²)w′ + a₄w² + 2(a₃ + a₄z)w·w′ + 3a₆w²·w′`.
+@isnad1 id=eq.0h2v.s10.55c03d8c1a2a from=translated src=- shape=eb97346a vocab=a68d53a9
+-/
 theorem derivative_formalW :
     derivative R W.formalW
       = 3 * PowerSeries.X ^ 2
@@ -109,7 +111,9 @@ omit [IsFractionRing R K] in
 functional equation: with `w = wParam z` and `w′ = wParamDeriv z`,
 `w′ = 3z² + (a₁ + 2a₂z)w + (a₁z + a₂z²)w′ + a₄w² + 2(a₃ + a₄z)w·w′ + 3a₆w²·w′`.
 This is the second relation (in place of the secant's second known point) that the doubling Vieta
-closes on. -/
+closes on.
+@isnad1 id=eq.1h4v.s9.ae3a81d4e841 from=translated src=- shape=e41d237c vocab=0b52edc5
+-/
 theorem wParamDeriv_tangency (hz : z ∈ (maximalIdeal R).asIdeal) :
     wParamDeriv R W hz = 3 * z ^ 2
       + ((integralModel R W).a₁ + 2 * (integralModel R W).a₂ * z) * wParam R W hz

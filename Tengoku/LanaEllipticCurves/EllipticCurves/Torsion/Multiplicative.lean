@@ -110,6 +110,9 @@ def torsionSmulHom : A[m * n] →+ A[m] where
   map_zero' := by ext; simp
   map_add' P Q := by ext; simp [smul_add]
 
+/--
+@isnad1 id=eq.0h4v.s9.5721d3bdcd09 from=translated src=- shape=2e9bccac vocab=144b6bbe
+-/
 @[simp]
 lemma torsionSmulHom_apply_coe (P : A[m * n]) :
     ((torsionSmulHom A m n P : A[m]) : A) = n • (P : A) :=
@@ -122,23 +125,33 @@ def kerTorsionSmulHom : (torsionSmulHom A m n).ker → A[n] :=
     rw [torsionBy.zsmul_iff, ← torsionSmulHom_apply_coe A m n]
     exact congrArg Subtype.val (AddMonoidHom.mem_ker.mp P.2)⟩
 
+/--
+@isnad1 id=injectiv.0h3v.s9.5f5817750f16 from=translated src=- shape=4a1469e5 vocab=b9e99d17
+-/
 lemma kerTorsionSmulHom_injective : Function.Injective (kerTorsionSmulHom A m n) := by
   intro P Q h
   have h' := Subtype.ext_iff.mp h
   exact Subtype.ext (Subtype.ext h')
 
+/--
+@isnad1 id=injectiv.0h3v.s9.b205ac631b73 from=translated src=- shape=b273c0c0 vocab=1e431dcf
+-/
 lemma rangeTorsionSmulHom_injective :
     Function.Injective fun P : (torsionSmulHom A m n).range => (P : A[m]) :=
   fun _ _ h => Subtype.ext h
 
-/-- **Finiteness of torsion is multiplicative.** -/
+/-- **Finiteness of torsion is multiplicative.**
+@isnad1 id=finite.0h3v.s6.75e36f1a58b2 from=translated src=- shape=9ad379a6 vocab=995e9758
+-/
 theorem finite_torsionBy_mul [Finite A[m]] [Finite A[n]] : Finite A[m * n] := by
   rw [(torsionSmulHom A m n).finite_iff_finite_ker_range]
   exact ⟨Finite.of_injective _ (kerTorsionSmulHom_injective A m n),
     Finite.of_injective _ (rangeTorsionSmulHom_injective A m n)⟩
 
 /-- **The torsion bound is multiplicative**: `#A[m * n] ≤ #A[m] * #A[n]`, since `A[m * n]` is an
-extension of a subgroup of `A[m]` by a subgroup of `A[n]`. -/
+extension of a subgroup of `A[m]` by a subgroup of `A[n]`.
+@isnad1 id=le.0h3v.s7.e2803d227b9a from=translated src=- shape=f3382e72 vocab=13c08745
+-/
 theorem card_torsionBy_mul_le [Finite A[m]] [Finite A[n]] :
     Nat.card A[m * n] ≤ Nat.card A[m] * Nat.card A[n] := by
   have h := (torsionSmulHom A m n).ker.card_mul_index
@@ -161,7 +174,9 @@ variable {F : Type*} [Field F] [DecidableEq F] {W : Affine F}
 private lemma torsion_mul_eq (m n : ℕ) : W.torsion (m * n) = W.Point[(m : ℤ) * (n : ℤ)] :=
   congrArg (fun k : ℤ => W.Point[k]) (Nat.cast_mul m n)
 
-/-- **Finiteness of `E[n]` is multiplicative**: if `E[m]` and `E[n]` are finite, so is `E[mn]`. -/
+/-- **Finiteness of `E[n]` is multiplicative**: if `E[m]` and `E[n]` are finite, so is `E[mn]`.
+@isnad1 id=finite.2h4v.s8.b166ac9faea1 from=translated src=- shape=d5975f4e vocab=31be2ded
+-/
 theorem finite_torsion_mul {m n : ℕ} (hm : Finite (W.torsion m)) (hn : Finite (W.torsion n)) :
     Finite (W.torsion (m * n)) := by
   haveI := hm
@@ -172,7 +187,9 @@ theorem finite_torsion_mul {m n : ℕ} (hm : Finite (W.torsion m)) (hn : Finite 
 /-- **The torsion bound is multiplicative**: `#E[mn] ≤ #E[m] * #E[n]`.
 
 This reduces the bound `#E[n] ≤ n²` to the case of a prime `n`, since `#E[m] ≤ m²` and
-`#E[n] ≤ n²` then give `#E[mn] ≤ (mn)²`. -/
+`#E[n] ≤ n²` then give `#E[mn] ≤ (mn)²`.
+@isnad1 id=le.2h4v.s8.280c01e87df2 from=translated src=- shape=bcb674f0 vocab=099b8b67
+-/
 theorem card_torsion_mul_le {m n : ℕ} (hm : Finite (W.torsion m)) (hn : Finite (W.torsion n)) :
     Nat.card (W.torsion (m * n)) ≤ Nat.card (W.torsion m) * Nat.card (W.torsion n) := by
   haveI := hm
@@ -246,7 +263,9 @@ private lemma finite_and_card_torsion_le_sq_of_smooth :
 
 include h2 h3 in
 /-- **`E[n]` is finite for every `3`-smooth `n ≠ 0`**, over a field in which `2` and `3` are
-invertible. -/
+invertible.
+@isnad1 id=finite.4h3v.s7.d9174079e5b5 from=translated src=- shape=eca9fd92 vocab=8051259d
+-/
 theorem finite_torsion_of_smooth {n : ℕ} (hn : n ≠ 0)
     (hfac : ∀ p ∈ n.primeFactors, p = 2 ∨ p = 3) : Finite (W.torsion n) :=
   (finite_and_card_torsion_le_sq_of_smooth h2 h3 n hn hfac).1
@@ -256,47 +275,61 @@ include h2 h3 in
 
 This is the `n = 2^a·3^b` case of Silverman, *AEC*, III.6, Corollary 6.4, obtained from the two
 unconditional computations `#E[2] ≤ 4` and `#E[3] ≤ 9` purely by multiplicativity — no
-multiplication-by-`n` coordinate formula and no elliptic-net recurrence are involved. -/
+multiplication-by-`n` coordinate formula and no elliptic-net recurrence are involved.
+@isnad1 id=le.4h3v.s7.1541a4123245 from=translated src=- shape=86c04bb9 vocab=ab6d8374
+-/
 theorem card_torsion_le_sq_of_smooth {n : ℕ} (hn : n ≠ 0)
     (hfac : ∀ p ∈ n.primeFactors, p = 2 ∨ p = 3) : Nat.card (W.torsion n) ≤ n ^ 2 :=
   (finite_and_card_torsion_le_sq_of_smooth h2 h3 n hn hfac).2
 
 include h2 h3 in
-/-- **`E[2^a · 3^b]` is finite**, the explicit form of the `3`-smooth finiteness. -/
+/-- **`E[2^a · 3^b]` is finite**, the explicit form of the `3`-smooth finiteness.
+@isnad1 id=finite.2h4v.s7.a694919f55ff from=translated src=- shape=271bb05d vocab=4137aa46
+-/
 theorem finite_torsion_two_pow_mul_three_pow (a b : ℕ) :
     Finite (W.torsion (2 ^ a * 3 ^ b)) :=
   finite_torsion_of_smooth h2 h3 (by positivity) (primeFactors_two_pow_mul_three_pow a b)
 
 include h2 h3 in
-/-- **`#E[2^a · 3^b] ≤ (2^a · 3^b)²`**, the explicit form of the `3`-smooth bound. -/
+/-- **`#E[2^a · 3^b] ≤ (2^a · 3^b)²`**, the explicit form of the `3`-smooth bound.
+@isnad1 id=le.2h4v.s8.576d4c7a1895 from=translated src=- shape=15944e54 vocab=38b09f86
+-/
 theorem card_torsion_two_pow_mul_three_pow_le (a b : ℕ) :
     Nat.card (W.torsion (2 ^ a * 3 ^ b)) ≤ (2 ^ a * 3 ^ b) ^ 2 :=
   card_torsion_le_sq_of_smooth h2 h3 (by positivity)
     (primeFactors_two_pow_mul_three_pow a b)
 
 include h2 h3 in
-/-- `#E[4] ≤ 16`. -/
+/-- `#E[4] ≤ 16`.
+@isnad1 id=le.2h2v.s7.0b8b72c96cc9 from=translated src=- shape=476d7c00 vocab=fe4556b1
+-/
 theorem card_torsion_four_le : Nat.card (W.torsion 4) ≤ 16 := by
   have := card_torsion_two_pow_mul_three_pow_le (W := W) h2 h3 2 0
   norm_num at this
   exact this
 
 include h2 h3 in
-/-- `#E[6] ≤ 36`. -/
+/-- `#E[6] ≤ 36`.
+@isnad1 id=le.2h2v.s7.516bd52e16fa from=translated src=- shape=476d7c00 vocab=fe4556b1
+-/
 theorem card_torsion_six_le : Nat.card (W.torsion 6) ≤ 36 := by
   have := card_torsion_two_pow_mul_three_pow_le (W := W) h2 h3 1 1
   norm_num at this
   exact this
 
 include h2 h3 in
-/-- `#E[8] ≤ 64`. -/
+/-- `#E[8] ≤ 64`.
+@isnad1 id=le.2h2v.s7.62205c816aee from=translated src=- shape=476d7c00 vocab=fe4556b1
+-/
 theorem card_torsion_eight_le : Nat.card (W.torsion 8) ≤ 64 := by
   have := card_torsion_two_pow_mul_three_pow_le (W := W) h2 h3 3 0
   norm_num at this
   exact this
 
 include h2 h3 in
-/-- `#E[9] ≤ 81`. -/
+/-- `#E[9] ≤ 81`.
+@isnad1 id=le.2h2v.s7.efa89f68118c from=translated src=- shape=476d7c00 vocab=fe4556b1
+-/
 theorem card_torsion_nine_le : Nat.card (W.torsion 9) ≤ 81 := by
   have := card_torsion_two_pow_mul_three_pow_le (W := W) h2 h3 0 2
   norm_num at this

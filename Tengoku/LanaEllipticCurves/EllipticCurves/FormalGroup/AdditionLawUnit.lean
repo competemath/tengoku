@@ -52,25 +52,35 @@ variable {R : Type*} [CommRing R] (W : WeierstrassCurve R)
 
 /-! ### `formalY` is a unit of `R⸨X⸩` -/
 
-/-- The coordinate series `y(z)` is a unit of `R⸨X⸩` (from `y·w = -1`). -/
+/-- The coordinate series `y(z)` is a unit of `R⸨X⸩` (from `y·w = -1`).
+@isnad1 id=isunit.0h2v.s5.c51eab1d71bb from=translated src=- shape=d45d0cce vocab=8c554339
+-/
 theorem isUnit_formalY : IsUnit W.formalY :=
   IsUnit.of_mul_eq_one _ (by rw [mul_neg, W.formalY_mul_coe_formalW, neg_neg])
 
 /-! ### Constant `z₂`-coefficients of `x₁, y₁` and the coefficients of `y₂` -/
 
-/-- The order-`0` `z₂`-coefficient of `x₁ = x(z₁)` is `x(z₁) = W.formalX`. -/
+/-- The order-`0` `z₂`-coefficient of `x₁ = x(z₁)` is `x(z₁) = W.formalX`.
+@isnad1 id=eq.0h2v.s6.5e0b7985310e from=translated src=- shape=6323f6b5 vocab=f2c9f155
+-/
 theorem coeff_biX₁_zero : W.biX₁.coeff 0 = W.formalX := by
   rw [biX₁, cConstRingHom, HahnSeries.C_apply, HahnSeries.coeff_single_same]
 
-/-- The order-`0` `z₂`-coefficient of `y₁ = y(z₁)` is `y(z₁) = W.formalY`. -/
+/-- The order-`0` `z₂`-coefficient of `y₁ = y(z₁)` is `y(z₁) = W.formalY`.
+@isnad1 id=eq.0h2v.s6.82bac59165d3 from=translated src=- shape=6323f6b5 vocab=4a2ac71f
+-/
 theorem coeff_biY₁_zero : W.biY₁.coeff 0 = W.formalY := by
   rw [biY₁, cConstRingHom, HahnSeries.C_apply, HahnSeries.coeff_single_same]
 
-/-- The series `y₁ = y(z₁)` is supported in `z₂`-degree `0` only. -/
+/-- The series `y₁ = y(z₁)` is supported in `z₂`-degree `0` only.
+@isnad1 id=eq.1h3v.s6.a72ad43298f5 from=translated src=- shape=6dcc6b40 vocab=ce93c782
+-/
 theorem coeff_biY₁_of_ne {g : ℤ} (h : g ≠ 0) : W.biY₁.coeff g = 0 := by
   rw [biY₁, cConstRingHom, HahnSeries.C_apply, HahnSeries.coeff_single_of_ne h]
 
-/-- The `z₂`-coefficients of `y₂ = y(z₂)`: the `z₁`-constant coefficient `C (y(z)-coeff)`. -/
+/-- The `z₂`-coefficients of `y₂ = y(z₂)`: the `z₁`-constant coefficient `C (y(z)-coeff)`.
+@isnad1 id=eq.0h3v.s7.fb3550ac084f from=translated src=- shape=eaaa5356 vocab=a6deb9e8
+-/
 theorem coeff_biY₂ (g : ℤ) : W.biY₂.coeff g = HahnSeries.C (W.formalY.coeff g) := by
   rw [biY₂, cLaurentRingHom, HahnSeries.mapRingHom_apply, HahnSeries.map_coeff]
 
@@ -600,7 +610,9 @@ private lemma orderTop_formalYThree_sub_biY₁ [Nontrivial R] :
 
 /-- **The analytic core of the Weierstrass formal group law.** The third `y`-coordinate `y₃` is a
 unit of `R⸨z₁⸩⸨z₂⸩`. Its `z₂`-order is `0` with leading coefficient the unit `y(z₁) = W.formalY`,
-which makes the formal group series `F_E := -x₃·y₃⁻¹` well-defined. (Silverman AEC IV.1.) -/
+which makes the formal group series `F_E := -x₃·y₃⁻¹` well-defined. (Silverman AEC IV.1.)
+@isnad1 id=isunit.0h2v.s6.5c91df8be5b3 from=translated src=- shape=f3151a31 vocab=c856cbf7
+-/
 theorem isUnit_formalYThree : IsUnit W.formalYThree := by
   obtain _ | _ := subsingleton_or_nontrivial R
   · exact isUnit_of_subsingleton _
@@ -619,7 +631,9 @@ theorem isUnit_formalYThree : IsUnit W.formalYThree := by
     rw [hlc]
     exact W.isUnit_formalY
 
-/-- The `z₂`-order of `y₃` is `0` (its leading coefficient sits in `z₂`-degree `0`). -/
+/-- The `z₂`-order of `y₃` is `0` (its leading coefficient sits in `z₂`-degree `0`).
+@isnad1 id=eq.0h2v.s6.cc4745f637da from=translated src=- shape=8b011ba7 vocab=f8ad245f
+-/
 theorem orderTop_formalYThree [Nontrivial R] :
     W.formalYThree.orderTop = (0 : WithTop ℤ) := by
   have hbiord : W.biY₁.orderTop = ((0 : ℤ) : WithTop ℤ) := by
@@ -632,7 +646,9 @@ theorem orderTop_formalYThree [Nontrivial R] :
   rw [show W.formalYThree = W.biY₁ + (W.formalYThree - W.biY₁) by ring,
     HahnSeries.orderTop_add_eq_left hlt, hbiord, WithTop.coe_zero]
 
-/-- The leading `z₂`-coefficient of `y₃` is the unit `y(z₁) = W.formalY`. -/
+/-- The leading `z₂`-coefficient of `y₃` is the unit `y(z₁) = W.formalY`.
+@isnad1 id=eq.0h2v.s6.8d73c674cf69 from=translated src=- shape=c7f8d42a vocab=a2cec24a
+-/
 theorem leadingCoeff_formalYThree [Nontrivial R] :
     W.formalYThree.leadingCoeff = W.formalY := by
   have hbiord : W.biY₁.orderTop = ((0 : ℤ) : WithTop ℤ) := by
@@ -735,7 +751,9 @@ private lemma orderTop_formalXThree_sub_biX₁ [Nontrivial R] :
     exact add_le_add W.orderTop_lambda_sub_principal
       (le_trans (by exact_mod_cast (by norm_num : (-2 : ℤ) ≤ -1)) W.orderTop_qX_ge)
 
-/-- The `z₂`-order of `x₃` is `0`. -/
+/-- The `z₂`-order of `x₃` is `0`.
+@isnad1 id=eq.0h2v.s6.d5a68fe6962d from=translated src=- shape=8b011ba7 vocab=c359d842
+-/
 theorem orderTop_formalXThree [Nontrivial R] :
     W.formalXThree.orderTop = (0 : WithTop ℤ) := by
   have hlt : W.biX₁.orderTop < (W.formalXThree - W.biX₁).orderTop := by
@@ -745,7 +763,9 @@ theorem orderTop_formalXThree [Nontrivial R] :
   rw [show W.formalXThree = W.biX₁ + (W.formalXThree - W.biX₁) by ring,
     HahnSeries.orderTop_add_eq_left hlt, W.orderTop_biX₁_eq, WithTop.coe_zero]
 
-/-- The leading `z₂`-coefficient of `x₃` is the unit `x(z₁) = W.formalX`. -/
+/-- The leading `z₂`-coefficient of `x₃` is the unit `x(z₁) = W.formalX`.
+@isnad1 id=eq.0h2v.s6.425cf19c136b from=translated src=- shape=c7f8d42a vocab=7bda779b
+-/
 theorem leadingCoeff_formalXThree [Nontrivial R] :
     W.formalXThree.leadingCoeff = W.formalX := by
   have hlt : W.biX₁.orderTop < (W.formalXThree - W.biX₁).orderTop := by
@@ -824,7 +844,9 @@ private lemma orderTop_lam_sub_prin_mul_qX [Nontrivial R] :
     rw [← WithTop.coe_add]; norm_num]
   exact add_le_add W.orderTop_lambda_sub_principal W.orderTop_qX_ge
 
-/-- The `z₂`-degree-`1` slice of `x₃` in `R⸨z₁⸩`: `x₃.coeff 1 = 2·y(z₁) + a₁·x(z₁) + a₃`. -/
+/-- The `z₂`-degree-`1` slice of `x₃` in `R⸨z₁⸩`: `x₃.coeff 1 = 2·y(z₁) + a₁·x(z₁) + a₃`.
+@isnad1 id=eq.0h2v.s9.6601b4127c95 from=translated src=- shape=e8cfe37b vocab=df217b38
+-/
 theorem coeff_formalXThree_one [Nontrivial R] :
     W.formalXThree.coeff 1
       = W.formalY + W.formalY + HahnSeries.C W.a₁ * W.formalX + HahnSeries.C W.a₃ := by
@@ -841,6 +863,9 @@ theorem coeff_formalXThree_one [Nontrivial R] :
     W.coeff_biX₁_of_ne (show (1 : ℤ) ≠ 0 by norm_num), W.coeff_biX₂_one]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s6.392940069e26 from=translated src=- shape=5befa443 vocab=08ce918a
+-/
 theorem coeff_formalXThree_one_inner_neg_three [Nontrivial R] :
     (W.formalXThree.coeff 1).coeff (-3) = -2 := by
   rw [W.coeff_formalXThree_one]
@@ -849,6 +874,9 @@ theorem coeff_formalXThree_one_inner_neg_three [Nontrivial R] :
     HahnSeries.coeff_single_of_ne (show (-3 : ℤ) ≠ 0 by norm_num)]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s6.9ee16001026c from=translated src=- shape=359f2153 vocab=6b129f15
+-/
 theorem coeff_formalXThree_one_inner_of_lt [Nontrivial R] {g : ℤ} (hg : g < -3) :
     (W.formalXThree.coeff 1).coeff g = 0 := by
   rw [W.coeff_formalXThree_one]
@@ -1000,6 +1028,9 @@ private lemma coeff_formalXThree_two_eq [Nontrivial R] :
     W.coeff_biX₁_of_ne (show (2 : ℤ) ≠ 0 by norm_num), W.coeff_biX₂]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s6.9239f4f5008d from=translated src=- shape=766a147f vocab=08ce918a
+-/
 theorem coeff_formalXThree_two_inner_neg_four [Nontrivial R] :
     (W.formalXThree.coeff 2).coeff (-4) = 3 := by
   have key := W.coeff_lam_sub_prin_three_inner
@@ -1012,6 +1043,9 @@ theorem coeff_formalXThree_two_inner_neg_four [Nontrivial R] :
     HahnSeries.coeff_single_of_ne (show (-4 : ℤ) ≠ 0 by norm_num)]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s6.a83c6423ad52 from=translated src=- shape=359f2153 vocab=6b129f15
+-/
 theorem coeff_formalXThree_two_inner_of_lt [Nontrivial R] {g : ℤ} (hg : g < -4) :
     (W.formalXThree.coeff 2).coeff g = 0 := by
   have key := W.coeff_lam_sub_prin_three_inner_of_lt hg
@@ -1053,7 +1087,9 @@ private lemma coeff_formalNu_one [Nontrivial R] : W.formalNu.coeff 1 = W.formalX
     W.coeff_lambda_eq_principal (show (1 : ℤ) < 3 by norm_num), W.coeff_lamP_one]
   ring
 
-/-- The `z₂`-degree-`1` slice of `y₃` in `R⸨z₁⸩`: `y₃.coeff 1 = x₃.coeff 2 - a₁·x₃.coeff 1`. -/
+/-- The `z₂`-degree-`1` slice of `y₃` in `R⸨z₁⸩`: `y₃.coeff 1 = x₃.coeff 2 - a₁·x₃.coeff 1`.
+@isnad1 id=eq.0h2v.s8.7a1faae1059b from=translated src=- shape=b0e368c9 vocab=80f04078
+-/
 theorem coeff_formalYThree_one_eq [Nontrivial R] :
     W.formalYThree.coeff 1
       = W.formalXThree.coeff 2 - HahnSeries.C W.a₁ * W.formalXThree.coeff 1 := by
@@ -1062,6 +1098,9 @@ theorem coeff_formalYThree_one_eq [Nontrivial R] :
     coeff_CC_of_ne W.a₃ (show (1 : ℤ) ≠ 0 by norm_num)]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s6.89024d0820ed from=translated src=- shape=766a147f vocab=08c33b48
+-/
 theorem coeff_formalYThree_one_inner_neg_four [Nontrivial R] :
     (W.formalYThree.coeff 1).coeff (-4) = 3 := by
   rw [W.coeff_formalYThree_one_eq, HahnSeries.coeff_sub, W.coeff_formalXThree_two_inner_neg_four,
@@ -1069,6 +1108,9 @@ theorem coeff_formalYThree_one_inner_neg_four [Nontrivial R] :
     W.coeff_formalXThree_one_inner_of_lt (show (-4 : ℤ) < -3 by norm_num)]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s6.431b0beacce4 from=translated src=- shape=359f2153 vocab=ebe51e7d
+-/
 theorem coeff_formalYThree_one_inner_of_lt [Nontrivial R] {g : ℤ} (hg : g < -4) :
     (W.formalYThree.coeff 1).coeff g = 0 := by
   rw [W.coeff_formalYThree_one_eq, HahnSeries.coeff_sub, HahnSeries.C_apply,
@@ -1085,7 +1127,9 @@ unit of `R⸨z₁⸩`. This is the analytic input that makes the difference of t
 `z₂ - z₁` a unit — the missing ingredient for the `z`-cubic Vieta factorisation feeding the core
 coordinate-change identity `(★)` (see `GenuineLawIdentificationCore`, the `(K1)`/`(K4)` crux). -/
 
-/-- The coordinate series `x(z)` is a unit of `R⸨X⸩` (from `x·w = z`, i.e. `x·(w·z⁻¹) = 1`). -/
+/-- The coordinate series `x(z)` is a unit of `R⸨X⸩` (from `x·w = z`, i.e. `x·(w·z⁻¹) = 1`).
+@isnad1 id=isunit.0h2v.s5.2bccab15c195 from=translated src=- shape=d45d0cce vocab=297c26a3
+-/
 theorem isUnit_formalX : IsUnit W.formalX :=
   IsUnit.of_mul_eq_one ((W.formalW : R⸨X⸩) * HahnSeries.single (-1 : ℤ) 1) (by
     rw [← mul_assoc, W.formalX_mul_coe_formalW, HahnSeries.single_mul_single,
@@ -1111,7 +1155,9 @@ private lemma coeff_formalNu_of_lt [Nontrivial R] {g : ℤ} (hg : g < -1) :
 /-- **`ν = formalNu` is a unit of `R⸨z₁⸩⸨z₂⸩`.** Its lowest `z₂`-term is `z₂⁻¹` with the unit
 leading coefficient `x(z₁) = W.formalX`. This is the analytic input for the difference `z₂ - z₁`
 of `z`-plane roots being a unit — the ingredient the `(K1)`/`(K4)` crux needs (in
-`GenuineLawIdentificationCore`) for the `z`-cubic Vieta factorisation. -/
+`GenuineLawIdentificationCore`) for the `z`-cubic Vieta factorisation.
+@isnad1 id=isunit.0h2v.s6.40f6d4757dac from=translated src=- shape=f3151a31 vocab=82580602
+-/
 theorem isUnit_formalNu : IsUnit W.formalNu := by
   obtain _ | _ := subsingleton_or_nontrivial R
   · exact isUnit_of_subsingleton _
@@ -1133,7 +1179,9 @@ theorem isUnit_formalNu : IsUnit W.formalNu := by
 `(z₂ - z₁)·(y₂·y₁) = -ν·(x₂ - x₁)`. This is the multiplicative form of the secant-geometry identity
 `z₂ - z₁ = -ν·(x₂ - x₁)·(y₁·y₂)⁻¹`: the numerator `x₁y₂ - x₂y₁` collapses to `-ν·(x₂ - x₁)` because
 both points lie on the secant `y = λx + ν` (`biY₁_eq`, `biY₂_eq`), and `zᵢ·yᵢ = -xᵢ`
-(`biZ₁_mul_biY₁`, `biZ₂_mul_biY₂`). -/
+(`biZ₁_mul_biY₁`, `biZ₂_mul_biY₂`).
+@isnad1 id=eq.0h2v.s9.c5d17c546f77 from=translated src=- shape=c7ca04b3 vocab=45777f05
+-/
 theorem biZ₂_sub_biZ₁_mul_biY₂_mul_biY₁ :
     (W.biZ₂ - W.biZ₁) * (W.biY₂ * W.biY₁) = -W.formalNu * (W.biX₂ - W.biX₁) := by
   linear_combination W.biY₁ * W.biZ₂_mul_biY₂ - W.biY₂ * W.biZ₁_mul_biY₁
@@ -1143,7 +1191,9 @@ theorem biZ₂_sub_biZ₁_mul_biY₂_mul_biY₁ :
 `(z₂ - z₁)·(y₂·y₁) = -ν·(x₂ - x₁)` (`biZ₂_sub_biZ₁_mul_biY₂_mul_biY₁`) and the right-hand side is a
 unit — `ν` is a unit (`isUnit_formalNu`) and so is `x₂ - x₁` (`isUnit_biX₂_sub_biX₁`) — the factor
 `z₂ - z₁` is a unit. This is the ingredient the `(K1)`/`(K4)` crux (`GenuineLawIdentificationCore`)
-needs to pin the third `z`-plane root via the `z`-cubic Vieta factorisation. -/
+needs to pin the third `z`-plane root via the `z`-cubic Vieta factorisation.
+@isnad1 id=isunit.0h2v.s8.002879f049c6 from=translated src=- shape=0d6d0933 vocab=3a088481
+-/
 theorem isUnit_biZ₂_sub_biZ₁ : IsUnit (W.biZ₂ - W.biZ₁) := by
   refine isUnit_of_mul_isUnit_left (y := W.biY₂ * W.biY₁) ?_
   rw [W.biZ₂_sub_biZ₁_mul_biY₂_mul_biY₁]

@@ -37,12 +37,17 @@ observable through which the one-step vector law depends on the current state. -
 noncomputable def radiusSq (N : ℕ) (x : Fin N → ℝ) : ℝ :=
   (N : ℝ)⁻¹ * ∑ i, (x i) ^ 2
 
+/--
+@isnad1 id=measurab.0h1v.s4.cc6b8634158e from=translated src=- shape=bbef8654 vocab=3199b5d6
+-/
 lemma measurable_radiusSq (N : ℕ) : Measurable (radiusSq N) := by
   unfold radiusSq
   fun_prop
 
 /-- In positive dimension, the normalized squared radius vanishes exactly at the zero
-vector. -/
+vector.
+@isnad1 id=iff.1h2v.s5.7fab1af3f269 from=translated src=- shape=5f42c6d1 vocab=1e2cfea8
+-/
 lemma radiusSq_eq_zero_iff {N : ℕ} (hN : 0 < N) (x : Fin N → ℝ) :
     radiusSq N x = 0 ↔ x = 0 := by
   have hN0 : (N : ℝ)⁻¹ ≠ 0 :=
@@ -60,7 +65,9 @@ lemma radiusSq_eq_zero_iff {N : ℕ} (hN : 0 < N) (x : Fin N → ℝ) :
     simp [radiusSq]
 
 /-- In positive dimension, pushing a vector measure forward by the normalized squared
-radius preserves its atom at the origin. -/
+radius preserves its atom at the origin.
+@isnad1 id=eq.1h2v.s7.e8b5de640ece from=translated src=- shape=b434adc9 vocab=9c1200be
+-/
 lemma map_radiusSq_apply_singleton_zero {N : ℕ} (hN : 0 < N)
     (π : Measure (Fin N → ℝ)) :
     (π.map (radiusSq N)) ({0} : Set ℝ) = π ({0} : Set (Fin N → ℝ)) := by
@@ -75,7 +82,9 @@ lemma map_radiusSq_apply_singleton_zero {N : ℕ} (hN : 0 < N)
 noncomputable def Jmap (A : ℝ) (N : ℕ) (q : ℝ) (g : Fin N → ℝ) : Fin N → ℝ :=
   fun i => Real.tanh (A * Real.sqrt q * g i)
 
-/-- `J_{A,N}` is jointly measurable in `(q, g)` (each coordinate is continuous). -/
+/-- `J_{A,N}` is jointly measurable in `(q, g)` (each coordinate is continuous).
+@isnad1 id=measurab.0h2v.s6.2ef3ce3abef7 from=translated src=- shape=b9e52fe2 vocab=520592e5
+-/
 lemma measurable_Jmap (A : ℝ) (N : ℕ) :
     Measurable (fun p : ℝ × (Fin N → ℝ) => Jmap A N p.1 p.2) := by
   apply measurable_pi_iff.mpr
@@ -98,14 +107,18 @@ instance (A : ℝ) (N : ℕ) : IsMarkovKernel (Jkernel A N) := by
 /-- **Pointwise seed of the radius factorization**: the normalized squared radius of the
 reconstruction is exactly the squared-radius random map, `r_N(Jmap A N q g) = F_{A,N}(q,g)`.
 This is what makes `(r_N)_#J_{A,N}(q,·) = K_{A,N}(q,·)` hold (paper:
-`(r_N)_#J_{A,N}(q,·) = K_{A,N}(q,·)`). -/
+`(r_N)_#J_{A,N}(q,·) = K_{A,N}(q,·)`).
+@isnad1 id=eq.0h4v.s4.28ee1094ea6d from=translated src=- shape=db2e2636 vocab=7938e9e6
+-/
 lemma radiusSq_Jmap (A : ℝ) (N : ℕ) (q : ℝ) (g : Fin N → ℝ) :
     radiusSq N (Jmap A N q g) = Fmap A N q g :=
   rfl
 
 /-- The reconstruction kernel at `q` is the pushforward of the Gaussian vector `𝒢_N` under
 the reconstruction map: `J_{A,N}(q,·) = (𝒢_N)_#(Jmap A N q)`. Reduces the
-`deterministic ⊗ const` construction the same way as `isAbsorbing_Hkernel`. -/
+`deterministic ⊗ const` construction the same way as `isAbsorbing_Hkernel`.
+@isnad1 id=eq.0h3v.s6.353bf6c35f88 from=translated src=- shape=6e985587 vocab=c18aefc8
+-/
 lemma Jkernel_apply (A : ℝ) (N : ℕ) (q : ℝ) :
     Jkernel A N q = (gaussianVec N).map (Jmap A N q) := by
   unfold Jkernel
@@ -116,7 +129,9 @@ lemma Jkernel_apply (A : ℝ) (N : ℕ) (q : ℝ) :
 
 /-- The squared-radius kernel at `q` is the pushforward of `𝒢_N` under the squared-radius
 random map: `K_{A,N}(q,·) = (𝒢_N)_#(F_{A,N}(q,·))`. Companion of `Jkernel_apply` for
-`Kchain`. -/
+`Kchain`.
+@isnad1 id=eq.0h3v.s5.a4e3e8bb0e73 from=translated src=- shape=a24ee1a1 vocab=39e93e6d
+-/
 lemma Kchain_apply (A : ℝ) (N : ℕ) (q : ℝ) :
     Kchain A N q = (gaussianVec N).map (Fmap A N q) := by
   unfold Kchain
@@ -128,7 +143,9 @@ lemma Kchain_apply (A : ℝ) (N : ℕ) (q : ℝ) :
 /-- **Radius factorization of the reconstruction kernel** (paper: `(r_N)_#J_{A,N}(q,·) =
 K_{A,N}(q,·)`): pushing the reconstruction kernel forward under the normalized squared
 radius recovers the scalar squared-radius kernel. This is the identity that drives the
-induction `(r_N)_#P_{A,N}^t(x,·)=K_{A,N}^t(q,·)` in `prop:gaussian-tv-reduction`. -/
+induction `(r_N)_#P_{A,N}^t(x,·)=K_{A,N}^t(q,·)` in `prop:gaussian-tv-reduction`.
+@isnad1 id=eq.0h3v.s6.02682b5c008a from=translated src=- shape=a51ba1e9 vocab=624d608f
+-/
 lemma radiusSq_map_Jkernel (A : ℝ) (N : ℕ) (q : ℝ) :
     (Jkernel A N q).map (radiusSq N) = Kchain A N q := by
   have hJq : Measurable (Jmap A N q) := by
@@ -144,7 +161,9 @@ lemma radiusSq_map_Jkernel (A : ℝ) (N : ℕ) (q : ℝ) :
     _ = Kchain A N q := (Kchain_apply A N q).symm
 
 /-- **Kernel form of the reconstruction radius factorization**: mapping `J_{A,N}` by
-`r_N` gives exactly the scalar kernel `K_{A,N}`. -/
+`r_N` gives exactly the scalar kernel `K_{A,N}`.
+@isnad1 id=eq.0h2v.s5.394eb4afe974 from=translated src=- shape=2d23a813 vocab=7b67c4c0
+-/
 lemma Jkernel_map_radiusSq (A : ℝ) (N : ℕ) :
     (Jkernel A N).map (radiusSq N) = Kchain A N := by
   ext q
@@ -152,7 +171,9 @@ lemma Jkernel_map_radiusSq (A : ℝ) (N : ℕ) :
 
 /-- The radius law of a vector distribution reconstructed from a scalar law `ν` is
 exactly the result of evolving `ν` by `K_{A,N}`. This is the identity
-`(r_N)_#(νJ)=νK` used in both directions of the invariant-law transfer. -/
+`(r_N)_#(νJ)=νK` used in both directions of the invariant-law transfer.
+@isnad1 id=eq.0h3v.s7.95f94f405a10 from=translated src=- shape=3b68197c vocab=80574f74
+-/
 lemma radiusSq_map_Jkernel_comp (A : ℝ) (N : ℕ) (ν : Measure ℝ)
     [IsProbabilityMeasure ν] :
     ((Jkernel A N) ∘ₘ ν).map (radiusSq N) = (Kchain A N) ∘ₘ ν := by
@@ -176,7 +197,9 @@ instance (A : ℝ) (N : ℕ) : IsProbabilityMeasure (gaussianMat A N) := by
 noncomputable def Pstep (N : ℕ) (x : Fin N → ℝ) (W : Fin N → Fin N → ℝ) : Fin N → ℝ :=
   fun i => Real.tanh (∑ j, W i j * x j)
 
-/-- `Pstep` is jointly measurable in `(x, 𝖶)` (each coordinate is continuous). -/
+/-- `Pstep` is jointly measurable in `(x, 𝖶)` (each coordinate is continuous).
+@isnad1 id=measurab.0h1v.s6.d20c9c945fce from=translated src=- shape=0a608448 vocab=ac59f15b
+-/
 lemma measurable_Pstep (N : ℕ) :
     Measurable (fun p : (Fin N → ℝ) × (Fin N → Fin N → ℝ) => Pstep N p.1 p.2) := by
   apply measurable_pi_iff.mpr
@@ -199,7 +222,9 @@ instance (A : ℝ) (N : ℕ) : IsMarkovKernel (Pkernel A N) := by
   exact Kernel.IsMarkovKernel.map _ (measurable_Pstep N)
 
 /-- The vector kernel at `x` is the pushforward of the weight-matrix law under the step
-map: `P_{A,N}(x,·) = (gaussianMat A N)_#(Pstep N x)`. Companion of `Jkernel_apply`. -/
+map: `P_{A,N}(x,·) = (gaussianMat A N)_#(Pstep N x)`. Companion of `Jkernel_apply`.
+@isnad1 id=eq.0h3v.s7.fce09134e10c from=translated src=- shape=a65c45d3 vocab=0cdfc3fe
+-/
 lemma Pkernel_apply (A : ℝ) (N : ℕ) (x : Fin N → ℝ) :
     Pkernel A N x = (gaussianMat A N).map (Pstep N x) := by
   unfold Pkernel
@@ -212,7 +237,9 @@ lemma Pkernel_apply (A : ℝ) (N : ℕ) (x : Fin N → ℝ) :
 the weight-matrix law through the linear part `𝖶 ↦ (∑ⱼ 𝖶ᵢⱼxⱼ)ᵢ` of the step map gives the
 i.i.d. Gaussian vector with per-coordinate variance `A²·r_N(x)`: the rows are independent
 (product structure), and each row is the scalar isotropy `map_sum_mul_gaussianPi` at
-variance `weightVar A N = A²/N`, whose `(∑xⱼ²)·(A²/N) = A²·r_N(x)`. -/
+variance `weightVar A N = A²/N`, whose `(∑xⱼ²)·(A²/N) = A²·r_N(x)`.
+@isnad1 id=eq.0h3v.s7.27cf94fca3a9 from=translated src=- shape=077f2cca vocab=e744a31f
+-/
 lemma map_rowMap_gaussianMat (A : ℝ) (N : ℕ) (x : Fin N → ℝ) :
     (gaussianMat A N).map (fun W i => ∑ j, W i j * x j)
       = Measure.pi (fun _ : Fin N => gaussianReal 0 ((A ^ 2 * radiusSq N x).toNNReal)) := by
@@ -234,13 +261,18 @@ lemma map_rowMap_gaussianMat (A : ℝ) (N : ℕ) (x : Fin N → ℝ) :
   funext i
   rw [map_sum_mul_gaussianPi (weightVar A N) x, hvar]
 
+/--
+@isnad1 id=le.0h2v.s4.755e40741d45 from=translated src=- shape=42a2b5ba vocab=759c34e8
+-/
 lemma radiusSq_nonneg (N : ℕ) (x : Fin N → ℝ) : 0 ≤ radiusSq N x := by
   unfold radiusSq; positivity
 
 /-- Scaling identity for the reconstruction coordinate: the law of `tanh(A√q·G)` with
 `G ∼ 𝒩(0,1)` equals `tanh` pushed forward from `𝒩(0, A²q)` (for `q ≥ 0`). Bridges the
 reconstruction side (variance `1`, scale inside `tanh`) and the vector side (variance
-`A²q`, bare `tanh`). -/
+`A²q`, bare `tanh`).
+@isnad1 id=eq.1h2v.s6.d540deffdb76 from=translated src=- shape=3c5cd985 vocab=428a7415
+-/
 lemma map_tanh_scale_gaussian (A q : ℝ) (hq : 0 ≤ q) :
     (gaussianReal 0 1).map (fun g => Real.tanh (A * Real.sqrt q * g))
       = (gaussianReal 0 (A ^ 2 * q).toNNReal).map Real.tanh := by
@@ -258,7 +290,9 @@ lemma map_tanh_scale_gaussian (A q : ℝ) (hq : 0 ≤ q) :
     _ = (gaussianReal 0 (A ^ 2 * q).toNNReal).map Real.tanh := by rw [hinner]
 
 /-- The reconstruction kernel as an explicit product measure: each coordinate is the law of
-`tanh(A√q·G)`, `G ∼ 𝒩(0,1)` (paper: `J_{A,N}(q,·)` is the law of `(tanh(A√q·Gᵢ))ᵢ`). -/
+`tanh(A√q·G)`, `G ∼ 𝒩(0,1)` (paper: `J_{A,N}(q,·)` is the law of `(tanh(A√q·Gᵢ))ᵢ`).
+@isnad1 id=eq.0h3v.s7.7f4012f7a1b7 from=translated src=- shape=40bfa66c vocab=3f91e816
+-/
 lemma Jkernel_apply_pi (A : ℝ) (N : ℕ) (q : ℝ) :
     Jkernel A N q
       = Measure.pi (fun _ : Fin N =>
@@ -278,7 +312,9 @@ lemma Jkernel_apply_pi (A : ℝ) (N : ℕ) (q : ℝ) :
 state only through its normalized squared radius, `P_{A,N}(x,·) = J_{A,N}(r_N(x),·)`. Since
 `𝖶x =ᵈ A√(r_N x)·G`, applying `tanh` coordinatewise identifies the two laws. Combines the
 row assembly `map_rowMap_gaussianMat`, the reconstruction product form `Jkernel_apply_pi`,
-and the coordinate scaling `map_tanh_scale_gaussian`. -/
+and the coordinate scaling `map_tanh_scale_gaussian`.
+@isnad1 id=eq.0h3v.s7.0413fb83c9fd from=translated src=- shape=d2859ca5 vocab=45c1725c
+-/
 theorem Pkernel_eq_Jkernel_radiusSq (A : ℝ) (N : ℕ) (x : Fin N → ℝ) :
     Pkernel A N x = Jkernel A N (radiusSq N x) := by
   have htanh : Measurable (fun v : Fin N → ℝ => fun i => Real.tanh (v i)) := by
@@ -300,7 +336,9 @@ theorem Pkernel_eq_Jkernel_radiusSq (A : ℝ) (N : ℕ) (x : Fin N → ℝ) :
 
 /-- **Kernel form of the vector factorization**: `P_{A,N}` is the reconstruction kernel
 `J_{A,N}` pulled back along the current normalized squared radius. This is the
-compositional form used for the first identity in `eq:gaussian-vector-radius-laws`. -/
+compositional form used for the first identity in `eq:gaussian-vector-radius-laws`.
+@isnad1 id=eq.0h2v.s6.2c1781cfb424 from=translated src=- shape=14dac6da vocab=7fc15453
+-/
 lemma Pkernel_eq_Jkernel_comap_radiusSq (A : ℝ) (N : ℕ) :
     Pkernel A N = (Jkernel A N).comap (radiusSq N) (measurable_radiusSq N) := by
   ext x
@@ -308,7 +346,9 @@ lemma Pkernel_eq_Jkernel_comap_radiusSq (A : ℝ) (N : ℕ) :
 
 /-- **Measure-level vector factorization**: one `P_{A,N}` step from any vector
 distribution is obtained by pushing that distribution to its radius law and then applying
-the reconstruction kernel `J_{A,N}`. -/
+the reconstruction kernel `J_{A,N}`.
+@isnad1 id=eq.0h3v.s8.24963c9bf3a8 from=translated src=- shape=dd77f1ca vocab=26ce7300
+-/
 lemma Pkernel_comp_eq_Jkernel_comp_map_radiusSq (A : ℝ) (N : ℕ)
     (μ : Measure (Fin N → ℝ)) [IsProbabilityMeasure μ] :
     (Pkernel A N) ∘ₘ μ = (Jkernel A N) ∘ₘ (μ.map (radiusSq N)) := by
@@ -319,14 +359,18 @@ lemma Pkernel_comp_eq_Jkernel_comp_map_radiusSq (A : ℝ) (N : ℕ)
 /-- **One-step radius law** (`t=1` case of `eq:gaussian-vector-radius-laws`): the normalized
 squared radius pushes the one-step vector law to the scalar squared-radius kernel,
 `(r_N)_# P_{A,N}(x,·) = K_{A,N}(r_N(x),·)`. Immediate from the isotropy factorization
-`Pkernel_eq_Jkernel_radiusSq` followed by the radius factorization `radiusSq_map_Jkernel`. -/
+`Pkernel_eq_Jkernel_radiusSq` followed by the radius factorization `radiusSq_map_Jkernel`.
+@isnad1 id=eq.0h3v.s7.b5ed8a29308b from=translated src=- shape=7b17bf1b vocab=6286a8df
+-/
 lemma radiusSq_map_Pkernel (A : ℝ) (N : ℕ) (x : Fin N → ℝ) :
     (Pkernel A N x).map (radiusSq N) = Kchain A N (radiusSq N x) := by
   rw [Pkernel_eq_Jkernel_radiusSq, radiusSq_map_Jkernel]
 
 /-- **Kernel form of the one-step radius law**: mapping the vector transition kernel by
 `r_N` is the scalar transition kernel pulled back along `r_N`. This is the compositional
-form used to lift the one-step law to arbitrary initial measures and then to kernel powers. -/
+form used to lift the one-step law to arbitrary initial measures and then to kernel powers.
+@isnad1 id=eq.0h2v.s6.563c9b9a17be from=translated src=- shape=563be6d1 vocab=6b27c9b2
+-/
 lemma Pkernel_map_radiusSq (A : ℝ) (N : ℕ) :
     (Pkernel A N).map (radiusSq N)
       = (Kchain A N).comap (radiusSq N) (measurable_radiusSq N) := by
@@ -336,7 +380,9 @@ lemma Pkernel_map_radiusSq (A : ℝ) (N : ℕ) :
 
 /-- **Measure-level one-step radius intertwining**: evolving a vector distribution by
 `P_{A,N}` and then taking `r_N` has the same law as first taking `r_N` and then evolving
-by `K_{A,N}`. This is the induction step for the radius law at arbitrary times. -/
+by `K_{A,N}`. This is the induction step for the radius law at arbitrary times.
+@isnad1 id=eq.0h3v.s7.9ab70c4eb3a8 from=translated src=- shape=f54e4874 vocab=5bfa376d
+-/
 lemma radiusSq_map_Pkernel_comp (A : ℝ) (N : ℕ) (μ : Measure (Fin N → ℝ))
     [IsProbabilityMeasure μ] :
     ((Pkernel A N) ∘ₘ μ).map (radiusSq N)
@@ -348,7 +394,9 @@ lemma radiusSq_map_Pkernel_comp (A : ℝ) (N : ℕ) (μ : Measure (Fin N → ℝ
 
 /-- **Radius law at arbitrary times** (second identity in
 `eq:gaussian-vector-radius-laws`): if the vector chain starts from `x`, then its
-normalized squared radius after `t` steps has law `K_{A,N}^t(r_N(x), ·)`. -/
+normalized squared radius after `t` steps has law `K_{A,N}^t(r_N(x), ·)`.
+@isnad1 id=eq.0h4v.s8.729c34046f82 from=translated src=- shape=602501fc vocab=191d195e
+-/
 theorem radiusSq_map_Pkernel_pow (A : ℝ) (N : ℕ) (x : Fin N → ℝ) (t : ℕ) :
     (((Pkernel A N) ^ t) x).map (radiusSq N)
       = ((Kchain A N) ^ t) (radiusSq N x) := by
@@ -366,7 +414,9 @@ theorem radiusSq_map_Pkernel_pow (A : ℝ) (N : ℕ) (x : Fin N → ℝ) (t : �
 /-- **Vector law at positive times** (first identity in
 `eq:gaussian-vector-radius-laws`, in successor form): after `t+1` vector steps, the law
 is obtained by evolving the initial radius for `t` scalar steps and then reconstructing
-through `J_{A,N}`. -/
+through `J_{A,N}`.
+@isnad1 id=eq.0h4v.s8.520ae9f4f474 from=translated src=- shape=6f798509 vocab=825c41d4
+-/
 theorem Pkernel_pow_succ_eq_Jkernel_comp_Kchain_pow
     (A : ℝ) (N : ℕ) (x : Fin N → ℝ) (t : ℕ) :
     ((Pkernel A N) ^ (t + 1)) x
@@ -380,7 +430,9 @@ theorem Pkernel_pow_succ_eq_Jkernel_comp_Kchain_pow
 /-- **Invariant-law transfer, scalar to vector** (first direction in
 `prop:gaussian-tv-reduction`): if `ν` is invariant for the squared-radius kernel
 `K_{A,N}`, then the reconstructed law `νJ_{A,N}` is invariant for the vector kernel
-`P_{A,N}`. This is the paper's identity `(νJ)P = (νK)J = νJ`. -/
+`P_{A,N}`. This is the paper's identity `(νJ)P = (νK)J = νJ`.
+@isnad1 id=invarian.1h3v.s6.a7cca9ed3996 from=translated src=- shape=5f4ebfe8 vocab=6c55b385
+-/
 theorem invariant_Pkernel_of_invariant_Kchain
     (A : ℝ) (N : ℕ) (ν : Measure ℝ) [IsProbabilityMeasure ν]
     (hν : Kernel.Invariant (Kchain A N) ν) :
@@ -404,7 +456,9 @@ theorem eq_Jkernel_comp_map_radiusSq_of_invariant_Pkernel
 /-- **Invariant-law transfer, vector to scalar** (second direction in
 `prop:gaussian-tv-reduction`): the normalized squared-radius pushforward of every
 `P_{A,N}`-invariant vector law is invariant for `K_{A,N}`. This is obtained by applying
-`(r_N)_#` to the paper's equality `πP = π`. -/
+`(r_N)_#` to the paper's equality `πP = π`.
+@isnad1 id=invarian.1h3v.s6.6c417654fac0 from=translated src=- shape=0ff84500 vocab=4058613e
+-/
 theorem invariant_Kchain_map_radiusSq_of_invariant_Pkernel
     (A : ℝ) (N : ℕ) (π : Measure (Fin N → ℝ)) [IsProbabilityMeasure π]
     (hπ : Kernel.Invariant (Pkernel A N) π) :
@@ -418,7 +472,9 @@ theorem invariant_Kchain_map_radiusSq_of_invariant_Pkernel
 
 /-- **Lower half of the Gaussian TV bracket** (`eq:gaussian-tv-bracket`): observing the
 normalized squared radius contracts total variation, so the scalar-chain distance from
-`ν` is at most the vector-chain distance from its reconstructed invariant law `νJ`. -/
+`ν` is at most the vector-chain distance from its reconstructed invariant law `νJ`.
+@isnad1 id=le.1h5v.s8.1f566b29d9dd from=translated src=- shape=546346e1 vocab=0fe33b8e
+-/
 theorem tvDist_Kchain_pow_le_Pkernel_pow
     (A : ℝ) (N : ℕ) (ν : Measure ℝ) [IsProbabilityMeasure ν]
     (hν : Kernel.Invariant (Kchain A N) ν) (x : Fin N → ℝ) (t : ℕ) :
@@ -434,7 +490,9 @@ theorem tvDist_Kchain_pow_le_Pkernel_pow
 
 /-- **Upper half of the Gaussian TV bracket** (`eq:gaussian-tv-bracket`): at positive
 times both the vector-chain law and its reconstructed invariant law are obtained by
-applying `Jkernel`, which contracts total variation. -/
+applying `Jkernel`, which contracts total variation.
+@isnad1 id=le.0h5v.s8.051e601f195f from=translated src=- shape=8b60a36f vocab=2dc10c01
+-/
 theorem tvDist_Pkernel_pow_succ_le_Kchain_pow
     (A : ℝ) (N : ℕ) (ν : Measure ℝ) [IsProbabilityMeasure ν]
     (x : Fin N → ℝ) (t : ℕ) :

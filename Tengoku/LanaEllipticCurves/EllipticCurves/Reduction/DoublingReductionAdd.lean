@@ -68,7 +68,9 @@ a lift `s : R` whose residue is exactly the tangent slope of the reduced curve a
 
 The denominator `y₀ - (integralModel R W).negY x₀ y₀` reduces to the nonzero reduced denominator, so
 it is a unit of the local ring `R`; the numerator `3x₀² + 2a₂x₀ + a₄ - a₁y₀` is integral, so the
-difference quotient stays in `R` and `residue R` commutes with it — no injectivity needed. -/
+difference quotient stays in `R` and `residue R` commutes with it — no injectivity needed.
+@isnad1 id=ex.3h7v.s10.b6e3783dcb41 from=translated src=- shape=17d91465 vocab=132c115f
+-/
 theorem exists_lift_tangent_slope_of_reduced_nonvertical (W : WeierstrassCurve K)
     [HasGoodReduction R W] {x y : K} {x₀ y₀ : R}
     (hx : algebraMap R K x₀ = x) (hy : algebraMap R K y₀ = y)
@@ -132,7 +134,9 @@ Lifting the integral-model `addX`/`addY` at the integral tangent slope
 (`exists_lift_tangent_slope_of_reduced_nonvertical`) through `algebraMap R K` and reducing them
 through `residue R` — both commuting with the ring homomorphisms via `Affine.map_addX`/`map_addY` —
 identifies the reduced coordinates of `P + P` with those of `redPt P + redPt P`.  Mirrors
-`redPt_add_of_reduced_X_ne` (#380). -/
+`redPt_add_of_reduced_X_ne` (#380).
+@isnad1 id=eq.4h7v.s9.920b1f2bc99e from=translated src=- shape=14a90973 vocab=a93bc957
+-/
 theorem redPt_add_self_of_reduced_nonvertical (W : WeierstrassCurve K) [HasGoodReduction R W]
     {x y : K} {h : W.toAffine.Nonsingular x y} {x₀ y₀ : R}
     (hx : algebraMap R K x₀ = x) (hy : algebraMap R K y₀ = y)
@@ -201,7 +205,9 @@ mod `𝔪`).  Subtracting the two Weierstrass equations yields the **divided-dif
 `n₀ = x₀₁²+x₀₁x₀₂+x₀₂²+a₂(x₀₁+x₀₂)+a₄-a₁y₀₁`, so the slope equals `n₀/d₀`.  The denominator `d₀`
 reduces to `2ȳ+a₁x̄+a₃ = ȳ - negY x̄ ȳ ≠ 0`, hence is a unit of `R`, and `n₀` reduces to the tangent
 numerator `3x̄²+2a₂x̄+a₄-a₁ȳ`; so `s := n₀ · d₀⁻¹` is the integral lift, with residue the reduced
-*tangent* slope. -/
+*tangent* slope.
+@isnad1 id=ex.10h11v.s10.1f36c245ff9d from=translated src=- shape=8c47ee1b vocab=12b2fabc
+-/
 theorem exists_lift_secant_slope_of_reduced_equal_nonvertical (W : WeierstrassCurve K)
     [HasGoodReduction R W] {x₁ y₁ x₂ y₂ : K}
     (he₁ : W.toAffine.Equation x₁ y₁) (he₂ : W.toAffine.Equation x₂ y₂)
@@ -275,7 +281,9 @@ so the sum is a *tangent doubling* (`add_of_Y_ne`).  The integral secant-slope l
 after lifting/reducing the `addX`/`addY` coordinate polynomials through `algebraMap R K` and
 `residue R` both sides land on the same reduced coordinates.  Together with
 `redPt_add_self_of_reduced_nonvertical` (the `x₁ = x₂` sub-case) this settles the full
-reduced-doubling non-vertical rung of `redPt`-additivity. -/
+reduced-doubling non-vertical rung of `redPt`-additivity.
+@isnad1 id=eq.10h11v.s10.ec3a99654774 from=translated src=- shape=5d2a23e4 vocab=a93bc957
+-/
 theorem redPt_add_of_reduced_equal_nonvertical (W : WeierstrassCurve K) [HasGoodReduction R W]
     {x₁ y₁ x₂ y₂ : K} {h₁ : W.toAffine.Nonsingular x₁ y₁} {h₂ : W.toAffine.Nonsingular x₂ y₂}
     {x₀₁ y₀₁ x₀₂ y₀₂ : R}

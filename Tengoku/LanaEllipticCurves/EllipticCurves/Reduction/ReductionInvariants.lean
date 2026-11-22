@@ -57,67 +57,89 @@ variable {R K : Type*}
 variable [CommRing R] [Field K] [Algebra R K]
 variable [IsDomain R] [IsDiscreteValuationRing R] [IsFractionRing R K]
 variable (R) in
-/-- The `a₁`-coefficient of the reduction is the residue of the integral model's `a₁`. -/
+/-- The `a₁`-coefficient of the reduction is the residue of the integral model's `a₁`.
+@isnad1 id=eq.0h3v.s7.3839e13a9227 from=translated src=- shape=9be4b8ed vocab=70c70ecb
+-/
 theorem reduction_a₁_eq (W : WeierstrassCurve K) [IsMinimal R W] :
     (W.reduction R).a₁ = residue R (integralModel R W).a₁ :=
   map_a₁ (W := integralModel R W) (residue R)
 
 variable (R) in
-/-- The `a₂`-coefficient of the reduction is the residue of the integral model's `a₂`. -/
+/-- The `a₂`-coefficient of the reduction is the residue of the integral model's `a₂`.
+@isnad1 id=eq.0h3v.s7.c94afecd72a5 from=translated src=- shape=9be4b8ed vocab=3d0a7cc3
+-/
 theorem reduction_a₂_eq (W : WeierstrassCurve K) [IsMinimal R W] :
     (W.reduction R).a₂ = residue R (integralModel R W).a₂ :=
   map_a₂ (W := integralModel R W) (residue R)
 
 variable (R) in
-/-- The `a₃`-coefficient of the reduction is the residue of the integral model's `a₃`. -/
+/-- The `a₃`-coefficient of the reduction is the residue of the integral model's `a₃`.
+@isnad1 id=eq.0h3v.s7.e3c16746fa5a from=translated src=- shape=9be4b8ed vocab=6f6d3539
+-/
 theorem reduction_a₃_eq (W : WeierstrassCurve K) [IsMinimal R W] :
     (W.reduction R).a₃ = residue R (integralModel R W).a₃ :=
   map_a₃ (W := integralModel R W) (residue R)
 
 variable (R) in
-/-- The `a₄`-coefficient of the reduction is the residue of the integral model's `a₄`. -/
+/-- The `a₄`-coefficient of the reduction is the residue of the integral model's `a₄`.
+@isnad1 id=eq.0h3v.s7.19ce62ddf811 from=translated src=- shape=9be4b8ed vocab=0107070a
+-/
 theorem reduction_a₄_eq (W : WeierstrassCurve K) [IsMinimal R W] :
     (W.reduction R).a₄ = residue R (integralModel R W).a₄ :=
   map_a₄ (W := integralModel R W) (residue R)
 
 variable (R) in
-/-- The `a₆`-coefficient of the reduction is the residue of the integral model's `a₆`. -/
+/-- The `a₆`-coefficient of the reduction is the residue of the integral model's `a₆`.
+@isnad1 id=eq.0h3v.s7.766970baedd0 from=translated src=- shape=9be4b8ed vocab=fc4a67c3
+-/
 theorem reduction_a₆_eq (W : WeierstrassCurve K) [IsMinimal R W] :
     (W.reduction R).a₆ = residue R (integralModel R W).a₆ :=
   map_a₆ (W := integralModel R W) (residue R)
 
 variable (R) in
-/-- The `b₂`-invariant of the reduction is the residue of the integral model's `b₂`. -/
+/-- The `b₂`-invariant of the reduction is the residue of the integral model's `b₂`.
+@isnad1 id=eq.0h3v.s7.a41f3553097b from=translated src=- shape=9be4b8ed vocab=bb4efe73
+-/
 theorem reduction_b₂_eq (W : WeierstrassCurve K) [IsMinimal R W] :
     (W.reduction R).b₂ = residue R (integralModel R W).b₂ :=
   map_b₂ (W := integralModel R W) (residue R)
 
 variable (R) in
-/-- The `b₄`-invariant of the reduction is the residue of the integral model's `b₄`. -/
+/-- The `b₄`-invariant of the reduction is the residue of the integral model's `b₄`.
+@isnad1 id=eq.0h3v.s7.8f442ff22e36 from=translated src=- shape=9be4b8ed vocab=0378fd6f
+-/
 theorem reduction_b₄_eq (W : WeierstrassCurve K) [IsMinimal R W] :
     (W.reduction R).b₄ = residue R (integralModel R W).b₄ :=
   map_b₄ (W := integralModel R W) (residue R)
 
 variable (R) in
-/-- The `b₆`-invariant of the reduction is the residue of the integral model's `b₆`. -/
+/-- The `b₆`-invariant of the reduction is the residue of the integral model's `b₆`.
+@isnad1 id=eq.0h3v.s7.0ab524592d81 from=translated src=- shape=9be4b8ed vocab=5ce3476e
+-/
 theorem reduction_b₆_eq (W : WeierstrassCurve K) [IsMinimal R W] :
     (W.reduction R).b₆ = residue R (integralModel R W).b₆ :=
   map_b₆ (W := integralModel R W) (residue R)
 
 variable (R) in
-/-- The `b₈`-invariant of the reduction is the residue of the integral model's `b₈`. -/
+/-- The `b₈`-invariant of the reduction is the residue of the integral model's `b₈`.
+@isnad1 id=eq.0h3v.s7.5aa224802697 from=translated src=- shape=9be4b8ed vocab=49a6acf8
+-/
 theorem reduction_b₈_eq (W : WeierstrassCurve K) [IsMinimal R W] :
     (W.reduction R).b₈ = residue R (integralModel R W).b₈ :=
   map_b₈ (W := integralModel R W) (residue R)
 
 variable (R) in
-/-- The `c₄`-invariant of the reduction is the residue of the integral model's `c₄`. -/
+/-- The `c₄`-invariant of the reduction is the residue of the integral model's `c₄`.
+@isnad1 id=eq.0h3v.s7.59bf09bf555f from=translated src=- shape=9be4b8ed vocab=5afdd0ea
+-/
 theorem reduction_c₄_eq (W : WeierstrassCurve K) [IsMinimal R W] :
     (W.reduction R).c₄ = residue R (integralModel R W).c₄ :=
   map_c₄ (W := integralModel R W) (residue R)
 
 variable (R) in
-/-- The `c₆`-invariant of the reduction is the residue of the integral model's `c₆`. -/
+/-- The `c₆`-invariant of the reduction is the residue of the integral model's `c₆`.
+@isnad1 id=eq.0h3v.s7.cd2e74111f94 from=translated src=- shape=9be4b8ed vocab=3b89cb2e
+-/
 theorem reduction_c₆_eq (W : WeierstrassCurve K) [IsMinimal R W] :
     (W.reduction R).c₆ = residue R (integralModel R W).c₆ :=
   map_c₆ (W := integralModel R W) (residue R)
@@ -125,7 +147,9 @@ theorem reduction_c₆_eq (W : WeierstrassCurve K) [IsMinimal R W] :
 variable (R) in
 /-- **The discriminant commutes with reduction.** `(W.reduction R).Δ` is the residue of the
 discriminant of the integral minimal model. Compare `reduction_j_eq`; here no good-reduction or
-ellipticity hypothesis is needed, since `Δ` is defined for every Weierstrass curve. -/
+ellipticity hypothesis is needed, since `Δ` is defined for every Weierstrass curve.
+@isnad1 id=eq.0h3v.s7.186e651ffb63 from=translated src=- shape=9be4b8ed vocab=f2830543
+-/
 theorem reduction_Δ_eq (W : WeierstrassCurve K) [IsMinimal R W] :
     (W.reduction R).Δ = residue R (integralModel R W).Δ :=
   map_Δ (W := integralModel R W) (residue R)

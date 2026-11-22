@@ -92,7 +92,9 @@ and `y₃` have `z₂`-order `0`, so the `z₂`-degree-`0` coefficient of the pr
 is `-x₃.coeff 0 = -x(z₁)` (`leadingCoeff_formalXThree`). Since `z₁ · y(z₁) = -x(z₁)`
 (`single_one_mul_formalY`) and `y(z₁)` is a unit (`isUnit_formalY`), cancelling `y(z₁)` gives
 `F_E.coeff 0 = z₁`. This pins the inner behaviour of the leading `z₂`-slice to a pole-free
-monomial. -/
+monomial.
+@isnad1 id=eq.0h2v.s7.c9c12b439647 from=translated src=- shape=b9a69175 vocab=9785830f
+-/
 theorem coeff_formalGroupLaurent_zero :
     W.formalGroupLaurent.coeff 0 = HahnSeries.single (1 : ℤ) 1 := by
   obtain _ | _ := subsingleton_or_nontrivial R
@@ -119,19 +121,25 @@ noncomputable def formalGroupSeries : MvPowerSeries (Fin 2) R :=
   HahnSeries.ofDoubleLaurent W.formalGroupLaurent
 
 /-- The bigraded coefficient bridge: the coefficient of `z₁^(d 0) z₂^(d 1)` in `formalGroupSeries`
-is the inner `z₁`-coefficient `(F_E.coeff (d 1)).coeff (d 0)` of the Laurent element `F_E`. -/
+is the inner `z₁`-coefficient `(F_E.coeff (d 1)).coeff (d 0)` of the Laurent element `F_E`.
+@isnad1 id=eq.0h3v.s8.70eec3d1f92a from=translated src=- shape=3d17fe6f vocab=118436f2
+-/
 theorem coeff_formalGroupSeries (d : Fin 2 →₀ ℕ) :
     MvPowerSeries.coeff d W.formalGroupSeries
       = (W.formalGroupLaurent.coeff (d 1 : ℤ)).coeff (d 0 : ℤ) :=
   HahnSeries.coeff_ofDoubleLaurent _ _
 
-/-- **Normalisation axiom (constant term).** `F_E` has zero constant term: `constantCoeff = 0`. -/
+/-- **Normalisation axiom (constant term).** `F_E` has zero constant term: `constantCoeff = 0`.
+@isnad1 id=eq.0h2v.s7.4fb7eeddc3f8 from=translated src=- shape=e0b4d237 vocab=48fac6d1
+-/
 theorem constantCoeff_formalGroupSeries :
     MvPowerSeries.constantCoeff W.formalGroupSeries = 0 := by
   rw [formalGroupSeries, HahnSeries.constantCoeff_ofDoubleLaurent, W.coeff_formalGroupLaurent_zero,
     HahnSeries.coeff_single_of_ne (by norm_num)]
 
-/-- **Normalisation axiom (`z₁`-linear term).** The coefficient of `z₁` in `F_E` is `1`. -/
+/-- **Normalisation axiom (`z₁`-linear term).** The coefficient of `z₁` in `F_E` is `1`.
+@isnad1 id=eq.0h2v.s8.7465eb7fe255 from=translated src=- shape=41ec4ce7 vocab=b5627f2d
+-/
 theorem coeff_formalGroupSeries_single_zero :
     MvPowerSeries.coeff (Finsupp.single 0 1) W.formalGroupSeries = 1 := by
   rw [formalGroupSeries, HahnSeries.coeff_ofDoubleLaurent_single_zero,
@@ -233,7 +241,9 @@ Take the `z₂`-degree-`1` coefficient of the defining identity `F_E · y₃ = -
 with inverse `-w(z₁)`, `F_E.coeff 1 = R·(-w(z₁))`. The slices `x₃.coeff 1` (inner order `-3`, lead
 `-2`) and `y₃.coeff 1` (inner order `-4`, lead `3`) give `R` inner order `-3` with leading
 coefficient `-1`; `w(z₁)` has inner order `3` with leading coefficient `1`, so the product's
-`z₁`-degree-`0` coefficient is `(-1)·(-1) = 1`. (Silverman AEC IV.1, Theorem 1.1.) -/
+`z₁`-degree-`0` coefficient is `(-1)·(-1) = 1`. (Silverman AEC IV.1, Theorem 1.1.)
+@isnad1 id=eq.0h2v.s6.40cb3b80d468 from=translated src=- shape=b2dcc3d1 vocab=9ae89292
+-/
 theorem coeff_formalGroupLaurent_one_inner_zero [Nontrivial R] :
     (W.formalGroupLaurent.coeff 1).coeff 0 = 1 := by
   -- The `z₂`-degree-`1` coefficient of `F_E · y₃ = -x₃`.
@@ -293,7 +303,9 @@ theorem coeff_formalGroupLaurent_one_inner_zero [Nontrivial R] :
 
 /-- **Normalisation axiom (`z₂`-linear term).** The coefficient of `z₂` in `F_E` is `1`.
 Together with `constantCoeff = 0` and `coeff (single 0 1) = 1` these are the normalisation axioms
-`F_E(z₁, z₂) = z₁ + z₂ + ⋯` of a formal group law (Silverman AEC IV.1, Theorem 1.1). -/
+`F_E(z₁, z₂) = z₁ + z₂ + ⋯` of a formal group law (Silverman AEC IV.1, Theorem 1.1).
+@isnad1 id=eq.0h2v.s8.de3acc207f31 from=translated src=- shape=41ec4ce7 vocab=b5627f2d
+-/
 theorem coeff_formalGroupSeries_single_one :
     MvPowerSeries.coeff (Finsupp.single 1 1) W.formalGroupSeries = 1 := by
   obtain _ | _ := subsingleton_or_nontrivial R

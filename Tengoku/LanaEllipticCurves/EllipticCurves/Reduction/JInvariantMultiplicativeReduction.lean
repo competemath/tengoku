@@ -53,7 +53,9 @@ variable [IsDomain R] [IsDiscreteValuationRing R] [IsFractionRing R K]
 
 variable (R) in
 /-- The valuation of the `j`-invariant of an elliptic curve factors as `(v Δ)⁻¹ · (v c₄)³`, since
-`j = Δ'⁻¹ · c₄³` and the valuation is multiplicative. -/
+`j = Δ'⁻¹ · c₄³` and the valuation is multiplicative.
+@isnad1 id=eq.0h3v.s8.2f31736d993e from=translated src=- shape=8a4def57 vocab=06b6747d
+-/
 theorem valuation_j_eq_of_isElliptic (W : WeierstrassCurve K) [W.IsElliptic] :
     valuation K (maximalIdeal R) W.j
       = (valuation K (maximalIdeal R) W.Δ)⁻¹ * valuation K (maximalIdeal R) W.c₄ ^ 3 := by
@@ -62,7 +64,9 @@ theorem valuation_j_eq_of_isElliptic (W : WeierstrassCurve K) [W.IsElliptic] :
 variable (R) in
 /-- **Multiplicative reduction forces `v(j) < 0`** (here `1 < v(j)` in the multiplicative valuation
 convention): with `v(c₄) = 1` and `0 < v(Δ) < 1`, the identity `v(j) = (v Δ)⁻¹ · (v c₄)³`
-collapses to `v(j) = (v Δ)⁻¹ > 1`. -/
+collapses to `v(j) = (v Δ)⁻¹ > 1`.
+@isnad1 id=lt.0h3v.s7.933f9da3291d from=translated src=- shape=5e129193 vocab=aa5cf0b3
+-/
 theorem one_lt_valuation_j_of_hasMultiplicativeReduction (W : WeierstrassCurve K)
     [W.IsElliptic] [HasMultiplicativeReduction R W] :
     1 < valuation K (maximalIdeal R) W.j := by
@@ -74,7 +78,9 @@ theorem one_lt_valuation_j_of_hasMultiplicativeReduction (W : WeierstrassCurve K
 
 variable (R) in
 /-- **The `j`-invariant of a curve with multiplicative reduction is not integral**: there is no
-`r : R` with `algebraMap R K r = W.j`. Contrast `isIntegral_j_of_hasGoodReduction` (#483). -/
+`r : R` with `algebraMap R K r = W.j`. Contrast `isIntegral_j_of_hasGoodReduction` (#483).
+@isnad1 id=not.0h3v.s7.0e75d6267b94 from=translated src=- shape=49b63896 vocab=31c20c60
+-/
 theorem not_isIntegral_j_of_hasMultiplicativeReduction (W : WeierstrassCurve K)
     [W.IsElliptic] [HasMultiplicativeReduction R W] :
     ¬ ∃ r : R, algebraMap R K r = W.j := by

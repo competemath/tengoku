@@ -47,18 +47,30 @@ def affineMap (a b : ℚ) (h : a ≠ b) : ElemMap :=
     have : b - a ≠ 0 := sub_ne_zero.mpr (Ne.symm h)
     simpa using this)
 
+/--
+@isnad1 id=eq.1h2v.s4.fd47074e5198 from=translated src=- shape=e08aacdd vocab=ae811e03
+-/
 @[simp] lemma affineMap_none {a b : ℚ} (h : a ≠ b) : (affineMap a b h).apply none = none := by
   simp [affineMap, ElemMap.apply_mob_none]
 
+/--
+@isnad1 id=eq.1h3v.s4.3a8590e20de7 from=translated src=- shape=4ca67891 vocab=170ec4d4
+-/
 @[simp] lemma affineMap_ramIdx {a b : ℚ} (h : a ≠ b) (z : Pt) :
     (affineMap a b h).ramIdx z = 1 := rfl
 
+/--
+@isnad1 id=isnoncri.3h6v.s6.bea5b10d821e from=translated src=- shape=c4d3fb7f vocab=64bb1822
+-/
 lemma IsNoncriticalBelyi.cons_affineMap {hs : List ElemMap} {S S' : Set Pt} {τ : Pt}
     {a b : ℚ} (h : a ≠ b) (hS : ∀ z ∈ S, (affineMap a b h).apply z ∈ S')
     (hg : IsNoncriticalBelyi hs S' ((affineMap a b h).apply τ)) :
     IsNoncriticalBelyi (affineMap a b h :: hs) S τ :=
   IsNoncriticalBelyi.cons _ hS (fun z hz => by simp at hz) hg
 
+/--
+@isnad1 id=eq.1h3v.s5.2edafb2092d3 from=translated src=- shape=fb07819f vocab=f5fe74b8
+-/
 lemma affineMap_ofRat {a b : ℚ} (h : a ≠ b) (q : ℚ) :
     (affineMap a b h).apply (ofRat q) = ofRat ((q - a) / (b - a)) := by
   have hba : b - a ≠ 0 := sub_ne_zero.mpr (Ne.symm h)
@@ -69,14 +81,23 @@ lemma affineMap_ofRat {a b : ℚ} (h : a ≠ b) (q : ℚ) :
 /-- The polynomial `x^m (x - 1)^n` of Mochizuki's Lemma 2.1. -/
 noncomputable def sepPoly (m n : ℕ) : ℚ[X] := X ^ m * (X - C 1) ^ n
 
+/--
+@isnad1 id=eq.0h2v.s4.b65d22932513 from=translated src=- shape=eb0f209d vocab=23a125c1
+-/
 lemma natDegree_sepPoly (m n : ℕ) : (sepPoly m n).natDegree = m + n := by
   rw [sepPoly, natDegree_mul (pow_ne_zero _ X_ne_zero) (pow_ne_zero _ (X_sub_C_ne_zero 1)),
     natDegree_pow, natDegree_pow, natDegree_X, natDegree_X_sub_C (1 : ℚ)]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s5.6b2bd823be01 from=translated src=- shape=95868f78 vocab=23a58dfc
+-/
 lemma eval_sepPoly (m n : ℕ) (x : ℚ) : (sepPoly m n).eval x = x ^ m * (x - 1) ^ n := by
   simp [sepPoly]
 
+/--
+@isnad1 id=eq.0h2v.s8.7c2a6ed1fae4 from=translated src=- shape=684c6da5 vocab=6b8e72f4
+-/
 lemma derivative_sepPoly (m n : ℕ) :
     derivative (sepPoly (m + 1) (n + 1)) =
       X ^ m * (X - C 1) ^ n * (((m : ℚ[X]) + 1) * (X - C 1) + ((n : ℚ[X]) + 1) * X) := by
@@ -87,7 +108,9 @@ lemma derivative_sepPoly (m n : ℕ) :
   ring
 
 /-- Property (b) of Lemma 2.1: the finite critical points of `x^m (x - 1)^n` are `0`, `1`
-and `m/(m+n)`. -/
+and `m/(m+n)`.
+@isnad1 id=or.3h3v.s8.4eced00d852e from=translated src=- shape=65132fb0 vocab=6e3bd717
+-/
 lemma crit_sepPoly {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) {z : Qbar}
     (hz : aeval z (derivative (sepPoly m n)) = 0) :
     z = 0 ∨ z = 1 ∨ z = (((m : ℚ) / ((m : ℚ) + n) : ℚ) : Qbar) := by
@@ -109,6 +132,9 @@ lemma crit_sepPoly {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) {z : Qbar}
     rw [eq_div_iff hden]
     linear_combination h
 
+/--
+@isnad1 id=le.2h3v.s5.b9e6f8d2a8e4 from=translated src=- shape=20bd0d8c vocab=5cf999e0
+-/
 lemma abs_eval_sepPoly_le_one (m n : ℕ) {x : ℚ} (h0 : 0 ≤ x) (h1 : x ≤ 1) :
     |(sepPoly m n).eval x| ≤ 1 := by
   rw [eval_sepPoly, abs_mul, abs_pow, abs_pow]
@@ -119,6 +145,9 @@ lemma abs_eval_sepPoly_le_one (m n : ℕ) {x : ℚ} (h0 : 0 ≤ x) (h1 : x ≤ 1
           (by positivity) zero_le_one
     _ = 1 := one_mul 1
 
+/--
+@isnad1 id=le.3h3v.s5.12fcb6e08e2d from=translated src=- shape=b5cb89f1 vocab=7708aaf5
+-/
 lemma twelve_le_eval_sepPoly {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) {x : ℚ} (hx : 4 ≤ x) :
     12 ≤ (sepPoly m n).eval x := by
   rw [eval_sepPoly]
@@ -128,7 +157,9 @@ lemma twelve_le_eval_sepPoly {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) {x : ℚ}
 
 /-- **Lemma 2.2 of Mochizuki (rational case), normalised**: if `T ⊆ [-1, 1]` is a finite set
 of rationals and `τ ≥ 9` is rational, there is a composite of elementary maps mapping
-`T ∪ {∞}` into `{0, 1, ∞}`, `τ` outside `{0, 1, ∞}`, unramified over `ℙ¹ ∖ {0, 1, ∞}`. -/
+`T ∪ {∞}` into `{0, 1, ∞}`, `τ` outside `{0, 1, ∞}`, unramified over `ℙ¹ ∖ {0, 1, ∞}`.
+@isnad1 id=ex.2h2v.s6.a66994d731e7 from=translated src=- shape=e2fea28f vocab=161d0b4d
+-/
 theorem exists_isNoncriticalBelyi_rat (T : Finset ℚ) (τ : ℚ) (hT : ∀ t ∈ T, |t| ≤ 1)
     (hτ : 9 ≤ τ) :
     ∃ hs : List ElemMap, IsNoncriticalBelyi hs (insert none (ofRat '' (T : Set ℚ))) (ofRat τ) := by

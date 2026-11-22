@@ -102,7 +102,9 @@ ring hom `HahnSeries.embedDoubleLaurentRingHom`, after replacing `embedDoubleLau
 
 It is the exact `WF`-analogue of `formalWThree_functional_eq` for `W₃ = -y₃⁻¹`; the two together
 reduce the Laurent route to `(★)` to the single identity
-`embedDoubleLaurent WF = W.formalWThree` (see the module docstring). -/
+`embedDoubleLaurent WF = W.formalWThree` (see the module docstring).
+@isnad1 id=eq.0h2v.s13.a8a5f80db007 from=translated src=- shape=e9b2168d vocab=aa9d4e25
+-/
 theorem embedDoubleLaurent_formalW_subst_formalGroupZW_functional_eq :
     HahnSeries.embedDoubleLaurent (W.formalW.subst W.formalGroupZW)
       = W.formalGroupLaurent ^ 3

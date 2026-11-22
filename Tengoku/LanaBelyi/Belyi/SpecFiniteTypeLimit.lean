@@ -76,7 +76,9 @@ noncomputable def ringCocone : Cocone (ringDiagram k K) where
     { app R := CommRingCat.ofHom R.1.val.toRingHom
       naturality {R S} h := by ext x; rfl }
 
-/-- Every element of `K` lies in a finitely generated `k`-subalgebra (namely `k[x]`). -/
+/-- Every element of `K` lies in a finitely generated `k`-subalgebra (namely `k[x]`).
+@isnad1 id=ex.0h3v.s6.178e0894896b from=translated src=- shape=c2334006 vocab=c791a297
+-/
 lemma exists_mem_fg (x : K) : ∃ R : FGSub k K, x ∈ R.1 :=
   ⟨⟨Algebra.adjoin k ↑({x} : Finset K), Subalgebra.fg_adjoin_finset _⟩,
     Algebra.subset_adjoin (by simp)⟩

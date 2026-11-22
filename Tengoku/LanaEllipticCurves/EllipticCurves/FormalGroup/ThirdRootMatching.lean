@@ -54,7 +54,9 @@ open scoped LaurentSeries
 /-- **Abstract Vieta third-root uniqueness.** Companion to `vieta_root_of_regular`: if a cubic
 `F` (presented through its divided difference) has roots `x`, `y`, and a further root `w`, with
 `x - y`, `w - x`, `w - y` all regular (left-cancellable) and unit leading coefficient `A`
-(`A · a = 1`), then `w` is forced to equal the Vieta third root `-(B·a) - x - y`. -/
+(`A · a = 1`), then `w` is forced to equal the Vieta third root `-(B·a) - x - y`.
+@isnad1 id=eq.8h9v.s9.6e3d1ce74e17 from=translated src=- shape=e159a4f3 vocab=2ee55b10
+-/
 theorem _root_.Tengoku.LanaEllipticCurves.vieta_third_root_unique {T : Type*} [CommRing T] (F : T → T) (A B Cc x y w a : T)
     (hdiff : ∀ u v : T, F u - F v = (u - v) * (A * (u ^ 2 + u * v + v ^ 2) + B * (u + v) + Cc))
     (hFx : F x = 0) (hFy : F y = 0) (hFw : F w = 0) (hA : A * a = 1)
@@ -81,7 +83,9 @@ variable {R : Type*} [CommRing R] (W : WeierstrassCurve R)
 
 /-- **The secant `y`-value at the third point is a unit.** `Y = λ·x₃ + ν` has `z₂`-order `0` with
 leading coefficient the unit `-y(z₁) - a₁·x(z₁)`, hence is a unit of `(R⸨X⸩)⸨X⸩`. Concretely
-`Y = -y₃ - a₁·x₃ - a₃` (the definition of `y₃`), and `-y₃` dominates. -/
+`Y = -y₃ - a₁·x₃ - a₃` (the definition of `y₃`), and `-y₃` dominates.
+@isnad1 id=isunit.0h2v.s8.35fdc793148f from=translated src=- shape=c3b05b64 vocab=75db735a
+-/
 theorem isUnit_thirdSecantY :
     IsUnit (W.formalLambda * W.formalXThree + W.formalNu) := by
   obtain _ | _ := subsingleton_or_nontrivial R
@@ -306,7 +310,9 @@ formal group laws agree. (`z₁ - z₂ = biZ₂ - biZ₁` is already a unit, `is
 
 The Vieta third root `Z = φ(z₃')` and the coordinate-change image `z_c = -x₃·Y⁻¹` are both roots of
 the substituted `z`-cubic, so third-root uniqueness (`vieta_third_root_unique`) forces `z_c = Z`,
-whence `(K1)` and thence `(K4)`. -/
+whence `(K1)` and thence `(K4)`.
+@isnad1 id=eq.2h2v.s10.3860d2bfc8d7 from=translated src=- shape=81f3e147 vocab=cc756a44
+-/
 theorem embedDoubleLaurent_formalGroupZW_of_regular
     (hregwx : ∀ c : (R⸨X⸩)⸨X⸩, (W.coordChangeZ - W.biZ₁) * c = 0 → c = 0)
     (hregwy : ∀ c : (R⸨X⸩)⸨X⸩, (W.coordChangeZ - W.biZ₂) * c = 0 → c = 0) :

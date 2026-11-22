@@ -22,7 +22,9 @@ namespace AbsorptionCutoff
 
 /-- The paper's stopped argument after a random entrance: the full dynamic
 second moment consists of damped entrance variance, the local noise floor,
-initial entrance failure, and finite-horizon transition noise. -/
+initial entrance failure, and finite-horizon transition noise.
+@isnad1 id=le.13h10v.s9.51eeb293392b from=translated src=- shape=a0bfad07 vocab=0f0fea41
+-/
 lemma integral_sq_eval_sub_V_iterate_le_initial_add_inv_add_exp_of_measure
     {A q qStar R κ δ : ℝ} {N T t : ℕ}
     (hA : A ≠ 0) (hN : 0 < N) (hR0 : 0 ≤ R)
@@ -90,7 +92,9 @@ lemma integral_sq_eval_sub_V_iterate_le_initial_add_inv_add_exp_of_measure
       ring
 
 /-- Applying the random-entrance estimate to a fixed-time marginal rewrites
-all four terms on the original Dirac-start path. -/
+all four terms on the original Dirac-start path.
+@isnad1 id=le.13h10v.s9.64bd1f6eb688 from=translated src=- shape=a4555586 vocab=b0b3ca67
+-/
 lemma integral_sq_eval_add_sub_V_iterate_le_initial_add_inv_add_exp
     {A q qStar R κ δ : ℝ} {N m T t : ℕ}
     (hq : q ∈ Set.Icc (0 : ℝ) 1)
@@ -216,7 +220,9 @@ lemma integral_sq_eval_add_sub_V_iterate_le_initial_add_inv_add_exp
       hfull
 
 /-- The deterministic stable margin and stochastic fixed-time entrance tail
-can be selected with the same compact-uniform parameters. -/
+can be selected with the same compact-uniform parameters.
+@isnad1 id=ex.4h3v.s8.fdcc4e915de8 from=translated src=- shape=bf2d68d9 vocab=f3b7d324
+-/
 theorem exists_uniform_markovPathMeasure_stable_entrance_exp_bound_with_margin
     {A qStar r : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -286,7 +292,9 @@ theorem exists_uniform_markovPathMeasure_stable_entrance_exp_bound_with_margin
       norm_num
 
 /-- The synchronized deterministic margin and stochastic entrance tail apply
-eventually to every sequence converging to a positive initial radius. -/
+eventually to every sequence converging to a positive initial radius.
+@isnad1 id=ex.6h4v.s8.1a5254bcc8f1 from=translated src=- shape=14a10bba vocab=5f018a9a
+-/
 theorem
     exists_eventually_markovPathMeasure_stable_entrance_exp_bound_with_margin_of_tendsto
     {A qStar q₀ : ℝ} (q : ℕ → ℝ)
@@ -336,7 +344,9 @@ theorem
 
 /-- After a fixed stochastic entrance, every positive convergent initial
 sequence has a uniform inverse-dimension dynamic moment bound through any
-linearly bounded varying horizon. -/
+linearly bounded varying horizon.
+@isnad1 id=ex.8h6v.s8.3d6963d27848 from=translated src=- shape=42b81ec2 vocab=0ab3e8a0
+-/
 theorem
     exists_eventually_forall_integral_sq_eval_sub_V_iterate_le_inv_nat_of_tendsto
     {A qStar q₀ Cₜ : ℝ} (q : ℕ → ℝ) (T : ℕ → ℕ)

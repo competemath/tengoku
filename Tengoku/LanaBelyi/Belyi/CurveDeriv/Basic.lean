@@ -56,6 +56,9 @@ noncomputable def Derivation.extendOfFormallyEtale [Algebra.FormallyEtale S T]
   ((LinearMap.liftBaseChange T d.liftKaehlerDifferential) ∘ₗ
     (tensorKaehlerEquivOfFormallyEtale R S T).symm.toLinearMap).compDer (KaehlerDifferential.D R T)
 
+/--
+@isnad1 id=eq.0h5v.s8.b689c75a3d5c from=translated src=- shape=2a36bde1 vocab=56ce18e0
+-/
 @[simp]
 theorem Derivation.extendOfFormallyEtale_algebraMap [Algebra.FormallyEtale S T]
     (d : Derivation R S T) (s : S) :
@@ -80,7 +83,9 @@ theorem Derivation.eq_zero_of_formallyUnramified [Algebra.FormallyUnramified S T
     map_zero]
 
 omit [Algebra R S] [IsScalarTower R S T] in
-/-- Two derivations of a formally unramified `S`-algebra `T` which agree on `S` agree. -/
+/-- Two derivations of a formally unramified `S`-algebra `T` which agree on `S` agree.
+@isnad1 id=eq.1h5v.s8.d0167fe2dfbb from=translated src=- shape=a899683c vocab=c39c2202
+-/
 theorem Derivation.ext_of_formallyUnramified [Algebra.FormallyUnramified S T]
     (D₁ D₂ : Derivation R T T) (h : ∀ s : S, D₁ (algebraMap S T s) = D₂ (algebraMap S T s)) :
     D₁ = D₂ := by
@@ -96,7 +101,9 @@ section Algebraic
 variable {K : Type*} [Field K] [CharZero K]
 
 /-- A `ℚ`-derivation of a field of characteristic zero kills every element algebraic
-over `ℚ`. -/
+over `ℚ`.
+@isnad1 id=eq.1h3v.s7.0c4ca5c69910 from=translated src=- shape=93976b76 vocab=a6d207d3
+-/
 theorem Derivation.map_eq_zero_of_isAlgebraic (D : Derivation ℚ K K) {x : K}
     (hx : IsAlgebraic ℚ x) : D x = 0 := by
   have hint := hx.isIntegral
@@ -122,12 +129,17 @@ section Construction
 
 variable (t : K)
 
-/-- The value in `K` of the isomorphism `ℚ[X] ≃ ℚ[t]` is evaluation at `t`. -/
+/-- The value in `K` of the isomorphism `ℚ[X] ≃ ℚ[t]` is evaluation at `t`.
+@isnad1 id=eq.1h3v.s9.f642834cbb4a from=translated src=- shape=a08defb2 vocab=f7514076
+-/
 theorem coe_algEquivOfTranscendental (ht : Transcendental ℚ t) (p : ℚ[X]) :
     ((Polynomial.algEquivOfTranscendental ℚ t ht p : Algebra.adjoin ℚ {t}) : K) = aeval t p := by
   rw [Polynomial.algEquivOfTranscendental_apply]
   exact (aeval_algHom_apply (Algebra.adjoin ℚ {t}).val _ p).symm
 
+/--
+@isnad1 id=eq.1h3v.s10.99177cf27708 from=translated src=- shape=4d56a82a vocab=a47407b3
+-/
 theorem aeval_algEquivOfTranscendental_symm (ht : Transcendental ℚ t)
     (a : Algebra.adjoin ℚ {t}) :
     aeval t ((Polynomial.algEquivOfTranscendental ℚ t ht).symm a) = (a : K) := by
@@ -147,12 +159,18 @@ noncomputable def polyDeriv (ht : Transcendental ℚ t) : Derivation ℚ (Algebr
     simp only [map_mul, derivative_mul, map_add, aeval_algEquivOfTranscendental_symm]
     ring
 
+/--
+@isnad1 id=eq.1h3v.s10.0b27c3e326d6 from=translated src=- shape=46951194 vocab=10c591da
+-/
 theorem polyDeriv_apply (ht : Transcendental ℚ t) (p : ℚ[X]) :
     polyDeriv t ht (Polynomial.algEquivOfTranscendental ℚ t ht p) = aeval t (derivative p) := by
   simp only [polyDeriv, Derivation.mk_coe, LinearMap.coe_mk, AddHom.coe_mk,
     AlgEquiv.symm_apply_apply]
 
 open scoped IntermediateField.algebraAdjoinAdjoin in
+/--
+@isnad1 id=formally.0h2v.s8.10d31fa8bb78 from=translated src=- shape=1937202f vocab=93228a62
+-/
 theorem formallyEtale_adjoin [Algebra.IsAlgebraic ℚ⟮t⟯ K] :
     Algebra.FormallyEtale (Algebra.adjoin ℚ {t}) K := by
   have : Algebra.FormallyEtale (Algebra.adjoin ℚ {t}) ℚ⟮t⟯ :=
@@ -172,6 +190,9 @@ noncomputable def derivAlong : Derivation ℚ K K :=
 
 variable {t}
 
+/--
+@isnad1 id=eq.1h3v.s9.5786be2af99d from=translated src=- shape=096cf2ad vocab=6e66d4d1
+-/
 theorem derivAlong_aeval (ht : Transcendental ℚ t) [Algebra.IsAlgebraic ℚ⟮t⟯ K] (p : ℚ[X]) :
     derivAlong t (aeval t p) = aeval t (derivative p) := by
   have := formallyEtale_adjoin t
@@ -181,12 +202,17 @@ theorem derivAlong_aeval (ht : Transcendental ℚ t) [Algebra.IsAlgebraic ℚ⟮
   rw [derivAlong, dite_eq_left ⟨ht, ‹_›⟩, key, Derivation.extendOfFormallyEtale_algebraMap,
     polyDeriv_apply]
 
+/--
+@isnad1 id=eq.1h2v.s8.b13c979b843d from=translated src=- shape=d0190bc9 vocab=bf86d053
+-/
 @[simp]
 theorem derivAlong_self (ht : Transcendental ℚ t) [Algebra.IsAlgebraic ℚ⟮t⟯ K] :
     derivAlong t t = 1 := by
   simpa using derivAlong_aeval ht X
 
-/-- Uniqueness: two `ℚ`-derivations of `K` which agree on `t` are equal. -/
+/-- Uniqueness: two `ℚ`-derivations of `K` which agree on `t` are equal.
+@isnad1 id=eq.2h4v.s9.2e5fe151f51f from=translated src=- shape=93f3b78b vocab=11970c41
+-/
 theorem derivation_ext_of_eq (ht : Transcendental ℚ t) [Algebra.IsAlgebraic ℚ⟮t⟯ K]
     (D₁ D₂ : Derivation ℚ K K) (h : D₁ t = D₂ t) : D₁ = D₂ := by
   have := formallyEtale_adjoin t
@@ -196,6 +222,9 @@ theorem derivation_ext_of_eq (ht : Transcendental ℚ t) [Algebra.IsAlgebraic �
     rw [← hp]; exact coe_algEquivOfTranscendental t ht p
   rw [this, D₁.map_aeval, D₂.map_aeval, h]
 
+/--
+@isnad1 id=eq.0h3v.s7.52d3e4447a73 from=translated src=- shape=1e80fac1 vocab=dd034279
+-/
 @[simp]
 theorem derivAlong_algebraMap (q : ℚ) : derivAlong t (algebraMap ℚ K q) = 0 :=
   (derivAlong t).map_algebraMap q

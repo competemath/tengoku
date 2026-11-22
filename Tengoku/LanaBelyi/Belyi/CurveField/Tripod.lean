@@ -53,6 +53,9 @@ open Classical in
 noncomputable def tripodPlaces (t : K) : Finset (Place K) :=
   {zeroPlace t, onePlace t, infPlace t}
 
+/--
+@isnad1 id=iff.0h3v.s6.e4276f5bdaa4 from=translated src=- shape=ab2c4b63 vocab=10e6b1cc
+-/
 theorem mem_tripodPlaces {t : K} {P : Place K} :
     P ∈ tripodPlaces t ↔ P = zeroPlace t ∨ P = onePlace t ∨ P = infPlace t := by
   simp [tripodPlaces]
@@ -63,7 +66,9 @@ include ht
 /-! ### The places `t = 0` and `t = 1` -/
 
 omit ht in
-/-- `t` and `t - 1` have no common zero. -/
+/-- `t` and `t - 1` have no common zero.
+@isnad1 id=not.0h3v.s6.3e60abfba10e from=translated src=- shape=2a2b0507 vocab=3539ca86
+-/
 theorem not_ord_pos_and_ord_sub_one_pos (P : Place K) :
     ¬ (0 < P.ord t ∧ 0 < P.ord (t - 1)) := by
   rintro ⟨h1, h2⟩

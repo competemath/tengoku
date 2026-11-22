@@ -63,7 +63,9 @@ variable (W : WeierstrassCurve K) [IsIntegral R W] [W.IsElliptic]
 reducing to the origin, the numeric chord intercept `ν = φ formalGroupNu` is `0`: recovered points
 have
 `x(z₁) = x = x(z₂)`, so the chord line `w = λ z + ν` through `(z₁, w(z₁))`, `(z₂, w(z₂))` passes
-through the origin. -/
+through the origin.
+@isnad1 id=eq.5h6v.s8.d80a3a89b2ae from=translated src=- shape=4b2a64d9 vocab=85daadf4
+-/
 theorem chordIntercept_eq_zero_of_X_eq
     {x y₁ y₂ : K} {h₁ : W.toAffine.Nonsingular x y₁} {h₂ : W.toAffine.Nonsingular x y₂}
     (hx : 1 < valuation K (maximalIdeal R) x)
@@ -113,7 +115,9 @@ theorem chordIntercept_eq_zero_of_X_eq
 /-- **The third chord root is the origin for two equal-`x` points.**  With the intercept `ν = 0`
 (`chordIntercept_eq_zero_of_X_eq`), both parameters `z₁, z₂` are nonzero roots of the quadratic
 `A z² + S z − λ`, so `A (z₁ + z₂) + S = 0`; Vieta's relation `A (t + z₁ + z₂) + S = 0` then gives
-`A t = 0`, and `A` is a unit, so the numeric third root `t = φ formalThirdRoot` vanishes. -/
+`A t = 0`, and `A` is a unit, so the numeric third root `t = φ formalThirdRoot` vanishes.
+@isnad1 id=eq.5h6v.s8.21bbc7db5d46 from=translated src=- shape=4b2a64d9 vocab=c0ff3c25
+-/
 theorem thirdRootNum_eq_zero_of_X_eq
     {x y₁ y₂ : K} {h₁ : W.toAffine.Nonsingular x y₁} {h₂ : W.toAffine.Nonsingular x y₂}
     (hx : 1 < valuation K (maximalIdeal R) x)
@@ -179,7 +183,9 @@ theorem thirdRootNum_eq_zero_of_X_eq
 local parameters (`P₂ = -P₁`), the formal-group sum of their local parameters vanishes:
 `adicEvalMv 𝔪 ![z(P₁), z(P₂)] formalGroupZW = 0`.  Equivalently `z(P₁) ⊕ z(P₂) = 0` in `Ê(𝔪)`,
 matching the affine fact `P₁ + P₂ = O`.  This is the formal-side input the inverse case
-`Q = -P` of `z(P + Q) = z(P) ⊕ z(Q)` (issue #367) consumes. -/
+`Q = -P` of `z(P + Q) = z(P) ⊕ z(Q)` (issue #367) consumes.
+@isnad1 id=eq.5h6v.s9.0e8008b8e018 from=translated src=- shape=cf3a9761 vocab=7daf495c
+-/
 theorem adicEvalMv_formalGroupZW_eq_zero_of_X_eq
     {x y₁ y₂ : K} {h₁ : W.toAffine.Nonsingular x y₁} {h₂ : W.toAffine.Nonsingular x y₂}
     (hx : 1 < valuation K (maximalIdeal R) x)

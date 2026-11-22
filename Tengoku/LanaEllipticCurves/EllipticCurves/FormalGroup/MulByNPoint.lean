@@ -41,7 +41,9 @@ variable {R : Type*} [CommRing R] (F : FormalGroup R) {σ : Type*}
 For `a`, `b` of zero constant coefficient and `c : MvPowerSeries σ R` substitution-admissible,
 `(a ⊕ b) ∘ c = F(a ∘ c, b ∘ c)`.  This is `FormalGroup.fgAdd_subst` with the target of the
 substitution generalised from `PowerSeries R` to `MvPowerSeries σ R`, which is exactly what is
-needed to substitute at a point coordinate `x.val`. -/
+needed to substitute at a point coordinate `x.val`.
+@isnad1 id=eq.3h6v.s8.49afcc94873e from=translated src=- shape=b48dbb42 vocab=7bbfc052
+-/
 theorem fgAdd_subst_mv {a b : PowerSeries R} (c : MvPowerSeries σ R)
     (ha : PowerSeries.constantCoeff a = 0) (hb : PowerSeries.constantCoeff b = 0)
     (hc : PowerSeries.HasSubst c) :
@@ -54,7 +56,9 @@ theorem fgAdd_subst_mv {a b : PowerSeries R} (c : MvPowerSeries σ R)
   fin_cases s <;> simp [PowerSeries.subst_def]
 
 /-- **The multiplication-by-`n` series computes the `ℕ`-action on points.**  For a point `x` of the
-formal group, substituting `[n](z) = F.mulByN n` at `x` reproduces the `n`-fold sum `n • x`. -/
+formal group, substituting `[n](z) = F.mulByN n` at `x` reproduces the `n`-fold sum `n • x`.
+@isnad1 id=eq.0h5v.s6.bf1e92c83066 from=translated src=- shape=db31aae0 vocab=d89b3fea
+-/
 theorem mulByN_subst_point (n : ℕ) (x : F.Point σ) :
     ((n : ℕ) • x).val = (F.mulByN n).subst x.val := by
   induction n with
@@ -66,7 +70,9 @@ theorem mulByN_subst_point (n : ℕ) (x : F.Point σ) :
       F.fgAdd_subst_mv x.val (F.constantCoeff_mulByN n) PowerSeries.constantCoeff_X x.prop,
       PowerSeries.subst_X x.prop]
 
-/-- A point is `n`-torsion iff the series `[n](z)` vanishes at its coordinate. -/
+/-- A point is `n`-torsion iff the series `[n](z)` vanishes at its coordinate.
+@isnad1 id=iff.0h5v.s7.d7960f9a12fa from=translated src=- shape=2943d353 vocab=d89b3fea
+-/
 theorem nsmul_eq_zero_iff_mulByN_subst (n : ℕ) (x : F.Point σ) :
     (n : ℕ) • x = 0 ↔ (F.mulByN n).subst x.val = 0 := by
   rw [← F.mulByN_subst_point n x]

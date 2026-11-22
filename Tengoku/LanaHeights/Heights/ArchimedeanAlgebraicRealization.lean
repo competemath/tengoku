@@ -40,7 +40,9 @@ namespace Heights
 Together with the evident `u²` scaling of the derivative of the transformed
 x-coordinate, this is the algebraic calculation behind the usual `u⁻¹`
 scaling of the invariant differential.  No differential-form or integration
-formalism is hidden in this identity. -/
+formalism is hidden in this identity.
+@isnad1 id=eq.0h5v.s9.594e6def8ab4 from=translated src=- shape=6958b857 vocab=d53dac47
+-/
 theorem variableChange_invariantDifferentialDenominator
     {F : Type*} [Field F] (W : WeierstrassCurve F)
     (C : WeierstrassCurve.VariableChange F) (x y : F) :
@@ -56,7 +58,9 @@ theorem variableChange_invariantDifferentialDenominator
 by `u⁻¹`: the transformed x-coordinate contributes `u²`, while the preceding
 denominator contributes `u³`. This is an identity of rational-function values,
 including at zeros under Lean's totalized field division; it still does not
-define or integrate a differential form. -/
+define or integrate a differential form.
+@isnad1 id=eq.0h5v.s9.8d2c59bd1ebd from=translated src=- shape=6df04267 vocab=dc841163
+-/
 theorem variableChange_invariantDifferentialCoefficient
     {F : Type*} [Field F] (W : WeierstrassCurve F)
     (C : WeierstrassCurve.VariableChange F) (x y : F) :
@@ -76,7 +80,9 @@ lattice curve.  Thus twists do not survive the base change to `ℂ`.
 The coordinate convention for `C • E` is that
 `(x, y) ↦ (u²x + r, u³y + u²sx + t)` maps the changed equation back to `E`.
 Here `C • (W.map v.embedding)` is the lattice equation, so this coordinate map
-runs from the explicit lattice curve to the embedded input curve. -/
+runs from the explicit lattice curve to the embedded input curve.
+@isnad1 id=ex.0h4v.s6.920b96c29b3b from=translated src=- shape=c1b37963 vocab=d7b6762c
+-/
 theorem ArchimedeanPeriodData.exists_variableChange_to_latticeCurve
     {K : Type*} [Field K] [NumberField K]
     (W : WeierstrassCurve K) [W.IsElliptic]
@@ -97,7 +103,9 @@ noncomputable def ArchimedeanPeriodData.variableChangeToLatticeCurve
   Classical.choose (p.exists_variableChange_to_latticeCurve W v)
 
 /-- The chosen archimedean variable change really changes the embedded input
-equation into the explicit lattice equation. -/
+equation into the explicit lattice equation.
+@isnad1 id=eq.0h4v.s6.c4816645ad4a from=translated src=- shape=8f90628d vocab=ae9e2292
+-/
 theorem ArchimedeanPeriodData.variableChangeToLatticeCurve_smul
     {K : Type*} [Field K] [NumberField K]
     (W : WeierstrassCurve K) [W.IsElliptic]
@@ -109,7 +117,9 @@ theorem ArchimedeanPeriodData.variableChangeToLatticeCurve_smul
 /-- For the chosen algebraic realization, the invariant-differential
 denominator on the embedded input equation is exactly `u³` times the one on
 the lattice equation.  This isolates the routine scaling calculation from the
-still-missing differential-form and integration infrastructure. -/
+still-missing differential-form and integration infrastructure.
+@isnad1 id=other.0h6v.s8.e4aadbf78616 from=translated src=- shape=7e55c9e1 vocab=bd210e3b
+-/
 theorem ArchimedeanPeriodData.variableChangeToLatticeCurve_differentialDenominator
     {K : Type*} [Field K] [NumberField K]
     (W : WeierstrassCurve K) [W.IsElliptic]
@@ -128,7 +138,9 @@ theorem ArchimedeanPeriodData.variableChangeToLatticeCurve_differentialDenominat
 
 /-- The rational coefficient of the invariant differential for the chosen
 algebraic realization scales by the expected unit `u⁻¹`. The left numerator is
-the derivative coefficient of the transformed x-coordinate. -/
+the derivative coefficient of the transformed x-coordinate.
+@isnad1 id=other.0h6v.s8.d97cfc3e3958 from=translated src=- shape=c92d7ec0 vocab=ff11215a
+-/
 theorem ArchimedeanPeriodData.variableChangeToLatticeCurve_differentialCoefficient
     {K : Type*} [Field K] [NumberField K]
     (W : WeierstrassCurve K) [W.IsElliptic]

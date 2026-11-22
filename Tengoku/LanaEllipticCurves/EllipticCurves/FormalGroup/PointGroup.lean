@@ -40,7 +40,9 @@ noncomputable section
 variable {R : Type*} [CommRing R] {σ : Type*}
 
 /-- If `X ∣ B`, `X ∣ B'`, `X ^ n ∣ B - B'` and `k ≥ 2`, then `X ^ (n+1) ∣ B ^ k - B' ^ k`:
-the geometric cofactor of `B ^ k - B' ^ k` is divisible by `X`, contributing one extra factor. -/
+the geometric cofactor of `B ^ k - B' ^ k` is divisible by `X`, contributing one extra factor.
+@isnad1 id=dvd.4h5v.s8.6b346042c3a4 from=translated src=- shape=9478022b vocab=6e3b3720
+-/
 theorem PowerSeries.X_pow_succ_dvd_pow_sub_pow {B B' : PowerSeries R}
     (hB : (PowerSeries.X : PowerSeries R) ∣ B) (hB' : (PowerSeries.X : PowerSeries R) ∣ B')
     {n k : ℕ} (hk : 2 ≤ k) (hd : (PowerSeries.X : PowerSeries R) ^ n ∣ B - B') :
@@ -57,7 +59,9 @@ theorem PowerSeries.X_pow_succ_dvd_pow_sub_pow {B B' : PowerSeries R}
   exact mul_dvd_mul hcof hd
 
 /-- In an additive monoid, a right inverse (`a + -a = 0` for all `a`) is automatically a left
-inverse. -/
+inverse.
+@isnad1 id=eq.1h2v.s6.139ab54ee558 from=translated src=- shape=db1527a6 vocab=a356cf71
+-/
 theorem _root_.Tengoku.LanaEllipticCurves.neg_add_cancel_of_add_neg_cancel {M : Type*} [AddMonoid M] [Neg M]
     (h : ∀ a : M, a + -a = 0) (a : M) : -a + a = 0 := by
   calc -a + a = -a + a + (-a + - -a) := by rw [h (-a), add_zero]
@@ -78,13 +82,21 @@ noncomputable def formalInvFun (F : FormalGroup R) : ℕ → R
         ![PowerSeries.X, ∑ i : Fin (n + 2),
           PowerSeries.C (formalInvFun F i.1) * PowerSeries.X ^ i.1])
 
+/--
+@isnad1 id=eq.0h2v.s5.62a5c893e8c8 from=translated src=- shape=b999d37c vocab=d8526151
+-/
 @[simp] lemma formalInvFun_zero (F : FormalGroup R) : formalInvFun F 0 = 0 := by
   simp only [formalInvFun]
 
+/--
+@isnad1 id=eq.0h2v.s5.8a4209575f76 from=translated src=- shape=5bb8b508 vocab=ec4732d6
+-/
 @[simp] lemma formalInvFun_one (F : FormalGroup R) : formalInvFun F 1 = -1 := by
   simp only [formalInvFun]
 
-/-- `HasSubst` for `![X, B]` when `B` has zero constant coefficient. -/
+/-- `HasSubst` for `![X, B]` when `B` has zero constant coefficient.
+@isnad1 id=hassubst.1h2v.s6.0c1ed37b36bc from=translated src=- shape=6796c310 vocab=e0e1c33a
+-/
 lemma hasSubst_X_cons {B : PowerSeries R} (hB : PowerSeries.constantCoeff B = 0) :
     MvPowerSeries.HasSubst ![PowerSeries.X (R := R), B] := by
   refine MvPowerSeries.hasSubst_of_constantCoeff_zero (fun s => ?_)
@@ -100,30 +112,50 @@ noncomputable def partialInv (F : FormalGroup R) (m : ℕ) : PowerSeries R :=
 noncomputable def formalInv (F : FormalGroup R) : PowerSeries R :=
   PowerSeries.mk (formalInvFun F)
 
+/--
+@isnad1 id=eq.0h3v.s7.8b9f95309b72 from=translated src=- shape=1e6c326b vocab=20684140
+-/
 lemma coeff_formalInv (F : FormalGroup R) (i : ℕ) :
     PowerSeries.coeff i (formalInv F) = formalInvFun F i := by
   rw [formalInv, PowerSeries.coeff_mk]
 
+/--
+@isnad1 id=eq.0h2v.s6.8530ede29323 from=translated src=- shape=d17ed41b vocab=1760b1a6
+-/
 @[simp] lemma constantCoeff_formalInv (F : FormalGroup R) :
     PowerSeries.constantCoeff (formalInv F) = 0 := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, coeff_formalInv, formalInvFun_zero]
 
+/--
+@isnad1 id=eq.0h2v.s7.d6de23761612 from=translated src=- shape=3fe22fd7 vocab=a05c7edf
+-/
 lemma coeff_one_formalInv (F : FormalGroup R) : PowerSeries.coeff 1 (formalInv F) = -1 := by
   rw [coeff_formalInv, formalInvFun_one]
 
+/--
+@isnad1 id=hassubst.0h2v.s4.b3fefbee39bf from=translated src=- shape=06ca3aa5 vocab=a62cd8db
+-/
 lemma hasSubst_formalInv (F : FormalGroup R) : PowerSeries.HasSubst (formalInv F) :=
   PowerSeries.HasSubst.of_constantCoeff_zero' (constantCoeff_formalInv F)
 
+/--
+@isnad1 id=eq.0h2v.s6.4a9e6241dad6 from=translated src=- shape=f9d14182 vocab=17dede93
+-/
 lemma subst_X_zero_eq_Xzero (F : FormalGroup R) :
     F.toPowerSeries.subst ![PowerSeries.X, (0 : PowerSeries R)] = F.Xzero := rfl
 
-/-- Definitional unfolding of `formalInvFun` at `n + 2`, phrased through `partialInv`. -/
+/-- Definitional unfolding of `formalInvFun` at `n + 2`, phrased through `partialInv`.
+@isnad1 id=eq.0h3v.s8.7ad0cbb0d552 from=translated src=- shape=ab45a190 vocab=ed97d8e4
+-/
 lemma formalInvFun_add_two (F : FormalGroup R) (n : ℕ) :
     formalInvFun F (n + 2) = - PowerSeries.coeff (n + 2)
       (F.toPowerSeries.subst ![PowerSeries.X, partialInv F (n + 1)]) := by
   rw [partialInv]
   simp only [formalInvFun]
 
+/--
+@isnad1 id=eq.0h4v.s7.f573822a7a74 from=translated src=- shape=4f350a91 vocab=888203f6
+-/
 lemma coeff_partialInv (F : FormalGroup R) (m i : ℕ) :
     PowerSeries.coeff i (partialInv F m) = if i ≤ m then formalInvFun F i else 0 := by
   rw [partialInv, map_sum]
@@ -132,6 +164,9 @@ lemma coeff_partialInv (F : FormalGroup R) (m i : ℕ) :
     Finset.sum_ite_eq (Finset.range (m + 1)) i (formalInvFun F)]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s6.adcd15dab5f1 from=translated src=- shape=d355250c vocab=24cc5116
+-/
 @[simp] lemma constantCoeff_partialInv (F : FormalGroup R) (m : ℕ) :
     PowerSeries.constantCoeff (partialInv F m) = 0 := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, coeff_partialInv, ite_eq_left (Nat.zero_le m),
@@ -141,7 +176,9 @@ section Increment
 
 variable (F : FormalGroup R)
 
-/-- The degree-`n` coefficient of `F(X, B)` written as a finite sum over bidegrees. -/
+/-- The degree-`n` coefficient of `F(X, B)` written as a finite sum over bidegrees.
+@isnad1 id=eq.1h4v.s9.303ba45acd37 from=translated src=- shape=d49491e0 vocab=496193b5
+-/
 lemma coeff_subst_X_cons {B : PowerSeries R}
     (hsB : MvPowerSeries.HasSubst ![PowerSeries.X (R := R), B]) (n : ℕ) :
     PowerSeries.coeff n (F.toPowerSeries.subst ![PowerSeries.X, B]) =
@@ -154,7 +191,9 @@ lemma coeff_subst_X_cons {B : PowerSeries R}
   rw [Finsupp.prod_fintype _ _ (fun i => pow_zero _), Fin.prod_univ_two]
   simp [PowerSeries.coeff]
 
-/-- The finite-support witness for the bidegree sum of `coeff_subst_X_cons`. -/
+/-- The finite-support witness for the bidegree sum of `coeff_subst_X_cons`.
+@isnad1 id=hasfinit.1h4v.s9.d3aaf864de26 from=translated src=- shape=914f3cfe vocab=8183af91
+-/
 lemma hasFiniteSupport_coeff_subst_X_cons {B : PowerSeries R}
     (hsB : MvPowerSeries.HasSubst ![PowerSeries.X (R := R), B]) (n : ℕ) :
     Function.HasFiniteSupport (fun d : Fin 2 →₀ ℕ => MvPowerSeries.coeff d F.toPowerSeries *
@@ -174,7 +213,9 @@ lemma hasFiniteSupport_coeff_subst_X_cons {B : PowerSeries R}
 
 /-- Increment lemma: substituting into the second slot of `F(X, -)`, the degree-`n` coefficient
 changes exactly by the difference of the degree-`n` coefficients of the arguments, provided the
-two arguments agree in all lower degrees. -/
+two arguments agree in all lower degrees.
+@isnad1 id=eq.3h5v.s10.adbda6890f03 from=translated src=- shape=b119f2e2 vocab=143a4721
+-/
 lemma coeff_subst_X_cons_sub {B B' : PowerSeries R}
     (hB : PowerSeries.constantCoeff B = 0) (hB' : PowerSeries.constantCoeff B' = 0)
     {n : ℕ} (hdvd : (PowerSeries.X : PowerSeries R) ^ n ∣ B - B') :
@@ -212,7 +253,9 @@ lemma coeff_subst_X_cons_sub {B B' : PowerSeries R}
 
 end Increment
 
-/-- The core identity: `F(X, i(X)) = 0`, where `i = formalInv F`. -/
+/-- The core identity: `F(X, i(X)) = 0`, where `i = formalInv F`.
+@isnad1 id=eq.0h2v.s6.70bc4ce4970e from=translated src=- shape=cbfcfb4c vocab=9a5c8a9b
+-/
 theorem subst_formalInv (F : FormalGroup R) :
     F.toPowerSeries.subst ![PowerSeries.X, formalInv F] = 0 := by
   have hs : MvPowerSeries.HasSubst ![PowerSeries.X (R := R), formalInv F] :=
@@ -251,7 +294,9 @@ theorem subst_formalInv (F : FormalGroup R) :
     rw [hrec, coeff_formalInv, coeff_partialInv, ite_eq_right (by omega : ¬ n + 2 ≤ n + 1)]
     ring
 
-/-- For any substitutable `h`, `F(h, i(h)) = 0`. -/
+/-- For any substitutable `h`, `F(h, i(h)) = 0`.
+@isnad1 id=eq.1h4v.s6.033d6d4fc3f2 from=translated src=- shape=fec37ff3 vocab=8077958a
+-/
 theorem point_add_neg (F : FormalGroup R) {h : MvPowerSeries σ R} (hh : PowerSeries.HasSubst h) :
     F.toPowerSeries.subst ![h, (formalInv F).subst h] = 0 := by
   have hs : MvPowerSeries.HasSubst ![PowerSeries.X (R := R), formalInv F] :=
@@ -281,6 +326,9 @@ instance instNegPoint : Neg (F.Point σ) where
     have h := (hasSubst_formalInv F).comp x.prop
     rwa [PowerSeries.coe_substAlgHom x.prop] at h⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.dfd3831c92c2 from=translated src=- shape=90710ba8 vocab=f117c15e
+-/
 @[simp] lemma neg_apply (x : F.Point σ) :
     (-x).val = (formalInv F).subst x.val := rfl
 

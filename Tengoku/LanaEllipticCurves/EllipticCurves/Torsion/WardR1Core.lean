@@ -165,7 +165,9 @@ def WardGapCore : Prop :=
 
 /-- The diagonal `p = q` slice of Ward's `r = 1` relator over the universal ring: it is its own
 negative by the swap antisymmetry (`rel_one_swap`), and `UnivEDS` has characteristic zero, so it
-vanishes. Unconditional. -/
+vanishes. Unconditional.
+@isnad1 id=eq.0h1v.s7.eb73b8a8f7e3 from=translated src=- shape=6f6d251b vocab=a4a34c84
+-/
 theorem normEDS_rel_one_univ_diag (x : ℤ) :
     IsEllipticNet.rel (normEDS (X 0 : UnivEDS) (X 1) (X 2)) x x 1 0 = 0 := by
   set W : ℤ → UnivEDS := normEDS (X 0 : UnivEDS) (X 1) (X 2) with hW
@@ -184,7 +186,9 @@ theorem normEDS_rel_one_univ_diag (x : ℤ) :
 For the generic normalised elliptic divisibility sequence `normEDS X₀ X₁ X₂` over the domain
 `UnivEDS = ℤ[X₀, X₁, X₂]`, the `r = 1` elliptic-net relator vanishes for all `p, q`, once the
 gap `≥ 3` core is supplied. Every other case (sign reduction, swap, diagonal, `q ∈ {0, 1}`, the two
-doubling bands) is discharged here unconditionally. -/
+doubling bands) is discharged here unconditionally.
+@isnad1 id=eq.1h2v.s7.6da6a64650c3 from=translated src=- shape=d63b1373 vocab=5403c954
+-/
 theorem normEDS_rel_one_univ_of_gapCore (hgap : WardGapCore) (p q : ℤ) :
     IsEllipticNet.rel (normEDS (X 0 : UnivEDS) (X 1) (X 2)) p q 1 0 = 0 := by
   set W : ℤ → UnivEDS := normEDS (X 0 : UnivEDS) (X 1) (X 2) with hW
@@ -252,7 +256,9 @@ variable {R : Type*} [CommRing R] (b c d : R)
 
 /-- The diagonal `p = q` slice of Ward's `r = 1` relation over any `CommRing R`, **unconditional**.
 Obtained by specialising `normEDS_rel_one_univ_diag` along the ℤ-algebra map `X₀ ↦ b, X₁ ↦ c,
-X₂ ↦ d`. -/
+X₂ ↦ d`.
+@isnad1 id=eq.0h5v.s5.e2ec1558468f from=translated src=- shape=11c022cf vocab=ae91c412
+-/
 theorem normEDS_rel_one_diag (p : ℤ) : IsEllipticNet.rel (normEDS b c d) p p 1 0 = 0 := by
   set φ : UnivEDS →+* R := (aeval ![b, c, d] : UnivEDS →ₐ[ℤ] R).toRingHom with hφ
   have hcomp : φ ∘ normEDS (X 0 : UnivEDS) (X 1) (X 2) = normEDS b c d := by
@@ -269,7 +275,9 @@ EDS vanishes: `IsEllipticNet.rel (normEDS b c d) p q 1 0 = 0` for all `p, q`. Eq
 `W(p+q)·W(p−q) = W(p+1)·W(p−1)·W(q)² − W(q+1)·W(q−1)·W(p)²` with `W := normEDS b c d`.
 
 Proved by specialising `normEDS_rel_one_univ_of_gapCore` along the ℤ-algebra map
-`X₀ ↦ b, X₁ ↦ c, X₂ ↦ d`. -/
+`X₀ ↦ b, X₁ ↦ c, X₂ ↦ d`.
+@isnad1 id=eq.1h6v.s5.076c8d8ad081 from=translated src=- shape=af7a1765 vocab=5d069f63
+-/
 theorem normEDS_rel_one_of_gapCore (hgap : WardGapCore) (p q : ℤ) :
     IsEllipticNet.rel (normEDS b c d) p q 1 0 = 0 := by
   set φ : UnivEDS →+* R := (aeval ![b, c, d] : UnivEDS →ₐ[ℤ] R).toRingHom with hφ
@@ -292,7 +300,9 @@ property; see `IsEllipticNet.isEllipticSequence_iff_rel_one`.
 
 ⚠️ This is **one of the two conjuncts** of Mathlib's `IsEllipticDvdSequence`, whose other conjunct
 `IsDvdSequence (normEDS b c d)` is not proved in Mathlib or here. Discharging `WardGapCore` would
-therefore close half of that `TODO`, not all of it. -/
+therefore close half of that `TODO`, not all of it.
+@isnad1 id=isellipt.1h4v.s4.543c3ee415ab from=translated src=- shape=44dc2e09 vocab=1fab43b1
+-/
 theorem normEDS_isEllipticSequence_of_gapCore (hgap : WardGapCore) :
     IsEllipticSequence (normEDS b c d) :=
   IsEllipticNet.isEllipticSequence_of_rel_one _ (normEDS_odd_fun b c d) (normEDS_one b c d)
@@ -307,27 +317,35 @@ namespace Affine
 variable {R : Type*} [CommRing R] (W : Affine R)
 
 /-- The diagonal `p = q` slice of Ward's addition formula for the division polynomials `W.ψ`,
-as an identity in `R[X][Y]`. **Unconditional.** -/
+as an identity in `R[X][Y]`. **Unconditional.**
+@isnad1 id=eq.0h3v.s6.0f49b3306c12 from=translated src=- shape=9e8a5307 vocab=ac71d836
+-/
 theorem ψ_rel_one_diag (p : ℤ) : IsEllipticNet.rel W.ψ p p 1 0 = 0 :=
   normEDS_rel_one_diag W.ψ₂ (C W.Ψ₃) (C W.preΨ₄) p
 
 /-- Ward's addition formula for the division polynomials `W.ψ`, as an identity in `R[X][Y]`:
 `IsEllipticNet.rel W.ψ p q 1 0 = 0`, conditional on `WardGapCore`. Instance of
 `normEDS_rel_one_of_gapCore` at `b = W.ψ₂`, `c = C W.Ψ₃`, `d = C W.preΨ₄` (recall
-`W.ψ = normEDS W.ψ₂ (C W.Ψ₃) (C W.preΨ₄)`). -/
+`W.ψ = normEDS W.ψ₂ (C W.Ψ₃) (C W.preΨ₄)`).
+@isnad1 id=eq.1h4v.s6.a46a649fd15c from=translated src=- shape=4c1869ee vocab=445e75ce
+-/
 theorem ψ_rel_one_of_gapCore (hgap : WardGapCore) (p q : ℤ) :
     IsEllipticNet.rel W.ψ p q 1 0 = 0 :=
   normEDS_rel_one_of_gapCore W.ψ₂ (C W.Ψ₃) (C W.preΨ₄) hgap p q
 
 /-- `IsEllipticSequence W.ψ` — the division polynomials of `W` form an elliptic sequence in
-`R[X][Y]` — conditional on `WardGapCore`. -/
+`R[X][Y]` — conditional on `WardGapCore`.
+@isnad1 id=isellipt.1h2v.s5.9e3d3757799f from=translated src=- shape=39606174 vocab=ffca93ed
+-/
 theorem ψ_isEllipticSequence_of_gapCore (hgap : WardGapCore) : IsEllipticSequence W.ψ :=
   normEDS_isEllipticSequence_of_gapCore W.ψ₂ (C W.Ψ₃) (C W.preΨ₄) hgap
 
 variable {x y : R}
 
 /-- The diagonal `p = q` slice of Ward's addition formula among the point-values of the division
-polynomials at an affine point `(x, y)` of `W`. **Unconditional.** -/
+polynomials at an affine point `(x, y)` of `W`. **Unconditional.**
+@isnad1 id=eq.0h5v.s5.18632a391367 from=translated src=- shape=dc9a85e0 vocab=6970b70d
+-/
 theorem ψ_rel_one_evalEval_diag (p : ℤ) :
     IsEllipticNet.rel (fun n ↦ (W.ψ n).evalEval x y) p p 1 0 = 0 := by
   have h := IsEllipticNet.map_rel W.ψ (evalEvalRingHom x y) p p 1 0
@@ -336,7 +354,9 @@ theorem ψ_rel_one_evalEval_diag (p : ℤ) :
 
 /-- Ward's addition formula among the point-values of the division polynomials at an affine point
 `(x, y)` of `W`: `IsEllipticNet.rel (fun n ↦ (W.ψ n).evalEval x y) p q 1 0 = 0`, conditional on
-`WardGapCore`. -/
+`WardGapCore`.
+@isnad1 id=eq.1h6v.s6.f422d564aa57 from=translated src=- shape=3cdc5389 vocab=f6327c80
+-/
 theorem ψ_rel_one_evalEval_of_gapCore (hgap : WardGapCore) (p q : ℤ) :
     IsEllipticNet.rel (fun n ↦ (W.ψ n).evalEval x y) p q 1 0 = 0 := by
   have h := IsEllipticNet.map_rel W.ψ (evalEvalRingHom x y) p q 1 0
@@ -344,7 +364,9 @@ theorem ψ_rel_one_evalEval_of_gapCore (hgap : WardGapCore) (p q : ℤ) :
   exact h.symm
 
 /-- `IsEllipticSequence` for the point-values `n ↦ ψₙ(x, y)` at an affine point of `W`,
-conditional on `WardGapCore`. -/
+conditional on `WardGapCore`.
+@isnad1 id=isellipt.1h4v.s5.653e9403b187 from=translated src=- shape=ca0d8525 vocab=4e6533a4
+-/
 theorem ψ_isEllipticSequence_evalEval_of_gapCore (hgap : WardGapCore) :
     IsEllipticSequence (fun n ↦ (W.ψ n).evalEval x y) := by
   intro p q r

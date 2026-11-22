@@ -76,7 +76,9 @@ variable (A : Type*) [AddCommGroup A] (m n : ℤ)
 /-- **Every element of `A[n]` already lies in the kernel of `torsionSmulHom A m n`.** If `n • a = 0`
 then `(m * n) • a = m • (n • a) = 0`, so `a` lies in `A[m * n]`, and by construction it is killed by
 multiplication by `n`. Together with `kerTorsionSmulHom_injective` this identifies the kernel with
-`A[n]` on the nose; no hypothesis on `m` or `n` is needed. -/
+`A[n]` on the nose; no hypothesis on `m` or `n` is needed.
+@isnad1 id=surjecti.0h3v.s9.03825a2f681c from=translated src=- shape=4a1469e5 vocab=c246f81a
+-/
 theorem kerTorsionSmulHom_surjective : Function.Surjective (kerTorsionSmulHom A m n) := by
   intro a
   have han : n • (a : A) = 0 := torsionBy.zsmul_iff.mp a.2
@@ -85,11 +87,15 @@ theorem kerTorsionSmulHom_surjective : Function.Surjective (kerTorsionSmulHom A 
   refine ⟨⟨⟨(a : A), hmn⟩, ?_⟩, rfl⟩
   exact AddMonoidHom.mem_ker.mpr (Subtype.ext (by simp))
 
-/-- **The kernel of `torsionSmulHom A m n` is exactly `A[n]`.** -/
+/-- **The kernel of `torsionSmulHom A m n` is exactly `A[n]`.**
+@isnad1 id=bijectiv.0h3v.s9.19a8cab33736 from=translated src=- shape=4a1469e5 vocab=82fe905e
+-/
 theorem kerTorsionSmulHom_bijective : Function.Bijective (kerTorsionSmulHom A m n) :=
   ⟨kerTorsionSmulHom_injective A m n, kerTorsionSmulHom_surjective A m n⟩
 
-/-- The cardinality form of `kerTorsionSmulHom_bijective`, valid with no finiteness hypothesis. -/
+/-- The cardinality form of `kerTorsionSmulHom_bijective`, valid with no finiteness hypothesis.
+@isnad1 id=eq.0h3v.s9.5d2e3ad0a8ef from=translated src=- shape=b05223c6 vocab=fd140b77
+-/
 theorem card_ker_torsionSmulHom :
     Nat.card (torsionSmulHom A m n).ker = Nat.card A[n] :=
   Nat.card_eq_of_bijective _ (kerTorsionSmulHom_bijective A m n)
@@ -100,7 +106,9 @@ variable {A n}
 
 /-- **If `[n]` is surjective on `A`, then `torsionSmulHom A m n` is surjective.** Given `Q ∈ A[m]`,
 choose `a` with `n • a = Q`; then `(m * n) • a = m • Q = 0`, so `a` defines an element of `A[m * n]`
-mapping to `Q`. -/
+mapping to `Q`.
+@isnad1 id=surjecti.1h3v.s9.93c5719bdab1 from=translated src=- shape=741284fe vocab=39ffaded
+-/
 theorem torsionSmulHom_surjective (hn : Function.Surjective fun a : A => n • a) :
     Function.Surjective (torsionSmulHom A m n) := by
   intro Q
@@ -123,7 +131,9 @@ under the `Nat.card = 0` convention both sides vanish together in the infinite c
 embeds into `A[m * n]` and `A[m]` is a quotient of it.
 
 Compare `card_torsionBy_mul_le` (the inequality, always) and `card_torsionBy_mul_of_isCoprime` (the
-equality for coprime `m`, `n`); this is the third, independent, sharpening. -/
+equality for coprime `m`, `n`); this is the third, independent, sharpening.
+@isnad1 id=eq.1h3v.s7.b32d73ce6a4b from=translated src=- shape=5b01fe1b vocab=55fa4e8d
+-/
 theorem card_torsionBy_mul_of_surjective (hn : Function.Surjective fun a : A => n • a) :
     Nat.card A[m * n] = Nat.card A[m] * Nat.card A[n] := by
   have hcard := (torsionSmulHom A m n).ker.card_mul_index

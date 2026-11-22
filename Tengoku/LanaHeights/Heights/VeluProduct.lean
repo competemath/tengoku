@@ -46,10 +46,19 @@ def xOf : W.Point → F
   | .zero => 0
   | .some x _ _ => x
 
+/--
+@isnad1 id=eq.0h2v.s5.46afe794fd7f from=translated src=- shape=350315ba vocab=7306411b
+-/
 @[simp] lemma xOf_zero : xOf (0 : W.Point) = 0 := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.edaeae4a9fab from=translated src=- shape=81bddcde vocab=98d4646c
+-/
 @[simp] lemma xOf_some {x y : F} (h : W.Nonsingular x y) : xOf (.some x y h) = x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.646b93cbce63 from=translated src=- shape=789fcf46 vocab=cc3631b4
+-/
 @[simp] lemma xOf_neg (P : W.Point) : xOf (-P) = xOf P := by
   rcases P with _ | ⟨x, y, h⟩
   · rfl
@@ -64,7 +73,9 @@ def veluU (W : Affine F) (x : F) : F := 4 * x ^ 3 + W.b₂ * x ^ 2 + 2 * W.b₄ 
 variable [DecidableEq F]
 
 /-- **The pair identity**: for affine points `P = (x₁, y₁)`, `Q = (x₂, y₂)` with `x₁ ≠ x₂`,
-`x(P + Q) + x(P − Q) = 2x₂ + t/(x₁ − x₂) + u/(x₁ − x₂)²`. -/
+`x(P + Q) + x(P − Q) = 2x₂ + t/(x₁ − x₂) + u/(x₁ − x₂)²`.
+@isnad1 id=eq.3h6v.s8.023e3231d9b3 from=translated src=- shape=e7e4a745 vocab=3d385d32
+-/
 theorem xOf_add_add_xOf_sub {x₁ y₁ x₂ y₂ : F} (h₁ : W.Nonsingular x₁ y₁)
     (h₂ : W.Nonsingular x₂ y₂) (hx : x₁ ≠ x₂) :
     xOf (Point.some x₁ y₁ h₁ + Point.some x₂ y₂ h₂) +
@@ -87,11 +98,16 @@ variable (H : AddSubgroup W.Point) [Fintype H]
 /-- The nonzero elements of `H`. -/
 noncomputable def nonzero : Finset H := Finset.univ.filter (fun Q => Q ≠ 0)
 
+/--
+@isnad1 id=iff.0h4v.s9.3bdd0c5c7ad9 from=translated src=- shape=3b77a248 vocab=50726645
+-/
 lemma mem_nonzero {Q : H} : Q ∈ nonzero H ↔ Q ≠ 0 := by
   simp [nonzero]
 
 omit [Fintype H] in
-/-- A point outside `H` has `x`-coordinate different from those of the nonzero points of `H`. -/
+/-- A point outside `H` has `x`-coordinate different from those of the nonzero points of `H`.
+@isnad1 id=ne.3h5v.s7.ccbc678bf414 from=translated src=- shape=47d09078 vocab=00dd82cb
+-/
 lemma xOf_ne_of_notMem {P : W.Point} (hP : P ∉ H) {Q : W.Point} (hQ : Q ∈ H) (hQ0 : Q ≠ 0) :
     xOf P ≠ xOf Q := by
   rcases P with _ | ⟨x₁, y₁, h₁⟩
@@ -103,13 +119,17 @@ lemma xOf_ne_of_notMem {P : W.Point} (hP : P ∉ H) {Q : W.Point} (hQ : Q ∈ H)
   · exact hP (h ▸ hQ)
   · exact hP (h ▸ H.neg_mem hQ)
 
-/-- Reindexing a sum over `H` by a translation in `H`. -/
+/-- Reindexing a sum over `H` by a translation in `H`.
+@isnad1 id=eq.0h5v.s10.df2ebe949fa8 from=translated src=- shape=c8985f7f vocab=2510b1b5
+-/
 lemma sum_add_left (f : W.Point → F) (Q₀ : H) :
     ∑ Q : H, f ((Q₀ : W.Point) + Q) = ∑ Q : H, f Q := by
   refine Fintype.sum_equiv (Equiv.addLeft Q₀) _ _ fun Q => ?_
   simp
 
-/-- `∑_{Q ∈ H} f(P + Q) = f(P) + ∑_{Q ∈ H ∖ 0} f(P + Q)`. -/
+/-- `∑_{Q ∈ H} f(P + Q) = f(P) + ∑_{Q ∈ H ∖ 0} f(P + Q)`.
+@isnad1 id=eq.0h4v.s9.1f9d0ce2b945 from=translated src=- shape=404427b0 vocab=94464f69
+-/
 lemma sum_eq_add_sum_nonzero (f : W.Point → F) :
     ∑ Q : H, f Q = f 0 + ∑ Q ∈ nonzero H, f Q := by
   classical
@@ -119,7 +139,9 @@ lemma sum_eq_add_sum_nonzero (f : W.Point → F) :
   ext Q
   simp [nonzero, Finset.mem_erase, and_comm]
 
-/-- Negation permutes the nonzero elements of `H`. -/
+/-- Negation permutes the nonzero elements of `H`.
+@isnad1 id=eq.0h4v.s9.e722e6130ce1 from=translated src=- shape=f32933b2 vocab=90aabfa4
+-/
 lemma sum_nonzero_neg (f : W.Point → F) :
     ∑ Q ∈ nonzero H, f (-(Q : W.Point)) = ∑ Q ∈ nonzero H, f Q := by
   refine Finset.sum_nbij' (fun Q => -Q) (fun Q => -Q) ?_ ?_ ?_ ?_ ?_
@@ -131,7 +153,9 @@ lemma sum_nonzero_neg (f : W.Point → F) :
 
 /-- **Vélu's `x`-map as a function of `x(P)`**: for `P ∉ H`,
 `x(P) + ½ ∑_{Q ∈ H∖0} (t_Q/(x(P) − x(Q)) + u_Q/(x(P) − x(Q))²)
-  = ∑_{Q ∈ H} x(P + Q) − ∑_{Q ∈ H∖0} x(Q)`. -/
+  = ∑_{Q ∈ H} x(P + Q) − ∑_{Q ∈ H∖0} x(Q)`.
+@isnad1 id=eq.2h4v.s10.b57268714866 from=translated src=- shape=491207de vocab=d14aa5b1
+-/
 theorem xOf_add_half_sum (h2 : (2 : F) ≠ 0) {P : W.Point} (hP : P ∉ H) :
     xOf P + (1 / 2) * ∑ Q ∈ nonzero H,
         (veluT W (xOf (Q : W.Point)) / (xOf P - xOf (Q : W.Point)) +
@@ -176,13 +200,21 @@ noncomputable def numer (c : F) : F[X] :=
     (C (veluT W (xOf (Q : W.Point))) * (X - C (xOf (Q : W.Point))) +
       C (veluU W (xOf (Q : W.Point)))) * denomExcept H Q
 
+/--
+@isnad1 id=monic.0h3v.s7.b64da05e7969 from=translated src=- shape=86195df6 vocab=323778a3
+-/
 lemma monic_denom : (denom H).Monic :=
   monic_prod_of_monic _ _ fun _ _ => monic_X_sub_C _
 
+/--
+@isnad1 id=monic.0h4v.s7.84e780301f7d from=translated src=- shape=8dc466cd vocab=7b9b5e6f
+-/
 lemma monic_denomExcept (Q : H) : (denomExcept H Q).Monic :=
   monic_prod_of_monic _ _ fun _ _ => monic_X_sub_C _
 
-/-- `∏_{H∖0} (X − x(Q')) = (X − x(Q))² ∏_{Q' ≠ ±Q} (X − x(Q'))` for `Q ∈ H∖0` with `−Q ≠ Q`. -/
+/-- `∏_{H∖0} (X − x(Q')) = (X − x(Q))² ∏_{Q' ≠ ±Q} (X − x(Q'))` for `Q ∈ H∖0` with `−Q ≠ Q`.
+@isnad1 id=eq.2h4v.s10.24129b38cacc from=translated src=- shape=9466e8c0 vocab=7fd37e0e
+-/
 lemma denom_eq {Q : H} (hQ : Q ∈ nonzero H) (hQQ : -Q ≠ Q) :
     denom H = (X - C (xOf (Q : W.Point))) ^ 2 * denomExcept H Q := by
   classical
@@ -200,12 +232,17 @@ lemma denom_eq {Q : H} (hQ : Q ∈ nonzero H) (hQQ : -Q ≠ Q) :
         exact neg_ne_zero.mpr hQ
   rw [hpair, Finset.prod_pair (Ne.symm hQQ), AddSubgroup.coe_neg, xOf_neg, sq, mul_comm]
 
+/--
+@isnad1 id=eq.0h3v.s7.741ddec541ea from=translated src=- shape=867a9ceb vocab=7f0a10bb
+-/
 lemma natDegree_denom : (denom H).natDegree = (nonzero H).card := by
   unfold denom
   rw [natDegree_prod_of_monic _ _ fun _ _ => monic_X_sub_C _]
   simp
 
-/-- Evaluation of the numerator away from the `x(Q)`, `Q ∈ H∖0`. -/
+/-- Evaluation of the numerator away from the `x(Q)`, `Q ∈ H∖0`.
+@isnad1 id=eq.2h5v.s11.7e071bfcef88 from=translated src=- shape=653386c6 vocab=4d5dcbbc
+-/
 lemma eval_numer (c z : F) (hH : ∀ Q : H, Q ≠ 0 → -Q ≠ Q)
     (hz : ∀ Q ∈ nonzero H, z ≠ xOf (Q : W.Point)) :
     (numer H c).eval z = (denom H).eval z * (z - c + (1 / 2) * ∑ Q ∈ nonzero H,
@@ -228,6 +265,9 @@ lemma eval_numer (c z : F) (hH : ∀ Q : H, Q ≠ 0 → -Q ≠ Q)
     rw [eval_mul, hE Q hQ, eval_add, eval_mul, eval_sub, eval_X, eval_C, eval_C, eval_C]
     field_simp
 
+/--
+@isnad1 id=eq.2h4v.s9.b579c33a32d2 from=translated src=- shape=5cdcf248 vocab=b2055f68
+-/
 lemma natDegree_denomExcept {Q : H} (hQ : Q ∈ nonzero H) (hQQ : -Q ≠ Q) :
     (denomExcept H Q).natDegree + 2 = (nonzero H).card := by
   have h := congrArg natDegree (denom_eq H hQ hQQ)
@@ -235,7 +275,9 @@ lemma natDegree_denomExcept {Q : H} (hQ : Q ∈ nonzero H) (hQQ : -Q ≠ Q) :
     natDegree_pow, natDegree_X_sub_C] at h
   omega
 
-/-- The numerator is monic of degree `|H|`. -/
+/-- The numerator is monic of degree `|H|`.
+@isnad1 id=and.1h4v.s9.8619f83aa65d from=translated src=- shape=206d213c vocab=93f923d0
+-/
 lemma monic_numer (c : F) (hH : ∀ Q : H, Q ≠ 0 → -Q ≠ Q) :
     (numer H c).Monic ∧ (numer H c).natDegree = Fintype.card H := by
   classical
@@ -282,7 +324,9 @@ lemma eq_or_eq_neg_of_xOf_eq {P₁ P₂ : W.Point} (h₁ : P₁ ≠ 0) (h₂ : P
 /-- **The product formula for Vélu's `x`-map.** Let `H` be a finite subgroup without points of
 order `2`, and `P, R ∉ H` with `2R ∉ H`. Then
 `∏_{Q ∈ H∖0} (x(P) − x(Q)) · (∑_{Q ∈ H} x(P + Q) − ∑_{Q ∈ H} x(R + Q))
-    = ∏_{Q ∈ H} (x(P) − x(R + Q))`. -/
+    = ∏_{Q ∈ H} (x(P) − x(R + Q))`.
+@isnad1 id=eq.5h5v.s11.864703283758 from=translated src=- shape=78137be7 vocab=650476b7
+-/
 theorem prod_mul_sum_sub_sum (h2 : (2 : F) ≠ 0) (hH : ∀ Q : H, Q ≠ 0 → -Q ≠ Q)
     {P R : W.Point} (hP : P ∉ H) (hR : R ∉ H) (hRR : R + R ∉ H) :
     (∏ Q ∈ nonzero H, (xOf P - xOf (Q : W.Point))) *

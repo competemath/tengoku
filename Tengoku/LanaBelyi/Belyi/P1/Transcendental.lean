@@ -62,6 +62,9 @@ noncomputable def awayEvalₐ (t : R) :
       simp only [SetLike.GradeZero.coe_algebraMap, MvPolynomial.algebraMap_eq, aeval_C] at h
       exact h }
 
+/--
+@isnad1 id=eq.0h3v.s11.21ee82beb5f9 from=translated src=- shape=556a6205 vocab=ad6d02e4
+-/
 @[simp]
 lemma awayEvalₐ_toRingHom (t : R) : (awayEvalₐ k t : _ →+* R) = awayEval k t := rfl
 
@@ -71,7 +74,9 @@ noncomputable def affineCoord : Away (P1Grading k) (X 1 : MvPolynomial (Fin 2) k
   HomogeneousLocalization.mk
     ⟨1, ⟨X 0, X_mem_P1Grading k 0⟩, ⟨X 1, X_mem_P1Grading k 1⟩, 1, pow_one _⟩
 
-/-- Evaluation at `t` sends the affine coordinate to `t`. -/
+/-- Evaluation at `t` sends the affine coordinate to `t`.
+@isnad1 id=eq.0h3v.s11.a61a91832449 from=translated src=- shape=f86a84be vocab=4e8e6f93
+-/
 lemma awayEval_affineCoord (t : R) : awayEval k t (affineCoord k) = t := by
   have hv : ((aeval ![t, 1] : MvPolynomial (Fin 2) k →ₐ[k] R) :
       MvPolynomial (Fin 2) k →+* R) (X 1) * 1 = 1 := by simp
@@ -85,7 +90,9 @@ lemma awayEval_affineCoord (t : R) : awayEval k t (affineCoord k) = t := by
     Localization.awayLift_mk (v := 1) (hv := hv)]
   simp
 
-/-- The chart ring is of finite type over `k`. -/
+/-- The chart ring is of finite type over `k`.
+@isnad1 id=finitety.0h1v.s9.1e07704937bf from=translated src=- shape=aaa12573 vocab=4bf087c5
+-/
 lemma finiteType_away : Algebra.FiniteType k
     (Away (P1Grading k) (X 1 : MvPolynomial (Fin 2) k)) := by
   have h1 : (fromZeroRingHom (P1Grading k)

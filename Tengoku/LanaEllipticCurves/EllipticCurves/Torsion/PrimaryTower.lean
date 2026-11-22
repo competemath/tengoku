@@ -140,7 +140,9 @@ private lemma zsmul_surjective_of_nsmul {p : ℕ}
 
 Note that **no coprimality is assumed**, and that is the point: the tower's own step has `n = pᵏ`,
 which is never coprime to `p`, so the coprime multiplicativity of `EllipticCurves.Torsion.Coprime`
-cannot be used for it.  **No hypothesis on `p` either** — not primality, not `p ≠ 0`. -/
+cannot be used for it.  **No hypothesis on `p` either** — not primality, not `p ≠ 0`.
+@isnad1 id=eq.1h4v.s8.a48306ba8611 from=translated src=- shape=0d0ea009 vocab=1915cabb
+-/
 theorem card_torsion_mul_of_surjective {p : ℕ}
     (hsurj : Function.Surjective fun P : W.Point => p • P) (n : ℕ) :
     Nat.card (W.torsion (n * p)) = Nat.card (W.torsion p) * Nat.card (W.torsion n) := by
@@ -151,7 +153,9 @@ theorem card_torsion_mul_of_surjective {p : ℕ}
     show W.Point[(p : ℤ)] = W.torsion p from rfl, mul_comm]
 
 /-- **The `p`-primary tower: `#E[pᵏ] = #E[p]ᵏ`.**  By induction from `#E[1] = 1`, each step
-multiplying by `#E[p]`.  Still no hypothesis on `p`. -/
+multiplying by `#E[p]`.  Still no hypothesis on `p`.
+@isnad1 id=eq.1h4v.s8.fa96f23111f1 from=translated src=- shape=f4943791 vocab=a43ca95c
+-/
 theorem card_torsion_pow_of_surjective {p : ℕ}
     (hsurj : Function.Surjective fun P : W.Point => p • P) (k : ℕ) :
     Nat.card (W.torsion (p ^ k)) = Nat.card (W.torsion p) ^ k := by
@@ -160,7 +164,9 @@ theorem card_torsion_pow_of_surjective {p : ℕ}
   | succ k ih => rw [pow_succ, card_torsion_mul_of_surjective hsurj, ih, pow_succ, mul_comm]
 
 /-- **`#E[pᵏ] = (pᵏ)²`**, the previous count with `#E[p] = p²` supplied.  This says `E[pᵏ]` attains
-the bound `#E[n] ≤ n²`. -/
+the bound `#E[n] ≤ n²`.
+@isnad1 id=eq.2h4v.s8.4f4f849a8d2f from=translated src=- shape=ee11a13c vocab=a43ca95c
+-/
 theorem card_torsion_pow {p : ℕ}
     (hsurj : Function.Surjective fun P : W.Point => p • P)
     (hcard : Nat.card (W.torsion p) = p ^ 2) (k : ℕ) :
@@ -168,7 +174,9 @@ theorem card_torsion_pow {p : ℕ}
   rw [card_torsion_pow_of_surjective hsurj, hcard, ← pow_mul, ← pow_mul, Nat.mul_comm]
 
 /-- `E[pᵏ]` is finite, read off the count `#E[pᵏ] = (pᵏ)² ≠ 0` rather than from any smoothness
-hypothesis, which would drag in constraints the count already carries. -/
+hypothesis, which would drag in constraints the count already carries.
+@isnad1 id=finite.3h4v.s8.84a8fa007ef5 from=translated src=- shape=be5eed9c vocab=c1967909
+-/
 theorem finite_torsion_pow {p : ℕ} (hp : p ≠ 0)
     (hsurj : Function.Surjective fun P : W.Point => p • P)
     (hcard : Nat.card (W.torsion p) = p ^ 2) (k : ℕ) : Finite (W.torsion (p ^ k)) := by
@@ -185,7 +193,9 @@ as a square.
 each call site; `EllipticCurves.Torsion.PrimaryBasis.torsionPairHom_bijective_of_card`,
 `EllipticCurves.TateModule.LevelStructure.infinite_tateModule_of_card` and
 `EllipticCurves.TateModule.PrimaryFree.padicPairHom_injective` all take their cardinality hypothesis
-in exactly this form. -/
+in exactly this form.
+@isnad1 id=eq.2h4v.s8.fb452d1965bd from=translated src=- shape=fdd30225 vocab=785e021e
+-/
 theorem card_torsion_pow_mul_self {p : ℕ}
     (hsurj : Function.Surjective fun P : W.Point => p • P)
     (hcard : Nat.card (W.torsion p) = p ^ 2) (k : ℕ) :
@@ -203,7 +213,9 @@ by injecting the `p`-torsion of `E[pᵏ]` into `E[p]` and quoting `hcard`, and a
 coprimality, an element killed by both `q` and `pᵏ` being killed by `1`.
 
 ⚠️ **This is the only statement in the file that needs `p.Prime`**, and it needs it precisely for
-the second branch: `Nat.Coprime q (p ^ k)` for every prime `q ≠ p` is false at a composite `p`. -/
+the second branch: `Nat.Coprime q (p ^ k)` for every prime `q ≠ p` is false at a composite `p`.
+@isnad1 id=nonempty.3h4v.s9.7aab39eb00cc from=translated src=- shape=4d37ccfb vocab=eb1ffeb0
+-/
 theorem nonempty_torsionPow_addEquiv {p : ℕ} (hp : p.Prime)
     (hsurj : Function.Surjective fun P : W.Point => p • P)
     (hcard : Nat.card (W.torsion p) = p ^ 2) (k : ℕ) :

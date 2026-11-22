@@ -46,6 +46,9 @@ section Subalgebras
 variable {A : Type*} [CommRing A] {Ω : Type*} [CommRing Ω] [Algebra A Ω]
   {N : Type*} [CommRing N] [Algebra A N]
 
+/--
+@isnad1 id=eq.0h6v.s10.b97e2082d861 from=translated src=- shape=421160e5 vocab=d03b1b33
+-/
 lemma map_id_eq_rTensor {D E : Type*} [CommRing D] [Algebra A D] [CommRing E] [Algebra A E]
     (f : D →ₐ[A] E) (t : D ⊗[A] N) :
     Algebra.TensorProduct.map f (AlgHom.id A N) t = LinearMap.rTensor N f.toLinearMap t := by
@@ -54,6 +57,9 @@ lemma map_id_eq_rTensor {D E : Type*} [CommRing D] [Algebra A D] [CommRing E] [A
   | tmul x y => simp
   | add x y hx hy => rw [map_add, map_add, hx, hy]
 
+/--
+@isnad1 id=eq.2h7v.s12.7775c1c32a47 from=translated src=- shape=4132695f vocab=a5626365
+-/
 lemma map_inclusion_inclusion {C D E : Subalgebra A Ω} (h₁ : C ≤ D) (h₂ : D ≤ E)
     (t : C ⊗[A] N) :
     Algebra.TensorProduct.map (Subalgebra.inclusion h₂) (AlgHom.id A N)
@@ -64,6 +70,9 @@ lemma map_inclusion_inclusion {C D E : Subalgebra A Ω} (h₁ : C ≤ D) (h₂ :
   | tmul x y => simp
   | add x y hx hy => rw [map_add, map_add, map_add, hx, hy]
 
+/--
+@isnad1 id=eq.1h6v.s12.4b996bd5836e from=translated src=- shape=7890a948 vocab=78d22b5f
+-/
 lemma map_val_inclusion {C D : Subalgebra A Ω} (h : C ≤ D) (t : C ⊗[A] N) :
     Algebra.TensorProduct.map D.val (AlgHom.id A N)
       (Algebra.TensorProduct.map (Subalgebra.inclusion h) (AlgHom.id A N) t) =
@@ -74,7 +83,9 @@ lemma map_val_inclusion {C D : Subalgebra A Ω} (h : C ≤ D) (t : C ⊗[A] N) :
   | add x y hx hy => rw [map_add, map_add, map_add, hx, hy]
 
 /-- Finitely many properties, each of which holds for all subalgebras above some finitely
-generated one, hold simultaneously for all subalgebras above some finitely generated `D ⊇ C`. -/
+generated one, hold simultaneously for all subalgebras above some finitely generated `D ⊇ C`.
+@isnad1 id=ex.2h6v.s8.c2edd425ca81 from=translated src=- shape=76145a95 vocab=351fd71f
+-/
 lemma exists_fg_forall {ι : Type*} (s : Finset ι) (Q : ι → Subalgebra A Ω → Prop)
     (hQ : ∀ i ∈ s, ∃ D : Subalgebra A Ω, D.FG ∧ ∀ E, D ≤ E → Q i E)
     {C : Subalgebra A Ω} (hC : C.FG) :
@@ -96,7 +107,9 @@ variable {P : Type*} [CommRing P] [Algebra A P] [Algebra P N] [IsScalarTower A P
 omit [Algebra A P] [IsScalarTower A P N] [IsScalarTower A P B] in
 /-- Two `P`-compatible maps `B → C ⊗[A] N` out of a finite type `P`-algebra `B` which agree
 after mapping to `Ω ⊗[A] N` agree after mapping to `E ⊗[A] N` for all `E ⊇ D`, for some finitely
-generated `D ⊇ C`. -/
+generated `D ⊇ C`.
+@isnad1 id=ex.4h8v.s12.9b52de5a1e37 from=translated src=- shape=9d8fa677 vocab=8b420f2e
+-/
 theorem exists_fg_eq [Algebra.FiniteType P B] {C : Subalgebra A Ω} (hC : C.FG)
     (F F' : B →ₐ[A] C ⊗[A] N)
     (hF : ∀ p : P, F (algebraMap P B p) = 1 ⊗ₜ algebraMap P N p)
@@ -129,7 +142,9 @@ theorem exists_fg_eq [Algebra.FiniteType P B] {C : Subalgebra A Ω} (hC : C.FG)
   | mul x y _ _ hx hy => simp only [AlgHom.comp_apply, map_mul] at hx hy ⊢; rw [hx, hy]
 
 /-- A `P`-compatible `A`-algebra map `B → Ω ⊗[A] N` out of a finitely presented `P`-algebra `B`
-factors through `C ⊗[A] N` for some finitely generated `A`-subalgebra `C ⊆ Ω`. -/
+factors through `C ⊗[A] N` for some finitely generated `A`-subalgebra `C ⊆ Ω`.
+@isnad1 id=ex.1h6v.s11.cb82051524ad from=translated src=- shape=331b36a3 vocab=33400539
+-/
 theorem exists_fg_descent [Algebra.FinitePresentation P B] (F : B →ₐ[A] Ω ⊗[A] N)
     (hF : ∀ p : P, F (algebraMap P B p) = 1 ⊗ₜ algebraMap P N p) :
     ∃ C : Subalgebra A Ω, C.FG ∧ ∃ F' : B →ₐ[A] C ⊗[A] N,
@@ -213,11 +228,17 @@ variable {A : Type*} [CommRing A]
 noncomputable def baseChangeHom (F : B₁ →ₐ[A] D ⊗[A] B₂) : D ⊗[A] B₁ →ₐ[D] D ⊗[A] B₂ :=
   Algebra.TensorProduct.lift (Algebra.ofId D _) F fun _ _ ↦ .all _ _
 
+/--
+@isnad1 id=eq.0h7v.s10.40a9255ab4d3 from=translated src=- shape=05d13642 vocab=b57c48d6
+-/
 @[simp]
 lemma baseChangeHom_tmul (F : B₁ →ₐ[A] D ⊗[A] B₂) (d : D) (b : B₁) :
     baseChangeHom F (d ⊗ₜ b) = (d ⊗ₜ 1) * F b := by
   simp [baseChangeHom]
 
+/--
+@isnad1 id=eq.0h6v.s10.30fe75be6044 from=translated src=- shape=1f457a7e vocab=d0cdcf93
+-/
 @[simp]
 lemma baseChangeHom_one_tmul (F : B₁ →ₐ[A] D ⊗[A] B₂) (b : B₁) :
     baseChangeHom F (1 ⊗ₜ b) = F b := by
@@ -227,10 +248,16 @@ lemma baseChangeHom_one_tmul (F : B₁ →ₐ[A] D ⊗[A] B₂) (b : B₁) :
 noncomputable def pushHom (σ : D →ₐ[A] E) (F : B₁ →ₐ[A] D ⊗[A] B₂) : B₁ →ₐ[A] E ⊗[A] B₂ :=
   (Algebra.TensorProduct.map σ (AlgHom.id A B₂)).comp F
 
+/--
+@isnad1 id=eq.0h8v.s10.6e72397e3fe2 from=translated src=- shape=124dc95d vocab=f069e743
+-/
 @[simp]
 lemma pushHom_apply (σ : D →ₐ[A] E) (F : B₁ →ₐ[A] D ⊗[A] B₂) (b : B₁) :
     pushHom σ F b = Algebra.TensorProduct.map σ (AlgHom.id A B₂) (F b) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.63bda1469952 from=translated src=- shape=adab38ec vocab=e032d126
+-/
 lemma map_baseChangeHom (σ : D →ₐ[A] E) (F : B₁ →ₐ[A] D ⊗[A] B₂) (t : D ⊗[A] B₁) :
     Algebra.TensorProduct.map σ (AlgHom.id A B₂) (baseChangeHom F t) =
       baseChangeHom (pushHom σ F) (Algebra.TensorProduct.map σ (AlgHom.id A B₁) t) := by
@@ -243,6 +270,9 @@ lemma map_baseChangeHom (σ : D →ₐ[A] E) (F : B₁ →ₐ[A] D ⊗[A] B₂) 
 def IsInverse (F₁ : B₁ →ₐ[A] D ⊗[A] B₂) (F₂ : B₂ →ₐ[A] D ⊗[A] B₁) : Prop :=
   (∀ b, baseChangeHom F₂ (F₁ b) = 1 ⊗ₜ b) ∧ (∀ b, baseChangeHom F₁ (F₂ b) = 1 ⊗ₜ b)
 
+/--
+@isnad1 id=isinvers.1h8v.s8.7dd754d5f6d9 from=translated src=- shape=0da25463 vocab=e0353d0a
+-/
 lemma IsInverse.pushHom {F₁ : B₁ →ₐ[A] D ⊗[A] B₂} {F₂ : B₂ →ₐ[A] D ⊗[A] B₁}
     (h : IsInverse F₁ F₂) (σ : D →ₐ[A] E) : IsInverse (pushHom σ F₁) (pushHom σ F₂) := by
   constructor <;> intro b
@@ -256,6 +286,9 @@ noncomputable def IsInverse.algEquiv {F₁ : B₁ →ₐ[A] D ⊗[A] B₂} {F₂
     (Algebra.TensorProduct.ext (Subsingleton.elim _ _) (AlgHom.ext fun b ↦ by simp [h.2]))
     (Algebra.TensorProduct.ext (Subsingleton.elim _ _) (AlgHom.ext fun b ↦ by simp [h.1]))
 
+/--
+@isnad1 id=eq.1h7v.s10.e316102a31c7 from=translated src=- shape=106a55d6 vocab=19f84014
+-/
 @[simp]
 lemma IsInverse.algEquiv_one_tmul {F₁ : B₁ →ₐ[A] D ⊗[A] B₂} {F₂ : B₂ →ₐ[A] D ⊗[A] B₁}
     (h : IsInverse F₁ F₂) (b : B₁) : h.algEquiv (1 ⊗ₜ b) = F₁ b :=
@@ -273,7 +306,9 @@ variable {A : Type*} [CommRing A] {P : Type*} [CommRing P] [Algebra A P]
 /-- **Descent of isomorphisms**: if every finitely generated `A`-subalgebra of `Ω` admits an
 `A`-algebra map to `K`, then a `P`-compatible isomorphism `Ω ⊗[A] B₁ ≃ₐ[Ω] Ω ⊗[A] B₂` of base
 changes of finitely presented `P`-algebras yields a `P`-compatible isomorphism
-`K ⊗[A] B₁ ≃ₐ[K] K ⊗[A] B₂`. -/
+`K ⊗[A] B₁ ≃ₐ[K] K ⊗[A] B₂`.
+@isnad1 id=ex.2h7v.s11.6e8d174c5e86 from=translated src=- shape=bf99c88f vocab=0ca6a75b
+-/
 theorem exists_algEquiv_of_fg [Algebra.FinitePresentation P B₁]
     [Algebra.FinitePresentation P B₂]
     (hK : ∀ C : Subalgebra A Ω, C.FG → Nonempty (C →ₐ[A] K))

@@ -99,7 +99,9 @@ variable {R : Type*} [CommRing R] (W : ℤ → R)
 
 /-! ### Symmetries of the `r = 1`, `s = 0` relator -/
 
-/-- The relator `rel W p q 1 0` is even in its first argument. -/
+/-- The relator `rel W p q 1 0` is even in its first argument.
+@isnad1 id=eq.1h4v.s6.163a7de59ecb from=translated src=- shape=92e7b5b4 vocab=b264744e
+-/
 lemma rel_one_neg_left (odd : W.Odd) (p q : ℤ) : rel W (-p) q 1 0 = rel W p q 1 0 := by
   simp only [rel, add_zero]
   rw [show -p + q = -(p - q) by ring, show -p - q = -(p + q) by ring,
@@ -107,14 +109,18 @@ lemma rel_one_neg_left (odd : W.Odd) (p q : ℤ) : rel W (-p) q 1 0 = rel W p q 
     odd (p - q), odd (p + q), odd (p - 1), odd (p + 1), odd p]
   ring
 
-/-- The relator `rel W p q 1 0` is even in its second argument. -/
+/-- The relator `rel W p q 1 0` is even in its second argument.
+@isnad1 id=eq.1h4v.s6.c5d3c080ccbe from=translated src=- shape=b78c78b6 vocab=b264744e
+-/
 lemma rel_one_neg_right (odd : W.Odd) (p q : ℤ) : rel W p (-q) 1 0 = rel W p q 1 0 := by
   simp only [rel, add_zero]
   rw [show p + -q = p - q by ring, show p - -q = p + q by ring, show -q + 1 = -(q - 1) by ring,
     show -q - 1 = -(q + 1) by ring, odd (q - 1), odd (q + 1), odd q]
   ring
 
-/-- The relator `rel W p q 1 0` is antisymmetric under swapping its two arguments. -/
+/-- The relator `rel W p q 1 0` is antisymmetric under swapping its two arguments.
+@isnad1 id=eq.1h4v.s6.8bfc6c5b9827 from=translated src=- shape=b076922a vocab=b264744e
+-/
 lemma rel_one_swap (odd : W.Odd) (p q : ℤ) : rel W q p 1 0 = -rel W p q 1 0 := by
   simp only [rel, add_zero]
   rw [show q + p = p + q by ring, show q - p = -(p - q) by ring, odd (p - q)]
@@ -134,7 +140,9 @@ pattern `-Aₐ B_b B_c + A_b Bₐ B_c` and cancel; the three that survive are `W
 left-hand side.  Oddness is used in exactly one place, to rewrite `W (r - p)` as `-W (p - r)`.
 
 Its content is that `Mathlib`'s `IsEllipticSequence W`, which is `∀ p q r, rel W p q r 0 = 0`,
-carries **no information beyond its `r = 1` slice** — see `isEllipticSequence_iff_rel_one`. -/
+carries **no information beyond its `r = 1` slice** — see `isEllipticSequence_iff_rel_one`.
+@isnad1 id=eq.1h5v.s8.565e434ffe07 from=translated src=- shape=4edab2dc vocab=b0790af5
+-/
 lemma one_sq_mul_rel_zero (odd : W.Odd) (p q r : ℤ) :
     W 1 ^ 2 * rel W p q r 0 =
       W r ^ 2 * rel W p q 1 0 + W p ^ 2 * rel W q r 1 0 + W q ^ 2 * rel W r p 1 0 := by
@@ -143,7 +151,9 @@ lemma one_sq_mul_rel_zero (odd : W.Odd) (p q r : ℤ) :
   ring
 
 /-- **The `r = 1` slice of the elliptic-net relation implies the whole `s = 0` layer**, for an odd
-normalised `W`.  Immediate from `one_sq_mul_rel_zero`, since `W 1 = 1` makes the multiplier `1`. -/
+normalised `W`.  Immediate from `one_sq_mul_rel_zero`, since `W 1 = 1` makes the multiplier `1`.
+@isnad1 id=isellipt.3h2v.s6.6821e7193bcd from=translated src=- shape=5e0f78cb vocab=28c008da
+-/
 lemma isEllipticSequence_of_rel_one (odd : W.Odd) (h1 : W 1 = 1)
     (h : ∀ p q : ℤ, rel W p q 1 0 = 0) : IsEllipticSequence W := by
   intro p q r
@@ -162,7 +172,9 @@ step between them is a `ring` call rather than an induction.
 (`not_isEllipticSequence_signMultiplesOfThree`, witnessed at `rel W 3 6 9 0 = -1`).  It has
 `W 1 = 0`, so it does not rule out weakening `h1` to *`W 1` is not a zero divisor* — over a domain,
 to `W 1 ≠ 0`.  That weakening is available only because `one_sq_mul_rel_zero` is stated
-unconditionally in `W 1`, with the factor `W 1 ^ 2` on the left rather than an `h1` hypothesis. -/
+unconditionally in `W 1`, with the factor `W 1 ^ 2` on the left rather than an `h1` hypothesis.
+@isnad1 id=iff.2h2v.s6.f9453f226a5a from=translated src=- shape=1012176f vocab=28c008da
+-/
 lemma isEllipticSequence_iff_rel_one (odd : W.Odd) (h1 : W 1 = 1) :
     IsEllipticSequence W ↔ ∀ p q : ℤ, rel W p q 1 0 = 0 :=
   ⟨fun h p q => h p q 1, isEllipticSequence_of_rel_one W odd h1⟩
@@ -184,19 +196,25 @@ otherwise.  This is the witness that `W 1 = 1` cannot be dropped from
 def signMultiplesOfThree : ℤ → ℤ := fun n => if (3 : ℤ) ∣ n then n.sign else 0
 
 /-- `signMultiplesOfThree` is odd, so it meets the hypothesis `odd` of
-`isEllipticSequence_of_rel_one`. -/
+`isEllipticSequence_of_rel_one`.
+@isnad1 id=odd.0h0v.s2.6eff80fb35c8 from=translated src=- shape=e3d48bcb vocab=8b085b73
+-/
 lemma signMultiplesOfThree_odd : Function.Odd signMultiplesOfThree := by
   intro n
   simp only [signMultiplesOfThree, Int.sign_neg, dvd_neg]
   split <;> simp
 
 /-- `signMultiplesOfThree 1 = 0`: the witness fails the hypothesis `h1`, and this is the only
-hypothesis of `isEllipticSequence_of_rel_one` that it fails. -/
+hypothesis of `isEllipticSequence_of_rel_one` that it fails.
+@isnad1 id=eq.0h0v.s3.d613c39b2ffd from=translated src=- shape=3c26ae4f vocab=c41bb15f
+-/
 lemma signMultiplesOfThree_one : signMultiplesOfThree 1 = 0 := by
   norm_num [signMultiplesOfThree]
 
 /-- `3 ∣ n + 1` and `3 ∣ n - 1` would give `3 ∣ 2`, so at most one of the two neighbours of `n` is a
-multiple of `3` and the product of their values vanishes. -/
+multiple of `3` and the product of their values vanishes.
+@isnad1 id=eq.0h1v.s5.60110c12945c from=translated src=- shape=55c7768c vocab=a13440b9
+-/
 lemma signMultiplesOfThree_add_one_mul_sub_one (n : ℤ) :
     signMultiplesOfThree (n + 1) * signMultiplesOfThree (n - 1) = 0 := by
   by_cases h : (3 : ℤ) ∣ n + 1
@@ -209,7 +227,9 @@ lemma signMultiplesOfThree_add_one_mul_sub_one (n : ℤ) :
 
 /-- **The whole `r = 1` slice holds for `signMultiplesOfThree`**, for every `p` and `q`:
 `signMultiplesOfThree 1 = 0` kills the term `W (p + q) · W (p - q) · W 1 ^ 2`, and
-`signMultiplesOfThree_add_one_mul_sub_one` kills the other two. -/
+`signMultiplesOfThree_add_one_mul_sub_one` kills the other two.
+@isnad1 id=eq.0h2v.s4.de6005a0b24e from=translated src=- shape=b645c753 vocab=ad52a20b
+-/
 lemma signMultiplesOfThree_rel_one (p q : ℤ) : rel signMultiplesOfThree p q 1 0 = 0 := by
   have hp := signMultiplesOfThree_add_one_mul_sub_one p
   have hq := signMultiplesOfThree_add_one_mul_sub_one q
@@ -221,7 +241,9 @@ lemma signMultiplesOfThree_rel_one (p q : ℤ) : rel signMultiplesOfThree p q 1 
 /-- **`signMultiplesOfThree` is not an elliptic sequence**, although it is odd and satisfies the
 whole `r = 1` slice: `rel signMultiplesOfThree 3 6 9 0 = -1 + 1 - 1 = -1`.  Together with
 `signMultiplesOfThree_odd` and `signMultiplesOfThree_rel_one`, this is exactly the statement that
-`h1` is not removable from `isEllipticSequence_of_rel_one`. -/
+`h1` is not removable from `isEllipticSequence_of_rel_one`.
+@isnad1 id=not.0h0v.s2.f41d34ac7deb from=translated src=- shape=049cd614 vocab=33ae92d6
+-/
 lemma not_isEllipticSequence_signMultiplesOfThree :
     ¬ IsEllipticSequence signMultiplesOfThree := by
   intro h
@@ -242,17 +264,23 @@ section NormEDS
 
 variable {R : Type*} [CommRing R] (b c d : R)
 
-/-- Oddness of the canonical normalised EDS as a `Function.Odd` fact. -/
+/-- Oddness of the canonical normalised EDS as a `Function.Odd` fact.
+@isnad1 id=odd.0h4v.s5.25dd633b44f1 from=translated src=- shape=c746c904 vocab=99afbce6
+-/
 lemma normEDS_odd_fun : (normEDS b c d).Odd := fun n => normEDS_neg b c d n
 
-/-- The `q = 0` slice of Ward's `r = 1` relation vanishes: `rel (normEDS b c d) p 0 1 0 = 0`. -/
+/-- The `q = 0` slice of Ward's `r = 1` relation vanishes: `rel (normEDS b c d) p 0 1 0 = 0`.
+@isnad1 id=eq.0h5v.s5.b27aed9dd688 from=translated src=- shape=921d3340 vocab=ae91c412
+-/
 lemma normEDS_rel_one_zero (p : ℤ) : IsEllipticNet.rel (normEDS b c d) p 0 1 0 = 0 := by
   have h : normEDS b c d (-1) = -1 := by rw [normEDS_neg, normEDS_one]
   simp only [IsEllipticNet.rel, add_zero, sub_zero, zero_add, zero_sub, normEDS_zero, normEDS_one,
     h]
   ring
 
-/-- The `q = 1` slice of Ward's `r = 1` relation vanishes: `rel (normEDS b c d) p 1 1 0 = 0`. -/
+/-- The `q = 1` slice of Ward's `r = 1` relation vanishes: `rel (normEDS b c d) p 1 1 0 = 0`.
+@isnad1 id=eq.0h5v.s5.cf10d997e0a3 from=translated src=- shape=921d3340 vocab=ae91c412
+-/
 lemma normEDS_rel_one_one (p : ℤ) : IsEllipticNet.rel (normEDS b c d) p 1 1 0 = 0 := by
   simp only [IsEllipticNet.rel, add_zero]
   rw [show (1 : ℤ) - 1 = 0 by ring, normEDS_zero]
@@ -269,7 +297,9 @@ open MvPolynomial
 /-- The identity sequence `n ↦ n` is the normalised EDS with parameters `b = 2`, `c = 3`, `d = 2`:
 `normEDS 2 3 2 n = n` over `ℤ`. Both two-term recurrences hold for `W n = n` with these parameters
 (as polynomial identities in `m`), and the initial values match. This is the witness used to prove
-nonvanishing of `normEDS` in the universal ring. -/
+nonvanishing of `normEDS` in the universal ring.
+@isnad1 id=eq.0h1v.s4.8dc805330142 from=translated src=- shape=a86a68c8 vocab=2343c307
+-/
 lemma normEDS_two_three_two (n : ℤ) : normEDS (2 : ℤ) 3 2 n = n := by
   have hnat : ∀ m : ℕ, normEDS (2 : ℤ) 3 2 (m : ℤ) = (m : ℤ) := by
     intro m
@@ -327,7 +357,9 @@ which sends `normEDS` to the identity sequence). -/
 abbrev UnivEDS : Type := MvPolynomial (Fin 3) ℤ
 
 /-- In the universal ring `ℤ[X₀, X₁, X₂]`, the value `normEDS X₀ X₁ X₂ n` is nonzero whenever
-`n ≠ 0`: specialising `X₀ ↦ 2, X₁ ↦ 3, X₂ ↦ 2` maps it to `normEDS 2 3 2 n = n ≠ 0`. -/
+`n ≠ 0`: specialising `X₀ ↦ 2, X₁ ↦ 3, X₂ ↦ 2` maps it to `normEDS 2 3 2 n = n ≠ 0`.
+@isnad1 id=ne.1h1v.s7.0bb424dc4a37 from=translated src=- shape=beb8d7e9 vocab=048ad51d
+-/
 lemma normEDS_univ_ne_zero (n : ℤ) (hn : n ≠ 0) :
     normEDS (X 0 : UnivEDS) (X 1) (X 2) n ≠ 0 := by
   intro h

@@ -77,7 +77,9 @@ variable (R) in
 /-- **The DVR converse.** For a discrete valuation ring `R` with fraction field `K`, any `x : K`
 whose valuation at the maximal-ideal place is `≤ 1` lies in the image of `R`: `∃ r, algebraMap R K
 r = x`.  (For a general Dedekind domain this holds only when *every* place has valuation `≤ 1`;
-locality of `R` is what upgrades the single-place statement.) -/
+locality of `R` is what upgrades the single-place statement.)
+@isnad1 id=ex.1h3v.s7.c3780707bf56 from=translated src=- shape=5d618410 vocab=0a1eb957
+-/
 theorem exists_algebraMap_eq_of_valuation_le_one (x : K)
     (hv : valuation K (maximalIdeal R) x ≤ 1) : ∃ r : R, algebraMap R K r = x := by
   obtain ⟨n, d, hnd⟩ :=
@@ -100,7 +102,9 @@ valuation), then the base valuation of `W.j` is `≤ 1`, i.e. `W.j` is non-negat
 base place.  This is the good-reduction mirror of the multiplicative
 `one_lt_valuation_j_of_hasMultiplicativeReduction_baseChange_over` (#509, `1 < v_R(j)`), obtained
 from the per-extension #501 `isIntegral_j_of_hasGoodReduction_baseChange` (`algebraMap K L W.j ∈ A`)
-by reflecting the extension-place membership back to the base valuation via `hover`. -/
+by reflecting the extension-place membership back to the base valuation via `hover`.
+@isnad1 id=le.2h5v.s8.0480eefb7c62 from=translated src=- shape=b0c8f2fb vocab=73050847
+-/
 theorem valuation_j_le_one_of_hasGoodReduction_baseChange_over
     {L : Type*} [Field L] [Algebra K L] (A : ValuationSubring L) [IsDiscreteValuationRing A]
     (hover : ∀ x : K, algebraMap K L x ∈ A → valuation K (maximalIdeal R) x ≤ 1)
@@ -114,7 +118,9 @@ reduction over a discrete valuation subring `A ⊆ L` that **lies over** `R` (it
 bounds the base valuation), then `W.j` is integral at the base place: `∃ r : R, algebraMap R K r =
 W.j`.  This is the quantified, base-landing strengthening of
 `isIntegral_j_of_hasGoodReduction_baseChange` (#501); it upgrades the sharp valuation bound
-`valuation_j_le_one_of_hasGoodReduction_baseChange_over` to base membership via the DVR converse. -/
+`valuation_j_le_one_of_hasGoodReduction_baseChange_over` to base membership via the DVR converse.
+@isnad1 id=ex.2h5v.s8.6582554bf5bf from=translated src=- shape=e18c35ce vocab=73050847
+-/
 theorem isIntegral_j_of_hasGoodReduction_baseChange_over
     {L : Type*} [Field L] [Algebra K L] (A : ValuationSubring L) [IsDiscreteValuationRing A]
     (hover : ∀ x : K, algebraMap K L x ∈ A → valuation K (maximalIdeal R) x ≤ 1)
@@ -125,7 +131,9 @@ theorem isIntegral_j_of_hasGoodReduction_baseChange_over
 
 variable (R) in
 /-- **Contrapositive.** A `j`-invariant that is not integral at the base place rules out good
-reduction over *any* discrete valuation subring extension lying over `R`. -/
+reduction over *any* discrete valuation subring extension lying over `R`.
+@isnad1 id=not.2h5v.s8.665912cd7ad9 from=translated src=- shape=c9348eba vocab=73050847
+-/
 theorem not_hasGoodReduction_baseChange_over_of_j_not_mem
     {L : Type*} [Field L] [Algebra K L] (A : ValuationSubring L) [IsDiscreteValuationRing A]
     (hover : ∀ x : K, algebraMap K L x ∈ A → valuation K (maximalIdeal R) x ≤ 1)

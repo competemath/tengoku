@@ -40,17 +40,28 @@ class IsCurveField (K : Type*) [Field K] [CharZero K] : Prop where
 
 variable {K : Type*} [Field K] [CharZero K]
 
+/--
+@isnad1 id=iff.0h2v.s6.0bdc105e7d50 from=translated src=- shape=8d96be7a vocab=10183e71
+-/
 theorem transcendental_inv_iff {t : K} : Transcendental ℚ t⁻¹ ↔ Transcendental ℚ t :=
   not_congr IsAlgebraic.inv_iff
 
+/--
+@isnad1 id=transcen.1h2v.s6.2d7af7c5c4a6 from=translated src=- shape=5504a1b5 vocab=10183e71
+-/
 theorem transcendental_inv {t : K} (ht : Transcendental ℚ t) : Transcendental ℚ t⁻¹ :=
   transcendental_inv_iff.mpr ht
 
+/--
+@isnad1 id=ne.1h2v.s5.2c6e191f4165 from=translated src=- shape=144f36d7 vocab=fe74cb2e
+-/
 theorem ne_zero_of_transcendental {t : K} (ht : Transcendental ℚ t) : t ≠ 0 := by
   rintro rfl
   exact ht isAlgebraic_zero
 
-/-- If `K` is finite over `ℚ⟮t⟯`, then `{t}` is a transcendence basis of `K / ℚ`. -/
+/-- If `K` is finite over `ℚ⟮t⟯`, then `{t}` is a transcendence basis of `K / ℚ`.
+@isnad1 id=istransc.1h2v.s8.c25728f46bd6 from=translated src=- shape=9f0f04d6 vocab=165c8a62
+-/
 theorem isTranscendenceBasis_of_finiteDimensional {t : K} (ht : Transcendental ℚ t)
     [FiniteDimensional ℚ⟮t⟯ K] : IsTranscendenceBasis ℚ (fun _ : Unit ↦ t) := by
   refine (algebraicIndependent_unique_type_iff.mpr ht).isTranscendenceBasis_iff_isAlgebraic.mpr ?_
@@ -60,30 +71,40 @@ theorem isTranscendenceBasis_of_finiteDimensional {t : K} (ht : Transcendental �
 variable [IsCurveField K]
 
 variable (K) in
-/-- A curve field contains an element transcendental over `ℚ`. -/
+/-- A curve field contains an element transcendental over `ℚ`.
+@isnad1 id=ex.0h1v.s5.1301069884cd from=translated src=- shape=815d2e9b vocab=167e64c1
+-/
 theorem exists_transcendental : ∃ t : K, Transcendental ℚ t :=
   let ⟨t, ht, _⟩ := IsCurveField.exists_finite (K := K); ⟨t, ht⟩
 
 variable (K) in
-/-- A curve field has transcendence degree one over `ℚ`. -/
+/-- A curve field has transcendence degree one over `ℚ`.
+@isnad1 id=eq.0h1v.s5.1e92bd12b590 from=translated src=- shape=665e1df8 vocab=04989840
+-/
 theorem trdeg_eq_one : Algebra.trdeg ℚ K = 1 := by
   obtain ⟨t, ht, _⟩ := IsCurveField.exists_finite (K := K)
   have := (isTranscendenceBasis_of_finiteDimensional ht).lift_cardinalMk_eq_trdeg
   simpa using this.symm
 
-/-- Every transcendental element of a curve field is a transcendence basis. -/
+/-- Every transcendental element of a curve field is a transcendence basis.
+@isnad1 id=istransc.1h2v.s5.35f19ef3f217 from=translated src=- shape=00829a21 vocab=eb4c15ee
+-/
 theorem isTranscendenceBasis {s : K} (hs : Transcendental ℚ s) :
     IsTranscendenceBasis ℚ (fun _ : Unit ↦ s) :=
   (algebraicIndependent_unique_type_iff.mpr hs).isTranscendenceBasis_of_lift_trdeg_le_of_finite
     (by rw [trdeg_eq_one K]; simp)
 
-/-- A curve field is algebraic over `ℚ⟮s⟯` for every transcendental `s`. -/
+/-- A curve field is algebraic over `ℚ⟮s⟯` for every transcendental `s`.
+@isnad1 id=isalgebr.1h2v.s7.53f1bca5d9d2 from=translated src=- shape=56a94811 vocab=af344560
+-/
 theorem isAlgebraic_adjoin {s : K} (hs : Transcendental ℚ s) : Algebra.IsAlgebraic ℚ⟮s⟯ K := by
   have := (isTranscendenceBasis hs).isAlgebraic_field
   rwa [Set.range_const] at this
 
 variable (K) in
-/-- A curve field is finitely generated as a field over `ℚ`. -/
+/-- A curve field is finitely generated as a field over `ℚ`.
+@isnad1 id=ex.0h1v.s8.821ae65e89f2 from=translated src=- shape=7db00112 vocab=4b1c98dc
+-/
 theorem exists_finset_adjoin_eq_top :
     ∃ S : Finset K, IntermediateField.adjoin ℚ (S : Set K) = ⊤ := by
   obtain ⟨t, ht, _⟩ := IsCurveField.exists_finite (K := K)
@@ -96,7 +117,9 @@ theorem exists_finset_adjoin_eq_top :
   rw [Finset.coe_insert, Set.insert_eq, ← h2]
   exact this
 
-/-- A curve field is a finite extension of `ℚ⟮s⟯` for every transcendental `s`. -/
+/-- A curve field is a finite extension of `ℚ⟮s⟯` for every transcendental `s`.
+@isnad1 id=finitedi.1h2v.s7.b4eeeab411a3 from=translated src=- shape=56a94811 vocab=f91b1acb
+-/
 theorem finiteDimensional_adjoin {s : K} (hs : Transcendental ℚ s) :
     FiniteDimensional ℚ⟮s⟯ K := by
   have := isAlgebraic_adjoin hs

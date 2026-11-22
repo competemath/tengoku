@@ -82,7 +82,9 @@ private theorem reciprocalWeierstrassSub_add_lattice (L : PeriodPair) (a z : ℂ
       exact hz ((L.lattice.toAddSubgroup.add_mem_cancel_right l.2).mp h)
     simp [reciprocalWeierstrassSub, hz, hzl, L.weierstrassP_add_coe]
 
-/-- Every complex value is attained by `℘` away from the period lattice. -/
+/-- Every complex value is attained by `℘` away from the period lattice.
+@isnad1 id=ex.0h2v.s5.bdaf798149e7 from=translated src=- shape=2965f594 vocab=24d16c2e
+-/
 theorem exists_notMem_lattice_weierstrassP_eq (L : PeriodPair) (a : ℂ) :
     ∃ z, z ∉ L.lattice ∧ L.weierstrassP z = a := by
   classical
@@ -105,7 +107,9 @@ theorem exists_notMem_lattice_weierstrassP_eq (L : PeriodPair) (a : ℂ) :
   exact (hdiff.apply_eq_apply_of_bounded hcompact.isBounded z₀ 0).trans (by
     simp [reciprocalWeierstrassSub, L.lattice.zero_mem])
 
-/-- The Weierstrass `℘`-function is surjective onto `ℂ`. -/
+/-- The Weierstrass `℘`-function is surjective onto `ℂ`.
+@isnad1 id=surjecti.0h1v.s2.87043a84f156 from=translated src=- shape=8735051e vocab=b810431e
+-/
 theorem weierstrassP_surjective (L : PeriodPair) :
     Function.Surjective L.weierstrassP := by
   intro a
@@ -122,7 +126,9 @@ private theorem latticePointMap_eq_some_of_coordinates (τ : ℍ) (z x y : ℂ)
   unfold latticeAffinePoint WeierstrassCurve.Affine.Point.mk
   congr
 
-/-- The total point-valued Weierstrass map is onto the explicit lattice curve. -/
+/-- The total point-valued Weierstrass map is onto the explicit lattice curve.
+@isnad1 id=surjecti.0h1v.s3.6a59a1e4c4fc from=translated src=- shape=d311d795 vocab=334a9de1
+-/
 theorem latticePointMap_surjective (τ : ℍ) :
     Function.Surjective (latticePointMap τ) := by
   intro P

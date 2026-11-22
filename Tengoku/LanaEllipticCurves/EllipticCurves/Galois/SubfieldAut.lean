@@ -197,9 +197,15 @@ def autMulEquivOfEq (hST : S = T) : (K ≃ₐ[↥S] K) ≃* (K ≃ₐ[↥T] K) w
   right_inv _ := rfl
   map_mul' _ _ := rfl
 
+/--
+@isnad1 id=eq.1h5v.s11.360ff1bc2e0b from=translated src=- shape=72a5e344 vocab=22566c7c
+-/
 @[simp] lemma autMulEquivOfEq_apply (hST : S = T) (e : K ≃ₐ[↥S] K) (x : K) :
     autMulEquivOfEq hST e x = e x := rfl
 
+/--
+@isnad1 id=eq.1h5v.s12.ee085211b496 from=translated src=- shape=56c256ae vocab=e50e2088
+-/
 @[simp] lemma autMulEquivOfEq_symm_apply (hST : S = T) (e : K ≃ₐ[↥T] K) (x : K) :
     (autMulEquivOfEq hST).symm e x = e x := rfl
 

@@ -49,7 +49,9 @@ namespace IsIntegrallyClosed
 
 /-- **Descent of integral closedness along a faithfully flat extension.**
 If `B` is a faithfully flat `A`-algebra, `A` and `B` are integral domains, and `B` is integrally
-closed, then `A` is integrally closed. -/
+closed, then `A` is integrally closed.
+@isnad1 id=isintegr.0h2v.s6.7ccd36364e15 from=translated src=- shape=1fdaca27 vocab=f1a2cc67
+-/
 theorem of_faithfullyFlat {A B : Type*} [CommRing A] [IsDomain A] [CommRing B] [IsDomain B]
     [Algebra A B] [Module.FaithfullyFlat A B] [IsIntegrallyClosed B] :
     IsIntegrallyClosed A := by

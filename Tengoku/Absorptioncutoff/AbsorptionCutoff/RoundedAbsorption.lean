@@ -37,7 +37,9 @@ The three inputs to the abstract a.e.-bridge `measure_absorptionTime_gt_eq_of_ae
 are: a.e. absorption of the coordinate process (`markovPathMeasure_ae_absorbing`, fed the
 concrete trap `isAbsorbing_Hkernel : H(0,·) = δ₀`), measurability of the coordinate map
 (`measurable_pi_apply`), and the coordinate-marginal law (`markovPathMeasure_dirac_map_eval`,
-`map (·t) = (H^t)x`). -/
+`map (·t) = (H^t)x`).
+@isnad1 id=eq.0h5v.s7.aae4282b697b from=translated src=- shape=02f871e0 vocab=18810579
+-/
 theorem measure_roundedAbsorptionTime_gt_eq (A ρ : ℝ) (N : ℕ) (x : ℝ) (t : ℕ) :
     (markovPathMeasure (Measure.dirac x) (Hkernel A ρ N))
         {ω | (t : WithTop ℕ) < absorptionTime (fun (s : ℕ) (ω : ℕ → ℝ) => ω s) ω}
@@ -52,7 +54,9 @@ theorem measure_roundedAbsorptionTime_gt_eq (A ρ : ℝ) (N : ℕ) (x : ℝ) (t 
 /-- **`eq:tv-absorption` in `τ`-form for the rounded Gaussian chain.** The TV distance
 from the `t`-step law started at `x` to the absorbing point mass `δ₀` equals the survival
 probability `ℙ(τ_ρ > t)` (as a real). Combines the kernel-form `tvDist_Hkernel_pow_dirac`
-with the survival identity `measure_roundedAbsorptionTime_gt_eq`. -/
+with the survival identity `measure_roundedAbsorptionTime_gt_eq`.
+@isnad1 id=eq.0h5v.s7.febf82d00476 from=translated src=- shape=970b95cf vocab=27aaa254
+-/
 theorem tvDist_Hkernel_pow_eq_survival (A ρ : ℝ) (N : ℕ) (x : ℝ) (t : ℕ) :
     tvDist (((Hkernel A ρ N) ^ t) x) (Measure.dirac 0)
       = ((markovPathMeasure (Measure.dirac x) (Hkernel A ρ N))

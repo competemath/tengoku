@@ -65,6 +65,9 @@ noncomputable def mkPoint (f : MvPolynomial (Fin 2) k) (hp : Prime f) (n : ℕ)
     have h0 : (0 : k) ∣ v i := by simpa [hv] using map_dvd (eval v) hdvd
     exact hvi (zero_dvd_iff.mp h0)
 
+/--
+@isnad1 id=eq.4h5v.s9.493546710b5f from=translated src=- shape=97128dd1 vocab=5d10be81
+-/
 @[simp]
 lemma mkPoint_asIdeal (f : MvPolynomial (Fin 2) k) (hp : Prime f) (n : ℕ)
     (hn : f.IsHomogeneous n) (v : Fin 2 → k) (hv : eval v f = 0) (i : Fin 2)
@@ -76,7 +79,9 @@ end mkPoint
 
 section Prime
 
-/-- The coordinate functions are prime in `k[X₀, X₁]`. -/
+/-- The coordinate functions are prime in `k[X₀, X₁]`.
+@isnad1 id=prime.0h2v.s6.fa3dbf851e64 from=translated src=- shape=c424ccc3 vocab=d0fd7701
+-/
 lemma prime_X (i : Fin 2) : Prime (X i : MvPolynomial (Fin 2) k) := by
   have h0 : Prime (X 0 : MvPolynomial (Fin 2) k) := by
     have h : Prime ((finSuccEquiv k 1) (X 0)) := by
@@ -88,7 +93,9 @@ lemma prime_X (i : Fin 2) : Prime (X i : MvPolynomial (Fin 2) k) := by
   · have h := (MulEquiv.prime_iff (renameEquiv k (Equiv.swap (0 : Fin 2) 1))).mpr h0
     simpa using h
 
-/-- The linear form `X₀ - X₁` is prime in `k[X₀, X₁]`. -/
+/-- The linear form `X₀ - X₁` is prime in `k[X₀, X₁]`.
+@isnad1 id=prime.0h1v.s7.46511d4e3afc from=translated src=- shape=0ce7ed01 vocab=88845a4f
+-/
 lemma prime_X_sub_X : Prime (X 0 - X 1 : MvPolynomial (Fin 2) k) := by
   have h : Prime ((finSuccEquiv k 1) (X 0 - X 1)) := by
     have h1 : (X 1 : MvPolynomial (Fin 2) k) = X (Fin.succ 0) := rfl
@@ -116,7 +123,9 @@ section Distinct
 
 variable {k}
 
-/-- Everything in the ideal of a point vanishes at a vector on its cone. -/
+/-- Everything in the ideal of a point vanishes at a vector on its cone.
+@isnad1 id=eq.2h4v.s9.409671cd6f3c from=translated src=- shape=92137401 vocab=fcada37b
+-/
 lemma eval_eq_zero_of_mem_span {f g : MvPolynomial (Fin 2) k} {v : Fin 2 → k}
     (hv : eval v f = 0) (hg : g ∈ Ideal.span {f}) : eval v g = 0 := by
   obtain ⟨c, rfl⟩ := Ideal.mem_span_singleton'.mp hg
@@ -124,6 +133,9 @@ lemma eval_eq_zero_of_mem_span {f g : MvPolynomial (Fin 2) k} {v : Fin 2 → k}
 
 variable (k)
 
+/--
+@isnad1 id=ne.0h1v.s4.5d03204b1af4 from=translated src=- shape=07b33a26 vocab=9ba835b1
+-/
 lemma zero_ne_one : zero k ≠ one k := by
   intro h
   have hId : Ideal.span {(X 0 : MvPolynomial (Fin 2) k)} =
@@ -135,6 +147,9 @@ lemma zero_ne_one : zero k ≠ one k := by
   have := eval_eq_zero_of_mem_span (v := ![1, 1]) (by simp) hmem
   simp at this
 
+/--
+@isnad1 id=ne.0h1v.s4.acd055877ddb from=translated src=- shape=07b33a26 vocab=96de43e5
+-/
 lemma zero_ne_infty : zero k ≠ infty k := by
   intro h
   have hId : Ideal.span {(X 0 : MvPolynomial (Fin 2) k)} =
@@ -146,6 +161,9 @@ lemma zero_ne_infty : zero k ≠ infty k := by
   have := eval_eq_zero_of_mem_span (v := ![1, 0]) (by simp) hmem
   simp at this
 
+/--
+@isnad1 id=ne.0h1v.s4.91d6c4dd503a from=translated src=- shape=07b33a26 vocab=58effc92
+-/
 lemma one_ne_infty : one k ≠ infty k := by
   intro h
   have hId : Ideal.span {(X 0 - X 1 : MvPolynomial (Fin 2) k)} =

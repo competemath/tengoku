@@ -56,7 +56,9 @@ set.
 namespace Belyi
 
 /-- A monoid homomorphism from a finitely generated group into a finite group ranges
-over a finite type: it is determined by its values on a finite generating set. -/
+over a finite type: it is determined by its values on a finite generating set.
+@isnad1 id=finite.0h2v.s5.67f91a446955 from=translated src=- shape=8398706b vocab=0f50072a
+-/
 instance finite_monoidHom_of_fg {G N : Type*} [Group G] [Group.FG G] [Group N]
     [Finite N] : Finite (G →* N) := by
   obtain ⟨S, hS⟩ := (‹Group.FG G›).out
@@ -81,6 +83,9 @@ def permCongrHom {α β : Type*} (e : α ≃ β) : Equiv.Perm α →* Equiv.Perm
     ext x
     simp [Equiv.Perm.mul_apply]
 
+/--
+@isnad1 id=eq.0h4v.s6.d96f0ab8cd66 from=translated src=- shape=d57935f1 vocab=b32817a6
+-/
 @[simp]
 theorem permCongrHom_apply {α β : Type*} (e : α ≃ β) (p : Equiv.Perm α) :
     permCongrHom e p = e.permCongr p := rfl
@@ -90,13 +95,18 @@ homomorphism `φ : G →* Equiv.Perm X`. -/
 def stabOfHom {G X : Type*} [Group G] (φ : G →* Equiv.Perm X) (i : X) : Subgroup G :=
   (MulAction.stabilizer (Equiv.Perm X) i).comap φ
 
+/--
+@isnad1 id=iff.0h5v.s7.3453077bf7ce from=translated src=- shape=a37cde66 vocab=8ae81f07
+-/
 @[simp]
 theorem mem_stabOfHom {G X : Type*} [Group G] {φ : G →* Equiv.Perm X} {i : X} {g : G} :
     g ∈ stabOfHom φ i ↔ φ g i = i := by
   simp [stabOfHom, MulAction.mem_stabilizer_iff]
 
 /-- The subgroup `H` is exactly the stabilizer of the base point `e 1` for the
-`G`-action on `Fin H.index` obtained from the coset action along `e`. -/
+`G`-action on `Fin H.index` obtained from the coset action along `e`.
+@isnad1 id=eq.0h3v.s8.0c9d198e1def from=translated src=- shape=dbd29306 vocab=e24bd26e
+-/
 theorem stabOfHom_permCongrHom {G : Type*} [Group G] (H : Subgroup G) [Finite (G ⧸ H)]
     (e : G ⧸ H ≃ Fin H.index) :
     stabOfHom ((permCongrHom e).comp (MulAction.toPermHom G (G ⧸ H)))
@@ -119,14 +129,18 @@ noncomputable def boundedIndexInvariant (G : Type*) [Group G] (d : ℕ)
     Finite.equivFinOfCardEq (α := G ⧸ H.1) (n := H.1.index) rfl ((1 : G) : G ⧸ H.1)⟩
 
 /-- The subgroup `H` is recovered from `boundedIndexInvariant G d H` as the stabilizer
-of its base point; hence the invariant is injective. -/
+of its base point; hence the invariant is injective.
+@isnad1 id=eq.0h3v.s11.b129620c2939 from=translated src=- shape=f0774991 vocab=f26f456d
+-/
 theorem boundedIndexInvariant_recover (G : Type*) [Group G] (d : ℕ)
     (H : {H : Subgroup G // H.index ≤ d ∧ H.index ≠ 0}) :
     stabOfHom (boundedIndexInvariant G d H).2.1 (boundedIndexInvariant G d H).2.2 = H.1 := by
   haveI : Finite (G ⧸ H.1) := Subgroup.index_ne_zero_iff_finite.mp H.2.2
   exact stabOfHom_permCongrHom H.1 (Finite.equivFinOfCardEq (α := G ⧸ H.1) (n := H.1.index) rfl)
 
-/-- A finitely generated group has only finitely many subgroups of index `≤ d`. -/
+/-- A finitely generated group has only finitely many subgroups of index `≤ d`.
+@isnad1 id=finite.0h2v.s5.8e2cbc2577b3 from=translated src=- shape=c8f6f3e6 vocab=9bb31a15
+-/
 theorem finite_boundedIndex_subgroups (G : Type*) [Group G] [Group.FG G] (d : ℕ) :
     {H : Subgroup G | H.index ≤ d ∧ H.index ≠ 0}.Finite := by
   rw [← Set.finite_coe_iff]
@@ -136,7 +150,9 @@ theorem finite_boundedIndex_subgroups (G : Type*) [Group G] [Group.FG G] (d : �
   rw [← boundedIndexInvariant_recover G d a, ← boundedIndexInvariant_recover G d b, hab]
 
 /-- Specialization to the rank-2 free group `F₂`, the fundamental group of the
-thrice-punctured line — the combinatorial core of the rigidity input B9. -/
+thrice-punctured line — the combinatorial core of the rigidity input B9.
+@isnad1 id=finite.0h1v.s6.88158e6245b3 from=translated src=- shape=0cbfb0b4 vocab=114341f4
+-/
 theorem finite_boundedIndex_subgroups_freeGroupTwo (d : ℕ) :
     {H : Subgroup (FreeGroup (Fin 2)) | H.index ≤ d ∧ H.index ≠ 0}.Finite :=
   finite_boundedIndex_subgroups (FreeGroup (Fin 2)) d

@@ -61,7 +61,9 @@ variable {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
 /-- On an integral model, if the `x`-coordinate of a point is integral (`v x ≤ 1`), then so is the
 `y`-coordinate.  This is the "integral" branch of the Newton-polygon dichotomy (the complement of
 `valuation_pow_two_eq_pow_three_of_one_lt`): if `1 < v y` then the term `y²` would strictly dominate
-the Weierstrass equation, forcing `v (LHS) = (v y)² > 1`, contradicting `v (RHS) ≤ 1`. -/
+the Weierstrass equation, forcing `v (LHS) = (v y)² > 1`, contradicting `v (RHS) ≤ 1`.
+@isnad1 id=le.2h5v.s8.b9d3e42b138d from=translated src=- shape=f31f3724 vocab=feda6e15
+-/
 theorem valuation_y_le_one_of_le_one (W : WeierstrassCurve K) [IsIntegral R W]
     {x y : K} (heqn : W.toAffine.Equation x y) (hx : valuation K (maximalIdeal R) x ≤ 1) :
     valuation K (maximalIdeal R) y ≤ 1 := by
@@ -120,7 +122,9 @@ residues `x₀ mod 𝔪`, `y₀ mod 𝔪` satisfy the reduced curve's `Nonsingul
 The Weierstrass equation transfers from `K` down to the integral model (both coordinates are
 integral) and then to the residue field via the ring homomorphism `residue R`.  Because the reduced
 curve is an elliptic curve (good reduction ⟹ `IsElliptic`), it is smooth everywhere, so any point on
-it satisfying the equation is automatically nonsingular. -/
+it satisfying the equation is automatically nonsingular.
+@isnad1 id=nonsingu.2h5v.s8.2d84c7f041cf from=translated src=- shape=a6d17afa vocab=f120a51c
+-/
 theorem reduction_nonsingular_of_le_one (W : WeierstrassCurve K) [HasGoodReduction R W]
     {x y : K} (heqn : W.toAffine.Equation x y) (hx : valuation K (maximalIdeal R) x ≤ 1) :
     (reduction R W).toAffine.Nonsingular
@@ -162,18 +166,25 @@ noncomputable def redPt (W : WeierstrassCurve K) [HasGoodReduction R W] :
       .some _ _ (reduction_nonsingular_of_le_one R W h.1 hx)
     else .zero
 
+/--
+@isnad1 id=eq.0h3v.s7.bdd57cd9e52b from=translated src=- shape=86c78e28 vocab=a28c6fae
+-/
 @[simp]
 theorem redPt_zero (W : WeierstrassCurve K) [HasGoodReduction R W] :
     redPt R W .zero = 0 := rfl
 
 /-- On the integral branch (`v x ≤ 1`), the reduction map sends `(x, y)` to the residues of its
-integral lifts `x₀, y₀ : R`.  This is the defining equation of `redPt` on integral points. -/
+integral lifts `x₀, y₀ : R`.  This is the defining equation of `redPt` on integral points.
+@isnad1 id=eq.2h5v.s9.69f7d0e69af6 from=translated src=- shape=ea5eda3b vocab=c201c48b
+-/
 theorem redPt_some_of_le_one (W : WeierstrassCurve K) [HasGoodReduction R W]
     {x y : K} {h : W.toAffine.Nonsingular x y} (hx : valuation K (maximalIdeal R) x ≤ 1) :
     redPt R W (.some x y h) = .some _ _ (reduction_nonsingular_of_le_one R W h.1 hx) :=
   dite_eq_left hx
 
-/-- A non-integral point (`x` has a pole, `1 < v x`) reduces to the origin. -/
+/-- A non-integral point (`x` has a pole, `1 < v x`) reduces to the origin.
+@isnad1 id=eq.2h5v.s8.1639b914ce95 from=translated src=- shape=e7957696 vocab=9f3e3b6e
+-/
 theorem redPt_some_of_one_lt (W : WeierstrassCurve K) [HasGoodReduction R W]
     {x y : K} {h : W.toAffine.Nonsingular x y} (hx : 1 < valuation K (maximalIdeal R) x) :
     redPt R W (.some x y h) = 0 := by
@@ -181,7 +192,9 @@ theorem redPt_some_of_one_lt (W : WeierstrassCurve K) [HasGoodReduction R W]
   rw [this]; rfl
 
 /-- The reduction map sends a point to the origin exactly when it reduces to the origin, i.e. its
-preimage of `0` is the `E₁(K)` predicate `ReducesToZero`. -/
+preimage of `0` is the `E₁(K)` predicate `ReducesToZero`.
+@isnad1 id=iff.0h4v.s7.92ba0adef265 from=translated src=- shape=7d3383f8 vocab=f0edb730
+-/
 theorem redPt_eq_zero_iff (W : WeierstrassCurve K) [HasGoodReduction R W]
     (P : W.toAffine.Point) : redPt R W P = 0 ↔ ReducesToZero R W P := by
   cases P with
@@ -206,7 +219,9 @@ homomorphism property `redPt (P + Q) = redPt P + redPt Q`; the additive half gen
 formal group (Silverman AEC VII.2.2). -/
 
 /-- The `E₁(K)` predicate only sees the `x`-coordinate, which negation fixes, so it is closed under
-negation: `-P` reduces to the origin iff `P` does. -/
+negation: `-P` reduces to the origin iff `P` does.
+@isnad1 id=iff.0h4v.s6.f6b558551f9e from=translated src=- shape=1fb9b503 vocab=148397e0
+-/
 theorem reducesToZero_neg (W : WeierstrassCurve K) [IsIntegral R W] (P : W.toAffine.Point) :
     ReducesToZero R W (-P) ↔ ReducesToZero R W P := by
   cases P with
@@ -216,7 +231,9 @@ theorem reducesToZero_neg (W : WeierstrassCurve K) [IsIntegral R W] (P : W.toAff
 /-- The reduction of an integral point in terms of **any** integral lifts `x₀, y₀ : R` of its
 coordinates.  Since `algebraMap R K` is injective the lift is unique, so this is independent of the
 choice and identifies `redPt` with the residues of the lifts.  A convenient lift-agnostic form of
-`redPt_some_of_le_one`. -/
+`redPt_some_of_le_one`.
+@isnad1 id=eq.4h7v.s9.1765e7269bef from=translated src=- shape=a7a80c36 vocab=85fafca8
+-/
 theorem redPt_some_eq (W : WeierstrassCurve K) [HasGoodReduction R W]
     {x y : K} {h : W.toAffine.Nonsingular x y} {x₀ y₀ : R}
     (hx₀ : algebraMap R K x₀ = x) (hy₀ : algebraMap R K y₀ = y)
@@ -236,7 +253,9 @@ theorem redPt_some_eq (W : WeierstrassCurve K) [HasGoodReduction R W]
 are `0`; on the integral branch it reduces to
 `residue (negY x₀ y₀) = negY (residue x₀) (residue y₀)` on the reduced curve, which is
 `WeierstrassCurve.Affine.map_negY` for the ring homomorphism `residue R`.  This is the first (easy)
-half of the homomorphism property of `redPt`. -/
+half of the homomorphism property of `redPt`.
+@isnad1 id=eq.0h4v.s7.99afb760e817 from=translated src=- shape=f844159a vocab=7595c3dc
+-/
 theorem redPt_neg (W : WeierstrassCurve K) [HasGoodReduction R W] (P : W.toAffine.Point) :
     redPt R W (-P) = - redPt R W P := by
   cases P with

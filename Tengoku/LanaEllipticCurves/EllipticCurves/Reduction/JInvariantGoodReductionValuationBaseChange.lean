@@ -66,7 +66,9 @@ variable (W : WeierstrassCurve K) [W.IsElliptic]
 good reduction over the discrete valuation subring `A ⊆ L`, then the valuation of `j` at the base
 place is exactly `v_A(c₄)³`. This strengthens `isIntegral_j_of_hasGoodReduction_baseChange` (#501,
 which records only `algebraMap K L W.j ∈ A`) to the exact value — the base-change reflection of the
-sharp identity `valuation_j_of_hasGoodReduction` (`v(j) = v(c₄)³`). -/
+sharp identity `valuation_j_of_hasGoodReduction` (`v(j) = v(c₄)³`).
+@isnad1 id=eq.1h4v.s8.a3f84258f308 from=translated src=- shape=2a2db09c vocab=0e3d55aa
+-/
 theorem valuation_j_of_hasGoodReduction_baseChange
     (h : HasGoodReduction A (W⁄L)) :
     valuation L (maximalIdeal A) (algebraMap K L W.j) =
@@ -79,7 +81,9 @@ theorem valuation_j_of_hasGoodReduction_baseChange
 
 /-- **The base-place unit criterion under good reduction.** From the sharp identity
 `v_A(j) = v_A(c₄)³`, the `j`-invariant is a unit at the base place exactly when `c₄` is:
-`v_A(algebraMap K L W.j) = 1 ↔ v_A(algebraMap K L W.c₄) = 1`. -/
+`v_A(algebraMap K L W.j) = 1 ↔ v_A(algebraMap K L W.c₄) = 1`.
+@isnad1 id=iff.1h4v.s8.e68c29400c49 from=translated src=- shape=e1f25c14 vocab=1b0a7c3f
+-/
 theorem valuation_j_eq_one_iff_valuation_c₄_eq_one_baseChange
     (h : HasGoodReduction A (W⁄L)) :
     valuation L (maximalIdeal A) (algebraMap K L W.j) = 1 ↔

@@ -39,7 +39,9 @@ variable {R : Type*} [CommRing R]
 
 /-- For a monic `f : R[X]`, the localization of `AdjoinRoot f` away from the image of the
 derivative `f'` is smooth over `R`: it is the standard-étale algebra attached to the pair
-`(f, f')`, whose standard-étale condition holds trivially since `f' = (f')^1`. -/
+`(f, f')`, whose standard-étale condition holds trivially since `f' = (f')^1`.
+@isnad1 id=smooth.1h2v.s10.8d5f3ac39998 from=translated src=- shape=61620826 vocab=26059e03
+-/
 theorem smooth_localizationAway_mk_derivative {f : R[X]} (hf : f.Monic) :
     Algebra.Smooth R (Localization.Away (AdjoinRoot.mk f (derivative f))) :=
   let P : StandardEtalePair R := ⟨f, hf, derivative f, ⟨1, 0, 1, by ring⟩⟩
@@ -47,7 +49,9 @@ theorem smooth_localizationAway_mk_derivative {f : R[X]} (hf : f.Monic) :
 
 /-- **B4 ring-core.**  For a monic polynomial `f : R[X]`, the basic open of the image of the
 derivative `f'` in `AdjoinRoot f = R[X]/(f)` is contained in the smooth locus of `AdjoinRoot f`
-over `R`.  In other words `AdjoinRoot f` is smooth over `R` at every prime not containing `f'`. -/
+over `R`.  In other words `AdjoinRoot f` is smooth over `R` at every prime not containing `f'`.
+@isnad1 id=le.1h2v.s9.d719570d4861 from=translated src=- shape=dc8f3b35 vocab=1b62e64c
+-/
 theorem basicOpen_mk_derivative_subset_smoothLocus {f : R[X]} (hf : f.Monic) :
     (PrimeSpectrum.basicOpen (AdjoinRoot.mk f (derivative f))
         : Set (PrimeSpectrum (AdjoinRoot f)))

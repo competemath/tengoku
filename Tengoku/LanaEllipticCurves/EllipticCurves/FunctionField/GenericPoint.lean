@@ -49,7 +49,9 @@ namespace CoordinateRing
 variable {F : Type*} [Field F] {W : Affine F} [W.IsElliptic]
 
 /-- **The generic point is nonsingular.** On the elliptic base-changed curve `W ⁄ F(W)`, every point
-satisfying the Weierstrass equation is nonsingular; the generic point does (`equation_gen`). -/
+satisfying the Weierstrass equation is nonsingular; the generic point does (`equation_gen`).
+@isnad1 id=nonsingu.0h2v.s9.fd3fd07bebd7 from=translated src=- shape=e707589d vocab=eb052e05
+-/
 theorem nonsingular_gen :
     (W.map (algebraMap F W.FunctionField)).Nonsingular (genX W) (genY W) :=
   (W.map (algebraMap F W.FunctionField)).equation_iff_nonsingular.mp equation_gen
@@ -60,7 +62,9 @@ noncomputable def genericPoint : (W.map (algebraMap F W.FunctionField)).Point :=
 
 /-- A fixed `F`-point `T = (x₂, y₂)` on `W` is nonsingular after base change to `F(W)`
 (`map_nonsingular` transports nonsingularity along the injective `algebraMap F F(W)`, and every
-equation point of the elliptic curve `W` is nonsingular). -/
+equation point of the elliptic curve `W` is nonsingular).
+@isnad1 id=nonsingu.1h4v.s11.2ff82ec34414 from=translated src=- shape=9aa957e2 vocab=4f423ecb
+-/
 theorem nonsingular_translatePoint {x₂ y₂ : F} (h₂ : W.Equation x₂ y₂) :
     (W.map (algebraMap F W.FunctionField)).Nonsingular
       (algebraMap F W.FunctionField x₂) (algebraMap F W.FunctionField y₂) :=
@@ -76,7 +80,9 @@ noncomputable def translatePoint {x₂ y₂ : F} (h₂ : W.Equation x₂ y₂) :
 
 /-- The coordinates of `𝒫 + 𝒯` are nonsingular — a repackaging of `translateEndo_genX`/`_genY`
 against the sum-point coordinates produced by the affine addition law (`add_of_X_ne`, valid because
-`genX W ≠ algebraMap F F(W) x₂` by `genX_ne`). -/
+`genX W ≠ algebraMap F F(W) x₂` by `genX_ne`).
+@isnad1 id=nonsingu.1h4v.s11.0be33c067289 from=translated src=- shape=bfd1e0be vocab=c80a7fe6
+-/
 theorem nonsingular_translateEndo_gen {x₂ y₂ : F} (h₂ : W.Equation x₂ y₂) :
     (W.map (algebraMap F W.FunctionField)).Nonsingular
       (translateEndo h₂ (genX W)) (translateEndo h₂ (genY W)) := by
@@ -95,7 +101,9 @@ coordinate generators of `F(W)` exactly as `+ 𝒯` in the group `(W ⁄ F(W)).P
 Since `genX W ≠ algebraMap F F(W) x₂` (`genX_ne`), the affine sum takes the secant branch
 (`add_of_X_ne`), whose coordinates are the `addX`/`addY` of the addition law — which are precisely
 `translateEndo_genX`/`translateEndo_genY`.  This is the group-theoretic reading of `translateEndo`
-that the `hcomm` discharge of #419 consumes. -/
+that the `hcomm` discharge of #419 consumes.
+@isnad1 id=eq.1h4v.s12.f9f6a751df95 from=translated src=- shape=de56c411 vocab=f06eda95
+-/
 theorem genericPoint_add_translatePoint {x₂ y₂ : F} (h₂ : W.Equation x₂ y₂) :
     genericPoint + translatePoint h₂
       = .some (translateEndo h₂ (genX W)) (translateEndo h₂ (genY W))

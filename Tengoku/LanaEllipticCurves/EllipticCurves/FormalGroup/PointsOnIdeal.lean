@@ -52,14 +52,18 @@ namespace PowerSeries
 variable {A : Type*} [CommRing A]
 
 /-- The multivariate `I`-adic evaluation depends only on the underlying family (the membership
-proof is irrelevant), so two evaluations at equal families agree. -/
+proof is irrelevant), so two evaluations at equal families agree.
+@isnad1 id=eq.3h6v.s8.44ccc089bb8c from=translated src=- shape=28bc5190 vocab=394fa2b4
+-/
 theorem adicEvalMv_congr (I : Ideal A) [IsAdicComplete I A] {σ : Type*} [Finite σ]
     {a b : σ → A} (hab : a = b) (ha : ∀ s, a s ∈ I) (hb : ∀ s, b s ∈ I)
     (f : MvPowerSeries σ A) : adicEvalMv I ha f = adicEvalMv I hb f := by
   subst hab; rfl
 
 /-- Univariate `I`-adic evaluation is the multivariate one over `Unit`.  Both are the underlying
-`MvPowerSeries.eval₂` at the identity coefficient map and the constant family `fun _ ↦ x`. -/
+`MvPowerSeries.eval₂` at the identity coefficient map and the constant family `fun _ ↦ x`.
+@isnad1 id=eq.1h4v.s7.76d11cd81793 from=translated src=- shape=5e3d0b52 vocab=ce5fbf7e
+-/
 theorem adicEval_eq_adicEvalMv (I : Ideal A) [IsAdicComplete I A] {x : A} (hx : x ∈ I)
     (f : PowerSeries A) :
     adicEval I hx f = adicEvalMv I (a := fun _ : Unit => x) (fun _ => hx) f := by
@@ -76,7 +80,9 @@ evaluated substituents `s ↦ (g s)(a)`.
 Concretely `(F ∘ g)(a) = F(s ↦ (g s)(a))`.  The proof composes the *adic* evaluation algebra
 homomorphism `ev = aeval` with the *adic* substitution algebra homomorphism `aeval hg.hasEval`
 (evaluation into the power-series ring under `WithPiTopology`), using `MvPowerSeries.comp_aeval`,
-after reconciling that adic substitution with Mathlib's `MvPowerSeries.subst`. -/
+after reconciling that adic substitution with Mathlib's `MvPowerSeries.subst`.
+@isnad1 id=eq.3h7v.s8.99ee17fb601b from=translated src=- shape=d49f4b40 vocab=9c752677
+-/
 theorem adicEvalMv_subst (I : Ideal A) [IsAdicComplete I A] {τ : Type*} [Finite τ]
     {σ : Type*} [Finite σ] {a : τ → A} (ha : ∀ s, a s ∈ I)
     {g : σ → MvPowerSeries τ A} (hg : MvPowerSeries.HasSubst g)
@@ -148,7 +154,9 @@ namespace OnIdeal
 variable (F : FormalGroup A) (I : Ideal A) [IsAdicComplete I A]
 
 omit [IsAdicComplete I A] in
-/-- The two-element evaluation family `![x, y]` stays inside `I`. -/
+/-- The two-element evaluation family `![x, y]` stays inside `I`.
+@isnad1 id=mem.2h5v.s7.22ecf560ea33 from=translated src=- shape=be394d3d vocab=f638ed2f
+-/
 theorem memFin2 {x y : A} (hx : x ∈ I) (hy : y ∈ I) : ∀ s : Fin 2, ![x, y] s ∈ I := by
   intro s
   fin_cases s
@@ -167,16 +175,27 @@ instance : Neg (OnIdeal F I) where
 
 variable {F I}
 
+/--
+@isnad1 id=eq.0h3v.s6.bba0039326b1 from=translated src=- shape=8110f5b8 vocab=30816b95
+-/
 @[simp] theorem zero_val : (0 : OnIdeal F I).val = 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.f325c9022f84 from=translated src=- shape=fdd3af62 vocab=0620b067
+-/
 @[simp] theorem add_val (x y : OnIdeal F I) :
     (x + y).val = adicEvalMv I (memFin2 I x.property y.property) F.toPowerSeries := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.f54aba3e23ad from=translated src=- shape=4fbac359 vocab=43aacd09
+-/
 @[simp] theorem neg_val (x : OnIdeal F I) :
     (-x).val = adicEval I x.property (formalInv F) := rfl
 
 /-- Folding one binary substitution level: evaluating `F(p, q)` `I`-adically equals substituting
-the evaluated arguments into `F`.  This is the workhorse behind every group axiom. -/
+the evaluated arguments into `F`.  This is the workhorse behind every group axiom.
+@isnad1 id=eq.4h7v.s9.3d8f556e3a73 from=translated src=- shape=ad70be5f vocab=07bba333
+-/
 theorem fold {τ : Type*} [Finite τ] {b : τ → A} (hb : ∀ s, b s ∈ I)
     {p q : MvPowerSeries τ A} (hpq : MvPowerSeries.HasSubst ![p, q])
     (hp : MvPowerSeries.constantCoeff p = 0) (hq : MvPowerSeries.constantCoeff q = 0) :
@@ -189,7 +208,9 @@ theorem fold {τ : Type*} [Finite τ] {b : τ → A} (hb : ∀ s, b s ∈ I)
   fin_cases s <;> rfl
 
 /-- Two-variable evaluation of the base series: substituting `![X i, X j]` and evaluating at `b`
-gives `F` evaluated at `![b i, b j]`. -/
+gives `F` evaluated at `![b i, b j]`.
+@isnad1 id=eq.1h7v.s8.db86883a5922 from=translated src=- shape=db975dab vocab=88469d1b
+-/
 theorem evalXX {n : ℕ} {b : Fin n → A} (hb : ∀ s, b s ∈ I) (i j : Fin n) :
     adicEvalMv I hb (MvPowerSeries.subst
         ![(MvPowerSeries.X i : MvPowerSeries (Fin n) A), MvPowerSeries.X j] F.toPowerSeries)
@@ -201,7 +222,9 @@ theorem evalXX {n : ℕ} {b : Fin n → A} (hb : ∀ s, b s ∈ I) (i j : Fin n)
   · exact adicEvalMv_X I hb i
   · exact adicEvalMv_X I hb j
 
-/-- Associativity of `⊕`, transported from `F.assoc'`. -/
+/-- Associativity of `⊕`, transported from `F.assoc'`.
+@isnad1 id=eq.0h6v.s7.ad8171370b4e from=translated src=- shape=c3f29124 vocab=6b723a46
+-/
 protected theorem add_assoc (x y z : OnIdeal F I) : x + y + z = x + (y + z) := by
   apply OnIdeal.ext
   have hb : ∀ s : Fin 3, ![x.val, y.val, z.val] s ∈ I := by
@@ -260,7 +283,9 @@ protected theorem add_assoc (x y z : OnIdeal F I) : x + y + z = x + (y + z) := b
     · exact (evalXX (F := F) hb 1 2).symm
   rw [hL, hR, hassoc]
 
-/-- `0 ⊕ y = y`, transported from `F(0, Y) = Y` (`F.zeroX_eq_X`). -/
+/-- `0 ⊕ y = y`, transported from `F(0, Y) = Y` (`F.zeroX_eq_X`).
+@isnad1 id=eq.0h4v.s6.0ed2691b0e7a from=translated src=- shape=514aa919 vocab=6b723a46
+-/
 protected theorem zero_add (y : OnIdeal F I) : 0 + y = y := by
   apply OnIdeal.ext
   have hb : ∀ _ : Unit, y.val ∈ I := fun _ => y.property
@@ -281,7 +306,9 @@ protected theorem zero_add (y : OnIdeal F I) : 0 + y = y := by
   · simp
   · simp [PowerSeries.X_apply, adicEvalMv_X I hb ()]
 
-/-- `y ⊕ 0 = y`, transported from `F(Y, 0) = Y` (`F.Xzero_eq_X`). -/
+/-- `y ⊕ 0 = y`, transported from `F(Y, 0) = Y` (`F.Xzero_eq_X`).
+@isnad1 id=eq.0h4v.s6.72750308c8d2 from=translated src=- shape=101b8d33 vocab=6b723a46
+-/
 protected theorem add_zero (y : OnIdeal F I) : y + 0 = y := by
   apply OnIdeal.ext
   have hb : ∀ _ : Unit, y.val ∈ I := fun _ => y.property
@@ -302,7 +329,9 @@ protected theorem add_zero (y : OnIdeal F I) : y + 0 = y := by
   · simp [PowerSeries.X_apply, adicEvalMv_X I hb ()]
   · simp
 
-/-- `x ⊕ (-x) = 0`, transported from `F(X, i(X)) = 0` (`subst_formalInv`). -/
+/-- `x ⊕ (-x) = 0`, transported from `F(X, i(X)) = 0` (`subst_formalInv`).
+@isnad1 id=eq.0h4v.s6.2ceca9d194c8 from=translated src=- shape=b8bfebb0 vocab=f4cee153
+-/
 protected theorem add_neg (x : OnIdeal F I) : x + -x = 0 := by
   apply OnIdeal.ext
   have hb : ∀ _ : Unit, x.val ∈ I := fun _ => x.property
@@ -321,7 +350,9 @@ protected theorem add_neg (x : OnIdeal F I) : x + -x = 0 := by
   · rw [neg_val]
     exact adicEval_eq_adicEvalMv I x.property (formalInv F)
 
-/-- `x ⊕ y = y ⊕ x` for a commutative formal group law, transported from `F.comm'`. -/
+/-- `x ⊕ y = y ⊕ x` for a commutative formal group law, transported from `F.comm'`.
+@isnad1 id=eq.0h5v.s7.5a16365d8b65 from=translated src=- shape=ff7f4686 vocab=928558e0
+-/
 protected theorem add_comm [F.IsComm] (x y : OnIdeal F I) : x + y = y + x := by
   apply OnIdeal.ext
   have hb : ∀ s : Fin 2, ![x.val, y.val] s ∈ I := memFin2 I x.property y.property

@@ -104,7 +104,9 @@ private theorem redPt_some_of_sub_lt_one (W : WeierstrassCurve K) [HasGoodReduct
 open Classical in
 /-- **`redPt` additivity, kernel × integral case.**  For a pole point `P = (x₁, y₁)` in `E₁(K)`
 (`1 < v x₁`) and an integral point `Q = (x₂, y₂)` (`v x₂ ≤ 1`) with integral lifts `x₀₂, y₀₂` of
-`x₂, y₂`, adding `P` fixes the reduction: `redPt (P + Q) = redPt Q`. -/
+`x₂, y₂`, adding `P` fixes the reduction: `redPt (P + Q) = redPt Q`.
+@isnad1 id=eq.6h9v.s9.d2183adaa895 from=translated src=- shape=57713df2 vocab=041d34e6
+-/
 theorem redPt_add_of_mem_E₁_left (W : WeierstrassCurve K) [HasGoodReduction R W]
     {x₁ y₁ x₂ y₂ : K} {h₁ : W.toAffine.Nonsingular x₁ y₁} {h₂ : W.toAffine.Nonsingular x₂ y₂}
     {x₀₂ y₀₂ : R} (hx₂ : algebraMap R K x₀₂ = x₂) (hy₂ : algebraMap R K y₀₂ = y₂)
@@ -342,7 +344,9 @@ theorem redPt_add_of_mem_E₁_left (W : WeierstrassCurve K) [HasGoodReduction R 
 open Classical in
 /-- **`redPt` additivity, integral × kernel case.**  Symmetric to `redPt_add_of_mem_E₁_left`: for an
 integral point `P = (x₁, y₁)` (`v x₁ ≤ 1`) and a pole point `Q = (x₂, y₂)` in `E₁(K)` (`1 < v x₂`),
-adding `Q` fixes the reduction: `redPt (P + Q) = redPt P`. -/
+adding `Q` fixes the reduction: `redPt (P + Q) = redPt P`.
+@isnad1 id=eq.6h9v.s9.570b6cdf9107 from=translated src=- shape=8761e9d0 vocab=041d34e6
+-/
 theorem redPt_add_of_mem_E₁_right (W : WeierstrassCurve K) [HasGoodReduction R W]
     {x₁ y₁ x₂ y₂ : K} {h₁ : W.toAffine.Nonsingular x₁ y₁} {h₂ : W.toAffine.Nonsingular x₂ y₂}
     {x₀₁ y₀₁ : R} (hx₁ : algebraMap R K x₀₁ = x₁) (hy₁ : algebraMap R K y₀₁ = y₁)

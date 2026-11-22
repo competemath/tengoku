@@ -51,7 +51,9 @@ variable {R S : Type*} [CommRing R] [CommRing S]
 
 /-! ### Generic naturality: `map` through `dividedDiff`, `toMvPowerSeries` and `invOfUnit` -/
 
-/-- `MvPowerSeries.map` commutes with the divided difference, coefficient by coefficient. -/
+/-- `MvPowerSeries.map` commutes with the divided difference, coefficient by coefficient.
+@isnad1 id=eq.0h4v.s8.ce4a48f8eeec from=translated src=- shape=4087bb24 vocab=f9c0018c
+-/
 theorem map_dividedDiff (f : R →+* S) (g : R⟦X⟧) :
     MvPowerSeries.map f (PowerSeries.dividedDiff g)
       = PowerSeries.dividedDiff (PowerSeries.map f g) := by
@@ -61,7 +63,9 @@ theorem map_dividedDiff (f : R →+* S) (g : R⟦X⟧) :
 
 /-- `MvPowerSeries.map` commutes with the one-variable embedding `g ↦ g(zᵢ)`. This is the
 `map`/`rename` commutation, since `toMvPowerSeries i = rename (fun _ => i)` and
-`PowerSeries.map = MvPowerSeries.map` on the one-variable ring. -/
+`PowerSeries.map = MvPowerSeries.map` on the one-variable ring.
+@isnad1 id=eq.0h5v.s9.85c6cf7eae57 from=translated src=- shape=3f77056a vocab=47268e98
+-/
 theorem map_toMvPowerSeries (f : R →+* S) (g : R⟦X⟧) (i : Fin 2) :
     MvPowerSeries.map f (g.toMvPowerSeries i)
       = (PowerSeries.map f g).toMvPowerSeries i := by
@@ -70,7 +74,9 @@ theorem map_toMvPowerSeries (f : R →+* S) (g : R⟦X⟧) (i : Fin 2) :
 
 /-- `MvPowerSeries.map f` commutes with `invOfUnit _ 1` when the constant coefficient is `1`
 (mirrors `rename_swap_invOfUnit`, using that `map f` is a ring hom preserving the unit constant
-coefficient). -/
+coefficient).
+@isnad1 id=eq.1h4v.s9.c35281959d61 from=translated src=- shape=ef49beb7 vocab=20b9ddf6
+-/
 theorem map_invOfUnit (f : R →+* S) (u : MvPowerSeries (Fin 2) R)
     (h : MvPowerSeries.constantCoeff u = 1) :
     MvPowerSeries.map f (MvPowerSeries.invOfUnit u 1)
@@ -94,7 +100,9 @@ variable (W : WeierstrassCurve R)
 
 /-! ### Naturality of the Weierstrass expansion `w(z)` -/
 
-/-- `PowerSeries.map f` commutes with the Weierstrass operator `wOp`. -/
+/-- `PowerSeries.map f` commutes with the Weierstrass operator `wOp`.
+@isnad1 id=eq.0h5v.s7.5ea931b452fb from=translated src=- shape=51a64431 vocab=8d9f273b
+-/
 theorem map_wOp (f : R →+* S) (v : R⟦X⟧) :
     PowerSeries.map f (W.wOp v) = (W.map f).wOp (PowerSeries.map f v) := by
   rw [wOp, wOp]
@@ -102,7 +110,9 @@ theorem map_wOp (f : R →+* S) (v : R⟦X⟧) :
     map_a₁, map_a₂, map_a₃, map_a₄, map_a₆]
 
 /-- **Naturality of the Weierstrass expansion.** `PowerSeries.map f W.formalW = (W.map f).formalW`.
-Proved via the uniqueness of `formalW` as the order-`≥ 1` fixed point of `wOp`. -/
+Proved via the uniqueness of `formalW` as the order-`≥ 1` fixed point of `wOp`.
+@isnad1 id=eq.0h4v.s6.528fff33baaa from=translated src=- shape=98313785 vocab=e63d96af
+-/
 theorem map_formalW (f : R →+* S) :
     PowerSeries.map f W.formalW = (W.map f).formalW := by
   have hcc : PowerSeries.constantCoeff W.formalW = 0 := by
@@ -119,32 +129,42 @@ theorem map_formalW (f : R →+* S) :
 
 /-! ### Naturality of the addition data -/
 
-/-- Naturality of the slope `λ = Δ(w)`. -/
+/-- Naturality of the slope `λ = Δ(w)`.
+@isnad1 id=eq.0h4v.s7.0c9cb4091f76 from=translated src=- shape=8d5cf6f4 vocab=be34605d
+-/
 theorem map_formalWDividedDiff (f : R →+* S) :
     MvPowerSeries.map f W.formalWDividedDiff = (W.map f).formalWDividedDiff := by
   rw [formalWDividedDiff, formalWDividedDiff, map_dividedDiff, W.map_formalW]
 
-/-- Naturality of the intercept `ν`. -/
+/-- Naturality of the intercept `ν`.
+@isnad1 id=eq.0h4v.s7.d7c8c83b7ffb from=translated src=- shape=8d5cf6f4 vocab=68d8f194
+-/
 theorem map_formalGroupNu (f : R →+* S) :
     MvPowerSeries.map f W.formalGroupNu = (W.map f).formalGroupNu := by
   rw [formalGroupNu, formalGroupNu, map_sub, map_mul, MvPowerSeries.map_X,
     W.map_formalWDividedDiff, map_toMvPowerSeries, W.map_formalW]
 
-/-- Naturality of the cubic leading coefficient `A`. -/
+/-- Naturality of the cubic leading coefficient `A`.
+@isnad1 id=eq.0h4v.s7.dfc9d71e8128 from=translated src=- shape=8d5cf6f4 vocab=f4204437
+-/
 theorem map_formalGroupLead (f : R →+* S) :
     MvPowerSeries.map f W.formalGroupLead = (W.map f).formalGroupLead := by
   rw [formalGroupLead, formalGroupLead]
   simp only [map_add, map_mul, map_pow, map_one, MvPowerSeries.map_C,
     W.map_formalWDividedDiff, map_a₂, map_a₄, map_a₆]
 
-/-- Naturality of the cubic subleading coefficient `B`. -/
+/-- Naturality of the cubic subleading coefficient `B`.
+@isnad1 id=eq.0h4v.s7.1d99c113b432 from=translated src=- shape=8d5cf6f4 vocab=fe4481c3
+-/
 theorem map_formalGroupSub (f : R →+* S) :
     MvPowerSeries.map f W.formalGroupSub = (W.map f).formalGroupSub := by
   rw [formalGroupSub, formalGroupSub]
   simp only [map_add, map_mul, map_pow, map_ofNat, MvPowerSeries.map_C,
     W.map_formalWDividedDiff, W.map_formalGroupNu, map_a₁, map_a₂, map_a₃, map_a₄, map_a₆]
 
-/-- Naturality of the Vieta third root `z₃'`. -/
+/-- Naturality of the Vieta third root `z₃'`.
+@isnad1 id=eq.0h4v.s7.f3b5182896a4 from=translated src=- shape=8d5cf6f4 vocab=430c5ca6
+-/
 theorem map_formalThirdRoot (f : R →+* S) :
     MvPowerSeries.map f W.formalThirdRoot = (W.map f).formalThirdRoot := by
   rw [formalThirdRoot, formalThirdRoot]
@@ -174,13 +194,17 @@ private lemma cc_formalThirdRoot : MvPowerSeries.constantCoeff W.formalThirdRoot
   rw [formalThirdRoot]
   simp [map_sub, map_neg, map_mul, MvPowerSeries.constantCoeff_X, W.cc_formalGroupSub]
 
-/-- The negation denominator `D` has constant coefficient `1` (a unit). -/
+/-- The negation denominator `D` has constant coefficient `1` (a unit).
+@isnad1 id=eq.0h2v.s7.ed5913bcf34d from=translated src=- shape=e0b4d237 vocab=27c310e5
+-/
 theorem constantCoeff_formalGroupDen : MvPowerSeries.constantCoeff W.formalGroupDen = 1 := by
   rw [formalGroupDen]
   simp [map_sub, map_mul, map_add, map_one, MvPowerSeries.constantCoeff_C,
     W.cc_formalThirdRoot, W.constantCoeff_formalWDividedDiff, W.cc_formalGroupNu]
 
-/-- Naturality of the negation denominator `D`. -/
+/-- Naturality of the negation denominator `D`.
+@isnad1 id=eq.0h4v.s7.3621c7c682f6 from=translated src=- shape=8d5cf6f4 vocab=466ec18b
+-/
 theorem map_formalGroupDen (f : R →+* S) :
     MvPowerSeries.map f W.formalGroupDen = (W.map f).formalGroupDen := by
   rw [formalGroupDen, formalGroupDen]
@@ -190,7 +214,9 @@ theorem map_formalGroupDen (f : R →+* S) :
 /-! ### Base-change naturality of the formal group law -/
 
 /-- **Base-change naturality of the genuine formal group law.**
-`MvPowerSeries.map f W.formalGroupZW = (W.map f).formalGroupZW`. -/
+`MvPowerSeries.map f W.formalGroupZW = (W.map f).formalGroupZW`.
+@isnad1 id=eq.0h4v.s7.ab87abf1887f from=translated src=- shape=8d5cf6f4 vocab=61d30e9d
+-/
 theorem map_formalGroupZW (f : R →+* S) :
     MvPowerSeries.map f W.formalGroupZW = (W.map f).formalGroupZW := by
   rw [formalGroupZW, formalGroupZW, map_mul, map_neg,

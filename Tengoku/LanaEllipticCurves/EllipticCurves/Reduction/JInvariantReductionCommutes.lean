@@ -58,13 +58,17 @@ variable [CommRing R] [Field K] [Algebra R K]
 variable [IsDomain R] [IsDiscreteValuationRing R] [IsFractionRing R K]
 
 /-- The integral minimal model of a curve with good reduction is itself elliptic: its discriminant
-is a unit in `R` (`isUnit_Δ_integralModel_of_hasGoodReduction`). -/
+is a unit in `R` (`isUnit_Δ_integralModel_of_hasGoodReduction`).
+@isnad1 id=isellipt.0h3v.s6.7eea32e5a73f from=translated src=- shape=81243f66 vocab=23d733f5
+-/
 instance isElliptic_integralModel_of_hasGoodReduction (W : WeierstrassCurve K)
     [HasGoodReduction R W] : (integralModel R W).IsElliptic :=
   ⟨isUnit_Δ_integralModel_of_hasGoodReduction R W⟩
 
 /-- The reduction of a curve with good reduction is elliptic
-(`hasGoodReduction_iff_isElliptic_reduction`). -/
+(`hasGoodReduction_iff_isElliptic_reduction`).
+@isnad1 id=isellipt.0h3v.s6.676ca116ff19 from=translated src=- shape=a6c0fdb6 vocab=1b68d9ca
+-/
 instance isElliptic_reduction_of_hasGoodReduction (W : WeierstrassCurve K)
     [HasGoodReduction R W] : (W.reduction R).IsElliptic :=
   (hasGoodReduction_iff_isElliptic_reduction R).mp ‹_›
@@ -73,7 +77,9 @@ variable (R) in
 /-- **The canonical integral witness for the `j`-invariant of a good-reduction curve.** Since
 `(integralModel R W)⁄K = W` and the integral model is elliptic, `map_j` gives
 `algebraMap R K (integralModel R W).j = W.j`; this sharpens `isIntegral_j_of_hasGoodReduction` by
-naming the witness `(integralModel R W).j`. -/
+naming the witness `(integralModel R W).j`.
+@isnad1 id=eq.0h3v.s7.375a5962229c from=translated src=- shape=b8793ec2 vocab=429d6b40
+-/
 theorem algebraMap_j_integralModel_eq (W : WeierstrassCurve K) [HasGoodReduction R W]
     [W.IsElliptic] :
     algebraMap R K (integralModel R W).j = W.j := by
@@ -87,7 +93,9 @@ variable (R) in
 residue field `ResidueField R`) has `j`-invariant equal to the reduction of the integral model's
 `j`-invariant: `(W.reduction R).j = residue R (integralModel R W).j`. Both sides are images of the
 single element `(integralModel R W).j : R` — see also `algebraMap_j_integralModel_eq` for its image
-in `K`. -/
+in `K`.
+@isnad1 id=eq.0h3v.s7.ba26c547ce79 from=translated src=- shape=9be4b8ed vocab=59415419
+-/
 theorem reduction_j_eq (W : WeierstrassCurve K) [HasGoodReduction R W] :
     (W.reduction R).j = residue R (integralModel R W).j :=
   map_j (W := integralModel R W) (residue R)

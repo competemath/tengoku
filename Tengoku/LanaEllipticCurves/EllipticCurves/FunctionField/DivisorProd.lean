@@ -51,7 +51,9 @@ variable {F : Type*} [Field F] {W : Affine F} [IsDedekindDomain W.CoordinateRing
 
 /-- **Finite-product law for the order of vanishing.** If every factor `f i` (`i ∈ s`) is nonzero,
 then the order of vanishing of the product at a closed point `v` is the sum of the orders:
-`ord v (∏ i ∈ s, f i) = ∑ i ∈ s, ord v (f i)`.  The finite-product companion of `ord_mul`. -/
+`ord v (∏ i ∈ s, f i) = ∑ i ∈ s, ord v (f i)`.  The finite-product companion of `ord_mul`.
+@isnad1 id=eq.1h6v.s9.1a465c57a604 from=translated src=- shape=31d1eaf1 vocab=151d13e5
+-/
 lemma ord_prod {ι : Type*} (s : Finset ι) (f : ι → W.FunctionField)
     (hf : ∀ i ∈ s, f i ≠ 0) :
     ord v (∏ i ∈ s, f i) = ∑ i ∈ s, ord v (f i) := by
@@ -67,7 +69,9 @@ variable (W) in
 /-- **Finite-product law for the divisor.** If every factor `f i` (`i ∈ s`) is nonzero, then the
 divisor of the product is the sum of the divisors: `divisor W (∏ i ∈ s, f i) = ∑ i ∈ s, divisor W
 (f i)`.  The finite-product companion of `divisor_mul`; the tool the Weil-pairing alternating
-property's product-over-`⟨T⟩` telescoping consumes (issue #465). -/
+property's product-over-`⟨T⟩` telescoping consumes (issue #465).
+@isnad1 id=eq.1h5v.s9.35d9e001e428 from=translated src=- shape=999cf341 vocab=3477645b
+-/
 lemma divisor_prod {ι : Type*} (s : Finset ι) (f : ι → W.FunctionField)
     (hf : ∀ i ∈ s, f i ≠ 0) :
     divisor W (∏ i ∈ s, f i) = ∑ i ∈ s, divisor W (f i) := by

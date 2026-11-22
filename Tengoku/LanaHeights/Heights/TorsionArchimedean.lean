@@ -37,7 +37,9 @@ section Lattice
 
 variable {τ : ℍ}
 
-/-- On the fundamental domain, `‖aτ + b‖² ≥ (a² + b²)/2` for real `a, b`. -/
+/-- On the fundamental domain, `‖aτ + b‖² ≥ (a² + b²)/2` for real `a, b`.
+@isnad1 id=le.1h3v.s6.1d2ca1b60890 from=translated src=- shape=9db91485 vocab=21a40a03
+-/
 theorem normSq_mul_add_ge (hτ : τ ∈ ModularGroup.fd) (a b : ℝ) :
     (a ^ 2 + b ^ 2) / 2 ≤ Complex.normSq ((a : ℂ) * τ + b) := by
   obtain ⟨h1, h2⟩ := hτ
@@ -61,19 +63,25 @@ theorem normSq_mul_add_ge (hτ : τ ∈ ModularGroup.fd) (a b : ℝ) :
   have := neg_abs_le (2 * a * b * (τ : ℂ).re)
   nlinarith [sq_nonneg a]
 
-/-- On the fundamental domain, `‖aτ + b‖ ≥ √((a² + b²)/2)`, in squared form. -/
+/-- On the fundamental domain, `‖aτ + b‖ ≥ √((a² + b²)/2)`, in squared form.
+@isnad1 id=le.1h3v.s6.be65778c9521 from=translated src=- shape=66ff827a vocab=eedd476f
+-/
 theorem norm_mul_add_sq_ge (hτ : τ ∈ ModularGroup.fd) (a b : ℝ) :
     (a ^ 2 + b ^ 2) / 2 ≤ ‖(a : ℂ) * τ + b‖ ^ 2 := by
   rw [← Complex.normSq_eq_norm_sq]
   exact normSq_mul_add_ge hτ a b
 
-/-- `1 ≤ ‖τ‖` on the fundamental domain. -/
+/-- `1 ≤ ‖τ‖` on the fundamental domain.
+@isnad1 id=le.1h1v.s4.316fefa742e1 from=translated src=- shape=d34713a8 vocab=4dd877b0
+-/
 theorem one_le_norm_of_mem_fd (hτ : τ ∈ ModularGroup.fd) : 1 ≤ ‖(τ : ℂ)‖ := by
   have h : 1 ≤ Complex.normSq (τ : ℂ) := hτ.1
   rw [Complex.normSq_eq_norm_sq] at h
   nlinarith [norm_nonneg (τ : ℂ)]
 
-/-- `‖τ‖ ≤ Im τ + 1/2` on the fundamental domain. -/
+/-- `‖τ‖ ≤ Im τ + 1/2` on the fundamental domain.
+@isnad1 id=le.1h1v.s5.1906d351268f from=translated src=- shape=c2e64ec4 vocab=ac5cae0b
+-/
 theorem norm_le_im_add_half (hτ : τ ∈ ModularGroup.fd) : ‖(τ : ℂ)‖ ≤ τ.im + 1 / 2 := by
   have hre : |(τ : ℂ).re| ≤ 1 / 2 := hτ.2
   calc ‖(τ : ℂ)‖ ≤ |(τ : ℂ).re| + |(τ : ℂ).im| := Complex.norm_le_abs_re_add_abs_im _

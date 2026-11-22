@@ -84,7 +84,9 @@ noncomputable def linearEquivMulEquivGL (b : Basis n R M) :
     (Units.mapEquiv (LinearMap.toMatrixAlgEquiv b).toRingEquiv.toMulEquiv)
 
 /-- **The matrix entries.** Column `j` of the matrix of `e` is the coordinate vector of `e (b j)`,
-which is Mathlib's convention for `LinearMap.toMatrix`. -/
+which is Mathlib's convention for `LinearMap.toMatrix`.
+@isnad1 id=eq.0h7v.s10.87457ac6bae5 from=translated src=- shape=1aa21b58 vocab=5a48ca52
+-/
 @[simp]
 theorem coe_linearEquivMulEquivGL_apply (b : Basis n R M) (e : M ≃ₗ[R] M) (i j : n) :
     (b.linearEquivMulEquivGL e : Matrix n n R) i j = b.repr (e (b j)) i := by
@@ -92,7 +94,9 @@ theorem coe_linearEquivMulEquivGL_apply (b : Basis n R M) (e : M ≃ₗ[R] M) (i
   rw [LinearMap.toMatrixAlgEquiv_apply]
   rfl
 
-/-- The inverse of `b.linearEquivMulEquivGL e` is the matrix of `e.symm`. -/
+/-- The inverse of `b.linearEquivMulEquivGL e` is the matrix of `e.symm`.
+@isnad1 id=eq.0h7v.s10.100c2a501f9d from=translated src=- shape=33ac4558 vocab=66592dd8
+-/
 theorem coe_inv_linearEquivMulEquivGL_apply (b : Basis n R M) (e : M ≃ₗ[R] M) (i j : n) :
     (((b.linearEquivMulEquivGL e)⁻¹ : Matrix.GeneralLinearGroup n R) : Matrix n n R) i j
       = b.repr (e.symm (b j)) i := by
@@ -109,7 +113,9 @@ goes `GL → Aut` through `Matrix.toLinAlgEquiv`. Both send a matrix `A` to the 
 conventions differ by no transpose.
 
 ⚠️ Nothing here is about a prime, a Tate module or an elliptic curve; see the module docstring for
-why this used to be stated only for a basis of `T₂E`. -/
+why this used to be stated only for a basis of `T₂E`.
+@isnad1 id=eq.0h4v.s10.0199fee62a28 from=translated src=- shape=95373c56 vocab=4b9a6678
+-/
 theorem linearEquivMulEquivGL_symm (b : Basis n R M) :
     b.linearEquivMulEquivGL.symm
       = (Matrix.GeneralLinearGroup.toLin' b).trans

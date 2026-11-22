@@ -35,17 +35,28 @@ open Polynomial
 /-- A fixed embedding `ℚ̄ → ℂ`, used to measure absolute values of algebraic numbers. -/
 noncomputable def ι : Qbar →ₐ[ℚ] ℂ := IsAlgClosed.lift
 
+/--
+@isnad1 id=injectiv.0h0v.s6.bd01c98b5cf9 from=translated src=- shape=91c1b9c9 vocab=f54fb25a
+-/
 lemma ι_injective : Function.Injective ι := ι.toRingHom.injective
 
+/--
+@isnad1 id=eq.0h1v.s6.a997a4e97133 from=translated src=- shape=e5970742 vocab=f19690e8
+-/
 @[simp] lemma ι_ratCast (q : ℚ) : ι (q : Qbar) = (q : ℂ) := map_ratCast ι q
 
+/--
+@isnad1 id=eq.0h1v.s6.3790703ccee3 from=translated src=- shape=795024a9 vocab=de24973b
+-/
 @[simp] lemma norm_ι_ratCast (q : ℚ) : ‖ι (q : Qbar)‖ = |(q : ℝ)| := by
   rw [ι_ratCast, ← Complex.ofReal_ratCast, Complex.norm_real, Real.norm_eq_abs]
 
 /-- **Lemma 2.3 of Mochizuki** (separation of collections of points), in the normalised form
 used here: for a finite `T ⊆ ℚ̄`, a rational point `τ ∉ T` and a rational `C > 0`, there is a
 Möbius transformation with rational coefficients sending `τ ↦ C`, `∞ ↦ 0`, and every point
-of `T` to a finite point in the closed unit disc. -/
+of `T` to a finite point in the closed unit disc.
+@isnad1 id=ex.2h3v.s7.737a87e06ee4 from=translated src=- shape=d55d494d vocab=8d25bec7
+-/
 theorem exists_mob_normalize (T : Finset Qbar) {τ : ℚ} (hτ : (τ : Qbar) ∉ T) {C : ℚ}
     (hC : 0 < C) :
     ∃ u : ElemMap, (∀ z, u.ramIdx z = 1) ∧ u.apply (ofRat τ) = ofRat C ∧
@@ -110,6 +121,9 @@ theorem exists_mob_normalize (T : Finset Qbar) {τ : ℚ} (hτ : (τ : Qbar) ∉
 
 /-! ### Estimates for monic polynomials with roots in the unit disc -/
 
+/--
+@isnad1 id=le.2h2v.s6.ef4decdf8fb3 from=translated src=- shape=2fe354f0 vocab=777d49dc
+-/
 lemma norm_prod_sub_le (s : Multiset ℂ) (hs : ∀ ρ ∈ s, ‖ρ‖ ≤ 1) {w : ℂ} (hw : ‖w‖ ≤ 1) :
     ‖(s.map fun ρ => w - ρ).prod‖ ≤ 2 ^ Multiset.card s := by
   induction s using Multiset.induction_on with
@@ -124,6 +138,9 @@ lemma norm_prod_sub_le (s : Multiset ℂ) (hs : ∀ ρ ∈ s, ‖ρ‖ ≤ 1) {w
     rw [mul_comm ‖w - a‖]
     exact mul_le_mul h2 h1 (norm_nonneg _) (by positivity)
 
+/--
+@isnad1 id=le.2h2v.s6.ee95d29b0eec from=translated src=- shape=e5568efe vocab=777d49dc
+-/
 lemma pow_le_norm_prod_sub (s : Multiset ℂ) (hs : ∀ ρ ∈ s, ‖ρ‖ ≤ 1) {w : ℂ} (hw : 1 ≤ ‖w‖) :
     (‖w‖ - 1) ^ Multiset.card s ≤ ‖(s.map fun ρ => w - ρ).prod‖ := by
   induction s using Multiset.induction_on with
@@ -141,17 +158,29 @@ lemma pow_le_norm_prod_sub (s : Multiset ℂ) (hs : ∀ ρ ∈ s, ‖ρ‖ ≤ 1
 /-- The roots in `ℚ̄` (with multiplicity) of a rational polynomial. -/
 noncomputable def qroots (f : ℚ[X]) : Multiset Qbar := (f.map (algebraMap ℚ Qbar)).roots
 
+/--
+@isnad1 id=eq.0h1v.s3.f6ec9a3d4928 from=translated src=- shape=60e9288d vocab=5d8a874e
+-/
 lemma card_qroots (f : ℚ[X]) : Multiset.card (qroots f) = f.natDegree := by
   rw [qroots, IsAlgClosed.card_roots_eq_natDegree, natDegree_map]
 
+/--
+@isnad1 id=iff.1h2v.s7.fd3eb802d048 from=translated src=- shape=6aa35d94 vocab=98213e2e
+-/
 lemma mem_qroots {f : ℚ[X]} (hf : f ≠ 0) {ρ : Qbar} : ρ ∈ qroots f ↔ aeval ρ f = 0 := by
   rw [qroots, mem_roots (Polynomial.map_ne_zero hf), IsRoot, eval_map_algebraMap]
 
+/--
+@isnad1 id=eq.1h1v.s8.3db417f7e2a8 from=translated src=- shape=9a95beb8 vocab=f3a63f9b
+-/
 lemma map_eq_prod_qroots {f : ℚ[X]} (hf : f.Monic) :
     f.map (algebraMap ℚ Qbar) = ((qroots f).map fun ρ => X - C ρ).prod :=
   (prod_multiset_X_sub_C_of_monic_of_roots_card_eq (hf.map _)
     IsAlgClosed.card_roots_eq_natDegree).symm
 
+/--
+@isnad1 id=eq.1h2v.s8.324fdc850198 from=translated src=- shape=40758dd4 vocab=402ac733
+-/
 lemma ι_aeval_eq_prod {f : ℚ[X]} (hf : f.Monic) (z : Qbar) :
     ι (aeval z f) = (((qroots f).map ι).map fun ρ => ι z - ρ).prod := by
   rw [← eval_map_algebraMap, map_eq_prod_qroots hf, eval_multiset_prod, Multiset.map_map,
@@ -161,6 +190,9 @@ lemma ι_aeval_eq_prod {f : ℚ[X]} (hf : f.Monic) (z : Qbar) :
   intro ρ _
   simp
 
+/--
+@isnad1 id=eq.1h1v.s7.262ce5bf723f from=translated src=- shape=377ff90d vocab=8e40434f
+-/
 lemma map_complex_eq_prod {f : ℚ[X]} (hf : f.Monic) :
     f.map (algebraMap ℚ ℂ) = (((qroots f).map ι).map fun ρ => X - C ρ).prod := by
   have h : algebraMap ℚ ℂ = (ι : Qbar →+* ℂ).comp (algebraMap ℚ Qbar) := by
@@ -174,7 +206,9 @@ lemma map_complex_eq_prod {f : ℚ[X]} (hf : f.Monic) :
 
 variable {f : ℚ[X]}
 
-/-- If all roots of the monic `f` lie in the unit disc, then `|f| ≤ 2ᵈ` on the unit disc. -/
+/-- If all roots of the monic `f` lie in the unit disc, then `|f| ≤ 2ᵈ` on the unit disc.
+@isnad1 id=le.3h2v.s8.16b3956da2c1 from=translated src=- shape=114eca7c vocab=3fa835d2
+-/
 lemma norm_aeval_le (hf : f.Monic) (hroots : ∀ ρ ∈ qroots f, ‖ι ρ‖ ≤ 1) {z : Qbar}
     (hz : ‖ι z‖ ≤ 1) : ‖ι (aeval z f)‖ ≤ 2 ^ f.natDegree := by
   rw [ι_aeval_eq_prod hf, ← card_qroots, ← Multiset.card_map ι]
@@ -183,7 +217,9 @@ lemma norm_aeval_le (hf : f.Monic) (hroots : ∀ ρ ∈ qroots f, ‖ι ρ‖ �
   obtain ⟨ρ, hρ', rfl⟩ := Multiset.mem_map.mp hρ
   exact hroots ρ hρ'
 
-/-- If all roots of the monic `f` lie in the unit disc, then `|f(9)| ≥ 8ᵈ`. -/
+/-- If all roots of the monic `f` lie in the unit disc, then `|f(9)| ≥ 8ᵈ`.
+@isnad1 id=le.2h1v.s7.c6617b5c9077 from=translated src=- shape=7d5cf9b2 vocab=1e2ea6c7
+-/
 lemma pow_le_abs_eval_nine (hf : f.Monic) (hroots : ∀ ρ ∈ qroots f, ‖ι ρ‖ ≤ 1) :
     (8 : ℝ) ^ f.natDegree ≤ |((f.eval 9 : ℚ) : ℝ)| := by
   have h9 : ‖ι ((9 : ℚ) : Qbar)‖ = 9 := by rw [norm_ι_ratCast]; norm_num
@@ -201,7 +237,9 @@ lemma pow_le_abs_eval_nine (hf : f.Monic) (hroots : ∀ ρ ∈ qroots f, ‖ι �
     exact hroots ρ hρ'
 
 /-- Gauss–Lucas: if all roots of the monic `f` of positive degree lie in the unit disc, so do
-all critical points of `f`. -/
+all critical points of `f`.
+@isnad1 id=le.4h2v.s8.ea0f79997d2b from=translated src=- shape=01f967aa vocab=64a5b772
+-/
 lemma norm_le_one_of_aeval_derivative (hf : f.Monic) (hdeg : 0 < f.natDegree)
     (hroots : ∀ ρ ∈ qroots f, ‖ι ρ‖ ≤ 1) {c : Qbar} (hc : aeval c (derivative f) = 0) :
     ‖ι c‖ ≤ 1 := by
@@ -235,7 +273,9 @@ lemma norm_le_one_of_aeval_derivative (hf : f.Monic) (hdeg : 0 < f.natDegree)
     (rootSet_derivative_subset_convexHull_rootSet hFdeg hmem)
   rwa [Metric.mem_closedBall, dist_zero_right] at this
 
-/-- At the critical points of a monic `f` whose roots lie in the unit disc, `|f| ≤ 2ᵈ`. -/
+/-- At the critical points of a monic `f` whose roots lie in the unit disc, `|f| ≤ 2ᵈ`.
+@isnad1 id=le.4h2v.s9.86ce2353ad34 from=translated src=- shape=ee1aa0cc vocab=d9f73c7c
+-/
 lemma norm_aeval_crit_le (hf : f.Monic) (hdeg : 0 < f.natDegree)
     (hroots : ∀ ρ ∈ qroots f, ‖ι ρ‖ ≤ 1) {c : Qbar} (hc : aeval c (derivative f) = 0) :
     ‖ι (aeval c f)‖ ≤ 2 ^ f.natDegree :=

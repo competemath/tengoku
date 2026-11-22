@@ -23,14 +23,18 @@ noncomputable section
 
 namespace Heights
 
-/-- The origin of `ℂ` maps to the point at infinity. -/
+/-- The origin of `ℂ` maps to the point at infinity.
+@isnad1 id=eq.0h1v.s5.f8c0ee5c9014 from=translated src=- shape=8d8461e2 vocab=21b2274d
+-/
 @[simp] theorem latticePointMap_zero (τ : ℍ) :
     latticePointMap τ 0 = 0 :=
   latticePointMap_of_mem τ 0
     (periodPairOfUpperHalfPlane τ).lattice.zero_mem
 
 /-- Complex negation agrees with elliptic-curve negation under the total
-lattice point map. -/
+lattice point map.
+@isnad1 id=eq.0h2v.s5.9e37deb34c8d from=translated src=- shape=9f068906 vocab=217fc0db
+-/
 @[simp] theorem latticePointMap_neg (τ : ℍ) (z : ℂ) :
     latticePointMap τ (-z) = -latticePointMap τ z := by
   classical

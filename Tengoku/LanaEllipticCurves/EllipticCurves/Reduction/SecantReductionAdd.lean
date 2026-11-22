@@ -55,7 +55,9 @@ is integral with residue the reduced-curve slope (`exists_lift_slope_of_reduced_
 Lifting through `algebraMap R K` and reducing through `residue R` the same integral-model
 `addX`/`addY` polynomials — both of which commute with any ring homomorphism
 (`Affine.map_addX`/`map_addY`) — identifies the reduced coordinates of `P + Q` with the coordinates
-of `redPt P + redPt Q`. -/
+of `redPt P + redPt Q`.
+@isnad1 id=eq.7h11v.s9.b853bfb0dfef from=translated src=- shape=de314ca5 vocab=bfbe6868
+-/
 theorem redPt_add_of_reduced_X_ne (W : WeierstrassCurve K) [HasGoodReduction R W]
     {x₁ y₁ x₂ y₂ : K} {h₁ : W.toAffine.Nonsingular x₁ y₁} {h₂ : W.toAffine.Nonsingular x₂ y₂}
     {x₀₁ y₀₁ x₀₂ y₀₂ : R}

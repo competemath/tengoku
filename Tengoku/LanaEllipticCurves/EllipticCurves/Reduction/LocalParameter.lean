@@ -85,9 +85,15 @@ noncomputable def localParam (W : WeierstrassCurve K) : W.toAffine.Point → K
   | .zero => 0
   | .some x y _ => if 1 < valuation K (maximalIdeal R) x then -x / y else 0
 
+/--
+@isnad1 id=eq.0h3v.s6.16390dab1eca from=translated src=- shape=e25200bd vocab=f3cab13f
+-/
 @[simp]
 theorem localParam_zero (W : WeierstrassCurve K) : localParam R W .zero = 0 := rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.8499051c5536 from=translated src=- shape=15274883 vocab=3b20bcda
+-/
 theorem localParam_some (W : WeierstrassCurve K) {x y : K} {h : W.toAffine.Nonsingular x y} :
     localParam R W (.some x y h) =
       if 1 < valuation K (maximalIdeal R) x then -x / y else 0 := rfl
@@ -96,7 +102,9 @@ theorem localParam_some (W : WeierstrassCurve K) {x y : K} {h : W.toAffine.Nonsi
 
 /-- For a point reducing to the origin the local parameter reduces into the maximal ideal:
 `v (z P) < 1`.  On the pole branch this is `valuation_neg_x_div_y_lt_one`; the origin maps to `0`,
-whose valuation is `0 < 1`. -/
+whose valuation is `0 < 1`.
+@isnad1 id=lt.1h4v.s7.4b7c8b7f0b08 from=translated src=- shape=3f19b2c3 vocab=199ea78c
+-/
 theorem valuation_localParam_lt_one (W : WeierstrassCurve K) [IsIntegral R W]
     {P : W.toAffine.Point} (hP : ReducesToZero R W P) :
     valuation K (maximalIdeal R) (localParam R W P) < 1 := by
@@ -107,7 +115,9 @@ theorem valuation_localParam_lt_one (W : WeierstrassCurve K) [IsIntegral R W]
     rw [localParam_some, ite_eq_left hP]
     exact valuation_neg_x_div_y_lt_one R W h.1 hP
 
-/-- The local parameter always has valuation `≤ 1`, so it lifts to `R`. -/
+/-- The local parameter always has valuation `≤ 1`, so it lifts to `R`.
+@isnad1 id=le.0h4v.s7.bf23769a394b from=translated src=- shape=6ae6f5be vocab=fdadd88e
+-/
 theorem valuation_localParam_le_one (W : WeierstrassCurve K) [IsIntegral R W]
     (P : W.toAffine.Point) :
     valuation K (maximalIdeal R) (localParam R W P) ≤ 1 := by
@@ -129,19 +139,26 @@ noncomputable def localParamR (W : WeierstrassCurve K) [IsIntegral R W]
   (exists_lift_of_le_one (valuation_localParam_le_one R W P)).choose
 
 /-- `localParamR` is a genuine lift of `localParam`:
-`algebraMap R K (localParamR P) = localParam P`. -/
+`algebraMap R K (localParamR P) = localParam P`.
+@isnad1 id=eq.0h4v.s7.62e225cb9dc3 from=translated src=- shape=685fbe5d vocab=e0d23fba
+-/
 theorem algebraMap_localParamR (W : WeierstrassCurve K) [IsIntegral R W]
     (P : W.toAffine.Point) :
     algebraMap R K (localParamR R W P) = localParam R W P :=
   (exists_lift_of_le_one (valuation_localParam_le_one R W P)).choose_spec
 
+/--
+@isnad1 id=eq.0h3v.s6.dde65d7009db from=translated src=- shape=9d19b569 vocab=944942b9
+-/
 @[simp]
 theorem localParamR_zero (W : WeierstrassCurve K) [IsIntegral R W] :
     localParamR R W .zero = 0 :=
   IsFractionRing.injective R K <| by rw [algebraMap_localParamR, localParam_zero, map_zero]
 
 /-- **The local parameter lands in the maximal ideal** for a point reducing to the origin:
-`localParamR P ∈ 𝔪`.  This is the membership `-x/y ∈ 𝔪` witnessing `z(P) ∈ Ê(𝔪)`. -/
+`localParamR P ∈ 𝔪`.  This is the membership `-x/y ∈ 𝔪` witnessing `z(P) ∈ Ê(𝔪)`.
+@isnad1 id=mem.1h4v.s7.b46bb39ee2c1 from=translated src=- shape=7481f1d9 vocab=f2978595
+-/
 theorem localParamR_mem (W : WeierstrassCurve K) [IsIntegral R W]
     {P : W.toAffine.Point} (hP : ReducesToZero R W P) :
     localParamR R W P ∈ (maximalIdeal R).asIdeal := by
@@ -159,11 +176,17 @@ noncomputable def zParam (W : WeierstrassCurve K) [IsIntegral R W]
     (P : {P : W.toAffine.Point // ReducesToZero R W P}) : (maximalIdeal R).asIdeal :=
   ⟨localParamR R W P.1, localParamR_mem R W P.2⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.8ffa96ab863f from=translated src=- shape=ba37701d vocab=2dcfe0e1
+-/
 @[simp]
 theorem zParam_coe (W : WeierstrassCurve K) [IsIntegral R W]
     (P : {P : W.toAffine.Point // ReducesToZero R W P}) :
     (zParam R W P : R) = localParamR R W P.1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.1e8d6fcc680e from=translated src=- shape=7a58b441 vocab=358f961a
+-/
 @[simp]
 theorem zParam_zero (W : WeierstrassCurve K) [IsIntegral R W] :
     zParam R W ⟨.zero, reducesToZero_zero R W⟩ = 0 :=

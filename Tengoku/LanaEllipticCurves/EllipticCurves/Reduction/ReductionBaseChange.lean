@@ -93,7 +93,9 @@ Both sides equal `(integralModel R W).map ((residue A).comp (algebraMap R A))`: 
 `WeierstrassCurve.map_map`, the right by `WeierstrassCurve.map_map` and
 `IsLocalRing.ResidueField.map_comp_residue`. Pinning the integral model to `(integralModel R W)⁄A`
 (rather than the `Classical.choice`-defined `integralModel A (W⁄L)`) is what makes this a genuine
-equality; see the module docstring. -/
+equality; see the module docstring.
+@isnad1 id=eq.0h4v.s7.d15655f7febc from=translated src=- shape=6d3e7d29 vocab=44710292
+-/
 theorem reduction_baseChange_integralModel_eq [IsLocalHom (algebraMap R A)]
     (W : WeierstrassCurve K) [IsMinimal R W] :
     ((integralModel R W)⁄A).map (residue A)
@@ -110,7 +112,9 @@ of the base change, and the base change `(integralModel R W)⁄A` of the integra
 `baseChange_integralModel_eq` and #393's `baseChange_integralModel_baseChange_eq`), and
 `algebraMap A L` is injective with `WeierstrassCurve.map` injective along it. The key point is that
 `integralModel`/`IsIntegral` is a *plain lift* with no `VariableChange`, so the two lifts agree on
-the nose (this is what distinguishes it from `minimal`). -/
+the nose (this is what distinguishes it from `minimal`).
+@isnad1 id=eq.0h5v.s7.bbd0cebeca12 from=translated src=- shape=c751ccdf vocab=916ec129
+-/
 theorem integralModel_baseChange_eq (W : WeierstrassCurve K) [IsIntegral R W] :
     haveI : IsIntegral A (W⁄L) := isIntegral_baseChange R A W
     integralModel A (W⁄L) = (integralModel R W)⁄A := by
@@ -131,7 +135,9 @@ This upgrades the canonical-model form `reduction_baseChange_integralModel_eq` t
 Mathlib `reduction A (W⁄L)` via `integralModel_baseChange_eq`. Good reduction is needed only to make
 `W⁄L` minimal over `A` (`isMinimal_baseChange`), so that `(W⁄L).reduction A` is defined. This is the
 functoriality identity the remaining Néron–Ogg–Shafarevich rungs (D `K^ur`, general σ̄-equivariant
-`redPt`) consume. -/
+`redPt`) consume.
+@isnad1 id=eq.0h5v.s8.ed084af90a9f from=translated src=- shape=07cdb523 vocab=154415b8
+-/
 theorem reduction_baseChange_eq [IsLocalHom (algebraMap R A)]
     (W : WeierstrassCurve K) [HasGoodReduction R W] :
     haveI : IsMinimal A (W⁄L) := isMinimal_baseChange R A W

@@ -25,9 +25,15 @@ def affineRecursion (M : ℕ → ℝ) (b K : ℝ) : ℕ → ℝ
   | 0 => K
   | t + 1 => M (t + 1) * affineRecursion M b K t + b
 
+/--
+@isnad1 id=eq.0h3v.s4.d359985f2093 from=translated src=- shape=f650d1c2 vocab=08dbf74b
+-/
 @[simp] lemma affineRecursion_zero (M : ℕ → ℝ) (b K : ℝ) :
     affineRecursion M b K 0 = K := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.479384cc54f1 from=translated src=- shape=adc0d848 vocab=0ec90bdb
+-/
 @[simp] lemma affineRecursion_succ (M : ℕ → ℝ) (b K : ℝ) (t : ℕ) :
     affineRecursion M b K (t + 1) =
       M (t + 1) * affineRecursion M b K t + b := rfl
@@ -38,7 +44,9 @@ noncomputable def affineEntranceTime (M : ℕ → ℝ) (b K Kstar : ℝ) : ℕ�
   sInf ((Nat.cast : ℕ → ℕ∞) '' {t | affineRecursion M b K t ≤ Kstar})
 
 /-- The recursion survives strictly above `Kstar` through time `n` exactly when the
-first entrance time into `(-∞, Kstar]` exceeds `n`. -/
+first entrance time into `(-∞, Kstar]` exceeds `n`.
+@isnad1 id=iff.0h5v.s5.2216ad0e6476 from=translated src=- shape=b8dca63f vocab=5685e512
+-/
 lemma lt_affineEntranceTime_iff (M : ℕ → ℝ) (b K Kstar : ℝ) (n : ℕ) :
     (n : ℕ∞) < affineEntranceTime M b K Kstar ↔
       ∀ j ≤ n, Kstar < affineRecursion M b K j := by
@@ -62,7 +70,9 @@ lemma lt_affineEntranceTime_iff (M : ℕ → ℝ) (b K Kstar : ℝ) (n : ℕ) :
 
 /-- The paper's one-step comparison before entrance: if `b ≤ ε Kstar` and the current
 state is at least `Kstar`, then the additive recursion is dominated by multiplication
-by `M_{t+1}+ε`. -/
+by `M_{t+1}+ε`.
+@isnad1 id=le.3h6v.s6.218bd8e62023 from=translated src=- shape=12440db4 vocab=af5b9782
+-/
 lemma affineRecursion_succ_le_mul_add (M : ℕ → ℝ) (b K Kstar ε : ℝ) (t : ℕ)
     (hε : 0 ≤ ε) (hb : b ≤ ε * Kstar)
     (hU : Kstar ≤ affineRecursion M b K t) :
@@ -79,7 +89,9 @@ lemma affineRecursion_succ_le_mul_add (M : ℕ → ℝ) (b K Kstar ε : ℝ) (t 
     _ = (M (t + 1) + ε) * affineRecursion M b K t := by ring
 
 /-- Iterating the one-step comparison along a path that remains above `Kstar` gives
-the product bound `U_n ≤ K ∏_{j<n}(M_{j+1}+ε)`. -/
+the product bound `U_n ≤ K ∏_{j<n}(M_{j+1}+ε)`.
+@isnad1 id=le.4h6v.s6.728edd7c6753 from=translated src=- shape=a61cc4ae vocab=e055a9a1
+-/
 lemma affineRecursion_le_mul_prod (M : ℕ → ℝ) (b K Kstar ε : ℝ) (n : ℕ)
     (hM : ∀ j, 0 ≤ M j) (hε : 0 ≤ ε) (hb : b ≤ ε * Kstar)
     (hstay : ∀ j < n, Kstar ≤ affineRecursion M b K j) :
@@ -102,7 +114,9 @@ lemma affineRecursion_le_mul_prod (M : ℕ → ℝ) (b K Kstar ε : ℝ) (n : �
           ring
 
 /-- If the recursion is still above `Kstar` at time `n`, the product domination forces
-the associated log-increment sum above the paper's threshold `-log(K/Kstar)`. -/
+the associated log-increment sum above the paper's threshold `-log(K/Kstar)`.
+@isnad1 id=lt.8h6v.s7.b94b318dd62b from=translated src=- shape=f79bef5d vocab=a218ebf8
+-/
 lemma neg_log_div_lt_sum_log_of_affineRecursion (M : ℕ → ℝ) (b K Kstar ε : ℝ) (n : ℕ)
     (hK : 0 < K) (hKstar : 0 < Kstar) (hM : ∀ j, 0 ≤ M j) (hε : 0 ≤ ε)
     (hfac : ∀ j, 0 < M (j + 1) + ε) (hb : b ≤ ε * Kstar)
@@ -123,7 +137,9 @@ lemma neg_log_div_lt_sum_log_of_affineRecursion (M : ℕ → ℝ) (b K Kstar ε 
   linarith
 
 /-- Chernoff's upper-tail bound for a finite sum of independent real random variables,
-with the mgf of the sum factored into the product of the individual mgfs. -/
+with the mgf of the sum factored into the product of the individual mgfs.
+@isnad1 id=le.4h6v.s7.b1285aa4540f from=translated src=- shape=800084d2 vocab=8cf5475e
+-/
 theorem measure_sum_ge_le_exp_mul_prod_mgf {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (X : ℕ → Ω → ℝ) (n : ℕ) (s a : ℝ)
     (hs : 0 ≤ s) (hX : ∀ j, Measurable (X j)) (hind : iIndepFun X μ)
@@ -145,7 +161,9 @@ theorem measure_sum_ge_le_exp_mul_prod_mgf {Ω : Type*} [MeasurableSpace Ω]
       rw [hfun, hind.mgf_sum hX]
 
 /-- Iid specialization of `measure_sum_ge_le_exp_mul_prod_mgf`: all individual mgf
-factors equal the mgf of `X₀`, so the product is its `n`-th power. -/
+factors equal the mgf of `X₀`, so the product is its `n`-th power.
+@isnad1 id=le.5h6v.s7.c1970d981752 from=translated src=- shape=3e1d28bc vocab=35ef30f9
+-/
 theorem measure_sum_ge_le_exp_mul_mgf_pow {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (X : ℕ → Ω → ℝ) (n : ℕ) (s a : ℝ)
     (hs : 0 ≤ s) (hX : ∀ j, Measurable (X j)) (hind : iIndepFun X μ)
@@ -174,7 +192,9 @@ def affineSurvivalSet {Ω : Type*} (M : ℕ → Ω → ℝ) (b K Kstar : ℝ) (n
   {ω | ∀ j ≤ n, Kstar < affineRecursion (fun k => M k ω) b K j}
 
 /-- The survival event is exactly the event that the pathwise entrance time exceeds `n`,
-matching the paper's `\{T > n\}` with `T = inf\{t : U_t ≤ K_*\}`. -/
+matching the paper's `\{T > n\}` with `T = inf\{t : U_t ≤ K_*\}`.
+@isnad1 id=eq.0h6v.s5.b25f7732244a from=translated src=- shape=bf5113c6 vocab=87973bea
+-/
 lemma affineSurvivalSet_eq_lt_affineEntranceTime {Ω : Type*} (M : ℕ → Ω → ℝ)
     (b K Kstar : ℝ) (n : ℕ) :
     affineSurvivalSet M b K Kstar n =
@@ -183,7 +203,9 @@ lemma affineSurvivalSet_eq_lt_affineEntranceTime {Ω : Type*} (M : ℕ → Ω �
   simp only [affineSurvivalSet, Set.mem_ofPred_eq, lt_affineEntranceTime_iff]
 
 /-- Survival through time `n` forces the log-increment sum into the upper-tail event
-used in the Chernoff estimate. -/
+used in the Chernoff estimate.
+@isnad1 id=le.6h7v.s7.f04063ab7f3e from=translated src=- shape=c19778b3 vocab=5eec8fb6
+-/
 lemma affineSurvivalSet_subset_log_sum {Ω : Type*} (M : ℕ → Ω → ℝ)
     (b K Kstar ε : ℝ) (n : ℕ) (hK : 0 < K) (hKstar : 0 < Kstar)
     (hM : ∀ ω j, 0 ≤ M j ω) (hε : 0 ≤ ε)
@@ -203,7 +225,9 @@ noncomputable def logAffineIncrement {Ω : Type*} (ε : ℝ) (M : ℕ → Ω →
     (j : ℕ) (ω : Ω) : ℝ :=
   Real.log (M (j + 1) ω + ε)
 
-/-- The shifted log-increments are measurable when the multipliers are measurable. -/
+/-- The shifted log-increments are measurable when the multipliers are measurable.
+@isnad1 id=measurab.1h4v.s5.955b26132a47 from=translated src=- shape=1b924c72 vocab=5a97a370
+-/
 lemma measurable_logAffineIncrement {Ω : Type*} [MeasurableSpace Ω]
     (ε : ℝ) (M : ℕ → Ω → ℝ) (hM : ∀ j, Measurable (M j)) (j : ℕ) :
     Measurable (logAffineIncrement ε M j) := by
@@ -212,7 +236,9 @@ lemma measurable_logAffineIncrement {Ω : Type*} [MeasurableSpace Ω]
   exact hlog.comp ((hM (j + 1)).add_const ε)
 
 /-- Independence is preserved when shifting the multiplier sequence and applying
-`x ↦ log(x+ε)` coordinatewise. -/
+`x ↦ log(x+ε)` coordinatewise.
+@isnad1 id=iindepfu.1h4v.s5.e7033394326c from=translated src=- shape=c1412d93 vocab=80548949
+-/
 lemma iIndepFun_logAffineIncrement {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) (ε : ℝ) (M : ℕ → Ω → ℝ) (hind : iIndepFun M μ) :
     iIndepFun (logAffineIncrement ε M) μ := by
@@ -226,7 +252,9 @@ lemma iIndepFun_logAffineIncrement {Ω : Type*} [MeasurableSpace Ω]
   simpa only [Function.comp_def] using
     hshift.comp (fun _ => fun x : ℝ => Real.log (x + ε)) (fun _ => htransform)
 
-/-- Identical distribution of shifted multipliers transfers to their log-increments. -/
+/-- Identical distribution of shifted multipliers transfers to their log-increments.
+@isnad1 id=identdis.1h5v.s6.3655216817dc from=translated src=- shape=1c5ee764 vocab=9e2ad8a7
+-/
 lemma identDistrib_logAffineIncrement {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) (ε : ℝ) (M : ℕ → Ω → ℝ)
     (hident : ∀ j, IdentDistrib (M (j + 1)) (M 1) μ μ) (j : ℕ) :
@@ -241,7 +269,9 @@ lemma identDistrib_logAffineIncrement {Ω : Type*} [MeasurableSpace Ω]
 
 /-- A single exponential moment of `log(M₁+ε)` at parameter `s` propagates, via
 independence and identical distribution, to integrability of the finite-sum exponential
-`exp(s·∑_{j<n} log(M_{j+1}+ε))` — the integrability hypothesis of the Chernoff bounds. -/
+`exp(s·∑_{j<n} log(M_{j+1}+ε))` — the integrability hypothesis of the Chernoff bounds.
+@isnad1 id=integrab.4h6v.s7.2e2cbf92cd5b from=translated src=- shape=ad5f7d4d vocab=5720b4b3
+-/
 lemma integrable_exp_mul_sum_logAffineIncrement {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsFiniteMeasure μ] (ε : ℝ) (M : ℕ → Ω → ℝ) (n : ℕ) (s : ℝ)
     (hM_meas : ∀ j, Measurable (M j))
@@ -264,7 +294,9 @@ lemma integrable_exp_mul_sum_logAffineIncrement {Ω : Type*} [MeasurableSpace Ω
   exact hid.integrable_iff.mpr hint0
 
 /-- The random affine recursion at each fixed time is measurable when all multipliers
-are measurable. -/
+are measurable.
+@isnad1 id=measurab.1h5v.s5.f91380b72e72 from=translated src=- shape=4cc3f902 vocab=ac10d22c
+-/
 lemma measurable_affineRecursion {Ω : Type*} [MeasurableSpace Ω]
     (M : ℕ → Ω → ℝ) (b K : ℝ) (hM : ∀ j, Measurable (M j)) :
     ∀ n, Measurable (fun ω => affineRecursion (fun k => M k ω) b K n)
@@ -274,7 +306,9 @@ lemma measurable_affineRecursion {Ω : Type*} [MeasurableSpace Ω]
       exact ((hM (n + 1)).mul (measurable_affineRecursion M b K hM n)).add_const b
 
 /-- The event that the random affine recursion survives above `Kstar` through a fixed
-finite time is measurable. -/
+finite time is measurable.
+@isnad1 id=measurab.1h6v.s5.148d4b934f8f from=translated src=- shape=8433ad93 vocab=066b8e99
+-/
 lemma measurableSet_affineSurvivalSet {Ω : Type*} [MeasurableSpace Ω]
     (M : ℕ → Ω → ℝ) (b K Kstar : ℝ) (n : ℕ) (hM : ∀ j, Measurable (M j)) :
     MeasurableSet (affineSurvivalSet M b K Kstar n) := by
@@ -289,7 +323,9 @@ lemma measurableSet_affineSurvivalSet {Ω : Type*} [MeasurableSpace Ω]
     exact measurableSet_lt measurable_const (measurable_affineRecursion M b K hM j)
   · simp [hj]
 
-/-- Finite-time Chernoff bound for survival of the affine recursion above `Kstar`. -/
+/-- Finite-time Chernoff bound for survival of the affine recursion above `Kstar`.
+@isnad1 id=le.11h9v.s8.5d2301ea08cd from=translated src=- shape=77a9b874 vocab=5037c10d
+-/
 theorem measureReal_affineSurvivalSet_le {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (M : ℕ → Ω → ℝ)
     (b K Kstar ε : ℝ) (n : ℕ) (s : ℝ)
@@ -334,7 +370,9 @@ theorem measureReal_affineSurvivalSet_le {Ω : Type*} [MeasurableSpace Ω]
           mgf (logAffineIncrement ε M 0) μ s ^ n := by ring_nf
 
 /-- Exponential-in-time form of the finite survival bound when the log-increment mgf
-is at most `exp(-c3)`. -/
+is at most `exp(-c3)`.
+@isnad1 id=le.12h10v.s8.f069ddb1d93c from=translated src=- shape=3e0c85ee vocab=c0404626
+-/
 theorem measureReal_affineSurvivalSet_le_exp_sub {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (M : ℕ → Ω → ℝ)
     (b K Kstar ε : ℝ) (n : ℕ) (s c3 : ℝ)
@@ -365,7 +403,9 @@ theorem measureReal_affineSurvivalSet_le_exp_sub {Ω : Type*} [MeasurableSpace �
       ring
 
 /-- The exponential survival estimate rewritten at times beyond
-`(s / c3) * log K + r - 1`. -/
+`(s / c3) * log K + r - 1`.
+@isnad1 id=le.14h11v.s8.7abfd776a775 from=translated src=- shape=0c2d9de5 vocab=c0404626
+-/
 theorem measureReal_affineSurvivalSet_le_exp_mul_exp_neg {Ω : Type*}
     [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     (M : ℕ → Ω → ℝ) (b K Kstar ε : ℝ) (n : ℕ) (s c3 r : ℝ)
@@ -398,14 +438,18 @@ theorem measureReal_affineSurvivalSet_le_exp_mul_exp_neg {Ω : Type*}
       nlinarith
 
 /-- The natural floor of the affine-entrance time parameter satisfies the strict
-lower bound required by `measureReal_affineSurvivalSet_le_exp_mul_exp_neg`. -/
+lower bound required by `measureReal_affineSurvivalSet_le_exp_mul_exp_neg`.
+@isnad1 id=lt.0h4v.s6.0d22dd9d4eed from=translated src=- shape=cbf987b2 vocab=e387afe7
+-/
 lemma affineThreshold_sub_one_lt_floor (s c3 K r : ℝ) :
     s / c3 * Real.log K + r - 1 <
       (⌊s / c3 * Real.log K + r⌋₊ : ℕ) := by
   exact Nat.sub_one_lt_floor _
 
 /-- The affine survival estimate at the paper's floored logarithmic time, with a
-prefactor enlarged to be at least one. -/
+prefactor enlarged to be at least one.
+@isnad1 id=le.13h10v.s8.2487724eff4a from=translated src=- shape=4bea37bd vocab=8d11e886
+-/
 theorem measureReal_affineSurvivalSet_floor_le {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (M : ℕ → Ω → ℝ)
     (b K Kstar ε : ℝ) (s c3 r : ℝ)
@@ -436,7 +480,9 @@ theorem measureReal_affineSurvivalSet_floor_le {Ω : Type*} [MeasurableSpace Ω]
       mul_le_mul_of_nonneg_right (le_max_left _ _) (Real.exp_nonneg _)
 
 /-- Convergence of shifted-log expectations to a negative log expectation selects
-one positive shift whose expectation is still negative. -/
+one positive shift whose expectation is still negative.
+@isnad1 id=ex.2h3v.s7.864de696d579 from=translated src=- shape=49355d80 vocab=c6a7d18a
+-/
 lemma exists_pos_integral_log_add_neg_of_tendsto {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) (M : Ω → ℝ)
     (hlim : Tendsto
@@ -453,7 +499,9 @@ lemma exists_pos_integral_log_add_neg_of_tendsto {Ω : Type*} [MeasurableSpace �
   positivity
 
 /-- Dominated convergence for the shifted logarithms
-`log (M + 1 / (n + 1))` when `M` is positive almost everywhere. -/
+`log (M + 1 / (n + 1))` when `M` is positive almost everywhere.
+@isnad1 id=tendsto.4h4v.s7.af773117250e from=translated src=- shape=abb9b154 vocab=8049700c
+-/
 lemma tendsto_integral_log_add_inv_nat {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) (M bound : Ω → ℝ)
     (hM_meas : AEMeasurable M μ) (hM_pos : ∀ᵐ ω ∂μ, 0 < M ω)
@@ -475,7 +523,9 @@ lemma tendsto_integral_log_add_inv_nat {Ω : Type*} [MeasurableSpace Ω]
         (tendsto_one_div_add_atTop_nhds_zero_nat (𝕜 := ℝ)))
 
 /-- A negative expected log and dominated convergence of positive shifts yield a
-positive shift whose expected log remains negative. -/
+positive shift whose expected log remains negative.
+@isnad1 id=ex.5h4v.s7.c7f9667dcc32 from=translated src=- shape=78a7d609 vocab=4dce89d9
+-/
 lemma exists_pos_integral_log_add_neg {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) (M bound : Ω → ℝ)
     (hM_meas : AEMeasurable M μ) (hM_pos : ∀ᵐ ω ∂μ, 0 < M ω)
@@ -489,7 +539,9 @@ lemma exists_pos_integral_log_add_neg {Ω : Type*} [MeasurableSpace Ω]
     hneg
 
 /-- A function with value one and negative derivative at zero is strictly below
-one at some positive argument. -/
+one at some positive argument.
+@isnad1 id=ex.3h2v.s6.50857f7b0b13 from=translated src=- shape=d82204c4 vocab=be7af2f1
+-/
 lemma exists_pos_lt_one_of_hasDerivAt_neg (f : ℝ → ℝ) (μ : ℝ)
     (hf0 : f 0 = 1) (hderiv : HasDerivAt f μ 0) (hμ : μ < 0) :
     ∃ s : ℝ, 0 < s ∧ f s < 1 := by
@@ -517,7 +569,9 @@ lemma exists_pos_lt_one_of_hasDerivAt_neg (f : ℝ → ℝ) (μ : ℝ)
 
 /-- Strengthened selection: a function with value one and negative derivative at zero is
 strictly below one at some positive argument that additionally lies in any prescribed
-neighborhood `U` of zero. -/
+neighborhood `U` of zero.
+@isnad1 id=ex.4h3v.s7.fb223d2a968d from=translated src=- shape=21c9ba96 vocab=e25f23f3
+-/
 lemma exists_pos_mem_lt_one_of_hasDerivAt_neg (f : ℝ → ℝ) (μ : ℝ) {U : Set ℝ}
     (hU : U ∈ 𝓝 0) (hf0 : f 0 = 1) (hderiv : HasDerivAt f μ 0) (hμ : μ < 0) :
     ∃ s : ℝ, 0 < s ∧ s ∈ U ∧ f s < 1 := by
@@ -545,7 +599,9 @@ lemma exists_pos_mem_lt_one_of_hasDerivAt_neg (f : ℝ → ℝ) (μ : ℝ) {U : 
   linarith
 
 /-- At zero, the derivative of the mgf is the expectation whenever zero lies in
-the interior of the exponential-integrability set. -/
+the interior of the exponential-integrability set.
+@isnad1 id=hasderiv.1h3v.s6.459c8fd5479d from=translated src=- shape=d468ef23 vocab=ede00d59
+-/
 lemma hasDerivAt_mgf_zero_integral {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) (X : Ω → ℝ)
     (hX : 0 ∈ interior (integrableExpSet X μ)) :
@@ -553,7 +609,9 @@ lemma hasDerivAt_mgf_zero_integral {Ω : Type*} [MeasurableSpace Ω]
   simpa using hasDerivAt_mgf hX
 
 /-- A negative expectation and exponential integrability around zero give a
-positive parameter at which the mgf is strictly below one. -/
+positive parameter at which the mgf is strictly below one.
+@isnad1 id=ex.2h3v.s6.9e18d04e6230 from=translated src=- shape=12ea378e vocab=18894498
+-/
 lemma exists_pos_mgf_lt_one {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (X : Ω → ℝ)
     (hX : 0 ∈ interior (integrableExpSet X μ))
@@ -565,7 +623,9 @@ lemma exists_pos_mgf_lt_one {Ω : Type*} [MeasurableSpace Ω]
 /-- Strengthened mgf selection: the positive parameter can be taken inside the interior of
 the exponential-integrability set, so that `exp(s·X)` is genuinely integrable alongside
 `mgf X μ s < 1`. (The bare `mgf < 1` does not force integrability: a non-integrable
-`exp(s·X)` gives the Bochner value `mgf = 0 < 1`.) -/
+`exp(s·X)` gives the Bochner value `mgf = 0 < 1`.)
+@isnad1 id=ex.2h3v.s7.a68122af2ed3 from=translated src=- shape=1761d88b vocab=07f66973
+-/
 lemma exists_pos_integrable_mgf_lt_one {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (X : Ω → ℝ)
     (hX : 0 ∈ interior (integrableExpSet X μ))
@@ -579,7 +639,9 @@ lemma exists_pos_integrable_mgf_lt_one {Ω : Type*} [MeasurableSpace Ω]
   exact ⟨s, hs_pos, hs_in, hs_lt⟩
 
 /-- A nonnegative number strictly below one is bounded by `exp (-c)` for some
-positive `c`, including the endpoint value zero. -/
+positive `c`, including the endpoint value zero.
+@isnad1 id=ex.2h1v.s5.27e8c3d90a09 from=translated src=- shape=46764713 vocab=50a99ec8
+-/
 lemma exists_pos_exp_neg_ge {a : ℝ} (ha0 : 0 ≤ a) (ha1 : a < 1) :
     ∃ c : ℝ, 0 < c ∧ a ≤ Real.exp (-c) := by
   rcases eq_or_lt_of_le ha0 with rfl | ha
@@ -590,7 +652,9 @@ lemma exists_pos_exp_neg_ge {a : ℝ} (ha0 : 0 ≤ a) (ha1 : a < 1) :
 /-- A negative expectation and exponential integrability around zero yield a
 positive parameter `s` together with a positive rate `c₃` such that
 `mgf X μ s ≤ exp (-c₃)`. This packages the mgf-decay input to the affine
-entrance survival bound. -/
+entrance survival bound.
+@isnad1 id=ex.2h3v.s6.635da8b4164e from=translated src=- shape=120b4eb6 vocab=da958085
+-/
 lemma exists_pos_mgf_le_exp_neg {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (X : Ω → ℝ)
     (hX : 0 ∈ interior (integrableExpSet X μ))
@@ -603,7 +667,9 @@ lemma exists_pos_mgf_le_exp_neg {Ω : Type*} [MeasurableSpace Ω]
 /-- Integrable-aware mgf-decay package: a positive parameter `s` with `exp(s·X)` integrable
 and a positive rate `c₃` with `mgf X μ s ≤ exp(-c₃)`. The integrability clause is what lets
 the finite-sum-exponential hypothesis of the survival bound be discharged
-(`integrable_exp_mul_sum_logAffineIncrement`). -/
+(`integrable_exp_mul_sum_logAffineIncrement`).
+@isnad1 id=ex.2h3v.s7.a065da0c7907 from=translated src=- shape=c0575fb3 vocab=6810d6fc
+-/
 lemma exists_pos_integrable_mgf_le_exp_neg {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (X : Ω → ℝ)
     (hX : 0 ∈ interior (integrableExpSet X μ))
@@ -617,7 +683,9 @@ lemma exists_pos_integrable_mgf_le_exp_neg {Ω : Type*} [MeasurableSpace Ω]
 /-- Parametrized logarithmic-entrance bound (`lem:negative-drift-affine-entrance`, with the
 shift `ε` already fixed so that `𝔼 log(M₁+ε)<0` and `log(M₁+ε)` has an exponential moment
 about the origin). There exist `c₁,c₂,c₃>0` with
-`ℙ(inf\{t:U_t≤K_*\} > ⌊c₁ log K + r⌋) ≤ c₂ e^{-c₃ r}` for the affine recursion started at `K`. -/
+`ℙ(inf\{t:U_t≤K_*\} > ⌊c₁ log K + r⌋) ≤ c₂ e^{-c₃ r}` for the affine recursion started at `K`.
+@isnad1 id=ex.10h8v.s8.15c9a68a5910 from=translated src=- shape=f712d696 vocab=989d6bff
+-/
 theorem measureReal_affineEntranceTime_gt_floor_le {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (M : ℕ → Ω → ℝ) (b K Kstar ε r : ℝ)
     (hK : 0 < K) (hKstar : 0 < Kstar) (hb : b ≤ ε * Kstar) (hε : 0 < ε)
@@ -649,7 +717,9 @@ with `𝔼 log M₁ < 0` and `log(M₁+ε)` exponentially integrable near the or
 `ε>0`, there exist `K_*, c₁, c₂, c₃ > 0` — depending only on `b` and the law of `M₁`, uniform
 in the start `K` and the excess `r` — with
 `ℙ(inf\{t:U_t≤K_*\} > ⌊c₁ log K + r⌋) ≤ c₂ e^{-c₃ r}`. The shift `ε` (and hence `K_*`) is
-selected internally via `exists_pos_integral_log_add_neg` from `𝔼 log M₁ < 0`. -/
+selected internally via `exists_pos_integral_log_add_neg` from `𝔼 log M₁ < 0`.
+@isnad1 id=ex.9h5v.s8.4f13a64c146c from=translated src=- shape=69961cc5 vocab=0ed6bc44
+-/
 theorem exists_affineEntrance_bound {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (M : ℕ → Ω → ℝ) (b : ℝ) (bound : Ω → ℝ)
     (hM_nonneg : ∀ ω j, 0 ≤ M j ω) (hM_meas : ∀ j, Measurable (M j))

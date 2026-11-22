@@ -47,6 +47,9 @@ noncomputable def firstPassageTime (X : ℕ → Ω → ℝ) (u : ℝ) : Ω → W
 def finiteReversal (n : ℕ) : Equiv.Perm (Fin n) :=
   Fin.revPerm
 
+/--
+@isnad1 id=eq.0h2v.s5.5d384c700a9a from=translated src=- shape=47a40c7c vocab=6f28b5b4
+-/
 @[simp]
 lemma finiteReversal_apply (n : ℕ) (j : Fin n) :
     finiteReversal n j = j.rev := by
@@ -84,11 +87,17 @@ noncomputable def negativeRunningMax (X : ℕ → Ω → ℝ) (n : ℕ) : Ω →
 def lowerBoundEvent (X : ℕ → Ω → ℝ) (m : ℕ) : Set Ω :=
   {ω | ∀ j : ℕ, -(m : ℝ) ≤ partialSum X j ω}
 
+/--
+@isnad1 id=iff.0h4v.s5.77b87376e9d2 from=translated src=- shape=246d9782 vocab=87dafd8f
+-/
 @[simp]
 lemma mem_lowerBoundEvent (X : ℕ → Ω → ℝ) (m : ℕ) (ω : Ω) :
     ω ∈ lowerBoundEvent X m ↔ ∀ j : ℕ, -(m : ℝ) ≤ partialSum X j ω :=
   Iff.rfl
 
+/--
+@isnad1 id=monotone.0h2v.s5.28262c3ad11e from=translated src=- shape=9ffab58d vocab=90fd3e76
+-/
 lemma monotone_lowerBoundEvent (X : ℕ → Ω → ℝ) :
     Monotone (lowerBoundEvent X) := by
   intro m n hmn ω hω
@@ -96,17 +105,25 @@ lemma monotone_lowerBoundEvent (X : ℕ → Ω → ℝ) :
   intro j
   exact (neg_le_neg (Nat.cast_le.mpr hmn)).trans (hω j)
 
+/--
+@isnad1 id=eq.0h2v.s5.2d1ba4eaa89c from=translated src=- shape=d4a24c08 vocab=ddb19cea
+-/
 @[simp]
 lemma partialSum_zero (X : ℕ → Ω → ℝ) : partialSum X 0 = 0 := by
   ext ω
   simp [partialSum]
 
+/--
+@isnad1 id=eq.0h4v.s5.2d3866b50974 from=translated src=- shape=24dda6ce vocab=1aba4c2b
+-/
 lemma partialSum_succ (X : ℕ → Ω → ℝ) (n : ℕ) (ω : Ω) :
     partialSum X (n + 1) ω = partialSum X n ω + X n ω := by
   simp [partialSum, Finset.sum_range_succ]
 
 /-- A backward partial sum is the terminal sum minus the partial sum before
-that terminal block. -/
+that terminal block.
+@isnad1 id=eq.1h5v.s5.1f06cecfde95 from=translated src=- shape=a93d59e4 vocab=946a9657
+-/
 lemma backwardPartialSum_eq_sub (X : ℕ → Ω → ℝ) (n j : ℕ)
     (hjn : j ≤ n) (ω : Ω) :
     backwardPartialSum X n j ω =
@@ -128,6 +145,9 @@ lemma backwardPartialSum_eq_sub (X : ℕ → Ω → ℝ) (n j : ℕ)
   simp only [partialSum] at hadd ⊢
   linarith
 
+/--
+@isnad1 id=eq.0h4v.s5.fea3ca670264 from=translated src=- shape=805e53e1 vocab=525dfc40
+-/
 lemma negativeRunningMax_eq (X : ℕ → Ω → ℝ) (n : ℕ) (ω : Ω) :
     negativeRunningMax X n ω =
       (Finset.range (n + 1)).sup' (by simp)
@@ -143,6 +163,9 @@ lemma negativeRunningMax_eq (X : ℕ → Ω → ℝ) (n : ℕ) (ω : Ω) :
     (Nat.le_of_lt_succ (Finset.mem_range.mp hj))
   simp [finiteBlockValue, finiteIncrementBlock, hrn]
 
+/--
+@isnad1 id=eq.0h4v.s5.3d9996698b1d from=translated src=- shape=38a7e562 vocab=75cc60c6
+-/
 lemma finiteNegativeRunningMax_reversed_eq
     (X : ℕ → Ω → ℝ) (n : ℕ) (ω : Ω) :
     finiteNegativeRunningMax n (fun i ↦ X (finiteReversal n i) ω) =
@@ -162,7 +185,9 @@ lemma finiteNegativeRunningMax_reversed_eq
   omega
 
 /-- A real sequence whose normalized values converge to a positive limit is
-bounded below by the negative of some natural number. -/
+bounded below by the negative of some natural number.
+@isnad1 id=ex.2h2v.s6.e481cbc8aaf0 from=translated src=- shape=9f17abdb vocab=37b90319
+-/
 lemma exists_nat_neg_le_forall_of_tendsto_div_atTop
     (S : ℕ → ℝ) {a : ℝ} (ha : 0 < a)
     (h : Tendsto (fun n : ℕ ↦ S n / (n : ℝ)) atTop (nhds a)) :
@@ -182,7 +207,9 @@ lemma exists_nat_neg_le_forall_of_tendsto_div_atTop
     · exact (not_lt_of_ge (Nat.cast_nonneg n) hneg.2).elim
 
 /-- The recursive running maximum is below `u` precisely when every partial
-sum through its terminal time is below `u`. -/
+sum through its terminal time is below `u`.
+@isnad1 id=iff.0h5v.s5.037363c64208 from=translated src=- shape=86f9e30d vocab=51f04f1b
+-/
 lemma runningMax_lt_iff (X : ℕ → Ω → ℝ) (n : ℕ) (ω : Ω) (u : ℝ) :
     runningMax X n ω < u ↔ ∀ k ≤ n, partialSum X k ω < u := by
   induction n with
@@ -197,6 +224,9 @@ lemma runningMax_lt_iff (X : ℕ → Ω → ℝ) (n : ℕ) (ω : Ω) (u : ℝ) :
       · intro h
         exact ⟨fun k hk ↦ h k (hk.trans n.le_succ), h (n + 1) le_rfl⟩
 
+/--
+@isnad1 id=le.1h5v.s5.8de9e4e44470 from=translated src=- shape=122d4a19 vocab=7b566e75
+-/
 lemma partialSum_le_runningMax (X : ℕ → Ω → ℝ)
     {k n : ℕ} (hkn : k ≤ n) (ω : Ω) :
     partialSum X k ω ≤ runningMax X n ω := by
@@ -205,6 +235,9 @@ lemma partialSum_le_runningMax (X : ℕ → Ω → ℝ)
   exact (lt_irrefl (partialSum X k ω))
     ((runningMax_lt_iff X n ω (partialSum X k ω)).mp hlt k hkn)
 
+/--
+@isnad1 id=ex.0h4v.s5.651b75529e66 from=translated src=- shape=6fa74551 vocab=7b566e75
+-/
 lemma exists_runningMax_eq_partialSum (X : ℕ → Ω → ℝ) (n : ℕ) (ω : Ω) :
     ∃ k ≤ n, runningMax X n ω = partialSum X k ω := by
   induction n with
@@ -217,7 +250,9 @@ lemma exists_runningMax_eq_partialSum (X : ℕ → Ω → ℝ) (n : ℕ) (ω : �
       · exact ⟨n + 1, le_rfl, by simp [runningMax, h]⟩
 
 /-- Pathwise finite-reversal identity: terminal drawdown is the largest
-negative backward partial sum. -/
+negative backward partial sum.
+@isnad1 id=eq.0h3v.s4.b30207295149 from=translated src=- shape=e2608840 vocab=1666561a
+-/
 lemma terminalDrawdown_eq_negativeBackwardRunningMax
     (X : ℕ → Ω → ℝ) (n : ℕ) :
     terminalDrawdown X n = negativeBackwardRunningMax X n := by
@@ -245,7 +280,9 @@ lemma terminalDrawdown_eq_negativeBackwardRunningMax
     linarith
 
 /-- Survival through time `n` is the event that the running maximum through
-`n` remains strictly below the weak-passage level `u`. -/
+`n` remains strictly below the weak-passage level `u`.
+@isnad1 id=iff.0h5v.s5.2bbd964a32b1 from=translated src=- shape=caaf77bc vocab=ab2abd82
+-/
 lemma firstPassageTime_gt_iff_runningMax_lt (X : ℕ → Ω → ℝ)
     (u : ℝ) (n : ℕ) (ω : Ω) :
     (n : WithTop ℕ) < firstPassageTime X u ω ↔ runningMax X n ω < u := by
@@ -268,6 +305,9 @@ lemma firstPassageTime_gt_iff_runningMax_lt (X : ℕ → Ω → ℝ)
         (n := 0) (i := n) (ω := ω)).mp hle'
     exact (not_lt_of_ge hku) ((runningMax_lt_iff X n ω u).mp hmax k hk.2)
 
+/--
+@isnad1 id=eq.0h4v.s5.c955ac1df84f from=translated src=- shape=ce5e1159 vocab=08581127
+-/
 lemma firstPassageTime_gt_set_eq (X : ℕ → Ω → ℝ) (u : ℝ) (n : ℕ) :
     {ω | (n : WithTop ℕ) < firstPassageTime X u ω} =
       {ω | runningMax X n ω < u} :=
@@ -275,6 +315,9 @@ lemma firstPassageTime_gt_set_eq (X : ℕ → Ω → ℝ) (u : ℝ) (n : ℕ) :
 
 variable [MeasurableSpace Ω]
 
+/--
+@isnad1 id=measurab.0h2v.s4.0482afcb1821 from=translated src=- shape=5d218a3d vocab=3b5625ff
+-/
 lemma measurable_finiteBlockValue (n j : ℕ) :
     Measurable (fun x : Fin n → ℝ ↦ finiteBlockValue n x j) := by
   unfold finiteBlockValue
@@ -282,6 +325,9 @@ lemma measurable_finiteBlockValue (n j : ℕ) :
   · exact measurable_pi_apply (⟨j, h⟩ : Fin n)
   · exact measurable_const
 
+/--
+@isnad1 id=measurab.0h1v.s4.3c928691f293 from=translated src=- shape=bbef8654 vocab=4f463a25
+-/
 lemma measurable_finiteNegativeRunningMax (n : ℕ) :
     Measurable (finiteNegativeRunningMax n) := by
   unfold finiteNegativeRunningMax
@@ -296,21 +342,33 @@ lemma measurable_finiteNegativeRunningMax (n : ℕ) :
   exact (Finset.sup'_apply hs
     (fun j x ↦ -(∑ r ∈ Finset.range j, finiteBlockValue n x r)) x).symm
 
+/--
+@isnad1 id=measurab.1h3v.s5.f0af641c7558 from=translated src=- shape=15e52c0b vocab=3d2e7de3
+-/
 lemma measurable_finiteIncrementBlock (X : ℕ → Ω → ℝ)
     (hX : ∀ j, Measurable (X j)) (n : ℕ) :
     Measurable (finiteIncrementBlock X n) := by
   exact measurable_pi_lambda _ fun j ↦ hX j
 
+/--
+@isnad1 id=measurab.1h3v.s5.e257fdba159c from=translated src=- shape=7abcb907 vocab=117c7bde
+-/
 lemma measurable_negativeRunningMax (X : ℕ → Ω → ℝ)
     (hX : ∀ j, Measurable (X j)) (n : ℕ) :
     Measurable (negativeRunningMax X n) :=
   (measurable_finiteNegativeRunningMax n).comp
     (measurable_finiteIncrementBlock X hX n)
 
+/--
+@isnad1 id=measurab.1h3v.s5.3789c5afcb63 from=translated src=- shape=7abcb907 vocab=bf24351f
+-/
 lemma measurable_partialSum (X : ℕ → Ω → ℝ) (hX : ∀ j, Measurable (X j)) (n : ℕ) :
     Measurable (partialSum X n) := by
   exact Finset.measurable_sum _ fun j _ ↦ hX j
 
+/--
+@isnad1 id=measurab.1h3v.s4.fab04743dcbb from=translated src=- shape=8d9b0275 vocab=e05c1a8e
+-/
 lemma measurableSet_lowerBoundEvent (X : ℕ → Ω → ℝ)
     (hX : ∀ j, Measurable (X j)) (m : ℕ) :
     MeasurableSet (lowerBoundEvent X m) := by
@@ -319,15 +377,24 @@ lemma measurableSet_lowerBoundEvent (X : ℕ → Ω → ℝ)
   exact MeasurableSet.iInter fun j ↦
     (measurable_partialSum X hX j) measurableSet_Ici
 
+/--
+@isnad1 id=measurab.1h3v.s5.4b40afdb99e9 from=translated src=- shape=7abcb907 vocab=63b76172
+-/
 lemma measurable_runningMax (X : ℕ → Ω → ℝ) (hX : ∀ j, Measurable (X j)) :
     ∀ n, Measurable (runningMax X n)
   | 0 => measurable_const
   | n + 1 => (measurable_runningMax X hX n).max (measurable_partialSum X hX (n + 1))
 
+/--
+@isnad1 id=measurab.1h3v.s5.b79e7b4eebfa from=translated src=- shape=7abcb907 vocab=024add73
+-/
 lemma measurable_terminalDrawdown (X : ℕ → Ω → ℝ) (hX : ∀ j, Measurable (X j))
     (n : ℕ) : Measurable (terminalDrawdown X n) :=
   (measurable_runningMax X hX n).sub (measurable_partialSum X hX n)
 
+/--
+@isnad1 id=measurab.1h4v.s5.a67faac468a3 from=translated src=- shape=aff49efe vocab=c347953b
+-/
 lemma measurableSet_firstPassageTime_gt (X : ℕ → Ω → ℝ)
     (hX : ∀ j, Measurable (X j)) (u : ℝ) (n : ℕ) :
     MeasurableSet {ω | (n : WithTop ℕ) < firstPassageTime X u ω} := by
@@ -336,7 +403,9 @@ lemma measurableSet_firstPassageTime_gt (X : ℕ → Ω → ℝ)
 
 variable {μ : Measure Ω}
 
-/-- An iid finite increment block has the same law after reversal. -/
+/-- An iid finite increment block has the same law after reversal.
+@isnad1 id=identdis.2h4v.s6.0a64cbb2bf43 from=translated src=- shape=f823ad2b vocab=3dc6957d
+-/
 lemma identDistrib_reversed_finiteIncrementBlock
     (X : ℕ → Ω → ℝ) (n : ℕ)
     (hIndep : ProbabilityTheory.iIndepFun X μ)
@@ -350,7 +419,9 @@ lemma identDistrib_reversed_finiteIncrementBlock
   · exact hIndep.precomp Fin.val_injective
 
 /-- Finite reversal identifies the negative backward and forward running
-maxima in distribution. -/
+maxima in distribution.
+@isnad1 id=identdis.2h4v.s6.e8bd80088af6 from=translated src=- shape=5961b955 vocab=0c2b7a17
+-/
 lemma identDistrib_negativeBackwardRunningMax_negativeRunningMax
     (X : ℕ → Ω → ℝ) (n : ℕ)
     (hIndep : ProbabilityTheory.iIndepFun X μ)
@@ -365,7 +436,9 @@ lemma identDistrib_negativeBackwardRunningMax_negativeRunningMax
   · rfl
 
 /-- The terminal drawdown and the negative running maximum are identically
-distributed for iid increments. -/
+distributed for iid increments.
+@isnad1 id=identdis.2h4v.s6.0f11928eb61f from=translated src=- shape=5961b955 vocab=a8cb6f6c
+-/
 lemma identDistrib_terminalDrawdown_negativeRunningMax
     (X : ℕ → Ω → ℝ) (n : ℕ)
     (hIndep : ProbabilityTheory.iIndepFun X μ)
@@ -376,7 +449,9 @@ lemma identDistrib_terminalDrawdown_negativeRunningMax
   exact identDistrib_negativeBackwardRunningMax_negativeRunningMax X n hIndep hIdent
 
 /-- Positive drift and the strong law imply that the partial-sum path is
-almost surely bounded below by a random integer. -/
+almost surely bounded below by a random integer.
+@isnad1 id=eventual.4h3v.s7.4d4ab3e28ae3 from=translated src=- shape=bd93d3ad vocab=e9377fb5
+-/
 lemma ae_exists_nat_neg_le_partialSum
     (X : ℕ → Ω → ℝ)
     (hInt : Integrable (X 0) μ)
@@ -390,6 +465,9 @@ lemma ae_exists_nat_neg_le_partialSum
   exact exists_nat_neg_le_forall_of_tendsto_div_atTop
     (fun n ↦ partialSum X n ω) hMean (by simpa only [partialSum] using hω)
 
+/--
+@isnad1 id=eventual.4h3v.s7.a43e2bc2ae66 from=translated src=- shape=b3494be1 vocab=6e809ceb
+-/
 lemma ae_mem_iUnion_lowerBoundEvent
     (X : ℕ → Ω → ℝ)
     (hInt : Integrable (X 0) μ)
@@ -402,7 +480,9 @@ lemma ae_mem_iUnion_lowerBoundEvent
   obtain ⟨m, hm⟩ := hω
   exact Set.mem_iUnion.mpr ⟨m, hm⟩
 
-/-- The increasing lower-bound events exhaust a set of probability one. -/
+/-- The increasing lower-bound events exhaust a set of probability one.
+@isnad1 id=eq.4h3v.s7.2d37dd256442 from=translated src=- shape=8b5d9240 vocab=3f46c3d4
+-/
 lemma measure_iUnion_lowerBoundEvent_eq_one
     (X : ℕ → Ω → ℝ)
     (hInt : Integrable (X 0) μ)
@@ -420,6 +500,9 @@ lemma measure_iUnion_lowerBoundEvent_eq_one
     _ = 1 := measure_univ
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.1h5v.s5.ac7d9d649542 from=translated src=- shape=52164fbd vocab=3ad6413e
+-/
 lemma negativeRunningMax_le_of_mem_lowerBoundEvent
     (X : ℕ → Ω → ℝ) (m n : ℕ) {ω : Ω}
     (hω : ω ∈ lowerBoundEvent X m) :
@@ -430,6 +513,9 @@ lemma negativeRunningMax_le_of_mem_lowerBoundEvent
   linarith
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h4v.s5.4307cbe4ec6f from=translated src=- shape=4d90687f vocab=bceddde9
+-/
 lemma negativeRunningMax_gt_subset_compl_lowerBoundEvent
     (X : ℕ → Ω → ℝ) (m n : ℕ) :
     {ω | (m : ℝ) < negativeRunningMax X n ω} ⊆
@@ -439,6 +525,9 @@ lemma negativeRunningMax_gt_subset_compl_lowerBoundEvent
   exact fun hmem ↦
     (not_lt_of_ge (negativeRunningMax_le_of_mem_lowerBoundEvent X m n hmem)) hω
 
+/--
+@isnad1 id=le.2h5v.s6.d5eb4910c03c from=translated src=- shape=8447d468 vocab=88f3848e
+-/
 lemma measure_terminalDrawdown_gt_le_compl_lowerBoundEvent
     (X : ℕ → Ω → ℝ) (m n : ℕ)
     (hIndep : ProbabilityTheory.iIndepFun X μ)
@@ -456,6 +545,9 @@ lemma measure_terminalDrawdown_gt_le_compl_lowerBoundEvent
     _ ≤ μ (lowerBoundEvent X m)ᶜ :=
       measure_mono (negativeRunningMax_gt_subset_compl_lowerBoundEvent X m n)
 
+/--
+@isnad1 id=tendsto.5h3v.s7.749532ae8c3c from=translated src=- shape=db45bbc5 vocab=3fbc6b1f
+-/
 lemma tendsto_measure_compl_lowerBoundEvent_atTop
     (X : ℕ → Ω → ℝ)
     (hX : ∀ j, Measurable (X j))
@@ -491,6 +583,9 @@ lemma tendsto_measure_compl_lowerBoundEvent_atTop
   rw [hInter] at ht
   exact ht
 
+/--
+@isnad1 id=tendsto.5h3v.s7.52fb7c4ab0ae from=translated src=- shape=76c5ffcc vocab=59c6fd2f
+-/
 lemma tendsto_measureReal_compl_lowerBoundEvent_atTop
     (X : ℕ → Ω → ℝ)
     (hX : ∀ j, Measurable (X j))
@@ -504,7 +599,9 @@ lemma tendsto_measureReal_compl_lowerBoundEvent_atTop
   have hreal := (ENNReal.tendsto_toReal (a := 0) (by simp)).comp ht
   convert hreal using 1 <;> rfl
 
-/-- The terminal drawdowns of a positive-drift iid walk are uniformly tight. -/
+/-- The terminal drawdowns of a positive-drift iid walk are uniformly tight.
+@isnad1 id=ex.6h4v.s7.a0ee5973d057 from=translated src=- shape=f9cc7c04 vocab=f57b20c2
+-/
 lemma exists_uniform_terminalDrawdown_tail_lt
     (X : ℕ → Ω → ℝ)
     (hX : ∀ j, Measurable (X j))
@@ -537,12 +634,17 @@ lemma exists_uniform_terminalDrawdown_tail_lt
   exact hreal.trans_lt (hm m le_rfl)
 
 omit [MeasurableSpace Ω] in
+/--
+@isnad1 id=le.0h4v.s4.354b354c23d8 from=translated src=- shape=c62d8023 vocab=bad3eb85
+-/
 lemma terminalDrawdown_nonneg (X : ℕ → Ω → ℝ) (n : ℕ) (ω : Ω) :
     0 ≤ terminalDrawdown X n ω :=
   sub_nonneg.mpr (partialSum_le_runningMax X le_rfl ω)
 
 /-- Uniform drawdown tightness makes the drawdown negligible on every positive
-scale tending to infinity. -/
+scale tending to infinity.
+@isnad1 id=tendstoi.7h4v.s7.b00c3d8ded2b from=translated src=- shape=ab5e655d vocab=5687b73e
+-/
 lemma tendstoInMeasure_terminalDrawdown_div
     (X : ℕ → Ω → ℝ)
     (hX : ∀ j, Measurable (X j))
@@ -599,7 +701,9 @@ lemma tendstoInMeasure_terminalDrawdown_div
 
 /-- The centered running maximum has the same central-limit scaling as the
 terminal partial sum. The limit is expressed on the natural variance scale;
-standardization is a deterministic rescaling of this statement. -/
+standardization is a deterministic rescaling of this statement.
+@isnad1 id=tendstoi.6h6v.s8.37b4f5b12ba9 from=translated src=- shape=6e1ed7c8 vocab=99659aff
+-/
 lemma tendstoInDistribution_inv_sqrt_mul_runningMax_sub
     {Ω' : Type*} [MeasurableSpace Ω']
     {μ : Measure Ω} {μ' : Measure Ω'}
@@ -638,7 +742,9 @@ lemma tendstoInDistribution_inv_sqrt_mul_runningMax_sub
       ring
   · exact Filter.Eventually.of_forall fun ω ↦ by simp
 
-/-- Standard-Gaussian form of the positive-drift running-maximum CLT. -/
+/-- Standard-Gaussian form of the positive-drift running-maximum CLT.
+@isnad1 id=tendstoi.8h7v.s8.e869e5076b00 from=translated src=- shape=44c5a268 vocab=fe23b16d
+-/
 lemma tendstoInDistribution_runningMax_standardGaussian
     {Ω' : Type*} [MeasurableSpace Ω']
     {μ : Measure Ω} {μ' : Measure Ω'}
@@ -676,7 +782,9 @@ lemma tendstoInDistribution_runningMax_standardGaussian
       simp [Function.comp_apply, hσ.ne']
 
 /-- The strict lower tail of a translated standard Gaussian agrees with the
-standard Gaussian CDF at the translation parameter. -/
+standard Gaussian CDF at the translation parameter.
+@isnad1 id=eq.0h1v.s5.da6f14b554b9 from=translated src=- shape=08775315 vocab=0773ab14
+-/
 lemma gaussianReal_sub_const_Iio_zero_real_eq_cdf (c : ℝ) :
     (ProbabilityTheory.gaussianReal (-c) 1).real (Set.Iio 0) =
       ProbabilityTheory.cdf (ProbabilityTheory.gaussianReal 0 1) c := by
@@ -702,7 +810,9 @@ lemma gaussianReal_sub_const_Iio_zero_real_eq_cdf (c : ℝ) :
 
 /-- Sequence-indexed positive-drift first-passage profile. If the observation
 times diverge and the centered moving levels converge on the CLT scale, then
-the survival probabilities converge to the standard Gaussian CDF. -/
+the survival probabilities converge to the standard Gaussian CDF.
+@isnad1 id=tendsto.11h10v.s8.a4a891cef91c from=translated src=- shape=bb643c83 vocab=6af45d0e
+-/
 lemma tendsto_measureReal_firstPassageTime_gt
     {Ω' : Type*} [MeasurableSpace Ω']
     {μ : Measure Ω} {μ' : Measure Ω'}
@@ -834,7 +944,9 @@ noncomputable def postFloorTime
     (μ σ a : ℝ) (L v : ℕ → ℝ) (r : ℕ) : ℕ :=
   ⌊(canonicalTime μ σ a L 0 r : ℝ) + v r⌋₊
 
-/-- Error bounds for the natural-valued floor of a nonnegative real number. -/
+/-- Error bounds for the natural-valued floor of a nonnegative real number.
+@isnad1 id=and.1h1v.s6.39067c297d71 from=translated src=- shape=7216c01b vocab=8ebbdc10
+-/
 lemma natFloor_sub_bounds (x : ℝ) (hx : 0 ≤ x) :
     -1 < (⌊x⌋₊ : ℝ) - x ∧ (⌊x⌋₊ : ℝ) - x ≤ 0 := by
   constructor
@@ -843,7 +955,9 @@ lemma natFloor_sub_bounds (x : ℝ) (hx : 0 ≤ x) :
   · exact sub_nonpos.mpr (Nat.floor_le hx)
 
 /-- Flooring after first flooring a nonnegative base can lower the one-step
-floor by at most one. -/
+floor by at most one.
+@isnad1 id=and.1h2v.s7.473518f46891 from=translated src=- shape=d7b66060 vocab=2118af9d
+-/
 lemma natFloor_add_floor_bounds (x v : ℝ) (hx : 0 ≤ x) :
     ⌊(⌊x⌋₊ : ℝ) + v⌋₊ ≤ ⌊x + v⌋₊ ∧
       ⌊x + v⌋₊ ≤ ⌊(⌊x⌋₊ : ℝ) + v⌋₊ + 1 := by
@@ -868,7 +982,9 @@ lemma natFloor_add_floor_bounds (x v : ℝ) (hx : 0 ≤ x) :
         linarith
       omega
 
-/-- Natural-valued flooring preserves divergence to positive infinity. -/
+/-- Natural-valued flooring preserves divergence to positive infinity.
+@isnad1 id=tendsto.1h1v.s5.09671e629923 from=translated src=- shape=c6c8383f vocab=d341cd6c
+-/
 lemma tendsto_natFloor_atTop {x : ℕ → ℝ}
     (hx : Tendsto x atTop atTop) :
     Tendsto (fun r ↦ ⌊x r⌋₊) atTop atTop := by
@@ -878,7 +994,9 @@ lemma tendsto_natFloor_atTop {x : ℕ → ℝ}
   exact Nat.le_floor hr
 
 /-- A natural-floor error is negligible relative to any positive scale tending
-to infinity. -/
+to infinity.
+@isnad1 id=tendsto.2h2v.s6.737641acf9e8 from=translated src=- shape=4336b868 vocab=16951b4f
+-/
 lemma tendsto_natFloor_sub_div {x L : ℕ → ℝ}
     (hx_nonneg : ∀ᶠ r in atTop, 0 ≤ x r)
     (hL : Tendsto L atTop atTop) :
@@ -896,7 +1014,9 @@ lemma tendsto_natFloor_sub_div {x L : ℕ → ℝ}
       (natFloor_sub_bounds (x r) hxr).2
 
 /-- A bounded natural-floor error does not change a ratio limit on a positive
-diverging scale. -/
+diverging scale.
+@isnad1 id=tendsto.3h3v.s6.7b6850dad0c3 from=translated src=- shape=13fd10d5 vocab=3f5517dd
+-/
 lemma tendsto_natFloor_div {x L : ℕ → ℝ} {a : ℝ}
     (hx_nonneg : ∀ᶠ r in atTop, 0 ≤ x r)
     (hL : Tendsto L atTop atTop)
@@ -908,7 +1028,9 @@ lemma tendsto_natFloor_div {x L : ℕ → ℝ} {a : ℝ}
     ring
   · simp
 
-/-- The pre-floor canonical observation time is asymptotic to `L / μ`. -/
+/-- The pre-floor canonical observation time is asymptotic to `L / μ`.
+@isnad1 id=tendsto.2h5v.s6.17b65fdf4cf6 from=translated src=- shape=df11edfd vocab=4e81ed06
+-/
 lemma tendsto_canonicalTimeArgument_div
     {L q : ℕ → ℝ} {μ σ a : ℝ}
     (hL : Tendsto L atTop atTop)
@@ -946,7 +1068,9 @@ lemma tendsto_canonicalTimeArgument_div
       rw [hL_eq]
       field_simp [hs_pos.ne']
 
-/-- At positive drift, the pre-floor canonical observation time diverges. -/
+/-- At positive drift, the pre-floor canonical observation time diverges.
+@isnad1 id=tendsto.3h5v.s6.af2cffbdd2cd from=translated src=- shape=3f0e087d vocab=77faa4df
+-/
 lemma tendsto_canonicalTimeArgument_atTop
     {L q : ℕ → ℝ} {μ σ a : ℝ}
     (hμ : 0 < μ)
@@ -961,7 +1085,9 @@ lemma tendsto_canonicalTimeArgument_atTop
   field_simp [hLr.ne']
 
 /-- At positive drift, the natural-valued canonical observation time
-diverges. -/
+diverges.
+@isnad1 id=tendsto.3h5v.s6.1e0e30cd7d06 from=translated src=- shape=e6b92818 vocab=62df5d8d
+-/
 lemma tendsto_canonicalTime_atTop
     {L q : ℕ → ℝ} {μ σ a : ℝ}
     (hμ : 0 < μ)
@@ -973,7 +1099,9 @@ lemma tendsto_canonicalTime_atTop
   exact tendsto_natFloor_atTop
     (tendsto_canonicalTimeArgument_atTop hμ hL hq)
 
-/-- The natural-valued canonical observation time is asymptotic to `L / μ`. -/
+/-- The natural-valued canonical observation time is asymptotic to `L / μ`.
+@isnad1 id=tendsto.3h5v.s6.078c66988f72 from=translated src=- shape=4e0d5d06 vocab=52e01681
+-/
 lemma tendsto_canonicalTime_div
     {L q : ℕ → ℝ} {μ σ a : ℝ}
     (hμ : 0 < μ)
@@ -990,7 +1118,9 @@ lemma tendsto_canonicalTime_div
     (tendsto_canonicalTimeArgument_div
       (μ := μ) (σ := σ) (a := a) hL hq)
 
-/-- Square-root form of the canonical time asymptotic. -/
+/-- Square-root form of the canonical time asymptotic.
+@isnad1 id=tendsto.3h5v.s7.ca4886e70508 from=translated src=- shape=7d34bc30 vocab=52e01681
+-/
 lemma tendsto_sqrt_canonicalTime_div_sqrt
     {L q : ℕ → ℝ} {μ σ a : ℝ}
     (hμ : 0 < μ)
@@ -1005,7 +1135,9 @@ lemma tendsto_sqrt_canonicalTime_div_sqrt
     one_div, Real.sqrt_inv] using hsqrt
 
 /-- Centered canonical levels on the `sqrt L` scale, before changing the
-denominator from `sqrt L` to `sqrt n`. -/
+denominator from `sqrt L` to `sqrt n`.
+@isnad1 id=tendsto.4h6v.s7.d419173eb7a5 from=translated src=- shape=defb6c53 vocab=0c771198
+-/
 lemma tendsto_canonicalTime_centered_div_sqrt
     {L Ltilde q : ℕ → ℝ} {μ σ a : ℝ}
     (hμ : 0 < μ)
@@ -1061,7 +1193,9 @@ lemma tendsto_canonicalTime_centered_div_sqrt
   simpa only [neg_div, neg_mul] using hactual
 
 /-- Canonical-floor asymptotic in the normalization required by the moving
-first-passage profile. -/
+first-passage profile.
+@isnad1 id=tendsto.5h6v.s7.32325db45a33 from=translated src=- shape=12f7321d vocab=0c771198
+-/
 lemma tendsto_canonicalTime_centered
     {L Ltilde q : ℕ → ℝ} {μ σ a : ℝ}
     (hμ : 0 < μ) (hσ : 0 < σ)
@@ -1108,7 +1242,9 @@ lemma tendsto_canonicalTime_centered
   convert hactual using 1
   field_simp [hσ.ne', hsqrtμ_ne]
 
-/-- Moving-level and canonical-time first-passage profile. -/
+/-- Moving-level and canonical-time first-passage profile.
+@isnad1 id=tendsto.11h11v.s8.c3f1440fcb58 from=translated src=- shape=cda54b1f vocab=9f9c30b8
+-/
 lemma tendsto_measureReal_firstPassageTime_gt_canonicalTime
     {Ω' : Type*} [MeasurableSpace Ω']
     {P : Measure Ω} {P' : Measure Ω'}
@@ -1150,7 +1286,9 @@ lemma tendsto_measureReal_firstPassageTime_gt_canonicalTime
       hMean hσ hL hq hlevel)
 
 /-- Along a diverging positive-drift scale, the post-floor time is eventually
-at most the one-floor perturbed time and at most one below it. -/
+at most the one-floor perturbed time and at most one below it.
+@isnad1 id=eventual.2h5v.s6.28e6ac7c6a6e from=translated src=- shape=029b94a3 vocab=4cba946a
+-/
 lemma eventually_postFloorTime_bounds
     {L v : ℕ → ℝ} {μ σ a : ℝ}
     (hμ : 0 < μ) (hL : Tendsto L atTop atTop) :
@@ -1167,7 +1305,9 @@ lemma eventually_postFloorTime_bounds
       (canonicalTimeArgument μ σ a L 0 r) (v r) hr
 
 /-- The post-floor observation time diverges under a `sqrt L`-negligible time
-perturbation. -/
+perturbation.
+@isnad1 id=tendsto.3h5v.s6.3a2aa48704cd from=translated src=- shape=e6b92818 vocab=59d18929
+-/
 lemma tendsto_postFloorTime_atTop
     {L v : ℕ → ℝ} {μ σ a : ℝ}
     (hμ : 0 < μ) (hL : Tendsto L atTop atTop)
@@ -1183,7 +1323,9 @@ lemma tendsto_postFloorTime_atTop
   omega
 
 /-- Natural sequences separated by an eventual ordered gap of at most one
-have ratio tending to one when the lower sequence diverges. -/
+have ratio tending to one when the lower sequence diverges.
+@isnad1 id=tendsto.2h2v.s6.8cd51d7f7aa7 from=translated src=- shape=07c44cb7 vocab=f6c00086
+-/
 lemma tendsto_natCast_div_of_unit_gap
     {m n : ℕ → ℕ}
     (hm : Tendsto m atTop atTop)
@@ -1207,7 +1349,9 @@ lemma tendsto_natCast_div_of_unit_gap
       _ = (1 + 1 / (m r : ℝ)) * (m r : ℝ) := by
         field_simp [Nat.cast_ne_zero.mpr hmr.ne']
 
-/-- Square-root ratio form of `tendsto_natCast_div_of_unit_gap`. -/
+/-- Square-root ratio form of `tendsto_natCast_div_of_unit_gap`.
+@isnad1 id=tendsto.2h2v.s6.acf5d9de5fd4 from=translated src=- shape=a7287f6d vocab=7dd1414f
+-/
 lemma tendsto_sqrt_natCast_div_of_unit_gap
     {m n : ℕ → ℕ}
     (hm : Tendsto m atTop atTop)
@@ -1220,7 +1364,9 @@ lemma tendsto_sqrt_natCast_div_of_unit_gap
     Real.sqrt_one] using hsqrt
 
 /-- An eventual ordered unit gap is negligible on the square-root scale of
-the lower diverging sequence. -/
+the lower diverging sequence.
+@isnad1 id=tendsto.2h2v.s6.db9f7325334b from=translated src=- shape=fc753d83 vocab=f700cf36
+-/
 lemma tendsto_natCast_sub_div_sqrt_of_unit_gap
     {m n : ℕ → ℕ}
     (hm : Tendsto m atTop atTop)
@@ -1243,7 +1389,9 @@ lemma tendsto_natCast_sub_div_sqrt_of_unit_gap
     linarith
 
 /-- The paper's post-floor time convention has the same centered asymptotic as
-the corresponding one-floor canonical time. -/
+the corresponding one-floor canonical time.
+@isnad1 id=tendsto.5h6v.s7.7a2a3dac2701 from=translated src=- shape=12f7321d vocab=5b0208f1
+-/
 lemma tendsto_postFloorTime_centered
     {L Ltilde v : ℕ → ℝ} {μ σ a : ℝ}
     (hμ : 0 < μ) (hσ : 0 < σ)
@@ -1300,7 +1448,9 @@ lemma tendsto_postFloorTime_centered
   ring
 
 /-- A fixed shift of a moving level is negligible after normalization by the
-square root of a diverging reference level. -/
+square root of a diverging reference level.
+@isnad1 id=tendsto.2h3v.s6.68ecf0d0218d from=translated src=- shape=4cf35ae2 vocab=480c8059
+-/
 lemma tendsto_level_sub_const_div_sqrt
     (L Ltilde : ℕ → ℝ) (B : ℝ)
     (hL : Tendsto L atTop atTop)
@@ -1319,7 +1469,9 @@ lemma tendsto_level_sub_const_div_sqrt
   · norm_num
 
 /-- The iterated square root is a diverging scale negligible compared with
-the square root of the original diverging scale. -/
+the square root of the original diverging scale.
+@isnad1 id=tendsto.1h1v.s5.1bb1cd77c6bb from=translated src=- shape=c966186e vocab=c74a01bf
+-/
 lemma tendsto_sqrt_sqrt_div_sqrt_of_tendsto_atTop
     (L : ℕ → ℝ) (hL : Tendsto L atTop atTop) :
     Tendsto (fun r ↦ Real.sqrt (Real.sqrt (L r)) / Real.sqrt (L r))
@@ -1341,7 +1493,9 @@ lemma tendsto_sqrt_sqrt_div_sqrt_of_tendsto_atTop
     _ = Real.sqrt (Real.sqrt (L r)) / Real.sqrt (L r) := by rw [hsquare]
 
 /-- First-passage profile for the paper's post-floor time perturbation
-convention. -/
+convention.
+@isnad1 id=tendsto.11h11v.s8.55e0a75b69e9 from=translated src=- shape=cda54b1f vocab=727c170c
+-/
 lemma tendsto_measureReal_firstPassageTime_gt_postFloorTime
     {Ω' : Type*} [MeasurableSpace Ω']
     {P : Measure Ω} {P' : Measure Ω'}
@@ -1384,7 +1538,9 @@ lemma tendsto_measureReal_firstPassageTime_gt_postFloorTime
 
 omit [MeasurableSpace Ω] in
 /-- Compare two weak hitting times when hitting the second target at any time
-forces the first target to be hit at that same time. -/
+forces the first target to be hit at that same time.
+@isnad1 id=le.1h7v.s6.91f1500496d7 from=translated src=- shape=45e1162a vocab=d02c840d
+-/
 lemma hittingAfter_le_hittingAfter_of_mem_imp
     {β : Type*} {u v : ℕ → Ω → β} {s t : Set β} {ω : Ω}
     (hmem : ∀ i, v i ω ∈ t → u i ω ∈ s) :
@@ -1410,7 +1566,9 @@ noncomputable def correctedFirstPassageTime
 
 omit [MeasurableSpace Ω] in
 /-- Corrected survival through time `n` means that every corrected partial sum
-through `n` remains strictly below the weak-passage level. -/
+through `n` remains strictly below the weak-passage level.
+@isnad1 id=iff.0h6v.s6.86d877c76e6a from=translated src=- shape=2127e25e vocab=ac04c67c
+-/
 lemma correctedFirstPassageTime_gt_iff
     (X E : ℕ → Ω → ℝ) (u : ℝ) (n : ℕ) (ω : Ω) :
     (n : WithTop ℕ) < correctedFirstPassageTime X E u ω ↔
@@ -1432,7 +1590,9 @@ lemma correctedFirstPassageTime_gt_iff
       (s := Set.Ici u) (n := 0) (i := n) (ω := ω)).mp hle
     exact (not_lt_of_ge hku) (hpath k hk.2)
 
-/-- Measurability of a finite-time corrected survival event. -/
+/-- Measurability of a finite-time corrected survival event.
+@isnad1 id=measurab.2h5v.s6.555e12220e89 from=translated src=- shape=93f7a43c vocab=a2aa2e41
+-/
 lemma measurableSet_correctedFirstPassageTime_gt
     (X E : ℕ → Ω → ℝ)
     (hX : ∀ j, Measurable (X j)) (hE : ∀ j, Measurable (E j))
@@ -1453,7 +1613,9 @@ lemma measurableSet_correctedFirstPassageTime_gt
 
 omit [MeasurableSpace Ω] in
 /-- An upper bound `E_n ≤ B` delays uncorrected passage above `u - B` no
-later than corrected passage above `u`. -/
+later than corrected passage above `u`.
+@isnad1 id=le.1h6v.s5.4f3b84eddc53 from=translated src=- shape=fc1f7e63 vocab=c4a12e79
+-/
 lemma firstPassageTime_sub_le_correctedFirstPassageTime
     (X E : ℕ → Ω → ℝ) (u B : ℝ) (ω : Ω)
     (hE : ∀ n, E n ω ≤ B) :
@@ -1466,7 +1628,9 @@ lemma firstPassageTime_sub_le_correctedFirstPassageTime
 
 omit [MeasurableSpace Ω] in
 /-- A nonnegative correction makes corrected passage occur no later than
-uncorrected passage at the same level. -/
+uncorrected passage at the same level.
+@isnad1 id=le.1h5v.s5.a6a6058de6be from=translated src=- shape=563d0dcc vocab=3155aeff
+-/
 lemma correctedFirstPassageTime_le_firstPassageTime
     (X E : ℕ → Ω → ℝ) (u : ℝ) (ω : Ω)
     (hE : ∀ n, 0 ≤ E n ω) :
@@ -1479,7 +1643,9 @@ lemma correctedFirstPassageTime_le_firstPassageTime
 
 omit [MeasurableSpace Ω] in
 /-- Pathwise corrected-passage sandwich on any path where the correction lies
-between zero and `B`. -/
+between zero and `B`.
+@isnad1 id=and.2h6v.s6.1cb41e56bf60 from=translated src=- shape=b8dc34a5 vocab=c4a12e79
+-/
 lemma correctedFirstPassageTime_sandwich
     (X E : ℕ → Ω → ℝ) (u B : ℝ) (ω : Ω)
     (hE0 : ∀ n, 0 ≤ E n ω) (hEB : ∀ n, E n ω ≤ B) :
@@ -1497,7 +1663,9 @@ def correctionGoodEvent (E : ℕ → Ω → ℝ) (Einf : Ω → ℝ) : Set Ω :=
 
 omit [MeasurableSpace Ω] in
 /-- Corrected survival is contained in uncorrected survival at the same level,
-up to failure of the common correction event. -/
+up to failure of the common correction event.
+@isnad1 id=le.0h6v.s6.2e917509423f from=translated src=- shape=5210ff6e vocab=300e9896
+-/
 lemma correctedSurvival_subset_firstPassage_survival_union_compl
     (X E : ℕ → Ω → ℝ) (Einf : Ω → ℝ) (u : ℝ) (n : ℕ) :
     {ω | (n : WithTop ℕ) < correctedFirstPassageTime X E u ω} ⊆
@@ -1512,7 +1680,9 @@ lemma correctedSurvival_subset_firstPassage_survival_union_compl
 
 omit [MeasurableSpace Ω] in
 /-- Uncorrected survival at level `u - B` is contained in corrected survival at
-`u`, up to the envelope tail and failure of the common correction event. -/
+`u`, up to the envelope tail and failure of the common correction event.
+@isnad1 id=le.0h7v.s6.a18311bd76ff from=translated src=- shape=59ab1b04 vocab=fdb8fa0a
+-/
 lemma firstPassage_survival_subset_correctedSurvival_union_tail_union_compl
     (X E : ℕ → Ω → ℝ) (Einf : Ω → ℝ) (u B : ℝ) (n : ℕ) :
     {ω | (n : WithTop ℕ) < firstPassageTime X (u - B) ω} ⊆
@@ -1528,7 +1698,9 @@ lemma firstPassage_survival_subset_correctedSurvival_union_tail_union_compl
   · exact Or.inr hgood
 
 /-- Probability sandwich for corrected survival when the common correction
-event has full measure. -/
+event has full measure.
+@isnad1 id=and.1h8v.s7.9d14890bb121 from=translated src=- shape=5492772d vocab=3579f2ea
+-/
 lemma measureReal_correctedSurvival_sandwich
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     (X E : ℕ → Ω → ℝ) (Einf : Ω → ℝ) (u B : ℝ) (n : ℕ)
@@ -1589,7 +1761,9 @@ lemma measureReal_correctedSurvival_sandwich
   · exact hupper
 
 /-- The real measure of the strict upper tail of a measurable real-valued
-function vanishes as the threshold tends to infinity. -/
+function vanishes as the threshold tends to infinity.
+@isnad1 id=tendsto.1h3v.s5.7766bb638b6a from=translated src=- shape=f398ad35 vocab=292314f4
+-/
 lemma tendsto_measureReal_upperTail_atTop
     {μ : Measure Ω} [IsFiniteMeasure μ] (f : Ω → ℝ) (hf : Measurable f) :
     Tendsto (fun B : ℝ ↦ μ.real {ω | B < f ω}) atTop (nhds 0) := by
@@ -1612,7 +1786,9 @@ lemma tendsto_measureReal_upperTail_atTop
     (ENNReal.tendsto_toReal (by simp)).comp hmeasure
 
 /-- First-passage profile for partial sums with a nonnegative correction that
-is almost surely bounded by a measurable real-valued envelope. -/
+is almost surely bounded by a measurable real-valued envelope.
+@isnad1 id=tendsto.13h13v.s9.167a0d2444c9 from=translated src=- shape=83e5165c vocab=a87c3c8b
+-/
 lemma tendsto_measureReal_correctedFirstPassageTime_gt_postFloorTime
     {Ω' : Type*} [MeasurableSpace Ω']
     {P : Measure Ω} {P' : Measure Ω'}

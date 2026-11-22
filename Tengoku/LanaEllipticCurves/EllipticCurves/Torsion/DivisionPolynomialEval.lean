@@ -96,6 +96,9 @@ transported along the definitional equality `R[W] = AdjoinRoot W.polynomial`, an
 noncomputable def evalEvalHom (h : W.Equation x y) : W.CoordinateRing →+* R :=
   AdjoinRoot.evalEval h
 
+/--
+@isnad1 id=eq.1h5v.s8.d98096612540 from=translated src=- shape=c5784ff6 vocab=9de00bfe
+-/
 @[simp]
 lemma evalEvalHom_mk (h : W.Equation x y) (g : R[X][Y]) :
     evalEvalHom h (mk W g) = g.evalEval x y :=
@@ -106,13 +109,17 @@ end CoordinateRing
 section Eval
 
 /-- The bivariate `n`-division polynomial `ψₙ` and the polynomial `Ψₙ` agree when evaluated at a
-point `(x, y)` of `W`, since they define the same class in the coordinate ring. -/
+point `(x, y)` of `W`, since they define the same class in the coordinate ring.
+@isnad1 id=eq.1h5v.s5.c5e5a98b7f5d from=translated src=- shape=953160fe vocab=2753c34f
+-/
 lemma ψ_evalEval (h : W.Equation x y) (n : ℤ) : (W.ψ n).evalEval x y = (W.Ψ n).evalEval x y := by
   have H := congrArg (CoordinateRing.evalEvalHom h) (CoordinateRing.mk_ψ W n)
   rwa [CoordinateRing.evalEvalHom_mk, CoordinateRing.evalEvalHom_mk] at H
 
 /-- The square of the `n`-division polynomial `ψₙ` at a point `(x, y)` of `W` depends only on the
-`x`-coordinate: it equals the univariate polynomial `ΨSqₙ` evaluated at `x`. -/
+`x`-coordinate: it equals the univariate polynomial `ΨSqₙ` evaluated at `x`.
+@isnad1 id=eq.1h5v.s6.9d499e87f2e5 from=translated src=- shape=9d2cc7e1 vocab=9ad489ca
+-/
 lemma ψ_sq_evalEval (h : W.Equation x y) (n : ℤ) :
     (W.ψ n).evalEval x y ^ 2 = (W.ΨSq n).eval x := by
   have H := congrArg (CoordinateRing.evalEvalHom h) (CoordinateRing.mk_Ψ_sq W n)
@@ -120,13 +127,17 @@ lemma ψ_sq_evalEval (h : W.Equation x y) (n : ℤ) :
   rw [ψ_evalEval h, H]
 
 /-- The square of `Ψₙ` at a point `(x, y)` of `W` equals the univariate polynomial `ΨSqₙ` evaluated
-at `x`. -/
+at `x`.
+@isnad1 id=eq.1h5v.s6.8dff0b7a0b97 from=translated src=- shape=9d2cc7e1 vocab=1a2f3eaf
+-/
 lemma Ψ_sq_evalEval (h : W.Equation x y) (n : ℤ) :
     (W.Ψ n).evalEval x y ^ 2 = (W.ΨSq n).eval x := by
   rw [← ψ_evalEval h, ψ_sq_evalEval h]
 
 /-- The bivariate polynomial `φₙ` at a point `(x, y)` of `W` depends only on the `x`-coordinate: it
-equals the univariate polynomial `Φₙ` evaluated at `x`. -/
+equals the univariate polynomial `Φₙ` evaluated at `x`.
+@isnad1 id=eq.1h5v.s5.d68162309086 from=translated src=- shape=57c41839 vocab=af69eb1e
+-/
 lemma φ_evalEval (h : W.Equation x y) (n : ℤ) : (W.φ n).evalEval x y = (W.Φ n).eval x := by
   have H := congrArg (CoordinateRing.evalEvalHom h) (CoordinateRing.mk_φ W n)
   rwa [CoordinateRing.evalEvalHom_mk, CoordinateRing.evalEvalHom_mk, evalEval_C] at H
@@ -135,15 +146,21 @@ end Eval
 
 section BaseCases
 
-/-- The `0`-division polynomial vanishes at every point: `ψ₀(x, y) = 0`. -/
+/-- The `0`-division polynomial vanishes at every point: `ψ₀(x, y) = 0`.
+@isnad1 id=eq.0h4v.s5.6b2692074053 from=translated src=- shape=063821f8 vocab=84d11a08
+-/
 lemma ψ_zero_evalEval : (W.ψ 0).evalEval x y = 0 := by
   rw [ψ_zero, evalEval_zero]
 
-/-- The `1`-division polynomial is the constant `1`: `ψ₁(x, y) = 1`. -/
+/-- The `1`-division polynomial is the constant `1`: `ψ₁(x, y) = 1`.
+@isnad1 id=eq.0h4v.s5.c0c84948f1f0 from=translated src=- shape=063821f8 vocab=84d11a08
+-/
 lemma ψ_one_evalEval : (W.ψ 1).evalEval x y = 1 := by
   rw [ψ_one, evalEval_one]
 
-/-- The `2`-division polynomial at a point: `ψ₂(x, y) = 2y + a₁x + a₃`. -/
+/-- The `2`-division polynomial at a point: `ψ₂(x, y) = 2y + a₁x + a₃`.
+@isnad1 id=eq.0h4v.s6.933d262c4615 from=translated src=- shape=2ce21865 vocab=1b12975f
+-/
 lemma ψ_two_evalEval : (W.ψ 2).evalEval x y = 2 * y + W.a₁ * x + W.a₃ := by
   rw [ψ_two]
   exact evalEval_polynomialY x y
@@ -173,7 +190,9 @@ neither closes by `ring`.
 ⚠️ Both consumers named above are **forward references**: they import this file and neither is in
 its import closure, so nothing here depends on them.  The lemma needs only
 `WeierstrassCurve.b_relation`, which lives in Mathlib's `Weierstrass.lean` — already in this file's
-closure — so it costs this leaf no import. -/
+closure — so it costs this leaf no import.
+@isnad1 id=eq.0h2v.s9.ca3c75103919 from=translated src=- shape=855fc3d8 vocab=73222b6a
+-/
 lemma C_b_relation {R : Type*} [CommRing R] (W : WeierstrassCurve R) :
     (4 : R[X]) * C W.b₈ = C W.b₂ * C W.b₆ - C W.b₄ ^ 2 := by
   simpa [map_ofNat] using congrArg C W.b_relation

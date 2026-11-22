@@ -41,6 +41,9 @@ def RingEquiv.idealMulEquiv (e : R ≃+* S) : Ideal R ≃* Ideal S :=
   { e.idealComapOrderIso.symm.toEquiv with
     map_mul' := fun I J => Ideal.map_mul e I J }
 
+/--
+@isnad1 id=eq.0h4v.s8.435a908c6fb6 from=translated src=- shape=0ef9afd6 vocab=7b52c563
+-/
 @[simp]
 lemma RingEquiv.idealMulEquiv_apply (e : R ≃+* S) (I : Ideal R) :
     e.idealMulEquiv I = I.map e := rfl
@@ -59,6 +62,9 @@ def map (e : R ≃+* S) (v : HeightOneSpectrum R) : HeightOneSpectrum S where
     exact v.ne_bot
 
 omit [IsDedekindDomain R] [IsDedekindDomain S] in
+/--
+@isnad1 id=eq.0h4v.s7.9bd8123ee6b6 from=translated src=- shape=9c594b3f vocab=777c64b7
+-/
 @[simp]
 lemma asIdeal_map (e : R ≃+* S) (v : HeightOneSpectrum R) :
     (v.map e).asIdeal = Ideal.map e v.asIdeal := rfl
@@ -77,16 +83,24 @@ def mapEquiv (e : R ≃+* S) : HeightOneSpectrum R ≃ HeightOneSpectrum S where
       Ideal.comap_map_of_bijective _ e.symm.bijective]
 
 omit [IsDedekindDomain R] [IsDedekindDomain S] in
+/--
+@isnad1 id=eq.0h4v.s7.4b08c3dc5a3e from=translated src=- shape=c66307b0 vocab=67428dde
+-/
 @[simp]
 lemma mapEquiv_asIdeal (e : R ≃+* S) (v : HeightOneSpectrum R) :
     (mapEquiv e v).asIdeal = Ideal.map e v.asIdeal := rfl
 
 omit [IsDedekindDomain R] [IsDedekindDomain S] in
+/--
+@isnad1 id=eq.0h3v.s6.5c8b84065dd2 from=translated src=- shape=cc46f98d vocab=01f21b78
+-/
 @[simp]
 lemma mapEquiv_symm (e : R ≃+* S) : (mapEquiv e).symm = mapEquiv e.symm := rfl
 
 /-- The adic valuation is transported by `mapEquiv`: the `mapEquiv e v`-adic valuation of `e r`
-equals the `v`-adic valuation of `r`. -/
+equals the `v`-adic valuation of `r`.
+@isnad1 id=eq.0h5v.s8.55f31ded0787 from=translated src=- shape=ea730017 vocab=090d10e1
+-/
 theorem intValuation_mapEquiv (e : R ≃+* S) (v : HeightOneSpectrum R) (r : R) :
     (mapEquiv e v).intValuation (e r) = v.intValuation r := by
   obtain rfl | hr := eq_or_ne r 0

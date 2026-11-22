@@ -70,7 +70,9 @@ secant case: the affine third-intersection `x`-coordinate `addX = X₃ = xParam 
 (`t = thirdRootNum`) has a pole (`1 < v(xParam t)` for `t ≠ 0`), which is exactly the
 `ReducesToZero` condition.  The
 excluded distinctness failures `X₃ ∈ {x₁, x₂}` are the degenerate `2P + Q = O` / `P + 2Q = O`
-configurations, where closure holds by `reducesToZero_neg` instead. -/
+configurations, where closure holds by `reducesToZero_neg` instead.
+@isnad1 id=reducest.8h7v.s9.a2665b85324f from=translated src=- shape=7632edd0 vocab=400f9474
+-/
 theorem reducesToZero_add_of_X_ne_of_distinct [W.IsElliptic]
     {x₁ y₁ : K} {h₁ : W.toAffine.Nonsingular x₁ y₁} (hR1 : ReducesToZero R W (.some x₁ y₁ h₁))
     {x₂ y₂ : K} {h₂ : W.toAffine.Nonsingular x₂ y₂} (hR2 : ReducesToZero R W (.some x₂ y₂ h₂))
@@ -138,7 +140,9 @@ open Classical in
 `x₁ ≠ x₂` and `X₃ ∉ {x₁, x₂}`, `localParam (P + Q) = z(P) ⊕ z(Q)` in `K` — the merged
 `localParam_add_of_X_ne_of_distinct` with its `ReducesToZero (P + Q)` hypothesis supplied by
 `reducesToZero_add_of_X_ne_of_distinct`.  The only remaining hypotheses are the honest secant
-geometry (`x₁ ≠ x₂`, `X₃ ∉ {x₁, x₂}`). -/
+geometry (`x₁ ≠ x₂`, `X₃ ∉ {x₁, x₂}`).
+@isnad1 id=eq.8h7v.s9.80f917d4073e from=translated src=- shape=fab1a6a9 vocab=582d8d0a
+-/
 theorem localParam_add_secant_of_distinct [W.IsElliptic]
     {x₁ y₁ : K} {h₁ : W.toAffine.Nonsingular x₁ y₁} (hR1 : ReducesToZero R W (.some x₁ y₁ h₁))
     {x₂ y₂ : K} {h₂ : W.toAffine.Nonsingular x₂ y₂} (hR2 : ReducesToZero R W (.some x₂ y₂ h₂))

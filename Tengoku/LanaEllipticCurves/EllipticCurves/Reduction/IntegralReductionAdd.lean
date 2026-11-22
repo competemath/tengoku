@@ -79,7 +79,9 @@ open Classical in
 /-- **Additivity of `redPt` on the good-reduction locus.**  If `P = (x₁, y₁)` and `Q = (x₂, y₂)` are
 both integral (`v xᵢ ≤ 1`), then `redPt (P + Q) = redPt P + redPt Q`.  The proof dispatches on the
 configuration of the reduced points `P̄, Q̄` (equal/distinct reduced `x`, vertical, `2`-torsion) to
-the corresponding rung lemma. -/
+the corresponding rung lemma.
+@isnad1 id=eq.4h7v.s9.49e33113fd47 from=translated src=- shape=dd5213a7 vocab=ef3d4803
+-/
 theorem redPt_add_of_both_integral (W : WeierstrassCurve K) [HasGoodReduction R W]
     {x₁ y₁ x₂ y₂ : K} {h₁ : W.toAffine.Nonsingular x₁ y₁} {h₂ : W.toAffine.Nonsingular x₂ y₂}
     (hvx₁ : valuation K (maximalIdeal R) x₁ ≤ 1) (hvx₂ : valuation K (maximalIdeal R) x₂ ≤ 1) :

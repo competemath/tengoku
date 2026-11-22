@@ -887,7 +887,9 @@ Over an integral domain, a sequence that is odd, has `W 0 = 0`, `W 1 = 1` and `W
 satisfies the two two-term relators together with the diagonal slice, satisfies the whole `r = 1`
 relation. Proved by strong induction on `|p| + |q|`, using the four parity certificates above; the
 factor `W 2 ^ j` each certificate carries is cancelled in the domain, which is the only place
-`IsDomain` and `W 2 ≠ 0` are used. -/
+`IsDomain` and `W 2 ≠ 0` are used.
+@isnad1 id=eq.7h4v.s8.1a3239d407b4 from=translated src=- shape=d7556715 vocab=76bb782b
+-/
 theorem rel_one_of_rec [IsDomain R] {W : ℤ → R}
     (hodd : W.Odd) (hzero : W 0 = 0) (h1 : W 1 = 1) (h2 : W 2 ≠ 0)
     (hrec1 : ∀ m : ℤ, rel W (m + 1) m 1 0 = 0)
@@ -1002,7 +1004,9 @@ there, which is the whole reason the induction is run over the universal ring. -
 private lemma normEDS_univ_two_ne_zero : normEDS (X 0 : UnivEDS) (X 1) (X 2) 2 ≠ 0 := by simp
 
 /-- **Ward's `r = 1` addition formula over the universal ring `UnivEDS = ℤ[X₀, X₁, X₂]`,
-unconditionally.** -/
+unconditionally.**
+@isnad1 id=eq.0h2v.s7.f3b708c4d07a from=translated src=- shape=05876702 vocab=a4a34c84
+-/
 theorem normEDS_rel_one_univ (p q : ℤ) :
     IsEllipticNet.rel (normEDS (X 0 : UnivEDS) (X 1) (X 2)) p q 1 0 = 0 :=
   IsEllipticNet.rel_one_of_rec (normEDS_odd_fun (X 0 : UnivEDS) (X 1) (X 2))
@@ -1013,26 +1017,34 @@ theorem normEDS_rel_one_univ (p q : ℤ) :
 /-- **`WardGapCore` holds.** The gap `≥ 3` core isolated by
 `EllipticCurves.Torsion.WardR1Core` is discharged; every statement in that file conditional on it
 is therefore unconditional, and the versions below are those statements with the hypothesis fed
-in. -/
+in.
+@isnad1 id=wardgapc.0h0v.s0.f387e8ed8984 from=translated src=- shape=45709ebd vocab=f387e8ed
+-/
 theorem wardGapCore : WardGapCore := fun a b _ _ => normEDS_rel_one_univ (a : ℤ) (b : ℤ)
 
 section Transfer
 
 variable {R : Type*} [CommRing R] (b c d : R)
 
-/-- **Ward's `r = 1` addition formula over an arbitrary `CommRing`, unconditionally.** -/
+/-- **Ward's `r = 1` addition formula over an arbitrary `CommRing`, unconditionally.**
+@isnad1 id=eq.0h6v.s5.58375a96674c from=translated src=- shape=247190df vocab=ae91c412
+-/
 theorem normEDS_rel_one (p q : ℤ) : IsEllipticNet.rel (normEDS b c d) p q 1 0 = 0 :=
   normEDS_rel_one_of_gapCore b c d wardGapCore p q
 
 /-- **`normEDS b c d` is an elliptic sequence**, at every `r`, over an arbitrary `CommRing`. This is
 the `IsEllipticSequence` half of Mathlib's `IsEllipticDvdSequence` `TODO`; the `IsDvdSequence` half
-is not proved here. -/
+is not proved here.
+@isnad1 id=isellipt.0h4v.s4.d94d1e8949cd from=translated src=- shape=c50995b3 vocab=5152c184
+-/
 theorem normEDS_isEllipticSequence : IsEllipticSequence (normEDS b c d) :=
   normEDS_isEllipticSequence_of_gapCore b c d wardGapCore
 
 /-- **`normEDS b c d` is an elliptic net**: `rel (normEDS b c d) p q r s = 0` at every `s`, not only
 at `s = 0`.  The `s ≠ 0` layer is `EllipticCurves.Torsion.EllipticNetSlices`, which shows it is not
-additional content once the `s = 0` layer is available. -/
+additional content once the `s = 0` layer is available.
+@isnad1 id=isellipt.0h4v.s4.d40b1d1e62e6 from=translated src=- shape=c50995b3 vocab=7518ccb7
+-/
 theorem normEDS_isEllipticNet : IsEllipticNet (normEDS b c d) :=
   normEDS_isEllipticNet_of_gapCore b c d wardGapCore
 
@@ -1042,31 +1054,43 @@ namespace Affine
 
 variable {R : Type*} [CommRing R] (W : Affine R)
 
-/-- Ward's `r = 1` addition formula for the division polynomials `W.ψ`, in `R[X][Y]`. -/
+/-- Ward's `r = 1` addition formula for the division polynomials `W.ψ`, in `R[X][Y]`.
+@isnad1 id=eq.0h4v.s6.410590e4d5d6 from=translated src=- shape=724c4498 vocab=ac71d836
+-/
 theorem ψ_rel_one (p q : ℤ) : IsEllipticNet.rel W.ψ p q 1 0 = 0 :=
   ψ_rel_one_of_gapCore W wardGapCore p q
 
-/-- **The division polynomials of a Weierstrass curve form an elliptic sequence.** -/
+/-- **The division polynomials of a Weierstrass curve form an elliptic sequence.**
+@isnad1 id=isellipt.0h2v.s5.dd5820bbade7 from=translated src=- shape=f3151a31 vocab=63dc0343
+-/
 theorem ψ_isEllipticSequence : IsEllipticSequence W.ψ :=
   ψ_isEllipticSequence_of_gapCore W wardGapCore
 
-/-- **The division polynomials of a Weierstrass curve form an elliptic net**, at every `s`. -/
+/-- **The division polynomials of a Weierstrass curve form an elliptic net**, at every `s`.
+@isnad1 id=isellipt.0h2v.s5.9ed34b7f2977 from=translated src=- shape=f3151a31 vocab=d54fb8e7
+-/
 theorem ψ_isEllipticNet : IsEllipticNet W.ψ :=
   ψ_isEllipticNet_of_gapCore W wardGapCore
 
 variable {x y : R}
 
-/-- Ward's `r = 1` addition formula among the point-values `n ↦ ψₙ(x, y)`. -/
+/-- Ward's `r = 1` addition formula among the point-values `n ↦ ψₙ(x, y)`.
+@isnad1 id=eq.0h6v.s5.bee119702f7f from=translated src=- shape=e4bb19be vocab=6970b70d
+-/
 theorem ψ_rel_one_evalEval (p q : ℤ) :
     IsEllipticNet.rel (fun n ↦ (W.ψ n).evalEval x y) p q 1 0 = 0 :=
   ψ_rel_one_evalEval_of_gapCore W wardGapCore p q
 
-/-- **The point-values of the division polynomials form an elliptic sequence.** -/
+/-- **The point-values of the division polynomials form an elliptic sequence.**
+@isnad1 id=isellipt.0h4v.s4.24172008d2c6 from=translated src=- shape=14785c28 vocab=de155347
+-/
 theorem ψ_isEllipticSequence_evalEval :
     IsEllipticSequence (fun n ↦ (W.ψ n).evalEval x y) :=
   ψ_isEllipticSequence_evalEval_of_gapCore W wardGapCore
 
-/-- **The point-values of the division polynomials form an elliptic net**, at every `s`. -/
+/-- **The point-values of the division polynomials form an elliptic net**, at every `s`.
+@isnad1 id=isellipt.0h4v.s4.8a1129d3a0a2 from=translated src=- shape=14785c28 vocab=6299c5a3
+-/
 theorem ψ_isEllipticNet_evalEval : IsEllipticNet (fun n ↦ (W.ψ n).evalEval x y) :=
   ψ_isEllipticNet_evalEval_of_gapCore W wardGapCore
 

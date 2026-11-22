@@ -64,7 +64,9 @@ noncomputable def fgAdd (a b : PowerSeries R) : PowerSeries R :=
   F.toPowerSeries.subst ![a, b]
 
 /-- `![a, b]` has the substitution admissibility needed to substitute into `F`, provided `a` and `b`
-have zero constant coefficient. -/
+have zero constant coefficient.
+@isnad1 id=hassubst.2h3v.s7.593a494843da from=translated src=- shape=d578688c vocab=45895318
+-/
 theorem hasSubst_cons {a b : PowerSeries R} (ha : PowerSeries.constantCoeff a = 0)
     (hb : PowerSeries.constantCoeff b = 0) :
     MvPowerSeries.HasSubst ![a, b] := by
@@ -74,7 +76,9 @@ theorem hasSubst_cons {a b : PowerSeries R} (ha : PowerSeries.constantCoeff a = 
   fin_cases s <;> simp [ha', hb']
 
 /-- The formal-group sum of two series of zero constant coefficient again has zero constant
-coefficient. -/
+coefficient.
+@isnad1 id=eq.2h4v.s7.a9df54b3e585 from=translated src=- shape=94353f86 vocab=f8d5be6b
+-/
 @[simp]
 theorem constantCoeff_fgAdd {a b : PowerSeries R} (ha : PowerSeries.constantCoeff a = 0)
     (hb : PowerSeries.constantCoeff b = 0) :
@@ -87,7 +91,9 @@ theorem constantCoeff_fgAdd {a b : PowerSeries R} (ha : PowerSeries.constantCoef
   fin_cases s <;> simp [ha', hb']
 
 /-- If `a`, `b` have zero constant term and `2 ≤ m + k`, then the degree-1 coefficient of
-`a ^ m * b ^ k` vanishes: the product is divisible by `X²` (since `X ∣ a` and `X ∣ b`). -/
+`a ^ m * b ^ k` vanishes: the product is divisible by `X²` (since `X ∣ a` and `X ∣ b`).
+@isnad1 id=eq.3h5v.s8.32c8caea6d39 from=translated src=- shape=92890b1b vocab=f98af196
+-/
 theorem coeff_one_pow_mul_pow {a b : PowerSeries R} (ha : PowerSeries.constantCoeff a = 0)
     (hb : PowerSeries.constantCoeff b = 0) {m k : ℕ} (h : 2 ≤ m + k) :
     PowerSeries.coeff 1 (a ^ m * b ^ k) = 0 := by
@@ -101,7 +107,9 @@ theorem coeff_one_pow_mul_pow {a b : PowerSeries R} (ha : PowerSeries.constantCo
 /-- **Linear coefficient of the formal-group sum.**  Because `F(X, Y) = X + Y + (deg ≥ 2)` and
 `a`, `b` have order `≥ 1`, only the linear terms `X` and `Y` of `F` (coefficients `1`, by
 `lin_coeff_X`/`lin_coeff_Y`) contribute to the degree-1 coefficient of `F(a, b)`; the degree `≥ 2`
-monomials of `F` produce order `≥ 2` when `a`, `b` are substituted. -/
+monomials of `F` produce order `≥ 2` when `a`, `b` are substituted.
+@isnad1 id=eq.2h4v.s9.337613785e59 from=translated src=- shape=1139c2c4 vocab=231fb38e
+-/
 theorem coeff_one_fgAdd {a b : PowerSeries R} (ha : PowerSeries.constantCoeff a = 0)
     (hb : PowerSeries.constantCoeff b = 0) :
     PowerSeries.coeff (R := R) 1 (F.fgAdd a b) =
@@ -160,11 +168,20 @@ noncomputable def mulByN (F : FormalGroup R) : ℕ → PowerSeries R
   | 0 => 0
   | n + 1 => F.fgAdd (mulByN F n) PowerSeries.X
 
+/--
+@isnad1 id=eq.0h2v.s5.ccaf554c274c from=translated src=- shape=217e3f21 vocab=96b5fa94
+-/
 @[simp]
 theorem mulByN_zero : F.mulByN 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.fb8525c1b039 from=translated src=- shape=f9f77b3d vocab=88c5d8b0
+-/
 theorem mulByN_succ (n : ℕ) : F.mulByN (n + 1) = F.fgAdd (F.mulByN n) PowerSeries.X := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.5648a923a3e9 from=translated src=- shape=9a1f6691 vocab=5de5855b
+-/
 @[simp]
 theorem mulByN_one : F.mulByN 1 = PowerSeries.X := by
   -- `[1](z) = F(0, z) = z` : substituting `0` into the first slot leaves the second unchanged.
@@ -172,14 +189,18 @@ theorem mulByN_one : F.mulByN 1 = PowerSeries.X := by
   unfold fgAdd
   exact F.zero_add PowerSeries.HasSubst.X'
 
-/-- `[n](z)` has zero constant coefficient. -/
+/-- `[n](z)` has zero constant coefficient.
+@isnad1 id=eq.0h3v.s6.a681ae131eb1 from=translated src=- shape=d355250c vocab=a5d945dc
+-/
 @[simp]
 theorem constantCoeff_mulByN (n : ℕ) : PowerSeries.constantCoeff (F.mulByN n) = 0 := by
   induction n with
   | zero => simp [mulByN]
   | succ k ih => rw [mulByN_succ]; exact F.constantCoeff_fgAdd ih PowerSeries.constantCoeff_X
 
-/-- **The linear coefficient of `[n](z)` is `n`.**  Hence `[n](z) = n·z + O(z²)`. -/
+/-- **The linear coefficient of `[n](z)` is `n`.**  Hence `[n](z) = n·z + O(z²)`.
+@isnad1 id=eq.0h3v.s7.e3e9488486af from=translated src=- shape=f1518d9a vocab=3bde9732
+-/
 @[simp]
 theorem coeff_one_mulByN (n : ℕ) : PowerSeries.coeff (R := R) 1 (F.mulByN n) = (n : R) := by
   induction n with
@@ -190,7 +211,9 @@ theorem coeff_one_mulByN (n : ℕ) : PowerSeries.coeff (R := R) 1 (F.mulByN n) =
     push_cast
     ring
 
-/-- `[n](z)` is substitution-admissible. -/
+/-- `[n](z)` is substitution-admissible.
+@isnad1 id=hassubst.0h3v.s4.ed798d92f515 from=translated src=- shape=22a400fe vocab=19c04a33
+-/
 theorem hasSubst_mulByN (n : ℕ) : PowerSeries.HasSubst (F.mulByN n) :=
   PowerSeries.HasSubst.of_constantCoeff_zero' (F.constantCoeff_mulByN n)
 
@@ -206,18 +229,30 @@ This is Mathlib's `substInvOfIsUnit`, applicable because `constantCoeff [n] = 0`
 noncomputable def mulByNInv (hn : IsUnit (n : R)) : PowerSeries R :=
   PowerSeries.substInvOfIsUnit (F.mulByN n) (by rw [F.coeff_one_mulByN]; exact hn)
 
+/--
+@isnad1 id=eq.1h3v.s6.f7ce9845b587 from=translated src=- shape=2c9032be vocab=a178ecaa
+-/
 theorem subst_mulByNInv_right (hn : IsUnit (n : R)) :
     (F.mulByN n).subst (mulByNInv (F := F) hn) = PowerSeries.X :=
   PowerSeries.subst_substInvOfIsUnit_right (F.mulByN n) (F.constantCoeff_mulByN n) _
 
+/--
+@isnad1 id=eq.1h3v.s6.641f52f6d934 from=translated src=- shape=237a11ef vocab=a178ecaa
+-/
 theorem subst_mulByNInv_left (hn : IsUnit (n : R)) :
     (mulByNInv (F := F) hn).subst (F.mulByN n) = PowerSeries.X :=
   PowerSeries.subst_substInvOfIsUnit_left (F.mulByN n) (F.constantCoeff_mulByN n) _
 
+/--
+@isnad1 id=eq.1h3v.s6.0773cd58d058 from=translated src=- shape=f00a3fc4 vocab=0831951c
+-/
 theorem constantCoeff_mulByNInv (hn : IsUnit (n : R)) :
     PowerSeries.constantCoeff (mulByNInv (F := F) hn) = 0 :=
   PowerSeries.constantCoeff_substInvOfIsUnit (F.mulByN n) _
 
+/--
+@isnad1 id=hassubst.1h3v.s5.c6b753d271c2 from=translated src=- shape=e23d5dce vocab=ecb1c86e
+-/
 theorem hasSubst_mulByNInv (hn : IsUnit (n : R)) :
     PowerSeries.HasSubst (mulByNInv (F := F) hn) :=
   PowerSeries.HasSubst.substInvOfIsUnit (F.mulByN n) _
@@ -225,7 +260,9 @@ theorem hasSubst_mulByNInv (hn : IsUnit (n : R)) :
 /-- **Bijectivity of `[n]` under substitution.**  When `(n : R)` is a unit, substitution by `[n]`,
 `s ↦ [n].subst s`, is a bijection of the set of substitution-admissible power series, with inverse
 `s ↦ [n]⁻¹.subst s`.  This is the series-level statement behind the bijectivity of
-`[n] : Ê(𝔪) → Ê(𝔪)`. -/
+`[n] : Ê(𝔪) → Ê(𝔪)`.
+@isnad1 id=and.2h4v.s6.871d1357401b from=translated src=- shape=53af9771 vocab=7607839a
+-/
 theorem subst_mulByN_bijective (hn : IsUnit (n : R)) {s : PowerSeries R}
     (hs : PowerSeries.HasSubst s) :
     (F.mulByN n).subst ((mulByNInv (F := F) hn).subst s) = s ∧

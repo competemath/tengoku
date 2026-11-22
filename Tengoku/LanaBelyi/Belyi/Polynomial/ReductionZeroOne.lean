@@ -43,7 +43,9 @@ namespace Belyi
 
 open Polynomial
 
-/-- Writing a rational number in `(0, 1)` as `m/(m+n)` with `m, n ≥ 1`. -/
+/-- Writing a rational number in `(0, 1)` as `m/(m+n)` with `m, n ≥ 1`.
+@isnad1 id=ex.2h1v.s6.f15be0670fb4 from=translated src=- shape=920b2f6f vocab=29985480
+-/
 lemma exists_eq_num_div_num_add_den {x : ℚ} (h0 : 0 < x) (h1 : x < 1) :
     ∃ m n : ℕ, m ≠ 0 ∧ n ≠ 0 ∧ x = (m : ℚ) / ((m : ℚ) + (n : ℚ)) := by
   have hnum : 0 < x.num := Rat.num_pos.mpr h0
@@ -62,19 +64,34 @@ lemma exists_eq_num_div_num_add_den {x : ℚ} (h0 : 0 < x) (h1 : x < 1) :
 noncomputable def affine (a b : ℚ) : ℚ[X] :=
   C ((b - a)⁻¹) * (X - C a)
 
+/--
+@isnad1 id=eq.0h3v.s5.e42571270507 from=translated src=- shape=0c16e06d vocab=b00cb724
+-/
 lemma affine_eval (a b t : ℚ) : (affine a b).eval t = (t - a) / (b - a) := by
   simp [affine, div_eq_inv_mul]
 
+/--
+@isnad1 id=eq.0h2v.s4.4d5e17371be9 from=translated src=- shape=0925a593 vocab=a21e9882
+-/
 @[simp]
 lemma affine_eval_left (a b : ℚ) : (affine a b).eval a = 0 := by
   simp [affine_eval]
 
+/--
+@isnad1 id=eq.1h2v.s4.667a3dd9a0fe from=translated src=- shape=158e726e vocab=a21e9882
+-/
 lemma affine_eval_right {a b : ℚ} (h : a ≠ b) : (affine a b).eval b = 1 := by
   rw [affine_eval, div_self (sub_ne_zero.mpr (Ne.symm h))]
 
+/--
+@isnad1 id=eq.1h2v.s4.343724fa9bb7 from=translated src=- shape=06216127 vocab=3f9fc64e
+-/
 lemma natDegree_affine {a b : ℚ} (h : a ≠ b) : (affine a b).natDegree = 1 := by
   rw [affine, natDegree_C_mul (inv_ne_zero (sub_ne_zero.mpr (Ne.symm h))), natDegree_X_sub_C]
 
+/--
+@isnad1 id=eq.1h3v.s5.8792880b0178 from=translated src=- shape=e7a8f383 vocab=9ddb3229
+-/
 lemma critVal_affine (K : Type*) [Field K] [Algebra ℚ K] {a b : ℚ} (h : a ≠ b) :
     critVal K (affine a b) = ∅ := by
   rw [Finset.eq_empty_iff_forall_notMem]
@@ -204,7 +221,9 @@ private lemma reduction_key : ∀ (N : ℕ) (S : Finset ℚ), S.card ≤ N →
 
 /-- **Belyi reduction II** (statement B7 of `references/proof-outline.md`): for every
 finite set `S ⊆ ℚ` there is a non-constant polynomial `g ∈ ℚ[X]` with `g(S) ⊆ {0, 1}`
-all of whose critical values (in any field extension `K` of `ℚ`) lie in `{0, 1}`. -/
+all of whose critical values (in any field extension `K` of `ℚ`) lie in `{0, 1}`.
+@isnad1 id=ex.0h2v.s7.894a1dadb2a1 from=translated src=- shape=5ef59062 vocab=dae334b0
+-/
 theorem exists_eval_mem_and_critVal_mem (S : Finset ℚ) :
     ∃ g : ℚ[X], g.natDegree ≠ 0 ∧
       (∀ s ∈ S, g.eval s = 0 ∨ g.eval s = 1) ∧

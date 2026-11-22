@@ -64,7 +64,9 @@ variable [IsAdicComplete (maximalIdeal R).asIdeal R]
 
 /-- The pole order of the recovered `y`-coordinate: `v(w(z)) = v(z)³`.  Indeed `w(z) = z³ · u(z)`
 with `u(z)` a unit of `R` (`wParam_eq_cube_mul`, `isUnit_adicEval_wCofactor`), and a unit has
-valuation `1` (it lies outside the maximal ideal). -/
+valuation `1` (it lies outside the maximal ideal).
+@isnad1 id=eq.1h4v.s8.bf6b140145f2 from=translated src=- shape=95628d26 vocab=85769642
+-/
 theorem valuation_algebraMap_wParam (W : WeierstrassCurve K) [IsIntegral R W] {z : R}
     (hz : z ∈ (maximalIdeal R).asIdeal) :
     valuation K (maximalIdeal R) (algebraMap R K (wParam R W hz))
@@ -79,7 +81,9 @@ theorem valuation_algebraMap_wParam (W : WeierstrassCurve K) [IsIntegral R W] {z
 
 /-- For a nonzero parameter `z ∈ 𝔪`, the recovered `x`-coordinate has a pole: `1 < v(x(z))`.
 Indeed `v(x(z)) = v(z) / v(z)³ = v(z)⁻²` and `0 < v(z) < 1`, so `v(z)⁻² > 1`.  This is exactly the
-`ReducesToZero` condition, so the recovered point lies in `E₁(K)`. -/
+`ReducesToZero` condition, so the recovered point lies in `E₁(K)`.
+@isnad1 id=lt.2h4v.s8.90789368f877 from=translated src=- shape=fe2889cf vocab=6b5891d3
+-/
 theorem one_lt_valuation_xParam (W : WeierstrassCurve K) [IsIntegral R W] {z : R}
     (hz : z ∈ (maximalIdeal R).asIdeal) (hz0 : z ≠ 0) :
     1 < valuation K (maximalIdeal R) (xParam R W hz) := by
@@ -109,7 +113,9 @@ noncomputable def pointOfParam (W : WeierstrassCurve K) [IsIntegral R W] [W.IsEl
   .some (xParam R W hz) (yParam R W hz)
     (W.toAffine.equation_iff_nonsingular.mp (equation_xParam_yParam R W hz hz0))
 
-/-- The recovered point **reduces to the origin**, i.e. lies in `E₁(K)`. -/
+/-- The recovered point **reduces to the origin**, i.e. lies in `E₁(K)`.
+@isnad1 id=reducest.2h4v.s7.3f51d8ba18bc from=translated src=- shape=2dc8387a vocab=52651285
+-/
 theorem reducesToZero_pointOfParam (W : WeierstrassCurve K) [IsIntegral R W] [W.IsElliptic] {z : R}
     (hz : z ∈ (maximalIdeal R).asIdeal) (hz0 : z ≠ 0) :
     ReducesToZero R W (pointOfParam R W hz hz0) := by
@@ -118,7 +124,9 @@ theorem reducesToZero_pointOfParam (W : WeierstrassCurve K) [IsIntegral R W] [W.
 
 /-- The **local parameter of the recovered point is `z`**: `-x(z)/y(z) = z`.  Because the recovered
 point has a pole (`one_lt_valuation_xParam`), `localParam` takes its genuine `-x/y` branch, which is
-`z` by `localParam_xParam_yParam`. -/
+`z` by `localParam_xParam_yParam`.
+@isnad1 id=eq.2h4v.s7.8ddbfcc21822 from=translated src=- shape=74bd9f0d vocab=ef9ed7f1
+-/
 theorem localParam_pointOfParam (W : WeierstrassCurve K) [IsIntegral R W] [W.IsElliptic] {z : R}
     (hz : z ∈ (maximalIdeal R).asIdeal) (hz0 : z ≠ 0) :
     localParam R W (pointOfParam R W hz hz0) = algebraMap R K z := by
@@ -127,7 +135,9 @@ theorem localParam_pointOfParam (W : WeierstrassCurve K) [IsIntegral R W] [W.IsE
 
 /-- **The section identity.** For a nonzero `z ∈ 𝔪`, the local-parameter map returns `z` on the
 recovered point: `zParam (pointOfParam z) = z`.  Hence `pointOfParam` is a right inverse of `zParam`
-on `𝔪 ∖ {0}`. -/
+on `𝔪 ∖ {0}`.
+@isnad1 id=eq.2h4v.s8.c514eab263cd from=translated src=- shape=599ea40c vocab=e101ce8b
+-/
 theorem zParam_pointOfParam (W : WeierstrassCurve K) [IsIntegral R W] [W.IsElliptic] {z : R}
     (hz : z ∈ (maximalIdeal R).asIdeal) (hz0 : z ≠ 0) :
     zParam R W ⟨pointOfParam R W hz hz0, reducesToZero_pointOfParam R W hz hz0⟩ = ⟨z, hz⟩ := by
@@ -137,7 +147,9 @@ theorem zParam_pointOfParam (W : WeierstrassCurve K) [IsIntegral R W] [W.IsEllip
 
 /-- **Surjectivity of the local parameter.** Every `t ∈ 𝔪` is `z(P)` for some `P ∈ E₁(K)`: the
 origin covers `t = 0`, and `pointOfParam t` covers `t ≠ 0`.  Combined with the injectivity of
-`zParam` (the remaining rung), this gives the set bijection `E₁(K) ≃ 𝔪`. -/
+`zParam` (the remaining rung), this gives the set bijection `E₁(K) ≃ 𝔪`.
+@isnad1 id=surjecti.0h3v.s7.050cbad20414 from=translated src=- shape=ab562da4 vocab=a3f0e2ee
+-/
 theorem zParam_surjective (W : WeierstrassCurve K) [IsIntegral R W] [W.IsElliptic] :
     Function.Surjective (zParam R W) := by
   intro t
