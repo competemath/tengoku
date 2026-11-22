@@ -19,6 +19,9 @@ variable {P : ℝ} [Fact (0 < P)]
   [NormedAddCommGroup V] [NormedSpace ℝ V]
   {D : Data U} {ι : Type*} [Fintype ι]
 
+/--
+@isnad1 id=le.6h16v.s19.4fdffc06a109 from=translated src=- shape=5fbb0c90 vocab=94eb2bd4
+-/
 theorem initial_amplitude_bound
     (S : InitialData P D → C(Icc (0 : ℝ) D.T,CylinderL2 P V))
     (hs : ∀ Y, ContDiff ℝ ∞ (fun a => pathTranslate P a (S Y)))

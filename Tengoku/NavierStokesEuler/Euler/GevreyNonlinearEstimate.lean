@@ -59,7 +59,9 @@ open _root_.MeasureTheory _root_.InnerProductSpace _root_.EulerLiftedGradientSpa
 
 variable (period : ℝ) [Fact (0 < period)]
 
-/-- Uniform bounds on the actual background and coefficient paths give the source's residual-linear-quadratic majorant. -/
+/-- Uniform bounds on the actual background and coefficient paths give the source's residual-linear-quadratic majorant.
+@isnad1 id=le.10h17v.s21.271e9880fad8 from=translated src=- shape=aca9fbae vocab=e7fda786
+-/
 theorem orderZeroSource_uniform {s : ℕ} (hs : 6 ≤ s) (N : ℕ) (hN : N+6 ≤ s)
     (ρ : ℝ) (hρ : 0 < ρ) (L : Fin 4 → Vector3 →L[ℝ] ℝ) (hL : ∀ i, ‖L i‖ ≤ 1)
     (C0 : SmoothCoefficient period) (K0 : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s C0)
@@ -93,7 +95,9 @@ theorem orderZeroSource_uniform {s : ℕ} (hs : 6 ≤ s) (N : ℕ) (hN : N+6 ≤
   exact h.trans (add_le_add (add_le_add hR (mul_le_mul_of_nonneg_right hlin' hE))
     (mul_le_mul_of_nonneg_right hquad (sq_nonneg _)))
 
-/-- The exact scalar assembly of the three already proved nonlinear forcing estimates. -/
+/-- The exact scalar assembly of the three already proved nonlinear forcing estimates.
+@isnad1 id=le.8h14v.s8.f32a262befb3 from=translated src=- shape=83dcb5c9 vocab=cef4cf1d
+-/
 theorem polynomial_assembly (S T D B P B1 A0 A2 R E Y V F H : ℝ)
     (hS : 0 ≤ S) (hT : 0 ≤ T) (hD : 0 ≤ D) (hE : 0 ≤ E) (hY : 0 ≤ Y)
     (hV : V ≤ B+E) (hF : F ≤ R+(P*B1+A0+2*A2*P*B)*E+A2*P*E^2)
@@ -105,7 +109,9 @@ theorem polynomial_assembly (S T D B P B1 A0 A2 R E Y V F H : ℝ)
   exact hH.trans (h.trans_eq (by ring))
 
 /-- All literal forcing terms of the Euler correction have the source's scalar nonlinear majorant.
-Every norm and pressure in the left side is the actual constructed Sobolev object. -/
+Every norm and pressure in the left side is the actual constructed Sobolev object.
+@isnad1 id=other.21h26v.s22.7453dc2ccb99 from=translated src=- shape=7cda957c vocab=dbe9ed00
+-/
 theorem correctionForcing_polynomial {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient period}
     (KG : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (KG0 : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)

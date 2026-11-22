@@ -45,7 +45,9 @@ open scoped Topology
 /-- The value component is correct for supported expressions.
 
     This theorem is FULLY PROVED (no sorry, no axioms) for supported expressions.
-    The `hsupp` hypothesis ensures we only consider expressions in the verified subset. -/
+    The `hsupp` hypothesis ensures we only consider expressions in the verified subset.
+@isnad1 id=mem.2h3v.s5.aeb88bb8ce17 from=translated src=- shape=3b01ddfb vocab=5de9fb05
+-/
 theorem evalDualUnchecked_val_correct (e : Expr) (hsupp : ADSupported e)
     (ρ_real : Nat → ℝ) (ρ_dual : DualEnv)
     (hρ : ∀ i, ρ_real i ∈ (ρ_dual i).val) :
@@ -88,7 +90,9 @@ noncomputable abbrev evalFunc1 (e : Expr) : ℝ → ℝ :=
     This theorem shows that for any supported expression,
     the function `evalFunc1 e` is differentiable.
 
-    FULLY PROVED - no sorry, no axioms. -/
+    FULLY PROVED - no sorry, no axioms.
+@isnad1 id=differen.1h1v.s5.a34e325a306f from=translated src=- shape=2a944c78 vocab=a1665dbb
+-/
 theorem evalFunc1_differentiable (e : Expr) (hsupp : ADSupported e) :
     Differentiable ℝ (evalFunc1 e) := by
   induction hsupp with
@@ -112,27 +116,35 @@ theorem evalFunc1_differentiable (e : Expr) (hsupp : ADSupported e) :
 /-! ### Core derivative correctness micro-lemmas -/
 
 /-- Real.cos y is always in cosInterval I (which is [-1, 1]).
-    This micro-lemma encapsulates the fact that cosInterval uses the global bound. -/
+    This micro-lemma encapsulates the fact that cosInterval uses the global bound.
+@isnad1 id=mem.0h2v.s3.9c6d2301e896 from=translated src=- shape=839df65f vocab=00569901
+-/
 theorem cos_mem_cosInterval_of_any (y : ℝ) (I : IntervalRat) :
     Real.cos y ∈ cosInterval I := by
   simp only [cosInterval, IntervalRat.mem_def, Rat.cast_neg, Rat.cast_one]
   exact Real.cos_mem_Icc _
 
 /-- Real.sin y is always in sinInterval I (which is [-1, 1]).
-    This micro-lemma encapsulates the fact that sinInterval uses the global bound. -/
+    This micro-lemma encapsulates the fact that sinInterval uses the global bound.
+@isnad1 id=mem.0h2v.s3.0c1e8ddbf959 from=translated src=- shape=839df65f vocab=649c723d
+-/
 theorem sin_mem_sinInterval_of_any (y : ℝ) (I : IntervalRat) :
     Real.sin y ∈ sinInterval I := by
   simp only [sinInterval, IntervalRat.mem_def, Rat.cast_neg, Rat.cast_one]
   exact Real.sin_mem_Icc _
 
 /-- -Real.sin y is always in IntervalRat.neg (sinInterval I).
-    This combines the sin global bound with negation for the cos derivative rule. -/
+    This combines the sin global bound with negation for the cos derivative rule.
+@isnad1 id=mem.0h2v.s4.fe61eb2f1a94 from=translated src=- shape=1bd0fd8d vocab=1bf475f8
+-/
 theorem neg_sin_mem_neg_sinInterval (y : ℝ) (I : IntervalRat) :
     -Real.sin y ∈ IntervalRat.neg (sinInterval I) :=
   IntervalRat.mem_neg (sin_mem_sinInterval_of_any y I)
 
 /-- The key lemma for n-variable AD: updateVar ρ_real idx x respects mkDualEnv ρ_int idx.
-    This encapsulates the repeated proof that appears in mul/exp cases. -/
+    This encapsulates the repeated proof that appears in mul/exp cases.
+@isnad1 id=mem.2h5v.s5.e9982e00a619 from=translated src=- shape=60af5e9e vocab=61d4a775
+-/
 theorem updateVar_mem_mkDualEnv_val (ρ_real : Nat → ℝ) (ρ_int : IntervalEnv) (idx : Nat)
     (x : ℝ) (hx : x ∈ ρ_int idx) (hρ : ∀ i, ρ_real i ∈ ρ_int i) :
     ∀ i, Expr.updateVar ρ_real idx x i ∈ (mkDualEnv ρ_int idx i).val := by
@@ -146,94 +158,138 @@ theorem updateVar_mem_mkDualEnv_val (ρ_real : Nat → ℝ) (ρ_int : IntervalEn
 
 /-! ### evalFunc1 unfolding lemmas -/
 
-/-- Helper lemma: evalFunc1 for addition unfolds correctly -/
+/-- Helper lemma: evalFunc1 for addition unfolds correctly
+@isnad1 id=eq.0h2v.s4.69be7eef5f00 from=translated src=- shape=1abfbb1d vocab=4eb9dbcc
+-/
 theorem evalFunc1_add (e₁ e₂ : Expr) :
     evalFunc1 (Expr.add e₁ e₂) = fun t => evalFunc1 e₁ t + evalFunc1 e₂ t := rfl
 
-/-- Helper lemma: evalFunc1 for addition in Pi form -/
+/-- Helper lemma: evalFunc1 for addition in Pi form
+@isnad1 id=eq.0h2v.s5.d4e1d438903d from=translated src=- shape=a7065380 vocab=4eb9dbcc
+-/
 theorem evalFunc1_add_pi (e₁ e₂ : Expr) :
     evalFunc1 (Expr.add e₁ e₂) = evalFunc1 e₁ + evalFunc1 e₂ := rfl
 
-/-- Helper lemma: evalFunc1 for multiplication unfolds correctly -/
+/-- Helper lemma: evalFunc1 for multiplication unfolds correctly
+@isnad1 id=eq.0h2v.s4.f69b35a1fe1c from=translated src=- shape=1abfbb1d vocab=1bf0009d
+-/
 theorem evalFunc1_mul (e₁ e₂ : Expr) :
     evalFunc1 (Expr.mul e₁ e₂) = fun t => evalFunc1 e₁ t * evalFunc1 e₂ t := rfl
 
-/-- Helper lemma: evalFunc1 for multiplication in Pi form -/
+/-- Helper lemma: evalFunc1 for multiplication in Pi form
+@isnad1 id=eq.0h2v.s5.3250586e553b from=translated src=- shape=a7065380 vocab=1bf0009d
+-/
 theorem evalFunc1_mul_pi (e₁ e₂ : Expr) :
     evalFunc1 (Expr.mul e₁ e₂) = evalFunc1 e₁ * evalFunc1 e₂ := rfl
 
-/-- Helper lemma: evalFunc1 for negation unfolds correctly -/
+/-- Helper lemma: evalFunc1 for negation unfolds correctly
+@isnad1 id=eq.0h1v.s4.b50d52ef7d3c from=translated src=- shape=328419c4 vocab=227b5e15
+-/
 theorem evalFunc1_neg (e : Expr) :
     evalFunc1 (Expr.neg e) = fun t => -(evalFunc1 e t) := rfl
 
-/-- Helper lemma: evalFunc1 for negation in Pi form -/
+/-- Helper lemma: evalFunc1 for negation in Pi form
+@isnad1 id=eq.0h1v.s4.a155b5e32b88 from=translated src=- shape=90e5ef44 vocab=227b5e15
+-/
 theorem evalFunc1_neg_pi (e : Expr) :
     evalFunc1 (Expr.neg e) = -evalFunc1 e := rfl
 
-/-- Helper lemma: evalFunc1 for sin unfolds correctly -/
+/-- Helper lemma: evalFunc1 for sin unfolds correctly
+@isnad1 id=eq.0h1v.s3.e01389a51641 from=translated src=- shape=55715b71 vocab=2426c7b4
+-/
 theorem evalFunc1_sin (e : Expr) :
     evalFunc1 (Expr.sin e) = fun t => Real.sin (evalFunc1 e t) := rfl
 
-/-- Helper lemma: evalFunc1 for cos unfolds correctly -/
+/-- Helper lemma: evalFunc1 for cos unfolds correctly
+@isnad1 id=eq.0h1v.s3.c09a72d9c3fb from=translated src=- shape=55715b71 vocab=ac36a7e1
+-/
 theorem evalFunc1_cos (e : Expr) :
     evalFunc1 (Expr.cos e) = fun t => Real.cos (evalFunc1 e t) := rfl
 
-/-- Helper lemma: evalFunc1 for exp unfolds correctly -/
+/-- Helper lemma: evalFunc1 for exp unfolds correctly
+@isnad1 id=eq.0h1v.s3.a02ebab0b04f from=translated src=- shape=55715b71 vocab=f145a42c
+-/
 theorem evalFunc1_exp (e : Expr) :
     evalFunc1 (Expr.exp e) = fun t => Real.exp (evalFunc1 e t) := rfl
 
-/-- Helper lemma: evalFunc1 for log unfolds correctly -/
+/-- Helper lemma: evalFunc1 for log unfolds correctly
+@isnad1 id=eq.0h1v.s3.ce54c39691d1 from=translated src=- shape=55715b71 vocab=83a67c38
+-/
 theorem evalFunc1_log (e : Expr) :
     evalFunc1 (Expr.log e) = fun t => Real.log (evalFunc1 e t) := rfl
 
-/-- Helper lemma: evalFunc1 for atan unfolds correctly -/
+/-- Helper lemma: evalFunc1 for atan unfolds correctly
+@isnad1 id=eq.0h1v.s3.5aa82f43bf6b from=translated src=- shape=55715b71 vocab=c747060f
+-/
 theorem evalFunc1_atan (e : Expr) :
     evalFunc1 (Expr.atan e) = fun t => Real.arctan (evalFunc1 e t) := rfl
 
-/-- Helper lemma: evalFunc1 for arsinh unfolds correctly -/
+/-- Helper lemma: evalFunc1 for arsinh unfolds correctly
+@isnad1 id=eq.0h1v.s3.f88a317bd66a from=translated src=- shape=55715b71 vocab=a3cd6bde
+-/
 theorem evalFunc1_arsinh (e : Expr) :
     evalFunc1 (Expr.arsinh e) = fun t => Real.arsinh (evalFunc1 e t) := rfl
 
-/-- Helper lemma: evalFunc1 for atanh unfolds correctly -/
+/-- Helper lemma: evalFunc1 for atanh unfolds correctly
+@isnad1 id=eq.0h1v.s3.ebbcebc1221d from=translated src=- shape=55715b71 vocab=ce1f6400
+-/
 theorem evalFunc1_atanh (e : Expr) :
     evalFunc1 (Expr.atanh e) = fun t => Real.atanh (evalFunc1 e t) := rfl
 
-/-- Helper lemma: evalFunc1 for sinc unfolds correctly -/
+/-- Helper lemma: evalFunc1 for sinc unfolds correctly
+@isnad1 id=eq.0h1v.s3.ec6963783cae from=translated src=- shape=55715b71 vocab=459c7ba2
+-/
 theorem evalFunc1_sinc (e : Expr) :
     evalFunc1 (Expr.sinc e) = fun t => Real.sinc (evalFunc1 e t) := rfl
 
-/-- Helper lemma: evalFunc1 for erf unfolds correctly -/
+/-- Helper lemma: evalFunc1 for erf unfolds correctly
+@isnad1 id=eq.0h1v.s3.0a7e8b6cb718 from=translated src=- shape=55715b71 vocab=50c0b69b
+-/
 theorem evalFunc1_erf (e : Expr) :
     evalFunc1 (Expr.erf e) = fun t => Real.erf (evalFunc1 e t) := rfl
 
-/-- Helper lemma: evalFunc1 for sqrt unfolds correctly -/
+/-- Helper lemma: evalFunc1 for sqrt unfolds correctly
+@isnad1 id=eq.0h1v.s3.c5d3f1835015 from=translated src=- shape=55715b71 vocab=cd8d8773
+-/
 theorem evalFunc1_sqrt (e : Expr) :
     evalFunc1 (Expr.sqrt e) = fun t => Real.sqrt (evalFunc1 e t) := rfl
 
-/-- Helper lemma: evalFunc1 for const -/
+/-- Helper lemma: evalFunc1 for const
+@isnad1 id=eq.0h1v.s3.ec3096d34db2 from=translated src=- shape=13c45949 vocab=1c3a737c
+-/
 @[simp]
 theorem evalFunc1_const (q : ℚ) : evalFunc1 (Expr.const q) = fun _ => (q : ℝ) := rfl
 
-/-- Helper lemma: evalFunc1 for var -/
+/-- Helper lemma: evalFunc1 for var
+@isnad1 id=eq.0h1v.s3.1a011e440f91 from=translated src=- shape=0505425d vocab=c879f71e
+-/
 @[simp]
 theorem evalFunc1_var (i : ℕ) : evalFunc1 (Expr.var i) = id := rfl
 
-/-- Helper lemma: evalFunc1 for namedConst (constant function) -/
+/-- Helper lemma: evalFunc1 for namedConst (constant function)
+@isnad1 id=eq.0h1v.s3.075dcfc42f6a from=translated src=- shape=e1b0d173 vocab=64982019
+-/
 @[simp]
 theorem evalFunc1_namedConst (c : MathConst) : evalFunc1 (Expr.namedConst c) = fun _ => c.toReal := rfl
 
-/-- Helper lemma: evalFunc1 for pi (constant function) -/
+/-- Helper lemma: evalFunc1 for pi (constant function)
+@isnad1 id=eq.0h0v.s3.1f7785bf0698 from=translated src=- shape=9d367a4f vocab=03266ddb
+-/
 @[simp]
 theorem evalFunc1_pi : evalFunc1 (Expr.namedConst .pi) = fun _ => Real.pi := rfl
 
-/-- Helper lemma: evalFunc1 for eulerMascheroni (constant function) -/
+/-- Helper lemma: evalFunc1 for eulerMascheroni (constant function)
+@isnad1 id=eq.0h0v.s3.b9e7c81e523c from=translated src=- shape=9d367a4f vocab=3049eefe
+-/
 @[simp]
 theorem evalFunc1_eulerMascheroni : evalFunc1 (Expr.namedConst .eulerMascheroni) = fun _ => Real.eulerMascheroniConstant := rfl
 
 /-- Helper: the dual environment evaluation gives correct derivative.
     This connects the interval-based AD to actual calculus derivatives.
 
-    FULLY PROVED - no sorry, no axioms. -/
+    FULLY PROVED - no sorry, no axioms.
+@isnad1 id=mem.2h3v.s5.11ad735fdfb8 from=translated src=- shape=2f511fb5 vocab=f325235e
+-/
 theorem deriv_mem_dualDer (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (x : ℝ) (hx : x ∈ I) :
     deriv (evalFunc1 e) x ∈
@@ -306,7 +362,9 @@ theorem deriv_mem_dualDer (e : Expr) (hsupp : ADSupported e)
     the derivative bounds computed by interval arithmetic contain the
     true derivative at every point in the domain.
 
-    FULLY PROVED - no sorry, no axioms. -/
+    FULLY PROVED - no sorry, no axioms.
+@isnad1 id=mem.2h3v.s5.0408132d312e from=translated src=- shape=87be45ce vocab=e19a1761
+-/
 theorem evalDualUnchecked_der_correct (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (x : ℝ) (hx : x ∈ I) :
     deriv (fun t => Expr.eval (fun _ => t) e) x ∈
@@ -315,7 +373,9 @@ theorem evalDualUnchecked_der_correct (e : Expr) (hsupp : ADSupported e)
 
 /-! ### Generalized n-variable derivative correctness -/
 
-/-- Helper: evalAlong is differentiable for supported expressions -/
+/-- Helper: evalAlong is differentiable for supported expressions
+@isnad1 id=differen.1h3v.s6.f0e7ee069c40 from=translated src=- shape=f6749593 vocab=1912fbe2
+-/
 theorem evalAlong_differentiable (e : Expr) (hsupp : ADSupported e)
     (ρ : Nat → ℝ) (idx : Nat) :
     Differentiable ℝ (Expr.evalAlong e ρ idx) := by
@@ -357,7 +417,9 @@ theorem evalAlong_differentiable (e : Expr) (hsupp : ADSupported e)
     while holding all other coordinates fixed according to `ρ`, the derivative
     at any point `x` in the interval `ρ_int idx` lies in the computed interval.
 
-    FULLY PROVED - no sorry, no axioms. -/
+    FULLY PROVED - no sorry, no axioms.
+@isnad1 id=mem.3h5v.s6.902f43752922 from=translated src=- shape=1cde3adc vocab=1d5be75f
+-/
 theorem evalDualUnchecked_der_correct_idx (e : Expr) (hsupp : ADSupported e)
     (ρ_real : Nat → ℝ) (ρ_int : IntervalEnv) (idx : Nat)
     (hρ : ∀ i, ρ_real i ∈ ρ_int i)
@@ -417,7 +479,9 @@ theorem evalDualUnchecked_der_correct_idx (e : Expr) (hsupp : ADSupported e)
 
 /-- Convenience theorem: derivInterval correctness for n-variable expressions.
     The derivative of `evalAlong e ρ idx` at any point `x` in the interval
-    lies in `derivInterval e ρ_int idx`. -/
+    lies in `derivInterval e ρ_int idx`.
+@isnad1 id=mem.3h5v.s6.1aa99a5891ca from=translated src=- shape=f30b823b vocab=1c25bcdf
+-/
 theorem derivInterval_correct_idx (e : Expr) (hsupp : ADSupported e)
     (ρ_real : Nat → ℝ) (ρ_int : IntervalEnv) (idx : Nat)
     (hρ : ∀ i, ρ_real i ∈ ρ_int i)
@@ -454,7 +518,9 @@ inductive UsesOnlyVar0 : Expr → Prop where
   | namedConst (c : MathConst) : UsesOnlyVar0 (Expr.namedConst c)
 
 /-- Bridge between the canonical boolean predicate and the proof-carrying
-`UsesOnlyVar0` predicate used by AD correctness lemmas. -/
+`UsesOnlyVar0` predicate used by AD correctness lemmas.
+@isnad1 id=iff.0h1v.s3.67afb651a333 from=translated src=- shape=29662511 vocab=5f0da148
+-/
 theorem Expr.usesOnlyVar0_iff_UsesOnlyVar0 {e : Expr} :
     e.usesOnlyVar0 = true ↔ UsesOnlyVar0 e := by
   constructor
@@ -520,7 +586,9 @@ theorem Expr.usesOnlyVar0_iff_UsesOnlyVar0 {e : Expr} :
       simpa only [Expr.usesOnlyVar0] using ih
     | namedConst c => rfl
 
-/-- For expressions using only var 0, LeanCert.Internal.AD.evalUnchecked agrees for environments that match at 0 -/
+/-- For expressions using only var 0, LeanCert.Internal.AD.evalUnchecked agrees for environments that match at 0
+@isnad1 id=eq.2h3v.s5.21a2eb434f66 from=translated src=- shape=877f96b1 vocab=b7a537c4
+-/
 theorem evalDualUnchecked_congr_at_0 (e : Expr) (h : UsesOnlyVar0 e)
     (ρ₁ ρ₂ : DualEnv) (heq : ρ₁ 0 = ρ₂ 0) :
     LeanCert.Internal.AD.evalUnchecked e ρ₁ = LeanCert.Internal.AD.evalUnchecked e ρ₂ := by
@@ -564,12 +632,16 @@ theorem evalDualUnchecked_congr_at_0 (e : Expr) (h : UsesOnlyVar0 e)
   | namedConst _ =>
     simp only [LeanCert.Internal.AD.evalUnchecked]
 
-/-- mkDualEnv at index 0 equals varActive at 0 -/
+/-- mkDualEnv at index 0 equals varActive at 0
+@isnad1 id=eq.0h1v.s4.348bb1b6ac98 from=translated src=- shape=8adb0327 vocab=6a633a2f
+-/
 theorem mkDualEnv_at_0 (I : IntervalRat) :
     mkDualEnv (fun _ => I) 0 0 = DualInterval.varActive I := by
   simp only [mkDualEnv, ↓reduceIte]
 
-/-- For expressions using only var 0, derivInterval equals evalWithDeriv1 -/
+/-- For expressions using only var 0, derivInterval equals evalWithDeriv1
+@isnad1 id=eq.1h2v.s4.57ef5aad413a from=translated src=- shape=70a8e6a4 vocab=5e8d470d
+-/
 theorem derivInterval_eq_evalWithDeriv1_of_UsesOnlyVar0 (e : Expr) (h : UsesOnlyVar0 e)
     (I : IntervalRat) :
     derivInterval e (fun _ => I) 0 = (evalWithDeriv1 e I).der := by
@@ -580,7 +652,9 @@ theorem derivInterval_eq_evalWithDeriv1_of_UsesOnlyVar0 (e : Expr) (h : UsesOnly
   have heq := LeanCert.Engine.evalDualUnchecked_congr_at_0 e h (mkDualEnv (fun _ => I) 0) (fun _ => DualInterval.varActive I) henv_eq
   rw [heq]
 
-/-- Correctness of single-variable derivative bounds -/
+/-- Correctness of single-variable derivative bounds
+@isnad1 id=and.2h3v.s6.db7dee11946d from=translated src=- shape=34a4eb36 vocab=4bab974a
+-/
 theorem evalWithDeriv1_correct (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (x : ℝ) (hx : x ∈ I) :
     Expr.eval (fun _ => x) e ∈ (evalWithDeriv1 e I).val ∧

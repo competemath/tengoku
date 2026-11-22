@@ -46,7 +46,9 @@ open scoped Topology _root_.Topology
 
 variable (period : ℝ) [Fact (0 < period)]
 
-/-- Actual energy coordinates depend continuously on the Sobolev field. -/
+/-- Actual energy coordinates depend continuously on the Sobolev field.
+@isnad1 id=continuo.1h4v.s16.9eed612b87fd from=translated src=- shape=275ce7f9 vocab=79192c38
+-/
 theorem energyValues_continuous {s : ℕ} (q N : ℕ) (hN : N+q ≤ s) :
     Continuous (energyValues period q N hN) := by
   apply continuous_pi
@@ -56,7 +58,9 @@ theorem energyValues_continuous {s : ℕ} (q N : ℕ) (hN : N+q ≤ s) :
   exact (energyWordOperator period q N hN I a).continuous.congr
     (fun u => energyWordOperator_apply period q N hN I a u)
 
-/-- The actual finite Gevrey metric energy is continuous in its Sobolev field, including zero energy. -/
+/-- The actual finite Gevrey metric energy is continuous in its Sobolev field, including zero energy.
+@isnad1 id=continuo.1h5v.s16.595775bc28a1 from=translated src=- shape=1a1e2659 vocab=fe32c6ec
+-/
 theorem energyNorm_continuous {s : ℕ} (N : ℕ) (hN : N+6 ≤ s) (ρ : ℝ)
     (K : LiftL2 period →L[ℝ] LiftL2 period) :
     Continuous (energyNorm period N hN ρ K) := by
@@ -67,7 +71,9 @@ theorem energyNorm_continuous {s : ℕ} (N : ℕ) (hN : N+6 ≤ s) (ρ : ℝ)
   exact familyMetricNorm_continuous.comp
     (continuous_const.prodMk ((continuous_apply I).comp (energyValues_continuous period 6 N hN)))
 
-/-- Restriction preserving the derivative cutoff leaves the actual Gevrey energy unchanged. -/
+/-- Restriction preserving the derivative cutoff leaves the actual Gevrey energy unchanged.
+@isnad1 id=eq.2h7v.s20.1424b35834b8 from=translated src=- shape=514e8784 vocab=20dc897f
+-/
 theorem energyNorm_restrict {p q : ℕ} (hqp : q ≤ p) (N : ℕ) (hN : N+6 ≤ q) (ρ : ℝ)
     (K : LiftL2 period →L[ℝ] LiftL2 period) (u : SobolevSpace period p) :
     energyNorm period N hN ρ K (restrictOperator period hqp u) =
@@ -75,7 +81,9 @@ theorem energyNorm_restrict {p q : ℕ} (hqp : q ≤ p) (N : ℕ) (hN : N+6 ≤ 
   unfold energyNorm
   rw [energyValues_restrict]
 
-/-- A genuine strong lower-order limit retains every finite metric-energy bound whose derivative cutoff is retained. -/
+/-- A genuine strong lower-order limit retains every finite metric-energy bound whose derivative cutoff is retained.
+@isnad1 id=le.4h9v.s20.275c4db6774c from=translated src=- shape=b9edc14d vocab=cdcd2c6e
+-/
 theorem energyNorm_limit_bound {p q : ℕ} (hqp : q ≤ p) (N : ℕ) (hN : N+6 ≤ q) (ρ : ℝ)
     (K : LiftL2 period →L[ℝ] LiftL2 period) (u : ℕ → SobolevSpace period p) (e : SobolevSpace period q)
     (h : Filter.Tendsto (fun n => restrictOperator period hqp (u n)) Filter.atTop (𝓝 e))

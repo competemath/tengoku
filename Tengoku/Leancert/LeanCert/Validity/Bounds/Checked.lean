@@ -81,7 +81,9 @@ def checkStrictLowerBoundChecked (e : Expr) (I : IntervalRat) (c : ℚ) : Bool :
 
 /-! ### Golden Theorems for arbitrary expressions -/
 
-/-- Verification theorem for upper bounds with arbitrary expressions. -/
+/-- Verification theorem for upper bounds with arbitrary expressions.
+@isnad1 id=le.2h4v.s5.dd83314014b6 from=translated src=- shape=cc4795d2 vocab=5c318cf8
+-/
 theorem verify_upper_bound_checked (e : Expr)
     (I : IntervalRat) (c : ℚ)
     (h_cert : checkUpperBoundChecked e I c = true) :
@@ -93,7 +95,9 @@ theorem verify_upper_bound_checked (e : Expr)
     exact evalInterval?_le_of_hi e I J c hsome h_cert
   · simp at h_cert
 
-/-- Verification theorem for lower bounds with arbitrary expressions. -/
+/-- Verification theorem for lower bounds with arbitrary expressions.
+@isnad1 id=le.2h4v.s5.0c8f52e8acc5 from=translated src=- shape=dd227b69 vocab=e8aa2517
+-/
 theorem verify_lower_bound_checked (e : Expr)
     (I : IntervalRat) (c : ℚ)
     (h_cert : checkLowerBoundChecked e I c = true) :
@@ -105,7 +109,9 @@ theorem verify_lower_bound_checked (e : Expr)
     exact evalInterval?_ge_of_lo e I J c hsome h_cert
   · simp at h_cert
 
-/-- Verification theorem for strict upper bounds with arbitrary expressions. -/
+/-- Verification theorem for strict upper bounds with arbitrary expressions.
+@isnad1 id=lt.2h4v.s5.9873bfc3cc60 from=translated src=- shape=cc4795d2 vocab=43991a81
+-/
 theorem verify_strict_upper_bound_checked (e : Expr)
     (I : IntervalRat) (c : ℚ)
     (h_cert : checkStrictUpperBoundChecked e I c = true) :
@@ -121,7 +127,9 @@ theorem verify_strict_upper_bound_checked (e : Expr)
       _ < c := by exact_mod_cast h_cert
   · simp at h_cert
 
-/-- Verification theorem for strict lower bounds with arbitrary expressions. -/
+/-- Verification theorem for strict lower bounds with arbitrary expressions.
+@isnad1 id=lt.2h4v.s5.d384988a3465 from=translated src=- shape=dd227b69 vocab=7ea63f0a
+-/
 theorem verify_strict_lower_bound_checked (e : Expr)
     (I : IntervalRat) (c : ℚ)
     (h_cert : checkStrictLowerBoundChecked e I c = true) :
@@ -139,7 +147,9 @@ theorem verify_strict_lower_bound_checked (e : Expr)
 
 /-! ### Set.Icc Bridge Theorems for arbitrary expressions -/
 
-/-- Bridge theorem for Set.Icc upper bounds with arbitrary expressions. -/
+/-- Bridge theorem for Set.Icc upper bounds with arbitrary expressions.
+@isnad1 id=le.3h5v.s5.62a55b4f4e03 from=translated src=- shape=1edf1756 vocab=eda5a3f5
+-/
 theorem verify_upper_bound_Icc_checked (e : Expr)
     (lo hi : ℚ) (hle : lo ≤ hi) (c : ℚ)
     (h_cert : checkUpperBoundChecked e ⟨lo, hi, hle⟩ c = true) :
@@ -149,7 +159,9 @@ theorem verify_upper_bound_Icc_checked (e : Expr)
   apply this
   rwa [IntervalRat.mem_iff_mem_Icc]
 
-/-- Bridge theorem for Set.Icc lower bounds with arbitrary expressions. -/
+/-- Bridge theorem for Set.Icc lower bounds with arbitrary expressions.
+@isnad1 id=le.3h5v.s5.ff302cb15567 from=translated src=- shape=f27a0932 vocab=e36f2087
+-/
 theorem verify_lower_bound_Icc_checked (e : Expr)
     (lo hi : ℚ) (hle : lo ≤ hi) (c : ℚ)
     (h_cert : checkLowerBoundChecked e ⟨lo, hi, hle⟩ c = true) :
@@ -159,7 +171,9 @@ theorem verify_lower_bound_Icc_checked (e : Expr)
   apply this
   rwa [IntervalRat.mem_iff_mem_Icc]
 
-/-- Bridge theorem for Set.Icc strict upper bounds with arbitrary expressions. -/
+/-- Bridge theorem for Set.Icc strict upper bounds with arbitrary expressions.
+@isnad1 id=lt.3h5v.s5.354cfccdde3c from=translated src=- shape=a083e913 vocab=dbbad82a
+-/
 theorem verify_strict_upper_bound_Icc_checked (e : Expr)
     (lo hi : ℚ) (hle : lo ≤ hi) (c : ℚ)
     (h_cert : checkStrictUpperBoundChecked e ⟨lo, hi, hle⟩ c = true) :
@@ -169,7 +183,9 @@ theorem verify_strict_upper_bound_Icc_checked (e : Expr)
   apply this
   rwa [IntervalRat.mem_iff_mem_Icc]
 
-/-- Bridge theorem for Set.Icc strict lower bounds with arbitrary expressions. -/
+/-- Bridge theorem for Set.Icc strict lower bounds with arbitrary expressions.
+@isnad1 id=lt.3h5v.s5.82049de6bf77 from=translated src=- shape=6395dda1 vocab=773abc5f
+-/
 theorem verify_strict_lower_bound_Icc_checked (e : Expr)
     (lo hi : ℚ) (hle : lo ≤ hi) (c : ℚ)
     (h_cert : checkStrictLowerBoundChecked e ⟨lo, hi, hle⟩ c = true) :

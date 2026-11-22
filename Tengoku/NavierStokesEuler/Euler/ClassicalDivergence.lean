@@ -14,7 +14,9 @@ open scoped ContDiff Topology
 
 variable (period : ℝ) [Fact (0 < period)]
 
-/-- A genuine smooth representative of a weakly lifted-divergence-free L² field has zero pointwise lifted divergence. -/
+/-- A genuine smooth representative of a weakly lifted-divergence-free L² field has zero pointwise lifted divergence.
+@isnad1 id=eq.3h6v.s14.019a513570e1 from=translated src=- shape=be4c5935 vocab=b5ec93f9
+-/
 theorem divergenceFree_classical_divergence_zero (κ : ℝ) (m : Vector3)
     (u : LiftL2 period) (hu : u ∈ divergenceFreeSpace period κ m)
     (g : LiftDomain period → Vector3)

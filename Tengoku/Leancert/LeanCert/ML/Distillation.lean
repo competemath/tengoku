@@ -51,7 +51,9 @@ def IntervalDyadic.neg (I : IntervalDyadic) : IntervalDyadic where
     rw [h, h']
     linarith [I.le]
 
-/-- Membership in negated interval -/
+/-- Membership in negated interval
+@isnad1 id=mem.1h2v.s4.059cd1a6b521 from=translated src=- shape=81fdfc84 vocab=5f872fe1
+-/
 theorem IntervalDyadic.mem_neg {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I) :
     -x ∈ I.neg := by
   simp only [IntervalDyadic.mem_def] at hx ⊢
@@ -69,7 +71,9 @@ theorem IntervalDyadic.mem_neg {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I) :
 def IntervalDyadic.sub (I J : IntervalDyadic) : IntervalDyadic :=
   IntervalDyadic.add I J.neg
 
-/-- Membership in subtracted interval -/
+/-- Membership in subtracted interval
+@isnad1 id=mem.2h4v.s5.7eb14b1decac from=translated src=- shape=52949ecd vocab=a1e19e84
+-/
 theorem IntervalDyadic.mem_sub {x y : ℝ} {I J : IntervalDyadic}
     (hx : x ∈ I) (hy : y ∈ J) : x - y ∈ I.sub J := by
   simp only [sub_eq_add_neg]
@@ -104,7 +108,9 @@ def LayersWellFormed : List Layer → Nat → Prop
 def WellFormed (net : SequentialNet) (inputDim : Nat) : Prop :=
   LayersWellFormed net.layers inputDim
 
-/-- Helper: Lengths of foldl outputs match -/
+/-- Helper: Lengths of foldl outputs match
+@isnad1 id=eq.2h4v.s5.7ba1e8841144 from=translated src=- shape=54c10b1a vocab=d2579163
+-/
 theorem forwardLength_aux (layers : List Layer) (xs : List ℝ) (Is : IntervalVector)
     (hdim : xs.length = Is.length)
     (hwf : LayersWellFormed layers xs.length) (prec : Int) :
@@ -123,7 +129,9 @@ theorem forwardLength_aux (layers : List Layer) (xs : List ℝ) (Is : IntervalVe
       rw [hRealLen]; exact rest_wf
     exact ih _ _ hNext hwf'
 
-/-- Soundness of SequentialNet forward pass -/
+/-- Soundness of SequentialNet forward pass
+@isnad1 id=other.4h4v.s8.4fe0cc49f5de from=translated src=- shape=bdac7dbf vocab=c22bf33b
+-/
 theorem mem_forwardInterval_aux (layers : List Layer) (xs : List ℝ) (Is : IntervalVector)
     (hdim : xs.length = Is.length)
     (hwf : LayersWellFormed layers xs.length)
@@ -173,7 +181,9 @@ theorem mem_forwardInterval_aux (layers : List Layer) (xs : List ℝ) (Is : Inte
 
     exact ih nextReal nextInt hNextLen hwf' hmem'
 
-/-- Public soundness theorem -/
+/-- Public soundness theorem
+@isnad1 id=other.3h5v.s8.07e2eb6d2ab3 from=translated src=- shape=6a42fbf3 vocab=4fb93458
+-/
 theorem mem_forwardInterval {net : SequentialNet} {xs : List ℝ} {Is : IntervalVector}
     (hdim : xs.length = Is.length)
     (hwf : WellFormed net xs.length)
@@ -193,12 +203,16 @@ end SequentialNet
 def subVectors (a b : IntervalVector) : IntervalVector :=
   List.zipWith IntervalDyadic.sub a b
 
-/-- Length of subtracted vectors -/
+/-- Length of subtracted vectors
+@isnad1 id=eq.0h2v.s4.da03675f0357 from=translated src=- shape=d36e7165 vocab=3c9e919c
+-/
 theorem subVectors_length (a b : IntervalVector) :
     (subVectors a b).length = min a.length b.length := by
   simp [subVectors, List.length_zipWith]
 
-/-- Membership in subtracted vectors -/
+/-- Membership in subtracted vectors
+@isnad1 id=mem.5h5v.s8.4a2e73bfeac2 from=translated src=- shape=61f89a72 vocab=52fc9806
+-/
 theorem mem_subVectors {ra rb : List ℝ} {ia ib : IntervalVector}
     (halen : ra.length = ia.length)
     (hblen : rb.length = ib.length)
@@ -226,7 +240,9 @@ def intervalBoundedBy (I : IntervalDyadic) (eps : ℚ) : Bool :=
 def isBoundedBy (v : IntervalVector) (eps : ℚ) : Bool :=
   v.all (intervalBoundedBy · eps)
 
-/-- Soundness of intervalBoundedBy -/
+/-- Soundness of intervalBoundedBy
+@isnad1 id=le.2h3v.s5.192c04295089 from=translated src=- shape=b4d4577f vocab=73a6d183
+-/
 theorem intervalBoundedBy_spec {x : ℝ} {I : IntervalDyadic} {eps : ℚ}
     (hx : x ∈ I) (hcheck : intervalBoundedBy I eps = true) :
     |x| ≤ (eps : ℝ) := by
@@ -258,7 +274,9 @@ def checkEquivalence (teacher student : SequentialNet)
 
 /-! ### Correctness Proofs -/
 
-/-- Helper: extract dimension equality from checkEquivalence -/
+/-- Helper: extract dimension equality from checkEquivalence
+@isnad1 id=eq.1h5v.s5.7583066efb19 from=translated src=- shape=9707f765 vocab=8527203b
+-/
 theorem checkEquivalence_dims {teacher student : SequentialNet}
     {domain : IntervalVector} {eps : ℚ} {prec : Int}
     (h : checkEquivalence teacher student domain eps prec = true) :
@@ -275,6 +293,7 @@ theorem checkEquivalence_dims {teacher student : SequentialNet}
 
     If `checkEquivalence` returns true, then for ALL real inputs `x` in the domain,
     the output difference `|Teacher(x) - Student(x)|` is at most `eps` for every output neuron.
+@isnad1 id=other.6h6v.s8.ee31c18c5d70 from=translated src=- shape=65c81f00 vocab=13615940
 -/
 theorem verify_equivalence (teacher student : SequentialNet)
     (domain : IntervalVector) (eps : ℚ) (prec : Int)

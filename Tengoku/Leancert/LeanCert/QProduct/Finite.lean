@@ -54,19 +54,33 @@ def momentRat (S : Finset Nat) (k : Nat) : ℚ :=
 noncomputable def moment (S : Finset Nat) (k : Nat) : ℝ :=
   ∫ u in (0 : ℝ)..1, qProd S u * u ^ k
 
+/--
+@isnad1 id=eq.0h0v.s3.f07345cfd75e from=translated src=- shape=70216182 vocab=0da52f11
+-/
 @[simp] theorem subsetWeight_empty : subsetWeight ∅ = 0 := by
   simp [subsetWeight]
 
+/--
+@isnad1 id=eq.0h0v.s3.26df208276f4 from=translated src=- shape=5da5c694 vocab=710382a7
+-/
 @[simp] theorem subsetSign_empty : subsetSign ∅ = 1 := by
   simp [subsetSign]
 
+/--
+@isnad1 id=eq.0h1v.s4.2124494a1b9c from=translated src=- shape=5ea5e722 vocab=6e591661
+-/
 @[simp] theorem qProd_empty (u : ℝ) : qProd ∅ u = 1 := by
   simp [qProd]
 
+/--
+@isnad1 id=eq.0h0v.s3.286fbca1bd1c from=translated src=- shape=5da5c694 vocab=8307516a
+-/
 @[simp] theorem F_empty : F ∅ = 1 := by
   simp [F, qProd]
 
-/-- `subsetSign` as a real coefficient is `(-1)^card`. -/
+/-- `subsetSign` as a real coefficient is `(-1)^card`.
+@isnad1 id=eq.0h1v.s5.5348960dd875 from=translated src=- shape=d5862d41 vocab=cef7144a
+-/
 theorem subsetSign_cast_eq (A : Finset Nat) :
     (subsetSign A : ℝ) = (-1 : ℝ) ^ A.card := by
   unfold subsetSign
@@ -75,7 +89,9 @@ theorem subsetSign_cast_eq (A : Finset Nat) :
   · have hodd : Odd A.card := Nat.not_even_iff_odd.mp h
     simp [h, hodd.neg_one_pow]
 
-/-- Product expansion over the powerset. -/
+/-- Product expansion over the powerset.
+@isnad1 id=eq.0h2v.s5.fc403ae40809 from=translated src=- shape=260d4af2 vocab=d507643d
+-/
 theorem qProd_powerset_expand (S : Finset Nat) (u : ℝ) :
     qProd S u =
       ∑ A ∈ S.powerset, (subsetSign A : ℝ) * u ^ subsetWeight A := by
@@ -93,7 +109,9 @@ private theorem integral_pow_zero_one (n : Nat) :
     ∫ u in (0 : ℝ)..1, u ^ n = (1 : ℝ) / (n + 1) := by
   simp [integral_pow (a := (0 : ℝ)) (b := 1) (n := n)]
 
-/-- Semantic correctness of the exact rational finite product integral. -/
+/-- Semantic correctness of the exact rational finite product integral.
+@isnad1 id=eq.0h1v.s3.bbb229f40810 from=translated src=- shape=525fe03e vocab=b11dda39
+-/
 theorem finiteIntegralRat_correct (S : Finset Nat) :
     (finiteIntegralRat S : ℝ) = F S := by
   classical
@@ -111,7 +129,9 @@ theorem finiteIntegralRat_correct (S : Finset Nat) :
   · intro A hA
     exact (continuous_const.mul (continuous_id.pow (subsetWeight A))).intervalIntegrable 0 1
 
-/-- Semantic correctness of the exact rational moment formula. -/
+/-- Semantic correctness of the exact rational moment formula.
+@isnad1 id=eq.0h2v.s4.47a45a9bc716 from=translated src=- shape=602899a6 vocab=46b32e38
+-/
 theorem momentRat_correct (S : Finset Nat) (k : Nat) :
     (momentRat S k : ℝ) = moment S k := by
   classical

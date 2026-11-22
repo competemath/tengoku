@@ -53,14 +53,18 @@ open _root_.MeasureTheory _root_.EulerLiftedGradientSpace _root_.EulerCylinderSo
 
 variable (period : ℝ) [Fact (0 < period)]
 
-/-- Restriction commutes with taking an actual derivative word at a lower Sobolev level. -/
+/-- Restriction commutes with taking an actual derivative word at a lower Sobolev level.
+@isnad1 id=eq.2h7v.s22.e9c382fee93f from=translated src=- shape=8e1fbba7 vocab=5471f3cd
+-/
 theorem restrict_wordAtLevel {s p q n : ℕ} (hq : q ≤ p) (w : Fin n → Fin 4) (hp : n+p ≤ s)
     (u : SobolevSpace period s) :
     restrictOperator period hq (wordAtLevel period p n w hp u) = wordAtLevel period q n w (by omega) u := by
   apply value_injective period
   rw [value_restrictOperator, wordAtLevel_value, wordAtLevel_value]
 
-/-- The exact base derivative sum is contained in every truncated actual Gevrey norm. -/
+/-- The exact base derivative sum is contained in every truncated actual Gevrey norm.
+@isnad1 id=le.2h6v.s20.771bfa352a2f from=translated src=- shape=6fd35950 vocab=cd34f744
+-/
 theorem sumNorm_restrict_le_weighted {s q : ℕ} (hq : q ≤ s) (N : ℕ) (ρ : ℝ) (hρ : 0 < ρ)
     (u : SobolevSpace period s) :
     sumNorm period (restrictOperator period hq u) ≤ weightedNorm period q N ρ u := by
@@ -73,7 +77,9 @@ theorem sumNorm_restrict_le_weighted {s q : ℕ} (hq : q ≤ s) (N : ℕ) (ρ : 
     (show 0 ∈ Finset.range (N+1) by simp)
   simpa [weight, weightedNorm] using hsum
 
-/-- Exact external-word expansion of the actual Gevrey Sobolev sum. -/
+/-- Exact external-word expansion of the actual Gevrey Sobolev sum.
+@isnad1 id=eq.1h6v.s20.03a703443513 from=translated src=- shape=c5450595 vocab=9c5b2941
+-/
 theorem weighted_word_sums {s : ℕ} (q N : ℕ) (hN : N+q ≤ s) (ρ : ℝ) (u : SobolevSpace period s) :
     (∑ I : ExternalWord N, weight ρ I.1.val * sumNorm period
       (wordAtLevel period q I.1.val I.2 (by have := I.1.isLt; omega) u)) = weightedNorm period q N ρ u := by
@@ -93,7 +99,9 @@ def baseTransportForcing {s : ℕ} (N : ℕ) (hN : N+6 ≤ s)
     (restrictOperator period (by omega : 7 ≤ s+1) u)
     (wordAtLevel period 7 I.1.val I.2 (by have := I.1.isLt; omega : I.1.val+7 ≤ s+1) v)
 
-/-- Each base-word forcing family is controlled by the fixed H⁶ norms, with the fixed word-count factor 5461. -/
+/-- Each base-word forcing family is controlled by the fixed H⁶ norms, with the fixed word-count factor 5461.
+@isnad1 id=le.2h7v.s21.60442175d7f2 from=translated src=- shape=2e873046 vocab=6c0aac7e
+-/
 theorem baseTransportForcing_family_bound {s : ℕ} (N : ℕ) (hN : N+6 ≤ s)
     (L : Fin 4 → Vector3 →L[ℝ] ℝ) (hL : ∀ i, ‖L i‖ ≤ 1)
     (u v : SobolevSpace period (s+1)) (I : ExternalWord N) :
@@ -112,7 +120,9 @@ theorem baseTransportForcing_family_bound {s : ℕ} (N : ℕ) (hN : N+6 ≤ s)
   exact (familyNorm_le_sum_norm _).trans (hsum.trans_eq (by
     simp only [Finset.sum_const, Finset.card_univ, card_baseWord_six, nsmul_eq_mul]; ring))
 
-/-- The actual weighted base transport forcing has no external derivative loss or cutoff-dependent coefficient. -/
+/-- The actual weighted base transport forcing has no external derivative loss or cutoff-dependent coefficient.
+@isnad1 id=le.3h7v.s16.acea9f4bf357 from=translated src=- shape=2cadd3dc vocab=486e8627
+-/
 theorem baseTransportForcing_weighted_bound {s : ℕ} (N : ℕ) (hN : N+6 ≤ s)
     (ρ : ℝ) (hρ : 0 < ρ) (L : Fin 4 → Vector3 →L[ℝ] ℝ) (hL : ∀ i, ‖L i‖ ≤ 1)
     (u v : SobolevSpace period (s+1)) :

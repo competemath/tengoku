@@ -12,6 +12,9 @@ namespace EulerMeanBoundary
 open MeasureTheory InnerProductSpace EulerSmoothLimit EulerMeanSolenoidal EulerMeanGradientTest Filter
 open scoped ContDiff Topology
 
+/--
+@isnad1 id=eq.0h3v.s6.0fa52fe163a8 from=translated src=- shape=69b0a24e vocab=ae925940
+-/
 theorem Cutoff.translate_add (χ : Cutoff) (a b : Space) :
     (χ.translate a).translate b = χ.translate (a+b) := by
   apply Cutoff.ext
@@ -20,6 +23,9 @@ theorem Cutoff.translate_add (χ : Cutoff) (a b : Space) :
   congr 1
   abel
 
+/--
+@isnad1 id=eq.0h3v.s4.ab186db4c103 from=translated src=- shape=b0b12c89 vocab=5f3f00c4
+-/
 theorem Cutoff.directional_translate (χ : Cutoff) (a b : Space) :
     (χ.translate b).directional a = (χ.directional a).translate b := by
   apply Cutoff.ext
@@ -27,11 +33,17 @@ theorem Cutoff.directional_translate (χ : Cutoff) (a b : Space) :
   change (fderiv ℝ (fun y => χ.field (y+b)) x) a = (fderiv ℝ χ.field (x+b)) a
   rw [fderiv_comp_add_right]
 
+/--
+@isnad1 id=eq.0h3v.s6.2062fa7e25cf from=translated src=- shape=4f2ea1dd vocab=f80fb30f
+-/
 theorem Cutoff.directional_add (χ : Cutoff) (a b : Space) :
     χ.directional (a+b) = (χ.directional a).add (χ.directional b) := by
   apply Cutoff.ext
   exact funext fun x => (fderiv ℝ χ.field x).map_add a b
 
+/--
+@isnad1 id=eq.0h3v.s6.9cdb0a03f2c8 from=translated src=- shape=68f0bef6 vocab=a1963b87
+-/
 theorem Cutoff.directional_smul (χ : Cutoff) (c : ℝ) (a : Space) :
     χ.directional (c • a) = (χ.directional a).scale c := by
   apply Cutoff.ext
@@ -50,11 +62,17 @@ def cutoffDirectionalMap (L : Cutoff → E)
       map_add' := fun a b => by rw [Cutoff.directional_add, hadd]
       map_smul' := fun c a => by rw [Cutoff.directional_smul, hsmul]; rfl }
 
+/--
+@isnad1 id=eq.2h4v.s9.184b0be53eec from=translated src=- shape=fe81321d vocab=6bb05873
+-/
 @[simp] theorem cutoffDirectionalMap_apply (L : Cutoff → E)
     (hadd : ∀ χ ψ, L (χ.add ψ) = L χ + L ψ)
     (hsmul : ∀ χ c, L (χ.scale c) = c • L χ) (χ : Cutoff) (a : Space) :
     cutoffDirectionalMap L hadd hsmul χ a = L (χ.directional a) := rfl
 
+/--
+@isnad1 id=eq.2h5v.s8.e548782b857d from=translated src=- shape=03fc1e33 vocab=973aa95d
+-/
 theorem cutoffOperation_differenceError (L : Cutoff → E)
     (hsmul : ∀ χ c, L (χ.scale c) = c • L χ)
     (hsub : ∀ χ ψ, L (χ.sub ψ) = L χ - L ψ) (χ : Cutoff) (a b : Space) :
@@ -63,7 +81,9 @@ theorem cutoffOperation_differenceError (L : Cutoff → E)
   rw [Cutoff.differenceError, hsub, Cutoff.differenceQuotient, hsmul, hsub]
   simp only [inv_one, one_smul, Cutoff.translate_add, add_sub_cancel]
 
-/-- The proved cutoff dual norm and a genuine Taylor remainder give the full Fréchet derivative. -/
+/-- The proved cutoff dual norm and a genuine Taylor remainder give the full Fréchet derivative.
+@isnad1 id=hasfderi.4h4v.s8.61cec6fab8a3 from=translated src=- shape=c8d7e5af vocab=40a64dd9
+-/
 theorem cutoffOperation_hasFDerivAt (L : Cutoff → E)
     (hadd : ∀ χ ψ, L (χ.add ψ) = L χ + L ψ)
     (hsmul : ∀ χ c, L (χ.scale c) = c • L χ)
@@ -99,7 +119,9 @@ theorem cutoffOperation_hasFDerivAt (L : Cutoff → E)
   · have hc : Continuous (fun b : Space => cutoffDifferenceConstant R M₂ M₃ * ‖b-a‖) := by fun_prop
     simpa only [sub_self, norm_zero, mul_zero] using hc.tendsto a
 
-/-- Induction differentiates the actual cutoff repeatedly, with no smoothness hypothesis on L. -/
+/-- Induction differentiates the actual cutoff repeatedly, with no smoothness hypothesis on L.
+@isnad1 id=contdiff.4h3v.s8.518b6439db57 from=translated src=- shape=639e65a3 vocab=56f29c73
+-/
 theorem cutoffOperation_contDiff (L : Cutoff → E)
     (hadd : ∀ χ ψ, L (χ.add ψ) = L χ + L ψ)
     (hsmul : ∀ χ c, L (χ.scale c) = c • L χ)
@@ -125,31 +147,43 @@ theorem cutoffOperation_contDiff (L : Cutoff → E)
 
 end LinearCutoffOperation
 
-/-- Actual Fréchet derivative of the cutoff-curl extension. -/
+/-- Actual Fréchet derivative of the cutoff-curl extension.
+@isnad1 id=hasfderi.0h2v.s21.f33748dd04c2 from=translated src=- shape=2489077b vocab=35df30e9
+-/
 theorem cutoffCurl_hasFDerivAt (χ : Cutoff) (a : Space) :
     HasFDerivAt (fun b : Space => cutoffCurl (χ.translate b))
       (cutoffDirectionalMap cutoffCurl cutoffCurl_add cutoffCurl_scale (χ.translate a)) a :=
   cutoffOperation_hasFDerivAt cutoffCurl cutoffCurl_add cutoffCurl_scale cutoffCurl_sub
     cutoffCurl_norm_le χ a
 
-/-- Actual Fréchet derivative of the weak Newtonian potential. -/
+/-- Actual Fréchet derivative of the weak Newtonian potential.
+@isnad1 id=hasfderi.0h2v.s21.b5a2a53234f7 from=translated src=- shape=f634dcc8 vocab=73d435b9
+-/
 theorem weakPotential_hasFDerivAt (χ : Cutoff) (a : Space) :
     HasFDerivAt (fun b : Space => weakPotential (χ.translate b))
       (cutoffDirectionalMap weakPotential weakPotential_add weakPotential_scale (χ.translate a)) a :=
   cutoffOperation_hasFDerivAt weakPotential weakPotential_add weakPotential_scale weakPotential_sub
     weakPotential_operatorNorm_le χ a
 
+/--
+@isnad1 id=contdiff.0h1v.s18.0a98706f0781 from=translated src=- shape=ab4a1524 vocab=1c9f1779
+-/
 theorem cutoffCurl_contDiff (χ : Cutoff) :
     ContDiff ℝ ∞ (fun a : Space => cutoffCurl (χ.translate a)) :=
   cutoffOperation_contDiff cutoffCurl cutoffCurl_add cutoffCurl_scale cutoffCurl_sub
     cutoffCurl_norm_le χ
 
+/--
+@isnad1 id=contdiff.0h1v.s18.17125e80192f from=translated src=- shape=151d3375 vocab=a6a18bd2
+-/
 theorem weakPotential_contDiff (χ : Cutoff) :
     ContDiff ℝ ∞ (fun a : Space => weakPotential (χ.translate a)) :=
   cutoffOperation_contDiff weakPotential weakPotential_add weakPotential_scale weakPotential_sub
     weakPotential_operatorNorm_le χ
 
-/-- Joint translation of both cutoffs is smooth in the full three-dimensional parameter. -/
+/-- Joint translation of both cutoffs is smooth in the full three-dimensional parameter.
+@isnad1 id=contdiff.0h2v.s16.e23f17e833fa from=translated src=- shape=59eeea15 vocab=cd191a29
+-/
 theorem mixedBoundaryOperator_contDiff (χ ψ : Cutoff) :
     ContDiff ℝ ∞ (fun a : Space =>
       mixedBoundaryOperator (χ.translate a) (ψ.translate a)) :=

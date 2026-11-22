@@ -70,7 +70,9 @@ local instance comparisonSobolevSpace (q : ℕ) : NormedSpace ℝ (SobolevSpace 
 
 set_option synthInstance.maxHeartbeats 160000 in
 /-- Actual inviscid corrections with equal initial data and the concrete metric/coefficient bounds are unique.
-The squared energy inequality and the zero-difference conclusion are derived from their actual equations. -/
+The squared energy inequality and the zero-difference conclusion are derived from their actual equations.
+@isnad1 id=eq.8h7v.s21.173cfd691228 from=translated src=- shape=6de9c2f6 vocab=0c89ab35
+-/
 theorem inviscid_correction_unique {q : ℕ} (hq : 6 ≤ q) (T : ℝ) (hT : 0 ≤ T)
     (D : CorrectionData period q (Icc (0 : ℝ) T)) (B : StabilityBudget period hT D)
     (u v : C(Icc (0 : ℝ) T,SobolevSpace period (q+1)))

@@ -33,6 +33,9 @@ def piolaPairField {raw : VectorField} (G : Field P D.T raw)
     Field P D.T (piolaPairRaw (P := P) D κ raw p) :=
   (packetInverseCoefficient D).multiply ((G.smul (κ^p)).add (C.smul (κ^(p+1))))
 
+/--
+@isnad1 id=mem.6h10v.s16.fc4479b35ef6 from=translated src=- shape=8716b0e3 vocab=20128f5a
+-/
 theorem piolaPairField_mem {raw : VectorField} (G : Field P D.T raw)
     (C : Field P D.T (D.curlCorrector P raw)) (κ : ℝ) (p : ℕ) (t : Icc (0 : ℝ) D.T)
     (Ξ : Space → Space) (hΞ : ContDiff ℝ ∞ Ξ)

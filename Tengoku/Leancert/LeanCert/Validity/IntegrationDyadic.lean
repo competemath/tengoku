@@ -49,7 +49,9 @@ def integrateInterval1Dyadic (e : Expr) (I : IntervalRat) (cfg : DyadicConfig :=
   IntervalRat.mul (IntervalRat.singleton I.width) (evalDyadic1 e I cfg)
 
 /-- Correctness of single-interval Dyadic integration.
-    If domain validity holds, the integral is contained in the computed bound. -/
+    If domain validity holds, the integral is contained in the computed bound.
+@isnad1 id=mem.3h3v.s6.b89567529c05 from=translated src=- shape=00efef6e vocab=2c81d824
+-/
 theorem integrateInterval1Dyadic_correct (e : Expr)
     (I : IntervalRat) (cfg : DyadicConfig)
     (hprec : cfg.precision ≤ 0)
@@ -142,6 +144,9 @@ def integratePartitionDyadicChecked (e : Expr) (I : IntervalRat) (n : ℕ) (hn :
   (cells.map Prod.fst |>.foldl IntervalRat.add (IntervalRat.singleton 0),
     cells.all Prod.snd)
 
+/--
+@isnad1 id=eq.1h4v.s5.188987c6e21b from=translated src=- shape=24e929f1 vocab=2aa444f2
+-/
 theorem integratePartitionDyadicChecked_fst (e : Expr) (I : IntervalRat)
     (n : ℕ) (hn : 0 < n) (cfg : DyadicConfig) :
     (integratePartitionDyadicChecked e I n hn cfg).1 = integratePartitionDyadic e I n hn cfg := by
@@ -164,12 +169,18 @@ def checkPartitionDomainValid (e : Expr) (I : IntervalRat) (n : ℕ) (hn : 0 < n
   (uniformPartition I n hn).all fun Ik =>
     checkDomainValidDyadic e (fun _ => IntervalDyadic.ofIntervalRat Ik cfg.precision) cfg
 
+/--
+@isnad1 id=eq.1h4v.s5.2c1fd8b39eb0 from=translated src=- shape=8bfe9ec5 vocab=2869ad2e
+-/
 theorem integratePartitionDyadicChecked_snd (e : Expr) (I : IntervalRat)
     (n : ℕ) (hn : 0 < n) (cfg : DyadicConfig) :
     (integratePartitionDyadicChecked e I n hn cfg).2 = checkPartitionDomainValid e I n hn cfg := by
   simp [integratePartitionDyadicChecked, checkPartitionDomainValid, Function.comp_def,
     evalIntervalDyadicPreparedCached_snd]
 
+/--
+@isnad1 id=partitio.2h4v.s5.3adc4ad382fb from=translated src=- shape=ef880441 vocab=8901d80b
+-/
 theorem checkPartitionDomainValid_correct (e : Expr) (I : IntervalRat) (n : ℕ) (hn : 0 < n)
     (cfg : DyadicConfig) :
     checkPartitionDomainValid e I n hn cfg = true → partitionDomainValid e I n hn cfg := by
@@ -266,7 +277,9 @@ private theorem integral_mem_bound_dyadic (e : Expr)
   rw [hsum_eq]
   exact sum_mem_foldl_add hlen hmem_each
 
-/-- Golden theorem for the one-pass checked Dyadic partition evaluator. -/
+/-- Golden theorem for the one-pass checked Dyadic partition evaluator.
+@isnad1 id=mem.4h5v.s6.9fb889ddeb0d from=translated src=- shape=8917e773 vocab=e9bd158d
+-/
 theorem integratePartitionDyadicChecked_correct (e : Expr)
     (I : IntervalRat) (n : ℕ) (hn : 0 < n)
     (cfg : DyadicConfig) (hprec : cfg.precision ≤ 0)
@@ -285,7 +298,9 @@ theorem integratePartitionDyadicChecked_correct (e : Expr)
   exact integral_mem_bound_dyadic e I n hn cfg hprec
     (checkPartitionDomainValid_correct e I n hn cfg hsnd) hInt
 
-/-- Bridge theorem (lower bound) using the combined checker. -/
+/-- Bridge theorem (lower bound) using the combined checker.
+@isnad1 id=le.4h5v.s6.e2421b5bbb1d from=translated src=- shape=1291f2f1 vocab=eca98879
+-/
 theorem integral_lower_of_check_dyadic (e : Expr)
     (I : IntervalRat) (n : ℕ) (hn : 0 < n) (c : ℚ)
     (cfg : DyadicConfig) (hprec : cfg.precision ≤ 0)
@@ -300,7 +315,9 @@ theorem integral_lower_of_check_dyadic (e : Expr)
   calc (c : ℝ) ≤ ((integratePartitionDyadic e I n hn cfg).lo : ℝ) := by exact_mod_cast hcheck.2
     _ ≤ ∫ x in (I.lo : ℝ)..(I.hi : ℝ), Expr.eval (fun _ => x) e := hmem.1
 
-/-- Bridge theorem (upper bound) using the combined checker. -/
+/-- Bridge theorem (upper bound) using the combined checker.
+@isnad1 id=le.4h5v.s6.bbb5ba807bf4 from=translated src=- shape=0613d345 vocab=c9d70050
+-/
 theorem integral_upper_of_check_dyadic (e : Expr)
     (I : IntervalRat) (n : ℕ) (hn : 0 < n) (c : ℚ)
     (cfg : DyadicConfig) (hprec : cfg.precision ≤ 0)
@@ -316,7 +333,9 @@ theorem integral_upper_of_check_dyadic (e : Expr)
       ≤ ((integratePartitionDyadic e I n hn cfg).hi : ℝ) := hmem.2
     _ ≤ (c : ℝ) := by exact_mod_cast hcheck.2
 
-/-- Bridge theorem for the two-sided Dyadic checker. -/
+/-- Bridge theorem for the two-sided Dyadic checker.
+@isnad1 id=and.4h6v.s7.465de6e75609 from=translated src=- shape=5a426131 vocab=45e19e47
+-/
 theorem integral_bounds_of_check_dyadic (e : Expr)
     (I : IntervalRat) (n : ℕ) (hn : 0 < n) (lower upper : ℚ)
     (cfg : DyadicConfig) (hprec : cfg.precision ≤ 0)
@@ -360,6 +379,9 @@ def integratePartitionDyadicListChecked (e : Expr) (parts : List IntervalRat)
   (cells.map Prod.fst |>.foldl IntervalRat.add (IntervalRat.singleton 0),
     cells.all Prod.snd)
 
+/--
+@isnad1 id=eq.0h3v.s4.a7a4dd7740cb from=translated src=- shape=58aea455 vocab=33796e80
+-/
 theorem integratePartitionDyadicListChecked_fst (e : Expr) (parts : List IntervalRat)
     (cfg : DyadicConfig) :
     (integratePartitionDyadicListChecked e parts cfg).1 =
@@ -374,6 +396,9 @@ def checkPartitionDomainValidList (e : Expr) (parts : List IntervalRat)
   parts.all fun Ik =>
     checkDomainValidDyadic e (fun _ => IntervalDyadic.ofIntervalRat Ik cfg.precision) cfg
 
+/--
+@isnad1 id=eq.0h3v.s4.bf9298abb343 from=translated src=- shape=f1857d28 vocab=1da90c1e
+-/
 theorem integratePartitionDyadicListChecked_snd (e : Expr) (parts : List IntervalRat)
     (cfg : DyadicConfig) :
     (integratePartitionDyadicListChecked e parts cfg).2 =
@@ -444,6 +469,9 @@ def checkListPartitionCovers (parts : List IntervalRat) (I : IntervalRat) : Bool
       decide (((p :: ps).getLast (by simp)).hi = I.hi) &&
       checkAdjacent (p :: ps)
 
+/--
+@isnad1 id=listpart.1h2v.s3.f8e643a3fb22 from=translated src=- shape=c0c6cb55 vocab=3f7e8451
+-/
 theorem checkListPartitionCovers_correct (parts : List IntervalRat) (I : IntervalRat) :
     checkListPartitionCovers parts I = true → ListPartitionCovers parts I := by
   intro hcheck
@@ -467,7 +495,9 @@ def listPartitionDomainValid (e : Expr) (parts : List IntervalRat)
   ∀ Ik, Ik ∈ parts →
     evalDomainValidDyadic e (fun _ => IntervalDyadic.ofIntervalRat Ik cfg.precision) cfg
 
-/-- The boolean check implies the Prop-level domain validity. -/
+/-- The boolean check implies the Prop-level domain validity.
+@isnad1 id=listpart.1h3v.s4.b167c34199da from=translated src=- shape=d907ae32 vocab=726009cb
+-/
 theorem checkPartitionDomainValidList_correct (e : Expr) (parts : List IntervalRat)
     (cfg : DyadicConfig) :
     checkPartitionDomainValidList e parts cfg = true → listPartitionDomainValid e parts cfg := by
@@ -604,7 +634,9 @@ private theorem integral_mem_bound_dyadic_list (e : Expr)
   exact sum_mem_foldl_add hlen hmem_each
 
 /-- Golden theorem for a checked arbitrary Dyadic partition. Coverage remains
-an explicit input because candidate partition construction is untrusted. -/
+an explicit input because candidate partition construction is untrusted.
+@isnad1 id=mem.4h5v.s6.e9f92035e029 from=translated src=- shape=f0bb4fad vocab=0241e484
+-/
 theorem integratePartitionDyadicListChecked_correct (e : Expr)
     (parts : List IntervalRat) (I : IntervalRat)
     (hcover : ListPartitionCovers parts I)
@@ -641,7 +673,9 @@ def integrateDyadicLevelChecked (e : Expr) (root : IntervalDyadic) (depth : Nat)
 
 /-! ### Bridge lemmas for list-based partition -/
 
-/-- Bridge theorem (lower bound) for arbitrary partition. -/
+/-- Bridge theorem (lower bound) for arbitrary partition.
+@isnad1 id=le.4h5v.s6.feefb0fb5d38 from=translated src=- shape=e63d9326 vocab=182d82b5
+-/
 theorem integral_lower_of_check_dyadic_list (e : Expr)
     (I : IntervalRat) (parts : List IntervalRat)
     (hcover : ListPartitionCovers parts I)
@@ -657,7 +691,9 @@ theorem integral_lower_of_check_dyadic_list (e : Expr)
   calc (c : ℝ) ≤ ((integratePartitionDyadicList e parts cfg).lo : ℝ) := by exact_mod_cast hcheck.2
     _ ≤ ∫ x in (I.lo : ℝ)..(I.hi : ℝ), Expr.eval (fun _ => x) e := hmem.1
 
-/-- Bridge theorem (upper bound) for arbitrary partition. -/
+/-- Bridge theorem (upper bound) for arbitrary partition.
+@isnad1 id=le.4h5v.s6.8c70836f5d0d from=translated src=- shape=96c79153 vocab=64a7666b
+-/
 theorem integral_upper_of_check_dyadic_list (e : Expr)
     (I : IntervalRat) (parts : List IntervalRat)
     (hcover : ListPartitionCovers parts I)
@@ -674,7 +710,9 @@ theorem integral_upper_of_check_dyadic_list (e : Expr)
       ≤ ((integratePartitionDyadicList e parts cfg).hi : ℝ) := hmem.2
     _ ≤ (c : ℝ) := by exact_mod_cast hcheck.2
 
-/-- Bridge theorem for a fused two-sided arbitrary-partition certificate. -/
+/-- Bridge theorem for a fused two-sided arbitrary-partition certificate.
+@isnad1 id=and.4h6v.s7.abe4dca71dd5 from=translated src=- shape=17eba062 vocab=ba7a563f
+-/
 theorem integral_bounds_of_check_dyadic_list (e : Expr)
     (I : IntervalRat) (parts : List IntervalRat)
     (hcover : ListPartitionCovers parts I)

@@ -17,19 +17,31 @@ def partialTest (f : Test) (i : Fin 3) : Test :=
   ⟨vectorPartial (f : Space → Space) i, vectorPartial_smooth f f.smooth i,
     vectorPartial_compact f f.compact i⟩
 
+/--
+@isnad1 id=memlp.0h1v.s10.c43c02e0ff21 from=translated src=- shape=99290dbc vocab=2d17eb93
+-/
 theorem test_memLp (f : Test) : MemLp (f : Space → Space) 2 volume :=
   f.smooth.continuous.memLp_of_hasCompactSupport f.compact
 
 def testValue (f : Test) : L2 := (test_memLp f).toLp (f : Space → Space)
 
+/--
+@isnad1 id=eventual.0h1v.s12.8011c23a26c5 from=translated src=- shape=29769417 vocab=8d4d6716
+-/
 theorem testValue_ae (f : Test) : testValue f =ᵐ[volume] (f : Space → Space) :=
   (test_memLp f).coeFn_toLp
 
+/--
+@isnad1 id=integrab.0h2v.s10.bf191f1f3e26 from=translated src=- shape=0ee60dd8 vocab=03b00a7f
+-/
 theorem test_inner_integrable (f g : Test) :
     Integrable (fun x => ⟪(f : Space → Space) x, (g : Space → Space) x⟫_ℝ) :=
   (f.smooth.continuous.inner g.smooth.continuous).integrable_of_hasCompactSupport
     (f.compact.comp₂_left g.compact (inner_zero_left (0 : Space)))
 
+/--
+@isnad1 id=eq.0h2v.s12.9b4997f62013 from=translated src=- shape=91665f61 vocab=a9ed046a
+-/
 theorem test_inner_eq_integral (f g : Test) :
     ⟪testValue f, testValue g⟫_ℝ = ∫ x, ⟪(f : Space → Space) x, (g : Space → Space) x⟫_ℝ := by
   rw [MeasureTheory.L2.inner_def]
@@ -37,6 +49,9 @@ theorem test_inner_eq_integral (f g : Test) :
   filter_upwards [testValue_ae f, testValue_ae g] with x hf hg
   rw [hf, hg]
 
+/--
+@isnad1 id=eq.0h3v.s11.38b9f219d775 from=translated src=- shape=eef0e1c0 vocab=463a7c95
+-/
 theorem directional_integration_by_parts (f g : Test) (i : Fin 3) :
     (∫ x, ⟪vectorPartial (f : Space → Space) i x, (g : Space → Space) x⟫_ℝ) =
       -∫ x, ⟪(f : Space → Space) x, vectorPartial (g : Space → Space) i x⟫_ℝ := by
@@ -50,7 +65,9 @@ theorem directional_integration_by_parts (f g : Test) (i : Fin 3) :
     -∫ x, ⟪vectorPartial (f : Space → Space) i x, (g : Space → Space) x⟫_ℝ at h
   linarith
 
-/-- The actual tensor inner product has the usual distributional Laplacian formula. -/
+/-- The actual tensor inner product has the usual distributional Laplacian formula.
+@isnad1 id=eq.0h2v.s16.f376481e69b1 from=translated src=- shape=95f3afde vocab=0fae9b85
+-/
 theorem testGradient_pairing (f g : Test) :
     ⟪EulerMeanGradientTest.testGradient f, EulerMeanGradientTest.testGradient g⟫_ℝ =
       -∫ x, ⟪(f : Space → Space) x, Δ (g : Space → Space) x⟫_ℝ := by
@@ -81,6 +98,9 @@ theorem testGradient_pairing (f g : Test) :
       simp only [Finset.sum_neg_distrib]
       rfl
 
+/--
+@isnad1 id=eq.4h3v.s10.ee4187cb4a7b from=translated src=- shape=1be8fc7e vocab=0fa5927c
+-/
 theorem scalar_partial_ibp (f g : Space → ℝ) (hf : ContDiff ℝ ∞ f)
     (hg : ContDiff ℝ ∞ g) (hfc : HasCompactSupport f) (hgc : HasCompactSupport g)
     (i : Fin 3) :
@@ -97,6 +117,9 @@ theorem scalar_partial_ibp (f g : Space → ℝ) (hf : ContDiff ℝ ∞ f)
   change (∫ x, f x * partialDerivative g i x) = -∫ x, partialDerivative f i x * g x at h
   linarith
 
+/--
+@isnad1 id=eq.6h6v.s11.9783833cc30c from=translated src=- shape=3dc51145 vocab=4ab48fda
+-/
 theorem integral_three_sub (a b c d e f : Space → ℝ)
     (ha : Integrable a) (hb : Integrable b) (hc : Integrable c)
     (hd : Integrable d) (he : Integrable e) (hf : Integrable f) :
@@ -108,7 +131,9 @@ theorem integral_three_sub (a b c d e f : Space → ℝ)
   simp only [Pi.add_apply, Pi.sub_apply] at h₁ h₂
   rw [h₁, h₂, integral_sub ha hb, integral_sub hc hd, integral_sub he hf]
 
-/-- The ordinary real curl is formally self-adjoint on compact smooth vector tests. -/
+/-- The ordinary real curl is formally self-adjoint on compact smooth vector tests.
+@isnad1 id=eq.0h2v.s11.0c66e9b3b31d from=translated src=- shape=000ad0e2 vocab=e23d55dc
+-/
 theorem integral_curl_selfadjoint (f g : Test) :
     (∫ x, ⟪vectorCurl (f : Space → Space) x, (g : Space → Space) x⟫_ℝ) =
       ∫ x, ⟪(f : Space → Space) x, vectorCurl (g : Space → Space) x⟫_ℝ := by
@@ -152,11 +177,17 @@ theorem integral_curl_selfadjoint (f g : Test) :
   simp_rw [scalar_partial_ibp _ _ (hfs _) (hgs _) (hfc _) (hgc _)]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s17.66fcdff65e52 from=translated src=- shape=d16eb44a vocab=4a3f48f7
+-/
 theorem curlTensor_test_eq (f : Test) :
     curlTensor (EulerMeanGradientTest.testGradient f) = testValue (curlTest f) := by
   apply Lp.ext
   exact (curlTensor_test_ae f).trans (testValue_ae (curlTest f)).symm
 
+/--
+@isnad1 id=eq.0h2v.s18.07b71b55f754 from=translated src=- shape=a2ac3d7a vocab=0a367dab
+-/
 theorem test_gradient_curl_pairing (f g : Test) :
     ⟪EulerMeanGradientTest.testGradient f, EulerMeanGradientTest.testGradient (curlTest g)⟫_ℝ =
       -⟪curlTensor (EulerMeanGradientTest.testGradient f), testValue (laplacianTest g)⟫_ℝ := by
@@ -166,7 +197,9 @@ theorem test_gradient_curl_pairing (f g : Test) :
   rw [laplacian_vectorCurl (g : Space → Space) g.smooth]
   exact congrArg Neg.neg (integral_curl_selfadjoint f (laplacianTest g)).symm
 
-/-- Distributional integration by parts survives passage to the closed homogeneous gradient space. -/
+/-- Distributional integration by parts survives passage to the closed homogeneous gradient space.
+@isnad1 id=eq.0h2v.s19.ca0deef31b03 from=translated src=- shape=15ff9b6b vocab=f78fd4e1
+-/
 theorem homogeneous_curl_pairing (u : homogeneousSpace) (g : Test) :
     ⟪u, homogeneousGradient (curlTest g)⟫_ℝ =
       -⟪curlTensor (u : GradientTensor), testValue (laplacianTest g)⟫_ℝ := by

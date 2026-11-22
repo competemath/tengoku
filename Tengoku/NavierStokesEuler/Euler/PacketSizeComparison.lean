@@ -12,6 +12,9 @@ namespace EulerPacketMovingFrame
 open EulerSmoothLimit EulerPacketRay EulerPacketFrameStability EulerPacketFrameQuantitative
   InnerProductSpace
 
+/--
+@isnad1 id=and.7h6v.s8.4183f16915b3 from=translated src=- shape=ebac3633 vocab=95b91593
+-/
 theorem scalar_size_comparison {s₀ D D₀ E V Z : ℝ}
     (hs₀ : 0 ≤ s₀) (hD₀ : 1 ≤ D₀) (hD : |D-D₀| ≤ 1/2)
     (hElo : 1 ≤ E) (hEup : E ≤ 2) (hZ : 0 < Z) (hV : |V-Z| ≤ Z/2) :
@@ -42,7 +45,9 @@ theorem scalar_size_comparison {s₀ D D₀ E V Z : ℝ}
 
 /-- The actual primary size lies between fixed multiples of its ideal
 size under the same quantitative ray and relative-state estimates already
-proved for propagation. -/
+proved for propagation.
+@isnad1 id=and.20h16v.s10.b23848362bad from=translated src=- shape=a509fbd8 vocab=de5b0f8e
+-/
 theorem physical_size_comparison_order40 (m v r w : ℝ → Space)
     {s₀ t₀ a ε τ Θ K e P₀ Q₀ r₀ Z : ℝ}
     (hs₀ : 0 < s₀) (hε : 0 < ε)

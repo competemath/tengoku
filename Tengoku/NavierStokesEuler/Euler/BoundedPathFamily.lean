@@ -27,6 +27,9 @@ def boundedSlice (t : Icc (0 : ℝ) T) : X →ᵇ V :=
     ((ContinuousMap.evalCLM ℝ t).continuous.comp hf) C (hC t)
 
 include hq hd in
+/--
+@isnad1 id=lipschit.6h7v.s9.0c4f855db98e from=translated src=- shape=78a05164 vocab=d41eee62
+-/
 theorem boundedSlice_lipschitz :
     LipschitzWith ⟨D,hD⟩ (boundedSlice T f hf C hC) := by
   apply LipschitzWith.of_dist_le_mul
@@ -48,9 +51,15 @@ def boundedPath : C(Icc (0 : ℝ) T,X →ᵇ V) where
   toFun := boundedSlice T f hf C hC
   continuous_toFun := (boundedSlice_lipschitz T hT f q hf C D hC hD hq hd).continuous
 
+/--
+@isnad1 id=eq.6h9v.s10.1d5138d6a41a from=translated src=- shape=f402719d vocab=3ed578e6
+-/
 @[simp] theorem boundedPath_apply (t : Icc (0 : ℝ) T) (x : X) :
     boundedPath T hT f q hf C D hC hD hq hd t x = f x t := rfl
 
+/--
+@isnad1 id=le.7h7v.s9.42ad75efc702 from=translated src=- shape=9527e5f1 vocab=3ed578e6
+-/
 theorem boundedPath_norm (hCnonneg : 0 ≤ C) :
     ‖boundedPath T hT f q hf C D hC hD hq hd‖ ≤ C := by
   apply (ContinuousMap.norm_le _ hCnonneg).2

@@ -19,7 +19,9 @@ variable {P U E ι : Type*} [NormedAddCommGroup P] [NormedSpace ℝ P]
   [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E] [Fintype ι]
 
 /-- The continuous Gram solve is bounded in the same fixed Sobolev order and
-external radius as its input, with one factorial shift and a fixed cost. -/
+external radius as its input, with one factorial shift and a fixed cost.
+@isnad1 id=le.11h17v.s12.3af0cb2a9869 from=translated src=- shape=6445ba19 vocab=9cffe7eb
+-/
 theorem solution_block_gevrey (directions : ι → P)
     (hd : ∀ i, ‖directions i‖ ≤ 1) (q : ℕ) (T : ℝ)
     (Q : P → C(Icc (0 : ℝ) T,U →L[ℝ] E))

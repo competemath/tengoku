@@ -18,6 +18,9 @@ variable {P : ℝ} [Fact (0 < P)]
   (D : EulerTransversePacketProvider.Data U) {raw : VectorField}
   (G : Field P D.T raw) (t : Icc (0 : ℝ) D.T)
 
+/--
+@isnad1 id=eq.1h7v.s9.be96d8924ad2 from=translated src=- shape=f2e07725 vocab=c9de4db6
+-/
 theorem rawMean_pointField
     (hm : ∀ x, (∫ θ in (0 : ℝ)..P, raw (t,(x,θ))) = 0) (x : Space) :
     (∫ θ in (0 : ℝ)..P, pointField P G.path G.orbit t (x,(θ : AddCircle P))) = 0 := by
@@ -26,6 +29,9 @@ theorem rawMean_pointField
   intro θ _
   exact (G.raw_eq t x θ).symm
 
+/--
+@isnad1 id=eq.1h8v.s8.a2c4ebbc9c55 from=translated src=- shape=e27246f8 vocab=a933e4fc
+-/
 theorem rawCorrector_eq_lifted
     (hm : ∀ x, (∫ θ in (0 : ℝ)..P, raw (t,(x,θ))) = 0) (x : Space) (θ : ℝ) :
     D.curlCorrector P raw (t,(x,θ)) =

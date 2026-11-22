@@ -83,11 +83,17 @@ instance : Inhabited AffineForm := ⟨zero⟩
 
 def sumAbs (l : List ℚ) : ℚ := l.foldl (fun acc c => acc + |c|) 0
 
+/--
+@isnad1 id=le.0h1v.s3.d4dbf5e0e270 from=translated src=- shape=b29cab32 vocab=fe68b8fa
+-/
 theorem sumAbs_nonneg (l : List ℚ) : 0 ≤ sumAbs l :=
   list_foldl_abs_nonneg l 0 (le_refl 0)
 
 def deviationBound (af : AffineForm) : ℚ := af.r + sumAbs af.coeffs
 
+/--
+@isnad1 id=le.0h1v.s3.c4344a498e0c from=translated src=- shape=b9369acb vocab=eac3a8ab
+-/
 theorem deviationBound_nonneg (af : AffineForm) : 0 ≤ af.deviationBound := by
   simp only [deviationBound]
   have h1 := af.r_nonneg
@@ -183,11 +189,15 @@ def toInterval (af : AffineForm) : IntervalRat :=
 
 /-! ## The Key Property: x - x = 0 -/
 
-/-- The central value of x - x is exactly 0 -/
+/-- The central value of x - x is exactly 0
+@isnad1 id=eq.0h1v.s3.004fe5703e4e from=translated src=- shape=901109d1 vocab=6058a380
+-/
 theorem sub_self_c0 (a : AffineForm) : (sub a a).c0 = 0 := by
   simp only [sub, add, neg]; ring
 
-/-- For an input affine form (r = 0), x - x has zero radius -/
+/-- For an input affine form (r = 0), x - x has zero radius
+@isnad1 id=eq.1h1v.s4.032f1d9dc2b7 from=translated src=- shape=d2b743cd vocab=8ac44bf7
+-/
 theorem sub_self_radius_zero (a : AffineForm) (h : a.r = 0) : (sub a a).r = 0 := by
   simp only [sub, add, neg]; linarith [a.r_nonneg]
 
@@ -208,7 +218,9 @@ private theorem zipWithPad_add_neg_zero (l : List ℚ) :
       ring
     | inr hmem => exact ih c hmem
 
-/-- Subtraction of the same form gives all-zero coefficients -/
+/-- Subtraction of the same form gives all-zero coefficients
+@isnad1 id=eq.1h2v.s4.e38d75b108b9 from=translated src=- shape=8170129b vocab=e639cfbe
+-/
 theorem sub_self_coeffs_allzero (a : AffineForm) :
     ∀ c ∈ (sub a a).coeffs, c = 0 := by
   simp only [sub, add, neg]
@@ -288,7 +300,9 @@ private theorem linearSum_map_neg (l : List ℚ) (eps : NoiseAssignment) :
 
 /-! ## Soundness Proofs -/
 
-/-- Constants are sound: const q represents q -/
+/-- Constants are sound: const q represents q
+@isnad1 id=memaffin.0h2v.s3.50a26a13e40e from=translated src=- shape=2b8b4ff8 vocab=078f4354
+-/
 theorem mem_const (q : ℚ) (eps : NoiseAssignment) :
     mem_affine (const q) eps (q : ℝ) := by
   use 0
@@ -311,7 +325,9 @@ private theorem linearSum_map_mul (q : ℚ) (coeffs : List ℚ) (eps : NoiseAssi
       push_cast
       ring
 
-/-- Scalar multiplication is sound -/
+/-- Scalar multiplication is sound
+@isnad1 id=memaffin.1h4v.s4.bec4f71ee9b1 from=translated src=- shape=ddd79ff9 vocab=01a5c8c1
+-/
 theorem mem_scale (q : ℚ) {a : AffineForm} {eps : NoiseAssignment} {v : ℝ}
     (hmem : mem_affine a eps v) :
     mem_affine (scale q a) eps ((q : ℝ) * v) := by
@@ -327,7 +343,9 @@ theorem mem_scale (q : ℚ) {a : AffineForm} {eps : NoiseAssignment} {v : ℝ}
     push_cast
     ring
 
-/-- Addition is sound -/
+/-- Addition is sound
+@isnad1 id=memaffin.2h5v.s5.2f4cfbcc38d8 from=translated src=- shape=17981796 vocab=abe2df55
+-/
 theorem mem_add {a b : AffineForm} {eps : NoiseAssignment} {va vb : ℝ}
     (ha : mem_affine a eps va) (hb : mem_affine b eps vb) :
     mem_affine (add a b) eps (va + vb) := by
@@ -348,7 +366,9 @@ theorem mem_add {a b : AffineForm} {eps : NoiseAssignment} {va vb : ℝ}
     push_cast
     ring
 
-/-- Negation is sound -/
+/-- Negation is sound
+@isnad1 id=memaffin.1h3v.s4.bf41ff2bbf96 from=translated src=- shape=b9088f92 vocab=f0273fd6
+-/
 theorem mem_neg {a : AffineForm} {eps : NoiseAssignment} {va : ℝ}
     (ha : mem_affine a eps va) : mem_affine (neg a) eps (-va) := by
   obtain ⟨erra, herra_bound, hva⟩ := ha
@@ -361,7 +381,9 @@ theorem mem_neg {a : AffineForm} {eps : NoiseAssignment} {va : ℝ}
     simp only [evalLinear]
     ring
 
-/-- Subtraction is sound -/
+/-- Subtraction is sound
+@isnad1 id=memaffin.2h5v.s5.be22946cb78c from=translated src=- shape=17981796 vocab=cdb6408f
+-/
 theorem mem_sub {a b : AffineForm} {eps : NoiseAssignment} {va vb : ℝ}
     (ha : mem_affine a eps va) (hb : mem_affine b eps vb) :
     mem_affine (sub a b) eps (va - vb) := by
@@ -494,7 +516,9 @@ private theorem linearSum_bounded_weak (coeffs : List ℚ) (eps : NoiseAssignmen
         _ ≤ |(↑c : ℝ)| + (sumAbs cs : ℝ) := by linarith
         _ = (sumAbs (c :: cs) : ℝ) := by rw [← h_sumAbs_cons]
 
-/-- Multiplication is sound -/
+/-- Multiplication is sound
+@isnad1 id=memaffin.3h5v.s5.de09ea26365d from=translated src=- shape=ede6a1e4 vocab=81db0cdc
+-/
 theorem mem_mul {a b : AffineForm} {eps : NoiseAssignment} {va vb : ℝ}
     (hvalid : validNoise eps)
     (ha : mem_affine a eps va) (hb : mem_affine b eps vb) :
@@ -565,7 +589,9 @@ theorem mem_mul {a b : AffineForm} {eps : NoiseAssignment} {va vb : ℝ}
     push_cast
     ring
 
-/-- Squaring is sound: if v is represented by a, then v*v is represented by sq a -/
+/-- Squaring is sound: if v is represented by a, then v*v is represented by sq a
+@isnad1 id=memaffin.2h3v.s4.bbd00fa14d95 from=translated src=- shape=471ec70a vocab=19f7cd9e
+-/
 theorem mem_sq {a : AffineForm} {eps : NoiseAssignment} {v : ℝ}
     (hvalid : validNoise eps)
     (hmem : mem_affine a eps v) :
@@ -630,7 +656,9 @@ theorem mem_sq {a : AffineForm} {eps : NoiseAssignment} {v : ℝ}
     push_cast
     ring
 
-/-- If v is represented by af, then v ∈ toInterval af -/
+/-- If v is represented by af, then v ∈ toInterval af
+@isnad1 id=mem.3h3v.s4.11e8b73d2870 from=translated src=- shape=e5a92aa0 vocab=4edcfe02
+-/
 theorem mem_toInterval {af : AffineForm} {eps : NoiseAssignment} {v : ℝ}
     (hvalid : validNoise eps)
     (hlen : eps.length = af.coeffs.length)
@@ -667,7 +695,9 @@ theorem mem_toInterval {af : AffineForm} {eps : NoiseAssignment} {v : ℝ}
         ≤ (af.c0 : ℝ) + (af.r : ℝ) + (sumAbs af.coeffs : ℝ) := by linarith
       _ = (((af.c0 + (af.r + sumAbs af.coeffs)) : ℚ) : ℝ) := by push_cast; ring
 
-/-- If v is represented by af, then v ∈ toInterval af (no length assumption). -/
+/-- If v is represented by af, then v ∈ toInterval af (no length assumption).
+@isnad1 id=mem.2h3v.s4.3298531b628f from=translated src=- shape=acaad0e7 vocab=14202b59
+-/
 theorem mem_toInterval_weak {af : AffineForm} {eps : NoiseAssignment} {v : ℝ}
     (hvalid : validNoise eps)
     (hmem : mem_affine af eps v) :
@@ -698,7 +728,9 @@ theorem mem_toInterval_weak {af : AffineForm} {eps : NoiseAssignment} {v : ℝ}
         ≤ (af.c0 : ℝ) + (af.r : ℝ) + (sumAbs af.coeffs : ℝ) := by linarith
       _ = (((af.c0 + (af.r + sumAbs af.coeffs)) : ℚ) : ℝ) := by push_cast; ring
 
-/-- If x is inside an interval, the midpoint/radius affine form contains x. -/
+/-- If x is inside an interval, the midpoint/radius affine form contains x.
+@isnad1 id=memaffin.1h3v.s6.ac6dfb8ba022 from=translated src=- shape=07f13491 vocab=38839adb
+-/
 theorem mem_affine_of_interval {I : IntervalRat} {eps : NoiseAssignment} {x : ℝ}
     (hx : x ∈ I) :
     mem_affine
@@ -733,7 +765,9 @@ theorem mem_affine_of_interval {I : IntervalRat} {eps : NoiseAssignment} {x : �
         _ = ((rad : ℚ) : ℝ) := by simp only [rad]; push_cast; ring
   · ring
 
-/-- `ofIntervalFallback` represents every point of its source interval. -/
+/-- `ofIntervalFallback` represents every point of its source interval.
+@isnad1 id=memaffin.1h3v.s4.fe246db71657 from=translated src=- shape=b059c990 vocab=815e2529
+-/
 theorem mem_ofIntervalFallback {I : IntervalRat} {eps : NoiseAssignment} {x : ℝ}
     (hx : x ∈ I) : mem_affine (ofIntervalFallback I) eps x := by
   simpa [ofIntervalFallback] using (mem_affine_of_interval (eps := eps) hx)

@@ -25,11 +25,16 @@ namespace LeanCert.QProduct
 open scoped BigOperators
 open MeasureTheory
 
+/--
+@isnad1 id=mem.1h2v.s5.6a926f678cad from=translated src=- shape=b685e904 vocab=70b19c53
+-/
 theorem pow_mem_unit_interval {u : ℝ} (hu : u ∈ Set.Icc (0 : ℝ) 1) (n : Nat) :
     u ^ n ∈ Set.Icc (0 : ℝ) 1 := by
   exact ⟨pow_nonneg hu.1 n, pow_le_one₀ hu.1 hu.2⟩
 
-/-- The finite product profile is nonnegative on `[0,1]`. -/
+/-- The finite product profile is nonnegative on `[0,1]`.
+@isnad1 id=le.1h2v.s5.6246fec6af39 from=translated src=- shape=d462fa2f vocab=561bf034
+-/
 theorem qProd_nonneg (S : Finset Nat) {u : ℝ} (hu : u ∈ Set.Icc (0 : ℝ) 1) :
     0 ≤ qProd S u := by
   classical
@@ -38,7 +43,9 @@ theorem qProd_nonneg (S : Finset Nat) {u : ℝ} (hu : u ∈ Set.Icc (0 : ℝ) 1)
   intro n hn
   exact sub_nonneg.mpr (pow_mem_unit_interval hu n).2
 
-/-- Product-integral values are nonnegative. -/
+/-- Product-integral values are nonnegative.
+@isnad1 id=le.0h1v.s3.696574e0afad from=translated src=- shape=942babd5 vocab=3dcf0e7d
+-/
 theorem F_nonneg (S : Finset Nat) : 0 ≤ F S := by
   unfold F
   have hInt : IntervalIntegrable (fun u => qProd S u) volume (0 : ℝ) 1 := by
@@ -51,7 +58,9 @@ theorem F_nonneg (S : Finset Nat) : 0 ≤ F S := by
   intro u hu
   exact qProd_nonneg S hu
 
-/-- Odd exponent tails beginning at `5` telescope against the factor `1 - u^2`. -/
+/-- Odd exponent tails beginning at `5` telescope against the factor `1 - u^2`.
+@isnad1 id=le.1h2v.s7.3740339cf13c from=translated src=- shape=2afe20a0 vocab=73db1f67
+-/
 theorem odd_tail_telescope_bound (M : Nat) {u : ℝ} (hu : u ∈ Set.Icc (0 : ℝ) 1) :
     (1 - u ^ 2) * (∑ j ∈ Finset.range (M + 1), u ^ (5 + 2 * j)) ≤ u ^ 5 := by
   have hsum :
@@ -72,7 +81,9 @@ theorem odd_tail_telescope_bound (M : Nat) {u : ℝ} (hu : u ∈ Set.Icc (0 : �
     _ = u ^ 5 := by ring
 
 /-- Any finite set of odd exponents at least `5` and bounded by `M` is dominated
-by the full odd geometric tail beginning at `5`. -/
+by the full odd geometric tail beginning at `5`.
+@isnad1 id=le.4h3v.s7.18b222af5d67 from=translated src=- shape=446001b4 vocab=69265852
+-/
 theorem odd_tail_sum_le_geom (A : Finset Nat) (M : Nat)
     {u : ℝ} (hu : u ∈ Set.Icc (0 : ℝ) 1)
     (hodd : ∀ q ∈ A, Odd q) (h5 : ∀ q ∈ A, 5 ≤ q) (hM : ∀ q ∈ A, q < M + 1) :

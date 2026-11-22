@@ -213,6 +213,9 @@ def expPointComputableWithCoeffs (q : ℚ) (n : ℕ) (coeffs : List ℚ) : Inter
   let remainder := expRemainderBoundComputable I n
   pow (add polyVal remainder) m
 
+/--
+@isnad1 id=eq.0h2v.s3.7eeb7bd8c39e from=translated src=- shape=4156d7b2 vocab=2f1fed05
+-/
 theorem expPointComputableWithCoeffs_eq (q : ℚ) (n : ℕ) :
     expPointComputableWithCoeffs q n (expTaylorCoeffs n) = expPointComputable q n := by
   simp [expPointComputableWithCoeffs, expPointComputable, expPointComputableRaw]
@@ -221,13 +224,18 @@ theorem expPointComputableWithCoeffs_eq (q : ℚ) (n : ℕ) :
 def hull (I J : IntervalRat) : IntervalRat :=
   ⟨min I.lo J.lo, max I.hi J.hi, le_trans (min_le_left _ _) (le_trans I.le (le_max_left _ _))⟩
 
-/-- Membership in hull -/
+/-- Membership in hull
+@isnad1 id=mem.1h3v.s4.f04d57bca52c from=translated src=- shape=202bfa92 vocab=c3c583c1
+-/
 theorem mem_hull_left {x : ℝ} {I J : IntervalRat} (hx : x ∈ I) : x ∈ hull I J := by
   simp only [hull, mem_def, Rat.cast_min, Rat.cast_max]
   constructor
   · exact le_trans (min_le_left _ _) hx.1
   · exact le_trans hx.2 (le_max_left _ _)
 
+/--
+@isnad1 id=mem.1h3v.s4.b3f49c7ad3d2 from=translated src=- shape=7d4d6ef6 vocab=c3c583c1
+-/
 theorem mem_hull_right {x : ℝ} {I J : IntervalRat} (hx : x ∈ J) : x ∈ hull I J := by
   simp only [hull, mem_def, Rat.cast_min, Rat.cast_max]
   constructor
@@ -266,6 +274,9 @@ def expComputableWithCoeffs (I : IntervalRat) (n : ℕ) (coeffs : List ℚ) : In
     let remainder := expRemainderBoundComputable I n
     add polyVal remainder
 
+/--
+@isnad1 id=eq.0h2v.s3.1f8b16656cd9 from=translated src=- shape=0befb3d4 vocab=0e6f2f45
+-/
 theorem expComputableWithCoeffs_eq (I : IntervalRat) (n : ℕ) :
     expComputableWithCoeffs I n (expTaylorCoeffs n) = expComputable I n := by
   simp [expComputableWithCoeffs, expComputable, expPointComputableWithCoeffs_eq]
@@ -319,6 +330,9 @@ def sinComputableWithCoeffs (I : IntervalRat) (n : ℕ) (coeffs : List ℚ) : In
   | some refined => refined
   | none => raw
 
+/--
+@isnad1 id=eq.0h2v.s3.0fa1b898340e from=translated src=- shape=0befb3d4 vocab=ea0901e7
+-/
 theorem sinComputableWithCoeffs_eq (I : IntervalRat) (n : ℕ) :
     sinComputableWithCoeffs I n (sinTaylorCoeffs n) = sinComputable I n := by
   simp [sinComputableWithCoeffs, sinComputable]
@@ -372,6 +386,9 @@ def cosComputableWithCoeffs (I : IntervalRat) (n : ℕ) (coeffs : List ℚ) : In
   | some refined => refined
   | none => raw
 
+/--
+@isnad1 id=eq.0h2v.s3.bffee03c4a7b from=translated src=- shape=0befb3d4 vocab=b2c82993
+-/
 theorem cosComputableWithCoeffs_eq (I : IntervalRat) (n : ℕ) :
     cosComputableWithCoeffs I n (cosTaylorCoeffs n) = cosComputable I n := by
   simp [cosComputableWithCoeffs, cosComputable]
@@ -412,7 +429,9 @@ def coshPointComputable (q : ℚ) (n : ℕ := 10) : IntervalRat :=
       have h1 : (1 : ℚ) ≤ 2 := by norm_num
       exact le_trans h1 (le_max_left _ _)⟩
 
-/-- The lower bound of coshPointComputable is always at least 1. -/
+/-- The lower bound of coshPointComputable is always at least 1.
+@isnad1 id=le.0h2v.s4.73cb76b9e9eb from=translated src=- shape=c4913a5a vocab=f624458b
+-/
 theorem coshPointComputable_lo_ge_one (q : ℚ) (n : ℕ) : 1 ≤ (coshPointComputable q n).lo := by
   simp only [coshPointComputable]
   split_ifs with h
@@ -461,7 +480,9 @@ def coshComputable (I : IntervalRat) (n : ℕ := 10) : IntervalRat :=
 
 /-! ### FTIA for pow -/
 
-/-- FTIA for interval power (binary exponentiation version) -/
+/-- FTIA for interval power (binary exponentiation version)
+@isnad1 id=mem.1h3v.s5.4b8cf200a5ac from=translated src=- shape=78af9131 vocab=6c6986b3
+-/
 theorem mem_pow {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ) :
     x ^ n ∈ pow I n := by
   match n with
@@ -493,7 +514,9 @@ termination_by n
 
 /-! ### Helper lemmas for Taylor series membership -/
 
-/-- Any x in I has |x| ≤ maxAbs I -/
+/-- Any x in I has |x| ≤ maxAbs I
+@isnad1 id=le.1h2v.s4.fb687dc93a2c from=translated src=- shape=f0543a18 vocab=618cbdf9
+-/
 theorem abs_le_maxAbs {x : ℝ} {I : IntervalRat} (hx : x ∈ I) : |x| ≤ maxAbs I := by
   simp only [mem_def, maxAbs] at *
   have hlo : -(max |I.lo| |I.hi|) ≤ I.lo := by
@@ -508,7 +531,9 @@ theorem abs_le_maxAbs {x : ℝ} {I : IntervalRat} (hx : x ∈ I) : |x| ≤ maxAb
       _ ≤ max |I.lo| |I.hi| := by exact_mod_cast hhi
 
 /-- If |x| ≤ R for nonnegative R, then x ∈ [-R, R].
-    This is the key micro-lemma for embedding Lagrange remainder bounds into intervals. -/
+    This is the key micro-lemma for embedding Lagrange remainder bounds into intervals.
+@isnad1 id=mem.2h2v.s5.01e1f91fdb17 from=translated src=- shape=552e1384 vocab=c80c5218
+-/
 theorem abs_le_mem_symmetric_interval {x : ℝ} {R : ℚ} (hR : 0 ≤ R) (h : |x| ≤ R) :
     x ∈ (⟨-R, R, by linarith⟩ : IntervalRat) := by
   simp only [mem_def, Rat.cast_neg]
@@ -517,13 +542,17 @@ theorem abs_le_mem_symmetric_interval {x : ℝ} {R : ℚ} (hR : 0 ≤ R) (h : |x
   · exact le_trans (le_abs_self x) h
 
 /-- Domain setup for Taylor theorem: if |x| ≤ r for nonnegative r,
-    then x ∈ [-r, r] as an Icc with the required inequalities. -/
+    then x ∈ [-r, r] as an Icc with the required inequalities.
+@isnad1 id=mem.2h2v.s5.51a7ef216eac from=translated src=- shape=eb277780 vocab=adfd715c
+-/
 theorem domain_from_abs_bound {x : ℝ} {r : ℚ} (_hr : 0 ≤ r) (habs : |x| ≤ r) :
     x ∈ Set.Icc ((-r : ℚ) : ℝ) (r : ℚ) := by
   simp only [Set.mem_Icc, Rat.cast_neg]
   exact abs_le.mp habs
 
-/-- Combined domain setup from interval membership. -/
+/-- Combined domain setup from interval membership.
+@isnad1 id=other.1h2v.s6.d447a6c1306c from=translated src=- shape=4ea823a6 vocab=1534cf79
+-/
 theorem domain_from_mem {x : ℝ} {I : IntervalRat} (hx : x ∈ I) :
     let r := maxAbs I
     (0 : ℝ) ≤ r ∧ |x| ≤ r ∧ x ∈ Set.Icc ((-r : ℚ) : ℝ) (r : ℚ) ∧
@@ -537,7 +566,9 @@ theorem domain_from_mem {x : ℝ} {I : IntervalRat} (hx : x ∈ I) :
   · simp only [Rat.cast_neg]; linarith
 
 /-- Convert an absolute value bound |v| ≤ R to interval membership v ∈ [-R, R].
-    This is the key micro-lemma for the final step of Taylor remainder bounds. -/
+    This is the key micro-lemma for the final step of Taylor remainder bounds.
+@isnad1 id=mem.1h2v.s5.eee460ac9ce1 from=translated src=- shape=19cd107e vocab=4cdd585f
+-/
 theorem remainder_to_interval {v : ℝ} {R : ℚ} (hbound : |v| ≤ R) :
     v ∈ (⟨-R, R, by
       have h1 : 0 ≤ |v| := abs_nonneg v
@@ -546,7 +577,9 @@ theorem remainder_to_interval {v : ℝ} {R : ℚ} (hbound : |v| ≤ R) :
   simp only [mem_def, Rat.cast_neg]
   exact abs_le.mp hbound
 
-/-- Key lemma: exp(ξ) ≤ 3^(⌈r⌉+1) for |ξ| ≤ r -/
+/-- Key lemma: exp(ξ) ≤ 3^(⌈r⌉+1) for |ξ| ≤ r
+@isnad1 id=le.2h2v.s6.c2084eb056f5 from=translated src=- shape=5b5ee167 vocab=e3fc7755
+-/
 theorem exp_bound_by_pow3 {r : ℚ} (_hr : 0 ≤ r) {ξ : ℝ} (hξ : |ξ| ≤ r) :
     Real.exp ξ ≤ (3 : ℝ) ^ (Nat.ceil r + 1) := by
   -- e < 3, using Real.exp_one_lt_d9 which gives exp(1) < 2.7182818286
@@ -569,7 +602,9 @@ theorem exp_bound_by_pow3 {r : ℚ} (_hr : 0 ≤ r) {ξ : ℝ} (hξ : |ξ| ≤ r
 
 /-! ### Coefficient matching lemmas -/
 
-/-- For exp, all iterated derivatives at 0 equal 1. -/
+/-- For exp, all iterated derivatives at 0 equal 1.
+@isnad1 id=eq.0h1v.s5.446d2df527aa from=translated src=- shape=e94a0606 vocab=98adcde0
+-/
 lemma iteratedDeriv_exp_zero (i : ℕ) : iteratedDeriv i Real.exp 0 = 1 := by
   simp [iteratedDeriv_eq_iterate, Real.iter_deriv_exp]
 
@@ -627,7 +662,9 @@ private lemma mem_horner_foldr {x : ℝ} {I : IntervalRat} (hx : x ∈ I)
       exact mem_add hc hmul
 
 /-- General FTIA for evalTaylorSeries (Horner version): if coeffs has length n+1, then
-    ∑_{i=0}^{n} coeffs[i] * x^i ∈ evalTaylorSeries coeffs I for x ∈ I. -/
+    ∑_{i=0}^{n} coeffs[i] * x^i ∈ evalTaylorSeries coeffs I for x ∈ I.
+@isnad1 id=mem.1h3v.s6.d5a17807e4e7 from=translated src=- shape=c29bbd58 vocab=d445511e
+-/
 theorem mem_evalTaylorSeries {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (coeffs : List ℚ) :
     (coeffs.zipIdx.map (fun (c, i) => (c : ℝ) * x ^ i)).sum ∈ evalTaylorSeries coeffs I := by
   have hmem := mem_horner_foldr hx coeffs
@@ -657,7 +694,9 @@ private lemma zipIdx_range_map {α : Type*} (f : ℕ → ℕ → α) (n : ℕ) :
 
 /-- The exp Taylor polynomial value matches our evalTaylorSeries.
     The proof shows that our list-based polynomial evaluation produces the same
-    sum as the Finset.sum form used in Mathlib's Taylor theorem. -/
+    sum as the Finset.sum form used in Mathlib's Taylor theorem.
+@isnad1 id=mem.1h3v.s6.89af6cd4d66f from=translated src=- shape=7a0c2ed2 vocab=59b36ddc
+-/
 theorem mem_evalTaylorSeries_exp {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ) :
     ∑ i ∈ Finset.range (n + 1), (1 / i.factorial : ℝ) * x ^ i ∈
       evalTaylorSeries (expTaylorCoeffs n) I := by
@@ -738,7 +777,9 @@ private lemma iteratedDeriv_sin_zero (i : ℕ) : iteratedDeriv i Real.sin 0 =
   · simp only [h3]; norm_num [Real.cos_zero]
 
 /-- The sin Taylor polynomial value matches our evalTaylorSeries.
-    Key: iteratedDeriv i sin 0 = 0, 1, 0, -1, 0, 1, ... matches sinTaylorCoeffs. -/
+    Key: iteratedDeriv i sin 0 = 0, 1, 0, -1, 0, 1, ... matches sinTaylorCoeffs.
+@isnad1 id=mem.1h3v.s6.b0a5e226d431 from=translated src=- shape=b6bb91a6 vocab=3d6e8270
+-/
 theorem mem_evalTaylorSeries_sin {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ) :
     ∑ i ∈ Finset.range (n + 1), (iteratedDeriv i Real.sin 0 / i.factorial) * x ^ i ∈
       evalTaylorSeries (sinTaylorCoeffs n) I := by
@@ -835,7 +876,9 @@ private lemma iteratedDeriv_cos_zero (i : ℕ) : iteratedDeriv i Real.cos 0 =
   · simp only [h3]; norm_num [Real.sin_zero]
 
 /-- The cos Taylor polynomial value matches our evalTaylorSeries.
-    Key: iteratedDeriv i cos 0 = 1, 0, -1, 0, 1, 0, ... matches cosTaylorCoeffs. -/
+    Key: iteratedDeriv i cos 0 = 1, 0, -1, 0, 1, 0, ... matches cosTaylorCoeffs.
+@isnad1 id=mem.1h3v.s6.45e25087bf62 from=translated src=- shape=b6bb91a6 vocab=889a5483
+-/
 theorem mem_evalTaylorSeries_cos {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ) :
     ∑ i ∈ Finset.range (n + 1), (iteratedDeriv i Real.cos 0 / i.factorial) * x ^ i ∈
       evalTaylorSeries (cosTaylorCoeffs n) I := by
@@ -894,7 +937,9 @@ theorem mem_evalTaylorSeries_cos {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n :
 
 /-- Unified Taylor remainder bound for exp: given x ∈ I with r = maxAbs I,
     the Taylor remainder |exp x - poly(x)| ≤ 3^(⌈r⌉+1) * r^(n+1) / (n+1)!.
-    This encapsulates the domain setup and remainder calculation. -/
+    This encapsulates the domain setup and remainder calculation.
+@isnad1 id=mem.1h3v.s6.eb53f421beef from=translated src=- shape=3a283fde vocab=7b4db0a4
+-/
 theorem exp_taylor_remainder_in_interval {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ) :
     Real.exp x - ∑ i ∈ Finset.range (n + 1), (iteratedDeriv i Real.exp 0 / i.factorial) * x ^ i
     ∈ expRemainderBoundComputable I n := by
@@ -947,7 +992,9 @@ theorem exp_taylor_remainder_in_interval {x : ℝ} {I : IntervalRat} (hx : x ∈
 
 /-- Unified Taylor remainder bound for sin: given x ∈ I with r = maxAbs I,
     the Taylor remainder |sin x - poly(x)| ≤ r^(n+1) / (n+1)!.
-    Uses the fact that |sin^(k)(x)| ≤ 1 for all k, x. -/
+    Uses the fact that |sin^(k)(x)| ≤ 1 for all k, x.
+@isnad1 id=mem.1h3v.s6.aeb9a8f46927 from=translated src=- shape=3a283fde vocab=8865dba0
+-/
 theorem sin_taylor_remainder_in_interval {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ) :
     Real.sin x - ∑ i ∈ Finset.range (n + 1), (iteratedDeriv i Real.sin 0 / i.factorial) * x ^ i
     ∈ sinRemainderBoundComputable I n := by
@@ -989,7 +1036,9 @@ theorem sin_taylor_remainder_in_interval {x : ℝ} {I : IntervalRat} (hx : x ∈
 
 /-- Unified Taylor remainder bound for cos: given x ∈ I with r = maxAbs I,
     the Taylor remainder |cos x - poly(x)| ≤ r^(n+1) / (n+1)!.
-    Uses the fact that |cos^(k)(x)| ≤ 1 for all k, x. -/
+    Uses the fact that |cos^(k)(x)| ≤ 1 for all k, x.
+@isnad1 id=mem.1h3v.s6.312775d81121 from=translated src=- shape=3a283fde vocab=98e3112f
+-/
 theorem cos_taylor_remainder_in_interval {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ) :
     Real.cos x - ∑ i ∈ Finset.range (n + 1), (iteratedDeriv i Real.cos 0 / i.factorial) * x ^ i
     ∈ cosRemainderBoundComputable I n := by
@@ -1049,7 +1098,9 @@ private theorem mem_expPointComputableRaw (q : ℚ) (n : ℕ) :
         (iteratedDeriv i Real.exp 0 / i.factorial) * (q : ℝ) ^ i) := by ring
   rw [heq]; exact mem_add hpoly_mem hrem_mem
 
-/-- FTIA for single-point exp: Real.exp q ∈ expPointComputable q n -/
+/-- FTIA for single-point exp: Real.exp q ∈ expPointComputable q n
+@isnad1 id=mem.0h2v.s4.10a2c52c3361 from=translated src=- shape=568304da vocab=36517531
+-/
 theorem mem_expPointComputable (q : ℚ) (n : ℕ) :
     Real.exp q ∈ expPointComputable q n := by
   simp only [expPointComputable]
@@ -1080,6 +1131,9 @@ theorem mem_expPointComputable (q : ℚ) (n : ℕ) :
   -- rewrite and apply membership
   simpa [hexp]
 
+/--
+@isnad1 id=mem.1h3v.s4.b3fd52b01028 from=translated src=- shape=ee14955b vocab=a4c1a9a7
+-/
 theorem mem_expComputable {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ) :
     Real.exp x ∈ expComputable I n := by
   simp only [expComputable]
@@ -1140,7 +1194,9 @@ theorem mem_expComputable {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ) :
 
 /-- FTIA for sinComputable: Real.sin x ∈ sinComputable I n for any x ∈ I.
 
-    The proof uses the Taylor remainder micro-lemma and the global bound sin ∈ [-1, 1]. -/
+    The proof uses the Taylor remainder micro-lemma and the global bound sin ∈ [-1, 1].
+@isnad1 id=mem.1h3v.s4.e8ed4583421a from=translated src=- shape=ee14955b vocab=24e2d86c
+-/
 theorem mem_sinComputable {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ) :
     Real.sin x ∈ sinComputable I n := by
   simp only [sinComputable]
@@ -1174,7 +1230,9 @@ theorem mem_sinComputable {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ) :
 
 /-- FTIA for cosComputable: Real.cos x ∈ cosComputable I n for any x ∈ I.
 
-    The proof uses the Taylor remainder micro-lemma and the global bound cos ∈ [-1, 1]. -/
+    The proof uses the Taylor remainder micro-lemma and the global bound cos ∈ [-1, 1].
+@isnad1 id=mem.1h3v.s4.18d7c2db2359 from=translated src=- shape=ee14955b vocab=3f93d3a7
+-/
 theorem mem_cosComputable {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ) :
     Real.cos x ∈ cosComputable I n := by
   simp only [cosComputable]
@@ -1206,7 +1264,9 @@ theorem mem_cosComputable {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ) :
   have ⟨K, hK_eq, hK_mem⟩ := mem_intersect hraw_mem hglobal_mem
   simp only [hK_eq]; exact hK_mem
 
-/-- FTIA for sinhPointComputable: Real.sinh q ∈ sinhPointComputable q n -/
+/-- FTIA for sinhPointComputable: Real.sinh q ∈ sinhPointComputable q n
+@isnad1 id=mem.0h2v.s4.a5ab433ab8aa from=translated src=- shape=568304da vocab=50a5a3a0
+-/
 theorem mem_sinhPointComputable (q : ℚ) (n : ℕ) :
     Real.sinh q ∈ sinhPointComputable q n := by
   simp only [sinhPointComputable]
@@ -1226,7 +1286,9 @@ theorem mem_sinhPointComputable (q : ℚ) (n : ℕ) :
     · simp only [Rat.cast_max, Rat.cast_div, Rat.cast_sub, Rat.cast_ofNat]
       apply le_max_of_le_right; linarith
 
-/-- FTIA for coshPointComputable: Real.cosh q ∈ coshPointComputable q n -/
+/-- FTIA for coshPointComputable: Real.cosh q ∈ coshPointComputable q n
+@isnad1 id=mem.0h2v.s4.9961432ca61c from=translated src=- shape=568304da vocab=58c3c8af
+-/
 theorem mem_coshPointComputable (q : ℚ) (n : ℕ) :
     Real.cosh q ∈ coshPointComputable q n := by
   simp only [coshPointComputable]
@@ -1265,7 +1327,9 @@ theorem mem_coshPointComputable (q : ℚ) (n : ℕ) :
 
 /-- FTIA for sinhComputable: Real.sinh x ∈ sinhComputable I n for any x ∈ I.
 
-    Uses endpoint evaluation and monotonicity of sinh. -/
+    Uses endpoint evaluation and monotonicity of sinh.
+@isnad1 id=mem.1h3v.s4.4b8ebd36701f from=translated src=- shape=ee14955b vocab=aa1058ff
+-/
 theorem mem_sinhComputable {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ) :
     Real.sinh x ∈ sinhComputable I n := by
   simp only [sinhComputable]
@@ -1293,7 +1357,9 @@ theorem mem_sinhComputable {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ) 
 
 /-- FTIA for coshComputable: Real.cosh x ∈ coshComputable I n for any x ∈ I.
 
-    Uses endpoint evaluation and monotonicity properties of cosh. -/
+    Uses endpoint evaluation and monotonicity properties of cosh.
+@isnad1 id=mem.1h3v.s4.5b23f5a877d1 from=translated src=- shape=ee14955b vocab=0f84cda1
+-/
 theorem mem_coshComputable {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ) :
     Real.cosh x ∈ coshComputable I n := by
   simp only [coshComputable]
@@ -1430,13 +1496,18 @@ def atanhPointComputableWithCoeffs (q : ℚ) (n : ℕ)
     let remainder := atanhRemainderBoundComputable r n
     add polyVal remainder
 
+/--
+@isnad1 id=eq.0h2v.s3.013b2ff62da8 from=translated src=- shape=4156d7b2 vocab=d8ab5c90
+-/
 theorem atanhPointComputableWithCoeffs_eq (q : ℚ) (n : ℕ) :
     atanhPointComputableWithCoeffs q n (atanhTaylorCoeffs n) =
       atanhPointComputable q n := by
   simp [atanhPointComputableWithCoeffs, atanhPointComputable]
 
 /-- The atanh series: atanh(x) = Σ_{k=0}^∞ x^(2k+1)/(2k+1) for |x| < 1.
-    Derived from Mathlib's hasSum_log_sub_log_of_abs_lt_one. -/
+    Derived from Mathlib's hasSum_log_sub_log_of_abs_lt_one.
+@isnad1 id=hassum.1h1v.s6.b088b903134d from=translated src=- shape=a3eec94f vocab=a3b1c5e5
+-/
 theorem Real.atanh_hasSum' {x : ℝ} (hx : |x| < 1) :
     HasSum (fun k : ℕ => x ^ (2 * k + 1) / (2 * k + 1)) (Real.atanh x) := by
   have hlog := Real.hasSum_log_sub_log_of_abs_lt_one hx
@@ -1450,14 +1521,18 @@ theorem Real.atanh_hasSum' {x : ℝ} (hx : |x| < 1) :
   field_simp
 
 /-- The atanh Taylor polynomial membership: the partial sum of atanh coefficients at q
-    is in evalTaylorSeries (atanhTaylorCoeffs n) (singleton q). -/
+    is in evalTaylorSeries (atanhTaylorCoeffs n) (singleton q).
+@isnad1 id=mem.0h2v.s6.adc9f5c91b34 from=translated src=- shape=dd58f8f2 vocab=060820cb
+-/
 theorem mem_evalTaylorSeries_atanh {q : ℚ} (n : ℕ) :
     ((atanhTaylorCoeffs n).zipIdx.map (fun (c, i) => (c : ℝ) * (q : ℝ) ^ i)).sum ∈
       evalTaylorSeries (atanhTaylorCoeffs n) (singleton q) :=
   mem_evalTaylorSeries (mem_singleton q) (atanhTaylorCoeffs n)
 
 /-- The atanh Taylor remainder bound: for |q| < 1, the remainder after n terms is bounded.
-    The remainder is |Σ_{k: 2k+1 > n} q^(2k+1)/(2k+1)| ≤ |q|^(n+1)/(1-|q|). -/
+    The remainder is |Σ_{k: 2k+1 > n} q^(2k+1)/(2k+1)| ≤ |q|^(n+1)/(1-|q|).
+@isnad1 id=mem.1h2v.s6.4a5fdc9b280e from=translated src=- shape=359fafb4 vocab=a54df2f4
+-/
 theorem atanh_taylor_remainder_in_interval {q : ℚ} (hq : |(q : ℝ)| < 1) (n : ℕ) :
     Real.atanh q - ((atanhTaylorCoeffs n).zipIdx.map (fun (c, i) => (c : ℝ) * (q : ℝ) ^ i)).sum
     ∈ atanhRemainderBoundComputable |q| n := by
@@ -1728,7 +1803,9 @@ theorem atanh_taylor_remainder_in_interval {q : ℚ} (hq : |(q : ℝ)| < 1) (n :
       _ ≤ _ := h.1
   · exact h.2
 
-/-- FTIA for atanhPointComputable: Real.atanh q ∈ atanhPointComputable q n for |q| < 1. -/
+/-- FTIA for atanhPointComputable: Real.atanh q ∈ atanhPointComputable q n for |q| < 1.
+@isnad1 id=mem.1h2v.s5.85f1fdb855fa from=translated src=- shape=3f7d6d81 vocab=ea964d76
+-/
 theorem mem_atanhPointComputable (q : ℚ) (n : ℕ) (hq : |(q : ℝ)| < 1) :
     Real.atanh q ∈ atanhPointComputable q n := by
   simp only [atanhPointComputable]
@@ -1772,7 +1849,9 @@ def ln2Computable (n : ℕ := 20) : IntervalRat :=
   scale 2 atanh_third
 
 /-- FTIA for ln2Computable: Real.log 2 ∈ ln2Computable n.
-    Uses the identity log(2) = 2 * atanh(1/3) from log_via_atanh. -/
+    Uses the identity log(2) = 2 * atanh(1/3) from log_via_atanh.
+@isnad1 id=mem.0h1v.s4.e6157ddff690 from=translated src=- shape=7fb55bbb vocab=7850efdc
+-/
 theorem mem_ln2Computable (n : ℕ) : Real.log 2 ∈ ln2Computable n := by
   simp only [ln2Computable]
   -- log(2) = 2 * atanh(1/3) via log_via_atanh
@@ -1842,6 +1921,9 @@ def logPointComputablePrepared (q : ℚ) (n : ℕ) (ln2 : IntervalRat)
     let k_ln2 := scale k ln2
     add log_m k_ln2
 
+/--
+@isnad1 id=eq.0h2v.s4.62fefb956ec3 from=translated src=- shape=0860805a vocab=818cbc8b
+-/
 theorem logPointComputablePrepared_eq (q : ℚ) (n : ℕ) :
     logPointComputablePrepared q n (ln2Computable n) (atanhTaylorCoeffs n) =
       logPointComputable q n := by
@@ -1869,6 +1951,9 @@ def logComputablePrepared (I : IntervalRat) (n : ℕ) (ln2 : IntervalRat)
     let logHi := logPointComputablePrepared I.hi n ln2 atanhCoeffs
     hull logLo logHi
 
+/--
+@isnad1 id=eq.0h2v.s4.6b2e7844539a from=translated src=- shape=707f4b53 vocab=545fedd9
+-/
 theorem logComputablePrepared_eq (I : IntervalRat) (n : ℕ) :
     logComputablePrepared I n (ln2Computable n) (atanhTaylorCoeffs n) =
       logComputable I n := by
@@ -1885,7 +1970,9 @@ private theorem logReduceMantissa_eq {q : ℚ} (hq : 0 < q) :
   simp only [logReduceMantissa, LogReduction.reduceMantissa, not_le.mpr hq, ↓reduceIte,
              logReductionExponent_eq hq]
 
-/-- FTIA for logPointComputable -/
+/-- FTIA for logPointComputable
+@isnad1 id=mem.1h2v.s4.4822e1c58286 from=translated src=- shape=f696649e vocab=73b32091
+-/
 theorem mem_logPointComputable {q : ℚ} (hq : 0 < q) (n : ℕ) :
     Real.log q ∈ logPointComputable q n := by
   unfold logPointComputable
@@ -1950,7 +2037,9 @@ theorem mem_logPointComputable {q : ℚ} (hq : 0 < q) (n : ℕ) :
   rw [h_log_eq]
   exact mem_add h_log_m' h_k_ln2
 
-/-- FTIA for logComputable: if x ∈ I and I.lo > 0, then log(x) ∈ logComputable I n -/
+/-- FTIA for logComputable: if x ∈ I and I.lo > 0, then log(x) ∈ logComputable I n
+@isnad1 id=mem.2h3v.s5.764e5f0bb908 from=translated src=- shape=e023eff3 vocab=e6ad9a54
+-/
 theorem mem_logComputable {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (hpos : 0 < I.lo) (n : ℕ) :
     Real.log x ∈ logComputable I n := by
   simp only [logComputable, not_le.mpr hpos, ↓reduceIte]
@@ -1977,7 +2066,9 @@ theorem mem_logComputable {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (hpos : 0 <
       _ ≤ max ((logPointComputable I.lo n).hi : ℝ) ((logPointComputable I.hi n).hi : ℝ) := le_max_right _ _
 
 /-- Conditional version of mem_logComputable for use in correctness proofs.
-    Requires I.lo > 0 so the log interval is well-defined and monotone. -/
+    Requires I.lo > 0 so the log interval is well-defined and monotone.
+@isnad1 id=mem.2h3v.s5.764e5f0bb908 from=translated src=- shape=e023eff3 vocab=e6ad9a54
+-/
 theorem mem_logComputable' {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (hpos : 0 < I.lo) (n : ℕ) :
     Real.log x ∈ logComputable I n := by
   exact mem_logComputable hx hpos n
@@ -2080,7 +2171,9 @@ def erfComputable (I : IntervalRat) (n : ℕ := 15) : IntervalRat :=
     2/√π ≈ 1.1283791670955126, which is in (1.128, 1.129).
 
     This is a helper theorem for correctness proofs. The computation of
-    erfComputable is independent of this theorem. -/
+    erfComputable is independent of this theorem.
+@isnad1 id=mem.0h0v.s4.de1e8b2578f3 from=translated src=- shape=ebf19dfa vocab=0581b09b
+-/
 theorem two_div_sqrt_pi_mem : 2 / Real.sqrt Real.pi ∈ two_div_sqrt_pi := by
   simp only [two_div_sqrt_pi, mem_def]
   -- From π bounds: 3.1415 < π < 3.1416 (Real.pi_gt_d4, Real.pi_lt_d4)
@@ -2125,7 +2218,9 @@ theorem two_div_sqrt_pi_mem : 2 / Real.sqrt Real.pi ∈ two_div_sqrt_pi := by
     This is the function whose Taylor series coefficients are erfTaylorCoeffs. -/
 noncomputable def erfInner (x : ℝ) : ℝ := ∫ t in (0:ℝ)..x, Real.exp (-(t^2))
 
-/-- erf(x) = (2/√π) * erfInner(x) -/
+/-- erf(x) = (2/√π) * erfInner(x)
+@isnad1 id=eq.0h1v.s5.26d9abfd72d1 from=translated src=- shape=2fac44e1 vocab=c48779c8
+-/
 theorem erf_eq_factor_mul_inner (x : ℝ) : Real.erf x = (2 / Real.sqrt Real.pi) * erfInner x := by
   unfold Real.erf erfInner
   ring
@@ -2133,7 +2228,9 @@ theorem erf_eq_factor_mul_inner (x : ℝ) : Real.erf x = (2 / Real.sqrt Real.pi)
 /-- The derivatives of erfInner(x) = ∫₀ˣ exp(-t²) dt.
     erfInner'(x) = exp(-x²)
     erfInner''(x) = -2x * exp(-x²)
-    etc. -/
+    etc.
+@isnad1 id=eq.0h0v.s5.29fa45c2ef33 from=translated src=- shape=921bb1aa vocab=a1494231
+-/
 theorem erfInner_deriv : deriv erfInner = fun x => Real.exp (-(x^2)) := by
   ext x
   unfold erfInner
@@ -2141,17 +2238,23 @@ theorem erfInner_deriv : deriv erfInner = fun x => Real.exp (-(x^2)) := by
     Real.continuous_exp.comp (continuous_neg.comp (continuous_pow 2))
   exact hcont.integral_hasStrictDerivAt 0 x |>.hasDerivAt.deriv
 
-/-- exp(-x²) is smooth. -/
+/-- exp(-x²) is smooth.
+@isnad1 id=contdiff.0h0v.s5.307c9c23acdf from=translated src=- shape=5010d794 vocab=dab3ff85
+-/
 theorem contDiff_exp_neg_sq : ContDiff ℝ ⊤ (fun x => Real.exp (-(x^2))) :=
   Real.contDiff_exp.comp (contDiff_neg.comp (contDiff_id.pow 2))
 
-/-- exp(-x²) is analytic everywhere. -/
+/-- exp(-x²) is analytic everywhere.
+@isnad1 id=analytic.0h1v.s5.1cc679f7ca9b from=translated src=- shape=50527ba5 vocab=630e0bcc
+-/
 theorem analyticAt_exp_neg_sq (x : ℝ) : AnalyticAt ℝ (fun t => Real.exp (-(t^2))) x := by
   have h1 : AnalyticAt ℝ (fun t : ℝ => t^2) x := analyticAt_id.pow 2
   have h2 : AnalyticAt ℝ (fun t : ℝ => -(t^2)) x := h1.neg
   exact h2.rexp
 
-/-- exp(-x²) is analytic on ℝ. -/
+/-- exp(-x²) is analytic on ℝ.
+@isnad1 id=analytic.0h0v.s5.caa94f4ab8d7 from=translated src=- shape=e1ddee38 vocab=b7184be0
+-/
 theorem analyticOnNhd_exp_neg_sq : AnalyticOnNhd ℝ (fun t => Real.exp (-(t^2))) Set.univ :=
   fun x _ => analyticAt_exp_neg_sq x
 
@@ -2182,11 +2285,16 @@ def atanhComputableWithCoeffs (I : IntervalRat) (n : ℕ)
     let atanhHi := atanhPointComputableWithCoeffs I.hi n coeffs
     hull atanhLo atanhHi
 
+/--
+@isnad1 id=eq.0h2v.s3.405c9ab83ec9 from=translated src=- shape=0befb3d4 vocab=aca2ce04
+-/
 theorem atanhComputableWithCoeffs_eq (I : IntervalRat) (n : ℕ) :
     atanhComputableWithCoeffs I n (atanhTaylorCoeffs n) = atanhComputable I n := by
   simp [atanhComputableWithCoeffs, atanhComputable, atanhPointComputableWithCoeffs_eq]
 
-/-- FTIA for atanhComputable: if x ∈ I and I ⊂ (-1, 1), then atanh(x) ∈ atanhComputable I n. -/
+/-- FTIA for atanhComputable: if x ∈ I and I ⊂ (-1, 1), then atanh(x) ∈ atanhComputable I n.
+@isnad1 id=mem.3h3v.s5.da8d3fa4e7ee from=translated src=- shape=1f4d576e vocab=88e76d47
+-/
 theorem mem_atanhComputable {x : ℝ} {I : IntervalRat} (hx : x ∈ I)
     (hlo : -1 < I.lo) (hhi : I.hi < 1) (n : ℕ) :
     Real.atanh x ∈ atanhComputable I n := by

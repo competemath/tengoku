@@ -19,6 +19,9 @@ open scoped ContDiff
 def graphCoordinates (k : ℝ) (m : Vector3) : Vector3 →L[ℝ] Domain 4 :=
   coordinateEquiv.symm.toContinuousLinearMap.comp (graphMap k m)
 
+/--
+@isnad1 id=eq.0h3v.s11.6ce6d9c1920d from=translated src=- shape=35c430b6 vocab=fa7bc7e2
+-/
 @[simp] theorem coordinateEquiv_graphCoordinates (k : ℝ) (m x : Vector3) :
     coordinateEquiv (graphCoordinates k m x) = graphMap k m x :=
   coordinateEquiv.apply_symm_apply _
@@ -26,10 +29,16 @@ def graphCoordinates (k : ℝ) (m : Vector3) : Vector3 →L[ℝ] Domain 4 :=
 def frequencyFactor (k : ℝ) (m : Vector3) : ℝ :=
   ‖coordinateEquiv.symm.toContinuousLinearMap‖*(1+|k| * ‖m‖)
 
+/--
+@isnad1 id=le.0h2v.s4.c1f9cb9ed2d9 from=translated src=- shape=25b8bdde vocab=f1712a94
+-/
 theorem frequencyFactor_nonneg (k : ℝ) (m : Vector3) : 0 ≤ frequencyFactor k m := by
   unfold frequencyFactor
   positivity
 
+/--
+@isnad1 id=le.0h2v.s10.3fbdb42c6b2e from=translated src=- shape=f0d6155e vocab=67f2ae80
+-/
 theorem graphMap_norm_le (k : ℝ) (m : Vector3) : ‖graphMap k m‖ ≤ 1+|k| * ‖m‖ := by
   apply (graphMap k m).opNorm_le_bound (by positivity)
   intro x
@@ -42,6 +51,9 @@ theorem graphMap_norm_le (k : ℝ) (m : Vector3) : ‖graphMap k m‖ ≤ 1+|k| 
       |k| * ‖inner ℝ m x‖ ≤ |k| * (‖m‖*‖x‖) := mul_le_mul_of_nonneg_left hi (abs_nonneg k)
       _ ≤ (1+|k| * ‖m‖)*‖x‖ := by nlinarith [norm_nonneg x]
 
+/--
+@isnad1 id=le.0h2v.s9.d1b5dac320a3 from=translated src=- shape=0a9d09d5 vocab=fe31bb19
+-/
 theorem graphCoordinates_norm_le (k : ℝ) (m : Vector3) :
     ‖graphCoordinates k m‖ ≤ frequencyFactor k m :=
   (ContinuousLinearMap.opNorm_comp_le _ _).trans
@@ -53,6 +65,9 @@ def physicalField (k : ℝ) (m : Vector3) (f : LiftDomain P → Vector3) : Vecto
   fun x => f (cylinderGraph P k m x)
 
 omit [Fact (0 < P)] in
+/--
+@isnad1 id=eq.0h4v.s9.a7772ead9aad from=translated src=- shape=9e3cdaa1 vocab=dc4bdf95
+-/
 theorem physicalField_eq_euclidean (k : ℝ) (m : Vector3) (f : LiftDomain P → Vector3) :
     physicalField P k m f = euclideanLift P f 0 ∘ graphCoordinates k m := by
   funext x
@@ -60,6 +75,9 @@ theorem physicalField_eq_euclidean (k : ℝ) (m : Vector3) (f : LiftDomain P →
     localFieldLift,Prod.fst_zero,Prod.snd_zero,zero_add,graphMap_apply,physicalField,cylinderGraph]
 
 omit [Fact (0 < P)] in
+/--
+@isnad1 id=contdiff.1h4v.s9.649b4b5b5689 from=translated src=- shape=4e5762cd vocab=8f4d4fe1
+-/
 theorem physicalField_contDiff (k : ℝ) (m : Vector3) (f : LiftDomain P → Vector3)
     (hf : ∀ x, ContDiff ℝ ∞ (localFieldLift P f x)) :
     ContDiff ℝ ∞ (physicalField P k m f) := by
@@ -67,6 +85,9 @@ theorem physicalField_contDiff (k : ℝ) (m : Vector3) (f : LiftDomain P → Vec
   exact (euclideanLift_smooth P f hf 0).comp (graphCoordinates k m).contDiff
 
 omit [Fact (0 < P)] in
+/--
+@isnad1 id=le.1h6v.s10.4ae48eed738e from=translated src=- shape=8d651bcc vocab=66f963c5
+-/
 theorem physicalTensor_norm_le (k : ℝ) (m : Vector3) (f : LiftDomain P → Vector3)
     (hf : ∀ x, ContDiff ℝ ∞ (localFieldLift P f x)) (n : ℕ) (x : Vector3) :
     ‖iteratedFDeriv ℝ n (physicalField P k m f) x‖ ≤

@@ -67,7 +67,9 @@ def crossingUpperBound (l u : ℚ) : LinearBound :=
   { slope := slope,
     bias := -slope * l }
 
-/-- Key lemma: The crossing upper bound evaluates to slope · (x - l) -/
+/-- Key lemma: The crossing upper bound evaluates to slope · (x - l)
+@isnad1 id=eq.1h3v.s6.2c7e7f28fd6f from=translated src=- shape=4deb4abe vocab=aa133db9
+-/
 theorem crossingUpperBound_eval (l u : ℚ) (x : ℝ) (h_ne : u - l ≠ 0) :
     (crossingUpperBound l u).eval x = (u : ℝ) / ((u : ℝ) - l) * (x - l) := by
   simp only [crossingUpperBound, LinearBound.eval]
@@ -83,7 +85,9 @@ theorem crossingUpperBound_eval (l u : ℚ) (x : ℝ) (h_ne : u - l ≠ 0) :
     where λ = u / (u - l).
 
     Geometric intuition: ReLU is convex, and the line connecting
-    (l, ReLU(l)) = (l, 0) and (u, ReLU(u)) = (u, u) lies above the graph. -/
+    (l, ReLU(l)) = (l, 0) and (u, ReLU(u)) = (u, u) lies above the graph.
+@isnad1 id=le.3h3v.s5.a9f7eab98bd3 from=translated src=- shape=a46cd027 vocab=db2d9dbf
+-/
 theorem upper_bound_valid (l u : ℚ) (x : ℝ)
     (hl : l < 0) (hu : 0 < u) (hx_mem : (l : ℝ) ≤ x ∧ x ≤ u) :
     max 0 x ≤ (crossingUpperBound l u).eval x := by
@@ -147,7 +151,9 @@ def getReLURelaxation (l u : ℚ) : SymbolicBound :=
     { lower := ⟨0, 0⟩,
       upper := crossingUpperBound l u }
 
-/-- Lower bound for crossing case: 0 ≤ max(0, x) -/
+/-- Lower bound for crossing case: 0 ≤ max(0, x)
+@isnad1 id=le.0h1v.s4.7c746c5aa566 from=translated src=- shape=e6e0221f vocab=7a820a04
+-/
 theorem lower_bound_crossing (x : ℝ) : (0 : ℝ) ≤ max 0 x :=
   le_max_left 0 x
 
@@ -156,7 +162,9 @@ theorem lower_bound_crossing (x : ℝ) : (0 : ℝ) ≤ max 0 x :=
     For any x in the interval [l, u], the computed linear bounds contain ReLU(x):
     lower.eval(x) ≤ max(0, x) ≤ upper.eval(x)
 
-    This is the foundation of verified neural network verification. -/
+    This is the foundation of verified neural network verification.
+@isnad1 id=other.1h3v.s6.dd06bde1db81 from=translated src=- shape=1dcaee5f vocab=5be3e372
+-/
 theorem relu_relaxation_sound (l u : ℚ) (x : ℝ) (h : (l : ℝ) ≤ x ∧ x ≤ u) :
     let sb := getReLURelaxation l u
     sb.lower.eval x ≤ max 0 x ∧ max 0 x ≤ sb.upper.eval x := by
@@ -197,10 +205,16 @@ def LinearBound.identity : LinearBound := ⟨1, 0⟩
 /-- Zero bound: y = 0 -/
 def LinearBound.zero : LinearBound := ⟨0, 0⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.d934b5bdc610 from=translated src=- shape=29edb2d9 vocab=fef63d03
+-/
 @[simp]
 theorem LinearBound.eval_identity (x : ℝ) : LinearBound.identity.eval x = x := by
   simp [identity, eval]
 
+/--
+@isnad1 id=eq.0h1v.s3.9245d4d4f2da from=translated src=- shape=ab64f1ab vocab=eb5e516b
+-/
 @[simp]
 theorem LinearBound.eval_zero (x : ℝ) : LinearBound.zero.eval x = 0 := by
   simp [zero, eval]
@@ -210,6 +224,9 @@ def LinearBound.compose (outer inner : LinearBound) : LinearBound :=
   { slope := outer.slope * inner.slope,
     bias := outer.slope * inner.bias + outer.bias }
 
+/--
+@isnad1 id=eq.0h3v.s4.111ad8dab2bf from=translated src=- shape=4ebd5895 vocab=820a5911
+-/
 theorem LinearBound.eval_compose (outer inner : LinearBound) (x : ℝ) :
     (outer.compose inner).eval x = outer.eval (inner.eval x) := by
   simp only [compose, eval]
@@ -225,7 +242,9 @@ def outputWidth (l u : ℚ) : ℚ :=
   else if u ≤ 0 then 0      -- Inactive: width = 0
   else u                     -- Crossing: upper bound is u at x = u
 
-/-- In the crossing case, evaluating upper bound at u gives exactly u -/
+/-- In the crossing case, evaluating upper bound at u gives exactly u
+@isnad1 id=eq.2h2v.s5.5063fbcc5b1f from=translated src=- shape=9f4c459a vocab=4b3e665d
+-/
 theorem crossingUpperBound_at_u (l u : ℚ) (hl : l < 0) (hu : 0 < u) :
     (crossingUpperBound l u).eval (u : ℝ) = u := by
   have h_diff_ne : u - l ≠ 0 := ne_of_gt (sub_pos.mpr (lt_trans hl hu))
@@ -233,7 +252,9 @@ theorem crossingUpperBound_at_u (l u : ℚ) (hl : l < 0) (hu : 0 < u) :
   have h_diff_ne' : (u : ℝ) - l ≠ 0 := by exact_mod_cast h_diff_ne
   field_simp
 
-/-- In the crossing case, evaluating upper bound at l gives exactly 0 -/
+/-- In the crossing case, evaluating upper bound at l gives exactly 0
+@isnad1 id=eq.2h2v.s5.236053906105 from=translated src=- shape=d2055142 vocab=4b3e665d
+-/
 theorem crossingUpperBound_at_l (l u : ℚ) (hl : l < 0) (hu : 0 < u) :
     (crossingUpperBound l u).eval (l : ℝ) = 0 := by
   have h_diff_ne : u - l ≠ 0 := ne_of_gt (sub_pos.mpr (lt_trans hl hu))

@@ -20,6 +20,9 @@ private local instance : NormedSpace ℝ (Space →ᵇ V) := inferInstance
 private local instance : NormedAddCommGroup C(K, Space →ᵇ V) := inferInstance
 private local instance : NormedSpace ℝ C(K, Space →ᵇ V) := inferInstance
 
+/--
+@isnad1 id=contdiff.1h4v.s10.ea6cace0e2bf from=translated src=- shape=d41ef0ff vocab=50de587e
+-/
 theorem coefficientOrbit_smooth (A : C(K, Space →ᵇ V))
     (hA : ContDiff ℝ ∞ (translateCoefficientPath A)) (t : K) :
     ContDiff ℝ ∞ (A t : Space → V) := by
@@ -30,6 +33,9 @@ theorem coefficientOrbit_smooth (A : C(K, Space →ᵇ V))
   change ContDiff ℝ ∞ (fun a : Space => A t (0+a)) at h
   simpa only [zero_add] using h
 
+/--
+@isnad1 id=eq.1h8v.s12.74e3eb4b5138 from=translated src=- shape=d5144b68 vocab=3c7cc4dd
+-/
 theorem coefficientOrbit_iteratedFDeriv_apply (A : C(K, Space →ᵇ V))
     (hA : ContDiff ℝ ∞ (translateCoefficientPath A))
     (n : ℕ) (a : Space) (t : K) (x : Space) (v : Fin n → Space) :
@@ -46,6 +52,9 @@ theorem coefficientOrbit_iteratedFDeriv_apply (A : C(K, Space →ᵇ V))
   rw [iteratedFDeriv_comp_add_left] at hv
   exact hv.symm
 
+/--
+@isnad1 id=eq.1h7v.s12.13a980d59d50 from=translated src=- shape=f594c1a3 vocab=d8ccc652
+-/
 theorem coefficientOrbit_fderiv_apply (A : C(K, Space →ᵇ V))
     (hA : ContDiff ℝ ∞ (translateCoefficientPath A))
     (a v : Space) (t : K) (x : Space) :
@@ -58,12 +67,18 @@ theorem coefficientOrbit_fderiv_apply (A : C(K, Space →ᵇ V))
 def orbitDerivativePath (A : C(K, Space →ᵇ V)) (v : Space) : C(K, Space →ᵇ V) :=
   fderiv ℝ (translateCoefficientPath A) 0 v
 
+/--
+@isnad1 id=eq.1h6v.s11.93729c0928ae from=translated src=- shape=55a5c902 vocab=d4e478b1
+-/
 theorem orbitDerivativePath_apply (A : C(K, Space →ᵇ V))
     (hA : ContDiff ℝ ∞ (translateCoefficientPath A)) (v : Space) (t : K) (x : Space) :
     orbitDerivativePath A v t x = fderiv ℝ (A t : Space → V) x v := by
   unfold orbitDerivativePath
   simpa only [add_zero] using coefficientOrbit_fderiv_apply A hA 0 v t x
 
+/--
+@isnad1 id=eq.1h5v.s12.bf7f00c635d0 from=translated src=- shape=3da05bc9 vocab=d4e478b1
+-/
 theorem orbitDerivativePath_translation (A : C(K, Space →ᵇ V))
     (hA : ContDiff ℝ ∞ (translateCoefficientPath A)) (v a : Space) :
     translateCoefficientPath (orbitDerivativePath A v) a =
@@ -75,6 +90,9 @@ theorem orbitDerivativePath_translation (A : C(K, Space →ᵇ V))
   change orbitDerivativePath A v t (x+a) = _
   rw [orbitDerivativePath_apply A hA,coefficientOrbit_fderiv_apply A hA]
 
+/--
+@isnad1 id=contdiff.1h4v.s9.8793cbcdc09b from=translated src=- shape=059b015e vocab=e0141d65
+-/
 theorem orbitDerivativePath_orbit (A : C(K, Space →ᵇ V))
     (hA : ContDiff ℝ ∞ (translateCoefficientPath A)) (v : Space) :
     ContDiff ℝ ∞ (translateCoefficientPath (orbitDerivativePath A v)) := by
@@ -85,7 +103,9 @@ theorem orbitDerivativePath_orbit (A : C(K, Space →ᵇ V))
   exact (hA.fderiv_right (m := ∞) (by simp)).clm_apply contDiff_const
 
 /-- A single genuine Banach-space derivative at zero controls the spatial
-derivative uniformly at every time and spatial point. -/
+derivative uniformly at every time and spatial point.
+@isnad1 id=le.1h6v.s12.20f0f1209a11 from=translated src=- shape=3abc40e4 vocab=d5401bf2
+-/
 theorem coefficientOrbit_norm_iteratedFDeriv_le (A : C(K, Space →ᵇ V))
     (hA : ContDiff ℝ ∞ (translateCoefficientPath A)) (n : ℕ) (t : K) (x : Space) :
     ‖iteratedFDeriv ℝ n (A t : Space → V) x‖ ≤

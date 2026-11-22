@@ -12,6 +12,9 @@ namespace EulerPacketSourceScaleChoice
 open Real EulerScale EulerPacketSourceScales EulerPacketSourceTime
   EulerPacketSourceScaleBounds EulerPacketSourceScaleSequence EulerPacketSourceScaleActual
 
+/--
+@isnad1 id=uniformb.6h6v.s6.a477f8ef98a4 from=translated src=- shape=32d9b079 vocab=6ed966ae
+-/
 theorem uniformBounds_of_costs (J : ℕ) (hJ : 3 ≤ J) (C c δ : ℝ)
     (hC : 1 ≤ C) (hc : 0 ≤ c) (hδ : 0 ≤ δ) (A : ℕ)
     (x : ℕ → ℝ) (hx1 : ∀ n, 1 ≤ x n)
@@ -63,6 +66,9 @@ theorem uniformBounds_of_costs (J : ℕ) (hJ : 3 ≤ J) (C c δ : ℝ)
   · intro n
     exact sourceGoodCost_bound J hJ x n (hxp n)
 
+/--
+@isnad1 id=actualbo.9h6v.s8.94a06eb6f020 from=translated src=- shape=2887fa82 vocab=fe78d813
+-/
 theorem actualBounds_of_uniform (J D : ℕ) (hJ : 3 ≤ J) (C c X δ : ℝ)
     (hC : 1 ≤ C) (hc : 0 ≤ c) (hX : 1 ≤ X) (hδ : 0 ≤ δ)
     (hbaseH : X^1000 ≤ exp (X/((J-1 : ℕ) : ℝ)^7))

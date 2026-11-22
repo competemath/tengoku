@@ -15,19 +15,27 @@ namespace EulerPacketMovingFrame
 open Set EulerSmoothLimit EulerPacketNormalizedPrimary EulerPacketCrossProduct
   EulerPacketRay InnerProductSpace ContinuousLinearMap
 
+/--
+@isnad1 id=le.2h3v.s10.425f8b68eb2e from=translated src=- shape=ccd00f54 vocab=4bc12324
+-/
 theorem abs_inner_map_le (B : Space →L[ℝ] Space) {p q : Space}
     (hp : ‖p‖ = 1) (hq : ‖q‖ = 1) : |⟪p,B q⟫_ℝ| ≤ ‖B‖ := by
   have h := (abs_real_inner_le_norm p (B q)).trans
     (mul_le_mul_of_nonneg_left (B.le_opNorm q) (norm_nonneg p))
   simpa only [hp, hq, mul_one, one_mul] using h
 
+/--
+@isnad1 id=le.3h5v.s10.b339eaadce8d from=translated src=- shape=96abb923 vocab=4b6ca59d
+-/
 theorem frameMatrix_abs_le (B : Space →L[ℝ] Space) (p q : Space)
     (hp : ⟪p,p⟫_ℝ = 1) (hq : ⟪q,q⟫_ℝ = 1) (hpq : ⟪p,q⟫_ℝ = 0)
     (i j : Fin 3) : |frameMatrix B p q i j| ≤ ‖B‖ :=
   abs_inner_map_le B ((frame_orthonormal p q hp hq hpq).norm_eq_one i)
     ((frame_orthonormal p q hp hq hpq).norm_eq_one j)
 
-/-- The shear is exactly the `(q,p)` entry in the actual orthonormal frame. -/
+/-- The shear is exactly the `(q,p)` entry in the actual orthonormal frame.
+@isnad1 id=eq.3h5v.s15.5b0b65b19519 from=translated src=- shape=7ac5dd22 vocab=5c8c8e72
+-/
 theorem frameMatrix_parent (B E : Space →L[ℝ] Space) (h : ℝ) (p q : Space)
     (hp : ⟪p,p⟫_ℝ = 1) (hq : ⟪q,q⟫_ℝ = 1) (hpq : ⟪p,q⟫_ℝ = 0) :
     frameMatrix (B + h • rankOne ℝ q p + E) p q =
@@ -43,6 +51,9 @@ theorem frameMatrix_parent (B E : Space →L[ℝ] Space) (h : ℝ) (p q : Space)
   fin_cases i <;> fin_cases j <;> norm_num
   ring
 
+/--
+@isnad1 id=le.1h2v.s10.947ead9d85ed from=translated src=- shape=11b5d822 vocab=176745c5
+-/
 theorem rayRate_norm_le (B : Space →L[ℝ] Space) {p : Space} (hp : ‖p‖ = 1) :
     ‖rayRate B p‖ ≤ 2*‖B‖ := by
   have hB : ‖B.adjoint p‖ ≤ ‖B‖ := by
@@ -52,6 +63,9 @@ theorem rayRate_norm_le (B : Space →L[ℝ] Space) {p : Space} (hp : ‖p‖ = 
   simp only [norm_neg, norm_smul, Real.norm_eq_abs, hp, mul_one] at h
   exact h.trans (by linarith only [hB, hi])
 
+/--
+@isnad1 id=le.2h3v.s10.bcd353a0e208 from=translated src=- shape=c3864f36 vocab=d062efb0
+-/
 theorem velocityRate_norm_le (B : Space →L[ℝ] Space) {p q : Space}
     (hp : ‖p‖ = 1) (hq : ‖q‖ = 1) : ‖velocityRate B p q‖ ≤ 4*‖B‖ := by
   have hB : ‖B q‖ ≤ ‖B‖ := by simpa only [hq, mul_one] using B.le_opNorm q
@@ -64,6 +78,9 @@ theorem velocityRate_norm_le (B : Space →L[ℝ] Space) {p q : Space}
   change ‖-B q+(2*⟪p,B q⟫_ℝ) • p+⟪q,B q⟫_ℝ • q‖ ≤ 4*‖B‖
   linarith only [h1, h2, hB, hi, hj]
 
+/--
+@isnad1 id=le.2h4v.s10.99b0ed0dc6cc from=translated src=- shape=315b2495 vocab=d4d2d21a
+-/
 theorem frameRate_norm_le (B : Space →L[ℝ] Space) (p q : Space)
     (hp : ‖p‖ = 1) (hq : ‖q‖ = 1) (i : Fin 3) :
     ‖frameRate B p q i‖ ≤ 6*‖B‖ := by
@@ -84,6 +101,9 @@ def frameMatrixRate (B B₁ : Space →L[ℝ] Space) (p q : Space) (i j : Fin 3)
   ⟪frameRate B p q i,B (frame p q j)⟫_ℝ +
     ⟪frame p q i,B₁ (frame p q j)+B (frameRate B p q j)⟫_ℝ
 
+/--
+@isnad1 id=hasderiv.6h8v.s14.00649c023ed4 from=translated src=- shape=43b73d8a vocab=3538c46f
+-/
 theorem frameMatrix_hasDerivWithinAt {B : ℝ → Space →L[ℝ] Space}
     {B₁ : Space →L[ℝ] Space} {m v : ℝ → Space} {t : ℝ} {S : Set ℝ}
     (hB : HasDerivWithinAt B B₁ S t)
@@ -97,6 +117,9 @@ theorem frameMatrix_hasDerivWithinAt {B : ℝ → Space →L[ℝ] Space}
   have hj := normalizedFrame_hasDerivWithinAt (B t) hm hv hm0 hv0 hmv j
   exact (hi.inner ℝ (hB.clm_apply hj)).congr_deriv (add_comm _ _)
 
+/--
+@isnad1 id=le.3h6v.s11.44785f07f226 from=translated src=- shape=51eef25f vocab=c53683a7
+-/
 theorem frameMatrixRate_abs_le (B B₁ : Space →L[ℝ] Space) (p q : Space)
     (hp : ⟪p,p⟫_ℝ = 1) (hq : ⟪q,q⟫_ℝ = 1) (hpq : ⟪p,q⟫_ℝ = 0)
     (i j : Fin 3) : |frameMatrixRate B B₁ p q i j| ≤ ‖B₁‖+12*‖B‖^2 := by
@@ -123,7 +146,9 @@ theorem frameMatrixRate_abs_le (B B₁ : Space →L[ℝ] Space) (p q : Space)
 def primaryShear (c : ℝ) (m v : ℝ → Space) (t : ℝ) : ℝ := c*(‖m t‖*‖v t‖)
 
 /-- In particular, the logarithmic shear law in source (23) holds for the
-actual amplitude `c * ‖m‖ * ‖v‖`. -/
+actual amplitude `c * ‖m‖ * ‖v‖`.
+@isnad1 id=hasderiv.5h6v.s14.ef69bf81004c from=translated src=- shape=2205086e vocab=edc1fc3c
+-/
 theorem primaryShear_hasDerivWithinAt (B : Space →L[ℝ] Space) (c : ℝ)
     {m v : ℝ → Space} {t : ℝ} {S : Set ℝ}
     (hm : HasDerivWithinAt m (-B.adjoint (m t)) S t)
@@ -151,6 +176,9 @@ theorem primaryShear_hasDerivWithinAt (B : Space →L[ℝ] Space) (c : ℝ)
   dsimp [primaryShear, frameMatrix, frame]
   ring
 
+/--
+@isnad1 id=le.3h5v.s10.d970417478b7 from=translated src=- shape=3e8bc481 vocab=171d03d4
+-/
 theorem primaryShear_rate_bound (B : Space →L[ℝ] Space) (c : ℝ)
     (m v : ℝ → Space) (t : ℝ) (hm0 : m t ≠ 0) (hv0 : v t ≠ 0)
     (hmv : ⟪m t,v t⟫_ℝ = 0) :

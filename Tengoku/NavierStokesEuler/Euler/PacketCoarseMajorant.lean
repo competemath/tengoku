@@ -11,23 +11,34 @@ open EulerGevrey
 /-- Its N-degree is 220, leaving room in the source's exponent 300 for finite sums. -/
 def gradeBase (R : ℝ) (N : ℕ) : ℝ := (4*R*(550*(N : ℝ))^2)^110
 
+/--
+@isnad1 id=le.0h2v.s4.d16ead88e662 from=translated src=- shape=25b8bdde vocab=144bc593
+-/
 theorem gradeBase_nonneg (R : ℝ) (N : ℕ) : 0 ≤ gradeBase R N := by
   unfold gradeBase
   positivity
 
+/--
+@isnad1 id=le.2h2v.s5.c03d077eb86c from=translated src=- shape=99ba76df vocab=144bc593
+-/
 theorem gradeBase_ge_one (R : ℝ) (hR : 1 ≤ R) (N : ℕ) (hN : 1 ≤ N) :
     1 ≤ gradeBase R N := by
   have hn : (1 : ℝ) ≤ N := by exact_mod_cast hN
   have hbase : (1 : ℝ) ≤ 4*R*(550*(N : ℝ))^2 := by nlinarith
   exact one_le_pow₀ hbase
 
+/--
+@isnad1 id=le.3h3v.s6.c7213b1096f7 from=translated src=- shape=e6bb52d1 vocab=4e48de6d
+-/
 theorem factorial_le_grade_power (N p d : ℕ) (hN : 1 ≤ N) (hp : p ≤ 2*N+2)
     (hd : d ≤ 110*(p+1)) : (d.factorial : ℝ) ≤ (550*(N : ℝ))^d := by
   have hdN : d ≤ 550*N := by omega
   have h := (Nat.factorial_le_pow d).trans (Nat.pow_le_pow_left hdN d)
   exact_mod_cast h
 
-/-- The external derivative radius is enlarged once; all grade dependence is in one polynomial base. -/
+/-- The external derivative radius is enlarged once; all grade dependence is in one polynomial base.
+@isnad1 id=le.4h5v.s7.5406e715905b from=translated src=- shape=c3a87358 vocab=cefb568a
+-/
 theorem majorant_grade_bound (R : ℝ) (hR : 1 ≤ R) (N p d n : ℕ)
     (hN : 1 ≤ N) (hp : p ≤ 2*N+2) (hd : d ≤ 110*(p+1)) :
     majorant R d n ≤ (gradeBase R N)^(p+1)*majorant (4*R) 0 n := by

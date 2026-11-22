@@ -14,6 +14,9 @@ variable (x : ℕ → ℝ) (hx : ∀ n, 0 ≤ x n)
 
 include hx hc
 
+/--
+@isnad1 id=le.2h3v.s7.701fbd64de2e from=translated src=- shape=b9ca4e9e vocab=cef4cf1d
+-/
 theorem cross (a d : ℕ) : x (a+1)*x (a+d) ≤ x a*x (a+d+1) := by
   induction d with
   | zero => simp only [Nat.add_zero]; exact le_of_eq (mul_comm _ _)
@@ -36,6 +39,9 @@ theorem cross (a d : ℕ) : x (a+1)*x (a+d) ≤ x a*x (a+d+1) := by
         _ ≤ x a*(x (a+d)*x (a+d+2)) := mul_le_mul_of_nonneg_left (hc _) (hx a)
         _ = x (a+d)*(x a*x (a+d.succ+1)) := by simp only [Nat.add_succ]; ring
 
+/--
+@isnad1 id=le.2h4v.s7.b65a344f5683 from=translated src=- shape=1bd89851 vocab=cef4cf1d
+-/
 theorem pair (a k d : ℕ) :
     x (a+k)*x (a+k+d) ≤ x a*x (a+2*k+d) := by
   induction k generalizing d with
@@ -45,6 +51,9 @@ theorem pair (a k d : ℕ) :
     have hh := ih (d+2)
     convert h.trans hh using 1 <;> congr 2 <;> omega
 
+/--
+@isnad1 id=le.4h4v.s7.05b63c6eb9e7 from=translated src=- shape=21bf1257 vocab=c0564ed8
+-/
 theorem between (s a b : ℕ) (hsa : s ≤ a) (hab : a ≤ b) :
     x a*x b ≤ x s*x (a+b-s) := by
   have h := pair x hx hc s (a-s) (b-a)

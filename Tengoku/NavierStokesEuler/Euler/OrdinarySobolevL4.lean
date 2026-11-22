@@ -17,6 +17,9 @@ open scoped ContDiff Topology ENNReal
 
 variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
 
+/--
+@isnad1 id=le.3h2v.s12.cb8ca28d62c2 from=translated src=- shape=b62c9828 vocab=4c573246
+-/
 theorem eLpNorm_six_le (f : Space → V) (hf : ContDiff ℝ ∞ f)
     (hL : MemLp f 2 volume) (hD : MemLp (fderiv ℝ f) 2 volume) :
     eLpNorm f 6 volume ≤ (sobolevConstant : ℝ≥0∞)*eLpNorm (fderiv ℝ f) 2 volume := by
@@ -47,10 +50,16 @@ theorem eLpNorm_six_le (f : Space → V) (hf : ContDiff ℝ ∞ f)
     _ = (sobolevConstant : ℝ≥0∞)*ENNReal.ofReal ‖hD.toLp (fderiv ℝ f)‖ := hc.liminf_eq
     _ = _ := by rw [ofReal_norm,Lp.enorm_toLp]
 
+/--
+@isnad1 id=memlp.3h2v.s12.6600f2cdb99d from=translated src=- shape=690dd71a vocab=d697f0c4
+-/
 theorem memLp_six (f : Space → V) (hf : ContDiff ℝ ∞ f)
     (hL : MemLp f 2 volume) (hD : MemLp (fderiv ℝ f) 2 volume) : MemLp f 6 volume :=
   ⟨hf.continuous.aestronglyMeasurable,(eLpNorm_six_le f hf hL hD).trans_lt (by finiteness)⟩
 
+/--
+@isnad1 id=le.3h2v.s12.32cb8744a6a1 from=translated src=- shape=69470fd6 vocab=d2f59d1d
+-/
 theorem norm_six_le (f : Space → V) (hf : ContDiff ℝ ∞ f)
     (hL : MemLp f 2 volume) (hD : MemLp (fderiv ℝ f) 2 volume) :
     (eLpNorm f 6 volume).toReal ≤ (sobolevConstant : ℝ)*(eLpNorm (fderiv ℝ f) 2 volume).toReal := by
@@ -61,6 +70,9 @@ section Interpolation
 
 variable {E : Type*} [NormedAddCommGroup E]
 
+/--
+@isnad1 id=memlp.1h2v.s9.3b264fb11205 from=translated src=- shape=b417e858 vocab=e65bcca4
+-/
 theorem cube_memLp {f : Space → E} (h6 : MemLp f 6 volume) :
     MemLp (fun x => ‖f x‖^3) 2 volume := by
   have h := h6.norm_rpow_div (3 : ℝ≥0∞)
@@ -71,6 +83,9 @@ theorem cube_memLp {f : Space → E} (h6 : MemLp f 6 volume) :
   norm_num at h
   exact h
 
+/--
+@isnad1 id=eq.1h2v.s9.07c4f7ab2b50 from=translated src=- shape=31489f67 vocab=9850c63a
+-/
 theorem cube_norm {f : Space → E} (h6 : MemLp f 6 volume) :
     lpNorm (fun x => ‖f x‖^3) 2 volume=(lpNorm f 6 volume)^3 := by
   have he := eLpNorm_norm_rpow (μ := (volume : Measure Space)) (p := 2) f (q := 3) (by norm_num)
@@ -87,6 +102,9 @@ private theorem square_domination (a z : ℝ) (ha : 0 < a) (hz : 0 ≤ z) :
   apply (le_div_iff₀ ha).mpr
   nlinarith
 
+/--
+@isnad1 id=memlp.2h2v.s10.1c9a0bc484cf from=translated src=- shape=5f6b2020 vocab=e65bcca4
+-/
 theorem square_memLp {f : Space → E} (h2 : MemLp f 2 volume) (h6 : MemLp f 6 volume) :
     MemLp (fun x => ‖f x‖^2) 2 volume := by
   apply (h2.norm.add (cube_memLp h6)).of_le (h2.aestronglyMeasurable.norm.pow 2)
@@ -96,6 +114,9 @@ theorem square_memLp {f : Space → E} (h2 : MemLp f 2 volume) (h6 : MemLp f 6 v
   simpa only [one_mul,inv_one,Pi.add_apply,Pi.pow_apply,Real.norm_eq_abs,
     abs_of_nonneg (add_nonneg (norm_nonneg _) (pow_nonneg (norm_nonneg _) 3))] using h
 
+/--
+@isnad1 id=le.3h3v.s10.0a2f7841572c from=translated src=- shape=baecc90e vocab=1832b03e
+-/
 theorem square_norm_scaled {f : Space → E} (h2 : MemLp f 2 volume) (h6 : MemLp f 6 volume)
     (a : ℝ) (ha : 0 < a) :
     lpNorm (fun x => ‖f x‖^2) 2 volume ≤ a*lpNorm f 2 volume+a⁻¹*(lpNorm f 6 volume)^3 := by
@@ -112,6 +133,9 @@ theorem square_norm_scaled {f : Space → E} (h2 : MemLp f 2 volume) (h6 : MemLp
   simpa only [lpNorm_const_smul,coe_nnnorm,Real.norm_eq_abs,abs_of_pos ha,
     abs_of_pos (inv_pos.mpr ha),lpNorm_norm h2.aestronglyMeasurable,cube_norm h6] using hn
 
+/--
+@isnad1 id=le.5h3v.s10.baf648db4af5 from=translated src=- shape=8bb690e0 vocab=7ad61172
+-/
 theorem square_norm_le_two {f : Space → E} (h2 : MemLp f 2 volume) (h6 : MemLp f 6 volume)
     (a : ℝ) (ha : 0 ≤ a) (h2a : lpNorm f 2 volume ≤ a) (h6a : lpNorm f 6 volume ≤ a) :
     lpNorm (fun x => ‖f x‖^2) 2 volume ≤ 2*a^2 := by
@@ -129,6 +153,9 @@ theorem square_norm_le_two {f : Space → E} (h2 : MemLp f 2 volume) (h6 : MemLp
         (mul_le_mul_of_nonneg_left hpow (inv_nonneg.mpr ha.le))
       _ = _ := by field_simp; ring
 
+/--
+@isnad1 id=memlp.2h2v.s9.214d6724b540 from=translated src=- shape=c21dd6d6 vocab=91e96fe1
+-/
 theorem memLp_four {f : Space → E} (h2 : MemLp f 2 volume) (h6 : MemLp f 6 volume) :
     MemLp f 4 volume := by
   have h := (memLp_norm_rpow_iff (p := (4 : ℝ≥0∞)) (q := (2 : ℝ≥0∞))
@@ -140,6 +167,9 @@ theorem memLp_four {f : Space → E} (h2 : MemLp f 2 volume) (h6 : MemLp f 6 vol
   norm_num at h
   exact h (square_memLp h2 h6)
 
+/--
+@isnad1 id=eq.2h2v.s10.e8a4a17e4bc2 from=translated src=- shape=98bee5cf vocab=9850c63a
+-/
 theorem norm_four_sq {f : Space → E} (h2 : MemLp f 2 volume) (h6 : MemLp f 6 volume) :
     (lpNorm f 4 volume)^2=lpNorm (fun x => ‖f x‖^2) 2 volume := by
   have he := eLpNorm_norm_rpow (μ := (volume : Measure Space)) (p := 2) f (q := 2) (by norm_num)
@@ -147,6 +177,9 @@ theorem norm_four_sq {f : Space → E} (h2 : MemLp f 2 volume) (h6 : MemLp f 6 v
   rw [← toReal_eLpNorm (square_memLp h2 h6).aestronglyMeasurable,he,ENNReal.toReal_pow,
     toReal_eLpNorm (memLp_four h2 h6).aestronglyMeasurable]
 
+/--
+@isnad1 id=le.5h3v.s10.dbdd960e52ea from=translated src=- shape=0f7c44a1 vocab=6958b4d1
+-/
 theorem norm_four_le_two {f : Space → E} (h2 : MemLp f 2 volume) (h6 : MemLp f 6 volume)
     (a : ℝ) (ha : 0 ≤ a) (h2a : lpNorm f 2 volume ≤ a) (h6a : lpNorm f 6 volume ≤ a) :
     lpNorm f 4 volume ≤ 2*a := by
@@ -156,6 +189,9 @@ theorem norm_four_le_two {f : Space → E} (h2 : MemLp f 2 volume) (h6 : MemLp f
 
 end Interpolation
 
+/--
+@isnad1 id=and.3h2v.s12.9dbd16094cdd from=translated src=- shape=c7ec576e vocab=9c79e273
+-/
 theorem smooth_four_bound (f : Space → V) (hf : ContDiff ℝ ∞ f)
     (hL : MemLp f 2 volume) (hD : MemLp (fderiv ℝ f) 2 volume) :
     MemLp f 4 volume ∧ lpNorm f 4 volume ≤
@@ -169,6 +205,9 @@ theorem smooth_four_bound (f : Space → V) (hf : ContDiff ℝ ∞ f)
   · exact le_add_of_nonneg_right (mul_nonneg sobolevConstant.coe_nonneg lpNorm_nonneg)
   · exact h6b.trans (le_add_of_nonneg_left lpNorm_nonneg)
 
+/--
+@isnad1 id=and.6h3v.s13.bed5887fbd73 from=translated src=- shape=e330d468 vocab=9f3d76ee
+-/
 theorem smooth_product_h1 (f : Space → ℝ) (g : Space → V)
     (hf : ContDiff ℝ ∞ f) (hg : ContDiff ℝ ∞ g)
     (hfL : MemLp f 2 volume) (hgL : MemLp g 2 volume)

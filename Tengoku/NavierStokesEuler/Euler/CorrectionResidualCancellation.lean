@@ -55,7 +55,9 @@ def nonlinearity {q : ℕ} {T : Type*} [TopologicalSpace T]
   coefficientSobolevOperator period (D.linear.jet t) (truncateOperator period q u) +
     (D.coefficients period hq).quadratic t u u
 
-/-- The actual raw correction source is exactly the prescribed residual plus the full nonlinear increment about the prescribed approximation. -/
+/-- The actual raw correction source is exactly the prescribed residual plus the full nonlinear increment about the prescribed approximation.
+@isnad1 id=eq.1h6v.s20.ef715e16e00f from=translated src=- shape=cde835c9 vocab=c9a67127
+-/
 theorem rawSource_eq_residual_increment {q : ℕ} {T : Type*} [TopologicalSpace T]
     (D : CorrectionData period q T) (hq : 6 ≤ q) (t : T) (e : SobolevSpace period (q+1)) :
     D.rawSource period hq t e = D.residual t +
@@ -69,7 +71,9 @@ theorem rawSource_eq_residual_increment {q : ℕ} {T : Type*} [TopologicalSpace 
   simp only [linearize_apply,map_add,add_apply]
   abel
 
-/-- The signed approximate and correction equations cancel the residual and add their actual pressures. -/
+/-- The signed approximate and correction equations cancel the residual and add their actual pressures.
+@isnad1 id=eq.1h7v.s23.abdcce1aaf0c from=translated src=- shape=6a4bf7ab vocab=9258d736
+-/
 theorem residual_cancellation {q : ℕ} {T : Type*} [TopologicalSpace T]
     (D : CorrectionData period q T) (hq : 6 ≤ q) (t : T)
     (e : SobolevSpace period (q+1)) (pa : SobolevSpace period q) :
@@ -87,7 +91,9 @@ def correctedPath {q : ℕ} {T : ℝ} (D : CorrectionData period q (Icc (0 : ℝ
     (e : C(Icc (0 : ℝ) T,SobolevSpace period (q+1))) :
     C(Icc (0 : ℝ) T,SobolevSpace period (q+1)) := D.approximation+e
 
-/-- A zero initial correction preserves the actual initial field. -/
+/-- A zero initial correction preserves the actual initial field.
+@isnad1 id=eq.2h5v.s20.24ed805829c6 from=translated src=- shape=41ab3ca4 vocab=567acf1e
+-/
 theorem correctedPath_initial {q : ℕ} (T : ℝ) (hT : 0 ≤ T)
     (D : CorrectionData period q (Icc (0 : ℝ) T))
     (e : C(Icc (0 : ℝ) T,SobolevSpace period (q+1))) (he : e ⟨0,le_rfl,hT⟩=0) :
@@ -95,7 +101,9 @@ theorem correctedPath_initial {q : ℕ} (T : ℝ) (hT : 0 ≤ T)
   change D.approximation ⟨0,le_rfl,hT⟩+e ⟨0,le_rfl,hT⟩=_
   rw [he,add_zero]
 
-/-- The corrected path retains the genuine lifted divergence constraint by addition in its closed subspace. -/
+/-- The corrected path retains the genuine lifted divergence constraint by addition in its closed subspace.
+@isnad1 id=mem.2h6v.s19.968c243b0467 from=translated src=- shape=b1d93344 vocab=ed937f2a
+-/
 theorem correctedPath_divergenceFree {q : ℕ} {T : ℝ}
     (D : CorrectionData period q (Icc (0 : ℝ) T))
     (e : C(Icc (0 : ℝ) T,SobolevSpace period (q+1)))
@@ -104,7 +112,9 @@ theorem correctedPath_divergenceFree {q : ℕ} {T : ℝ}
     value period (correctedPath period D e t) ∈ divergenceFreeSpace period D.κ D.direction :=
   (divergenceFreeSpace period D.κ D.direction).add_mem (hz t) (he t)
 
-/-- Adding a genuine approximate pressure to the actual correction pressure preserves membership in the lifted gradient space. -/
+/-- Adding a genuine approximate pressure to the actual correction pressure preserves membership in the lifted gradient space.
+@isnad1 id=mem.2h7v.s18.2277caf1f744 from=translated src=- shape=4c2ff9b5 vocab=43e5dc9b
+-/
 theorem corrected_pressure_mem_gradient {q : ℕ} {T : Type*} [TopologicalSpace T]
     (D : CorrectionData period q T) (hq : 6 ≤ q) (t : T)
     (e : SobolevSpace period (q+1)) (pa : SobolevSpace period q)
@@ -112,7 +122,9 @@ theorem corrected_pressure_mem_gradient {q : ℕ} {T : Type*} [TopologicalSpace 
     value period (pa+D.pressure period hq t e) ∈ gradientSpace period D.κ D.direction :=
   (gradientSpace period D.κ D.direction).add_mem hpa (D.pressure_mem_gradient period hq t e)
 
-/-- Actual approximate and correction derivatives give the zero-residual nonlinear equation for their sum, with the sum of their genuine pressures. -/
+/-- Actual approximate and correction derivatives give the zero-residual nonlinear equation for their sum, with the sum of their genuine pressures.
+@isnad1 id=hasderiv.5h7v.s23.675bb07861f9 from=translated src=- shape=8bf8d244 vocab=30eb4f68
+-/
 theorem correctedPath_hasDerivAt {q : ℕ} (hq : 6 ≤ q) (T : ℝ) (hT : 0 ≤ T)
     (D : CorrectionData period q (Icc (0 : ℝ) T))
     (e : C(Icc (0 : ℝ) T,SobolevSpace period (q+1)))

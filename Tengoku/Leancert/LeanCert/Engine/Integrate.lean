@@ -46,7 +46,9 @@ open scoped ENNReal
 /-! ### Auxiliary lemmas for integration bounds -/
 
 /-- If lo ≤ f(x) ≤ hi for all x ∈ [a, b], then lo * (b - a) ≤ ∫_a^b f ≤ hi * (b - a).
-    This is the fundamental lemma for bounding integrals. -/
+    This is the fundamental lemma for bounding integrals.
+@isnad1 id=and.4h5v.s7.beba506aa83b from=translated src=- shape=a85e93d9 vocab=e3ac2808
+-/
 theorem integral_bounds_of_bounds {a b lo hi : ℝ} (hab : a ≤ b)
     {f : ℝ → ℝ} (hf : IntervalIntegrable f volume a b)
     (hlo : ∀ x ∈ Set.Icc a b, lo ≤ f x)
@@ -116,7 +118,9 @@ noncomputable def integrateInterval1 (e : Expr) (I : IntervalRat) : IntervalRat 
   let fBound := LeanCert.Internal.Rational.evalUnchecked1 e I
   IntervalRat.mul (IntervalRat.singleton I.width) fBound
 
-/-- The single-interval integration is contained in the general integration for n=1 -/
+/-- The single-interval integration is contained in the general integration for n=1
+@isnad1 id=eq.0h2v.s4.26ece820aa89 from=translated src=- shape=f95917ea vocab=fa226402
+-/
 theorem integrateInterval1_eq (e : Expr) (I : IntervalRat) :
     integrateInterval e I 1 (by norm_num) = IntervalRat.add (IntervalRat.singleton 0) (integrateInterval1 e I) := by
   unfold integrateInterval uniformPartition sumIntervalBounds integrateInterval1
@@ -134,7 +138,9 @@ theorem integrateInterval1_eq (e : Expr) (I : IntervalRat) :
     ring_nf
 
 /-- The single-interval correctness theorem.
-    This is FULLY PROVED - no sorry, no axioms. -/
+    This is FULLY PROVED - no sorry, no axioms.
+@isnad1 id=mem.2h2v.s6.cc08d36cebfe from=translated src=- shape=37a722fd vocab=7eab5b54
+-/
 theorem integrateInterval1_correct (e : Expr) (hsupp : ADSupported e) (I : IntervalRat)
     (hInt : IntervalIntegrable (fun x => Expr.eval (fun _ => x) e) volume I.lo I.hi) :
     ∫ x in (I.lo : ℝ)..(I.hi : ℝ), Expr.eval (fun _ => x) e ∈ integrateInterval1 e I := by
@@ -205,7 +211,9 @@ theorem integrateInterval1_correct (e : Expr) (hsupp : ADSupported e) (I : Inter
         ≤ ↑I.width * ↑fBound.hi := h_hi'
       _ = (↑I.width * ↑fBound.lo) ⊔ (↑I.width * ↑fBound.hi) := (max_eq_right h1).symm
 
-/-- Adding zero on the left preserves interval membership -/
+/-- Adding zero on the left preserves interval membership
+@isnad1 id=mem.1h2v.s4.912d0dfdb405 from=translated src=- shape=878bd29e vocab=2f06ecbc
+-/
 theorem add_zero_left_mem {r : ℝ} {I : IntervalRat} (hr : r ∈ I) :
     r ∈ IntervalRat.add (IntervalRat.singleton 0) I := by
   simp only [IntervalRat.mem_def, IntervalRat.add, IntervalRat.singleton] at hr ⊢
@@ -213,7 +221,9 @@ theorem add_zero_left_mem {r : ℝ} {I : IntervalRat} (hr : r ∈ I) :
   exact hr
 
 /-- Correctness for n = 1 (single interval, no partition).
-    This is FULLY PROVED - no sorry, no axioms. -/
+    This is FULLY PROVED - no sorry, no axioms.
+@isnad1 id=mem.2h2v.s6.a5b6ceb33733 from=translated src=- shape=23758a1c vocab=fdafb399
+-/
 theorem integrateInterval_correct_n1 (e : Expr) (hsupp : ADSupported e) (I : IntervalRat)
     (hInt : IntervalIntegrable (fun x => Expr.eval (fun _ => x) e) volume I.lo I.hi) :
     ∫ x in (I.lo : ℝ)..(I.hi : ℝ), Expr.eval (fun _ => x) e ∈
@@ -228,12 +238,16 @@ theorem integrateInterval_correct_n1 (e : Expr) (hsupp : ADSupported e) (I : Int
 noncomputable def partitionPoints (I : IntervalRat) (n : ℕ) (i : ℕ) : ℝ :=
   I.lo + (I.hi - I.lo) * i / n
 
-/-- x_0 = I.lo -/
+/-- x_0 = I.lo
+@isnad1 id=eq.1h2v.s4.e56e77a46635 from=translated src=- shape=2d5425d6 vocab=2ab0ff3b
+-/
 theorem partitionPoints_zero (I : IntervalRat) (n : ℕ) (_hn : 0 < n) :
     partitionPoints I n 0 = I.lo := by
   simp only [partitionPoints, Nat.cast_zero, mul_zero, zero_div, add_zero]
 
-/-- x_n = I.hi -/
+/-- x_n = I.hi
+@isnad1 id=eq.1h2v.s4.6b7467b0c7f6 from=translated src=- shape=d111ac9d vocab=613484db
+-/
 theorem partitionPoints_n (I : IntervalRat) (n : ℕ) (hn : 0 < n) :
     partitionPoints I n n = I.hi := by
   simp only [partitionPoints]
@@ -241,7 +255,9 @@ theorem partitionPoints_n (I : IntervalRat) (n : ℕ) (hn : 0 < n) :
   field_simp
   grind only
 
-/-- The partition points are monotone -/
+/-- The partition points are monotone
+@isnad1 id=le.3h4v.s5.9572201e6a78 from=translated src=- shape=28cb545f vocab=082c0beb
+-/
 theorem partitionPoints_mono (I : IntervalRat) (n : ℕ) (_hn : 0 < n) (i j : ℕ)
     (hij : i ≤ j) (_hjn : j ≤ n) :
     partitionPoints I n i ≤ partitionPoints I n j := by
@@ -254,32 +270,43 @@ theorem partitionPoints_mono (I : IntervalRat) (n : ℕ) (_hn : 0 < n) (i j : �
 def partitionInterval (I : IntervalRat) (n : ℕ) (hn : 0 < n) (k : ℕ) (hk : k < n) : IntervalRat :=
   (uniformPartition I n hn).get ⟨k, by simp [uniformPartition]; exact hk⟩
 
-/-- The lo of the k-th partition interval -/
+/-- The lo of the k-th partition interval
+@isnad1 id=eq.2h3v.s6.d2b2e406fb2a from=translated src=- shape=b14deea2 vocab=07e511c6
+-/
 theorem partitionInterval_lo (I : IntervalRat) (n : ℕ) (hn : 0 < n) (k : ℕ) (hk : k < n) :
     (partitionInterval I n hn k hk).lo = I.lo + (I.hi - I.lo) / n * k := by
   simp only [partitionInterval, uniformPartition, List.get_ofFn]
   grind only [= Fin.val_cast]
 
-/-- The hi of the k-th partition interval -/
+/-- The hi of the k-th partition interval
+@isnad1 id=eq.2h3v.s6.7dba3a0db5f1 from=translated src=- shape=3c6aa129 vocab=07e511c6
+-/
 theorem partitionInterval_hi (I : IntervalRat) (n : ℕ) (hn : 0 < n) (k : ℕ) (hk : k < n) :
     (partitionInterval I n hn k hk).hi = I.lo + (I.hi - I.lo) / n * (k + 1) := by
   simp only [partitionInterval, uniformPartition, List.get_ofFn]
   simp only [Fin.val_cast]
 
-/-- Partition points match partition interval bounds (real version) -/
+/-- Partition points match partition interval bounds (real version)
+@isnad1 id=eq.2h3v.s5.be369da33700 from=translated src=- shape=14b420c2 vocab=947cedfd
+-/
 theorem partitionPoints_eq_lo (I : IntervalRat) (n : ℕ) (hn : 0 < n) (k : ℕ) (hk : k < n) :
     partitionPoints I n k = ((partitionInterval I n hn k hk).lo : ℝ) := by
   simp only [partitionPoints, partitionInterval_lo, Rat.cast_add, Rat.cast_mul,
              Rat.cast_div, Rat.cast_natCast, Rat.cast_sub]
   ring
 
+/--
+@isnad1 id=eq.2h3v.s5.19fbcf30e40b from=translated src=- shape=60e1bbfd vocab=161bd3bc
+-/
 theorem partitionPoints_eq_hi (I : IntervalRat) (n : ℕ) (hn : 0 < n) (k : ℕ) (hk : k < n) :
     partitionPoints I n (k + 1) = ((partitionInterval I n hn k hk).hi : ℝ) := by
   simp only [partitionPoints, partitionInterval_hi, Rat.cast_add, Rat.cast_mul,
              Rat.cast_div, Rat.cast_natCast, Rat.cast_sub, Nat.cast_add, Nat.cast_one]
   ring
 
-/-- Integrability on a subinterval -/
+/-- Integrability on a subinterval
+@isnad1 id=interval.3h4v.s6.63e6b81865ce from=translated src=- shape=a62e7451 vocab=7bcce0da
+-/
 theorem intervalIntegrable_on_partition (e : Expr) (I : IntervalRat) (n : ℕ) (hn : 0 < n)
     (hInt : IntervalIntegrable (fun x => Expr.eval (fun _ => x) e) volume I.lo I.hi)
     (k : ℕ) (hk : k < n) :
@@ -327,7 +354,9 @@ theorem intervalIntegrable_on_partition (e : Expr) (I : IntervalRat) (n : ℕ) (
                    field_simp
              _ = I.hi := by ring
 
-/-- Integrability using partition points -/
+/-- Integrability using partition points
+@isnad1 id=interval.3h4v.s6.16c6b82938c6 from=translated src=- shape=89b9c7f4 vocab=ac74238c
+-/
 theorem intervalIntegrable_partitionPoints (e : Expr) (I : IntervalRat) (n : ℕ) (hn : 0 < n)
     (hInt : IntervalIntegrable (fun x => Expr.eval (fun _ => x) e) volume I.lo I.hi)
     (k : ℕ) (hk : k < n) :
@@ -336,7 +365,9 @@ theorem intervalIntegrable_partitionPoints (e : Expr) (I : IntervalRat) (n : ℕ
   rw [partitionPoints_eq_lo I n hn k hk, partitionPoints_eq_hi I n hn k hk]
   exact intervalIntegrable_on_partition e I n hn hInt k hk
 
-/-- The integral decomposes over the partition -/
+/-- The integral decomposes over the partition
+@isnad1 id=eq.2h3v.s7.c0d65326156b from=translated src=- shape=aba592d1 vocab=8f052d0b
+-/
 theorem integral_partition_sum (e : Expr) (I : IntervalRat) (n : ℕ) (hn : 0 < n)
     (hInt : IntervalIntegrable (fun x => Expr.eval (fun _ => x) e) volume I.lo I.hi) :
     ∫ x in (I.lo : ℝ)..(I.hi : ℝ), Expr.eval (fun _ => x) e =
@@ -352,7 +383,9 @@ theorem integral_partition_sum (e : Expr) (I : IntervalRat) (n : ℕ) (hn : 0 < 
 
 /-! ### Summing interval bounds over partitions -/
 
-/-- Each subinterval integral is bounded by integrateInterval1 on that subinterval -/
+/-- Each subinterval integral is bounded by integrateInterval1 on that subinterval
+@isnad1 id=mem.4h4v.s6.dd8a4743f055 from=translated src=- shape=ff1682df vocab=3145db4c
+-/
 theorem integral_subinterval_bounded (e : Expr) (hsupp : ADSupported e) (I : IntervalRat)
     (n : ℕ) (hn : 0 < n) (k : ℕ) (hk : k < n)
     (hInt : IntervalIntegrable (fun x => Expr.eval (fun _ => x) e) volume I.lo I.hi) :
@@ -362,13 +395,17 @@ theorem integral_subinterval_bounded (e : Expr) (hsupp : ADSupported e) (I : Int
   exact integrateInterval1_correct e hsupp (partitionInterval I n hn k hk)
     (intervalIntegrable_on_partition e I n hn hInt k hk)
 
-/-- IntervalRat.add is associative -/
+/-- IntervalRat.add is associative
+@isnad1 id=eq.0h3v.s4.a1de90d7bc0d from=translated src=- shape=b8c031c3 vocab=1aa6856b
+-/
 theorem IntervalRat_add_assoc (I J K : IntervalRat) :
     IntervalRat.add (IntervalRat.add I J) K = IntervalRat.add I (IntervalRat.add J K) := by
   simp only [IntervalRat.add]
   congr 1 <;> ring
 
-/-- Helper: foldl add distributes: foldl (acc.add I) Is = acc.add (foldl I Is) -/
+/-- Helper: foldl add distributes: foldl (acc.add I) Is = acc.add (foldl I Is)
+@isnad1 id=eq.0h3v.s4.8a4f646c3cf8 from=translated src=- shape=39d45b40 vocab=d72ddab9
+-/
 theorem foldl_add_concat (acc : IntervalRat) (I : IntervalRat) (Is : List IntervalRat) :
     Is.foldl IntervalRat.add (IntervalRat.add acc I) =
     IntervalRat.add acc (Is.foldl IntervalRat.add I) := by
@@ -382,19 +419,25 @@ theorem foldl_add_concat (acc : IntervalRat) (I : IntervalRat) (Is : List Interv
     -- LHS: Js.foldl add (add acc (add I J))
     rw [ih acc (IntervalRat.add I J)]
 
-/-- Adding singleton 0 on the left is identity -/
+/-- Adding singleton 0 on the left is identity
+@isnad1 id=eq.0h1v.s3.425a984b85f4 from=translated src=- shape=128e8b33 vocab=88b754ca
+-/
 theorem add_singleton_zero_left (I : IntervalRat) :
     IntervalRat.add (IntervalRat.singleton 0) I = I := by
   simp only [IntervalRat.add, IntervalRat.singleton]
   congr 1 <;> simp
 
-/-- Adding singleton 0 on the right is identity -/
+/-- Adding singleton 0 on the right is identity
+@isnad1 id=eq.0h1v.s3.018709d6bbc2 from=translated src=- shape=fe8ca7e2 vocab=88b754ca
+-/
 theorem add_singleton_zero_right (I : IntervalRat) :
     IntervalRat.add I (IntervalRat.singleton 0) = I := by
   simp only [IntervalRat.add, IntervalRat.singleton]
   congr 1 <;> simp
 
-/-- Helper: the sum of values in intervals is in the foldl of interval sums -/
+/-- Helper: the sum of values in intervals is in the foldl of interval sums
+@isnad1 id=mem.2h2v.s6.4d2e641b384c from=translated src=- shape=d1e43882 vocab=0de66df4
+-/
 theorem sum_mem_foldl_add {values : List ℝ} {intervals : List IntervalRat}
     (hlen : values.length = intervals.length)
     (hmem : ∀ i (hi : i < values.length), values[i] ∈ intervals[i]'(hlen ▸ hi)) :
@@ -435,7 +478,9 @@ theorem sum_mem_foldl_add {values : List ℝ} {intervals : List IntervalRat}
       -- Goal: v + vs.sum ∈ add I (foldl add (singleton 0) Is)
       exact IntervalRat.mem_add h0 hsum
 
-/-- Helper: generalized foldl lemma relating sumIntervalBounds-style fold with add fold -/
+/-- Helper: generalized foldl lemma relating sumIntervalBounds-style fold with add fold
+@isnad1 id=eq.0h3v.s5.92f9ab349ed7 from=translated src=- shape=0e10f092 vocab=63183433
+-/
 theorem foldl_sumBound_eq_foldl_add (e : Expr) (parts : List IntervalRat) (acc : IntervalRat) :
     parts.foldl (fun a I => IntervalRat.add a (IntervalRat.mul (IntervalRat.singleton I.width) (LeanCert.Internal.Rational.evalUnchecked1 e I))) acc =
     (parts.map (integrateInterval1 e)).foldl IntervalRat.add acc := by
@@ -446,14 +491,18 @@ theorem foldl_sumBound_eq_foldl_add (e : Expr) (parts : List IntervalRat) (acc :
     unfold integrateInterval1
     exact ih _
 
-/-- sumIntervalBounds equals foldl over mapped integrateInterval1 -/
+/-- sumIntervalBounds equals foldl over mapped integrateInterval1
+@isnad1 id=eq.0h2v.s4.894cbec36d19 from=translated src=- shape=23ee2815 vocab=20960a39
+-/
 theorem sumIntervalBounds_eq_foldl_map (e : Expr) (parts : List IntervalRat) :
     sumIntervalBounds e parts =
     (parts.map (integrateInterval1 e)).foldl IntervalRat.add (IntervalRat.singleton 0) := by
   unfold sumIntervalBounds
   exact foldl_sumBound_eq_foldl_add e parts (IntervalRat.singleton 0)
 
-/-- Main theorem: the integral lies in integrateInterval for general n -/
+/-- Main theorem: the integral lies in integrateInterval for general n
+@isnad1 id=mem.3h3v.s6.0c112214982c from=translated src=- shape=16767bec vocab=9d64d08d
+-/
 theorem integrateInterval_correct (e : Expr) (hsupp : ADSupported e) (I : IntervalRat)
     (n : ℕ) (hn : 0 < n)
     (hInt : IntervalIntegrable (fun x => Expr.eval (fun _ => x) e) volume I.lo I.hi) :
@@ -509,7 +558,9 @@ def intervalInter (I J : IntervalRat) : IntervalRat :=
     -- If no intersection, return the narrower interval
     if I.width ≤ J.width then I else J
 
-/-- Intersection is sound: if x ∈ I and x ∈ J, then x ∈ inter I J -/
+/-- Intersection is sound: if x ∈ I and x ∈ J, then x ∈ inter I J
+@isnad1 id=mem.2h3v.s4.d9c846744b16 from=translated src=- shape=f3eb7724 vocab=c5cc54f1
+-/
 theorem mem_intervalInter {x : ℝ} {I J : IntervalRat}
     (hI : x ∈ I) (hJ : x ∈ J) : x ∈ intervalInter I J := by
   simp only [intervalInter]
@@ -534,7 +585,9 @@ def intervalUnion (I J : IntervalRat) : IntervalRat where
   hi := max I.hi J.hi
   le := le_trans (min_le_left _ _) (le_trans I.le (le_max_left _ _))
 
-/-- Union is sound: if x ∈ I then x ∈ union I J -/
+/-- Union is sound: if x ∈ I then x ∈ union I J
+@isnad1 id=mem.1h3v.s4.ff57af70c33b from=translated src=- shape=202bfa92 vocab=069d4bda
+-/
 theorem mem_intervalUnion_left {x : ℝ} {I J : IntervalRat} (hI : x ∈ I) :
     x ∈ intervalUnion I J := by
   simp only [intervalUnion, IntervalRat.mem_def] at hI ⊢
@@ -543,7 +596,9 @@ theorem mem_intervalUnion_left {x : ℝ} {I J : IntervalRat} (hI : x ∈ I) :
   · exact le_trans (min_le_left _ _) hI.1
   · exact le_trans hI.2 (le_max_left _ _)
 
-/-- Union is sound: if x ∈ J then x ∈ union I J -/
+/-- Union is sound: if x ∈ J then x ∈ union I J
+@isnad1 id=mem.1h3v.s4.22038b1c3897 from=translated src=- shape=7d4d6ef6 vocab=069d4bda
+-/
 theorem mem_intervalUnion_right {x : ℝ} {I J : IntervalRat} (hJ : x ∈ J) :
     x ∈ intervalUnion I J := by
   simp only [intervalUnion, IntervalRat.mem_def] at hJ ⊢
@@ -554,16 +609,22 @@ theorem mem_intervalUnion_right {x : ℝ} {I J : IntervalRat} (hJ : x ∈ J) :
 
 /-! #### Splitting intervals -/
 
-/-- Midpoint definition helper -/
+/-- Midpoint definition helper
+@isnad1 id=eq.0h1v.s4.78f19ba53226 from=translated src=- shape=826661d1 vocab=a392fb0c
+-/
 theorem midpoint_def (I : IntervalRat) : I.midpoint = (I.lo + I.hi) / 2 := rfl
 
-/-- Midpoint is at least lo -/
+/-- Midpoint is at least lo
+@isnad1 id=le.0h1v.s3.c3ab5a995e46 from=translated src=- shape=b70c6bb1 vocab=09469784
+-/
 theorem midpoint_lo_le (I : IntervalRat) : I.lo ≤ I.midpoint := by
   rw [midpoint_def]
   have h : I.lo ≤ I.hi := I.le
   linarith
 
-/-- Midpoint is at most hi -/
+/-- Midpoint is at most hi
+@isnad1 id=le.0h1v.s3.b16c31f5704a from=translated src=- shape=b70c6bb1 vocab=543814e2
+-/
 theorem midpoint_le_hi' (I : IntervalRat) : I.midpoint ≤ I.hi := by
   rw [midpoint_def]
   have h : I.lo ≤ I.hi := I.le
@@ -573,21 +634,33 @@ theorem midpoint_le_hi' (I : IntervalRat) : I.midpoint ≤ I.hi := by
 def splitMid (I : IntervalRat) : IntervalRat × IntervalRat :=
   (⟨I.lo, I.midpoint, midpoint_lo_le I⟩, ⟨I.midpoint, I.hi, midpoint_le_hi' I⟩)
 
-/-- The left half of a split covers [lo, mid] -/
+/-- The left half of a split covers [lo, mid]
+@isnad1 id=eq.0h1v.s3.f61a10d5a15d from=translated src=- shape=ab171507 vocab=3d24e9df
+-/
 theorem splitMid_left_lo (I : IntervalRat) :
     (splitMid I).1.lo = I.lo := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.72d0d009b07e from=translated src=- shape=a9876257 vocab=9739fe9b
+-/
 theorem splitMid_left_hi (I : IntervalRat) :
     (splitMid I).1.hi = I.midpoint := rfl
 
-/-- The right half of a split covers [mid, hi] -/
+/-- The right half of a split covers [mid, hi]
+@isnad1 id=eq.0h1v.s3.83e1d63560f3 from=translated src=- shape=a9876257 vocab=cfab2e3d
+-/
 theorem splitMid_right_lo (I : IntervalRat) :
     (splitMid I).2.lo = I.midpoint := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.63af59d20925 from=translated src=- shape=ab171507 vocab=8faa0e82
+-/
 theorem splitMid_right_hi (I : IntervalRat) :
     (splitMid I).2.hi = I.hi := rfl
 
-/-- Splitting preserves coverage: any x in I is in one of the halves -/
+/-- Splitting preserves coverage: any x in I is in one of the halves
+@isnad1 id=or.1h2v.s5.4d4340272db1 from=translated src=- shape=bc1cef2e vocab=500b391b
+-/
 theorem mem_splitMid {x : ℝ} {I : IntervalRat} (hx : x ∈ I) :
     x ∈ (splitMid I).1 ∨ x ∈ (splitMid I).2 := by
   simp only [splitMid, IntervalRat.mem_def, midpoint_def]
@@ -656,35 +729,48 @@ noncomputable def integrateAdaptive (e : Expr) (I : IntervalRat) (tol : ℚ) (_h
 
 /-! #### Correctness proofs for adaptive integration -/
 
-/-- integrateRefined is correct (direct from integrateInterval_correct) -/
+/-- integrateRefined is correct (direct from integrateInterval_correct)
+@isnad1 id=mem.2h2v.s6.9f5b5a9b1137 from=translated src=- shape=37a722fd vocab=a28635a9
+-/
 theorem integrateRefined_correct (e : Expr) (hsupp : ADSupported e) (I : IntervalRat)
     (hInt : IntervalIntegrable (fun x => Expr.eval (fun _ => x) e) volume I.lo I.hi) :
     ∫ x in (I.lo : ℝ)..(I.hi : ℝ), Expr.eval (fun _ => x) e ∈ integrateRefined e I :=
   integrateInterval_correct e hsupp I 2 (by norm_num) hInt
 
-/-- integrateCoarse is correct -/
+/-- integrateCoarse is correct
+@isnad1 id=mem.2h2v.s6.af08a2bc066c from=translated src=- shape=37a722fd vocab=3128b7ca
+-/
 theorem integrateCoarse_correct (e : Expr) (hsupp : ADSupported e) (I : IntervalRat)
     (hInt : IntervalIntegrable (fun x => Expr.eval (fun _ => x) e) volume I.lo I.hi) :
     ∫ x in (I.lo : ℝ)..(I.hi : ℝ), Expr.eval (fun _ => x) e ∈ integrateCoarse e I :=
   integrateInterval_correct e hsupp I 1 (by norm_num) hInt
 
-/-- Helper: midpoint is between lo and hi (real version) -/
+/-- Helper: midpoint is between lo and hi (real version)
+@isnad1 id=le.0h1v.s3.5361d06e7a95 from=translated src=- shape=df1be1ee vocab=15ae3729
+-/
 theorem midpoint_ge_lo_real (I : IntervalRat) : (I.lo : ℝ) ≤ I.midpoint := by
   have := midpoint_lo_le I
   exact_mod_cast this
 
+/--
+@isnad1 id=le.0h1v.s3.df7f8daaa411 from=translated src=- shape=df1be1ee vocab=e5221d08
+-/
 theorem midpoint_le_hi_real (I : IntervalRat) : (I.midpoint : ℝ) ≤ I.hi := by
   have := midpoint_le_hi' I
   exact_mod_cast this
 
-/-- Midpoint is in the interval -/
+/-- Midpoint is in the interval
+@isnad1 id=mem.0h1v.s4.aaedd379d813 from=translated src=- shape=4adf622a vocab=ceffca26
+-/
 theorem midpoint_mem_uIcc (I : IntervalRat) :
     (I.midpoint : ℝ) ∈ Set.uIcc (I.lo : ℝ) I.hi := by
   rw [Set.mem_uIcc]
   left
   exact ⟨midpoint_ge_lo_real I, midpoint_le_hi_real I⟩
 
-/-- Helper: integral over split interval equals sum of integrals over halves -/
+/-- Helper: integral over split interval equals sum of integrals over halves
+@isnad1 id=eq.1h2v.s7.097e4709b2a2 from=translated src=- shape=3b924a8d vocab=ad8c6ab1
+-/
 theorem integral_split_mid (e : Expr) (I : IntervalRat)
     (hInt : IntervalIntegrable (fun x => Expr.eval (fun _ => x) e) volume I.lo I.hi) :
     ∫ x in (I.lo : ℝ)..(I.hi : ℝ), Expr.eval (fun _ => x) e =
@@ -696,7 +782,9 @@ theorem integral_split_mid (e : Expr) (I : IntervalRat)
     hInt.mono_set (Set.uIcc_subset_uIcc (midpoint_mem_uIcc I) (Set.right_mem_uIcc))
   exact (intervalIntegral.integral_add_adjacent_intervals hInt1 hInt2).symm
 
-/-- Integrability on left half -/
+/-- Integrability on left half
+@isnad1 id=interval.1h2v.s6.5ca622fdaa3c from=translated src=- shape=98f21ff2 vocab=233589c4
+-/
 theorem intervalIntegrable_splitMid_left (e : Expr) (I : IntervalRat)
     (hInt : IntervalIntegrable (fun x => Expr.eval (fun _ => x) e) volume I.lo I.hi) :
     IntervalIntegrable (fun x => Expr.eval (fun _ => x) e) volume
@@ -704,7 +792,9 @@ theorem intervalIntegrable_splitMid_left (e : Expr) (I : IntervalRat)
   simp only [splitMid_left_lo, splitMid_left_hi]
   exact hInt.mono_set (Set.uIcc_subset_uIcc (Set.left_mem_uIcc) (midpoint_mem_uIcc I))
 
-/-- Integrability on right half -/
+/-- Integrability on right half
+@isnad1 id=interval.1h2v.s6.f07caad318bd from=translated src=- shape=98f21ff2 vocab=8e95ffe1
+-/
 theorem intervalIntegrable_splitMid_right (e : Expr) (I : IntervalRat)
     (hInt : IntervalIntegrable (fun x => Expr.eval (fun _ => x) e) volume I.lo I.hi) :
     IntervalIntegrable (fun x => Expr.eval (fun _ => x) e) volume
@@ -713,7 +803,9 @@ theorem intervalIntegrable_splitMid_right (e : Expr) (I : IntervalRat)
   exact hInt.mono_set (Set.uIcc_subset_uIcc (midpoint_mem_uIcc I) (Set.right_mem_uIcc))
 
 /-- Main soundness theorem: adaptive integration returns a bound containing the true integral.
-    This is proved by induction on maxDepth. -/
+    This is proved by induction on maxDepth.
+@isnad1 id=mem.2h4v.s6.629fcbf701f3 from=translated src=- shape=616d217d vocab=faa31c54
+-/
 theorem integrateAdaptiveAux_correct (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (tol : ℚ) (maxDepth : ℕ)
     (hInt : IntervalIntegrable (fun x => Expr.eval (fun _ => x) e) volume I.lo I.hi) :
@@ -743,7 +835,9 @@ theorem integrateAdaptiveAux_correct (e : Expr) (hsupp : ADSupported e)
                  splitMid_right_lo, splitMid_right_hi] at h1 h2
       exact IntervalRat.mem_add h1 h2
 
-/-- Soundness of the main adaptive integration function -/
+/-- Soundness of the main adaptive integration function
+@isnad1 id=mem.3h4v.s6.51c35cf671aa from=translated src=- shape=10fa2ef5 vocab=54a312b3
+-/
 theorem integrateAdaptive_correct (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (tol : ℚ) (htol : 0 < tol) (maxDepth : ℕ)
     (hInt : IntervalIntegrable (fun x => Expr.eval (fun _ => x) e) volume I.lo I.hi) :

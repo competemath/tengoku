@@ -11,6 +11,9 @@ namespace EulerMeanHarmonic
 open MeasureTheory InnerProductSpace EulerSmoothLimit EulerMeanSolenoidal EulerLiftedPressure
 open scoped NNReal
 
+/--
+@isnad1 id=le.6h6v.s16.e8dbb82f0503 from=translated src=- shape=f6883a21 vocab=47de9a80
+-/
 theorem localized_coefficient_lower (M : Space → Space →L[ℝ] Space)
     (hM : AEStronglyMeasurable M volume) (C : ℝ≥0) (hC : ∀ x, ‖M x‖ ≤ C)
     (s : Set Space) (hs : MeasurableSet s) (Be Bc : ℝ) (hBe : 0 ≤ Be)

@@ -10,6 +10,9 @@ namespace EulerPacketMovingFrame
 
 open Set EulerSmoothLimit InnerProductSpace ContinuousLinearMap
 
+/--
+@isnad1 id=hasderiv.3h5v.s13.67a7455c70d5 from=translated src=- shape=a9c525d8 vocab=9351fd48
+-/
 theorem tangentPairing_hasDerivWithinAt (M : Space →L[ℝ] Space)
     {r w : ℝ → Space} {t : ℝ} {S : Set ℝ}
     (hr : HasDerivWithinAt r (-M.adjoint (r t)) S t)
@@ -22,6 +25,9 @@ theorem tangentPairing_hasDerivWithinAt (M : Space →L[ℝ] Space)
   field_simp
   ring
 
+/--
+@isnad1 id=eq.6h9v.s13.8ef3436b79a3 from=translated src=- shape=5aa975a4 vocab=8a616a49
+-/
 theorem rescaled_tangentPairing_zero (M : ℝ → Space →L[ℝ] Space)
     {r w : ℝ → Space} {t₀ a ε T : ℝ} {S : Set ℝ}
     (hmap : MapsTo (physicalTime t₀ a ε) (Icc 0 T) S)

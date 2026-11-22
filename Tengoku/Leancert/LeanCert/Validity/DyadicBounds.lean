@@ -118,7 +118,9 @@ about Real numbers.
     - `depth`: Taylor series depth
     - `h_prec`: Proof that prec ≤ 0
     - `hdom`: Proof of domain validity (automatic for ADSupported)
-    - `h_check`: The boolean check result -/
+    - `h_check`: The boolean check result
+@isnad1 id=le.6h7v.s6.13bc9c2f502b from=translated src=- shape=4776c2d6 vocab=9c817dcc
+-/
 theorem verify_upper_bound_dyadic (e : Expr) (hsupp : ExprSupportedCore e)
     (lo hi : ℚ) (hle : lo ≤ hi) (c : ℚ)
     (prec : Int) (depth : Nat) (h_prec : prec ≤ 0)
@@ -149,7 +151,9 @@ theorem verify_upper_bound_dyadic (e : Expr) (hsupp : ExprSupportedCore e)
 /-- **Golden Theorem for Dyadic Lower Bounds**
 
     If the bound check passes and domain validity holds, then
-    `∀ x ∈ [lo, hi], c ≤ Expr.eval (fun _ => x) e`. -/
+    `∀ x ∈ [lo, hi], c ≤ Expr.eval (fun _ => x) e`.
+@isnad1 id=le.6h7v.s6.09d768707a35 from=translated src=- shape=83852b11 vocab=5481c337
+-/
 theorem verify_lower_bound_dyadic (e : Expr) (hsupp : ExprSupportedCore e)
     (lo hi : ℚ) (hle : lo ≤ hi) (c : ℚ)
     (prec : Int) (depth : Nat) (h_prec : prec ≤ 0)
@@ -178,7 +182,9 @@ For expressions that don't use `log`, domain validity is automatic.
 These versions don't require the `hdom` hypothesis. -/
 
 /-- Convenience theorem for ADSupported expressions (no log).
-    Domain validity is automatic, so only the bound check is needed. -/
+    Domain validity is automatic, so only the bound check is needed.
+@isnad1 id=le.5h7v.s6.5edf6124c43a from=translated src=- shape=f90cabf4 vocab=72362259
+-/
 theorem verify_upper_bound_dyadic' (e : Expr) (hsupp : ADSupported e)
     (lo hi : ℚ) (hle : lo ≤ hi) (c : ℚ)
     (prec : Int) (depth : Nat) (h_prec : prec ≤ 0)
@@ -191,7 +197,9 @@ theorem verify_upper_bound_dyadic' (e : Expr) (hsupp : ADSupported e)
   exact verify_upper_bound_dyadic e hsupp.toCore lo hi hle c prec depth h_prec hdom h_check
 
 /-- Convenience theorem for ADSupported expressions (no log).
-    Domain validity is automatic, so only the bound check is needed. -/
+    Domain validity is automatic, so only the bound check is needed.
+@isnad1 id=le.5h7v.s6.d0d452716935 from=translated src=- shape=42a752eb vocab=c1305cf8
+-/
 theorem verify_lower_bound_dyadic' (e : Expr) (hsupp : ADSupported e)
     (lo hi : ℚ) (hle : lo ≤ hi) (c : ℚ)
     (prec : Int) (depth : Nat) (h_prec : prec ≤ 0)
@@ -208,7 +216,9 @@ theorem verify_lower_bound_dyadic' (e : Expr) (hsupp : ADSupported e)
 /-- **Golden Theorem for Strict Dyadic Upper Bounds**
 
     If the strict bound check passes and domain validity holds, then
-    `∀ x ∈ [lo, hi], Expr.eval (fun _ => x) e < c`. -/
+    `∀ x ∈ [lo, hi], Expr.eval (fun _ => x) e < c`.
+@isnad1 id=lt.6h7v.s6.08c5465d6e11 from=translated src=- shape=234200bb vocab=40e89340
+-/
 theorem verify_strict_upper_bound_dyadic (e : Expr) (hsupp : ExprSupportedCore e)
     (lo hi : ℚ) (hle : lo ≤ hi) (c : ℚ)
     (prec : Int) (depth : Nat) (h_prec : prec ≤ 0)
@@ -234,7 +244,9 @@ theorem verify_strict_upper_bound_dyadic (e : Expr) (hsupp : ExprSupportedCore e
 /-- **Golden Theorem for Strict Dyadic Lower Bounds**
 
     If the strict bound check passes and domain validity holds, then
-    `∀ x ∈ [lo, hi], c < Expr.eval (fun _ => x) e`. -/
+    `∀ x ∈ [lo, hi], c < Expr.eval (fun _ => x) e`.
+@isnad1 id=lt.6h7v.s6.29d03aa78986 from=translated src=- shape=4a4d32d8 vocab=0d34e916
+-/
 theorem verify_strict_lower_bound_dyadic (e : Expr) (hsupp : ExprSupportedCore e)
     (lo hi : ℚ) (hle : lo ≤ hi) (c : ℚ)
     (prec : Int) (depth : Nat) (h_prec : prec ≤ 0)
@@ -259,7 +271,9 @@ theorem verify_strict_lower_bound_dyadic (e : Expr) (hsupp : ExprSupportedCore e
 
 /-! ### Convenience Theorems for Strict Inequalities (ADSupported) -/
 
-/-- Convenience theorem for strict upper bounds with ADSupported expressions. -/
+/-- Convenience theorem for strict upper bounds with ADSupported expressions.
+@isnad1 id=lt.5h7v.s6.d0b4a9cccb45 from=translated src=- shape=982f7e1e vocab=1d49c15a
+-/
 theorem verify_strict_upper_bound_dyadic' (e : Expr) (hsupp : ADSupported e)
     (lo hi : ℚ) (hle : lo ≤ hi) (c : ℚ)
     (prec : Int) (depth : Nat) (h_prec : prec ≤ 0)
@@ -271,7 +285,9 @@ theorem verify_strict_upper_bound_dyadic' (e : Expr) (hsupp : ADSupported e)
     evalDomainValidDyadic_of_ExprSupported hsupp _ _
   exact verify_strict_upper_bound_dyadic e hsupp.toCore lo hi hle c prec depth h_prec hdom h_check
 
-/-- Convenience theorem for strict lower bounds with ADSupported expressions. -/
+/-- Convenience theorem for strict lower bounds with ADSupported expressions.
+@isnad1 id=lt.5h7v.s6.e2123305f7fe from=translated src=- shape=441b7e61 vocab=5ccbdd81
+-/
 theorem verify_strict_lower_bound_dyadic' (e : Expr) (hsupp : ADSupported e)
     (lo hi : ℚ) (hle : lo ≤ hi) (c : ℚ)
     (prec : Int) (depth : Nat) (h_prec : prec ≤ 0)
@@ -329,7 +345,9 @@ def checkStrictLowerBoundDyadicChecked (e : Expr) (lo hi : ℚ) (hle : lo ≤ hi
 For arbitrary expressions (with inv/log). Domain validity is extracted
 from the combined check function, so no separate `hdom` argument is needed. -/
 
-/-- Golden Theorem for Dyadic upper bounds with inv/log expressions. -/
+/-- Golden Theorem for Dyadic upper bounds with inv/log expressions.
+@isnad1 id=le.4h7v.s6.106c5686e296 from=translated src=- shape=879c5fd1 vocab=30560c2b
+-/
 theorem verify_upper_bound_dyadic_checked (e : Expr)
     (lo hi : ℚ) (hle : lo ≤ hi) (c : ℚ)
     (prec : Int) (depth : Nat) (h_prec : prec ≤ 0)
@@ -352,7 +370,9 @@ theorem verify_upper_bound_dyadic_checked (e : Expr)
       ≤ ((LeanCert.Internal.Dyadic.evalUnchecked e ρ_dyad cfg).hi.toRat : ℝ) := h_eval.2
     _ ≤ c := by exact_mod_cast h_bound
 
-/-- Golden Theorem for Dyadic lower bounds with inv/log expressions. -/
+/-- Golden Theorem for Dyadic lower bounds with inv/log expressions.
+@isnad1 id=le.4h7v.s6.ed5de3baa585 from=translated src=- shape=e44e5e11 vocab=0d4179cf
+-/
 theorem verify_lower_bound_dyadic_checked (e : Expr)
     (lo hi : ℚ) (hle : lo ≤ hi) (c : ℚ)
     (prec : Int) (depth : Nat) (h_prec : prec ≤ 0)
@@ -375,7 +395,9 @@ theorem verify_lower_bound_dyadic_checked (e : Expr)
       ≤ ((LeanCert.Internal.Dyadic.evalUnchecked e ρ_dyad cfg).lo.toRat : ℝ) := by exact_mod_cast h_bound
     _ ≤ Expr.eval (fun _ => x) e := h_eval.1
 
-/-- Golden Theorem for strict Dyadic upper bounds with inv/log expressions. -/
+/-- Golden Theorem for strict Dyadic upper bounds with inv/log expressions.
+@isnad1 id=lt.4h7v.s6.d217c812c220 from=translated src=- shape=9dc3cd1c vocab=acc5ebd5
+-/
 theorem verify_strict_upper_bound_dyadic_checked (e : Expr)
     (lo hi : ℚ) (hle : lo ≤ hi) (c : ℚ)
     (prec : Int) (depth : Nat) (h_prec : prec ≤ 0)
@@ -398,7 +420,9 @@ theorem verify_strict_upper_bound_dyadic_checked (e : Expr)
       ≤ ((LeanCert.Internal.Dyadic.evalUnchecked e ρ_dyad cfg).hi.toRat : ℝ) := h_eval.2
     _ < c := by exact_mod_cast h_bound
 
-/-- Golden Theorem for strict Dyadic lower bounds with inv/log expressions. -/
+/-- Golden Theorem for strict Dyadic lower bounds with inv/log expressions.
+@isnad1 id=lt.4h7v.s6.14da1d91a70b from=translated src=- shape=2975dffd vocab=285ef792
+-/
 theorem verify_strict_lower_bound_dyadic_checked (e : Expr)
     (lo hi : ℚ) (hle : lo ≤ hi) (c : ℚ)
     (prec : Int) (depth : Nat) (h_prec : prec ≤ 0)

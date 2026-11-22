@@ -12,7 +12,9 @@ open Set EulerPacketGrowth EulerPacketExistence
 
 /-- The scalar equation and its initial state determine both state
 components on the forward half-line.  This lets independently constructed
-neighbor comparisons use one common reference. -/
+neighbor comparisons use one common reference.
+@isnad1 id=and.9h6v.s9.e4b6645f9ac0 from=translated src=- shape=680e140b vocab=415442b9
+-/
 theorem equation30_state_eq_of_initial
     {σ : ℝ} {Z Z₁ W W₁ : ℝ → ℝ}
     (hσ : 0 < σ) (hσsmall : σ ≤ 1/4)

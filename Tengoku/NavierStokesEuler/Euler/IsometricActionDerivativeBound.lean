@@ -13,6 +13,9 @@ variable {P E : Type*}
   [NormedAddCommGroup P] [NormedSpace ℝ P]
   [NormedAddCommGroup E] [NormedSpace ℝ E]
 
+/--
+@isnad1 id=le.3h6v.s9.88cd5bc53152 from=translated src=- shape=28144601 vocab=6b3c2e37
+-/
 theorem norm_sub_le_of_hasFDerivAt (τ : P → E →ₗᵢ[ℝ] E)
     (hadd : ∀ a b u, τ a (τ b u) = τ (a+b) u) (hzero : ∀ u, τ 0 u = u)
     (u : E) (D : P →L[ℝ] E) (h : HasFDerivAt (fun a => τ a u) D 0) (a : P) :

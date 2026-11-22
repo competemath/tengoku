@@ -31,6 +31,9 @@ def gE : Expr :=
 
 def bps : List ℚ := (List.range 24).map (fun k => ((83 + 10*(k+1) : ℚ))/100)
 
+/--
+@isnad1 id=exprsupp.0h0v.s2.cf8015809fe2 from=translated src=- shape=049cd614 vocab=5fd43255
+-/
 theorem gminusf_supp : ExprSupportedCore (Expr.sub gE fE) := by
   unfold gE fE Expr.sub; repeat constructor
 

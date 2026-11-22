@@ -16,6 +16,9 @@ variable {E V : Type*}
   [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
   [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
 
+/--
+@isnad1 id=eq.0h5v.s12.7f70088a2894 from=translated src=- shape=14aa53ee vocab=cd73de30
+-/
 theorem tensorPath_const {K : Type*} [TopologicalSpace K] [CompactSpace K]
     (n : ℕ) (A : E [×n]→L[ℝ] V) :
     tensorPathMap n ((ContinuousLinearMap.const ℝ K).compContinuousMultilinearMap A) =
@@ -27,6 +30,9 @@ theorem tensorPath_const {K : Type*} [TopologicalSpace K] [CompactSpace K]
   rw [tensorPathMap_apply]
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s14.eb7d35b5c2ae from=translated src=- shape=adc4b868 vocab=6cc4f456
+-/
 theorem tensorPath_integral (T : ℝ) (hT : 0 ≤ T) (n : ℕ)
     (A : E [×n]→L[ℝ] C(Icc (0 : ℝ) T,V)) :
     tensorPathMap n ((integral T hT).compContinuousMultilinearMap A) =

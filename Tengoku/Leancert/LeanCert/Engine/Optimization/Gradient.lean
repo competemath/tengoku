@@ -66,7 +66,9 @@ def derivIntervalCoreN (e : Expr) (ρ : IntervalEnv) (idx : Nat) (cfg : EvalConf
   (evalWithDerivCore e ρ idx cfg).der
 
 /-- Correctness of the computable derivative evaluator for an arbitrary
-coordinate of a multivariate expression. -/
+coordinate of a multivariate expression.
+@isnad1 id=mem.3h6v.s6.ee62a8103073 from=translated src=- shape=c2ffc8a8 vocab=ebba9862
+-/
 theorem evalDualTotalCore_der_correct_idx (e : Expr) (hsupp : ADSupported e)
     (ρ_real : Nat → ℝ) (ρ_int : IntervalEnv) (idx : Nat)
     (hρ : ∀ i, ρ_real i ∈ ρ_int i) (x : ℝ) (hx : x ∈ ρ_int idx)
@@ -198,7 +200,9 @@ private theorem derivIntervalsChecked_correct (e : Expr) (B : Box)
                 (ih tail htail)
 
 /-- Golden soundness theorem for a successfully computed checked gradient.
-The output list is aligned with coordinates `0, …, B.length - 1`. -/
+The output list is aligned with coordinates `0, …, B.length - 1`.
+@isnad1 id=forall.3h5v.s6.a4ff5eb34adc from=translated src=- shape=754e9878 vocab=2577de98
+-/
 theorem gradientIntervalChecked_correct (e : Expr) (B : Box)
     (cfg : EvalConfig) (ρReal : Nat → ℝ)
     (hρ : Box.envMem ρReal B)
@@ -279,7 +283,9 @@ def pruneBoxForMin (B : Box) (grad : List IntervalRat) : Box × List Nat :=
 /-! ### Correctness theorems -/
 
 /-- The computed gradient interval contains the true partial derivatives.
-    This follows from evalDual_der_correct_idx in AD.lean. -/
+    This follows from evalDual_der_correct_idx in AD.lean.
+@isnad1 id=mem.3h4v.s6.02e00b82cced from=translated src=- shape=696d7360 vocab=7f5dcb29
+-/
 theorem gradientInterval_correct (e : Expr) (hsupp : ADSupported e)
     (B : Box) (ρ : Nat → ℝ) (hρ : Box.envMem ρ B)
     (hzero : ∀ i, i ≥ B.length → ρ i = 0)
@@ -299,7 +305,9 @@ theorem gradientInterval_correct (e : Expr) (hsupp : ADSupported e)
 
 /-- If we prune a coordinate to lo because ∂f/∂xᵢ > 0, the minimum is preserved.
     Informal: if f is increasing in xᵢ on B, then min{f(x) : x ∈ B} = min{f(x) : xᵢ = B[i].lo}.
-    NOTE: Requires ρ j = 0 for j ≥ B.length (standard assumption for box membership). -/
+    NOTE: Requires ρ j = 0 for j ≥ B.length (standard assumption for box membership).
+@isnad1 id=ex.4h4v.s7.05261ce740fc from=translated src=- shape=31949c4d vocab=61bfff50
+-/
 theorem pruneToLo_preserves_min (e : Expr) (hsupp : ADSupported e)
     (B : Box) (i : Fin B.length)
     (hgrad : isStrictlyPositive (derivInterval e (Box.toEnv B) i.val) = true) :
@@ -376,7 +384,9 @@ theorem pruneToLo_preserves_min (e : Expr) (hsupp : ADSupported e)
     exact hmin
 
 /-- If we prune a coordinate to hi because ∂f/∂xᵢ < 0, the minimum is preserved.
-    NOTE: Requires ρ j = 0 for j ≥ B.length (standard assumption for box membership). -/
+    NOTE: Requires ρ j = 0 for j ≥ B.length (standard assumption for box membership).
+@isnad1 id=ex.4h4v.s7.45a7f57a335b from=translated src=- shape=31949c4d vocab=0dc46642
+-/
 theorem pruneToHi_preserves_min (e : Expr) (hsupp : ADSupported e)
     (B : Box) (i : Fin B.length)
     (hgrad : isStrictlyNegative (derivInterval e (Box.toEnv B) i.val) = true) :
@@ -450,7 +460,9 @@ theorem pruneToHi_preserves_min (e : Expr) (hsupp : ADSupported e)
 /-! ### Pruned box membership and correctness -/
 
 /-- Helper: membership in the pruned box implies membership in the original box.
-    The pruned box only shrinks coordinates, never expands them. -/
+    The pruned box only shrinks coordinates, never expands them.
+@isnad1 id=envmem.1h3v.s4.f58fd7f78219 from=translated src=- shape=09ac3deb vocab=4b1c87aa
+-/
 theorem pruneBoxForMin_subset (B : Box) (grad : List IntervalRat) :
     ∀ ρ, Box.envMem ρ (pruneBoxForMin B grad).1 → Box.envMem ρ B := by
   intro ρ hρ'
@@ -494,13 +506,17 @@ theorem pruneBoxForMin_subset (B : Box) (grad : List IntervalRat) :
       · simp only [hlo, Bool.false_eq_true, ↓reduceIte, hhi] at hρ'_mem
         exact hρ'_mem
 
-/-- The pruned box has the same length as the original box -/
+/-- The pruned box has the same length as the original box
+@isnad1 id=eq.0h2v.s4.58f9699fc78e from=translated src=- shape=115ef929 vocab=a68d3f63
+-/
 theorem pruneBoxForMin_length (B : Box) (grad : List IntervalRat) :
     (pruneBoxForMin B grad).1.length = B.length := by
   simp only [pruneBoxForMin, List.length_map, List.length_zipIdx]
 
 /-- A positive computable derivative enclosure makes the objective increasing
-along the selected coordinate. -/
+along the selected coordinate.
+@isnad1 id=le.4h6v.s6.b28fee10db40 from=translated src=- shape=5b149cfa vocab=56523921
+-/
 theorem increasing_min_at_left_idx_core (e : Expr) (hsupp : ADSupported e)
     (ρ_real : Nat → ℝ) (ρ_int : IntervalEnv) (idx : Nat)
     (hρ : ∀ i, ρ_real i ∈ ρ_int i) (cfg : EvalConfig)
@@ -526,7 +542,9 @@ theorem increasing_min_at_left_idx_core (e : Expr) (hsupp : ADSupported e)
       (lt_of_le_of_ne hlo heq))
 
 /-- A negative computable derivative enclosure makes the objective decreasing
-along the selected coordinate. -/
+along the selected coordinate.
+@isnad1 id=le.4h6v.s6.f125b8ae4fc5 from=translated src=- shape=f4230fb7 vocab=eab00d35
+-/
 theorem decreasing_min_at_right_idx_core (e : Expr) (hsupp : ADSupported e)
     (ρ_real : Nat → ℝ) (ρ_int : IntervalEnv) (idx : Nat)
     (hρ : ∀ i, ρ_real i ∈ ρ_int i) (cfg : EvalConfig)
@@ -566,6 +584,7 @@ theorem decreasing_min_at_right_idx_core (e : Expr) (hsupp : ADSupported e)
 
     The proof then shows f(ρ') ≤ f(ρ) by induction on coordinates, using
     the monotonicity lemmas `increasing_min_at_left_idx` and `decreasing_min_at_right_idx`.
+@isnad1 id=other.1h3v.s6.e08106bfda07 from=translated src=- shape=783b45e1 vocab=d31feb27
 -/
 theorem pruneBoxForMin_correct (e : Expr) (hsupp : ADSupported e) (B : Box)
     (cfg : EvalConfig := {}) :

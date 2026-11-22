@@ -71,7 +71,9 @@ noncomputable def checkRootStatus (e : Expr) (I : IntervalRat) : RootStatus :=
 /-! ### Core correctness lemmas -/
 
 /-- If interval evaluation excludes zero, then f(x) ≠ 0 for all x in I.
-    This is the key lemma for proving noRoot correctness. -/
+    This is the key lemma for proving noRoot correctness.
+@isnad1 id=ne.3h3v.s5.c6846967bbab from=translated src=- shape=29831f51 vocab=f3473b8e
+-/
 theorem excludesZero_correct (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (hexcl : excludesZero (LeanCert.Internal.Rational.evalUnchecked1 e I) = true) :
     ∀ x ∈ I, Expr.eval (fun _ => x) e ≠ 0 := by
@@ -99,7 +101,9 @@ theorem excludesZero_correct (e : Expr) (hsupp : ADSupported e)
     **Proof strategy**:
     1. signChange means f(lo) < 0 < f(hi) or f(hi) < 0 < f(lo)
     2. Use evalInterval1_correct on singletons to get actual values at endpoints
-    3. Apply intermediate_value_Icc to conclude 0 is in the image -/
+    3. Apply intermediate_value_Icc to conclude 0 is in the image
+@isnad1 id=ex.3h2v.s6.176ff1443af3 from=translated src=- shape=fcde4d1e vocab=6786c313
+-/
 theorem signChange_correct (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (hsign : signChange e I = true)
     (hCont : ContinuousOn (fun x => Expr.eval (fun _ => x) e) (Set.Icc I.lo I.hi)) :
@@ -202,7 +206,9 @@ noncomputable def checkRootStatus_idx (e : Expr) (ρ_int : IntervalEnv) (idx : N
 /-! ### N-variable correctness lemmas -/
 
 /-- If interval evaluation excludes zero, then f(x) ≠ 0 for all x in the box.
-    N-variable version: the function has no zeros in the entire box. -/
+    N-variable version: the function has no zeros in the entire box.
+@isnad1 id=ne.3h3v.s5.f93e12805bd6 from=translated src=- shape=163e9f3d vocab=5af1395b
+-/
 theorem excludesZero_correct_idx (e : Expr) (hsupp : ADSupported e)
     (ρ_int : IntervalEnv)
     (hexcl : excludesZero (LeanCert.Internal.Rational.evalUnchecked e ρ_int) = true) :
@@ -226,7 +232,9 @@ theorem excludesZero_correct_idx (e : Expr) (hsupp : ADSupported e)
 /-- If there is a sign change along coordinate `idx`, then by IVT there exists a root
     along that coordinate.
     N-variable version: for any fixed values of other coordinates satisfying `ρ_int`,
-    there exists a value of coordinate `idx` where the function is zero. -/
+    there exists a value of coordinate `idx` where the function is zero.
+@isnad1 id=ex.4h4v.s6.000e8a378015 from=translated src=- shape=a74dfacd vocab=1c628c07
+-/
 theorem signChange_correct_idx (e : Expr) (hsupp : ADSupported e)
     (ρ_int : IntervalEnv) (idx : Nat)
     (ρ_real : Nat → ℝ) (hρ : ∀ i, i ≠ idx → ρ_real i ∈ ρ_int i)
@@ -379,7 +387,9 @@ where
             else BisectResult.uncertain I d
           | BisectResult.found I d => BisectResult.found I d  -- unreachable
 
-/-- Helper: when go returns found, signChange_idx was true for that interval -/
+/-- Helper: when go returns found, signChange_idx was true for that interval
+@isnad1 id=and.2h8v.s6.7857e4609899 from=translated src=- shape=d1c0898e vocab=54b3dc32
+-/
 theorem bisectRootIdx_go_found_signChange (e : Expr) (ρ_int : IntervalEnv) (idx : Nat)
     (maxDepth depth : ℕ) (J I : IntervalRat) (d : ℕ)
     (hJ_sub : ∀ t, t ∈ J → t ∈ ρ_int idx)
@@ -447,7 +457,9 @@ theorem bisectRootIdx_go_found_signChange (e : Expr) (ρ_int : IntervalEnv) (idx
 
 /-- Correctness theorem for bisectRootIdx when it finds a root.
     If bisectRootIdx returns `found I d`, then for any ρ_real satisfying ρ_int,
-    there exists a root of `evalAlong e ρ_real idx` in the returned interval I. -/
+    there exists a root of `evalAlong e ρ_real idx` in the returned interval I.
+@isnad1 id=ex.4h7v.s6.ce727a805413 from=translated src=- shape=199ace67 vocab=eb40e48a
+-/
 theorem bisectRootIdx_found_correct (e : Expr) (hsupp : ADSupported e)
     (ρ_int : IntervalEnv) (idx : Nat) (maxDepth : ℕ)
     (I : IntervalRat) (d : ℕ)
@@ -477,7 +489,9 @@ theorem bisectRootIdx_found_correct (e : Expr) (hsupp : ADSupported e)
 /-- Helper: noRoot is preserved through bisection.
     The proof is complex due to the match structure in bisectRootIdx.go.
     The key insight is that noRoot can only be returned if excludesZero is true
-    at some level of the recursion, and excludesZero implies the function is nonzero. -/
+    at some level of the recursion, and excludesZero implies the function is nonzero.
+@isnad1 id=ne.5h8v.s6.a1cbf54a8914 from=translated src=- shape=3dbf2edb vocab=a123d83d
+-/
 theorem bisectRootIdx_go_noRoot_correct (e : Expr) (hsupp : ADSupported e)
     (ρ_int : IntervalEnv) (idx : Nat) (maxDepth depth : ℕ) (J : IntervalRat)
     (hJ_sub : ∀ t, t ∈ J → t ∈ ρ_int idx)
@@ -577,7 +591,9 @@ theorem bisectRootIdx_go_noRoot_correct (e : Expr) (hsupp : ADSupported e)
 
 /-- Correctness theorem for bisectRootIdx when it reports no root.
     If bisectRootIdx returns `noRoot`, then for any ρ_real satisfying ρ_int,
-    the function `evalAlong e ρ_real idx` has no zeros in `ρ_int idx`. -/
+    the function `evalAlong e ρ_real idx` has no zeros in `ρ_int idx`.
+@isnad1 id=ne.4h6v.s5.a6006dc553bc from=translated src=- shape=7a0dea45 vocab=a546c513
+-/
 theorem bisectRootIdx_noRoot_correct (e : Expr) (hsupp : ADSupported e)
     (ρ_int : IntervalEnv) (idx : Nat) (maxDepth : ℕ)
     (hnoRoot : bisectRootIdx e ρ_int idx maxDepth = BisectResult.noRoot) :

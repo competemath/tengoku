@@ -52,7 +52,9 @@ local instance evolutionSobolevGroup (q : ℕ) : NormedAddCommGroup (SobolevSpac
 /-- The inherited real Sobolev module used for the stronger time equation. -/
 local instance evolutionSobolevSpace (q : ℕ) : NormedSpace ℝ (SobolevSpace period q) := inferInstance
 
-/-- A genuine continuous quadratic Sobolev source upgrades the actual L² evolution to an Hq time derivative of the truncated H(q+1) path. -/
+/-- A genuine continuous quadratic Sobolev source upgrades the actual L² evolution to an Hq time derivative of the truncated H(q+1) path.
+@isnad1 id=hasderiv.3h6v.s21.1ffba85de2c5 from=translated src=- shape=bb4b9003 vocab=aeda5a36
+-/
 theorem sobolev_hasDerivAt {q : ℕ} (T : ℝ) (hT : 0 ≤ T)
     (A : Coefficients (Icc (0 : ℝ) T) (SobolevSpace period (q+1)) (SobolevSpace period q))
     (e : C(Icc (0 : ℝ) T,SobolevSpace period (q+1)))
@@ -76,7 +78,9 @@ theorem sobolev_hasDerivAt {q : ℕ} (T : ℝ) (hT : 0 ≤ T)
     (A.apply (projIcc 0 T hT t) (e (projIcc 0 T hT t))) t at h
   simpa only [projIcc_of_mem hT ⟨ht.1.le,ht.2.le⟩] using h
 
-/-- The actual projected Sobolev source equals the literal non-pressure source and signed coercive pressure already before passing to L². -/
+/-- The actual projected Sobolev source equals the literal non-pressure source and signed coercive pressure already before passing to L².
+@isnad1 id=eq.1h6v.s21.53ec2bc0f549 from=translated src=- shape=926d97d0 vocab=8ccdbfa9
+-/
 theorem CorrectionData.source_sobolev {q : ℕ} {T : Type*} [TopologicalSpace T]
     (D : CorrectionData period q T) (hq : 6 ≤ q) (t : T) (e : SobolevSpace period (q+1)) :
     (D.coefficients period hq).apply t e = -D.rawSource period hq t e -
@@ -88,7 +92,9 @@ theorem CorrectionData.source_sobolev {q : ℕ} {T : Type*} [TopologicalSpace T]
   rw [coefficientSobolevOperator_value]
   exact D.source_value period hq t e
 
-/-- The actual correction equation has its literal signed-pressure time derivative in Hq whenever its continuous H(q+1) path satisfies the constructed L² equation. -/
+/-- The actual correction equation has its literal signed-pressure time derivative in Hq whenever its continuous H(q+1) path satisfies the constructed L² equation.
+@isnad1 id=hasderiv.4h6v.s22.976b6b541e15 from=translated src=- shape=aa02b6fd vocab=a0f76305
+-/
 theorem correction_sobolev_hasDerivAt {q : ℕ} (hq : 6 ≤ q) (T : ℝ) (hT : 0 ≤ T)
     (D : CorrectionData period q (Icc (0 : ℝ) T))
     (e : C(Icc (0 : ℝ) T,SobolevSpace period (q+1)))

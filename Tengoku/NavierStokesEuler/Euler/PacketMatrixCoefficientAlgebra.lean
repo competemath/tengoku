@@ -72,12 +72,21 @@ def spatialDerivative (A : MatrixCoefficient T a) (v : Space) :
     change fderiv ℝ (fun y : Space => a (t,(y,θ))) x v = orbitDerivativePath A.path v t x
     rw [he,orbitDerivativePath_apply A.path A.orbit]
 
+/--
+@isnad1 id=eq.0h7v.s14.523751e53513 from=translated src=- shape=b05cd011 vocab=63ad1ea3
+-/
 @[simp] theorem comp_path_apply (A : MatrixCoefficient T a) (B : MatrixCoefficient T b)
     (t : Icc (0 : ℝ) T) (x : Space) : (A.comp B).path t x = (A.path t x).comp (B.path t x) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s14.365ae707301f from=translated src=- shape=a67e2633 vocab=55be373f
+-/
 @[simp] theorem smul_path_apply (A : MatrixCoefficient T a) (c : ℝ)
     (t : Icc (0 : ℝ) T) (x : Space) : (A.smul c).path t x = c • A.path t x := rfl
 
+/--
+@isnad1 id=eq.0h6v.s14.4958c91a3b39 from=translated src=- shape=0d42a5e7 vocab=aab328fd
+-/
 theorem spatialDerivative_path_apply (A : MatrixCoefficient T a) (v : Space)
     (t : Icc (0 : ℝ) T) (x : Space) :
     (A.spatialDerivative v).path t x = fderiv ℝ (A.path t : Space → Space →L[ℝ] Space) x v :=

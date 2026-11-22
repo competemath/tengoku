@@ -32,12 +32,18 @@ namespace CompactField
 variable {P} {V : Type u} [NormedAddCommGroup V] [NormedSpace ℝ V]
 
 omit [Fact (0 < P)] in
+/--
+@isnad1 id=le.0h3v.s10.a130720e330b from=translated src=- shape=d383f719 vocab=a831e28d
+-/
 theorem derivative_support (A : CompactField P V) : tsupport A.derivative.field ⊆ tsupport A.field := by
   apply closure_minimal _ (isClosed_tsupport A.field)
   intro x hx
   by_contra hn
   exact hx (fieldFDeriv_zero_outside P A.field x hn)
 
+/--
+@isnad1 id=le.3h5v.s10.10d1a4a82994 from=translated src=- shape=1a248852 vocab=74b83abe
+-/
 theorem toLp_norm_le (A : CompactField P V) (K : Set (LiftDomain P)) (hK : IsCompact K)
     (hs : tsupport A.field ⊆ K) (C : ℝ) (hb : ∀ x, ‖A.field x‖ ≤ C) :
     ‖A.toLp‖ ≤ C*supportMass P K hK := by
@@ -81,6 +87,9 @@ private theorem norm_iteratedFDeriv_translation_aux (n : ℕ) :
       (derivativeBundling_norm_le_one (P := LiftTangent) (V := V) (liftMeasure P)) (norm_nonneg _)).trans
         (by simpa only [one_mul] using hi))
 
+/--
+@isnad1 id=le.3h7v.s14.e8b13ca47ab4 from=translated src=- shape=9c879f67 vocab=92a9f2d3
+-/
 theorem norm_iteratedFDeriv_translation_le (A : CompactField P V)
     (K : Set (LiftDomain P)) (hK : IsCompact K) (hs : tsupport A.field ⊆ K)
     (n : ℕ) (C : ℝ) (hb : ∀ x, ‖iteratedFDeriv ℝ n (localFieldLift P A.field x) 0‖ ≤ C)
@@ -88,6 +97,9 @@ theorem norm_iteratedFDeriv_translation_le (A : CompactField P V)
     ‖iteratedFDeriv ℝ n (fun b : LiftTangent => translate P b A.toLp) a‖ ≤ C*supportMass P K hK :=
   norm_iteratedFDeriv_translation_aux n V A K hK hs C hb a
 
+/--
+@isnad1 id=le.3h8v.s14.e6f469b596f8 from=translated src=- shape=3dd81a17 vocab=c8717a71
+-/
 theorem translation_gevrey (A : CompactField P V)
     (K : Set (LiftDomain P)) (hK : IsCompact K) (hs : tsupport A.field ⊆ K)
     (R C : ℝ) (hb : ∀ n x, ‖iteratedFDeriv ℝ n (localFieldLift P A.field x) 0‖ ≤ C*majorant R 0 n)
@@ -96,6 +108,9 @@ theorem translation_gevrey (A : CompactField P V)
       (C*supportMass P K hK)*majorant R 0 n :=
   (A.norm_iteratedFDeriv_translation_le K hK hs n (C*majorant R 0 n) (hb n) a).trans_eq (by ring)
 
+/--
+@isnad1 id=le.6h11v.s13.e47fbbf06b96 from=translated src=- shape=8d1af0dd vocab=33ed2a2d
+-/
 theorem translation_block_bound {ι : Type*} [Fintype ι]
     (directions : ι → LiftTangent) (hd : ∀ i, ‖directions i‖ ≤ 1) (q : ℕ)
     (A : CompactField P V) (K : Set (LiftDomain P)) (hK : IsCompact K) (hs : tsupport A.field ⊆ K)

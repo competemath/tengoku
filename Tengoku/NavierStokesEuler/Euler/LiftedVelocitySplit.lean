@@ -21,6 +21,9 @@ def spatialVelocityMap : Space →L[ℝ] EulerSobolev.Domain 4 :=
 def normalVelocityMap : Space →L[ℝ] EulerSobolev.Domain 4 :=
   (toSpanSingleton ℝ (EuclideanSpace.single (0 : Fin 4) (1 : ℝ))).comp scalarProject
 
+/--
+@isnad1 id=le.0h0v.s9.1ed6acf174fc from=translated src=- shape=9d1c4590 vocab=7d132a88
+-/
 theorem spatialVelocityMap_norm : ‖spatialVelocityMap‖ ≤ 3 := by
   apply opNorm_le_bound _ (by norm_num)
   intro z
@@ -39,12 +42,18 @@ theorem spatialVelocityMap_norm : ‖spatialVelocityMap‖ ≤ 3 := by
           (one_mul _))
     _ = 3*‖z‖ := by simp
 
+/--
+@isnad1 id=le.0h0v.s9.8747c3ab26b0 from=translated src=- shape=9d1c4590 vocab=e04070b4
+-/
 theorem normalVelocityMap_norm : ‖normalVelocityMap‖ ≤ 1 := by
   calc
     ‖normalVelocityMap‖ ≤ ‖toSpanSingleton ℝ (EuclideanSpace.single (0 : Fin 4) (1 : ℝ))‖*
         ‖scalarProject‖ := opNorm_comp_le _ _
     _ = 1 := by simp [norm_toSpanSingleton,scalarProject_norm]
 
+/--
+@isnad1 id=eq.0h2v.s12.b40f20b42bdb from=translated src=- shape=97aa82ee vocab=bb1f44cf
+-/
 theorem velocityMap_split (κ : ℝ) (m : Space) :
     velocityMap (velocityComponents κ m) =
       κ • spatialVelocityMap + normalVelocityMap.comp (normalComponentMap m) := by
@@ -59,6 +68,9 @@ theorem velocityMap_split (κ : ℝ) (m : Space) :
 
 variable (P : ℝ) [Fact (0 < P)]
 
+/--
+@isnad1 id=le.0h4v.s16.34d67f20a5b0 from=translated src=- shape=b659bbe0 vocab=2b90c9fb
+-/
 theorem velocityMap_L2_bound (κ : ℝ) (m : Space) (u : LiftL2 P) :
     ‖(velocityMap (velocityComponents κ m)).compLpL 2 (liftMeasure P) u‖ ≤
       3 * |κ| * ‖u‖ + ‖(normalComponentMap m).compLpL 2 (liftMeasure P) u‖ := by

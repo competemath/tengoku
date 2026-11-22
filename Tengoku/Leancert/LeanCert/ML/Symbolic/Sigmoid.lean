@@ -65,34 +65,49 @@ structure RealSymbolicBound where
 /-- The sigmoid (logistic) function: σ(x) = 1 / (1 + exp(-x)) -/
 noncomputable def sigmoid (x : ℝ) : ℝ := 1 / (1 + exp (-x))
 
-/-- Sigmoid is always positive -/
+/-- Sigmoid is always positive
+@isnad1 id=lt.0h1v.s3.9feb2bef7982 from=translated src=- shape=8a62b088 vocab=b19412b8
+-/
 theorem sigmoid_pos (x : ℝ) : 0 < sigmoid x := by
   unfold sigmoid
   apply div_pos one_pos
   linarith [exp_pos (-x)]
 
-/-- Sigmoid is always less than 1 -/
+/-- Sigmoid is always less than 1
+@isnad1 id=lt.0h1v.s3.56d3909cafe8 from=translated src=- shape=b14ee516 vocab=b19412b8
+-/
 theorem sigmoid_lt_one (x : ℝ) : sigmoid x < 1 := by
   unfold sigmoid
   rw [div_lt_one (by linarith [exp_pos (-x)] : 0 < 1 + exp (-x))]
   linarith [exp_pos (-x)]
 
-/-- Sigmoid is bounded in (0, 1) -/
+/-- Sigmoid is bounded in (0, 1)
+@isnad1 id=mem.0h1v.s4.9529b9c9cb6b from=translated src=- shape=828ff9db vocab=d18482e3
+-/
 theorem sigmoid_mem_Ioo (x : ℝ) : sigmoid x ∈ Set.Ioo 0 1 :=
   ⟨sigmoid_pos x, sigmoid_lt_one x⟩
 
-/-- Sigmoid is bounded in [0, 1] -/
+/-- Sigmoid is bounded in [0, 1]
+@isnad1 id=le.0h1v.s3.96f6546be40a from=translated src=- shape=8a62b088 vocab=e5338b31
+-/
 theorem sigmoid_nonneg (x : ℝ) : 0 ≤ sigmoid x := le_of_lt (sigmoid_pos x)
 
+/--
+@isnad1 id=le.0h1v.s3.159b936b0e30 from=translated src=- shape=b14ee516 vocab=e5338b31
+-/
 theorem sigmoid_le_one (x : ℝ) : sigmoid x ≤ 1 := le_of_lt (sigmoid_lt_one x)
 
-/-- Sigmoid at 0 equals 1/2 -/
+/-- Sigmoid at 0 equals 1/2
+@isnad1 id=eq.0h0v.s5.126172924815 from=translated src=- shape=d4f6e56f vocab=b39ab4d2
+-/
 theorem sigmoid_zero : sigmoid 0 = 1 / 2 := by
   unfold sigmoid
   simp only [neg_zero, exp_zero]
   norm_num
 
-/-- 1 - σ(x) = σ(-x) -/
+/-- 1 - σ(x) = σ(-x)
+@isnad1 id=eq.0h1v.s4.c22ba7e6ad0f from=translated src=- shape=0018fb8f vocab=271d392a
+-/
 theorem one_sub_sigmoid (x : ℝ) : 1 - sigmoid x = sigmoid (-x) := by
   unfold sigmoid
   have h1 : 1 + exp (-x) ≠ 0 := by linarith [exp_pos (-x)]
@@ -103,11 +118,15 @@ theorem one_sub_sigmoid (x : ℝ) : 1 - sigmoid x = sigmoid (-x) := by
 
 /-! ## Monotonicity -/
 
-/-- The denominator 1 + exp(-x) is always positive -/
+/-- The denominator 1 + exp(-x) is always positive
+@isnad1 id=lt.0h1v.s4.3edb40b992e3 from=translated src=- shape=3e0e8fe1 vocab=ff8de3a5
+-/
 theorem sigmoid_denom_pos (x : ℝ) : 0 < 1 + exp (-x) := by
   linarith [exp_pos (-x)]
 
-/-- Sigmoid is strictly monotone increasing -/
+/-- Sigmoid is strictly monotone increasing
+@isnad1 id=strictmo.0h0v.s2.6581170ac380 from=translated src=- shape=e3d48bcb vocab=2f880930
+-/
 theorem sigmoid_strictMono : StrictMono sigmoid := by
   intro a b hab
   unfold sigmoid
@@ -121,10 +140,14 @@ theorem sigmoid_strictMono : StrictMono sigmoid := by
   have h : -b < -a := neg_lt_neg hab
   linarith [exp_strictMono h]
 
-/-- Sigmoid is monotone increasing -/
+/-- Sigmoid is monotone increasing
+@isnad1 id=monotone.0h0v.s2.ee2781064cf3 from=translated src=- shape=e3d48bcb vocab=67b45730
+-/
 theorem sigmoid_mono : Monotone sigmoid := sigmoid_strictMono.monotone
 
-/-- Key monotonicity lemma for relaxation -/
+/-- Key monotonicity lemma for relaxation
+@isnad1 id=le.1h2v.s4.2b7815a51c5b from=translated src=- shape=6bee9d27 vocab=e5338b31
+-/
 theorem sigmoid_le_of_le {a b : ℝ} (h : a ≤ b) : sigmoid a ≤ sigmoid b :=
   sigmoid_mono h
 
@@ -141,12 +164,16 @@ noncomputable def getSigmoidRelaxation (l u : ℝ) : RealSymbolicBound :=
   { lower := ⟨0, sigmoid l⟩,
     upper := ⟨0, sigmoid u⟩ }
 
-/-- The constant lower bound is sound -/
+/-- The constant lower bound is sound
+@isnad1 id=le.1h3v.s4.aaddda4d7135 from=translated src=- shape=ad2d559f vocab=e5338b31
+-/
 theorem sigmoid_lower_bound_valid (l u x : ℝ) (h : l ≤ x ∧ x ≤ u) :
     sigmoid l ≤ sigmoid x :=
   sigmoid_le_of_le h.1
 
-/-- The constant upper bound is sound -/
+/-- The constant upper bound is sound
+@isnad1 id=le.1h3v.s4.d9982202c0d9 from=translated src=- shape=b2ac8093 vocab=e5338b31
+-/
 theorem sigmoid_upper_bound_valid (l u x : ℝ) (h : l ≤ x ∧ x ≤ u) :
     sigmoid x ≤ sigmoid u :=
   sigmoid_le_of_le h.2
@@ -154,7 +181,9 @@ theorem sigmoid_upper_bound_valid (l u x : ℝ) (h : l ≤ x ∧ x ≤ u) :
 /-- Main soundness theorem for sigmoid relaxation.
 
     For any x in [l, u], the sigmoid value is bounded:
-    σ(l) ≤ σ(x) ≤ σ(u) -/
+    σ(l) ≤ σ(x) ≤ σ(u)
+@isnad1 id=other.1h3v.s5.9873f7a700d8 from=translated src=- shape=e024ba73 vocab=5bba11ef
+-/
 theorem sigmoid_relaxation_sound (l u x : ℝ) (h : l ≤ x ∧ x ≤ u) :
     let sb := getSigmoidRelaxation l u
     sb.lower.eval x ≤ sigmoid x ∧ sigmoid x ≤ sb.upper.eval x := by
@@ -201,12 +230,16 @@ noncomputable def sigmoidSecantEval (l u x : ℝ) : ℝ :=
   else
     sigmoid l
 
-/-- The secant passes through (l, σ(l)) -/
+/-- The secant passes through (l, σ(l))
+@isnad1 id=eq.0h2v.s3.4b7db3d588a2 from=translated src=- shape=5eb88a87 vocab=6a71dead
+-/
 theorem sigmoidSecant_at_l (l u : ℝ) : sigmoidSecantEval l u l = sigmoid l := by
   unfold sigmoidSecantEval
   split_ifs <;> simp
 
-/-- The secant passes through (u, σ(u)) when l < u -/
+/-- The secant passes through (u, σ(u)) when l < u
+@isnad1 id=eq.1h2v.s4.e93cf6a62fc6 from=translated src=- shape=688b6966 vocab=1ee98e2e
+-/
 theorem sigmoidSecant_at_u (l u : ℝ) (h : l < u) :
     sigmoidSecantEval l u u = sigmoid u := by
   unfold sigmoidSecantEval
@@ -220,7 +253,9 @@ theorem sigmoidSecant_at_u (l u : ℝ) (h : l < u) :
 /-- The derivative of sigmoid: σ'(x) = σ(x) · (1 - σ(x))
 
     This is a key identity. The derivative is always positive and
-    achieves maximum 1/4 at x = 0. -/
+    achieves maximum 1/4 at x = 0.
+@isnad1 id=hasderiv.0h1v.s5.e9a4913c25a7 from=translated src=- shape=dc7cc4f1 vocab=28545650
+-/
 theorem sigmoid_deriv (x : ℝ) :
     HasDerivAt sigmoid (sigmoid x * (1 - sigmoid x)) x := by
   unfold sigmoid
@@ -251,13 +286,17 @@ theorem sigmoid_deriv (x : ℝ) :
     ring
   linarith [h1]
 
-/-- The derivative is always in (0, 1/4] -/
+/-- The derivative is always in (0, 1/4]
+@isnad1 id=lt.0h1v.s5.2ad2a90b7b5d from=translated src=- shape=da168895 vocab=b535d23e
+-/
 theorem sigmoid_deriv_pos (x : ℝ) : 0 < sigmoid x * (1 - sigmoid x) := by
   have h1 := sigmoid_pos x
   have h2 := sigmoid_lt_one x
   exact mul_pos h1 (by linarith)
 
-/-- Maximum derivative at x = 0: σ'(0) = 1/4 -/
+/-- Maximum derivative at x = 0: σ'(0) = 1/4
+@isnad1 id=eq.0h0v.s5.1812a6ea955f from=translated src=- shape=b1fc8593 vocab=3bc38877
+-/
 theorem sigmoid_deriv_max : sigmoid 0 * (1 - sigmoid 0) = 1 / 4 := by
   rw [sigmoid_zero]
   norm_num

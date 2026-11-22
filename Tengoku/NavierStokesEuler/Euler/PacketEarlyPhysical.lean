@@ -15,6 +15,9 @@ namespace EulerPacketMovingFrame
 
 open Set Real EulerSmoothLimit EulerPacketRay EulerPacketStage InnerProductSpace
 
+/--
+@isnad1 id=and.17h13v.s9.61ea8b6cecd2 from=translated src=- shape=66712c8a vocab=dafba98f
+-/
 theorem early_neighbor_state_bound {α : Type*} (center : α) (U V : α → ℝ → ℝ)
     {σ Θ T lam δ : ℝ} {F F₁ Z Z₁ : ℝ → ℝ}
     (hσ : 0 < σ) (hσsmall : σ ≤ 1/4) (hΘ : 1 ≤ Θ) (hT : T ≤ Θ)
@@ -49,7 +52,9 @@ theorem early_neighbor_state_bound {α : Type*} (center : α) (U V : α → ℝ 
 
 /-- The early part of source (36) for actual Euclidean norm products.
 The estimate is uniform over neighboring labels and over the nonnegative
-initial slope of the common scalar reference. -/
+initial slope of the common scalar reference.
+@isnad1 id=and.29h20v.s11.22fcfce782bc from=translated src=- shape=b555bee4 vocab=05275bf0
+-/
 theorem early_physical_size_suppression {α : Type*} (center : α)
     (m v : ℝ → Space) (r w : α → ℝ → Space)
     {s₀ t₀ a ε σ Θ T lam δ ρ : ℝ} {F F₁ Z Z₁ : ℝ → ℝ}

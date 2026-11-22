@@ -59,7 +59,9 @@ open _root_.MeasureTheory _root_.EulerLiftedGradientSpace _root_.EulerCylinderSo
 
 variable (period : ℝ) [Fact (0 < period)]
 
-/-- A finite family of actual base-word derivatives is controlled by its genuine derivative-sum norm. -/
+/-- A finite family of actual base-word derivatives is controlled by its genuine derivative-sum norm.
+@isnad1 id=le.1h6v.s11.fe02e830cfcc from=translated src=- shape=c5d9a52c vocab=771d6a08
+-/
 theorem forcing_le_jetSum {ι : Type*} [Fintype ι] (order : ι → ℕ) (ρ : ℝ) (hρ : 0 < ρ)
     (f : ι → LiftL2 period) (J : ∀ i, EulerSpatialSobolevInverse.SpatialJet period standardDirection 6 (f i)) :
     weightedForcingSum ρ order (fun i => baseWordValues period (J i)) ≤
@@ -70,7 +72,9 @@ theorem forcing_le_jetSum {ι : Type*} [Fintype ι] (order : ι → ℕ) (ρ : �
   rw [sum_baseWordValues_norm] at h
   exact mul_le_mul_of_nonneg_left h (weight_pos hρ (order i)).le
 
-/-- The actual differentiated order-zero source is controlled by its finite weighted Sobolev norm. -/
+/-- The actual differentiated order-zero source is controlled by its finite weighted Sobolev norm.
+@isnad1 id=le.2h5v.s15.15f099a2732a from=translated src=- shape=bcb3df7c vocab=2f4b4169
+-/
 theorem sourceForcing_weighted_bound {s : ℕ} (N : ℕ) (hN : N+6 ≤ s) (ρ : ℝ) (hρ : 0 < ρ)
     (f : SobolevSpace period s) :
     weightedForcingSum ρ (fun I : ExternalWord N => I.1.val) (energyValues period 6 N hN f) ≤ weightedNorm period 6 N ρ f := by
@@ -92,7 +96,9 @@ def externalTransportForcing {s : ℕ} (hs : 6 ≤ s) (N : ℕ) (hN : N+6 ≤ s)
     (u v : SobolevSpace period (s+1)) : ExternalWord N → BaseWord 6 → LiftL2 period := fun I =>
   baseWordValues period (toJet period (externalCommutator period hs I.1.val I.2 (by have := I.1.isLt; omega) L hL u v))
 
-/-- The actual external transport forcing is bounded by the already proved commutator norm. -/
+/-- The actual external transport forcing is bounded by the already proved commutator norm.
+@isnad1 id=le.4h7v.s16.b3608b4cdc3b from=translated src=- shape=e18643a5 vocab=e385f9c2
+-/
 theorem externalTransportForcing_bound {s : ℕ} (hs : 6 ≤ s) (N : ℕ) (hN : N+6 ≤ s)
     (ρ : ℝ) (hρ : 0 < ρ) (L : Fin 4 → Vector3 →L[ℝ] ℝ) (hL : ∀ i, ‖L i‖ ≤ 1)
     (u v : SobolevSpace period (s+1)) :
@@ -109,7 +115,9 @@ def externalPressureForcing {s : ℕ} {A : SmoothCoefficient period}
     (N : ℕ) (hN : N+6 ≤ s) (p : SobolevSpace period s) : ExternalWord N → BaseWord 6 → LiftL2 period := fun I =>
   baseWordValues period (commutatorJet K (toJet period p) I.2 (by have := I.1.isLt; omega : I.1.val+6 ≤ s))
 
-/-- The actual differentiated external pressure forcing is controlled by its proved H⁶ commutator sum. -/
+/-- The actual differentiated external pressure forcing is controlled by its proved H⁶ commutator sum.
+@isnad1 id=le.2h7v.s15.e0481c8c8d93 from=translated src=- shape=e59d27d8 vocab=0457ddb0
+-/
 theorem externalPressureForcing_bound {s : ℕ} {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (N : ℕ) (hN : N+6 ≤ s) (ρ : ℝ) (hρ : 0 < ρ) (p : SobolevSpace period s) :
@@ -126,7 +134,9 @@ theorem externalPressureForcing_bound {s : ℕ} {A : SmoothCoefficient period}
   intro w _
   rw [sobolevSize_eq period (commutatorJet K (toJet period p) w (by have := n.isLt; omega : n.val+6 ≤ s))]
 
-/-- At order zero the genuine Sobolev size is exactly the L² norm. -/
+/-- At order zero the genuine Sobolev size is exactly the L² norm.
+@isnad1 id=eq.0h2v.s11.39f32136ab22 from=translated src=- shape=15ef2039 vocab=a0fbc76a
+-/
 theorem sobolevSize_order_zero (f : LiftL2 period) :
     sobolevSize period (directions := standardDirection) 0 f = ‖f‖ := by
   exact sobolevSize_eq period (EulerSpatialSobolevInverse.SpatialJet.zero f)
@@ -139,7 +149,9 @@ def basePressureForcing {s : ℕ} {A : SmoothCoefficient period}
     (EulerH6Pressure.SpatialJet.derivativeJet (q := 6) (toJet period p) I.2 (by have := I.1.isLt; omega))).word a.2 -
     A.operator ((EulerH6Pressure.SpatialJet.derivativeJet (q := 6) (toJet period p) I.2 (by have := I.1.isLt; omega)).word a.2)
 
-/-- At each external word, summing the actual base commutator norms gives the base-pressure block expression. -/
+/-- At each external word, summing the actual base commutator norms gives the base-pressure block expression.
+@isnad1 id=le.1h7v.s15.b0e8fd598859 from=translated src=- shape=7938fe5d vocab=dce5f24c
+-/
 theorem basePressureForcing_family_bound {s : ℕ} {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)
     (N : ℕ) (hN : N+6 ≤ s) (p : SobolevSpace period s) (I : ExternalWord N) :
@@ -152,7 +164,9 @@ theorem basePressureForcing_family_bound {s : ℕ} {A : SmoothCoefficient period
   intro r _
   simp only [commutatorBlock, sobolevSize_order_zero, basePressureForcing]
 
-/-- The actual base pressure forcing is controlled by the previously proved lower-order pressure commutator norm. -/
+/-- The actual base pressure forcing is controlled by the previously proved lower-order pressure commutator norm.
+@isnad1 id=le.2h7v.s15.d6a1e4bd480d from=translated src=- shape=871badfa vocab=2006aa95
+-/
 theorem basePressureForcing_bound {s : ℕ} {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)
     (N : ℕ) (hN : N+6 ≤ s) (ρ : ℝ) (hρ : 0 < ρ) (p : SobolevSpace period s) :

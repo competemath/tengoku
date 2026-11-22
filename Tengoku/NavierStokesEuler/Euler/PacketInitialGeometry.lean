@@ -11,6 +11,9 @@ namespace EulerPacketMovingFrame
 open EulerSmoothLimit EulerPacketNormalizedPrimary EulerPacketCrossProduct
   EulerPacketRay InnerProductSpace
 
+/--
+@isnad1 id=eq.5h7v.s9.e439c0d9fc44 from=translated src=- shape=83fc3e02 vocab=28cd3df8
+-/
 theorem scaledRay_initial {m v r : ℝ → Space} {s₀ t₀ a ε : ℝ}
     (hs₀ : s₀ ≠ 0) (hm0 : m t₀ ≠ 0) (hv0 : v t₀ ≠ 0) (hmv : ⟪m t₀,v t₀⟫_ℝ = 0)
     (hr : r t₀ = s₀ • cross (unit (m t₀)) (unit (v t₀))) :
@@ -27,7 +30,9 @@ theorem scaledRay_initial {m v r : ℝ → Space} {s₀ t₀ a ε : ℝ}
   fin_cases i <;> norm_num [scaledRay, physicalTime, hc, rayScale, Fin.ext_iff, hs₀]
 
 /-- The signed physical `p` component in (26) becomes a nonnegative
-scalar initial slope, with the expected factor `ε⁻¹`. -/
+scalar initial slope, with the expected factor `ε⁻¹`.
+@isnad1 id=and.5h8v.s9.ef88bef28ff8 from=translated src=- shape=4cd31f43 vocab=a659d288
+-/
 theorem activation_scaled_velocity {m v w : ℝ → Space} {t₀ a ε C γ : ℝ}
     (hε : 0 < ε) (hγlo : -C ≤ γ) (hγhi : γ ≤ 0)
     (hp : ⟪unit (m t₀),w t₀⟫_ℝ = γ) (hq : ⟪unit (v t₀),w t₀⟫_ℝ = 1) :
@@ -45,6 +50,9 @@ theorem activation_scaled_velocity {m v w : ℝ → Space} {t₀ a ε C γ : ℝ
   rw [hu]
   ring
 
+/--
+@isnad1 id=eq.2h6v.s9.dd9824ccc6dd from=translated src=- shape=9ee25036 vocab=4c0e5359
+-/
 theorem activation_tangent_pairing {m v r w : ℝ → Space} {s₀ t₀ : ℝ}
     (hr : r t₀ = s₀ • cross (unit (m t₀)) (unit (v t₀)))
     (hw : ⟪cross (unit (m t₀)) (unit (v t₀)),w t₀⟫_ℝ = 0) :

@@ -87,7 +87,9 @@ open _root_.MeasureTheory _root_.InnerProductSpace _root_.EulerLiftedGradientSpa
 
 variable (period : ℝ) [Fact (0 < period)]
 
-/-- The nonlinear external pressure commutator keeps the actual drift norm at positive cutoff. -/
+/-- The nonlinear external pressure commutator keeps the actual drift norm at positive cutoff.
+@isnad1 id=le.11h14v.s16.e69a25d9a7f8 from=translated src=- shape=45bfab84 vocab=2d23ee8e
+-/
 theorem nonlinear_externalPressure_bound {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (κ : ℝ) (m : Vector3) (c : ℝ) (hc : 0 < c)
@@ -107,7 +109,9 @@ theorem nonlinear_externalPressure_bound {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoe
   exact (externalPressureNorm_shifted period K N hN ρ Rc hρ hRc hhalf hcoeff _).trans
     ((mul_le_mul_of_nonneg_left hp (mul_nonneg (by norm_num : (0 : ℝ) ≤ 2) hRc)).trans_eq (by ring))
 
-/-- The sharp external pressure bound also includes zero cutoff. -/
+/-- The sharp external pressure bound also includes zero cutoff.
+@isnad1 id=le.11h14v.s16.1a3b1b834e21 from=translated src=- shape=873056d6 vocab=2d23ee8e
+-/
 theorem nonlinear_externalPressure_bound_all {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (κ : ℝ) (m : Vector3) (c : ℝ) (hc : 0 < c)
@@ -124,7 +128,9 @@ theorem nonlinear_externalPressure_bound_all {s : ℕ} (hs : 6 ≤ s) {A : Smoot
   | zero => simp [externalPressureNorm, weightedLoss, commutatorBlock_zero]
   | succ N => exact nonlinear_externalPressure_bound period hs K κ m c hc hpos N hN ρ Rc M hρ hRc hM hbase hsmall hcoeff L hL u v
 
-/-- Seven actual forcing arrays retain the sharp drift commutator factor. -/
+/-- Seven actual forcing arrays retain the sharp drift commutator factor.
+@isnad1 id=le.4h13v.s17.9af72074d9df from=translated src=- shape=19f0b98d vocab=a819a222
+-/
 theorem correctionForcing_raw_bound {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (K0 : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)
@@ -153,7 +159,9 @@ theorem correctionForcing_raw_bound {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoeffici
   exact h.trans (add_le_add (add_le_add (add_le_add (add_le_add (add_le_add (add_le_add hS hE) hB) hP0) hQ0) hP1) hQ1)
 
 /-- The full actual forcing with both genuine projected pressure solves obeys the spatial part of equation (19).
-Every velocity derivative in the bound lies at or below the chosen cutoff. -/
+Every velocity derivative in the bound lies at or below the chosen cutoff.
+@isnad1 id=le.12h16v.s20.396b7df1a26b from=translated src=- shape=b7b1c2a3 vocab=a48feb7d
+-/
 theorem correctionForcing_bound {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (K0 : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)
@@ -185,7 +193,9 @@ theorem correctionForcing_bound {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient 
   change basePressureNorm period K0 N hN ρ p1 ≤ _ at hp1b
   nlinarith only [h, hp0, hp1e, hp1b]
 
-/-- Uniform fixed-base constants preserve the separate drift norm. -/
+/-- Uniform fixed-base constants preserve the separate drift norm.
+@isnad1 id=le.14h17v.s20.2ae073e3e3ab from=translated src=- shape=77fccacf vocab=5b03bebb
+-/
 theorem correctionForcing_uniform_bound {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (K0 : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)

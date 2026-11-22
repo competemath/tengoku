@@ -27,7 +27,9 @@ def meanOperator (J : V →L[ℝ] W) (R : V →L[ℝ] X)
     (H : W →L[ℝ] W) (C : X →L[ℝ] X) : V →L[ℝ] V :=
   dirichletOperator J H + R.adjoint.comp (C.comp R)
 
-/-- The constructed operator has exactly the intended bilinear form. -/
+/-- The constructed operator has exactly the intended bilinear form.
+@isnad1 id=eq.0h9v.s10.766792f2c638 from=translated src=- shape=d7c7ba37 vocab=7af6c2a9
+-/
 theorem meanOperator_inner (J : V →L[ℝ] W) (R : V →L[ℝ] X)
     (H : W →L[ℝ] W) (C : X →L[ℝ] X) (u v : V) :
     ⟪meanOperator J R H C u, v⟫_ℝ =
@@ -45,7 +47,9 @@ variable (J : V →L[ℝ] W) (R : V →L[ℝ] X)
   (hsmall : K*P+B*Q ≤ 1/2)
 
 include hK hB hJ hR hH hC hsmall in
-/-- The source's two time estimates and coefficient bounds prove coercivity. -/
+/-- The source's two time estimates and coefficient bounds prove coercivity.
+@isnad1 id=le.7h12v.s10.4196e01b52af from=translated src=- shape=1fe7f014 vocab=a6071b8c
+-/
 theorem meanOperator_coercive (u : V) :
     (1/2 : ℝ)*‖u‖^2 ≤ ⟪meanOperator J R H C u, u⟫_ℝ := by
   rw [meanOperator_inner, real_inner_self_eq_norm_sq]
@@ -59,7 +63,9 @@ def meanSolver : W →L[ℝ] V :=
   (coerciveInverse (meanOperator J R H C) (1/2) (by norm_num)
     (meanOperator_coercive J R H C P Q K B hK hB hJ hR hH hC hsmall)).comp (-J.adjoint)
 
-/-- The actual weak equation follows from the constructed inverse. -/
+/-- The actual weak equation follows from the constructed inverse.
+@isnad1 id=other.7h13v.s11.1be6312adbfd from=translated src=- shape=3800c977 vocab=21de208f
+-/
 theorem meanSolver_weak (f : W) (v : V) :
     let u := meanSolver J R H C P Q K B hK hB hJ hR hH hC hsmall f
     ⟪u, v⟫_ℝ-⟪H (J u), J v⟫_ℝ+⟪C (R u), R v⟫_ℝ = -⟪f, J v⟫_ℝ := by
@@ -70,7 +76,9 @@ theorem meanSolver_weak (f : W) (v : V) :
       (meanOperator_coercive J R H C P Q K B hK hB hJ hR hH hC hsmall) (-J.adjoint f)), v⟫_ℝ = _
   rw [operator_inverse_apply, inner_neg_left, adjoint_inner_left]
 
-/-- Uniqueness holds in the same actual Hilbert displacement space. -/
+/-- Uniqueness holds in the same actual Hilbert displacement space.
+@isnad1 id=eq.8h13v.s11.d3a8b5afe323 from=translated src=- shape=f6dd6633 vocab=21de208f
+-/
 theorem meanSolver_unique (f : W) (u : V)
     (hu : ∀ v, ⟪u, v⟫_ℝ-⟪H (J u), J v⟫_ℝ+⟪C (R u), R v⟫_ℝ = -⟪f, J v⟫_ℝ) :
     u = meanSolver J R H C P Q K B hK hB hJ hR hH hC hsmall f := by
@@ -82,7 +90,9 @@ theorem meanSolver_unique (f : W) (u : V)
   rw [meanOperator_inner, hu, meanOperator_inner,
     meanSolver_weak J R H C P Q K B hK hB hJ hR hH hC hsmall]
 
-/-- The derivative bound is polynomial in the primitive norm. -/
+/-- The derivative bound is polynomial in the primitive norm.
+@isnad1 id=le.7h12v.s10.059b64dd6a2b from=translated src=- shape=3591954b vocab=a85722dc
+-/
 theorem meanSolver_norm (f : W) :
     ‖meanSolver J R H C P Q K B hK hB hJ hR hH hC hsmall f‖ ≤ 2*‖J‖*‖f‖ := by
   have hi := coerciveInverse_apply_norm_le (meanOperator J R H C) (1/2) (by norm_num)
@@ -96,7 +106,9 @@ theorem meanSolver_norm (f : W) :
     _ = 2*‖J‖*‖f‖ := by ring
 
 include hK hB hJ hR hH hC hsmall in
-/-- Existence and uniqueness are conclusions, with no solution or inverse hypothesis. -/
+/-- Existence and uniqueness are conclusions, with no solution or inverse hypothesis.
+@isnad1 id=existsun.7h12v.s11.36572325205c from=translated src=- shape=6eae015d vocab=1fd561bb
+-/
 theorem existsUnique_mean_solution (f : W) :
     ∃! u : V, ∀ v,
       ⟪u, v⟫_ℝ-⟪H (J u), J v⟫_ℝ+⟪C (R u), R v⟫_ℝ = -⟪f, J v⟫_ℝ :=

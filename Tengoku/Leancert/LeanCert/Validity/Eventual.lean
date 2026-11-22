@@ -45,7 +45,9 @@ structure EventualBoundCert where
 /-- **Golden Theorem for fixed-cutoff reciprocal-power upper bounds.**
 
 The only computational premise is `checkReciprocalPowerUpper = true`.  Search
-for `cutoff` may therefore remain entirely untrusted. -/
+for `cutoff` may therefore remain entirely untrusted.
+@isnad1 id=le.2h5v.s5.84aef25eeefd from=translated src=- shape=f0b6758a vocab=77997845
+-/
 theorem verify_reciprocal_power_upper
     (q bound : ℚ) (k cutoff : Nat)
     (hcheck : checkReciprocalPowerUpper q bound k cutoff = true) :
@@ -66,7 +68,9 @@ theorem verify_reciprocal_power_upper
     exact_mod_cast hendpoint
   exact htail.trans hendpointReal
 
-/-- Verify a packaged fixed-cutoff reciprocal-power certificate. -/
+/-- Verify a packaged fixed-cutoff reciprocal-power certificate.
+@isnad1 id=le.2h5v.s5.d02ec2082340 from=translated src=- shape=2b77892c vocab=0d2708d9
+-/
 theorem ReciprocalPowerUpperCert.verify
     {q bound : ℚ} {k cutoff : Nat}
     (cert : ReciprocalPowerUpperCert q bound k cutoff) :
@@ -75,7 +79,9 @@ theorem ReciprocalPowerUpperCert.verify
   verify_reciprocal_power_upper q bound k cutoff cert.checked
 
 /-- Semantic theorem represented by a self-contained eventual-bound
-certificate. -/
+certificate.
+@isnad1 id=le.1h2v.s5.3ebd71fd992f from=translated src=- shape=203e05b2 vocab=2a4fc361
+-/
 theorem EventualBoundCert.verify (cert : EventualBoundCert) :
     ∀ n : Nat, cert.cutoff ≤ n →
       (cert.coefficient : ℝ) / (n : ℝ) ^ cert.exponent ≤
@@ -83,7 +89,9 @@ theorem EventualBoundCert.verify (cert : EventualBoundCert) :
   verify_reciprocal_power_upper cert.coefficient cert.bound cert.exponent
     cert.cutoff cert.checked
 
-/-- Convenient `k = 1` Golden Theorem for tails written as `q / n`. -/
+/-- Convenient `k = 1` Golden Theorem for tails written as `q / n`.
+@isnad1 id=le.2h4v.s5.ec275d2aeeae from=translated src=- shape=8ac489fe vocab=11a7201b
+-/
 theorem verify_reciprocal_upper
     (q bound : ℚ) (cutoff : Nat)
     (hcheck : checkReciprocalPowerUpper q bound 1 cutoff = true) :

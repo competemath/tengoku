@@ -40,10 +40,16 @@ open _root_.Finset _root_.EulerLiftedGradientSpace _root_.EulerCylinderSobolevSp
 variable (period : ℝ) [Fact (0 < period)]
 
 omit [Fact (0 < period)] in
+/--
+@isnad1 id=le.2h3v.s5.4c6b93abe1df from=translated src=- shape=dcdb09c3 vocab=293b2b1a
+-/
 theorem weight_mono_radius {r R : ℝ} (hr : 0 ≤ r) (hR : r ≤ R) (n : ℕ) :
     weight r n ≤ weight R n := by
   exact div_le_div_of_nonneg_right (pow_le_pow_left₀ hr hR n) (sq_nonneg _)
 
+/--
+@isnad1 id=le.2h7v.s15.29efe49529c4 from=translated src=- shape=77cc5388 vocab=2ab45792
+-/
 theorem weightedNorm_mono_radius {s : ℕ} (q N : ℕ) {r R : ℝ}
     (hr : 0 ≤ r) (hR : r ≤ R) (u : SobolevSpace period s) :
     weightedNorm period q N r u ≤ weightedNorm period q N R u := by
@@ -51,6 +57,9 @@ theorem weightedNorm_mono_radius {s : ℕ} (q N : ℕ) {r R : ℝ}
     (weight_mono_radius hr hR n) (blockNorm_nonneg _)
 
 omit [Fact (0 < period)] in
+/--
+@isnad1 id=le.2h8v.s5.3363fe4032e6 from=translated src=- shape=4f450684 vocab=5f8d3d29
+-/
 theorem weightedCoefficient_mono_radius {s : ℕ} {A : SmoothCoefficient period}
     (K : CoefficientJet period standardDirection s A) (q N : ℕ) {r R : ℝ}
     (hr : 0 ≤ r) (hR : r ≤ R) :
@@ -58,6 +67,9 @@ theorem weightedCoefficient_mono_radius {s : ℕ} {A : SmoothCoefficient period}
   exact sum_le_sum fun n _ => mul_le_mul_of_nonneg_right
     (weight_mono_radius hr hR n) (coefficientBlock_nonneg _)
 
+/--
+@isnad1 id=le.2h7v.s15.7b91b85f36af from=translated src=- shape=6f55147e vocab=2ab45792
+-/
 theorem weightedNorm_mono_cutoff {s : ℕ} (q : ℕ) {N M : ℕ} (hNM : N ≤ M)
     (r : ℝ) (hr : 0 < r) (u : SobolevSpace period s) :
     weightedNorm period q N r u ≤ weightedNorm period q M r u := by
@@ -65,6 +77,9 @@ theorem weightedNorm_mono_cutoff {s : ℕ} (q : ℕ) {N M : ℕ} (hNM : N ≤ M)
     (fun n _ _ => mul_nonneg (weight_pos hr n).le (blockNorm_nonneg _))
 
 omit [Fact (0 < period)] in
+/--
+@isnad1 id=le.2h8v.s5.81d98d3d2525 from=translated src=- shape=97e00f62 vocab=f8169606
+-/
 theorem weightedCoefficient_mono_cutoff {s : ℕ} {A : SmoothCoefficient period}
     (K : CoefficientJet period standardDirection s A) (q : ℕ) {N M : ℕ} (hNM : N ≤ M)
     (r : ℝ) (hr : 0 < r) :
@@ -72,7 +87,9 @@ theorem weightedCoefficient_mono_cutoff {s : ℕ} {A : SmoothCoefficient period}
   exact sum_le_sum_of_subset_of_nonneg (range_mono (by omega))
     (fun n _ _ => mul_nonneg (weight_pos hr n).le (coefficientBlock_nonneg _))
 
-/-- A retained weighted norm depends only on the genuine underlying field. -/
+/-- A retained weighted norm depends only on the genuine underlying field.
+@isnad1 id=eq.3h8v.s16.39ed70132dec from=translated src=- shape=501b1f43 vocab=1df6b12c
+-/
 theorem weightedNorm_unique {s t : ℕ} (q N : ℕ) (r : ℝ)
     (u : SobolevSpace period s) (v : SobolevSpace period t)
     (huv : value period u = value period v) (hs : N+q ≤ s) (ht : N+q ≤ t) :
@@ -83,7 +100,9 @@ theorem weightedNorm_unique {s t : ℕ} (q N : ℕ) (r : ℝ)
   exact blockNorm_unique period (toJet period u) (toJet period v) huv
     (by have := mem_range.mp hn; omega) (by have := mem_range.mp hn; omega)
 
-/-- The four actual coordinate derivatives form exactly the next external block. -/
+/-- The four actual coordinate derivatives form exactly the next external block.
+@isnad1 id=eq.1h5v.s21.168f1281a6e0 from=translated src=- shape=8fdc926f vocab=d07db70a
+-/
 theorem derivative_block_sum {s : ℕ} (q n : ℕ) (hn : n+q ≤ s)
     (u : SobolevSpace period (s+1)) :
     (∑ i : Fin 4, blockNorm period (toJet period (derivativeOperator period s i u)) q n) =
@@ -96,7 +115,9 @@ theorem derivative_block_sum {s : ℕ} (q n : ℕ) (hn : n+q ≤ s)
   rfl
 
 omit [Fact (0 < period)] in
-/-- A fixed exponential absorbs the square introduced by one factorial shift. -/
+/-- A fixed exponential absorbs the square introduced by one factorial shift.
+@isnad1 id=le.0h1v.s6.84b896e54f0d from=translated src=- shape=9e46d888 vocab=72589b2f
+-/
 theorem successor_square_le_four_two_pow (n : ℕ) :
     ((n+1 : ℕ) : ℝ)^2 ≤ 4*(2 : ℝ)^n := by
   induction n with
@@ -116,6 +137,9 @@ theorem successor_square_le_four_two_pow (n : ℕ) :
       _ = _ := by rw [pow_succ]; ring
 
 omit [Fact (0 < period)] in
+/--
+@isnad1 id=le.1h2v.s6.c20ad8d569af from=translated src=- shape=03cb31ae vocab=0667539e
+-/
 theorem weight_half_le_shift (R : ℝ) (hR : 0 < R) (n : ℕ) :
     weight (R/2) n ≤ (4/R)*weight R (n+1) := by
   have hn := successor_square_le_four_two_pow n
@@ -132,7 +156,9 @@ theorem weight_half_le_shift (R : ℝ) (hR : 0 < R) (n : ℕ) :
   nlinarith only [hm]
 
 /-- Halving the positive radius pays for one full spatial/angular derivative,
-with no dependence on the external cutoff. -/
+with no dependence on the external cutoff.
+@isnad1 id=le.2h6v.s20.3f0c09c07468 from=translated src=- shape=9c5fcb1c vocab=de375c1e
+-/
 theorem weightedNorm_derivative_half {s : ℕ} (q N : ℕ) (hN : N+q ≤ s)
     (R : ℝ) (hR : 0 < R) (u : SobolevSpace period (s+1)) :
     (∑ i : Fin 4, weightedNorm period q N (R/2) (derivativeOperator period s i u)) ≤

@@ -48,6 +48,9 @@ def tensorPath (n : ℕ) (A : E [×n]→L[ℝ] C(K,V)) : C(K, E [×n]→L[ℝ] V
     (continuous_pi (fun w => (A (fun i => Module.finBasis ℝ E (w i))).continuous))
 
 omit [CompactSpace K] in
+/--
+@isnad1 id=eq.0h6v.s9.f762be62f98d from=translated src=- shape=3b0ee4a8 vocab=92a6354e
+-/
 theorem tensorPath_eq (n : ℕ) (A : E [×n]→L[ℝ] C(K,V)) (t : K) :
     tensorPath n A t = (ContinuousMap.evalCLM ℝ t).compContinuousMultilinearMap A := by
   change reassembly n
@@ -55,11 +58,17 @@ theorem tensorPath_eq (n : ℕ) (A : E [×n]→L[ℝ] C(K,V)) (t : K) :
   exact reassembly_coordinates n _
 
 omit [CompactSpace K] in
+/--
+@isnad1 id=eq.0h7v.s9.e54cb8ba457f from=translated src=- shape=d71427f2 vocab=57719a7c
+-/
 @[simp] theorem tensorPath_apply (n : ℕ) (A : E [×n]→L[ℝ] C(K,V))
     (t : K) (v : Fin n → E) : tensorPath n A t v = A v t := by
   rw [tensorPath_eq]
   rfl
 
+/--
+@isnad1 id=le.0h5v.s9.0977bcb9882f from=translated src=- shape=6d842f7f vocab=b78a3e1c
+-/
 theorem tensorPath_norm_le (n : ℕ) (A : E [×n]→L[ℝ] C(K,V)) :
     ‖tensorPath n A‖ ≤ ‖A‖ := by
   apply (ContinuousMap.norm_le _ (norm_nonneg A)).2
@@ -94,9 +103,15 @@ def tensorPathMap (n : ℕ) :
       change ‖tensorPath n A‖ ≤ 1 * ‖A‖
       simpa only [one_mul] using tensorPath_norm_le n A)
 
+/--
+@isnad1 id=eq.0h7v.s11.56e0e4f1332c from=translated src=- shape=e70569ef vocab=c24ebf0a
+-/
 @[simp] theorem tensorPathMap_apply (n : ℕ) (A : E [×n]→L[ℝ] C(K,V))
     (t : K) (v : Fin n → E) : tensorPathMap n A t v = A v t := tensorPath_apply n A t v
 
+/--
+@isnad1 id=eq.1h7v.s11.1d5dc7a6c92a from=translated src=- shape=6de0fec6 vocab=40bd13f3
+-/
 theorem tensorPath_iteratedFDeriv (f : E → C(K,V)) (hf : ContDiff ℝ ∞ f)
     (n : ℕ) (x : E) (t : K) :
     tensorPathMap n (iteratedFDeriv ℝ n f x) t =

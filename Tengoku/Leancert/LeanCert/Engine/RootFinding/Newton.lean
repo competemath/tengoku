@@ -179,14 +179,18 @@ noncomputable def newtonIntervalTM (e : Expr) (I : IntervalRat) (varIdx : Nat)
 
 /-- The derivative of evalFunc1 at any point in I is contained in derivInterval.
     This bridges our AD derivative bounds to actual derivatives.
-    Requires UsesOnlyVar0, which we'll assume for root finding on single-variable expressions. -/
+    Requires UsesOnlyVar0, which we'll assume for root finding on single-variable expressions.
+@isnad1 id=mem.3h3v.s5.7b3e8365f98e from=translated src=- shape=197e5041 vocab=ed0b4447
+-/
 theorem deriv_in_derivInterval (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat) (ξ : ℝ) (hξ : ξ ∈ I) :
     deriv (evalFunc1 e) ξ ∈ derivInterval e (fun _ => I) 0 :=
   derivInterval_correct_single e hsupp hvar0 I ξ hξ
 
 /-- Mean Value Theorem application: for differentiable f, f(x) - f(c) = f'(ξ)(x - c)
-    for some ξ between c and x. -/
+    for some ξ between c and x.
+@isnad1 id=ex.4h4v.s6.fb595c7686a1 from=translated src=- shape=6b0c7a05 vocab=b245e86e
+-/
 theorem mvt_for_eval (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (c x : ℝ) (_hcI : c ∈ I) (_hxI : x ∈ I) (hcx : c ≠ x) :
     ∃ ξ, (min c x < ξ ∧ ξ < max c x) ∧
@@ -232,7 +236,9 @@ theorem mvt_for_eval (e : Expr) (hsupp : ADSupported e)
       -- need: f x - f c = deriv f ξ * (x - c)
       linarith
 
-/-- If ξ is between c and x, and both c and x are in I, then ξ is in I. -/
+/-- If ξ is between c and x, and both c and x are in I, then ξ is in I.
+@isnad1 id=mem.3h4v.s5.982dcc389fcc from=translated src=- shape=b8f8d8c1 vocab=60e8aff7
+-/
 theorem between_mem_interval (I : IntervalRat) (c x ξ : ℝ)
     (hcI : c ∈ I) (hxI : x ∈ I) (hξ_between : min c x < ξ ∧ ξ < max c x) :
     ξ ∈ I := by
@@ -248,7 +254,9 @@ theorem between_mem_interval (I : IntervalRat) (c x ξ : ℝ)
     then x ∈ N.
 
     This captures the mathematical essence without dealing with the monadic
-    structure of newtonStepTM/newtonStepSimple. -/
+    structure of newtonStepTM/newtonStepSimple.
+@isnad1 id=other.8h6v.s7.0694a1741165 from=translated src=- shape=9b821f4b vocab=8a5da0c2
+-/
 theorem newton_operator_preserves_root (e : Expr) (hsupp : ADSupported e) (_hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat) (c : ℚ) (fc dI : IntervalRat)
     (hc_in_I : (c : ℝ) ∈ I)
@@ -364,7 +372,9 @@ theorem newton_operator_preserves_root (e : Expr) (hsupp : ADSupported e) (_hvar
     This is the key soundness property: Newton refinement preserves roots.
 
     Requires `UsesOnlyVar0 e` to connect our AD derivative bounds to actual derivatives.
-    This is a reasonable assumption for root finding on single-variable expressions. -/
+    This is a reasonable assumption for root finding on single-variable expressions.
+@isnad1 id=mem.5h4v.s6.bb57eca30b07 from=translated src=- shape=ea85e2a7 vocab=ee6be652
+-/
 theorem newton_preserves_root (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I N : IntervalRat)
     (hN : newtonStepTM e I 0 1 = some N ∨ newtonStepSimple e I 0 = some N)
@@ -511,7 +521,9 @@ theorem newton_preserves_root (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOn
     If a Newton step succeeds (returns some N), then the derivative interval excludes zero.
     By MVT, this means f is strictly monotonic on I, hence at most one root.
 
-    This lemma is independent of existence - it just proves uniqueness given any two roots. -/
+    This lemma is independent of existence - it just proves uniqueness given any two roots.
+@isnad1 id=eq.8h4v.s7.6bf679d9960e from=translated src=- shape=f2ab1d33 vocab=209e8f3f
+-/
 theorem newton_step_at_most_one_root (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat)
     (hN : (∃ N, newtonStepTM e I 0 1 = some N) ∨ (∃ N, newtonStepSimple e I 0 = some N))
@@ -612,7 +624,9 @@ structure NewtonContractionData (I N : IntervalRat) where
   hN_hi : N.hi = min I.hi (c - Q.lo)
 
 /-- When Newton contracts strictly, the Newton bounds dominate the intersection.
-    That is, N.lo = c - Q.hi (not I.lo) and N.hi = c - Q.lo (not I.hi). -/
+    That is, N.lo = c - Q.hi (not I.lo) and N.hi = c - Q.lo (not I.hi).
+@isnad1 id=and.3h4v.s6.746dff9e6e58 from=translated src=- shape=0b7f0115 vocab=fb4212f4
+-/
 lemma contraction_newton_bounds {I N : IntervalRat} {c : ℚ} {Q : IntervalRat}
     (hContract : N.lo > I.lo ∧ N.hi < I.hi)
     (hN_lo : N.lo = max I.lo (c - Q.hi))
@@ -640,7 +654,9 @@ lemma contraction_newton_bounds {I N : IntervalRat} {c : ℚ} {Q : IntervalRat}
       exact absurd hContract.2 (lt_irrefl I.hi)
 
 /-- Extract the Newton step structure from newtonStepSimple.
-    This lemma isolates the definitional unfolding of newtonStepSimple. -/
+    This lemma isolates the definitional unfolding of newtonStepSimple.
+@isnad1 id=other.1h3v.s6.7e8f723ff042 from=translated src=- shape=a692f8fd vocab=47864951
+-/
 lemma newtonStepSimple_extract (e : Expr) (I N : IntervalRat)
     (hSimple : newtonStepSimple e I 0 = some N) :
     let c := I.midpoint
@@ -677,7 +693,9 @@ lemma newtonStepSimple_extract (e : Expr) (I N : IntervalRat)
     · -- The intersection failed (none), contradiction with hSimple : none = some N
       simp only [reduceCtorEq] at hSimple
 
-/-- Extract structure from newtonStepTM. This extracts the TM and proves the key structural facts. -/
+/-- Extract structure from newtonStepTM. This extracts the TM and proves the key structural facts.
+@isnad1 id=ex.1h3v.s7.b5268acc6384 from=translated src=- shape=0c806a0c vocab=ff1329c5
+-/
 lemma newtonStepTM_structure (e : Expr) (I N : IntervalRat)
     (hTM : newtonStepTM e I 0 1 = some N) :
     ∃ (tm : TaylorModel) (hdI_nonzero : ¬(derivInterval e (fun _ => I) 0).containsZero),
@@ -727,7 +745,9 @@ lemma newtonStepTM_structure (e : Expr) (I N : IntervalRat)
           simp only [reduceCtorEq] at hTM
 
 /-- Key correctness lemma: for TM Newton step, f(c) ∈ the TM-computed fc interval.
-    This is what allows us to use the generic contraction contradiction lemmas. -/
+    This is what allows us to use the generic contraction contradiction lemmas.
+@isnad1 id=other.1h3v.s5.8f7f69c1ae4c from=translated src=- shape=592822cf vocab=8c374211
+-/
 lemma newtonStepTM_fc_correct (e : Expr) (I : IntervalRat)
     (tm : TaylorModel) (htmeq : TaylorModel.fromExpr? e I 1 = some tm) :
     let c := I.midpoint

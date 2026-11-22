@@ -20,7 +20,9 @@ def cylinderGraph (k : ℝ) (m : Vector3) (x : Vector3) : LiftDomain period :=
   (x, (k * ⟪m, x⟫_ℝ : ℝ))
 
 omit [Fact (0 < period)] in
-/-- Coordinate lifted symmetry implies symmetry on arbitrary spatial vectors. -/
+/-- Coordinate lifted symmetry implies symmetry on arbitrary spatial vectors.
+@isnad1 id=eq.1h5v.s12.1443c5802911 from=translated src=- shape=00666b19 vocab=5d0c9845
+-/
 theorem lifted_symmetry_of_coordinates (κ : ℝ) (m : Vector3)
     (L : LiftTangent →L[ℝ] Vector3)
     (hL : ∀ i j, (L (coordinateDirection κ m i)) j = (L (coordinateDirection κ m j)) i)
@@ -38,7 +40,9 @@ theorem lifted_symmetry_of_coordinates (κ : ℝ) (m : Vector3)
   rw [hL i j]
   ring
 
-/-- A smooth representative of a lifted L² gradient has a genuine smooth scalar pressure on every physical graph. -/
+/-- A smooth representative of a lifted L² gradient has a genuine smooth scalar pressure on every physical graph.
+@isnad1 id=ex.4h6v.s14.f14f45e24ea0 from=translated src=- shape=f02e5136 vocab=a1132b5e
+-/
 theorem gradientSpace_has_graph_potential (κ k : ℝ) (hκ : k * κ = 1) (m : Vector3)
     (p : LiftL2 period) (hp : p ∈ gradientSpace period κ m)
     (g : LiftDomain period → Vector3)
@@ -61,7 +65,9 @@ theorem gradientSpace_has_graph_potential (κ k : ℝ) (hκ : k * κ = 1) (m : V
   simpa only [P, localFieldLift, Prod.fst_zero, Prod.snd_zero, zero_add,
     graphMap_apply, cylinderGraph] using hq x
 
-/-- All-order coefficient and forcing jets yield an actual smooth scalar potential for the coercive graph pressure. -/
+/-- All-order coefficient and forcing jets yield an actual smooth scalar potential for the coercive graph pressure.
+@isnad1 id=ex.3h9v.s12.102785354638 from=translated src=- shape=f24303df vocab=494ab50c
+-/
 theorem coercive_pressure_has_graph_potential (A : SmoothCoefficient period) (f : LiftL2 period)
     (K : ∀ s : ℕ, CoefficientJet period EulerCylinderSobolev.standardDirection s A)
     (J : ∀ s : ℕ, SpatialJet period EulerCylinderSobolev.standardDirection s f)

@@ -315,7 +315,9 @@ private theorem mem_foldl_add {acc : AffineForm} {acc_r : ℝ}
       convert ih_result using 1
       ring
 
-/-- Sum is sound -/
+/-- Sum is sound
+@isnad1 id=memaffin.2h3v.s4.464c9217f2c3 from=translated src=- shape=0f915ace vocab=04da598f
+-/
 theorem mem_sum {v_real : List ℝ} {v : AffineVector} {eps : AffineForm.NoiseAssignment}
     (_hvalid : AffineForm.validNoise eps)
     (hmem : mem v_real v eps) :
@@ -325,7 +327,9 @@ theorem mem_sum {v_real : List ℝ} {v : AffineVector} {eps : AffineForm.NoiseAs
   simp at this
   exact this
 
-/-- Mean is sound -/
+/-- Mean is sound
+@isnad1 id=memaffin.3h3v.s5.8f11be6bf650 from=translated src=- shape=6b21317e vocab=d0767bac
+-/
 theorem mem_mean {v_real : List ℝ} {v : AffineVector} {eps : AffineForm.NoiseAssignment}
     (hvalid : AffineForm.validNoise eps)
     (hmem : mem v_real v eps)
@@ -350,7 +354,9 @@ theorem mem_mean {v_real : List ℝ} {v : AffineVector} {eps : AffineForm.NoiseA
   push_cast
   field_simp [hne_real]
 
-/-- Centered is sound: x - mean(x) -/
+/-- Centered is sound: x - mean(x)
+@isnad1 id=other.2h3v.s5.3c5f96bb14e5 from=translated src=- shape=5133d801 vocab=7ea3d1df
+-/
 theorem mem_centered {v_real : List ℝ} {v : AffineVector} {eps : AffineForm.NoiseAssignment}
     (hvalid : AffineForm.validNoise eps)
     (hmem : mem v_real v eps) :
@@ -407,7 +413,9 @@ private theorem mem_sq_centered {v_real : List ℝ} {v : AffineVector}
     -- Apply mem_sq
     exact AffineForm.mem_sq hvalid hmem_ci
 
-/-- Variance is sound -/
+/-- Variance is sound
+@isnad1 id=other.3h3v.s6.817b97d8668a from=translated src=- shape=cca4b570 vocab=a6011e1a
+-/
 theorem mem_variance {v_real : List ℝ} {v : AffineVector} {eps : AffineForm.NoiseAssignment}
     (hvalid : AffineForm.validNoise eps)
     (hmem : mem v_real v eps)
@@ -517,6 +525,7 @@ private theorem getElem_proof_irrel {α : Type*} (xs : List α) (i : Nat)
     4. mem_sqrt for standard deviation
     5. mem_inv for reciprocal
     6. mem_layerNorm_elem for each output element
+@isnad1 id=other.7h6v.s8.a85bb450c313 from=translated src=- shape=78b3c7be vocab=3d6bae6c
 -/
 theorem mem_layerNorm {v_real : List ℝ} {v : AffineVector}
     {eps : AffineForm.NoiseAssignment}

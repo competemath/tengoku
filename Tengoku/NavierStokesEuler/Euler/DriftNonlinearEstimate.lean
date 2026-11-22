@@ -64,7 +64,9 @@ open MeasureTheory InnerProductSpace EulerLiftedGradientSpace EulerCylinderSobol
   EulerGevreyCorrectionBound EulerGevreyNonlinearEstimate EulerSobolevDriftNorm EulerFunctionalVelocity
 open _root_.MeasureTheory _root_.InnerProductSpace _root_.EulerLiftedGradientSpace _root_.EulerCylinderSobolevSpace _root_.EulerCylinderSobolev _root_.EulerSpatialSobolevInverse _root_.EulerH6Pressure _root_.EulerSobolevGevreyOperators _root_.EulerGevreyCorrectionForcing _root_.EulerH6Nonlinear _root_.EulerSobolevTransportCommutator _root_.EulerGevreyPressureTransport _root_.EulerSobolevCoefficientPressure _root_.EulerGevreyMetricComparison _root_.EulerWeightedCylinderEnergy _root_.EulerGevreyRestriction _root_.EulerGevreyOrderZero _root_.EulerGevreyCorrectionBound _root_.EulerGevreyNonlinearEstimate _root_.EulerSobolevDriftNorm _root_.EulerFunctionalVelocity
 
-/-- The factor four is spent only on the correction drift, recovering the original uniform loss constant. -/
+/-- The factor four is spent only on the correction drift, recovering the original uniform loss constant.
+@isnad1 id=le.8h8v.s8.a8d29610b87f from=translated src=- shape=068c7257 vocab=3a9debf3
+-/
 theorem drift_loss_absorption (P M Rc ρ B E Y D : ℝ)
     (hP : 0 ≤ P) (hM : 0 ≤ M) (hRc : 0 ≤ Rc) (hρ : 0 < ρ)
     (hB : 0 ≤ B) (hE : 0 ≤ E) (hY : 0 ≤ Y) (hD : D ≤ 4*(B+E)) :
@@ -80,7 +82,9 @@ theorem drift_loss_absorption (P M Rc ρ B E Y D : ℝ)
     _ = (4*(P*ρ⁻¹+8*Rc*M*P))*(B+E)*Y := by ring
     _ ≤ _ := mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_right hc (add_nonneg hB hE)) hY
 
-/-- Scalar assembly keeps the independent full-velocity and drift envelopes in their respective terms. -/
+/-- Scalar assembly keeps the independent full-velocity and drift envelopes in their respective terms.
+@isnad1 id=le.6h15v.s8.63f75b0ed0b6 from=translated src=- shape=ce97316a vocab=cef4cf1d
+-/
 theorem polynomial_assembly (S T D Z B P B1 A0 A2 R E Y V F H : ℝ)
     (hS : 0 ≤ S) (hT : 0 ≤ T) (hE : 0 ≤ E)
     (hV : V ≤ Z+E) (hF : F ≤ R+(P*B1+A0+2*A2*P*Z)*E+A2*P*E^2)
@@ -92,7 +96,9 @@ theorem polynomial_assembly (S T D Z B P B1 A0 A2 R E Y V F H : ℝ)
 
 variable (period : ℝ) [Fact (0 < period)]
 
-/-- The literal seven-term Euler forcing has a scalar bound preserving the actual small background drift. -/
+/-- The literal seven-term Euler forcing has a scalar bound preserving the actual small background drift.
+@isnad1 id=other.22h27v.s22.852e0b69e5b5 from=translated src=- shape=71e4e478 vocab=43e899cb
+-/
 theorem correctionForcing_polynomial {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient period}
     (KG : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (KG0 : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)

@@ -13,7 +13,9 @@ open MeasureTheory InnerProductSpace EulerSmoothLimit EulerMeanSolenoidal EulerM
   EulerMeanCutoffCurl
 open scoped ContDiff
 
-/-- Differentiation of a smooth cutoff in one fixed direction has the expected tensor bound. -/
+/-- Differentiation of a smooth cutoff in one fixed direction has the expected tensor bound.
+@isnad1 id=le.0h4v.s10.6ae847acf6bf from=translated src=- shape=3ff36fc1 vocab=d2e0daca
+-/
 theorem Cutoff.norm_iteratedFDeriv_directional (χ : Cutoff) (v x : Space) (n : ℕ) :
     ‖iteratedFDeriv ℝ n (χ.directional v).field x‖ ≤
       ‖v‖ * ‖iteratedFDeriv ℝ (n+1) χ.field x‖ := by
@@ -26,7 +28,9 @@ section LinearCutoffOperation
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
-/-- Every actual higher derivative moves one direction onto the cutoff itself. -/
+/-- Every actual higher derivative moves one direction onto the cutoff itself.
+@isnad1 id=eq.4h6v.s10.8b4859ac085b from=translated src=- shape=8d617bf8 vocab=cec7a6b1
+-/
 theorem cutoffOperation_iteratedFDeriv_succ (L : Cutoff → E)
     (hadd : ∀ χ ψ, L (χ.add ψ) = L χ + L ψ)
     (hsmul : ∀ χ c, L (χ.scale c) = c • L χ)
@@ -50,7 +54,9 @@ theorem cutoffOperation_iteratedFDeriv_succ (L : Cutoff → E)
   simp only [cutoffDirectionalMap_apply, Cutoff.directional_translate]
 
 /-- Uniform pointwise bounds of orders n and n+1 control the actual operator-norm derivative.
-The support-volume factor is independent of n. -/
+The support-volume factor is independent of n.
+@isnad1 id=le.9h8v.s11.38963d1fcb28 from=translated src=- shape=cc39ea29 vocab=8c842fb6
+-/
 theorem cutoffOperation_iteratedFDeriv_bound (L : Cutoff → E)
     (hadd : ∀ χ ψ, L (χ.add ψ) = L χ + L ψ)
     (hsmul : ∀ χ c, L (χ.scale c) = c • L χ)
@@ -104,6 +110,9 @@ theorem cutoffOperation_iteratedFDeriv_bound (L : Cutoff → E)
 
 end LinearCutoffOperation
 
+/--
+@isnad1 id=le.5h6v.s21.a7f5080cf306 from=translated src=- shape=c307dfea vocab=f9a73a17
+-/
 theorem cutoffCurl_iteratedFDeriv_bound (n : ℕ) (χ : Cutoff) (R M₀ M₁ : ℝ)
     (hM₀ : 0 ≤ M₀) (hM₁ : 0 ≤ M₁)
     (hs : tsupport χ.field ⊆ Metric.closedBall (0 : Space) R)
@@ -115,6 +124,9 @@ theorem cutoffCurl_iteratedFDeriv_bound (n : ℕ) (χ : Cutoff) (R M₀ M₁ : �
   cutoffOperation_iteratedFDeriv_bound cutoffCurl cutoffCurl_add cutoffCurl_scale cutoffCurl_sub
     cutoffCurl_norm_le n χ R M₀ M₁ hM₀ hM₁ hs h₀ h₁ a
 
+/--
+@isnad1 id=le.5h6v.s21.3487506b3fe5 from=translated src=- shape=4c920a87 vocab=7b842ce3
+-/
 theorem weakPotential_iteratedFDeriv_bound (n : ℕ) (χ : Cutoff) (R M₀ M₁ : ℝ)
     (hM₀ : 0 ≤ M₀) (hM₁ : 0 ≤ M₁)
     (hs : tsupport χ.field ⊆ Metric.closedBall (0 : Space) R)

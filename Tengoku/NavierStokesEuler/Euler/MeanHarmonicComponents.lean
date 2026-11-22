@@ -11,17 +11,25 @@ namespace EulerMeanHarmonic
 open MeasureTheory InnerProductSpace Laplacian EulerSmoothLimit
 open scoped ContDiff
 
+/--
+@isnad1 id=memlp.1h2v.s9.5a9268c48307 from=translated src=- shape=f5ca9ea1 vocab=84bc5584
+-/
 theorem scalar_component_memLp (u : Space → Space) (hu : MemLp u 2 volume)
     (i : Fin 3) : MemLp (fun x => u x i) 2 volume :=
   (EuclideanSpace.proj i : Space →L[ℝ] ℝ).comp_memLp' hu
 
+/--
+@isnad1 id=eq.1h3v.s9.532690befe36 from=translated src=- shape=8dbdd21a vocab=9d7431f8
+-/
 theorem laplacian_scalar_smul_vector (φ : Space → ℝ) (hφ : ContDiff ℝ ∞ φ)
     (v : Space) (x : Space) :
     Δ (fun y => φ y • v) x = Δ φ x • v := by
   let L : ℝ →L[ℝ] Space := (ContinuousLinearMap.id ℝ ℝ).smulRight v
   exact ((hφ.of_le (by simp)).contDiffAt).laplacian_CLM_comp_left (l := L)
 
-/-- Testing a vector distribution along each fixed coordinate gives scalar weak harmonicity. -/
+/-- Testing a vector distribution along each fixed coordinate gives scalar weak harmonicity.
+@isnad1 id=scalarwe.1h3v.s10.705e9fccf71a from=translated src=- shape=938e1dc5 vocab=db554c55
+-/
 theorem scalarWeakHarmonicOn_of_vector_tests (U : Set Space) (u : Space → Space)
     (hu : ∀ φ : Space → Space, HasCompactSupport φ → ContDiff ℝ ∞ φ → tsupport φ ⊆ U →
       (∫ x, ⟪u x, Δ φ x⟫_ℝ) = 0) (i : Fin 3) :
@@ -43,6 +51,9 @@ theorem scalarWeakHarmonicOn_of_vector_tests (U : Set Space) (u : Space → Spac
       ring
     _ = 0 := H
 
+/--
+@isnad1 id=eq.1h1v.s10.92fe1fb7ca0a from=translated src=- shape=20b809fa vocab=d14ed3e5
+-/
 theorem sum_component_energy (u : Space → Space) (hu : MemLp u 2 volume) :
     (∑ i : Fin 3, lpNorm (fun x => u x i) 2 volume ^ 2) = lpNorm u 2 volume ^ 2 := by
   simp_rw [lpNorm_sq_eq_integral_sq _ (scalar_component_memLp u hu _)]
@@ -53,7 +64,9 @@ theorem sum_component_energy (u : Space → Space) (hu : MemLp u 2 volume) :
   filter_upwards [] with x
   exact (EuclideanSpace.real_norm_sq_eq (u x)).symm
 
-/-- Uniform component bounds combine without a dimension-dependent loss in the energy. -/
+/-- Uniform component bounds combine without a dimension-dependent loss in the energy.
+@isnad1 id=eventual.2h3v.s11.ef2f9d8feead from=translated src=- shape=d68432c2 vocab=3eb5072a
+-/
 theorem ae_vector_bound_of_component_bounds (u : Space → Space) (hu : MemLp u 2 volume)
     (U : Set Space) (C : ℝ)
     (hc : ∀ i : Fin 3, ∀ᵐ x ∂volume,

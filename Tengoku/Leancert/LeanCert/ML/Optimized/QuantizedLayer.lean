@@ -91,7 +91,9 @@ private theorem List.foldl_le_foldl {α β : Type*} [Preorder α]
   (Array.range n).foldl (fun acc i => acc + a[i]! * b[i]!) 0
 
 /-- Monotonicity of integer dot product: if w[i] ≥ 0 for all i, and lo[i] ≤ hi[i],
-    then w·lo ≤ w·hi. -/
+    then w·lo ≤ w·hi.
+@isnad1 id=le.3h3v.s7.eda718d8d4ac from=translated src=- shape=4530f91f vocab=9dbf6e9c
+-/
 theorem dotProductInt_mono_nonneg
     (w lo hi : Array Int)
     (h_w_nonneg : ∀ i, i < min w.size lo.size → i < min w.size hi.size → 0 ≤ w[i]!)
@@ -140,19 +142,25 @@ private theorem Array.getD_eq_getElem {α : Type*} [Inhabited α] (a : Array α)
   rw [Array.getD_eq_getD_getElem?, Array.getElem?_eq_getElem hi]
   rfl
 
-/-- reluInt indexing when i is in bounds -/
+/-- reluInt indexing when i is in bounds
+@isnad1 id=eq.1h2v.s6.a756dc3772ab from=translated src=- shape=296d9c5b vocab=afaa3aa7
+-/
 theorem reluInt_getElem (a : Array Int) (i : Nat) (hi : i < a.size) :
     (reluInt a)[i]'(by simp [reluInt]; exact hi) = max 0 a[i] := by
   simp [reluInt]
 
-/-- reluInt indexing for panicking access -/
+/-- reluInt indexing for panicking access
+@isnad1 id=eq.1h2v.s6.09dceb152b9e from=translated src=- shape=200bcda1 vocab=1a74e94f
+-/
 theorem reluInt_getElem! (a : Array Int) (i : Nat) (hi : i < a.size) :
     (reluInt a)[i]! = max 0 a[i]! := by
   have h1 : i < (reluInt a).size := by simp [reluInt, hi]
   simp only [Array.getElem!_eq_getD, Array.getD_eq_getElem _ _ h1, Array.getD_eq_getElem _ _ hi,
              reluInt_getElem a i hi]
 
-/-- addIntArrays indexing when i is in bounds for both -/
+/-- addIntArrays indexing when i is in bounds for both
+@isnad1 id=eq.2h3v.s6.6460e486e89e from=translated src=- shape=bf113909 vocab=6834b504
+-/
 theorem addIntArrays_getElem! (a b : Array Int) (i : Nat) (ha : i < a.size) (hb : i < b.size) :
     (addIntArrays a b)[i]! = a[i]! + b[i]! := by
   have hz : i < (addIntArrays a b).size := by simp [addIntArrays, ha, hb]
@@ -160,7 +168,9 @@ theorem addIntArrays_getElem! (a b : Array Int) (i : Nat) (ha : i < a.size) (hb 
   rw [Array.getD_eq_getElem _ _ hz, Array.getD_eq_getElem _ _ ha, Array.getD_eq_getElem _ _ hb]
   simp only [addIntArrays, Array.getElem_zipWith]
 
-/-- subIntArrays indexing when i is in bounds for both -/
+/-- subIntArrays indexing when i is in bounds for both
+@isnad1 id=eq.2h3v.s6.ea89e861f501 from=translated src=- shape=bf113909 vocab=9aeff701
+-/
 theorem subIntArrays_getElem! (a b : Array Int) (i : Nat) (ha : i < a.size) (hb : i < b.size) :
     (subIntArrays a b)[i]! = a[i]! - b[i]! := by
   have hz : i < (subIntArrays a b).size := by simp [subIntArrays, ha, hb]
@@ -168,7 +178,9 @@ theorem subIntArrays_getElem! (a b : Array Int) (i : Nat) (ha : i < a.size) (hb 
   rw [Array.getD_eq_getElem _ _ hz, Array.getD_eq_getElem _ _ ha, Array.getD_eq_getElem _ _ hb]
   simp only [subIntArrays, Array.getElem_zipWith]
 
-/-- matVecMulInt indexing when i is in bounds -/
+/-- matVecMulInt indexing when i is in bounds
+@isnad1 id=eq.1h3v.s6.d6389c981f2c from=translated src=- shape=e83f2dde vocab=a0996e41
+-/
 theorem matVecMulInt_getElem! (M : Array (Array Int)) (v : Array Int) (i : Nat) (hi : i < M.size) :
     (matVecMulInt M v)[i]! = dotProductInt M[i]! v := by
   have hm : i < (matVecMulInt M v).size := by simp [matVecMulInt, hi]
@@ -312,15 +324,21 @@ def toIntervalArray (a : AlignedInput) (n : Nat) (hn : a.lo.size = n ∧ a.hi.si
 noncomputable def intVal (n : Int) (e : Int) : ℝ :=
   (n : ℝ) * (2 : ℝ) ^ e
 
-/-- Basic property: intVal respects addition -/
+/-- Basic property: intVal respects addition
+@isnad1 id=eq.0h3v.s5.9a11032159c0 from=translated src=- shape=086cad00 vocab=9d61f97c
+-/
 theorem intVal_add (a b : Int) (e : Int) : intVal (a + b) e = intVal a e + intVal b e := by
   simp only [intVal, Int.cast_add, add_mul]
 
-/-- Basic property: intVal respects subtraction -/
+/-- Basic property: intVal respects subtraction
+@isnad1 id=eq.0h3v.s5.31719eeb5863 from=translated src=- shape=086cad00 vocab=c7675a70
+-/
 theorem intVal_sub (a b : Int) (e : Int) : intVal (a - b) e = intVal a e - intVal b e := by
   simp only [intVal, Int.cast_sub, sub_mul]
 
-/-- Basic property: intVal respects multiplication with exponent addition -/
+/-- Basic property: intVal respects multiplication with exponent addition
+@isnad1 id=eq.0h4v.s5.a6784ea62704 from=translated src=- shape=75d86801 vocab=517fe4d7
+-/
 theorem intVal_mul (a b : Int) (ea eb : Int) :
     intVal a ea * intVal b eb = intVal (a * b) (ea + eb) := by
   simp only [intVal, Int.cast_mul]
@@ -328,10 +346,14 @@ theorem intVal_mul (a b : Int) (ea eb : Int) :
       = ↑a * ↑b * ((2 : ℝ) ^ ea * (2 : ℝ) ^ eb) := by ring
     _ = ↑a * ↑b * (2 : ℝ) ^ (ea + eb) := by rw [← zpow_add₀ (two_ne_zero (α := ℝ)) ea eb]
 
-/-- intVal 0 is 0 -/
+/-- intVal 0 is 0
+@isnad1 id=eq.0h1v.s4.04536b52f32a from=translated src=- shape=d7485c18 vocab=3d8e227b
+-/
 theorem intVal_zero (e : Int) : intVal 0 e = 0 := by simp [intVal]
 
-/-- intVal of nonnegative integer is nonnegative -/
+/-- intVal of nonnegative integer is nonnegative
+@isnad1 id=le.1h2v.s4.ff654b01d711 from=translated src=- shape=c8a788b1 vocab=66efb626
+-/
 theorem intVal_nonneg {n : Int} (hn : 0 ≤ n) (e : Int) : 0 ≤ intVal n e := by
   simp only [intVal]
   apply mul_nonneg
@@ -348,7 +370,9 @@ def AlignedInput.mem (a : AlignedInput) (x : List ℝ) : Prop :=
 
 /-! ### Split-Sign Arithmetic Lemmas -/
 
-/-- Key lemma: For p ≥ 0, if l ≤ x ≤ u then p*l ≤ p*x ≤ p*u -/
+/-- Key lemma: For p ≥ 0, if l ≤ x ≤ u then p*l ≤ p*x ≤ p*u
+@isnad1 id=and.3h4v.s6.c309b7e7c8cb from=translated src=- shape=9a5d5543 vocab=373ada53
+-/
 theorem nonneg_mul_bounds {p l u x : ℝ} (hp : 0 ≤ p) (hl : l ≤ x) (hu : x ≤ u) :
     p * l ≤ p * x ∧ p * x ≤ p * u := by
   constructor
@@ -357,7 +381,9 @@ theorem nonneg_mul_bounds {p l u x : ℝ} (hp : 0 ≤ p) (hl : l ≤ x) (hu : x 
 
 /-- Dot product bounds for nonnegative weights.
     If p[i] ≥ 0 for all i, and l[i] ≤ x[i] ≤ u[i], then
-    Σ p[i]*l[i] ≤ Σ p[i]*x[i] ≤ Σ p[i]*u[i] -/
+    Σ p[i]*l[i] ≤ Σ p[i]*x[i] ≤ Σ p[i]*u[i]
+@isnad1 id=and.3h5v.s7.9881abfc4ef4 from=translated src=- shape=5665bfe1 vocab=dc433781
+-/
 theorem dotProduct_bounds_nonneg
     {n : Nat} (p l u x : Fin n → ℝ)
     (hp : ∀ i, 0 ≤ p i)
@@ -374,7 +400,9 @@ theorem dotProduct_bounds_nonneg
     exact (nonneg_mul_bounds (hp i) (hl i) (hu i)).2
 
 /-- Main split-sign lemma: If W = P - N with P,N ≥ 0, and l ≤ x ≤ u, then
-    P·l - N·u ≤ W·x ≤ P·u - N·l -/
+    P·l - N·u ≤ W·x ≤ P·u - N·l
+@isnad1 id=other.4h6v.s8.35c493dbd7d3 from=translated src=- shape=2879e6e7 vocab=06fc318e
+-/
 theorem split_sign_bounds
     {n : Nat} (pos neg l u x : Fin n → ℝ)
     (hpos : ∀ i, 0 ≤ pos i)
@@ -405,7 +433,9 @@ theorem split_sign_bounds
     -- Use: pos·x ≤ pos·u and neg·l ≤ neg·x
     linarith [hpos_bounds.2, hneg_bounds.1]
 
-/-- ReLU preserves bounds: if lo ≤ x ≤ hi then max(0,lo) ≤ max(0,x) ≤ max(0,hi) -/
+/-- ReLU preserves bounds: if lo ≤ x ≤ hi then max(0,lo) ≤ max(0,x) ≤ max(0,hi)
+@isnad1 id=and.2h3v.s6.81af2b9bc58f from=translated src=- shape=bb43e518 vocab=7a820a04
+-/
 theorem relu_preserves_bounds {lo x hi : ℝ} (hlo : lo ≤ x) (hhi : x ≤ hi) :
     max 0 lo ≤ max 0 x ∧ max 0 x ≤ max 0 hi := by
   constructor
@@ -414,7 +444,9 @@ theorem relu_preserves_bounds {lo x hi : ℝ} (hlo : lo ≤ x) (hhi : x ≤ hi) 
 
 /-! ### Soundness Theorem -/
 
-/-- Integer max(0, ·) implies intVal ordering -/
+/-- Integer max(0, ·) implies intVal ordering
+@isnad1 id=le.1h3v.s5.d6fbf21f7e82 from=translated src=- shape=789b183d vocab=472093b4
+-/
 theorem intVal_max_le {a b : Int} (h : a ≤ b) (e : Int) :
     intVal (max 0 a) e ≤ intVal (max 0 b) e := by
   simp only [intVal]
@@ -422,14 +454,18 @@ theorem intVal_max_le {a b : Int} (h : a ≤ b) (e : Int) :
   · exact Int.cast_le.mpr (max_le_max_left 0 h)
   · exact zpow_nonneg (by norm_num : (0 : ℝ) ≤ 2) e
 
-/-- intVal is monotone in the integer argument -/
+/-- intVal is monotone in the integer argument
+@isnad1 id=le.1h3v.s4.a648ad3be55c from=translated src=- shape=14df815e vocab=66efb626
+-/
 theorem intVal_mono {a b : Int} (h : a ≤ b) (e : Int) : intVal a e ≤ intVal b e := by
   simp only [intVal]
   apply mul_le_mul_of_nonneg_right
   · exact Int.cast_le.mpr h
   · exact zpow_nonneg (by norm_num : (0 : ℝ) ≤ 2) e
 
-/-- intVal is strictly monotone -/
+/-- intVal is strictly monotone
+@isnad1 id=lt.1h3v.s4.2ea031be0af2 from=translated src=- shape=14df815e vocab=dead1321
+-/
 theorem intVal_strictMono {a b : Int} (h : a < b) (e : Int) : intVal a e < intVal b e := by
   simp only [intVal]
   apply mul_lt_mul_of_pos_right
@@ -447,6 +483,7 @@ theorem intVal_strictMono {a b : Int} (h : a < b) (e : Int) : intVal a e < intVa
     - Then W⁺·l - W⁻·u ≤ W·x ≤ W⁺·u - W⁻·l
 
     Combined with ReLU monotonicity, this gives the soundness of the entire forward pass.
+@isnad1 id=le.12h3v.s8.d58c35c7ad07 from=translated src=- shape=ddbbac47 vocab=07dab119
 -/
 theorem forwardQuantized_sound
     (l_quant : QuantizedLayer)
@@ -593,7 +630,9 @@ theorem forwardQuantized_sound
 /-- Main soundness theorem: The output interval bounds satisfy lo ≤ hi when
     there exists a real input x in the input interval.
 
-    This version shows that the output interval is non-empty. -/
+    This version shows that the output interval is non-empty.
+@isnad1 id=le.14h4v.s8.9089098b3ed9 from=translated src=- shape=8f63f7e5 vocab=3ad2a37c
+-/
 theorem forwardQuantized_nonempty
     (l_quant : QuantizedLayer)
     (input : AlignedInput)

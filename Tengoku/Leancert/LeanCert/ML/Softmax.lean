@@ -124,7 +124,9 @@ def softmax (x : IntervalVector) (prec : Int) : IntervalVector :=
     If acc_real ∈ acc_interval and for each i, xs_real[i] ∈ xs_interval[i],
     then (xs_real.foldl (+) acc_real) ∈ (xs_interval.foldl add acc_interval).
 
-    Proof by induction on xs_real, using mem_add at each step. -/
+    Proof by induction on xs_real, using mem_add at each step.
+@isnad1 id=mem.3h4v.s7.451f92f694f0 from=translated src=- shape=b4f776df vocab=152ae82e
+-/
 theorem mem_foldl_add {xs_real : List ℝ} {xs_interval : List IntervalDyadic}
     {acc_real : ℝ} {acc_interval : IntervalDyadic}
     (_hlen : xs_real.length = xs_interval.length)
@@ -168,6 +170,7 @@ Proof sketch:
   e^xk / Σe^xj = (e^xk * e^{-xk}) / (Σe^xj * e^{-xk})
               = 1 / Σ(e^xj * e^{-xk})
               = 1 / Σe^{xj - xk}
+@isnad1 id=eq.2h2v.s6.67716728739b from=translated src=- shape=4652cee7 vocab=38be2c81
 -/
 theorem softmax_algebraic_identity (x : List ℝ) (k : Nat) (hk : k < x.length)
     (hsum : (x.map Real.exp).sum ≠ 0) :
@@ -203,6 +206,7 @@ theorem softmax_algebraic_identity (x : List ℝ) (k : Nat) (hk : k < x.length)
   **Main Theorem: Softmax Soundness**
 
   If inputs `v` are within `I`, then `softmax(v)` is within `softmax(I)`.
+@isnad1 id=mem.4h4v.s7.f64943df5e53 from=translated src=- shape=a8fd6127 vocab=a0567da8
 -/
 theorem mem_softmax {v : List ℝ} {I : IntervalVector}
     (hdim : v.length = I.length)

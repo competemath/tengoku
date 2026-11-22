@@ -34,10 +34,15 @@ private theorem contDiff_value_nat_aux (n : ℕ) :
       (E := Lp (P →L[ℝ] V) 2 μ) (F := P →L[ℝ] Lp V 2 μ)
       (derivativeBundling μ)).comp (ih (P →L[ℝ] V) A.derivative)
 
-/-- Genuine smoothness in the full L² norm, not merely pointwise in the measured variable. -/
+/-- Genuine smoothness in the full L² norm, not merely pointwise in the measured variable.
+@isnad1 id=contdiff.0h5v.s8.1718fb1b7a46 from=translated src=- shape=3dc9cc7b vocab=3061ffed
+-/
 theorem contDiff_value (A : SmoothFamily μ P V) : ContDiff ℝ ∞ A.value :=
   contDiff_infty.mpr (fun n => contDiff_value_nat_aux n V A)
 
+/--
+@isnad1 id=le.0h6v.s8.868aa54abea7 from=translated src=- shape=afd693f0 vocab=7d6e0205
+-/
 theorem norm_value_le (A : SmoothFamily μ P V) (a : P) : ‖A.value a‖ ≤ ‖A.bound 0‖ := by
   apply Lp.norm_le_norm_of_ae_le
   filter_upwards [A.value_ae a, A.bounded 0] with x hx hb
@@ -65,7 +70,9 @@ private theorem norm_iteratedFDeriv_value_aux (n : ℕ) :
       (derivativeBundling_norm_le_one (P := P) (V := V) μ) (norm_nonneg _)).trans
       (by simpa only [one_mul] using hi))
 
-/-- Each true L² derivative inherits its original fiberwise L² majorant with constant one. -/
+/-- Each true L² derivative inherits its original fiberwise L² majorant with constant one.
+@isnad1 id=le.0h7v.s11.3703f6ad6bd1 from=translated src=- shape=8191e13f vocab=b32e0033
+-/
 theorem norm_iteratedFDeriv_value_le (A : SmoothFamily μ P V) (n : ℕ) (a : P) :
     ‖iteratedFDeriv ℝ n A.value a‖ ≤ ‖A.bound n‖ := norm_iteratedFDeriv_value_aux n V A a
 

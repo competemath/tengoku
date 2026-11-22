@@ -55,7 +55,9 @@ open _root_.MeasureTheory _root_.InnerProductSpace _root_.EulerLiftedGradientSpa
 variable (period : ℝ) [Fact (0 < period)]
 
 omit [Fact (0 < period)] in
-/-- Monotonicity of the actual coefficient derivative blocks in their fixed Sobolev index. -/
+/-- Monotonicity of the actual coefficient derivative blocks in their fixed Sobolev index.
+@isnad1 id=le.1h7v.s5.f687f8d94464 from=translated src=- shape=54e7c07c vocab=96bb6c82
+-/
 theorem coefficientBlock_mono {s p q : ℕ} (hpq : p ≤ q) {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A) (n : ℕ) :
     coefficientBlock period K p n ≤ coefficientBlock period K q n := by
@@ -65,7 +67,9 @@ theorem coefficientBlock_mono {s p q : ℕ} (hpq : p ≤ q) {A : SmoothCoefficie
     (Finset.sum_nonneg (fun r _ => (boundLevel_nonneg K : 0 ≤ boundLevel period K (n+r))))
     (pow_nonneg (by norm_num) q)
 
-/-- The actual nonlinear external pressure commutator bound includes the zero-cutoff case. -/
+/-- The actual nonlinear external pressure commutator bound includes the zero-cutoff case.
+@isnad1 id=le.11h14v.s16.a3bf0f004c48 from=translated src=- shape=e6f97b8c vocab=5378f621
+-/
 theorem nonlinear_externalPressure_bound_all {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (κ : ℝ) (m : Vector3) (c : ℝ) (hc : 0 < c)
@@ -82,7 +86,9 @@ theorem nonlinear_externalPressure_bound_all {s : ℕ} (hs : 6 ≤ s) {A : Smoot
   | zero => simp [externalPressureNorm, weightedLoss, commutatorBlock_zero]
   | succ N => exact nonlinear_externalPressure_bound period hs K κ m c hc hpos N hN ρ Rc M hρ hRc hM hbase hsmall hcoeff L hL u v
 
-/-- Actual base transport-pressure commutators are bounded by the product of the two velocity energies at the same cutoff. -/
+/-- Actual base transport-pressure commutators are bounded by the product of the two velocity energies at the same cutoff.
+@isnad1 id=le.11h15v.s16.ce3e9d4f92ad from=translated src=- shape=f193f441 vocab=3749f603
+-/
 theorem nonlinear_basePressure_bound {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (K0 : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)
@@ -103,7 +109,9 @@ theorem nonlinear_basePressure_bound {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoeffic
   exact (basePressureNorm_lower period K0 N hN ρ hρ _).trans
     ((mul_le_mul_of_nonneg_left hp (mul_nonneg (by norm_num) (baseCoefficientSum_nonneg period K0))).trans_eq (by ring))
 
-/-- Both actual commutators of the order-zero pressure are controlled by the unshifted source norm. -/
+/-- Both actual commutators of the order-zero pressure are controlled by the unshifted source norm.
+@isnad1 id=le.9h13v.s21.dade00f068f4 from=translated src=- shape=04ced70b vocab=cc57b768
+-/
 theorem source_pressure_commutators {s : ℕ} {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (K0 : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)

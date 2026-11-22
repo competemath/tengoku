@@ -13,7 +13,9 @@ namespace EulerPacketMovingFrame
 open Set EulerPacketRay EulerPacketBridge EulerPacketExistence
 
 /-- No initial velocity restriction is imposed.  The reference can have
-any nonnegative initial slope, and the bound retains its ratio. -/
+any nonnegative initial slope, and the bound retains its ratio.
+@isnad1 id=le.28h17v.s10.3a86c3b75556 from=translated src=- shape=26abbda5 vocab=ef753b06
+-/
 theorem controlled_velocity_propagator_within
     {σ Θ T e ε : ℝ} {Z Z₁ U V P Q N : ℝ → ℝ}
     {R A C : ℝ → Fin 3 → Fin 3 → ℝ}

@@ -32,7 +32,9 @@ open _root_.Set _root_.EulerLiftedGradientSpace _root_.EulerCylinderSobolevSpace
 
 variable (period : ℝ) [Fact (0 < period)]
 
-/-- Subtracting the actual inviscid correction equations gives the zero-viscosity difference equation. -/
+/-- Subtracting the actual inviscid correction equations gives the zero-viscosity difference equation.
+@isnad1 id=hasderiv.5h7v.s20.95a8819579d1 from=translated src=- shape=959e7918 vocab=7b94de72
+-/
 theorem inviscid_difference_hasDerivAt {q : ℕ} (hq : 6 ≤ q) (T : ℝ) (hT : 0 ≤ T)
     (D : CorrectionData period q (Icc (0 : ℝ) T))
     (u v : C(Icc (0 : ℝ) T,SobolevSpace period (q+1)))

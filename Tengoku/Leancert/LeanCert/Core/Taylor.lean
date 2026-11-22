@@ -81,21 +81,27 @@ structure DerivBound where
 
 /-! ### Helper lemmas for iteratedDerivWithin conversion -/
 
-/-- Unique differentiability at the left endpoint of a closed interval. -/
+/-- Unique differentiability at the left endpoint of a closed interval.
+@isnad1 id=uniquedi.1h2v.s4.723c68e8bcb0 from=translated src=- shape=af91ef07 vocab=83f67098
+-/
 lemma uniqueDiffWithinAt_Icc_left {c x : ℝ} (hcx : c < x) :
     UniqueDiffWithinAt ℝ (Set.Icc c x) c := by
   apply uniqueDiffWithinAt_convex (convex_Icc c x)
   · rw [interior_Icc]; exact Set.nonempty_Ioo.mpr hcx
   · rw [closure_Icc]; exact Set.left_mem_Icc.mpr (le_of_lt hcx)
 
-/-- Unique differentiability at the right endpoint of a closed interval. -/
+/-- Unique differentiability at the right endpoint of a closed interval.
+@isnad1 id=uniquedi.1h2v.s4.e3c215654320 from=translated src=- shape=47bf6396 vocab=83f67098
+-/
 lemma uniqueDiffWithinAt_Icc_right {c x : ℝ} (hcx : c < x) :
     UniqueDiffWithinAt ℝ (Set.Icc c x) x := by
   apply uniqueDiffWithinAt_convex (convex_Icc c x)
   · rw [interior_Icc]; exact Set.nonempty_Ioo.mpr hcx
   · rw [closure_Icc]; exact Set.right_mem_Icc.mpr (le_of_lt hcx)
 
-/-- At the left endpoint of [c, x], derivWithin equals deriv for differentiable functions. -/
+/-- At the left endpoint of [c, x], derivWithin equals deriv for differentiable functions.
+@isnad1 id=eq.2h3v.s7.b18f96e180ff from=translated src=- shape=cd58bbf3 vocab=6cc350a9
+-/
 lemma derivWithin_Icc_left_eq_deriv {f : ℝ → ℝ} {c x : ℝ}
     (hcx : c < x) (hf : DifferentiableAt ℝ f c) :
     derivWithin f (Set.Icc c x) c = deriv f c := by
@@ -103,7 +109,9 @@ lemma derivWithin_Icc_left_eq_deriv {f : ℝ → ℝ} {c x : ℝ}
   have hderiv_within : HasDerivWithinAt f (deriv f c) (Set.Icc c x) c := hderiv.hasDerivWithinAt
   exact hderiv_within.derivWithin (uniqueDiffWithinAt_Icc_left hcx)
 
-/-- At the right endpoint of [c, x], derivWithin equals deriv for differentiable functions. -/
+/-- At the right endpoint of [c, x], derivWithin equals deriv for differentiable functions.
+@isnad1 id=eq.2h3v.s7.1b334bf67163 from=translated src=- shape=bcc1031f vocab=6cc350a9
+-/
 lemma derivWithin_Icc_right_eq_deriv {f : ℝ → ℝ} {c x : ℝ}
     (hcx : c < x) (hf : DifferentiableAt ℝ f x) :
     derivWithin f (Set.Icc c x) x = deriv f x := by
@@ -113,7 +121,9 @@ lemma derivWithin_Icc_right_eq_deriv {f : ℝ → ℝ} {c x : ℝ}
 
 /-- Helper lemma: `iteratedDerivWithin` on `Icc a b` equals `iteratedDeriv` at interior points.
 
-This bridges Mathlib's `iteratedDerivWithin`-based Taylor theorems with global `iteratedDeriv`. -/
+This bridges Mathlib's `iteratedDerivWithin`-based Taylor theorems with global `iteratedDeriv`.
+@isnad1 id=eq.2h5v.s6.3a0376b1aaf4 from=translated src=- shape=9fc55056 vocab=424c3e3b
+-/
 lemma iteratedDerivWithin_Icc_interior_eq {f : ℝ → ℝ} {a b : ℝ} {x : ℝ} {n : ℕ}
     (_hab : a < b) (hx : x ∈ Set.Ioo a b) :
     iteratedDerivWithin n f (Set.Icc a b) x = iteratedDeriv n f x := by
@@ -126,7 +136,9 @@ lemma iteratedDerivWithin_Icc_interior_eq {f : ℝ → ℝ} {a b : ℝ} {x : ℝ
     exact propext ⟨fun _ => trivial, fun _ => hy⟩
   rw [iteratedFDerivWithin_congr_set heq n, iteratedFDerivWithin_univ]
 
-/-- At the left endpoint of [c, x], iteratedDerivWithin equals iteratedDeriv for ContDiff functions. -/
+/-- At the left endpoint of [c, x], iteratedDerivWithin equals iteratedDeriv for ContDiff functions.
+@isnad1 id=eq.2h4v.s6.80d966b50632 from=translated src=- shape=e74753ae vocab=bb1031b9
+-/
 lemma iteratedDerivWithin_Icc_left_eq_iteratedDeriv {f : ℝ → ℝ} {c x : ℝ} {n : ℕ}
     (hcx : c < x) (hf : ContDiff ℝ n f) :
     iteratedDerivWithin n f (Set.Icc c x) c = iteratedDeriv n f c := by
@@ -163,7 +175,9 @@ lemma iteratedDerivWithin_Icc_left_eq_iteratedDeriv {f : ℝ → ℝ} {c x : ℝ
 /-- At the left endpoint of [c, x], iteratedDerivWithin equals iteratedDeriv for functions
     that are ContDiffOn on an open set containing c.
 
-    This is useful for functions like log that are only smooth on (0, ∞). -/
+    This is useful for functions like log that are only smooth on (0, ∞).
+@isnad1 id=eq.5h5v.s7.cc2b6b9b354c from=translated src=- shape=241ec159 vocab=06317244
+-/
 lemma iteratedDerivWithin_Icc_left_eq_iteratedDeriv_of_isOpen {f : ℝ → ℝ} {c x : ℝ} {n : ℕ} {U : Set ℝ}
     (hU_open : IsOpen U) (hcU : c ∈ U) (hcx : c < x) (hI_sub : Set.Icc c x ⊆ U)
     (hf : ContDiffOn ℝ n f U) :
@@ -203,7 +217,9 @@ set_option maxHeartbeats 400000 in
 /-- Taylor remainder bound for c < x case with ContDiffOn hypothesis.
 
     For functions that are ContDiffOn on an open set containing [a, b], this provides
-    the same Lagrange remainder bound as the global ContDiff version. -/
+    the same Lagrange remainder bound as the global ContDiff version.
+@isnad1 id=le.7h8v.s8.871126f089cf from=translated src=- shape=d7d0852e vocab=4b59673c
+-/
 theorem taylor_remainder_bound_on_c_lt_x {f : ℝ → ℝ} {a b c : ℝ} {m : ℕ} {M : ℝ} {U : Set ℝ}
     (hU_open : IsOpen U) (hI_sub : Set.Icc a b ⊆ U)
     (hca : a ≤ c)
@@ -305,7 +321,9 @@ private lemma iteratedDeriv_translate_of_contDiffOn {f : ℝ → ℝ} {k : ℝ} 
 /-- Key lemma for reflection: derivatives of g(t) = f(2c - t) when f is smooth on an open set.
 
 This is a local version of `iteratedDeriv_reflect` that works with ContDiffOn on an open set
-rather than global ContDiff. -/
+rather than global ContDiff.
+@isnad1 id=eq.3h5v.s7.056a63bd3480 from=translated src=- shape=aa2fa301 vocab=baa49aa9
+-/
 lemma iteratedDeriv_reflect_of_contDiffOn {f : ℝ → ℝ} {c : ℝ} {n : ℕ} {U : Set ℝ}
     (hU_open : IsOpen U) (hf : ContDiffOn ℝ n f U) (t : ℝ) (ht : 2 * c - t ∈ U) :
     iteratedDeriv n (fun s => f (2 * c - s)) t = (-1 : ℝ) ^ n * iteratedDeriv n f (2 * c - t) := by
@@ -329,7 +347,9 @@ set_option maxHeartbeats 400000 in
     the same Lagrange remainder bound as the global ContDiff version.
 
     The proof uses reflection: define g(t) = f(2c - t), apply Lagrange to g on [c, 2c-x],
-    then convert back. -/
+    then convert back.
+@isnad1 id=le.7h8v.s8.7a491980a926 from=translated src=- shape=5017760e vocab=4b59673c
+-/
 theorem taylor_remainder_bound_on_x_lt_c {f : ℝ → ℝ} {a b c : ℝ} {m : ℕ} {M : ℝ} {U : Set ℝ}
     (hU_open : IsOpen U) (hI_sub : Set.Icc a b ⊆ U)
     (hcb : c ≤ b)
@@ -448,7 +468,9 @@ set_option maxHeartbeats 400000 in
 /-- Combined Taylor remainder bound with ContDiffOn hypothesis.
 
     For functions that are ContDiffOn on an open set containing [a, b], this provides
-    the Lagrange remainder bound for any x ∈ [a, b] and center c ∈ [a, b]. -/
+    the Lagrange remainder bound for any x ∈ [a, b] and center c ∈ [a, b].
+@isnad1 id=le.8h8v.s8.2fbf6755d0eb from=translated src=- shape=b2780c03 vocab=fbd23d7f
+-/
 theorem taylor_remainder_bound_on {f : ℝ → ℝ} {a b c : ℝ} {n : ℕ} {M : ℝ} {U : Set ℝ}
     (hU_open : IsOpen U) (hI_sub : Set.Icc a b ⊆ U)
     (hca : a ≤ c) (hcb : c ≤ b)
@@ -492,7 +514,9 @@ theorem taylor_remainder_bound_on {f : ℝ → ℝ} {a b c : ℝ} {n : ℕ} {M :
 
 For the `x < c` case, we use reflection: define g(t) = f(2c - t), apply Lagrange
 to g on [c, 2c-x], then convert back. This lemma shows how g's derivatives
-relate to f's derivatives. -/
+relate to f's derivatives.
+@isnad1 id=eq.1h4v.s7.6717ddc10e5f from=translated src=- shape=26e13efc vocab=4d781252
+-/
 lemma iteratedDeriv_reflect {f : ℝ → ℝ} {c : ℝ} {n : ℕ} (hf : ContDiff ℝ n f) (t : ℝ) :
     iteratedDeriv n (fun s => f (2 * c - s)) t = (-1 : ℝ) ^ n * iteratedDeriv n f (2 * c - t) := by
   have heq : (fun s => f (2 * c - s)) = (fun s => (fun x => f (x + 2 * c)) (-s)) := by
@@ -523,7 +547,9 @@ lemma iteratedDeriv_reflect {f : ℝ → ℝ} {c : ℝ} {n : ℕ} (hf : ContDiff
       exact h
     exact ih hdf
 
-/-- Auxiliary lemma: (-1)^n * (-1)^n = 1 for any natural n. -/
+/-- Auxiliary lemma: (-1)^n * (-1)^n = 1 for any natural n.
+@isnad1 id=eq.0h1v.s5.e14d2aff2d1a from=translated src=- shape=e8623351 vocab=33ae7755
+-/
 lemma neg_one_pow_mul_self (n : ℕ) : (-1 : ℝ) ^ n * (-1) ^ n = 1 := by
   rw [← pow_add]
   norm_num
@@ -532,7 +558,9 @@ set_option maxHeartbeats 400000 in
 /-- Taylor remainder bound for c < x case (Lagrange form).
 
 For `c < x`, we apply `taylor_mean_remainder_lagrange` on `[c, x]` and convert
-`iteratedDerivWithin` to `iteratedDeriv` using the helper lemmas above. -/
+`iteratedDerivWithin` to `iteratedDeriv` using the helper lemmas above.
+@isnad1 id=le.5h7v.s8.1897f1b1728b from=translated src=- shape=32041eda vocab=d61fae77
+-/
 theorem taylor_remainder_bound_c_lt_x {f : ℝ → ℝ} {a b c : ℝ} {m : ℕ} {M : ℝ}
     (hca : a ≤ c)
     (hf : ContDiff ℝ (m + 1) f)
@@ -601,7 +629,9 @@ set_option maxHeartbeats 400000 in
 For `x < c`, we define g(t) = f(2c - t), apply `taylor_mean_remainder_lagrange` on `[c, 2c-x]`,
 then use `iteratedDeriv_reflect` to convert back to f's derivatives. The key insight is that
 g's Taylor expansion at c, evaluated at 2c-x, equals f's Taylor expansion at c, evaluated at x,
-because the (-1)^i factors from the derivatives cancel with the (-1)^i factors from the powers. -/
+because the (-1)^i factors from the derivatives cancel with the (-1)^i factors from the powers.
+@isnad1 id=le.5h7v.s8.bd54531edd01 from=translated src=- shape=47364d7a vocab=d61fae77
+-/
 theorem taylor_remainder_bound_x_lt_c {f : ℝ → ℝ} {a b c : ℝ} {m : ℕ} {M : ℝ}
     (hcb : c ≤ b)
     (hf : ContDiff ℝ (m + 1) f)
@@ -742,6 +772,7 @@ All cases are fully proved:
 - **Case n > 0, x = c**: Trivial (both sides zero). ✓
 - **Case n > 0, c < x**: Via `taylor_remainder_bound_c_lt_x`. ✓
 - **Case n > 0, x < c**: Via `taylor_remainder_bound_x_lt_c` (reflection). ✓
+@isnad1 id=le.7h7v.s8.d6ba76ade86c from=translated src=- shape=d29d25d6 vocab=d4560729
 -/
 theorem taylor_remainder_bound {f : ℝ → ℝ} {a b c : ℝ} {n : ℕ} {M : ℝ}
     (_hab : a ≤ b) (hca : a ≤ c) (hcb : c ≤ b)
@@ -804,7 +835,9 @@ def cosTaylorCoeff (n : ℕ) : ℚ :=
 
 /-! ### Derivative bounds for common functions -/
 
-/-- All derivatives of exp are bounded by exp on any bounded interval -/
+/-- All derivatives of exp are bounded by exp on any bounded interval
+@isnad1 id=le.2h4v.s5.8673c0ece443 from=translated src=- shape=8bdb0098 vocab=803ddad3
+-/
 theorem exp_deriv_bound {a b : ℝ} (_hab : a ≤ b) (n : ℕ) :
     ∀ x ∈ Set.Icc a b, ‖iteratedDeriv n Real.exp x‖ ≤ Real.exp b := by
   intro x hx
@@ -814,7 +847,9 @@ theorem exp_deriv_bound {a b : ℝ} (_hab : a ≤ b) (n : ℕ) :
   exact Real.exp_le_exp.mpr hx.2
 
 /-- All derivatives of sin and cos are bounded by 1.
-    The derivatives cycle: sin → cos → -sin → -cos → sin → ... -/
+    The derivatives cycle: sin → cos → -sin → -cos → sin → ...
+@isnad1 id=and.0h2v.s6.da4eb7c66ad2 from=translated src=- shape=cda5bde1 vocab=8c946521
+-/
 theorem sin_cos_deriv_bound (n : ℕ) :
     ∀ x : ℝ, ‖iteratedDeriv n Real.sin x‖ ≤ 1 ∧ ‖iteratedDeriv n Real.cos x‖ ≤ 1 := by
   intro x
@@ -837,7 +872,9 @@ theorem sin_cos_deriv_bound (n : ℕ) :
       rw [iteratedDeriv_fun_neg n Real.sin x, norm_neg]
       exact ih.1
 
-/-- cosh x ≤ exp |x| for all x -/
+/-- cosh x ≤ exp |x| for all x
+@isnad1 id=le.0h1v.s3.22993c56ac36 from=translated src=- shape=98cb13d8 vocab=1c087157
+-/
 theorem cosh_le_exp_abs (x : ℝ) : Real.cosh x ≤ Real.exp |x| := by
   rw [Real.cosh_eq]
   have h1 : Real.exp x ≤ Real.exp |x| := Real.exp_le_exp.mpr (le_abs_self x)
@@ -845,7 +882,9 @@ theorem cosh_le_exp_abs (x : ℝ) : Real.cosh x ≤ Real.exp |x| := by
   have h2 : Real.exp (-x) ≤ Real.exp |x| := Real.exp_le_exp.mpr habs_neg
   linarith
 
-/-- |sinh x| ≤ cosh x for all x -/
+/-- |sinh x| ≤ cosh x for all x
+@isnad1 id=le.0h1v.s3.6fe6b8ef2c61 from=translated src=- shape=f5f172d0 vocab=ae51cccb
+-/
 theorem abs_sinh_le_cosh (x : ℝ) : |Real.sinh x| ≤ Real.cosh x := by
   have hcosh_pos : 0 < Real.cosh x := Real.cosh_pos x
   have hcosh_sq : Real.cosh x ^ 2 = Real.sinh x ^ 2 + 1 := Real.cosh_sq x
@@ -860,7 +899,9 @@ theorem abs_sinh_le_cosh (x : ℝ) : |Real.sinh x| ≤ Real.cosh x := by
     nlinarith [sq_nonneg (Real.cosh x + Real.sinh x), sq_nonneg (Real.cosh x - Real.sinh x)]
 
 /-- All derivatives of sinh and cosh are bounded by exp(max(|a|, |b|)) on [a, b].
-    The derivatives cycle: sinh → cosh → sinh → cosh → ... -/
+    The derivatives cycle: sinh → cosh → sinh → cosh → ...
+@isnad1 id=and.2h4v.s6.13644448739b from=translated src=- shape=e0c7dea4 vocab=286304a5
+-/
 theorem sinh_cosh_deriv_bound {a b : ℝ} (_hab : a ≤ b) (n : ℕ) :
     ∀ x ∈ Set.Icc a b, ‖iteratedDeriv n Real.sinh x‖ ≤ Real.exp (max (|a|) (|b|)) ∧
                        ‖iteratedDeriv n Real.cosh x‖ ≤ Real.exp (max (|a|) (|b|)) := by
@@ -902,6 +943,9 @@ theorem sinh_cosh_deriv_bound {a b : ℝ} (_hab : a ≤ b) (n : ℕ) :
       exact ih.1
 
 /- The n-th iterated derivative of log at x > 0 is (-1)^(n-1) * (n-1)! * x^(-n) for n ≥ 1. -/
+ /--
+ @isnad1 id=eq.2h2v.s7.a732138c1549 from=translated src=- shape=fe98b502 vocab=42850832
+ -/
  theorem iteratedDeriv_log {n : ℕ} (hn : n ≠ 0) {x : ℝ} (hx : 0 < x) :
     iteratedDeriv n Real.log x = (-1)^(n-1) * (n-1).factorial * x^(-(n : ℤ)) := by
     match n with

@@ -11,6 +11,9 @@ namespace EulerPacketMovingFrame
 open Set EulerSmoothLimit EulerPacketNormalizedPrimary EulerPacketRay
   EulerPacketCoefficientControl InnerProductSpace ContinuousLinearMap
 
+/--
+@isnad1 id=other.19h14v.s14.d3d7f9b33076 from=translated src=- shape=421a22aa vocab=60e26f9c
+-/
 theorem physical_shear_motion_bound
     {B B₁ E : ℝ → Space →L[ℝ] Space} {m v : ℝ → Space}
     {c t₀ a ε Θ G d β : ℝ} {S : Set ℝ}

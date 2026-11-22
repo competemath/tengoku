@@ -45,7 +45,9 @@ def ofExpr : Expr → Option QPoly
   | .inv (.const q) => if q = 0 then none else some (constant q⁻¹)
   | _ => none
 
-/-- Successful polynomial recognition preserves real semantics. -/
+/-- Successful polynomial recognition preserves real semantics.
+@isnad1 id=eq.1h3v.s4.7e5240aff99a from=translated src=- shape=cf837f58 vocab=8c250a4c
+-/
 theorem ofExpr_correct {e : Expr} {p : QPoly} (h : ofExpr e = some p) (x : ℝ) :
     Expr.eval (fun _ => x) e = Expr.eval (fun _ => x) p.toExpr := by
   induction e generalizing p with
@@ -130,7 +132,9 @@ def checkExactIntegral (e : Expr) (a b value : ℚ) : Bool :=
   | some p => decide (p.integralRat a b = value)
   | none => false
 
-/-- Golden theorem for exact rational-polynomial integration certificates. -/
+/-- Golden theorem for exact rational-polynomial integration certificates.
+@isnad1 id=eq.1h4v.s5.7f772daf52d6 from=translated src=- shape=94cf5e07 vocab=057523db
+-/
 theorem integral_eq_of_check (e : Expr) (a b value : ℚ)
     (hcheck : checkExactIntegral e a b value = true) :
     (∫ x in (a : ℝ)..(b : ℝ), Expr.eval (fun _ => x) e) = (value : ℝ) := by

@@ -256,6 +256,7 @@ noncomputable def Real.scaledDotProductAttention (Q K V : List (List ℝ)) (d_k 
 
     If query q is bounded by interval q_I, and keys K are bounded by K_I,
     then the attention weights (after softmax) are bounded by the computed intervals.
+@isnad1 id=other.2h6v.s6.d6222fab58fc from=translated src=- shape=bca302db vocab=bd29d957
 -/
 theorem mem_attentionWeights {q_real : List ℝ} {K_real : List (List ℝ)}
     {q : IntervalVector} {K : List IntervalVector}
@@ -277,6 +278,7 @@ theorem mem_attentionWeights {q_real : List ℝ} {K_real : List (List ℝ)}
 
     If Q, K, V real matrices are bounded element-wise by interval matrices Q_I, K_I, V_I,
     then the output of attention is bounded by scaledDotProductAttention Q_I K_I V_I.
+@isnad1 id=other.3h8v.s6.0d5f2f07057d from=translated src=- shape=b41090e2 vocab=875574d0
 -/
 theorem mem_scaledDotProductAttention
     {Q_real K_real V_real : List (List ℝ)}

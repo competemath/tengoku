@@ -50,7 +50,9 @@ noncomputable def expRemainderBound (domain : IntervalRat) (n : ℕ) : ℚ :=
   let xBound := r ^ (n + 1)
   expBound * xBound / (Nat.factorial (n + 1) : ℚ)
 
-/-- Remainder bound for exp is nonnegative -/
+/-- Remainder bound for exp is nonnegative
+@isnad1 id=le.0h2v.s3.b793cff6440c from=translated src=- shape=0d4521f5 vocab=8fe5dd8a
+-/
 theorem expRemainderBound_nonneg (domain : IntervalRat) (n : ℕ) :
     0 ≤ expRemainderBound domain n := by
   unfold expRemainderBound
@@ -119,7 +121,9 @@ noncomputable def logRemainderBound (domain : IntervalRat) (c : ℚ) (n : ℕ)
     (logc_error : ℚ) : ℚ :=
   logLagrangeRemainder domain c n + logc_error
 
-/-- Remainder bound for log is nonnegative (when domain is positive). -/
+/-- Remainder bound for log is nonnegative (when domain is positive).
+@isnad1 id=le.3h4v.s5.58753eccb125 from=translated src=- shape=d34d29a0 vocab=d9bab98e
+-/
 theorem logRemainderBound_nonneg (domain : IntervalRat) (c : ℚ) (n : ℕ)
     (logc_error : ℚ) (_hc : c > 0) (herr : logc_error ≥ 0) (hdom : domain.lo > 0) :
     0 ≤ logRemainderBound domain c n logc_error := by
@@ -207,7 +211,9 @@ private theorem mem_Icc_of_mem_interval {z : ℝ} {J : IntervalRat} (hz : z ∈ 
 /-! ### Correctness theorems -/
 
 /-- expTaylorPoly evaluates to the standard Taylor sum for exp at 0.
-    This connects our rational polynomial to Mathlib's Taylor series. -/
+    This connects our rational polynomial to Mathlib's Taylor series.
+@isnad1 id=eq.0h2v.s7.37db0dcdd094 from=translated src=- shape=10b20958 vocab=e31bca3e
+-/
 theorem expTaylorPoly_aeval_eq (n : ℕ) (z : ℝ) :
     (Polynomial.aeval z (expTaylorPoly n) : ℝ) =
       ∑ i ∈ Finset.range (n + 1), (iteratedDeriv i Real.exp 0 / i.factorial) * z ^ i := by
@@ -225,7 +231,9 @@ theorem expTaylorPoly_aeval_eq (n : ℕ) (z : ℝ) :
   simp only [eq_ratCast, Rat.cast_inv, Rat.cast_natCast]
 
 /-- exp z ∈ (tmExp J n).evalSet z for all z in J.
-    Uses taylor_remainder_bound with f = Real.exp, M = exp(max of interval). -/
+    Uses taylor_remainder_bound with f = Real.exp, M = exp(max of interval).
+@isnad1 id=mem.1h3v.s4.67e435983086 from=translated src=- shape=6ef91c96 vocab=8797dfe7
+-/
 theorem tmExp_correct (J : IntervalRat) (n : ℕ) :
     ∀ z : ℝ, z ∈ J → Real.exp z ∈ (tmExp J n).evalSet z := by
   intro z hz
@@ -318,7 +326,9 @@ theorem tmExp_correct (J : IntervalRat) (n : ℕ) :
   · simp only [hr_def, sub_zero]; ring_nf
 
 /-- Helper lemma: log(c) is within logc_error of logc_approx when logc_interval
-    is computed from logInterval applied to a singleton interval containing c. -/
+    is computed from logInterval applied to a singleton interval containing c.
+@isnad1 id=other.1h1v.s6.8ecf85237ecc from=translated src=- shape=2eec7a6c vocab=76f4fe2d
+-/
 theorem log_approx_error_bound {c : ℚ} (hc_pos : 0 < c) :
     let c_interval : IntervalRat.IntervalRatPos :=
       { toIntervalRat := IntervalRat.singleton c
@@ -343,7 +353,9 @@ theorem log_approx_error_bound {c : ℚ} (hc_pos : 0 < c) :
     linarith
   }
 
-/-- The Taylor remainder for log at center c is bounded by the Lagrange form. -/
+/-- The Taylor remainder for log at center c is bounded by the Lagrange form.
+@isnad1 id=le.4h4v.s7.c287eadf0b07 from=translated src=- shape=5b2acc92 vocab=e405f049
+-/
 theorem log_taylor_remainder_bound' (J : IntervalRat) (c : ℚ) (n : ℕ) (z : ℝ)
     (hpos : J.lo > 0) (hc_lo : (J.lo : ℝ) ≤ c) (hc_hi : (c : ℝ) ≤ J.hi)
     (hz : z ∈ J) :
@@ -488,7 +500,9 @@ theorem log_taylor_remainder_bound' (J : IntervalRat) (c : ℚ) (n : ℕ) (z : �
 
   exact le_trans hTaylor' hbound
 
-/-- log z ∈ (tmLog J n).evalSet z for all z in J when J.lo > 0. -/
+/-- log z ∈ (tmLog J n).evalSet z for all z in J when J.lo > 0.
+@isnad1 id=mem.2h4v.s5.421cf7c644b8 from=translated src=- shape=3d84dddb vocab=9f70b02b
+-/
 theorem tmLog_correct (J : IntervalRat) (n : ℕ)
     (tm : TaylorModel) (h : tmLog J n = some tm) :
     ∀ z : ℝ, z ∈ J → Real.log z ∈ tm.evalSet z := by

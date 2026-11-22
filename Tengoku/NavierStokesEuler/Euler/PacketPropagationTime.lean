@@ -14,23 +14,35 @@ def scaledTime (t₀ a ε t : ℝ) : ℝ := (a/ε)*(t-t₀)
 
 def physicalProfile (Z : ℝ → ℝ) (t₀ a ε t : ℝ) : ℝ := Z (scaledTime t₀ a ε t)
 
+/--
+@isnad1 id=eq.2h4v.s5.d0753c356e1a from=translated src=- shape=f447f574 vocab=497b2455
+-/
 theorem physicalTime_scaledTime {t₀ a ε t : ℝ} (ha : a ≠ 0) (hε : ε ≠ 0) :
     physicalTime t₀ a ε (scaledTime t₀ a ε t) = t := by
   unfold physicalTime scaledTime
   field_simp
   ring
 
+/--
+@isnad1 id=eq.2h4v.s5.6f4e105f93e7 from=translated src=- shape=f447f574 vocab=497b2455
+-/
 theorem scaledTime_physicalTime {t₀ a ε τ : ℝ} (ha : a ≠ 0) (hε : ε ≠ 0) :
     scaledTime t₀ a ε (physicalTime t₀ a ε τ) = τ := by
   unfold physicalTime scaledTime
   field_simp
   ring
 
+/--
+@isnad1 id=strictmo.2h3v.s5.d48a2b139c43 from=translated src=- shape=9a418e98 vocab=cc2b6c91
+-/
 theorem scaledTime_strictMono {t₀ a ε : ℝ} (ha : 0 < a) (hε : 0 < ε) :
     StrictMono (scaledTime t₀ a ε) := by
   intro s t hst
   exact mul_lt_mul_of_pos_left (sub_lt_sub_right hst t₀) (div_pos ha hε)
 
+/--
+@isnad1 id=mem.3h5v.s6.2efb2c5425bf from=translated src=- shape=51891cb6 vocab=0b9a78eb
+-/
 theorem scaledTime_mem {t₀ a ε T t : ℝ} (ha : 0 < a) (hε : 0 < ε)
     (ht : t ∈ Icc t₀ (physicalTime t₀ a ε T)) :
     scaledTime t₀ a ε t ∈ Icc 0 T := by
@@ -41,6 +53,9 @@ theorem scaledTime_mem {t₀ a ε T t : ℝ} (ha : 0 < a) (hε : 0 < ε)
   rw [scaledTime_physicalTime (ne_of_gt ha) (ne_of_gt hε)] at hr
   exact ⟨hl, hr⟩
 
+/--
+@isnad1 id=continuo.3h5v.s6.7d19f4f1b239 from=translated src=- shape=97af2779 vocab=a7c18e20
+-/
 theorem physicalProfile_continuousOn {Z : ℝ → ℝ} {t₀ a ε T : ℝ}
     (ha : 0 < a) (hε : 0 < ε) (hZ : ContinuousOn Z (Icc 0 T)) :
     ContinuousOn (physicalProfile Z t₀ a ε) (Icc t₀ (physicalTime t₀ a ε T)) := by
@@ -50,6 +65,9 @@ theorem physicalProfile_continuousOn {Z : ℝ → ℝ} {t₀ a ε T : ℝ}
   · intro t ht
     exact scaledTime_mem ha hε ht
 
+/--
+@isnad1 id=lt.4h6v.s6.ce0cf30ae80c from=translated src=- shape=54e67073 vocab=7eda785a
+-/
 theorem physicalProfile_positive {Z : ℝ → ℝ} {t₀ a ε T : ℝ}
     (ha : 0 < a) (hε : 0 < ε) (hZ : ∀ t ∈ Icc 0 T, 0 < Z t) :
     ∀ t ∈ Icc t₀ (physicalTime t₀ a ε T), 0 < physicalProfile Z t₀ a ε t := by
@@ -57,7 +75,9 @@ theorem physicalProfile_positive {Z : ℝ → ℝ} {t₀ a ε T : ℝ}
   exact hZ _ (scaledTime_mem ha hε ht)
 
 /-- This is only the exact change of the time variable in an already
-proved propagator estimate; its profile ratio is preserved. -/
+proved propagator estimate; its profile ratio is preserved.
+@isnad1 id=le.6h10v.s7.2b9742702e30 from=translated src=- shape=c4e9da1b vocab=bb6515f2
+-/
 theorem physical_propagation_of_scaled {E : Type*} [NormedAddCommGroup E]
     (w : ℝ → E) (Z : ℝ → ℝ) {t₀ a ε T C : ℝ}
     (ha : 0 < a) (hε : 0 < ε)

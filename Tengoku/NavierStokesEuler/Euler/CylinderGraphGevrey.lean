@@ -20,11 +20,17 @@ variable {W : Type*} [NormedAddCommGroup W] [NormedSpace ℝ W] [CompleteSpace W
 
 def graphFactor (k : ℝ) (m : Vector3) : ℝ := 1+|k| * ‖m‖
 
+/--
+@isnad1 id=le.0h2v.s4.92cc1a770d83 from=translated src=- shape=25b8bdde vocab=3721f97a
+-/
 theorem graphFactor_nonneg (k : ℝ) (m : Vector3) : 0 ≤ graphFactor k m := by
   unfold graphFactor
   positivity
 
 omit [CompleteSpace W] in
+/--
+@isnad1 id=le.1h6v.s11.e9fc96d9cc93 from=translated src=- shape=58fef6d1 vocab=a3ef56ca
+-/
 theorem norm_graph_derivative_le (f : LiftTangent → W) (hf : ContDiff ℝ ∞ f)
     (k : ℝ) (m : Vector3) (n : ℕ) (x : Vector3) :
     ‖iteratedFDeriv ℝ n (f ∘ graphMap k m) x‖ ≤
@@ -40,6 +46,9 @@ theorem norm_graph_derivative_le (f : LiftTangent → W) (hf : ContDiff ℝ ∞ 
     (norm_nonneg _)
 
 omit [CompleteSpace W] in
+/--
+@isnad1 id=le.2h8v.s11.171b9fd060d4 from=translated src=- shape=f59fb709 vocab=8c010a47
+-/
 theorem graph_sup_bound (f : LiftTangent → W) (hf : ContDiff ℝ ∞ f)
     (k : ℝ) (m : Vector3) (B R : ℝ)
     (hb : ∀ n z, ‖iteratedFDeriv ℝ n f z‖ ≤ B*R^n*(n.factorial : ℝ)^2)
@@ -55,6 +64,9 @@ variable (P : ℝ) [Fact (0 < P)] (f : LiftTangent → W)
   (hf : ContDiff ℝ ∞ f)
 
 include hperiod hf in
+/--
+@isnad1 id=and.6h8v.s14.a124ba7cc648 from=translated src=- shape=a600eeb6 vocab=48888e7f
+-/
 theorem graph_evaluated_tensor_bound (k : ℝ) (m : Vector3) (C R : ℝ)
     (hC : 0 ≤ C) (hR : 0 ≤ R)
     (hLp : ∀ n, MemLp (fun q => jetSeries P f q n) 2 (liftMeasure P))
@@ -84,6 +96,9 @@ theorem graph_evaluated_tensor_bound (k : ℝ) (m : Vector3) (C R : ℝ)
     (by simp only [majorant,Nat.add_zero]; ring)
 
 include hperiod hf in
+/--
+@isnad1 id=and.6h8v.s13.e48cb8860e34 from=translated src=- shape=db5a605f vocab=6baec426
+-/
 theorem graph_Lp_bound (k : ℝ) (m : Vector3) (C R : ℝ)
     (hC : 0 ≤ C) (hR : 0 ≤ R)
     (hLp : ∀ n, MemLp (fun q => jetSeries P f q n) 2 (liftMeasure P))

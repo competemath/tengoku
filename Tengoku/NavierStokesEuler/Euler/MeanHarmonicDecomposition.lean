@@ -21,6 +21,9 @@ def WeakHarmonicOn (U : Set Space) (u : EulerMeanSolenoidal.L2) : Prop :=
   ∀ φ : Space → Space, HasCompactSupport φ → ContDiff ℝ ∞ φ →
     tsupport φ ⊆ U → (∫ x, ⟪u x, Δ φ x⟫_ℝ) = 0
 
+/--
+@isnad1 id=eq.0h2v.s13.dc0e50868012 from=translated src=- shape=ac43022c vocab=52b3a2cd
+-/
 theorem l2_test_pairing (u : L2) (f : Test) :
     ⟪u, testValue f⟫_ℝ = ∫ x, ⟪u x, (f : Space → Space) x⟫_ℝ := by
   rw [MeasureTheory.L2.inner_def]
@@ -32,13 +35,22 @@ def divergenceGradient (f : Test) : L2 :=
   EulerMeanSolenoidal.testGradient (divergence (f : Space → Space))
     (divergence_compact f f.smooth f.compact) (divergence_smooth f f.smooth)
 
+/--
+@isnad1 id=eventual.0h1v.s12.e54b7a83ca19 from=translated src=- shape=35c6dd53 vocab=14f884d3
+-/
 theorem divergenceGradient_ae (f : Test) :
     divergenceGradient f =ᵐ[volume] gradient (divergence (f : Space → Space)) :=
   EulerMeanSolenoidal.testGradient_ae _ _ _
 
+/--
+@isnad1 id=mem.0h1v.s14.255695ade7f6 from=translated src=- shape=86238ede vocab=07dbcd95
+-/
 theorem divergenceGradient_mem (f : Test) : divergenceGradient f ∈ gradientSpace :=
   testGradient_mem _ _ _
 
+/--
+@isnad1 id=eq.0h1v.s14.c2c377db0672 from=translated src=- shape=0ecca779 vocab=1d2a38bf
+-/
 theorem testValue_curlcurl (f : Test) :
     testValue (curlTest (curlTest f)) = divergenceGradient f - testValue (laplacianTest f) := by
   apply Lp.ext
@@ -51,6 +63,9 @@ theorem testValue_curlcurl (f : Test) :
   rw [hg, hl, vectorCurl_vectorCurl f f.smooth]
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s15.e15b59f56b30 from=translated src=- shape=a9f17be5 vocab=6c89702c
+-/
 theorem solenoidal_curlcurl_pairing (z : L2) (hz : z ∈ solenoidalSpace) (f : Test) :
     ⟪z, testValue (curlTest (curlTest f))⟫_ℝ = -⟪z, testValue (laplacianTest f)⟫_ℝ := by
   rw [testValue_curlcurl, inner_sub_right]
@@ -59,6 +74,9 @@ theorem solenoidal_curlcurl_pairing (z : L2) (hz : z ∈ solenoidalSpace) (f : T
     exact hz (divergenceGradient f) (divergenceGradient_mem f)
   rw [hg, zero_sub]
 
+/--
+@isnad1 id=eq.2h3v.s11.c042e6443dc5 from=translated src=- shape=f4d86262 vocab=c682836d
+-/
 theorem cutoff_curlTest_eq (χ : Cutoff) (U : Set Space)
     (hχ : ∀ x ∈ U, χ.field x = 1) (f : Test) (hf : tsupport (f : Space → Space) ⊆ U) :
     (fun x => χ.field x • (curlTest f : Space → Space) x) = vectorCurl (f : Space → Space) := by
@@ -71,7 +89,9 @@ theorem cutoff_curlTest_eq (χ : Cutoff) (U : Set Space)
     change χ.field x • vectorCurl (f : Space → Space) x = _
     rw [image_eq_zero_of_notMem_tsupport hs, smul_zero]
 
-/-- The actual curl tensor of any homogeneous potential remains solenoidal. -/
+/-- The actual curl tensor of any homogeneous potential remains solenoidal.
+@isnad1 id=mem.0h1v.s18.155e902497ea from=translated src=- shape=1612efa8 vocab=107c2a05
+-/
 theorem homogeneous_curl_solenoidal (u : homogeneousSpace) :
     curlTensor (u : GradientTensor) ∈ solenoidalSpace := by
   refine homogeneousGradient_dense.induction_on u ?_ ?_
@@ -82,10 +102,15 @@ theorem homogeneous_curl_solenoidal (u : homogeneousSpace) :
     rw [curlTensor_test_eq]
     exact curl_mem_solenoidal _ ((contDiff_piLp 2).mp f.smooth) (test_memLp (curlTest f))
 
+/--
+@isnad1 id=mem.0h2v.s15.2cbc3f6f77af from=translated src=- shape=755866bc vocab=7c172cd7
+-/
 theorem harmonicPart_solenoidal (χ : Cutoff) (z : L2) :
     harmonicPart χ z ∈ solenoidalSpace := homogeneous_curl_solenoidal (weakPotential χ z)
 
-/-- The source's `z - w` is genuinely weakly harmonic where the actual cutoff equals one. -/
+/-- The source's `z - w` is genuinely weakly harmonic where the actual cutoff equals one.
+@isnad1 id=weakharm.2h3v.s15.ffc82bd2ff5b from=translated src=- shape=4c9de9fc vocab=5d274cfa
+-/
 theorem weakHarmonicOn_sub_harmonicPart (χ : Cutoff) (U : Set Space) (z : L2)
     (hz : z ∈ solenoidalSpace) (hχ : ∀ x ∈ U, χ.field x = 1) :
     WeakHarmonicOn U (z - harmonicPart χ z) := by
@@ -104,7 +129,9 @@ theorem weakHarmonicOn_sub_harmonicPart (χ : Cutoff) (U : Set Space) (z : L2)
     linarith
   exact (l2_test_pairing (z - harmonicPart χ z) (laplacianTest f)).symm.trans hi
 
-/-- A quantitative decomposition constructed from the cutoff and the given solenoidal field. -/
+/-- A quantitative decomposition constructed from the cutoff and the given solenoidal field.
+@isnad1 id=ex.2h3v.s19.df1e78fff364 from=translated src=- shape=b2d1d67d vocab=381b7a9e
+-/
 theorem exists_weak_harmonic_decomposition (χ : Cutoff) (U : Set Space) (z : L2)
     (hz : z ∈ solenoidalSpace) (hχ : ∀ x ∈ U, χ.field x = 1) :
     ∃ w : L2, w = harmonicPart χ z ∧ w ∈ solenoidalSpace ∧

@@ -19,6 +19,9 @@ def shiftUp (M : ℕ) (u : ℕ → V) : ℕ → V
 def assemble (M : ℕ) (u c : ℕ → V) (n : ℕ) : V :=
   truncate M u n + shiftUp M c n
 
+/--
+@isnad1 id=eq.0h4v.s6.f66253e30058 from=translated src=- shape=101b7e11 vocab=9bf7b011
+-/
 theorem evaluate_shiftUp (M : ℕ) (κ : ℝ) (u : ℕ → V) :
     evaluate (M+1) κ (shiftUp M u) = κ • evaluate M κ u := by
   unfold evaluate
@@ -28,18 +31,26 @@ theorem evaluate_shiftUp (M : ℕ) (κ : ℝ) (u : ℕ → V) :
   intro i hi
   rw [truncate_of_le M i u (by have h := mem_range.mp hi; omega), pow_succ']
 
+/--
+@isnad1 id=eq.0h5v.s7.174bcd04df0d from=translated src=- shape=7c5989ba vocab=a854a6df
+-/
 theorem evaluate_assemble (M : ℕ) (κ : ℝ) (u c : ℕ → V) :
     evaluate (M+1) κ (assemble M u c) = evaluate M κ u + κ • evaluate M κ c := by
   change evaluate (M+1) κ (fun n => truncate M u n+shiftUp M c n) = _
   rw [evaluate_add, evaluate_shiftUp, evaluate_truncate_extend M (M+1) (by omega)]
 
+/--
+@isnad1 id=eq.1h4v.s7.0d0c95de6241 from=translated src=- shape=3390f8ce vocab=0c83c59a
+-/
 theorem evaluate_from_one (M : ℕ) (κ : ℝ) (u : ℕ → V) (hu : u 0=0) :
     evaluate M κ u = ∑ i ∈ range M, κ^(i+1) • u (i+1) := by
   unfold evaluate
   rw [sum_range_succ']
   simp only [hu, smul_zero, add_zero]
 
-/-- Equation (13), with the extra final corrector retained rather than dropped. -/
+/-- Equation (13), with the extra final corrector retained rather than dropped.
+@isnad1 id=eq.2h5v.s8.2dba707ed48b from=translated src=- shape=692ef53e vocab=12260311
+-/
 theorem evaluate_assemble_from_one (M : ℕ) (κ : ℝ) (u c : ℕ → V)
     (hu : u 0=0) (hc : c 0=0) :
     evaluate (M+1) κ (assemble M u c) =
@@ -51,11 +62,17 @@ theorem evaluate_assemble_from_one (M : ℕ) (κ : ℝ) (u c : ℕ → V)
   simp only [smul_smul, show i+2=(i+1)+1 by omega, pow_succ']
 
 omit [Module ℝ V] in
+/--
+@isnad1 id=eq.1h4v.s6.c12aa02a681e from=translated src=- shape=3b32d1dd vocab=a4649574
+-/
 theorem assemble_zero (M : ℕ) (u c : ℕ → V) (hu : u 0=0) :
     assemble M u c 0 = 0 := by
   simp [assemble, shiftUp, hu]
 
 omit [Module ℝ V] in
+/--
+@isnad1 id=eq.2h5v.s6.d96650b7aaf6 from=translated src=- shape=02af243c vocab=1bf09c86
+-/
 theorem assemble_interior (M n : ℕ) (hn : 1 ≤ n) (hMn : n ≤ M) (u c : ℕ → V) :
     assemble M u c n = u n+c (n-1) := by
   obtain ⟨j, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (by omega : n ≠ 0)
@@ -63,12 +80,18 @@ theorem assemble_interior (M n : ℕ) (hn : 1 ≤ n) (hMn : n ≤ M) (u c : ℕ 
     truncate_of_le M j c (by omega), Nat.add_sub_cancel]
 
 omit [Module ℝ V] in
+/--
+@isnad1 id=eq.0h4v.s5.e705b8c96065 from=translated src=- shape=2b198fb4 vocab=ce1af17c
+-/
 theorem assemble_last (M : ℕ) (u c : ℕ → V) :
     assemble M u c (M+1) = c M := by
   simp only [assemble, shiftUp, truncate_of_gt M (M+1) u (by omega),
     truncate_of_le M M c le_rfl, zero_add]
 
 omit [Module ℝ V] in
+/--
+@isnad1 id=eq.1h5v.s5.282dd35a485c from=translated src=- shape=ab28fd5c vocab=7e21a213
+-/
 theorem assemble_above (M n : ℕ) (hn : M+1 < n) (u c : ℕ → V) :
     assemble M u c n = 0 := by
   obtain ⟨j, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (by omega : n ≠ 0)

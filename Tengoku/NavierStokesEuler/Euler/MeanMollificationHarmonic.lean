@@ -11,6 +11,9 @@ namespace EulerMeanHarmonic
 open MeasureTheory InnerProductSpace Laplacian EulerSmoothLimit EulerVectorCalculus
 open scoped ContDiff Convolution
 
+/--
+@isnad1 id=eq.3h3v.s10.ec0e9691b32e from=translated src=- shape=e593daf3 vocab=3a555eb3
+-/
 theorem partialDerivative_convolution_right (f g : Space → ℝ)
     (hf : LocallyIntegrable f volume) (hg : ContDiff ℝ ∞ g) (hgc : HasCompactSupport g)
     (i : Fin 3) :
@@ -23,7 +26,9 @@ theorem partialDerivative_convolution_right (f g : Space → ℝ)
   exact convolution_precompR_apply (ContinuousLinearMap.lsmul ℝ ℝ) hf (hgc.fderiv ℝ)
     (hg.fderiv_right (m := ∞) (by simp)).continuous x (EuclideanSpace.single i 1)
 
-/-- Two genuine differentiations under the compact-kernel convolution integral. -/
+/-- Two genuine differentiations under the compact-kernel convolution integral.
+@isnad1 id=eq.3h2v.s10.697190458abc from=translated src=- shape=c151c34b vocab=389965a9
+-/
 theorem laplacian_convolution_right (f g : Space → ℝ)
     (hf : LocallyIntegrable f volume) (hg : ContDiff ℝ ∞ g) (hgc : HasCompactSupport g) :
     Δ (f ⋆[ContinuousLinearMap.lsmul ℝ ℝ, volume] g) =
@@ -46,13 +51,18 @@ theorem laplacian_convolution_right (f g : Space → ℝ)
       (ContinuousLinearMap.lsmul ℝ ℝ) hf (contDiff_partialDerivative _ (hd i) i).continuous x
   exact (integral_finsetSum Finset.univ (fun i _ => hi i)).symm
 
+/--
+@isnad1 id=eq.0h3v.s8.ae23b9485444 from=translated src=- shape=b2ad3dcf vocab=5358a5ce
+-/
 theorem laplacian_comp_add_left (g : Space → ℝ) (a x : Space) :
     Δ (fun y => g (a+y)) x = Δ g (a+x) := by
   rw [laplacian_eq_iteratedFDeriv_orthonormalBasis _ (EuclideanSpace.basisFun (Fin 3) ℝ),
     laplacian_eq_iteratedFDeriv_orthonormalBasis _ (EuclideanSpace.basisFun (Fin 3) ℝ)]
   simp only [iteratedFDeriv_comp_add_left]
 
-/-- Reflection contributes two minus signs to the scalar Laplacian. -/
+/-- Reflection contributes two minus signs to the scalar Laplacian.
+@isnad1 id=eq.1h3v.s8.d60af9e38df5 from=translated src=- shape=823e0903 vocab=4819ef2e
+-/
 theorem laplacian_comp_const_sub (g : Space → ℝ) (hg : ContDiff ℝ ∞ g) (a x : Space) :
     Δ (fun y => g (a-y)) x = Δ g (a-x) := by
   have h := laplacian_comp_const_smul (fun y => g (a+y))
@@ -60,7 +70,9 @@ theorem laplacian_comp_const_sub (g : Space → ℝ) (hg : ContDiff ℝ ∞ g) (
   rw [laplacian_comp_add_left] at h
   simpa only [neg_one_smul, neg_one_sq, one_mul, sub_eq_add_neg] using h
 
-/-- A compact kernel contained in the weak-harmonic region produces a classical harmonic value. -/
+/-- A compact kernel contained in the weak-harmonic region produces a classical harmonic value.
+@isnad1 id=eq.5h4v.s10.9ddc5cc58dd5 from=translated src=- shape=88711eb9 vocab=990e17cd
+-/
 theorem convolution_harmonic_at (U : Set Space) (f g : Space → ℝ)
     (hf : LocallyIntegrable f volume) (hh : ScalarWeakHarmonicOn U f)
     (hg : ContDiff ℝ ∞ g) (hgc : HasCompactSupport g) (x : Space)
@@ -75,6 +87,9 @@ theorem convolution_harmonic_at (U : Set Space) (f g : Space → ℝ)
   have H := hh (fun y => g (x-y)) hc hs hsupport
   simpa only [laplacian_comp_const_sub g hg] using H
 
+/--
+@isnad1 id=le.0h2v.s9.b0d9bc917f24 from=translated src=- shape=b794e09c vocab=de4fd2e5
+-/
 theorem normed_reflected_support (φ : ContDiffBump (0 : Space)) (x : Space) :
     tsupport (fun y => φ.normed volume (x-y)) ⊆ Metric.closedBall x φ.rOut := by
   apply closure_minimal _ Metric.isClosed_closedBall
@@ -86,7 +101,9 @@ theorem normed_reflected_support (φ : ContDiffBump (0 : Space)) (x : Space) :
   rw [norm_sub_rev]
   exact hnorm.le
 
-/-- Actual compact mollification turns weak harmonicity into classical harmonicity in the interior. -/
+/-- Actual compact mollification turns weak harmonicity into classical harmonicity in the interior.
+@isnad1 id=eq.4h3v.s9.74e3df4bcb06 from=translated src=- shape=873373a4 vocab=3756ccea
+-/
 theorem scalarMollification_harmonic (φ : ContDiffBump (0 : Space))
     (f : Space → ℝ) (hf : MemLp f 2 volume)
     (hh : ScalarWeakHarmonicOn (Metric.ball (0 : Space) 1) f)
@@ -113,6 +130,9 @@ theorem scalarMollification_harmonic (φ : ContDiffBump (0 : Space))
   simp only [Metric.mem_ball, Metric.mem_closedBall, dist_zero_right] at hx hd htriangle ⊢
   linarith
 
+/--
+@isnad1 id=eq.3h3v.s9.f353ea6cbebd from=translated src=- shape=ec425413 vocab=2f2287d4
+-/
 theorem interiorMollifier_harmonic (f : Space → ℝ) (hf : MemLp f 2 volume)
     (hh : ScalarWeakHarmonicOn (Metric.ball (0 : Space) 1) f) (n : ℕ) :
     ∀ x ∈ Metric.ball (0 : Space) (1/2 : ℝ),

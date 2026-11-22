@@ -27,12 +27,18 @@ private local instance : NormedSpace ℝ (Space →ᵇ (Space →L[ℝ] V)) := i
 private local instance : NormedAddCommGroup C(Icc (0 : ℝ) T,Space →ᵇ (Space →L[ℝ] V)) := inferInstance
 private local instance : NormedSpace ℝ C(Icc (0 : ℝ) T,Space →ᵇ (Space →L[ℝ] V)) := inferInstance
 
+/--
+@isnad1 id=le.0h4v.s11.ba6b3d259a6d from=translated src=- shape=9ff61d9d vocab=bec58205
+-/
 theorem coefficient_label_norm (A : SmoothCoefficientPath (Icc (0 : ℝ) T) V) (x : Space) :
     ‖pathEvaluation x A.field‖ ≤ ‖A.field‖ := by
   apply (ContinuousMap.norm_le _ (norm_nonneg _)).mpr
   intro t
   exact ((A.field t).norm_coe_le_norm x).trans (A.field.norm_coe_le_norm t)
 
+/--
+@isnad1 id=le.0h6v.s12.5d1791da002f from=translated src=- shape=71b05f22 vocab=e7b3f3f8
+-/
 theorem coefficient_difference (A : SmoothCoefficientPath (Icc (0 : ℝ) T) V)
     (t : Icc (0 : ℝ) T) (x y : Space) :
     ‖A.field t x-A.field t y‖ ≤ ‖A.derivative.field‖*‖x-y‖ := by
@@ -42,6 +48,9 @@ theorem coefficient_difference (A : SmoothCoefficientPath (Icc (0 : ℝ) T) V)
   rw [← A.derivativeField_eq]
   exact ((A.derivative.field t).norm_coe_le_norm z).trans (A.derivative.field.norm_coe_le_norm t)
 
+/--
+@isnad1 id=le.0h5v.s13.c874e957ddbd from=translated src=- shape=db40931a vocab=74fe83a4
+-/
 theorem coefficient_label_difference (A : SmoothCoefficientPath (Icc (0 : ℝ) T) V)
     (x y : Space) :
     ‖pathEvaluation x A.field-pathEvaluation y A.field‖ ≤ ‖A.derivative.field‖*‖x-y‖ := by

@@ -38,7 +38,9 @@ def growthBudgetSlope (c L : ℝ) : ℝ := 2*L/(2*c^2)
 
 variable (period : ℝ) [Fact (0 < period)]
 
-/-- Uniform actual coefficient bounds control the constant growth term. -/
+/-- Uniform actual coefficient bounds control the constant growth term.
+@isnad1 id=le.2h6v.s15.c52eee10146b from=translated src=- shape=ee58da85 vocab=825ce1a5
+-/
 theorem growthBase_budget (K : SmoothCoefficient period) (K' : LiftL2 period →L[ℝ] LiftL2 period)
     (c D L : ℝ) (hD : ‖K'‖ ≤ D) (hL : (K.firstBound : ℝ) ≤ L) :
     growthBase period K K' c ≤ growthBudgetBase c D L := by
@@ -51,7 +53,9 @@ theorem growthBase_budget (K : SmoothCoefficient period) (K' : LiftL2 period →
     _ ≤ _ := add_le_add hD hh
 
 omit [Fact (0 < period)] in
-/-- The actual transport metric slope has a uniform bound for the permitted lifted directions. -/
+/-- The actual transport metric slope has a uniform bound for the permitted lifted directions.
+@isnad1 id=le.3h6v.s6.6ef259c6ae34 from=translated src=- shape=9550d1d3 vocab=b085644e
+-/
 theorem growthSlope_budget (K : SmoothCoefficient period) (κ : ℝ) (m : Vector3)
     (c L : ℝ) (hκ : |κ| ≤ 1) (hm : ‖m‖ ≤ 1) (hL : (K.firstBound : ℝ) ≤ L) :
     growthSlope period K κ m c ≤ growthBudgetSlope c L := by
@@ -61,7 +65,9 @@ theorem growthSlope_budget (K : SmoothCoefficient period) (κ : ℝ) (m : Vector
   apply div_le_div_of_nonneg_right _ (mul_nonneg (by norm_num) (sq_nonneg c))
   nlinarith only [h]
 
-/-- Uniform actual coefficient budgets majorize the complete viscous growth coefficient. -/
+/-- Uniform actual coefficient budgets majorize the complete viscous growth coefficient.
+@isnad1 id=le.5h10v.s15.ed3e4a488cb0 from=translated src=- shape=e65fde55 vocab=3064566d
+-/
 theorem viscousGrowth_budget (K : SmoothCoefficient period) (K' : LiftL2 period →L[ℝ] LiftL2 period)
     (κ : ℝ) (m : Vector3) (c ν D L : ℝ) (B : NNReal)
     (hν : ν ≤ 1) (hκ : |κ| ≤ 1) (hm : ‖m‖ ≤ 1)
@@ -71,7 +77,9 @@ theorem viscousGrowth_budget (K : SmoothCoefficient period) (K' : LiftL2 period 
     (add_le_add (growthBase_budget period K K' c D L hD hL)
       (mul_le_mul_of_nonneg_right (growthSlope_budget period K κ m c L hκ hm hL) B.coe_nonneg))
 
-/-- The metric PDE growth is bounded by a fixed affine function of the actual metric energy. -/
+/-- The metric PDE growth is bounded by a fixed affine function of the actual metric energy.
+@isnad1 id=le.8h11v.s15.327a9a04d62e from=translated src=- shape=3cace74d vocab=4b6fcd4a
+-/
 theorem viscousGrowth_fixed_metric (K : SmoothCoefficient period) (K' : LiftL2 period →L[ℝ] LiftL2 period)
     (κ : ℝ) (m : Vector3) (c ν D L B X : ℝ) (hc : 0 < c)
     (hν : ν ≤ 1) (hκ : |κ| ≤ 1) (hm : ‖m‖ ≤ 1)

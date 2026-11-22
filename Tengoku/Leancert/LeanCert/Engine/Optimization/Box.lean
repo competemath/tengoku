@@ -77,7 +77,9 @@ def envMem (ρ : Nat → ℝ) (B : Box) : Prop :=
 
 /-- envMem implies the general IntervalEnv membership for toEnv
     NOTE: For indices beyond the box dimension, we use the default interval [0,0].
-    This means expressions should only use variables 0..B.length-1 for correct results. -/
+    This means expressions should only use variables 0..B.length-1 for correct results.
+@isnad1 id=envmem.2h2v.s5.62585685041a from=translated src=- shape=1eeea52e vocab=9e4628a6
+-/
 theorem envMem_toEnv (ρ : Nat → ℝ) (B : Box) (h : envMem ρ B)
     (hzero : ∀ i, i ≥ B.length → ρ i = 0) :
     LeanCert.Engine.envMem ρ (toEnv B) := by
@@ -138,7 +140,9 @@ def split (B : Box) (dim : Nat) : Box × Box :=
 def splitWidest (B : Box) : Box × Box :=
   split B (widestDim B)
 
-/-- Splitting preserves the number of box coordinates. -/
+/-- Splitting preserves the number of box coordinates.
+@isnad1 id=and.0h2v.s4.09da9022159e from=translated src=- shape=fb80626c vocab=9b3c5e0a
+-/
 theorem split_length_eq (B : Box) (d : Nat) :
     (split B d).1.length = B.length ∧ (split B d).2.length = B.length := by
   simp only [split]
@@ -146,7 +150,9 @@ theorem split_length_eq (B : Box) (d : Nat) :
   · constructor <;> simp only [List.length_set]
   · exact ⟨rfl, rfl⟩
 
-/-- The lower child of a split is a semantic sub-box of its parent. -/
+/-- The lower child of a split is a semantic sub-box of its parent.
+@isnad1 id=envmem.1h3v.s4.57e725f06c1c from=translated src=- shape=e572dfe2 vocab=805a8f2a
+-/
 theorem envMem_of_envMem_split (B : Box) (d : Nat) (ρ : Nat → ℝ) :
     envMem ρ (split B d).1 → envMem ρ B := by
   intro h
@@ -164,7 +170,9 @@ theorem envMem_of_envMem_split (B : Box) (d : Nat) (ρ : Nat → ℝ) :
     · exact hmem
   · exact h
 
-/-- The upper child of a split is a semantic sub-box of its parent. -/
+/-- The upper child of a split is a semantic sub-box of its parent.
+@isnad1 id=envmem.1h3v.s4.a87feacf5790 from=translated src=- shape=e572dfe2 vocab=e4b7cc56
+-/
 theorem envMem_of_envMem_split_right (B : Box) (d : Nat) (ρ : Nat → ℝ) :
     envMem ρ (split B d).2 → envMem ρ B := by
   intro h
@@ -219,13 +227,17 @@ def ofBounds (los his : List ℚ) (_h : los.length = his.length) : Box :=
 
 /-! ### Membership lemmas -/
 
-/-- If a point is in a box, its i-th coordinate is in the i-th interval -/
+/-- If a point is in a box, its i-th coordinate is in the i-th interval
+@isnad1 id=mem.1h3v.s7.d7e69305a829 from=translated src=- shape=d098f971 vocab=6b8cd0d8
+-/
 theorem coord_mem_of_mem (p : Point) (B : Box) (h : mem p B) (i : Fin B.length) :
     p[i.val]'(by obtain ⟨hlen, _⟩ := h; rw [hlen]; exact i.isLt) ∈ B[i.val]'(by exact i.isLt) := by
   obtain ⟨hlen, hmem⟩ := h
   exact hmem i
 
-/-- After splitting, any point in the original box is in one of the halves. -/
+/-- After splitting, any point in the original box is in one of the halves.
+@isnad1 id=or.2h3v.s5.01ad18d41aea from=translated src=- shape=cff3e56b vocab=4745743b
+-/
 theorem mem_split_cases (B : Box) (d : Nat) (hd : d < B.length)
     (p : Point) (hp : mem p B) :
     mem p (split B d).1 ∨ mem p (split B d).2 := by
@@ -263,7 +275,9 @@ theorem mem_split_cases (B : Box) (d : Nat) (hd : d < B.length)
       have hp_i := hp_mem ⟨i, hi_orig⟩
       convert hp_i using 2
 
-/-- Environment membership after splitting. -/
+/-- Environment membership after splitting.
+@isnad1 id=or.2h3v.s5.57c01a33fc15 from=translated src=- shape=05f69467 vocab=552926b8
+-/
 theorem envMem_split_cases (B : Box) (d : Nat) (hd : d < B.length)
     (ρ : Nat → ℝ) (hρ : envMem ρ B) :
     envMem ρ (split B d).1 ∨ envMem ρ (split B d).2 := by

@@ -135,7 +135,9 @@ def geluVector (v : IntervalVector) (prec : Int := -53) : IntervalVector :=
     Uses the 6-decimal precision bounds: 3.141592 < π < 3.141593.
     Proof outline: From 3.141592 < π < 3.141593, we get
     0.636618... < 2/π < 0.636620... and thus
-    0.797884 < √(2/π) < 0.797885 -/
+    0.797884 < √(2/π) < 0.797885
+@isnad1 id=mem.0h0v.s5.44fc0a97cefd from=translated src=- shape=2cb5c536 vocab=32aa2679
+-/
 theorem sqrt_two_div_pi_mem_interval :
     Real.sqrt (2 / Real.pi) ∈
       (⟨gelu_c1_lo, gelu_c1_lo + 1/1000000, by norm_num⟩ : IntervalRat) := by
@@ -176,7 +178,9 @@ theorem sqrt_two_div_pi_mem_interval :
     6. tanh(arg) ∈ tanhInterval arg (by mem_tanhInterval)
     7. 1 + tanh ∈ add (singleton 1) tanh_interval (by mem_add)
     8. 0.5*x ∈ scale (1/2) I (by mem_scale)
-    9. Final: 0.5*x*(1+tanh(...)) ∈ mul half_x one_plus_tanh (by mem_mul) -/
+    9. Final: 0.5*x*(1+tanh(...)) ∈ mul half_x one_plus_tanh (by mem_mul)
+@isnad1 id=mem.1h2v.s4.79339e17dbf1 from=translated src=- shape=34c11fd3 vocab=2b174141
+-/
 theorem mem_geluIntervalRat {x : ℝ} {I : IntervalRat}
     (hx : x ∈ I) :
     Real.gelu x ∈ geluIntervalRat I := by
@@ -239,6 +243,9 @@ theorem mem_geluIntervalRat {x : ℝ} {I : IntervalRat}
   rw [h_goal_eq]
   exact h_final
 
+/--
+@isnad1 id=mem.1h4v.s5.a637eca811d7 from=translated src=- shape=3a0f4eb8 vocab=3feb084d
+-/
 theorem mem_geluInterval {x : ℝ} {I : IntervalDyadic}
     (hx : x ∈ I) (prec : Int) (hprec : prec ≤ 0 := by norm_num) :
     Real.gelu x ∈ geluInterval I prec := by
@@ -350,13 +357,17 @@ end LayerNormParams
 
 /-! ### LayerNorm Helper Lemmas -/
 
-/-- Membership lemma for mulRounded -/
+/-- Membership lemma for mulRounded
+@isnad1 id=mem.2h5v.s5.bd8533bc2639 from=translated src=- shape=8e589607 vocab=064a50d5
+-/
 theorem mem_mulRounded {x y : ℝ} {I J : IntervalDyadic} (hx : x ∈ I) (hy : y ∈ J) (prec : Int) :
     x * y ∈ IntervalDyadic.mulRounded I J prec := by
   unfold IntervalDyadic.mulRounded
   exact IntervalDyadic.roundOut_contains (IntervalDyadic.mem_mul hx hy) prec
 
-/-- Membership lemma for addRounded -/
+/-- Membership lemma for addRounded
+@isnad1 id=mem.2h5v.s5.1f7e82e2f3bc from=translated src=- shape=8e589607 vocab=c8375203
+-/
 theorem mem_addRounded {x y : ℝ} {I J : IntervalDyadic} (hx : x ∈ I) (hy : y ∈ J) (prec : Int) :
     x + y ∈ IntervalDyadic.addRounded I J prec := by
   unfold IntervalDyadic.addRounded
@@ -393,7 +404,9 @@ private theorem mem_foldl_add {x : ℝ} {acc : IntervalDyadic} {xs : List ℝ} {
       have hadd_mem : x + x' ∈ IntervalDyadic.add acc I := IntervalDyadic.mem_add hx_acc hx'_mem
       exact ih hadd_mem hlen' hmem'
 
-/-- Membership lemma for sumIntervals -/
+/-- Membership lemma for sumIntervals
+@isnad1 id=mem.2h2v.s6.5a6af728a5c5 from=translated src=- shape=e1a58ca8 vocab=9c624098
+-/
 theorem mem_sumIntervals {xs : List ℝ} {Is : IntervalVector}
     (hlen : xs.length = Is.length)
     (hmem : ∀ i, i < xs.length → xs[i]! ∈ Is[i]!) :
@@ -426,7 +439,9 @@ theorem mem_sumIntervals {xs : List ℝ} {Is : IntervalVector}
 
 /-- Helper: map preserves membership for interval operations.
     Proof: (xs.map f)[i] = f(xs[i]) and (Is.map g)[i] = g(Is[i]),
-    so f(xs[i]) ∈ g(Is[i]) follows from hf applied to hmem. -/
+    so f(xs[i]) ∈ g(Is[i]) follows from hf applied to hmem.
+@isnad1 id=mem.4h5v.s7.d2aaf3e092ae from=translated src=- shape=b79914b0 vocab=bbe2af4f
+-/
 theorem mem_map_intervals {f : ℝ → ℝ} {g : IntervalDyadic → IntervalDyadic}
     {xs : List ℝ} {Is : IntervalVector}
     (hlen : xs.length = Is.length)
@@ -459,7 +474,9 @@ theorem mem_map_intervals {f : ℝ → ℝ} {g : IntervalDyadic → IntervalDyad
         have hj : j < xs'.length := by simp at hi; exact hi
         exact @ih Is' hlen' hmem' j hj
 
-/-- zipWith3 length lemma -/
+/-- zipWith3 length lemma
+@isnad1 id=eq.0h8v.s5.fca46c612f34 from=translated src=- shape=3780d508 vocab=cc887851
+-/
 theorem length_zipWith3_min {α β γ δ : Type*} (f : α → β → γ → δ) (as : List α) (bs : List β) (cs : List γ) :
     (List.zipWith3 f as bs cs).length = min (min as.length bs.length) cs.length := by
   induction as generalizing bs cs with
@@ -484,7 +501,9 @@ private theorem zipWith3_map_left {α β γ δ ε : Type*} (f : δ → β → γ
     cases bs <;> cases cs <;> simp [List.zipWith3, ih]
 
 /-- zipWith3 membership: if corresponding elements satisfy the relation,
-    then zipWith3 outputs satisfy the relation. -/
+    then zipWith3 outputs satisfy the relation.
+@isnad1 id=mem.4h7v.s7.ebc01f1b9490 from=translated src=- shape=a442cc61 vocab=d4bab1d2
+-/
 theorem mem_zipWith3 {f : ℝ → ℚ → ℚ → ℝ} {g : IntervalDyadic → ℚ → ℚ → IntervalDyadic}
     {xs : List ℝ} {Is : IntervalVector} {as bs : List ℚ}
     (hlen_xs_Is : xs.length = Is.length)
@@ -526,12 +545,16 @@ theorem mem_zipWith3 {f : ℝ → ℚ → ℚ → ℝ} {g : IntervalDyadic → �
           omega
         exact @ih Is' as' bs' hlen' hmem' j hj
 
-/-- Membership for singleton rational interval -/
+/-- Membership for singleton rational interval
+@isnad1 id=mem.0h3v.s4.e9f5def66d65 from=translated src=- shape=c35f4b6c vocab=b61fa6da
+-/
 theorem mem_ofIntervalRat_singleton (q : ℚ) (prec : Int) (hprec : prec ≤ 0 := by norm_num) :
     (q : ℝ) ∈ IntervalDyadic.ofIntervalRat (IntervalRat.singleton q) prec :=
   IntervalDyadic.mem_ofIntervalRat (IntervalRat.mem_singleton q) prec hprec
 
-/-- The final scale+shift operation: x * γ + β -/
+/-- The final scale+shift operation: x * γ + β
+@isnad1 id=mem.1h6v.s6.5d9de2f1b72f from=translated src=- shape=7e39be2d vocab=fee83812
+-/
 theorem mem_scale_shift {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I) (g b : ℚ)
     (prec : Int) (hprec : prec ≤ 0 := by norm_num) :
     x * g + b ∈ IntervalDyadic.add
@@ -541,12 +564,16 @@ theorem mem_scale_shift {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I) (g b : ℚ
   · exact mem_mulRounded hx (mem_ofIntervalRat_singleton g prec hprec) prec
   · exact mem_ofIntervalRat_singleton b prec hprec
 
-/-- Membership for subtraction with a fixed second argument -/
+/-- Membership for subtraction with a fixed second argument
+@isnad1 id=mem.2h4v.s5.5835a4f38858 from=translated src=- shape=523a8d0e vocab=a1e19e84
+-/
 theorem mem_sub_const {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I) (mean : IntervalDyadic) (m : ℝ)
     (hm : m ∈ mean) : x - m ∈ IntervalDyadic.sub I mean :=
   IntervalDyadic.mem_sub hx hm
 
-/-- Squaring preserves membership (via mulRounded) -/
+/-- Squaring preserves membership (via mulRounded)
+@isnad1 id=mem.1h3v.s4.61e1b2dc7b00 from=translated src=- shape=dfbba884 vocab=064a50d5
+-/
 theorem mem_square {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I) (prec : Int) :
     x * x ∈ IntervalDyadic.mulRounded I I prec :=
   mem_mulRounded hx hx prec
@@ -580,7 +607,9 @@ set_option maxHeartbeats 2000000 in
 
     The remaining complexity is in tracking indices through nested structures
     and handling the dite branch for inv_std_dev. The core mathematical
-    argument is complete. -/
+    argument is complete.
+@isnad1 id=other.2h5v.s7.9e17cf4343ba from=translated src=- shape=33540307 vocab=d7774589
+-/
 theorem mem_layerNorm_forwardInterval {xs : List ℝ} {Is : IntervalVector}
     (params : LayerNormParams)
     (hlen : xs.length = Is.length)

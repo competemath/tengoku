@@ -18,6 +18,9 @@ open Set EulerSmoothLimit EulerPacketNormalizedPrimary EulerPacketRay
   EulerTimeLp EulerVolterraConvolution EulerTimeH1FrameTransport
   EulerTransverseEndpointCoordinates EulerTransverseHistoryBounds
 
+/--
+@isnad1 id=le.5h6v.s9.dd6c4f565708 from=translated src=- shape=24df981a vocab=cc09a6a0
+-/
 theorem frame_pair_difference_le {p q x y : Space} {ε D : ℝ}
     (hp : ‖p‖ = 1) (hq : ‖q‖ = 1) (hε : 0 < ε) (hε1 : ε ≤ 1) (hxy : ‖x-y‖ ≤ D) :
     |⟪p,x⟫_ℝ/ε-⟪p,y⟫_ℝ/ε|+|⟪q,x⟫_ℝ-⟪q,y⟫_ℝ| ≤ 2*D/ε := by
@@ -38,6 +41,9 @@ theorem frame_pair_difference_le {p q x y : Space} {ε D : ℝ}
     _ ≤ D/ε+D/ε := add_le_add (hU.trans hD) (hV.trans hD)
     _ = 2*D/ε := by ring
 
+/--
+@isnad1 id=le.5h8v.s8.187d1ef8a0be from=translated src=- shape=c92de770 vocab=41bc31c0
+-/
 theorem scaledVelocity_initial_difference_le {m v x y : ℝ → Space}
     {t₀ a ε D : ℝ} (hm0 : m t₀ ≠ 0) (hv0 : v t₀ ≠ 0)
     (hε : 0 < ε) (hε1 : ε ≤ 1) (hxy : ‖x t₀-y t₀‖ ≤ D) :
@@ -47,6 +53,9 @@ theorem scaledVelocity_initial_difference_le {m v x y : ℝ → Space}
     velocityScale, Fin.ext_iff] using
       frame_pair_difference_le (unit_norm hm0) (unit_norm hv0) hε hε1 hxy
 
+/--
+@isnad1 id=le.3h5v.s8.0f4ae6e1f093 from=translated src=- shape=f123129c vocab=e2492146
+-/
 theorem scaled_inner_difference_le {p x y : Space} {b D : ℝ}
     (hp : ‖p‖ = 1) (hb : 0 < b) (hxy : ‖x-y‖ ≤ D) :
     |⟪p,x⟫_ℝ/b-⟪p,y⟫_ℝ/b| ≤ D/b := by
@@ -54,6 +63,9 @@ theorem scaled_inner_difference_le {p x y : Space} {b D : ℝ}
   apply div_le_div_of_nonneg_right _ hb.le
   exact ((abs_real_inner_le_norm p (x-y)).trans_eq (by rw [hp, one_mul])).trans hxy
 
+/--
+@isnad1 id=le.7h9v.s9.c2156d01123a from=translated src=- shape=cbbb547d vocab=f4f2f807
+-/
 theorem scaledRay_initial_difference_le {m v x y : ℝ → Space} {s₀ t₀ a ε D : ℝ}
     (hs₀ : 0 < s₀) (hm0 : m t₀ ≠ 0) (hv0 : v t₀ ≠ 0) (hmv : ⟪m t₀,v t₀⟫_ℝ = 0)
     (hε : 0 < ε) (hε1 : ε ≤ 1) (hxy : ‖x t₀-y t₀‖ ≤ D) :
@@ -76,7 +88,9 @@ theorem scaledRay_initial_difference_le {m v x y : ℝ → Space} {s₀ t₀ a �
     Fin.ext_iff] using hall
 
 /-- A physical initial-ray error around the chosen normal becomes the
-source's scaled ray error with the fixed factor `(s₀ ε)⁻¹`. -/
+source's scaled ray error with the fixed factor `(s₀ ε)⁻¹`.
+@isnad1 id=le.7h8v.s9.e7e104d801ff from=translated src=- shape=18cf7252 vocab=a1051196
+-/
 theorem scaledRay_initial_error {m v r : ℝ → Space} {s₀ t₀ a ε D : ℝ}
     (hs₀ : 0 < s₀) (hm0 : m t₀ ≠ 0) (hv0 : v t₀ ≠ 0) (hmv : ⟪m t₀,v t₀⟫_ℝ = 0)
     (hε : 0 < ε) (hε1 : ε ≤ 1)
@@ -92,6 +106,9 @@ theorem scaledRay_initial_error {m v r : ℝ → Space} {s₀ t₀ a ε D : ℝ}
 variable {U : Type*} [NormedAddCommGroup U] [InnerProductSpace ℝ U] [CompleteSpace U]
 
 omit [CompleteSpace U] in
+/--
+@isnad1 id=le.5h10v.s13.bf42357429ba from=translated src=- shape=3099cb64 vocab=eef8a639
+-/
 theorem frame_pair_operator_difference_le {T ε D : ℝ}
     (A B : U →L[ℝ] C(Icc (0:ℝ) T, Space)) (ξ : U) (t : Icc (0:ℝ) T)
     {p q : Space} (hp : ‖p‖ = 1) (hq : ‖q‖ = 1)
@@ -117,7 +134,9 @@ variable (T : ℝ) (hT : 0 ≤ T)
   (hG : ∀ t z, ⟪G t z,z⟫_ℝ ≤ K*‖z‖^2)
 
 /-- The two actual stationary histories use the same terminal coordinate
-`ξ`; physical coefficient differences give the scaled initial error. -/
+`ξ`; physical coefficient differences give the scaled initial error.
+@isnad1 id=other.28h24v.s15.f34dd00c883f from=translated src=- shape=a8032b8f vocab=2a5e9842
+-/
 theorem history_scaled_pair_difference_le (hTpos : 0 < T) (q q₁ d a r : ℝ)
     (hQn : ‖Q‖ ≤ q) (hPn : ‖P‖ ≤ q) (hQ₁n : ‖Q₁‖ ≤ q₁) (hP₁n : ‖P₁‖ ≤ q₁)
     (hD : T*‖Q₁‖+‖Q‖ ≤ d) (hD' : T*‖P₁‖+‖P‖ ≤ d)

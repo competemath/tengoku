@@ -16,11 +16,15 @@ open scoped ContDiff
 def radialPotential (V : Vector3 → Vector3) (x : Vector3) : ℝ :=
   ∫ s in (0 : ℝ)..1, ⟪V (s • x), x⟫_ℝ
 
-/-- The radial integral is normalized to vanish at the origin. -/
+/-- The radial integral is normalized to vanish at the origin.
+@isnad1 id=eq.0h1v.s6.7557743ed46c from=translated src=- shape=ab70bd0f vocab=4ae5c675
+-/
 theorem radialPotential_zero (V : Vector3 → Vector3) : radialPotential V 0 = 0 := by
   simp [radialPotential]
 
-/-- The fundamental theorem of calculus identifies the radial integral with a normalized genuine potential. -/
+/-- The fundamental theorem of calculus identifies the radial integral with a normalized genuine potential.
+@isnad1 id=eq.3h3v.s8.0874911415b1 from=translated src=- shape=7df22cb5 vocab=936e41a5
+-/
 theorem radialPotential_eq_sub (V : Vector3 → Vector3) (hV : Continuous V)
     (q : Vector3 → ℝ) (hq : ContDiff ℝ ∞ q) (hgrad : ∀ x, gradient q x = V x)
     (x : Vector3) : radialPotential V x = q x - q 0 := by
@@ -33,7 +37,9 @@ theorem radialPotential_eq_sub (V : Vector3 → Vector3) (hV : Continuous V)
   simpa only [radialPotential, one_smul, zero_smul] using
     intervalIntegral.integral_eq_sub_of_hasDerivAt (fun s _ => hd s) hi
 
-/-- A radial reconstruction of a genuine smooth gradient is itself spatially smooth. -/
+/-- A radial reconstruction of a genuine smooth gradient is itself spatially smooth.
+@isnad1 id=contdiff.3h2v.s8.9c17be55b7b6 from=translated src=- shape=f526cae5 vocab=e420865c
+-/
 theorem radialPotential_smooth (V : Vector3 → Vector3) (hV : Continuous V)
     (q : Vector3 → ℝ) (hq : ContDiff ℝ ∞ q) (hgrad : ∀ x, gradient q x = V x) :
     ContDiff ℝ ∞ (radialPotential V) := by
@@ -42,7 +48,9 @@ theorem radialPotential_smooth (V : Vector3 → Vector3) (hV : Continuous V)
   rw [he]
   exact hq.sub contDiff_const
 
-/-- Radial normalization preserves the actual gradient. -/
+/-- Radial normalization preserves the actual gradient.
+@isnad1 id=eq.3h3v.s8.e0a22afb8bd6 from=translated src=- shape=0bd0663e vocab=e420865c
+-/
 theorem radialPotential_gradient (V : Vector3 → Vector3) (hV : Continuous V)
     (q : Vector3 → ℝ) (hq : ContDiff ℝ ∞ q) (hgrad : ∀ x, gradient q x = V x)
     (x : Vector3) : gradient (radialPotential V) x = V x := by
@@ -51,7 +59,9 @@ theorem radialPotential_gradient (V : Vector3 → Vector3) (hV : Continuous V)
   rw [he, gradient, fderiv_sub_const]
   exact hgrad x
 
-/-- A jointly continuous vector field has a jointly continuous radial scalar potential. -/
+/-- A jointly continuous vector field has a jointly continuous radial scalar potential.
+@isnad1 id=continuo.1h2v.s7.67e16133135f from=translated src=- shape=54fd7c57 vocab=b520ce2d
+-/
 theorem radialPotential_joint_continuous {T : Type*} [TopologicalSpace T]
     [FirstCountableTopology T] [LocallyCompactSpace T]
     (V : T → Vector3 → Vector3) (hV : Continuous V.uncurry) :

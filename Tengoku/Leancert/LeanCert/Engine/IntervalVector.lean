@@ -52,7 +52,9 @@ def scalarMulInterval (w : ℚ) (I : IntervalDyadic) (prec : Int := -53) : Inter
   let wInterval := IntervalDyadic.ofIntervalRat (IntervalRat.singleton w) prec
   IntervalDyadic.mul wInterval I
 
-/-- Soundness of scalar-interval multiplication -/
+/-- Soundness of scalar-interval multiplication
+@isnad1 id=mem.1h5v.s5.a1a021a70e1b from=translated src=- shape=4e791bc2 vocab=cf15982a
+-/
 theorem mem_scalarMulInterval {w : ℚ} {x : ℝ} {I : IntervalDyadic}
     (hx : x ∈ I) (prec : Int) (hprec : prec ≤ 0 := by norm_num) :
     (w : ℝ) * x ∈ scalarMulInterval w I prec := by
@@ -79,13 +81,17 @@ def realDotProduct (weights : List ℚ) (values : List ℝ) : ℝ :=
   | w :: ws, x :: xs => (w : ℝ) * x + realDotProduct ws xs
   | _, _ => 0
 
-/-- Zero is in the zero singleton -/
+/-- Zero is in the zero singleton
+@isnad1 id=mem.0h0v.s4.5afdf51a2027 from=translated src=- shape=4e5d3dce vocab=e8828fc8
+-/
 theorem mem_zero_singleton : (0 : ℝ) ∈ IntervalDyadic.singleton (Core.Dyadic.ofInt 0) := by
   have h := IntervalDyadic.mem_singleton (Core.Dyadic.ofInt 0)
   simp only [Core.Dyadic.toRat_ofInt, Int.cast_zero, Rat.cast_zero] at h
   exact h
 
-/-- Soundness of dot product for matching-length lists -/
+/-- Soundness of dot product for matching-length lists
+@isnad1 id=mem.4h4v.s6.7718182966c8 from=translated src=- shape=8b23643e vocab=fc463f44
+-/
 theorem mem_dotProduct_aux (weights : List ℚ) (xs : List ℝ) (Is : IntervalVector)
     (hlen : weights.length = Is.length)
     (hxlen : xs.length = Is.length)
@@ -120,7 +126,9 @@ theorem mem_dotProduct_aux (weights : List ℚ) (xs : List ℝ) (Is : IntervalVe
           exact h
         exact ih xs' Is' hlen' hxlen' hmem'
 
-/-- Soundness of dot product: if each x_i ∈ I_i, then ∑ w_i * x_i ∈ dotProduct -/
+/-- Soundness of dot product: if each x_i ∈ I_i, then ∑ w_i * x_i ∈ dotProduct
+@isnad1 id=mem.3h5v.s6.38fd880c1bda from=translated src=- shape=e8fb8c46 vocab=89030c44
+-/
 theorem mem_dotProduct {weights : List ℚ} {xs : List ℝ} {Is : IntervalVector}
     (hlen : weights.length = Is.length)
     (hxlen : xs.length = Is.length)
@@ -135,7 +143,9 @@ theorem mem_dotProduct {weights : List ℚ} {xs : List ℝ} {Is : IntervalVector
 def add (Is Js : IntervalVector) : IntervalVector :=
   List.zipWith IntervalDyadic.add Is Js
 
-/-- Soundness of vector addition (component-wise) -/
+/-- Soundness of vector addition (component-wise)
+@isnad1 id=mem.2h4v.s5.01bdf56786a9 from=translated src=- shape=52949ecd vocab=471f8bc2
+-/
 theorem mem_add_component {x y : ℝ} {I J : IntervalDyadic}
     (hx : x ∈ I) (hy : y ∈ J) : x + y ∈ IntervalDyadic.add I J :=
   IntervalDyadic.mem_add hx hy
@@ -143,7 +153,9 @@ theorem mem_add_component {x y : ℝ} {I J : IntervalDyadic}
 /-- Zero interval (singleton at 0) -/
 def zero : IntervalDyadic := IntervalDyadic.singleton (Core.Dyadic.ofInt 0)
 
-/-- Membership in zero interval -/
+/-- Membership in zero interval
+@isnad1 id=mem.0h0v.s3.96708f505cb3 from=translated src=- shape=ddfd6e86 vocab=8908b7a7
+-/
 theorem mem_zero : (0 : ℝ) ∈ zero := mem_zero_singleton
 
 /-! ### Matrix-Vector Operations -/
@@ -157,7 +169,9 @@ def matVecMul (W : List (List ℚ)) (x : IntervalVector) (prec : Int := -53) : I
 def realMatVecMul (W : List (List ℚ)) (x : List ℝ) : List ℝ :=
   W.map (fun row => realDotProduct row x)
 
-/-- Soundness of matrix-vector multiplication -/
+/-- Soundness of matrix-vector multiplication
+@isnad1 id=mem.4h6v.s7.209412669c5a from=translated src=- shape=0362858f vocab=c7579078
+-/
 theorem mem_matVecMul {W : List (List ℚ)} {xs : List ℝ} {Is : IntervalVector}
     (hWcols : ∀ row ∈ W, row.length = Is.length)
     (hxlen : xs.length = Is.length)
@@ -180,7 +194,9 @@ def addBias (Is : IntervalVector) (bias : List ℚ) (prec : Int := -53) : Interv
 def realAddBias (xs : List ℝ) (bias : List ℚ) : List ℝ :=
   List.zipWith (fun x (b : ℚ) => x + (b : ℝ)) xs bias
 
-/-- Soundness of bias addition -/
+/-- Soundness of bias addition
+@isnad1 id=mem.4h6v.s7.d14f1d788097 from=translated src=- shape=c53c3a8a vocab=a6c6be55
+-/
 theorem mem_addBias {xs : List ℝ} {Is : IntervalVector} {bias : List ℚ}
     (hlen : xs.length = Is.length)
     (hblen : bias.length = Is.length)

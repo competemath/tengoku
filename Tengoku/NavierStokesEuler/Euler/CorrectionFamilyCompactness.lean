@@ -56,7 +56,9 @@ local instance familySobolevGroup (q : ℕ) : NormedAddCommGroup (SobolevSpace p
 local instance familySobolevSpace (q : ℕ) : NormedSpace ℝ (SobolevSpace period q) := inferInstance
 
 set_option maxHeartbeats 1600000 in
-/-- The actual one-order restriction equals the original truncation map. -/
+/-- The actual one-order restriction equals the original truncation map.
+@isnad1 id=eq.0h2v.s19.e018cf06f1b0 from=translated src=- shape=4184c24b vocab=e7da9cfb
+-/
 theorem restrict_eq_truncate (q : ℕ) : restrictOperator period (Nat.le_succ q)=truncateOperator period q := by
   apply ContinuousLinearMap.ext
   intro f
@@ -64,7 +66,9 @@ theorem restrict_eq_truncate (q : ℕ) : restrictOperator period (Nat.le_succ q)
   rfl
 
 set_option maxHeartbeats 1600000 in
-/-- Actual strong lower-order Sobolev compactness retains the trace, divergence constraint and common norm bound. -/
+/-- Actual strong lower-order Sobolev compactness retains the trace, divergence constraint and common norm bound.
+@isnad1 id=ex.6h8v.s23.161245b8329b from=translated src=- shape=f6c83260 vocab=0909ce43
+-/
 theorem exists_limit_with_constraints {s q : ℕ} (hqs : q < s) (T : ℝ) (hT : 0 ≤ T)
     (κ : ℝ) (m : Vector3) (u : ℕ → C(Icc (0 : ℝ) T,SobolevSpace period s)) (M : ℝ)
     (huM : ∀ n, ‖u n‖ ≤ M) (hu0 : ∀ n, u n ⟨0,le_rfl,hT⟩=0)
@@ -85,7 +89,9 @@ theorem exists_limit_with_constraints {s q : ℕ} (hqs : q < s) (T : ℝ) (hT : 
     limit_divergenceFree period T κ m ul e hlimit hud
   exact ⟨e,hlimit,hi,hd,limit_norm_bound period T M ul e hlimit hul⟩
 
-/-- Genuine uniformly bounded correction solutions with Cauchy viscosities have an actual strong lower-Sobolev limit with the original trace and divergence constraint. -/
+/-- Genuine uniformly bounded correction solutions with Cauchy viscosities have an actual strong lower-Sobolev limit with the original trace and divergence constraint.
+@isnad1 id=ex.10h8v.s22.6b26bfe66326 from=translated src=- shape=d5826beb vocab=5477999c
+-/
 theorem exists_correction_family_limit {q : ℕ} (hq : 6 ≤ q) (T : ℝ) (hT : 0 ≤ T)
     (D : CorrectionData period q (Icc (0 : ℝ) T)) (B : StabilityBudget period hT D)
     (ν : ℕ → ℝ) (hν : ∀ n, 0 < ν n) (hν1 : ∀ n, ν n ≤ 1) (hνc : CauchySeq ν)

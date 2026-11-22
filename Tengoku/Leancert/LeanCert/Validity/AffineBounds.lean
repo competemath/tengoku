@@ -142,7 +142,9 @@ def checkLowerBoundAffine1Strict
 
 /-! ### Helper Lemmas for Single-Variable Affine Proofs -/
 
-/-- The executable affine domain checker implies the Prop-valued domain predicate. -/
+/-- The executable affine domain checker implies the Prop-valued domain predicate.
+@isnad1 id=evaldoma.1h3v.s4.00e011b948ad from=translated src=- shape=d731b9ee vocab=29fe3238
+-/
 theorem checkDomainValidAffine_correct {e : Expr} {ρ : AffineEnv} {cfg : AffineConfig}
     (h : checkDomainValidAffine e ρ cfg = true) :
     evalDomainValidAffine e ρ cfg := by
@@ -273,7 +275,9 @@ private theorem mkNoise1_envMem (I : IntervalRat) (x : ℝ) (hx : x ∈ I) :
 
     This is the key theorem for certificate-driven verification using Affine arithmetic.
     The tighter bounds from affine arithmetic enable proving inequalities that are
-    too loose for standard interval arithmetic. -/
+    too loose for standard interval arithmetic.
+@isnad1 id=le.4h5v.s5.4e9186abccd9 from=translated src=- shape=16f7f343 vocab=46ed76a9
+-/
 theorem verify_upper_bound_affine1 (e : Expr) (hsupp : ExprSupportedCore e)
     (I : IntervalRat) (c : ℚ) (cfg : AffineConfig)
     (hdom : evalDomainValidAffine e (toAffineEnvConst I) cfg)
@@ -299,7 +303,9 @@ theorem verify_upper_bound_affine1 (e : Expr) (hsupp : ExprSupportedCore e)
       ≤ ((LeanCert.Internal.Affine.evalUnchecked e ρ_affine cfg).toInterval.hi : ℝ) := hhi
     _ ≤ c := by exact_mod_cast h_check
 
-/-- **Golden Theorem for Affine Lower Bounds (Single Variable)** -/
+/-- **Golden Theorem for Affine Lower Bounds (Single Variable)**
+@isnad1 id=le.4h5v.s5.ceaedf6a4c72 from=translated src=- shape=8e10e359 vocab=308b8a05
+-/
 theorem verify_lower_bound_affine1 (e : Expr) (hsupp : ExprSupportedCore e)
     (I : IntervalRat) (c : ℚ) (cfg : AffineConfig)
     (hdom : evalDomainValidAffine e (toAffineEnvConst I) cfg)
@@ -325,7 +331,9 @@ theorem verify_lower_bound_affine1 (e : Expr) (hsupp : ExprSupportedCore e)
 
 Compared with `verify_upper_bound_affine1`, the domain-validity obligation is
 part of the Boolean checker. The strict checker also rejects expressions whose
-strict affine evaluator returns `none`. -/
+strict affine evaluator returns `none`.
+@isnad1 id=le.3h5v.s5.bdd0f3470cc7 from=translated src=- shape=bc83ceb3 vocab=aced346d
+-/
 theorem verify_upper_bound_affine1_strict (e : Expr) (hsupp : ExprSupportedCore e)
     (I : IntervalRat) (c : ℚ) (cfg : AffineConfig)
     (h_check : checkUpperBoundAffine1Strict e I c cfg = true) :
@@ -350,7 +358,9 @@ theorem verify_upper_bound_affine1_strict (e : Expr) (hsupp : ExprSupportedCore 
           ≤ ((LeanCert.Internal.Affine.evalUnchecked e ρ_affine cfg).toInterval.hi : ℝ) := hmem.2
         _ ≤ c := by exact_mod_cast h_check.2
 
-/-- Strict affine lower-bound verification. -/
+/-- Strict affine lower-bound verification.
+@isnad1 id=le.3h5v.s5.2a6c65e6b924 from=translated src=- shape=077acda4 vocab=f1a2f528
+-/
 theorem verify_lower_bound_affine1_strict (e : Expr) (hsupp : ExprSupportedCore e)
     (I : IntervalRat) (c : ℚ) (cfg : AffineConfig)
     (h_check : checkLowerBoundAffine1Strict e I c cfg = true) :
@@ -381,7 +391,9 @@ theorem verify_lower_bound_affine1_strict (e : Expr) (hsupp : ExprSupportedCore 
 For expressions that don't use `log`, domain validity is automatic. -/
 
 /-- Convenience theorem for ADSupported expressions (no log).
-    Domain validity is automatic, so only the bound check is needed. -/
+    Domain validity is automatic, so only the bound check is needed.
+@isnad1 id=le.3h5v.s5.1cc430b3fbd9 from=translated src=- shape=bc83ceb3 vocab=9bb39fc1
+-/
 theorem verify_upper_bound_affine1' (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (c : ℚ) (cfg : AffineConfig)
     (h_check : checkUpperBoundAffine1 e I c cfg = true) :
@@ -390,7 +402,9 @@ theorem verify_upper_bound_affine1' (e : Expr) (hsupp : ADSupported e)
     evalDomainValidAffine_of_ExprSupported hsupp _ _
   exact verify_upper_bound_affine1 e hsupp.toCore I c cfg hdom h_check
 
-/-- Convenience theorem for ADSupported expressions (no log). -/
+/-- Convenience theorem for ADSupported expressions (no log).
+@isnad1 id=le.3h5v.s5.6e5364155154 from=translated src=- shape=077acda4 vocab=e1098bdf
+-/
 theorem verify_lower_bound_affine1' (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (c : ℚ) (cfg : AffineConfig)
     (h_check : checkLowerBoundAffine1 e I c cfg = true) :

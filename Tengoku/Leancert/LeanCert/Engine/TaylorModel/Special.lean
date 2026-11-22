@@ -70,7 +70,9 @@ noncomputable def erfRemainderBound (domain : IntervalRat) (n : ℕ) : ℚ :=
   let coeff_err := (erfCoeff_hi - erfCoeff_lo) / 2 * r  -- simplified upper bound
   taylor_rem + coeff_err
 
-/-- Remainder bound for erf is nonnegative -/
+/-- Remainder bound for erf is nonnegative
+@isnad1 id=le.0h2v.s3.a902b4e89146 from=translated src=- shape=0d4521f5 vocab=5d68c5da
+-/
 theorem erfRemainderBound_nonneg (domain : IntervalRat) (n : ℕ) :
     0 ≤ erfRemainderBound domain n := by
   unfold erfRemainderBound

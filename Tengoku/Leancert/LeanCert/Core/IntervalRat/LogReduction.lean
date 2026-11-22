@@ -58,7 +58,9 @@ def reduceMantissa (q : ℚ) : ℚ :=
     let k := reductionExponent q
     q * (2 : ℚ) ^ (-k)
 
-/-- The main algebraic theorem: q = m * 2^k for positive q -/
+/-- The main algebraic theorem: q = m * 2^k for positive q
+@isnad1 id=other.1h1v.s5.e68f1b4540d7 from=translated src=- shape=072d97b4 vocab=5d10dbaa
+-/
 theorem reconstruction_eq {q : ℚ} (hq : 0 < q) :
     let k := reductionExponent q
     let m := reduceMantissa q
@@ -70,7 +72,9 @@ theorem reconstruction_eq {q : ℚ} (hq : 0 < q) :
 
 /-- The reduced mantissa is bounded: 1/4 ≤ m ≤ 4 for q > 0.
     (We use slightly weaker bounds than [1/2, 2] for simpler proofs,
-     but the series still converges rapidly.) -/
+     but the series still converges rapidly.)
+@isnad1 id=other.1h1v.s5.629ec8071432 from=translated src=- shape=e01f8a71 vocab=4c128f5b
+-/
 theorem reduced_bounds_weak {q : ℚ} (hq : 0 < q) :
     let m := reduceMantissa q
     1 / 4 ≤ m ∧ m ≤ 4 := by
@@ -135,7 +139,9 @@ theorem reduced_bounds_weak {q : ℚ} (hq : 0 < q) :
       _ ≤ 4 * (2 ^ n * 2 ^ d) := h3
       _ ≤ 4 * (q.den * 2 ^ n) := h4
 
-/-- Tighter bounds: 1/2 ≤ m ≤ 2 for most q > 0 -/
+/-- Tighter bounds: 1/2 ≤ m ≤ 2 for most q > 0
+@isnad1 id=other.1h1v.s5.3f7bc81b758c from=translated src=- shape=e01f8a71 vocab=4c128f5b
+-/
 theorem reduced_bounds {q : ℚ} (hq : 0 < q) :
     let m := reduceMantissa q
     1 / 2 ≤ m ∧ m ≤ 2 := by
@@ -197,7 +203,9 @@ theorem reduced_bounds {q : ℚ} (hq : 0 < q) :
       _ = 2 * (2 ^ n * 2 ^ d) := h2
       _ ≤ 2 * (q.den * 2 ^ n) := h3
 
-/-- The reduced mantissa is positive for positive input -/
+/-- The reduced mantissa is positive for positive input
+@isnad1 id=lt.1h1v.s4.d272c59a4907 from=translated src=- shape=35bd48ee vocab=896c5e6f
+-/
 theorem reduced_pos {q : ℚ} (hq : 0 < q) : 0 < reduceMantissa q := by
   simp only [reduceMantissa, not_le.mpr hq, ↓reduceIte]
   apply mul_pos hq
@@ -206,7 +214,9 @@ theorem reduced_pos {q : ℚ} (hq : 0 < q) : 0 < reduceMantissa q := by
 
 /-! ### Connection to Real.log -/
 
-/-- Key algebraic identity for Real.log: log(q) = log(m) + k * log(2) -/
+/-- Key algebraic identity for Real.log: log(q) = log(m) + k * log(2)
+@isnad1 id=other.1h1v.s5.495183e74363 from=translated src=- shape=ef325586 vocab=4cda154e
+-/
 theorem log_reduction {q : ℚ} (hq : 0 < q) :
     let k := reductionExponent q
     let m := reduceMantissa q
@@ -222,7 +232,9 @@ theorem log_reduction {q : ℚ} (hq : 0 < q) :
   have h2_pos : (0 : ℝ) < 2 ^ k := zpow_pos (by norm_num : (0 : ℝ) < 2) k
   rw [Real.log_mul (ne_of_gt hm_pos) (ne_of_gt h2_pos), Real.log_zpow]
 
-/-- The transformation y = (m-1)/(m+1) maps m ∈ [1/2, 2] to y ∈ [-1/3, 1/3] -/
+/-- The transformation y = (m-1)/(m+1) maps m ∈ [1/2, 2] to y ∈ [-1/3, 1/3]
+@isnad1 id=other.2h1v.s6.e10462d64ca0 from=translated src=- shape=7b922358 vocab=5ce8d10d
+-/
 theorem atanh_arg_bounds {m : ℚ} (hlo : 1/2 ≤ m) (hhi : m ≤ 2) :
     let y := (m - 1) / (m + 1)
     (-1)/3 ≤ y ∧ y ≤ 1/3 := by
@@ -243,7 +255,9 @@ theorem atanh_arg_bounds {m : ℚ} (hlo : 1/2 ≤ m) (hhi : m ≤ 2) :
     simp only [mul_div_assoc, div_self (ne_of_gt hden_pos), mul_one] at key
     exact key
 
-/-- log(m) = 2 * atanh((m-1)/(m+1)) for m > 0 with m ≠ 1 -/
+/-- log(m) = 2 * atanh((m-1)/(m+1)) for m > 0 with m ≠ 1
+@isnad1 id=eq.1h1v.s6.f98dbb79e4ed from=translated src=- shape=6aade823 vocab=4b5f9fa8
+-/
 theorem log_via_atanh {m : ℚ} (hm_pos : 0 < m) :
     Real.log m = 2 * Real.atanh ((m - 1) / (m + 1)) := by
   have hm_pos' : (0 : ℝ) < m := by exact_mod_cast hm_pos

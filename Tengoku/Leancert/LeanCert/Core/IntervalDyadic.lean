@@ -68,6 +68,9 @@ def toSet (I : IntervalDyadic) : Set ℝ := Set.Icc (I.lo : ℝ) (I.hi : ℝ)
 instance : Membership ℝ IntervalDyadic where
   mem I x := (I.lo.toRat : ℝ) ≤ x ∧ x ≤ (I.hi.toRat : ℝ)
 
+/--
+@isnad1 id=iff.0h2v.s5.8ddd88498f2a from=translated src=- shape=a7710d95 vocab=1c321604
+-/
 @[simp]
 theorem mem_def (x : ℝ) (I : IntervalDyadic) :
     x ∈ I ↔ (I.lo.toRat : ℝ) ≤ x ∧ x ≤ (I.hi.toRat : ℝ) := Iff.rfl
@@ -78,7 +81,9 @@ theorem mem_def (x : ℝ) (I : IntervalDyadic) :
 def toIntervalRat (I : IntervalDyadic) : IntervalRat :=
   ⟨I.lo.toRat, I.hi.toRat, I.le⟩
 
-/-- Membership is preserved by conversion to IntervalRat -/
+/-- Membership is preserved by conversion to IntervalRat
+@isnad1 id=iff.0h2v.s4.044974bebc8b from=translated src=- shape=177cee19 vocab=fbb3b7df
+-/
 theorem mem_toIntervalRat {x : ℝ} {I : IntervalDyadic} :
     x ∈ I ↔ x ∈ I.toIntervalRat := by
   simp only [mem_def, toIntervalRat, IntervalRat.mem_def]
@@ -88,7 +93,9 @@ theorem mem_toIntervalRat {x : ℝ} {I : IntervalDyadic} :
 /-- Create a singleton interval from a Dyadic -/
 def singleton (d : Dyadic) : IntervalDyadic := ⟨d, d, le_refl _⟩
 
-/-- A Dyadic value is in its singleton interval -/
+/-- A Dyadic value is in its singleton interval
+@isnad1 id=mem.0h1v.s3.f895ba9c9b9f from=translated src=- shape=c81a7488 vocab=067a5c97
+-/
 theorem mem_singleton (d : Dyadic) : (d.toRat : ℝ) ∈ singleton d := by
   simp only [mem_def, singleton]
   exact ⟨le_refl _, le_refl _⟩
@@ -104,7 +111,9 @@ def mk? (lo hi : Dyadic) : Option IntervalDyadic :=
 /-- The width of an interval -/
 def width (I : IntervalDyadic) : Dyadic := I.hi.sub I.lo
 
-/-- The dyadic width denotes endpoint subtraction exactly. -/
+/-- The dyadic width denotes endpoint subtraction exactly.
+@isnad1 id=eq.0h1v.s4.6daf995741ac from=translated src=- shape=753055ee vocab=b98a7733
+-/
 @[simp]
 theorem width_toRat (I : IntervalDyadic) :
     I.width.toRat = I.hi.toRat - I.lo.toRat := by
@@ -118,19 +127,25 @@ the exponent rather than shift (and potentially round) the mantissa. -/
 def midpoint (I : IntervalDyadic) : Dyadic :=
   (I.lo.add I.hi).scale2 (-1)
 
-/-- The dyadic midpoint denotes the ordinary rational midpoint exactly. -/
+/-- The dyadic midpoint denotes the ordinary rational midpoint exactly.
+@isnad1 id=eq.0h1v.s5.a7f719912446 from=translated src=- shape=ca18e9c0 vocab=a477fb81
+-/
 @[simp]
 theorem midpoint_toRat (I : IntervalDyadic) :
     I.midpoint.toRat = (I.lo.toRat + I.hi.toRat) / 2 := by
   simp only [midpoint, Dyadic.toRat_scale2, Dyadic.toRat_add]
   norm_num [div_eq_mul_inv]
 
-/-- The lower endpoint is at most the exact midpoint. -/
+/-- The lower endpoint is at most the exact midpoint.
+@isnad1 id=le.0h1v.s3.720d3173dc4a from=translated src=- shape=bc817a25 vocab=0aa4b569
+-/
 theorem lo_le_midpoint (I : IntervalDyadic) : I.lo.toRat ≤ I.midpoint.toRat := by
   rw [midpoint_toRat]
   linarith [I.le]
 
-/-- The exact midpoint is at most the upper endpoint. -/
+/-- The exact midpoint is at most the upper endpoint.
+@isnad1 id=le.0h1v.s3.d8df9b6f44b1 from=translated src=- shape=bc817a25 vocab=f5f9afb6
+-/
 theorem midpoint_le_hi (I : IntervalDyadic) : I.midpoint.toRat ≤ I.hi.toRat := by
   rw [midpoint_toRat]
   linarith [I.le]
@@ -140,36 +155,48 @@ def bisect (I : IntervalDyadic) : IntervalDyadic × IntervalDyadic :=
   (⟨I.lo, I.midpoint, I.lo_le_midpoint⟩,
    ⟨I.midpoint, I.hi, I.midpoint_le_hi⟩)
 
-/-- A point in the original interval and left of the midpoint is in the left half. -/
+/-- A point in the original interval and left of the midpoint is in the left half.
+@isnad1 id=mem.2h2v.s5.c28f8e43285c from=translated src=- shape=00c9d35b vocab=21c0211b
+-/
 theorem mem_bisect_left {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I)
     (hm : x ≤ (I.midpoint.toRat : ℝ)) : x ∈ (I.bisect).1 := by
   exact ⟨hx.1, hm⟩
 
-/-- A point in the original interval and right of the midpoint is in the right half. -/
+/-- A point in the original interval and right of the midpoint is in the right half.
+@isnad1 id=mem.2h2v.s5.6a3cf396921d from=translated src=- shape=ba485422 vocab=0cf1154e
+-/
 theorem mem_bisect_right {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I)
     (hm : (I.midpoint.toRat : ℝ) ≤ x) : x ∈ (I.bisect).2 := by
   exact ⟨hm, hx.2⟩
 
-/-- Membership in the left half implies membership in the original interval. -/
+/-- Membership in the left half implies membership in the original interval.
+@isnad1 id=mem.1h2v.s4.e1dfb301ef77 from=translated src=- shape=57521742 vocab=4b3844a8
+-/
 theorem mem_of_mem_bisect_left {x : ℝ} {I : IntervalDyadic}
     (hx : x ∈ (I.bisect).1) : x ∈ I := by
   refine ⟨hx.1, hx.2.trans ?_⟩
   exact_mod_cast I.midpoint_le_hi
 
-/-- Membership in the right half implies membership in the original interval. -/
+/-- Membership in the right half implies membership in the original interval.
+@isnad1 id=mem.1h2v.s4.533104edafc3 from=translated src=- shape=57521742 vocab=22538869
+-/
 theorem mem_of_mem_bisect_right {x : ℝ} {I : IntervalDyadic}
     (hx : x ∈ (I.bisect).2) : x ∈ I := by
   refine ⟨?_, hx.2⟩
   exact (by exact_mod_cast I.lo_le_midpoint : (I.lo.toRat : ℝ) ≤ I.midpoint.toRat) |>.trans hx.1
 
-/-- The two closed halves cover the original interval, including their shared seam. -/
+/-- The two closed halves cover the original interval, including their shared seam.
+@isnad1 id=or.1h2v.s5.7600ff99111c from=translated src=- shape=bc1cef2e vocab=61301220
+-/
 theorem mem_bisect_or {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I) :
     x ∈ (I.bisect).1 ∨ x ∈ (I.bisect).2 := by
   by_cases hm : x ≤ (I.midpoint.toRat : ℝ)
   · exact Or.inl (mem_bisect_left hx hm)
   · exact Or.inr (mem_bisect_right hx (le_of_lt (not_le.mp hm)))
 
-/-- Both closed halves contain the midpoint seam. -/
+/-- Both closed halves contain the midpoint seam.
+@isnad1 id=and.0h1v.s5.1e57fae195bb from=translated src=- shape=02946dba vocab=ebcfaa03
+-/
 theorem midpoint_mem_bisect_both (I : IntervalDyadic) :
     (I.midpoint.toRat : ℝ) ∈ (I.bisect).1 ∧
       (I.midpoint.toRat : ℝ) ∈ (I.bisect).2 := by
@@ -177,7 +204,9 @@ theorem midpoint_mem_bisect_both (I : IntervalDyadic) :
   · exact ⟨by exact_mod_cast I.lo_le_midpoint, le_rfl⟩
   · exact ⟨le_rfl, by exact_mod_cast I.midpoint_le_hi⟩
 
-/-- The overlap of the two closed children is exactly their midpoint seam. -/
+/-- The overlap of the two closed children is exactly their midpoint seam.
+@isnad1 id=eq.0h1v.s4.81f3b70831ba from=translated src=- shape=8e379bfb vocab=5462faa7
+-/
 theorem bisect_intersection (I : IntervalDyadic) :
     I.bisect.1.toSet ∩ I.bisect.2.toSet = {I.midpoint.toReal} := by
   ext x
@@ -192,13 +221,17 @@ theorem bisect_intersection (I : IntervalDyadic) :
   · rintro rfl
     simpa [toSet, bisect, Dyadic.toReal] using I.midpoint_mem_bisect_both
 
-/-- The left child has exactly half the semantic width of its parent. -/
+/-- The left child has exactly half the semantic width of its parent.
+@isnad1 id=eq.0h1v.s4.1529dc0e1cb5 from=translated src=- shape=1c6fcce1 vocab=54cb6947
+-/
 theorem bisect_left_width_toRat (I : IntervalDyadic) :
     I.bisect.1.width.toRat = I.width.toRat / 2 := by
   simp only [width_toRat, bisect, midpoint_toRat]
   ring
 
-/-- The right child has exactly half the semantic width of its parent. -/
+/-- The right child has exactly half the semantic width of its parent.
+@isnad1 id=eq.0h1v.s4.15dc4353ffd5 from=translated src=- shape=1c6fcce1 vocab=cc4c2a7c
+-/
 theorem bisect_right_width_toRat (I : IntervalDyadic) :
     I.bisect.2.width.toRat = I.width.toRat / 2 := by
   simp only [width_toRat, bisect, midpoint_toRat]
@@ -223,7 +256,9 @@ def roundOut (I : IntervalDyadic) (minExp : Int) : IntervalDyadic :=
     have h3 : I.hi.toRat ≤ newHi.toRat := Dyadic.toRat_shiftUp_ge I.hi minExp
     linarith⟩
 
-/-- roundOut produces an interval containing the original -/
+/-- roundOut produces an interval containing the original
+@isnad1 id=mem.1h3v.s4.5f2922718188 from=translated src=- shape=f3b94292 vocab=18b9c9d8
+-/
 theorem roundOut_contains {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I) (minExp : Int) :
     x ∈ I.roundOut minExp := by
   simp only [mem_def] at *
@@ -249,7 +284,9 @@ def neg (I : IntervalDyadic) : IntervalDyadic where
     simp only [Dyadic.toRat_neg]
     linarith [I.le]
 
-/-- FTIA for negation -/
+/-- FTIA for negation
+@isnad1 id=mem.1h2v.s4.059cd1a6b521 from=translated src=- shape=81fdfc84 vocab=5f872fe1
+-/
 theorem mem_neg {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I) : -x ∈ neg I := by
   simp only [mem_def] at *
   simp only [neg, Dyadic.toRat_neg, Rat.cast_neg]
@@ -265,7 +302,9 @@ def add (I J : IntervalDyadic) : IntervalDyadic where
     simp only [Dyadic.toRat_add]
     linarith [I.le, J.le]
 
-/-- FTIA for addition -/
+/-- FTIA for addition
+@isnad1 id=mem.2h4v.s5.01bdf56786a9 from=translated src=- shape=52949ecd vocab=471f8bc2
+-/
 theorem mem_add {x y : ℝ} {I J : IntervalDyadic} (hx : x ∈ I) (hy : y ∈ J) :
     x + y ∈ add I J := by
   simp only [mem_def] at *
@@ -281,7 +320,9 @@ def addRounded (I J : IntervalDyadic) (prec : Int := -53) : IntervalDyadic :=
 /-- Subtract two intervals -/
 def sub (I J : IntervalDyadic) : IntervalDyadic := add I (neg J)
 
-/-- FTIA for subtraction -/
+/-- FTIA for subtraction
+@isnad1 id=mem.2h4v.s5.7eb14b1decac from=translated src=- shape=52949ecd vocab=a1e19e84
+-/
 theorem mem_sub {x y : ℝ} {I J : IntervalDyadic} (hx : x ∈ I) (hy : y ∈ J) :
     x - y ∈ sub I J := by
   simp only [sub_eq_add_neg]
@@ -372,7 +413,9 @@ private def mulFast (I J : IntervalDyadic) : IntervalDyadic :=
    kernel proofs reason about. Keep `mulFast` available only as an internal
    candidate for future explicitly-audited runtime backends. -/
 
-/-- FTIA for multiplication -/
+/-- FTIA for multiplication
+@isnad1 id=mem.2h4v.s5.297fa4a327cc from=translated src=- shape=52949ecd vocab=82e92f73
+-/
 theorem mem_mul {x y : ℝ} {I J : IntervalDyadic} (hx : x ∈ I) (hy : y ∈ J) :
     x * y ∈ mul I J := by
   -- Use IntervalRat.mem_mul and translate the bounds
@@ -516,7 +559,9 @@ private theorem mulFast_hi (I J : IntervalDyadic) : (mulFast I J).hi.toRat = (mu
 
 /-- `mulFast` preserves the containment property of `mul`.
     This is retained as documentation and a future audited optimization hook;
-    production certificate checking currently uses `mul` directly. -/
+    production certificate checking currently uses `mul` directly.
+@isnad1 id=mem.2h4v.s5.2b165ffcf11d from=translated src=- shape=52949ecd vocab=5d4f82fa
+-/
 theorem mem_mulFast {x y : ℝ} {I J : IntervalDyadic} (hx : x ∈ I) (hy : y ∈ J) :
     x * y ∈ mulFast I J := by
   simp only [mem_def]
@@ -608,7 +653,9 @@ private theorem sqrt_le_max_one {x : ℝ} (hx : 0 ≤ x) : Real.sqrt x ≤ max x
     calc Real.sqrt x ≤ x := hsqrt_le_x
       _ ≤ max x 1 := le_max_left x 1
 
-/-- Soundness of interval sqrt: if x ∈ I, x ≥ 0, then Real.sqrt x ∈ sqrt I -/
+/-- Soundness of interval sqrt: if x ∈ I, x ≥ 0, then Real.sqrt x ∈ sqrt I
+@isnad1 id=mem.2h3v.s5.eb6567d8ce10 from=translated src=- shape=c247b631 vocab=a9707291
+-/
 theorem mem_sqrt {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I) (hx_nn : 0 ≤ x) (prec : Int) :
     Real.sqrt x ∈ sqrt I prec := by
   simp only [sqrt, mem_def, Dyadic.max_toRat, Dyadic.toRat_ofInt]
@@ -625,7 +672,9 @@ theorem mem_sqrt {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I) (hx_nn : 0 ≤ x)
       _ = (↑(max I.hi.toRat 1) : ℝ) := by simp [Rat.cast_max]
 
 /-- General soundness of interval sqrt for any real input.
-    Handles both non-negative inputs and negative inputs (where Real.sqrt returns 0). -/
+    Handles both non-negative inputs and negative inputs (where Real.sqrt returns 0).
+@isnad1 id=mem.1h3v.s4.baba420ad769 from=translated src=- shape=ee14955b vocab=e10eff2e
+-/
 theorem mem_sqrt' {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I) (prec : Int) :
     Real.sqrt x ∈ sqrt I prec := by
   rcases le_or_gt 0 x with hx_nn | hx_neg
@@ -667,21 +716,29 @@ def upperBoundedBy (I : IntervalDyadic) (q : ℚ) : Bool :=
 def lowerBoundedBy (I : IntervalDyadic) (q : ℚ) : Bool :=
   q ≤ I.lo.toRat
 
-/-- Upper bound extraction from membership -/
+/-- Upper bound extraction from membership
+@isnad1 id=le.1h2v.s4.379dac7c01ee from=translated src=- shape=6dea7913 vocab=73f3aec5
+-/
 theorem le_hi_of_mem {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I) :
     x ≤ (I.hi.toRat : ℝ) := hx.2
 
-/-- Lower bound extraction from membership -/
+/-- Lower bound extraction from membership
+@isnad1 id=le.1h2v.s4.dae5984621a0 from=translated src=- shape=940196c3 vocab=403b0439
+-/
 theorem lo_le_of_mem {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I) :
     (I.lo.toRat : ℝ) ≤ x := hx.1
 
-/-- What upperBoundedBy means: the interval's hi endpoint is ≤ q -/
+/-- What upperBoundedBy means: the interval's hi endpoint is ≤ q
+@isnad1 id=le.1h2v.s4.a1092c9a3f02 from=translated src=- shape=bc5d7779 vocab=19373336
+-/
 theorem upperBoundedBy_spec {I : IntervalDyadic} {q : ℚ}
     (h : I.upperBoundedBy q = true) : (I.hi.toRat : ℝ) ≤ q := by
   simp only [upperBoundedBy, decide_eq_true_eq] at h
   exact_mod_cast h
 
-/-- What lowerBoundedBy means: q is ≤ the interval's lo endpoint -/
+/-- What lowerBoundedBy means: q is ≤ the interval's lo endpoint
+@isnad1 id=le.1h2v.s4.84fe945aed9a from=translated src=- shape=2a5544bb vocab=093fc2bc
+-/
 theorem lowerBoundedBy_spec {I : IntervalDyadic} {q : ℚ}
     (h : I.lowerBoundedBy q = true) : (q : ℝ) ≤ I.lo.toRat := by
   simp only [lowerBoundedBy, decide_eq_true_eq] at h
@@ -713,7 +770,9 @@ def ofIntervalRat (I : IntervalRat) (prec : Int := -53) : IntervalDyadic :=
       _ ≤ ⌈I.hi * (2 : ℚ) ^ (-prec).toNat⌉ := Int.le_ceil _⟩
 
 /-- If x ∈ IntervalRat I, then x ∈ ofIntervalRat I prec (outward rounding preserves membership).
-    Requires precision ≤ 0 (e.g. -53). -/
+    Requires precision ≤ 0 (e.g. -53).
+@isnad1 id=mem.1h4v.s5.9373c7ea6b5a from=translated src=- shape=06f1b9ed vocab=602c8ac0
+-/
 theorem mem_ofIntervalRat {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (prec : Int)
     (hprec : prec ≤ 0 := by norm_num) :
     x ∈ ofIntervalRat I prec := by

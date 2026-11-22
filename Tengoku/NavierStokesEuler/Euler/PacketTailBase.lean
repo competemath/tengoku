@@ -10,11 +10,17 @@ namespace EulerPacketCoarseMajorant
 def tailBase (R H C : ℝ) (N : ℕ) : ℝ :=
   (1+C*(1+18*((N+2 : ℕ) : ℝ)^2))*H^2*gradeBase R N
 
+/--
+@isnad1 id=le.1h4v.s5.55d79ae4b767 from=translated src=- shape=18ee8d10 vocab=8baa8679
+-/
 theorem tailBase_nonneg (R H C : ℝ) (hC : 0 ≤ C) (N : ℕ) :
     0 ≤ tailBase R H C N := by
   unfold tailBase
   exact mul_nonneg (mul_nonneg (by positivity) (sq_nonneg H)) (gradeBase_nonneg R N)
 
+/--
+@isnad1 id=le.4h4v.s6.568e85d956af from=translated src=- shape=4e58b027 vocab=8baa8679
+-/
 theorem tailBase_ge_one (R H C : ℝ) (hR : 1 ≤ R) (hH : 1 ≤ H)
     (hC : 0 ≤ C) (N : ℕ) (hN : 1 ≤ N) : 1 ≤ tailBase R H C N := by
   have hf : (1 : ℝ) ≤ 1+C*(1+18*((N+2 : ℕ) : ℝ)^2) := by
@@ -24,7 +30,9 @@ theorem tailBase_ge_one (R H C : ℝ) (hR : 1 ≤ R) (hH : 1 ≤ H)
     (one_le_mul_of_one_le_of_one_le hf (one_le_pow₀ hH)) (gradeBase_ge_one R hR N hN)
 
 /-- The envelope is absorbed once into the base, with no dependence on
-the surviving grade in that base. -/
+the surviving grade in that base.
+@isnad1 id=le.1h5v.s7.b02d240061a5 from=translated src=- shape=0ef5186e vocab=517681bf
+-/
 theorem tailBase_absorption (R H C : ℝ) (hC : 0 ≤ C) (N n : ℕ) :
     (1+18*((N+2 : ℕ) : ℝ)^2)*C*H^(2*n+2)*(gradeBase R N)^(n+1) ≤
       (tailBase R H C N)^(n+1) := by
@@ -57,17 +65,25 @@ theorem tailBase_absorption (R H C : ℝ) (hC : 0 ≤ C) (N n : ℕ) :
 def tailPolynomialConstant (R H C : ℝ) : ℝ :=
   (1+163*C)*H^2*(4*R*550^2)^110
 
+/--
+@isnad1 id=le.1h3v.s4.3454c84cd367 from=translated src=- shape=3666ff6c vocab=94c75dfe
+-/
 theorem tailPolynomialConstant_nonneg (R H C : ℝ) (hC : 0 ≤ C) :
     0 ≤ tailPolynomialConstant R H C := by
   unfold tailPolynomialConstant
   positivity
 
+/--
+@isnad1 id=eq.0h2v.s6.10247dcfafa9 from=translated src=- shape=ae1739ff vocab=0ecf3ac8
+-/
 theorem gradeBase_polynomial (R : ℝ) (N : ℕ) :
     gradeBase R N = (4*R*550^2)^110*(N : ℝ)^220 := by
   unfold gradeBase
   rw [show 4*R*(550*(N : ℝ))^2 = (4*R*550^2)*(N : ℝ)^2 by ring, mul_pow, ← pow_mul]
 
-/-- Finite multiplicity raises the degree of the base from 220 to 222. -/
+/-- Finite multiplicity raises the degree of the base from 220 to 222.
+@isnad1 id=le.2h4v.s6.1111f304c5b3 from=translated src=- shape=5c2b63e1 vocab=c0493b1c
+-/
 theorem tailBase_polynomial_bound (R H C : ℝ) (hC : 0 ≤ C) (N : ℕ) (hN : 1 ≤ N) :
     tailBase R H C N ≤ tailPolynomialConstant R H C*(N : ℝ)^222 := by
   have hn : (1 : ℝ) ≤ N := by exact_mod_cast hN

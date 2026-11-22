@@ -77,7 +77,9 @@ variable {T energy supportRadius : ℝ} {K : Set ℝ³} {w₀ w : ℝ³ → ℝ�
 include F
 
 /-- A nonzero-vorticity endpoint outside the trapped support has to leave
-every approximation ball when traced backward. -/
+every approximation ball when traced backward.
+@isnad1 id=ex.2h9v.s9.b07c6d91601b from=translated src=- shape=e52a136e vocab=998b5e55
+-/
 theorem escapes (R : ℝ) (x : ℝ³) (hx : supportRadius < ‖x‖) (hw : w x ≠ 0) :
     ∃ s ∈ Icc 0 T, R ≤ ‖F.flow R s x‖ := by
   by_contra hn
@@ -92,7 +94,9 @@ theorem escapes (R : ℝ) (x : ℝ³) (hx : supportRadius < ‖x‖) (hw : w x �
   exact not_le_of_gt hx htrap'
 
 /-- Every bounded measurable set of nonzero vorticity outside the support
-ball has the quantitative escape bound. -/
+ball has the quantitative escape bound.
+@isnad1 id=le.6h10v.s10.6d23c3e3cf16 from=translated src=- shape=200da4b6 vocab=9a72b1af
+-/
 theorem measure_nonzero_outside_le
     (S : Set ℝ³) (hS : MeasurableSet S) (hfinite : volume S ≠ ⊤)
     (K₀ R : ℝ) (hKR : K₀ < R)
@@ -112,7 +116,9 @@ theorem measure_nonzero_outside_le
     exact F.escapes R x (hSoutside x hx) (hSnonzero x hx)
 
 /-- Sending the approximation radius to infinity rules out a positive
-measure set of bounded nonzero-vorticity endpoints outside the trapped ball. -/
+measure set of bounded nonzero-vorticity endpoints outside the trapped ball.
+@isnad1 id=eq.5h9v.s10.03bc6a77c08f from=translated src=- shape=296f2bef vocab=ce15157c
+-/
 theorem measure_nonzero_outside_eq_zero
     (S : Set ℝ³) (hS : MeasurableSet S) (hfinite : volume S ≠ ⊤)
     (K₀ : ℝ) (hSbound : ∀ x ∈ S, ‖x‖ ≤ K₀)
@@ -129,7 +135,9 @@ theorem measure_nonzero_outside_eq_zero
   exact le_antisymm hz measureReal_nonneg
 
 /-- Continuity removes the null exceptional set: vorticity vanishes
-pointwise outside the common ball containing the transported initial support. -/
+pointwise outside the common ball containing the transported initial support.
+@isnad1 id=eq.2h8v.s8.3f765250745d from=translated src=- shape=6e87163c vocab=60846cf9
+-/
 theorem zero_outside (hw : Continuous w) (x : ℝ³) (hx : supportRadius < ‖x‖) :
     w x = 0 := by
   by_contra hn
@@ -140,13 +148,18 @@ theorem zero_outside (hw : Continuous w) (x : ℝ³) (hx : supportRadius < ‖x�
     (fun y hy => (hprops y hy).2.2)
   linarith
 
-/-- The transported field is supported in one fixed compact ball. -/
+/-- The transported field is supported in one fixed compact ball.
+@isnad1 id=le.1h7v.s8.7e0571822489 from=translated src=- shape=fa24ae30 vocab=e19ab62f
+-/
 theorem support_subset_closedBall (hw : Continuous w) :
     Function.support w ⊆ Metric.closedBall (0 : ℝ³) supportRadius := by
   intro x hx
   rw [Metric.mem_closedBall, dist_zero_right]
   exact le_of_not_gt (fun hlt => hx (F.zero_outside hw x hlt))
 
+/--
+@isnad1 id=hascompa.1h7v.s8.3090fc8b6212 from=translated src=- shape=c7559ec7 vocab=3770ce5a
+-/
 theorem hasCompactSupport (hw : Continuous w) : HasCompactSupport w := by
   exact HasCompactSupport.intro (isCompact_closedBall (0 : ℝ³) supportRadius)
     (fun x hx => F.zero_outside hw x (by

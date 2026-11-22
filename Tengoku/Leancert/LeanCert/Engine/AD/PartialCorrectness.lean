@@ -44,7 +44,9 @@ open scoped Topology
 /-! ### Correctness of partial dual evaluator -/
 
 /-- The value component of evalDual? is correct when it returns some.
-    This theorem extends to expressions with inv. -/
+    This theorem extends to expressions with inv.
+@isnad1 id=mem.2h4v.s5.0771be3d66a4 from=translated src=- shape=16642612 vocab=05cf0dac
+-/
 theorem evalDual?_val_correct (e : Expr)
     (ρ_real : Nat → ℝ) (ρ_dual : DualEnv) (D : DualInterval)
     (hsome : evalDual? e ρ_dual = some D)
@@ -245,7 +247,9 @@ theorem evalDual?_val_correct (e : Expr)
     simp only [Expr.eval_namedConst, DualInterval.ofMathConst]
     exact c.mem_interval
 
-/-- Single-variable version of evalDual?_val_correct -/
+/-- Single-variable version of evalDual?_val_correct
+@isnad1 id=mem.2h4v.s5.192bf9451b96 from=translated src=- shape=e86de5f7 vocab=3d64405d
+-/
 theorem evalDual?1_val_correct (e : Expr)
     (I : IntervalRat) (D : DualInterval) (x : ℝ) (hx : x ∈ I)
     (hsome : evalDual?1 e I = some D) :
@@ -254,11 +258,15 @@ theorem evalDual?1_val_correct (e : Expr)
   · exact hsome
   · intro _; exact hx
 
-/-- Helper lemma: evalFunc1 for inv unfolds correctly -/
+/-- Helper lemma: evalFunc1 for inv unfolds correctly
+@isnad1 id=eq.0h1v.s4.37e457b183b0 from=translated src=- shape=328419c4 vocab=f49c448e
+-/
 theorem evalFunc1_inv (e : Expr) :
     evalFunc1 (Expr.inv e) = fun t => (evalFunc1 e t)⁻¹ := rfl
 
-/-- Expressions with inv are differentiable when the denominator is nonzero. -/
+/-- Expressions with inv are differentiable when the denominator is nonzero.
+@isnad1 id=differen.2h4v.s6.44b54ef8b278 from=translated src=- shape=7f30285e vocab=284128b6
+-/
 theorem evalFunc1_differentiableAt_of_evalDual? (e : Expr)
     (I : IntervalRat) (D : DualInterval) (x : ℝ) (hx : x ∈ I)
     (hsome : evalDual?1 e I = some D) :
@@ -444,7 +452,9 @@ theorem evalFunc1_differentiableAt_of_evalDual? (e : Expr)
     For a supported expression (with inv) evaluated at a point x in the interval I,
     the derivative of the expression lies in the computed derivative interval.
 
-    This extends the AD correctness theorem to expressions with inv. -/
+    This extends the AD correctness theorem to expressions with inv.
+@isnad1 id=mem.2h4v.s5.1b7aac16eb95 from=translated src=- shape=33c6d3dd vocab=28645a2c
+-/
 theorem evalDual?_der_correct (e : Expr)
     (I : IntervalRat) (D : DualInterval) (x : ℝ) (hx : x ∈ I)
     (hsome : evalDual?1 e I = some D) :
@@ -907,7 +917,9 @@ theorem evalDual?_der_correct (e : Expr)
     convert IntervalRat.mem_singleton 0 using 1
     norm_cast
 
-/-- Combined correctness theorem for evalDual?1 -/
+/-- Combined correctness theorem for evalDual?1
+@isnad1 id=and.2h4v.s6.8966afbe5231 from=translated src=- shape=289ee13d vocab=7f5f8a87
+-/
 theorem evalDual?1_correct (e : Expr)
     (I : IntervalRat) (D : DualInterval) (x : ℝ) (hx : x ∈ I)
     (hsome : evalDual?1 e I = some D) :

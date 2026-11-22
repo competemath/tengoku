@@ -60,7 +60,9 @@ export LeanCert.Core (ExprSupportedCore ADSupported)
 def sinInterval (_I : IntervalRat) : IntervalRat :=
   ⟨-1, 1, by norm_num⟩
 
-/-- Correctness of sin interval: sin x ∈ [-1, 1] for all x -/
+/-- Correctness of sin interval: sin x ∈ [-1, 1] for all x
+@isnad1 id=mem.1h2v.s4.efc6908d259b from=translated src=- shape=34c11fd3 vocab=649c723d
+-/
 theorem mem_sinInterval {x : ℝ} {I : IntervalRat} (_hx : x ∈ I) :
     Real.sin x ∈ sinInterval I := by
   simp only [IntervalRat.mem_def, sinInterval]
@@ -75,7 +77,9 @@ theorem mem_sinInterval {x : ℝ} {I : IntervalRat} (_hx : x ∈ I) :
 def cosInterval (_I : IntervalRat) : IntervalRat :=
   ⟨-1, 1, by norm_num⟩
 
-/-- Correctness of cos interval: cos x ∈ [-1, 1] for all x -/
+/-- Correctness of cos interval: cos x ∈ [-1, 1] for all x
+@isnad1 id=mem.1h2v.s4.310d096294a3 from=translated src=- shape=34c11fd3 vocab=00569901
+-/
 theorem mem_cosInterval {x : ℝ} {I : IntervalRat} (_hx : x ∈ I) :
     Real.cos x ∈ cosInterval I := by
   simp only [IntervalRat.mem_def, cosInterval]
@@ -90,7 +94,9 @@ theorem mem_cosInterval {x : ℝ} {I : IntervalRat} (_hx : x ∈ I) :
 def atanInterval (_I : IntervalRat) : IntervalRat :=
   ⟨-2, 2, by norm_num⟩
 
-/-- Correctness of atan interval: arctan x ∈ [-2, 2] for all x -/
+/-- Correctness of atan interval: arctan x ∈ [-2, 2] for all x
+@isnad1 id=mem.1h2v.s4.3c44d14ac775 from=translated src=- shape=34c11fd3 vocab=7834d9a9
+-/
 theorem mem_atanInterval {x : ℝ} {I : IntervalRat} (_hx : x ∈ I) :
     Real.arctan x ∈ atanInterval I := by
   simp only [IntervalRat.mem_def, atanInterval, Rat.cast_neg, Rat.cast_ofNat]
@@ -123,7 +129,9 @@ private theorem integral_exp_neg_sq_pos (a b : ℝ) (hab : a < b) :
     Proof: erf'(x) = (2/√π) * exp(-x²) > 0 for all x.
 
     We use that for a < b, the integral ∫_{a}^{b} exp(-t²) dt > 0 since the
-    integrand is strictly positive. -/
+    integrand is strictly positive.
+@isnad1 id=strictmo.0h0v.s2.85f6aa454e0a from=translated src=- shape=e3d48bcb vocab=73575d93
+-/
 theorem Real.strictMono_erf : StrictMono Real.erf := by
   intro a b hab
   unfold Real.erf
@@ -192,7 +200,9 @@ private theorem Real.abs_erf_le_2257_div_2000_mul_abs (x : ℝ) :
           nlinarith [hfactor_nonneg, hfactor_le_2257_div_2000, abs_nonneg x]
 
 /-- Correctness of `erfPointComputable`.
-    The enclosure is sign-aware and uses monotonicity of erf with `erf(0)=0`. -/
+    The enclosure is sign-aware and uses monotonicity of erf with `erf(0)=0`.
+@isnad1 id=mem.0h2v.s4.8ee587d7412f from=translated src=- shape=568304da vocab=247fc6b7
+-/
 theorem mem_erfPointComputable (q : ℚ) (n : ℕ) :
     Real.erf q ∈ IntervalRat.erfPointComputable q n := by
   unfold IntervalRat.erfPointComputable
@@ -230,7 +240,9 @@ theorem mem_erfPointComputable (q : ℚ) (n : ℕ) :
     - erfPointComputable(I.lo) contains erf(I.lo)
     - erfPointComputable(I.hi) contains erf(I.hi)
     - hull of these intervals contains [erf(I.lo), erf(I.hi)]
-    - Therefore erf(x) ∈ hull(...) ∩ [-1, 1] -/
+    - Therefore erf(x) ∈ hull(...) ∩ [-1, 1]
+@isnad1 id=mem.1h3v.s4.ce7e670ba68e from=translated src=- shape=71d4a1f7 vocab=1f3bcf9b
+-/
 theorem mem_erfInterval {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ := 15) :
     Real.erf x ∈ erfInterval I n := by
   unfold erfInterval IntervalRat.erfComputable
@@ -292,7 +304,9 @@ def arsinhInterval (I : IntervalRat) : IntervalRat :=
     exact h5⟩
 
 /-- Correctness of arsinh interval.
-    Uses the bound |arsinh x| ≤ |x| for all x (from IntervalRealEndpoints). -/
+    Uses the bound |arsinh x| ≤ |x| for all x (from IntervalRealEndpoints).
+@isnad1 id=mem.1h2v.s4.e6265e7d4470 from=translated src=- shape=34c11fd3 vocab=24492d83
+-/
 theorem mem_arsinhInterval {x : ℝ} {I : IntervalRat} (hx : x ∈ I) :
     Real.arsinh x ∈ arsinhInterval I := by
   simp only [IntervalRat.mem_def, arsinhInterval]
@@ -349,7 +363,9 @@ noncomputable def atanhInterval (I : IntervalRat) : IntervalRat :=
   else
     default
 
-/-- Correctness of atanh interval: when x ∈ I and I ⊂ (-1, 1), atanh(x) ∈ atanhInterval I. -/
+/-- Correctness of atanh interval: when x ∈ I and I ⊂ (-1, 1), atanh(x) ∈ atanhInterval I.
+@isnad1 id=mem.3h2v.s5.4bf6d9eed3f0 from=translated src=- shape=546ec9b1 vocab=f8ceea8e
+-/
 theorem mem_atanhInterval {x : ℝ} {I : IntervalRat} (hx : x ∈ I)
     (hlo : -1 < I.lo) (hhi : I.hi < 1) :
     Real.atanh x ∈ atanhInterval I := by
@@ -367,7 +383,9 @@ theorem mem_atanhInterval {x : ℝ} {I : IntervalRat} (hx : x ∈ I)
 def tanhInterval (_I : IntervalRat) : IntervalRat :=
   ⟨-1, 1, by norm_num⟩
 
-/-- Correctness of tanh interval: tanh x ∈ [-1, 1] for all x -/
+/-- Correctness of tanh interval: tanh x ∈ [-1, 1] for all x
+@isnad1 id=mem.1h2v.s4.75cc1f1ec500 from=translated src=- shape=34c11fd3 vocab=0085708f
+-/
 theorem mem_tanhInterval {x : ℝ} {I : IntervalRat} (_hx : x ∈ I) :
     Real.tanh x ∈ tanhInterval I := by
   simp only [IntervalRat.mem_def, tanhInterval, Rat.cast_neg, Rat.cast_one]
@@ -399,7 +417,9 @@ def piInterval : IntervalRat :=
   -- Use rational approximation: 31415926535897932/10000000000000000 ≤ pi ≤ 31415926535897933/10000000000000000
   ⟨31415926535897932/10000000000000000, 31415926535897933/10000000000000000, by norm_num⟩
 
-/-- Correctness of pi interval: Real.pi ∈ piInterval -/
+/-- Correctness of pi interval: Real.pi ∈ piInterval
+@isnad1 id=mem.0h0v.s2.8a61768dd96d from=translated src=- shape=93eefbde vocab=c70c7a98
+-/
 theorem mem_piInterval : Real.pi ∈ piInterval := by
   simp only [IntervalRat.mem_def, piInterval]
   constructor
@@ -499,7 +519,9 @@ private theorem eulerMascheroniSeq'_100_le :
   push_cast
   linarith [h54.1, h54.2]
 
-/-- Correctness of Euler–Mascheroni interval: γ ∈ eulerMascheroniInterval -/
+/-- Correctness of Euler–Mascheroni interval: γ ∈ eulerMascheroniInterval
+@isnad1 id=mem.0h0v.s2.a7198e961eea from=translated src=- shape=93eefbde vocab=3619f9b6
+-/
 theorem mem_eulerMascheroniInterval :
     Real.eulerMascheroniConstant ∈ eulerMascheroniInterval := by
   simp only [IntervalRat.mem_def, eulerMascheroniInterval]
@@ -522,7 +544,9 @@ def interval : MathConst → IntervalRat
   | .pi => piInterval
   | .eulerMascheroni => eulerMascheroniInterval
 
-/-- Correctness: the real value of every named constant is in its interval. -/
+/-- Correctness: the real value of every named constant is in its interval.
+@isnad1 id=mem.0h1v.s3.e99861520261 from=translated src=- shape=635eb70d vocab=fc6b7610
+-/
 theorem mem_interval (c : MathConst) : c.toReal ∈ c.interval := by
   cases c with
   | pi => exact mem_piInterval
@@ -575,7 +599,9 @@ def invInterval (I : IntervalRat) : IntervalRat :=
     ⟨-invWideBound, invWideBound, by simp only [invWideBound]; norm_num⟩
 
 /-- Correctness of invInterval when denominator interval is positive.
-    For x ∈ [a,b] with a > 0, we have 1/x ∈ [1/b, 1/a] -/
+    For x ∈ [a,b] with a > 0, we have 1/x ∈ [1/b, 1/a]
+@isnad1 id=mem.2h2v.s5.97566e31a772 from=translated src=- shape=a859e574 vocab=3095d262
+-/
 theorem mem_invInterval_pos {x : ℝ} {I : IntervalRat}
     (hx : x ∈ I) (hpos : I.lo > 0) :
     x⁻¹ ∈ invInterval I := by
@@ -615,7 +641,9 @@ theorem mem_invInterval_pos {x : ℝ} {I : IntervalRat}
     exact absurd hle' hle
 
 /-- Correctness of invInterval when denominator interval is negative.
-    For x ∈ [a,b] with b < 0, we have 1/x ∈ [1/b, 1/a] -/
+    For x ∈ [a,b] with b < 0, we have 1/x ∈ [1/b, 1/a]
+@isnad1 id=mem.2h2v.s5.14b72999353e from=translated src=- shape=a859e574 vocab=a51a610a
+-/
 theorem mem_invInterval_neg {x : ℝ} {I : IntervalRat}
     (hx : x ∈ I) (hneg : I.hi < 0) :
     x⁻¹ ∈ invInterval I := by
@@ -655,7 +683,9 @@ theorem mem_invInterval_neg {x : ℝ} {I : IntervalRat}
     exact absurd hle' hle
 
 /-- Correctness of invInterval when denominator interval contains zero.
-    Requires a bound on |x⁻¹| to be provable, since x can be arbitrarily close to 0. -/
+    Requires a bound on |x⁻¹| to be provable, since x can be arbitrarily close to 0.
+@isnad1 id=mem.4h2v.s5.2d96bc56b23a from=translated src=- shape=844829db vocab=d25e21e3
+-/
 theorem mem_invInterval_wide {x : ℝ} {I : IntervalRat}
     (_hx : x ∈ I) (hlo : ¬(I.lo > 0)) (hhi : ¬(I.hi < 0))
     (hbnd : |x⁻¹| ≤ invWideBound) :
@@ -672,7 +702,9 @@ theorem mem_invInterval_wide {x : ℝ} {I : IntervalRat}
 
 /-- Main correctness theorem for invInterval.
     Fully proved for intervals bounded away from zero.
-    For intervals containing zero, requires a bound on |x⁻¹|. -/
+    For intervals containing zero, requires a bound on |x⁻¹|.
+@isnad1 id=mem.2h2v.s5.9f72c58b30b1 from=translated src=- shape=6bd81f07 vocab=6cb2eac8
+-/
 theorem mem_invInterval {x : ℝ} {I : IntervalRat}
     (hx : x ∈ I) (hbnd : |x⁻¹| ≤ invWideBound) :
     x⁻¹ ∈ invInterval I := by
@@ -683,7 +715,9 @@ theorem mem_invInterval {x : ℝ} {I : IntervalRat}
     · exact mem_invInterval_neg hx hneg
     · exact mem_invInterval_wide hx hpos hneg hbnd
 
-/-- Correctness of invInterval for intervals bounded away from zero (no extra hypothesis needed) -/
+/-- Correctness of invInterval for intervals bounded away from zero (no extra hypothesis needed)
+@isnad1 id=mem.2h2v.s5.685d72039db2 from=translated src=- shape=ffa09979 vocab=37813fbc
+-/
 theorem mem_invInterval_nonzero {x : ℝ} {I : IntervalRat}
     (hx : x ∈ I) (hnonzero : I.lo > 0 ∨ I.hi < 0) :
     x⁻¹ ∈ invInterval I := by
@@ -820,7 +854,9 @@ def checkDomainValid (e : Expr) (ρ : IntervalEnv) (cfg : EvalConfig := {}) : Bo
 def checkDomainValid1 (e : Expr) (I : IntervalRat) (cfg : EvalConfig := {}) : Bool :=
   checkDomainValid e (fun _ => I) cfg
 
-/-- checkDomainValid = true implies evalDomainValid -/
+/-- checkDomainValid = true implies evalDomainValid
+@isnad1 id=evaldoma.1h3v.s4.5cd16b8284ad from=translated src=- shape=d731b9ee vocab=2efb9fe0
+-/
 theorem checkDomainValid_correct (e : Expr) (ρ : IntervalEnv) (cfg : EvalConfig)
     (h : checkDomainValid e ρ cfg = true) : evalDomainValid e ρ cfg := by
   induction e with
@@ -896,12 +932,16 @@ theorem checkDomainValid_correct (e : Expr) (ρ : IntervalEnv) (cfg : EvalConfig
     exact ih h
   | namedConst _ => trivial
 
-/-- checkDomainValid1 = true implies evalDomainValid1 -/
+/-- checkDomainValid1 = true implies evalDomainValid1
+@isnad1 id=evaldoma.1h3v.s4.0c17c4306a07 from=translated src=- shape=d731b9ee vocab=3f2c0a83
+-/
 theorem checkDomainValid1_correct (e : Expr) (I : IntervalRat) (cfg : EvalConfig)
     (h : checkDomainValid1 e I cfg = true) : evalDomainValid1 e I cfg :=
   checkDomainValid_correct e (fun _ => I) cfg h
 
-/-- evalDomainValid is equivalent to checkDomainValid = true -/
+/-- evalDomainValid is equivalent to checkDomainValid = true
+@isnad1 id=iff.0h3v.s4.3207ba508592 from=translated src=- shape=2b08f9ee vocab=2efb9fe0
+-/
 theorem evalDomainValid_iff_checkDomainValid (e : Expr) (ρ : IntervalEnv) (cfg : EvalConfig) :
     evalDomainValid e ρ cfg ↔ checkDomainValid e ρ cfg = true := by
   constructor
@@ -993,7 +1033,9 @@ instance decidableEvalDomainValid1 (e : Expr) (I : IntervalRat) (cfg : EvalConfi
   decidableEvalDomainValid e (fun _ => I) cfg
 
 /-- ADSupported expressions (which don't include log) always have valid domains.
-    This is because only log has domain restrictions (positive argument). -/
+    This is because only log has domain restrictions (positive argument).
+@isnad1 id=evaldoma.1h3v.s3.ec2249d9d792 from=translated src=- shape=5a0387d9 vocab=2e40390c
+-/
 theorem ADSupported.domainValid {e : Expr} (hsupp : ADSupported e)
     (ρ : IntervalEnv) (cfg : EvalConfig) : evalDomainValid e ρ cfg := by
   induction hsupp generalizing ρ cfg with
@@ -1006,7 +1048,9 @@ theorem ADSupported.domainValid {e : Expr} (hsupp : ADSupported e)
   | cos _ ih => exact ih ρ cfg
   | exp _ ih => exact ih ρ cfg
 
-/-- Single-variable version of domainValid for ADSupported -/
+/-- Single-variable version of domainValid for ADSupported
+@isnad1 id=evaldoma.1h3v.s3.1bd859a71c5c from=translated src=- shape=5a0387d9 vocab=3b33187d
+-/
 theorem exprSupported_domainValid1 {e : Expr} (hsupp : ADSupported e)
     (I : IntervalRat) (cfg : EvalConfig) : evalDomainValid1 e I cfg :=
   ADSupported.domainValid hsupp (fun _ => I) cfg
@@ -1016,7 +1060,9 @@ theorem exprSupported_domainValid1 {e : Expr} (hsupp : ADSupported e)
     This theorem is FULLY PROVED for core expressions (no sorry, no axioms).
     The `hsupp` hypothesis ensures we only consider expressions in the
     computable verified subset. The `hdom` hypothesis ensures domain validity
-    (e.g., log arguments are positive). Works for any Taylor depth. -/
+    (e.g., log arguments are positive). Works for any Taylor depth.
+@isnad1 id=mem.3h4v.s5.ebca02d6da42 from=translated src=- shape=b7700cac vocab=7365fb6e
+-/
 theorem evalIntervalCore_correct (e : Expr) (hsupp : ExprSupportedCore e)
     (ρ_real : Nat → ℝ) (ρ_int : IntervalEnv) (hρ : envMem ρ_real ρ_int)
     (cfg : EvalConfig := {})
@@ -1099,7 +1145,9 @@ namespace LeanCert.Engine
 
 open LeanCert.Core
 
-/-- Correctness for single-variable core evaluation -/
+/-- Correctness for single-variable core evaluation
+@isnad1 id=mem.3h4v.s5.d0f706994456 from=translated src=- shape=aed29311 vocab=6a2b3f42
+-/
 theorem evalIntervalCore1_correct (e : Expr) (hsupp : ExprSupportedCore e)
     (x : ℝ) (I : IntervalRat) (hx : x ∈ I)
     (cfg : EvalConfig := {})

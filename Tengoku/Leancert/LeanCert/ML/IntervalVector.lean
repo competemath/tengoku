@@ -69,7 +69,9 @@ def relu (I : IntervalDyadic) : IntervalDyadic where
     simp only [Dyadic.max_toRat, Dyadic.toRat_ofInt, Int.cast_zero]
     exact max_le_max (le_refl (0 : ℚ)) I.le
 
-/-- Soundness of ReLU: if x ∈ I, then max(0, x) ∈ relu I -/
+/-- Soundness of ReLU: if x ∈ I, then max(0, x) ∈ relu I
+@isnad1 id=mem.1h2v.s4.a1a98aeb0da8 from=translated src=- shape=4acbd022 vocab=84a5c548
+-/
 theorem mem_relu {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I) :
     max 0 x ∈ relu I := by
   simp only [IntervalDyadic.mem_def, relu] at *
@@ -92,7 +94,9 @@ theorem mem_relu {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I) :
 def reluVector (Is : IntervalVector) : IntervalVector :=
   Is.map relu
 
-/-- Soundness of vector ReLU -/
+/-- Soundness of vector ReLU
+@isnad1 id=mem.1h2v.s4.a1a98aeb0da8 from=translated src=- shape=4acbd022 vocab=84a5c548
+-/
 theorem mem_reluVector_component {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I) :
     max 0 x ∈ relu I := mem_relu hx
 
@@ -109,18 +113,25 @@ def sigmoid (_I : IntervalDyadic) : IntervalDyadic where
 /-- Real sigmoid function -/
 noncomputable def Real.sigmoid (x : ℝ) : ℝ := 1 / (1 + Real.exp (-x))
 
-/-- Sigmoid is bounded in (0, 1) -/
+/-- Sigmoid is bounded in (0, 1)
+@isnad1 id=lt.0h1v.s3.e05ddb3dc5cd from=translated src=- shape=8a62b088 vocab=d83c59e2
+-/
 theorem Real.sigmoid_pos (x : ℝ) : 0 < Real.sigmoid x := by
   unfold Real.sigmoid
   apply div_pos one_pos
   linarith [Real.exp_pos (-x)]
 
+/--
+@isnad1 id=lt.0h1v.s3.212048717378 from=translated src=- shape=b14ee516 vocab=d83c59e2
+-/
 theorem Real.sigmoid_lt_one (x : ℝ) : Real.sigmoid x < 1 := by
   unfold Real.sigmoid
   rw [div_lt_one (by linarith [Real.exp_pos (-x)] : 0 < 1 + Real.exp (-x))]
   linarith [Real.exp_pos (-x)]
 
-/-- Soundness of sigmoid: sigmoid(x) ∈ [0, 1] for all x -/
+/-- Soundness of sigmoid: sigmoid(x) ∈ [0, 1] for all x
+@isnad1 id=mem.1h2v.s4.04cf3eab379f from=translated src=- shape=34c11fd3 vocab=e6e800f1
+-/
 theorem mem_sigmoid {x : ℝ} {I : IntervalDyadic} (_hx : x ∈ I) :
     Real.sigmoid x ∈ sigmoid I := by
   simp only [IntervalDyadic.mem_def, sigmoid]

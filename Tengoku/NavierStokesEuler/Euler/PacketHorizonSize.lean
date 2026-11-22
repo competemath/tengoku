@@ -14,6 +14,9 @@ namespace EulerPacketMovingFrame
 
 open Set Real EulerSmoothLimit EulerPacketGrowth EulerPacketFrameStability InnerProductSpace
 
+/--
+@isnad1 id=le.9h5v.s8.82e07799e602 from=translated src=- shape=85549aff vocab=9da21812
+-/
 theorem equation30_short_size_comparison {σ s t : ℝ} {Z Z₁ : ℝ → ℝ}
     (hσ : 0 < σ) (hσsmall : σ ≤ 1/4)
     (hZ : ∀ x, 0 ≤ x → HasDerivAt Z (Z₁ x) x)
@@ -67,6 +70,9 @@ theorem equation30_short_size_comparison {σ s t : ℝ} {Z Z₁ : ℝ → ℝ}
   dsimp [idealPrimarySize]
   nlinarith only [hleft, hgrowth, hrightExp]
 
+/--
+@isnad1 id=le.10h6v.s8.9ef8bff5c539 from=translated src=- shape=10184e99 vocab=9da21812
+-/
 theorem equation30_horizon_size_comparison {σ T H τ : ℝ} {Z Z₁ : ℝ → ℝ}
     (hσ : 0 < σ) (hσsmall : σ ≤ 1/4)
     (hZ : ∀ x, 0 ≤ x → HasDerivAt Z (Z₁ x) x)
@@ -85,6 +91,9 @@ theorem equation30_horizon_size_comparison {σ T H τ : ℝ} {Z Z₁ : ℝ → �
   · exact equation30_short_size_comparison hσ hσsmall hZ hfluxZ hZ0 hZ₁0 hT
       (le_of_not_ge hpre) (by linarith only [hshort, hτH])
 
+/--
+@isnad1 id=le.27h20v.s10.2b63d15127f8 from=translated src=- shape=85ca42d9 vocab=05275bf0
+-/
 theorem physical_horizon_size_bound {α : Type*} (center : α)
     (m v r w : α → ℝ → Space) {s₀ t₀ a ε T H Θ K e σ : ℝ} {Z Z₁ : ℝ → ℝ}
     (hs₀ : 0 < s₀) (hε : 0 < ε) (hσ : 0 < σ) (hσsmall : σ ≤ 1/4)

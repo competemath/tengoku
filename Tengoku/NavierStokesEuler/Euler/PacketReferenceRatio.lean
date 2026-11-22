@@ -10,6 +10,9 @@ namespace EulerPacketMovingFrame
 
 open Set EulerPacketGrowth
 
+/--
+@isnad1 id=le.13h8v.s9.c719244a4425 from=translated src=- shape=3b3a7eca vocab=415442b9
+-/
 theorem equation30_slope_ratio_dominates
     {σ lam s t : ℝ} {F F₁ Z Z₁ : ℝ → ℝ}
     (hσ : 0 < σ) (hσsmall : σ ≤ 1/4) (hlam : 0 ≤ lam)

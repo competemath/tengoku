@@ -134,7 +134,9 @@ def relu (a : IntervalArray n) : IntervalArray n where
 
 /-! ### Soundness Theorems -/
 
-/-- Addition is sound: if x ∈ a and y ∈ b, then x + y ∈ add a b -/
+/-- Addition is sound: if x ∈ a and y ∈ b, then x + y ∈ add a b
+@isnad1 id=mem.2h5v.s6.7daa35a22505 from=translated src=- shape=f98494d9 vocab=d98b3aba
+-/
 theorem mem_add {x y : Fin n → ℝ} {a b : IntervalArray n}
     (hx : x ∈ a) (hy : y ∈ b) :
     (fun i => x i + y i) ∈ add a b := by
@@ -151,7 +153,9 @@ theorem mem_add {x y : Fin n → ℝ} {a b : IntervalArray n}
   simp only [getLo, getHi] at hxlo hylo hxhi hyhi
   constructor <;> linarith
 
-/-- Negation is sound: if x ∈ a, then -x ∈ neg a -/
+/-- Negation is sound: if x ∈ a, then -x ∈ neg a
+@isnad1 id=mem.1h3v.s5.52f91fc43add from=translated src=- shape=50a8bbc8 vocab=60fc42cb
+-/
 theorem mem_neg {x : Fin n → ℝ} {a : IntervalArray n} (hx : x ∈ a) :
     (fun i => -x i) ∈ neg a := by
   show IntervalArray.mem (neg a) (fun i => -x i)
@@ -163,14 +167,18 @@ theorem mem_neg {x : Fin n → ℝ} {a : IntervalArray n} (hx : x ∈ a) :
   simp only [getLo, getHi] at hlo hhi
   constructor <;> linarith
 
-/-- Subtraction is sound -/
+/-- Subtraction is sound
+@isnad1 id=mem.2h5v.s6.b42283329267 from=translated src=- shape=f98494d9 vocab=2b3a0b66
+-/
 theorem mem_sub {x y : Fin n → ℝ} {a b : IntervalArray n}
     (hx : x ∈ a) (hy : y ∈ b) :
     (fun i => x i - y i) ∈ sub a b := by
   simp only [sub, sub_eq_add_neg]
   exact mem_add hx (mem_neg hy)
 
-/-- ReLU is sound: if x ∈ a, then max(0, x) ∈ relu a -/
+/-- ReLU is sound: if x ∈ a, then max(0, x) ∈ relu a
+@isnad1 id=mem.1h3v.s5.1541b88be789 from=translated src=- shape=62b6dbac vocab=10171b1d
+-/
 theorem mem_relu {x : Fin n → ℝ} {a : IntervalArray n} (hx : x ∈ a) :
     (fun i => max 0 (x i)) ∈ relu a := by
   show IntervalArray.mem (relu a) (fun i => max 0 (x i))

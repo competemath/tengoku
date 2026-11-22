@@ -19,6 +19,9 @@ variable (P : ℝ) [Fact (0 < P)]
 
 def scalarLift (φ : Space → ℝ) : LiftDomain P → ℝ := fun z => φ z.1
 
+/--
+@isnad1 id=hascompa.1h2v.s7.3e180c2d8737 from=translated src=- shape=b0cbc96b vocab=19850062
+-/
 theorem scalarLift_compact (φ : Space → ℝ) (hφ : HasCompactSupport φ) :
     HasCompactSupport (scalarLift P φ) := by
   apply HasCompactSupport.intro (hφ.prod (isCompact_univ : IsCompact (univ : Set (AddCircle P))))
@@ -27,16 +30,25 @@ theorem scalarLift_compact (φ : Space → ℝ) (hφ : HasCompactSupport φ) :
   exact image_eq_zero_of_notMem_tsupport (by simpa only [mem_prod,mem_univ,and_true] using hz)
 
 omit [Fact (0 < P)] in
+/--
+@isnad1 id=contdiff.1h3v.s8.fc9ddcf00cbe from=translated src=- shape=81a8cdcf vocab=b64e0151
+-/
 theorem scalarLift_smooth (φ : Space → ℝ) (hφ : ContDiff ℝ ∞ φ) (z : LiftDomain P) :
     ContDiff ℝ ∞ (localLift P (scalarLift P φ) z) :=
   hφ.comp (contDiff_const.add contDiff_fst)
 
+/--
+@isnad1 id=eq.0h3v.s9.35265c558966 from=translated src=- shape=d770a4a4 vocab=4879d55a
+-/
 theorem gradient_component (φ : Space → ℝ) (x : Space) (i : Fin 3) :
     gradient φ x i = fderiv ℝ φ x (EuclideanSpace.single i 1) := by
   have h := toDual_symm_apply (𝕜 := ℝ) (x := EuclideanSpace.single i 1) (y := fderiv ℝ φ x)
   simpa only [gradient,EuclideanSpace.inner_single_right,conj_trivial,one_mul] using h
 
 omit [Fact (0 < P)] in
+/--
+@isnad1 id=eq.1h5v.s8.a1604f02be0d from=translated src=- shape=7e81eccb vocab=4b076742
+-/
 theorem scalarLift_gradient (κ : ℝ) (m : Space) (φ : Space → ℝ)
     (hφ : ContDiff ℝ ∞ φ) (z : LiftDomain P) :
     liftedGradient P κ m (scalarLift P φ) z = κ • gradient φ z.1 := by
@@ -55,6 +67,9 @@ theorem scalarLift_gradient (κ : ℝ) (m : Space) (φ : Space → ℝ)
   change κ * fderiv ℝ φ z.1 (EuclideanSpace.single i 1) + m i * fderiv ℝ φ z.1 0 = _
   rw [map_zero,mul_zero,add_zero]
 
+/--
+@isnad1 id=mem.1h4v.s17.c86dbd7eba4e from=translated src=- shape=71071a5a vocab=151223c8
+-/
 theorem smul_embedding_gradient_mem (κ : ℝ) (m : Space)
     (g : EulerMeanSolenoidal.L2) (hg : g ∈ EulerMeanSolenoidal.gradientSpace) :
     κ • embedding P g ∈ gradientSpace P κ m := by
@@ -78,6 +93,9 @@ theorem smul_embedding_gradient_mem (κ : ℝ) (m : Space)
   exact ((Submodule.span ℝ EulerMeanSolenoidal.gradientGenerators).topologicalClosure_minimal
     hgen hclosed) hg
 
+/--
+@isnad1 id=mem.2h4v.s16.88ff28d9c94d from=translated src=- shape=603b8ffe vocab=c6f25e7e
+-/
 theorem embedding_gradient_mem (κ : ℝ) (hκ : κ ≠ 0) (m : Space)
     (g : EulerMeanSolenoidal.L2) (hg : g ∈ EulerMeanSolenoidal.gradientSpace) :
     embedding P g ∈ gradientSpace P κ m := by

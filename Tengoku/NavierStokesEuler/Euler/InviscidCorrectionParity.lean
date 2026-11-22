@@ -55,7 +55,9 @@ local instance inviscidParitySpace (q : ℕ) : NormedSpace ℝ (SobolevSpace per
 /-- Every actual zero-initial inviscid correction is odd under the
 source's genuine parity hypotheses on the prescribed fields and coefficients.
 The reflected path solves the literal same equation; uniqueness is proved
-by the existing metric-energy theorem, not assumed. -/
+by the existing metric-energy theorem, not assumed.
+@isnad1 id=eq.11h7v.s22.5e5179979759 from=translated src=- shape=e2e885a3 vocab=e5fd16fc
+-/
 theorem inviscid_correction_odd {q : ℕ} (hq : 6 ≤ q) (T : ℝ) (hT : 0 ≤ T)
     (D : CorrectionData period q (Icc (0 : ℝ) T)) (B : StabilityBudget period hT D)
     (hG : ∀ t x, (D.metric.coefficient t).coefficient (-x) = (D.metric.coefficient t).coefficient x)
@@ -98,7 +100,9 @@ theorem inviscid_correction_odd {q : ℕ} (hq : 6 ≤ q) (T : ℝ) (hT : 0 ≤ T
   exact (congrArg (fun f => f t) he).symm
 
 /-- The actual signed coercive correction pressure has odd gradient parity
-at every time once the correction parity has been established. -/
+at every time once the correction parity has been established.
+@isnad1 id=eq.7h6v.s22.77c69357f56e from=translated src=- shape=e83103c4 vocab=08a94759
+-/
 theorem inviscid_correction_pressure_odd {q : ℕ} (hq : 6 ≤ q) {T : Type*} [TopologicalSpace T]
     (D : CorrectionData period q T) (t : T)
     (hG : ∀ x, (D.metric.coefficient t).coefficient (-x) = (D.metric.coefficient t).coefficient x)

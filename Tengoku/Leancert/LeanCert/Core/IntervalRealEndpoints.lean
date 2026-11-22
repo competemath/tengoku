@@ -62,16 +62,25 @@ def toSet (I : IntervalReal) : Set ℝ := Set.Icc I.lo I.hi
 instance : Membership ℝ IntervalReal where
   mem I x := I.lo ≤ x ∧ x ≤ I.hi
 
+/--
+@isnad1 id=iff.0h2v.s4.e1fa805c79b5 from=translated src=- shape=97f25c1a vocab=7c7df3cf
+-/
 @[simp]
 theorem mem_def (x : ℝ) (I : IntervalReal) : x ∈ I ↔ I.lo ≤ x ∧ x ≤ I.hi :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h2v.s4.c4e63a28bdfa from=translated src=- shape=7c732aab vocab=c8eb8380
+-/
 theorem mem_toSet_iff (x : ℝ) (I : IntervalReal) : x ∈ I.toSet ↔ x ∈ I := by
   simp only [toSet, Set.mem_Icc, mem_def]
 
 /-- Create an interval from a single real -/
 def singleton (r : ℝ) : IntervalReal := ⟨r, r, le_refl r⟩
 
+/--
+@isnad1 id=mem.0h1v.s3.fdc40e7986b6 from=translated src=- shape=003a2c60 vocab=798bf78a
+-/
 theorem mem_singleton (r : ℝ) : r ∈ singleton r := ⟨le_refl r, le_refl r⟩
 
 /-- Convert from IntervalRat to IntervalReal -/
@@ -80,6 +89,9 @@ def ofRat (I : IntervalRat) : IntervalReal where
   hi := I.hi
   le := by exact_mod_cast I.le
 
+/--
+@isnad1 id=mem.1h2v.s4.0f155d7f95ad from=translated src=- shape=c73dd1ac vocab=9acf824e
+-/
 theorem mem_ofRat {x : ℝ} {I : IntervalRat} (hx : x ∈ I) : x ∈ ofRat I := by
   simp only [mem_def, ofRat] at *
   exact hx
@@ -92,7 +104,9 @@ def add (I J : IntervalReal) : IntervalReal where
   hi := I.hi + J.hi
   le := by linarith [I.le, J.le]
 
-/-- FTIA for addition -/
+/-- FTIA for addition
+@isnad1 id=mem.2h4v.s5.72e2cc79d07d from=translated src=- shape=52949ecd vocab=3268d7f7
+-/
 theorem mem_add {x y : ℝ} {I J : IntervalReal} (hx : x ∈ I) (hy : y ∈ J) :
     x + y ∈ add I J := by
   simp only [mem_def] at *
@@ -107,7 +121,9 @@ def neg (I : IntervalReal) : IntervalReal where
   hi := -I.lo
   le := by linarith [I.le]
 
-/-- FTIA for negation -/
+/-- FTIA for negation
+@isnad1 id=mem.1h2v.s4.b7adac59aa00 from=translated src=- shape=81fdfc84 vocab=c1fb38c1
+-/
 theorem mem_neg {x : ℝ} {I : IntervalReal} (hx : x ∈ I) : -x ∈ neg I := by
   simp only [mem_def] at *
   simp only [neg]
@@ -137,7 +153,9 @@ noncomputable def expInterval (I : IntervalReal) : IntervalReal where
   le := Real.exp_le_exp.mpr I.le
 
 /-- FTIA for exp: if x ∈ [a,b], then exp(x) ∈ [exp(a), exp(b)].
-    This is FULLY PROVED - no sorry, no axioms. -/
+    This is FULLY PROVED - no sorry, no axioms.
+@isnad1 id=mem.1h2v.s4.0ebcc9889647 from=translated src=- shape=34c11fd3 vocab=2dcc6a06
+-/
 theorem mem_expInterval {x : ℝ} {I : IntervalReal} (hx : x ∈ I) :
     Real.exp x ∈ expInterval I := by
   simp only [mem_def] at *
@@ -160,7 +178,9 @@ noncomputable def logInterval (I : IntervalRealPos) : IntervalReal where
   le := Real.log_le_log I.lo_pos I.le
 
 /-- FTIA for log: if x ∈ [a,b] with a > 0, then log(x) ∈ [log(a), log(b)].
-    This is FULLY PROVED - no sorry, no axioms. -/
+    This is FULLY PROVED - no sorry, no axioms.
+@isnad1 id=mem.1h2v.s4.edaeda10ae3c from=translated src=- shape=e82d958e vocab=8545ecdb
+-/
 theorem mem_logInterval {x : ℝ} {I : IntervalRealPos} (hx : x ∈ I.toIntervalReal) :
     Real.log x ∈ logInterval I := by
   simp only [mem_def] at *
@@ -176,7 +196,9 @@ theorem mem_logInterval {x : ℝ} {I : IntervalRealPos} (hx : x ∈ I.toInterval
 def sinInterval (_I : IntervalReal) : IntervalReal :=
   ⟨-1, 1, by norm_num⟩
 
-/-- FTIA for sin -/
+/-- FTIA for sin
+@isnad1 id=mem.1h2v.s4.01d556c91002 from=translated src=- shape=34c11fd3 vocab=d7f3a9a2
+-/
 theorem mem_sinInterval {x : ℝ} {I : IntervalReal} (_hx : x ∈ I) :
     Real.sin x ∈ sinInterval I := by
   simp only [mem_def, sinInterval]
@@ -188,7 +210,9 @@ theorem mem_sinInterval {x : ℝ} {I : IntervalReal} (_hx : x ∈ I) :
 def cosInterval (_I : IntervalReal) : IntervalReal :=
   ⟨-1, 1, by norm_num⟩
 
-/-- FTIA for cos -/
+/-- FTIA for cos
+@isnad1 id=mem.1h2v.s4.182908844bb2 from=translated src=- shape=34c11fd3 vocab=67f67c88
+-/
 theorem mem_cosInterval {x : ℝ} {I : IntervalReal} (_hx : x ∈ I) :
     Real.cos x ∈ cosInterval I := by
   simp only [mem_def, cosInterval]
@@ -200,7 +224,9 @@ theorem mem_cosInterval {x : ℝ} {I : IntervalReal} (_hx : x ∈ I) :
 def atanInterval (_I : IntervalReal) : IntervalReal :=
   ⟨-2, 2, by norm_num⟩
 
-/-- FTIA for atan -/
+/-- FTIA for atan
+@isnad1 id=mem.1h2v.s4.8e861f318d8c from=translated src=- shape=34c11fd3 vocab=bc5a8de6
+-/
 theorem mem_atanInterval {x : ℝ} {I : IntervalReal} (_hx : x ∈ I) :
     Real.arctan x ∈ atanInterval I := by
   simp only [mem_def, atanInterval]
@@ -227,7 +253,9 @@ private theorem arsinh_deriv_abs_le_one (x : ℝ) : |deriv Real.arsinh x| ≤ 1 
   rw [abs_inv, abs_of_pos hsqrt_pos]
   exact inv_le_one_of_one_le₀ hsqrt_ge_one
 
-/-- |arsinh x| ≤ |x| for all x. This follows from MVT and |arsinh'| ≤ 1. -/
+/-- |arsinh x| ≤ |x| for all x. This follows from MVT and |arsinh'| ≤ 1.
+@isnad1 id=le.0h1v.s4.a4101421cbd1 from=translated src=- shape=f34b9acb vocab=23c92ed8
+-/
 theorem abs_arsinh_le_abs (x : ℝ) : |Real.arsinh x| ≤ |x| := by
   rcases le_or_gt 0 x with hx | hx
   · -- Case x ≥ 0: arsinh x ≥ 0 by monotonicity of arsinh
@@ -285,7 +313,9 @@ def arsinhInterval (I : IntervalReal) : IntervalReal :=
     show -(max (|I.lo|) (|I.hi|) + 1) ≤ max (|I.lo|) (|I.hi|) + 1
     linarith⟩
 
-/-- FTIA for arsinh -/
+/-- FTIA for arsinh
+@isnad1 id=mem.1h2v.s4.6f6709da2c47 from=translated src=- shape=34c11fd3 vocab=2c1cbcc5
+-/
 theorem mem_arsinhInterval {x : ℝ} {I : IntervalReal} (hx : x ∈ I) :
     Real.arsinh x ∈ arsinhInterval I := by
   unfold arsinhInterval
@@ -320,7 +350,9 @@ noncomputable def sinhInterval (I : IntervalReal) : IntervalReal where
   le := Real.sinh_le_sinh.mpr I.le
 
 /-- FTIA for sinh: if x ∈ [a,b], then sinh(x) ∈ [sinh(a), sinh(b)].
-    This is FULLY PROVED - no sorry, no axioms. -/
+    This is FULLY PROVED - no sorry, no axioms.
+@isnad1 id=mem.1h2v.s4.c3262bce3243 from=translated src=- shape=34c11fd3 vocab=4e892028
+-/
 theorem mem_sinhInterval {x : ℝ} {I : IntervalReal} (hx : x ∈ I) :
     Real.sinh x ∈ sinhInterval I := by
   simp only [mem_def] at *
@@ -355,7 +387,9 @@ noncomputable def coshInterval (I : IntervalReal) : IntervalReal :=
       exact le_trans h (le_max_left _ _)⟩
 
 /-- FTIA for cosh: if x ∈ [a,b], then cosh(x) ∈ coshInterval([a,b]).
-    This is FULLY PROVED - no sorry, no axioms. -/
+    This is FULLY PROVED - no sorry, no axioms.
+@isnad1 id=mem.1h2v.s4.bba09d61b3cb from=translated src=- shape=34c11fd3 vocab=6562834f
+-/
 theorem mem_coshInterval {x : ℝ} {I : IntervalReal} (hx : x ∈ I) :
     Real.cosh x ∈ coshInterval I := by
   simp only [mem_def] at hx
@@ -432,7 +466,9 @@ private theorem sqrt_le_max_one {x : ℝ} (hx : 0 ≤ x) : Real.sqrt x ≤ max x
       _ ≤ max x 1 := le_max_left x 1
 
 /-- FTIA for sqrt: if x ∈ I, then sqrt(x) ∈ sqrtInterval(I).
-    Works for all x including negative (where sqrt returns 0 by Mathlib convention). -/
+    Works for all x including negative (where sqrt returns 0 by Mathlib convention).
+@isnad1 id=mem.1h2v.s4.b150a826b820 from=translated src=- shape=34c11fd3 vocab=be00e9c1
+-/
 theorem mem_sqrtInterval {x : ℝ} {I : IntervalReal} (hx : x ∈ I) :
     Real.sqrt x ∈ sqrtInterval I := by
   simp only [mem_def, sqrtInterval]

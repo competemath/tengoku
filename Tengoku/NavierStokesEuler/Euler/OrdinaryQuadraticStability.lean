@@ -10,6 +10,9 @@ namespace EulerOrdinarySobolev
 
 open Set Real
 
+/--
+@isnad1 id=le.9h6v.s8.6eab3584d26c from=translated src=- shape=e2475c96 vocab=7064e8a2
+-/
 theorem quadratic_stability_within (X X' : ℝ → ℝ) (C ε T : ℝ)
     (hC : 0 < C) (hε : 0 < ε) (_hT : 0 ≤ T)
     (hsmall : 2*ε*exp (3*C*T) ≤ 1/2)

@@ -33,6 +33,9 @@ variable (P : ℝ) [Fact (0 < P)] {T : ℝ} {U : Type*}
   (Y : CylinderL2 P U) (hY : ContDiff ℝ ∞ (fun a : LiftTangent => translate P a Y))
 
 include hQ hQ₁ hH hY in
+/--
+@isnad1 id=contdiff.4h5v.s17.2b3fff53727b from=translated src=- shape=f4d2cf0a vocab=6a1530a5
+-/
 theorem endpointDisplacement_orbit_contDiff :
     ContDiff ℝ ∞ (fun a : LiftTangent => pathTranslate P a (D.endpointDisplacement P Y)) :=
   EulerCylinderPathIntegral.orbit_contDiff_of_derivative P T D.time_pos.le
@@ -52,6 +55,9 @@ def endpointPointAcceleration (x : LiftDomain P) : C(Icc (0 : ℝ) T,U) :=
   pointPath P J L (D.endpointAcceleration P Y)
     (D.endpointAcceleration_orbit_contDiff P hQ hQ₁ hH Y hY) x
 
+/--
+@isnad1 id=hasderiv.4h9v.s15.90d0d787fe1d from=translated src=- shape=cf7462cc vocab=4db7267a
+-/
 theorem endpointPointDisplacement_hasDerivWithinAt (x : LiftDomain P) (t : Icc (0 : ℝ) T) :
     HasDerivWithinAt
       (extendPath T D.time_pos.le (D.endpointPointDisplacement P J L hQ hQ₁ hH Y hY x))
@@ -62,6 +68,9 @@ theorem endpointPointDisplacement_hasDerivWithinAt (x : LiftDomain P) (t : Icc (
     (D.endpointCoordinate_orbit_contDiff P hQ hQ₁ hH Y hY)
     (D.endpointDisplacement_hasDerivWithinAt P Y) x t
 
+/--
+@isnad1 id=hasderiv.4h9v.s15.d36d31bf312c from=translated src=- shape=cf7462cc vocab=dfa1f71b
+-/
 theorem endpointPointCoordinate_hasDerivWithinAt (x : LiftDomain P) (t : Icc (0 : ℝ) T) :
     HasDerivWithinAt
       (extendPath T D.time_pos.le (D.endpointPointCoordinate P J L hQ hQ₁ hH Y hY x))
@@ -75,6 +84,9 @@ theorem endpointPointCoordinate_hasDerivWithinAt (x : LiftDomain P) (t : Icc (0 
 variable (hL : ∀ v : U, L (J v) = v)
 
 include hL in
+/--
+@isnad1 id=eventual.5h8v.s16.2bd1f4b08646 from=translated src=- shape=ae896b99 vocab=a322ecdb
+-/
 theorem endpointPointCoordinate_ae (t : Icc (0 : ℝ) T) :
     D.endpointCoordinate P Y t =ᵐ[liftMeasure P]
       fun x => D.endpointPointCoordinate P J L hQ hQ₁ hH Y hY x t :=
@@ -82,6 +94,9 @@ theorem endpointPointCoordinate_ae (t : Icc (0 : ℝ) T) :
     (D.endpointCoordinate_orbit_contDiff P hQ hQ₁ hH Y hY) hL t
 
 include hL in
+/--
+@isnad1 id=eventual.5h8v.s16.c2f1d4177945 from=translated src=- shape=ae896b99 vocab=1fd01bd8
+-/
 theorem endpointPointAcceleration_ae (t : Icc (0 : ℝ) T) :
     D.endpointAcceleration P Y t =ᵐ[liftMeasure P]
       fun x => D.endpointPointAcceleration P J L hQ hQ₁ hH Y hY x t :=
@@ -89,6 +104,9 @@ theorem endpointPointAcceleration_ae (t : Icc (0 : ℝ) T) :
     (D.endpointAcceleration_orbit_contDiff P hQ hQ₁ hH Y hY) hL t
 
 include hL in
+/--
+@isnad1 id=eq.5h8v.s15.6c6e6b6d4ef8 from=translated src=- shape=7cf8282d vocab=5d6c418e
+-/
 theorem endpointPointDisplacement_initial (x : LiftDomain P) :
     D.endpointPointDisplacement P J L hQ hQ₁ hH Y hY x ⟨0,le_rfl,D.time_pos.le⟩ = 0 := by
   have he := pointField_eq P J L (D.endpointDisplacement P Y)
@@ -98,6 +116,9 @@ theorem endpointPointDisplacement_initial (x : LiftDomain P) :
   exact congrFun he x
 
 include hL in
+/--
+@isnad1 id=eq.7h9v.s15.ec325d85793e from=translated src=- shape=8fcf571d vocab=3fb0f51b
+-/
 theorem endpointPointDisplacement_terminal (f : LiftDomain P → U) (hf : Continuous f)
     (hrep : Y =ᵐ[liftMeasure P] f) (x : LiftDomain P) :
     D.endpointPointDisplacement P J L hQ hQ₁ hH Y hY x ⟨T,D.time_pos.le,le_rfl⟩ = f x := by
@@ -108,6 +129,9 @@ theorem endpointPointDisplacement_terminal (f : LiftDomain P → U) (hf : Contin
   exact congrFun he x
 
 include hL in
+/--
+@isnad1 id=eq.5h9v.s16.f25eb4380341 from=translated src=- shape=3d39dc43 vocab=ea9e9abd
+-/
 theorem endpointPoint_projected_equation (x : LiftDomain P) (t : Icc (0 : ℝ) T) :
     gram (D.Q t x.1) (D.endpointPointAcceleration P J L hQ hQ₁ hH Y hY x t) =
       (D.Q t x.1).adjoint ((-2 : ℝ) • D.Q₁ t x.1
@@ -134,6 +158,9 @@ theorem endpointPoint_projected_equation (x : LiftDomain P) (t : Icc (0 : ℝ) T
     (hcAdj.clm_apply ((hcQ₁.clm_apply hcv).const_smul (-2 : ℝ)))) x
 
 include hL in
+/--
+@isnad1 id=eq.7h9v.s15.7b253d19f779 from=translated src=- shape=ad4dba0f vocab=aaa013bd
+-/
 theorem endpointPointCoordinate_eq_label (f : LiftDomain P → U) (hf : Continuous f)
     (hrep : Y =ᵐ[liftMeasure P] f) (x : LiftDomain P) :
     D.endpointPointCoordinate P J L hQ hQ₁ hH Y hY x = D.labelCoordinate x.1 (f x) := by
@@ -152,6 +179,9 @@ theorem endpointPointCoordinate_eq_label (f : LiftDomain P → U) (hf : Continuo
     (D.endpointPoint_projected_equation P J L hQ hQ₁ hH Y hY hL x)).2
 
 include hL in
+/--
+@isnad1 id=eq.7h10v.s17.4c59b74dd046 from=translated src=- shape=4de63577 vocab=0655f9b9
+-/
 theorem endpointVelocity_pointwise (f : LiftDomain P → U) (hf : Continuous f)
     (hrep : Y =ᵐ[liftMeasure P] f) (x : LiftDomain P) (t : Icc (0 : ℝ) T) :
     EulerCylinderSmoothOrbit.pointField P (D.endpointVelocity P Y)

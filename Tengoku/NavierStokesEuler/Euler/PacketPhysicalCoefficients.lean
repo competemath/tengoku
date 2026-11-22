@@ -27,7 +27,9 @@ def rescaledShear (c : ℝ) (m v : ℝ → Space) (t₀ a ε τ : ℝ) : ℝ :=
 
 /-- All three coefficient-error bounds follow from physical norm and time
 derivative bounds.  In particular, no frame-motion or scaled matrix bound
-appears as a hypothesis. -/
+appears as a hypothesis.
+@isnad1 id=other.20h15v.s15.716bbd6f750f from=translated src=- shape=71246b4a vocab=8e0acec9
+-/
 theorem physical_matrix_errors
     {B B₁ M E : ℝ → Space →L[ℝ] Space} {m v : ℝ → Space}
     {c t₀ a ε Θ G d β : ℝ} {S : Set ℝ}

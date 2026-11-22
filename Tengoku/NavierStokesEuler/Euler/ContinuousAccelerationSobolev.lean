@@ -25,6 +25,9 @@ variable {P U E ι : Type*} [NormedAddCommGroup P] [NormedSpace ℝ P]
   [NormedAddCommGroup U] [InnerProductSpace ℝ U] [CompleteSpace U]
   [NormedAddCommGroup E] [InnerProductSpace ℝ E] [CompleteSpace E] [Fintype ι]
 
+/--
+@isnad1 id=le.15h20v.s13.2f8cb0e89831 from=translated src=- shape=ce8ec035 vocab=ed5af498
+-/
 theorem forcing_block_bound (directions : ι → P) (hd : ∀ i, ‖directions i‖ ≤ 1) (q : ℕ)
     (T : ℝ) (Q Q₁ : P → C(Icc (0 : ℝ) T,U →L[ℝ] E))
     (f : P → C(Icc (0 : ℝ) T,E)) (v : P → C(Icc (0 : ℝ) T,U))
@@ -50,7 +53,9 @@ theorem forcing_block_bound (directions : ι → P) (hd : ∀ i, ‖directions i
     (multiplier_bound Q₁ hQ₁ Rc C₁ hRc hC₁ 0 hbQ₁) d hbf hbv n x
 
 /-- The actual acceleration path has one more grade in the same fixed
-Sobolev order; there is no additional conversion of external words. -/
+Sobolev order; there is no additional conversion of external words.
+@isnad1 id=le.18h21v.s13.dce01037b4ef from=translated src=- shape=e17888c0 vocab=d1a3010a
+-/
 theorem acceleration_block_bound (directions : ι → P) (hd : ∀ i, ‖directions i‖ ≤ 1) (q : ℕ)
     (T : ℝ) (Q Q₁ : P → C(Icc (0 : ℝ) T,U →L[ℝ] E))
     (c : ℝ) (hc : 0 < c) (hLower : ∀ x t w, c*‖w‖^2 ≤ ‖Q x t w‖^2)

@@ -66,7 +66,9 @@ def energyWordOperator {s : ℕ} (q N : ℕ) (hN : N+q ≤ s) (I : ExternalWord 
     (wordAtLevel period (s := q) 0 a.1.val a.2 (by have := a.1.isLt; omega))).comp
     (wordAtLevel period (s := s) q I.1.val I.2 (by have := I.1.isLt; omega))
 
-/-- This continuous operator is exactly the genuine jet word in the metric energy. -/
+/-- This continuous operator is exactly the genuine jet word in the metric energy.
+@isnad1 id=eq.1h7v.s19.851027766abf from=translated src=- shape=0ef3f086 vocab=c0f87a6e
+-/
 theorem energyWordOperator_apply {s : ℕ} (q N : ℕ) (hN : N+q ≤ s) (I : ExternalWord N) (a : BaseWord q)
     (u : SobolevSpace period s) :
     energyWordOperator period q N hN I a u = energyValues period q N hN u I a := by
@@ -79,13 +81,17 @@ theorem energyWordOperator_apply {s : ℕ} (q N : ℕ) (hN : N+q ≤ s) (I : Ext
     (wordAtLevel_value period q I.1.val I.2 (by have := I.1.isLt; omega) u)
     (by have := a.1.isLt; omega) (by have := a.1.isLt; omega) a.2
 
-/-- Genuine energy words are linear in the differentiated field. -/
+/-- Genuine energy words are linear in the differentiated field.
+@isnad1 id=eq.1h6v.s18.0d118b6a1108 from=translated src=- shape=a1c7182d vocab=0231b83b
+-/
 theorem energyValues_add {s : ℕ} (q N : ℕ) (hN : N+q ≤ s) (u v : SobolevSpace period s) :
     energyValues period q N hN (u+v) = energyValues period q N hN u + energyValues period q N hN v := by
   funext I a
   simp only [← energyWordOperator_apply, map_add, Pi.add_apply]
 
-/-- Genuine energy words commute with subtraction. -/
+/-- Genuine energy words commute with subtraction.
+@isnad1 id=eq.1h6v.s18.6a960c57ee34 from=translated src=- shape=dbd7f3a7 vocab=e6020c33
+-/
 theorem energyValues_sub {s : ℕ} (q N : ℕ) (hN : N+q ≤ s) (u v : SobolevSpace period s) :
     energyValues period q N hN (u-v) = energyValues period q N hN u - energyValues period q N hN v := by
   funext I a
@@ -100,7 +106,9 @@ def topTransport {s : ℕ} (N : ℕ) (hN : N+6 ≤ s)
     (wordAtLevel period 1 a.1.val a.2 (by have := a.1.isLt; omega)
       (wordAtLevel period 7 I.1.val I.2 (by have := I.1.isLt; omega) v))
 
-/-- External and base transport commutators telescope to the exact differentiated transport. -/
+/-- External and base transport commutators telescope to the exact differentiated transport.
+@isnad1 id=eq.3h6v.s22.0303e393c58e from=translated src=- shape=7b91f45f vocab=d7e337e7
+-/
 theorem transport_telescope {s : ℕ} (hs : 6 ≤ s) (N : ℕ) (hN : N+6 ≤ s)
     (L : Fin 4 → Vector3 →L[ℝ] ℝ) (hL : ∀ i, ‖L i‖ ≤ 1)
     (u v : SobolevSpace period (s+1)) :
@@ -136,7 +144,9 @@ theorem transport_telescope {s : ℕ} (hs : 6 ≤ s) (N : ℕ) (hN : N+6 ≤ s)
     _ = D X-Z := by abel
     _ = _ := congrArg (fun x : LiftL2 period => x-Z) hx.symm
 
-/-- Taking a word of the actual coefficient operator gives the word of its genuine product jet. -/
+/-- Taking a word of the actual coefficient operator gives the word of its genuine product jet.
+@isnad1 id=eq.1h7v.s21.5b89b6e620c6 from=translated src=- shape=82fb7093 vocab=1decb46c
+-/
 theorem coefficient_word {s n : ℕ} {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (p : SobolevSpace period s) (hn : n ≤ s) (w : Fin n → Fin 4) :
@@ -144,7 +154,9 @@ theorem coefficient_word {s n : ℕ} {A : SmoothCoefficient period}
       (EulerSpatialSobolevInverse.SpatialJet.multiply K (toJet period p)).word w :=
   EulerPressureJetIdentities.SpatialJet.word_unique _ _ (coefficientSobolevOperator_value period K p) hn hn w
 
-/-- The external pressure commutator is the actual difference of two Sobolev coefficient products. -/
+/-- The external pressure commutator is the actual difference of two Sobolev coefficient products.
+@isnad1 id=eq.1h9v.s22.3522d5a2b5e3 from=translated src=- shape=c3a9536a vocab=e4dfdc27
+-/
 theorem externalPressure_as_difference {s : ℕ} {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (K0 : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)
@@ -170,7 +182,9 @@ theorem externalPressure_as_difference {s : ℕ} {A : SmoothCoefficient period}
       (wordAtLevel period 6 I.1.val I.2 (by have := I.1.isLt; omega) p)).trans
       (congrArg A.operator (wordAtLevel_value period 6 I.1.val I.2 (by have := I.1.isLt; omega) p))
 
-/-- The base pressure commutator is the actual differentiated product minus its top coefficient action. -/
+/-- The base pressure commutator is the actual differentiated product minus its top coefficient action.
+@isnad1 id=eq.1h8v.s22.705a5b4a7410 from=translated src=- shape=b3320deb vocab=b804e2ea
+-/
 theorem basePressure_as_difference {s : ℕ} {A : SmoothCoefficient period}
     (K0 : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)
     (N : ℕ) (hN : N+6 ≤ s) (p : SobolevSpace period s) (I : ExternalWord N) (a : BaseWord 6) :
@@ -184,7 +198,9 @@ theorem basePressure_as_difference {s : ℕ} {A : SmoothCoefficient period}
     (by have := a.1.isLt; omega) a.2
   rw [coefficientSobolevOperator_value, wordAtLevel_value]
 
-/-- External and base coefficient commutators telescope to the exact differentiated pressure term. -/
+/-- External and base coefficient commutators telescope to the exact differentiated pressure term.
+@isnad1 id=eq.1h7v.s20.7018ac7ae61e from=translated src=- shape=3aa399a8 vocab=259eae67
+-/
 theorem pressure_telescope {s : ℕ} {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (K0 : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)
@@ -207,7 +223,9 @@ theorem pressure_telescope {s : ℕ} {A : SmoothCoefficient period}
   rw [map_sub]
   abel
 
-/-- The seven bounded forcing terms are exactly the remainder in the differentiated actual correction equation. -/
+/-- The seven bounded forcing terms are exactly the remainder in the differentiated actual correction equation.
+@isnad1 id=eq.3h12v.s23.9e97dbfcccb8 from=translated src=- shape=3b3fe73d vocab=b830c5fa
+-/
 theorem correction_differentiated_identity {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (K0 : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)

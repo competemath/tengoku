@@ -95,6 +95,9 @@ instance : Setoid Dyadic where
     trans := fun h₁ h₂ => h₁.trans h₂
   }
 
+/--
+@isnad1 id=iff.0h2v.s3.c17f7e7f2ae8 from=translated src=- shape=5de5ede8 vocab=7b970468
+-/
 @[simp] theorem valueEq_iff (d₁ d₂ : Dyadic) :
     d₁.ValueEq d₂ ↔ d₁.toRat = d₂.toRat := Iff.rfl
 
@@ -110,9 +113,14 @@ structure CanonicalKey where
 /-- Convert a dyadic value to its canonical identity key. -/
 def canonicalKey (d : Dyadic) : CanonicalKey := ⟨d.toRat⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.6a25088760f8 from=translated src=- shape=7718e021 vocab=0df8a878
+-/
 @[simp] theorem canonicalKey_value (d : Dyadic) : d.canonicalKey.value = d.toRat := rfl
 
-/-- Canonical keys agree exactly when represented dyadic values agree. -/
+/-- Canonical keys agree exactly when represented dyadic values agree.
+@isnad1 id=iff.0h2v.s3.bfb42f062cad from=translated src=- shape=af8e0d02 vocab=1c464f69
+-/
 theorem canonicalKey_eq_iff (d₁ d₂ : Dyadic) :
     d₁.canonicalKey = d₂.canonicalKey ↔ d₁.ValueEq d₂ := by
   simp only [canonicalKey, ValueEq, CanonicalKey.mk.injEq]
@@ -122,7 +130,9 @@ def toReal (d : Dyadic) : ℝ := Rat.cast (toRat d)
 
 instance : Coe Dyadic ℝ where coe := toReal
 
-/-- Equality of rational denotations gives semantic dyadic equality. -/
+/-- Equality of rational denotations gives semantic dyadic equality.
+@isnad1 id=valueeq.1h2v.s3.6bd04125e390 from=translated src=- shape=e7bd80f8 vocab=7b970468
+-/
 theorem valueEq_of_toRat_eq {d₁ d₂ : Dyadic}
     (h : d₁.toRat = d₂.toRat) : d₁.ValueEq d₂ := h
 
@@ -143,15 +153,24 @@ def one : Dyadic := ⟨1, 0⟩
 instance : Zero Dyadic where zero := Dyadic.zero
 instance : One Dyadic where one := Dyadic.one
 
+/--
+@isnad1 id=eq.0h1v.s3.b6dd1525d0d2 from=translated src=- shape=0076f9db vocab=5a67cac5
+-/
 theorem toRat_ofInt (i : Int) : (ofInt i).toRat = i := by
   simp only [ofInt, toRat, pow2Nat, Int.toNat_zero, le_refl, ↓reduceIte]
   have h : Nat.shiftLeft 1 0 = 1 := rfl
   simp only [h, Nat.cast_one, Int.cast_one, mul_one]
 
+/--
+@isnad1 id=eq.0h0v.s3.15ae6e5d4e73 from=translated src=- shape=1ac31801 vocab=cf47074c
+-/
 @[simp]
 theorem toRat_zero : (0 : Dyadic).toRat = 0 := by
   have h := toRat_ofInt 0; rw [Int.cast_zero] at h; exact h
 
+/--
+@isnad1 id=eq.0h0v.s3.e3787843ffbb from=translated src=- shape=1ac31801 vocab=cf47074c
+-/
 @[simp]
 theorem toRat_one : (1 : Dyadic).toRat = 1 := by
   have h := toRat_ofInt 1; rw [Int.cast_one] at h; exact h
@@ -333,6 +352,9 @@ private theorem int_ediv_mul_eq (m : Int) (d : Int) (_hd : 0 < d) (hrem : m % d 
   calc (m / d) * d = d * (m / d) := mul_comm _ _
     _ = m := h
 
+/--
+@isnad1 id=eq.0h1v.s3.0e6d776f8c12 from=translated src=- shape=d2189a58 vocab=f0897cab
+-/
 theorem toRat_neg (d : Dyadic) : (neg d).toRat = -(d.toRat) := by
   by_cases h : d.exponent ≥ 0
   · simp [neg, toRat, h]
@@ -347,7 +369,9 @@ private theorem pow2Nat_eq_pow (n : Nat) : pow2Nat n = 2 ^ n := by
   rw [show Nat.shiftLeft 1 n = 1 * 2^n from Nat.shiftLeft_eq 1 n]
   simp only [one_mul]
 
-/-- Unification lemma: toRat d = d.mantissa * 2^d.exponent -/
+/-- Unification lemma: toRat d = d.mantissa * 2^d.exponent
+@isnad1 id=eq.0h1v.s5.9b88aeb12b21 from=translated src=- shape=ade8bb9e vocab=0d973daf
+-/
 theorem toRat_eq (d : Dyadic) : d.toRat = d.mantissa * (2 : ℚ) ^ d.exponent := by
   unfold toRat
   split_ifs with h
@@ -368,6 +392,9 @@ theorem toRat_eq (d : Dyadic) : d.toRat = d.mantissa * (2 : ℚ) ^ d.exponent :=
     -- Goal: mantissa / 2^n = mantissa * (2^n)⁻¹
     simp only [Nat.cast_pow, Nat.cast_ofNat, div_eq_mul_inv]
 
+/--
+@isnad1 id=eq.0h2v.s4.5f678d3d2192 from=translated src=- shape=88b36870 vocab=e5475a76
+-/
 theorem toRat_add (d₁ d₂ : Dyadic) : (add d₁ d₂).toRat = d₁.toRat + d₂.toRat := by
   -- Rewrite using toRat_eq to work with mantissa * 2^exponent form
   rw [toRat_eq d₁, toRat_eq d₂]
@@ -404,6 +431,9 @@ theorem toRat_add (d₁ d₂ : Dyadic) : (add d₁ d₂).toRat = d₁.toRat + d�
       rw [Nat.cast_pow, Nat.cast_ofNat]
     simp only [Int.cast_add, Int.cast_mul, Int.cast_natCast, hcast, add_mul, mul_assoc, hexp, add_comm]
 
+/--
+@isnad1 id=eq.0h2v.s4.b547dd6ab75f from=translated src=- shape=88b36870 vocab=19c095b9
+-/
 theorem toRat_mul (d₁ d₂ : Dyadic) : (mul d₁ d₂).toRat = d₁.toRat * d₂.toRat := by
   -- Key: (m1*m2) * 2^(e1+e2) = (m1*2^e1) * (m2*2^e2)
   rw [toRat_eq d₁, toRat_eq d₂, toRat_eq]
@@ -418,7 +448,9 @@ theorem toRat_mul (d₁ d₂ : Dyadic) : (mul d₁ d₂).toRat = d₁.toRat * d�
 
 /-! ### Rounding Properties -/
 
-/-- shiftDown produces a value ≤ the original -/
+/-- shiftDown produces a value ≤ the original
+@isnad1 id=le.0h2v.s3.26c86c457ed8 from=translated src=- shape=bc45798f vocab=3747d796
+-/
 theorem toRat_shiftDown_le (d : Dyadic) (newExp : Int) :
     (shiftDown d newExp).toRat ≤ d.toRat := by
   simp only [shiftDown]
@@ -459,7 +491,9 @@ theorem toRat_shiftDown_le (d : Dyadic) (newExp : Int) :
     rw [hrearr]
     exact mul_le_mul_of_nonneg_right hq (le_of_lt hpos)
 
-/-- shiftUp produces a value ≥ the original -/
+/-- shiftUp produces a value ≥ the original
+@isnad1 id=le.0h2v.s3.8592632a2bbd from=translated src=- shape=393427a9 vocab=ab204839
+-/
 theorem toRat_shiftUp_ge (d : Dyadic) (newExp : Int) :
     d.toRat ≤ (shiftUp d newExp).toRat := by
   simp only [shiftUp]
@@ -701,7 +735,9 @@ private theorem aligned_gt_iff_toRat_gt_case2 (d₁ d₂ : Dyadic) (h : d₁.exp
     rw [hpow, zpow_natCast, mul_assoc]
   rw [hlhs, int_gt_iff_rat_mul_gt _ _ _ hpos, shiftLeftInt_toRat]
 
-/-- le is correct with respect to toRat ordering -/
+/-- le is correct with respect to toRat ordering
+@isnad1 id=iff.0h2v.s4.33335ee1f38a from=translated src=- shape=2e668731 vocab=3f11e096
+-/
 theorem le_iff_toRat_le (d₁ d₂ : Dyadic) :
     le d₁ d₂ = true ↔ d₁.toRat ≤ d₂.toRat := by
   unfold le compare
@@ -742,7 +778,9 @@ theorem le_iff_toRat_le (d₁ d₂ : Dyadic) :
       have hgt' := (aligned_gt_iff_toRat_gt_case2 d₁ d₂ h).mp hgt
       exact not_lt.mpr hle hgt'
 
-/-- compare reflects toRat ordering: lt case -/
+/-- compare reflects toRat ordering: lt case
+@isnad1 id=iff.0h2v.s4.73e21edbcf5e from=translated src=- shape=2e668731 vocab=6f1914e9
+-/
 theorem compare_lt_iff (d₁ d₂ : Dyadic) :
     compare d₁ d₂ = .lt ↔ d₁.toRat < d₂.toRat := by
   unfold compare
@@ -750,7 +788,9 @@ theorem compare_lt_iff (d₁ d₂ : Dyadic) :
   · rw [ord_compare_int_lt]; exact aligned_lt_iff_toRat_lt_case1 d₁ d₂ h
   · push Not at h; rw [ord_compare_int_lt]; exact aligned_lt_iff_toRat_lt_case2 d₁ d₂ h
 
-/-- compare reflects toRat ordering: gt case -/
+/-- compare reflects toRat ordering: gt case
+@isnad1 id=iff.0h2v.s4.98f734fe3b8a from=translated src=- shape=2e668731 vocab=e3e21525
+-/
 theorem compare_gt_iff (d₁ d₂ : Dyadic) :
     compare d₁ d₂ = .gt ↔ d₁.toRat > d₂.toRat := by
   unfold compare
@@ -758,7 +798,9 @@ theorem compare_gt_iff (d₁ d₂ : Dyadic) :
   · rw [ord_compare_int_gt]; exact aligned_gt_iff_toRat_gt_case1 d₁ d₂ h
   · push Not at h; rw [ord_compare_int_gt]; exact aligned_gt_iff_toRat_gt_case2 d₁ d₂ h
 
-/-- compare reflects toRat ordering: eq case -/
+/-- compare reflects toRat ordering: eq case
+@isnad1 id=iff.0h2v.s4.c7f6af15c48a from=translated src=- shape=9fa1c6b4 vocab=409d726a
+-/
 theorem compare_eq_iff (d₁ d₂ : Dyadic) :
     compare d₁ d₂ = .eq ↔ d₁.toRat = d₂.toRat := by
   unfold compare
@@ -768,35 +810,45 @@ theorem compare_eq_iff (d₁ d₂ : Dyadic) :
 
 /-! ### Min/Max Lemmas -/
 
-/-- min produces value ≤ first argument -/
+/-- min produces value ≤ first argument
+@isnad1 id=le.0h2v.s3.695b5f6c48f4 from=translated src=- shape=baddaacb vocab=684af0c1
+-/
 theorem min_toRat_le_left (d₁ d₂ : Dyadic) : (min d₁ d₂).toRat ≤ d₁.toRat := by
   unfold min
   split_ifs with h
   · exact le_refl _
   · exact le_of_not_ge (fun hle => h (le_iff_toRat_le d₁ d₂ |>.mpr hle))
 
-/-- min produces value ≤ second argument -/
+/-- min produces value ≤ second argument
+@isnad1 id=le.0h2v.s3.cfd6543407bc from=translated src=- shape=89b4aa41 vocab=684af0c1
+-/
 theorem min_toRat_le_right (d₁ d₂ : Dyadic) : (min d₁ d₂).toRat ≤ d₂.toRat := by
   unfold min
   split_ifs with h
   · exact le_iff_toRat_le d₁ d₂ |>.mp h
   · exact le_refl _
 
-/-- first argument ≤ max -/
+/-- first argument ≤ max
+@isnad1 id=le.0h2v.s3.f462335aa7da from=translated src=- shape=a2773253 vocab=79e130dd
+-/
 theorem le_max_toRat_left (d₁ d₂ : Dyadic) : d₁.toRat ≤ (max d₁ d₂).toRat := by
   unfold max
   split_ifs with h
   · exact le_iff_toRat_le d₁ d₂ |>.mp h
   · exact le_refl _
 
-/-- second argument ≤ max -/
+/-- second argument ≤ max
+@isnad1 id=le.0h2v.s3.4c8d08931f8d from=translated src=- shape=ab65e635 vocab=79e130dd
+-/
 theorem le_max_toRat_right (d₁ d₂ : Dyadic) : d₂.toRat ≤ (max d₁ d₂).toRat := by
   unfold max
   split_ifs with h
   · exact le_refl _
   · exact le_of_not_ge (fun hle => h (le_iff_toRat_le d₁ d₂ |>.mpr hle))
 
-/-- Dyadic.min commutes with toRat -/
+/-- Dyadic.min commutes with toRat
+@isnad1 id=eq.0h2v.s4.858a85a2626a from=translated src=- shape=863c31fe vocab=eee611ca
+-/
 theorem min_toRat (d₁ d₂ : Dyadic) : (min d₁ d₂).toRat = Min.min d₁.toRat d₂.toRat := by
   unfold min
   split_ifs with h
@@ -809,7 +861,9 @@ theorem min_toRat (d₁ d₂ : Dyadic) : (min d₁ d₂).toRat = Min.min d₁.to
       exact lt_of_not_ge (fun hle => h (this.mpr hle))
     exact (min_eq_right (le_of_lt hgt)).symm
 
-/-- Dyadic.max commutes with toRat -/
+/-- Dyadic.max commutes with toRat
+@isnad1 id=eq.0h2v.s4.4a67a41ae1ff from=translated src=- shape=863c31fe vocab=ec670a4b
+-/
 theorem max_toRat (d₁ d₂ : Dyadic) : (max d₁ d₂).toRat = Max.max d₁.toRat d₂.toRat := by
   unfold max
   split_ifs with h
@@ -822,7 +876,9 @@ theorem max_toRat (d₁ d₂ : Dyadic) : (max d₁ d₂).toRat = Max.max d₁.to
       exact lt_of_not_ge (fun hle => h (this.mpr hle))
     exact (max_eq_left (le_of_lt hgt)).symm
 
-/-- min4 ≤ max4 -/
+/-- min4 ≤ max4
+@isnad1 id=le.0h4v.s4.b1613cd43d67 from=translated src=- shape=71a25395 vocab=68334db7
+-/
 theorem min4_le_max4 (a b c d : Dyadic) : (min4 a b c d).toRat ≤ (max4 a b c d).toRat := by
   unfold min4 max4
   calc (min (min a b) (min c d)).toRat
@@ -833,7 +889,9 @@ theorem min4_le_max4 (a b c d : Dyadic) : (min4 a b c d).toRat ≤ (max4 a b c d
 
 /-! ### Normalize Lemmas -/
 
-/-- normalizeDown produces value ≤ original -/
+/-- normalizeDown produces value ≤ original
+@isnad1 id=le.0h2v.s3.005b785371b2 from=translated src=- shape=bc45798f vocab=11b4d0a1
+-/
 theorem toRat_normalizeDown_le (d : Dyadic) (maxBits : Nat) :
     (d.normalizeDown maxBits).toRat ≤ d.toRat := by
   unfold normalizeDown normalize
@@ -842,7 +900,9 @@ theorem toRat_normalizeDown_le (d : Dyadic) (maxBits : Nat) :
   · exact le_refl _
   · exact toRat_shiftDown_le d _
 
-/-- normalizeUp produces value ≥ original -/
+/-- normalizeUp produces value ≥ original
+@isnad1 id=le.0h2v.s3.debc772cf0c1 from=translated src=- shape=393427a9 vocab=f5812d9e
+-/
 theorem toRat_normalizeUp_ge (d : Dyadic) (maxBits : Nat) :
     d.toRat ≤ (d.normalizeUp maxBits).toRat := by
   unfold normalizeUp normalize
@@ -853,7 +913,9 @@ theorem toRat_normalizeUp_ge (d : Dyadic) (maxBits : Nat) :
 
 /-! ### Scale2 Lemmas -/
 
-/-- scale2 multiplies by 2^n -/
+/-- scale2 multiplies by 2^n
+@isnad1 id=eq.0h2v.s5.c6184f2f3783 from=translated src=- shape=dbe29c72 vocab=9a36dfe5
+-/
 theorem toRat_scale2 (d : Dyadic) (n : Int) :
     (d.scale2 n).toRat = d.toRat * (2 : ℚ) ^ n := by
   unfold scale2
@@ -861,7 +923,9 @@ theorem toRat_scale2 (d : Dyadic) (n : Int) :
   simp only []
   rw [mul_assoc, ← zpow_add₀ (two_ne_zero : (2 : ℚ) ≠ 0)]
 
-/-- scale2 preserves order -/
+/-- scale2 preserves order
+@isnad1 id=le.1h3v.s4.ca70e3b49884 from=translated src=- shape=2ce3290e vocab=f1fe0787
+-/
 theorem toRat_scale2_le_scale2 (d₁ d₂ : Dyadic) (n : Int) (h : d₁.toRat ≤ d₂.toRat) :
     (d₁.scale2 n).toRat ≤ (d₂.scale2 n).toRat := by
   rw [toRat_scale2, toRat_scale2]
@@ -888,7 +952,9 @@ private theorem nat_lt_succ_sqrt_sq (n : Nat) : n < (Nat.sqrt n + 1) ^ 2 := by
   rw [sq]
   exact h
 
-/-- intSqrt n ^ 2 ≤ n for n ≥ 0 -/
+/-- intSqrt n ^ 2 ≤ n for n ≥ 0
+@isnad1 id=le.1h1v.s5.f3ace04757dc from=translated src=- shape=ed689c3d vocab=27eba08e
+-/
 theorem intSqrt_sq_le {n : Int} (hn : 0 ≤ n) : (intSqrt n) ^ 2 ≤ n := by
   simp only [intSqrt, not_lt.mpr hn, ↓reduceIte, intSqrtNat]
   have h := nat_sqrt_sq_le n.toNat
@@ -897,7 +963,9 @@ theorem intSqrt_sq_le {n : Int} (hn : 0 ≤ n) : (intSqrt n) ^ 2 ≤ n := by
     _ ≤ (n.toNat : ℤ) := Int.ofNat_le.mpr h
     _ = n := Int.toNat_of_nonneg hn
 
-/-- n < (intSqrt n + 1) ^ 2 for n ≥ 0 -/
+/-- n < (intSqrt n + 1) ^ 2 for n ≥ 0
+@isnad1 id=lt.1h1v.s5.743f95582eb9 from=translated src=- shape=0d9bbd6c vocab=aa3955f7
+-/
 theorem int_lt_succ_sqrt_sq {n : Int} (hn : 0 ≤ n) : n < (intSqrt n + 1) ^ 2 := by
   simp only [intSqrt, not_lt.mpr hn, ↓reduceIte, intSqrtNat]
   have h := nat_lt_succ_sqrt_sq n.toNat
@@ -905,7 +973,9 @@ theorem int_lt_succ_sqrt_sq {n : Int} (hn : 0 ≤ n) : n < (intSqrt n + 1) ^ 2 :
     _ < ((Nat.sqrt n.toNat + 1) ^ 2 : ℕ) := Int.ofNat_lt.mpr h
     _ = ((Nat.sqrt n.toNat : ℤ) + 1) ^ 2 := by norm_cast
 
-/-- intSqrt is nonnegative for nonnegative inputs -/
+/-- intSqrt is nonnegative for nonnegative inputs
+@isnad1 id=le.1h1v.s4.fe8ec11e6567 from=translated src=- shape=35bd48ee vocab=a4e52f11
+-/
 theorem intSqrt_nonneg {n : Int} (hn : 0 ≤ n) : 0 ≤ intSqrt n := by
   simp only [intSqrt, not_lt.mpr hn, ↓reduceIte, intSqrtNat]
   exact Int.natCast_nonneg _
@@ -955,7 +1025,9 @@ private theorem sqrt_scaled_shift_nonneg {m : Int} {shift : Int}
   apply mul_nonneg hm
   exact Int.natCast_nonneg _
 
-/-- sqrtDown is non-negative for non-negative inputs -/
+/-- sqrtDown is non-negative for non-negative inputs
+@isnad1 id=le.1h2v.s4.b5b1b34b11a1 from=translated src=- shape=871137b0 vocab=59ab5615
+-/
 theorem sqrtDown_nonneg (d : Dyadic) (prec : Int) (hd : 0 ≤ d.mantissa) :
     0 ≤ (sqrtDown d prec).mantissa := by
   simp only [sqrtDown, not_lt.mpr hd, ↓reduceIte]
@@ -971,7 +1043,9 @@ theorem sqrtDown_nonneg (d : Dyadic) (prec : Int) (hd : 0 ≤ d.mantissa) :
       exact Int.ediv_nonneg hd (Int.natCast_nonneg _)
   exact intSqrt_nonneg hm_nonneg
 
-/-- sqrtUp is non-negative for non-negative inputs -/
+/-- sqrtUp is non-negative for non-negative inputs
+@isnad1 id=le.1h2v.s4.6c8a651b6a93 from=translated src=- shape=871137b0 vocab=2ebaf1e6
+-/
 theorem sqrtUp_nonneg (d : Dyadic) (prec : Int) (hd : 0 ≤ d.mantissa) :
     0 ≤ (sqrtUp d prec).mantissa := by
   simp only [sqrtUp, not_lt.mpr hd, ↓reduceIte]
@@ -997,7 +1071,9 @@ theorem sqrtUp_nonneg (d : Dyadic) (prec : Int) (hd : 0 ≤ d.mantissa) :
     calc 0 ≤ s := intSqrt_nonneg hm_nonneg
       _ ≤ s + 1 := by omega
 
-/-- sqrtDown.toRat ≤ sqrtUp.toRat for non-negative inputs -/
+/-- sqrtDown.toRat ≤ sqrtUp.toRat for non-negative inputs
+@isnad1 id=le.1h2v.s4.bc29d013f8f7 from=translated src=- shape=0b396589 vocab=c31d4200
+-/
 theorem sqrtDown_le_sqrtUp (d : Dyadic) (prec : Int) (hd : 0 ≤ d.mantissa) :
     (sqrtDown d prec).toRat ≤ (sqrtUp d prec).toRat := by
   simp only [sqrtDown, sqrtUp, not_lt.mpr hd, ↓reduceIte]

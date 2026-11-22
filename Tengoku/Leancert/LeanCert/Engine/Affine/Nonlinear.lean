@@ -224,7 +224,9 @@ def pow (a : AffineForm) : Nat → AffineForm
 
 /-! ## Soundness (Placeholder) -/
 
-/-- Inversion is sound when interval is positive -/
+/-- Inversion is sound when interval is positive
+@isnad1 id=memaffin.5h3v.s6.33801df34ec4 from=translated src=- shape=ba3cb2bc vocab=abeb44e5
+-/
 theorem mem_inv {a : AffineForm} {eps : NoiseAssignment} {v : ℝ}
     (hvalid : validNoise eps)
     (hlen : eps.length = a.coeffs.length)
@@ -290,7 +292,9 @@ theorem mem_inv {a : AffineForm} {eps : NoiseAssignment} {v : ℝ}
       linarith
   · ring
 
-/-- Square root is sound for non-negative inputs -/
+/-- Square root is sound for non-negative inputs
+@isnad1 id=memaffin.4h3v.s5.003fa8ac528d from=translated src=- shape=a1a089cd vocab=6f1bdec6
+-/
 theorem mem_sqrt {a : AffineForm} {eps : NoiseAssignment} {v : ℝ}
     (hvalid : validNoise eps)
     (hlen : eps.length = a.coeffs.length)
@@ -361,7 +365,9 @@ theorem mem_sqrt {a : AffineForm} {eps : NoiseAssignment} {v : ℝ}
       exact hsqrt_hi
     · simp
 
-/-- Square root is sound without a nonnegativity hypothesis. -/
+/-- Square root is sound without a nonnegativity hypothesis.
+@isnad1 id=memaffin.2h3v.s4.33cb81f1265b from=translated src=- shape=0fc1d18a vocab=74e6e36d
+-/
 theorem mem_sqrt' {a : AffineForm} {eps : NoiseAssignment} {v : ℝ}
     (hvalid : validNoise eps)
     (hmem : mem_affine a eps v) :

@@ -165,7 +165,9 @@ def evalDomainValidDual (e : Expr) (ρ : DualEnv) (cfg : EvalConfig := {}) : Pro
 
 /-- Correctness theorem for computable dual value component.
 
-    Note: Requires domain validity for log (positive argument interval). -/
+    Note: Requires domain validity for log (positive argument interval).
+@isnad1 id=mem.3h4v.s5.57f466ce57a7 from=translated src=- shape=7d2228ab vocab=e5e67aee
+-/
 theorem evalDualTotalCore_val_correct (e : Expr) (hsupp : ExprSupportedCore e)
     (ρ_real : Nat → ℝ) (ρ_dual : DualEnv) (cfg : EvalConfig)
     (hρ : ∀ i, ρ_real i ∈ (ρ_dual i).val)
@@ -232,7 +234,9 @@ theorem evalDualTotalCore_val_correct (e : Expr) (hsupp : ExprSupportedCore e)
     exact c.mem_interval
 
 /-- For ADSupported expressions (which exclude log), domain validity is trivially true.
-    This is because ADSupported has no log constructor. -/
+    This is because ADSupported has no log constructor.
+@isnad1 id=evaldoma.1h3v.s3.0a8881ca0330 from=translated src=- shape=5a0387d9 vocab=e9b29c1e
+-/
 theorem evalDomainValidDual_of_ExprSupported (e : Expr) (hsupp : ADSupported e)
     (ρ : DualEnv) (cfg : EvalConfig) : evalDomainValidDual e ρ cfg := by
   induction hsupp with
@@ -246,7 +250,9 @@ theorem evalDomainValidDual_of_ExprSupported (e : Expr) (hsupp : ADSupported e)
   | exp _ ih => exact ih
 
 /-- Correctness theorem for computable dual derivative component.
-    Uses ADSupported since derivative correctness requires differentiability. -/
+    Uses ADSupported since derivative correctness requires differentiability.
+@isnad1 id=mem.2h4v.s5.166a03fe9da6 from=translated src=- shape=287f485f vocab=fe57a89d
+-/
 theorem evalDualTotalCore_der_correct (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (x : ℝ) (hx : x ∈ I) (cfg : EvalConfig) :
     deriv (evalFunc1 e) x ∈ (LeanCert.Internal.AD.evalTotalCore e (fun _ => DualInterval.varActive I) cfg).der := by
@@ -309,14 +315,18 @@ theorem evalDualTotalCore_der_correct (e : Expr) (hsupp : ADSupported e)
     have hexp := IntervalRat.mem_expComputable hval cfg.taylorDepth
     exact IntervalRat.mem_mul hexp (ih x hx)
 
-/-- Convenience theorem: derivIntervalCore correctness -/
+/-- Convenience theorem: derivIntervalCore correctness
+@isnad1 id=mem.2h4v.s5.555200fb1eda from=translated src=- shape=9b56e500 vocab=0d288e64
+-/
 theorem derivIntervalCore_correct (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (x : ℝ) (hx : x ∈ I) (cfg : EvalConfig) :
     deriv (evalFunc1 e) x ∈ derivIntervalCore e I cfg :=
   LeanCert.Engine.evalDualTotalCore_der_correct e hsupp I x hx cfg
 
 /-- If derivIntervalCore doesn't contain zero, the derivative is nonzero everywhere on I.
-    This is a key theorem for Newton contraction analysis. -/
+    This is a key theorem for Newton contraction analysis.
+@isnad1 id=ne.3h4v.s5.f901806e5952 from=translated src=- shape=1d6ec379 vocab=e0e4a81e
+-/
 theorem derivIntervalCore_nonzero_implies_deriv_nonzero (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (cfg : EvalConfig)
     (h : ¬(derivIntervalCore e I cfg).containsZero) :
@@ -330,7 +340,9 @@ theorem derivIntervalCore_nonzero_implies_deriv_nonzero (e : Expr) (hsupp : ADSu
   · exact absurd hmem.1 (not_le.mpr (by exact_mod_cast hlo))
   · exact absurd hmem.2 (not_le.mpr (by exact_mod_cast hhi))
 
-/-- If derivIntervalCore.lo > 0, then the derivative is positive everywhere on I. -/
+/-- If derivIntervalCore.lo > 0, then the derivative is positive everywhere on I.
+@isnad1 id=lt.3h4v.s6.359c75cf1005 from=translated src=- shape=9725e6e6 vocab=4391563e
+-/
 theorem derivIntervalCore_pos_implies_deriv_pos (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (cfg : EvalConfig)
     (h : 0 < (derivIntervalCore e I cfg).lo) :
@@ -341,7 +353,9 @@ theorem derivIntervalCore_pos_implies_deriv_pos (e : Expr) (hsupp : ADSupported 
   calc (0 : ℝ) < (derivIntervalCore e I cfg).lo := by exact_mod_cast h
     _ ≤ deriv (evalFunc1 e) x := hmem.1
 
-/-- If derivIntervalCore.hi < 0, then the derivative is negative everywhere on I. -/
+/-- If derivIntervalCore.hi < 0, then the derivative is negative everywhere on I.
+@isnad1 id=lt.3h4v.s6.0a159fc65772 from=translated src=- shape=dbd18c42 vocab=8effb4e1
+-/
 theorem derivIntervalCore_neg_implies_deriv_neg (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (cfg : EvalConfig)
     (h : (derivIntervalCore e I cfg).hi < 0) :
@@ -352,7 +366,9 @@ theorem derivIntervalCore_neg_implies_deriv_neg (e : Expr) (hsupp : ADSupported 
   calc deriv (evalFunc1 e) x ≤ (derivIntervalCore e I cfg).hi := hmem.2
     _ < 0 := by exact_mod_cast h
 
-/-- Strictly positive derivative (via Core bounds) implies strict monotonicity -/
+/-- Strictly positive derivative (via Core bounds) implies strict monotonicity
+@isnad1 id=strictmo.2h3v.s5.b251caf398b2 from=translated src=- shape=f1f71fcb vocab=cfa8e005
+-/
 theorem strictMonoOn_of_derivIntervalCore_pos (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (cfg : EvalConfig)
     (hpos : 0 < (derivIntervalCore e I cfg).lo) :
@@ -368,7 +384,9 @@ theorem strictMonoOn_of_derivIntervalCore_pos (e : Expr) (hsupp : ADSupported e)
       exact ⟨le_of_lt hx.1, le_of_lt hx.2⟩
     exact hderiv_pos x hx_mem
 
-/-- Strictly negative derivative (via Core bounds) implies strict antitonicity -/
+/-- Strictly negative derivative (via Core bounds) implies strict antitonicity
+@isnad1 id=strictan.2h3v.s5.790440806621 from=translated src=- shape=71efe7bd vocab=a506f519
+-/
 theorem strictAntiOn_of_derivIntervalCore_neg (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (cfg : EvalConfig)
     (hneg : (derivIntervalCore e I cfg).hi < 0) :
