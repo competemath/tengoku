@@ -54,7 +54,9 @@ variable (k : Type u) [Field k] (A : Type v) [CommRing A] [IsLocalRing A] [Algeb
 section Conormal
 
 /-- The kernel of the residue map is the maximal ideal, as an algebra map to the residue
-field. -/
+field.
+@isnad1 id=eq.0h1v.s7.e647604a9e23 from=translated src=- shape=82bf87f6 vocab=475e5aa1
+-/
 lemma ker_algebraMap_residueField :
     RingHom.ker (algebraMap A (ResidueField A)) = maximalIdeal A :=
   ker_residue
@@ -75,7 +77,9 @@ formally smooth over `k`, the conormal map `𝔪/𝔪² → κ ⊗[A] Ω[A⁄k]`
 
 `Algebra.FormallySmooth k A` is exactly what membership in the smooth locus of
 `Spec A ⟶ Spec k` provides, and `Algebra.FormallySmooth k (ResidueField A)` holds
-whenever the residue extension is separable (e.g. in characteristic zero). -/
+whenever the residue extension is separable (e.g. in characteristic zero).
+@isnad1 id=injectiv.0h2v.s11.8d7b81d545a6 from=translated src=- shape=0c4643da vocab=d6b711ca
+-/
 theorem injective_kerCotangentToTensor [Algebra.FormallySmooth k A]
     [Algebra.FormallySmooth k (ResidueField A)] :
     Function.Injective (kerCotangentToTensor k A (ResidueField A)) := by
@@ -89,7 +93,9 @@ theorem injective_kerCotangentToTensor [Algebra.FormallySmooth k A]
 
 omit [IsLocalRing A] in
 /-- The transport map `𝔪/𝔪² → (ker (A → κ))/(…)²` induced by the identity is
-injective (the two ideals are equal). -/
+injective (the two ideals are equal).
+@isnad1 id=injectiv.2h3v.s8.a45e31963fe2 from=translated src=- shape=0087d482 vocab=325a8855
+-/
 lemma injective_mapCotangent_id {I J : Ideal A} (h₁ : I ≤ J.comap (AlgHom.id A A))
     (h₂ : J ≤ I.comap (AlgHom.id A A)) :
     Function.Injective (Ideal.mapCotangent I J (AlgHom.id A A) h₁) := by
@@ -100,7 +106,9 @@ lemma injective_mapCotangent_id {I J : Ideal A} (h₁ : I ≤ J.comap (AlgHom.id
   rfl
 
 /-- **The conormal map out of the cotangent space is injective** for a formally smooth
-local `k`-algebra with formally smooth residue field. -/
+local `k`-algebra with formally smooth residue field.
+@isnad1 id=injectiv.0h2v.s9.3154d529efb9 from=translated src=- shape=77ca079c vocab=10b3a231
+-/
 theorem injective_cotangentSpaceToTensor [Algebra.FormallySmooth k A]
     [Algebra.FormallySmooth k (ResidueField A)] :
     Function.Injective (cotangentSpaceToTensor k A) := by
@@ -123,6 +131,9 @@ noncomputable def cotangentSpaceToTensorₖ :
     CotangentSpace A →ₗ[ResidueField A] ResidueField A ⊗[A] Ω[A⁄k] :=
   LinearMap.extendScalarsOfSurjective residue_surjective (cotangentSpaceToTensor k A)
 
+/--
+@isnad1 id=injectiv.0h2v.s10.f3ba3e2f8523 from=translated src=- shape=cda85d69 vocab=6501ffd0
+-/
 lemma injective_cotangentSpaceToTensorₖ [Algebra.FormallySmooth k A]
     [Algebra.FormallySmooth k (ResidueField A)] :
     Function.Injective (cotangentSpaceToTensorₖ (k := k) (A := A)) :=
@@ -135,7 +146,9 @@ space `𝔪/𝔪²` is at most the dimension of `κ ⊗[A] Ω[A⁄k]`.
 This is the local-algebra half of taxis issue #75: together with
 `Belyi/Curve/Stalks.lean` it turns the rank of the module of Kähler differentials at a
 stalk — i.e. the relative dimension of a smooth morphism — into the `ValuationRing` and
-`Ring.KrullDimLE 1` hypotheses of B1. -/
+`Ring.KrullDimLE 1` hypotheses of B1.
+@isnad1 id=le.0h2v.s9.bc86dfb1c8db from=translated src=- shape=a6bdd1fa vocab=81aeab29
+-/
 theorem finrank_cotangentSpace_le [Algebra.FormallySmooth k A]
     [Algebra.FormallySmooth k (ResidueField A)]
     [Module.Finite (ResidueField A) (ResidueField A ⊗[A] Ω[A⁄k])] :
@@ -144,7 +157,9 @@ theorem finrank_cotangentSpace_le [Algebra.FormallySmooth k A]
   LinearMap.finrank_le_finrank_of_injective injective_cotangentSpaceToTensorₖ
 
 /-- The form consumed by `Belyi/Curve/Stalks.lean`: a rank bound on the Kähler
-differentials gives the cotangent bound. -/
+differentials gives the cotangent bound.
+@isnad1 id=le.1h3v.s9.2a2d811d41ad from=translated src=- shape=fffd1200 vocab=81aeab29
+-/
 theorem finrank_cotangentSpace_le_of_finrank_kaehler_le [Algebra.FormallySmooth k A]
     [Algebra.FormallySmooth k (ResidueField A)]
     [Module.Finite (ResidueField A) (ResidueField A ⊗[A] Ω[A⁄k])] {n : ℕ}

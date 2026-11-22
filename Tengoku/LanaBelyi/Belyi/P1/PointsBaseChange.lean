@@ -39,7 +39,9 @@ namespace MvPolynomial
 variable {σ : Type*} {R S : Type*} [CommRing R] [CommRing S]
 
 /-- `x` is divisible by `monomial s 1` iff every coefficient at a multi-index not `≥ s`
-vanishes. -/
+vanishes.
+@isnad1 id=iff.0h4v.s8.22f6923d2794 from=translated src=- shape=44b03ea2 vocab=c2e1fdf4
+-/
 lemma monomial_one_dvd_iff_forall_coeff (x : MvPolynomial σ R) (s : σ →₀ ℕ) :
     (monomial s 1) ∣ x ↔ ∀ d, ¬ s ≤ d → coeff d x = 0 := by
   rw [monomial_one_dvd_iff_modMonomial_eq_zero, MvPolynomial.ext_iff]
@@ -54,7 +56,9 @@ lemma monomial_one_dvd_iff_forall_coeff (x : MvPolynomial σ R) (s : σ →₀ �
     · rw [coeff_modMonomial_of_not_le x hd]; exact h d hd
 
 /-- Divisibility by a monomial `monomial s 1` is reflected and preserved by an injective
-coefficient extension. -/
+coefficient extension.
+@isnad1 id=iff.1h6v.s9.b9afa3b54a7d from=translated src=- shape=8bd2fce4 vocab=7c337303
+-/
 lemma monomial_one_dvd_map_iff {φ : R →+* S} (hφ : Function.Injective φ)
     (s : σ →₀ ℕ) (p : MvPolynomial σ R) :
     (monomial s 1 : MvPolynomial σ S) ∣ MvPolynomial.map φ p ↔
@@ -64,7 +68,9 @@ lemma monomial_one_dvd_map_iff {φ : R →+* S} (hφ : Function.Injective φ)
   rw [coeff_map, map_eq_zero_iff φ hφ]
 
 /-- Divisibility by `X i` is reflected and preserved by an injective coefficient
-extension. -/
+extension.
+@isnad1 id=iff.1h6v.s8.6aa6429a37ce from=translated src=- shape=7c5f2351 vocab=4c13bf11
+-/
 lemma X_dvd_map_iff {φ : R →+* S} (hφ : Function.Injective φ) (i : σ)
     (p : MvPolynomial σ R) :
     (X i : MvPolynomial σ S) ∣ MvPolynomial.map φ p ↔ (X i : MvPolynomial σ R) ∣ p := by
@@ -91,12 +97,24 @@ noncomputable def shearInv (R : Type u) [CommRing R] :
     MvPolynomial (Fin 2) R →ₐ[R] MvPolynomial (Fin 2) R :=
   aeval ![X 0 - X 1, X 1]
 
+/--
+@isnad1 id=eq.0h1v.s9.8eb7d3a1d817 from=translated src=- shape=485a251d vocab=10f4c12d
+-/
 @[simp] lemma shear_X0 (R : Type u) [CommRing R] : shear R (X 0) = X 0 + X 1 := by simp [shear]
 
+/--
+@isnad1 id=eq.0h1v.s8.29e6373e0c35 from=translated src=- shape=11c5ff65 vocab=1e4f2f50
+-/
 @[simp] lemma shear_X1 (R : Type u) [CommRing R] : shear R (X 1) = X 1 := by simp [shear]
 
+/--
+@isnad1 id=eq.0h1v.s9.078a2bb6eb76 from=translated src=- shape=7e6f8209 vocab=7a19df5b
+-/
 lemma shear_X0_sub_X1 (R : Type u) [CommRing R] : shear R (X 0 - X 1) = X 0 := by simp [shear]
 
+/--
+@isnad1 id=eq.0h2v.s9.25f172b39c62 from=translated src=- shape=6ce452d9 vocab=0f2e8ab6
+-/
 lemma shearInv_shear (R : Type u) [CommRing R] (p : MvPolynomial (Fin 2) R) :
     shearInv R (shear R p) = p := by
   have h : (shearInv R).comp (shear R) = AlgHom.id R _ := by
@@ -105,7 +123,9 @@ lemma shearInv_shear (R : Type u) [CommRing R] (p : MvPolynomial (Fin 2) R) :
     fin_cases i <;> simp [shear, shearInv, sub_add_cancel]
   exact congrArg (fun f => f p) h
 
-/-- The shear commutes with the coefficient extension `k₀[X₀,X₁] → K[X₀,X₁]`. -/
+/-- The shear commutes with the coefficient extension `k₀[X₀,X₁] → K[X₀,X₁]`.
+@isnad1 id=eq.0h3v.s10.5ce400080bab from=translated src=- shape=f4c8c2c8 vocab=b44a2877
+-/
 lemma map_shear (p : MvPolynomial (Fin 2) k₀) :
     MvPolynomial.map (algebraMap k₀ K) (shear k₀ p) =
       shear K (MvPolynomial.map (algebraMap k₀ K) p) := by
@@ -118,7 +138,9 @@ lemma map_shear (p : MvPolynomial (Fin 2) k₀) :
       fin_cases i <;> simp
 
 /-- Divisibility by the linear form `X₀ - X₁` is reflected and preserved by the coefficient
-extension `k₀[X₀,X₁] → K[X₀,X₁]`. -/
+extension `k₀[X₀,X₁] → K[X₀,X₁]`.
+@isnad1 id=iff.0h3v.s9.6db5609ce659 from=translated src=- shape=fddd0acc vocab=a4b196d4
+-/
 lemma X0_sub_X1_dvd_map_iff (p : MvPolynomial (Fin 2) k₀) :
     (X 0 - X 1 : MvPolynomial (Fin 2) K) ∣ MvPolynomial.map (algebraMap k₀ K) p ↔
       (X 0 - X 1 : MvPolynomial (Fin 2) k₀) ∣ p := by

@@ -50,16 +50,27 @@ noncomputable def mulByZ (F : FormalGroup R) : ℤ → PowerSeries R
   | Int.ofNat n => F.mulByN n
   | Int.negSucc n => (F.formalInv).subst (F.mulByN (n + 1))
 
+/--
+@isnad1 id=eq.0h3v.s4.e129d294b8c1 from=translated src=- shape=b7f78dee vocab=2e399e01
+-/
 @[simp]
 theorem mulByZ_ofNat (n : ℕ) : F.mulByZ (Int.ofNat n) = F.mulByN n := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.d43201d4a8cf from=translated src=- shape=307e489f vocab=378ca317
+-/
 @[simp]
 theorem mulByZ_natCast (n : ℕ) : F.mulByZ (n : ℤ) = F.mulByN n := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.ca7f6cd9be8d from=translated src=- shape=34829f76 vocab=d36887a3
+-/
 theorem mulByZ_negSucc (n : ℕ) :
     F.mulByZ (Int.negSucc n) = (F.formalInv).subst (F.mulByN (n + 1)) := rfl
 
-/-- The integer multiplication-by-`n` series is substitution-admissible. -/
+/-- The integer multiplication-by-`n` series is substitution-admissible.
+@isnad1 id=hassubst.0h3v.s4.74f8fdaf9685 from=translated src=- shape=22a400fe vocab=6871cfc7
+-/
 theorem hasSubst_mulByZ (n : ℤ) : PowerSeries.HasSubst (F.mulByZ n) := by
   cases n with
   | ofNat n => exact F.hasSubst_mulByN n
@@ -67,7 +78,9 @@ theorem hasSubst_mulByZ (n : ℤ) : PowerSeries.HasSubst (F.mulByZ n) := by
     have h := (hasSubst_formalInv F).comp (F.hasSubst_mulByN (n + 1))
     rwa [PowerSeries.coe_substAlgHom (F.hasSubst_mulByN (n + 1))] at h
 
-/-- `[n](z)` has zero constant coefficient, for every `n : ℤ`. -/
+/-- `[n](z)` has zero constant coefficient, for every `n : ℤ`.
+@isnad1 id=eq.0h3v.s6.16f9d39e475e from=translated src=- shape=d355250c vocab=73863692
+-/
 @[simp]
 theorem constantCoeff_mulByZ (n : ℤ) : PowerSeries.constantCoeff (F.mulByZ n) = 0 := by
   cases n with
@@ -79,7 +92,9 @@ theorem constantCoeff_mulByZ (n : ℤ) : PowerSeries.constantCoeff (F.mulByZ n) 
 
 /-- **The integer multiplication-by-`n` series computes the `ℤ`-action on points.**  For a point `x`
 of the formal group, substituting `[n](z) = F.mulByZ n` at `x` reproduces the `zsmul` multiple
-`n • x`, for every integer `n`. -/
+`n • x`, for every integer `n`.
+@isnad1 id=eq.0h5v.s6.0e2cb53c33b7 from=translated src=- shape=db31aae0 vocab=0bce3bd8
+-/
 theorem zsmul_val_eq_mulByZ_subst (n : ℤ) (x : F.Point σ) :
     (n • x).val = (F.mulByZ n).subst x.val := by
   cases n with
@@ -90,7 +105,9 @@ theorem zsmul_val_eq_mulByZ_subst (n : ℤ) (x : F.Point σ) :
     rw [negSucc_zsmul, neg_apply, F.mulByN_subst_point (n + 1) x, mulByZ_negSucc]
     exact (PowerSeries.subst_comp_subst_apply (F.hasSubst_mulByN (n + 1)) x.prop _).symm
 
-/-- A point is `n`-torsion (for `n : ℤ`) iff the series `[n](z)` vanishes at its coordinate. -/
+/-- A point is `n`-torsion (for `n : ℤ`) iff the series `[n](z)` vanishes at its coordinate.
+@isnad1 id=iff.0h5v.s7.1266466085c8 from=translated src=- shape=2943d353 vocab=0bce3bd8
+-/
 theorem zsmul_eq_zero_iff_mulByZ_subst (n : ℤ) (x : F.Point σ) :
     n • x = 0 ↔ (F.mulByZ n).subst x.val = 0 := by
   rw [← F.zsmul_val_eq_mulByZ_subst n x]

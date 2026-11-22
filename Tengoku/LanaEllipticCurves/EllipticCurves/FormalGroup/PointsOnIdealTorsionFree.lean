@@ -51,7 +51,9 @@ private theorem isUnit_natCast {m : ℕ} (hm : m ≠ 0) : IsUnit (m : A) := by
 /-- **`Ê(𝔪)` is torsion-free in characteristic `0`.**  Over a `ℚ`-algebra, multiplication by every
 nonzero `m : ℕ` is injective on `Ê(𝔪)` (Silverman AEC IV.6.1); this is the merged unit-hypothesis
 injectivity `nsmul_injective` with `IsUnit (m : A)` supplied automatically.  Yields
-`NoZeroSMulDivisors ℕ`/`ℤ (OnIdeal F I)` by the Mathlib instances. -/
+`NoZeroSMulDivisors ℕ`/`ℤ (OnIdeal F I)` by the Mathlib instances.
+@isnad1 id=isaddtor.0h3v.s5.e4ec87f252eb from=translated src=- shape=c892d0a6 vocab=77902b32
+-/
 instance instIsAddTorsionFree : IsAddTorsionFree (OnIdeal F I) where
   nsmul_right_injective _ hm := nsmul_injective (isUnit_natCast hm)
 
@@ -66,7 +68,9 @@ theorem eq_zero_of_zsmul_eq_zero {n : ℤ} (hn : n ≠ 0) {x : OnIdeal F I}
   (IsAddTorsionFree.zsmul_eq_zero_iff_right hn).mp h
 
 /-- **Unique `m`-divisibility of `Ê(𝔪)` in char 0.**  Over a `ℚ`-algebra, multiplication by every
-nonzero `m : ℕ` is bijective (the char-0 case of `nsmul_bijective`). -/
+nonzero `m : ℕ` is bijective (the char-0 case of `nsmul_bijective`).
+@isnad1 id=bijectiv.1h4v.s6.a3dd6ddd80a1 from=translated src=- shape=587422b8 vocab=41434b8e
+-/
 theorem nsmul_bijective_of_ne_zero {m : ℕ} (hm : m ≠ 0) :
     Function.Bijective (fun x : OnIdeal F I => m • x) :=
   nsmul_bijective (isUnit_natCast hm)

@@ -94,6 +94,9 @@ def torsionByProdHom : A[m] × A[n] →+ A[m * n] where
     simp only [AddSubgroup.coe_add, Prod.fst_add, Prod.snd_add]
     abel
 
+/--
+@isnad1 id=eq.0h4v.s10.3b45d78dd937 from=translated src=- shape=1a7bd4dc vocab=1a1af297
+-/
 @[simp]
 lemma torsionByProdHom_apply_coe (P : A[m] × A[n]) :
     ((torsionByProdHom A m n P : A[m * n]) : A) = (P.1 : A) + (P.2 : A) :=
@@ -103,7 +106,9 @@ variable {A m n}
 
 /-- **Adding is bijective on coprime torsion.** Injectivity: if `a + b = 0` with `m • a = 0` and
 `n • b = 0`, then `n • a = -n • b = 0`, so `a = (u * m + v * n) • a = 0`. Surjectivity:
-`P = (v • n • P) + (u • m • P)` by the Bézout identity. -/
+`P = (v • n • P) + (u • m • P)` by the Bézout identity.
+@isnad1 id=bijectiv.1h3v.s10.2b6192f115a2 from=translated src=- shape=17e0bef9 vocab=485fa14f
+-/
 lemma torsionByProdHom_bijective (h : IsCoprime m n) :
     Function.Bijective (torsionByProdHom A m n) := by
   obtain ⟨u, v, huv⟩ := h
@@ -143,12 +148,16 @@ noncomputable def torsionByMulAddEquiv (h : IsCoprime m n) : A[m * n] ≃+ A[m] 
 
 /-- **The torsion count is multiplicative on coprime arguments.** This needs no finiteness
 hypothesis: `Nat.card_prod` holds unconditionally, and both sides are `0` when either factor is
-infinite. -/
+infinite.
+@isnad1 id=eq.1h3v.s6.083bb2221f07 from=translated src=- shape=2f315471 vocab=fa7a1cf3
+-/
 theorem card_torsionBy_mul_of_isCoprime (h : IsCoprime m n) :
     Nat.card A[m * n] = Nat.card A[m] * Nat.card A[n] := by
   rw [Nat.card_congr (torsionByMulAddEquiv h).toEquiv, Nat.card_prod]
 
-/-- **Finiteness of coprime torsion is an iff**, the sharp form of `finite_torsionBy_mul`. -/
+/-- **Finiteness of coprime torsion is an iff**, the sharp form of `finite_torsionBy_mul`.
+@isnad1 id=iff.1h3v.s6.7d35758bdfac from=translated src=- shape=b834c043 vocab=691bc444
+-/
 theorem finite_torsionBy_mul_iff (h : IsCoprime m n) :
     Finite A[m * n] ↔ Finite A[m] ∧ Finite A[n] := by
   rw [(torsionByMulAddEquiv h).toEquiv.finite_iff, Prod.finite_iff]
@@ -170,20 +179,26 @@ noncomputable def torsionMulAddEquiv (h : Nat.Coprime m n) :
     (AddSubgroup.torsionByMulAddEquiv (Nat.isCoprime_iff_coprime.mpr h))
 
 /-- **`#E[mn] = #E[m] · #E[n]` for coprime `m` and `n`**, the sharp companion of the general
-inequality `card_torsion_mul_le`. No finiteness hypothesis is required. -/
+inequality `card_torsion_mul_le`. No finiteness hypothesis is required.
+@isnad1 id=eq.1h4v.s8.90ff898869cb from=translated src=- shape=a9f1de4c vocab=ed4b1db4
+-/
 theorem card_torsion_mul (h : Nat.Coprime m n) :
     Nat.card (W.torsion (m * n)) = Nat.card (W.torsion m) * Nat.card (W.torsion n) := by
   rw [torsion_mul_eq', AddSubgroup.card_torsionBy_mul_of_isCoprime
     (Nat.isCoprime_iff_coprime.mpr h)]
 
-/-- **`E[mn]` is finite exactly when both `E[m]` and `E[n]` are**, for coprime `m` and `n`. -/
+/-- **`E[mn]` is finite exactly when both `E[m]` and `E[n]` are**, for coprime `m` and `n`.
+@isnad1 id=iff.1h4v.s8.442fe1c918dc from=translated src=- shape=4db0d1ed vocab=b12f5b15
+-/
 theorem finite_torsion_mul_iff (h : Nat.Coprime m n) :
     Finite (W.torsion (m * n)) ↔ Finite (W.torsion m) ∧ Finite (W.torsion n) := by
   rw [torsion_mul_eq', AddSubgroup.finite_torsionBy_mul_iff (Nat.isCoprime_iff_coprime.mpr h)]
 
 /-- **The primary decomposition of the torsion count**: `#E[n]` is the product of `#E[p^k]` over the
 prime powers `p^k` exactly dividing `n`. Together with `card_torsion_le_sq_of_smooth` this reduces
-the computation of `#E[n]` entirely to prime powers. -/
+the computation of `#E[n]` entirely to prime powers.
+@isnad1 id=eq.1h3v.s7.98355b8e071b from=translated src=- shape=d00f93e8 vocab=93e6709b
+-/
 theorem card_torsion_eq_prod_factorization (hn : n ≠ 0) :
     Nat.card (W.torsion n) = n.factorization.prod fun p k => Nat.card (W.torsion (p ^ k)) :=
   Nat.multiplicative_factorization (fun k => Nat.card (W.torsion k))
@@ -195,13 +210,17 @@ Over an algebraically closed field of characteristic `≠ 2` the merged computat
 off from every odd-index torsion subgroup. -/
 
 /-- **`#E[2n] = 4 · #E[n]` for odd `n`** over an algebraically closed field of characteristic
-`≠ 2`. -/
+`≠ 2`.
+@isnad1 id=eq.2h3v.s8.92633b823552 from=translated src=- shape=69d02207 vocab=80344fbd
+-/
 theorem card_torsion_two_mul [IsAlgClosed F] [W.IsElliptic] (h2 : (2 : F) ≠ 0) (hn : Odd n) :
     Nat.card (W.torsion (2 * n)) = 4 * Nat.card (W.torsion n) := by
   rw [card_torsion_mul (Nat.coprime_two_left.mpr hn), card_torsion_two h2]
 
 /-- **`E[2n] ≃+ (ℤ/2ℤ)² × E[n]` for odd `n`** over an algebraically closed field of characteristic
-`≠ 2`. -/
+`≠ 2`.
+@isnad1 id=nonempty.2h3v.s9.64ee41354b69 from=translated src=- shape=e23027bd vocab=35501217
+-/
 theorem nonempty_torsion_two_mul_addEquiv [IsAlgClosed F] [W.IsElliptic] (h2 : (2 : F) ≠ 0)
     (hn : Odd n) : Nonempty (W.torsion (2 * n) ≃+ (ZMod 2 × ZMod 2) × W.torsion n) := by
   obtain ⟨e⟩ := nonempty_torsionTwo_addEquiv (W := W) h2

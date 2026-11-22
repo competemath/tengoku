@@ -102,24 +102,32 @@ variable (ha : ∀ s : Fin 2, ![z₁, z₂] s ∈ (maximalIdeal R).asIdeal)
 omit [IsFractionRing R K]
 
 /-- The numeric chord slope `λ = chordSlope` lies in `𝔪` (`formalWDividedDiff` has zero constant
-coefficient). -/
+coefficient).
+@isnad1 id=mem.1h5v.s7.8b25b865bca2 from=translated src=- shape=3ec07408 vocab=e5a45d00
+-/
 theorem chordSlope_mem : chordSlope R W ha ∈ (maximalIdeal R).asIdeal := by
   rw [chordSlope]
   exact adicEvalMv_mem _ ha (integralModel R W).cc_formalWDividedDiff
 
 /-- The numeric chord intercept `ν = chordIntercept` lies in `𝔪` (`formalGroupNu` has zero constant
-coefficient). -/
+coefficient).
+@isnad1 id=mem.1h5v.s7.720afeab2340 from=translated src=- shape=3ec07408 vocab=2a9d1b1d
+-/
 theorem chordIntercept_mem : chordIntercept R W ha ∈ (maximalIdeal R).asIdeal := by
   rw [chordIntercept]
   exact adicEvalMv_mem _ ha (integralModel R W).cc_formalGroupNu
 
 /-- The numeric Vieta third root `t = thirdRootNum` lies in `𝔪` (`formalThirdRoot` has zero constant
-coefficient). -/
+coefficient).
+@isnad1 id=mem.1h5v.s7.d3ebcffa4bfe from=translated src=- shape=3ec07408 vocab=7ef7b2eb
+-/
 theorem thirdRootNum_mem : thirdRootNum R W ha ∈ (maximalIdeal R).asIdeal := by
   rw [thirdRootNum]
   exact adicEvalMv_mem _ ha (integralModel R W).cc_formalThirdRoot
 
-/-- The third-chord `w`-value `w₃ = thirdChordW = λ t + ν` lies in `𝔪`. -/
+/-- The third-chord `w`-value `w₃ = thirdChordW = λ t + ν` lies in `𝔪`.
+@isnad1 id=mem.1h5v.s7.38df150e0df7 from=translated src=- shape=3ec07408 vocab=e38e63ac
+-/
 theorem thirdChordW_mem : thirdChordW R W ha ∈ (maximalIdeal R).asIdeal := by
   rw [thirdChordW]
   exact (maximalIdeal R).asIdeal.add_mem
@@ -130,7 +138,9 @@ theorem thirdChordW_mem : thirdChordW R W ha ∈ (maximalIdeal R).asIdeal := by
 numeric denominator `den = adicEvalMv 𝔪 ![z₁, z₂] formalGroupDen = 1 − a₁ t − a₃ w₃` satisfies
 `1 − den ∈ 𝔪` (both `t` and `w₃` lie in `𝔪`), so `den ≡ 1 mod 𝔪`; if `den` were `0` then `1 ∈ 𝔪`,
 contradicting that `𝔪` is a proper (prime) ideal.  This discharges the `hden` hypothesis of
-`localParam_add_secant` / `localParam_add_of_X_ne`. -/
+`localParam_add_secant` / `localParam_add_of_X_ne`.
+@isnad1 id=ne.1h5v.s8.1f9ecea0b210 from=translated src=- shape=2d86dd5c vocab=2e730368
+-/
 theorem adicEvalMv_formalGroupDen_ne_zero :
     adicEvalMv (maximalIdeal R).asIdeal ha (integralModel R W).formalGroupDen ≠ 0 := by
   intro h0

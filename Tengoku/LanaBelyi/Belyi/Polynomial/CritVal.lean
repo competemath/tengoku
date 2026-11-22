@@ -43,22 +43,33 @@ noncomputable def critVal (K : Type*) [Field K] [Algebra ℚ K] (g : ℚ[X]) : F
   letI := Classical.decEq K
   ((derivative g).aroots K).toFinset.image fun a => aeval a g
 
+/--
+@isnad1 id=iff.0h3v.s9.73056ae60126 from=translated src=- shape=23630613 vocab=b1be166a
+-/
 lemma mem_critVal_iff {g : ℚ[X]} {x : K} :
     x ∈ critVal K g ↔
       ∃ a : K, (derivative g ≠ 0 ∧ aeval a (derivative g) = 0) ∧ aeval a g = x := by
   simp only [critVal, Finset.mem_image, Multiset.mem_toFinset, mem_aroots]
 
+/--
+@isnad1 id=mem.2h3v.s9.bc6555d221f7 from=translated src=- shape=7a3b4488 vocab=b1be166a
+-/
 lemma aeval_mem_critVal {g : ℚ[X]} (hg : derivative g ≠ 0) {a : K}
     (ha : aeval a (derivative g) = 0) : aeval a g ∈ critVal K g :=
   mem_critVal_iff.mpr ⟨a, ⟨hg, ha⟩, rfl⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.d29d6eea0a70 from=translated src=- shape=ef5a8306 vocab=079d596e
+-/
 @[simp]
 lemma critVal_X : critVal K X = ∅ := by
   classical
   simp [critVal, aroots_one]
 
 /-- Critical values of a composite polynomial: `CritVal (g ∘ h) ⊆ g(CritVal h) ∪ CritVal g`.
-This is the bookkeeping engine of Belyi's descending induction. -/
+This is the bookkeeping engine of Belyi's descending induction.
+@isnad1 id=le.2h3v.s8.c157fee71618 from=translated src=- shape=5c13062f vocab=263440d1
+-/
 lemma critVal_comp_subset [DecidableEq K] {g h : ℚ[X]} (hg : derivative g ≠ 0)
     (hh : derivative h ≠ 0) :
     critVal K (g.comp h) ⊆ (critVal K h).image (fun y => aeval y g) ∪ critVal K g := by
@@ -75,7 +86,9 @@ lemma critVal_comp_subset [DecidableEq K] {g h : ℚ[X]} (hg : derivative g ≠ 
 variable [Algebra.IsAlgebraic ℚ K]
 
 /-- Evaluating a rational polynomial does not increase the degree over `ℚ`:
-`g(x)` lies in `ℚ(x)`. -/
+`g(x)` lies in `ℚ(x)`.
+@isnad1 id=le.0h3v.s7.1d2573e87726 from=translated src=- shape=98ef8500 vocab=d88f3b52
+-/
 lemma natDegree_minpoly_aeval_le (x : K) (p : ℚ[X]) :
     (minpoly ℚ (aeval x p)).natDegree ≤ (minpoly ℚ x).natDegree := by
   have hx : IsIntegral ℚ x := Algebra.IsIntegral.isIntegral x
@@ -88,7 +101,9 @@ lemma natDegree_minpoly_aeval_le (x : K) (p : ℚ[X]) :
     _ = (minpoly ℚ x).natDegree := adjoin.finrank hx
 
 /-- A critical value of a non-constant `g : ℚ[X]` has degree over `ℚ` strictly smaller than
-`deg g`: it is the image of a root of the derivative, which has degree at most `deg g - 1`. -/
+`deg g`: it is the image of a root of the derivative, which has degree at most `deg g - 1`.
+@isnad1 id=lt.2h3v.s6.fc191a4126ea from=translated src=- shape=afe7dfb7 vocab=4708d511
+-/
 lemma natDegree_minpoly_critVal_lt {m : ℚ[X]} (hm : m.natDegree ≠ 0) {x : K}
     (hx : x ∈ critVal K m) : (minpoly ℚ x).natDegree < m.natDegree := by
   obtain ⟨a, ⟨hd, ha⟩, rfl⟩ := mem_critVal_iff.mp hx

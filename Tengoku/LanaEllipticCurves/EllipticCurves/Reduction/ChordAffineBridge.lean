@@ -46,14 +46,23 @@ variable [IsAdicComplete (maximalIdeal R).asIdeal R]
 variable (W : WeierstrassCurve K) [IsIntegral R W] {z₁ z₂ : R}
 variable (ha : ∀ s : Fin 2, ![z₁, z₂] s ∈ (maximalIdeal R).asIdeal)
 
+/--
+@isnad1 id=eq.2h5v.s8.839f929412e3 from=translated src=- shape=70c400c4 vocab=c0ac73ba
+-/
 theorem wParam_eq_chordLine₀ (hz₁ : z₁ ∈ (maximalIdeal R).asIdeal) :
     wParam R W hz₁ = chordSlope R W ha * z₁ + chordIntercept R W ha := by
   rw [← wLineZero_eq_chord R W ha, wLineZero_eq_wParam R W ha hz₁]
 
+/--
+@isnad1 id=eq.2h5v.s8.4c2242e31e9d from=translated src=- shape=3a42f006 vocab=c0ac73ba
+-/
 theorem wParam_eq_chordLine₁ (hz₂ : z₂ ∈ (maximalIdeal R).asIdeal) :
     wParam R W hz₂ = chordSlope R W ha * z₂ + chordIntercept R W ha := by
   rw [← wLineOne_eq_chord R W ha, wLineOne_eq_wParam R W ha hz₂]
 
+/--
+@isnad1 id=eq.3h5v.s8.967896df2add from=translated src=- shape=7cc3093a vocab=5a96906a
+-/
 theorem collinear₀ (hz₁ : z₁ ∈ (maximalIdeal R).asIdeal) (hz₁0 : z₁ ≠ 0) :
     algebraMap R K (chordSlope R W ha) * xParam R W hz₁
       - algebraMap R K (chordIntercept R W ha) * yParam R W hz₁ = 1 := by
@@ -65,6 +74,9 @@ theorem collinear₀ (hz₁ : z₁ ∈ (maximalIdeal R).asIdeal) (hz₁0 : z₁ 
   field_simp
   linear_combination (-1 : K) * hchord
 
+/--
+@isnad1 id=eq.3h5v.s8.7d31cda7c156 from=translated src=- shape=e7a60b84 vocab=5a96906a
+-/
 theorem collinear₁ (hz₂ : z₂ ∈ (maximalIdeal R).asIdeal) (hz₂0 : z₂ ≠ 0) :
     algebraMap R K (chordSlope R W ha) * xParam R W hz₂
       - algebraMap R K (chordIntercept R W ha) * yParam R W hz₂ = 1 := by
@@ -76,6 +88,9 @@ theorem collinear₁ (hz₂ : z₂ ∈ (maximalIdeal R).asIdeal) (hz₂0 : z₂ 
   field_simp
   linear_combination (-1 : K) * hchord
 
+/--
+@isnad1 id=ne.6h5v.s8.376bdafbc033 from=translated src=- shape=ae9bb65a vocab=99f39754
+-/
 theorem chordIntercept_ne_zero_secant (hz₁ : z₁ ∈ (maximalIdeal R).asIdeal)
     (hz₂ : z₂ ∈ (maximalIdeal R).asIdeal) (hz₁0 : z₁ ≠ 0) (hz₂0 : z₂ ≠ 0)
     (hx : xParam R W hz₁ ≠ xParam R W hz₂) :
@@ -89,6 +104,9 @@ theorem chordIntercept_ne_zero_secant (hz₁ : z₁ ∈ (maximalIdeal R).asIdeal
   exact hx (mul_left_cancel₀ hlam (hc1.trans hc2.symm))
 
 open Classical in
+/--
+@isnad1 id=eq.6h5v.s9.282bfa358dcb from=translated src=- shape=7fe07114 vocab=65da5dd0
+-/
 theorem slope_xParam_secant (hz₁ : z₁ ∈ (maximalIdeal R).asIdeal)
     (hz₂ : z₂ ∈ (maximalIdeal R).asIdeal) (hz₁0 : z₁ ≠ 0) (hz₂0 : z₂ ≠ 0)
     (hx : xParam R W hz₁ ≠ xParam R W hz₂) :

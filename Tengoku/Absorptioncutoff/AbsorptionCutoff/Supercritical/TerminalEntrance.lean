@@ -21,7 +21,9 @@ open MeasureTheory ProbabilityTheory
 namespace AbsorptionCutoff
 
 /-- On the full squared-radius state interval, the Gaussian mean map has the
-paper's finite global Lipschitz constant `A²`. -/
+paper's finite global Lipschitz constant `A²`.
+@isnad1 id=le.3h3v.s6.22dfc442d421 from=translated src=- shape=c06655ee vocab=3e81f491
+-/
 lemma abs_V_sub_le_sq_mul_abs_sub_of_mem_Icc
     {A x y : ℝ} (hA : A ≠ 0)
     (hx : x ∈ Set.Icc (0 : ℝ) 1)
@@ -79,7 +81,9 @@ lemma abs_V_sub_le_sq_mul_abs_sub_of_mem_Icc
   · simpa only [abs_sub_comm] using hordered hy hx hyx
 
 /-- Before deterministic entrance, global Lipschitz control gives one
-finite-prefix second-moment recursion step. -/
+finite-prefix second-moment recursion step.
+@isnad1 id=le.3h4v.s8.3f4adbf0d6ac from=translated src=- shape=80a1a84e vocab=fc294e52
+-/
 lemma integral_sq_eval_succ_sub_V_iterate_le_global
     {A q : ℝ} {N : ℕ}
     (hA : A ≠ 0) (hq : q ∈ Set.Icc (0 : ℝ) 1)
@@ -117,7 +121,9 @@ lemma integral_sq_eval_succ_sub_V_iterate_le_global
 
 /-- At every fixed time, the global finite-prefix recursion gives a
 dimension-free constant multiplying `N⁻¹`, uniformly over starts in
-`[0,1]`. -/
+`[0,1]`.
+@isnad1 id=ex.1h2v.s7.4876a59ee62e from=translated src=- shape=5af56710 vocab=d9ef5737
+-/
 theorem exists_nonneg_integral_sq_eval_sub_V_iterate_le_div_nat
     {A : ℝ} (hA : A ≠ 0) (t : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧
@@ -186,7 +192,9 @@ theorem exists_nonneg_integral_sq_eval_sub_V_iterate_le_div_nat
           field_simp [hNcast]
 
 /-- The uniform fixed-time stable-entrance estimate applies eventually to
-every sequence converging to a positive initial radius. -/
+every sequence converging to a positive initial radius.
+@isnad1 id=ex.6h4v.s8.f371a5eed40f from=translated src=- shape=ab59c3ee vocab=683e6233
+-/
 theorem
     exists_eventually_markovPathMeasure_stable_entrance_exp_bound_of_tendsto
     {A qStar q₀ : ℝ} (q : ℕ → ℝ)
@@ -232,7 +240,9 @@ theorem
       ⟨hqLowerN.le, hqN.2⟩
 
 /-- A scalar path whose arbitrary initial law is supported on `[0,1]`
-remains there at every fixed time almost surely. -/
+remains there at every fixed time almost surely.
+@isnad1 id=eventual.2h4v.s7.614322c7c963 from=translated src=- shape=a3d068c6 vocab=c83bdc8e
+-/
 lemma markovPathMeasure_ae_eval_mem_Kchain_Icc_of_measure
     {A : ℝ} {N : ℕ} (hN : 0 < N)
     (μ : Measure ℝ) [IsProbabilityMeasure μ]
@@ -266,7 +276,9 @@ lemma markovPathMeasure_ae_eval_mem_Kchain_Icc_of_measure
         hN μ t
 
 /-- Integrating the scalar conditional recursion works from every probability
-initial law supported on `[0,1]`. -/
+initial law supported on `[0,1]`.
+@isnad1 id=le.4h6v.s8.dff10c267f37 from=translated src=- shape=992f008b vocab=c809d6f2
+-/
 lemma integral_sq_eval_succ_sub_V_le_of_abs_V_sub_le_of_measure
     {A r κ : ℝ} {N : ℕ}
     (hN : 0 < N) (hκ : 0 ≤ κ)
@@ -343,7 +355,9 @@ lemma integral_sq_eval_succ_sub_V_le_of_abs_V_sub_le_of_measure
         probReal_univ, one_smul]
 
 /-- The local conditional recursion on survival is independent of the
-initial law of the canonical path. -/
+initial law of the canonical path.
+@isnad1 id=eventual.7h9v.s8.7c8841cb0263 from=translated src=- shape=d0f943d5 vocab=dc893fce
+-/
 lemma
     condExp_sq_eval_succ_sub_V_iterate_le_on_lt_stableIntervalExitTime_of_measure
     {A q qStar R κ : ℝ} {N T t : ℕ}
@@ -381,7 +395,9 @@ lemma
     hN hκ hcontract
 
 /-- The killed local conditional recursion also holds after restarting from
-an arbitrary supported probability law. -/
+an arbitrary supported probability law.
+@isnad1 id=eventual.8h9v.s9.27b431a45259 from=translated src=- shape=1752e0f1 vocab=62f2df20
+-/
 lemma condExp_indicator_sq_eval_succ_sub_V_iterate_le_of_measure
     {A q qStar R κ : ℝ} {N T t : ℕ}
     (hA : A ≠ 0) (hN : 0 < N) (hκ : 0 ≤ κ) (hRq : R < qStar)
@@ -475,7 +491,9 @@ noncomputable def stableIntervalKilledErrorMomentOfMeasure
     ∂(markovPathMeasure μ₀ (Kchain A N))
 
 /-- Integrating the arbitrary-law killed conditional estimate gives the
-one-step affine recursion for its stopped orbit-error moment. -/
+one-step affine recursion for its stopped orbit-error moment.
+@isnad1 id=le.8h9v.s8.9ed46f76a44d from=translated src=- shape=e80ee98a vocab=2f1b66c3
+-/
 lemma stableIntervalKilledErrorMomentOfMeasure_succ_le
     {A q qStar R κ : ℝ} {N T t : ℕ}
     (hA : A ≠ 0) (hN : 0 < N) (hκ : 0 ≤ κ) (hRq : R < qStar)
@@ -579,7 +597,9 @@ lemma stableIntervalKilledErrorMomentOfMeasure_succ_le
 
 /-- Through a finite stable horizon, the killed moment retains the
 geometrically damped initial second moment and accumulates only the uniform
-`N⁻¹` noise floor. -/
+`N⁻¹` noise floor.
+@isnad1 id=le.9h9v.s8.93f8dd4dd07b from=translated src=- shape=47dd5281 vocab=525ecbe1
+-/
 lemma stableIntervalKilledErrorMomentOfMeasure_le
     {A q qStar R κ : ℝ} {N T t : ℕ}
     (hA : A ≠ 0) (hN : 0 < N)
@@ -682,7 +702,9 @@ lemma stableIntervalKilledErrorMomentOfMeasure_le
       le_rfl)
 
 /-- The path-space one-step Hoeffding bound is uniform over the initial
-probability law. -/
+probability law.
+@isnad1 id=le.2h5v.s7.b23ea08288d8 from=translated src=- shape=e303937f vocab=0fc4d68f
+-/
 lemma markovPathMeasure_measureReal_abs_next_sub_V_gt_le_of_measure
     {A ε : ℝ} {N : ℕ} (hN : 0 < N) (hε : 0 < ε)
     (μ₀ : Measure ℝ) [IsProbabilityMeasure μ₀] (t : ℕ) :
@@ -784,7 +806,9 @@ lemma markovPathMeasure_measureReal_abs_next_sub_V_gt_le_of_measure
       rw [integral_const, probReal_univ, one_smul]
 
 /-- A finite union bound makes the arbitrary-law path deviation estimate
-uniform through the whole horizon. -/
+uniform through the whole horizon.
+@isnad1 id=le.2h5v.s7.cb243d0ee32d from=translated src=- shape=64d206e1 vocab=bd889500
+-/
 lemma
     markovPathMeasure_measureReal_finiteHorizonKchainStepDeviationEvent_le_of_measure
     {A ε : ℝ} {N T : ℕ} (hN : 0 < N) (hε : 0 < ε)
@@ -814,7 +838,9 @@ lemma
       ring
 
 /-- Starting anywhere in the stable interval, contraction toward the fixed
-point and uniformly small step deviations prevent exit through the horizon. -/
+point and uniformly small step deviations prevent exit through the horizon.
+@isnad1 id=eq.9h7v.s7.8dde8041d00e from=translated src=- shape=3b57f994 vocab=75f13f02
+-/
 lemma stableIntervalExitTime_eq_sentinel_of_initial_mem_of_step_deviation_le
     {A qStar R κ δ : ℝ} {T : ℕ} {ω : ℕ → ℝ}
     (hA : A ≠ 0) (hR0 : 0 ≤ R) (hκ0 : 0 ≤ κ) (hRq : R < qStar)
@@ -873,7 +899,9 @@ lemma stableIntervalExitTime_eq_sentinel_of_initial_mem_of_step_deviation_le
   omega
 
 /-- From an arbitrary initial law, stable-interval exit can only come from
-initial entrance failure or a later large one-step deviation. -/
+initial entrance failure or a later large one-step deviation.
+@isnad1 id=le.9h8v.s8.0050c67676a5 from=translated src=- shape=0f364906 vocab=972aa59a
+-/
 lemma markovPathMeasure_measureReal_stableIntervalExitTime_le_of_measure
     {A qStar R κ δ : ℝ} {N T : ℕ}
     (hA : A ≠ 0) (hN : 0 < N) (hR0 : 0 ≤ R)
@@ -961,7 +989,9 @@ lemma markovPathMeasure_measureReal_stableIntervalExitTime_le_of_measure
               hN hδ μ₀))
 
 /-- Splitting over survival and exit removes the arbitrary-law stopping:
-the full orbit-error moment is the killed moment plus the exit probability. -/
+the full orbit-error moment is the killed moment plus the exit probability.
+@isnad1 id=le.4h8v.s7.53125ba6146f from=translated src=- shape=b0f6021d vocab=d5d2880c
+-/
 lemma integral_sq_eval_sub_V_iterate_le_killed_add_exit_of_measure
     {A q qStar R : ℝ} {N T t : ℕ}
     (hN : 0 < N)

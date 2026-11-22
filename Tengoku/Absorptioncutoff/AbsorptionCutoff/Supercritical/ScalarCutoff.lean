@@ -22,7 +22,9 @@ namespace AbsorptionCutoff
 
 /-- A coupling of two input laws bounds the total variation between their
 kernel mixtures by the expected pointwise kernel distance on a good set, plus
-the mass of its complement. -/
+the mass of its complement.
+@isnad1 id=le.4h5v.s8.99b307a15d94 from=translated src=- shape=30ed7d25 vocab=c9834d27
+-/
 lemma tvDist_kernel_comp_map_fst_snd_le_integral_add_measureReal
     {E : Type*} [MeasurableSpace E]
     (κ : Kernel ℝ E) [IsMarkovKernel κ]
@@ -124,7 +126,9 @@ lemma tvDist_kernel_comp_map_fst_snd_le_integral_add_measureReal
 
 /-- On a stable interval bounded away from zero, one-step score smoothing
 turns a coupling's expected coordinate distance into a total-variation bound,
-up to the coupling mass outside the stable square. -/
+up to the coupling mass outside the stable square.
+@isnad1 id=le.4h5v.s8.4f8bb7688113 from=translated src=- shape=35d76dc4 vocab=444adfeb
+-/
 lemma tvDist_Kchain_comp_map_fst_snd_le_integral_add_stableInterval
     {A qStar R : ℝ} (hA : 0 < A) (_hR : 0 < R) (hRq : R < qStar)
     (N : ℕ) (π : Measure (ℝ × ℝ)) [IsProbabilityMeasure π]
@@ -163,7 +167,9 @@ lemma tvDist_Kchain_comp_map_fst_snd_le_integral_add_stableInterval
 
 /-- Score smoothing applied to a fixed coordinate of a synchronous path can
 be written directly in terms of the pathwise coordinate-distance integral
-and the corresponding bad endpoint event. -/
+and the corresponding bad endpoint event.
+@isnad1 id=le.4h6v.s9.1a6efac9ffe7 from=translated src=- shape=b216f835 vocab=0ea21edc
+-/
 lemma tvDist_Kchain_comp_map_eval_fst_snd_le_integral_add_stableInterval
     {A qStar R : ℝ} (hA : 0 < A) (hR : 0 < R) (hRq : R < qStar)
     (N : ℕ) (ξ : Measure (ℝ × ℝ)) [IsProbabilityMeasure ξ] (t : ℕ)
@@ -228,7 +234,9 @@ lemma tvDist_Kchain_comp_map_eval_fst_snd_le_integral_add_stableInterval
   simpa only [π, μ, hintegral, hbad] using hscore
 
 /-- The evolving coordinate is still localized in the shrinking terminal
-interval at the endpoint of the terminal block. -/
+interval at the endpoint of the terminal block.
+@isnad1 id=ex.8h6v.s8.41bdf10fbd84 from=translated src=- shape=dcd849a6 vocab=caf5d352
+-/
 theorem
     exists_eventually_shifted_eval_terminalBlockLength_not_mem_terminalInterval_le_of_tendsto
     {A qStar q₀ b : ℝ} (q : ℕ → ℝ)
@@ -384,7 +392,9 @@ theorem
         (N : ℝ) := hlocal
 
 /-- The terminal synchronous pair is localized in the shrinking stable
-square at the endpoint used by one-step score smoothing. -/
+square at the endpoint used by one-step score smoothing.
+@isnad1 id=ex.12h8v.s9.88578b7ae575 from=translated src=- shape=6a1bb596 vocab=2f762690
+-/
 theorem
     exists_eventually_terminalBlock_endpoint_not_mem_prod_le_of_tendsto
     {A qStar q₀ b C₂ : ℝ} (q : ℕ → ℝ)
@@ -497,7 +507,9 @@ theorem
         (N : ℝ) := by ring
 
 /-- A natural multiplier power cancels the corresponding negative part of a
-real multiplier exponent. -/
+real multiplier exponent.
+@isnad1 id=eq.1h3v.s6.86d0b0e7ecc2 from=translated src=- shape=2b7e7c64 vocab=adb122e5
+-/
 lemma pow_mul_rpow_sub_natCast
     {μ : ℝ} (hμ : 0 < μ) (ℓ : ℕ) (c : ℝ) :
     μ ^ ℓ * μ ^ (c - (ℓ : ℝ)) = μ ^ c := by
@@ -506,7 +518,9 @@ lemma pow_mul_rpow_sub_natCast
   ring
 
 /-- Every strict contraction multiplier vanishes when raised to the
-diverging terminal block length. -/
+diverging terminal block length.
+@isnad1 id=tendsto.3h2v.s6.ce1b309351ba from=translated src=- shape=0a0229b0 vocab=4b6d9e07
+-/
 lemma tendsto_pow_supercriticalTerminalBlockLength_zero
     {μ b : ℝ} (hμ0 : 0 ≤ μ) (hμ1 : μ < 1) (hb : 0 < b) :
     Filter.Tendsto
@@ -516,7 +530,9 @@ lemma tendsto_pow_supercriticalTerminalBlockLength_zero
     (tendsto_supercriticalTerminalBlockLength_atTop hb)
 
 /-- The shrinking-radius localization error remains negligible on the
-inverse-square-root scale after division by the terminal contraction gap. -/
+inverse-square-root scale after division by the terminal contraction gap.
+@isnad1 id=tendsto.3h4v.s7.b11bd0e4fa89 from=translated src=- shape=54f4a8e1 vocab=c97162db
+-/
 lemma tendsto_sqrt_nat_mul_terminalLocalizationError_zero
     {A qStar L C : ℝ}
     (hA : 1 < A)
@@ -566,7 +582,9 @@ lemma tendsto_sqrt_nat_mul_terminalLocalizationError_zero
   ring
 
 /-- The shrinking-radius endpoint escape scale vanishes without the stronger
-inverse-square-root normalization. -/
+inverse-square-root normalization.
+@isnad1 id=tendsto.0h0v.s6.b54dbc491791 from=translated src=- shape=4690c06a vocab=8fe21362
+-/
 lemma tendsto_inv_nat_div_supercriticalTerminalRadius_sq_zero :
     Filter.Tendsto
       (fun N : ℕ =>
@@ -590,7 +608,9 @@ lemma tendsto_inv_nat_div_supercriticalTerminalRadius_sq_zero :
 
 /-- The terminal synchronous distance has the paper's cutoff profile on the
 inverse-square-root scale, up to an arbitrary fixed contraction comparison
-factor and vanishing slack. -/
+factor and vanishing slack.
+@isnad1 id=ex.14h9v.s9.3f57f950795a from=translated src=- shape=105df26e vocab=e725df44
+-/
 theorem
     exists_eventually_sqrt_nat_mul_terminalBlock_distance_le_rpow_add
     {A qStar q₀ b C₂ : ℝ} (q : ℕ → ℝ)
@@ -777,7 +797,9 @@ theorem
       hupperN.le
 
 /-- One-step score smoothing turns the terminal synchronous coupling into the
-scalar upper cutoff profile for the two smoothed terminal marginals. -/
+scalar upper cutoff profile for the two smoothed terminal marginals.
+@isnad1 id=ex.13h8v.s9.6d07431c697a from=translated src=- shape=b2c854f4 vocab=adce2217
+-/
 theorem
     exists_eventually_terminalBlock_smoothed_tvDist_le_rpow_add_of_tendsto
     {A qStar q₀ b C₂ : ℝ} (q : ℕ → ℝ)

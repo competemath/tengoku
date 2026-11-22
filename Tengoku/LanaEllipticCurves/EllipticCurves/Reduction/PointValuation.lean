@@ -53,23 +53,37 @@ variable {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
 
 /-! ### Valuations of the coefficients of an integral model -/
 
-/-- Every coefficient of an integral Weierstrass model has valuation `≤ 1`. -/
+/-- Every coefficient of an integral Weierstrass model has valuation `≤ 1`.
+@isnad1 id=le.0h3v.s7.9e6fb3313a9c from=translated src=- shape=2da03098 vocab=340bda88
+-/
 theorem valuation_a₁_le_one (W : WeierstrassCurve K) [IsIntegral R W] :
     valuation K (maximalIdeal R) W.a₁ ≤ 1 := by
   rw [← integralModel_a₁_eq R W]; exact valuation_le_one (maximalIdeal R) _
 
+/--
+@isnad1 id=le.0h3v.s7.4c164bc7bdf5 from=translated src=- shape=2da03098 vocab=a07457e3
+-/
 theorem valuation_a₂_le_one (W : WeierstrassCurve K) [IsIntegral R W] :
     valuation K (maximalIdeal R) W.a₂ ≤ 1 := by
   rw [← integralModel_a₂_eq R W]; exact valuation_le_one (maximalIdeal R) _
 
+/--
+@isnad1 id=le.0h3v.s7.07dab1de485f from=translated src=- shape=2da03098 vocab=f97df7a9
+-/
 theorem valuation_a₃_le_one (W : WeierstrassCurve K) [IsIntegral R W] :
     valuation K (maximalIdeal R) W.a₃ ≤ 1 := by
   rw [← integralModel_a₃_eq R W]; exact valuation_le_one (maximalIdeal R) _
 
+/--
+@isnad1 id=le.0h3v.s7.177223410592 from=translated src=- shape=2da03098 vocab=64c03ced
+-/
 theorem valuation_a₄_le_one (W : WeierstrassCurve K) [IsIntegral R W] :
     valuation K (maximalIdeal R) W.a₄ ≤ 1 := by
   rw [← integralModel_a₄_eq R W]; exact valuation_le_one (maximalIdeal R) _
 
+/--
+@isnad1 id=le.0h3v.s7.235318b1f9aa from=translated src=- shape=2da03098 vocab=a955c8cf
+-/
 theorem valuation_a₆_le_one (W : WeierstrassCurve K) [IsIntegral R W] :
     valuation K (maximalIdeal R) W.a₆ ≤ 1 := by
   rw [← integralModel_a₆_eq R W]; exact valuation_le_one (maximalIdeal R) _
@@ -85,7 +99,9 @@ This is `WeierstrassCurve.valuation_pow_two_eq_pow_three_of_valuation_le_one`
 (`EllipticCurves.NewtonPolygon`) specialised to the adic valuation of the maximal ideal of `R`; the
 coefficient bounds it takes as hypotheses are exactly `valuation_a₁_le_one`, …,
 `valuation_a₆_le_one` above.  The general statement holds for an arbitrary value group, because
-the argument only ever compares integer powers of `v x` and `v y` and never halves. -/
+the argument only ever compares integer powers of `v x` and `v y` and never halves.
+@isnad1 id=and.2h5v.s8.450d93c9cbda from=translated src=- shape=462f5397 vocab=4e4c19db
+-/
 theorem valuation_pow_two_eq_pow_three_of_one_lt (W : WeierstrassCurve K) [IsIntegral R W]
     {x y : K} (heqn : W.toAffine.Equation x y) (hx : 1 < valuation K (maximalIdeal R) x) :
     1 < valuation K (maximalIdeal R) y ∧
@@ -94,7 +110,9 @@ theorem valuation_pow_two_eq_pow_three_of_one_lt (W : WeierstrassCurve K) [IsInt
     (valuation_a₂_le_one R W) (valuation_a₃_le_one R W) (valuation_a₄_le_one R W)
     (valuation_a₆_le_one R W) heqn hx
 
-/-- In the pole regime `1 < v x`, the `y`-pole strictly dominates: `v x < v y`. -/
+/-- In the pole regime `1 < v x`, the `y`-pole strictly dominates: `v x < v y`.
+@isnad1 id=lt.2h5v.s8.4f63845ec159 from=translated src=- shape=4f9bdccf vocab=b9aa251a
+-/
 theorem valuation_lt_of_one_lt (W : WeierstrassCurve K) [IsIntegral R W]
     {x y : K} (heqn : W.toAffine.Equation x y) (hx : 1 < valuation K (maximalIdeal R) x) :
     valuation K (maximalIdeal R) x < valuation K (maximalIdeal R) y := by
@@ -107,7 +125,9 @@ theorem valuation_lt_of_one_lt (W : WeierstrassCurve K) [IsIntegral R W]
   exact lt_of_pow_lt_pow_left₀ 2 zero_le hab
 
 /-- The local parameter `z = -x/y` of a point with a pole reduces into the maximal ideal:
-`v (-x / y) < 1`. -/
+`v (-x / y) < 1`.
+@isnad1 id=lt.2h5v.s8.985cd6ff817a from=translated src=- shape=4edeaab8 vocab=2ad2d3f6
+-/
 theorem valuation_neg_x_div_y_lt_one (W : WeierstrassCurve K) [IsIntegral R W]
     {x y : K} (heqn : W.toAffine.Equation x y) (hx : 1 < valuation K (maximalIdeal R) x) :
     valuation K (maximalIdeal R) (-x / y) < 1 := by
@@ -135,14 +155,22 @@ def ReducesToZero (W : WeierstrassCurve K) [IsIntegral R W] : W.toAffine.Point �
   | .zero => True
   | .some x _ _ => 1 < valuation K (maximalIdeal R) x
 
+/--
+@isnad1 id=reducest.0h3v.s6.a887b3c69028 from=translated src=- shape=353c9c13 vocab=b44276b7
+-/
 @[simp] theorem reducesToZero_zero (W : WeierstrassCurve K) [IsIntegral R W] :
     ReducesToZero R W .zero := trivial
 
+/--
+@isnad1 id=iff.1h5v.s7.7fd2e394cec6 from=translated src=- shape=48bb2119 vocab=bef241a3
+-/
 theorem reducesToZero_some_iff (W : WeierstrassCurve K) [IsIntegral R W]
     {x y : K} {h : W.toAffine.Nonsingular x y} :
     ReducesToZero R W (.some x y h) ↔ 1 < valuation K (maximalIdeal R) x := Iff.rfl
 
-/-- An integral point (`v x ≤ 1`) does not reduce to the origin. -/
+/-- An integral point (`v x ≤ 1`) does not reduce to the origin.
+@isnad1 id=not.2h5v.s7.9b363cf274f0 from=translated src=- shape=88c4a9e6 vocab=ff1edf19
+-/
 theorem not_reducesToZero_of_valuation_le_one (W : WeierstrassCurve K) [IsIntegral R W]
     {x y : K} {h : W.toAffine.Nonsingular x y} (hx : valuation K (maximalIdeal R) x ≤ 1) :
     ¬ ReducesToZero R W (.some x y h) := by

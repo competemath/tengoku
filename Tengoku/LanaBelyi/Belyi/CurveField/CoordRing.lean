@@ -33,10 +33,15 @@ def coordRing (D : Finset (Place K)) : Subalgebra ℚ K where
   add_mem' hf hg P hP := add_mem (hf P hP) (hg P hP)
   algebraMap_mem' q P _ := P.algebraMap_mem q
 
+/--
+@isnad1 id=iff.0h3v.s7.7c5109271bb6 from=translated src=- shape=dc1e644d vocab=9632fc98
+-/
 theorem mem_coordRing {D : Finset (Place K)} {f : K} :
     f ∈ coordRing D ↔ ∀ P : Place K, P ∉ D → f ∈ P.1 := Iff.rfl
 
-/-- The chart ring `A_t` consists of the functions regular at all places where `t` is. -/
+/-- The chart ring `A_t` consists of the functions regular at all places where `t` is.
+@isnad1 id=iff.0h3v.s9.0a89916a216e from=translated src=- shape=ef38c595 vocab=3a8bb6f5
+-/
 theorem mem_chartRing_iff_forall {t : K} [Fact (Transcendental ℚ t)] (f : K) :
     f ∈ chartRing t ↔ ∀ P : Place K, t ∈ P.1 → f ∈ P.1 := by
   refine ⟨fun hf P hP => mem_of_mem_chartRing P.1 P.ratCast_mem hP hf, fun hf => ?_⟩
@@ -61,7 +66,9 @@ theorem mem_chartRing_iff_forall {t : K} [Fact (Transcendental ℚ t)] (f : K) :
       map_add' := fun _ _ => rfl }
   exact IsIntegral.map_of_comp_eq e (RingHom.id K) (by ext a; rfl) hint
 
-/-- The coordinate ring of `X ∖ D` is the chart ring of a function with poles exactly `D`. -/
+/-- The coordinate ring of `X ∖ D` is the chart ring of a function with poles exactly `D`.
+@isnad1 id=iff.1h4v.s9.4f0363c54a5d from=translated src=- shape=0a7f4f79 vocab=531ee2a5
+-/
 theorem coordRing_eq_chartRing {D : Finset (Place K)} {t : K} [Fact (Transcendental ℚ t)]
     (ht : ∀ P : Place K, t ∉ P.1 ↔ P ∈ D) (f : K) : f ∈ coordRing D ↔ f ∈ chartRing t := by
   rw [mem_coordRing, mem_chartRing_iff_forall]

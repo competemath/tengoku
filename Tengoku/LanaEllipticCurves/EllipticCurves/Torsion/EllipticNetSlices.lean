@@ -121,7 +121,9 @@ is where the term-by-term matching above comes from.
 whose first atom `atom W 9 (-5) = W 2 * W 7` is none of the six.
 
 ⚠️ Its use is that it sends the fourth index to `p - q - r`, of the same parity as `p + q + r`, so
-it makes the fourth index **even** whenever `p + q + r` is — whatever the parity of `s`. -/
+it makes the fourth index **even** whenever `p + q + r` is — whatever the parity of `s`.
+@isnad1 id=eq.0h6v.s6.17a0e18649c4 from=translated src=- shape=6b3644ae vocab=cad98093
+-/
 lemma rel_reindex_sum (p q r s : ℤ) : rel W p q r s = rel W (q + r + s) q r (p - q - r) := by
   simp only [rel]
   ring_nf
@@ -135,7 +137,9 @@ matching in the order `1, 2, 3`.  No recurrence, no `W 1 = 1`, no oddness.  It i
 no same-parity side condition, because in these coordinates the parity condition is automatic.
 
 ⚠️ Its use is that it sends the fourth index to `q + r + s - p`, of the same parity as
-`p + q + r + s`, so it makes the fourth index **even** whenever `p + q + r + s` is. -/
+`p + q + r + s`, so it makes the fourth index **even** whenever `p + q + r + s` is.
+@isnad1 id=eq.0h6v.s6.aa072c936437 from=translated src=- shape=3718066e vocab=cad98093
+-/
 lemma rel_reindex_avg (p q r s : ℤ) : rel W p q r s = rel W p (p - r) (p - q) (q + r + s - p) := by
   simp only [rel]
   ring_nf
@@ -160,7 +164,9 @@ opposite signs from two different summands.
 
 ⚠️ The shift is by `2 * k` and never by an odd amount, which is why the two reindexings above are
 needed as well.  At `s = 2 * k` the multiplier is `W k ^ 2` and the right-hand side lives entirely
-in the `s = 0` layer. -/
+in the `s = 0` layer.
+@isnad1 id=eq.0h7v.s8.c4dd85f61bb5 from=translated src=- shape=30698194 vocab=47e47d3c
+-/
 lemma sub_mul_mul_rel (p q r s k : ℤ) :
     W (s - k) * W k * rel W p q r s =
       W (r + s) * W r * rel W (p + k) (q + k) k (s - 2 * k)
@@ -170,7 +176,9 @@ lemma sub_mul_mul_rel (p q r s k : ℤ) :
   ring_nf
 
 /-- **The layer at `s - 2 * k` gives the layer at `s`**, provided the multiplier `W (s - k) * W k`
-of `sub_mul_mul_rel` is a regular element. -/
+of `sub_mul_mul_rel` is a regular element.
+@isnad1 id=eq.2h7v.s7.d3b4fc2bc853 from=translated src=- shape=65900608 vocab=749146fa
+-/
 lemma rel_eq_zero_of_rel_sub_two_mul {s : ℤ} (k : ℤ) (hreg : IsRegular (W (s - k) * W k))
     (h : ∀ p q r : ℤ, rel W p q r (s - 2 * k) = 0) (p q r : ℤ) : rel W p q r s = 0 := by
   have key : W (s - k) * W k * rel W p q r s = W (s - k) * W k * 0 := by
@@ -186,7 +194,9 @@ whose values at nonzero indices are regular.
 ⚠️ Neither oddness nor `W 1 = 1` is used: the `s = 0` layer alone carries the whole four-index
 relation.  The two reindexings `rel_reindex_sum` and `rel_reindex_avg` move the fourth index into
 `2ℤ`, and `sub_mul_mul_rel` then descends from `2 * k` to `0` at the cost of `W k ^ 2`, which is the
-only place the hypothesis `hreg` is spent. -/
+only place the hypothesis `hreg` is spent.
+@isnad1 id=isellipt.2h2v.s5.2836b3506b38 from=translated src=- shape=8f050725 vocab=500e1655
+-/
 theorem isEllipticNet_of_isEllipticSequence (hreg : ∀ n : ℤ, n ≠ 0 → IsRegular (W n))
     (h : IsEllipticSequence W) : IsEllipticNet W := by
   have heven : ∀ k p q r : ℤ, rel W p q r (2 * k) = 0 := by
@@ -214,7 +224,9 @@ theorem isEllipticNet_of_isEllipticSequence (hreg : ∀ n : ℤ, n ≠ 0 → IsR
 
 /-- **`IsEllipticNet W ↔ IsEllipticSequence W`**, for any `W : ℤ → R` over any `CommRing` whose
 values at nonzero indices are regular.  The forward direction is Mathlib's
-`IsEllipticNet.isEllipticSequence`. -/
+`IsEllipticNet.isEllipticSequence`.
+@isnad1 id=iff.1h2v.s5.6860f92eb5be from=translated src=- shape=38dc659d vocab=500e1655
+-/
 theorem isEllipticNet_iff_isEllipticSequence (hreg : ∀ n : ℤ, n ≠ 0 → IsRegular (W n)) :
     IsEllipticNet W ↔ IsEllipticSequence W :=
   ⟨fun h => h.isEllipticSequence, isEllipticNet_of_isEllipticSequence W hreg⟩
@@ -224,7 +236,9 @@ nonzero indices are regular: the four-index elliptic-net condition is exactly Wa
 addition formula.
 
 Composite of `isEllipticNet_iff_isEllipticSequence` with `isEllipticSequence_iff_rel_one`; the two
-extra hypotheses `odd` and `h1` are used only by the latter. -/
+extra hypotheses `odd` and `h1` are used only by the latter.
+@isnad1 id=iff.3h2v.s6.06b9b5654991 from=translated src=- shape=ea1d05c1 vocab=616138bf
+-/
 theorem isEllipticNet_iff_rel_one (odd : W.Odd) (h1 : W 1 = 1)
     (hreg : ∀ n : ℤ, n ≠ 0 → IsRegular (W n)) :
     IsEllipticNet W ↔ ∀ p q : ℤ, rel W p q 1 0 = 0 :=
@@ -241,7 +255,9 @@ open MvPolynomial
 /-- **`IsEllipticNet (normEDS X₀ X₁ X₂)` over the universal ring, conditional on `WardGapCore`.**
 The `s = 0` layer is `normEDS_isEllipticSequence_of_gapCore`; `UnivEDS` is an integral domain and
 `normEDS_univ_ne_zero` makes every value at a nonzero index regular, which is exactly the hypothesis
-of `IsEllipticNet.isEllipticNet_of_isEllipticSequence`. -/
+of `IsEllipticNet.isEllipticNet_of_isEllipticSequence`.
+@isnad1 id=isellipt.1h0v.s7.7a5c3209e525 from=translated src=- shape=2a4a678d vocab=67970d6b
+-/
 theorem normEDS_isEllipticNet_univ_of_gapCore (hgap : WardGapCore) :
     IsEllipticNet (normEDS (X 0 : UnivEDS) (X 1) (X 2)) :=
   IsEllipticNet.isEllipticNet_of_isEllipticSequence _
@@ -258,7 +274,9 @@ runs over `UnivEDS`, where it is, and specialises along the ℤ-algebra map `X�
 exactly as `normEDS_rel_one_of_gapCore` does for the `r = 1` slice.
 
 Together with `normEDS_isEllipticSequence_of_gapCore` this says that the `s ≠ 0` layer of Mathlib's
-elliptic-net relation is **not** additional content for `normEDS`: both layers are `WardGapCore`. -/
+elliptic-net relation is **not** additional content for `normEDS`: both layers are `WardGapCore`.
+@isnad1 id=isellipt.1h4v.s4.479f7bb374e1 from=translated src=- shape=44dc2e09 vocab=c6611e8d
+-/
 theorem normEDS_isEllipticNet_of_gapCore (b c d : R) (hgap : WardGapCore) :
     IsEllipticNet (normEDS b c d) := by
   intro p q r s
@@ -277,14 +295,18 @@ variable (W : Affine R)
 
 /-- `IsEllipticNet W.ψ` — the division polynomials of `W` form an elliptic **net** in `R[X][Y]`, not
 merely an elliptic sequence — conditional on `WardGapCore`.  Instance of
-`normEDS_isEllipticNet_of_gapCore` at `b = W.ψ₂`, `c = C W.Ψ₃`, `d = C W.preΨ₄`. -/
+`normEDS_isEllipticNet_of_gapCore` at `b = W.ψ₂`, `c = C W.Ψ₃`, `d = C W.preΨ₄`.
+@isnad1 id=isellipt.1h2v.s5.3ba259c1ae41 from=translated src=- shape=39606174 vocab=9626c500
+-/
 theorem ψ_isEllipticNet_of_gapCore (hgap : WardGapCore) : IsEllipticNet W.ψ :=
   normEDS_isEllipticNet_of_gapCore W.ψ₂ (C W.Ψ₃) (C W.preΨ₄) hgap
 
 variable {x y : R}
 
 /-- `IsEllipticNet` for the point-values `n ↦ ψₙ(x, y)` at an affine point of `W`, conditional on
-`WardGapCore`.  Obtained from `ψ_isEllipticNet_of_gapCore` through the evaluation ring hom. -/
+`WardGapCore`.  Obtained from `ψ_isEllipticNet_of_gapCore` through the evaluation ring hom.
+@isnad1 id=isellipt.1h4v.s5.d5c6983b0d7f from=translated src=- shape=ca0d8525 vocab=ef827716
+-/
 theorem ψ_isEllipticNet_evalEval_of_gapCore (hgap : WardGapCore) :
     IsEllipticNet (fun n ↦ (W.ψ n).evalEval x y) := by
   intro p q r s

@@ -46,17 +46,26 @@ def sectionValue (W : Opens (PrimeSpectrum.Top A)) (p : PrimeSpectrum.Top A) (hp
   map_zero' := rfl
   map_add' _ _ := rfl
 
+/--
+@isnad1 id=eq.1h4v.s10.d2001704ff39 from=translated src=- shape=31b4b7a9 vocab=cd86556f
+-/
 @[simp]
 theorem sectionValue_apply (W : Opens (PrimeSpectrum.Top A)) (p : PrimeSpectrum.Top A)
     (hp : p ∈ W) (t : (Spec.structureSheaf A).presheaf.obj (op W)) :
     sectionValue W p hp t = t.1 ⟨p, hp⟩ :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s11.1796a78c286d from=translated src=- shape=4cd41126 vocab=90a42cc3
+-/
 theorem sectionValue_algebraMap (W : Opens (PrimeSpectrum.Top A)) (p : PrimeSpectrum.Top A)
     (hp : p ∈ W) (a : A) :
     sectionValue W p hp (algebraMap A _ a) = algebraMap A _ a :=
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s12.210184cd9174 from=translated src=- shape=629537b1 vocab=8beb9baa
+-/
 theorem sectionValue_res (W W' : Opens (PrimeSpectrum.Top A)) (i : W' ⟶ W)
     (p : PrimeSpectrum.Top A) (hp : p ∈ W')
     (t : (Spec.structureSheaf A).presheaf.obj (op W)) :
@@ -67,7 +76,9 @@ theorem sectionValue_res (W W' : Opens (PrimeSpectrum.Top A)) (i : W' ⟶ W)
 /-- Over an open `W` whose section ring is a localization of `A` (e.g. a basic open), the
 composite of the germ map at `p ∈ W` with the canonical identification of the stalk with
 `Localization.AtPrime p` is evaluation at `p`: both are `A`-algebra maps out of a localization
-of `A`, so they agree because they agree on `A`. -/
+of `A`, so they agree because they agree on `A`.
+@isnad1 id=eq.1h4v.s10.00a835776d8d from=translated src=- shape=31cf7fba vocab=1fc3de69
+-/
 theorem algEquiv_germ_eq_sectionValue (g : A) (W : Opens (PrimeSpectrum.Top A))
     [IsLocalization.Away g
       (((Spec.structureSheaf A).presheaf.obj (op W) : Type u))]
@@ -93,7 +104,9 @@ theorem algEquiv_germ_eq_sectionValue (g : A) (W : Opens (PrimeSpectrum.Top A))
 
 /-- **Germs are units precisely where values are units** (over an open whose section ring is a
 localization, e.g. a basic open): the germ of `t` at `p` is a unit in the stalk if and only if
-the value `t(p)` is a unit in `Localization.AtPrime p`. -/
+the value `t(p)` is a unit in `Localization.AtPrime p`.
+@isnad1 id=iff.1h5v.s11.42d298ac4152 from=translated src=- shape=2e65a866 vocab=8b903901
+-/
 theorem isUnit_germ_iff_isUnit_value (g : A) (W : Opens (PrimeSpectrum.Top A))
     [IsLocalization.Away g
       (((Spec.structureSheaf A).presheaf.obj (op W) : Type u))]

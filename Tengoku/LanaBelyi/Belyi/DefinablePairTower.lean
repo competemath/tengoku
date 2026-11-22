@@ -46,7 +46,9 @@ variable (k₀ k₁ K : Type u) [CommRing k₀] [CommRing k₁] [CommRing K]
   [Algebra k₀ k₁] [Algebra k₁ K] [Algebra k₀ K] [IsScalarTower k₀ k₁ K]
 
 /-- The coefficient map `k₀[X₀,X₁] → K[X₀,X₁]` factors through `k₁[X₀,X₁]` in a tower
-`k₀ ⊆ k₁ ⊆ K`, as graded ring homomorphisms. -/
+`k₀ ⊆ k₁ ⊆ K`, as graded ring homomorphisms.
+@isnad1 id=eq.0h3v.s9.d9c2b749dafd from=translated src=- shape=682934cb vocab=373f61b0
+-/
 lemma gradedMapOfAlgebra_comp :
     gradedMapOfAlgebra k₀ K = (gradedMapOfAlgebra k₁ K).comp (gradedMapOfAlgebra k₀ k₁) := by
   refine GradedRingHom.ext fun p => ?_
@@ -55,7 +57,9 @@ lemma gradedMapOfAlgebra_comp :
 
 /-- **Tower compatibility of the base-change comparison for `ℙ¹`.** In a tower
 `k₀ ⊆ k₁ ⊆ K`, the comparison morphism `mapOfAlgebra k₀ K : ℙ¹_K ⟶ ℙ¹_{k₀}` factors through
-`ℙ¹_{k₁}`. This is `AlgebraicGeometry.Proj.map_comp` applied to the coefficient maps. -/
+`ℙ¹_{k₁}`. This is `AlgebraicGeometry.Proj.map_comp` applied to the coefficient maps.
+@isnad1 id=eq.0h3v.s7.1739baf63cf0 from=translated src=- shape=6d934ff2 vocab=aa4ba462
+-/
 lemma mapOfAlgebra_comp :
     mapOfAlgebra k₀ K = mapOfAlgebra k₁ K ≫ mapOfAlgebra k₀ k₁ := by
   -- prove the identity at the `Proj` level (avoiding the `P1 = Proj (P1Grading)` def wall),
@@ -79,7 +83,9 @@ variable {k₀ K : Type u} [CommRing k₀] [CommRing K] [Algebra k₀ K]
   {X : Scheme.{u}} [X.Over (Spec (CommRingCat.of K))]
 
 /-- **B3b** (pair version): a morphism `f : X ⟶ ℙ¹_K` definable over `k₀` is definable over
-any intermediate field `k₁` in a tower `k₀ ⊆ k₁ ⊆ K`, by base-changing the model. -/
+any intermediate field `k₁` in a tower `k₀ ⊆ k₁ ⊆ K`, by base-changing the model.
+@isnad1 id=definabl.1h5v.s7.06a7042f26b4 from=translated src=- shape=e605d365 vocab=e8bb5415
+-/
 lemma trans (k₁ : Type u) [CommRing k₁] [Algebra k₀ k₁] [Algebra k₁ K]
     [IsScalarTower k₀ k₁ K] {f : X ⟶ P1 K} (h : DefinableOverPair k₀ K X f) :
     DefinableOverPair k₁ K X f := by

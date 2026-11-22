@@ -37,7 +37,9 @@ open Cardinal
 namespace Belyi.Converse
 
 /-- **Nullstellensatz**: a nontrivial finitely generated algebra over an algebraically closed field
-has a rational point. -/
+has a rational point.
+@isnad1 id=nonempty.0h2v.s6.a3b2b8b13e45 from=translated src=- shape=7396dfcf vocab=249f3b0c
+-/
 theorem nonempty_algHom_of_isAlgClosed (k : Type u) (A : Type v) [Field k] [IsAlgClosed k]
     [CommRing A] [Nontrivial A] [Algebra k A] [Algebra.FiniteType k A] :
     Nonempty (A →ₐ[k] k) := by
@@ -46,12 +48,16 @@ theorem nonempty_algHom_of_isAlgClosed (k : Type u) (A : Type v) [Field k] [IsAl
   haveI : Module.Finite k (A ⧸ m) := finite_of_finite_type_of_isJacobsonRing k (A ⧸ m)
   exact ⟨(IsAlgClosed.lift : (A ⧸ m) →ₐ[k] k).comp (Ideal.Quotient.mkₐ k m)⟩
 
-/-- A field of characteristic zero which is algebraic over `ℚ` embeds into `ℂ`. -/
+/-- A field of characteristic zero which is algebraic over `ℚ` embeds into `ℂ`.
+@isnad1 id=nonempty.0h1v.s5.4dcabdda1e40 from=translated src=- shape=5f01b2f8 vocab=7c7b643a
+-/
 theorem nonempty_ringHom_complex (k : Type u) [Field k] [CharZero k]
     [Algebra.IsAlgebraic ℚ k] : Nonempty (k →+* ℂ) :=
   ⟨(IsAlgClosed.lift : k →ₐ[ℚ] ℂ).toRingHom⟩
 
-/-- A field of characteristic zero which is algebraic over `ℚ` is countable. -/
+/-- A field of characteristic zero which is algebraic over `ℚ` is countable.
+@isnad1 id=countabl.0h1v.s5.e0df7aebe9b4 from=translated src=- shape=e5776696 vocab=c7dfbb6a
+-/
 theorem countable_of_isAlgebraic_rat (k : Type u) [Field k] [CharZero k]
     [Algebra.IsAlgebraic ℚ k] : Countable k := by
   rw [← Cardinal.mk_le_aleph0_iff]
@@ -59,7 +65,9 @@ theorem countable_of_isAlgebraic_rat (k : Type u) [Field k] [CharZero k]
   simpa using this
 
 /-- Being algebraically closed transfers along ring isomorphisms between fields in possibly
-different universes (`IsAlgClosed.of_ringEquiv` requires equal universes). -/
+different universes (`IsAlgClosed.of_ringEquiv` requires equal universes).
+@isnad1 id=isalgclo.0h3v.s6.7ecbf236ced8 from=translated src=- shape=0751dee6 vocab=16257ab1
+-/
 theorem isAlgClosed_of_ringEquiv {k : Type u} {k' : Type v} [Field k] [Field k']
     (e : k ≃+* k') [IsAlgClosed k] : IsAlgClosed k' := by
   apply IsAlgClosed.of_exists_root
@@ -76,7 +84,9 @@ theorem isAlgClosed_of_ringEquiv {k : Type u} {k' : Type v} [Field k] [Field k']
   induction p using Polynomial.induction_on <;> simp_all
 
 /-- An uncountable algebraically closed field over a countable field has an infinite transcendence
-basis. -/
+basis.
+@isnad1 id=infinite.1h3v.s6.37f58ad8a903 from=translated src=- shape=f94e3f16 vocab=828f43a6
+-/
 theorem infinite_of_isTranscendenceBasis {k Ω : Type u} [Field k] [Countable k] [Field Ω]
     [IsAlgClosed Ω] [Algebra k Ω] [Uncountable Ω] {t : Set Ω}
     (ht : IsTranscendenceBasis k ((↑) : t → Ω)) : Infinite t := by

@@ -56,7 +56,9 @@ variable [IsDomain R] [IsDiscreteValuationRing R] [IsFractionRing R K]
 variable (R) in
 /-- **Among bad reduction, `c̃₄` and `c̃₆` vanish together.** If the reduced curve is singular
 (`Δ̃ = 0`) then the invariant relation `1728 · Δ̃ = c̃₄³ − c̃₆²` collapses to `c̃₄³ = c̃₆²`, so over
-the field `ResidueField R` the two invariants `c̃₄` and `c̃₆` are simultaneously zero. -/
+the field `ResidueField R` the two invariants `c̃₄` and `c̃₆` are simultaneously zero.
+@isnad1 id=iff.1h3v.s8.a3d62bb9dfa6 from=translated src=- shape=6fd230aa vocab=93c2618e
+-/
 theorem reduction_c₄_eq_zero_iff_c₆_eq_zero (W : WeierstrassCurve K) [IsMinimal R W]
     (hΔ : (W.reduction R).Δ = 0) :
     (W.reduction R).c₄ = 0 ↔ (W.reduction R).c₆ = 0 := by
@@ -74,7 +76,9 @@ theorem reduction_c₄_eq_zero_iff_c₆_eq_zero (W : WeierstrassCurve K) [IsMini
 variable (R) in
 /-- **Multiplicative reduction is a node, read off `c₆`.** For a minimal model, `W` has
 multiplicative reduction iff the reduced curve is singular (`Δ̃ = 0`) with a nonvanishing
-`c₆`-invariant (`c̃₆ ≠ 0`) — the `c₆` mirror of `hasMultiplicativeReduction_iff_reduction`. -/
+`c₆`-invariant (`c̃₆ ≠ 0`) — the `c₆` mirror of `hasMultiplicativeReduction_iff_reduction`.
+@isnad1 id=iff.0h3v.s7.b7c2b1da9d73 from=translated src=- shape=af88495b vocab=35d6f589
+-/
 theorem hasMultiplicativeReduction_iff_reduction_c₆ (W : WeierstrassCurve K) [IsMinimal R W] :
     W.HasMultiplicativeReduction R ↔ (W.reduction R).Δ = 0 ∧ (W.reduction R).c₆ ≠ 0 := by
   constructor
@@ -87,7 +91,9 @@ theorem hasMultiplicativeReduction_iff_reduction_c₆ (W : WeierstrassCurve K) [
 variable (R) in
 /-- **Additive reduction is a cusp, read off `c₆`.** For a minimal model, `W` has additive reduction
 iff the reduced curve is singular (`Δ̃ = 0`) with a vanishing `c₆`-invariant (`c̃₆ = 0`) — the `c₆`
-mirror of `hasAdditiveReduction_iff_reduction`. -/
+mirror of `hasAdditiveReduction_iff_reduction`.
+@isnad1 id=iff.0h3v.s7.ce273859013e from=translated src=- shape=db50987b vocab=8dd16ea3
+-/
 theorem hasAdditiveReduction_iff_reduction_c₆ (W : WeierstrassCurve K) [IsMinimal R W] :
     W.HasAdditiveReduction R ↔ (W.reduction R).Δ = 0 ∧ (W.reduction R).c₆ = 0 := by
   constructor

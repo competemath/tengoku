@@ -23,7 +23,9 @@ noncomputable section
 namespace Heights
 
 /-- The total lattice point map respects addition when all three arguments are
-finite and the corresponding secant is nonvertical. -/
+finite and the corresponding secant is nonvertical.
+@isnad1 id=eq.4h3v.s7.f8138fc2ffb6 from=translated src=- shape=5609b8a3 vocab=34b4c2cf
+-/
 theorem latticePointMap_add_of_notMem_of_weierstrassP_ne (τ : ℍ) (z w : ℂ)
     (hz : z ∉ (periodPairOfUpperHalfPlane τ).lattice)
     (hw : w ∉ (periodPairOfUpperHalfPlane τ).lattice)

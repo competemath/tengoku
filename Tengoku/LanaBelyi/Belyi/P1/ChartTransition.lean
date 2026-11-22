@@ -56,7 +56,9 @@ variable {k : Type u} [CommRing k]
 variable {R : Type u} [CommRing R] [Algebra k R]
 
 /-- **Homogeneous scaling under evaluation.** A homogeneous polynomial of degree `n`
-evaluated at a rescaled point `c • g` picks up a factor `c ^ n`. -/
+evaluated at a rescaled point `c • g` picks up a factor `c ^ n`.
+@isnad1 id=eq.1h6v.s9.9a55628c12aa from=translated src=- shape=059bf865 vocab=5980d22e
+-/
 theorem aeval_smul_of_isHomogeneous {n : ℕ} {a : MvPolynomial (Fin 2) k}
     (ha : a.IsHomogeneous n) (c : R) (g : Fin 2 → R) :
     aeval (c • g) a = c ^ n * aeval g a := by
@@ -77,7 +79,9 @@ theorem aeval_smul_of_isHomogeneous {n : ℕ} {a : MvPolynomial (Fin 2) k}
   ring
 
 /-- The `k`-algebra evaluation of the chart ring `(k[X₀,X₁]_{X₀})₀` on a homogeneous
-fraction `a / (X₀)^n` returns `aeval ![1, s] a`: the denominator `X₀` evaluates to `1`. -/
+fraction `a / (X₀)^n` returns `aeval ![1, s] a`: the denominator `X₀` evaluates to `1`.
+@isnad1 id=eq.1h5v.s11.9f172b721d24 from=translated src=- shape=e45afb48 vocab=a091b005
+-/
 lemma awayEval₀_mk (s : R) (n : ℕ) (a : MvPolynomial (Fin 2) k)
     (ha : a ∈ P1Grading k (n • 1)) :
     awayEval₀ k s (Away.mk (P1Grading k) (X_mem_P1Grading k 0) n a ha) = aeval ![1, s] a := by
@@ -102,6 +106,9 @@ noncomputable def awayEvalD (u : R) (hu : IsUnit (evalU k u (X 0 * X 1))) :
     (algebraMap (Away (P1Grading k) (X 0 * X 1))
       (Localization.Away (X 0 * X 1 : MvPolynomial (Fin 2) k)))
 
+/--
+@isnad1 id=eq.4h7v.s12.f2f5331b7a44 from=translated src=- shape=2db56670 vocab=2d4d08d9
+-/
 lemma awayEvalD_mk (u v : R) (huv : u * v = 1) (hu : IsUnit (evalU k u (X 0 * X 1)))
     (n d : ℕ) (a : MvPolynomial (Fin 2) k)
     (hmem : (X 0 * X 1 : MvPolynomial (Fin 2) k) ∈ P1Grading k d)

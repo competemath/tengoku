@@ -70,7 +70,9 @@ lemma eq_of_specializes_of_specializes {x y z : X}
   · exact h.not_lt hqc
 
 /-- On an irreducible scheme with one-dimensional stalks, every non-generic point is
-closed. -/
+closed.
+@isnad1 id=isclosed.2h2v.s7.d314fa6d4b71 from=translated src=- shape=d223251f vocab=8953a6e9
+-/
 lemma isClosed_singleton_of_ne_genericPoint [IrreducibleSpace X]
     (hdim : ∀ z : X, Ring.KrullDimLE 1 (X.presheaf.stalk z)) {x : X}
     (hx : x ≠ genericPoint X) : IsClosed ({x} : Set X) := by
@@ -83,7 +85,9 @@ lemma isClosed_singleton_of_ne_genericPoint [IrreducibleSpace X]
   exact isClosed_closure
 
 /-- A Noetherian quasi-sober T1 space is finite: its finitely many irreducible
-components are singletons and cover it. -/
+components are singletons and cover it.
+@isnad1 id=finite.0h1v.s4.bd4466911d89 from=translated src=- shape=7ddc04c7 vocab=e06eeb4d
+-/
 lemma finite_of_t1Space {α : Type*} [TopologicalSpace α] [NoetherianSpace α]
     [QuasiSober α] [T1Space α] : Finite α := by
   have hsing : ∀ x : α, irreducibleComponent x = {x} := by
@@ -105,7 +109,9 @@ lemma finite_of_t1Space {α : Type*} [TopologicalSpace α] [NoetherianSpace α]
   exact Set.singleton_eq_singleton_iff.mp h
 
 /-- On an irreducible Noetherian scheme with one-dimensional stalks, a closed subset
-avoiding the generic point is finite. -/
+avoiding the generic point is finite.
+@isnad1 id=finite.3h2v.s7.2413bc26e63c from=translated src=- shape=63209d6d vocab=324c7f3c
+-/
 lemma finite_of_isClosed_of_genericPoint_notMem [IrreducibleSpace X] [NoetherianSpace X]
     (hdim : ∀ z : X, Ring.KrullDimLE 1 (X.presheaf.stalk z)) {Z : Set X}
     (hZ : IsClosed Z) (hη : genericPoint X ∉ Z) : Z.Finite := by
@@ -123,7 +129,9 @@ lemma finite_of_isClosed_of_genericPoint_notMem [IrreducibleSpace X] [Noetherian
 
 /-- Fibers of a closed, non-constant morphism out of an irreducible Noetherian scheme
 with one-dimensional stalks are finite. Non-constancy is expressed as: the image of
-the generic point is not a closed point. -/
+the generic point is not a closed point.
+@isnad1 id=finite.3h4v.s9.e81a56ebb03d from=translated src=- shape=8ea46306 vocab=ee41f8e4
+-/
 lemma finite_preimage_singleton_of_isClosedMap {Y : Scheme.{u}} (f : X ⟶ Y)
     [IrreducibleSpace X] [NoetherianSpace X]
     (hdim : ∀ z : X, Ring.KrullDimLE 1 (X.presheaf.stalk z))
@@ -154,7 +162,9 @@ lemma finite_preimage_singleton_of_isClosedMap {Y : Scheme.{u}} (f : X ⟶ Y)
 
 /-- A scheme quasi-compact and locally of finite type over a Noetherian quasi-compact
 scheme (e.g. proper over the spectrum of a field) is Noetherian; in particular its
-underlying space is a Noetherian topological space (`IsNoetherian.noetherianSpace`). -/
+underlying space is a Noetherian topological space (`IsNoetherian.noetherianSpace`).
+@isnad1 id=isnoethe.0h2v.s5.b6a78e44576c from=translated src=- shape=2d42cbfa vocab=41eccaec
+-/
 lemma isNoetherian_of_over (X S : Scheme.{u}) [X.Over S] [IsLocallyNoetherian S]
     [CompactSpace S] [LocallyOfFiniteType (X ↘ S)] [QuasiCompact (X ↘ S)] :
     IsNoetherian X where

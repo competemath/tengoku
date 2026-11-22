@@ -49,7 +49,9 @@ variable {R : Type*} [CommRing R]
 
 /-- A Laurent series `x : R⸨X⸩` with no negative-index coefficients is exactly the coercion of the
 power series reading off its non-negative coefficients. This is the (missing in Mathlib) partial
-inverse to `HahnSeries.ofPowerSeries` on order-`≥0` series. -/
+inverse to `HahnSeries.ofPowerSeries` on order-`≥0` series.
+@isnad1 id=eq.1h2v.s7.8d916f6de13f from=translated src=- shape=08419373 vocab=8264b392
+-/
 theorem ofPowerSeries_mk_coeff_eq_self {x : R⸨X⸩} (h : ∀ g < 0, x.coeff g = 0) :
     HahnSeries.ofPowerSeries ℤ R (PowerSeries.mk fun n => x.coeff (n : ℤ)) = x := by
   ext g
@@ -69,19 +71,26 @@ pole-free in both gradings this loses no information. -/
 noncomputable def ofDoubleLaurent (x : (R⸨X⸩)⸨X⸩) : MvPowerSeries (Fin 2) R :=
   fun d => (x.coeff (d 1 : ℤ)).coeff (d 0 : ℤ)
 
+/--
+@isnad1 id=eq.0h3v.s8.8cedaf3c6770 from=translated src=- shape=ee519b39 vocab=58bc2330
+-/
 @[simp]
 theorem coeff_ofDoubleLaurent (x : (R⸨X⸩)⸨X⸩) (d : Fin 2 →₀ ℕ) :
     MvPowerSeries.coeff d (ofDoubleLaurent x) = (x.coeff (d 1 : ℤ)).coeff (d 0 : ℤ) :=
   rfl
 
-/-- The constant coefficient of `ofDoubleLaurent x` is the doubly-`0`-indexed coefficient of `x`. -/
+/-- The constant coefficient of `ofDoubleLaurent x` is the doubly-`0`-indexed coefficient of `x`.
+@isnad1 id=eq.0h2v.s7.4bf09d0ac4bf from=translated src=- shape=3a056e09 vocab=008a967f
+-/
 theorem constantCoeff_ofDoubleLaurent (x : (R⸨X⸩)⸨X⸩) :
     MvPowerSeries.constantCoeff (ofDoubleLaurent x) = (x.coeff (0 : ℤ)).coeff (0 : ℤ) := by
   rw [← MvPowerSeries.coeff_zero_eq_constantCoeff_apply, coeff_ofDoubleLaurent]
   simp
 
 /-- The `z₁`-linear (`z₂`-constant) coefficient of `ofDoubleLaurent x` reads the `z₁`-degree-`k`
-part of the order-`0` slice `x.coeff 0`. -/
+part of the order-`0` slice `x.coeff 0`.
+@isnad1 id=eq.0h3v.s8.bd17c6199166 from=translated src=- shape=e7733885 vocab=10107b56
+-/
 theorem coeff_ofDoubleLaurent_single_zero (x : (R⸨X⸩)⸨X⸩) (k : ℕ) :
     MvPowerSeries.coeff (Finsupp.single 0 k) (ofDoubleLaurent x)
       = (x.coeff (0 : ℤ)).coeff (k : ℤ) := by
@@ -89,7 +98,9 @@ theorem coeff_ofDoubleLaurent_single_zero (x : (R⸨X⸩)⸨X⸩) (k : ℕ) :
   simp
 
 /-- The `z₂`-linear (`z₁`-constant) coefficient of `ofDoubleLaurent x` reads the `z₁`-degree-`0`
-part of the `z₂`-degree-`k` slice `x.coeff k`. -/
+part of the `z₂`-degree-`k` slice `x.coeff k`.
+@isnad1 id=eq.0h3v.s8.053846dccc51 from=translated src=- shape=597403a6 vocab=10107b56
+-/
 theorem coeff_ofDoubleLaurent_single_one (x : (R⸨X⸩)⸨X⸩) (k : ℕ) :
     MvPowerSeries.coeff (Finsupp.single 1 k) (ofDoubleLaurent x)
       = (x.coeff (k : ℤ)).coeff (0 : ℤ) := by
@@ -102,17 +113,26 @@ Reading a bigraded coefficient is `ℤ`-linear, so `ofDoubleLaurent` is an addit
 multiplicative on all of `(R⸨X⸩)⸨X⸩` — that holds only on the pole-free-in-both subring, cf. the
 faithful embedding below). -/
 
+/--
+@isnad1 id=eq.0h3v.s8.065dfde34adb from=translated src=- shape=3e96a115 vocab=3fc92635
+-/
 @[simp]
 theorem ofDoubleLaurent_add (x y : (R⸨X⸩)⸨X⸩) :
     ofDoubleLaurent (x + y) = ofDoubleLaurent x + ofDoubleLaurent y := by
   refine MvPowerSeries.ext fun d => ?_
   simp only [map_add, coeff_ofDoubleLaurent, HahnSeries.coeff_add]
 
+/--
+@isnad1 id=eq.0h1v.s7.d0ec3b813315 from=translated src=- shape=805f8b0d vocab=79e46300
+-/
 @[simp]
 theorem ofDoubleLaurent_zero : ofDoubleLaurent (0 : (R⸨X⸩)⸨X⸩) = 0 := by
   refine MvPowerSeries.ext fun d => ?_
   simp only [map_zero, coeff_ofDoubleLaurent, HahnSeries.coeff_zero]
 
+/--
+@isnad1 id=eq.0h2v.s7.6893b30550e4 from=translated src=- shape=b326aba8 vocab=d3b121bb
+-/
 @[simp]
 theorem ofDoubleLaurent_neg (x : (R⸨X⸩)⸨X⸩) :
     ofDoubleLaurent (-x) = -ofDoubleLaurent x := by
@@ -120,7 +140,9 @@ theorem ofDoubleLaurent_neg (x : (R⸨X⸩)⸨X⸩) :
   simp only [map_neg, coeff_ofDoubleLaurent, HahnSeries.coeff_neg]
 
 /-- The double constant `HahnSeries.C (HahnSeries.C a) = C₂ a ∈ (R⸨X⸩)⸨X⸩` is read as the
-`MvPowerSeries` constant `MvPowerSeries.C a`. -/
+`MvPowerSeries` constant `MvPowerSeries.C a`.
+@isnad1 id=eq.0h2v.s9.50b27979ce28 from=translated src=- shape=0e8f9ccd vocab=10d128cc
+-/
 theorem ofDoubleLaurent_C₂ (a : R) :
     ofDoubleLaurent (HahnSeries.C (HahnSeries.C a)) = MvPowerSeries.C a := by
   classical
@@ -140,6 +162,9 @@ theorem ofDoubleLaurent_C₂ (a : R) :
     have hd : d ≠ 0 := fun h => h1 (by rw [h]; simp)
     rw [ite_eq_right hd]
 
+/--
+@isnad1 id=eq.0h1v.s7.c9074a69ad4f from=translated src=- shape=805f8b0d vocab=79e46300
+-/
 theorem ofDoubleLaurent_one : ofDoubleLaurent (1 : (R⸨X⸩)⸨X⸩) = 1 := by
   have h : (1 : (R⸨X⸩)⸨X⸩) = HahnSeries.C (HahnSeries.C (1 : R)) := by
     rw [map_one, map_one]
@@ -174,7 +199,9 @@ private lemma finTwo_single_add (d : Fin 2 →₀ ℕ) :
   ext i; fin_cases i <;> simp
 
 /-- **Right inverse.** Reading back a written bivariate power series recovers it:
-`ofDoubleLaurent (embedDoubleLaurent φ) = φ`. -/
+`ofDoubleLaurent (embedDoubleLaurent φ) = φ`.
+@isnad1 id=eq.0h2v.s4.fb7c41214dfa from=translated src=- shape=75e5737b vocab=531eb443
+-/
 theorem ofDoubleLaurent_embedDoubleLaurent (φ : MvPowerSeries (Fin 2) R) :
     ofDoubleLaurent (embedDoubleLaurent φ) = φ := by
   refine MvPowerSeries.ext fun d => ?_
@@ -185,7 +212,9 @@ theorem ofDoubleLaurent_embedDoubleLaurent (φ : MvPowerSeries (Fin 2) R) :
 coefficients (`hout`) and each of its outer slices has no negative inner coefficients (`hin`), then
 writing back the read bivariate power series recovers `x`:
 `embedDoubleLaurent (ofDoubleLaurent x) = x`. This is the faithful embedding property: on series
-pole-free in both gradings, `ofDoubleLaurent` loses no information. -/
+pole-free in both gradings, `ofDoubleLaurent` loses no information.
+@isnad1 id=eq.2h2v.s8.ed5b40f687f4 from=translated src=- shape=22c40cf5 vocab=10e902e4
+-/
 theorem embedDoubleLaurent_ofDoubleLaurent {x : (R⸨X⸩)⸨X⸩}
     (hout : ∀ n < 0, x.coeff n = 0) (hin : ∀ (n : ℤ), ∀ g < 0, (x.coeff n).coeff g = 0) :
     embedDoubleLaurent (ofDoubleLaurent x) = x := by

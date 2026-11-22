@@ -25,6 +25,9 @@ noncomputable def markovHistoryKernel {E : Type*} [MeasurableSpace E]
     Kernel ((i : Finset.Iic n) → E) E :=
   Kernel.comap κ (fun x => x ⟨n, Finset.mem_Iic.mpr le_rfl⟩) (by fun_prop)
 
+/--
+@isnad1 id=ismarkov.0h3v.s7.a00e525e5d35 from=translated src=- shape=f5d1d591 vocab=4bb8fbe9
+-/
 instance instMarkovHistoryKernel {E : Type*} [MeasurableSpace E]
     (κ : Kernel E E) [IsMarkovKernel κ] (n : ℕ) :
     IsMarkovKernel (markovHistoryKernel κ n) := by
@@ -40,7 +43,9 @@ noncomputable def markovPathMeasure {E : Type*} [MeasurableSpace E]
 
 /-- The time-zero coordinate marginal of the canonical path law is the initial
 distribution `μ₀`. This is the base case of the induction identifying the coordinate
-marginals of `markovPathMeasure` with the kernel powers. -/
+marginals of `markovPathMeasure` with the kernel powers.
+@isnad1 id=eq.0h3v.s5.02d077b88d61 from=translated src=- shape=6e63428c vocab=c722232c
+-/
 theorem markovPathMeasure_map_zero {E : Type*} [MeasurableSpace E]
     (μ₀ : Measure E) (κ : Kernel E E) [IsMarkovKernel κ] :
     (markovPathMeasure μ₀ κ).map (fun x => x 0) = μ₀ := by
@@ -65,14 +70,18 @@ private lemma comap_comp_measure {α β γ : Type*}
   rw [← Kernel.comp_deterministic_eq_comap, ← Measure.comp_assoc,
     Measure.deterministic_comp_eq_map]
 
-/-- The canonical path law is a probability measure. -/
+/-- The canonical path law is a probability measure.
+@isnad1 id=isprobab.0h3v.s5.3134268f6af7 from=translated src=- shape=8f0f0722 vocab=6795d3b2
+-/
 instance instIsProbabilityMeasureMarkovPathMeasure {E : Type*} [MeasurableSpace E]
     (μ₀ : Measure E) [IsProbabilityMeasure μ₀] (κ : Kernel E E) [IsMarkovKernel κ] :
     IsProbabilityMeasure (markovPathMeasure μ₀ κ) := by
   unfold markovPathMeasure; infer_instance
 
 /-- One-step recursion for the coordinate marginals of the canonical path law:
-the time-`t+1` marginal is the time-`t` marginal pushed one step through `κ`. -/
+the time-`t+1` marginal is the time-`t` marginal pushed one step through `κ`.
+@isnad1 id=eq.0h4v.s6.f5ad4ef3dbda from=translated src=- shape=97b796d4 vocab=4791e74f
+-/
 theorem markovPathMeasure_map_eval_succ {E : Type*} [MeasurableSpace E]
     (μ₀ : Measure E) [IsProbabilityMeasure μ₀] (κ : Kernel E E) [IsMarkovKernel κ] (t : ℕ) :
     (markovPathMeasure μ₀ κ).map (fun x => x (t + 1))
@@ -106,7 +115,9 @@ theorem markovPathMeasure_map_eval_succ {E : Type*} [MeasurableSpace E]
 
 /-- Under the canonical homogeneous Markov path law, the regular conditional
 distribution of the next coordinate given the whole prefix is the homogeneous
-kernel evaluated at the last coordinate of that prefix. -/
+kernel evaluated at the last coordinate of that prefix.
+@isnad1 id=eventual.0h4v.s10.d6589e0628ee from=translated src=- shape=e75deb69 vocab=b33f56c3
+-/
 theorem condDistrib_markovPathMeasure_eval_succ
     {E : Type*} [MeasurableSpace E] [StandardBorelSpace E] [Nonempty E]
     (μ₀ : Measure E) [IsProbabilityMeasure μ₀]
@@ -119,7 +130,9 @@ theorem condDistrib_markovPathMeasure_eval_succ
 
 /-- Conditional expectation of a function of the next coordinate under the
 canonical homogeneous Markov path law is integration against the one-step
-kernel at the current coordinate. -/
+kernel at the current coordinate.
+@isnad1 id=eventual.2h5v.s8.ae62324922f3 from=translated src=- shape=00e2877c vocab=e8a21a64
+-/
 theorem condExp_markovPathMeasure_eval_succ
     {E : Type*} [MeasurableSpace E] [StandardBorelSpace E] [Nonempty E]
     (μ₀ : Measure E) [IsProbabilityMeasure μ₀]
@@ -167,7 +180,9 @@ theorem condExp_markovPathMeasure_eval_succ
 
 /-- Prefix-dependent version of
 `condExp_markovPathMeasure_eval_succ`, used for centered one-step noise
-whose center is a function of the current state. -/
+whose center is a function of the current state.
+@isnad1 id=eventual.2h5v.s9.0700dfd9f053 from=translated src=- shape=1471cdc8 vocab=723597a8
+-/
 theorem condExp_markovPathMeasure_prefix_eval_succ
     {E : Type*} [MeasurableSpace E] [StandardBorelSpace E] [Nonempty E]
     (μ₀ : Measure E) [IsProbabilityMeasure μ₀]
@@ -216,7 +231,9 @@ theorem condExp_markovPathMeasure_prefix_eval_succ
   rfl
 
 /-- The prefix-dependent next-step identity stated with Mathlib's canonical
-coordinate filtration. -/
+coordinate filtration.
+@isnad1 id=eventual.2h5v.s9.2fdc5b487816 from=translated src=- shape=fd31b87b vocab=6c2432bf
+-/
 theorem condExp_markovPathMeasure_prefix_eval_succ_piLE
     {E : Type*} [MeasurableSpace E] [StandardBorelSpace E] [Nonempty E]
     (μ₀ : Measure E) [IsProbabilityMeasure μ₀]
@@ -235,7 +252,9 @@ theorem condExp_markovPathMeasure_prefix_eval_succ_piLE
   exact condExp_markovPathMeasure_prefix_eval_succ μ₀ κ t hψ hψ_int
 
 /-- The time-`t` coordinate marginal of the canonical path law is the initial
-distribution pushed `t` steps through the kernel: `κ^t ∘ₘ μ₀`. -/
+distribution pushed `t` steps through the kernel: `κ^t ∘ₘ μ₀`.
+@isnad1 id=eq.0h4v.s6.14b4b0ee6954 from=translated src=- shape=4daf27e5 vocab=9ef95ff7
+-/
 theorem markovPathMeasure_map_eval {E : Type*} [MeasurableSpace E]
     (μ₀ : Measure E) [IsProbabilityMeasure μ₀] (κ : Kernel E E) [IsMarkovKernel κ] (t : ℕ) :
     (markovPathMeasure μ₀ κ).map (fun x => x t) = (κ ^ t) ∘ₘ μ₀ := by
@@ -249,7 +268,9 @@ theorem markovPathMeasure_map_eval {E : Type*} [MeasurableSpace E]
 
 /-- Coordinate marginals of the path law started at a point `x` are the kernel powers:
 `(markovPathMeasure (δ_x) κ).map (·t) = (κ^t) x`. This is the form consumed by the
-absorption-time survival bridge `measure_absorptionTime_gt_eq_kernel_pow`. -/
+absorption-time survival bridge `measure_absorptionTime_gt_eq_kernel_pow`.
+@isnad1 id=eq.0h4v.s6.8dd53764e48c from=translated src=- shape=34d9e610 vocab=44e97f26
+-/
 theorem markovPathMeasure_dirac_map_eval {E : Type*} [MeasurableSpace E]
     (x : E) (κ : Kernel E E) [IsMarkovKernel κ] (t : ℕ) :
     (markovPathMeasure (Measure.dirac x) κ).map (fun ω => ω t) = (κ ^ t) x := by
@@ -258,7 +279,9 @@ theorem markovPathMeasure_dirac_map_eval {E : Type*} [MeasurableSpace E]
 /-- If the origin is absorbing for `κ` (`κ 0 = δ₀`), then the coordinate process on the
 canonical path law is absorbing **almost everywhere**: once it hits `0` at time `t`, it
 stays `0` at time `t+1` for `markovPathMeasure`-a.e. path. (Pathwise absorption fails on
-the raw path space; only this a.e. version holds.) -/
+the raw path space; only this a.e. version holds.)
+@isnad1 id=eventual.1h4v.s7.e5254470f1dd from=translated src=- shape=6ac0b78b vocab=2c17899c
+-/
 theorem markovPathMeasure_ae_absorbing {E : Type*} [MeasurableSpace E] [Zero E]
     [MeasurableSingletonClass E]
     (μ₀ : Measure E) [IsProbabilityMeasure μ₀] (κ : Kernel E E) [IsMarkovKernel κ]

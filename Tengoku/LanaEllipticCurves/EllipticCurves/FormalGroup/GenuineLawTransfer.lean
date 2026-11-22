@@ -59,7 +59,9 @@ variable {R : Type*} [CommRing R]
 
 /-- **The unconditional identification** `embedDoubleLaurent W.formalGroupZW = W.formalGroupLaurent`
 over an arbitrary `CommRing R`, obtained from the universal-domain identity
-`embedDoubleLaurent_formalGroupZW_univ` by base change along `W.specialize`. -/
+`embedDoubleLaurent_formalGroupZW_univ` by base change along `W.specialize`.
+@isnad1 id=eq.0h2v.s5.a10d74acb158 from=translated src=- shape=337515a9 vocab=2cbd0b2a
+-/
 theorem embedDoubleLaurent_formalGroupZW (W : WeierstrassCurve R) :
     HahnSeries.embedDoubleLaurent W.formalGroupZW = W.formalGroupLaurent := by
   have key := congrArg (HahnSeries.mapRingHom (HahnSeries.mapRingHom W.specialize))
@@ -73,7 +75,9 @@ theorem embedDoubleLaurent_formalGroupZW (W : WeierstrassCurve R) :
 `W.formalGroupLaurent` is a genuine power series in the inner variable `z₁`: all its
 negative-index inner coefficients vanish.  This closes the analytic core (#286): via the
 identification `F_E = embedDoubleLaurent formalGroupZW`, `F_E` is written from a bivariate power
-series, hence pole-free in both gradings by construction. -/
+series, hence pole-free in both gradings by construction.
+@isnad1 id=eq.1h4v.s6.e79b09354896 from=translated src=- shape=0f133f38 vocab=886211e4
+-/
 theorem coeff_formalGroupLaurent_inner_of_lt (W : WeierstrassCurve R) (n : ℤ) {g : ℤ} (hg : g < 0) :
     (W.formalGroupLaurent.coeff n).coeff g = 0 := by
   rw [← W.embedDoubleLaurent_formalGroupZW, HahnSeries.embedDoubleLaurent]
@@ -86,7 +90,9 @@ theorem coeff_formalGroupLaurent_inner_of_lt (W : WeierstrassCurve R) (n : ℤ) 
 /-! ### Conclusion 2 — the round-trip `formalGroupSeries = formalGroupZW` -/
 
 /-- **Round-trip.** Reading the Laurent formal group law back as a bivariate power series recovers
-the genuine `(z, w)` series: `ofDoubleLaurent W.formalGroupLaurent = W.formalGroupZW`. -/
+the genuine `(z, w)` series: `ofDoubleLaurent W.formalGroupLaurent = W.formalGroupZW`.
+@isnad1 id=eq.0h2v.s4.f447c7bd94bf from=translated src=- shape=dd76297d vocab=d2af83ae
+-/
 theorem ofDoubleLaurent_formalGroupLaurent (W : WeierstrassCurve R) :
     HahnSeries.ofDoubleLaurent W.formalGroupLaurent = W.formalGroupZW := by
   rw [← W.embedDoubleLaurent_formalGroupZW, HahnSeries.ofDoubleLaurent_embedDoubleLaurent]
@@ -94,7 +100,9 @@ theorem ofDoubleLaurent_formalGroupLaurent (W : WeierstrassCurve R) :
 /-- **The extracted formal group series is the genuine one.**
 `W.formalGroupSeries = W.formalGroupZW`.  Since `formalGroupSeries := ofDoubleLaurent
 formalGroupLaurent` (`Law.lean`), this is the round-trip that the commutativity, associativity, and
-log-additivity packaging (#283/#263/#291) consume. -/
+log-additivity packaging (#283/#263/#291) consume.
+@isnad1 id=eq.0h2v.s4.da4cc073255d from=translated src=- shape=e494b4a7 vocab=5f3c3412
+-/
 theorem formalGroupSeries_eq_formalGroupZW (W : WeierstrassCurve R) :
     W.formalGroupSeries = W.formalGroupZW := by
   rw [formalGroupSeries, W.ofDoubleLaurent_formalGroupLaurent]

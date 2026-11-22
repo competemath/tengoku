@@ -66,7 +66,9 @@ variable {R : Type*} [CommRing R] (b c d : R)
 
 /-- The base *even* elliptic-net relator of the canonical normalised elliptic divisibility sequence
 vanishes: `rel (normEDS b c d) (m + 1) (m - 1) 1 0 = 0`. This is the two-term recurrence
-`normEDS_even` rephrased through `IsEllipticNet.rel_even`. -/
+`normEDS_even` rephrased through `IsEllipticNet.rel_even`.
+@isnad1 id=eq.0h5v.s6.1146b6b6deef from=translated src=- shape=cf8d6e1d vocab=2fa2228a
+-/
 lemma _root_.Tengoku.LanaEllipticCurves.normEDS_rel_even (m : ℤ) :
     IsEllipticNet.rel (normEDS b c d) (m + 1) (m - 1) 1 0 = 0 := by
   rw [IsEllipticNet.rel_even, normEDS_one, normEDS_two]
@@ -74,7 +76,9 @@ lemma _root_.Tengoku.LanaEllipticCurves.normEDS_rel_even (m : ℤ) :
 
 /-- The base *odd* elliptic-net relator of the canonical normalised elliptic divisibility sequence
 vanishes: `rel (normEDS b c d) (m + 1) m 1 0 = 0`. This is the two-term recurrence `normEDS_odd`
-rephrased through `IsEllipticNet.rel_odd`. -/
+rephrased through `IsEllipticNet.rel_odd`.
+@isnad1 id=eq.0h5v.s5.e31704e33498 from=translated src=- shape=c33311c9 vocab=c2b18a41
+-/
 lemma _root_.Tengoku.LanaEllipticCurves.normEDS_rel_odd (m : ℤ) :
     IsEllipticNet.rel (normEDS b c d) (m + 1) m 1 0 = 0 := by
   rw [IsEllipticNet.rel_odd, normEDS_one]
@@ -90,12 +94,16 @@ variable {R : Type*} [CommRing R] (W : Affine R)
 
 /-- The base *even* elliptic-net relator of the division polynomials `W.ψ`, as an identity in
 `R[X][Y]`: `rel W.ψ (m + 1) (m - 1) 1 0 = 0`. Instance of `normEDS_rel_even` at
-`b = W.ψ₂`, `c = C W.Ψ₃`, `d = C W.preΨ₄`, since `W.ψ = normEDS W.ψ₂ (C W.Ψ₃) (C W.preΨ₄)`. -/
+`b = W.ψ₂`, `c = C W.Ψ₃`, `d = C W.preΨ₄`, since `W.ψ = normEDS W.ψ₂ (C W.Ψ₃) (C W.preΨ₄)`.
+@isnad1 id=eq.0h3v.s7.57b0ae6c5e7d from=translated src=- shape=759606ca vocab=81eb31ce
+-/
 lemma ψ_rel_even (m : ℤ) : IsEllipticNet.rel W.ψ (m + 1) (m - 1) 1 0 = 0 :=
   normEDS_rel_even W.ψ₂ (C W.Ψ₃) (C W.preΨ₄) m
 
 /-- The base *odd* elliptic-net relator of the division polynomials `W.ψ`, as an identity in
-`R[X][Y]`: `rel W.ψ (m + 1) m 1 0 = 0`. -/
+`R[X][Y]`: `rel W.ψ (m + 1) m 1 0 = 0`.
+@isnad1 id=eq.0h3v.s7.a027e5aed47c from=translated src=- shape=8b00839f vocab=db4e4e4a
+-/
 lemma ψ_rel_odd (m : ℤ) : IsEllipticNet.rel W.ψ (m + 1) m 1 0 = 0 :=
   normEDS_rel_odd W.ψ₂ (C W.Ψ₃) (C W.preΨ₄) m
 
@@ -103,7 +111,9 @@ variable {x y : R}
 
 /-- The base *even* elliptic-net relator among the point-values of the division polynomials at an
 affine point `(x, y)` of `W`: `rel (fun n ↦ (W.ψ n).evalEval x y) (m + 1) (m - 1) 1 0 = 0`.
-Obtained from `ψ_rel_even` by pushing it through the evaluation ring hom `evalEvalRingHom x y`. -/
+Obtained from `ψ_rel_even` by pushing it through the evaluation ring hom `evalEvalRingHom x y`.
+@isnad1 id=eq.0h5v.s6.75fa4e46c9e0 from=translated src=- shape=5887ed86 vocab=35ab24ad
+-/
 lemma ψ_rel_even_evalEval (m : ℤ) :
     IsEllipticNet.rel (fun n ↦ (W.ψ n).evalEval x y) (m + 1) (m - 1) 1 0 = 0 := by
   have h := IsEllipticNet.map_rel W.ψ (evalEvalRingHom x y) (m + 1) (m - 1) 1 0
@@ -111,7 +121,9 @@ lemma ψ_rel_even_evalEval (m : ℤ) :
   exact h.symm
 
 /-- The base *odd* elliptic-net relator among the point-values of the division polynomials at an
-affine point `(x, y)` of `W`: `rel (fun n ↦ (W.ψ n).evalEval x y) (m + 1) m 1 0 = 0`. -/
+affine point `(x, y)` of `W`: `rel (fun n ↦ (W.ψ n).evalEval x y) (m + 1) m 1 0 = 0`.
+@isnad1 id=eq.0h5v.s6.533347f356f0 from=translated src=- shape=46816cd7 vocab=6a3f9c4f
+-/
 lemma ψ_rel_odd_evalEval (m : ℤ) :
     IsEllipticNet.rel (fun n ↦ (W.ψ n).evalEval x y) (m + 1) m 1 0 = 0 := by
   have h := IsEllipticNet.map_rel W.ψ (evalEvalRingHom x y) (m + 1) m 1 0

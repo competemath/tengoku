@@ -21,7 +21,9 @@ namespace AbsorptionCutoff
 
 /-- The logarithmic cutoff-horizon constant can be selected independently of
 the fixed real shift; only the eventual dimension threshold depends on the
-shift. -/
+shift.
+@isnad1 id=ex.3h3v.s6.39635d37c08c from=translated src=- shape=dba4a6f0 vocab=8d7182a9
+-/
 lemma exists_forall_eventually_supercriticalIntegerCutoffTime_le_mul_log_nat
     {A qStar q₀ : ℝ}
     (hA : 1 < A)
@@ -78,7 +80,9 @@ lemma exists_forall_eventually_supercriticalIntegerCutoffTime_le_mul_log_nat
   exact ((div_lt_iff₀ hlogN).1 hratioN).le
 
 /-- Every fixed-shift integer cutoff time is eventually bounded by the
-dimension itself, with the bound stated uniformly over the real shift. -/
+dimension itself, with the bound stated uniformly over the real shift.
+@isnad1 id=eventual.3h4v.s6.bcd59f3ba614 from=translated src=- shape=1db763df vocab=1072e801
+-/
 lemma forall_eventually_supercriticalIntegerCutoffTime_le_nat
     {A qStar q₀ : ℝ}
     (hA : 1 < A)
@@ -111,7 +115,9 @@ lemma forall_eventually_supercriticalIntegerCutoffTime_le_nat
   exact hcutoffN.trans hlogN
 
 /-- One post-entrance dynamic moment envelope controls every fixed-shift
-cutoff horizon; the constants are selected before the real shift. -/
+cutoff horizon; the constants are selected before the real shift.
+@isnad1 id=ex.6h4v.s8.06fd3f41fd3f from=translated src=- shape=6b0f3a6c vocab=1413f496
+-/
 theorem
     exists_forall_eventually_forall_integral_sq_eval_sub_V_iterate_le_inv_nat_cutoff
     {A qStar q₀ : ℝ} (q : ℕ → ℝ)
@@ -153,7 +159,9 @@ theorem
 
 /-- The deterministic cutoff-scale separation uses one positive constant for
 every fixed real shift; only the eventual dimension threshold depends on the
-shift. -/
+shift.
+@isnad1 id=ex.7h4v.s7.75bb162ac669 from=translated src=- shape=c005064d vocab=d78377d0
+-/
 theorem
     exists_forall_eventually_rpow_le_sqrt_nat_mul_abs_V_iterate_integerCutoffTime_sub_fixed
     {A qStar q₀ : ℝ} (q : ℕ → ℝ)
@@ -286,7 +294,9 @@ theorem
 
 /-- One centered second-moment envelope controls the evolving scalar path at
 every fixed-shift cutoff time, including the integrability needed to pass to
-the cutoff marginal. -/
+the cutoff marginal.
+@isnad1 id=ex.6h4v.s8.791b7da026e5 from=translated src=- shape=cef037b2 vocab=1d2e9c03
+-/
 theorem
     exists_forall_eventually_integrable_integral_sq_cutoffTime_sub_V_iterate_le_inv_nat
     {A qStar q₀ : ℝ} (q : ℕ → ℝ)
@@ -354,7 +364,9 @@ theorem
 
 /-- One selected origin-free stationary scalar family satisfies the lower
 cutoff profile for every fixed real shift, with all profile constants chosen
-before the shift. -/
+before the shift.
+@isnad1 id=ex.7h4v.s9.461af73aa0f1 from=translated src=- shape=4850d797 vocab=88bbf3e1
+-/
 theorem
     exists_stationary_family_forall_eventually_one_sub_mul_rpow_le_tvDist_cutoff_marginal
     {A qStar q₀ : ℝ} (q : ℕ → ℝ)
@@ -487,7 +499,9 @@ theorem
 
 /-- One reconstructed origin-free invariant vector family satisfies the lower
 cutoff profile for every fixed real shift, with all constants chosen before
-the shift. -/
+the shift.
+@isnad1 id=ex.7h4v.s10.25f439d2908e from=translated src=- shape=e28eb1b9 vocab=70d7188b
+-/
 theorem
     exists_reconstructed_invariant_vector_family_forall_eventually_one_sub_mul_rpow_le_tvDist_cutoff
     {A qStar q₀ : ℝ}
@@ -556,7 +570,9 @@ theorem
         (supercriticalIntegerCutoffTime A qStar q₀ N c))
 
 /-- One deterministic multiplier-envelope constant controls the convergent
-initial sequence along every varying time sequence tending to infinity. -/
+initial sequence along every varying time sequence tending to infinity.
+@isnad1 id=ex.7h4v.s7.3b1278c1d747 from=translated src=- shape=457a4ef0 vocab=64725b10
+-/
 theorem
     exists_forall_eventually_abs_V_iterate_sub_fixed_le_mul_pow_of_tendsto
     {A qStar q₀ : ℝ} (q : ℕ → ℝ)
@@ -617,7 +633,9 @@ theorem
       mul_le_mul_of_nonneg_right hboundN.le hμpow.le
 
 /-- The deterministic terminal-block center uses one cutoff-scale constant
-for every fixed real shift. -/
+for every fixed real shift.
+@isnad1 id=ex.8h5v.s8.d711d85ea768 from=translated src=- shape=52fd602f vocab=6c896276
+-/
 theorem
     exists_forall_eventually_abs_V_iterate_terminalBlockStart_sub_fixed_le_mul_rpow_div_sqrt
     {A qStar q₀ b : ℝ} (q : ℕ → ℝ)
@@ -702,7 +720,9 @@ theorem
       field_simp [hsqrt.ne', hcoeffne]
 
 /-- One centered second-moment envelope controls the evolving scalar path at
-every fixed-shift terminal-block start. -/
+every fixed-shift terminal-block start.
+@isnad1 id=ex.7h5v.s8.b497149221ec from=translated src=- shape=6fc6ea03 vocab=de4ff7af
+-/
 theorem
     exists_forall_eventually_integrable_integral_sq_terminalBlockStart_sub_V_iterate_le_inv_nat
     {A qStar q₀ b : ℝ} (q : ℕ → ℝ)
@@ -778,7 +798,9 @@ theorem
   · exact hmomentN T hmStartN hstartLeN
 
 /-- The independent evolving/stationary product at the terminal-block start
-has one inverse-square-root fluctuation envelope for every fixed shift. -/
+has one inverse-square-root fluctuation envelope for every fixed shift.
+@isnad1 id=ex.11h7v.s9.d65e20beb1ac from=translated src=- shape=3a8a6cb9 vocab=9f83343d
+-/
 theorem
     exists_forall_eventually_integral_abs_fst_sub_snd_terminalBlockStart_prod_le_rpow_div_sqrt
     {A qStar q₀ b C₂ : ℝ} (q : ℕ → ℝ)
@@ -840,7 +862,9 @@ theorem
       hcenterN
 
 /-- One localization constant controls the evolving coordinate throughout
-every fixed-shift restarted terminal block. -/
+every fixed-shift restarted terminal block.
+@isnad1 id=ex.8h5v.s8.103d29d8a2c5 from=translated src=- shape=6d8f7d59 vocab=caf5d352
+-/
 theorem
     exists_forall_eventually_shifted_eval_not_mem_terminalInterval_le
     {A qStar q₀ b : ℝ} (q : ℕ → ℝ)
@@ -927,7 +951,9 @@ theorem
       hqIcc hcenterBlock hmomentBlock
 
 /-- The shrinking terminal recursion uses one collection of contraction,
-localization, fluctuation, and center constants for every fixed shift. -/
+localization, fluctuation, and center constants for every fixed shift.
+@isnad1 id=ex.13h7v.s9.0a5c3ddc55f2 from=translated src=- shape=721e27ad vocab=40420f74
+-/
 theorem
     exists_forall_eventually_terminalBlock_distance_le_contraction_pow_mul_rpow_add
     {A qStar q₀ b C₂ : ℝ} (q : ℕ → ℝ)
@@ -1081,7 +1107,9 @@ theorem
 
 /-- Up to any fixed factor above one, the shift-uniform terminal recursion
 uses the fixed-point multiplier power instead of the shrinking contraction
-power. -/
+power.
+@isnad1 id=ex.13h7v.s9.b29f72ed41d9 from=translated src=- shape=90a658d8 vocab=40420f74
+-/
 theorem
     exists_forall_eventually_terminalBlock_distance_le_multiplier_pow_mul_rpow_add
     {A qStar q₀ b C₂ : ℝ} (q : ℕ → ℝ)

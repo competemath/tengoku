@@ -79,13 +79,17 @@ variable {R : Type*} [CommRing R] (W : WeierstrassCurve R)
 /-! ### Foundational helpers: unit of `A`, the chord `w`-values, the `z`-plane curve equations -/
 
 /-- The constant coefficient of `formalWDividedDiff` vanishes (re-derived publicly from
-`two_le_order_formalWDividedDiff`). -/
+`two_le_order_formalWDividedDiff`).
+@isnad1 id=eq.0h2v.s7.b7b972bf19ff from=translated src=- shape=e0b4d237 vocab=a50af5fa
+-/
 theorem constantCoeff_formalWDividedDiff :
     MvPowerSeries.constantCoeff W.formalWDividedDiff = 0 :=
   MvPowerSeries.one_le_order_iff_constCoeff_eq_zero.mp
     (le_trans (by exact_mod_cast one_le_two) W.two_le_order_formalWDividedDiff)
 
-/-- `constantCoeff formalGroupLead = 1`. -/
+/-- `constantCoeff formalGroupLead = 1`.
+@isnad1 id=eq.0h2v.s7.dcbf99d86a9e from=translated src=- shape=e0b4d237 vocab=6fec55ac
+-/
 theorem constantCoeff_formalGroupLead :
     MvPowerSeries.constantCoeff W.formalGroupLead = 1 := by
   rw [formalGroupLead]
@@ -93,7 +97,9 @@ theorem constantCoeff_formalGroupLead :
     W.constantCoeff_formalWDividedDiff]
   ring
 
-/-- `A = φ(formalGroupLead)` is a unit of `(R⸨X⸩)⸨X⸩`. -/
+/-- `A = φ(formalGroupLead)` is a unit of `(R⸨X⸩)⸨X⸩`.
+@isnad1 id=isunit.0h2v.s6.4d0f972d82db from=translated src=- shape=b90ac62e vocab=71f6fe08
+-/
 theorem isUnit_embedDoubleLaurent_formalGroupLead :
     IsUnit (HahnSeries.embedDoubleLaurent W.formalGroupLead) := by
   have hone : HahnSeries.embedDoubleLaurent W.formalGroupLead
@@ -103,21 +109,27 @@ theorem isUnit_embedDoubleLaurent_formalGroupLead :
         (by rw [W.constantCoeff_formalGroupLead, Units.val_one]), map_one]
   exact IsUnit.of_mul_eq_one _ hone
 
-/-- `A · Ring.inverse A = 1`. -/
+/-- `A · Ring.inverse A = 1`.
+@isnad1 id=eq.0h2v.s8.282b40a35213 from=translated src=- shape=a0c2cea4 vocab=f9899ee6
+-/
 theorem embedDoubleLaurent_formalGroupLead_mul_inverse :
     HahnSeries.embedDoubleLaurent W.formalGroupLead
       * Ring.inverse (HahnSeries.embedDoubleLaurent W.formalGroupLead) = 1 :=
   Ring.mul_inverse_cancel _ W.isUnit_embedDoubleLaurent_formalGroupLead
 
 /-- **Chord `w`-value at `z₁`.** `μ · z₁ + ν_L = w₁`: the chord `w = μz + ν_L` passes through
-`(z₁, w₁)`. -/
+`(z₁, w₁)`.
+@isnad1 id=eq.0h2v.s8.8782a4a8f50f from=translated src=- shape=15416a95 vocab=7acccd93
+-/
 theorem chordW_biZ₁ :
     HahnSeries.embedDoubleLaurent W.formalWDividedDiff * W.biZ₁
         + HahnSeries.embedDoubleLaurent W.formalGroupNu = W.biW₁ := by
   rw [W.embedDoubleLaurent_formalGroupNu]; ring
 
 /-- **Chord `w`-value at `z₂`.** `μ · z₂ + ν_L = w₂`: the chord passes through `(z₂, w₂)` (uses the
-slope bridge). -/
+slope bridge).
+@isnad1 id=eq.0h2v.s8.e817724c4756 from=translated src=- shape=15416a95 vocab=6b3100fc
+-/
 theorem chordW_biZ₂ :
     HahnSeries.embedDoubleLaurent W.formalWDividedDiff * W.biZ₂
         + HahnSeries.embedDoubleLaurent W.formalGroupNu = W.biW₂ := by
@@ -125,7 +137,9 @@ theorem chordW_biZ₂ :
   linear_combination W.embedDoubleLaurent_formalWDividedDiff_spec
 
 /-- **`z`-plane curve equation at `(z₁, w₁)`** (the `φ`-image of `formalCubicResidual_root_zero`,
-with the chord `w`-value simplified to `w₁`). -/
+with the chord `w`-value simplified to `w₁`).
+@isnad1 id=eq.0h2v.s13.10b2a3b8f381 from=translated src=- shape=a1d8389c vocab=340b6d70
+-/
 theorem zPlaneCurve_biZ₁ :
     W.biZ₁ ^ 3
         + (HahnSeries.C (HahnSeries.C W.a₁) * W.biZ₁
@@ -141,7 +155,9 @@ theorem zPlaneCurve_biZ₁ :
   rw [W.chordW_biZ₁] at h
   exact h
 
-/-- **`z`-plane curve equation at `(z₂, w₂)`.** -/
+/-- **`z`-plane curve equation at `(z₂, w₂)`.**
+@isnad1 id=eq.0h2v.s13.145c23267ed2 from=translated src=- shape=a1d8389c vocab=0902eb8a
+-/
 theorem zPlaneCurve_biZ₂ :
     W.biZ₂ ^ 3
         + (HahnSeries.C (HahnSeries.C W.a₁) * W.biZ₂
@@ -167,7 +183,9 @@ two coordinate relations
 
 by a single `linear_combination`. This is the unconditional algebraic reduction; supplying the
 geometric inputs `(K1)`/`(K4)` closes the identification via
-`W.embedDoubleLaurent_formalGroupZW_of_core`. -/
+`W.embedDoubleLaurent_formalGroupZW_of_core`.
+@isnad1 id=eq.2h2v.s10.100a40f7f4c5 from=translated src=- shape=ef341500 vocab=5cb4f0eb
+-/
 theorem embedDoubleLaurent_formalThirdRoot_mul_formalYThree_of_K1_K4
     (hK1 : HahnSeries.embedDoubleLaurent W.formalThirdRoot
         * (W.formalLambda * W.formalXThree + W.formalNu) = -W.formalXThree)
@@ -183,7 +201,9 @@ theorem embedDoubleLaurent_formalThirdRoot_mul_formalYThree_of_K1_K4
 
 /-- **The identification, conditional on `(K1)`/`(K4)`.** Given the two coordinate relations at the
 third point, the `(z, w)` and Laurent formal group laws agree:
-`embedDoubleLaurent W.formalGroupZW = W.formalGroupLaurent`. -/
+`embedDoubleLaurent W.formalGroupZW = W.formalGroupLaurent`.
+@isnad1 id=eq.2h2v.s10.91cdaa922c91 from=translated src=- shape=983d3388 vocab=a38422b6
+-/
 theorem embedDoubleLaurent_formalGroupZW_of_K1_K4
     (hK1 : HahnSeries.embedDoubleLaurent W.formalThirdRoot
         * (W.formalLambda * W.formalXThree + W.formalNu) = -W.formalXThree)

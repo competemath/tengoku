@@ -28,7 +28,9 @@ def roundedStateSpace (ρ : ℝ) (N : ℕ) : Set (Fin N → ℝ) :=
     (∀ i, ∃ z : ℤ, y i = ρ * z) ∧
       ∀ i, y i ∈ Set.Icc (-1 - ρ / 2) (1 + ρ / 2)}
 
-/-- Coordinatewise rounding `Qρ ρ` is measurable. -/
+/-- Coordinatewise rounding `Qρ ρ` is measurable.
+@isnad1 id=measurab.0h2v.s5.848449b6aec4 from=translated src=- shape=66382cd2 vocab=25232fd6
+-/
 lemma measurable_Qρ (ρ : ℝ) (N : ℕ) : Measurable (Qρ ρ : (Fin N → ℝ) → Fin N → ℝ) := by
   apply measurable_pi_iff.mpr
   intro i
@@ -44,7 +46,9 @@ noncomputable def roundedPstep
     (ρ : ℝ) (N : ℕ) (x : Fin N → ℝ) (W : Fin N → Fin N → ℝ) : Fin N → ℝ :=
   Qρ ρ (Pstep N x W)
 
-/-- `roundedPstep` is jointly measurable in the state and weight matrix. -/
+/-- `roundedPstep` is jointly measurable in the state and weight matrix.
+@isnad1 id=measurab.0h2v.s6.727fe4367ab7 from=translated src=- shape=671994fc vocab=3d644bd8
+-/
 lemma measurable_roundedPstep (ρ : ℝ) (N : ℕ) :
     Measurable
       (fun p : (Fin N → ℝ) × (Fin N → Fin N → ℝ) =>
@@ -64,7 +68,9 @@ instance (A ρ : ℝ) (N : ℕ) : IsMarkovKernel (roundedPkernel A ρ N) := by
   exact Kernel.IsMarkovKernel.map _ (measurable_roundedPstep ρ N)
 
 /-- The rounded vector kernel at `x` is the pushforward of the weight-matrix law under
-the rounded step map. -/
+the rounded step map.
+@isnad1 id=eq.0h4v.s7.28525bf42c5a from=translated src=- shape=261b1191 vocab=0362aa69
+-/
 lemma roundedPkernel_apply (A ρ : ℝ) (N : ℕ) (x : Fin N → ℝ) :
     roundedPkernel A ρ N x = (gaussianMat A N).map (roundedPstep ρ N x) := by
   unfold roundedPkernel
@@ -74,7 +80,9 @@ lemma roundedPkernel_apply (A ρ : ℝ) (N : ℕ) (x : Fin N → ℝ) :
       (by fun_prop : Measurable (Prod.mk x))]
   rfl
 
-/-- The unrounded step map is measurable in the weight matrix when the state is fixed. -/
+/-- The unrounded step map is measurable in the weight matrix when the state is fixed.
+@isnad1 id=measurab.0h2v.s5.0ed887667831 from=translated src=- shape=1baf1047 vocab=bc95582a
+-/
 lemma measurable_Pstep_right (N : ℕ) (x : Fin N → ℝ) :
     Measurable (Pstep N x) := by
   apply measurable_pi_iff.mpr
@@ -90,7 +98,9 @@ lemma measurable_Pstep_right (N : ℕ) (x : Fin N → ℝ) :
   exact hentry.mul measurable_const
 
 /-- The rounded vector kernel is the unrounded vector kernel followed by
-coordinatewise rounding. -/
+coordinatewise rounding.
+@isnad1 id=eq.0h4v.s7.630b5e62e0c7 from=translated src=- shape=7443fdd6 vocab=03e8037a
+-/
 lemma roundedPkernel_apply_eq_map (A ρ : ℝ) (N : ℕ) (x : Fin N → ℝ) :
     roundedPkernel A ρ N x = (Pkernel A N x).map (Qρ ρ) := by
   calc
@@ -104,7 +114,9 @@ lemma roundedPkernel_apply_eq_map (A ρ : ℝ) (N : ℕ) (x : Fin N → ℝ) :
       congrArg (fun μ : Measure (Fin N → ℝ) => μ.map (Qρ ρ))
         (Pkernel_apply A N x).symm
 
-/-- A rounded vector step from the zero vector is identically zero. -/
+/-- A rounded vector step from the zero vector is identically zero.
+@isnad1 id=eq.0h3v.s6.c66f22904d7c from=translated src=- shape=11d2c01b vocab=dea19a83
+-/
 lemma roundedPstep_zero (ρ : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ) :
     roundedPstep ρ N 0 W = 0 := by
   have hQ : Q₁ (0 : ℝ) = 0 := (Q₁_zero_iff 0).mpr (by norm_num)
@@ -112,7 +124,9 @@ lemma roundedPstep_zero (ρ : ℝ) (N : ℕ) (W : Fin N → Fin N → ℝ) :
   simp [roundedPstep, Qρ, gridRound, Pstep, hQ]
 
 /-- **The zero vector is absorbing for the rounded vector chain** (paper
-`eq:rounded-chain`). -/
+`eq:rounded-chain`).
+@isnad1 id=isabsorb.0h3v.s5.6b48c1d21ae2 from=translated src=- shape=87fa5a75 vocab=17147e60
+-/
 lemma isAbsorbing_roundedPkernel (A ρ : ℝ) (N : ℕ) :
     IsAbsorbing (roundedPkernel A ρ N) 0 := by
   rw [IsAbsorbing, roundedPkernel_apply]
@@ -128,14 +142,18 @@ noncomputable def roundedRadiusSq
     (ρ : ℝ) (N : ℕ) (x : Fin N → ℝ) : ℝ :=
   ((N : ℝ) * ρ ^ 2)⁻¹ * ∑ i, (x i) ^ 2
 
-/-- The normalized rounded squared-radius observable is measurable. -/
+/-- The normalized rounded squared-radius observable is measurable.
+@isnad1 id=measurab.0h2v.s4.ce1f2ffa2d59 from=translated src=- shape=d306deea vocab=7e6b87c7
+-/
 lemma measurable_roundedRadiusSq (ρ : ℝ) (N : ℕ) :
     Measurable (roundedRadiusSq ρ N) := by
   unfold roundedRadiusSq
   fun_prop
 
 /-- Rescaling the normalized rounded squared radius by `ρ²` recovers the usual
-normalized squared radius. This remains valid in the zero-dimensional case. -/
+normalized squared radius. This remains valid in the zero-dimensional case.
+@isnad1 id=eq.1h3v.s5.e2fd6c8128ca from=translated src=- shape=88647ec9 vocab=9fe83c23
+-/
 lemma sq_mul_roundedRadiusSq {ρ : ℝ} (hρ : 0 < ρ)
     (N : ℕ) (x : Fin N → ℝ) :
     ρ ^ 2 * roundedRadiusSq ρ N x = radiusSq N x := by
@@ -148,7 +166,9 @@ lemma sq_mul_roundedRadiusSq {ρ : ℝ} (hρ : 0 < ρ)
       rw [mul_inv_cancel₀ (pow_ne_zero 2 hρ.ne'), one_mul]
 
 /-- Square-root form of the radius rescaling, matching the scale in `Jmap` to
-the scale `ρ A √h` in the rounded scalar map `Hmap`. -/
+the scale `ρ A √h` in the rounded scalar map `Hmap`.
+@isnad1 id=eq.1h3v.s5.2ece99ca901b from=translated src=- shape=a21705ed vocab=f1337dd2
+-/
 lemma mul_sqrt_roundedRadiusSq {ρ : ℝ} (hρ : 0 < ρ)
     (N : ℕ) (x : Fin N → ℝ) :
     ρ * Real.sqrt (roundedRadiusSq ρ N x) = Real.sqrt (radiusSq N x) := by
@@ -162,7 +182,9 @@ lemma mul_sqrt_roundedRadiusSq {ρ : ℝ} (hρ : 0 < ρ)
       rw [sq_mul_roundedRadiusSq hρ]
 
 /-- Pointwise identification of the rounded radius of the Gaussian reconstruction
-with the scalar rounded random map `Hmap`. -/
+with the scalar rounded random map `Hmap`.
+@isnad1 id=eq.1h5v.s5.f4c5cbfdc9fc from=translated src=- shape=1787cb32 vocab=58ce4fdd
+-/
 lemma roundedInitialRadius_Jmap {ρ : ℝ} (hρ : 0 < ρ)
     (A : ℝ) (N : ℕ) (x g : Fin N → ℝ) :
     roundedInitialRadius ρ N (Jmap A N (radiusSq N x) g) =
@@ -187,7 +209,9 @@ lemma roundedInitialRadius_Jmap {ρ : ℝ} (hρ : 0 < ρ)
   rw [harg i]
 
 /-- Rounding a vector and then taking its normalized rounded squared radius gives
-exactly the deterministic initial radius used by the scalar chain. -/
+exactly the deterministic initial radius used by the scalar chain.
+@isnad1 id=eq.0h3v.s4.6d9118cfc4c7 from=translated src=- shape=5855653b vocab=98653466
+-/
 lemma roundedRadiusSq_Qρ (ρ : ℝ) (N : ℕ) (x : Fin N → ℝ) :
     roundedRadiusSq ρ N (Qρ ρ x) = roundedInitialRadius ρ N x := by
   have hQ : Q₁ (0 : ℝ) = 0 := (Q₁_zero_iff 0).mpr (by norm_num)
@@ -207,7 +231,9 @@ lemma roundedRadiusSq_Qρ (ρ : ℝ) (N : ℕ) (x : Fin N → ℝ) :
 
 /-- **One-step rounded vector-to-scalar factorization.** Pushing one rounded
 vector transition forward by the normalized rounded squared radius gives exactly
-the scalar rounded-radius kernel `Hkernel`. -/
+the scalar rounded-radius kernel `Hkernel`.
+@isnad1 id=eq.1h4v.s7.ba18ae854f25 from=translated src=- shape=7171a158 vocab=462c3abf
+-/
 theorem roundedRadiusSq_map_roundedPkernel {ρ : ℝ} (hρ : 0 < ρ)
     (A : ℝ) (N : ℕ) (x : Fin N → ℝ) :
     (roundedPkernel A ρ N x).map (roundedRadiusSq ρ N) =
@@ -251,7 +277,9 @@ theorem roundedRadiusSq_map_roundedPkernel {ρ : ℝ} (hρ : 0 < ρ)
     _ = Hkernel A ρ N (roundedRadiusSq ρ N x) :=
       (Hkernel_apply A ρ N (roundedRadiusSq ρ N x)).symm
 
-/-- Kernel form of the one-step rounded radius factorization. -/
+/-- Kernel form of the one-step rounded radius factorization.
+@isnad1 id=eq.1h3v.s6.d9154b8e7e9a from=translated src=- shape=ad0bbd32 vocab=abe2ebc3
+-/
 lemma roundedPkernel_map_roundedRadiusSq {ρ : ℝ} (hρ : 0 < ρ)
     (A : ℝ) (N : ℕ) :
     (roundedPkernel A ρ N).map (roundedRadiusSq ρ N) =
@@ -262,7 +290,9 @@ lemma roundedPkernel_map_roundedRadiusSq {ρ : ℝ} (hρ : 0 < ρ)
     Kernel.comap_apply, roundedRadiusSq_map_roundedPkernel hρ]
 
 /-- Measure-level one-step intertwining between the rounded vector chain and
-the scalar rounded-radius chain. -/
+the scalar rounded-radius chain.
+@isnad1 id=eq.1h4v.s7.bb40fea14e65 from=translated src=- shape=11a375d3 vocab=4ba868b4
+-/
 lemma roundedRadiusSq_map_roundedPkernel_comp {ρ : ℝ} (hρ : 0 < ρ)
     (A : ℝ) (N : ℕ) (μ : Measure (Fin N → ℝ))
     [IsProbabilityMeasure μ] :
@@ -274,7 +304,9 @@ lemma roundedRadiusSq_map_roundedPkernel_comp {ρ : ℝ} (hρ : 0 < ρ)
   exact measurable_roundedRadiusSq ρ N
 
 /-- **Rounded radius law at arbitrary times.** The normalized rounded squared
-radius of the vector chain has exactly the law of the scalar `Hkernel` chain. -/
+radius of the vector chain has exactly the law of the scalar `Hkernel` chain.
+@isnad1 id=eq.1h5v.s8.32d0fc47bf86 from=translated src=- shape=e07673c8 vocab=cce103d6
+-/
 theorem roundedRadiusSq_map_roundedPkernel_pow {ρ : ℝ} (hρ : 0 < ρ)
     (A : ℝ) (N : ℕ) (x : Fin N → ℝ) (t : ℕ) :
     (((roundedPkernel A ρ N) ^ t) x).map (roundedRadiusSq ρ N) =
@@ -296,7 +328,9 @@ theorem roundedRadiusSq_map_roundedPkernel_pow {ρ : ℝ} (hρ : 0 < ρ)
     rw [Kernel.comp_apply, roundedRadiusSq_map_roundedPkernel_comp hρ, ih,
       Kernel.comp_apply]
 
-/-- The normalized rounded squared radius vanishes exactly at the zero vector. -/
+/-- The normalized rounded squared radius vanishes exactly at the zero vector.
+@isnad1 id=iff.1h3v.s5.eca8f17cd112 from=translated src=- shape=5c1cff49 vocab=164ff689
+-/
 lemma roundedRadiusSq_eq_zero_iff {ρ : ℝ} (hρ : 0 < ρ)
     (N : ℕ) (x : Fin N → ℝ) :
     roundedRadiusSq ρ N x = 0 ↔ x = 0 := by
@@ -325,7 +359,9 @@ lemma roundedRadiusSq_eq_zero_iff {ρ : ℝ} (hρ : 0 < ρ)
       simp [roundedRadiusSq]
 
 /-- The vector and scalar rounded chains have exactly the same survival mass
-away from their absorbing origins at every time. -/
+away from their absorbing origins at every time.
+@isnad1 id=eq.1h5v.s8.a86fd618d91a from=translated src=- shape=64e683fc vocab=10f39c3a
+-/
 lemma roundedPkernel_pow_compl_singleton_zero_eq_Hkernel_pow
     {ρ : ℝ} (hρ : 0 < ρ) (A : ℝ) (N : ℕ)
     (x : Fin N → ℝ) (t : ℕ) :
@@ -351,7 +387,9 @@ lemma roundedPkernel_pow_compl_singleton_zero_eq_Hkernel_pow
 
 /-- Canonical path-space survival identity for the rounded vector chain: the
 coordinate-process absorption time exceeds `t` exactly with the `t`-step mass
-away from the zero vector. -/
+away from the zero vector.
+@isnad1 id=eq.0h5v.s9.10b6f4226467 from=translated src=- shape=439f364e vocab=f7295b69
+-/
 theorem measure_roundedVectorAbsorptionTime_gt_eq
     (A ρ : ℝ) (N : ℕ) (x : Fin N → ℝ) (t : ℕ) :
     (markovPathMeasure (Measure.dirac x) (roundedPkernel A ρ N))
@@ -371,7 +409,9 @@ theorem measure_roundedVectorAbsorptionTime_gt_eq
     (markovPathMeasure_dirac_map_eval x (roundedPkernel A ρ N) t)
 
 /-- The total-variation distance of the rounded vector chain from the absorbing
-zero vector is its survival mass away from zero. -/
+zero vector is its survival mass away from zero.
+@isnad1 id=eq.0h5v.s9.14b991e1c962 from=translated src=- shape=b646bc95 vocab=542a90d4
+-/
 lemma tvDist_roundedPkernel_pow_dirac
     (A ρ : ℝ) (N : ℕ) (x : Fin N → ℝ) (t : ℕ) :
     tvDist (((roundedPkernel A ρ N) ^ t) x)
@@ -381,7 +421,9 @@ lemma tvDist_roundedPkernel_pow_dirac
   tvDist_pow_dirac (measurableSet_singleton (0 : Fin N → ℝ)) x t
 
 /-- The rounded-vector TV distance from the absorbing origin equals the
-canonical path-space survival probability of its absorption time. -/
+canonical path-space survival probability of its absorption time.
+@isnad1 id=eq.0h5v.s9.966f2a2578c1 from=translated src=- shape=4c6e5f91 vocab=225c8f13
+-/
 theorem tvDist_roundedPkernel_pow_eq_survival
     (A ρ : ℝ) (N : ℕ) (x : Fin N → ℝ) (t : ℕ) :
     tvDist (((roundedPkernel A ρ N) ^ t) x)
@@ -395,7 +437,9 @@ theorem tvDist_roundedPkernel_pow_eq_survival
     measure_roundedVectorAbsorptionTime_gt_eq]
 
 /-- The rounded vector chain and its scalar rounded-radius reduction have
-exactly the same total-variation distance from their absorbing origins. -/
+exactly the same total-variation distance from their absorbing origins.
+@isnad1 id=eq.1h5v.s8.a9e9d28c9bf9 from=translated src=- shape=a13dbd78 vocab=22098115
+-/
 lemma tvDist_roundedPkernel_pow_eq_Hkernel_pow
     {ρ : ℝ} (hρ : 0 < ρ) (A : ℝ) (N : ℕ)
     (x : Fin N → ℝ) (t : ℕ) :
@@ -409,7 +453,9 @@ lemma tvDist_roundedPkernel_pow_eq_Hkernel_pow
 /-- **Fixed-precision subcritical dimension cutoff for the rounded vector
 chain.** At the deterministic rounded-map center, the vector-chain TV distance
 from the absorbing zero vector drops from one to zero in the paper's bounded
-window `[\bar t_N - 1, \bar t_N + 2]`. -/
+window `[\bar t_N - 1, \bar t_N + 2]`.
+@isnad1 id=and.6h3v.s9.2a9920aa6ee6 from=translated src=- shape=cd6068a1 vocab=c917d3bd
+-/
 theorem subcritical_dimension_cutoff_roundedVector
     {A ρ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -451,7 +497,9 @@ equivalently, its total-variation distances have the paper's exact `-1`/`+2`
 limits.
 
 The older TV-only projection remains available as
-`subcritical_dimension_cutoff_roundedVector`. -/
+`subcritical_dimension_cutoff_roundedVector`.
+@isnad1 id=and.6h3v.s10.f8f17c8fa75e from=translated src=- shape=5c9bfa53 vocab=101f0295
+-/
 theorem subcritical_dimension_cutoff_roundedVector_of_tendsto_cutoffTime
     {A ρ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -551,7 +599,9 @@ theorem subcritical_dimension_cutoff_roundedVector_of_tendsto_cutoffTime
 (paper `thm:subcritical-dimension-cutoff:intro`). If the rounded initial
 radii have positive `liminf`, then the deterministic cutoff locations diverge,
 and the rounded vector-chain TV distance drops from one to zero in the exact
-bounded window `[\bar t_N - 1, \bar t_N + 2]`. -/
+bounded window `[\bar t_N - 1, \bar t_N + 2]`.
+@isnad1 id=and.6h3v.s9.6af3adc1aaf7 from=translated src=- shape=215f2661 vocab=86d83c66
+-/
 theorem subcritical_dimension_cutoff_roundedVector_intro
     {A ρ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -592,7 +642,9 @@ diverge; the conclusion then records both the survival display and its
 total-variation equivalent from `thm:subcritical-dimension-cutoff`.
 
 The first-pass TV-only introduction wrapper remains available as
-`subcritical_dimension_cutoff_roundedVector_intro`. -/
+`subcritical_dimension_cutoff_roundedVector_intro`.
+@isnad1 id=and.6h3v.s10.4663ec56e91a from=translated src=- shape=29428d77 vocab=3bf80090
+-/
 theorem subcritical_dimension_cutoff_roundedVector_paper
     {A ρ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -648,7 +700,9 @@ theorem subcritical_dimension_cutoff_roundedVector_paper
 
 /-- Mixing-time consequence of the rounded-vector fixed-precision cutoff. For
 every fixed `ε ∈ (0,1)`, the vector mixing time lies in the same eventual
-bounded window as the scalar rounded-radius chain. -/
+bounded window as the scalar rounded-radius chain.
+@isnad1 id=eventual.8h4v.s8.bc2999324ec7 from=translated src=- shape=1aeac668 vocab=c28dd5a2
+-/
 theorem subcritical_dimension_cutoff_roundedVector_mixingTime_bounds
     {A ρ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)

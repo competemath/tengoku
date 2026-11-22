@@ -55,7 +55,9 @@ variable [IsScalarTower R A L] [IsScalarTower R K L]
 
 variable (R A) in
 /-- The base change of the integral minimal model of `W` is an integral model of `W⁄L` over `A`:
-`W⁄L = ((integralModel R W)⁄A)⁄L`. -/
+`W⁄L = ((integralModel R W)⁄A)⁄L`.
+@isnad1 id=eq.0h5v.s7.bd60ab602d69 from=translated src=- shape=add87f9d vocab=7039a8a4
+-/
 theorem baseChange_integralModel_baseChange_eq (W : WeierstrassCurve K) [IsIntegral R W] :
     W⁄L = ((integralModel R W)⁄A)⁄L := by
   have hRAL : (algebraMap A L).comp (algebraMap R A) = algebraMap R L :=
@@ -68,14 +70,18 @@ theorem baseChange_integralModel_baseChange_eq (W : WeierstrassCurve K) [IsInteg
     _ = ((integralModel R W)⁄A)⁄L := by simp only [baseChange, map_map, hRAL]
 
 variable (R A) in
-/-- `W⁄L` is integral over `A` whenever `W` is integral over `R`. -/
+/-- `W⁄L` is integral over `A` whenever `W` is integral over `R`.
+@isnad1 id=isintegr.0h5v.s7.e2e0c17526ea from=translated src=- shape=559ca410 vocab=73384607
+-/
 theorem isIntegral_baseChange (W : WeierstrassCurve K) [IsIntegral R W] :
     IsIntegral A (W⁄L) :=
   ⟨(integralModel R W)⁄A, baseChange_integralModel_baseChange_eq R A W⟩
 
 variable (R A) in
 /-- The discriminant of `W⁄L` equals the base change to `A` of the discriminant of the integral
-minimal model of `W`. -/
+minimal model of `W`.
+@isnad1 id=eq.0h5v.s8.5ed61000ef26 from=translated src=- shape=69dec30d vocab=3ab1a2f9
+-/
 theorem Δ_baseChange_eq (W : WeierstrassCurve K) [IsIntegral R W] :
     (W⁄L).Δ = algebraMap A L (algebraMap R A (integralModel R W).Δ) := by
   rw [baseChange, map_Δ, ← integralModel_Δ_eq R W,
@@ -85,7 +91,9 @@ variable [IsDomain R] [IsDiscreteValuationRing R] [IsFractionRing R K]
 variable [IsDomain A] [IsDiscreteValuationRing A] [IsFractionRing A L]
 
 variable (R) in
-/-- If `W` has good reduction over `R`, the discriminant of its integral minimal model is a unit. -/
+/-- If `W` has good reduction over `R`, the discriminant of its integral minimal model is a unit.
+@isnad1 id=isunit.0h3v.s6.11e059ce2ff8 from=translated src=- shape=f45b5b83 vocab=1b79b04f
+-/
 theorem isUnit_Δ_integralModel_of_hasGoodReduction (W : WeierstrassCurve K)
     [HasGoodReduction R W] : IsUnit (integralModel R W).Δ := by
   have h : valuation K (maximalIdeal R) (algebraMap R K (integralModel R W).Δ) = 1 := by
@@ -95,6 +103,7 @@ theorem isUnit_Δ_integralModel_of_hasGoodReduction (W : WeierstrassCurve K)
 
 variable (R A) in
 /-- **The discriminant of `W⁄L` has valuation `1` over `A`** when `W` has good reduction over `R`.
+@isnad1 id=eq.0h5v.s8.245f9d755971 from=translated src=- shape=6b115311 vocab=cac412ac
 -/
 theorem valuation_Δ_baseChange_eq_one (W : WeierstrassCurve K) [HasGoodReduction R W] :
     valuation L (maximalIdeal A) (W⁄L).Δ = 1 := by
@@ -105,7 +114,9 @@ theorem valuation_Δ_baseChange_eq_one (W : WeierstrassCurve K) [HasGoodReductio
 
 variable (R A) in
 /-- `W⁄L` is minimal over `A` when `W` has good reduction over `R`: its discriminant already has the
-maximal possible valuation `1`, so no isomorphic integral model can do better. -/
+maximal possible valuation `1`, so no isomorphic integral model can do better.
+@isnad1 id=isminima.0h5v.s8.4731035fa7e0 from=translated src=- shape=519d6cb6 vocab=17ac3278
+-/
 theorem isMinimal_baseChange (W : WeierstrassCurve K) [HasGoodReduction R W] :
     IsMinimal A (W⁄L) := by
   haveI : IsIntegral A (W⁄L) := isIntegral_baseChange R A W
@@ -123,7 +134,9 @@ theorem isMinimal_baseChange (W : WeierstrassCurve K) [HasGoodReduction R W] :
 variable (R A) in
 /-- **Good reduction is preserved under base change to a DVR extension.** If `W` has good reduction
 over the DVR `R` (with `K = Frac R`), then its base change `W⁄L` has good reduction over any DVR `A`
-lying over `R` with `L = Frac A`. -/
+lying over `R` with `L = Frac A`.
+@isnad1 id=hasgoodr.0h5v.s8.401d38fa1434 from=translated src=- shape=9cfb5f4e vocab=05079c52
+-/
 theorem hasGoodReduction_baseChange (W : WeierstrassCurve K) [HasGoodReduction R W] :
     HasGoodReduction A (W⁄L) where
   toIsMinimal := isMinimal_baseChange R A W

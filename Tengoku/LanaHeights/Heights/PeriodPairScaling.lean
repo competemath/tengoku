@@ -36,9 +36,15 @@ noncomputable def periodPairScale (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) : Pe
     rw [Complex.real_smul, Complex.real_smul] at h
     linear_combination h
 
+/--
+@isnad1 id=eq.1h2v.s4.964bba05dbdc from=translated src=- shape=9912aee1 vocab=ef9b93c0
+-/
 @[simp] theorem periodPairScale_ω₁ (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) :
     (periodPairScale a ha L).ω₁ = a * L.ω₁ := rfl
 
+/--
+@isnad1 id=eq.1h2v.s4.b10558dfc5af from=translated src=- shape=9912aee1 vocab=976ec95e
+-/
 @[simp] theorem periodPairScale_ω₂ (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) :
     (periodPairScale a ha L).ω₂ = a * L.ω₂ := rfl
 
@@ -69,12 +75,17 @@ noncomputable def periodPairScaleLatticeEquiv (a : ℂ) (ha : a ≠ 0) (L : Peri
     apply Subtype.ext
     simp [mul_add]
 
+/--
+@isnad1 id=eq.1h3v.s9.303e6fbd6728 from=translated src=- shape=5b6cd9a1 vocab=d60ca787
+-/
 @[simp] theorem periodPairScaleLatticeEquiv_coe (a : ℂ) (ha : a ≠ 0)
     (L : PeriodPair) (x : L.lattice) :
     ((periodPairScaleLatticeEquiv a ha L x : (periodPairScale a ha L).lattice) : ℂ) =
       a * (x : ℂ) := rfl
 
-/-- Eisenstein lattice sums have their expected homogeneity under scaling. -/
+/-- Eisenstein lattice sums have their expected homogeneity under scaling.
+@isnad1 id=eq.1h3v.s5.c0450ff601b3 from=translated src=- shape=2895b3f7 vocab=294e507e
+-/
 theorem periodPairScale_G (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) (k : ℕ) :
     (periodPairScale a ha L).G k = a⁻¹ ^ k * L.G k := by
   rw [PeriodPair.G, PeriodPair.G, ← tsum_mul_left]
@@ -84,13 +95,17 @@ theorem periodPairScale_G (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) (k : ℕ) :
   change ((a * (l : ℂ)) ^ k)⁻¹ = _
   rw [mul_pow, mul_inv, inv_pow]
 
-/-- The invariant `g₂` has weight `-4` under lattice scaling. -/
+/-- The invariant `g₂` has weight `-4` under lattice scaling.
+@isnad1 id=eq.1h2v.s5.da86dc1db0fb from=translated src=- shape=0dbb36f9 vocab=bc65ff1e
+-/
 theorem periodPairScale_g₂ (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) :
     (periodPairScale a ha L).g₂ = a⁻¹ ^ 4 * L.g₂ := by
   rw [PeriodPair.g₂, periodPairScale_G, PeriodPair.g₂]
   ring
 
-/-- The invariant `g₃` has weight `-6` under lattice scaling. -/
+/-- The invariant `g₃` has weight `-6` under lattice scaling.
+@isnad1 id=eq.1h2v.s5.1379c210b04c from=translated src=- shape=0dbb36f9 vocab=e07ad7cd
+-/
 theorem periodPairScale_g₃ (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) :
     (periodPairScale a ha L).g₃ = a⁻¹ ^ 6 * L.g₃ := by
   rw [PeriodPair.g₃, periodPairScale_G, PeriodPair.g₃]
@@ -389,7 +404,9 @@ private theorem weierstrassP_eqOn_compl_lattices (L M : PeriodPair)
   exact hLa.eqOn_of_preconnected_of_eventuallyEq hMa hUpre
     (by simpa [U] using ⟨hz₀L, hz₀M⟩) hPgerm
 
-/-- The two Weierstrass invariants determine the underlying period lattice. -/
+/-- The two Weierstrass invariants determine the underlying period lattice.
+@isnad1 id=eq.2h2v.s4.7fb2be3c097a from=translated src=- shape=dcc57ae5 vocab=fa7ca5f3
+-/
 theorem periodPair_lattice_eq_of_g₂_eq_g₃_eq (L M : PeriodPair)
     (h₂ : L.g₂ = M.g₂) (h₃ : L.g₃ = M.g₃) :
     L.lattice = M.lattice := by

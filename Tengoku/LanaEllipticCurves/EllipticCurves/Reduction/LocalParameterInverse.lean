@@ -74,7 +74,9 @@ noncomputable def wParam (W : WeierstrassCurve K) [IsIntegral R W] {z : R}
 omit [IsFractionRing R K] in
 /-- `w(z)` is the `adicEval`-image of the fixed-point equation `formalW = wOp formalW`, hence
 satisfies the **numeric Weierstrass functional equation**
-`w = z³ + (a₁z + a₂z²)w + (a₃ + a₄z)w² + a₆w³`, with the integral-model coefficients. -/
+`w = z³ + (a₁z + a₂z²)w + (a₃ + a₄z)w² + a₆w³`, with the integral-model coefficients.
+@isnad1 id=eq.1h4v.s8.933b43a545b6 from=translated src=- shape=90cb6e81 vocab=7404cb0b
+-/
 theorem wParam_functional_eq (W : WeierstrassCurve K) [IsIntegral R W] {z : R}
     (hz : z ∈ (maximalIdeal R).asIdeal) :
     wParam R W hz = z ^ 3
@@ -86,7 +88,9 @@ theorem wParam_functional_eq (W : WeierstrassCurve K) [IsIntegral R W] {z : R}
   rw [← wParam]
 
 omit [IsFractionRing R K] in
-/-- `w(z)` factors as `z³ · u(z)` where `u(z) = adicEval z (wCofactor)`. -/
+/-- `w(z)` factors as `z³ · u(z)` where `u(z) = adicEval z (wCofactor)`.
+@isnad1 id=eq.1h4v.s7.3544cb945571 from=translated src=- shape=2b29faf1 vocab=957f1599
+-/
 theorem wParam_eq_cube_mul (W : WeierstrassCurve K) [IsIntegral R W] {z : R}
     (hz : z ∈ (maximalIdeal R).asIdeal) :
     wParam R W hz = z ^ 3 * adicEval (maximalIdeal R).asIdeal hz (integralModel R W).wCofactor := by
@@ -94,7 +98,9 @@ theorem wParam_eq_cube_mul (W : WeierstrassCurve K) [IsIntegral R W] {z : R}
 
 omit [IsFractionRing R K] in
 /-- The cofactor value `u(z) = adicEval z (wCofactor)` is a **unit**: its reduction mod `𝔪` is
-`constantCoeff wCofactor = 1`, which is a unit in the local ring `R`. -/
+`constantCoeff wCofactor = 1`, which is a unit in the local ring `R`.
+@isnad1 id=isunit.1h4v.s7.ea6d249a3ed0 from=translated src=- shape=6c6917c9 vocab=ee813b33
+-/
 theorem isUnit_adicEval_wCofactor (W : WeierstrassCurve K) [IsIntegral R W] {z : R}
     (hz : z ∈ (maximalIdeal R).asIdeal) :
     IsUnit (adicEval (maximalIdeal R).asIdeal hz (integralModel R W).wCofactor) := by
@@ -114,7 +120,9 @@ theorem isUnit_adicEval_wCofactor (W : WeierstrassCurve K) [IsIntegral R W] {z :
   exact (IsLocalRing.maximalIdeal.isMaximal R).ne_top (Ideal.eq_top_iff_one _ |>.mpr hone)
 
 omit [IsFractionRing R K] in
-/-- `w(z) ≠ 0` when `z ≠ 0`: it factors as `z³ · unit` in the domain `R`. -/
+/-- `w(z) ≠ 0` when `z ≠ 0`: it factors as `z³ · unit` in the domain `R`.
+@isnad1 id=ne.2h4v.s7.f38256b71d4f from=translated src=- shape=50778470 vocab=581aa8dd
+-/
 theorem wParam_ne_zero (W : WeierstrassCurve K) [IsIntegral R W] {z : R}
     (hz : z ∈ (maximalIdeal R).asIdeal) (hz0 : z ≠ 0) : wParam R W hz ≠ 0 := by
   rw [wParam_eq_cube_mul]
@@ -148,7 +156,9 @@ private theorem algebraMap_wParam_functional_eq (W : WeierstrassCurve K) [IsInte
 
 /-- **The recovered point lies on the curve.** The coordinates `(x(z), y(z)) = (z/w, -1/w)` satisfy
 the Weierstrass equation of `W`.  This is the numeric form of the formal identity
-`formalX_formalY_weierstrass`, obtained from the functional equation for `w(z)`. -/
+`formalX_formalY_weierstrass`, obtained from the functional equation for `w(z)`.
+@isnad1 id=equation.2h4v.s7.c30c4046fbe6 from=translated src=- shape=68fb7854 vocab=63847cce
+-/
 theorem equation_xParam_yParam (W : WeierstrassCurve K) [IsIntegral R W] {z : R}
     (hz : z ∈ (maximalIdeal R).asIdeal) (hz0 : z ≠ 0) :
     W.toAffine.Equation (xParam R W hz) (yParam R W hz) := by
@@ -163,7 +173,9 @@ theorem equation_xParam_yParam (W : WeierstrassCurve K) [IsIntegral R W] {z : R}
   linear_combination hfe
 
 /-- **The local parameter recovers `z`.** For the recovered coordinates,
-`-x(z)/y(z) = z`, so `z ↦ (x(z), y(z))` is a section of the local parameter `P ↦ z(P) = -x/y`. -/
+`-x(z)/y(z) = z`, so `z ↦ (x(z), y(z))` is a section of the local parameter `P ↦ z(P) = -x/y`.
+@isnad1 id=eq.2h4v.s8.69cb4fdb3c99 from=translated src=- shape=b8e7f741 vocab=e067ffd1
+-/
 theorem localParam_xParam_yParam (W : WeierstrassCurve K) [IsIntegral R W] {z : R}
     (hz : z ∈ (maximalIdeal R).asIdeal) (hz0 : z ≠ 0) :
     -xParam R W hz / yParam R W hz = algebraMap R K z := by

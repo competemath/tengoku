@@ -78,7 +78,9 @@ For `K / F` separable, `normalClosure F K (AlgebraicClosure K)` is a Galois exte
 ⚠️ Assembled by hand rather than taken from `IsGalois.normalClosure`, which needs the **ambient**
 extension to be Galois over `F`; an algebraic closure is normal but not separable over `F` in
 characteristic `p`.  ⚠️ **No finiteness anywhere**: see the module docstring for the `lake lint`
-run that removed it. -/
+run that removed it.
+@isnad1 id=isgalois.0h2v.s7.b340a61dba80 from=translated src=- shape=701f7fab vocab=cae58320
+-/
 theorem _root_.Tengoku.LanaEllipticCurves.isGalois_normalClosure_of_isSeparable (F K : Type*) [Field F] [Field K] [Algebra F K]
     [Algebra.IsSeparable F K] :
     IsGalois F (normalClosure F K (AlgebraicClosure K)) := by

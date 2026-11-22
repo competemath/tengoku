@@ -28,7 +28,9 @@ noncomputable section
 namespace Heights
 
 /-- After subtracting its `z⁻²` principal part, `℘` tends to zero at the
-origin. -/
+origin.
+@isnad1 id=tendsto.0h1v.s6.c4fb718b97cd from=translated src=- shape=79b062fa vocab=7fb8f548
+-/
 theorem tendsto_weierstrassP_sub_inv_sq_zero (L : PeriodPair) :
     Tendsto (fun z : ℂ ↦ L.weierstrassP z - 1 / z ^ 2) (𝓝 0) (𝓝 0) := by
   have h := (L.analyticAt_weierstrassPExcept 0).continuousAt
@@ -41,7 +43,9 @@ theorem tendsto_weierstrassP_sub_inv_sq_zero (L : PeriodPair) :
   · simp
 
 /-- After subtracting its `-2z⁻³` principal part, `℘′` tends to zero at the
-origin. -/
+origin.
+@isnad1 id=tendsto.0h1v.s6.c6f61cf175b2 from=translated src=- shape=79b062fa vocab=a85f454d
+-/
 theorem tendsto_derivWeierstrassP_add_two_div_cube_zero (L : PeriodPair) :
     Tendsto (fun z : ℂ ↦ L.derivWeierstrassP z + 2 / z ^ 3) (𝓝 0) (𝓝 0) := by
   have h := (L.analyticAt_derivWeierstrassPExcept 0).continuousAt
@@ -53,7 +57,9 @@ theorem tendsto_derivWeierstrassP_add_two_div_cube_zero (L : PeriodPair) :
     simp
   · simp
 
-/-- The normalized Weierstrass function tends to `1` at its pole at zero. -/
+/-- The normalized Weierstrass function tends to `1` at its pole at zero.
+@isnad1 id=tendsto.0h1v.s6.25a9929cb59f from=translated src=- shape=69271a2b vocab=39082f8d
+-/
 theorem tendsto_sq_mul_weierstrassP_zero (L : PeriodPair) :
     Tendsto (fun z : ℂ ↦ z ^ 2 * L.weierstrassP z) (𝓝[≠] 0) (𝓝 1) := by
   have hz : Tendsto (fun z : ℂ ↦ z) (𝓝[≠] 0) (𝓝 0) :=
@@ -78,7 +84,9 @@ theorem tendsto_sq_mul_weierstrassP_zero (L : PeriodPair) :
   simp
   field_simp
 
-/-- The normalized derivative tends to `-2` at its pole at zero. -/
+/-- The normalized derivative tends to `-2` at its pole at zero.
+@isnad1 id=tendsto.0h1v.s6.a86d501e44ea from=translated src=- shape=c7907fe7 vocab=298a0b16
+-/
 theorem tendsto_cube_mul_derivWeierstrassP_zero (L : PeriodPair) :
     Tendsto (fun z : ℂ ↦ z ^ 3 * L.derivWeierstrassP z) (𝓝[≠] 0) (𝓝 (-2)) := by
   have hz : Tendsto (fun z : ℂ ↦ z) (𝓝[≠] 0) (𝓝 0) :=
@@ -117,7 +125,9 @@ private theorem tendsto_sub_lattice_punctured (L : PeriodPair) (l : L.lattice) :
     simpa only [mem_compl_iff, mem_singleton_iff, sub_ne_zero] using hz
 
 /-- At every period `l`, the normalized Weierstrass function
-`(z-l)²℘(z)` tends to `1`. -/
+`(z-l)²℘(z)` tends to `1`.
+@isnad1 id=tendsto.0h2v.s7.9e4ae36dd033 from=translated src=- shape=11ed7984 vocab=9840e462
+-/
 theorem tendsto_sq_mul_weierstrassP_at_lattice (L : PeriodPair) (l : L.lattice) :
     Tendsto (fun z : ℂ ↦ (z - l) ^ 2 * L.weierstrassP z)
       (𝓝[≠] (l : ℂ)) (𝓝 1) := by
@@ -129,7 +139,9 @@ theorem tendsto_sq_mul_weierstrassP_at_lattice (L : PeriodPair) (l : L.lattice) 
   rw [L.weierstrassP_sub_coe]
 
 /-- At every period `l`, the normalized derivative
-`(z-l)³℘′(z)` tends to `-2`. -/
+`(z-l)³℘′(z)` tends to `-2`.
+@isnad1 id=tendsto.0h2v.s7.79702d5cc906 from=translated src=- shape=72657d2f vocab=6befe820
+-/
 theorem tendsto_cube_mul_derivWeierstrassP_at_lattice
     (L : PeriodPair) (l : L.lattice) :
     Tendsto (fun z : ℂ ↦ (z - l) ^ 3 * L.derivWeierstrassP z)
@@ -142,7 +154,9 @@ theorem tendsto_cube_mul_derivWeierstrassP_at_lattice
   rw [L.derivWeierstrassP_sub_coe]
 
 /-- The regular part of `℘` is little-oh of `z` at the origin.  This is the
-extra order of cancellation needed for the secant-law `y`-coordinate. -/
+extra order of cancellation needed for the secant-law `y`-coordinate.
+@isnad1 id=tendsto.0h1v.s6.e63a74300753 from=translated src=- shape=073a85eb vocab=4e913d93
+-/
 theorem tendsto_weierstrassP_sub_inv_sq_div_zero (L : PeriodPair) :
     Tendsto (fun z : ℂ ↦ (L.weierstrassP z - 1 / z ^ 2) / z)
       (𝓝[≠] 0) (𝓝 0) := by
@@ -162,7 +176,9 @@ point `(a,b/2)` extends across the point at infinity with value `a`.
 
 This is the local cancellation needed to extend the usual Weierstrass addition
 formula across `z = 0`.  It does not assert that the candidate equals
-`℘(z+w)`; that global identity remains the addition-theorem frontier. -/
+`℘(z+w)`; that global identity remains the addition-theorem frontier.
+@isnad1 id=tendsto.0h3v.s7.f05d1dee4792 from=translated src=- shape=9343a076 vocab=32becb4b
+-/
 theorem tendsto_weierstrass_secant_addX_zero (L : PeriodPair) (a b : ℂ) :
     Tendsto (fun z : ℂ ↦
       ((L.derivWeierstrassP z - b) /
@@ -247,7 +263,9 @@ point `(a,b/2)` extends across the point at infinity with value `b/2`.
 
 Together with `tendsto_weierstrass_secant_addX_zero`, this verifies both local
 coordinate cancellations needed when the first input approaches infinity.  It
-still does not identify either candidate with the coordinates at `z + w`. -/
+still does not identify either candidate with the coordinates at `z + w`.
+@isnad1 id=tendsto.0h3v.s7.ecd9567aaad1 from=translated src=- shape=962e3bc2 vocab=32becb4b
+-/
 theorem tendsto_weierstrass_secant_addY_zero (L : PeriodPair) (a b : ℂ) :
     Tendsto (fun z : ℂ ↦
       let s := (L.derivWeierstrassP z - b) /

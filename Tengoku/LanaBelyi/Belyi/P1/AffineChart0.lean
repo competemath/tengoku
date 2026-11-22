@@ -49,6 +49,9 @@ noncomputable def awayEval₀ (s : R) : Away (P1Grading k) (X 0) →+* R :=
       (X 0) (by simp)).comp
     (algebraMap (Away (P1Grading k) (X 0)) (Localization.Away (X 0 : MvPolynomial (Fin 2) k)))
 
+/--
+@isnad1 id=eq.0h4v.s13.13de98d90a63 from=translated src=- shape=d1441fcc vocab=82e5d60d
+-/
 lemma awayEval₀_fromZeroRingHom (s : R) (x : P1Grading k 0) :
     awayEval₀ k s (fromZeroRingHom (P1Grading k) _ x) =
       aeval ![1, s] (x : MvPolynomial (Fin 2) k) := by
@@ -67,7 +70,9 @@ noncomputable def point₀ (s : R) : Spec (CommRingCat.of R) ⟶ P1 k :=
   Spec.map (CommRingCat.ofHom (awayEval₀ k s)) ≫
     Proj.awayι (P1Grading k) (X 0) (X_mem_P1Grading k 0) one_pos
 
-/-- The valued points in the chart `D₊(X₀)` are morphisms over `Spec k`. -/
+/-- The valued points in the chart `D₊(X₀)` are morphisms over `Spec k`.
+@isnad1 id=eq.0h3v.s6.82aa6016868d from=translated src=- shape=72182b8e vocab=7211fc03
+-/
 @[reassoc]
 lemma point₀_structMap (s : R) :
     point₀ k s ≫ structMap k = Spec.map (CommRingCat.ofHom (algebraMap k R)) := by

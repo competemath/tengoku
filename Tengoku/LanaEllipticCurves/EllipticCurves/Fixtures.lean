@@ -291,7 +291,9 @@ section CharZero
 variable (F : Type*) [Field F] [CharZero F]
 
 /-- `(3 : F) ≠ 0` in a field of characteristic zero. Mathlib's `three_ne_zero` asks for a `NeZero 3`
-instance that is not available here; the `2` case needs nothing, being Mathlib's `two_ne_zero`. -/
+instance that is not available here; the `2` case needs nothing, being Mathlib's `two_ne_zero`.
+@isnad1 id=ne.0h1v.s5.70f2427e3cd0 from=translated src=- shape=5e3b0e7f vocab=f700893f
+-/
 lemma three_ne_zero_of_charZero : (3 : F) ≠ 0 := by norm_num
 
 /-- `Δ = 64 ≠ 0`. -/
@@ -350,7 +352,9 @@ auto-generated-name finding, which is the only record of it.
 ⚠️ **Named rather than anonymous, for that same `#1277` reason.** Left anonymous, an instance whose
 elaborated type mentions no constant of this project gets the lake **library** name appended by
 `Lean.Elab.NameGen.mkBaseNameWithSuffix`, and the `defsWithUnderscore` linter does not report it
-because `IsElliptic` is a `Prop`. -/
+because `IsElliptic` is a `Prop`.
+@isnad1 id=isellipt.0h3v.s5.959ed49102ed from=translated src=- shape=0c6df760 vocab=273accee
+-/
 instance instIsEllipticBaseChange {S F : Type*} [CommRing S] [CommRing F] [Algebra S F]
     {W : WeierstrassCurve S} [W.IsElliptic] : (W⁄F).IsElliptic :=
   inferInstanceAs (W.map (algebraMap S F)).IsElliptic

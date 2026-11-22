@@ -43,6 +43,9 @@ values lie in `{0, 1}`. -/
 noncomputable def lambda (m n : ℕ) : ℚ[X] :=
   C (lambdaConst m n) * (X ^ m * (1 - X) ^ n)
 
+/--
+@isnad1 id=ne.2h2v.s5.e841c98dde81 from=translated src=- shape=c2f403a2 vocab=c832a6e9
+-/
 lemma lambdaConst_ne_zero {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) : lambdaConst m n ≠ 0 := by
   have h1 : (m : ℚ) ≠ 0 := Nat.cast_ne_zero.mpr hm
   have h2 : (n : ℚ) ≠ 0 := Nat.cast_ne_zero.mpr hn
@@ -50,6 +53,9 @@ lemma lambdaConst_ne_zero {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) : lambdaCons
   simp only [lambdaConst]
   positivity
 
+/--
+@isnad1 id=ne.2h2v.s5.cb0e36a82424 from=translated src=- shape=9567fdef vocab=64f9a3ac
+-/
 lemma lambda_ne_zero {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) : lambda m n ≠ 0 := by
   have h1 : (1 - X : ℚ[X]) ≠ 0 := by
     intro h
@@ -57,6 +63,9 @@ lemma lambda_ne_zero {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) : lambda m n ≠ 
     simp at this
   simp [lambda, lambdaConst_ne_zero hm hn, X_ne_zero, h1]
 
+/--
+@isnad1 id=eq.2h2v.s5.10ff9e03401a from=translated src=- shape=687d175c vocab=178ac02c
+-/
 lemma natDegree_lambda {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) :
     (lambda m n).natDegree = m + n := by
   have h1 : (1 - X : ℚ[X]).natDegree = 1 := by
@@ -68,14 +77,23 @@ lemma natDegree_lambda {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) :
     natDegree_mul (pow_ne_zero _ X_ne_zero) (pow_ne_zero _ h2),
     natDegree_pow, natDegree_pow, natDegree_X, h1, mul_one, mul_one]
 
+/--
+@isnad1 id=eq.1h2v.s4.f446bea30849 from=translated src=- shape=a910e1b4 vocab=d49f1bff
+-/
 @[simp]
 lemma lambda_eval_zero {m n : ℕ} (hm : m ≠ 0) : (lambda m n).eval 0 = 0 := by
   simp [lambda, zero_pow hm]
 
+/--
+@isnad1 id=eq.1h2v.s4.eaa9986eb2d4 from=translated src=- shape=3eed17e2 vocab=d49f1bff
+-/
 @[simp]
 lemma lambda_eval_one {m n : ℕ} (hn : n ≠ 0) : (lambda m n).eval 1 = 0 := by
   simp [lambda, zero_pow hn]
 
+/--
+@isnad1 id=eq.2h2v.s5.a4f9588206a5 from=translated src=- shape=5d2b91db vocab=4617a97b
+-/
 lemma lambda_eval_mid {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) :
     (lambda m n).eval ((m : ℚ) / (m + n)) = 1 := by
   have h1 : (m : ℚ) ≠ 0 := Nat.cast_ne_zero.mpr hm
@@ -89,7 +107,9 @@ lemma lambda_eval_mid {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) :
   field_simp
   ring
 
-/-- The derivative of `λ_{m,n}` in factored form: its roots are `0`, `1` and `m/(m+n)`. -/
+/-- The derivative of `λ_{m,n}` in factored form: its roots are `0`, `1` and `m/(m+n)`.
+@isnad1 id=eq.0h2v.s8.4fe740b677db from=translated src=- shape=664de9de vocab=c38bd6eb
+-/
 lemma derivative_lambda (m n : ℕ) :
     derivative (lambda (m + 1) (n + 1)) =
       C (lambdaConst (m + 1) (n + 1)) *
@@ -100,7 +120,9 @@ lemma derivative_lambda (m n : ℕ) :
   simp only [C_add, C_1, C_eq_natCast]
   ring
 
-/-- The critical values of `λ_{m,n}` (in any field extension `K` of `ℚ`) lie in `{0, 1}`. -/
+/-- The critical values of `λ_{m,n}` (in any field extension `K` of `ℚ`) lie in `{0, 1}`.
+@isnad1 id=or.3h4v.s6.4325ea261809 from=translated src=- shape=fc9946a3 vocab=712c9c2b
+-/
 lemma critVal_lambda {K : Type*} [Field K] [Algebra ℚ K] {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0)
     {x : K} (hx : x ∈ critVal K (lambda m n)) : x = 0 ∨ x = 1 := by
   obtain ⟨m, rfl⟩ := Nat.exists_eq_succ_of_ne_zero hm

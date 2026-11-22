@@ -65,7 +65,9 @@ noncomputable def specialize (W : WeierstrassCurve R) : MvPolynomial (Fin 5) ℤ
   MvPolynomial.eval₂Hom (Int.castRingHom R) ![W.a₁, W.a₂, W.a₃, W.a₄, W.a₆]
 
 /-- Base changing the universal curve along `W.specialize` recovers `W`:
-`univ.map W.specialize = W`. -/
+`univ.map W.specialize = W`.
+@isnad1 id=eq.0h2v.s5.045978374acb from=translated src=- shape=673070cc vocab=e23d9bcc
+-/
 theorem univ_map_specialize (W : WeierstrassCurve R) : univ.map W.specialize = W := by
   ext <;>
     simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃,

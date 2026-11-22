@@ -39,6 +39,9 @@ noncomputable def latticeProfile (α : ℝ) : ℝ :=
 (paper `eq:subcritical-lattice-map`): `L_A(h) = 𝔼[Q₁(A√h·G)²]`. -/
 noncomputable def latticeMap (A h : ℝ) : ℝ := latticeProfile (A * Real.sqrt h)
 
+/--
+@isnad1 id=eq.0h2v.s4.694077b3709f from=translated src=- shape=145ec29a vocab=44532529
+-/
 @[simp] lemma latticeMap_eq (A h : ℝ) :
     latticeMap A h = latticeProfile (A * Real.sqrt h) := rfl
 
@@ -48,24 +51,32 @@ noncomputable def roundedMeanMap (A ρ h : ℝ) : ℝ :=
   ∫ g, ((Q₁ (ρ⁻¹ * Real.tanh (ρ * A * Real.sqrt h * g)) : ℝ)) ^ 2
     ∂(gaussianReal 0 1)
 
-/-- The origin is fixed by the rounded squared-radius mean map. -/
+/-- The origin is fixed by the rounded squared-radius mean map.
+@isnad1 id=eq.0h2v.s4.1aa091fc161c from=translated src=- shape=9bf57cd7 vocab=5b08059d
+-/
 @[simp] lemma roundedMeanMap_zero (A ρ : ℝ) : roundedMeanMap A ρ 0 = 0 := by
   have hQ : Q₁ (0 : ℝ) = 0 := (Q₁_zero_iff 0).mpr (by norm_num)
   simp [roundedMeanMap, hQ]
 
-/-- The lattice profile is nonnegative (an integral of a square). -/
+/-- The lattice profile is nonnegative (an integral of a square).
+@isnad1 id=le.0h1v.s3.421ad134dddc from=translated src=- shape=8a62b088 vocab=3a5dd236
+-/
 lemma latticeProfile_nonneg (α : ℝ) : 0 ≤ latticeProfile α :=
   integral_nonneg fun g => by positivity
 
 /-- `|Q₁ u|` is within `1/2` of `|u|`; in particular `|(Q₁ u : ℝ)| ≤ |u| + 1/2`
-(paper's rounding bound `|Q₁(u)| ≤ |u| + 1/2` on `{|u|>1/2}`, here stated for all `u`). -/
+(paper's rounding bound `|Q₁(u)| ≤ |u| + 1/2` on `{|u|>1/2}`, here stated for all `u`).
+@isnad1 id=le.0h1v.s5.e3b9566b4071 from=translated src=- shape=f0d0fc83 vocab=15160d36
+-/
 lemma abs_Q₁_le (u : ℝ) : |(Q₁ u : ℝ)| ≤ |u| + 2⁻¹ := by
   have h := Q₁_sub_le u
   have h2 := abs_sub_abs_le_abs_sub (Q₁ u : ℝ) u
   linarith
 
 /-- `|Q₁ u| ≤ 2|u|` for every `u`: on the zero bin `{|u|≤1/2}` the left side vanishes, and
-off it `|Q₁ u| ≤ |u| + 1/2 ≤ 2|u|` (paper's `|Q₁(u)| ≤ 2|u|` on `{|u|>1/2}`). -/
+off it `|Q₁ u| ≤ |u| + 1/2 ≤ 2|u|` (paper's `|Q₁(u)| ≤ 2|u|` on `{|u|>1/2}`).
+@isnad1 id=le.0h1v.s5.536dff334003 from=translated src=- shape=d7709319 vocab=0a8a1219
+-/
 lemma abs_Q₁_le_two_abs (u : ℝ) : |(Q₁ u : ℝ)| ≤ 2 * |u| := by
   by_cases h : |u| ≤ 2⁻¹
   · rw [(Q₁_zero_iff u).mpr h, Int.cast_zero, abs_zero]; positivity
@@ -74,7 +85,9 @@ lemma abs_Q₁_le_two_abs (u : ℝ) : |(Q₁ u : ℝ)| ≤ 2 * |u| := by
     linarith
 
 /-- Unit-grid rounding is monotone.  This will make its discontinuity set countable,
-which is the a.e. input in the continuity proof for `latticeProfile`. -/
+which is the a.e. input in the continuity proof for `latticeProfile`.
+@isnad1 id=monotone.0h0v.s4.5a2629b4a116 from=translated src=- shape=54c8eceb vocab=9aea9d1a
+-/
 lemma monotone_Q₁ : Monotone Q₁ := by
   intro u v huv
   unfold Q₁
@@ -92,7 +105,9 @@ lemma monotone_Q₁ : Monotone Q₁ := by
     · rw [ite_eq_right hu, ite_eq_right hv]
       exact neg_le_neg (Int.ceil_mono (sub_le_sub_right (neg_le_neg huv) _))
 
-/-- The magnitude of unit-grid rounding depends only on the magnitude of its input. -/
+/-- The magnitude of unit-grid rounding depends only on the magnitude of its input.
+@isnad1 id=eq.0h1v.s5.5d43d2d349dd from=translated src=- shape=b3718fde vocab=9a34043f
+-/
 lemma abs_Q₁_eq_ceil_abs_sub (u : ℝ) :
     |(Q₁ u : ℝ)| = (⌈|u| - 2⁻¹⌉ : ℤ) := by
   have hceil : 0 ≤ ⌈|u| - 2⁻¹⌉ := by
@@ -105,7 +120,9 @@ lemma abs_Q₁_eq_ceil_abs_sub (u : ℝ) :
     rw [ite_eq_right hu, abs_of_neg hu', Int.cast_neg, abs_neg, abs_of_nonneg]
     · simpa [abs_of_neg hu'] using hceil
 
-/-- Unit-grid rounding is monotone in magnitude. -/
+/-- Unit-grid rounding is monotone in magnitude.
+@isnad1 id=le.1h2v.s5.3e0d8cadb526 from=translated src=- shape=87880a84 vocab=2d15d908
+-/
 lemma abs_Q₁_mono {u v : ℝ} (huv : |u| ≤ |v|) :
     |(Q₁ u : ℝ)| ≤ |(Q₁ v : ℝ)| := by
   rw [abs_Q₁_eq_ceil_abs_sub, abs_Q₁_eq_ceil_abs_sub]
@@ -131,7 +148,9 @@ private lemma lattice_hasDerivAt_tanh (x : ℝ) :
     field_simp
   rwa [hval] at h
 
-/-- Lightweight strict monotonicity of `tanh`, kept in the lattice import path. -/
+/-- Lightweight strict monotonicity of `tanh`, kept in the lattice import path.
+@isnad1 id=strictmo.0h0v.s2.39ccf472573c from=translated src=- shape=e3d48bcb vocab=6282884c
+-/
 lemma strictMono_tanh_light : StrictMono Real.tanh := by
   apply strictMono_of_deriv_pos
   intro x
@@ -158,7 +177,9 @@ private lemma lattice_tanh_le_self {x : ℝ} (hx : 0 ≤ x) : Real.tanh x ≤ x 
     simp only [Real.tanh_zero, sub_zero] at h0
     linarith
 
-/-- The hyperbolic tangent has no larger magnitude than its argument. -/
+/-- The hyperbolic tangent has no larger magnitude than its argument.
+@isnad1 id=le.0h1v.s4.fda82c85450d from=translated src=- shape=f34b9acb vocab=9942bb16
+-/
 lemma abs_tanh_le_abs (x : ℝ) : |Real.tanh x| ≤ |x| := by
   by_cases hx : 0 ≤ x
   · have h0 : 0 ≤ Real.tanh x := by
@@ -300,7 +321,9 @@ private lemma gaussianReal_Ico_neg_two_neg_one_gt :
   exact gaussianReal_Ioc_one_two_gt
 
 /-- The elementary standard-Gaussian tail estimate used in the paper:
-`ℙ(|G| > 1) > 1/4`.  It suffices to integrate the density on `(1,2]` and its reflection. -/
+`ℙ(|G| > 1) > 1/4`.  It suffices to integrate the density on `(1,2]` and its reflection.
+@isnad1 id=lt.0h0v.s5.86baecad4689 from=translated src=- shape=dbae4780 vocab=672759c5
+-/
 lemma gaussianReal_abs_gt_one_gt_one_fourth :
     (1 / 4 : ℝ) < (gaussianReal 0 1).real {g : ℝ | 1 < |g|} := by
   let P : Set ℝ := Set.Ioc 1 2
@@ -336,7 +359,9 @@ lemma gaussianReal_abs_gt_one_gt_one_fourth :
   nlinarith [gaussianReal_Ioc_one_two_gt, gaussianReal_Ico_neg_two_neg_one_gt]
 
 /-- The squared rounded coordinate `Q₁(αG)²` is `𝒩(0,1)`-integrable, dominated by
-`2(αG)² + 1/2`. -/
+`2(αG)² + 1/2`.
+@isnad1 id=integrab.0h1v.s6.f6c7a8472a56 from=translated src=- shape=f15baba1 vocab=3debe5c5
+-/
 lemma integrable_sq_Q₁_gaussian (α : ℝ) :
     Integrable (fun g => ((Q₁ (α * g) : ℝ)) ^ 2) (gaussianReal 0 1) := by
   have hQmeas : Measurable (fun g => (Q₁ (α * g) : ℝ)) :=
@@ -358,7 +383,9 @@ lemma integrable_sq_Q₁_gaussian (α : ℝ) :
       · exact hb
     nlinarith [h1, sq_nonneg (|α * g| - 2⁻¹), sq_abs (α * g), sq_abs (Q₁ (α * g) : ℝ)]
 
-/-- The exact rounded mean map is dominated by its unit-grid lattice linearization. -/
+/-- The exact rounded mean map is dominated by its unit-grid lattice linearization.
+@isnad1 id=le.1h3v.s4.b79124d8b64f from=translated src=- shape=07c37bd0 vocab=44017cac
+-/
 lemma roundedMeanMap_le_latticeMap {A ρ h : ℝ} (hρ : 0 < ρ) :
     roundedMeanMap A ρ h ≤ latticeMap A h := by
   let f : ℝ → ℝ := fun g =>
@@ -399,7 +426,9 @@ lemma roundedMeanMap_le_latticeMap {A ρ h : ℝ} (hρ : 0 < ρ) :
   exact integral_mono hfint hFint hle
 
 /-- The lattice profile is strictly positive for `α ≠ 0`: the rounded coordinate is nonzero,
-hence `Q₁(αG)² ≥ 1`, on `{|αG|>1/2}`, a set of positive Gaussian measure. -/
+hence `Q₁(αG)² ≥ 1`, on `{|αG|>1/2}`, a set of positive Gaussian measure.
+@isnad1 id=lt.1h1v.s4.0b1cf0b17dfe from=translated src=- shape=2b511f7f vocab=bbf4f31e
+-/
 lemma latticeProfile_pos {α : ℝ} (hα : α ≠ 0) : 0 < latticeProfile α := by
   set S : Set ℝ := {g : ℝ | 2⁻¹ < |α * g|} with hS
   have hSmeas : MeasurableSet S :=
@@ -442,7 +471,9 @@ lemma latticeProfile_pos {α : ℝ} (hα : α ≠ 0) : 0 < latticeProfile α := 
         integral_mono hind_int (integrable_sq_Q₁_gaussian α) hle
 
 /-- At scale `1/2`, the lattice profile is strictly larger than `1/4`, since
-`Q₁(G/2)² ≥ 1` on `{|G| > 1}` and that event has probability greater than `1/4`. -/
+`Q₁(G/2)² ≥ 1` on `{|G| > 1}` and that event has probability greater than `1/4`.
+@isnad1 id=lt.0h0v.s5.6aa6d635e87c from=translated src=- shape=573007ee vocab=9523d68e
+-/
 lemma one_fourth_lt_latticeProfile_half :
     (1 / 4 : ℝ) < latticeProfile (1 / 2) := by
   let S : Set ℝ := {g : ℝ | 1 < |g|}
@@ -478,7 +509,9 @@ lemma one_fourth_lt_latticeProfile_half :
 
 /-- Near-zero endpoint (`eq:subcritical-lattice-small-alpha`): `m(α)/α² → 0` as `α ↓ 0`.
 Dominated convergence of `g ↦ (Q₁(αg)/α)²`: bounded by `4g²` (from `|Q₁ u| ≤ 2|u|`) and
-tending to `0` a.e. (for `g ≠ 0`, `Q₁(αg) = 0` once `|αg| ≤ 1/2`, i.e. eventually as `α↓0`). -/
+tending to `0` a.e. (for `g ≠ 0`, `Q₁(αg) = 0` once `|αg| ≤ 1/2`, i.e. eventually as `α↓0`).
+@isnad1 id=tendsto.0h0v.s6.0d570fe039b7 from=translated src=- shape=9789e0f9 vocab=3f7ea5bf
+-/
 lemma latticeProfile_ratio_tendsto_zero :
     Tendsto (fun α => latticeProfile α / α ^ 2) (𝓝[>] 0) (𝓝 0) := by
   have hbound_int : Integrable (fun g : ℝ => 4 * g ^ 2) (gaussianReal 0 1) :=
@@ -524,7 +557,9 @@ lemma latticeProfile_ratio_tendsto_zero :
 
 /-- Large-scale endpoint (`eq:subcritical-lattice-large-alpha`):
 `m(α)/α² → 1` as `α → ∞`.  After division by `α`, the rounding error is at most
-`1/(2α)`, while for `α ≥ 1` the squared integrand is dominated by `(|g|+1)²`. -/
+`1/(2α)`, while for `α ≥ 1` the squared integrand is dominated by `(|g|+1)²`.
+@isnad1 id=tendsto.0h0v.s5.ece821409453 from=translated src=- shape=ce7c7efc vocab=b8f93942
+-/
 lemma latticeProfile_ratio_tendsto_one :
     Tendsto (fun α => latticeProfile α / α ^ 2) atTop (𝓝 1) := by
   have habs_int : Integrable (fun g : ℝ => |g|) (gaussianReal 0 1) :=
@@ -585,7 +620,9 @@ lemma latticeProfile_ratio_tendsto_one :
 /-- The lattice profile is continuous on the positive half-line.  Following the paper,
 this is dominated convergence on a bounded `α`-neighborhood.  The rounded integrand
 converges pointwise away from the countable discontinuity set of the monotone map `Q₁`;
-that exceptional set has zero Gaussian measure. -/
+that exceptional set has zero Gaussian measure.
+@isnad1 id=continuo.0h0v.s4.c990cc42c0c0 from=translated src=- shape=f2a09be3 vocab=43896c56
+-/
 lemma continuousOn_latticeProfile : ContinuousOn latticeProfile (Set.Ioi 0) := by
   intro α hα
   have hα0 : α ≠ 0 := ne_of_gt hα
@@ -654,7 +691,9 @@ lemma continuousOn_latticeProfile : ContinuousOn latticeProfile (Set.Ioi 0) := b
     simpa only [latticeProfile] using hconv
   exact hc.continuousWithinAt
 
-/-- The normalized lattice profile `m(α)/α²` is continuous for positive `α`. -/
+/-- The normalized lattice profile `m(α)/α²` is continuous for positive `α`.
+@isnad1 id=continuo.0h0v.s5.c9c92dadfa68 from=translated src=- shape=19bfb0c9 vocab=6ec4ec12
+-/
 lemma continuousOn_latticeProfile_ratio :
     ContinuousOn (fun α => latticeProfile α / α ^ 2) (Set.Ioi 0) :=
   continuousOn_latticeProfile.div (continuousOn_id.pow 2)
@@ -670,13 +709,17 @@ noncomputable def latticeThresholdSq : ℝ :=
 noncomputable def latticeThreshold : ℝ :=
   Real.sqrt latticeThresholdSq
 
-/-- Every ratio entering the definition of `latticeThresholdSq` is nonnegative. -/
+/-- Every ratio entering the definition of `latticeThresholdSq` is nonnegative.
+@isnad1 id=le.0h1v.s6.91d8446bbca7 from=translated src=- shape=08cf6c11 vocab=af2efd2f
+-/
 lemma latticeProfile_sq_div_nonneg (α : {α : ℝ // 0 < α}) :
     0 ≤ (α : ℝ) ^ 2 / latticeProfile α :=
   div_nonneg (sq_nonneg _) (latticeProfile_nonneg _)
 
 /-- The zero-bin estimate `|Q₁(u)| ≤ 2|u|` gives the global bound
-`m(α) ≤ 4α²`. -/
+`m(α) ≤ 4α²`.
+@isnad1 id=le.0h1v.s5.36a9cfdf3e81 from=translated src=- shape=3543e443 vocab=1aa5bd3d
+-/
 lemma latticeProfile_le_four_mul_sq (α : ℝ) :
     latticeProfile α ≤ 4 * α ^ 2 := by
   have hright : Integrable (fun g : ℝ => 4 * α ^ 2 * g ^ 2) (gaussianReal 0 1) :=
@@ -693,19 +736,25 @@ lemma latticeProfile_le_four_mul_sq (α : ℝ) :
           nlinarith
     _ = 4 * α ^ 2 := by rw [integral_const_mul, integral_sq_gaussian', mul_one]
 
-/-- Every positive-scale ratio defining the squared lattice threshold is at least `1/4`. -/
+/-- Every positive-scale ratio defining the squared lattice threshold is at least `1/4`.
+@isnad1 id=le.0h1v.s6.bb1818e03ef6 from=translated src=- shape=f1d5d431 vocab=16e12a74
+-/
 lemma one_fourth_le_latticeProfile_sq_div (α : {α : ℝ // 0 < α}) :
     (4 : ℝ)⁻¹ ≤ (α : ℝ) ^ 2 / latticeProfile α := by
   rw [le_div_iff₀ (latticeProfile_pos (ne_of_gt α.property))]
   have hbound := latticeProfile_le_four_mul_sq (α : ℝ)
   nlinarith
 
-/-- The squared lattice threshold is nonnegative. -/
+/-- The squared lattice threshold is nonnegative.
+@isnad1 id=le.0h0v.s3.73b87b893d61 from=translated src=- shape=ff3a10fc vocab=ac1f4cc6
+-/
 lemma latticeThresholdSq_nonneg : 0 ≤ latticeThresholdSq := by
   rw [latticeThresholdSq]
   exact le_ciInf fun α => latticeProfile_sq_div_nonneg α
 
-/-- The squared lattice threshold is strictly positive. -/
+/-- The squared lattice threshold is strictly positive.
+@isnad1 id=lt.0h0v.s3.a50046597407 from=translated src=- shape=ff3a10fc vocab=853385d6
+-/
 lemma latticeThresholdSq_pos : 0 < latticeThresholdSq := by
   have hquarter : (4 : ℝ)⁻¹ ≤ latticeThresholdSq := by
     rw [latticeThresholdSq]
@@ -713,7 +762,9 @@ lemma latticeThresholdSq_pos : 0 < latticeThresholdSq := by
   positivity
 
 /-- The squared lattice threshold is strictly smaller than one, by evaluating its
-defining infimum at `α = 1/2`. -/
+defining infimum at `α = 1/2`.
+@isnad1 id=lt.0h0v.s3.8d4f69f76a41 from=translated src=- shape=ffdda526 vocab=853385d6
+-/
 lemma latticeThresholdSq_lt_one : latticeThresholdSq < 1 := by
   let α : {α : ℝ // 0 < α} := ⟨1 / 2, by norm_num⟩
   have hbdd : BddBelow (Set.range fun β : {β : ℝ // 0 < β} =>
@@ -729,27 +780,37 @@ lemma latticeThresholdSq_lt_one : latticeThresholdSq < 1 := by
     exact one_fourth_lt_latticeProfile_half
   exact hle.trans_lt hratio
 
-/-- The lattice threshold is nonnegative. -/
+/-- The lattice threshold is nonnegative.
+@isnad1 id=le.0h0v.s3.66b98338abf8 from=translated src=- shape=ff3a10fc vocab=97ac6145
+-/
 lemma latticeThreshold_nonneg : 0 ≤ latticeThreshold :=
   Real.sqrt_nonneg _
 
-/-- The lattice threshold is strictly positive. -/
+/-- The lattice threshold is strictly positive.
+@isnad1 id=lt.0h0v.s3.5e20c44ae9cd from=translated src=- shape=ff3a10fc vocab=1a880d32
+-/
 lemma latticeThreshold_pos : 0 < latticeThreshold := by
   rw [latticeThreshold]
   exact Real.sqrt_pos.2 latticeThresholdSq_pos
 
-/-- The lattice threshold belongs to the open unit interval. -/
+/-- The lattice threshold belongs to the open unit interval.
+@isnad1 id=lt.0h0v.s3.91edce4d85c9 from=translated src=- shape=ffdda526 vocab=1a880d32
+-/
 lemma latticeThreshold_lt_one : latticeThreshold < 1 := by
   have hsquare : latticeThreshold ^ 2 = latticeThresholdSq := by
     rw [latticeThreshold, Real.sq_sqrt latticeThresholdSq_nonneg]
   nlinarith [hsquare, latticeThreshold_nonneg, latticeThresholdSq_lt_one]
 
-/-- Squaring the lattice threshold recovers the infimum defining its square. -/
+/-- Squaring the lattice threshold recovers the infimum defining its square.
+@isnad1 id=eq.0h0v.s4.86bc2a01f273 from=translated src=- shape=f23f23a3 vocab=7c5f745f
+-/
 @[simp] lemma latticeThreshold_sq : latticeThreshold ^ 2 = latticeThresholdSq := by
   rw [latticeThreshold, Real.sq_sqrt latticeThresholdSq_nonneg]
 
 /-- The squared lattice threshold is below every positive-scale ratio entering its
-defining infimum. -/
+defining infimum.
+@isnad1 id=le.1h1v.s5.1529e26bc434 from=translated src=- shape=2e2998bd vocab=a85cb35c
+-/
 lemma latticeThresholdSq_le_sq_div_profile {α : ℝ} (hα : 0 < α) :
     latticeThresholdSq ≤ α ^ 2 / latticeProfile α := by
   let β : {β : ℝ // 0 < β} := ⟨α, hα⟩
@@ -760,7 +821,9 @@ lemma latticeThresholdSq_le_sq_div_profile {α : ℝ} (hα : 0 < α) :
   exact ciInf_le hbdd β
 
 /-- Below the lattice threshold, the normalized profile is strictly contractive at
-every positive scale. -/
+every positive scale.
+@isnad1 id=lt.3h2v.s6.923d87b5f6b1 from=translated src=- shape=7df4a7ae vocab=01e518cf
+-/
 lemma sq_mul_latticeProfile_div_sq_lt_one {A α : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold) (hα : 0 < α) :
     A ^ 2 * latticeProfile α / α ^ 2 < 1 := by
@@ -774,7 +837,9 @@ lemma sq_mul_latticeProfile_div_sq_lt_one {A α : ℝ}
   exact hratio
 
 /-- Normalizing `L_A(h)` by `h` is the same as normalizing the profile at the scale
-`α = A√h`, with the factor `A²` restored. -/
+`α = A√h`, with the factor `A²` restored.
+@isnad1 id=eq.2h2v.s6.4deaa55130cd from=translated src=- shape=9ac6425c vocab=50aa2ae8
+-/
 lemma latticeMap_div_eq_sq_mul_profile_div_sq {A h : ℝ} (hA : 0 < A) (hh : 0 < h) :
     latticeMap A h / h =
       A ^ 2 * latticeProfile (A * Real.sqrt h) / (A * Real.sqrt h) ^ 2 := by
@@ -784,7 +849,9 @@ lemma latticeMap_div_eq_sq_mul_profile_div_sq {A h : ℝ} (hA : 0 < A) (hh : 0 <
   rw [mul_pow, hsqrt_sq]
   field_simp
 
-/-- At small positive radii, the normalized comparison map tends to zero. -/
+/-- At small positive radii, the normalized comparison map tends to zero.
+@isnad1 id=tendsto.1h1v.s6.9ffa35463a8f from=translated src=- shape=04ee6d41 vocab=2fe17863
+-/
 lemma latticeMap_ratio_tendsto_zero {A : ℝ} (hA : 0 < A) :
     Tendsto (fun h => latticeMap A h / h) (𝓝[>] 0) (𝓝 0) := by
   have hsqrt : Tendsto (fun h : ℝ => Real.sqrt h) (𝓝[>] 0) (𝓝[>] 0) := by
@@ -802,7 +869,9 @@ lemma latticeMap_ratio_tendsto_zero {A : ℝ} (hA : 0 < A) :
   filter_upwards [self_mem_nhdsWithin] with h hh
   rw [latticeMap_div_eq_sq_mul_profile_div_sq hA hh, mul_div_assoc]
 
-/-- At large radii, the normalized comparison map tends to `A²`. -/
+/-- At large radii, the normalized comparison map tends to `A²`.
+@isnad1 id=tendsto.1h1v.s5.f5da28dd2c81 from=translated src=- shape=25e88afd vocab=6ee62926
+-/
 lemma latticeMap_ratio_tendsto_sq_atTop {A : ℝ} (hA : 0 < A) :
     Tendsto (fun h => latticeMap A h / h) atTop (𝓝 (A ^ 2)) := by
   have hscale : Tendsto (fun h : ℝ => A * Real.sqrt h) atTop atTop :=
@@ -815,7 +884,9 @@ lemma latticeMap_ratio_tendsto_sq_atTop {A : ℝ} (hA : 0 < A) :
   filter_upwards [eventually_gt_atTop (0 : ℝ)] with h hh
   rw [latticeMap_div_eq_sq_mul_profile_div_sq hA hh, mul_div_assoc]
 
-/-- The normalized comparison map `L_A(h)/h` is continuous at positive radii. -/
+/-- The normalized comparison map `L_A(h)/h` is continuous at positive radii.
+@isnad1 id=continuo.1h1v.s5.b08b12418e57 from=translated src=- shape=85dcaf39 vocab=3065a98d
+-/
 lemma continuousOn_latticeMap_ratio {A : ℝ} (hA : 0 < A) :
     ContinuousOn (fun h => latticeMap A h / h) (Set.Ioi 0) := by
   have hscale : ContinuousOn (fun h : ℝ => A * Real.sqrt h) (Set.Ioi 0) :=
@@ -826,7 +897,9 @@ lemma continuousOn_latticeMap_ratio {A : ℝ} (hA : 0 < A) :
     exact mul_pos hA (Real.sqrt_pos.2 hh)
   exact hmap.div continuousOn_id (fun h hh => ne_of_gt hh)
 
-/-- Below threshold, the normalized comparison map is pointwise strictly below one. -/
+/-- Below threshold, the normalized comparison map is pointwise strictly below one.
+@isnad1 id=lt.3h2v.s5.999d6b9a429c from=translated src=- shape=9ac1c6b9 vocab=50d9717a
+-/
 lemma latticeMap_ratio_lt_one {A h : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold) (hh : 0 < h) :
     latticeMap A h / h < 1 := by
@@ -834,7 +907,9 @@ lemma latticeMap_ratio_lt_one {A h : ℝ}
   exact sq_mul_latticeProfile_div_sq_lt_one hA hA_lt
     (mul_pos hA (Real.sqrt_pos.2 hh))
 
-/-- Below threshold, the normalized comparison map is already below one on both tails. -/
+/-- Below threshold, the normalized comparison map is already below one on both tails.
+@isnad1 id=ex.2h1v.s6.755b8ec1fd62 from=translated src=- shape=9b3e58e7 vocab=ef0596f8
+-/
 lemma exists_latticeMap_ratio_tail_cutoffs {A : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold) :
     ∃ a R : ℝ, 0 < a ∧ a ≤ R ∧
@@ -855,7 +930,9 @@ lemma exists_latticeMap_ratio_tail_cutoffs {A : ℝ}
     exact hR₀ h (le_trans (le_max_right _ _) hRh)
 
 /-- Below threshold, both tails of the normalized comparison map admit one common
-uniform bound strictly below one. -/
+uniform bound strictly below one.
+@isnad1 id=ex.2h1v.s6.242b7844a389 from=translated src=- shape=8b7c1d24 vocab=ef0596f8
+-/
 lemma exists_latticeMap_ratio_tail_bound {A : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold) :
     ∃ a R θ : ℝ, 0 < a ∧ a ≤ R ∧ θ < 1 ∧
@@ -883,7 +960,9 @@ lemma exists_latticeMap_ratio_tail_bound {A : ℝ}
     exact le_of_lt (hR₀ h (le_trans (le_max_right _ _) hRh))
 
 /-- On every positive compact middle interval, the normalized comparison map has a
-uniform bound strictly below one. -/
+uniform bound strictly below one.
+@isnad1 id=ex.4h3v.s6.1837e1db818b from=translated src=- shape=1704eab7 vocab=154259c3
+-/
 lemma exists_latticeMap_ratio_middle_bound {A a R : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold) (ha : 0 < a) (haR : a ≤ R) :
     ∃ θ : ℝ, θ < 1 ∧ ∀ h ∈ Set.Icc a R, latticeMap A h / h ≤ θ := by
@@ -897,7 +976,9 @@ lemma exists_latticeMap_ratio_middle_bound {A a R : ℝ}
   exact hmax
 
 /-- Below the lattice threshold, the comparison map is a uniform strict contraction
-on the whole positive half-line (claim (II) of `lem:subcritical-lattice-regimes`). -/
+on the whole positive half-line (claim (II) of `lem:subcritical-lattice-regimes`).
+@isnad1 id=ex.2h1v.s6.70ee3ffdc18b from=translated src=- shape=ae4669fd vocab=273eb10d
+-/
 lemma exists_latticeMap_le_mul {A : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold) :
     ∃ θ : ℝ, 0 < θ ∧ θ < 1 ∧ ∀ h, 0 < h → latticeMap A h ≤ θ * h := by
@@ -926,7 +1007,9 @@ lemma exists_latticeMap_le_mul {A : ℝ}
 
 /-- Below the lattice threshold, the exact rounded mean map contracts uniformly,
 independently of the positive grid scale (claim (III) of
-`lem:subcritical-lattice-regimes`). -/
+`lem:subcritical-lattice-regimes`).
+@isnad1 id=ex.3h2v.s6.b92113be2763 from=translated src=- shape=20f495ef vocab=4ab7bab7
+-/
 lemma exists_roundedMeanMap_le_mul {A ρ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold) (hρ : 0 < ρ) :
     ∃ θ : ℝ, 0 < θ ∧ θ < 1 ∧

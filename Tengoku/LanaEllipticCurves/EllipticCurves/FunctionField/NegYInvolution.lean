@@ -226,20 +226,26 @@ namespace Affine
 /-- **The Weierstrass polynomial is invariant under `Y ↦ −Y − a₁X − a₃`.**  This is the identity
 that makes the hyperelliptic involution exist: expanding
 `(−Y − a₁X − a₃)² + a₁X(−Y − a₁X − a₃) + a₃(−Y − a₁X − a₃)` returns `Y² + a₁XY + a₃Y`, the square
-and cross terms cancelling identically. -/
+and cross terms cancelling identically.
+@isnad1 id=eq.0h2v.s5.f62b870a891c from=translated src=- shape=94a2b2ad vocab=4ecfdd59
+-/
 theorem polynomial_comp_negPolynomial :
     W'.polynomial.comp W'.negPolynomial = W'.polynomial := by
   simp only [polynomial, negPolynomial, sub_comp, add_comp, mul_comp, pow_comp, X_comp, C_comp]
   ring1
 
-/-- **`Y ↦ −Y − a₁X − a₃` is an involution of `R[X][Y]`.** -/
+/-- **`Y ↦ −Y − a₁X − a₃` is an involution of `R[X][Y]`.**
+@isnad1 id=eq.0h2v.s5.4033f0a680ad from=translated src=- shape=101a4d8b vocab=641ced1c
+-/
 theorem negPolynomial_comp_negPolynomial :
     W'.negPolynomial.comp W'.negPolynomial = (Y : R[X][Y]) := by
   simp only [negPolynomial, sub_comp, neg_comp, X_comp, C_comp]
   ring1
 
 /-- The `Y`-degree of `W.polynomialY = 2Y + (a₁X + a₃)` is at most one — the fact that makes
-`W.polynomial ∣ W.polynomialY` collapse to `W.polynomialY = 0`. -/
+`W.polynomial ∣ W.polynomialY` collapse to `W.polynomialY = 0`.
+@isnad1 id=le.0h2v.s5.0f7d17ad4320 from=translated src=- shape=943001ac vocab=f64e0b90
+-/
 lemma natDegree_polynomialY_le : W'.polynomialY.natDegree ≤ 1 := by
   rw [polynomialY]
   refine le_trans (natDegree_add_le _ _) (max_le ?_ ?_)
@@ -256,7 +262,9 @@ variable {W'}
 
 No case analysis and no `j`-invariant: the three hypotheses kill `b₂ = a₁² + 4a₂`,
 `b₄ = 2a₄ + a₁a₃` and `b₆ = a₃² + 4a₆`, and every term of
-`Δ = −b₂²b₈ − 8b₄³ − 27b₆² + 9b₂b₄b₆` carries one of the three.  `b₈` is never computed. -/
+`Δ = −b₂²b₈ − 8b₄³ − 27b₆² + 9b₂b₄b₆` carries one of the three.  `b₈` is never computed.
+@isnad1 id=eq.3h2v.s6.87c2c2e7ecdc from=translated src=- shape=8d5d6620 vocab=36498000
+-/
 theorem Δ_eq_zero_of_two_eq_zero (h2 : (2 : R) = 0) (h1 : W'.a₁ = 0) (h3 : W'.a₃ = 0) :
     W'.Δ = 0 := by
   have hb2 : W'.b₂ = 0 := by simp only [b₂, h1]; linear_combination 2 * W'.a₂ * h2
@@ -267,7 +275,9 @@ theorem Δ_eq_zero_of_two_eq_zero (h2 : (2 : R) = 0) (h1 : W'.a₁ = 0) (h3 : W'
 
 /-- **`W.polynomialY = 0` forces `Δ = 0`.**  Reading off the two coefficients of
 `W.polynomialY = C (C 2) * Y + C (C a₁ * X + C a₃)` gives `2 = 0`, `a₁ = 0` and `a₃ = 0`, and then
-`Δ_eq_zero_of_two_eq_zero` applies. -/
+`Δ_eq_zero_of_two_eq_zero` applies.
+@isnad1 id=eq.1h2v.s6.3284199f4d5b from=translated src=- shape=c3418a84 vocab=ac0b836d
+-/
 theorem Δ_eq_zero_of_polynomialY_eq_zero (h : W'.polynomialY = 0) : W'.Δ = 0 := by
   have h2 : (2 : R) = 0 := by
     have := congrArg (fun p : R[X][Y] => (p.coeff 1).coeff 0) h
@@ -284,7 +294,9 @@ theorem Δ_eq_zero_of_polynomialY_eq_zero (h : W'.polynomialY = 0) : W'.Δ = 0 :
   exact Δ_eq_zero_of_two_eq_zero h2 h1 h3
 
 /-- **For an elliptic curve `W.polynomialY` is nonzero, in every characteristic.**  Contrapositive
-of `Δ_eq_zero_of_polynomialY_eq_zero` against `IsElliptic`. -/
+of `Δ_eq_zero_of_polynomialY_eq_zero` against `IsElliptic`.
+@isnad1 id=ne.0h2v.s6.0b506af78307 from=translated src=- shape=3eceb198 vocab=db0216d8
+-/
 theorem Affine.polynomialY_ne_zero [Nontrivial R] [W'.IsElliptic] : W'.polynomialY ≠ 0 :=
   fun h => W'.isUnit_Δ.ne_zero (Δ_eq_zero_of_polynomialY_eq_zero h)
 
@@ -296,14 +308,18 @@ namespace CoordinateRing
 variable (W')
 
 /-- Evaluating a bivariate polynomial at the class of another one is the class of their
-composite: `mk W (q ∘ r) = eval₂ (of W.polynomial) (mk W r) q`. -/
+composite: `mk W (q ∘ r) = eval₂ (of W.polynomial) (mk W r) q`.
+@isnad1 id=eq.0h4v.s9.cce5072739f2 from=translated src=- shape=eb720362 vocab=e87caf5d
+-/
 lemma eval₂_of_mk_eq_mk_comp (q r : R[X][Y]) :
     q.eval₂ (AdjoinRoot.of W'.polynomial) (mk W' r) = mk W' (q.comp r) := by
   rw [Polynomial.comp, Polynomial.hom_eval₂]
   rfl
 
 /-- The well-definedness obligation of `negYCoordHom`: the class of `W.negPolynomial` is a root of
-`W.polynomial` in `F[W]`, which is `polynomial_comp_negPolynomial` read through `mk`. -/
+`W.polynomial` in `F[W]`, which is `polynomial_comp_negPolynomial` read through `mk`.
+@isnad1 id=eq.0h2v.s9.8ea5ab3667c0 from=translated src=- shape=7c61ee36 vocab=0e4fec6a
+-/
 lemma eval₂_ofId_mk_negPolynomial :
     W'.polynomial.eval₂ (Algebra.ofId R[X] W'.CoordinateRing) (mk W' W'.negPolynomial) = 0 := by
   rw [show ((Algebra.ofId R[X] W'.CoordinateRing : R[X] →+* W'.CoordinateRing))
@@ -317,23 +333,34 @@ noncomputable def negYCoordHom : W'.CoordinateRing →ₐ[R[X]] W'.CoordinateRin
   AdjoinRoot.liftAlgHom W'.polynomial (Algebra.ofId R[X] W'.CoordinateRing)
     (mk W' W'.negPolynomial) (eval₂_ofId_mk_negPolynomial W')
 
+/--
+@isnad1 id=eq.0h3v.s9.4e87d69ce5cf from=translated src=- shape=f4af4bba vocab=a35d9caa
+-/
 @[simp] lemma negYCoordHom_mk (q : R[X][Y]) :
     negYCoordHom W' (mk W' q) = mk W' (q.comp W'.negPolynomial) := by
   rw [negYCoordHom, AdjoinRoot.liftAlgHom_mk]
   exact eval₂_of_mk_eq_mk_comp W' q W'.negPolynomial
 
+/--
+@isnad1 id=eq.0h2v.s8.747d0e6e0d4d from=translated src=- shape=29291d14 vocab=a26dcd36
+-/
 @[simp] lemma negYCoordHom_root :
     negYCoordHom W' (AdjoinRoot.root W'.polynomial) = mk W' W'.negPolynomial := by
   rw [← AdjoinRoot.mk_X, negYCoordHom_mk, X_comp]
 
 /-- **The coordinate-ring map is an involution**, by `negPolynomial_comp_negPolynomial` on the
-root. -/
+root.
+@isnad1 id=eq.0h2v.s7.b91beed4202c from=translated src=- shape=510a5a33 vocab=5854e42b
+-/
 lemma negYCoordHom_comp_negYCoordHom :
     (negYCoordHom W').comp (negYCoordHom W') = AlgHom.id R[X] W'.CoordinateRing :=
   AdjoinRoot.algHom_ext <| by
     rw [AlgHom.comp_apply, negYCoordHom_root, negYCoordHom_mk,
       negPolynomial_comp_negPolynomial, AdjoinRoot.mk_X, AlgHom.coe_id, id_eq]
 
+/--
+@isnad1 id=eq.0h3v.s8.fbf658b8e73d from=translated src=- shape=96d924fd vocab=d7da137a
+-/
 @[simp] lemma negYCoordHom_negYCoordHom (g : W'.CoordinateRing) :
     negYCoordHom W' (negYCoordHom W' g) = g :=
   DFunLike.congr_fun (negYCoordHom_comp_negYCoordHom W') g
@@ -344,6 +371,9 @@ noncomputable def negYCoordEquiv : W'.CoordinateRing ≃ₐ[R[X]] W'.CoordinateR
   AlgEquiv.ofAlgHom (negYCoordHom W') (negYCoordHom W')
     (negYCoordHom_comp_negYCoordHom W') (negYCoordHom_comp_negYCoordHom W')
 
+/--
+@isnad1 id=eq.0h3v.s8.29be0daf611f from=translated src=- shape=36ab7511 vocab=c3f6ebe1
+-/
 @[simp] lemma negYCoordEquiv_apply (g : W'.CoordinateRing) :
     negYCoordEquiv W' g = negYCoordHom W' g := rfl
 
@@ -359,6 +389,9 @@ is only partially defined"* — because `ι` **does** preserve the affine coordi
 noncomputable def negYEquiv : W.FunctionField ≃+* W.FunctionField :=
   IsFractionRing.ringEquivOfRingEquiv (negYCoordEquiv W).toRingEquiv
 
+/--
+@isnad1 id=eq.0h3v.s12.f12418fcd65e from=translated src=- shape=df2713d6 vocab=3e9e0647
+-/
 lemma negYEquiv_algebraMap (g : W.CoordinateRing) :
     negYEquiv W (genPsi W g) = genPsi W (negYCoordHom W g) :=
   IsFractionRing.ringEquivOfRingEquiv_algebraMap _ g
@@ -372,15 +405,22 @@ noncomputable def negYAlgEquiv : W.FunctionField ≃ₐ[F] W.FunctionField :=
     rw [IsScalarTower.algebraMap_apply F F[X] W.CoordinateRing]
     exact (negYCoordHom W).commutes _)
 
+/--
+@isnad1 id=eq.0h3v.s11.4ce9e322abd5 from=translated src=- shape=16fbe42c vocab=87cd988a
+-/
 @[simp] lemma negYAlgEquiv_genPsi (g : W.CoordinateRing) :
     negYAlgEquiv W (genPsi W g) = genPsi W (negYCoordHom W g) :=
   negYEquiv_algebraMap W g
 
-/-- **`ι` fixes the generic `x`-coordinate.** -/
+/-- **`ι` fixes the generic `x`-coordinate.**
+@isnad1 id=eq.0h2v.s10.8dcf207feff5 from=translated src=- shape=f67fcdc7 vocab=ed57c9c0
+-/
 @[simp] lemma negYAlgEquiv_genX : negYAlgEquiv W (genX W) = genX W := by
   rw [genX, negYAlgEquiv_genPsi, negYCoordHom_mk, C_comp]
 
-/-- **`ι` negates the generic `y`-coordinate**: it sends `y` to `−y − a₁x − a₃`. -/
+/-- **`ι` negates the generic `y`-coordinate**: it sends `y` to `−y − a₁x − a₃`.
+@isnad1 id=eq.0h2v.s12.e152cb47d05b from=translated src=- shape=e3779cc4 vocab=14e34870
+-/
 @[simp] lemma negYAlgEquiv_genY :
     negYAlgEquiv W (genY W) =
       -genY W - algebraMap F W.FunctionField W.a₁ * genX W
@@ -393,18 +433,25 @@ noncomputable def negYAlgEquiv : W.FunctionField ≃ₐ[F] W.FunctionField :=
   ring
 
 /-- **`ι` is the negation of the generic point**, in the `negY` of the base-changed curve
-`W ⁄ F(W)` — the same curve `equation_gen` puts `(genX, genY)` on. -/
+`W ⁄ F(W)` — the same curve `equation_gen` puts `(genX, genY)` on.
+@isnad1 id=eq.0h2v.s11.6712b5f01318 from=translated src=- shape=d464a3b9 vocab=ca484a6d
+-/
 lemma negYAlgEquiv_genY' :
     negYAlgEquiv W (genY W) =
       (W.map (algebraMap F W.FunctionField)).negY (genX W) (genY W) := by
   rw [negYAlgEquiv_genY, negY, map_a₁, map_a₃]
 
+/--
+@isnad1 id=eq.0h3v.s11.d7088314bf4f from=translated src=- shape=0c630397 vocab=f43f7d5b
+-/
 @[simp] lemma negYAlgEquiv_negYAlgEquiv (f : W.FunctionField) :
     negYAlgEquiv W (negYAlgEquiv W f) = f := by
   obtain ⟨g, d, -, rfl⟩ := IsFractionRing.div_surjective (A := W.CoordinateRing) f
   simp only [map_div₀, negYAlgEquiv_genPsi, negYCoordHom_negYCoordHom]
 
-/-- **`ι ∘ ι = id`.** -/
+/-- **`ι ∘ ι = id`.**
+@isnad1 id=eq.0h2v.s11.56e23768d236 from=translated src=- shape=d4e5cadc vocab=9fb74934
+-/
 lemma negYAlgEquiv_trans_negYAlgEquiv :
     (negYAlgEquiv W).trans (negYAlgEquiv W) = AlgEquiv.refl :=
   AlgEquiv.ext (negYAlgEquiv_negYAlgEquiv W)
@@ -413,13 +460,17 @@ lemma negYAlgEquiv_trans_negYAlgEquiv :
 
 /-- The class of `W.polynomialY` is nonzero in `F[W]` for an elliptic curve: `W.polynomial` is
 monic of `Y`-degree `2` and `W.polynomialY` is nonzero of `Y`-degree at most `1`, so the former
-cannot divide the latter. -/
+cannot divide the latter.
+@isnad1 id=ne.0h2v.s8.01f5f7a6526f from=translated src=- shape=40a231a7 vocab=0f3d9e4a
+-/
 theorem mk_polynomialY_ne_zero [W.IsElliptic] : mk W W.polynomialY ≠ 0 :=
   AdjoinRoot.mk_ne_zero_of_natDegree_lt monic_polynomial polynomialY_ne_zero
     (by rw [natDegree_polynomial]; exact lt_of_le_of_lt (natDegree_polynomialY_le W) one_lt_two)
 
 /-- `W.polynomialY = Y − W.negPolynomial`, read in `F(W)`: the class of `W.polynomialY` is the
-difference between the generic `y` and its image under `ι`. -/
+difference between the generic `y` and its image under `ι`.
+@isnad1 id=eq.0h2v.s11.32e1f7d069c1 from=translated src=- shape=c3fcd3b8 vocab=0bb29940
+-/
 lemma genPsi_mk_polynomialY :
     genPsi W (mk W W.polynomialY) = genY W - negYAlgEquiv W (genY W) := by
   rw [← Y_sub_negPolynomial, map_sub, map_sub, AdjoinRoot.mk_X, ← genY, genY,
@@ -433,7 +484,9 @@ then `genPsi W (mk W W.polynomialY) = 0` by `genPsi_mk_polynomialY`, hence `mk W
 because `F[W] → F(W)` is injective, contradicting `mk_polynomialY_ne_zero`.
 
 ⚠️ It is *not* a claim that `ι` acts nontrivially on the places of `F(W)`: `mapProjPointHom` is a
-different statement and is untouched here. -/
+different statement and is untouched here.
+@isnad1 id=ne.0h2v.s12.e9b412e2900a from=translated src=- shape=7366558b vocab=4971e8c3
+-/
 theorem negYAlgEquiv_ne_one [W.IsElliptic] : negYAlgEquiv W ≠ 1 := by
   intro h
   refine mk_polynomialY_ne_zero W ?_
@@ -441,7 +494,9 @@ theorem negYAlgEquiv_ne_one [W.IsElliptic] : negYAlgEquiv W ≠ 1 := by
     (IsFractionRing.injective W.CoordinateRing W.FunctionField) _ ?_
   rw [genPsi_mk_polynomialY, h, AlgEquiv.one_apply, sub_self]
 
-/-- **`Aut_F F(W)` is nontrivial** for an elliptic curve over any field. -/
+/-- **`Aut_F F(W)` is nontrivial** for an elliptic curve over any field.
+@isnad1 id=nontrivi.0h2v.s9.a3d668475f68 from=translated src=- shape=0e6ca6bf vocab=8c345830
+-/
 theorem nontrivial_algEquiv [W.IsElliptic] :
     Nontrivial (W.FunctionField ≃ₐ[F] W.FunctionField) :=
   ⟨negYAlgEquiv W, 1, negYAlgEquiv_ne_one W⟩

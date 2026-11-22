@@ -46,19 +46,30 @@ abbrev chartRing (t : K) : Subalgebra (Algebra.adjoin ℚ {t}) K :=
 
 variable {t : K}
 
+/--
+@isnad1 id=mem.1h3v.s9.1659c0cd1dc0 from=translated src=- shape=51877b58 vocab=0381a83e
+-/
 theorem mem_chartRing_of_mem_adjoin {x : K} (hx : x ∈ Algebra.adjoin ℚ {t}) :
     x ∈ chartRing t :=
   (chartRing t).algebraMap_mem ⟨x, hx⟩
 
 variable (t) in
+/--
+@isnad1 id=mem.0h2v.s9.2d19c5da9253 from=translated src=- shape=765b5a0b vocab=0381a83e
+-/
 theorem self_mem_chartRing : t ∈ chartRing t :=
   mem_chartRing_of_mem_adjoin (Algebra.self_mem_adjoin_singleton ℚ t)
 
 variable (t) in
+/--
+@isnad1 id=mem.0h3v.s9.2ae170559c6b from=translated src=- shape=50fba749 vocab=d6ce384f
+-/
 theorem ratCast_mem_chartRing (q : ℚ) : (q : K) ∈ chartRing t :=
   mem_chartRing_of_mem_adjoin (Subalgebra.algebraMap_mem _ q)
 
-/-- The chart ring is contained in every integrally closed subring containing `ℚ` and `t`. -/
+/-- The chart ring is contained in every integrally closed subring containing `ℚ` and `t`.
+@isnad1 id=le.2h3v.s8.1f0fd7d364ec from=translated src=- shape=0c58f263 vocab=8e9c28cb
+-/
 theorem chartRing_le {S : Subring K} [IsIntegrallyClosedIn S K] (hq : ∀ q : ℚ, (q : K) ∈ S)
     (ht : t ∈ S) : (chartRing t).toSubring ≤ S := by
   rw [Subring.integralClosure_le_iff]
@@ -70,12 +81,17 @@ theorem chartRing_le {S : Subring K} [IsIntegrallyClosedIn S K] (hq : ∀ q : �
   | add x y _ _ hx hy => exact S.add_mem hx hy
   | mul x y _ _ hx hy => exact S.mul_mem hx hy
 
-/-- The chart ring is contained in every valuation subring containing `ℚ` and `t`. -/
+/-- The chart ring is contained in every valuation subring containing `ℚ` and `t`.
+@isnad1 id=mem.3h4v.s9.94d6c81e111b from=translated src=- shape=11742307 vocab=de0d6b65
+-/
 theorem mem_of_mem_chartRing (V : ValuationSubring K) (hq : ∀ q : ℚ, (q : K) ∈ V)
     (ht : t ∈ V) {x : K} (hx : x ∈ chartRing t) : x ∈ V := by
   have : IsIntegrallyClosedIn V.toSubring K := inferInstanceAs (IsIntegrallyClosedIn V K)
   exact chartRing_le (S := V.toSubring) hq ht hx
 
+/--
+@isnad1 id=isdedeki.1h2v.s7.7a439d957276 from=translated src=- shape=1e31aa94 vocab=542e0114
+-/
 theorem isDedekindDomain_adjoin (ht : Transcendental ℚ t) :
     IsDedekindDomain (Algebra.adjoin ℚ {t}) := by
   have e := Polynomial.algEquivOfTranscendental ℚ t ht
@@ -86,7 +102,9 @@ theorem isDedekindDomain_adjoin (ht : Transcendental ℚ t) :
 instance [Fact (Transcendental ℚ t)] : IsDedekindDomain (Algebra.adjoin ℚ {t}) :=
   isDedekindDomain_adjoin Fact.out
 
-/-- The element `t` is not a unit of the chart ring `A_t`. -/
+/-- The element `t` is not a unit of the chart ring `A_t`.
+@isnad1 id=not.1h2v.s9.388dce17d13c from=translated src=- shape=65b73092 vocab=222c9694
+-/
 theorem inv_notMem_chartRing (ht : Transcendental ℚ t) : t⁻¹ ∉ chartRing t := by
   have := isDedekindDomain_adjoin ht
   intro h

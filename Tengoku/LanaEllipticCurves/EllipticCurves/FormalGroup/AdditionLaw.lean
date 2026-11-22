@@ -81,17 +81,23 @@ noncomputable def formalYThree : (R⸨X⸩)⸨X⸩ :=
 
 /-! ### The secant line -/
 
-/-- **Defining property of the slope.** `λ·(x₂ − x₁) = y₂ − y₁`, using that `x₂ − x₁` is a unit. -/
+/-- **Defining property of the slope.** `λ·(x₂ − x₁) = y₂ − y₁`, using that `x₂ − x₁` is a unit.
+@isnad1 id=eq.0h2v.s9.f9b89677fe65 from=translated src=- shape=16460c56 vocab=4b946163
+-/
 theorem formalLambda_mul_biX_sub :
     W.formalLambda * (W.biX₂ - W.biX₁) = W.biY₂ - W.biY₁ := by
   unfold formalLambda
   rw [mul_assoc, Ring.inverse_mul_cancel _ W.isUnit_biX₂_sub_biX₁, mul_one]
 
-/-- `P₁ = (x₁, y₁)` lies on the secant line `y = λx + ν`. -/
+/-- `P₁ = (x₁, y₁)` lies on the secant line `y = λx + ν`.
+@isnad1 id=eq.0h2v.s8.4108847ec773 from=translated src=- shape=41bbf559 vocab=ec47b382
+-/
 theorem biY₁_eq : W.biY₁ = W.formalLambda * W.biX₁ + W.formalNu := by
   unfold formalNu; ring
 
-/-- `P₂ = (x₂, y₂)` lies on the secant line `y = λx + ν`. -/
+/-- `P₂ = (x₂, y₂)` lies on the secant line `y = λx + ν`.
+@isnad1 id=eq.0h2v.s8.7eafc10099d2 from=translated src=- shape=41bbf559 vocab=66833f82
+-/
 theorem biY₂_eq : W.biY₂ = W.formalLambda * W.biX₂ + W.formalNu := by
   unfold formalNu
   linear_combination -W.formalLambda_mul_biX_sub
@@ -104,7 +110,9 @@ line `y = λx + ν` through `P₁, P₂` meets the curve a third time, satisfies
 The proof substitutes the line into the Weierstrass equation to get a monic cubic in `x` vanishing
 at `x₁, x₂` (that is `biX₁_biY₁_weierstrass`, `biX₂_biY₂_weierstrass` rewritten along the line);
 dividing the difference of the two vanishing conditions by the *unit* `x₂ − x₁` yields Vieta's
-middle relation `K = 0`, from which `x₃ = λ² + a₁λ − a₂ − x₁ − x₂` is the third root. -/
+middle relation `K = 0`, from which `x₃ = λ² + a₁λ − a₂ − x₁ − x₂` is the third root.
+@isnad1 id=eq.0h2v.s13.6e2a30182f2b from=translated src=- shape=8170278e vocab=f8cf7ee4
+-/
 theorem weierstrass_thirdInt :
     (W.formalLambda * W.formalXThree + W.formalNu) ^ 2
         + HahnSeries.C (HahnSeries.C W.a₁) * W.formalXThree
@@ -142,7 +150,9 @@ theorem weierstrass_thirdInt :
 Weierstrass equation of `W`:
 `y₃² + a₁·x₃·y₃ + a₃·y₃ = x₃³ + a₂·x₃² + a₄·x₃ + a₆` in `R⸨z₁⸩⸨z₂⸩`.
 
-This follows from `weierstrass_thirdInt` by the curve's negation symmetry `y ↦ −y − a₁x − a₃`. -/
+This follows from `weierstrass_thirdInt` by the curve's negation symmetry `y ↦ −y − a₁x − a₃`.
+@isnad1 id=eq.0h2v.s12.d8f5cb64f033 from=translated src=- shape=999eccd5 vocab=f46c3e29
+-/
 theorem formalXThree_formalYThree_weierstrass :
     W.formalYThree ^ 2 + HahnSeries.C (HahnSeries.C W.a₁) * W.formalXThree * W.formalYThree
         + HahnSeries.C (HahnSeries.C W.a₃) * W.formalYThree

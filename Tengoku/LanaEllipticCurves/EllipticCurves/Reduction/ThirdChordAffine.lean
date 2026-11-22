@@ -62,7 +62,9 @@ variable {F : Type*} [Field F]
 /-- **A curve point on the secant line is a root of the addition polynomial.**  If `(X₃, Y₃)` lies
 on the Weierstrass curve and on the line `Y = ℓ (X - x₁) + y₁`, then `X₃` is a root of the addition
 polynomial `addPolynomial x₁ y₁ ℓ` (whose roots are the `x`-coordinates of the three intersections
-of that line with the curve). -/
+of that line with the curve).
+@isnad1 id=eq.2h7v.s6.43a1388cae6a from=translated src=- shape=3dab0efd vocab=c458fcba
+-/
 theorem addPolynomial_eval_eq_zero_of_equation (W : WeierstrassCurve.Affine F)
     {x₁ y₁ ℓ X₃ Y₃ : F} (hline : Y₃ = ℓ * (X₃ - x₁) + y₁) (hcurve : W.Equation X₃ Y₃) :
     (W.addPolynomial x₁ y₁ ℓ).eval X₃ = 0 := by
@@ -88,6 +90,9 @@ noncomputable def thirdChordW : R :=
   chordSlope R W ha * thirdRootNum R W ha + chordIntercept R W ha
 
 omit [IsFractionRing R K] in
+/--
+@isnad1 id=eq.1h5v.s7.ababaadd8025 from=translated src=- shape=1958b1e2 vocab=9ab9cdba
+-/
 theorem thirdChordW_eq :
     thirdChordW R W ha = chordSlope R W ha * thirdRootNum R W ha + chordIntercept R W ha :=
   rfl
@@ -96,7 +101,9 @@ omit [IsFractionRing R K] in
 /-- **The third chord point satisfies the Weierstrass functional equation.**  In the form of the
 numeric functional equation for `wParam`, but at the third-root point `(t, w₃)`: this is the
 statement that `(t, w₃)` lies on the `(z, w)`-curve (`thirdChordPoint_functional_eq`, restated in
-terms of `thirdChordW`). -/
+terms of `thirdChordW`).
+@isnad1 id=eq.2h5v.s9.e7648ac27684 from=translated src=- shape=11648d4c vocab=cec64442
+-/
 theorem thirdChord_functional_eq (hz : z₁ ≠ z₂) :
     thirdChordW R W ha = thirdRootNum R W ha ^ 3
       + ((integralModel R W).a₁ * thirdRootNum R W ha
@@ -126,7 +133,9 @@ private theorem algebraMap_thirdChord_functional_eq (hz : z₁ ≠ z₂) :
 /-- **The affine third chord point lies on the curve.**  The transported point
 `(X₃, Y₃) = (t / w₃, -1 / w₃)` satisfies the Weierstrass equation of `W`.  Numeric transport of
 `thirdChordPoint_functional_eq`, mirroring `equation_xParam_yParam`.  Requires `w₃ ≠ 0` (the third
-point is not at infinity, i.e. `P + Q ≠ O`) and `z₁ ≠ z₂` (the secant case). -/
+point is not at infinity, i.e. `P + Q ≠ O`) and `z₁ ≠ z₂` (the secant case).
+@isnad1 id=equation.3h5v.s8.34d9657fec73 from=translated src=- shape=0851fd06 vocab=d2cb9dea
+-/
 theorem equation_thirdChordPoint (hz : z₁ ≠ z₂) (hw : thirdChordW R W ha ≠ 0) :
     W.toAffine.Equation (algebraMap R K (thirdRootNum R W ha) / algebraMap R K (thirdChordW R W ha))
       (-1 / algebraMap R K (thirdChordW R W ha)) := by
@@ -138,7 +147,9 @@ theorem equation_thirdChordPoint (hz : z₁ ≠ z₂) (hw : thirdChordW R W ha �
   linear_combination hfe
 
 omit [IsFractionRing R K] in
-/-- The numerator collinearity relation for the third chord point: `λ t + ν = w₃` in `K`. -/
+/-- The numerator collinearity relation for the third chord point: `λ t + ν = w₃` in `K`.
+@isnad1 id=eq.1h5v.s8.ba4a68d07163 from=translated src=- shape=cf90a5bd vocab=a0f264a4
+-/
 theorem thirdChord_line_num :
     algebraMap R K (chordSlope R W ha) * algebraMap R K (thirdRootNum R W ha)
       + algebraMap R K (chordIntercept R W ha) = algebraMap R K (thirdChordW R W ha) := by
@@ -152,6 +163,9 @@ noncomputable def X₃ : K :=
   algebraMap R K (thirdRootNum R W ha) / algebraMap R K (thirdChordW R W ha)
 
 omit [IsFractionRing R K] in
+/--
+@isnad1 id=eq.1h5v.s8.7f77cd70bdc5 from=translated src=- shape=c3bc138a vocab=1d4bedf4
+-/
 theorem X₃_def :
     X₃ R W ha = algebraMap R K (thirdRootNum R W ha) / algebraMap R K (thirdChordW R W ha) :=
   rfl
@@ -167,7 +181,9 @@ open Classical in
 /-- **The affine third chord point lies on the secant line** through the two recovered points.
 Writing `X₃ = t / w₃`, `Y₃ = -1 / w₃` and `ℓ = W.slope (…)` (the affine secant slope `= λ / ν`),
 one has `Y₃ = ℓ (X₃ - x₁) + y₁`.  Consequence of the two collinearity relations
-(`collinear₀`, `thirdChord_line_num`) and `slope_xParam_secant`. -/
+(`collinear₀`, `thirdChord_line_num`) and `slope_xParam_secant`.
+@isnad1 id=eq.7h5v.s9.5027fbdce200 from=translated src=- shape=dd24fc3d vocab=dfdc9eda
+-/
 theorem thirdChord_on_secantLine :
     -1 / algebraMap R K (thirdChordW R W ha)
       = W.toAffine.slope (xParam R W hz₁) (xParam R W hz₂) (yParam R W hz₁) (yParam R W hz₂)
@@ -188,7 +204,9 @@ open Classical in
 (`z₁ ≠ z₂`, `xParam z₁ ≠ xParam z₂`, and the transported third `x`-coordinate `X₃ = t / w₃`
 distinct from `x₁`, `x₂`), Mathlib's affine third-intersection `x`-coordinate `addX` of the two
 recovered points equals `X₃`.  This is the affine matching at the heart of the addition law
-(Silverman AEC IV.1): the chord meets the curve in exactly the third point `(X₃, Y₃)`. -/
+(Silverman AEC IV.1): the chord meets the curve in exactly the third point `(X₃, Y₃)`.
+@isnad1 id=eq.10h5v.s9.f5f9c35a68e7 from=translated src=- shape=4e9a00ea vocab=40b16f7c
+-/
 theorem addX_eq_thirdChordX
     (hd1 : X₃ R W ha ≠ xParam R W hz₁) (hd2 : X₃ R W ha ≠ xParam R W hz₂) :
     W.toAffine.addX (xParam R W hz₁) (xParam R W hz₂)
@@ -223,7 +241,9 @@ is the affine-matching identity that #367 hinges on (Silverman AEC IV.1 / VII.2.
 coordinate identity `addX = t / w₃` (`addX_eq_thirdChordX`) with the numeric inversion
 `den · (z₁ ⊕ z₂) = -t` (`formalGroupDen_mul_adicEvalMv_formalGroupZW`).  Hypotheses: the secant
 non-degeneracy (`z₁ ≠ z₂`, `xParam z₁ ≠ xParam z₂`, `X₃ ∉ {x₁, x₂}`, `w₃ ≠ 0`) and `den ≠ 0`
-(`addY ≠ 0`, i.e. `P + Q` is not `2`-torsion). -/
+(`addY ≠ 0`, i.e. `P + Q` is not `2`-torsion).
+@isnad1 id=eq.11h5v.s10.6decac6b5bc7 from=translated src=- shape=99dfcce7 vocab=2e103e64
+-/
 theorem localParam_add_secant
     (hd1 : X₃ R W ha ≠ xParam R W hz₁) (hd2 : X₃ R W ha ≠ xParam R W hz₂)
     (hden : adicEvalMv (maximalIdeal R).asIdeal ha (integralModel R W).formalGroupDen ≠ 0) :
@@ -283,7 +303,9 @@ of the parameters:
 Combining Mathlib's affine addition (`Point.add_of_X_ne`, the sum is `(addX, addY)`) with the
 coordinate identity `localParam_add_secant`.  Conditional on the non-degeneracy hypotheses of that
 identity (`w₃ ≠ 0`, `X₃ ∉ {x₁, x₂}`, `den ≠ 0`) and on the sum reducing to the origin; discharging
-those (and the doubling / inverse cases) completes the `E₁(K)` subgroup closure of #367. -/
+those (and the doubling / inverse cases) completes the `E₁(K)` subgroup closure of #367.
+@isnad1 id=eq.11h7v.s10.49383b869664 from=translated src=- shape=962ce3c7 vocab=71a02573
+-/
 theorem localParam_add_of_X_ne [W.IsElliptic]
     {x₁ y₁ : K} {h₁ : W.toAffine.Nonsingular x₁ y₁} (hR1 : ReducesToZero R W (.some x₁ y₁ h₁))
     {x₂ y₂ : K} {h₂ : W.toAffine.Nonsingular x₂ y₂} (hR2 : ReducesToZero R W (.some x₂ y₂ h₂))

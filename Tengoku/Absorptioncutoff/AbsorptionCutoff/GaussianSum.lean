@@ -24,7 +24,9 @@ namespace AbsorptionCutoff
 /-- **Law of a finite sum of independent real Gaussians.** If `(Xᵢ)` are independent
 (`iIndepFun`) with `Xᵢ ∼ 𝒩(mᵢ, vᵢ)`, then `∑_{i∈s} Xᵢ ∼ 𝒩(∑_{i∈s} mᵢ, ∑_{i∈s} vᵢ)`.
 Induction on `s` via the two-variable `gaussianReal_add_gaussianReal_of_indepFun`, with the
-partial-sum ⊥ next-term independence from `iIndepFun.indepFun_finsetSum_of_notMem`. -/
+partial-sum ⊥ next-term independence from `iIndepFun.indepFun_finsetSum_of_notMem`.
+@isnad1 id=eq.3h8v.s7.a699e101d111 from=translated src=- shape=86cb0bd8 vocab=ffa39d65
+-/
 lemma map_finsetSum_gaussianReal {ι Ω : Type*} {_ : MeasurableSpace Ω} {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : ι → Ω → ℝ} {m : ι → ℝ} {v : ι → NNReal}
     (hindep : iIndepFun X μ) (hmeas : ∀ i, Measurable (X i))
@@ -45,7 +47,9 @@ lemma map_finsetSum_gaussianReal {ι Ω : Type*} {_ : MeasurableSpace Ω} {μ : 
 /-- **Gaussian linear combination over a product measure.** Under the standard product
 `⊗ᵢ 𝒩(0, v)` on `Fin N → ℝ`, the linear form `w ↦ ∑ⱼ wⱼ xⱼ` is `𝒩(0, (∑ⱼ xⱼ²)·v)`. This
 is the scalar Gaussian isotropy identity: a linear image of an i.i.d. centered Gaussian
-vector has variance `‖x‖²·v`. -/
+vector has variance `‖x‖²·v`.
+@isnad1 id=eq.0h3v.s7.0fb79029d99f from=translated src=- shape=01d41a16 vocab=a6855541
+-/
 lemma map_sum_mul_gaussianPi {N : ℕ} (v : NNReal) (x : Fin N → ℝ) :
     (Measure.pi (fun _ : Fin N => gaussianReal 0 v)).map (fun w => ∑ j, w j * x j)
       = gaussianReal 0 ((∑ j, (x j) ^ 2).toNNReal * v) := by

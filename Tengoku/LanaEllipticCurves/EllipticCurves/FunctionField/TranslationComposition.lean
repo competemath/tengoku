@@ -79,7 +79,9 @@ variable {F : Type*} [Field F] {W : Affine F} [W.IsElliptic] {x₂ y₂ : F}
 
 /-! ### `translateEndo` fixes the base field, is an algebra hom, and preserves transcendence -/
 
-/-- `translateEndo h₂` fixes the image of `F` in `F(W)`. -/
+/-- `translateEndo h₂` fixes the image of `F` in `F(W)`.
+@isnad1 id=eq.1h5v.s11.1e9124064c20 from=translated src=- shape=81608226 vocab=2df7753c
+-/
 lemma translateEndo_algebraMap_base (h₂ : W.Equation x₂ y₂) (c : F) :
     translateEndo h₂ (algebraMap F W.FunctionField c) = algebraMap F W.FunctionField c := by
   rw [IsScalarTower.algebraMap_apply F W.CoordinateRing W.FunctionField c, translateEndo_algebraMap,
@@ -91,11 +93,16 @@ noncomputable def translateEndoAlgHom (h₂ : W.Equation x₂ y₂) :
   toRingHom := translateEndo h₂
   commutes' := translateEndo_algebraMap_base h₂
 
+/--
+@isnad1 id=eq.1h5v.s11.9e04c720621a from=translated src=- shape=3f7f111d vocab=16b0ebb8
+-/
 @[simp] lemma translateEndoAlgHom_apply (h₂ : W.Equation x₂ y₂) (t : W.FunctionField) :
     translateEndoAlgHom h₂ t = translateEndo h₂ t := rfl
 
 /-- The image of the generic `x`-coordinate under `translateEndo` is transcendental over `F`: it is
-the injective `F`-algebra image of the transcendental `genX`. -/
+the injective `F`-algebra image of the transcendental `genX`.
+@isnad1 id=transcen.1h4v.s10.a15c31be05bb from=translated src=- shape=91599ef2 vocab=d4c17e6d
+-/
 lemma transcendental_translateEndo_genX (h₂ : W.Equation x₂ y₂) :
     Transcendental F (translateEndo h₂ (genX W)) := by
   intro halg
@@ -105,7 +112,9 @@ lemma transcendental_translateEndo_genX (h₂ : W.Equation x₂ y₂) :
     rw [← Polynomial.aeval_algHom_apply]; exact hp
   exact (translateEndo h₂).injective (by rw [← translateEndoAlgHom_apply]; rw [h0, map_zero])
 
-/-- The image of the generic `x`-coordinate under `translateEndo` is never a constant. -/
+/-- The image of the generic `x`-coordinate under `translateEndo` is never a constant.
+@isnad1 id=ne.1h5v.s10.94d197d73860 from=translated src=- shape=05a7bf4f vocab=0b47aa75
+-/
 lemma translateEndo_genX_ne (h₂ : W.Equation x₂ y₂) (c : F) :
     translateEndo h₂ (genX W) ≠ algebraMap F W.FunctionField c := fun heq =>
   transcendental_translateEndo_genX h₂ (heq ▸ isAlgebraic_algebraMap c)
@@ -121,7 +130,9 @@ private lemma map_translateEndo_curve (h₂ : W.Equation x₂ y₂) :
       = algebraMap F W.FunctionField := RingHom.ext (translateEndo_algebraMap_base h₂)
   simp only [WeierstrassCurve.map_map, hcomp]
 
-/-- `translateEndo h₂` commutes with the addition-law `x`-coordinate `addX` of `W ⁄ F(W)`. -/
+/-- `translateEndo h₂` commutes with the addition-law `x`-coordinate `addX` of `W ⁄ F(W)`.
+@isnad1 id=eq.1h7v.s12.c35a61ac938c from=translated src=- shape=81ed444c vocab=d2e47c2c
+-/
 lemma translateEndo_addX (h₂ : W.Equation x₂ y₂) (x₁ x₃ ℓ : W.FunctionField) :
     translateEndo h₂ ((W.map (algebraMap F W.FunctionField)).addX x₁ x₃ ℓ)
       = (W.map (algebraMap F W.FunctionField)).addX
@@ -131,7 +142,9 @@ lemma translateEndo_addX (h₂ : W.Equation x₂ y₂) (x₁ x₃ ℓ : W.Functi
   rw [map_translateEndo_curve h₂] at h
   exact h.symm
 
-/-- `translateEndo h₂` commutes with the addition-law `y`-coordinate `addY` of `W ⁄ F(W)`. -/
+/-- `translateEndo h₂` commutes with the addition-law `y`-coordinate `addY` of `W ⁄ F(W)`.
+@isnad1 id=eq.1h8v.s12.3756b0255734 from=translated src=- shape=78c2d051 vocab=14a50267
+-/
 lemma translateEndo_addY (h₂ : W.Equation x₂ y₂) (x₁ x₃ y₁ ℓ : W.FunctionField) :
     translateEndo h₂ ((W.map (algebraMap F W.FunctionField)).addY x₁ x₃ y₁ ℓ)
       = (W.map (algebraMap F W.FunctionField)).addY
@@ -143,7 +156,9 @@ lemma translateEndo_addY (h₂ : W.Equation x₂ y₂) (x₁ x₃ y₁ ℓ : W.F
   exact h.symm
 
 open Classical in
-/-- `translateEndo h₂` commutes with the slope `slope` of `W ⁄ F(W)`. -/
+/-- `translateEndo h₂` commutes with the slope `slope` of `W ⁄ F(W)`.
+@isnad1 id=eq.1h8v.s12.4c2076eb304e from=translated src=- shape=78c2d051 vocab=7a6b8f1e
+-/
 lemma translateEndo_slope (h₂ : W.Equation x₂ y₂) (x₁ x₃ y₁ y₃ : W.FunctionField) :
     translateEndo h₂ ((W.map (algebraMap F W.FunctionField)).slope x₁ x₃ y₁ y₃)
       = (W.map (algebraMap F W.FunctionField)).slope
@@ -164,7 +179,9 @@ private lemma translatePoint_eq (h₂ : W.Equation x₂ y₂) :
 open Classical in
 /-- **The composition law on the coordinate generators.** For affine points `P`, `Q`, `R` with
 `P ⊕ Q = R` (as the constant-point identity `𝒯_P + 𝒯_Q = 𝒯_R` over `F(W)`), the translation
-pullbacks compose contravariantly on the generic point's coordinates. -/
+pullbacks compose contravariantly on the generic point's coordinates.
+@isnad1 id=and.4h8v.s13.c169b2c5b662 from=translated src=- shape=12303257 vocab=f65f739b
+-/
 theorem translateEndo_comp_apply_gen {xP yP xQ yQ xR yR : F}
     (hP : W.Equation xP yP) (hQ : W.Equation xQ yQ) (hR : W.Equation xR yR)
     (hsum : translatePoint hP + translatePoint hQ = translatePoint hR) :
@@ -194,7 +211,9 @@ open Classical in
 (as the constant-point identity `𝒯_P + 𝒯_Q = 𝒯_R` over `F(W)`),
 `translateEndo hP ∘ translateEndo hQ = translateEndo hR`. This is the contravariant functoriality of
 the translation pullback with respect to the group law — the keystone of `e_n` bilinearity
-(#419). -/
+(#419).
+@isnad1 id=eq.4h8v.s12.8173ffd5a15a from=translated src=- shape=47009954 vocab=00902082
+-/
 theorem translateEndo_comp {xP yP xQ yQ xR yR : F}
     (hP : W.Equation xP yP) (hQ : W.Equation xQ yQ) (hR : W.Equation xR yR)
     (hsum : translatePoint hP + translatePoint hQ = translatePoint hR) :
@@ -230,7 +249,9 @@ theorem translateEndo_comp {xP yP xQ yQ xR yR : F}
 
 /-- The composition law in applied form:
 `translateEndo hP (translateEndo hQ g) = translateEndo hR g` for every `g`. The form the `e_n`
-bilinearity derivation uses directly. -/
+bilinearity derivation uses directly.
+@isnad1 id=eq.4h9v.s12.bb4517d2d17e from=translated src=- shape=6af54298 vocab=3166b70a
+-/
 theorem translateEndo_translateEndo_apply {xP yP xQ yQ xR yR : F}
     (hP : W.Equation xP yP) (hQ : W.Equation xQ yQ) (hR : W.Equation xR yR)
     (hsum : translatePoint hP + translatePoint hQ = translatePoint hR) (g : W.FunctionField) :

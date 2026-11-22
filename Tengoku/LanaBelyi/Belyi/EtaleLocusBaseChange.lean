@@ -65,7 +65,9 @@ Proof sketch: `p' ∈ support B' (B'⊗M) ↔ Nontrivial (κ(p') ⊗_{B'} (B'⊗
 via `Module.mem_support_iff_nontrivial_residueField_tensorProduct` and `cancelBaseChange`; and
 `κ(p') ⊗_B M = κ(p') ⊗_{κ(p)} (κ(p) ⊗_B M)` where `p = comap p'`, with `κ(p) → κ(p')` a field
 extension (faithfully flat), so nontriviality of `κ(p) ⊗_B M` (i.e. `p ∈ support B M`) transfers
-up. -/
+up.
+@isnad1 id=le.0h3v.s7.b103d068a200 from=translated src=- shape=4011d7e0 vocab=33338bca
+-/
 lemma comap_support_subset_support_baseChange
     {B B' : Type u} [CommRing B] [CommRing B'] [Algebra B B']
     (M : Type u) [AddCommGroup M] [Module B M] [Module.Finite B M] :
@@ -137,7 +139,9 @@ Assembly:
   map on `B' ⊗[B] H1Cotangent A B` transports the `H1Cotangent` support;
 * `comap_support_subset_support_baseChange` for `M = Ω[B⁄A]` and `M = H1Cotangent A B` (both finite
   `B`-modules: `Ω` since `B` is f.p. over `A`; `H1Cotangent` since `B` is Noetherian, see
-  `finite_h1Cotangent_of_noetherian`). -/
+  `finite_h1Cotangent_of_noetherian`).
+@isnad1 id=le.0h3v.s9.36ba2760c2b4 from=translated src=- shape=fcf380a6 vocab=7d23af00
+-/
 theorem etaleLocus_baseChange_subset
     {A A' B : Type u} [CommRing A] [CommRing A'] [CommRing B]
     [Algebra A A'] [Algebra A B]

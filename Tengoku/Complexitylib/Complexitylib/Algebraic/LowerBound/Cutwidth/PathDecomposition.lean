@@ -79,11 +79,16 @@ variable [Fintype W]
 noncomputable def _root_.SimpleGraph.cutFinset (S : Finset W) : Finset (Sym2 W) :=
   H.edgeFinset.filter fun e => ∃ a b, e = s(a, b) ∧ a ∈ S ∧ b ∉ S
 
+/--
+@isnad1 id=iff.0h4v.s6.456223367738 from=translated src=- shape=0169e9ae vocab=7359ed77
+-/
 theorem _root_.SimpleGraph.mem_cutFinset {S : Finset W} {e : Sym2 W} :
     e ∈ H.cutFinset S ↔ e ∈ H.edgeSet ∧ ∃ a b, e = s(a, b) ∧ a ∈ S ∧ b ∉ S := by
   simp [SimpleGraph.cutFinset, SimpleGraph.mem_edgeFinset]
 
-/-- An edge crossing a set is adjacent-pair witnessed with the inside endpoint first. -/
+/-- An edge crossing a set is adjacent-pair witnessed with the inside endpoint first.
+@isnad1 id=iff.0h5v.s6.752334402072 from=translated src=- shape=bcd92e2d vocab=ec873309
+-/
 theorem _root_.SimpleGraph.mem_cutFinset_mk {S : Finset W} {a b : W} :
     s(a, b) ∈ H.cutFinset S ↔ H.Adj a b ∧ ((a ∈ S ∧ b ∉ S) ∨ (b ∈ S ∧ a ∉ S)) := by
   rw [SimpleGraph.mem_cutFinset, SimpleGraph.mem_edgeSet]
@@ -97,7 +102,9 @@ theorem _root_.SimpleGraph.mem_cutFinset_mk {S : Finset W} {a b : W} :
     · exact ⟨adj, a, b, rfl, ha, hb⟩
     · exact ⟨adj, b, a, Sym2.eq_swap, hb, ha⟩
 
-/-- A graph with at most one vertex has no crossing edges. -/
+/-- A graph with at most one vertex has no crossing edges.
+@isnad1 id=eq.0h3v.s4.51ce1925dd4a from=translated src=- shape=b3dc4d87 vocab=6d659b1f
+-/
 theorem _root_.SimpleGraph.cutFinset_eq_empty_of_subsingleton [Subsingleton W] (S : Finset W) :
     H.cutFinset S = ∅ := by
   ext e

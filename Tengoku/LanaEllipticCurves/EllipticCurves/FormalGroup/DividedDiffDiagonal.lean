@@ -39,7 +39,9 @@ namespace PowerSeries
 variable {A : Type*} [CommRing A] (I : Ideal A) [IsAdicComplete I A]
 
 omit [IsAdicComplete I A] in
-/-- The two-element diagonal family `![x, x]` lies in `I` when `x ∈ I`. -/
+/-- The two-element diagonal family `![x, x]` lies in `I` when `x ∈ I`.
+@isnad1 id=mem.1h4v.s6.afb30386cfda from=translated src=- shape=abcc0ecf vocab=8de18a3e
+-/
 theorem diag_mem {x : A} (hx : x ∈ I) : ∀ s : Fin 2, (![x, x] : Fin 2 → A) s ∈ I := by
   intro s; fin_cases s <;> simpa using hx
 

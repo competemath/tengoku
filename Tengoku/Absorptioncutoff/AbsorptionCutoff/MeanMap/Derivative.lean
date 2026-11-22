@@ -21,20 +21,26 @@ a finite second moment (`memLp_id_gaussianReal`). This gives `V_A'(q) = ∫ f_{A
 which is `> 0` (positive integrand off the null set `{g=0}`); strict concavity supplies
 the strict upper bound `< 1`. -/
 
-/-- `0 ≤ tanh x / x` (they share a sign; `= 0` only at `x = 0`). -/
+/-- `0 ≤ tanh x / x` (they share a sign; `= 0` only at `x = 0`).
+@isnad1 id=le.0h1v.s4.667cc7040b95 from=translated src=- shape=c30c7dcf vocab=847e0c88
+-/
 lemma tanh_div_self_nonneg (x : ℝ) : 0 ≤ Real.tanh x / x := by
   rcases lt_trichotomy x 0 with hx | hx | hx
   · exact le_of_lt (div_pos_of_neg_of_neg (by rw [← Real.tanh_zero]; exact tanh_strictMono hx) hx)
   · simp [hx]
   · exact le_of_lt (div_pos (by rw [← Real.tanh_zero]; exact tanh_strictMono hx) hx)
 
-/-- `0 < tanh x / x` for `x ≠ 0`. -/
+/-- `0 < tanh x / x` for `x ≠ 0`.
+@isnad1 id=lt.1h1v.s5.5cc62260f63a from=translated src=- shape=3f467c75 vocab=0e5ac72d
+-/
 lemma tanh_div_self_pos {x : ℝ} (hx : x ≠ 0) : 0 < Real.tanh x / x := by
   rcases lt_or_gt_of_ne hx with h | h
   · exact div_pos_of_neg_of_neg (by rw [← Real.tanh_zero]; exact tanh_strictMono h) h
   · exact div_pos (by rw [← Real.tanh_zero]; exact tanh_strictMono h) h
 
-/-- `tanh x / x ≤ 1` (since `|tanh x| ≤ |x|`). -/
+/-- `tanh x / x ≤ 1` (since `|tanh x| ≤ |x|`).
+@isnad1 id=le.0h1v.s4.b10b2606af97 from=translated src=- shape=ad708156 vocab=847e0c88
+-/
 lemma tanh_div_self_le_one (x : ℝ) : Real.tanh x / x ≤ 1 := by
   rcases lt_trichotomy x 0 with hx | hx | hx
   · rw [div_le_iff_of_neg hx, one_mul]
@@ -50,12 +56,16 @@ noncomputable def dV (A q g : ℝ) : ℝ :=
   (A * g) ^ 2 * (Real.tanh (A * Real.sqrt q * g) / (A * Real.sqrt q * g))
     * (1 - Real.tanh (A * Real.sqrt q * g) ^ 2)
 
-/-- `dV ≥ 0`: a product of three nonnegative factors. -/
+/-- `dV ≥ 0`: a product of three nonnegative factors.
+@isnad1 id=le.0h3v.s4.73fea31a5f25 from=translated src=- shape=ac9c39a3 vocab=ffc719d8
+-/
 lemma dV_nonneg (A q g : ℝ) : 0 ≤ dV A q g := by
   refine mul_nonneg (mul_nonneg (by positivity) (tanh_div_self_nonneg _)) ?_
   linarith [Real.tanh_sq_lt_one (A * Real.sqrt q * g)]
 
-/-- `dV ≤ (Ag)²`: the middle and right factors both lie in `[0,1]`. -/
+/-- `dV ≤ (Ag)²`: the middle and right factors both lie in `[0,1]`.
+@isnad1 id=le.0h3v.s5.5821b8605a37 from=translated src=- shape=66729b67 vocab=abad2ca9
+-/
 lemma dV_le (A q g : ℝ) : dV A q g ≤ (A * g) ^ 2 := by
   have hbr : (Real.tanh (A * Real.sqrt q * g) / (A * Real.sqrt q * g))
       * (1 - Real.tanh (A * Real.sqrt q * g) ^ 2) ≤ 1 :=
@@ -68,7 +78,9 @@ lemma dV_le (A q g : ℝ) : dV A q g ≤ (A * g) ^ 2 := by
     _ ≤ (A * g) ^ 2 * 1 := mul_le_mul_of_nonneg_left hbr (by positivity)
     _ = (A * g) ^ 2 := mul_one _
 
-/-- `dV > 0` when `A ≠ 0`, `q > 0`, `g ≠ 0`: all three factors are strictly positive. -/
+/-- `dV > 0` when `A ≠ 0`, `q > 0`, `g ≠ 0`: all three factors are strictly positive.
+@isnad1 id=lt.3h3v.s5.b323dc97c7d6 from=translated src=- shape=56734737 vocab=48629914
+-/
 lemma dV_pos {A q g : ℝ} (hA : A ≠ 0) (hq : 0 < q) (hg : g ≠ 0) : 0 < dV A q g := by
   have hx : A * Real.sqrt q * g ≠ 0 :=
     mul_ne_zero (mul_ne_zero hA (Real.sqrt_pos.mpr hq).ne') hg
@@ -77,7 +89,9 @@ lemma dV_pos {A q g : ℝ} (hA : A ≠ 0) (hq : 0 < q) (hg : g ≠ 0) : 0 < dV A
   linarith [Real.tanh_sq_lt_one (A * Real.sqrt q * g)]
 
 /-- Pointwise `HasDerivAt` for the `V_A` integrand: repackage `hasDerivAt_f` (proved at
-`a = A·g`) into the `A√q·g` argument order used by `V`. -/
+`a = A·g`) into the `A√q·g` argument order used by `V`.
+@isnad1 id=hasderiv.3h3v.s6.99f0b63a0634 from=translated src=- shape=5afb47ff vocab=7fddd437
+-/
 lemma hasDerivAt_Vintegrand {A g q : ℝ} (hA : A ≠ 0) (hg : g ≠ 0) (hq : 0 < q) :
     HasDerivAt (fun q => Real.tanh (A * Real.sqrt q * g) ^ 2) (dV A q g) q := by
   have h := hasDerivAt_f (a := A * g) (mul_ne_zero hA hg) hq
@@ -85,7 +99,9 @@ lemma hasDerivAt_Vintegrand {A g q : ℝ} (hA : A ≠ 0) (hg : g ≠ 0) (hq : 0 
   simp only [e] at h
   exact h
 
-/-- `g ↦ dV A q g` is measurable. -/
+/-- `g ↦ dV A q g` is measurable.
+@isnad1 id=measurab.0h2v.s3.575b54ad6fd9 from=translated src=- shape=2e067db6 vocab=5e117ccd
+-/
 lemma measurable_dV (A q : ℝ) : Measurable (fun g => dV A q g) := by
   have h1 : Measurable (fun g : ℝ => A * Real.sqrt q * g) := measurable_id.const_mul _
   have htanh : Measurable (fun g : ℝ => Real.tanh (A * Real.sqrt q * g)) :=
@@ -98,7 +114,9 @@ lemma measurable_dV (A q : ℝ) : Measurable (fun g => dV A q g) := by
 the integral sign (`eq:gaussian-mean-field` differentiated in `q`): `V_A'(q) = ∫ f_{Ag}'(q)`.
 The derivative integrand `dV A q` is dominated by `g ↦ (Ag)²`, integrable by the finite
 Gaussian second moment (`integrable_sq_gaussian`); apply
-`hasDerivAt_integral_of_dominated_loc_of_deriv_le` on the neighbourhood `s = (0,∞)`. -/
+`hasDerivAt_integral_of_dominated_loc_of_deriv_le` on the neighbourhood `s = (0,∞)`.
+@isnad1 id=hasderiv.2h2v.s6.22722906581b from=translated src=- shape=595212e1 vocab=fdca4f80
+-/
 lemma hasDerivAt_V {A : ℝ} (hA : A ≠ 0) {q : ℝ} (hq : 0 < q) :
     HasDerivAt (V A) (∫ g, dV A q g ∂(gaussianReal 0 1)) q := by
   have hbound_int : Integrable (fun g : ℝ => A ^ 2 * g ^ 2) (gaussianReal 0 1) :=
@@ -132,7 +150,9 @@ lemma hasDerivAt_V {A : ℝ} (hA : A ≠ 0) {q : ℝ} (hq : 0 < q) :
     (Ioi_mem_nhds hq) hFmeas hFint (measurable_dV A q).aestronglyMeasurable hbound hbound_int
     hdiff).2
 
-/-- The derivative integrand `dV A q` is integrable (dominated by `g ↦ A²g²`). -/
+/-- The derivative integrand `dV A q` is integrable (dominated by `g ↦ A²g²`).
+@isnad1 id=integrab.0h2v.s5.c297b594b8d2 from=translated src=- shape=45537bfe vocab=f22d3edb
+-/
 lemma integrable_dV {A : ℝ} (q : ℝ) : Integrable (fun g => dV A q g) (gaussianReal 0 1) := by
   refine Integrable.mono' (integrable_sq_gaussian.const_mul (A ^ 2))
     (measurable_dV A q).aestronglyMeasurable ?_
@@ -142,7 +162,9 @@ lemma integrable_dV {A : ℝ} (q : ℝ) : Integrable (fun g => dV A q g) (gaussi
     _ = A ^ 2 * g ^ 2 := by ring
 
 /-- **`V_A'(q) > 0`** for `A ≠ 0` and `q > 0` (paper `eq:gaussian-fixed-point`, lower bound):
-`V_A'(q) = ∫ dV A q`, whose integrand is `≥ 0` everywhere and `> 0` off the null set `{g=0}`. -/
+`V_A'(q) = ∫ dV A q`, whose integrand is `≥ 0` everywhere and `> 0` off the null set `{g=0}`.
+@isnad1 id=lt.2h2v.s6.ead36a25b1fd from=translated src=- shape=8d2b7b5c vocab=9d047885
+-/
 lemma V_deriv_pos {A : ℝ} (hA : A ≠ 0) {q : ℝ} (hq : 0 < q) : 0 < deriv (V A) q := by
   rw [(hasDerivAt_V hA hq).deriv]
   have hsupp : 0 < (gaussianReal 0 1) (Function.support (fun g => dV A q g)) := by
@@ -157,7 +179,9 @@ lemma V_deriv_pos {A : ℝ} (hA : A ≠ 0) {q : ℝ} (hq : 0 < q) : 0 < deriv (V
 
 /-- **`V_A'(q_*) < 1`** at a positive fixed point (`A ≠ 0`, `q_* ∈ (0,1)`, `V_A q_* = q_*`):
 strict concavity of `V_A` puts its graph strictly below the tangent line at `q_*`, so the
-chord slope `V_A(q_*)/q_* = 1` from the origin strictly exceeds `V_A'(q_*)`. -/
+chord slope `V_A(q_*)/q_* = 1` from the origin strictly exceeds `V_A'(q_*)`.
+@isnad1 id=lt.3h2v.s6.593bb3ff0aae from=translated src=- shape=3c7cd375 vocab=0e652633
+-/
 lemma V_deriv_lt_one {A : ℝ} (hA : A ≠ 0) {q : ℝ} (hq : q ∈ Ioo (0 : ℝ) 1)
     (hfix : V A q = q) : deriv (V A) q < 1 := by
   have hd : HasDerivAt (V A) (∫ g, dV A q g ∂(gaussianReal 0 1)) q := hasDerivAt_V hA hq.1
@@ -174,7 +198,9 @@ lemma V_deriv_lt_one {A : ℝ} (hA : A ≠ 0) {q : ℝ} (hq : q ∈ Ioo (0 : ℝ
 /-- **The multiplier `μ_A = V_A'(q_*) ∈ (0,1)`** (paper `eq:gaussian-fixed-point`): at any
 positive fixed point `q_* ∈ (0,1)` of `V_A` (`A ≠ 0`), the derivative — the geometric rate
 governing the linearized orbit — lies strictly between `0` and `1`. This is the linearization
-half of `lem:gaussian-mean-field-concavity`. -/
+half of `lem:gaussian-mean-field-concavity`.
+@isnad1 id=mem.3h2v.s6.41577d2e567f from=translated src=- shape=44131124 vocab=8e0e7f5f
+-/
 theorem V_multiplier_mem_Ioo {A : ℝ} (hA : A ≠ 0) {q : ℝ} (hq : q ∈ Ioo (0 : ℝ) 1)
     (hfix : V A q = q) : deriv (V A) q ∈ Ioo (0 : ℝ) 1 :=
   ⟨V_deriv_pos hA hq.1, V_deriv_lt_one hA hq hfix⟩

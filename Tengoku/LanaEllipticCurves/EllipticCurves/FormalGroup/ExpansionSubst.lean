@@ -70,7 +70,9 @@ private lemma mvOrder_add₃_ge {a b c : MvPowerSeries τ R} {k : ℕ∞}
 
 /-- The key contraction estimate: applying `W.wOpSubst t` increases the order of agreement by one.
 If `t, u, v` have positive order and `u, v` agree up to order `m`, then `W.wOpSubst t u` and
-`W.wOpSubst t v` agree up to order `m + 1`. -/
+`W.wOpSubst t v` agree up to order `m + 1`.
+@isnad1 id=le.4h7v.s7.f3315f2db0c3 from=translated src=- shape=ef632743 vocab=fa7ff2fe
+-/
 lemma order_wOpSubst_sub {t : MvPowerSeries τ R} (ht : 1 ≤ t.order) (u v : MvPowerSeries τ R)
     (hu : 1 ≤ u.order) (hv : 1 ≤ v.order) {m : ℕ} (hm : (m : ℕ∞) ≤ (u - v).order) :
     (m : ℕ∞) + 1 ≤ (W.wOpSubst t u - W.wOpSubst t v).order := by
@@ -119,7 +121,9 @@ lemma order_wOpSubst_sub {t : MvPowerSeries τ R} (ht : 1 ≤ t.order) (u v : Mv
       _ ≤ _ := MvPowerSeries.le_order_mul
 
 /-- `W.formalW.subst t` is a fixed point of the parametrised operator `W.wOpSubst t`. This is the
-image of the univariate fixed-point equation `formalW_eq` under the substitution `AlgHom`. -/
+image of the univariate fixed-point equation `formalW_eq` under the substitution `AlgHom`.
+@isnad1 id=eq.1h4v.s6.a4224f6ec09c from=translated src=- shape=cd779864 vocab=3529f91d
+-/
 theorem formalW_subst_wOpSubst_fixed {t : MvPowerSeries τ R} (ht : 1 ≤ t.order) :
     W.formalW.subst t = W.wOpSubst t (W.formalW.subst t) := by
   have hct : MvPowerSeries.constantCoeff t = 0 :=
@@ -129,7 +133,9 @@ theorem formalW_subst_wOpSubst_fixed {t : MvPowerSeries τ R} (ht : 1 ≤ t.orde
   simp only [wOp, wOpSubst, PowerSeries.subst_add ha, PowerSeries.subst_mul ha,
     PowerSeries.subst_pow ha, PowerSeries.subst_X ha, PowerSeries.subst_C]
 
-/-- `W.formalW.subst t` has positive order (indeed order at least `3`, inherited from `formalW`). -/
+/-- `W.formalW.subst t` has positive order (indeed order at least `3`, inherited from `formalW`).
+@isnad1 id=le.1h4v.s6.200cd4372d96 from=translated src=- shape=7713dd88 vocab=70a12c81
+-/
 theorem one_le_order_formalW_subst {t : MvPowerSeries τ R} (ht : 1 ≤ t.order) :
     1 ≤ (W.formalW.subst t).order := by
   have hct : MvPowerSeries.constantCoeff t = 0 :=
@@ -140,7 +146,9 @@ theorem one_le_order_formalW_subst {t : MvPowerSeries τ R} (ht : 1 ≤ t.order)
 
 /-- **Parametrised uniqueness of the Weierstrass expansion.** For `t` of positive order, the
 operator `W.wOpSubst t` has at most one fixed point of positive order: if `u, v` both have positive
-order and are fixed by `W.wOpSubst t`, then `u = v`. -/
+order and are fixed by `W.wOpSubst t`, then `u = v`.
+@isnad1 id=eq.5h6v.s6.903a8958d649 from=translated src=- shape=8c5a4e72 vocab=93e41d1b
+-/
 theorem wOpSubst_fixed_unique {t : MvPowerSeries τ R} (ht : 1 ≤ t.order)
     {u v : MvPowerSeries τ R} (hu : 1 ≤ u.order) (hv : 1 ≤ v.order)
     (hfu : u = W.wOpSubst t u) (hfv : v = W.wOpSubst t v) : u = v := by

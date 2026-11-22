@@ -58,7 +58,9 @@ variable (W : WeierstrassCurve K) [W.IsElliptic]
 /-- **Good reduction over a DVR extension forces `j` integral at the base.** If the base change
 `W⁄L` has good reduction over the discrete valuation subring `A ⊆ L`, then the image of the
 `j`-invariant `algebraMap K L W.j` lies in `A`. This is the base-change reflection of
-`isIntegral_j_of_hasGoodReduction` (#483) — the ungated direction of Silverman AEC VII.5.5. -/
+`isIntegral_j_of_hasGoodReduction` (#483) — the ungated direction of Silverman AEC VII.5.5.
+@isnad1 id=mem.1h4v.s7.e62930097cfb from=translated src=- shape=e0eba018 vocab=470e4386
+-/
 theorem isIntegral_j_of_hasGoodReduction_baseChange
     (h : HasGoodReduction A (W⁄L)) : algebraMap K L W.j ∈ A := by
   haveI : HasGoodReduction A (W⁄L) := h
@@ -71,14 +73,18 @@ theorem isIntegral_j_of_hasGoodReduction_baseChange
 
 /-- **The `j`-invariant is integral at the contracted place.** Restatement of
 `isIntegral_j_of_hasGoodReduction_baseChange` as membership in the contracted valuation ring
-`A.comap (algebraMap K L)` of `K`. -/
+`A.comap (algebraMap K L)` of `K`.
+@isnad1 id=mem.1h4v.s7.b24bf290d828 from=translated src=- shape=4104e014 vocab=a5d2e443
+-/
 theorem mem_comap_j_of_hasGoodReduction_baseChange
     (h : HasGoodReduction A (W⁄L)) : W.j ∈ A.comap (algebraMap K L) :=
   ValuationSubring.mem_comap.mpr (isIntegral_j_of_hasGoodReduction_baseChange A W h)
 
 /-- **A `j`-invariant that is not integral at the base place rules out good reduction over `A`.**
 Contrapositive of `isIntegral_j_of_hasGoodReduction_baseChange`: if `algebraMap K L W.j ∉ A`, then
-the base change `W⁄L` cannot have good reduction over `A`. -/
+the base change `W⁄L` cannot have good reduction over `A`.
+@isnad1 id=not.1h4v.s7.92f6739db81c from=translated src=- shape=ee81bfe3 vocab=470e4386
+-/
 theorem not_hasGoodReduction_baseChange_of_j_not_mem
     (h : algebraMap K L W.j ∉ A) : ¬ HasGoodReduction A (W⁄L) :=
   fun hgood => h (isIntegral_j_of_hasGoodReduction_baseChange A W hgood)

@@ -31,7 +31,9 @@ namespace AbsorptionCutoff
 noncomputable def gaussianUpperTail (t : ℝ) : ℝ :=
   (gaussianReal 0 1).real (Set.Ioi t)
 
-/-- The standard-Gaussian upper tail is the improper integral of its density. -/
+/-- The standard-Gaussian upper tail is the improper integral of its density.
+@isnad1 id=eq.0h1v.s5.bcc2f5f36fa7 from=translated src=- shape=3bc8e9ad vocab=e9352106
+-/
 lemma gaussianUpperTail_eq_integral (t : ℝ) :
     gaussianUpperTail t = ∫ x in Set.Ioi t, gaussianPDFReal 0 1 x := by
   rw [gaussianUpperTail, measureReal_def,
@@ -39,7 +41,9 @@ lemma gaussianUpperTail_eq_integral (t : ℝ) :
     (by norm_num) (Set.Ioi t), ENNReal.toReal_ofReal]
   exact integral_nonneg fun x => gaussianPDFReal_nonneg 0 1 x
 
-/-- Every finite threshold has strictly positive standard-Gaussian upper tail. -/
+/-- Every finite threshold has strictly positive standard-Gaussian upper tail.
+@isnad1 id=lt.0h1v.s3.27b136f7d056 from=translated src=- shape=8a62b088 vocab=064d722e
+-/
 lemma gaussianUpperTail_pos (t : ℝ) : 0 < gaussianUpperTail t := by
   have hne : gaussianReal 0 1 (Set.Ioi t) ≠ 0 := by
     intro hzero
@@ -48,12 +52,16 @@ lemma gaussianUpperTail_pos (t : ℝ) : 0 < gaussianUpperTail t := by
   rw [gaussianUpperTail, measureReal_def]
   exact ENNReal.toReal_pos hne (measure_ne_top _ _)
 
-/-- The standard-Gaussian upper tail is antitone in its threshold. -/
+/-- The standard-Gaussian upper tail is antitone in its threshold.
+@isnad1 id=antitone.0h0v.s2.ce439f472c8d from=translated src=- shape=e3d48bcb vocab=1976ac8f
+-/
 lemma antitone_gaussianUpperTail : Antitone gaussianUpperTail := by
   intro s t hst
   exact measureReal_mono (Set.Ioi_subset_Ioi hst)
 
-/-- Chernoff's bound for the standard-Gaussian upper tail. -/
+/-- Chernoff's bound for the standard-Gaussian upper tail.
+@isnad1 id=le.1h1v.s5.98ba9dbcef44 from=translated src=- shape=c12e0e84 vocab=f1b71214
+-/
 lemma gaussianUpperTail_le_exp_neg_sq_div_two {t : ℝ} (ht : 0 ≤ t) :
     gaussianUpperTail t ≤ Real.exp (-t ^ 2 / 2) := by
   let μ := gaussianReal 0 1
@@ -73,14 +81,18 @@ lemma gaussianUpperTail_le_exp_neg_sq_div_two {t : ℝ} (ht : 0 ≤ t) :
       congr 1
       ring
 
-/-- The standard-Gaussian density in the real-valued normalization used below. -/
+/-- The standard-Gaussian density in the real-valued normalization used below.
+@isnad1 id=eq.0h1v.s6.e002d98a3422 from=translated src=- shape=7c0780bc vocab=a3228582
+-/
 lemma gaussianPDFReal_zero_one_eq (t : ℝ) :
     gaussianPDFReal 0 1 t =
       (Real.sqrt (2 * Real.pi))⁻¹ * Real.exp (-t ^ 2 / 2) := by
   rw [gaussianPDFReal]
   norm_num
 
-/-- The derivative of the standard-Gaussian upper tail is minus its density. -/
+/-- The derivative of the standard-Gaussian upper tail is minus its density.
+@isnad1 id=hasderiv.0h1v.s5.fac12aef3a0f from=translated src=- shape=1046b09d vocab=2db9104f
+-/
 lemma hasDerivAt_gaussianUpperTail (t : ℝ) :
     HasDerivAt gaussianUpperTail (-gaussianPDFReal 0 1 t) t := by
   have hcont : Continuous (gaussianPDFReal 0 1) := by
@@ -106,7 +118,9 @@ lemma hasDerivAt_gaussianUpperTail (t : ℝ) :
 noncomputable def complexStandardGaussianPDF (z : ℂ) : ℂ :=
   ((Real.sqrt (2 * Real.pi))⁻¹ : ℝ) * Complex.exp (-z ^ 2 / 2)
 
-/-- The complex Gaussian density restricts to the usual real density. -/
+/-- The complex Gaussian density restricts to the usual real density.
+@isnad1 id=eq.0h1v.s4.cd907c3672f2 from=translated src=- shape=9c2b7619 vocab=0655d7f5
+-/
 lemma complexStandardGaussianPDF_ofReal_re (t : ℝ) :
     (complexStandardGaussianPDF t).re = gaussianPDFReal 0 1 t := by
   rw [gaussianPDFReal_zero_one_eq]
@@ -121,7 +135,9 @@ lemma complexStandardGaussianPDF_ofReal_re (t : ℝ) :
   rw [Complex.mul_re]
   simp only [Complex.ofReal_re, Complex.ofReal_im, zero_mul, sub_zero, hexp]
 
-/-- The standard-Gaussian upper tail is real analytic. -/
+/-- The standard-Gaussian upper tail is real analytic.
+@isnad1 id=analytic.0h1v.s5.a71b6d883760 from=translated src=- shape=1111aaa7 vocab=1ecb40b4
+-/
 @[fun_prop]
 lemma analyticAt_gaussianUpperTail (t : ℝ) :
     AnalyticAt ℝ gaussianUpperTail t := by
@@ -160,7 +176,9 @@ lemma analyticAt_gaussianUpperTail (t : ℝ) :
   rw [heq]
   fun_prop
 
-/-- The real square root is analytic at every positive point. -/
+/-- The real square root is analytic at every positive point.
+@isnad1 id=analytic.1h1v.s5.c463c19e1e42 from=translated src=- shape=a5280215 vocab=16fae1b7
+-/
 @[fun_prop]
 lemma analyticAt_real_sqrt_of_pos {h : ℝ} (hh : 0 < h) :
     AnalyticAt ℝ Real.sqrt h := by
@@ -186,7 +204,9 @@ lemma analyticAt_real_sqrt_of_pos {h : ℝ} (hh : 0 < h) :
     (analyticAt_comp_iff_of_deriv_ne_zero hsq hderiv).mp hcomp
   simpa only [sq, y, Real.sq_sqrt hh.le] using hsqrtSq
 
-/-- One differentiated Gaussian layer, in the exact normalization used by the paper. -/
+/-- One differentiated Gaussian layer, in the exact normalization used by the paper.
+@isnad1 id=hasderiv.2h3v.s7.fb2dad0b0138 from=translated src=- shape=e9b02958 vocab=9e90fcdc
+-/
 lemma hasDerivAt_two_mul_gaussianUpperTail_div_sqrt {b A h : ℝ}
     (hA : 0 < A) (hh : 0 < h) :
     HasDerivAt
@@ -240,7 +260,9 @@ noncomputable def roundedDerivativeWeight (A ρ : ℝ) : ℝ :=
     ∑ k ∈ roundedLayerIndices ρ,
       ((2 * k + 1 : ℕ) : ℝ) * (roundedLayerThreshold ρ k / A)
 
-/-- Membership in the finite layer set is exactly the paper's admissibility inequality. -/
+/-- Membership in the finite layer set is exactly the paper's admissibility inequality.
+@isnad1 id=iff.1h2v.s6.9a58eab6dd58 from=translated src=- shape=56190d9b vocab=e3fa7f18
+-/
 lemma mem_roundedLayerIndices_iff {ρ : ℝ} (hρ : 0 < ρ) (k : ℕ) :
     k ∈ roundedLayerIndices ρ ↔ ρ * ((k : ℝ) + 1 / 2) < 1 := by
   rw [roundedLayerIndices, Finset.mem_filter, Finset.mem_range]
@@ -252,13 +274,17 @@ lemma mem_roundedLayerIndices_iff {ρ : ℝ} (hρ : 0 < ρ) (k : ℕ) :
   have hkceil : k < ⌈ρ⁻¹⌉₊ := Nat.lt_ceil.mpr hkreal
   omega
 
-/-- For `0<ρ<1`, the zeroth layer is admissible. -/
+/-- For `0<ρ<1`, the zeroth layer is admissible.
+@isnad1 id=mem.2h1v.s5.16246c985f0d from=translated src=- shape=857bbb4e vocab=ae4607df
+-/
 lemma zero_mem_roundedLayerIndices {ρ : ℝ} (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     0 ∈ roundedLayerIndices ρ := by
   simp [roundedLayerIndices]
   nlinarith
 
-/-- The total layer weight is positive whenever the zeroth layer is admissible. -/
+/-- The total layer weight is positive whenever the zeroth layer is admissible.
+@isnad1 id=lt.2h1v.s5.eb1ff831f8a6 from=translated src=- shape=05b24c01 vocab=c16ee6bc
+-/
 lemma roundedLayerWeight_pos {ρ : ℝ} (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     0 < roundedLayerWeight ρ := by
   have hzero := zero_mem_roundedLayerIndices hρ hρ_lt
@@ -272,7 +298,9 @@ lemma roundedLayerWeight_pos {ρ : ℝ} (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
   rw [roundedLayerWeight]
   positivity
 
-/-- The first positive rounding boundary has a strictly positive preimage. -/
+/-- The first positive rounding boundary has a strictly positive preimage.
+@isnad1 id=lt.2h1v.s5.3fca37ce13c7 from=translated src=- shape=238c237b vocab=7895df59
+-/
 lemma roundedLayerThreshold_zero_pos {ρ : ℝ} (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     0 < roundedLayerThreshold ρ 0 := by
   rw [roundedLayerThreshold]
@@ -280,14 +308,18 @@ lemma roundedLayerThreshold_zero_pos {ρ : ℝ} (hρ : 0 < ρ) (hρ_lt : ρ < 1)
   apply Real.artanh_pos
   constructor <;> norm_num <;> nlinarith
 
-/-- The common small-radius exponential rate is strictly positive. -/
+/-- The common small-radius exponential rate is strictly positive.
+@isnad1 id=lt.3h2v.s5.35bd42cd830a from=translated src=- shape=594a9676 vocab=980d1297
+-/
 lemma roundedSmallRate_pos {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     0 < roundedSmallRate A ρ := by
   rw [roundedSmallRate]
   exact div_pos (sq_pos_of_pos (roundedLayerThreshold_zero_pos hρ hρ_lt))
     (mul_pos (by norm_num) (sq_pos_of_pos hA))
 
-/-- Every admissible layer has a strictly positive preimage threshold. -/
+/-- Every admissible layer has a strictly positive preimage threshold.
+@isnad1 id=lt.2h2v.s5.94d72f3b8edf from=translated src=- shape=7bea8c1d vocab=532112de
+-/
 lemma roundedLayerThreshold_pos {ρ : ℝ} (hρ : 0 < ρ) {k : ℕ}
     (hk : k ∈ roundedLayerIndices ρ) :
     0 < roundedLayerThreshold ρ k := by
@@ -296,7 +328,9 @@ lemma roundedLayerThreshold_pos {ρ : ℝ} (hρ : 0 < ρ) {k : ℕ}
   apply Real.artanh_pos
   refine ⟨by positivity, (mem_roundedLayerIndices_iff hρ k).mp hk⟩
 
-/-- The differentiated small-radius coefficient is strictly positive. -/
+/-- The differentiated small-radius coefficient is strictly positive.
+@isnad1 id=lt.3h2v.s5.b71efeafbbe0 from=translated src=- shape=594a9676 vocab=a9cb707d
+-/
 lemma roundedDerivativeWeight_pos {A ρ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     0 < roundedDerivativeWeight A ρ := by
@@ -315,7 +349,9 @@ lemma roundedDerivativeWeight_pos {A ρ : ℝ}
   rw [roundedDerivativeWeight]
   exact mul_pos (inv_pos.mpr (Real.sqrt_pos.2 (by positivity))) hsum
 
-/-- The zeroth admissible layer has the smallest positive threshold. -/
+/-- The zeroth admissible layer has the smallest positive threshold.
+@isnad1 id=le.2h2v.s5.18e9c98c4d91 from=translated src=- shape=6cd0775c vocab=8dd6523c
+-/
 lemma roundedLayerThreshold_zero_le {ρ : ℝ} (hρ : 0 < ρ) {k : ℕ}
     (hk : k ∈ roundedLayerIndices ρ) :
     roundedLayerThreshold ρ 0 ≤ roundedLayerThreshold ρ k := by
@@ -329,7 +365,9 @@ lemma roundedLayerThreshold_zero_le {ρ : ℝ} (hρ : 0 < ρ) {k : ℕ}
     nlinarith
 
 /-- Every admissible layer tail is controlled by the common zeroth-layer exponential
-rate. -/
+rate.
+@isnad1 id=le.4h4v.s7.f2f5bfbf78f6 from=translated src=- shape=aa034fed vocab=a5f1faec
+-/
 lemma gaussianUpperTail_layer_le_common_exp {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hh : 0 < h) {k : ℕ}
     (hk : k ∈ roundedLayerIndices ρ) :
@@ -360,7 +398,9 @@ lemma gaussianUpperTail_layer_le_common_exp {A ρ h : ℝ}
       nlinarith
 
 /-- Every admissible layer density is controlled by the common zeroth-layer
-exponential rate. -/
+exponential rate.
+@isnad1 id=le.4h4v.s7.f9aa7fb6d7b1 from=translated src=- shape=6cbaf65a vocab=71c4cea8
+-/
 lemma gaussianPDFReal_layer_le_common_exp {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hh : 0 < h) {k : ℕ}
     (hk : k ∈ roundedLayerIndices ρ) :
@@ -388,7 +428,9 @@ lemma gaussianPDFReal_layer_le_common_exp {A ρ h : ℝ}
     nlinarith
   · exact inv_nonneg.mpr (Real.sqrt_nonneg _)
 
-/-- The square of an integer magnitude is the sum of the odd layer weights below it. -/
+/-- The square of an integer magnitude is the sum of the odd layer weights below it.
+@isnad1 id=eq.0h1v.s5.6e2479e30411 from=translated src=- shape=18a1c3e6 vocab=adb6f72c
+-/
 lemma sq_eq_sum_odd_below_natAbs (z : ℤ) :
     (z : ℝ) ^ 2 =
       ∑ k ∈ Finset.range z.natAbs, (((2 * k + 1 : ℕ) : ℝ)) := by
@@ -403,13 +445,17 @@ lemma sq_eq_sum_odd_below_natAbs (z : ℤ) :
       ((z.natAbs : ℕ) : ℝ) ^ 2 by exact_mod_cast hodd z.natAbs]
   rw [Nat.cast_natAbs, Int.cast_abs, sq_abs]
 
-/-- Pointwise odd-layer decomposition of the squared unit-grid rounding map. -/
+/-- Pointwise odd-layer decomposition of the squared unit-grid rounding map.
+@isnad1 id=eq.0h1v.s6.5b6b00bef44b from=translated src=- shape=95972aaa vocab=fd51b834
+-/
 lemma Q₁_sq_eq_sum_odd (u : ℝ) :
     (Q₁ u : ℝ) ^ 2 =
       ∑ k ∈ Finset.range (Q₁ u).natAbs, (((2 * k + 1 : ℕ) : ℝ)) :=
   sq_eq_sum_odd_below_natAbs (Q₁ u)
 
-/-- A rounding layer occurs exactly when the input crosses its half-integer boundary. -/
+/-- A rounding layer occurs exactly when the input crosses its half-integer boundary.
+@isnad1 id=iff.0h2v.s5.7848372f322a from=translated src=- shape=c64f9b81 vocab=8c708833
+-/
 lemma lt_natAbs_Q₁_iff (u : ℝ) (k : ℕ) :
     k < (Q₁ u).natAbs ↔ (k : ℝ) + 1 / 2 < |u| := by
   have habs : |(Q₁ u : ℝ)| = (⌈|u| - 2⁻¹⌉ : ℤ) :=
@@ -438,7 +484,9 @@ lemma lt_natAbs_Q₁_iff (u : ℝ) (k : ℕ) :
     exact_mod_cast hknat
 
 /-- Oddness and monotonicity identify the magnitude of `tanh` with `tanh` of the
-magnitude. -/
+magnitude.
+@isnad1 id=eq.0h1v.s4.78075200231b from=translated src=- shape=d62e2955 vocab=1baff1f1
+-/
 lemma abs_tanh_eq_tanh_abs (x : ℝ) : |Real.tanh x| = Real.tanh |x| := by
   by_cases hx : 0 ≤ x
   · have ht : 0 ≤ Real.tanh x := by
@@ -451,7 +499,9 @@ lemma abs_tanh_eq_tanh_abs (x : ℝ) : |Real.tanh x| = Real.tanh |x| := by
       simpa using this
     rw [abs_of_neg hx', abs_of_nonpos ht, ← Real.tanh_neg]
 
-/-- The preimage of an admissible rounded layer is the corresponding `artanh` threshold. -/
+/-- The preimage of an admissible rounded layer is the corresponding `artanh` threshold.
+@isnad1 id=iff.2h3v.s7.e910aa6014d2 from=translated src=- shape=05da2407 vocab=8493f4f1
+-/
 lemma abs_inv_mul_tanh_gt_iff {ρ : ℝ} (hρ : 0 < ρ) {k : ℕ}
     (hk : ρ * ((k : ℝ) + 1 / 2) < 1) (x : ℝ) :
     (k : ℝ) + 1 / 2 < |ρ⁻¹ * Real.tanh (ρ * x)| ↔
@@ -472,7 +522,9 @@ lemma abs_inv_mul_tanh_gt_iff {ρ : ℝ} (hρ : 0 < ρ) {k : ℕ}
     rwa [Real.tanh_artanh hmem] at ht
 
 /-- Every layer activated by the bounded rounded argument belongs to the finite
-admissible layer set. -/
+admissible layer set.
+@isnad1 id=mem.2h3v.s6.6e2a971254a3 from=translated src=- shape=05cc5039 vocab=d92e4355
+-/
 lemma active_layer_mem_roundedLayerIndices {ρ : ℝ} (hρ : 0 < ρ) {x : ℝ} {k : ℕ}
     (hk : (k : ℝ) + 1 / 2 < |ρ⁻¹ * Real.tanh (ρ * x)|) :
     k ∈ roundedLayerIndices ρ := by
@@ -483,7 +535,9 @@ lemma active_layer_mem_roundedLayerIndices {ρ : ℝ} (hρ : 0 < ρ) {x : ℝ} {
     (lt_inv_mul_iff₀ hρ).mp hk
   exact hmul.trans (Real.abs_tanh_lt_one _)
 
-/-- Pointwise finite-layer formula for the rounded coordinate square. -/
+/-- Pointwise finite-layer formula for the rounded coordinate square.
+@isnad1 id=eq.1h2v.s6.abc0890149bd from=translated src=- shape=f4ca7ac0 vocab=78030bf2
+-/
 lemma Q₁_inv_tanh_sq_eq_sum_layers {ρ : ℝ} (hρ : 0 < ρ) (x : ℝ) :
     (Q₁ (ρ⁻¹ * Real.tanh (ρ * x)) : ℝ) ^ 2 =
       ∑ k ∈ roundedLayerIndices ρ,
@@ -520,7 +574,9 @@ lemma Q₁_inv_tanh_sq_eq_sum_layers {ρ : ℝ} (hρ : 0 < ρ) (x : ℝ) :
         exact hkS hs
       rw [ite_eq_right hnot]
 
-/-- By symmetry, the standard-Gaussian absolute tail is twice its upper tail. -/
+/-- By symmetry, the standard-Gaussian absolute tail is twice its upper tail.
+@isnad1 id=eq.1h1v.s5.c2f7569a7c4a from=translated src=- shape=3e8706d5 vocab=04ebf57c
+-/
 lemma gaussianReal_abs_gt_eq_two_mul_upperTail {t : ℝ} (ht : 0 ≤ t) :
     (gaussianReal 0 1).real {g : ℝ | t < |g|} = 2 * gaussianUpperTail t := by
   let μ := gaussianReal 0 1
@@ -557,7 +613,9 @@ lemma gaussianReal_abs_gt_eq_two_mul_upperTail {t : ℝ} (ht : 0 ≤ t) :
   simp [gaussianUpperTail, μ, two_mul]
 
 /-- Scaling a standard Gaussian converts an absolute threshold into the corresponding
-upper-tail argument. -/
+upper-tail argument.
+@isnad1 id=eq.3h3v.s6.141e43f2a11f from=translated src=- shape=fd37fc62 vocab=aaa7c503
+-/
 lemma gaussianReal_abs_scale_gt {A h b : ℝ} (hA : 0 < A) (hh : 0 < h) (hb : 0 ≤ b) :
     (gaussianReal 0 1).real {g : ℝ | b < |A * Real.sqrt h * g|} =
       2 * gaussianUpperTail (b / (A * Real.sqrt h)) := by
@@ -579,7 +637,9 @@ lemma gaussianReal_abs_scale_gt {A h b : ℝ} (hA : 0 < A) (hh : 0 < h) (hb : 0 
   exact gaussianReal_abs_gt_eq_two_mul_upperTail (div_nonneg hb hs.le)
 
 /-- First exact formula in `eq:subcritical-layer-formulas-exact`: the rounded mean map
-is a finite sum of Gaussian layer tails. -/
+is a finite sum of Gaussian layer tails.
+@isnad1 id=eq.3h3v.s6.8e3625429775 from=translated src=- shape=1a8d2311 vocab=4f7a47f0
+-/
 lemma roundedMeanMap_eq_sum_upperTail {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hh : 0 < h) :
     roundedMeanMap A ρ h =
@@ -625,7 +685,9 @@ lemma roundedMeanMap_eq_sum_upperTail {A ρ h : ℝ}
     rw [hind]
     exact (integrable_const _).integrableOn.integrable_indicator hS
 
-/-- The rounded mean map is real analytic at every positive radius. -/
+/-- The rounded mean map is real analytic at every positive radius.
+@isnad1 id=analytic.3h3v.s6.f72a57fe7000 from=translated src=- shape=33460526 vocab=f9340ae0
+-/
 @[fun_prop]
 lemma analyticAt_roundedMeanMap {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hh : 0 < h) :
@@ -667,13 +729,17 @@ lemma analyticAt_roundedMeanMap {A ρ h : ℝ}
   filter_upwards [Ioi_mem_nhds hh] with u hu
   exact (roundedMeanMap_eq_sum_upperTail hA hρ hu).symm
 
-/-- The rounded mean map vanishes on the nonpositive half-line. -/
+/-- The rounded mean map vanishes on the nonpositive half-line.
+@isnad1 id=eq.1h3v.s4.f7a4e44694ca from=translated src=- shape=84fcc214 vocab=aa0bf7bd
+-/
 lemma roundedMeanMap_eq_zero_of_nonpos (A ρ : ℝ) {h : ℝ} (hh : h ≤ 0) :
     roundedMeanMap A ρ h = 0 := by
   have hQ : Q₁ (0 : ℝ) = 0 := (Q₁_zero_iff 0).mpr (by norm_num)
   simp [roundedMeanMap, Real.sqrt_eq_zero_of_nonpos hh, hQ]
 
-/-- The rounded mean map is nondecreasing on the nonnegative half-line. -/
+/-- The rounded mean map is nondecreasing on the nonnegative half-line.
+@isnad1 id=monotone.2h2v.s5.421a8ad37464 from=translated src=- shape=84391714 vocab=3dde565c
+-/
 lemma monotoneOn_roundedMeanMap_Ici {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) :
     MonotoneOn (roundedMeanMap A ρ) (Set.Ici 0) := by
   intro x hx y hy hxy
@@ -700,7 +766,9 @@ lemma monotoneOn_roundedMeanMap_Ici {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) :
     (roundedLayerThreshold_pos hρ hk).le hdenomPos hdenom
 
 /-- The rounded mean map is globally nondecreasing, with its flat extension on
-the nonpositive half-line. -/
+the nonpositive half-line.
+@isnad1 id=monotone.2h2v.s5.97799709bbec from=translated src=- shape=c8626b2f vocab=97a30969
+-/
 lemma monotone_roundedMeanMap {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) :
     Monotone (roundedMeanMap A ρ) := by
   intro x y hxy
@@ -721,7 +789,9 @@ noncomputable def roundedMeanMapDerivative (A ρ h : ℝ) : ℝ :=
       gaussianPDFReal 0 1 (roundedLayerThreshold ρ k / (A * Real.sqrt h)))
 
 /-- Second exact formula in `eq:subcritical-layer-formulas-exact`: the derivative of
-the rounded mean map is the finite sum of differentiated Gaussian layers. -/
+the rounded mean map is the finite sum of differentiated Gaussian layers.
+@isnad1 id=hasderiv.3h3v.s6.a7b80596f2f3 from=translated src=- shape=bb355e2a vocab=e04b4955
+-/
 lemma hasDerivAt_roundedMeanMap {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hh : 0 < h) :
     HasDerivAt (roundedMeanMap A ρ) (roundedMeanMapDerivative A ρ h) h := by
@@ -744,13 +814,17 @@ lemma hasDerivAt_roundedMeanMap {A ρ h : ℝ}
   intro k hk
   ring
 
-/-- On the positive half-line, the actual derivative agrees with the explicit layer sum. -/
+/-- On the positive half-line, the actual derivative agrees with the explicit layer sum.
+@isnad1 id=eq.3h3v.s6.834b28548f94 from=translated src=- shape=68159d07 vocab=a32fe92a
+-/
 lemma deriv_roundedMeanMap_eq {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hh : 0 < h) :
     deriv (roundedMeanMap A ρ) h = roundedMeanMapDerivative A ρ h :=
   (hasDerivAt_roundedMeanMap hA hρ hh).deriv
 
-/-- The explicit rounded-map derivative is continuous at every positive radius. -/
+/-- The explicit rounded-map derivative is continuous at every positive radius.
+@isnad1 id=continuo.1h2v.s5.cc4b897dccec from=translated src=- shape=d757789d vocab=668c9e2c
+-/
 lemma continuousOn_roundedMeanMapDerivative_Ioi {A ρ : ℝ} (hA : 0 < A) :
     ContinuousOn (roundedMeanMapDerivative A ρ) (Set.Ioi 0) := by
   intro h hh
@@ -778,14 +852,18 @@ lemma continuousOn_roundedMeanMapDerivative_Ioi {A ρ : ℝ} (hA : 0 < A) :
     fun_prop
   exact continuousAt_const.mul (hleft.mul (hpdf.continuousAt.comp harg))
 
-/-- The rounded mean map is continuous at every positive radius. -/
+/-- The rounded mean map is continuous at every positive radius.
+@isnad1 id=continuo.2h2v.s5.63c6abbff772 from=translated src=- shape=84391714 vocab=87151bfe
+-/
 lemma continuousOn_roundedMeanMap_Ioi {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) :
     ContinuousOn (roundedMeanMap A ρ) (Set.Ioi 0) := by
   intro h hh
   exact (hasDerivAt_roundedMeanMap hA hρ hh).continuousAt.continuousWithinAt
 
 /-- The rounded mean map is strictly positive at every positive radius when the zeroth
-rounding layer is admissible. -/
+rounding layer is admissible.
+@isnad1 id=lt.4h3v.s5.5bdde7aad43a from=translated src=- shape=24d20218 vocab=b54f5429
+-/
 lemma roundedMeanMap_pos {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) (hh : 0 < h) :
     0 < roundedMeanMap A ρ h := by
@@ -804,7 +882,9 @@ lemma roundedMeanMap_pos {A ρ h : ℝ}
   rw [roundedMeanMap_eq_sum_upperTail hA hρ hh]
   exact mul_pos (by norm_num) ((gaussianUpperTail_pos _).trans_le hsum)
 
-/-- The rounded mean map has the paper's exponential small-radius bound. -/
+/-- The rounded mean map has the paper's exponential small-radius bound.
+@isnad1 id=le.3h3v.s6.1f552d64caee from=translated src=- shape=984d55da vocab=2f6de387
+-/
 lemma roundedMeanMap_le_weight_mul_exp {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hh : 0 < h) :
     roundedMeanMap A ρ h ≤
@@ -832,7 +912,9 @@ lemma roundedMeanMap_le_weight_mul_exp {A ρ h : ℝ}
       ring
 
 /-- The explicit derivative has the paper's preliminary
-`h⁻³ᐟ² exp (-c / h)` small-radius bound. -/
+`h⁻³ᐟ² exp (-c / h)` small-radius bound.
+@isnad1 id=le.3h3v.s6.05e0fa9cb478 from=translated src=- shape=f37bed5e vocab=379727fe
+-/
 lemma roundedMeanMapDerivative_le_weight_mul_rpow_exp {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hh : 0 < h) :
     roundedMeanMapDerivative A ρ h ≤
@@ -878,7 +960,9 @@ lemma roundedMeanMapDerivative_le_weight_mul_rpow_exp {A ρ h : ℝ}
       field_simp [hA.ne', hpow]
 
 /-- The two small-radius estimates in
-`eq:subcritical-fixed-small-radius-map-derivative`, with shared positive constants. -/
+`eq:subcritical-fixed-small-radius-map-derivative`, with shared positive constants.
+@isnad1 id=ex.5h3v.s7.f254cf0777ce from=translated src=- shape=b9d505f1 vocab=e72d7ccc
+-/
 lemma exists_roundedMeanMap_small_radius_bounds {A ρ r : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) (_hr : 0 < r) (hr_lt : r < 1) :
     ∃ c C : ℝ, 0 < c ∧ 0 < C ∧ ∀ h : ℝ, 0 < h → h ≤ r →
@@ -921,7 +1005,9 @@ lemma exists_roundedMeanMap_small_radius_bounds {A ρ r : ℝ}
         gcongr
 
 /-- On every positive compact radius interval, the rounded mean map has a uniform
-strictly positive lower bound. -/
+strictly positive lower bound.
+@isnad1 id=ex.5h4v.s6.4e7ed09526ad from=translated src=- shape=5637fa11 vocab=58dad1f1
+-/
 lemma exists_pos_le_roundedMeanMap_on_Icc {A ρ r R : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) (hr : 0 < r) (hrR : r ≤ R) :
     ∃ m : ℝ, 0 < m ∧ ∀ h ∈ Set.Icc r R, m ≤ roundedMeanMap A ρ h := by
@@ -934,7 +1020,9 @@ lemma exists_pos_le_roundedMeanMap_on_Icc {A ρ r R : ℝ}
     roundedMeanMap_pos hA hρ hρ_lt (lt_of_lt_of_le hr hx.1), hmin⟩
 
 /-- On every positive compact radius interval, the rounded mean-map derivative has a
-finite strictly positive upper bound. -/
+finite strictly positive upper bound.
+@isnad1 id=ex.4h4v.s6.50a180874121 from=translated src=- shape=36e57321 vocab=7618f155
+-/
 lemma exists_pos_deriv_roundedMeanMap_le_on_Icc {A ρ r R : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hr : 0 < r) (hrR : r ≤ R) :
     ∃ L : ℝ, 0 < L ∧ ∀ h ∈ Set.Icc r R, deriv (roundedMeanMap A ρ) h ≤ L := by
@@ -950,7 +1038,9 @@ lemma exists_pos_deriv_roundedMeanMap_le_on_Icc {A ρ r R : ℝ}
   exact (hmax hhmem).trans (le_max_right _ _)
 
 /-- The compact-radius bounds in `eq:subcritical-fixed-compact-bounds`, packaged with
-the paper's two positive constants. -/
+the paper's two positive constants.
+@isnad1 id=ex.5h4v.s7.b6658a48dc25 from=translated src=- shape=790000f9 vocab=7618f155
+-/
 lemma exists_roundedMeanMap_compact_bounds {A ρ r R : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) (hr : 0 < r) (hrR : r ≤ R) :
     ∃ m L : ℝ, 0 < m ∧ 0 < L ∧ ∀ h ∈ Set.Icc r R,

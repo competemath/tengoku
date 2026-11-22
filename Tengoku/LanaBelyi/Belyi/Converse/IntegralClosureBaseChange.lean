@@ -48,7 +48,9 @@ variable (k : Type*) [Field k] [PerfectField k] {K : Type u} [Field K] [Algebra 
 
 /-- **Smooth approximation.** Over a perfect field `k`, every finite subset of a field
 extension `K` lies in the image of an injective `k`-algebra map `A → K` from a smooth
-`k`-algebra `A`. -/
+`k`-algebra `A`.
+@isnad1 id=ex.0h3v.s7.9aac81dc28d0 from=translated src=- shape=c44aa330 vocab=08fe69c8
+-/
 theorem exists_smooth_algHom_injective (F : Finset K) :
     ∃ (A : Type u) (_ : CommRing A) (_ : Algebra k A), Algebra.Smooth k A ∧
       ∃ ι : A →ₐ[k] K, Function.Injective ι ∧ (F : Set K) ⊆ Set.range ι := by
@@ -98,7 +100,9 @@ noncomputable abbrev tensorMapLeftTensor {A : Type*} [CommRing A] [Algebra k A]
 
 omit [Algebra k B] [IsScalarTower k R B] in
 /-- Every element of `R ⊗[k] K` comes from `R ⊗[k] A` for any `ι : A → K` whose image contains a
-suitable finite set. -/
+suitable finite set.
+@isnad1 id=ex.0h4v.s10.b6c70fc200af from=translated src=- shape=e071a1f8 vocab=42d55108
+-/
 theorem exists_finset_mem_range_tensorMapLeft (s : R ⊗[k] K) :
     ∃ F : Finset K, ∀ (A : Type u) [CommRing A] [Algebra k A] (ι : A →ₐ[k] K),
       (F : Set K) ⊆ Set.range ι → s ∈ Set.range (tensorMapLeft R ι) := by
@@ -119,7 +123,9 @@ theorem exists_finset_mem_range_tensorMapLeft (s : R ⊗[k] K) :
 
 omit [Algebra k B] [IsScalarTower k R B] in
 /-- Every element of `(R ⊗[k] K) ⊗[R] B` comes from `(R ⊗[k] A) ⊗[R] B` for any `ι : A → K`
-whose image contains a suitable finite set. -/
+whose image contains a suitable finite set.
+@isnad1 id=ex.0h5v.s11.cd5264e4c694 from=translated src=- shape=b286bc1d vocab=a28e221c
+-/
 theorem exists_finset_mem_range_tensorMapLeftTensor (z : (R ⊗[k] K) ⊗[R] B) :
     ∃ F : Finset K, ∀ (A : Type u) [CommRing A] [Algebra k A] (ι : A →ₐ[k] K),
       (F : Set K) ⊆ Set.range ι → z ∈ Set.range (tensorMapLeftTensor R B ι) := by
@@ -145,6 +151,9 @@ noncomputable def tensorTensorEquiv (A : Type*) [CommRing A] [Algebra k A] :
   (Algebra.TensorProduct.comm R (R ⊗[k] A) B).trans
     (Algebra.TensorProduct.cancelBaseChange k R R B A)
 
+/--
+@isnad1 id=eq.0h6v.s11.93f352cbea77 from=translated src=- shape=941fd83a vocab=690eaedb
+-/
 theorem tensorTensorEquiv_comp_tensorMapLeftTensor {A : Type*} [CommRing A] [Algebra k A]
     (ι : A →ₐ[k] K) :
     (tensorTensorEquiv (k := k) R B K).toAlgHom.comp (tensorMapLeftTensor R B ι) =
@@ -153,7 +162,9 @@ theorem tensorTensorEquiv_comp_tensorMapLeftTensor {A : Type*} [CommRing A] [Alg
   ext <;> simp [tensorTensorEquiv, Algebra.TensorProduct.one_def]
 
 /-- The transition map `(R ⊗[k] A) ⊗[R] B → (R ⊗[k] K) ⊗[R] B` is injective for injective
-`ι : A → K`, since `B` is flat over the field `k`. -/
+`ι : A → K`, since `B` is flat over the field `k`.
+@isnad1 id=injectiv.1h6v.s11.255366c1cf4a from=translated src=- shape=d4cb76bd vocab=a8565099
+-/
 theorem tensorMapLeftTensor_injective {A : Type*} [CommRing A] [Algebra k A]
     {ι : A →ₐ[k] K} (hι : Function.Injective ι) :
     Function.Injective (tensorMapLeftTensor R B ι) := by
@@ -166,7 +177,9 @@ theorem tensorMapLeftTensor_injective {A : Type*} [CommRing A] [Algebra k A]
   exact h.comp (tensorTensorEquiv (k := k) R B A).injective
 
 omit [Algebra k B] [IsScalarTower k R B] in
-/-- Naturality of `TensorProduct.toIntegralClosure` in the base change `R ⊗[k] A → R ⊗[k] K`. -/
+/-- Naturality of `TensorProduct.toIntegralClosure` in the base change `R ⊗[k] A → R ⊗[k] K`.
+@isnad1 id=eq.0h7v.s16.cb233c2e129d from=translated src=- shape=3c65e9f7 vocab=78f1408f
+-/
 theorem coe_toIntegralClosure_tensorMap {A : Type*} [CommRing A] [Algebra k A]
     (ι : A →ₐ[k] K) (y : (R ⊗[k] A) ⊗[R] integralClosure R B) :
     (toIntegralClosure R (R ⊗[k] K) B
@@ -186,7 +199,9 @@ variable {R S S' B : Type*} [CommRing R] [CommRing S] [CommRing S'] [CommRing B]
   [Algebra R S'] [Algebra R B]
 
 /-- Bijectivity of `TensorProduct.toIntegralClosure R S B` only depends on the `R`-algebra `S`
-up to isomorphism. -/
+up to isomorphism.
+@isnad1 id=bijectiv.1h5v.s13.8a7050cdad09 from=translated src=- shape=f63236b9 vocab=ccaa61a2
+-/
 theorem toIntegralClosure_bijective_of_algEquiv (e : S ≃ₐ[R] S')
     (H : Function.Bijective (toIntegralClosure R S B)) :
     Function.Bijective (toIntegralClosure R S' B) := by
@@ -207,7 +222,9 @@ variable (k : Type*) [Field k] [PerfectField k] (R : Type*) [CommRing R] [Algebr
   (K : Type u) [Field K] [Algebra k K]
 
 /-- **Integral closure commutes with base change along a field extension** of a perfect field:
-`(R ⊗[k] K) ⊗[R] integralClosure R B ≃ integralClosure (R ⊗[k] K) ((R ⊗[k] K) ⊗[R] B)`. -/
+`(R ⊗[k] K) ⊗[R] integralClosure R B ≃ integralClosure (R ⊗[k] K) ((R ⊗[k] K) ⊗[R] B)`.
+@isnad1 id=bijectiv.0h4v.s15.ce4ba5fb6739 from=translated src=- shape=0caa0de6 vocab=b772a968
+-/
 theorem toIntegralClosure_tensorProduct_bijective :
     Function.Bijective (toIntegralClosure R (R ⊗[k] K) B) := by
   classical
@@ -243,7 +260,9 @@ theorem toIntegralClosure_tensorProduct_bijective :
 
 /-- **Integral closure commutes with base change along a field extension** of a perfect field,
 pushout form: if `S` is the base change of `K` along `k → R`, then
-`S ⊗[R] integralClosure R B ≃ integralClosure S (S ⊗[R] B)`. -/
+`S ⊗[R] integralClosure R B ≃ integralClosure S (S ⊗[R] B)`.
+@isnad1 id=bijectiv.0h5v.s12.877b09c53dbc from=translated src=- shape=52fbe93b vocab=1506f104
+-/
 theorem toIntegralClosure_bijective_of_isPushout (S : Type*) [CommRing S] [Algebra k S]
     [Algebra R S] [Algebra K S] [IsScalarTower k R S] [IsScalarTower k K S]
     [Algebra.IsPushout k R K S] :

@@ -22,7 +22,9 @@ open UpperHalfPlane Matrix.SpecialLinearGroup CongruenceSubgroup
 noncomputable section
 namespace Heights
 
-/-- The lattice curve's `c₆` invariant is `216 g₃`. -/
+/-- The lattice curve's `c₆` invariant is `216 g₃`.
+@isnad1 id=eq.0h1v.s4.4ab4eb54e6ac from=translated src=- shape=214ff81b vocab=cb98c651
+-/
 theorem latticeWeierstrassCurve_c6 (τ : ℍ) :
     (latticeWeierstrassCurve τ).c₆ =
       216 * (periodPairOfUpperHalfPlane τ).g₃ := by
@@ -70,7 +72,9 @@ private theorem int_linear_combination_injective (τ : ℍ)
   norm_num at h
   exact ⟨rfl, h⟩
 
-/-- Equal modular `j`-values lie in the same integral modular-group orbit. -/
+/-- Equal modular `j`-values lie in the same integral modular-group orbit.
+@isnad1 id=ex.1h2v.s7.af0a43de2203 from=translated src=- shape=56130a3e vocab=e16fd1d2
+-/
 theorem exists_smul_eq_of_modularJ_eq (τ τ' : ℍ)
     (hj : modularJ τ = modularJ τ') :
     ∃ γ : SL(2, ℤ), γ • τ' = τ := by
@@ -159,7 +163,9 @@ theorem exists_smul_eq_of_modularJ_eq (τ τ' : ℍ)
   simp only [γ, num, denom, Matrix.SpecialLinearGroup.toGL]
   exact hτeq.symm
 
-/-- Silverman's modular discriminant has weight twelve under the modular group. -/
+/-- Silverman's modular discriminant has weight twelve under the modular group.
+@isnad1 id=eq.0h2v.s10.bf1956388755 from=translated src=- shape=f4a8ebf9 vocab=6191baf1
+-/
 theorem silvermanModularDiscriminant_smul (γ : SL(2, ℤ)) (τ : ℍ) :
     silvermanModularDiscriminant (γ • τ) =
       denom γ τ ^ (12 : ℕ) * silvermanModularDiscriminant τ := by
@@ -173,7 +179,9 @@ theorem silvermanModularDiscriminant_smul (γ : SL(2, ℤ)) (τ : ℍ) :
   ac_rfl
 
 /-- The Petersson-normalized absolute discriminant is invariant under
-`SL(2, ℤ)`. -/
+`SL(2, ℤ)`.
+@isnad1 id=eq.0h2v.s8.e3a186c82b5b from=translated src=- shape=018b6140 vocab=3e5165ac
+-/
 theorem silvermanModularDiscriminant_norm_mul_im_pow_smul
     (γ : SL(2, ℤ)) (τ : ℍ) :
     ‖silvermanModularDiscriminant (γ • τ)‖ * (γ • τ).im ^ 6 =
@@ -185,7 +193,9 @@ theorem silvermanModularDiscriminant_norm_mul_im_pow_smul
   field_simp
 
 /-- The Petersson-normalized absolute discriminant depends only on the modular
-`j`-value.  No fundamental-domain hypotheses are needed. -/
+`j`-value.  No fundamental-domain hypotheses are needed.
+@isnad1 id=eq.1h2v.s6.598f5ffbaf53 from=translated src=- shape=26732bd8 vocab=c2cafc87
+-/
 theorem silvermanModularDiscriminant_norm_mul_im_pow_eq_of_modularJ_eq
     (τ τ' : ℍ) (hj : modularJ τ = modularJ τ') :
     ‖silvermanModularDiscriminant τ‖ * τ.im ^ 6 =

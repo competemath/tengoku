@@ -37,7 +37,9 @@ Take `g₁` from reduction I, mapping `S` and its critical values into (the imag
 collect those rational values into a finite set `S' ⊆ ℚ` and take `g₂` from reduction II
 applied to `S'`. The composite `g₂ ∘ g₁` works: its values on `S` are `g₂` of rational
 values in `S'`, and `critVal (g₂ ∘ g₁) ⊆ g₂(critVal g₁) ∪ critVal g₂` reduces to `{0, 1}`
-in the same way. -/
+in the same way.
+@isnad1 id=ex.0h2v.s8.350ce5d748c8 from=translated src=- shape=25520063 vocab=ae9945bc
+-/
 theorem exists_aeval_mem_and_critVal_mem_zeroOne (S : Finset K) :
     ∃ g : ℚ[X], g.natDegree ≠ 0 ∧
       (∀ s ∈ S, aeval s g = 0 ∨ aeval s g = 1) ∧

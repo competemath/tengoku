@@ -43,22 +43,36 @@ variable (k : Type u) [Field k]
 line. -/
 def markedPoints : Set (P1 k) := {P1.zero k, P1.one k, P1.infty k}
 
+/--
+@isnad1 id=mem.0h1v.s5.b7a632ea38e2 from=translated src=- shape=6f135e67 vocab=54f23f46
+-/
 @[simp] lemma zero_mem_markedPoints : P1.zero k ∈ markedPoints k := by
   simp [markedPoints]
 
+/--
+@isnad1 id=mem.0h1v.s5.cc464f4ca906 from=translated src=- shape=6f135e67 vocab=912c608d
+-/
 @[simp] lemma one_mem_markedPoints : P1.one k ∈ markedPoints k := by
   simp [markedPoints]
 
+/--
+@isnad1 id=mem.0h1v.s5.1c27b5135acf from=translated src=- shape=6f135e67 vocab=cba6a9a5
+-/
 @[simp] lemma infty_mem_markedPoints : P1.infty k ∈ markedPoints k := by
   simp [markedPoints]
 
-/-- The set of marked points has exactly three elements. -/
+/-- The set of marked points has exactly three elements.
+@isnad1 id=eq.0h1v.s4.592d8d82dc23 from=translated src=- shape=0bbdd966 vocab=53dc3dce
+-/
 lemma markedPoints_ncard : (markedPoints k).ncard = 3 := by
   rw [markedPoints, Set.ncard_insert_of_notMem (by
       simp [P1.zero_ne_one k, P1.zero_ne_infty k]),
     Set.ncard_insert_of_notMem (by simp [P1.one_ne_infty k])]
   simp
 
+/--
+@isnad1 id=finite.0h1v.s4.2036782d9e03 from=translated src=- shape=8e70c307 vocab=ca78ff06
+-/
 lemma finite_markedPoints : (markedPoints k).Finite :=
   (Set.finite_singleton _).insert _ |>.insert _
 
@@ -75,7 +89,9 @@ namespace IsBelyiMap
 
 variable {k} {f : X ⟶ P1 k}
 
-/-- A finite morphism to `ℙ¹` that is étale (hence unbranched) is a Belyi map. -/
+/-- A finite morphism to `ℙ¹` that is étale (hence unbranched) is a Belyi map.
+@isnad1 id=isbelyim.0h3v.s5.bdb59c3e99cb from=translated src=- shape=79308620 vocab=6e10a8cc
+-/
 lemma _root_.Belyi.isBelyiMap_of_etale (f : X ⟶ P1 k) [IsFinite f]
     [LocallyOfFinitePresentation f] [Etale f] : IsBelyiMap k f where
   isFinite := inferInstance
@@ -83,7 +99,9 @@ lemma _root_.Belyi.isBelyiMap_of_etale (f : X ⟶ P1 k) [IsFinite f]
   branch_subset := by simp
 
 /-- Precomposition with an isomorphism preserves being a Belyi map: the branch locus of
-`e ≫ f` is that of `f`. -/
+`e ≫ f` is that of `f`.
+@isnad1 id=isbelyim.1h5v.s6.676c5f3239a8 from=translated src=- shape=5e1eb534 vocab=2d4befe1
+-/
 lemma of_isIso_comp {X' : Scheme.{u}} (e : X' ⟶ X) [IsIso e]
     [LocallyOfFinitePresentation (e ≫ f)] (h : IsBelyiMap k f) : IsBelyiMap k (e ≫ f) where
   isFinite := have := h.isFinite; inferInstance
@@ -101,7 +119,9 @@ points, then `f ≫ g` is a Belyi map.
 
 This is the bookkeeping step of the forward direction (B8): `f` is the map to `ℙ¹`
 produced by B1, and `g` is the polynomial map produced by the reductions B6 (issue #49)
-and B7 (issue #50). -/
+and B7 (issue #50).
+@isnad1 id=isbelyim.2h4v.s8.97521b2dfb47 from=translated src=- shape=f8261008 vocab=bf6f2fbc
+-/
 lemma comp {f : X ⟶ P1 k} (g : P1 k ⟶ P1 k) [IsFinite f] [IsFinite g]
     [LocallyOfFinitePresentation f] [LocallyOfFinitePresentation g]
     [LocallyOfFinitePresentation (f ≫ g)]

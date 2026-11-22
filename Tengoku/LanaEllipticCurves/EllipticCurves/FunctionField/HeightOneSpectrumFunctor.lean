@@ -50,25 +50,35 @@ variable {R S T : Type*} [CommRing R] [CommRing S] [CommRing T]
   [IsDedekindDomain R] [IsDedekindDomain S] [IsDedekindDomain T]
 
 omit [IsDedekindDomain R] in
-/-- Transport along the identity isomorphism fixes every closed point. -/
+/-- Transport along the identity isomorphism fixes every closed point.
+@isnad1 id=eq.0h2v.s5.53d9b9a97acc from=translated src=- shape=cfba432e vocab=319025fc
+-/
 @[simp]
 lemma map_refl (v : HeightOneSpectrum R) : v.map (RingEquiv.refl R) = v := by
   apply HeightOneSpectrum.ext
   exact Ideal.map_id v.asIdeal
 
 omit [IsDedekindDomain R] [IsDedekindDomain S] [IsDedekindDomain T] in
-/-- Transport along a composite isomorphism is the composite of the transports. -/
+/-- Transport along a composite isomorphism is the composite of the transports.
+@isnad1 id=eq.0h6v.s7.42ec3f217238 from=translated src=- shape=5f38e35d vocab=575e7560
+-/
 lemma map_trans (e : R ≃+* S) (e' : S ≃+* T) (v : HeightOneSpectrum R) :
     v.map (e.trans e') = (v.map e).map e' := by
   apply HeightOneSpectrum.ext
   exact (Ideal.map_map (e : R →+* S) (e' : S →+* T)).symm
 
 omit [IsDedekindDomain R] in
+/--
+@isnad1 id=eq.0h1v.s5.08c564a76be2 from=translated src=- shape=a9843297 vocab=e450518d
+-/
 @[simp]
 lemma mapEquiv_refl : mapEquiv (RingEquiv.refl R) = Equiv.refl (HeightOneSpectrum R) :=
   Equiv.ext map_refl
 
 omit [IsDedekindDomain R] [IsDedekindDomain S] [IsDedekindDomain T] in
+/--
+@isnad1 id=eq.0h5v.s7.ad6dd15fd070 from=translated src=- shape=ac6b3ccb vocab=c8a4cdbd
+-/
 lemma mapEquiv_trans (e : R ≃+* S) (e' : S ≃+* T) :
     mapEquiv (e.trans e') = (mapEquiv e).trans (mapEquiv e') :=
   Equiv.ext (map_trans e e')
@@ -84,6 +94,9 @@ def mapAut : RingAut R →* Equiv.Perm (HeightOneSpectrum R) where
   map_mul' e e' := mapEquiv_trans e' e
 
 omit [IsDedekindDomain R] in
+/--
+@isnad1 id=eq.0h3v.s8.3f60171de945 from=translated src=- shape=1a7910ec vocab=0dc95507
+-/
 @[simp]
 lemma mapAut_apply (e : RingAut R) (v : HeightOneSpectrum R) : mapAut e v = v.map e := rfl
 

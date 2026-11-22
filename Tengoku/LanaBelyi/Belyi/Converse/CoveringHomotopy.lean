@@ -41,20 +41,32 @@ variable {E Z T : Type*} [TopologicalSpace E] [TopologicalSpace Z] [TopologicalS
 /-- The inclusion `t ↦ (z, t)` of `T` as the slice `{z} × T` of `Z × T`. -/
 def sliceIncl (z : Z) : C(T, Z × T) := ⟨fun t ↦ (z, t), by fun_prop⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.3b4480021c70 from=translated src=- shape=42406129 vocab=d04d9a1b
+-/
 @[simp] lemma sliceIncl_apply (z : Z) (t : T) : sliceIncl z t = (z, t) := rfl
 
 namespace CoveringHomotopy
 
+/--
+@isnad1 id=eq.5h8v.s8.2dc7aafef3ee from=translated src=- shape=6c49a113 vocab=9fef62b2
+-/
 lemma liftPath_congr (hp : IsCoveringMap p) {γ γ' : C(I, Z × T)} {e e' : E} (hγ : γ = γ')
     (he : e = e') (h : γ 0 = p e) (h' : γ' 0 = p e') :
     hp.liftPath γ e h = hp.liftPath γ' e' h' := by
   subst hγ he; rfl
 
 omit [TopologicalSpace E] [TopologicalSpace Z] [TopologicalSpace T] in
+/--
+@isnad1 id=eq.0h6v.s6.9a2c56326ec9 from=translated src=- shape=ed1f299c vocab=2ea10fb6
+-/
 lemma source_eq {t₀ : T} (e : {e : E // (p e).2 = t₀}) : ((p e.1).1, t₀) = p e.1 :=
   Prod.ext rfl e.2.symm
 
 omit [TopologicalSpace E] in
+/--
+@isnad1 id=eq.0h8v.s8.2ec5233d1560 from=translated src=- shape=b979f1c1 vocab=fdcb1347
+-/
 lemma map_zero_eq {t₀ t₁ : T} (γ : Path t₀ t₁) (e : {e : E // (p e).2 = t₀}) :
     (γ.map (sliceIncl (p e.1).1).continuous).toContinuousMap 0 = p e.1 :=
   (congrArg (fun t ↦ ((p e.1).1, t)) γ.source).trans (source_eq e)
@@ -65,20 +77,32 @@ def transport (hp : IsCoveringMap p) {t₀ t₁ : T} (γ : Path t₀ t₁)
     (e : {e : E // (p e).2 = t₀}) : E :=
   hp.liftPath (γ.map (sliceIncl (p e.1).1).continuous).toContinuousMap e.1 (map_zero_eq γ e) 1
 
+/--
+@isnad1 id=eq.1h8v.s6.be842dc9cf88 from=translated src=- shape=51986496 vocab=f0a13b71
+-/
 lemma p_transport (hp : IsCoveringMap p) {t₀ t₁ : T} (γ : Path t₀ t₁)
     (e : {e : E // (p e).2 = t₀}) : p (transport hp γ e) = ((p e.1).1, t₁) := by
   have := congr_fun (hp.liftPath_lifts (γ.map (sliceIncl (p e.1).1).continuous).toContinuousMap
     e.1 (map_zero_eq γ e)) 1
   exact this.trans (congrArg (fun t ↦ ((p e.1).1, t)) γ.target)
 
+/--
+@isnad1 id=eq.1h8v.s6.d2b60b7ba1b8 from=translated src=- shape=28635ae6 vocab=ac995786
+-/
 lemma fst_transport (hp : IsCoveringMap p) {t₀ t₁ : T} (γ : Path t₀ t₁)
     (e : {e : E // (p e).2 = t₀}) : (p (transport hp γ e)).1 = (p e.1).1 := by
   rw [p_transport hp γ e]
 
+/--
+@isnad1 id=eq.1h8v.s6.b4530861f28b from=translated src=- shape=0a90c8bd vocab=e18015d8
+-/
 lemma snd_transport (hp : IsCoveringMap p) {t₀ t₁ : T} (γ : Path t₀ t₁)
     (e : {e : E // (p e).2 = t₀}) : (p (transport hp γ e)).2 = t₁ := by
   rw [p_transport hp γ e]
 
+/--
+@isnad1 id=continuo.1h7v.s6.427e9490fa4b from=translated src=- shape=59c1bc12 vocab=463bd1f9
+-/
 lemma continuous_transport (hp : IsCoveringMap p) {t₀ t₁ : T} (γ : Path t₀ t₁) :
     Continuous (transport (p := p) hp γ) := by
   let H : C(I × {e : E // (p e).2 = t₀}, Z × T) :=
@@ -92,6 +116,9 @@ lemma continuous_transport (hp : IsCoveringMap p) {t₀ t₁ : T} (γ : Path t�
   rw [this]
   fun_prop
 
+/--
+@isnad1 id=eq.1h8v.s6.8b8aafa058e0 from=translated src=- shape=8691ea74 vocab=7832ba91
+-/
 lemma transport_symm_transport (hp : IsCoveringMap p) {t₀ t₁ : T} (γ : Path t₀ t₁)
     (e : {e : E // (p e).2 = t₀}) :
     transport hp γ.symm ⟨transport hp γ e, snd_transport hp γ e⟩ = e.1 := by
@@ -132,6 +159,9 @@ def fiberHomeomorph (hp : IsCoveringMap p) {t₀ t₁ : T} (γ : Path t₀ t₁)
   continuous_toFun := (continuous_transport hp γ).subtype_mk _
   continuous_invFun := (continuous_transport hp γ.symm).subtype_mk _
 
+/--
+@isnad1 id=eq.1h8v.s8.fe3e1dd40552 from=translated src=- shape=4a84b8e7 vocab=f465fe33
+-/
 lemma fst_fiberHomeomorph (hp : IsCoveringMap p) {t₀ t₁ : T} (γ : Path t₀ t₁)
     (e : {e : E // (p e).2 = t₀}) : (p (fiberHomeomorph hp γ e)).1 = (p e).1 :=
   fst_transport hp γ e
@@ -141,13 +171,17 @@ end CoveringHomotopy
 open CoveringHomotopy in
 /-- **Covering homotopy lemma.** If `p : E → Z × T` is a covering map and `γ` is a path in `T`
 from `t₀` to `t₁`, then the restrictions of `E` to `Z × {t₀}` and `Z × {t₁}` are homeomorphic
-over `Z`. -/
+over `Z`.
+@isnad1 id=ex.1h7v.s8.262f2f9e5fab from=translated src=- shape=fe5f493b vocab=c6fb547c
+-/
 theorem exists_homeomorph_fiber_of_path (hp : IsCoveringMap p) {t₀ t₁ : T} (γ : Path t₀ t₁) :
     ∃ h : {e : E // (p e).2 = t₀} ≃ₜ {e : E // (p e).2 = t₁}, ∀ e, (p (h e)).1 = (p e).1 :=
   ⟨fiberHomeomorph hp γ, fst_fiberHomeomorph hp γ⟩
 
 /-- If `p : E → Z × T` is a covering map and `T` is path connected, then the restrictions of `E`
-to any two slices `Z × {t₀}` and `Z × {t₁}` are homeomorphic over `Z`. -/
+to any two slices `Z × {t₀}` and `Z × {t₁}` are homeomorphic over `Z`.
+@isnad1 id=ex.1h6v.s8.dfef4fa74dc2 from=translated src=- shape=6a36c2f7 vocab=a7dea5c5
+-/
 theorem exists_homeomorph_fiber [PathConnectedSpace T] (hp : IsCoveringMap p) (t₀ t₁ : T) :
     ∃ h : {e : E // (p e).2 = t₀} ≃ₜ {e : E // (p e).2 = t₁}, ∀ e, (p (h e)).1 = (p e).1 :=
   exists_homeomorph_fiber_of_path hp (PathConnectedSpace.somePath t₀ t₁)

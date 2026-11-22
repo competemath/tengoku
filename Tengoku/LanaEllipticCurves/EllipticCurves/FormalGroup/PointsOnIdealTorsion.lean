@@ -50,7 +50,9 @@ namespace PowerSeries
 
 variable {A : Type*} [CommRing A] (I : Ideal A) [IsAdicComplete I A]
 
-/-- `adicEval` at two equal points agree (the membership proof is irrelevant). -/
+/-- `adicEval` at two equal points agree (the membership proof is irrelevant).
+@isnad1 id=eq.3h5v.s7.0eb665bd9550 from=translated src=- shape=0512da4a vocab=1a7e06a7
+-/
 theorem adicEval_congr_point {x y : A} (hx : x ∈ I) (hy : y ∈ I) (h : x = y)
     (f : PowerSeries A) : adicEval I hx f = adicEval I hy f := by
   subst h; rfl
@@ -58,7 +60,9 @@ theorem adicEval_congr_point {x y : A} (hx : x ∈ I) (hy : y ∈ I) (h : x = y)
 /-- **Transport / composition law for `I`-adic evaluation.**  Substituting `g` into `f` and then
 evaluating `I`-adically at `x` equals evaluating `f` at the point `g(x)`: `(f ∘ g)(x) = f(g(x))`.
 Derived from the multivariate transport lemma `PowerSeries.adicEvalMv_subst` in the univariate
-(`Unit`-indexed) case. -/
+(`Unit`-indexed) case.
+@isnad1 id=eq.3h5v.s8.bffda37dc306 from=translated src=- shape=8be2985c vocab=62e9004b
+-/
 theorem adicEval_subst {x : A} (hx : x ∈ I) {g : PowerSeries A} (hg : PowerSeries.HasSubst g)
     (hgc : constantCoeff g = 0) (f : PowerSeries A) :
     adicEval I hx (f.subst g) = adicEval I (adicEval_mem hx hgc) f := by
@@ -80,7 +84,9 @@ open PowerSeries
 namespace OnIdeal
 
 /-- **The multiplication-by-`m` series computes the `ℕ`-action on `Ê(𝔪)`.**  The `m`-fold group sum
-`m • x` on `F.OnIdeal I` is the `I`-adic evaluation of the series `[m](z) = F.mulByN m` at `x`. -/
+`m • x` on `F.OnIdeal I` is the `I`-adic evaluation of the series `[m](z) = F.mulByN m` at `x`.
+@isnad1 id=eq.0h5v.s7.1623a5052a05 from=translated src=- shape=6a72f642 vocab=bfaa15ca
+-/
 theorem nsmul_val (m : ℕ) (x : OnIdeal F I) :
     (m • x).val = adicEval I x.property (F.mulByN m) := by
   induction m with
@@ -106,10 +112,15 @@ def divByUnit {m : ℕ} (hn : IsUnit (m : A)) (x : OnIdeal F I) : OnIdeal F I :=
   ⟨adicEval I x.property (mulByNInv (F := F) hn),
     adicEval_mem x.property (constantCoeff_mulByNInv hn)⟩
 
+/--
+@isnad1 id=eq.1h5v.s7.d37db8387676 from=translated src=- shape=6ae54fa3 vocab=62669676
+-/
 @[simp] theorem divByUnit_val {m : ℕ} (hn : IsUnit (m : A)) (x : OnIdeal F I) :
     (divByUnit hn x).val = adicEval I x.property (mulByNInv (F := F) hn) := rfl
 
-/-- `divByUnit` is a left inverse of multiplication-by-`m`: `[m]⁻¹([m](x)) = x`. -/
+/-- `divByUnit` is a left inverse of multiplication-by-`m`: `[m]⁻¹([m](x)) = x`.
+@isnad1 id=eq.1h5v.s6.da04e5710061 from=translated src=- shape=8da5f339 vocab=9b81c4fa
+-/
 theorem divByUnit_nsmul {m : ℕ} (hn : IsUnit (m : A)) (x : OnIdeal F I) :
     divByUnit hn (m • x) = x := by
   apply OnIdeal.ext
@@ -120,7 +131,9 @@ theorem divByUnit_nsmul {m : ℕ} (hn : IsUnit (m : A)) (x : OnIdeal F I) :
       (mulByNInv (F := F) hn),
     subst_mulByNInv_left hn, adicEval_X]
 
-/-- `divByUnit` is a right inverse of multiplication-by-`m`: `[m]([m]⁻¹(x)) = x`. -/
+/-- `divByUnit` is a right inverse of multiplication-by-`m`: `[m]([m]⁻¹(x)) = x`.
+@isnad1 id=eq.1h5v.s6.42a3cccea3b3 from=translated src=- shape=d1a6d7a6 vocab=9b81c4fa
+-/
 theorem nsmul_divByUnit {m : ℕ} (hn : IsUnit (m : A)) (x : OnIdeal F I) :
     m • divByUnit hn x = x := by
   apply OnIdeal.ext
@@ -131,19 +144,25 @@ theorem nsmul_divByUnit {m : ℕ} (hn : IsUnit (m : A)) (x : OnIdeal F I) :
 
 /-- **Multiplication-by-`m` is bijective on `Ê(𝔪)` when `(m : A)` is a unit.**  In particular for
 `m` coprime to the residue characteristic, `Ê(𝔪)` is uniquely `m`-divisible.  (Silverman AEC
-IV.3 Thm 3.2(b), VII.2.2.) -/
+IV.3 Thm 3.2(b), VII.2.2.)
+@isnad1 id=bijectiv.1h4v.s6.86fa340fad4e from=translated src=- shape=b63aa253 vocab=b35702d9
+-/
 theorem nsmul_bijective {m : ℕ} (hn : IsUnit (m : A)) :
     Function.Bijective (fun x : OnIdeal F I => m • x) :=
   Function.bijective_iff_has_inverse.mpr
     ⟨divByUnit hn, divByUnit_nsmul hn, nsmul_divByUnit hn⟩
 
-/-- Multiplication-by-`m` is injective on `Ê(𝔪)` when `(m : A)` is a unit. -/
+/-- Multiplication-by-`m` is injective on `Ê(𝔪)` when `(m : A)` is a unit.
+@isnad1 id=injectiv.1h4v.s6.c14de6d9223c from=translated src=- shape=b63aa253 vocab=99e4fb7f
+-/
 theorem nsmul_injective {m : ℕ} (hn : IsUnit (m : A)) :
     Function.Injective (fun x : OnIdeal F I => m • x) :=
   (nsmul_bijective hn).injective
 
 /-- Multiplication-by-`m` is surjective on `Ê(𝔪)` when `(m : A)` is a unit: `Ê(𝔪)` is
-`m`-divisible. -/
+`m`-divisible.
+@isnad1 id=surjecti.1h4v.s6.5b68eae36ee7 from=translated src=- shape=b63aa253 vocab=a0f9ccb4
+-/
 theorem nsmul_surjective {m : ℕ} (hn : IsUnit (m : A)) :
     Function.Surjective (fun x : OnIdeal F I => m • x) :=
   (nsmul_bijective hn).surjective

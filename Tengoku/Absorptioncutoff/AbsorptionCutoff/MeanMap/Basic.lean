@@ -42,7 +42,9 @@ namespace AbsorptionCutoff
 
 /-- A strictly concave `f` on `[0,1]` with `f 0 = 0` cannot have two distinct
 positive fixed points: writing the smaller one as a strict convex combination of `0`
-and the larger, strict concavity forces it strictly above the diagonal. -/
+and the larger, strict concavity forces it strictly above the diagonal.
+@isnad1 id=false.7h3v.s6.a9764fd94e22 from=translated src=- shape=ee0b550b vocab=b55092fb
+-/
 lemma no_two_fixed {f : ℝ → ℝ} (hconc : StrictConcaveOn ℝ (Icc (0 : ℝ) 1) f)
     (hf0 : f 0 = 0) {a b : ℝ} (ha : a ∈ Ioo (0 : ℝ) 1) (hb : b ∈ Ioo (0 : ℝ) 1)
     (hfa : f a = a) (hfb : f b = b) (hab : a < b) : False := by
@@ -65,7 +67,9 @@ lemma no_two_fixed {f : ℝ → ℝ} (hconc : StrictConcaveOn ℝ (Icc (0 : ℝ)
 /-- **Existence and uniqueness of the positive fixed point** (state-independent core
 of `lem:gaussian-mean-field-concavity`). A continuous, strictly concave self-map `f`
 of `[0,1]` with `f 0 = 0`, `f 1 < 1`, that exceeds the diagonal at some interior
-point, has a unique fixed point in `(0,1)`. -/
+point, has a unique fixed point in `(0,1)`.
+@isnad1 id=existsun.6h2v.s7.da35fa401e4b from=translated src=- shape=bbfd7389 vocab=e5d9bc34
+-/
 theorem exists_unique_positive_fixed
     {f : ℝ → ℝ} (hcont : ContinuousOn f (Icc (0 : ℝ) 1))
     (hconc : StrictConcaveOn ℝ (Icc (0 : ℝ) 1) f)
@@ -97,7 +101,9 @@ theorem exists_unique_positive_fixed
 /-- Fixed-point existence/uniqueness via a strictly antitone ratio `q ↦ f q / q`
 (sidesteps concavity): a positive fixed point satisfies `f q / q = 1`, and an
 injective (strictly antitone) ratio has at most one such point. This is the route
-used for `V_A`, whose ratio monotonicity follows from `tanh_div_self_strictAntiOn`. -/
+used for `V_A`, whose ratio monotonicity follows from `tanh_div_self_strictAntiOn`.
+@isnad1 id=existsun.5h2v.s7.c5da4984129f from=translated src=- shape=11af034b vocab=8bd32330
+-/
 theorem exists_unique_positive_fixed_of_ratio
     {f : ℝ → ℝ} (hcont : ContinuousOn f (Icc (0 : ℝ) 1)) (hf1 : f 1 < 1)
     {q₀ : ℝ} (hq₀ : q₀ ∈ Ioo (0 : ℝ) 1) (hexceed : q₀ < f q₀)
@@ -128,14 +134,18 @@ theorem exists_unique_positive_fixed_of_ratio
 noncomputable def V (A q : ℝ) : ℝ :=
   ∫ g, Real.tanh (A * Real.sqrt q * g) ^ 2 ∂(gaussianReal 0 1)
 
-/-- `tanh` is continuous (built from `sinh/cosh`; not known to `fun_prop`). -/
+/-- `tanh` is continuous (built from `sinh/cosh`; not known to `fun_prop`).
+@isnad1 id=continuo.0h0v.s3.f36d079f414f from=translated src=- shape=e3d48bcb vocab=010e4968
+-/
 lemma continuous_tanh : Continuous Real.tanh := by
   have h : Real.tanh = fun x => Real.sinh x / Real.cosh x := funext Real.tanh_eq_sinh_div_cosh
   rw [h]
   exact Real.continuous_sinh.div Real.continuous_cosh (fun x => (Real.cosh_pos x).ne')
 
 /-- Derivative of `tanh` (missing from Mathlib): `tanh' x = 1 - tanh² x`. Built from
-the quotient rule on `sinh / cosh`. Foundational for the concavity of `V_A`. -/
+the quotient rule on `sinh / cosh`. Foundational for the concavity of `V_A`.
+@isnad1 id=hasderiv.0h1v.s6.68e2eb3324c6 from=translated src=- shape=52cd03bd vocab=dcf05c76
+-/
 lemma hasDerivAt_tanh (x : ℝ) : HasDerivAt Real.tanh (1 - Real.tanh x ^ 2) x := by
   have hcosh : Real.cosh x ≠ 0 := (Real.cosh_pos x).ne'
   have h : HasDerivAt (fun y => Real.sinh y / Real.cosh y)
@@ -149,11 +159,15 @@ lemma hasDerivAt_tanh (x : ℝ) : HasDerivAt Real.tanh (1 - Real.tanh x ^ 2) x :
     rw [Real.tanh_eq_sinh_div_cosh]; field_simp
   rwa [hval] at h
 
-/-- `deriv tanh x = 1 - tanh² x`. -/
+/-- `deriv tanh x = 1 - tanh² x`.
+@isnad1 id=eq.0h1v.s6.e0f0fc36cf09 from=translated src=- shape=763985c3 vocab=36929b87
+-/
 lemma deriv_tanh (x : ℝ) : deriv Real.tanh x = 1 - Real.tanh x ^ 2 := (hasDerivAt_tanh x).deriv
 
 /-- `tanh` is strictly increasing (missing from Mathlib): its derivative `1 − tanh²`
-is everywhere positive. -/
+is everywhere positive.
+@isnad1 id=strictmo.0h0v.s2.39ccf472573c from=translated src=- shape=e3d48bcb vocab=6282884c
+-/
 lemma tanh_strictMono : StrictMono Real.tanh := by
   apply strictMono_of_deriv_pos
   intro x
@@ -162,7 +176,9 @@ lemma tanh_strictMono : StrictMono Real.tanh := by
 
 /-- `sech² = 1 − tanh²` is strictly decreasing on `(0,∞)` — a step in the paper's
 strict-concavity argument for `V_A` (`f_a'(q) = a²·(tanh x/x)·sech²x` decreasing).
-On positives `tanh² ↑`, so `1 − tanh² ↓`. -/
+On positives `tanh² ↑`, so `1 − tanh² ↓`.
+@isnad1 id=strictan.0h0v.s5.75731a2a09ec from=translated src=- shape=fb0a0bf1 vocab=8e37d379
+-/
 lemma sech_sq_strictAntiOn :
     StrictAntiOn (fun x => 1 - Real.tanh x ^ 2) (Set.Ioi (0 : ℝ)) := by
   intro x hx y _ hxy
@@ -175,7 +191,9 @@ lemma sech_sq_strictAntiOn :
   nlinarith [htxpos, hmono]
 
 /-- The paper's derivative formula for `f_a(q) = tanh²(a√q)`:
-`f_a'(q) = a²·(tanh x/x)·sech²x` with `x = a√q` (chain rule through `√`). -/
+`f_a'(q) = a²·(tanh x/x)·sech²x` with `x = a√q` (chain rule through `√`).
+@isnad1 id=hasderiv.2h2v.s7.c72d7c94e576 from=translated src=- shape=0c248a0f vocab=de07f345
+-/
 lemma hasDerivAt_f {a q : ℝ} (ha : a ≠ 0) (hq : 0 < q) :
     HasDerivAt (fun q => Real.tanh (a * Real.sqrt q) ^ 2)
       (a ^ 2 * (Real.tanh (a * Real.sqrt q) / (a * Real.sqrt q))
@@ -196,7 +214,9 @@ lemma hasDerivAt_f {a q : ℝ} (ha : a ≠ 0) (hq : 0 < q) :
   exact hf
 
 /-- `y < sinh y` for `y > 0` (missing from Mathlib): `sinh − id` has positive
-derivative `cosh − 1 > 0`. Used to sign the derivative of `tanh x / x`. -/
+derivative `cosh − 1 > 0`. Used to sign the derivative of `tanh x / x`.
+@isnad1 id=lt.1h1v.s4.693fdc06a626 from=translated src=- shape=9331e166 vocab=171f1dc8
+-/
 lemma self_lt_sinh {y : ℝ} (hy : 0 < y) : y < Real.sinh y := by
   have hmono : StrictMonoOn (fun x => Real.sinh x - x) (Set.Ici (0 : ℝ)) := by
     apply strictMonoOn_of_deriv_pos (convex_Ici 0)
@@ -214,7 +234,9 @@ lemma self_lt_sinh {y : ℝ} (hy : 0 < y) : y < Real.sinh y := by
   linarith
 
 /-- `tanh x ≤ x` for `x ≥ 0` (missing from Mathlib): `x − tanh x` is strictly
-increasing on `[0,∞)` with derivative `tanh² > 0`. -/
+increasing on `[0,∞)` with derivative `tanh² > 0`.
+@isnad1 id=le.1h1v.s4.234bf3be1f8b from=translated src=- shape=71fa8a4a vocab=f78e1b6e
+-/
 lemma tanh_le_self {x : ℝ} (hx : 0 ≤ x) : Real.tanh x ≤ x := by
   rcases eq_or_lt_of_le hx with h | h
   · subst h; simp
@@ -235,7 +257,9 @@ lemma tanh_le_self {x : ℝ} (hx : 0 ≤ x) : Real.tanh x ≤ x := by
 
 /-- `x ↦ tanh x / x` is strictly decreasing on `(0,∞)`. The crux behind the strict
 concavity of `V_A`: its derivative `((1−tanh²)x − tanh)/x²` is negative because
-`x < sinh x cosh x = sinh(2x)/2`. -/
+`x < sinh x cosh x = sinh(2x)/2`.
+@isnad1 id=strictan.0h0v.s4.1763a28e65e0 from=translated src=- shape=0d6bf95a vocab=de602b1f
+-/
 lemma tanh_div_self_strictAntiOn :
     StrictAntiOn (fun x => Real.tanh x / x) (Set.Ioi (0 : ℝ)) := by
   apply strictAntiOn_of_deriv_neg (convex_Ioi 0)
@@ -260,7 +284,9 @@ lemma tanh_div_self_strictAntiOn :
     exact div_neg_of_neg_of_pos hnum (by positivity)
 
 /-- Pointwise ratio monotonicity (`c > 0`): `q ↦ tanh²(c√q)/q` is strictly
-decreasing on `(0,∞)`, since it equals `c²·(tanh w/w)²` with `w = c√q`. -/
+decreasing on `(0,∞)`, since it equals `c²·(tanh w/w)²` with `w = c√q`.
+@isnad1 id=strictan.1h1v.s6.cbc24b076c5c from=translated src=- shape=3ee6bb88 vocab=53d16a47
+-/
 lemma tanh_sq_comp_div_strictAnti {c : ℝ} (hc : 0 < c) :
     StrictAntiOn (fun q => Real.tanh (c * Real.sqrt q) ^ 2 / q) (Set.Ioi (0 : ℝ)) := by
   have hid : ∀ q : ℝ, 0 < q → Real.tanh (c * Real.sqrt q) ^ 2 / q
@@ -290,7 +316,9 @@ lemma tanh_sq_comp_div_strictAnti {c : ℝ} (hc : 0 < c) :
   exact mul_lt_mul_of_pos_left hsq (by positivity)
 
 /-- Same, for any `c ≠ 0` (reduce to `|c|` via `tanh(c√q)² = tanh(|c|√q)²`). This is
-the pointwise input for the ratio monotonicity of `V_A` (with `c = A·g`). -/
+the pointwise input for the ratio monotonicity of `V_A` (with `c = A·g`).
+@isnad1 id=strictan.1h1v.s6.5844c196656f from=translated src=- shape=3f2360ea vocab=e3195896
+-/
 lemma tanh_sq_comp_div_strictAnti' {c : ℝ} (hc : c ≠ 0) :
     StrictAntiOn (fun q => Real.tanh (c * Real.sqrt q) ^ 2 / q) (Set.Ioi (0 : ℝ)) := by
   have heq : (fun q => Real.tanh (c * Real.sqrt q) ^ 2 / q)
@@ -304,7 +332,9 @@ lemma tanh_sq_comp_div_strictAnti' {c : ℝ} (hc : c ≠ 0) :
 
 /-- `f_a'(q) = a²·(tanh x/x)·sech²x` (`x=a√q`) is strictly decreasing on `(0,∞)` for
 `a>0`: a product of two positive strictly-decreasing functions, composed with the
-increasing `x = a√q`. This is the paper's key monotonicity for the concavity of `V_A`. -/
+increasing `x = a√q`. This is the paper's key monotonicity for the concavity of `V_A`.
+@isnad1 id=strictan.1h1v.s7.0abaf8dcd858 from=translated src=- shape=93ab0205 vocab=87167090
+-/
 lemma deriv_f_strictAntiOn {a : ℝ} (ha : 0 < a) :
     StrictAntiOn (fun q => a ^ 2 * (Real.tanh (a * Real.sqrt q) / (a * Real.sqrt q))
       * (1 - Real.tanh (a * Real.sqrt q) ^ 2)) (Set.Ioi (0 : ℝ)) := by
@@ -334,7 +364,9 @@ lemma deriv_f_strictAntiOn {a : ℝ} (ha : 0 < a) :
   exact mul_lt_mul_of_pos_left hprod (by positivity)
 
 /-- `f_a(q) = tanh²(a√q)` is strictly concave on `[0,1]` for `a > 0` (paper's route):
-its derivative `f_a'` is strictly decreasing (`deriv_f_strictAntiOn`). -/
+its derivative `f_a'` is strictly decreasing (`deriv_f_strictAntiOn`).
+@isnad1 id=strictco.1h1v.s6.1aa564a78d62 from=translated src=- shape=fd4ee8c2 vocab=e5b02a72
+-/
 lemma f_strictConcaveOn {a : ℝ} (ha : 0 < a) :
     StrictConcaveOn ℝ (Set.Icc (0 : ℝ) 1) (fun q => Real.tanh (a * Real.sqrt q) ^ 2) := by
   refine StrictAntiOn.strictConcaveOn_of_deriv (convex_Icc 0 1)
@@ -348,7 +380,9 @@ lemma f_strictConcaveOn {a : ℝ} (ha : 0 < a) :
   exact ((deriv_f_strictAntiOn ha).mono (fun q hq => hq.1)).congr heqon
 
 /-- Same for any `c ≠ 0` (reduce to `|c|` via `tanh(c√q)² = tanh(|c|√q)²`): the
-pointwise input `q ↦ tanh²(c√q)` is strictly concave on `[0,1]` (with `c = A·g`). -/
+pointwise input `q ↦ tanh²(c√q)` is strictly concave on `[0,1]` (with `c = A·g`).
+@isnad1 id=strictco.1h1v.s6.f3fd5699e52c from=translated src=- shape=0bd0ae62 vocab=7c636e6b
+-/
 lemma f_strictConcaveOn' {c : ℝ} (hc : c ≠ 0) :
     StrictConcaveOn ℝ (Set.Icc (0 : ℝ) 1) (fun q => Real.tanh (c * Real.sqrt q) ^ 2) := by
   have heq : (fun q => Real.tanh (c * Real.sqrt q) ^ 2)
@@ -360,16 +394,22 @@ lemma f_strictConcaveOn' {c : ℝ} (hc : c ≠ 0) :
   rw [heq]
   exact f_strictConcaveOn (abs_pos.mpr hc)
 
-/-- `V_A(0) = 0`: at `q = 0` the integrand is `tanh²(0) = 0`. -/
+/-- `V_A(0) = 0`: at `q = 0` the integrand is `tanh²(0) = 0`.
+@isnad1 id=eq.0h1v.s4.440e46d6fcf7 from=translated src=- shape=1d838610 vocab=112608de
+-/
 lemma V_zero (A : ℝ) : V A 0 = 0 := by
   simp only [V, Real.sqrt_zero, mul_zero, zero_mul, Real.tanh_zero]; simp
 
-/-- `V_A ≥ 0`: the integrand is a square. -/
+/-- `V_A ≥ 0`: the integrand is a square.
+@isnad1 id=le.0h2v.s4.7d5c29bf9d6f from=translated src=- shape=a120b2a8 vocab=a73de1ed
+-/
 lemma V_nonneg (A q : ℝ) : 0 ≤ V A q := by
   apply integral_nonneg; intro g; positivity
 
 /-- `V_A` is continuous (continuity under the integral, dominated by `1`). Discharges
-the continuity hypothesis of the fixed-point statement. -/
+the continuity hypothesis of the fixed-point statement.
+@isnad1 id=continuo.0h1v.s4.6a47e1ef1ca2 from=translated src=- shape=f736e2c1 vocab=634a27b5
+-/
 lemma V_continuous (A : ℝ) : Continuous (V A) := by
   apply continuous_of_dominated (bound := fun _ => (1 : ℝ))
   · intro q
@@ -384,7 +424,9 @@ lemma V_continuous (A : ℝ) : Continuous (V A) := by
       continuous_const)).pow 2
 
 /-- `V_A(q) < 1`: since `tanh² < 1` pointwise, `1 − V_A(q) = ∫ (1 − tanh²) dμ > 0`.
-In particular `V_A(1) < 1`, discharging one structural hypothesis below. -/
+In particular `V_A(1) < 1`, discharging one structural hypothesis below.
+@isnad1 id=lt.0h2v.s4.6223519f4c2d from=translated src=- shape=aa052b1b vocab=117bc202
+-/
 lemma V_lt_one (A q : ℝ) : V A q < 1 := by
   have hcont : Continuous (fun g : ℝ => Real.tanh (A * Real.sqrt q * g) ^ 2) :=
     (continuous_tanh.comp (by fun_prop)).pow 2
@@ -424,7 +466,9 @@ lemma V_lt_one (A q : ℝ) : V A q < 1 := by
 and the boundary value `V_A(1) < 1` (`V_lt_one`) are now supplied; the only remaining
 hypotheses are strict concavity of `V_A` and that it exceeds the diagonal at some `q₀`
 (the latter coming from `V_A'(0+) = A² > 1` when `A > 1`). Discharging strict concavity
-makes this `lem:gaussian-mean-field-concavity` outright. -/
+makes this `lem:gaussian-mean-field-concavity` outright.
+@isnad1 id=existsun.3h2v.s6.69d772673570 from=translated src=- shape=c30de0ad vocab=9bd93b2e
+-/
 theorem V_exists_unique_fixed_of_structural {A : ℝ}
     (hconc : StrictConcaveOn ℝ (Icc (0 : ℝ) 1) (V A))
     {q₀ : ℝ} (hq₀ : q₀ ∈ Ioo (0 : ℝ) 1) (hexceed : q₀ < V A q₀) :
@@ -433,13 +477,17 @@ theorem V_exists_unique_fixed_of_structural {A : ℝ}
     (V_lt_one A 1) hq₀ hexceed
 
 /-- The Gaussian has no atom at `0` (`{0}` is `volume`-null and the Gaussian is
-absolutely continuous). Needed for the strict integral inequality below. -/
+absolutely continuous). Needed for the strict integral inequality below.
+@isnad1 id=eq.0h0v.s5.3d8743dc71a5 from=translated src=- shape=8d204262 vocab=c167e0ee
+-/
 lemma gaussianReal_singleton_zero : (gaussianReal 0 1) {(0 : ℝ)} = 0 :=
   (gaussianReal_absolutelyContinuous 0 (by norm_num)) (by simp)
 
 /-- **Ratio monotonicity of `V_A`** (for `A ≠ 0`): `q ↦ V_A(q)/q` is strictly
 decreasing on `(0,1)`. Integrate the pointwise `tanh_sq_comp_div_strictAnti'`
-(strict off the null set `{g = 0}`) via `integral_pos_iff_support_of_nonneg`. -/
+(strict off the null set `{g = 0}`) via `integral_pos_iff_support_of_nonneg`.
+@isnad1 id=strictan.1h1v.s5.d9e980f63bf4 from=translated src=- shape=b86bea31 vocab=6e71ad04
+-/
 lemma V_ratio_strictAntiOn {A : ℝ} (hA : A ≠ 0) :
     StrictAntiOn (fun q => V A q / q) (Set.Ioo (0 : ℝ) 1) := by
   have hInt : ∀ q : ℝ, Integrable
@@ -494,7 +542,9 @@ lemma V_ratio_strictAntiOn {A : ℝ} (hA : A ≠ 0) :
 /-- **`V_A` is strictly concave on `[0,1]`** for `A ≠ 0` (paper's
 `lem:gaussian-mean-field-concavity`): integrate the pointwise strict concavity
 `f_strictConcaveOn'` of `q ↦ tanh²(A·g·√q)`, which is strict off the Gaussian-null
-set `{g = 0}`, via `integral_pos_iff_support_of_nonneg`. -/
+set `{g = 0}`, via `integral_pos_iff_support_of_nonneg`.
+@isnad1 id=strictco.1h1v.s5.5b31e1734f71 from=translated src=- shape=8529accf vocab=9452cc53
+-/
 lemma V_strictConcaveOn {A : ℝ} (hA : A ≠ 0) :
     StrictConcaveOn ℝ (Icc (0 : ℝ) 1) (V A) := by
   refine ⟨convex_Icc 0 1, fun x hx y hy hxy a b ha hb hab => ?_⟩
@@ -563,7 +613,9 @@ lemma V_strictConcaveOn {A : ℝ} (hA : A ≠ 0) :
 /-- **`V_A` is strictly increasing on `[0,1]`** for `A ≠ 0` (paper's
 `lem:gaussian-mean-field-concavity`): pointwise `q ↦ tanh²(A·g·√q)` is increasing
 (`tanh` increasing, `√` increasing), strict off the Gaussian-null set `{g = 0}`;
-integrate. -/
+integrate.
+@isnad1 id=strictmo.1h1v.s5.b60cd71ece45 from=translated src=- shape=966f0565 vocab=284bd8a9
+-/
 lemma V_strictMonoOn {A : ℝ} (hA : A ≠ 0) : StrictMonoOn (V A) (Icc (0 : ℝ) 1) := by
   intro q₁ hq₁ q₂ hq₂ hlt
   have hq₁0 : 0 ≤ q₁ := hq₁.1
@@ -629,14 +681,18 @@ lemma V_strictMonoOn {A : ℝ} (hA : A ≠ 0) : StrictMonoOn (V A) (Icc (0 : ℝ
 /-- **Unconditional fixed point for `V_A`** = the paper's `lem:gaussian-mean-field-concavity`:
 for `A ≠ 0`, once `V_A` exceeds the diagonal at some interior `q₀` (which holds when
 `A > 1`), it has a unique positive fixed point. Proved the paper's way — via strict
-concavity of `V_A` (`V_strictConcaveOn`); continuity and `V_A(1) < 1` are also discharged. -/
+concavity of `V_A` (`V_strictConcaveOn`); continuity and `V_A(1) < 1` are also discharged.
+@isnad1 id=existsun.3h2v.s6.645cefee420c from=translated src=- shape=d06853d6 vocab=5573b9c6
+-/
 theorem V_exists_unique_fixed {A : ℝ} (hA : A ≠ 0)
     {q₀ : ℝ} (hq₀ : q₀ ∈ Ioo (0 : ℝ) 1) (hexceed : q₀ < V A q₀) :
     ∃! q, q ∈ Ioo (0 : ℝ) 1 ∧ V A q = q :=
   exists_unique_positive_fixed (V_continuous A).continuousOn (V_strictConcaveOn hA)
     (V_zero A) (V_lt_one A 1) hq₀ hexceed
 
-/-- Second moment of the standard Gaussian is finite: `g ↦ g²` is integrable. -/
+/-- Second moment of the standard Gaussian is finite: `g ↦ g²` is integrable.
+@isnad1 id=integrab.0h0v.s5.aa631b2c8f1d from=translated src=- shape=3a191710 vocab=49f0f850
+-/
 lemma integrable_sq_gaussian : Integrable (fun g : ℝ => g ^ 2) (gaussianReal 0 1) := by
   simpa using (memLp_id_gaussianReal (μ := 0) (v := 1) 2).integrable_sq
 

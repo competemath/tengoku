@@ -74,27 +74,51 @@ def finCoeff (D : ArithmeticDivisor K) : FinitePlace K →₀ ℤ := D.1
 /-- The coefficient of an arithmetic divisor at an infinite place. -/
 def infCoeff (D : ArithmeticDivisor K) : InfinitePlace K → ℝ := D.2
 
+/--
+@isnad1 id=eq.0h1v.s6.7a71a47e30c2 from=translated src=- shape=1e39f908 vocab=a90d104b
+-/
 @[simp] lemma finCoeff_zero : finCoeff (0 : ArithmeticDivisor K) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.762230b1329c from=translated src=- shape=2ca5e9b9 vocab=1111e99f
+-/
 @[simp] lemma infCoeff_zero : infCoeff (0 : ArithmeticDivisor K) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.afdba000c454 from=translated src=- shape=147a131e vocab=880b6ad9
+-/
 @[simp] lemma finCoeff_add (D E : ArithmeticDivisor K) :
     finCoeff (D + E) = finCoeff D + finCoeff E := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.35b116e3d188 from=translated src=- shape=e986181e vocab=dfa994ef
+-/
 @[simp] lemma infCoeff_add (D E : ArithmeticDivisor K) :
     infCoeff (D + E) = infCoeff D + infCoeff E := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.32dbfb2c86d2 from=translated src=- shape=c9b7f8cc vocab=31502b70
+-/
 @[simp] lemma finCoeff_neg (D : ArithmeticDivisor K) : finCoeff (-D) = -finCoeff D := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.f0ad2b79eb35 from=translated src=- shape=c2e65a75 vocab=7283171f
+-/
 @[simp] lemma infCoeff_neg (D : ArithmeticDivisor K) : infCoeff (-D) = -infCoeff D := rfl
 
 /-- An arithmetic divisor is *effective* if all of its coefficients are nonnegative. -/
 def Effective (D : ArithmeticDivisor K) : Prop :=
   (∀ v, 0 ≤ D.finCoeff v) ∧ (∀ v, 0 ≤ D.infCoeff v)
 
+/--
+@isnad1 id=effectiv.0h1v.s5.3528ef336474 from=translated src=- shape=8e0f716d vocab=4131a332
+-/
 theorem Effective.zero : (0 : ArithmeticDivisor K).Effective :=
   ⟨fun _ ↦ le_rfl, fun _ ↦ le_rfl⟩
 
+/--
+@isnad1 id=effectiv.2h3v.s6.8abe1e9dcb9f from=translated src=- shape=c3c55775 vocab=d3b36263
+-/
 theorem Effective.add {D E : ArithmeticDivisor K} (hD : D.Effective) (hE : E.Effective) :
     (D + E).Effective :=
   ⟨fun v ↦ by simpa using add_nonneg (hD.1 v) (hE.1 v),
@@ -111,10 +135,16 @@ the residue field at `v`. This is the degree of the arithmetic divisor `1 ⬝ v`
 noncomputable def logResidueCard (v : FinitePlace K) : ℝ :=
   Real.log (Ideal.absNorm v.maximalIdeal.asIdeal)
 
+/--
+@isnad1 id=lt.0h2v.s4.a3e3ac7fd497 from=translated src=- shape=abec20dc vocab=370d3e9b
+-/
 lemma logResidueCard_pos (v : FinitePlace K) : 0 < v.logResidueCard := by
   have h := HeightOneSpectrum.one_lt_absNorm v.maximalIdeal
   exact Real.log_pos (by exact_mod_cast h)
 
+/--
+@isnad1 id=le.0h2v.s4.9281585956e9 from=translated src=- shape=abec20dc vocab=4305b9bb
+-/
 lemma logResidueCard_nonneg (v : FinitePlace K) : 0 ≤ v.logResidueCard :=
   v.logResidueCard_pos.le
 
@@ -138,10 +168,16 @@ noncomputable def degree : ArithmeticDivisor K →+ ℝ where
     rw [Finset.sum_add_distrib]
     ring
 
+/--
+@isnad1 id=eq.0h2v.s7.2312fc7f6946 from=translated src=- shape=c9cfeb61 vocab=90727f46
+-/
 lemma degree_apply (D : ArithmeticDivisor K) :
     degree D = (D.finCoeff.sum fun v n ↦ n * v.logResidueCard) + ∑ v, D.infCoeff v :=
   rfl
 
+/--
+@isnad1 id=le.1h2v.s6.0d23f0d5fb92 from=translated src=- shape=79c32163 vocab=8af822fc
+-/
 theorem Effective.degree_nonneg {D : ArithmeticDivisor K} (hD : D.Effective) :
     0 ≤ degree D := by
   rw [degree_apply]

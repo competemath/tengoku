@@ -146,41 +146,55 @@ below carry explicit nonvanishing hypotheses, exactly as `ord` does in
 noncomputable def deg (a : W.CoordinateRing) : ℕ := (Algebra.norm F[X] a).natDegree
 
 /-- The norm to `F[X]` of a nonzero element of `F[W]` is nonzero: `F[W]` is a domain, free of
-finite rank over `F[X]`. -/
+finite rank over `F[X]`.
+@isnad1 id=ne.1h3v.s8.f63b38e4afc9 from=translated src=- shape=3d892690 vocab=273701cb
+-/
 lemma norm_ne_zero {a : W.CoordinateRing} (ha : a ≠ 0) : Algebra.norm F[X] a ≠ 0 :=
   (Algebra.norm_ne_zero_iff_of_basis (CoordinateRing.basis W)).mpr ha
 
-/-- For a nonzero element the `WithBot ℕ`-valued degree of the norm is the natural number `deg`. -/
+/-- For a nonzero element the `WithBot ℕ`-valued degree of the norm is the natural number `deg`.
+@isnad1 id=eq.1h3v.s8.e8f664ed1e65 from=translated src=- shape=d99843af vocab=39622dcb
+-/
 lemma degree_norm_eq_deg {a : W.CoordinateRing} (ha : a ≠ 0) :
     (Algebra.norm F[X] a).degree = (deg W a : ℕ) :=
   degree_eq_natDegree (norm_ne_zero ha)
 
-/-- Junk value: the degree of `0`. -/
+/-- Junk value: the degree of `0`.
+@isnad1 id=eq.0h2v.s6.c024f0761642 from=translated src=- shape=e5de0236 vocab=3469dadd
+-/
 @[simp]
 lemma deg_zero : deg W (0 : W.CoordinateRing) = 0 := by
   haveI : Module.Free F[X] W.CoordinateRing := Module.Free.of_basis (CoordinateRing.basis W)
   haveI : Module.Finite F[X] W.CoordinateRing := Module.Finite.of_basis (CoordinateRing.basis W)
   simp [deg]
 
-/-- Constants have no pole at infinity. -/
+/-- Constants have no pole at infinity.
+@isnad1 id=eq.0h2v.s6.c42511fe92cd from=translated src=- shape=e5de0236 vocab=3469dadd
+-/
 @[simp]
 lemma deg_one : deg W (1 : W.CoordinateRing) = 0 := by
   simp [deg]
 
-/-- **`deg` is additive**, because the norm is multiplicative. -/
+/-- **`deg` is additive**, because the norm is multiplicative.
+@isnad1 id=eq.2h4v.s8.9cee923806d1 from=translated src=- shape=3f17e3ae vocab=14ce2090
+-/
 lemma deg_mul {a b : W.CoordinateRing} (ha : a ≠ 0) (hb : b ≠ 0) :
     deg W (a * b) = deg W a + deg W b := by
   simp only [deg, map_mul]
   exact natDegree_mul (norm_ne_zero ha) (norm_ne_zero hb)
 
-/-- A nonzero polynomial in `x` alone is nonzero in `F[W]`. -/
+/-- A nonzero polynomial in `x` alone is nonzero in `F[W]`.
+@isnad1 id=ne.1h3v.s9.daff0843de82 from=translated src=- shape=6ed57d07 vocab=e2734ff4
+-/
 lemma mk_C_ne_zero {p : F[X]} (hp : p ≠ 0) : (mk W (C p) : W.CoordinateRing) ≠ 0 := by
   intro h
   refine hp (smul_basis_eq_zero (W' := W) (p := p) (q := 0) ?_).1
   rw [zero_smul, add_zero, smul, mul_one]
   exact h
 
-/-- The coordinate function `y` is nonzero in `F[W]`. -/
+/-- The coordinate function `y` is nonzero in `F[W]`.
+@isnad1 id=ne.0h2v.s8.cb332a2682f3 from=translated src=- shape=71644f27 vocab=3eee20f4
+-/
 lemma mk_Y_ne_zero : (mk W Y : W.CoordinateRing) ≠ 0 := by
   intro h
   have h1 : (0 : F[X]) • (1 : W.CoordinateRing) + (1 : F[X]) • mk W Y = 0 := by
@@ -205,7 +219,9 @@ private lemma max_add_right (u v c : WithBot ℕ) : max u v + c = max (u + c) (v
 
 /-- **The ultrametric bound for the norm degree.**  Both coordinates of `a + b` in the basis
 `{1, Y}` are sums of the corresponding coordinates of `a` and of `b`, so the degree formula
-`degree_norm_smul_basis` gives the bound termwise. -/
+`degree_norm_smul_basis` gives the bound termwise.
+@isnad1 id=le.0h4v.s10.e61b0f5797b7 from=translated src=- shape=cca3a6de vocab=6d03757d
+-/
 lemma degree_norm_add_le (a b : W.CoordinateRing) :
     (Algebra.norm F[X] (a + b)).degree ≤
       max (Algebra.norm F[X] a).degree (Algebra.norm F[X] b).degree := by
@@ -229,7 +245,9 @@ lemma degree_norm_add_le (a b : W.CoordinateRing) :
 end AddLe
 
 /-- **`deg` satisfies the ultrametric inequality**: a sum has no worse a pole at infinity than
-its worst summand. -/
+its worst summand.
+@isnad1 id=le.0h4v.s6.9399e07b9038 from=translated src=- shape=8d8ddfe6 vocab=60af631f
+-/
 lemma deg_add_le (a b : W.CoordinateRing) : deg W (a + b) ≤ max (deg W a) (deg W b) := by
   refine natDegree_le_iff_degree_le.mpr ((degree_norm_add_le a b).trans (max_le ?_ ?_))
   · exact degree_le_natDegree.trans (by exact_mod_cast le_max_left (deg W a) (deg W b))
@@ -241,20 +259,26 @@ lemma eq_smul_basis_algebraMap (c : F) :
   rw [zero_smul, add_zero, ← Algebra.algebraMap_eq_smul_one,
     IsScalarTower.algebraMap_apply F F[X] W.CoordinateRing, ← Polynomial.C_eq_algebraMap]
 
-/-- Constants are regular at infinity. -/
+/-- Constants are regular at infinity.
+@isnad1 id=eq.0h3v.s7.dbc9739716d9 from=translated src=- shape=8c82bfeb vocab=44601438
+-/
 @[simp]
 lemma deg_algebraMap (c : F) : deg W (algebraMap F W.CoordinateRing c) = 0 := by
   rw [deg, eq_smul_basis_algebraMap, norm_smul_basis]
   simp
 
-/-- A polynomial in `x` alone has a pole at infinity of **even** order `2 · deg p`. -/
+/-- A polynomial in `x` alone has a pole at infinity of **even** order `2 · deg p`.
+@isnad1 id=eq.0h3v.s9.56693915a37f from=translated src=- shape=af2e1ec7 vocab=2dc9797a
+-/
 lemma deg_mk_C (p : F[X]) : deg W (mk W (C p)) = 2 * p.natDegree := by
   have h : mk W (C p) = p • (1 : W.CoordinateRing) + (0 : F[X]) • mk W Y := by
     rw [zero_smul, add_zero, smul, mul_one]
   rw [deg, h, norm_smul_basis]
   simp [natDegree_pow]
 
-/-- The coordinate function `y` has a **triple** pole at infinity. -/
+/-- The coordinate function `y` has a **triple** pole at infinity.
+@isnad1 id=eq.0h2v.s8.dd41aca8d94a from=translated src=- shape=4fd6dc4f vocab=5d716866
+-/
 lemma deg_mk_Y : deg W (mk W Y) = 3 := by
   have h : mk W Y = (0 : F[X]) • (1 : W.CoordinateRing) + (1 : F[X]) • mk W Y := by
     rw [zero_smul, zero_add, one_smul]
@@ -263,11 +287,15 @@ lemma deg_mk_Y : deg W (mk W Y) = 3 := by
   simp
 
 /-- **The gap of the Weierstrass semigroup.**  No function on the affine chart has a simple pole
-at infinity; this single gap is the genus.  (Mathlib's `natDegree_norm_ne_one`.) -/
+at infinity; this single gap is the genus.  (Mathlib's `natDegree_norm_ne_one`.)
+@isnad1 id=ne.0h3v.s4.0969b75ba772 from=translated src=- shape=ab066b02 vocab=46042b1f
+-/
 lemma deg_ne_one (a : W.CoordinateRing) : deg W a ≠ 1 :=
   natDegree_norm_ne_one a
 
-/-- An element of `F[W]` with no pole at infinity is a constant. -/
+/-- An element of `F[W]` with no pole at infinity is a constant.
+@isnad1 id=ex.2h3v.s8.c3116cb6f7a1 from=translated src=- shape=dd378814 vocab=44601438
+-/
 theorem exists_eq_algebraMap_of_deg_eq_zero {a : W.CoordinateRing} (ha : a ≠ 0)
     (h : deg W a = 0) : ∃ c : F, c ≠ 0 ∧ a = algebraMap F W.CoordinateRing c := by
   have hdeg0 : (Algebra.norm F[X] a).degree = 0 := by
@@ -295,7 +323,9 @@ theorem exists_eq_algebraMap_of_deg_eq_zero {a : W.CoordinateRing} (ha : a ≠ 0
   rw [zero_smul, add_zero, ← Algebra.algebraMap_eq_smul_one,
     IsScalarTower.algebraMap_apply F F[X] W.CoordinateRing, ← Polynomial.C_eq_algebraMap, ← hp]
 
-/-- **The functions regular at infinity are the constants.** -/
+/-- **The functions regular at infinity are the constants.**
+@isnad1 id=iff.1h3v.s7.42c7f3923823 from=translated src=- shape=f9e387fc vocab=0d0a99ac
+-/
 theorem deg_eq_zero_iff_isUnit {a : W.CoordinateRing} (ha : a ≠ 0) :
     deg W a = 0 ↔ IsUnit a := by
   refine ⟨fun h => ?_, fun h => ?_⟩
@@ -307,7 +337,9 @@ theorem deg_eq_zero_iff_isUnit {a : W.CoordinateRing} (ha : a ≠ 0) :
 /-- **The Weierstrass semigroup of an elliptic curve.** Every natural number except `1` is the
 degree of an element of `F[W]`: the pole orders at infinity realised by functions regular on the
 affine chart are `0, 2, 3, 4, 5, …`. Together with `deg_ne_one` this determines the image of `deg`
-exactly, and the single gap at `1` is the genus. -/
+exactly, and the single gap at `1` is the genus.
+@isnad1 id=ex.1h3v.s6.0099688be811 from=translated src=- shape=d08cdb46 vocab=3469dadd
+-/
 theorem exists_deg_eq {n : ℕ} (hn : n ≠ 1) : ∃ a : W.CoordinateRing, a ≠ 0 ∧ deg W a = n := by
   rcases Nat.even_or_odd n with he | ho
   · obtain ⟨k, hk⟩ := he
@@ -457,7 +489,9 @@ quadratic ambiguity a norm-based argument would leave.
 
 ⚠️ The vanishing case is a genuine disjunct and not a degenerate instance of the other one: `deg`
 returns the junk value `0` at `0`, and `deg b = 0` is possible (both `a` and `b` nonzero
-constants). -/
+constants).
+@isnad1 id=ex.3h4v.s9.54cf57e8e381 from=translated src=- shape=877809d3 vocab=ee820922
+-/
 theorem exists_deg_sub_lt {a b : W.CoordinateRing} (ha : a ≠ 0) (hb : b ≠ 0)
     (h : deg W a = deg W b) :
     ∃ c : F, a - algebraMap F W.CoordinateRing c * b = 0 ∨
@@ -521,12 +555,16 @@ noncomputable def ordInfty (f : W.FunctionField) : ℤ :=
   else (deg W (IsLocalization.sec W.CoordinateRing⁰ f).2 : ℤ)
     - (deg W (IsLocalization.sec W.CoordinateRing⁰ f).1 : ℤ)
 
-/-- Junk value: the order at infinity of `0`, matching the convention `ord v 0 = 0`. -/
+/-- Junk value: the order at infinity of `0`, matching the convention `ord v 0 = 0`.
+@isnad1 id=eq.0h2v.s8.abbd07f6e167 from=translated src=- shape=e5de0236 vocab=a5ac8dbe
+-/
 @[simp]
 lemma ordInfty_zero : ordInfty W (0 : W.FunctionField) = 0 := ite_eq_left rfl
 
 /-- **The defining property of `ordInfty`**: on a quotient `f = a / b` of elements of the
-coordinate ring it is `deg b - deg a`. -/
+coordinate ring it is `deg b - deg a`.
+@isnad1 id=eq.3h5v.s11.73e767f458ed from=translated src=- shape=fce4eccc vocab=b3548d76
+-/
 theorem ordInfty_eq_sub {f : W.FunctionField} (hf : f ≠ 0) {a b : W.CoordinateRing} (hb : b ≠ 0)
     (h : f * algebraMap W.CoordinateRing W.FunctionField b
       = algebraMap W.CoordinateRing W.FunctionField a) :
@@ -560,7 +598,9 @@ theorem ordInfty_eq_sub {f : W.FunctionField} (hf : f ≠ 0) {a b : W.Coordinate
   omega
 
 /-- The order at infinity of a nonzero element of the coordinate ring is minus its degree: a
-polynomial function has a pole at infinity, of order its degree. -/
+polynomial function has a pole at infinity, of order its degree.
+@isnad1 id=eq.1h3v.s10.eb5b6391dbe0 from=translated src=- shape=1c4eb719 vocab=d82b6e2b
+-/
 @[simp]
 theorem ordInfty_algebraMap {a : W.CoordinateRing} (ha : a ≠ 0) :
     ordInfty W (algebraMap W.CoordinateRing W.FunctionField a) = -(deg W a : ℤ) := by
@@ -569,14 +609,18 @@ theorem ordInfty_algebraMap {a : W.CoordinateRing} (ha : a ≠ 0) :
   rw [ordInfty_eq_sub (a := a) (b := 1) hfa one_ne_zero (by rw [map_one, mul_one]), deg_one]
   simp
 
-/-- The constant `1` is regular and nonvanishing at infinity. -/
+/-- The constant `1` is regular and nonvanishing at infinity.
+@isnad1 id=eq.0h2v.s8.cdb6d1afb6db from=translated src=- shape=e5de0236 vocab=a5ac8dbe
+-/
 @[simp]
 lemma ordInfty_one : ordInfty W (1 : W.FunctionField) = 0 := by
   have h := ordInfty_algebraMap (W := W) (a := 1) one_ne_zero
   rwa [map_one, deg_one, Nat.cast_zero, neg_zero] at h
 
 /-- `ordInfty` unfolded at a nonzero argument, in terms of Mathlib's chosen numerator and
-denominator `IsLocalization.sec`. -/
+denominator `IsLocalization.sec`.
+@isnad1 id=eq.1h3v.s11.489dcb711f76 from=translated src=- shape=64c16ec8 vocab=1bebbe0b
+-/
 lemma ordInfty_of_ne_zero {f : W.FunctionField} (hf : f ≠ 0) :
     ordInfty W f = (deg W (IsLocalization.sec W.CoordinateRing⁰ f).2 : ℤ)
       - deg W (IsLocalization.sec W.CoordinateRing⁰ f).1 := ite_eq_right hf
@@ -591,7 +635,9 @@ private lemma sec_fst_ne_zero {f : W.FunctionField} (hf : f ≠ 0) :
   · exact nonZeroDivisors.coe_ne_zero _
       ((IsFractionRing.injective W.CoordinateRing W.FunctionField) (by rw [h', map_zero]))
 
-/-- **`ordInfty` is additive.** -/
+/-- **`ordInfty` is additive.**
+@isnad1 id=eq.2h4v.s9.1669f034e0f0 from=translated src=- shape=3f17e3ae vocab=d84863fa
+-/
 theorem ordInfty_mul {f g : W.FunctionField} (hf : f ≠ 0) (hg : g ≠ 0) :
     ordInfty W (f * g) = ordInfty W f + ordInfty W g := by
   have hf' := IsLocalization.sec_spec W.CoordinateRing⁰ f
@@ -614,7 +660,9 @@ theorem ordInfty_mul {f g : W.FunctionField} (hf : f ≠ 0) (hg : g ≠ 0) :
   push_cast
   ring
 
-/-- **`ordInfty` of an inverse.** -/
+/-- **`ordInfty` of an inverse.**
+@isnad1 id=eq.0h3v.s7.a7144f53cc7d from=translated src=- shape=8ab97b36 vocab=e2eb0be3
+-/
 theorem ordInfty_inv (f : W.FunctionField) : ordInfty W f⁻¹ = -ordInfty W f := by
   rcases eq_or_ne f 0 with rfl | hf
   · simp
@@ -629,13 +677,17 @@ theorem ordInfty_inv (f : W.FunctionField) : ordInfty W f⁻¹ = -ordInfty W f :
   rw [ordInfty_eq_sub (inv_ne_zero hf) (sec_fst_ne_zero hf) hinv, ordInfty_of_ne_zero hf]
   ring
 
-/-- **`ordInfty` of a quotient.** -/
+/-- **`ordInfty` of a quotient.**
+@isnad1 id=eq.2h4v.s9.e83a0885774a from=translated src=- shape=3f17e3ae vocab=f82e2526
+-/
 theorem ordInfty_div {f g : W.FunctionField} (hf : f ≠ 0) (hg : g ≠ 0) :
     ordInfty W (f / g) = ordInfty W f - ordInfty W g := by
   rw [div_eq_mul_inv, ordInfty_mul hf (inv_ne_zero hg), ordInfty_inv]
   ring
 
-/-- **`ordInfty` of a natural power.** -/
+/-- **`ordInfty` of a natural power.**
+@isnad1 id=eq.0h4v.s7.609105262e74 from=translated src=- shape=b152d82c vocab=00f21801
+-/
 theorem ordInfty_pow (f : W.FunctionField) (n : ℕ) :
     ordInfty W (f ^ n) = n * ordInfty W f := by
   rcases eq_or_ne f 0 with rfl | hf
@@ -646,7 +698,9 @@ theorem ordInfty_pow (f : W.FunctionField) (n : ℕ) :
   | zero => simp
   | succ k ih => rw [pow_succ, ordInfty_mul (pow_ne_zero k hf) hf, ih]; push_cast; ring
 
-/-- **`ordInfty` of an integer power.** -/
+/-- **`ordInfty` of an integer power.**
+@isnad1 id=eq.0h4v.s7.7d07fb0a5d69 from=translated src=- shape=8410de30 vocab=4cb3375a
+-/
 theorem ordInfty_zpow (f : W.FunctionField) (n : ℤ) :
     ordInfty W (f ^ n) = n * ordInfty W f := by
   rcases eq_or_ne f 0 with rfl | hf
@@ -658,7 +712,9 @@ theorem ordInfty_zpow (f : W.FunctionField) (n : ℤ) :
   · rw [zpow_neg, zpow_natCast, ordInfty_inv, ordInfty_pow]; ring
 
 variable (W) in
-/-- **`ordInfty` of a finite product**, the companion of `ordInfty_mul`. -/
+/-- **`ordInfty` of a finite product**, the companion of `ordInfty_mul`.
+@isnad1 id=eq.1h5v.s9.08d1b3dfdbd9 from=translated src=- shape=cf5b0b91 vocab=6177d99b
+-/
 theorem ordInfty_prod {ι : Type*} (s : Finset ι) (f : ι → W.FunctionField)
     (hf : ∀ i ∈ s, f i ≠ 0) :
     ordInfty W (∏ i ∈ s, f i) = ∑ i ∈ s, ordInfty W (f i) := by
@@ -670,7 +726,9 @@ theorem ordInfty_prod {ι : Type*} (s : Finset ι) (f : ι → W.FunctionField)
     have hprod : ∏ i ∈ s, f i ≠ 0 := Finset.prod_ne_zero_iff.2 hmem
     rw [Finset.prod_cons, Finset.sum_cons, ordInfty_mul hfa hprod, ih hmem]
 
-/-- **The ultrametric inequality at infinity.** -/
+/-- **The ultrametric inequality at infinity.**
+@isnad1 id=le.3h4v.s10.89f538c55eec from=translated src=- shape=f8339fee vocab=a7affbc8
+-/
 theorem le_ordInfty_add {f g : W.FunctionField} (hf : f ≠ 0) (hg : g ≠ 0) (hfg : f + g ≠ 0) :
     min (ordInfty W f) (ordInfty W g) ≤ ordInfty W (f + g) := by
   set a := (IsLocalization.sec W.CoordinateRing⁰ f).1 with ha
@@ -709,7 +767,9 @@ theorem le_ordInfty_add {f g : W.FunctionField} (hf : f ≠ 0) (hg : g ≠ 0) (h
 
 /-! ### The place at infinity is a genuine new place -/
 
-/-- Nonzero constants are regular and nonvanishing at infinity. -/
+/-- Nonzero constants are regular and nonvanishing at infinity.
+@isnad1 id=eq.1h3v.s9.e13b2a7c5a0f from=translated src=- shape=e3601b0d vocab=c436ef82
+-/
 @[simp]
 theorem ordInfty_algebraMap_base {c : F} (hc : c ≠ 0) :
     ordInfty W (algebraMap F W.FunctionField c) = 0 := by
@@ -721,7 +781,9 @@ theorem ordInfty_algebraMap_base {c : F} (hc : c ≠ 0) :
   rw [h, ordInfty_algebraMap hne, deg_algebraMap]
   simp
 
-/-- The generic `x`-coordinate has a **double pole** at infinity. -/
+/-- The generic `x`-coordinate has a **double pole** at infinity.
+@isnad1 id=eq.0h2v.s4.d32e4ad409f3 from=translated src=- shape=ea90d03f vocab=a2281d0d
+-/
 @[simp]
 theorem ordInfty_genX : ordInfty W (CoordinateRing.genX W) = -2 := by
   have hne : (CoordinateRing.mk W (C X) : W.CoordinateRing) ≠ 0 :=
@@ -729,7 +791,9 @@ theorem ordInfty_genX : ordInfty W (CoordinateRing.genX W) = -2 := by
   rw [CoordinateRing.genX, CoordinateRing.genPsi, ordInfty_algebraMap hne, deg_mk_C]
   simp
 
-/-- The generic `y`-coordinate has a **triple pole** at infinity. -/
+/-- The generic `y`-coordinate has a **triple pole** at infinity.
+@isnad1 id=eq.0h2v.s4.8f590a5d270a from=translated src=- shape=ea90d03f vocab=411bd307
+-/
 @[simp]
 theorem ordInfty_genY : ordInfty W (CoordinateRing.genY W) = -3 := by
   have hroot : AdjoinRoot.root W.polynomial = CoordinateRing.mk W Y := rfl
@@ -737,11 +801,15 @@ theorem ordInfty_genY : ordInfty W (CoordinateRing.genY W) = -3 := by
   rw [CoordinateRing.genY, CoordinateRing.genPsi, hroot, ordInfty_algebraMap hne, deg_mk_Y]
   norm_num
 
-/-- The generic `x`-coordinate is nonzero. -/
+/-- The generic `x`-coordinate is nonzero.
+@isnad1 id=ne.0h2v.s8.a73f5e0b2c71 from=translated src=- shape=e84bb987 vocab=cc82656d
+-/
 lemma genX_ne_zero : CoordinateRing.genX W ≠ 0 := fun h =>
   CoordinateRing.genX_ne (W := W) 0 (by rw [h, map_zero])
 
-/-- The generic `y`-coordinate is nonzero — it has a pole at infinity, so it is not `0`. -/
+/-- The generic `y`-coordinate is nonzero — it has a pole at infinity, so it is not `0`.
+@isnad1 id=ne.0h2v.s8.dd213ab62beb from=translated src=- shape=e84bb987 vocab=65489ee4
+-/
 lemma genY_ne_zero : CoordinateRing.genY W ≠ 0 := by
   intro h
   have := ordInfty_genY (W := W)
@@ -750,13 +818,17 @@ lemma genY_ne_zero : CoordinateRing.genY W ≠ 0 := by
 
 /-- **A uniformizer at infinity.** The function `x / y` vanishes to order exactly `1` at the point
 at infinity, so the place at infinity is a *discrete* place of `F(W)` and `ordInfty` is onto `ℤ`
-(`ordInfty_surjective`). -/
+(`ordInfty_surjective`).
+@isnad1 id=eq.0h2v.s7.6dc81821eee3 from=translated src=- shape=3cd803e8 vocab=977a52dd
+-/
 theorem ordInfty_genX_div_genY :
     ordInfty W (CoordinateRing.genX W / CoordinateRing.genY W) = 1 := by
   rw [ordInfty_div genX_ne_zero genY_ne_zero, ordInfty_genX, ordInfty_genY]
   norm_num
 
-/-- `ordInfty` takes every integer value. -/
+/-- `ordInfty` takes every integer value.
+@isnad1 id=ex.0h3v.s8.40bf82472535 from=translated src=- shape=678025f9 vocab=a5ac8dbe
+-/
 theorem ordInfty_surjective (n : ℤ) :
     ∃ f : W.FunctionField, f ≠ 0 ∧ ordInfty W f = n := by
   refine ⟨(CoordinateRing.genX W / CoordinateRing.genY W) ^ n, ?_, ?_⟩
@@ -764,7 +836,9 @@ theorem ordInfty_surjective (n : ℤ) :
   · rw [ordInfty_zpow, ordInfty_genX_div_genY, mul_one]
 
 /-- **Only the constants are regular everywhere.** An element of the coordinate ring — a function
-with no poles on the affine chart — which also has no pole at infinity is a constant. -/
+with no poles on the affine chart — which also has no pole at infinity is a constant.
+@isnad1 id=ex.2h3v.s10.c615d90be4b0 from=translated src=- shape=3018610c vocab=18d3c81a
+-/
 theorem exists_eq_algebraMap_of_ordInfty_nonneg {a : W.CoordinateRing} (ha : a ≠ 0)
     (h : 0 ≤ ordInfty W (algebraMap W.CoordinateRing W.FunctionField a)) :
     ∃ c : F, c ≠ 0 ∧ a = algebraMap F W.CoordinateRing c := by
@@ -780,7 +854,9 @@ Unlike `exists_eq_algebraMap_of_ordInfty_nonneg`, `f` is only assumed regular **
 may have poles all over the affine chart.  The content is `exists_deg_sub_lt` applied to the
 numerator and denominator of `f`, which have equal pole order exactly when `ordInfty f = 0`.
 
-There is no hypothesis on `F`: the point at infinity is rational over any base field. -/
+There is no hypothesis on `F`: the point at infinity is rational over any base field.
+@isnad1 id=ex.1h3v.s10.995f69113083 from=translated src=- shape=d76e7c79 vocab=b2d8bb47
+-/
 theorem exists_const_ordInfty_sub_pos {f : W.FunctionField} (hf : 0 ≤ ordInfty W f) :
     ∃ c : F, f = algebraMap F W.FunctionField c ∨
       0 < ordInfty W (f - algebraMap F W.FunctionField c) := by
@@ -834,7 +910,9 @@ variable [IsDedekindDomain W.CoordinateRing]
 
 open IsDedekindDomain IsDedekindDomain.HeightOneSpectrum FractionalIdeal
 
-/-- A function regular on the affine chart has no pole at any affine closed point. -/
+/-- A function regular on the affine chart has no pole at any affine closed point.
+@isnad1 id=le.0h4v.s10.3291722fe25c from=translated src=- shape=e3692650 vocab=0eb4a38f
+-/
 lemma ord_algebraMap_nonneg (v : HeightOneSpectrum W.CoordinateRing) (a : W.CoordinateRing) :
     0 ≤ ord v (algebraMap W.CoordinateRing W.FunctionField a) := by
   rw [ord, ← coeIdeal_span_singleton]
@@ -842,7 +920,9 @@ lemma ord_algebraMap_nonneg (v : HeightOneSpectrum W.CoordinateRing) (a : W.Coor
 
 /-- **The place at infinity is not an affine place.** For every affine closed point `v` there is a
 rational function whose order at `v` differs from its order at infinity — the generic
-`x`-coordinate, which is regular at `v` but has a double pole at infinity. -/
+`x`-coordinate, which is regular at `v` but has a double pole at infinity.
+@isnad1 id=ne.0h3v.s6.6dd1d45c2d0d from=translated src=- shape=f79c55f4 vocab=94a57c44
+-/
 theorem ord_genX_ne_ordInfty_genX (v : HeightOneSpectrum W.CoordinateRing) :
     ord v (CoordinateRing.genX W) ≠ ordInfty W (CoordinateRing.genX W) := by
   have h := ord_algebraMap_nonneg v (CoordinateRing.mk W (C X))

@@ -120,7 +120,9 @@ pole, so `1 < v (addX)` and `redPt (P + Q) = 0`.
 The divided-difference identity `n₀·(x₁-x₂) = (y₁-y₂)·d₀` (from subtracting the two Weierstrass
 equations) exhibits the secant slope as `n₀/d₀`, whose denominator reduces to the vanishing tangent
 denominator `2ȳ + a₁x̄ + a₃` (`d₀ ∈ 𝔪`) and whose numerator reduces to the tangent numerator, a unit
-by reduced nonsingularity. -/
+by reduced nonsingularity.
+@isnad1 id=eq.12h11v.s10.1608b6593427 from=translated src=- shape=92a053f7 vocab=b226b4bc
+-/
 theorem redPt_add_of_reduced_two_torsion_secant (W : WeierstrassCurve K) [HasGoodReduction R W]
     {x₁ y₁ x₂ y₂ : K} {h₁ : W.toAffine.Nonsingular x₁ y₁} {h₂ : W.toAffine.Nonsingular x₂ y₂}
     {x₀₁ y₀₁ x₀₂ y₀₂ : R}
@@ -218,7 +220,9 @@ open Classical in
 `P = (x₁, y₁)` (`v x₁ ≤ 1`) that is **not** `2`-torsion over `K` (`y₁ ≠ negY x₁ y₁`, else
 `P + P = O` is `redPt_add_of_Y_eq`) but whose reduction is a `2`-torsion point
 (`residue y₀₁ = negY (residue x₀₁) (residue y₀₁)`), the doubling tangent slope is a pole, so
-`1 < v (addX)` and `redPt (P + P) = 0`. -/
+`1 < v (addX)` and `redPt (P + P) = 0`.
+@isnad1 id=eq.6h7v.s9.89757375df80 from=translated src=- shape=56d5004e vocab=b226b4bc
+-/
 theorem redPt_add_self_of_reduced_two_torsion (W : WeierstrassCurve K) [HasGoodReduction R W]
     {x₁ y₁ : K} {h₁ : W.toAffine.Nonsingular x₁ y₁} {x₀₁ y₀₁ : R}
     (hx₁ : algebraMap R K x₀₁ = x₁) (hy₁ : algebraMap R K y₀₁ = y₁)

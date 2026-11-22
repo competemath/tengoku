@@ -27,11 +27,17 @@ namespace AbsorptionCutoff
 def truncatedGaussianSquare (L x : ℝ) : ℝ :=
   min (x ^ 2) (L ^ 2)
 
+/--
+@isnad1 id=measurab.0h1v.s3.10de7fef87a3 from=translated src=- shape=f736e2c1 vocab=cec9218a
+-/
 lemma measurable_truncatedGaussianSquare (L : ℝ) :
     Measurable (truncatedGaussianSquare L) := by
   unfold truncatedGaussianSquare
   fun_prop
 
+/--
+@isnad1 id=le.0h2v.s4.9f5763eb1332 from=translated src=- shape=a120b2a8 vocab=93e2f748
+-/
 lemma truncatedGaussianSquare_nonneg (L x : ℝ) :
     0 ≤ truncatedGaussianSquare L x := by
   exact le_min (sq_nonneg x) (sq_nonneg L)
@@ -41,7 +47,9 @@ noncomputable def truncatedGaussianSquareMean (L : ℝ) : ℝ :=
   ∫ x : ℝ, truncatedGaussianSquare L x ∂(gaussianReal 0 1)
 
 /-- A coordinate of the product Gaussian vector has the same truncated-square
-mean as one standard Gaussian. -/
+mean as one standard Gaussian.
+@isnad1 id=eq.0h3v.s5.57ed00473400 from=translated src=- shape=7cac1ba3 vocab=2de5ecd7
+-/
 lemma integral_gaussianVec_truncatedGaussianSquare_eval_eq_mean
     (L : ℝ) {N : ℕ} (i : Fin N) :
     (∫ g : Fin N → ℝ, truncatedGaussianSquare L (g i) ∂(gaussianVec N)) =
@@ -63,7 +71,9 @@ lemma integral_gaussianVec_truncatedGaussianSquare_eval_eq_mean
   exact hmap.symm.trans rfl
 
 /-- Each centered truncated squared Gaussian coordinate is sub-Gaussian with
-the Hoeffding parameter supplied by its range `[0, L²]`. -/
+the Hoeffding parameter supplied by its range `[0, L²]`.
+@isnad1 id=hassubga.0h3v.s6.6f899ccb6560 from=translated src=- shape=425c0014 vocab=37b59db2
+-/
 lemma hasSubgaussianMGF_truncatedGaussianSquare_eval_sub_mean
     (L : ℝ) {N : ℕ} (i : Fin N) :
     HasSubgaussianMGF
@@ -86,7 +96,9 @@ lemma hasSubgaussianMGF_truncatedGaussianSquare_eval_sub_mean
   simpa only [X, sub_zero] using hsubG
 
 /-- The mean truncated squared Gaussian coordinate converges to the full
-standard-Gaussian second moment as the truncation level tends to infinity. -/
+standard-Gaussian second moment as the truncation level tends to infinity.
+@isnad1 id=tendsto.0h0v.s5.a5280e79e4e1 from=translated src=- shape=58beb810 vocab=51a3b170
+-/
 theorem tendsto_integral_truncatedGaussianSquare_atTop :
     Tendsto
       (fun L : ℝ =>
@@ -118,7 +130,9 @@ theorem tendsto_integral_truncatedGaussianSquare_atTop :
   simpa only [integral_sq_gaussian] using hconv
 
 /-- For every `A > 1`, some truncation level at least one leaves the truncated
-Gaussian second moment strictly above `A⁻²`. -/
+Gaussian second moment strictly above `A⁻²`.
+@isnad1 id=ex.1h1v.s6.3f99691c5471 from=translated src=- shape=ce9e7280 vocab=0f0c0de9
+-/
 theorem exists_one_le_integral_truncatedGaussianSquare_gt_inv_sq
     {A : ℝ} (hA : 1 < A) :
     ∃ L : ℝ, 1 ≤ L ∧
@@ -139,7 +153,9 @@ theorem exists_one_le_integral_truncatedGaussianSquare_gt_inv_sq
   exact ⟨L, hL, hL_mean⟩
 
 /-- For every supercritical gain, one can choose the truncation and strict
-loss parameters needed by the truncated Cramér argument. -/
+loss parameters needed by the truncated Cramér argument.
+@isnad1 id=ex.1h1v.s7.abb5a01cf483 from=translated src=- shape=42f6b427 vocab=8b29f7f0
+-/
 theorem exists_truncatedGaussianSquare_parameters
     {A : ℝ} (hA : 1 < A) :
     ∃ L ε δ : ℝ,
@@ -169,28 +185,42 @@ noncomputable def truncatedGaussianAverage
     (L : ℝ) (N : ℕ) (g : Fin N → ℝ) : ℝ :=
   (N : ℝ)⁻¹ * truncatedGaussianSum L N g
 
+/--
+@isnad1 id=measurab.0h2v.s4.8f615e09d7be from=translated src=- shape=d306deea vocab=3122c5d8
+-/
 lemma measurable_truncatedGaussianSum (L : ℝ) (N : ℕ) :
     Measurable (truncatedGaussianSum L N) := by
   unfold truncatedGaussianSum
   exact Finset.measurable_sum _ fun i _ =>
     (measurable_truncatedGaussianSquare L).comp (measurable_pi_apply i)
 
+/--
+@isnad1 id=le.0h3v.s4.dc1cec719dbd from=translated src=- shape=7220525c vocab=b618fb70
+-/
 lemma truncatedGaussianSum_nonneg (L : ℝ) (N : ℕ) (g : Fin N → ℝ) :
     0 ≤ truncatedGaussianSum L N g := by
   exact Finset.sum_nonneg fun _ _ => truncatedGaussianSquare_nonneg _ _
 
+/--
+@isnad1 id=measurab.0h2v.s4.18145a15cb5a from=translated src=- shape=d306deea vocab=fa2f18fe
+-/
 lemma measurable_truncatedGaussianAverage (L : ℝ) (N : ℕ) :
     Measurable (truncatedGaussianAverage L N) := by
   unfold truncatedGaussianAverage
   exact (measurable_truncatedGaussianSum L N).const_mul _
 
+/--
+@isnad1 id=le.0h3v.s4.5c4fd7395245 from=translated src=- shape=7220525c vocab=2afe713c
+-/
 lemma truncatedGaussianAverage_nonneg (L : ℝ) (N : ℕ) (g : Fin N → ℝ) :
     0 ≤ truncatedGaussianAverage L N g := by
   exact mul_nonneg (inv_nonneg.mpr (Nat.cast_nonneg N))
     (truncatedGaussianSum_nonneg L N g)
 
 /-- In positive dimension, the empirical average of the truncated squared
-Gaussian coordinates is almost surely positive. -/
+Gaussian coordinates is almost surely positive.
+@isnad1 id=eventual.1h1v.s6.9c7a86120dc3 from=translated src=- shape=47b506ec vocab=141f8b39
+-/
 lemma ae_truncatedGaussianAverage_one_pos {N : ℕ} (hN : 0 < N) :
     ∀ᵐ g : Fin N → ℝ ∂gaussianVec N,
       0 < truncatedGaussianAverage 1 N g := by
@@ -224,7 +254,9 @@ lemma ae_truncatedGaussianAverage_one_pos {N : ℕ} (hN : 0 < N) :
   exact mul_pos (inv_pos.mpr (by exact_mod_cast hN))
     (hterm_pos.trans_le hterm)
 
-/-- Truncated squared Gaussian coordinates remain mutually independent. -/
+/-- Truncated squared Gaussian coordinates remain mutually independent.
+@isnad1 id=iindepfu.0h2v.s5.be506c167450 from=translated src=- shape=6b1e5d4c vocab=052e308f
+-/
 lemma iIndepFun_gaussian_coordinate_truncatedSquare (L : ℝ) (N : ℕ) :
     iIndepFun
       (fun i (g : Fin N → ℝ) => truncatedGaussianSquare L (g i))
@@ -240,7 +272,9 @@ lemma iIndepFun_gaussian_coordinate_truncatedSquare (L : ℝ) (N : ℕ) :
     (fun _ => measurable_truncatedGaussianSquare L)
 
 /-- The centered truncated squared Gaussian coordinates remain mutually
-independent. -/
+independent.
+@isnad1 id=iindepfu.0h2v.s5.44567bcbb339 from=translated src=- shape=1c18f0d5 vocab=50c3e9a0
+-/
 lemma iIndepFun_truncatedGaussianSquare_eval_sub_mean
     (L : ℝ) (N : ℕ) :
     iIndepFun
@@ -259,7 +293,9 @@ lemma iIndepFun_truncatedGaussianSquare_eval_sub_mean
   exact hcomp
 
 /-- The truncated Gaussian empirical average satisfies the lower-tail
-Hoeffding bound with range length `L²`. -/
+Hoeffding bound with range length `L²`.
+@isnad1 id=le.3h3v.s7.9dcc526a8585 from=translated src=- shape=4a5bd12e vocab=8842a2c8
+-/
 lemma measureReal_truncatedGaussianAverage_le_mean_sub_le
     {L ε : ℝ} {N : ℕ} (hL : 0 < L) (hN : 0 < N)
     (hε : 0 ≤ ε) :
@@ -332,7 +368,9 @@ lemma measureReal_truncatedGaussianAverage_le_mean_sub_le
       ring
 
 /-- The Laplace transform of the truncated coordinate sum factors into the
-`N`-th power of the one-coordinate Laplace transform. -/
+`N`-th power of the one-coordinate Laplace transform.
+@isnad1 id=eq.0h3v.s6.dbe9ac45d611 from=translated src=- shape=0a8218bc vocab=df5c53f5
+-/
 lemma integral_exp_neg_truncatedGaussianSum
     (L t : ℝ) (N : ℕ) :
     (∫ g : Fin N → ℝ, Real.exp (-t * truncatedGaussianSum L N g)
@@ -378,7 +416,9 @@ lemma integral_exp_neg_truncatedGaussianSum
   rw [Finset.prod_const, Finset.card_univ, Fintype.card_fin]
 
 /-- The exact one-coordinate comparison behind the paper's truncated
-Laplace-transform estimate. -/
+Laplace-transform estimate.
+@isnad1 id=le.1h1v.s7.6f645fcb427e from=translated src=- shape=80eb4783 vocab=248cb246
+-/
 lemma integral_exp_neg_truncatedGaussianSquare_one_le_add
     {t : ℝ} (ht : 1 ≤ t) :
     (∫ x : ℝ, Real.exp (-t * truncatedGaussianSquare 1 x)
@@ -435,7 +475,9 @@ lemma integral_exp_neg_truncatedGaussianSquare_one_le_add
       ring
 
 /-- For `λ ≥ 1`, the Laplace transform of `min(G²,1)` decays at the
-paper's `λ⁻¹/²` rate, with the explicit constant `2`. -/
+paper's `λ⁻¹/²` rate, with the explicit constant `2`.
+@isnad1 id=le.1h1v.s6.b24f6f32f29c from=translated src=- shape=8fd555c1 vocab=efde2980
+-/
 lemma integral_exp_neg_truncatedGaussianSquare_one_le
     {t : ℝ} (ht : 1 ≤ t) :
     (∫ x : ℝ, Real.exp (-t * truncatedGaussianSquare 1 x)
@@ -481,7 +523,9 @@ lemma integral_exp_neg_truncatedGaussianSquare_one_le
     _ = 2 / Real.sqrt t := by ring
 
 /-- The one-coordinate Laplace bound tensorizes to the full truncated
-Gaussian coordinate sum. -/
+Gaussian coordinate sum.
+@isnad1 id=le.1h2v.s6.1acf37e7f9f8 from=translated src=- shape=67af095e vocab=2913cc3b
+-/
 lemma integral_exp_neg_truncatedGaussianSum_one_le
     {t : ℝ} (ht : 1 ≤ t) (N : ℕ) :
     (∫ g : Fin N → ℝ,
@@ -493,7 +537,9 @@ lemma integral_exp_neg_truncatedGaussianSum_one_le
     (integral_exp_neg_truncatedGaussianSquare_one_le ht) N
 
 /-- For `0 < p < N / 2`, the negative `p`-moment of the empirical average of
-the truncated Gaussian squares is finite, with an explicit bound. -/
+the truncated Gaussian squares is finite, with an explicit bound.
+@isnad1 id=and.3h2v.s8.6609cc43ed29 from=translated src=- shape=d3eccde9 vocab=0455a6ae
+-/
 theorem integrable_neg_rpow_truncatedGaussianAverage_one_and_integral_le
     {N : ℕ} (hN : 0 < N) {p : ℝ} (hp : 0 < p)
     (hpN : p < (N : ℝ) / 2) :
@@ -672,7 +718,9 @@ theorem integrable_neg_rpow_truncatedGaussianAverage_one_and_integral_le
   rw [hsmall_integral, htail_integral]
 
 /-- The truncated-Gaussian negative-moment estimate in the exponential-ready
-form used by the paper. -/
+form used by the paper.
+@isnad1 id=and.3h2v.s8.f8ca9daeb9c4 from=translated src=- shape=f58e62eb vocab=0fef4af2
+-/
 theorem integrable_neg_rpow_truncatedGaussianAverage_one_and_integral_le_exp
     {N : ℕ} (hN : 0 < N) {p : ℝ} (hp : 0 < p)
     (hpN : p < (N : ℝ) / 2) :
@@ -729,7 +777,9 @@ theorem integrable_neg_rpow_truncatedGaussianAverage_one_and_integral_le_exp
     (rpow_div_Gamma_add_one_le_exp_mul_div_rpow hNreal.le hp) hQ
 
 /-- Fixed-fraction specialization of the truncated-Gaussian negative-moment
-estimate, with an exponential-in-dimension upper bound. -/
+estimate, with an exponential-in-dimension upper bound.
+@isnad1 id=and.2h2v.s8.b221d46260ef from=translated src=- shape=0cf7c7d3 vocab=844da6c0
+-/
 theorem integrable_neg_rpow_truncatedGaussianAverage_one_mul_dimension_and_integral_le
     {α : ℝ} (hα : α ∈ Set.Ioo 0 (1 / 2 : ℝ))
     {N : ℕ} (hN : 0 < N) :
@@ -828,7 +878,9 @@ theorem integrable_neg_rpow_truncatedGaussianAverage_one_mul_dimension_and_integ
       ring
 
 /-- Raising the truncation level above one can only decrease the fixed-fraction
-negative moment, so the level-one exponential bound remains valid. -/
+negative moment, so the level-one exponential bound remains valid.
+@isnad1 id=and.3h3v.s8.0435ec7b9c94 from=translated src=- shape=49320b04 vocab=844da6c0
+-/
 theorem integrable_neg_rpow_truncatedGaussianAverage_mul_dimension_and_integral_le
     {α : ℝ} (hα : α ∈ Set.Ioo 0 (1 / 2 : ℝ))
     {N : ℕ} (hN : 0 < N) {L : ℝ} (hL : 1 ≤ L) :
@@ -891,7 +943,9 @@ theorem integrable_neg_rpow_truncatedGaussianAverage_mul_dimension_and_integral_
 
 /-- On the lower-tail bad event, Hölder interpolation combines the
 fixed-fraction negative-moment estimate with the truncated Gaussian Hoeffding
-bound. -/
+bound.
+@isnad1 id=and.6h5v.s9.ad12eb66fded from=translated src=- shape=3799b913 vocab=30b80a57
+-/
 theorem integrableOn_neg_rpow_truncatedGaussianAverage_badEvent_and_integral_le
     {α γ : ℝ} (hα : α ∈ Set.Ioo 0 (1 / 2 : ℝ))
     (hγ : 0 < γ) (hγα : γ < α)
@@ -1031,7 +1085,9 @@ theorem integrableOn_neg_rpow_truncatedGaussianAverage_badEvent_and_integral_le
       ring
 
 /-- The bad-event negative-moment estimate is unchanged in form after inserting
-the paper's positive deterministic scale `(1 - ε) A²`. -/
+the paper's positive deterministic scale `(1 - ε) A²`.
+@isnad1 id=and.8h7v.s9.379ae2740964 from=translated src=- shape=414d5076 vocab=30b80a57
+-/
 theorem
     integrableOn_neg_rpow_scaled_truncatedGaussianAverage_badEvent_and_integral_le
     {A ε α γ : ℝ} (hA : 1 < A) (hε : ε ∈ Set.Ioo 0 1)
@@ -1128,7 +1184,9 @@ theorem
       ring
 
 /-- On the complement of the truncated lower-tail event, the paper's scaled
-negative moment is bounded by the deterministic threshold `a ^ (-γN)`. -/
+negative moment is bounded by the deterministic threshold `a ^ (-γN)`.
+@isnad1 id=and.4h6v.s8.0690bd8072a2 from=translated src=- shape=ddda974f vocab=8c32dd4f
+-/
 theorem
     integrableOn_neg_rpow_scaled_truncatedGaussianAverage_goodEvent_and_integral_le
     {A ε γ : ℝ} (hA : 1 < A) (hε : ε ∈ Set.Ioo 0 1) (hγ : 0 < γ)
@@ -1230,7 +1288,9 @@ theorem
             (-(γ * (N : ℝ))) := by rfl
 
 /-- Splitting into the truncated lower-tail event and its complement gives the
-paper's fixed-parameter full negative-moment estimate. -/
+paper's fixed-parameter full negative-moment estimate.
+@isnad1 id=and.9h7v.s9.c9ce5152e780 from=translated src=- shape=1cdf4953 vocab=da71d3da
+-/
 theorem
     integrable_neg_rpow_scaled_truncatedGaussianAverage_and_integral_le
     {A ε α γ : ℝ} (hA : 1 < A) (hε : ε ∈ Set.Ioo 0 1)
@@ -1324,7 +1384,9 @@ theorem
 
 /-- For fixed truncation and loss parameters, a sufficiently small fractional
 exponent makes both bases in the good/bad-event estimate exponentially
-contractive with one common positive rate. -/
+contractive with one common positive rate.
+@isnad1 id=ex.6h5v.s8.3967c1cd1016 from=translated src=- shape=1a27d43d vocab=a600c52c
+-/
 theorem exists_fractional_exponent_and_rate_for_scaled_truncatedGaussianAverage
     {A ε α L δ : ℝ} (hA : 1 < A) (hε : ε ∈ Set.Ioo 0 1)
     (hα : α ∈ Set.Ioo 0 (1 / 2 : ℝ)) (hL : 1 ≤ L) (hδ : 0 < δ)
@@ -1418,7 +1480,9 @@ theorem exists_fractional_exponent_and_rate_for_scaled_truncatedGaussianAverage
 
 /-- With the truncation and loss parameters fixed, the paper's scaled
 truncated negative moment is exponentially small in every sufficiently large
-positive dimension. -/
+positive dimension.
+@isnad1 id=ex.6h5v.s8.8d368693552d from=translated src=- shape=f8bc8b31 vocab=0163dd9f
+-/
 theorem
     exists_eventually_integrable_neg_rpow_scaled_truncatedGaussianAverage
     {A ε α L δ : ℝ} (hA : 1 < A) (hε : ε ∈ Set.Ioo 0 1)
@@ -1522,7 +1586,9 @@ theorem
 
 /-- Paper-facing truncated Cramér estimate: every supercritical gain admits
 fixed truncation and loss parameters for which a fractional negative moment
-decays exponentially in all sufficiently large dimensions. -/
+decays exponentially in all sufficiently large dimensions.
+@isnad1 id=ex.1h1v.s8.c9bfa28a2fcf from=translated src=- shape=14a71dda vocab=844da6c0
+-/
 theorem exists_truncatedGaussianAverage_cramer_bound
     {A : ℝ} (hA : 1 < A) :
     ∃ γ κ L ε : ℝ, ∃ N₀ : ℕ,
@@ -1555,7 +1621,9 @@ theorem exists_truncatedGaussianAverage_cramer_bound
 
 /-- Uniform small-argument form of the linearization
 `tanh(x) / x → 1`, with the origin excluded because the quotient is written
-without its continuous extension. -/
+without its continuous extension.
+@isnad1 id=ex.1h1v.s6.79f8d256992e from=translated src=- shape=58d6164c vocab=326b1519
+-/
 lemma exists_pos_forall_tanh_div_self_sq_ge_one_sub
     {ε : ℝ} (hε : ε ∈ Set.Ioo 0 1) :
     ∃ η : ℝ, 0 < η ∧
@@ -1581,7 +1649,9 @@ lemma exists_pos_forall_tanh_div_self_sq_ge_one_sub
   exact (hηsub hxmem).le
 
 /-- A small positive input radius transfers the uniform `tanh` linearization
-to the paper's coordinatewise lower bound by the truncated square. -/
+to the paper's coordinatewise lower bound by the truncated square.
+@isnad1 id=ex.3h3v.s7.aab460327d4e from=translated src=- shape=7f0d5ccc vocab=32585128
+-/
 theorem exists_radius_truncatedGaussianSquare_le_tanh_sq_div
     {A L ε : ℝ} (hA : 1 < A) (hL : 1 ≤ L)
     (hε : ε ∈ Set.Ioo 0 1) :
@@ -1700,7 +1770,9 @@ theorem exists_radius_truncatedGaussianSquare_le_tanh_sq_div
       ((div_le_div_iff_of_pos_right hR₀pos).2 (htanh_sq.trans_eq heven))
 
 /-- Summing any coordinatewise truncated lower bound and inserting the common
-empirical normalization gives the corresponding radial update-ratio bound. -/
+empirical normalization gives the corresponding radial update-ratio bound.
+@isnad1 id=le.1h6v.s6.7e587887eaa6 from=translated src=- shape=fef877a8 vocab=d7c0a3af
+-/
 lemma scaled_truncatedGaussianAverage_le_Fmap_div_of_forall
     {A L R c : ℝ}
     (hcoord : ∀ x : ℝ,
@@ -1734,7 +1806,9 @@ lemma scaled_truncatedGaussianAverage_le_Fmap_div_of_forall
       ring
 
 /-- The coordinatewise truncated lower bound holds at one common positive
-radius after summing and normalizing over every dimension. -/
+radius after summing and normalizing over every dimension.
+@isnad1 id=ex.3h3v.s7.247ef9004355 from=translated src=- shape=31a0d83c vocab=7dfc3697
+-/
 theorem exists_radius_scaled_truncatedGaussianAverage_le_Fmap_div
     {A L ε : ℝ} (hA : 1 < A) (hL : 1 ≤ L)
     (hε : ε ∈ Set.Ioo 0 1) :
@@ -1748,7 +1822,9 @@ theorem exists_radius_scaled_truncatedGaussianAverage_le_Fmap_div
     scaled_truncatedGaussianAverage_le_Fmap_div_of_forall hcoord⟩
 
 /-- Uniformly below one fixed positive radius, the negative moment of the
-nonlinear radial update ratio inherits the truncated Cramér estimate. -/
+nonlinear radial update ratio inherits the truncated Cramér estimate.
+@isnad1 id=ex.1h1v.s8.ce999cfbfd00 from=translated src=- shape=6174b423 vocab=be79ed56
+-/
 theorem exists_radius_eventually_integrable_neg_rpow_Fmap_div
     {A : ℝ} (hA : 1 < A) :
     ∃ R₀ γ κ : ℝ, ∃ N₀ : ℕ,
@@ -1822,7 +1898,9 @@ theorem exists_radius_eventually_integrable_neg_rpow_Fmap_div
   exact ⟨hint, (integral_mono_ae hint hbound.1 hpowle).trans hbound.2⟩
 
 /-- The uniform near-zero negative-moment radius may be chosen below any
-prescribed positive cap. -/
+prescribed positive cap.
+@isnad1 id=ex.2h2v.s8.fcf279e09f64 from=translated src=- shape=bff07eb0 vocab=be79ed56
+-/
 theorem exists_radius_lt_eventually_integrable_neg_rpow_Fmap_div
     {A r : ℝ} (hA : 1 < A) (hr : 0 < r) :
     ∃ R₀ γ κ : ℝ, ∃ N₀ : ℕ,
@@ -1855,7 +1933,9 @@ theorem exists_radius_lt_eventually_integrable_neg_rpow_Fmap_div
 
 /-- The near-zero contraction radius can be placed strictly below the lower
 endpoint of any positive-radius stable interval around the positive fixed
-point. -/
+point.
+@isnad1 id=ex.3h3v.s8.69ef0abcbf71 from=translated src=- shape=0893e0bf vocab=28b44d4d
+-/
 theorem
     exists_radius_below_stableInterval_eventually_integrable_neg_rpow_Fmap_div
     {A qStar R : ℝ} (hA : 1 < A)
@@ -1879,7 +1959,9 @@ theorem
 
 /-- Uniformly over radii bounded away from zero, one positive coefficient
 times the coordinatewise truncation `min(g², 1)` bounds the nonlinear squared
-coordinate update. -/
+coordinate update.
+@isnad1 id=ex.2h2v.s7.f709c00ba74c from=translated src=- shape=fca24ee6 vocab=c49addef
+-/
 theorem exists_pos_forall_truncatedGaussianSquare_one_le_tanh_sq
     {A R₀ : ℝ} (hA : 1 < A) (hR₀ : R₀ ∈ Set.Ioo (0 : ℝ) 1) :
     ∃ c : ℝ, 0 < c ∧
@@ -1931,7 +2013,9 @@ theorem exists_pos_forall_truncatedGaussianSquare_one_le_tanh_sq
 
 /-- Summing the coordinatewise lower bound gives one truncated empirical
 average bound uniformly over all dimensions and radii bounded away from
-zero. -/
+zero.
+@isnad1 id=ex.2h2v.s6.08b740aafd70 from=translated src=- shape=abb9b461 vocab=47eaceaf
+-/
 theorem exists_pos_forall_scaled_truncatedGaussianAverage_one_le_Fmap
     {A R₀ : ℝ} (hA : 1 < A) (hR₀ : R₀ ∈ Set.Ioo (0 : ℝ) 1) :
     ∃ c : ℝ, 0 < c ∧
@@ -1961,7 +2045,9 @@ theorem exists_pos_forall_scaled_truncatedGaussianAverage_one_le_Fmap
 
 /-- The explicit level-one truncated negative-moment estimate transfers
 uniformly to the nonlinear update on every radius interval bounded away from
-zero. -/
+zero.
+@isnad1 id=ex.3h3v.s8.4bf5f0d2562a from=translated src=- shape=4bd4e236 vocab=49477f43
+-/
 theorem exists_pos_forall_integrable_neg_rpow_Fmap_and_integral_le
     {A R₀ γ : ℝ} (hA : 1 < A) (hR₀ : R₀ ∈ Set.Ioo (0 : ℝ) 1)
     (hγ : γ ∈ Set.Ioo 0 (1 / 2 : ℝ)) :
@@ -2061,7 +2147,9 @@ theorem exists_pos_forall_integrable_neg_rpow_Fmap_and_integral_le
       ring
 
 /-- Paper-facing negative-moment bound away from zero: the fixed prefactor and
-the truncated-moment scale are absorbed into one exponential rate. -/
+the truncated-moment scale are absorbed into one exponential rate.
+@isnad1 id=ex.3h3v.s8.27dc3fdb2b14 from=translated src=- shape=08f5b352 vocab=d0c52b03
+-/
 theorem exists_forall_integrable_neg_rpow_Fmap_and_integral_le_exp
     {A R₀ γ : ℝ} (hA : 1 < A) (hR₀ : R₀ ∈ Set.Ioo (0 : ℝ) 1)
     (hγ : γ ∈ Set.Ioo 0 (1 / 2 : ℝ)) :
@@ -2122,7 +2210,9 @@ theorem exists_forall_integrable_neg_rpow_Fmap_and_integral_le_exp
       ring
 
 /-- At a positive input radius, a moment of the radial update factors into
-the matching input-radius power and update-ratio moment. -/
+the matching input-radius power and update-ratio moment.
+@isnad1 id=and.2h4v.s8.5db0d92e051f from=translated src=- shape=ee3855ac vocab=e7de1dea
+-/
 lemma integrable_rpow_Fmap_and_integral_eq_mul
     {A q p : ℝ} {N : ℕ} (hq : 0 < q)
     (hint :
@@ -2160,7 +2250,9 @@ lemma integrable_rpow_Fmap_and_integral_eq_mul
   · rw [hfun, integral_const_mul]
 
 /-- The near-zero contraction and away-from-zero moment bound combine into
-the paper's one-step Foster inequality for `V_N(q) = q^(-γN)`. -/
+the paper's one-step Foster inequality for `V_N(q) = q^(-γN)`.
+@isnad1 id=ex.3h3v.s8.bbd79b6091a4 from=translated src=- shape=db54aec8 vocab=15bd98cc
+-/
 theorem exists_eventually_integrable_neg_rpow_Fmap_foster
     {A qStar R : ℝ} (hA : 1 < A)
     (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -2219,7 +2311,9 @@ theorem exists_eventually_integrable_neg_rpow_Fmap_foster
       (mul_nonneg (Real.exp_nonneg _)
         (Real.rpow_nonneg hq.1.le _))
 
-/-- Kernel-facing form of the one-step negative-moment Foster inequality. -/
+/-- Kernel-facing form of the one-step negative-moment Foster inequality.
+@isnad1 id=ex.3h3v.s8.6dee4e1fb35c from=translated src=- shape=15abf074 vocab=650c376a
+-/
 theorem exists_eventually_integrable_neg_rpow_Kchain_foster
     {A qStar R : ℝ} (hA : 1 < A)
     (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -2262,7 +2356,9 @@ theorem exists_eventually_integrable_neg_rpow_Kchain_foster
 
 /-- For a fixed eligible dimension, the one-step negative-moment Foster
 estimate propagates integrability of `V_N(y) = y^(-γN)` through every kernel
-power. -/
+power.
+@isnad1 id=integrab.4h7v.s8.e484cced2445 from=translated src=- shape=02929b9a vocab=262d1845
+-/
 lemma integrable_neg_rpow_Kchain_pow_of_foster
     {A γ κ b : ℝ} {N : ℕ} (hN : 0 < N) (hγ : 0 < γ)
     {q : ℝ} (hq : q ∈ Set.Ioc (0 : ℝ) 1)
@@ -2354,7 +2450,9 @@ lemma integrable_neg_rpow_Kchain_pow_of_foster
         exact hfoster_Icc x hx
 
 /-- Under the fixed-dimension negative-moment Foster estimate, all kernel
-powers have one uniform `V_N(y) = y^(-γN)` moment bound. -/
+powers have one uniform `V_N(y) = y^(-γN)` moment bound.
+@isnad1 id=ex.5h6v.s9.98635302bb7a from=translated src=- shape=9d992202 vocab=e94a1633
+-/
 lemma exists_uniform_integral_neg_rpow_Kchain_pow_le_of_foster
     {A γ κ b : ℝ} {N : ℕ} (hN : 0 < N) (hγ : 0 < γ) (hκ : 0 < κ)
     {q : ℝ} (hq : q ∈ Set.Ioc (0 : ℝ) 1)
@@ -2456,7 +2554,9 @@ lemma exists_uniform_integral_neg_rpow_Kchain_pow_le_of_foster
     geom_recursion_bound_contraction ha0 ha1 hrec t
 
 /-- The uniform fixed-dimension negative-moment bound passes from kernel powers
-to every positive-length Cesàro law. -/
+to every positive-length Cesàro law.
+@isnad1 id=ex.5h6v.s9.ed53d37e9e48 from=translated src=- shape=e1db2a03 vocab=759296c3
+-/
 lemma exists_uniform_integral_neg_rpow_cesaroMeasure_le_of_foster
     {A γ κ b : ℝ} {N : ℕ} (hN : 0 < N) (hγ : 0 < γ) (hκ : 0 < κ)
     {q : ℝ} (hq : q ∈ Set.Ioc (0 : ℝ) 1)
@@ -2522,7 +2622,9 @@ lemma exists_uniform_integral_neg_rpow_cesaroMeasure_le_of_foster
       field_simp
 
 /-- Paper-facing eventual-in-dimension package of the uniform kernel-power and
-Cesàro negative-moment bounds. -/
+Cesàro negative-moment bounds.
+@isnad1 id=ex.3h3v.s9.ce709e45040f from=translated src=- shape=d6f801d3 vocab=4e9ae033
+-/
 theorem exists_eventually_uniform_integral_neg_rpow_Kchain_pow_and_cesaroMeasure_le
     {A qStar R : ℝ} (hA : 1 < A)
     (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -2584,6 +2686,9 @@ noncomputable def negativeMomentTruncation
       exact inv_anti₀ (Real.rpow_pos_of_pos heps p)
         (Real.rpow_le_rpow heps.le hbase hp))
 
+/--
+@isnad1 id=eq.1h3v.s6.6a3ef4b0c82f from=translated src=- shape=3fc42e6c vocab=96d73263
+-/
 @[simp]
 lemma negativeMomentTruncation_apply
     (p : ℝ) (hp : 0 ≤ p) (k : ℕ) (q : ℝ) :
@@ -2591,6 +2696,9 @@ lemma negativeMomentTruncation_apply
       (max |q| (k + 1 : ℝ)⁻¹) ^ (-p) :=
   rfl
 
+/--
+@isnad1 id=le.1h3v.s5.30a31d2b4777 from=translated src=- shape=0f15d77e vocab=a4e83dc5
+-/
 lemma negativeMomentTruncation_nonneg
     (p : ℝ) (hp : 0 ≤ p) (k : ℕ) (q : ℝ) :
     0 ≤ negativeMomentTruncation p hp k q := by
@@ -2599,7 +2707,9 @@ lemma negativeMomentTruncation_nonneg
     ((abs_nonneg q).trans (le_max_left |q| (k + 1 : ℝ)⁻¹)) _
 
 /-- On the positive half-line, the capped moment stays below the true negative
-moment. -/
+moment.
+@isnad1 id=le.2h3v.s6.92a801f829a4 from=translated src=- shape=7078c012 vocab=4504fc02
+-/
 lemma negativeMomentTruncation_le
     {p q : ℝ} (hp : 0 ≤ p) (hq : 0 < q) (k : ℕ) :
     negativeMomentTruncation p hp k q ≤ q ^ (-p) := by
@@ -2614,7 +2724,9 @@ lemma negativeMomentTruncation_le
   exact inv_anti₀ (Real.rpow_pos_of_pos hq p)
     (Real.rpow_le_rpow hq.le hbase hp)
 
-/-- The negative-moment caps increase with their truncation level. -/
+/-- The negative-moment caps increase with their truncation level.
+@isnad1 id=le.2h4v.s6.272c5f3aa431 from=translated src=- shape=1bdc9f68 vocab=a4e83dc5
+-/
 lemma negativeMomentTruncation_mono
     {p : ℝ} (hp : 0 ≤ p) {k l : ℕ} (hkl : k ≤ l) (q : ℝ) :
     negativeMomentTruncation p hp k q ≤
@@ -2635,7 +2747,9 @@ lemma negativeMomentTruncation_mono
     (Real.rpow_le_rpow hlbase.le hbase hp)
 
 /-- At each positive radius, the bounded continuous caps converge to the true
-negative moment. -/
+negative moment.
+@isnad1 id=tendsto.2h2v.s6.e7bf6d623865 from=translated src=- shape=fa59a91f vocab=82eb0a53
+-/
 lemma tendsto_negativeMomentTruncation
     {p q : ℝ} (hp : 0 ≤ p) (hq : 0 < q) :
     Tendsto (fun k : ℕ => negativeMomentTruncation p hp k q)

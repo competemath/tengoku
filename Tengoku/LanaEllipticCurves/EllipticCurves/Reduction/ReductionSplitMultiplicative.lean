@@ -63,7 +63,9 @@ variable [IsDomain R] [IsDiscreteValuationRing R] [IsFractionRing R K]
 variable (R) in
 /-- The split-multiplicative quadratic of the integral minimal model, mapped to the residue field,
 written in the canonical form `C a * X ^ 2 + C b * X + C c`, with coefficients read off the reduced
-curve's invariants. -/
+curve's invariants.
+@isnad1 id=eq.0h3v.s11.d9e091e1c60c from=translated src=- shape=a4275da7 vocab=9407c491
+-/
 theorem splitMultiplicative_poly_eq (W : WeierstrassCurve K) [IsMinimal R W] :
     (Polynomial.map (algebraMap R (ResidueField R))
         (C (integralModel R W).c₄ * X ^ 2 + C ((integralModel R W).a₁ * (integralModel R W).c₄) * X
@@ -94,7 +96,9 @@ variable (R) in
 /-- **The discriminant of the split-multiplicative quadratic.** Over the residue field it equals
 `−(W.reduction R).c₄ · (W.reduction R).c₆`.  This is a universal `ring` identity in the coefficients
 `aᵢ` of the reduced curve, and is the clean invariant form the `char ≠ 2` splitting criterion is
-stated against. -/
+stated against.
+@isnad1 id=eq.0h3v.s9.358adf157f4a from=translated src=- shape=95368ed5 vocab=7831e9fc
+-/
 theorem discrim_splitMultiplicative_eq (W : WeierstrassCurve K) [IsMinimal R W] :
     discrim (W.reduction R).c₄ ((W.reduction R).a₁ * (W.reduction R).c₄)
         (-(54 * (W.reduction R).b₆ - 3 * (W.reduction R).b₂ * (W.reduction R).b₄
@@ -109,7 +113,9 @@ variable (R) in
 When the residue field has characteristic `≠ 2`, `W` has split multiplicative reduction iff it has
 multiplicative reduction and `−c̃₄ · c̃₆` is a square in the residue field.  This closes the
 `TODO` in `Mathlib/AlgebraicGeometry/EllipticCurve/Reduction.lean` asking for the discriminant
-characterization. -/
+characterization.
+@isnad1 id=iff.0h3v.s8.9b79007bb518 from=translated src=- shape=05f8ffb1 vocab=9b78ce99
+-/
 theorem hasSplitMultiplicativeReduction_iff_isSquare [NeZero (2 : ResidueField R)]
     (W : WeierstrassCurve K) [IsMinimal R W] :
     W.HasSplitMultiplicativeReduction R ↔

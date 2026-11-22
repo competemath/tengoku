@@ -57,6 +57,9 @@ variable {R : Type*} [CommRing R] [Algebra R K]
 def primeBelow (O : ValuationSubring K) (hR : ∀ r, algebraMap R K r ∈ O) : Ideal R :=
   (maximalIdeal O).comap ((algebraMap R K).codRestrict O hR)
 
+/--
+@isnad1 id=iff.1h4v.s7.5278764913bb from=translated src=- shape=e7858188 vocab=6504f7a9
+-/
 theorem mem_primeBelow {O : ValuationSubring K} {hR : ∀ r, algebraMap R K r ∈ O} {r : R} :
     r ∈ primeBelow O hR ↔ algebraMap R K r ∈ O.nonunits := by
   rw [primeBelow, Ideal.mem_comap, ← ValuationSubring.coe_mem_nonunits_iff]
@@ -69,6 +72,9 @@ section Domain
 
 variable [IsDomain R]
 
+/--
+@isnad1 id=ne.2h3v.s7.f6792fe57150 from=translated src=- shape=95432869 vocab=71b1d438
+-/
 theorem primeBelow_ne_bot [IsFractionRing R K] {O : ValuationSubring K} (hO : O ≠ ⊤)
     (hR : ∀ r, algebraMap R K r ∈ O) : primeBelow O hR ≠ ⊥ := by
   intro h
@@ -89,6 +95,9 @@ def heightOneBelow [IsFractionRing R K] (O : ValuationSubring K) (hO : O ≠ ⊤
     (hR : ∀ r, algebraMap R K r ∈ O) : HeightOneSpectrum R :=
   ⟨primeBelow O hR, inferInstance, primeBelow_ne_bot hO hR⟩
 
+/--
+@isnad1 id=iff.2h4v.s8.9958bc695682 from=translated src=- shape=9f05bf05 vocab=e7dd0bde
+-/
 theorem mem_heightOneBelow [IsFractionRing R K] {O : ValuationSubring K} {hO : O ≠ ⊤}
     {hR : ∀ r, algebraMap R K r ∈ O} {r : R} :
     r ∈ (heightOneBelow O hO hR).asIdeal ↔ algebraMap R K r ∈ O.nonunits :=
@@ -98,6 +107,9 @@ end Domain
 
 variable [IsDedekindDomain R] [IsFractionRing R K]
 
+/--
+@isnad1 id=le.2h3v.s7.7da83b8e811e from=translated src=- shape=8c3d6bde vocab=5024203e
+-/
 theorem valuationSubringAtPrime_le (O : ValuationSubring K) (hO : O ≠ ⊤)
     (hR : ∀ r, algebraMap R K r ∈ O) :
     HeightOneSpectrum.valuationSubringAtPrime K (heightOneBelow O hO hR) ≤ O := by
@@ -108,7 +120,9 @@ theorem valuationSubringAtPrime_le (O : ValuationSubring K) (hO : O ≠ ⊤)
   exact O.mul_mem _ _ (hR a) hsn.2
 
 /-- A valuation subring `O ≠ K` containing a Dedekind domain `R` with fraction field `K` is
-the localisation of `R` at the prime below `O`. -/
+the localisation of `R` at the prime below `O`.
+@isnad1 id=eq.2h3v.s7.88668ece76f7 from=translated src=- shape=8c3d6bde vocab=dcdcc7bc
+-/
 theorem valuationSubringAtPrime_heightOneBelow (O : ValuationSubring K) (hO : O ≠ ⊤)
     (hR : ∀ r, algebraMap R K r ∈ O) :
     HeightOneSpectrum.valuationSubringAtPrime K (heightOneBelow O hO hR) = O :=
@@ -118,22 +132,34 @@ instance (v : HeightOneSpectrum R) :
     IsDiscreteValuationRing (HeightOneSpectrum.valuationSubringAtPrime K v) :=
   IsLocalization.AtPrime.isDiscreteValuationRing_of_dedekind_domain R v.ne_bot _
 
+/--
+@isnad1 id=isdiscre.2h3v.s7.5befb966ce33 from=translated src=- shape=90dcd6c0 vocab=c43c66d0
+-/
 theorem isDiscreteValuationRing_of_le (O : ValuationSubring K) (hO : O ≠ ⊤)
     (hR : ∀ r, algebraMap R K r ∈ O) : IsDiscreteValuationRing O := by
   rw [← valuationSubringAtPrime_heightOneBelow O hO hR]; infer_instance
 
+/--
+@isnad1 id=ne.0h3v.s6.899454fc9594 from=translated src=- shape=ca607ee7 vocab=2c448787
+-/
 theorem valuationSubringAtPrime_ne_top (v : HeightOneSpectrum R) :
     HeightOneSpectrum.valuationSubringAtPrime K v ≠ ⊤ := by
   rw [HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring, ne_eq,
     Valuation.valuationSubring_eq_top_iff, not_not]
   infer_instance
 
+/--
+@isnad1 id=mem.0h4v.s6.8e926365f2cb from=translated src=- shape=bf5745db vocab=81255bf2
+-/
 theorem algebraMap_mem_valuationSubringAtPrime (v : HeightOneSpectrum R) (r : R) :
     algebraMap R K r ∈ HeightOneSpectrum.valuationSubringAtPrime K v := by
   rw [HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring,
     Valuation.mem_valuationSubring_iff]
   exact HeightOneSpectrum.valuation_le_one _ _
 
+/--
+@isnad1 id=eq.0h3v.s6.e202623086fa from=translated src=- shape=b763e1a3 vocab=24ee9a00
+-/
 theorem heightOneBelow_valuationSubringAtPrime (v : HeightOneSpectrum R) :
     heightOneBelow (HeightOneSpectrum.valuationSubringAtPrime K v)
       (valuationSubringAtPrime_ne_top v) (algebraMap_mem_valuationSubringAtPrime v) = v := by
@@ -144,7 +170,9 @@ theorem heightOneBelow_valuationSubringAtPrime (v : HeightOneSpectrum R) :
   exact (Valuation.isEquiv_valuation_valuationSubring _).symm.lt_one_iff_lt_one
 
 /-- The residue map of `O` restricted to a Dedekind domain `R ⊆ O` with fraction field `K`
-is surjective (the residue field of `O` is `R ⧸ 𝔭`). -/
+is surjective (the residue field of `O` is `R ⧸ 𝔭`).
+@isnad1 id=surjecti.2h3v.s9.ecf592c2af4f from=translated src=- shape=8963be15 vocab=9f9c15d0
+-/
 theorem residue_comp_surjective (O : ValuationSubring K) (hO : O ≠ ⊤)
     (hR : ∀ r, algebraMap R K r ∈ O) :
     Function.Surjective ((residue O).comp ((algebraMap R K).codRestrict O hR)) := by
@@ -190,29 +218,52 @@ namespace Place
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=eq.1h3v.s6.d38ed883f85f from=translated src=- shape=97af47f4 vocab=62407ec9
+-/
 @[ext]
 theorem ext {P Q : Place K} (h : P.1 = Q.1) : P = Q := Subtype.ext h
 
+/--
+@isnad1 id=ne.0h2v.s6.2133973ecac6 from=translated src=- shape=c475ebcc vocab=62407ec9
+-/
 theorem ne_top (P : Place K) : P.1 ≠ ⊤ := P.2.1
 
+/--
+@isnad1 id=mem.0h3v.s6.ac627c5c7456 from=translated src=- shape=9740b1b2 vocab=62407ec9
+-/
 theorem ratCast_mem (P : Place K) (q : ℚ) : (q : K) ∈ P.1 := P.2.2 q
 
+/--
+@isnad1 id=or.0h3v.s7.1c0be22703bf from=translated src=- shape=860b05c6 vocab=26e937d4
+-/
 theorem mem_or_inv_mem (P : Place K) (x : K) : x ∈ P.1 ∨ x⁻¹ ∈ P.1 := P.1.mem_or_inv_mem x
 
 variable [CharZero K]
 
+/--
+@isnad1 id=mem.0h3v.s7.8286fc818397 from=translated src=- shape=a1260ce1 vocab=cf72b8e5
+-/
 theorem algebraMap_mem (P : Place K) (q : ℚ) : algebraMap ℚ K q ∈ P.1 := P.ratCast_mem q
 
-/-- Elements of `K` integral over `ℚ` (the constants) lie in every place. -/
+/-- Elements of `K` integral over `ℚ` (the constants) lie in every place.
+@isnad1 id=mem.1h3v.s6.2c4a34549b00 from=translated src=- shape=93f12c3b vocab=009d4099
+-/
 theorem mem_of_isIntegral (P : Place K) {x : K} (hx : IsIntegral ℚ x) : x ∈ P.1 := by
   have : IsIntegrallyClosedIn P.1.toSubring K := inferInstanceAs (IsIntegrallyClosedIn P.1 K)
   have hle : (integralClosure ℚ K).toSubring ≤ P.1.toSubring :=
     Subring.integralClosure_le_iff.mpr P.algebraMap_mem
   exact hle hx
 
+/--
+@isnad1 id=mem.1h3v.s6.9a15509d6a6a from=translated src=- shape=93f12c3b vocab=cf080585
+-/
 theorem mem_of_isAlgebraic (P : Place K) {x : K} (hx : IsAlgebraic ℚ x) : x ∈ P.1 :=
   P.mem_of_isIntegral hx.isIntegral
 
+/--
+@isnad1 id=mem.1h3v.s6.175c47953d08 from=translated src=- shape=13fdf441 vocab=5b8880de
+-/
 theorem inv_mem_of_isAlgebraic (P : Place K) {x : K} (hx : IsAlgebraic ℚ x) : x⁻¹ ∈ P.1 :=
   P.mem_of_isAlgebraic hx.inv
 
@@ -223,6 +274,9 @@ section Chart
 variable [IsCurveField K] (t : K) [Fact (Transcendental ℚ t)]
 
 omit [IsCurveField K] [Fact (Transcendental ℚ t)] in
+/--
+@isnad1 id=mem.1h4v.s12.c7a165f9ef02 from=translated src=- shape=e72e357d vocab=f3ecd022
+-/
 theorem algebraMap_chartRing_mem (P : Place K) (ht : t ∈ P.1) (r : chartRing t) :
     algebraMap (chartRing t) K r ∈ P.1 :=
   mem_of_mem_chartRing P.1 P.ratCast_mem ht r.2
@@ -231,6 +285,9 @@ theorem algebraMap_chartRing_mem (P : Place K) (ht : t ∈ P.1) (r : chartRing t
 noncomputable def toChart (P : Place K) (ht : t ∈ P.1) : HeightOneSpectrum (chartRing t) :=
   heightOneBelow P.1 P.ne_top (P.algebraMap_chartRing_mem t ht)
 
+/--
+@isnad1 id=iff.1h4v.s13.d08c25e22245 from=translated src=- shape=b970a779 vocab=ecd5c820
+-/
 theorem mem_toChart_iff (P : Place K) (ht : t ∈ P.1) {r : chartRing t} :
     r ∈ (P.toChart t ht).asIdeal ↔ (r : K) ∈ P.1.nonunits :=
   mem_heightOneBelow
@@ -240,16 +297,28 @@ noncomputable def ofChart (v : HeightOneSpectrum (chartRing t)) : Place K :=
   ⟨HeightOneSpectrum.valuationSubringAtPrime K v, valuationSubringAtPrime_ne_top v,
     fun q ↦ algebraMap_mem_valuationSubringAtPrime v ⟨q, ratCast_mem_chartRing t q⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s10.b57f03b4b224 from=translated src=- shape=fcf29169 vocab=1ca5f02a
+-/
 theorem ofChart_val (v : HeightOneSpectrum (chartRing t)) :
     (ofChart t v).1 = HeightOneSpectrum.valuationSubringAtPrime K v := rfl
 
+/--
+@isnad1 id=mem.0h3v.s9.11cc33d531c5 from=translated src=- shape=51b872b1 vocab=db8ddac4
+-/
 theorem self_mem_ofChart (v : HeightOneSpectrum (chartRing t)) : t ∈ (ofChart t v).1 :=
   algebraMap_mem_valuationSubringAtPrime v ⟨t, self_mem_chartRing t⟩
 
+/--
+@isnad1 id=eq.1h3v.s7.c2b78c920f24 from=translated src=- shape=5043312d vocab=c61fef1d
+-/
 @[simp]
 theorem ofChart_toChart (P : Place K) (ht : t ∈ P.1) : ofChart t (P.toChart t ht) = P :=
   Place.ext (valuationSubringAtPrime_heightOneBelow _ _ _)
 
+/--
+@isnad1 id=eq.0h3v.s10.a4a36d95ca95 from=translated src=- shape=46db82f5 vocab=a345193a
+-/
 @[simp]
 theorem toChart_ofChart (v : HeightOneSpectrum (chartRing t)) :
     (ofChart t v).toChart t (self_mem_ofChart t v) = v :=
@@ -263,6 +332,9 @@ noncomputable def chartEquiv : {P : Place K // t ∈ P.1} ≃ HeightOneSpectrum 
   left_inv P := Subtype.ext (ofChart_toChart t P.1 P.2)
   right_inv v := toChart_ofChart t v
 
+/--
+@isnad1 id=surjecti.1h3v.s13.e82c6e42c771 from=translated src=- shape=8de41eaa vocab=ac0c784b
+-/
 theorem residue_comp_surjective (P : Place K) (ht : t ∈ P.1) :
     Function.Surjective ((residue P.1).comp
       ((algebraMap (chartRing t) K).codRestrict P.1 (P.algebraMap_chartRing_mem t ht))) :=
@@ -275,13 +347,18 @@ section DVR
 variable [IsCurveField K]
 
 /-- Every place contains a transcendental element (namely `t` or `t⁻¹` for any
-transcendental `t`). -/
+transcendental `t`).
+@isnad1 id=ex.0h2v.s6.c9469dc1275c from=translated src=- shape=abd1f339 vocab=2972f04a
+-/
 theorem exists_transcendental_mem (P : Place K) : ∃ t : K, Transcendental ℚ t ∧ t ∈ P.1 := by
   obtain ⟨t, ht⟩ := exists_transcendental K
   rcases P.mem_or_inv_mem t with h | h
   · exact ⟨t, ht, h⟩
   · exact ⟨t⁻¹, transcendental_inv ht, h⟩
 
+/--
+@isnad1 id=isdiscre.0h2v.s7.16a30a3106b6 from=translated src=- shape=ba1222bb vocab=3a3fb284
+-/
 instance isDiscreteValuationRing (P : Place K) : IsDiscreteValuationRing P.1 := by
   obtain ⟨t, ht, htP⟩ := P.exists_transcendental_mem
   have : Fact (Transcendental ℚ t) := ⟨ht⟩
@@ -296,62 +373,110 @@ noncomputable def ord (P : Place K) (f : K) : ℤ := -WithZero.log (P.valuation 
 
 variable (P : Place K) {f g : K}
 
+/--
+@isnad1 id=iff.0h3v.s6.d6fe88e2abcf from=translated src=- shape=fc55fa57 vocab=dbf3d67c
+-/
 @[simp]
 theorem valuation_eq_zero_iff : P.valuation f = 0 ↔ f = 0 := Valuation.zero_iff _
 
+/--
+@isnad1 id=ne.1h3v.s6.49fc5d6004ee from=translated src=- shape=2a77f3e1 vocab=dbf3d67c
+-/
 theorem valuation_ne_zero (hf : f ≠ 0) : P.valuation f ≠ 0 := by simpa using hf
 
+/--
+@isnad1 id=eq.1h3v.s6.dd831f2e1633 from=translated src=- shape=dc1d6764 vocab=a70e3ed4
+-/
 theorem valuation_eq_exp (hf : f ≠ 0) : P.valuation f = WithZero.exp (-P.ord f) := by
   rw [ord, neg_neg, WithZero.exp_log (P.valuation_ne_zero hf)]
 
+/--
+@isnad1 id=eq.0h2v.s5.3e67108a4ab2 from=translated src=- shape=88df83ca vocab=5fa8ea52
+-/
 @[simp]
 theorem ord_zero : P.ord 0 = 0 := by simp [ord]
 
+/--
+@isnad1 id=eq.0h2v.s5.74cc5b8e6165 from=translated src=- shape=88df83ca vocab=5fa8ea52
+-/
 @[simp]
 theorem ord_one : P.ord 1 = 0 := by simp [ord]
 
+/--
+@isnad1 id=eq.2h4v.s6.dd89eff6f8e8 from=translated src=- shape=70eebf40 vocab=4599d788
+-/
 theorem ord_mul (hf : f ≠ 0) (hg : g ≠ 0) : P.ord (f * g) = P.ord f + P.ord g := by
   simp only [ord, map_mul, WithZero.log_mul (P.valuation_ne_zero hf) (P.valuation_ne_zero hg)]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.d6b60606d983 from=translated src=- shape=a6e16678 vocab=9f42def1
+-/
 @[simp]
 theorem ord_inv (f : K) : P.ord f⁻¹ = -P.ord f := by
   simp [ord, map_inv₀, WithZero.log_inv]
 
+/--
+@isnad1 id=eq.0h4v.s6.1266b3f5b2b2 from=translated src=- shape=58dfda9d vocab=72d0823b
+-/
 @[simp]
 theorem ord_pow (f : K) (n : ℕ) : P.ord (f ^ n) = n * P.ord f := by
   simp [ord, map_pow, WithZero.log_pow]
 
+/--
+@isnad1 id=eq.0h4v.s6.4d9d767aa5e7 from=translated src=- shape=c9516ccd vocab=205c37b6
+-/
 @[simp]
 theorem ord_zpow (f : K) (n : ℤ) : P.ord (f ^ n) = n * P.ord f := by
   simp [ord, map_zpow₀, WithZero.log_zpow]
 
+/--
+@isnad1 id=eq.2h4v.s6.d0c714b53b18 from=translated src=- shape=70eebf40 vocab=24a784e8
+-/
 theorem ord_div (hf : f ≠ 0) (hg : g ≠ 0) : P.ord (f / g) = P.ord f - P.ord g := by
   rw [div_eq_mul_inv, P.ord_mul hf (inv_ne_zero hg), ord_inv, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.0h3v.s5.2afada4afdac from=translated src=- shape=83055baf vocab=4d206019
+-/
 @[simp]
 theorem ord_neg (f : K) : P.ord (-f) = P.ord f := by simp [ord]
 
+/--
+@isnad1 id=iff.0h3v.s7.d4f374efa695 from=translated src=- shape=4f9a7b3e vocab=9fea8c46
+-/
 theorem mem_iff_valuation_le_one : f ∈ P.1 ↔ P.valuation f ≤ 1 := by
   have := IsDiscreteValuationRing.map_algebraMap_eq_valuationSubring (A := P.1) (K := K)
   change _ ↔ f ∈ (P.valuation.valuationSubring.toSubring)
   rw [valuation, ← this]
   simp
 
+/--
+@isnad1 id=iff.0h3v.s6.93ae0a61eafe from=translated src=- shape=092e6d26 vocab=906d9be8
+-/
 theorem mem_iff_ord_nonneg : f ∈ P.1 ↔ f = 0 ∨ 0 ≤ P.ord f := by
   rcases eq_or_ne f 0 with rfl | hf
   · simp [P.1.zero_mem]
   rw [mem_iff_valuation_le_one, P.valuation_eq_exp hf, ← WithZero.exp_zero, WithZero.exp_le_exp]
   simp [hf]
 
+/--
+@isnad1 id=le.1h3v.s6.862cb20ca788 from=translated src=- shape=99a25792 vocab=906d9be8
+-/
 theorem ord_nonneg_of_mem (hf : f ∈ P.1) : 0 ≤ P.ord f := by
   rcases (P.mem_iff_ord_nonneg).mp hf with rfl | h
   · simp
   · exact h
 
+/--
+@isnad1 id=mem.1h3v.s6.67718f57537c from=translated src=- shape=444022fa vocab=906d9be8
+-/
 theorem mem_of_ord_nonneg (hf : 0 ≤ P.ord f) : f ∈ P.1 :=
   (P.mem_iff_ord_nonneg).mpr (Or.inr hf)
 
+/--
+@isnad1 id=iff.0h3v.s6.1411b15679fb from=translated src=- shape=8b7dff0a vocab=eb2cf288
+-/
 theorem ord_neg_iff : P.ord f < 0 ↔ f ∉ P.1 := by
   rw [P.mem_iff_ord_nonneg, not_or, not_le]
   constructor
@@ -361,7 +486,9 @@ theorem ord_neg_iff : P.ord f < 0 ↔ f ∉ P.1 := by
     simp at h
   · exact fun h ↦ h.2
 
-/-- For `a ∈ O_P` nonzero, `ord_P a > 0` iff `a` lies in the maximal ideal. -/
+/-- For `a ∈ O_P` nonzero, `ord_P a > 0` iff `a` lies in the maximal ideal.
+@isnad1 id=iff.1h3v.s10.0e16429156ec from=translated src=- shape=29be5c71 vocab=337f6f2a
+-/
 theorem ord_pos_iff_mem_maximalIdeal {a : P.1} (ha : (a : K) ≠ 0) :
     0 < P.ord a ↔ a ∈ maximalIdeal P.1 := by
   have h := HeightOneSpectrum.valuation_lt_one_iff_mem
@@ -369,6 +496,9 @@ theorem ord_pos_iff_mem_maximalIdeal {a : P.1} (ha : (a : K) ≠ 0) :
   change P.valuation a < 1 ↔ a ∈ maximalIdeal P.1 at h
   rw [← h, P.valuation_eq_exp ha, ← WithZero.exp_zero, WithZero.exp_lt_exp, Left.neg_neg_iff]
 
+/--
+@isnad1 id=iff.0h3v.s7.fcbd909133e1 from=translated src=- shape=a3395a5f vocab=4886f475
+-/
 theorem ord_pos_iff : 0 < P.ord f ↔ f ≠ 0 ∧ f ∈ P.1.nonunits := by
   rcases eq_or_ne f 0 with rfl | hf
   · simp
@@ -383,11 +513,17 @@ theorem ord_pos_iff : 0 < P.ord f ↔ f ≠ 0 ∧ f ∈ P.1.nonunits := by
     exact (P.ord_pos_iff_mem_maximalIdeal (a := ⟨f, hm⟩) hf).mpr
       (ValuationSubring.coe_mem_nonunits_iff.mp h)
 
+/--
+@isnad1 id=iff.1h3v.s7.9f2c2402857e from=translated src=- shape=b3875e32 vocab=cda26d64
+-/
 theorem ord_eq_zero_iff (hf : f ≠ 0) : P.ord f = 0 ↔ f ∈ P.1 ∧ f⁻¹ ∈ P.1 := by
   rw [P.mem_iff_ord_nonneg, P.mem_iff_ord_nonneg, ord_inv]
   simp only [hf, inv_eq_zero, false_or, Left.nonneg_neg_iff]
   omega
 
+/--
+@isnad1 id=le.1h4v.s6.1d32dcc96f5d from=translated src=- shape=5cd56230 vocab=6bafbb0b
+-/
 theorem min_le_ord_add (hfg : f + g ≠ 0) : min (P.ord f) (P.ord g) ≤ P.ord (f + g) := by
   rcases eq_or_ne f 0 with rfl | hf
   · simp
@@ -401,6 +537,9 @@ theorem min_le_ord_add (hfg : f + g ≠ 0) : min (P.ord f) (P.ord g) ≤ P.ord (
   · rw [max_eq_right (WithZero.exp_le_exp.mpr (neg_le_neg hle)), WithZero.exp_le_exp] at h
     rw [min_eq_right hle]; omega
 
+/--
+@isnad1 id=eq.3h4v.s6.742b09151287 from=translated src=- shape=0aac3245 vocab=e56ef5c6
+-/
 theorem ord_add_eq_of_lt (hf : f ≠ 0) (hg : g ≠ 0) (h : P.ord f < P.ord g) :
     P.ord (f + g) = P.ord f := by
   have hv : P.valuation g < P.valuation f := by
@@ -408,7 +547,9 @@ theorem ord_add_eq_of_lt (hf : f ≠ 0) (hg : g ≠ 0) (h : P.ord f < P.ord g) :
   have := P.valuation.map_add_eq_of_lt_left hv
   rw [ord, ord, this]
 
-/-- Every place has a uniformiser. -/
+/-- Every place has a uniformiser.
+@isnad1 id=ex.0h2v.s5.a7f12b4e8e45 from=translated src=- shape=f3cdd88c vocab=5fa8ea52
+-/
 theorem exists_ord_eq_one : ∃ π : K, P.ord π = 1 := by
   obtain ⟨π, hπ⟩ := HeightOneSpectrum.valuation_exists_uniformizer K
     (IsDiscreteValuationRing.maximalIdeal P.1)
@@ -416,24 +557,37 @@ theorem exists_ord_eq_one : ∃ π : K, P.ord π = 1 := by
   change -WithZero.log (P.valuation π) = 1
   rw [show P.valuation π = WithZero.exp (-1) from hπ, WithZero.log_exp, neg_neg]
 
-/-- Constants (elements algebraic over `ℚ`) have order `0` at every place. -/
+/-- Constants (elements algebraic over `ℚ`) have order `0` at every place.
+@isnad1 id=eq.1h3v.s5.8282536260c6 from=translated src=- shape=fda24dbd vocab=7f7490cd
+-/
 theorem ord_eq_zero_of_isAlgebraic {c : K} (hc : IsAlgebraic ℚ c) : P.ord c = 0 := by
   rcases eq_or_ne c 0 with rfl | hc0
   · simp
   exact (P.ord_eq_zero_iff hc0).mpr ⟨P.mem_of_isAlgebraic hc, P.inv_mem_of_isAlgebraic hc⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.57ce714cfb52 from=translated src=- shape=c1c8036b vocab=d815ee5c
+-/
 @[simp]
 theorem ord_ratCast (q : ℚ) : P.ord (q : K) = 0 :=
   P.ord_eq_zero_of_isAlgebraic (isAlgebraic_algebraMap (R := ℚ) q)
 
+/--
+@isnad1 id=eq.0h3v.s6.da0ad0b2e7ad from=translated src=- shape=f67ec456 vocab=d620c901
+-/
 @[simp]
 theorem ord_algebraMap_rat (q : ℚ) : P.ord (algebraMap ℚ K q) = 0 := P.ord_ratCast q
 
+/--
+@isnad1 id=eq.0h3v.s5.eb90e5b648cf from=translated src=- shape=c1c8036b vocab=08917975
+-/
 @[simp]
 theorem ord_natCast (n : ℕ) : P.ord (n : K) = 0 := by
   simpa using P.ord_ratCast n
 
-/-- Elements of an algebraic extension `F` of `ℚ` inside `K` (constants) have order `0`. -/
+/-- Elements of an algebraic extension `F` of `ℚ` inside `K` (constants) have order `0`.
+@isnad1 id=eq.0h4v.s7.b989a9f6c69d from=translated src=- shape=a5503a24 vocab=3f60e785
+-/
 theorem ord_algebraMap {F : Type*} [Field F] [CharZero F] [Algebra F K]
     [Algebra.IsAlgebraic ℚ F] (c : F) : P.ord (algebraMap F K c) = 0 :=
   P.ord_eq_zero_of_isAlgebraic

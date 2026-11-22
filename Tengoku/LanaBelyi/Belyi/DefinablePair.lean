@@ -73,6 +73,9 @@ noncomputable def baseChangeModelHom :
   pullback.lift (pullback.fst p₀ _ ≫ f₀) (pullback.snd p₀ _)
     (by rw [Category.assoc, hf₀]; exact pullback.condition)
 
+/--
+@isnad1 id=eq.1h5v.s8.d67c1d6bff51 from=translated src=- shape=39665dc7 vocab=7f2ce720
+-/
 @[reassoc (attr := simp)]
 lemma baseChangeModelHom_fst :
     baseChangeModelHom k₀ K p₀ f₀ hf₀ ≫
@@ -80,6 +83,9 @@ lemma baseChangeModelHom_fst :
       pullback.fst p₀ (specAlgebraMap k₀ K) ≫ f₀ :=
   pullback.lift_fst _ _ _
 
+/--
+@isnad1 id=eq.1h5v.s8.c239954bb42b from=translated src=- shape=dff5e086 vocab=2fc8572a
+-/
 @[reassoc (attr := simp)]
 lemma baseChangeModelHom_snd :
     baseChangeModelHom k₀ K p₀ f₀ hf₀ ≫
@@ -109,14 +115,18 @@ variable {k₀ K} {X Y : Scheme.{u}} [X.Over (Spec (CommRingCat.of K))]
   [Y.Over (Spec (CommRingCat.of K))]
 
 /-- A pair-definable morphism has a definable source: forgetting the morphism data
-recovers `Belyi.DefinableOver`. -/
+recovers `Belyi.DefinableOver`.
+@isnad1 id=definabl.1h4v.s5.56b9b49f8d14 from=translated src=- shape=1b4d4e4b vocab=d52a6d11
+-/
 lemma definableOver {f : X ⟶ P1 K} (h : DefinableOverPair k₀ K X f) :
     DefinableOver k₀ K X := by
   obtain ⟨X₀, p₀, f₀, hf₀, e, hsnd, _⟩ := h
   exact ⟨X₀, p₀, e, hsnd⟩
 
 /-- A pair-definable morphism is automatically a morphism over `Spec K`. The definability
-condition forces `f ≫ (ℙ¹_K ↘ Spec K) = X ↘ Spec K`, so this need not be assumed. -/
+condition forces `f ≫ (ℙ¹_K ↘ Spec K) = X ↘ Spec K`, so this need not be assumed.
+@isnad1 id=eq.1h4v.s6.37cb9846932b from=translated src=- shape=ca796b92 vocab=46743cbe
+-/
 lemma comp_structMap {f : X ⟶ P1 K} (h : DefinableOverPair k₀ K X f) :
     f ≫ (P1 K ↘ Spec (CommRingCat.of K)) = X ↘ Spec (CommRingCat.of K) := by
   obtain ⟨X₀, p₀, f₀, hf₀, e, hsnd, hf⟩ := h
@@ -124,7 +134,9 @@ lemma comp_structMap {f : X ⟶ P1 K} (h : DefinableOverPair k₀ K X f) :
   rwa [Category.assoc, P1.toPullback_snd, Category.assoc, baseChangeModelHom_snd, hsnd] at this
 
 /-- **B3a** (pair version): pair definability is invariant under an isomorphism `φ : X ≅ Y`
-of the source over `Spec K` that intertwines the morphisms to `ℙ¹_K` (`f = φ.hom ≫ g`). -/
+of the source over `Spec K` that intertwines the morphisms to `ℙ¹_K` (`f = φ.hom ≫ g`).
+@isnad1 id=definabl.3h7v.s7.a3f1c555dbb6 from=translated src=- shape=fe769ddc vocab=dd76817c
+-/
 lemma of_iso {f : X ⟶ P1 K} {g : Y ⟶ P1 K} (φ : X ≅ Y)
     (hφ : φ.hom ≫ (Y ↘ Spec (CommRingCat.of K)) = X ↘ Spec (CommRingCat.of K))
     (hfg : f = φ.hom ≫ g) (h : DefinableOverPair k₀ K X f) :

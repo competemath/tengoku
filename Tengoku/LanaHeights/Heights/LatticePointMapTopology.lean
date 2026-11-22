@@ -33,13 +33,17 @@ topological curve-point type. -/
 noncomputable def latticeCurvePointMap (τ : ℍ) : ℂ → LatticeCurvePoint τ :=
   latticePointMap τ
 
-/-- The topological wrapper does not change the underlying total point map. -/
+/-- The topological wrapper does not change the underlying total point map.
+@isnad1 id=eq.0h2v.s3.9b41308302a3 from=translated src=- shape=89a6aa06 vocab=1d75ba78
+-/
 @[simp] theorem latticeCurvePointMap_eq (τ : ℍ) (z : ℂ) :
     latticeCurvePointMap τ z = latticePointMap τ z :=
   rfl
 
 /-- At a period-lattice point, `℘` escapes every compact subset of `ℂ` along
-the punctured neighborhood filter. -/
+the punctured neighborhood filter.
+@isnad1 id=tendsto.0h2v.s7.83334ff7dd66 from=translated src=- shape=4daee7d5 vocab=44f6858f
+-/
 theorem tendsto_weierstrassP_cocompact_at_lattice (τ : ℍ)
     (l : (periodPairOfUpperHalfPlane τ).lattice) :
     Tendsto (periodPairOfUpperHalfPlane τ).weierstrassP (𝓝[≠] (l : ℂ))
@@ -51,7 +55,9 @@ theorem tendsto_weierstrassP_cocompact_at_lattice (τ : ℍ)
 
 /-- Near a lattice point, the total point map converges to infinity under the
 homeomorphism with the one-point compactification of the affine equation
-locus. -/
+locus.
+@isnad1 id=tendsto.0h2v.s8.a507be589e52 from=translated src=- shape=a3c2c9d1 vocab=6b6dc6b0
+-/
 theorem tendsto_latticeCurvePointMap_homeomorph_at_lattice (τ : ℍ)
     (l : (periodPairOfUpperHalfPlane τ).lattice) :
     Tendsto (fun z : ℂ ↦ latticeCurvePointHomeomorph τ (latticeCurvePointMap τ z))
@@ -85,7 +91,9 @@ theorem tendsto_latticeCurvePointMap_homeomorph_at_lattice (τ : ℍ)
   rw [hmap]
   exact Or.inl ⟨xy, hxy, rfl⟩
 
-/-- The total point map is continuous at every period-lattice point. -/
+/-- The total point map is continuous at every period-lattice point.
+@isnad1 id=continuo.1h2v.s5.1e13328ef7d6 from=translated src=- shape=2d6d998c vocab=39197195
+-/
 theorem continuousAt_latticeCurvePointMap_of_mem (τ : ℍ) (z : ℂ)
     (hz : z ∈ (periodPairOfUpperHalfPlane τ).lattice) :
     ContinuousAt (latticeCurvePointMap τ) z := by
@@ -101,7 +109,9 @@ theorem continuousAt_latticeCurvePointMap_of_mem (τ : ℍ) (z : ℂ)
   simpa [Function.comp_def, l] using
     tendsto_latticeCurvePointMap_homeomorph_at_lattice τ l
 
-/-- The total point map is continuous on the whole complex plane. -/
+/-- The total point map is continuous on the whole complex plane.
+@isnad1 id=continuo.0h1v.s4.e23999f2a61e from=translated src=- shape=b70c6bb1 vocab=ef213e3a
+-/
 @[fun_prop] theorem continuous_latticeCurvePointMap (τ : ℍ) :
     Continuous (latticeCurvePointMap τ) := by
   rw [continuous_iff_continuousAt]

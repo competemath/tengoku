@@ -36,25 +36,42 @@ noncomputable def latticeWeierstrassCurve (τ : ℍ) : WeierstrassCurve ℂ wher
   a₄ := -(periodPairOfUpperHalfPlane τ).g₂ / 4
   a₆ := -(periodPairOfUpperHalfPlane τ).g₃ / 4
 
+/--
+@isnad1 id=eq.0h1v.s3.d8adfb0c7ea9 from=translated src=- shape=562e4a6d vocab=196b89ea
+-/
 @[simp] theorem latticeWeierstrassCurve_a₁ (τ : ℍ) :
     (latticeWeierstrassCurve τ).a₁ = 0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.911daf964aa1 from=translated src=- shape=562e4a6d vocab=02ece785
+-/
 @[simp] theorem latticeWeierstrassCurve_a₂ (τ : ℍ) :
     (latticeWeierstrassCurve τ).a₂ = 0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.e41de9c14cce from=translated src=- shape=562e4a6d vocab=384ced9e
+-/
 @[simp] theorem latticeWeierstrassCurve_a₃ (τ : ℍ) :
     (latticeWeierstrassCurve τ).a₃ = 0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.9d869a183aae from=translated src=- shape=29b54e64 vocab=7eca3f77
+-/
 @[simp] theorem latticeWeierstrassCurve_a₄ (τ : ℍ) :
     (latticeWeierstrassCurve τ).a₄ =
       -(periodPairOfUpperHalfPlane τ).g₂ / 4 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.370cee0d0bc2 from=translated src=- shape=29b54e64 vocab=d80f45f2
+-/
 @[simp] theorem latticeWeierstrassCurve_a₆ (τ : ℍ) :
     (latticeWeierstrassCurve τ).a₆ =
       -(periodPairOfUpperHalfPlane τ).g₃ / 4 := rfl
 
 /-- Away from the lattice poles, `(℘(z), ℘'(z) / 2)` satisfies the affine
-Weierstrass equation of `latticeWeierstrassCurve τ`. -/
+Weierstrass equation of `latticeWeierstrassCurve τ`.
+@isnad1 id=equation.1h2v.s6.1145757f2436 from=translated src=- shape=e0f9f7bf vocab=94bcffe1
+-/
 theorem weierstrassP_on_latticeWeierstrassCurve (τ : ℍ) (z : ℂ)
     (hz : z ∉ (periodPairOfUpperHalfPlane τ).lattice) :
     (latticeWeierstrassCurve τ).toAffine.Equation
@@ -68,7 +85,9 @@ theorem weierstrassP_on_latticeWeierstrassCurve (τ : ℍ) (z : ℂ)
   rw [div_pow]
   linear_combination h / 4
 
-/-- The curve's `c₄` invariant is `12 g₂`. -/
+/-- The curve's `c₄` invariant is `12 g₂`.
+@isnad1 id=eq.0h1v.s4.52fad3aa6133 from=translated src=- shape=214ff81b vocab=ea5fcdb1
+-/
 theorem latticeWeierstrassCurve_c4 (τ : ℍ) :
     (latticeWeierstrassCurve τ).c₄ =
       12 * (periodPairOfUpperHalfPlane τ).g₂ := by
@@ -77,7 +96,9 @@ theorem latticeWeierstrassCurve_c4 (τ : ℍ) :
   ring
 
 /-- The algebraic Weierstrass discriminant is exactly the classical lattice
-invariant `g₂³ - 27g₃²`; there is no additional scaling factor. -/
+invariant `g₂³ - 27g₃²`; there is no additional scaling factor.
+@isnad1 id=eq.0h1v.s6.e51ff74946b8 from=translated src=- shape=58b9697f vocab=698dc85a
+-/
 theorem latticeWeierstrassCurve_discriminant (τ : ℍ) :
     (latticeWeierstrassCurve τ).Δ =
       (periodPairOfUpperHalfPlane τ).g₂ ^ 3 -
@@ -87,7 +108,9 @@ theorem latticeWeierstrassCurve_discriminant (τ : ℍ) :
   ring
 
 /-- Relative to mathlib's normalized modular discriminant, the curve
-discriminant is `4096 π¹² Δ(τ)`. -/
+discriminant is `4096 π¹² Δ(τ)`.
+@isnad1 id=eq.0h1v.s5.e960d29f3d2c from=translated src=- shape=ebe662b8 vocab=8e76cb69
+-/
 theorem latticeWeierstrassCurve_discriminant_eq_modularDiscriminant (τ : ℍ) :
     (latticeWeierstrassCurve τ).Δ =
       4096 * (Real.pi : ℂ) ^ 12 * ModularForm.discriminant τ :=
@@ -95,7 +118,9 @@ theorem latticeWeierstrassCurve_discriminant_eq_modularDiscriminant (τ : ℍ) :
     (periodPair_invariant_discriminant τ)
 
 /-- The lattice curve is elliptic because its explicitly computed
-discriminant is nonzero. -/
+discriminant is nonzero.
+@isnad1 id=isellipt.0h1v.s2.99c43f44542c from=translated src=- shape=1a6c1393 vocab=04f07b7b
+-/
 noncomputable instance latticeWeierstrassCurve_isElliptic (τ : ℍ) :
     (latticeWeierstrassCurve τ).IsElliptic := by
   rw [WeierstrassCurve.isElliptic_iff, isUnit_iff_ne_zero,
@@ -103,7 +128,9 @@ noncomputable instance latticeWeierstrassCurve_isElliptic (τ : ℍ) :
   exact periodPair_invariant_discriminant_ne_zero τ
 
 /-- The algebraic `j`-invariant of the lattice Weierstrass curve is the modular
-`j`-function in the `q⁻¹ + 744 + ⋯` normalization. -/
+`j`-function in the `q⁻¹ + 744 + ⋯` normalization.
+@isnad1 id=eq.0h1v.s3.f847ed963921 from=translated src=- shape=0a9af14d vocab=10226b9e
+-/
 theorem latticeWeierstrassCurve_j (τ : ℍ) :
     (latticeWeierstrassCurve τ).j = modularJ τ := by
   rw [WeierstrassCurve.j, Units.val_inv_eq_inv_val,

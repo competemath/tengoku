@@ -50,7 +50,9 @@ section
 variable (k : Type u) [CommRing k] {K : Type u} [CommRing K] [Algebra k K]
 
 /-- Evaluating a two-variable polynomial at `(t, 1)` factors as dehomogenising in the
-second variable (`X₁ ↦ 1`, landing in `k[X]`) followed by evaluating at `t`. -/
+second variable (`X₁ ↦ 1`, landing in `k[X]`) followed by evaluating at `t`.
+@isnad1 id=eq.0h4v.s9.6f8a465ffa2e from=translated src=- shape=19b1746c vocab=25275931
+-/
 lemma aeval_cons_eq_aeval_dehomogenize (t : K) (a : MvPolynomial (Fin 2) k) :
     MvPolynomial.aeval ![t, 1] a =
       Polynomial.aeval t (MvPolynomial.aeval ![(Polynomial.X : Polynomial k), 1] a) := by
@@ -63,7 +65,9 @@ lemma aeval_cons_eq_aeval_dehomogenize (t : K) (a : MvPolynomial (Fin 2) k) :
 variable {k}
 
 /-- A homogeneous polynomial annihilated by evaluation `X₀ ↦ t, X₁ ↦ 1` at a
-transcendental `t` is zero: the evaluation is injective on each homogeneous piece. -/
+transcendental `t` is zero: the evaluation is injective on each homogeneous piece.
+@isnad1 id=eq.3h5v.s8.cef9b8af256b from=translated src=- shape=7d7e6e99 vocab=08a7db8d
+-/
 lemma aeval_isHomogeneous_eq_zero_of_transcendental {t : K} (ht : Transcendental k t)
     {n : ℕ} {a : MvPolynomial (Fin 2) k} (ha : a.IsHomogeneous n)
     (h : MvPolynomial.aeval ![t, 1] a = 0) : a = 0 := by
@@ -80,7 +84,9 @@ variable (k : Type u) [Field k] {K : Type u} [Field K] [Algebra k K]
 
 /-- **Injectivity of the chart evaluation at a transcendental point.** For `t : K`
 transcendental over `k`, the evaluation `awayEval k t : (k[X₀,X₁]_{X₁})₀ →+* K` sending
-`X₀/X₁ ↦ t` is injective. -/
+`X₀/X₁ ↦ t` is injective.
+@isnad1 id=injectiv.1h3v.s11.976ae03575be from=translated src=- shape=703789d6 vocab=beb0cd26
+-/
 theorem awayEval_injective {t : K} (ht : Transcendental k t) :
     Function.Injective (awayEval k t) := by
   rw [injective_iff_map_eq_zero]
@@ -94,7 +100,9 @@ theorem awayEval_injective {t : K} (ht : Transcendental k t) :
   rw [HomogeneousLocalization.Away.val_mk, this, HomogeneousLocalization.val_zero,
     Localization.mk_zero]
 
-/-- The kernel of the chart evaluation at a transcendental point is `⊥`. -/
+/-- The kernel of the chart evaluation at a transcendental point is `⊥`.
+@isnad1 id=eq.1h3v.s13.13be43e50d9b from=translated src=- shape=8e726d48 vocab=176afd7e
+-/
 theorem ker_awayEval {t : K} (ht : Transcendental k t) :
     RingHom.ker (awayEval k t) = ⊥ :=
   (RingHom.injective_iff_ker_eq_bot _).mp (awayEval_injective k ht)

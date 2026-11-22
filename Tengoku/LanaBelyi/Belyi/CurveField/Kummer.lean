@@ -47,7 +47,9 @@ namespace Place
 /-- `P` is a cusp of `φ`: a zero or pole of `φ`, or a zero of `φ - 1`. -/
 def IsCuspOf (φ : K) (P : Place K) : Prop := P.ord φ ≠ 0 ∨ 0 < P.ord (φ - 1)
 
-/-- Off the cusps, `φ` and `1 - φ` have order `0`. -/
+/-- Off the cusps, `φ` and `1 - φ` have order `0`.
+@isnad1 id=and.1h3v.s6.853870c83a32 from=translated src=- shape=ccf854dc vocab=be1ee12a
+-/
 theorem ord_eq_zero_of_not_isCuspOf {φ : K} {P : Place K} (h : ¬ P.IsCuspOf φ) :
     P.ord φ = 0 ∧ P.ord (1 - φ) = 0 := by
   simp only [IsCuspOf, not_or, not_not, not_lt] at h
@@ -64,12 +66,16 @@ theorem ord_eq_zero_of_not_isCuspOf {φ : K} {P : Place K} (h : ¬ P.IsCuspOf φ
 
 variable {φ : K} {N : ℕ} {u v : L}
 
-/-- `N · ord_Q u = e(Q|P) · ord_P φ`. -/
+/-- `N · ord_Q u = e(Q|P) · ord_P φ`.
+@isnad1 id=eq.1h6v.s7.8400c31ed947 from=translated src=- shape=de1b2f17 vocab=bb27e3c9
+-/
 theorem mul_ord_eq_of_pow_eq {w : L} {a : K} (hw : w ^ N = algebraMap K L a) (Q : Place L) :
     N * Q.ord w = Q.ramificationIdx K * (Q.restrict K).ord a := by
   rw [← Q.ord_algebraMap_eq_mul, ← hw, ord_pow]
 
-/-- If `w ^ N = a` with `ord_P a = 0`, then `w` is regular with `ord_Q w = 0` at `Q | P`. -/
+/-- If `w ^ N = a` with `ord_P a = 0`, then `w` is regular with `ord_Q w = 0` at `Q | P`.
+@isnad1 id=and.3h6v.s8.df626fa8ba5f from=translated src=- shape=5fd13b55 vocab=1b2c6e69
+-/
 theorem mem_ord_eq_zero_aux {w : L} {a : K} (hN : 0 < N) (hw : w ^ N = algebraMap K L a)
     (Q : Place L) (ha : (Q.restrict K).ord a = 0) : w ∈ Q.1 ∧ Q.ord w = 0 := by
   refine ⟨(mem_of_pow_eq hN hw Q ha).1, ?_⟩
@@ -77,7 +83,9 @@ theorem mem_ord_eq_zero_aux {w : L} {a : K} (hN : 0 < N) (hw : w ^ N = algebraMa
   rw [ha, mul_zero, mul_eq_zero] at hm
   exact hm.resolve_left (by exact_mod_cast hN.ne')
 
-/-- **Ramification over the zeros and poles of `φ`**: `N ≤ e(Q|P) · |ord_P φ|`. -/
+/-- **Ramification over the zeros and poles of `φ`**: `N ≤ e(Q|P) · |ord_P φ|`.
+@isnad1 id=le.2h6v.s8.418c82d83718 from=translated src=- shape=5a36580e vocab=73697540
+-/
 theorem le_ramificationIdx_mul_abs_ord (hu : u ^ N = algebraMap K L φ) (Q : Place L)
     (h : (Q.restrict K).ord φ ≠ 0) :
     (N : ℤ) ≤ Q.ramificationIdx K * |(Q.restrict K).ord φ| := by
@@ -93,7 +101,9 @@ theorem le_ramificationIdx_mul_abs_ord (hu : u ^ N = algebraMap K L φ) (Q : Pla
   rw [← h2]
   nlinarith [Int.natCast_nonneg N]
 
-/-- **Ramification over the zeros of `φ - 1`**: `N ≤ e(Q|P) · ord_P (φ - 1)`. -/
+/-- **Ramification over the zeros of `φ - 1`**: `N ≤ e(Q|P) · ord_P (φ - 1)`.
+@isnad1 id=le.2h6v.s8.95c4ca14f8ea from=translated src=- shape=44757155 vocab=cef1356f
+-/
 theorem le_ramificationIdx_mul_ord_sub_one (hv : v ^ N = 1 - algebraMap K L φ) (Q : Place L)
     (h : 0 < (Q.restrict K).ord (φ - 1)) :
     (N : ℤ) ≤ Q.ramificationIdx K * (Q.restrict K).ord (φ - 1) := by
@@ -112,25 +122,33 @@ section Tower
 
 omit [CharZero K] [IsCurveField K] [CharZero L] [IsCurveField L] [FiniteDimensional K L]
 
-/-- The generator `u ∈ K(u)` satisfies `u ^ N = φ`. -/
+/-- The generator `u ∈ K(u)` satisfies `u ^ N = φ`.
+@isnad1 id=eq.1h5v.s10.bcea150815dd from=translated src=- shape=758ab5fd vocab=1dac41f8
+-/
 theorem gen_pow_eq (hu : u ^ N = algebraMap K L φ) :
     (IntermediateField.AdjoinSimple.gen K u) ^ N = algebraMap K K⟮u⟯ φ :=
   (algebraMap K⟮u⟯ L).injective (by
     rw [map_pow, IntermediateField.AdjoinSimple.algebraMap_gen, hu,
       ← IsScalarTower.algebraMap_apply])
 
-/-- `K(u)` is generated over `K` by its generator. -/
+/-- `K(u)` is generated over `K` by its generator.
+@isnad1 id=eq.0h3v.s11.ef14abfb8602 from=translated src=- shape=2f5541bf vocab=fa7ce4b0
+-/
 theorem adjoin_adjoinSimple_gen_eq_top (u : L) : K⟮IntermediateField.AdjoinSimple.gen K u⟯ = ⊤ := by
   apply IntermediateField.lift_injective
   rw [IntermediateField.lift_adjoin_simple, IntermediateField.lift_top]
   rfl
 
-/-- `v ^ N = 1 - φ` over `K(u)`. -/
+/-- `v ^ N = 1 - φ` over `K(u)`.
+@isnad1 id=eq.1h6v.s10.460830eddcae from=translated src=- shape=ff79c059 vocab=f6fb0640
+-/
 theorem pow_eq_algebraMap_sub (hv : v ^ N = 1 - algebraMap K L φ) :
     v ^ N = algebraMap K⟮u⟯ L (1 - algebraMap K K⟮u⟯ φ) := by
   rw [hv, map_sub, map_one, ← IsScalarTower.algebraMap_apply]
 
-/-- `L = K(u)(v)`. -/
+/-- `L = K(u)(v)`.
+@isnad1 id=eq.1h4v.s10.ab7ce954f911 from=translated src=- shape=6f4e7a6c vocab=6dfc0998
+-/
 theorem adjoin_adjoin_eq_top (hgen : IntermediateField.adjoin K {u, v} = ⊤) :
     (K⟮u⟯)⟮v⟯ = ⊤ := by
   rw [← IntermediateField.restrictScalars_eq_top_iff (K := K),
@@ -139,22 +157,30 @@ theorem adjoin_adjoin_eq_top (hgen : IntermediateField.adjoin K {u, v} = ⊤) :
 
 end Tower
 
-/-- Off the cusps, `u` is regular and has order `0` (it is a unit, or zero if `φ = 0`). -/
+/-- Off the cusps, `u` is regular and has order `0` (it is a unit, or zero if `φ = 0`).
+@isnad1 id=and.3h6v.s8.db18875ce023 from=translated src=- shape=e6052115 vocab=27a87dfd
+-/
 theorem mem_and_ord_eq_zero_u (hN : 0 < N) (hu : u ^ N = algebraMap K L φ) (Q : Place L)
     (hQ : ¬ (Q.restrict K).IsCuspOf φ) : u ∈ Q.1 ∧ Q.ord u = 0 :=
   mem_ord_eq_zero_aux hN hu Q (ord_eq_zero_of_not_isCuspOf hQ).1
 
-/-- Off the cusps, `v` is regular and has order `0` (it is a unit, or zero if `φ = 1`). -/
+/-- Off the cusps, `v` is regular and has order `0` (it is a unit, or zero if `φ = 1`).
+@isnad1 id=and.3h6v.s8.95779d6896bf from=translated src=- shape=09a01e76 vocab=bb05f0ec
+-/
 theorem mem_and_ord_eq_zero_v (hN : 0 < N) (hv : v ^ N = 1 - algebraMap K L φ) (Q : Place L)
     (hQ : ¬ (Q.restrict K).IsCuspOf φ) : v ∈ Q.1 ∧ Q.ord v = 0 :=
   mem_ord_eq_zero_aux hN (by rw [hv, map_sub, map_one]) Q (ord_eq_zero_of_not_isCuspOf hQ).2
 
-/-- An intermediate field of a finite extension of curve fields is a curve field. -/
+/-- An intermediate field of a finite extension of curve fields is a curve field.
+@isnad1 id=iscurvef.0h3v.s6.2622fdd95fa1 from=translated src=- shape=2e52a75e vocab=245487bd
+-/
 instance _root_.Belyi.CurveField.isCurveField_intermediateField (E : IntermediateField K L) :
     IsCurveField E :=
   isCurveField_of_finite K E
 
-/-- **Kummer–Fermat coverings are unramified off the cusps.** -/
+/-- **Kummer–Fermat coverings are unramified off the cusps.**
+@isnad1 id=eq.5h7v.s8.7d243571b262 from=translated src=- shape=9dc19866 vocab=8605215c
+-/
 theorem ramificationIdx_eq_one_of_not_isCuspOf (hN : 0 < N) (hu : u ^ N = algebraMap K L φ)
     (hv : v ^ N = 1 - algebraMap K L φ) (hgen : IntermediateField.adjoin K {u, v} = ⊤)
     (Q : Place L) (hQ : ¬ (Q.restrict K).IsCuspOf φ) : Q.ramificationIdx K = 1 := by
@@ -172,7 +198,9 @@ theorem ramificationIdx_eq_one_of_not_isCuspOf (hN : 0 < N) (hu : u ^ N = algebr
 
 end Place
 
-/-- If `F₁ = F₀(a)`, then `F₁(b) = F₀(a, b)`. -/
+/-- If `F₁ = F₀(a)`, then `F₁(b) = F₀(a, b)`.
+@isnad1 id=eq.1h6v.s9.cc1694657a11 from=translated src=- shape=2784709b vocab=695aa99b
+-/
 theorem restrictScalars_adjoin_adjoin_eq {F E : Type*} [Field F]
     [Field E] [Algebra F E] {F₀ F₁ : IntermediateField F E} {a b : E}
     (h : F₁ = (IntermediateField.adjoin F₀ {a}).restrictScalars F) :
@@ -211,29 +239,39 @@ namespace QbarPoint
 
 variable {φ : K} {N : ℕ} {u v : L}
 
-/-- Off the cusps, `u` is regular at `y`. -/
+/-- Off the cusps, `u` is regular at `y`.
+@isnad1 id=mem.3h6v.s8.8f1cab873d26 from=translated src=- shape=b43aa96c vocab=41dbd32e
+-/
 theorem mem_u (hN : 0 < N) (hu : u ^ N = algebraMap K L φ) (y : QbarPoint L)
     (hy : ¬ (y.restrict K).P.IsCuspOf φ) : u ∈ y.P.1 :=
   (Place.mem_and_ord_eq_zero_u hN hu y.P hy).1
 
-/-- Off the cusps, `v` is regular at `y`. -/
+/-- Off the cusps, `v` is regular at `y`.
+@isnad1 id=mem.3h6v.s8.fb08464bf014 from=translated src=- shape=3949e60d vocab=22d16118
+-/
 theorem mem_v (hN : 0 < N) (hv : v ^ N = 1 - algebraMap K L φ) (y : QbarPoint L)
     (hy : ¬ (y.restrict K).P.IsCuspOf φ) : v ∈ y.P.1 :=
   (Place.mem_and_ord_eq_zero_v hN hv y.P hy).1
 
-/-- Off the cusps, `φ` is regular at `x`. -/
+/-- Off the cusps, `φ` is regular at `x`.
+@isnad1 id=mem.1h3v.s6.a2d75995691b from=translated src=- shape=fa8cf385 vocab=d5581d58
+-/
 theorem mem_φ (y : QbarPoint K) (hy : ¬ y.P.IsCuspOf φ) : φ ∈ y.P.1 := by
   rcases eq_or_ne φ 0 with rfl | h0
   · exact y.P.1.zero_mem
   · exact y.P.mem_of_ord_nonneg (Place.ord_eq_zero_of_not_isCuspOf hy).1.ge
 
-/-- `u(y) ^ N = φ(y|_K)`. -/
+/-- `u(y) ^ N = φ(y|_K)`.
+@isnad1 id=eq.3h6v.s8.682bce6af080 from=translated src=- shape=bca29cee vocab=85902577
+-/
 theorem eval_u_pow (hN : 0 < N) (hu : u ^ N = algebraMap K L φ) (y : QbarPoint L)
     (hy : ¬ (y.restrict K).P.IsCuspOf φ) :
     y.eval u (mem_u hN hu y hy) ^ N = (y.restrict K).eval φ (mem_φ _ hy) := by
   rw [← y.eval_pow, y.eval_congr hu, eval_restrict]
 
-/-- `v(y) ^ N = 1 - φ(y|_K)`. -/
+/-- `v(y) ^ N = 1 - φ(y|_K)`.
+@isnad1 id=eq.3h6v.s8.2a2a79ced490 from=translated src=- shape=31d59669 vocab=1f6ca38d
+-/
 theorem eval_v_pow (hN : 0 < N) (hv : v ^ N = 1 - algebraMap K L φ) (y : QbarPoint L)
     (hy : ¬ (y.restrict K).P.IsCuspOf φ) :
     y.eval v (mem_v hN hv y hy) ^ N = 1 - (y.restrict K).eval φ (mem_φ _ hy) := by
@@ -241,7 +279,9 @@ theorem eval_v_pow (hN : 0 < N) (hv : v ^ N = 1 - algebraMap K L φ) (y : QbarPo
     eval_restrict]
 
 /-- **Lifting points.** Every algebraic point `x` of `K` off the cusps lifts to a point `y` of
-`L` (of degree at most `[L : K] · deg x`), and `u(y) ^ N = φ(x)`, `v(y) ^ N = 1 - φ(x)`. -/
+`L` (of degree at most `[L : K] · deg x`), and `u(y) ^ N = φ(x)`, `v(y) ^ N = 1 - φ(x)`.
+@isnad1 id=ex.4h7v.s9.567d9d690d34 from=translated src=- shape=23e6ad81 vocab=59cff16a
+-/
 theorem exists_restrict_eq_kummer (hN : 0 < N) (hu : u ^ N = algebraMap K L φ)
     (hv : v ^ N = 1 - algebraMap K L φ) (x : QbarPoint K) (hx : ¬ x.P.IsCuspOf φ) :
     ∃ (y : QbarPoint L) (hy : y.restrict K = x), y.deg ≤ finrank K L * x.deg ∧

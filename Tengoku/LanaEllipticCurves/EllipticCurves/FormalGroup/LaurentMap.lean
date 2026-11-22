@@ -53,7 +53,9 @@ namespace RingHom
 variable {A B : Type*} [CommRing A] [CommRing B]
 
 /-- A ring homomorphism commutes with `Ring.inverse` of a unit: `φ (u⁻¹) = (φ u)⁻¹`. Uniqueness of
-the inverse (mirrors `WeierstrassCurve.map_invOfUnit`). -/
+the inverse (mirrors `WeierstrassCurve.map_invOfUnit`).
+@isnad1 id=eq.1h4v.s7.8bd73d04a484 from=translated src=- shape=65135a94 vocab=2d0f57e7
+-/
 theorem map_ringInverse (φ : A →+* B) (u : A) (hu : IsUnit u) :
     φ (Ring.inverse u) = Ring.inverse (φ u) := by
   have h1 : φ u * φ (Ring.inverse u) = 1 := by
@@ -72,7 +74,9 @@ variable {R S : Type*} [CommRing R] [CommRing S]
 
 /-- `PowerSeries.map f` commutes with `invOfUnit _ 1` when the constant coefficient is `1` (mirrors
 `WeierstrassCurve.map_invOfUnit`, using that `map f` is a ring hom preserving the unit constant
-coefficient). -/
+coefficient).
+@isnad1 id=eq.1h4v.s8.bffb3cded427 from=translated src=- shape=0e02f700 vocab=95c2b2fc
+-/
 theorem map_invOfUnit (f : R →+* S) (u : R⟦X⟧) (h : constantCoeff u = 1) :
     map f (invOfUnit u 1) = invOfUnit (map f u) 1 := by
   set T := (map f : R⟦X⟧ →+* S⟦X⟧) with hT
@@ -98,14 +102,18 @@ variable {Γ R S : Type*} [AddCommMonoid Γ] [PartialOrder Γ] [IsOrderedCancelA
 /-! ### Generic naturality of `mapRingHom` -/
 
 /-- `mapRingHom` composes: applying two coefficient ring homs in succession is applying the
-composite. -/
+composite.
+@isnad1 id=eq.0h7v.s9.dcb46b454178 from=translated src=- shape=ee621dc8 vocab=5987693f
+-/
 theorem mapRingHom_mapRingHom {T : Type*} [CommRing T] (f : R →+* S) (g : S →+* T)
     (x : HahnSeries Γ R) : mapRingHom g (mapRingHom f x) = mapRingHom (g.comp f) x := by
   ext a
   simp only [mapRingHom_apply, map_coeff, RingHom.comp_apply]
 
 /-- `mapRingHom f` commutes with the coercion of a power series into the Laurent series ring:
-`mapRingHom f ↑p = ↑(PowerSeries.map f p)`. -/
+`mapRingHom f ↑p = ↑(PowerSeries.map f p)`.
+@isnad1 id=eq.0h4v.s9.f7b9aa0262b9 from=translated src=- shape=1c516e65 vocab=4965652c
+-/
 theorem mapRingHom_ofPowerSeries (f : R →+* S) (p : R⟦X⟧) :
     mapRingHom f (ofPowerSeries ℤ R p) = ofPowerSeries ℤ S (PowerSeries.map f p) := by
   ext n
@@ -117,7 +125,9 @@ theorem mapRingHom_ofPowerSeries (f : R →+* S) (p : R⟦X⟧) :
     rw [ofPowerSeries_apply_coeff, ofPowerSeries_apply_coeff, PowerSeries.coeff_map]
 
 /-- The `z₁`-embedding `HahnSeries.C : R⸨X⸩ →+* (R⸨X⸩)⸨X⸩` intertwines base change with
-`mapRingHom`: `(mapRingHom f) ∘ C = C ∘ f` (i.e. `C (f r) = mapRingHom f (C r)`). -/
+`mapRingHom`: `(mapRingHom f) ∘ C = C ∘ f` (i.e. `C (f r) = mapRingHom f (C r)`).
+@isnad1 id=eq.0h3v.s7.a5f07582a33b from=translated src=- shape=a87d55e4 vocab=a1e3a82f
+-/
 theorem mapRingHom_C_comp (f : R →+* S) :
     (mapRingHom f : R⸨X⸩ →+* S⸨X⸩).comp (HahnSeries.C : R →+* R⸨X⸩)
       = (HahnSeries.C : S →+* S⸨X⸩).comp f := by
@@ -129,7 +139,9 @@ theorem mapRingHom_C_comp (f : R →+* S) :
 /-- **Base-change naturality of the writer.** Writing a bivariate power series into the iterated
 Laurent ring commutes with base change:
 `Ψ f (embedDoubleLaurent φ) = embedDoubleLaurent (MvPowerSeries.map f φ)`. Both sides have
-`z₁^m z₂^n`-coefficient `f (MvPowerSeries.coeff (single 0 m + single 1 n) φ)`. -/
+`z₁^m z₂^n`-coefficient `f (MvPowerSeries.coeff (single 0 m + single 1 n) φ)`.
+@isnad1 id=eq.0h4v.s10.f1aa2e881842 from=translated src=- shape=28e8ca99 vocab=4bb403e4
+-/
 theorem map_embedDoubleLaurent (f : R →+* S) (φ : MvPowerSeries (Fin 2) R) :
     mapRingHom (mapRingHom f) (embedDoubleLaurent φ)
       = embedDoubleLaurent (MvPowerSeries.map f φ) := by
@@ -147,13 +159,17 @@ variable {R S : Type*} [CommRing R] [CommRing S]
 
 /-! ### Naturality of the two embeddings `ι₁, ι₂` -/
 
-/-- The `z₁`-embedding `ι₁ = cConstRingHom` is natural: `Ψ f (ι₁ g) = ι₁ (mapRingHom f g)`. -/
+/-- The `z₁`-embedding `ι₁ = cConstRingHom` is natural: `Ψ f (ι₁ g) = ι₁ (mapRingHom f g)`.
+@isnad1 id=eq.0h4v.s10.920efcb9de6f from=translated src=- shape=dc036980 vocab=3a60b781
+-/
 theorem map_cConstRingHom (f : R →+* S) (g : R⸨X⸩) :
     HahnSeries.mapRingHom (HahnSeries.mapRingHom f) (cConstRingHom R g)
       = cConstRingHom S (HahnSeries.mapRingHom f g) :=
   HahnSeries.mapRingHom_C (HahnSeries.mapRingHom f) g
 
-/-- The `z₂`-embedding `ι₂ = cLaurentRingHom` is natural: `Ψ f (ι₂ g) = ι₂ (mapRingHom f g)`. -/
+/-- The `z₂`-embedding `ι₂ = cLaurentRingHom` is natural: `Ψ f (ι₂ g) = ι₂ (mapRingHom f g)`.
+@isnad1 id=eq.0h4v.s10.5ca87926c187 from=translated src=- shape=dc036980 vocab=1e16678c
+-/
 theorem map_cLaurentRingHom (f : R →+* S) (g : R⸨X⸩) :
     HahnSeries.mapRingHom (HahnSeries.mapRingHom f) (cLaurentRingHom R g)
       = cLaurentRingHom S (HahnSeries.mapRingHom f g) := by
@@ -165,26 +181,34 @@ variable (W : WeierstrassCurve R)
 
 /-! ### Naturality of the coordinate Laurent series -/
 
-/-- Naturality of the cofactor `v`: `PowerSeries.map f W.wCofactor = (W.map f).wCofactor`. -/
+/-- Naturality of the cofactor `v`: `PowerSeries.map f W.wCofactor = (W.map f).wCofactor`.
+@isnad1 id=eq.0h4v.s6.f9a3cb1343d3 from=translated src=- shape=98313785 vocab=de1c134f
+-/
 theorem map_wCofactor (f : R →+* S) :
     PowerSeries.map f W.wCofactor = (W.map f).wCofactor := by
   ext n
   rw [PowerSeries.coeff_map, W.coeff_wCofactor, (W.map f).coeff_wCofactor, ← W.map_formalW f,
     PowerSeries.coeff_map]
 
-/-- Naturality of the coerced expansion: `mapRingHom f (W.formalW : R⸨X⸩) = ((W.map f).formalW)`. -/
+/-- Naturality of the coerced expansion: `mapRingHom f (W.formalW : R⸨X⸩) = ((W.map f).formalW)`.
+@isnad1 id=eq.0h4v.s9.51ec2d60ef86 from=translated src=- shape=50cb99a2 vocab=819e8a3d
+-/
 theorem map_coe_formalW (f : R →+* S) :
     HahnSeries.mapRingHom f (W.formalW : R⸨X⸩) = ((W.map f).formalW : S⸨X⸩) := by
   rw [HahnSeries.mapRingHom_ofPowerSeries, W.map_formalW f]
 
-/-- Naturality of the coordinate series `x(z)`: `mapRingHom f W.formalX = (W.map f).formalX`. -/
+/-- Naturality of the coordinate series `x(z)`: `mapRingHom f W.formalX = (W.map f).formalX`.
+@isnad1 id=eq.0h4v.s8.67823b244571 from=translated src=- shape=71eef4c8 vocab=32902909
+-/
 theorem map_formalX (f : R →+* S) :
     HahnSeries.mapRingHom f W.formalX = (W.map f).formalX := by
   rw [formalX, formalX, map_mul, HahnSeries.mapRingHom_single, map_one,
     HahnSeries.mapRingHom_ofPowerSeries,
     PowerSeries.map_invOfUnit f W.wCofactor W.constantCoeff_wCofactor, W.map_wCofactor f]
 
-/-- Naturality of the coordinate series `y(z)`: `mapRingHom f W.formalY = (W.map f).formalY`. -/
+/-- Naturality of the coordinate series `y(z)`: `mapRingHom f W.formalY = (W.map f).formalY`.
+@isnad1 id=eq.0h4v.s8.5769620cd555 from=translated src=- shape=71eef4c8 vocab=38274b37
+-/
 theorem map_formalY (f : R →+* S) :
     HahnSeries.mapRingHom f W.formalY = (W.map f).formalY := by
   rw [formalY, formalY, map_mul, HahnSeries.mapRingHom_single, map_neg, map_one,
@@ -193,57 +217,77 @@ theorem map_formalY (f : R →+* S) :
 
 /-! ### Naturality of the bivariate coordinates -/
 
-/-- Naturality of `x₁ = x(z₁)`. -/
+/-- Naturality of `x₁ = x(z₁)`.
+@isnad1 id=eq.0h4v.s10.5efdb60751a4 from=translated src=- shape=41988f3c vocab=ed6c3f1f
+-/
 theorem map_biX₁ (f : R →+* S) :
     HahnSeries.mapRingHom (HahnSeries.mapRingHom f) W.biX₁ = (W.map f).biX₁ := by
   rw [biX₁, biX₁, map_cConstRingHom, W.map_formalX f]
 
-/-- Naturality of `x₂ = x(z₂)`. -/
+/-- Naturality of `x₂ = x(z₂)`.
+@isnad1 id=eq.0h4v.s10.df700acf5e63 from=translated src=- shape=41988f3c vocab=b4bfdbb0
+-/
 theorem map_biX₂ (f : R →+* S) :
     HahnSeries.mapRingHom (HahnSeries.mapRingHom f) W.biX₂ = (W.map f).biX₂ := by
   rw [biX₂, biX₂, map_cLaurentRingHom, W.map_formalX f]
 
-/-- Naturality of `y₁ = y(z₁)`. -/
+/-- Naturality of `y₁ = y(z₁)`.
+@isnad1 id=eq.0h4v.s10.d7e37926b673 from=translated src=- shape=41988f3c vocab=00108eb7
+-/
 theorem map_biY₁ (f : R →+* S) :
     HahnSeries.mapRingHom (HahnSeries.mapRingHom f) W.biY₁ = (W.map f).biY₁ := by
   rw [biY₁, biY₁, map_cConstRingHom, W.map_formalY f]
 
-/-- Naturality of `y₂ = y(z₂)`. -/
+/-- Naturality of `y₂ = y(z₂)`.
+@isnad1 id=eq.0h4v.s10.b20ac99047e5 from=translated src=- shape=41988f3c vocab=947437f9
+-/
 theorem map_biY₂ (f : R →+* S) :
     HahnSeries.mapRingHom (HahnSeries.mapRingHom f) W.biY₂ = (W.map f).biY₂ := by
   rw [biY₂, biY₂, map_cLaurentRingHom, W.map_formalY f]
 
-/-- Naturality of the inner variable `z₁`. -/
+/-- Naturality of the inner variable `z₁`.
+@isnad1 id=eq.0h4v.s10.3ac2de638968 from=translated src=- shape=41988f3c vocab=3dcc20c4
+-/
 theorem map_biZ₁ (f : R →+* S) :
     HahnSeries.mapRingHom (HahnSeries.mapRingHom f) W.biZ₁ = (W.map f).biZ₁ := by
   rw [biZ₁, biZ₁, map_cConstRingHom, HahnSeries.mapRingHom_single, map_one]
 
-/-- Naturality of the outer variable `z₂`. -/
+/-- Naturality of the outer variable `z₂`.
+@isnad1 id=eq.0h4v.s10.bdbf23814669 from=translated src=- shape=41988f3c vocab=fa278bdd
+-/
 theorem map_biZ₂ (f : R →+* S) :
     HahnSeries.mapRingHom (HahnSeries.mapRingHom f) W.biZ₂ = (W.map f).biZ₂ := by
   rw [biZ₂, biZ₂, HahnSeries.mapRingHom_single, map_one]
 
 /-! ### Naturality of the addition-law data -/
 
-/-- Naturality of the slope `λ = (y₂ − y₁)·(x₂ − x₁)⁻¹`. -/
+/-- Naturality of the slope `λ = (y₂ − y₁)·(x₂ − x₁)⁻¹`.
+@isnad1 id=eq.0h4v.s10.e036cdcf957f from=translated src=- shape=41988f3c vocab=41e43e57
+-/
 theorem map_formalLambda (f : R →+* S) :
     HahnSeries.mapRingHom (HahnSeries.mapRingHom f) W.formalLambda = (W.map f).formalLambda := by
   rw [formalLambda, formalLambda, map_mul, map_sub, W.map_biY₂ f, W.map_biY₁ f,
     RingHom.map_ringInverse _ _ W.isUnit_biX₂_sub_biX₁, map_sub, W.map_biX₂ f, W.map_biX₁ f]
 
-/-- Naturality of the intercept `ν = y₁ − λ·x₁`. -/
+/-- Naturality of the intercept `ν = y₁ − λ·x₁`.
+@isnad1 id=eq.0h4v.s10.9da38946137a from=translated src=- shape=41988f3c vocab=4a9b0fcf
+-/
 theorem map_formalNu (f : R →+* S) :
     HahnSeries.mapRingHom (HahnSeries.mapRingHom f) W.formalNu = (W.map f).formalNu := by
   rw [formalNu, formalNu, map_sub, map_mul, W.map_biY₁ f, W.map_formalLambda f, W.map_biX₁ f]
 
-/-- Naturality of the third `x`-coordinate `x₃ = λ² + a₁λ − a₂ − x₁ − x₂`. -/
+/-- Naturality of the third `x`-coordinate `x₃ = λ² + a₁λ − a₂ − x₁ − x₂`.
+@isnad1 id=eq.0h4v.s10.be052d0d3fd8 from=translated src=- shape=41988f3c vocab=a186cdfc
+-/
 theorem map_formalXThree (f : R →+* S) :
     HahnSeries.mapRingHom (HahnSeries.mapRingHom f) W.formalXThree = (W.map f).formalXThree := by
   rw [formalXThree, formalXThree]
   simp only [map_add, map_sub, map_mul, map_pow, HahnSeries.mapRingHom_C, W.map_formalLambda f,
     W.map_biX₁ f, W.map_biX₂ f, map_a₁, map_a₂]
 
-/-- Naturality of the third `y`-coordinate `y₃ = −(λx₃ + ν) − a₁x₃ − a₃`. -/
+/-- Naturality of the third `y`-coordinate `y₃ = −(λx₃ + ν) − a₁x₃ − a₃`.
+@isnad1 id=eq.0h4v.s10.6d0ed51757a1 from=translated src=- shape=41988f3c vocab=d60b23d5
+-/
 theorem map_formalYThree (f : R →+* S) :
     HahnSeries.mapRingHom (HahnSeries.mapRingHom f) W.formalYThree = (W.map f).formalYThree := by
   rw [formalYThree, formalYThree]
@@ -253,7 +297,9 @@ theorem map_formalYThree (f : R →+* S) :
 /-! ### Base-change naturality of the Laurent formal group law -/
 
 /-- **Base-change naturality of the Weierstrass formal group law.**
-`Ψ f W.formalGroupLaurent = (W.map f).formalGroupLaurent`. -/
+`Ψ f W.formalGroupLaurent = (W.map f).formalGroupLaurent`.
+@isnad1 id=eq.0h4v.s10.c55e7b44f46f from=translated src=- shape=41988f3c vocab=665d91fc
+-/
 theorem map_formalGroupLaurent (f : R →+* S) :
     HahnSeries.mapRingHom (HahnSeries.mapRingHom f) W.formalGroupLaurent
       = (W.map f).formalGroupLaurent := by

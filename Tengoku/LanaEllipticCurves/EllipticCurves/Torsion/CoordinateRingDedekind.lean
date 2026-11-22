@@ -74,17 +74,23 @@ namespace WeierstrassCurve.Affine.CoordinateRing
 variable {F : Type*} [Field F] {W : WeierstrassCurve.Affine F}
 
 /-- The affine coordinate ring `F[W]` is a finite `F[X]`-module: it is `AdjoinRoot` of the monic
-`Y`-polynomial `W.polynomial`, hence free of rank `2` (basis `{1, Y}`). -/
+`Y`-polynomial `W.polynomial`, hence free of rank `2` (basis `{1, Y}`).
+@isnad1 id=finite.0h2v.s7.a2457ffc4cd2 from=translated src=- shape=d45d0cce vocab=1f4394ee
+-/
 instance instModuleFinite : Module.Finite F[X] W.CoordinateRing :=
   monic_polynomial.finite_adjoinRoot
 
 /-- **Dedekind pillar 1.** The affine coordinate ring `F[W]` is a Noetherian ring: it is
-module-finite over the Noetherian ring `F[X]`. -/
+module-finite over the Noetherian ring `F[X]`.
+@isnad1 id=isnoethe.0h2v.s5.05637224f771 from=translated src=- shape=1fcfa16f vocab=53b84a2f
+-/
 instance instIsNoetherianRing : IsNoetherianRing W.CoordinateRing :=
   IsNoetherianRing.of_finite F[X] W.CoordinateRing
 
 /-- **Dedekind pillar 2.** The affine coordinate ring `F[W]` has Krull dimension `≤ 1`: it is a
-domain integral over the dimension-one ring `F[X]` (a PID, since `F` is a field). -/
+domain integral over the dimension-one ring `F[X]` (a PID, since `F` is a field).
+@isnad1 id=dimensio.0h2v.s5.84bfd9930106 from=translated src=- shape=1fcfa16f vocab=5bc8a1c4
+-/
 instance instDimensionLEOne : Ring.DimensionLEOne W.CoordinateRing :=
   Ring.DimensionLEOne.of_isIntegral (R := F[X]) W.CoordinateRing
 
@@ -95,7 +101,9 @@ integral-closedness (normality) hypothesis is the only remaining input, and is l
 assumption here so that this pillar holds for an arbitrary Weierstrass curve. ⚠️ For an **elliptic**
 curve it is not an assumption at all: it is a global instance over any field
 (`EllipticCurves.FunctionField.CoordinateRingNormalGeneral`), so this theorem's hypothesis is
-discharged automatically there.  See the module docstring. -/
+discharged automatically there.  See the module docstring.
+@isnad1 id=isdedeki.0h2v.s6.f5684fcaa773 from=translated src=- shape=876524a0 vocab=3b84b2bb
+-/
 theorem isDedekindDomain [IsIntegrallyClosed W.CoordinateRing] :
     IsDedekindDomain W.CoordinateRing :=
   (isDedekindDomain_iff W.CoordinateRing (FractionRing W.CoordinateRing)).mpr

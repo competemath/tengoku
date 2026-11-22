@@ -36,7 +36,9 @@ namespace AbsorptionCutoff
 /-- **Pointwise killed one-step bound** (step 1): on `{τ > t+1} ⊆ {τ > t}` the recursion
 `R_{t+1} = A_t R_t + η_{t+1}` applies, so the two sides agree there; off `{τ > t+1}` the
 left side vanishes and the right side is nonnegative. Uses only the recursion (which holds
-on `{t < τ}`), no conditioning. -/
+on `{t < τ}`), no conditioning.
+@isnad1 id=le.1h7v.s8.bfefeb185082 from=translated src=- shape=151c7956 vocab=c2fa8d1a
+-/
 lemma killed_step_pointwise {Ω : Type*} {R A η : ℕ → Ω → ℝ} {τ : Ω → ℕ} {t : ℕ}
     (hrec : ∀ ω, t < τ ω → R (t + 1) ω = A t ω * R t ω + η (t + 1) ω) (ω : Ω) :
     {ω | t + 1 < τ ω}.indicator (fun _ => (1 : ℝ)) ω * R (t + 1) ω ^ 2
@@ -54,7 +56,9 @@ lemma killed_step_pointwise {Ω : Type*} {R A η : ℕ → Ω → ℝ} {τ : Ω 
 `a`, a martingale-difference `e` (`𝔼[e|m]=0`, `𝔼[e²|m]≤c`), and a bound `a² ≤ b` a.e.,
 the conditional second moment of `a + e` is controlled: `𝔼[(a+e)²|m] ≤ b + c` a.e. The
 cross term `2ae` drops out because `𝔼[e|m]=0` (pull the `m`-measurable factor `2a` out via
-`condExp_mul_of_aestronglyMeasurable_left`); `𝔼[a²|m]=a²≤b` and `𝔼[e²|m]≤c`. -/
+`condExp_mul_of_aestronglyMeasurable_left`); `𝔼[a²|m]=a²≤b` and `𝔼[e²|m]≤c`.
+@isnad1 id=eventual.9h8v.s8.89704bc0122f from=translated src=- shape=821488e8 vocab=6cf759b1
+-/
 lemma condExp_add_sq_le {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : Measure Ω}
     {m : MeasurableSpace Ω} (hm : m ≤ m0) [SigmaFinite (μ.trim hm)]
     {a e b : Ω → ℝ} {c : ℝ}
@@ -107,7 +111,9 @@ lemma condExp_add_sq_le {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : Measure Ω}
 `killed_step_pointwise` with the core `condExp_add_sq_le`: take `𝔼[·|𝓕_t]` (monotone),
 pull the `𝓕_t`-measurable indicator `1_{τ>t}` out (`condExp_indicator`), and apply the core
 bound inside. Gives `𝔼[1_{τ>t+1}R_{t+1}²|𝓕_t] ≤ 1_{τ>t}(α_t²R_t²+Cσ_t²/N)` a.e. The only
-stopping-time input is `{τ>t} ∈ 𝓕_t` (hypothesis `hτ`). -/
+stopping-time input is `{τ>t} ∈ 𝓕_t` (hypothesis `hτ`).
+@isnad1 id=eventual.12h13v.s10.ced8b9660b0f from=translated src=- shape=493a1cf5 vocab=a685141f
+-/
 lemma killed_condExp_step {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : Measure Ω}
     [IsProbabilityMeasure μ] {ℱ : Filtration ℕ m0}
     {R A η : ℕ → Ω → ℝ} {τ : Ω → ℕ} {α σ : ℕ → ℝ} {C N : ℝ} {t : ℕ}
@@ -166,7 +172,9 @@ noncomputable def killedMoment {Ω : Type*} {m0 : MeasurableSpace Ω} (μ : Meas
 
 /-- Integrating an a.e. conditional bound `𝔼[G|m] ≤ 1_{S₀}(k·R²+d)` (`d ≥ 0`) over a
 probability space: `∫ G ≤ k·∫ 1_{S₀}R² + d`, using `∫ 𝔼[G|m] = ∫ G` and `ℙ(S₀) ≤ 1`. This
-turns the killed conditional bound into the scalar recursion. -/
+turns the killed conditional bound into the scalar recursion.
+@isnad1 id=le.6h9v.s8.bc1b480166df from=translated src=- shape=1658ba7c vocab=7fca2bc4
+-/
 lemma integral_le_of_condExp_le {Ω : Type*} {m0 m : MeasurableSpace Ω} (hm : m ≤ m0)
     {μ : @Measure Ω m0} [IsProbabilityMeasure μ] {S0 : Set Ω} {R G : Ω → ℝ} {k d : ℝ}
     (hd : 0 ≤ d) (hS0 : MeasurableSet[m0] S0)
@@ -200,7 +208,9 @@ lemma integral_le_of_condExp_le {Ω : Type*} {m0 m : MeasurableSpace Ω} (hm : m
 
 /-- **Killed second-moment recursion** (step 3). Integrating `killed_condExp_step` over the
 probability space gives the scalar recursion `m_{t+1} ≤ α_t² m_t + Cσ_t²/N`, the input to
-`geom_recursion_bound` (paper `eq:common-killed-orbit-tracking`). -/
+`geom_recursion_bound` (paper `eq:common-killed-orbit-tracking`).
+@isnad1 id=le.15h13v.s10.242d84afdb6e from=translated src=- shape=5a9ad5b9 vocab=63dcb284
+-/
 lemma killed_moment_recursion {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : Measure Ω}
     [IsProbabilityMeasure μ] {ℱ : Filtration ℕ m0}
     {R A η : ℕ → Ω → ℝ} {τ : Ω → ℕ} {α σ : ℕ → ℝ} {C N : ℝ} {t : ℕ}
@@ -231,7 +241,9 @@ lemma killed_moment_recursion {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : Measu
 /-- **Closed-form killed second-moment bound** (paper `eq:common-killed-orbit-tracking`).
 Feeding the per-step recursion `m_{t+1} ≤ α_t² m_t + Cσ_t²/N` (`killed_moment_recursion`,
 supplied here for all `t` as `hrec_all`) into the deterministic engine `geom_recursion_bound`
-gives the explicit product/sum bound. -/
+gives the explicit product/sum bound.
+@isnad1 id=le.1h10v.s8.e58285f88867 from=translated src=- shape=11193ce4 vocab=a28effa7
+-/
 lemma killed_moment_closed_form {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : Measure Ω}
     {R : ℕ → Ω → ℝ} {τ : Ω → ℕ} {α σ : ℕ → ℝ} {C N : ℝ}
     (hrec_all : ∀ t, killedMoment μ R τ (t + 1)
@@ -248,7 +260,9 @@ def stoppedValue {Ω : Type*} (R : ℕ → Ω → ℝ) (τ : Ω → ℕ) (t : �
   R (min t (τ ω)) ω
 
 /-- The local finite-valued stopped process agrees with Mathlib's
-`WithTop ℕ`-valued stopped process after coercing the stopping time. -/
+`WithTop ℕ`-valued stopped process after coercing the stopping time.
+@isnad1 id=eq.0h4v.s5.5cfda3211d05 from=translated src=- shape=ffe8f5e6 vocab=a5162eeb
+-/
 lemma stoppedValue_eq_stoppedProcess_coe
     {Ω : Type*} (R : ℕ → Ω → ℝ) (τ : Ω → ℕ) (t : ℕ) :
     stoppedValue R τ t =
@@ -284,7 +298,9 @@ lemma stoppedValue_eq_stoppedProcess_coe
 /-- **Stopped one-step decomposition** (step 4, pointwise). On `{τ ≤ t}` the stopped
 process is constant, while on `{t < τ}` the original recursion applies:
 `R̄_{t+1} = 1_{τ≤t} R̄_t + 1_{t<τ}(A_t R_t + η_{t+1})`. The two indicator events are
-disjoint and exhaustive. -/
+disjoint and exhaustive.
+@isnad1 id=eq.1h7v.s7.abde0989a4a9 from=translated src=- shape=4d742ce3 vocab=7ea1cfd9
+-/
 lemma stoppedValue_succ_decomposition {Ω : Type*} {R A η : ℕ → Ω → ℝ}
     {τ : Ω → ℕ} {t : ℕ}
     (hrec : ∀ ω, t < τ ω → R (t + 1) ω = A t ω * R t ω + η (t + 1) ω)
@@ -305,7 +321,9 @@ lemma stoppedValue_succ_decomposition {Ω : Type*} {R A η : ℕ → Ω → ℝ}
     rw [Nat.min_eq_left (Nat.succ_le_of_lt hlt), hrec ω hlt]
 
 /-- Squared and deterministically weighted form of `stoppedValue_succ_decomposition`.
-Disjointness of `{τ ≤ t}` and `{t < τ}` removes the cross term pointwise. -/
+Disjointness of `{τ ≤ t}` and `{t < τ}` removes the cross term pointwise.
+@isnad1 id=eq.1h8v.s8.21971636f926 from=translated src=- shape=bbbf395b vocab=4bebb4a3
+-/
 lemma stoppedValue_succ_sq_decomposition {Ω : Type*} {R A η : ℕ → Ω → ℝ}
     {τ : Ω → ℕ} {t : ℕ} {W : ℝ}
     (hrec : ∀ ω, t < τ ω → R (t + 1) ω = A t ω * R t ω + η (t + 1) ω)
@@ -322,7 +340,9 @@ lemma stoppedValue_succ_sq_decomposition {Ω : Type*} {R A η : ℕ → Ω → �
     simp [h, hlt]
 
 /-- Event-localized form of `condExp_add_sq_le`. If `S` is visible in the conditioning
-σ-algebra, the same conditional square bound holds after restricting both sides to `S`. -/
+σ-algebra, the same conditional square bound holds after restricting both sides to `S`.
+@isnad1 id=eventual.11h9v.s8.eefd6d3d6a87 from=translated src=- shape=7ea638bd vocab=a2f389a4
+-/
 lemma condExp_indicator_add_sq_le {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : Measure Ω}
     {m : MeasurableSpace Ω} (hm : m ≤ m0) [SigmaFinite (μ.trim hm)]
     {S : Set Ω} {a e b : Ω → ℝ} {c : ℝ}
@@ -349,7 +369,9 @@ lemma condExp_indicator_add_sq_le {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : M
 `{τ ≤ t}` is already stopped and is pulled unchanged through the conditional
 expectation. On `{t < τ}`, `condExp_indicator_add_sq_le` removes the cross term.
 The backward-weight inequalities then absorb both deterministic square terms into
-`W₀ R̄_t²`; the noise contribution is bounded by `W₁ c`. -/
+`W₀ R̄_t²`; the noise contribution is bounded by `W₁ c`.
+@isnad1 id=eventual.17h13v.s9.f85a0014cc97 from=translated src=- shape=bfba380d vocab=e15223a5
+-/
 lemma stopped_condExp_step {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : Measure Ω}
     [IsProbabilityMeasure μ] {ℱ : Filtration ℕ m0}
     {R A η : ℕ → Ω → ℝ} {τ : Ω → ℕ} {α W₀ W₁ c : ℝ} {t : ℕ}
@@ -446,7 +468,9 @@ lemma stopped_condExp_step {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : Measure 
 
 /-- Integrate a conditional bound with an additive deterministic error over a probability
 space. This is the scalar bridge used to turn `stopped_condExp_step` into the weighted
-moment recursion. -/
+moment recursion.
+@isnad1 id=le.3h7v.s7.bf54f42128eb from=translated src=- shape=b89783c7 vocab=9916ebe6
+-/
 lemma integral_le_of_condExp_add_const {Ω : Type*} {m0 m : MeasurableSpace Ω}
     (hm : m ≤ m0) {μ : @Measure Ω m0} [IsProbabilityMeasure μ]
     {G H : Ω → ℝ} {d : ℝ}
@@ -462,7 +486,9 @@ lemma integral_le_of_condExp_add_const {Ω : Type*} {m0 m : MeasurableSpace Ω}
     _ = (∫ ω, H ω ∂μ) + d := by simp
 
 /-- **Scalar weighted stopped-moment recursion.** Integrating the output of
-`stopped_condExp_step` gives the one-step inequality used in the telescoping argument. -/
+`stopped_condExp_step` gives the one-step inequality used in the telescoping argument.
+@isnad1 id=le.2h10v.s8.9a2dc96960ee from=translated src=- shape=dfee60f2 vocab=f63a1b92
+-/
 lemma stopped_moment_recursion {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : Measure Ω}
     [IsProbabilityMeasure μ] {ℱ : Filtration ℕ m0}
     {R : ℕ → Ω → ℝ} {τ : Ω → ℕ} {W₀ W₁ c : ℝ} {t : ℕ}
@@ -475,7 +501,9 @@ lemma stopped_moment_recursion {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : Meas
   integral_le_of_condExp_add_const (ℱ.le t) hcond hint_bar
 
 /-- Finite telescoping of an additive one-step recursion:
-`M_{t+1} ≤ M_t + d_t` implies `M_T ≤ M_0 + ∑_{t<T} d_t`. -/
+`M_{t+1} ≤ M_t + d_t` implies `M_T ≤ M_0 + ∑_{t<T} d_t`.
+@isnad1 id=le.1h3v.s6.3be10e94871b from=translated src=- shape=8bb345c2 vocab=bd6e25e4
+-/
 lemma sum_recursion_bound {M d : ℕ → ℝ} {T : ℕ}
     (hstep : ∀ t, t < T → M (t + 1) ≤ M t + d t) :
     M T ≤ M 0 + ∑ t ∈ Finset.range T, d t := by
@@ -493,7 +521,9 @@ lemma sum_recursion_bound {M d : ℕ → ℝ} {T : ℕ}
           rw [Finset.sum_range_succ]
           ring
 
-/-- Telescope the scalar weighted stopped-moment recursion over a finite horizon. -/
+/-- Telescope the scalar weighted stopped-moment recursion over a finite horizon.
+@isnad1 id=le.1h8v.s8.75d4406d0f2a from=translated src=- shape=e492dc5d vocab=870288bd
+-/
 lemma stopped_moment_telescope {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : Measure Ω}
     {R : ℕ → Ω → ℝ} {τ : Ω → ℕ} {W c : ℕ → ℝ} {T : ℕ}
     (hstep : ∀ t, t < T →
@@ -506,7 +536,9 @@ lemma stopped_moment_telescope {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : Meas
     (M := fun s => ∫ ω, W s * stoppedValue R τ s ω ^ 2 ∂μ)
     (d := fun s => W (s + 1) * c s) (T := T) hstep
 
-/-- A uniform per-step bound controls the accumulated weighted noise over a finite horizon. -/
+/-- A uniform per-step bound controls the accumulated weighted noise over a finite horizon.
+@isnad1 id=le.1h4v.s6.777431ea1eb7 from=translated src=- shape=20ccdfe6 vocab=2cccc918
+-/
 lemma sum_weighted_noise_le {W c : ℕ → ℝ} {T : ℕ} {D : ℝ}
     (hbound : ∀ t, t < T → W (t + 1) * c t ≤ D) :
     ∑ t ∈ Finset.range T, W (t + 1) * c t ≤ T * D := by
@@ -517,7 +549,9 @@ lemma sum_weighted_noise_le {W c : ℕ → ℝ} {T : ℕ} {D : ℝ}
     _ = T * D := by simp
 
 /-- The paper's amplification bound turns each backward-weighted variance term into the
-uniform error `C K² / N`. -/
+uniform error `C K² / N`.
+@isnad1 id=le.2h7v.s7.6b7fd26be281 from=translated src=- shape=153d8da1 vocab=f391627b
+-/
 lemma backWeight_noise_le {α σ : ℕ → ℝ} {T t : ℕ} {C N K : ℝ}
     (hCN : 0 ≤ C / N)
     (hamp : backWeight α T (t + 1) * σ t ^ 2 ≤ K ^ 2) :
@@ -529,7 +563,9 @@ lemma backWeight_noise_le {α σ : ℕ → ℝ} {T t : ℕ} {C N K : ℝ}
     _ = C * K ^ 2 / N := by ring
 
 /-- Telescope the weighted stopped-moment recursion when every weighted noise term has the
-same deterministic upper bound. -/
+same deterministic upper bound.
+@isnad1 id=le.2h9v.s8.7fd486ef8738 from=translated src=- shape=9986b2b6 vocab=a945fd2c
+-/
 lemma stopped_moment_uniform_bound {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : Measure Ω}
     {R : ℕ → Ω → ℝ} {τ : Ω → ℕ} {W c : ℕ → ℝ} {T : ℕ} {D : ℝ}
     (hstep : ∀ t, t < T →
@@ -542,7 +578,9 @@ lemma stopped_moment_uniform_bound {Ω : Type*} {m0 : MeasurableSpace Ω} {μ : 
     (add_le_add_right (sum_weighted_noise_le hbound) _)
 
 /-- The stopped-moment telescope specialized to the paper's backward weights and variance
-scale. -/
+scale.
+@isnad1 id=le.3h11v.s8.0fc8823eb6f7 from=translated src=- shape=727e36b1 vocab=eb7fdf17
+-/
 lemma stopped_moment_backWeight_bound {Ω : Type*} {m0 : MeasurableSpace Ω}
     {μ : Measure Ω} {R : ℕ → Ω → ℝ} {τ : Ω → ℕ} {α σ : ℕ → ℝ}
     {T : ℕ} {C N K : ℝ}
@@ -559,7 +597,9 @@ lemma stopped_moment_backWeight_bound {Ω : Type*} {m0 : MeasurableSpace Ω}
     backWeight_noise_le hCN (hamp t ht)
 
 /-- Endpoint-normalized form of `stopped_moment_backWeight_bound`: `W_T = 1` and the
-time-zero stopped value is the original initial value. -/
+time-zero stopped value is the original initial value.
+@isnad1 id=le.3h11v.s8.c6f146eb2fc5 from=translated src=- shape=593b7999 vocab=eb7fdf17
+-/
 lemma stopped_moment_backWeight_endpoints {Ω : Type*} {m0 : MeasurableSpace Ω}
     {μ : Measure Ω} {R : ℕ → Ω → ℝ} {τ : Ω → ℕ} {α σ : ℕ → ℝ}
     {T : ℕ} {C N K : ℝ}
@@ -577,7 +617,9 @@ lemma stopped_moment_backWeight_endpoints {Ω : Type*} {m0 : MeasurableSpace Ω}
 /-- **Stopped second-moment tracking bound** (paper
 `eq:common-stopped-orbit-tracking`). The variance constant is normalized to `C ≥ 1`,
 as permitted by enlarging it, so the initial and accumulated-noise terms share one
-prefactor. -/
+prefactor.
+@isnad1 id=le.5h10v.s8.afab214280b3 from=translated src=- shape=ee309f5c vocab=e15f1a48
+-/
 lemma stopped_moment_tracking_bound {Ω : Type*} {m0 : MeasurableSpace Ω}
     {μ : Measure Ω} {R : ℕ → Ω → ℝ} {τ : Ω → ℕ} {α σ : ℕ → ℝ}
     {T : ℕ} {C N : ℝ}
@@ -618,7 +660,9 @@ lemma stopped_moment_tracking_bound {Ω : Type*} {m0 : MeasurableSpace Ω}
 
 /-- Pointwise Chebyshev input for a first-exit time: on `{τ ≤ T}`, the stopped process
 at time `T` equals the process at the exit time and hence has magnitude greater than
-the exit threshold. -/
+the exit threshold.
+@isnad1 id=le.2h6v.s7.62ba4afe0052 from=translated src=- shape=d3d89e89 vocab=36b33746
+-/
 lemma exit_indicator_sq_le_stopped {Ω : Type*} {R : ℕ → Ω → ℝ} {τ : Ω → ℕ}
     {T : ℕ} {δ : ℝ} (hδ : 0 ≤ δ)
     (hexit : ∀ ω, τ ω ≤ T → δ < |R (τ ω) ω|) (ω : Ω) :
@@ -635,7 +679,9 @@ lemma exit_indicator_sq_le_stopped {Ω : Type*} {R : ℕ → Ω → ℝ} {τ : �
     exact sq_nonneg _
 
 /-- Integrating `exit_indicator_sq_le_stopped` gives the Chebyshev numerator bound
-`δ² μ{τ≤T} ≤ 𝔼[R̄_T²]`. -/
+`δ² μ{τ≤T} ≤ 𝔼[R̄_T²]`.
+@isnad1 id=le.4h7v.s7.ef0062d2b5c2 from=translated src=- shape=84aa335c vocab=0a3e1f23
+-/
 lemma exit_prob_mul_sq_le_stopped_moment {Ω : Type*} {m0 : MeasurableSpace Ω}
     {μ : Measure Ω} [IsFiniteMeasure μ]
     {R : ℕ → Ω → ℝ} {τ : Ω → ℕ} {T : ℕ} {δ : ℝ}
@@ -665,7 +711,9 @@ lemma exit_prob_mul_sq_le_stopped_moment {Ω : Type*} {m0 : MeasurableSpace Ω}
       integral_mono hleft hint hpw
 
 /-- Chebyshev form of `exit_prob_mul_sq_le_stopped_moment`, after division by a
-positive threshold squared. -/
+positive threshold squared.
+@isnad1 id=le.4h7v.s7.7e1d34ed061f from=translated src=- shape=72829308 vocab=c20baf88
+-/
 lemma exit_prob_le_stopped_moment_div {Ω : Type*} {m0 : MeasurableSpace Ω}
     {μ : Measure Ω} [IsFiniteMeasure μ]
     {R : ℕ → Ω → ℝ} {τ : Ω → ℕ} {T : ℕ} {δ : ℝ}
@@ -679,7 +727,9 @@ lemma exit_prob_le_stopped_moment_div {Ω : Type*} {m0 : MeasurableSpace Ω}
   simpa [mul_comm] using h
 
 /-- Chebyshev's stopped-process bound when the moment is evaluated at a later
-time than the exit-event horizon. -/
+time than the exit-event horizon.
+@isnad1 id=le.5h8v.s7.0165abf20e99 from=translated src=- shape=1b5d9b3c vocab=c20baf88
+-/
 lemma exit_prob_le_stopped_moment_div_of_le
     {Ω : Type*} {m0 : MeasurableSpace Ω}
     {μ : Measure Ω} [IsFiniteMeasure μ]
@@ -721,7 +771,9 @@ lemma exit_prob_le_stopped_moment_div_of_le
   simpa [mul_comm] using hmul
 
 /-- **Orbit exit-probability bound** (paper `eq:common-orbit-exit-bound`). Chebyshev's
-inequality for the stopped process, combined with `stopped_moment_tracking_bound`. -/
+inequality for the stopped process, combined with `stopped_moment_tracking_bound`.
+@isnad1 id=le.9h11v.s9.1f69ee85c01b from=translated src=- shape=cb40f381 vocab=83ee4666
+-/
 lemma orbit_exit_prob_bound {Ω : Type*} {m0 : MeasurableSpace Ω}
     {μ : Measure Ω} [IsProbabilityMeasure μ]
     {R : ℕ → Ω → ℝ} {τ : Ω → ℕ} {α σ : ℕ → ℝ}

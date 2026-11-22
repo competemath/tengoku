@@ -21,7 +21,9 @@ open MeasureTheory ProbabilityTheory
 namespace AbsorptionCutoff
 
 /-- The first smoothed terminal marginal is the evolving scalar law at the
-integer cutoff time. -/
+integer cutoff time.
+@isnad1 id=eventual.4h7v.s8.daa05e46d2d9 from=translated src=- shape=7c08da54 vocab=dfc7b614
+-/
 lemma eventually_terminalBlock_smoothed_fst_eq_cutoff_marginal
     {A qStar q₀ b : ℝ} (q : ℕ → ℝ)
     (ν : ℕ → ProbabilityMeasure ℝ)
@@ -123,7 +125,9 @@ lemma eventually_terminalBlock_smoothed_fst_eq_cutoff_marginal
       rw [Nat.sub_add_cancel hcutoffPosN]
 
 /-- The second endpoint marginal of a synchronous path started from a product
-with an invariant law remains invariant after the smoothing step. -/
+with an invariant law remains invariant after the smoothing step.
+@isnad1 id=eq.1h5v.s7.357846a7e05d from=translated src=- shape=c7aad34e vocab=19169bba
+-/
 lemma terminalBlock_smoothed_snd_eq_of_invariant
     (A : ℝ) (N : ℕ)
     (ρ ν : Measure ℝ) [IsProbabilityMeasure ρ] [IsProbabilityMeasure ν]
@@ -142,7 +146,9 @@ lemma terminalBlock_smoothed_snd_eq_of_invariant
     hν.def]
 
 /-- The evolving scalar law at the integer cutoff time satisfies the
-paper-facing upper cutoff profile against an invariant family. -/
+paper-facing upper cutoff profile against an invariant family.
+@isnad1 id=ex.13h8v.s9.6939148b6e4d from=translated src=- shape=570d6a14 vocab=3cb99698
+-/
 theorem
     exists_eventually_tvDist_cutoff_marginal_invariant_le_rpow_add_of_tendsto
     {A qStar q₀ b C₂ : ℝ} (q : ℕ → ℝ)
@@ -223,7 +229,9 @@ theorem
   exact hsmoothN
 
 /-- One stationary scalar family can be selected together with the complete
-paper-facing upper cutoff profile. -/
+paper-facing upper cutoff profile.
+@isnad1 id=ex.8h6v.s9.843bd1d5cc96 from=translated src=- shape=ade1566c vocab=39dbcbb0
+-/
 theorem
     exists_stationary_family_eventually_tvDist_cutoff_marginal_le_rpow_add_of_tendsto
     {A qStar q₀ b : ℝ} (q : ℕ → ℝ)
@@ -283,7 +291,9 @@ theorem
   exact ⟨C, D, ν, hC, hD, hν, hupper⟩
 
 /-- The vector-chain upper TV bracket can be written against the canonical
-scalar path marginal at the preceding time. -/
+scalar path marginal at the preceding time.
+@isnad1 id=le.0h5v.s8.769f6ef4140a from=translated src=- shape=cde93ac7 vocab=bbd620d1
+-/
 lemma tvDist_Pkernel_pow_succ_le_markovPathMeasure_radius_marginal
     (A : ℝ) (N : ℕ) (ν : Measure ℝ) [IsProbabilityMeasure ν]
     (x : Fin N → ℝ) (t : ℕ) :
@@ -310,7 +320,9 @@ lemma tvDist_Pkernel_pow_succ_le_markovPathMeasure_radius_marginal
       rw [markovPathMeasure_dirac_map_eval]
 
 /-- A convergent sequence of vector radii admits a reconstructed invariant
-vector family with the successor-time upper cutoff profile. -/
+vector family with the successor-time upper cutoff profile.
+@isnad1 id=ex.8h6v.s10.c0ed2d96a01b from=translated src=- shape=f3451bb0 vocab=7d6deef5
+-/
 theorem
     exists_reconstructed_invariant_vector_family_eventually_tvDist_cutoff_succ_le_rpow_add
     {A qStar q₀ b : ℝ}
@@ -383,6 +395,7 @@ theorem
 /-- The locally uniform Koenigs asymptotic remains valid when both the
 initial state and the iteration time vary, provided the initial states
 converge inside the supercritical state space and the times tend to infinity.
+@isnad1 id=tendsto.8h5v.s7.a13e842de277 from=translated src=- shape=ec720bde vocab=dd7a8ae4
 -/
 theorem tendsto_normalized_V_orbit_sub_fixed_of_tendsto
     {A qStar q₀ : ℝ} (q : ℕ → ℝ) (T : ℕ → ℕ)
@@ -452,7 +465,9 @@ theorem tendsto_normalized_V_orbit_sub_fixed_of_tendsto
 
 /-- At the integer cutoff time, every convergent nonstationary initial
 sequence retains a fixed positive multiple of the paper's deterministic
-`N⁻¹ᐟ² μ^c` separation scale. -/
+`N⁻¹ᐟ² μ^c` separation scale.
+@isnad1 id=ex.7h5v.s7.a32188ce64b2 from=translated src=- shape=402a9936 vocab=d78377d0
+-/
 theorem
     exists_eventually_rpow_le_sqrt_nat_mul_abs_V_iterate_integerCutoffTime_sub_fixed
     {A qStar q₀ : ℝ} (q : ℕ → ℝ)
@@ -584,7 +599,9 @@ theorem
 
 /-- Two probability measures with small centered second moments are separated
 in total variation when their centers are far apart.  The test event is the
-open half-radius interval about the first center. -/
+open half-radius interval about the first center.
+@isnad1 id=le.5h6v.s8.2c57432d9bba from=translated src=- shape=38a103d1 vocab=c20f4dcc
+-/
 lemma one_sub_four_mul_add_div_sq_le_tvDist_of_integral_sq
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     (a b Mμ Mν : ℝ)
@@ -670,7 +687,9 @@ lemma one_sub_four_mul_add_div_sq_le_tvDist_of_integral_sq
 
 /-- The fixed-measure separating-event estimate at the cutoff scale.  Two
 `N⁻¹` moment envelopes and a center separation of order
-`N⁻¹ᐟ² μ^c` give an `N`-independent lower total-variation profile. -/
+`N⁻¹ᐟ² μ^c` give an `N`-independent lower total-variation profile.
+@isnad1 id=eventual.9h9v.s9.399a1e3c0383 from=translated src=- shape=46b0c5be vocab=16b0c5f0
+-/
 lemma
     eventually_one_sub_four_mul_add_div_sq_rpow_le_tvDist_of_inv_nat_moments
     (ρ ν : ℕ → ProbabilityMeasure ℝ) (a : ℕ → ℝ)
@@ -761,7 +780,9 @@ lemma
   exact (sub_le_sub_left hscaled 1).trans hfixed
 
 /-- A positive convergent scalar initial sequence has the paper's lower
-cutoff profile against one selected origin-free invariant family. -/
+cutoff profile against one selected origin-free invariant family.
+@isnad1 id=ex.7h5v.s9.ce20c8037579 from=translated src=- shape=b42f0db5 vocab=88bbf3e1
+-/
 theorem
     exists_stationary_family_eventually_one_sub_mul_rpow_le_tvDist_cutoff_marginal
     {A qStar q₀ : ℝ} (q : ℕ → ℝ)
@@ -931,7 +952,9 @@ theorem
   exact hlowerN
 
 /-- A convergent sequence of positive vector radii admits a reconstructed
-origin-free invariant vector family with the paper's lower cutoff profile. -/
+origin-free invariant vector family with the paper's lower cutoff profile.
+@isnad1 id=ex.7h5v.s10.cc4231b33afe from=translated src=- shape=64cc28e9 vocab=70d7188b
+-/
 theorem
     exists_reconstructed_invariant_vector_family_eventually_one_sub_mul_rpow_le_tvDist_cutoff
     {A qStar q₀ : ℝ}

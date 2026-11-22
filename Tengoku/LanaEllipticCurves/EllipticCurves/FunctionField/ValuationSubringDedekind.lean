@@ -64,7 +64,9 @@ namespace ValuationSubring
 variable {K : Type*} [Field K]
 
 /-- A valuation subring `O ≠ ⊤` of a field has a nonzero maximal ideal.  Indeed a valuation subring
-that is a field is everything: if `x ∉ O` then `x⁻¹ ∈ O`, and inverting again returns `x`. -/
+that is a field is everything: if `x ∉ O` then `x⁻¹ ∈ O`, and inverting again returns `x`.
+@isnad1 id=ne.1h2v.s8.05a038f7d929 from=translated src=- shape=1c471a84 vocab=805ac009
+-/
 theorem maximalIdeal_ne_bot {O : ValuationSubring K} (hO : O ≠ ⊤) :
     IsLocalRing.maximalIdeal O ≠ ⊥ := by
   obtain ⟨x, hx⟩ : ∃ x : K, x ∉ O := by
@@ -82,7 +84,9 @@ theorem maximalIdeal_ne_bot {O : ValuationSubring K} (hO : O ≠ ⊤) :
 
 /-- `A.nonunits` absorbs multiplication by elements of `A`: it is the maximal ideal of `A`, viewed
 inside `K`.  (`ValuationSubring.nonunits` is only a `NonUnitalSubring K`, so this does not come for
-free from its algebraic structure.) -/
+free from its algebraic structure.)
+@isnad1 id=mem.2h4v.s7.0ac9bfa5e5f5 from=translated src=- shape=9639b463 vocab=f70636bf
+-/
 theorem mul_mem_nonunits {O : ValuationSubring K} {x y : K} (hx : x ∈ O.nonunits) (hy : y ∈ O) :
     x * y ∈ O.nonunits := by
   rw [O.mem_nonunits_iff] at hx ⊢
@@ -102,12 +106,16 @@ namespace HeightOneSpectrum
 
 variable (v : HeightOneSpectrum R)
 
-/-- `R` is contained in the localisation of `R` at any height-one prime. -/
+/-- `R` is contained in the localisation of `R` at any height-one prime.
+@isnad1 id=mem.0h4v.s6.7c90d3e3078f from=translated src=- shape=5014dc10 vocab=81255bf2
+-/
 theorem algebraMap_mem_valuationSubringAtPrime (r : R) :
     algebraMap R K r ∈ valuationSubringAtPrime K v :=
   ⟨r, 1, v.asIdeal.primeCompl.one_mem, by simp⟩
 
-/-- The localisation of `R` at a height-one prime is a *proper* subring of `K`. -/
+/-- The localisation of `R` at a height-one prime is a *proper* subring of `K`.
+@isnad1 id=ne.0h3v.s6.5c1f7b6e9856 from=translated src=- shape=88424fa7 vocab=2c448787
+-/
 theorem valuationSubringAtPrime_ne_top : valuationSubringAtPrime K v ≠ ⊤ := by
   rw [valuationSubringAtPrime_eq_valuationSubring]
   simp only [ne_eq, Valuation.valuationSubring_eq_top_iff, not_not]
@@ -118,7 +126,9 @@ nonunits of `R_v`.  This is the localisation fact `IsLocalization.AtPrime.to_map
 read through `ValuationSubring.coe_mem_nonunits_iff`; the point of phrasing it with
 `ValuationSubring.nonunits` rather than with `IsLocalRing.maximalIdeal` is that
 `(valuationSubringAtPrime K v).nonunits` is a subset of `K` that depends on `v` *only through the
-subring*, which is what makes `valuationSubringAtPrime_injective` a one-liner. -/
+subring*, which is what makes `valuationSubringAtPrime_injective` a one-liner.
+@isnad1 id=iff.0h4v.s7.e1eecf9525b8 from=translated src=- shape=fdb69afb vocab=deb18591
+-/
 theorem mem_asIdeal_iff_mem_nonunits (r : R) :
     r ∈ v.asIdeal ↔ algebraMap R K r ∈ (valuationSubringAtPrime K v).nonunits := by
   have hcoe : algebraMap R K r
@@ -128,13 +138,18 @@ theorem mem_asIdeal_iff_mem_nonunits (r : R) :
 
 /-- **Distinct height-one primes give distinct valuation subrings.**  Together with
 `exists_valuationSubringAtPrime_eq` this makes `v ↦ R_v` a bijection onto the proper valuation
-subrings of `K` containing `R`. -/
+subrings of `K` containing `R`.
+@isnad1 id=injectiv.0h2v.s5.de731b481dac from=translated src=- shape=0f141560 vocab=002eb548
+-/
 theorem valuationSubringAtPrime_injective :
     Function.Injective (valuationSubringAtPrime K : HeightOneSpectrum R → ValuationSubring K) := by
   intro v w h
   refine HeightOneSpectrum.ext (Ideal.ext fun r => ?_)
   rw [mem_asIdeal_iff_mem_nonunits (K := K) v r, mem_asIdeal_iff_mem_nonunits (K := K) w r, h]
 
+/--
+@isnad1 id=iff.0h4v.s6.f00771425419 from=translated src=- shape=8e94b02e vocab=5553c6ec
+-/
 @[simp]
 theorem valuationSubringAtPrime_inj {v w : HeightOneSpectrum R} :
     valuationSubringAtPrime K v = valuationSubringAtPrime K w ↔ v = w :=
@@ -148,7 +163,9 @@ the localisation of `R` at a height-one prime.**
 The prime is the contraction to `R` of the maximal ideal of `O`; it is nonzero because clearing the
 denominator of a nonzero element of that maximal ideal produces a nonzero element of `R` inside it.
 Once `R_v ≤ O` is known, `ValuationSubring.eq_of_le_of_ne_top` upgrades it to equality, since `R_v`
-has Krull dimension at most one. -/
+has Krull dimension at most one.
+@isnad1 id=ex.2h3v.s7.8f21e3939ba8 from=translated src=- shape=101f9da8 vocab=1f1c21e8
+-/
 theorem exists_valuationSubringAtPrime_eq (O : ValuationSubring K)
     (hR : ∀ r : R, algebraMap R K r ∈ O) (hO : O ≠ ⊤) :
     ∃ v : HeightOneSpectrum R, HeightOneSpectrum.valuationSubringAtPrime K v = O := by
@@ -187,7 +204,9 @@ theorem exists_valuationSubringAtPrime_eq (O : ValuationSubring K)
   rw [inv_eq_of_mul_eq_one_right hmul]
   exact mul_mem (hR a) (SetLike.coe_mem _)
 
-/-- The form of `exists_valuationSubringAtPrime_eq` phrased with the `v`-adic valuation. -/
+/-- The form of `exists_valuationSubringAtPrime_eq` phrased with the `v`-adic valuation.
+@isnad1 id=ex.2h3v.s7.418042a06a65 from=translated src=- shape=4cf2dba5 vocab=707bf178
+-/
 theorem exists_valuationSubring_eq (O : ValuationSubring K)
     (hR : ∀ r : R, algebraMap R K r ∈ O) (hO : O ≠ ⊤) :
     ∃ v : HeightOneSpectrum R, (v.valuation K).valuationSubring = O := by
@@ -195,7 +214,9 @@ theorem exists_valuationSubring_eq (O : ValuationSubring K)
   exact ⟨v, by rwa [← HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring]⟩
 
 /-- Containing `R` and being proper *characterise* the valuation subrings of `K` of the form
-`R_v`: the two hypotheses of `exists_valuationSubringAtPrime_eq` are also necessary. -/
+`R_v`: the two hypotheses of `exists_valuationSubringAtPrime_eq` are also necessary.
+@isnad1 id=iff.0h3v.s7.15c0f58aa0ed from=translated src=- shape=1024c698 vocab=1f1c21e8
+-/
 theorem exists_valuationSubringAtPrime_eq_iff (O : ValuationSubring K) :
     (∃ v : HeightOneSpectrum R, HeightOneSpectrum.valuationSubringAtPrime K v = O) ↔
       (∀ r : R, algebraMap R K r ∈ O) ∧ O ≠ ⊤ := by

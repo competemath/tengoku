@@ -22,7 +22,9 @@ open MeasureTheory ProbabilityTheory
 namespace AbsorptionCutoff
 
 /-- The deterministic orbit center at the terminal block start is eventually
-inside half of the shrinking terminal radius. -/
+inside half of the shrinking terminal radius.
+@isnad1 id=eventual.8h6v.s7.f0c7acdfd808 from=translated src=- shape=c126be14 vocab=01645a72
+-/
 lemma
     eventually_abs_V_iterate_terminalBlockStart_sub_fixed_le_half_terminalRadius
     {A qStar q₀ b : ℝ} (q : ℕ → ℝ)
@@ -77,7 +79,9 @@ lemma
   exact hcenterN.trans hscaleN.le
 
 /-- A point starting inside half of a stable interval remains there under
-every iterate of a strict local contraction fixing the interval center. -/
+every iterate of a strict local contraction fixing the interval center.
+@isnad1 id=le.8h6v.s7.5789e33f018f from=translated src=- shape=8c5d76d5 vocab=66248951
+-/
 lemma forall_abs_V_iterate_sub_fixed_le_half_radius
     {A qStar R κ x : ℝ}
     (hA : A ≠ 0) (hfix : V A qStar = qStar)
@@ -114,7 +118,9 @@ lemma forall_abs_V_iterate_sub_fixed_le_half_radius
           nlinarith
 
 /-- For the paper's convergent initial sequences, every deterministic center
-through the terminal block remains inside half of the shrinking radius. -/
+through the terminal block remains inside half of the shrinking radius.
+@isnad1 id=eventual.8h6v.s7.0023b9b1298a from=translated src=- shape=f687e41f vocab=651ebeaf
+-/
 lemma
     eventually_forall_abs_V_iterate_terminalBlockStart_add_sub_fixed_le_half_terminalRadius
     {A qStar q₀ b : ℝ} (q : ℕ → ℝ)
@@ -157,7 +163,9 @@ lemma
   exact hiter
 
 /-- The dynamic orbit moment and deterministic center bounds give uniform
-shrinking-radius localization on the restarted terminal block. -/
+shrinking-radius localization on the restarted terminal block.
+@isnad1 id=eventual.19h12v.s9.eeae2db8aa94 from=translated src=- shape=dc6aff52 vocab=656d11d5
+-/
 lemma eventually_forall_shifted_eval_not_mem_terminalInterval_le_of_cutoff
     {A qStar q₀ b R κ η δ C : ℝ}
     (q : ℕ → ℝ)
@@ -237,7 +245,9 @@ lemma eventually_forall_shifted_eval_not_mem_terminalInterval_le_of_cutoff
       hqIcc hcenter' hmoment
 
 /-- Invariant fixed-point moments give stationary shrinking-radius
-localization uniformly over every path time. -/
+localization uniformly over every path time.
+@isnad1 id=eventual.3h4v.s8.6ec8e29fbbc1 from=translated src=- shape=b842a6ed vocab=1106a916
+-/
 lemma eventually_forall_stationary_eval_not_mem_terminalInterval_le_inv_nat
     {A qStar C : ℝ}
     (ν : ℕ → ProbabilityMeasure ℝ)
@@ -294,6 +304,9 @@ lemma eventually_forall_stationary_eval_not_mem_terminalInterval_le_inv_nat
   rw [hset]
   exact hstationary
 
+/--
+@isnad1 id=eventual.8h9v.s9.f86e17ac630f from=translated src=- shape=2311a7b9 vocab=d6952786
+-/
 lemma eventually_integral_abs_fst_sub_snd_eval_blockStart_le_terminalContraction_pow_mul_add
     {A qStar L C₁ C₂ : ℝ}
     (hA : A ≠ 0) (hC₁ : 0 ≤ C₁) (hC₂ : 0 ≤ C₂)
@@ -375,7 +388,9 @@ lemma eventually_integral_abs_fst_sub_snd_eval_blockStart_le_terminalContraction
   exact hterminal
 
 /-- The shrinking contraction and the evolving and stationary terminal
-localizations assemble into the paper's varying terminal recursion. -/
+localizations assemble into the paper's varying terminal recursion.
+@isnad1 id=ex.24h14v.s10.f6491ceba616 from=translated src=- shape=e9629a90 vocab=874e1e5e
+-/
 lemma
     exists_eventually_integral_abs_fst_sub_snd_eval_terminalBlock_le_terminalContraction_pow_mul_add
     {A qStar q₀ b R κ η δ C C₂ : ℝ}
@@ -503,7 +518,9 @@ lemma
       hcontraction hqIcc hνsupport hbad₁ hbad₂
 
 /-- The varying terminal recursion inherits the inverse-square-root
-block-start product-distance estimate. -/
+block-start product-distance estimate.
+@isnad1 id=ex.25h15v.s10.db9afa329ac7 from=translated src=- shape=cf00cd30 vocab=27911080
+-/
 lemma
     exists_eventually_terminalBlock_distance_le_terminalContraction_pow_mul_inv_sqrt_add
     {A qStar q₀ b R κ η δ C C₀ C₂ : ℝ}
@@ -640,7 +657,9 @@ lemma
           hA hqStar hfix hL N) _
 
 /-- Up to an arbitrary fixed factor above one, the terminal contraction power
-can be replaced by the corresponding fixed-point multiplier power. -/
+can be replaced by the corresponding fixed-point multiplier power.
+@isnad1 id=ex.27h16v.s10.6f38190b9641 from=translated src=- shape=2d126759 vocab=27911080
+-/
 lemma
     exists_eventually_terminalBlock_distance_le_multiplier_pow_mul_inv_sqrt_add
     {A qStar q₀ b R κ η δ C C₀ C₂ : ℝ}

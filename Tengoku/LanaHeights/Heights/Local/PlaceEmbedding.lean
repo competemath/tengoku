@@ -39,7 +39,9 @@ open NumberField IsDedekindDomain HeightOneSpectrum Polynomial
 variable {p : ℕ} [hp : Fact p.Prime]
 
 /-- **Ultrametric root bound**: in an ultrametric normed field, a root of a monic polynomial
-with coefficients of norm `≤ 1` has norm `≤ 1`. -/
+with coefficients of norm `≤ 1` has norm `≤ 1`.
+@isnad1 id=le.3h3v.s6.b442e13dd28c from=translated src=- shape=45c625e0 vocab=bdb0941b
+-/
 theorem norm_le_one_of_monic_of_eval_eq_zero {E : Type*} [NormedField E] [IsUltrametricDist E]
     {P : E[X]} (hP : P.Monic) (hc : ∀ i, ‖P.coeff i‖ ≤ 1) {x : E} (hx : P.eval x = 0) :
     ‖x‖ ≤ 1 := by
@@ -72,7 +74,9 @@ theorem norm_le_one_of_monic_of_eval_eq_zero {E : Type*} [NormedField E] [IsUltr
 
 variable {F : Type*} [Field F] [NumberField F]
 
-/-- The image of an algebraic integer under a ring homomorphism `F → ℚ̄_p` has norm `≤ 1`. -/
+/-- The image of an algebraic integer under a ring homomorphism `F → ℚ̄_p` has norm `≤ 1`.
+@isnad1 id=le.0h4v.s7.1407887767b0 from=translated src=- shape=867d6113 vocab=dc79dd1b
+-/
 theorem norm_ringHom_le_one (τ : F →+* PadicAlgCl p) (y : 𝓞 F) : ‖τ y‖ ≤ 1 := by
   have hint : IsIntegral ℤ y := RingOfIntegers.isIntegral y
   set P := (minpoly ℤ y).map (Int.castRingHom (PadicAlgCl p)) with hP
@@ -91,10 +95,15 @@ theorem norm_ringHom_le_one (τ : F →+* PadicAlgCl p) (y : 𝓞 F) : ‖τ y�
 noncomputable def ringHomAbv (τ : F →+* PadicAlgCl p) : AbsoluteValue F ℝ :=
   (NormedField.toAbsoluteValue (PadicAlgCl p)).comp τ.injective
 
+/--
+@isnad1 id=eq.0h4v.s7.78cc516f4bb4 from=translated src=- shape=00f9fc32 vocab=e3d76431
+-/
 @[simp] theorem ringHomAbv_apply (τ : F →+* PadicAlgCl p) (y : F) :
     ringHomAbv τ y = ‖τ y‖ := rfl
 
-/-- `‖τ p‖ = p⁻¹`. -/
+/-- `‖τ p‖ = p⁻¹`.
+@isnad1 id=eq.0h3v.s7.0efc0a70448e from=translated src=- shape=8cbfd61e vocab=6d309fc0
+-/
 theorem norm_ringHom_natCast_p (τ : F →+* PadicAlgCl p) : ‖τ (p : F)‖ = (p : ℝ)⁻¹ := by
   rw [map_natCast]
   have : ((p : ℕ) : PadicAlgCl p) = algebraMap ℚ_[p] (PadicAlgCl p) (p : ℚ_[p]) := by
@@ -114,9 +123,15 @@ noncomputable def primeOfRingHom (τ : F →+* PadicAlgCl p) : Ideal (𝓞 F) wh
           mul_le_mul_of_nonneg_right (norm_ringHom_le_one τ c) (norm_nonneg _)
       _ < 1 := by rw [one_mul]; exact hy
 
+/--
+@isnad1 id=iff.0h4v.s8.a7fb33d9eee1 from=translated src=- shape=fa49a07e vocab=b4e08db1
+-/
 theorem mem_primeOfRingHom {τ : F →+* PadicAlgCl p} {y : 𝓞 F} :
     y ∈ primeOfRingHom τ ↔ ‖τ y‖ < 1 := Iff.rfl
 
+/--
+@isnad1 id=mem.0h3v.s7.2a8d65f69080 from=translated src=- shape=3b3ade42 vocab=d51f86d7
+-/
 theorem natCast_p_mem_primeOfRingHom (τ : F →+* PadicAlgCl p) :
     ((p : ℕ) : 𝓞 F) ∈ primeOfRingHom τ := by
   rw [mem_primeOfRingHom]
@@ -138,6 +153,9 @@ instance (τ : F →+* PadicAlgCl p) : (primeOfRingHom τ).IsPrime where
     rw [one_mul] at this
     linarith
 
+/--
+@isnad1 id=ne.0h3v.s7.2b564883fc29 from=translated src=- shape=0462a5cb vocab=31b53bb2
+-/
 theorem primeOfRingHom_ne_bot (τ : F →+* PadicAlgCl p) : primeOfRingHom τ ≠ ⊥ := by
   intro h
   have := natCast_p_mem_primeOfRingHom τ
@@ -148,14 +166,18 @@ theorem primeOfRingHom_ne_bot (τ : F →+* PadicAlgCl p) : primeOfRingHom τ �
 noncomputable def placeOfRingHom (τ : F →+* PadicAlgCl p) : HeightOneSpectrum (𝓞 F) :=
   ⟨primeOfRingHom τ, inferInstance, primeOfRingHom_ne_bot τ⟩
 
-/-- For `d ∉ 𝔭_τ`, `‖τ d‖ = 1`. -/
+/-- For `d ∉ 𝔭_τ`, `‖τ d‖ = 1`.
+@isnad1 id=eq.1h4v.s8.5040af9288ca from=translated src=- shape=36c792bf vocab=a58d9956
+-/
 theorem norm_eq_one_of_notMem {τ : F →+* PadicAlgCl p} {d : 𝓞 F}
     (hd : d ∉ primeOfRingHom τ) : ‖τ d‖ = 1 := by
   rw [mem_primeOfRingHom, not_lt] at hd
   exact le_antisymm (norm_ringHom_le_one τ d) hd
 
 /-- For `y ∈ F` with `v`-adic valuation `≤ 1` there are `n ∈ 𝓞 F` and `d ∉ 𝔭` with
-`y d = n`. -/
+`y d = n`.
+@isnad1 id=iff.0h4v.s8.df0d00938ead from=translated src=- shape=d185c4e4 vocab=34dbf7c3
+-/
 theorem valuation_le_one_iff_norm_le_one (τ : F →+* PadicAlgCl p) (y : F) :
     (placeOfRingHom τ).valuation F y ≤ 1 ↔ ‖τ y‖ ≤ 1 := by
   set v := placeOfRingHom τ with hv
@@ -195,7 +217,9 @@ theorem valuation_le_one_iff_norm_le_one (τ : F →+* PadicAlgCl p) (y : F) :
       exact hn'
     linarith
 
-/-- The absolute value `adicAbv` at `𝔭_τ` and `‖τ ·‖` have the same unit ball. -/
+/-- The absolute value `adicAbv` at `𝔭_τ` and `‖τ ·‖` have the same unit ball.
+@isnad1 id=iff.0h4v.s7.322689ce4652 from=translated src=- shape=cfdfb8ed vocab=904d4488
+-/
 theorem adicAbv_le_one_iff (τ : F →+* PadicAlgCl p) (y : F) :
     adicAbv F (placeOfRingHom τ) y ≤ 1 ↔ ‖τ y‖ ≤ 1 := by
   rw [adicAbv_def, ← valuation_le_one_iff_norm_le_one τ y]
@@ -203,7 +227,9 @@ theorem adicAbv_le_one_iff (τ : F →+* PadicAlgCl p) (y : F) :
     (one_lt_absNorm_nnreal (placeOfRingHom τ))
   exact_mod_cast this
 
-/-- `adicAbv` at `𝔭_τ` is equivalent to `‖τ ·‖`. -/
+/-- `adicAbv` at `𝔭_τ` is equivalent to `‖τ ·‖`.
+@isnad1 id=isequiv.0h3v.s6.c33eca8d6dae from=translated src=- shape=ff522b91 vocab=5660ac5b
+-/
 theorem isEquiv_ringHomAbv (τ : F →+* PadicAlgCl p) :
     (ringHomAbv τ).IsEquiv (adicAbv F (placeOfRingHom τ)) := by
   intro x y
@@ -214,7 +240,9 @@ theorem isEquiv_ringHomAbv (τ : F →+* PadicAlgCl p) :
   rw [← div_le_one hA, ← div_le_one hB, ← map_div₀, ← map_div₀, ringHomAbv_apply,
     adicAbv_le_one_iff]
 
-/-- The norm of `𝔭_τ` is a positive power of `p`. -/
+/-- The norm of `𝔭_τ` is a positive power of `p`.
+@isnad1 id=ex.1h3v.s8.a6f1f92cc31b from=translated src=- shape=13c83d4f vocab=934b6b02
+-/
 theorem exists_absNorm_eq_pow {v : HeightOneSpectrum (𝓞 F)} (hpv : ((p : ℕ) : 𝓞 F) ∈ v.asIdeal) :
     ∃ j : ℕ, 0 < j ∧ Ideal.absNorm v.asIdeal = p ^ j := by
   have hle : Ideal.span {((p : ℕ) : 𝓞 F)} ≤ v.asIdeal := by
@@ -228,7 +256,9 @@ theorem exists_absNorm_eq_pow {v : HeightOneSpectrum (𝓞 F)} (hpv : ((p : ℕ)
   rw [h0, pow_zero, Ideal.absNorm_eq_one_iff] at hj
   exact v.isPrime.ne_top hj
 
-/-- `‖τ ·‖ ^ N = adicAbv` at `𝔭_τ` for a natural number `0 < N ≤ [F : ℚ]`. -/
+/-- `‖τ ·‖ ^ N = adicAbv` at `𝔭_τ` for a natural number `0 < N ≤ [F : ℚ]`.
+@isnad1 id=ex.0h3v.s8.d24f1a31d8f0 from=translated src=- shape=d055fb7a vocab=f7611aa2
+-/
 theorem exists_pow_eq_adicAbv (τ : F →+* PadicAlgCl p) :
     ∃ N : ℕ, 0 < N ∧ N ≤ Module.finrank ℚ F ∧
       ∀ y : F, adicAbv F (placeOfRingHom τ) y = ‖τ y‖ ^ N := by
@@ -276,7 +306,9 @@ theorem exists_pow_eq_adicAbv (τ : F →+* PadicAlgCl p) :
     simp only [ringHomAbv_apply] at this
     rw [← this, hceq, Real.rpow_natCast]
 
-/-- **Every prime of `𝓞 F` over `p` is `𝔭_τ` for some `τ : F → ℚ̄_p`.** -/
+/-- **Every prime of `𝓞 F` over `p` is `𝔭_τ` for some `τ : F → ℚ̄_p`.**
+@isnad1 id=ex.1h3v.s7.ff18594e4583 from=translated src=- shape=23423fa4 vocab=2aab8640
+-/
 theorem exists_placeOfRingHom_eq {v : HeightOneSpectrum (𝓞 F)}
     (hpv : ((p : ℕ) : 𝓞 F) ∈ v.asIdeal) : ∃ τ : F →+* PadicAlgCl p, placeOfRingHom τ = v := by
   classical
@@ -328,7 +360,9 @@ theorem exists_placeOfRingHom_eq {v : HeightOneSpectrum (𝓞 F)}
 
 /-- **Finite places of a number field and embeddings into `ℚ̄_p`**: for a finite place `w` of
 `F` whose prime contains `p`, there are `τ : F → ℚ̄_p` and `0 < N ≤ [F : ℚ]` with
-`w y = ‖τ y‖ ^ N` for all `y`. -/
+`w y = ‖τ y‖ ^ N` for all `y`.
+@isnad1 id=ex.1h3v.s8.7718122e5f74 from=translated src=- shape=10202200 vocab=9250c8b1
+-/
 theorem exists_ringHom_padicAlgCl_eq_pow (w : FinitePlace F)
     (hpw : ((p : ℕ) : 𝓞 F) ∈ w.maximalIdeal.asIdeal) :
     ∃ τ : F →+* PadicAlgCl p, ∃ N : ℕ, 0 < N ∧ N ≤ Module.finrank ℚ F ∧

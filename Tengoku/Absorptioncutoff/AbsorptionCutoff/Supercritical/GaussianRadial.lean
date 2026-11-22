@@ -41,17 +41,25 @@ because the default norm on the function space `Fin N → ℝ` is the sup norm. 
 noncomputable def gaussianEuclideanNorm (N : ℕ) (g : Fin N → ℝ) : ℝ :=
   Real.sqrt (gaussianSquaredNorm N g)
 
+/--
+@isnad1 id=measurab.0h1v.s4.39533998858a from=translated src=- shape=bbef8654 vocab=9c47e321
+-/
 lemma measurable_gaussianSquaredNorm (N : ℕ) : Measurable (gaussianSquaredNorm N) := by
   unfold gaussianSquaredNorm
   fun_prop
 
+/--
+@isnad1 id=le.0h2v.s4.fb900a33a4ac from=translated src=- shape=42a2b5ba vocab=2cbca953
+-/
 lemma gaussianSquaredNorm_nonneg (N : ℕ) (g : Fin N → ℝ) :
     0 ≤ gaussianSquaredNorm N g := by
   unfold gaussianSquaredNorm
   positivity
 
 /-- Coordinatewise squaring sends the standard Gaussian product to the product
-of the one-dimensional squared-Gaussian laws. -/
+of the one-dimensional squared-Gaussian laws.
+@isnad1 id=eq.0h1v.s7.ec1027d39302 from=translated src=- shape=80ba961a vocab=9bb881ad
+-/
 lemma map_coordinatewise_sq_gaussianVec (N : ℕ) :
     (gaussianVec N).map (fun g i => (g i) ^ 2) =
       Measure.pi (fun _ : Fin N => (gaussianReal 0 1).map (fun x : ℝ => x ^ 2)) := by
@@ -61,7 +69,9 @@ lemma map_coordinatewise_sq_gaussianVec (N : ℕ) :
 
 /-- `χ_N²` is represented as the sum of `N` independent squared standard
 Gaussians. This is the distributional bridge to the Gamma law with shape
-`N / 2` and rate `1 / 2`. -/
+`N / 2` and rate `1 / 2`.
+@isnad1 id=eq.0h1v.s6.857c8d635708 from=translated src=- shape=22f1de36 vocab=a8976823
+-/
 lemma map_gaussianSquaredNorm_gaussianVec (N : ℕ) :
     (gaussianVec N).map (gaussianSquaredNorm N) =
       (Measure.pi (fun _ : Fin N => (gaussianReal 0 1).map (fun x : ℝ => x ^ 2))).map
@@ -72,7 +82,9 @@ lemma map_gaussianSquaredNorm_gaussianVec (N : ℕ) :
   · fun_prop
   · fun_prop
 
-/-- MGF of a Gamma law on its interval of convergence. -/
+/-- MGF of a Gamma law on its interval of convergence.
+@isnad1 id=eq.3h3v.s6.7a4dc9b65b9e from=translated src=- shape=bc03487f vocab=b1812672
+-/
 lemma mgf_id_gammaMeasure_of_lt {a r t : ℝ}
     (ha : 0 < a) (hr : 0 < r) (ht : t < r) :
     mgf id (gammaMeasure a r) t = (r / (r - t)) ^ a := by
@@ -109,7 +121,9 @@ lemma mgf_id_gammaMeasure_of_lt {a r t : ℝ}
     rw [mul_assoc, hexp]
     exact mul_assoc _ _ _
 
-/-- MGF of the square of a standard real Gaussian. -/
+/-- MGF of the square of a standard real Gaussian.
+@isnad1 id=eq.1h1v.s7.16eddb05c299 from=translated src=- shape=77623c34 vocab=3ee92ad4
+-/
 lemma mgf_sq_gaussianReal_of_lt {t : ℝ} (ht : t < 1 / 2) :
     mgf (fun x : ℝ => x ^ 2) (gaussianReal 0 1) t =
       ((1 / 2 : ℝ) / (1 / 2 - t)) ^ (1 / 2 : ℝ) := by
@@ -141,6 +155,9 @@ lemma mgf_sq_gaussianReal_of_lt {t : ℝ} (ht : t < 1 / 2) :
   congr 1
   field_simp [ne_of_gt hden, ne_of_gt Real.pi_pos]
 
+/--
+@isnad1 id=integrab.1h1v.s6.a1236e2bd82b from=translated src=- shape=52fc444e vocab=9b2ef096
+-/
 lemma integrable_exp_mul_sq_gaussianReal_of_lt {t : ℝ} (ht : t < 1 / 2) :
     Integrable (fun x : ℝ => Real.exp (t * x ^ 2)) (gaussianReal 0 1) := by
   rw [gaussianReal_of_var_ne_zero 0 (by norm_num : (1 : ℝ≥0) ≠ 0)]
@@ -165,7 +182,9 @@ lemma integrable_exp_mul_sq_gaussianReal_of_lt {t : ℝ} (ht : t < 1 / 2) :
           (Real.exp (t * x ^ 2) * Real.exp (-(x ^ 2) / 2)) := by ring
     _ = (√(2 * π))⁻¹ * Real.exp (-((1 / 2 - t) * x ^ 2)) := by rw [hexp]
 
-/-- Equality of MGFs on an open interval around zero determines the pushforward law. -/
+/-- Equality of MGFs on an open interval around zero determines the pushforward law.
+@isnad1 id=eq.7h10v.s7.d62df21a0020 from=translated src=- shape=b677f653 vocab=03db5131
+-/
 lemma map_eq_of_mgf_eq_on_Ioo
     {Ω Ω' : Type*} {mΩ : MeasurableSpace Ω} {mΩ' : MeasurableSpace Ω'}
     {μ : Measure Ω} {μ' : Measure Ω'} [IsFiniteMeasure μ] [IsFiniteMeasure μ']
@@ -213,6 +232,9 @@ lemma map_eq_of_mgf_eq_on_Ioo
   rw [← complexMGF_mul_I hX.aemeasurable, ← complexMGF_mul_I hY.aemeasurable]
   exact hCEq (by simp [D, ha, hb])
 
+/--
+@isnad1 id=iindepfu.0h1v.s5.28f654bd3a58 from=translated src=- shape=f1ff0586 vocab=0372781e
+-/
 lemma iIndepFun_gaussian_coordinate_sq (N : ℕ) :
     iIndepFun (fun i (g : Fin N → ℝ) => (g i) ^ 2) (gaussianVec N) := by
   have hEval : iIndepFun (fun i (g : Fin N → ℝ) => g i) (gaussianVec N) := by
@@ -223,6 +245,9 @@ lemma iIndepFun_gaussian_coordinate_sq (N : ℕ) :
   exact hEval.comp (fun (_ : Fin N) (x : ℝ) => x ^ 2)
     (fun _ => (by fun_prop : Measurable (fun x : ℝ => x ^ 2)))
 
+/--
+@isnad1 id=eq.1h2v.s7.27028f7904bf from=translated src=- shape=7f68299c vocab=586199ff
+-/
 lemma mgf_gaussianSquaredNorm_of_lt (N : ℕ) {t : ℝ} (ht : t < 1 / 2) :
     mgf (gaussianSquaredNorm N) (gaussianVec N) t =
       ((1 / 2 : ℝ) / (1 / 2 - t)) ^ ((N : ℝ) / 2) := by
@@ -254,6 +279,9 @@ lemma mgf_gaussianSquaredNorm_of_lt (N : ℕ) {t : ℝ} (ht : t < 1 / 2) :
   congr 1
   ring
 
+/--
+@isnad1 id=integrab.1h2v.s6.19dad6f3d89e from=translated src=- shape=467b7a33 vocab=16fc0ac1
+-/
 lemma integrable_exp_mul_gaussianSquaredNorm_of_lt (N : ℕ) {t : ℝ}
     (ht : t < 1 / 2) :
     Integrable (fun g => Real.exp (t * gaussianSquaredNorm N g)) (gaussianVec N) := by
@@ -270,7 +298,9 @@ lemma integrable_exp_mul_gaussianSquaredNorm_of_lt (N : ℕ) {t : ℝ}
 
 /-- On the positive half-line, multiplying a Gamma density of shape `a` by
 `x⁻ᵖ` changes the power in the Gamma integrand from `a - 1` to
-`a - p - 1`. -/
+`a - p - 1`.
+@isnad1 id=eq.1h4v.s6.682b3fb69612 from=translated src=- shape=c8574e2e vocab=457bdc07
+-/
 lemma neg_rpow_mul_gammaPDFReal_of_pos {a r p x : ℝ} (hx : 0 < x) :
     x ^ (-p) * gammaPDFReal a r x =
       r ^ a / Real.Gamma a *
@@ -291,7 +321,9 @@ lemma neg_rpow_mul_gammaPDFReal_of_pos {a r p x : ℝ} (hx : 0 < x) :
 
 After the remaining chi-square pushforward is established, specializing to
 `a = N / 2` and `r = 1 / 2` gives the paper's exact negative moments of
-`χ_N²`. -/
+`χ_N²`.
+@isnad1 id=eq.2h3v.s6.bc847e27f02f from=translated src=- shape=3336562b vocab=6e9a9c52
+-/
 lemma integral_neg_rpow_mul_gammaPDFReal_Ioi {a r p : ℝ}
     (hr : 0 < r) (hp : p < a) :
     ∫ x : ℝ in Set.Ioi 0, x ^ (-p) * gammaPDFReal a r x =
@@ -315,7 +347,9 @@ lemma integral_neg_rpow_mul_gammaPDFReal_Ioi {a r p : ℝ}
     exact neg_rpow_mul_gammaPDFReal_of_pos hx
 
 /-- For every fixed `A > 1`, all sufficiently large dimensions exceed two
-and satisfy the paper's explicit reciprocal-moment criterion. -/
+and satisfy the paper's explicit reciprocal-moment criterion.
+@isnad1 id=ex.1h1v.s6.061ef99946e4 from=translated src=- shape=116d97f8 vocab=2986f2da
+-/
 lemma exists_dimension_threshold_for_reciprocal_moment
     {A : ℝ} (hA : 1 < A) :
     ∃ N₁ : ℕ, ∀ N : ℕ, N₁ ≤ N →
@@ -332,7 +366,9 @@ lemma exists_dimension_threshold_for_reciprocal_moment
 
 /-- At fixed dimension and Gaussian sample, the squared-radius update divided
 by its input converges at the origin to the paper's linearized multiplier
-`A² ‖g‖₂² / N`. -/
+`A² ‖g‖₂² / N`.
+@isnad1 id=tendsto.1h3v.s6.8ac10f65e279 from=translated src=- shape=ae98fc72 vocab=ea4f47a2
+-/
 lemma Fmap_div_tendsto_gaussianSquaredNorm {A : ℝ} (hA : A ≠ 0)
     (N : ℕ) (g : Fin N → ℝ) :
     Tendsto (fun q => Fmap A N q g / q) (𝓝[>] 0)
@@ -364,7 +400,9 @@ lemma Fmap_div_tendsto_gaussianSquaredNorm {A : ℝ} (hA : A ≠ 0)
     rw [mul_div_assoc, Finset.sum_div]
 
 /-- For each fixed Gaussian sample, the radial update-to-input ratio is
-nonincreasing on the positive half-line. -/
+nonincreasing on the positive half-line.
+@isnad1 id=antitone.0h3v.s5.b1c4b9847db5 from=translated src=- shape=ad28cad8 vocab=18890958
+-/
 lemma antitoneOn_Fmap_div (A : ℝ) (N : ℕ) (g : Fin N → ℝ) :
     AntitoneOn (fun q => Fmap A N q g / q) (Set.Ioi (0 : ℝ)) := by
   intro q hq R hR hqR
@@ -386,7 +424,9 @@ lemma antitoneOn_Fmap_div (A : ℝ) (N : ℕ) (g : Fin N → ℝ) :
         (lt_of_le_of_ne hqR hqRne)).le
 
 /-- In particular, a smaller positive input gives the lower bound used to
-dominate reciprocal radial-update ratios. -/
+dominate reciprocal radial-update ratios.
+@isnad1 id=le.2h5v.s5.21ab63742e08 from=translated src=- shape=fbc8ad20 vocab=4a68994c
+-/
 lemma Fmap_div_ge_of_pos_of_le {A : ℝ} {N : ℕ} {q R : ℝ}
     (g : Fin N → ℝ) (hq : 0 < q) (hqR : q ≤ R) :
     Fmap A N R g / R ≤ Fmap A N q g / q :=
@@ -394,7 +434,9 @@ lemma Fmap_div_ge_of_pos_of_le {A : ℝ} {N : ℕ} {q R : ℝ}
 
 /-- A global quadratic-near-zero, constant-away-from-zero lower bound for
 `tanh²`. This is the pointwise small-ball input for fixed-radius reciprocal
-integrability. -/
+integrability.
+@isnad1 id=le.0h1v.s6.d290dabb2c8e from=translated src=- shape=f7622563 vocab=479e4f55
+-/
 lemma tanh_one_sq_mul_min_sq_one_le (x : ℝ) :
     Real.tanh 1 ^ 2 * min (x ^ 2) 1 ≤ Real.tanh x ^ 2 := by
   have htanh_abs : Real.tanh |x| ^ 2 = Real.tanh x ^ 2 := by
@@ -430,7 +472,9 @@ lemma tanh_one_sq_mul_min_sq_one_le (x : ℝ) :
       _ = Real.tanh x ^ 2 := htanh_abs
 
 /-- Summing the global `tanh²` lower bound controls the Gaussian radial update
-by `S / (1 + S)`, where `S = ‖g‖₂²`. -/
+by `S / (1 + S)`, where `S = ‖g‖₂²`.
+@isnad1 id=le.1h4v.s7.5d59bc71119d from=translated src=- shape=c2e0bcf9 vocab=98b9b195
+-/
 lemma sum_tanh_sq_lower_gaussianSquaredNorm {A R : ℝ} (hR : 0 ≤ R)
     (N : ℕ) (g : Fin N → ℝ) :
     Real.tanh 1 ^ 2 * min (A ^ 2 * R) 1 *
@@ -503,7 +547,9 @@ lemma sum_tanh_sq_lower_gaussianSquaredNorm {A R : ℝ} (hR : 0 ≤ R)
       Finset.sum_le_sum fun i _ => hcoord i
 
 /-- The reciprocal fixed-radius update ratio is controlled pointwise by a
-constant times `1 + ‖g‖₂⁻²`. -/
+constant times `1 + ‖g‖₂⁻²`.
+@isnad1 id=le.3h4v.s7.9369aa8514b7 from=translated src=- shape=7da50957 vocab=700e8d20
+-/
 lemma inv_Fmap_div_le_one_add_inv_gaussianSquaredNorm
     {A R : ℝ} {N : ℕ} (hA : A ≠ 0) (hR : 0 < R) (hN : 0 < N)
     (g : Fin N → ℝ) :

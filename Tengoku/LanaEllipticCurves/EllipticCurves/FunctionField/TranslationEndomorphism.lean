@@ -71,7 +71,9 @@ open Polynomial
 field, whose kernel is a maximal ideal, has algebraic image: every value `g b` is algebraic over the
 base field `F`. (The residue field `A ⧸ ker g` is then a field of finite type over `F`, hence finite
 over `F` by Zariski's lemma, so integral; the value `g b` is the image of the integral element
-`b mod ker g` under the injective factor map.) -/
+`b mod ker g` under the injective factor map.)
+@isnad1 id=isalgebr.1h5v.s7.366dd90509dc from=translated src=- shape=8973ad03 vocab=437a0f41
+-/
 lemma _root_.Tengoku.LanaEllipticCurves.isAlgebraic_of_ker_maximal {F A L : Type*} [Field F] [CommRing A] [Field L]
     [Algebra F A] [Algebra F L] [Algebra.FiniteType F A]
     (g : A →ₐ[F] L) (hmax : (RingHom.ker g).IsMaximal) (b : A) :
@@ -102,7 +104,9 @@ private lemma polynomial_degree_ne_zero : W.polynomial.degree ≠ 0 := by
   rw [Polynomial.degree_eq_natDegree W.monic_polynomial.ne_zero, W.natDegree_polynomial]; decide
 
 /-- The structural map `F[X] → F(W)` is injective (it factors as the injective coordinate-ring
-inclusion `AdjoinRoot.of` followed by the fraction-field embedding). -/
+inclusion `AdjoinRoot.of` followed by the fraction-field embedding).
+@isnad1 id=injectiv.0h2v.s9.e4791712f4e3 from=translated src=- shape=2eb1afdb vocab=91132357
+-/
 lemma algebraMap_polynomial_funcField_injective :
     Function.Injective (algebraMap F[X] W.FunctionField) := by
   rw [IsScalarTower.algebraMap_eq F[X] W.CoordinateRing W.FunctionField, RingHom.coe_comp]
@@ -111,7 +115,9 @@ lemma algebraMap_polynomial_funcField_injective :
   exact AdjoinRoot.of.injective_of_degree_ne_zero polynomial_degree_ne_zero
 
 /-- **The generic `x`-coordinate is transcendental over `F`.** Indeed `genX` is the image of the
-polynomial variable `X` under the injective map `F[X] → F(W)`. -/
+polynomial variable `X` under the injective map `F[X] → F(W)`.
+@isnad1 id=transcen.0h2v.s8.ed3b7e8cb906 from=translated src=- shape=40e80979 vocab=c2e0a76e
+-/
 lemma transcendental_genX : Transcendental F (genX W) := by
   have hgenX : genX W = algebraMap F[X] W.FunctionField X := by
     rw [genX, genPsi, show mk W (C X) = AdjoinRoot.of W.polynomial X from rfl,
@@ -166,7 +172,9 @@ private lemma slope_mem {x₁ x₂ y₁ y₂ : W.FunctionField}
       (mul_mem (mul_mem (ofNat_mem _ 2) map_a₂_mem) h1)) map_a₄_mem) (mul_mem map_a₁_mem hy1)
   · exact div_mem (sub_mem hy1 hy2) (sub_mem h1 h2)
 
-/-- `translateCoordHom` is an `F`-algebra homomorphism: it fixes the image of `F`. -/
+/-- `translateCoordHom` is an `F`-algebra homomorphism: it fixes the image of `F`.
+@isnad1 id=eq.1h5v.s10.ab3abc9fe1a9 from=translated src=- shape=1898e62f vocab=78a3ce0e
+-/
 lemma translateCoordHom_algebraMap {x₂ y₂ : F} (h₂ : W.Equation x₂ y₂) (c : F) :
     translateCoordHom h₂ (algebraMap F W.CoordinateRing c) = algebraMap F W.FunctionField c := by
   have h1 : (algebraMap F W.CoordinateRing c) = mk W (C (C c)) := by
@@ -181,6 +189,9 @@ noncomputable def translateAlgHom {x₂ y₂ : F} (h₂ : W.Equation x₂ y₂) 
   toRingHom := translateCoordHom h₂
   commutes' := translateCoordHom_algebraMap h₂
 
+/--
+@isnad1 id=eq.1h5v.s10.3f7c1b6b6f9e from=translated src=- shape=f59cbacc vocab=0d6eb6f2
+-/
 @[simp] lemma translateAlgHom_apply {x₂ y₂ : F} (h₂ : W.Equation x₂ y₂) (a : W.CoordinateRing) :
     translateAlgHom h₂ a = translateCoordHom h₂ a := rfl
 
@@ -196,7 +207,9 @@ would change if the library were renamed.  The name below is Lean's own generate
 suffix removed, so nothing else moves.
 
 ⚠️ The `defsWithUnderscore` linter does **not** report this one, because `Algebra.FiniteType` is a
-`Prop` and the linter skips proofs.  It is in the census all the same. -/
+`Prop` and the linter skips proofs.  It is in the census all the same.
+@isnad1 id=finitety.0h2v.s5.46b403ed09c7 from=translated src=- shape=ed10201d vocab=888eb372
+-/
 instance instFiniteType : Algebra.FiniteType F W.CoordinateRing :=
   Algebra.FiniteType.trans (inferInstance : Algebra.FiniteType F F[X])
     (Module.Finite.finiteType (R := F[X]) W.CoordinateRing)
@@ -209,7 +222,9 @@ open Classical in
 /-- **Group-law cancellation `(P + T) + (-T) = P` at the generic point.** If the coordinates of the
 translated generic point `P + T` — i.e. the images of the `F[W]`-generators under
 `translateCoordHom` — are algebraic over `F`, then the generic `x`-coordinate `genX = x(P)` is
-algebraic over `F`. -/
+algebraic over `F`.
+@isnad1 id=mem.3h4v.s12.9a0b162fcb2c from=translated src=- shape=2f32702d vocab=f283aa6c
+-/
 lemma genX_mem_algebraicClosure_of {x₂ y₂ : F} (h₂ : W.Equation x₂ y₂)
     (hu : translateCoordHom h₂ (mk W (C X)) ∈ K)
     (hv : translateCoordHom h₂ (AdjoinRoot.root W.polynomial) ∈ K) :
@@ -255,7 +270,9 @@ set_option maxHeartbeats 400000 in
 /-- **Translation is dominant: `translateCoordHom h₂` is injective.** If it were not, its kernel
 would be a nonzero prime — hence maximal, as `F[W]` has Krull dimension `≤ 1` — so the residue field
 would be algebraic over `F` (Zariski), forcing the generic `x`-coordinate to be algebraic and
-contradicting `transcendental_genX`. -/
+contradicting `transcendental_genX`.
+@isnad1 id=injectiv.1h4v.s9.77094c2cdf0e from=translated src=- shape=8ab572d4 vocab=55be8e98
+-/
 lemma translateCoordHom_injective {x₂ y₂ : F} (h₂ : W.Equation x₂ y₂) :
     Function.Injective (translateCoordHom h₂) := by
   have key : Function.Injective (translateAlgHom h₂) := by
@@ -281,13 +298,17 @@ noncomputable def translateEndo {x₂ y₂ : F} (h₂ : W.Equation x₂ y₂) :
     W.FunctionField →+* W.FunctionField :=
   IsFractionRing.lift (translateCoordHom_injective h₂)
 
-/-- On the image of `F[W]`, `translateEndo` agrees with the coordinate-ring pullback. -/
+/-- On the image of `F[W]`, `translateEndo` agrees with the coordinate-ring pullback.
+@isnad1 id=eq.1h5v.s11.7982d0769245 from=translated src=- shape=54d2ad67 vocab=21e7ff49
+-/
 @[simp] lemma translateEndo_algebraMap {x₂ y₂ : F} (h₂ : W.Equation x₂ y₂) (a : W.CoordinateRing) :
     translateEndo h₂ (algebraMap W.CoordinateRing W.FunctionField a) = translateCoordHom h₂ a :=
   IsFractionRing.lift_algebraMap (translateCoordHom_injective h₂) a
 
 open Classical in
-/-- The image of the generic `x`-coordinate: the `x`-coordinate of `P + T`. -/
+/-- The image of the generic `x`-coordinate: the `x`-coordinate of `P + T`.
+@isnad1 id=eq.1h4v.s12.2d8cac2adbca from=translated src=- shape=9c34bf49 vocab=6d119146
+-/
 lemma translateEndo_genX {x₂ y₂ : F} (h₂ : W.Equation x₂ y₂) :
     translateEndo h₂ (genX W) =
       (W.map (algebraMap F W.FunctionField)).addX (genX W) (algebraMap F W.FunctionField x₂)
@@ -297,7 +318,9 @@ lemma translateEndo_genX {x₂ y₂ : F} (h₂ : W.Equation x₂ y₂) :
   rw [translateEndo_algebraMap, translateCoordHom_X]
 
 open Classical in
-/-- The image of the generic `y`-coordinate: the `y`-coordinate of `P + T`. -/
+/-- The image of the generic `y`-coordinate: the `y`-coordinate of `P + T`.
+@isnad1 id=eq.1h4v.s12.a966ba9fc817 from=translated src=- shape=90534133 vocab=143645aa
+-/
 lemma translateEndo_genY {x₂ y₂ : F} (h₂ : W.Equation x₂ y₂) :
     translateEndo h₂ (genY W) =
       (W.map (algebraMap F W.FunctionField)).addY (genX W) (algebraMap F W.FunctionField x₂)

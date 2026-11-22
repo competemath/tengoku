@@ -54,7 +54,9 @@ variable {R : Type*} [CommRing R] [IsDedekindDomain R]
   (v : HeightOneSpectrum R)
 
 /-- **The `count` ↔ adic-valuation bridge.** For a nonzero `x ∈ K`, the `v`-adic valuation of `x`
-is `exp` of `−` the exponent of `v` in the principal fractional ideal `⟨x⟩`. -/
+is `exp` of `−` the exponent of `v` in the principal fractional ideal `⟨x⟩`.
+@isnad1 id=eq.1h4v.s7.506b5fd2f179 from=translated src=- shape=07f79589 vocab=eb98ddaa
+-/
 theorem valuation_eq_exp_neg_count {x : K} (hx : x ≠ 0) :
     v.valuation K x = exp (- count K v (spanSingleton R⁰ x)) := by
   -- The integral case is a direct unfolding: both `intValuation` and `count` are literally
@@ -88,7 +90,9 @@ theorem valuation_eq_exp_neg_count {x : K} (hx : x ≠ 0) :
   ring
 
 /-- **The `count` ↔ adic-valuation bridge, logarithmic form.** For a nonzero `x ∈ K`, the exponent
-of `v` in `⟨x⟩` is `−` the (additive) `v`-adic valuation of `x`. -/
+of `v` in `⟨x⟩` is `−` the (additive) `v`-adic valuation of `x`.
+@isnad1 id=eq.1h4v.s7.d419ca2a9fb4 from=translated src=- shape=8e962aff vocab=a615f915
+-/
 theorem count_eq_neg_log_valuation {x : K} (hx : x ≠ 0) :
     count K v (spanSingleton R⁰ x) = - log (v.valuation K x) := by
   rw [valuation_eq_exp_neg_count v hx, log_exp, neg_neg]
@@ -101,12 +105,16 @@ variable {F : Type*} [Field F] {W : Affine F} [IsDedekindDomain W.CoordinateRing
   (v : IsDedekindDomain.HeightOneSpectrum W.CoordinateRing)
 
 /-- The order of vanishing `ord v f` is `−` the (additive) `v`-adic valuation of `f`: the
-divisor-calculus encoding agrees with Mathlib's adic valuation. -/
+divisor-calculus encoding agrees with Mathlib's adic valuation.
+@isnad1 id=eq.1h4v.s9.3d3f3d9bc66f from=translated src=- shape=e33583ff vocab=fcaf7742
+-/
 theorem valuation_eq_exp_neg_ord {f : W.FunctionField} (hf : f ≠ 0) :
     v.valuation W.FunctionField f = WithZero.exp (- ord v f) :=
   valuation_eq_exp_neg_count v hf
 
-/-- The order of vanishing, as `−` the (additive) `v`-adic valuation. -/
+/-- The order of vanishing, as `−` the (additive) `v`-adic valuation.
+@isnad1 id=eq.1h4v.s9.0efdc7241160 from=translated src=- shape=4ecad356 vocab=f57dd43c
+-/
 theorem ord_eq_neg_log_valuation {f : W.FunctionField} (hf : f ≠ 0) :
     ord v f = - WithZero.log (v.valuation W.FunctionField f) :=
   count_eq_neg_log_valuation v hf

@@ -58,7 +58,9 @@ variable {k₀ K : Type u} [CommRing k₀] [CommRing K] [Algebra k₀ K]
 
 /-- The base change `baseChangeModelHom` of a locally-of-finite-presentation model morphism is
 locally of finite presentation (it is a base change of `f₀`, and `LocallyOfFinitePresentation`
-is stable under base change). -/
+is stable under base change).
+@isnad1 id=locallyo.1h5v.s7.e82a33ce0b52 from=translated src=- shape=21a4c4d0 vocab=dd153c90
+-/
 lemma locallyOfFinitePresentation_baseChangeModelHom {X₀ : Scheme.{u}}
     (p₀ : X₀ ⟶ Spec (CommRingCat.of k₀)) (f₀ : X₀ ⟶ P1 k₀)
     (hf₀ : f₀ ≫ (P1 k₀ ↘ Spec (CommRingCat.of k₀)) = p₀) [LocallyOfFinitePresentation f₀] :
@@ -77,7 +79,9 @@ locus of `f` is the preimage of `Branch f₀` under the canonical model map
 
 The ramification equality is the descent (reverse) inclusion of B2b (taxis #220); this lemma
 supplies the unconditional repackaging that turns it into the `DefinableOverPair`-level branch
-matching consumed by #48/#53. -/
+matching consumed by #48/#53.
+@isnad1 id=eq.3h8v.s10.c227e5d51e17 from=translated src=- shape=d7118107 vocab=7144eb48
+-/
 theorem branch_definableOverPair_eq {X₀ : Scheme.{u}} {p₀ : X₀ ⟶ Spec (CommRingCat.of k₀)}
     {f₀ : X₀ ⟶ P1 k₀} (hf₀ : f₀ ≫ (P1 k₀ ↘ Spec (CommRingCat.of k₀)) = p₀)
     [LocallyOfFinitePresentation f₀]

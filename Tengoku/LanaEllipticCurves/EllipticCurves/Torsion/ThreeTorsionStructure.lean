@@ -181,7 +181,9 @@ variable {F : Type*} [Field F] {W : Affine F}
 
 /-! ## No `3`-torsion `x`-coordinate is fixed by negation -/
 
-/-- The value of the `2`-division polynomial `Ψ₂Sq = 4X³ + b₂X² + 2b₄X + b₆`. -/
+/-- The value of the `2`-division polynomial `Ψ₂Sq = 4X³ + b₂X² + 2b₄X + b₆`.
+@isnad1 id=eq.0h3v.s7.5e94e3d6aefe from=translated src=- shape=007ba088 vocab=340e9a69
+-/
 lemma Ψ₂Sq_eval (x : F) :
     W.Ψ₂Sq.eval x = 4 * x ^ 3 + W.b₂ * x ^ 2 + 2 * W.b₄ * x + W.b₆ := by
   simp only [Ψ₂Sq, eval_add, eval_mul, eval_pow, eval_C, eval_X]
@@ -189,7 +191,9 @@ lemma Ψ₂Sq_eval (x : F) :
 /-- **Above a root of `Ψ₃` no point of `W` is fixed by negation.**  If `2y + a₁x + a₃` vanished at a
 point above a root of `Ψ₃`, the doubling defect `Ψ₃_eval_eq_neg` would force
 `3x² + 2a₂x + a₄ - a₁y = 0` as well, so both partial derivatives of the Weierstrass polynomial would
-vanish, contradicting nonsingularity. -/
+vanish, contradicting nonsingularity.
+@isnad1 id=ne.2h4v.s6.135738ffbbaf from=translated src=- shape=3a90f61d vocab=c15fc038
+-/
 lemma Y_ne_negY_of_Ψ₃_eval_eq_zero {x y : F} (h : W.Nonsingular x y) (hx : W.Ψ₃.eval x = 0) :
     y ≠ W.negY x y := by
   intro hy
@@ -205,7 +209,9 @@ lemma Y_ne_negY_of_Ψ₃_eval_eq_zero {x y : F} (h : W.Nonsingular x y) (hx : W.
   · exact hY (by rw [evalEval_polynomialY]; exact hd)
 
 /-- A root of `Ψ₃` is never a root of `Ψ₂Sq`: the `2`- and `3`-torsion `x`-coordinates are
-disjoint. -/
+disjoint.
+@isnad1 id=ne.2h4v.s6.e42798e41a16 from=translated src=- shape=b0cb8ecc vocab=23a18a5d
+-/
 lemma Ψ₂Sq_eval_ne_zero_of_Ψ₃_eval_eq_zero {x y : F} (h : W.Nonsingular x y)
     (hx : W.Ψ₃.eval x = 0) : W.Ψ₂Sq.eval x ≠ 0 := by
   rw [Ψ₂Sq_eval_eq_sq h.1]
@@ -213,7 +219,9 @@ lemma Ψ₂Sq_eval_ne_zero_of_Ψ₃_eval_eq_zero {x y : F} (h : W.Nonsingular x 
 
 /-- **The side-condition-free membership criterion.**  An affine point of an elliptic curve is
 `3`-torsion exactly when its `x`-coordinate is a root of `Ψ₃`; the hypothesis `y ≠ W.negY x y` of
-`mem_torsion_three_some_iff` is automatic on both sides. -/
+`mem_torsion_three_some_iff` is automatic on both sides.
+@isnad1 id=iff.1h4v.s7.79e3b6d7e95e from=translated src=- shape=fb0e0208 vocab=33497ba3
+-/
 lemma mem_torsion_three_some_iff' [DecidableEq F] {x y : F} {h : W.Nonsingular x y} :
     Point.some x y h ∈ W.torsion 3 ↔ W.Ψ₃.eval x = 0 :=
   ⟨Ψ₃_eval_eq_zero_of_mem_torsion_three,
@@ -222,7 +230,9 @@ lemma mem_torsion_three_some_iff' [DecidableEq F] {x y : F} {h : W.Nonsingular x
 /-! ## The fibres of the `x`-coordinate map -/
 
 /-- Away from characteristic `2`, the Weierstrass equation at `(x, y)` says exactly that the
-`2`-division value `2y + a₁x + a₃` is a square root of `Ψ₂Sq.eval x`. -/
+`2`-division value `2y + a₁x + a₃` is a square root of `Ψ₂Sq.eval x`.
+@isnad1 id=iff.1h4v.s7.c7bff8b145b9 from=translated src=- shape=ba0b357e vocab=dbb17e3b
+-/
 lemma equation_iff_sq (h2 : (2 : F) ≠ 0) (x y : F) :
     W.Equation x y ↔ (2 * y + W.a₁ * x + W.a₃) ^ 2 = W.Ψ₂Sq.eval x := by
   refine ⟨fun h => (Ψ₂Sq_eval_eq_sq h).symm, fun h => ?_⟩
@@ -248,7 +258,9 @@ more than a splitting hypothesis.
 
 ⚠️ The hypothesis is `IsSquare`, not `∃ s, s ^ 2 = _`, matching `exists_equation_of_isSquare`
 below: the two lemmas are the count and the existence half of the same quadratic, and a caller
-should not have to hold the same fact in two shapes. -/
+should not have to hold the same fact in two shapes.
+@isnad1 id=eq.3h3v.s7.de151c3608ca from=translated src=- shape=253e90cc vocab=7aa8f2cc
+-/
 lemma card_setOf_equation_eq_two_of_isSquare (h2 : (2 : F) ≠ 0) {x : F}
     (hx : W.Ψ₂Sq.eval x ≠ 0) (hsq : IsSquare (W.Ψ₂Sq.eval x)) :
     Nat.card {y : F // W.Equation x y} = 2 := by
@@ -293,7 +305,9 @@ algebraically closed field of characteristic `≠ 2`: the two square roots of `�
 two solutions `y` of the (quadratic) Weierstrass equation.
 
 The squareness hypothesis of `card_setOf_equation_eq_two_of_isSquare`, discharged by
-`IsAlgClosed.exists_pow_nat_eq`. -/
+`IsAlgClosed.exists_pow_nat_eq`.
+@isnad1 id=eq.2h3v.s6.4aa4608e54b1 from=translated src=- shape=d15d752b vocab=274e0f9a
+-/
 lemma card_setOf_equation_eq_two [IsAlgClosed F] (h2 : (2 : F) ≠ 0) {x : F}
     (hx : W.Ψ₂Sq.eval x ≠ 0) : Nat.card {y : F // W.Equation x y} = 2 :=
   card_setOf_equation_eq_two_of_isSquare h2 hx (isSquare_eval_Ψ₂Sq x)
@@ -317,7 +331,9 @@ this tree wants that statement."*  That generalisation is `card_setOf_equation_e
 above; the extra condition the clause names is exactly its `hx`, and at a root of `Ψ₃` it is free
 by `Ψ₂Sq_eval_ne_zero_of_root_Ψ₃` below.  The consumer that appeared is
 `card_torsion_three_of_splits`: `#962`'s `n = 3` ledger asks for `#E[3] = 9` over a field that is
-not algebraically closed, and `#2029` step 4 asks the same question one prime down. -/
+not algebraically closed, and `#2029` step 4 asks the same question one prime down.
+@isnad1 id=ex.2h3v.s6.dc17ea245e31 from=translated src=- shape=4f784b8c vocab=bc3cf5af
+-/
 lemma exists_equation_of_isSquare (h2 : (2 : F) ≠ 0) {x : F}
     (hsq : IsSquare (W.Ψ₂Sq.eval x)) : ∃ y : F, W.Equation x y := by
   obtain ⟨s, hs⟩ := hsq
@@ -331,7 +347,9 @@ lemma exists_equation_of_isSquare (h2 : (2 : F) ≠ 0) {x : F}
 `Ψ₂Sq.eval x` always has a square root.
 
 The squareness hypothesis of `exists_equation_of_isSquare`, discharged by
-`IsAlgClosed.exists_pow_nat_eq`. -/
+`IsAlgClosed.exists_pow_nat_eq`.
+@isnad1 id=ex.1h3v.s5.fa91c5077c63 from=translated src=- shape=f8d11ebf vocab=28b499b8
+-/
 lemma exists_equation [IsAlgClosed F] (h2 : (2 : F) ≠ 0) (x : F) : ∃ y : F, W.Equation x y :=
   exists_equation_of_isSquare h2
     (by obtain ⟨s, hs⟩ := IsAlgClosed.exists_pow_nat_eq (W.Ψ₂Sq.eval x) (n := 2) two_pos
@@ -344,7 +362,9 @@ argument consumes does not have to come from `exists_equation`: under the hypoth
 contradicted, `Ψ₂Sq.eval x = 0`, the `2`-torsion `y`-coordinate `twoTorsionY` is already on the
 curve (`equation_twoTorsionY`), over any field of characteristic `≠ 2`.  The closure-free argument
 was in this file all along, inline in `nodup_roots_Ψ₃` below, which now calls this lemma rather
-than repeating it. -/
+than repeating it.
+@isnad1 id=ne.2h3v.s6.c3b8ace629db from=translated src=- shape=6169f8de vocab=30b9449f
+-/
 lemma Ψ₂Sq_eval_ne_zero_of_root_Ψ₃ [W.IsElliptic] (h2 : (2 : F) ≠ 0) {x : F}
     (hx : W.Ψ₃.eval x = 0) : W.Ψ₂Sq.eval x ≠ 0 := fun hΨ₂ =>
   Ψ₂Sq_eval_ne_zero_of_Ψ₃_eval_eq_zero
@@ -352,7 +372,9 @@ lemma Ψ₂Sq_eval_ne_zero_of_root_Ψ₃ [W.IsElliptic] (h2 : (2 : F) ≠ 0) {x 
 
 /-! ## Separability of the `3`-division polynomial -/
 
-/-- The formal derivative of `Ψ₃` is `3 · Ψ₂Sq`. -/
+/-- The formal derivative of `Ψ₃` is `3 · Ψ₂Sq`.
+@isnad1 id=eq.0h2v.s8.432aba0b3d04 from=translated src=- shape=69afc43b vocab=2fa04c04
+-/
 lemma derivative_Ψ₃ : derivative W.Ψ₃ = 3 * W.Ψ₂Sq := by
   simp only [Ψ₃, Ψ₂Sq, derivative_add, derivative_mul, derivative_pow, derivative_X,
     derivative_C, derivative_ofNat, C_mul, C_ofNat, Nat.cast_ofNat]
@@ -367,7 +389,9 @@ def rootsEquivΨ₃ [DecidableEq F] (h3 : (3 : F) ≠ 0) :
     exact Iff.rfl
 
 /-- **`Ψ₃` is separable.**  Its derivative is `3Ψ₂Sq`, and a root of `Ψ₃` is never a root of `Ψ₂Sq`,
-so `Ψ₃` has no repeated roots.  In particular no quartic discriminant is needed. -/
+so `Ψ₃` has no repeated roots.  In particular no quartic discriminant is needed.
+@isnad1 id=nodup.2h2v.s6.47420f9e7d9d from=translated src=- shape=9ce01e98 vocab=a92fecbd
+-/
 lemma nodup_roots_Ψ₃ [W.IsElliptic] (h2 : (2 : F) ≠ 0) (h3 : (3 : F) ≠ 0) :
     W.Ψ₃.roots.Nodup := by
   classical
@@ -391,7 +415,9 @@ over which it *splits*: it has degree `4` there, and `nodup_roots_Ψ₃` rules o
 below ever used its closure for: `nodup_roots_Ψ₃` and `natDegree_Ψ₃` both need nothing beyond
 `[W.IsElliptic]`, `h2` and `h3`.  This is the `n = 3` analogue of
 `EllipticCurves.Torsion.TwoTorsion`'s `card_roots_Ψ₂Sq_of_splits`, and — unlike the `n = 2` case —
-it is **not** enough on its own for a count of `E[3]`: see `card_torsion_three_of_splits`. -/
+it is **not** enough on its own for a count of `E[3]`: see `card_torsion_three_of_splits`.
+@isnad1 id=eq.3h2v.s7.e8d1dc9a8509 from=translated src=- shape=69c8ad87 vocab=e9c69cab
+-/
 lemma card_roots_Ψ₃_of_splits [W.IsElliptic] (h2 : (2 : F) ≠ 0) (h3 : (3 : F) ≠ 0)
     (hsplits : W.Ψ₃.Splits) : Nat.card {x : F // W.Ψ₃.eval x = 0} = 4 := by
   classical
@@ -402,7 +428,9 @@ lemma card_roots_Ψ₃_of_splits [W.IsElliptic] (h2 : (2 : F) ≠ 0) (h3 : (3 : 
 /-- **The `3`-division quartic has exactly four roots** over an algebraically closed field of
 characteristic `≠ 2, 3`.
 
-The splitting hypothesis of `card_roots_Ψ₃_of_splits`, discharged by `IsAlgClosed.splits`. -/
+The splitting hypothesis of `card_roots_Ψ₃_of_splits`, discharged by `IsAlgClosed.splits`.
+@isnad1 id=eq.2h2v.s7.80ddda960c1c from=translated src=- shape=af27c760 vocab=6cad188b
+-/
 lemma card_roots_Ψ₃ [W.IsElliptic] [IsAlgClosed F] (h2 : (2 : F) ≠ 0) (h3 : (3 : F) ≠ 0) :
     Nat.card {x : F // W.Ψ₃.eval x = 0} = 4 :=
   card_roots_Ψ₃_of_splits h2 h3 (IsAlgClosed.splits _)
@@ -421,6 +449,9 @@ def torsionThreeOfPair :
   | some ⟨x, y⟩ => ⟨Point.some x.1 y.1 (equation_iff_nonsingular.mp y.2),
       mem_torsion_three_some_iff'.mpr x.2⟩
 
+/--
+@isnad1 id=bijectiv.0h2v.s7.dd7e6afd6d98 from=translated src=- shape=dbb393d7 vocab=4a6779b3
+-/
 lemma torsionThreeOfPair_bijective :
     Function.Bijective (torsionThreeOfPair (W := W)) := by
   constructor
@@ -456,7 +487,9 @@ discriminant to be a square — **a condition on a different polynomial, which n
 
 ⚠️ The other half of `card_setOf_equation_eq_two_of_isSquare`'s pair of hypotheses is free here:
 `Ψ₂Sq.eval x ≠ 0` at a root of `Ψ₃` is `Ψ₂Sq_eval_ne_zero_of_root_Ψ₃`, which takes no closure and
-no squareness. -/
+no squareness.
+@isnad1 id=eq.4h2v.s8.7db37db52d72 from=translated src=- shape=262952eb vocab=a1abdf63
+-/
 theorem card_torsion_three_of_splits (h2 : (2 : F) ≠ 0) (h3 : (3 : F) ≠ 0)
     (hsplits : W.Ψ₃.Splits) (hsq : ∀ x : F, W.Ψ₃.eval x = 0 → IsSquare (W.Ψ₂Sq.eval x)) :
     Nat.card (W.torsion 3) = 9 := by
@@ -479,7 +512,9 @@ theorem card_torsion_three_of_splits (h2 : (2 : F) ≠ 0) (h3 : (3 : F) ≠ 0)
 `3`-division quartic.
 
 Both hypotheses of `card_torsion_three_of_splits`, discharged by `IsAlgClosed.splits` and
-`IsAlgClosed.exists_pow_nat_eq`. -/
+`IsAlgClosed.exists_pow_nat_eq`.
+@isnad1 id=eq.2h2v.s7.2e9832edbf4e from=translated src=- shape=f4d2d7dd vocab=f86ea38f
+-/
 theorem card_torsion_three [IsAlgClosed F] (h2 : (2 : F) ≠ 0) (h3 : (3 : F) ≠ 0) :
     Nat.card (W.torsion 3) = 9 :=
   card_torsion_three_of_splits h2 h3 (IsAlgClosed.splits _) fun x _ => isSquare_eval_Ψ₂Sq x
@@ -492,7 +527,9 @@ count — no algebraic closure is involved.
 This is the `n = 3` instance of `E[n] ≅ (ℤ/nℤ)²`, obtained by feeding the count `#E[3] = 9` into
 the finite-abelian-group classification core `AddCommGroup.equiv_zmod_sq_of_card_sq`.  ⚠️ The rank
 argument at the prime `2` below is pure group theory on `W.torsion 3` and never looked at the
-field, which is why only the count had to be generalised. -/
+field, which is why only the count had to be generalised.
+@isnad1 id=nonempty.4h2v.s8.89009ce5d830 from=translated src=- shape=083fc18a vocab=14dcfc6b
+-/
 theorem nonempty_torsionThree_addEquiv_of_splits (h2 : (2 : F) ≠ 0) (h3 : (3 : F) ≠ 0)
     (hsplits : W.Ψ₃.Splits) (hsq : ∀ x : F, W.Ψ₃.eval x = 0 → IsSquare (W.Ψ₂Sq.eval x)) :
     Nonempty (W.torsion 3 ≃+ ZMod 3 × ZMod 3) := by
@@ -528,7 +565,9 @@ theorem nonempty_torsionThree_addEquiv_of_splits (h2 : (2 : F) ≠ 0) (h3 : (3 :
 `≠ 2, 3`, the `3`-torsion subgroup of an elliptic curve is isomorphic to `ℤ/3ℤ × ℤ/3ℤ`.
 
 Both hypotheses of `nonempty_torsionThree_addEquiv_of_splits`, discharged by `IsAlgClosed.splits`
-and `IsAlgClosed.exists_pow_nat_eq`. -/
+and `IsAlgClosed.exists_pow_nat_eq`.
+@isnad1 id=nonempty.2h2v.s8.dedec6ccf976 from=translated src=- shape=27adc524 vocab=330bdb27
+-/
 theorem nonempty_torsionThree_addEquiv [IsAlgClosed F] (h2 : (2 : F) ≠ 0) (h3 : (3 : F) ≠ 0) :
     Nonempty (W.torsion 3 ≃+ ZMod 3 × ZMod 3) :=
   nonempty_torsionThree_addEquiv_of_splits h2 h3 (IsAlgClosed.splits _)

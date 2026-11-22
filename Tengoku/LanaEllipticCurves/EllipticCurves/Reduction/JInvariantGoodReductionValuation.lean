@@ -56,7 +56,9 @@ variable (R) in
 /-- **The valuation of `j` under good reduction is exactly `v(c₄)³`**: since `v(Δ) = 1` for good
 reduction, the factorisation `v(j) = (v Δ)⁻¹ · (v c₄)³` collapses to `(v c₄)³`. This sharpens
 `isIntegral_j_of_hasGoodReduction` (which only records `v(j) ≥ 0`) and is the good-reduction mirror
-of `valuation_j_of_hasMultiplicativeReduction` (`v(j) = (v Δ)⁻¹`). -/
+of `valuation_j_of_hasMultiplicativeReduction` (`v(j) = (v Δ)⁻¹`).
+@isnad1 id=eq.0h3v.s7.6e72cbfd3cff from=translated src=- shape=9f793d6b vocab=5b615a92
+-/
 theorem valuation_j_of_hasGoodReduction (W : WeierstrassCurve K)
     [W.IsElliptic] [HasGoodReduction R W] :
     valuation K (maximalIdeal R) W.j = valuation K (maximalIdeal R) W.c₄ ^ 3 := by
@@ -66,7 +68,9 @@ variable (R) in
 /-- **The unit criterion under good reduction**: the `j`-invariant is a unit exactly when `c₄` is,
 `v(j) = 1 ↔ v(c₄) = 1`. From `v(j) = v(c₄)³` this is the injectivity of `x ↦ x³` on the value group
 `ℤₘ₀` (a linearly ordered commutative group with zero, where every element is `≥ 0`, so cubing is
-strictly monotone hence injective on the whole space). -/
+strictly monotone hence injective on the whole space).
+@isnad1 id=iff.0h3v.s7.c542aade314d from=translated src=- shape=282e8d72 vocab=cce6d6f0
+-/
 theorem valuation_j_eq_one_iff_valuation_c₄_eq_one (W : WeierstrassCurve K)
     [W.IsElliptic] [HasGoodReduction R W] :
     valuation K (maximalIdeal R) W.j = 1 ↔ valuation K (maximalIdeal R) W.c₄ = 1 := by

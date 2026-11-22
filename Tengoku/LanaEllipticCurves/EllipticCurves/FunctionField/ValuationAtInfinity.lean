@@ -144,12 +144,16 @@ noncomputable def ordInftyValuationSubring : ValuationSubring W.FunctionField wh
     rw [ordInfty_inv]
     omega
 
-/-- Membership in the place at infinity is regularity at infinity. -/
+/-- Membership in the place at infinity is regularity at infinity.
+@isnad1 id=iff.0h3v.s7.05c39757d38f from=translated src=- shape=c35f6220 vocab=7efea1fb
+-/
 @[simp]
 lemma mem_ordInftyValuationSubring {f : W.FunctionField} :
     f ∈ ordInftyValuationSubring W ↔ 0 ≤ ordInfty W f := Iff.rfl
 
-/-- The place at infinity contains the constants: it is a place *of `F(W)` over `F`*. -/
+/-- The place at infinity contains the constants: it is a place *of `F(W)` over `F`*.
+@isnad1 id=mem.0h3v.s9.1394cbf5f502 from=translated src=- shape=0563205a vocab=7819ac1f
+-/
 lemma algebraMap_mem_ordInftyValuationSubring (c : F) :
     algebraMap F W.FunctionField c ∈ ordInftyValuationSubring W := by
   rcases eq_or_ne c 0 with rfl | hc
@@ -158,7 +162,9 @@ lemma algebraMap_mem_ordInftyValuationSubring (c : F) :
 
 /-- The place at infinity does **not** contain the generic `x`-coordinate, which has a double
 pole there (`ordInfty_genX = -2`).  With the previous lemma this says the hypotheses of
-`mem_iff_ordInfty_nonneg` are satisfiable, so that theorem is not vacuous. -/
+`mem_iff_ordInfty_nonneg` are satisfiable, so that theorem is not vacuous.
+@isnad1 id=not.0h2v.s7.5cb7595b8fbc from=translated src=- shape=75c642ff vocab=f8665650
+-/
 lemma genX_notMem_ordInftyValuationSubring :
     CoordinateRing.genX W ∉ ordInftyValuationSubring W := by
   simp [ordInfty_genX]
@@ -171,7 +177,9 @@ variable {O : ValuationSubring W.FunctionField}
   (hF : ∀ c : F, algebraMap F W.FunctionField c ∈ O)
 
 include hF in
-/-- Step 0: the valuation is trivial on the base field. -/
+/-- Step 0: the valuation is trivial on the base field.
+@isnad1 id=eq.2h4v.s11.61c475d7f82c from=translated src=- shape=8cb8553b vocab=b2ebfc50
+-/
 lemma valuation_algebraMap_base {c : F} (hc : c ≠ 0) :
     O.valuation (algebraMap F W.FunctionField c) = 1 := by
   have hle : O.valuation (algebraMap F W.FunctionField c) ≤ 1 :=
@@ -189,7 +197,9 @@ lemma valuation_algebraMap_base {c : F} (hc : c ≠ 0) :
     lt_of_le_of_lt (mul_le_of_le_one_right' h1) hlt
   exact absurd hmul (ne_of_lt this)
 
-/-- Step 1: `genX` has a pole, so its valuation exceeds `1`. -/
+/-- Step 1: `genX` has a pole, so its valuation exceeds `1`.
+@isnad1 id=lt.1h3v.s10.757aa49f10f9 from=translated src=- shape=c15c3d50 vocab=4ade5a46
+-/
 lemma one_lt_valuation_genX (hx : CoordinateRing.genX W ∉ O) :
     1 < O.valuation (CoordinateRing.genX W) :=
   not_le.mp fun h => hx ((O.valuation_le_one_iff _).1 h)
@@ -220,13 +230,17 @@ variable {O : ValuationSubring W.FunctionField}
 
 include hF in
 /-- Every constant is `O`-integral, including `0`.  The form the coefficient bounds of the
-Newton-polygon lemma want. -/
+Newton-polygon lemma want.
+@isnad1 id=le.1h4v.s11.c327edb685b1 from=translated src=- shape=dcc9526a vocab=8949cf0e
+-/
 lemma valuation_algebraMap_base_le (c : F) :
     O.valuation (algebraMap F W.FunctionField c) ≤ 1 :=
   (O.valuation_le_one_iff _).2 (hF c)
 
 include hF hx in
-/-- **Step 2, from the shared Newton-polygon lemma.**  `2·V(y) = 3·V(x)`. -/
+/-- **Step 2, from the shared Newton-polygon lemma.**  `2·V(y) = 3·V(x)`.
+@isnad1 id=eq.2h3v.s11.c287501f6735 from=translated src=- shape=9fd3a87d vocab=09abefb3
+-/
 lemma valuation_genY_sq :
     O.valuation (CoordinateRing.genY W) ^ 2
       = O.valuation (CoordinateRing.genX W) ^ 3 :=
@@ -242,14 +256,18 @@ lemma valuation_genY_sq :
 /-! ### Step 3 -/
 
 omit hF in
-/-- A constant polynomial maps into `F(W)` through the base field. -/
+/-- A constant polynomial maps into `F(W)` through the base field.
+@isnad1 id=eq.0h4v.s11.69b10847a4c4 from=translated src=- shape=dbf7cab3 vocab=69d19a4e
+-/
 lemma valuation_algebraMap_polynomial_C (c : F) :
     O.valuation (algebraMap F[X] W.FunctionField (Polynomial.C c))
       = O.valuation (algebraMap F W.FunctionField c) := by
   rw [Polynomial.C_eq_algebraMap, ← IsScalarTower.algebraMap_apply]
 
 omit hF hx in
-/-- `X : F[X]` maps to the generic `x`-coordinate of `F(W)`. -/
+/-- `X : F[X]` maps to the generic `x`-coordinate of `F(W)`.
+@isnad1 id=eq.0h2v.s9.9c8e82a2a5f4 from=translated src=- shape=9bee96ed vocab=62c6fe45
+-/
 lemma algebraMap_polynomial_X :
     algebraMap F[X] W.FunctionField Polynomial.X = CoordinateRing.genX W := by
   rw [CoordinateRing.genX, CoordinateRing.genPsi,
@@ -259,7 +277,9 @@ lemma algebraMap_polynomial_X :
 include hF hx in
 /-- **Step 3: a polynomial in `x` has valuation `V(x) ^ deg p`.**  The monomials `cᵢ xⁱ` have
 pairwise distinct valuations `V(x) ^ i`, so the sum has the valuation of its unique largest term,
-which is the leading one because `1 < V(x)`. -/
+which is the leading one because `1 < V(x)`.
+@isnad1 id=eq.3h4v.s11.6782a3463feb from=translated src=- shape=ab269544 vocab=371daa58
+-/
 lemma valuation_polynomial {p : F[X]} (hp : p ≠ 0) :
     O.valuation (algebraMap F[X] W.FunctionField p)
       = O.valuation (CoordinateRing.genX W) ^ p.natDegree := by
@@ -291,6 +311,9 @@ lemma valuation_polynomial {p : F[X]} (hp : p ≠ 0) :
 /-! ### The degree of a general element in the basis `{1, Y}` -/
 
 omit hF hx in
+/--
+@isnad1 id=eq.2h4v.s9.3dca69d9a478 from=translated src=- shape=5513754e vocab=d3690bd9
+-/
 lemma deg_smul_basis {p q : F[X]} (hp : p ≠ 0) (hq : q ≠ 0) :
     deg W (p • (1 : W.CoordinateRing) + q • CoordinateRing.mk W Y)
       = max (2 * p.natDegree) (2 * q.natDegree + 3) := by
@@ -311,7 +334,9 @@ lemma deg_smul_basis {p q : F[X]} (hp : p ≠ 0) (hq : q ≠ 0) :
 /-! ### Step 4: the key identity -/
 
 omit hF hx in
-/-- The first basis vector of `F[W]` over `F[X]`, pushed into `F(W)`. -/
+/-- The first basis vector of `F[W]` over `F[X]`, pushed into `F(W)`.
+@isnad1 id=eq.0h3v.s10.bcf3014525c8 from=translated src=- shape=5b70dfca vocab=ce407826
+-/
 lemma algebraMap_smul_one (p : F[X]) :
     algebraMap W.CoordinateRing W.FunctionField (p • (1 : W.CoordinateRing))
       = algebraMap F[X] W.FunctionField p := by
@@ -319,7 +344,9 @@ lemma algebraMap_smul_one (p : F[X]) :
     IsScalarTower.algebraMap_apply F[X] W.CoordinateRing W.FunctionField]
 
 omit hF hx in
-/-- The second basis vector of `F[W]` over `F[X]`, pushed into `F(W)`. -/
+/-- The second basis vector of `F[W]` over `F[X]`, pushed into `F(W)`.
+@isnad1 id=eq.0h3v.s11.9469bc970a79 from=translated src=- shape=3ae6f7c2 vocab=655be1ab
+-/
 lemma algebraMap_smul_Y (q : F[X]) :
     algebraMap W.CoordinateRing W.FunctionField (q • CoordinateRing.mk W Y)
       = algebraMap F[X] W.FunctionField q * CoordinateRing.genY W := by
@@ -329,7 +356,9 @@ lemma algebraMap_smul_Y (q : F[X]) :
 
 include hF hx in
 /-- **The key identity.**  `2·V(a) = deg(a)·V(x)`, stated after doubling so that it makes sense in
-an arbitrary value group. -/
+an arbitrary value group.
+@isnad1 id=eq.3h4v.s11.2918181d50f9 from=translated src=- shape=098c0ff6 vocab=1450e122
+-/
 theorem valuation_pow_two_eq_deg {a : W.CoordinateRing} (ha : a ≠ 0) :
     O.valuation (algebraMap W.CoordinateRing W.FunctionField a) ^ 2
       = O.valuation (CoordinateRing.genX W) ^ deg W a := by
@@ -386,7 +415,9 @@ theorem valuation_pow_two_eq_deg {a : W.CoordinateRing} (ha : a ≠ 0) :
 
 include hF hx in
 /-- **A valuation subring of `F(W)` containing `F` and not containing `x` is the place at
-infinity.** -/
+infinity.**
+@isnad1 id=iff.2h4v.s10.0e25e58b8530 from=translated src=- shape=43af1e06 vocab=53197dbb
+-/
 theorem mem_iff_ordInfty_nonneg (f : W.FunctionField) : f ∈ O ↔ 0 ≤ ordInfty W f := by
   classical
   rcases eq_or_ne f 0 with rfl | hf
@@ -450,7 +481,9 @@ the valuation of any nonzero element is an integer power of `O.valuation (genX W
 the value group with `ℤ` is a separate piece of work, and the statement is instead proved from the
 order function `divisorProj` in `EllipticCurves.FunctionField.PlaceDiscreteValuationRing` (`#753`),
 which imports this file.  Combined with `eq_ordInftyValuationSubring` that does give it for this
-`O`, since `ordInftyValuationSubring W` is `placeOf W none`. -/
+`O`, since `ordInftyValuationSubring W` is `placeOf W none`.
+@isnad1 id=ex.3h4v.s11.eb6fd8e14d8f from=translated src=- shape=fc99dd5f vocab=84c1abdb
+-/
 theorem exists_zpow_eq {f : W.FunctionField} (hf : f ≠ 0) :
     ∃ n : ℤ, O.valuation f ^ 2 = O.valuation (CoordinateRing.genX W) ^ n := by
   refine ⟨-ordInfty W f, ?_⟩
@@ -487,14 +520,18 @@ section Affine
 
 variable [IsDedekindDomain W.CoordinateRing]
 
-/-- The generic `x`-coordinate lies in every affine place. -/
+/-- The generic `x`-coordinate lies in every affine place.
+@isnad1 id=mem.0h3v.s8.c9e14705b64d from=translated src=- shape=7d83a86f vocab=1020c174
+-/
 lemma genX_mem_valuationSubringAtPrime (v : HeightOneSpectrum W.CoordinateRing) :
     CoordinateRing.genX W ∈ HeightOneSpectrum.valuationSubringAtPrime W.FunctionField v := by
   rw [CoordinateRing.genX, CoordinateRing.genPsi]
   exact Subalgebra.algebraMap_mem _ _
 
 /-- The place at infinity is **not** an affine place: `genX W` separates them.  This is
-`ord_genX_ne_ordInfty_genX` in the form the classification of places consumes. -/
+`ord_genX_ne_ordInfty_genX` in the form the classification of places consumes.
+@isnad1 id=ne.0h3v.s8.0e71f481c0ad from=translated src=- shape=e12b61fe vocab=a9e9d255
+-/
 theorem ordInftyValuationSubring_ne_valuationSubringAtPrime
     (v : HeightOneSpectrum W.CoordinateRing) :
     ordInftyValuationSubring W ≠ HeightOneSpectrum.valuationSubringAtPrime W.FunctionField v :=

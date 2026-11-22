@@ -47,6 +47,9 @@ namespace QbarPoint
 
 variable {K : Type*} [Field K] [CharZero K] (x : QbarPoint K)
 
+/--
+@isnad1 id=eq.2h3v.s11.0c7503b2cad0 from=translated src=- shape=155dcf96 vocab=abf45198
+-/
 theorem ext' {x y : QbarPoint K} (hP : x.P = y.P)
     (hσ : ∀ a : x.P.1, x.σ (x.P.residue a) = y.σ (y.P.residue ⟨a.1, hP ▸ a.2⟩)) : x = y := by
   obtain ⟨P, σ⟩ := x
@@ -63,52 +66,84 @@ noncomputable def eval (f : K) (hf : f ∈ x.P.1) : AlgebraicClosure ℚ :=
 
 variable {f g : K}
 
+/--
+@isnad1 id=eq.0h2v.s6.be5dea968d6c from=translated src=- shape=e3ba5d2a vocab=54323d08
+-/
 @[simp]
 theorem eval_zero : x.eval 0 x.P.1.zero_mem = 0 := by
   simp [eval, show (⟨0, x.P.1.zero_mem⟩ : x.P.1) = 0 from rfl]
 
+/--
+@isnad1 id=eq.0h2v.s6.d177040163cd from=translated src=- shape=e3ba5d2a vocab=2ae11198
+-/
 @[simp]
 theorem eval_one : x.eval 1 x.P.1.one_mem = 1 := by
   simp [eval, show (⟨1, x.P.1.one_mem⟩ : x.P.1) = 1 from rfl]
 
+/--
+@isnad1 id=eq.2h4v.s7.bd24feddbd45 from=translated src=- shape=1983bd7e vocab=72d7874f
+-/
 theorem eval_add (hf : f ∈ x.P.1) (hg : g ∈ x.P.1) :
     x.eval (f + g) (x.P.1.add_mem _ _ hf hg) = x.eval f hf + x.eval g hg := by
   simp only [eval, ← map_add]
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s7.ac1c2604979a from=translated src=- shape=1983bd7e vocab=1f2ea58c
+-/
 theorem eval_mul (hf : f ∈ x.P.1) (hg : g ∈ x.P.1) :
     x.eval (f * g) (x.P.1.mul_mem _ _ hf hg) = x.eval f hf * x.eval g hg := by
   simp only [eval, ← map_mul]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.511c1b1fca4e from=translated src=- shape=31d5b154 vocab=cce86574
+-/
 theorem eval_neg (hf : f ∈ x.P.1) : x.eval (-f) (x.P.1.neg_mem _ hf) = -x.eval f hf := by
   simp only [eval, ← map_neg]
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s7.7fab302a3339 from=translated src=- shape=1983bd7e vocab=8b1eefc3
+-/
 theorem eval_sub (hf : f ∈ x.P.1) (hg : g ∈ x.P.1) :
     x.eval (f - g) (sub_mem hf hg) = x.eval f hf - x.eval g hg := by
   simp only [eval, ← map_sub]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.41db25150c47 from=translated src=- shape=1614dae6 vocab=70c547d9
+-/
 theorem eval_pow (hf : f ∈ x.P.1) (n : ℕ) :
     x.eval (f ^ n) (pow_mem hf n) = x.eval f hf ^ n := by
   simp only [eval, ← map_pow]
   rfl
 
-/-- The value only depends on the function (proof irrelevance, stated for rewriting). -/
+/-- The value only depends on the function (proof irrelevance, stated for rewriting).
+@isnad1 id=eq.2h4v.s7.99f8f097a8b9 from=translated src=- shape=9d81f38c vocab=353d0890
+-/
 theorem eval_congr {f g : K} (h : f = g) (hf : f ∈ x.P.1) :
     x.eval f hf = x.eval g (h ▸ hf) := by
   subst h; rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.f9c05d76499e from=translated src=- shape=29d8fb61 vocab=7cc27e80
+-/
 @[simp]
 theorem eval_ratCast (q : ℚ) : x.eval (q : K) (x.P.ratCast_mem q) = (q : AlgebraicClosure ℚ) := by
   rw [eval, Place.residue_mk_ratCast, map_ratCast]
 
+/--
+@isnad1 id=eq.0h3v.s7.07b78d6b2b86 from=translated src=- shape=f026f86f vocab=9bb28b63
+-/
 @[simp]
 theorem eval_algebraMap (q : ℚ) :
     x.eval (algebraMap ℚ K q) (x.P.algebraMap_mem q) = algebraMap ℚ (AlgebraicClosure ℚ) q :=
   x.eval_ratCast q
 
+/--
+@isnad1 id=iff.1h3v.s10.384b6ee2c87f from=translated src=- shape=80794d8b vocab=805cdcf6
+-/
 theorem eval_eq_zero_iff_mem_maximalIdeal (hf : f ∈ x.P.1) :
     x.eval f hf = 0 ↔ (⟨f, hf⟩ : x.P.1) ∈ maximalIdeal x.P.1 := by
   rw [eval, map_eq_zero_iff _ x.σ.injective, Place.residue_eq_zero_iff]
@@ -117,17 +152,25 @@ section IsCurveField
 
 variable [IsCurveField K]
 
-/-- A nonzero regular function vanishes at `x` iff it has positive order at `x.P`. -/
+/-- A nonzero regular function vanishes at `x` iff it has positive order at `x.P`.
+@isnad1 id=iff.2h3v.s7.37d0caed4ecf from=translated src=- shape=74c6da44 vocab=c2ebe647
+-/
 theorem eval_eq_zero_iff (hf : f ∈ x.P.1) (hf0 : f ≠ 0) :
     x.eval f hf = 0 ↔ 0 < x.P.ord f := by
   rw [eval_eq_zero_iff_mem_maximalIdeal, x.P.ord_pos_iff_mem_maximalIdeal (a := ⟨f, hf⟩) hf0]
 
+/--
+@isnad1 id=iff.1h3v.s7.85506269777a from=translated src=- shape=8e0a8dae vocab=c2ebe647
+-/
 theorem eval_eq_zero_iff' (hf : f ∈ x.P.1) : x.eval f hf = 0 ↔ f = 0 ∨ 0 < x.P.ord f := by
   rcases eq_or_ne f 0 with rfl | hf0
   · simp
   · simp [x.eval_eq_zero_iff hf hf0, hf0]
 
 omit [IsCurveField K] in
+/--
+@isnad1 id=eq.2h3v.s7.ad1fe8acf86c from=translated src=- shape=4ee53613 vocab=ac1e2ffa
+-/
 theorem eval_inv (hf : f ∈ x.P.1) (hfi : f⁻¹ ∈ x.P.1) :
     x.eval f⁻¹ hfi = (x.eval f hf)⁻¹ := by
   rcases eq_or_ne f 0 with rfl | hf0
@@ -142,6 +185,9 @@ end IsCurveField
 noncomputable def fieldOf : IntermediateField ℚ (AlgebraicClosure ℚ) :=
   x.σ.toRatAlgHom.fieldRange
 
+/--
+@isnad1 id=mem.1h3v.s7.0c7c825f3821 from=translated src=- shape=20a59bf9 vocab=1363405f
+-/
 theorem eval_mem_fieldOf (hf : f ∈ x.P.1) : x.eval f hf ∈ x.fieldOf :=
   ⟨x.P.residue ⟨f, hf⟩, rfl⟩
 
@@ -157,12 +203,20 @@ section IsCurveField
 variable [IsCurveField K]
 
 omit [IsCurveField K] in
+/--
+@isnad1 id=eq.0h2v.s5.af88f3dd1879 from=translated src=- shape=2f9f940f vocab=d8ece7f1
+-/
 theorem deg_eq : x.deg = x.P.deg :=
   x.residueFieldEquiv.toLinearEquiv.finrank_eq.symm
 
+/--
+@isnad1 id=lt.0h2v.s5.e8d0820179ad from=translated src=- shape=4d54d531 vocab=d6530dcc
+-/
 theorem deg_pos : 0 < x.deg := x.deg_eq ▸ x.P.deg_pos
 
-/-- Every place carries an algebraic point. -/
+/-- Every place carries an algebraic point.
+@isnad1 id=ex.0h2v.s5.8521293fdf42 from=translated src=- shape=39e54df0 vocab=39b50af6
+-/
 theorem exists_P_eq (P : Place K) : ∃ x : QbarPoint K, x.P = P :=
   ⟨⟨P, (IsAlgClosed.lift (R := ℚ) (S := P.ResidueField) (M := AlgebraicClosure ℚ)).toRingHom⟩,
     rfl⟩

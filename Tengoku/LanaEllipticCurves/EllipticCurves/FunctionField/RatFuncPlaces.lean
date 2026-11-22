@@ -68,7 +68,9 @@ variable {F : Type*} [Field F] {O : ValuationSubring (RatFunc F)}
 
 /-- `X⁻¹ ^ d` clears the denominator of any polynomial of degree at most `d`: the result lies in
 any subring of `F(X)` containing the constants and `X⁻¹`.  This is the statement that a polynomial
-of degree `≤ d` is `X ^ d` times a polynomial in `1 / X`. -/
+of degree `≤ d` is `X ^ d` times a polynomial in `1 / X`.
+@isnad1 id=mem.3h4v.s9.d14206cb7881 from=translated src=- shape=bbcde447 vocab=699eb58d
+-/
 theorem mul_inv_X_pow_mem (hC : ∀ c : F, RatFunc.C c ∈ O) (ht : (X : RatFunc F)⁻¹ ∈ O)
     (p : F[X]) {d : ℕ} (hp : p.natDegree ≤ d) :
     algebraMap F[X] (RatFunc F) p * ((X : RatFunc F)⁻¹) ^ d ∈ O := by
@@ -84,7 +86,9 @@ theorem mul_inv_X_pow_mem (hC : ∀ c : F, RatFunc.C c ∈ O) (ht : (X : RatFunc
   rw [hrw]
   exact mul_mem (hC _) (pow_mem ht _)
 
-/-- A nonzero constant is a unit of any subring of `F(X)` containing the constants. -/
+/-- A nonzero constant is a unit of any subring of `F(X)` containing the constants.
+@isnad1 id=not.2h3v.s8.f7b3c4a80363 from=translated src=- shape=4ca9fcaa vocab=a809e4c9
+-/
 theorem C_notMem_nonunits (hC : ∀ c : F, RatFunc.C c ∈ O) {c : F} (hc : c ≠ 0) :
     RatFunc.C c ∉ O.nonunits := by
   rw [O.mem_nonunits_iff_or]
@@ -94,7 +98,9 @@ theorem C_notMem_nonunits (hC : ∀ c : F, RatFunc.C c ∈ O) {c : F} (hc : c �
   exact hC _
 
 /-- Strictly below the degree bound, `p̂ · X⁻¹ ^ d` is a nonunit: one factor of `X⁻¹` is left over,
-and `X⁻¹` is a nonunit as soon as `X ∉ O`. -/
+and `X⁻¹` is a nonunit as soon as `X ∉ O`.
+@isnad1 id=mem.3h4v.s9.e3f202ab0ddb from=translated src=- shape=8f8fc2ad vocab=754d898d
+-/
 theorem mul_inv_X_pow_mem_nonunits (hC : ∀ c : F, RatFunc.C c ∈ O)
     (htn : (X : RatFunc F)⁻¹ ∈ O.nonunits) (p : F[X]) {d : ℕ} (hp : p.natDegree < d) :
     algebraMap F[X] (RatFunc F) p * ((X : RatFunc F)⁻¹) ^ d ∈ O.nonunits := by
@@ -106,7 +112,9 @@ theorem mul_inv_X_pow_mem_nonunits (hC : ∀ c : F, RatFunc.C c ∈ O)
   rwa [hrw] at hmem
 
 /-- Exactly at the degree bound, `q̂ · X⁻¹ ^ (natDegree q)` is a *unit*: it is the leading
-coefficient plus a nonunit. -/
+coefficient plus a nonunit.
+@isnad1 id=not.3h3v.s9.a2766ef0adbb from=translated src=- shape=14f75334 vocab=9d45ef83
+-/
 theorem mul_inv_X_pow_notMem_nonunits (hC : ∀ c : F, RatFunc.C c ∈ O)
     (htn : (X : RatFunc F)⁻¹ ∈ O.nonunits) {q : F[X]} (hq : q ≠ 0) :
     algebraMap F[X] (RatFunc F) q * ((X : RatFunc F)⁻¹) ^ q.natDegree ∉ O.nonunits := by
@@ -132,7 +140,9 @@ theorem mul_inv_X_pow_notMem_nonunits (hC : ∀ c : F, RatFunc.C c ∈ O)
   exact sub_mem hmem herase
 
 /-- The quotient of two polynomials with `deg p ≤ deg q` lies in `O`: both `p̂ · X⁻¹ ^ deg q` and
-`q̂ · X⁻¹ ^ deg q` lie in `O`, and the second is a unit. -/
+`q̂ · X⁻¹ ^ deg q` lie in `O`, and the second is a unit.
+@isnad1 id=mem.4h4v.s9.d6e9db491f41 from=translated src=- shape=8c68955c vocab=c43f2ce8
+-/
 theorem div_mem_of_natDegree_le (hC : ∀ c : F, RatFunc.C c ∈ O)
     (htn : (X : RatFunc F)⁻¹ ∈ O.nonunits) {p q : F[X]} (hq : q ≠ 0)
     (hpq : p.natDegree ≤ q.natDegree) :
@@ -152,7 +162,9 @@ theorem div_mem_of_natDegree_le (hC : ∀ c : F, RatFunc.C c ∈ O)
   exact mul_mem hA hBinv
 
 /-- The quotient of two polynomials with `deg q < deg p` does *not* lie in `O`: its inverse is a
-nonunit. -/
+nonunit.
+@isnad1 id=not.5h4v.s10.49a58707107c from=translated src=- shape=e5e73f12 vocab=71207abe
+-/
 theorem div_notMem_of_natDegree_lt (hC : ∀ c : F, RatFunc.C c ∈ O)
     (htn : (X : RatFunc F)⁻¹ ∈ O.nonunits) {p q : F[X]} (hp : p ≠ 0) (hq : q ≠ 0)
     (hpq : q.natDegree < p.natDegree) :
@@ -177,7 +189,9 @@ theorem div_notMem_of_natDegree_lt (hC : ∀ c : F, RatFunc.C c ∈ O)
   intro hfO
   exact ((O.inv_mem_nonunits_iff).1 hinv).resolve_left (div_ne_zero hp0 hq0) hfO
 
-/-- Every polynomial lies in a subring of `F(X)` that contains the constants and `X`. -/
+/-- Every polynomial lies in a subring of `F(X)` that contains the constants and `X`.
+@isnad1 id=mem.2h3v.s9.0ed0241f94eb from=translated src=- shape=f2fd1104 vocab=fc33b6d9
+-/
 theorem algebraMap_polynomial_mem (hC : ∀ c : F, RatFunc.C c ∈ O) (hX : (X : RatFunc F) ∈ O)
     (p : F[X]) : algebraMap F[X] (RatFunc F) p ∈ O := by
   refine Polynomial.induction_on' p (fun a b ha hb => by rw [map_add]; exact add_mem ha hb)
@@ -216,20 +230,27 @@ theorem eq_inftyValuationSubring (hC : ∀ c : F, RatFunc.C c ∈ O) (hX : (X : 
       have hmem := div_mem_of_natDegree_le hC htn f.denom_ne_zero hle
       rwa [RatFunc.num_div_denom] at hmem
 
-/-- The constants lie in the valuation subring at infinity. -/
+/-- The constants lie in the valuation subring at infinity.
+@isnad1 id=mem.0h2v.s7.48b0efc758a7 from=translated src=- shape=5a3f5f03 vocab=4cf39a10
+-/
 theorem algebraMap_mem_inftyValuationSubring (c : F) :
     algebraMap F (RatFunc F) c ∈ (RatFunc.inftyValuation F).valuationSubring := by
   rcases eq_or_ne c 0 with rfl | hc
   · simp
   · rw [Valuation.mem_valuationSubring_iff, RatFunc.algebraMap_eq_C, RatFunc.inftyValuation.C F hc]
 
-/-- The valuation subring at infinity is proper: `X` is not in it. -/
+/-- The valuation subring at infinity is proper: `X` is not in it.
+@isnad1 id=not.0h1v.s6.4a618351340e from=translated src=- shape=7a7675ac vocab=e5eba05f
+-/
 theorem X_notMem_inftyValuationSubring :
     (X : RatFunc F) ∉ (RatFunc.inftyValuation F).valuationSubring := by
   rw [Valuation.mem_valuationSubring_iff, RatFunc.inftyValuation.X, ← WithZero.exp_zero,
     WithZero.exp_le_exp]
   omega
 
+/--
+@isnad1 id=ne.0h1v.s6.8d6c70843f84 from=translated src=- shape=ac36a8f0 vocab=0181ba7c
+-/
 theorem inftyValuationSubring_ne_top :
     (RatFunc.inftyValuation F).valuationSubring ≠ ⊤ := by
   intro h

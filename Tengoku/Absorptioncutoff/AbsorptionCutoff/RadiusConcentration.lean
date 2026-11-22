@@ -35,14 +35,18 @@ noncomputable def roundedInitialRadius
     (ρ : ℝ) (N : ℕ) (x : Fin N → ℝ) : ℝ :=
   (N : ℝ)⁻¹ * ∑ i, ((Q₁ (x i / ρ) : ℤ) : ℝ) ^ 2
 
-/-- The deterministic rounded initial radius is nonnegative. -/
+/-- The deterministic rounded initial radius is nonnegative.
+@isnad1 id=le.0h3v.s4.34da122bf0bb from=translated src=- shape=7220525c vocab=c695ba01
+-/
 lemma roundedInitialRadius_nonneg (ρ : ℝ) (N : ℕ) (x : Fin N → ℝ) :
     0 ≤ roundedInitialRadius ρ N x := by
   unfold roundedInitialRadius
   positivity
 
 /-- The paper's deterministic initial-radius bound for vectors with coordinates
-in `[-1,1]`. -/
+in `[-1,1]`.
+@isnad1 id=le.3h3v.s6.7685c87d6bce from=translated src=- shape=02245b86 vocab=dedc3536
+-/
 lemma roundedInitialRadius_le_sq
     {ρ : ℝ} {N : ℕ} (hρ : 0 < ρ) (hN : 0 < N)
     {x : Fin N → ℝ} (hx : ∀ i, |x i| ≤ 1) :
@@ -80,7 +84,9 @@ lemma roundedInitialRadius_le_sq
       field_simp [hNreal.ne']
 
 /-- The deterministic initial-radius bound in the exact form displayed in the
-paper. -/
+paper.
+@isnad1 id=le.3h3v.s7.43b2d32bcda0 from=translated src=- shape=79ba2a28 vocab=9a26a261
+-/
 lemma roundedInitialRadius_le_paper
     {ρ : ℝ} {N : ℕ} (hρ : 0 < ρ) (hN : 0 < N)
     {x : Fin N → ℝ} (hx : ∀ i, |x i| ≤ 1) :
@@ -145,7 +151,9 @@ noncomputable def radiusTrackingExitTime
     (A ρ h₀ a δ : ℝ) (T : ℕ) (ω : ℕ → ℝ) : ℕ :=
   sInf ({t : ℕ | t ≤ T ∧ ¬radiusTrackingGood A ρ h₀ a δ t ω} ∪ {T + 1})
 
-/-- The capped tracking exit time never exceeds its sentinel value. -/
+/-- The capped tracking exit time never exceeds its sentinel value.
+@isnad1 id=le.0h7v.s5.f3025bbdf19d from=translated src=- shape=6e42dbd7 vocab=5e6a5bce
+-/
 lemma radiusTrackingExitTime_le_sentinel
     (A ρ h₀ a δ : ℝ) (T : ℕ) (ω : ℕ → ℝ) :
     radiusTrackingExitTime A ρ h₀ a δ T ω ≤ T + 1 := by
@@ -171,7 +179,9 @@ noncomputable def stoppedNormalizedRadiusNoise
           roundedBeta A ρ a (roundedOrbit A ρ h₀ t) *
             normalizedRadiusNoise A ρ h₀ a t ω) ω
 
-/-- Successor-index form of the stopped normalized noise. -/
+/-- Successor-index form of the stopped normalized noise.
+@isnad1 id=eq.0h8v.s6.1aad14b70f23 from=translated src=- shape=d4fa9ca0 vocab=1c10150e
+-/
 @[simp] lemma stoppedNormalizedRadiusNoise_succ
     (A ρ h₀ a δ : ℝ) (T t : ℕ) (ω : ℕ → ℝ) :
     stoppedNormalizedRadiusNoise A ρ h₀ a δ T (t + 1) ω =
@@ -182,7 +192,9 @@ noncomputable def stoppedNormalizedRadiusNoise
 
 /-- Before the capped exit time, every radius up to the current index lies in
 the tracking window; conversely, tracking through `t≤T` keeps the exit time
-strictly beyond `t`. -/
+strictly beyond `t`.
+@isnad1 id=iff.1h8v.s5.cb8c9ad29439 from=translated src=- shape=d8628372 vocab=5598b78b
+-/
 lemma lt_radiusTrackingExitTime_iff
     {A ρ h₀ a δ : ℝ} {T t : ℕ} {ω : ℕ → ℝ} (htT : t ≤ T) :
     t < radiusTrackingExitTime A ρ h₀ a δ T ω ↔
@@ -207,7 +219,9 @@ lemma lt_radiusTrackingExitTime_iff
       omega
 
 /-- Tracking-good is exactly the assertion that the normalized radius error
-does not exceed the tolerance. -/
+does not exceed the tolerance.
+@isnad1 id=iff.2h7v.s5.8fe14e5ddc8f from=translated src=- shape=2ca7b894 vocab=6b06403e
+-/
 lemma radiusTrackingGood_iff_abs_normalizedRadiusError_le
     {A ρ h₀ a δ : ℝ} {t : ℕ} {ω : ℕ → ℝ}
     (hh₀ : 0 ≤ h₀) (ha : 0 < a) :
@@ -219,7 +233,9 @@ lemma radiusTrackingGood_iff_abs_normalizedRadiusError_le
   rw [abs_div, abs_of_pos hden, div_le_iff₀ hden]
 
 /-- Exit through the capped horizon is exactly an exceedance of the normalized
-radius-tracking tolerance at some time up to that horizon. -/
+radius-tracking tolerance at some time up to that horizon.
+@isnad1 id=iff.2h7v.s6.9de4453278c7 from=translated src=- shape=b204ab6d vocab=03dfa42b
+-/
 lemma radiusTrackingExitTime_le_iff_exists_abs_normalizedRadiusError_gt
     {A ρ h₀ a δ : ℝ} {T : ℕ} {ω : ℕ → ℝ}
     (hh₀ : 0 ≤ h₀) (ha : 0 < a) :
@@ -246,7 +262,9 @@ lemma radiusTrackingExitTime_le_iff_exists_abs_normalizedRadiusError_gt
     exact (not_le_of_gt htbad) hgood
 
 /-- Strictly before the capped exit time, the current index satisfies the
-tracking-good inequality. -/
+tracking-good inequality.
+@isnad1 id=radiustr.2h8v.s5.bc45f2b68beb from=translated src=- shape=a9854092 vocab=5598b78b
+-/
 lemma radiusTrackingGood_of_lt_exit
     {A ρ h₀ a δ : ℝ} {T t : ℕ} {ω : ℕ → ℝ}
     (htT : t ≤ T)
@@ -255,7 +273,9 @@ lemma radiusTrackingGood_of_lt_exit
   (lt_radiusTrackingExitTime_iff htT).mp hlt t le_rfl
 
 /-- Exiting through the tracked horizon forces the normalized tracking error
-at the exit index strictly above the tolerance. -/
+at the exit index strictly above the tolerance.
+@isnad1 id=lt.3h7v.s6.454b7ada1e22 from=translated src=- shape=fffdc564 vocab=03dfa42b
+-/
 lemma delta_lt_abs_normalizedRadiusError_at_exit
     {A ρ h₀ a δ : ℝ} (hh₀ : 0 ≤ h₀) (ha : 0 < a)
     {T : ℕ} {ω : ℕ → ℝ}
@@ -289,7 +309,9 @@ lemma delta_lt_abs_normalizedRadiusError_at_exit
   exact (lt_div_iff₀ hdenom).2 hstrict
 
 /-- Before the capped exit time, a nonnegative stochastic radius belongs to
-the local orbit window used in the deterministic amplification bound. -/
+the local orbit window used in the deterministic amplification bound.
+@isnad1 id=mem.3h8v.s6.05f17583ac97 from=translated src=- shape=37db57da vocab=50ea1319
+-/
 lemma eval_mem_roundedOrbitWindow_of_lt_exit
     {A ρ h₀ a δ : ℝ} {T t : ℕ} {ω : ℕ → ℝ}
     (htT : t ≤ T) (hω : 0 ≤ ω t)
@@ -300,7 +322,9 @@ lemma eval_mem_roundedOrbitWindow_of_lt_exit
     radiusTrackingGood_of_lt_exit htT hlt
 
 /-- The rounded mean map has nonnegative derivative throughout the
-nonnegative radius axis. -/
+nonnegative radius axis.
+@isnad1 id=le.4h3v.s6.3e8b69e9cbbe from=translated src=- shape=26f9cace vocab=b815ce95
+-/
 lemma deriv_roundedMeanMap_nonneg_of_nonneg
     {A ρ h : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : 0 ≤ h) :
@@ -319,7 +343,9 @@ lemma deriv_roundedMeanMap_nonneg_of_nonneg
     · exact gaussianPDFReal_nonneg 0 1 _
 
 /-- The rounded mean-map derivative has a finite upper bound on every compact
-nonnegative radius interval, including the flat endpoint at the origin. -/
+nonnegative radius interval, including the flat endpoint at the origin.
+@isnad1 id=ex.4h3v.s6.10aed65759f6 from=translated src=- shape=67eafdcc vocab=7618f155
+-/
 lemma exists_deriv_roundedMeanMap_le_on_Icc_zero
     {A ρ R : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hR : 0 ≤ R) :
@@ -374,7 +400,9 @@ lemma exists_deriv_roundedMeanMap_le_on_Icc_zero
           (le_max_right _ _)
 
 /-- The derivative image of every nonnegative local orbit window is bounded
-above. -/
+above.
+@isnad1 id=bddabove.6h5v.s6.0f3c3215a90c from=translated src=- shape=880914a3 vocab=dfed6200
+-/
 lemma bddAbove_deriv_roundedMeanMap_image_roundedOrbitWindow
     {A ρ δ a h : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : 0 ≤ h) (ha : 0 ≤ a) (hδ : 0 ≤ δ) :
@@ -388,7 +416,9 @@ lemma bddAbove_deriv_roundedMeanMap_image_roundedOrbitWindow
   exact hL u (roundedOrbitWindow_subset_Icc hu)
 
 /-- The normalized one-step radius ratio is nonnegative at every
-nonnegative orbit radius and terminal scale. -/
+nonnegative orbit radius and terminal scale.
+@isnad1 id=le.2h4v.s5.890b4d74a96f from=translated src=- shape=9a5056dd vocab=df8a6ea6
+-/
 lemma roundedBeta_nonneg
     {A ρ a h : ℝ} (hh : 0 ≤ h) (ha : 0 ≤ a) :
     0 ≤ roundedBeta A ρ a h := by
@@ -397,7 +427,9 @@ lemma roundedBeta_nonneg
     (add_nonneg (roundedMeanMap_nonneg A ρ h) ha)
 
 /-- The deterministic tracking amplification at the fixed-precision terminal
-scale is subpolynomial, uniformly over every finite horizon. -/
+scale is subpolynomial, uniformly over every finite horizon.
+@isnad1 id=ex.10h5v.s7.92a183c80da1 from=translated src=- shape=93a5fd03 vocab=762e2ca7
+-/
 lemma exists_eventually_trackingAmplification_le_exp_sq
     {A ρ h₀ C₀ r : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -431,7 +463,9 @@ lemma exists_eventually_trackingAmplification_le_exp_sq
       hcomb N hN δ hδ hδ_quarter s t hst
 
 /-- The deterministic tracking amplification is uniformly subpolynomial over
-every initial radius in `[0,C₀]` and every finite horizon. -/
+every initial radius in `[0,C₀]` and every finite horizon.
+@isnad1 id=ex.8h4v.s7.4eac07d00bd5 from=translated src=- shape=e312de01 vocab=762e2ca7
+-/
 lemma exists_eventually_uniform_trackingAmplification_le_exp_sq
     {A ρ r C₀ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -465,7 +499,9 @@ lemma exists_eventually_uniform_trackingAmplification_le_exp_sq
       hcomb N hNbase h₀ hh₀ hh₀C₀ δ hδ hδ_quarter s t hst
 
 /-- The paper's deterministic normalized amplification factor is
-nonnegative on every nonnegative local orbit window. -/
+nonnegative on every nonnegative local orbit window.
+@isnad1 id=le.6h5v.s6.0f44b042e11d from=translated src=- shape=e5c0355d vocab=b8ed259f
+-/
 lemma roundedAlpha_nonneg
     {A ρ δ a h : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : 0 ≤ h) (ha : 0 ≤ a) (hδ : 0 ≤ δ) :
@@ -484,7 +520,9 @@ lemma roundedAlpha_nonneg
   exact mul_nonneg hsup (roundedBeta_nonneg hh ha)
 
 /-- The whole segment between a local-window point and its nonnegative center
-remains inside the same local orbit window. -/
+remains inside the same local orbit window.
+@isnad1 id=le.2h4v.s5.5913d05d7725 from=translated src=- shape=42e616d3 vocab=c06dfe36
+-/
 lemma uIcc_subset_roundedOrbitWindow_of_mem
     {δ a h x : ℝ} (hh : 0 ≤ h)
     (hx : x ∈ roundedOrbitWindow δ a h) :
@@ -507,7 +545,9 @@ lemma uIcc_subset_roundedOrbitWindow_of_mem
     linarith
 
 /-- The rounded-map secant quotient between two distinct nonnegative radii is
-an actual derivative at an intermediate radius. -/
+an actual derivative at an intermediate radius.
+@isnad1 id=ex.6h4v.s7.e501de0d4fbd from=translated src=- shape=aecdde69 vocab=a215a7aa
+-/
 lemma exists_deriv_eq_secant_roundedMeanMap
     {A ρ x h : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hx : 0 ≤ x) (hh : 0 ≤ h) (hne : x ≠ h) :
@@ -542,7 +582,9 @@ lemma exists_deriv_eq_secant_roundedMeanMap
     exact ⟨hc.1.le, hc.2.le⟩
 
 /-- The pathwise difference quotient is the rounded-map derivative at some
-point of the current local orbit window. -/
+point of the current local orbit window.
+@isnad1 id=ex.7h7v.s7.167373d78ed9 from=translated src=- shape=bdac1949 vocab=ec346e46
+-/
 lemma exists_mem_roundedOrbitWindow_deriv_eq_radiusDifferenceQuotient
     {A ρ h₀ a δ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     {t : ℕ} {ω : ℕ → ℝ}
@@ -568,7 +610,9 @@ lemma exists_mem_roundedOrbitWindow_deriv_eq_radiusDifferenceQuotient
     exact hderiv
 
 /-- Once the local derivative image is bounded above, the pathwise difference
-quotient is controlled by the paper's local derivative supremum. -/
+quotient is controlled by the paper's local derivative supremum.
+@isnad1 id=le.8h7v.s7.05aee61719b3 from=translated src=- shape=60df437c vocab=b6ff061f
+-/
 lemma radiusDifferenceQuotient_le_roundedLocalDerivativeSup_of_bddAbove
     {A ρ h₀ a δ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     {t : ℕ} {ω : ℕ → ℝ}
@@ -586,7 +630,9 @@ lemma radiusDifferenceQuotient_le_roundedLocalDerivativeSup_of_bddAbove
   exact le_csSup hbdd ⟨c, hc, rfl⟩
 
 /-- The pathwise difference quotient is controlled by the paper's local
-derivative supremum throughout every nonnegative local orbit window. -/
+derivative supremum throughout every nonnegative local orbit window.
+@isnad1 id=le.7h7v.s6.2ea69e130013 from=translated src=- shape=b1055290 vocab=75d2cb85
+-/
 lemma radiusDifferenceQuotient_le_roundedLocalDerivativeSup
     {A ρ h₀ a δ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     {t : ℕ} {ω : ℕ → ℝ}
@@ -600,7 +646,9 @@ lemma radiusDifferenceQuotient_le_roundedLocalDerivativeSup
       hA hρ hρ_lt hh ha hδ)
 
 /-- Inside the local tracking window, the normalized difference-quotient
-coefficient is bounded by the paper's deterministic amplification factor. -/
+coefficient is bounded by the paper's deterministic amplification factor.
+@isnad1 id=le.7h7v.s7.74a1dfd858e1 from=translated src=- shape=0bb22038 vocab=7b8b2a17
+-/
 lemma abs_radiusNormalizedMultiplier_le_roundedAlpha_of_mem
     {A ρ h₀ a δ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     {t : ℕ} {ω : ℕ → ℝ}
@@ -629,7 +677,9 @@ lemma abs_radiusNormalizedMultiplier_le_roundedAlpha_of_mem
 
 /-- Strictly before the capped tracking exit, the normalized multiplier obeys
 the deterministic amplification bound whenever the current state is
-nonnegative. -/
+nonnegative.
+@isnad1 id=le.9h8v.s7.a145f4e16ef6 from=translated src=- shape=49e22d5e vocab=2dfe9f25
+-/
 lemma abs_radiusNormalizedMultiplier_le_roundedAlpha_of_lt_exit
     {A ρ h₀ a δ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh₀ : 0 ≤ h₀) (ha : 0 < a) (hδ : 0 ≤ δ)
@@ -643,7 +693,9 @@ lemma abs_radiusNormalizedMultiplier_le_roundedAlpha_of_lt_exit
     (eval_mem_roundedOrbitWindow_of_lt_exit htT hω hlt)
 
 /-- The time-`t` coordinate is measurable with respect to the canonical
-coordinate-prefix filtration at time `t`. -/
+coordinate-prefix filtration at time `t`.
+@isnad1 id=measurab.0h1v.s5.5a740ab94e18 from=translated src=- shape=38e43e73 vocab=a2d6a2cf
+-/
 lemma measurable_piLE_eval (t : ℕ) :
     Measurable[Filtration.piLE t] (fun ω : ℕ → ℝ => ω t) := by
   rw [Filtration.piLE_eq_comap_frestrictLe]
@@ -654,7 +706,9 @@ lemma measurable_piLE_eval (t : ℕ) :
   exact (measurable_pi_apply ⟨t, Finset.mem_Iic.mpr le_rfl⟩).comp hrestrict
 
 /-- The tracking error at time `t` is measurable with respect to the
-coordinate-prefix filtration. -/
+coordinate-prefix filtration.
+@isnad1 id=measurab.0h4v.s5.9146cdd736ce from=translated src=- shape=81d1422e vocab=ee9cb4e0
+-/
 lemma measurable_radiusTrackingError
     (A ρ h₀ : ℝ) (t : ℕ) :
     Measurable[Filtration.piLE t] (radiusTrackingError A ρ h₀ t) := by
@@ -664,7 +718,9 @@ lemma measurable_radiusTrackingError
   exact (measurable_piLE_eval t).sub hconst
 
 /-- The normalized tracking error is measurable with respect to the
-coordinate-prefix filtration at its current time. -/
+coordinate-prefix filtration at its current time.
+@isnad1 id=measurab.0h5v.s5.aec44adafd31 from=translated src=- shape=3512d5a2 vocab=dcc3c97e
+-/
 lemma measurable_normalizedRadiusError
     (A ρ h₀ a : ℝ) (t : ℕ) :
     Measurable[Filtration.piLE t]
@@ -673,7 +729,9 @@ lemma measurable_normalizedRadiusError
   exact (measurable_radiusTrackingError A ρ h₀ t).div measurable_const
 
 /-- The paper's case-defined difference quotient is measurable at the current
-time. -/
+time.
+@isnad1 id=measurab.3h4v.s6.205bb683140b from=translated src=- shape=3e886a7e vocab=332f20f5
+-/
 lemma measurable_radiusDifferenceQuotient
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (h₀ : ℝ) (t : ℕ) :
@@ -699,7 +757,9 @@ lemma measurable_radiusDifferenceQuotient
   exact Measurable.ite hbranch
     ((hVcurrent.sub hVorbit).div herr) hderiv
 
-/-- The normalized tracking multiplier is measurable at the current time. -/
+/-- The normalized tracking multiplier is measurable at the current time.
+@isnad1 id=measurab.3h5v.s6.15b81110eecb from=translated src=- shape=9fd02e2c vocab=4b46112f
+-/
 lemma measurable_radiusNormalizedMultiplier
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (h₀ a : ℝ) (t : ℕ) :
@@ -712,7 +772,9 @@ lemma measurable_radiusNormalizedMultiplier
   exact (measurable_radiusDifferenceQuotient hA hρ hρ_lt h₀ t).mul hbeta
 
 /-- The tracking-good event at time `t` belongs to the canonical filtration
-at time `t`. -/
+at time `t`.
+@isnad1 id=measurab.0h6v.s5.577fee3e12e6 from=translated src=- shape=56f2db53 vocab=6aba6a1a
+-/
 lemma measurableSet_radiusTrackingGood
     (A ρ h₀ a δ : ℝ) (t : ℕ) :
     MeasurableSet[Filtration.piLE t]
@@ -734,7 +796,9 @@ lemma measurableSet_radiusTrackingGood
   exact measurableSet_le hleft hright
 
 /-- Through the fixed horizon, survival of the capped tracking exit time is
-measurable in the canonical coordinate-prefix filtration. -/
+measurable in the canonical coordinate-prefix filtration.
+@isnad1 id=measurab.1h7v.s6.3519ae949b77 from=translated src=- shape=364af740 vocab=c7d53040
+-/
 lemma measurableSet_lt_radiusTrackingExitTime
     {A ρ h₀ a δ : ℝ} {T t : ℕ} (htT : t ≤ T) :
     MeasurableSet[Filtration.piLE t]
@@ -754,7 +818,9 @@ lemma measurableSet_lt_radiusTrackingExitTime
   · simp [hut]
 
 /-- The event that the capped tracking exit occurs through the tracked horizon
-is measurable in the ambient path sigma-algebra. -/
+is measurable in the ambient path sigma-algebra.
+@isnad1 id=measurab.0h6v.s5.38752d249f55 from=translated src=- shape=18e88795 vocab=34ec8745
+-/
 lemma measurableSet_radiusTrackingExitTime_le
     (A ρ h₀ a δ : ℝ) (T : ℕ) :
     MeasurableSet
@@ -768,7 +834,9 @@ lemma measurableSet_radiusTrackingExitTime_le
     (measurableSet_lt_radiusTrackingExitTime le_rfl)).compl
 
 /-- The capped tracking exit time, viewed as a `WithTop ℕ`-valued random time, is a
-stopping time for the canonical coordinate-prefix filtration. -/
+stopping time for the canonical coordinate-prefix filtration.
+@isnad1 id=isstoppi.0h6v.s5.2492d729f6e4 from=translated src=- shape=b0d7af55 vocab=875bad7c
+-/
 lemma isStoppingTime_radiusTrackingExitTime
     (A ρ h₀ a δ : ℝ) (T : ℕ) :
     IsStoppingTime (Filtration.piLE : Filtration ℕ _)
@@ -798,7 +866,9 @@ lemma isStoppingTime_radiusTrackingExitTime
     exact MeasurableSet.univ
 
 /-- The normalized tracking error stopped at the capped exit time is strongly
-measurable at its current time. -/
+measurable at its current time.
+@isnad1 id=strongly.0h7v.s6.649d56f2258a from=translated src=- shape=2324cdb5 vocab=54ca9997
+-/
 lemma stronglyMeasurable_stoppedNormalizedRadiusError
     (A ρ h₀ a δ : ℝ) (T t : ℕ) :
     StronglyMeasurable[Filtration.piLE t]
@@ -818,7 +888,9 @@ lemma stronglyMeasurable_stoppedNormalizedRadiusError
   exact (hR.stoppedProcess_of_discrete hτ) t
 
 /-- The stopped normalized multiplier is adapted to the canonical
-coordinate-prefix filtration. -/
+coordinate-prefix filtration.
+@isnad1 id=measurab.4h7v.s6.f0d2f022fa1a from=translated src=- shape=ddeef736 vocab=92b40603
+-/
 lemma measurable_stoppedRadiusMultiplier
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (h₀ a δ : ℝ) {T t : ℕ} (htT : t ≤ T) :
@@ -828,7 +900,9 @@ lemma measurable_stoppedRadiusMultiplier
     (measurableSet_lt_radiusTrackingExitTime htT)
 
 /-- The stopped normalized drift term is strongly measurable with respect to
-the current coordinate-prefix filtration. -/
+the current coordinate-prefix filtration.
+@isnad1 id=strongly.4h7v.s6.dd2013e6b86f from=translated src=- shape=f4308548 vocab=1d161251
+-/
 lemma stronglyMeasurable_stoppedRadiusMultiplier_mul_normalizedRadiusError
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (h₀ a δ : ℝ) {T t : ℕ} (htT : t ≤ T) :
@@ -840,7 +914,9 @@ lemma stronglyMeasurable_stoppedRadiusMultiplier_mul_normalizedRadiusError
     hA hρ hρ_lt h₀ a δ htT).mul
       (measurable_normalizedRadiusError A ρ h₀ a t)).stronglyMeasurable
 
-/-- The difference quotient exactly factors the rounded-map increment. -/
+/-- The difference quotient exactly factors the rounded-map increment.
+@isnad1 id=eq.0h5v.s5.30c971b4f7ff from=translated src=- shape=03addf82 vocab=30d4195f
+-/
 lemma radiusDifferenceQuotient_mul_trackingError
     (A ρ h₀ : ℝ) (t : ℕ) (ω : ℕ → ℝ) :
     radiusDifferenceQuotient A ρ h₀ t ω *
@@ -854,13 +930,17 @@ lemma radiusDifferenceQuotient_mul_trackingError
   · rw [radiusDifferenceQuotient, ite_eq_left he, div_mul_cancel₀ _ he]
 
 /-- The tracking error starts from zero when the stochastic and deterministic
-initial radii agree. -/
+initial radii agree.
+@isnad1 id=eq.1h4v.s5.de1698d60afb from=translated src=- shape=f39e8638 vocab=2194c93e
+-/
 lemma radiusTrackingError_zero_of_eval_zero_eq
     {A ρ h₀ : ℝ} {ω : ℕ → ℝ} (hω : ω 0 = h₀) :
     radiusTrackingError A ρ h₀ 0 ω = 0 := by
   simp [radiusTrackingError, hω]
 
-/-- Exact unnormalized error recursion along the deterministic rounded orbit. -/
+/-- Exact unnormalized error recursion along the deterministic rounded orbit.
+@isnad1 id=eq.0h5v.s6.03ea9127ed47 from=translated src=- shape=e47a2e02 vocab=49acd959
+-/
 lemma radiusTrackingError_succ (A ρ h₀ : ℝ) (t : ℕ) (ω : ℕ → ℝ) :
     radiusTrackingError A ρ h₀ (t + 1) ω =
       (roundedMeanMap A ρ (ω t) -
@@ -869,7 +949,9 @@ lemma radiusTrackingError_succ (A ρ h₀ : ℝ) (t : ℕ) (ω : ℕ → ℝ) :
   rw [radiusTrackingError, radiusNoise, roundedOrbit_succ]
   ring
 
-/-- Multiplicative form of the exact tracking-error recursion. -/
+/-- Multiplicative form of the exact tracking-error recursion.
+@isnad1 id=eq.0h5v.s5.a75e3f43d6c5 from=translated src=- shape=f42e55c2 vocab=57f127c8
+-/
 lemma radiusTrackingError_succ_eq_mul_add
     (A ρ h₀ : ℝ) (t : ℕ) (ω : ℕ → ℝ) :
     radiusTrackingError A ρ h₀ (t + 1) ω =
@@ -879,7 +961,9 @@ lemma radiusTrackingError_succ_eq_mul_add
   rw [radiusTrackingError_succ,
     radiusDifferenceQuotient_mul_trackingError]
 
-/-- Exact normalized tracking recursion from the paper. -/
+/-- Exact normalized tracking recursion from the paper.
+@isnad1 id=eq.2h6v.s6.41c9c9655a5e from=translated src=- shape=e53110ae vocab=1271ff70
+-/
 lemma normalizedRadiusError_succ
     {A ρ h₀ a : ℝ} (hh₀ : 0 ≤ h₀) (ha : 0 < a)
     (t : ℕ) (ω : ℕ → ℝ) :
@@ -903,7 +987,9 @@ lemma normalizedRadiusError_succ
   field_simp [hdenom, hnext]
 
 /-- Before the capped tracking exit, the normalized error obeys the paper's
-recursion with the stopped multiplier and stopped noise. -/
+recursion with the stopped multiplier and stopped noise.
+@isnad1 id=eq.3h8v.s6.6d9de29dec7b from=translated src=- shape=59e4acc3 vocab=0825ca00
+-/
 lemma normalizedRadiusError_succ_eq_stopped_of_lt_exit
     {A ρ h₀ a δ : ℝ} (hh₀ : 0 ≤ h₀) (ha : 0 < a)
     {T t : ℕ} {ω : ℕ → ℝ}
@@ -919,7 +1005,9 @@ lemma normalizedRadiusError_succ_eq_stopped_of_lt_exit
   exact normalizedRadiusError_succ hh₀ ha t ω
 
 /-- On the radius-tracking event, the stochastic radius is bounded by the
-corresponding deterministic radius and terminal scale. -/
+corresponding deterministic radius and terminal scale.
+@isnad1 id=le.1h4v.s6.73bed933f9d0 from=translated src=- shape=827c5bba vocab=7729d30c
+-/
 lemma state_le_of_abs_sub_le_mul_add
     {x h a δ : ℝ} (hlocal : |x - h| ≤ δ * (h + a)) :
     x ≤ (1 + δ) * h + δ * a := by
@@ -927,7 +1015,9 @@ lemma state_le_of_abs_sub_le_mul_add
   nlinarith
 
 /-- Squared form of the state localization estimate used in the conditional
-noise bound. -/
+noise bound.
+@isnad1 id=le.5h4v.s7.ec4473ed89d5 from=translated src=- shape=56766df5 vocab=394e9a09
+-/
 lemma state_sq_le_of_abs_sub_le_mul_add
     {x h a δ : ℝ} (hx : 0 ≤ x) (hh : 0 ≤ h) (ha : 0 ≤ a) (hδ : 0 ≤ δ)
     (hlocal : |x - h| ≤ δ * (h + a)) :
@@ -940,13 +1030,17 @@ lemma state_sq_le_of_abs_sub_le_mul_add
   have hupper : 0 ≤ (1 + δ) * (h + a) := mul_nonneg (by linarith) (by linarith)
   nlinarith [sq_nonneg (x - (1 + δ) * (h + a))]
 
-/-- The rounded coordinate observable is nonnegative. -/
+/-- The rounded coordinate observable is nonnegative.
+@isnad1 id=le.0h4v.s4.f9d6cd977b61 from=translated src=- shape=a76df7ca vocab=16ce6fe1
+-/
 lemma roundedCoordinateObservable_nonneg (A ρ h g : ℝ) :
     0 ≤ roundedCoordinateObservable A ρ h g := by
   unfold roundedCoordinateObservable
   positivity
 
-/-- The rounded coordinate observable is measurable in the Gaussian input. -/
+/-- The rounded coordinate observable is measurable in the Gaussian input.
+@isnad1 id=measurab.0h3v.s3.2066e0bb4a33 from=translated src=- shape=53906041 vocab=9a0d5736
+-/
 lemma measurable_roundedCoordinateObservable (A ρ h : ℝ) :
     Measurable (roundedCoordinateObservable A ρ h) := by
   unfold roundedCoordinateObservable
@@ -958,7 +1052,9 @@ lemma measurable_roundedCoordinateObservable (A ρ h : ℝ) :
   exact continuous_tanh.measurable.comp (by fun_prop)
 
 /-- The finite-dimensional radius transition is the empirical average of the
-one-coordinate observables. -/
+one-coordinate observables.
+@isnad1 id=eq.0h5v.s5.ed47bc230478 from=translated src=- shape=b53496bb vocab=0ec6a69a
+-/
 lemma Hmap_eq_average_roundedCoordinateObservable
     (A ρ : ℝ) (N : ℕ) (h : ℝ) (g : Fin N → ℝ) :
     Hmap A ρ N h g =
@@ -966,14 +1062,18 @@ lemma Hmap_eq_average_roundedCoordinateObservable
   rfl
 
 /-- The standard-Gaussian mean of one rounded coordinate is exactly the rounded
-mean map. -/
+mean map.
+@isnad1 id=eq.0h3v.s5.a895cea36d1b from=translated src=- shape=188ccb1f vocab=6cec510a
+-/
 lemma integral_roundedCoordinateObservable (A ρ h : ℝ) :
     ∫ g, roundedCoordinateObservable A ρ h g ∂(gaussianReal 0 1) =
       roundedMeanMap A ρ h := by
   rfl
 
 /-- Uniformly in the radius and Gaussian input, the rounded coordinate
-observable is bounded by the largest possible rounded value. -/
+observable is bounded by the largest possible rounded value.
+@isnad1 id=le.1h4v.s6.c64bf92bfd69 from=translated src=- shape=d1272d08 vocab=b67a860b
+-/
 lemma roundedCoordinateObservable_le_sq
     {A ρ h g : ℝ} (hρ : 0 < ρ) :
     roundedCoordinateObservable A ρ h g ≤ (ρ⁻¹ + 1 / 2) ^ 2 := by
@@ -991,7 +1091,9 @@ lemma roundedCoordinateObservable_le_sq
   exact pow_le_pow_left₀ (abs_nonneg _) hQ 2
 
 /-- Every fixed power of the rounded coordinate observable is integrable under
-the standard Gaussian law. -/
+the standard Gaussian law.
+@isnad1 id=integrab.1h4v.s6.f6a1c5278007 from=translated src=- shape=837947eb vocab=066e7d64
+-/
 lemma integrable_pow_roundedCoordinateObservable
     {A ρ h : ℝ} (hρ : 0 < ρ) (p : ℕ) :
     Integrable (fun g =>
@@ -1009,7 +1111,9 @@ lemma integrable_pow_roundedCoordinateObservable
         (roundedCoordinateObservable_le_sq hρ) p
     _ = (ρ⁻¹ + 1 / 2) ^ (2 * p) := by rw [pow_mul]
 
-/-- The one-step rounded radius has mean equal to the rounded mean map. -/
+/-- The one-step rounded radius has mean equal to the rounded mean map.
+@isnad1 id=eq.2h4v.s6.82c26640629d from=translated src=- shape=c9e4b2a8 vocab=56a51249
+-/
 lemma integral_Hmap_eq_roundedMeanMap
     {A ρ h : ℝ} {N : ℕ} (hρ : 0 < ρ) (hN : N ≠ 0) :
     ∫ g, Hmap A ρ N h g ∂(gaussianVec N) = roundedMeanMap A ρ h := by
@@ -1050,7 +1154,9 @@ lemma integral_Hmap_eq_roundedMeanMap
   rw [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]
   field_simp
 
-/-- The rounded mean map inherits the uniform coordinate bound. -/
+/-- The rounded mean map inherits the uniform coordinate bound.
+@isnad1 id=le.1h3v.s6.a6b92ee93224 from=translated src=- shape=24da3353 vocab=2e3124f2
+-/
 lemma roundedMeanMap_le_sq {A ρ h : ℝ} (hρ : 0 < ρ) :
     roundedMeanMap A ρ h ≤ (ρ⁻¹ + 1 / 2) ^ 2 := by
   rw [← integral_roundedCoordinateObservable]
@@ -1066,7 +1172,9 @@ lemma roundedMeanMap_le_sq {A ρ h : ℝ} (hρ : 0 < ρ) :
     _ = (ρ⁻¹ + 1 / 2) ^ 2 := by simp
 
 /-- Every realization of the rounded radius step obeys the same uniform
-coordinate bound. -/
+coordinate bound.
+@isnad1 id=le.2h5v.s6.5a4237619767 from=translated src=- shape=890aee9d vocab=f02514ef
+-/
 lemma Hmap_le_sq {A ρ h : ℝ} {N : ℕ}
     (hρ : 0 < ρ) (hN : 0 < N) (g : Fin N → ℝ) :
     Hmap A ρ N h g ≤ (ρ⁻¹ + 1 / 2) ^ 2 := by
@@ -1084,7 +1192,9 @@ lemma Hmap_le_sq {A ρ h : ℝ} {N : ℕ}
       field_simp [hNreal.ne']
 
 /-- Measurability of the rounded radius step as a function of the Gaussian
-input, with the current radius fixed. -/
+input, with the current radius fixed.
+@isnad1 id=measurab.0h4v.s4.c823927b40d1 from=translated src=- shape=463447f7 vocab=4e23fc6c
+-/
 lemma measurable_Hmap_right (A ρ : ℝ) (N : ℕ) (h : ℝ) :
     Measurable (Hmap A ρ N h) := by
   unfold Hmap
@@ -1094,7 +1204,9 @@ lemma measurable_Hmap_right (A ρ : ℝ) (N : ℕ) (h : ℝ) :
   exact (measurable_roundedCoordinateObservable A ρ h).comp
     (measurable_pi_apply i)
 
-/-- The uniformly bounded rounded radius step is integrable. -/
+/-- The uniformly bounded rounded radius step is integrable.
+@isnad1 id=integrab.2h4v.s6.c2c964993ca0 from=translated src=- shape=ed2eadec vocab=36bfb893
+-/
 lemma integrable_Hmap {A ρ h : ℝ} {N : ℕ}
     (hρ : 0 < ρ) (hN : 0 < N) :
     Integrable (Hmap A ρ N h) (gaussianVec N) := by
@@ -1105,7 +1217,9 @@ lemma integrable_Hmap {A ρ h : ℝ} {N : ℕ}
   exact Hmap_le_sq hρ hN g
 
 /-- The rounded radius kernel at `h` is the pushforward of the standard
-Gaussian vector under `Hmap`. -/
+Gaussian vector under `Hmap`.
+@isnad1 id=eq.0h4v.s5.af0ea0235fa0 from=translated src=- shape=1e4b3c2a vocab=8d7d9536
+-/
 lemma Hkernel_apply (A ρ : ℝ) (N : ℕ) (h : ℝ) :
     Hkernel A ρ N h = (gaussianVec N).map (Hmap A ρ N h) := by
   unfold Hkernel
@@ -1115,7 +1229,9 @@ lemma Hkernel_apply (A ρ : ℝ) (N : ℕ) (h : ℝ) :
       (by fun_prop : Measurable (Prod.mk h))]
   rfl
 
-/-- The one-step innovation is centered under the rounded radius kernel. -/
+/-- The one-step innovation is centered under the rounded radius kernel.
+@isnad1 id=eq.2h4v.s6.92242ba483cd from=translated src=- shape=529abd6a vocab=d17662d3
+-/
 lemma integral_Hkernel_sub_roundedMeanMap_eq_zero
     {A ρ h : ℝ} {N : ℕ} (hρ : 0 < ρ) (hN : 0 < N) :
     ∫ y, y - roundedMeanMap A ρ h ∂(Hkernel A ρ N h) = 0 := by
@@ -1127,7 +1243,9 @@ lemma integral_Hkernel_sub_roundedMeanMap_eq_zero
   · fun_prop
 
 /-- Every rounded-radius transition is supported in the deterministic compact
-interval supplied by the coordinate bound. -/
+interval supplied by the coordinate bound.
+@isnad1 id=eq.2h4v.s7.549789b19222 from=translated src=- shape=7067129e vocab=5fc6e0fb
+-/
 lemma Hkernel_apply_Icc_compl
     {A ρ h : ℝ} {N : ℕ} (hρ : 0 < ρ) (hN : 0 < N) :
     Hkernel A ρ N h
@@ -1151,7 +1269,9 @@ lemma Hkernel_apply_Icc_compl
   rw [hempty, measure_empty]
 
 /-- A canonical Markov path started from a Dirac mass has its prescribed
-initial state at time zero almost surely. -/
+initial state at time zero almost surely.
+@isnad1 id=eventual.0h2v.s6.53fb948a618a from=translated src=- shape=ff5880b4 vocab=c27c5292
+-/
 lemma markovPathMeasure_dirac_ae_eval_zero_eq
     (h₀ : ℝ) (κ : Kernel ℝ ℝ) [IsMarkovKernel κ] :
     ∀ᵐ ω ∂(markovPathMeasure (Measure.dirac h₀) κ), ω 0 = h₀ := by
@@ -1167,7 +1287,9 @@ lemma markovPathMeasure_dirac_ae_eval_zero_eq
   simp
 
 /-- Every positive-time coordinate of the canonical rounded-radius path lies
-in the deterministic compact support interval almost surely. -/
+in the deterministic compact support interval almost surely.
+@isnad1 id=eventual.2h5v.s7.d6b049b5333e from=translated src=- shape=87fa55e9 vocab=1928e5fa
+-/
 lemma markovPathMeasure_ae_eval_succ_mem_Icc
     {A ρ : ℝ} {N : ℕ} (hρ : 0 < ρ) (hN : 0 < N)
     (μ₀ : Measure ℝ) [IsProbabilityMeasure μ₀] (t : ℕ) :
@@ -1195,7 +1317,9 @@ lemma markovPathMeasure_ae_eval_succ_mem_Icc
   simp only [hzero, lintegral_zero]
 
 /-- Every coordinate of the canonical rounded-radius path started from a
-nonnegative Dirac state is nonnegative almost surely. -/
+nonnegative Dirac state is nonnegative almost surely.
+@isnad1 id=eventual.3h5v.s6.a8dca0968978 from=translated src=- shape=51c596f3 vocab=5c27c175
+-/
 lemma markovPathMeasure_dirac_ae_eval_nonneg
     {A ρ h₀ : ℝ} {N : ℕ} (hh₀ : 0 ≤ h₀) (hρ : 0 < ρ) (hN : 0 < N)
     (t : ℕ) :
@@ -1212,7 +1336,9 @@ lemma markovPathMeasure_dirac_ae_eval_nonneg
       exact hω.1
 
 /-- At every fixed time, the squared normalized tracking error is integrable
-under the canonical Dirac-started rounded-radius path law. -/
+under the canonical Dirac-started rounded-radius path law.
+@isnad1 id=integrab.4h6v.s6.8daf74676e84 from=translated src=- shape=caa38834 vocab=ecfdb97c
+-/
 lemma integrable_sq_normalizedRadiusError
     {A ρ h₀ a : ℝ} (hh₀ : 0 ≤ h₀) (ha : 0 < a)
     (hρ : 0 < ρ) {N : ℕ} (hN : 0 < N) (t : ℕ) :
@@ -1276,7 +1402,9 @@ lemma integrable_sq_normalizedRadiusError
       exact pow_le_pow_left₀ (abs_nonneg _) habsNormalized 2
 
 /-- The squared normalized tracking error stopped at the capped exit time is
-integrable under the canonical Dirac-started rounded-radius path law. -/
+integrable under the canonical Dirac-started rounded-radius path law.
+@isnad1 id=integrab.4h8v.s7.0d4ae63cf0be from=translated src=- shape=35ee96d7 vocab=2af0884d
+-/
 lemma integrable_sq_stoppedNormalizedRadiusError
     {A ρ h₀ a δ : ℝ} (hh₀ : 0 ≤ h₀) (ha : 0 < a)
     (hρ : 0 < ρ) {N : ℕ} (hN : 0 < N) (T t : ℕ) :
@@ -1312,7 +1440,9 @@ lemma integrable_sq_stoppedNormalizedRadiusError
   exact hstop
 
 /-- A deterministic weight preserves integrability of the stopped normalized
-tracking-error square. -/
+tracking-error square.
+@isnad1 id=integrab.4h9v.s7.116a864bf862 from=translated src=- shape=ef455927 vocab=dbd6080f
+-/
 lemma integrable_weighted_sq_stoppedNormalizedRadiusError
     {A ρ h₀ a δ : ℝ} (hh₀ : 0 ≤ h₀) (ha : 0 < a)
     (hρ : 0 < ρ) {N : ℕ} (hN : 0 < N) (T t : ℕ) (W : ℝ) :
@@ -1325,7 +1455,9 @@ lemma integrable_weighted_sq_stoppedNormalizedRadiusError
 
 /-- Under the canonical Dirac-started path law, the normalized multiplier
 obeys its deterministic amplification bound almost surely before the capped
-tracking exit. -/
+tracking exit.
+@isnad1 id=eventual.8h8v.s7.2bda14a2da5b from=translated src=- shape=5d0d0d41 vocab=33d1e5d6
+-/
 lemma abs_radiusNormalizedMultiplier_le_roundedAlpha_of_lt_exit_ae
     {A ρ h₀ a δ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh₀ : 0 ≤ h₀) (ha : 0 < a) (hδ : 0 ≤ δ)
@@ -1341,7 +1473,9 @@ lemma abs_radiusNormalizedMultiplier_le_roundedAlpha_of_lt_exit_ae
     hA hρ hρ_lt hh₀ ha hδ htT hω hlt
 
 /-- The paper's stopped normalized coefficient obeys the deterministic
-amplification bound almost surely. -/
+amplification bound almost surely.
+@isnad1 id=eventual.8h8v.s7.e4fd5317b4e5 from=translated src=- shape=9c40a979 vocab=77876107
+-/
 lemma abs_stoppedRadiusMultiplier_le_roundedAlpha_ae
     {A ρ h₀ a δ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh₀ : 0 ≤ h₀) (ha : 0 < a) (hδ : 0 ≤ δ)
@@ -1365,7 +1499,9 @@ lemma abs_stoppedRadiusMultiplier_le_roundedAlpha_ae
     exact halpha
 
 /-- Squared form of the stopped normalized coefficient bound, matching the
-hypothesis used by the common stopped-moment estimate. -/
+hypothesis used by the common stopped-moment estimate.
+@isnad1 id=eventual.8h8v.s7.f93a4666b790 from=translated src=- shape=5ec720bf vocab=921624d8
+-/
 lemma sq_stoppedRadiusMultiplier_le_roundedAlpha_sq_ae
     {A ρ h₀ a δ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh₀ : 0 ≤ h₀) (ha : 0 < a) (hδ : 0 ≤ δ)
@@ -1380,7 +1516,9 @@ lemma sq_stoppedRadiusMultiplier_le_roundedAlpha_sq_ae
   exact pow_le_pow_left₀ (abs_nonneg _) hω 2
 
 /-- The squared stopped normalized drift term is integrable under the
-canonical Dirac-started rounded-radius path law. -/
+canonical Dirac-started rounded-radius path law.
+@isnad1 id=integrab.8h8v.s7.aa6229734da6 from=translated src=- shape=a2fb378d vocab=3a76ac53
+-/
 lemma integrable_sq_stoppedRadiusMultiplier_mul_normalizedRadiusError
     {A ρ h₀ a δ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh₀ : 0 ≤ h₀) (ha : 0 < a) (hδ : 0 ≤ δ)
@@ -1419,7 +1557,9 @@ lemma integrable_sq_stoppedRadiusMultiplier_mul_normalizedRadiusError
       mul_le_mul_of_nonneg_right hω' (sq_nonneg _)
 
 /-- Centered-square integration against the rounded radius kernel is exactly
-the corresponding Gaussian-vector integral. -/
+the corresponding Gaussian-vector integral.
+@isnad1 id=eq.0h4v.s7.59605279855c from=translated src=- shape=14033a0f vocab=d03e3b78
+-/
 lemma integral_sq_Hkernel_sub_roundedMeanMap
     (A ρ : ℝ) (N : ℕ) (h : ℝ) :
     ∫ y, (y - roundedMeanMap A ρ h) ^ 2 ∂(Hkernel A ρ N h) =
@@ -1436,7 +1576,9 @@ lemma integral_sq_Hkernel_sub_roundedMeanMap
   · fun_prop
 
 /-- On the canonical rounded-radius path space, the conditional centered
-square of the next step is the corresponding Gaussian-vector integral. -/
+square of the next step is the corresponding Gaussian-vector integral.
+@isnad1 id=eventual.4h5v.s8.8cab1cc182d4 from=translated src=- shape=94ece7b4 vocab=8138b948
+-/
 lemma condExp_sq_next_sub_roundedMeanMap
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (N : ℕ) (μ₀ : Measure ℝ) [IsProbabilityMeasure μ₀] (t : ℕ)
@@ -1471,7 +1613,9 @@ lemma condExp_sq_next_sub_roundedMeanMap
   exact integral_sq_Hkernel_sub_roundedMeanMap A ρ N (ω t)
 
 /-- The centered next-step square on the canonical rounded-radius path is
-automatically integrable. -/
+automatically integrable.
+@isnad1 id=integrab.4h5v.s7.82a118337ee7 from=translated src=- shape=17d5710e vocab=3502e7ea
+-/
 lemma integrable_sq_next_sub_roundedMeanMap
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     {N : ℕ} (hN : 0 < N)
@@ -1506,7 +1650,9 @@ lemma integrable_sq_next_sub_roundedMeanMap
   exact pow_le_pow_left₀ (abs_nonneg _) habs 2
 
 /-- The centered next-step innovation is integrable on the canonical path
-space. -/
+space.
+@isnad1 id=integrab.4h5v.s7.8c549148fa11 from=translated src=- shape=1df541ae vocab=3c60842c
+-/
 lemma integrable_next_sub_roundedMeanMap
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     {N : ℕ} (hN : 0 < N)
@@ -1526,7 +1672,9 @@ lemma integrable_next_sub_roundedMeanMap
       (by norm_num)
 
 /-- The stopped normalized noise is integrable under the canonical
-Dirac-started rounded-radius path law. -/
+Dirac-started rounded-radius path law.
+@isnad1 id=integrab.5h8v.s7.ed76c99a2e64 from=translated src=- shape=04907685 vocab=f30a53a3
+-/
 lemma integrable_stoppedNormalizedRadiusNoise_succ
     {A ρ h₀ a δ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     {N : ℕ} (hN : 0 < N) {T t : ℕ} (htT : t ≤ T) :
@@ -1555,7 +1703,9 @@ lemma integrable_stoppedNormalizedRadiusNoise_succ
       (measurableSet_lt_radiusTrackingExitTime htT))
 
 /-- The square of the stopped normalized successor noise is integrable under
-the canonical Dirac-started rounded-radius path law. -/
+the canonical Dirac-started rounded-radius path law.
+@isnad1 id=integrab.5h8v.s7.e947395d49c6 from=translated src=- shape=4d920a41 vocab=0dfac38b
+-/
 lemma integrable_sq_stoppedNormalizedRadiusNoise_succ
     {A ρ h₀ a δ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     {N : ℕ} (hN : 0 < N) {T t : ℕ} (htT : t ≤ T) :
@@ -1596,7 +1746,9 @@ lemma integrable_sq_stoppedNormalizedRadiusNoise_succ
       (measurableSet_lt_radiusTrackingExitTime htT))
 
 /-- The product of the stopped normalized drift and successor noise is
-integrable under the canonical Dirac-started rounded-radius path law. -/
+integrable under the canonical Dirac-started rounded-radius path law.
+@isnad1 id=integrab.8h8v.s7.aff4e85c3467 from=translated src=- shape=6ffb074c vocab=2423f267
+-/
 lemma integrable_stoppedRadiusDrift_mul_stoppedNormalizedRadiusNoise_succ
     {A ρ h₀ a δ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh₀ : 0 ≤ h₀) (ha : 0 < a) (hδ : 0 ≤ δ)
@@ -1640,7 +1792,9 @@ lemma integrable_stoppedRadiusDrift_mul_stoppedNormalizedRadiusNoise_succ
   exact hdrift.integrable_mul hnoise
 
 /-- The squared sum of the stopped normalized drift and successor noise is
-integrable under the canonical Dirac-started rounded-radius path law. -/
+integrable under the canonical Dirac-started rounded-radius path law.
+@isnad1 id=integrab.8h8v.s7.aa6fe4e64569 from=translated src=- shape=05f5f760 vocab=b05e65df
+-/
 lemma integrable_sq_stoppedRadiusDrift_add_stoppedNormalizedRadiusNoise_succ
     {A ρ h₀ a δ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh₀ : 0 ≤ h₀) (ha : 0 < a) (hδ : 0 ≤ δ)
@@ -1681,7 +1835,9 @@ lemma integrable_sq_stoppedRadiusDrift_add_stoppedNormalizedRadiusNoise_succ
   exact hexpand
 
 /-- The exact conditional centered-square identity with its integrability
-hypothesis discharged from compact support. -/
+hypothesis discharged from compact support.
+@isnad1 id=eventual.4h5v.s8.4db3a33bfdbf from=translated src=- shape=9bd6c821 vocab=0205ac24
+-/
 lemma condExp_sq_next_sub_roundedMeanMap_eq
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     {N : ℕ} (hN : 0 < N)
@@ -1697,7 +1853,9 @@ lemma condExp_sq_next_sub_roundedMeanMap_eq
     (integrable_sq_next_sub_roundedMeanMap hA hρ hρ_lt hN μ₀ t)
 
 /-- The canonical next-step innovation is conditionally centered with respect
-to the coordinate-prefix filtration. -/
+to the coordinate-prefix filtration.
+@isnad1 id=eventual.4h5v.s7.363ff2a2844b from=translated src=- shape=388b6388 vocab=f461412c
+-/
 lemma condExp_next_sub_roundedMeanMap_eq_zero
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     {N : ℕ} (hN : 0 < N)
@@ -1724,7 +1882,9 @@ lemma condExp_next_sub_roundedMeanMap_eq_zero
   exact integral_Hkernel_sub_roundedMeanMap_eq_zero hρ hN
 
 /-- The stopped normalized successor noise is conditionally centered under
-the canonical Dirac-started rounded-radius path law. -/
+the canonical Dirac-started rounded-radius path law.
+@isnad1 id=eventual.5h8v.s7.0e9231cd1dd4 from=translated src=- shape=ead22fb5 vocab=4d7f105e
+-/
 lemma condExp_stoppedNormalizedRadiusNoise_succ_eq_zero
     {A ρ h₀ a δ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     {N : ℕ} (hN : 0 < N) {T t : ℕ} (htT : t ≤ T) :
@@ -1780,7 +1940,9 @@ lemma condExp_stoppedNormalizedRadiusNoise_succ_eq_zero
   rfl
 
 /-- Exact conditional second-moment identity for the stopped normalized
-successor noise under the canonical Dirac-started path law. -/
+successor noise under the canonical Dirac-started path law.
+@isnad1 id=eventual.5h8v.s8.65a48de0e9ed from=translated src=- shape=aaa0f0e6 vocab=c0a13849
+-/
 lemma condExp_sq_stoppedNormalizedRadiusNoise_succ
     {A ρ h₀ a δ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     {N : ℕ} (hN : 0 < N) {T t : ℕ} (htT : t ≤ T) :
@@ -1840,7 +2002,9 @@ lemma condExp_sq_stoppedNormalizedRadiusNoise_succ
   rfl
 
 /-- The centered one-step rounded radius has the `N⁻¹` second-moment bound
-coming from its independent Gaussian coordinates. -/
+coming from its independent Gaussian coordinates.
+@isnad1 id=le.2h4v.s7.d189638d92df from=translated src=- shape=9eb59bb4 vocab=ce6163dc
+-/
 lemma integral_sq_Hmap_sub_roundedMeanMap_le
     {A ρ h : ℝ} {N : ℕ} (hρ : 0 < ρ) (hN : 0 < N) :
     ∫ g, (Hmap A ρ N h g - roundedMeanMap A ρ h) ^ 2
@@ -1903,7 +2067,9 @@ lemma integral_sq_Hmap_sub_roundedMeanMap_le
       field_simp [hNreal.ne']
 
 /-- A nonzero rounded coordinate must cross the first admissible rounding
-threshold. -/
+threshold.
+@isnad1 id=lt.4h4v.s6.ba5efa0a2752 from=translated src=- shape=f408419c vocab=9f23f63e
+-/
 lemma roundedLayerThreshold_zero_lt_of_observable_ne_zero
     {A ρ h g : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -1933,7 +2099,9 @@ lemma roundedLayerThreshold_zero_lt_of_observable_ne_zero
     hthreshold
 
 /-- Near the origin, nonzero rounded output has exponentially small Gaussian
-probability. -/
+probability.
+@isnad1 id=le.4h3v.s7.1479abf5a49e from=translated src=- shape=f3d0a23a vocab=96cc9b94
+-/
 lemma measureReal_roundedCoordinateObservable_ne_zero_le
     {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) (hh : 0 < h) :
@@ -1969,7 +2137,9 @@ lemma measureReal_roundedCoordinateObservable_ne_zero_le
         (-((roundedLayerThreshold ρ 0 / (A * Real.sqrt h)) ^ 2) / 2) := rfl
 
 /-- Fixed moments inherit the exponentially small support probability near the
-origin. -/
+origin.
+@isnad1 id=le.5h4v.s8.dc20f72bf245 from=translated src=- shape=b42bb325 vocab=615fa955
+-/
 lemma integral_pow_roundedCoordinateObservable_le_exp
     {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) (hh : 0 < h)
@@ -2029,7 +2199,9 @@ lemma integral_pow_roundedCoordinateObservable_le_exp
       ring
 
 /-- The Gaussian support exponent is the paper's positive constant divided by
-the radius. -/
+the radius.
+@isnad1 id=eq.2h3v.s7.634e3af65a94 from=translated src=- shape=c433a00c vocab=b5026aba
+-/
 lemma roundedSupportExponent_eq {A ρ h : ℝ}
     (hA : 0 < A) (hh : 0 < h) :
     (roundedLayerThreshold ρ 0 / (A * Real.sqrt h)) ^ 2 / 2 =
@@ -2040,7 +2212,9 @@ lemma roundedSupportExponent_eq {A ρ h : ℝ}
   nlinarith
 
 /-- Exponential decay in the inverse radius dominates every fixed natural
-power, uniformly on the unit radius interval. -/
+power, uniformly on the unit radius interval.
+@isnad1 id=ex.1h2v.s6.b2f663ea5305 from=translated src=- shape=4e99fe00 vocab=feb48b58
+-/
 lemma exists_pos_exp_neg_div_le_mul_pow {c : ℝ} (hc : 0 < c) (p : ℕ) :
     ∃ C : ℝ, 0 < C ∧ ∀ h : ℝ, 0 < h → h ≤ 1 →
       Real.exp (-c / h) ≤ C * h ^ p := by
@@ -2081,7 +2255,9 @@ lemma exists_pos_exp_neg_div_le_mul_pow {c : ℝ} (hc : 0 < c) (p : ℕ) :
       field_simp [hc.ne']
 
 /-- The paper's fixed-moment bound for one rounded coordinate: its `p`-th
-moment is at most a constant times the `p`-th power of the radius. -/
+moment is at most a constant times the `p`-th power of the radius.
+@isnad1 id=ex.4h3v.s7.d789b15d9ea8 from=translated src=- shape=38adac58 vocab=aa168b99
+-/
 lemma exists_pos_integral_pow_roundedCoordinateObservable_le_mul_pow
     {A ρ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -2161,7 +2337,9 @@ lemma exists_pos_integral_pow_roundedCoordinateObservable_le_mul_pow
           le_mul_of_one_le_right hC.le (one_le_pow₀ hone)
 
 /-- The unconditional form of the paper's fixed-precision one-step noise
-variance estimate. -/
+variance estimate.
+@isnad1 id=ex.3h2v.s7.02a1f674b0e4 from=translated src=- shape=94d1ccf0 vocab=be0e49c4
+-/
 lemma exists_pos_integral_sq_Hmap_sub_roundedMeanMap_le
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     ∃ C : ℝ, 0 < C ∧ ∀ N : ℕ, 0 < N → ∀ h : ℝ, 0 ≤ h →
@@ -2186,7 +2364,9 @@ lemma exists_pos_integral_sq_Hmap_sub_roundedMeanMap_le
     _ = C * (N : ℝ)⁻¹ * h ^ 2 := by ring
 
 /-- The canonical-path conditional form of the paper's one-step noise
-variance estimate. -/
+variance estimate.
+@isnad1 id=ex.3h2v.s8.7b6dfd74f235 from=translated src=- shape=fe007290 vocab=4c484a55
+-/
 lemma exists_pos_condExp_sq_next_sub_roundedMeanMap_le
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     ∃ C : ℝ, 0 < C ∧
@@ -2210,7 +2390,9 @@ lemma exists_pos_condExp_sq_next_sub_roundedMeanMap_le
   exact hbound N hN (ω t) hω_nonneg
 
 /-- On an a.e. radius-tracking event, the canonical one-step conditional
-noise is controlled by the deterministic tracked radius and terminal scale. -/
+noise is controlled by the deterministic tracked radius and terminal scale.
+@isnad1 id=ex.4h4v.s8.a3675c0fce71 from=translated src=- shape=48630c22 vocab=45ff72a5
+-/
 lemma exists_pos_condExp_sq_next_sub_roundedMeanMap_le_of_tracking
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     {N : ℕ} (hN : 0 < N)
@@ -2245,7 +2427,9 @@ lemma exists_pos_condExp_sq_next_sub_roundedMeanMap_le_of_tracking
     _ = C * (1 + δ) ^ 2 * (N : ℝ)⁻¹ * (h + a) ^ 2 := by ring
 
 /-- A uniform raw conditional variance constant gives the stopped normalized
-successor-noise bound, with the local tracking factor `(1 + δ)²`. -/
+successor-noise bound, with the local tracking factor `(1 + δ)²`.
+@isnad1 id=eventual.10h9v.s9.5580e35b1e5c from=translated src=- shape=2fe496b4 vocab=e829a9ce
+-/
 lemma condExp_sq_stoppedNormalizedRadiusNoise_succ_le_of_raw
     {A ρ h₀ a δ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -2335,7 +2519,9 @@ lemma condExp_sq_stoppedNormalizedRadiusNoise_succ_le_of_raw
       (sq_nonneg _)
 
 /-- The stopped normalized successor noise has the conditional variance scale
-`C N⁻¹ β_t²` used by the common stopped-moment estimate. -/
+`C N⁻¹ β_t²` used by the common stopped-moment estimate.
+@isnad1 id=ex.7h7v.s8.19e327bebfcc from=translated src=- shape=afc24e91 vocab=b20b6cf4
+-/
 lemma exists_pos_condExp_sq_stoppedNormalizedRadiusNoise_succ_le
     {A ρ h₀ a δ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -2361,7 +2547,9 @@ lemma exists_pos_condExp_sq_stoppedNormalizedRadiusNoise_succ_le
 
 /-- For tracking tolerances `δ ≤ 1/4`, one positive constant controls the
 stopped normalized successor-noise variance uniformly in the initial radius,
-terminal scale, dimension, horizon, and time. -/
+terminal scale, dimension, horizon, and time.
+@isnad1 id=ex.3h2v.s8.ffd5a6b0be62 from=translated src=- shape=dbda9e58 vocab=276f7de8
+-/
 lemma exists_pos_uniform_condExp_sq_stoppedNormalizedRadiusNoise_succ_le
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     ∃ D : ℝ, 0 < D ∧
@@ -2392,7 +2580,9 @@ lemma exists_pos_uniform_condExp_sq_stoppedNormalizedRadiusNoise_succ_le
   nlinarith
 
 /-- The canonical stopped normalized-radius recursion satisfies the weighted
-one-step conditional second-moment estimate. -/
+one-step conditional second-moment estimate.
+@isnad1 id=eventual.10h9v.s9.43b15f0c7999 from=translated src=- shape=04152132 vocab=cb3dcaea
+-/
 lemma stoppedNormalizedRadiusError_condExp_step
     {A ρ h₀ a δ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -2483,7 +2673,9 @@ lemma stoppedNormalizedRadiusError_condExp_step
   simpa only [α, R, M, η, τ, c] using hstep
 
 /-- A single positive variance constant controls every weighted stopped
-normalized-radius conditional step through the capped horizon. -/
+normalized-radius conditional step through the capped horizon.
+@isnad1 id=ex.7h7v.s8.ab8eb57fa9d1 from=translated src=- shape=0b62ecf9 vocab=8f6b70ca
+-/
 lemma exists_pos_stoppedNormalizedRadiusError_condExp_step
     {A ρ h₀ a δ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -2518,7 +2710,9 @@ lemma exists_pos_stoppedNormalizedRadiusError_condExp_step
     hA hρ hρ_lt hh₀ ha hδ hN htT hC.le (hnoise t htT)
 
 /-- One positive constant controls every weighted stopped normalized-error
-conditional step uniformly in all radius-tracking parameters. -/
+conditional step uniformly in all radius-tracking parameters.
+@isnad1 id=ex.3h2v.s9.fd4673916c97 from=translated src=- shape=5d26a6d5 vocab=2a515456
+-/
 lemma exists_pos_uniform_stoppedNormalizedRadiusError_condExp_step
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     ∃ C : ℝ, 0 < C ∧
@@ -2553,7 +2747,9 @@ lemma exists_pos_uniform_stoppedNormalizedRadiusError_condExp_step
       (hnoise hh₀ ha hδ hδ_quarter hN T t htT)
 
 /-- Integrating the uniform conditional estimate gives the scalar weighted
-stopped-moment recursion at every step through the capped horizon. -/
+stopped-moment recursion at every step through the capped horizon.
+@isnad1 id=ex.7h7v.s8.0c149dc22149 from=translated src=- shape=ad6bca9c vocab=2632720f
+-/
 lemma exists_pos_stoppedNormalizedRadiusError_moment_recursion
     {A ρ h₀ a δ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -2593,7 +2789,9 @@ lemma exists_pos_stoppedNormalizedRadiusError_moment_recursion
           (T + 1) t))
 
 /-- One positive constant controls the integrated weighted stopped-moment
-recursion uniformly in all radius-tracking parameters. -/
+recursion uniformly in all radius-tracking parameters.
+@isnad1 id=ex.3h2v.s8.7c5ac86df824 from=translated src=- shape=3a637544 vocab=89e8bb58
+-/
 lemma exists_pos_uniform_stoppedNormalizedRadiusError_moment_recursion
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     ∃ C : ℝ, 0 < C ∧
@@ -2633,7 +2831,9 @@ lemma exists_pos_uniform_stoppedNormalizedRadiusError_moment_recursion
 
 /-- The stopped normalized tracking error at the capped endpoint has the
 telescoped `N⁻¹` second-moment bound controlled by the deterministic tracking
-amplification. -/
+amplification.
+@isnad1 id=ex.7h7v.s8.ed05f7ac5075 from=translated src=- shape=223b0680 vocab=6c380399
+-/
 lemma exists_pos_stoppedNormalizedRadiusError_secondMoment_le
     {A ρ h₀ a δ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -2711,7 +2911,9 @@ lemma exists_pos_stoppedNormalizedRadiusError_secondMoment_le
   simpa only [α, σ, R, τ] using hbase
 
 /-- One positive constant controls the stopped normalized tracking-error
-endpoint second moment uniformly in all radius-tracking parameters. -/
+endpoint second moment uniformly in all radius-tracking parameters.
+@isnad1 id=ex.3h2v.s8.c135b6cd2143 from=translated src=- shape=9baf7dea vocab=6c380399
+-/
 lemma exists_pos_uniform_stoppedNormalizedRadiusError_secondMoment_le
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     ∃ C : ℝ, 0 < C ∧
@@ -2790,7 +2992,9 @@ lemma exists_pos_uniform_stoppedNormalizedRadiusError_secondMoment_le
   simpa only [α, σ, R, τ] using hbase
 
 /-- The capped normalized-radius tracking exit probability has the canonical
-Chebyshev bound controlled by the deterministic tracking amplification. -/
+Chebyshev bound controlled by the deterministic tracking amplification.
+@isnad1 id=ex.7h7v.s8.64f8148948bd from=translated src=- shape=74e464e6 vocab=fb4d0a57
+-/
 lemma exists_pos_radiusTrackingExitProbability_le
     {A ρ h₀ a δ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -2824,7 +3028,9 @@ lemma exists_pos_radiusTrackingExitProbability_le
   exact (div_le_div_iff_of_pos_right (sq_pos_of_pos hδ)).2 hmoment
 
 /-- One positive constant controls the capped normalized-radius tracking exit
-probability uniformly in all radius-tracking parameters. -/
+probability uniformly in all radius-tracking parameters.
+@isnad1 id=ex.3h2v.s8.3cade76e5401 from=translated src=- shape=5f481b7d vocab=fb4d0a57
+-/
 lemma exists_pos_uniform_radiusTrackingExitProbability_le
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     ∃ C : ℝ, 0 < C ∧
@@ -2863,7 +3069,9 @@ lemma exists_pos_uniform_radiusTrackingExitProbability_le
 (`prop:subcritical-exact-radius-concentration`).  For bounded deterministic
 initial vectors and every horizon satisfying the paper's subpolynomial rate
 condition, the maximal normalized radius error converges to zero in
-probability. -/
+probability.
+@isnad1 id=tendsto.7h5v.s8.eb3aa0f0f240 from=translated src=- shape=e6cdc152 vocab=42bc89ad
+-/
 theorem subcritical_exact_radius_concentration
     {A ρ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)

@@ -21,7 +21,9 @@ open MeasureTheory ProbabilityTheory
 namespace AbsorptionCutoff
 
 /-- On the interior support, the radius derivative of the one-coordinate
-density factors as the score times the density. -/
+density factors as the score times the density.
+@isnad1 id=hasderiv.2h3v.s6.3f2b863322cf from=translated src=- shape=60af9ef6 vocab=d8599926
+-/
 lemma hasDerivAt_gaussianOneCoordinateDensityFormula_q
     {A q y : ℝ} (hA : 0 < A) (hq : 0 < q) :
     HasDerivAt
@@ -101,7 +103,9 @@ lemma hasDerivAt_gaussianOneCoordinateDensityFormula_q
   exact hfull
 
 /-- The evaluated one-coordinate score is integrable under the standard
-Gaussian law. -/
+Gaussian law.
+@isnad1 id=integrab.2h2v.s6.98326a1fc588 from=translated src=- shape=d79c1365 vocab=b9a0df55
+-/
 lemma integrable_gaussianOneCoordinateScore_map {A q : ℝ}
     (hA : 0 < A) (hq : 0 < q) :
     Integrable
@@ -119,7 +123,9 @@ lemma integrable_gaussianOneCoordinateScore_map {A q : ℝ}
     (gaussianOneCoordinateScore_map hA hq).symm)
 
 /-- The evaluated one-coordinate score has mean zero under the standard
-Gaussian law. -/
+Gaussian law.
+@isnad1 id=eq.2h2v.s6.fe2dcee64e9a from=translated src=- shape=2b20de91 vocab=27fa871e
+-/
 lemma integral_gaussianOneCoordinateScore_map_eq_zero {A q : ℝ}
     (hA : 0 < A) (hq : 0 < q) :
     ∫ x, gaussianOneCoordinateScore A q

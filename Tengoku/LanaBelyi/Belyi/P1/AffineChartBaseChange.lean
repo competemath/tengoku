@@ -36,7 +36,9 @@ attribute [local instance] MvPolynomial.gradedAlgebra
 variable (k : Type u) [CommRing k] {R : Type u} [CommRing R] [Algebra k R]
 
 /-- The chart-ring evaluation `awayEval k t` on a homogeneous fraction `a / (X₁)^n`
-returns `aeval ![t, 1] a`: the denominator `X₁` evaluates to `1`, so it drops out. -/
+returns `aeval ![t, 1] a`: the denominator `X₁` evaluates to `1`, so it drops out.
+@isnad1 id=eq.1h5v.s11.04d772ed327f from=translated src=- shape=d8566a15 vocab=72c896ff
+-/
 lemma awayEval_mk (t : R) (n : ℕ) (a : MvPolynomial (Fin 2) k)
     (ha : a ∈ P1Grading k (n • 1)) :
     awayEval k t (Away.mk (P1Grading k) (X_mem_P1Grading k 1) n a ha) = aeval ![t, 1] a := by
@@ -47,7 +49,9 @@ lemma awayEval_mk (t : R) (n : ℕ) (a : MvPolynomial (Fin 2) k)
 
 /-- Transporting `Proj.awayι` along an equality of homogeneous elements: the chart
 inclusion at `a` factors through the chart inclusion at an equal element `b` via the
-`eqToHom` induced by `a = b`. -/
+`eqToHom` induced by `a = b`.
+@isnad1 id=eq.4h6v.s8.05b581785667 from=translated src=- shape=6e4ecbe9 vocab=1a0f3325
+-/
 lemma awayι_eqToHom_transport {A σ : Type*} [CommRing A] [SetLike σ A]
     [AddSubgroupClass σ A] {𝒜 : ℕ → σ} [GradedRing 𝒜] {i : ℕ} (hi : 0 < i) {a b : A}
     (hab : a = b) (ha : a ∈ 𝒜 i) (hb : b ∈ 𝒜 i) :
@@ -57,7 +61,9 @@ lemma awayι_eqToHom_transport {A σ : Type*} [CommRing A] [SetLike σ A]
   simp
 
 /-- The `eqToHom` cast induced by an equality `a = b` of denominators acts on a homogeneous
-fraction `x / a ^ n` by simply reindexing it as `x / b ^ n`. -/
+fraction `x / a ^ n` by simply reindexing it as `x / b ^ n`.
+@isnad1 id=eq.3h8v.s10.69787c4fc417 from=translated src=- shape=9e198ed7 vocab=0ad6863e
+-/
 lemma Away_mk_eqToHom {A σ : Type*} [CommRing A] [SetLike σ A] [AddSubgroupClass σ A]
     {𝒜 : ℕ → σ} [GradedRing 𝒜] {d : ℕ} {a b : A} (hab : a = b) (hf : a ∈ 𝒜 d)
     (n : ℕ) (x : A) (hx : x ∈ 𝒜 (n • d)) :
@@ -76,7 +82,9 @@ open ProjectiveSpectrum
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The base-change morphism `mapOfAlgebra` sends the `K`-valued point of affine coordinate
-`t` to the `k₀`-valued point of the same affine coordinate `t`. -/
+`t` to the `k₀`-valued point of the same affine coordinate `t`.
+@isnad1 id=eq.0h4v.s7.8106cc287355 from=translated src=- shape=5736132b vocab=15cfedad
+-/
 lemma point_comp_mapOfAlgebra (t : R) :
     point K t ≫ mapOfAlgebra k₀ K = point k₀ t := by
   have hfX : gradedMapOfAlgebra k₀ K (X 1) = (X 1 : MvPolynomial (Fin 2) K) := by

@@ -62,7 +62,9 @@ variable (R) in
 `j`-invariant is exactly `(v Δ)⁻¹`. This sharpens
 `one_lt_valuation_j_of_hasMultiplicativeReduction` (which only records `1 < v(j)`, i.e. the sign),
 and is the classical `v(j) = -v(Δ)`. Since `v(c₄) = 1` for multiplicative reduction, the identity
-`v(j) = (v Δ)⁻¹ · (v c₄)³` collapses to `(v Δ)⁻¹`. -/
+`v(j) = (v Δ)⁻¹ · (v c₄)³` collapses to `(v Δ)⁻¹`.
+@isnad1 id=eq.0h3v.s7.c24cecc2f543 from=translated src=- shape=ee6e63c4 vocab=48142490
+-/
 theorem valuation_j_of_hasMultiplicativeReduction (W : WeierstrassCurve K)
     [W.IsElliptic] [HasMultiplicativeReduction R W] :
     valuation K (maximalIdeal R) W.j = (valuation K (maximalIdeal R) W.Δ)⁻¹ := by
@@ -72,7 +74,9 @@ theorem valuation_j_of_hasMultiplicativeReduction (W : WeierstrassCurve K)
 variable (R) in
 /-- **A non-integral `j`-invariant rules out good reduction**: if there is no `r : R` with
 `algebraMap R K r = W.j`, then `W` does not have good reduction over `R`. This is the contrapositive
-of `isIntegral_j_of_hasGoodReduction` (good reduction ⇒ `j` integral). -/
+of `isIntegral_j_of_hasGoodReduction` (good reduction ⇒ `j` integral).
+@isnad1 id=not.1h3v.s7.aef8ba6f2ca3 from=translated src=- shape=79267841 vocab=0076f751
+-/
 theorem not_hasGoodReduction_of_not_isIntegral_j (W : WeierstrassCurve K) [W.IsElliptic]
     (h : ¬ ∃ r : R, algebraMap R K r = W.j) : ¬ W.HasGoodReduction R := by
   intro hgr
@@ -84,7 +88,9 @@ variable (R) in
 `j`-invariant is not integral (no `r : R` with `algebraMap R K r = W.j`), the reduction is bad —
 multiplicative or additive. Good reduction is excluded by
 `not_hasGoodReduction_of_not_isIntegral_j`, so the reduction-type trichotomy leaves exactly the two
-bad cases. -/
+bad cases.
+@isnad1 id=or.1h3v.s7.113dc633600a from=translated src=- shape=61a43c0c vocab=cbc1aed6
+-/
 theorem hasMultiplicativeReduction_or_hasAdditiveReduction_of_not_isIntegral_j
     (W : WeierstrassCurve K) [W.IsElliptic] [IsMinimal R W]
     (h : ¬ ∃ r : R, algebraMap R K r = W.j) :

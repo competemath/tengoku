@@ -43,7 +43,9 @@ variable {R R' A A' : Type*} [CommRing R] [CommRing R'] [CommRing A] [CommRing A
 /-- Formal smoothness is invariant under a compatible pair of ring isomorphisms of the base
 and the total ring: if `eR : R ≃+* R'`, `eA : A ≃+* A'` intertwine the two structure maps
 (`eA (algebraMap R A r) = algebraMap R' A' (eR r)`), then `A` is formally smooth over `R`
-iff `A'` is formally smooth over `R'`. -/
+iff `A'` is formally smooth over `R'`.
+@isnad1 id=iff.1h6v.s8.b9332b456b5e from=translated src=- shape=b4989915 vocab=9017c3b7
+-/
 theorem FormallySmooth.congr (eR : R ≃+* R') (eA : A ≃+* A')
     (h : ∀ r, eA (algebraMap R A r) = algebraMap R' A' (eR r)) :
     FormallySmooth R A ↔ FormallySmooth R' A' := by
@@ -74,7 +76,9 @@ theorem FormallySmooth.congr (eR : R ≃+* R') (eA : A ≃+* A')
 
 /-- `smoothLocus R' A'` is the preimage of `smoothLocus R A` under the map of prime spectra
 `Spec A' → Spec A` induced by `eA`, for a compatible pair of ring isomorphisms
-`eR : R ≃+* R'`, `eA : A ≃+* A'`. -/
+`eR : R ≃+* R'`, `eA : A ≃+* A'`.
+@isnad1 id=eq.1h6v.s9.864364f67267 from=translated src=- shape=7b132116 vocab=2eaf577c
+-/
 theorem smoothLocus_comap_ringEquiv (eR : R ≃+* R') (eA : A ≃+* A')
     (h : ∀ r, eA (algebraMap R A r) = algebraMap R' A' (eR r)) :
     PrimeSpectrum.comap (eA : A →+* A') ⁻¹' smoothLocus R A = smoothLocus R' A' := by

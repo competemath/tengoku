@@ -78,7 +78,9 @@ ring maps into `A` through the tower `R → K → L`), then the base valuation o
 `1 < v_R(W.j)` in the multiplicative-valuation convention.  This is the base-place reflection of
 `one_lt_valuation_j_of_hasMultiplicativeReduction`, obtained from the per-extension #505
 `not_mem_j_of_hasMultiplicativeReduction_baseChange` via the DVR converse
-`exists_algebraMap_eq_of_valuation_le_one` (#504). -/
+`exists_algebraMap_eq_of_valuation_le_one` (#504).
+@isnad1 id=lt.2h5v.s8.99f6fca01a21 from=translated src=- shape=1c6bae6b vocab=2f2f94ea
+-/
 theorem one_lt_valuation_j_of_hasMultiplicativeReduction_baseChange_over
     {L : Type*} [Field L] [Algebra K L] (A : ValuationSubring L) [IsDiscreteValuationRing A]
     (hover : ∀ r : R, algebraMap K L (algebraMap R K r) ∈ A)
@@ -93,7 +95,9 @@ variable (R) in
 /-- **Potential multiplicative reduction ⟹ `j` not integral at the base (membership form).**
 Corollary of `one_lt_valuation_j_of_hasMultiplicativeReduction_baseChange_over`: there is no
 `r : R` with `algebraMap R K r = W.j`.  This is the base-landing multiplicative companion of
-`isIntegral_j_of_hasGoodReduction_baseChange_over` (#504). -/
+`isIntegral_j_of_hasGoodReduction_baseChange_over` (#504).
+@isnad1 id=not.2h5v.s8.90046aec371d from=translated src=- shape=f7784514 vocab=30d065eb
+-/
 theorem not_isIntegral_j_of_hasMultiplicativeReduction_baseChange_over
     {L : Type*} [Field L] [Algebra K L] (A : ValuationSubring L) [IsDiscreteValuationRing A]
     (hover : ∀ r : R, algebraMap K L (algebraMap R K r) ∈ A)
@@ -106,7 +110,9 @@ theorem not_isIntegral_j_of_hasMultiplicativeReduction_baseChange_over
 
 variable (R) in
 /-- **Contrapositive.** A `j`-invariant that *is* integral at the base place rules out
-multiplicative reduction over *any* discrete valuation subring extension lying over `R`. -/
+multiplicative reduction over *any* discrete valuation subring extension lying over `R`.
+@isnad1 id=not.2h5v.s8.7e47192f2ebf from=translated src=- shape=6d3f1ef7 vocab=30d065eb
+-/
 theorem not_hasMultiplicativeReduction_baseChange_over_of_j_mem
     {L : Type*} [Field L] [Algebra K L] (A : ValuationSubring L) [IsDiscreteValuationRing A]
     (hover : ∀ r : R, algebraMap K L (algebraMap R K r) ∈ A)

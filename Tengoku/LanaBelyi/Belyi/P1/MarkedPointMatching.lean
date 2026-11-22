@@ -52,7 +52,9 @@ namespace MvPolynomial
 variable {R : Type*} [CommRing R]
 
 /-- Over `Fin 2`, the total degree of a monomial index is the sum of its two coordinates,
-read off along any splitting `i ≠ j` of the index set. -/
+read off along any splitting `i ≠ j` of the index set.
+@isnad1 id=eq.1h3v.s8.9eb173e37f69 from=translated src=- shape=231b6a13 vocab=57dd135f
+-/
 lemma finTwo_degree_eq_add (e : Fin 2 →₀ ℕ) (i j : Fin 2) (hij : i ≠ j) :
     e.degree = e i + e j := by
   rw [Finsupp.degree_eq_sum, Fin.sum_univ_two]
@@ -74,7 +76,9 @@ variable {K : Type u} [Field K]
 /-- **Divisibility skeleton.** For a homogeneous polynomial `h` of degree `n` in `K[X₀, X₁]`
 and two distinct variables `X i`, `X j`, the variable `X i` divides `h` after subtracting the
 single monomial `X j ^ n` carrying its `X j ^ n`-coefficient: every monomial of the remainder
-that is not divisible by `X i` must be `X j ^ n`, and there it cancels. -/
+that is not divisible by `X i` must be `X j ^ n`, and there it cancels.
+@isnad1 id=dvd.2h5v.s9.583a14fe12d7 from=translated src=- shape=5dc0e69b vocab=c50a6bf5
+-/
 lemma X_dvd_sub {n : ℕ} {h : MvPolynomial (Fin 2) K} (hh : h.IsHomogeneous n)
     (i j : Fin 2) (hij : i ≠ j) :
     (X i : MvPolynomial (Fin 2) K) ∣ (h - C (h.coeff (Finsupp.single j n)) * X j ^ n) := by
@@ -106,7 +110,9 @@ section Ideal
 variable {K : Type u} [Field K]
 
 /-- A positive-degree homogeneous polynomial in `K[X₀, X₁]` lies in the ideal `(X₀, X₁)`:
-each of its monomials has a nonzero exponent, hence is divisible by some variable. -/
+each of its monomials has a nonzero exponent, hence is divisible by some variable.
+@isnad1 id=mem.2h3v.s9.0cd603dd85c2 from=translated src=- shape=18577298 vocab=be76fc55
+-/
 lemma mem_span_X01 {i : ℕ} (hi : 0 < i) {x : MvPolynomial (Fin 2) K}
     (hx : x ∈ P1Grading K i) :
     x ∈ Ideal.span {(X 0 : MvPolynomial (Fin 2) K), X 1} := by
@@ -122,7 +128,9 @@ lemma mem_span_X01 {i : ℕ} (hi : 0 < i) {x : MvPolynomial (Fin 2) K}
   exact ⟨t, by fin_cases t <;> simp, by simpa using ht⟩
 
 /-- Two variables cannot both lie in a relevant homogeneous prime: together they generate the
-irrelevant ideal, contradicting `not_irrelevant_le`. -/
+irrelevant ideal, contradicting `not_irrelevant_le`.
+@isnad1 id=false.2h2v.s10.0cb9112d46d4 from=translated src=- shape=545f0ac6 vocab=a0d6f665
+-/
 lemma X01_not_both_mem (y : P1 K)
     (h0 : (X 0 : MvPolynomial (Fin 2) K) ∈ y.asHomogeneousIdeal.toIdeal)
     (h1 : (X 1 : MvPolynomial (Fin 2) K) ∈ y.asHomogeneousIdeal.toIdeal) : False := by
@@ -135,7 +143,9 @@ lemma X01_not_both_mem (y : P1 K)
 /-- **Key algebra lemma.** A homogeneous prime `J ⊆ K[X₀, X₁]` containing the variable `X i`
 but not `X j` (`i ≠ j`) is divisible by `X i` on every homogeneous element: from
 `X_dvd_sub`, the leftover monomial `c · X j ^ n` lies in `J`, and primeness with `X j ∉ J`
-forces `c = 0`. -/
+forces `c = 0`.
+@isnad1 id=dvd.6h6v.s10.988605772271 from=translated src=- shape=4b42d5af vocab=72df1e64
+-/
 lemma dvd_of_isHomog_mem {J : Ideal (MvPolynomial (Fin 2) K)} (hp : J.IsPrime)
     (i j : Fin 2) (hij : i ≠ j) (hXi : (X i : MvPolynomial (Fin 2) K) ∈ J)
     (hXj : (X j : MvPolynomial (Fin 2) K) ∉ J)

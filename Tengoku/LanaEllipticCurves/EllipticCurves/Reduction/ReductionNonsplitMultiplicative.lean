@@ -65,7 +65,9 @@ variable (R) in
 residue field has characteristic `≠ 2`, `W` has non-split multiplicative reduction — i.e.
 multiplicative but not split — iff it has multiplicative reduction and `−c̃₆` is **not** a square in
 the residue field.  This is the non-split companion of
-`hasSplitMultiplicativeReduction_iff_isSquare_neg_c₆` (#497), Silverman AEC VII.5.1. -/
+`hasSplitMultiplicativeReduction_iff_isSquare_neg_c₆` (#497), Silverman AEC VII.5.1.
+@isnad1 id=iff.0h3v.s8.8d67fb8a9d9c from=translated src=- shape=01400926 vocab=ae206f8e
+-/
 theorem hasMultiplicativeReduction_and_not_split_iff_not_isSquare_neg_c₆
     [NeZero (2 : ResidueField R)] (W : WeierstrassCurve K) [IsMinimal R W] :
     (W.HasMultiplicativeReduction R ∧ ¬ W.HasSplitMultiplicativeReduction R) ↔
@@ -77,7 +79,9 @@ theorem hasMultiplicativeReduction_and_not_split_iff_not_isSquare_neg_c₆
 variable (R) in
 /-- **Non-split multiplicative reduction via the discriminant `−c̃₄·c̃₆` (residue char ≠ 2).**  The
 `−c̃₄·c̃₆` form of `hasMultiplicativeReduction_and_not_split_iff_not_isSquare_neg_c₆`: the non-split
-companion of `hasSplitMultiplicativeReduction_iff_isSquare` (#494). -/
+companion of `hasSplitMultiplicativeReduction_iff_isSquare` (#494).
+@isnad1 id=iff.0h3v.s8.ddae3d09b1c4 from=translated src=- shape=57f648b0 vocab=9b78ce99
+-/
 theorem hasMultiplicativeReduction_and_not_split_iff_not_isSquare
     [NeZero (2 : ResidueField R)] (W : WeierstrassCurve K) [IsMinimal R W] :
     (W.HasMultiplicativeReduction R ∧ ¬ W.HasSplitMultiplicativeReduction R) ↔
@@ -97,7 +101,9 @@ neither the remainder of the type nor the proof term, measured on the elaborated
 `2e44940` (`#1272`).  The dichotomy is `rcases em _`, i.e. excluded middle on
 `HasSplitMultiplicativeReduction`, and neither predicate takes minimality as an instance argument.
 ⚠️ The two `iff` results above it **do** use `[IsMinimal R W]`; this is the one that does not, and
-the asymmetry is the point rather than an oversight. -/
+the asymmetry is the point rather than an oversight.
+@isnad1 id=or.1h3v.s6.7e68d44dc8e6 from=translated src=- shape=0f57e52c vocab=6deacd4b
+-/
 theorem HasMultiplicativeReduction.hasSplitMultiplicativeReduction_or_not
     {W : WeierstrassCurve K} (hmult : W.HasMultiplicativeReduction R) :
     W.HasSplitMultiplicativeReduction R ∨

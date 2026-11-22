@@ -55,7 +55,9 @@ of a model morphism `f₀` is finite and `f₀` is proper, then `f₀` is finite
 `pullback.fst (ℙ¹_{k₀} ↘ Spec k₀) (specAlgebraMap k₀ K)` (itself a base change of the field
 extension `specAlgebraMap k₀ K`, hence `@Surjective ⊓ @Flat ⊓ @QuasiCompact`); finiteness descends
 by `AlgebraicGeometry.isFinite_of_isPullback_of_faithfullyFlat` applied to the (flipped) cartesian
-square `Belyi.isPullback_baseChangeModelHom`. -/
+square `Belyi.isPullback_baseChangeModelHom`.
+@isnad1 id=isfinite.2h5v.s7.ba8e46a292e2 from=translated src=- shape=4e55a661 vocab=613f4cc1
+-/
 lemma isFinite_of_isFinite_baseChangeModelHom [IsProper f₀]
     (hbc : IsFinite (baseChangeModelHom k₀ K p₀ f₀ hf₀)) : IsFinite f₀ := by
   haveI := hbc
@@ -71,7 +73,9 @@ the base change of the model source, and the pair condition
 
 `baseChangeModelHom` is `inv e.hom ≫ f ≫ toPullback`, a composite of two isomorphisms with the
 finite `f`, hence finite; then `isFinite_of_isFinite_baseChangeModelHom` descends finiteness to the
-model. -/
+model.
+@isnad1 id=isfinite.3h8v.s9.20173d380ab7 from=translated src=- shape=186fe824 vocab=afde1946
+-/
 lemma isFinite_model_of_isFinite {X₀ : Scheme.{u}} {p₀ : X₀ ⟶ Spec (CommRingCat.of k₀)}
     {f₀ : X₀ ⟶ P1 k₀} (hf₀ : f₀ ≫ (P1 k₀ ↘ Spec (CommRingCat.of k₀)) = p₀) [IsProper f₀]
     {X : Scheme.{u}} [X.Over (Spec (CommRingCat.of K))] {f : X ⟶ P1 K}

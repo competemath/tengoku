@@ -40,7 +40,9 @@ namespace IsAdic
 
 /-- If `I` and `J` are both ideals of definition of the topological ring `R` (both induce the
 `I`-adic topology), then some power of `J` is contained in `I`: since `I` is an open
-neighbourhood of `0`, it contains a basic neighbourhood `J ^ n` of the `J`-adic topology. -/
+neighbourhood of `0`, it contains a basic neighbourhood `J ^ n` of the `J`-adic topology.
+@isnad1 id=ex.2h3v.s7.6a48386df1c1 from=translated src=- shape=89a320ca vocab=b35e5391
+-/
 theorem exists_pow_le (hI : IsAdic I) (hJ : IsAdic J) : ∃ n : ℕ, J ^ n ≤ I := by
   have hInhds : (I : Set R) ∈ 𝓝 (0 : R) := by
     have := hI.hasBasis_nhds_zero.mem_of_mem (i := 1) trivial
@@ -49,26 +51,34 @@ theorem exists_pow_le (hI : IsAdic I) (hJ : IsAdic J) : ∃ n : ℕ, J ^ n ≤ I
   exact ⟨n, SetLike.coe_subset_coe.mp hn⟩
 
 /-- An ideal of definition is contained in the radical of any other ideal of definition of the
-same topological ring. -/
+same topological ring.
+@isnad1 id=le.2h3v.s6.d3e4f17fe211 from=translated src=- shape=2fd8bd5c vocab=b585658c
+-/
 theorem le_radical (hI : IsAdic I) (hJ : IsAdic J) : J ≤ I.radical := by
   obtain ⟨n, hn⟩ := hI.exists_pow_le hJ
   intro x hx
   exact Ideal.mem_radical_of_pow_mem (Ideal.le_radical (hn (Ideal.pow_mem_pow hx n)))
 
-/-- Two ideals of definition of the same topological ring have the same radical. -/
+/-- Two ideals of definition of the same topological ring have the same radical.
+@isnad1 id=eq.2h3v.s5.702e2645832c from=translated src=- shape=2c22dff3 vocab=2f2b9d0b
+-/
 theorem radical_eq (hI : IsAdic I) (hJ : IsAdic J) : I.radical = J.radical :=
   le_antisymm (Ideal.radical_le_radical_iff.mpr (hJ.le_radical hI))
     (Ideal.radical_le_radical_iff.mpr (hI.le_radical hJ))
 
 /-- Two ideals of definition of the same topological ring cut out the same closed subset of
-`Spec R`. -/
+`Spec R`.
+@isnad1 id=eq.2h3v.s6.66d584e5405f from=translated src=- shape=e6158cd8 vocab=cdc8c2a4
+-/
 theorem zeroLocus_eq (hI : IsAdic I) (hJ : IsAdic J) :
     PrimeSpectrum.zeroLocus (I : Set R) = PrimeSpectrum.zeroLocus (J : Set R) := by
   rw [← PrimeSpectrum.zeroLocus_radical I, ← PrimeSpectrum.zeroLocus_radical J,
     hI.radical_eq hJ]
 
 /-- The inclusions of `FormalSpectrum I` and `FormalSpectrum J` into `Spec R` have the same
-range: both are the closed subset `V(I) = V(J)`. -/
+range: both are the closed subset `V(I) = V(J)`.
+@isnad1 id=eq.2h3v.s6.357370ae8415 from=translated src=- shape=cf05c1e8 vocab=1d18ccb0
+-/
 theorem range_toPrimeSpectrum_eq (hI : IsAdic I) (hJ : IsAdic J) :
     Set.range (FormalSpectrum.toPrimeSpectrum I) =
       Set.range (FormalSpectrum.toPrimeSpectrum J) := by
@@ -87,7 +97,9 @@ noncomputable def homeomorphFormalSpectrum (hI : IsAdic I) (hJ : IsAdic J) :
 
 /-- The homeomorphism `homeomorphFormalSpectrum` is compatible with the inclusions into
 `Spec R`: it sends a point to the point of `FormalSpectrum J` lying over the same prime of
-`R`. -/
+`R`.
+@isnad1 id=eq.2h4v.s7.44e5ea54ae14 from=translated src=- shape=784021c6 vocab=eac9349f
+-/
 @[simp]
 theorem toPrimeSpectrum_homeomorphFormalSpectrum (hI : IsAdic I) (hJ : IsAdic J)
     (x : FormalSpectrum I) :

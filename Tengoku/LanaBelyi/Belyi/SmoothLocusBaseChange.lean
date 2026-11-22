@@ -66,7 +66,9 @@ an integral domain with `A' ↪ A' ⊗[A] B`, a prime of `A' ⊗[A] B` at which 
 Assembly: rewrite the smooth locus as the étale locus on both sides via
 `smoothLocus_eq_etaleLocus_of_finite_charZero` (finite characteristic-zero domain extensions
 `A' → A' ⊗[A] B` and `A → B`), then apply the étale-locus descent
-`etaleLocus_baseChange_subset`. -/
+`etaleLocus_baseChange_subset`.
+@isnad1 id=le.0h3v.s9.28e61bc7708e from=translated src=- shape=41bfaf25 vocab=d48d7845
+-/
 theorem smoothLocus_baseChange_subset
     {A A' B : Type u} [CommRing A] [IsDomain A] [CharZero A] [IsNoetherianRing A]
     [CommRing A'] [IsDomain A'] [CharZero A'] [Algebra A A'] [Module.Flat A A']

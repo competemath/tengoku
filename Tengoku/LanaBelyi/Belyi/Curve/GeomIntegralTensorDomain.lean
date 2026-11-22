@@ -74,7 +74,9 @@ include s j hj in
 /-- **Geometric integrality gives a domain base change of affine sections.** For a geometrically
 integral `s : X₀ ⟶ Spec k₀` (field `k₀`), a field extension `k₀ ⊆ K`, and an affine open
 `j : Spec B ⟶ X₀` with `j ≫ s = Spec.map (algebraMap k₀ B)`, the base change `K ⊗[k₀] B` is an
-integral domain. -/
+integral domain.
+@isnad1 id=isdomain.1h6v.s7.30ef6cdc1373 from=translated src=- shape=9c891d29 vocab=f659900f
+-/
 theorem isDomain_tensorProduct_of_geometricallyIntegral : IsDomain (K ⊗[k₀] B) := by
   -- Abbreviations for the two structure `Spec.map`s.
   set sK : Spec (CommRingCat.of K) ⟶ Spec (CommRingCat.of k₀) :=
@@ -106,7 +108,9 @@ theorem isDomain_tensorProduct_of_geometricallyIntegral : IsDomain (K ⊗[k₀] 
 
 include s j hj in
 /-- **The field base change of affine sections is a faithful `K`-algebra.** Companion to
-`isDomain_tensorProduct_of_geometricallyIntegral`: the algebra map `K → K ⊗[k₀] B` is injective. -/
+`isDomain_tensorProduct_of_geometricallyIntegral`: the algebra map `K → K ⊗[k₀] B` is injective.
+@isnad1 id=faithful.1h6v.s8.df28d1f86455 from=translated src=- shape=e500207b vocab=1446dd14
+-/
 theorem faithfulSMul_tensorProduct_of_geometricallyIntegral :
     FaithfulSMul K (K ⊗[k₀] B) := by
   haveI : IsDomain (K ⊗[k₀] B) := isDomain_tensorProduct_of_geometricallyIntegral s j hj

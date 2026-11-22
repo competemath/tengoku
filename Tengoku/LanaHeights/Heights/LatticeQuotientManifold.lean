@@ -78,7 +78,9 @@ private theorem contDiffOn_latticeQuotient_localInverse_transition (τ : ℍ)
 
 /-- Every covering-space local inverse is a holomorphic chart, even though
 the chosen charted-space atlas contains only one selected lift over each
-quotient point. -/
+quotient point.
+@isnad1 id=other.0h3v.s8.c99f2d3e6fe3 from=translated src=- shape=b9a6165a vocab=eb9fe367
+-/
 theorem latticeQuotientLocalInverse_mem_maximalAtlas (τ : ℍ) (a : ℂ) :
     let hf := (isCoveringMap_latticeQuotientMk τ).isLocalHomeomorph
     hf.localInverseAt a ∈ IsManifold.maximalAtlas 𝓘(ℂ) ω (LatticeQuotient τ) := by
@@ -103,7 +105,9 @@ theorem latticeQuotientLocalInverse_mem_maximalAtlas (τ : ℍ) (a : ℂ) :
     · simpa using contDiffOn_latticeQuotient_localInverse_transition τ a _
 
 /-- The quotient projection is locally biholomorphic for the independently
-constructed complex-manifold structure on the lattice quotient. -/
+constructed complex-manifold structure on the lattice quotient.
+@isnad1 id=islocald.0h2v.s7.bf0cf066c88f from=translated src=- shape=27304ea0 vocab=da19ac46
+-/
 theorem isLocalDiffeomorph_latticeQuotientMk (τ : ℍ) :
     IsLocalDiffeomorph 𝓘(ℂ) 𝓘(ℂ) ω (latticeQuotientMk τ) := by
   intro z
@@ -124,7 +128,9 @@ theorem isLocalDiffeomorph_latticeQuotientMk (τ : ℍ) :
     exact congrFun (hf.localInverseAt_symm z).symm w
 
 /-- The quotient projection is holomorphic. The stronger local-biholomorphism
-theorem above also records holomorphicity of its local inverses. -/
+theorem above also records holomorphicity of its local inverses.
+@isnad1 id=contmdif.0h2v.s7.a613d459d4a3 from=translated src=- shape=eafb9ab8 vocab=97cd6a5f
+-/
 theorem contMDiff_latticeQuotientMk (τ : ℍ) :
     ContMDiff 𝓘(ℂ) 𝓘(ℂ) ω (latticeQuotientMk τ) :=
   (isLocalDiffeomorph_latticeQuotientMk τ).contMDiff

@@ -32,6 +32,9 @@ def _root_.Tengoku.FixedPointTheoremsLean4.convex_comb {V : Type*} {k: ℕ} [Add
   (x : V) (a : Fin k → ℝ) (y: Fin k → V) : Prop :=
   (∀ i, 0 ≤ a i) ∧ ∑ i, a i = 1 ∧ x = ∑ i, a i • y i
 
+/--
+@isnad1 id=mem.3h6v.s6.5bd21fd076c1 from=translated src=- shape=e0df6d65 vocab=46687261
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.mem_of_convex_comb {V : Type*} {k: ℕ} [AddCommGroup V] [Module ℝ V]
   (x : V) {a : Fin k → ℝ} {y: Fin k → V} (h0 : convex_comb x a y)
   s (h1 : Convex ℝ s) (h2 : ∀ i, y i ∈ s): x ∈ s := by {
@@ -40,6 +43,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.mem_of_convex_comb {V : Type*} {k: 
   apply Convex.sum_mem h1 (fun i _ ↦ h0.1 i) h0.2.1 fun i a ↦ h2 i
 }
 
+/--
+@isnad1 id=mem.1h5v.s6.2e4b83b98e4f from=translated src=- shape=28f9661f vocab=8f893399
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.sub_ICC_of_convex_comb {V : Type*} {k: ℕ} [AddCommGroup V] [Module ℝ V]
     (x : V) {a : Fin k → ℝ} {y: Fin k → V} (h0 : convex_comb x a y)
     : a ∈ Set.Icc 0 1 := by {
@@ -55,6 +61,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.sub_ICC_of_convex_comb {V : Type*} 
 }
 
 /- useful to get a fixed size of vectors -/
+/--
+@isnad1 id=ex.2h4v.s7.13fd946425af from=translated src=- shape=a026594d vocab=be5bd4c4
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.caratheodory_1 {V : Type*}
     [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
     (s : Set V) k (h1 : k = Module.finrank ℝ V) {x} (h2 : x ∈ convexHull ℝ s)

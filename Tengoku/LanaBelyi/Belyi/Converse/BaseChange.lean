@@ -35,7 +35,9 @@ variable {k : Type u} [CommRing k] {R : Type u} [CommRing R] [Algebra k R]
   {A : Type u} [CommRing A] [Algebra k A] {L : Type u} [CommRing L] [Algebra k L]
 
 /-- An isomorphism `e : (L ⊗[k] R) ⊗[A ⊗[k] R] B ≃ₐ[L ⊗[k] R] B'` with `e (1 ⊗ b) = g b` exhibits
-`B'` as the base change of `B` along `φ ⊗ id_R`. -/
+`B'` as the base change of `B` along `φ ⊗ id_R`.
+@isnad1 id=isbasech.1h9v.s11.2368a7111e6d from=translated src=- shape=b0d36b81 vocab=94f8a5af
+-/
 theorem IsBaseChangeAlong.of_equiv (φ : A →ₐ[k] L) {B : Type u} [CommRing B]
     [Algebra (A ⊗[k] R) B] {B' : Type u} [CommRing B'] [Algebra (L ⊗[k] R) B'] (g : B →+* B')
     (e : letI := tensorMapAlgebra R φ; ((L ⊗[k] R) ⊗[A ⊗[k] R] B) ≃ₐ[L ⊗[k] R] B')
@@ -56,7 +58,9 @@ theorem IsBaseChangeAlong.of_equiv (φ : A →ₐ[k] L) {B : Type u} [CommRing B
   exact IsBaseChange.of_equiv e.toLinearEquiv fun b ↦ he b
 
 /-- The canonical base change `(L ⊗[k] R) ⊗[A ⊗[k] R] B` (with `tensorMapAlgebra R φ`), together
-with `Algebra.TensorProduct.includeRight`, is a base change along `φ`. -/
+with `Algebra.TensorProduct.includeRight`, is a base change along `φ`.
+@isnad1 id=isbasech.0h6v.s10.8c90e147bb3b from=translated src=- shape=1c420d90 vocab=5fffc634
+-/
 theorem isBaseChangeAlong_includeRight (φ : A →ₐ[k] L) (B : Type u) [CommRing B]
     [Algebra (A ⊗[k] R) B] :
     letI := tensorMapAlgebra R φ
@@ -78,7 +82,9 @@ noncomputable def IsBaseChangeAlong.equiv {φ : A →ₐ[k] L} {B : Type u} [Com
   haveI := h.2
   Algebra.IsPushout.equiv (A ⊗[k] R) (L ⊗[k] R) B B'
 
-/-- The comparison isomorphism of a base change on pure tensors. -/
+/-- The comparison isomorphism of a base change on pure tensors.
+@isnad1 id=eq.1h10v.s11.a8c262fbb19a from=translated src=- shape=5d1c3135 vocab=f09e39e9
+-/
 theorem IsBaseChangeAlong.equiv_tmul {φ : A →ₐ[k] L} {B : Type u} [CommRing B]
     [Algebra (A ⊗[k] R) B] {B' : Type u} [CommRing B'] [Algebra (L ⊗[k] R) B'] {g : B →+* B'}
     (h : IsBaseChangeAlong (R := R) φ g) (x : L ⊗[k] R) (b : B) :
@@ -91,7 +97,9 @@ theorem IsBaseChangeAlong.equiv_tmul {φ : A →ₐ[k] L} {B : Type u} [CommRing
   haveI := h.2
   Algebra.IsPushout.equiv_tmul (A ⊗[k] R) (L ⊗[k] R) B B' x b
 
-/-- The base change of a finite algebra is finite. -/
+/-- The base change of a finite algebra is finite.
+@isnad1 id=finite.1h8v.s9.7b0c9614e510 from=translated src=- shape=a160b1b0 vocab=d3f071f6
+-/
 theorem IsBaseChangeAlong.finite {φ : A →ₐ[k] L} {B : Type u} [CommRing B]
     [Algebra (A ⊗[k] R) B] {B' : Type u} [CommRing B'] [Algebra (L ⊗[k] R) B'] {g : B →+* B'}
     (h : IsBaseChangeAlong (R := R) φ g) [Module.Finite (A ⊗[k] R) B] :
@@ -99,7 +107,9 @@ theorem IsBaseChangeAlong.finite {φ : A →ₐ[k] L} {B : Type u} [CommRing B]
   letI := tensorMapAlgebra R φ
   .equiv h.equiv.toLinearEquiv
 
-/-- The base change of an étale algebra is étale. -/
+/-- The base change of an étale algebra is étale.
+@isnad1 id=etale.1h8v.s8.c60caf24071a from=translated src=- shape=a160b1b0 vocab=c511e86f
+-/
 theorem IsBaseChangeAlong.etale {φ : A →ₐ[k] L} {B : Type u} [CommRing B]
     [Algebra (A ⊗[k] R) B] {B' : Type u} [CommRing B'] [Algebra (L ⊗[k] R) B'] {g : B →+* B'}
     (h : IsBaseChangeAlong (R := R) φ g) [Algebra.Etale (A ⊗[k] R) B] :
@@ -108,7 +118,9 @@ theorem IsBaseChangeAlong.etale {φ : A →ₐ[k] L} {B : Type u} [CommRing B]
   .of_equiv h.equiv
 
 /-- Base changes along `φ ⊗ id_R` exist, and they are finite, resp. étale, if the original algebra
-is. -/
+is.
+@isnad1 id=ex.0h6v.s9.1a2512b03995 from=translated src=- shape=7b9978c5 vocab=af88db4a
+-/
 theorem exists_isBaseChangeAlong (φ : A →ₐ[k] L) (B : Type u) [CommRing B]
     [Algebra (A ⊗[k] R) B] :
     ∃ (B' : Type u) (_ : CommRing B') (_ : Algebra (L ⊗[k] R) B') (g : B →+* B'),

@@ -75,9 +75,15 @@ def L (A : Divisor K) : Submodule ℚ K where
     rw [P.ord_mul hq hf0, P.ord_ratCast, zero_add]
     exact hf P
 
+/--
+@isnad1 id=iff.0h3v.s7.26f936c0f109 from=translated src=- shape=499ece91 vocab=7c4e4d70
+-/
 theorem mem_L {A : Divisor K} {f : K} : f ∈ L A ↔ f = 0 ∨ ∀ P : Place K, -A P ≤ P.ord f :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.1h3v.s7.219dbecb3394 from=translated src=- shape=87adbc36 vocab=7dfe271f
+-/
 theorem mem_L_of_ne_zero {A : Divisor K} {f : K} (hf : f ≠ 0) :
     f ∈ L A ↔ 0 ≤ A + div f := by
   rw [mem_L, or_iff_right hf]
@@ -85,6 +91,9 @@ theorem mem_L_of_ne_zero {A : Divisor K} {f : K} (hf : f ≠ 0) :
   simp only [Finsupp.coe_zero, Pi.zero_apply, Finsupp.coe_add, Pi.add_apply, div_apply]
   omega
 
+/--
+@isnad1 id=le.1h3v.s7.0dcdea71aa26 from=translated src=- shape=0e67fff7 vocab=d80e56d1
+-/
 theorem L_mono {A B : Divisor K} (h : A ≤ B) : L A ≤ L B := by
   rintro f (rfl | hf)
   · exact Or.inl rfl
@@ -95,6 +104,9 @@ noncomputable def ell (A : Divisor K) : ℕ := Module.finrank ℚ (L A)
 
 /-! ### Transport along principal divisors -/
 
+/--
+@isnad1 id=mem.2h4v.s8.0b560ec3ec3d from=translated src=- shape=44c70475 vocab=50cd91e1
+-/
 theorem mul_mem_L {A : Divisor K} {z f : K} (hz : z ≠ 0) (hf : f ∈ L (A + div z)) :
     f * z ∈ L A := by
   rcases hf with rfl | hf
@@ -107,6 +119,9 @@ theorem mul_mem_L {A : Divisor K} {z f : K} (hz : z ≠ 0) (hf : f ∈ L (A + di
   rw [P.ord_mul hf0 hz]
   omega
 
+/--
+@isnad1 id=mem.2h4v.s8.73ebb006f0a3 from=translated src=- shape=f0a17a5f vocab=0508f720
+-/
 theorem mul_inv_mem_L {A : Divisor K} {z g : K} (hz : z ≠ 0) (hg : g ∈ L A) :
     g * z⁻¹ ∈ L (A + div z) := by
   rcases hg with rfl | hg
@@ -128,7 +143,9 @@ noncomputable def mulEquiv (A : Divisor K) {z : K} (hz : z ≠ 0) : L (A + div z
   left_inv f := Subtype.ext (by simp [hz])
   right_inv g := Subtype.ext (by simp [hz])
 
-/-- `ℓ` is invariant under linear equivalence. -/
+/-- `ℓ` is invariant under linear equivalence.
+@isnad1 id=eq.1h3v.s6.96f1014b1c98 from=translated src=- shape=edd3c0dc vocab=a1cc0ac5
+-/
 theorem ell_add_div (A : Divisor K) {z : K} (hz : z ≠ 0) : ell (A + div z) = ell A :=
   (mulEquiv A hz).finrank_eq
 
@@ -138,9 +155,15 @@ section Step
 
 variable {A : Divisor K} {P : Place K} {π : K}
 
+/--
+@isnad1 id=ne.1h3v.s5.cdadcc1e9152 from=translated src=- shape=a8fd93cd vocab=5fa8ea52
+-/
 theorem ne_zero_of_ord_eq_one (hπ : P.ord π = 1) : π ≠ 0 := by
   rintro rfl; simp at hπ
 
+/--
+@isnad1 id=mem.2h5v.s8.5a95f7bcdba3 from=translated src=- shape=62e5dbad vocab=0f8d7668
+-/
 theorem zpow_mul_mem (hπ : P.ord π = 1) {f : K} (hf : f ∈ L (A + Finsupp.single P 1)) :
     π ^ (A P + 1) * f ∈ P.1 := by
   rcases hf with rfl | hf
@@ -170,6 +193,9 @@ noncomputable def residueMap (hπ : P.ord π = 1) :
     simp only [SetLike.val_smul, Rat.smul_def, MulMemClass.coe_mul, Place.coe_ratHom]
     ring
 
+/--
+@isnad1 id=iff.1h5v.s11.beda7873d6f9 from=translated src=- shape=48498c1d vocab=a2e03015
+-/
 theorem mem_ker_residueMap (hπ : P.ord π = 1) (f : L (A + Finsupp.single P 1)) :
     f ∈ LinearMap.ker (residueMap A P hπ) ↔ (f : K) ∈ L A := by
   classical
@@ -200,7 +226,9 @@ theorem mem_ker_residueMap (hπ : P.ord π = 1) (f : L (A + Finsupp.single P 1))
     omega
 
 /-- **Adding a place** (Stichtenoth, Lemma 1.4.8): if `L(A)` is finite-dimensional, so is
-`L(A + P)`, and `ℓ(A + P) ≤ ℓ(A) + deg P`. -/
+`L(A + P)`, and `ℓ(A + P) ≤ ℓ(A) + deg P`.
+@isnad1 id=and.0h3v.s9.2169b7f70605 from=translated src=- shape=b5523a5b vocab=778a35d6
+-/
 theorem step (A : Divisor K) (P : Place K) [FiniteDimensional ℚ (L A)] :
     FiniteDimensional ℚ (L (A + Finsupp.single P 1)) ∧
       ell (A + Finsupp.single P 1) ≤ ell A + P.deg := by
@@ -226,6 +254,9 @@ theorem step (A : Divisor K) (P : Place K) [FiniteDimensional ℚ (L A)] :
   unfold ell
   omega
 
+/--
+@isnad1 id=and.0h4v.s9.4dd2995354b4 from=translated src=- shape=3b83073e vocab=05cb8ee1
+-/
 theorem step_nat (P : Place K) (m : ℕ) (A : Divisor K) [FiniteDimensional ℚ (L A)] :
     FiniteDimensional ℚ (L (A + Finsupp.single P (m : ℤ))) ∧
       (ell (A + Finsupp.single P (m : ℤ)) : ℤ) ≤ ell A + m * P.deg := by
@@ -241,6 +272,9 @@ theorem step_nat (P : Place K) (m : ℕ) (A : Divisor K) [FiniteDimensional ℚ 
     have : ((m : ℤ) + 1) * P.deg = m * P.deg + P.deg := by ring
     omega
 
+/--
+@isnad1 id=and.1h3v.s9.0819bd63cc31 from=translated src=- shape=6cc299c4 vocab=18b80c1c
+-/
 theorem aux (D : Divisor K) (hD : 0 ≤ D) (A : Divisor K) [FiniteDimensional ℚ (L A)] :
     FiniteDimensional ℚ (L (A + D)) ∧ (ell (A + D) : ℤ) ≤ ell A + D.deg := by
   classical
@@ -273,7 +307,9 @@ end Step
 
 /-! ### The space of constants -/
 
-/-- `L(0)` is the field of constants: the elements of `K` algebraic over `ℚ`. -/
+/-- `L(0)` is the field of constants: the elements of `K` algebraic over `ℚ`.
+@isnad1 id=iff.0h2v.s7.5dfadc94cc43 from=translated src=- shape=94680018 vocab=0c47f3f4
+-/
 theorem mem_L_zero {f : K} : f ∈ L (0 : Divisor K) ↔ IsAlgebraic ℚ f := by
   rw [Place.isAlgebraic_iff_forall_mem, mem_L]
   simp only [Finsupp.coe_zero, Pi.zero_apply, neg_zero]
@@ -283,12 +319,17 @@ theorem mem_L_zero {f : K} : f ∈ L (0 : Divisor K) ↔ IsAlgebraic ℚ f := by
     · exact P.mem_of_ord_nonneg (h P)
   · exact fun h ↦ Or.inr fun P ↦ P.ord_nonneg_of_mem (h P)
 
+/--
+@isnad1 id=eq.0h1v.s9.ae0cf2d81852 from=translated src=- shape=c0ee83a8 vocab=ff6086fa
+-/
 theorem L_zero : L (0 : Divisor K) = Subalgebra.toSubmodule (integralClosure ℚ K) := by
   ext f
   rw [mem_L_zero, Subalgebra.mem_toSubmodule, mem_integralClosure_iff,
     isAlgebraic_iff_isIntegral]
 
-/-- `ℓ(0) = [k : ℚ]` for the constant field `k` (the integral closure of `ℚ` in `K`). -/
+/-- `ℓ(0) = [k : ℚ]` for the constant field `k` (the integral closure of `ℚ` in `K`).
+@isnad1 id=eq.0h1v.s8.22af49edc967 from=translated src=- shape=cb46edfd vocab=885d5ac9
+-/
 theorem ell_zero : ell (0 : Divisor K) = Module.finrank ℚ (integralClosure ℚ K) := by
   rw [ell, L_zero]
   rfl

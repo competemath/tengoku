@@ -22,7 +22,9 @@ open MeasureTheory ProbabilityTheory
 
 namespace AbsorptionCutoff
 
-/-- The fourth moment of a standard real Gaussian is `3`. -/
+/-- The fourth moment of a standard real Gaussian is `3`.
+@isnad1 id=eq.0h0v.s5.0928981e36b3 from=translated src=- shape=ed0f2aee vocab=4960fe00
+-/
 lemma integral_pow_four_gaussianReal :
     ∫ x : ℝ, x ^ 4 ∂gaussianReal 0 1 = 3 := by
   let f : ℝ → ℝ := fun t => Real.exp (t ^ 2 / 2)
@@ -76,12 +78,16 @@ lemma integral_pow_four_gaussianReal :
     iteratedDeriv_one, h1, h2, h3, h4]
   norm_num [f]
 
-/-- Compatibility name for the standard real Gaussian fourth moment. -/
+/-- Compatibility name for the standard real Gaussian fourth moment.
+@isnad1 id=eq.0h0v.s5.0928981e36b3 from=translated src=- shape=ed0f2aee vocab=4960fe00
+-/
 lemma integral_fourth_gaussian :
     ∫ x : ℝ, x ^ 4 ∂gaussianReal 0 1 = 3 :=
   integral_pow_four_gaussianReal
 
-/-- The fourth power is integrable under the standard real Gaussian law. -/
+/-- The fourth power is integrable under the standard real Gaussian law.
+@isnad1 id=integrab.0h0v.s5.1547dcd6334b from=translated src=- shape=3a191710 vocab=49f0f850
+-/
 lemma integrable_pow_four_gaussianReal :
     Integrable (fun x : ℝ => x ^ 4) (gaussianReal 0 1) := by
   have h :=
@@ -91,7 +97,9 @@ lemma integrable_pow_four_gaussianReal :
   rw [← abs_pow, abs_of_nonneg]
   positivity
 
-/-- The evaluated one-coordinate score has Fisher information `1/(2q²)`. -/
+/-- The evaluated one-coordinate score has Fisher information `1/(2q²)`.
+@isnad1 id=and.2h2v.s7.d633fcce9957 from=translated src=- shape=4aab5e33 vocab=a950e3a3
+-/
 lemma integrable_sq_gaussianOneCoordinateScore_map_and_integral_eq
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) :
     Integrable
@@ -149,7 +157,9 @@ lemma integrable_sq_gaussianOneCoordinateScore_map_and_integral_eq
   field_simp [hq.ne']
   ring
 
-/-- Compatibility projection of the exact evaluated score second moment. -/
+/-- Compatibility projection of the exact evaluated score second moment.
+@isnad1 id=eq.2h2v.s7.9c672604523e from=translated src=- shape=c0a3eddb vocab=ee58d053
+-/
 lemma integral_sq_gaussianOneCoordinateScore_map
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) :
     ∫ x : ℝ,
@@ -166,7 +176,9 @@ noncomputable def gaussianCoordinateScoreSum
     (gaussianOneCoordinateMap A q (g i))
 
 /-- Each evaluated coordinate score is integrable under the product Gaussian
-law. -/
+law.
+@isnad1 id=integrab.2h4v.s6.f678d70a92e3 from=translated src=- shape=5548d853 vocab=e8c00dd4
+-/
 lemma integrable_gaussianOneCoordinateScore_map_eval
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) {N : ℕ} (i : Fin N) :
     Integrable
@@ -185,7 +197,9 @@ lemma integrable_gaussianOneCoordinateScore_map_eval
     integrable_gaussianOneCoordinateScore_map hA hq
 
 /-- Each evaluated coordinate score remains centered under the product
-Gaussian law. -/
+Gaussian law.
+@isnad1 id=eq.2h4v.s6.ee52129bb309 from=translated src=- shape=3298d57c vocab=ad18ce55
+-/
 lemma integral_gaussianOneCoordinateScore_map_eval_eq_zero
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) {N : ℕ} (i : Fin N) :
     ∫ g : Fin N → ℝ,
@@ -210,7 +224,9 @@ lemma integral_gaussianOneCoordinateScore_map_eval_eq_zero
   exact hmap.symm.trans
     (integral_gaussianOneCoordinateScore_map_eq_zero hA hq)
 
-/-- The product score is integrable under the standard product Gaussian law. -/
+/-- The product score is integrable under the standard product Gaussian law.
+@isnad1 id=integrab.2h3v.s6.50afa8c926bb from=translated src=- shape=384db00c vocab=cfbddaba
+-/
 lemma integrable_gaussianCoordinateScoreSum
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ) :
     Integrable (gaussianCoordinateScoreSum A q N) (gaussianVec N) := by
@@ -218,7 +234,9 @@ lemma integrable_gaussianCoordinateScoreSum
   exact integrable_finsetSum Finset.univ fun i _ =>
     integrable_gaussianOneCoordinateScore_map_eval hA hq i
 
-/-- The finite-coordinate product score has mean zero. -/
+/-- The finite-coordinate product score has mean zero.
+@isnad1 id=eq.2h3v.s6.5617f90fcd5e from=translated src=- shape=8da61331 vocab=a688edfa
+-/
 lemma integral_gaussianCoordinateScoreSum_eq_zero
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ) :
     ∫ g, gaussianCoordinateScoreSum A q N g ∂gaussianVec N = 0 := by
@@ -229,7 +247,9 @@ lemma integral_gaussianCoordinateScoreSum_eq_zero
   simp
 
 /-- The square of each evaluated coordinate score is integrable under the
-product Gaussian law. -/
+product Gaussian law.
+@isnad1 id=integrab.2h4v.s6.9b18664ea10a from=translated src=- shape=37e03c3a vocab=0c6dbd23
+-/
 lemma integrable_sq_gaussianOneCoordinateScore_map_eval
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) {N : ℕ} (i : Fin N) :
     Integrable
@@ -249,7 +269,9 @@ lemma integrable_sq_gaussianOneCoordinateScore_map_eval
     (integrable_sq_gaussianOneCoordinateScore_map_and_integral_eq hA hq).1
 
 /-- The evaluated one-coordinate score belongs to `L²` under the standard
-Gaussian law. -/
+Gaussian law.
+@isnad1 id=memlp.2h2v.s6.4eb16bfc25e0 from=translated src=- shape=132394e3 vocab=26a5eab2
+-/
 lemma memLp_two_gaussianOneCoordinateScore_map
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) :
     MemLp
@@ -261,7 +283,9 @@ lemma memLp_two_gaussianOneCoordinateScore_map
     (integrable_gaussianOneCoordinateScore_map hA hq).1).2
     (integrable_sq_gaussianOneCoordinateScore_map_and_integral_eq hA hq).1
 
-/-- The variance of one evaluated score equals its Fisher information. -/
+/-- The variance of one evaluated score equals its Fisher information.
+@isnad1 id=eq.2h2v.s6.8cd1ad5ffa73 from=translated src=- shape=a3409e41 vocab=66999a23
+-/
 lemma variance_gaussianOneCoordinateScore_map
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) :
     Var[fun x : ℝ =>
@@ -273,7 +297,9 @@ lemma variance_gaussianOneCoordinateScore_map
     integral_gaussianOneCoordinateScore_map_eq_zero hA hq]
   simpa using integral_sq_gaussianOneCoordinateScore_map hA hq
 
-/-- The square of the finite-coordinate product score is integrable. -/
+/-- The square of the finite-coordinate product score is integrable.
+@isnad1 id=integrab.2h3v.s6.0b6dacc7716a from=translated src=- shape=7a5dcfe2 vocab=bb093d69
+-/
 lemma integrable_sq_gaussianCoordinateScoreSum
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ) :
     Integrable (fun g => gaussianCoordinateScoreSum A q N g ^ 2)
@@ -290,7 +316,9 @@ lemma integrable_sq_gaussianCoordinateScoreSum
   unfold gaussianCoordinateScoreSum
   exact (memLp_finsetSum Finset.univ fun i _ => hi i).integrable_sq
 
-/-- The product score has Fisher information `N/(2q²)`. -/
+/-- The product score has Fisher information `N/(2q²)`.
+@isnad1 id=eq.2h3v.s7.b29e06f13b3b from=translated src=- shape=216e5a28 vocab=adb1eae5
+-/
 lemma integral_sq_gaussianCoordinateScoreSum
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ) :
     ∫ g, gaussianCoordinateScoreSum A q N g ^ 2 ∂gaussianVec N =
@@ -318,7 +346,9 @@ lemma integral_sq_gaussianCoordinateScoreSum
   simpa [Finset.sum_const, nsmul_eq_mul, div_eq_mul_inv, mul_assoc] using
     hsumVariance
 
-/-- The absolute product score is integrable. -/
+/-- The absolute product score is integrable.
+@isnad1 id=integrab.2h3v.s6.b70888575f5e from=translated src=- shape=3133dd2f vocab=095ca0b1
+-/
 lemma integrable_abs_gaussianCoordinateScoreSum
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ) :
     Integrable (fun g => |gaussianCoordinateScoreSum A q N g|)
@@ -326,7 +356,9 @@ lemma integrable_abs_gaussianCoordinateScoreSum
   (integrable_gaussianCoordinateScoreSum hA hq N).abs
 
 /-- The product score has the paper's `L¹` bound
-`√N / (√2 q)`. -/
+`√N / (√2 q)`.
+@isnad1 id=le.2h3v.s6.6d74351fa5a1 from=translated src=- shape=fdb385d7 vocab=be146e29
+-/
 lemma integral_abs_gaussianCoordinateScoreSum_le
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ) :
     ∫ g, |gaussianCoordinateScoreSum A q N g| ∂gaussianVec N ≤
@@ -375,7 +407,9 @@ noncomputable def gaussianProductScore
     (A q : ℝ) (N : ℕ) (y : Fin N → ℝ) : ℝ :=
   ∑ i, gaussianOneCoordinateScore A q (y i)
 
-/-- The finite product observation density is Borel measurable. -/
+/-- The finite product observation density is Borel measurable.
+@isnad1 id=measurab.0h3v.s4.fbc3013fb9e3 from=translated src=- shape=30b8ceaa vocab=1f9d4f2e
+-/
 lemma measurable_gaussianProductDensity (A q : ℝ) (N : ℕ) :
     Measurable (gaussianProductDensity A q N) := by
   classical
@@ -384,7 +418,9 @@ lemma measurable_gaussianProductDensity (A q : ℝ) (N : ℕ) :
     (measurable_gaussianOneCoordinateDensity A q).comp
       (measurable_pi_apply i)
 
-/-- The finite product observation score is Borel measurable. -/
+/-- The finite product observation score is Borel measurable.
+@isnad1 id=measurab.0h3v.s4.4a4b5c89d269 from=translated src=- shape=30b8ceaa vocab=73765df2
+-/
 lemma measurable_gaussianProductScore (A q : ℝ) (N : ℕ) :
     Measurable (gaussianProductScore A q N) := by
   classical
@@ -394,7 +430,9 @@ lemma measurable_gaussianProductScore (A q : ℝ) (N : ℕ) :
       (measurable_pi_apply i)
 
 /-- Score times product density is jointly Borel measurable in the parameter
-and observation vector. -/
+and observation vector.
+@isnad1 id=measurab.0h2v.s6.deacee7f6ed0 from=translated src=- shape=24bbed33 vocab=1bbfd3af
+-/
 lemma measurable_gaussianProductScore_mul_density (A : ℝ) (N : ℕ) :
     Measurable
       (fun p : ℝ × (Fin N → ℝ) =>
@@ -420,7 +458,9 @@ lemma measurable_gaussianProductScore_mul_density (A : ℝ) (N : ℕ) :
 
 /-- The `q`-derivative of the globally extended one-coordinate density
 factors as score times density. Outside the fixed support `(0,1)`, both sides
-vanish identically. -/
+vanish identically.
+@isnad1 id=hasderiv.2h3v.s6.eae916367a8f from=translated src=- shape=60af9ef6 vocab=388d3174
+-/
 lemma hasDerivAt_gaussianOneCoordinateDensity_q
     {A q y : ℝ} (hA : 0 < A) (hq : 0 < q) :
     HasDerivAt
@@ -442,7 +482,9 @@ lemma hasDerivAt_gaussianOneCoordinateDensity_q
       (hasDerivAt_const (x := q) (0 : ℝ))
 
 /-- The `q`-derivative of the finite product density factors globally as
-score times density. -/
+score times density.
+@isnad1 id=hasderiv.2h4v.s6.c8b3ecd27054 from=translated src=- shape=988843d6 vocab=1ed16c39
+-/
 lemma hasDerivAt_gaussianProductDensity_q
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) {N : ℕ} {y : Fin N → ℝ} :
     HasDerivAt
@@ -475,7 +517,9 @@ lemma hasDerivAt_gaussianProductDensity_q
   simpa only [gaussianProductDensity, gaussianProductScore, d, s] using hprod
 
 /-- The ordinary parameter derivative of the product density is its score
-times density. -/
+times density.
+@isnad1 id=eq.2h4v.s6.9526808cf202 from=translated src=- shape=42d0c6e1 vocab=01af03b9
+-/
 lemma deriv_gaussianProductDensity_q
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ) (y : Fin N → ℝ) :
     deriv (fun r => gaussianProductDensity A r N y) q =
@@ -483,7 +527,9 @@ lemma deriv_gaussianProductDensity_q
   (hasDerivAt_gaussianProductDensity_q hA hq).deriv
 
 /-- For a fixed observation vector, score times product density varies
-continuously with the positive parameter. -/
+continuously with the positive parameter.
+@isnad1 id=continuo.2h4v.s6.ac9d27e73fd5 from=translated src=- shape=f3fccf29 vocab=0cdd1a00
+-/
 lemma continuousAt_gaussianProductScore_mul_density_q
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ) (y : Fin N → ℝ) :
     ContinuousAt
@@ -531,7 +577,9 @@ noncomputable def gaussianProductObservationMeasure
     volume.withDensity
       (fun y => ENNReal.ofReal (gaussianOneCoordinateDensity A q y))
 
-/-- The coordinatewise product observation map is Borel measurable. -/
+/-- The coordinatewise product observation map is Borel measurable.
+@isnad1 id=measurab.0h3v.s5.b3b19202ba75 from=translated src=- shape=e793cb3f vocab=3af1930b
+-/
 lemma measurable_gaussianProductObservationMap (A q : ℝ) (N : ℕ) :
     Measurable (gaussianProductObservationMap A q N) := by
   have hcoord : Measurable (gaussianOneCoordinateMap A q) := by
@@ -541,14 +589,18 @@ lemma measurable_gaussianProductObservationMap (A q : ℝ) (N : ℕ) :
   exact measurable_pi_lambda _ fun i =>
     hcoord.comp (measurable_pi_apply i)
 
-/-- Coordinate averaging is Borel measurable. -/
+/-- Coordinate averaging is Borel measurable.
+@isnad1 id=measurab.0h1v.s4.04c4edd970f0 from=translated src=- shape=bbef8654 vocab=46dda61f
+-/
 lemma measurable_gaussianProductAverage (N : ℕ) :
     Measurable (gaussianProductAverage N) := by
   unfold gaussianProductAverage
   fun_prop
 
 /-- Averaging the transformed observation coordinates is exactly the scalar
-Gaussian radius update. -/
+Gaussian radius update.
+@isnad1 id=eq.0h4v.s4.2253aba3014d from=translated src=- shape=9daec38c vocab=e85c63ef
+-/
 lemma gaussianProductAverage_observationMap
     (A q : ℝ) (N : ℕ) (g : Fin N → ℝ) :
     gaussianProductAverage N (gaussianProductObservationMap A q N g) =
@@ -556,7 +608,9 @@ lemma gaussianProductAverage_observationMap
   rfl
 
 /-- The coordinatewise observation pushforward is the product of the
-one-coordinate `withDensity` laws. -/
+one-coordinate `withDensity` laws.
+@isnad1 id=eq.2h3v.s6.cc336489e357 from=translated src=- shape=6a3f5b13 vocab=aeff2a05
+-/
 lemma map_gaussianProductObservationMap_eq
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ) :
     Measure.map (gaussianProductObservationMap A q N) (gaussianVec N) =
@@ -574,7 +628,9 @@ lemma map_gaussianProductObservationMap_eq
   exact map_gaussianOneCoordinateMap_eq_withDensity hA hq
 
 /-- Pushing the finite product observation law through coordinate averaging
-recovers the scalar squared-radius transition law. -/
+recovers the scalar squared-radius transition law.
+@isnad1 id=eq.2h3v.s6.c931e5bba4f9 from=translated src=- shape=48ccd9a4 vocab=f4263610
+-/
 lemma map_gaussianProductAverage_observationMeasure_eq_Kchain
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ) :
     Measure.map (gaussianProductAverage N)
@@ -587,7 +643,9 @@ lemma map_gaussianProductAverage_observationMeasure_eq_Kchain
   congr 1
 
 /-- Evaluating the observation-space product score on transformed Gaussian
-coordinates gives the Gaussian-coordinate score sum. -/
+coordinates gives the Gaussian-coordinate score sum.
+@isnad1 id=eq.0h4v.s4.429bf310022e from=translated src=- shape=5ddc812c vocab=8ab80ee1
+-/
 lemma gaussianProductScore_observationMap
     (A q : ℝ) (N : ℕ) (g : Fin N → ℝ) :
     gaussianProductScore A q N (gaussianProductObservationMap A q N g) =
@@ -595,7 +653,9 @@ lemma gaussianProductScore_observationMap
   rfl
 
 /-- The absolute product-score integral under the observation law is the
-Gaussian-coordinate absolute-score integral. -/
+Gaussian-coordinate absolute-score integral.
+@isnad1 id=eq.2h3v.s6.5479d20157a5 from=translated src=- shape=322d7fd9 vocab=b4c984e9
+-/
 lemma integral_abs_gaussianProductScore_eq
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ) :
     ∫ y, |gaussianProductScore A q N y|
@@ -611,7 +671,9 @@ lemma integral_abs_gaussianProductScore_eq
   rw [hmap]
   congr 1
 
-/-- The observation-space product score inherits the sharp `L¹` bound. -/
+/-- The observation-space product score inherits the sharp `L¹` bound.
+@isnad1 id=le.2h3v.s6.79423549ea54 from=translated src=- shape=34ae5c1e vocab=42cd0f71
+-/
 lemma integral_abs_gaussianProductScore_le
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ) :
     ∫ y, |gaussianProductScore A q N y|
@@ -620,7 +682,9 @@ lemma integral_abs_gaussianProductScore_le
   rw [integral_abs_gaussianProductScore_eq hA hq N]
   exact integral_abs_gaussianCoordinateScoreSum_le hA hq N
 
-/-- The one-coordinate observation density is Lebesgue integrable. -/
+/-- The one-coordinate observation density is Lebesgue integrable.
+@isnad1 id=integrab.2h2v.s5.f2164b457cfc from=translated src=- shape=743a1cb3 vocab=d2f72a4e
+-/
 lemma integrable_gaussianOneCoordinateDensity
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) :
     Integrable (gaussianOneCoordinateDensity A q) volume := by
@@ -655,7 +719,9 @@ lemma integrable_gaussianOneCoordinateDensity
   rw [hlin]
   exact ENNReal.one_ne_top
 
-/-- The finite product observation density is Lebesgue integrable. -/
+/-- The finite product observation density is Lebesgue integrable.
+@isnad1 id=integrab.2h3v.s6.399424a11b3e from=translated src=- shape=f7d17228 vocab=28cfe54d
+-/
 lemma integrable_gaussianProductDensity
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ) :
     Integrable (gaussianProductDensity A q N) volume := by
@@ -666,7 +732,9 @@ lemma integrable_gaussianProductDensity
       integrable_gaussianOneCoordinateDensity hA hq)
 
 /-- The product of the one-coordinate observation laws has the product
-density with respect to Lebesgue measure on the finite product space. -/
+density with respect to Lebesgue measure on the finite product space.
+@isnad1 id=eq.2h3v.s6.fcc3358832d8 from=translated src=- shape=820e98c0 vocab=1455c9c5
+-/
 lemma gaussianProductObservationMeasure_eq_withDensity
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ) :
     gaussianProductObservationMeasure A q N =
@@ -734,7 +802,9 @@ lemma gaussianProductObservationMeasure_eq_withDensity
   · intro i _
     exact integral_nonneg fun x => hf_nonneg x
 
-/-- The finite product observation density is nonnegative. -/
+/-- The finite product observation density is nonnegative.
+@isnad1 id=le.2h4v.s5.5006df055e0c from=translated src=- shape=df793d21 vocab=7340419d
+-/
 lemma gaussianProductDensity_nonneg
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ)
     (y : Fin N → ℝ) :
@@ -744,7 +814,9 @@ lemma gaussianProductDensity_nonneg
     gaussianOneCoordinateDensity_nonneg hA hq (y i)
 
 /-- The real mass of a measurable set under the finite product observation
-law is the restricted integral of its product density. -/
+law is the restricted integral of its product density.
+@isnad1 id=eq.3h4v.s7.3b75cb32f886 from=translated src=- shape=6d127a61 vocab=f2bb90c3
+-/
 lemma gaussianProductObservationMeasure_apply_toReal
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ)
     {s : Set (Fin N → ℝ)} (hs : MeasurableSet s) :
@@ -761,7 +833,9 @@ lemma gaussianProductObservationMeasure_apply_toReal
     gaussianProductDensity_nonneg hA hq N y
 
 /-- The product score is integrable under the finite product observation
-law. -/
+law.
+@isnad1 id=integrab.2h3v.s6.d849f6313399 from=translated src=- shape=811c0ca4 vocab=a633dd9f
+-/
 lemma integrable_gaussianProductScore_observationMeasure
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ) :
     Integrable (gaussianProductScore A q N)
@@ -775,7 +849,9 @@ lemma integrable_gaussianProductScore_observationMeasure
       (gaussianProductScore_observationMap A q N g).symm)
 
 /-- The global parameter derivative of the product density is Lebesgue
-integrable. -/
+integrable.
+@isnad1 id=integrab.2h3v.s6.1409494e15ef from=translated src=- shape=1777f004 vocab=d43ad19a
+-/
 lemma integrable_gaussianProductScore_mul_density
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ) :
     Integrable
@@ -794,7 +870,9 @@ lemma integrable_gaussianProductScore_mul_density
   simp only [smul_eq_mul, mul_comm]
 
 /-- Integrating the global score derivative recovers the pointwise
-difference of product densities at two positive parameters. -/
+difference of product densities at two positive parameters.
+@isnad1 id=eq.3h5v.s6.e4e93ec63ddf from=translated src=- shape=ab83cecb vocab=964f9ffa
+-/
 lemma intervalIntegral_gaussianProductScore_mul_density_eq_sub
     {A q₀ q₁ : ℝ} (hA : 0 < A) (hq₀ : 0 < q₀) (hq₁ : 0 < q₁)
     (N : ℕ) (y : Fin N → ℝ) :
@@ -813,7 +891,9 @@ lemma intervalIntegral_gaussianProductScore_mul_density_eq_sub
         (lt_of_lt_of_le (lt_min hq₀ hq₁) hr.1) N y).continuousWithinAt
 
 /-- The pointwise density difference is bounded by the absolute parameter
-derivative integrated over the unoriented interval between the parameters. -/
+derivative integrated over the unoriented interval between the parameters.
+@isnad1 id=le.3h5v.s6.24812fcdc6f2 from=translated src=- shape=988bbcea vocab=cc45b701
+-/
 lemma abs_gaussianProductDensity_sub_le_integral_abs
     {A q₀ q₁ : ℝ} (hA : 0 < A) (hq₀ : 0 < q₀) (hq₁ : 0 < q₁)
     (N : ℕ) (y : Fin N → ℝ) :
@@ -831,7 +911,9 @@ lemma abs_gaussianProductDensity_sub_le_integral_abs
       (a := q₀) (b := q₁))
 
 /-- The absolute score integral under the observation law is the Lebesgue
-integral of absolute score times product density. -/
+integral of absolute score times product density.
+@isnad1 id=eq.2h3v.s7.460b66e1fa01 from=translated src=- shape=33606586 vocab=7baaa4da
+-/
 lemma integral_abs_gaussianProductScore_mul_density_eq
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ) :
     ∫ y, |gaussianProductScore A q N y| *
@@ -849,7 +931,9 @@ lemma integral_abs_gaussianProductScore_mul_density_eq
   simp only [smul_eq_mul, mul_comm]
 
 /-- The Lebesgue `L¹` norm of the product-density derivative has the sharp
-score bound. -/
+score bound.
+@isnad1 id=le.2h3v.s7.4ceeb4e21693 from=translated src=- shape=8cf580d1 vocab=b24b6ff3
+-/
 lemma integral_abs_gaussianProductScore_mul_density_le
     {A q : ℝ} (hA : 0 < A) (hq : 0 < q) (N : ℕ) :
     ∫ y, |gaussianProductScore A q N y *
@@ -869,7 +953,9 @@ lemma integral_abs_gaussianProductScore_mul_density_le
   exact integral_abs_gaussianProductScore_le hA hq N
 
 /-- The derivative `L¹` bound is uniform over the unoriented interval between
-two positive parameter values. -/
+two positive parameter values.
+@isnad1 id=le.4h5v.s7.dffff9a2dab0 from=translated src=- shape=237eaa6c vocab=0850a409
+-/
 lemma integral_abs_gaussianProductScore_mul_density_le_uIcc
     {A q₀ q₁ r : ℝ} (hA : 0 < A) (hq₀ : 0 < q₀) (hq₁ : 0 < q₁)
     (hr : r ∈ Set.uIcc q₀ q₁) (N : ℕ) :
@@ -889,7 +975,9 @@ lemma integral_abs_gaussianProductScore_mul_density_le_uIcc
     (mul_le_mul_of_nonneg_left hmin (Real.sqrt_nonneg 2))
 
 /-- The parameter derivative is jointly integrable on a bounded positive
-parameter strip and the full observation space. -/
+parameter strip and the full observation space.
+@isnad1 id=integrab.3h4v.s7.2a45c59ef432 from=translated src=- shape=5120a993 vocab=70e2010e
+-/
 lemma integrable_gaussianProductScore_mul_density_prod
     {A q₀ q₁ : ℝ} (hA : 0 < A) (hq₀ : 0 < q₀) (hq₁ : 0 < q₁)
     (N : ℕ) :
@@ -929,7 +1017,9 @@ lemma integrable_gaussianProductScore_mul_density_prod
     simpa only [F, Real.norm_eq_abs] using hbound
 
 /-- The finite product observation densities are Lipschitz in `L¹`, with the
-paper's score-tensorization constant. -/
+paper's score-tensorization constant.
+@isnad1 id=le.3h4v.s7.787e6547f390 from=translated src=- shape=50d48c51 vocab=32ea1f5e
+-/
 lemma integral_abs_gaussianProductDensity_sub_le
     {A q₀ q₁ : ℝ} (hA : 0 < A) (hq₀ : 0 < q₀) (hq₁ : 0 < q₁)
     (N : ℕ) :
@@ -984,7 +1074,9 @@ lemma integral_abs_gaussianProductDensity_sub_le
       simp [Set.uIoc, max_sub_min_eq_abs, mul_comm]
 
 /-- The finite product observation laws satisfy the sharp half-`L¹`
-total-variation bound. -/
+total-variation bound.
+@isnad1 id=le.3h4v.s7.6ef995b748ef from=translated src=- shape=d2c23326 vocab=6c7e4596
+-/
 lemma tvDist_gaussianProductObservationMeasure_le
     {A q₀ q₁ : ℝ} (hA : 0 < A) (hq₀ : 0 < q₀) (hq₁ : 0 < q₁)
     (N : ℕ) :
@@ -1072,7 +1164,9 @@ lemma tvDist_gaussianProductObservationMeasure_le
         |q₁ - q₀| := by ring
 
 /-- Paper-facing one-step score smoothing for the scalar squared-radius
-kernel. -/
+kernel.
+@isnad1 id=le.3h4v.s7.146d72e5cad8 from=translated src=- shape=25204ce3 vocab=33712a8a
+-/
 lemma tvDist_Kchain_apply_le_of_pos
     {A q₀ q₁ : ℝ} (hA : 0 < A) (hq₀ : 0 < q₀) (hq₁ : 0 < q₁)
     (N : ℕ) :

@@ -49,7 +49,9 @@ variable (k : Type u) [Field k]
 /-! ### Krull dimension of the stalks -/
 
 /-- The coordinate ring of the standard chart `D₊(Xᵢ)` of `ℙ¹` has Krull dimension one:
-`Γ(ℙ¹, D₊(Xᵢ)) ≅ Away (Xᵢ) ≅ k[T]`, and `k[T]` is a one-dimensional principal ideal domain. -/
+`Γ(ℙ¹, D₊(Xᵢ)) ≅ Away (Xᵢ) ≅ k[T]`, and `k[T]` is a one-dimensional principal ideal domain.
+@isnad1 id=eq.0h2v.s13.37b9e02fb066 from=translated src=- shape=02526a15 vocab=06a21a75
+-/
 lemma chart_ringKrullDim_eq_one (i : Fin 2) :
     ringKrullDim Γ(Proj (P1Grading k), Proj.basicOpen (P1Grading k) (X i)) = 1 := by
   match i with
@@ -65,7 +67,9 @@ lemma chart_ringKrullDim_eq_one (i : Fin 2) :
       IsPrincipalIdealRing.ringKrullDim_eq_one (Polynomial k) (Polynomial.not_isField k)]
 
 /-- Every point of `ℙ¹` lies in one of the two standard charts `D₊(X₀)`, `D₊(X₁)`: a homogeneous
-prime containing both `X₀` and `X₁` would contain the irrelevant ideal. -/
+prime containing both `X₀` and `X₁` would contain the irrelevant ideal.
+@isnad1 id=ex.0h2v.s10.7b007781ab20 from=translated src=- shape=725ebefa vocab=841e6ff3
+-/
 lemma exists_mem_basicOpen_X (x : Proj (P1Grading k)) :
     ∃ i : Fin 2, x ∈ Proj.basicOpen (P1Grading k) (X i) := by
   have htop := Proj.iSup_basicOpen_eq_top (P1Grading k)
@@ -77,7 +81,9 @@ lemma exists_mem_basicOpen_X (x : Proj (P1Grading k)) :
 /-- **The stalks of `ℙ¹` have Krull dimension at most one.**  For `x : ℙ¹`, the stalk
 `𝒪_{ℙ¹, x}` is a localization of the chart ring `Γ(ℙ¹, D₊(Xᵢ)) ≅ k[T]` at the prime of `x`;
 its Krull dimension equals the height of that prime, which is bounded by
-`ringKrullDim k[T] = 1`. -/
+`ringKrullDim k[T] = 1`.
+@isnad1 id=krulldim.0h2v.s6.3a29de65364e from=translated src=- shape=e96c46e2 vocab=46f04aa5
+-/
 theorem krullDimLE_one_stalk_P1 (x : P1 k) :
     Ring.KrullDimLE 1 ((P1 k).presheaf.stalk x) := by
   obtain ⟨i, hxi⟩ := exists_mem_basicOpen_X k x
@@ -99,7 +105,9 @@ theorem krullDimLE_one_stalk_P1 (x : P1 k) :
 
 /-! ### Reducedness -/
 
-/-- The chart coordinate rings `Away (Xᵢ) ≅ k[T]` are reduced (they are integral domains). -/
+/-- The chart coordinate rings `Away (Xᵢ) ≅ k[T]` are reduced (they are integral domains).
+@isnad1 id=isreduce.0h2v.s9.6ae428096e1d from=translated src=- shape=ea1aed04 vocab=258c69d0
+-/
 lemma isReduced_away_X (i : Fin 2) : _root_.IsReduced (Away (P1Grading k) (X i)) := by
   fin_cases i
   · exact isReduced_of_injective (awayChartEquivZero k).toRingHom (awayChartEquivZero k).injective

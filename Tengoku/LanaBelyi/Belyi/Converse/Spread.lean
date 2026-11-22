@@ -54,7 +54,9 @@ section Model
 variable (T B : Type u) [CommRing T] [CommRing B] [Algebra T B]
 
 /-- A finite étale `T`-algebra `B` has finite étale models over all rings `R₀` with an injective
-map `R₀ → T` whose image contains a certain finite subset `s ⊆ T`. -/
+map `R₀ → T` whose image contains a certain finite subset `s ⊆ T`.
+@isnad1 id=ex.0h2v.s8.7a6c566d16dd from=translated src=- shape=e2fae1d8 vocab=d2eebaaf
+-/
 theorem exists_finite_etale_model [Algebra.Etale T B] [Module.Finite T B] :
     ∃ s : Set T, s.Finite ∧ ∀ (R₀ : Type u) [CommRing R₀] [Algebra R₀ T],
       Function.Injective (algebraMap R₀ T) → s ⊆ Set.range (algebraMap R₀ T) →
@@ -130,7 +132,9 @@ section Subalgebra
 
 variable {k K : Type u} [Field k] [Field K] [Algebra k K] (R : Type u) [CommRing R] [Algebra k R]
 
-/-- The image of `A ⊗[k] R → K ⊗[k] R` is monotone in the subalgebra `A ⊆ K`. -/
+/-- The image of `A ⊗[k] R → K ⊗[k] R` is monotone in the subalgebra `A ⊆ K`.
+@isnad1 id=le.1h5v.s12.0c85e492692b from=translated src=- shape=01e33095 vocab=892c85fc
+-/
 theorem range_map_val_mono {A A' : Subalgebra k K} (h : A ≤ A') :
     Set.range (Algebra.TensorProduct.map A.val (AlgHom.id k R)) ⊆
       Set.range (Algebra.TensorProduct.map A'.val (AlgHom.id k R)) := by
@@ -140,13 +144,17 @@ theorem range_map_val_mono {A A' : Subalgebra k K} (h : A ≤ A') :
   rfl
 
 /-- For a subalgebra `A` of the field extension `K` of `k`, the map `A ⊗[k] R → K ⊗[k] R` is
-injective (`R` is flat over the field `k`). -/
+injective (`R` is flat over the field `k`).
+@isnad1 id=injectiv.0h4v.s11.ec03a4036939 from=translated src=- shape=4bf775d2 vocab=abe7366f
+-/
 theorem injective_map_val (A : Subalgebra k K) :
     Function.Injective (Algebra.TensorProduct.map A.val (AlgHom.id k R)) :=
   Module.Flat.rTensor_preserves_injective_linearMap (M := R) A.val.toLinearMap
     Subtype.val_injective
 
-/-- Every element of `K ⊗[k] R` comes from `A ⊗[k] R` for a finitely generated `A ⊆ K`. -/
+/-- Every element of `K ⊗[k] R` comes from `A ⊗[k] R` for a finitely generated `A ⊆ K`.
+@isnad1 id=ex.0h4v.s11.e159fcba3740 from=translated src=- shape=98b86007 vocab=87efec11
+-/
 theorem exists_fg_mem_range (x : K ⊗[k] R) :
     ∃ A : Subalgebra k K, A.FG ∧
       x ∈ Set.range (Algebra.TensorProduct.map A.val (AlgHom.id k R)) := by
@@ -163,7 +171,9 @@ theorem exists_fg_mem_range (x : K ⊗[k] R) :
     obtain ⟨y'', hy''⟩ := range_map_val_mono R (le_sup_right : A' ≤ A ⊔ A') ⟨y', rfl⟩
     exact ⟨x'' + y'', by rw [map_add, hx'', hy'']⟩
 
-/-- Every finite subset of `K ⊗[k] R` comes from `A ⊗[k] R` for a finitely generated `A ⊆ K`. -/
+/-- Every finite subset of `K ⊗[k] R` comes from `A ⊗[k] R` for a finitely generated `A ⊆ K`.
+@isnad1 id=ex.1h4v.s11.2e869aa70ac4 from=translated src=- shape=b9874386 vocab=461b82e0
+-/
 theorem exists_fg_subset_range (s : Set (K ⊗[k] R)) (hs : s.Finite) :
     ∃ A : Subalgebra k K, A.FG ∧
       s ⊆ Set.range (Algebra.TensorProduct.map A.val (AlgHom.id k R)) := by
@@ -184,7 +194,9 @@ end Subalgebra
 section GenericSmoothness
 
 /-- **Generic smoothness**: a finitely generated domain over a field of characteristic zero
-becomes smooth after inverting a nonzero element. -/
+becomes smooth after inverting a nonzero element.
+@isnad1 id=ex.0h2v.s7.ccfea7244dd7 from=translated src=- shape=2d18446e vocab=c5a8e4c5
+-/
 theorem exists_smooth_localizationAway (k : Type u) [Field k] [CharZero k] (A₀ : Type u)
     [CommRing A₀] [IsDomain A₀] [Algebra k A₀] [Algebra.FiniteType k A₀] :
     ∃ f : A₀, f ≠ 0 ∧ Algebra.Smooth k (Localization.Away f) := by
@@ -197,7 +209,9 @@ theorem exists_smooth_localizationAway (k : Type u) [Field k] [CharZero k] (A₀
   exact ⟨f, hf, h⟩
 
 /-- Every finitely generated `k`-subalgebra `A₀` of `K` (`k` of characteristic zero) is contained
-in a finitely generated smooth `k`-subalgebra `A` of `K`, namely `A₀[1/f]` for some `f ≠ 0`. -/
+in a finitely generated smooth `k`-subalgebra `A` of `K`, namely `A₀[1/f]` for some `f ≠ 0`.
+@isnad1 id=ex.1h3v.s8.07e36717a33b from=translated src=- shape=ecc214fc vocab=a98cd1dd
+-/
 theorem exists_smooth_le {k K : Type u} [Field k] [CharZero k] [Field K] [Algebra k K]
     (A₀ : Subalgebra k K) (hA₀ : A₀.FG) :
     ∃ A : Subalgebra k K, A₀ ≤ A ∧ Algebra.FiniteType k A ∧ Algebra.Smooth k A := by
@@ -230,7 +244,9 @@ section Spread
 /-- **Spreading out** a finite étale algebra over `K ⊗[k] R`: for fields `k ⊆ K`, `k` of
 characteristic zero, and a finite étale `K ⊗[k] R`-algebra `B`, there is a finitely generated smooth
 `k`-subalgebra `A ⊆ K` and a finite étale `A ⊗[k] R`-algebra `B_A` with `B` the base change of
-`B_A` along `A ⊗[k] R → K ⊗[k] R`. -/
+`B_A` along `A ⊗[k] R → K ⊗[k] R`.
+@isnad1 id=ex.0h4v.s11.1affa8e85e5d from=translated src=- shape=119111f8 vocab=6cbc8e91
+-/
 theorem exists_spread (k K R : Type u) [Field k] [CharZero k] [Field K] [Algebra k K]
     [CommRing R] [Algebra k R]
     (B : Type u) [CommRing B] [Algebra (K ⊗[k] R) B] [Algebra.Etale (K ⊗[k] R) B]

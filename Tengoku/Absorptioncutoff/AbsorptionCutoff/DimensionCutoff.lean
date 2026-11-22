@@ -39,7 +39,9 @@ noncomputable def macroscopicRoundedInitialRadii
     (fun N : ℕ => roundedInitialRadius ρ N (x N)) Filter.atTop
 
 /-- For boxed initial vectors, the paper's literal positive-`liminf` hypothesis
-is equivalent to an eventually uniform positive lower bound. -/
+is equivalent to an eventually uniform positive lower bound.
+@isnad1 id=iff.2h2v.s6.14276eb167d0 from=translated src=- shape=9ebd0704 vocab=bde6e279
+-/
 lemma macroscopicRoundedInitialRadii_iff_exists_eventually_lowerBound
     {ρ : ℝ} (hρ : 0 < ρ)
     (x : ∀ N : ℕ, Fin N → ℝ)
@@ -75,7 +77,9 @@ lemma macroscopicRoundedInitialRadii_iff_exists_eventually_lowerBound
         (Filter.isCoboundedUnder_ge_of_eventually_le Filter.atTop hboundedAbove) hlower)
 
 /-- The paper's macroscopic rounded initial radii force the deterministic
-rounded-map cutoff locations to diverge. -/
+rounded-map cutoff locations to diverge.
+@isnad1 id=tendsto.6h3v.s6.e9b3aa934fd4 from=translated src=- shape=9901d424 vocab=eb87eeb1
+-/
 theorem tendsto_roundedDimensionCutoffTime_atTop_of_macroscopic
     {A ρ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -132,7 +136,9 @@ threshold `b_{ρ,0} = roundedLayerThreshold ρ 0`.
 The empirical average `H_{A,ρ,N}` is a nonnegative sum of squared rounded
 coordinates, so it vanishes iff each summand does; the coordinatewise criterion is
 `Q₁(ρ⁻¹ tanh(ρ A √h gᵢ)) = 0`, which by `Q₁_zero_iff` and the layer preimage
-`abs_inv_mul_tanh_gt_iff` is exactly `|A √h gᵢ| ≤ b_{ρ,0}`. -/
+`abs_inv_mul_tanh_gt_iff` is exactly `|A √h gᵢ| ≤ b_{ρ,0}`.
+@isnad1 id=iff.2h5v.s6.0c1660f0f4a0 from=translated src=- shape=e497e08f vocab=c725bbec
+-/
 lemma Hmap_eq_zero_iff {A ρ : ℝ} (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (N : ℕ) (h : ℝ) (g : Fin N → ℝ) :
     Hmap A ρ N h g = 0 ↔
@@ -167,7 +173,9 @@ lemma Hmap_eq_zero_iff {A ρ : ℝ} (hρ : 0 < ρ) (hρ_lt : ρ < 1)
 
 /-- **Survival criterion** (complement of the zero-bin criterion).  A rounded
 Gaussian step escapes the absorbing zero bin, `H_{A,ρ,N}(h,g) ≠ 0`, exactly when some
-rescaled coordinate crosses the first admissible rounding threshold `b_{ρ,0}`. -/
+rescaled coordinate crosses the first admissible rounding threshold `b_{ρ,0}`.
+@isnad1 id=iff.2h5v.s6.ae5772852818 from=translated src=- shape=dcc0f7e9 vocab=25f252d9
+-/
 lemma Hmap_ne_zero_iff {A ρ : ℝ} (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (N : ℕ) (h : ℝ) (g : Fin N → ℝ) :
     Hmap A ρ N h g ≠ 0 ↔
@@ -177,7 +185,9 @@ lemma Hmap_ne_zero_iff {A ρ : ℝ} (hρ : 0 < ρ) (hρ_lt : ρ < 1)
 
 /-- Observable form of the zero-bin criterion.  Since `H_{A,ρ,N}` is the nonnegative
 empirical average of the one-coordinate observables `U_{A,ρ}(h,·)`, it vanishes iff
-every observable does. -/
+every observable does.
+@isnad1 id=iff.0h5v.s5.6ad2b5e5867d from=translated src=- shape=133a72bd vocab=d07586e6
+-/
 lemma Hmap_eq_zero_iff_forall_observable (A ρ : ℝ) (N : ℕ) (h : ℝ) (g : Fin N → ℝ) :
     Hmap A ρ N h g = 0 ↔ ∀ i, roundedCoordinateObservable A ρ h (g i) = 0 := by
   rw [Hmap_eq_average_roundedCoordinateObservable]
@@ -189,7 +199,9 @@ lemma Hmap_eq_zero_iff_forall_observable (A ρ : ℝ) (N : ℕ) (h : ℝ) (g : F
     simp
 
 /-- Observable form of the survival criterion: `H_{A,ρ,N}(h,g) ≠ 0` iff some
-coordinate observable is nonzero. -/
+coordinate observable is nonzero.
+@isnad1 id=iff.0h5v.s5.881eeb67da3f from=translated src=- shape=0c40fb44 vocab=d07586e6
+-/
 lemma Hmap_ne_zero_iff_exists_observable (A ρ : ℝ) (N : ℕ) (h : ℝ) (g : Fin N → ℝ) :
     Hmap A ρ N h g ≠ 0 ↔ ∃ i, roundedCoordinateObservable A ρ h (g i) ≠ 0 := by
   rw [ne_eq, Hmap_eq_zero_iff_forall_observable, not_forall]
@@ -198,7 +210,9 @@ lemma Hmap_ne_zero_iff_exists_observable (A ρ : ℝ) (N : ℕ) (h : ℝ) (g : F
 one rounded Gaussian step escapes the absorbing zero bin is at most `2N` times the
 standard-Gaussian Chernoff factor at the rescaled first threshold `b_{ρ,0}/(A√h)`.
 This is the Gaussian union bound over the `N` coordinates, each controlled by the
-one-coordinate support estimate `measureReal_roundedCoordinateObservable_ne_zero_le`. -/
+one-coordinate support estimate `measureReal_roundedCoordinateObservable_ne_zero_le`.
+@isnad1 id=le.4h4v.s7.2d52ba33982e from=translated src=- shape=9f4ba9e7 vocab=e082ac23
+-/
 lemma measureReal_Hmap_ne_zero_le {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) (hh : 0 < h) (N : ℕ) :
     (gaussianVec N).real {g | Hmap A ρ N h g ≠ 0} ≤
@@ -250,7 +264,9 @@ lemma measureReal_Hmap_ne_zero_le {A ρ h : ℝ}
 
 /-- **Kernel form of the one-step escape bound.**  From a positive radius `h`, the
 non-absorption probability of the rounded radius kernel `H_{A,ρ,N}(h,·)` (the mass
-away from the absorbing state `0`) is exponentially small. -/
+away from the absorbing state `0`) is exponentially small.
+@isnad1 id=le.4h4v.s7.24687b653386 from=translated src=- shape=2bc77c50 vocab=3dc675bf
+-/
 lemma measureReal_Hkernel_compl_singleton_zero_le {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) (hh : 0 < h) (N : ℕ) :
     (Hkernel A ρ N h).real {(0 : ℝ)}ᶜ ≤
@@ -269,7 +285,9 @@ lemma measureReal_Hkernel_compl_singleton_zero_le {A ρ h : ℝ}
 
 /-- The one-step escape estimate is uniform over the terminal interval
 `0 ≤ h ≤ η / log N`: its largest value is attained at the upper endpoint.
-This is the kernel form used in the final Markov-step split. -/
+This is the kernel form used in the final Markov-step split.
+@isnad1 id=le.7h5v.s7.af4e60ea9eb4 from=translated src=- shape=a104645e vocab=21e42ecd
+-/
 lemma measureReal_Hkernel_compl_singleton_zero_le_escape_at_eta
     {A ρ η h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -327,7 +345,9 @@ lemma measureReal_Hkernel_compl_singleton_zero_le_escape_at_eta
 nonnegative state, then survival for one step beyond time `s` is bounded by
 the probability that the time-`s` radius exceeds `η / log N`, plus the
 uniform terminal escape rate.  This is the kernel-power version of the
-paper's final Markov-step decomposition. -/
+paper's final Markov-step decomposition.
+@isnad1 id=le.6h6v.s8.142ac0686628 from=translated src=- shape=e562e6fe vocab=6aa54d20
+-/
 lemma measureReal_Hkernel_pow_succ_compl_singleton_zero_le
     {A ρ η h₀ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -439,7 +459,9 @@ lemma measureReal_Hkernel_pow_succ_compl_singleton_zero_le
 /-- The time-`s` kernel mass above `η / log N` is exactly the canonical
 path-space probability of the rescaled-radius event `η < H_s log N`.
 This is the coordinate-marginal bridge used to feed terminal-radius
-convergence into the one-step kernel split. -/
+convergence into the one-step kernel split.
+@isnad1 id=eq.1h6v.s7.3c449f632ac6 from=translated src=- shape=22682427 vocab=611858c0
+-/
 lemma measureReal_Hkernel_pow_Ioi_div_log_eq
     (A ρ η h₀ : ℝ) {N : ℕ} (hN : 1 < N) (s : ℕ) :
     (((Hkernel A ρ N) ^ s) h₀).real
@@ -461,7 +483,9 @@ lemma measureReal_Hkernel_pow_Ioi_div_log_eq
 sufficiently large `N`, every radius `h` at or below the terminal scale
 `a_N = 1/\log N` already satisfies `V_{A,ρ}(h) ≤ C·N^{-c}`.  This is the deterministic
 input behind the paper's terminal-entrance estimate `bar h_{s_N,N} ≤ C N^{-c}`:
-compose the small-radius bound `V(h) ≤ C·exp(-c/h)` with `1/h ≥ \log N`. -/
+compose the small-radius bound `V(h) ≤ C·exp(-c/h)` with `1/h ≥ \log N`.
+@isnad1 id=ex.3h2v.s6.c0101c059ce0 from=translated src=- shape=a37523a8 vocab=ec4d3d76
+-/
 lemma exists_roundedMeanMap_le_rpow_atTop {A ρ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     ∃ c C : ℝ, 0 < c ∧ 0 < C ∧ ∀ᶠ N : ℕ in Filter.atTop,
@@ -503,7 +527,9 @@ lemma exists_roundedMeanMap_le_rpow_atTop {A ρ : ℝ}
 /-- **Terminal-entrance limit.**  If a deterministic radius sequence stays (eventually)
 nonnegative and below the terminal scale `a_N = 1/\log N`, then applying the rounded
 mean map and rescaling by `\log N` vanishes.  With `h_N = bar h_{bar t_N,N} ≤ a_N` the
-pre-terminal radius, this is the paper's `bar h_{s_N,N}·\log N → 0`. -/
+pre-terminal radius, this is the paper's `bar h_{s_N,N}·\log N → 0`.
+@isnad1 id=tendsto.5h3v.s6.09a534dd7651 from=translated src=- shape=ee52c440 vocab=3b2de6b0
+-/
 lemma tendsto_roundedMeanMap_mul_log_of_le_fixedPrecisionScale {A ρ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) {h : ℕ → ℝ}
     (hh0 : ∀ᶠ N in Filter.atTop, 0 ≤ h N)
@@ -538,7 +564,9 @@ lemma tendsto_roundedMeanMap_mul_log_of_le_fixedPrecisionScale {A ρ : ℝ}
     exact mul_le_mul_of_nonneg_right (hdecayN (h N) hh0N hhleN)
       (Real.log_nonneg (by exact_mod_cast hN1))
 
-/-- The terminal scale exactly cancels the logarithm: `a_N·\log N = 1` for `N ≥ 2`. -/
+/-- The terminal scale exactly cancels the logarithm: `a_N·\log N = 1` for `N ≥ 2`.
+@isnad1 id=eq.1h1v.s5.20fd56a4a479 from=translated src=- shape=193bb364 vocab=e1f2a3a0
+-/
 lemma fixedPrecisionScale_mul_log {N : ℕ} (hN : 1 < N) :
     fixedPrecisionScale N * Real.log N = 1 := by
   have hpos : 0 < Real.log N := Real.log_pos (by exact_mod_cast hN)
@@ -546,7 +574,9 @@ lemma fixedPrecisionScale_mul_log {N : ℕ} (hN : 1 < N) :
 
 /-- **Terminal-entrance normalization.**  Under the same hypotheses as
 `tendsto_roundedMeanMap_mul_log_of_le_fixedPrecisionScale`, the normalized denominator
-`(V_{A,ρ}(h_N)+a_N)·\log N → 1`, the paper's `(bar h_{s_N,N}+a_N)\log N → 1`. -/
+`(V_{A,ρ}(h_N)+a_N)·\log N → 1`, the paper's `(bar h_{s_N,N}+a_N)\log N → 1`.
+@isnad1 id=tendsto.5h3v.s6.da0d788bef9c from=translated src=- shape=aa140fd5 vocab=5261c7d2
+-/
 lemma tendsto_add_fixedPrecisionScale_mul_log_of_le {A ρ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) {h : ℕ → ℝ}
     (hh0 : ∀ᶠ N in Filter.atTop, 0 ≤ h N)
@@ -573,7 +603,9 @@ lemma tendsto_add_fixedPrecisionScale_mul_log_of_le {A ρ : ℝ}
 /-- **Terminal escape rate vanishes.**  For `0 < η < b_{ρ,0}²/(2A²)`, the one-step escape
 bound evaluated at the terminal radius scale `η/\log N` tends to `0`: it equals
 `2·N^{1-b_{ρ,0}²/(2A²η)}` and the exponent is negative.  This is the paper's
-`2N^{1-b²/(2A²η)} → 0` in the final-absorption step. -/
+`2N^{1-b²/(2A²η)} → 0` in the final-absorption step.
+@isnad1 id=tendsto.5h3v.s7.ef76d98742ba from=translated src=- shape=77ff400c vocab=2b61a94a
+-/
 lemma tendsto_escape_at_eta_atTop {A ρ η : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) (hη : 0 < η)
     (hη_lt : η < roundedLayerThreshold ρ 0 ^ 2 / (2 * A ^ 2)) :
@@ -623,7 +655,9 @@ lemma tendsto_escape_at_eta_atTop {A ρ η : ℝ}
 map `A < A_{\mathrm{lat}}` and any nonnegative initial-radius sequence `h₀ N`, the orbit
 value one step past the `a_N`-entrance, rescaled by `\log N`, vanishes.  With
 `bar t_N = roundedOrbitEntrance A ρ (h₀ N) a_N` and `s_N = bar t_N + 1`, this is exactly
-the paper's `bar h_{s_N,N}·\log N → 0`. -/
+the paper's `bar h_{s_N,N}·\log N → 0`.
+@isnad1 id=tendsto.5h3v.s6.31edbe859983 from=translated src=- shape=ea769262 vocab=9732c671
+-/
 lemma tendsto_roundedOrbit_terminal_mul_log {A ρ : ℝ} {h₀ : ℕ → ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh₀ : ∀ N, 0 ≤ h₀ N) :
@@ -645,7 +679,9 @@ lemma tendsto_roundedOrbit_terminal_mul_log {A ρ : ℝ} {h₀ : ℕ → ℝ}
 
 /-- **Terminal-entrance normalization along the deterministic orbit.**  Companion to
 `tendsto_roundedOrbit_terminal_mul_log`: the normalized denominator
-`(bar h_{s_N,N}+a_N)·\log N → 1`. -/
+`(bar h_{s_N,N}+a_N)·\log N → 1`.
+@isnad1 id=tendsto.5h3v.s7.38a66967112d from=translated src=- shape=39cfc5b3 vocab=9732c671
+-/
 lemma tendsto_roundedOrbit_terminal_add_scale_mul_log {A ρ : ℝ} {h₀ : ℕ → ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh₀ : ∀ N, 0 ≤ h₀ N) :
@@ -670,7 +706,9 @@ lemma tendsto_roundedOrbit_terminal_add_scale_mul_log {A ρ : ℝ} {h₀ : ℕ �
 subpolynomial rate hypothesis of fixed-precision radius concentration.  This
 packages the paper's deduction
 `\bar T_N = \bar t_N + 1 = O(log log N)` and hence
-`\bar T_N N⁻¹ exp(C (log log N)²) → 0` for every fixed `C`. -/
+`\bar T_N N⁻¹ exp(C (log log N)²) → 0` for every fixed `C`.
+@isnad1 id=tendsto.4h4v.s7.4971c84fd221 from=translated src=- shape=d121ca7c vocab=33e336a2
+-/
 lemma roundedDimensionCutoffHorizon_rate
     {A ρ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -781,7 +819,9 @@ lemma roundedDimensionCutoffHorizon_rate
 rescaled by `log N`, converges to zero in probability.  This is the
 probabilistic terminal-entrance conclusion in the paper: fixed-precision
 radius concentration controls the normalized tracking error, while the
-deterministic orbit term vanishes and its normalization tends to one. -/
+deterministic orbit term vanishes and its normalization tends to one.
+@isnad1 id=tendsto.6h4v.s7.f4bd255796d6 from=translated src=- shape=c549dca9 vocab=46294d2f
+-/
 lemma tendsto_measureReal_terminal_radius_mul_log_gt
     {A ρ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -885,7 +925,9 @@ lemma tendsto_measureReal_terminal_radius_mul_log_gt
 the deterministic terminal-scale entrance, the rounded squared-radius chain
 has vanishing mass away from the absorbing origin.  This combines the
 terminal-radius convergence in probability, the one-step Markov split, and
-the vanishing Gaussian escape rate exactly as in the paper. -/
+the vanishing Gaussian escape rate exactly as in the paper.
+@isnad1 id=tendsto.5h3v.s7.3a1d286119a6 from=translated src=- shape=496b3a13 vocab=1812d20f
+-/
 lemma tendsto_measureReal_Hkernel_pow_cutoff_add_two
     {A ρ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -984,7 +1026,9 @@ deterministic terminal-scale entrance time diverges, then one step before
 that entrance the rounded squared-radius chain is still off the absorbing
 origin with probability tending to one.  Indeed, the deterministic orbit is
 strictly above `a_N` there, so an exact radius equal to zero forces normalized
-tracking error greater than `1/2`. -/
+tracking error greater than `1/2`.
+@isnad1 id=tendsto.6h3v.s7.da2570f9b3bf from=translated src=- shape=ec2eb78c vocab=63eaae40
+-/
 lemma tendsto_measureReal_Hkernel_pow_cutoff_sub_one_compl
     {A ρ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -1134,7 +1178,9 @@ limits.
 
 The exact rounded-vector counterpart is
 `subcritical_dimension_cutoff_roundedVector` in
-`AbsorptionCutoff.RoundedVectorReduction`. -/
+`AbsorptionCutoff.RoundedVectorReduction`.
+@isnad1 id=and.6h3v.s9.2b9deb73bde7 from=translated src=- shape=9442e7cc vocab=ab72ca3b
+-/
 theorem subcritical_dimension_cutoff
     {A ρ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -1262,7 +1308,9 @@ theorem subcritical_dimension_cutoff
 fixed `ε ∈ (0,1)`, the scalar rounded-radius mixing time is eventually
 strictly after `bar t_N - 1` and at most `bar t_N + 2`.  This is the precise
 eventual-bound form of the paper's
-`t_mix^(N)(ε) = bar t_N + O(1)`. -/
+`t_mix^(N)(ε) = bar t_N + O(1)`.
+@isnad1 id=eventual.8h4v.s7.ee9fadabebb8 from=translated src=- shape=4ac9110a vocab=e3a7c04e
+-/
 theorem subcritical_dimension_cutoff_mixingTime_bounds
     {A ρ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)

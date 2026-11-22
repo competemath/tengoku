@@ -25,7 +25,9 @@ noncomputable def roundedProfile (ρ α : ℝ) : ℝ :=
   ∫ g, ((Q₁ (ρ⁻¹ * Real.tanh (ρ * α * g)) : ℝ)) ^ 2 ∂gaussianReal 0 1
 
 /-- The rounded mean map is the fixed-precision profile evaluated at
-`A * sqrt h`. -/
+`A * sqrt h`.
+@isnad1 id=eq.0h3v.s4.0c2bf700f009 from=translated src=- shape=0da5708a vocab=6965fc8e
+-/
 lemma roundedMeanMap_eq_roundedProfile (A ρ h : ℝ) :
     roundedMeanMap A ρ h = roundedProfile ρ (A * Real.sqrt h) := by
   simp only [roundedMeanMap, roundedProfile]
@@ -46,13 +48,17 @@ noncomputable def roundedVectorStateSpace (ρ : ℝ) (N : ℕ) : Set (Fin N → 
   {x | ∀ i, ∃ k : ℤ,
     |(k : ℝ)| ≤ |(Q₁ ρ⁻¹ : ℝ)| ∧ x i = ρ * (k : ℝ)}
 
-/-- The rounded radius bound is nonnegative. -/
+/-- The rounded radius bound is nonnegative.
+@isnad1 id=le.0h1v.s3.d95138b85beb from=translated src=- shape=8a62b088 vocab=1555637d
+-/
 lemma roundedRadiusBound_nonneg (ρ : ℝ) : 0 ≤ roundedRadiusBound ρ := by
   unfold roundedRadiusBound
   positivity
 
 /-- The rounded radius bound is strictly positive in the fixed-precision
-regime. -/
+regime.
+@isnad1 id=lt.2h1v.s5.2cc7bf8f4a2a from=translated src=- shape=05b24c01 vocab=8fc9b615
+-/
 lemma roundedRadiusBound_pos {ρ : ℝ} (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     0 < roundedRadiusBound ρ := by
   have hinv : 1 < ρ⁻¹ := (one_lt_inv₀ hρ).mpr hρ_lt
@@ -65,7 +71,9 @@ lemma roundedRadiusBound_pos {ρ : ℝ} (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
   exact sq_pos_of_ne_zero hcast
 
 /-- Every nondegenerate symmetric interval has positive standard-Gaussian
-mass. -/
+mass.
+@isnad1 id=lt.1h1v.s5.289dbf0e8bb0 from=translated src=- shape=6c0d7bec vocab=e6f69be2
+-/
 lemma gaussianReal_Icc_neg_pos {t : ℝ} (ht : 0 < t) :
     0 < (gaussianReal 0 1).real (Set.Icc (-t) t) := by
   have hne : gaussianReal 0 1 (Set.Icc (-t) t) ≠ 0 := by
@@ -81,7 +89,9 @@ lemma gaussianReal_Icc_neg_pos {t : ℝ} (ht : 0 < t) :
   exact ENNReal.toReal_pos hne (measure_ne_top _ _)
 
 /-- The closed-form radius bound dominates every squared rounded coordinate in
-the interval used in the paper's definition of `M_ρ`. -/
+the interval used in the paper's definition of `M_ρ`.
+@isnad1 id=le.2h2v.s5.991363de971e from=translated src=- shape=29448dcf vocab=d9d374d0
+-/
 lemma Q₁_sq_le_roundedRadiusBound {ρ u : ℝ} (hρ : 0 < ρ)
     (hu : |u| ≤ ρ⁻¹) :
     (Q₁ u : ℝ) ^ 2 ≤ roundedRadiusBound ρ := by
@@ -92,7 +102,9 @@ lemma Q₁_sq_le_roundedRadiusBound {ρ u : ℝ} (hρ : 0 < ρ)
   exact pow_le_pow_left₀ (abs_nonneg _) hQ 2
 
 /-- Every state in the finite rounded vector state space has normalized
-rounded squared radius in the canonical scalar state interval. -/
+rounded squared radius in the canonical scalar state interval.
+@isnad1 id=mem.3h3v.s6.41d24b8083c5 from=translated src=- shape=60c9880c vocab=84a2a5fa
+-/
 lemma roundedRadiusSq_mem_Icc_of_mem_roundedVectorStateSpace
     {ρ : ℝ} (hρ : 0 < ρ) {N : ℕ} (hN : 0 < N)
     {x : Fin N → ℝ} (hx : x ∈ roundedVectorStateSpace ρ N) :
@@ -120,7 +132,9 @@ lemma roundedRadiusSq_mem_Icc_of_mem_roundedVectorStateSpace
         field_simp [hNreal.ne', hρ.ne']
 
 /-- Every coordinate produced by the rounded `tanh` dynamics is bounded by
-`M_ρ`. -/
+`M_ρ`.
+@isnad1 id=le.1h2v.s5.b39449bcd64e from=translated src=- shape=c5adfa04 vocab=99c05989
+-/
 lemma Q₁_inv_tanh_sq_le_roundedRadiusBound {ρ x : ℝ} (hρ : 0 < ρ) :
     (Q₁ (ρ⁻¹ * Real.tanh (ρ * x)) : ℝ) ^ 2 ≤ roundedRadiusBound ρ := by
   apply Q₁_sq_le_roundedRadiusBound hρ
@@ -128,7 +142,9 @@ lemma Q₁_inv_tanh_sq_le_roundedRadiusBound {ρ x : ℝ} (hρ : 0 < ρ) :
   exact mul_le_of_le_one_right (inv_nonneg.mpr hρ.le) (Real.abs_tanh_lt_one _).le
 
 /-- Every rounded coordinate observable is bounded by the paper's exact
-radius bound. -/
+radius bound.
+@isnad1 id=le.1h4v.s4.bbe12d643621 from=translated src=- shape=699fdbda vocab=1c7e24b3
+-/
 lemma roundedCoordinateObservable_le_roundedRadiusBound
     {A ρ h g : ℝ} (hρ : 0 < ρ) :
     roundedCoordinateObservable A ρ h g ≤ roundedRadiusBound ρ := by
@@ -137,7 +153,9 @@ lemma roundedCoordinateObservable_le_roundedRadiusBound
       (x := A * Real.sqrt h * g) hρ)
 
 /-- Every realization of the rounded radius step is bounded by the paper's
-exact radius bound. -/
+exact radius bound.
+@isnad1 id=le.2h5v.s5.7821b887a049 from=translated src=- shape=e6ea16e5 vocab=8bdb887c
+-/
 lemma Hmap_le_roundedRadiusBound
     {A ρ h : ℝ} {N : ℕ} (hρ : 0 < ρ) (hN : 0 < N)
     (g : Fin N → ℝ) :
@@ -156,7 +174,9 @@ lemma Hmap_le_roundedRadiusBound
       field_simp [hNreal.ne']
 
 /-- Every Gaussian-vector coordinate observable has mean equal to the rounded
-mean map. -/
+mean map.
+@isnad1 id=eq.0h5v.s5.af059c950165 from=translated src=- shape=9d027e20 vocab=311c5341
+-/
 lemma integral_gaussianVec_roundedCoordinateObservable_eval_eq_roundedMeanMap
     (A ρ h : ℝ) {N : ℕ} (i : Fin N) :
     ∫ g, roundedCoordinateObservable A ρ h (g i) ∂(gaussianVec N) =
@@ -178,7 +198,9 @@ lemma integral_gaussianVec_roundedCoordinateObservable_eval_eq_roundedMeanMap
   exact hmap.symm.trans (integral_roundedCoordinateObservable A ρ h)
 
 /-- Each centered rounded coordinate observable is sub-Gaussian with the
-exact parameter supplied by its range `[0, M_ρ]`. -/
+exact parameter supplied by its range `[0, M_ρ]`.
+@isnad1 id=hassubga.1h5v.s6.da060f654f0c from=translated src=- shape=d1d44855 vocab=7ce8cecb
+-/
 lemma hasSubgaussianMGF_roundedCoordinateObservable_eval_sub_mean
     {A ρ h : ℝ} {N : ℕ} (hρ : 0 < ρ) (i : Fin N) :
     HasSubgaussianMGF
@@ -206,7 +228,9 @@ lemma hasSubgaussianMGF_roundedCoordinateObservable_eval_sub_mean
   simpa only [X, sub_zero] using hsubG
 
 /-- The centered rounded coordinate observables are mutually independent
-under the product Gaussian law. -/
+under the product Gaussian law.
+@isnad1 id=iindepfu.0h4v.s5.166934d2677f from=translated src=- shape=50b517ce vocab=7583257b
+-/
 lemma iIndepFun_roundedCoordinateObservable_eval_sub_mean
     (A ρ h : ℝ) (N : ℕ) :
     iIndepFun
@@ -232,7 +256,9 @@ lemma iIndepFun_roundedCoordinateObservable_eval_sub_mean
   exact hcomp
 
 /-- The sum of the centered rounded coordinate observables is sub-Gaussian
-with parameter equal to the sum of the coordinate parameters. -/
+with parameter equal to the sum of the coordinate parameters.
+@isnad1 id=hassubga.1h4v.s7.8ce3c9c3338d from=translated src=- shape=453f7cc2 vocab=0a969678
+-/
 lemma hasSubgaussianMGF_sum_roundedCoordinateObservable_eval_sub_mean
     {A ρ h : ℝ} {N : ℕ} (hρ : 0 < ρ) :
     HasSubgaussianMGF
@@ -255,7 +281,9 @@ noncomputable def roundedHmapSubgaussianParameter (ρ : ℝ) (N : ℕ) : NNReal 
     ∑ _i : Fin N, ((‖roundedRadiusBound ρ‖₊ / 2) ^ 2)
 
 /-- The exact averaged-step parameter is the usual Hoeffding variance proxy
-`Mρ² / (4N)`. -/
+`Mρ² / (4N)`.
+@isnad1 id=eq.1h2v.s6.5a2f29a7e763 from=translated src=- shape=9b0acffa vocab=e7e1732a
+-/
 lemma coe_roundedHmapSubgaussianParameter
     {ρ : ℝ} {N : ℕ} (hN : 0 < N) :
     (roundedHmapSubgaussianParameter ρ N : ℝ) =
@@ -270,7 +298,9 @@ lemma coe_roundedHmapSubgaussianParameter
   ring
 
 /-- The centered rounded radius step is the normalized centered coordinate
-sum, hence is sub-Gaussian with the correspondingly scaled parameter. -/
+sum, hence is sub-Gaussian with the correspondingly scaled parameter.
+@isnad1 id=hassubga.2h4v.s6.024d1e7eb8be from=translated src=- shape=0c21b5d9 vocab=f72e6a12
+-/
 lemma hasSubgaussianMGF_Hmap_sub_roundedMeanMap
     {A ρ h : ℝ} {N : ℕ} (hρ : 0 < ρ) (hN : 0 < N) :
     HasSubgaussianMGF
@@ -290,7 +320,9 @@ lemma hasSubgaussianMGF_Hmap_sub_roundedMeanMap
   have hNreal : (N : ℝ) ≠ 0 := by exact_mod_cast hN.ne'
   field_simp
 
-/-- Upper one-step deviation bound for the rounded radius average. -/
+/-- Upper one-step deviation bound for the rounded radius average.
+@isnad1 id=le.3h5v.s7.d488ab5b6644 from=translated src=- shape=ab15e1a5 vocab=527edab5
+-/
 lemma measureReal_Hmap_sub_roundedMeanMap_ge_le
     {A ρ h ε : ℝ} {N : ℕ} (hρ : 0 < ρ) (hN : 0 < N)
     (hε : 0 ≤ ε) :
@@ -301,7 +333,9 @@ lemma measureReal_Hmap_sub_roundedMeanMap_ge_le
         (-ε ^ 2 / (2 * roundedHmapSubgaussianParameter ρ N)) :=
   (hasSubgaussianMGF_Hmap_sub_roundedMeanMap hρ hN).measure_ge_le hε
 
-/-- Lower one-step deviation bound for the rounded radius average. -/
+/-- Lower one-step deviation bound for the rounded radius average.
+@isnad1 id=le.3h5v.s7.5a9c74f11864 from=translated src=- shape=c13c2c09 vocab=527edab5
+-/
 lemma measureReal_Hmap_sub_roundedMeanMap_le_neg_le
     {A ρ h ε : ℝ} {N : ℕ} (hρ : 0 < ρ) (hN : 0 < N)
     (hε : 0 ≤ ε) :
@@ -322,7 +356,9 @@ lemma measureReal_Hmap_sub_roundedMeanMap_le_neg_le
   simpa only [Pi.neg_apply] using
     (hasSubgaussianMGF_Hmap_sub_roundedMeanMap hρ hN).neg.measure_ge_le hε
 
-/-- Upper one-step deviation bound with the paper's simplified exponent. -/
+/-- Upper one-step deviation bound with the paper's simplified exponent.
+@isnad1 id=le.4h5v.s7.0826422d97f4 from=translated src=- shape=776e7871 vocab=62a749fa
+-/
 lemma measureReal_Hmap_sub_roundedMeanMap_ge_le_exp
     {A ρ h ε : ℝ} {N : ℕ} (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hN : 0 < N) (hε : 0 ≤ ε) :
@@ -344,7 +380,9 @@ lemma measureReal_Hmap_sub_roundedMeanMap_ge_le_exp
       field_simp
       ring
 
-/-- Lower one-step deviation bound with the paper's simplified exponent. -/
+/-- Lower one-step deviation bound with the paper's simplified exponent.
+@isnad1 id=le.4h5v.s7.b37e468a7177 from=translated src=- shape=1864c465 vocab=62a749fa
+-/
 lemma measureReal_Hmap_sub_roundedMeanMap_le_neg_le_exp
     {A ρ h ε : ℝ} {N : ℕ} (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hN : 0 < N) (hε : 0 ≤ ε) :
@@ -367,7 +405,9 @@ lemma measureReal_Hmap_sub_roundedMeanMap_le_neg_le_exp
       ring
 
 /-- Paper `eq:metastable-hoeffding`: the rounded one-step radius is
-exponentially concentrated about its deterministic mean map. -/
+exponentially concentrated about its deterministic mean map.
+@isnad1 id=le.4h5v.s7.c0390a6f2f15 from=translated src=- shape=924d699a vocab=7dca3710
+-/
 lemma measureReal_abs_Hmap_sub_roundedMeanMap_gt_le
     {A ρ h ε : ℝ} {N : ℕ} (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hN : 0 < N) (hε : 0 < ε) :
@@ -440,7 +480,9 @@ lemma measureReal_abs_Hmap_sub_roundedMeanMap_gt_le
         (by simpa only [X] using hupper)
     _ = _ := by ring
 
-/-- Kernel form of paper `eq:metastable-hoeffding`. -/
+/-- Kernel form of paper `eq:metastable-hoeffding`.
+@isnad1 id=le.4h5v.s7.063cf06c9e59 from=translated src=- shape=7b2ddef6 vocab=e4dff854
+-/
 lemma Hkernel_measureReal_abs_sub_roundedMeanMap_gt_le
     {A ρ h ε : ℝ} {N : ℕ} (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hN : 0 < N) (hε : 0 < ε) :
@@ -457,7 +499,9 @@ lemma Hkernel_measureReal_abs_sub_roundedMeanMap_gt_le
     hρ hρ_lt hN hε
 
 /-- Every rounded-radius transition is supported in the paper's exact compact
-state interval `[0, Mρ]`. -/
+state interval `[0, Mρ]`.
+@isnad1 id=eq.2h4v.s6.39e8f64e7ed0 from=translated src=- shape=b08f699f vocab=237e46fb
+-/
 lemma Hkernel_apply_roundedRadiusBound_Icc_compl
     {A ρ h : ℝ} {N : ℕ} (hρ : 0 < ρ) (hN : 0 < N) :
     Hkernel A ρ N h
@@ -476,7 +520,9 @@ lemma Hkernel_apply_roundedRadiusBound_Icc_compl
   rw [hempty, measure_empty]
 
 /-- Every positive-time coordinate of the canonical rounded-radius path lies
-in the paper's exact compact state interval almost surely. -/
+in the paper's exact compact state interval almost surely.
+@isnad1 id=eventual.2h5v.s6.af3d81050615 from=translated src=- shape=c85e763e vocab=37c1d487
+-/
 lemma markovPathMeasure_ae_eval_succ_mem_roundedRadiusBound_Icc
     {A ρ : ℝ} {N : ℕ} (hρ : 0 < ρ) (hN : 0 < N)
     (μ₀ : Measure ℝ) [IsProbabilityMeasure μ₀] (t : ℕ) :
@@ -504,7 +550,9 @@ lemma markovPathMeasure_ae_eval_succ_mem_roundedRadiusBound_Icc
   simp only [hzero, lintegral_zero]
 
 /-- A canonical rounded-radius path started in `[0, Mρ]` remains in that
-exact compact interval at every fixed time almost surely. -/
+exact compact interval at every fixed time almost surely.
+@isnad1 id=eventual.3h5v.s6.f386db7bebc6 from=translated src=- shape=59faf36b vocab=16ecba44
+-/
 lemma markovPathMeasure_dirac_ae_eval_mem_roundedRadiusBound_Icc
     {A ρ q : ℝ} {N : ℕ} (hq : q ∈ Set.Icc 0 (roundedRadiusBound ρ))
     (hρ : 0 < ρ) (hN : 0 < N) (t : ℕ) :
@@ -523,7 +571,9 @@ lemma markovPathMeasure_dirac_ae_eval_mem_roundedRadiusBound_Icc
 
 /-- Canonical-path form of paper `eq:metastable-hoeffding`: at every time,
 the unconditional probability of a one-step deviation obeys the same uniform
-bound as the state-dependent kernel. -/
+bound as the state-dependent kernel.
+@isnad1 id=le.5h6v.s7.3daefc5b943a from=translated src=- shape=68b95e1b vocab=3aa4baca
+-/
 lemma markovPathMeasure_measureReal_abs_next_sub_roundedMeanMap_gt_le
     {A ρ q ε : ℝ} {N : ℕ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -642,7 +692,9 @@ def finiteHorizonStepDeviationEvent
       |ω (s + 1) - roundedMeanMap A ρ (ω s)| > ε}
 
 /-- A union bound upgrades the canonical one-step Hoeffding estimate to every
-transition in a fixed finite horizon. -/
+transition in a fixed finite horizon.
+@isnad1 id=le.5h6v.s7.3fcd9e861def from=translated src=- shape=057010ea vocab=f9e05a66
+-/
 lemma markovPathMeasure_measureReal_finiteHorizonStepDeviationEvent_le
     {A ρ q ε : ℝ} {N T : ℕ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -680,7 +732,9 @@ lemma markovPathMeasure_measureReal_finiteHorizonStepDeviationEvent_le
 
 /-- Abstract finite-horizon tracking induction used in the metastable
 entrance argument. A uniformly small one-step perturbation is propagated by
-any chosen modulus bound for the deterministic map. -/
+any chosen modulus bound for the deterministic map.
+@isnad1 id=le.6h8v.s7.6ae20e7fe91a from=translated src=- shape=80a2d78e vocab=ccfe2ee5
+-/
 lemma abs_sub_iterate_le_errorEnvelope
     (V : ℝ → ℝ) (x : ℕ → ℝ) (q δ : ℝ)
     (ω : ℝ → ℝ) (E : ℕ → ℝ) (T : ℕ)
@@ -719,10 +773,16 @@ def finiteHorizonErrorEnvelope (ω : ℝ → ℝ) (δ : ℝ) : ℕ → ℝ
   | 0 => 0
   | s + 1 => δ + ω (finiteHorizonErrorEnvelope ω δ s)
 
+/--
+@isnad1 id=eq.0h2v.s4.d4712ee06c65 from=translated src=- shape=a02aaa63 vocab=15fb0d80
+-/
 @[simp]
 lemma finiteHorizonErrorEnvelope_zero (ω : ℝ → ℝ) (δ : ℝ) :
     finiteHorizonErrorEnvelope ω δ 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.9bebcdd6e934 from=translated src=- shape=10b8e1ad vocab=ce6d14b0
+-/
 @[simp]
 lemma finiteHorizonErrorEnvelope_succ
     (ω : ℝ → ℝ) (δ : ℝ) (s : ℕ) :
@@ -730,7 +790,9 @@ lemma finiteHorizonErrorEnvelope_succ
       δ + ω (finiteHorizonErrorEnvelope ω δ s) := rfl
 
 /-- At every fixed horizon, the recursive envelope vanishes with the
-one-step tolerance whenever its modulus vanishes at zero. -/
+one-step tolerance whenever its modulus vanishes at zero.
+@isnad1 id=tendsto.1h2v.s6.620b9a829091 from=translated src=- shape=c78a3e97 vocab=df3e40dd
+-/
 lemma tendsto_finiteHorizonErrorEnvelope_zero
     {ω : ℝ → ℝ} (hω : Tendsto ω (𝓝 0) (𝓝 0)) (s : ℕ) :
     Tendsto (fun δ : ℝ => finiteHorizonErrorEnvelope ω δ s)
@@ -749,7 +811,9 @@ lemma tendsto_finiteHorizonErrorEnvelope_zero
         hid.add (hω.comp ih)
 
 /-- The fixed-precision profile is the finite sum of Gaussian layer tails from
-paper `eq:metastable-rounded-profile-layer`. -/
+paper `eq:metastable-rounded-profile-layer`.
+@isnad1 id=eq.2h2v.s6.1a9aebbb711e from=translated src=- shape=2111771e vocab=2d6bf97b
+-/
 lemma roundedProfile_eq_sum_upperTail {ρ α : ℝ} (hρ : 0 < ρ) (hα : 0 < α) :
     roundedProfile ρ α =
       2 * ∑ k ∈ roundedLayerIndices ρ, ((2 * k + 1 : ℕ) : ℝ) *
@@ -758,12 +822,16 @@ lemma roundedProfile_eq_sum_upperTail {ρ α : ℝ} (hρ : 0 < ρ) (hα : 0 < α
     (roundedMeanMap_eq_sum_upperTail (A := α) (ρ := ρ) (h := 1)
       hα hρ zero_lt_one)
 
-/-- The fixed-precision profile is nonnegative. -/
+/-- The fixed-precision profile is nonnegative.
+@isnad1 id=le.0h2v.s4.2ffeeb6478c2 from=translated src=- shape=a120b2a8 vocab=ca4a5e1e
+-/
 lemma roundedProfile_nonneg (ρ α : ℝ) : 0 ≤ roundedProfile ρ α :=
   integral_nonneg fun g => by positivity
 
 /-- The fixed-precision profile is strictly positive at every positive scale
-when the zeroth rounding layer is admissible. -/
+when the zeroth rounding layer is admissible.
+@isnad1 id=lt.3h2v.s5.bbcc8fb4d596 from=translated src=- shape=17570f74 vocab=abbabd02
+-/
 lemma roundedProfile_pos {ρ α : ℝ} (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hα : 0 < α) :
     0 < roundedProfile ρ α := by
@@ -772,13 +840,17 @@ lemma roundedProfile_pos {ρ α : ℝ} (hρ : 0 < ρ) (hρ_lt : ρ < 1)
       hα hρ hρ_lt zero_lt_one)
 
 /-- On the nonnegative half-line, the profile is the rounded mean map after
-the change of variables `h = α²`. -/
+the change of variables `h = α²`.
+@isnad1 id=eq.1h2v.s5.a9d814f1f051 from=translated src=- shape=f355b21f vocab=1e8476d8
+-/
 lemma roundedProfile_eq_roundedMeanMap_sq {ρ α : ℝ} (hα : 0 ≤ α) :
     roundedProfile ρ α = roundedMeanMap 1 ρ (α ^ 2) := by
   rw [roundedMeanMap_eq_roundedProfile, one_mul, Real.sqrt_sq_eq_abs,
     abs_of_nonneg hα]
 
-/-- The fixed-precision profile is real analytic at every positive scale. -/
+/-- The fixed-precision profile is real analytic at every positive scale.
+@isnad1 id=analytic.2h2v.s5.40eb175ca9ab from=translated src=- shape=097423f9 vocab=cddb1ccc
+-/
 @[fun_prop]
 lemma analyticAt_roundedProfile {ρ α : ℝ} (hρ : 0 < ρ) (hα : 0 < α) :
     AnalyticAt ℝ (roundedProfile ρ) α := by
@@ -797,7 +869,9 @@ lemma analyticAt_roundedProfile {ρ α : ℝ} (hρ : 0 < ρ) (hα : 0 < α) :
   filter_upwards [Ioi_mem_nhds hα] with u hu
   exact (roundedProfile_eq_roundedMeanMap_sq hu.le).symm
 
-/-- The fixed-precision profile is continuous on the positive half-line. -/
+/-- The fixed-precision profile is continuous on the positive half-line.
+@isnad1 id=continuo.1h1v.s5.774920e14dbc from=translated src=- shape=e4f1f832 vocab=2def52e9
+-/
 lemma continuousOn_roundedProfile_Ioi {ρ : ℝ} (hρ : 0 < ρ) :
     ContinuousOn (roundedProfile ρ) (Set.Ioi 0) := by
   have hcomp : ContinuousOn (fun α : ℝ => roundedMeanMap 1 ρ (α ^ 2))
@@ -852,27 +926,35 @@ root of its defining infimum. -/
 noncomputable def roundedExistenceThreshold (ρ : ℝ) : ℝ :=
   Real.sqrt (roundedExistenceThresholdSq ρ)
 
-/-- Every positive-scale threshold ratio is strictly positive. -/
+/-- Every positive-scale threshold ratio is strictly positive.
+@isnad1 id=lt.3h2v.s5.0c02e8fe9572 from=translated src=- shape=17570f74 vocab=c8fe8d4b
+-/
 lemma roundedThresholdRatio_pos {ρ α : ℝ} (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hα : 0 < α) :
     0 < roundedThresholdRatio ρ α := by
   exact div_pos (sq_pos_of_pos hα) (roundedProfile_pos hρ hρ_lt hα)
 
-/-- The threshold ratio is continuous on the positive half-line. -/
+/-- The threshold ratio is continuous on the positive half-line.
+@isnad1 id=continuo.2h1v.s5.2f301584a42d from=translated src=- shape=f3d2f96e vocab=27c50edd
+-/
 lemma continuousOn_roundedThresholdRatio_Ioi {ρ : ℝ}
     (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     ContinuousOn (roundedThresholdRatio ρ) (Set.Ioi 0) := by
   exact (continuousOn_id.pow 2).div (continuousOn_roundedProfile_Ioi hρ)
     (fun α hα => (roundedProfile_pos hρ hρ_lt hα).ne')
 
-/-- The signed profile drift is continuous on the positive half-line. -/
+/-- The signed profile drift is continuous on the positive half-line.
+@isnad1 id=continuo.1h2v.s5.9461d0b53a26 from=translated src=- shape=b74b1b89 vocab=9b7c744d
+-/
 lemma continuousOn_roundedProfileDrift_Ioi {A ρ : ℝ} (hρ : 0 < ρ) :
     ContinuousOn (roundedProfileDrift A ρ) (Set.Ioi 0) := by
   exact continuousOn_const.mul (continuousOn_roundedProfile_Ioi hρ)
     |>.sub (continuousOn_id.pow 2)
 
 /-- The fixed-precision profile is uniformly bounded by the maximal squared
-rounded coordinate `M_ρ`. -/
+rounded coordinate `M_ρ`.
+@isnad1 id=le.1h2v.s4.72580d2b108d from=translated src=- shape=c9e0acd6 vocab=d27eac10
+-/
 lemma roundedProfile_le_roundedRadiusBound {ρ α : ℝ} (hρ : 0 < ρ) :
     roundedProfile ρ α ≤ roundedRadiusBound ρ := by
   rw [← show roundedMeanMap α ρ 1 = roundedProfile ρ α by
@@ -894,7 +976,9 @@ lemma roundedProfile_le_roundedRadiusBound {ρ α : ℝ} (hρ : 0 < ρ) :
     _ = roundedRadiusBound ρ := by simp
 
 /-- At every positive scale, the profile is strictly below the maximal rounded
-coordinate because the Gaussian zero-bin event has positive probability. -/
+coordinate because the Gaussian zero-bin event has positive probability.
+@isnad1 id=lt.3h2v.s5.3064e7d6f61c from=translated src=- shape=5b952fef vocab=f1827053
+-/
 lemma roundedProfile_lt_roundedRadiusBound {ρ α : ℝ}
     (hρ : 0 < ρ) (hρ_lt : ρ < 1) (hα : 0 < α) :
     roundedProfile ρ α < roundedRadiusBound ρ := by
@@ -961,7 +1045,9 @@ lemma roundedProfile_lt_roundedRadiusBound {ρ α : ℝ}
     _ < roundedRadiusBound ρ :=
       mul_lt_of_lt_one_left (roundedRadiusBound_pos hρ hρ_lt) hcompl_lt
 
-/-- At every positive radius, the rounded mean map is strictly below `M_ρ`. -/
+/-- At every positive radius, the rounded mean map is strictly below `M_ρ`.
+@isnad1 id=lt.4h3v.s5.6396090eba63 from=translated src=- shape=57581d73 vocab=b8dc0d70
+-/
 lemma roundedMeanMap_lt_roundedRadiusBound {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) (hh : 0 < h) :
     roundedMeanMap A ρ h < roundedRadiusBound ρ := by
@@ -970,7 +1056,9 @@ lemma roundedMeanMap_lt_roundedRadiusBound {A ρ h : ℝ}
     (mul_pos hA (Real.sqrt_pos.2 hh))
 
 /-- At large scales, the bounded fixed-precision profile is negligible
-compared with `α²`. -/
+compared with `α²`.
+@isnad1 id=tendsto.1h1v.s6.3f78dcbda361 from=translated src=- shape=5796b5e6 vocab=d53d1773
+-/
 lemma tendsto_roundedProfile_div_sq_atTop {ρ : ℝ} (hρ : 0 < ρ) :
     Tendsto (fun α : ℝ => roundedProfile ρ α / α ^ 2)
       atTop (𝓝 0) := by
@@ -986,7 +1074,9 @@ lemma tendsto_roundedProfile_div_sq_atTop {ρ : ℝ} (hρ : 0 < ρ) :
         (sq_nonneg α))
     hupper
 
-/-- The threshold ratio diverges at the large-scale endpoint. -/
+/-- The threshold ratio diverges at the large-scale endpoint.
+@isnad1 id=tendsto.2h1v.s5.566afb89aabc from=translated src=- shape=e25a0ea6 vocab=709c289f
+-/
 lemma tendsto_roundedThresholdRatio_atTop {ρ : ℝ}
     (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     Tendsto (roundedThresholdRatio ρ) atTop atTop := by
@@ -1002,7 +1092,9 @@ lemma tendsto_roundedThresholdRatio_atTop {ρ : ℝ}
   filter_upwards with α
   simp [roundedThresholdRatio, inv_div]
 
-/-- The rounded mean map is little-o of the radius at the origin. -/
+/-- The rounded mean map is little-o of the radius at the origin.
+@isnad1 id=tendsto.3h2v.s6.cdd20b47c868 from=translated src=- shape=71000085 vocab=10f40cf5
+-/
 lemma tendsto_roundedMeanMap_div_self_nhdsGT_zero {A ρ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     Tendsto (fun h : ℝ => roundedMeanMap A ρ h / h)
@@ -1011,7 +1103,9 @@ lemma tendsto_roundedMeanMap_div_self_nhdsGT_zero {A ρ : ℝ}
     (hasDerivAt_roundedMeanMap_zero hA hρ hρ_lt).tendsto_slope_zero_right
 
 /-- At small positive scales, the fixed-precision profile is negligible
-compared with `α²`. -/
+compared with `α²`.
+@isnad1 id=tendsto.2h1v.s6.b2454e1edd64 from=translated src=- shape=bf7fa68f vocab=ff42e022
+-/
 lemma tendsto_roundedProfile_div_sq_nhdsGT_zero {ρ : ℝ}
     (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     Tendsto (fun α : ℝ => roundedProfile ρ α / α ^ 2)
@@ -1031,7 +1125,9 @@ lemma tendsto_roundedProfile_div_sq_nhdsGT_zero {ρ : ℝ}
   filter_upwards [self_mem_nhdsWithin] with α hα
   rw [Function.comp_apply, roundedProfile_eq_roundedMeanMap_sq hα.le]
 
-/-- The threshold ratio diverges at the small-scale endpoint. -/
+/-- The threshold ratio diverges at the small-scale endpoint.
+@isnad1 id=tendsto.2h1v.s5.2de2b6ff91fe from=translated src=- shape=c6c7801f vocab=50460d44
+-/
 lemma tendsto_roundedThresholdRatio_nhdsGT_zero {ρ : ℝ}
     (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     Tendsto (roundedThresholdRatio ρ) (𝓝[>] 0) atTop := by
@@ -1047,7 +1143,9 @@ lemma tendsto_roundedThresholdRatio_nhdsGT_zero {ρ : ℝ}
   filter_upwards with α
   simp [roundedThresholdRatio, inv_div]
 
-/-- The threshold ratio attains a global minimum on the positive half-line. -/
+/-- The threshold ratio attains a global minimum on the positive half-line.
+@isnad1 id=ex.2h1v.s5.3786a4391d0b from=translated src=- shape=075a14d0 vocab=9e5f7fc9
+-/
 lemma exists_isMinOn_roundedThresholdRatio_Ioi {ρ : ℝ}
     (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     ∃ α : ℝ, 0 < α ∧
@@ -1070,7 +1168,9 @@ lemma exists_isMinOn_roundedThresholdRatio_Ioi {ρ : ℝ}
   simpa [f, Function.comp_apply, Real.exp_log hβ] using hx (Real.log β)
 
 /-- The squared existence threshold is the ratio at a positive global
-minimizer. -/
+minimizer.
+@isnad1 id=ex.2h1v.s6.6de5297e81ff from=translated src=- shape=7f21f971 vocab=957b33ad
+-/
 lemma exists_roundedExistenceThresholdSq_eq_ratio {ρ : ℝ}
     (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     ∃ α : ℝ, 0 < α ∧
@@ -1094,7 +1194,9 @@ lemma exists_roundedExistenceThresholdSq_eq_ratio {ρ : ℝ}
     rintro y ⟨β, hβ, rfl⟩
     exact hmin β hβ
 
-/-- The squared fixed-precision existence threshold is strictly positive. -/
+/-- The squared fixed-precision existence threshold is strictly positive.
+@isnad1 id=lt.2h1v.s5.9dd612fe85be from=translated src=- shape=05b24c01 vocab=0c2d48db
+-/
 lemma roundedExistenceThresholdSq_pos {ρ : ℝ}
     (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     0 < roundedExistenceThresholdSq ρ := by
@@ -1103,14 +1205,18 @@ lemma roundedExistenceThresholdSq_pos {ρ : ℝ}
   rw [heq]
   exact roundedThresholdRatio_pos hρ hρ_lt hα
 
-/-- The fixed-precision existence threshold is strictly positive. -/
+/-- The fixed-precision existence threshold is strictly positive.
+@isnad1 id=lt.2h1v.s5.35ec2b6fc101 from=translated src=- shape=05b24c01 vocab=c15a3962
+-/
 lemma roundedExistenceThreshold_pos {ρ : ℝ}
     (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     0 < roundedExistenceThreshold ρ := by
   rw [roundedExistenceThreshold]
   exact Real.sqrt_pos.2 (roundedExistenceThresholdSq_pos hρ hρ_lt)
 
-/-- Squaring the existence threshold recovers its defining infimum. -/
+/-- Squaring the existence threshold recovers its defining infimum.
+@isnad1 id=eq.2h1v.s5.c51e3f8886af from=translated src=- shape=0754839a vocab=f8e76d83
+-/
 @[simp] lemma roundedExistenceThreshold_sq {ρ : ℝ}
     (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     roundedExistenceThreshold ρ ^ 2 = roundedExistenceThresholdSq ρ := by
@@ -1118,7 +1224,9 @@ lemma roundedExistenceThreshold_pos {ρ : ℝ}
     Real.sq_sqrt (roundedExistenceThresholdSq_pos hρ hρ_lt).le]
 
 /-- Above the existence threshold, the profile has strictly positive drift at
-some positive scale. -/
+some positive scale.
+@isnad1 id=ex.3h2v.s6.e2bae89be443 from=translated src=- shape=69211535 vocab=97b7d696
+-/
 lemma exists_pos_sq_mul_roundedProfile_sub_sq {A ρ : ℝ}
     (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hA : roundedExistenceThreshold ρ < A) :
@@ -1138,7 +1246,9 @@ lemma exists_pos_sq_mul_roundedProfile_sub_sq {A ρ : ℝ}
   nlinarith
 
 /-- On both sides of every positive scale, sufficiently extreme scales have
-negative profile drift. -/
+negative profile drift.
+@isnad1 id=ex.3h3v.s6.621951493d18 from=translated src=- shape=a5727303 vocab=a347fd58
+-/
 lemma exists_profileDrift_neg_below_above {A ρ α₀ : ℝ}
     (hρ : 0 < ρ) (hρ_lt : ρ < 1) (hα₀ : 0 < α₀) :
     ∃ alphaLow alphaHigh : ℝ,
@@ -1176,7 +1286,9 @@ lemma exists_profileDrift_neg_below_above {A ρ α₀ : ℝ}
   · exact sub_neg.mpr hltHigh
 
 /-- Above the existence threshold, the profile equation has two distinct
-positive roots. -/
+positive roots.
+@isnad1 id=ex.3h2v.s7.5181808c1f70 from=translated src=- shape=7adc75d0 vocab=c83d14fb
+-/
 lemma exists_two_pos_roundedProfile_roots {A ρ : ℝ}
     (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hA : roundedExistenceThreshold ρ < A) :
@@ -1236,7 +1348,9 @@ lemma exists_two_pos_roundedProfile_roots {A ρ : ℝ}
   · rw [roundedProfileDrift] at hplusZero
     linarith
 
-/-- The profile-to-radius change of variables at `h = α² / A²`. -/
+/-- The profile-to-radius change of variables at `h = α² / A²`.
+@isnad1 id=eq.2h3v.s6.2004d7b23c2e from=translated src=- shape=dc542ea3 vocab=58efb8aa
+-/
 lemma roundedMeanMap_sq_div_sq_eq_profile {A ρ α : ℝ}
     (hA : 0 < A) (hα : 0 ≤ α) :
     roundedMeanMap A ρ (α ^ 2 / A ^ 2) = roundedProfile ρ α := by
@@ -1251,7 +1365,9 @@ lemma roundedMeanMap_sq_div_sq_eq_profile {A ρ α : ℝ}
   rw [hmul]
 
 /-- A positive solution of the profile equation becomes a positive fixed
-radius under `h = α² / A²`. -/
+radius under `h = α² / A²`.
+@isnad1 id=and.3h3v.s7.3d01b0e29c41 from=translated src=- shape=e28b0d11 vocab=bca8a32e
+-/
 lemma roundedMeanMap_fixed_of_profile_root {A ρ α : ℝ}
     (hA : 0 < A) (hα : 0 < α)
     (hroot : A ^ 2 * roundedProfile ρ α = α ^ 2) :
@@ -1265,7 +1381,9 @@ lemma roundedMeanMap_fixed_of_profile_root {A ρ α : ℝ}
     simpa only [mul_comm] using hroot
 
 /-- Above the existence threshold, the rounded mean map has two ordered
-positive fixed radii. -/
+positive fixed radii.
+@isnad1 id=ex.3h2v.s6.3080625bbff8 from=translated src=- shape=312feade vocab=8c9c97a7
+-/
 lemma exists_two_pos_roundedMeanMap_fixedPoints {A ρ : ℝ}
     (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hA : roundedExistenceThreshold ρ < A) :
@@ -1290,7 +1408,9 @@ lemma exists_two_pos_roundedMeanMap_fixedPoints {A ρ : ℝ}
   exact div_lt_div_of_pos_right hsquares (sq_pos_of_pos hApos)
 
 /-- Above the existence threshold, both positive fixed radii lie strictly
-inside the paper's bounded radius interval `(0, M_ρ)`. -/
+inside the paper's bounded radius interval `(0, M_ρ)`.
+@isnad1 id=ex.3h2v.s6.17f8da36c814 from=translated src=- shape=e385de4c vocab=4e29fbe8
+-/
 lemma exists_two_roundedMeanMap_fixedPoints_Ioo {A ρ : ℝ}
     (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hA : roundedExistenceThreshold ρ < A) :
@@ -1315,7 +1435,9 @@ lemma exists_two_roundedMeanMap_fixedPoints_Ioo {A ρ : ℝ}
   exact ⟨hMinus, hPlus, ⟨hminusPos, hminusBound⟩,
     ⟨hplusPos, hplusBound⟩, hminusLt, hminusFixed, hplusFixed⟩
 
-/-- Above the existence threshold, the positive-drift region is nonempty. -/
+/-- Above the existence threshold, the positive-drift region is nonempty.
+@isnad1 id=nonempty.3h2v.s5.e757b6960e1f from=translated src=- shape=23985626 vocab=8133f0a7
+-/
 lemma roundedPositiveDriftSet_nonempty {A ρ : ℝ}
     (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hA : roundedExistenceThreshold ρ < A) :
@@ -1339,7 +1461,9 @@ lemma roundedPositiveDriftSet_nonempty {A ρ : ℝ}
     hlt.trans (roundedMeanMap_lt_roundedRadiusBound hApos hρ hρ_lt hh)
   exact ⟨h, ⟨⟨hh, hbound⟩, hlt⟩⟩
 
-/-- The positive-drift region is open. -/
+/-- The positive-drift region is open.
+@isnad1 id=isopen.3h2v.s5.9dbce697e1a5 from=translated src=- shape=1d8f3de8 vocab=56cbddb6
+-/
 lemma isOpen_roundedPositiveDriftSet {A ρ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     IsOpen (roundedPositiveDriftSet A ρ) := by
@@ -1349,19 +1473,25 @@ lemma isOpen_roundedPositiveDriftSet {A ρ : ℝ}
   exact isOpen_Ioo.inter
     (isOpen_lt continuous_id (continuous_roundedMeanMap hA hρ hρ_lt))
 
-/-- Every positive-drift component is open. -/
+/-- Every positive-drift component is open.
+@isnad1 id=isopen.3h3v.s5.8fc42ad652d7 from=translated src=- shape=267338e1 vocab=5699f004
+-/
 lemma isOpen_roundedPositiveDriftComponent {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     IsOpen (roundedPositiveDriftComponent A ρ h) := by
   exact (isOpen_roundedPositiveDriftSet hA hρ hρ_lt).connectedComponentIn
 
-/-- A component through a point of the positive-drift region is connected. -/
+/-- A component through a point of the positive-drift region is connected.
+@isnad1 id=isconnec.1h3v.s4.0de7e5eeb731 from=translated src=- shape=85806d41 vocab=fcffc13b
+-/
 lemma isConnected_roundedPositiveDriftComponent {A ρ h : ℝ}
     (hh : h ∈ roundedPositiveDriftSet A ρ) :
     IsConnected (roundedPositiveDriftComponent A ρ h) := by
   exact isConnected_connectedComponentIn_iff.mpr hh
 
-/-- Each positive-drift component is contained in the positive-drift region. -/
+/-- Each positive-drift component is contained in the positive-drift region.
+@isnad1 id=le.0h3v.s4.c8930d59423f from=translated src=- shape=202d3bc8 vocab=a703f2c9
+-/
 lemma roundedPositiveDriftComponent_subset (A ρ h : ℝ) :
     roundedPositiveDriftComponent A ρ h ⊆ roundedPositiveDriftSet A ρ :=
   connectedComponentIn_subset _ _
@@ -1393,7 +1523,9 @@ lemma eq_Ioo_csInf_csSup_of_isOpen_isConnected {s : Set ℝ}
   · exact hsConnected.Ioo_csInf_csSup_subset hsBelow hsAbove
 
 /-- Every positive-drift component is exactly the open interval between its
-finite endpoints. -/
+finite endpoints.
+@isnad1 id=eq.4h3v.s6.4043c2b7af51 from=translated src=- shape=9087858d vocab=581942cf
+-/
 lemma roundedPositiveDriftComponent_eq_Ioo {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ) :
@@ -1411,7 +1543,9 @@ lemma roundedPositiveDriftComponent_eq_Ioo {A ρ h : ℝ}
     (isOpen_roundedPositiveDriftComponent hA hρ hρ_lt)
     (isConnected_roundedPositiveDriftComponent hh) hbelow habove
 
-/-- The positive-drift region is separated from the origin. -/
+/-- The positive-drift region is separated from the origin.
+@isnad1 id=ex.3h2v.s6.c6d0a3edb462 from=translated src=- shape=3d3b79fe vocab=d107b1f0
+-/
 lemma exists_pos_not_mem_roundedPositiveDriftSet_near_zero {A ρ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     ∃ a : ℝ, 0 < a ∧
@@ -1430,7 +1564,9 @@ lemma exists_pos_not_mem_roundedPositiveDriftSet_near_zero {A ρ : ℝ}
   exact (lt_asymm hmem.2 hratio).elim
 
 /-- The positive-drift region is separated from its ambient upper radius
-bound. -/
+bound.
+@isnad1 id=ex.3h2v.s6.0281de6a89fe from=translated src=- shape=a9492d88 vocab=c9cfb79e
+-/
 lemma exists_lt_radiusBound_not_mem_roundedPositiveDriftSet_near_top
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     ∃ b : ℝ, 0 < b ∧ b < roundedRadiusBound ρ ∧
@@ -1468,7 +1604,9 @@ lemma exists_lt_radiusBound_not_mem_roundedPositiveDriftSet_near_top
   exact (lt_asymm hy.2 hyneg).elim
 
 /-- The endpoints of every positive-drift component lie strictly inside
-`(0, M_ρ)` and are strictly ordered. -/
+`(0, M_ρ)` and are strictly ordered.
+@isnad1 id=and.4h3v.s6.bb1123c546c1 from=translated src=- shape=ce85fbac vocab=026add20
+-/
 lemma roundedPositiveDriftComponent_endpoints {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ) :
@@ -1511,7 +1649,9 @@ lemma roundedPositiveDriftComponent_endpoints {A ρ h : ℝ}
     hsupUpper.trans_lt hbM⟩
 
 /-- Both endpoints of a positive-drift component are fixed points of the
-rounded mean map. -/
+rounded mean map.
+@isnad1 id=and.4h3v.s6.135dfc9c5fcd from=translated src=- shape=8765fcf0 vocab=ea9add16
+-/
 lemma roundedPositiveDriftComponent_endpoints_fixed {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ) :
@@ -1593,7 +1733,9 @@ lemma roundedPositiveDriftComponent_endpoints_fixed {A ρ h : ℝ}
 
 /-- On an interval with no fixed point, the sign of the drift cannot change.
 In particular, one strictly negative right endpoint forces strictly negative
-drift throughout the half-open interval. -/
+drift throughout the half-open interval.
+@isnad1 id=lt.4h4v.s6.3b7f9954a431 from=translated src=- shape=467318d6 vocab=aa45fc69
+-/
 lemma lt_self_on_Ioc_of_continuousOn_of_ne_fixed {f : ℝ → ℝ} {a b : ℝ}
     (hf : ContinuousOn f (Set.Icc a b)) (hb : f b < b)
     (hne : ∀ x ∈ Set.Ioc a b, f x ≠ x) :
@@ -1615,7 +1757,9 @@ lemma lt_self_on_Ioc_of_continuousOn_of_ne_fixed {f : ℝ → ℝ} {a b : ℝ}
   exact hne y hyIoc (sub_eq_zero.mp hyzero)
 
 /-- Complete specification of a positive-drift component, apart from the
-isolated-zero/right-stability clause. -/
+isolated-zero/right-stability clause.
+@isnad1 id=other.4h3v.s7.8e5276d5f4b4 from=translated src=- shape=d049ad88 vocab=4f44551b
+-/
 lemma roundedPositiveDriftComponent_spec {A ρ h : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ) :
@@ -1643,7 +1787,9 @@ lemma roundedPositiveDriftComponent_spec {A ρ h : ℝ}
   exact (roundedPositiveDriftComponent_subset A ρ h huC).2
 
 /-- If the positive-drift set is nonempty, the rounded mean map has only
-finitely many fixed points in each compact positive interval. -/
+finitely many fixed points in each compact positive interval.
+@isnad1 id=finite.5h4v.s6.ce41c503f6b8 from=translated src=- shape=895f648f vocab=6f795992
+-/
 lemma finite_roundedMeanMap_fixedPoints_Icc
     {A ρ a b : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hne : (roundedPositiveDriftSet A ρ).Nonempty) (ha : 0 < a) :
@@ -1684,7 +1830,9 @@ lemma finite_roundedMeanMap_fixedPoints_Icc
   rw [← hset]
   exact hcompact.finite hdiscrete
 
-/-- The set of upper endpoints of positive-drift components is finite. -/
+/-- The set of upper endpoints of positive-drift components is finite.
+@isnad1 id=finite.4h2v.s5.8291ff9910d2 from=translated src=- shape=6c50fe96 vocab=7355a427
+-/
 lemma finite_roundedPositiveDriftUpperEndpoints
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hne : (roundedPositiveDriftSet A ρ).Nonempty) :
@@ -1711,7 +1859,9 @@ lemma finite_roundedPositiveDriftUpperEndpoints
   exact ⟨⟨(hah.trans hhInterval.2).le, hends.2.2.le⟩,
     (roundedPositiveDriftComponent_endpoints_fixed hA hρ hρ_lt hh).2⟩
 
-/-- A nonempty positive-drift set has a rightmost component. -/
+/-- A nonempty positive-drift set has a rightmost component.
+@isnad1 id=ex.4h2v.s5.8586ff1bd3cb from=translated src=- shape=709c30fa vocab=5ace314e
+-/
 lemma exists_isRightmostRoundedPositiveDriftComponent
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hne : (roundedPositiveDriftSet A ρ).Nonempty) :
@@ -1742,7 +1892,9 @@ lemma exists_isRightmostRoundedPositiveDriftComponent
     le_csSup hEFinite.bddAbove huEndpoint
   exact (huInterval.2.le.trans huMax).trans_eq hmax
 
-/-- The positive-drift region has only finitely many connected components. -/
+/-- The positive-drift region has only finitely many connected components.
+@isnad1 id=finite.4h2v.s5.f4e3cc0f3c99 from=translated src=- shape=b025bb2e vocab=7a5f5211
+-/
 lemma finite_roundedPositiveDriftComponents
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hne : (roundedPositiveDriftSet A ρ).Nonempty) :
@@ -1802,7 +1954,9 @@ lemma finite_roundedPositiveDriftComponents
 /-- Analyticity of the rounded mean map at the upper endpoint of a
 positive-drift component makes that endpoint an isolated fixed point. The
 locally-identically-fixed alternative is excluded by the positive drift
-arbitrarily close on the left. -/
+arbitrarily close on the left.
+@isnad1 id=ex.5h3v.s7.08dd3f37db2d from=translated src=- shape=e51c3742 vocab=6fc2ab49
+-/
 lemma roundedPositiveDriftComponent_upper_isolated_of_analyticAt
     {A ρ h : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ)
@@ -1868,7 +2022,9 @@ lemma roundedPositiveDriftComponent_upper_isolated_of_analyticAt
     exact hneBall huDist (by simpa only [Set.mem_compl_iff,
       Set.mem_singleton_iff] using huNe) (sub_eq_zero.mpr huEq)
 
-/-- The upper fixed point of every positive-drift component is isolated. -/
+/-- The upper fixed point of every positive-drift component is isolated.
+@isnad1 id=ex.4h3v.s6.300a2a6606ec from=translated src=- shape=e28c6eed vocab=b5b7497f
+-/
 lemma roundedPositiveDriftComponent_upper_isolated
     {A ρ h : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ) :
@@ -1886,7 +2042,9 @@ lemma roundedPositiveDriftComponent_upper_isolated
 /-- The right-stability conclusion for a positive-drift component follows
 from isolatedness of its upper fixed point together with negative-drift
 witnesses arbitrarily close on the right. The latter hypothesis is the
-sign-crossing input not supplied by isolatedness alone. -/
+sign-crossing input not supplied by isolatedness alone.
+@isnad1 id=other.6h3v.s8.03466e960526 from=translated src=- shape=a753f580 vocab=e232c433
+-/
 lemma roundedPositiveDriftComponent_right_stable_of_isolated_of_right_negative
     {A ρ h : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ)
@@ -1962,7 +2120,9 @@ lemma roundedPositiveDriftComponent_right_stable_of_isolated_of_right_negative
 
 /-- Repaired right-stability statement: the upper fixed point is automatically
 isolated, so the only additional input is negative drift arbitrarily close on
-its right. -/
+its right.
+@isnad1 id=other.5h3v.s7.37111ad36cfa from=translated src=- shape=c942e9b5 vocab=b96864fb
+-/
 lemma roundedPositiveDriftComponent_right_stable_of_right_negative
     {A ρ h : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ)
@@ -1984,7 +2144,9 @@ lemma roundedPositiveDriftComponent_right_stable_of_right_negative
       hrightNegative
 
 /-- Rightmostness supplies negative-drift witnesses arbitrarily close to the
-right of the isolated upper fixed point. -/
+right of the isolated upper fixed point.
+@isnad1 id=ex.6h4v.s6.eb0d5bc58826 from=translated src=- shape=4ee33e17 vocab=742dc4f5
+-/
 lemma roundedPositiveDriftComponent_right_negative_of_rightmost
     {A ρ h : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ)
@@ -2046,7 +2208,9 @@ lemma roundedPositiveDriftComponent_right_negative_of_rightmost
     lt_of_le_of_ne (le_of_not_gt huNotLt) huNe⟩
 
 /-- The repaired paper statement: the upper endpoint of the rightmost
-positive-drift component is stable from the right. -/
+positive-drift component is stable from the right.
+@isnad1 id=other.5h3v.s7.a122ef145080 from=translated src=- shape=8eb0d730 vocab=2f4a6b49
+-/
 lemma roundedPositiveDriftComponent_right_stable_of_rightmost
     {A ρ h : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ)
@@ -2063,7 +2227,9 @@ lemma roundedPositiveDriftComponent_right_stable_of_rightmost
         hA hρ hρ_lt hh hrightmost)
 
 /-- Under the repaired sign-crossing hypothesis, the rounded mean map points
-strictly toward the upper endpoint on both sides of the metastable well. -/
+strictly toward the upper endpoint on both sides of the metastable well.
+@isnad1 id=other.5h3v.s8.476540aa2550 from=translated src=- shape=71955f80 vocab=71a8bfd1
+-/
 lemma exists_roundedPositiveDriftComponent_inward_bounds
     {A ρ h : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ)
@@ -2120,7 +2286,9 @@ lemma exists_roundedPositiveDriftComponent_inward_bounds
     exact ⟨by rwa [hupperFixed] at hupperLe, hneg u hu⟩
 
 /-- Every deterministic rounded-mean-map orbit started in a positive-drift
-component, including its upper endpoint, converges to that upper endpoint. -/
+component, including its upper endpoint, converges to that upper endpoint.
+@isnad1 id=tendsto.5h4v.s6.2d8dd9344c4a from=translated src=- shape=c271e978 vocab=c3528139
+-/
 theorem roundedPositiveDriftComponent_orbit_tendsto_upper
     {A ρ h q : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ)
@@ -2216,7 +2384,9 @@ theorem roundedPositiveDriftComponent_orbit_tendsto_upper
 
 /-- Deterministic rounded-mean-map orbits enter every neighborhood of a
 positive-drift component's upper endpoint uniformly over compact subsets of
-the component together with its upper endpoint. -/
+the component together with its upper endpoint.
+@isnad1 id=ex.7h5v.s7.d16102071119 from=translated src=- shape=d097a33c vocab=f4bc5669
+-/
 theorem exists_uniform_roundedPositiveDriftComponent_orbit_mem_Icc
     {A ρ h δ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ) (hδ : 0 < δ)
@@ -2271,7 +2441,9 @@ theorem exists_uniform_roundedPositiveDriftComponent_orbit_mem_Icc
     exact (hBNonempty ⟨q, hqB⟩).elim
 
 /-- On the nonnegative state space the rounded mean map remains below the
-maximal rounded-coordinate value. -/
+maximal rounded-coordinate value.
+@isnad1 id=le.4h3v.s5.129df5d11ad7 from=translated src=- shape=13cf4916 vocab=23afbae9
+-/
 lemma roundedMeanMap_le_roundedRadiusBound_of_nonneg
     {A ρ h : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : 0 ≤ h) :
@@ -2282,7 +2454,9 @@ lemma roundedMeanMap_le_roundedRadiusBound_of_nonneg
   · exact (roundedMeanMap_lt_roundedRadiusBound hA hρ hρ_lt hh).le
 
 /-- The exact compact rounded-radius interval is invariant under the
-deterministic rounded mean map. -/
+deterministic rounded mean map.
+@isnad1 id=mem.4h3v.s6.9b1d9d2a9ffd from=translated src=- shape=9453403f vocab=7ca3c235
+-/
 lemma roundedMeanMap_mem_roundedRadiusBound_Icc
     {A ρ h : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ Set.Icc 0 (roundedRadiusBound ρ)) :
@@ -2292,7 +2466,9 @@ lemma roundedMeanMap_mem_roundedRadiusBound_Icc
       hA hρ hρ_lt hh.1⟩
 
 /-- Every deterministic rounded-mean-map iterate started in the exact compact
-state interval remains there. -/
+state interval remains there.
+@isnad1 id=mem.4h4v.s6.f9b3137a8c6a from=translated src=- shape=575e7016 vocab=2700831b
+-/
 lemma iterate_roundedMeanMap_mem_roundedRadiusBound_Icc
     {A ρ q : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hq : q ∈ Set.Icc 0 (roundedRadiusBound ρ)) :
@@ -2311,7 +2487,9 @@ lemma iterate_roundedMeanMap_mem_roundedRadiusBound_Icc
 
 /-- Through every fixed finite horizon, all coordinates of a canonical
 rounded-radius path started in `[0, Mρ]` remain in that interval almost
-surely. -/
+surely.
+@isnad1 id=eventual.3h5v.s6.f0f139613ef6 from=translated src=- shape=11365a7c vocab=4da0e0e4
+-/
 lemma markovPathMeasure_dirac_ae_forall_le_mem_roundedRadiusBound_Icc
     {A ρ q : ℝ} {N : ℕ}
     (hq : q ∈ Set.Icc 0 (roundedRadiusBound ρ))
@@ -2343,7 +2521,9 @@ def roundedMeanMapOscillationSet (A ρ r : ℝ) : Set ℝ :=
 noncomputable def roundedMeanMapModulus (A ρ r : ℝ) : ℝ :=
   sSup (roundedMeanMapOscillationSet A ρ r)
 
-/-- Zero belongs to the oscillation set, using the pair `(0,0)`. -/
+/-- Zero belongs to the oscillation set, using the pair `(0,0)`.
+@isnad1 id=mem.0h3v.s4.35f515a2f84a from=translated src=- shape=5fd336b3 vocab=83207122
+-/
 lemma zero_mem_roundedMeanMapOscillationSet (A ρ r : ℝ) :
     0 ∈ roundedMeanMapOscillationSet A ρ r := by
   refine ⟨0, ⟨le_rfl, roundedRadiusBound_nonneg ρ⟩,
@@ -2351,12 +2531,16 @@ lemma zero_mem_roundedMeanMapOscillationSet (A ρ r : ℝ) :
   · simp
   · simp
 
-/-- The compact-interval oscillation set is nonempty. -/
+/-- The compact-interval oscillation set is nonempty.
+@isnad1 id=nonempty.0h3v.s3.3c1c5b0f0c34 from=translated src=- shape=eae19870 vocab=26d7cd36
+-/
 lemma roundedMeanMapOscillationSet_nonempty (A ρ r : ℝ) :
     (roundedMeanMapOscillationSet A ρ r).Nonempty :=
   ⟨0, zero_mem_roundedMeanMapOscillationSet A ρ r⟩
 
-/-- The state-space bound also bounds every compact-interval oscillation. -/
+/-- The state-space bound also bounds every compact-interval oscillation.
+@isnad1 id=bddabove.3h3v.s5.f852ae6acea1 from=translated src=- shape=267338e1 vocab=882e986d
+-/
 lemma roundedMeanMapOscillationSet_bddAbove
     {A ρ r : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     BddAbove (roundedMeanMapOscillationSet A ρ r) := by
@@ -2372,7 +2556,9 @@ lemma roundedMeanMapOscillationSet_bddAbove
   rw [abs_sub_le_iff]
   constructor <;> linarith
 
-/-- The rounded mean-map modulus is nonnegative. -/
+/-- The rounded mean-map modulus is nonnegative.
+@isnad1 id=le.3h3v.s5.bd4cab0d3953 from=translated src=- shape=d46a06c2 vocab=0df3b9ba
+-/
 lemma roundedMeanMapModulus_nonneg
     {A ρ r : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     0 ≤ roundedMeanMapModulus A ρ r := by
@@ -2380,7 +2566,9 @@ lemma roundedMeanMapModulus_nonneg
   exact zero_mem_roundedMeanMapOscillationSet A ρ r
 
 /-- The supremum modulus bounds the rounded mean-map oscillation for every
-pair of states in the compact interval. -/
+pair of states in the compact interval.
+@isnad1 id=le.5h4v.s6.50663e2e695c from=translated src=- shape=57ca505b vocab=037e70a0
+-/
 lemma abs_roundedMeanMap_sub_le_roundedMeanMapModulus
     {A ρ u v : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hu : u ∈ Set.Icc 0 (roundedRadiusBound ρ))
@@ -2391,7 +2579,9 @@ lemma abs_roundedMeanMap_sub_le_roundedMeanMapModulus
   exact ⟨u, hu, v, hv, le_rfl, rfl⟩
 
 /-- Uniform continuity on the compact rounded state interval makes the
-paper's oscillation modulus vanish at zero. -/
+paper's oscillation modulus vanish at zero.
+@isnad1 id=tendsto.3h2v.s6.c01a307486a5 from=translated src=- shape=60adaac7 vocab=480aaa3f
+-/
 lemma tendsto_roundedMeanMapModulus_zero
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     Tendsto (roundedMeanMapModulus A ρ) (𝓝 0) (𝓝 0) := by
@@ -2425,7 +2615,9 @@ lemma tendsto_roundedMeanMapModulus_zero
 
 /-- At every fixed horizon, one can choose a positive one-step tolerance
 whose rounded deterministic error envelope is smaller than any prescribed
-positive terminal error. -/
+positive terminal error.
+@isnad1 id=ex.4h4v.s6.8ce399358a21 from=translated src=- shape=754929dd vocab=0319b2af
+-/
 lemma exists_pos_finiteHorizonErrorEnvelope_roundedMeanMapModulus_lt
     {A ρ η : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hη : 0 < η) (T : ℕ) :
@@ -2455,7 +2647,9 @@ lemma exists_pos_finiteHorizonErrorEnvelope_roundedMeanMapModulus_lt
 
 /-- A path with uniformly small one-step errors tracks the rounded
 deterministic orbit through every fixed horizon, with error controlled by the
-paper's recursive compact-interval modulus envelope. -/
+paper's recursive compact-interval modulus envelope.
+@isnad1 id=le.8h7v.s7.9dda876dd78d from=translated src=- shape=51fc5f14 vocab=90e22646
+-/
 lemma abs_sub_iterate_roundedMeanMap_le_errorEnvelope
     {A ρ q δ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (x : ℕ → ℝ) (T : ℕ)
@@ -2491,7 +2685,9 @@ lemma abs_sub_iterate_roundedMeanMap_le_errorEnvelope
     exact finiteHorizonErrorEnvelope_succ _ _ _
 
 /-- Outside the finite-horizon bad-step event, every one-step perturbation is
-small enough for the rounded pathwise tracking envelope to apply. -/
+small enough for the rounded pathwise tracking envelope to apply.
+@isnad1 id=le.8h7v.s7.2917d44a509e from=translated src=- shape=375558a2 vocab=c71996a9
+-/
 lemma abs_sub_iterate_roundedMeanMap_le_errorEnvelope_of_notMem
     {A ρ q δ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (ω : ℕ → ℝ) (T : ℕ)
@@ -2518,7 +2714,9 @@ lemma abs_sub_iterate_roundedMeanMap_le_errorEnvelope_of_notMem
 
 /-- Finite-horizon stochastic tracking: the terminal deviation from the
 rounded deterministic orbit exceeds its recursive envelope only if some
-one-step deviation exceeds the chosen tolerance. -/
+one-step deviation exceeds the chosen tolerance.
+@isnad1 id=le.6h6v.s7.a17d9b4562c0 from=translated src=- shape=5ca207a4 vocab=4491b388
+-/
 lemma markovPathMeasure_measureReal_abs_sub_iterate_gt_errorEnvelope_le
     {A ρ q δ : ℝ} {N T : ℕ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -2578,7 +2776,9 @@ lemma markovPathMeasure_measureReal_abs_sub_iterate_gt_errorEnvelope_le
 component.  The deterministic orbit enters an `η / 4` neighborhood, while a
 positive one-step tolerance makes the finite-horizon tracking envelope smaller
 than `η / 4`; hence failure to enter the `η / 2` neighborhood forces a tracking
-failure. -/
+failure.
+@isnad1 id=ex.7h5v.s8.1f949cecbfee from=translated src=- shape=4a77b663 vocab=5a2e87c0
+-/
 theorem exists_markovPathMeasure_measureReal_abs_sub_upper_gt_half_le
     {A ρ h η : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ) (hη : 0 < η)
@@ -2655,7 +2855,9 @@ theorem exists_markovPathMeasure_measureReal_abs_sub_upper_gt_half_le
 
 /-- Paper form of the uniform stochastic entrance estimate: the entrance time
 and positive constants are independent of the population size and of the
-starting point in the prescribed compact set. -/
+starting point in the prescribed compact set.
+@isnad1 id=ex.7h5v.s8.bee6c2f5ad44 from=translated src=- shape=cdfc193f vocab=70f2c493
+-/
 theorem exists_uniform_markovPathMeasure_entrance_exp_bound
     {A ρ h η : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ) (hη : 0 < η)
@@ -2703,7 +2905,9 @@ theorem exists_uniform_markovPathMeasure_entrance_exp_bound
 
 /-- The rightmost positive-drift component has a compact inward-invariant
 neighborhood of its upper endpoint, with a positive uniform margin from the
-boundary. This is the deterministic persistence input in the paper. -/
+boundary. This is the deterministic persistence input in the paper.
+@isnad1 id=other.5h3v.s8.5e3a4ccf6055 from=translated src=- shape=384d4825 vocab=546d9e3e
+-/
 theorem exists_roundedPositiveDriftComponent_inward_margin
     {A ρ h : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ)
@@ -2793,7 +2997,9 @@ def metastableExitEvent
   {ω | ∃ s ≤ T, η < |ω (t₀ + s) - upper|}
 
 /-- The finite-horizon metastable exit event is measurable on canonical path
-space. -/
+space.
+@isnad1 id=measurab.0h4v.s4.932ff73af3ac from=translated src=- shape=7afd3b31 vocab=c479b6f6
+-/
 lemma measurableSet_metastableExitEvent
     (upper η : ℝ) (t₀ T : ℕ) :
     MeasurableSet (metastableExitEvent upper η t₀ T) := by
@@ -2802,7 +3008,9 @@ lemma measurableSet_metastableExitEvent
 
 /-- Staying inside a metastable well whose lower endpoint is positive forces
 survival through the terminal time. This is the canonical path-space bridge
-from the exit estimate to the absorption-time lower bound. -/
+from the exit estimate to the absorption-time lower bound.
+@isnad1 id=other.1h8v.s7.53d0c84a7f38 from=translated src=- shape=f929cea2 vocab=35d7c84e
+-/
 lemma one_sub_measureReal_metastableExitEvent_le_survival
     {A ρ upper η q : ℝ} {N t₀ T : ℕ}
     (hleft : 0 < upper - η) :
@@ -2855,7 +3063,9 @@ lemma one_sub_measureReal_metastableExitEvent_le_survival
 /-- If a path starts in the half-sized metastable well and exits the full well,
 then before its exit it makes a step larger than half the deterministic inward
 margin. This is the stopped pathwise inclusion used in the paper's persistence
-union bound. -/
+union bound.
+@isnad1 id=ex.5h8v.s8.606524ae27c4 from=translated src=- shape=a16f4361 vocab=c5347e91
+-/
 lemma exists_preexit_step_deviation_gt_half
     {A ρ upper η d : ℝ} {t₀ T : ℕ}
     (hη : 0 < η) (hd : 0 < d)
@@ -2938,7 +3148,9 @@ def shiftedFiniteHorizonStepDeviationEvent
       |ω (t₀ + s + 1) - roundedMeanMap A ρ (ω (t₀ + s))| > ε}
 
 /-- The one-step Hoeffding estimate union-bounded over an arbitrary shifted
-finite horizon. -/
+finite horizon.
+@isnad1 id=le.5h7v.s7.941739e1113f from=translated src=- shape=b1f0ee5b vocab=2a86a604
+-/
 lemma markovPathMeasure_measureReal_shiftedFiniteHorizonStepDeviationEvent_le
     {A ρ q ε : ℝ} {N t₀ T : ℕ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -2978,7 +3190,9 @@ lemma markovPathMeasure_measureReal_shiftedFiniteHorizonStepDeviationEvent_le
 
 /-- Once the path has entered the half-sized well, exiting the full well
 through a shifted finite horizon is controlled by the Hoeffding union bound at
-half the deterministic inward margin. -/
+half the deterministic inward margin.
+@isnad1 id=le.7h9v.s8.65ce51064259 from=translated src=- shape=ff517b77 vocab=43f9ecbb
+-/
 lemma markovPathMeasure_measureReal_inter_start_metastableExitEvent_le
     {A ρ q upper η d : ℝ} {N t₀ T : ℕ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -3010,7 +3224,9 @@ lemma markovPathMeasure_measureReal_inter_start_metastableExitEvent_le
 
 /-- Paper-form entrance and persistence estimates for the rightmost
 positive-drift component, with the same burn-in time, prefactor, and
-exponential rate in both displayed bounds. -/
+exponential rate in both displayed bounds.
+@isnad1 id=other.7h4v.s8.c4d375c7d495 from=translated src=- shape=7cdfceff vocab=657e87ca
+-/
 theorem exists_uniform_markovPathMeasure_entrance_exit_exp_bound
     {A ρ h : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ)
@@ -3145,7 +3361,9 @@ theorem exists_uniform_markovPathMeasure_entrance_exit_exp_bound
         dsimp only [C]
         nlinarith [mul_nonneg hCent.le (Nat.cast_nonneg T)]
 
-/-- Compatibility form exposing only the finite-horizon exit estimate. -/
+/-- Compatibility form exposing only the finite-horizon exit estimate.
+@isnad1 id=other.7h4v.s8.105867f20681 from=translated src=- shape=9c0d9e6d vocab=bc0b7fdb
+-/
 theorem exists_uniform_markovPathMeasure_exit_exp_bound
     {A ρ h : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ)
@@ -3174,7 +3392,9 @@ theorem exists_uniform_markovPathMeasure_exit_exp_bound
   exact ⟨Tη, C, c₀, hC, hc₀, hexit⟩
 
 /-- The scalar exponential estimate used when the persistence horizon is
-`floor (exp (c₁ N))` with `c₁ < c₀`. -/
+`floor (exp (c₁ N))` with `c₁ < c₀`.
+@isnad1 id=tendsto.3h3v.s6.82143f17da1d from=translated src=- shape=1a7c0378 vocab=e7f7835d
+-/
 lemma tendsto_one_add_floor_exp_mul_exp_neg
     {C c₀ c₁ : ℝ} (hC : 0 ≤ C) (hc₁ : 0 < c₁) (hc₁_lt : c₁ < c₀) :
     Tendsto
@@ -3233,7 +3453,9 @@ lemma tendsto_one_add_floor_exp_mul_exp_neg
 /-- Uniform exponential persistence in the rightmost metastable well. The
 initial state may depend on `N`, provided it remains in the prescribed compact
 set. For a suitable `c₁ > 0`, the canonical absorption time exceeds
-`Tη + floor (exp (c₁ N))` with probability tending to one. -/
+`Tη + floor (exp (c₁ N))` with probability tending to one.
+@isnad1 id=other.7h4v.s8.3341f20d5b8d from=translated src=- shape=02977257 vocab=f4079d69
+-/
 theorem exists_exponential_absorption_survival
     {A ρ h : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh : h ∈ roundedPositiveDriftSet A ρ)
@@ -3314,7 +3536,9 @@ theorem exists_exponential_absorption_survival
 /-- For fixed dimension, one rounded Gaussian step has a uniformly positive
 chance of hitting the absorbing state from every radius in the canonical
 compact interval. A fixed coordinatewise Gaussian box is sent entirely to
-zero, uniformly over the starting radius. -/
+zero, uniformly over the starting radius.
+@isnad1 id=ex.3h3v.s6.7b4d49dc9dfc from=translated src=- shape=651409ef vocab=1f46ca46
+-/
 theorem exists_pos_le_measureReal_Hkernel_singleton_zero
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (N : ℕ) :
@@ -3388,7 +3612,9 @@ theorem exists_pos_le_measureReal_Hkernel_singleton_zero
 
 /-- The uniform one-step absorption chance iterates to a geometric survival
 bound for every fixed dimension and every initial radius in the canonical
-compact interval. -/
+compact interval.
+@isnad1 id=ex.5h4v.s7.39edf50b025e from=translated src=- shape=37e01b56 vocab=86e0edb9
+-/
 theorem exists_geometric_Hkernel_survival_bound
     {A ρ q : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     {N : ℕ} (hN : 0 < N)
@@ -3501,7 +3727,9 @@ theorem exists_geometric_Hkernel_survival_bound
     _ = (1 - p) ^ t := by rw [ENNReal.toReal_pow, hc]
 
 /-- For every fixed positive dimension, rounded-radius survival tends to zero
-and the canonical absorption time is finite almost surely. -/
+and the canonical absorption time is finite almost surely.
+@isnad1 id=and.5h4v.s7.c606368ed173 from=translated src=- shape=42b944d0 vocab=98135c68
+-/
 theorem tendsto_Hkernel_survival_and_ae_absorption
     {A ρ q : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     {N : ℕ} (hN : 0 < N)
@@ -3576,7 +3804,9 @@ theorem tendsto_Hkernel_survival_and_ae_absorption
 
 /-- Vector-chain form of fixed-dimensional absorption. It applies in
 particular to every deterministic initial state in
-`roundedVectorStateSpace ρ N`. -/
+`roundedVectorStateSpace ρ N`.
+@isnad1 id=and.5h4v.s9.a84a5242bb1b from=translated src=- shape=36deae01 vocab=f8b91e88
+-/
 theorem tendsto_roundedPkernel_survival_and_ae_absorption
     {A ρ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     {N : ℕ} (hN : 0 < N) (x : Fin N → ℝ)
@@ -3813,6 +4043,9 @@ private theorem rounded_qualitative_metastability_attainable
 
 /- The first rounded transition enters the canonical compact interval, after
 which the uniform geometric absorption bound applies. -/
+/--
+@isnad1 id=ex.4h4v.s7.f5fe1e43014c from=translated src=- shape=79aa8e6d vocab=32a4827f
+-/
 theorem exists_geometric_Hkernel_survival_bound_succ
     {A ρ q : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     {N : ℕ} (hN : 0 < N) :
@@ -3925,6 +4158,9 @@ theorem exists_geometric_Hkernel_survival_bound_succ
 
 /-! The exact finite-state paper-facing absorption clause. -/
 
+/--
+@isnad1 id=eventual.5h4v.s7.20d9df5a51f0 from=translated src=- shape=b43b336a vocab=44203891
+-/
 theorem ae_absorption_roundedPkernel_of_rounded_state
     {A ρ : ℝ} (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hA : roundedExistenceThreshold ρ < A)
@@ -4027,7 +4263,9 @@ component, exposes the full right-stability margin, gives the entrance and
 finite-horizon exit estimates with common constants, derives exponential
 survival for deterministic rounded-vector initial families, and records
 almost-sure absorption from every point of the paper's finite rounded state
-space in every fixed positive dimension. -/
+space in every fixed positive dimension.
+@isnad1 id=ex.3h2v.s9.6ebf5ecd91e1 from=translated src=- shape=4c9c2826 vocab=04cc838a
+-/
 theorem rounded_qualitative_metastability_paper
     {A ρ : ℝ} (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hA : roundedExistenceThreshold ρ < A) :

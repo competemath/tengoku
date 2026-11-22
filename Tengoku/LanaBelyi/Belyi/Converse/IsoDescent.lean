@@ -46,7 +46,9 @@ open TensorProduct
 namespace Belyi.Converse
 
 /-- A finitely generated `A`-subalgebra of a field `Ω` containing the domain `A` admits an
-`A`-algebra map into any algebraically closed field `K` containing `A`. -/
+`A`-algebra map into any algebraically closed field `K` containing `A`.
+@isnad1 id=nonempty.1h4v.s7.903434bfb2ab from=translated src=- shape=2f774e32 vocab=7fc67b11
+-/
 theorem nonempty_algHom_of_fg {A Ω K : Type*} [CommRing A] [IsDomain A] [Field Ω] [Algebra A Ω]
     [FaithfulSMul A Ω] [Field K] [IsAlgClosed K] [Algebra A K] [FaithfulSMul A K]
     (C : Subalgebra A Ω) (hC : C.FG) : Nonempty (C →ₐ[A] K) := by
@@ -78,7 +80,9 @@ variable {k : Type u} [CommRing k] {R : Type u} [CommRing R] [Algebra k R]
   {B : Type u} [CommRing B] [Algebra (A ⊗[k] R) B]
   {B' : Type u} [CommRing B'] [Algebra (L ⊗[k] R) B']
 
-/-- The comparison map of a base change is compatible with the structure maps. -/
+/-- The comparison map of a base change is compatible with the structure maps.
+@isnad1 id=eq.1h9v.s10.dac1979dc4c6 from=translated src=- shape=85e2d093 vocab=f0e14e53
+-/
 lemma IsBaseChangeAlong.map_algebraMap {φ : A →ₐ[k] L} {g : B →+* B'}
     (hg : IsBaseChangeAlong (R := R) φ g) (p : A ⊗[k] R) :
     g (algebraMap (A ⊗[k] R) B p) =
@@ -90,7 +94,9 @@ lemma IsBaseChangeAlong.map_algebraMap {φ : A →ₐ[k] L} {g : B →+* B'}
   exact IsScalarTower.algebraMap_apply (A ⊗[k] R) (L ⊗[k] R) B' p
 
 /-- If `B'` is the base change of the `A ⊗[k] R`-algebra `B` along `φ : A → L`, then `B'` is
-isomorphic to `L ⊗[A] B` (with `B` an `A`-algebra via `A → A ⊗[k] R`). -/
+isomorphic to `L ⊗[A] B` (with `B` an `A`-algebra via `A → A ⊗[k] R`).
+@isnad1 id=ex.1h8v.s11.933e991a71c8 from=translated src=- shape=1f0dc00a vocab=79e54cbb
+-/
 theorem IsBaseChangeAlong.exists_ringEquiv [Algebra A B] [IsScalarTower A (A ⊗[k] R) B]
     {φ : A →ₐ[k] L} {g : B →+* B'} (hg : IsBaseChangeAlong (R := R) φ g) :
     letI := φ.toRingHom.toAlgebra
@@ -138,7 +144,9 @@ end Translation
 `k`-algebra maps `ι : A → Ω` into a field and `j : A → K` into an algebraically closed field. If
 the base changes `BᵢΩ` along `ι` of two finitely presented `A ⊗[k] R`-algebras `B₁`, `B₂` are
 isomorphic as `Ω ⊗[k] R`-algebras, then their base changes `BᵢK` along `j` are isomorphic as
-`K ⊗[k] R`-algebras. -/
+`K ⊗[k] R`-algebras.
+@isnad1 id=nonempty.6h18v.s10.7249794b0558 from=translated src=- shape=c9762897 vocab=30cda592
+-/
 theorem nonempty_algEquiv_of_isBaseChangeAlong
     (k K Ω R A : Type u) [Field k] [Field K] [IsAlgClosed K] [Algebra k K]
     [Field Ω] [Algebra k Ω] [CommRing R] [Algebra k R]

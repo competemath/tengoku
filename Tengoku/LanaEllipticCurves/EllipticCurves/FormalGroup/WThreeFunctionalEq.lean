@@ -62,7 +62,9 @@ the exact analogue of `W.formalW = W.wOp W.formalW` with the local parameter `z`
 
 Proof: `F_E = -x₃·y₃⁻¹` and `W₃ = -y₃⁻¹`, so clearing the unit `y₃³` (using `y₃·y₃⁻¹ = 1`) turns
 the claim into the point-on-curve identity `y₃² + a₁x₃y₃ + a₃y₃ = x₃³ + a₂x₃² + a₄x₃ + a₆`
-(`formalXThree_formalYThree_weierstrass`). -/
+(`formalXThree_formalYThree_weierstrass`).
+@isnad1 id=eq.0h2v.s13.65800ceb6531 from=translated src=- shape=4d11ee3a vocab=f097c026
+-/
 theorem formalWThree_functional_eq :
     W.formalWThree
       = W.formalGroupLaurent ^ 3

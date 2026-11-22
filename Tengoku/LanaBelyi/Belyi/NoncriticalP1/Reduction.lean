@@ -46,6 +46,9 @@ noncomputable abbrev deg (x : Qbar) : ℕ := (minpoly ℚ x).natDegree
 /-- The branch set `T ∪ {∞}` as a subset of `ℙ¹(ℚ̄)`. -/
 def withInf (T : Finset Qbar) : Set Pt := insert none (some '' (T : Set Qbar))
 
+/--
+@isnad1 id=iff.0h2v.s5.0a02608afa2b from=translated src=- shape=0c3de1ec vocab=91b9abe4
+-/
 lemma mem_withInf {T : Finset Qbar} {z : Pt} : z ∈ withInf T ↔ z = none ∨ ∃ t ∈ T, z = some t := by
   simp only [withInf, Set.mem_insert_iff, Set.mem_image, Finset.mem_coe]
   constructor
@@ -56,13 +59,21 @@ lemma mem_withInf {T : Finset Qbar} {z : Pt} : z ∈ withInf T ↔ z = none ∨ 
     · exact Or.inl h
     · exact Or.inr ⟨t, ht, rfl⟩
 
+/--
+@isnad1 id=mem.0h1v.s3.9a3f1aa669c7 from=translated src=- shape=393a4111 vocab=aed5103d
+-/
 @[simp] lemma none_mem_withInf (T : Finset Qbar) : (none : Pt) ∈ withInf T :=
   Set.mem_insert _ _
 
+/--
+@isnad1 id=mem.1h2v.s4.d576f6ba1759 from=translated src=- shape=d7067145 vocab=e7a42a36
+-/
 lemma some_mem_withInf {T : Finset Qbar} {t : Qbar} (ht : t ∈ T) : some t ∈ withInf T :=
   Set.mem_insert_of_mem _ ⟨t, ht, rfl⟩
 
-/-- Conjugates of a point of a Galois-stable set lie in the set. -/
+/-- Conjugates of a point of a Galois-stable set lie in the set.
+@isnad1 id=mem.3h3v.s7.5736265bfd0e from=translated src=- shape=8201c821 vocab=7697f3ad
+-/
 lemma IsGalStable.mem_of_aeval_minpoly {T : Finset Qbar} (hT : IsGalStable T) {s ρ : Qbar}
     (hs : s ∈ T) (hρ : aeval ρ (minpoly ℚ s) = 0) : ρ ∈ T := by
   have hint : IsIntegral ℚ s := Algebra.IsIntegral.isIntegral s
@@ -72,17 +83,24 @@ lemma IsGalStable.mem_of_aeval_minpoly {T : Finset Qbar} (hT : IsGalStable T) {s
   rw [← hσ]
   exact hT σ s hs
 
-/-- An algebraic number of degree `≤ 1` is rational. -/
+/-- An algebraic number of degree `≤ 1` is rational.
+@isnad1 id=ex.1h1v.s4.f4622a82be5f from=translated src=- shape=a0718274 vocab=f216b053
+-/
 lemma exists_ratCast_of_deg_le_one {x : Qbar} (hx : deg x ≤ 1) : ∃ q : ℚ, x = q := by
   have h1 : 0 < deg x := minpoly.natDegree_pos (Algebra.IsIntegral.isIntegral x)
   obtain ⟨q, hq⟩ := minpoly.natDegree_eq_one_iff.mp (le_antisymm hx h1)
   exact ⟨q, by rw [← hq, eq_ratCast]⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.978df836b1ef from=translated src=- shape=85dfed03 vocab=c9a77c35
+-/
 lemma deg_ratCast (q : ℚ) : deg (q : Qbar) = 1 := by
   rw [deg, ← eq_ratCast (algebraMap ℚ Qbar)]
   exact minpoly.natDegree_eq_one_iff.mpr ⟨q, rfl⟩
 
-/-- Degrees do not grow inside `ℚ(x)`. -/
+/-- Degrees do not grow inside `ℚ(x)`.
+@isnad1 id=le.1h2v.s6.88fc297b7317 from=translated src=- shape=529cf8d6 vocab=a99bd18d
+-/
 lemma deg_le_of_mem_adjoin {x y : Qbar} (h : y ∈ ℚ⟮x⟯) : deg y ≤ deg x := by
   have hx : IsIntegral ℚ x := Algebra.IsIntegral.isIntegral x
   have hy : IsIntegral ℚ y := Algebra.IsIntegral.isIntegral y
@@ -90,7 +108,9 @@ lemma deg_le_of_mem_adjoin {x y : Qbar} (h : y ∈ ℚ⟮x⟯) : deg y ≤ deg x
   rw [deg, deg, ← adjoin.finrank hx, ← adjoin.finrank hy]
   exact finrank_le_of_le_right (adjoin_simple_le_iff.mpr h)
 
-/-- Elementary maps do not increase the degree of a finite point over `ℚ`. -/
+/-- Elementary maps do not increase the degree of a finite point over `ℚ`.
+@isnad1 id=le.1h3v.s4.03ccd7e3f96b from=translated src=- shape=25744d07 vocab=b90f1a07
+-/
 lemma ElemMap.deg_le_of_apply_some (u : ElemMap) {t y : Qbar} (h : u.apply (some t) = some y) :
     deg y ≤ deg t := by
   have ht : t ∈ ℚ⟮t⟯ := mem_adjoin_simple_self ℚ t
@@ -112,11 +132,17 @@ noncomputable def pushFin (u : ElemMap) (T : Finset Qbar) : Finset Qbar :=
   letI := Classical.decEq Pt
   Finset.eraseNone (T.image fun t => u.apply (some t))
 
+/--
+@isnad1 id=iff.0h3v.s5.7ac4595b231c from=translated src=- shape=bbdac022 vocab=1b3b4ce7
+-/
 lemma mem_pushFin {u : ElemMap} {T : Finset Qbar} {y : Qbar} :
     y ∈ pushFin u T ↔ ∃ t ∈ T, u.apply (some t) = some y := by
   classical
   simp [pushFin]
 
+/--
+@isnad1 id=isgalsta.1h2v.s3.8fa28bb4c911 from=translated src=- shape=608a1c91 vocab=8bfd94d2
+-/
 lemma IsGalStable.pushFin {T : Finset Qbar} (hT : IsGalStable T) (u : ElemMap) :
     IsGalStable (pushFin u T) := by
   intro σ y hy
@@ -126,18 +152,27 @@ lemma IsGalStable.pushFin {T : Finset Qbar} (hT : IsGalStable T) (u : ElemMap) :
   rw [Option.map_some, hty, Option.map_some] at this
   exact this
 
+/--
+@isnad1 id=isgalsta.1h2v.s7.33b79ada56e9 from=translated src=- shape=6c9990ed vocab=fd8b798c
+-/
 lemma IsGalStable.image_aeval {T : Finset Qbar} (hT : IsGalStable T) (f : ℚ[X]) :
     IsGalStable (T.image fun t => aeval t f) := by
   intro σ y hy
   obtain ⟨t, ht, rfl⟩ := Finset.mem_image.mp hy
   exact Finset.mem_image.mpr ⟨σ t, hT σ t ht, aeval_algHom_apply σ t f⟩
 
+/--
+@isnad1 id=isgalsta.0h1v.s4.fd8850503b07 from=translated src=- shape=81ab9b4b vocab=9506ffe4
+-/
 lemma isGalStable_critVal (f : ℚ[X]) : IsGalStable (critVal Qbar f) := by
   intro σ y hy
   obtain ⟨c, ⟨hd, hc⟩, rfl⟩ := mem_critVal_iff.mp hy
   refine mem_critVal_iff.mpr ⟨σ c, ⟨hd, ?_⟩, aeval_algHom_apply σ c f⟩
   rw [aeval_algHom_apply, hc, map_zero]
 
+/--
+@isnad1 id=isgalsta.2h2v.s4.24deac3f2b86 from=translated src=- shape=286d108b vocab=a08fa051
+-/
 lemma IsGalStable.union {T T' : Finset Qbar} (hT : IsGalStable T) (hT' : IsGalStable T') :
     IsGalStable (T ∪ T') := by
   intro σ y hy
@@ -145,6 +180,9 @@ lemma IsGalStable.union {T T' : Finset Qbar} (hT : IsGalStable T) (hT' : IsGalSt
   · exact Finset.mem_union_left _ (hT σ y h)
   · exact Finset.mem_union_right _ (hT' σ y h)
 
+/--
+@isnad1 id=isgalsta.1h2v.s4.4d49c6ecece5 from=translated src=- shape=ddead296 vocab=a1a74dcb
+-/
 lemma IsGalStable.insert_ratCast {T : Finset Qbar} (hT : IsGalStable T) (q : ℚ) :
     IsGalStable (insert (q : Qbar) T) := by
   intro σ y hy
@@ -153,7 +191,9 @@ lemma IsGalStable.insert_ratCast {T : Finset Qbar} (hT : IsGalStable T) (q : ℚ
   · exact Finset.mem_insert_of_mem (hT σ y h)
 
 /-- **Normalisation** (Lemma 2.3 with `C = 9`): we may assume that `T` lies in the closed unit
-disc and `τ = 9`. -/
+disc and `τ = 9`.
+@isnad1 id=ex.2h2v.s8.7dd1b9301903 from=translated src=- shape=6c14d062 vocab=e1256904
+-/
 theorem normalize_step (T : Finset Qbar) (hT : IsGalStable T) {τ : ℚ} (hτ : (τ : Qbar) ∉ T) :
     ∃ (u : ElemMap) (T₁ : Finset Qbar), IsGalStable T₁ ∧ (∀ y ∈ T₁, ‖ι y‖ ≤ 1) ∧
       (∀ d, 1 ≤ d → (∀ t ∈ T, deg t ≤ d) →
@@ -199,7 +239,9 @@ theorem normalize_step (T : Finset Qbar) (hT : IsGalStable T) {τ : ℚ} (hτ : 
       exact some_mem_withInf (Finset.mem_insert_of_mem (mem_pushFin.mpr ⟨t, ht, hy⟩))
 
 /-- **The rational case** (Lemma 2.2): if `T ⊆ ℚ` lies in the unit disc, there is a
-noncritical Belyi map for `(T ∪ {∞}, 9)`. -/
+noncritical Belyi map for `(T ∪ {∞}, 9)`.
+@isnad1 id=ex.2h1v.s7.add0497c2275 from=translated src=- shape=d3c6432f vocab=9ee8826a
+-/
 theorem rational_step (T : Finset Qbar) (hbd : ∀ y ∈ T, ‖ι y‖ ≤ 1)
     (hdeg : ∀ y ∈ T, deg y ≤ 1) :
     ∃ hs, IsNoncriticalBelyi hs (withInf T) (ofRat 9) := by
@@ -217,7 +259,9 @@ theorem rational_step (T : Finset Qbar) (hbd : ∀ y ∈ T, ‖ι y‖ ≤ 1)
     exact Set.mem_insert_of_mem _ ⟨q, Finset.mem_coe.mpr (Finset.mem_preimage.mpr ht), rfl⟩
 
 /-- **The induction step of Lemma 2.4**: apply the minimal polynomial `f₀` of a point `σ₀ ∈ T`
-of maximal degree `d ≥ 2`, where `T` lies in the unit disc. -/
+of maximal degree `d ≥ 2`, where `T` lies in the unit disc.
+@isnad1 id=ex.7h4v.s8.df1630ce76b6 from=translated src=- shape=839b269d vocab=e6eddb7d
+-/
 theorem minpoly_step (T : Finset Qbar) (hT : IsGalStable T) (hbd : ∀ y ∈ T, ‖ι y‖ ≤ 1)
     {d n : ℕ} (hd : 2 ≤ d) (hdeg : ∀ y ∈ T, deg y ≤ d)
     (hcard : (T.filter fun y => deg y = d).card ≤ n + 1) {σ₀ : Qbar} (hσ₀ : σ₀ ∈ T)

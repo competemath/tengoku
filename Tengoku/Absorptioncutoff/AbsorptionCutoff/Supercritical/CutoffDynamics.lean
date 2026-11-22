@@ -21,7 +21,9 @@ open MeasureTheory ProbabilityTheory
 namespace AbsorptionCutoff
 
 /-- Squared `tanh` at a Gaussian-scaled coordinate is monotone in the
-nonnegative squared radius. -/
+nonnegative squared radius.
+@isnad1 id=le.1h4v.s6.c913242adf68 from=translated src=- shape=f16d735b vocab=3c64c62f
+-/
 lemma tanh_sq_sqrt_mul_mono {A q₀ q₁ g : ℝ} (hqq : q₀ ≤ q₁) :
     Real.tanh (A * Real.sqrt q₀ * g) ^ 2 ≤
       Real.tanh (A * Real.sqrt q₁ * g) ^ 2 := by
@@ -45,7 +47,9 @@ lemma tanh_sq_sqrt_mul_mono {A q₀ q₁ g : ℝ} (hqq : q₀ ≤ q₁) :
   nlinarith
 
 /-- The random squared-radius update is samplewise monotone on nonnegative
-radii. This is the order input for the paper's synchronous coupling. -/
+radii. This is the order input for the paper's synchronous coupling.
+@isnad1 id=monotone.0h3v.s4.4ec85be2c9cb from=translated src=- shape=421b1bf8 vocab=5376d4e2
+-/
 lemma monotoneOn_Fmap (A : ℝ) (N : ℕ) (g : Fin N → ℝ) :
     MonotoneOn (fun q => Fmap A N q g) (Set.Ici 0) := by
   intro q₀ _ q₁ _ hqq
@@ -55,7 +59,9 @@ lemma monotoneOn_Fmap (A : ℝ) (N : ℕ) (g : Fin N → ℝ) :
     (inv_nonneg.mpr (Nat.cast_nonneg N))
 
 /-- Under synchronous Gaussian noise, the expected one-step distance is
-exactly the distance between the two deterministic mean-map images. -/
+exactly the distance between the two deterministic mean-map images.
+@isnad1 id=eq.3h4v.s6.feb13874a6a6 from=translated src=- shape=09f10f27 vocab=46b8973f
+-/
 lemma integral_abs_Fmap_sub_eq_abs_V_sub
     {A q q' : ℝ} {N : ℕ} (hN : N ≠ 0) (hq : 0 ≤ q) (hq' : 0 ≤ q') :
     ∫ g, |Fmap A N q g - Fmap A N q' g| ∂(gaussianVec N) =
@@ -123,7 +129,9 @@ noncomputable def synchronousFmap (A : ℝ) (N : ℕ)
   (Fmap A N p.1.1 p.2, Fmap A N p.1.2 p.2)
 
 /-- The synchronous pair update is jointly measurable in the two radii and
-the shared Gaussian noise. -/
+the shared Gaussian noise.
+@isnad1 id=measurab.0h2v.s5.57bc8721ac13 from=translated src=- shape=e7fd5c2c vocab=419e873e
+-/
 lemma measurable_synchronousFmap (A : ℝ) (N : ℕ) :
     Measurable (synchronousFmap A N) := by
   apply Continuous.measurable
@@ -153,7 +161,9 @@ instance (A : ℝ) (N : ℕ) : IsMarkovKernel (synchronousKchain A N) := by
   exact Kernel.IsMarkovKernel.map _ (measurable_synchronousFmap A N)
 
 /-- At a fixed pair of radii, the synchronous kernel is the law of the two
-updates driven by a common Gaussian vector. -/
+updates driven by a common Gaussian vector.
+@isnad1 id=eq.0h3v.s6.ebec073e2411 from=translated src=- shape=9faa3c0c vocab=a4ccc8f1
+-/
 lemma synchronousKchain_apply (A : ℝ) (N : ℕ) (q : ℝ × ℝ) :
     synchronousKchain A N q =
       (gaussianVec N).map (fun g => (Fmap A N q.1 g, Fmap A N q.2 g)) := by
@@ -165,7 +175,9 @@ lemma synchronousKchain_apply (A : ℝ) (N : ℕ) (q : ℝ × ℝ) :
   rfl
 
 /-- The first marginal of the synchronous coupling is the squared-radius
-transition from the first input radius. -/
+transition from the first input radius.
+@isnad1 id=eq.0h3v.s6.e0e5e7ee7310 from=translated src=- shape=41be0c8e vocab=805ff24c
+-/
 lemma synchronousKchain_map_fst (A : ℝ) (N : ℕ) (q : ℝ × ℝ) :
     (synchronousKchain A N q).map Prod.fst = Kchain A N q.1 := by
   have hpair : Measurable
@@ -177,7 +189,9 @@ lemma synchronousKchain_map_fst (A : ℝ) (N : ℕ) (q : ℝ × ℝ) :
   rfl
 
 /-- The second marginal of the synchronous coupling is the squared-radius
-transition from the second input radius. -/
+transition from the second input radius.
+@isnad1 id=eq.0h3v.s6.594c34172f75 from=translated src=- shape=41be0c8e vocab=5d0cffbb
+-/
 lemma synchronousKchain_map_snd (A : ℝ) (N : ℕ) (q : ℝ × ℝ) :
     (synchronousKchain A N q).map Prod.snd = Kchain A N q.2 := by
   have hpair : Measurable
@@ -189,7 +203,9 @@ lemma synchronousKchain_map_snd (A : ℝ) (N : ℕ) (q : ℝ × ℝ) :
   rfl
 
 /-- Under the synchronous pair kernel, the expected coordinate distance after
-one step is exactly the distance between the two mean-map images. -/
+one step is exactly the distance between the two mean-map images.
+@isnad1 id=eq.3h4v.s7.2037df3704ee from=translated src=- shape=efbff914 vocab=476c3a2e
+-/
 lemma integral_abs_fst_sub_snd_synchronousKchain
     {A q q' : ℝ} {N : ℕ} (hN : N ≠ 0) (hq : 0 ≤ q) (hq' : 0 ≤ q') :
     ∫ p, |p.1 - p.2| ∂(synchronousKchain A N (q, q')) =
@@ -201,7 +217,9 @@ lemma integral_abs_fst_sub_snd_synchronousKchain
   · exact (measurable_fst.sub measurable_snd).abs.aestronglyMeasurable
 
 /-- Every synchronous transition in positive dimension is supported on the
-square `[0,1]²`. -/
+square `[0,1]²`.
+@isnad1 id=eq.1h3v.s7.8d001e9165fe from=translated src=- shape=5a35c54f vocab=ac131913
+-/
 lemma synchronousKchain_apply_prod_Icc_compl
     {A : ℝ} {N : ℕ} (hN : 0 < N) (q : ℝ × ℝ) :
     synchronousKchain A N q
@@ -225,7 +243,9 @@ lemma synchronousKchain_apply_prod_Icc_compl
   rw [hpreimage, measure_empty]
 
 /-- Every positive-time coordinate of a canonical synchronous pair path lies
-in `[0,1]²` almost surely. -/
+in `[0,1]²` almost surely.
+@isnad1 id=eventual.1h4v.s7.dca4a379be1d from=translated src=- shape=1a9c9262 vocab=cc7211d1
+-/
 lemma markovPathMeasure_ae_eval_succ_mem_synchronousKchain_prod_Icc
     {A : ℝ} {N : ℕ} (hN : 0 < N)
     (μ₀ : Measure (ℝ × ℝ)) [IsProbabilityMeasure μ₀] (t : ℕ) :
@@ -253,7 +273,9 @@ lemma markovPathMeasure_ae_eval_succ_mem_synchronousKchain_prod_Icc
   simp only [hzero, lintegral_zero]
 
 /-- A canonical synchronous path started in `[0,1]²` remains there at every
-fixed time almost surely. -/
+fixed time almost surely.
+@isnad1 id=eventual.2h4v.s7.66e8982fbd73 from=translated src=- shape=f4222a43 vocab=31d2dc7b
+-/
 lemma markovPathMeasure_dirac_ae_eval_mem_synchronousKchain_prod_Icc
     {A : ℝ} {N : ℕ} {q : ℝ × ℝ}
     (hq : q ∈ Set.Icc (0 : ℝ) 1 ×ˢ Set.Icc (0 : ℝ) 1)
@@ -285,7 +307,9 @@ lemma markovPathMeasure_dirac_ae_eval_mem_synchronousKchain_prod_Icc
 
 /-- Along the canonical synchronous pair path, the conditional expected
 next-step coordinate distance is the distance between the current mean-map
-images. -/
+images.
+@isnad1 id=eventual.2h4v.s8.7d409cd6d1fa from=translated src=- shape=afdd3d51 vocab=7afd806c
+-/
 lemma condExp_abs_fst_sub_snd_eval_succ_eq_abs_V_sub
     {A : ℝ} {N : ℕ} (hN : 0 < N) {q : ℝ × ℝ}
     (hq : q ∈ Set.Icc (0 : ℝ) 1 ×ˢ Set.Icc (0 : ℝ) 1) (t : ℕ) :
@@ -324,7 +348,9 @@ lemma condExp_abs_fst_sub_snd_eval_succ_eq_abs_V_sub
     hN.ne' hωsupp.1.1 hωsupp.2.1
 
 /-- At each fixed time, the first-coordinate marginal of the synchronous pair
-path is the scalar `Kchain` path started from the first input coordinate. -/
+path is the scalar `Kchain` path started from the first input coordinate.
+@isnad1 id=eq.0h4v.s6.1e31c3a8d33d from=translated src=- shape=5c7a2f9a vocab=a6f0863c
+-/
 lemma markovPathMeasure_map_eval_synchronousKchain_map_fst
     (A : ℝ) (N : ℕ) (q : ℝ × ℝ) (t : ℕ) :
     ((markovPathMeasure (Measure.dirac q) (synchronousKchain A N)).map
@@ -356,7 +382,9 @@ lemma markovPathMeasure_map_eval_synchronousKchain_map_fst
 
 /-- At each fixed time, the second-coordinate marginal of the synchronous
 pair path is the scalar `Kchain` path started from the second input
-coordinate. -/
+coordinate.
+@isnad1 id=eq.0h4v.s6.bdb316de6022 from=translated src=- shape=5c7a2f9a vocab=a0dfc1d0
+-/
 lemma markovPathMeasure_map_eval_synchronousKchain_map_snd
     (A : ℝ) (N : ℕ) (q : ℝ × ℝ) (t : ℕ) :
     ((markovPathMeasure (Measure.dirac q) (synchronousKchain A N)).map
@@ -388,7 +416,9 @@ lemma markovPathMeasure_map_eval_synchronousKchain_map_snd
 
 /-- The probability that a synchronous pair path is outside `J × J` at a
 fixed time is at most the sum of the corresponding scalar path
-probabilities. -/
+probabilities.
+@isnad1 id=le.1h5v.s7.62648e3d8d94 from=translated src=- shape=14fbfe5a vocab=1288c92c
+-/
 lemma markovPathMeasure_measureReal_eval_not_mem_prod_le
     (A : ℝ) (N : ℕ) (q : ℝ × ℝ) (t : ℕ)
     (J : Set ℝ) (hJ : MeasurableSet J) :
@@ -448,7 +478,9 @@ lemma markovPathMeasure_measureReal_eval_not_mem_prod_le
     (congrArg₂ (· + ·) hfst hsnd)
 
 /-- The centered one-step noise has second moment at most `1/(4N)`, stated
-directly under the scalar transition kernel. -/
+directly under the scalar transition kernel.
+@isnad1 id=le.1h3v.s6.2156986023ef from=translated src=- shape=b748ede1 vocab=e9c595b6
+-/
 lemma integral_sq_sub_V_Kchain_le
     {A q : ℝ} {N : ℕ} (hN : 0 < N) :
     ∫ y, (y - V A q) ^ 2 ∂(Kchain A N q) ≤
@@ -457,7 +489,9 @@ lemma integral_sq_sub_V_Kchain_le
   exact integral_sq_Fmap_sub_V_le hN
 
 /-- The one-step squared error about a deterministic target splits exactly
-into squared mean-map error and centered kernel noise. -/
+into squared mean-map error and centered kernel noise.
+@isnad1 id=eq.1h4v.s7.1c38bb880b8c from=translated src=- shape=acfb842c vocab=e70abee6
+-/
 lemma integral_sq_sub_Kchain_eq
     {A q r : ℝ} {N : ℕ} (hN : 0 < N) :
     ∫ y, (y - r) ^ 2 ∂(Kchain A N q) =
@@ -468,7 +502,9 @@ lemma integral_sq_sub_Kchain_eq
   exact integral_sq_Fmap_sub_fixed_eq hN
 
 /-- Kernel-facing one-step squared-error recursion with the uniform
-`1/(4N)` noise contribution. -/
+`1/(4N)` noise contribution.
+@isnad1 id=le.1h4v.s7.40d7a21fbdbb from=translated src=- shape=a756ce25 vocab=96c890f0
+-/
 lemma integral_sq_sub_Kchain_le
     {A q r : ℝ} {N : ℕ} (hN : 0 < N) :
     ∫ y, (y - r) ^ 2 ∂(Kchain A N q) ≤
@@ -477,7 +513,9 @@ lemma integral_sq_sub_Kchain_le
   exact add_le_add le_rfl (integral_sq_sub_V_Kchain_le hN)
 
 /-- A local mean-map contraction turns the kernel error estimate into the
-one-step deterministic-orbit recursion used in the stopped argument. -/
+one-step deterministic-orbit recursion used in the stopped argument.
+@isnad1 id=le.3h5v.s7.06805d8c46ab from=translated src=- shape=2f245093 vocab=f108d2cb
+-/
 lemma integral_sq_sub_V_Kchain_le_of_abs_V_sub_le
     {A q r κ : ℝ} {N : ℕ} (hN : 0 < N) (hκ : 0 ≤ κ)
     (hcontract : |V A q - V A r| ≤ κ * |q - r|) :
@@ -499,7 +537,9 @@ lemma integral_sq_sub_V_Kchain_le_of_abs_V_sub_le
       rw [mul_pow, sq_abs]
 
 /-- A real random variable supported in `[0,1]` has integrable squared error
-about every deterministic target. -/
+about every deterministic target.
+@isnad1 id=integrab.2h4v.s7.ba63b341d30d from=translated src=- shape=6f17e498 vocab=4101c85e
+-/
 lemma integrable_sq_sub_of_ae_mem_Icc
     {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsFiniteMeasure μ] (X : Ω → ℝ) (r : ℝ)
@@ -521,7 +561,9 @@ lemma integrable_sq_sub_of_ae_mem_Icc
       (by positivity : 0 ≤ 1 + |r|)).2 habs
 
 /-- Along a canonical scalar path, the conditional expectation of next-step
-squared error is the corresponding one-step kernel integral. -/
+squared error is the corresponding one-step kernel integral.
+@isnad1 id=eventual.1h5v.s7.71d43ec08874 from=translated src=- shape=5f315829 vocab=75d8063d
+-/
 lemma condExp_sq_eval_succ_sub_eq_integral_Kchain
     {A r : ℝ} {N : ℕ} (hN : 0 < N)
     (μ₀ : Measure ℝ) [IsProbabilityMeasure μ₀] (t : ℕ) :
@@ -555,7 +597,9 @@ lemma condExp_sq_eval_succ_sub_eq_integral_Kchain
       μ₀ (Kchain A N) t hψ hψint)
 
 /-- An a.e. local mean-map contraction gives the conditional squared-error
-recursion along a canonical scalar path. -/
+recursion along a canonical scalar path.
+@isnad1 id=eventual.3h6v.s8.05ec9db29a07 from=translated src=- shape=d93cbee1 vocab=b92f02f1
+-/
 lemma condExp_sq_eval_succ_sub_V_le_of_abs_V_sub_le
     {A r κ : ℝ} {N : ℕ} (hN : 0 < N) (hκ : 0 ≤ κ)
     (μ₀ : Measure ℝ) [IsProbabilityMeasure μ₀] (t : ℕ)
@@ -575,7 +619,9 @@ lemma condExp_sq_eval_succ_sub_V_le_of_abs_V_sub_le
     hN hκ hωcontract
 
 /-- Integrating the conditional estimate gives the one-step second-moment
-recursion along a canonical path started in `[0,1]`. -/
+recursion along a canonical path started in `[0,1]`.
+@isnad1 id=le.4h6v.s8.09e61f983df5 from=translated src=- shape=54fa8075 vocab=83c25ee0
+-/
 lemma integral_sq_eval_succ_sub_V_le_of_abs_V_sub_le
     {A q r κ : ℝ} {N : ℕ} (hq : q ∈ Set.Icc (0 : ℝ) 1)
     (hN : 0 < N) (hκ : 0 ≤ κ) (t : ℕ)
@@ -634,7 +680,9 @@ lemma integral_sq_eval_succ_sub_V_le_of_abs_V_sub_le
 
 /-- If the deterministic orbit and the random path remain in a common
 `κ`-contractive regime, their squared distance is uniformly bounded by the
-fixed point of the one-step variance recursion. -/
+fixed point of the one-step variance recursion.
+@isnad1 id=le.5h5v.s8.eca99f6e239c from=translated src=- shape=b7753de2 vocab=602f1af8
+-/
 lemma integral_sq_eval_sub_V_iterate_le_of_forall_abs_V_sub_le
     {A q κ : ℝ} {N : ℕ} (hq : q ∈ Set.Icc (0 : ℝ) 1)
     (hN : 0 < N) (hκ0 : 0 ≤ κ) (hκ1 : κ < 1)
@@ -699,7 +747,9 @@ noncomputable def stableIntervalExitTime
   sInf ({t : ℕ |
     t ≤ T ∧ ω t ∉ Set.Icc (qStar - R) (qStar + R)} ∪ {T + 1})
 
-/-- The capped stable-interval exit time never exceeds its sentinel. -/
+/-- The capped stable-interval exit time never exceeds its sentinel.
+@isnad1 id=le.0h4v.s4.e7c30e4ae068 from=translated src=- shape=150da9cc vocab=32edad27
+-/
 lemma stableIntervalExitTime_le_sentinel
     (qStar R : ℝ) (T : ℕ) (ω : ℕ → ℝ) :
     stableIntervalExitTime qStar R T ω ≤ T + 1 := by
@@ -708,7 +758,9 @@ lemma stableIntervalExitTime_le_sentinel
     (Set.mem_union_right _ (Set.mem_singleton (T + 1)))
 
 /-- Before the capped exit time, every state through the current index lies
-in the stable interval, and conversely. -/
+in the stable interval, and conversely.
+@isnad1 id=iff.1h5v.s6.843e4e2be67b from=translated src=- shape=3d51ac8c vocab=79390904
+-/
 lemma lt_stableIntervalExitTime_iff
     {qStar R : ℝ} {T t : ℕ} {ω : ℕ → ℝ} (htT : t ≤ T) :
     t < stableIntervalExitTime qStar R T ω ↔
@@ -736,7 +788,9 @@ lemma lt_stableIntervalExitTime_iff
       omega
 
 /-- Survival through time `t` places the time-`t` coordinate in the stable
-interval. -/
+interval.
+@isnad1 id=mem.2h5v.s5.41bb996222d8 from=translated src=- shape=46f813ef vocab=79390904
+-/
 lemma eval_mem_stableInterval_of_lt_stableIntervalExitTime
     {qStar R : ℝ} {T t : ℕ} {ω : ℕ → ℝ} (htT : t ≤ T)
     (hsurvive : t < stableIntervalExitTime qStar R T ω) :
@@ -744,7 +798,9 @@ lemma eval_mem_stableInterval_of_lt_stableIntervalExitTime
   exact (lt_stableIntervalExitTime_iff htT).mp hsurvive t le_rfl
 
 /-- A derivative bound on a positive stable interval gives a two-point
-contraction bound throughout that interval. -/
+contraction bound throughout that interval.
+@isnad1 id=le.5h6v.s7.28f932c7fcb6 from=translated src=- shape=0b21a1e8 vocab=0363dcce
+-/
 lemma abs_V_sub_le_mul_abs_sub_of_mem_stableInterval
     {A qStar R κ x y : ℝ}
     (hA : A ≠ 0) (hRq : R < qStar)
@@ -775,7 +831,9 @@ lemma abs_V_sub_le_mul_abs_sub_of_mem_stableInterval
 
 /-- The synchronous conditional distance contracts on a common stable
 interval; outside that localization event, the global `[0,1]²` support pays
-one unit through an indicator. -/
+one unit through an indicator.
+@isnad1 id=eventual.6h7v.s9.e5c4773f74b3 from=translated src=- shape=20610b4a vocab=912da680
+-/
 lemma condExp_abs_fst_sub_snd_eval_succ_le_mul_add_indicator
     {A qStar R κ : ℝ} {N : ℕ}
     (hA : A ≠ 0) (hRq : R < qStar) (hκ : 0 ≤ κ)
@@ -818,7 +876,9 @@ lemma condExp_abs_fst_sub_snd_eval_succ_le_mul_add_indicator
         linarith [mul_nonneg hκ (abs_nonneg ((ω t).1 - (ω t).2))]
 
 /-- Coordinate distance at every fixed time is integrable along a canonical
-synchronous pair path started in `[0,1]²`. -/
+synchronous pair path started in `[0,1]²`.
+@isnad1 id=integrab.2h4v.s7.91374ba94a7c from=translated src=- shape=8765288a vocab=f45fb055
+-/
 lemma integrable_abs_fst_sub_snd_eval_synchronousKchain
     {A : ℝ} {N : ℕ} (hN : 0 < N) {q : ℝ × ℝ}
     (hq : q ∈ Set.Icc (0 : ℝ) 1 ×ˢ Set.Icc (0 : ℝ) 1) (t : ℕ) :
@@ -836,7 +896,9 @@ lemma integrable_abs_fst_sub_snd_eval_synchronousKchain
 
 /-- Integrating the localized conditional estimate gives the synchronous
 distance recursion with the current bad-localization probability as its
-additive error. -/
+additive error.
+@isnad1 id=le.6h7v.s8.a8c6d47ae8c8 from=translated src=- shape=0eea77cd vocab=f5d16e5a
+-/
 lemma integral_abs_fst_sub_snd_eval_succ_le_mul_add_measureReal
     {A qStar R κ : ℝ} {N : ℕ}
     (hA : A ≠ 0) (hRq : R < qStar) (hκ : 0 ≤ κ)
@@ -904,7 +966,9 @@ lemma integral_abs_fst_sub_snd_eval_succ_le_mul_add_measureReal
 
 /-- A uniform bad-localization bound through time `t` iterates the
 synchronous recursion while retaining geometric decay of the starting
-distance. -/
+distance.
+@isnad1 id=le.9h8v.s8.eaba8c1a910f from=translated src=- shape=5f3a6d9d vocab=ba0f589a
+-/
 lemma integral_abs_fst_sub_snd_eval_le_pow_mul_add
     {A qStar R κ B : ℝ} {N : ℕ}
     (hA : A ≠ 0) (hRq : R < qStar) (hκ0 : 0 ≤ κ) (hκ1 : κ < 1)
@@ -954,7 +1018,9 @@ lemma integral_abs_fst_sub_snd_eval_le_pow_mul_add
   exact hiter
 
 /-- While the random path survives in the stable interval, it contracts
-toward any deterministic orbit coordinate lying in the same interval. -/
+toward any deterministic orbit coordinate lying in the same interval.
+@isnad1 id=le.6h8v.s7.868a03a3fa23 from=translated src=- shape=be0f0eb0 vocab=cd2049a1
+-/
 lemma abs_V_eval_sub_V_iterate_le_of_lt_stableIntervalExitTime
     {A q qStar R κ : ℝ} {T t : ℕ} {ω : ℕ → ℝ}
     (hA : A ≠ 0) (hRq : R < qStar)
@@ -972,7 +1038,9 @@ lemma abs_V_eval_sub_V_iterate_le_of_lt_stableIntervalExitTime
       horbit
 
 /-- Killing the same squared error at time `t+1` only decreases it relative
-to killing at time `t`, since survival to `t+1` implies survival to `t`. -/
+to killing at time `t`, since survival to `t+1` implies survival to `t`.
+@isnad1 id=le.0h6v.s7.8b258e828f02 from=translated src=- shape=7626aab4 vocab=be156ea8
+-/
 lemma indicator_sq_succ_lt_stableIntervalExitTime_le
     {qStar R : ℝ} {T t : ℕ} (e : (ℕ → ℝ) → ℝ)
     (ω : ℕ → ℝ) :
@@ -995,7 +1063,9 @@ lemma indicator_sq_succ_lt_stableIntervalExitTime_le
     exact Set.indicator_nonneg (fun _ _ => sq_nonneg _) ω
 
 /-- Stable-interval membership at time `t` is visible in the canonical
-coordinate filtration at time `t`. -/
+coordinate filtration at time `t`.
+@isnad1 id=measurab.0h3v.s6.a87a1fb081ec from=translated src=- shape=8ad718ed vocab=37d644b8
+-/
 lemma measurableSet_eval_mem_stableInterval
     (qStar R : ℝ) (t : ℕ) :
     MeasurableSet[Filtration.piLE t]
@@ -1014,7 +1084,9 @@ lemma measurableSet_eval_mem_stableInterval
   exact heval measurableSet_Icc
 
 /-- Survival of the capped stable-interval exit through time `t` is visible
-in the canonical filtration at time `t`. -/
+in the canonical filtration at time `t`.
+@isnad1 id=measurab.1h4v.s5.a958f12da2a5 from=translated src=- shape=26501b6d vocab=42d83f21
+-/
 lemma measurableSet_lt_stableIntervalExitTime
     {qStar R : ℝ} {T t : ℕ} (htT : t ≤ T) :
     MeasurableSet[Filtration.piLE t]
@@ -1036,7 +1108,9 @@ lemma measurableSet_lt_stableIntervalExitTime
   · simp [hut]
 
 /-- Exit from the stable interval through the tracked horizon is an ambient
-measurable path event. -/
+measurable path event.
+@isnad1 id=measurab.0h3v.s5.f080ad7bcd29 from=translated src=- shape=4d89319a vocab=2212d6e0
+-/
 lemma measurableSet_stableIntervalExitTime_le
     (qStar R : ℝ) (T : ℕ) :
     MeasurableSet
@@ -1050,7 +1124,9 @@ lemma measurableSet_stableIntervalExitTime_le
     (measurableSet_lt_stableIntervalExitTime le_rfl)).compl
 
 /-- On survival through time `t`, the conditional next-step squared error
-obeys the local contraction recursion against the deterministic iterate. -/
+obeys the local contraction recursion against the deterministic iterate.
+@isnad1 id=eventual.7h8v.s8.9f3c0a49e994 from=translated src=- shape=ca8f155d vocab=cc43622a
+-/
 lemma condExp_sq_eval_succ_sub_V_iterate_le_on_lt_stableIntervalExitTime
     {A q qStar R κ : ℝ} {N T t : ℕ}
     (hA : A ≠ 0) (hN : 0 < N) (hκ : 0 ≤ κ) (hRq : R < qStar)
@@ -1087,7 +1163,9 @@ lemma condExp_sq_eval_succ_sub_V_iterate_le_on_lt_stableIntervalExitTime
     hN hκ hcontract
 
 /-- The stopped next-step squared error satisfies the paper's killed
-conditional recursion through every step strictly before the horizon. -/
+conditional recursion through every step strictly before the horizon.
+@isnad1 id=eventual.7h8v.s8.937317eb05d2 from=translated src=- shape=87fa642b vocab=01217408
+-/
 lemma condExp_indicator_sq_eval_succ_sub_V_iterate_le
     {A q qStar R κ : ℝ} {N T t : ℕ}
     (hA : A ≠ 0) (hN : 0 < N) (hκ : 0 ≤ κ) (hRq : R < qStar)
@@ -1178,7 +1256,9 @@ noncomputable def stableIntervalKilledErrorMoment
     ∂(markovPathMeasure (Measure.dirac q) (Kchain A N))
 
 /-- Integrating the killed conditional estimate gives the scalar one-step
-recursion for the stopped orbit-error moment. -/
+recursion for the stopped orbit-error moment.
+@isnad1 id=le.8h8v.s8.c98399194fe9 from=translated src=- shape=8c449366 vocab=1fffc9ce
+-/
 lemma stableIntervalKilledErrorMoment_succ_le
     {A q qStar R κ : ℝ} {N T t : ℕ}
     (hq : q ∈ Set.Icc (0 : ℝ) 1)
@@ -1276,7 +1356,9 @@ lemma stableIntervalKilledErrorMoment_succ_le
   simpa only [stableIntervalKilledErrorMoment, μ, S0, E, d] using hrec
 
 /-- Through the capped horizon, the killed orbit-error second moment is
-uniformly of order `N⁻¹` inside a common stable interval. -/
+uniformly of order `N⁻¹` inside a common stable interval.
+@isnad1 id=le.9h8v.s8.07d1b61e5433 from=translated src=- shape=521d4949 vocab=1fffc9ce
+-/
 lemma stableIntervalKilledErrorMoment_le
     {A q qStar R κ : ℝ} {N T t : ℕ}
     (hq : q ∈ Set.Icc (0 : ℝ) 1)
@@ -1335,7 +1417,9 @@ lemma stableIntervalKilledErrorMoment_le
 
 /-- A path whose deterministic orbit stays inside the stable interval by a
 margin `η` cannot exit through time `T` when every one-step deviation is at
-most `δ` and `δ + κ η ≤ η`. -/
+most `δ` and `δ + κ η ≤ η`.
+@isnad1 id=eq.9h9v.s7.ad6f3132c202 from=translated src=- shape=ae08c76c vocab=ed6f7dd9
+-/
 lemma stableIntervalExitTime_eq_sentinel_of_step_deviation_le
     {A q qStar R κ η δ : ℝ} {T : ℕ} {ω : ℕ → ℝ}
     (hA : A ≠ 0) (hκ0 : 0 ≤ κ) (hη0 : 0 ≤ η) (hRq : R < qStar)
@@ -1416,7 +1500,9 @@ lemma stableIntervalExitTime_eq_sentinel_of_step_deviation_le
 
 /-- The canonical path exits the stable interval through time `T` only if
 some one-step deviation exceeds `δ`; Hoeffding and a union bound therefore
-give an exponentially small exit probability. -/
+give an exponentially small exit probability.
+@isnad1 id=le.9h9v.s8.f695e7670baa from=translated src=- shape=33fd755c vocab=ba5ebc75
+-/
 lemma markovPathMeasure_measureReal_stableIntervalExitTime_le
     {A q qStar R κ η δ : ℝ} {N T : ℕ}
     (hA : A ≠ 0) (hN : 0 < N)
@@ -1488,7 +1574,9 @@ lemma markovPathMeasure_measureReal_stableIntervalExitTime_le
 
 /-- Splitting over survival and exit removes the stopping: the full
 orbit-error moment is bounded by the killed moment plus the probability of
-exit through the horizon. -/
+exit through the horizon.
+@isnad1 id=le.4h7v.s7.299c85adf568 from=translated src=- shape=5838cc89 vocab=853dd679
+-/
 lemma integral_sq_eval_sub_V_iterate_le_killed_add_exit
     {A q qStar R : ℝ} {N T t : ℕ}
     (hq : q ∈ Set.Icc (0 : ℝ) 1) (hN : 0 < N)
@@ -1597,7 +1685,9 @@ lemma integral_sq_eval_sub_V_iterate_le_killed_add_exit
 
 /-- Uniform dynamic orbit concentration through the stable horizon: the full
 second moment is the stopped `O(N⁻¹)` term plus the exponentially small
-no-exit error. -/
+no-exit error.
+@isnad1 id=le.12h10v.s8.bed54533084c from=translated src=- shape=32c62efd vocab=91f2f9ac
+-/
 lemma integral_sq_eval_sub_V_iterate_le_inv_add_exp
     {A q qStar R κ η δ : ℝ} {N T t : ℕ}
     (hq : q ∈ Set.Icc (0 : ℝ) 1)
@@ -1657,7 +1747,9 @@ lemma integral_sq_eval_sub_V_iterate_le_inv_add_exp
           hA hN hκ0 hη0 hδ hRq hderiv hbuffer horbit)
 
 /-- For varying dimensions and linearly bounded horizons, the dynamic orbit
-error is eventually bounded by one explicit inverse-dimension envelope. -/
+error is eventually bounded by one explicit inverse-dimension envelope.
+@isnad1 id=eventual.13h10v.s9.2d1d0f38d86f from=translated src=- shape=d3ebf99f vocab=f6cb157a
+-/
 lemma eventually_integral_sq_eval_sub_V_iterate_le_inv_nat
     {A qStar R κ η δ C : ℝ}
     (hA : A ≠ 0)

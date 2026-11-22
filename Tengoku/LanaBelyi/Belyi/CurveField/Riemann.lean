@@ -53,6 +53,9 @@ variable {K : Type*} [Field K] [CharZero K] [IsCurveField K]
 
 /-! ### Polynomials in a function -/
 
+/--
+@isnad1 id=mem.0h3v.s7.19a6cd525b5f from=translated src=- shape=29efb930 vocab=bac1448e
+-/
 theorem pow_mem_L (x : K) (k : ℕ) : x ^ k ∈ L (k • polarDivisor x) := by
   refine Or.inr fun P ↦ ?_
   simp only [Finsupp.coe_smul, Pi.smul_apply, polarDivisor_apply, nsmul_eq_mul, Place.ord_pow]
@@ -60,7 +63,9 @@ theorem pow_mem_L (x : K) (k : ℕ) : x ^ k ∈ L (k • polarDivisor x) := by
   have h2 : (0 : ℤ) ≤ k := Int.natCast_nonneg k
   nlinarith
 
-/-- A polynomial of degree `≤ d` in `x` lies in `L(d (x)_∞)`. -/
+/-- A polynomial of degree `≤ d` in `x` lies in `L(d (x)_∞)`.
+@isnad1 id=mem.0h3v.s8.108832bc7ce5 from=translated src=- shape=82b08a6c vocab=7cb4d2b4
+-/
 theorem aeval_mem_L (x : K) (p : ℚ[X]) : aeval x p ∈ L (p.natDegree • polarDivisor x) := by
   rw [aeval_eq_sum_range]
   refine Submodule.sum_mem _ fun i hi ↦ Submodule.smul_mem _ _ (L_mono ?_ (pow_mem_L x i))
@@ -68,7 +73,9 @@ theorem aeval_mem_L (x : K) (p : ℚ[X]) : aeval x p ∈ L (p.natDegree • pola
     (Nat.lt_succ_iff.mp (Finset.mem_range.mp hi))
 
 /-- At a place `P` where `x` is regular, `p(x)` vanishes for `p` the minimal polynomial of the
-residue of `x`. -/
+residue of `x`.
+@isnad1 id=ex.2h3v.s8.a77f378e6af5 from=translated src=- shape=492998c0 vocab=79b5442a
+-/
 theorem exists_aeval_ord_pos {x : K} (hx : Transcendental ℚ x) (P : Place K) (hxP : x ∈ P.1) :
     ∃ p : ℚ[X], aeval x p ≠ 0 ∧ 0 < P.ord (aeval x p) := by
   set r := P.residue ⟨x, hxP⟩
@@ -100,6 +107,9 @@ variable {x : K} (hx : Transcendental ℚ x)
 include hx
 
 omit hx in
+/--
+@isnad1 id=le.1h3v.s6.24763dd58819 from=translated src=- shape=413df9b7 vocab=96cf2887
+-/
 theorem single_le_polarDivisor {P : Place K} (hP : P.ord x < 0) :
     Finsupp.single P 1 ≤ polarDivisor x := by
   classical
@@ -108,6 +118,9 @@ theorem single_le_polarDivisor {P : Place K} (hP : P.ord x < 0) :
   · subst hQ; simp only [Finsupp.single_eq_same, polarDivisor_apply]; omega
   · rw [Finsupp.single_apply, ite_eq_right hQ]; exact polarDivisor_nonneg x Q
 
+/--
+@isnad1 id=ex.2h4v.s8.f1095b07909b from=translated src=- shape=a9bdb2f6 vocab=421f414f
+-/
 theorem exists_add_single_add_div_le {A : Divisor K} (P : Place K)
     (h : ∃ z : K, z ≠ 0 ∧ ∃ l : ℕ, A + div z ≤ l • polarDivisor x) :
     ∃ z : K, z ≠ 0 ∧ ∃ l : ℕ, A + Finsupp.single P 1 + div z ≤ l • polarDivisor x := by
@@ -132,6 +145,9 @@ theorem exists_add_single_add_div_le {A : Divisor K} (P : Place K)
   · subst hQ; rw [Finsupp.single_eq_same]; omega
   · rw [Finsupp.single_apply, ite_eq_right hQ]; omega
 
+/--
+@isnad1 id=ex.2h5v.s8.63ddcb580c4c from=translated src=- shape=33202316 vocab=28e78fb8
+-/
 theorem exists_add_single_nat_add_div_le {A : Divisor K} (P : Place K) (m : ℕ)
     (h : ∃ z : K, z ≠ 0 ∧ ∃ l : ℕ, A + div z ≤ l • polarDivisor x) :
     ∃ z : K, z ≠ 0 ∧ ∃ l : ℕ, A + Finsupp.single P (m : ℤ) + div z ≤ l • polarDivisor x := by
@@ -142,7 +158,9 @@ theorem exists_add_single_nat_add_div_le {A : Divisor K} (P : Place K) (m : ℕ)
     rwa [Nat.cast_succ, Finsupp.single_add, ← add_assoc]
 
 /-- Every divisor is linearly equivalent to a divisor `≤ l (x)_∞` for some `l`
-(Stichtenoth, proof of Proposition 1.4.14). -/
+(Stichtenoth, proof of Proposition 1.4.14).
+@isnad1 id=ex.1h3v.s7.f2931039e1f6 from=translated src=- shape=0c2a6cd9 vocab=05efed64
+-/
 theorem exists_add_div_le (A : Divisor K) :
     ∃ z : K, z ≠ 0 ∧ ∃ l : ℕ, A + div z ≤ l • polarDivisor x := by
   classical
@@ -176,14 +194,23 @@ noncomputable def posPart (A : Divisor K) : Divisor K :=
   Finsupp.mapRange (fun n ↦ max n 0) (by simp) A
 
 omit [CharZero K] [IsCurveField K] in
+/--
+@isnad1 id=eq.0h3v.s6.b5c205ead971 from=translated src=- shape=81fa1b5e vocab=f60a278c
+-/
 theorem posPart_apply (A : Divisor K) (P : Place K) : posPart A P = max (A P) 0 :=
   Finsupp.mapRange_apply ..
 
 omit [CharZero K] [IsCurveField K] in
+/--
+@isnad1 id=le.0h2v.s5.352d2e631e2a from=translated src=- shape=532836f0 vocab=980cad0f
+-/
 theorem posPart_nonneg (A : Divisor K) : 0 ≤ posPart A := fun P ↦ by
   simp [posPart_apply]
 
 omit [CharZero K] [IsCurveField K] in
+/--
+@isnad1 id=eq.0h2v.s6.b76152e325fa from=translated src=- shape=87a1d74f vocab=b44fde91
+-/
 theorem posPart_sub_posPart_neg (A : Divisor K) : posPart A - posPart (-A) = A := by
   ext P
   simp only [Finsupp.coe_sub, Pi.sub_apply, posPart_apply, Finsupp.coe_neg, Pi.neg_apply]

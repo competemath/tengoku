@@ -57,24 +57,32 @@ namespace AddSubgroup
 
 variable {A : Type*} [AddCommGroup A]
 
-/-- Membership in the integer `n`-torsion subgroup: `a ∈ A[n] ↔ n • a = 0`. -/
+/-- Membership in the integer `n`-torsion subgroup: `a ∈ A[n] ↔ n • a = 0`.
+@isnad1 id=iff.0h3v.s6.170fcae42222 from=translated src=- shape=79712d4b vocab=4c0b0d26
+-/
 lemma torsionBy.zsmul_iff {n : ℤ} {a : A} : a ∈ A[n] ↔ n • a = 0 := by
   rw [torsionBy, Submodule.mem_toAddSubgroup, Submodule.mem_torsionBy_iff]
 
-/-- The `0`-torsion subgroup is the whole group, since `0 • a = 0` for every `a`. -/
+/-- The `0`-torsion subgroup is the whole group, since `0 • a = 0` for every `a`.
+@isnad1 id=eq.0h1v.s4.536769ece8c0 from=translated src=- shape=9ee397b8 vocab=51a6065e
+-/
 @[simp]
 lemma torsionBy_zero : A[(0 : ℤ)] = ⊤ := by
   ext a
   simp
 
-/-- The `1`-torsion subgroup is trivial. -/
+/-- The `1`-torsion subgroup is trivial.
+@isnad1 id=eq.0h1v.s4.c7a0d2b2fe62 from=translated src=- shape=9ee397b8 vocab=d4a37d3b
+-/
 @[simp]
 lemma torsionBy_one : A[(1 : ℤ)] = ⊥ := by
   ext a
   simp only [torsionBy.zsmul_iff, one_smul, AddSubgroup.mem_bot]
 
 /-- The integer torsion subgroups are monotone in the divisibility order:
-if `m ∣ n` then `A[m] ≤ A[n]`. -/
+if `m ∣ n` then `A[m] ≤ A[n]`.
+@isnad1 id=le.1h3v.s5.00175628b56e from=translated src=- shape=78238c26 vocab=3a5185c0
+-/
 lemma torsionBy_le_torsionBy_of_dvd {m n : ℤ} (h : m ∣ n) : A[m] ≤ A[n] := by
   intro a ha
   rw [torsionBy.zsmul_iff] at ha ⊢
@@ -95,10 +103,15 @@ abbrev torsion (n : ℕ) : AddSubgroup W.Point :=
 
 variable {W : Affine F}
 
-/-- A point lies in `E[n]` exactly when it is killed by multiplication by `n`. -/
+/-- A point lies in `E[n]` exactly when it is killed by multiplication by `n`.
+@isnad1 id=iff.0h4v.s7.e3735ffeade6 from=translated src=- shape=3f60bb03 vocab=d259987f
+-/
 lemma mem_torsion_iff {n : ℕ} {P : W.Point} : P ∈ W.torsion n ↔ n • P = 0 :=
   AddSubgroup.torsionBy.nsmul_iff
 
+/--
+@isnad1 id=eq.0h4v.s9.8f8e8cb88f16 from=translated src=- shape=36cf8f19 vocab=c43be5c0
+-/
 lemma nsmul_mem_torsion {n : ℕ} (P : W.torsion n) : n • P = 0 :=
   AddSubgroup.torsionBy.nsmul P
 
@@ -110,7 +123,9 @@ and Weil-pairing files — take the additive form as a hypothesis binder, e.g.
 `torsionPoint hT + torsionPoint hT = 0`.  ⚠️ This is deliberately *not* routed through
 `mem_torsion_two_some_iff` (`EllipticCurves.Torsion.TwoTorsion`), which gives the different normal
 form `P = -P`: reaching `P ⊕ P = O` from there costs an extra `add_eq_zero_iff_eq_neg` at every
-site, which is why no consumer used it. -/
+site, which is why no consumer used it.
+@isnad1 id=eq.1h3v.s7.ef157a342d1f from=translated src=- shape=c489d53d vocab=9553bedf
+-/
 lemma add_self_eq_zero_of_mem_torsion_two {P : W.Point} (h : P ∈ W.torsion 2) :
     P + P = 0 := by
   have hn := mem_torsion_iff.mp h
@@ -122,25 +137,33 @@ The `n = 3` twin of `add_self_eq_zero_of_mem_torsion_two`, wanted for the same r
 hypothesis binder of `weilPairingElt_pow_eq_one_of_gS_three_baseField` and of the `3`-torsion
 translation lemmas.  ⚠️ As at `n = 2`, this is not the same normal form as
 `mem_torsion_three_iff_add_self_eq_neg` (`EllipticCurves.Torsion.ThreeTorsion`), which says
-`P ⊕ P = ⊖P`. -/
+`P ⊕ P = ⊖P`.
+@isnad1 id=eq.1h3v.s7.f79bda821f59 from=translated src=- shape=7efcd81f vocab=9553bedf
+-/
 lemma add_add_self_eq_zero_of_mem_torsion_three {P : W.Point} (h : P ∈ W.torsion 3) :
     P + P + P = 0 := by
   have hn := mem_torsion_iff.mp h
   rwa [show (3 : ℕ) = 2 + 1 from rfl, add_smul, two_nsmul, one_nsmul] at hn
 
-/-- The `0`-torsion subgroup `E[0]` is the whole group of points. -/
+/-- The `0`-torsion subgroup `E[0]` is the whole group of points.
+@isnad1 id=eq.0h2v.s6.36fae676e323 from=translated src=- shape=eb4e4a2e vocab=54f17465
+-/
 @[simp]
 lemma torsion_zero : W.torsion 0 = ⊤ := by
   ext P
   simp
 
-/-- The `1`-torsion subgroup `E[1]` is trivial. -/
+/-- The `1`-torsion subgroup `E[1]` is trivial.
+@isnad1 id=eq.0h2v.s6.fee9db4485d2 from=translated src=- shape=eb4e4a2e vocab=0825db54
+-/
 @[simp]
 lemma torsion_one : W.torsion 1 = ⊥ := by
   ext P
   simp
 
-/-- The torsion subgroups are monotone in the divisibility order: `m ∣ n → E[m] ≤ E[n]`. -/
+/-- The torsion subgroups are monotone in the divisibility order: `m ∣ n → E[m] ≤ E[n]`.
+@isnad1 id=le.1h4v.s6.8ab1fae717f0 from=translated src=- shape=503cd2c2 vocab=0e9ccdc1
+-/
 lemma torsion_mono {m n : ℕ} (h : m ∣ n) : W.torsion m ≤ W.torsion n :=
   AddSubgroup.torsionBy_le_torsionBy_of_dvd (Int.natCast_dvd_natCast.mpr h)
 

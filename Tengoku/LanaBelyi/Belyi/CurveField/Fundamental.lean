@@ -44,6 +44,9 @@ variable {S : Type*} [CommRing S] [IsDedekindDomain S] [Algebra S L] [IsFraction
   [Algebra ℚ S] [IsScalarTower ℚ S L]
 
 variable (S) in
+/--
+@isnad1 id=mem.0h4v.s7.e32f284ff6ec from=translated src=- shape=4cc10a0e vocab=b070d890
+-/
 theorem ratCast_mem_valuationSubringAtPrime (w : HeightOneSpectrum S) (q : ℚ) :
     (q : L) ∈ HeightOneSpectrum.valuationSubringAtPrime L w := by
   have := algebraMap_mem_valuationSubringAtPrime (K := L) w (algebraMap ℚ S q)
@@ -55,19 +58,31 @@ noncomputable def ofHeightOne (w : HeightOneSpectrum S) : Place L :=
   ⟨HeightOneSpectrum.valuationSubringAtPrime L w, valuationSubringAtPrime_ne_top w,
     ratCast_mem_valuationSubringAtPrime S w⟩
 
+/--
+@isnad1 id=mem.0h4v.s7.681eb48e0a61 from=translated src=- shape=d1af57ba vocab=2d478d0f
+-/
 theorem algebraMap_mem_ofHeightOne (w : HeightOneSpectrum S) (s : S) :
     algebraMap S L s ∈ (ofHeightOne L w).1 :=
   algebraMap_mem_valuationSubringAtPrime w s
 
+/--
+@isnad1 id=eq.1h3v.s8.f09a13a6206b from=translated src=- shape=e02cece0 vocab=c845245a
+-/
 theorem ofHeightOne_heightOneBelow (Q : Place L) (hS : ∀ s : S, algebraMap S L s ∈ Q.1) :
     ofHeightOne L (heightOneBelow Q.1 Q.ne_top hS) = Q :=
   Place.ext (valuationSubringAtPrime_heightOneBelow _ _ _)
 
+/--
+@isnad1 id=eq.0h3v.s7.8a50151340e4 from=translated src=- shape=7d9ca832 vocab=50201f7b
+-/
 theorem heightOneBelow_ofHeightOne (w : HeightOneSpectrum S) :
     heightOneBelow (ofHeightOne L w).1 (ofHeightOne L w).ne_top
       (algebraMap_mem_ofHeightOne w) = w :=
   heightOneBelow_valuationSubringAtPrime w
 
+/--
+@isnad1 id=iff.0h4v.s8.2ddbce6484b6 from=translated src=- shape=d862b35f vocab=50018c1b
+-/
 theorem algebraMap_mem_nonunits_ofHeightOne_iff (w : HeightOneSpectrum S) (s : S) :
     algebraMap S L s ∈ (ofHeightOne L w).1.nonunits ↔ s ∈ w.asIdeal := by
   conv_rhs => rw [← heightOneBelow_ofHeightOne (L := L) w]
@@ -79,10 +94,16 @@ noncomputable def heightOneResidue (w : HeightOneSpectrum S) :
   (ofHeightOne L w).residue.comp
     ((algebraMap S L).codRestrict (ofHeightOne L w).1 (algebraMap_mem_ofHeightOne w))
 
+/--
+@isnad1 id=surjecti.0h3v.s8.c85abeb74d88 from=translated src=- shape=57e8c8d2 vocab=3e37cdb2
+-/
 theorem heightOneResidue_surjective (w : HeightOneSpectrum S) :
     Function.Surjective (heightOneResidue (L := L) w) :=
   CurveField.residue_comp_surjective _ (ofHeightOne L w).ne_top _
 
+/--
+@isnad1 id=eq.0h3v.s8.041c17b3e7a1 from=translated src=- shape=daffbe5a vocab=de73a571
+-/
 theorem ker_heightOneResidue (w : HeightOneSpectrum S) :
     RingHom.ker (heightOneResidue (L := L) w) = w.asIdeal := by
   ext s
@@ -98,7 +119,9 @@ noncomputable def quotientEquivResidueFieldOfHeightOne (w : HeightOneSpectrum S)
 
 variable [IsCurveField L]
 
-/-- At `ofHeightOne L w`, the order is the `w`-adic valuation. -/
+/-- At `ofHeightOne L w`, the order is the `w`-adic valuation.
+@isnad1 id=eq.0h4v.s7.1c9daaebb187 from=translated src=- shape=4f2fbb85 vocab=829cc7c7
+-/
 theorem ord_ofHeightOne (w : HeightOneSpectrum S) (x : L) :
     (ofHeightOne L w).ord x = -WithZero.log (w.valuation L x) := by
   refine (ofHeightOne L w).ord_eq_neg_log (w.valuation L) (fun y ↦ ?_)
@@ -108,6 +131,9 @@ theorem ord_ofHeightOne (w : HeightOneSpectrum S) (x : L) :
   rfl
 
 omit [IsCurveField L] in
+/--
+@isnad1 id=eq.0h3v.s7.2e10d4208be0 from=translated src=- shape=982c7594 vocab=eba82f31
+-/
 theorem finrank_quotient_eq_deg_ofHeightOne (w : HeightOneSpectrum S) :
     finrank ℚ (S ⧸ w.asIdeal) = (ofHeightOne L w).deg := by
   let e : (S ⧸ w.asIdeal) ≃ₐ[ℚ] (ofHeightOne L w).ResidueField :=
@@ -132,6 +158,9 @@ variable [Algebra A K] [IsFractionRing A K] [Algebra A L] [IsScalarTower A K L]
 variable [Algebra B L] [IsFractionRing B L] [IsScalarTower A B L]
 variable (v : HeightOneSpectrum A) (w : HeightOneSpectrum B) [w.asIdeal.LiesOver v.asIdeal]
 
+/--
+@isnad1 id=eq.0h5v.s8.ad7df822971f from=translated src=- shape=c7aa3e96 vocab=029948d6
+-/
 theorem intValuation_liesOver' (x : A) :
     v.intValuation x ^ (v.asIdeal.ramificationIdx' w.asIdeal) =
       w.intValuation (algebraMap A B x) := by
@@ -148,6 +177,9 @@ theorem intValuation_liesOver' (x : A) :
       w.irreducible w.ne_bot,
     Nat.cast_mul, (FiniteMultiplicity.of_prime_left v.prime hx).emultiplicity_eq_multiplicity]
 
+/--
+@isnad1 id=eq.0h7v.s8.3e644b50f3d2 from=translated src=- shape=aae84d09 vocab=091120f5
+-/
 theorem valuation_liesOver' (x : K) :
     v.valuation K x ^ v.asIdeal.ramificationIdx' w.asIdeal =
       w.valuation L (algebraMap K L x) := by
@@ -200,6 +232,9 @@ variable (t : K) [Fact (Transcendental ℚ t)]
 set_option synthInstance.maxHeartbeats 400000 in
 -- instance search on `integralClosure (chartRing t) L` and its quotients is slow
 omit [IsCurveField K] [CharZero L] [IsCurveField L] [Fact (Transcendental ℚ t)] in
+/--
+@isnad1 id=mem.1h5v.s14.508917636cab from=translated src=- shape=f2619878 vocab=8317e267
+-/
 theorem algebraMap_chartRingExt_mem (Q : Place L) (ht : t ∈ (Q.restrict K).1)
     (s : chartRingExt K L t) : algebraMap (chartRingExt K L t) L s ∈ Q.1 := by
   have : IsIntegrallyClosedIn Q.1.toSubring L := inferInstanceAs (IsIntegrallyClosedIn Q.1 L)
@@ -210,6 +245,9 @@ theorem algebraMap_chartRingExt_mem (Q : Place L) (ht : t ∈ (Q.restrict K).1)
 set_option synthInstance.maxHeartbeats 400000 in
 -- instance search on `integralClosure (chartRing t) L` and its quotients is slow
 omit [CharZero L] [IsCurveField L] in
+/--
+@isnad1 id=iff.1h5v.s16.40f1ffd9467b from=translated src=- shape=54e592b8 vocab=6d8d7a09
+-/
 theorem mem_heightOneBelow_chartRingExt_iff (Q : Place L) (ht : t ∈ (Q.restrict K).1)
     (r : chartRing t) :
     algebraMap (chartRing t) (chartRingExt K L t) r ∈
@@ -221,6 +259,9 @@ theorem mem_heightOneBelow_chartRingExt_iff (Q : Place L) (ht : t ∈ (Q.restric
 set_option synthInstance.maxHeartbeats 400000 in
 -- instance search on `integralClosure (chartRing t) L` and its quotients is slow
 omit [IsCurveField L] in
+/--
+@isnad1 id=eq.0h5v.s14.d14f2aad2ab7 from=translated src=- shape=719051c7 vocab=33763ff6
+-/
 theorem restrict_ofHeightOne (v : HeightOneSpectrum (chartRing t))
     (w : HeightOneSpectrum (chartRingExt K L t)) [w.asIdeal.LiesOver v.asIdeal] :
     (ofHeightOne L w).restrict K = ofChart t v := by

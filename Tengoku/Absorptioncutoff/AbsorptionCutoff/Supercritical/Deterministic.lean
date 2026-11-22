@@ -33,7 +33,9 @@ noncomputable def d2V (A q g : ℝ) : ℝ :=
       * (1 - 3 * Real.tanh x ^ 2))
 
 /-- Away from `q = 0`, the first derivative integrand can be written without
-the removable quotient `tanh x / x`. -/
+the removable quotient `tanh x / x`.
+@isnad1 id=eq.1h3v.s6.9ca3e0e51281 from=translated src=- shape=e87c8fab vocab=fa63855d
+-/
 lemma dV_eq_div_sqrt {A q g : ℝ} (hq : 0 < q) :
     dV A q g =
       (A * g / Real.sqrt q) * Real.tanh (A * g * Real.sqrt q)
@@ -45,7 +47,9 @@ lemma dV_eq_div_sqrt {A q g : ℝ} (hq : 0 < q) :
   · simp [hz]
   · field_simp
 
-/-- Pointwise second differentiation of the Gaussian mean-map integrand. -/
+/-- Pointwise second differentiation of the Gaussian mean-map integrand.
+@isnad1 id=hasderiv.1h3v.s5.12f54b778bf6 from=translated src=- shape=0630b65d vocab=dc0cee79
+-/
 lemma hasDerivAt_dV {A q g : ℝ} (hq : 0 < q) :
     HasDerivAt (fun x => dV A x g) (d2V A q g) q := by
   let z := A * g
@@ -93,7 +97,9 @@ lemma hasDerivAt_dV {A q g : ℝ} (hq : 0 < q) :
     (dV_eq_div_sqrt (A := A) (g := g) hx)
 
 /-- A pointwise bound for the second derivative integrand away from zero.
-The bound uses only the first two powers of the Gaussian coordinate. -/
+The bound uses only the first two powers of the Gaussian coordinate.
+@isnad1 id=le.1h3v.s6.4211e2388483 from=translated src=- shape=7ac008ae vocab=f93e1477
+-/
 lemma abs_d2V_le {A q g : ℝ} (hq : 0 < q) :
     |d2V A q g| ≤
       |A * g| / (2 * q * Real.sqrt q) + (A * g) ^ 2 / q := by
@@ -150,7 +156,9 @@ lemma abs_d2V_le {A q g : ℝ} (hq : 0 < q) :
 noncomputable def d2VBound (A a g : ℝ) : ℝ :=
   |A * g| / (2 * a * Real.sqrt a) + (A * g) ^ 2 / a
 
-/-- The second derivative integrand is measurable in the Gaussian coordinate. -/
+/-- The second derivative integrand is measurable in the Gaussian coordinate.
+@isnad1 id=measurab.0h2v.s3.689fdc3291ac from=translated src=- shape=2e067db6 vocab=f248ac26
+-/
 lemma measurable_d2V (A q : ℝ) : Measurable (fun g => d2V A q g) := by
   have hz : Measurable (fun g : ℝ => A * g) := measurable_id.const_mul A
   have hx : Measurable (fun g : ℝ => (A * g) * Real.sqrt q) :=
@@ -165,7 +173,9 @@ lemma measurable_d2V (A q : ℝ) : Measurable (fun g => d2V A q g) := by
         (measurable_const.sub (ht.pow_const 2))).mul
         (measurable_const.sub (measurable_const.mul (ht.pow_const 2)))))
 
-/-- `d2VBound A a` is integrable for every fixed lower-radius parameter `a`. -/
+/-- `d2VBound A a` is integrable for every fixed lower-radius parameter `a`.
+@isnad1 id=integrab.0h2v.s5.5fad6feff348 from=translated src=- shape=db7be5e0 vocab=af3f61a1
+-/
 lemma integrable_d2VBound (A a : ℝ) :
     Integrable (d2VBound A a) (gaussianReal 0 1) := by
   have habs : Integrable (fun g : ℝ => |g|) (gaussianReal 0 1) :=
@@ -183,7 +193,9 @@ lemma integrable_d2VBound (A a : ℝ) :
       (integrable_sq_gaussian.const_mul (A ^ 2 / a))
 
 /-- The majorant at a positive lower radius controls `d2V` uniformly above
-that radius. -/
+that radius.
+@isnad1 id=le.2h4v.s5.f63b04e71d64 from=translated src=- shape=194f856f vocab=a9a484aa
+-/
 lemma abs_d2V_le_d2VBound {A a q g : ℝ} (ha : 0 < a) (haq : a ≤ q) :
     |d2V A q g| ≤ d2VBound A a g := by
   have hq : 0 < q := lt_of_lt_of_le ha haq
@@ -202,7 +214,9 @@ lemma abs_d2V_le_d2VBound {A a q g : ℝ} (ha : 0 < a) (haq : a ≤ q) :
 
 /-- The Gaussian mean map is twice differentiable at every positive `q`.
 This is the second-order input for the paper's quadratic Taylor estimate at
-the attracting fixed point. -/
+the attracting fixed point.
+@isnad1 id=hasderiv.2h2v.s6.8d38a8fdb46c from=translated src=- shape=c3e62b8f vocab=0e81a310
+-/
 lemma hasDerivAt_deriv_V {A q : ℝ} (hA : A ≠ 0) (hq : 0 < q) :
     HasDerivAt (deriv (V A))
       (∫ g, d2V A q g ∂(gaussianReal 0 1)) q := by
@@ -239,7 +253,9 @@ lemma hasDerivAt_deriv_V {A q : ℝ} (hA : A ≠ 0) (hq : 0 < q) :
 
 /-- On every compact positive interval, `V_A'` has a finite Lipschitz
 constant.  This is the local derivative-regularity statement used in the
-Koenigs factor estimate. -/
+Koenigs factor estimate.
+@isnad1 id=ex.2h3v.s7.2e0a7a650c48 from=translated src=- shape=d371d0a7 vocab=2cd76a6c
+-/
 lemma exists_deriv_V_lipschitzOn_Icc {A a b : ℝ}
     (hA : A ≠ 0) (ha : 0 < a) :
     ∃ L : ℝ, 0 ≤ L ∧
@@ -279,7 +295,9 @@ approach the fixed point monotonically without hitting it, exactly as in the
 paper's Koenigs product.
 
 This is the paper's
-`(V_A(y) - q_*) / (y - q_*) = μ_A + O(|y - q_*|)`. -/
+`(V_A(y) - q_*) / (y - q_*) = μ_A + O(|y - q_*|)`.
+@isnad1 id=ex.3h2v.s7.38bc2d059482 from=translated src=- shape=da13ecd1 vocab=49f2e727
+-/
 lemma exists_koenigsFactorEstimate {A qStar : ℝ}
     (hA : A ≠ 0) (hqStar : 0 < qStar) (hfix : V A qStar = qStar) :
     ∃ L : ℝ, 0 ≤ L ∧
@@ -344,7 +362,9 @@ lemma exists_koenigsFactorEstimate {A qStar : ℝ}
 on which both `V_A'` and the corresponding secant slopes are bounded by a
 common contraction factor.  The factor is chosen constructively as
 `κ = (μ_A + 1) / 2`; the radius is then shrunk using the compact Lipschitz
-bound on `V_A'`. -/
+bound on `V_A'`.
+@isnad1 id=ex.3h2v.s8.911cfdc00531 from=translated src=- shape=807556f2 vocab=31a6ffb3
+-/
 lemma exists_local_V_contraction_with_deriv {A qStar : ℝ}
     (hA : A ≠ 0) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
     (hfix : V A qStar = qStar) :
@@ -434,7 +454,9 @@ lemma exists_local_V_contraction_with_deriv {A qStar : ℝ}
   simpa only [Real.norm_eq_abs, hfix] using hmv
 
 /-- A positive attracting fixed point has a compact invariant contraction
-neighborhood. -/
+neighborhood.
+@isnad1 id=ex.3h2v.s7.10843568ab94 from=translated src=- shape=ae5df8b6 vocab=2899d021
+-/
 lemma exists_local_V_contraction {A qStar : ℝ}
     (hA : A ≠ 0) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
     (hfix : V A qStar = qStar) :
@@ -448,7 +470,9 @@ lemma exists_local_V_contraction {A qStar : ℝ}
 
 /-- Inside the local contraction neighborhood, every iterate has the expected
 geometric bound and the total orbit displacement from the fixed point is
-summable.  This is the summability input for the paper's Koenigs product. -/
+summable.  This is the summability input for the paper's Koenigs product.
+@isnad1 id=ex.3h2v.s7.bce80d66aebd from=translated src=- shape=79367195 vocab=55ff70eb
+-/
 theorem exists_local_geometric_contraction_and_summable {A qStar : ℝ}
     (hA : A ≠ 0) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
     (hfix : V A qStar = qStar) :
@@ -495,7 +519,9 @@ theorem exists_local_geometric_contraction_and_summable {A qStar : ℝ}
 `q ∈ (0, 1]` has summable displacement from the positive fixed point.
 Global orbit convergence supplies a finite entrance time into the local
 contraction neighborhood; `summable_nat_add_iff` then restores the discarded
-finite prefix. -/
+finite prefix.
+@isnad1 id=summable.4h3v.s6.86c8bfd502d1 from=translated src=- shape=23a6a83d vocab=9f2e1c62
+-/
 theorem summable_abs_V_orbit_sub_fixed {A qStar q : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
     (hfix : V A qStar = qStar) (hq : q ∈ Set.Ioc (0 : ℝ) 1) :
@@ -530,7 +556,9 @@ noncomputable def koenigsOrbitFactor
 
 /-- An orbit started away from the positive fixed point never hits it.
 Indeed, strict monotonicity of `V_A` preserves whichever strict side of
-`qStar` contains the initial point. -/
+`qStar` contains the initial point.
+@isnad1 id=ne.5h4v.s6.6959d2f35426 from=translated src=- shape=a94689a0 vocab=0d8d1e7d
+-/
 lemma V_iterate_ne_fixed {A qStar q : ℝ}
     (hA : A ≠ 0) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
     (hfix : V A qStar = qStar) (hq : q ∈ Set.Ioc (0 : ℝ) 1)
@@ -577,7 +605,9 @@ lemma V_iterate_ne_fixed {A qStar q : ℝ}
 /-- The deviations of the orbitwise Koenigs factors from one are summable.
 After the orbit enters the fixed compact neighborhood of `qStar`, the local
 secant estimate bounds each deviation by a constant times the corresponding
-orbit displacement; the latter series is globally summable. -/
+orbit displacement; the latter series is globally summable.
+@isnad1 id=summable.5h3v.s6.0ddd2bbc0d15 from=translated src=- shape=e37f2f0b vocab=d47f9b0c
+-/
 theorem summable_abs_koenigsOrbitFactor_sub_one {A qStar q : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
     (hfix : V A qStar = qStar) (hq : q ∈ Set.Ioc (0 : ℝ) 1)
@@ -628,7 +658,9 @@ theorem summable_abs_koenigsOrbitFactor_sub_one {A qStar q : ℝ}
 /-- Every Koenigs factor along a nonstationary supercritical orbit is
 positive.  The orbit remains in `(0, 1]` and on one strict side of `qStar`;
 strict monotonicity therefore gives the numerator and denominator of the
-secant multiplier the same sign. -/
+secant multiplier the same sign.
+@isnad1 id=lt.5h4v.s6.73cee35266ef from=translated src=- shape=c52de473 vocab=702a4280
+-/
 lemma koenigsOrbitFactor_pos {A qStar q : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
     (hfix : V A qStar = qStar) (hq : q ∈ Set.Ioc (0 : ℝ) 1)
@@ -677,7 +709,9 @@ noncomputable def koenigsOrbitProduct (A qStar q : ℝ) : ℝ :=
 /-- The orbitwise Koenigs product converges and is nonzero.  Absolute
 summability of `factor - 1` gives convergence through
 `Real.multipliable_one_add_of_summable`; pointwise positivity rules out a
-vanishing factor and hence makes the infinite product nonzero. -/
+vanishing factor and hence makes the infinite product nonzero.
+@isnad1 id=and.5h3v.s6.93bcbffd0467 from=translated src=- shape=48f6885d vocab=cee8c530
+-/
 theorem multipliable_koenigsOrbitFactor_and_product_ne_zero
     {A qStar q : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -723,7 +757,9 @@ theorem multipliable_koenigsOrbitFactor_and_product_ne_zero
 
 /-- The finite Koenigs product telescopes to the normalized deterministic
 orbit.  This is the finite identity displayed in the paper before passing to
-the infinite product. -/
+the infinite product.
+@isnad1 id=eq.5h4v.s7.b22a39e71b32 from=translated src=- shape=612a053e vocab=1fa459e6
+-/
 lemma mul_prod_range_koenigsOrbitFactor_eq_normalized
     {A qStar q : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -744,7 +780,9 @@ lemma mul_prod_range_koenigsOrbitFactor_eq_normalized
         Function.iterate_succ_apply', koenigsOrbitFactor, pow_succ]
       field_simp [horbit_ne, hμ.ne']
 
-/-- The pointwise Koenigs coefficient is nonzero away from the fixed point. -/
+/-- The pointwise Koenigs coefficient is nonzero away from the fixed point.
+@isnad1 id=ne.5h3v.s6.5ce37d719dc0 from=translated src=- shape=015e57dc vocab=7a27a3f1
+-/
 lemma mul_koenigsOrbitProduct_ne_zero {A qStar q : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
     (hfix : V A qStar = qStar) (hq : q ∈ Set.Ioc (0 : ℝ) 1)
@@ -756,7 +794,9 @@ lemma mul_koenigsOrbitProduct_ne_zero {A qStar q : ℝ}
 
 /-- The normalized deterministic orbit converges pointwise to its nonzero
 Koenigs coefficient.  The finite telescoping identity transfers convergence
-of the partial products to the normalized orbit. -/
+of the partial products to the normalized orbit.
+@isnad1 id=tendsto.5h3v.s7.5640eada8950 from=translated src=- shape=78d34143 vocab=f191d388
+-/
 theorem tendsto_normalized_V_orbit_sub_fixed {A qStar q : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
     (hfix : V A qStar = qStar) (hq : q ∈ Set.Ioc (0 : ℝ) 1)
@@ -787,7 +827,9 @@ theorem tendsto_normalized_V_orbit_sub_fixed {A qStar q : ℝ}
 noncomputable def koenigsCoefficient (A qStar q : ℝ) : ℝ :=
   (q - qStar) * koenigsOrbitProduct A qStar q
 
-/-- Away from the fixed point, the pointwise Koenigs coefficient is nonzero. -/
+/-- Away from the fixed point, the pointwise Koenigs coefficient is nonzero.
+@isnad1 id=ne.5h3v.s6.7aba1c08e61c from=translated src=- shape=3b7edc2f vocab=5a6c7aaf
+-/
 lemma koenigsCoefficient_ne_zero {A qStar q : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
     (hfix : V A qStar = qStar) (hq : q ∈ Set.Ioc (0 : ℝ) 1)
@@ -798,7 +840,9 @@ lemma koenigsCoefficient_ne_zero {A qStar q : ℝ}
 
 /-- Pointwise Koenigs asymptotic in little-`o` form:
 `V_A^n(q) - qStar = C(q) μ^n + o(μ^n)`.  It is the direct ratio
-reformulation of `tendsto_normalized_V_orbit_sub_fixed`. -/
+reformulation of `tendsto_normalized_V_orbit_sub_fixed`.
+@isnad1 id=islittle.5h3v.s7.daead1e09233 from=translated src=- shape=f09ddfe7 vocab=56b3f224
+-/
 theorem V_orbit_sub_fixed_sub_koenigsCoefficient_mul_pow_isLittleO
     {A qStar q : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -840,7 +884,9 @@ theorem V_orbit_sub_fixed_sub_koenigsCoefficient_mul_pow_isLittleO
 /-! ### Uniform entrance near a nonstationary initial point -/
 
 /-- One deterministic update cannot increase the distance to the positive
-fixed point on the canonical positive radius interval. -/
+fixed point on the canonical positive radius interval.
+@isnad1 id=le.4h3v.s6.95db0c767dc5 from=translated src=- shape=0de9108f vocab=6e0173ba
+-/
 lemma abs_V_sub_fixed_le_abs_sub_fixed
     {A qStar q : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -881,7 +927,9 @@ lemma abs_V_sub_fixed_le_abs_sub_fixed
     linarith
 
 /-- Along every positive deterministic orbit, the distance to the positive
-fixed point is nonincreasing. -/
+fixed point is nonincreasing.
+@isnad1 id=antitone.4h3v.s6.939b711bbeed from=translated src=- shape=ba1558be vocab=c1d9d6e5
+-/
 lemma antitone_abs_V_iterate_sub_fixed
     {A qStar q : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -908,7 +956,9 @@ lemma antitone_abs_V_iterate_sub_fixed
   exact abs_V_sub_fixed_le_abs_sub_fixed hA hqStar hfix (horbit n)
 
 /-- On every compact interval bounded away from zero, one deterministic
-iterate time makes every orbit uniformly close to the positive fixed point. -/
+iterate time makes every orbit uniformly close to the positive fixed point.
+@isnad1 id=ex.5h4v.s7.3e1628b242e5 from=translated src=- shape=1c568b9a vocab=9f197611
+-/
 lemma exists_uniform_V_iterate_abs_sub_fixed_lt
     {A qStar r ε : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -938,7 +988,9 @@ lemma exists_uniform_V_iterate_abs_sub_fixed_lt
   simpa [Real.dist_eq] using hm q hq
 
 /-- Every deterministic orbit starting in a compact interval bounded away
-from zero enters one common contraction interval with a positive margin. -/
+from zero enters one common contraction interval with a positive margin.
+@isnad1 id=ex.4h3v.s8.149308128152 from=translated src=- shape=be8e5c17 vocab=3fb73a82
+-/
 lemma exists_uniform_V_iterate_stable_margin
     {A qStar r : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -971,7 +1023,9 @@ lemma exists_uniform_V_iterate_stable_margin
   exact (hm q hq).le
 
 /-- The deterministic stable-interval entrance is uniform over every compact
-interval bounded away from zero, with one geometric bound after entry. -/
+interval bounded away from zero, with one geometric bound after entry.
+@isnad1 id=ex.4h3v.s8.52ab3066c7a6 from=translated src=- shape=3ccb7e63 vocab=b028f96e
+-/
 theorem exists_uniform_stable_V_orbit_interval_Icc
     {A qStar r : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -1028,7 +1082,9 @@ theorem exists_uniform_stable_V_orbit_interval_Icc
 /-- Every sufficiently small relative neighborhood of an initial point has a
 common entrance time into the strict interior of a compact contraction
 interval around the positive fixed point.  No nonstationarity assumption on
-the initial point is needed. -/
+the initial point is needed.
+@isnad1 id=ex.4h3v.s8.135d2a5c365c from=translated src=- shape=fd2e5a56 vocab=3be0d617
+-/
 theorem exists_uniform_stable_V_orbit_interval
     {A qStar q₀ : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -1122,7 +1178,9 @@ theorem exists_uniform_stable_V_orbit_interval
 /-- A sequence of initial points converging inside `(0, 1]` eventually has a
 common entrance time and contraction interval.  This is the sequence-facing
 form of the deterministic stable-interval entrance used for the
-finite-dimensional initial conditions in the paper. -/
+finite-dimensional initial conditions in the paper.
+@isnad1 id=ex.6h4v.s8.73305aa4a901 from=translated src=- shape=8f859862 vocab=8073b527
+-/
 theorem exists_eventually_stable_V_orbit_interval
     {A qStar q₀ : ℝ} (qN : ℕ → ℝ)
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -1154,7 +1212,9 @@ theorem exists_eventually_stable_V_orbit_interval
 entrance time into one contraction neighborhood of `qStar`.  From that time
 on, every orbit in the neighborhood is controlled by the same summable
 geometric majorant.  The neighborhood radius also keeps every initial point
-away from both `0` and `qStar`. -/
+away from both `0` and `qStar`.
+@isnad1 id=ex.5h3v.s8.9cdd8e2a1966 from=translated src=- shape=c55de21e vocab=335600bb
+-/
 theorem exists_uniform_eventual_geometric_V_orbit_bound
     {A qStar q₀ : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -1263,7 +1323,9 @@ theorem exists_uniform_eventual_geometric_V_orbit_bound
 
 /-- On a sufficiently small relative compact neighborhood of `q₀`, the
 shifted Koenigs-factor errors have one summable numerical majorant.  This is
-the Weierstrass bound needed for uniform convergence of the tail product. -/
+the Weierstrass bound needed for uniform convergence of the tail product.
+@isnad1 id=ex.5h3v.s8.195b55e0e452 from=translated src=- shape=810dbe6c vocab=96922636
+-/
 theorem exists_uniform_summable_koenigsOrbitFactor_tail_bound
     {A qStar q₀ : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -1353,7 +1415,9 @@ theorem exists_uniform_summable_koenigsOrbitFactor_tail_bound
 /-- On a closed relative neighborhood of `q₀`, the shifted Koenigs-factor
 product converges uniformly.  Each factor is continuous there because the
 whole neighborhood stays in `(0, 1] \ {qStar}`, so no orbit denominator
-vanishes. -/
+vanishes.
+@isnad1 id=ex.5h3v.s7.337b6d6de30d from=translated src=- shape=5a56c459 vocab=38c336e7
+-/
 theorem exists_hasProdUniformlyOn_koenigsOrbitFactor_tail
     {A qStar q₀ : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -1451,7 +1515,9 @@ theorem exists_hasProdUniformlyOn_koenigsOrbitFactor_tail
 
 /-- Every orbitwise Koenigs factor is continuous on a set of nonstationary
 initial states.  The exclusion of `qStar` keeps the corresponding orbit
-denominator nonzero. -/
+denominator nonzero.
+@isnad1 id=continuo.4h4v.s6.74754e42dfbf from=translated src=- shape=b9a587f3 vocab=ed008a76
+-/
 lemma continuousOn_koenigsOrbitFactor
     {A qStar : ℝ} {K : Set ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -1484,6 +1550,7 @@ lemma continuousOn_koenigsOrbitFactor
 coefficients converge uniformly to `koenigsCoefficient`.  This transfers the
 uniform convergence of the shifted tail product by multiplying with the
 continuous, hence bounded, finite prefix on a compact relative neighborhood.
+@isnad1 id=ex.5h3v.s8.1aabd10a18e3 from=translated src=- shape=08364009 vocab=63c571d7
 -/
 theorem exists_tendstoUniformlyOn_koenigsCoefficient
     {A qStar q₀ : ℝ}
@@ -1632,7 +1699,9 @@ theorem exists_tendstoUniformlyOn_koenigsCoefficient
 
 /-- The Koenigs coefficient is continuous on the supercritical state space
 away from the stationary initial state.  At `q = 1` this is relative
-continuity on `(0, 1]`, as required by the paper. -/
+continuity on `(0, 1]`, as required by the paper.
+@isnad1 id=continuo.3h2v.s6.61f09f8c038f from=translated src=- shape=b85a68af vocab=5a9c3560
+-/
 theorem continuousOn_koenigsCoefficient
     {A qStar : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -1677,7 +1746,9 @@ theorem continuousOn_koenigsCoefficient
 normalized deterministic orbit converges uniformly to the Koenigs
 coefficient, after the common entrance time supplied by the local contraction
 argument.  This is the paper's finite-product telescoping identity transferred
-through the locally uniform product limit. -/
+through the locally uniform product limit.
+@isnad1 id=ex.5h3v.s8.0fb512859a3d from=translated src=- shape=6f4f2e37 vocab=15897897
+-/
 theorem exists_tendstoUniformlyOn_shifted_normalized_V_orbit_sub_fixed
     {A qStar q₀ : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -1711,7 +1782,9 @@ theorem exists_tendstoUniformlyOn_shifted_normalized_V_orbit_sub_fixed
 /-- The normalized deterministic orbit converges locally uniformly to the
 Koenigs coefficient without retaining the auxiliary entrance-time shift.
 The shifted sequence is cofinal in `ℕ`, so deleting its finite prefix does not
-change the uniform limit. -/
+change the uniform limit.
+@isnad1 id=ex.5h3v.s8.f4d233d937f0 from=translated src=- shape=486db57a vocab=15897897
+-/
 theorem exists_tendstoUniformlyOn_normalized_V_orbit_sub_fixed
     {A qStar q₀ : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -1753,7 +1826,9 @@ theorem exists_tendstoUniformlyOn_normalized_V_orbit_sub_fixed
 the Koenigs asymptotic is little relative to the multiplier power.  This is
 the paper's
 `(V_A^n(q) - qStar - C(q) μ^n) / μ^n → 0`,
-with convergence uniform on one relative neighborhood of `q₀`. -/
+with convergence uniform on one relative neighborhood of `q₀`.
+@isnad1 id=ex.5h3v.s8.449a15a4ab53 from=translated src=- shape=0d15e895 vocab=500a4388
+-/
 theorem exists_tendstoUniformlyOn_koenigs_remainder_ratio
     {A qStar q₀ : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)
@@ -1802,7 +1877,9 @@ theorem exists_tendstoUniformlyOn_koenigs_remainder_ratio
 
 /-- Paper-facing capstone for the Koenigs clause: near every nonstationary
 initial state there is a continuous, locally nonzero coefficient for which
-the normalized asymptotic remainder tends uniformly to zero. -/
+the normalized asymptotic remainder tends uniformly to zero.
+@isnad1 id=ex.5h3v.s8.b106a9968a54 from=translated src=- shape=151f1f2e vocab=b42187bd
+-/
 theorem exists_continuous_local_uniform_koenigs_asymptotic
     {A qStar q₀ : ℝ}
     (hA : 1 < A) (hqStar : qStar ∈ Set.Ioo (0 : ℝ) 1)

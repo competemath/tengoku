@@ -202,7 +202,9 @@ private lemma two_le_order_formalGroupZW_sub :
   have := le_order_mul_add hx hd
   rwa [show (1 : ℕ∞) + 1 = 2 by rfl] at this
 
-/-- **Normalisation axiom (constant term).** `F` has zero constant term. -/
+/-- **Normalisation axiom (constant term).** `F` has zero constant term.
+@isnad1 id=eq.0h2v.s7.b997dca3857a from=translated src=- shape=e0b4d237 vocab=a0a623b0
+-/
 theorem constantCoeff_formalGroupZW :
     MvPowerSeries.constantCoeff W.formalGroupZW = 0 := by
   have hg : MvPowerSeries.constantCoeff (W.formalGroupZW - X 0 - X 1) = 0 := by
@@ -220,7 +222,9 @@ private lemma single_zero_ne_single_one :
   have h0 := congrArg (fun f => f 0) h
   simp at h0
 
-/-- **Normalisation axiom (`z₁`-linear term).** The coefficient of `z₁` in `F` is `1`. -/
+/-- **Normalisation axiom (`z₁`-linear term).** The coefficient of `z₁` in `F` is `1`.
+@isnad1 id=eq.0h2v.s8.2b0848c0640e from=translated src=- shape=41ec4ce7 vocab=bc2b4a26
+-/
 theorem coeff_single_zero_formalGroupZW :
     MvPowerSeries.coeff (Finsupp.single 0 1) W.formalGroupZW = 1 := by
   have hg : MvPowerSeries.coeff (Finsupp.single 0 1) (W.formalGroupZW - X 0 - X 1) = 0 := by
@@ -231,7 +235,9 @@ theorem coeff_single_zero_formalGroupZW :
   rw [hzw, map_add, map_add, hg, add_zero, MvPowerSeries.coeff_X, MvPowerSeries.coeff_X,
     ite_eq_left rfl, ite_eq_right single_zero_ne_single_one, add_zero]
 
-/-- **Normalisation axiom (`z₂`-linear term).** The coefficient of `z₂` in `F` is `1`. -/
+/-- **Normalisation axiom (`z₂`-linear term).** The coefficient of `z₂` in `F` is `1`.
+@isnad1 id=eq.0h2v.s8.e1cbe4ad9a94 from=translated src=- shape=41ec4ce7 vocab=bc2b4a26
+-/
 theorem coeff_single_one_formalGroupZW :
     MvPowerSeries.coeff (Finsupp.single 1 1) W.formalGroupZW = 1 := by
   have hg : MvPowerSeries.coeff (Finsupp.single 1 1) (W.formalGroupZW - X 0 - X 1) = 0 := by
@@ -242,7 +248,9 @@ theorem coeff_single_one_formalGroupZW :
   rw [hzw, map_add, map_add, hg, add_zero, MvPowerSeries.coeff_X, MvPowerSeries.coeff_X,
     ite_eq_right (Ne.symm single_zero_ne_single_one), ite_eq_left rfl, zero_add]
 
-/-- `F` has order `≥ 1`. -/
+/-- `F` has order `≥ 1`.
+@isnad1 id=le.0h2v.s5.93c19bcd1823 from=translated src=- shape=9c15738c vocab=7174d4ec
+-/
 theorem one_le_order_formalGroupZW : (1 : ℕ∞) ≤ W.formalGroupZW.order :=
   MvPowerSeries.one_le_order_iff_constCoeff_eq_zero.mpr W.constantCoeff_formalGroupZW
 
@@ -265,7 +273,9 @@ private lemma one_le_order_X (i : Fin 2) : (1 : ℕ∞) ≤ (X i : MvPowerSeries
   MvPowerSeries.one_le_order_iff_constCoeff_eq_zero.mpr (MvPowerSeries.constantCoeff_X i)
 
 /-- **Collinearity at `z₁`.** Substituting the line `w = λz + ν` into the Weierstrass relation, the
-uniformiser `z₁` is a root of the resulting cubic (the chord meets the curve at `(z₁, w(z₁))`). -/
+uniformiser `z₁` is a root of the resulting cubic (the chord meets the curve at `(z₁, w(z₁))`).
+@isnad1 id=eq.0h2v.s11.be6a4347bbf8 from=translated src=- shape=88255b4c vocab=4b61f0ec
+-/
 theorem formalCubicResidual_root_zero :
     (X (0 : Fin 2)) ^ 3
       + (C W.a₁ * X 0 + C W.a₂ * X 0 ^ 2) * (W.formalWDividedDiff * X 0 + W.formalGroupNu)
@@ -277,7 +287,9 @@ theorem formalCubicResidual_root_zero :
   rw [W.line_zero]
   linear_combination -hfix
 
-/-- **Collinearity at `z₂`.** Likewise `z₂` is a root of the substituted cubic. -/
+/-- **Collinearity at `z₂`.** Likewise `z₂` is a root of the substituted cubic.
+@isnad1 id=eq.0h2v.s11.09fff281488c from=translated src=- shape=88255b4c vocab=4b61f0ec
+-/
 theorem formalCubicResidual_root_one :
     (X (1 : Fin 2)) ^ 3
       + (C W.a₁ * X 1 + C W.a₂ * X 1 ^ 2) * (W.formalWDividedDiff * X 1 + W.formalGroupNu)
@@ -293,7 +305,9 @@ theorem formalCubicResidual_root_one :
 
 /-- The `w`-series `formalW ∘ F` of the group sum solves the Weierstrass relation: it is the
 positive-order fixed point of the substituted operator `wOpSubst F`. This feeds the identification
-of `F` with the Laurent `F_E` in #300 (Silverman AEC IV.1, Theorem 1.1). -/
+of `F` with the Laurent `F_E` in #300 (Silverman AEC IV.1, Theorem 1.1).
+@isnad1 id=eq.0h2v.s6.f2d144b106ba from=translated src=- shape=f2c40df9 vocab=f7650e59
+-/
 theorem formalW_subst_formalGroupZW_fixed :
     W.formalW.subst W.formalGroupZW
       = W.wOpSubst W.formalGroupZW (W.formalW.subst W.formalGroupZW) :=

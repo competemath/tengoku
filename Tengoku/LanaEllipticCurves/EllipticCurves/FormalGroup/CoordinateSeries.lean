@@ -70,10 +70,15 @@ variable {R : Type*} [CommRing R] (W : WeierstrassCurve R)
 noncomputable def wCofactor (W : WeierstrassCurve R) : R⟦X⟧ :=
   PowerSeries.mk fun n => coeff (n + 3) W.formalW
 
+/--
+@isnad1 id=eq.0h3v.s8.38699551e4b6 from=translated src=- shape=b8c6ca68 vocab=95a1ede8
+-/
 lemma coeff_wCofactor (n : ℕ) : coeff n W.wCofactor = coeff (n + 3) W.formalW := by
   rw [wCofactor, coeff_mk]
 
-/-- The Weierstrass expansion factors as `w = z³ · v` with `v = W.wCofactor`. -/
+/-- The Weierstrass expansion factors as `w = z³ · v` with `v = W.wCofactor`.
+@isnad1 id=eq.0h2v.s6.9a0b1cad1eac from=translated src=- shape=bba9a987 vocab=8f8c0978
+-/
 theorem formalW_eq_X_pow_mul_wCofactor : W.formalW = X ^ 3 * W.wCofactor := by
   ext m
   rw [coeff_X_pow_mul']
@@ -82,20 +87,28 @@ theorem formalW_eq_X_pow_mul_wCofactor : W.formalW = X ^ 3 * W.wCofactor := by
   · exact coeff_of_lt_order m
       (lt_of_lt_of_le (by exact_mod_cast Nat.not_le.mp h) W.order_formalW)
 
-/-- The constant term of the cofactor `v` is the leading coefficient `1` of `w`. -/
+/-- The constant term of the cofactor `v` is the leading coefficient `1` of `w`.
+@isnad1 id=eq.0h2v.s6.99a14caf959d from=translated src=- shape=d17ed41b vocab=13a46506
+-/
 @[simp]
 theorem constantCoeff_wCofactor : constantCoeff W.wCofactor = 1 := by
   rw [← coeff_zero_eq_constantCoeff_apply, coeff_wCofactor, zero_add, coeff_formalW_three]
 
-/-- The cofactor `v` is a unit power series. -/
+/-- The cofactor `v` is a unit power series.
+@isnad1 id=isunit.0h2v.s4.720a007aee91 from=translated src=- shape=d45d0cce vocab=7a8f5965
+-/
 theorem isUnit_wCofactor : IsUnit W.wCofactor :=
   isUnit_iff_constantCoeff.mpr (by simp)
 
-/-- The cofactor `v` times its chosen `invOfUnit`-inverse `v⁻¹` is `1`. -/
+/-- The cofactor `v` times its chosen `invOfUnit`-inverse `v⁻¹` is `1`.
+@isnad1 id=eq.0h2v.s6.ee3657e590b6 from=translated src=- shape=371d2837 vocab=4395bf27
+-/
 theorem wCofactor_mul_invOfUnit : W.wCofactor * invOfUnit W.wCofactor 1 = 1 :=
   mul_invOfUnit W.wCofactor 1 (by rw [constantCoeff_wCofactor, Units.val_one])
 
-/-- Over a nontrivial ring the expansion has order exactly `3`: `w = z³ + …`. -/
+/-- Over a nontrivial ring the expansion has order exactly `3`: `w = z³ + …`.
+@isnad1 id=eq.0h2v.s5.b1ce279232fc from=translated src=- shape=9324061d vocab=d40a90ad
+-/
 theorem order_formalW_eq [Nontrivial R] : W.formalW.order = 3 :=
   le_antisymm (order_le 3 (by rw [coeff_formalW_three]; exact one_ne_zero)) W.order_formalW
 
@@ -103,7 +116,9 @@ theorem order_formalW_eq [Nontrivial R] : W.formalW.order = 3 :=
 
 open scoped LaurentSeries
 
-/-- The image of `w` in the Laurent series ring factors as `z³ · v`. -/
+/-- The image of `w` in the Laurent series ring factors as `z³ · v`.
+@isnad1 id=eq.0h2v.s9.dfbf444f87bc from=translated src=- shape=3a10a491 vocab=cbfac8aa
+-/
 theorem coe_formalW_eq :
     (W.formalW : R⸨X⸩) = HahnSeries.single (3 : ℤ) 1 * (W.wCofactor : R⸨X⸩) := by
   rw [W.formalW_eq_X_pow_mul_wCofactor, coe_mul, coe_pow, HahnSeries.ofPowerSeries_X,
@@ -111,7 +126,9 @@ theorem coe_formalW_eq :
   norm_num
 
 /-- In the Laurent series ring, `w` is a unit (its leading monomial `z³` and the unit factor `v`
-are both invertible). This is the key input to the formal group law. -/
+are both invertible). This is the key input to the formal group law.
+@isnad1 id=isunit.0h2v.s7.4dcbce120a23 from=translated src=- shape=14852f6d vocab=8cf24ade
+-/
 theorem isUnit_coe_formalW : IsUnit (W.formalW : R⸨X⸩) := by
   rw [coe_formalW_eq]
   refine IsUnit.mul ?_ (W.isUnit_wCofactor.map (HahnSeries.ofPowerSeries ℤ R))
@@ -129,7 +146,9 @@ the origin with leading coefficient `-1`. -/
 noncomputable def formalY (W : WeierstrassCurve R) : R⸨X⸩ :=
   HahnSeries.single (-3 : ℤ) (-1) * ((invOfUnit W.wCofactor 1 : R⟦X⟧) : R⸨X⸩)
 
-/-- **Defining identity for `x(z)`:** `x(z) · w(z) = z`. -/
+/-- **Defining identity for `x(z)`:** `x(z) · w(z) = z`.
+@isnad1 id=eq.0h2v.s8.b5e52ff992a0 from=translated src=- shape=8d407348 vocab=bc05e2b3
+-/
 theorem formalX_mul_coe_formalW :
     W.formalX * (W.formalW : R⸨X⸩) = HahnSeries.single (1 : ℤ) 1 := by
   rw [formalX, coe_formalW_eq, mul_mul_mul_comm, HahnSeries.single_mul_single,
@@ -137,7 +156,9 @@ theorem formalX_mul_coe_formalW :
     W.wCofactor_mul_invOfUnit, coe_one, mul_one]
   norm_num
 
-/-- **Defining identity for `y(z)`:** `y(z) · w(z) = -1`. -/
+/-- **Defining identity for `y(z)`:** `y(z) · w(z) = -1`.
+@isnad1 id=eq.0h2v.s8.64a5700c0b01 from=translated src=- shape=4a2f7995 vocab=832d2fdd
+-/
 theorem formalY_mul_coe_formalW :
     W.formalY * (W.formalW : R⸨X⸩) = -1 := by
   have hg : ((-3 : ℤ) + 3) = 0 := by norm_num
@@ -148,7 +169,9 @@ theorem formalY_mul_coe_formalW :
     HahnSeries.single_neg, HahnSeries.single_zero_one]
 
 /-- The relation `z · y(z) = -x(z)`, i.e. `z = -x(z)/y(z)`: the local parameter is recovered from
-the coordinates. -/
+the coordinates.
+@isnad1 id=eq.0h2v.s8.a53a24f6b95c from=translated src=- shape=17ceff38 vocab=1fb5ce49
+-/
 theorem single_one_mul_formalY :
     HahnSeries.single (1 : ℤ) 1 * W.formalY = -W.formalX := by
   have hg : ((1 : ℤ) + -3) = -2 := by norm_num
@@ -158,7 +181,9 @@ theorem single_one_mul_formalY :
 
 /-! ### Leading terms and pole orders -/
 
-/-- Negative-index coefficients of a coerced power series vanish. -/
+/-- Negative-index coefficients of a coerced power series vanish.
+@isnad1 id=eq.1h3v.s7.f822b038e092 from=translated src=- shape=8a4291ab vocab=175b4544
+-/
 theorem coe_powerSeries_coeff_of_neg (p : R⟦X⟧) {g : ℤ} (hg : g < 0) :
     (p : R⸨X⸩).coeff g = 0 := by
   rw [HahnSeries.ofPowerSeries_apply, HahnSeries.embDomain_of_notMem_range]
@@ -166,33 +191,43 @@ theorem coe_powerSeries_coeff_of_neg (p : R⟦X⟧) {g : ℤ} (hg : g < 0) :
   simp only [Nat.castOrderEmbedding, OrderEmbedding.coe_ofStrictMono] at hn
   omega
 
-/-- The leading coefficient of `x(z)` is `1`, at the pole `z⁻²`. -/
+/-- The leading coefficient of `x(z)` is `1`, at the pole `z⁻²`.
+@isnad1 id=eq.0h2v.s5.2f96a8b074dd from=translated src=- shape=7760c29f vocab=fe075e4f
+-/
 @[simp]
 theorem coeff_formalX_neg_two : W.formalX.coeff (-2) = 1 := by
   have h0 : ((-2 : ℤ) - (-2)) = ((0 : ℕ) : ℤ) := by norm_num
   rw [formalX, HahnSeries.coeff_single_mul, h0, LaurentSeries.coeff_coe_powerSeries]
   simp
 
-/-- The leading coefficient of `y(z)` is `-1`, at the pole `z⁻³`. -/
+/-- The leading coefficient of `y(z)` is `-1`, at the pole `z⁻³`.
+@isnad1 id=eq.0h2v.s6.21701088846f from=translated src=- shape=219abba8 vocab=4dd33d12
+-/
 @[simp]
 theorem coeff_formalY_neg_three : W.formalY.coeff (-3) = -1 := by
   have h0 : ((-3 : ℤ) - (-3)) = ((0 : ℕ) : ℤ) := by norm_num
   rw [formalY, HahnSeries.coeff_single_mul, h0, LaurentSeries.coeff_coe_powerSeries]
   simp
 
-/-- `x(z)` has a pole of order exactly `2`: coefficients below `z⁻²` vanish. -/
+/-- `x(z)` has a pole of order exactly `2`: coefficients below `z⁻²` vanish.
+@isnad1 id=eq.1h3v.s5.ea51cc22af1e from=translated src=- shape=1f4ecac2 vocab=c8f43093
+-/
 theorem coeff_formalX_of_lt {g : ℤ} (hg : g < -2) : W.formalX.coeff g = 0 := by
   rw [formalX, HahnSeries.coeff_single_mul, one_mul]
   exact coe_powerSeries_coeff_of_neg _ (by omega)
 
-/-- `y(z)` has a pole of order exactly `3`: coefficients below `z⁻³` vanish. -/
+/-- `y(z)` has a pole of order exactly `3`: coefficients below `z⁻³` vanish.
+@isnad1 id=eq.1h3v.s5.5e78127be610 from=translated src=- shape=1f4ecac2 vocab=690f03de
+-/
 theorem coeff_formalY_of_lt {g : ℤ} (hg : g < -3) : W.formalY.coeff g = 0 := by
   rw [formalY, HahnSeries.coeff_single_mul, coe_powerSeries_coeff_of_neg _ (by omega), mul_zero]
 
 /-! ### The point-on-curve identity -/
 
 /-- The Weierstrass functional equation `formalW_eq`, transported into the Laurent series ring and
-written with the constants `HahnSeries.C W.aᵢ` and the local parameter `z = single 1 1`. -/
+written with the constants `HahnSeries.C W.aᵢ` and the local parameter `z = single 1 1`.
+@isnad1 id=eq.0h2v.s11.16eee6283ef9 from=translated src=- shape=dd4c8eae vocab=593243cd
+-/
 theorem coe_formalW_functional_eq :
     (W.formalW : R⸨X⸩)
       = HahnSeries.single (1 : ℤ) 1 ^ 3
@@ -209,7 +244,9 @@ theorem coe_formalW_functional_eq :
 Weierstrass equation of `W`:
 `y² + a₁·x·y + a₃·y = x³ + a₂·x² + a₄·x + a₆` in `R⸨X⸩`.
 This certifies the parametrisation `x = z/w`, `y = -1/w` of the curve near the origin `O`; it is the
-algebraic reformulation of the functional equation `formalW_eq` cleared of the unit `w³`. -/
+algebraic reformulation of the functional equation `formalW_eq` cleared of the unit `w³`.
+@isnad1 id=eq.0h2v.s10.70e409d4a4ee from=translated src=- shape=25cbb189 vocab=0e65e63b
+-/
 theorem formalX_formalY_weierstrass :
     W.formalY ^ 2 + HahnSeries.C W.a₁ * W.formalX * W.formalY + HahnSeries.C W.a₃ * W.formalY
       = W.formalX ^ 3 + HahnSeries.C W.a₂ * W.formalX ^ 2 + HahnSeries.C W.a₄ * W.formalX
@@ -259,7 +296,9 @@ private lemma coeff_invOfUnit_wCofactor_zero :
     coeff 0 (invOfUnit W.wCofactor 1) = 1 := by
   rw [coeff_zero_eq_constantCoeff_apply, constantCoeff_invOfUnit]; simp
 
-/-- The `z¹`-coefficient of the inverse cofactor `v⁻¹` is `-a₁`. -/
+/-- The `z¹`-coefficient of the inverse cofactor `v⁻¹` is `-a₁`.
+@isnad1 id=eq.0h2v.s7.c24c93e80ef6 from=translated src=- shape=1ab892be vocab=83ae00d0
+-/
 theorem coeff_invOfUnit_wCofactor_one :
     coeff 1 (invOfUnit W.wCofactor 1) = -W.a₁ := by
   have h := congrArg (coeff 1) W.wCofactor_mul_invOfUnit
@@ -269,7 +308,9 @@ theorem coeff_invOfUnit_wCofactor_one :
     one_mul, mul_one, one_ne_zero, ite_false] at h
   linear_combination h
 
-/-- The `z²`-coefficient of the inverse cofactor `v⁻¹` is `-a₂`. -/
+/-- The `z²`-coefficient of the inverse cofactor `v⁻¹` is `-a₂`.
+@isnad1 id=eq.0h2v.s7.f5b66c367d0c from=translated src=- shape=1ab892be vocab=ec2d027b
+-/
 theorem coeff_invOfUnit_wCofactor_two :
     coeff 2 (invOfUnit W.wCofactor 1) = -W.a₂ := by
   have h := congrArg (coeff 2) W.wCofactor_mul_invOfUnit
@@ -280,7 +321,9 @@ theorem coeff_invOfUnit_wCofactor_two :
     one_mul, mul_one, ite_false, OfNat.ofNat_ne_zero] at h
   linear_combination h
 
-/-- The `z³`-coefficient of the inverse cofactor `v⁻¹` is `-a₃` (the higher terms of `v` cancel). -/
+/-- The `z³`-coefficient of the inverse cofactor `v⁻¹` is `-a₃` (the higher terms of `v` cancel).
+@isnad1 id=eq.0h2v.s7.f8b5693313f5 from=translated src=- shape=1ab892be vocab=2f1516ca
+-/
 theorem coeff_invOfUnit_wCofactor_three :
     coeff 3 (invOfUnit W.wCofactor 1) = -W.a₃ := by
   have h := congrArg (coeff 3) W.wCofactor_mul_invOfUnit
@@ -292,28 +335,36 @@ theorem coeff_invOfUnit_wCofactor_three :
     OfNat.ofNat_ne_zero] at h
   linear_combination h
 
-/-- The sub-leading coefficient of `x(z)`: `coeff (-1) x = -a₁`, so `x = z⁻² - a₁ z⁻¹ - …`. -/
+/-- The sub-leading coefficient of `x(z)`: `coeff (-1) x = -a₁`, so `x = z⁻² - a₁ z⁻¹ - …`.
+@isnad1 id=eq.0h2v.s5.65cd0c0ae3d8 from=translated src=- shape=515cc7e7 vocab=a657e016
+-/
 @[simp]
 theorem coeff_formalX_neg_one : W.formalX.coeff (-1) = -W.a₁ := by
   have h0 : ((-1 : ℤ) - (-2)) = ((1 : ℕ) : ℤ) := by norm_num
   rw [formalX, HahnSeries.coeff_single_mul, h0, LaurentSeries.coeff_coe_powerSeries,
     coeff_invOfUnit_wCofactor_one, one_mul]
 
-/-- The constant coefficient of `x(z)`: `coeff 0 x = -a₂`. -/
+/-- The constant coefficient of `x(z)`: `coeff 0 x = -a₂`.
+@isnad1 id=eq.0h2v.s5.d270d49ef760 from=translated src=- shape=9d20a92b vocab=17a58c6f
+-/
 @[simp]
 theorem coeff_formalX_zero : W.formalX.coeff 0 = -W.a₂ := by
   have h0 : ((0 : ℤ) - (-2)) = ((2 : ℕ) : ℤ) := by norm_num
   rw [formalX, HahnSeries.coeff_single_mul, h0, LaurentSeries.coeff_coe_powerSeries,
     coeff_invOfUnit_wCofactor_two, one_mul]
 
-/-- The `z¹`-coefficient of `x(z)`: `coeff 1 x = -a₃`, so `x = z⁻² - a₁ z⁻¹ - a₂ - a₃ z - …`. -/
+/-- The `z¹`-coefficient of `x(z)`: `coeff 1 x = -a₃`, so `x = z⁻² - a₁ z⁻¹ - a₂ - a₃ z - …`.
+@isnad1 id=eq.0h2v.s5.81f743e8b8f9 from=translated src=- shape=9d20a92b vocab=6f96ece1
+-/
 @[simp]
 theorem coeff_formalX_one : W.formalX.coeff 1 = -W.a₃ := by
   have h0 : ((1 : ℤ) - (-2)) = ((3 : ℕ) : ℤ) := by norm_num
   rw [formalX, HahnSeries.coeff_single_mul, h0, LaurentSeries.coeff_coe_powerSeries,
     coeff_invOfUnit_wCofactor_three, one_mul]
 
-/-- The sub-leading coefficient of `y(z)`: `coeff (-2) y = a₁`, so `y = -z⁻³ + a₁ z⁻² + …`. -/
+/-- The sub-leading coefficient of `y(z)`: `coeff (-2) y = a₁`, so `y = -z⁻³ + a₁ z⁻² + …`.
+@isnad1 id=eq.0h2v.s5.835b73b001cd from=translated src=- shape=e4525362 vocab=6bb46e05
+-/
 @[simp]
 theorem coeff_formalY_neg_two : W.formalY.coeff (-2) = W.a₁ := by
   have h0 : ((-2 : ℤ) - (-3)) = ((1 : ℕ) : ℤ) := by norm_num
@@ -321,7 +372,9 @@ theorem coeff_formalY_neg_two : W.formalY.coeff (-2) = W.a₁ := by
     coeff_invOfUnit_wCofactor_one]
   ring
 
-/-- The `z⁻¹`-coefficient of `y(z)`: `coeff (-1) y = a₂`, so `y = -z⁻³ + a₁ z⁻² + a₂ z⁻¹ + …`. -/
+/-- The `z⁻¹`-coefficient of `y(z)`: `coeff (-1) y = a₂`, so `y = -z⁻³ + a₁ z⁻² + a₂ z⁻¹ + …`.
+@isnad1 id=eq.0h2v.s5.5bea85f0ca43 from=translated src=- shape=e4525362 vocab=1a2dd4ad
+-/
 @[simp]
 theorem coeff_formalY_neg_one : W.formalY.coeff (-1) = W.a₂ := by
   have h0 : ((-1 : ℤ) - (-3)) = ((2 : ℕ) : ℤ) := by norm_num
@@ -330,7 +383,9 @@ theorem coeff_formalY_neg_one : W.formalY.coeff (-1) = W.a₂ := by
   ring
 
 /-- The constant coefficient of `y(z)`: `coeff 0 y = a₃`, so
-`y = -z⁻³ + a₁ z⁻² + a₂ z⁻¹ + a₃ + …`. -/
+`y = -z⁻³ + a₁ z⁻² + a₂ z⁻¹ + a₃ + …`.
+@isnad1 id=eq.0h2v.s5.d35418cc1a25 from=translated src=- shape=7e1826b7 vocab=ddb98bce
+-/
 @[simp]
 theorem coeff_formalY_zero : W.formalY.coeff 0 = W.a₃ := by
   have h0 : ((0 : ℤ) - (-3)) = ((3 : ℕ) : ℤ) := by norm_num

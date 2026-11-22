@@ -76,21 +76,33 @@ noncomputable def curryFinTwoFun (φ : MvPowerSeries (Fin 2) R) : PowerSeries (P
   PowerSeries.mk fun n => PowerSeries.mk fun m =>
     MvPowerSeries.coeff (Finsupp.single 0 m + Finsupp.single 1 n) φ
 
+/--
+@isnad1 id=eq.0h4v.s9.f0dc37e0415b from=translated src=- shape=a52a3ac4 vocab=5e2412c8
+-/
 @[simp]
 theorem coeff_coeff_curryFinTwoFun (φ : MvPowerSeries (Fin 2) R) (n m : ℕ) :
     PowerSeries.coeff m (PowerSeries.coeff n (curryFinTwoFun φ))
       = MvPowerSeries.coeff (Finsupp.single 0 m + Finsupp.single 1 n) φ := by
   simp only [curryFinTwoFun, PowerSeries.coeff_mk]
 
+/--
+@isnad1 id=eq.0h3v.s7.433af1378eaa from=translated src=- shape=1960370b vocab=1bd29f26
+-/
 theorem curryFinTwoFun_add (φ ψ : MvPowerSeries (Fin 2) R) :
     curryFinTwoFun (φ + ψ) = curryFinTwoFun φ + curryFinTwoFun ψ := by
   refine PowerSeries.ext fun n => PowerSeries.ext fun m => ?_
   simp [map_add]
 
+/--
+@isnad1 id=eq.0h1v.s6.e362ffdcf00d from=translated src=- shape=ba7665fb vocab=56199291
+-/
 theorem curryFinTwoFun_zero : curryFinTwoFun (0 : MvPowerSeries (Fin 2) R) = 0 := by
   refine PowerSeries.ext fun n => PowerSeries.ext fun m => ?_
   simp
 
+/--
+@isnad1 id=eq.0h1v.s6.252848d65fe9 from=translated src=- shape=ba7665fb vocab=56199291
+-/
 theorem curryFinTwoFun_one : curryFinTwoFun (1 : MvPowerSeries (Fin 2) R) = 1 := by
   classical
   refine PowerSeries.ext fun n => PowerSeries.ext fun m => ?_
@@ -104,7 +116,9 @@ theorem curryFinTwoFun_one : curryFinTwoFun (1 : MvPowerSeries (Fin 2) R) = 1 :=
   · rw [ite_eq_right hn, map_zero, ite_eq_right (fun h => hn ((single_add_eq_zero_iff m n).1 h).2)]
 
 /-- **Multiplicativity** (the genuine content): the bivariate convolution `MvPowerSeries.coeff_mul`
-reindexed as an iterated univariate convolution. -/
+reindexed as an iterated univariate convolution.
+@isnad1 id=eq.0h3v.s6.3c107527638e from=translated src=- shape=1960370b vocab=3cff58a6
+-/
 theorem curryFinTwoFun_mul (φ ψ : MvPowerSeries (Fin 2) R) :
     curryFinTwoFun (φ * ψ) = curryFinTwoFun φ * curryFinTwoFun ψ := by
   classical
@@ -167,6 +181,9 @@ noncomputable def curryFinTwoRingHom :
   map_zero' := curryFinTwoFun_zero
   map_add' := curryFinTwoFun_add
 
+/--
+@isnad1 id=eq.0h2v.s7.ff920ecb2c39 from=translated src=- shape=fd9b50d5 vocab=e4420864
+-/
 @[simp]
 theorem curryFinTwoRingHom_apply (φ : MvPowerSeries (Fin 2) R) :
     curryFinTwoRingHom φ = curryFinTwoFun φ := rfl
@@ -186,6 +203,9 @@ noncomputable def embedDoubleLaurentRingHom :
     ((PowerSeries.map (HahnSeries.ofPowerSeries ℤ R)).comp
       MvPowerSeries.curryFinTwoRingHom)
 
+/--
+@isnad1 id=eq.0h2v.s8.ba8cd88e8331 from=translated src=- shape=fd9b50d5 vocab=e7498c1d
+-/
 theorem embedDoubleLaurentRingHom_apply (φ : MvPowerSeries (Fin 2) R) :
     embedDoubleLaurentRingHom φ = embedDoubleLaurent φ := by
   rw [embedDoubleLaurentRingHom, RingHom.comp_apply, RingHom.comp_apply, embedDoubleLaurent]
@@ -198,7 +218,9 @@ theorem embedDoubleLaurentRingHom_apply (φ : MvPowerSeries (Fin 2) R) :
 /-- **Multiplicative transport.** On iterated Laurent series pole-free in both gradings, the reader
 `ofDoubleLaurent` is multiplicative:
 `ofDoubleLaurent (x * y) = ofDoubleLaurent x * ofDoubleLaurent y` (with both `x`, `y` pole-free in
-both gradings).  This is the tool #283 / #263 consume. -/
+both gradings).  This is the tool #283 / #263 consume.
+@isnad1 id=eq.4h3v.s9.966b9694e325 from=translated src=- shape=6aeff1e1 vocab=322cba32
+-/
 theorem ofDoubleLaurent_mul_of_poleFree {x y : (R⸨X⸩)⸨X⸩}
     (hxout : ∀ n < 0, x.coeff n = 0) (hxin : ∀ (n : ℤ), ∀ g < 0, (x.coeff n).coeff g = 0)
     (hyout : ∀ n < 0, y.coeff n = 0) (hyin : ∀ (n : ℤ), ∀ g < 0, (y.coeff n).coeff g = 0) :

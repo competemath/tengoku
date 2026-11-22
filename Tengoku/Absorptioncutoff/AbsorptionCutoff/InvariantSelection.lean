@@ -27,7 +27,9 @@ asserted separately under `0 < T`. -/
 noncomputable def cesaroMeasure (κ : Kernel E E) (q : E) (T : ℕ) : Measure E :=
   ((T : ENNReal)⁻¹) • ∑ t ∈ Finset.range T, (κ ^ t) q
 
-/-- A positive-length Cesàro average of Markov-chain laws is a probability measure. -/
+/-- A positive-length Cesàro average of Markov-chain laws is a probability measure.
+@isnad1 id=isprobab.1h4v.s5.e879a35f30cf from=translated src=- shape=5fb486a8 vocab=5ce0f2bb
+-/
 theorem cesaroMeasure_isProbabilityMeasure (κ : Kernel E E) [IsMarkovKernel κ]
     (q : E) (T : ℕ) (hT : 0 < T) :
     IsProbabilityMeasure (cesaroMeasure κ q T) := by
@@ -37,7 +39,9 @@ theorem cesaroMeasure_isProbabilityMeasure (κ : Kernel E E) [IsMarkovKernel κ]
   exact ENNReal.inv_mul_cancel (Nat.cast_ne_zero.2 hT.ne') (by simp)
 
 /-- Evolving a Cesàro law by one step shifts every kernel power in its defining
-finite sum. This is the pre-telescoping identity in the Krylov--Bogolyubov argument. -/
+finite sum. This is the pre-telescoping identity in the Krylov--Bogolyubov argument.
+@isnad1 id=eq.0h4v.s7.78d861a62566 from=translated src=- shape=365b66e9 vocab=85c61e3f
+-/
 theorem comp_cesaroMeasure (κ : Kernel E E) [IsMarkovKernel κ]
     (q : E) (T : ℕ) :
     κ ∘ₘ cesaroMeasure κ q T =
@@ -56,7 +60,9 @@ theorem comp_cesaroMeasure (κ : Kernel E E) [IsMarkovKernel κ]
   rw [cesaroMeasure, Measure.comp_smul, hsum]
 
 /-- Subtraction-free form of the finite Cesàro telescoping identity:
-`ν̄_T κ - ν̄_T = T⁻¹(κ^T(q,·) - δ_q)`. -/
+`ν̄_T κ - ν̄_T = T⁻¹(κ^T(q,·) - δ_q)`.
+@isnad1 id=eq.0h4v.s7.40bb7e97daf8 from=translated src=- shape=c817c99a vocab=f5e2263e
+-/
 theorem comp_cesaroMeasure_add (κ : Kernel E E) [IsMarkovKernel κ]
     (q : E) (T : ℕ) :
     κ ∘ₘ cesaroMeasure κ q T + ((T : ENNReal)⁻¹) • Measure.dirac q =
@@ -74,7 +80,9 @@ theorem comp_cesaroMeasure_add (κ : Kernel E E) [IsMarkovKernel κ]
       Finset.sum_range_succ (fun t => (κ ^ t) q) T
 
 /-- The paper's finite Cesàro telescoping formula, tested against a bounded measurable
-real function. -/
+real function.
+@isnad1 id=eq.3h6v.s7.031dfa4d0562 from=translated src=- shape=fd2f7b8b vocab=be32bb32
+-/
 theorem integral_comp_cesaroMeasure_sub (κ : Kernel E E) [IsMarkovKernel κ]
     (q : E) (T : ℕ) (hT : 0 < T) (φ : E → ℝ) (hφ : Measurable φ)
     (C : ℝ) (hφ_bound : ∀ x, ‖φ x‖ ≤ C) :
@@ -103,7 +111,9 @@ theorem integral_comp_cesaroMeasure_sub (κ : Kernel E E) [IsMarkovKernel κ]
   linarith
 
 /-- The Cesàro one-step discrepancy against a test function bounded by `C` is at most
-`2C/T`. -/
+`2C/T`.
+@isnad1 id=le.3h6v.s7.74aa1432e673 from=translated src=- shape=af2fde03 vocab=cb5cdda5
+-/
 theorem abs_integral_comp_cesaroMeasure_sub_le (κ : Kernel E E) [IsMarkovKernel κ]
     (q : E) (T : ℕ) (hT : 0 < T) (φ : E → ℝ) (hφ : Measurable φ)
     (C : ℝ) (hφ_bound : ∀ x, ‖φ x‖ ≤ C) :
@@ -123,7 +133,9 @@ theorem abs_integral_comp_cesaroMeasure_sub_le (κ : Kernel E E) [IsMarkovKernel
       · simpa only [Real.norm_eq_abs] using hφ_bound q
     _ = 2 * C := by ring
 
-/-- The real reciprocal coefficient in the Cesàro averages tends to zero. -/
+/-- The real reciprocal coefficient in the Cesàro averages tends to zero.
+@isnad1 id=tendsto.0h0v.s5.89da57affbf4 from=translated src=- shape=da652827 vocab=34065200
+-/
 lemma tendsto_cesaroCoeff :
     Tendsto (fun T : ℕ => ((T : ENNReal)⁻¹).toReal) atTop (𝓝 0) := by
   convert (ENNReal.tendsto_toReal ENNReal.zero_ne_top).comp
@@ -133,7 +145,9 @@ lemma tendsto_cesaroCoeff :
 
 /-- The bounded-test Cesàro one-step discrepancy tends to zero: for any bounded
 measurable `φ`, `∫ φ d(κ ∘ₘ ν̄_T) - ∫ φ dν̄_T → 0` as `T → ∞`. This is the smallness
-estimate that makes any weak subsequential limit of the Cesàro averages `κ`-invariant. -/
+estimate that makes any weak subsequential limit of the Cesàro averages `κ`-invariant.
+@isnad1 id=tendsto.2h5v.s7.bdadc3a32f97 from=translated src=- shape=45efcc62 vocab=2e1f5ee9
+-/
 theorem tendsto_integral_comp_cesaroMeasure_sub (κ : Kernel E E) [IsMarkovKernel κ]
     (q : E) (φ : E → ℝ) (hφ : Measurable φ) (C : ℝ) (hφ_bound : ∀ x, ‖φ x‖ ≤ C) :
     Tendsto (fun T : ℕ =>
@@ -151,7 +165,9 @@ The Krylov--Bogolyubov step needs the transition kernel `K_{A,N}` to be Feller:
 for a continuous bounded test function `φ`, the map `q ↦ K_{A,N}φ(q)` is again
 continuous. This is where the continuity of the random map `F_{A,N}` enters. -/
 
-/-- The random map `F_{A,N}(q,g)` is jointly continuous in `(q,g)`. -/
+/-- The random map `F_{A,N}(q,g)` is jointly continuous in `(q,g)`.
+@isnad1 id=continuo.0h2v.s6.d1826e118cf9 from=translated src=- shape=8bb1dd25 vocab=d6fe87df
+-/
 lemma continuous_Fmap (A : ℝ) (N : ℕ) :
     Continuous (fun p : ℝ × (Fin N → ℝ) => Fmap A N p.1 p.2) := by
   unfold Fmap
@@ -160,7 +176,9 @@ lemma continuous_Fmap (A : ℝ) (N : ℕ) :
   intro i _
   exact (continuous_tanh.comp (by fun_prop)).pow 2
 
-/-- Continuity of the noise slice `g ↦ F_{A,N}(q,g)` at a fixed radius `q`. -/
+/-- Continuity of the noise slice `g ↦ F_{A,N}(q,g)` at a fixed radius `q`.
+@isnad1 id=continuo.0h3v.s5.19b83fe1808a from=translated src=- shape=1788473d vocab=38303e53
+-/
 lemma continuous_Fmap_right (A : ℝ) (N : ℕ) (q : ℝ) :
     Continuous (fun g : Fin N → ℝ => Fmap A N q g) := by
   unfold Fmap
@@ -169,7 +187,9 @@ lemma continuous_Fmap_right (A : ℝ) (N : ℕ) (q : ℝ) :
   intro i _
   exact (continuous_tanh.comp (by fun_prop)).pow 2
 
-/-- Continuity of the radius slice `q ↦ F_{A,N}(q,g)` at a fixed noise `g`. -/
+/-- Continuity of the radius slice `q ↦ F_{A,N}(q,g)` at a fixed noise `g`.
+@isnad1 id=continuo.0h3v.s4.7791587c291d from=translated src=- shape=aab78561 vocab=38303e53
+-/
 lemma continuous_Fmap_left (A : ℝ) (N : ℕ) (g : Fin N → ℝ) :
     Continuous (fun q : ℝ => Fmap A N q g) := by
   unfold Fmap
@@ -180,7 +200,9 @@ lemma continuous_Fmap_left (A : ℝ) (N : ℕ) (g : Fin N → ℝ) :
 
 /-- The action of `K_{A,N}` on a bounded measurable test function `φ` is the Gaussian
 average `∫ φ(F_{A,N}(q,g)) 𝒢_N(dg)`. This is the paper's displayed formula for
-`K_{A,N}φ(q)`. -/
+`K_{A,N}φ(q)`.
+@isnad1 id=eq.1h4v.s6.96864e9473c1 from=translated src=- shape=54801e4b vocab=49b49b7c
+-/
 lemma integral_Kchain (A : ℝ) (N : ℕ) (q : ℝ) {φ : ℝ → ℝ} (hφ : Measurable φ) :
     ∫ y, φ y ∂(Kchain A N q) = ∫ g, φ (Fmap A N q g) ∂(gaussianVec N) := by
   rw [Kchain_apply, integral_map]
@@ -189,7 +211,9 @@ lemma integral_Kchain (A : ℝ) (N : ℕ) (q : ℝ) {φ : ℝ → ℝ} (hφ : Me
 
 /-- **Feller property of `K_{A,N}`.** For a continuous, bounded `φ`, the map
 `q ↦ K_{A,N}φ(q) = ∫ φ(F_{A,N}(q,g)) 𝒢_N(dg)` is continuous, by continuity of
-`F_{A,N}` and dominated convergence. -/
+`F_{A,N}` and dominated convergence.
+@isnad1 id=continuo.2h4v.s6.1735d07c9469 from=translated src=- shape=6189487e vocab=4aaebcdb
+-/
 theorem continuous_integral_Kchain (A : ℝ) (N : ℕ) {φ : ℝ → ℝ} (hφ : Continuous φ)
     {C : ℝ} (hφ_bound : ∀ y, ‖φ y‖ ≤ C) :
     Continuous (fun q => ∫ y, φ y ∂(Kchain A N q)) := by
@@ -207,7 +231,9 @@ theorem continuous_integral_Kchain (A : ℝ) (N : ℕ) {φ : ℝ → ℝ} (hφ :
 
 /-- Bochner form of measure–kernel composition against a bounded measurable test
 function: `∫ φ d(κ ∘ₘ μ) = ∫ q, (∫ φ d(κ q)) dμ`, i.e. testing the evolved measure
-against `φ` equals testing `μ` against the kernel action `q ↦ ∫ φ d(κ q)`. -/
+against `φ` equals testing `μ` against the kernel action `q ↦ ∫ φ d(κ q)`.
+@isnad1 id=eq.2h5v.s7.da395ea4dbd8 from=translated src=- shape=b6f927e7 vocab=103a81a0
+-/
 lemma integral_comp_measure (κ : Kernel E E) [IsMarkovKernel κ] (μ : Measure E)
     [IsProbabilityMeasure μ] {φ : E → ℝ} (hφ : Measurable φ) {C : ℝ}
     (hφ_bound : ∀ x, ‖φ x‖ ≤ C) :
@@ -224,7 +250,9 @@ to `ν`, the Markov kernel `κ` is Feller with bounded-continuous action operato
 (`Kf f (q) = ∫ f d(κ q)`), and the one-step discrepancy
 `∫ f d(κ ∘ₘ μs n) - ∫ f dμs n` vanishes along the sequence. Then every bounded
 continuous `f` is `κ`-stationary under `ν`:
-`∫ f d(κ ∘ₘ ν) = ∫ f dν`. -/
+`∫ f d(κ ∘ₘ ν) = ∫ f dν`.
+@isnad1 id=eq.3h6v.s8.ddc77c0ce6b1 from=translated src=- shape=49bc2c2a vocab=ce608963
+-/
 lemma integral_comp_eq_of_weakLimit {E : Type*} [MeasurableSpace E] [TopologicalSpace E]
     [OpensMeasurableSpace E] (κ : Kernel E E) [IsMarkovKernel κ]
     (μs : ℕ → ProbabilityMeasure E) (ν : ProbabilityMeasure E)
@@ -255,7 +283,9 @@ lemma integral_comp_eq_of_weakLimit {E : Type*} [MeasurableSpace E] [Topological
 /-- **Krylov--Bogolyubov invariance of a weak limit.** Under the same hypotheses, the
 weak limit `ν` is an invariant measure for `κ`. Upgrades the per-test-function
 stationarity `integral_comp_eq_of_weakLimit` to measure equality via the fact that
-bounded continuous functions separate finite Borel measures. -/
+bounded continuous functions separate finite Borel measures.
+@isnad1 id=invarian.3h5v.s8.e58e9400a4eb from=translated src=- shape=0cbb8432 vocab=4a760845
+-/
 theorem invariant_of_weakLimit {E : Type*} [MeasurableSpace E] [TopologicalSpace E]
     [HasOuterApproxClosed E] [BorelSpace E] (κ : Kernel E E) [IsMarkovKernel κ]
     (μs : ℕ → ProbabilityMeasure E) (ν : ProbabilityMeasure E)
@@ -285,13 +315,18 @@ noncomputable def fellerOp (A : ℝ) (N : ℕ) (f : BoundedContinuousFunction �
       simpa using norm_integral_le_of_norm_le_const
         (μ := Kchain A N q) (Eventually.of_forall f.norm_coe_le_norm))
 
+/--
+@isnad1 id=eq.0h4v.s6.77f459e5d3f4 from=translated src=- shape=306b97f9 vocab=2023f7e9
+-/
 @[simp] lemma fellerOp_apply (A : ℝ) (N : ℕ) (f : BoundedContinuousFunction ℝ ℝ) (q : ℝ) :
     fellerOp A N f q = ∫ y, f y ∂(Kchain A N q) := rfl
 
 /-! ## Support of the Cesàro averages in `[0,1]` (tightness input) -/
 
 /-- One step of `K_{A,N}` from any point lands in `[0,1]`: `K_{A,N}(q, [0,1]ᶜ) = 0`,
-because `F_{A,N}(q,g) ∈ [0,1]` for every noise `g` (`0 < N`). -/
+because `F_{A,N}(q,g) ∈ [0,1]` for every noise `g` (`0 < N`).
+@isnad1 id=eq.1h3v.s6.c30c9feb6571 from=translated src=- shape=d7bca1d5 vocab=6d651777
+-/
 lemma Kchain_apply_Icc_compl (A : ℝ) {N : ℕ} (hN : 0 < N) (q : ℝ) :
     Kchain A N q ((Set.Icc (0 : ℝ) 1)ᶜ) = 0 := by
   have hpre : (Fmap A N q) ⁻¹' (Set.Icc (0 : ℝ) 1)ᶜ = ∅ := by
@@ -300,7 +335,9 @@ lemma Kchain_apply_Icc_compl (A : ℝ) {N : ℕ} (hN : 0 < N) (q : ℝ) :
   rw [Kchain_apply, Measure.map_apply (continuous_Fmap_right A N q).measurable
     measurableSet_Icc.compl, hpre, measure_empty]
 
-/-- Every invariant measure of `K_{A,N}` is carried by `[0,1]`. -/
+/-- Every invariant measure of `K_{A,N}` is carried by `[0,1]`.
+@isnad1 id=eq.2h3v.s6.05ff24d3d6de from=translated src=- shape=220404e2 vocab=1c1d27c7
+-/
 lemma invariant_Kchain_apply_Icc_compl
     (A : ℝ) {N : ℕ} (hN : 0 < N) (ν : Measure ℝ)
     (hν : Kernel.Invariant (Kchain A N) ν) :
@@ -313,7 +350,9 @@ lemma invariant_Kchain_apply_Icc_compl
       Measure.bind_apply measurableSet_Icc.compl (Kchain A N).aemeasurable
     _ = 0 := by simp only [Kchain_apply_Icc_compl A hN, lintegral_zero]
 
-/-- Every power `K_{A,N}^t(q, ·)` started from `q ∈ [0,1]` is supported in `[0,1]`. -/
+/-- Every power `K_{A,N}^t(q, ·)` started from `q ∈ [0,1]` is supported in `[0,1]`.
+@isnad1 id=eq.2h4v.s7.73d2c336c913 from=translated src=- shape=bba06507 vocab=d105792b
+-/
 lemma Kchain_pow_apply_Icc_compl (A : ℝ) {N : ℕ} (hN : 0 < N) {q : ℝ}
     (hq : q ∈ Set.Icc (0 : ℝ) 1) (t : ℕ) :
     ((Kchain A N) ^ t) q ((Set.Icc (0 : ℝ) 1)ᶜ) = 0 := by
@@ -331,7 +370,9 @@ lemma Kchain_pow_apply_Icc_compl (A : ℝ) {N : ℕ} (hN : 0 < N) {q : ℝ}
       rw [← hstep, Measure.bind_apply measurableSet_Icc.compl (Kchain A N).aemeasurable]
       simp [Kchain_apply_Icc_compl A hN]
 
-/-- The Cesàro average of `K_{A,N}` started from `q ∈ [0,1]` is supported in `[0,1]`. -/
+/-- The Cesàro average of `K_{A,N}` started from `q ∈ [0,1]` is supported in `[0,1]`.
+@isnad1 id=eq.2h4v.s6.2b0624c09a8b from=translated src=- shape=c8793d08 vocab=23a82e91
+-/
 lemma cesaroMeasure_Icc_compl (A : ℝ) {N : ℕ} (hN : 0 < N) {q : ℝ}
     (hq : q ∈ Set.Icc (0 : ℝ) 1) (T : ℕ) :
     cesaroMeasure (Kchain A N) q T ((Set.Icc (0 : ℝ) 1)ᶜ) = 0 := by
@@ -340,7 +381,9 @@ lemma cesaroMeasure_Icc_compl (A : ℝ) {N : ℕ} (hN : 0 < N) {q : ℝ}
 
 /-- **Invariance of Cesàro weak limits** (`prop:gaussian-compactness-selection`,
 invariance part). If some scale sequence `T n → ∞` makes the Cesàro averages of
-`K_{A,N}` started from `q` converge weakly to `ν`, then `ν` is invariant for `K_{A,N}`. -/
+`K_{A,N}` started from `q` converge weakly to `ν`, then `ν` is invariant for `K_{A,N}`.
+@isnad1 id=invarian.3h6v.s6.304f744c8f04 from=translated src=- shape=77390606 vocab=31313766
+-/
 theorem invariant_of_cesaro_weakLimit (A : ℝ) (N : ℕ) (q : ℝ)
     (T : ℕ → ℕ) (hT : Tendsto T atTop atTop)
     (μs : ℕ → ProbabilityMeasure ℝ)
@@ -362,13 +405,18 @@ noncomputable def cesaroPM (A : ℝ) (N : ℕ) (q : ℝ) (n : ℕ) : Probability
   ⟨cesaroMeasure (Kchain A N) q (n + 1),
     cesaroMeasure_isProbabilityMeasure (Kchain A N) q (n + 1) n.succ_pos⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.3315d7982064 from=translated src=- shape=b7eadb19 vocab=6b7a402c
+-/
 @[simp] lemma cesaroPM_toMeasure (A : ℝ) (N : ℕ) (q : ℝ) (n : ℕ) :
     (cesaroPM A N q n : Measure ℝ) = cesaroMeasure (Kchain A N) q (n + 1) := rfl
 
 /-- **Subsequence form of invariant-law existence**
 (`prop:gaussian-compactness-selection`, first assertion). For `0 < N` and `q ∈ [0,1]`,
 the Cesàro averages of `K_{A,N}` started from `q` have a weakly convergent strict
-subsequence whose limit is invariant and supported on `[0,1]`. -/
+subsequence whose limit is invariant and supported on `[0,1]`.
+@isnad1 id=ex.2h3v.s7.f066fcf9890e from=translated src=- shape=48e069b4 vocab=88a5dca3
+-/
 theorem exists_invariant_of_cesaro_with_subseq (A : ℝ) {N : ℕ} (hN : 0 < N) {q : ℝ}
     (hq : q ∈ Set.Icc (0 : ℝ) 1) :
     ∃ (ν : ProbabilityMeasure ℝ) (φ : ℕ → ℕ),
@@ -419,7 +467,9 @@ theorem exists_invariant_of_cesaro_with_subseq (A : ℝ) {N : ℕ} (hN : 0 < N) 
   simp
 
 /-- **Nonemptiness of the invariant-law set** `𝓘_{A,N}(q)`. This is the
-existence-only projection of `exists_invariant_of_cesaro_with_subseq`. -/
+existence-only projection of `exists_invariant_of_cesaro_with_subseq`.
+@isnad1 id=ex.2h3v.s6.288fc8af174e from=translated src=- shape=8b8ad345 vocab=3f6f049a
+-/
 theorem exists_invariant_of_cesaro (A : ℝ) {N : ℕ} (hN : 0 < N) {q : ℝ}
     (hq : q ∈ Set.Icc (0 : ℝ) 1) :
     ∃ ν : ProbabilityMeasure ℝ, Kernel.Invariant (Kchain A N) (ν : Measure ℝ) ∧
@@ -430,7 +480,9 @@ theorem exists_invariant_of_cesaro (A : ℝ) {N : ℕ} (hN : 0 < N) {q : ℝ}
 
 /-- **Stationary equation** `eq:gaussian-q-stationary-equation`. An invariant law `ν`
 of `K_{A,N}` satisfies, for every bounded measurable test function `φ`,
-`∫ φ(q) ν(dq) = ∫ ∫ φ(F_{A,N}(q,g)) 𝒢_N(dg) ν(dq)`. -/
+`∫ φ(q) ν(dq) = ∫ ∫ φ(F_{A,N}(q,g)) 𝒢_N(dg) ν(dq)`.
+@isnad1 id=eq.3h5v.s7.a32e951b2039 from=translated src=- shape=fe9e6492 vocab=85f4da9a
+-/
 theorem stationary_equation (A : ℝ) (N : ℕ) (ν : Measure ℝ) [IsProbabilityMeasure ν]
     (hν : Kernel.Invariant (Kchain A N) ν) {φ : ℝ → ℝ} (hφ : Measurable φ) {C : ℝ}
     (hφ_bound : ∀ x, ‖φ x‖ ≤ C) :
@@ -443,7 +495,9 @@ theorem stationary_equation (A : ℝ) (N : ℕ) (ν : Measure ℝ) [IsProbabilit
 /-! ## Weak stationary equation for the vector chain -/
 
 /-- The action of `P_{A,N}` on a measurable test function `φ` is the Gaussian-matrix
-average `∫ φ(Pstep_N(x,𝖶)) gaussianMat_{A,N}(d𝖶)`. -/
+average `∫ φ(Pstep_N(x,𝖶)) gaussianMat_{A,N}(d𝖶)`.
+@isnad1 id=eq.1h4v.s7.2f056a278622 from=translated src=- shape=4884eedd vocab=e3fbb8fc
+-/
 lemma integral_Pkernel (A : ℝ) (N : ℕ) (x : Fin N → ℝ)
     {φ : (Fin N → ℝ) → ℝ} (hφ : Measurable φ) :
     ∫ y, φ y ∂(Pkernel A N x) = ∫ W, φ (Pstep N x W) ∂(gaussianMat A N) := by
@@ -454,7 +508,9 @@ lemma integral_Pkernel (A : ℝ) (N : ℕ) (x : Fin N → ℝ)
 
 /-- **Weak vector stationary equation** `eq:gaussian-vector-weak-stationary-equation`.
 An invariant law `π` of the unrounded vector kernel satisfies the stationary identity
-against every bounded measurable test function. -/
+against every bounded measurable test function.
+@isnad1 id=eq.3h5v.s7.ec69cd1406ac from=translated src=- shape=5cd4b98b vocab=bc13046f
+-/
 theorem vector_stationary_equation (A : ℝ) (N : ℕ) (π : Measure (Fin N → ℝ))
     [IsProbabilityMeasure π] (hπ : Kernel.Invariant (Pkernel A N) π)
     {φ : (Fin N → ℝ) → ℝ} (hφ : Measurable φ) {C : ℝ}
@@ -469,27 +525,35 @@ theorem vector_stationary_equation (A : ℝ) (N : ℕ) (π : Measure (Fin N → 
 /-! ## Origin absorption for `K_{A,N}` (decomposition input) -/
 
 /-- Splitting a real measure into its atom at the origin and its restriction away from
-the origin. -/
+the origin.
+@isnad1 id=eq.0h1v.s6.10a89fbab301 from=translated src=- shape=0510f8ce vocab=d13c4edd
+-/
 lemma measure_eq_atom_zero_add_restrict_compl (ν : Measure ℝ) :
     ν = ν ({0} : Set ℝ) • Measure.dirac 0 + ν.restrict ({0}ᶜ : Set ℝ) := by
   rw [← Measure.restrict_singleton ν 0,
     Measure.restrict_add_restrict_compl (μ := ν) (measurableSet_singleton 0)]
 
 /-- The origin is absorbing for `K_{A,N}`: `K_{A,N}(0, ·) = δ₀`, since `F_{A,N}(0,g) = 0`
-for every noise `g`. -/
+for every noise `g`.
+@isnad1 id=eq.0h2v.s5.8d6f3bcfa799 from=translated src=- shape=56ca612c vocab=2bc875f1
+-/
 lemma Kchain_zero (A : ℝ) (N : ℕ) : Kchain A N 0 = Measure.dirac 0 := by
   have hconst : Fmap A N 0 = fun _ : Fin N → ℝ => (0 : ℝ) := by
     funext g
     simp [Fmap, Real.sqrt_zero, Real.tanh_zero]
   rw [Kchain_apply, hconst, Measure.map_const, measure_univ, one_smul]
 
-/-- Evolving the point mass at the absorbing origin through `K_{A,N}` leaves it fixed. -/
+/-- Evolving the point mass at the absorbing origin through `K_{A,N}` leaves it fixed.
+@isnad1 id=eq.0h2v.s5.bc5e299e48a8 from=translated src=- shape=7cce2338 vocab=dcf56cae
+-/
 lemma Kchain_comp_dirac_zero (A : ℝ) (N : ℕ) :
     Kchain A N ∘ₘ Measure.dirac 0 = Measure.dirac 0 := by
   rw [Measure.dirac_bind (Kernel.measurable _) 0, Kchain_zero]
 
 /-- Kernel evolution respects the decomposition into the origin atom and the law away
-from the origin. -/
+from the origin.
+@isnad1 id=eq.0h3v.s7.1e3fe72c7328 from=translated src=- shape=e0aaab7e vocab=1325502c
+-/
 lemma Kchain_comp_eq_atom_zero_add_restrict_compl (A : ℝ) (N : ℕ) (ν : Measure ℝ) :
     Kchain A N ∘ₘ ν =
       ν ({0} : Set ℝ) • Measure.dirac 0 + Kchain A N ∘ₘ ν.restrict ({0}ᶜ : Set ℝ) := by
@@ -504,7 +568,9 @@ lemma Kchain_comp_eq_atom_zero_add_restrict_compl (A : ℝ) (N : ℕ) (ν : Meas
       rw [Measure.comp_add, Measure.comp_smul, Kchain_comp_dirac_zero]
 
 /-- If a finite law is invariant for `K_{A,N}`, then its restriction away from the
-absorbing origin is itself invariant (as a finite, not necessarily probability, measure). -/
+absorbing origin is itself invariant (as a finite, not necessarily probability, measure).
+@isnad1 id=eq.1h3v.s6.02e240bcbd62 from=translated src=- shape=a0ada5cd vocab=1ee7d033
+-/
 lemma invariant_restrict_compl_zero (A : ℝ) (N : ℕ) (ν : Measure ℝ) [IsFiniteMeasure ν]
     (hν : Kernel.Invariant (Kchain A N) ν) :
     Kchain A N ∘ₘ ν.restrict ({0}ᶜ : Set ℝ) = ν.restrict ({0}ᶜ : Set ℝ) := by
@@ -526,7 +592,9 @@ noncomputable def nonzeroPart (ν : Measure ℝ) : Measure ℝ :=
   (1 - ν ({0} : Set ℝ))⁻¹ • ν.restrict ({0}ᶜ : Set ℝ)
 
 /-- A measure with no atom at the origin is equal to its normalized nonzero
-component. -/
+component.
+@isnad1 id=eq.1h1v.s5.5a3a40d244f1 from=translated src=- shape=a9ad88b2 vocab=f90f4711
+-/
 lemma nonzeroPart_eq_self_of_apply_singleton_zero (ν : Measure ℝ)
     (hν0 : ν ({0} : Set ℝ) = 0) :
     nonzeroPart ν = ν := by
@@ -536,7 +604,9 @@ lemma nonzeroPart_eq_self_of_apply_singleton_zero (ν : Measure ℝ)
   simp [Measure.restrict_eq_self_of_ae_mem hae]
 
 /-- If `ν` is not concentrated at the origin, its normalized nonzero component is a
-probability measure. -/
+probability measure.
+@isnad1 id=isprobab.1h1v.s5.1772f4a1ee50 from=translated src=- shape=193435cc vocab=6f7bb208
+-/
 theorem nonzeroPart_isProbabilityMeasure (ν : Measure ℝ) [IsProbabilityMeasure ν]
     (hν0 : ν ({0} : Set ℝ) < 1) :
     IsProbabilityMeasure (nonzeroPart ν) := by
@@ -546,7 +616,9 @@ theorem nonzeroPart_isProbabilityMeasure (ν : Measure ℝ) [IsProbabilityMeasur
   exact ENNReal.inv_mul_cancel (ne_of_gt (tsub_pos_iff_lt.mpr hν0)) (by finiteness)
 
 /-- Normalizing the invariant restriction away from the absorbing origin preserves
-invariance. -/
+invariance.
+@isnad1 id=invarian.1h3v.s4.dac22536947a from=translated src=- shape=adf020bd vocab=22ebf8bf
+-/
 theorem invariant_nonzeroPart (A : ℝ) (N : ℕ) (ν : Measure ℝ) [IsProbabilityMeasure ν]
     (hν : Kernel.Invariant (Kchain A N) ν) :
     Kernel.Invariant (Kchain A N) (nonzeroPart ν) := by
@@ -554,7 +626,9 @@ theorem invariant_nonzeroPart (A : ℝ) (N : ℕ) (ν : Measure ℝ) [IsProbabil
   rw [nonzeroPart, Measure.comp_smul, invariant_restrict_compl_zero A N ν hν]
 
 /-- If `ν` is supported on `[0,1]`, then its normalized nonzero component is supported
-on `(0,1]`. -/
+on `(0,1]`.
+@isnad1 id=eq.1h1v.s6.1c0867ce0547 from=translated src=- shape=04ebe681 vocab=afd8f973
+-/
 theorem nonzeroPart_Ioc_compl (ν : Measure ℝ)
     (hν_support : ν ((Set.Icc (0 : ℝ) 1)ᶜ) = 0) :
     nonzeroPart ν ((Set.Ioc (0 : ℝ) 1)ᶜ) = 0 := by
@@ -568,7 +642,9 @@ theorem nonzeroPart_Ioc_compl (ν : Measure ℝ)
 
 /-- `K_{A,N}` does not charge the origin from a positive radius: `K_{A,N}(s, {0}) = 0`
 for `s > 0` (`A ≠ 0`, `0 < N`), since `F_{A,N}(s,g) = 0` forces every Gaussian coordinate
-to vanish, a `𝒢_N`-null event. -/
+to vanish, a `𝒢_N`-null event.
+@isnad1 id=eq.3h3v.s6.4520522781aa from=translated src=- shape=c4c8d1e2 vocab=b04f393a
+-/
 lemma Kchain_singleton_zero (A : ℝ) {N : ℕ} (hN : 0 < N) (hA : A ≠ 0) {s : ℝ} (hs : 0 < s) :
     Kchain A N s ({(0 : ℝ)}) = 0 := by
   have hAs : A * Real.sqrt s ≠ 0 := mul_ne_zero hA (Real.sqrt_ne_zero'.2 hs)
@@ -602,7 +678,9 @@ lemma Kchain_singleton_zero (A : ℝ) {N : ℕ} (hN : 0 < N) (hA : A ≠ 0) {s :
 (`prop:gaussian-compactness-selection`, vector-law existence, via
 `prop:gaussian-tv-reduction`). For `0 < N` and `q ∈ [0,1]`, there is a probability
 measure `π = ν J_{A,N}` invariant for `P_{A,N}`, obtained from an invariant scalar law
-`ν ∈ 𝓘_{A,N}(q)` by reconstruction. -/
+`ν ∈ 𝓘_{A,N}(q)` by reconstruction.
+@isnad1 id=ex.2h3v.s6.b820942b14d9 from=translated src=- shape=01ac5a4a vocab=8b3d6b66
+-/
 theorem exists_invariant_Pkernel_of_cesaro (A : ℝ) {N : ℕ} (hN : 0 < N) {q : ℝ}
     (hq : q ∈ Set.Icc (0 : ℝ) 1) :
     ∃ π : Measure (Fin N → ℝ), IsProbabilityMeasure π ∧ Kernel.Invariant (Pkernel A N) π := by

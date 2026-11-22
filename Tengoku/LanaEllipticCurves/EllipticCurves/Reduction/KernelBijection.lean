@@ -60,7 +60,9 @@ valuation `< 1`, then `W₁ = W₂`.  The difference `d = W₁ - W₂` factors a
 (each coefficient is integral and every monomial has a factor of valuation `< 1`), so `d = 0`.
 
 Exposed (was `private`) so the numeric formal-group evaluation (`Reduction/FormalGroupEval.lean`)
-can identify the `(z, w)`-plane chord line values with the coordinate expansion `wParam`. -/
+can identify the `(z, w)`-plane chord line values with the coordinate expansion `wParam`.
+@isnad1 id=eq.5h6v.s9.0112a9d49e0c from=translated src=- shape=1ee573e7 vocab=4965a3a3
+-/
 theorem wFunctionalEq_unique (W : WeierstrassCurve K) [IsIntegral R W]
     {Z W₁ W₂ : K}
     (hZ : valuation K (maximalIdeal R) Z < 1)
@@ -117,7 +119,9 @@ theorem wFunctionalEq_unique (W : WeierstrassCurve K) [IsIntegral R W]
 /-- **The coordinate expansion recovers the point.** For a point `P = (x, y)` reducing to the origin
 (`1 < v x`) with nonzero local parameter, the recovered point `pointOfParam (z P)` equals `P`.  The
 key step is `w(z P) = -1/y` (numeric uniqueness of the functional equation), which gives back the
-coordinates `x(z P) = x` and `y(z P) = y`. -/
+coordinates `x(z P) = x` and `y(z P) = y`.
+@isnad1 id=eq.3h5v.s8.20e5ee779120 from=translated src=- shape=e3d1db1e vocab=bcc38285
+-/
 theorem pointOfParam_localParamR (W : WeierstrassCurve K) [IsIntegral R W] [W.IsElliptic]
     {x y : K} {h : W.toAffine.Nonsingular x y} (hx : 1 < valuation K (maximalIdeal R) x)
     (hz0 : localParamR R W (.some x y h) ≠ 0) :
@@ -157,7 +161,9 @@ theorem pointOfParam_localParamR (W : WeierstrassCurve K) [IsIntegral R W] [W.Is
   exact ⟨hxP, hyP⟩
 
 omit [IsAdicComplete (maximalIdeal R).asIdeal R] in
-/-- The local parameter of a nonzero point reducing to the origin is nonzero: `z(P) ≠ 0`. -/
+/-- The local parameter of a nonzero point reducing to the origin is nonzero: `z(P) ≠ 0`.
+@isnad1 id=ne.2h5v.s7.935b8cdd137b from=translated src=- shape=30922f2d vocab=bf8c0a1c
+-/
 theorem localParamR_ne_zero_of_reduces (W : WeierstrassCurve K) [IsIntegral R W]
     {x y : K} {h : W.toAffine.Nonsingular x y} (hx : 1 < valuation K (maximalIdeal R) x) :
     localParamR R W (.some x y h) ≠ 0 := by
@@ -186,7 +192,9 @@ noncomputable def paramRecover (W : WeierstrassCurve K) [IsIntegral R W] [W.IsEl
   else ⟨pointOfParam R W t.2 h, reducesToZero_pointOfParam R W t.2 h⟩
 
 /-- `paramRecover` is a left inverse of `zParam`: recovering the point from its local parameter
-returns the original point. -/
+returns the original point.
+@isnad1 id=leftinve.0h3v.s7.7266125cb8eb from=translated src=- shape=a40c222c vocab=43ef7cf3
+-/
 theorem paramRecover_zParam (W : WeierstrassCurve K) [IsIntegral R W] [W.IsElliptic] :
     Function.LeftInverse (paramRecover R W) (zParam R W) := by
   rintro ⟨p, hp⟩
@@ -204,13 +212,17 @@ theorem paramRecover_zParam (W : WeierstrassCurve K) [IsIntegral R W] [W.IsEllip
     rw [dite_eq_right hne]
     exact Subtype.ext (pointOfParam_localParamR R W hx hne)
 
-/-- **Injectivity of the local parameter** `zParam : E₁(K) → 𝔪`. -/
+/-- **Injectivity of the local parameter** `zParam : E₁(K) → 𝔪`.
+@isnad1 id=injectiv.0h3v.s7.36d3ad48a383 from=translated src=- shape=ab562da4 vocab=3f7a58e5
+-/
 theorem zParam_injective (W : WeierstrassCurve K) [IsIntegral R W] [W.IsElliptic] :
     Function.Injective (zParam R W) :=
   (paramRecover_zParam R W).injective
 
 /-- **The local parameter is bijective**: together with `zParam_surjective` this closes the
-set-level bijection `E₁(K) ≃ 𝔪`. -/
+set-level bijection `E₁(K) ≃ 𝔪`.
+@isnad1 id=bijectiv.0h3v.s7.fd3ae84f3ace from=translated src=- shape=ab562da4 vocab=198443de
+-/
 theorem zParam_bijective (W : WeierstrassCurve K) [IsIntegral R W] [W.IsElliptic] :
     Function.Bijective (zParam R W) :=
   ⟨zParam_injective R W, zParam_surjective R W⟩

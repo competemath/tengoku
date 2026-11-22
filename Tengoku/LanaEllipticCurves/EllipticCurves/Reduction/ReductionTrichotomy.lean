@@ -59,7 +59,9 @@ variable [IsDomain R] [IsDiscreteValuationRing R] [IsFractionRing R K]
 
 variable (R) in
 /-- **Bad reduction is exactly multiplicative-or-additive reduction.** For a minimal model, failing
-to have good reduction is equivalent to having one of the two bad types. -/
+to have good reduction is equivalent to having one of the two bad types.
+@isnad1 id=iff.0h3v.s6.23e9c4047f83 from=translated src=- shape=ffd31f60 vocab=fece6537
+-/
 theorem not_hasGoodReduction_iff_hasMultiplicativeReduction_or_hasAdditiveReduction
     (W : WeierstrassCurve K) [IsMinimal R W] :
     ¬ W.HasGoodReduction R ↔
@@ -77,14 +79,18 @@ theorem not_hasGoodReduction_iff_hasMultiplicativeReduction_or_hasAdditiveReduct
 variable (R) in
 /-- **Bad reduction ⟺ the reduced curve is singular.** For a minimal model, `W` fails to have good
 reduction exactly when the discriminant of the reduced curve vanishes (`Δ̃ = 0`) — the complement of
-`hasGoodReduction_iff_reduction_Δ_ne_zero`. -/
+`hasGoodReduction_iff_reduction_Δ_ne_zero`.
+@isnad1 id=iff.0h3v.s7.09c8754eec81 from=translated src=- shape=95d44c7c vocab=76d62fc2
+-/
 theorem not_hasGoodReduction_iff_reduction_Δ_eq_zero (W : WeierstrassCurve K) [IsMinimal R W] :
     ¬ W.HasGoodReduction R ↔ (W.reduction R).Δ = 0 := by
   rw [hasGoodReduction_iff_reduction_Δ_ne_zero R W, not_not]
 
 variable (R) in
 /-- **The exclusive reduction-type trichotomy.** For a minimal model, exactly one of good,
-multiplicative, additive reduction holds. -/
+multiplicative, additive reduction holds.
+@isnad1 id=or.0h3v.s7.e0a4788b630d from=translated src=- shape=a5bfdbc0 vocab=fece6537
+-/
 theorem hasGoodReduction_trichotomy (W : WeierstrassCurve K) [IsMinimal R W] :
     (W.HasGoodReduction R ∧ ¬ W.HasMultiplicativeReduction R ∧ ¬ W.HasAdditiveReduction R) ∨
       (¬ W.HasGoodReduction R ∧ W.HasMultiplicativeReduction R ∧ ¬ W.HasAdditiveReduction R) ∨
@@ -96,7 +102,9 @@ theorem hasGoodReduction_trichotomy (W : WeierstrassCurve K) [IsMinimal R W] :
   · exact Or.inr (Or.inr ⟨h.not_hasGoodReduction, h.not_hasMultiplicativeReduction, h⟩)
 
 variable (R) in
-/-- **Good reduction is the complement of the two bad types.** -/
+/-- **Good reduction is the complement of the two bad types.**
+@isnad1 id=iff.0h3v.s6.b76c60e79a2e from=translated src=- shape=f08167e9 vocab=fece6537
+-/
 theorem hasGoodReduction_iff_not_multiplicative_and_not_additive
     (W : WeierstrassCurve K) [IsMinimal R W] :
     W.HasGoodReduction R ↔
@@ -112,7 +120,9 @@ theorem hasGoodReduction_iff_not_multiplicative_and_not_additive
     · exact absurd h ha
 
 variable (R) in
-/-- **Multiplicative reduction is the complement of good and additive.** -/
+/-- **Multiplicative reduction is the complement of good and additive.**
+@isnad1 id=iff.0h3v.s6.81503abb714e from=translated src=- shape=f08167e9 vocab=fece6537
+-/
 theorem hasMultiplicativeReduction_iff_not_good_and_not_additive
     (W : WeierstrassCurve K) [IsMinimal R W] :
     W.HasMultiplicativeReduction R ↔
@@ -128,7 +138,9 @@ theorem hasMultiplicativeReduction_iff_not_good_and_not_additive
     · exact absurd h ha
 
 variable (R) in
-/-- **Additive reduction is the complement of good and multiplicative.** -/
+/-- **Additive reduction is the complement of good and multiplicative.**
+@isnad1 id=iff.0h3v.s6.74ca75da5678 from=translated src=- shape=f08167e9 vocab=fece6537
+-/
 theorem hasAdditiveReduction_iff_not_good_and_not_multiplicative
     (W : WeierstrassCurve K) [IsMinimal R W] :
     W.HasAdditiveReduction R ↔

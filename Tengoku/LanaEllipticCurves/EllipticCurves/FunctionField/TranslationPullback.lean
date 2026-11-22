@@ -116,7 +116,9 @@ noncomputable def genX (W : Affine F) : W.FunctionField := genPsi W (mk W (C X))
 noncomputable def genY (W : Affine F) : W.FunctionField := genPsi W (AdjoinRoot.root W.polynomial)
 
 /-- **The generic point lies on the curve.** The coordinate generators `(genX, genY)` of `F(W)`
-satisfy the Weierstrass equation of the base-changed curve `W ⁄ F(W)`. -/
+satisfy the Weierstrass equation of the base-changed curve `W ⁄ F(W)`.
+@isnad1 id=equation.0h2v.s9.825e34b33e03 from=translated src=- shape=57c13c5f vocab=53a9f013
+-/
 lemma equation_gen : (W.map (algebraMap F W.FunctionField)).Equation (genX W) (genY W) := by
   set φ := algebraMap F W.FunctionField with hφ
   set ψ := genPsi W with hψ
@@ -133,7 +135,9 @@ lemma equation_gen : (W.map (algebraMap F W.FunctionField)).Equation (genX W) (g
   change (W.map φ).polynomial.evalEval (genX W) (genY W) = 0
   rw [map_polynomial, ← eval₂_eval₂RingHom_apply, ← hcomp, key]
 
-/-- The image of a base constant `C (C c)` under `mk`, pushed into `F(W)`, is `algebraMap F _ c`. -/
+/-- The image of a base constant `C (C c)` under `mk`, pushed into `F(W)`, is `algebraMap F _ c`.
+@isnad1 id=eq.0h3v.s10.6f25bebbd2a4 from=translated src=- shape=4db9257b vocab=385a4381
+-/
 lemma genPsi_mk_CC (c : F) :
     genPsi W (mk W (C (C c))) = algebraMap F W.FunctionField c := by
   have h1 : mk W (C (C c)) = algebraMap F W.CoordinateRing c := by
@@ -142,7 +146,9 @@ lemma genPsi_mk_CC (c : F) :
     rfl
   rw [genPsi, h1, ← IsScalarTower.algebraMap_apply]
 
-/-- **Genericity.** The generic `x`-coordinate is not the constant `x₂`. -/
+/-- **Genericity.** The generic `x`-coordinate is not the constant `x₂`.
+@isnad1 id=ne.0h3v.s9.9dea46c6f003 from=translated src=- shape=ed580e5d vocab=711076f4
+-/
 lemma genX_ne (x₂ : F) : genX W ≠ algebraMap F W.FunctionField x₂ := by
   have hgen : genX W - algebraMap F W.FunctionField x₂ = genPsi W (XClass W x₂) := by
     rw [XClass, C_sub, map_sub, map_sub, ← genX, ← genPsi_mk_CC (W := W) x₂]
@@ -175,7 +181,9 @@ noncomputable def translateCoordHom (h₂ : W.Equation x₂ y₂) :
         (fun hh => genX_ne x₂ hh.1))
 
 open Classical in
-/-- Image of the `x`-generator under the translation pullback: the `x`-coordinate of `P + T`. -/
+/-- Image of the `x`-generator under the translation pullback: the `x`-coordinate of `P + T`.
+@isnad1 id=eq.1h4v.s12.2800aed2adab from=translated src=- shape=f97cbde7 vocab=85075506
+-/
 lemma translateCoordHom_X (h₂ : W.Equation x₂ y₂) :
     translateCoordHom h₂ (mk W (C X)) =
       (W.map (algebraMap F W.FunctionField)).addX (genX W) (algebraMap F W.FunctionField x₂)
@@ -187,7 +195,9 @@ lemma translateCoordHom_X (h₂ : W.Equation x₂ y₂) :
 
 open Classical in
 /-- Image of the `y`-generator (the root) under the translation pullback: the `y`-coordinate of
-`P + T`. -/
+`P + T`.
+@isnad1 id=eq.1h4v.s12.be6b2a06dca5 from=translated src=- shape=05666208 vocab=51412823
+-/
 @[simp] lemma translateCoordHom_root (h₂ : W.Equation x₂ y₂) :
     translateCoordHom h₂ (AdjoinRoot.root W.polynomial) =
       (W.map (algebraMap F W.FunctionField)).addY (genX W) (algebraMap F W.FunctionField x₂)

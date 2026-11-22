@@ -63,20 +63,26 @@ noncomputable def chordIntercept : R :=
   adicEvalMv (maximalIdeal R).asIdeal ha (integralModel R W).formalGroupNu
 
 omit [IsFractionRing R K] in
-/-- The chord line value at `z₁` unfolds to `λ z₁ + ν`. -/
+/-- The chord line value at `z₁` unfolds to `λ z₁ + ν`.
+@isnad1 id=eq.1h5v.s7.96c101da03a8 from=translated src=- shape=f3a6259b vocab=51094257
+-/
 theorem wLineZero_eq_chord :
     wLineZero R W ha = chordSlope R W ha * z₁ + chordIntercept R W ha := by
   rw [wLineZero, chordSlope, chordIntercept, map_add, map_mul, adicEvalMv_X]
   rfl
 
 omit [IsFractionRing R K] in
-/-- The chord line value at `z₂` unfolds to `λ z₂ + ν`. -/
+/-- The chord line value at `z₂` unfolds to `λ z₂ + ν`.
+@isnad1 id=eq.1h5v.s7.8de26896ad99 from=translated src=- shape=91fc6fa3 vocab=bd3f15cb
+-/
 theorem wLineOne_eq_chord : wLineOne R W ha = chordSlope R W ha * z₂ + chordIntercept R W ha := by
   rw [wLineOne, chordSlope, chordIntercept, map_add, map_mul, adicEvalMv_X]
   rfl
 
 omit [IsFractionRing R K] in
-/-- Numeric closed form of the cubic's leading coefficient `A = φ formalGroupLead`. -/
+/-- Numeric closed form of the cubic's leading coefficient `A = φ formalGroupLead`.
+@isnad1 id=eq.1h5v.s9.cd5d655e6460 from=translated src=- shape=8ea6e8f7 vocab=35588352
+-/
 theorem adicEvalMv_formalGroupLead :
     adicEvalMv (maximalIdeal R).asIdeal ha (integralModel R W).formalGroupLead =
       1 + (integralModel R W).a₂ * chordSlope R W ha
@@ -86,7 +92,9 @@ theorem adicEvalMv_formalGroupLead :
   simp only [map_add, map_mul, map_pow, map_one, adicEvalMv_C]
 
 omit [IsFractionRing R K] in
-/-- Numeric closed form of the cubic's `z²`-coefficient `S = φ formalGroupSub`. -/
+/-- Numeric closed form of the cubic's `z²`-coefficient `S = φ formalGroupSub`.
+@isnad1 id=eq.1h5v.s9.ea8d1772177b from=translated src=- shape=9e2b9761 vocab=0ad09ec3
+-/
 theorem adicEvalMv_formalGroupSub :
     adicEvalMv (maximalIdeal R).asIdeal ha (integralModel R W).formalGroupSub =
       (integralModel R W).a₁ * chordSlope R W ha
@@ -104,7 +112,9 @@ noncomputable def thirdRootNum : R :=
 omit [IsFractionRing R K] in
 /-- **The Vieta relation for the third root.** With `A = φ formalGroupLead`, `S = φ formalGroupSub`
 and `t = φ formalThirdRoot`, one has `A·(t + z₁ + z₂) + S = 0` — the statement that `t` is the
-third root of the cubic `A z³ + S z² + ⋯` complementary to the two known roots `z₁, z₂`. -/
+third root of the cubic `A z³ + S z² + ⋯` complementary to the two known roots `z₁, z₂`.
+@isnad1 id=eq.1h5v.s9.301a86cdffc5 from=translated src=- shape=12efd393 vocab=47b1866e
+-/
 theorem formalThirdRoot_vieta :
     adicEvalMv (maximalIdeal R).asIdeal ha (integralModel R W).formalGroupLead
         * (thirdRootNum R W ha + z₁ + z₂)
@@ -124,7 +134,9 @@ omit [IsFractionRing R K] in
 Weierstrass functional equation.  This is the geometric heart of the addition law: the chord through
 the two curve points `(z₁, w(z₁))`, `(z₂, w(z₂))` meets the `(z, w)`-curve in a third point,
 obtained by Vieta from the two known intersections (`wLineZero/One_functional_eq` +
-`formalThirdRoot_vieta`).  Requires `z₁ ≠ z₂` (the secant case). -/
+`formalThirdRoot_vieta`).  Requires `z₁ ≠ z₂` (the secant case).
+@isnad1 id=eq.2h5v.s9.46dcbedc20d3 from=translated src=- shape=85f9a632 vocab=6aa96975
+-/
 theorem thirdChordPoint_functional_eq (hz : z₁ ≠ z₂) :
     chordSlope R W ha * thirdRootNum R W ha + chordIntercept R W ha
       = thirdRootNum R W ha ^ 3
@@ -152,7 +164,9 @@ theorem thirdChordPoint_functional_eq (hz : z₁ ≠ z₂) :
 omit [IsFractionRing R K] in
 /-- Numeric closed form of the negation denominator `den = φ formalGroupDen`, in terms of the third
 root `t`, the chord slope `λ` and intercept `ν`: `den = 1 - a₁ t - a₃ (λ t + ν)`.  Here `λ t + ν`
-is the `w`-coordinate of the third chord point. -/
+is the `w`-coordinate of the third chord point.
+@isnad1 id=eq.1h5v.s8.529d6718f5d1 from=translated src=- shape=0f57ff49 vocab=0fa0275f
+-/
 theorem adicEvalMv_formalGroupDen :
     adicEvalMv (maximalIdeal R).asIdeal ha (integralModel R W).formalGroupDen =
       1 - (integralModel R W).a₁ * thirdRootNum R W ha
@@ -166,7 +180,9 @@ omit [IsFractionRing R K] in
 satisfies `den · φ formalGroupZW = -t`, where `t = φ formalThirdRoot` is the third chord root and
 `den = φ formalGroupDen` is the negation denominator.  Combined with the closed forms for `den`
 and `t`, this expresses the formal sum `z₁ ⊕ z₂` as the numeric inversion of the third chord
-point — the last formal-side ingredient before the affine matching. -/
+point — the last formal-side ingredient before the affine matching.
+@isnad1 id=eq.1h5v.s8.a0484733c9f6 from=translated src=- shape=09ab8024 vocab=15c2cc44
+-/
 theorem formalGroupDen_mul_adicEvalMv_formalGroupZW :
     adicEvalMv (maximalIdeal R).asIdeal ha (integralModel R W).formalGroupDen
         * adicEvalMv (maximalIdeal R).asIdeal ha (integralModel R W).formalGroupZW

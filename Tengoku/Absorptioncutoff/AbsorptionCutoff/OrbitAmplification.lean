@@ -23,17 +23,23 @@ open scoped Topology
 noncomputable def fixedPrecisionScale (N : ℕ) : ℝ :=
   (Real.log N)⁻¹
 
-/-- The reciprocal terminal scale is exactly `log N`. -/
+/-- The reciprocal terminal scale is exactly `log N`.
+@isnad1 id=eq.0h1v.s3.8a7c2a4e8645 from=translated src=- shape=7ed3a59c vocab=c679e612
+-/
 lemma fixedPrecisionScale_inv (N : ℕ) :
     (fixedPrecisionScale N)⁻¹ = Real.log N := by
   rw [fixedPrecisionScale, inv_inv]
 
-/-- Division by the terminal scale is multiplication by `log N`. -/
+/-- Division by the terminal scale is multiplication by `log N`.
+@isnad1 id=eq.0h2v.s4.e47472ced2cd from=translated src=- shape=5af7c3af vocab=150c3fd3
+-/
 lemma div_fixedPrecisionScale (K : ℝ) (N : ℕ) :
     K / fixedPrecisionScale N = K * Real.log N := by
   rw [div_eq_mul_inv, fixedPrecisionScale_inv]
 
-/-- The logarithmic tail horizon is exactly an affine function of `log log N`. -/
+/-- The logarithmic tail horizon is exactly an affine function of `log log N`.
+@isnad1 id=eq.2h2v.s5.7d527d0f5c2e from=translated src=- shape=056ad62c vocab=ca65de73
+-/
 lemma log_div_fixedPrecisionScale {C₀ : ℝ} {N : ℕ}
     (hC₀ : 0 < C₀) (hN : 1 < N) :
     Real.log (C₀ / fixedPrecisionScale N) =
@@ -50,14 +56,18 @@ noncomputable def roundedOrbit (A ρ h₀ : ℝ) (t : ℕ) : ℝ :=
 noncomputable def roundedOrbitEntrance (A ρ h₀ r : ℝ) : ℕ :=
   sInf {t : ℕ | roundedOrbit A ρ h₀ t ≤ r}
 
-/-- A nonempty entrance set is reached at its infimum. -/
+/-- A nonempty entrance set is reached at its infimum.
+@isnad1 id=le.1h4v.s5.e557d4db45a0 from=translated src=- shape=137635d3 vocab=6afa20f5
+-/
 lemma roundedOrbitEntrance_spec {A ρ h₀ r : ℝ}
     (hexists : ∃ t : ℕ, roundedOrbit A ρ h₀ t ≤ r) :
     roundedOrbit A ρ h₀ (roundedOrbitEntrance A ρ h₀ r) ≤ r := by
   exact Nat.sInf_mem hexists
 
 /-- Strictly before the entrance index, the orbit remains above the target
-radius. -/
+radius.
+@isnad1 id=lt.1h5v.s4.960b6aae0c8d from=translated src=- shape=26cca2d3 vocab=6b2069fb
+-/
 lemma roundedOrbit_lt_entrance {A ρ h₀ r : ℝ} {t : ℕ}
     (ht : t < roundedOrbitEntrance A ρ h₀ r) :
     r < roundedOrbit A ρ h₀ t := by
@@ -65,7 +75,9 @@ lemma roundedOrbit_lt_entrance {A ρ h₀ r : ℝ} {t : ℕ}
   have hmem : t ∈ {u : ℕ | roundedOrbit A ρ h₀ u ≤ r} := not_lt.mp hnot
   exact (not_le_of_gt ht) (Nat.sInf_le hmem)
 
-/-- An antitone orbit stays below a target radius after entering it. -/
+/-- An antitone orbit stays below a target radius after entering it.
+@isnad1 id=le.3h5v.s5.f02da0ae4ae1 from=translated src=- shape=0ec26b46 vocab=bfefc6ca
+-/
 lemma roundedOrbit_le_of_entrance_le {A ρ h₀ r : ℝ} {t : ℕ}
     (hexists : ∃ u : ℕ, roundedOrbit A ρ h₀ u ≤ r)
     (hanti : Antitone (roundedOrbit A ρ h₀))
@@ -73,7 +85,9 @@ lemma roundedOrbit_le_of_entrance_le {A ρ h₀ r : ℝ} {t : ℕ}
     roundedOrbit A ρ h₀ t ≤ r :=
   (hanti ht).trans (roundedOrbitEntrance_spec hexists)
 
-/-- Reaching a smaller radius cannot occur before reaching a larger one. -/
+/-- Reaching a smaller radius cannot occur before reaching a larger one.
+@isnad1 id=le.2h5v.s5.1e918faeb22c from=translated src=- shape=d7eccfdc vocab=6afa20f5
+-/
 lemma roundedOrbitEntrance_mono_radius {A ρ h₀ a r : ℝ}
     (har : a ≤ r)
     (hexists : ∃ u : ℕ, roundedOrbit A ρ h₀ u ≤ a) :
@@ -81,25 +95,33 @@ lemma roundedOrbitEntrance_mono_radius {A ρ h₀ a r : ℝ}
   apply Nat.sInf_le
   exact (roundedOrbitEntrance_spec hexists).trans har
 
-/-- The rounded deterministic orbit starts from its prescribed initial radius. -/
+/-- The rounded deterministic orbit starts from its prescribed initial radius.
+@isnad1 id=eq.0h3v.s4.115776d0bf1c from=translated src=- shape=bdc88553 vocab=83818614
+-/
 @[simp]
 lemma roundedOrbit_zero (A ρ h₀ : ℝ) :
     roundedOrbit A ρ h₀ 0 = h₀ := by
   simp [roundedOrbit]
 
-/-- The rounded deterministic orbit obeys the mean-map recursion. -/
+/-- The rounded deterministic orbit obeys the mean-map recursion.
+@isnad1 id=eq.0h4v.s5.e126992f8741 from=translated src=- shape=3abca3de vocab=7863365f
+-/
 lemma roundedOrbit_succ (A ρ h₀ : ℝ) (t : ℕ) :
     roundedOrbit A ρ h₀ (t + 1) =
       roundedMeanMap A ρ (roundedOrbit A ρ h₀ t) := by
   exact Function.iterate_succ_apply' (roundedMeanMap A ρ) t h₀
 
-/-- The terminal deterministic radius scale is positive once `N>1`. -/
+/-- The terminal deterministic radius scale is positive once `N>1`.
+@isnad1 id=lt.1h1v.s4.349389170a24 from=translated src=- shape=7f2e781e vocab=106e2d08
+-/
 lemma fixedPrecisionScale_pos {N : ℕ} (hN : 1 < N) :
     0 < fixedPrecisionScale N := by
   rw [fixedPrecisionScale]
   exact inv_pos.mpr (Real.log_pos (by exact_mod_cast hN))
 
-/-- The terminal fixed-precision radius tends to zero with the dimension. -/
+/-- The terminal fixed-precision radius tends to zero with the dimension.
+@isnad1 id=tendsto.0h0v.s4.0246168f1c93 from=translated src=- shape=8e2810f0 vocab=b94cb1ab
+-/
 lemma tendsto_fixedPrecisionScale_zero :
     Tendsto fixedPrecisionScale atTop (𝓝 0) := by
   convert
@@ -108,7 +130,9 @@ lemma tendsto_fixedPrecisionScale_zero :
   ext N
   rfl
 
-/-- The double logarithm of the dimension diverges. -/
+/-- The double logarithm of the dimension diverges.
+@isnad1 id=tendsto.0h0v.s4.a4d34c5471f2 from=translated src=- shape=20617b75 vocab=56f69aea
+-/
 lemma tendsto_log_log_nat_atTop :
     Tendsto (fun N : ℕ => Real.log (Real.log N)) atTop atTop := by
   convert Real.tendsto_log_atTop.comp
@@ -117,7 +141,9 @@ lemma tendsto_log_log_nat_atTop :
   rfl
 
 /-- Every quadratic-logarithmic exponential is sublinear in the dimension:
-`N⁻¹ exp(C (log log N)²) → 0`. -/
+`N⁻¹ exp(C (log log N)²) → 0`.
+@isnad1 id=tendsto.0h1v.s6.ea585dedda60 from=translated src=- shape=8422064f vocab=97762865
+-/
 lemma tendsto_inv_nat_mul_exp_log_log_sq_zero (C : ℝ) :
     Tendsto
       (fun N : ℕ =>
@@ -198,7 +224,9 @@ lemma tendsto_inv_nat_mul_exp_log_log_sq_zero (C : ℝ) :
       Real.exp_le_exp.mpr hbound
 
 /-- The paper's horizon hypothesis is unchanged if the capped-exit sentinel
-replaces `T_N` by `T_N + 1`. -/
+replaces `T_N` by `T_N + 1`.
+@isnad1 id=tendsto.1h2v.s7.56a54ec51f46 from=translated src=- shape=4d136c4e vocab=a0dc9e42
+-/
 lemma tendsto_succ_nat_div_mul_exp_log_log_sq_zero
     (T : ℕ → ℕ)
     (hT : ∀ C : ℝ,
@@ -221,7 +249,9 @@ lemma tendsto_succ_nat_div_mul_exp_log_log_sq_zero
     ring
   · simp
 
-/-- Every fixed real number is eventually below `log log N`. -/
+/-- Every fixed real number is eventually below `log log N`.
+@isnad1 id=ex.0h1v.s4.e374921d2b1d from=translated src=- shape=23986f5c vocab=a0466d8a
+-/
 lemma exists_eventually_le_log_log_nat (x : ℝ) :
     ∃ N₀ : ℕ, ∀ N : ℕ, N₀ ≤ N → x ≤ Real.log (Real.log N) := by
   have heventually :
@@ -230,7 +260,9 @@ lemma exists_eventually_le_log_log_nat (x : ℝ) :
   rw [eventually_atTop] at heventually
   exact heventually
 
-/-- Every positive constant times `log N` is eventually at least one. -/
+/-- Every positive constant times `log N` is eventually at least one.
+@isnad1 id=ex.1h1v.s5.2ba5ba1f0f17 from=translated src=- shape=58a09910 vocab=84f0ff48
+-/
 lemma exists_eventually_one_le_mul_log_nat {K : ℝ} (hK : 0 < K) :
     ∃ N₀ : ℕ, ∀ N : ℕ, N₀ ≤ N → 1 ≤ K * Real.log N := by
   have htend :
@@ -248,7 +280,9 @@ lemma exists_eventually_one_le_mul_log_nat {K : ℝ} (hK : 0 < K) :
   simpa [mul_comm] using (div_le_iff₀ hK).mp (hN₀ N hN)
 
 /-- Eventually, the logarithm of the truncated tail factor is affine in
-`log log N`. -/
+`log log N`.
+@isnad1 id=ex.1h1v.s6.f726f7facc9a from=translated src=- shape=d029f251 vocab=072ec5dc
+-/
 lemma exists_eventually_log_max_one_mul_log_eq {K : ℝ} (hK : 0 < K) :
     ∃ N₀ : ℕ, ∀ N : ℕ, N₀ ≤ N →
       Real.log (max 1 (K * Real.log N)) =
@@ -261,7 +295,9 @@ lemma exists_eventually_log_max_one_mul_log_eq {K : ℝ} (hK : 0 < K) :
   rw [max_eq_right hmul, Real.log_mul hK.ne' hlog.ne']
 
 /-- Beyond a finite dimension threshold, the terminal scale is positive and
-below any prescribed positive bound. -/
+below any prescribed positive bound.
+@isnad1 id=ex.1h1v.s5.1a6d68260d31 from=translated src=- shape=f259720c vocab=8a46d2a9
+-/
 lemma exists_eventually_fixedPrecisionScale_bounds {a₀ : ℝ} (ha₀ : 0 < a₀) :
     ∃ N₀ : ℕ, ∀ N : ℕ, N₀ ≤ N →
       1 < N ∧ 0 < fixedPrecisionScale N ∧ fixedPrecisionScale N ≤ a₀ := by
@@ -276,18 +312,24 @@ lemma exists_eventually_fixedPrecisionScale_bounds {a₀ : ℝ} (ha₀ : 0 < a�
   have hNone : 1 < N := by omega
   exact ⟨hNone, fixedPrecisionScale_pos hNone, (hN₁ N hN₁N).le⟩
 
-/-- The rounded mean map is nonnegative because it is an integral of squares. -/
+/-- The rounded mean map is nonnegative because it is an integral of squares.
+@isnad1 id=le.0h3v.s4.ed98ddd48dbd from=translated src=- shape=ac9c39a3 vocab=aa0bf7bd
+-/
 lemma roundedMeanMap_nonneg (A ρ h : ℝ) :
     0 ≤ roundedMeanMap A ρ h :=
   integral_nonneg fun g => by positivity
 
-/-- The rounded mean map vanishes on the nonpositive half-line. -/
+/-- The rounded mean map vanishes on the nonpositive half-line.
+@isnad1 id=eq.1h3v.s4.f7a4e44694ca from=translated src=- shape=84fcc214 vocab=aa0bf7bd
+-/
 lemma roundedMeanMap_of_nonpos (A ρ : ℝ) {h : ℝ} (hh : h ≤ 0) :
     roundedMeanMap A ρ h = 0 := by
   have hQ : Q₁ (0 : ℝ) = 0 := (Q₁_zero_iff 0).mpr (by norm_num)
   simp [roundedMeanMap, Real.sqrt_eq_zero_of_nonpos hh, hQ]
 
-/-- The rounded mean map has the paper's flat extension at the radius origin. -/
+/-- The rounded mean map has the paper's flat extension at the radius origin.
+@isnad1 id=hasderiv.3h2v.s6.9f03a12a4108 from=translated src=- shape=a965af28 vocab=6daf3558
+-/
 lemma hasDerivAt_roundedMeanMap_zero {A ρ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     HasDerivAt (roundedMeanMap A ρ) 0 0 := by
@@ -348,14 +390,18 @@ lemma hasDerivAt_roundedMeanMap_zero {A ρ : ℝ}
       simpa only [slope, roundedMeanMap_of_nonpos A ρ le_rfl,
         sub_zero, smul_eq_mul] using hslopeUpper
 
-/-- The derivative of the rounded mean map vanishes at the radius origin. -/
+/-- The derivative of the rounded mean map vanishes at the radius origin.
+@isnad1 id=eq.3h2v.s6.c69e4b12d5cd from=translated src=- shape=5d44dad4 vocab=8925679d
+-/
 lemma deriv_roundedMeanMap_zero {A ρ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     deriv (roundedMeanMap A ρ) 0 = 0 :=
   (hasDerivAt_roundedMeanMap_zero hA hρ hρ_lt).deriv
 
 /-- The rounded mean map, extended by zero on the nonpositive half-line, is
-globally continuous. -/
+globally continuous.
+@isnad1 id=continuo.3h2v.s5.224b27e51ead from=translated src=- shape=58d0f17e vocab=3f031410
+-/
 lemma continuous_roundedMeanMap {A ρ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     Continuous (roundedMeanMap A ρ) := by
@@ -377,7 +423,9 @@ lemma continuous_roundedMeanMap {A ρ : ℝ}
   · exact (hasDerivAt_roundedMeanMap hA hρ hh).continuousAt
 
 /-- The rescaled inverse-square exponential envelope extends continuously
-through the origin. -/
+through the origin.
+@isnad1 id=continuo.0h1v.s6.28cb2253b597 from=translated src=- shape=9d1db0de vocab=e4eacd99
+-/
 lemma continuous_inv_sq_mul_expNegInvGlue_div (c : ℝ) :
     Continuous
       ((fun x : ℝ =>
@@ -386,7 +434,9 @@ lemma continuous_inv_sq_mul_expNegInvGlue_div (c : ℝ) :
   (expNegInvGlue.continuous_polynomial_eval_inv_mul
     (Polynomial.X ^ 2)).comp (continuous_id.div_const c)
 
-/-- The rescaled inverse-square exponential envelope vanishes at the origin. -/
+/-- The rescaled inverse-square exponential envelope vanishes at the origin.
+@isnad1 id=tendsto.0h1v.s6.becabc00ad17 from=translated src=- shape=57e5b6ec vocab=c447b598
+-/
 lemma tendsto_inv_sq_mul_expNegInvGlue_div_zero (c : ℝ) :
     Tendsto
       ((fun x : ℝ =>
@@ -404,7 +454,9 @@ lemma tendsto_inv_sq_mul_expNegInvGlue_div_zero (c : ℝ) :
   exact ht
 
 /-- Vanishing at the origin is uniform on intervals whose right endpoint
-shrinks to zero. -/
+shrinks to zero.
+@isnad1 id=ex.1h2v.s7.78c11211786f from=translated src=- shape=b89f74a2 vocab=fe3f8752
+-/
 lemma exists_scale_inv_sq_mul_expNegInvGlue_le {c ε : ℝ} (hε : 0 < ε) :
     ∃ a₀ : ℝ, 0 < a₀ ∧
       ∀ a : ℝ, 0 ≤ a → a ≤ a₀ →
@@ -426,7 +478,9 @@ lemma exists_scale_inv_sq_mul_expNegInvGlue_le {c ε : ℝ} (hε : 0 < ε) :
   exact (le_abs_self _).trans hout.le
 
 /-- The continuously extended inverse-square exponential envelope is uniformly
-bounded on every compact small-radius interval. -/
+bounded on every compact small-radius interval.
+@isnad1 id=ex.0h2v.s7.a45ce5c66bce from=translated src=- shape=300fbafa vocab=fe3f8752
+-/
 lemma exists_pos_inv_sq_mul_expNegInvGlue_bound (c r : ℝ) :
     ∃ D : ℝ, 0 < D ∧
       ∀ u ∈ Set.Icc (0 : ℝ) (2 * r),
@@ -442,7 +496,9 @@ lemma exists_pos_inv_sq_mul_expNegInvGlue_bound (c r : ℝ) :
   exact (hM ⟨u, hu, rfl⟩).trans (le_max_right _ _)
 
 /-- On the positive half-line, the glued envelope is exactly the rescaled
-inverse-square exponential appearing in the derivative estimate. -/
+inverse-square exponential appearing in the derivative estimate.
+@isnad1 id=eq.2h3v.s7.5c16221644ef from=translated src=- shape=7cbec661 vocab=2f2a152b
+-/
 lemma mul_rpow_neg_two_exp_eq_rescaled_glue {c C u : ℝ}
     (hc : 0 < c) (hu : 0 < u) :
     C * u ^ (-2 : ℝ) * Real.exp (-c / u) =
@@ -458,7 +514,9 @@ lemma mul_rpow_neg_two_exp_eq_rescaled_glue {c C u : ℝ}
   field_simp [hc.ne', hu.ne']
 
 /-- Every rounded deterministic orbit with nonnegative initial radius remains
-nonnegative. -/
+nonnegative.
+@isnad1 id=le.1h4v.s5.9feaa78274e5 from=translated src=- shape=18ee8d10 vocab=851b399a
+-/
 lemma roundedOrbit_nonneg {A ρ h₀ : ℝ} (hh₀ : 0 ≤ h₀) (t : ℕ) :
     0 ≤ roundedOrbit A ρ h₀ t := by
   induction t with
@@ -467,7 +525,9 @@ lemma roundedOrbit_nonneg {A ρ h₀ : ℝ} (hh₀ : 0 ≤ h₀) (t : ℕ) :
       rw [roundedOrbit_succ]
       exact roundedMeanMap_nonneg A ρ _
 
-/-- A one-step contraction iterates to a geometric bound along the rounded orbit. -/
+/-- A one-step contraction iterates to a geometric bound along the rounded orbit.
+@isnad1 id=le.3h5v.s6.d7e125179712 from=translated src=- shape=0153940e vocab=32fcbd4e
+-/
 lemma roundedOrbit_le_pow {A ρ h₀ θ : ℝ}
     (hh₀ : 0 ≤ h₀) (hθ : 0 ≤ θ)
     (hcontract : ∀ h, 0 ≤ h → roundedMeanMap A ρ h ≤ θ * h) (t : ℕ) :
@@ -484,7 +544,9 @@ lemma roundedOrbit_le_pow {A ρ h₀ θ : ℝ}
         _ = θ ^ (t + 1) * h₀ := by rw [pow_succ]; ring
 
 /-- A rounded mean map below the diagonal generates an antitone deterministic
-orbit. -/
+orbit.
+@isnad1 id=antitone.2h3v.s5.5def7f97cc5b from=translated src=- shape=ad3061e3 vocab=60e916fd
+-/
 lemma roundedOrbit_antitone_of_map_le {A ρ h₀ : ℝ}
     (hh₀ : 0 ≤ h₀)
     (hmap : ∀ h : ℝ, 0 ≤ h → roundedMeanMap A ρ h ≤ h) :
@@ -494,7 +556,9 @@ lemma roundedOrbit_antitone_of_map_le {A ρ h₀ : ℝ}
   rw [roundedOrbit_succ]
   exact hmap _ (roundedOrbit_nonneg hh₀ t)
 
-/-- Every lattice-subcritical rounded deterministic orbit is antitone. -/
+/-- Every lattice-subcritical rounded deterministic orbit is antitone.
+@isnad1 id=antitone.4h3v.s5.060e97c2f0bf from=translated src=- shape=a3bb8610 vocab=f4da5295
+-/
 lemma roundedOrbit_antitone {A ρ h₀ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
     (hρ : 0 < ρ) (hh₀ : 0 ≤ h₀) :
@@ -507,7 +571,9 @@ lemma roundedOrbit_antitone {A ρ h₀ : ℝ}
     (mul_le_of_le_one_left hh hθ_lt.le)
 
 /-- Any orbit controlled by a geometric sequence eventually enters every
-fixed positive radius. -/
+fixed positive radius.
+@isnad1 id=ex.4h5v.s6.e98f6438062e from=translated src=- shape=5fb07c32 vocab=cb4c9edf
+-/
 lemma exists_roundedOrbit_lt_radius_of_le_pow {A ρ h₀ θ r : ℝ}
     (hθ : 0 ≤ θ) (hθ_lt : θ < 1) (hr : 0 < r)
     (hbound : ∀ t : ℕ, roundedOrbit A ρ h₀ t ≤ θ ^ t * h₀) :
@@ -523,7 +589,9 @@ lemma exists_roundedOrbit_lt_radius_of_le_pow {A ρ h₀ θ r : ℝ}
   exact ⟨T, fun t hTt => (hbound t).trans_lt (hT t hTt)⟩
 
 /-- A geometric trajectory can remain above a positive scale for at most a
-logarithmic number of steps. -/
+logarithmic number of steps.
+@isnad1 id=le.5h4v.s6.69204bcb6a28 from=translated src=- shape=af4bfa03 vocab=cf21e088
+-/
 lemma natCast_le_log_div_neg_log_of_le_geometric
     {θ a C₀ : ℝ} {t : ℕ}
     (hθ : 0 < θ) (hθ_lt : θ < 1) (ha : 0 < a) (hC₀ : 0 < C₀)
@@ -538,7 +606,9 @@ lemma natCast_le_log_div_neg_log_of_le_geometric
   nlinarith
 
 /-- The same logarithmic survival bound applies to any rounded orbit dominated
-by the geometric trajectory. -/
+by the geometric trajectory.
+@isnad1 id=le.7h7v.s7.0fa641f3c975 from=translated src=- shape=c668c9b6 vocab=14727bd5
+-/
 lemma natCast_le_log_div_neg_log_of_roundedOrbit_ge
     {A ρ h₀ θ a C₀ : ℝ} {t : ℕ}
     (hθ : 0 < θ) (hθ_lt : θ < 1) (ha : 0 < a) (hC₀ : 0 < C₀)
@@ -551,7 +621,9 @@ lemma natCast_le_log_div_neg_log_of_roundedOrbit_ge
     mul_le_mul_of_nonneg_left hh₀C₀ (pow_nonneg hθ.le t)
 
 /-- Lattice subcriticality supplies the paper's geometric deterministic-orbit
-contraction. -/
+contraction.
+@isnad1 id=ex.4h3v.s6.5a1ace5de003 from=translated src=- shape=ac69eafb vocab=116e0665
+-/
 lemma exists_roundedOrbit_le_pow {A ρ h₀ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold) (hρ : 0 < ρ) (hh₀ : 0 ≤ h₀) :
     ∃ θ : ℝ, 0 < θ ∧ θ < 1 ∧
@@ -561,7 +633,9 @@ lemma exists_roundedOrbit_le_pow {A ρ h₀ : ℝ}
   exact ⟨θ, hθ, hθ_lt, roundedOrbit_le_pow hh₀ hθ.le hcontract⟩
 
 /-- Lattice subcriticality bounds every time at which the orbit remains above
-the terminal scale by a logarithmic ratio. -/
+the terminal scale by a logarithmic ratio.
+@isnad1 id=ex.6h4v.s7.8162bd8a7144 from=translated src=- shape=3cd05b88 vocab=c179ac04
+-/
 lemma exists_subcritical_time_le_log_fixedPrecisionScale
     {A ρ h₀ C₀ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold) (hρ : 0 < ρ)
@@ -579,7 +653,9 @@ lemma exists_subcritical_time_le_log_fixedPrecisionScale
     (fixedPrecisionScale_pos hN) hC₀ hh₀C₀ hbound hscale
 
 /-- Paper-shaped form of the subcritical tail-length bound, explicitly affine
-in `log log N`. -/
+in `log log N`.
+@isnad1 id=ex.6h4v.s7.3769c88d7eab from=translated src=- shape=584c834f vocab=9c18b4f5
+-/
 lemma exists_subcritical_time_le_log_log
     {A ρ h₀ C₀ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold) (hρ : 0 < ρ)
@@ -598,7 +674,9 @@ lemma exists_subcritical_time_le_log_log
     htime N hN t hscale
 
 /-- Eventually, every time at which the subcritical orbit remains above the
-terminal scale is at most a constant times `log log N`. -/
+terminal scale is at most a constant times `log log N`.
+@isnad1 id=ex.6h4v.s6.875e13e8c928 from=translated src=- shape=0bc3c3cb vocab=627ae389
+-/
 lemma exists_eventually_subcritical_time_le_mul_log_log
     {A ρ h₀ C₀ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold) (hρ : 0 < ρ)
@@ -639,7 +717,9 @@ lemma exists_eventually_subcritical_time_le_mul_log_log
       field_simp [hdenom.ne']
 
 /-- Every contiguous segment on which the subcritical orbit remains above
-`a_N` has length at most a constant times `log log N`. -/
+`a_N` has length at most a constant times `log log N`.
+@isnad1 id=ex.6h4v.s7.1363807e7e23 from=translated src=- shape=808d5393 vocab=11674c8a
+-/
 lemma exists_eventually_subcritical_tail_length_le_mul_log_log
     {A ρ h₀ C₀ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold) (hρ : 0 < ρ)
@@ -677,7 +757,9 @@ lemma exists_eventually_subcritical_tail_length_le_mul_log_log
       (zero_le_one.trans hloglog)
 
 /-- The `O(log log N)` length bound is uniform over every nonnegative initial
-radius bounded by the same compact constant `C₀`. -/
+radius bounded by the same compact constant `C₀`.
+@isnad1 id=ex.4h3v.s7.c2f144afc1d4 from=translated src=- shape=782845f5 vocab=11674c8a
+-/
 lemma exists_eventually_uniform_subcritical_tail_length_le_mul_log_log
     {A ρ C₀ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -746,7 +828,9 @@ lemma exists_eventually_uniform_subcritical_tail_length_le_mul_log_log
       (zero_le_one.trans hell_one)
 
 /-- Every lattice-subcritical rounded orbit enters a prescribed positive
-radius after a finite deterministic time. -/
+radius after a finite deterministic time.
+@isnad1 id=ex.5h4v.s6.50df5f48d35c from=translated src=- shape=f146f99b vocab=0d23987f
+-/
 lemma exists_roundedOrbit_lt_radius {A ρ h₀ r : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
     (hρ : 0 < ρ) (hh₀ : 0 ≤ h₀) (hr : 0 < r) :
@@ -756,7 +840,9 @@ lemma exists_roundedOrbit_lt_radius {A ρ h₀ r : ℝ}
   exact exists_roundedOrbit_lt_radius_of_le_pow hθ.le hθ_lt hr hbound
 
 /-- Every positive-radius entrance set is nonempty under lattice
-subcriticality, so the orbit reaches the target at its entrance index. -/
+subcriticality, so the orbit reaches the target at its entrance index.
+@isnad1 id=le.5h4v.s6.742a29a6ef27 from=translated src=- shape=e9a4fa9a vocab=b73ea715
+-/
 lemma roundedOrbitEntrance_spec_of_subcritical {A ρ h₀ r : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
     (hρ : 0 < ρ) (hh₀ : 0 ≤ h₀) (hr : 0 < r) :
@@ -767,7 +853,9 @@ lemma roundedOrbitEntrance_spec_of_subcritical {A ρ h₀ r : ℝ}
   exact ⟨T, (hT T le_rfl).le⟩
 
 /-- Between the entrances into radii `r` and `a`, the orbit lies in the
-pre-terminal tail `(a,r]`. -/
+pre-terminal tail `(a,r]`.
+@isnad1 id=and.7h6v.s6.339b503aecb3 from=translated src=- shape=b032aaf4 vocab=382cd1be
+-/
 lemma roundedOrbit_mem_tail_between_entrances
     {A ρ h₀ a r : ℝ} {u : ℕ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -783,7 +871,9 @@ lemma roundedOrbit_mem_tail_between_entrances
       (roundedOrbit_antitone hA hA_lt hρ hh₀) hru⟩
 
 /-- Before entering radius `r`, a subcritical orbit stays in the compact
-interval `(r,C₀]` determined by its initial upper bound. -/
+interval `(r,C₀]` determined by its initial upper bound.
+@isnad1 id=and.6h6v.s6.c2de370b9e83 from=translated src=- shape=934a8ac4 vocab=382cd1be
+-/
 lemma roundedOrbit_mem_compact_before_entrance
     {A ρ h₀ r C₀ : ℝ} {u : ℕ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -796,7 +886,9 @@ lemma roundedOrbit_mem_compact_before_entrance
   exact ⟨roundedOrbit_lt_entrance hu, by simpa using hupper.trans hh₀C₀⟩
 
 /-- After entering a positive terminal radius, a subcritical orbit remains
-below it. -/
+below it.
+@isnad1 id=le.6h5v.s6.5c92c719d398 from=translated src=- shape=72eb300f vocab=382cd1be
+-/
 lemma roundedOrbit_mem_terminal_after_entrance
     {A ρ h₀ a : ℝ} {u : ℕ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -840,7 +932,9 @@ noncomputable def roundedAmplificationCombination
     roundedBeta A ρ a (roundedOrbit A ρ h₀ s) *
       roundedAmplificationProduct A ρ δ a h₀ (s + 1) t
 
-/-- Unfolding the full normalized amplification expression. -/
+/-- Unfolding the full normalized amplification expression.
+@isnad1 id=eq.0h7v.s6.7fd624f96422 from=translated src=- shape=ceaf63a3 vocab=ef8e0bf2
+-/
 lemma roundedAmplificationCombination_eq
     (A ρ δ a h₀ : ℝ) (s t : ℕ) :
     roundedAmplificationCombination A ρ δ a h₀ s t =
@@ -853,26 +947,34 @@ lemma roundedAmplificationCombination_eq
 def natIntervalCut (s t τ : ℕ) : ℕ :=
   max s (min t τ)
 
-/-- A clamped cut belongs to its interval when the interval is ordered. -/
+/-- A clamped cut belongs to its interval when the interval is ordered.
+@isnad1 id=mem.1h3v.s4.c8e18b447c76 from=translated src=- shape=16458684 vocab=30dc24fd
+-/
 lemma natIntervalCut_mem_Icc {s t τ : ℕ} (hst : s ≤ t) :
     natIntervalCut s t τ ∈ Set.Icc s t := by
   simp only [natIntervalCut, Set.mem_Icc]
   omega
 
-/-- Clamping to a fixed interval is monotone in the proposed cut time. -/
+/-- Clamping to a fixed interval is monotone in the proposed cut time.
+@isnad1 id=le.1h4v.s4.b9f4a0728326 from=translated src=- shape=299e37de vocab=3bed82fe
+-/
 lemma natIntervalCut_mono {s t τ₁ τ₂ : ℕ} (hτ : τ₁ ≤ τ₂) :
     natIntervalCut s t τ₁ ≤ natIntervalCut s t τ₂ := by
   simp only [natIntervalCut]
   omega
 
-/-- Every index before a clamped cut is before the original cut time. -/
+/-- Every index before a clamped cut is before the original cut time.
+@isnad1 id=lt.1h4v.s5.8411f8fa80c4 from=translated src=- shape=1d672b64 vocab=72fffc57
+-/
 lemma lt_of_mem_Ico_natIntervalCut {s t τ u : ℕ}
     (hu : u ∈ Finset.Ico s (natIntervalCut s t τ)) :
     u < τ := by
   simp only [Finset.mem_Ico, natIntervalCut] at hu
   omega
 
-/-- Every index after a clamped cut is after the original cut time. -/
+/-- Every index after a clamped cut is after the original cut time.
+@isnad1 id=le.1h4v.s5.96c5e1cd83ab from=translated src=- shape=4d00fdf7 vocab=69236948
+-/
 lemma le_of_mem_Ico_natIntervalCut {s t τ u : ℕ}
     (hu : u ∈ Finset.Ico (natIntervalCut s t τ) t) :
     τ ≤ u := by
@@ -880,7 +982,9 @@ lemma le_of_mem_Ico_natIntervalCut {s t τ u : ℕ}
   omega
 
 /-- Between two ordered clamped cuts, indices lie between the original cut
-times. -/
+times.
+@isnad1 id=mem.2h5v.s5.605d2bb03aad from=translated src=- shape=de3b503d vocab=69236948
+-/
 lemma mem_Ico_of_mem_between_natIntervalCuts {s t τ₁ τ₂ u : ℕ}
     (hτ : τ₁ ≤ τ₂)
     (hu : u ∈ Finset.Ico
@@ -889,7 +993,9 @@ lemma mem_Ico_of_mem_between_natIntervalCuts {s t τ₁ τ₂ u : ℕ}
   simp only [Finset.mem_Ico, natIntervalCut] at hu ⊢
   omega
 
-/-- An amplification product over an empty or reversed interval is one. -/
+/-- An amplification product over an empty or reversed interval is one.
+@isnad1 id=eq.1h7v.s5.312860728cee from=translated src=- shape=6c5aad76 vocab=1bc4215d
+-/
 lemma roundedAmplificationProduct_eq_one_of_le
     (A ρ δ a h₀ : ℝ) {s t : ℕ} (hts : t ≤ s) :
     roundedAmplificationProduct A ρ δ a h₀ s t = 1 := by
@@ -897,7 +1003,9 @@ lemma roundedAmplificationProduct_eq_one_of_le
     Finset.Ico_eq_empty (not_lt.mpr hts)]
   simp
 
-/-- Every truncated amplification product is at least one. -/
+/-- Every truncated amplification product is at least one.
+@isnad1 id=le.0h7v.s4.37f4f0b5d065 from=translated src=- shape=9413076e vocab=1bc4215d
+-/
 lemma one_le_roundedAmplificationProduct
     (A ρ δ a h₀ : ℝ) (s t : ℕ) :
     1 ≤ roundedAmplificationProduct A ρ δ a h₀ s t := by
@@ -906,7 +1014,9 @@ lemma one_le_roundedAmplificationProduct
   intro u hu
   exact le_max_left _ _
 
-/-- Extending the right endpoint appends the corresponding one-step factor. -/
+/-- Extending the right endpoint appends the corresponding one-step factor.
+@isnad1 id=eq.1h7v.s6.7fe5f2a5d0e8 from=translated src=- shape=b7f19507 vocab=735c11d8
+-/
 lemma roundedAmplificationProduct_succ
     (A ρ δ a h₀ : ℝ) {s t : ℕ} (hst : s ≤ t) :
     roundedAmplificationProduct A ρ δ a h₀ s (t + 1) =
@@ -916,7 +1026,9 @@ lemma roundedAmplificationProduct_succ
     Finset.prod_Ico_succ_top hst]
 
 /-- Amplification products split multiplicatively across consecutive
-intervals. -/
+intervals.
+@isnad1 id=eq.2h8v.s5.51755febc8da from=translated src=- shape=e07ca080 vocab=fbc0ee6c
+-/
 lemma roundedAmplificationProduct_consecutive
     (A ρ δ a h₀ : ℝ) {s m t : ℕ} (hsm : s ≤ m) (hmt : m ≤ t) :
     roundedAmplificationProduct A ρ δ a h₀ s t =
@@ -928,7 +1040,9 @@ lemma roundedAmplificationProduct_consecutive
       max 1 (roundedAlpha A ρ δ a (roundedOrbit A ρ h₀ u))) hsm hmt).symm
 
 /-- Ordered clamped cuts split an amplification product into prefix, middle,
-and suffix factors. -/
+and suffix factors.
+@isnad1 id=eq.2h9v.s6.51981c6514fb from=translated src=- shape=da9d766a vocab=a9ff9206
+-/
 lemma roundedAmplificationProduct_three_clamped
     (A ρ δ a h₀ : ℝ) {s t τ₁ τ₂ : ℕ}
     (hst : s ≤ t) (hτ : τ₁ ≤ τ₂) :
@@ -946,7 +1060,9 @@ lemma roundedAmplificationProduct_three_clamped
       (natIntervalCut_mono hτ) hcut₂.2]
   ring
 
-/-- A uniform one-step bound controls the full finite amplification product. -/
+/-- A uniform one-step bound controls the full finite amplification product.
+@isnad1 id=le.2h8v.s6.1626a6e69111 from=translated src=- shape=a5e891f0 vocab=0a16d668
+-/
 lemma roundedAmplificationProduct_le_pow
     {A ρ δ a h₀ M : ℝ} {s t : ℕ} (hM : 1 ≤ M)
     (hα : ∀ u ∈ Finset.Ico s t,
@@ -964,7 +1080,9 @@ lemma roundedAmplificationProduct_le_pow
       rw [Finset.prod_const, Nat.card_Ico]
 
 /-- A power with both exponent and base-log controlled linearly by `ℓ` is
-bounded by an exponential quadratic in `ℓ`. -/
+bounded by an exponential quadratic in `ℓ`.
+@isnad1 id=le.5h5v.s6.3c87ac2590bc from=translated src=- shape=dcafe7bd vocab=fb6c50e2
+-/
 lemma pow_le_exp_mul_sq_of_natCast_le_of_log_le
     {M D E ℓ : ℝ} {n : ℕ}
     (hM : 1 ≤ M) (hD : 0 ≤ D) (hℓ : 0 ≤ ℓ)
@@ -979,7 +1097,9 @@ lemma pow_le_exp_mul_sq_of_natCast_le_of_log_le
     _ = D * E * ℓ ^ 2 := by ring
 
 /-- If every one-step amplification is nonexpansive, the truncated product is
-exactly one. -/
+exactly one.
+@isnad1 id=eq.1h7v.s6.1ff7824ea5b8 from=translated src=- shape=f95ac1f8 vocab=1cb516c0
+-/
 lemma roundedAmplificationProduct_eq_one_of_alpha_le_one
     {A ρ δ a h₀ : ℝ} {s t : ℕ}
     (hα : ∀ u ∈ Finset.Ico s t,
@@ -990,20 +1110,26 @@ lemma roundedAmplificationProduct_eq_one_of_alpha_le_one
   intro u hu
   exact max_eq_left (hα u hu)
 
-/-- Membership in the local orbit window is the paper's pair of inequalities. -/
+/-- Membership in the local orbit window is the paper's pair of inequalities.
+@isnad1 id=iff.0h4v.s6.f64a93539c2d from=translated src=- shape=d8107bfb vocab=7bbf85b0
+-/
 lemma mem_roundedOrbitWindow_iff {δ a h u : ℝ} :
     u ∈ roundedOrbitWindow δ a h ↔
       0 ≤ u ∧ |u - h| ≤ δ * (h + a) :=
   Iff.rfl
 
-/-- A point in the local orbit window lies above its explicit lower endpoint. -/
+/-- A point in the local orbit window lies above its explicit lower endpoint.
+@isnad1 id=le.1h4v.s5.d0bb5461dd2c from=translated src=- shape=72608d30 vocab=93ede17c
+-/
 lemma roundedOrbitWindow_lower {δ a h u : ℝ}
     (hu : u ∈ roundedOrbitWindow δ a h) :
     h - δ * (h + a) ≤ u := by
   have habs := (abs_le.mp hu.2).1
   linarith
 
-/-- A point in the local orbit window lies below its explicit upper endpoint. -/
+/-- A point in the local orbit window lies below its explicit upper endpoint.
+@isnad1 id=le.1h4v.s5.a88de2ead8bc from=translated src=- shape=960d5043 vocab=377b1770
+-/
 lemma roundedOrbitWindow_upper {δ a h u : ℝ}
     (hu : u ∈ roundedOrbitWindow δ a h) :
     u ≤ h + δ * (h + a) := by
@@ -1011,7 +1137,9 @@ lemma roundedOrbitWindow_upper {δ a h u : ℝ}
   linarith
 
 /-- In the tail regime `a ≤ h`, the local window is contained in the
-paper's multiplicative comparison interval around `h`. -/
+paper's multiplicative comparison interval around `h`.
+@isnad1 id=le.2h3v.s6.0a168b94c5d4 from=translated src=- shape=455edcf8 vocab=4b5dd47e
+-/
 lemma roundedOrbitWindow_subset_tail_comparison {δ a h : ℝ}
     (hah : a ≤ h) (hδ : 0 ≤ δ) :
     roundedOrbitWindow δ a h ⊆
@@ -1024,7 +1152,9 @@ lemma roundedOrbitWindow_subset_tail_comparison {δ a h : ℝ}
   · nlinarith [roundedOrbitWindow_upper hu]
 
 /-- A tail-regime local window remains inside the small-radius interval on
-which the paper's derivative estimate applies. -/
+which the paper's derivative estimate applies.
+@isnad1 id=le.5h4v.s6.31418ed9f62f from=translated src=- shape=a217a916 vocab=0f05db4f
+-/
 lemma roundedOrbitWindow_subset_tail_radius {δ a h r : ℝ}
     (ha : 0 ≤ a) (hah : a ≤ h) (hhr : h ≤ r)
     (hδ : 0 ≤ δ) (hδ_quarter : δ ≤ 1 / 4) :
@@ -1041,7 +1171,9 @@ lemma roundedOrbitWindow_subset_tail_radius {δ a h r : ℝ}
   · linarith [hcomparison.2]
 
 /-- Once the orbit is below the terminal scale, its local window remains in
-twice that scale. -/
+twice that scale.
+@isnad1 id=le.3h3v.s6.da9b630722e7 from=translated src=- shape=2e51002f vocab=0f05db4f
+-/
 lemma roundedOrbitWindow_subset_terminal_radius {δ a h : ℝ}
     (hh : 0 ≤ h) (hha : h ≤ a) (hδ_quarter : δ ≤ 1 / 4) :
     roundedOrbitWindow δ a h ⊆ Set.Icc 0 (2 * a) := by
@@ -1054,7 +1186,9 @@ lemma roundedOrbitWindow_subset_terminal_radius {δ a h : ℝ}
   · linarith [roundedOrbitWindow_upper hu]
 
 /-- On the pre-terminal tail, the normalized radius ratio grows at most like
-the reciprocal terminal scale. -/
+the reciprocal terminal scale.
+@isnad1 id=le.3h5v.s6.49ead709e45a from=translated src=- shape=87baf952 vocab=bcb17435
+-/
 lemma roundedBeta_le_two_mul_div {A ρ a h r : ℝ}
     (ha : 0 < a) (hah : a ≤ h) (hhr : h ≤ r) :
     roundedBeta A ρ a h ≤ 2 * r / a := by
@@ -1067,7 +1201,9 @@ lemma roundedBeta_le_two_mul_div {A ρ a h r : ℝ}
       div_le_div_of_nonneg_left hnum ha hdenom
     _ ≤ 2 * r / a := (div_le_div_iff_of_pos_right ha).mpr (by linarith)
 
-/-- In the terminal regime, the normalized radius ratio is at most two. -/
+/-- In the terminal regime, the normalized radius ratio is at most two.
+@isnad1 id=le.3h4v.s5.5b9d91eb516e from=translated src=- shape=b41ae440 vocab=b188a3e5
+-/
 lemma roundedBeta_le_two_of_le_scale {A ρ a h : ℝ}
     (ha : 0 < a) (hh : 0 ≤ h) (hha : h ≤ a) :
     roundedBeta A ρ a h ≤ 2 := by
@@ -1081,7 +1217,9 @@ lemma roundedBeta_le_two_of_le_scale {A ρ a h : ℝ}
     _ ≤ 2 := (div_le_iff₀ ha).mpr (by linarith)
 
 /-- The center belongs to its local orbit window when the parameters are
-nonnegative. -/
+nonnegative.
+@isnad1 id=mem.3h3v.s5.c005e3b44f64 from=translated src=- shape=97d72687 vocab=fb3d6a9d
+-/
 lemma mem_roundedOrbitWindow_self {δ a h : ℝ}
     (hδ : 0 ≤ δ) (ha : 0 ≤ a) (hh : 0 ≤ h) :
     h ∈ roundedOrbitWindow δ a h := by
@@ -1090,14 +1228,18 @@ lemma mem_roundedOrbitWindow_self {δ a h : ℝ}
   positivity
 
 /-- The local orbit window is contained in its explicit nonnegative bounding
-interval. -/
+interval.
+@isnad1 id=le.0h3v.s5.2329beb70614 from=translated src=- shape=1f420350 vocab=8ee2f857
+-/
 lemma roundedOrbitWindow_subset_Icc {δ a h : ℝ} :
     roundedOrbitWindow δ a h ⊆ Set.Icc 0 (h + δ * (h + a)) := by
   intro u hu
   exact ⟨hu.1, roundedOrbitWindow_upper hu⟩
 
 /-- In the paper's compact orbit regime, the local window stays in a fixed
-positive compact interval. -/
+positive compact interval.
+@isnad1 id=le.6h5v.s6.a39b5fd591b3 from=translated src=- shape=0fb77ddf vocab=f693a877
+-/
 lemma roundedOrbitWindow_subset_compact_regime {δ a h r C₀ : ℝ}
     (hr : 0 < r) (hrh : r ≤ h) (hhC₀ : h ≤ C₀)
     (ha : 0 ≤ a) (har : a ≤ r) (hδ_quarter : δ ≤ 1 / 4) :
@@ -1112,7 +1254,9 @@ lemma roundedOrbitWindow_subset_compact_regime {δ a h r C₀ : ℝ}
   · have hupper := roundedOrbitWindow_upper hu
     linarith
 
-/-- The local orbit window is closed. -/
+/-- The local orbit window is closed.
+@isnad1 id=isclosed.0h3v.s4.15ec3110d29f from=translated src=- shape=eae19870 vocab=0884477f
+-/
 lemma isClosed_roundedOrbitWindow (δ a h : ℝ) :
     IsClosed (roundedOrbitWindow δ a h) := by
   rw [roundedOrbitWindow]
@@ -1120,20 +1264,26 @@ lemma isClosed_roundedOrbitWindow (δ a h : ℝ) :
     (isClosed_le (continuous_abs.comp (continuous_id.sub continuous_const))
       continuous_const)
 
-/-- The local orbit window is bounded. -/
+/-- The local orbit window is bounded.
+@isnad1 id=isbounde.0h3v.s3.9e9e0c447d7c from=translated src=- shape=eae19870 vocab=b5c9979f
+-/
 lemma isBounded_roundedOrbitWindow (δ a h : ℝ) :
     Bornology.IsBounded (roundedOrbitWindow δ a h) :=
   (Metric.isBounded_Icc 0 (h + δ * (h + a))).subset
     (roundedOrbitWindow_subset_Icc (δ := δ) (a := a) (h := h))
 
-/-- The local orbit window is compact. -/
+/-- The local orbit window is compact.
+@isnad1 id=iscompac.0h3v.s4.cd4213baab56 from=translated src=- shape=eae19870 vocab=f118480d
+-/
 lemma isCompact_roundedOrbitWindow (δ a h : ℝ) :
     IsCompact (roundedOrbitWindow δ a h) :=
   Metric.isCompact_of_isClosed_isBounded
     (isClosed_roundedOrbitWindow δ a h) (isBounded_roundedOrbitWindow δ a h)
 
 /-- Pointwise derivative control on a nonempty local orbit window controls the
-paper's local derivative supremum. -/
+paper's local derivative supremum.
+@isnad1 id=le.4h6v.s6.a61d492529b2 from=translated src=- shape=8f4bb507 vocab=2ce69814
+-/
 lemma roundedLocalDerivativeSup_le_of_deriv_le {A ρ δ a h L : ℝ}
     (hδ : 0 ≤ δ) (ha : 0 ≤ a) (hh : 0 ≤ h)
     (hderiv : ∀ u ∈ roundedOrbitWindow δ a h,
@@ -1148,7 +1298,9 @@ lemma roundedLocalDerivativeSup_le_of_deriv_le {A ρ δ a h L : ℝ}
     exact hderiv u hu
 
 /-- A derivative bound on the paper's fixed compact interval controls every
-compact-regime local derivative supremum. -/
+compact-regime local derivative supremum.
+@isnad1 id=le.9h8v.s7.4f39c9be66bb from=translated src=- shape=5d472dc8 vocab=e568de49
+-/
 lemma roundedLocalDerivativeSup_le_compact_bound {A ρ δ a h r C₀ L : ℝ}
     (hδ : 0 ≤ δ) (ha : 0 ≤ a) (hh : 0 ≤ h)
     (hr : 0 < r) (hrh : r ≤ h) (hhC₀ : h ≤ C₀)
@@ -1163,7 +1315,9 @@ lemma roundedLocalDerivativeSup_le_compact_bound {A ρ δ a h r C₀ L : ℝ}
       hr hrh hhC₀ ha har hδ_quarter hu)
 
 /-- The local derivative supremum is uniformly bounded while the orbit lies
-between the terminal scale and a sufficiently small fixed radius. -/
+between the terminal scale and a sufficiently small fixed radius.
+@isnad1 id=ex.5h3v.s7.9a9927e0793f from=translated src=- shape=166a210c vocab=d8ee1e23
+-/
 lemma exists_tail_roundedLocalDerivativeSup_bound {A ρ r : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hr : 0 < r) (hr_half : r < 1 / 2) :
@@ -1203,7 +1357,9 @@ lemma exists_tail_roundedLocalDerivativeSup_bound {A ρ r : ℝ}
       _ ≤ L := le_max_right _ _
 
 /-- At sufficiently small terminal scales, the local derivative supremum is at
-most one half. -/
+most one half.
+@isnad1 id=ex.3h2v.s7.5bf373d26be3 from=translated src=- shape=10436166 vocab=d8ee1e23
+-/
 lemma exists_terminal_roundedLocalDerivativeSup_le_half {A ρ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     ∃ a₀ : ℝ, 0 < a₀ ∧
@@ -1248,7 +1404,9 @@ lemma exists_terminal_roundedLocalDerivativeSup_le_half {A ρ : ℝ}
       _ = 1 / 2 := by field_simp [hc.ne', hC.ne']
 
 /-- At sufficiently small terminal scales, the radius ratio is bounded by two
-and the normalized amplification factor is at most one. -/
+and the normalized amplification factor is at most one.
+@isnad1 id=ex.3h2v.s7.0fc2f73c1a90 from=translated src=- shape=3fd7ce72 vocab=8ac0e077
+-/
 lemma exists_terminal_regime_normalized_bounds {A ρ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     ∃ a₀ : ℝ, 0 < a₀ ∧
@@ -1275,7 +1433,9 @@ lemma exists_terminal_regime_normalized_bounds {A ρ : ℝ}
     _ = 1 := by norm_num
 
 /-- For every sufficiently large dimension, normalized amplification is
-nonexpansive throughout the terminal orbit regime. -/
+nonexpansive throughout the terminal orbit regime.
+@isnad1 id=ex.3h2v.s7.acb7d4f3d3c4 from=translated src=- shape=37320e03 vocab=6c658665
+-/
 lemma exists_eventually_terminal_regime_normalized_bounds {A ρ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1) :
     ∃ N₀ : ℕ, ∀ N : ℕ, N₀ ≤ N →
@@ -1294,7 +1454,9 @@ lemma exists_eventually_terminal_regime_normalized_bounds {A ρ : ℝ}
     hh hhscale hδ hδ_quarter
 
 /-- For sufficiently large dimensions, every amplification product supported
-inside the terminal orbit regime is exactly one. -/
+inside the terminal orbit regime is exactly one.
+@isnad1 id=ex.4h3v.s7.21e0edc142e8 from=translated src=- shape=3f2ad999 vocab=9f764266
+-/
 lemma exists_eventually_terminal_amplificationProduct_eq_one
     {A ρ h₀ : ℝ} (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hh₀ : 0 ≤ h₀) :
@@ -1314,7 +1476,9 @@ lemma exists_eventually_terminal_amplificationProduct_eq_one
     (roundedOrbit_nonneg hh₀ u) (horbit u hu) hδ hδ_quarter).2
 
 /-- The clamped suffix beginning at the terminal entrance has amplification
-product exactly one in every sufficiently large dimension. -/
+product exactly one in every sufficiently large dimension.
+@isnad1 id=ex.5h3v.s7.70a9cd0e372a from=translated src=- shape=22d44b42 vocab=d582cdf9
+-/
 lemma exists_eventually_terminal_suffix_amplificationProduct_eq_one
     {A ρ h₀ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -1342,7 +1506,9 @@ lemma exists_eventually_terminal_suffix_amplificationProduct_eq_one
   exact le_of_mem_Ico_natIntervalCut hu
 
 /-- Throughout the pre-terminal tail, both normalized factors grow at most
-like the reciprocal terminal scale. -/
+like the reciprocal terminal scale.
+@isnad1 id=ex.5h3v.s7.f6735ab82297 from=translated src=- shape=8a6be8f7 vocab=8ac0e077
+-/
 lemma exists_tail_regime_normalized_bounds {A ρ r : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hr : 0 < r) (hr_half : r < 1 / 2) :
@@ -1379,7 +1545,9 @@ lemma exists_tail_regime_normalized_bounds {A ρ r : ℝ}
       _ ≤ K / a := (div_le_div_iff_of_pos_right ha).mpr hLtwo
 
 /-- For every sufficiently large dimension, both normalized factors on the
-pre-terminal tail are bounded by a constant times `a_N⁻¹`. -/
+pre-terminal tail are bounded by a constant times `a_N⁻¹`.
+@isnad1 id=ex.5h3v.s7.2a13108f5587 from=translated src=- shape=3071b364 vocab=6c658665
+-/
 lemma exists_eventually_tail_regime_normalized_bounds {A ρ r : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hr : 0 < r) (hr_half : r < 1 / 2) :
@@ -1401,7 +1569,9 @@ lemma exists_eventually_tail_regime_normalized_bounds {A ρ r : ℝ}
     hδ hδ_quarter
 
 /-- Paper-shaped form of the pre-terminal tail estimate, with amplification
-bounded by a constant times `log N`. -/
+bounded by a constant times `log N`.
+@isnad1 id=ex.5h3v.s7.779ead6c95b8 from=translated src=- shape=48115897 vocab=a32cc05c
+-/
 lemma exists_eventually_tail_regime_normalized_bounds_log {A ρ r : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hr : 0 < r) (hr_half : r < 1 / 2) :
@@ -1419,7 +1589,9 @@ lemma exists_eventually_tail_regime_normalized_bounds_log {A ρ r : ℝ}
     htail N hN h δ hscaleh hhr hδ hδ_quarter
 
 /-- A pre-terminal tail segment contributes at most one `K log N` factor per
-time step to the truncated amplification product. -/
+time step to the truncated amplification product.
+@isnad1 id=ex.5h4v.s7.e1e9c8ad6ff1 from=translated src=- shape=89a0e43c vocab=dd7c9d61
+-/
 lemma exists_eventually_tail_amplificationProduct_le_pow {A ρ h₀ r : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hr : 0 < r) (hr_half : r < 1 / 2) :
@@ -1443,7 +1615,9 @@ lemma exists_eventually_tail_amplificationProduct_le_pow {A ρ h₀ r : ℝ}
       (le_max_right _ _)
 
 /-- The amplification product across any pre-terminal tail segment has the
-paper's quadratic-logarithmic exponential bound. -/
+paper's quadratic-logarithmic exponential bound.
+@isnad1 id=ex.9h5v.s8.c746c5a989ad from=translated src=- shape=029ede8c vocab=9f2bf844
+-/
 lemma exists_eventually_tail_amplificationProduct_le_exp_sq
     {A ρ h₀ C₀ r : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -1507,7 +1681,9 @@ lemma exists_eventually_tail_amplificationProduct_le_exp_sq
   exact hprod.trans (by simpa [C] using hpow)
 
 /-- The clamped factor between `τ_r` and `τ_{a_N}` satisfies the quadratic
-logarithmic exponential bound. -/
+logarithmic exponential bound.
+@isnad1 id=ex.9h5v.s7.4c2319d6ad1c from=translated src=- shape=4469b52b vocab=4f667213
+-/
 lemma exists_eventually_middle_amplificationProduct_le_exp_sq
     {A ρ h₀ C₀ r : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -1554,7 +1730,9 @@ lemma exists_eventually_middle_amplificationProduct_le_exp_sq
   exact ⟨hutail.1.le, hutail.2⟩
 
 /-- The paper's positive map lower bound and local derivative upper bound, uniform
-throughout the compact pre-terminal orbit regime. -/
+throughout the compact pre-terminal orbit regime.
+@isnad1 id=ex.5h4v.s7.c9a49167a10d from=translated src=- shape=5d5c650b vocab=d657d6f3
+-/
 lemma exists_compact_regime_rounded_bounds {A ρ r C₀ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hr : 0 < r) (hrC₀ : r ≤ C₀) :
@@ -1577,7 +1755,9 @@ lemma exists_compact_regime_rounded_bounds {A ρ r C₀ : ℝ}
       hδ_quarter fun u hu => (hbounds u hu).2⟩
 
 /-- Before the orbit enters the small-radius regime, both normalized one-step
-factors are bounded by a single positive constant. -/
+factors are bounded by a single positive constant.
+@isnad1 id=ex.5h4v.s7.d0deac40e993 from=translated src=- shape=c0b4942a vocab=8ac0e077
+-/
 lemma exists_compact_regime_normalized_bounds {A ρ r C₀ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
     (hr : 0 < r) (hrC₀ : r ≤ C₀) :
@@ -1615,7 +1795,9 @@ lemma exists_compact_regime_normalized_bounds {A ρ r C₀ : ℝ}
       (le_trans (le_max_right _ _) (le_max_right _ _))
 
 /-- Uniformly over all orbit radii below `C₀`, the normalized radius ratio is
-eventually bounded by a constant times `log N`. -/
+eventually bounded by a constant times `log N`.
+@isnad1 id=ex.6h4v.s7.c290a6d9a7dc from=translated src=- shape=88292e91 vocab=b79c8084
+-/
 lemma exists_eventually_roundedBeta_le_mul_log
     {A ρ r C₀ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -1673,7 +1855,9 @@ lemma exists_eventually_roundedBeta_le_mul_log
           hglobalLog
 
 /-- Uniformly over all orbit radii below `C₀`, the normalized derivative
-factor is eventually bounded by a constant times `log N`. -/
+factor is eventually bounded by a constant times `log N`.
+@isnad1 id=ex.6h4v.s7.b63701d79179 from=translated src=- shape=1aeb284e vocab=1d319035
+-/
 lemma exists_eventually_roundedAlpha_le_mul_log
     {A ρ r C₀ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -1739,7 +1923,9 @@ lemma exists_eventually_roundedAlpha_le_mul_log
           hglobalLog
 
 /-- Amplification products are subpolynomial uniformly over every initial
-radius in the compact interval `[0,C₀]`. -/
+radius in the compact interval `[0,C₀]`.
+@isnad1 id=ex.8h4v.s7.d56617d26ee4 from=translated src=- shape=b7bfa59a vocab=78af746b
+-/
 lemma exists_eventually_uniform_amplificationProduct_le_exp_sq
     {A ρ r C₀ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -1850,7 +2036,9 @@ lemma exists_eventually_uniform_amplificationProduct_le_exp_sq
       simpa [C] using hpow
 
 /-- A single logarithmic prefactor is absorbed by enlarging the quadratic
-`log log N` exponent. -/
+`log log N` exponent.
+@isnad1 id=ex.2h2v.s7.e0493f9ff56e from=translated src=- shape=6fd2a689 vocab=ab0e004d
+-/
 lemma exists_eventually_one_add_mul_log_mul_exp_le_exp_sq
     {K C : ℝ} (hK : 0 < K) (hC : 0 < C) :
     ∃ C' : ℝ, 0 < C' ∧ ∃ N₀ : ℕ, ∀ N : ℕ, N₀ ≤ N →
@@ -1894,7 +2082,9 @@ lemma exists_eventually_one_add_mul_log_mul_exp_le_exp_sq
       nlinarith [sq_nonneg (Real.log (Real.log N) - 1)]
 
 /-- A compact pre-terminal orbit segment contributes only a
-dimension-independent factor per time step. -/
+dimension-independent factor per time step.
+@isnad1 id=ex.5h5v.s7.b2d1a7a9bbc2 from=translated src=- shape=10758041 vocab=cb889a2a
+-/
 lemma exists_eventually_compact_amplificationProduct_le_pow
     {A ρ h₀ r C₀ : ℝ}
     (hA : 0 < A) (hρ : 0 < ρ) (hρ_lt : ρ < 1)
@@ -1921,7 +2111,9 @@ lemma exists_eventually_compact_amplificationProduct_le_pow
       (le_max_right _ _)
 
 /-- The compact-prefix factor cut at `τ_r` is bounded by one
-dimension-independent positive constant. -/
+dimension-independent positive constant.
+@isnad1 id=ex.8h5v.s7.d2790f07935f from=translated src=- shape=801f4b8a vocab=d582cdf9
+-/
 lemma exists_eventually_compact_prefix_amplificationProduct_le
     {A ρ h₀ r C₀ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -1955,7 +2147,9 @@ lemma exists_eventually_compact_prefix_amplificationProduct_le
     exact ⟨horbit.1.le, horbit.2⟩
 
 /-- Combining the compact prefix, pre-terminal tail, and terminal suffix gives
-the global amplification product bound up to one fixed prefactor. -/
+the global amplification product bound up to one fixed prefactor.
+@isnad1 id=ex.10h5v.s8.fc1dcefe0a38 from=translated src=- shape=c3798232 vocab=78af746b
+-/
 lemma exists_eventually_amplificationProduct_le_mul_exp_sq
     {A ρ h₀ C₀ r : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -2039,7 +2233,9 @@ lemma exists_eventually_amplificationProduct_le_mul_exp_sq
         hQ.le
 
 /-- The fixed compact-prefix prefactor can be absorbed into the quadratic
-logarithmic exponent. -/
+logarithmic exponent.
+@isnad1 id=ex.10h5v.s7.932411470f4f from=translated src=- shape=9a7b6345 vocab=78af746b
+-/
 lemma exists_eventually_amplificationProduct_le_exp_sq
     {A ρ h₀ C₀ r : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -2085,7 +2281,9 @@ lemma exists_eventually_amplificationProduct_le_exp_sq
       nlinarith [sq_nonneg (Real.log (Real.log N) - 1)]
 
 /-- The paper's full product-plus-radius-ratio amplification is subpolynomial,
-uniformly over every nonempty time interval. -/
+uniformly over every nonempty time interval.
+@isnad1 id=ex.10h5v.s7.aff3e5d5ab52 from=translated src=- shape=53bca988 vocab=f8097938
+-/
 lemma exists_eventually_roundedAmplificationCombination_le_exp_sq
     {A ρ h₀ C₀ r : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)
@@ -2168,7 +2366,9 @@ lemma exists_eventually_roundedAmplificationCombination_le_exp_sq
       habsorb N hNabsorb
 
 /-- The full product-plus-radius-ratio amplification is uniformly
-subpolynomial over every initial radius in `[0,C₀]`. -/
+subpolynomial over every initial radius in `[0,C₀]`.
+@isnad1 id=ex.8h4v.s7.ac6ad0be6c91 from=translated src=- shape=2be9ebd5 vocab=f8097938
+-/
 lemma exists_eventually_uniform_roundedAmplificationCombination_le_exp_sq
     {A ρ r C₀ : ℝ}
     (hA : 0 < A) (hA_lt : A < latticeThreshold)

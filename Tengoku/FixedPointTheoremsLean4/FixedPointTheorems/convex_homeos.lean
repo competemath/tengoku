@@ -7,6 +7,9 @@ import Tengoku.Seed.Analysis.Convex.GaugeRescale
 some helper lemmas involving homeomorphisms.
 -/
 namespace Tengoku.FixedPointTheoremsLean4 end Tengoku.FixedPointTheoremsLean4 open Tengoku.FixedPointTheoremsLean4
+/--
+@isnad1 id=nonempty.3h2v.s7.85de94311db3 from=translated src=- shape=16c598fa vocab=6503f68d
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.homeo_unit_ball {V : Type*}
     [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
     (s: Set V) (hcvx : Convex ℝ s) (hcmpct : IsCompact s)
@@ -23,6 +26,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.homeo_unit_ball {V : Type*}
   exact Nonempty.intro e2
 }
 
+/--
+@isnad1 id=nonempty.1h2v.s8.df374544bba6 from=translated src=- shape=4b797dc6 vocab=e5952aad
+-/
 theorem _root_.Tengoku.FixedPointTheoremsLean4.homeo_of_finrank_eq {V W : Type*}
     [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
     [NormedAddCommGroup W] [NormedSpace ℝ W] [FiniteDimensional ℝ W]
@@ -56,6 +62,9 @@ theorem _root_.Tengoku.FixedPointTheoremsLean4.homeo_of_finrank_eq {V W : Type*}
   exact e2.symm.trans e1
 }
 
+/--
+@isnad1 id=nonempty.0h1v.s8.250cce368860 from=translated src=- shape=e76c7259 vocab=7ce954cb
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.unit_cube_homeo_unit_ball {n}
     : Nonempty (Set.Icc (0 : Fin n → ℝ) 1 ≃ₜ Metric.closedBall (0 : Fin n → ℝ) 1 ) := by
   apply homeo_unit_ball _ (convex_Icc 0 1) isCompact_Icc
@@ -65,6 +74,9 @@ lemma _root_.Tengoku.FixedPointTheoremsLean4.unit_cube_homeo_unit_ball {n}
   exact Set.univ_pi_nonempty_iff.mpr fun _ => by
     rw [interior_Icc]; exact ⟨1/2, by norm_num, by norm_num⟩
 
+/--
+@isnad1 id=ex.3h2v.s8.ff2a309c0ce7 from=translated src=- shape=453d9e91 vocab=9d6e1d4a
+-/
 lemma _root_.Tengoku.FixedPointTheoremsLean4.homeo_unit_cube_of_convex_compact {V : Type*}
     [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
     (s: Set V) (hcvx : Convex ℝ s) (hcmpct : IsCompact s) (hne : s.Nonempty)

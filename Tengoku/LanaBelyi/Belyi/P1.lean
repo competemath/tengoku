@@ -72,6 +72,9 @@ noncomputable def structMap : P1 k ⟶ Spec (CommRingCat.of k) :=
 noncomputable instance : (P1 k).Over (Spec (CommRingCat.of k)) :=
   ⟨structMap k⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.118304d88b39 from=translated src=- shape=19beea13 vocab=3ba37232
+-/
 lemma structMap_eq : (P1 k ↘ Spec (CommRingCat.of k)) = structMap k := rfl
 
 /-- `k[X₀, X₁]` is of finite type over the degree-zero part of its grading. -/

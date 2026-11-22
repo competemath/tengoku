@@ -73,6 +73,9 @@ abbrev Pt : Type := Option Qbar
 /-- The rational point `q ∈ ℙ¹(ℚ) ⊆ ℙ¹(ℚ̄)`. -/
 noncomputable def ofRat (q : ℚ) : Pt := some (q : Qbar)
 
+/--
+@isnad1 id=injectiv.0h0v.s2.bada19664a6c from=translated src=- shape=54c8eceb vocab=b6f8edee
+-/
 lemma ofRat_injective : Function.Injective ofRat := by
   intro p q h
   simpa [ofRat] using h
@@ -80,11 +83,20 @@ lemma ofRat_injective : Function.Injective ofRat := by
 /-- The set `{0, 1, ∞} ⊆ ℙ¹(ℚ̄)`. -/
 def zeroOneInf : Set Pt := {none, some 0, some 1}
 
+/--
+@isnad1 id=iff.0h1v.s6.7944170dc75a from=translated src=- shape=9eaa8880 vocab=024269a0
+-/
 lemma mem_zeroOneInf {z : Pt} : z ∈ zeroOneInf ↔ z = none ∨ z = some 0 ∨ z = some 1 := by
   simp [zeroOneInf]
 
+/--
+@isnad1 id=mem.0h0v.s3.408b70035d5f from=translated src=- shape=e19d7905 vocab=9826e079
+-/
 @[simp] lemma none_mem_zeroOneInf : (none : Pt) ∈ zeroOneInf := by simp [zeroOneInf]
 
+/--
+@isnad1 id=iff.0h1v.s4.3a432cd436a1 from=translated src=- shape=49ac2b41 vocab=f60af814
+-/
 lemma ofRat_mem_zeroOneInf {q : ℚ} : ofRat q ∈ zeroOneInf ↔ q = 0 ∨ q = 1 := by
   simp only [zeroOneInf, ofRat, Set.mem_insert_iff, reduceCtorEq, Option.some.injEq,
     Rat.cast_eq_zero, Set.mem_singleton_iff, false_or]
@@ -121,39 +133,66 @@ def degree : ElemMap → ℕ
   | mob .. => 1
   | poly p _ => p.natDegree
 
+/--
+@isnad1 id=lt.0h1v.s3.06f073b18521 from=translated src=- shape=b9369acb vocab=f013c66a
+-/
 lemma degree_pos (h : ElemMap) : 0 < h.degree := by
   cases h with
   | mob => exact Nat.one_pos
   | poly p hp => exact hp
 
+/--
+@isnad1 id=eq.1h5v.s5.bc5d41ec7561 from=translated src=- shape=1de7fc6b vocab=02d134ad
+-/
 @[simp] lemma ramIdx_mob {a b c d : ℚ} (h : a * d - b * c ≠ 0) (z : Pt) :
     (mob a b c d h).ramIdx z = 1 := rfl
 
+/--
+@isnad1 id=eq.1h1v.s4.8adaf35ffbb9 from=translated src=- shape=bfda43fa vocab=27b6f2b3
+-/
 @[simp] lemma apply_poly_none {p : ℚ[X]} (hp : 0 < p.natDegree) :
     (poly p hp).apply none = none := rfl
 
+/--
+@isnad1 id=eq.1h2v.s7.7a48d3d02e7c from=translated src=- shape=bfbaac5d vocab=3834e0e0
+-/
 @[simp] lemma apply_poly_some {p : ℚ[X]} (hp : 0 < p.natDegree) (z : Qbar) :
     (poly p hp).apply (some z) = some (aeval z p) := rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.c7c588ffac9e from=translated src=- shape=74da3461 vocab=e157d253
+-/
 lemma apply_poly_ofRat {p : ℚ[X]} (hp : 0 < p.natDegree) (q : ℚ) :
     (poly p hp).apply (ofRat q) = ofRat (p.eval q) := by
   simp only [ofRat, apply_poly_some, Option.some.injEq]
   rw [← eq_ratCast (algebraMap ℚ Qbar), ← eq_ratCast (algebraMap ℚ Qbar),
     aeval_algebraMap_apply_eq_algebraMap_eval]
 
+/--
+@isnad1 id=eq.1h4v.s6.136911af2af6 from=translated src=- shape=b3ec0286 vocab=73a75d36
+-/
 lemma apply_mob_none {a b c d : ℚ} (h : a * d - b * c ≠ 0) :
     (mob a b c d h).apply none = if c = 0 then none else some ((a / c : ℚ) : Qbar) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.28a382ffdba9 from=translated src=- shape=c01a2819 vocab=bfefd3b2
+-/
 lemma apply_mob_some {a b c d : ℚ} (h : a * d - b * c ≠ 0) (z : Qbar) :
     (mob a b c d h).apply (some z) =
       if (c : Qbar) * z + d = 0 then none
       else some (((a : Qbar) * z + b) / ((c : Qbar) * z + d)) := rfl
 
+/--
+@isnad1 id=eq.2h5v.s8.11610f00fc57 from=translated src=- shape=2b3744b5 vocab=06b7d97a
+-/
 lemma apply_mob_some_of_ne {a b c d : ℚ} (h : a * d - b * c ≠ 0) {z : Qbar}
     (hz : (c : Qbar) * z + d ≠ 0) :
     (mob a b c d h).apply (some z) = some (((a : Qbar) * z + b) / ((c : Qbar) * z + d)) := by
   rw [apply_mob_some, ite_eq_right hz]
 
+/--
+@isnad1 id=eq.2h5v.s6.4a488bcdf102 from=translated src=- shape=111b1f91 vocab=eb5745c4
+-/
 lemma apply_mob_ofRat {a b c d : ℚ} (h : a * d - b * c ≠ 0) {q : ℚ} (hq : c * q + d ≠ 0) :
     (mob a b c d h).apply (ofRat q) = ofRat ((a * q + b) / (c * q + d)) := by
   have hq' : (c : Qbar) * (q : Qbar) + d ≠ 0 := by exact_mod_cast hq
@@ -161,7 +200,9 @@ lemma apply_mob_ofRat {a b c d : ℚ} (h : a * d - b * c ≠ 0) {q : ℚ} (hq : 
   push_cast
   rfl
 
-/-- A polynomial is ramified at a finite point exactly where its derivative vanishes. -/
+/-- A polynomial is ramified at a finite point exactly where its derivative vanishes.
+@isnad1 id=iff.1h2v.s8.199cea23b4af from=translated src=- shape=ff7d93c9 vocab=6e2139c0
+-/
 lemma one_lt_ramIdx_poly_some_iff {p : ℚ[X]} (hp : 0 < p.natDegree) (z : Qbar) :
     1 < (poly p hp).ramIdx (some z) ↔ aeval z (derivative p) = 0 := by
   have hq : (p.map (algebraMap ℚ Qbar)) - C (aeval z p) ≠ 0 := by
@@ -174,11 +215,16 @@ lemma one_lt_ramIdx_poly_some_iff {p : ℚ[X]} (hp : 0 < p.natDegree) (z : Qbar)
   rw [one_lt_rootMultiplicity_iff_isRoot hq]
   simp [IsRoot, eval_map_algebraMap, derivative_map]
 
+/--
+@isnad1 id=eq.2h2v.s8.e9a766a8400b from=translated src=- shape=9ef5da5a vocab=6e2139c0
+-/
 lemma one_lt_ramIdx_poly_some {p : ℚ[X]} {hp : 0 < p.natDegree} {z : Qbar}
     (h : 1 < (poly p hp).ramIdx (some z)) : aeval z (derivative p) = 0 :=
   (one_lt_ramIdx_poly_some_iff hp z).mp h
 
-/-- Elementary maps are defined over `ℚ`: they commute with `Gal(ℚ̄/ℚ)`. -/
+/-- Elementary maps are defined over `ℚ`: they commute with `Gal(ℚ̄/ℚ)`.
+@isnad1 id=eq.0h3v.s7.553e29001403 from=translated src=- shape=bec8a588 vocab=24e19f32
+-/
 lemma apply_map (σ : Qbar ≃ₐ[ℚ] Qbar) (h : ElemMap) (z : Pt) :
     h.apply (z.map σ) = (h.apply z).map σ := by
   cases h with
@@ -201,7 +247,9 @@ lemma apply_map (σ : Qbar ≃ₐ[ℚ] Qbar) (h : ElemMap) (z : Pt) :
     | some z =>
       simp [aeval_algHom_apply]
 
-/-- A Möbius transformation is surjective on `ℙ¹(ℚ̄)`. -/
+/-- A Möbius transformation is surjective on `ℙ¹(ℚ̄)`.
+@isnad1 id=surjecti.1h4v.s5.70462c8d320a from=translated src=- shape=0a348d4a vocab=c29309ce
+-/
 lemma apply_mob_surjective {a b c d : ℚ} (h : a * d - b * c ≠ 0) :
     Function.Surjective (mob a b c d h).apply := by
   intro w
@@ -241,7 +289,9 @@ lemma apply_mob_surjective {a b c d : ℚ} (h : a * d - b * c ≠ 0) :
       rw [apply_mob_some_of_ne h hne, Option.some.injEq, div_eq_iff hne]
       linear_combination (-1 : Qbar) * hz
 
-/-- A polynomial of positive degree is surjective on `ℙ¹(ℚ̄)`. -/
+/-- A polynomial of positive degree is surjective on `ℙ¹(ℚ̄)`.
+@isnad1 id=surjecti.1h1v.s4.8dd3307c787c from=translated src=- shape=ea676596 vocab=d45f302c
+-/
 lemma apply_poly_surjective {p : ℚ[X]} (hp : 0 < p.natDegree) :
     Function.Surjective (poly p hp).apply := by
   intro w
@@ -257,7 +307,9 @@ lemma apply_poly_surjective {p : ℚ[X]} (hp : 0 < p.natDegree) :
     simp only [IsRoot, eval_sub, eval_map_algebraMap, eval_C, sub_eq_zero] at hz
     simp [hz]
 
-/-- Elementary maps are surjective on `ℙ¹(ℚ̄)`. -/
+/-- Elementary maps are surjective on `ℙ¹(ℚ̄)`.
+@isnad1 id=surjecti.0h1v.s2.58cc3863841a from=translated src=- shape=8735051e vocab=c9a0a947
+-/
 lemma apply_surjective (h : ElemMap) : Function.Surjective h.apply := by
   cases h with
   | mob a b c d hdet => exact apply_mob_surjective hdet
@@ -280,22 +332,40 @@ noncomputable def ramIdxComp : List ElemMap → Pt → ℕ
 /-- The degree of the composite: the product of the degrees. -/
 def degreeComp (hs : List ElemMap) : ℕ := (hs.map ElemMap.degree).prod
 
+/--
+@isnad1 id=eq.0h1v.s3.858cae6dceef from=translated src=- shape=f104d3d9 vocab=6f7e7368
+-/
 @[simp] lemma evalComp_nil (z : Pt) : evalComp [] z = z := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.4a974c48e202 from=translated src=- shape=5a980af7 vocab=2a89afe3
+-/
 @[simp] lemma evalComp_cons (h : ElemMap) (hs : List ElemMap) (z : Pt) :
     evalComp (h :: hs) z = evalComp hs (h.apply z) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.8a56f7d351a5 from=translated src=- shape=12facff3 vocab=4c9aa20b
+-/
 @[simp] lemma ramIdxComp_nil (z : Pt) : ramIdxComp [] z = 1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.fe19dc1b71eb from=translated src=- shape=c24eeec7 vocab=ab918c60
+-/
 @[simp] lemma ramIdxComp_cons (h : ElemMap) (hs : List ElemMap) (z : Pt) :
     ramIdxComp (h :: hs) z = h.ramIdx z * ramIdxComp hs (h.apply z) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.f9e1d88db893 from=translated src=- shape=31d00e26 vocab=d84968fa
+-/
 lemma evalComp_append (hs hs' : List ElemMap) (z : Pt) :
     evalComp (hs ++ hs') z = evalComp hs' (evalComp hs z) := by
   induction hs generalizing z with
   | nil => rfl
   | cons h hs ih => exact ih _
 
+/--
+@isnad1 id=lt.0h1v.s3.cc031aa6bcba from=translated src=- shape=942babd5 vocab=de71fe89
+-/
 lemma degreeComp_pos (hs : List ElemMap) : 0 < degreeComp hs := by
   unfold degreeComp
   induction hs with
@@ -304,12 +374,17 @@ lemma degreeComp_pos (hs : List ElemMap) : 0 < degreeComp hs := by
     rw [List.map_cons, List.prod_cons]
     exact Nat.mul_pos h.degree_pos ih
 
-/-- Composites of elementary maps are surjective on `ℙ¹(ℚ̄)`; in particular non-constant. -/
+/-- Composites of elementary maps are surjective on `ℙ¹(ℚ̄)`; in particular non-constant.
+@isnad1 id=surjecti.0h1v.s3.cffe8456baed from=translated src=- shape=a9740a7d vocab=6697a0fc
+-/
 lemma evalComp_surjective (hs : List ElemMap) : Function.Surjective (evalComp hs) := by
   induction hs with
   | nil => exact Function.surjective_id
   | cons h hs ih => exact ih.comp h.apply_surjective
 
+/--
+@isnad1 id=eq.0h3v.s7.e4126eefab80 from=translated src=- shape=e7c91314 vocab=586e5ce6
+-/
 lemma evalComp_map (σ : Qbar ≃ₐ[ℚ] Qbar) (hs : List ElemMap) (z : Pt) :
     evalComp hs (z.map σ) = (evalComp hs z).map σ := by
   induction hs generalizing z with
@@ -328,15 +403,23 @@ namespace IsNoncriticalBelyi
 
 variable {hs : List ElemMap} {S S' : Set Pt} {τ : Pt}
 
+/--
+@isnad1 id=isnoncri.2h4v.s4.58b69b6575ef from=translated src=- shape=b77ad39a vocab=1e3f55a9
+-/
 lemma mono (hg : IsNoncriticalBelyi hs S τ) (hS : S' ⊆ S) : IsNoncriticalBelyi hs S' τ :=
   ⟨fun z hz => hg.maps_to z (hS hz), hg.tau_notMem, hg.unramified⟩
 
+/--
+@isnad1 id=isnoncri.2h2v.s4.2a7f8c0d4b37 from=translated src=- shape=965de436 vocab=74cb2215
+-/
 lemma nil (hS : S ⊆ zeroOneInf) (hτ : τ ∉ zeroOneInf) : IsNoncriticalBelyi [] S τ :=
   ⟨hS, hτ, fun z hz => by simp at hz⟩
 
 /-- The bookkeeping step: if `S'` contains `h(S)` and the images of all ramification points
 of `h`, then a noncritical Belyi map for `(S', h(τ))` precomposed with `h` is one for
-`(S, τ)`. -/
+`(S, τ)`.
+@isnad1 id=isnoncri.3h5v.s6.dc2619868db0 from=translated src=- shape=9820b4fb vocab=4622ba82
+-/
 lemma cons (h : ElemMap) (hS : ∀ z ∈ S, h.apply z ∈ S')
     (hram : ∀ z, 1 < h.ramIdx z → h.apply z ∈ S')
     (hg : IsNoncriticalBelyi hs S' (h.apply τ)) : IsNoncriticalBelyi (h :: hs) S τ := by
@@ -351,7 +434,9 @@ lemma cons (h : ElemMap) (hS : ∀ z ∈ S, h.apply z ∈ S')
       have : h.ramIdx z * ramIdxComp hs (h.apply z) ≤ 1 * 1 := Nat.mul_le_mul h1 h2
       omega
 
-/-- The `cons` step for a Möbius transformation, which is unramified. -/
+/-- The `cons` step for a Möbius transformation, which is unramified.
+@isnad1 id=isnoncri.3h8v.s6.40a311f6acab from=translated src=- shape=e9588fd6 vocab=e0d4e051
+-/
 lemma cons_mob {a b c d : ℚ} (hdet : a * d - b * c ≠ 0)
     (hS : ∀ z ∈ S, (ElemMap.mob a b c d hdet).apply z ∈ S')
     (hg : IsNoncriticalBelyi hs S' ((ElemMap.mob a b c d hdet).apply τ)) :
@@ -359,7 +444,9 @@ lemma cons_mob {a b c d : ℚ} (hdet : a * d - b * c ≠ 0)
   cons _ hS (fun z hz => by simp at hz) hg
 
 /-- The `cons` step for a polynomial: `S'` must contain `∞`, `p(S)`, and the critical values
-`p(z)` (`p'(z) = 0`). -/
+`p(z)` (`p'(z) = 0`).
+@isnad1 id=isnoncri.5h5v.s9.d1e41526de3a from=translated src=- shape=6cc8250f vocab=3565aeb0
+-/
 lemma cons_poly {p : ℚ[X]} (hp : 0 < p.natDegree)
     (hS : ∀ z ∈ S, (ElemMap.poly p hp).apply z ∈ S') (hinf : (none : Pt) ∈ S')
     (hcrit : ∀ z : Qbar, aeval z (derivative p) = 0 → some (aeval z p) ∈ S')

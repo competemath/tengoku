@@ -73,6 +73,9 @@ def toPrimeSpectrum : FormalSpectrum I → PrimeSpectrum R :=
   PrimeSpectrum.comap (Ideal.Quotient.mk I)
 
 omit [TopologicalSpace R] [IsAdicRing I] in
+/--
+@isnad1 id=eq.0h2v.s6.86b2128522c7 from=translated src=- shape=05d53e33 vocab=d9bc3868
+-/
 theorem range_toPrimeSpectrum :
     Set.range (toPrimeSpectrum I) = PrimeSpectrum.zeroLocus (I : Set R) := by
   have := range_comap_of_surjective _ (Ideal.Quotient.mk I) Ideal.Quotient.mk_surjective
@@ -80,7 +83,9 @@ theorem range_toPrimeSpectrum :
 
 omit [TopologicalSpace R] [IsAdicRing I] in
 /-- `Spf R` is a closed subspace of `Spec R`: the primes of `R` containing the ideal of
-definition `I`. -/
+definition `I`.
+@isnad1 id=isclosed.0h2v.s5.f5a983ca3226 from=translated src=- shape=cb18e303 vocab=29686c56
+-/
 theorem isClosedEmbedding_toPrimeSpectrum : IsClosedEmbedding (toPrimeSpectrum I) :=
   PrimeSpectrum.isClosedEmbedding_comap_of_surjective _ (Ideal.Quotient.mk I)
     Ideal.Quotient.mk_surjective
@@ -104,32 +109,48 @@ residue of `f` modulo `I`. -/
 def basicOpen (f : R) : TopologicalSpace.Opens (FormalSpectrum I) :=
   PrimeSpectrum.basicOpen (Ideal.Quotient.mk I f)
 
+/--
+@isnad1 id=iff.0h4v.s8.30210e963b43 from=translated src=- shape=73f90295 vocab=e39823b7
+-/
 theorem mem_basicOpen (f : R) (x : FormalSpectrum I) :
     x ∈ basicOpen I f ↔ Ideal.Quotient.mk I f ∉ x.asIdeal :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.1859809d77d0 from=translated src=- shape=750f3ad5 vocab=62fb4296
+-/
 @[simp]
 theorem basicOpen_one : basicOpen I (1 : R) = ⊤ := by
   rw [basicOpen, map_one]
   exact PrimeSpectrum.basicOpen_one
 
+/--
+@isnad1 id=eq.0h2v.s7.686545656e91 from=translated src=- shape=750f3ad5 vocab=95133c38
+-/
 @[simp]
 theorem basicOpen_zero : basicOpen I (0 : R) = ⊥ := by
   rw [basicOpen, map_zero]
   exact PrimeSpectrum.basicOpen_zero
 
+/--
+@isnad1 id=eq.0h4v.s6.4040232fd838 from=translated src=- shape=89cbd3ac vocab=84f71af2
+-/
 theorem basicOpen_mul (f g : R) : basicOpen I (f * g) = basicOpen I f ⊓ basicOpen I g := by
   rw [basicOpen, map_mul]
   exact PrimeSpectrum.basicOpen_mul _ _
 
 /-- Every basic open of `Spec (R ⧸ I)` is a basic open of `Spf R`, since `R → R ⧸ I` is
-surjective. -/
+surjective.
+@isnad1 id=ex.0h3v.s6.d57ff247a102 from=translated src=- shape=d19c77b5 vocab=5ae9386e
+-/
 theorem exists_basicOpen_eq (g : R ⧸ I) :
     ∃ f : R, basicOpen I f = PrimeSpectrum.basicOpen g := by
   obtain ⟨f, rfl⟩ := Ideal.Quotient.mk_surjective g
   exact ⟨f, rfl⟩
 
-/-- The basic opens `D(f)`, `f ∈ R`, form a basis of the topology of `Spf R`. -/
+/-- The basic opens `D(f)`, `f ∈ R`, form a basis of the topology of `Spf R`.
+@isnad1 id=istopolo.0h2v.s5.1829f0952e9b from=translated src=- shape=2321b3b1 vocab=71fff5ae
+-/
 theorem isTopologicalBasis_basicOpen :
     TopologicalSpace.IsTopologicalBasis
       (Set.range fun f : R => (basicOpen I f : Set (FormalSpectrum I))) := by
@@ -170,9 +191,15 @@ topologies. -/
 def map (φ : R →+* S) (h : I ≤ J.comap φ) : FormalSpectrum J → FormalSpectrum I :=
   PrimeSpectrum.comap (Ideal.quotientMap J φ h)
 
+/--
+@isnad1 id=continuo.1h5v.s7.2f34d02c0de1 from=translated src=- shape=0ee1b561 vocab=2633a9be
+-/
 theorem continuous_map (φ : R →+* S) (h : I ≤ J.comap φ) : Continuous (map I J φ h) :=
   PrimeSpectrum.continuous_comap (Ideal.quotientMap J φ h)
 
+/--
+@isnad1 id=eq.0h2v.s5.7dbf2bae29a4 from=translated src=- shape=83771760 vocab=23b1488b
+-/
 @[simp]
 theorem map_id : map I I (RingHom.id R) (Ideal.comap_id I).ge = id := by
   have hq : Ideal.quotientMap I (RingHom.id R) (Ideal.comap_id I).ge = RingHom.id (R ⧸ I) :=
@@ -190,7 +217,9 @@ Spf S  →  Spf R
 Spec S →  Spec R
 ```
 
-commutes. -/
+commutes.
+@isnad1 id=eq.1h6v.s7.0ac3e790cd2a from=translated src=- shape=e80f15f7 vocab=d8d8b86c
+-/
 theorem toPrimeSpectrum_map (φ : R →+* S) (h : I ≤ J.comap φ) (x : FormalSpectrum J) :
     toPrimeSpectrum I (map I J φ h x) = PrimeSpectrum.comap φ (toPrimeSpectrum J x) := by
   first
@@ -229,7 +258,9 @@ def toThickening (n : ℕ) (hn : n ≠ 0) : FormalSpectrum I → PrimeSpectrum (
   PrimeSpectrum.comap (Ideal.Quotient.factor (Ideal.pow_le_self hn))
 
 /-- The kernel of `R ⧸ I ^ n →+* R ⧸ I` consists of nilpotent elements, since any lift of an
-element of the kernel lies in `I` and hence its `n`-th power lies in `I ^ n`. -/
+element of the kernel lies in `I` and hence its `n`-th power lies in `I ^ n`.
+@isnad1 id=le.1h3v.s10.5a2de12c9c86 from=translated src=- shape=cb7bdefc vocab=e730aaf5
+-/
 theorem ker_factor_le_nilradical (n : ℕ) (hn : n ≠ 0) :
     RingHom.ker (Ideal.Quotient.factor (Ideal.pow_le_self hn : I ^ n ≤ I)) ≤
       nilradical (R ⧸ I ^ n) := by
@@ -241,7 +272,9 @@ theorem ker_factor_le_nilradical (n : ℕ) (hn : n ≠ 0) :
   exact Ideal.Quotient.eq_zero_iff_mem.mpr (Ideal.pow_mem_pow hx n)
 
 /-- The map from `Spf R` to its `n`-th infinitesimal thickening `Spec (R ⧸ I ^ n)` is a
-homeomorphism: nilpotents do not affect the prime spectrum. -/
+homeomorphism: nilpotents do not affect the prime spectrum.
+@isnad1 id=ishomeom.1h3v.s8.3946fba01893 from=translated src=- shape=f4df3451 vocab=e4f07896
+-/
 theorem isHomeomorph_toThickening (n : ℕ) (hn : n ≠ 0) :
     IsHomeomorph (toThickening I n hn) :=
   PrimeSpectrum.isHomeomorph_comap _
@@ -256,6 +289,9 @@ noncomputable def thickeningHomeomorph (n : ℕ) (hn : n ≠ 0) :
     FormalSpectrum I ≃ₜ PrimeSpectrum (R ⧸ I ^ n) :=
   IsHomeomorph.homeomorph _ (isHomeomorph_toThickening I n hn)
 
+/--
+@isnad1 id=eq.1h4v.s10.8f79bf2950e0 from=translated src=- shape=69c7bab7 vocab=40df9788
+-/
 @[simp]
 theorem thickeningHomeomorph_apply (n : ℕ) (hn : n ≠ 0) (x : FormalSpectrum I) :
     thickeningHomeomorph I n hn x = toThickening I n hn x :=
@@ -263,7 +299,9 @@ theorem thickeningHomeomorph_apply (n : ℕ) (hn : n ≠ 0) (x : FormalSpectrum 
 
 /-- The closed embedding `Spec (R ⧸ I ^ n) → Spec R` restricted along `toThickening`
 recovers the inclusion `Spf R → Spec R`: the thickenings all sit inside `Spec R`
-compatibly. -/
+compatibly.
+@isnad1 id=eq.1h4v.s7.356081373f98 from=translated src=- shape=92b0cc01 vocab=2178fefc
+-/
 theorem comap_mk_toThickening (n : ℕ) (hn : n ≠ 0) (x : FormalSpectrum I) :
     PrimeSpectrum.comap (Ideal.Quotient.mk (I ^ n)) (toThickening I n hn x) =
       toPrimeSpectrum I x := by
@@ -279,7 +317,9 @@ theorem comap_mk_toThickening (n : ℕ) (hn : n ≠ 0) (x : FormalSpectrum I) :
     | (all_goals tauto; done)
 
 /-- The preimage of the basic open `D(f mod I ^ n) ⊆ Spec (R ⧸ I ^ n)` under the map to the
-`n`-th infinitesimal thickening is the basic open `D(f) ⊆ Spf R`. -/
+`n`-th infinitesimal thickening is the basic open `D(f) ⊆ Spf R`.
+@isnad1 id=eq.1h4v.s10.853f32ed6bce from=translated src=- shape=defdb5ff vocab=c0d217e5
+-/
 theorem toThickening_preimage_basicOpen (n : ℕ) (hn : n ≠ 0) (f : R) :
     toThickening I n hn ⁻¹'
         (PrimeSpectrum.basicOpen (Ideal.Quotient.mk (I ^ n) f) : Set (PrimeSpectrum (R ⧸ I ^ n)))
@@ -296,7 +336,9 @@ theorem toThickening_preimage_basicOpen (n : ℕ) (hn : n ≠ 0) (f : R) :
     | (all_goals tauto; done)
 
 /-- The image of the basic open `D(f) ⊆ Spf R` in the `n`-th infinitesimal thickening
-`Spec (R ⧸ I ^ n)` is the basic open `D(f mod I ^ n)`. -/
+`Spec (R ⧸ I ^ n)` is the basic open `D(f mod I ^ n)`.
+@isnad1 id=eq.1h4v.s10.e0b0eec11c87 from=translated src=- shape=5234c9b2 vocab=a3083187
+-/
 theorem toThickening_image_basicOpen (n : ℕ) (hn : n ≠ 0) (f : R) :
     toThickening I n hn '' (basicOpen I f : Set (FormalSpectrum I)) =
       (PrimeSpectrum.basicOpen (Ideal.Quotient.mk (I ^ n) f) :

@@ -64,7 +64,9 @@ curve `W / K` cannot simultaneously acquire good reduction over a discrete valua
 `A ⊆ L` lying over `R` (its contraction to `K` bounds the base valuation, `hoverA`) and
 multiplicative reduction over a discrete valuation subring `A' ⊆ L'` lying over `R` (`hoverA'`):
 the former forces `v_R(W.j) ≤ 1` (#514) and the latter `1 < v_R(W.j)` (#509).  Base-landing,
-potential form of the reduction-type dichotomy, Silverman AEC VII.5.5. -/
+potential form of the reduction-type dichotomy, Silverman AEC VII.5.5.
+@isnad1 id=false.4h7v.s9.6eac7b80be64 from=translated src=- shape=8971e40e vocab=edd5c48f
+-/
 theorem not_hasGoodReduction_and_hasMultiplicativeReduction_baseChange_over
     {L : Type*} [Field L] [Algebra K L] (A : ValuationSubring L) [IsDiscreteValuationRing A]
     (hoverA : ∀ x : K, algebraMap K L x ∈ A → valuation K (maximalIdeal R) x ≤ 1)
@@ -79,7 +81,9 @@ theorem not_hasGoodReduction_and_hasMultiplicativeReduction_baseChange_over
 variable (R) in
 /-- **Potential good reduction rules out potential multiplicative reduction.**  If `W⁄L` has good
 reduction over a discrete valuation subring `A ⊆ L` lying over `R`, then `W` has multiplicative
-reduction over *no* discrete valuation subring extension `A' ⊆ L'` lying over `R`. -/
+reduction over *no* discrete valuation subring extension `A' ⊆ L'` lying over `R`.
+@isnad1 id=not.3h7v.s9.f089d1d51f65 from=translated src=- shape=abeb953f vocab=edd5c48f
+-/
 theorem not_hasMultiplicativeReduction_baseChange_over_of_hasGoodReduction
     {L : Type*} [Field L] [Algebra K L] (A : ValuationSubring L) [IsDiscreteValuationRing A]
     (hoverA : ∀ x : K, algebraMap K L x ∈ A → valuation K (maximalIdeal R) x ≤ 1)
@@ -93,7 +97,9 @@ theorem not_hasMultiplicativeReduction_baseChange_over_of_hasGoodReduction
 variable (R) in
 /-- **Potential multiplicative reduction rules out potential good reduction.**  If `W⁄L'` has
 multiplicative reduction over a discrete valuation subring `A' ⊆ L'` lying over `R`, then `W` has
-good reduction over *no* discrete valuation subring extension `A ⊆ L` lying over `R`. -/
+good reduction over *no* discrete valuation subring extension `A ⊆ L` lying over `R`.
+@isnad1 id=not.3h7v.s9.9e0bca19f2a8 from=translated src=- shape=7e3293df vocab=edd5c48f
+-/
 theorem not_hasGoodReduction_baseChange_over_of_hasMultiplicativeReduction
     {L' : Type*} [Field L'] [Algebra K L'] (A' : ValuationSubring L') [IsDiscreteValuationRing A']
     (hoverA' : ∀ r : R, algebraMap K L' (algebraMap R K r) ∈ A')

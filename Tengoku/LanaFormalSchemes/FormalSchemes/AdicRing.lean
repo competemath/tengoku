@@ -41,6 +41,9 @@ topology. Formal schemes are glued from formal spectra of such rings. -/
 class _root_.Tengoku.LanaFormalSchemes.IsAdicRing [TopologicalSpace R] (I : Ideal R) : Prop extends IsAdicComplete I R where
   isAdic : IsAdic I
 
+/--
+@isnad1 id=iff.1h2v.s5.cedee4ead733 from=translated src=- shape=bfe36f8a vocab=6ae46055
+-/
 theorem _root_.Tengoku.LanaFormalSchemes.isAdicRing_iff_completeSpace_and_t2Space [UniformSpace R] [IsUniformAddGroup R]
     {I : Ideal R} (hI : IsAdic I) :
     IsAdicRing I ↔ CompleteSpace R ∧ T2Space R := by

@@ -64,7 +64,9 @@ neither the remainder of the type nor the proof term, measured on the elaborated
 `Affine.Point.neg_some` followed by `localParam_some` and the `if_pos` on the same branch
 condition.  ⚠️ The integral model is still what makes the *statement interesting* — it is where
 `1 < v x` comes from in practice — and every other declaration in this file that mentions a
-reduction keeps it. -/
+reduction keeps it.
+@isnad1 id=eq.2h5v.s7.99f3e8089230 from=translated src=- shape=bf28b3c2 vocab=ab1ca208
+-/
 theorem localParam_neg_some (W : WeierstrassCurve K)
     {x y : K} (h : W.toAffine.Nonsingular x y)
     (hx : 1 < valuation K (maximalIdeal R) x) :
@@ -77,7 +79,9 @@ variable [IsAdicComplete (maximalIdeal R).asIdeal R]
 
 /-- The negation denominator on the recovered coordinates: clearing the `w(z)` poles,
 `w(z) · negY (x(z)) (y(z)) = 1 - a₁ z - a₃ w(z)`.  This is the numeric `den` of the formal group
-specialised to the negation line. -/
+specialised to the negation line.
+@isnad1 id=eq.2h4v.s8.ddb9c0ad58d0 from=translated src=- shape=c70cf371 vocab=a7322c53
+-/
 theorem wParam_mul_negY_xParam_yParam (W : WeierstrassCurve K) [IsIntegral R W] {z : R}
     (hz : z ∈ (maximalIdeal R).asIdeal) (hz0 : z ≠ 0) :
     algebraMap R K (wParam R W hz) *
@@ -91,7 +95,9 @@ theorem wParam_mul_negY_xParam_yParam (W : WeierstrassCurve K) [IsIntegral R W] 
 /-- **The affine formula for the formal inverse.**  The local parameter of the negation of the
 recovered point `pointOfParam z` is `z(-P) = -z / (1 - a₁ z - a₃ w(z))`.  Combined with the
 formal-group negation `⊖`, this is the coordinate input for the inverse case of the additivity crux
-(issue #367). -/
+(issue #367).
+@isnad1 id=eq.2h4v.s9.27ef89fabea7 from=translated src=- shape=82afaf22 vocab=285983a1
+-/
 theorem localParam_neg_pointOfParam (W : WeierstrassCurve K) [IsIntegral R W] [W.IsElliptic]
     {z : R} (hz : z ∈ (maximalIdeal R).asIdeal) (hz0 : z ≠ 0) :
     localParam R W (-(pointOfParam R W hz hz0))

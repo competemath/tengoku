@@ -52,7 +52,9 @@ variable {R S : Type*} [CommRing R] [CommRing S] [Algebra R S]
 the base change `T ⊗[R] S` is quasi-finite over `T`, then `S` is quasi-finite over `R`.
 
 This is the converse of `Algebra.QuasiFinite.baseChange`; together they say quasi-finiteness is
-insensitive to a faithfully flat base change. -/
+insensitive to a faithfully flat base change.
+@isnad1 id=quasifin.0h3v.s7.5dd86a7f3dc4 from=translated src=- shape=024615da vocab=036c7355
+-/
 lemma QuasiFinite.of_quasiFinite_tensorProduct_of_faithfullyFlat
     (T : Type*) [CommRing T] [Algebra R T] [Module.FaithfullyFlat R T]
     [QuasiFinite T (T ⊗[R] S)] :
@@ -77,7 +79,9 @@ end Algebra
 
 namespace RingHom
 
-/-- **Faithfully-flat codescent of quasi-finiteness**, `RingHom.CodescendsAlong` packaging. -/
+/-- **Faithfully-flat codescent of quasi-finiteness**, `RingHom.CodescendsAlong` packaging.
+@isnad1 id=codescen.0h0v.s4.c10c2fd60e29 from=translated src=- shape=b2c949c9 vocab=f7b3d3fa
+-/
 lemma QuasiFinite.codescendsAlong_faithfullyFlat :
     CodescendsAlong QuasiFinite FaithfullyFlat := by
   refine .mk _ QuasiFinite.respectsIso fun R S T _ _ _ _ _ h h' ↦ ?_
@@ -91,7 +95,9 @@ namespace AlgebraicGeometry
 
 /-- **Faithfully-flat (fpqc) descent of `@LocallyQuasiFinite`.** If the base change of `f` along an
 fpqc cover `g` (i.e. `g` is `@Surjective ⊓ @Flat ⊓ @QuasiCompact`) is locally quasi-finite, then so
-is `f`. -/
+is `f`.
+@isnad1 id=descends.0h0v.s6.50c4ae370f8c from=translated src=- shape=9ad65628 vocab=3a8f64da
+-/
 instance LocallyQuasiFinite.descendsAlong_surjective_inf_flat_inf_quasicompact :
     DescendsAlong @LocallyQuasiFinite (@Surjective ⊓ @Flat ⊓ @QuasiCompact) :=
   HasRingHomProperty.descendsAlong_flat RingHom.QuasiFinite.codescendsAlong_faithfullyFlat
@@ -110,7 +116,9 @@ covers with the current mathlib API without properness, because affineness desce
 that gap.
 
 Orientation follows the `DescendsAlong` convention: `f` is the fpqc cover, `fst` its base change of
-the descended morphism `g`, and the property descends from `fst` to `g`. -/
+the descended morphism `g`, and the property descends from `fst` to `g`.
+@isnad1 id=isfinite.1h8v.s6.ae373ea9e7cd from=translated src=- shape=7f1eb99a vocab=72708d6a
+-/
 theorem isFinite_of_isPullback_of_faithfullyFlat
     {A X Y Z : Scheme.{u}} {fst : A ⟶ X} {snd : A ⟶ Y} {f : X ⟶ Z} {g : Y ⟶ Z}
     (h : IsPullback fst snd f g) [IsProper g]

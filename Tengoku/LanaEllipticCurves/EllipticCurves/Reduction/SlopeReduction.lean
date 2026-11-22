@@ -55,7 +55,9 @@ exactly the slope of the reduced curve at the reduced points.
 
 This is the residue-side slope compatibility the secant reduction-additivity rung consumes; because
 `x₀₁ - x₀₂` is a unit of the local ring `R`, the difference quotient stays in `R` and the ring
-homomorphism `residue R` commutes with it — no injectivity of `residue R` is required. -/
+homomorphism `residue R` commutes with it — no injectivity of `residue R` is required.
+@isnad1 id=ex.5h11v.s10.cb2e65a4a434 from=translated src=- shape=d1186ea5 vocab=b23e5b1d
+-/
 theorem exists_lift_slope_of_reduced_X_ne (W : WeierstrassCurve K) [HasGoodReduction R W]
     {x₁ x₂ y₁ y₂ : K} {x₀₁ y₀₁ x₀₂ y₀₂ : R}
     (hx₁ : algebraMap R K x₀₁ = x₁) (hy₁ : algebraMap R K y₀₁ = y₁)
@@ -86,7 +88,9 @@ theorem exists_lift_slope_of_reduced_X_ne (W : WeierstrassCurve K) [HasGoodReduc
 
 open Classical in
 /-- On the good-secant locus the secant slope is **integral** (`v (slope) ≤ 1`), a corollary of the
-integral lift `exists_lift_slope_of_reduced_X_ne`. -/
+integral lift `exists_lift_slope_of_reduced_X_ne`.
+@isnad1 id=le.5h11v.s9.31479a06a50e from=translated src=- shape=b9390646 vocab=bb1d58ba
+-/
 theorem valuation_slope_le_one_of_reduced_X_ne (W : WeierstrassCurve K) [HasGoodReduction R W]
     {x₁ x₂ y₁ y₂ : K} {x₀₁ y₀₁ x₀₂ y₀₂ : R}
     (hx₁ : algebraMap R K x₀₁ = x₁) (hy₁ : algebraMap R K y₀₁ = y₁)

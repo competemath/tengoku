@@ -92,7 +92,9 @@ The four cyclic factors regroup: `E[mn] ≃+ E[m] × E[n] ≃+ (ℤ/mℤ)² × (
 `ZMod.chineseRemainder` identifies each factor with `ℤ/mnℤ`.
 
 This is the reusable form: it assembles `E[n] ≅ (ℤ/nℤ)²` for a general `n` out of its prime-power
-factors. -/
+factors.
+@isnad1 id=nonempty.3h4v.s9.9c54b8649d92 from=translated src=- shape=61d3adbb vocab=92ebb0c3
+-/
 theorem nonempty_torsion_addEquiv_zmod_sq_of_coprime {m n : ℕ} (h : Nat.Coprime m n)
     (hm : Nonempty (W.torsion m ≃+ ZMod m × ZMod m))
     (hn : Nonempty (W.torsion n ≃+ ZMod n × ZMod n)) :
@@ -111,7 +113,9 @@ variable [IsAlgClosed F] [W.IsElliptic]
 /-- **`#E[6] = 36`** for an elliptic curve over an algebraically closed field in which `2 ≠ 0` and
 `3 ≠ 0`, from `#E[2] = 4` and `#E[3] = 9` by coprime multiplicativity.
 
-This attains the bound `#E[n] ≤ n²` at `n = 6`. -/
+This attains the bound `#E[n] ≤ n²` at `n = 6`.
+@isnad1 id=eq.2h2v.s7.00f9a9101db6 from=translated src=- shape=f72269f0 vocab=f86ea38f
+-/
 theorem card_torsion_six (h2 : (2 : F) ≠ 0) (h3 : (3 : F) ≠ 0) :
     Nat.card (W.torsion 6) = 36 := by
   have h : Nat.Coprime 2 3 := by decide
@@ -122,7 +126,9 @@ theorem card_torsion_six (h2 : (2 : F) ≠ 0) (h3 : (3 : F) ≠ 0) :
 `3 ≠ 0`, the `6`-torsion subgroup of an elliptic curve is isomorphic to `ℤ/6ℤ × ℤ/6ℤ`.
 
 This is the first *composite* instance of `E[n] ≅ (ℤ/nℤ)²`, glued from the `n = 2` and `n = 3`
-cases. -/
+cases.
+@isnad1 id=nonempty.2h2v.s8.d88e952ae148 from=translated src=- shape=29f22e9c vocab=330bdb27
+-/
 theorem nonempty_torsionSix_addEquiv (h2 : (2 : F) ≠ 0) (h3 : (3 : F) ≠ 0) :
     Nonempty (W.torsion 6 ≃+ ZMod 6 × ZMod 6) := by
   have h : Nat.Coprime 2 3 := by decide

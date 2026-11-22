@@ -53,7 +53,9 @@ def DefinableOver (X : Scheme.{u}) [X.Over (Spec (CommRingCat.of K))] : Prop :=
     (e : X ≅ pullback f₀ (specAlgebraMap k₀ K)),
     e.hom ≫ pullback.snd f₀ (specAlgebraMap k₀ K) = X ↘ Spec (CommRingCat.of K)
 
-/-- In a tower `k₀ ⊆ k₁ ⊆ K`, the induced morphisms of spectra compose as expected. -/
+/-- In a tower `k₀ ⊆ k₁ ⊆ K`, the induced morphisms of spectra compose as expected.
+@isnad1 id=eq.0h3v.s7.81f4fa0997a4 from=translated src=- shape=7b3ca9db vocab=091391ec
+-/
 lemma specAlgebraMap_comp (k₁ : Type u) [CommRing k₁] [Algebra k₀ k₁] [Algebra k₁ K]
     [IsScalarTower k₀ k₁ K] :
     specAlgebraMap k₁ K ≫ specAlgebraMap k₀ k₁ = specAlgebraMap k₀ K := by
@@ -68,7 +70,9 @@ namespace DefinableOver
 variable {k₀ K} {X Y : Scheme.{u}} [X.Over (Spec (CommRingCat.of K))]
   [Y.Over (Spec (CommRingCat.of K))]
 
-/-- **B3a**: definability over a subfield is invariant under isomorphism over `Spec K`. -/
+/-- **B3a**: definability over a subfield is invariant under isomorphism over `Spec K`.
+@isnad1 id=definabl.2h5v.s7.c3173a3366d2 from=translated src=- shape=2bc5d049 vocab=617f0320
+-/
 lemma of_iso (φ : X ≅ Y) (hφ : φ.hom ≫ (Y ↘ Spec (CommRingCat.of K)) =
     X ↘ Spec (CommRingCat.of K)) (h : DefinableOver k₀ K X) : DefinableOver k₀ K Y := by
   obtain ⟨X₀, f₀, e, he⟩ := h
@@ -76,7 +80,9 @@ lemma of_iso (φ : X ≅ Y) (hφ : φ.hom ≫ (Y ↘ Spec (CommRingCat.of K)) =
   rw [Iso.trans_hom, Category.assoc, he, Iso.symm_hom, Iso.inv_comp_eq, hφ]
 
 /-- **B3b**: a scheme definable over `k₀` is definable over any intermediate `k₁` in a
-tower `k₀ ⊆ k₁ ⊆ K`, by base-changing the model. -/
+tower `k₀ ⊆ k₁ ⊆ K`, by base-changing the model.
+@isnad1 id=definabl.1h4v.s6.2e270c1c70c7 from=translated src=- shape=867ee8bb vocab=78debda2
+-/
 lemma trans (k₁ : Type u) [CommRing k₁] [Algebra k₀ k₁] [Algebra k₁ K]
     [IsScalarTower k₀ k₁ K] (h : DefinableOver k₀ K X) : DefinableOver k₁ K X := by
   obtain ⟨X₀, f₀, e, he⟩ := h

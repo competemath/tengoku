@@ -21,7 +21,9 @@ moment), using `∫ g² = 1`. -/
 
 open Filter Topology
 
-/-- `tanh² x ≤ x²` (i.e. `|tanh x| ≤ |x|`). -/
+/-- `tanh² x ≤ x²` (i.e. `|tanh x| ≤ |x|`).
+@isnad1 id=le.0h1v.s5.7cc147915025 from=translated src=- shape=e1e03851 vocab=e0b8f838
+-/
 lemma tanh_sq_le_sq (x : ℝ) : Real.tanh x ^ 2 ≤ x ^ 2 := by
   rcases le_total 0 x with hx | hx
   · have h0 : 0 ≤ Real.tanh x := by have := tanh_strictMono.monotone hx; simpa using this
@@ -31,7 +33,9 @@ lemma tanh_sq_le_sq (x : ℝ) : Real.tanh x ^ 2 ≤ x ^ 2 := by
     have h2 : Real.tanh x ≤ 0 := by have := tanh_strictMono.monotone hx; simpa using this
     nlinarith [h1, h2]
 
-/-- `tanh u / u → 1` as `u → 0` (the slope of `tanh` at `0`, where `tanh'(0) = 1`). -/
+/-- `tanh u / u → 1` as `u → 0` (the slope of `tanh` at `0`, where `tanh'(0) = 1`).
+@isnad1 id=tendsto.0h0v.s5.316fcd6dac99 from=translated src=- shape=413bf0c6 vocab=de48dbff
+-/
 lemma tendsto_tanh_div_self_one :
     Tendsto (fun u : ℝ => Real.tanh u / u) (𝓝[≠] 0) (𝓝 1) := by
   have hd : HasDerivAt Real.tanh 1 0 := by simpa using hasDerivAt_tanh 0
@@ -39,7 +43,9 @@ lemma tendsto_tanh_div_self_one :
   filter_upwards [self_mem_nhdsWithin] with u _
   rw [slope_def_field, Real.tanh_zero, sub_zero, sub_zero]
 
-/-- Second moment of the standard Gaussian: `∫ g² = Var[id] = 1` (its mean is `0`). -/
+/-- Second moment of the standard Gaussian: `∫ g² = Var[id] = 1` (its mean is `0`).
+@isnad1 id=eq.0h0v.s5.870ce7c8bc79 from=translated src=- shape=ed0f2aee vocab=4960fe00
+-/
 lemma integral_sq_gaussian : ∫ g : ℝ, g ^ 2 ∂(gaussianReal 0 1) = 1 := by
   have hv := variance_id_gaussianReal (μ := 0) (v := 1)
   have hi : ∫ g : ℝ, g ∂(gaussianReal 0 1) = 0 := integral_id_gaussianReal (μ := 0) (v := 1)
@@ -48,7 +54,9 @@ lemma integral_sq_gaussian : ∫ g : ℝ, g ^ 2 ∂(gaussianReal 0 1) = 1 := by
   simpa using hv
 
 /-- Pointwise near-zero limit of the ratio integrand: for `g ≠ 0`,
-`tanh²(A√q·g)/q → (Ag)²` as `q → 0⁺` (write it as `(tanh u/u)²·(Ag)²`, `u=A√q·g→0`). -/
+`tanh²(A√q·g)/q → (Ag)²` as `q → 0⁺` (write it as `(tanh u/u)²·(Ag)²`, `u=A√q·g→0`).
+@isnad1 id=tendsto.2h2v.s7.232d5c17f94b from=translated src=- shape=c7b61221 vocab=ae885fe2
+-/
 lemma tendsto_tanh_sq_div_ratio {A g : ℝ} (hA : A ≠ 0) (hg : g ≠ 0) :
     Tendsto (fun q : ℝ => Real.tanh (A * Real.sqrt q * g) ^ 2 / q) (𝓝[>] 0) (𝓝 ((A * g) ^ 2)) := by
   have hmap : Tendsto (fun q : ℝ => A * Real.sqrt q * g) (𝓝[>] 0) (𝓝[≠] 0) := by
@@ -73,7 +81,9 @@ lemma tendsto_tanh_sq_div_ratio {A g : ℝ} (hA : A ≠ 0) (hg : g ≠ 0) :
 
 /-- **`V_A'(0+) = A²`** (paper `eq:gaussian-mean-field-near-zero`): the near-zero slope
 `V_A(q)/q → A²` as `q → 0⁺`. Dominated convergence of `g ↦ tanh²(A√q·g)/q → (Ag)²`
-(bound `tanh² x ≤ x²`, integrable second moment `A²g²`), with `∫ g² = 1`. -/
+(bound `tanh² x ≤ x²`, integrable second moment `A²g²`), with `∫ g² = 1`.
+@isnad1 id=tendsto.1h1v.s6.32e5f28002a0 from=translated src=- shape=7ffae538 vocab=45eef49e
+-/
 lemma V_ratio_tendsto {A : ℝ} (hA : A ≠ 0) :
     Tendsto (fun q => V A q / q) (𝓝[>] 0) (𝓝 (A ^ 2)) := by
   have hbound_int : Integrable (fun g : ℝ => A ^ 2 * g ^ 2) (gaussianReal 0 1) :=
@@ -103,7 +113,9 @@ lemma V_ratio_tendsto {A : ℝ} (hA : A ≠ 0) :
   rw [V, integral_div]
 
 /-- For `A > 1`, `V_A` exceeds the diagonal near `0` (since `V_A(q)/q → A² > 1`),
-supplying the exceed-diagonal hypothesis of `V_exists_unique_fixed`. -/
+supplying the exceed-diagonal hypothesis of `V_exists_unique_fixed`.
+@isnad1 id=ex.1h1v.s5.f7c6539e9f8d from=translated src=- shape=af317a2a vocab=07bb853d
+-/
 lemma V_exceeds_diagonal_of_one_lt {A : ℝ} (hA : 1 < A) :
     ∃ q ∈ Ioo (0 : ℝ) 1, q < V A q := by
   have hA0 : A ≠ 0 := (by linarith : (0 : ℝ) < A).ne'
@@ -121,14 +133,18 @@ lemma V_exceeds_diagonal_of_one_lt {A : ℝ} (hA : 1 < A) :
 
 /-- **Unconditional fixed point for `A > 1`** — the full `A>1` case of the paper's
 `lem:gaussian-mean-field-concavity`: for `A > 1`, `V_A` has a unique positive fixed point,
-with no exceed-diagonal hypothesis (it is now derived from `V_A'(0+) = A² > 1`). -/
+with no exceed-diagonal hypothesis (it is now derived from `V_A'(0+) = A² > 1`).
+@isnad1 id=existsun.1h1v.s5.c4f7c79762e2 from=translated src=- shape=3e44fa7b vocab=5573b9c6
+-/
 theorem V_exists_unique_fixed_of_one_lt {A : ℝ} (hA : 1 < A) :
     ∃! q, q ∈ Ioo (0 : ℝ) 1 ∧ V A q = q := by
   obtain ⟨q₀, hq₀, hexceed⟩ := V_exceeds_diagonal_of_one_lt hA
   exact V_exists_unique_fixed ((by linarith : (0 : ℝ) < A).ne') hq₀ hexceed
 
 /-- The ratio `V_A(q)/q` is strictly below its right-limit `A²` throughout `(0,1)`
-(`A ≠ 0`): it is `StrictAntiOn` with right-limit `A²` at `0⁺`. Compare `q` with `q/2`. -/
+(`A ≠ 0`): it is `StrictAntiOn` with right-limit `A²` at `0⁺`. Compare `q` with `q/2`.
+@isnad1 id=lt.2h2v.s6.03f4e4de9a72 from=translated src=- shape=3a4f0182 vocab=0e997ad1
+-/
 lemma V_ratio_lt_sq {A : ℝ} (hA : A ≠ 0) {q : ℝ} (hq : q ∈ Ioo (0 : ℝ) 1) :
     V A q / q < A ^ 2 := by
   have hq''0 : 0 < q / 2 := by linarith [hq.1]
@@ -146,7 +162,9 @@ lemma V_ratio_lt_sq {A : ℝ} (hA : A ≠ 0) {q : ℝ} (hq : q ∈ Ioo (0 : ℝ)
     V_ratio_strictAntiOn hA hq''mem ⟨hq.1, hq.2⟩ hq''q
   linarith
 
-/-- `A ∈ (0,1]` ⇒ `V_A(q) < q` for all `q ∈ (0,1)`: `V_A(q)/q < A² ≤ 1`. -/
+/-- `A ∈ (0,1]` ⇒ `V_A(q) < q` for all `q ∈ (0,1)`: `V_A(q)/q < A² ≤ 1`.
+@isnad1 id=lt.3h2v.s5.600b84fc4e25 from=translated src=- shape=a5d914fa vocab=11ee56dc
+-/
 lemma V_lt_self_of_le_one {A : ℝ} (hA0 : 0 < A) (hA1 : A ≤ 1) {q : ℝ}
     (hq : q ∈ Ioo (0 : ℝ) 1) : V A q < q := by
   have hsq : A ^ 2 ≤ 1 := pow_le_one₀ hA0.le hA1
@@ -155,7 +173,9 @@ lemma V_lt_self_of_le_one {A : ℝ} (hA0 : 0 < A) (hA1 : A ≤ 1) {q : ℝ}
 
 /-- **`A ≤ 1` ⇒ `0` is the only fixed point of `V_A` in `[0,1]`** (the `A≤1` case of the
 paper's `lem:gaussian-mean-field-concavity`): `V_A(q) < q` on `(0,1)` (`V_lt_self_of_le_one`)
-and `V_A(1) < 1` (`V_lt_one`) rule out any positive fixed point; `V_A(0) = 0` is the one. -/
+and `V_A(1) < 1` (`V_lt_one`) rule out any positive fixed point; `V_A(0) = 0` is the one.
+@isnad1 id=eq.4h2v.s6.3d299799dd46 from=translated src=- shape=9c9bd6d2 vocab=8abf68cf
+-/
 theorem V_fixed_eq_zero_of_le_one {A : ℝ} (hA0 : 0 < A) (hA1 : A ≤ 1) {q : ℝ}
     (hq : q ∈ Icc (0 : ℝ) 1) (hfix : V A q = q) : q = 0 := by
   rcases eq_or_lt_of_le hq.1 with h | h
@@ -175,7 +195,9 @@ and equals `1` at `q_*`). Hence each orbit is monotone and bounded, so it conver
 limit is a fixed point (continuity), hence `q_*` by uniqueness. -/
 
 /-- **Below the fixed point `V_A` exceeds the diagonal.** If `q_* ∈ (0,1)` is a fixed point
-and `0 < q < q_*`, then `q < V_A(q)`, since the ratio `V_A(q)/q > V_A(q_*)/q_* = 1`. -/
+and `0 < q < q_*`, then `q < V_A(q)`, since the ratio `V_A(q)/q > V_A(q_*)/q_* = 1`.
+@isnad1 id=lt.5h3v.s6.7143bf009f4b from=translated src=- shape=7e63dbc0 vocab=07bb853d
+-/
 lemma V_gt_self_of_lt_fixed {A : ℝ} (hA : A ≠ 0) {qstar : ℝ}
     (hstar : qstar ∈ Ioo (0 : ℝ) 1) (hfix : V A qstar = qstar) {q : ℝ}
     (hq : q ∈ Ioo (0 : ℝ) 1) (hlt : q < qstar) : q < V A q := by
@@ -184,7 +206,9 @@ lemma V_gt_self_of_lt_fixed {A : ℝ} (hA : A ≠ 0) {qstar : ℝ}
   exact hratio
 
 /-- **Above the fixed point `V_A` lies below the diagonal.** If `q_* ∈ (0,1)` is a fixed
-point and `q_* < q < 1`, then `V_A(q) < q`, since the ratio `V_A(q)/q < V_A(q_*)/q_* = 1`. -/
+point and `q_* < q < 1`, then `V_A(q) < q`, since the ratio `V_A(q)/q < V_A(q_*)/q_* = 1`.
+@isnad1 id=lt.5h3v.s6.b8337f6a41e3 from=translated src=- shape=f39537a9 vocab=07bb853d
+-/
 lemma V_lt_self_of_gt_fixed {A : ℝ} (hA : A ≠ 0) {qstar : ℝ}
     (hstar : qstar ∈ Ioo (0 : ℝ) 1) (hfix : V A qstar = qstar) {q : ℝ}
     (hq : q ∈ Ioo (0 : ℝ) 1) (hgt : qstar < q) : V A q < q := by
@@ -195,7 +219,9 @@ lemma V_lt_self_of_gt_fixed {A : ℝ} (hA : A ≠ 0) {qstar : ℝ}
 /-- **Orbit convergence below the fixed point.** For `A > 1`, a positive fixed point
 `q_* ∈ (0,1)`, and a start `0 < q ≤ q_*`, the orbit `V_A^t(q)` increases and stays in
 `(0, q_*]` (`V_A` increasing; above the diagonal below `q_*`), so it converges to its
-supremum; by continuity the limit is a fixed point in `(0,1)`, hence `q_*` by uniqueness. -/
+supremum; by continuity the limit is a fixed point in `(0,1)`, hence `q_*` by uniqueness.
+@isnad1 id=tendsto.5h3v.s6.967c92301483 from=translated src=- shape=180774c8 vocab=38bdd56e
+-/
 theorem V_orbit_tendsto_of_le_fixed {A : ℝ} (hA : 1 < A) {qstar : ℝ}
     (hstar : qstar ∈ Ioo (0 : ℝ) 1) (hfix : V A qstar = qstar) {q : ℝ}
     (hq0 : 0 < q) (hqle : q ≤ qstar) :
@@ -246,7 +272,9 @@ theorem V_orbit_tendsto_of_le_fixed {A : ℝ} (hA : 1 < A) {qstar : ℝ}
 /-- **Orbit convergence above the fixed point.** For `A > 1`, a positive fixed point
 `q_* ∈ (0,1)`, and a start `q_* ≤ q < 1`, the orbit `V_A^t(q)` decreases and stays in
 `[q_*, 1)` (`V_A` increasing; below the diagonal above `q_*`), so it converges to its
-infimum; by continuity the limit is a fixed point in `(0,1)`, hence `q_*` by uniqueness. -/
+infimum; by continuity the limit is a fixed point in `(0,1)`, hence `q_*` by uniqueness.
+@isnad1 id=tendsto.5h3v.s6.d7123779a9fc from=translated src=- shape=59aba5cf vocab=38bdd56e
+-/
 theorem V_orbit_tendsto_of_ge_fixed {A : ℝ} (hA : 1 < A) {qstar : ℝ}
     (hstar : qstar ∈ Ioo (0 : ℝ) 1) (hfix : V A qstar = qstar) {q : ℝ}
     (hq1 : q < 1) (hqge : qstar ≤ q) :
@@ -294,7 +322,9 @@ theorem V_orbit_tendsto_of_ge_fixed {A : ℝ} (hA : 1 < A) {qstar : ℝ}
 /-- **Deterministic orbit convergence** (convergence clause of the paper's
 `lem:gaussian-mean-field-concavity`): for `A > 1`, every interior orbit `V_A^t(q)`
 (`q ∈ (0,1)`) converges to the unique positive fixed point `q_*`. Splits on `q ≤ q_*`
-vs `q_* ≤ q` into the two monotone cases. -/
+vs `q_* ≤ q` into the two monotone cases.
+@isnad1 id=tendsto.4h3v.s6.6cee134ec76e from=translated src=- shape=3088a59e vocab=0eb801f2
+-/
 theorem V_orbit_tendsto {A : ℝ} (hA : 1 < A) {qstar : ℝ}
     (hstar : qstar ∈ Ioo (0 : ℝ) 1) (hfix : V A qstar = qstar) {q : ℝ}
     (hq : q ∈ Ioo (0 : ℝ) 1) :
@@ -305,7 +335,9 @@ theorem V_orbit_tendsto {A : ℝ} (hA : 1 < A) {qstar : ℝ}
 
 /-- **Existence of the fixed point together with global interior convergence** for `A > 1`:
 packages `V_exists_unique_fixed_of_one_lt` with `V_orbit_tendsto` — there is a fixed point
-`q_* ∈ (0,1)` to which every interior orbit converges. -/
+`q_* ∈ (0,1)` to which every interior orbit converges.
+@isnad1 id=ex.1h1v.s6.b4525dfa6333 from=translated src=- shape=2c41357c vocab=0eb801f2
+-/
 theorem exists_fixed_and_orbit_tendsto {A : ℝ} (hA : 1 < A) :
     ∃ qstar ∈ Ioo (0 : ℝ) 1, V A qstar = qstar ∧
       ∀ q ∈ Ioo (0 : ℝ) 1, Tendsto (fun t => (V A)^[t] q) atTop (𝓝 qstar) := by
@@ -315,7 +347,9 @@ theorem exists_fixed_and_orbit_tendsto {A : ℝ} (hA : 1 < A) :
 /-- **Orbit convergence from the half-open interval `(0,1]`** — the paper's full statement.
 `V_A` maps `(0,1]` into the interior `(0,1)` (`0 < V_A(q)` for `q > 0`; `V_A(q) < 1`), so the
 orbit from `t = 1` on is interior and converges by `V_orbit_tendsto`; a one-step shift
-(`tendsto_add_atTop_iff_nat`) transfers convergence to the full orbit, covering `q = 1`. -/
+(`tendsto_add_atTop_iff_nat`) transfers convergence to the full orbit, covering `q = 1`.
+@isnad1 id=tendsto.4h3v.s6.cd98697481a2 from=translated src=- shape=e2cb43bf vocab=f6661ada
+-/
 theorem V_orbit_tendsto_Ioc {A : ℝ} (hA : 1 < A) {qstar : ℝ}
     (hstar : qstar ∈ Ioo (0 : ℝ) 1) (hfix : V A qstar = qstar) {q : ℝ}
     (hq : q ∈ Ioc (0 : ℝ) 1) :

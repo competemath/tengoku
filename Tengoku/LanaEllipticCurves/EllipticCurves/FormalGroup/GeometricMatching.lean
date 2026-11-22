@@ -55,7 +55,9 @@ variable {R : Type*} [CommRing R] (W : WeierstrassCurve R)
 /-- **`z`-plane curve equation at the third root `(Z, P)`.** The `φ`-image of
 `formalCubicResidual_root_thirdRoot`: the Vieta third root `Z = φ(z₃')` together with the chord
 `w`-value `P = μ·Z + ν_L` satisfies the `z`-plane Weierstrass equation. This is the third-root
-analogue of `zPlaneCurve_biZ₁`/`zPlaneCurve_biZ₂`. -/
+analogue of `zPlaneCurve_biZ₁`/`zPlaneCurve_biZ₂`.
+@isnad1 id=eq.0h2v.s13.b5ee375779bc from=translated src=- shape=ad03486e vocab=73bb67bc
+-/
 theorem zPlaneCurve_thirdRoot :
     HahnSeries.embedDoubleLaurent W.formalThirdRoot ^ 3
         + (HahnSeries.C (HahnSeries.C W.a₁) * HahnSeries.embedDoubleLaurent W.formalThirdRoot
@@ -84,7 +86,9 @@ theorem zPlaneCurve_thirdRoot :
 /-! ### The linear bridge identities between the `(z, w)`- and `(x, y)`-plane chord/secant data -/
 
 /-- **Base-point bridge at `z₁`.** `μ·x₁ - ν_L·y₁ = 1`. Multiplying the chord relation
-`μ·z₁ + ν_L = w₁` by `y₁` and using `z₁·y₁ = -x₁`, `y₁·w₁ = -1`. -/
+`μ·z₁ + ν_L = w₁` by `y₁` and using `z₁·y₁ = -x₁`, `y₁·w₁ = -1`.
+@isnad1 id=eq.0h2v.s9.7f2922c6a51f from=translated src=- shape=3c1de22b vocab=65d7d10b
+-/
 theorem mulBridge_biZ₁ :
     HahnSeries.embedDoubleLaurent W.formalWDividedDiff * W.biX₁
         - HahnSeries.embedDoubleLaurent W.formalGroupNu * W.biY₁ = 1 := by
@@ -92,7 +96,9 @@ theorem mulBridge_biZ₁ :
     + HahnSeries.embedDoubleLaurent W.formalWDividedDiff * W.biZ₁_mul_biY₁
     - W.biY₁_mul_biW₁
 
-/-- **Base-point bridge at `z₂`.** `μ·x₂ - ν_L·y₂ = 1`. -/
+/-- **Base-point bridge at `z₂`.** `μ·x₂ - ν_L·y₂ = 1`.
+@isnad1 id=eq.0h2v.s9.ee17afb15295 from=translated src=- shape=3c1de22b vocab=c532237a
+-/
 theorem mulBridge_biZ₂ :
     HahnSeries.embedDoubleLaurent W.formalWDividedDiff * W.biX₂
         - HahnSeries.embedDoubleLaurent W.formalGroupNu * W.biY₂ = 1 := by
@@ -102,7 +108,9 @@ theorem mulBridge_biZ₂ :
 
 /-- **Slope bridge.** `μ = ν_L · λ`: the `(z, w)`-chord slope equals `ν_L` times the `(x, y)`-secant
 slope. Obtained by cancelling the unit `x₂ - x₁` from `μ·(x₂ - x₁) = ν_L·λ·(x₂ - x₁)` (the
-difference of the two base-point bridges, using the secant slope `λ·(x₂ - x₁) = y₂ - y₁`). -/
+difference of the two base-point bridges, using the secant slope `λ·(x₂ - x₁) = y₂ - y₁`).
+@isnad1 id=eq.0h2v.s7.1e8509550020 from=translated src=- shape=9ff62e5f vocab=f1c2f18d
+-/
 theorem formalWDividedDiff_image_eq :
     HahnSeries.embedDoubleLaurent W.formalWDividedDiff
       = HahnSeries.embedDoubleLaurent W.formalGroupNu * W.formalLambda := by
@@ -120,7 +128,9 @@ theorem formalWDividedDiff_image_eq :
   linear_combination this
 
 /-- **Intercept bridge.** `ν_L · ν = -1`. Substituting the secant `y₁ = λ·x₁ + ν` into the base
-bridge `μ·x₁ - ν_L·y₁ = 1` and using the slope bridge `μ = ν_L·λ`. -/
+bridge `μ·x₁ - ν_L·y₁ = 1` and using the slope bridge `μ = ν_L·λ`.
+@isnad1 id=eq.0h2v.s8.ba1fd40731b0 from=translated src=- shape=db82b297 vocab=41427379
+-/
 theorem formalGroupNu_image_mul_formalNu :
     HahnSeries.embedDoubleLaurent W.formalGroupNu * W.formalNu = -1 := by
   linear_combination -W.mulBridge_biZ₁ + W.biX₁ * W.formalWDividedDiff_image_eq
@@ -129,7 +139,9 @@ theorem formalGroupNu_image_mul_formalNu :
 /-! ### Collapsing `(K1)`, `(K3)` onto `(K4)` -/
 
 /-- **`(K3)` from `(K4)`.** `Y · P = -1` (the `y·w = -1` relation at the third point), derived from
-`(K4)` and the two linear bridges. -/
+`(K4)` and the two linear bridges.
+@isnad1 id=eq.1h2v.s10.3125f651de1a from=translated src=- shape=3161c778 vocab=96bea2bd
+-/
 theorem thirdPoint_K3_of_K4
     (hK4 : W.formalXThree
         * (HahnSeries.embedDoubleLaurent W.formalWDividedDiff
@@ -148,7 +160,9 @@ theorem thirdPoint_K3_of_K4
         * W.formalGroupNu_image_mul_formalNu
 
 /-- **`(K1)` from `(K4)`.** `Z · Y = -x₃` (the `z·y = -x` relation at the third point), derived from
-`(K4)` and `(K3)` (`ZY = x₃·P·Y = x₃·(-1) = -x₃`). -/
+`(K4)` and `(K3)` (`ZY = x₃·P·Y = x₃·(-1) = -x₃`).
+@isnad1 id=eq.1h2v.s10.367cd14c3ece from=translated src=- shape=2b1b2353 vocab=96bea2bd
+-/
 theorem thirdPoint_K1_of_K4
     (hK4 : W.formalXThree
         * (HahnSeries.embedDoubleLaurent W.formalWDividedDiff
@@ -163,7 +177,9 @@ theorem thirdPoint_K1_of_K4
 
 /-- **The identification from `(K4)` alone.** Given only the single third-point relation `(K4)`
 `x₃ · P = Z`, the `(z, w)`- and Laurent formal group laws agree. `(K1)` is recovered internally via
-the two linear bridges. -/
+the two linear bridges.
+@isnad1 id=eq.1h2v.s9.0ea86ed8cf53 from=translated src=- shape=13eac8ff vocab=c6cb8982
+-/
 theorem embedDoubleLaurent_formalGroupZW_of_K4
     (hK4 : W.formalXThree
         * (HahnSeries.embedDoubleLaurent W.formalWDividedDiff

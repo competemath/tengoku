@@ -28,6 +28,9 @@ noncomputable def supercriticalCutoffTime
       Real.log |koenigsCoefficient A qStar q₀|) /
     |Real.log (deriv (V A) qStar)|
 
+/--
+@isnad1 id=eq.0h4v.s6.46463cc0ed42 from=translated src=- shape=c97a1577 vocab=2256672e
+-/
 @[simp]
 lemma supercriticalCutoffTime_eq
     (A qStar q₀ : ℝ) (N : ℕ) :
@@ -42,6 +45,9 @@ noncomputable def supercriticalIntegerCutoffTime
     (A qStar q₀ : ℝ) (N : ℕ) (c : ℝ) : ℕ :=
   ⌊supercriticalCutoffTime A qStar q₀ N + c⌋₊
 
+/--
+@isnad1 id=eq.0h5v.s5.e613c1c78cdf from=translated src=- shape=8d3cb99c vocab=b57478d7
+-/
 @[simp]
 lemma supercriticalIntegerCutoffTime_eq
     (A qStar q₀ : ℝ) (N : ℕ) (c : ℝ) :
@@ -49,7 +55,9 @@ lemma supercriticalIntegerCutoffTime_eq
       ⌊supercriticalCutoffTime A qStar q₀ N + c⌋₊ := rfl
 
 /-- At the real cutoff center, the multiplier power exactly balances the
-stationary `N⁻¹ᐟ²` scale and the Koenigs coefficient. -/
+stationary `N⁻¹ᐟ²` scale and the Koenigs coefficient.
+@isnad1 id=eq.6h4v.s7.39bd3e2c6229 from=translated src=- shape=30826327 vocab=0833ecb9
+-/
 lemma rpow_supercriticalCutoffTime_eq_inv_sqrt_mul_abs_koenigsCoefficient
     {A qStar q₀ : ℝ} {N : ℕ}
     (hA : 1 < A)
@@ -107,6 +115,9 @@ noncomputable def supercriticalTerminalBlockLength
     (b : ℝ) (N : ℕ) : ℕ :=
   ⌊b * Real.log (Real.log (N : ℝ))⌋₊
 
+/--
+@isnad1 id=eq.0h2v.s5.4a9be3968cc0 from=translated src=- shape=84e64814 vocab=b9172eb5
+-/
 @[simp]
 lemma supercriticalTerminalBlockLength_eq
     (b : ℝ) (N : ℕ) :
@@ -120,6 +131,9 @@ noncomputable def supercriticalTerminalBlockStart
   supercriticalIntegerCutoffTime A qStar q₀ N c - 1 -
     supercriticalTerminalBlockLength b N
 
+/--
+@isnad1 id=eq.0h6v.s5.338832db8e39 from=translated src=- shape=7ae6dc9e vocab=9d8c5cb4
+-/
 @[simp]
 lemma supercriticalTerminalBlockStart_eq
     (A qStar q₀ c b : ℝ) (N : ℕ) :
@@ -132,20 +146,27 @@ terminal synchronous-coupling block. -/
 noncomputable def supercriticalTerminalRadius (N : ℕ) : ℝ :=
   (Real.log (N : ℝ))⁻¹ ^ 2
 
+/--
+@isnad1 id=eq.0h1v.s4.5d2caa81736b from=translated src=- shape=fc79abe8 vocab=71cb0970
+-/
 @[simp]
 lemma supercriticalTerminalRadius_eq (N : ℕ) :
     supercriticalTerminalRadius N =
       (Real.log (N : ℝ))⁻¹ ^ 2 := rfl
 
 /-- The shrinking terminal radius is positive for every dimension above
-one. -/
+one.
+@isnad1 id=lt.1h1v.s4.338ffd70e0ef from=translated src=- shape=7f2e781e vocab=3b0d74a9
+-/
 lemma supercriticalTerminalRadius_pos {N : ℕ} (hN : 1 < N) :
     0 < supercriticalTerminalRadius N := by
   rw [supercriticalTerminalRadius]
   exact pow_pos
     (inv_pos.mpr (Real.log_pos (by exact_mod_cast hN))) 2
 
-/-- The terminal localization radius shrinks to zero with the dimension. -/
+/-- The terminal localization radius shrinks to zero with the dimension.
+@isnad1 id=tendsto.0h0v.s4.bd869e1837b0 from=translated src=- shape=8e2810f0 vocab=8aae3d6a
+-/
 lemma tendsto_supercriticalTerminalRadius_zero :
     Filter.Tendsto supercriticalTerminalRadius
       Filter.atTop (nhds 0) := by
@@ -166,6 +187,9 @@ noncomputable def supercriticalTerminalContraction
     (A qStar L : ℝ) (N : ℕ) : ℝ :=
   deriv (V A) qStar + L * supercriticalTerminalRadius N
 
+/--
+@isnad1 id=eq.0h4v.s5.e3aed1f5b0e1 from=translated src=- shape=27714340 vocab=a70e7d33
+-/
 @[simp]
 lemma supercriticalTerminalContraction_eq
     (A qStar L : ℝ) (N : ℕ) :
@@ -173,7 +197,9 @@ lemma supercriticalTerminalContraction_eq
       deriv (V A) qStar + L * supercriticalTerminalRadius N := rfl
 
 /-- A nonnegative Taylor constant gives a nonnegative terminal contraction
-factor. -/
+factor.
+@isnad1 id=le.4h4v.s6.3ef8f2287a53 from=translated src=- shape=6165f123 vocab=4ca9fa17
+-/
 lemma supercriticalTerminalContraction_nonneg
     {A qStar L : ℝ}
     (hA : 1 < A)
@@ -190,7 +216,9 @@ lemma supercriticalTerminalContraction_nonneg
     (mul_nonneg hL (sq_nonneg _))
 
 /-- The varying terminal contraction factor converges to the fixed-point
-multiplier. -/
+multiplier.
+@isnad1 id=tendsto.0h3v.s5.6b4387c0c6f4 from=translated src=- shape=1c900d79 vocab=3c9a791b
+-/
 lemma tendsto_supercriticalTerminalContraction
     (A qStar L : ℝ) :
     Filter.Tendsto
@@ -206,7 +234,9 @@ lemma tendsto_supercriticalTerminalContraction
       (tendsto_supercriticalTerminalRadius_zero.const_mul L)
 
 /-- The varying terminal contraction factor is eventually strictly below
-one. -/
+one.
+@isnad1 id=eventual.3h3v.s6.98190af31f25 from=translated src=- shape=8ae0d318 vocab=29d41d9e
+-/
 lemma eventually_supercriticalTerminalContraction_lt_one
     {A qStar L : ℝ}
     (hA : 1 < A)
@@ -222,7 +252,9 @@ lemma eventually_supercriticalTerminalContraction_lt_one
       (eventually_lt_nhds hμ.2)
 
 /-- The shrinking-radius localization error `N⁻¹ρ_N⁻²` is negligible on
-the terminal `N⁻¹ᐟ²` distance scale. -/
+the terminal `N⁻¹ᐟ²` distance scale.
+@isnad1 id=tendsto.0h0v.s6.484ed4b45159 from=translated src=- shape=2d2b3f5e vocab=b2238919
+-/
 lemma
     tendsto_sqrt_nat_mul_inv_nat_div_supercriticalTerminalRadius_sq_zero :
     Filter.Tendsto
@@ -264,7 +296,9 @@ lemma
   nlinarith
 
 /-- For every positive block parameter, the logarithmic terminal-block
-length tends to infinity. -/
+length tends to infinity.
+@isnad1 id=tendsto.1h1v.s4.ea27e40964b2 from=translated src=- shape=4e3c1c3f vocab=26c1b64a
+-/
 lemma tendsto_supercriticalTerminalBlockLength_atTop
     {b : ℝ} (hb : 0 < b) :
     Filter.Tendsto
@@ -292,7 +326,9 @@ lemma tendsto_supercriticalTerminalBlockLength_atTop
   exact tendsto_nat_floor_atTop.comp hmul
 
 /-- The logarithmic terminal block is negligible compared with the cutoff
-time's `log N` scale. -/
+time's `log N` scale.
+@isnad1 id=tendsto.1h1v.s5.5f991e5d3375 from=translated src=- shape=695d2553 vocab=9257ff3c
+-/
 lemma tendsto_supercriticalTerminalBlockLength_div_log_nat_zero
     {b : ℝ} (hb : 0 < b) :
     Filter.Tendsto
@@ -350,7 +386,9 @@ lemma tendsto_supercriticalTerminalBlockLength_div_log_nat_zero
     exact (div_le_div_iff_of_pos_right hlogN).2 hfloor
 
 /-- The logarithmic terminal-block length times the shrinking localization
-radius tends to zero. -/
+radius tends to zero.
+@isnad1 id=tendsto.1h1v.s5.1192f21ea59c from=translated src=- shape=6b382da2 vocab=94b4d683
+-/
 lemma tendsto_supercriticalTerminalBlockLength_mul_terminalRadius_zero
     {b : ℝ} (hb : 0 < b) :
     Filter.Tendsto
@@ -388,7 +426,9 @@ lemma tendsto_supercriticalTerminalBlockLength_mul_terminalRadius_zero
   field_simp [hlogN]
 
 /-- The varying contraction factor has the same terminal-block power as the
-fixed-point multiplier, up to a factor tending to one. -/
+fixed-point multiplier, up to a factor tending to one.
+@isnad1 id=tendsto.5h4v.s7.41c63ed4694f from=translated src=- shape=44148ee5 vocab=a33199c4
+-/
 lemma
     tendsto_supercriticalTerminalContraction_div_multiplier_pow_blockLength_one
     {A qStar L b : ℝ}
@@ -485,7 +525,9 @@ lemma
         rfl
 
 /-- Near the positive fixed point, the derivative is bounded by its
-multiplier plus a linear Taylor error. -/
+multiplier plus a linear Taylor error.
+@isnad1 id=ex.3h2v.s7.90472cc34499 from=translated src=- shape=76900fad vocab=6dc42bb3
+-/
 lemma exists_abs_deriv_V_le_multiplier_add_mul_abs_sub_fixed
     {A qStar : ℝ}
     (hA : 1 < A)
@@ -521,7 +563,9 @@ lemma exists_abs_deriv_V_le_multiplier_add_mul_abs_sub_fixed
     _ = deriv (V A) qStar + L * |x - qStar| := by ring
 
 /-- On every sufficiently small symmetric interval around the fixed point,
-the mean map contracts with factor `μ + Lρ`. -/
+the mean map contracts with factor `μ + Lρ`.
+@isnad1 id=ex.3h2v.s8.c6bf24a16385 from=translated src=- shape=6f44885a vocab=c8599a2d
+-/
 lemma exists_abs_V_sub_le_multiplier_add_mul_radius
     {A qStar : ℝ}
     (hA : 1 < A)
@@ -587,7 +631,9 @@ lemma exists_abs_V_sub_le_multiplier_add_mul_radius
 
 /-- One Taylor constant supplies all eventual shrinking-interval hypotheses:
 positive interior radius, a genuine contraction factor, and the derivative
-bound required by the synchronous recursion. -/
+bound required by the synchronous recursion.
+@isnad1 id=ex.3h2v.s7.0f999e098bb8 from=translated src=- shape=4c46e803 vocab=df6411c7
+-/
 theorem exists_eventually_supercriticalTerminal_contraction_data
     {A qStar : ℝ}
     (hA : 1 < A)
@@ -657,7 +703,9 @@ theorem exists_eventually_supercriticalTerminal_contraction_data
     _ = supercriticalTerminalContraction A qStar L N := rfl
 
 /-- For a supercritical positive fixed point, the paper's real cutoff center
-tends to infinity with the dimension. -/
+tends to infinity with the dimension.
+@isnad1 id=tendsto.3h3v.s5.7822d7ffed92 from=translated src=- shape=d1b630ed vocab=293e39f8
+-/
 lemma tendsto_supercriticalCutoffTime_atTop
     {A qStar q₀ : ℝ}
     (hA : 1 < A)
@@ -701,7 +749,9 @@ lemma tendsto_supercriticalCutoffTime_atTop
   exact hadd.atTop_div_const hden
 
 /-- Every fixed shift of the paper's floored integer cutoff time tends to
-infinity with the dimension. -/
+infinity with the dimension.
+@isnad1 id=tendsto.3h4v.s6.5018b3d63f0c from=translated src=- shape=57253935 vocab=9d33ba57
+-/
 lemma tendsto_supercriticalIntegerCutoffTime_atTop
     {A qStar q₀ : ℝ}
     (hA : 1 < A)
@@ -727,7 +777,9 @@ lemma tendsto_supercriticalIntegerCutoffTime_atTop
       Filter.atTop Filter.atTop
   exact tendsto_nat_floor_atTop.comp hshift
 
-/-- The real cutoff center has the paper's first-order logarithmic growth. -/
+/-- The real cutoff center has the paper's first-order logarithmic growth.
+@isnad1 id=tendsto.3h3v.s7.d7bcab70e637 from=translated src=- shape=9f8e2de5 vocab=38e31405
+-/
 lemma tendsto_supercriticalCutoffTime_div_log_nat
     {A qStar q₀ : ℝ}
     (hA : 1 < A)
@@ -775,7 +827,9 @@ lemma tendsto_supercriticalCutoffTime_div_log_nat
   field_simp [hden.ne', hlogN]
 
 /-- Every fixed shift of the floored integer cutoff time has the same
-first-order logarithmic growth as the real cutoff center. -/
+first-order logarithmic growth as the real cutoff center.
+@isnad1 id=tendsto.3h4v.s7.4f6624032d8a from=translated src=- shape=f276ffb3 vocab=eec90a38
+-/
 lemma tendsto_supercriticalIntegerCutoffTime_div_log_nat
     {A qStar q₀ : ℝ}
     (hA : 1 < A)
@@ -873,7 +927,9 @@ lemma tendsto_supercriticalIntegerCutoffTime_div_log_nat
     exact (div_le_div_iff_of_pos_right hlogN).2 hfloor
 
 /-- The paper's terminal block and its preceding step eventually fit inside
-the shifted integer cutoff time. -/
+the shifted integer cutoff time.
+@isnad1 id=eventual.4h5v.s6.1dae8aa4667c from=translated src=- shape=bbaab6e5 vocab=6897f99c
+-/
 lemma eventually_supercriticalTerminalBlockLength_add_one_le_integerCutoffTime
     {A qStar q₀ b : ℝ}
     (hA : 1 < A)
@@ -948,7 +1004,9 @@ lemma eventually_supercriticalTerminalBlockLength_add_one_le_integerCutoffTime
   exact_mod_cast (hblockN'.trans hcutoffN').le
 
 /-- Eventually the terminal block ends exactly one step before the shifted
-integer cutoff time; no natural-number subtraction is truncated. -/
+integer cutoff time; no natural-number subtraction is truncated.
+@isnad1 id=eventual.4h5v.s6.c7bfc554285f from=translated src=- shape=496e2e9c vocab=9ebb86be
+-/
 lemma eventually_supercriticalTerminalBlockStart_add_length_eq_integerCutoffTime_sub_one
     {A qStar q₀ b : ℝ}
     (hA : 1 < A)
@@ -967,7 +1025,9 @@ lemma eventually_supercriticalTerminalBlockStart_add_length_eq_integerCutoffTime
   omega
 
 /-- The natural floor and the one-step terminal endpoint cost at most two
-multiplier powers relative to the exact real cutoff center. -/
+multiplier powers relative to the exact real cutoff center.
+@isnad1 id=eventual.6h5v.s8.d34820b32641 from=translated src=- shape=0a58eb5c vocab=b52a792c
+-/
 lemma eventually_pow_terminalBlockStart_le_cutoff_rpow
     {A qStar q₀ b : ℝ}
     (hA : 1 < A)
@@ -1042,7 +1102,9 @@ lemma eventually_pow_terminalBlockStart_le_cutoff_rpow
       rw [hnormalize]
 
 /-- The terminal block start retains the cutoff time's first-order
-logarithmic growth. -/
+logarithmic growth.
+@isnad1 id=tendsto.4h5v.s7.44245df7d724 from=translated src=- shape=846a6486 vocab=42966784
+-/
 lemma tendsto_supercriticalTerminalBlockStart_div_log_nat
     {A qStar q₀ b : ℝ}
     (hA : 1 < A)
@@ -1101,7 +1163,9 @@ lemma tendsto_supercriticalTerminalBlockStart_div_log_nat
   linarith
 
 /-- The start of the paper's terminal synchronous-coupling block tends to
-infinity with the dimension. -/
+infinity with the dimension.
+@isnad1 id=tendsto.4h5v.s6.2acde967a214 from=translated src=- shape=928ecfcb vocab=ec3a90bc
+-/
 lemma tendsto_supercriticalTerminalBlockStart_atTop
     {A qStar q₀ b : ℝ}
     (hA : 1 < A)
@@ -1166,7 +1230,9 @@ lemma tendsto_supercriticalTerminalBlockStart_atTop
 
 /-- Uniformly for initial states converging to a nonstationary macroscopic
 radius, the deterministic orbit at the terminal block start is bounded by a
-fixed constant times the corresponding multiplier power. -/
+fixed constant times the corresponding multiplier power.
+@isnad1 id=ex.8h6v.s7.cea772ee06c4 from=translated src=- shape=ac907b63 vocab=7f1bc24f
+-/
 lemma
     exists_eventually_abs_V_iterate_terminalBlockStart_sub_fixed_le_mul_pow
     {A qStar q₀ b : ℝ} (q : ℕ → ℝ)
@@ -1276,7 +1342,9 @@ lemma
 
 /-- The deterministic center at the terminal block start has the paper's
 explicit `N⁻¹ᐟ² μ^(c-ℓ_N)` scale, uniformly over convergent initial
-sequences. -/
+sequences.
+@isnad1 id=ex.8h6v.s8.d25d87afca2e from=translated src=- shape=aff7eff7 vocab=6c896276
+-/
 lemma
     exists_eventually_abs_V_iterate_terminalBlockStart_sub_fixed_le_mul_rpow_div_sqrt
     {A qStar q₀ b : ℝ} (q : ℕ → ℝ)
@@ -1355,7 +1423,9 @@ lemma
       field_simp [hsqrt.ne', hcoeffne]
 
 /-- Every fixed-shift integer cutoff time is eventually bounded by a positive
-constant times `log N`, as used for the paper's dynamic horizon. -/
+constant times `log N`, as used for the paper's dynamic horizon.
+@isnad1 id=ex.3h4v.s6.2fc2b8c6577a from=translated src=- shape=ef4169c6 vocab=8d7182a9
+-/
 lemma exists_eventually_supercriticalIntegerCutoffTime_le_mul_log_nat
     {A qStar q₀ : ℝ}
     (hA : 1 < A)
@@ -1412,7 +1482,9 @@ lemma exists_eventually_supercriticalIntegerCutoffTime_le_mul_log_nat
   exact ((div_lt_iff₀ hlogN).1 hratioN).le
 
 /-- The paper's cutoff time and terminal-block choices satisfy the linear
-horizon and block-containment hypotheses of the terminal coupling theorem. -/
+horizon and block-containment hypotheses of the terminal coupling theorem.
+@isnad1 id=ex.4h5v.s7.86ea842df9d2 from=translated src=- shape=ff6d72bc vocab=8a9432b1
+-/
 lemma exists_eventually_supercriticalCutoff_block_horizon
     {A qStar q₀ b : ℝ}
     (hA : 1 < A)
@@ -1446,7 +1518,9 @@ lemma exists_eventually_supercriticalCutoff_block_horizon
 
 /-- One stationary family can be selected once and for all so that the
 terminal synchronous-distance estimate only retains the evolving orbit and
-block hypotheses. -/
+block hypotheses.
+@isnad1 id=ex.3h2v.s10.87e532cbe9df from=translated src=- shape=83b55302 vocab=402593a3
+-/
 theorem
     exists_stationary_family_eventually_terminal_distance_le_pow_mul_inv_sqrt_add_inv_nat
     {A qStar : ℝ} (hA : 1 < A)

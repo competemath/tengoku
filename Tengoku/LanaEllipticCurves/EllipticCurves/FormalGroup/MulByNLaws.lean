@@ -42,7 +42,9 @@ variable {R : Type*} [CommRing R] (F : FormalGroup R)
 /-- **Substitution distributes over formal-group addition.**  For `a`, `b` of zero constant
 coefficient and `c` substitution-admissible, `(a ⊕ b) ∘ c = (a ∘ c) ⊕ (b ∘ c)`, i.e.
 `F(a, b) ∘ c = F(a ∘ c, b ∘ c)`.  This is associativity of substitution
-(`MvPowerSeries.subst_comp_subst_apply`) applied to the bivariate law `F`. -/
+(`MvPowerSeries.subst_comp_subst_apply`) applied to the bivariate law `F`.
+@isnad1 id=eq.3h5v.s7.512416281d21 from=translated src=- shape=19c88a47 vocab=520343e9
+-/
 theorem fgAdd_subst {a b c : PowerSeries R} (ha : PowerSeries.constantCoeff a = 0)
     (hb : PowerSeries.constantCoeff b = 0) (hc : PowerSeries.HasSubst c) :
     (F.fgAdd a b).subst c = F.fgAdd (a.subst c) (b.subst c) := by
@@ -54,7 +56,9 @@ theorem fgAdd_subst {a b c : PowerSeries R} (ha : PowerSeries.constantCoeff a = 
   fin_cases s <;> simp [PowerSeries.subst_def]
 
 /-- **Additivity of the multiplication-by-`n` series.**  `[m+n](z) = F([m](z), [n](z))`, so
-`n ↦ [n]` is a homomorphism from `(ℕ, +)` to the formal-group operation `⊕`. -/
+`n ↦ [n]` is a homomorphism from `(ℕ, +)` to the formal-group operation `⊕`.
+@isnad1 id=eq.0h4v.s5.1a750e06c008 from=translated src=- shape=d44355e3 vocab=f1589e4c
+-/
 theorem mulByN_fgAdd (m n : ℕ) :
     F.mulByN (m + n) = F.fgAdd (F.mulByN m) (F.mulByN n) := by
   induction n with
@@ -67,7 +71,9 @@ theorem mulByN_fgAdd (m n : ℕ) :
     exact F.assoc' (hasSubst_mulByN F m) (hasSubst_mulByN F k) PowerSeries.HasSubst.X'
 
 /-- **Composition / multiplicativity of the multiplication-by-`n` series.**  `[m] ∘ [n] = [mn]`
-(substitution of power series), so `n ↦ [n]` respects multiplication. -/
+(substitution of power series), so `n ↦ [n]` respects multiplication.
+@isnad1 id=eq.0h4v.s5.e908f6eb430b from=translated src=- shape=fefb7b45 vocab=8e7a6799
+-/
 theorem mulByN_subst_mulByN (m n : ℕ) :
     (F.mulByN m).subst (F.mulByN n) = F.mulByN (m * n) := by
   induction m with

@@ -54,13 +54,17 @@ noncomputable def gaussianOneCoordinateDensity (A q y : ℝ) : ℝ :=
   if y ∈ Set.Ioo (0 : ℝ) 1 then gaussianOneCoordinateDensityFormula A q y else 0
 
 /-- On `(0,1)`, the globally defined density is exactly the formula displayed
-in `eq:gaussian-one-coordinate-density`. -/
+in `eq:gaussian-one-coordinate-density`.
+@isnad1 id=eq.1h3v.s5.520fff258949 from=translated src=- shape=bab69522 vocab=f25da916
+-/
 lemma gaussianOneCoordinateDensity_eq_formula (A q : ℝ) {y : ℝ}
     (hy : y ∈ Set.Ioo (0 : ℝ) 1) :
     gaussianOneCoordinateDensity A q y = gaussianOneCoordinateDensityFormula A q y := by
   simp [gaussianOneCoordinateDensity, hy]
 
-/-- The one-coordinate density, extended by zero, is Borel measurable. -/
+/-- The one-coordinate density, extended by zero, is Borel measurable.
+@isnad1 id=measurab.0h2v.s3.b2f79bd367df from=translated src=- shape=443e0365 vocab=cc0014b2
+-/
 lemma measurable_gaussianOneCoordinateDensity (A q : ℝ) :
     Measurable (gaussianOneCoordinateDensity A q) := by
   apply Measurable.ite measurableSet_Ioo
@@ -74,14 +78,18 @@ noncomputable def gaussianOneCoordinateScore (A q y : ℝ) : ℝ :=
   -(1 / (2 * q)) +
     Real.artanh (Real.sqrt y) ^ 2 / (2 * A ^ 2 * q ^ 2)
 
-/-- The one-coordinate score is Borel measurable in its observation. -/
+/-- The one-coordinate score is Borel measurable in its observation.
+@isnad1 id=measurab.0h2v.s3.9f9f3a9aaaf3 from=translated src=- shape=443e0365 vocab=c61ca372
+-/
 lemma measurable_gaussianOneCoordinateScore (A q : ℝ) :
     Measurable (gaussianOneCoordinateScore A q) := by
   unfold gaussianOneCoordinateScore Real.artanh
   fun_prop
 
 /-- The one-coordinate density is strictly positive at every interior point
-of its support, as used in the paper's convolution-positivity argument. -/
+of its support, as used in the paper's convolution-positivity argument.
+@isnad1 id=lt.3h3v.s6.45475cf385f5 from=translated src=- shape=2364773c vocab=ae31b83d
+-/
 lemma gaussianOneCoordinateDensity_pos {A q y : ℝ} (hA : 0 < A) (hq : 0 < q)
     (hy : y ∈ Set.Ioo (0 : ℝ) 1) :
     0 < gaussianOneCoordinateDensity A q y := by
@@ -92,7 +100,9 @@ lemma gaussianOneCoordinateDensity_pos {A q y : ℝ} (hA : 0 < A) (hq : 0 < q)
     mul_pos (Real.sqrt_pos.2 hy.1) (sub_pos.2 hy.2)
   exact mul_pos (mul_pos (inv_pos.mpr hnorm) (inv_pos.mpr hsing)) (Real.exp_pos _)
 
-/-- The extended one-coordinate density is nonnegative everywhere. -/
+/-- The extended one-coordinate density is nonnegative everywhere.
+@isnad1 id=le.2h3v.s5.1da0404e82c5 from=translated src=- shape=f81e1e80 vocab=bdb82398
+-/
 lemma gaussianOneCoordinateDensity_nonneg {A q : ℝ} (hA : 0 < A) (hq : 0 < q)
     (y : ℝ) :
     0 ≤ gaussianOneCoordinateDensity A q y := by
@@ -115,7 +125,9 @@ noncomputable def gaussianOneCoordinateInverse (A q y : ℝ) : ℝ :=
 /-- Derivative of `artanh` on its natural open interval.  Mathlib's pinned
 `Artanh` module provides the inverse identities but not this derivative lemma,
 so we derive it locally from
-`artanh x = (1/2) log ((1+x)/(1-x))`. -/
+`artanh x = (1/2) log ((1+x)/(1-x))`.
+@isnad1 id=hasderiv.1h1v.s6.864a76ff6476 from=translated src=- shape=dfaf4561 vocab=731b95bb
+-/
 lemma hasDerivAt_artanh_of_mem_Ioo {x : ℝ} (hx : x ∈ Set.Ioo (-1 : ℝ) 1) :
     HasDerivAt Real.artanh (1 / (1 - x ^ 2)) x := by
   have heq : Real.artanh =ᶠ[nhds x]
@@ -146,7 +158,9 @@ lemma hasDerivAt_artanh_of_mem_Ioo {x : ℝ} (hx : x ∈ Set.Ioo (-1 : ℝ) 1) :
     ring
 
 /-- The positive inverse branch is a right inverse of the one-coordinate map
-on `(0,1)`. -/
+on `(0,1)`.
+@isnad1 id=eq.3h3v.s5.eb64570c96d7 from=translated src=- shape=d9452776 vocab=eac64a04
+-/
 lemma gaussianOneCoordinateMap_inverse {A q y : ℝ} (hA : 0 < A) (hq : 0 < q)
     (hy : y ∈ Set.Ioo (0 : ℝ) 1) :
     gaussianOneCoordinateMap A q (gaussianOneCoordinateInverse A q y) = y := by
@@ -161,7 +175,9 @@ lemma gaussianOneCoordinateMap_inverse {A q y : ℝ} (hA : 0 < A) (hq : 0 < q)
   rw [harg, Real.tanh_artanh ⟨by linarith, hsqrt_lt_one⟩, Real.sq_sqrt hy.1.le]
 
 /-- The positive inverse branch is a left inverse on positive Gaussian
-coordinates. -/
+coordinates.
+@isnad1 id=eq.3h3v.s5.a5a23e1861de from=translated src=- shape=cb7e23ea vocab=364c022e
+-/
 lemma gaussianOneCoordinateInverse_map {A q x : ℝ} (hA : 0 < A) (hq : 0 < q)
     (hx : 0 < x) :
     gaussianOneCoordinateInverse A q (gaussianOneCoordinateMap A q x) = x := by
@@ -175,7 +191,9 @@ lemma gaussianOneCoordinateInverse_map {A q x : ℝ} (hA : 0 < A) (hq : 0 < q)
   field_simp
 
 /-- Evaluating the score at the transformed Gaussian coordinate gives the
-centered chi-square score `(x²-1)/(2q)`. -/
+centered chi-square score `(x²-1)/(2q)`.
+@isnad1 id=eq.2h3v.s6.3eb039dd1a04 from=translated src=- shape=172daa66 vocab=4438bb41
+-/
 lemma gaussianOneCoordinateScore_map {A q x : ℝ}
     (hA : 0 < A) (hq : 0 < q) :
     gaussianOneCoordinateScore A q
@@ -217,7 +235,9 @@ lemma gaussianOneCoordinateScore_map {A q x : ℝ}
   rw [hmap]
   simpa only [neg_sq] using hscore_pos (-x) (neg_pos.mpr hxneg)
 
-/-- Derivative of the positive inverse branch on `(0,1)`. -/
+/-- Derivative of the positive inverse branch on `(0,1)`.
+@isnad1 id=hasderiv.3h3v.s7.04c96dad0bf7 from=translated src=- shape=4ce14fb6 vocab=333d2a19
+-/
 lemma hasDerivAt_gaussianOneCoordinateInverse {A q y : ℝ}
     (hA : 0 < A) (hq : 0 < q) (hy : y ∈ Set.Ioo (0 : ℝ) 1) :
     HasDerivAt (gaussianOneCoordinateInverse A q)
@@ -247,7 +267,9 @@ lemma hasDerivAt_gaussianOneCoordinateInverse {A q y : ℝ}
     (1 / (2 * A * Real.sqrt q * Real.sqrt y * (1 - y))) y
   exact hdiv
 
-/-- The positive inverse branch maps `(0,1)` exactly onto `(0,∞)`. -/
+/-- The positive inverse branch maps `(0,1)` exactly onto `(0,∞)`.
+@isnad1 id=eq.2h2v.s5.b727ee1d5924 from=translated src=- shape=7e244c46 vocab=ef616021
+-/
 lemma gaussianOneCoordinateInverse_image {A q : ℝ} (hA : 0 < A) (hq : 0 < q) :
     gaussianOneCoordinateInverse A q '' Set.Ioo (0 : ℝ) 1 = Set.Ioi 0 := by
   ext x
@@ -266,7 +288,9 @@ lemma gaussianOneCoordinateInverse_image {A q : ℝ} (hA : 0 < A) (hq : 0 < q) :
         (mul_pos (mul_pos hA (Real.sqrt_pos.2 hq)) hx)) (Real.cosh_pos _)),
       Real.tanh_sq_lt_one _⟩
 
-/-- The positive inverse branch is injective on `(0,1)`. -/
+/-- The positive inverse branch is injective on `(0,1)`.
+@isnad1 id=injon.2h2v.s5.9e37ff8b8032 from=translated src=- shape=a42a6653 vocab=b24b616b
+-/
 lemma gaussianOneCoordinateInverse_injOn {A q : ℝ} (hA : 0 < A) (hq : 0 < q) :
     Set.InjOn (gaussianOneCoordinateInverse A q) (Set.Ioo (0 : ℝ) 1) := by
   intro y hy z hz h
@@ -277,7 +301,9 @@ lemma gaussianOneCoordinateInverse_injOn {A q : ℝ} (hA : 0 < A) (hq : 0 < q) :
 weighted Lebesgue measure on `(0,1)` through the positive inverse branch gives
 Lebesgue measure on `(0,∞)`.  This is the branchwise change-of-variables core
 needed to prove that `gaussianOneCoordinateDensity` is the pushforward density
-of `tanh²(A√q G)`. -/
+of `tanh²(A√q G)`.
+@isnad1 id=eq.2h2v.s7.a6f5955084c5 from=translated src=- shape=a07c605c vocab=0a1f4bb6
+-/
 theorem map_gaussianOneCoordinateInverse_jacobian {A q : ℝ}
     (hA : 0 < A) (hq : 0 < q) :
     Measure.map (gaussianOneCoordinateInverse A q)
@@ -310,7 +336,9 @@ private lemma map_withDensity_comp_of_map_eq {α β : Type*}
   rfl
 
 /-- Adding the standard Gaussian weight to the positive-branch Jacobian
-identity gives the standard Gaussian law restricted to positive coordinates. -/
+identity gives the standard Gaussian law restricted to positive coordinates.
+@isnad1 id=eq.2h2v.s7.cb4b44fb8459 from=translated src=- shape=911d62ba vocab=b76f7825
+-/
 lemma map_gaussianOneCoordinateInverse_gaussianWeight {A q : ℝ}
     (hA : 0 < A) (hq : 0 < q) :
     Measure.map (gaussianOneCoordinateInverse A q)
@@ -329,7 +357,9 @@ lemma map_gaussianOneCoordinateInverse_gaussianWeight {A q : ℝ}
   · exact measurable_gaussianPDF 0 1
 
 /-- On the positive branch, the Gaussian weight times the inverse Jacobian
-is one half of the paper's density formula. -/
+is one half of the paper's density formula.
+@isnad1 id=eq.3h3v.s7.b6ed2347d33f from=translated src=- shape=162c6a3e vocab=b4978b87
+-/
 lemma gaussianOneCoordinate_positiveBranch_weight {A q y : ℝ}
     (hA : 0 < A) (hq : 0 < q) (hy : y ∈ Set.Ioo (0 : ℝ) 1) :
     ENNReal.ofReal
@@ -361,7 +391,9 @@ lemma gaussianOneCoordinate_positiveBranch_weight {A q y : ℝ}
   ring_nf
 
 /-- The positive Gaussian half-line contributes exactly one half of the
-one-coordinate density. -/
+one-coordinate density.
+@isnad1 id=eq.2h2v.s6.885a82d955bd from=translated src=- shape=21b5cba0 vocab=ad481497
+-/
 theorem map_gaussianOneCoordinateMap_restrict_Ioi {A q : ℝ}
     (hA : 0 < A) (hq : 0 < q) :
     Measure.map (gaussianOneCoordinateMap A q)
@@ -429,7 +461,9 @@ theorem map_gaussianOneCoordinateMap_restrict_Ioi {A q : ℝ}
             · simp [H, hy, gaussianOneCoordinateDensity]
 
 /-- The negative and positive Gaussian half-lines have the same image under
-the even one-coordinate map. -/
+the even one-coordinate map.
+@isnad1 id=eq.0h2v.s6.36a8abdebd4a from=translated src=- shape=b37a21ea vocab=5a597b92
+-/
 lemma map_gaussianOneCoordinateMap_restrict_Iio_eq_Ioi {A q : ℝ} :
     Measure.map (gaussianOneCoordinateMap A q)
         ((gaussianReal 0 1).restrict (Set.Iio 0))
@@ -456,7 +490,9 @@ lemma map_gaussianOneCoordinateMap_restrict_Iio_eq_Ioi {A q : ℝ} :
 
 /-- **One-coordinate pushforward density.**  The law of
 `tanh²(A √q G)` for a standard Gaussian `G` is the paper's explicit density
-`gaussianOneCoordinateDensity A q` with respect to Lebesgue measure. -/
+`gaussianOneCoordinateDensity A q` with respect to Lebesgue measure.
+@isnad1 id=eq.2h2v.s6.9710f5a12d1d from=translated src=- shape=f8448612 vocab=475575cb
+-/
 theorem map_gaussianOneCoordinateMap_eq_withDensity {A q : ℝ}
     (hA : 0 < A) (hq : 0 < q) :
     Measure.map (gaussianOneCoordinateMap A q) (gaussianReal 0 1)
@@ -525,7 +561,9 @@ noncomputable def gaussianTwoCoordinateDensity (A q : ℝ) : ℝ → ENNReal :=
     (fun y => ENNReal.ofReal (gaussianOneCoordinateDensity A q y))
     volume
 
-/-- The two-coordinate convolution density is Borel measurable. -/
+/-- The two-coordinate convolution density is Borel measurable.
+@isnad1 id=measurab.0h2v.s3.00327a9fb05c from=translated src=- shape=30e1f344 vocab=4034f45d
+-/
 lemma measurable_gaussianTwoCoordinateDensity (A q : ℝ) :
     Measurable (gaussianTwoCoordinateDensity A q) := by
   unfold gaussianTwoCoordinateDensity
@@ -535,7 +573,9 @@ lemma measurable_gaussianTwoCoordinateDensity (A q : ℝ) :
 
 /-- Convolving the two one-coordinate laws gives the measure whose Lebesgue
 density is `gaussianTwoCoordinateDensity`.  This is the two-summand instance
-of the paper's convolution-density argument. -/
+of the paper's convolution-density argument.
+@isnad1 id=eq.0h2v.s5.c50c5213eaad from=translated src=- shape=8e991016 vocab=8a74f124
+-/
 theorem conv_gaussianOneCoordinateMeasure_eq_withDensity (A q : ℝ) :
     Measure.conv
         (volume.withDensity
@@ -549,13 +589,17 @@ theorem conv_gaussianOneCoordinateMeasure_eq_withDensity (A q : ℝ) :
   simpa only [gaussianTwoCoordinateDensity] using
     (MeasureTheory.conv_withDensity_eq_lconvolution (μ := volume) hf hf)
 
-/-- The two-coordinate convolution density is nonnegative everywhere. -/
+/-- The two-coordinate convolution density is nonnegative everywhere.
+@isnad1 id=le.0h3v.s4.047455a0d223 from=translated src=- shape=1995cd38 vocab=152888aa
+-/
 lemma gaussianTwoCoordinateDensity_nonneg (A q z : ℝ) :
     0 ≤ gaussianTwoCoordinateDensity A q z :=
   bot_le
 
 /-- The convolution of two copies of the one-coordinate density is strictly
-positive throughout the interior `(0,2)` of its support. -/
+positive throughout the interior `(0,2)` of its support.
+@isnad1 id=lt.3h3v.s6.20588ec6dac8 from=translated src=- shape=9a3c41f2 vocab=70472e15
+-/
 lemma gaussianTwoCoordinateDensity_pos {A q z : ℝ}
     (hA : 0 < A) (hq : 0 < q) (hz : z ∈ Set.Ioo (0 : ℝ) 2) :
     0 < gaussianTwoCoordinateDensity A q z := by
@@ -607,7 +651,9 @@ noncomputable def gaussianCoordinateSumDensity (A q : ℝ) : ℕ → ℝ → ENN
       (fun y => ENNReal.ofReal (gaussianOneCoordinateDensity A q y))
       volume
 
-/-- The recursive sum density starts with the one-coordinate density. -/
+/-- The recursive sum density starts with the one-coordinate density.
+@isnad1 id=eq.0h2v.s4.47e0df974bd3 from=translated src=- shape=05e553f2 vocab=f11bef66
+-/
 @[simp]
 lemma gaussianCoordinateSumDensity_zero (A q : ℝ) :
     gaussianCoordinateSumDensity A q 0 =
@@ -615,7 +661,9 @@ lemma gaussianCoordinateSumDensity_zero (A q : ℝ) :
   rfl
 
 /-- Adding one coordinate convolves the preceding sum density with the
-one-coordinate density. -/
+one-coordinate density.
+@isnad1 id=eq.0h3v.s5.ec6b3e454036 from=translated src=- shape=89b38b1f vocab=ae3edfbc
+-/
 lemma gaussianCoordinateSumDensity_succ (A q : ℝ) (n : ℕ) :
     gaussianCoordinateSumDensity A q (n + 1) =
       MeasureTheory.lconvolution
@@ -625,13 +673,17 @@ lemma gaussianCoordinateSumDensity_succ (A q : ℝ) (n : ℕ) :
   rfl
 
 /-- At index one, the recursive density agrees with the explicit
-two-coordinate convolution density. -/
+two-coordinate convolution density.
+@isnad1 id=eq.0h2v.s4.140b6d007738 from=translated src=- shape=0e8c2c22 vocab=86774bf7
+-/
 @[simp]
 lemma gaussianCoordinateSumDensity_one (A q : ℝ) :
     gaussianCoordinateSumDensity A q 1 = gaussianTwoCoordinateDensity A q :=
   rfl
 
-/-- Every recursive coordinate-sum density is Borel measurable. -/
+/-- Every recursive coordinate-sum density is Borel measurable.
+@isnad1 id=measurab.0h3v.s3.f518c1933cd7 from=translated src=- shape=9c8db14c vocab=89f4be31
+-/
 lemma measurable_gaussianCoordinateSumDensity (A q : ℝ) (n : ℕ) :
     Measurable (gaussianCoordinateSumDensity A q n) := by
   induction n with
@@ -643,7 +695,9 @@ lemma measurable_gaussianCoordinateSumDensity (A q : ℝ) (n : ℕ) :
         (measurable_gaussianOneCoordinateDensity A q).ennreal_ofReal
 
 /-- Convolving an `(n + 1)`-coordinate sum law with one more coordinate
-produces the measure having the next recursive density. -/
+produces the measure having the next recursive density.
+@isnad1 id=eq.0h3v.s6.8f5506320653 from=translated src=- shape=285b356f vocab=b425c3cb
+-/
 theorem conv_gaussianCoordinateSumMeasure_succ_eq_withDensity
     (A q : ℝ) (n : ℕ) :
     Measure.conv
@@ -664,7 +718,9 @@ noncomputable def gaussianCoordinateSumLaw (A q : ℝ) : ℕ → Measure ℝ
       (gaussianCoordinateSumLaw A q n)
       (Measure.map (gaussianOneCoordinateMap A q) (gaussianReal 0 1))
 
-/-- The recursive sum law starts with one coordinate. -/
+/-- The recursive sum law starts with one coordinate.
+@isnad1 id=eq.0h2v.s5.deed65a55e7b from=translated src=- shape=1ef8936b vocab=5187c3d1
+-/
 @[simp]
 lemma gaussianCoordinateSumLaw_zero (A q : ℝ) :
     gaussianCoordinateSumLaw A q 0 =
@@ -672,7 +728,9 @@ lemma gaussianCoordinateSumLaw_zero (A q : ℝ) :
   rfl
 
 /-- Adding one independent coordinate convolves its law with the preceding
-coordinate-sum law. -/
+coordinate-sum law.
+@isnad1 id=eq.0h3v.s5.607a675635da from=translated src=- shape=7e464437 vocab=50a408b8
+-/
 lemma gaussianCoordinateSumLaw_succ (A q : ℝ) (n : ℕ) :
     gaussianCoordinateSumLaw A q (n + 1) =
       Measure.conv
@@ -680,6 +738,9 @@ lemma gaussianCoordinateSumLaw_succ (A q : ℝ) (n : ℕ) :
         (Measure.map (gaussianOneCoordinateMap A q) (gaussianReal 0 1)) :=
   rfl
 
+/--
+@isnad1 id=sfinite.0h3v.s3.ed8f31faa837 from=translated src=- shape=9c8db14c vocab=2794b3e8
+-/
 instance sFinite_gaussianCoordinateSumLaw (A q : ℝ) (n : ℕ) :
     SFinite (gaussianCoordinateSumLaw A q n) := by
   induction n with
@@ -691,7 +752,9 @@ instance sFinite_gaussianCoordinateSumLaw (A q : ℝ) (n : ℕ) :
       infer_instance
 
 /-- **Recursive coordinate-sum law.**  The sum of `n + 1` independent
-one-coordinate variables has density `gaussianCoordinateSumDensity A q n`. -/
+one-coordinate variables has density `gaussianCoordinateSumDensity A q n`.
+@isnad1 id=eq.2h3v.s5.c09dbb39ebc2 from=translated src=- shape=891b80f4 vocab=16445553
+-/
 theorem gaussianCoordinateSumLaw_eq_withDensity {A q : ℝ}
     (hA : 0 < A) (hq : 0 < q) (n : ℕ) :
     gaussianCoordinateSumLaw A q n =
@@ -710,7 +773,9 @@ noncomputable def gaussianCoordinateSumMap (A q : ℝ) (N : ℕ)
     (g : Fin N → ℝ) : ℝ :=
   ∑ i, gaussianOneCoordinateMap A q (g i)
 
-/-- The transformed-coordinate sum is Borel measurable. -/
+/-- The transformed-coordinate sum is Borel measurable.
+@isnad1 id=measurab.0h3v.s4.709cc1b944ac from=translated src=- shape=30b8ceaa vocab=381046cb
+-/
 lemma measurable_gaussianCoordinateSumMap (A q : ℝ) (N : ℕ) :
     Measurable (gaussianCoordinateSumMap A q N) := by
   have hcoord : Measurable (gaussianOneCoordinateMap A q) := by
@@ -734,7 +799,9 @@ private lemma map_add_prod_eq_conv_map {α β : Type*}
 
 /-- **Finite-vector coordinate-sum law.**  The transformed-coordinate sum
 under `gaussianVec (n + 1)` has the recursive convolution law of `n + 1`
-independent one-coordinate variables. -/
+independent one-coordinate variables.
+@isnad1 id=eq.0h3v.s6.83a1359548ff from=translated src=- shape=135e635c vocab=6059f0a1
+-/
 theorem map_gaussianCoordinateSumMap_gaussianVec_succ (A q : ℝ) (n : ℕ) :
     Measure.map (gaussianCoordinateSumMap A q (n + 1)) (gaussianVec (n + 1)) =
       gaussianCoordinateSumLaw A q n := by
@@ -793,7 +860,9 @@ theorem map_gaussianCoordinateSumMap_gaussianVec_succ (A q : ℝ) (n : ℕ) :
         Measure.conv_comm, ← gaussianCoordinateSumLaw_succ]
 
 /-- For every positive dimension `N`, the transformed sum of the `Fin N`
-Gaussian coordinates has recursive convolution index `N - 1`. -/
+Gaussian coordinates has recursive convolution index `N - 1`.
+@isnad1 id=eq.1h3v.s5.d4b7c8634084 from=translated src=- shape=8be54a6b vocab=54b2dd24
+-/
 theorem map_gaussianCoordinateSumMap_gaussianVec {A q : ℝ} {N : ℕ}
     (hN : 0 < N) :
     Measure.map (gaussianCoordinateSumMap A q N) (gaussianVec N) =
@@ -843,7 +912,9 @@ noncomputable def gaussianAverageDensity (A q : ℝ) (N : ℕ) (y : ℝ) :
   ENNReal.ofReal N *
     gaussianCoordinateSumDensity A q (N - 1) ((N : ℝ) * y)
 
-/-- The scaled `N`-coordinate average density is Borel measurable. -/
+/-- The scaled `N`-coordinate average density is Borel measurable.
+@isnad1 id=measurab.0h3v.s3.7ea959ae585f from=translated src=- shape=9c8db14c vocab=75459a41
+-/
 lemma measurable_gaussianAverageDensity (A q : ℝ) (N : ℕ) :
     Measurable (gaussianAverageDensity A q N) := by
   unfold gaussianAverageDensity
@@ -853,7 +924,9 @@ lemma measurable_gaussianAverageDensity (A q : ℝ) (N : ℕ) :
 
 /-- **Transition density of the squared-radius chain.**  In every positive
 dimension, the one-step law from `q > 0` is the `1 / N` scaling of the
-recursive transformed-coordinate sum density. -/
+recursive transformed-coordinate sum density.
+@isnad1 id=eq.3h3v.s6.cb32f32a24c7 from=translated src=- shape=e6fc7907 vocab=0d9fb8ed
+-/
 theorem Kchain_apply_eq_withDensity_gaussianAverageDensity
     {A q : ℝ} {N : ℕ} (hA : 0 < A) (hq : 0 < q) (hN : 0 < N) :
     Kchain A N q =
@@ -880,7 +953,9 @@ theorem Kchain_apply_eq_withDensity_gaussianAverageDensity
     (measurable_gaussianCoordinateSumDensity A q (N - 1)) hNreal
 
 /-- From every positive state, the `Kchain` transition law is absolutely
-continuous with respect to Lebesgue measure. -/
+continuous with respect to Lebesgue measure.
+@isnad1 id=absolute.3h3v.s6.f3a335cf2f11 from=translated src=- shape=6deee904 vocab=a3e4c3e4
+-/
 lemma Kchain_apply_absolutelyContinuous_volume
     {A q : ℝ} {N : ℕ} (hA : 0 < A) (hq : 0 < q) (hN : 0 < N) :
     Kchain A N q ≪ volume := by
@@ -888,7 +963,9 @@ lemma Kchain_apply_absolutelyContinuous_volume
   exact withDensity_absolutelyContinuous volume _
 
 /-- From every positive state, the `Kchain` transition lies in the open
-interior `(0, 1)` almost surely. -/
+interior `(0, 1)` almost surely.
+@isnad1 id=eq.3h3v.s6.79b06fbd0730 from=translated src=- shape=7d0a63d3 vocab=c17bb5cf
+-/
 lemma Kchain_apply_Ioo_eq_one
     {A q : ℝ} {N : ℕ} (hA : 0 < A) (hq : 0 < q) (hN : 0 < N) :
     Kchain A N q (Set.Ioo (0 : ℝ) 1) = 1 := by
@@ -934,7 +1011,9 @@ instance (A : ℝ) (N : ℕ) (hA : 0 < A) (hN : 0 < N) :
   exact Kchain_apply_Ioo_eq_one hA q.property.1 hN
 
 /-- Evaluation of the interior kernel is evaluation of `Kchain` on the
-corresponding image in `(0, 1)`. -/
+corresponding image in `(0, 1)`.
+@isnad1 id=eq.3h4v.s9.5115ade81666 from=translated src=- shape=4d338904 vocab=fe39d0b7
+-/
 lemma KchainInterior_apply
     {A : ℝ} {N : ℕ} (hA : 0 < A) (hN : 0 < N)
     (q : Set.Ioo (0 : ℝ) 1) {B : Set (Set.Ioo (0 : ℝ) 1)}
@@ -944,7 +1023,9 @@ lemma KchainInterior_apply
   rw [Kernel.comapRight_apply' _ _ _ hB, Kernel.comap_apply]
 
 /-- Mapping the interior transition law back into `ℝ` recovers the full
-`Kchain` transition from the corresponding interior state. -/
+`Kchain` transition from the corresponding interior state.
+@isnad1 id=eq.2h2v.s8.5a570ec6097a from=translated src=- shape=3bae4b3a vocab=bb4ebf07
+-/
 lemma KchainInterior_map_subtype_val
     {A : ℝ} {N : ℕ} (hA : 0 < A) (hN : 0 < N) :
     (KchainInterior A N hA hN).map
@@ -972,7 +1053,9 @@ private lemma comp_map_measure
   rfl
 
 /-- A measure pushed forward from the interior subtype is carried by
-`(0, 1)`; for a probability measure, the left-hand side is therefore one. -/
+`(0, 1)`; for a probability measure, the left-hand side is therefore one.
+@isnad1 id=eq.0h1v.s8.3e653d0b0144 from=translated src=- shape=e93f82a4 vocab=1710ddb1
+-/
 lemma map_subtype_val_apply_Ioo (μ : Measure (Set.Ioo (0 : ℝ) 1)) :
     (μ.map Subtype.val) (Set.Ioo (0 : ℝ) 1) = μ Set.univ := by
   rw [Measure.map_apply measurable_subtype_coe measurableSet_Ioo]
@@ -980,7 +1063,9 @@ lemma map_subtype_val_apply_Ioo (μ : Measure (Set.Ioo (0 : ℝ) 1)) :
 
 /-- Every invariant measure of the interior kernel pushes forward under the
 subtype inclusion to an invariant measure of the full squared-radius kernel.
-The pushed-forward measure is automatically carried by `(0, 1)`. -/
+The pushed-forward measure is automatically carried by `(0, 1)`.
+@isnad1 id=invarian.3h3v.s7.e1fd7ff49b4b from=translated src=- shape=c0ba4de4 vocab=f48bb8c8
+-/
 theorem invariant_Kchain_map_subtype_val_of_invariant_KchainInterior
     {A : ℝ} {N : ℕ} (hA : 0 < A) (hN : 0 < N)
     (μ : Measure (Set.Ioo (0 : ℝ) 1))
@@ -998,7 +1083,9 @@ theorem invariant_Kchain_map_subtype_val_of_invariant_KchainInterior
     _ = μ.map Subtype.val := by rw [hμ]
 
 /-- Pulling an interior-supported probability measure back to the subtype and
-then mapping it into `ℝ` recovers the original measure. -/
+then mapping it into `ℝ` recovers the original measure.
+@isnad1 id=eq.1h1v.s7.36ec1ed5394f from=translated src=- shape=c53a06d7 vocab=77620b7a
+-/
 lemma map_comap_subtype_val_eq_of_apply_Ioo_eq_one
     (ν : Measure ℝ) [IsProbabilityMeasure ν]
     (hνIoo : ν (Set.Ioo (0 : ℝ) 1) = 1) :
@@ -1008,7 +1095,9 @@ lemma map_comap_subtype_val_eq_of_apply_Ioo_eq_one
   exact (mem_ae_iff_prob_eq_one measurableSet_Ioo).2 hνIoo
 
 /-- The pullback of an interior-supported probability measure along the
-subtype inclusion is again a probability measure. -/
+subtype inclusion is again a probability measure.
+@isnad1 id=isprobab.1h1v.s7.cea08a46350a from=translated src=- shape=da20e1f7 vocab=85ebdbf2
+-/
 lemma isProbabilityMeasure_comap_subtype_val_of_apply_Ioo_eq_one
     (ν : Measure ℝ) [IsProbabilityMeasure ν]
     (hνIoo : ν (Set.Ioo (0 : ℝ) 1) = 1) :
@@ -1019,7 +1108,9 @@ lemma isProbabilityMeasure_comap_subtype_val_of_apply_Ioo_eq_one
   exact (mem_ae_iff_prob_eq_one measurableSet_Ioo).2 hνIoo
 
 /-- A full `Kchain`-invariant probability measure carried by `(0, 1)` pulls
-back along the subtype inclusion to a `KchainInterior`-invariant measure. -/
+back along the subtype inclusion to a `KchainInterior`-invariant measure.
+@isnad1 id=invarian.4h3v.s7.b96e6d8befd7 from=translated src=- shape=fab5e429 vocab=323d6ded
+-/
 theorem invariant_KchainInterior_comap_subtype_val_of_invariant_Kchain
     {A : ℝ} {N : ℕ} (hA : 0 < A) (hN : 0 < N)
     (ν : Measure ℝ) [IsProbabilityMeasure ν]
@@ -1052,18 +1143,24 @@ noncomputable def KchainInteriorVolume : Measure (Set.Ioo (0 : ℝ) 1) :=
   Measure.comap Subtype.val volume
 
 /-- The interior Lebesgue measure of a subtype set is the Lebesgue measure of
-its image in `ℝ`. -/
+its image in `ℝ`.
+@isnad1 id=eq.0h1v.s7.1e8eb6965a8a from=translated src=- shape=50a56477 vocab=9aca1370
+-/
 lemma KchainInteriorVolume_apply (B : Set (Set.Ioo (0 : ℝ) 1)) :
     KchainInteriorVolume B = volume (Subtype.val '' B) := by
   exact comap_subtype_coe_apply measurableSet_Ioo volume B
 
-/-- Every recursive coordinate-sum density is nonnegative. -/
+/-- Every recursive coordinate-sum density is nonnegative.
+@isnad1 id=le.0h4v.s4.e548135babcb from=translated src=- shape=6eb43103 vocab=26f73ab5
+-/
 lemma gaussianCoordinateSumDensity_nonneg (A q : ℝ) (n : ℕ) (z : ℝ) :
     0 ≤ gaussianCoordinateSumDensity A q n z :=
   bot_le
 
 /-- The density of a sum of `n + 1` coordinates is strictly positive
-throughout the interior `(0, n + 1)` of its support. -/
+throughout the interior `(0, n + 1)` of its support.
+@isnad1 id=lt.3h4v.s6.e763147fe8c3 from=translated src=- shape=2a699c7f vocab=fe321cb9
+-/
 lemma gaussianCoordinateSumDensity_pos {A q : ℝ}
     (hA : 0 < A) (hq : 0 < q) (n : ℕ) {z : ℝ}
     (hz : z ∈ Set.Ioo (0 : ℝ) ((n + 1 : ℕ) : ℝ)) :
@@ -1117,7 +1214,9 @@ lemma gaussianCoordinateSumDensity_pos {A q : ℝ}
       exact ((Measure.measure_Ioo_pos volume).2 hint).trans_le (measure_mono hsub)
 
 /-- The `Kchain` transition density is strictly positive throughout its
-interior support `(0, 1)`. -/
+interior support `(0, 1)`.
+@isnad1 id=lt.4h4v.s6.b2812d873650 from=translated src=- shape=d20226d8 vocab=bb7b5b7a
+-/
 lemma gaussianAverageDensity_pos
     {A q : ℝ} {N : ℕ} (hA : 0 < A) (hq : 0 < q) (hN : 0 < N)
     {y : ℝ} (hy : y ∈ Set.Ioo (0 : ℝ) 1) :
@@ -1134,7 +1233,9 @@ lemma gaussianAverageDensity_pos
         by simpa using mul_lt_mul_of_pos_left hy.2 hNreal⟩).ne')
 
 /-- Every measurable positive-Lebesgue-measure subset of `(0, 1)` has
-positive one-step `Kchain` mass from every positive state. -/
+positive one-step `Kchain` mass from every positive state.
+@isnad1 id=lt.6h4v.s7.4bd644f7ffa1 from=translated src=- shape=483d428d vocab=e49a0edb
+-/
 theorem Kchain_apply_pos_of_volume_pos
     {A q : ℝ} {N : ℕ} (hA : 0 < A) (hq : 0 < q) (hN : 0 < N)
     {B : Set ℝ} (hB : MeasurableSet B) (hBvol : 0 < volume B)
@@ -1148,7 +1249,9 @@ theorem Kchain_apply_pos_of_volume_pos
   simpa [Set.inter_eq_right.mpr hsupp] using hBvol
 
 /-- On the interior `(0, 1)`, Lebesgue measure is absolutely continuous with
-respect to every `Kchain` transition law from a positive state. -/
+respect to every `Kchain` transition law from a positive state.
+@isnad1 id=absolute.3h3v.s6.f70652a61822 from=translated src=- shape=829988c5 vocab=4d4221f5
+-/
 lemma volume_restrict_Ioo_absolutelyContinuous_Kchain_apply
     {A q : ℝ} {N : ℕ} (hA : 0 < A) (hq : 0 < q) (hN : 0 < N) :
     volume.restrict (Set.Ioo (0 : ℝ) 1) ≪ Kchain A N q := by
@@ -1163,7 +1266,9 @@ lemma volume_restrict_Ioo_absolutelyContinuous_Kchain_apply
   exact (ne_of_gt hposB) hKB
 
 /-- Restricting to `(0, 1)` preserves absolute continuity of the `Kchain`
-transition law with respect to Lebesgue measure. -/
+transition law with respect to Lebesgue measure.
+@isnad1 id=absolute.3h3v.s6.26067c44a084 from=translated src=- shape=83d5be01 vocab=4d4221f5
+-/
 lemma Kchain_apply_restrict_Ioo_absolutelyContinuous_volume_restrict_Ioo
     {A q : ℝ} {N : ℕ} (hA : 0 < A) (hq : 0 < q) (hN : 0 < N) :
     (Kchain A N q).restrict (Set.Ioo (0 : ℝ) 1) ≪
@@ -1171,7 +1276,9 @@ lemma Kchain_apply_restrict_Ioo_absolutelyContinuous_volume_restrict_Ioo
   (Kchain_apply_absolutelyContinuous_volume hA hq hN).restrict _
 
 /-- On `(0, 1)`, the restricted `Kchain` transition law also dominates
-Lebesgue measure. -/
+Lebesgue measure.
+@isnad1 id=absolute.3h3v.s6.d9ae20321eb8 from=translated src=- shape=b7ea9bbd vocab=4d4221f5
+-/
 lemma volume_restrict_Ioo_absolutelyContinuous_Kchain_apply_restrict_Ioo
     {A q : ℝ} {N : ℕ} (hA : 0 < A) (hq : 0 < q) (hN : 0 < N) :
     volume.restrict (Set.Ioo (0 : ℝ) 1) ≪
@@ -1198,14 +1305,18 @@ instance (A : ℝ) (N : ℕ) (hA : 0 < A) (hN : 0 < N) :
     simpa only [pow_one, KchainInterior_apply hA hN q hB] using
       Kchain_apply_pos_of_volume_pos hA q.property.1 hN hBimage hBvol hBsub
 
-/-- Interior Lebesgue measure on `(0, 1)` is nonzero. -/
+/-- Interior Lebesgue measure on `(0, 1)` is nonzero.
+@isnad1 id=ne.0h0v.s7.8aba4e1a6ae9 from=translated src=- shape=229b40ed vocab=b6069b10
+-/
 lemma KchainInteriorVolume_ne_zero : KchainInteriorVolume ≠ 0 := by
   rw [← Measure.measure_univ_ne_zero, KchainInteriorVolume_apply]
   simpa only [Set.image_univ, Subtype.range_coe_subtype, Set.ofPred_mem_eq] using
     ((Measure.measure_Ioo_pos volume).2 (by norm_num : (0 : ℝ) < 1)).ne'
 
 /-- The interior squared-radius kernel has at most one invariant probability
-measure. -/
+measure.
+@isnad1 id=eq.4h4v.s8.679913245c42 from=translated src=- shape=71fa6e70 vocab=190e0b1f
+-/
 theorem invariant_probability_unique_KchainInterior
     {A : ℝ} {N : ℕ} (hA : 0 < A) (hN : 0 < N)
     (μ ν : Measure (Set.Ioo (0 : ℝ) 1))
@@ -1216,7 +1327,9 @@ theorem invariant_probability_unique_KchainInterior
   invariant_probability_unique KchainInteriorVolume_ne_zero hμ hν
 
 /-- The full squared-radius chain has at most one invariant probability
-measure carried by the positive interior `(0, 1)`. -/
+measure carried by the positive interior `(0, 1)`.
+@isnad1 id=eq.6h4v.s7.8425386f6568 from=translated src=- shape=2e9ac4b6 vocab=60c70c56
+-/
 theorem invariant_probability_unique_Kchain_of_apply_Ioo_eq_one
     {A : ℝ} {N : ℕ} (hA : 0 < A) (hN : 0 < N)
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
@@ -1253,7 +1366,9 @@ theorem invariant_probability_unique_Kchain_of_apply_Ioo_eq_one
       exact map_comap_subtype_val_eq_of_apply_Ioo_eq_one ν hνIoo
 
 /-- An invariant probability carried by `(0, 1]` is in fact carried by the
-open interior `(0, 1)`. -/
+open interior `(0, 1)`.
+@isnad1 id=eq.4h3v.s6.b93992bf34ca from=translated src=- shape=68c09520 vocab=ea3d34cd
+-/
 theorem invariant_Kchain_apply_Ioo_eq_one_of_Ioc_compl
     {A : ℝ} {N : ℕ} (hA : 0 < A) (hN : 0 < N)
     (ν : Measure ℝ) [IsProbabilityMeasure ν]
@@ -1273,7 +1388,9 @@ theorem invariant_Kchain_apply_Ioo_eq_one_of_Ioc_compl
     _ = 1 := by simp
 
 /-- The normalized nonzero component of an invariant probability carried by
-`[0, 1]` assigns mass one to `(0, 1)`. -/
+`[0, 1]` assigns mass one to `(0, 1)`.
+@isnad1 id=eq.5h3v.s7.e3b53b976890 from=translated src=- shape=a3487b71 vocab=8e9ee7e1
+-/
 theorem nonzeroPart_apply_Ioo_eq_one
     {A : ℝ} {N : ℕ} (hA : 0 < A) (hN : 0 < N)
     (ν : Measure ℝ) [IsProbabilityMeasure ν]
@@ -1288,7 +1405,9 @@ theorem nonzeroPart_apply_Ioo_eq_one
     (nonzeroPart_Ioc_compl ν hν_support)
 
 /-- Any two invariant probabilities carried by `[0, 1]` and not concentrated
-at the absorbing origin have the same normalized nonzero component. -/
+at the absorbing origin have the same normalized nonzero component.
+@isnad1 id=eq.8h4v.s7.eb50027bcf9d from=translated src=- shape=a655122c vocab=e2f38a22
+-/
 theorem nonzeroPart_eq_of_invariant_Kchain
     {A : ℝ} {N : ℕ} (hA : 0 < A) (hN : 0 < N)
     (μ ν : Measure ℝ) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
@@ -1311,7 +1430,9 @@ theorem nonzeroPart_eq_of_invariant_Kchain
     (invariant_nonzeroPart A N ν hν)
 
 /-- A standard finite-dimensional Gaussian vector assigns positive mass to
-every nonempty open set. -/
+every nonempty open set.
+@isnad1 id=lt.2h2v.s6.a22a83cb63f8 from=translated src=- shape=5e2aab4d vocab=583fded8
+-/
 lemma gaussianVec_pos_of_isOpen {N : ℕ} {U : Set (Fin N → ℝ)}
     (hU : IsOpen U) (hne : U.Nonempty) :
     0 < gaussianVec N U := by
@@ -1326,7 +1447,9 @@ lemma gaussianVec_pos_of_isOpen {N : ℕ} {U : Set (Fin N → ℝ)}
 For nonzero gain, positive dimension, and positive starting radius, the
 squared-radius chain assigns positive mass to every nonempty open subset of
 `(0,1)`.  This is the open-set consequence of the strictly positive transition
-density in `prop:gaussian-unique-nonzero-invariant`. -/
+density in `prop:gaussian-unique-nonzero-invariant`.
+@isnad1 id=lt.6h4v.s6.0f80683b59a8 from=translated src=- shape=4534c920 vocab=bbe18b28
+-/
 theorem Kchain_apply_pos_of_isOpen {A : ℝ} {N : ℕ} (hA : A ≠ 0) (hN : 0 < N)
     {q : ℝ} (hq : 0 < q) {O : Set ℝ} (hO : IsOpen O) (hne : O.Nonempty)
     (hOsub : O ⊆ Set.Ioo (0 : ℝ) 1) :

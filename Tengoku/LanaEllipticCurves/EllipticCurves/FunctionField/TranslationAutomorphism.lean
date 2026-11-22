@@ -88,18 +88,24 @@ variable {F : Type*} [Field F] {W : Affine F} [W.IsElliptic] {x₂ y₂ : F}
 
 /-- **The constant point of `-T` is the negation of the constant point of `T`.**  Both sides are
 `Point.some` at the same `x`-coordinate; the `y`-coordinates agree by `map_negY`, which is the only
-content. -/
+content.
+@isnad1 id=eq.1h4v.s11.4c5a0f2cf46c from=translated src=- shape=7fa816b0 vocab=b576fadd
+-/
 theorem translatePoint_neg (h₂ : W.Equation x₂ y₂) :
     translatePoint ((W.equation_neg x₂ y₂).mpr h₂) = -translatePoint h₂ := by
   rw [translatePoint, translatePoint, Point.neg_some, Point.some.injEq]
   exact ⟨rfl, (map_negY _ _ _).symm⟩
 
-/-- `𝒯_T + 𝒯_{-T} = 0` in `(W ⁄ F(W)).Point`. -/
+/-- `𝒯_T + 𝒯_{-T} = 0` in `(W ⁄ F(W)).Point`.
+@isnad1 id=eq.1h4v.s12.95e733700422 from=translated src=- shape=aca904e9 vocab=e506b676
+-/
 theorem translatePoint_add_neg (h₂ : W.Equation x₂ y₂) :
     translatePoint h₂ + translatePoint ((W.equation_neg x₂ y₂).mpr h₂) = 0 := by
   rw [translatePoint_neg h₂, add_neg_cancel]
 
-/-- `𝒯_{-T} + 𝒯_T = 0` in `(W ⁄ F(W)).Point`. -/
+/-- `𝒯_{-T} + 𝒯_T = 0` in `(W ⁄ F(W)).Point`.
+@isnad1 id=eq.1h4v.s12.4d9eaf9561a8 from=translated src=- shape=9b19d31e vocab=e506b676
+-/
 theorem translatePoint_neg_add (h₂ : W.Equation x₂ y₂) :
     translatePoint ((W.equation_neg x₂ y₂).mpr h₂) + translatePoint h₂ = 0 := by
   rw [translatePoint_neg h₂, neg_add_cancel]
@@ -119,7 +125,9 @@ translation pullbacks compose to the identity on the generic point's coordinates
 The proof is `translateEndo_comp_apply_gen` with `𝒯_R` replaced by `0`: reading
 `(𝒫 + 𝒯_P) + 𝒯_Q` as a secant sum on one side (legitimate because
 `translateEndo hP (genX W)` is transcendental over `F`, hence never the constant `xQ`) and as
-`𝒫 + (𝒯_P + 𝒯_Q) = 𝒫 + 0 = 𝒫` on the other. -/
+`𝒫 + (𝒯_P + 𝒯_Q) = 𝒫 + 0 = 𝒫` on the other.
+@isnad1 id=and.3h6v.s13.6ed066084e3e from=translated src=- shape=09490fc6 vocab=f65f739b
+-/
 theorem translateEndo_comp_apply_gen_zero {xP yP xQ yQ : F}
     (hP : W.Equation xP yP) (hQ : W.Equation xQ yQ)
     (hsum : translatePoint hP + translatePoint hQ = 0) :
@@ -147,7 +155,9 @@ open Classical in
 /-- **The composition law for `translateEndo`, degenerate case.**  For affine points `P`, `Q` with
 `P ⊕ Q = O`, `translateEndo hP ∘ translateEndo hQ = id`.  This is the statement the merged
 `translateEndo_comp` cannot make, because its target `translateEndo hR` is indexed by an affine
-point and `O` is not one. -/
+point and `O` is not one.
+@isnad1 id=eq.3h6v.s12.59c484a258ed from=translated src=- shape=a0374f8a vocab=8bd260fb
+-/
 theorem translateEndo_comp_zero {xP yP xQ yQ : F}
     (hP : W.Equation xP yP) (hQ : W.Equation xQ yQ)
     (hsum : translatePoint hP + translatePoint hQ = 0) :
@@ -181,7 +191,9 @@ theorem translateEndo_comp_zero {xP yP xQ yQ : F}
   refine IsFractionRing.ringHom_ext (A := W.CoordinateRing) (fun a => ?_)
   rw [RingHom.comp_apply, translateEndo_algebraMap, ← RingHom.comp_apply, hcr, RingHom.id_apply]
 
-/-- The degenerate composition law in applied form. -/
+/-- The degenerate composition law in applied form.
+@isnad1 id=eq.3h7v.s12.71614fc13451 from=translated src=- shape=4e1a3225 vocab=3166b70a
+-/
 theorem translateEndo_translateEndo_apply_zero {xP yP xQ yQ : F}
     (hP : W.Equation xP yP) (hQ : W.Equation xQ yQ)
     (hsum : translatePoint hP + translatePoint hQ = 0) (g : W.FunctionField) :
@@ -191,14 +203,18 @@ theorem translateEndo_translateEndo_apply_zero {xP yP xQ yQ : F}
 
 /-! ### `translateEndo` is bijective -/
 
-/-- **Translation by `T` is surjective on `F(W)`**: `g = τ_T(τ_{-T}(g))`. -/
+/-- **Translation by `T` is surjective on `F(W)`**: `g = τ_T(τ_{-T}(g))`.
+@isnad1 id=surjecti.1h4v.s9.f8c73f043820 from=translated src=- shape=f557ff4c vocab=22c73932
+-/
 theorem translateEndo_surjective (h₂ : W.Equation x₂ y₂) :
     Function.Surjective (translateEndo h₂) := fun g =>
   ⟨translateEndo ((W.equation_neg x₂ y₂).mpr h₂) g,
     translateEndo_translateEndo_apply_zero h₂ _ (translatePoint_add_neg h₂) g⟩
 
 /-- **Translation by `T` is bijective on `F(W)`.**  Injectivity is automatic (a ring hom out of a
-field); surjectivity is `translateEndo_surjective`. -/
+field); surjectivity is `translateEndo_surjective`.
+@isnad1 id=bijectiv.1h4v.s9.da8c680b0270 from=translated src=- shape=f557ff4c vocab=4dfe1bae
+-/
 theorem translateEndo_bijective (h₂ : W.Equation x₂ y₂) :
     Function.Bijective (translateEndo h₂) :=
   ⟨(translateEndo h₂).injective, translateEndo_surjective h₂⟩
@@ -218,9 +234,15 @@ noncomputable def translateAlgEquiv (h₂ : W.Equation x₂ y₂) :
     (AlgHom.ext fun g =>
       translateEndo_translateEndo_apply_zero _ h₂ (translatePoint_neg_add h₂) g)
 
+/--
+@isnad1 id=eq.1h5v.s11.04c3b186932d from=translated src=- shape=3f7f111d vocab=3dc5ff67
+-/
 @[simp] lemma translateAlgEquiv_apply (h₂ : W.Equation x₂ y₂) (g : W.FunctionField) :
     translateAlgEquiv h₂ g = translateEndo h₂ g := rfl
 
+/--
+@isnad1 id=eq.1h5v.s11.fad162f85aea from=translated src=- shape=942f9c26 vocab=87be46ba
+-/
 @[simp] lemma translateAlgEquiv_symm_apply (h₂ : W.Equation x₂ y₂) (g : W.FunctionField) :
     (translateAlgEquiv h₂).symm g = translateEndo ((W.equation_neg x₂ y₂).mpr h₂) g := rfl
 
@@ -238,7 +260,9 @@ Together with `nontrivial_algEquiv_of_equation` this is the certificate that a s
 `W` has an affine `F`-point at all**, which is a condition on `F` and is not claimed here.  It holds
 whenever `F` is algebraically closed with `(2 : F) ≠ 0`
 (`WeierstrassCurve.Affine.exists_equation`, `EllipticCurves/Torsion/ThreeTorsionStructure.lean`);
-that file is deliberately not imported, to keep this one a leaf of the translation subtree. -/
+that file is deliberately not imported, to keep this one a leaf of the translation subtree.
+@isnad1 id=ne.1h4v.s12.24596f934b80 from=translated src=- shape=6403f121 vocab=2959b6c7
+-/
 theorem translateAlgEquiv_ne_one (h₂ : W.Equation x₂ y₂) : translateAlgEquiv h₂ ≠ 1 := by
   intro hone
   have hx : translateEndo h₂ (genX W) = genX W := by
@@ -257,7 +281,9 @@ theorem translateAlgEquiv_ne_one (h₂ : W.Equation x₂ y₂) : translateAlgEqu
   exact Point.some_ne_zero _ hzero
 
 /-- **`Aut_F F(W)` is nontrivial** as soon as `W` has an affine `F`-point: translation by that point
-is an automorphism different from the identity. -/
+is an automorphism different from the identity.
+@isnad1 id=nontrivi.1h4v.s9.28fa1bfc1b59 from=translated src=- shape=4e786725 vocab=b1abae83
+-/
 theorem nontrivial_algEquiv_of_equation (h₂ : W.Equation x₂ y₂) :
     Nontrivial (W.FunctionField ≃ₐ[F] W.FunctionField) :=
   ⟨⟨translateAlgEquiv h₂, 1, translateAlgEquiv_ne_one h₂⟩⟩

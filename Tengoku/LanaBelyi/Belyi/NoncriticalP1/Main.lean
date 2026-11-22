@@ -97,7 +97,9 @@ private lemma core_key (d : ℕ) : ∀ (n : ℕ) (T : Finset Qbar), IsGalStable 
         exact ⟨u :: v :: hs, hgood _ (hv hs hhs)⟩
 
 /-- **Lemma 2.4 combined with Lemma 2.2**: for a finite Galois-stable `T ⊆ ℚ̄` and a rational
-`τ ∉ T` there is a noncritical Belyi map for `(T ∪ {∞}, τ)`. -/
+`τ ∉ T` there is a noncritical Belyi map for `(T ∪ {∞}, τ)`.
+@isnad1 id=ex.2h2v.s5.2c4be5d25097 from=translated src=- shape=cb85c149 vocab=d4217b79
+-/
 theorem exists_isNoncriticalBelyi_withInf (T : Finset Qbar) (hT : IsGalStable T) {τ : ℚ}
     (hτ : (τ : Qbar) ∉ T) : ∃ hs, IsNoncriticalBelyi hs (withInf T) (ofRat τ) :=
   core_key _ _ T hT (fun _ ht => Finset.le_sup (f := deg) ht) le_rfl τ hτ
@@ -105,14 +107,22 @@ theorem exists_isNoncriticalBelyi_withInf (T : Finset Qbar) (hT : IsGalStable T)
 /-- The inclusion `ℙ¹(ℚ) → ℙ¹(ℚ̄)` (`none = ∞`). -/
 noncomputable def ratPt (τ : Option ℚ) : Pt := τ.map fun q => (q : Qbar)
 
+/--
+@isnad1 id=eq.0h1v.s3.bb7e3ca8c68c from=translated src=- shape=7ece4adb vocab=3435e9b8
+-/
 @[simp] lemma ratPt_some (q : ℚ) : ratPt (some q) = ofRat q := rfl
 
+/--
+@isnad1 id=eq.0h0v.s2.c8a89ba6a7a4 from=translated src=- shape=d3545b1f vocab=9cbe0730
+-/
 @[simp] lemma ratPt_none : ratPt none = none := rfl
 
 /-- **Theorem 2.5 of Mochizuki for `X = ℙ¹`** (Belyi maps noncritical at a prescribed point):
 for a finite `Gal(ℚ̄/ℚ)`-stable set `S ⊆ ℙ¹(ℚ̄)` and a point `τ ∈ ℙ¹(ℚ) ∖ S`, there is a
 composite `H = hₙ ∘ ⋯ ∘ h₁` of elementary maps (Möbius transformations and polynomials over
-`ℚ`) with `H(S) ⊆ {0, 1, ∞}`, `H(τ) ∉ {0, 1, ∞}`, unramified over `ℙ¹ ∖ {0, 1, ∞}`. -/
+`ℚ`) with `H(S) ⊆ {0, 1, ∞}`, `H(τ) ∉ {0, 1, ∞}`, unramified over `ℙ¹ ∖ {0, 1, ∞}`.
+@isnad1 id=ex.2h2v.s7.173f78853d19 from=translated src=- shape=007a3de7 vocab=1b7c040a
+-/
 theorem exists_isNoncriticalBelyi (S : Finset Pt)
     (hS : ∀ σ : Qbar ≃ₐ[ℚ] Qbar, ∀ z ∈ S, z.map σ ∈ S) (τ : Option ℚ) (hτ : ratPt τ ∉ S) :
     ∃ hs : List ElemMap, IsNoncriticalBelyi hs S (ratPt τ) := by
@@ -170,7 +180,9 @@ theorem exists_isNoncriticalBelyi (S : Finset Pt)
 /-- **Theorem 2.5 of Mochizuki for `X = ℙ¹`, polynomial form**: for a nonzero `f ∈ ℚ[X]` and
 `τ ∈ ℚ` with `f(τ) ≠ 0` there is a composite `H` of elementary maps sending `∞` and all
 roots of `f` in `ℚ̄` into `{0, 1, ∞}`, with `H(τ) ∉ {0, 1, ∞}`, unramified over
-`ℙ¹ ∖ {0, 1, ∞}`. -/
+`ℙ¹ ∖ {0, 1, ∞}`.
+@isnad1 id=ex.2h2v.s7.a7b4007379d9 from=translated src=- shape=c6ce7283 vocab=b2adbbbb
+-/
 theorem exists_isNoncriticalBelyi_of_poly (f : ℚ[X]) (hf : f ≠ 0) {τ : ℚ}
     (hτ : f.eval τ ≠ 0) :
     ∃ hs : List ElemMap,

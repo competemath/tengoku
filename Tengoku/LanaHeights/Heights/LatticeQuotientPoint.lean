@@ -33,7 +33,9 @@ noncomputable def latticePointMap (τ : ℍ) (z : ℂ) :
     else latticeAffinePoint τ z hz
 
 /-- At a lattice element, the total map takes the distinguished point at
-infinity. -/
+infinity.
+@isnad1 id=eq.1h2v.s5.bbf8d4be8127 from=translated src=- shape=9fcded09 vocab=750585f1
+-/
 @[simp] theorem latticePointMap_of_mem (τ : ℍ) (z : ℂ)
     (hz : z ∈ (periodPairOfUpperHalfPlane τ).lattice) :
     latticePointMap τ z = .zero := by
@@ -41,7 +43,9 @@ infinity. -/
   simp [latticePointMap, hz]
 
 /-- Away from the lattice, the total map agrees with the previously packaged
-affine Weierstrass point. -/
+affine Weierstrass point.
+@isnad1 id=eq.1h2v.s5.ae5bc0d839fd from=translated src=- shape=afc775fe vocab=bfa6c525
+-/
 @[simp] theorem latticePointMap_of_notMem (τ : ℍ) (z : ℂ)
     (hz : z ∉ (periodPairOfUpperHalfPlane τ).lattice) :
     latticePointMap τ z = latticeAffinePoint τ z hz := by

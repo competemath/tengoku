@@ -32,7 +32,9 @@ grid point of smaller absolute value (round half toward zero). -/
 noncomputable def Q₁ (u : ℝ) : ℤ :=
   if 0 ≤ u then ⌈u - 2⁻¹⌉ else -⌈-u - 2⁻¹⌉
 
-/-- A point lands in the zero bin iff it is within `1/2` of the origin. -/
+/-- A point lands in the zero bin iff it is within `1/2` of the origin.
+@isnad1 id=iff.0h1v.s4.e1cab979deb0 from=translated src=- shape=811deb3b vocab=5bab7a22
+-/
 lemma Q₁_zero_iff (u : ℝ) : Q₁ u = 0 ↔ |u| ≤ 2⁻¹ := by
   unfold Q₁
   by_cases hu : 0 ≤ u
@@ -42,7 +44,9 @@ lemma Q₁_zero_iff (u : ℝ) : Q₁ u = 0 ↔ |u| ≤ 2⁻¹ := by
     rw [ite_eq_right hu, neg_eq_zero, abs_of_neg hu', Int.ceil_eq_zero_iff]
     exact ⟨fun ⟨_, h2⟩ => by linarith, fun h => ⟨by linarith, by linarith⟩⟩
 
-/-- The rounding error is at most `1/2`. -/
+/-- The rounding error is at most `1/2`.
+@isnad1 id=le.0h1v.s5.275536f7d34d from=translated src=- shape=267d85ea vocab=8ec11578
+-/
 lemma Q₁_sub_le (u : ℝ) : |(Q₁ u : ℝ) - u| ≤ 2⁻¹ := by
   unfold Q₁
   by_cases hu : 0 ≤ u
@@ -57,7 +61,9 @@ lemma Q₁_sub_le (u : ℝ) : |(Q₁ u : ℝ) - u| ≤ 2⁻¹ := by
     rw [abs_le]; exact ⟨by linarith, by linarith⟩
 
 /-- `Q₁` is measurable (a step function: `Int.ceil` on either sign branch). Used to
-build the rounded squared-radius chain kernel. -/
+build the rounded squared-radius chain kernel.
+@isnad1 id=measurab.0h0v.s2.149bdb678ae6 from=translated src=- shape=54c8eceb vocab=73f7e86f
+-/
 lemma measurable_Q₁ : Measurable Q₁ := by
   unfold Q₁
   apply Measurable.ite (measurableSet_le measurable_const measurable_id)
@@ -67,7 +73,9 @@ lemma measurable_Q₁ : Measurable Q₁ := by
 /-- Scalar rounding to the grid `ρℤ`. -/
 noncomputable def gridRound (ρ u : ℝ) : ℝ := ρ * (Q₁ (u / ρ) : ℝ)
 
-/-- A point lands in the zero bin of the `ρ`-grid iff it is within `ρ/2` of the origin. -/
+/-- A point lands in the zero bin of the `ρ`-grid iff it is within `ρ/2` of the origin.
+@isnad1 id=iff.1h2v.s5.9a8704905231 from=translated src=- shape=35ad69f0 vocab=9ab67350
+-/
 lemma gridRound_zero_iff {ρ : ℝ} (hρ : 0 < ρ) (u : ℝ) :
     gridRound ρ u = 0 ↔ |u| ≤ ρ / 2 := by
   unfold gridRound
@@ -76,7 +84,9 @@ lemma gridRound_zero_iff {ρ : ℝ} (hρ : 0 < ρ) (u : ℝ) :
     abs_div, abs_of_pos hρ, div_le_iff₀ hρ]
   constructor <;> intro h <;> nlinarith [h]
 
-/-- The `ρ`-grid rounding error is at most `ρ/2`. -/
+/-- The `ρ`-grid rounding error is at most `ρ/2`.
+@isnad1 id=le.1h2v.s5.7a680df85ebb from=translated src=- shape=1d86dda3 vocab=0341364a
+-/
 lemma gridRound_sub_le {ρ : ℝ} (hρ : 0 < ρ) (u : ℝ) :
     |gridRound ρ u - u| ≤ ρ / 2 := by
   have hne : ρ ≠ 0 := ne_of_gt hρ
@@ -90,7 +100,9 @@ lemma gridRound_sub_le {ρ : ℝ} (hρ : 0 < ρ) (u : ℝ) :
 noncomputable def Qρ (ρ : ℝ) {N : ℕ} (x : Fin N → ℝ) : Fin N → ℝ :=
   fun i => gridRound ρ (x i)
 
-/-- Coordinatewise characterization of the vector zero bin. -/
+/-- Coordinatewise characterization of the vector zero bin.
+@isnad1 id=iff.1h3v.s6.f11452a761c8 from=translated src=- shape=689c8b2d vocab=e2f280cc
+-/
 lemma Qρ_eq_zero_iff {ρ : ℝ} (hρ : 0 < ρ) {N : ℕ} (x : Fin N → ℝ) :
     Qρ ρ x = 0 ↔ ∀ i, |x i| ≤ ρ / 2 := by
   unfold Qρ

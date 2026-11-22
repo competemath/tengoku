@@ -32,6 +32,9 @@ def LatticeComplement.translate (τ : ℍ) (z : LatticeComplement τ)
   ⟨z + l, fun h ↦ z.property <|
     (periodPairOfUpperHalfPlane τ).lattice.toAddSubgroup.add_mem_cancel_right l.2 |>.mp h⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.bbd1c8b85f48 from=translated src=- shape=b3e919ac vocab=e875c25e
+-/
 @[simp] theorem LatticeComplement.coe_translate (τ : ℍ) (z : LatticeComplement τ)
     (l : (periodPairOfUpperHalfPlane τ).lattice) :
     (z.translate τ l : ℂ) = z + l := rfl
@@ -44,7 +47,9 @@ noncomputable def latticeAffinePoint (τ : ℍ) (z : ℂ)
     (weierstrassP_on_latticeWeierstrassCurve τ z hz)
 
 /-- Both affine coordinates of `latticeAffinePoint`, expressed through
-mathlib's point-to-coordinate equivalence. -/
+mathlib's point-to-coordinate equivalence.
+@isnad1 id=eq.1h2v.s8.925b5a684422 from=translated src=- shape=bc3c3fe9 vocab=adab922d
+-/
 @[simp] theorem latticeAffinePoint_pointEquiv (τ : ℍ) (z : ℂ)
     (hz : z ∉ (periodPairOfUpperHalfPlane τ).lattice) :
     (latticeWeierstrassCurve τ).toAffine.pointEquiv
@@ -59,7 +64,9 @@ noncomputable def latticeAffinePointMap (τ : ℍ) :
     LatticeComplement τ → (latticeWeierstrassCurve τ).toAffine.Point :=
   fun z ↦ latticeAffinePoint τ z z.property
 
-/-- Both affine coordinates of `latticeAffinePointMap`. -/
+/-- Both affine coordinates of `latticeAffinePointMap`.
+@isnad1 id=eq.0h2v.s8.2e0696d1191c from=translated src=- shape=58012a4d vocab=c9f1c351
+-/
 @[simp] theorem latticeAffinePointMap_pointEquiv (τ : ℍ) (z : LatticeComplement τ) :
     (latticeWeierstrassCurve τ).toAffine.pointEquiv
         (latticeAffinePointMap τ z) =
@@ -68,12 +75,18 @@ noncomputable def latticeAffinePointMap (τ : ℍ) :
         weierstrassP_on_latticeWeierstrassCurve τ z z.property⟩ := by
   apply latticeAffinePoint_pointEquiv
 
+/--
+@isnad1 id=iff.0h3v.s7.3e91f3dbea4d from=translated src=- shape=4c8f9f0a vocab=73d814ef
+-/
 @[simp] theorem add_lattice_mem_iff (τ : ℍ) (z : ℂ)
     (l : (periodPairOfUpperHalfPlane τ).lattice) :
     z + (l : ℂ) ∈ (periodPairOfUpperHalfPlane τ).lattice ↔
       z ∈ (periodPairOfUpperHalfPlane τ).lattice :=
   (periodPairOfUpperHalfPlane τ).lattice.toAddSubgroup.add_mem_cancel_right l.2
 
+/--
+@isnad1 id=iff.0h3v.s7.5ecabd3e3b84 from=translated src=- shape=f19b3fcc vocab=73d814ef
+-/
 @[simp] theorem add_lattice_notMem_iff (τ : ℍ) (z : ℂ)
     (l : (periodPairOfUpperHalfPlane τ).lattice) :
     z + (l : ℂ) ∉ (periodPairOfUpperHalfPlane τ).lattice ↔

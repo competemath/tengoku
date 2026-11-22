@@ -20,7 +20,9 @@ open NumberField IsDedekindDomain
 namespace Heights
 
 /-- The fractional-ideal multiplicity of a nonzero integral ideal is its usual
-natural-number prime multiplicity, cast to `ℤ`. -/
+natural-number prime multiplicity, cast to `ℤ`.
+@isnad1 id=eq.1h3v.s8.2254413b968c from=translated src=- shape=8c708496 vocab=b13241dd
+-/
 lemma fractionalIdealCount_coe_eq_multiplicity
     {K : Type*} [Field K] [NumberField K]
     (v : HeightOneSpectrum (𝓞 K)) {I : Ideal (𝓞 K)} (hI : I ≠ ⊥) :
@@ -32,7 +34,9 @@ lemma fractionalIdealCount_coe_eq_multiplicity
     v.count_normalizedFactors_eq_multiplicity hI]
 
 /-- Fractional-ideal multiplicity of a nonzero principal ideal is the negative
-of the logarithm of the corresponding multiplicative prime valuation. -/
+of the logarithm of the corresponding multiplicative prime valuation.
+@isnad1 id=eq.1h3v.s7.bc319b8bf5b5 from=translated src=- shape=8452c117 vocab=39718034
+-/
 lemma fractionalIdealCount_spanSingleton
     {K : Type*} [Field K] [NumberField K]
     (v : HeightOneSpectrum (𝓞 K)) (x : K) (hx : x ≠ 0) :
@@ -74,7 +78,9 @@ lemma fractionalIdealCount_spanSingleton
   omega
 
 /-- The fractional-ideal multiplicity of a reduced representation is numerator
-multiplicity minus denominator multiplicity. -/
+multiplicity minus denominator multiplicity.
+@isnad1 id=eq.1h4v.s8.0aa99d2dbe39 from=translated src=- shape=e02c7f73 vocab=efafcaea
+-/
 lemma ReducedPrincipalIdealData.count_spanSingleton
     {K : Type*} [Field K] [NumberField K]
     {x : K} (r : ReducedPrincipalIdealData K x) (hx : x ≠ 0)
@@ -94,7 +100,9 @@ lemma ReducedPrincipalIdealData.count_spanSingleton
 
 /-- The denominator ideal in a reduced principal-ideal representation is
 unique. This allows expanded interfaces carrying their own reduced numerator
-and denominator to be compared with the project's canonical choice. -/
+and denominator to be compared with the project's canonical choice.
+@isnad1 id=eq.0h4v.s5.c84a3089995a from=translated src=- shape=828b7d69 vocab=17e5e8b4
+-/
 theorem ReducedPrincipalIdealData.denominator_eq
     {K : Type*} [Field K] [NumberField K]
     {x : K} (r s : ReducedPrincipalIdealData K x) :
@@ -140,7 +148,9 @@ theorem ReducedPrincipalIdealData.denominator_eq
     exact_mod_cast (hmult v).ge
 
 /-- At a prime, a reduced numerator/denominator representation computes the
-valuation as `exp (ord_v D - ord_v A)`. -/
+valuation as `exp (ord_v D - ord_v A)`.
+@isnad1 id=eq.1h4v.s8.c762cbf89071 from=translated src=- shape=b4d4e8da vocab=d2687f10
+-/
 lemma ReducedPrincipalIdealData.valuation_eq_exp_sub_multiplicity
     {K : Type*} [Field K] [NumberField K]
     {x : K} (r : ReducedPrincipalIdealData K x) (hx : x ≠ 0)
@@ -157,7 +167,9 @@ lemma ReducedPrincipalIdealData.valuation_eq_exp_sub_multiplicity
   rw [← hlog, WithZero.exp_log ((Valuation.ne_zero_iff _).mpr hx)]
 
 /-- A reduced numerator/denominator representation gives an explicit formula
-for the finite-place absolute value in terms of the prime ideal norm. -/
+for the finite-place absolute value in terms of the prime ideal norm.
+@isnad1 id=eq.1h4v.s9.720e81ad67bb from=translated src=- shape=b77cab4e vocab=2d4bbbec
+-/
 lemma ReducedPrincipalIdealData.adicAbv_eq_absNorm_zpow_sub_multiplicity
     {K : Type*} [Field K] [NumberField K]
     {x : K} (r : ReducedPrincipalIdealData K x) (hx : x ≠ 0)
@@ -180,7 +192,9 @@ lemma ReducedPrincipalIdealData.adicAbv_eq_absNorm_zpow_sub_multiplicity
   simp [z]
 
 /-- At each finite place, the positive logarithm of a nonzero element is exactly
-its reduced denominator multiplicity times the logarithm of the prime norm. -/
+its reduced denominator multiplicity times the logarithm of the prime norm.
+@isnad1 id=eq.1h4v.s8.38ba6711b999 from=translated src=- shape=91af7a48 vocab=cb4e4c40
+-/
 lemma ReducedPrincipalIdealData.finitePlace_posLog_eq
     {K : Type*} [Field K] [NumberField K]
     {x : K} (r : ReducedPrincipalIdealData K x) (hx : x ≠ 0)
@@ -220,7 +234,9 @@ lemma ReducedPrincipalIdealData.finitePlace_posLog_eq
     Real.posLog_eq_log (by rw [abs_of_pos hposbase]; exact hbase.le)]
 
 /-- The logarithm of a nonzero ideal norm is the finite sum of its prime
-multiplicities weighted by logarithms of prime norms. -/
+multiplicities weighted by logarithms of prime norms.
+@isnad1 id=eq.1h2v.s8.851cf7dad568 from=translated src=- shape=95fefc6c vocab=d6f7f81e
+-/
 theorem logIdealNorm_eq_finsum_multiplicity
     {K : Type*} [Field K] [NumberField K]
     (I : Ideal (𝓞 K)) (hI : I ≠ ⊥) :
@@ -271,7 +287,9 @@ theorem logIdealNorm_eq_finsum_multiplicity
       rw [map_pow, Nat.cast_pow, Real.log_pow]
 
 /-- The full finite-place contribution to the relative logarithmic height is
-the logarithmic norm of the reduced denominator ideal. -/
+the logarithmic norm of the reduced denominator ideal.
+@isnad1 id=eq.1h3v.s6.39ecff4898f3 from=translated src=- shape=cd95c9cc vocab=c9dc43a2
+-/
 theorem ReducedPrincipalIdealData.finsum_finitePlace_posLog_eq
     {K : Type*} [Field K] [NumberField K]
     {x : K} (r : ReducedPrincipalIdealData K x) (hx : x ≠ 0) :
@@ -289,7 +307,9 @@ theorem ReducedPrincipalIdealData.finsum_finitePlace_posLog_eq
 
 /-- The relative logarithmic Weil height is the denominator norm plus the
 weighted infinite-place contribution. This is equation (10) in the project's
-normalization, including the zero branch of the reduced representation. -/
+normalization, including the zero branch of the reduced representation.
+@isnad1 id=eq.0h3v.s6.35ff30ee16fa from=translated src=- shape=9d0245de vocab=6e478569
+-/
 theorem ReducedPrincipalIdealData.logHeight_eq_logIdealNorm_add_infinitePlace
     {K : Type*} [Field K] [NumberField K]
     {x : K} (r : ReducedPrincipalIdealData K x) :
@@ -306,7 +326,9 @@ theorem ReducedPrincipalIdealData.logHeight_eq_logIdealNorm_add_infinitePlace
 /-- Prime by prime, the canonical reduced denominator multiplicity of `j` is at
 most the certified minimal-discriminant multiplicity. The zero-`j`
 normalization is handled separately; otherwise coprimality removes the
-numerator multiplicity at every denominator prime. -/
+numerator multiplicity at every denominator prime.
+@isnad1 id=le.0h4v.s7.898f45bd0293 from=translated src=- shape=a01dcb12 vocab=ad78776b
+-/
 lemma denominator_multiplicity_le_minimal
     {K : Type*} [Field K] [NumberField K]
     {W : WeierstrassCurve K} [W.IsElliptic]
@@ -344,7 +366,9 @@ lemma denominator_multiplicity_le_minimal
 
 /-- The canonical reduced denominator ideal of `j` divides the certified global
 minimal-discriminant ideal. This is the finite-place arithmetic input needed to
-define the complementary unstable ideal without external denominator data. -/
+define the complementary unstable ideal without external denominator data.
+@isnad1 id=dvd.0h3v.s7.0b52dee4d7d8 from=translated src=- shape=237889d9 vocab=5a3efc51
+-/
 theorem denominator_dvd_minimalDiscriminant
     {K : Type*} [Field K] [NumberField K]
     {W : WeierstrassCurve K} [W.IsElliptic]
@@ -383,7 +407,9 @@ noncomputable def unstableMinimalDiscriminantOfCurve
   unstableMinimalDiscriminant (globalMinimalDiscriminantData W)
 
 /-- The canonical denominator times its complement is the certified
-minimal-discriminant ideal. -/
+minimal-discriminant ideal.
+@isnad1 id=eq.0h3v.s7.ab5ac8d2c091 from=translated src=- shape=73f6d108 vocab=7db68009
+-/
 theorem denominator_mul_unstableMinimalDiscriminant
     {K : Type*} [Field K] [NumberField K]
     {W : WeierstrassCurve K} [W.IsElliptic]
@@ -392,7 +418,9 @@ theorem denominator_mul_unstableMinimalDiscriminant
         unstableMinimalDiscriminant m = m.ideal :=
   (Classical.choose_spec (denominator_dvd_minimalDiscriminant m)).symm
 
-/-- The canonical complementary unstable ideal is nonzero. -/
+/-- The canonical complementary unstable ideal is nonzero.
+@isnad1 id=ne.0h3v.s6.a3b293f3333f from=translated src=- shape=d88aa882 vocab=f5471bde
+-/
 theorem unstableMinimalDiscriminant_ne_bot
     {K : Type*} [Field K] [NumberField K]
     {W : WeierstrassCurve K} [W.IsElliptic]
@@ -404,7 +432,9 @@ theorem unstableMinimalDiscriminant_ne_bot
   exact m.ideal_ne_bot hm.symm
 
 /-- The complement is uniquely determined because the canonical denominator is
-nonzero. -/
+nonzero.
+@isnad1 id=eq.1h4v.s7.57665f688faf from=translated src=- shape=d8b99bbe vocab=7db68009
+-/
 theorem unstableMinimalDiscriminant_unique
     {K : Type*} [Field K] [NumberField K]
     {W : WeierstrassCurve K} [W.IsElliptic]
@@ -453,7 +483,9 @@ def IsSemistableOfCurve
 
 /-- At every finite place of a semistable certified curve, the canonical
 reduced `j`-denominator multiplicity equals the minimal-discriminant
-multiplicity. -/
+multiplicity.
+@isnad1 id=eq.1h4v.s8.7a06db28edb4 from=translated src=- shape=39cf8119 vocab=957f9d81
+-/
 lemma denominator_multiplicity_eq_minimal_of_semistable
     {K : Type*} [Field K] [NumberField K]
     {W : WeierstrassCurve K} [W.IsElliptic]
@@ -495,7 +527,9 @@ lemma denominator_multiplicity_eq_minimal_of_semistable
     omega
 
 /-- For a semistable certified curve, the canonical reduced denominator of `j`
-is the entire minimal-discriminant ideal. -/
+is the entire minimal-discriminant ideal.
+@isnad1 id=eq.1h3v.s6.758c45cd74d2 from=translated src=- shape=6b94f413 vocab=3b41c04d
+-/
 theorem denominator_eq_minimalDiscriminant_of_semistable
     {K : Type*} [Field K] [NumberField K]
     {W : WeierstrassCurve K} [W.IsElliptic]
@@ -518,7 +552,9 @@ theorem denominator_eq_minimalDiscriminant_of_semistable
   exact_mod_cast heq.symm.le
 
 /-- Semistability kills the canonical complementary unstable
-minimal-discriminant ideal. -/
+minimal-discriminant ideal.
+@isnad1 id=eq.1h3v.s6.ee0005da144c from=translated src=- shape=dde200ce vocab=d6db67b9
+-/
 theorem unstableMinimalDiscriminant_eq_top_of_semistable
     {K : Type*} [Field K] [NumberField K]
     {W : WeierstrassCurve K} [W.IsElliptic]
@@ -530,7 +566,9 @@ theorem unstableMinimalDiscriminant_eq_top_of_semistable
   rw [← Ideal.one_eq_top, mul_one,
     denominator_eq_minimalDiscriminant_of_semistable m hs]
 
-/-- Logarithmic ideal norm turns products of nonzero ideals into sums. -/
+/-- Logarithmic ideal norm turns products of nonzero ideals into sums.
+@isnad1 id=eq.2h3v.s8.ae842ee8bf6d from=translated src=- shape=a91a8390 vocab=e02d7098
+-/
 theorem logIdealNorm_mul
     {K : Type*} [Field K] [NumberField K]
     (I J : Ideal (𝓞 K)) (hI : I ≠ ⊥) (hJ : J ≠ ⊥) :
@@ -541,7 +579,9 @@ theorem logIdealNorm_mul
   · exact_mod_cast Ideal.absNorm_eq_zero_iff.not.mpr hJ
 
 /-- The finite minimal-discriminant term splits into the canonical reduced
-denominator term and the unstable term. -/
+denominator term and the unstable term.
+@isnad1 id=eq.0h3v.s6.2d018445db83 from=translated src=- shape=9ea54485 vocab=f166fc59
+-/
 theorem logIdealNorm_minimal_eq_denominator_add_unstable
     {K : Type*} [Field K] [NumberField K]
     {W : WeierstrassCurve K} [W.IsElliptic]
@@ -556,7 +596,9 @@ theorem logIdealNorm_minimal_eq_denominator_add_unstable
 
 /-- Expanding the definition of Silverman's height and splitting the minimal
 ideal gives the exact finite-plus-archimedean formula with the canonical
-reduced `j`-denominator and unstable ideal displayed separately. -/
+reduced `j`-denominator and unstable ideal displayed separately.
+@isnad1 id=eq.0h4v.s7.16537dab4cb9 from=translated src=- shape=0688919e vocab=be326d72
+-/
 theorem twelve_mul_silvermanHeight_eq
     {K : Type*} [Field K] [NumberField K]
     (W : WeierstrassCurve K) [W.IsElliptic]
@@ -576,7 +618,9 @@ theorem twelve_mul_silvermanHeight_eq
 
 /-- The comparison expression from Proposition 2.1 is exactly the normalized
 height minus the canonical denominator contribution plus the archimedean metric
-sum. This is an identity, not an analytic estimate. -/
+sum. This is an identity, not an analytic estimate.
+@isnad1 id=eq.0h4v.s8.fdb70ea8b03e from=translated src=- shape=53bc9c50 vocab=870b8c47
+-/
 theorem comparisonExpression_eq
     {K : Type*} [Field K] [NumberField K]
     (W : WeierstrassCurve K) [W.IsElliptic]
@@ -600,7 +644,9 @@ theorem comparisonExpression_eq
     ring
 
 /-- After removing the reduced denominator contribution, normalized Weil height
-is exactly the normalized weighted infinite-place sum. -/
+is exactly the normalized weighted infinite-place sum.
+@isnad1 id=eq.0h3v.s7.1d1c73dcc74d from=translated src=- shape=50eec8db vocab=137e6fdc
+-/
 theorem normalizedHeight_sub_denominator_eq_infinitePlace
     {K : Type*} [Field K] [NumberField K]
     {x : K} (r : ReducedPrincipalIdealData K x) :
@@ -617,7 +663,9 @@ theorem normalizedHeight_sub_denominator_eq_infinitePlace
 /-- Using compatible periods, the entire Proposition 2.1 comparison expression
 is a normalized weighted average of an explicit function of the actual modular
 `j`, modular discriminant, and imaginary part. Thus all remaining inequalities
-are purely archimedean fundamental-domain estimates. -/
+are purely archimedean fundamental-domain estimates.
+@isnad1 id=eq.0h4v.s8.437f52f48985 from=translated src=- shape=bed42180 vocab=81395742
+-/
 theorem comparisonExpression_eq_archimedeanAverage
     {K : Type*} [Field K] [NumberField K]
     (W : WeierstrassCurve K) [W.IsElliptic]
@@ -644,7 +692,9 @@ theorem comparisonExpression_eq_archimedeanAverage
   ring
 
 /-- For a semistable certified curve, the correction-free comparison is the
-same purely archimedean average as the general corrected comparison. -/
+same purely archimedean average as the general corrected comparison.
+@isnad1 id=eq.1h4v.s7.c60dc21d2672 from=translated src=- shape=a1094bd6 vocab=6dc1eb03
+-/
 theorem comparisonExpression_eq_archimedeanAverage_of_semistable
     {K : Type*} [Field K] [NumberField K]
     (W : WeierstrassCurve K) [W.IsElliptic]
@@ -664,7 +714,9 @@ theorem comparisonExpression_eq_archimedeanAverage_of_semistable
 
 /-- Any corrected Proposition 2.1 bounds specialize to the usual absolute-value
 bound for a semistable certified curve. This isolates the formal deduction of
-the semistable statement from the general analytic comparison. -/
+the semistable statement from the general analytic comparison.
+@isnad1 id=le.2h5v.s8.a08668c7f69c from=translated src=- shape=cfb12850 vocab=e059452b
+-/
 theorem semistable_abs_comparison_of_corrected_bounds
     {K : Type*} [Field K] [NumberField K]
     (W : WeierstrassCurve K) [W.IsElliptic]
@@ -694,7 +746,9 @@ theorem semistable_abs_comparison_of_corrected_bounds
   · exact hbounds.2
 
 /-- The usual discriminant-versus-`j` estimate is equivalent, in the direction
-needed below, to a bound on `log⁺ ‖j‖ + log ‖Δ‖`. -/
+needed below, to a bound on `log⁺ ‖j‖ + log ‖Δ‖`.
+@isnad1 id=le.1h2v.s6.192269cc5ff3 from=translated src=- shape=357caf64 vocab=be943fc7
+-/
 theorem modularDeltaComparison_to_posLog
     (τ : ℍ) (C : ℝ)
     (h : |(-Real.log ‖silvermanModularDiscriminant τ‖) -
@@ -710,7 +764,9 @@ theorem modularDeltaComparison_to_posLog
 
 /-- The two modular estimates used by Silverman combine pointwise into a
 bound for the complete local comparison term. The factor `6` comes from the
-Petersson metric's `im ^ 6` term. -/
+Petersson metric's `im ^ 6` term.
+@isnad1 id=le.2h3v.s7.45b0ed4ad29e from=translated src=- shape=57313a23 vocab=f72f7e0a
+-/
 theorem modularComparisonTerm_sub_logLog_bound
     (τ : ℍ) (CΔ Cy : ℝ)
     (hΔ : |Real.posLog ‖modularJ τ‖ +
@@ -754,7 +810,9 @@ theorem modularComparisonTerm_sub_logLog_bound
 corrected Proposition 2.1 bounds, uniformly over every number field, curve,
 and realization certificate. This theorem performs the finite summation and
 uses equation (11); its hypotheses are purely analytic statements about the
-actual modular functions, not fields of a certificate. -/
+actual modular functions, not fields of a certificate.
+@isnad1 id=and.4h6v.s8.627cbb238074 from=translated src=- shape=633cd929 vocab=48ea6743
+-/
 theorem correctedComparison_bounds_of_modular_estimates
     {K : Type*} [Field K] [NumberField K]
     (W : WeierstrassCurve K) [W.IsElliptic]
@@ -848,7 +906,9 @@ theorem correctedComparison_bounds_of_modular_estimates
 
 /-- Once the two unconditional fundamental-domain estimates exist, their
 constants can be chosen before every number field, curve, and certificate.
-This is the exact quantifier-order bridge to certified Proposition 2.1. -/
+This is the exact quantifier-order bridge to certified Proposition 2.1.
+@isnad1 id=ex.2h0v.s8.d70d831cb8e3 from=translated src=- shape=2f846219 vocab=48ea6743
+-/
 theorem proposition_2_1_certified_of_modular_estimates
     (hΔexist : ∃ CΔ : ℝ, 0 ≤ CΔ ∧ ∀ τ : ℍ, τ ∈ ModularGroup.fd →
       |Real.posLog ‖modularJ τ‖ +
@@ -878,7 +938,9 @@ theorem proposition_2_1_certified_of_modular_estimates
     W m p CΔ Cy hCΔ hCy hΔ hy).2
 
 /-- Under the same two modular estimates, certified semistability removes the
-unstable-ideal correction and gives the absolute-value specialization. -/
+unstable-ideal correction and gives the absolute-value specialization.
+@isnad1 id=ex.2h0v.s8.8ab277ed2c99 from=translated src=- shape=193ba554 vocab=e56e4e1f
+-/
 theorem proposition_2_1_semistable_certified_of_modular_estimates
     (hΔexist : ∃ CΔ : ℝ, 0 ≤ CΔ ∧ ∀ τ : ℍ, τ ∈ ModularGroup.fd →
       |Real.posLog ‖modularJ τ‖ +
@@ -902,7 +964,9 @@ theorem proposition_2_1_semistable_certified_of_modular_estimates
     (hall K W m p)
 
 /-- Version of the quantifier bridge accepting the discriminant estimate in
-its standard `|-log ‖Δ‖ - log max (‖j‖, 1)|` form. -/
+its standard `|-log ‖Δ‖ - log max (‖j‖, 1)|` form.
+@isnad1 id=ex.2h0v.s8.d60c620fef53 from=translated src=- shape=0a6a67f1 vocab=f58ac505
+-/
 theorem proposition_2_1_certified_of_standard_modular_estimates
     (hΔexist : ∃ CΔ : ℝ, 0 ≤ CΔ ∧ ∀ τ : ℍ, τ ∈ ModularGroup.fd →
       |(-Real.log ‖silvermanModularDiscriminant τ‖) -
@@ -929,7 +993,9 @@ theorem proposition_2_1_certified_of_standard_modular_estimates
   exact ⟨CΔ, hCΔ, fun τ hτ => modularDeltaComparison_to_posLog τ CΔ (hΔ τ hτ)⟩
 
 /-- Semistable specialization accepting both modular estimates in their
-standard fundamental-domain form. -/
+standard fundamental-domain form.
+@isnad1 id=ex.2h0v.s8.500ba78b06f7 from=translated src=- shape=22ac5113 vocab=2a41a487
+-/
 theorem proposition_2_1_semistable_certified_of_standard_modular_estimates
     (hΔexist : ∃ CΔ : ℝ, 0 ≤ CΔ ∧ ∀ τ : ℍ, τ ∈ ModularGroup.fd →
       |(-Real.log ‖silvermanModularDiscriminant τ‖) -
@@ -952,7 +1018,9 @@ theorem proposition_2_1_semistable_certified_of_standard_modular_estimates
 /-- Silverman's certified two-sided comparison, conditional only on the
 minimal-discriminant and archimedean-period realization certificates. The
 absolute constant is supplied by the unconditional fundamental-domain
-estimates for the actual modular functions. -/
+estimates for the actual modular functions.
+@isnad1 id=ex.0h0v.s8.4c4c3300c743 from=translated src=- shape=12c7fbb2 vocab=85017a75
+-/
 theorem proposition_2_1_certified :
     ∃ C : ℝ, 0 ≤ C ∧
       ∀ (K : Type*) [Field K] [NumberField K]
@@ -972,7 +1040,9 @@ theorem proposition_2_1_certified :
     modularDeltaJ_fd_comparison modularIm_logLogJ_fd_comparison
 
 /-- The semistable specialization of certified Proposition 2.1, conditional
-only on the same two realization certificates and certified semistability. -/
+only on the same two realization certificates and certified semistability.
+@isnad1 id=ex.0h0v.s7.bddc1b9f5296 from=translated src=- shape=fadb22c1 vocab=d99508b9
+-/
 theorem proposition_2_1_semistable_certified :
     ∃ C : ℝ, 0 ≤ C ∧
       ∀ (K : Type*) [Field K] [NumberField K]
@@ -988,7 +1058,9 @@ theorem proposition_2_1_semistable_certified :
 /-- Silverman's corrected two-sided comparison over every number field, using
 the constructed global minimal-discriminant data. Compatible archimedean data
 is the only remaining explicit input; it exists for every curve and is proved
-to algebraically realize the embedded curve. -/
+to algebraically realize the embedded curve.
+@isnad1 id=ex.0h0v.s8.67d9e11061ca from=translated src=- shape=08921a2f vocab=500b2fd6
+-/
 theorem proposition_2_1_of_periods :
     ∃ C : ℝ, 0 ≤ C ∧
       ∀ (K : Type*) [Field K] [NumberField K]
@@ -1009,7 +1081,9 @@ theorem proposition_2_1_of_periods :
   exact hall K W (globalMinimalDiscriminantData W) p
 
 /-- The semistable specialization over every number field, using the
-constructed global minimal-discriminant data. -/
+constructed global minimal-discriminant data.
+@isnad1 id=ex.0h0v.s7.a0b0a30826cf from=translated src=- shape=ce9fbb38 vocab=8b66fa5c
+-/
 theorem proposition_2_1_semistable_of_periods :
     ∃ C : ℝ, 0 ≤ C ∧
       ∀ (K : Type*) [Field K] [NumberField K]
@@ -1028,7 +1102,9 @@ elliptic Weierstrass curve, for the formula-defined height obtained from the
 constructed finite data and a classical choice of `j`-compatible
 archimedean data. Same-`j` classification proves that this data algebraically
 realizes each complex base change, but this theorem makes no period-integration
-or Arakelov Faltings-height claim. -/
+or Arakelov Faltings-height claim.
+@isnad1 id=ex.0h0v.s8.956e99bc07b6 from=translated src=- shape=2008cf57 vocab=7ea28561
+-/
 theorem proposition_2_1 :
     ∃ C : ℝ, 0 ≤ C ∧
       ∀ (K : Type*) [Field K] [NumberField K]
@@ -1048,7 +1124,9 @@ theorem proposition_2_1 :
   exact hall K W (archimedeanPeriodData W)
 
 /-- The semistable specialization of `proposition_2_1` for the same
-formula-defined, classically chosen height. -/
+formula-defined, classically chosen height.
+@isnad1 id=ex.0h0v.s7.7e0a9e9abcb1 from=translated src=- shape=d6067cfa vocab=64a1e0bd
+-/
 theorem proposition_2_1_semistable :
     ∃ C : ℝ, 0 ≤ C ∧
       ∀ (K : Type*) [Field K] [NumberField K]

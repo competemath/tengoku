@@ -75,18 +75,28 @@ namespace tateModule
 
 variable {W ℓ}
 
+/--
+@isnad1 id=iff.0h4v.s7.1f24ee8727db from=translated src=- shape=afd121ee vocab=ae26568c
+-/
 @[simp]
 lemma mem_iff {f : ℕ → W.Point} : f ∈ W.tateModule ℓ ↔ IsCompatibleFamily W ℓ f := Iff.rfl
 
-/-- The level-`k` value of an element of the Tate module lies in `E[ℓ^k]`. -/
+/-- The level-`k` value of an element of the Tate module lies in `E[ℓ^k]`.
+@isnad1 id=mem.0h5v.s8.890adea1fa04 from=translated src=- shape=cccaa616 vocab=4acfca7e
+-/
 lemma coe_mem_torsion (f : W.tateModule ℓ) (k : ℕ) : (f : ℕ → W.Point) k ∈ W.torsion (ℓ ^ k) :=
   f.2.1 k
 
-/-- Compatibility of the level values: `ℓ • f (k + 1) = f k`. -/
+/-- Compatibility of the level values: `ℓ • f (k + 1) = f k`.
+@isnad1 id=eq.0h5v.s9.de55a79de95b from=translated src=- shape=7e25a91d vocab=498f533f
+-/
 lemma smul_coe_succ (f : W.tateModule ℓ) (k : ℕ) :
     ℓ • (f : ℕ → W.Point) (k + 1) = (f : ℕ → W.Point) k :=
   f.2.2 k
 
+/--
+@isnad1 id=eq.1h5v.s9.124f7e01547a from=translated src=- shape=bae43cbd vocab=959b877c
+-/
 @[ext]
 lemma ext {f g : W.tateModule ℓ} (h : ∀ k, (f : ℕ → W.Point) k = (g : ℕ → W.Point) k) : f = g :=
   Subtype.ext (funext h)
@@ -99,7 +109,9 @@ def proj (k : ℕ) : W.tateModule ℓ →+ W.torsion (ℓ ^ k) where
   map_add' _ _ := rfl
 
 /-- The projections are compatible with the multiplication-by-`ℓ` transition maps:
-`ℓ • proj (k + 1) f = proj k f` at the level of `W.Point`. -/
+`ℓ • proj (k + 1) f = proj k f` at the level of `W.Point`.
+@isnad1 id=eq.0h5v.s12.47658e10ce16 from=translated src=- shape=715e2d44 vocab=815fe507
+-/
 lemma smul_proj_succ (f : W.tateModule ℓ) (k : ℕ) :
     ℓ • ((proj (k + 1) f : W.Point)) = (proj k f : W.Point) :=
   f.2.2 k
@@ -148,12 +160,17 @@ noncomputable instance : SMul ℤ_[ℓ] (W.tateModule ℓ) where
       _ = (toZModPow k a).val • (f : ℕ → W.Point) k :=
           nsmul_torsion_congr (f.2.1 k) (toZModPow_val_modEq a k)⟩
 
+/--
+@isnad1 id=eq.0h6v.s10.bb1f0fe87f7d from=translated src=- shape=f11532b5 vocab=91844d8c
+-/
 @[simp]
 lemma smul_coe (a : ℤ_[ℓ]) (f : W.tateModule ℓ) (k : ℕ) :
     ((a • f : W.tateModule ℓ) : ℕ → W.Point) k = (toZModPow k a).val • (f : ℕ → W.Point) k :=
   rfl
 
-/-- The `ℤ_ℓ`-action on the level-`k` projection is scalar multiplication by `toZModPow k a`. -/
+/-- The `ℤ_ℓ`-action on the level-`k` projection is scalar multiplication by `toZModPow k a`.
+@isnad1 id=eq.0h6v.s12.6f98c65dc665 from=translated src=- shape=e9b2daec vocab=83a1df36
+-/
 lemma smul_proj (a : ℤ_[ℓ]) (f : W.tateModule ℓ) (k : ℕ) :
     ((proj k (a • f) : W.Point)) = (toZModPow k a).val • (proj k f : W.Point) :=
   rfl

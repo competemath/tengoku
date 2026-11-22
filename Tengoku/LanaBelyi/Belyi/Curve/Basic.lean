@@ -67,7 +67,9 @@ namespace IsCurveOver
 
 /-- A curve over a field is an integral scheme; in particular it has a function field.
 This cannot be a global instance (`k` does not occur in the conclusion), so consumers
-introduce it with `have := IsCurveOver.isIntegral k X`. -/
+introduce it with `have := IsCurveOver.isIntegral k X`.
+@isnad1 id=isintegr.0h2v.s4.5a425d8531eb from=translated src=- shape=de5ce130 vocab=51498c66
+-/
 theorem isIntegral (k : Type u) [Field k] (X : Scheme.{u})
     [X.Over (Spec (CommRingCat.of k))] [IsCurveOver k X] : IsIntegral X :=
   GeometricallyIntegral.isIntegral_of_subsingleton (X ↘ Spec (CommRingCat.of k))

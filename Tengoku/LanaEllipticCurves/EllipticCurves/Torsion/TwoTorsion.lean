@@ -115,14 +115,18 @@ variable {F : Type*} [Field F] {W : Affine F}
 univariate cubic `Ψ₂Sq`: `W.Ψ₂Sq.eval x = (2y + a₁x + a₃)²`.
 
 This is the `n = 2` case of `WeierstrassCurve.Affine.ψ_sq_evalEval`, and it is the sole input to
-the description of `E[2]` by the roots of `Ψ₂Sq`. -/
+the description of `E[2]` by the roots of `Ψ₂Sq`.
+@isnad1 id=eq.1h4v.s7.304417b1a548 from=translated src=- shape=9a4b76ae vocab=dbb17e3b
+-/
 lemma Ψ₂Sq_eval_eq_sq {x y : F} (h : W.Equation x y) :
     W.Ψ₂Sq.eval x = (2 * y + W.a₁ * x + W.a₃) ^ 2 := by
   rw [← ΨSq_two, ← ψ_sq_evalEval h 2, ψ_two_evalEval]
 
 /-- **The converse construction.** Away from characteristic `2`, a root `x` of `Ψ₂Sq` together with
 the unique `y` satisfying `2y + a₁x + a₃ = 0` gives a point of `W`: multiplying the Weierstrass
-equation by `4` turns it into `(2y + a₁x + a₃)² - W.Ψ₂Sq.eval x = 0`. -/
+equation by `4` turns it into `(2y + a₁x + a₃)² - W.Ψ₂Sq.eval x = 0`.
+@isnad1 id=equation.3h4v.s7.bfbeff673db1 from=translated src=- shape=dfdcbf25 vocab=a2e668b5
+-/
 lemma equation_of_Ψ₂Sq_eval_eq_zero (h2 : (2 : F) ≠ 0) {x y : F}
     (hy : 2 * y + W.a₁ * x + W.a₃ = 0) (hx : W.Ψ₂Sq.eval x = 0) : W.Equation x y := by
   have h4 : (4 : F) ≠ 0 := four_ne_zero_of_two_ne_zero h2
@@ -140,20 +144,26 @@ Away from characteristic `2` this is the only possible `y`-coordinate of a `2`-t
 def twoTorsionY (x : F) : F :=
   -(W.a₁ * x + W.a₃) / 2
 
-/-- The defining property of `twoTorsionY`: it is the unique root of `2y + a₁x + a₃`. -/
+/-- The defining property of `twoTorsionY`: it is the unique root of `2y + a₁x + a₃`.
+@isnad1 id=eq.1h3v.s7.6ef1eacddbee from=translated src=- shape=390c7def vocab=6ea47ce1
+-/
 lemma two_mul_twoTorsionY_add (h2 : (2 : F) ≠ 0) (x : F) :
     2 * W.twoTorsionY x + W.a₁ * x + W.a₃ = 0 := by
   rw [twoTorsionY]
   field_simp
   ring
 
-/-- Above a root of `Ψ₂Sq`, the point `(x, twoTorsionY x)` lies on `W`. -/
+/-- Above a root of `Ψ₂Sq`, the point `(x, twoTorsionY x)` lies on `W`.
+@isnad1 id=equation.2h3v.s6.f67f1d1fbd55 from=translated src=- shape=2df8790d vocab=7f982139
+-/
 lemma equation_twoTorsionY (h2 : (2 : F) ≠ 0) {x : F} (hx : W.Ψ₂Sq.eval x = 0) :
     W.Equation x (W.twoTorsionY x) :=
   equation_of_Ψ₂Sq_eval_eq_zero h2 (two_mul_twoTorsionY_add h2 x) hx
 
 /-- On an elliptic curve every point of the Weierstrass equation is nonsingular, so above a root of
-`Ψ₂Sq` the point `(x, twoTorsionY x)` is a genuine point of `W.Point`. -/
+`Ψ₂Sq` the point `(x, twoTorsionY x)` is a genuine point of `W.Point`.
+@isnad1 id=nonsingu.2h3v.s6.154de7db0fda from=translated src=- shape=594d60a2 vocab=2a5ade24
+-/
 lemma nonsingular_twoTorsionY [W.IsElliptic] (h2 : (2 : F) ≠ 0) {x : F}
     (hx : W.Ψ₂Sq.eval x = 0) : W.Nonsingular x (W.twoTorsionY x) :=
   equation_iff_nonsingular.mp (equation_twoTorsionY h2 hx)
@@ -161,6 +171,7 @@ lemma nonsingular_twoTorsionY [W.IsElliptic] (h2 : (2 : F) ≠ 0) {x : F}
 /-! ## The roots of the `2`-torsion cubic -/
 
 /-- The leading coefficient of the `2`-torsion cubic is `4`, nonzero away from characteristic `2`.
+@isnad1 id=ne.1h2v.s6.2f4ebae461aa from=translated src=- shape=378f49bb vocab=0d4df4e3
 -/
 lemma twoTorsionPolynomial_a_ne_zero (h2 : (2 : F) ≠ 0) : W.twoTorsionPolynomial.a ≠ 0 := by
   rw [twoTorsionPolynomial, show (4 : F) = 2 * 2 by norm_num]
@@ -175,12 +186,16 @@ def rootsEquiv [DecidableEq F] (h2 : (2 : F) ≠ 0) :
       Polynomial.mem_roots (W.Ψ₂Sq_ne_zero (four_ne_zero_of_two_ne_zero h2))]
     exact Iff.rfl
 
-/-- Away from characteristic `2` the cubic `Ψ₂Sq` is nonzero, so its root set is finite. -/
+/-- Away from characteristic `2` the cubic `Ψ₂Sq` is nonzero, so its root set is finite.
+@isnad1 id=finite.1h2v.s6.baa3d1f950a4 from=translated src=- shape=8b210b4c vocab=733337a1
+-/
 lemma finite_roots_Ψ₂Sq (h2 : (2 : F) ≠ 0) : Finite {x : F // W.Ψ₂Sq.eval x = 0} := by
   classical
   exact Finite.of_equiv _ (W.rootsEquiv h2).symm
 
-/-- The cubic `Ψ₂Sq` has at most three roots over any field of characteristic `≠ 2`. -/
+/-- The cubic `Ψ₂Sq` has at most three roots over any field of characteristic `≠ 2`.
+@isnad1 id=le.1h2v.s6.3deb34cd51f9 from=translated src=- shape=a882325d vocab=fd4ef073
+-/
 lemma card_roots_Ψ₂Sq_le (h2 : (2 : F) ≠ 0) :
     Nat.card {x : F // W.Ψ₂Sq.eval x = 0} ≤ 3 := by
   classical
@@ -196,7 +211,9 @@ for an elliptic curve away from characteristic `2`, so it has no repeated root.
 ⚠️ The splitting hypothesis is the **only** thing the algebraically closed form `card_roots_Ψ₂Sq`
 below ever used its closure for: `twoTorsionPolynomial_a_ne_zero` needs only `h2`,
 `twoTorsionPolynomial_discr_ne_zero_of_isElliptic` needs only `[W.IsElliptic]`, and Mathlib's
-`Cubic.card_roots_of_discr_ne_zero` takes `Splits` as a hypothesis rather than deriving it. -/
+`Cubic.card_roots_of_discr_ne_zero` takes `Splits` as a hypothesis rather than deriving it.
+@isnad1 id=eq.2h2v.s6.01c57a87d69b from=translated src=- shape=4ccc817d vocab=557dca8e
+-/
 lemma card_roots_Ψ₂Sq_of_splits [W.IsElliptic] (h2 : (2 : F) ≠ 0) (hsplits : W.Ψ₂Sq.Splits) :
     Nat.card {x : F // W.Ψ₂Sq.eval x = 0} = 3 := by
   classical
@@ -216,7 +233,9 @@ lemma card_roots_Ψ₂Sq_of_splits [W.IsElliptic] (h2 : (2 : F) ≠ 0) (hsplits 
 characteristic `≠ 2`: it is a cubic with leading coefficient `4` and discriminant `16Δ`, both units
 for an elliptic curve away from characteristic `2`.
 
-The splitting hypothesis of `card_roots_Ψ₂Sq_of_splits`, discharged by `IsAlgClosed.splits`. -/
+The splitting hypothesis of `card_roots_Ψ₂Sq_of_splits`, discharged by `IsAlgClosed.splits`.
+@isnad1 id=eq.1h2v.s6.36ebfe6d6ddb from=translated src=- shape=72ecf823 vocab=de15038e
+-/
 lemma card_roots_Ψ₂Sq [W.IsElliptic] [IsAlgClosed F] (h2 : (2 : F) ≠ 0) :
     Nat.card {x : F // W.Ψ₂Sq.eval x = 0} = 3 :=
   card_roots_Ψ₂Sq_of_splits h2 (IsAlgClosed.splits _)
@@ -233,12 +252,16 @@ variable [DecidableEq F]
 consumers want: they take `P ⊕ P = O` as a hypothesis binder, which is
 `add_self_eq_zero_of_mem_torsion_two` (`EllipticCurves.Torsion.Defs`).  Reaching that form from
 this one costs an extra `add_eq_zero_iff_eq_neg`, which is why three files once carried private
-copies of it instead. -/
+copies of it instead.
+@isnad1 id=iff.0h3v.s6.e0be9f41e969 from=translated src=- shape=43ec64ad vocab=0c229bca
+-/
 lemma mem_torsion_two_iff_eq_neg {P : W.Point} : P ∈ W.torsion 2 ↔ P = -P := by
   rw [mem_torsion_iff, two_nsmul, add_eq_zero_iff_eq_neg]
 
 /-- An affine point `(x, y)` is `2`-torsion exactly when the `2`-division polynomial
-`ψ₂ = 2y + a₁x + a₃` vanishes at it. -/
+`ψ₂ = 2y + a₁x + a₃` vanishes at it.
+@isnad1 id=iff.1h4v.s7.226c62399f8c from=translated src=- shape=69542e01 vocab=c8e440e1
+-/
 lemma mem_torsion_two_some_iff {x y : F} (h : W.Nonsingular x y) :
     Point.some x y h ∈ W.torsion 2 ↔ 2 * y + W.a₁ * x + W.a₃ = 0 := by
   rw [mem_torsion_two_iff_eq_neg, Point.neg_some, Point.some.injEq]
@@ -252,7 +275,9 @@ lemma eq_twoTorsionY_of_mem_torsion_two (h2 : (2 : F) ≠ 0) {x y : F} {h : W.No
   rw [twoTorsionY, eq_div_iff h2]
   linear_combination hy
 
-/-- The `x`-coordinate of an affine `2`-torsion point is a root of the cubic `Ψ₂Sq`. -/
+/-- The `x`-coordinate of an affine `2`-torsion point is a root of the cubic `Ψ₂Sq`.
+@isnad1 id=eq.2h4v.s7.c21c91037bc2 from=translated src=- shape=437a00dc vocab=1853aa54
+-/
 lemma Ψ₂Sq_eval_eq_zero_of_mem_torsion_two {x y : F} {h : W.Nonsingular x y}
     (hP : Point.some x y h ∈ W.torsion 2) : W.Ψ₂Sq.eval x = 0 := by
   rw [Ψ₂Sq_eval_eq_sq h.1, (mem_torsion_two_some_iff h).mp hP]
@@ -268,6 +293,9 @@ def torsionTwoOfRoot (h2 : (2 : F) ≠ 0) :
   | some x => ⟨Point.some x (W.twoTorsionY x) (nonsingular_twoTorsionY h2 x.2),
       (mem_torsion_two_some_iff _).mpr (two_mul_twoTorsionY_add h2 x)⟩
 
+/--
+@isnad1 id=bijectiv.1h2v.s7.2a469fed3126 from=translated src=- shape=83a1dd97 vocab=458ec549
+-/
 lemma torsionTwoOfRoot_bijective (h2 : (2 : F) ≠ 0) :
     Function.Bijective (torsionTwoOfRoot (W := W) h2) := by
   constructor
@@ -291,7 +319,9 @@ noncomputable def torsionTwoEquiv (h2 : (2 : F) ≠ 0) :
     W.torsion 2 ≃ Option {x : F // W.Ψ₂Sq.eval x = 0} :=
   (Equiv.ofBijective _ (torsionTwoOfRoot_bijective h2)).symm
 
-/-- Away from characteristic `2` the `2`-torsion subgroup of an elliptic curve is finite. -/
+/-- Away from characteristic `2` the `2`-torsion subgroup of an elliptic curve is finite.
+@isnad1 id=finite.1h2v.s7.badd1c1ca371 from=translated src=- shape=e83ca0c9 vocab=9fb6b1f9
+-/
 lemma finite_torsion_two (h2 : (2 : F) ≠ 0) : Finite (W.torsion 2) :=
   haveI := W.finite_roots_Ψ₂Sq h2
   Finite.of_equiv _ (torsionTwoEquiv h2).symm
@@ -300,7 +330,9 @@ lemma finite_torsion_two (h2 : (2 : F) ≠ 0) : Finite (W.torsion 2) :=
 infinity together with the at most three roots of the `2`-torsion cubic.
 
 This is the inequality half of `card_torsion_two`, and unlike it needs no algebraic closure; it is
-the `p = 2` base case of the multiplicative bound of `EllipticCurves.Torsion.Multiplicative`. -/
+the `p = 2` base case of the multiplicative bound of `EllipticCurves.Torsion.Multiplicative`.
+@isnad1 id=le.1h2v.s7.8cf7bda2a7a1 from=translated src=- shape=6cd03e1b vocab=fe4556b1
+-/
 theorem card_torsion_two_le (h2 : (2 : F) ≠ 0) : Nat.card (W.torsion 2) ≤ 4 := by
   haveI := W.finite_roots_Ψ₂Sq h2
   rw [Nat.card_congr (torsionTwoEquiv h2), Finite.card_option]
@@ -318,7 +350,9 @@ business.
 
 ⚠️ Callers building a `ℚ` certificate should use this rather than exhibiting an injection
 `Fin 4 → E[2]` by hand: `card_torsion_two_le` plus four named points proves the same thing, but the
-splitting hypothesis is one polynomial identity instead of a case split over sixteen pairs. -/
+splitting hypothesis is one polynomial identity instead of a case split over sixteen pairs.
+@isnad1 id=eq.2h2v.s7.b21ca353ef5d from=translated src=- shape=36010bb6 vocab=2813df27
+-/
 theorem card_torsion_two_of_splits (h2 : (2 : F) ≠ 0) (hsplits : W.Ψ₂Sq.Splits) :
     Nat.card (W.torsion 2) = 4 := by
   haveI := W.finite_roots_Ψ₂Sq h2
@@ -328,7 +362,9 @@ theorem card_torsion_two_of_splits (h2 : (2 : F) ≠ 0) (hsplits : W.Ψ₂Sq.Spl
 /-- **`#E[2] = 4`** for an elliptic curve over an algebraically closed field of characteristic
 `≠ 2`: the point at infinity together with the three roots of the `2`-torsion cubic.
 
-The splitting hypothesis of `card_torsion_two_of_splits`, discharged by `IsAlgClosed.splits`. -/
+The splitting hypothesis of `card_torsion_two_of_splits`, discharged by `IsAlgClosed.splits`.
+@isnad1 id=eq.1h2v.s7.0449e437a761 from=translated src=- shape=475d19cf vocab=f86ea38f
+-/
 theorem card_torsion_two [IsAlgClosed F] (h2 : (2 : F) ≠ 0) : Nat.card (W.torsion 2) = 4 :=
   card_torsion_two_of_splits h2 (IsAlgClosed.splits _)
 
@@ -337,7 +373,9 @@ Away from characteristic `2`, the `2`-torsion subgroup of an elliptic curve is i
 `ℤ/2ℤ × ℤ/2ℤ` as soon as `Ψ₂Sq` splits — no algebraic closure is involved.
 
 This is the `n = 2` instance of `E[n] ≅ (ℤ/nℤ)²`, obtained by feeding the count `#E[2] = 4` into
-the finite-abelian-group classification core `AddCommGroup.equiv_zmod_sq_of_card_sq`. -/
+the finite-abelian-group classification core `AddCommGroup.equiv_zmod_sq_of_card_sq`.
+@isnad1 id=nonempty.2h2v.s8.a8bdd8550938 from=translated src=- shape=e17fca29 vocab=2bae32d6
+-/
 theorem nonempty_torsionTwo_addEquiv_of_splits (h2 : (2 : F) ≠ 0) (hsplits : W.Ψ₂Sq.Splits) :
     Nonempty (W.torsion 2 ≃+ ZMod 2 × ZMod 2) := by
   haveI := W.finite_torsion_two h2
@@ -355,7 +393,9 @@ theorem nonempty_torsionTwo_addEquiv_of_splits (h2 : (2 : F) ≠ 0) (hsplits : W
 `≠ 2`, the `2`-torsion subgroup of an elliptic curve is isomorphic to `ℤ/2ℤ × ℤ/2ℤ`.
 
 The splitting hypothesis of `nonempty_torsionTwo_addEquiv_of_splits`, discharged by
-`IsAlgClosed.splits`. -/
+`IsAlgClosed.splits`.
+@isnad1 id=nonempty.1h2v.s8.71e6e145da68 from=translated src=- shape=43e50ef9 vocab=330bdb27
+-/
 theorem nonempty_torsionTwo_addEquiv [IsAlgClosed F] (h2 : (2 : F) ≠ 0) :
     Nonempty (W.torsion 2 ≃+ ZMod 2 × ZMod 2) :=
   nonempty_torsionTwo_addEquiv_of_splits h2 (IsAlgClosed.splits _)

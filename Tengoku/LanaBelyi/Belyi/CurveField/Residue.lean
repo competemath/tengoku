@@ -47,10 +47,19 @@ noncomputable instance : Algebra P.1 P.ResidueField :=
 /-- The residue map `O_P → κ(P)`. -/
 noncomputable def residue : P.1 →+* P.ResidueField := IsLocalRing.residue P.1
 
+/--
+@isnad1 id=eq.0h2v.s8.287eedf7e626 from=translated src=- shape=d430d732 vocab=12fe2f90
+-/
 theorem algebraMap_eq_residue : algebraMap P.1 P.ResidueField = P.residue := rfl
 
+/--
+@isnad1 id=surjecti.0h2v.s9.1ab164775293 from=translated src=- shape=92baad0f vocab=c028e362
+-/
 theorem residue_surjective : Function.Surjective P.residue := IsLocalRing.residue_surjective
 
+/--
+@isnad1 id=iff.0h3v.s11.849223121615 from=translated src=- shape=5f7b3f7d vocab=0d39825e
+-/
 theorem residue_eq_zero_iff {a : P.1} : P.residue a = 0 ↔ a ∈ maximalIdeal P.1 :=
   IsLocalRing.residue_eq_zero_iff a
 
@@ -59,16 +68,25 @@ variable [CharZero K]
 /-- The inclusion `ℚ → O_P`. -/
 noncomputable def ratHom : ℚ →+* P.1 := (Rat.castHom K).codRestrict P.1 P.ratCast_mem
 
+/--
+@isnad1 id=eq.0h3v.s9.77ed4d0e9a6d from=translated src=- shape=9711a70f vocab=b5820ae2
+-/
 @[simp]
 theorem coe_ratHom (q : ℚ) : (P.ratHom q : K) = q := rfl
 
 instance : CharZero P.ResidueField :=
   charZero_of_injective_ringHom (P.residue.comp P.ratHom).injective
 
+/--
+@isnad1 id=eq.0h3v.s10.f9c0cf6fc625 from=translated src=- shape=2c413657 vocab=a4618150
+-/
 @[simp]
 theorem residue_ratHom (q : ℚ) : P.residue (P.ratHom q) = (q : P.ResidueField) :=
   map_ratCast (P.residue.comp P.ratHom) q
 
+/--
+@isnad1 id=eq.0h3v.s9.750e1e64cb57 from=translated src=- shape=cb965208 vocab=3cd286e9
+-/
 theorem residue_mk_ratCast (q : ℚ) :
     P.residue ⟨(q : K), P.ratCast_mem q⟩ = (q : P.ResidueField) :=
   P.residue_ratHom q
@@ -91,6 +109,9 @@ instance : NumberField P.ResidueField where
 /-- The degree `[κ(P) : ℚ]` of a place. -/
 noncomputable def deg : ℕ := Module.finrank ℚ P.ResidueField
 
+/--
+@isnad1 id=lt.0h2v.s5.60b4a456fa9b from=translated src=- shape=d0af648c vocab=e2419380
+-/
 theorem deg_pos : 0 < P.deg := Module.finrank_pos
 
 end Belyi.CurveField.Place

@@ -59,7 +59,9 @@ The proof takes an algebraic `z ∈ E`, forms the finite subextension `L := F⟮
 to `F̄ := AlgebraicClosure F`.  The inclusion `L ↪ E` tensors (over the flat/free `F̄`) to an
 injection `F̄ ⊗ L ↪ F̄ ⊗ E`, so `F̄ ⊗ L` is a domain.  Being finite over the algebraically closed
 `F̄`, it is integral, hence `algebraMap F̄ (F̄ ⊗ L)` is bijective and `finrank F̄ (F̄ ⊗ L) = 1`.
-Base change preserves finrank, so `finrank F L = 1`, forcing `L = ⊥` and `z ∈ F`. -/
+Base change preserves finrank, so `finrank F L = 1`, forcing `L = ⊥` and `z ∈ F`.
+@isnad1 id=eq.1h2v.s8.aa863087b593 from=translated src=- shape=6a029465 vocab=416ee93d
+-/
 theorem _root_.Tengoku.LanaEllipticCurves.algebraicClosure_eq_bot_of_isDomain_tensor
     {F E : Type*} [Field F] [Field E] [Algebra F E]
     (hdom : IsDomain (AlgebraicClosure F ⊗[F] E)) :
@@ -101,7 +103,9 @@ keystone bridge `algebraicClosure_eq_bot_of_isDomain_tensor` to `E = W.FunctionF
 geometric-integrality datum `IsDomain (AlgebraicClosure F ⊗[F] W.FunctionField)`, the base field `F`
 is relatively algebraically closed in `F(W)`.  This is exactly the `halg` hypothesis carried by
 `WeilPairingConstant.lean` (PR #162); supplying it makes the Weil-pairing element's constancy and
-translation-slot bilinearity unconditional. -/
+translation-slot bilinearity unconditional.
+@isnad1 id=eq.1h2v.s12.88f2a7027ebd from=translated src=- shape=7e3b1c9e vocab=39c519d4
+-/
 theorem algebraicClosure_functionField_eq_bot_of_isDomain_tensor
     (hdom : IsDomain (AlgebraicClosure F ⊗[F] W.FunctionField)) :
     algebraicClosure F W.FunctionField = ⊥ :=
