@@ -41,14 +41,22 @@ noncomputable def bP : ℂ[X] := X ^ 3 + C E.a₂ * X ^ 2 + C E.a₄ * X + C E.a
 noncomputable def DP : ℂ[X] := aP E ^ 2 + C 4 * bP E
 
 omit [E.IsElliptic] in
+/--
+@isnad1 id=eq.0h1v.s3.9b7cc6a9d56d from=translated src=- shape=3ef63426 vocab=719d4547
+-/
 theorem DP_natDegree : (DP E).natDegree = 3 := by
   unfold DP aP bP; compute_degree!
 
 omit [E.IsElliptic] in
+/--
+@isnad1 id=ne.0h1v.s4.86f72c0cfe9d from=translated src=- shape=ea91c9b2 vocab=775dcf73
+-/
 theorem DP_ne_zero : DP E ≠ 0 := fun h ↦ by
   have := DP_natDegree E; rw [h, natDegree_zero] at this; exact absurd this (by norm_num)
 
-/-- `D` has no square factors: a double root of `D` gives a singular point. -/
+/-- `D` has no square factors: a double root of `D` gives a singular point.
+@isnad1 id=isunit.1h2v.s6.4a835df54132 from=translated src=- shape=a5548d84 vocab=a62a3af9
+-/
 theorem isUnit_of_sq_dvd_DP {g : ℂ[X]} (h : g ^ 2 ∣ DP E) : IsUnit g := by
   by_contra hg
   have hD0 : DP E ≠ 0 := DP_ne_zero E
@@ -80,7 +88,9 @@ theorem isUnit_of_sq_dvd_DP {g : ℂ[X]} (h : g ^ 2 ∣ DP E) : IsUnit g := by
     simp only [y₀]
     ring
 
-/-- `N² ∣ D Q²` implies `N ∣ Q`. -/
+/-- `N² ∣ D Q²` implies `N ∣ Q`.
+@isnad1 id=dvd.1h3v.s7.991f7d85e14f from=translated src=- shape=ce7188d1 vocab=32937da7
+-/
 theorem dvd_of_sq_dvd_DP_mul {N Q : ℂ[X]} (h : N ^ 2 ∣ DP E * Q ^ 2) : N ∣ Q := by
   classical
   by_cases hN : N = 0
@@ -113,9 +123,15 @@ local notation "Lf" => E.toAffine.FunctionField
 noncomputable abbrev yR : R := WeierstrassCurve.Affine.CoordinateRing.mk E.toAffine X
 
 omit [E.IsElliptic] in
+/--
+@isnad1 id=eq.0h1v.s8.22cf88f0d903 from=translated src=- shape=d24f6c8a vocab=fdb38c65
+-/
 theorem polynomial_eq : E.toAffine.polynomial = X ^ 2 + C (aP E) * X - C (bP E) := rfl
 
 omit [E.IsElliptic] in
+/--
+@isnad1 id=eq.0h1v.s9.0d8e229e390c from=translated src=- shape=42a55880 vocab=fa936854
+-/
 theorem yR_sq : yR E ^ 2 + algebraMap ℂ[X] R (aP E) * yR E = algebraMap ℂ[X] R (bP E) := by
   have h : AdjoinRoot.mk E.toAffine.polynomial (X ^ 2 + C (aP E) * X - C (bP E)) = 0 := by
     rw [← polynomial_eq]; exact AdjoinRoot.mk_self
@@ -135,16 +151,25 @@ noncomputable def conjR : R →ₐ[ℂ[X]] R :=
       linear_combination h)
 
 omit [E.IsElliptic] in
+/--
+@isnad1 id=eq.0h1v.s9.421d7c8cb176 from=translated src=- shape=7a4a715a vocab=3fe0c633
+-/
 theorem conjR_yR : conjR E (yR E) = -yR E - algebraMap ℂ[X] R (aP E) :=
   AdjoinRoot.liftAlgHom_root _ _ _ _
 
 omit [E.IsElliptic] in
+/--
+@isnad1 id=eq.0h3v.s9.18b8eaba50e5 from=translated src=- shape=84f352da vocab=916d4874
+-/
 theorem conjR_basis (p q : ℂ[X]) :
     conjR E (p • (1 : R) + q • yR E) = (p - q * aP E) • (1 : R) - q • yR E := by
   simp only [map_add, map_one, conjR_yR, Algebra.smul_def, map_sub, map_mul, AlgHom.commutes]
   ring
 
 omit [E.IsElliptic] in
+/--
+@isnad1 id=eq.0h3v.s10.43b9f1dca366 from=translated src=- shape=56705cd0 vocab=69e81b2a
+-/
 theorem mul_conjR_basis (p q : ℂ[X]) :
     (p • (1 : R) + q • yR E) * conjR E (p • (1 : R) + q • yR E) =
       algebraMap ℂ[X] R (p ^ 2 - p * q * aP E - q ^ 2 * bP E) := by
@@ -154,6 +179,9 @@ theorem mul_conjR_basis (p q : ℂ[X]) :
   linear_combination (-(algebraMap ℂ[X] R q) ^ 2) * h
 
 omit [E.IsElliptic] in
+/--
+@isnad1 id=eq.0h2v.s8.85b1a5529a7c from=translated src=- shape=70d85e86 vocab=2a84a373
+-/
 theorem conjR_conjR (r : R) : conjR E (conjR E r) = r := by
   obtain ⟨p, q, rfl⟩ := WeierstrassCurve.Affine.CoordinateRing.exists_smul_basis_eq r
   change conjR E (conjR E (p • (1 : R) + q • yR E)) = p • (1 : R) + q • yR E
@@ -162,7 +190,9 @@ theorem conjR_conjR (r : R) : conjR E (conjR E r) = r := by
   ring
 
 omit [E.IsElliptic] in
-/-- Integral quotients of polynomials are polynomials. -/
+/-- Integral quotients of polynomials are polynomials.
+@isnad1 id=dvd.2h3v.s10.8bda7013714f from=translated src=- shape=28a20a8c vocab=06d2a291
+-/
 theorem dvd_of_isIntegral {f g : ℂ[X]} (hg : g ≠ 0)
     (h : IsIntegral ℂ[X] (algebraMap ℂ[X] Lf f / algebraMap ℂ[X] Lf g)) : g ∣ f := by
   set K := FractionRing ℂ[X]
@@ -181,7 +211,9 @@ theorem dvd_of_isIntegral {f g : ℂ[X]} (hg : g ≠ 0)
   simp only [w]
   rw [mul_comm]; exact (div_mul_cancel₀ _ hg').symm
 
-/-- **The coordinate ring is integrally closed**: integral elements of `ℂ(E)` lie in `ℂ[E]`. -/
+/-- **The coordinate ring is integrally closed**: integral elements of `ℂ(E)` lie in `ℂ[E]`.
+@isnad1 id=ex.1h2v.s10.478ca1b6e5e9 from=translated src=- shape=7a96baf7 vocab=1384073f
+-/
 theorem mem_range_of_isIntegral {z : Lf} (hzi : IsIntegral ℂ[X] z) :
     ∃ r : R, algebraMap R Lf r = z := by
   classical

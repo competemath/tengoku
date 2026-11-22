@@ -50,7 +50,9 @@ variable {C : Type u} [Category.{v} C] [HasZeroMorphisms C] [HasKernels C]
 
 variable {Z A B : C} (p : Z ⟶ A) (q : Z ⟶ B) [HasBinaryBiproduct A B]
 
-/-- The composite `ker (ker q ↪ Z --p--> A) ⟶ ker q ⟶ Z` kills `biprod.lift p q`. -/
+/-- The composite `ker (ker q ↪ Z --p--> A) ⟶ ker q ⟶ Z` kills `biprod.lift p q`.
+@isnad1 id=eq.0h6v.s8.f848ea216f3d from=translated src=- shape=259f3d65 vocab=551edbc8
+-/
 lemma kernel_ι_comp_kernel_ι_comp_biprod_lift :
     (kernel.ι (kernel.ι q ≫ p) ≫ kernel.ι q) ≫ biprod.lift p q = 0 := by
   refine biprod.hom_ext _ _ ?_ ?_ <;> simp
@@ -80,6 +82,9 @@ noncomputable def kernelBiprodLiftIso :
     kernel (kernel.ι q ≫ p) ≅ kernel (biprod.lift p q) :=
   IsLimit.conePointUniqueUpToIso (isLimitKernelForkBiprodLift p q) (limit.isLimit _)
 
+/--
+@isnad1 id=eq.0h6v.s8.e0cc23eeba0c from=translated src=- shape=33c2d83c vocab=33336116
+-/
 @[reassoc (attr := simp)]
 lemma kernelBiprodLiftIso_hom_ι :
     (kernelBiprodLiftIso p q).hom ≫ kernel.ι (biprod.lift p q) =

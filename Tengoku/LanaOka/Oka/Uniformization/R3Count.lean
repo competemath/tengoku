@@ -38,36 +38,57 @@ noncomputable def ramIdx (s : K[X]) (w : K) : ℕ := rootMultiplicity w (s - C (
 /-- The multiplicity: `2` on `E₂`, `1` elsewhere. -/
 def mult [DecidableEq K] (E₂ : Finset K) (w : K) : ℕ := if w ∈ E₂ then 2 else 1
 
+/--
+@isnad1 id=eq.0h3v.s7.ee474537e462 from=translated src=- shape=0880aeeb vocab=1ad55528
+-/
 theorem natDegree_sub_C_of_pos (s : K[X]) (v : K) :
     (s - C v).natDegree = s.natDegree := natDegree_sub_C
 
+/--
+@isnad1 id=ne.1h3v.s7.295e9623d763 from=translated src=- shape=b9c5757f vocab=da0e876e
+-/
 theorem sub_C_ne_zero {s : K[X]} (hs : 0 < s.natDegree) (v : K) : s - C v ≠ 0 := by
   intro h
   have := natDegree_sub_C_of_pos s v
   rw [h, natDegree_zero] at this
   omega
 
+/--
+@isnad1 id=iff.1h4v.s7.33baa6977e30 from=translated src=- shape=54a230e1 vocab=b0c4ea4b
+-/
 theorem mem_roots_sub_C [DecidableEq K] {s : K[X]} (hs : 0 < s.natDegree) {v w : K} :
     w ∈ (s - C v).roots.toFinset ↔ s.eval w = v := by
   rw [Multiset.mem_toFinset, mem_roots (sub_C_ne_zero hs v), IsRoot, eval_sub, eval_C,
     sub_eq_zero]
 
+/--
+@isnad1 id=eq.0h3v.s8.9572b5136ae4 from=translated src=- shape=12cfe500 vocab=6bb0622b
+-/
 theorem sum_rootMultiplicity_sub_C [DecidableEq K] [IsAlgClosed K] (s : K[X]) (v : K) :
     ∑ w ∈ (s - C v).roots.toFinset, rootMultiplicity w (s - C v) = s.natDegree := by
   simp_rw [← count_roots]
   rw [Multiset.toFinset_sum_count_eq, IsAlgClosed.card_roots_eq_natDegree,
     natDegree_sub_C_of_pos s]
 
+/--
+@isnad1 id=lt.1h3v.s5.d4a6b81e09e3 from=translated src=- shape=84a93d93 vocab=7acbbdd3
+-/
 theorem ramIdx_pos {s : K[X]} (hs : 0 < s.natDegree) (w : K) : 0 < ramIdx s w := by
   rw [ramIdx, rootMultiplicity_pos (sub_C_ne_zero hs _)]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s8.5bd9accbe8fc from=translated src=- shape=14999fcc vocab=e2fd8a2a
+-/
 theorem ramIdx_sub_one [CharZero K] (s : K[X]) (w : K) :
     ramIdx s w - 1 = rootMultiplicity w (derivative s) := by
   have h := derivative_rootMultiplicity_of_root (p := s - C (s.eval w)) (t := w) (by simp)
   rw [derivative_sub, derivative_C, sub_zero] at h
   rw [ramIdx, h]
 
+/--
+@isnad1 id=eq.0h2v.s9.7763640a7ae7 from=translated src=- shape=47aa60dd vocab=286c8671
+-/
 theorem sum_rootMultiplicity_derivative [DecidableEq K] [IsAlgClosed K] [CharZero K]
     (s : K[X]) :
     ∑ w ∈ (derivative s).roots.toFinset, rootMultiplicity w (derivative s) =
@@ -95,7 +116,9 @@ theorem eq_C_mul_X_sub_C_pow {p : K[X]} (hp : p ≠ 0) {c : K}
   rw [hlc, mul_comm]
   exact hq
 
-/-- **The orbifold Riemann–Hurwitz count** (see the module docstring). -/
+/-- **The orbifold Riemann–Hurwitz count** (see the module docstring).
+@isnad1 id=or.3h3v.s8.a464ccea538d from=translated src=- shape=fd417b37 vocab=d538b4d1
+-/
 theorem orbifold_count [DecidableEq K] [IsAlgClosed K] [CharZero K] {s : K[X]}
     (hs : 0 < s.natDegree) {E₂ : Finset K} (hE : E₂.card = 3)
     (h : ∀ w w', s.eval w = s.eval w' → ramIdx s w * mult E₂ w = ramIdx s w' * mult E₂ w') :
@@ -371,7 +394,9 @@ theorem orbifold_count [DecidableEq K] [IsAlgClosed K] [CharZero K] {s : K[X]}
   · exact finish v₂ v₁ hv₂ hv₁ hne.symm (by rw [hV12, Finset.pair_comm]) h2 h1
       (by rw [add_comm]; exact hA2)
 
-/-- A quadratic polynomial vanishing at three distinct points is zero. -/
+/-- A quadratic polynomial vanishing at three distinct points is zero.
+@isnad1 id=and.2h5v.s7.a06db97dc23f from=translated src=- shape=f227f7a4 vocab=8160fe7b
+-/
 theorem quadratic_eq_zero {α β γ : K} {E : Finset K} (hE : E.card = 3)
     (h : ∀ w ∈ E, α * w ^ 2 + β * w + γ = 0) : α = 0 ∧ β = 0 ∧ γ = 0 := by
   classical
@@ -392,7 +417,9 @@ theorem quadratic_eq_zero {α β γ : K} {E : Finset K} (hE : E.card = 3)
   refine ⟨hα, hβ, ?_⟩
   rw [hα, hβ] at hx; linear_combination hx
 
-/-- If the roots of `4X³ - g₂X - g₃` are symmetric about a point, then `g₃ = 0`. -/
+/-- If the roots of `4X³ - g₂X - g₃` are symmetric about a point, then `g₃ = 0`.
+@isnad1 id=eq.3h5v.s8.8465875c2cce from=translated src=- shape=e5b38fac vocab=3b2ff48f
+-/
 theorem g₃_eq_zero_of_symm [CharZero K] {g₂ g₃ : K} {E : Finset K}
     (hE : E.card = 3) (hroot : ∀ w ∈ E, 4 * w ^ 3 - g₂ * w - g₃ = 0) {c : K}
     (hsym : ∀ w ∈ E, 2 * c - w ∈ E) : g₃ = 0 := by
@@ -405,7 +432,9 @@ theorem g₃_eq_zero_of_symm [CharZero K] {g₂ g₃ : K} {E : Finset K}
   rw [hc] at h3
   linear_combination -h3 / 2
 
-/-- If the roots of `4X³ - g₂X - g₃` are `c + ρ^{1/3} ζ` (cube roots), then `g₂ = 0`. -/
+/-- If the roots of `4X³ - g₂X - g₃` are `c + ρ^{1/3} ζ` (cube roots), then `g₂ = 0`.
+@isnad1 id=eq.3h6v.s8.f3dff41a662b from=translated src=- shape=7f6c1bab vocab=3b2ff48f
+-/
 theorem g₂_eq_zero_of_cube [CharZero K] {g₂ g₃ : K} {E : Finset K}
     (hE : E.card = 3) (hroot : ∀ w ∈ E, 4 * w ^ 3 - g₂ * w - g₃ = 0) {c ρ : K}
     (hcube : ∀ w ∈ E, (w - c) ^ 3 = ρ) : g₂ = 0 := by

@@ -39,7 +39,9 @@ variable {A : Type u} [Category.{v} A] [Abelian A]
 jointly cover the source of `π`.**
 
 Elementwise: if every element of `B` is `π` of something and is already hit by `u ≫ π`, then
-every `p : P` differs from something in the image of `u` by an element of `ker π`. -/
+every `p : P` differs from something in the image of `u` by an element of `ker π`.
+@isnad1 id=epi.1h6v.s7.c501a3c340d5 from=translated src=- shape=56472d49 vocab=f4d7703c
+-/
 lemma epi_biprod_desc_kernel_ι {P B F : A} (π : P ⟶ B) [Epi π] (u : F ⟶ P)
     (hu : Epi (u ≫ π)) : Epi (biprod.desc u (kernel.ι π)) := by
   rw [Preadditive.epi_iff_cancel_zero]

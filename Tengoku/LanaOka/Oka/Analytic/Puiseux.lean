@@ -48,12 +48,16 @@ noncomputable section
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {G : Set E}
 
 /-- A complex polynomial which is a product of linear factors vanishes exactly at the roots of
-these factors. -/
+these factors.
+@isnad1 id=iff.1h4v.s6.c8a326ec41e9 from=translated src=- shape=2d559541 vocab=0cbc82ad
+-/
 theorem isRoot_iff_of_eq_prod {ι : Type*} [Fintype ι] {q : ℂ[X]} {a : ι → ℂ}
     (h : q = ∏ i, (X - C (a i))) (w : ℂ) : q.IsRoot w ↔ ∃ i, w = a i := by
   simp [h, IsRoot.def, eval_prod, Finset.prod_eq_zero_iff, sub_eq_zero]
 
-/-- The coefficients of `∏ (X - C (fᵢ z))` depend continuously on `z` where the `fᵢ` do. -/
+/-- The coefficients of `∏ (X - C (fᵢ z))` depend continuously on `z` where the `fᵢ` do.
+@isnad1 id=continuo.1h6v.s7.0b143f06f3b0 from=translated src=- shape=6388dd98 vocab=5864b78a
+-/
 theorem continuousOn_coeff_prod {Z ι : Type*} [TopologicalSpace Z] (s : Finset ι)
     {f : ι → Z → ℂ} {U : Set Z} (hf : ∀ i ∈ s, ContinuousOn (f i) U) (n : ℕ) :
     ContinuousOn (fun z ↦ (∏ i ∈ s, (X - C (f i z))).coeff n) U := by
@@ -71,7 +75,9 @@ theorem continuousOn_coeff_prod {Z ι : Type*} [TopologicalSpace Z] (s : Finset 
 /-- **Puiseux expansions over the punctured disc.** Let `P` be a monic polynomial whose
 coefficients are holomorphic on `G × Δ*` and which is separable at every point of `G × Δ*`.
 Then for some `s ≥ 1`, `P(y, t ^ s, ·)` is the product of `X - φⱼ(y, t)` over `G × Δ*`, with
-holomorphic and pairwise distinct `φⱼ`. -/
+holomorphic and pairwise distinct `φⱼ`.
+@isnad1 id=ex.5h3v.s9.b84423a9498b from=translated src=- shape=a5ad4347 vocab=70823cc3
+-/
 theorem exists_prod_eq_of_mem_base (hG : Convex ℝ G) (hGo : IsOpen G)
     {P : (E × ℂ → ℂ)[X]} (hP : P.Monic)
     (hdiff : ∀ i, DifferentiableOn ℂ (P.coeff i) (base G))
@@ -216,13 +222,17 @@ theorem exists_prod_eq_of_mem_base (hG : Convex ℝ G) (hGo : IsOpen G)
   exact (prod_roots_toFinset_of_separable (hqm _) (hsep _ (hmems hz))).symm
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
-/-- Removing `t = 0` from `G × Δ` leaves `G × Δ*`. -/
+/-- Removing `t = 0` from `G × Δ` leaves `G × Δ*`.
+@isnad1 id=eq.0h2v.s6.8ce8aa704c05 from=translated src=- shape=0afa172d vocab=1442b4cd
+-/
 lemma diff_preimage_snd_zero : G ×ˢ ball (0 : ℂ) 1 \ Prod.snd ⁻¹' {0} = base G := by
   ext z
   simp [mem_base, and_assoc, and_comm (a := z.2 ≠ 0)]
 
 omit [NormedSpace ℂ E] in
-/-- The locus `t = 0` has empty interior in `G × Δ`. -/
+/-- The locus `t = 0` has empty interior in `G × Δ`.
+@isnad1 id=eq.0h2v.s6.4608eaaecb53 from=translated src=- shape=21192d48 vocab=6a569ce7
+-/
 lemma interior_inter_preimage_snd_zero :
     interior (G ×ˢ ball (0 : ℂ) 1 ∩ Prod.snd ⁻¹' {0}) = ∅ := by
   refine eq_empty_of_subset_empty ((interior_mono inter_subset_right).trans ?_)
@@ -235,7 +245,9 @@ polynomial whose coefficients are holomorphic on `G × Δ`, `Δ` the open unit d
 `P(y, x, ·)` is separable whenever `x ≠ 0`. Then for some `s ≥ 1` there are holomorphic
 functions `φⱼ` on `G × Δ` with `P(y, t ^ s, ·) = ∏ⱼ (X - φⱼ(y, t))`. The `φⱼ(y, t)` are pairwise
 distinct for `t ≠ 0`, and the zero set of `P(y, t ^ s, ·)` is the union of the graphs of the
-`φⱼ`. -/
+`φⱼ`.
+@isnad1 id=ex.5h3v.s10.425ff478bce1 from=translated src=- shape=155adac1 vocab=b9619904
+-/
 theorem exists_prod_eq (hG : Convex ℝ G) (hGo : IsOpen G) {P : (E × ℂ → ℂ)[X]} (hP : P.Monic)
     (hdiff : ∀ i, DifferentiableOn ℂ (P.coeff i) (G ×ˢ ball 0 1))
     (hsep : ∀ y ∈ G, ∀ x : ℂ, x ≠ 0 → ‖x‖ < 1 → (P.map (Pi.evalRingHom _ (y, x))).Separable) :
@@ -298,7 +310,9 @@ theorem exists_prod_eq (hG : Convex ℝ G) (hGo : IsOpen G) {P : (E × ℂ → �
 
 /-- **Puiseux expansions with parameters over a disc of radius `r`.** The version of
 `Puiseux.exists_prod_eq` for `G × Δ_r`: the roots of `P(y, t ^ s, ·)` are holomorphic on
-`G × Δ_ρ` where `ρ ^ s = r`. -/
+`G × Δ_ρ` where `ρ ^ s = r`.
+@isnad1 id=ex.6h4v.s10.ade4ba473631 from=translated src=- shape=4f7ec45c vocab=b9619904
+-/
 theorem exists_prod_eq_of_radius (hG : Convex ℝ G) (hGo : IsOpen G) {r : ℝ} (hr : 0 < r)
     {P : (E × ℂ → ℂ)[X]} (hP : P.Monic)
     (hdiff : ∀ i, DifferentiableOn ℂ (P.coeff i) (G ×ˢ ball 0 r))

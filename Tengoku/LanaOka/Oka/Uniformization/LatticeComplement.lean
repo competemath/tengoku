@@ -38,6 +38,9 @@ namespace LatticeData
 
 variable (L : PeriodPair)
 
+/--
+@isnad1 id=ne.0h1v.s3.818b1e3130c5 from=translated src=- shape=a311c14d vocab=2e38e9cf
+-/
 theorem ω₂_ne_zero : L.ω₂ ≠ 0 := by
   intro h
   have := L.ω₂_div_two_notMem_lattice
@@ -47,8 +50,14 @@ theorem ω₂_ne_zero : L.ω₂ ≠ 0 := by
 /-- The domain `Ω = ℂ ∖ Λ`. -/
 def Ω : Set ℂ := (L.lattice : Set ℂ)ᶜ
 
+/--
+@isnad1 id=isopen.0h1v.s4.98a4212b1ba6 from=translated src=- shape=1a6c1393 vocab=a92ab2d0
+-/
 theorem isOpen_Ω : IsOpen (Ω L) := L.isClosed_lattice.isOpen_compl
 
+/--
+@isnad1 id=countabl.0h1v.s4.dd4182c448cc from=translated src=- shape=9e325049 vocab=bddbee40
+-/
 theorem countable_lattice : (L.lattice : Set ℂ).Countable := by
   have : (L.lattice : Set ℂ) = Set.range (fun p : ℤ × ℤ ↦ (p.1 : ℂ) * L.ω₁ + p.2 * L.ω₂) := by
     ext x
@@ -56,10 +65,16 @@ theorem countable_lattice : (L.lattice : Set ℂ).Countable := by
   rw [this]
   exact countable_range _
 
+/--
+@isnad1 id=isprecon.0h1v.s4.a3bf148a8f69 from=translated src=- shape=1a6c1393 vocab=cf9d8488
+-/
 theorem isPreconnected_Ω : IsPreconnected (Ω L) :=
   ((countable_lattice L).isConnected_compl_of_one_lt_rank
     (by rw [rank_real_complex]; norm_num)).isPreconnected
 
+/--
+@isnad1 id=mem.0h1v.s4.3f4b994297c0 from=translated src=- shape=0098dedc vocab=f5675164
+-/
 theorem half_mem_Ω : L.ω₂ / 2 ∈ Ω L := L.ω₂_div_two_notMem_lattice
 
 end LatticeData

@@ -36,7 +36,9 @@ private lemma range_succ_sq_sum (n : ℕ) :
       push_cast
       ring
 
-/-- Identity (E1): the average of `1, ..., n` is `(n + 1) / 2`. -/
+/-- Identity (E1): the average of `1, ..., n` is `(n + 1) / 2`.
+@isnad1 id=eq.1h1v.s6.01067fdf73a8 from=translated src=- shape=d8c0d0ac vocab=f0804895
+-/
 theorem average_range_sum (n : ℕ) (hn : 0 < n) :
     (1 / (n : ℝ)) * ∑ m ∈ Finset.range n, (m + 1 : ℝ) =
       ((n : ℝ) + 1) / 2 := by
@@ -44,7 +46,9 @@ theorem average_range_sum (n : ℕ) (hn : 0 < n) :
   have hn0 : (n : ℝ) ≠ 0 := by exact_mod_cast hn.ne'
   field_simp
 
-/-- Identity (E2): the average of the squares `1², ..., n²`. -/
+/-- Identity (E2): the average of the squares `1², ..., n²`.
+@isnad1 id=eq.1h1v.s7.4c5fb4e2bcc1 from=translated src=- shape=b4307b9b vocab=9d272492
+-/
 theorem average_range_sq_sum (n : ℕ) (hn : 0 < n) :
     (1 / (n : ℝ)) * ∑ m ∈ Finset.range n, (m + 1 : ℝ) ^ 2 =
       ((2 * (n : ℝ) + 1) * ((n : ℝ) + 1)) / 6 := by

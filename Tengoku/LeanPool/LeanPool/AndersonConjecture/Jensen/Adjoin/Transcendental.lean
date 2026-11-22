@@ -54,7 +54,9 @@ def adjoinLocSet (R : NSubring T) (x : T) : Set T :=
     (aeval x q : T) ∉ IsLocalRing.maximalIdeal T ∧
     t * (aeval x q : T) = (aeval x p : T) }
 
-/-- The carrier set forms a subring of T. -/
+/-- The carrier set forms a subring of T.
+@isnad1 id=ex.0h3v.s6.20c4c83e2e05 from=translated src=- shape=0245e610 vocab=7b3a88a9
+-/
 lemma adjoinLocSet_subring (R : NSubring T) (x : T) :
     ∃ (S : Subring T), (S : Set T) = adjoinLocSet R x := by
   have hunit : ∀ (a : T), a ∉ IsLocalRing.maximalIdeal T → IsUnit a :=
@@ -89,7 +91,9 @@ lemma adjoinLocSet_subring (R : NSubring T) (x : T) :
     · rw [map_mul, map_add, map_mul, map_mul, ← h₁, ← h₂]
       ring
 
-/-- R.carrier ≤ adjoinLocSet carrier -/
+/-- R.carrier ≤ adjoinLocSet carrier
+@isnad1 id=mem.1h4v.s6.5a24b6d8be2a from=translated src=- shape=72223a9c vocab=f7aac388
+-/
 lemma adjoinLocSet_le (R : NSubring T) (x : T)
     (t : T) (ht : t ∈ (R.carrier : Set T)) : t ∈ adjoinLocSet R x := by
   refine ⟨Polynomial.C ⟨t, ht⟩, 1, ?_, ?_⟩
@@ -97,7 +101,9 @@ lemma adjoinLocSet_le (R : NSubring T) (x : T)
   · rw [map_one, mul_one, aeval_C]
     rfl
 
-/-- x ∈ adjoinLocSet carrier -/
+/-- x ∈ adjoinLocSet carrier
+@isnad1 id=mem.0h3v.s5.630286a737e4 from=translated src=- shape=150fc205 vocab=6886aeed
+-/
 lemma adjoinLocSet_mem_x (R : NSubring T) (x : T) :
     x ∈ adjoinLocSet R x := by
   refine ⟨Polynomial.X, 1, ?_, ?_⟩
@@ -111,6 +117,9 @@ If x ∈ T is transcendental over Frac(R) and avoids a suitable set of primes,
 then R[x] localized at M is again an N-subring.
 -/
 
+/--
+@isnad1 id=le.5h5v.s10.882bb3675631 from=translated src=- shape=5118263d vocab=0e2d590c
+-/
 lemma adjoin_height_case_bot
     (R : NSubring T)
     (x : T)

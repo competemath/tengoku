@@ -56,6 +56,9 @@ coefficients of `p` at `z`, which is the multivariate analogue of `Polynomial.ta
 def taylorAlgHom (z : σ → R) : MvPolynomial σ R →ₐ[R] MvPolynomial σ R :=
   aeval fun i ↦ X i + C (z i)
 
+/--
+@isnad1 id=eq.0h4v.s8.8852abc88e58 from=translated src=- shape=4caafac0 vocab=d1398288
+-/
 @[simp]
 theorem taylorAlgHom_X (z : σ → R) (i : σ) : taylorAlgHom z (X i) = X i + C (z i) := by
   simp [taylorAlgHom]
@@ -63,22 +66,32 @@ theorem taylorAlgHom_X (z : σ → R) (i : σ) : taylorAlgHom z (X i) = X i + C 
 -- Not `@[simp]`: `simp` proves it already, from `MvPolynomial.algHom_C`. It is here as the
 -- companion of `MvPolynomial.taylorAlgHom_X` — shifting the variables fixes the constants —
 -- which is what `MvPolynomial.algHom_ext` reduces every statement about it to.
+/--
+@isnad1 id=eq.0h4v.s8.4a044c2e44f1 from=translated src=- shape=8c81959f vocab=4faba58e
+-/
 theorem taylorAlgHom_C (z : σ → R) (r : R) : taylorAlgHom z (C r) = C r :=
   (taylorAlgHom z).commutes r
 
+/--
+@isnad1 id=eq.0h2v.s7.78eb6994357d from=translated src=- shape=a7d726a5 vocab=6d8ab8be
+-/
 @[simp]
 theorem taylorAlgHom_zero : taylorAlgHom (0 : σ → R) = AlgHom.id R (MvPolynomial σ R) := by
   refine algHom_ext fun i ↦ ?_
   simp
 
-/-- Shifting by `w` and then by `z` is shifting by `z + w`. -/
+/-- Shifting by `w` and then by `z` is shifting by `z + w`.
+@isnad1 id=eq.0h4v.s8.a2d2f492b3ea from=translated src=- shape=f1e1fcb8 vocab=6efdd5da
+-/
 theorem taylorAlgHom_comp (z w : σ → R) :
     (taylorAlgHom z).comp (taylorAlgHom w) = taylorAlgHom (z + w) := by
   refine algHom_ext fun i ↦ ?_
   simp [add_assoc]
 
 /-- **Shifting the variables shifts the point of evaluation**: `p(x + z)` at `w` is `p` at
-`w + z`. -/
+`w + z`.
+@isnad1 id=eq.0h5v.s8.839ac607b390 from=translated src=- shape=b848ea87 vocab=06cdc79b
+-/
 @[simp]
 theorem eval_taylorAlgHom (z w : σ → R) (p : MvPolynomial σ R) :
     eval w (taylorAlgHom z p) = eval (w + z) p := by
@@ -94,7 +107,9 @@ file: every higher one is a derivative, and `MvPolynomial.pderiv` is not in this
 closure. See `MvPolynomial.coeff_single_one_taylorAlgHom` for the degree-one case.
 
 The proof is `MvPolynomial.eval_taylorAlgHom` at `w = 0`, since the constant term *is* the value
-at the origin (`MvPolynomial.eval_zero`); no induction is needed. -/
+at the origin (`MvPolynomial.eval_zero`); no induction is needed.
+@isnad1 id=eq.0h4v.s8.40f65c077fbe from=translated src=- shape=5f982853 vocab=4c016aab
+-/
 theorem constantCoeff_taylorAlgHom (z : σ → R) (p : MvPolynomial σ R) :
     constantCoeff (taylorAlgHom z p) = eval z p := by
   rw [← eval_zero, eval_taylorAlgHom, zero_add]
@@ -112,11 +127,17 @@ def taylorEquiv (z : σ → R) : MvPolynomial σ R ≃ₐ[R] MvPolynomial σ R :
     (by rw [taylorAlgHom_comp, add_neg_cancel, taylorAlgHom_zero])
     (by rw [taylorAlgHom_comp, neg_add_cancel, taylorAlgHom_zero])
 
+/--
+@isnad1 id=eq.0h4v.s8.ba7f599063e4 from=translated src=- shape=95b069fa vocab=7d06c819
+-/
 @[simp]
 theorem taylorEquiv_apply (z : σ → R) (p : MvPolynomial σ R) :
     taylorEquiv z p = taylorAlgHom z p :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.80c63500be51 from=translated src=- shape=ec073033 vocab=f36ced01
+-/
 @[simp]
 theorem taylorEquiv_symm_apply (z : σ → R) (p : MvPolynomial σ R) :
     (taylorEquiv z).symm p = taylorAlgHom (-z) p :=

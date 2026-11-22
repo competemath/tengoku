@@ -35,6 +35,9 @@ namespace OrbicurveCores
 /-- The four exceptional `j`-invariants of [CanLift] Prop. 2.7 / [EstIUT] Prop. 2.1. -/
 def exceptionalJ : Finset ℚ := {0, 1728, 2 ^ 14 * 31 ^ 3 / 5 ^ 3, 2 ^ 2 * 73 ^ 3 / 3 ^ 4}
 
+/--
+@isnad1 id=eq.0h0v.s6.c8ebc64eff5a from=translated src=- shape=acedc548 vocab=f98a8e8d
+-/
 lemma exceptionalJ_eq : exceptionalJ = {0, 1728, 488095744 / 125, 1556068 / 81} := by
   simp only [exceptionalJ]
   norm_num
@@ -65,21 +68,33 @@ instance : curveIV.IsElliptic := ⟨by
   rw [isUnit_iff_ne_zero]; simp [curveIV, WeierstrassCurve.Δ, WeierstrassCurve.b₂,
     WeierstrassCurve.b₄, WeierstrassCurve.b₆, WeierstrassCurve.b₈]⟩
 
+/--
+@isnad1 id=eq.0h0v.s6.7f89fb3bfe80 from=translated src=- shape=86e697c5 vocab=370a3d12
+-/
 lemma j_curveI : curveI.j = 2 ^ 14 * 31 ^ 3 / 5 ^ 3 := by
   simp [WeierstrassCurve.j, curveI, WeierstrassCurve.Δ, WeierstrassCurve.c₄,
     WeierstrassCurve.b₂, WeierstrassCurve.b₄, WeierstrassCurve.b₆, WeierstrassCurve.b₈]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s6.81da8885ca0c from=translated src=- shape=86e697c5 vocab=499e11f2
+-/
 lemma j_curveII : curveII.j = 2 ^ 2 * 73 ^ 3 / 3 ^ 4 := by
   simp [WeierstrassCurve.j, curveII, WeierstrassCurve.Δ, WeierstrassCurve.c₄,
     WeierstrassCurve.b₂, WeierstrassCurve.b₄, WeierstrassCurve.b₆, WeierstrassCurve.b₈]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s3.1171cb6ed5b2 from=translated src=- shape=3701a056 vocab=a90a3b4f
+-/
 lemma j_curveIII : curveIII.j = 1728 := by
   simp [WeierstrassCurve.j, curveIII, WeierstrassCurve.Δ, WeierstrassCurve.c₄,
     WeierstrassCurve.b₂, WeierstrassCurve.b₄, WeierstrassCurve.b₆, WeierstrassCurve.b₈]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s3.5d22b43a6dda from=translated src=- shape=3701a056 vocab=3bdb616c
+-/
 lemma j_curveIV : curveIV.j = 0 := by
   simp [WeierstrassCurve.j, curveIV, WeierstrassCurve.Δ, WeierstrassCurve.c₄,
     WeierstrassCurve.b₂, WeierstrassCurve.b₄, WeierstrassCurve.b₆, WeierstrassCurve.b₈]

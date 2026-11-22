@@ -109,7 +109,9 @@ open Filter Topology
 variable {X Y Z : Type*} [TopologicalSpace X] [TopologicalSpace Y] [TopologicalSpace Z]
   {f : X → Z} {g : Y → Z}
 
-/-- **A proper map stays proper under base change along a continuous map.** -/
+/-- **A proper map stays proper under base change along a continuous map.**
+@isnad1 id=isproper.2h5v.s6.e4114e46bf16 from=translated src=- shape=cdbc36f8 vocab=0ace10ad
+-/
 theorem IsProperMap.pullback_snd (hf : IsProperMap f) (hg : Continuous g) :
     IsProperMap (Function.Pullback.snd : f.Pullback g → Y) := by
   rw [isProperMap_iff_ultrafilter]

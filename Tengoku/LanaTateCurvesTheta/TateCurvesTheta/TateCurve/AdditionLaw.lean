@@ -51,7 +51,9 @@ variable (hmem : ∀ u : Kˣ, (∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) →
     t.tateCurve.toAffine.Equation (t.X u) (t.Y u)) (h12 : TameResidueChar K)
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- Membership in `qpowers` is inversion-stable. -/
+/-- Membership in `qpowers` is inversion-stable.
+@isnad1 id=iff.0h3v.s8.e0850ab3a7c0 from=translated src=- shape=df58ed32 vocab=f65b9b71
+-/
 lemma inv_mem_qpowers_iff (u : Kˣ) : u⁻¹ ∈ t.qpowers ↔ u ∈ t.qpowers := by
   constructor
   · intro h
@@ -59,7 +61,9 @@ lemma inv_mem_qpowers_iff (u : Kˣ) : u⁻¹ ∈ t.qpowers ↔ u ∈ t.qpowers :
   · intro h
     exact inv_mem h
 
-/-- **Negation**: the Tate point map intertwines `u ↦ u⁻¹` with negation on the curve. -/
+/-- **Negation**: the Tate point map intertwines `u ↦ u⁻¹` with negation on the curve.
+@isnad1 id=eq.2h3v.s8.a510df46ca06 from=translated src=- shape=76d43200 vocab=a2d2cf1a
+-/
 theorem tatePoint_inv (u : Kˣ) :
     t.tatePoint hmem h12 u⁻¹ = -t.tatePoint hmem h12 u := by
   classical
@@ -78,7 +82,9 @@ theorem tatePoint_inv (u : Kˣ) :
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
 /-- **Three-root Vieta by divided differences**: if `x₁, x₂, x₃` are pairwise distinct
-roots of the cubic `-x³ + s·x² + b·x + c`, then `x₁ + x₂ + x₃ = s`. -/
+roots of the cubic `-x³ + s·x² + b·x + c`, then `x₁ + x₂ + x₃ = s`.
+@isnad1 id=eq.6h7v.s9.90c59c0ee855 from=translated src=- shape=33824fdd vocab=f12a02b5
+-/
 lemma vieta_sum_of_three_roots {x₁ x₂ x₃ s b c : K}
     (h12' : x₁ ≠ x₂) (h13 : x₁ ≠ x₃) (h23 : x₂ ≠ x₃)
     (e₁ : -x₁ ^ 3 + s * x₁ ^ 2 + b * x₁ + c = 0)
@@ -119,7 +125,9 @@ private lemma cubic_of_on_line {x y lam mu : K}
 
 /-- **The secant step of the addition law.** If the affine Tate points of `u`, `v` and
 `w = (u·v)⁻¹` — all off the orbit, with pairwise distinct `X`-coordinates — lie on the
-line `y = λx + μ`, then `tatePoint u + tatePoint v = tatePoint (u·v)`. -/
+line `y = λx + μ`, then `tatePoint u + tatePoint v = tatePoint (u·v)`.
+@isnad1 id=eq.11h6v.s10.99f4cfbe7ef8 from=translated src=- shape=0e84886f vocab=33897e25
+-/
 theorem tatePoint_add_of_line {u v : Kˣ} (hu : u ∉ t.qpowers) (hv : v ∉ t.qpowers)
     (hw : (u * v)⁻¹ ∉ t.qpowers) {lam mu : K}
     (h1 : t.Y u = lam * t.X u + mu) (h2 : t.Y v = lam * t.X v + mu)

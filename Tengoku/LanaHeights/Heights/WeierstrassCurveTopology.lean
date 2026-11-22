@@ -73,12 +73,18 @@ noncomputable def complexWeierstrassPointOfAffine (W : WeierstrassCurve ℂ)
   (complexWeierstrassPointHomeomorph W).symm ∘
     ((↑) : ComplexWeierstrassAffine W → OnePoint (ComplexWeierstrassAffine W))
 
+/--
+@isnad1 id=eq.0h1v.s7.4852335c0d87 from=translated src=- shape=c16e7431 vocab=a4d148f7
+-/
 @[simp] theorem complexWeierstrassPointHomeomorph_infinity
     (W : WeierstrassCurve ℂ) [W.IsElliptic] :
     complexWeierstrassPointHomeomorph W (complexWeierstrassPointInfinity W) =
       (∞ : OnePoint (ComplexWeierstrassAffine W)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.1638bda5101c from=translated src=- shape=d42d1b89 vocab=fb40edbe
+-/
 @[simp] theorem complexWeierstrassPointHomeomorph_affine
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (xy : ComplexWeierstrassAffine W) :
@@ -87,6 +93,9 @@ noncomputable def complexWeierstrassPointOfAffine (W : WeierstrassCurve ℂ)
       (xy : OnePoint (ComplexWeierstrassAffine W)) := by
   simp [complexWeierstrassPointOfAffine]
 
+/--
+@isnad1 id=eq.0h2v.s6.14229d75d773 from=translated src=- shape=e76ac9cb vocab=86c473e2
+-/
 @[simp] theorem complexWeierstrassPointOfAffine_eq_mk
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (xy : ComplexWeierstrassAffine W) :
@@ -94,6 +103,9 @@ noncomputable def complexWeierstrassPointOfAffine (W : WeierstrassCurve ℂ)
       WeierstrassCurve.Affine.Point.mk xy.2 := by
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.ef4d12e75784 from=translated src=- shape=bdd78fac vocab=3a1c314e
+-/
 @[simp] theorem complexWeierstrassPointHomeomorph_symm_infinity
     (W : WeierstrassCurve ℂ) [W.IsElliptic] :
     (complexWeierstrassPointHomeomorph W).symm
@@ -101,14 +113,18 @@ noncomputable def complexWeierstrassPointOfAffine (W : WeierstrassCurve ℂ)
       complexWeierstrassPointInfinity W :=
   rfl
 
-/-- The affine chart is an open embedding. -/
+/-- The affine chart is an open embedding.
+@isnad1 id=isopenem.0h1v.s6.9e5247e1eec9 from=translated src=- shape=446b478a vocab=7032b5c4
+-/
 theorem isOpenEmbedding_complexWeierstrassPointOfAffine
     (W : WeierstrassCurve ℂ) [W.IsElliptic] :
     IsOpenEmbedding (complexWeierstrassPointOfAffine W) :=
   (complexWeierstrassPointHomeomorph W).symm.isOpenEmbedding.comp
     OnePoint.isOpenEmbedding_coe
 
-/-- The affine equation locus is closed in `ℂ × ℂ`. -/
+/-- The affine equation locus is closed in `ℂ × ℂ`.
+@isnad1 id=isclosed.0h1v.s5.0365214ec14c from=translated src=- shape=853c299e vocab=db6fa261
+-/
 theorem isClosed_complexWeierstrassAffine (W : WeierstrassCurve ℂ) :
     IsClosed {xy : ℂ × ℂ | W.toAffine.Equation xy.1 xy.2} := by
   simp_rw [W.toAffine.equation_iff]
@@ -166,6 +182,9 @@ noncomputable def variableChangePointHomeomorph (W : WeierstrassCurve ℂ)
     ((onePointHomeomorph (variableChangeAffineLocusHomeomorph W C)).trans
       (complexWeierstrassPointHomeomorph W).symm)
 
+/--
+@isnad1 id=eq.0h2v.s8.3b39c8d5b3cf from=translated src=- shape=b2ea6c2d vocab=113ac202
+-/
 @[simp] theorem variableChangePointHomeomorph_zero (W : WeierstrassCurve ℂ)
     [W.IsElliptic] (C : WeierstrassCurve.VariableChange ℂ) :
     variableChangePointHomeomorph W C WeierstrassCurve.Affine.Point.zero =
@@ -173,7 +192,9 @@ noncomputable def variableChangePointHomeomorph (W : WeierstrassCurve ℂ)
   rfl
 
 /-- The topological variable-change map is the existing explicit algebraic
-point map. -/
+point map.
+@isnad1 id=eq.0h3v.s8.e2356930e374 from=translated src=- shape=25ca63e0 vocab=f43c1b55
+-/
 @[simp] theorem variableChangePointHomeomorph_apply (W : WeierstrassCurve ℂ)
     [W.IsElliptic] (C : WeierstrassCurve.VariableChange ℂ)
     (P : (C • W).toAffine.Point) :
@@ -183,7 +204,9 @@ point map. -/
   · rfl
 
 /-- The inverse of the topological variable-change map is the existing
-explicit inverse algebraic point map. -/
+explicit inverse algebraic point map.
+@isnad1 id=eq.0h3v.s8.a1f96759b3d6 from=translated src=- shape=1dcba547 vocab=f31a6a99
+-/
 @[simp] theorem variableChangePointHomeomorph_symm_apply
     (W : WeierstrassCurve ℂ) [W.IsElliptic]
     (C : WeierstrassCurve.VariableChange ℂ) (P : W.toAffine.Point) :

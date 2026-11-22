@@ -46,7 +46,9 @@ private lemma eq_zero_of_mul_le {a K : ℝ} (ha : 0 ≤ a) (h : ∀ R : ℝ, 1 �
   linarith
 
 /-- **Cauchy estimates kill the high Taylor coefficients**: if `g` is entire with
-`‖g t‖ ≤ C (1 + ‖t‖)^N`, every derivative of order `n > N` vanishes at `0`. -/
+`‖g t‖ ≤ C (1 + ‖t‖)^N`, every derivative of order `n > N` vanishes at `0`.
+@isnad1 id=eq.3h4v.s7.6f4f4cdf9b14 from=translated src=- shape=c07592a1 vocab=ff01fe79
+-/
 theorem iteratedDeriv_eq_zero_of_norm_le_pow {g : ℂ → ℂ} (hg : Differentiable ℂ g) {C : ℝ}
     {N : ℕ} (hb : ∀ t, ‖g t‖ ≤ C * (1 + ‖t‖) ^ N) {n : ℕ} (hn : N < n) :
     iteratedDeriv n g 0 = 0 := by
@@ -80,7 +82,9 @@ theorem iteratedDeriv_eq_zero_of_norm_le_pow {g : ℂ → ℂ} (hg : Differentia
         field_simp
 
 /-- **Liouville with polynomial growth, one variable**: an entire `g` with
-`‖g t‖ ≤ C (1 + ‖t‖)^N` is a polynomial of degree `≤ N`. -/
+`‖g t‖ ≤ C (1 + ‖t‖)^N` is a polynomial of degree `≤ N`.
+@isnad1 id=ex.2h3v.s7.0436cebdeedf from=translated src=- shape=dc80df78 vocab=8e3dd8c3
+-/
 theorem exists_polynomial_eq_of_norm_le_pow {g : ℂ → ℂ} (hg : Differentiable ℂ g) {C : ℝ}
     {N : ℕ} (hb : ∀ t, ‖g t‖ ≤ C * (1 + ‖t‖) ^ N) :
     ∃ p : ℂ[X], p.degree < ↑(N + 1) ∧ ∀ t, g t = p.eval t := by
@@ -118,7 +122,9 @@ private lemma differentiable_cons_right {d : ℕ} (t : ℂ) :
   · simpa using differentiable_apply j
 
 /-- **Liouville with polynomial growth**: an entire function `f` on `ℂ^d` with
-`‖f z‖ ≤ C (1 + ‖z‖)^N` is (the evaluation of) a polynomial. -/
+`‖f z‖ ≤ C (1 + ‖z‖)^N` is (the evaluation of) a polynomial.
+@isnad1 id=ex.2h4v.s8.a151956619f6 from=translated src=- shape=59005150 vocab=0211fee5
+-/
 theorem exists_mvPolynomial_eq_of_norm_le_pow {d : ℕ} {f : (Fin d → ℂ) → ℂ}
     (hf : Differentiable ℂ f) {C : ℝ} {N : ℕ} (hb : ∀ z, ‖f z‖ ≤ C * (1 + ‖z‖) ^ N) :
     ∃ p : MvPolynomial (Fin d) ℂ, ∀ z, f z = MvPolynomial.eval z p := by

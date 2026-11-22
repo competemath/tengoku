@@ -63,7 +63,9 @@ variable (t : TateParameter K)
 /-- **Concrete Weierstrass equation of the Tate curve.** The abstract predicate
 `E_q.Equation x y` (vanishing of the Weierstrass polynomial) unfolds, using the Tate
 `a`-invariants `a₁ = 1`, `a₂ = a₃ = 0`, `a₄`, `a₆`, to the classical equation
-`y² + x·y = x³ + a₄·x + a₆`. Purely algebraic; needs no analytic hypotheses. -/
+`y² + x·y = x³ + a₄·x + a₆`. Purely algebraic; needs no analytic hypotheses.
+@isnad1 id=iff.0h4v.s7.11c2d1c90955 from=translated src=- shape=81c75d73 vocab=3df8e4b4
+-/
 lemma tateCurve_equation_iff (x y : K) :
     t.tateCurve.toAffine.Equation x y ↔ y ^ 2 + x * y = x ^ 3 + t.a₄ * x + t.a₆ := by
   rw [WeierstrassCurve.Affine.equation_iff]
@@ -80,12 +82,17 @@ Thm 3.1 is exactly the statement that this defect vanishes for every `u` off the
 def tateDefect (u : Kˣ) : K :=
   t.Y u ^ 2 + t.X u * t.Y u - (t.X u ^ 3 + t.a₄ * t.X u + t.a₆)
 
+/--
+@isnad1 id=eq.0h3v.s7.7be66f160205 from=translated src=- shape=4ae2b2f7 vocab=c16ec22b
+-/
 lemma tateDefect_apply (u : Kˣ) :
     t.tateDefect u = t.Y u ^ 2 + t.X u * t.Y u - (t.X u ^ 3 + t.a₄ * t.X u + t.a₆) := rfl
 
 /-- **Reduction of the Weierstrass identity to the vanishing of the defect.** The Tate point
 `(X(u), Y(u))` lies on the Tate curve `E_q` if and only if `tateDefect u = 0`. This converts the
-membership goal `tatePoint_mem` into the analytic identity `tateDefect u = 0`. -/
+membership goal `tatePoint_mem` into the analytic identity `tateDefect u = 0`.
+@isnad1 id=iff.0h3v.s6.75c02bdc643c from=translated src=- shape=c0f926bf vocab=a2d21b33
+-/
 lemma tatePoint_equation_iff (u : Kˣ) :
     t.tateCurve.toAffine.Equation (t.X u) (t.Y u) ↔ t.tateDefect u = 0 := by
   rw [tateCurve_equation_iff, tateDefect_apply, sub_eq_zero]
@@ -95,7 +102,9 @@ lemma tatePoint_equation_iff (u : Kˣ) :
 satisfies `tateDefect (q·u) = tateDefect u`. Hence it descends to a well-defined function on the
 analytic quotient `Kˣ/qᶻ`; proving that this descended function is identically zero (via
 nonarchimedean elliptic-function uniqueness, or the `℘`-expansion transport) is exactly the
-outstanding analytic input to the full identity. Unconditional. -/
+outstanding analytic input to the full identity. Unconditional.
+@isnad1 id=eq.0h3v.s6.8c50114efc53 from=translated src=- shape=b390b445 vocab=fea8189c
+-/
 lemma tateDefect_q_smul (u : Kˣ) : t.tateDefect (t.q * u) = t.tateDefect u := by
   simp only [tateDefect_apply, t.X_q_smul, t.Y_q_smul]
 

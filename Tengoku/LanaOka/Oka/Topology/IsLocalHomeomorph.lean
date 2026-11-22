@@ -145,19 +145,26 @@ variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y] (f : X → Y)
 /-- **The sheets of `f`**: the opens of the source on which `f` restricts to an open embedding. -/
 def _root_.Tengoku.LanaOka.sheetOpens : Set (Opens X) := {V | IsOpenEmbedding ((V : Set X).domRestrict f)}
 
+/--
+@isnad1 id=iff.0h4v.s6.0a0492141a88 from=translated src=- shape=34c7e2c3 vocab=49d6ef50
+-/
 theorem _root_.Tengoku.LanaOka.mem_sheetOpens {V : Opens X} :
     V ∈ sheetOpens f ↔ IsOpenEmbedding ((V : Set X).domRestrict f) := Iff.rfl
 
 /-- **Every point of the source lies in a sheet.**
 
 The sheet produced is the source of the `OpenPartialHomeomorph` that `IsLocalHomeomorph` supplies,
-which is open by construction — so no interior has to be taken. -/
+which is open by construction — so no interior has to be taken.
+@isnad1 id=ex.1h4v.s6.d87d772945d1 from=translated src=- shape=c72fa8e4 vocab=8b4dfc0d
+-/
 theorem IsLocalHomeomorph.exists_mem_sheetOpens (hf : IsLocalHomeomorph f) (x : X) :
     ∃ V ∈ sheetOpens f, x ∈ V := by
   obtain ⟨e, hxe, he⟩ := hf x
   exact ⟨⟨e.source, e.open_source⟩, he ▸ e.isOpenEmbedding_restrict, hxe⟩
 
-/-- **The sheets of a local homeomorphism cover its source.** -/
+/-- **The sheets of a local homeomorphism cover its source.**
+@isnad1 id=eq.1h3v.s6.671c8909aa00 from=translated src=- shape=7e323826 vocab=28f9c180
+-/
 theorem IsLocalHomeomorph.sSup_sheetOpens (hf : IsLocalHomeomorph f) :
     sSup (sheetOpens f) = ⊤ := by
   refine top_le_iff.1 fun x _ ↦ ?_
@@ -170,7 +177,9 @@ variable {f}
 variable {Z : Type*} [TopologicalSpace Z] {g : Z → Y}
 
 /-- **A local homeomorphism stays a local homeomorphism under base change along a continuous
-map**, at Mathlib's set-level fibre product `Function.Pullback`. -/
+map**, at Mathlib's set-level fibre product `Function.Pullback`.
+@isnad1 id=islocalh.2h5v.s6.006f334eb314 from=translated src=- shape=07ef1dbe vocab=0134904f
+-/
 theorem IsLocalHomeomorph.pullback_snd (hf : IsLocalHomeomorph f) (hg : Continuous g) :
     IsLocalHomeomorph (Function.Pullback.snd : f.Pullback g → Z) := by
   rw [isLocalHomeomorph_iff_isOpenEmbedding_restrict]
@@ -238,7 +247,9 @@ factor it peels off is `Subtype.val` out of the open `s`.
 `Subtype.val` out of `g ⁻¹' s` is an open embedding and once so that `Subtype.val` out of `s` is.
 The statement without it is true and is `IsLocalHomeomorph.pullback_snd` in disguise, the subspace
 `f ⁻¹' s` being the base change of `f` along `s ↪ β`; it is not derived from it here, because that
-needs a carrier identification this file does not write. See this file's `## What is not here`. -/
+needs a carrier identification this file does not write. See this file's `## What is not here`.
+@isnad1 id=islocalh.2h4v.s6.a18ccc6f3f08 from=translated src=- shape=67b1f66e vocab=23bf8458
+-/
 theorem IsLocalHomeomorph.restrictPreimage_of_isOpen (H : IsLocalHomeomorph g) {s : Set β}
     (hs : IsOpen s) : IsLocalHomeomorph (s.restrictPreimage g) :=
   IsLocalHomeomorph.of_comp (g := (Subtype.val : s → β))
@@ -262,7 +273,9 @@ and without that `Subtype.val` out of it is an embedding and not an open one. Ma
 `TopologicalSpace.IsOpenCover.isInducing_iff_restrictPreimage` and
 `…isEmbedding_iff_restrictPreimage` carry the same hypothesis for the same reason, while
 `…isClosedMap_iff_restrictPreimage` does not, because a closed map is not asked to be continuous
-in the first place. A caller holding a morphism of spaces has the continuity for nothing. -/
+in the first place. A caller holding a morphism of spaces has the continuity for nothing.
+@isnad1 id=islocalh.3h5v.s7.e18aa9c3b4b7 from=translated src=- shape=d56b3be8 vocab=b097fd40
+-/
 theorem TopologicalSpace.IsOpenCover.isLocalHomeomorph_of_restrictPreimage (hU : IsOpenCover U)
     (hg : Continuous g) (H : ∀ i, IsLocalHomeomorph ((U i : Set β).restrictPreimage g)) :
     IsLocalHomeomorph g := by
@@ -287,7 +300,9 @@ backward one is `TopologicalSpace.IsOpenCover.isLocalHomeomorph_of_restrictPreim
 `Continuous g` hypothesis is needed only by the backward direction; it is on the statement rather
 than on that direction alone so that the two sides are an equivalence of conditions on a map
 already known to be continuous, which is the shape
-`TopologicalSpace.IsOpenCover.isEmbedding_iff_restrictPreimage` has. -/
+`TopologicalSpace.IsOpenCover.isEmbedding_iff_restrictPreimage` has.
+@isnad1 id=iff.2h5v.s7.ed58fe9a5df9 from=translated src=- shape=2bc88b03 vocab=b097fd40
+-/
 theorem TopologicalSpace.IsOpenCover.isLocalHomeomorph_iff_restrictPreimage (hU : IsOpenCover U)
     (hg : Continuous g) :
     IsLocalHomeomorph g ↔ ∀ i, IsLocalHomeomorph ((U i : Set β).restrictPreimage g) :=

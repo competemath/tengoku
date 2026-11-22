@@ -57,7 +57,9 @@ variable {d : ℕ}
 
 /-! ### Polynomials in `ℂ^d` -/
 
-/-- Evaluating a polynomial with polynomial coefficients is jointly continuous. -/
+/-- Evaluating a polynomial with polynomial coefficients is jointly continuous.
+@isnad1 id=continuo.0h2v.s7.aff217d82d06 from=translated src=- shape=6348fb27 vocab=7b9bc0b3
+-/
 theorem continuous_eval_map_eval (D : (MvPolynomial (Fin d) ℂ)[X]) :
     Continuous fun q : (Fin d → ℂ) × ℂ ↦ (D.map (MvPolynomial.eval q.1)).eval q.2 := by
   have e : (fun q : (Fin d → ℂ) × ℂ ↦ (D.map (MvPolynomial.eval q.1)).eval q.2) =
@@ -69,7 +71,9 @@ theorem continuous_eval_map_eval (D : (MvPolynomial (Fin d) ℂ)[X]) :
   exact continuous_finsetSum _ fun i _ ↦
     ((MvPolynomial.continuous_eval _).comp continuous_fst).mul (continuous_snd.pow i)
 
-/-- A polynomial on `ℂ^d` has polynomial growth. -/
+/-- A polynomial on `ℂ^d` has polynomial growth.
+@isnad1 id=ex.0h2v.s7.27bde356ed4c from=translated src=- shape=36429a0b vocab=0dfff97b
+-/
 theorem exists_norm_eval_le (p : MvPolynomial (Fin d) ℂ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∃ N : ℕ, ∀ w, ‖MvPolynomial.eval w p‖ ≤ C * (1 + ‖w‖) ^ N := by
   induction p using MvPolynomial.induction_on with
@@ -96,7 +100,9 @@ theorem exists_norm_eval_le (p : MvPolynomial (Fin d) ℂ) :
     rw [map_mul, MvPolynomial.eval_X, norm_mul, pow_succ, ← mul_assoc]
     exact mul_le_mul (h w) hi (norm_nonneg _) (by positivity)
 
-/-- The complement of the zero set of a nonzero polynomial on `ℂ^d` is dense. -/
+/-- The complement of the zero set of a nonzero polynomial on `ℂ^d` is dense.
+@isnad1 id=dense.1h2v.s7.d773f4e22227 from=translated src=- shape=dfb3fb82 vocab=c040c9ce
+-/
 theorem dense_setOf_eval_ne_zero {δ : MvPolynomial (Fin d) ℂ} (hδ : δ ≠ 0) :
     Dense {w : Fin d → ℂ | MvPolynomial.eval w δ ≠ 0} := by
   intro w₀
@@ -110,7 +116,9 @@ theorem dense_setOf_eval_ne_zero {δ : MvPolynomial (Fin d) ℂ} (hδ : δ ≠ 0
     isPreconnected_univ (Set.mem_univ w₀) hz
   exact hδ (MvPolynomial.funext fun w ↦ by simpa using heq (Set.mem_univ w))
 
-/-- The zero set of a nonzero polynomial on `ℂ^d` has empty interior. -/
+/-- The zero set of a nonzero polynomial on `ℂ^d` has empty interior.
+@isnad1 id=eq.1h2v.s7.b515dc46f17a from=translated src=- shape=d0da5089 vocab=a2474a07
+-/
 theorem interior_setOf_eval_eq_zero {δ : MvPolynomial (Fin d) ℂ} (hδ : δ ≠ 0) :
     interior (Set.univ ∩ (fun w ↦ MvPolynomial.eval w δ) ⁻¹' {0}) = ∅ := by
   obtain ⟨z, hz⟩ := (dense_setOf_eval_ne_zero hδ).nonempty
@@ -119,7 +127,9 @@ theorem interior_setOf_eval_eq_zero {δ : MvPolynomial (Fin d) ℂ} (hδ : δ �
 
 /-- **Riemann extension across a polynomial hypersurface**: a function on `ℂ^d` which is
 holomorphic off the zero set of a nonzero polynomial `δ` and locally bounded there agrees off
-`δ = 0` with an entire function. -/
+`δ = 0` with an entire function.
+@isnad1 id=ex.3h3v.s9.2affe06a79a6 from=translated src=- shape=8e96b843 vocab=b70f7888
+-/
 theorem exists_differentiable_eq_of_locally_bounded {δ : MvPolynomial (Fin d) ℂ} (hδ : δ ≠ 0)
     {f : (Fin d → ℂ) → ℂ} (hf : DifferentiableOn ℂ f {w | MvPolynomial.eval w δ ≠ 0})
     (hb : ∀ w, ∃ U ∈ 𝓝 w, ∃ M : ℝ, ∀ w' ∈ U, MvPolynomial.eval w' δ ≠ 0 → ‖f w'‖ ≤ M) :
@@ -140,7 +150,9 @@ theorem exists_differentiable_eq_of_locally_bounded {δ : MvPolynomial (Fin d) �
     (hset ▸ hf) hbdd
   exact ⟨F, differentiableOn_univ.1 hF, fun w hw ↦ hFf (by rw [hset]; exact hw)⟩
 
-/-- **The complement of a polynomial hypersurface in `ℂ^d` is connected.** -/
+/-- **The complement of a polynomial hypersurface in `ℂ^d` is connected.**
+@isnad1 id=isprecon.1h2v.s7.afd27280012d from=translated src=- shape=dfb3fb82 vocab=5e597dd3
+-/
 theorem isPreconnected_setOf_eval_ne_zero {δ : MvPolynomial (Fin d) ℂ} (hδ : δ ≠ 0) :
     IsPreconnected {w : Fin d → ℂ | MvPolynomial.eval w δ ≠ 0} := by
   have hset : Set.univ \ (fun w ↦ MvPolynomial.eval w δ) ⁻¹' {0} =
@@ -154,7 +166,9 @@ theorem isPreconnected_setOf_eval_ne_zero {δ : MvPolynomial (Fin d) ℂ} (hδ :
 /-! ### Simple roots -/
 
 /-- If `a` is differentiable at `x` with `a x = 0` and `k` is continuous at `x`, then `a * k` is
-differentiable at `x`. -/
+differentiable at `x`.
+@isnad1 id=hasfderi.3h5v.s8.1cece5f9af36 from=translated src=- shape=3c815495 vocab=955ca83c
+-/
 theorem hasFDerivAt_mul_of_continuousAt {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     {a k : E → ℂ} {a' : E →L[ℂ] ℂ} {x : E} (ha : HasFDerivAt a a' x) (ha0 : a x = 0)
     (hk : ContinuousAt k x) : HasFDerivAt (fun y ↦ a y * k y) (k x • a') x := by
@@ -169,7 +183,9 @@ theorem hasFDerivAt_mul_of_continuousAt {E : Type*} [NormedAddCommGroup E] [Norm
   simp only [smul_eq_mul, ha0, FunLike.coe_smul, Pi.smul_apply]
   ring
 
-/-- **A continuous simple root of a polynomial with polynomial coefficients is holomorphic.** -/
+/-- **A continuous simple root of a polynomial with polynomial coefficients is holomorphic.**
+@isnad1 id=differen.3h4v.s8.d18fa879d759 from=translated src=- shape=8673be10 vocab=a3fc66bc
+-/
 theorem differentiableAt_of_isRoot {P : (MvPolynomial (Fin d) ℂ)[X]} {ρ : (Fin d → ℂ) → ℂ}
     {w₀ : Fin d → ℂ} (hρ : ContinuousAt ρ w₀)
     (hroot : ∀ᶠ w in 𝓝 w₀, (P.map (MvPolynomial.eval w)).IsRoot (ρ w))
@@ -216,7 +232,9 @@ theorem differentiableAt_of_isRoot {P : (MvPolynomial (Fin d) ℂ)[X]} {ρ : (Fi
   field_simp
   linear_combination -this
 
-/-- The coefficients of `∏ (T - fᵢ(w))` are differentiable where the `fᵢ` are. -/
+/-- The coefficients of `∏ (T - fᵢ(w))` are differentiable where the `fᵢ` are.
+@isnad1 id=differen.1h6v.s8.764e26df2174 from=translated src=- shape=1acbe493 vocab=be608a96
+-/
 theorem differentiableAt_coeff_prod {ι : Type*} (s : Finset ι) {f : ι → (Fin d → ℂ) → ℂ}
     {w₀ : Fin d → ℂ} (hf : ∀ i ∈ s, DifferentiableAt ℂ (f i) w₀) (j : ℕ) :
     DifferentiableAt ℂ (fun w ↦ (∏ i ∈ s, (X - C (f i w))).coeff j) w₀ := by
@@ -232,7 +250,9 @@ theorem differentiableAt_coeff_prod {ι : Type*} (s : Finset ι) {f : ι → (Fi
     | succ j => simp only [coeff_X_mul]; exact ih hs j
 
 /-- The coefficients of `∏ (T - τ)` over roots `τ` of norm at most `B` are bounded by
-`(1 + B)` to the number of factors. -/
+`(1 + B)` to the number of factors.
+@isnad1 id=le.2h3v.s7.e6183690652b from=translated src=- shape=740848aa vocab=5d94ac2b
+-/
 theorem norm_coeff_prod_le {s : Finset ℂ} {B : ℝ} (hB : 0 ≤ B) (hs : ∀ τ ∈ s, ‖τ‖ ≤ B)
     (j : ℕ) : ‖(∏ τ ∈ s, (X - C τ)).coeff j‖ ≤ (1 + B) ^ s.card := by
   classical
@@ -257,7 +277,9 @@ theorem norm_coeff_prod_le {s : Finset ℂ} {B : ℝ} (hB : 0 ≤ B) (hs : ∀ �
       _ = (1 + B) ^ s.card * (1 + B) := by ring
 
 /-- A root of a monic complex polynomial is bounded by one plus the sum of the norms of the lower
-coefficients. -/
+coefficients.
+@isnad1 id=le.2h2v.s5.a8f484a1e9f5 from=translated src=- shape=f69ab5fc vocab=806b312f
+-/
 theorem norm_le_of_isRoot {q : ℂ[X]} (hq : q.Monic) {σ : ℂ} (hσ : q.IsRoot σ) :
     ‖σ‖ ≤ 1 + ∑ i ∈ Finset.range q.natDegree, ‖q.coeff i‖ := by
   set S := ∑ i ∈ Finset.range q.natDegree, ‖q.coeff i‖
@@ -294,7 +316,9 @@ private lemma pow_card_le_prod_of_le {s : Multiset ℝ} {a : ℝ} (ha : 0 ≤ a)
       (ha.trans hx)
 
 /-- A monic polynomial whose coefficients are polynomials has, for parameters near `w₀`, a root
-near each root at `w₀`. -/
+near each root at `w₀`.
+@isnad1 id=eventual.3h5v.s7.6dbab7f36de7 from=translated src=- shape=a1e1f677 vocab=98fb2ba3
+-/
 theorem eventually_exists_isRoot_near {P : (MvPolynomial (Fin d) ℂ)[X]} (hP : P.Monic)
     {w₀ : Fin d → ℂ} {τ : ℂ} (hτ : (P.map (MvPolynomial.eval w₀)).IsRoot τ) {ε : ℝ}
     (hε : 0 < ε) :
@@ -328,14 +352,18 @@ theorem eventually_exists_isRoot_near {P : (MvPolynomial (Fin d) ℂ)[X]} (hP : 
 
 /-! ### The local structure of the roots -/
 
-/-- The number of distinct roots of a separable fibre of a monic polynomial is its degree. -/
+/-- The number of distinct roots of a separable fibre of a monic polynomial is its degree.
+@isnad1 id=eq.2h3v.s7.e0cb468ef04b from=translated src=- shape=1cd6528c vocab=adbf6e94
+-/
 theorem card_roots_toFinset_of_separable {P : (MvPolynomial (Fin d) ℂ)[X]} (hP : P.Monic)
     {w : Fin d → ℂ} (hsep : (P.map (MvPolynomial.eval w)).Separable) :
     (P.map (MvPolynomial.eval w)).roots.toFinset.card = P.natDegree := by
   rw [Multiset.toFinset_card_of_nodup (nodup_roots hsep), IsAlgClosed.card_roots_eq_natDegree,
     hP.natDegree_map]
 
-/-- A separable fibre of a monic polynomial is the product of `T - τ` over its roots. -/
+/-- A separable fibre of a monic polynomial is the product of `T - τ` over its roots.
+@isnad1 id=eq.2h3v.s8.00af7f6bd122 from=translated src=- shape=f8975416 vocab=223e81c7
+-/
 theorem prod_roots_toFinset_of_separable {P : (MvPolynomial (Fin d) ℂ)[X]} (hP : P.Monic)
     {w : Fin d → ℂ} (hsep : (P.map (MvPolynomial.eval w)).Separable) :
     ∏ τ ∈ (P.map (MvPolynomial.eval w)).roots.toFinset, (X - C τ) =
@@ -347,7 +375,9 @@ theorem prod_roots_toFinset_of_separable {P : (MvPolynomial (Fin d) ℂ)[X]} (hP
 
 /-- **Local roots.** Near a parameter `w₀` over which the fibres of a monic polynomial are
 separable, the roots are given by functions `ρ τ` indexed by the roots `τ` at `w₀`, each
-continuous at `w₀` with value `τ`. -/
+continuous at `w₀` with value `τ`.
+@isnad1 id=ex.2h3v.s9.5e556a30bb3d from=translated src=- shape=2e94ec9b vocab=0ffa704a
+-/
 theorem exists_local_roots {P : (MvPolynomial (Fin d) ℂ)[X]} (hP : P.Monic) {w₀ : Fin d → ℂ}
     (hsep : ∀ᶠ w in 𝓝 w₀, (P.map (MvPolynomial.eval w)).Separable) :
     ∃ ρ : ℂ → (Fin d → ℂ) → ℂ,
@@ -438,7 +468,9 @@ def rootsIn (P : (MvPolynomial (Fin d) ℂ)[X]) (u : Set ((Fin d → ℂ) × ℂ
     Finset ℂ :=
   (P.map (MvPolynomial.eval w)).roots.toFinset.filter fun τ ↦ (w, τ) ∈ u
 
-/-- An element of `rootsIn P u w` is a root of `P(w, ·)`. -/
+/-- An element of `rootsIn P u w` is a root of `P(w, ·)`.
+@isnad1 id=isroot.1h5v.s6.bbd7a2af7384 from=translated src=- shape=f0bcfea8 vocab=6c1537c8
+-/
 lemma isRoot_of_mem_rootsIn {P : (MvPolynomial (Fin d) ℂ)[X]} {u : Set ((Fin d → ℂ) × ℂ)}
     {w : Fin d → ℂ} {τ : ℂ} (h : τ ∈ rootsIn P u w) : (P.map (MvPolynomial.eval w)).IsRoot τ := by
   classical
@@ -447,7 +479,9 @@ lemma isRoot_of_mem_rootsIn {P : (MvPolynomial (Fin d) ℂ)[X]} {u : Set ((Fin d
 
 /-- Near a parameter `w₀` with `δ(w₀) ≠ 0`, the product of `T - τ` over the roots `τ` of `P(w, ·)`
 lying in one of two open sets separating the root cover is a product of `T - ρ(w)` for finitely
-many functions `ρ` holomorphic at `w₀`. -/
+many functions `ρ` holomorphic at `w₀`.
+@isnad1 id=ex.7h6v.s10.6cbcfb26923b from=translated src=- shape=4f9bd5c2 vocab=14d148a1
+-/
 theorem exists_local_prod_rootsIn {P : (MvPolynomial (Fin d) ℂ)[X]} (hP : P.Monic)
     {δ : MvPolynomial (Fin d) ℂ}
     (hsep : ∀ w, MvPolynomial.eval w δ ≠ 0 → (P.map (MvPolynomial.eval w)).Separable)
@@ -505,7 +539,9 @@ theorem exists_local_prod_rootsIn {P : (MvPolynomial (Fin d) ℂ)[X]} (hP : P.Mo
   exact ⟨by rw [hS, Finset.prod_image hinj'], by rw [hS, Finset.card_image_of_injOn hinj']⟩
 
 /-- The coefficients of `∏ (T - τ)` over the roots `τ` of `P(w, ·)` in `u` are bounded by a
-continuous function of `w` of polynomial growth. -/
+continuous function of `w` of polynomial growth.
+@isnad1 id=ex.1h3v.s8.7defbb97533c from=translated src=- shape=9e08799f vocab=5d1373e6
+-/
 theorem exists_bound_coeff_prod_rootsIn {P : (MvPolynomial (Fin d) ℂ)[X]} (hP : P.Monic)
     (u : Set ((Fin d → ℂ) × ℂ)) :
     ∃ B : (Fin d → ℂ) → ℝ, Continuous B ∧ (∀ w, 0 ≤ B w) ∧
@@ -547,7 +583,9 @@ theorem exists_bound_coeff_prod_rootsIn {P : (MvPolynomial (Fin d) ℂ)[X]} (hP 
 
 /-- **The root cover of an irreducible polynomial is connected.** Let `P ∈ ℂ[x₁, …, x_d][T]` be
 monic and irreducible and let `δ ≠ 0` be such that `P(w, ·)` is separable whenever `δ(w) ≠ 0`.
-Then `{(w, τ) | δ(w) ≠ 0, P(w, τ) = 0}` is preconnected. -/
+Then `{(w, τ) | δ(w) ≠ 0, P(w, τ) = 0}` is preconnected.
+@isnad1 id=isprecon.4h3v.s9.872d7fa756f9 from=translated src=- shape=f6d8af02 vocab=aa4566a1
+-/
 theorem isPreconnected_rootCover {P : (MvPolynomial (Fin d) ℂ)[X]} (hP : P.Monic)
     (hirr : Irreducible P) {δ : MvPolynomial (Fin d) ℂ} (hδ : δ ≠ 0)
     (hsep : ∀ w, MvPolynomial.eval w δ ≠ 0 → (P.map (MvPolynomial.eval w)).Separable) :

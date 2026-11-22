@@ -49,6 +49,9 @@ def affGroup (M : AddSubgroup W.toAffine.Point) (pm : Bool) : Subgroup (AffAut W
     exact M.zsmul_mem hg _
 
 variable {W} in
+/--
+@isnad1 id=iff.0h5v.s7.7ec19d08548f from=translated src=- shape=bcc59b50 vocab=23598d01
+-/
 lemma mem_affGroup {M : AddSubgroup W.toAffine.Point} {pm : Bool} {g : AffAut W} :
     g ∈ affGroup W M pm ↔ g.m ∈ M ∧ (pm = false → g.ε = 1) := Iff.rfl
 
@@ -62,7 +65,9 @@ def removedSet (ℓ : ℕ) (M : AddSubgroup W.toAffine.Point) : Set W.toAffine.P
 
 variable {W}
 
-/-- If `M ≤ E(k)[ℓ]`, the removed set is `E(k)[ℓ]`. -/
+/-- If `M ≤ E(k)[ℓ]`, the removed set is `E(k)[ℓ]`.
+@isnad1 id=eq.1h4v.s8.8ca2148ec0da from=translated src=- shape=62e4b046 vocab=f3ae2214
+-/
 lemma removedSet_eq_torsionSet {ℓ : ℕ} {M : AddSubgroup W.toAffine.Point}
     (hM : ∀ m ∈ M, ℓ • m = 0) : removedSet W ℓ M = torsionSet W ℓ := by
   ext P
@@ -88,6 +93,9 @@ instance (ℓ : ℕ) (M : AddSubgroup W.toAffine.Point) (pm : Bool) :
       exact M.zsmul_mem hm _
     · rw [AffAut.smul_def, add_sub_add_right_eq_sub, ← smul_sub, smul_comm, h, smul_zero]
 
+/--
+@isnad1 id=isaffsta.1h5v.s8.31ed4c955851 from=translated src=- shape=3ba2ad24 vocab=ef4d8a0f
+-/
 lemma isAffStable_torsionSet {ℓ : ℕ} {M : AddSubgroup W.toAffine.Point}
     (hM : ∀ m ∈ M, ℓ • m = 0) (pm : Bool) :
     IsAffStable (torsionSet W ℓ) (affGroup W M pm) := by

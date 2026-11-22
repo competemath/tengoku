@@ -39,7 +39,9 @@ variable {C D : Type u} [SmallCategory C] [SmallCategory D] (G : C ⥤ D)
   (A : Type*) [Category.{u} A] [HasColimits A] [HasZeroMorphisms A] [HasPullbacks A]
 
 /-- The left Kan extension along `G` preserves monomorphisms if every comma category
-`CostructuredArrow G d` is empty or has a terminal object. -/
+`CostructuredArrow G d` is empty or has a terminal object.
+@isnad1 id=preserve.1h4v.s6.d2cff73d1058 from=translated src=- shape=0d3560c9 vocab=00e01784
+-/
 lemma lan_preservesMonomorphisms_of_isTerminal
     (hG : ∀ d : D, IsEmpty (CostructuredArrow G d) ∨
       ∃ t : CostructuredArrow G d, Nonempty (IsTerminal t)) :
@@ -106,12 +108,16 @@ noncomputable def restrictConstZIso : (restrictAb hf).obj (constZ X) ≅ constZ 
 noncomputable def H.restrict {F : AbSheaf X} {n : ℕ} : H F n →+ H ((restrictAb hf).obj F) n :=
   H.mapOfExact (restrictAb hf) (restrictConstZIso hf)
 
-/-- The restriction map is natural in the sheaf. -/
+/-- The restriction map is natural in the sheaf.
+@isnad1 id=eq.1h8v.s14.219edb65f7f1 from=translated src=- shape=f1860223 vocab=9c3665cb
+-/
 lemma H.restrict_map {F G : AbSheaf X} (φ : F ⟶ G) {n : ℕ} (x : H F n) :
     H.restrict hf (H.map φ n x) = H.map ((restrictAb hf).map φ) n (H.restrict hf x) :=
   H.mapOfExact_map _ _ φ x
 
-/-- The restriction map commutes with the connecting homomorphisms. -/
+/-- The restriction map commutes with the connecting homomorphisms.
+@isnad1 id=eq.3h7v.s15.572accc4011c from=translated src=- shape=78ae823b vocab=26c24b6b
+-/
 lemma H.restrict_δ {S : ShortComplex (AbSheaf X)} (hS : S.ShortExact)
     {n₀ n₁ : ℕ} (h : n₀ + 1 = n₁) (x : H S.X₃ n₀) :
     H.restrict hf (H.δ hS n₀ n₁ h x) =
@@ -120,7 +126,9 @@ lemma H.restrict_δ {S : ShortComplex (AbSheaf X)} (hS : S.ShortExact)
 
 /-- For an open embedding `f`, each comma category of `(IsOpenMap.functor f).op` is empty or has a
 terminal object: over `W`, it is empty unless `W ⊆ range f`, in which case `f⁻¹ W` is
-terminal. -/
+terminal.
+@isnad1 id=or.1h4v.s9.77881b325d64 from=translated src=- shape=a8693f79 vocab=af9e1e4d
+-/
 lemma isEmpty_or_isTerminal_costructuredArrow (W : (Opens X)ᵒᵖ) :
     IsEmpty (CostructuredArrow hf.isOpenMap.functor.op W) ∨
       ∃ t : CostructuredArrow hf.isOpenMap.functor.op W, Nonempty (IsTerminal t) := by
@@ -144,7 +152,9 @@ lemma isEmpty_or_isTerminal_costructuredArrow (W : (Opens X)ᵒᵖ) :
     obtain ⟨y, -, rfl⟩ := leOfHom T.hom.unop hx
     exact ⟨y, rfl⟩
 
-/-- Restriction along an open embedding preserves injective sheaves. -/
+/-- Restriction along an open embedding preserves injective sheaves.
+@isnad1 id=preserve.1h3v.s8.c179e4d335fa from=translated src=- shape=5de99d43 vocab=950c3a65
+-/
 instance preservesInjectiveObjects_restrictAb : (restrictAb hf).PreservesInjectiveObjects := by
   have := hf.functor_isContinuous
   have := Functor.lan_preservesMonomorphisms_of_isTerminal hf.isOpenMap.functor.op
@@ -158,6 +168,9 @@ instance preservesInjectiveObjects_restrictAb : (restrictAb hf).PreservesInjecti
     (Functor.sheafPullbackConstruction.sheafAdjunctionContinuous hf.isOpenMap.functor
       AddCommGrpCat.{u} (Opens.grothendieckTopology Y) (Opens.grothendieckTopology X))
 
+/--
+@isnad1 id=injectiv.1h4v.s8.67bde6c32f2e from=translated src=- shape=bd28deb5 vocab=a8a4c3c6
+-/
 instance injective_restrictAb (I : AbSheaf X) [Injective I] :
     Injective ((restrictAb hf).obj I) :=
   (restrictAb hf).injective_obj I
@@ -176,13 +189,17 @@ noncomputable abbrev H.restrictTo {F : AbSheaf X} {n : ℕ} :
     H F n →+ H ((restrictOpen U).obj F) n :=
   H.restrict U.isOpenEmbedding
 
-/-- The image of the top open of `U` in `X` is `U`. -/
+/-- The image of the top open of `U` in `X` is `U`.
+@isnad1 id=eq.0h2v.s10.4625642b1633 from=translated src=- shape=13adcca7 vocab=f8557c34
+-/
 lemma functor_obj_top : U.isOpenEmbedding.isOpenMap.functor.obj ⊤ = U := by
   ext x
   simp
 
 /-- The sections of `F|_U` over `V : Opens U` are the sections of `F` over `V`, viewed as an
-open of `X`. -/
+open of `X`.
+@isnad1 id=eq.0h4v.s11.110e58433e2a from=translated src=- shape=41325de3 vocab=d9c0b913
+-/
 lemma restrictOpen_obj_obj (F : AbSheaf X) (V : Opens ((Opens.toTopCat X).obj U)) :
     ((restrictOpen U).obj F).obj.obj (op V) =
       F.obj.obj (op (U.isOpenEmbedding.isOpenMap.functor.obj V)) := rfl

@@ -50,6 +50,9 @@ section Cochains
 variable {X : TopCat.{u}} {ι : Type u} (U : ι → Opens X)
 
 variable {U} in
+/--
+@isnad1 id=eq.0h8v.s12.5a58898eced6 from=translated src=- shape=4eaafbdf vocab=5c993550
+-/
 lemma cechD_cechCochainMap {P Q : (Opens X)ᵒᵖ ⥤ AddCommGrpCat.{u}} (φ : P ⟶ Q) (n : ℕ)
     (c : CechCochain U P n) :
     cechD U Q n (cechCochainMap U φ n c) = cechCochainMap U φ (n + 1) (cechD U P n c) := by
@@ -59,6 +62,9 @@ lemma cechD_cechCochainMap {P Q : (Opens X)ᵒᵖ ⥤ AddCommGrpCat.{u}} (φ : P
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [← ConcreteCategory.comp_apply, ← ConcreteCategory.comp_apply, φ.naturality]
 
+/--
+@isnad1 id=eq.1h8v.s12.becd5766c53b from=translated src=- shape=31b597bb vocab=b51e8a28
+-/
 lemma cechCochainMap_cechAugment {P Q : (Opens X)ᵒᵖ ⥤ AddCommGrpCat.{u}} (φ : P ⟶ Q)
     {W : Opens X} (hW : ∀ i, U i ≤ W) (s : P.obj (op W)) :
     cechCochainMap U φ 0 (cechAugment U P hW s) = cechAugment U Q hW (φ.app _ s) := by
@@ -87,7 +93,9 @@ section DimensionShifting
 variable {S : ShortComplex (AbSheaf X)} (hS : S.ShortExact)
 include hS
 
-/-- If `H¹(X, S.X₁) = 0` then `S.X₂(X) → S.X₃(X)` is surjective. -/
+/-- If `H¹(X, S.X₁) = 0` then `S.X₂(X) → S.X₃(X)` is surjective.
+@isnad1 id=surjecti.2h2v.s13.d87163aa3627 from=translated src=- shape=698e8e4b vocab=8e42ec18
+-/
 lemma surjective_of_H_one (h : ∀ x : H S.X₁ 1, x = 0) :
     Function.Surjective (S.g.hom.app (op ⊤)) := by
   intro y
@@ -95,7 +103,9 @@ lemma surjective_of_H_one (h : ∀ x : H S.X₁ 1, x = 0) :
   refine ⟨H.equiv₀ _ w, ?_⟩
   rw [← H.equiv₀_map, hw, AddEquiv.apply_symm_apply]
 
-/-- If S.X₂ is injective and `S.X₂(X) → S.X₃(X)` is surjective then `H¹(X, S.X₁) = 0`. -/
+/-- If S.X₂ is injective and `S.X₂(X) → S.X₃(X)` is surjective then `H¹(X, S.X₁) = 0`.
+@isnad1 id=eq.2h3v.s13.11e9596d14e0 from=translated src=- shape=949399f5 vocab=2ed47a43
+-/
 lemma H_one_eq_zero_of_surjective [Injective S.X₂]
     (hsurj : Function.Surjective (S.g.hom.app (op ⊤))) (x : H S.X₁ 1) : x = 0 := by
   obtain ⟨z, rfl⟩ := (H.exact₁ hS 0 1 rfl x).1 (H.eq_zero_of_injective S.X₂ (n := 0) _)
@@ -104,13 +114,17 @@ lemma H_one_eq_zero_of_surjective [Injective S.X₂]
     rw [H.map_equiv₀_symm, ht, AddEquiv.symm_apply_apply]
   rw [this, H.δ_map_g]
 
-/-- Dimension shifting: if S.X₂ is injective, `Hⁿ⁺¹(S.X₃) = 0` implies `Hⁿ⁺²(S.X₁) = 0`. -/
+/-- Dimension shifting: if S.X₂ is injective, `Hⁿ⁺¹(S.X₃) = 0` implies `Hⁿ⁺²(S.X₁) = 0`.
+@isnad1 id=eq.2h4v.s12.096bec6d3023 from=translated src=- shape=3e18fe4b vocab=bde39c25
+-/
 lemma H_succ_succ_eq_zero [Injective S.X₂] {q : ℕ} (h : ∀ z : H S.X₃ (q + 1), z = 0)
     (x : H S.X₁ (q + 2)) : x = 0 := by
   obtain ⟨z, rfl⟩ := (H.exact₁ hS (q + 1) (q + 2) rfl x).1 (H.eq_zero_of_injective S.X₂ _)
   rw [h z, map_zero]
 
-/-- Dimension shifting: if S.X₂ is injective, `Hⁿ⁺²(S.X₁) = 0` implies `Hⁿ⁺¹(S.X₃) = 0`. -/
+/-- Dimension shifting: if S.X₂ is injective, `Hⁿ⁺²(S.X₁) = 0` implies `Hⁿ⁺¹(S.X₃) = 0`.
+@isnad1 id=eq.2h4v.s12.f366c3bd800f from=translated src=- shape=3e18fe4b vocab=bde39c25
+-/
 lemma H_succ_eq_zero_of_H_succ_succ [Injective S.X₂] {q : ℕ} (h : ∀ x : H S.X₁ (q + 2), x = 0)
     (z : H S.X₃ (q + 1)) : z = 0 := by
   obtain ⟨w, rfl⟩ := (H.exact₃ hS (q + 1) (q + 2) rfl z).1 (h _)
@@ -122,6 +136,9 @@ section Open
 
 variable (V : Opens X)
 
+/--
+@isnad1 id=iff.0h5v.s15.3f6c4816c4d5 from=translated src=- shape=28748aa2 vocab=490bb950
+-/
 lemma surjective_restrictOpen_map_app_top_iff {F G : AbSheaf X} (φ : F ⟶ G) :
     Function.Surjective (((restrictOpen V).map φ).hom.app (op ⊤)) ↔
       Function.Surjective (φ.hom.app (op V)) := by
@@ -131,16 +148,23 @@ lemma surjective_restrictOpen_map_app_top_iff {F G : AbSheaf X} (φ : F ⟶ G) :
 variable {S : ShortComplex (AbSheaf X)} (hS : S.ShortExact)
 include hS
 
+/--
+@isnad1 id=shortexa.1h3v.s12.38c8c39bb102 from=translated src=- shape=4fbd4e60 vocab=196f0568
+-/
 lemma shortExact_restrictOpen : (S.map (restrictOpen V)).ShortExact :=
   hS.map_of_exact (restrictOpen V)
 
-/-- If `H¹(V, S.X₁|_V) = 0` then `S.X₂(V) → S.X₃(V)` is surjective. -/
+/-- If `H¹(V, S.X₁|_V) = 0` then `S.X₂(V) → S.X₃(V)` is surjective.
+@isnad1 id=surjecti.2h3v.s14.42f4837c12c8 from=translated src=- shape=f6465a26 vocab=d089e622
+-/
 lemma surjective_of_H_one_restrictOpen (h : ∀ x : H ((restrictOpen V).obj S.X₁) 1, x = 0) :
     Function.Surjective (S.g.hom.app (op V)) :=
   (surjective_restrictOpen_map_app_top_iff V S.g).1
     (surjective_of_H_one (shortExact_restrictOpen V hS) h)
 
-/-- If S.X₂ is injective and `S.X₂(V) → S.X₃(V)` is surjective then `H¹(V, S.X₁|_V) = 0`. -/
+/-- If S.X₂ is injective and `S.X₂(V) → S.X₃(V)` is surjective then `H¹(V, S.X₁|_V) = 0`.
+@isnad1 id=eq.2h4v.s14.d442bb57ed42 from=translated src=- shape=937a2ec2 vocab=b0e9b219
+-/
 lemma H_one_restrictOpen_eq_zero_of_surjective [Injective S.X₂]
     (hsurj : Function.Surjective (S.g.hom.app (op V)))
     (x : H ((restrictOpen V).obj S.X₁) 1) : x = 0 :=
@@ -148,12 +172,18 @@ lemma H_one_restrictOpen_eq_zero_of_surjective [Injective S.X₂]
   H_one_eq_zero_of_surjective (shortExact_restrictOpen V hS)
     ((surjective_restrictOpen_map_app_top_iff V S.g).2 hsurj) x
 
+/--
+@isnad1 id=eq.2h5v.s15.6c3cd1670c60 from=translated src=- shape=049ef0ec vocab=28529345
+-/
 lemma H_succ_succ_restrictOpen_eq_zero [Injective S.X₂] {q : ℕ}
     (h : ∀ z : H ((restrictOpen V).obj S.X₃) (q + 1), z = 0)
     (x : H ((restrictOpen V).obj S.X₁) (q + 2)) : x = 0 :=
   have : Injective (S.map (restrictOpen V)).X₂ := injective_restrictAb _ S.X₂
   H_succ_succ_eq_zero (shortExact_restrictOpen V hS) h x
 
+/--
+@isnad1 id=eq.2h5v.s15.c0c42b242c7f from=translated src=- shape=049ef0ec vocab=28529345
+-/
 lemma H_succ_restrictOpen_eq_zero_of_H_succ_succ [Injective S.X₂] {q : ℕ}
     (h : ∀ x : H ((restrictOpen V).obj S.X₁) (q + 2), x = 0)
     (z : H ((restrictOpen V).obj S.X₃) (q + 1)) : z = 0 :=
@@ -170,6 +200,9 @@ variable (F : AbSheaf X)
 noncomputable def injSES : ShortComplex (AbSheaf X) :=
   ShortComplex.mk (Injective.ι F) (cokernel.π (Injective.ι F)) (cokernel.condition _)
 
+/--
+@isnad1 id=shortexa.0h2v.s7.1972b08cf026 from=translated src=- shape=8e4ef8bc vocab=980359ff
+-/
 lemma injSES_shortExact : (injSES F).ShortExact :=
   have : Mono (injSES F).f := inferInstanceAs (Mono (Injective.ι F))
   have : Epi (injSES F).g := inferInstanceAs (Epi (cokernel.π (Injective.ι F)))
@@ -180,7 +213,9 @@ instance : Injective (injSES F).X₂ := inferInstanceAs (Injective (Injective.un
 end InjectiveSES
 
 /-- In a short exact sequence of sheaves which is surjective on all finite intersections `U_σ`,
-if the first two terms are Čech acyclic then so is the third. -/
+if the first two terms are Čech acyclic then so is the third.
+@isnad1 id=iscechac.4h4v.s12.2da80e6047a0 from=translated src=- shape=86884268 vocab=ebfde1a9
+-/
 lemma isCechAcyclic_X₃ {ι : Type u} {U : ι → Opens X} {S : ShortComplex (AbSheaf X)}
     (hS : S.ShortExact) (h₁ : IsCechAcyclic U S.X₁.obj) (h₂ : IsCechAcyclic U S.X₂.obj)
     (hsurj : ∀ (n : ℕ) (σ : Fin (n + 1) → ι),
@@ -202,13 +237,18 @@ end Leray
 
 section Cartan
 
+/--
+@isnad1 id=eq.0h3v.s7.d53594996a07 from=translated src=- shape=7d2d2fe6 vocab=6563a728
+-/
 lemma iInf_fin_succ {α : Type*} [CompleteLattice α] {n : ℕ} (f : Fin (n + 2) → α) :
     ⨅ a, f a = f 0 ⊓ ⨅ a : Fin (n + 1), f a.succ :=
   le_antisymm (le_inf (iInf_le _ 0) (le_iInf fun a => iInf_le _ a.succ))
     (le_iInf fun a => Fin.cases inf_le_left (fun a => inf_le_right.trans (iInf_le _ a)) a)
 
 /-- A family of opens closed under binary intersections contains all finite intersections
-`U_σ` of its members. -/
+`U_σ` of its members.
+@isnad1 id=mem.2h6v.s7.6515aac4be42 from=translated src=- shape=e1adff66 vocab=4bd8c23e
+-/
 lemma cechOpen_mem {ℬ : Set (Opens X)} (hℬ : ∀ B ∈ ℬ, ∀ B' ∈ ℬ, B ⊓ B' ∈ ℬ) {ι : Type u}
     {U : ι → Opens X} (hU : ∀ i, U i ∈ ℬ) {n : ℕ} (σ : Fin (n + 1) → ι) :
     cechOpen U σ ∈ ℬ := by

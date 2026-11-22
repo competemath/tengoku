@@ -26,7 +26,9 @@ namespace IsAlgClosed
 
 /-- Let `R` be a countable domain and `f : R → K`, `g : R → L` injective ring homomorphisms
 into uncountable algebraically closed fields of the same cardinality. Then there exists a
-ring isomorphism `e : K ≃+* L` with `e ∘ f = g`. -/
+ring isomorphism `e : K ≃+* L` with `e ∘ f = g`.
+@isnad1 id=ex.5h5v.s8.4fdcb9bdff8e from=translated src=- shape=f89bf1a1 vocab=ab840c7c
+-/
 theorem exists_ringEquiv_comp_eq {R K L : Type u} [CommRing R] [IsDomain R] [Field K]
     [Field L] [IsAlgClosed K] [IsAlgClosed L] (f : R →+* K) (g : R →+* L)
     (hf : Function.Injective f) (hg : Function.Injective g) (hR : #R ≤ ℵ₀) (hK : ℵ₀ < #K)
@@ -55,7 +57,9 @@ theorem exists_ringEquiv_comp_eq {R K L : Type u} [CommRing R] [IsDomain R] [Fie
 end IsAlgClosed
 
 /-- A complex number `z` which is not rational has a conjugate over `ℚ` different from `z`:
-there is `y ≠ z` such that `z` and `y` satisfy the same rational polynomial equations. -/
+there is `y ≠ z` such that `z` and `y` satisfy the same rational polynomial equations.
+@isnad1 id=ex.1h1v.s7.d53506d72b1a from=translated src=- shape=b9974778 vocab=779a1333
+-/
 theorem Complex.exists_ne_forall_aeval_eq_zero_iff {z : ℂ}
     (hz : z ∉ Set.range ((↑) : ℚ → ℂ)) :
     ∃ y : ℂ, y ≠ z ∧ ∀ p : ℚ[X], aeval z p = 0 ↔ aeval y p = 0 := by

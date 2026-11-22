@@ -16,7 +16,9 @@ A finite family of compact operators `f i : M₁ i → M₂ i` gives a compact o
 
 open Filter Set Topology
 
-/-- The product of finitely many compact operators is a compact operator. -/
+/-- The product of finitely many compact operators is a compact operator.
+@isnad1 id=iscompac.1h4v.s6.d255e1f9a8a7 from=translated src=- shape=2e354e9b vocab=afda01b2
+-/
 theorem IsCompactOperator.piMap {ι : Type*} [Finite ι] {M₁ M₂ : ι → Type*}
     [∀ i, Zero (M₁ i)] [∀ i, TopologicalSpace (M₁ i)] [∀ i, TopologicalSpace (M₂ i)]
     {f : ∀ i, M₁ i → M₂ i} (hf : ∀ i, IsCompactOperator (f i)) :

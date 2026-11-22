@@ -36,7 +36,9 @@ namespace AdicCompletion
 variable (I : Ideal R)
 
 /-- The transition ring hom `factorPow` is compatible with `evalₐ`:
-`factorPow I hmn (evalₐ I n x) = evalₐ I m x`. -/
+`factorPow I hmn (evalₐ I n x) = evalₐ I m x`.
+@isnad1 id=eq.1h5v.s11.b28f3d5ba92d from=translated src=- shape=576c93d7 vocab=a954745f
+-/
 lemma factorPow_comp_evalₐ {m n : ℕ} (hmn : m ≤ n) (x : AdicCompletion I R) :
     Quotient.factorPow I hmn (evalₐ I n x) = evalₐ I m x := by
   induction x using AdicCompletion.induction_on with
@@ -55,7 +57,9 @@ variable (I : Ideal R) [I.IsMaximal]
 
 omit [I.IsMaximal] in
 /-- If `evalOneₐ I x` is a unit (in the residue field `R ⧸ I`), then
-`evalₐ I n x` is a unit in `R ⧸ I ^ n` for every `n`. -/
+`evalₐ I n x` is a unit in `R ⧸ I ^ n` for every `n`.
+@isnad1 id=isunit.1h4v.s10.2e9324f2a0f9 from=translated src=- shape=05887312 vocab=c5a45cc9
+-/
 lemma evalₐ_isUnit_of_evalOneₐ_isUnit (x : AdicCompletion I R)
     (hu : IsUnit (evalOneₐ I x)) (n : ℕ) : IsUnit (evalₐ I n x) := by
   induction n with
@@ -101,6 +105,9 @@ noncomputable def mkInverse (x : AdicCompletion I R)
   rw [← one_mul (↑(hu m).unit⁻¹ : R ⧸ I ^ m), ← hfp, mul_assoc, hright, mul_one]
 
 omit [I.IsMaximal] in
+/--
+@isnad1 id=eq.1h4v.s11.ca8bd704bc68 from=translated src=- shape=9f963905 vocab=bfec610a
+-/
 lemma evalₐ_mkInverse (x : AdicCompletion I R) (hu : ∀ n, IsUnit (evalₐ I n x)) (n : ℕ) :
     evalₐ I n (mkInverse I x hu) = ↑(hu n).unit⁻¹ := by
   have h_eq : (I ^ n • ⊤ : Ideal R) = I ^ n := by simp_all
@@ -111,6 +118,9 @@ lemma evalₐ_mkInverse (x : AdicCompletion I R) (hu : ∀ n, IsUnit (evalₐ I 
   exact AlgEquiv.apply_symm_apply _ _
 
 omit [I.IsMaximal] in
+/--
+@isnad1 id=eq.1h3v.s9.b27e7baa8b7c from=translated src=- shape=daaf3c48 vocab=7c4054f3
+-/
 lemma mkInverse_mul (x : AdicCompletion I R) (hu : ∀ n, IsUnit (evalₐ I n x)) :
     mkInverse I x hu * x = 1 := by
   apply ext_evalₐ
@@ -121,7 +131,9 @@ lemma mkInverse_mul (x : AdicCompletion I R) (hu : ∀ n, IsUnit (evalₐ I n x)
 
 omit [I.IsMaximal] in
 /-- An element of the adic completion whose image under `evalOneₐ` is a unit (in the
-residue field) is itself a unit. -/
+residue field) is itself a unit.
+@isnad1 id=isunit.1h3v.s8.b06b2689c41d from=translated src=- shape=af0d8aaf vocab=71170a3f
+-/
 lemma isUnit_of_evalOneₐ_isUnit (x : AdicCompletion I R) (hu : IsUnit (evalOneₐ I x)) :
     IsUnit x := by
   have hu_all := evalₐ_isUnit_of_evalOneₐ_isUnit I x hu
@@ -146,6 +158,9 @@ variable (R : Type*) [CommRing R] [IsLocalRing R]
 /-- Local abbreviation for the maximal ideal `IsLocalRing.maximalIdeal R`. -/
 abbrev M' := IsLocalRing.maximalIdeal R
 
+/--
+@isnad1 id=nontrivi.0h1v.s5.30d0333ac96c from=translated src=- shape=4d75d831 vocab=e033d81b
+-/
 instance adicCompletion_nontrivial :
     Nontrivial (AdicCompletion (M' R) R) := by
   have hsurj := evalOneₐ_surjective (M' R) (R := R)
@@ -154,12 +169,18 @@ instance adicCompletion_nontrivial :
   exact hsurj.nontrivial
 
 omit [IsLocalRing R] in
+/--
+@isnad1 id=or.1h3v.s6.f565f0077adb from=translated src=- shape=3a0afded vocab=b01f6aba
+-/
 lemma field_isUnit_or_isUnit {K : Type*} [Field K] {a b : K} (hab : a + b = 1) :
     IsUnit a ∨ IsUnit b := by
   by_cases ha : a = 0
   · simp_all
   · exact Or.inl (IsUnit.mk0 a ha)
 
+/--
+@isnad1 id=islocalr.0h1v.s6.4e58dcf9b7a6 from=translated src=- shape=776bb47b vocab=ea550e86
+-/
 theorem adicCompletion_isLocalRing :
     IsLocalRing (AdicCompletion (M' R) R) := by
   let := adicCompletion_nontrivial R
@@ -176,6 +197,9 @@ theorem adicCompletion_isLocalRing :
 end AdicCompletion
 end Main
 
+/--
+@isnad1 id=islocalr.0h1v.s6.16fc0a4adbc5 from=translated src=- shape=776bb47b vocab=019d34ad
+-/
 theorem adicCompletion_isLocalRing
     (R : Type*) [CommRing R] [IsLocalRing R] :
     IsLocalRing (AdicCompletion (IsLocalRing.maximalIdeal R) R) :=

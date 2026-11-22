@@ -75,13 +75,17 @@ The integer division is exact because `n * (n + 1)` is even (`two_mul_thetaExp`)
 def thetaExp (n : ℤ) : ℤ := n * (n + 1) / 2
 
 /-- The triangular exponent doubles to the product of consecutive integers: `2 * e n = n*(n+1)`.
-The division in `thetaExp` is therefore exact. -/
+The division in `thetaExp` is therefore exact.
+@isnad1 id=eq.0h1v.s5.089353eb9b3e from=translated src=- shape=e492614d vocab=883542c9
+-/
 lemma two_mul_thetaExp (n : ℤ) : 2 * thetaExp n = n * (n + 1) := by
   have h : (2 : ℤ) ∣ n * (n + 1) := (Int.even_mul_succ_self n).two_dvd
   rw [thetaExp, Int.mul_ediv_cancel' h]
 
 /-- The triangular exponent is nonnegative for every integer `n`, so `q ^ (e n)` is a genuine
-nonnegative power of `q`. -/
+nonnegative power of `q`.
+@isnad1 id=le.0h1v.s3.f12211dca528 from=translated src=- shape=8a62b088 vocab=6fb74a63
+-/
 lemma thetaExp_nonneg (n : ℤ) : 0 ≤ thetaExp n := by
   have h2 : 2 * thetaExp n = n * (n + 1) := two_mul_thetaExp n
   have hnn : 0 ≤ n * (n + 1) := by
@@ -91,7 +95,9 @@ lemma thetaExp_nonneg (n : ℤ) : 0 ≤ thetaExp n := by
       nlinarith [key]
   omega
 
-/-- The real cast of the triangular exponent as a quadratic: `(e n : ℝ) = n * (n + 1) / 2`. -/
+/-- The real cast of the triangular exponent as a quadratic: `(e n : ℝ) = n * (n + 1) / 2`.
+@isnad1 id=eq.0h1v.s5.614db98bf8cf from=translated src=- shape=8436d18b vocab=2f460093
+-/
 lemma thetaExp_cast (n : ℤ) : (thetaExp n : ℝ) = (n : ℝ) * ((n : ℝ) + 1) / 2 := by
   have h : (2 : ℝ) * (thetaExp n : ℝ) = (n : ℝ) * ((n : ℝ) + 1) := by
     exact_mod_cast two_mul_thetaExp n
@@ -111,7 +117,9 @@ normalization). Over a complete nonarchimedean field the series converges
 noncomputable def theta (T : TateParameter K) (u : Kˣ) : K :=
   ∑' n : ℤ, T.thetaTerm u n
 
-/-- The defining unfolding of the `q`-theta function as a `tsum`. -/
+/-- The defining unfolding of the `q`-theta function as a `tsum`.
+@isnad1 id=eq.0h3v.s7.a1d4faa63d64 from=translated src=- shape=2bd8c769 vocab=6c75d84b
+-/
 lemma theta_apply (T : TateParameter K) (u : Kˣ) :
     T.theta u = ∑' n : ℤ, (T.q : K) ^ (thetaExp n) * (u : K) ^ n :=
   rfl
@@ -119,7 +127,9 @@ lemma theta_apply (T : TateParameter K) (u : Kˣ) :
 /-- **Convergence of the naive `q`-theta series.** Over a complete nonarchimedean field, the
 family `n ↦ q ^ (e n) * u ^ n` is unconditionally summable: the term norm
 `‖q‖ ^ (e n) * ‖u‖ ^ n` decays to zero as `|n| → ∞` because the triangular exponent `e n`
-grows quadratically while `0 < ‖q‖ < 1`. -/
+grows quadratically while `0 < ‖q‖ < 1`.
+@isnad1 id=summable.0h3v.s6.fbf808fb90ce from=translated src=- shape=787c7c14 vocab=86388b95
+-/
 theorem thetaTerm_summable [CompleteSpace K] [IsUltrametricDist K]
     (T : TateParameter K) (u : Kˣ) : Summable (T.thetaTerm u) := by
   apply NonarchimedeanAddGroup.summable_of_tendsto_cofinite_zero

@@ -89,7 +89,9 @@ as `(f ⁻¹' {b}).Subsingleton` and `b ∈ Set.range f` — injectivity of `f` 
 being in the range — and what is left is `∃!` against those two.
 
 No finiteness hypothesis is needed on either type, and none is hidden in `Nat.card`: an infinite
-fibre has `Nat.card` equal to `0`, not to `1`. -/
+fibre has `Nat.card` equal to `0`, not to `1`.
+@isnad1 id=iff.0h3v.s5.37313e21776b from=translated src=- shape=e15345ec vocab=b966215d
+-/
 theorem Function.bijective_iff_forall_card_preimage_eq_one {α β : Type*} (f : α → β) :
     Function.Bijective f ↔ ∀ b, Nat.card (f ⁻¹' {b}) = 1 := by
   simp only [Function.bijective_iff_existsUnique, Nat.card_eq_one_iff_unique,
@@ -113,7 +115,9 @@ fibre count over a connected base arrives in.
 
 **The `Fintype` is manufactured inside the proof.** `Nat.card_sigma` asks for one on the index
 type; `Fintype.ofFinite` under `classical` supplies it from the `Finite` instance, so the
-statement asks for no decidable equality on `β`. -/
+statement asks for no decidable equality on `β`.
+@isnad1 id=eq.1h7v.s6.1957ae838f7e from=translated src=- shape=8441e916 vocab=a244d8eb
+-/
 theorem Nat.card_preimage_singleton_comp {α β γ : Type*} (f : α → β) (g : β → γ) (z : γ)
     [Finite ((g ⁻¹' {z}) : Set β)] [∀ y : β, Finite ((f ⁻¹' {y}) : Set α)] {d : ℕ}
     (hf : ∀ y : β, Nat.card ((f ⁻¹' {y}) : Set α) = d) :

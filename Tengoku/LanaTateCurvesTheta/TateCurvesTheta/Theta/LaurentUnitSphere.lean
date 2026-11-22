@@ -42,7 +42,9 @@ variable {K : Type*} [NormedField K] [CompleteSpace K] [IsUltrametricDist K]
 
 /-- **The unit-sphere Strassmann seam is discharged.** A nonzero coefficient family whose Laurent
 series is summable on all of `Kˣ` has finitely many zeros on the unit sphere. This is the #136
-obligation, proved from the two-sided Strassmann theorem `StrassmannSphere.finite_zeros`. -/
+obligation, proved from the two-sided Strassmann theorem `StrassmannSphere.finite_zeros`.
+@isnad1 id=laurentu.0h1v.s5.a1cdabc7424f from=translated src=- shape=affebb5f vocab=ffce520a
+-/
 theorem laurentUnitSphereZerosFinite : LaurentUnitSphereZerosFinite K := by
   intro c hc0 hsum
   -- Summability on `Kˣ` at `u = 1` gives summability of the raw coefficient family.
@@ -56,7 +58,9 @@ theorem laurentUnitSphereZerosFinite : LaurentUnitSphereZerosFinite K := by
   rintro v ⟨u, ⟨hu1, huz⟩, rfl⟩
   exact ⟨hu1, huz⟩
 
-/-- **Finiteness of Laurent zeros on every sphere**, unconditionally (via radius normalization). -/
+/-- **Finiteness of Laurent zeros on every sphere**, unconditionally (via radius normalization).
+@isnad1 id=laurents.0h1v.s5.6e3b8ac755ef from=translated src=- shape=affebb5f vocab=e505b03a
+-/
 theorem laurentSphereZerosFinite : LaurentSphereZerosFinite K :=
   laurentSphereZerosFinite_of_unitSphere laurentUnitSphereZerosFinite
 
@@ -65,13 +69,17 @@ namespace TateParameter
 /-- **Nonarchimedean Laurent coefficient uniqueness, unconditionally.** A convergent two-sided
 Laurent series over the complete ultrametric field `K` is determined by its values on `Kˣ`. This
 discharges the standing `LaurentCoeffUnique K` hypothesis of the `q`-difference engine for the
-project's abstract `K`. -/
+project's abstract `K`.
+@isnad1 id=laurentc.0h2v.s5.22758d6b13f5 from=translated src=- shape=7ddc04c7 vocab=3db28624
+-/
 theorem laurentCoeffUnique (t : TateParameter K) : LaurentCoeffUnique K :=
   laurentCoeffUnique_of_sphereZerosFinite t laurentSphereZerosFinite
 
 /-- **The `q`-difference engine, unconditionally.** A `q`-invariant convergent Laurent series
 equals its constant term `a 0` at every `u : Kˣ` — with no analytic side hypothesis, since
-`LaurentCoeffUnique K` is now a theorem. -/
+`LaurentCoeffUnique K` is now a theorem.
+@isnad1 id=eq.2h4v.s8.0855530eaf75 from=translated src=- shape=6f9cb1b2 vocab=99113a52
+-/
 theorem const_of_qinvariant_laurent' (t : TateParameter K) (a : ℤ → K)
     (hsum : ∀ u : Kˣ, Summable fun n : ℤ => a n * (u : K) ^ n)
     (hqinv : ∀ u : Kˣ,

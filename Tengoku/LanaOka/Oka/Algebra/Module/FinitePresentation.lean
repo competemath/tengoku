@@ -64,7 +64,9 @@ actions agree along it. Then `N` is a finitely presented `B`-module if it is a f
 
 The finite generating set is the same `Finset` in both cases, and the two things
 `Module.FinitePresentation` asks of it are transported separately; see the module docstring for
-why this is not `Module.Finite.of_ringEquiv`'s proof with a different name. -/
+why this is not `Module.Finite.of_ringEquiv`'s proof with a different name.
+@isnad1 id=finitepr.1h4v.s8.7b68d699b5eb from=translated src=- shape=f80ecc50 vocab=8c27bea8
+-/
 theorem of_ringEquiv {A B N : Type*} [CommSemiring A] [CommSemiring B] [AddCommMonoid N]
     [Module A N] [Module B N] (e : A ≃+* B) (he : ∀ (a : A) (n : N), a • n = e a • n)
     [h : Module.FinitePresentation A N] : Module.FinitePresentation B N := by

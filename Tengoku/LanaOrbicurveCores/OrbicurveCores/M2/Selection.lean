@@ -24,7 +24,9 @@ variable {X Z : Type*} [MeasurableSpace X] [TopologicalSpace Z] [MeasurableSpace
 
 omit [TopologicalSpace Z] [BorelSpace Z] [Nonempty Z] in
 /-- If a probability measure has an atom of mass `> 1/2`, then that atom lies in a set `U`
-iff `U` has measure `> 1/2`. -/
+iff `U` has measure `> 1/2`.
+@isnad1 id=iff.1h4v.s7.ddf00a8e2ecb from=translated src=- shape=1dfede0f vocab=79af0205
+-/
 lemma _root_.Tengoku.LanaOrbicurveCores.mem_iff_of_heavy [MeasurableSingletonClass Z] {μ : Measure Z} [IsProbabilityMeasure μ]
     {z : Z} (hz : 1 / 2 < μ {z}) (U : Set Z) : z ∈ U ↔ 1 / 2 < μ U := by
   constructor
@@ -39,7 +41,9 @@ lemma _root_.Tengoku.LanaOrbicurveCores.mem_iff_of_heavy [MeasurableSingletonCla
     rw [ENNReal.add_halves] at this
     exact lt_irrefl _ this
 
-/-- **Heavy-atom selection.** -/
+/-- **Heavy-atom selection.**
+@isnad1 id=ex.2h4v.s7.204f9776abf6 from=translated src=- shape=5da03aa5 vocab=4c305dce
+-/
 theorem _root_.Tengoku.LanaOrbicurveCores.exists_measurable_heavy_selection [MeasurableSingletonClass Z] (κ : Kernel X Z)
     [IsMarkovKernel κ] {S : Set X}
     (hS : MeasurableSet S) (hκ : ∀ x ∈ S, ∃ z, 1 / 2 < κ x {z}) :

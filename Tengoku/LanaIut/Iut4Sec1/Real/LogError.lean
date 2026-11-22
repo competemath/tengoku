@@ -20,6 +20,9 @@ namespace Iut4Sec1
 noncomputable def nonarchimedeanLogError (p e : ℕ) : ℝ :=
   ((⌈(e : ℝ) / (p - 2 : ℕ)⌉ : ℤ) : ℝ) / e - 1 / e
 
+/--
+@isnad1 id=le.2h2v.s5.518bdacb42cc from=translated src=- shape=603a042a vocab=c2c42b5d
+-/
 lemma nonarchimedeanLogError_nonneg (p e : ℕ) (hp2 : 2 < p) (he : 0 < e) :
     0 ≤ nonarchimedeanLogError p e := by
   have hd_nat : 0 < p - 2 := Nat.sub_pos_of_lt hp2
@@ -31,6 +34,9 @@ lemma nonarchimedeanLogError_nonneg (p e : ℕ) (hp2 : 2 < p) (he : 0 < e) :
   rw [nonarchimedeanLogError]
   exact sub_nonneg.mpr (div_le_div_of_nonneg_right hceil he_real.le)
 
+/--
+@isnad1 id=eq.3h2v.s5.7b1b842be116 from=translated src=- shape=b6cb182c vocab=6d65de96
+-/
 lemma nonarchimedeanLogError_eq_zero_of_le (p e : ℕ) (hp2 : 2 < p)
     (he : 0 < e) (hle : e ≤ p - 2) :
     nonarchimedeanLogError p e = 0 := by
@@ -47,6 +53,9 @@ lemma nonarchimedeanLogError_eq_zero_of_le (p e : ℕ) (hp2 : 2 < p)
     exact ⟨hx_pos, hx_le⟩
   simp [nonarchimedeanLogError, hceil]
 
+/--
+@isnad1 id=le.3h2v.s5.f08f0654f698 from=translated src=- shape=c8e0aaea vocab=59d28c55
+-/
 lemma nonarchimedeanLogError_le_four_div (p e : ℕ) (hp : p.Prime) (hp2 : 2 < p)
     (he : 0 < e) : nonarchimedeanLogError p e ≤ 4 / (p : ℝ) := by
   have hd_nat : 0 < p - 2 := Nat.sub_pos_of_lt hp2
@@ -71,7 +80,9 @@ lemma nonarchimedeanLogError_le_four_div (p e : ℕ) (hp : p.Prime) (hp2 : 2 < p
     nlinarith [show (3 : ℝ) ≤ p by exact_mod_cast hp2]
   exact herr_lt.le.trans hdenom
 
-/-- The total ceiling error is supported on the exceptional index set. -/
+/-- The total ceiling error is supported on the exceptional index set.
+@isnad1 id=le.5h5v.s7.390d39262209 from=translated src=- shape=fc960043 vocab=cfd58db0
+-/
 theorem nonarchimedean_logError_sum_le {ι : Type*} [DecidableEq ι]
     (p : ℕ) (I Istar : Finset ι) (e : ι → ℕ)
     (hp : p.Prime) (hp2 : 2 < p) (hIstar : Istar ⊆ I)

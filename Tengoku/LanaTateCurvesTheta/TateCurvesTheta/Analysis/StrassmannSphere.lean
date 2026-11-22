@@ -68,7 +68,9 @@ variable {K : Type*} [NormedField K] [CompleteSpace K] [IsUltrametricDist K]
 /-! ### Convergence on the unit sphere -/
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- The `atTop` (`n → +∞`) part of coefficient decay coming from summability. -/
+/-- The `atTop` (`n → +∞`) part of coefficient decay coming from summability.
+@isnad1 id=tendsto.1h2v.s6.7f6646349421 from=translated src=- shape=f76d8b91 vocab=86c4ad04
+-/
 theorem tendsto_atTop_norm {c : ℤ → K} (hc : Summable c) :
     Tendsto (fun n => ‖c n‖) atTop (𝓝 0) := by
   have h : Tendsto (fun n => ‖c n‖) cofinite (𝓝 0) := by
@@ -76,14 +78,18 @@ theorem tendsto_atTop_norm {c : ℤ → K} (hc : Summable c) :
   exact h.mono_left (by rw [Int.cofinite_eq]; exact le_sup_right)
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- The `atBot` (`n → -∞`) part of coefficient decay coming from summability. -/
+/-- The `atBot` (`n → -∞`) part of coefficient decay coming from summability.
+@isnad1 id=tendsto.1h2v.s6.830019736ae5 from=translated src=- shape=f76d8b91 vocab=295d04b6
+-/
 theorem tendsto_atBot_norm {c : ℤ → K} (hc : Summable c) :
     Tendsto (fun n => ‖c n‖) atBot (𝓝 0) := by
   have h : Tendsto (fun n => ‖c n‖) cofinite (𝓝 0) := by
     simpa using hc.tendsto_cofinite_zero.norm
   exact h.mono_left (by rw [Int.cofinite_eq]; exact le_sup_left)
 
-/-- On the unit sphere `‖v‖ = 1` the Laurent series `∑' n, cₙ vⁿ` converges. -/
+/-- On the unit sphere `‖v‖ = 1` the Laurent series `∑' n, cₙ vⁿ` converges.
+@isnad1 id=summable.2h3v.s7.0106db69cd56 from=translated src=- shape=97f24927 vocab=4639c5c7
+-/
 theorem summable_mul_zpow {c : ℤ → K} (hc : Summable c) {v : K} (hv : ‖v‖ = 1) :
     Summable fun n : ℤ => c n * v ^ n := by
   refine Strassmann.summable_of_norm_le hc fun n => ?_
@@ -97,16 +103,23 @@ noncomputable def wCoeff (c : ℤ → K) (α : K) (n : ℤ) : K :=
   ∑' j : ℕ, c (n + 1 + j) * α ^ j
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
+/--
+@isnad1 id=eq.0h4v.s6.9f00618e9f63 from=translated src=- shape=5378ac68 vocab=65f063b7
+-/
 theorem wCoeff_apply (c : ℤ → K) (α : K) (n : ℤ) :
     wCoeff c α n = ∑' j : ℕ, c (n + 1 + j) * α ^ j := rfl
 
 omit [IsUltrametricDist K] in
-/-- The shifted coefficient family `j ↦ c (n + 1 + j)` is summable. -/
+/-- The shifted coefficient family `j ↦ c (n + 1 + j)` is summable.
+@isnad1 id=summable.1h3v.s6.830be3726622 from=translated src=- shape=9c840e75 vocab=53d05092
+-/
 theorem summable_shift {c : ℤ → K} (hc : Summable c) (n : ℤ) :
     Summable fun j : ℕ => c (n + 1 + j) :=
   hc.comp_injective fun j₁ j₂ h => by exact_mod_cast add_left_cancel h
 
-/-- Each defining series of `wCoeff` converges (for `‖α‖ ≤ 1`). -/
+/-- Each defining series of `wCoeff` converges (for `‖α‖ ≤ 1`).
+@isnad1 id=summable.2h4v.s7.cca08d11a9e5 from=translated src=- shape=f8a2907e vocab=f2e74086
+-/
 theorem wCoeff_summable_family {c : ℤ → K} (hc : Summable c) {α : K} (hα : ‖α‖ ≤ 1) (n : ℤ) :
     Summable fun j : ℕ => c (n + 1 + j) * α ^ j := by
   refine Strassmann.summable_of_norm_le (summable_shift hc n) fun j => ?_
@@ -114,7 +127,9 @@ theorem wCoeff_summable_family {c : ℤ → K} (hc : Summable c) {α : K} (hα :
   calc ‖c (n + 1 + j)‖ * ‖α‖ ^ j ≤ ‖c (n + 1 + j)‖ * 1 ^ j := by gcongr
     _ = ‖c (n + 1 + j)‖ := by rw [one_pow, mul_one]
 
-/-- The synthetic-division recursion `c (n+1) = g n − α · g (n+1)`. -/
+/-- The synthetic-division recursion `c (n+1) = g n − α · g (n+1)`.
+@isnad1 id=eq.2h4v.s7.5b85ea182844 from=translated src=- shape=6ea0d531 vocab=a2cf8897
+-/
 theorem wCoeff_rec {c : ℤ → K} (hc : Summable c) {α : K} (hα : ‖α‖ ≤ 1) (n : ℤ) :
     c (n + 1) = wCoeff c α n - α * wCoeff c α (n + 1) := by
   have h1 : wCoeff c α n = c (n + 1) + α * wCoeff c α (n + 1) := by
@@ -128,7 +143,9 @@ theorem wCoeff_rec {c : ℤ → K} (hc : Summable c) {α : K} (hα : ‖α‖ �
       rw [hidx, pow_succ]; ring
   rw [h1]; ring
 
-/-- The recursion in the form `c n + α · g n = g (n − 1)`. -/
+/-- The recursion in the form `c n + α · g n = g (n − 1)`.
+@isnad1 id=eq.2h4v.s7.b14c1204eab9 from=translated src=- shape=3012e248 vocab=a2cf8897
+-/
 theorem wCoeff_rec' {c : ℤ → K} (hc : Summable c) {α : K} (hα : ‖α‖ ≤ 1) (n : ℤ) :
     c n + α * wCoeff c α n = wCoeff c α (n - 1) := by
   have h := wCoeff_rec hc hα (n - 1)
@@ -139,7 +156,9 @@ theorem wCoeff_rec' {c : ℤ → K} (hc : Summable c) {α : K} (hα : ‖α‖ �
 /-! #### Forward and backward norm bounds -/
 
 omit [CompleteSpace K] in
-/-- **Forward bound.** `‖g n‖` is controlled by the coefficients strictly beyond `n`. -/
+/-- **Forward bound.** `‖g n‖` is controlled by the coefficients strictly beyond `n`.
+@isnad1 id=le.3h5v.s6.cd767e337394 from=translated src=- shape=4ae64475 vocab=434c0224
+-/
 theorem wCoeff_norm_le_above {c : ℤ → K} {α : K} (hα : ‖α‖ ≤ 1) (n : ℤ)
     {b : ℝ} (hb : 0 ≤ b) (hbd : ∀ m, n < m → ‖c m‖ ≤ b) : ‖wCoeff c α n‖ ≤ b := by
   rw [wCoeff_apply]
@@ -175,7 +194,9 @@ private theorem alpha_wCoeff_eq_upper {c : ℤ → K} {α : K} (hα0 : α ≠ 0)
   ring
 
 /-- **Backward bound (uses the root relation).** At a root `α` of the series, `‖g n‖` is
-controlled by the coefficients up to and including `n`. -/
+controlled by the coefficients up to and including `n`.
+@isnad1 id=le.5h5v.s7.c14e0307ef46 from=translated src=- shape=841b6d3b vocab=8d75c3b3
+-/
 theorem wCoeff_norm_le_below {c : ℤ → K} (hc : Summable c) {α : K} (hα1 : ‖α‖ = 1)
     (hroot : (∑' n : ℤ, c n * α ^ n) = 0) (n : ℤ)
     {b : ℝ} (hb : 0 ≤ b) (hbd : ∀ m, m ≤ n → ‖c m‖ ≤ b) : ‖wCoeff c α n‖ ≤ b := by
@@ -218,7 +239,9 @@ theorem wCoeff_norm_le_below {c : ℤ → K} (hc : Summable c) {α : K} (hα1 : 
     exact hbd m hm
   · rw [Set.indicator_of_notMem (by simp only [Set.mem_Iic]; omega), norm_zero]; exact hb
 
-/-- **Summability of the Weierstrass quotient** at a root `α`. -/
+/-- **Summability of the Weierstrass quotient** at a root `α`.
+@isnad1 id=summable.3h3v.s7.2e6a66d6fd1b from=translated src=- shape=608dd52b vocab=e423b952
+-/
 theorem wCoeff_summable {c : ℤ → K} (hc : Summable c) {α : K} (hα1 : ‖α‖ = 1)
     (hroot : (∑' n : ℤ, c n * α ^ n) = 0) : Summable (wCoeff c α) := by
   have hα : ‖α‖ ≤ 1 := le_of_eq hα1
@@ -248,7 +271,9 @@ theorem wCoeff_summable {c : ℤ → K} (hc : Summable c) {α : K} (hα1 : ‖α
 /-! ### The division identity -/
 
 /-- **The Weierstrass division identity on the sphere.** If `α` is a root (`‖α‖ = 1`,
-`∑ cₙ αⁿ = 0`), then `∑ cₙ vⁿ = (v − α) · ∑ gₙ vⁿ` on the unit sphere `‖v‖ = 1`. -/
+`∑ cₙ αⁿ = 0`), then `∑ cₙ vⁿ = (v − α) · ∑ gₙ vⁿ` on the unit sphere `‖v‖ = 1`.
+@isnad1 id=eq.4h4v.s8.5fba4418f008 from=translated src=- shape=0d336023 vocab=ece8667d
+-/
 theorem tsum_wCoeff_div {c : ℤ → K} (hc : Summable c) {α : K} (hα1 : ‖α‖ = 1)
     (hroot : (∑' n : ℤ, c n * α ^ n) = 0) {v : K} (hv : ‖v‖ = 1) :
     (∑' n : ℤ, c n * v ^ n) = (v - α) * ∑' n : ℤ, wCoeff c α n * v ^ n := by
@@ -278,7 +303,9 @@ theorem tsum_wCoeff_div {c : ℤ → K} (hc : Summable c) {α : K} (hα1 : ‖α
 
 /-- **Uniform strict bound off the maximal-index window.** If `lo`, `hi` bound the maximal-term
 window and the coefficients are strictly smaller than `M = ‖c lo‖` outside `[lo, hi]`, there is a
-single `C < M` bounding all of them there. -/
+single `C < M` bounding all of them there.
+@isnad1 id=ex.4h4v.s7.5a55a0812dc6 from=translated src=- shape=c1f54246 vocab=58f12f74
+-/
 theorem exists_bound_window {c : ℤ → K} (hc : Summable c) {lo hi : ℤ} (hlo : c lo ≠ 0)
     (hbelow : ∀ n, n < lo → ‖c n‖ < ‖c lo‖) (habove : ∀ n, hi < n → ‖c n‖ < ‖c lo‖) :
     ∃ C, 0 ≤ C ∧ C < ‖c lo‖ ∧ (∀ m, m < lo → ‖c m‖ ≤ C) ∧ (∀ m, hi < m → ‖c m‖ ≤ C) := by
@@ -318,7 +345,9 @@ theorem exists_bound_window {c : ℤ → K} (hc : Summable c) {lo hi : ℤ} (hlo
 
 /-- **Two-sided Strassmann, width-indexed form.** With `lo`, `hi` the smallest and largest indices
 attaining the maximal coefficient norm `‖c lo‖`, and `hi = lo + W`, the series `∑ cₙ vⁿ` has
-finitely many zeros on the unit sphere. Proved by strong induction on `W`. -/
+finitely many zeros on the unit sphere. Proved by strong induction on `W`.
+@isnad1 id=finite.7h5v.s8.fe60ed199fdd from=translated src=- shape=347396a1 vocab=f25d9706
+-/
 theorem finite_zeros_isWidth (W : ℕ) : ∀ (c : ℤ → K), Summable c → ∀ (lo hi : ℤ),
     c lo ≠ 0 → (∀ n, ‖c n‖ ≤ ‖c lo‖) → ‖c hi‖ = ‖c lo‖ →
     (∀ n, n < lo → ‖c n‖ < ‖c lo‖) → (∀ n, hi < n → ‖c n‖ < ‖c lo‖) →
@@ -395,7 +424,9 @@ theorem finite_zeros_isWidth (W : ℕ) : ∀ (c : ℤ → K), Summable c → ∀
 
 /-- **Strassmann's theorem on the unit sphere.** A nonzero summable coefficient family
 `c : ℤ → K` over a complete nonarchimedean field has only finitely many zeros of
-`v ↦ ∑' n, cₙ vⁿ` on the unit sphere `{v : K | ‖v‖ = 1}`. -/
+`v ↦ ∑' n, cₙ vⁿ` on the unit sphere `{v : K | ‖v‖ = 1}`.
+@isnad1 id=finite.2h2v.s7.0e5deda6346b from=translated src=- shape=84e8eee7 vocab=453a3978
+-/
 theorem finite_zeros {c : ℤ → K} (hc : Summable c) (hc0 : c ≠ 0) :
     {v : K | ‖v‖ = 1 ∧ (∑' n : ℤ, c n * v ^ n) = 0}.Finite := by
   classical

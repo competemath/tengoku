@@ -50,6 +50,9 @@ noncomputable def cochainEquiv (n : ℕ) : CechCochain U F.obj n ≃+ M.Cochain 
   AddEquiv.piCongrRight fun σ ↦ M.sectionsEquiv (cechOpen U σ)
 
 omit [∀ q, IsUniformAddGroup (E q)] [∀ q, ContinuousSMul ℂ (E q)] in
+/--
+@isnad1 id=eq.0h10v.s14.86846ba9eea9 from=translated src=- shape=59a79d50 vocab=d33b6f99
+-/
 lemma cochainEquiv_apply (n : ℕ) (c : CechCochain U F.obj n) (σ : Fin (n + 1) → ι) :
     M.cochainEquiv U n c σ = M.sectionsEquiv _ (c σ) :=
   rfl
@@ -71,12 +74,17 @@ noncomputable def refineL (n : ℕ) : M.Cochain U n →L[ℂ] M.Cochain V n :=
     (ContinuousLinearMap.proj (R := ℂ) (φ := fun σ : Fin (n + 1) → ι ↦ M.sub (cechOpen U σ)) σ)
 
 omit [∀ q, IsUniformAddGroup (E q)] [∀ q, ContinuousSMul ℂ (E q)] in
+/--
+@isnad1 id=eq.1h11v.s16.ccd4a81f0eaa from=translated src=- shape=a1ac4f23 vocab=21782b71
+-/
 lemma refineL_apply (n : ℕ) (c : M.Cochain U n) (σ : Fin (n + 1) → ι) :
     M.refineL U hVU n c σ = M.subRes (cechOpen_le_cechOpen_comp U hVU σ) (c σ) :=
   rfl
 
 omit [∀ q, IsUniformAddGroup (E q)] [∀ q, ContinuousSMul ℂ (E q)] in
-/-- The model refinement is the Čech refinement. -/
+/-- The model refinement is the Čech refinement.
+@isnad1 id=eq.1h10v.s16.5884d6b4dd2a from=translated src=- shape=b4af2765 vocab=b859d4a1
+-/
 lemma cochainEquiv_cechRefine (n : ℕ) (c : CechCochain U F.obj n) :
     M.cochainEquiv V n (cechRefine U (τ := id) hVU F.obj n c) =
       M.refineL U hVU n (M.cochainEquiv U n c) := by
@@ -88,7 +96,9 @@ lemma cochainEquiv_cechRefine (n : ℕ) (c : CechCochain U F.obj n) :
 end Refine
 
 omit [∀ q, IsUniformAddGroup (E q)] [∀ q, ContinuousSMul ℂ (E q)] in
-/-- The model cochain of the image of a cochain under `smulHom c` is `c •` the model cochain. -/
+/-- The model cochain of the image of a cochain under `smulHom c` is `c •` the model cochain.
+@isnad1 id=eq.0h10v.s15.a54a7edf0385 from=translated src=- shape=df4c4193 vocab=2c733772
+-/
 lemma cochainEquiv_smulHom (n : ℕ) (c : ℂ) (z : CechCochain U F.obj n) :
     M.cochainEquiv U n (cechCochainMap U (M.smulHom c).hom n z) =
       c • M.cochainEquiv U n z := by
@@ -117,12 +127,17 @@ noncomputable abbrev Z1 (U : ι → Opens X) : Submodule ℂ (M.Cochain U 1) :=
 
 omit [∀ q, FirstCountableTopology (E q)] [∀ q, CompleteSpace (E q)]
   [∀ q, LocallyConvexSpace ℝ (E q)] [Countable 𝒬] [Finite ι] in
+/--
+@isnad1 id=isclosed.0h7v.s14.af2cdf4af618 from=translated src=- shape=7182504b vocab=260941a9
+-/
 lemma isClosed_Z1 (U : ι → Opens X) : IsClosed (M.Z1 U : Set (M.Cochain U 1)) :=
   (M.dL U 1).isClosed_ker
 
 omit [∀ q, LocallyConvexSpace ℝ (E q)] in
 /-- If `V i` has compact closure inside `U i` for all `i`, refinement of model cochains is a
-compact operator. -/
+compact operator.
+@isnad1 id=iscompac.4h9v.s15.1834d50cf0d6 from=translated src=- shape=57e81250 vocab=7816dda8
+-/
 lemma isCompactOperator_refineL
     (hK : ∀ (W : Opens X) (x : X), x ∈ W → ∃ (q q' : 𝒬) (h : M.Q q' ≤ M.Q q),
       x ∈ M.Q q' ∧ M.Q q ≤ W ∧ IsCompactOperator (M.resL q q' h))

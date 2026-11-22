@@ -34,7 +34,9 @@ local instance sparseCoreFinDecidableEq {n : ℕ} : DecidableEq (Fin n) := Class
 
 open Classical in
 /-- A displayed set of internal neighbors subtracts from the number of edges
-leaving a vertex set. -/
+leaving a vertex set.
+@isnad1 id=le.1h5v.s7.4f5ca9e40310 from=translated src=- shape=48ceb869 vocab=93eb2c0e
+-/
 theorem neighbor_sdiff_card_add_le_degree {n : ℕ} (G : SimpleGraph (Fin n))
     (S K : Finset (Fin n)) (v : Fin n)
     (hK : K ⊆ G.neighborFinset v ∩ S) :
@@ -51,6 +53,9 @@ def internalPairCount {n : ℕ} (G : SimpleGraph (Fin n)) (S : Finset (Fin n)) :
   ((S ×ˢ S).filter (fun p => G.Adj p.1 p.2)).card
 
 open Classical in
+/--
+@isnad1 id=eq.0h3v.s6.fe17dfb3fce0 from=translated src=- shape=e3bea19e vocab=cf33246d
+-/
 theorem internalPairCount_eq_sum {n : ℕ} (G : SimpleGraph (Fin n))
     (S : Finset (Fin n)) :
     internalPairCount G S = ∑ v ∈ S, (G.neighborFinset v ∩ S).card := by
@@ -64,7 +69,9 @@ theorem internalPairCount_eq_sum {n : ℕ} (G : SimpleGraph (Fin n))
 
 open Classical in
 /-- The ordered internal-pair count is even: each induced edge contributes its
-two orientations. -/
+two orientations.
+@isnad1 id=ex.0h3v.s5.49fccce8bd0a from=translated src=- shape=182e9a01 vocab=76d85b77
+-/
 theorem internalPairCount_eq_two_mul {n : ℕ} (G : SimpleGraph (Fin n))
     (S : Finset (Fin n)) : ∃ k : ℕ, internalPairCount G S = 2 * k := by
   classical
@@ -143,7 +150,9 @@ private theorem adjacency_indicator_sum {n : ℕ} (G : SimpleGraph (Fin n))
     exact ⟨⟨(G.ne_of_adj hadj).symm, hxS⟩, G.adj_symm hadj⟩
 
 open Classical in
-/-- Removing a vertex deletes twice its internal degree from the ordered-pair count. -/
+/-- Removing a vertex deletes twice its internal degree from the ordered-pair count.
+@isnad1 id=eq.1h4v.s6.7fe1480142cf from=translated src=- shape=5195e60d vocab=92c85b82
+-/
 theorem internalPairCount_erase {n : ℕ} (G : SimpleGraph (Fin n))
     (S : Finset (Fin n)) {v : Fin n} (hv : v ∈ S) :
     internalPairCount G S = internalPairCount G (S.erase v) +
@@ -160,7 +169,9 @@ theorem internalPairCount_erase {n : ℕ} (G : SimpleGraph (Fin n))
 
 open Classical in
 /-- The internal degree of one vertex accounts for twice as many ordered
-internal incidences: once at each endpoint of every incident edge. -/
+internal incidences: once at each endpoint of every incident edge.
+@isnad1 id=le.1h4v.s6.845c826294c9 from=translated src=- shape=04bfebaa vocab=23672e28
+-/
 theorem twice_internal_degree_le_internalPairCount {n : ℕ}
     (G : SimpleGraph (Fin n)) (S : Finset (Fin n)) {v : Fin n} (hv : v ∈ S) :
     2 * (G.neighborFinset v ∩ S).card ≤ internalPairCount G S := by
@@ -169,7 +180,9 @@ theorem twice_internal_degree_le_internalPairCount {n : ℕ}
 
 open Classical in
 /-- If an induced subgraph has exactly one edge, any two of its non-isolated
-vertices are the endpoints of that edge. -/
+vertices are the endpoints of that edge.
+@isnad1 id=adj.6h5v.s7.658f441bba4f from=translated src=- shape=5c48c63b vocab=b52445d9
+-/
 theorem adj_of_internalPairCount_eq_two {n : ℕ}
     (G : SimpleGraph (Fin n)) (S : Finset (Fin n)) {u v : Fin n}
     (hu : u ∈ S) (hv : v ∈ S) (huv : u ≠ v)
@@ -209,7 +222,9 @@ theorem adj_of_internalPairCount_eq_two {n : ℕ}
 open Classical in
 /-- If every induced edge is incident with `u`, then every other vertex has
 internal degree at most one. The pair-count equality expresses precisely that
-the edges incident with `u` exhaust the induced subgraph. -/
+the edges incident with `u` exhaust the induced subgraph.
+@isnad1 id=le.4h5v.s7.73c05eb16e1d from=translated src=- shape=46c081fe vocab=23672e28
+-/
 theorem internal_degree_le_one_of_pairCount_eq_twice_at {n : ℕ}
     (G : SimpleGraph (Fin n)) (S : Finset (Fin n)) {u v : Fin n}
     (hu : u ∈ S) (hv : v ∈ S) (huv : u ≠ v)
@@ -270,7 +285,9 @@ private theorem internalPairCount_le_twice_excess_of_peelable {n : ℕ}
 
 open Classical in
 /-- If the internal ordered-pair count is larger than twice the total degree excess,
-some nonempty subset has external degree at most two at every vertex. -/
+some nonempty subset has external degree at most two at every vertex.
+@isnad1 id=ex.2h3v.s8.01b91073f05f from=translated src=- shape=95506717 vocab=0aff03c3
+-/
 theorem exists_sparse_core_of_twice_excess_lt_pairs {n : ℕ}
     (G : SimpleGraph (Fin n)) (h3 : ∀ v : Fin n, 3 ≤ G.degree v)
     (S : Finset (Fin n))

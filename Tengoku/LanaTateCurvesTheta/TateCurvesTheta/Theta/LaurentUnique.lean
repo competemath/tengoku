@@ -90,7 +90,9 @@ variable [CompleteSpace K] [IsUltrametricDist K]
 /-- Under `LaurentStrictDom`, a nonzero convergent Laurent series does **not** vanish identically
 on `Kˣ`: at the strictly-dominating radius the dominant-term principle
 `IsUltrametricDist.norm_tsum_eq_of_dominant` pins the sum's norm to that of the (nonzero)
-dominant term. -/
+dominant term.
+@isnad1 id=ex.3h2v.s8.1b51acdc3fd2 from=translated src=- shape=ed5f19f8 vocab=a0f5a7dd
+-/
 theorem tsum_ne_zero_of_strictDom (hdom : LaurentStrictDom K) (c : ℤ → K)
     (hsum : ∀ u : Kˣ, Summable fun n : ℤ => c n * (u : K) ^ n) (hc : ∃ m : ℤ, c m ≠ 0) :
     ∃ u : Kˣ, (∑' n : ℤ, c n * (u : K) ^ n) ≠ 0 := by
@@ -107,7 +109,9 @@ theorem tsum_ne_zero_of_strictDom (hdom : LaurentStrictDom K) (c : ℤ → K)
 /-- **Reduction of `LaurentCoeffUnique` to `LaurentStrictDom`.** By linearity (apply to the
 difference `c := a - b`) coefficient uniqueness is equivalent to: a summable Laurent family that
 vanishes identically on `Kˣ` is the zero family. `tsum_ne_zero_of_strictDom` supplies exactly the
-contrapositive, so the strict-dominant-radius principle implies coefficient uniqueness. -/
+contrapositive, so the strict-dominant-radius principle implies coefficient uniqueness.
+@isnad1 id=laurentc.1h1v.s5.430f541a5ca6 from=translated src=- shape=7ddc04c7 vocab=69b33843
+-/
 theorem laurentCoeffUnique_of_strictDom (hdom : LaurentStrictDom K) : LaurentCoeffUnique K := by
   intro a b hsa hsb heq
   by_contra hab
@@ -135,7 +139,9 @@ variable (t : TateParameter K)
 /-- **The `q`-difference engine under the sharpened seam.** The #119 engine
 `const_of_qinvariant_laurent`, with its `LaurentCoeffUnique` hypothesis replaced by the strictly
 weaker, purely existential `LaurentStrictDom`: a `q`-invariant convergent Laurent series equals
-its constant term `a₀` at every `u : Kˣ`. -/
+its constant term `a₀` at every `u : Kˣ`.
+@isnad1 id=eq.3h4v.s8.55ca7b496e36 from=translated src=- shape=02a8f04f vocab=586725d6
+-/
 theorem const_of_qinvariant_laurent_of_strictDom (hdom : LaurentStrictDom K) (a : ℤ → K)
     (hsum : ∀ u : Kˣ, Summable fun n : ℤ => a n * (u : K) ^ n)
     (hqinv : ∀ u : Kˣ,

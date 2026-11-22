@@ -36,7 +36,9 @@ abbrev _root_.Tengoku.LanaOka.linOfFun {R : Type*} [CommRing R]
 
 Stated over an arbitrary commutative ring and with no consumer in this repository: it came here
 with `linOfFun`, whose uses are in the statement of Oka's **bounded degree** lemma
-(`Oka/OkaLemma.lean`), plus one inside a proof in `Oka/Statement.lean`. -/
+(`Oka/OkaLemma.lean`), plus one inside a proof in `Oka/Statement.lean`.
+@isnad1 id=eq.0h4v.s7.aef05d190ac3 from=translated src=- shape=6b51fbbd vocab=04bdc93d
+-/
 lemma _root_.Tengoku.LanaOka.linOfFun_apply {A : Type*} [CommRing A] {n : ℕ} (f : Fin n → A) (a : Fin n → A) :
     linOfFun f a = ∑ i, a i * f i := by
   simp [linOfFun, Module.Basis.constr_apply_fintype, mul_comm]
@@ -125,7 +127,9 @@ instance : Algebra ℂ (OkaRing U) :=
   inferInstanceAs <| Algebra ℂ (okaSubring U)
 
 omit [DecidableEq ι] in
-/-- The restriction of a holomorphic function along an inclusion of opens is holomorphic. -/
+/-- The restriction of a holomorphic function along an inclusion of opens is holomorphic.
+@isnad1 id=okaanaly.2h4v.s8.31cc7ad9f931 from=translated src=- shape=bcd22967 vocab=377a7034
+-/
 lemma Tengoku.LanaOka.OkaAnalytic.comp_inclusion {U V : Opens (ι → ℂ)} (h : U ≤ V) {f : V → ℂ}
     (hf : OkaAnalytic f) :
     OkaAnalytic (f ∘ U.inclusion h) := by
@@ -167,12 +171,17 @@ def TopologicalSpace.Opens.extend' (U : Opens (Fin n → ℂ)) :
   Homeomorph.opensCongr homeo (Opens.prod U ⊤)
 
 /-- A point of `ℂ^{n+1}` lies in the cylinder over `U` if and only if its first `n` coordinates
-give a point of `U`. -/
+give a point of `U`.
+@isnad1 id=iff.0h3v.s8.5d96040611b2 from=translated src=- shape=562528e5 vocab=e272f6e8
+-/
 @[simp]
 lemma TopologicalSpace.Opens.mem_extend' {U : Opens (Fin n → ℂ)} {x : Fin (n + 1) → ℂ} :
     x ∈ U.extend' ↔ Fin.init x ∈ U :=
   ⟨fun h ↦ h.1, fun h ↦ ⟨h, trivial⟩⟩
 
+/--
+@isnad1 id=le.1h3v.s8.791eb0c8fd7c from=translated src=- shape=a4fff169 vocab=a5d50566
+-/
 lemma TopologicalSpace.Opens.extend'_mono {U V : Opens (Fin n → ℂ)} (h : U ≤ V) :
     U.extend' ≤ V.extend' := by
   intro x hx
@@ -181,6 +190,9 @@ lemma TopologicalSpace.Opens.extend'_mono {U V : Opens (Fin n → ℂ)} (h : U �
 
 -- Not `@[simp]`: `mem_extend'` and `Fin.init_zero` are both `@[simp]` and prove this between
 -- them, so the attribute here would only be a duplicate.
+/--
+@isnad1 id=iff.0h2v.s8.bd97e7c705c8 from=translated src=- shape=b867e644 vocab=01545099
+-/
 lemma TopologicalSpace.Opens.zero_mem_extend' {U : Opens (Fin n → ℂ)} :
     (0 : Fin (n + 1) → ℂ) ∈ U.extend' ↔ (0 : Fin n → ℂ) ∈ U := by
   rw [mem_extend']

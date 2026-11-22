@@ -74,7 +74,9 @@ variable (t : TateParameter K)
 
 omit [CompleteSpace K] in
 /-- The Eisenstein series `sₖ(q)` has norm at most `1`: each summand has norm
-`‖(m : K)‖ᵏ·‖q‖ᵐ ≤ 1` and the ultrametric `tsum` bound applies. -/
+`‖(m : K)‖ᵏ·‖q‖ᵐ ≤ 1` and the ultrametric `tsum` bound applies.
+@isnad1 id=le.0h3v.s5.57e4e66b006f from=translated src=- shape=2f9b2921 vocab=546c5f76
+-/
 lemma norm_eisenstein_le_one (k : ℕ) : ‖t.eisenstein k‖ ≤ 1 := by
   rw [eisenstein]
   refine IsUltrametricDist.norm_tsum_le_of_forall_le_of_nonneg zero_le_one fun n => ?_
@@ -89,7 +91,9 @@ lemma norm_eisenstein_le_one (k : ℕ) : ‖t.eisenstein k‖ ≤ 1 := by
 omit [CompleteSpace K] in
 /-- **Uniform geometric bound on the `X`-coefficients**: `‖XLaurentCoeff m‖ ≤ ‖q‖^{m⁺}` (with
 `m⁺ = max m 0`); in particular all coefficients have norm at most `1`, and the positive-degree
-coefficients decay geometrically. -/
+coefficients decay geometrically.
+@isnad1 id=le.0h3v.s6.42c9bf32510b from=translated src=- shape=edaaa207 vocab=6283f92e
+-/
 lemma norm_XLaurentCoeff_le (m : ℤ) : ‖t.XLaurentCoeff m‖ ≤ ‖(t.q : K)‖ ^ m.toNat := by
   rcases lt_trichotomy 0 m with hm | hm | hm
   · rw [t.XLaurentCoeff_of_pos hm, norm_div, norm_mul, norm_pow]
@@ -111,12 +115,16 @@ lemma norm_XLaurentCoeff_le (m : ℤ) : ‖t.XLaurentCoeff m‖ ≤ ‖(t.q : K)
     exact IsUltrametricDist.norm_natCast_le_one K _
 
 omit [CompleteSpace K] in
-/-- All `X`-coefficients have norm at most `1`. -/
+/-- All `X`-coefficients have norm at most `1`.
+@isnad1 id=le.0h3v.s5.b9ddff704881 from=translated src=- shape=2f9b2921 vocab=cbd6df16
+-/
 lemma norm_XLaurentCoeff_le_one (m : ℤ) : ‖t.XLaurentCoeff m‖ ≤ 1 :=
   (t.norm_XLaurentCoeff_le m).trans (pow_le_one₀ (norm_nonneg _) t.norm_lt_one.le)
 
 omit [CompleteSpace K] in
-/-- **Uniform geometric bound on the `Y`-coefficients**: `‖YLaurentCoeff m‖ ≤ ‖q‖^{m⁺}`. -/
+/-- **Uniform geometric bound on the `Y`-coefficients**: `‖YLaurentCoeff m‖ ≤ ‖q‖^{m⁺}`.
+@isnad1 id=le.0h3v.s6.a51d7b6ee6b3 from=translated src=- shape=edaaa207 vocab=8f764726
+-/
 lemma norm_YLaurentCoeff_le (m : ℤ) : ‖t.YLaurentCoeff m‖ ≤ ‖(t.q : K)‖ ^ m.toNat := by
   rcases lt_trichotomy 0 m with hm | hm | hm
   · rw [t.YLaurentCoeff_of_pos hm, norm_div, norm_mul, norm_pow]
@@ -135,13 +143,17 @@ lemma norm_YLaurentCoeff_le (m : ℤ) : ‖t.YLaurentCoeff m‖ ≤ ‖(t.q : K)
     exact IsUltrametricDist.norm_natCast_le_one K _
 
 omit [CompleteSpace K] in
-/-- All `Y`-coefficients have norm at most `1`. -/
+/-- All `Y`-coefficients have norm at most `1`.
+@isnad1 id=le.0h3v.s5.671f68b69d98 from=translated src=- shape=2f9b2921 vocab=8cd602bf
+-/
 lemma norm_YLaurentCoeff_le_one (m : ℤ) : ‖t.YLaurentCoeff m‖ ≤ 1 :=
   (t.norm_YLaurentCoeff_le m).trans (pow_le_one₀ (norm_nonneg _) t.norm_lt_one.le)
 
 omit [CompleteSpace K] in
 /-- The inner `X²`-convolution inherits the geometric bound `‖·‖ ≤ ‖q‖^{j⁺}`: each summand is
-bounded by `‖q‖^{(j−k)⁺ + k⁺} ≤ ‖q‖^{j⁺}` and the ultrametric `tsum` bound applies. -/
+bounded by `‖q‖^{(j−k)⁺ + k⁺} ≤ ‖q‖^{j⁺}` and the ultrametric `tsum` bound applies.
+@isnad1 id=le.0h3v.s7.48ff82a7ee44 from=translated src=- shape=d774c9fc vocab=cdf7c3fe
+-/
 lemma norm_tsum_XLaurentCoeff_mul_le (j : ℤ) :
     ‖∑' k : ℤ, t.XLaurentCoeff (j - k) * t.XLaurentCoeff k‖ ≤ ‖(t.q : K)‖ ^ j.toNat := by
   refine IsUltrametricDist.norm_tsum_le_of_forall_le_of_nonneg (by positivity) fun k => ?_
@@ -175,7 +187,9 @@ private lemma summable_qpow_shift (c : ℤ) :
 satisfy the geometric bound `‖A m‖, ‖B m‖ ≤ ‖q‖^{m⁺}`, their convolution family
 `m ↦ A (ℓ − m) · B m` is summable: it decays like `‖q‖^m` as `m → ∞` and like `‖q‖^{ℓ−m}` as
 `m → −∞`. This is the coefficient-level input for transporting `defectAnnulusCoeff` along an
-isometric base change. -/
+isometric base change.
+@isnad1 id=summable.2h5v.s7.a034e402a8d1 from=translated src=- shape=fb6c9bb2 vocab=69f73914
+-/
 lemma summable_laurentConvolution_of_norm_le {A B : ℤ → K} (ℓ : ℤ)
     (hA : ∀ m, ‖A m‖ ≤ ‖(t.q : K)‖ ^ m.toNat) (hB : ∀ m, ‖B m‖ ≤ ‖(t.q : K)‖ ^ m.toNat) :
     Summable fun m : ℤ => A (ℓ - m) * B m := by
@@ -218,7 +232,9 @@ private lemma algebraMap_tsum {ι : Type*} {f : ι → K} (hf : Summable f) :
   ((hf.hasSum.map (algebraMap K L)
     (AddMonoidHomClass.isometry_of_norm _ (norm_algebraMap' L)).continuous).tsum_eq).symm
 
-/-- The Eisenstein series `sₖ(q)` commutes with an isometric complete extension. -/
+/-- The Eisenstein series `sₖ(q)` commutes with an isometric complete extension.
+@isnad1 id=eq.0h4v.s7.241dcc069f53 from=translated src=- shape=3ad7a733 vocab=1f03a756
+-/
 lemma algebraMap_eisenstein (k : ℕ) :
     algebraMap K L (t.eisenstein k) = (t.baseChange L).eisenstein k := by
   simp only [eisenstein]
@@ -226,7 +242,9 @@ lemma algebraMap_eisenstein (k : ℕ) :
   refine tsum_congr fun n => ?_
   simp only [map_div₀, map_mul, map_pow, map_natCast, map_sub, map_one, baseChange_q_coe]
 
-/-- The `X`-coordinate Laurent coefficients commute with an isometric complete extension. -/
+/-- The `X`-coordinate Laurent coefficients commute with an isometric complete extension.
+@isnad1 id=eq.0h4v.s7.a33eead28516 from=translated src=- shape=3ad7a733 vocab=58337688
+-/
 lemma algebraMap_XLaurentCoeff (m : ℤ) :
     algebraMap K L (t.XLaurentCoeff m) = (t.baseChange L).XLaurentCoeff m := by
   rcases lt_trichotomy 0 m with hm | hm | hm
@@ -237,7 +255,9 @@ lemma algebraMap_XLaurentCoeff (m : ℤ) :
   · rw [t.XLaurentCoeff_of_neg hm, (t.baseChange L).XLaurentCoeff_of_neg hm, map_div₀,
       map_natCast, map_sub, map_one, map_pow, baseChange_q_coe]
 
-/-- The `Y`-coordinate Laurent coefficients commute with an isometric complete extension. -/
+/-- The `Y`-coordinate Laurent coefficients commute with an isometric complete extension.
+@isnad1 id=eq.0h4v.s7.804e004df76b from=translated src=- shape=3ad7a733 vocab=c3051d5b
+-/
 lemma algebraMap_YLaurentCoeff (m : ℤ) :
     algebraMap K L (t.YLaurentCoeff m) = (t.baseChange L).YLaurentCoeff m := by
   rcases lt_trichotomy 0 m with hm | hm | hm
@@ -248,11 +268,15 @@ lemma algebraMap_YLaurentCoeff (m : ℤ) :
   · rw [t.YLaurentCoeff_of_neg hm, (t.baseChange L).YLaurentCoeff_of_neg hm, map_div₀, map_neg,
       map_natCast, map_sub, map_one, map_pow, baseChange_q_coe]
 
-/-- The Tate coefficient `a₄(q)` commutes with an isometric complete extension. -/
+/-- The Tate coefficient `a₄(q)` commutes with an isometric complete extension.
+@isnad1 id=eq.0h3v.s7.04b501abcfbc from=translated src=- shape=324eea46 vocab=33154500
+-/
 lemma algebraMap_a₄ : algebraMap K L t.a₄ = (t.baseChange L).a₄ := by
   simp only [a₄_def, map_mul, map_neg, map_ofNat, t.algebraMap_eisenstein L]
 
-/-- The Tate coefficient `a₆(q)` commutes with an isometric complete extension. -/
+/-- The Tate coefficient `a₆(q)` commutes with an isometric complete extension.
+@isnad1 id=eq.0h3v.s7.57d446ebad09 from=translated src=- shape=324eea46 vocab=c248143d
+-/
 lemma algebraMap_a₆ : algebraMap K L t.a₆ = (t.baseChange L).a₆ := by
   simp only [a₆_def, map_div₀, map_neg, map_add, map_mul, map_ofNat,
     t.algebraMap_eisenstein L]
@@ -261,7 +285,9 @@ lemma algebraMap_a₆ : algebraMap K L t.a₆ = (t.baseChange L).a₆ := by
 development of the Weierstrass defect commute with an isometric complete extension `L / K`:
 every defining convolution is unconditionally summable over `K` by the geometric coefficient
 bounds, so the isometric algebra map carries it termwise onto the corresponding convolution
-over `L`. -/
+over `L`.
+@isnad1 id=eq.0h4v.s7.817786a597f9 from=translated src=- shape=3ad7a733 vocab=01975613
+-/
 theorem algebraMap_defectAnnulusCoeff (ℓ : ℤ) :
     algebraMap K L (t.defectAnnulusCoeff ℓ) = (t.baseChange L).defectAnnulusCoeff ℓ := by
   have hYY : algebraMap K L (∑' m : ℤ, t.YLaurentCoeff (ℓ - m) * t.YLaurentCoeff m)
@@ -341,7 +367,9 @@ the annulus Laurent development of the Weierstrass defect vanishes. This removes
 annulus-nonemptiness hypothesis of `defectAnnulusCoeff_eq_zero`: if `q` is a square in `K` the
 annulus of `K` is already nonempty, and otherwise the coefficients are transported along the
 quadratic extension `AdjoinRoot (X² − q)`, made a complete ultrametric normed field by the
-spectral norm (Bosch–Güntzer–Remmert), whose annulus contains `(√q)⁻¹`. -/
+spectral norm (Bosch–Güntzer–Remmert), whose annulus contains `(√q)⁻¹`.
+@isnad1 id=eq.1h3v.s6.f79a4ceda01f from=translated src=- shape=1a1c309b vocab=95cb1898
+-/
 theorem defectAnnulusCoeff_eq_zero' (h12 : (12 : K) ≠ 0) (ℓ : ℤ) :
     t.defectAnnulusCoeff ℓ = 0 := by
   by_cases hs : ∃ s : K, s ^ 2 = (t.q : K)

@@ -53,7 +53,9 @@ variable (hmem : ∀ u : Kˣ, (∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) →
     t.tateCurve.toAffine.Equation (t.X u) (t.Y u)) (h12 : TameResidueChar K)
 
 /-- **Surjectivity of the Tate point map**: every point of the Mordell–Weil group of the
-Tate curve is `tatePoint u` for some unit `u`. -/
+Tate curve is `tatePoint u` for some unit `u`.
+@isnad1 id=surjecti.2h2v.s7.e1549a1cbfa7 from=translated src=- shape=ce6d150e vocab=a1848976
+-/
 theorem tatePoint_surjective : Function.Surjective (t.tatePoint hmem h12) := by
   classical
   intro P
@@ -90,7 +92,9 @@ theorem tatePoint_surjective : Function.Surjective (t.tatePoint hmem h12) := by
         (t.norm_y_le_one_of_norm_x_le_one h12 hxy heq.le)
     · exact t.exists_tatePoint_eq_some hmem h12 hns hgt
 
-/-- The descended homomorphism `Kˣ/qᶻ →* E_q(K)` is bijective. -/
+/-- The descended homomorphism `Kˣ/qᶻ →* E_q(K)` is bijective.
+@isnad1 id=bijectiv.2h2v.s8.d50b78ff319e from=translated src=- shape=edcb6d53 vocab=3f83f5b0
+-/
 theorem mapTatePointHom_bijective [DecidableEq K] :
     Function.Bijective (t.mapTatePointHom hmem h12) := by
   refine ⟨t.mapTatePointHom_injective hmem h12, ?_⟩
@@ -109,6 +113,9 @@ noncomputable def tateUniformization [DecidableEq K] :
   MulEquiv.ofBijective (t.mapTatePointHom hmem h12)
     (t.mapTatePointHom_bijective hmem h12)
 
+/--
+@isnad1 id=eq.2h3v.s9.9c18ff0e8331 from=translated src=- shape=cddbcd49 vocab=9ada8b3c
+-/
 @[simp] lemma tateUniformization_apply_mk [DecidableEq K] (u : Kˣ) :
     t.tateUniformization hmem h12 (t.toAnalyticQuotient u)
       = Multiplicative.ofAdd (t.tatePoint hmem h12 u) :=

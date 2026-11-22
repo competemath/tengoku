@@ -45,6 +45,9 @@ noncomputable def u : Node O a := Ideal.Quotient.mk _ (MvPolynomial.X 0)
 /-- The second coordinate `v` of the node `O[u, v] ⧸ (u v - a)`. -/
 noncomputable def v : Node O a := Ideal.Quotient.mk _ (MvPolynomial.X 1)
 
+/--
+@isnad1 id=eq.0h2v.s11.bdb1a858dd00 from=translated src=- shape=5bba5d13 vocab=e9a72b31
+-/
 lemma u_mul_v : u a * v a = algebraMap O (Node O a) a := by
   rw [u, v, ← map_mul, ← Ideal.Quotient.mk_algebraMap, MvPolynomial.algebraMap_eq,
     Ideal.Quotient.eq]
@@ -64,7 +67,9 @@ noncomputable def lift {S : Type*} [CommRing S] [Algebra O S] (x y : S)
     | add _ _ _ _ h₁ h₂ => simp [h₁, h₂]
     | smul r _ _ h₁ => simp [h₁]
 
-/-- Two `O`-algebra maps out of the node agreeing on `u` and `v` are equal. -/
+/-- Two `O`-algebra maps out of the node agreeing on `u` and `v` are equal.
+@isnad1 id=eq.2h5v.s13.4cb2136f109c from=translated src=- shape=2b316d5d vocab=b860e424
+-/
 lemma algHom_ext {S : Type*} [CommRing S] [Algebra O S] {f g : Node O a →ₐ[O] S}
     (hu : f (u a) = g (u a)) (hv : f (v a) = g (v a)) : f = g := by
   refine Ideal.Quotient.algHom_ext _ (MvPolynomial.algHom_ext fun i ↦ ?_)

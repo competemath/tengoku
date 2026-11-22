@@ -94,7 +94,9 @@ namespace TateCurvesTheta
 
 /-- The triangular exponent satisfies `e (n+1) = e n + (n+1)`; equivalently the coefficients of
 `theta`, `q^(e n)`, obey the same `q`-difference recursion as any global Laurent expansion of a
-function with `theta`'s automorphy factor. -/
+function with `theta`'s automorphy factor.
+@isnad1 id=eq.0h1v.s5.51266c86f01a from=translated src=- shape=50954a66 vocab=98fa8af8
+-/
 lemma thetaExp_succ (n : ℤ) : thetaExp (n + 1) = thetaExp n + (n + 1) := by
   have h1 : 2 * thetaExp (n + 1) = 2 * thetaExp n + 2 * (n + 1) := by
     rw [two_mul_thetaExp, two_mul_thetaExp]; ring
@@ -123,7 +125,9 @@ principle `LaurentCoeffUnique K` and a global Laurent expansion of `thetaProd`
 (`ThetaProdLaurentRepr t`), the automorphy relation `thetaProd_q_smul` forces the recursion
 `bₙ₊₁ = qⁿ⁺¹ bₙ` on the coefficients (via coefficient uniqueness), whose unique solution
 `bₙ = b₀ · q^(e n)` matches the coefficients of `theta`. Hence `thetaProd u = b₀ · theta u` for
-every `u : Kˣ`. -/
+every `u : Kˣ`.
+@isnad1 id=ex.2h2v.s6.50dd450da685 from=translated src=- shape=9124c26e vocab=ba4254e6
+-/
 theorem thetaProd_eq_const_mul_theta (huniq : LaurentCoeffUnique K)
     (hrepr : t.ThetaProdLaurentRepr) :
     ∃ b₀ : K, ∀ u : Kˣ, t.thetaProd u = b₀ * t.theta u := by
@@ -216,7 +220,9 @@ omit [IsUltrametricDist K] in
 /-- **The Jacobi triple product identity `theta = thetaProd`, from the clean seam.** Beyond the
 coefficient-uniqueness principle and the global Laurent expansion of `thetaProd`, all that is
 needed is one normalization value: a point `u₀` with `theta u₀ ≠ 0` and `theta u₀ = thetaProd u₀`.
-This pins the constant `b₀` of `thetaProd_eq_const_mul_theta` to `1`. -/
+This pins the constant `b₀` of `thetaProd_eq_const_mul_theta` to `1`.
+@isnad1 id=eq.4h4v.s6.31dbfba603bf from=translated src=- shape=80dd81f2 vocab=85f2c558
+-/
 theorem theta_eq_thetaProd_of_thetaProdLaurent (huniq : LaurentCoeffUnique K)
     (hrepr : t.ThetaProdLaurentRepr) {u₀ : Kˣ} (hu₀ : t.theta u₀ ≠ 0)
     (hnorm : t.theta u₀ = t.thetaProd u₀) (u : Kˣ) :
@@ -237,7 +243,9 @@ omit [IsUltrametricDist K] in
 coefficient-uniqueness principle, the global Laurent expansion of `thetaProd`, and the single
 normalization value, the series `theta` vanishes exactly on the `qᶻ`-orbit of `-1`. This
 discharges the conditionality of `theta_eq_zero_iff_of_eq_thetaProd` (`Theta/Divisor.lean`, #88)
-via the `ThetaProdLaurentRepr` seam. -/
+via the `ThetaProdLaurentRepr` seam.
+@isnad1 id=iff.4h4v.s7.de09a3e04d22 from=translated src=- shape=fec7e853 vocab=abd0b324
+-/
 theorem theta_eq_zero_iff_of_thetaProdLaurent (huniq : LaurentCoeffUnique K)
     (hrepr : t.ThetaProdLaurentRepr) {u₀ : Kˣ} (hu₀ : t.theta u₀ ≠ 0)
     (hnorm : t.theta u₀ = t.thetaProd u₀) (u : Kˣ) :

@@ -58,7 +58,9 @@ the `k`-th projection modulo `I ^ j` gives the `j`-th, for `j ≤ k`.
 
 This is `AdicCompletion.transitionMap_comp_eval_apply` for `AdicCompletion.evalₐ` in place of
 `AdicCompletion.eval`, i.e. with the quotients taken as ideal quotients rather than as
-`R ⧸ (I ^ n • ⊤)`. -/
+`R ⧸ (I ^ n • ⊤)`.
+@isnad1 id=eq.1h5v.s11.b28f3d5ba92d from=translated src=- shape=576c93d7 vocab=a954745f
+-/
 theorem factorPow_evalₐ {j k : ℕ} (hjk : j ≤ k) (x : AdicCompletion I R) :
     Ideal.Quotient.factorPow I hjk (AdicCompletion.evalₐ I k x) = AdicCompletion.evalₐ I j x := by
   obtain ⟨r, rfl⟩ := AdicCompletion.mk_surjective I R x
@@ -77,7 +79,9 @@ variable {A R S : Type*} [CommRing A] [CommRing R] [CommRing S] [Algebra A R] [A
 omit [IsAdicComplete J S] in
 include he in
 /-- The family `e n ∘ evalₐ I n` out of the completion is compatible with the reductions: the
-hypothesis `AdicCompletion.toComplete` needs. -/
+hypothesis `AdicCompletion.toComplete` needs.
+@isnad1 id=eq.2h8v.s12.e3393485841c from=translated src=- shape=e8bd8c08 vocab=efcf3578
+-/
 theorem compat_fwd {m n : ℕ} (h : m ≤ n) :
     (Ideal.Quotient.factorₐ A (Ideal.pow_le_pow_right h)).comp
         ((e n).toAlgHom.comp ((AdicCompletion.evalₐ I n).restrictScalars A)) =
@@ -90,7 +94,9 @@ theorem compat_fwd {m n : ℕ} (h : m ≤ n) :
 omit [IsAdicComplete J S] in
 include he in
 /-- The family `(e n).symm ∘ mk` out of `S` is compatible with the reductions: the hypothesis
-`AdicCompletion.ofComplete` needs. -/
+`AdicCompletion.ofComplete` needs.
+@isnad1 id=eq.2h8v.s12.8986df744caf from=translated src=- shape=6f504b78 vocab=a7fbb144
+-/
 theorem compat_bwd {m n : ℕ} (h : m ≤ n) :
     (Ideal.Quotient.factorₐ A (Ideal.pow_le_pow_right h)).comp
         ((e n).symm.toAlgHom.comp (Ideal.Quotient.mkₐ A (J ^ n))) =
@@ -117,7 +123,9 @@ def ofComplete : S →ₐ[A] AdicCompletion I R :=
     (fun n ↦ (e n).symm.toAlgHom.comp (Ideal.Quotient.mkₐ A (J ^ n)))
     (fun h ↦ compat_bwd I J e he h)
 
-/-- One half of `AdicCompletion.equivOfQuotientEquiv`. -/
+/-- One half of `AdicCompletion.equivOfQuotientEquiv`.
+@isnad1 id=eq.1h6v.s11.20090bb3ba18 from=translated src=- shape=daad83ff vocab=1606bfa8
+-/
 theorem toComplete_comp_ofComplete :
     (toComplete I J e he).comp (ofComplete I J e he) = AlgHom.id A S := by
   refine IsAdicComplete.algHom_ext J fun n ↦ ?_
@@ -132,7 +140,9 @@ theorem toComplete_comp_ofComplete :
     (fun h ↦ compat_bwd I J e he h)]
   simp
 
-/-- The other half of `AdicCompletion.equivOfQuotientEquiv`. -/
+/-- The other half of `AdicCompletion.equivOfQuotientEquiv`.
+@isnad1 id=eq.1h6v.s11.c7d530231bc8 from=translated src=- shape=509dee71 vocab=1606bfa8
+-/
 theorem ofComplete_comp_toComplete :
     (ofComplete I J e he).comp (toComplete I J e he) = AlgHom.id A (AdicCompletion I R) := by
   refine AlgHom.ext fun x ↦ AdicCompletion.ext_evalₐ (I := I) fun n ↦ ?_
@@ -155,7 +165,9 @@ def equivOfQuotientEquiv : AdicCompletion I R ≃ₐ[A] S :=
     (toComplete_comp_ofComplete I J e he) (ofComplete_comp_toComplete I J e he)
 
 /-- The computation rule for `AdicCompletion.equivOfQuotientEquiv`: modulo `J ^ n` it is the
-`n`-th isomorphism applied to the `n`-th projection. -/
+`n`-th isomorphism applied to the `n`-th projection.
+@isnad1 id=eq.1h8v.s12.72a677ab5cd8 from=translated src=- shape=dfebc558 vocab=41ae219f
+-/
 theorem mk_equivOfQuotientEquiv (n : ℕ) (x : AdicCompletion I R) :
     Ideal.Quotient.mk (J ^ n) (equivOfQuotientEquiv I J e he x) =
       e n (AdicCompletion.evalₐ I n x) :=
@@ -166,7 +178,9 @@ theorem mk_equivOfQuotientEquiv (n : ℕ) (x : AdicCompletion I R) :
 omit [IsAdicComplete J S] in
 /-- The compatibility `AdicCompletion.equivOfQuotientEquiv` requires, obtained from the
 compatibility of the *inverse* family — which is the direction a family built out of maps into
-the quotients comes with. -/
+the quotients comes with.
+@isnad1 id=eq.2h8v.s12.0270937e2bb1 from=translated src=- shape=88b9ff35 vocab=a066843e
+-/
 theorem compat_of_symm
     (h : ∀ {m n : ℕ} (hmn : m ≤ n) (x : S ⧸ J ^ n),
       Ideal.Quotient.factorₐ A (Ideal.pow_le_pow_right hmn) ((e n).symm x) =

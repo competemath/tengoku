@@ -193,7 +193,9 @@ trivial group.
 
 A `≃*` cannot be vacuous, but it can be uninteresting: the type of
 `Complex.fundamentalGroupPuncturedEquivInt` gives a reader no way to see that the source is not
-the trivial group, and this is what says it. -/
+the trivial group, and this is what says it.
+@isnad1 id=infinite.0h2v.s7.b230e7f1a3ef from=translated src=- shape=d5c80007 vocab=3e6a6c26
+-/
 theorem infinite_fundamentalGroupPunctured (x : {z : ℂ // z ≠ 0})
     (e : (fun z : ℂ ↦ (⟨_, z.exp_ne_zero⟩ : {z : ℂ // z ≠ 0})) ⁻¹' {x}) :
     Infinite (FundamentalGroup {z : ℂ // z ≠ 0} x) :=

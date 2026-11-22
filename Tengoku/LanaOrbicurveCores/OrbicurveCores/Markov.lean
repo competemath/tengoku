@@ -51,7 +51,9 @@ private theorem search : ∀ X : Fin 10, ∀ Y : Fin 39, ∀ Z : Fin 48,
 
 /-- **Takeuchi's Diophantine lemma.** A positive solution of `(X + Y + Z)² = XYZ` with
 `X ≤ Y ≤ Z` which is reduced (`2(X + Y + Z) ≤ XY`, i.e. the Vieta move in the largest coordinate
-does not decrease it) is one of the four triples of `IsTakeuchiTriple`. -/
+does not decrease it) is one of the four triples of `IsTakeuchiTriple`.
+@isnad1 id=istakeuc.5h3v.s7.7c37c2d0d53e from=translated src=- shape=daf79ae6 vocab=0a8d71d5
+-/
 theorem reduced_classification {X Y Z : ℤ} (hX : 0 < X) (hXY : X ≤ Y) (hYZ : Y ≤ Z)
     (hrel : (X + Y + Z) ^ 2 = X * Y * Z) (hred : 2 * (X + Y + Z) ≤ X * Y) :
     IsTakeuchiTriple X Y Z := by
@@ -97,12 +99,16 @@ theorem reduced_classification {X Y Z : ℤ} (hX : 0 < X) (hXY : X ≤ Y) (hYZ :
     subst h1 h2 h3 <;> simp [IsTakeuchiTriple]
 
 /-- The Vieta move `z ↦ xy - z` on squared traces: if `Z' = XY - 2W + Z` with `W = X + Y + Z`,
-then the new triple satisfies the same relation. -/
+then the new triple satisfies the same relation.
+@isnad1 id=eq.1h3v.s7.2883a210d755 from=translated src=- shape=9806f376 vocab=fb2191f5
+-/
 theorem vieta_rel {X Y Z : ℤ} (hrel : (X + Y + Z) ^ 2 = X * Y * Z) :
     (X + Y + (X * Y - 2 * (X + Y + Z) + Z)) ^ 2 = X * Y * (X * Y - 2 * (X + Y + Z) + Z) := by
   linear_combination hrel
 
-/-- A non-reduced coordinate strictly decreases under the Vieta move. -/
+/-- A non-reduced coordinate strictly decreases under the Vieta move.
+@isnad1 id=lt.1h3v.s6.597186cef42c from=translated src=- shape=1daaf425 vocab=d9891064
+-/
 theorem vieta_lt {X Y Z : ℤ} (h : X * Y < 2 * (X + Y + Z)) :
     X * Y - 2 * (X + Y + Z) + Z < Z := by
   lia

@@ -50,7 +50,9 @@ def _root_.Tengoku.LanaOka.HasHartogsSlicesAt (U S : Set E) (a : E) : Prop :=
     (∀ z ∈ W, ∀ t : ℂ, ‖t‖ = r → z + t • v ∉ S) ∧
     interior {z ∈ W | ∃ t : ℂ, ‖t‖ ≤ r ∧ z + t • v ∈ S} = ∅
 
-/-- Slicing by discs is invariant under linear changes of coordinates. -/
+/-- Slicing by discs is invariant under linear changes of coordinates.
+@isnad1 id=hasharto.1h6v.s9.8bcda5936cc1 from=translated src=- shape=78284444 vocab=356c6621
+-/
 theorem Tengoku.LanaOka.HasHartogsSlicesAt.of_continuousLinearEquiv {F : Type*} [NormedAddCommGroup F]
     [NormedSpace ℂ F]
     (e : E ≃L[ℂ] F) (h : HasHartogsSlicesAt (e.symm ⁻¹' U) (e.symm ⁻¹' S) (e a)) :
@@ -70,7 +72,9 @@ theorem Tengoku.LanaOka.HasHartogsSlicesAt.of_continuousLinearEquiv {F : Type*} 
     exact (e.toHomeomorph.preimage_interior _).symm.trans (by rw [hbad, preimage_empty])
 
 /-- Two functions continuous on an open set `O` which agree on `O \ B` agree on `O`, if `B` has
-empty interior. -/
+empty interior.
+@isnad1 id=eqon.5h6v.s6.8466e72c076b from=translated src=- shape=f876a8f4 vocab=64e6547f
+-/
 lemma Set.EqOn.of_eqOn_diff_of_interior_eq_empty {X Y : Type*} [TopologicalSpace X]
     [TopologicalSpace Y] [T2Space Y] {O B : Set X} {F G : X → Y} (hO : IsOpen O)
     (hB : interior B = ∅) (hF : ContinuousOn F O) (hG : ContinuousOn G O) (h : EqOn F G (O \ B)) :
@@ -84,7 +88,9 @@ variable [FiniteDimensional ℂ E]
 
 /-- **Local Hartogs extension.** Near a point at which `S` is sliced by discs, a holomorphic
 function on `U \ S` extends holomorphically. The extension is the Cauchy integral over the
-boundary circles of the discs. -/
+boundary circles of the discs.
+@isnad1 id=ex.3h5v.s8.369bd6063cf3 from=translated src=- shape=e328102c vocab=673c0e75
+-/
 theorem exists_local (h : HasHartogsSlicesAt U S a) (hUS : IsOpen (U \ S)) {f : E → ℂ}
     (hf : DifferentiableOn ℂ f (U \ S)) :
     ∃ W : Set E, IsOpen W ∧ a ∈ W ∧ W ⊆ U ∧ interior (W ∩ S) = ∅ ∧
@@ -135,7 +141,9 @@ theorem exists_local (h : HasHartogsSlicesAt U S a) (hUS : IsOpen (U \ S)) {f : 
 
 end Tengoku.LanaOka.HasHartogsSlicesAt
 
-/-- If `S` is sliced by discs near every point of `U ∩ S`, then `U ∩ S` has empty interior. -/
+/-- If `S` is sliced by discs near every point of `U ∩ S`, then `U ∩ S` has empty interior.
+@isnad1 id=eq.2h3v.s6.ccb96f4a09a4 from=translated src=- shape=d9831bd5 vocab=c8aa553d
+-/
 theorem _root_.Tengoku.LanaOka.interior_inter_eq_empty_of_hasHartogsSlicesAt [FiniteDimensional ℂ E]
     (hUS : IsOpen (U \ S)) (h : ∀ a ∈ U ∩ S, HasHartogsSlicesAt U S a) :
     interior (U ∩ S) = ∅ := by
@@ -149,7 +157,9 @@ theorem _root_.Tengoku.LanaOka.interior_inter_eq_empty_of_hasHartogsSlicesAt [Fi
   simp [hWS] at this
 
 /-- **Hartogs extension.** If `S` is sliced by discs near every point of `U ∩ S`, then every
-holomorphic function on `U \ S` extends to a holomorphic function on `U`. -/
+holomorphic function on `U \ S` extends to a holomorphic function on `U`.
+@isnad1 id=ex.3h4v.s7.ba3d472a703a from=translated src=- shape=845a5e32 vocab=5ee2ae76
+-/
 theorem _root_.Tengoku.LanaOka.exists_differentiableOn_eqOn_of_hasHartogsSlicesAt [FiniteDimensional ℂ E]
     (hUS : IsOpen (U \ S)) (h : ∀ a ∈ U ∩ S, HasHartogsSlicesAt U S a)
     {f : E → ℂ} (hf : DifferentiableOn ℂ f (U \ S)) :

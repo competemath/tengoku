@@ -61,15 +61,27 @@ def yOf : V.Point → L
   | .zero => 0
   | .some _ y _ => y
 
+/--
+@isnad1 id=eq.1h4v.s5.1525e0875428 from=translated src=- shape=81bddcde vocab=b2014692
+-/
 @[simp] lemma xOf_some {x y : L} (h : V.Nonsingular x y) : xOf (.some x y h) = x := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.b0c2f147de10 from=translated src=- shape=de9bbb93 vocab=66b184db
+-/
 @[simp] lemma yOf_some {x y : L} (h : V.Nonsingular x y) : yOf (.some x y h) = y := rfl
 
+/--
+@isnad1 id=nonsingu.1h3v.s5.c03ce9692afe from=translated src=- shape=b356ad54 vocab=3d96a57a
+-/
 lemma nonsingular_xOf_yOf {P : V.Point} (hP : P ≠ 0) : V.Nonsingular (xOf P) (yOf P) := by
   cases P with
   | zero => exact absurd rfl hP
   | some x y h => exact h
 
+/--
+@isnad1 id=equation.1h3v.s5.99694b01ec3d from=translated src=- shape=b356ad54 vocab=4fffc236
+-/
 lemma equation_xOf_yOf {P : V.Point} (hP : P ≠ 0) : V.Equation (xOf P) (yOf P) :=
   (nonsingular_xOf_yOf hP).1
 
@@ -78,6 +90,9 @@ lemma eq_some_xOf_yOf {P : V.Point} (hP : P ≠ 0) : P = .some _ _ (nonsingular_
   | zero => exact absurd rfl hP
   | some x y h => rfl
 
+/--
+@isnad1 id=eq.4h4v.s6.ece0786617b9 from=translated src=- shape=8a86a151 vocab=ec587615
+-/
 lemma Point.ext_xOf_yOf {P Q : V.Point} (hP : P ≠ 0) (hQ : Q ≠ 0) (hx : xOf P = xOf Q)
     (hy : yOf P = yOf Q) : P = Q := by
   rw [eq_some_xOf_yOf hP, eq_some_xOf_yOf hQ]
@@ -87,16 +102,25 @@ variable {K : Type*} [Field K] [DecidableEq L] [DecidableEq K] [Algebra k L] [Al
   (φ : L →ₐ[k] K)
   {V : WeierstrassCurve k}
 
+/--
+@isnad1 id=eq.0h6v.s8.078f789b324c from=translated src=- shape=5ce53778 vocab=d3b75ae1
+-/
 lemma xOf_map (P : (V.toAffine⁄L).Point) : xOf (Point.map φ P) = φ (xOf P) := by
   cases P with
   | zero => exact (map_zero φ).symm
   | some x y h => rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.ae40c7c81fe4 from=translated src=- shape=5ce53778 vocab=9cfb9144
+-/
 lemma yOf_map (P : (V.toAffine⁄L).Point) : yOf (Point.map φ P) = φ (yOf P) := by
   cases P with
   | zero => exact (map_zero φ).symm
   | some x y h => rfl
 
+/--
+@isnad1 id=iff.0h6v.s9.f0c8d08cb688 from=translated src=- shape=1fa2e19f vocab=a41500be
+-/
 lemma map_eq_zero_iff {P : (V.toAffine⁄L).Point} : Point.map φ P = 0 ↔ P = 0 := by
   rw [← (Point.map φ).map_zero]
   exact (Point.map_injective φ).eq_iff
@@ -115,15 +139,27 @@ def bc : W.toAffine.Point →+ (W.toAffine⁄L).Point :=
 
 variable {W L}
 
+/--
+@isnad1 id=eq.0h4v.s8.be0d485c191a from=translated src=- shape=c5d1eba8 vocab=2b00e05a
+-/
 @[simp] lemma xOf_bc (P : W.toAffine.Point) : xOf (bc W L P) = algebraMap k L (xOf P) :=
   xOf_map (V := W) (Algebra.ofId k L) P
 
+/--
+@isnad1 id=eq.0h4v.s8.47a0163261c3 from=translated src=- shape=c5d1eba8 vocab=72d328f8
+-/
 @[simp] lemma yOf_bc (P : W.toAffine.Point) : yOf (bc W L P) = algebraMap k L (yOf P) :=
   yOf_map (V := W) (Algebra.ofId k L) P
 
+/--
+@isnad1 id=iff.0h4v.s8.cff78a483d70 from=translated src=- shape=32565011 vocab=34d1b748
+-/
 @[simp] lemma bc_eq_zero_iff {P : W.toAffine.Point} : bc W L P = 0 ↔ P = 0 :=
   map_eq_zero_iff (V := W) (Algebra.ofId k L)
 
+/--
+@isnad1 id=eq.0h6v.s9.cfec4918f984 from=translated src=- shape=5820e189 vocab=e92ad650
+-/
 lemma map_bc {K : Type*} [Field K] [DecidableEq K] [Algebra k K] (φ : L →ₐ[k] K)
     (P : W.toAffine.Point) :
     Point.map φ (bc W L P) = bc W K P := by
@@ -132,10 +168,16 @@ lemma map_bc {K : Type*} [Field K] [DecidableEq K] [Algebra k K] (φ : L →ₐ[
   exact this
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=eq.0h7v.s10.69438a21fa75 from=translated src=- shape=48437fd3 vocab=94ab56a2
+-/
 lemma map_units_smul {K : Type*} [Field K] [DecidableEq K] [Algebra k K] (φ : L →ₐ[k] K) (ε : ℤˣ)
     (P : (W.toAffine⁄L).Point) : Point.map φ (ε • P) = ε • Point.map φ P := by
   rw [Units.smul_def, Units.smul_def, map_zsmul]
 
+/--
+@isnad1 id=eq.0h5v.s9.8484152431a5 from=translated src=- shape=251e7211 vocab=ef0673d2
+-/
 lemma bc_units_smul (ε : ℤˣ) (P : W.toAffine.Point) : bc W L (ε • P) = ε • bc W L P := by
   rw [Units.smul_def, Units.smul_def, map_zsmul]
 
@@ -154,11 +196,17 @@ def xGen : funField W :=
 def yGen : funField W :=
   algebraMap W.toAffine.CoordinateRing _ (AdjoinRoot.mk W.toAffine.polynomial X)
 
+/--
+@isnad1 id=eq.0h3v.s11.24a11a01781f from=translated src=- shape=140bcad5 vocab=902c4c04
+-/
 lemma algebraMap_funField (a : k) : algebraMap k (funField W) a =
     algebraMap W.toAffine.CoordinateRing _ (AdjoinRoot.mk W.toAffine.polynomial (C (C a))) := by
   rw [IsScalarTower.algebraMap_apply k W.toAffine.CoordinateRing]
   rfl
 
+/--
+@isnad1 id=equation.0h2v.s9.bf0c3db35bf2 from=translated src=- shape=fd4d3e3e vocab=7231590e
+-/
 lemma equation_gen : (W.toAffine⁄(funField W)).Equation (xGen W) (yGen W) := by
   have h0 : AdjoinRoot.mk W.toAffine.polynomial (Y ^ 2 + C (C W.a₁ * X + C W.a₃) * Y -
       C (X ^ 3 + C W.a₂ * X ^ 2 + C W.a₄ * X + C W.a₆)) = 0 := AdjoinRoot.mk_self
@@ -171,6 +219,9 @@ lemma equation_gen : (W.toAffine⁄(funField W)).Equation (xGen W) (yGen W) := b
   linear_combination h
 
 variable {W} in
+/--
+@isnad1 id=nonsingu.1h5v.s6.4ac7ff550d4a from=translated src=- shape=6713050f vocab=40ee67ce
+-/
 lemma nonsingular_of_equation [W.IsElliptic] {L : Type*} [Field L] [Algebra k L] {x y : L}
     (h : (W.toAffine⁄L).Equation x y) : (W.toAffine⁄L).Nonsingular x y := by
   haveI : (W.toAffine⁄L).IsElliptic := inferInstanceAs (W.map (algebraMap k L)).IsElliptic
@@ -180,13 +231,25 @@ lemma nonsingular_of_equation [W.IsElliptic] {L : Type*} [Field L] [Algebra k L]
 def genericPoint [W.IsElliptic] : (W.toAffine⁄(funField W)).Point :=
   .some (xGen W) (yGen W) (nonsingular_of_equation (equation_gen W))
 
+/--
+@isnad1 id=ne.0h2v.s11.b75bcb970e65 from=translated src=- shape=4fbed248 vocab=7b7ec310
+-/
 @[simp] lemma genericPoint_ne_zero [W.IsElliptic] : genericPoint W ≠ 0 :=
   Point.some_ne_zero _
 
+/--
+@isnad1 id=eq.0h2v.s8.4f9a11196313 from=translated src=- shape=7be89baa vocab=35875d9e
+-/
 @[simp] lemma xOf_genericPoint [W.IsElliptic] : xOf (genericPoint W) = xGen W := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.6ba02886c4a7 from=translated src=- shape=7be89baa vocab=6af97f11
+-/
 @[simp] lemma yOf_genericPoint [W.IsElliptic] : yOf (genericPoint W) = yGen W := rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.a3c95bdaa710 from=translated src=- shape=87eba4ac vocab=579e36ad
+-/
 lemma aeval_xGen (p : k[X]) : aeval (xGen W) p =
     algebraMap W.toAffine.CoordinateRing (funField W)
       (AdjoinRoot.mk W.toAffine.polynomial (C p)) := by
@@ -195,6 +258,9 @@ lemma aeval_xGen (p : k[X]) : aeval (xGen W) p =
   rw [AdjoinRoot.mk_C, ← AdjoinRoot.algebraMap_eq, aeval_algebraMap_apply, aeval_X_left_apply,
     AdjoinRoot.algebraMap_eq, AdjoinRoot.mk_C]
 
+/--
+@isnad1 id=transcen.0h2v.s8.ddb7592c6c21 from=translated src=- shape=40e80979 vocab=2ceea5cc
+-/
 lemma transcendental_xGen : Transcendental k (xGen W) := by
   rw [transcendental_iff_injective]
   intro p q h
@@ -222,14 +288,23 @@ def evalHom (x y : L) (h : (W.toAffine⁄L).Equation x y) :
 
 variable {W}
 
+/--
+@isnad1 id=eq.1h6v.s9.59d74a101c3c from=translated src=- shape=6a110da4 vocab=7e1a66d6
+-/
 lemma evalHom_of (x y : L) (h : (W.toAffine⁄L).Equation x y) (p : k[X]) :
     evalHom W x y h (AdjoinRoot.of _ p) = aeval x p := by
   simp [evalHom]
 
+/--
+@isnad1 id=eq.1h5v.s10.3aac4563acec from=translated src=- shape=d4854b29 vocab=1c8fafd9
+-/
 lemma evalHom_x (x y : L) (h : (W.toAffine⁄L).Equation x y) :
     evalHom W x y h (AdjoinRoot.mk W.toAffine.polynomial (C X)) = x := by
   rw [AdjoinRoot.mk_C, evalHom_of, aeval_X]
 
+/--
+@isnad1 id=eq.1h5v.s9.c3cb5289e36e from=translated src=- shape=8b7cd1e9 vocab=e8d35872
+-/
 lemma evalHom_y (x y : L) (h : (W.toAffine⁄L).Equation x y) :
     evalHom W x y h (AdjoinRoot.mk W.toAffine.polynomial X) = y := by
   simp [evalHom]
@@ -243,6 +318,9 @@ variable {L : Type*} [Field L] [Algebra k L] {W}
 instance : Module.Finite k[X] W.toAffine.CoordinateRing :=
   Module.Finite.of_basis (CoordinateRing.basis W.toAffine)
 
+/--
+@isnad1 id=injectiv.2h5v.s7.a97ca7198e03 from=translated src=- shape=45af54ea vocab=7bce15d7
+-/
 lemma injective_evalHom (x y : L) (h : (W.toAffine⁄L).Equation x y) (hx : Transcendental k x) :
     Function.Injective (evalHom W x y h) := by
   have hker : RingHom.ker (evalHom W x y h) = ⊥ := by
@@ -259,18 +337,26 @@ def liftFF (x y : L) (h : (W.toAffine⁄L).Equation x y) (hx : Transcendental k 
     funField W →ₐ[k] L :=
   IsFractionRing.liftAlgHom (injective_evalHom x y h hx)
 
+/--
+@isnad1 id=eq.2h5v.s9.a7a73f6bc5c0 from=translated src=- shape=5ab691d6 vocab=711381c7
+-/
 @[simp] lemma liftFF_xGen (x y : L) (h : (W.toAffine⁄L).Equation x y) (hx : Transcendental k x) :
     liftFF x y h hx (xGen W) = x := by
   rw [liftFF, IsFractionRing.liftAlgHom_apply, xGen, IsFractionRing.lift_algebraMap]
   exact evalHom_x x y h
 
+/--
+@isnad1 id=eq.2h5v.s9.47befd513f6c from=translated src=- shape=d29be579 vocab=c1296b61
+-/
 @[simp] lemma liftFF_yGen (x y : L) (h : (W.toAffine⁄L).Equation x y) (hx : Transcendental k x) :
     liftFF x y h hx (yGen W) = y := by
   rw [liftFF, IsFractionRing.liftAlgHom_apply, yGen, IsFractionRing.lift_algebraMap]
   exact evalHom_y x y h
 
 /-- A `k`-algebra map out of `k(W)` is determined by the images of the coordinates of the generic
-point. -/
+point.
+@isnad1 id=eq.2h5v.s12.5571d008131c from=translated src=- shape=6ab27e3c vocab=4bd81525
+-/
 lemma algHom_ext_funField {φ ψ : funField W →ₐ[k] L} (hx : φ (xGen W) = ψ (xGen W))
     (hy : φ (yGen W) = ψ (yGen W)) : φ = ψ := by
   have hc : φ.comp (IsScalarTower.toAlgHom k W.toAffine.CoordinateRing (funField W)) =
@@ -287,19 +373,30 @@ lemma algHom_ext_funField {φ ψ : funField W →ₐ[k] L} (hx : φ (xGen W) = �
 
 variable [DecidableEq L] [W.IsElliptic]
 
+/--
+@isnad1 id=eq.0h4v.s12.9b129668c7c8 from=translated src=- shape=caabf75a vocab=70308c2d
+-/
 lemma xOf_map_genericPoint (φ : funField W →ₐ[k] L) :
     xOf (Point.map φ (genericPoint W)) = φ (xGen W) := xOf_map φ _
 
+/--
+@isnad1 id=eq.0h4v.s12.f55e61c0cc01 from=translated src=- shape=caabf75a vocab=b30e0244
+-/
 lemma yOf_map_genericPoint (φ : funField W →ₐ[k] L) :
     yOf (Point.map φ (genericPoint W)) = φ (yGen W) := yOf_map φ _
 
-/-- A `k`-algebra map out of `k(W)` is determined by the image of the generic point. -/
+/-- A `k`-algebra map out of `k(W)` is determined by the image of the generic point.
+@isnad1 id=eq.1h5v.s12.2afba4782539 from=translated src=- shape=27cacf42 vocab=b0fa3be3
+-/
 lemma algHom_ext_of_map_genericPoint {φ ψ : funField W →ₐ[k] L}
     (h : Point.map φ (genericPoint W) = Point.map ψ (genericPoint W)) : φ = ψ := by
   apply algHom_ext_funField
   · rw [← xOf_map_genericPoint, h, xOf_map_genericPoint]
   · rw [← yOf_map_genericPoint, h, yOf_map_genericPoint]
 
+/--
+@isnad1 id=eq.2h4v.s11.56622346610c from=translated src=- shape=c19ce339 vocab=bd3357a2
+-/
 lemma map_liftFF_genericPoint {P : (W.toAffine⁄L).Point} (hP : P ≠ 0)
     (hx : Transcendental k (xOf P)) :
     Point.map (liftFF (xOf P) (yOf P) (equation_xOf_yOf hP) hx) (genericPoint W) = P := by
@@ -347,11 +444,29 @@ instance : Group (AffAut W) where
     change g.ε⁻¹ • g.m + -(g.ε⁻¹ • g.m) = 0
     rw [add_neg_cancel]
 
+/--
+@isnad1 id=eq.0h4v.s6.3a4a7a87804e from=translated src=- shape=9b5d1540 vocab=e5b96da9
+-/
 @[simp] lemma mul_ε (g h : AffAut W) : (g * h).ε = g.ε * h.ε := rfl
+/--
+@isnad1 id=eq.0h4v.s7.ceeb2e7295b9 from=translated src=- shape=ba01de65 vocab=bcf5585b
+-/
 @[simp] lemma mul_m (g h : AffAut W) : (g * h).m = g.ε • h.m + g.m := rfl
+/--
+@isnad1 id=eq.0h2v.s6.c8da6f55425c from=translated src=- shape=61991260 vocab=4542c603
+-/
 @[simp] lemma one_ε : (1 : AffAut W).ε = 1 := rfl
+/--
+@isnad1 id=eq.0h2v.s6.4559c175adb6 from=translated src=- shape=2b67225d vocab=77e3e516
+-/
 @[simp] lemma one_m : (1 : AffAut W).m = 0 := rfl
+/--
+@isnad1 id=eq.0h3v.s6.5488cfd8afab from=translated src=- shape=d2d54619 vocab=9fba1776
+-/
 @[simp] lemma inv_ε (g : AffAut W) : g⁻¹.ε = g.ε⁻¹ := rfl
+/--
+@isnad1 id=eq.0h3v.s7.5a605e2567ca from=translated src=- shape=056d1d0e vocab=1530a22b
+-/
 @[simp] lemma inv_m (g : AffAut W) : g⁻¹.m = -(g.ε⁻¹ • g.m) := rfl
 
 /-- The action of an affine automorphism on the `L`-points: `P ↦ ε • P + m`. -/
@@ -362,20 +477,35 @@ def act (L : Type*) [Field L] [DecidableEq L] [Algebra k L] (g : AffAut W)
 
 variable (L : Type*) [Field L] [DecidableEq L] [Algebra k L]
 
+/--
+@isnad1 id=eq.0h5v.s9.93358f1f5575 from=translated src=- shape=9c19a01b vocab=dd8e5dc6
+-/
 lemma act_def (g : AffAut W) (P : (W.toAffine⁄L).Point) : g.act L P = g.ε • P + bc W L g.m :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.ba26a164b5f6 from=translated src=- shape=612601e2 vocab=fc9d4a26
+-/
 lemma act_mul (g h : AffAut W) (P : (W.toAffine⁄L).Point) :
     (g * h).act L P = g.act L (h.act L P) := by
   simp only [act_def, mul_ε, mul_m, map_add, bc_units_smul, smul_add, mul_smul, add_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s6.c65f31de1bae from=translated src=- shape=72b67d60 vocab=4c02b971
+-/
 lemma act_one (P : (W.toAffine⁄L).Point) : (1 : AffAut W).act L P = P := by
   simp [act_def]
 
+/--
+@isnad1 id=eq.0h5v.s7.f5e6fb7ef886 from=translated src=- shape=64e8c1c9 vocab=f002b412
+-/
 lemma act_inv_act (g : AffAut W) (P : (W.toAffine⁄L).Point) : g⁻¹.act L (g.act L P) = P := by
   rw [← act_mul, inv_mul_cancel, act_one]
 
 variable {L} in
+/--
+@isnad1 id=eq.0h7v.s9.45c0bc1f6f9b from=translated src=- shape=8d24389e vocab=cf7d35a1
+-/
 lemma map_act {K : Type*} [Field K] [DecidableEq K] [Algebra k K] (φ : L →ₐ[k] K) (g : AffAut W)
     (P : (W.toAffine⁄L).Point) : Point.map φ (g.act L P) = g.act K (Point.map φ P) := by
   rw [act_def, act_def, map_add, map_units_smul, map_bc]
@@ -390,8 +520,14 @@ instance : MulAction (AffAut W) W.toAffine.Point where
     change (g.ε * h.ε) • P + (g.ε • h.m + g.m) = g.ε • (h.ε • P + h.m) + g.m
     rw [smul_add, mul_smul, add_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s8.21e24744650a from=translated src=- shape=2af9aa1d vocab=eebdedbe
+-/
 lemma smul_def (g : AffAut W) (P : W.toAffine.Point) : g • P = g.ε • P + g.m := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.24d93eef41a9 from=translated src=- shape=8dffe0f0 vocab=bedbef0a
+-/
 lemma bc_smul (g : AffAut W) (P : W.toAffine.Point) : bc W L (g • P) = g.act L (bc W L P) := by
   rw [smul_def, act_def, map_add, bc_units_smul]
 
@@ -407,6 +543,9 @@ variable [W.IsElliptic]
 local notation "K₀" => algebraicClosure k (funField W)
 
 omit [DecidableEq k] [W.IsElliptic] in
+/--
+@isnad1 id=mem.1h3v.s16.348e2dbf96ff from=translated src=- shape=4602cccb vocab=7add0191
+-/
 lemma mem_range_of_isAlgebraic {Q : (W.toAffine⁄(funField W)).Point}
     (hQ : Q ≠ 0 → IsAlgebraic k (xOf Q)) : Q ∈ Set.range (Point.map (K₀).val) := by
   by_cases hQ0 : Q = 0
@@ -436,6 +575,9 @@ lemma mem_range_of_isAlgebraic {Q : (W.toAffine⁄(funField W)).Point}
   exact Point.some_ne_zero _
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=not.0h2v.s16.c14accff358b from=translated src=- shape=7739c70a vocab=3ee83451
+-/
 lemma genericPoint_notMem_range : genericPoint W ∉ Set.range (Point.map (K₀).val) := by
   rintro ⟨Q, hQ⟩
   have hx : xGen W = (K₀).val (xOf Q) := by
@@ -445,6 +587,9 @@ lemma genericPoint_notMem_range : genericPoint W ∉ Set.range (Point.map (K₀)
   rw [hx]
   exact mem_algebraicClosure_iff.mp (xOf Q).2
 
+/--
+@isnad1 id=and.0h3v.s11.767b9c6ec3d4 from=translated src=- shape=1f77d936 vocab=5dbb2e8f
+-/
 lemma act_genericPoint_ne_zero_and (g : AffAut W) :
     g.act _ (genericPoint W) ≠ 0 ∧ Transcendental k (xOf (g.act _ (genericPoint W))) := by
   by_contra h
@@ -456,9 +601,15 @@ lemma act_genericPoint_ne_zero_and (g : AffAut W) :
   refine ⟨g⁻¹.act _ Q, ?_⟩
   rw [AffAut.map_act, hQ, AffAut.act_inv_act]
 
+/--
+@isnad1 id=ne.0h3v.s10.bec95fd54a1d from=translated src=- shape=6d8a190f vocab=68a0c220
+-/
 lemma act_genericPoint_ne_zero (g : AffAut W) : g.act _ (genericPoint W) ≠ 0 :=
   (act_genericPoint_ne_zero_and W g).1
 
+/--
+@isnad1 id=transcen.0h3v.s10.f747749b0a22 from=translated src=- shape=5b9104e2 vocab=d79074d7
+-/
 lemma transcendental_xOf_act (g : AffAut W) :
     Transcendental k (xOf (g.act _ (genericPoint W))) :=
   (act_genericPoint_ne_zero_and W g).2
@@ -468,13 +619,22 @@ lemma transcendental_xOf_act (g : AffAut W) :
 def pullback (g : AffAut W) : funField W →ₐ[k] funField W :=
   liftFF _ _ (equation_xOf_yOf (act_genericPoint_ne_zero W g)) (transcendental_xOf_act W g)
 
+/--
+@isnad1 id=eq.0h3v.s12.c79769e0d25a from=translated src=- shape=1c77ce1a vocab=185719cd
+-/
 lemma map_pullback_genericPoint (g : AffAut W) :
     Point.map (pullback W g) (genericPoint W) = g.act _ (genericPoint W) :=
   map_liftFF_genericPoint (act_genericPoint_ne_zero W g) _
 
+/--
+@isnad1 id=eq.0h3v.s11.ea890afb5807 from=translated src=- shape=5cc29f4e vocab=d813e69e
+-/
 lemma pullback_xGen (g : AffAut W) : pullback W g (xGen W) = xOf (g.act _ (genericPoint W)) :=
   liftFF_xGen _ _ _ _
 
+/--
+@isnad1 id=eq.0h3v.s11.f517b68b0bd3 from=translated src=- shape=5cc29f4e vocab=98130160
+-/
 lemma pullback_yGen (g : AffAut W) : pullback W g (yGen W) = yOf (g.act _ (genericPoint W)) :=
   liftFF_yGen _ _ _ _
 
@@ -482,6 +642,9 @@ lemma eq_pullback_of (g : AffAut W) {φ : funField W →ₐ[k] funField W}
     (h : Point.map φ (genericPoint W) = g.act _ (genericPoint W)) : φ = pullback W g :=
   algHom_ext_of_map_genericPoint (by rw [h, map_pullback_genericPoint])
 
+/--
+@isnad1 id=eq.0h4v.s11.13c7a9756d71 from=translated src=- shape=35483417 vocab=071b511f
+-/
 lemma pullback_mul (g h : AffAut W) :
     pullback W (g * h) = (pullback W h).comp (pullback W g) := by
   symm
@@ -489,6 +652,9 @@ lemma pullback_mul (g h : AffAut W) :
   rw [← Point.map_map, map_pullback_genericPoint, AffAut.map_act, map_pullback_genericPoint,
     AffAut.act_mul]
 
+/--
+@isnad1 id=eq.0h2v.s10.73cdddeeb450 from=translated src=- shape=11072b1a vocab=f00d1881
+-/
 lemma pullback_one : pullback W 1 = AlgHom.id k (funField W) := by
   symm
   apply eq_pullback_of
@@ -501,6 +667,9 @@ def pullbackEquiv (g : AffAut W) : funField W ≃ₐ[k] funField W :=
     (by rw [← pullback_mul, inv_mul_cancel, pullback_one])
     (by rw [← pullback_mul, mul_inv_cancel, pullback_one])
 
+/--
+@isnad1 id=eq.0h4v.s11.042796fffa47 from=translated src=- shape=959b6bd1 vocab=0f053ee7
+-/
 @[simp] lemma pullbackEquiv_apply (g : AffAut W) (f : funField W) :
     pullbackEquiv W g f = pullback W g f := rfl
 
@@ -520,6 +689,9 @@ instance : MulSemiringAction (AffAut W) (funField W) where
   smul_one g := map_one (pullback W g⁻¹)
   smul_mul g := map_mul (pullback W g⁻¹)
 
+/--
+@isnad1 id=eq.0h4v.s11.ddf80ab79324 from=translated src=- shape=66697f6c vocab=a73e3100
+-/
 lemma smul_funField_def (g : AffAut W) (f : funField W) : g • f = pullback W g⁻¹ f := rfl
 
 instance : SMulCommClass (AffAut W) k (funField W) :=

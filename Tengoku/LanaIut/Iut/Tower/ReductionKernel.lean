@@ -42,7 +42,9 @@ variable {K : Type*} [Field K] {Γ : Type*} [LinearOrderedCommGroupWithZero Γ]
 
 /-! ### Valuations of polynomial values -/
 
-/-- Natural numbers are `v`-integral. -/
+/-- Natural numbers are `v`-integral.
+@isnad1 id=le.0h4v.s6.8bd9e547798b from=translated src=- shape=a1d0ec8a vocab=8564610b
+-/
 lemma valuation_natCast_le_one (n : ℕ) : v (n : K) ≤ 1 := by
   induction n with
   | zero => rw [Nat.cast_zero, map_zero]; exact zero_le_one
@@ -51,7 +53,9 @@ lemma valuation_natCast_le_one (n : ℕ) : v (n : K) ≤ 1 := by
     exact (Valuation.map_add _ _ _).trans (max_le ih (by rw [map_one]))
 
 /-- `v(f(x)) = v(x)^{deg f}` for `v(x) > 1`, when the coefficients of `f` are integral and its
-leading coefficient is a unit. -/
+leading coefficient is a unit.
+@isnad1 id=eq.3h5v.s8.9a7d96be25a8 from=translated src=- shape=7b339843 vocab=539eac03
+-/
 theorem valuation_eval_eq_pow {f : K[X]} (hf : ∀ i, v (f.coeff i) ≤ 1)
     (hlead : v f.leadingCoeff = 1) {x : K} (hx : 1 < v x) :
     v (f.eval x) = v x ^ f.natDegree := by
@@ -82,7 +86,9 @@ def DivPolyHyp : Prop :=
 variable {W}
 
 omit [DecidableEq K] in
-/-- `Ψ₂Sq(x) = (2y)²` on the curve, for `a₁ = a₃ = 0`. -/
+/-- `Ψ₂Sq(x) = (2y)²` on the curve, for `a₁ = a₃ = 0`.
+@isnad1 id=eq.3h4v.s7.bb55ae75c929 from=translated src=- shape=0126d724 vocab=d339114c
+-/
 lemma Ψ₂Sq_eval_eq_sq (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0) {x y : K} (h : W.Equation x y) :
     W.Ψ₂Sq.eval x = (2 * y) ^ 2 := by
   rw [equation_iff, ha₁, ha₃] at h
@@ -90,7 +96,9 @@ lemma Ψ₂Sq_eval_eq_sq (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0) {x y : K} (h 
   linear_combination 4 * h.symm
 
 omit [DecidableEq K] in
-/-- The normalized EDS at a point is `Ψₙ'(x)·(2y)^{[n even]}`. -/
+/-- The normalized EDS at a point is `Ψₙ'(x)·(2y)^{[n even]}`.
+@isnad1 id=eq.3h5v.s7.f636ed82c78b from=translated src=- shape=dda96b59 vocab=04d8e58a
+-/
 lemma normEDS_eq_eval_preΨ' (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0) {x y : K} (h : W.Equation x y)
     (n : ℕ) :
     normEDS (2 * y) (W.Ψ₃.eval x) (W.preΨ₄.eval x) n =
@@ -101,7 +109,9 @@ lemma normEDS_eq_eval_preΨ' (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0) {x y : K}
   ring_nf
 
 omit [DecidableEq K] in
-/-- The coefficients of `Ψₙ'` are integral when the coefficients of `W` are. -/
+/-- The coefficients of `Ψₙ'` are integral when the coefficients of `W` are.
+@isnad1 id=le.5h6v.s8.31f91cc6a4b1 from=translated src=- shape=cc88ebdd vocab=c50109de
+-/
 lemma valuation_coeff_preΨ'_le_one (ha₁ : v W.a₁ ≤ 1) (ha₂ : v W.a₂ ≤ 1) (ha₃ : v W.a₃ ≤ 1)
     (ha₄ : v W.a₄ ≤ 1) (ha₆ : v W.a₆ ≤ 1) (n i : ℕ) : v ((W.preΨ' n).coeff i) ≤ 1 := by
   let W₀ : WeierstrassCurve v.integer :=
@@ -112,7 +122,9 @@ lemma valuation_coeff_preΨ'_le_one (ha₁ : v W.a₁ ≤ 1) (ha₂ : v W.a₂ �
   exact ((W₀.preΨ' n).coeff i).2
 
 /-- **The kernel of reduction has no prime-to-`p` torsion**: for an affine point `P = (x, y)`
-with `v(x) > 1` and an odd `n` with `v(n) = 1`, `n • P ≠ 0`. -/
+with `v(x) > 1` and an odd `n` with `v(n) = 1`, `n • P ≠ 0`.
+@isnad1 id=ne.10h7v.s9.b40463469b70 from=translated src=- shape=ba24aa68 vocab=e9d8209e
+-/
 theorem nsmul_ne_zero_of_one_lt (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0) (ha₂ : v W.a₂ ≤ 1)
     (ha₄ : v W.a₄ ≤ 1) (ha₆ : v W.a₆ ≤ 1) (hψ : DivPolyHyp W) {n : ℕ} (hodd : Odd n)
     (hn : v (n : K) = 1) {x y : K} (h : W.Nonsingular x y) (hx : 1 < v x) :
@@ -131,7 +143,9 @@ theorem nsmul_ne_zero_of_one_lt (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0) (ha₂
 
 omit [DecidableEq K] in
 /-- The coordinates of a point in the kernel of reduction of the coordinates: `v(y) ≤ 1` when
-`v(x) ≤ 1` (on the curve). -/
+`v(x) ≤ 1` (on the curve).
+@isnad1 id=le.7h6v.s8.72dba5d6d9d3 from=translated src=- shape=0b8700d6 vocab=f183814d
+-/
 lemma valuation_y_le_one (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0) (ha₂ : v W.a₂ ≤ 1)
     (ha₄ : v W.a₄ ≤ 1) (ha₆ : v W.a₆ ≤ 1) {x y : K} (h : W.Equation x y) (hx : v x ≤ 1) :
     v y ≤ 1 := by
@@ -148,7 +162,9 @@ lemma valuation_y_le_one (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0) (ha₂ : v W.
   by_contra hcon
   exact absurd hy2 (not_le.mpr (one_lt_pow₀ (not_le.mp hcon) two_ne_zero))
 
-/-- **Prime-to-`p` torsion points are integral**. -/
+/-- **Prime-to-`p` torsion points are integral**.
+@isnad1 id=and.10h7v.s9.970eee20b13a from=translated src=- shape=7d2f87f5 vocab=c599371f
+-/
 theorem valuation_le_one_of_nsmul_eq_zero (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0) (ha₂ : v W.a₂ ≤ 1)
     (ha₄ : v W.a₄ ≤ 1) (ha₆ : v W.a₆ ≤ 1) (hψ : DivPolyHyp W) {n : ℕ} (hodd : Odd n)
     (hn : v (n : K) = 1) {x y : K} (h : W.Nonsingular x y) (hP : n • Point.some x y h = 0) :
@@ -161,7 +177,9 @@ theorem valuation_le_one_of_nsmul_eq_zero (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ =
 /-! ### Nonsingular reduction -/
 
 omit [DecidableEq K] in
-/-- The Bézout identity `A·f + B·f' = −disc(f)` for the cubic `f = X³ + aX² + bX + c`. -/
+/-- The Bézout identity `A·f + B·f' = −disc(f)` for the cubic `f = X³ + aX² + bX + c`.
+@isnad1 id=eq.0h5v.s10.e0a42ca1bbdc from=translated src=- shape=297ff109 vocab=1953557c
+-/
 lemma cubic_bezout (a b c x : K) :
     ((6 * a ^ 2 - 18 * b) * x + (4 * a ^ 3 - 15 * a * b + 27 * c)) *
         (x ^ 3 + a * x ^ 2 + b * x + c) +
@@ -171,7 +189,9 @@ lemma cubic_bezout (a b c x : K) :
   ring
 
 omit [DecidableEq K] in
-/-- `Δ = 16·disc(f)` for `a₁ = a₃ = 0`. -/
+/-- `Δ = 16·disc(f)` for `a₁ = a₃ = 0`.
+@isnad1 id=eq.2h2v.s9.5485582ac7a0 from=translated src=- shape=1f74b628 vocab=934d6584
+-/
 lemma Δ_eq_of_a₁_a₃ (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0) :
     W.Δ = 16 * (W.a₂ ^ 2 * W.a₄ ^ 2 - 4 * W.a₄ ^ 3 - 4 * W.a₂ ^ 3 * W.a₆ +
       18 * W.a₂ * W.a₄ * W.a₆ - 27 * W.a₆ ^ 2) := by
@@ -180,7 +200,9 @@ lemma Δ_eq_of_a₁_a₃ (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0) :
 
 omit [DecidableEq K] in
 /-- **Nonsingular reduction at a good model**: for a point `(x, y)` with integral coordinates
-on a model with `v(Δ) = 1` and `v(2) = 1`, `v(f'(x)) = 1` or `v(2y) = 1`. -/
+on a model with `v(Δ) = 1` and `v(2) = 1`, `v(f'(x)) = 1` or `v(2y) = 1`.
+@isnad1 id=or.9h6v.s9.1caa47aedd4f from=translated src=- shape=7bfe38de vocab=c2bcf75e
+-/
 theorem nonsingular_reduction_of_Δ (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0) (ha₂ : v W.a₂ ≤ 1)
     (ha₄ : v W.a₄ ≤ 1) (ha₆ : v W.a₆ ≤ 1) (hΔ : v W.Δ = 1) (h2 : v 2 = 1) {x y : K}
     (h : W.Equation x y) (hx : v x ≤ 1) :
@@ -254,12 +276,16 @@ theorem nonsingular_reduction_of_Δ (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0) (h
 /-! ### Congruent points -/
 
 omit [DecidableEq K] in
-/-- `-(x, y) = (x, -y)` for `a₁ = a₃ = 0`. -/
+/-- `-(x, y) = (x, -y)` for `a₁ = a₃ = 0`.
+@isnad1 id=eq.2h4v.s6.9098ca1f2336 from=translated src=- shape=bc844ad5 vocab=0f8c332e
+-/
 lemma negY_eq_neg (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0) (x y : K) : W.negY x y = -y := by
   simp [negY, ha₁, ha₃]
 
 omit [DecidableEq K] in
-/-- The difference of two affine points: the identity `(y₁ − y₂)(y₁ + y₂) = (x₁ − x₂)·g`. -/
+/-- The difference of two affine points: the identity `(y₁ − y₂)(y₁ + y₂) = (x₁ − x₂)·g`.
+@isnad1 id=eq.4h6v.s8.996fd008b574 from=translated src=- shape=5ca84067 vocab=cc539c74
+-/
 lemma sub_mul_add_eq (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0) {x₁ y₁ x₂ y₂ : K}
     (h₁ : W.Equation x₁ y₁) (h₂ : W.Equation x₂ y₂) :
     (y₁ - y₂) * (y₁ + y₂) =
@@ -269,7 +295,9 @@ lemma sub_mul_add_eq (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0) {x₁ y₁ x₂ y
 
 /-- **Congruent points differ by a point of the kernel of reduction**: for two affine points
 `P = (x₁, y₁)`, `Q = (x₂, y₂)` with integral coordinates and `P ≡ Q mod 𝔪`, whose reduction is a
-nonsingular point of the reduced curve, `P − Q = 0` or `v(x(P − Q)) > 1`. -/
+nonsingular point of the reduced curve, `P − Q = 0` or `v(x(P − Q)) > 1`.
+@isnad1 id=or.13h8v.s10.e1ff5007a2f4 from=translated src=- shape=b99cb13d vocab=332fb2b8
+-/
 theorem sub_eq_zero_or_one_lt (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0) (ha₂ : v W.a₂ ≤ 1)
     (h2 : v 2 = 1) {x₁ y₁ x₂ y₂ : K} (h₁ : W.Nonsingular x₁ y₁)
     (h₂ : W.Nonsingular x₂ y₂) (hx₁ : v x₁ ≤ 1) (hy₁ : v y₁ ≤ 1) (hx₂ : v x₂ ≤ 1)

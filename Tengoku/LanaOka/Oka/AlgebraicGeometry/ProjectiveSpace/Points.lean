@@ -39,17 +39,25 @@ noncomputable def evalPoint (z : Fin n → K) : Spec (.of (MvPolynomial (Fin n) 
   show PrimeSpectrum (MvPolynomial (Fin n) R) from
     ⟨RingHom.ker (eval₂Hom φ z), RingHom.ker_isPrime _⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.2adb3a43def4 from=translated src=- shape=368ad005 vocab=e86707df
+-/
 lemma evalPoint_asIdeal (z : Fin n → K) :
     (show PrimeSpectrum (MvPolynomial (Fin n) R) from evalPoint φ z).asIdeal =
       RingHom.ker (eval₂Hom φ z) :=
   rfl
 
+/--
+@isnad1 id=iff.0h6v.s8.3cacc6140999 from=translated src=- shape=5761ac21 vocab=e764122c
+-/
 lemma mem_evalPoint_asIdeal_iff (z : Fin n → K) (p : MvPolynomial (Fin n) R) :
     p ∈ (show PrimeSpectrum (MvPolynomial (Fin n) R) from evalPoint φ z).asIdeal ↔
       eval₂ φ z p = 0 :=
   RingHom.mem_ker
 
-/-- For surjective `φ`, distinct vectors give distinct points of `𝔸ⁿ_R`. -/
+/-- For surjective `φ`, distinct vectors give distinct points of `𝔸ⁿ_R`.
+@isnad1 id=injectiv.1h4v.s6.714190806f2a from=translated src=- shape=ed4eb33c vocab=8203482a
+-/
 lemma evalPoint_injective (hφ : Function.Surjective φ) :
     Function.Injective (evalPoint (n := n) φ) := by
   intro z z' h
@@ -66,26 +74,36 @@ lemma evalPoint_injective (hφ : Function.Surjective φ) :
 def dehomogenizeVec (i : Fin (n + 1)) (v : Fin (n + 1) → K) : Fin n → K :=
   fun m ↦ v (i.succAbove m) / v i
 
+/--
+@isnad1 id=eq.1h5v.s7.1768f0de133e from=translated src=- shape=696ba01d vocab=be065cea
+-/
 lemma dehomogenizeVec_smul (i : Fin (n + 1)) (v : Fin (n + 1) → K) {c : K} (hc : c ≠ 0) :
     dehomogenizeVec i (c • v) = dehomogenizeVec i v := by
   funext m
   simp only [dehomogenizeVec, Pi.smul_apply, smul_eq_mul]
   exact mul_div_mul_left _ _ hc
 
+/--
+@isnad1 id=eq.0h4v.s6.e7c65782375c from=translated src=- shape=1251124c vocab=e6f2d5ce
+-/
 @[simp]
 lemma dehomogenizeVec_insertNth (i : Fin (n + 1)) (z : Fin n → K) :
     dehomogenizeVec i (Fin.insertNth i 1 z) = z := by
   funext m
   simp [dehomogenizeVec]
 
-/-- Evaluating the dehomogenisation of `Xⱼ` at the dehomogenised vector gives `vⱼ / vᵢ`. -/
+/-- Evaluating the dehomogenisation of `Xⱼ` at the dehomogenised vector gives `vⱼ / vᵢ`.
+@isnad1 id=eq.1h7v.s9.f1edad05b3e2 from=translated src=- shape=1624119c vocab=68da1ccb
+-/
 lemma eval₂_dehomogenize_X (i j : Fin (n + 1)) (v : Fin (n + 1) → K) (hi : v i ≠ 0) :
     eval₂ φ (dehomogenizeVec i v) (dehomogenize R i (X j)) = v j / v i := by
   obtain rfl | ⟨m, rfl⟩ := Fin.eq_self_or_eq_succAbove i j
   · simp [div_self hi]
   · simp [dehomogenizeVec]
 
-/-- **The chart `i` sends the point of `v` into `U j` exactly when `vⱼ ≠ 0`.** -/
+/-- **The chart `i` sends the point of `v` into `U j` exactly when `vⱼ ≠ 0`.**
+@isnad1 id=iff.1h7v.s9.b406bd8bc0e7 from=translated src=- shape=749f6a6c vocab=df516ad9
+-/
 lemma chart_base_evalPoint_mem_U_iff (i j : Fin (n + 1)) (v : Fin (n + 1) → K) (hi : v i ≠ 0) :
     (chart (R := R) i).base (evalPoint φ (dehomogenizeVec i v)) ∈ U n R j ↔ v j ≠ 0 := by
   change evalPoint φ (dehomogenizeVec i v) ∈ chart i ⁻¹ᵁ U n R j ↔ _
@@ -109,6 +127,9 @@ noncomputable def awayPoint (v : Fin (n + 1) → K) (x : MvPolynomial (Fin (n + 
     (hx : eval₂ φ v x ≠ 0) : PrimeSpectrum (Away 𝒜 x) :=
   ⟨RingHom.ker (awayEval v x hx), RingHom.ker_isPrime _⟩
 
+/--
+@isnad1 id=eq.4h9v.s12.f823b7ec0f58 from=translated src=- shape=039175f0 vocab=38f0a841
+-/
 lemma awayEval_comp_awayMap (v : Fin (n + 1) → K) {f g x : MvPolynomial (Fin (n + 1)) R}
     {e : ℕ} (hg : g ∈ 𝒜 e) (hx : x = f * g) (hf : eval₂ φ v f ≠ 0)
     (hx' : eval₂ φ v x ≠ 0) :
@@ -128,6 +149,9 @@ lemma awayEval_comp_awayMap (v : Fin (n + 1) → K) {f g x : MvPolynomial (Fin (
     HomogeneousLocalization.algebraMap_apply, val_awayMap]
   exact congrArg (fun F : Localization.Away f →+* K ↦ F a.val) key
 
+/--
+@isnad1 id=eq.1h6v.s10.3a5c447cd271 from=translated src=- shape=27d4519d vocab=ca497047
+-/
 lemma awayEval_comp_toAwayX (v : Fin (n + 1) → K) (i : Fin (n + 1)) (hi : eval₂ φ v (X i) ≠ 0) :
     (awayEval v (X i) hi).comp (toAwayX R i) = eval₂Hom φ (dehomogenizeVec i v) := by
   have hi' : v i ≠ 0 := by simpa using hi
@@ -142,6 +166,9 @@ lemma awayEval_comp_toAwayX (v : Fin (n + 1) → K) (i : Fin (n + 1)) (hi : eval
     rw [Localization.awayLift_mk (v := (v i)⁻¹) (hv := by simp [hi'])]
     simp [dehomogenizeVec, div_eq_mul_inv]
 
+/--
+@isnad1 id=eq.1h6v.s11.a301cd9b237b from=translated src=- shape=856e0be8 vocab=913a1402
+-/
 lemma eval₂Hom_comp_fromAwayX (v : Fin (n + 1) → K) (i : Fin (n + 1))
     (hi : eval₂ φ v (X i) ≠ 0) :
     (eval₂Hom φ (dehomogenizeVec i v)).comp (fromAwayX R i) = awayEval v (X i) hi := by
@@ -149,7 +176,9 @@ lemma eval₂Hom_comp_fromAwayX (v : Fin (n + 1) → K) (i : Fin (n + 1))
   ext a
   simp
 
-/-- The chart `i` at the point of `v` is the image of `awayPoint v (X i)` under `Proj.awayι`. -/
+/-- The chart `i` at the point of `v` is the image of `awayPoint v (X i)` under `Proj.awayι`.
+@isnad1 id=eq.1h6v.s13.6ab1e54073ed from=translated src=- shape=7e9ba295 vocab=49bb981c
+-/
 lemma chart_base_evalPoint (v : Fin (n + 1) → K) (i : Fin (n + 1)) (hi : eval₂ φ v (X i) ≠ 0) :
     (chart (R := R) i).base (evalPoint φ (dehomogenizeVec i v)) =
       (Proj.awayι 𝒜 (X i) (X_mem_homogeneousSubmodule_one i) Nat.one_pos).base

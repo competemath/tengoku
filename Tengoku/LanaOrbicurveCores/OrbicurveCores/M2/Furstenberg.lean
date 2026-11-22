@@ -42,6 +42,9 @@ noncomputable def an (s u : ℝ) : SL(2, ℝ) :=
   ⟨!![Real.exp s, Real.exp s * u; 0, Real.exp (-s)], by
     simp [det_fin_two, ← Real.exp_add]⟩
 
+/--
+@isnad1 id=continuo.0h0v.s6.6f72973d9a84 from=translated src=- shape=22c4b833 vocab=62164d1e
+-/
 lemma continuous_an : Continuous fun q : ℝ × ℝ ↦ an q.1 q.2 := by
   refine continuous_induced_rng.2 ?_
   change Continuous fun q : ℝ × ℝ ↦ !![Real.exp q.1, Real.exp q.1 * q.2; 0, Real.exp (-q.1)]
@@ -63,6 +66,9 @@ noncomputable def ptri (t v : ℝ) (ht : t ≠ 0) : SL(2, ℝ) :=
 noncomputable def unif (a b : ℝ) : Measure ℝ :=
   (ENNReal.ofReal (b - a))⁻¹ • volume.restrict (Icc a b)
 
+/--
+@isnad1 id=isprobab.1h2v.s4.a5ce5f9c98c8 from=translated src=- shape=05b8b121 vocab=ae6f27a2
+-/
 lemma isProbabilityMeasure_unif {a b : ℝ} (hab : a < b) : IsProbabilityMeasure (unif a b) := by
   constructor
   rw [unif, Measure.smul_apply, Measure.restrict_apply MeasurableSet.univ, univ_inter,
@@ -82,16 +88,25 @@ noncomputable def cnt (z : ℍ) : ℝ≥0∞ :=
 noncomputable def wt (γ : Γ) (z : ℍ) : ℝ≥0∞ :=
   F.indicator 1 ((γ : SL(2, ℝ))⁻¹ • z) / cnt Γ F z
 
+/--
+@isnad1 id=le.0h2v.s5.64c09b06cdbf from=translated src=- shape=4dd6ecff vocab=ea7b12cf
+-/
 lemma indicator_le_one (z : ℍ) : F.indicator (1 : ℍ → ℝ≥0∞) z ≤ 1 := by
   unfold Set.indicator; split_ifs <;> simp
 
 variable {Γ F}
 
+/--
+@isnad1 id=ne.1h3v.s8.f46f35462b76 from=translated src=- shape=ec4ddc12 vocab=6bac41bf
+-/
 lemma cnt_ne_zero (hcov : ∀ z : ℍ, ∃ γ ∈ Γ, γ • z ∈ F) (z : ℍ) : cnt Γ F z ≠ 0 := by
   obtain ⟨γ, hγ, h⟩ := hcov z
   refine ne_of_gt (lt_of_lt_of_le ?_ (ENNReal.le_tsum (⟨γ⁻¹, inv_mem hγ⟩ : Γ)))
   simp [h]
 
+/--
+@isnad1 id=ne.1h3v.s8.3951024cb89b from=translated src=- shape=1e5ca6a1 vocab=1232b60c
+-/
 lemma cnt_ne_top (hfin : ∀ z : ℍ, {γ : SL(2, ℝ) | γ ∈ Γ ∧ γ • z ∈ F}.Finite) (z : ℍ) :
     cnt Γ F z ≠ ⊤ := by
   classical
@@ -107,6 +122,9 @@ lemma cnt_ne_top (hfin : ∀ z : ℍ, {γ : SL(2, ℝ) | γ ∈ Γ ∧ γ • z 
   exact ENNReal.sum_ne_top.2 fun γ _ ↦ ne_top_of_le_ne_top ENNReal.one_ne_top
     (indicator_le_one F _)
 
+/--
+@isnad1 id=eq.2h3v.s10.6fedd151fb52 from=translated src=- shape=baaf5632 vocab=63551db5
+-/
 lemma tsum_wt (hcov : ∀ z : ℍ, ∃ γ ∈ Γ, γ • z ∈ F)
     (hfin : ∀ z : ℍ, {γ : SL(2, ℝ) | γ ∈ Γ ∧ γ • z ∈ F}.Finite) (z : ℍ) :
     ∑' γ : Γ, wt Γ F γ z = 1 := by
@@ -122,10 +140,16 @@ noncomputable def phiM (α : Γ →* (Y ≃ₜ Y)) (y₀ : Y) (z : ℍ) : Measur
 
 variable {Γ F}
 
+/--
+@isnad1 id=eq.1h7v.s12.fb8ed74c22dd from=translated src=- shape=027d1d74 vocab=4038ac65
+-/
 lemma phiM_apply (α : Γ →* (Y ≃ₜ Y)) (y₀ : Y) (z : ℍ) {A : Set Y} (hA : MeasurableSet A) :
     phiM Γ F α y₀ z A = ∑' γ : Γ, wt Γ F γ z * Measure.dirac (α γ y₀) A := by
   simp [phiM, Measure.sum_apply _ hA]
 
+/--
+@isnad1 id=isprobab.2h6v.s11.864e89020fcc from=translated src=- shape=28976301 vocab=296cf5e6
+-/
 lemma isProbabilityMeasure_phiM (hcov : ∀ z : ℍ, ∃ γ ∈ Γ, γ • z ∈ F)
     (hfin : ∀ z : ℍ, {γ : SL(2, ℝ) | γ ∈ Γ ∧ γ • z ∈ F}.Finite) (α : Γ →* (Y ≃ₜ Y)) (y₀ : Y)
     (z : ℍ) : IsProbabilityMeasure (phiM Γ F α y₀ z) := by
@@ -135,16 +159,28 @@ lemma isProbabilityMeasure_phiM (hcov : ∀ z : ℍ, ∃ γ ∈ Γ, γ • z ∈
 
 variable [Countable Γ]
 
+/--
+@isnad1 id=measurab.1h2v.s7.cefba4c1ab63 from=translated src=- shape=6f5f01dd vocab=40030a3e
+-/
 lemma measurable_indicator_smul (hF : MeasurableSet F) (g : SL(2, ℝ)) :
     Measurable fun z : ℍ ↦ F.indicator (1 : ℍ → ℝ≥0∞) (g • z) :=
   (measurable_one.indicator hF).comp (Fuchsian.measurable_smul_SL g)
 
+/--
+@isnad1 id=measurab.1h2v.s8.411ca5f932de from=translated src=- shape=79a60264 vocab=3c0645df
+-/
 lemma measurable_cnt (hF : MeasurableSet F) : Measurable (cnt Γ F) :=
   Measurable.tsum fun _ ↦ measurable_indicator_smul hF _
 
+/--
+@isnad1 id=measurab.1h3v.s8.67d985746d4c from=translated src=- shape=f2189ed7 vocab=798040bd
+-/
 lemma measurable_wt (hF : MeasurableSet F) (γ : Γ) : Measurable (wt Γ F γ) :=
   (measurable_indicator_smul hF _).div (measurable_cnt hF)
 
+/--
+@isnad1 id=measurab.1h5v.s10.5ab939757952 from=translated src=- shape=6b34976f vocab=8a269905
+-/
 lemma measurable_phiM (hF : MeasurableSet F) (α : Γ →* (Y ≃ₜ Y)) (y₀ : Y) :
     Measurable (phiM Γ F α y₀) := by
   refine Measure.measurable_of_measurable_coe _ fun A hA ↦ ?_
@@ -180,9 +216,15 @@ instance (n : ℕ) : IsProbabilityMeasure (box n) := by
 /-- The point `g a_s n_u • I` of `ℍ`. -/
 noncomputable def orbitPt (g : SL(2, ℝ)) (q : ℝ × ℝ) : ℍ := (g * an q.1 q.2) • I
 
+/--
+@isnad1 id=continuo.0h0v.s7.cb78e9a3f5d4 from=translated src=- shape=95ab4a31 vocab=d3de7929
+-/
 lemma continuous_orbitPt : Continuous fun p : SL(2, ℝ) × (ℝ × ℝ) ↦ orbitPt p.1 p.2 :=
   (continuous_fst.mul (continuous_an.comp continuous_snd)).smul continuous_const
 
+/--
+@isnad1 id=measurab.0h1v.s5.39788b594356 from=translated src=- shape=ecab9e9f vocab=261ec555
+-/
 lemma measurable_orbitPt (g : SL(2, ℝ)) : Measurable (orbitPt g) :=
   (continuous_orbitPt.comp (Continuous.prodMk_right g)).measurable
 
@@ -240,6 +282,9 @@ variable {Γ : Subgroup SL(2, ℝ)} [Countable Γ] (D : FundSet Γ)
 
 end Limit
 
+/--
+@isnad1 id=measurab.1h3v.s5.2f8abdf56db3 from=translated src=- shape=3a561f7f vocab=006b6ea6
+-/
 lemma measurable_onePoint_elim {Z : Type*} [MeasurableSpace Z] {c : Z} {f : ℝ → Z}
     (hf : Measurable f) : Measurable fun p : OnePoint ℝ ↦ p.elim c f := by
   classical

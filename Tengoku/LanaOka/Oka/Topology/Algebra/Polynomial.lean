@@ -134,7 +134,9 @@ noncomputable def monicRootBound (d : ℕ) (q : K[X]) : ℝ := (∑ i ∈ range 
 
 `Polynomial.IsRoot.norm_lt_cauchyBound` with the supremum bounded by the sum. The leading
 coefficient of a monic polynomial is `1`, so the division in `Polynomial.cauchyBound` disappears
-rather than having to be estimated. -/
+rather than having to be estimated.
+@isnad1 id=le.3h4v.s6.8577d5c68579 from=translated src=- shape=e35a1970 vocab=eb79e308
+-/
 theorem IsRoot.norm_le_monicRootBound {q : K[X]} (hm : q.Monic) (hd : q.natDegree = d) {z : K}
     (hz : q.IsRoot z) : ‖z‖ ≤ monicRootBound d q := by
   have h := hz.norm_lt_cauchyBound hm.ne_zero
@@ -147,7 +149,9 @@ theorem IsRoot.norm_le_monicRootBound {q : K[X]} (hm : q.Monic) (hd : q.natDegre
   push_cast at h3
   exact h3.le
 
-/-- **The bound varies continuously with the family.** -/
+/-- **The bound varies continuously with the family.**
+@isnad1 id=continuo.1h4v.s6.a0b917d6c34f from=translated src=- shape=00f5ef05 vocab=faec1486
+-/
 theorem continuous_monicRootBound (hc : ∀ i, Continuous fun x ↦ (p x).coeff i) :
     Continuous fun x ↦ monicRootBound d (p x) := by
   unfold monicRootBound
@@ -162,7 +166,9 @@ The degree bound is what makes this a *finite* sum: `Polynomial.eval_eq_sum_rang
 member of the family as the same sum over `Finset.range (d + 1)`, whose terms are continuous
 because the coefficients are. Without a uniform bound there is no such sum and the statement is
 false — the coefficient functions of a family of unbounded degree can each be continuous while
-the evaluation is not. -/
+the evaluation is not.
+@isnad1 id=continuo.2h4v.s7.2ad7a80877d9 from=translated src=- shape=f5a7db22 vocab=09b8243d
+-/
 theorem continuous_eval_of_continuous_coeff (hd : ∀ x, (p x).natDegree ≤ d)
     (hc : ∀ i, Continuous fun x ↦ (p x).coeff i) :
     Continuous fun q : X × K ↦ (p q.1).eval q.2 := by
@@ -172,7 +178,9 @@ theorem continuous_eval_of_continuous_coeff (hd : ∀ x, (p x).natDegree ≤ d)
   exact continuous_finsetSum _ fun i _ ↦
     ((hc i).comp continuous_fst).mul (continuous_snd.pow i)
 
-/-- **The zero locus of a continuous family of bounded degree is closed** in `X × K`. -/
+/-- **The zero locus of a continuous family of bounded degree is closed** in `X × K`.
+@isnad1 id=isclosed.2h4v.s7.5a2a6efa2533 from=translated src=- shape=15462a1a vocab=81e00a8f
+-/
 theorem isClosed_setOf_eval_eq_zero (hd : ∀ x, (p x).natDegree ≤ d)
     (hc : ∀ i, Continuous fun x ↦ (p x).coeff i) :
     IsClosed {q : X × K | (p q.1).eval q.2 = 0} :=
@@ -193,7 +201,9 @@ radius `M`, which is compact because `K` is proper. `generalized_tube_lemma` app
 that ball separates `s` from a smaller neighbourhood, and intersecting with `V` gives a
 neighbourhood of `x₀` missing the image. Monicity enters exactly once, in the bound; the degree
 must be constant rather than bounded, since a family whose leading coefficient degenerates has
-roots escaping to infinity. -/
+roots escaping to infinity.
+@isnad1 id=isclosed.5h5v.s7.fdaf55b7326b from=translated src=- shape=b29f37b6 vocab=a10b96c8
+-/
 theorem isClosed_fst_image_of_monic [ProperSpace K] (hm : ∀ x, (p x).Monic)
     (hd : ∀ x, (p x).natDegree = d) (hc : ∀ i, Continuous fun x ↦ (p x).coeff i)
     {s : Set (X × K)} (hs : IsClosed s) (hsub : ∀ q ∈ s, (p q.1).eval q.2 = 0) :
@@ -220,7 +230,9 @@ theorem isClosed_fst_image_of_monic [ProperSpace K] (hm : ∀ x, (p x).Monic)
 
 `Polynomial.isClosed_fst_image_of_monic` read on the subtype: a closed subset of the zero locus is
 the trace of a closed subset of `X × K`, because the zero locus is itself closed
-(`Polynomial.isClosed_setOf_eval_eq_zero`). -/
+(`Polynomial.isClosed_setOf_eval_eq_zero`).
+@isnad1 id=isclosed.3h4v.s8.69c4a3a8ab7c from=translated src=- shape=86200d24 vocab=f0d8aa2e
+-/
 theorem isClosedMap_fst_zeroLocus [ProperSpace K] (hm : ∀ x, (p x).Monic)
     (hd : ∀ x, (p x).natDegree = d) (hc : ∀ i, Continuous fun x ↦ (p x).coeff i) :
     IsClosedMap fun q : {q : X × K // (p q.1).eval q.2 = 0} ↦ (q : X × K).1 := by
@@ -238,7 +250,9 @@ omit [TopologicalSpace X] in
 /-- **The fibres of the projection are finite**, being the root sets of nonzero polynomials.
 
 Monicity is used only through `Polynomial.Monic.ne_zero`; no degree hypothesis and no topology on
-`X` are needed, which is why this half holds for a family that is not continuous at all. -/
+`X` are needed, which is why this half holds for a family that is not continuous at all.
+@isnad1 id=finite.1h4v.s7.2bfb0a2be35d from=translated src=- shape=d6347df2 vocab=7d326451
+-/
 theorem finite_preimage_fst_zeroLocus (hm : ∀ x, (p x).Monic) (x₀ : X) :
     Set.Finite ((fun q : {q : X × K // (p q.1).eval q.2 = 0} ↦ (q : X × K).1) ⁻¹' {x₀}) := by
   refine Set.Finite.of_finite_image
@@ -263,7 +277,9 @@ read on the subtype.
 
 Like that theorem this needs no degree hypothesis and no topology on `X`, monicity entering only
 through `Polynomial.Monic.ne_zero`; the fibre injects into the root set of the single polynomial
-`p x₀`, by `Prod.snd`, which is injective on a fibre because the first coordinate is fixed. -/
+`p x₀`, by `Prod.snd`, which is injective on a fibre because the first coordinate is fixed.
+@isnad1 id=finite.2h5v.s7.62b1f0f9399d from=translated src=- shape=1d8474f9 vocab=559e9444
+-/
 theorem finite_inter_fst_preimage_of_monic (hm : ∀ x, (p x).Monic) (x₀ : X) {s : Set (X × K)}
     (hsub : ∀ q ∈ s, (p q.1).eval q.2 = 0) : (s ∩ Prod.fst ⁻¹' {x₀}).Finite := by
   refine Set.Finite.of_finite_image (f := Prod.snd) ?_ ?_
@@ -281,7 +297,9 @@ over the parameters.**
 The two halves are `Polynomial.isClosedMap_fst_zeroLocus` and
 `Polynomial.finite_preimage_fst_zeroLocus`, assembled by
 `isProperMap_iff_isClosedMap_and_compact_fibers`; a finite set is compact, which is the only step
-that is not one of the two. -/
+that is not one of the two.
+@isnad1 id=isproper.3h4v.s8.da584c64c6a6 from=translated src=- shape=86200d24 vocab=4b546a2d
+-/
 theorem isProperMap_fst_zeroLocus [ProperSpace K] (hm : ∀ x, (p x).Monic)
     (hd : ∀ x, (p x).natDegree = d) (hc : ∀ i, Continuous fun x ↦ (p x).coeff i) :
     IsProperMap fun q : {q : X × K // (p q.1).eval q.2 = 0} ↦ (q : X × K).1 :=

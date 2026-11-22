@@ -76,14 +76,25 @@ namespace IsUniformizer
 
 variable {π : K}
 
+/--
+@isnad1 id=lt.1h2v.s4.c8295c7db4ca from=translated src=- shape=b7fcf130 vocab=96fb2931
+-/
 lemma norm_pos (hπ : IsUniformizer π) : 0 < ‖π‖ := norm_pos_iff.mpr hπ.ne_zero
 
+/--
+@isnad1 id=lt.1h2v.s4.ce014e402b4a from=translated src=- shape=4c379741 vocab=15afdee8
+-/
 lemma log_norm_neg (hπ : IsUniformizer π) : Real.log ‖π‖ < 0 :=
   Real.log_neg hπ.norm_pos hπ.norm_lt_one
 
+/--
+@isnad1 id=ne.1h2v.s4.618080373c4e from=translated src=- shape=4c379741 vocab=a53dc92c
+-/
 lemma log_norm_ne_zero (hπ : IsUniformizer π) : Real.log ‖π‖ ≠ 0 := ne_of_lt hπ.log_norm_neg
 
-/-- The exponent of a norm value with respect to a uniformizer is unique. -/
+/-- The exponent of a norm value with respect to a uniformizer is unique.
+@isnad1 id=injectiv.1h2v.s5.ef8ea8639d8f from=translated src=- shape=1d736b11 vocab=d6d58219
+-/
 lemma zpow_right_injective (hπ : IsUniformizer π) :
     Function.Injective fun n : ℤ => ‖π‖ ^ n := by
   intro m n h
@@ -97,6 +108,9 @@ namespace TateParameter
 
 variable (t : TateParameter K) {π : K}
 
+/--
+@isnad1 id=ex.1h3v.s5.3fbded9dae59 from=translated src=- shape=9f783727 vocab=666b803a
+-/
 lemma exists_norm_q_eq_zpow (hπ : IsUniformizer π) : ∃ n : ℤ, ‖(t.q : K)‖ = ‖π‖ ^ n :=
   hπ.generates t.q
 
@@ -107,15 +121,22 @@ of the `q`-parameter (`ord_eq_orderZ_mul`). -/
 noncomputable def orderZ (hπ : IsUniformizer π) : ℤ :=
   Classical.choose (t.exists_norm_q_eq_zpow hπ)
 
+/--
+@isnad1 id=eq.1h3v.s6.afcaa71b01e2 from=translated src=- shape=622435c4 vocab=6a5bb3d8
+-/
 lemma norm_q_eq_zpow (hπ : IsUniformizer π) : ‖(t.q : K)‖ = ‖π‖ ^ t.orderZ hπ :=
   Classical.choose_spec (t.exists_norm_q_eq_zpow hπ)
 
-/-- Uniqueness of the discrete order: any exponent representing `‖q‖` equals `orderZ`. -/
+/-- Uniqueness of the discrete order: any exponent representing `‖q‖` equals `orderZ`.
+@isnad1 id=eq.2h4v.s6.9bc3e42c0272 from=translated src=- shape=65980a0e vocab=6a5bb3d8
+-/
 lemma orderZ_eq_of_norm (hπ : IsUniformizer π) {n : ℤ} (h : ‖(t.q : K)‖ = ‖π‖ ^ n) :
     t.orderZ hπ = n :=
   hπ.zpow_right_injective ((t.norm_q_eq_zpow hπ).symm.trans h)
 
-/-- The discrete normalized order of a Tate parameter is strictly positive. -/
+/-- The discrete normalized order of a Tate parameter is strictly positive.
+@isnad1 id=lt.1h3v.s4.5c67fc21418c from=translated src=- shape=99c0823d vocab=8ed8cceb
+-/
 theorem orderZ_pos (hπ : IsUniformizer π) : 0 < t.orderZ hπ := by
   have hq : Real.log ‖(t.q : K)‖ < 0 := Real.log_neg t.norm_q_pos t.norm_lt_one
   have heq : Real.log ‖(t.q : K)‖ = (t.orderZ hπ : ℝ) * Real.log ‖π‖ := by
@@ -130,7 +151,9 @@ theorem orderZ_pos (hπ : IsUniformizer π) : 0 < t.orderZ hπ := by
 
 /-- **The IUT normalization**: `ord q = orderZ · ord π`. With the additive order
 normalized so that `ord π = 1`, the order of the `q`-parameter is the positive integer
-`orderZ` — the convention of IUT I, Definition 3.1(c). -/
+`orderZ` — the convention of IUT I, Definition 3.1(c).
+@isnad1 id=eq.1h3v.s5.3bc8f4372bfb from=translated src=- shape=3a7665b8 vocab=74842a41
+-/
 theorem ord_eq_orderZ_mul (hπ : IsUniformizer π) :
     t.ord = (t.orderZ hπ : ℝ) * -Real.log ‖π‖ := by
   rw [ord, t.norm_q_eq_zpow hπ, Real.log_zpow]
@@ -140,12 +163,17 @@ theorem ord_eq_orderZ_mul (hπ : IsUniformizer π) :
 number (the local-height convention of IUT I, Definition 3.1(c), in units `ord π = 1`). -/
 noncomputable def localHeight (hπ : IsUniformizer π) : ℝ := (t.orderZ hπ : ℝ)
 
+/--
+@isnad1 id=lt.1h3v.s4.7ca4e7699399 from=translated src=- shape=99c0823d vocab=ace9f5ac
+-/
 lemma localHeight_pos (hπ : IsUniformizer π) : 0 < t.localHeight hπ := by
   have := t.orderZ_pos hπ
   rw [localHeight]
   exact_mod_cast this
 
-/-- The local height is the real order measured in units of `ord π`. -/
+/-- The local height is the real order measured in units of `ord π`.
+@isnad1 id=eq.1h3v.s5.872ffbf2826a from=translated src=- shape=1c390185 vocab=150a8b5b
+-/
 lemma localHeight_eq_ord_div (hπ : IsUniformizer π) :
     t.localHeight hπ = t.ord / -Real.log ‖π‖ := by
   rw [localHeight, t.ord_eq_orderZ_mul hπ,
@@ -160,20 +188,30 @@ noncomputable def toOrdered (hπ : IsUniformizer π) : OrderedTateParameter K :=
       have := t.orderZ_pos hπ
       omega }
 
+/--
+@isnad1 id=eq.1h3v.s5.8c4106bb7edd from=translated src=- shape=49fba962 vocab=792afb34
+-/
 @[simp] lemma toOrdered_orderNat (hπ : IsUniformizer π) :
     (t.toOrdered hπ).orderNat = (t.orderZ hπ).toNat := rfl
 
+/--
+@isnad1 id=eq.1h3v.s4.30ea3bad1684 from=translated src=- shape=0e6ec2e2 vocab=8010cc81
+-/
 @[simp] lemma toOrdered_toTateParameter (hπ : IsUniformizer π) :
     (t.toOrdered hπ).toTateParameter = t := rfl
 
-/-- The defining property of the canonical integer order, in `ℕ`-power form. -/
+/-- The defining property of the canonical integer order, in `ℕ`-power form.
+@isnad1 id=eq.1h3v.s6.f57889989df0 from=translated src=- shape=af197cfc vocab=c6f0b30b
+-/
 lemma norm_q_eq_pow_orderNat (hπ : IsUniformizer π) :
     ‖(t.q : K)‖ = ‖π‖ ^ (t.toOrdered hπ).orderNat := by
   have hpos := t.orderZ_pos hπ
   rw [toOrdered_orderNat, ← zpow_natCast, Int.toNat_of_nonneg hpos.le]
   exact t.norm_q_eq_zpow hπ
 
-/-- The Θ-data condition for the canonical order: `ℓ` is prime to the order of `q`. -/
+/-- The Θ-data condition for the canonical order: `ℓ` is prime to the order of `q`.
+@isnad1 id=iff.1h4v.s5.32c454694f0e from=translated src=- shape=f04228df vocab=166ad582
+-/
 lemma toOrdered_primeToOrder_iff (hπ : IsUniformizer π) (ℓ : ℕ) :
     (t.toOrdered hπ).PrimeToOrder ℓ ↔ Nat.Coprime ℓ (t.orderZ hπ).toNat :=
   Iff.rfl
@@ -186,7 +224,9 @@ variable (L : Type*) [NormedField L] [NormedAlgebra K L]
 `L` (e.g. an unramified extension): the integer order of the base-changed parameter with
 respect to `algebraMap K L π` is unchanged. In a ramified extension the order instead
 scales by the ramification index; that bookkeeping is deferred to the shared valuation
-infrastructure (see the module docstring). -/
+infrastructure (see the module docstring).
+@isnad1 id=eq.2h4v.s7.4cb41ade1f11 from=translated src=- shape=e6082c97 vocab=d5e98ac7
+-/
 lemma orderZ_baseChange (hπ : IsUniformizer π) (hπL : IsUniformizer (algebraMap K L π)) :
     (t.baseChange L).orderZ hπL = t.orderZ hπ := by
   apply (t.baseChange L).orderZ_eq_of_norm hπL

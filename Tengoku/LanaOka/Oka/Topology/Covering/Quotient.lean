@@ -127,7 +127,9 @@ variable {G : Type*} [Group G] [MulAction G E]
 omit [TopologicalSpace E] [TopologicalSpace X] in
 /-- **A descent of a map with finite fibres to an orbit space has finite fibres.** The fibre of
 `q` over `x` is the image of the fibre of `p` under the quotient map, so no finiteness of the
-group and no topology are used. -/
+group and no topology are used.
+@isnad1 id=finite.2h6v.s6.dacf5b13c68d from=translated src=- shape=ed618233 vocab=25acee9c
+-/
 theorem MulAction.finite_fiber_of_comp_quotientMk
     {q : Quotient (MulAction.orbitRel G E) → X} (hq : ∀ e, q (Quotient.mk _ e) = p e)
     (hfin : ∀ x, (p ⁻¹' {x}).Finite) (x : X) : (q ⁻¹' {x}).Finite := by
@@ -151,7 +153,9 @@ constant, and that intersection is open because there are finitely many of them.
 
 `act` is returned with its two action laws rather than as a `MulAction` instance, so that a
 caller may install whichever setoid or instance it needs; the laws are read off the equivariance
-at `x` itself, which lies in `V`. -/
+at `x` itself, which lies in `V`.
+@isnad1 id=ex.2h6v.s8.61fe3a36cff5 from=translated src=- shape=ba03120a vocab=c8ea5bf9
+-/
 theorem IsEvenlyCovered.exists_smul_parametrisation [Finite G]
     {I : Type*} [TopologicalSpace I] [Finite I] {x : X}
     (hev : IsEvenlyCovered p x I) (hover : ∀ (g : G) (e : E), p (g • e) = p e) :
@@ -259,7 +263,9 @@ homeomorphism onto `V ×` that quotient is the parametrisation followed by the q
 is continuous, bijective and open because `Prod.map id (Quotient.mk _)` is an open quotient map.
 
 **No finiteness is used here, of the group or of the fibre.** Both are spent in
-`IsEvenlyCovered.exists_smul_parametrisation`, which is what produces the hypotheses below. -/
+`IsEvenlyCovered.exists_smul_parametrisation`, which is what produces the hypotheses below.
+@isnad1 id=isevenly.10h10v.s8.ca5c98922a48 from=translated src=- shape=91fd15cb vocab=55cdf813
+-/
 theorem IsEvenlyCovered.of_smul_parametrisation
     {I : Type*} [TopologicalSpace I] [DiscreteTopology I] {x : X} {V : Set X}
     {act : G → I → I} {s : ↥V × I → E} {q : Quotient (MulAction.orbitRel G E) → X}
@@ -352,7 +358,9 @@ The hypothesis `hq` says that `q` is a descent of `p`, and it already forces `p`
 on orbits, so no such hypothesis is asked for separately.
 
 `MulAction.finite_fiber_of_comp_quotientMk` says the fibres of `q` are again finite, so the
-conclusion can be fed back into this statement. -/
+conclusion can be fed back into this statement.
+@isnad1 id=iscoveri.3h5v.s6.55984046a484 from=translated src=- shape=13dfbee3 vocab=11e7d7b0
+-/
 theorem IsCoveringMap.of_comp_quotientMk [Finite G]
     {q : Quotient (MulAction.orbitRel G E) → X} (hq : ∀ e, q (Quotient.mk _ e) = p e)
     (hp : IsCoveringMap p) (hfin : ∀ x, (p ⁻¹' {x}).Finite) : IsCoveringMap q := by

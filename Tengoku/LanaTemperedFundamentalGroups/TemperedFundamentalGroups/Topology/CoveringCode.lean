@@ -61,6 +61,9 @@ variable {ρ : G →* (Z ≃ₜ Z)}
 /-- The projection of a covering code to the base. -/
 def proj (P : CoveringCode ρ) (x : P.carrier) : Z := x.1.1
 
+/--
+@isnad1 id=continuo.0h4v.s6.2733c6137105 from=translated src=- shape=de0007d8 vocab=5205b081
+-/
 lemma continuous_proj (P : CoveringCode ρ) : Continuous P.proj := P.isCoveringMap.continuous
 
 /-- The fibre of a covering code over a point of the base. -/
@@ -109,6 +112,9 @@ homomorphism. -/
 def Hom.cast {P : CoveringCode ρ} {P' : CoveringCode ρ'} {ψ₁ ψ₂ : Z → Z'} {r₁ r₂ : G →* G'}
     (h : Hom P P' ψ₁ r₁) (hψ : ψ₁ = ψ₂) (hr : r₁ = r₂) : Hom P P' ψ₂ r₂ := hψ ▸ hr ▸ h
 
+/--
+@isnad1 id=eq.2h13v.s8.4ce0854c41de from=translated src=- shape=0518a7dd vocab=d80f0d97
+-/
 @[simp] lemma Hom.cast_toFun {P : CoveringCode ρ} {P' : CoveringCode ρ'} {ψ₁ ψ₂ : Z → Z'}
     {r₁ r₂ : G →* G'} (h : Hom P P' ψ₁ r₁) (hψ : ψ₁ = ψ₂) (hr : r₁ = r₂) :
     (h.cast hψ hr).toFun = h.toFun := by
@@ -118,7 +124,9 @@ end Hom
 
 section Trivial
 
-/-- The projection `Z ×ˢ N → Z` (subspace topology, `ℕ` discrete) is a covering map. -/
+/-- The projection `Z ×ˢ N → Z` (subspace topology, `ℕ` discrete) is a covering map.
+@isnad1 id=iscoveri.0h2v.s7.d153c150858b from=translated src=- shape=d5a00e1e vocab=1e2002c6
+-/
 lemma isCoveringMap_fst_prod (N : Set ℕ) :
     IsCoveringMap (X := Z) (fun x : (Set.univ ×ˢ N : Set (Z × ℕ)) => x.1.1) := by
   intro z

@@ -39,7 +39,9 @@ open TensorProduct
 variable (A B : Type*) [CommRing A] [CommRing B] [Algebra A B] (I : Ideal A)
 
 /-- **Flatness is stable under quotienting by an ideal of the base**: if `B` is flat over `A`
-then `B ⧸ I B` is flat over `A ⧸ I`. -/
+then `B ⧸ I B` is flat over `A ⧸ I`.
+@isnad1 id=flat.0h3v.s8.b76752085e97 from=translated src=- shape=6bd179da vocab=3ec24b56
+-/
 theorem Module.Flat.quotIdealMap [Module.Flat A B] :
     Module.Flat (A ⧸ I) (B ⧸ I.map (algebraMap A B)) :=
   haveI : Module.Flat (A ⧸ I) ((A ⧸ I) ⊗[A] B) := Module.Flat.baseChange A (A ⧸ I) B
@@ -49,7 +51,9 @@ theorem Module.Flat.quotIdealMap [Module.Flat A B] :
 /-- **Faithful flatness is stable under quotienting by an ideal of the base.**
 
 The unqualified statement, unlike the one for a general tower: faithful flatness is preserved by
-*arbitrary* base change, so nothing has to be assumed about `I`. -/
+*arbitrary* base change, so nothing has to be assumed about `I`.
+@isnad1 id=faithful.0h3v.s8.903ca812852f from=translated src=- shape=6bd179da vocab=6fa36beb
+-/
 theorem Module.FaithfullyFlat.quotIdealMap [Module.FaithfullyFlat A B] :
     Module.FaithfullyFlat (A ⧸ I) (B ⧸ I.map (algebraMap A B)) :=
   haveI : Module.FaithfullyFlat (A ⧸ I) ((A ⧸ I) ⊗[A] B) := inferInstance

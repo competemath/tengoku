@@ -18,7 +18,9 @@ namespace WeierstrassCurve
 variable {F : Type*} [Field F]
 
 /-- The Weierstrass equation transforms under the documented affine coordinate
-map `(x, y) ↦ (u²x + r, u³y + u²sx + t)`. -/
+map `(x, y) ↦ (u²x + r, u³y + u²sx + t)`.
+@isnad1 id=iff.0h5v.s8.a9efb2d90351 from=translated src=- shape=3d732024 vocab=dd6b77d4
+-/
 theorem variableChange_equation_iff (W : WeierstrassCurve F)
     (C : VariableChange F) (x y : F) :
     (C • W).toAffine.Equation x y ↔
@@ -42,12 +44,18 @@ def inverseX (x : F) : F :=
 def inverseY (x y : F) : F :=
   (C.u⁻¹ : F) ^ 3 * (y - C.s * (x - C.r) - C.t)
 
+/--
+@isnad1 id=eq.0h3v.s6.c931fab15921 from=translated src=- shape=6e591722 vocab=036128ff
+-/
 @[simp] theorem forward_inverseX (x : F) :
     (C.u : F) ^ 2 * C.inverseX x + C.r = x := by
   simp only [inverseX]
   field_simp [Units.ne_zero]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s7.f4f09c92375d from=translated src=- shape=2c8cf345 vocab=6017b044
+-/
 @[simp] theorem forward_inverseY (x y : F) :
     (C.u : F) ^ 3 * C.inverseY x y +
         (C.u : F) ^ 2 * C.s * C.inverseX x + C.t = y := by
@@ -55,12 +63,18 @@ def inverseY (x y : F) : F :=
   field_simp [Units.ne_zero]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.8dbac9d182d1 from=translated src=- shape=e2053b6f vocab=036128ff
+-/
 @[simp] theorem inverseX_forward (x : F) :
     C.inverseX ((C.u : F) ^ 2 * x + C.r) = x := by
   simp only [inverseX]
   field_simp [Units.ne_zero]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s8.76bad9ed5ce5 from=translated src=- shape=1fe1bc1f vocab=6d86de0b
+-/
 @[simp] theorem inverseY_forward (x y : F) :
     C.inverseY ((C.u : F) ^ 2 * x + C.r)
         ((C.u : F) ^ 3 * y + (C.u : F) ^ 2 * C.s * x + C.t) = y := by
@@ -68,7 +82,9 @@ def inverseY (x y : F) : F :=
   field_simp [Units.ne_zero]
   ring
 
-/-- Negation commutes with the affine coordinate transformation. -/
+/-- Negation commutes with the affine coordinate transformation.
+@isnad1 id=eq.0h5v.s8.c5411dc08409 from=translated src=- shape=b9cdc04f vocab=f0eb7a4b
+-/
 theorem negY_forward (W : WeierstrassCurve F) (x y : F) :
     W.toAffine.negY ((C.u : F) ^ 2 * x + C.r)
         ((C.u : F) ^ 3 * y + (C.u : F) ^ 2 * C.s * x + C.t) =
@@ -80,7 +96,9 @@ theorem negY_forward (W : WeierstrassCurve F) (x y : F) :
   ring
 
 /-- The x-coordinate addition formula commutes with an admissible variable
-change, provided the slope is transformed by `ℓ ↦ uℓ + s`. -/
+change, provided the slope is transformed by `ℓ ↦ uℓ + s`.
+@isnad1 id=eq.0h6v.s8.7e073377499a from=translated src=- shape=29af2d05 vocab=27d803b4
+-/
 theorem addX_forward (W : WeierstrassCurve F) (x₁ x₂ ℓ : F) :
     W.toAffine.addX ((C.u : F) ^ 2 * x₁ + C.r)
         ((C.u : F) ^ 2 * x₂ + C.r) ((C.u : F) * ℓ + C.s) =
@@ -91,7 +109,9 @@ theorem addX_forward (W : WeierstrassCurve F) (x₁ x₂ ℓ : F) :
   ring
 
 /-- The y-coordinate addition formula commutes with an admissible variable
-change, provided the slope is transformed by `ℓ ↦ uℓ + s`. -/
+change, provided the slope is transformed by `ℓ ↦ uℓ + s`.
+@isnad1 id=eq.0h7v.s9.80bc51232157 from=translated src=- shape=eef76c5b vocab=c6a4614c
+-/
 theorem addY_forward (W : WeierstrassCurve F) (x₁ x₂ y₁ ℓ : F) :
     W.toAffine.addY ((C.u : F) ^ 2 * x₁ + C.r)
         ((C.u : F) ^ 2 * x₂ + C.r)
@@ -105,7 +125,9 @@ theorem addY_forward (W : WeierstrassCurve F) (x₁ x₂ y₁ ℓ : F) :
   field_simp [Units.ne_zero]
   ring
 
-/-- A nonvertical secant or tangent slope transforms by `ℓ ↦ uℓ + s`. -/
+/-- A nonvertical secant or tangent slope transforms by `ℓ ↦ uℓ + s`.
+@isnad1 id=eq.3h7v.s9.4073c931d0df from=translated src=- shape=e2f8fb29 vocab=d465aa9b
+-/
 theorem slope_forward [DecidableEq F] (W : WeierstrassCurve F)
     (x₁ x₂ y₁ y₂ : F)
     (h₁ : (C • W).toAffine.Equation x₁ y₁)
@@ -161,14 +183,22 @@ def pointMap : (C • W).toAffine.Point → W.toAffine.Point
   | .zero => .zero
   | .some x y h => .mk ((variableChange_equation_iff W C x y).mp h.1)
 
+/--
+@isnad1 id=eq.0h3v.s6.d9dbde1983cf from=translated src=- shape=d65f84fb vocab=bf70f1c1
+-/
 @[simp] theorem pointMap_zero : C.pointMap W .zero = .zero := rfl
 
+/--
+@isnad1 id=eq.1h5v.s8.b8fa6a63b2e8 from=translated src=- shape=cff2fa27 vocab=3e85f906
+-/
 @[simp] theorem pointMap_some (x y : F) (h : (C • W).toAffine.Nonsingular x y) :
     C.pointMap W (.some x y h) =
       .mk ((variableChange_equation_iff W C x y).mp h.1) := rfl
 
 /-- The point map induced by an admissible variable change preserves the
-elliptic-curve group law. -/
+elliptic-curve group law.
+@isnad1 id=eq.0h5v.s8.5a0b58457649 from=translated src=- shape=2d3d257a vocab=3e9eebd0
+-/
 theorem pointMap_add [DecidableEq F] (P Q : (C • W).toAffine.Point) :
     C.pointMap W (P + Q) = C.pointMap W P + C.pointMap W Q := by
   classical
@@ -219,8 +249,14 @@ def inversePointMap : W.toAffine.Point → (C • W).toAffine.Point
   | .some x y h => .mk ((variableChange_equation_iff W C (C.inverseX x) (C.inverseY x y)).mpr <| by
       simpa using h.1)
 
+/--
+@isnad1 id=eq.0h3v.s6.92dd64f59e8f from=translated src=- shape=8338c018 vocab=4f843a36
+-/
 @[simp] theorem inversePointMap_zero : C.inversePointMap W .zero = .zero := rfl
 
+/--
+@isnad1 id=eq.1h5v.s7.86bd7b4300f8 from=translated src=- shape=81742254 vocab=af891ffb
+-/
 @[simp] theorem inversePointMap_some (x y : F) (h : W.toAffine.Nonsingular x y) :
     C.inversePointMap W (.some x y h) =
       .mk ((variableChange_equation_iff W C (C.inverseX x) (C.inverseY x y)).mpr <| by
@@ -250,9 +286,15 @@ def pointEquiv : (C • W).toAffine.Point ≃ W.toAffine.Point where
           Affine.Point.some x y h
       congr <;> simp
 
+/--
+@isnad1 id=eq.0h4v.s8.f27700c6659f from=translated src=- shape=c1aa86c9 vocab=5acaf89d
+-/
 @[simp] theorem pointEquiv_apply (P : (C • W).toAffine.Point) :
     C.pointEquiv W P = C.pointMap W P := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.91187857b4b7 from=translated src=- shape=534a8ba9 vocab=c30816b8
+-/
 @[simp] theorem pointEquiv_symm_apply (P : W.toAffine.Point) :
     (C.pointEquiv W).symm P = C.inversePointMap W P := rfl
 
@@ -263,10 +305,16 @@ def pointAddEquiv [DecidableEq F] :
   toEquiv := C.pointEquiv W
   map_add' := C.pointMap_add W
 
+/--
+@isnad1 id=eq.0h4v.s8.545a0caa17a3 from=translated src=- shape=46d11316 vocab=209e5da7
+-/
 @[simp] theorem pointAddEquiv_apply [DecidableEq F]
     (P : (C • W).toAffine.Point) :
     C.pointAddEquiv W P = C.pointMap W P := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.8d43a5de9a87 from=translated src=- shape=cc272a2a vocab=35f22f09
+-/
 @[simp] theorem pointAddEquiv_symm_apply [DecidableEq F]
     (P : W.toAffine.Point) :
     (C.pointAddEquiv W).symm P = C.inversePointMap W P := rfl

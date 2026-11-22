@@ -37,7 +37,9 @@ namespace AlgebraicGeometry.RingedSpace
 /-- **A section is a unit on every open subset of its basic open.**
 
 `AlgebraicGeometry.RingedSpace.isUnit_res_basicOpen` is the case `V = X.basicOpen f`; this is
-that restricted once more, along `V ≤ X.basicOpen f`. -/
+that restricted once more, along `V ≤ X.basicOpen f`.
+@isnad1 id=isunit.2h4v.s11.b299ff4a3114 from=translated src=- shape=906382e2 vocab=50bf5f27
+-/
 lemma isUnit_res_of_le_basicOpen (X : RingedSpace.{u}) {U V : Opens X}
     (f : X.presheaf.obj (op U)) (hVU : V ≤ U) (h : V ≤ X.basicOpen f) :
     IsUnit ((X.presheaf.map (homOfLE hVU).op).hom f) := by

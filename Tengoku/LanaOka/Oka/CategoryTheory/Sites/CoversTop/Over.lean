@@ -86,7 +86,9 @@ variable {C : Type u'} [Category.{v'} C] {J : GrothendieckTopology C}
 
 /-- A family of objects covering the top induces, for every `W : C`, a family of objects
 of `Over W` covering the top: the family of all objects of `Over W` whose underlying
-object admits a morphism to some member of the family. -/
+object admits a morphism to some member of the family.
+@isnad1 id=coversto.1h5v.s8.e896a32ca375 from=translated src=- shape=e26dabcb vocab=1cf6b25b
+-/
 lemma CoversTop.over' {I : Type*} {X : I → C} (hX : J.CoversTop X) (W : C) :
     (J.over W).CoversTop
       (fun (t : (i : I) × (V : C) × (V ⟶ X i) × (V ⟶ W)) ↦ Over.mk t.2.2.2) := by
@@ -104,7 +106,9 @@ open CategoryTheory
 namespace TopologicalSpace.Opens
 
 /-- A family of open subsets of `X` covering `X` covers the terminal object of the slice site
-over `X`. -/
+over `X`.
+@isnad1 id=coversto.2h4v.s7.011a8b7b4d12 from=translated src=- shape=3ac527e4 vocab=fddfb7ab
+-/
 lemma coversTop_over {T : Type u'} [TopologicalSpace T] (X : Opens T) {A : Type u'}
     (V : A → Opens T) (hle : ∀ a, V a ≤ X) (hcov : ∀ x ∈ X, ∃ a, x ∈ V a) :
     ((Opens.grothendieckTopology T).over X).CoversTop (fun a ↦ Over.mk (homOfLE (hle a))) := by

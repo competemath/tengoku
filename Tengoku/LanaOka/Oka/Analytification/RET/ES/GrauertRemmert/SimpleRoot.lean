@@ -33,16 +33,25 @@ abbrev evalPoly (Q : Polynomial (E → ℂ)) (y : E) : ℂ[X] :=
   Q.map (Pi.evalRingHom (fun _ ↦ ℂ) y)
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
+/--
+@isnad1 id=eq.0h4v.s5.b896662db8e7 from=translated src=- shape=06d9c858 vocab=cd347576
+-/
 lemma coeff_evalPoly (Q : Polynomial (E → ℂ)) (y : E) (k : ℕ) :
     (evalPoly Q y).coeff k = Q.coeff k y := by
   simp [evalPoly, coeff_map]
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
+/--
+@isnad1 id=le.0h3v.s5.943b7eee455e from=translated src=- shape=33d22fe9 vocab=39650020
+-/
 lemma natDegree_evalPoly_le (Q : Polynomial (E → ℂ)) (y : E) :
     (evalPoly Q y).natDegree ≤ Q.natDegree :=
   natDegree_map_le
 
 omit [NormedSpace ℂ E] in
+/--
+@isnad1 id=continuo.1h3v.s7.c86f340c7e34 from=translated src=- shape=e820995e vocab=7e08f64b
+-/
 lemma continuousOn_eval_evalPoly {Q : Polynomial (E → ℂ)} {V : Set E}
     (hc : ∀ k, ContinuousOn (Q.coeff k) V) :
     ContinuousOn (fun q : E × ℂ ↦ (evalPoly Q q.1).eval q.2) (V ×ˢ Set.univ) := by
@@ -55,10 +64,16 @@ lemma continuousOn_eval_evalPoly {Q : Polynomial (E → ℂ)} {V : Set E}
     (continuous_snd.pow i).continuousOn
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
+/--
+@isnad1 id=eq.0h3v.s9.dbc0d5efeff4 from=translated src=- shape=d47dfc50 vocab=c7ff98dd
+-/
 lemma derivative_evalPoly (Q : Polynomial (E → ℂ)) (y : E) :
     (evalPoly Q y).derivative = evalPoly (derivative Q) y :=
   derivative_map _ _
 
+/--
+@isnad1 id=differen.1h4v.s9.84a607faff6e from=translated src=- shape=827c2c89 vocab=b8375ec9
+-/
 lemma differentiableOn_coeff_derivative {Q : Polynomial (E → ℂ)} {V : Set E}
     (hd : ∀ k, DifferentiableOn ℂ (Q.coeff k) V) (k : ℕ) :
     DifferentiableOn ℂ ((derivative Q).coeff k) V := by
@@ -71,7 +86,9 @@ lemma differentiableOn_coeff_derivative {Q : Polynomial (E → ℂ)} {V : Set E}
 /-- **A holomorphic branch of a simple root.** Let `Q` be monic with coefficients holomorphic on
 an open `V`, and let `a` be a simple root of `Q(c)`, `c ∈ V`. Then there are `r, ε > 0` with
 `B(c, r) ⊆ V` and a holomorphic `φ` on `B(c, r)` with `φ(c) = a` such that for `y ∈ B(c, r)` the
-only root of `Q(y)` in `B(a, ε)` is `φ(y)`. -/
+only root of `Q(y)` in `B(a, ε)` is `φ(y)`.
+@isnad1 id=ex.6h5v.s8.3497e3f1ae65 from=translated src=- shape=5d601d56 vocab=4a0f4ab8
+-/
 theorem exists_simpleRoot_branch {Q : Polynomial (E → ℂ)} (hQ : Q.Monic) {V : Set E}
     (hV : IsOpen V) (hd : ∀ k, DifferentiableOn ℂ (Q.coeff k) V) {c : E} (hc : c ∈ V) {a : ℂ}
     (ha : (evalPoly Q c).IsRoot a) (hsimple : (evalPoly Q c).derivative.eval a ≠ 0) :

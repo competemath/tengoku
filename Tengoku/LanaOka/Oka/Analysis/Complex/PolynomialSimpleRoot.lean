@@ -60,7 +60,9 @@ private theorem analyticAt_mvPolynomial_eval {ι : Type*} [Fintype ι]
 
 omit [CompleteSpace E] in
 /-- Evaluation `(z, t) ↦ (p z)(t)` of a family of polynomials of bounded degree with coefficients
-analytic at `z₀` is jointly analytic at `(z₀, t₀)`. -/
+analytic at `z₀` is jointly analytic at `(z₀, t₀)`.
+@isnad1 id=analytic.2h5v.s7.a07177c47f8b from=translated src=- shape=82bcb6a7 vocab=5c13421c
+-/
 theorem analyticAt_eval_of_analyticAt_coeff {p : E → ℂ[X]} {n : ℕ}
     (hn : ∀ z, (p z).natDegree ≤ n) {z₀ : E}
     (ha : ∀ i, AnalyticAt ℂ (fun z ↦ (p z).coeff i) z₀) (t₀ : ℂ) :
@@ -78,7 +80,9 @@ theorem analyticAt_eval_of_analyticAt_coeff {p : E → ℂ[X]} {n : ℕ}
 coefficients are analytic at `z₀`, and let `t₀` be a simple root of `p z₀`. Then there are an
 open neighbourhood `U` of `z₀`, a radius `ε > 0` and a function `ψ`, analytic on `U`, with
 `ψ z₀ = t₀`, such that for `z ∈ U` the value `ψ z` is the unique root of `p z` in the ball
-`B(t₀, ε)`. -/
+`B(t₀, ε)`.
+@isnad1 id=ex.4h5v.s8.e03ed1979ff2 from=translated src=- shape=1909a514 vocab=5bb7a111
+-/
 theorem exists_analyticOnNhd_root_of_eval_derivative_ne_zero {p : E → ℂ[X]} {n : ℕ}
     (hn : ∀ z, (p z).natDegree ≤ n) {z₀ : E}
     (ha : ∀ i, AnalyticAt ℂ (fun z ↦ (p z).coeff i) z₀) {t₀ : ℂ}
@@ -123,7 +127,9 @@ theorem exists_analyticOnNhd_root_of_eval_derivative_ne_zero {p : E → ℂ[X]} 
 
 /-- **Local factorisation at a separable fibre.** If the `p z` are monic of degree `n` with
 coefficients analytic at `z₀`, and `p z₀` is separable, then near `z₀` there are `n` analytic
-functions `ψⱼ`, with pairwise distinct values, such that `p z = ∏ⱼ (X - ψⱼ z)`. -/
+functions `ψⱼ`, with pairwise distinct values, such that `p z = ∏ⱼ (X - ψⱼ z)`.
+@isnad1 id=ex.4h4v.s8.d66e48dc6c8a from=translated src=- shape=eff60144 vocab=5bfb61cc
+-/
 theorem exists_analyticOnNhd_eq_prod_X_sub_C_of_separable {p : E → ℂ[X]} {n : ℕ}
     (hm : ∀ z, (p z).Monic) (hn : ∀ z, (p z).natDegree = n) {z₀ : E}
     (ha : ∀ i, AnalyticAt ℂ (fun z ↦ (p z).coeff i) z₀) (hsep : (p z₀).Separable) :
@@ -183,7 +189,9 @@ variable {ι : Type*} [Fintype ι]
 
 /-- `exists_analyticOnNhd_root_of_eval_derivative_ne_zero` for `μ ∈ (MvPolynomial ι ℂ)[X]`: a
 simple root `t₀` of `μ_{z₀}` extends to an analytic root `ψ` of `μ_z` near `z₀`, the unique
-root of `μ_z` in `B(t₀, ε)`. -/
+root of `μ_z` in `B(t₀, ε)`.
+@isnad1 id=ex.2h4v.s9.221268f489a2 from=translated src=- shape=050d5ba1 vocab=e55afdea
+-/
 theorem exists_analyticOnNhd_root_map_eval_of_eval_derivative_ne_zero
     (μ : (MvPolynomial ι ℂ)[X]) {z₀ : ι → ℂ} {t₀ : ℂ}
     (hroot : (μ.map (MvPolynomial.eval z₀)).IsRoot t₀)
@@ -197,7 +205,9 @@ theorem exists_analyticOnNhd_root_map_eval_of_eval_derivative_ne_zero
 
 /-- `exists_analyticOnNhd_eq_prod_X_sub_C_of_separable` for monic `μ ∈ (MvPolynomial ι ℂ)[X]`:
 if `μ_{z₀}` is separable, then near `z₀` we have `μ_z = ∏ⱼ (X - ψⱼ z)` with analytic `ψⱼ`
-taking pairwise distinct values. -/
+taking pairwise distinct values.
+@isnad1 id=ex.2h3v.s9.66754280baec from=translated src=- shape=eed5d127 vocab=ce8d86aa
+-/
 theorem exists_analyticOnNhd_map_eval_eq_prod_X_sub_C_of_separable
     {μ : (MvPolynomial ι ℂ)[X]} (hμ : μ.Monic) {z₀ : ι → ℂ}
     (hsep : (μ.map (MvPolynomial.eval z₀)).Separable) :

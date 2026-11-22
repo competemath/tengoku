@@ -40,18 +40,30 @@ variable {x : ℝ} (hx : 4 < x ^ 2)
 include hx
 
 omit hx in
+/--
+@isnad1 id=eq.0h1v.s4.916adc8d78b2 from=translated src=- shape=b690c24f vocab=223cfdba
+-/
 lemma eig_sum : eigBig x + eigSmall x = x := by unfold eigBig eigSmall; ring
 
+/--
+@isnad1 id=eq.1h1v.s5.3d5e6cb0e6c6 from=translated src=- shape=3c06c828 vocab=f290d7c4
+-/
 lemma eig_prod : eigBig x * eigSmall x = 1 := by
   unfold eigBig eigSmall
   have := Real.sq_sqrt (show (0 : ℝ) ≤ x ^ 2 - 4 by linarith)
   linear_combination (-1 / 4 : ℝ) * this
 
+/--
+@isnad1 id=lt.1h1v.s5.771138b4c707 from=translated src=- shape=d9b91b28 vocab=01508500
+-/
 lemma eig_sub_pos : 0 < eigBig x - eigSmall x := by
   unfold eigBig eigSmall
   have := Real.sqrt_pos.mpr (show (0 : ℝ) < x ^ 2 - 4 by linarith)
   linarith
 
+/--
+@isnad1 id=ne.1h1v.s5.aa75507e553a from=translated src=- shape=268fa1ff vocab=dba205c6
+-/
 lemma eig_ne : eigBig x ≠ eigSmall x := sub_ne_zero.mp (eig_sub_pos hx).ne'
 
 end eig
@@ -65,7 +77,9 @@ noncomputable def normalB (x y z : ℝ) : Matrix (Fin 2) (Fin 2) ℝ :=
 
 /-- The Fricke polynomial in normal form: for `D = diag(l, m)` with `lm = 1` and
 `C = [[a, b], [c, d]]` with `det C = 1`, `x² + y² + z² - xyz - 4 = -bc (l - m)²` where
-`x = l + m`, `y = a + d`, `z = la + md`. -/
+`x = l + m`, `y = a + d`, `z = la + md`.
+@isnad1 id=eq.2h6v.s8.75bc2cb2deb9 from=translated src=- shape=4cfb28dc vocab=7d7e4cc9
+-/
 lemma fricke_normal {l m a b c d : ℝ} (hprod : l * m = 1) (hdet : a * d - b * c = 1) :
     (l + m) ^ 2 + (a + d) ^ 2 + (l * a + m * d) ^ 2 - (l + m) * (a + d) * (l * a + m * d) - 4 =
       -(b * c) * (l - m) ^ 2 := by

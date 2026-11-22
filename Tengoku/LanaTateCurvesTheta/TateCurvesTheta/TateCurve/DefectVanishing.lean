@@ -78,16 +78,22 @@ section OrbitBasics
 variable (u : Kˣ)
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- The orbit term `qⁿu` is nonzero. -/
+/-- The orbit term `qⁿu` is nonzero.
+@isnad1 id=ne.0h4v.s6.59b2c83efc98 from=translated src=- shape=a0601a63 vocab=88d66c45
+-/
 lemma qzpow_mul_ne_zero' (n : ℤ) : (t.q : K) ^ n * (u : K) ≠ 0 :=
   mul_ne_zero (zpow_ne_zero n t.q.ne_zero) u.ne_zero
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- The Eisenstein kernel `p` at an orbit point is the `X`-coordinate term. -/
+/-- The Eisenstein kernel `p` at an orbit point is the `X`-coordinate term.
+@isnad1 id=eq.0h4v.s6.3e15d271a60c from=translated src=- shape=11ed7e4a vocab=b0f69f1d
+-/
 lemma eisP_orbit (n : ℤ) : eisP ((t.q : K) ^ n * (u : K)) = t.Xterm u n := rfl
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- The Eisenstein kernel `r` at an orbit point is the `2Yterm + Xterm` combination. -/
+/-- The Eisenstein kernel `r` at an orbit point is the `2Yterm + Xterm` combination.
+@isnad1 id=eq.1h4v.s8.8d3344140f5e from=translated src=- shape=dc8b4b5d vocab=7ae56965
+-/
 lemma eisR_orbit {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) (n : ℤ) :
     eisR ((t.q : K) ^ n * (u : K)) = 2 * t.Yterm u n + t.Xterm u n := by
   have h1 : (1 : K) - (t.q : K) ^ n * (u : K) ≠ 0 := t.one_sub_qzpow_mul_ne_zero hu n
@@ -97,24 +103,32 @@ lemma eisR_orbit {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) (n 
 
 /-- Summability transfers through pointwise products over the same index type: in a
 complete nonarchimedean field a family is summable iff it tends to zero along `cofinite`,
-and null families are closed under pointwise products. -/
+and null families are closed under pointwise products.
+@isnad1 id=summable.2h4v.s7.e4195e9002f5 from=translated src=- shape=e086f8a8 vocab=5f7f44ee
+-/
 lemma summable_mul_pointwise {ι : Type*} {f g : ι → K} (hf : Summable f) (hg : Summable g) :
     Summable fun i => f i * g i :=
   NonarchimedeanAddGroup.summable_of_tendsto_cofinite_zero
     (by simpa using hf.tendsto_cofinite_zero.mul hg.tendsto_cofinite_zero)
 
-/-- The squared `X`-terms are summable. -/
+/-- The squared `X`-terms are summable.
+@isnad1 id=summable.0h3v.s6.90bbbfbb6020 from=translated src=- shape=dc456055 vocab=ba4a3112
+-/
 lemma Xterm_sq_summable : Summable fun n : ℤ => t.Xterm u n ^ 2 := by
   simpa [pow_two] using summable_mul_pointwise (t.Xterm_summable u) (t.Xterm_summable u)
 
-/-- The cubed `X`-terms are summable. -/
+/-- The cubed `X`-terms are summable.
+@isnad1 id=summable.0h3v.s6.0e77c3eb9583 from=translated src=- shape=dc456055 vocab=ba4a3112
+-/
 lemma Xterm_cube_summable : Summable fun n : ℤ => t.Xterm u n ^ 3 := by
   have h := summable_mul_pointwise (t.Xterm_summable u)
     (summable_mul_pointwise (t.Xterm_summable u) (t.Xterm_summable u))
   refine h.congr fun n => ?_
   ring
 
-/-- The Eisenstein `r`-kernels along the orbit are summable. -/
+/-- The Eisenstein `r`-kernels along the orbit are summable.
+@isnad1 id=summable.1h3v.s7.d1f7d4d57cce from=translated src=- shape=e4d82d5b vocab=a4c9819f
+-/
 lemma eisR_orbit_summable {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) :
     Summable fun n : ℤ => eisR ((t.q : K) ^ n * (u : K)) := by
   refine (((t.Yterm_summable u).mul_left 2).add (t.Xterm_summable u)).congr fun n => ?_
@@ -281,7 +295,9 @@ private lemma hasSum_stepZ_sub (d : ℤ) :
       ring
     rwa [hval] at h
 
-/-- The shifted-difference family of orbit `z`-values is summable. -/
+/-- The shifted-difference family of orbit `z`-values is summable.
+@isnad1 id=summable.1h4v.s8.14edce379e23 from=translated src=- shape=a988f625 vocab=f9833995
+-/
 lemma summable_eisZ_orbit_shift_sub (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) (d : ℤ) :
     Summable fun m : ℤ =>
       eisZ ((t.q : K) ^ (m + d) * (u : K)) - eisZ ((t.q : K) ^ m * (u : K)) := by
@@ -294,7 +310,9 @@ lemma summable_eisZ_orbit_shift_sub (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) �
 /-- **The orbit telescope**: for every `d`, the shifted differences of the `z`-kernel over
 the orbit `qᶻu` sum to `2d`. The boundary values `z(0) = 1` and `z(∞) = -1` of the odd
 kernel produce the `d`-weight; this is where the weighted Eisenstein series of the final
-assembly originate. -/
+assembly originate.
+@isnad1 id=eq.1h4v.s8.a70e51804ebc from=translated src=- shape=0e09f463 vocab=b5633257
+-/
 theorem tsum_eisZ_orbit_shift_sub (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) (d : ℤ) :
     (∑' m : ℤ, (eisZ ((t.q : K) ^ (m + d) * (u : K)) - eisZ ((t.q : K) ^ m * (u : K))))
       = 2 * (d : K) := by
@@ -700,7 +718,9 @@ private def shearEquiv : ℤ × ℤ ≃ ℤ × ℤ where
     simp
 
 /-- **Expansion of `S²`**: `S² = S₂ + 4·𝔭·S + 2·ρ̂` where `𝔭 = ∑ p(qᵏ⁺¹)` and
-`ρ̂ = ∑ (k+1)·r(qᵏ⁺¹)`. -/
+`ρ̂ = ∑ (k+1)·r(qᵏ⁺¹)`.
+@isnad1 id=eq.2h3v.s9.007c32e4c4da from=translated src=- shape=3a3f8d20 vocab=ab1c5b42
+-/
 theorem tsum_Xterm_sq_expansion (h2 : (2 : K) ≠ 0)
     (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) :
     (∑' n : ℤ, t.Xterm u n) * (∑' n : ℤ, t.Xterm u n)
@@ -786,7 +806,9 @@ theorem tsum_Xterm_sq_expansion (h2 : (2 : K) ≠ 0)
 set_option maxHeartbeats 1000000 in
 -- the ℤ²-shear, fiberwise collapse and parity folding make this elaboration heavy
 /-- **Expansion of `R²`**: `R² = 4S₃ + S₂ - 8·Φ̂·S - 2·Ψ̂` where `Φ̂ = ∑ φ(qᵏ⁺¹)` and
-`Ψ̂ = ∑ (k+1)·ψ(qᵏ⁺¹)`; the diagonal collapses through the nodal relation `r² = 4p³ + p²`. -/
+`Ψ̂ = ∑ (k+1)·ψ(qᵏ⁺¹)`; the diagonal collapses through the nodal relation `r² = 4p³ + p²`.
+@isnad1 id=eq.2h3v.s9.47eda767f4b9 from=translated src=- shape=8bfa75a7 vocab=495d950f
+-/
 theorem tsum_eisR_sq_expansion (h2 : (2 : K) ≠ 0)
     (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) :
     (∑' n : ℤ, eisR ((t.q : K) ^ n * (u : K)))
@@ -881,7 +903,9 @@ theorem tsum_eisR_sq_expansion (h2 : (2 : K) ≠ 0)
 set_option maxHeartbeats 1600000 in
 -- the ℤ²-shear, fiberwise collapse and six-term parity folding make this elaboration heavy
 /-- **Expansion of `S₂·S`**: `S₂·S = S₃ + 2·𝔭·S₂ + (Φ̂ + 2·Π̂₂)·S + 4·Λ̂`, where
-`Π̂₂ = ∑ p(qᵏ⁺¹)²` and `Λ̂ = ∑ (k+1)·p(qᵏ⁺¹)r(qᵏ⁺¹)`. -/
+`Π̂₂ = ∑ p(qᵏ⁺¹)²` and `Λ̂ = ∑ (k+1)·p(qᵏ⁺¹)r(qᵏ⁺¹)`.
+@isnad1 id=eq.2h3v.s10.51acdc29ce2f from=translated src=- shape=19a6769d vocab=8842f445
+-/
 theorem tsum_Xterm_sq_mul_expansion (h2 : (2 : K) ≠ 0)
     (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) :
     (∑' n : ℤ, t.Xterm u n ^ 2) * (∑' n : ℤ, t.Xterm u n)
@@ -1034,7 +1058,9 @@ section Assembly
 
 variable {u : Kˣ}
 
-/-- The orbit sum of the `r`-kernel is the coordinate combination `2Y + X`. -/
+/-- The orbit sum of the `r`-kernel is the coordinate combination `2Y + X`.
+@isnad1 id=eq.1h3v.s8.a60268a2a9ba from=translated src=- shape=3017bae9 vocab=81936990
+-/
 lemma tsum_eisR_orbit_eq (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) :
     (∑' n : ℤ, eisR ((t.q : K) ^ n * (u : K))) = 2 * t.Y u + t.X u := by
   have h1 : (∑' n : ℤ, eisR ((t.q : K) ^ n * (u : K)))
@@ -1047,7 +1073,9 @@ lemma tsum_eisR_orbit_eq (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) :
 /-- **Vanishing of the Weierstrass defect, modulo the two Eisenstein bracket identities.**
 Given the weight-4 bracket (the Besge identity in series form) and the weight-6 bracket
 (the `σ₁∗σ₃` convolution identity in series form), together with `𝔭 = s₁`, the Eisenstein
-pair-identity computation collapses the defect to zero at every off-orbit point. -/
+pair-identity computation collapses the defect to zero at every off-orbit point.
+@isnad1 id=eq.6h3v.s11.bdb4775c3ddd from=translated src=- shape=de75300d vocab=08e1df1d
+-/
 theorem tateDefect_eq_zero_of_brackets (h2 : (2 : K) ≠ 0) (h4 : (4 : K) ≠ 0)
     (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1)
     (hpe : (∑' k : ℕ, eisP ((t.q : K) ^ (k + 1))) = t.eisenstein 1)

@@ -84,7 +84,9 @@ def IsLeastHullRegionIn (P : DirectSumPresentation C) (𝓗 : Set (Set P.Total))
     (U R : Set P.Total) : Prop :=
   R ∈ 𝓗 ∧ U ⊆ R ∧ ∀ R' ∈ 𝓗, U ⊆ R' → R ⊆ R'
 
-/-- Least hull regions relative to a class are unique. -/
+/-- Least hull regions relative to a class are unique.
+@isnad1 id=eq.2h6v.s5.7a7565e46887 from=translated src=- shape=5452d464 vocab=893730e5
+-/
 lemma IsLeastHullRegionIn.unique {𝓗 : Set (Set P.Total)} {U R₁ R₂ : Set P.Total}
     (h₁ : P.IsLeastHullRegionIn 𝓗 U R₁) (h₂ : P.IsLeastHullRegionIn 𝓗 U R₂) : R₁ = R₂ :=
   Set.Subset.antisymm (h₁.2.2 R₂ h₂.1 h₂.2.1) (h₂.2.2 R₁ h₁.1 h₁.2.1)
@@ -94,7 +96,9 @@ containing `U` and least among hull regions containing `U` (IUT III, Remark 3.9.
 def IsLeastHullRegion (P : DirectSumPresentation C) (U R : Set P.Total) : Prop :=
   P.IsLeastHullRegionIn {R | P.IsHullRegion R} U R
 
-/-- Least hull regions are unique. -/
+/-- Least hull regions are unique.
+@isnad1 id=eq.2h5v.s5.a2f0d38b23e7 from=translated src=- shape=7b6641ff vocab=3c6ee823
+-/
 lemma IsLeastHullRegion.unique {U R₁ R₂ : Set P.Total}
     (h₁ : P.IsLeastHullRegion U R₁) (h₂ : P.IsLeastHullRegion U R₂) : R₁ = R₂ :=
   IsLeastHullRegionIn.unique h₁ h₂
@@ -142,43 +146,59 @@ namespace HullSystem
 variable {C : Type u} {P : DirectSumPresentation.{u, v} C} (H : HullSystem P)
 variable {U V : Set P.Total}
 
-/-- The hull of an admissible region belongs to the class of hull regions. -/
+/-- The hull of an admissible region belongs to the class of hull regions.
+@isnad1 id=mem.1h4v.s5.6cec8efeebed from=translated src=- shape=0ab372fc vocab=0eafb67a
+-/
 lemma hull_mem_hullRegions (hU : U ∈ H.Admissible) : H.hull U ∈ H.HullRegions :=
   (H.isLeastHullRegion_hull U hU).1
 
-/-- The hull of an admissible region is a hull region `a · O`. -/
+/-- The hull of an admissible region is a hull region `a · O`.
+@isnad1 id=ishullre.1h4v.s5.b839e8ac17c2 from=translated src=- shape=2facaa3d vocab=404ab4ba
+-/
 lemma isHullRegion_hull (hU : U ∈ H.Admissible) : P.IsHullRegion (H.hull U) :=
   H.isHullRegion_of_mem _ (H.hull_mem_hullRegions hU)
 
-/-- **Extensivity** (taxis #45, property 2): `U` is contained in its holomorphic hull. -/
+/-- **Extensivity** (taxis #45, property 2): `U` is contained in its holomorphic hull.
+@isnad1 id=le.1h4v.s5.3697d4fffdeb from=translated src=- shape=6ba81588 vocab=24682bd5
+-/
 lemma subset_hull (hU : U ∈ H.Admissible) : U ⊆ H.hull U :=
   (H.isLeastHullRegion_hull U hU).2.1
 
 /-- Minimality: the hull of `U` is contained in every member of the class of hull
-regions containing `U`. -/
+regions containing `U`.
+@isnad1 id=le.3h5v.s6.b8621d2e5de7 from=translated src=- shape=047248ff vocab=7efc0c74
+-/
 lemma hull_le (hU : U ∈ H.Admissible) {R : Set P.Total}
     (hR : R ∈ H.HullRegions) (hUR : U ⊆ R) : H.hull U ⊆ R :=
   (H.isLeastHullRegion_hull U hU).2.2 R hR hUR
 
 /-- **Hull regions are fixed points** (taxis #45, property 1): if an admissible region
-is itself a member of the class of hull regions, it is its own hull. -/
+is itself a member of the class of hull regions, it is its own hull.
+@isnad1 id=eq.2h4v.s6.eae766a31c19 from=translated src=- shape=9e05f817 vocab=0eafb67a
+-/
 theorem hull_eq_self (hU : U ∈ H.Admissible) (h : U ∈ H.HullRegions) : H.hull U = U :=
   Set.Subset.antisymm (H.hull_le hU h subset_rfl) (H.subset_hull hU)
 
 /-- **Monotonicity** (taxis #45, property 3): the hull is monotone on admissible
-regions. -/
+regions.
+@isnad1 id=le.3h5v.s6.dcbce29a60a7 from=translated src=- shape=c88ce6fb vocab=24682bd5
+-/
 theorem hull_mono (hU : U ∈ H.Admissible) (hV : V ∈ H.Admissible) (hUV : U ⊆ V) :
     H.hull U ⊆ H.hull V :=
   H.hull_le hU (H.hull_mem_hullRegions hV) (hUV.trans (H.subset_hull hV))
 
-/-- **Idempotency**: the hull of the hull is the hull. -/
+/-- **Idempotency**: the hull of the hull is the hull.
+@isnad1 id=eq.1h4v.s5.9fcee41a2546 from=translated src=- shape=736c8593 vocab=f7ed7556
+-/
 theorem hull_idem (hU : U ∈ H.Admissible) : H.hull (H.hull U) = H.hull U :=
   H.hull_eq_self (H.hull_admissible U hU) (H.hull_mem_hullRegions hU)
 
 /-- **Intersection characterization** (taxis #45, property 4): the holomorphic hull of
 an admissible region is the intersection of all members of the class of hull regions
 containing it. Validity of this characterization is exactly the least-hull-region
-property; it holds on the whole admissible class. -/
+property; it holds on the whole admissible class.
+@isnad1 id=eq.1h4v.s6.b9b95f94be54 from=translated src=- shape=fda986b9 vocab=8829a817
+-/
 theorem hull_eq_sInter (hU : U ∈ H.Admissible) :
     H.hull U = ⋂₀ {R : Set P.Total | R ∈ H.HullRegions ∧ U ⊆ R} := by
   apply Set.Subset.antisymm
@@ -197,12 +217,17 @@ def closureOperator : ClosureOperator H.AdmissibleRegionType :=
     (fun U => H.subset_hull U.2)
     (fun U => le_of_eq (Subtype.ext (H.hull_idem U.2)))
 
+/--
+@isnad1 id=eq.0h4v.s7.b13488a6c4e1 from=translated src=- shape=efcede10 vocab=b640d4e3
+-/
 @[simp]
 lemma closureOperator_apply (U : H.AdmissibleRegionType) :
     (H.closureOperator U : Set P.Total) = H.hull U.1 := rfl
 
 /-- Uniqueness of hull systems: any two hull systems with the same admissible class and
-the same class of hull regions have the same hull operation on that class. -/
+the same class of hull regions have the same hull operation on that class.
+@isnad1 id=eq.3h5v.s6.e88cefb665ed from=translated src=- shape=a87dfb30 vocab=0eafb67a
+-/
 lemma hull_eq_hull (H' : HullSystem P) (h : H.Admissible = H'.Admissible)
     (h𝓗 : H.HullRegions = H'.HullRegions) (hU : U ∈ H.Admissible) : H.hull U = H'.hull U :=
   (H.isLeastHullRegion_hull U hU).unique

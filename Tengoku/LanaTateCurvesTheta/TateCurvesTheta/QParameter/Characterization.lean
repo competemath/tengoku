@@ -56,7 +56,9 @@ variable {K : Type*} [NormedField K] [IsUltrametricDist K] [CompleteSpace K]
 /-- **Characterization of the Tate parameter** (issue #37): for every `j : K` with
 `‖j‖ > 1` there is a *unique* Tate parameter `q` whose Tate curve has `j`-invariant `j` —
 and the Tate curve of this parameter automatically has **split multiplicative
-reduction**. -/
+reduction**.
+@isnad1 id=existsun.2h2v.s9.a02bcd11dd10 from=translated src=- shape=c880d5d4 vocab=e7c65c0e
+-/
 theorem existsUnique_splitMultiplicative_tateParameter (h12 : (12 : K) ≠ 0) {j : K}
     (hj : 1 < ‖j‖) :
     ∃! t : TateParameter K, t.tateJ = j ∧

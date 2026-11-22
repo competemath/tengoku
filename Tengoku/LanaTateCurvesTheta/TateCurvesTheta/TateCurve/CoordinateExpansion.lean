@@ -65,14 +65,18 @@ private lemma qzpow_mul_ne_zero : (t.q : K) ^ n * (u : K) ≠ 0 :=
   mul_ne_zero (zpow_ne_zero n t.q.ne_zero) u.ne_zero
 
 /-- **Inner geometric expansion of the `X`-term.** For `‖qⁿ u‖ < 1`, the term
-`Xterm u n = qⁿu/(1-qⁿu)²` develops as the convergent power series `∑ₘ m·(qⁿu)ᵐ`. -/
+`Xterm u n = qⁿu/(1-qⁿu)²` develops as the convergent power series `∑ₘ m·(qⁿu)ᵐ`.
+@isnad1 id=hassum.1h4v.s8.787ab3b85dc7 from=translated src=- shape=7dd74852 vocab=8595e482
+-/
 theorem Xterm_hasSum_of_norm_lt_one (h : ‖(t.q : K) ^ n * (u : K)‖ < 1) :
     HasSum (fun m : ℕ => (m : K) * ((t.q : K) ^ n * (u : K)) ^ m) (t.Xterm u n) := by
   rw [Xterm_apply]
   exact hasSum_coe_mul_geometric_of_norm_lt_one h
 
 /-- **Inner geometric expansion of the `Y`-term.** For `‖qⁿ u‖ < 1`, the term
-`Yterm u n = (qⁿu)²/(1-qⁿu)³` develops as the convergent power series `∑ₘ C(m+2,2)·(qⁿu)^{m+2}`. -/
+`Yterm u n = (qⁿu)²/(1-qⁿu)³` develops as the convergent power series `∑ₘ C(m+2,2)·(qⁿu)^{m+2}`.
+@isnad1 id=hassum.1h4v.s8.c762c0c81c06 from=translated src=- shape=4faea1ad vocab=18eb4217
+-/
 theorem Yterm_hasSum_of_norm_lt_one (h : ‖(t.q : K) ^ n * (u : K)‖ < 1) :
     HasSum (fun m : ℕ => ((m + 2).choose 2 : K) * ((t.q : K) ^ n * (u : K)) ^ (m + 2))
       (t.Yterm u n) := by
@@ -88,7 +92,9 @@ theorem Yterm_hasSum_of_norm_lt_one (h : ‖(t.q : K) ^ n * (u : K)‖ < 1) :
 
 /-- **Outer geometric expansion of the `X`-term.** For `1 < ‖qⁿ u‖`, writing `v = (qⁿu)⁻¹`
 (`‖v‖ < 1`), the term `Xterm u n = qⁿu/(1-qⁿu)²` develops as `∑ₘ m·vᵐ`. The reflection identity
-`w/(1-w)² = v/(1-v)²` comes from `1 - w = -w(1 - v)`. -/
+`w/(1-w)² = v/(1-v)²` comes from `1 - w = -w(1 - v)`.
+@isnad1 id=hassum.1h4v.s8.66f19bb9f7ef from=translated src=- shape=c8098814 vocab=a0caaa49
+-/
 theorem Xterm_hasSum_of_one_lt_norm (h : 1 < ‖(t.q : K) ^ n * (u : K)‖) :
     HasSum (fun m : ℕ => (m : K) * (((t.q : K) ^ n * (u : K))⁻¹) ^ m) (t.Xterm u n) := by
   set w : K := (t.q : K) ^ n * (u : K) with hw
@@ -105,7 +111,9 @@ theorem Xterm_hasSum_of_one_lt_norm (h : 1 < ‖(t.q : K) ^ n * (u : K)‖) :
 
 /-- **Outer geometric expansion of the `Y`-term.** For `1 < ‖qⁿ u‖`, writing `v = (qⁿu)⁻¹`
 (`‖v‖ < 1`), the term `Yterm u n = (qⁿu)²/(1-qⁿu)³` develops as `∑ₘ -C(m+2,2)·v^{m+1}`. The
-reflection identity `w²/(1-w)³ = -v/(1-v)³` again comes from `1 - w = -w(1 - v)`. -/
+reflection identity `w²/(1-w)³ = -v/(1-v)³` again comes from `1 - w = -w(1 - v)`.
+@isnad1 id=hassum.1h4v.s8.95598098c72c from=translated src=- shape=be6296cf vocab=8e21b35d
+-/
 theorem Yterm_hasSum_of_one_lt_norm (h : 1 < ‖(t.q : K) ^ n * (u : K)‖) :
     HasSum (fun m : ℕ => -(((m + 2).choose 2 : K) * (((t.q : K) ^ n * (u : K))⁻¹) ^ (m + 1)))
       (t.Yterm u n) := by

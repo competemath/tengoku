@@ -68,6 +68,9 @@ def integerRing : Subring K where
     rw [Set.mem_ofPred_eq, norm_mul]
     exact mul_le_one₀ ha (norm_nonneg _) hb
 
+/--
+@isnad1 id=iff.0h2v.s6.2b369601b996 from=translated src=- shape=f5463152 vocab=efd49e9d
+-/
 @[simp] lemma mem_integerRing_iff {x : K} : x ∈ integerRing K ↔ ‖x‖ ≤ 1 := Iff.rfl
 
 /-- **The maximal ideal** of the ring of integers: the open unit ball `{x | ‖x‖ < 1}`. -/
@@ -83,10 +86,15 @@ def integerIdeal : Ideal (integerRing K) where
       _ = ‖(x : K)‖ := one_mul _
       _ < 1 := hx
 
+/--
+@isnad1 id=iff.0h2v.s9.bfff490a87f7 from=translated src=- shape=72af5820 vocab=45ce77cd
+-/
 @[simp] lemma mem_integerIdeal_iff {x : integerRing K} :
     x ∈ integerIdeal K ↔ ‖(x : K)‖ < 1 := Iff.rfl
 
-/-- Elements of the integer ring of norm one are units. -/
+/-- Elements of the integer ring of norm one are units.
+@isnad1 id=isunit.1h2v.s8.aa0ef0028746 from=translated src=- shape=68633449 vocab=a0f43dc6
+-/
 lemma isUnit_integerRing_of_norm_eq_one {x : integerRing K} (hx : ‖(x : K)‖ = 1) :
     IsUnit x := by
   have hx0 : (x : K) ≠ 0 := by
@@ -100,7 +108,9 @@ lemma isUnit_integerRing_of_norm_eq_one {x : integerRing K} (hx : ‖(x : K)‖ 
   · exact Subtype.ext (inv_mul_cancel₀ hx0)
 
 /-- The open unit ball is a **maximal ideal** of the integer ring: any strictly larger
-ideal contains a norm-one element, hence a unit. -/
+ideal contains a norm-one element, hence a unit.
+@isnad1 id=ismaxima.0h1v.s7.165d5300ee3c from=translated src=- shape=24bbaeff vocab=b72b87c8
+-/
 instance integerIdeal_isMaximal : (integerIdeal K).IsMaximal := by
   rw [Ideal.isMaximal_iff]
   constructor
@@ -144,22 +154,34 @@ structure IsSplitMultiplicative (W : WeierstrassCurve R) : Prop where
 /-- **The nodal cubic** `y² + xy = x³`, the special fibre of every Tate curve. -/
 def nodalCubic : WeierstrassCurve R := ⟨1, 0, 0, 0, 0⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.a56581e2bdc0 from=translated src=- shape=5f1ef773 vocab=e548780e
+-/
 @[simp] lemma nodalCubic_a₁ : (nodalCubic : WeierstrassCurve R).a₁ = 1 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.67cc216cd0fb from=translated src=- shape=5f1ef773 vocab=5df939d9
+-/
 @[simp] lemma nodalCubic_a₂ : (nodalCubic : WeierstrassCurve R).a₂ = 0 := rfl
 
-/-- The nodal cubic is singular: `Δ = 0`. -/
+/-- The nodal cubic is singular: `Δ = 0`.
+@isnad1 id=eq.0h1v.s4.ebaeedbca659 from=translated src=- shape=5f1ef773 vocab=f187bd6a
+-/
 lemma nodalCubic_Δ : (nodalCubic : WeierstrassCurve R).Δ = 0 := by
   simp only [WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄,
     WeierstrassCurve.b₆, WeierstrassCurve.b₈, nodalCubic]
   ring
 
-/-- The nodal cubic has `c₄ = 1`. -/
+/-- The nodal cubic has `c₄ = 1`.
+@isnad1 id=eq.0h1v.s4.f6d9696b709d from=translated src=- shape=5f1ef773 vocab=fb6630ad
+-/
 lemma nodalCubic_c₄ : (nodalCubic : WeierstrassCurve R).c₄ = 1 := by
   simp only [WeierstrassCurve.c₄, WeierstrassCurve.b₂, WeierstrassCurve.b₄, nodalCubic]
   ring
 
 /-- **The nodal cubic has a split node**: its tangent-cone quadratic is
-`T² + T = T(T + 1)`, with the two distinct rational tangent directions `0` and `-1`. -/
+`T² + T = T(T + 1)`, with the two distinct rational tangent directions `0` and `-1`.
+@isnad1 id=hassplit.0h1v.s3.19cc3e057ab1 from=translated src=- shape=4c9b52a8 vocab=569873c1
+-/
 lemma nodalCubic_hasSplitNodeAtOrigin [Nontrivial R] :
     (nodalCubic : WeierstrassCurve R).HasSplitNodeAtOrigin := by
   refine ⟨rfl, rfl, rfl, 0, -1, ?_, ?_⟩
@@ -168,7 +190,9 @@ lemma nodalCubic_hasSplitNodeAtOrigin [Nontrivial R] :
   · simp only [nodalCubic_a₁, nodalCubic_a₂, map_zero, map_one, map_neg]
     ring
 
-/-- **The nodal cubic has split multiplicative type** over any nontrivial ring. -/
+/-- **The nodal cubic has split multiplicative type** over any nontrivial ring.
+@isnad1 id=issplitm.0h1v.s3.18108eb8e6d8 from=translated src=- shape=4c9b52a8 vocab=54bceb6c
+-/
 lemma nodalCubic_isSplitMultiplicative [Nontrivial R] :
     (nodalCubic : WeierstrassCurve R).IsSplitMultiplicative :=
   ⟨nodalCubic_Δ, by rw [nodalCubic_c₄]; exact one_ne_zero,
@@ -191,14 +215,18 @@ def tateCurveInt (h12 : (12 : K) ≠ 0) : _root_.WeierstrassCurve (integerRing K
     ⟨t.a₄, le_of_lt (lt_of_le_of_lt t.norm_a₄_le t.norm_lt_one)⟩,
     ⟨t.a₆, le_of_lt (lt_of_le_of_lt (t.norm_a₆_le h12) t.norm_lt_one)⟩⟩
 
-/-- The integral model recovers the Tate curve over `K`. -/
+/-- The integral model recovers the Tate curve over `K`.
+@isnad1 id=eq.1h2v.s7.4cc1e30c2b8b from=translated src=- shape=ed1b3e82 vocab=41a11c01
+-/
 lemma tateCurveInt_map_subtype (h12 : (12 : K) ≠ 0) :
     (t.tateCurveInt h12).map (integerRing K).subtype = t.tateCurve := by
   simp only [_root_.WeierstrassCurve.map, tateCurveInt, tateCurve]
   rfl
 
 /-- **The special fibre of the Tate curve is the nodal cubic** `y² + xy = x³`: reduction
-modulo the maximal ideal kills `a₄` and `a₆`. -/
+modulo the maximal ideal kills `a₄` and `a₆`.
+@isnad1 id=eq.1h2v.s9.6f6e3b506b45 from=translated src=- shape=cd682a77 vocab=1fd25bfe
+-/
 theorem tateCurveInt_reduction (h12 : (12 : K) ≠ 0) :
     (t.tateCurveInt h12).map (Ideal.Quotient.mk (integerIdeal K)) =
       WeierstrassCurve.nodalCubic := by
@@ -214,7 +242,9 @@ theorem tateCurveInt_reduction (h12 : (12 : K) ≠ 0) :
 /-- **The Tate curve has split multiplicative reduction**: its special fibre is the nodal
 cubic, which is singular (`Δ̄ = 0`) of multiplicative type (`c₄̄ = 1 ≠ 0`) with the two
 distinct rational tangent directions `T` and `T + 1` at the node — over an arbitrary
-residue field. -/
+residue field.
+@isnad1 id=issplitm.1h2v.s9.6802ace4ad00 from=translated src=- shape=8f1078da vocab=6fa7a2fc
+-/
 theorem isSplitMultiplicative_reduction (h12 : (12 : K) ≠ 0) :
     ((t.tateCurveInt h12).map
         (Ideal.Quotient.mk (integerIdeal K))).IsSplitMultiplicative := by

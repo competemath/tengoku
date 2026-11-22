@@ -38,15 +38,24 @@ namespace Uniformization
 /-- The disc automorphism `z ↦ (z + t) / (1 + conj t z)`. -/
 noncomputable def mob (t z : ℂ) : ℂ := (z + t) / (1 + conj t * z)
 
+/--
+@isnad1 id=eq.0h2v.s7.deba9d323eab from=translated src=- shape=c908431e vocab=614c0a68
+-/
 theorem normSq_one_add_conj_mul_sub (t z : ℂ) :
     normSq (1 + conj t * z) - normSq (z + t) = (1 - normSq t) * (1 - normSq z) := by
   simp only [normSq_apply, add_re, add_im, mul_re, mul_im, conj_re, conj_im, one_re, one_im]
   ring
 
+/--
+@isnad1 id=lt.1h1v.s6.679842b1fe67 from=translated src=- shape=3ce18e6c vocab=77ac2ab5
+-/
 theorem normSq_lt_one {z : ℂ} (hz : z ∈ ball (0 : ℂ) 1) : normSq z < 1 := by
   rw [mem_ball_zero_iff] at hz
   rw [normSq_eq_norm_sq]; nlinarith [norm_nonneg z]
 
+/--
+@isnad1 id=ne.2h2v.s7.224e56603c4e from=translated src=- shape=cbabce1c vocab=cd4bfe33
+-/
 theorem one_add_conj_mul_ne_zero {t z : ℂ} (ht : t ∈ ball (0 : ℂ) 1) (hz : z ∈ ball (0 : ℂ) 1) :
     1 + conj t * z ≠ 0 := by
   have h := normSq_one_add_conj_mul_sub t z
@@ -56,6 +65,9 @@ theorem one_add_conj_mul_ne_zero {t z : ℂ} (ht : t ∈ ball (0 : ℂ) 1) (hz :
   rw [h0, map_zero] at h
   nlinarith [normSq_nonneg (z + t)]
 
+/--
+@isnad1 id=mem.2h2v.s6.41dee56e682e from=translated src=- shape=31357d00 vocab=5f339f0c
+-/
 theorem mob_mem_ball {t z : ℂ} (ht : t ∈ ball (0 : ℂ) 1) (hz : z ∈ ball (0 : ℂ) 1) :
     mob t z ∈ ball (0 : ℂ) 1 := by
   have h := normSq_one_add_conj_mul_sub t z
@@ -68,6 +80,9 @@ theorem mob_mem_ball {t z : ℂ} (ht : t ∈ ball (0 : ℂ) 1) (hz : z ∈ ball 
   rw [normSq_eq_norm_sq, normSq_eq_norm_sq] at this
   exact lt_of_pow_lt_pow_left₀ 2 (norm_nonneg _) this
 
+/--
+@isnad1 id=eq.2h2v.s6.ba73a20cde36 from=translated src=- shape=ade2d769 vocab=fc1e6316
+-/
 theorem mob_neg_mob {t z : ℂ} (ht : t ∈ ball (0 : ℂ) 1) (hz : z ∈ ball (0 : ℂ) 1) :
     mob (-t) (mob t z) = z := by
   have hd := one_add_conj_mul_ne_zero ht hz
@@ -84,24 +99,42 @@ theorem mob_neg_mob {t z : ℂ} (ht : t ∈ ball (0 : ℂ) 1) (hz : z ∈ ball (
     field_simp; ring
   rw [hden, hnum, div_div_div_cancel_right₀ hd, mul_div_assoc, div_self h1, mul_one]
 
+/--
+@isnad1 id=eq.2h2v.s6.dd13c41d00fa from=translated src=- shape=d29dc4bb vocab=fc1e6316
+-/
 theorem mob_mob_neg {t z : ℂ} (ht : t ∈ ball (0 : ℂ) 1) (hz : z ∈ ball (0 : ℂ) 1) :
     mob t (mob (-t) z) = z := by
   have := mob_neg_mob (t := -t) (by simpa using ht) hz
   simpa using this
 
+/--
+@isnad1 id=eq.0h1v.s3.5500efe89f45 from=translated src=- shape=1fa26838 vocab=8838f6b0
+-/
 @[simp] theorem mob_zero (t : ℂ) : mob t 0 = t := by simp [mob]
 
+/--
+@isnad1 id=eq.0h1v.s4.34abb7bc1554 from=translated src=- shape=09cab5ad vocab=2ab97e4a
+-/
 theorem mob_neg_self (t : ℂ) : mob t (-t) = 0 := by simp [mob]
 
+/--
+@isnad1 id=continuo.1h1v.s6.d89632cc79a3 from=translated src=- shape=4b1592ea vocab=9a706959
+-/
 theorem continuousOn_mob {t : ℂ} (ht : t ∈ ball (0 : ℂ) 1) : ContinuousOn (mob t) (ball 0 1) :=
   (continuousOn_id.add continuousOn_const).div (continuousOn_const.add
     (continuousOn_const.mul continuousOn_id)) fun _ hz ↦ one_add_conj_mul_ne_zero ht hz
 
+/--
+@isnad1 id=differen.1h1v.s6.5fefac3dcc24 from=translated src=- shape=5847ad19 vocab=19fe0b04
+-/
 theorem differentiableOn_mob {t : ℂ} (ht : t ∈ ball (0 : ℂ) 1) :
     DifferentiableOn ℂ (mob t) (ball 0 1) :=
   (differentiableOn_id.add (differentiableOn_const _)).div ((differentiableOn_const _).add
     ((differentiableOn_const _).mul differentiableOn_id)) fun _ hz ↦ one_add_conj_mul_ne_zero ht hz
 
+/--
+@isnad1 id=injon.1h1v.s5.0f963bcdea26 from=translated src=- shape=4b1592ea vocab=c2c33894
+-/
 theorem mob_injOn {t : ℂ} (ht : t ∈ ball (0 : ℂ) 1) : InjOn (mob t) (ball 0 1) := by
   intro z hz w hw h
   rw [← mob_neg_mob ht hz, h, mob_neg_mob ht hw]
@@ -126,28 +159,49 @@ noncomputable def koebe (b z : ℂ) : ℂ := by
   classical
   exact if z ∈ ball (0 : ℂ) 1 then mob (-b ^ 2) (mob b z ^ 2) else 2
 
+/--
+@isnad1 id=eq.1h2v.s6.73125116e1dc from=translated src=- shape=802e946f vocab=5db01ee7
+-/
 theorem koebe_of_mem {b z : ℂ} (hz : z ∈ ball (0 : ℂ) 1) :
     koebe b z = mob (-b ^ 2) (mob b z ^ 2) := by
   simp [koebe, hz]
 
+/--
+@isnad1 id=eq.1h2v.s5.119f70a92521 from=translated src=- shape=197d40f0 vocab=4cb1e0e3
+-/
 theorem koebe_of_notMem {b z : ℂ} (hz : z ∉ ball (0 : ℂ) 1) : koebe b z = 2 := by
   simp [koebe, hz]
 
+/--
+@isnad1 id=not.0h0v.s5.d13ff5c2bf4b from=translated src=- shape=99db487f vocab=9f87011d
+-/
 theorem two_notMem_ball : (2 : ℂ) ∉ ball (0 : ℂ) 1 := by
   simp
 
+/--
+@isnad1 id=mem.1h1v.s6.89afc3d8748b from=translated src=- shape=d7726cf4 vocab=bd60c789
+-/
 theorem sq_mem_ball {w : ℂ} (hw : w ∈ ball (0 : ℂ) 1) : w ^ 2 ∈ ball (0 : ℂ) 1 := by
   rw [mem_ball_zero_iff] at hw ⊢
   rw [norm_pow]; nlinarith [norm_nonneg w]
 
+/--
+@isnad1 id=mem.1h1v.s6.62420b66a30f from=translated src=- shape=acb54c3f vocab=1819c261
+-/
 theorem neg_sq_mem_ball {b : ℂ} (hb : b ∈ ball (0 : ℂ) 1) : -b ^ 2 ∈ ball (0 : ℂ) 1 := by
   simpa using sq_mem_ball hb
 
+/--
+@isnad1 id=mem.2h2v.s6.b0f233c7c3d4 from=translated src=- shape=31357d00 vocab=a61fe4e0
+-/
 theorem koebe_mem_ball {b z : ℂ} (hb : b ∈ ball (0 : ℂ) 1) (hz : z ∈ ball (0 : ℂ) 1) :
     koebe b z ∈ ball (0 : ℂ) 1 := by
   rw [koebe_of_mem hz]
   exact mob_mem_ball (neg_sq_mem_ball hb) (sq_mem_ball (mob_mem_ball hb hz))
 
+/--
+@isnad1 id=mem.1h2v.s6.99b3a843e2be from=translated src=- shape=5607631f vocab=a61fe4e0
+-/
 theorem mem_ball_of_koebe_mem {b z : ℂ} (hz : koebe b z ∈ ball (0 : ℂ) 1) :
     z ∈ ball (0 : ℂ) 1 := by
   by_contra h
@@ -155,7 +209,9 @@ theorem mem_ball_of_koebe_mem {b z : ℂ} (hz : koebe b z ∈ ball (0 : ℂ) 1) 
   exact two_notMem_ball hz
 
 /-- The Koebe map sends the point `-b` to the critical value `-b²`, and it is the only
-point of the disc mapping there. -/
+point of the disc mapping there.
+@isnad1 id=iff.2h2v.s6.66bb1106f36c from=translated src=- shape=f7b6034a vocab=d9b2d620
+-/
 theorem koebe_eq_crit_iff {b z : ℂ} (hb : b ∈ ball (0 : ℂ) 1) (hz : z ∈ ball (0 : ℂ) 1) :
     koebe b z = -b ^ 2 ↔ z = -b := by
   rw [koebe_of_mem hz]
@@ -172,6 +228,9 @@ theorem koebe_eq_crit_iff {b z : ℂ} (hb : b ∈ ball (0 : ℂ) 1) (hz : z ∈ 
   · rintro rfl
     rw [mob_neg_self]; simp
 
+/--
+@isnad1 id=eq.1h1v.s7.816013ec026f from=translated src=- shape=2aa1dc34 vocab=066ed0ec
+-/
 theorem preimage_koebe_ball_diff {b : ℂ} (hb : b ∈ ball (0 : ℂ) 1) :
     koebe b ⁻¹' (ball 0 1 \ {-b ^ 2}) = ball 0 1 \ {-b} := by
   ext z
@@ -183,7 +242,9 @@ theorem preimage_koebe_ball_diff {b : ℂ} (hb : b ∈ ball (0 : ℂ) 1) :
   · rintro ⟨hz, h2⟩
     exact ⟨koebe_mem_ball hb hz, fun h ↦ h2 ((koebe_eq_crit_iff hb hz).mp h)⟩
 
-/-- `mob t` maps `𝔻 ∖ {-t}` onto `𝔻 ∖ {0}`. -/
+/-- `mob t` maps `𝔻 ∖ {-t}` onto `𝔻 ∖ {0}`.
+@isnad1 id=mapsto.1h1v.s6.9e626b99efd8 from=translated src=- shape=4c94a26a vocab=7e450286
+-/
 theorem mapsTo_mob_diff {t : ℂ} (ht : t ∈ ball (0 : ℂ) 1) :
     MapsTo (mob t) (ball 0 1 \ {-t}) (ball 0 1 \ {0}) := by
   rintro z ⟨hz, hzt⟩
@@ -192,6 +253,9 @@ theorem mapsTo_mob_diff {t : ℂ} (ht : t ∈ ball (0 : ℂ) 1) :
   rw [show mob t z = 0 from h, mob_zero] at this
   exact this.symm
 
+/--
+@isnad1 id=mapsto.1h1v.s6.7dc5b8d6d82b from=translated src=- shape=6a05c99d vocab=7e450286
+-/
 theorem mapsTo_mob_diff' {t : ℂ} (ht : t ∈ ball (0 : ℂ) 1) :
     MapsTo (mob (-t)) (ball 0 1 \ {0}) (ball 0 1 \ {-t}) := by
   rintro z ⟨hz, hz0⟩
@@ -200,16 +264,25 @@ theorem mapsTo_mob_diff' {t : ℂ} (ht : t ∈ ball (0 : ℂ) 1) :
   rw [show mob (-t) z = -t from h, mob_neg_self] at this
   exact this.symm
 
+/--
+@isnad1 id=mapsto.1h1v.s6.da1bdc5f7275 from=translated src=- shape=308040ad vocab=06383ef8
+-/
 theorem mapsTo_mob_diff_zero {t : ℂ} (ht : t ∈ ball (0 : ℂ) 1) :
     MapsTo (mob t) (ball 0 1 \ {0}) (ball 0 1 \ {t}) := by
   have := mapsTo_mob_diff' (t := -t) (by simpa using ht)
   simpa using this
 
+/--
+@isnad1 id=mapsto.1h1v.s6.a60a30c7ae7f from=translated src=- shape=6f9a9cd3 vocab=7e450286
+-/
 theorem mapsTo_mob_diff_zero' {t : ℂ} (ht : t ∈ ball (0 : ℂ) 1) :
     MapsTo (mob (-t)) (ball 0 1 \ {t}) (ball 0 1 \ {0}) := by
   have := mapsTo_mob_diff (t := -t) (by simpa using ht)
   simpa using this
 
+/--
+@isnad1 id=eq.0h0v.s6.afb3c510b6a8 from=translated src=- shape=4ae32d6d vocab=d93e60d0
+-/
 theorem preimage_sq_ball_diff :
     (fun w : ℂ ↦ w ^ 2) ⁻¹' (ball 0 1 \ {0}) = ball 0 1 \ {0} := by
   ext w
@@ -222,7 +295,9 @@ theorem preimage_sq_ball_diff :
   · rintro ⟨h1, h2⟩
     exact ⟨by nlinarith [norm_nonneg w], h2⟩
 
-/-- **The Koebe map is a covering** `𝔻 ∖ {-b} → 𝔻 ∖ {-b²}`. -/
+/-- **The Koebe map is a covering** `𝔻 ∖ {-b} → 𝔻 ∖ {-b²}`.
+@isnad1 id=iscoveri.1h1v.s6.ef02b1f27db3 from=translated src=- shape=5a2155fc vocab=6571a177
+-/
 theorem isCoveringMapOn_koebe {b : ℂ} (hb : b ∈ ball (0 : ℂ) 1) :
     IsCoveringMapOn (koebe b) (ball 0 1 \ {-b ^ 2}) := by
   set a := -b ^ 2 with ha
@@ -256,6 +331,9 @@ theorem isCoveringMapOn_koebe {b : ℂ} (hb : b ∈ ball (0 : ℂ) 1) :
   rw [heq]
   exact (hsq'.comp_homeomorph e₁).homeomorph_comp e₂
 
+/--
+@isnad1 id=differen.1h1v.s6.348fa31143e3 from=translated src=- shape=5847ad19 vocab=4a15f500
+-/
 theorem differentiableOn_koebe {b : ℂ} (hb : b ∈ ball (0 : ℂ) 1) :
     DifferentiableOn ℂ (koebe b) (ball 0 1) := by
   have h : DifferentiableOn ℂ (fun z ↦ mob (-b ^ 2) (mob b z ^ 2)) (ball 0 1) :=
@@ -263,6 +341,9 @@ theorem differentiableOn_koebe {b : ℂ} (hb : b ∈ ball (0 : ℂ) 1) :
       fun z hz ↦ sq_mem_ball (mob_mem_ball hb hz)
   exact h.congr fun z hz ↦ koebe_of_mem hz
 
+/--
+@isnad1 id=eq.0h1v.s4.0aa19015ded5 from=translated src=- shape=1d838610 vocab=f1ee49ec
+-/
 @[simp] theorem koebe_zero (b : ℂ) : koebe b 0 = 0 := by
   rw [koebe_of_mem (mem_ball_self one_pos)]
   simp [mob]
@@ -272,7 +353,9 @@ theorem differentiableOn_koebe {b : ℂ} (hb : b ∈ ball (0 : ℂ) 1) :
 /-- The second zero of the Koebe map. -/
 noncomputable def koebeZero (b : ℂ) : ℂ := -2 * b / (1 + normSq b)
 
-/-- The Koebe map is the Blaschke product `z (z - c) / (1 - conj c z)` with `c = koebeZero b`. -/
+/-- The Koebe map is the Blaschke product `z (z - c) / (1 - conj c z)` with `c = koebeZero b`.
+@isnad1 id=eq.2h2v.s7.8ea87dd6dc2d from=translated src=- shape=1a94b5e2 vocab=9d1ce726
+-/
 theorem koebe_eq_blaschke {b z : ℂ} (hb : b ∈ ball (0 : ℂ) 1) (hz : z ∈ ball (0 : ℂ) 1) :
     koebe b z = z * (z - koebeZero b) / (1 - conj (koebeZero b) * z) := by
   rw [koebe_of_mem hz]
@@ -323,6 +406,9 @@ noncomputable def koebeGamma (r : ℝ) : ℝ := 2 * Real.sqrt r / (1 + r)
 noncomputable def koebeRadius (r : ℝ) : ℝ :=
   (-(koebeGamma r * (1 - r)) + Real.sqrt ((koebeGamma r * (1 - r)) ^ 2 + 4 * r)) / 2
 
+/--
+@isnad1 id=eq.0h1v.s4.dc0101e117d9 from=translated src=- shape=5d594230 vocab=7fb4e5a7
+-/
 theorem norm_koebeZero (b : ℂ) : ‖koebeZero b‖ = koebeGamma (‖b‖ ^ 2) := by
   have h1 : (1 + normSq b : ℂ) = ((1 + ‖b‖ ^ 2 : ℝ) : ℂ) := by
     rw [normSq_eq_norm_sq]; push_cast; ring
@@ -330,9 +416,15 @@ theorem norm_koebeZero (b : ℂ) : ‖koebeZero b‖ = koebeGamma (‖b‖ ^ 2) 
     Real.sqrt_sq (norm_nonneg b)]
   simp
 
+/--
+@isnad1 id=le.1h1v.s4.00a17253ab19 from=translated src=- shape=35bd48ee vocab=94bfff96
+-/
 theorem koebeGamma_nonneg {r : ℝ} (hr : 0 ≤ r) : 0 ≤ koebeGamma r := by
   unfold koebeGamma; positivity
 
+/--
+@isnad1 id=lt.2h1v.s5.f35509d8279c from=translated src=- shape=1317b60f vocab=033f4635
+-/
 theorem koebeGamma_lt_one {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) : koebeGamma r < 1 := by
   unfold koebeGamma
   rw [div_lt_one (by linarith)]
@@ -342,7 +434,9 @@ theorem koebeGamma_lt_one {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) : koebeGamma r
   nlinarith [Real.sqrt_nonneg r]
 
 /-- `|z - c| (1 + |c| |z|) ≤ (|z| + |c|) |1 - conj c z|` in the disc: the pseudo-hyperbolic triangle
-inequality. -/
+inequality.
+@isnad1 id=le.2h2v.s7.a2b457023e22 from=translated src=- shape=8cea3449 vocab=4ce5ced6
+-/
 theorem norm_sub_mul_le {c z : ℂ} (hc : c ∈ ball (0 : ℂ) 1) (hz : z ∈ ball (0 : ℂ) 1) :
     ‖z - c‖ * (1 + ‖c‖ * ‖z‖) ≤ (‖z‖ + ‖c‖) * ‖1 - conj c * z‖ := by
   have hid := normSq_one_add_conj_mul_sub (-c) z
@@ -366,7 +460,9 @@ theorem norm_sub_mul_le {c z : ℂ} (hc : c ∈ ball (0 : ℂ) 1) (hz : z ∈ ba
   rw [mul_pow, mul_pow, hY2]
   nlinarith [mul_le_mul_of_nonneg_right hXs hpos]
 
-/-- The positive root of `s² + β s - r` bounds the region where the quadratic is negative. -/
+/-- The positive root of `s² + β s - r` bounds the region where the quadratic is negative.
+@isnad1 id=lt.4h3v.s7.1dae05a79f17 from=translated src=- shape=47f49811 vocab=63f1bc14
+-/
 theorem quadratic_neg {s r β : ℝ} (hr : 0 ≤ r) (hβ : 0 ≤ β) (hs0 : 0 ≤ s)
     (hs : s < (-β + Real.sqrt (β ^ 2 + 4 * r)) / 2) : s ^ 2 + β * s - r < 0 := by
   have hD : 0 ≤ β ^ 2 + 4 * r := by positivity
@@ -375,7 +471,9 @@ theorem quadratic_neg {s r β : ℝ} (hr : 0 ≤ r) (hβ : 0 ≤ β) (hs0 : 0 �
   nlinarith [mul_pos (by linarith : 0 < (-β + Real.sqrt (β ^ 2 + 4 * r)) / 2 - s)
     (by linarith : 0 < s + (β + Real.sqrt (β ^ 2 + 4 * r)) / 2)]
 
-/-- Conversely, where the quadratic is negative we are below the positive root. -/
+/-- Conversely, where the quadratic is negative we are below the positive root.
+@isnad1 id=lt.4h3v.s7.dabd545791d4 from=translated src=- shape=13842137 vocab=63f1bc14
+-/
 theorem lt_of_quadratic_neg {s r β : ℝ} (hr : 0 ≤ r) (hβ : 0 ≤ β) (hs0 : 0 ≤ s)
     (hs : s ^ 2 + β * s - r < 0) : s < (-β + Real.sqrt (β ^ 2 + 4 * r)) / 2 := by
   have hD : 0 ≤ β ^ 2 + 4 * r := by positivity
@@ -386,12 +484,18 @@ theorem lt_of_quadratic_neg {s r β : ℝ} (hr : 0 ≤ r) (hβ : 0 ≤ β) (hs0 
   nlinarith [mul_nonneg (by linarith : 0 ≤ s - (-β + Real.sqrt (β ^ 2 + 4 * r)) / 2)
     (by linarith : 0 ≤ s + (β + Real.sqrt (β ^ 2 + 4 * r)) / 2)]
 
+/--
+@isnad1 id=lt.2h1v.s4.61ff4c403783 from=translated src=- shape=e5f467a2 vocab=5a0c4b37
+-/
 theorem lt_koebeRadius {r : ℝ} (hr0 : 0 < r) (hr1 : r < 1) : r < koebeRadius r := by
   have hγ := koebeGamma_lt_one hr0.le hr1
   have hγ0 := koebeGamma_nonneg hr0.le
   refine lt_of_quadratic_neg hr0.le (by nlinarith) hr0.le ?_
   nlinarith [mul_pos hr0 (mul_pos (by linarith : 0 < 1 - r) (by linarith : 0 < 1 - koebeGamma r))]
 
+/--
+@isnad1 id=lt.2h1v.s5.c66cd6f91a30 from=translated src=- shape=1317b60f vocab=866e6b27
+-/
 theorem koebeRadius_lt_one {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) : koebeRadius r < 1 := by
   have hγ0 := koebeGamma_nonneg hr0
   set β := koebeGamma r * (1 - r)
@@ -404,6 +508,9 @@ theorem koebeRadius_lt_one {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) : koebeRadius
   push Not at h
   nlinarith
 
+/--
+@isnad1 id=continuo.0h0v.s4.5a224a39884d from=translated src=- shape=f2a09be3 vocab=53b9764e
+-/
 theorem continuousOn_koebeRadius : ContinuousOn koebeRadius (Ici 0) := by
   have hγ : ContinuousOn koebeGamma (Ici 0) := by
     unfold koebeGamma
@@ -416,7 +523,9 @@ theorem continuousOn_koebeRadius : ContinuousOn koebeRadius (Ici 0) := by
   exact ((hβ.neg).add (Real.continuous_sqrt.comp_continuousOn
     ((hβ.pow 2).add (continuousOn_const.mul continuousOn_id)))).div_const 2
 
-/-- **The Koebe estimate.** If `|z| < h(|b|²)` then `z ∈ 𝔻` and `|koebe b z| < |b|²`. -/
+/-- **The Koebe estimate.** If `|z| < h(|b|²)` then `z ∈ 𝔻` and `|koebe b z| < |b|²`.
+@isnad1 id=and.2h2v.s6.3a8d428b8ea0 from=translated src=- shape=52fc8675 vocab=bdfbafc4
+-/
 theorem norm_koebe_lt {b z : ℂ} (hb : b ∈ ball (0 : ℂ) 1)
     (hz : ‖z‖ < koebeRadius (‖b‖ ^ 2)) : z ∈ ball (0 : ℂ) 1 ∧ ‖koebe b z‖ < ‖b‖ ^ 2 := by
   set r := ‖b‖ ^ 2 with hr

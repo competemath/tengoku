@@ -70,23 +70,41 @@ noncomputable def margin (σ : HoledRect) (z : ℂ) : ℝ :=
 def shrink (ε : ℝ) (σ : HoledRect) : HoledRect :=
   ⟨σ.x₀ + ε, σ.x₁ - ε, σ.y₀ + ε, σ.y₁ - ε, σ.r + ε⟩
 
+/--
+@isnad1 id=iff.0h2v.s5.32c366da30c4 from=translated src=- shape=fdf7e720 vocab=7063ca6f
+-/
 lemma mem_hole_iff {r : ℝ} {z : ℂ} : z ∈ hole r ↔ max |z.re| |z.im| ≤ r := by
   simp [hole, mem_reProdIm, abs_le]
 
+/--
+@isnad1 id=isclosed.0h1v.s4.c61b028e68a7 from=translated src=- shape=1a6c1393 vocab=1e109415
+-/
 lemma isClosed_hole (r : ℝ) : IsClosed (hole r) := isClosed_Icc.reProdIm isClosed_Icc
 
+/--
+@isnad1 id=isopen.0h1v.s4.807aa633211c from=translated src=- shape=1a6c1393 vocab=d90d3870
+-/
 lemma isOpen_set (σ : HoledRect) : IsOpen σ.set :=
   (isOpen_Ioo.reProdIm isOpen_Ioo).sdiff (isClosed_hole _)
 
+/--
+@isnad1 id=continuo.0h1v.s4.ccd13513dca8 from=translated src=- shape=7000f90d vocab=9ccbef22
+-/
 @[fun_prop]
 lemma continuous_margin (σ : HoledRect) : Continuous σ.margin := by
   unfold margin; fun_prop
 
+/--
+@isnad1 id=iff.0h2v.s4.8154565895b7 from=translated src=- shape=66fe8485 vocab=021effc4
+-/
 lemma mem_set_iff {σ : HoledRect} {z : ℂ} : z ∈ σ.set ↔ 0 < σ.margin z := by
   simp only [set, mem_sdiff, mem_reProdIm, mem_Ioo, mem_hole_iff, not_le, margin, lt_min_iff,
     sub_pos]
   tauto
 
+/--
+@isnad1 id=eq.0h3v.s4.54e1ee9dff7f from=translated src=- shape=fb1b9977 vocab=5271454f
+-/
 lemma margin_shrink (ε : ℝ) (σ : HoledRect) (z : ℂ) :
     (σ.shrink ε).margin z = σ.margin z - ε := by
   simp only [margin, shrink]
@@ -98,28 +116,45 @@ lemma margin_shrink (ε : ℝ) (σ : HoledRect) (z : ℂ) :
   rw [h1, h2, h3, h4, h5]
   simp only [min_sub_sub_right]
 
+/--
+@isnad1 id=iff.0h3v.s4.886b985e21cb from=translated src=- shape=29b98e64 vocab=3a8d747b
+-/
 lemma mem_shrink_set_iff {ε : ℝ} {σ : HoledRect} {z : ℂ} :
     z ∈ (σ.shrink ε).set ↔ ε < σ.margin z := by
   rw [mem_set_iff, margin_shrink, sub_pos]
 
+/--
+@isnad1 id=eq.0h3v.s4.ff71ade5efc2 from=translated src=- shape=a8c1b836 vocab=95791592
+-/
 lemma shrink_shrink (ε ε' : ℝ) (σ : HoledRect) :
     (σ.shrink ε).shrink ε' = σ.shrink (ε + ε') := by
   simp only [shrink, HoledRect.mk.injEq]
   refine ⟨?_, ?_, ?_, ?_, ?_⟩ <;> ring
 
+/--
+@isnad1 id=le.0h1v.s4.abc7fa30c719 from=translated src=- shape=261fde6e vocab=463eda57
+-/
 lemma set_subset_rect (σ : HoledRect) : σ.set ⊆ Icc σ.x₀ σ.x₁ ×ℂ Icc σ.y₀ σ.y₁ :=
   fun _ hz ↦ ⟨Ioo_subset_Icc_self hz.1.1, Ioo_subset_Icc_self hz.1.2⟩
 
-/-- The closure of a shrinking consists of points of margin `≥ ε`. -/
+/-- The closure of a shrinking consists of points of margin `≥ ε`.
+@isnad1 id=le.0h2v.s5.55d2e87765fa from=translated src=- shape=aab0399a vocab=f00b9596
+-/
 lemma closure_shrink_set_subset (ε : ℝ) (σ : HoledRect) :
     closure (σ.shrink ε).set ⊆ {z | ε ≤ σ.margin z} := by
   refine closure_minimal (fun z hz ↦ (mem_shrink_set_iff.1 hz).le) ?_
   exact isClosed_le continuous_const σ.continuous_margin
 
+/--
+@isnad1 id=le.1h2v.s5.aff6b0e32cbb from=translated src=- shape=d74b0e0c vocab=bec3e870
+-/
 lemma closure_shrink_set_subset_set {ε : ℝ} (hε : 0 < ε) (σ : HoledRect) :
     closure (σ.shrink ε).set ⊆ σ.set := fun _ hz ↦
   mem_set_iff.2 (hε.trans_le (closure_shrink_set_subset ε σ hz))
 
+/--
+@isnad1 id=iscompac.0h1v.s5.189725c9882e from=translated src=- shape=deb42767 vocab=3129a2af
+-/
 lemma isCompact_closure_set (σ : HoledRect) : IsCompact (closure σ.set) :=
   (isCompact_Icc.reProdIm isCompact_Icc).of_isClosed_subset isClosed_closure
     (closure_minimal σ.set_subset_rect (isClosed_Icc.reProdIm isClosed_Icc))
@@ -129,30 +164,47 @@ variable {ι : Type*} [Finite ι]
 /-- The product `∏ i, (s i).set ⊆ ℂ^ι`. -/
 def prod (s : ι → HoledRect) : Set (ι → ℂ) := Set.univ.pi fun i ↦ (s i).set
 
+/--
+@isnad1 id=isopen.0h2v.s5.b9760480bc2c from=translated src=- shape=e6b9a5b7 vocab=58c92b40
+-/
 lemma isOpen_prod (s : ι → HoledRect) : IsOpen (prod s) :=
   isOpen_set_pi finite_univ fun i _ ↦ (s i).isOpen_set
 
 omit [Finite ι] in
+/--
+@isnad1 id=iff.0h3v.s5.ff05ccfac096 from=translated src=- shape=75b0bd29 vocab=ab4e2446
+-/
 lemma mem_prod_iff {s : ι → HoledRect} {x : ι → ℂ} : x ∈ prod s ↔ ∀ i, x i ∈ (s i).set := by
   simp [prod]
 
 omit [Finite ι] in
+/--
+@isnad1 id=eq.0h2v.s6.ab3ba62c0ae6 from=translated src=- shape=8bfa000e vocab=0e80b59a
+-/
 lemma closure_prod (s : ι → HoledRect) :
     closure (prod s) = Set.univ.pi fun i ↦ closure (s i).set :=
   closure_pi_set _ _
 
 omit [Finite ι] in
+/--
+@isnad1 id=iscompac.0h2v.s5.fbdac64e8aba from=translated src=- shape=ad1117a6 vocab=5137f260
+-/
 lemma isCompact_closure_prod (s : ι → HoledRect) : IsCompact (closure (prod s)) := by
   rw [closure_prod]
   exact isCompact_univ_pi fun i ↦ (s i).isCompact_closure_set
 
 omit [Finite ι] in
+/--
+@isnad1 id=le.1h3v.s6.7273a0db31e3 from=translated src=- shape=ed350e11 vocab=973344fc
+-/
 lemma closure_prod_shrink_subset {ε : ℝ} (hε : 0 < ε) (s : ι → HoledRect) :
     closure (prod fun i ↦ (s i).shrink ε) ⊆ prod s := by
   rw [closure_prod]
   exact pi_mono fun i _ ↦ closure_shrink_set_subset_set hε (s i)
 
-/-- A compact subset of `prod s` lies in a uniform shrinking of `prod s`. -/
+/-- A compact subset of `prod s` lies in a uniform shrinking of `prod s`.
+@isnad1 id=ex.2h3v.s6.31c0ee2cab15 from=translated src=- shape=3014cf7b vocab=24568a4e
+-/
 lemma exists_subset_prod_shrink {s : ι → HoledRect} {K : Set (ι → ℂ)} (hK : IsCompact K)
     (hKs : K ⊆ prod s) : ∃ ε > 0, K ⊆ prod fun i ↦ (s i).shrink ε := by
   cases nonempty_fintype ι
@@ -177,7 +229,9 @@ lemma exists_subset_prod_shrink {s : ι → HoledRect} {K : Set (ι → ℂ)} (h
   nlinarith [he i]
 
 omit [Finite ι] in
-/-- The closure of `σ.set` avoids the hole. -/
+/-- The closure of `σ.set` avoids the hole.
+@isnad1 id=le.0h1v.s5.11678f5f76eb from=translated src=- shape=3111e501 vocab=3d16fd7c
+-/
 lemma closure_set_subset (σ : HoledRect) : closure σ.set ⊆ {z | σ.r ≤ max |z.re| |z.im|} := by
   refine closure_minimal (fun z hz ↦ ?_) (isClosed_le continuous_const (by fun_prop))
   have := mem_set_iff.1 hz
@@ -189,7 +243,9 @@ vanish. -/
 def puncturedSet (P : Set ι) : Set (ι → ℂ) := {x | ∀ i ∈ P, x i ≠ 0}
 
 /-- A compact subset of `(ℂ^×)^P × ℂ^{ι \ P}` lies in a product of holed squares whose closure is
-compact and still contained in `(ℂ^×)^P × ℂ^{ι \ P}`. -/
+compact and still contained in `(ℂ^×)^P × ℂ^{ι \ P}`.
+@isnad1 id=ex.2h3v.s6.bfc5dbb3c02e from=translated src=- shape=5db7e953 vocab=b9dbe156
+-/
 lemma exists_prod_of_isCompact (P : Set ι) {K : Set (ι → ℂ)} (hK : IsCompact K)
     (hKP : K ⊆ puncturedSet P) :
     ∃ s : ι → HoledRect, K ⊆ prod s ∧ closure (prod s) ⊆ puncturedSet P := by

@@ -329,7 +329,9 @@ private lemma X_mk0_eq {w : K} (h1w : (1 : K) + w ≠ 0) :
 
 /-- **Large points sit on the branch `‖y‖² = ‖x‖³`.** For an affine point of the Tate curve
 with `1 < ‖x‖`, the ultrametric dominant-term analysis of `y² + xy = x³ + a₄x + a₆`
-(using the integrality `‖a₄‖, ‖a₆‖ < 1`) forces `‖y‖² = ‖x‖³`. -/
+(using the integrality `‖a₄‖, ‖a₆‖ < 1`) forces `‖y‖² = ‖x‖³`.
+@isnad1 id=eq.3h4v.s8.105b59195408 from=translated src=- shape=a2ffc6c8 vocab=fed44b4b
+-/
 theorem norm_y_sq_eq_norm_x_cube (h12 : (12 : K) ≠ 0) {x y : K}
     (hxy : y ^ 2 + x * y = x ^ 3 + t.a₄ * x + t.a₆) (hx : 1 < ‖x‖) :
     ‖y‖ ^ 2 = ‖x‖ ^ 3 := by
@@ -599,7 +601,9 @@ private lemma exists_root_hAux (h2 : ‖(2 : K)‖ = 1) {x z : K} (hx : 1 < ‖x
 iteration for `X(1 + w) = x` started at `w₀ = x/y`, with the sign of `y` corrected by the
 coordinate inversion `u ↦ u⁻¹` if needed. The hypothesis `‖(2 : K)‖ = 1` (residue
 characteristic `≠ 2`) keeps the Newton slope invertible; `(12 : K) ≠ 0` is the standing
-characteristic assumption of the Weierstrass identity for `(X(u), Y(u))`. -/
+characteristic assumption of the Weierstrass identity for `(X(u), Y(u))`.
+@isnad1 id=ex.4h4v.s8.573ffe7e918f from=translated src=- shape=2b71f625 vocab=c67cfc8e
+-/
 theorem exists_tate_coord_of_one_lt_norm (h2 : ‖(2 : K)‖ = 1) (h12 : (12 : K) ≠ 0)
     {x y : K} (hxy : y ^ 2 + x * y = x ^ 3 + t.a₄ * x + t.a₆) (hx : 1 < ‖x‖) :
     ∃ u : Kˣ, (∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) ∧ t.X u = x ∧ t.Y u = y := by

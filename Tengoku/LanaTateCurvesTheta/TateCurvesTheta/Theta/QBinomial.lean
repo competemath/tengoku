@@ -58,8 +58,14 @@ def qPoch (q : R) : ℕ → R
   | 0 => 1
   | (k + 1) => qPoch q k * (1 - q ^ (k + 1))
 
+/--
+@isnad1 id=eq.0h2v.s5.05772b0cc4be from=translated src=- shape=4e114734 vocab=c00976dc
+-/
 @[simp] lemma qPoch_zero : qPoch q 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.69a6336e99b2 from=translated src=- shape=995558ed vocab=9644d968
+-/
 lemma qPoch_succ (k : ℕ) : qPoch q (k + 1) = qPoch q k * (1 - q ^ (k + 1)) := rfl
 
 /-- The **Gaussian binomial coefficient** `[n;k]_q`, defined by the q-Pascal recursion
@@ -69,16 +75,26 @@ def gaussBinom (q : R) : ℕ → ℕ → R
   | 0, (_ + 1) => 0
   | (n + 1), (k + 1) => gaussBinom q n (k + 1) + q ^ (n - k) * gaussBinom q n k
 
+/--
+@isnad1 id=eq.0h3v.s5.8e2f3f086a15 from=translated src=- shape=0fc5a075 vocab=2324b245
+-/
 @[simp] lemma gaussBinom_zero_right (n : ℕ) : gaussBinom q n 0 = 1 := by
   cases n <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.2db8f9c7a95e from=translated src=- shape=f7bf52c5 vocab=c5ad1dbc
+-/
 @[simp] lemma gaussBinom_zero_succ (k : ℕ) : gaussBinom q 0 (k + 1) = 0 := rfl
 
-/-- The defining q-Pascal recursion. -/
+/-- The defining q-Pascal recursion.
+@isnad1 id=eq.0h4v.s6.27bac9147b37 from=translated src=- shape=ae14df1b vocab=62dcdc72
+-/
 lemma gaussBinom_succ_succ (n k : ℕ) :
     gaussBinom q (n + 1) (k + 1) = gaussBinom q n (k + 1) + q ^ (n - k) * gaussBinom q n k := rfl
 
-/-- Above the diagonal the Gaussian binomial vanishes: `[n;k] = 0` for `n < k`. -/
+/-- Above the diagonal the Gaussian binomial vanishes: `[n;k] = 0` for `n < k`.
+@isnad1 id=eq.1h4v.s5.9e327d4ccf85 from=translated src=- shape=add6247f vocab=647db702
+-/
 lemma gaussBinom_eq_zero_of_lt : ∀ {n k : ℕ}, n < k → gaussBinom q n k = 0
   | 0, 0, h => absurd h (by omega)
   | 0, (_ + 1), _ => rfl
@@ -88,7 +104,9 @@ lemma gaussBinom_eq_zero_of_lt : ∀ {n k : ℕ}, n < k → gaussBinom q n k = 0
         gaussBinom_eq_zero_of_lt (by omega : n < k)]
       ring
 
-/-- On the diagonal the Gaussian binomial is `1`: `[n;n] = 1`. -/
+/-- On the diagonal the Gaussian binomial is `1`: `[n;n] = 1`.
+@isnad1 id=eq.0h3v.s4.0580571998e2 from=translated src=- shape=82da11a8 vocab=2324b245
+-/
 @[simp] lemma gaussBinom_self : ∀ n : ℕ, gaussBinom q n n = 1
   | 0 => rfl
   | (n + 1) => by
@@ -98,7 +116,9 @@ lemma gaussBinom_eq_zero_of_lt : ∀ {n k : ℕ}, n < k → gaussBinom q n k = 0
 
 /-- **Closed form of the Gaussian binomial (division-free).** For `k ≤ n`,
 `[n;k]_q · (q;q)ₖ · (q;q)_{n-k} = (q;q)ₙ`. Proved by induction on `n` using the defining q-Pascal
-recursion; the telescoping `(1 - q^{n-k}) + q^{n-k}(1 - q^{k+1}) = 1 - q^{n+1}` closes the step. -/
+recursion; the telescoping `(1 - q^{n-k}) + q^{n-k}(1 - q^{k+1}) = 1 - q^{n+1}` closes the step.
+@isnad1 id=eq.1h4v.s6.c91e488f996d from=translated src=- shape=3c76fbb4 vocab=30482931
+-/
 lemma gaussBinom_mul_qPoch {n k : ℕ} (hk : k ≤ n) :
     gaussBinom q n k * (qPoch q k * qPoch q (n - k)) = qPoch q n := by
   induction n generalizing k with
@@ -130,7 +150,9 @@ section Field
 
 variable {K : Type*} [Field K] (q : K)
 
-/-- The `(q;q)` factors are nonzero exactly when no `1 - q^{j+1}` vanishes. -/
+/-- The `(q;q)` factors are nonzero exactly when no `1 - q^{j+1}` vanishes.
+@isnad1 id=ne.1h3v.s6.4201cbba084e from=translated src=- shape=c3fd8caa vocab=9b60ff5c
+-/
 lemma qPoch_ne_zero (hq : ∀ j : ℕ, (1 : K) - q ^ (j + 1) ≠ 0) : ∀ k : ℕ, qPoch q k ≠ 0
   | 0 => by simp
   | (k + 1) => by
@@ -139,7 +161,9 @@ lemma qPoch_ne_zero (hq : ∀ j : ℕ, (1 : K) - q ^ (j + 1) ≠ 0) : ∀ k : �
 
 /-- **Symmetry of the Gaussian binomial:** `[n;k] = [n;n-k]` for `k ≤ n`. Both sides satisfy the
 same closed form `(q;q)ₙ / ((q;q)ₖ·(q;q)_{n-k})`; cancelling the nonzero `(q;q)` factors gives the
-identity. -/
+identity.
+@isnad1 id=eq.2h4v.s7.cec3a04e94ac from=translated src=- shape=fb3a3662 vocab=63162cc9
+-/
 lemma gaussBinom_symm (hq : ∀ j : ℕ, (1 : K) - q ^ (j + 1) ≠ 0) {n k : ℕ} (hk : k ≤ n) :
     gaussBinom q n k = gaussBinom q n (n - k) := by
   have h1 := gaussBinom_mul_qPoch q hk
@@ -160,9 +184,15 @@ variable {R : Type*} [CommRing R] (q c : R)
 is `cᵏ·q^{k(k-1)/2}·[N;k]_q`. -/
 noncomputable def qbtPoly (q c : R) (N : ℕ) : R[X] := ∏ i ∈ Finset.range N, (C (c * q ^ i) * X + 1)
 
+/--
+@isnad1 id=eq.0h3v.s5.aa2f5a5912a1 from=translated src=- shape=8e5478a8 vocab=6d17afae
+-/
 @[simp] lemma qbtPoly_zero : qbtPoly q c 0 = 1 := by
   rw [qbtPoly, Finset.prod_range_zero]
 
+/--
+@isnad1 id=eq.0h4v.s8.3aef82c00412 from=translated src=- shape=0f81a9c6 vocab=f685ee96
+-/
 lemma qbtPoly_succ (N : ℕ) :
     qbtPoly q c (N + 1) = qbtPoly q c N * (C (c * q ^ N) * X + 1) := by
   rw [qbtPoly, Finset.prod_range_succ, ← qbtPoly]
@@ -171,7 +201,9 @@ private lemma choose_two_succ (m : ℕ) : (m + 1).choose 2 = m.choose 2 + m := b
   rw [Nat.choose_succ_succ, Nat.choose_one_right, Nat.add_comm]
 
 /-- **Finite q-binomial theorem (Rothe/Gauss).** For every `k`,
-`[Xᵏ] ∏_{i<N} (c·qⁱ·X + 1) = cᵏ·q^{k(k-1)/2}·[N;k]_q`. (For `k > N` both sides vanish.) -/
+`[Xᵏ] ∏_{i<N} (c·qⁱ·X + 1) = cᵏ·q^{k(k-1)/2}·[N;k]_q`. (For `k > N` both sides vanish.)
+@isnad1 id=eq.0h5v.s6.970203ba13ab from=translated src=- shape=6d34270d vocab=2cb95d8c
+-/
 lemma qbtPoly_coeff (N k : ℕ) :
     (qbtPoly q c N).coeff k = c ^ k * q ^ (k.choose 2) * gaussBinom q N k := by
   induction N generalizing k with
@@ -203,7 +235,9 @@ lemma qbtPoly_coeff (N k : ℕ) :
           linear_combination c ^ (m + 1) * key
 
 /-- **Splitting the q-binomial product.** `∏_{i<n+m}(c·qⁱ·X+1) = (∏_{i<n}) · (∏_{i<m} shifted)`,
-where the shifted factor has base `c·qⁿ`. -/
+where the shifted factor has base `c·qⁿ`.
+@isnad1 id=eq.0h5v.s6.dbf20698b65b from=translated src=- shape=eafbeb19 vocab=22963d08
+-/
 lemma qbtPoly_add (n m : ℕ) :
     qbtPoly q c (n + m) = qbtPoly q c n * qbtPoly q (c * q ^ n) m := by
   rw [qbtPoly, qbtPoly, Finset.prod_range_add]
@@ -237,7 +271,9 @@ private lemma exp_durfee {n k : ℕ} (h : k ≤ n) :
 q-analogue of `∑ₖ C(n,k)² = C(2n,n)` and the finite engine of the Durfee-square identity
 `∑ₖ q^{k²}/((q;q)ₖ)² = 1/(q;q)_∞`. Proved by extracting the `Xⁿ`-coefficient of `∏_{i<2n}(qⁱ·X+1)`
 two ways (directly, and after splitting the product in half), then cancelling the common factor
-`q^{n(n-1)/2}` and applying the symmetry `[n;k] = [n;n-k]`. -/
+`q^{n(n-1)/2}` and applying the symmetry `[n;k] = [n;n-k]`.
+@isnad1 id=eq.2h3v.s7.19a56f6bbb04 from=translated src=- shape=4da12d07 vocab=73c4588a
+-/
 theorem gaussBinom_two_mul_self (hq0 : q ≠ 0) (hq : ∀ j : ℕ, (1 : K) - q ^ (j + 1) ≠ 0) (n : ℕ) :
     ∑ k ∈ Finset.range (n + 1), q ^ (k * k) * gaussBinom q n k ^ 2 = gaussBinom q (2 * n) n := by
   -- The `Xⁿ`-coefficient of `∏_{i<2n}(qⁱ·X+1)`, computed directly.

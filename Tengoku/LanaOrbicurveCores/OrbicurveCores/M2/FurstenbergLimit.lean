@@ -46,12 +46,18 @@ namespace TailWeights
 
 variable (W : TailWeights)
 
+/--
+@isnad1 id=eq.0h2v.s5.f00368a83538 from=translated src=- shape=e932cbe4 vocab=07998a5a
+-/
 lemma sum_support_eq_one (n : ℕ) : ∑ k ∈ (W.w n).support, W.w n k = 1 := W.sum_eq_one n
 
 /-- The convex combination `∑ₖ w n k • θ k` of measures. -/
 noncomputable def combMeasure (n : ℕ) (θ : ℕ → Measure Y) : Measure Y :=
   ∑ k ∈ (W.w n).support, ENNReal.ofReal (W.w n k) • θ k
 
+/--
+@isnad1 id=eq.0h5v.s6.e3d82f2286f4 from=translated src=- shape=4b90144b vocab=9b7f4881
+-/
 lemma combMeasure_apply (n : ℕ) (θ : ℕ → Measure Y) (s : Set Y) :
     W.combMeasure n θ s = ∑ k ∈ (W.w n).support, ENNReal.ofReal (W.w n k) * θ k s := by
   simp [combMeasure]
@@ -68,9 +74,15 @@ instance (n : ℕ) (θ : ℕ → Measure Y) [∀ k, IsProbabilityMeasure (θ k)]
 noncomputable def comb (n : ℕ) (θ : ℕ → ProbabilityMeasure Y) : ProbabilityMeasure Y :=
   ⟨W.combMeasure n fun k ↦ θ k, inferInstance⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.8e4a3fa9c6ea from=translated src=- shape=0c0ea7ea vocab=6433d944
+-/
 lemma coe_comb (n : ℕ) (θ : ℕ → ProbabilityMeasure Y) :
     (W.comb n θ : Measure Y) = W.combMeasure n fun k ↦ θ k := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.4db87be0cd50 from=translated src=- shape=3ca8b27b vocab=a647db00
+-/
 lemma integral_comb [TopologicalSpace Y] [OpensMeasurableSpace Y] (n : ℕ)
     (θ : ℕ → ProbabilityMeasure Y) (f : Y →ᵇ ℝ) :
     ∫ y, f y ∂(W.comb n θ : Measure Y) =
@@ -80,6 +92,9 @@ lemma integral_comb [TopologicalSpace Y] [OpensMeasurableSpace Y] (n : ℕ)
   refine Finset.sum_congr rfl fun k _ ↦ ?_
   rw [integral_smul_measure, ENNReal.toReal_ofReal (W.nonneg n k), smul_eq_mul]
 
+/--
+@isnad1 id=eq.1h6v.s6.96adbc1f6051 from=translated src=- shape=e5fbc88f vocab=9e0c0c89
+-/
 lemma comb_map {Z : Type*} [MeasurableSpace Z] (n : ℕ) (θ : ℕ → ProbabilityMeasure Y)
     {h : Y → Z} (hh : Measurable h) :
     (W.comb n θ).map hh.aemeasurable = W.comb n fun k ↦ (θ k).map hh.aemeasurable := by
@@ -95,7 +110,9 @@ def subseq (ns : ℕ → ℕ) (hns : StrictMono ns) : TailWeights where
   sum_eq_one n := W.sum_eq_one (ns n)
   le_of_mem n k hk := (hns.id_le n).trans (W.le_of_mem _ k hk)
 
-/-- A tail average of a sequence decaying like `C / (k + 1)` decays like `C / (n + 1)`. -/
+/-- A tail average of a sequence decaying like `C / (k + 1)` decays like `C / (n + 1)`.
+@isnad1 id=le.1h4v.s6.8110aeaeb6b0 from=translated src=- shape=da86aacc vocab=52b4a7d3
+-/
 lemma abs_sum_le (n : ℕ) (a : ℕ → ℝ) {C : ℝ} (ha : ∀ k, |a k| ≤ C / (k + 1)) :
     |∑ k ∈ (W.w n).support, W.w n k * a k| ≤ C / (n + 1) := by
   have hC : 0 ≤ C := by simpa using (abs_nonneg _).trans (ha 0)
@@ -109,6 +126,9 @@ lemma abs_sum_le (n : ℕ) (a : ℕ → ℝ) {C : ℝ} (ha : ∀ k, |a k| ≤ C 
         gcongr
     _ = C / (n + 1) := by rw [← Finset.sum_mul, W.sum_support_eq_one, one_mul]
 
+/--
+@isnad1 id=le.1h7v.s8.91b22814606a from=translated src=- shape=08249523 vocab=d178e688
+-/
 lemma abs_integral_comb_sub_le [TopologicalSpace Y] [OpensMeasurableSpace Y] (n : ℕ)
     (θ θ' : ℕ → ProbabilityMeasure Y) (f : Y →ᵇ ℝ) {C : ℝ}
     (h : ∀ k, |∫ y, f y ∂(θ k : Measure Y) - ∫ y, f y ∂(θ' k : Measure Y)| ≤ C / (k + 1)) :
@@ -125,7 +145,9 @@ section Convergence
 variable [TopologicalSpace Y] [OpensMeasurableSpace Y]
 
 /-- On a compact space, a sequence of probability measures converges as soon as the integrals
-of a dense sequence of test functions converge. -/
+of a dense sequence of test functions converge.
+@isnad1 id=ex.2h3v.s7.2dc030625c6b from=translated src=- shape=8f9f0e90 vocab=2b758815
+-/
 theorem exists_tendsto_of_forall_dense [CompactSpace Y] [T2Space Y] [BorelSpace Y]
     {f : ℕ → Y →ᵇ ℝ} (hf : DenseRange f) {θ : ℕ → ProbabilityMeasure Y}
     (h : ∀ j, ∃ l, Tendsto (fun m ↦ ∫ y, f j y ∂(θ m : Measure Y)) atTop (𝓝 l)) :
@@ -163,14 +185,18 @@ theorem exists_tendsto_of_forall_dense [CompactSpace Y] [T2Space Y] [BorelSpace 
   have : ∫ y, g y ∂(ν : Measure Y) = l := eq_of_nhds_neBot (hc.mono hl)
   rwa [this]
 
-/-- The converse direction of `exists_tendsto_of_forall_dense`. -/
+/-- The converse direction of `exists_tendsto_of_forall_dense`.
+@isnad1 id=ex.1h4v.s6.734e7c9ba8ec from=translated src=- shape=da9e9430 vocab=03b2b942
+-/
 lemma exists_tendsto_integral_of_tendsto {θ : ℕ → ProbabilityMeasure Y} {ν : ProbabilityMeasure Y}
     (h : Tendsto θ atTop (𝓝 ν)) (f : Y →ᵇ ℝ) :
     ∃ l, Tendsto (fun m ↦ ∫ y, f y ∂(θ m : Measure Y)) atTop (𝓝 l) :=
   ⟨_, ProbabilityMeasure.tendsto_iff_forall_integral_tendsto.1 h f⟩
 
 /-- A map into `ProbabilityMeasure Y` (with the Giry structure) is measurable as soon as all its
-integrals of bounded continuous functions are. -/
+integrals of bounded continuous functions are.
+@isnad1 id=measurab.1h3v.s6.accb253ceff3 from=translated src=- shape=e3df2441 vocab=4d93b331
+-/
 theorem measurable_of_forall_integral [TopologicalSpace.PseudoMetrizableSpace Y] [BorelSpace Y]
     {X : Type*} [MeasurableSpace X] {ψ : X → ProbabilityMeasure Y}
     (h : ∀ f : Y →ᵇ ℝ, Measurable fun x ↦ ∫ y, f y ∂(ψ x : Measure Y)) : Measurable ψ := by
@@ -212,6 +238,9 @@ noncomputable def TailWeights.lim (W : TailWeights) {G : Type*}
     ProbabilityMeasure Y :=
   if g ∈ W.convSet Θ then @limUnder _ _ _ ⟨ν₀⟩ atTop (fun m ↦ W.comb m fun k ↦ Θ k g) else ν₀
 
+/--
+@isnad1 id=tendsto.1h6v.s6.9f537cd6cc2b from=translated src=- shape=8175c031 vocab=0485afe9
+-/
 lemma TailWeights.tendsto_lim [T2Space (ProbabilityMeasure Y)] (W : TailWeights) {G : Type*}
     {Θ : ℕ → G → ProbabilityMeasure Y} (ν₀ : ProbabilityMeasure Y) {g : G}
     (hg : g ∈ W.convSet Θ) :
@@ -228,6 +257,9 @@ variable [TopologicalSpace Y] [CompactSpace Y] [TopologicalSpace.MetrizableSpace
   [SecondCountableTopology Y] [BorelSpace Y]
 
 omit [MeasurableSpace Y] [BorelSpace Y] in
+/--
+@isnad1 id=ex.0h1v.s5.261f18438f03 from=translated src=- shape=18b7a9b7 vocab=54151374
+-/
 lemma exists_denseRange_boundedContinuousFunction : ∃ f : ℕ → Y →ᵇ ℝ, DenseRange f := by
   obtain ⟨u, hu⟩ := TopologicalSpace.exists_dense_seq C(Y, ℝ)
   refine ⟨fun j ↦ mkOfCompact (u j), fun g ↦ Metric.mem_closure_iff.2 fun ε hε ↦ ?_⟩
@@ -238,7 +270,9 @@ lemma exists_denseRange_boundedContinuousFunction : ∃ f : ℕ → Y →ᵇ ℝ
   exact hj
 
 omit [SecondCountableTopology Y] in
-/-- Almost everywhere, the conclusion of `exists_tendsto_of_forall_dense` and its converse. -/
+/-- Almost everywhere, the conclusion of `exists_tendsto_of_forall_dense` and its converse.
+@isnad1 id=iff.1h6v.s7.856e7e526781 from=translated src=- shape=8870870b vocab=e779195d
+-/
 lemma mem_convSet_iff {f : ℕ → Y →ᵇ ℝ} (hf : DenseRange f) (W : TailWeights) {G : Type*}
     (Θ : ℕ → G → ProbabilityMeasure Y) (g : G) :
     g ∈ W.convSet Θ ↔ ∀ j, ∃ l, Tendsto
@@ -249,6 +283,9 @@ lemma mem_convSet_iff {f : ℕ → Y →ᵇ ℝ} (hf : DenseRange f) (W : TailWe
 variable {X : Type*} [MeasurableSpace X]
 
 omit [CompactSpace Y] [TopologicalSpace.MetrizableSpace Y] [SecondCountableTopology Y] in
+/--
+@isnad1 id=measurab.1h6v.s7.f7c1f4d062ef from=translated src=- shape=08801c3f vocab=0c451b13
+-/
 lemma measurable_integral_comb (W : TailWeights) {Θ : ℕ → X → ProbabilityMeasure Y}
     (hΘ : ∀ n (f : Y →ᵇ ℝ), Measurable fun x ↦ ∫ y, f y ∂(Θ n x : Measure Y)) (m : ℕ)
     (f : Y →ᵇ ℝ) :
@@ -256,6 +293,9 @@ lemma measurable_integral_comb (W : TailWeights) {Θ : ℕ → X → Probability
   simp_rw [TailWeights.integral_comb]
   exact Finset.measurable_sum _ fun k _ ↦ (hΘ k f).const_mul _
 
+/--
+@isnad1 id=measurab.1h4v.s6.076a459412a0 from=translated src=- shape=b386468f vocab=9d0cb508
+-/
 lemma measurableSet_convSet (W : TailWeights) {Θ : ℕ → X → ProbabilityMeasure Y}
     (hΘ : ∀ n (f : Y →ᵇ ℝ), Measurable fun x ↦ ∫ y, f y ∂(Θ n x : Measure Y)) :
     MeasurableSet (W.convSet Θ) := by
@@ -269,6 +309,9 @@ lemma measurableSet_convSet (W : TailWeights) {Θ : ℕ → X → ProbabilityMea
   exact MeasurableSet.iInter fun j ↦
     measurableSet_exists_tendsto fun m ↦ measurable_integral_comb W hΘ m (f j)
 
+/--
+@isnad1 id=measurab.1h5v.s6.a01968afdf15 from=translated src=- shape=8fb05b1c vocab=dc8d6c35
+-/
 lemma measurable_lim (W : TailWeights) {Θ : ℕ → X → ProbabilityMeasure Y}
     (hΘ : ∀ n (f : Y →ᵇ ℝ), Measurable fun x ↦ ∫ y, f y ∂(Θ n x : Measure Y))
     (ν₀ : ProbabilityMeasure Y) : Measurable (W.lim Θ ν₀) := by
@@ -289,6 +332,9 @@ lemma measurable_lim (W : TailWeights) {Θ : ℕ → X → ProbabilityMeasure Y}
 noncomputable def geomWeights : Measure ℕ :=
   Measure.sum fun j ↦ (2⁻¹ : ℝ≥0∞) ^ j • Measure.dirac j
 
+/--
+@isnad1 id=eventual.0h6v.s12.78ee0a4fc633 from=translated src=- shape=dd8b2a90 vocab=3e11df93
+-/
 lemma Lp.coeFn_finset_sum {α : Type*} [MeasurableSpace α] {μ : Measure α} {ι : Type*}
     (s : Finset ι) (c : ι → ℝ) (g : ι → Lp ℝ 2 μ) :
     ⇑(∑ k ∈ s, c k • g k) =ᵐ[μ] fun p ↦ ∑ k ∈ s, c k * g k p := by

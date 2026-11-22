@@ -66,7 +66,9 @@ variable {K : Type*} [NormedField K] [CompleteSpace K] [IsUltrametricDist K] (t 
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
 /-- Two affine points of a Weierstrass curve with equal coordinates are equal (the nonsingularity
-witnesses live in `Prop`, so they are irrelevant). -/
+witnesses live in `Prop`, so they are irrelevant).
+@isnad1 id=eq.4h6v.s6.5f93b3c2b2ee from=translated src=- shape=201893ae vocab=01f47c65
+-/
 lemma point_some_congr {W : WeierstrassCurve.Affine K} {x₁ y₁ x₂ y₂ : K}
     {h₁ : W.Nonsingular x₁ y₁} {h₂ : W.Nonsingular x₂ y₂} (hx : x₁ = x₂) (hy : y₁ = y₂) :
     (WeierstrassCurve.Affine.Point.some x₁ y₁ h₁) = .some x₂ y₂ h₂ := by
@@ -74,7 +76,9 @@ lemma point_some_congr {W : WeierstrassCurve.Affine K} {x₁ y₁ x₂ y₂ : K}
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
 /-- Membership in the discrete `q`-orbit subgroup `qᶻ ≤ Kˣ` is the negation of the off-orbit
-hypothesis `∀ n, qⁿ·u ≠ 1` used by `tatePoint_mem` and `one_sub_qzpow_mul_ne_zero`. -/
+hypothesis `∀ n, qⁿ·u ≠ 1` used by `tatePoint_mem` and `one_sub_qzpow_mul_ne_zero`.
+@isnad1 id=iff.0h3v.s7.347838e792f8 from=translated src=- shape=ce5eb7e5 vocab=45c6ea4e
+-/
 lemma mem_qpowers_iff (u : Kˣ) :
     u ∈ t.qpowers ↔ ∃ n : ℤ, (t.q : K) ^ n * (u : K) = 1 := by
   rw [show t.qpowers = Subgroup.zpowers t.q from rfl, Subgroup.mem_zpowers_iff]
@@ -93,7 +97,9 @@ lemma mem_qpowers_iff (u : Kˣ) :
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
 /-- The off-orbit reformulation of `u ∉ qᶻ`: if `u` is not in the `q`-orbit subgroup, then
-`qⁿ·u ≠ 1` for every `n`, the hypothesis form consumed by `tatePoint_mem`. -/
+`qⁿ·u ≠ 1` for every `n`, the hypothesis form consumed by `tatePoint_mem`.
+@isnad1 id=ne.1h4v.s7.2fe3509f6105 from=translated src=- shape=93872d4a vocab=45c6ea4e
+-/
 lemma qzpow_mul_ne_one_of_notMem {u : Kˣ} (hu : u ∉ t.qpowers) (n : ℤ) :
     (t.q : K) ^ n * (u : K) ≠ 1 :=
   not_exists.mp ((t.mem_qpowers_iff u).not.mp hu) n
@@ -116,12 +122,16 @@ def tatePoint
 variable (hmem : ∀ u : Kˣ, (∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) →
     t.tateCurve.toAffine.Equation (t.X u) (t.Y u)) (h12 : TameResidueChar K)
 
-/-- On the orbit `u ∈ qᶻ`, the point map is the identity `O` of the Mordell–Weil group. -/
+/-- On the orbit `u ∈ qᶻ`, the point map is the identity `O` of the Mordell–Weil group.
+@isnad1 id=eq.3h3v.s8.335a8a7963ba from=translated src=- shape=f73ca3bc vocab=68d5016c
+-/
 lemma tatePoint_of_mem {u : Kˣ} (hu : u ∈ t.qpowers) : t.tatePoint hmem h12 u = 0 := by
   classical
   simp only [tatePoint, dite_eq_left hu]
 
-/-- Off the orbit, the point map is the affine point `(X(u), Y(u))`. -/
+/-- Off the orbit, the point map is the affine point `(X(u), Y(u))`.
+@isnad1 id=eq.3h3v.s8.889a1872912f from=translated src=- shape=6681332a vocab=986ead5f
+-/
 lemma tatePoint_of_notMem {u : Kˣ} (hu : u ∉ t.qpowers) :
     haveI : t.tateCurve.toAffine.IsElliptic := t.tateCurve_isElliptic h12.2
     t.tatePoint hmem h12 u =
@@ -131,13 +141,17 @@ lemma tatePoint_of_notMem {u : Kˣ} (hu : u ∉ t.qpowers) :
   classical
   simp only [tatePoint, dite_eq_right hu]
 
-/-- The identity `1 ∈ Kˣ` maps to the point at infinity `O` (since `1 ∈ qᶻ`). -/
+/-- The identity `1 ∈ Kˣ` maps to the point at infinity `O` (since `1 ∈ qᶻ`).
+@isnad1 id=eq.2h2v.s8.d5fc7aeb12b7 from=translated src=- shape=51906b0c vocab=10c594e5
+-/
 @[simp] lemma tatePoint_one : t.tatePoint hmem h12 1 = 0 :=
   t.tatePoint_of_mem hmem h12 (one_mem _)
 
 /-- **`q`-invariance (single step).** The point map is unchanged under `u ↦ q·u`, since `X`, `Y`
 are `q`-periodic (`X_q_smul`, `Y_q_smul`) and `qᶻ` absorbs the factor `q`. This is what lets the
-map descend to `Kˣ/qᶻ`. -/
+map descend to `Kˣ/qᶻ`.
+@isnad1 id=eq.2h3v.s8.3cbc7ace1719 from=translated src=- shape=416231e4 vocab=10c594e5
+-/
 lemma tatePoint_q_mul (u : Kˣ) : t.tatePoint hmem h12 (t.q * u) = t.tatePoint hmem h12 u := by
   have hq : t.q ∈ t.qpowers := Subgroup.mem_zpowers t.q
   by_cases h : u ∈ t.qpowers
@@ -149,7 +163,9 @@ lemma tatePoint_q_mul (u : Kˣ) : t.tatePoint hmem h12 (t.q * u) = t.tatePoint h
     exact point_some_congr (t.X_q_smul u) (t.Y_q_smul u)
 
 /-- **`qᶻ`-invariance.** The point map is constant along the whole `q`-orbit: `tatePoint (qⁿ·u) =
-tatePoint u` for every `n : ℤ`. -/
+tatePoint u` for every `n : ℤ`.
+@isnad1 id=eq.2h4v.s8.e87801216ea4 from=translated src=- shape=7fcf2c3d vocab=10c594e5
+-/
 lemma tatePoint_zpow_q_mul (n : ℤ) (u : Kˣ) :
     t.tatePoint hmem h12 (t.q ^ n * u) = t.tatePoint hmem h12 u := by
   induction n with
@@ -179,7 +195,9 @@ def mapTatePoint (x : t.AnalyticQuotient) : t.tateCurve.toAffine.Point :=
     have hb : t.q ^ n * a = b := by rw [hn, mul_assoc, mul_comm b a, inv_mul_cancel_left]
     rw [← hb, t.tatePoint_zpow_q_mul hmem h12]
 
-/-- The descent factors the point map: `mapTatePoint (toAnalyticQuotient u) = tatePoint u`. -/
+/-- The descent factors the point map: `mapTatePoint (toAnalyticQuotient u) = tatePoint u`.
+@isnad1 id=eq.2h3v.s8.7ffedff49fa2 from=translated src=- shape=c3a85698 vocab=eae7dcdb
+-/
 @[simp] lemma mapTatePoint_toAnalyticQuotient (u : Kˣ) :
     t.mapTatePoint hmem h12 (t.toAnalyticQuotient u) = t.tatePoint hmem h12 u :=
   rfl

@@ -27,7 +27,9 @@ namespace AlgebraicGeometry.LocallyRingedSpace
 variable {X : LocallyRingedSpace.{u}}
 
 /-- Composition with `φ : M ⟶ N` is bijective on morphisms out of the structure sheaf if `φ` is
-bijective on global sections. -/
+bijective on global sections.
+@isnad1 id=bijectiv.1h4v.s16.c23d78457c05 from=translated src=- shape=559caf6c vocab=c02111a3
+-/
 lemma bijective_comp_of_bijective_app_top {M N : SheafOfModules.{u} X.ringSheaf} (φ : M ⟶ N)
     (h : Function.Bijective (φ.val.app (op ⊤))) :
     Function.Bijective (fun g : SheafOfModules.unit X.ringSheaf ⟶ M ↦ g ≫ φ) := by

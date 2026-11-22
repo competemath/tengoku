@@ -56,10 +56,16 @@ noncomputable def rotChar (M : ℕ) (a : Fin r → ℤ) (j : Fin r → ℕ) : �
   ∏ i, Complex.exp (2 * Real.pi * Complex.I * a i / M) ^ j i
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
+/--
+@isnad1 id=eq.0h6v.s5.36c8ffadf4cb from=translated src=- shape=89df430f vocab=9136808e
+-/
 lemma monomial_rotMap (M : ℕ) (a : Fin r → ℤ) (j : Fin r → ℕ) (x : E × (Fin r → ℂ)) :
     monomial j (rotMap M a x) = rotChar M a j * monomial j x := by
   simp only [monomial, rotMap, rotChar, mul_pow, Finset.prod_mul_distrib]
 
+/--
+@isnad1 id=differen.0h3v.s7.f12c7aae9848 from=translated src=- shape=930ef407 vocab=63436465
+-/
 @[fun_prop]
 lemma differentiable_monomial (j : Fin r → ℕ) :
     Differentiable ℂ (monomial (E := E) j) := by
@@ -67,6 +73,9 @@ lemma differentiable_monomial (j : Fin r → ℕ) :
   fun_prop
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
+/--
+@isnad1 id=eq.0h6v.s7.a55b23cdf59c from=translated src=- shape=763513dc vocab=7bcfeead
+-/
 lemma monomial_succ (j : Fin (r + 1) → ℕ) (x : E × (Fin (r + 1) → ℂ)) {F : Type*} (b : F) :
     monomial j x = x.2 0 ^ j 0 * monomial (Fin.tail j) (b, Fin.tail x.2) := by
   simp only [monomial, Fin.prod_univ_succ, Fin.tail]
@@ -77,6 +86,9 @@ lemma monomial_succ (j : Fin (r + 1) → ℕ) (x : E × (Fin (r + 1) → ℂ)) {
 def consMap (p : (E × (Fin r → ℂ)) × ℂ) : E × (Fin (r + 1) → ℂ) :=
   (p.1.1, Fin.cons p.2 p.1.2)
 
+/--
+@isnad1 id=differen.0h2v.s9.50582c73f33e from=translated src=- shape=b4151cf6 vocab=793ad24e
+-/
 lemma differentiable_consMap : Differentiable ℂ (consMap (E := E) (r := r)) := by
   refine (differentiable_fst.comp differentiable_fst).prodMk (differentiable_pi.2 fun i ↦ ?_)
   refine Fin.cases ?_ (fun i ↦ ?_) i
@@ -86,10 +98,16 @@ lemma differentiable_consMap : Differentiable ℂ (consMap (E := E) (r := r)) :=
     fun_prop
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
+/--
+@isnad1 id=eq.0h3v.s7.7c800f398705 from=translated src=- shape=394b5cc7 vocab=dca7d30e
+-/
 lemma consMap_tail (x : E × (Fin (r + 1) → ℂ)) : consMap ((x.1, Fin.tail x.2), x.2 0) = x :=
   Prod.ext rfl (Fin.cons_self_tail x.2)
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
+/--
+@isnad1 id=eq.0h4v.s7.88ca5a93e73f from=translated src=- shape=144c671a vocab=421e4b63
+-/
 lemma powMap_consMap (M : ℕ) (p : (E × (Fin r → ℂ)) × ℂ) :
     powMap M (consMap p) = consMap ((p.1.1, fun i ↦ p.1.2 i ^ M), p.2 ^ M) := by
   refine Prod.ext rfl (funext fun i ↦ ?_)
@@ -98,12 +116,17 @@ lemma powMap_consMap (M : ℕ) (p : (E × (Fin r → ℂ)) × ℂ) :
   · simp [powMap, consMap]
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
+/--
+@isnad1 id=eq.0h3v.s5.4a135d933ec9 from=translated src=- shape=15192d8d vocab=652156b9
+-/
 lemma powMap_zero (M : ℕ) (x : E × (Fin 0 → ℂ)) : powMap M x = x :=
   Prod.ext rfl (funext fun i ↦ Fin.elim0 i)
 
 /-! ### The decomposition -/
 
-/-- Sums `∑_j uʲ gⱼ ∘ κ` with `gⱼ` holomorphic on `V` are holomorphic on `κ⁻¹(V)`. -/
+/-- Sums `∑_j uʲ gⱼ ∘ κ` with `gⱼ` holomorphic on `V` are holomorphic on `κ⁻¹(V)`.
+@isnad1 id=differen.1h5v.s8.919dcbb99ace from=translated src=- shape=80ff964b vocab=37e87e36
+-/
 theorem differentiableOn_sum_monomial_mul_comp_powMap {M : ℕ} {V : Set (E × (Fin r → ℂ))}
     {g : (Fin r → Fin M) → E × (Fin r → ℂ) → ℂ} (hg : ∀ j, DifferentiableOn ℂ (g j) V) :
     DifferentiableOn ℂ (fun x ↦ ∑ j, monomial (fun i ↦ (j i : ℕ)) x * g j (powMap M x))
@@ -115,7 +138,9 @@ variable [FiniteDimensional ℂ E]
 
 /-- **Holomorphic functions on a Kummer covering along a normal crossings divisor.** A
 holomorphic function on `κ⁻¹(V)` is `∑_j uʲ gⱼ(κ(b, u))`, the sum over `j ∈ {0, …, M - 1}ʳ`, with
-`gⱼ` holomorphic on `V`. -/
+`gⱼ` holomorphic on `V`.
+@isnad1 id=ex.3h5v.s9.efa88bd3f06a from=translated src=- shape=d3d45307 vocab=e3d7bd9b
+-/
 theorem exists_eqOn_sum_monomial_mul_comp_powMap {M : ℕ} (hM : 0 < M)
     {V : Set (E × (Fin r → ℂ))} (hV : IsOpen V) {F : E × (Fin r → ℂ) → ℂ}
     (hF : DifferentiableOn ℂ F (powMap M ⁻¹' V)) :
@@ -198,7 +223,9 @@ theorem exists_eqOn_sum_monomial_mul_comp_powMap {M : ℕ} (hM : 0 < M)
 
 omit [FiniteDimensional ℂ E] in
 /-- **Uniqueness of the decomposition.** If `∑_j uʲ gⱼ ∘ κ` vanishes on `κ⁻¹(V)` for `gⱼ`
-continuous on `V`, then every `gⱼ` vanishes on `V`. -/
+continuous on `V`, then every `gⱼ` vanishes on `V`.
+@isnad1 id=eqon.4h6v.s8.c2b87d91910c from=translated src=- shape=0eef68fe vocab=fbba3ec2
+-/
 theorem eqOn_zero_of_sum_monomial_mul_comp_powMap {M : ℕ} (hM : 0 < M)
     {V : Set (E × (Fin r → ℂ))} (hV : IsOpen V) {g : (Fin r → Fin M) → E × (Fin r → ℂ) → ℂ}
     (hg : ∀ j, ContinuousOn (g j) V)
@@ -273,7 +300,9 @@ theorem eqOn_zero_of_sum_monomial_mul_comp_powMap {M : ℕ} (hM : 0 < M)
 omit [FiniteDimensional ℂ E] in
 /-- **Invariant functions only involve invariant monomials.** If `∑_j uʲ gⱼ ∘ κ` is invariant on
 `κ⁻¹(V)` under the rotation `KummerPi.rotMap M a`, then `gⱼ` vanishes on `V` for every `j` with
-`rotChar M a j ≠ 1`. -/
+`rotChar M a j ≠ 1`.
+@isnad1 id=eqon.5h7v.s8.659724677cce from=translated src=- shape=209b0aa2 vocab=838cd21d
+-/
 theorem eqOn_zero_of_comp_rotMap_eq {M : ℕ} (hM : 0 < M) {V : Set (E × (Fin r → ℂ))}
     (hV : IsOpen V) {g : (Fin r → Fin M) → E × (Fin r → ℂ) → ℂ}
     (hg : ∀ j, ContinuousOn (g j) V) (a : Fin r → ℤ)

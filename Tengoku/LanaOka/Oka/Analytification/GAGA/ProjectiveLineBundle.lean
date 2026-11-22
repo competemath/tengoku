@@ -72,18 +72,30 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 `ℙ¹`. -/
 def overlap (ρ : ℝ) : Set ℂ := {w | ρ⁻¹ < ‖w‖ ∧ ‖w‖ < ρ}
 
+/--
+@isnad1 id=isopen.0h1v.s4.13ff6f93c543 from=translated src=- shape=1a6c1393 vocab=1d4af96f
+-/
 lemma isOpen_overlap (ρ : ℝ) : IsOpen (overlap ρ) :=
   (isOpen_lt continuous_const continuous_norm).inter (isOpen_lt continuous_norm continuous_const)
 
+/--
+@isnad1 id=eq.1h1v.s4.be1e3138e493 from=translated src=- shape=28c7dfd3 vocab=a42f6b2b
+-/
 lemma overlap_eq_annulus {ρ : ℝ} (hρ : 0 < ρ) :
     overlap ρ = Laurent.annulus ρ⁻¹ (ENNReal.ofReal ρ) := by
   ext w
   rw [Laurent.mem_annulus, Laurent.enorm_lt_iff_ofReal_lt, ENNReal.ofReal_lt_ofReal_iff hρ]
   rfl
 
+/--
+@isnad1 id=ne.2h2v.s5.6f606282b10f from=translated src=- shape=1f0f5bee vocab=d5800ca9
+-/
 lemma ne_zero_of_mem_overlap {ρ : ℝ} (hρ : 0 < ρ) {w : ℂ} (hw : w ∈ overlap ρ) : w ≠ 0 :=
   norm_pos_iff.1 ((inv_pos.2 hρ).trans hw.1)
 
+/--
+@isnad1 id=mem.2h2v.s5.f5e855dc45b4 from=translated src=- shape=67177c4b vocab=3ddffb03
+-/
 lemma inv_mem_overlap {ρ : ℝ} (hρ : 0 < ρ) {w : ℂ} (hw : w ∈ overlap ρ) : w⁻¹ ∈ overlap ρ := by
   have hw0 : 0 < ‖w‖ := (inv_pos.2 hρ).trans hw.1
   refine ⟨?_, ?_⟩
@@ -104,11 +116,17 @@ def IsSection (s₀ t : E × ℂ → V) : Prop :=
 
 variable {ρ g k W}
 
+/--
+@isnad1 id=eq.1h3v.s9.183a28d550bc from=translated src=- shape=8345d503 vocab=361ed64c
+-/
 lemma inverse_apply_apply {A : V →L[ℂ] V} (hA : IsUnit A) (v : V) : Ring.inverse A (A v) = v := by
   change (Ring.inverse A * A) v = v
   rw [Ring.inverse_mul_cancel _ hA]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s9.992d29220fa7 from=translated src=- shape=564fde43 vocab=361ed64c
+-/
 lemma apply_inverse_apply {A : V →L[ℂ] V} (hA : IsUnit A) (v : V) : A (Ring.inverse A v) = v := by
   change (A * Ring.inverse A) v = v
   rw [Ring.mul_inverse_cancel _ hA]
@@ -121,7 +139,9 @@ section Extend
 variable [CompleteSpace V]
 
 /-- A solution of `h = s₀ - wᵏ g t(w⁻¹)` for the cover of `ℙ¹` by `{‖w‖ < σ}` and `{‖w‖ > σ⁻¹}`
-extends to a solution for the cover by `{‖w‖ < ρ}` and `{‖w‖ > ρ⁻¹}`, `1 < σ < ρ`. -/
+extends to a solution for the cover by `{‖w‖ < ρ}` and `{‖w‖ > ρ⁻¹}`, `1 < σ < ρ`.
+@isnad1 id=ex.9h10v.s10.e4c2343aedf5 from=translated src=- shape=765e6c9b vocab=1fd24a6c
+-/
 theorem exists_extend {σ : ℝ} (hσ : 1 < σ) (hσρ : σ < ρ) (hW : IsOpen W)
     (hg : DifferentiableOn ℂ g (W ×ˢ overlap ρ)) (hgu : ∀ p ∈ W ×ˢ overlap ρ, IsUnit (g p))
     {h s₀ t : E × ℂ → V} (hh : DifferentiableOn ℂ h (W ×ˢ overlap ρ))
@@ -268,12 +288,18 @@ open Laurent L1
 
 variable [FiniteDimensional ℂ V] {U : Set E}
 
+/--
+@isnad1 id=differen.2h6v.s7.dcbc5c43af6d from=translated src=- shape=631543fb vocab=ec55ec03
+-/
 lemma differentiableOn_slice {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F]
     {f : E × ℂ → F} {O : Set ℂ} (hf : DifferentiableOn ℂ f (U ×ˢ O)) {z : E} (hz : z ∈ U) :
     DifferentiableOn ℂ (fun w ↦ f (z, w)) O :=
   hf.comp ((differentiable_const z).prodMk differentiable_id).differentiableOn
     fun _ hw ↦ ⟨hz, hw⟩
 
+/--
+@isnad1 id=and.3h2v.s5.9b6a52214e1b from=translated src=- shape=89c22491 vocab=7c29f051
+-/
 lemma isRadius_overlap {ρ τ : ℝ} (hρ : 1 < ρ) (hτ : 1 < τ) (hτρ : τ < ρ) :
     IsRadius ρ⁻¹ (ENNReal.ofReal ρ) τ ∧ IsRadius ρ⁻¹ (ENNReal.ofReal ρ) τ⁻¹ := by
   have hτ0 : 0 < τ := zero_lt_one.trans hτ
@@ -282,6 +308,9 @@ lemma isRadius_overlap {ρ τ : ℝ} (hρ : 1 < ρ) (hτ : 1 < τ) (hτρ : τ <
     ⟨inv_pos.2 hτ0, inv_strictAnti₀ hτ0 hτρ, (ENNReal.ofReal_lt_ofReal_iff hρ0).2
       ((inv_lt_one_of_one_lt₀ hτ).trans hρ)⟩⟩
 
+/--
+@isnad1 id=le.3h2v.s6.b45efe5568eb from=translated src=- shape=cc86e56f vocab=8a8462e3
+-/
 lemma sphere_union_subset_overlap {ρ τ : ℝ} (hρ : 1 < ρ) (hτ : 1 < τ) (hτρ : τ < ρ) :
     sphere (0 : ℂ) τ ∪ sphere 0 τ⁻¹ ⊆ overlap ρ := by
   have h := isRadius_overlap hρ hτ hτρ
@@ -300,6 +329,9 @@ noncomputable def uhat (z : E) : L1 (V →L[ℂ] V) :=
 
 variable {σ τ g}
 
+/--
+@isnad1 id=eq.7h9v.s9.6942ce41ca67 from=translated src=- shape=f6728ef4 vocab=eaf8af8a
+-/
 lemma eval_ghat (hρ : 1 < ρ) (hστ : σ < τ) (hτρ : τ < ρ)
     (hg : DifferentiableOn ℂ g (U ×ˢ overlap ρ)) {z : E} (hz : z ∈ U) {w : ℂ} (h₁ : σ⁻¹ ≤ ‖w‖)
     (h₂ : ‖w‖ ≤ σ) : eval σ w (ghat g σ τ z) = g (z, w) := by
@@ -309,6 +341,9 @@ lemma eval_ghat (hρ : 1 < ρ) (hστ : σ < τ) (hτρ : τ < ρ)
   rw [← overlap_eq_annulus (zero_lt_one.trans hρ)]
   exact differentiableOn_slice hg hz
 
+/--
+@isnad1 id=eq.8h9v.s9.222845c2cfe1 from=translated src=- shape=3426f9ca vocab=f1b98a38
+-/
 lemma eval_uhat (hρ : 1 < ρ) (hστ : σ < τ) (hτρ : τ < ρ)
     (hg : DifferentiableOn ℂ g (U ×ˢ overlap ρ)) (hgu : ∀ p ∈ U ×ˢ overlap ρ, IsUnit (g p))
     {z : E} (hz : z ∈ U) {w : ℂ} (h₁ : σ⁻¹ ≤ ‖w‖) (h₂ : ‖w‖ ≤ σ) :
@@ -319,9 +354,15 @@ lemma eval_uhat (hρ : 1 < ρ) (hστ : σ < τ) (hτρ : τ < ρ)
   rw [← overlap_eq_annulus (zero_lt_one.trans hρ)]
   exact differentiableOn_slice (hg.inverse hgu) hz
 
+/--
+@isnad1 id=mem.2h2v.s5.ec378b42ac81 from=translated src=- shape=c4d8a0fa vocab=2687a984
+-/
 lemma mem_overlap_of_norm_eq_one (hρ : 1 < ρ) {w : ℂ} (hw : ‖w‖ = 1) : w ∈ overlap ρ :=
   ⟨hw ▸ inv_lt_one_of_one_lt₀ hρ, hw ▸ hρ⟩
 
+/--
+@isnad1 id=eq.6h9v.s13.5988fc6a16f2 from=translated src=- shape=6673f5bb vocab=9105ff8c
+-/
 lemma mulL_ghat_uhat (hρ : 1 < ρ) (hστ : σ < τ) (hτρ : τ < ρ)
     (hg : DifferentiableOn ℂ g (U ×ˢ overlap ρ)) (hgu : ∀ p ∈ U ×ˢ overlap ρ, IsUnit (g p))
     {z : E} (hz : z ∈ U) (x : L1 V) :
@@ -333,6 +374,9 @@ lemma mulL_ghat_uhat (hρ : 1 < ρ) (hστ : σ < τ) (hτρ : τ < ρ)
     eval_uhat hρ hστ hτρ hg hgu hz h₁ h₂]
   exact apply_inverse_apply (hgu _ ⟨hz, mem_overlap_of_norm_eq_one hρ hw⟩) _
 
+/--
+@isnad1 id=eq.6h9v.s13.a456c89c7712 from=translated src=- shape=6673f5bb vocab=9105ff8c
+-/
 lemma mulL_uhat_ghat (hρ : 1 < ρ) (hστ : σ < τ) (hτρ : τ < ρ)
     (hg : DifferentiableOn ℂ g (U ×ˢ overlap ρ)) (hgu : ∀ p ∈ U ×ˢ overlap ρ, IsUnit (g p))
     {z : E} (hz : z ∈ U) (x : L1 V) :
@@ -346,11 +390,17 @@ lemma mulL_uhat_ghat (hρ : 1 < ρ) (hστ : σ < τ) (hτρ : τ < ρ)
 
 variable [FiniteDimensional ℂ E]
 
+/--
+@isnad1 id=differen.5h7v.s10.1bc26c7a2ae8 from=translated src=- shape=a724db53 vocab=283413a7
+-/
 lemma differentiableOn_ghat (hρ : 1 < ρ) (hστ : σ < τ) (hτρ : τ < ρ) (hU : IsOpen U)
     (hg : DifferentiableOn ℂ g (U ×ˢ overlap ρ)) : DifferentiableOn ℂ (ghat g σ τ) U :=
   differentiableOn_toL1 (h := g) hστ hU (sphere_union_subset_overlap hρ (hσ.out.trans_lt hστ) hτρ)
     hg
 
+/--
+@isnad1 id=differen.6h7v.s10.182a5a8f2487 from=translated src=- shape=fc4377d9 vocab=25efe9c8
+-/
 lemma differentiableOn_uhat (hρ : 1 < ρ) (hστ : σ < τ) (hτρ : τ < ρ) (hU : IsOpen U)
     (hg : DifferentiableOn ℂ g (U ×ˢ overlap ρ)) (hgu : ∀ p ∈ U ×ˢ overlap ρ, IsUnit (g p)) :
     DifferentiableOn ℂ (uhat g σ τ) U :=
@@ -364,6 +414,9 @@ section Bounds
 
 open Laurent L1
 
+/--
+@isnad1 id=le.2h6v.s9.8e2cfd8e984b from=translated src=- shape=9161a3f0 vocab=b40a00f9
+-/
 lemma norm_proj_toL1_le {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F] {σ τ : ℝ}
     [hσ : Fact (1 ≤ σ)] (hστ : σ < τ) {f : ℂ → F} {M : ℝ}
     (hM : ∀ ζ ∈ sphere (0 : ℂ) τ ∪ sphere 0 τ⁻¹, ‖f ζ‖ ≤ M) (S : Set ℤ) :
@@ -380,6 +433,9 @@ lemma norm_proj_toL1_le {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F] {
     exact norm_toL1_apply_le hστ hM j
   · simp [hj]
 
+/--
+@isnad1 id=tendsto.2h1v.s6.4ea7899fe2bd from=translated src=- shape=41c08acf vocab=3371bddb
+-/
 lemma tendsto_tsum_indicator_Ioi {c : ℤ → ℝ} (hc : Summable c) (hc0 : ∀ j, 0 ≤ c j) :
     Tendsto (fun k : ℤ ↦ ∑' j, (Ioi k).indicator c j) atTop (𝓝 0) := by
   have h := tendsto_tsum_of_dominated_convergence (𝓕 := (atTop : Filter ℤ))
@@ -394,6 +450,9 @@ lemma tendsto_tsum_indicator_Ioi {c : ℤ → ℝ} (hc : Summable c) (hc0 : ∀ 
     · rw [indicator_of_notMem h, norm_zero]
       exact hc0 j
 
+/--
+@isnad1 id=tendsto.2h1v.s6.9e6e13a1c21f from=translated src=- shape=41c08acf vocab=602c7533
+-/
 lemma tendsto_tsum_indicator_Iic {c : ℤ → ℝ} (hc : Summable c) (hc0 : ∀ j, 0 ≤ c j) :
     Tendsto (fun m : ℤ ↦ ∑' j, (Iic m).indicator c j) atBot (𝓝 0) := by
   have h := tendsto_tsum_of_dominated_convergence (𝓕 := (atBot : Filter ℤ))
@@ -411,7 +470,9 @@ lemma tendsto_tsum_indicator_Iic {c : ℤ → ℝ} (hc : Summable c) (hc0 : ∀ 
 variable [FiniteDimensional ℂ E] [FiniteDimensional ℂ V]
 
 /-- After shrinking the base to a neighbourhood `U'` of a compact set, the Laurent series of the
-transition function are uniformly bounded, and those of its inverse have uniformly small tails. -/
+transition function are uniformly bounded, and those of its inverse have uniformly small tails.
+@isnad1 id=ex.8h8v.s13.cf0587cf6bf3 from=translated src=- shape=f22c39d3 vocab=b3d3b4bb
+-/
 lemma exists_uniform_bounds (hρ : 1 < ρ) {U : Set E} (hU : IsOpen U)
     (hg : DifferentiableOn ℂ g (U ×ˢ overlap ρ)) (hgu : ∀ p ∈ U ×ˢ overlap ρ, IsUnit (g p))
     {K : Set E} (hK : IsCompact K) (hKU : K ⊆ U) {σ τ : ℝ} [hσ : Fact (1 ≤ σ)] (hστ : σ < τ)
@@ -456,7 +517,9 @@ lemma exists_uniform_bounds (hρ : 1 < ρ) {U : Set E} (hU : IsOpen U)
 
 omit [FiniteDimensional ℂ E] in
 /-- The value of the Čech differential at `w` on a pair `(a, b)` of Laurent series without terms
-of negative, resp. positive, degree. -/
+of negative, resp. positive, degree.
+@isnad1 id=eq.8h11v.s11.16db1bc9319e from=translated src=- shape=4397a5a3 vocab=62e0b404
+-/
 lemma eval_phi (hρ : 1 < ρ) {U : Set E} (hg : DifferentiableOn ℂ g (U ×ˢ overlap ρ))
     {σ τ : ℝ} [hσ : Fact (1 ≤ σ)] (hστ : σ < τ) (hτρ : τ < ρ) {z : E} (hz : z ∈ U)
     {x : L1 V × L1 V} (h₁ : proj V (Ici 0) x.1 = x.1) (h₂ : proj V (Iic 0) x.2 = x.2)
@@ -481,6 +544,9 @@ open Laurent L1
 
 variable [CompleteSpace V] {σ : ℝ} [Fact (1 ≤ σ)] {W : Set E} {y : E → L1 V}
 
+/--
+@isnad1 id=differen.1h5v.s9.d2054e0f13e3 from=translated src=- shape=539eef2d vocab=0bbc749f
+-/
 lemma differentiableOn_evalNat_comp (hy : DifferentiableOn ℂ y W) :
     DifferentiableOn ℂ (fun p : E × ℂ ↦ evalNat V σ p.2 (y p.1)) (W ×ˢ ball 0 σ) := by
   have h1 : DifferentiableOn ℂ (fun p : E × ℂ ↦ evalNat V σ p.2) (W ×ˢ ball 0 σ) :=
@@ -490,6 +556,9 @@ lemma differentiableOn_evalNat_comp (hy : DifferentiableOn ℂ y W) :
     hy.comp differentiableOn_fst fun _ hp ↦ (mem_prod.1 hp).1
   exact h1.clm_apply h2
 
+/--
+@isnad1 id=differen.1h5v.s9.7f89025df881 from=translated src=- shape=539eef2d vocab=34f25a7c
+-/
 lemma differentiableOn_evalNeg_comp (hy : DifferentiableOn ℂ y W) :
     DifferentiableOn ℂ (fun p : E × ℂ ↦ evalNeg V σ p.2 (y p.1)) (W ×ˢ ball 0 σ) := by
   have h1 : DifferentiableOn ℂ (fun p : E × ℂ ↦ evalNeg V σ p.2) (W ×ˢ ball 0 σ) :=
@@ -513,7 +582,9 @@ variable [FiniteDimensional ℂ E] [FiniteDimensional ℂ V]
 holomorphic vector bundle `E` on `U × ℙ¹`, with respect to the charts `U × {‖w‖ < ρ}` and
 `U × {‖w‖ > ρ⁻¹}`, and let `K ⊆ U` be compact. Then there are an open `U' ⊇ K` and `k₀` such that
 for all `k ≥ k₀` and all open `W ⊆ U'` every holomorphic `h` on `W × {ρ⁻¹ < ‖w‖ < ρ}` splits as
-`h = s₀ - wᵏ g t(w⁻¹)` with `s₀`, `t` holomorphic on `W × {‖w‖ < ρ}`. -/
+`h = s₀ - wᵏ g t(w⁻¹)` with `s₀`, `t` holomorphic on `W × {‖w‖ < ρ}`.
+@isnad1 id=ex.6h6v.s10.8212042f7708 from=translated src=- shape=2af5cec2 vocab=6876d5c2
+-/
 theorem exists_vanishing (hρ : 1 < ρ) {U : Set E} (hU : IsOpen U)
     (hg : DifferentiableOn ℂ g (U ×ˢ overlap ρ)) (hgu : ∀ p ∈ U ×ˢ overlap ρ, IsUnit (g p))
     {K : Set E} (hK : IsCompact K) (hKU : K ⊆ U) :
@@ -586,6 +657,9 @@ open Laurent L1
 noncomputable def jet (D : ℕ) (s₀ : E × ℂ → V) (z : E) : Fin D → V :=
   fun i ↦ circleCoeff (fun w ↦ s₀ (z, w)) 1 i
 
+/--
+@isnad1 id=and.2h2v.s5.fa9750804a8c from=translated src=- shape=a5f72989 vocab=d9505086
+-/
 lemma isRadius_disc {ρ τ : ℝ} (hτ : 1 < τ) (hτρ : τ < ρ) :
     IsRadius (-1) (ENNReal.ofReal ρ) τ ∧ IsRadius (-1) (ENNReal.ofReal ρ) τ⁻¹ := by
   have hτ0 : 0 < τ := zero_lt_one.trans hτ
@@ -602,7 +676,9 @@ to the charts `U × {‖w‖ < ρ}` and `U × {‖w‖ > ρ⁻¹}`, and let `K �
 an open `U' ⊇ K` and `k₀` such that for all `k ≥ k₀` there are `D` and a holomorphic family `e` of
 idempotent endomorphisms of `V^D` on `U'` with the following property: for every open `W ⊆ U'`,
 taking the first `D` Taylor coefficients `jet D s₀` in `w` is a bijection from the sections of
-`E(k)` over `W × ℙ¹` onto the holomorphic maps `c : W → V^D` with `e c = c`. -/
+`E(k)` over `W × ℙ¹` onto the holomorphic maps `c : W → V^D` with `e c = c`.
+@isnad1 id=ex.6h6v.s11.704ddd8d7f42 from=translated src=- shape=9e21c11d vocab=d6193699
+-/
 theorem exists_jet_equiv (hρ : 1 < ρ) {U : Set E} (hU : IsOpen U)
     (hg : DifferentiableOn ℂ g (U ×ˢ overlap ρ)) (hgu : ∀ p ∈ U ×ˢ overlap ρ, IsUnit (g p))
     {K : Set E} (hK : IsCompact K) (hKU : K ⊆ U) :
@@ -762,11 +838,17 @@ noncomputable def matrixCLM : Matrix (Fin r) (Fin r) ℂ →* (Fin r → ℂ) �
   map_one' := by ext1 v; simp
   map_mul' A B := by ext1 v; simp [Matrix.mulVec_mulVec]
 
+/--
+@isnad1 id=eq.0h3v.s10.1c901ede357a from=translated src=- shape=fa56f286 vocab=96198520
+-/
 @[simp]
 lemma matrixCLM_apply (A : Matrix (Fin r) (Fin r) ℂ) (v : Fin r → ℂ) :
     matrixCLM A v = A *ᵥ v := by
   simp [matrixCLM]
 
+/--
+@isnad1 id=differen.1h4v.s10.b2dc0830304b from=translated src=- shape=114a20cc vocab=722600a0
+-/
 lemma differentiableOn_matrixCLM {X : Type*} [NormedAddCommGroup X] [NormedSpace ℂ X]
     {g : X → Matrix (Fin r) (Fin r) ℂ} {s : Set X} (hg : DifferentiableOn ℂ g s) :
     DifferentiableOn ℂ (fun p ↦ matrixCLM (g p)) s := by
@@ -777,6 +859,9 @@ lemma differentiableOn_matrixCLM {X : Type*} [NormedAddCommGroup X] [NormedSpace
       map_smul' := fun c A ↦ by ext1 v; simp [Matrix.smul_mulVec] }
   open scoped Matrix.Norms.Operator in
   exact (LinearMap.toContinuousLinearMap L).differentiable.comp_differentiableOn hg
+/--
+@isnad1 id=iff.0h8v.s10.4273bbb7244b from=translated src=- shape=b275c5a9 vocab=945e0574
+-/
 lemma isSection_matrixCLM_iff {g : E × ℂ → Matrix (Fin r) (Fin r) ℂ} {s₀ t : E × ℂ → Fin r → ℂ} :
     IsSection ρ (fun p ↦ matrixCLM (g p)) k W s₀ t ↔
       DifferentiableOn ℂ s₀ (W ×ˢ ball 0 ρ) ∧ DifferentiableOn ℂ t (W ×ˢ ball 0 ρ) ∧
@@ -786,7 +871,9 @@ lemma isSection_matrixCLM_iff {g : E × ℂ → Matrix (Fin r) (Fin r) ℂ} {s�
 variable [FiniteDimensional ℂ E]
 
 /-- `Complex.ProjectiveLineBundle.exists_vanishing` for a transition function given by invertible
-matrices. -/
+matrices.
+@isnad1 id=ex.6h6v.s10.01ed39e2af1f from=translated src=- shape=70310237 vocab=5b3cdcfd
+-/
 theorem exists_vanishing_matrix (hρ : 1 < ρ) {U : Set E} (hU : IsOpen U)
     {g : E × ℂ → Matrix (Fin r) (Fin r) ℂ} (hg : DifferentiableOn ℂ g (U ×ˢ overlap ρ))
     (hgu : ∀ p ∈ U ×ˢ overlap ρ, IsUnit (g p)) {K : Set E} (hK : IsCompact K) (hKU : K ⊆ U) :
@@ -802,7 +889,9 @@ theorem exists_vanishing_matrix (hρ : 1 < ρ) {U : Set E} (hU : IsOpen U)
   exact ⟨s₀, t, hs, ht, fun z hz w hw ↦ by simpa using hrel z hz w hw⟩
 
 /-- `Complex.ProjectiveLineBundle.exists_jet_equiv` for a transition function given by invertible
-matrices; see `Complex.ProjectiveLineBundle.isSection_matrixCLM_iff` for the sections. -/
+matrices; see `Complex.ProjectiveLineBundle.isSection_matrixCLM_iff` for the sections.
+@isnad1 id=ex.6h6v.s12.64513c6906dc from=translated src=- shape=f7554bcc vocab=d343432d
+-/
 theorem exists_jet_equiv_matrix (hρ : 1 < ρ) {U : Set E} (hU : IsOpen U)
     {g : E × ℂ → Matrix (Fin r) (Fin r) ℂ} (hg : DifferentiableOn ℂ g (U ×ˢ overlap ρ))
     (hgu : ∀ p ∈ U ×ˢ overlap ρ, IsUnit (g p)) {K : Set E} (hK : IsCompact K) (hKU : K ⊆ U) :

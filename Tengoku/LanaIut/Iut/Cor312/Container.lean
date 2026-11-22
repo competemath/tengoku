@@ -179,6 +179,9 @@ def IsBorelFamily (R : D.AdmissibleRegion i) : Prop :=
 instance : LE (D.AdmissibleRegion i) :=
   ⟨fun R S => ∀ vQ, R.region vQ ⊆ S.region vQ⟩
 
+/--
+@isnad1 id=iff.0h6v.s6.2bd51d93e9c2 from=translated src=- shape=a052487b vocab=c26d8b9e
+-/
 lemma le_def {R S : D.AdmissibleRegion i} : R ≤ S ↔ ∀ vQ, R.region vQ ⊆ S.region vQ :=
   Iff.rfl
 
@@ -196,10 +199,16 @@ def logShellAdmissible (i : Fin D.proc.length) : D.AdmissibleRegion i where
   region vQ := D.logShell i vQ
   finiteSupport := D.logShell_finiteSupport i
 
+/--
+@isnad1 id=eq.0h5v.s6.c103c1cef53b from=translated src=- shape=2f3a5216 vocab=c1fde84e
+-/
 @[simp]
 lemma logShellAdmissible_region (i : Fin D.proc.length) (vQ : RationalPlace) :
     (D.logShellAdmissible i).region vQ = D.logShell i vQ := rfl
 
+/--
+@isnad1 id=isproduc.0h4v.s4.5bfdc64fe012 from=translated src=- shape=8b8f0631 vocab=e805b926
+-/
 lemma isProductFamily_logShellAdmissible (i : Fin D.proc.length) :
     (D.logShellAdmissible i).IsProductFamily :=
   fun vQ => D.logShell_isProduct i vQ

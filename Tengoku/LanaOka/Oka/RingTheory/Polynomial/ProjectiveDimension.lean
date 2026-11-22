@@ -48,11 +48,17 @@ variable {A : Type u} [CommRing A] {M : Type u} [AddCommGroup M] [Module A M]
 noncomputable abbrev tensorEquiv : A[X] ⊗[A] M ≃ₗ[A[X]] PolynomialModule A M :=
   polynomialTensorProductLEquivPolynomialModule A M
 
+/--
+@isnad1 id=eq.0h3v.s10.f26f68fd7d98 from=translated src=- shape=61d32617 vocab=3da8cde6
+-/
 lemma tensorEquiv_symm_single_zero (m : M) :
     (tensorEquiv (A := A) (M := M)).symm (single A 0 m) = 1 ⊗ₜ m := by
   rw [LinearEquiv.symm_apply_eq]
   simp [polynomialTensorProductLEquivPolynomialModule, lsingle]
 
+/--
+@isnad1 id=eq.0h4v.s8.d005c7e4a670 from=translated src=- shape=fcb064bf vocab=b098ccc3
+-/
 lemma single_eq_X_pow_smul (i : ℕ) (m : M) :
     single A i m = (X ^ i : A[X]) • single A 0 m := by
   rw [← monomial_one_right_eq_X_pow, monomial_smul_single, one_smul, add_zero]
@@ -68,6 +74,9 @@ noncomputable def augment : PolynomialModule A M →ₗ[A[X]] M :=
   LinearMap.liftBaseChange A[X] (LinearMap.id : M →ₗ[A] M) ∘ₗ
     (tensorEquiv (A := A) (M := M)).symm.toLinearMap
 
+/--
+@isnad1 id=eq.0h4v.s9.6dda47e6f0b6 from=translated src=- shape=b493c492 vocab=b84d50e0
+-/
 lemma augment_single (i : ℕ) (m : M) : augment (single A i m) = (X ^ i : A[X]) • m := by
   rw [single_eq_X_pow_smul, LinearMap.map_smul]
   simp [augment, tensorEquiv_symm_single_zero]
@@ -80,6 +89,9 @@ noncomputable def diffAux : M →ₗ[A] PolynomialModule A M :=
 noncomputable def diff : PolynomialModule A M →ₗ[A[X]] PolynomialModule A M :=
   LinearMap.liftBaseChange A[X] diffAux ∘ₗ (tensorEquiv (A := A) (M := M)).symm.toLinearMap
 
+/--
+@isnad1 id=eq.0h4v.s9.507859b2ec98 from=translated src=- shape=70ccbd8e vocab=fc5541ef
+-/
 lemma diff_single (i : ℕ) (m : M) :
     diff (single A i m) = single A (i + 1) m - single A i ((X : A[X]) • m) := by
   rw [single_eq_X_pow_smul, LinearMap.map_smul]
@@ -92,6 +104,9 @@ lemma diff_single (i : ℕ) (m : M) :
     ← single_eq_X_pow_smul, sub_left_inj]
   rw [← monomial_one_right_eq_X_pow, monomial_smul_single, one_smul]
 
+/--
+@isnad1 id=eq.0h3v.s9.83df2a5ef48d from=translated src=- shape=529f1873 vocab=fadc99ae
+-/
 lemma augment_diff (q : PolynomialModule A M) : augment (diff q) = 0 := by
   induction q using induction_linear with
   | zero => simp
@@ -99,16 +114,25 @@ lemma augment_diff (q : PolynomialModule A M) : augment (diff q) = 0 := by
   | single i m => simp [diff_single, augment_single, pow_succ, mul_smul]
 
 omit [Module A[X] M] [IsScalarTower A A[X] M] in
+/--
+@isnad1 id=eq.0h4v.s8.f185894e77be from=translated src=- shape=6b1e93b5 vocab=b66551a4
+-/
 lemma X_smul_coeff (q : PolynomialModule A M) (n : ℕ) :
     ((X : A[X]) • q).coeff (n + 1) = q.coeff n := by
   rw [← monomial_one_one_eq_X, monomial_smul_apply]
   simp
 
 omit [Module A[X] M] [IsScalarTower A A[X] M] in
+/--
+@isnad1 id=eq.0h5v.s8.1a75f5cdb4c9 from=translated src=- shape=1fe94a41 vocab=d167dafd
+-/
 lemma map_coeff (f : M →ₗ[A] M) (q : PolynomialModule A M) (n : ℕ) :
     (map A f q).coeff n = f (q.coeff n) := by
   simp [map]
 
+/--
+@isnad1 id=eq.0h3v.s9.b46487cd8b54 from=translated src=- shape=b101d86d vocab=01df9406
+-/
 lemma diff_eq (q : PolynomialModule A M) : diff q = (X : A[X]) • q - map A mulX q := by
   induction q using induction_linear with
   | zero => simp
@@ -118,6 +142,9 @@ lemma diff_eq (q : PolynomialModule A M) : diff q = (X : A[X]) • q - map A mul
       add_comm 1 i]
     rfl
 
+/--
+@isnad1 id=injectiv.0h2v.s8.129a281df105 from=translated src=- shape=4e8f56bc vocab=ba74538f
+-/
 lemma diff_injective : Function.Injective (diff (A := A) (M := M)) := by
   rw [injective_iff_map_eq_zero]
   intro q hq
@@ -138,6 +165,9 @@ lemma diff_injective : Function.Injective (diff (A := A) (M := M)) := by
     map_zero, sub_zero, coeff_zero, Finsupp.coe_zero, Pi.zero_apply] at this
   exact hN this
 
+/--
+@isnad1 id=mem.0h3v.s9.5f3a8394dc62 from=translated src=- shape=61f9565a vocab=1d23aab9
+-/
 lemma sub_single_augment_mem_range (q : PolynomialModule A M) :
     q - single A 0 (augment q) ∈ LinearMap.range (diff (A := A) (M := M)) := by
   induction q using induction_linear with
@@ -159,6 +189,9 @@ lemma sub_single_augment_mem_range (q : PolynomialModule A M) :
       rw [e]
       exact add_mem (LinearMap.mem_range_self _ _) h
 
+/--
+@isnad1 id=exact.0h2v.s9.3926100ab089 from=translated src=- shape=2026662c vocab=e52c7d19
+-/
 lemma exact_diff_augment : Function.Exact (diff (A := A) (M := M)) augment := by
   intro q
   refine ⟨fun h ↦ ?_, ?_⟩
@@ -166,6 +199,9 @@ lemma exact_diff_augment : Function.Exact (diff (A := A) (M := M)) augment := by
   · rintro ⟨q, rfl⟩
     exact augment_diff q
 
+/--
+@isnad1 id=surjecti.0h2v.s8.ac0dc51c03c5 from=translated src=- shape=32624c29 vocab=cd8eaffe
+-/
 lemma augment_surjective : Function.Surjective (augment (A := A) (M := M)) :=
   fun m ↦ ⟨single A 0 m, by simp [augment_single]⟩
 
@@ -175,6 +211,9 @@ namespace ModuleCat
 
 variable {A : Type u} [CommRing A]
 
+/--
+@isnad1 id=hasproje.3h7v.s8.981a72da1116 from=translated src=- shape=3b8f2da2 vocab=95b29c4b
+-/
 lemma hasProjectiveDimensionLE_succ_of_exact {K P N : Type u} [AddCommGroup K] [Module A K]
     [AddCommGroup P] [Module A P] [AddCommGroup N] [Module A N]
     (f : K →ₗ[A] P) (g : P →ₗ[A] N) (hfg : Function.Exact f g) (hf : Function.Injective f)
@@ -187,6 +226,9 @@ lemma hasProjectiveDimensionLE_succ_of_exact {K P N : Type u} [AddCommGroup K] [
   have : Projective S.X₂ := (IsProjective.iff_projective P).mp inferInstance
   exact (hS.hasProjectiveDimensionLT_X₃_iff d this).mpr ‹_›
 
+/--
+@isnad1 id=hasproje.3h7v.s8.ba1ab4f272c3 from=translated src=- shape=546a7fd4 vocab=95b29c4b
+-/
 lemma hasProjectiveDimensionLE_of_exact {K P N : Type u} [AddCommGroup K] [Module A K]
     [AddCommGroup P] [Module A P] [AddCommGroup N] [Module A N]
     (f : K →ₗ[A] P) (g : P →ₗ[A] N) (hfg : Function.Exact f g) (hf : Function.Injective f)
@@ -201,6 +243,9 @@ lemma hasProjectiveDimensionLE_of_exact {K P N : Type u} [AddCommGroup K] [Modul
 
 variable {B : Type u} [CommRing B] [Algebra A B] [Module.Flat A B]
 
+/--
+@isnad1 id=hasproje.0h4v.s7.50e1c22d5058 from=translated src=- shape=1c0f1a26 vocab=409b4c38
+-/
 lemma hasProjectiveDimensionLE_baseChange (d : ℕ) (N : Type u) [AddCommGroup N] [Module A N]
     [HasProjectiveDimensionLE (ModuleCat.of A N) d] :
     HasProjectiveDimensionLE (ModuleCat.of B (B ⊗[A] N)) d := by
@@ -232,12 +277,17 @@ global dimension of `R` is at most `d`. -/
 def HasGlobalDimensionLE (R : Type u) [CommRing R] (d : ℕ) : Prop :=
   ∀ (M : Type u) [AddCommGroup M] [Module R M], HasProjectiveDimensionLE (ModuleCat.of R M) d
 
+/--
+@isnad1 id=hasgloba.2h3v.s4.6e1242f26865 from=translated src=- shape=6dcaf7d6 vocab=a9994a21
+-/
 lemma HasGlobalDimensionLE.mono {R : Type u} [CommRing R] {d e : ℕ}
     (h : HasGlobalDimensionLE R d) (hde : d ≤ e) : HasGlobalDimensionLE R e := fun M _ _ ↦
   have := h M
   hasProjectiveDimensionLT_of_ge _ (d + 1) (e + 1) (by omega)
 
-/-- Over a field every module is free, hence projective. -/
+/-- Over a field every module is free, hence projective.
+@isnad1 id=hasgloba.0h1v.s3.f3456581ca9e from=translated src=- shape=89d4eb60 vocab=c413b78e
+-/
 lemma hasGlobalDimensionLE_zero_of_field (k : Type u) [Field k] : HasGlobalDimensionLE k 0 := by
   intro M _ _
   simp only [HasProjectiveDimensionLE, zero_add, ← projective_iff_hasProjectiveDimensionLT_one,
@@ -245,7 +295,9 @@ lemma hasGlobalDimensionLE_zero_of_field (k : Type u) [Field k] : HasGlobalDimen
   infer_instance
 
 attribute [local instance] RingHomInvPair.of_ringEquiv in
-/-- Global dimension bounds are invariant under ring isomorphisms. -/
+/-- Global dimension bounds are invariant under ring isomorphisms.
+@isnad1 id=hasgloba.1h4v.s5.a19cce87ae9d from=translated src=- shape=ff3f24c4 vocab=e365c423
+-/
 lemma HasGlobalDimensionLE.of_ringEquiv {R R' : Type u} [CommRing R] [CommRing R'] (e : R ≃+* R')
     {d : ℕ} (h : HasGlobalDimensionLE R d) : HasGlobalDimensionLE R' d := by
   intro M _ _
@@ -256,7 +308,9 @@ lemma HasGlobalDimensionLE.of_ringEquiv {R R' : Type u} [CommRing R] [CommRing R
   exact hasProjectiveDimensionLE_of_semiLinearEquiv e e' d
 
 /-- **Hilbert's syzygy theorem, inductive step**: if every `A`-module has projective dimension
-at most `d`, then every `A[X]`-module has projective dimension at most `d + 1`. -/
+at most `d`, then every `A[X]`-module has projective dimension at most `d + 1`.
+@isnad1 id=hasgloba.1h2v.s5.90e5d9cc3836 from=translated src=- shape=92a75d9e vocab=b1f7f65e
+-/
 theorem hasGlobalDimensionLE_polynomial {A : Type u} [CommRing A] {d : ℕ}
     (h : HasGlobalDimensionLE A d) : HasGlobalDimensionLE A[X] (d + 1) := by
   intro M _ _
@@ -280,7 +334,9 @@ theorem hasGlobalDimensionLE_polynomial {A : Type u} [CommRing A] {d : ℕ}
     (hasProjectiveDimensionLT_of_ge _ (d + 1) (d + 1 + 1) (by omega))
 
 /-- **Hilbert's syzygy theorem**: every module over `k[X₁, …, Xₙ]` has projective dimension at
-most `n`. -/
+most `n`.
+@isnad1 id=hasgloba.0h2v.s5.3e529e7f9159 from=translated src=- shape=8912f54d vocab=fcda3be5
+-/
 theorem hasGlobalDimensionLE_mvPolynomial (k : Type u) [Field k] (n : ℕ) :
     HasGlobalDimensionLE (MvPolynomial (Fin n) k) n := by
   induction n with

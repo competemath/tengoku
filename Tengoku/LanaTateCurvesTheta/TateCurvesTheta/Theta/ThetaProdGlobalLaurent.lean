@@ -77,7 +77,9 @@ variable (t : TateParameter K)
 
 /-- A ultrametric normed field is a nonarchimedean ring: the open balls at `0` are additive
 subgroups, so every neighbourhood of `0` contains an open additive subgroup. This equips `K` with
-the ultrametric Cauchy product `HasSum.mul_of_nonarchimedean`. -/
+the ultrametric Cauchy product `HasSum.mul_of_nonarchimedean`.
+@isnad1 id=nonarchi.0h1v.s5.6e0de1d0bde5 from=translated src=- shape=c612a321 vocab=ad20ec0a
+-/
 instance (priority := 100) instNonarchimedeanRingOfUltrametric : NonarchimedeanRing K where
   toIsTopologicalRing := inferInstance
   is_nonarchimedean := NonarchimedeanAddGroup.is_nonarchimedean
@@ -93,26 +95,38 @@ noncomputable def bLaurentCoeff (m : ℤ) : K :=
   if m ≤ 0 then factorCoeff t (-m).toNat else 0
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
+/--
+@isnad1 id=eq.0h3v.s6.beb6f9fcd5d0 from=translated src=- shape=cae7dbfa vocab=f89bcd55
+-/
 @[simp] lemma aLaurentCoeff_natCast (k : ℕ) :
     t.aLaurentCoeff k = factorCoeff t k * (t.q : K) ^ k := by
   simp [aLaurentCoeff]
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
+/--
+@isnad1 id=eq.0h3v.s4.c0d81b1a0998 from=translated src=- shape=5febc1b7 vocab=356d46ea
+-/
 @[simp] lemma bLaurentCoeff_negNatCast (k : ℕ) :
     t.bLaurentCoeff (-(k : ℤ)) = factorCoeff t k := by
   simp [bLaurentCoeff]
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- `aLaurentCoeff` vanishes on negative indices. -/
+/-- `aLaurentCoeff` vanishes on negative indices.
+@isnad1 id=eq.1h3v.s5.6ce9721a74be from=translated src=- shape=e8f1ef1c vocab=5c13ecbb
+-/
 lemma aLaurentCoeff_of_neg {n : ℤ} (hn : n < 0) : t.aLaurentCoeff n = 0 := by
   simp [aLaurentCoeff, not_le.mpr hn]
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- `bLaurentCoeff` vanishes on positive indices. -/
+/-- `bLaurentCoeff` vanishes on positive indices.
+@isnad1 id=eq.1h3v.s5.e82e97e15ee3 from=translated src=- shape=30d37357 vocab=609d1882
+-/
 lemma bLaurentCoeff_of_pos {m : ℤ} (hm : 0 < m) : t.bLaurentCoeff m = 0 := by
   simp [bLaurentCoeff, not_le.mpr hm]
 
-/-- The coefficient family of `A` is summable (the power series `A` converges everywhere). -/
+/-- The coefficient family of `A` is summable (the power series `A` converges everywhere).
+@isnad1 id=summable.0h2v.s6.f2d82ca8aa81 from=translated src=- shape=afd55e26 vocab=b2b9a4ed
+-/
 lemma summable_aLaurentCoeff : Summable t.aLaurentCoeff := by
   rw [← (Nat.cast_injective (R := ℤ)).summable_iff (f := t.aLaurentCoeff) (fun n hn => ?_)]
   · exact (t.factorCoeff_summable (t.q : K)).congr fun k => by simp
@@ -122,7 +136,9 @@ lemma summable_aLaurentCoeff : Summable t.aLaurentCoeff := by
       exact hn ⟨n.toNat, by simp [Int.toNat_of_nonneg (not_lt.mp h)]⟩
     exact t.aLaurentCoeff_of_neg hneg
 
-/-- The coefficient family of `B` is summable (the power series `B` converges everywhere). -/
+/-- The coefficient family of `B` is summable (the power series `B` converges everywhere).
+@isnad1 id=summable.0h2v.s6.52b9a4536d61 from=translated src=- shape=afd55e26 vocab=48d5a2f2
+-/
 lemma summable_bLaurentCoeff : Summable t.bLaurentCoeff := by
   have hinj : Function.Injective (fun k : ℕ => -(k : ℤ)) := fun a b h => by simpa using h
   rw [← hinj.summable_iff (f := t.bLaurentCoeff) (fun m hm => ?_)]
@@ -134,7 +150,9 @@ lemma summable_bLaurentCoeff : Summable t.bLaurentCoeff := by
     exact t.bLaurentCoeff_of_pos hpos
 
 /-- `A(u) = thetaProdFactor(q·u)` as a two-sided Laurent series with coefficients
-`aLaurentCoeff`. -/
+`aLaurentCoeff`.
+@isnad1 id=hassum.0h3v.s7.50c271011a42 from=translated src=- shape=4535cdbc vocab=966918d7
+-/
 lemma aLaurentCoeff_hasSum (u : Kˣ) :
     HasSum (fun n : ℤ => t.aLaurentCoeff n * (u : K) ^ n)
       (t.thetaProdFactor ((t.q : K) * (u : K))) := by
@@ -159,7 +177,9 @@ lemma aLaurentCoeff_hasSum (u : Kˣ) :
   exact hnat
 
 /-- `B(u) = thetaProdFactor(u⁻¹)` as a two-sided Laurent series with coefficients
-`bLaurentCoeff`. -/
+`bLaurentCoeff`.
+@isnad1 id=hassum.0h3v.s7.23fd1ba2d203 from=translated src=- shape=e69bcc5f vocab=fa20ab50
+-/
 lemma bLaurentCoeff_hasSum (u : Kˣ) :
     HasSum (fun m : ℤ => t.bLaurentCoeff m * (u : K) ^ m)
       (t.thetaProdFactor ((u : K)⁻¹)) := by
@@ -194,7 +214,9 @@ series (typically `α` supported on `ℕ` and `β` on `-ℕ`, i.e. a power serie
 `u⁻¹`), then their product is the convergent Laurent series with convolution coefficients
 `ℓ ↦ ∑' m, α(ℓ - m)·βₘ`. The proof is the ultrametric Cauchy product `HasSum.mul_of_nonarchimedean`
 reindexed by the shear `(n, m) ↦ (n + m, m)` on `ℤ × ℤ`, summed over the fibres `n + m = ℓ`;
-no norm estimate on the resulting coefficients is required. -/
+no norm estimate on the resulting coefficients is required.
+@isnad1 id=hassum.2h6v.s8.94b9724590e8 from=translated src=- shape=d430c9df vocab=7f6ceecf
+-/
 lemma hasSum_laurentConvolution {α β : ℤ → K} {A B : K} (u : Kˣ)
     (hA : HasSum (fun n : ℤ => α n * (u : K) ^ n) A)
     (hB : HasSum (fun m : ℤ => β m * (u : K) ^ m) B) :
@@ -234,7 +256,9 @@ lemma hasSum_laurentConvolution {α β : ℤ → K} {A B : K} (u : Kˣ)
 `thetaProd u = ∑' ℓ, thetaProdLaurentCoeff ℓ · uˡ`, and the family is summable. This is the
 nonarchimedean Cauchy product of the everywhere-convergent power series
 `A(u) = thetaProdFactor(q·u)` and `B(u) = thetaProdFactor(u⁻¹)`, restored by the constant factor
-`thetaProdFactor(-q)`. -/
+`thetaProdFactor(-q)`.
+@isnad1 id=hassum.0h3v.s7.35b5a3a4421c from=translated src=- shape=540e366d vocab=5b0bd423
+-/
 lemma thetaProd_hasSum_laurent (u : Kˣ) :
     HasSum (fun ℓ : ℤ => t.thetaProdLaurentCoeff ℓ * (u : K) ^ ℓ) (t.thetaProd u) := by
   have h := hasSum_laurentConvolution u (t.aLaurentCoeff_hasSum u) (t.bLaurentCoeff_hasSum u)
@@ -253,7 +277,9 @@ lemma thetaProd_hasSum_laurent (u : Kˣ) :
 
 /-- **The rigid-analytic core of `theta = thetaProd`.** The product form `thetaProd` admits a
 global two-sided Laurent expansion; equivalently, the seam `ThetaProdLaurentRepr t`
-(`Theta/ThetaProdLaurent.lean`) holds unconditionally over any complete nonarchimedean field. -/
+(`Theta/ThetaProdLaurent.lean`) holds unconditionally over any complete nonarchimedean field.
+@isnad1 id=thetapro.0h2v.s5.cb1c825d4527 from=translated src=- shape=73bdb2fd vocab=77aa9d8d
+-/
 theorem thetaProdLaurentRepr : t.ThetaProdLaurentRepr :=
   ⟨t.thetaProdLaurentCoeff,
     fun u => (t.thetaProd_hasSum_laurent u).summable,
@@ -264,7 +290,9 @@ Combining the global Laurent expansion `thetaProdLaurentRepr` with the Laurent c
 uniqueness principle `LaurentCoeffUnique K`, there is a constant `b₀` with
 `thetaProd u = b₀ · theta u` for every `u`. The only remaining input for the full Jacobi triple
 product `theta = thetaProd` is the scalar normalization `b₀ = 1` (equivalently, one `u₀` with
-`theta u₀ = thetaProd u₀ ≠ 0`). -/
+`theta u₀ = thetaProd u₀ ≠ 0`).
+@isnad1 id=ex.1h2v.s6.64f55e1d8481 from=translated src=- shape=64ebc7c5 vocab=06e4e501
+-/
 theorem thetaProd_eq_const_mul_theta_of_laurentCoeffUnique (huniq : LaurentCoeffUnique K) :
     ∃ b₀ : K, ∀ u : Kˣ, t.thetaProd u = b₀ * t.theta u :=
   t.thetaProd_eq_const_mul_theta huniq t.thetaProdLaurentRepr
@@ -275,7 +303,9 @@ one normalization value.** With the global Laurent expansion of `thetaProd` now 
 follows from the Laurent coefficient uniqueness principle together with a single point `u₀` where
 `theta u₀ = thetaProd u₀ ≠ 0` (which pins the constant `b₀` of
 `thetaProd_eq_const_mul_theta_of_laurentCoeffUnique` to `1`). This is the wiring of
-`theta_eq_thetaProd_of_thetaProdLaurent` through the unconditional seam. -/
+`theta_eq_thetaProd_of_thetaProdLaurent` through the unconditional seam.
+@isnad1 id=eq.3h4v.s6.333f9fa62fd6 from=translated src=- shape=be0b6fb0 vocab=aa1bfb7a
+-/
 theorem theta_eq_thetaProd_of_laurentCoeffUnique (huniq : LaurentCoeffUnique K) {u₀ : Kˣ}
     (hu₀ : t.theta u₀ ≠ 0) (hnorm : t.theta u₀ = t.thetaProd u₀) (u : Kˣ) :
     t.theta u = t.thetaProd u :=

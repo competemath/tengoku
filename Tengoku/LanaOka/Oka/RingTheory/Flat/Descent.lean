@@ -41,7 +41,9 @@ open TensorProduct LinearMap
 over `A` and faithfully flat over `B`, then `B` is flat over `A`.
 
 The classical use is `C` a completion: `B ⊗ -` is hard to see and `C ⊗ -` is not, and `B → C`
-being faithfully flat is what lets the conclusion come back. -/
+being faithfully flat is what lets the conclusion come back.
+@isnad1 id=flat.0h3v.s7.bc9e7bbba0b3 from=translated src=- shape=39894852 vocab=73eab794
+-/
 theorem Module.Flat.of_faithfullyFlat_tower (A B C : Type*) [CommRing A] [CommRing B] [CommRing C]
     [Algebra A B] [Algebra B C] [Algebra A C] [IsScalarTower A B C]
     [Module.FaithfullyFlat B C] [Module.Flat A C] : Module.Flat A B := by

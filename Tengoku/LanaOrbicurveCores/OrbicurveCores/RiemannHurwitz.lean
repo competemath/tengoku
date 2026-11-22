@@ -23,7 +23,9 @@ other three make `Y` a cover of an arithmetic triangle group.
 
 namespace OrbicurveCores
 
-/-- Three branch points: `1/a + 1/b + 1/c = 1` with `2 ≤ a ≤ b ≤ c`. -/
+/-- Three branch points: `1/a + 1/b + 1/c = 1` with `2 ≤ a ≤ b ≤ c`.
+@isnad1 id=or.4h3v.s8.364ad4a9ae1f from=translated src=- shape=a2c62bdf vocab=92050456
+-/
 lemma rh_three {a b c : ℕ} (ha : 2 ≤ a) (hab : a ≤ b) (hbc : b ≤ c)
     (h : (1 - 1 / (a : ℚ)) + (1 - 1 / (b : ℚ)) + (1 - 1 / (c : ℚ)) = 2) :
     (a, b, c) = (2, 3, 6) ∨ (a, b, c) = (2, 4, 4) ∨ (a, b, c) = (3, 3, 3) := by
@@ -46,7 +48,9 @@ lemma rh_three {a b c : ℕ} (ha : 2 ≤ a) (hab : a ≤ b) (hbc : b ≤ c)
     interval_cases a <;> interval_cases b <;> nlinarith
   interval_cases a <;> interval_cases b <;> interval_cases c <;> simp_all
 
-/-- The solutions of `Σ (1 - 1/eᵢ) = 2` with all `eᵢ ≥ 2`, as sorted lists. -/
+/-- The solutions of `Σ (1 - 1/eᵢ) = 2` with all `eᵢ ≥ 2`, as sorted lists.
+@isnad1 id=or.3h1v.s7.0a1b389a8006 from=translated src=- shape=9a5d761c vocab=fc205413
+-/
 theorem riemannHurwitz_solutions (l : List ℕ) (hl : l.Pairwise (· ≤ ·)) (h2 : ∀ e ∈ l, 2 ≤ e)
     (hsum : (l.map fun e : ℕ ↦ (1 - 1 / (e : ℚ))).sum = 2) :
     l = [2, 2, 2, 2] ∨ l = [2, 3, 6] ∨ l = [2, 4, 4] ∨ l = [3, 3, 3] := by

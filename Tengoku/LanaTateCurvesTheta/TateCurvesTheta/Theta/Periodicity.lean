@@ -43,7 +43,9 @@ converge, in which case both sides vanish); convergence of `θ` itself is the co
 namespace TateCurvesTheta
 
 /-- The triangular exponent is quasi-additive: `e (m + n) = e m + e n + m * n`. This is the
-combinatorial identity behind the `q`-periodicity of the theta series. -/
+combinatorial identity behind the `q`-periodicity of the theta series.
+@isnad1 id=eq.0h2v.s5.b66ba3c0e9ba from=translated src=- shape=df01e969 vocab=883542c9
+-/
 lemma thetaExp_add (m n : ℤ) : thetaExp (m + n) = thetaExp m + thetaExp n + m * n := by
   have h2 : (2 : ℤ) * thetaExp (m + n) = 2 * (thetaExp m + thetaExp n + m * n) := by
     have h := two_mul_thetaExp (m + n)
@@ -52,7 +54,9 @@ lemma thetaExp_add (m n : ℤ) : thetaExp (m + n) = thetaExp m + thetaExp n + m 
     linear_combination h - hm - hn
   linarith
 
-/-- The triangular exponent at `1` is `1`. -/
+/-- The triangular exponent at `1` is `1`.
+@isnad1 id=eq.0h0v.s3.695c7305185e from=translated src=- shape=3c26ae4f vocab=dc63d24d
+-/
 lemma thetaExp_one : thetaExp 1 = 1 := by decide
 
 namespace TateParameter
@@ -66,7 +70,9 @@ peels off the monomial `q ^ (e m) * u ^ m`:
 
 This is the source of the quasi-periodicity; it is a formal reindexing of the defining
 `tsum` (via `Equiv.addRight` and the quadratic identity `thetaExp_add`) and needs no
-convergence hypotheses. -/
+convergence hypotheses.
+@isnad1 id=eq.0h4v.s8.f62957eccb52 from=translated src=- shape=fe519891 vocab=9f65e104
+-/
 theorem theta_zpow_smul_eq (u : Kˣ) (m : ℤ) :
     T.theta u = (T.q : K) ^ thetaExp m * (u : K) ^ m * T.theta (T.q ^ m * u) := by
   have hq : (T.q : K) ≠ 0 := T.q.ne_zero
@@ -82,7 +88,9 @@ theorem theta_zpow_smul_eq (u : Kˣ) (m : ℤ) :
 
 /-- **The full `qᶻ`-automorphy of the `q`-theta function.** For every `m : ℤ`,
 `θ q (qᵐ · u) = (q ^ (e m) * u ^ m)⁻¹ * θ q u`, with the automorphy factor the reciprocal of
-the theta monomial `q ^ (e m) * u ^ m`. -/
+the theta monomial `q ^ (e m) * u ^ m`.
+@isnad1 id=eq.0h4v.s8.a6111a7192fd from=translated src=- shape=b26fd909 vocab=319bc2ea
+-/
 theorem theta_zpow_q_smul (u : Kˣ) (m : ℤ) :
     T.theta (T.q ^ m * u) = ((T.q : K) ^ thetaExp m * (u : K) ^ m)⁻¹ * T.theta u := by
   have hq : (T.q : K) ≠ 0 := T.q.ne_zero
@@ -93,7 +101,9 @@ theorem theta_zpow_q_smul (u : Kˣ) (m : ℤ) :
 
 /-- **The `q`-periodicity functional equation.** Under the generating translation `u ↦ q · u`
 the `q`-theta function transforms by the automorphy factor `(q · u)⁻¹`:
-`θ q (q · u) = (q · u)⁻¹ * θ q u`. -/
+`θ q (q · u) = (q · u)⁻¹ * θ q u`.
+@isnad1 id=eq.0h3v.s7.c667a9659eb9 from=translated src=- shape=8ee89e6f vocab=4eee59c4
+-/
 theorem theta_q_smul (u : Kˣ) :
     T.theta (T.q * u) = ((T.q : K) * (u : K))⁻¹ * T.theta u := by
   have h := T.theta_zpow_q_smul u 1

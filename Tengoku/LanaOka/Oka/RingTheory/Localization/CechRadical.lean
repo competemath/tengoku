@@ -31,7 +31,9 @@ universe u v w
 variable {R : Type u} [CommRing R] (M : Type v) [AddCommGroup M] [Module R M]
   {ι : Type w} (f : ι → R)
 
-/-- If `c ∣ f i ^ n` for all `i`, then `c` acts invertibly on the Čech cochains of `f`. -/
+/-- If `c ∣ f i ^ n` for all `i`, then `c` acts invertibly on the Čech cochains of `f`.
+@isnad1 id=bijectiv.1h6v.s9.968a2e21f1e6 from=translated src=- shape=937fa401 vocab=08b51634
+-/
 lemma bijective_smul_cechObj {c : R} (hcf : ∀ i, ∃ n, c ∣ f i ^ n) (m : ℕ) :
     Function.Bijective fun x : cechObj M f m ↦ c • x := by
   have hσ (σ : Fin (m + 1) → ι) :
@@ -46,10 +48,15 @@ lemma bijective_smul_cechObj {c : R} (hcf : ∀ i, ∃ n, c ∣ f i ^ n) (m : �
   exact ⟨x, funext hx⟩
 
 omit [AddCommGroup M] [Module R M] in
+/--
+@isnad1 id=ex.0h5v.s6.933f34f4f441 from=translated src=- shape=58162957 vocab=b884e33a
+-/
 lemma dvd_pow_mul_self_aux (j i : ι) : ∃ m, f j * f j ∣ (f j * f i) ^ m :=
   ⟨2, Dvd.intro (f i ^ 2) (by ring)⟩
 
-/-- A Čech cocycle becomes a coboundary after multiplying by a power of any `f j`. -/
+/-- A Čech cocycle becomes a coboundary after multiplying by a power of any `f j`.
+@isnad1 id=ex.1h7v.s13.7a04b9e6c67b from=translated src=- shape=e566e1ac vocab=abcf8f0e
+-/
 lemma exists_pow_smul_eq_cechD [Finite ι] (n : ℕ) (y : cechObj M f (n + 1))
     (hy : cechD M f (n + 1) y = 0) (j : ι) :
     ∃ (k : ℕ) (x : cechObj M f n), f j ^ k • y = cechD M f n x := by
@@ -74,7 +81,9 @@ lemma exists_pow_smul_eq_cechD [Finite ι] (n : ℕ) (y : cechObj M f (n + 1))
 
 /-- **Exactness of the Čech complex for a cover of `D(c)`**: if `D(f i) ⊆ D(c)` for all `i` and
 `c ∈ √(f i)`, the Čech complex of `M` for the finite family `f` is exact at
-`cechObj M f (n + 1)`. -/
+`cechObj M f (n + 1)`.
+@isnad1 id=exact.2h6v.s13.a824592811b4 from=translated src=- shape=8f0a64db vocab=60879e7a
+-/
 theorem cechD_exact_of_mem_radical [Finite ι] {c : R}
     (hc : c ∈ (Ideal.span (Set.range f)).radical) (hcf : ∀ i, ∃ n, c ∣ f i ^ n) (n : ℕ) :
     Function.Exact (cechD M f n) (cechD M f (n + 1)) := by

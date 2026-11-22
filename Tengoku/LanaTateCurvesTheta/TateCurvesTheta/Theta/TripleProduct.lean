@@ -112,7 +112,9 @@ def RatioLaurentRepr : Prop :=
 principle `LaurentCoeffUnique K` and the Laurent representation of the ratio
 (`RatioLaurentRepr t`), the `q`-difference engine `const_of_qinvariant_laurent` collapses the
 representing series to its constant term `c₀ := c 0`, so `theta u = c₀ · thetaProd u` for every
-`u : Kˣ`. -/
+`u : Kˣ`.
+@isnad1 id=ex.2h2v.s6.4580e8be7507 from=translated src=- shape=28df92b2 vocab=9dd9da25
+-/
 theorem theta_eq_const_mul_thetaProd (huniq : LaurentCoeffUnique K) (hrepr : t.RatioLaurentRepr) :
     ∃ c₀ : K, ∀ u : Kˣ, t.theta u = c₀ * t.thetaProd u := by
   obtain ⟨c, hsum, hid, hqinv⟩ := hrepr
@@ -127,7 +129,9 @@ principle and the ratio's Laurent representation, all that is needed is a single
 one point `u₀` where `thetaProd u₀ ≠ 0` and `theta u₀ = thetaProd u₀`. This pins the constant
 `c₀` of `theta_eq_const_mul_thetaProd` to `1`, giving `theta u = thetaProd u` for every `u`
 (including the zero locus `-qᶻ`, where both sides vanish, since the factorization is stated for
-all `u`). -/
+all `u`).
+@isnad1 id=eq.4h4v.s6.ab3124282f2c from=translated src=- shape=ea9aa49d vocab=cd110e37
+-/
 theorem theta_eq_thetaProd_of_ratioLaurent (huniq : LaurentCoeffUnique K)
     (hrepr : t.RatioLaurentRepr)
     {u₀ : Kˣ} (hu₀ : t.thetaProd u₀ ≠ 0) (hnorm : t.theta u₀ = t.thetaProd u₀) (u : Kˣ) :
@@ -147,7 +151,9 @@ theorem theta_eq_thetaProd_of_ratioLaurent (huniq : LaurentCoeffUnique K)
 the coefficient-uniqueness principle, the ratio's Laurent representation, and the single
 normalization value, the series `theta` vanishes exactly on the `qᶻ`-orbit of `-1`:
 `theta u = 0 ↔ ∃ k : ℤ, (u : K) = -qᵏ`. This discharges the conditionality of
-`theta_eq_zero_iff_of_eq_thetaProd` (`Theta/Divisor.lean`, #88). -/
+`theta_eq_zero_iff_of_eq_thetaProd` (`Theta/Divisor.lean`, #88).
+@isnad1 id=iff.4h4v.s7.f418e21a4297 from=translated src=- shape=385908bc vocab=f8fe94df
+-/
 theorem theta_eq_zero_iff_of_ratioLaurent [CompleteSpace K] (huniq : LaurentCoeffUnique K)
     (hrepr : t.RatioLaurentRepr) {u₀ : Kˣ} (hu₀ : t.thetaProd u₀ ≠ 0)
     (hnorm : t.theta u₀ = t.thetaProd u₀) (u : Kˣ) :

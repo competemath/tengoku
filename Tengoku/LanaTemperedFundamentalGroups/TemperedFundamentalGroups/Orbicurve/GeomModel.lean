@@ -39,6 +39,9 @@ variable {k : Type u} [Field k] [DecidableEq k] {W : WeierstrassCurve k} {ℓ : 
 
 /-! ### Galois stability and finiteness of `E[ℓ] + M` -/
 
+/--
+@isnad1 id=mem.1h8v.s9.e3a245b8e637 from=translated src=- shape=8d3aec32 vocab=7b9d714d
+-/
 lemma map_mem_removedSetIn {K L : Type*} [Field K] [DecidableEq K] [Algebra k K] [Field L]
     [DecidableEq L] [Algebra k L] (φ : K →ₐ[k] L) {P : (W.toAffine⁄K).Point}
     (hP : P ∈ removedSetIn W K ℓ M) : Point.map φ P ∈ removedSetIn W L ℓ M := by
@@ -46,12 +49,18 @@ lemma map_mem_removedSetIn {K L : Type*} [Field K] [DecidableEq K] [Algebra k K]
   refine ⟨m, hm, ?_⟩
   rw [← map_bc φ m, ← map_sub, ← map_nsmul, h, map_zero]
 
+/--
+@isnad1 id=isgalois.0h4v.s5.09b711629dfa from=translated src=- shape=01629311 vocab=fd190a25
+-/
 lemma isGaloisStable_geomRemovedSet : IsGaloisStable W (geomRemovedSet W ℓ M) :=
   fun _ _ hP => map_mem_removedSetIn _ hP
 
 /-! ### Exactness -/
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=injectiv.0h2v.s8.901b035c3cc3 from=translated src=- shape=d9c880ef vocab=2f2d8ea7
+-/
 lemma injective_algebraMap_polynomial :
     Function.Injective (algebraMap k[X] W.toAffine.CoordinateRing) := by
   rw [AdjoinRoot.algebraMap_eq]
@@ -61,7 +70,9 @@ variable [W.IsElliptic]
 
 /-- **Exactness.** If `E[ℓ] + M ⊆ E(k̄)` is finite, then it is, away from `0`, the zero set of a
 function `Ψ(x)` of `x`, and the coordinate ring of `E ∖ (E[ℓ] + M)` is the localization
-`k[E][Ψ(x)⁻¹]`. -/
+`k[E][Ψ(x)⁻¹]`.
+@isnad1 id=ex.1h4v.s11.9313d262537a from=translated src=- shape=66ecfb85 vocab=8c2ed8ad
+-/
 theorem exists_isLocalization_geomOrbicurveRing (hfin : (geomRemovedSet W ℓ M).Finite) :
     ∃ Ψ : k[X], Ψ ≠ 0 ∧
       zeroSet W (algebraMap k[X] W.toAffine.CoordinateRing Ψ) = geomRemovedSet W ℓ M \ {0} ∧

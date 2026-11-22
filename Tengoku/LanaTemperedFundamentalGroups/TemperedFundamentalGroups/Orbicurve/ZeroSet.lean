@@ -56,10 +56,19 @@ def xC : W.toAffine.CoordinateRing := AdjoinRoot.mk W.toAffine.polynomial (C X)
 /-- The coordinate `y` as an element of the coordinate ring `k[W]`. -/
 def yC : W.toAffine.CoordinateRing := AdjoinRoot.mk W.toAffine.polynomial X
 
+/--
+@isnad1 id=eq.0h2v.s10.3bfe27a5fdb2 from=translated src=- shape=10867064 vocab=8004b23b
+-/
 @[simp] lemma algebraMap_xC : algebraMap _ (funField W) (xC W) = xGen W := rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.4312e65bfb86 from=translated src=- shape=10867064 vocab=2546399a
+-/
 @[simp] lemma algebraMap_yC : algebraMap _ (funField W) (yC W) = yGen W := rfl
 
+/--
+@isnad1 id=injectiv.0h2v.s10.05c9d048a720 from=translated src=- shape=e59a6ebf vocab=5c927f30
+-/
 lemma injective_algebraMap_funField :
     Function.Injective (algebraMap W.toAffine.CoordinateRing (funField W)) :=
   IsFractionRing.injective _ _
@@ -70,23 +79,37 @@ section AlgHom
 
 variable {W} {A B : Type*} [CommRing A] [CommRing B] [Algebra k A] [Algebra k B]
 
-/-- A `k`-algebra map out of `k[W]` is determined by the images of `x` and `y`. -/
+/-- A `k`-algebra map out of `k[W]` is determined by the images of `x` and `y`.
+@isnad1 id=eq.2h5v.s9.efe1426e4b77 from=translated src=- shape=fa530a0c vocab=2ba10a1c
+-/
 lemma coordRing_algHom_ext {φ ψ : W.toAffine.CoordinateRing →ₐ[k] A}
     (hx : φ (xC W) = ψ (xC W)) (hy : φ (yC W) = ψ (yC W)) : φ = ψ := by
   refine AdjoinRoot.algHom_ext' (Polynomial.algHom_ext ?_) hy
   simpa [xC, AdjoinRoot.mk_C] using hx
 
+/--
+@isnad1 id=eq.1h5v.s7.9162457c1a96 from=translated src=- shape=05456ee9 vocab=8fc76b5c
+-/
 lemma evalHom_xC (x y : A) (h : (W.toAffine⁄A).Equation x y) : evalHom W x y h (xC W) = x :=
   evalHom_x x y h
 
+/--
+@isnad1 id=eq.1h5v.s7.dbe25199b7dd from=translated src=- shape=506af290 vocab=4168541d
+-/
 lemma evalHom_yC (x y : A) (h : (W.toAffine⁄A).Equation x y) : evalHom W x y h (yC W) = y :=
   evalHom_y x y h
 
+/--
+@isnad1 id=eq.1h7v.s8.5545cbc651d4 from=translated src=- shape=2f48e979 vocab=dea9ba60
+-/
 lemma comp_evalHom (φ : A →ₐ[k] B) (x y : A) (h : (W.toAffine⁄A).Equation x y) :
     φ.comp (evalHom W x y h) = evalHom W (φ x) (φ y) (h.baseChange φ) :=
   coordRing_algHom_ext (by simp [evalHom_xC]) (by simp [evalHom_yC])
 
 variable (W) in
+/--
+@isnad1 id=equation.0h2v.s6.2d3be65f3f4b from=translated src=- shape=c1ae64aa vocab=2d28fb69
+-/
 lemma equation_C : (W.toAffine⁄W.toAffine.CoordinateRing).Equation (xC W) (yC W) :=
   (W.toAffine.baseChange_equation (f := IsScalarTower.toAlgHom k _ (funField W))
     (injective_algebraMap_funField W) _ _).mp (equation_gen W)
@@ -108,12 +131,21 @@ variable {W} {L : Type*} [Field L] [Algebra k L]
 def evalPt {Q : (W.toAffine⁄L).Point} (hQ : Q ≠ 0) : W.toAffine.CoordinateRing →ₐ[k] L :=
   evalHom W (xOf Q) (yOf Q) (equation_xOf_yOf hQ)
 
+/--
+@isnad1 id=eq.1h4v.s8.cc1c22a3c868 from=translated src=- shape=b4c2a12b vocab=6d9a4d15
+-/
 @[simp] lemma evalPt_xC {Q : (W.toAffine⁄L).Point} (hQ : Q ≠ 0) : evalPt hQ (xC W) = xOf Q :=
   evalHom_xC _ _ _
 
+/--
+@isnad1 id=eq.1h4v.s8.83cdbca43f5a from=translated src=- shape=b4c2a12b vocab=3f53e095
+-/
 @[simp] lemma evalPt_yC {Q : (W.toAffine⁄L).Point} (hQ : Q ≠ 0) : evalPt hQ (yC W) = yOf Q :=
   evalHom_yC _ _ _
 
+/--
+@isnad1 id=eq.1h5v.s9.768ee66f59b2 from=translated src=- shape=28cecb95 vocab=9da55431
+-/
 @[simp] lemma evalPt_algebraMap_polynomial {Q : (W.toAffine⁄L).Point} (hQ : Q ≠ 0) (p : k[X]) :
     evalPt hQ (algebraMap k[X] W.toAffine.CoordinateRing p) = aeval (xOf Q) p := by
   rw [AdjoinRoot.algebraMap_eq]
@@ -123,14 +155,23 @@ def evalPt {Q : (W.toAffine⁄L).Point} (hQ : Q ≠ 0) : W.toAffine.CoordinateRi
 def pointOfC [W.IsElliptic] (φ : W.toAffine.CoordinateRing →ₐ[k] L) : (W.toAffine⁄L).Point :=
   .some (φ (xC W)) (φ (yC W)) (nonsingular_of_equation ((equation_C W).baseChange φ))
 
+/--
+@isnad1 id=ne.0h4v.s7.f78c92a765ed from=translated src=- shape=09da8fb9 vocab=5efc2909
+-/
 lemma pointOfC_ne_zero [W.IsElliptic] (φ : W.toAffine.CoordinateRing →ₐ[k] L) :
     pointOfC φ ≠ 0 :=
   Point.some_ne_zero _
 
+/--
+@isnad1 id=eq.0h4v.s7.37706ccee5f6 from=translated src=- shape=99f7d4cb vocab=bc798f8c
+-/
 lemma evalPt_pointOfC [W.IsElliptic] (φ : W.toAffine.CoordinateRing →ₐ[k] L) :
     evalPt (pointOfC_ne_zero φ) = φ :=
   coordRing_algHom_ext (by rw [evalPt_xC]; rfl) (by rw [evalPt_yC]; rfl)
 
+/--
+@isnad1 id=eq.2h5v.s8.8cb4c3d92440 from=translated src=- shape=3917cb7b vocab=d1f40d6e
+-/
 lemma evalPt_congr {Q Q' : (W.toAffine⁄L).Point} (hQ : Q ≠ 0) (h : Q = Q') :
     evalPt hQ = evalPt (h ▸ hQ) := by
   subst h
@@ -141,17 +182,29 @@ variable (W) in
 def zeroSet (h : W.toAffine.CoordinateRing) : Set (GeomPoint W) :=
   {Q | ∃ hQ : Q ≠ 0, evalPt hQ h = 0}
 
+/--
+@isnad1 id=iff.0h4v.s8.be19b1011b4f from=translated src=- shape=cda53617 vocab=d184238c
+-/
 lemma mem_zeroSet {h : W.toAffine.CoordinateRing} {Q : GeomPoint W} :
     Q ∈ zeroSet W h ↔ ∃ hQ : Q ≠ 0, evalPt hQ h = 0 :=
   Iff.rfl
 
+/--
+@isnad1 id=ne.1h4v.s6.e34546a24d5d from=translated src=- shape=0a54da35 vocab=3e320b75
+-/
 lemma ne_zero_of_mem_zeroSet {h : W.toAffine.CoordinateRing} {Q : GeomPoint W}
     (hQ : Q ∈ zeroSet W h) : Q ≠ 0 :=
   hQ.1
 
+/--
+@isnad1 id=not.0h3v.s6.8cff3cd991ce from=translated src=- shape=9899ff40 vocab=3e320b75
+-/
 lemma zero_notMem_zeroSet (h : W.toAffine.CoordinateRing) : (0 : GeomPoint W) ∉ zeroSet W h :=
   fun hQ => hQ.1 rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.4983f8ce69c1 from=translated src=- shape=9a1c9aa7 vocab=6d5cf0a9
+-/
 lemma zeroSet_mul (a b : W.toAffine.CoordinateRing) :
     zeroSet W (a * b) = zeroSet W a ∪ zeroSet W b := by
   ext Q
@@ -162,15 +215,24 @@ lemma zeroSet_mul (a b : W.toAffine.CoordinateRing) :
   · rintro (⟨hQ, h⟩ | ⟨hQ, h⟩)
     exacts [⟨hQ, Or.inl h⟩, ⟨hQ, Or.inr h⟩]
 
+/--
+@isnad1 id=eq.1h4v.s7.f4d8995a0ef3 from=translated src=- shape=fe8f3aef vocab=3cd194cc
+-/
 lemma zeroSet_pow (a : W.toAffine.CoordinateRing) {n : ℕ} (hn : n ≠ 0) :
     zeroSet W (a ^ n) = zeroSet W a := by
   ext Q
   simp only [mem_zeroSet, map_pow, pow_eq_zero_iff hn]
 
+/--
+@isnad1 id=eq.0h2v.s6.5afd9971be85 from=translated src=- shape=4bbad2ab vocab=47c51a77
+-/
 lemma zeroSet_one : zeroSet W 1 = ∅ := by
   ext Q
   simp [mem_zeroSet]
 
+/--
+@isnad1 id=iff.0h4v.s9.2b15e57be63f from=translated src=- shape=93368077 vocab=7a7150b1
+-/
 lemma mem_zeroSet_xC_sub (a : k) {Q : GeomPoint W} :
     Q ∈ zeroSet W (xC W - algebraMap k _ a) ↔ Q ≠ 0 ∧ xOf Q = algebraMap k _ a := by
   simp only [mem_zeroSet, map_sub, AlgHom.commutes, evalPt_xC, sub_eq_zero, exists_prop]
@@ -190,21 +252,32 @@ def ringAway (𝒮 : Set (GeomPoint W)) : Subalgebra k (funField W) :=
 
 variable {W} {𝒮 𝒮' : Set (GeomPoint W)}
 
+/--
+@isnad1 id=mem.0h4v.s11.f2309604d4db from=translated src=- shape=e3e55d15 vocab=6a4bfee0
+-/
 lemma algebraMap_mem_ringAway (c : W.toAffine.CoordinateRing) :
     algebraMap _ (funField W) c ∈ ringAway W 𝒮 :=
   Algebra.subset_adjoin (Or.inl ⟨c, rfl⟩)
 
+/--
+@isnad1 id=mem.1h4v.s11.1aa9e57eb4b4 from=translated src=- shape=90babe0e vocab=419e1f4c
+-/
 lemma inv_mem_ringAway {h : W.toAffine.CoordinateRing} (hh : zeroSet W h ⊆ 𝒮) :
     (algebraMap _ (funField W) h)⁻¹ ∈ ringAway W 𝒮 :=
   Algebra.subset_adjoin (Or.inr ⟨h, hh, rfl⟩)
 
+/--
+@isnad1 id=le.1h4v.s10.4a755cc7b076 from=translated src=- shape=d935d9ef vocab=99b27855
+-/
 lemma ringAway_mono (h : 𝒮 ⊆ 𝒮') : ringAway W 𝒮 ≤ ringAway W 𝒮' := by
   refine Algebra.adjoin_mono (Set.union_subset_union_right _ ?_)
   rintro _ ⟨g, hg, rfl⟩
   exact ⟨g, hg.trans h, rfl⟩
 
 /-- A subalgebra containing `k[W]` and the inverses of the functions vanishing only on `𝒮`
-contains `ringAway W 𝒮`. -/
+contains `ringAway W 𝒮`.
+@isnad1 id=le.2h4v.s12.8a14af2aac4c from=translated src=- shape=e20a9622 vocab=419e1f4c
+-/
 lemma ringAway_le {B : Subalgebra k (funField W)}
     (h₁ : ∀ c, algebraMap W.toAffine.CoordinateRing (funField W) c ∈ B)
     (h₂ : ∀ h, zeroSet W h ⊆ 𝒮 → (algebraMap _ (funField W) h)⁻¹ ∈ B) : ringAway W 𝒮 ≤ B := by
@@ -212,8 +285,14 @@ lemma ringAway_le {B : Subalgebra k (funField W)}
   rintro _ (⟨c, rfl⟩ | ⟨h, hh, rfl⟩)
   exacts [h₁ c, h₂ h hh]
 
+/--
+@isnad1 id=mem.0h3v.s10.e697102317a2 from=translated src=- shape=23a8a93f vocab=415ca21b
+-/
 lemma xGen_mem_ringAway : xGen W ∈ ringAway W 𝒮 := algebraMap_mem_ringAway (xC W)
 
+/--
+@isnad1 id=mem.0h3v.s10.cb82432679fd from=translated src=- shape=23a8a93f vocab=be5ea4fb
+-/
 lemma yGen_mem_ringAway : yGen W ∈ ringAway W 𝒮 := algebraMap_mem_ringAway (yC W)
 
 end RingAway
@@ -224,6 +303,9 @@ section Localization
 
 variable {W} (D : W.toAffine.CoordinateRing)
 
+/--
+@isnad1 id=isunit.1h4v.s11.d02a8a37d658 from=translated src=- shape=5d4d72d4 vocab=519ab818
+-/
 lemma isUnit_algebraMap_of_mem_powers {D : W.toAffine.CoordinateRing} (hD : D ≠ 0)
     (y : Submonoid.powers D) :
     IsUnit (IsScalarTower.toAlgHom k W.toAffine.CoordinateRing (funField W) y) := by
@@ -237,11 +319,17 @@ def locMap (hD : D ≠ 0) : Localization.Away D →ₐ[k] funField W :=
 
 variable {D}
 
+/--
+@isnad1 id=eq.1h4v.s12.bfa63b5707e8 from=translated src=- shape=2061451a vocab=5bb14c6d
+-/
 @[simp] lemma locMap_algebraMap (hD : D ≠ 0) (c : W.toAffine.CoordinateRing) :
     locMap D hD (algebraMap _ _ c) = algebraMap _ (funField W) c := by
   rw [locMap, IsLocalization.liftAlgHom_apply, IsLocalization.lift_eq]
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s12.89b366284cf8 from=translated src=- shape=8b2d8e33 vocab=74e219c8
+-/
 lemma locMap_mk' (hD : D ≠ 0) (a : W.toAffine.CoordinateRing) (n : ℕ) :
     locMap D hD (IsLocalization.mk' _ a (⟨D ^ n, n, rfl⟩ : Submonoid.powers D)) =
       algebraMap _ (funField W) a * (algebraMap _ (funField W) D)⁻¹ ^ n := by
@@ -253,12 +341,18 @@ lemma locMap_mk' (hD : D ≠ 0) (a : W.toAffine.CoordinateRing) (n : ℕ) :
   rw [map_mul, locMap_algebraMap, locMap_algebraMap, map_pow] at h'
   rw [inv_pow, eq_mul_inv_iff_mul_eq₀ (pow_ne_zero _ hD'), h']
 
+/--
+@isnad1 id=ex.0h4v.s10.65178de5625a from=translated src=- shape=c4d73413 vocab=aed5fc2c
+-/
 lemma exists_mk' (z : Localization.Away D) :
     ∃ (a : W.toAffine.CoordinateRing) (n : ℕ),
       z = IsLocalization.mk' _ a (⟨D ^ n, n, rfl⟩ : Submonoid.powers D) := by
   obtain ⟨⟨a, ⟨_, n, rfl⟩⟩, rfl⟩ := IsLocalization.mk'_surjective (Submonoid.powers D) z
   exact ⟨a, n, rfl⟩
 
+/--
+@isnad1 id=injectiv.1h3v.s10.ca9730d934ce from=translated src=- shape=883ad30e vocab=bcf27c6c
+-/
 lemma injective_locMap (hD : D ≠ 0) : Function.Injective (locMap D hD) := by
   refine (injective_iff_map_eq_zero _).mpr fun z hz => ?_
   obtain ⟨a, n, rfl⟩ := exists_mk' z
@@ -269,6 +363,9 @@ lemma injective_locMap (hD : D ≠ 0) : Function.Injective (locMap D hD) := by
   · exact IsLocalization.mk'_zero _
   · exact absurd hz (pow_ne_zero _ (inv_ne_zero hD'))
 
+/--
+@isnad1 id=iff.1h4v.s12.01d583619bee from=translated src=- shape=1fada241 vocab=8eb256a2
+-/
 lemma mem_range_locMap (hD : D ≠ 0) {f : funField W} :
     f ∈ (locMap D hD).range ↔ ∃ (a : W.toAffine.CoordinateRing) (n : ℕ),
       f = algebraMap _ (funField W) a * (algebraMap _ (funField W) D)⁻¹ ^ n := by
@@ -279,10 +376,16 @@ lemma mem_range_locMap (hD : D ≠ 0) {f : funField W} :
   · rintro ⟨a, n, rfl⟩
     exact ⟨_, locMap_mk' hD a n⟩
 
+/--
+@isnad1 id=mem.1h4v.s11.372c6a6c7dff from=translated src=- shape=8149a743 vocab=723ed392
+-/
 lemma algebraMap_mem_range_locMap (hD : D ≠ 0) (c : W.toAffine.CoordinateRing) :
     algebraMap _ (funField W) c ∈ (locMap D hD).range :=
   ⟨_, locMap_algebraMap hD c⟩
 
+/--
+@isnad1 id=mem.1h3v.s11.7cd348d6af06 from=translated src=- shape=ea1def5b vocab=182ceb22
+-/
 lemma inv_mem_range_locMap (hD : D ≠ 0) :
     (algebraMap _ (funField W) D)⁻¹ ∈ (locMap D hD).range :=
   (mem_range_locMap hD).mpr ⟨1, 1, by rw [map_one, one_mul, pow_one]⟩
@@ -291,6 +394,9 @@ lemma inv_mem_range_locMap (hD : D ≠ 0) :
 def locMapInv (hD : D ≠ 0) : (locMap D hD).range →ₐ[k] Localization.Away D :=
   (AlgEquiv.ofInjective _ (injective_locMap hD)).symm.toAlgHom
 
+/--
+@isnad1 id=eq.1h4v.s14.d14da069f993 from=translated src=- shape=cc5760f5 vocab=7f8ac32a
+-/
 @[simp] lemma locMap_locMapInv (hD : D ≠ 0) (f : (locMap D hD).range) :
     locMap D hD (locMapInv hD f) = f :=
   congrArg Subtype.val ((AlgEquiv.ofInjective _ (injective_locMap hD)).apply_symm_apply f)
@@ -299,6 +405,9 @@ section Eval
 
 variable {L : Type*} [Field L] [Algebra k L]
 
+/--
+@isnad1 id=isunit.1h6v.s10.7f77949172eb from=translated src=- shape=79f663fd vocab=8baa9264
+-/
 lemma isUnit_of_mem_powers {φ : W.toAffine.CoordinateRing →ₐ[k] L} (hφ : φ D ≠ 0)
     (y : Submonoid.powers D) : IsUnit (φ y) := by
   obtain ⟨n, hn⟩ := y.2
@@ -310,11 +419,17 @@ def evalLoc (φ : W.toAffine.CoordinateRing →ₐ[k] L) (hφ : φ D ≠ 0) :
     Localization.Away D →ₐ[k] L :=
   IsLocalization.liftAlgHom (M := Submonoid.powers D) (isUnit_of_mem_powers hφ)
 
+/--
+@isnad1 id=eq.1h6v.s11.c5bac2d3381e from=translated src=- shape=e301e208 vocab=5eaaaf74
+-/
 @[simp] lemma evalLoc_algebraMap (φ : W.toAffine.CoordinateRing →ₐ[k] L) (hφ : φ D ≠ 0)
     (c : W.toAffine.CoordinateRing) : evalLoc φ hφ (algebraMap _ _ c) = φ c := by
   rw [evalLoc, IsLocalization.liftAlgHom_apply, IsLocalization.lift_eq]
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s11.f279b352238a from=translated src=- shape=4c7c50d7 vocab=506d130b
+-/
 lemma evalLoc_mk'_mul (φ : W.toAffine.CoordinateRing →ₐ[k] L) (hφ : φ D ≠ 0)
     (a : W.toAffine.CoordinateRing) (n : ℕ) :
     evalLoc φ hφ (IsLocalization.mk' _ a (⟨D ^ n, n, rfl⟩ : Submonoid.powers D)) * φ D ^ n =

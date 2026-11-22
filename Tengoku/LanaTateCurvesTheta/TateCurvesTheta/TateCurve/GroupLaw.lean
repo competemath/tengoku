@@ -68,17 +68,23 @@ variable (t : TateParameter K)
 /-! ### Norm preliminaries -/
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- The first component of `TameResidueChar K`: `‖2‖ = 1` (residue characteristic `≠ 2`). -/
+/-- The first component of `TameResidueChar K`: `‖2‖ = 1` (residue characteristic `≠ 2`).
+@isnad1 id=eq.1h1v.s5.8e7d746136ec from=translated src=- shape=30104014 vocab=142ec790
+-/
 lemma norm_two_eq_one_of_norm_twelve (h12 : TameResidueChar K) : ‖(2 : K)‖ = 1 := h12.1
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- The second component of `TameResidueChar K`: `12 ≠ 0`. -/
+/-- The second component of `TameResidueChar K`: `12 ≠ 0`.
+@isnad1 id=ne.1h1v.s5.7d06bbda2789 from=translated src=- shape=5e3b0e7f vocab=e58ffe64
+-/
 lemma twelve_ne_zero_of_norm (h12 : TameResidueChar K) : (12 : K) ≠ 0 := h12.2
 
 /-! ### Membership plumbing for the orbit subgroup `qᶻ` -/
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- Membership in `qᶻ` in terms of the value of the unit: `w ∈ qᶻ ↔ w = qⁿ` in `K`. -/
+/-- Membership in `qᶻ` in terms of the value of the unit: `w ∈ qᶻ ↔ w = qⁿ` in `K`.
+@isnad1 id=iff.0h3v.s7.ae597b686a9d from=translated src=- shape=5b20c55f vocab=9bd9a2ae
+-/
 lemma mem_qpowers_iff_val_eq {w : Kˣ} :
     w ∈ t.qpowers ↔ ∃ n : ℤ, (w : K) = (t.q : K) ^ n := by
   rw [mem_qpowers_iff]
@@ -90,13 +96,17 @@ lemma mem_qpowers_iff_val_eq {w : Kˣ} :
       rw [hn, zpow_neg, inv_mul_cancel₀ (zpow_ne_zero _ (Units.ne_zero t.q))]⟩
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- A unit whose value is a power of `q` lies in `qᶻ`. -/
+/-- A unit whose value is a power of `q` lies in `qᶻ`.
+@isnad1 id=mem.1h4v.s7.db68f7fb00ec from=translated src=- shape=af3cd69e vocab=9bd9a2ae
+-/
 lemma mem_qpowers_of_val_eq {w : Kˣ} {k : ℤ} (h : (w : K) = (t.q : K) ^ k) :
     w ∈ t.qpowers :=
   t.mem_qpowers_iff_val_eq.mpr ⟨k, h⟩
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- The off-orbit hypothesis `∀ n, qⁿ·u ≠ 1` says exactly `u ∉ qᶻ`. -/
+/-- The off-orbit hypothesis `∀ n, qⁿ·u ≠ 1` says exactly `u ∉ qᶻ`.
+@isnad1 id=not.1h3v.s7.8cfdca83902e from=translated src=- shape=535f8804 vocab=45c6ea4e
+-/
 lemma notMem_qpowers_of_off_orbit {u : Kˣ}
     (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) : u ∉ t.qpowers := fun h => by
   obtain ⟨n, hn⟩ := (t.mem_qpowers_iff u).mp h
@@ -104,7 +114,9 @@ lemma notMem_qpowers_of_off_orbit {u : Kˣ}
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
 /-- If `y·s ∈ qᶻ`, then `s` lies in the `qᶻ`-class of `y⁻¹` — the bridge from subgroup
-membership to the avoidance conditions of `exists_unit_avoiding_sq`. -/
+membership to the avoidance conditions of `exists_unit_avoiding_sq`.
+@isnad1 id=ex.1h4v.s8.15a03b6a32b4 from=translated src=- shape=72c476a1 vocab=e8ef5642
+-/
 lemma exists_val_eq_of_mul_mem {y s : Kˣ} (h : y * s ∈ t.qpowers) :
     ∃ n : ℤ, (s : K) = (t.q : K) ^ n * ((y⁻¹ : Kˣ) : K) := by
   obtain ⟨n, hn⟩ := t.mem_qpowers_iff_val_eq.mp h
@@ -117,7 +129,9 @@ lemma exists_val_eq_of_mul_mem {y s : Kˣ} (h : y * s ∈ t.qpowers) :
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
 /-- Square-class version of the bridge: if `y·s² ∈ qᶻ`, then `s²` lies in the `qᶻ`-class
-of `y⁻¹`. -/
+of `y⁻¹`.
+@isnad1 id=ex.1h4v.s8.7061304e252b from=translated src=- shape=1cb3bd02 vocab=5af73a64
+-/
 lemma exists_sq_val_eq_of_mul_sq_mem {y s : Kˣ} (h : y * s ^ 2 ∈ t.qpowers) :
     ∃ n : ℤ, ((s : K)) ^ 2 = (t.q : K) ^ n * ((y⁻¹ : Kˣ) : K) := by
   obtain ⟨n, hn⟩ := t.mem_qpowers_iff_val_eq.mp h
@@ -139,7 +153,9 @@ variable [DecidableEq K]
 
 /-! ### Degenerate orbit cases -/
 
-/-- Additivity when the left factor lies on the orbit: `qᶻ`-invariance. -/
+/-- Additivity when the left factor lies on the orbit: `qᶻ`-invariance.
+@isnad1 id=eq.3h4v.s8.b1f8c453a216 from=translated src=- shape=6ec80449 vocab=299c5d63
+-/
 lemma tatePoint_mul_of_mem_left {u : Kˣ} (hu : u ∈ t.qpowers) (v : Kˣ) :
     t.tatePoint hmem h12 (u * v) = t.tatePoint hmem h12 u + t.tatePoint hmem h12 v := by
   obtain ⟨k, hk⟩ := Subgroup.mem_zpowers_iff.mp
@@ -147,13 +163,17 @@ lemma tatePoint_mul_of_mem_left {u : Kˣ} (hu : u ∈ t.qpowers) (v : Kˣ) :
   rw [t.tatePoint_of_mem hmem h12 hu, zero_add, ← hk]
   exact t.tatePoint_zpow_q_mul hmem h12 k v
 
-/-- Additivity when the right factor lies on the orbit. -/
+/-- Additivity when the right factor lies on the orbit.
+@isnad1 id=eq.3h4v.s8.cf4ae7b45098 from=translated src=- shape=8f83e4b5 vocab=299c5d63
+-/
 lemma tatePoint_mul_of_mem_right (u : Kˣ) {v : Kˣ} (hv : v ∈ t.qpowers) :
     t.tatePoint hmem h12 (u * v) = t.tatePoint hmem h12 u + t.tatePoint hmem h12 v := by
   rw [mul_comm u v, t.tatePoint_mul_of_mem_left hmem h12 hv u, add_comm]
 
 /-- Additivity when the product lies on the orbit: inverse classes map to opposite
-points, by negation (`tatePoint_inv`). -/
+points, by negation (`tatePoint_inv`).
+@isnad1 id=eq.3h4v.s9.5e74ffff5249 from=translated src=- shape=3ba90e40 vocab=299c5d63
+-/
 lemma tatePoint_mul_of_mul_mem {u v : Kˣ} (huv : u * v ∈ t.qpowers) :
     t.tatePoint hmem h12 (u * v) = t.tatePoint hmem h12 u + t.tatePoint hmem h12 v := by
   rw [t.tatePoint_of_mem hmem h12 huv]
@@ -167,7 +187,9 @@ lemma tatePoint_mul_of_mul_mem {u v : Kˣ} (huv : u * v ∈ t.qpowers) :
 
 /-- **Good-pair additivity.** When `u`, `v`, `u·v`, `u·v⁻¹`, `u²·v` and `u·v²` all avoid
 the orbit subgroup `qᶻ`, the secant construction applies verbatim:
-`tatePoint u + tatePoint v = tatePoint (u·v)`. -/
+`tatePoint u + tatePoint v = tatePoint (u·v)`.
+@isnad1 id=eq.8h4v.s10.af83e2894931 from=translated src=- shape=934ac1e7 vocab=72df2a65
+-/
 theorem tatePoint_add_of_good {u v : Kˣ} (hu : u ∉ t.qpowers) (hv : v ∉ t.qpowers)
     (huv : u * v ∉ t.qpowers) (hratio : u * v⁻¹ ∉ t.qpowers)
     (hu2v : u ^ 2 * v ∉ t.qpowers) (huv2 : u * v ^ 2 ∉ t.qpowers) :
@@ -240,7 +262,9 @@ theorem tatePoint_add_of_good {u v : Kˣ} (hu : u ∉ t.qpowers) (hv : v ∉ t.q
 
 /-- **Full additivity of the Tate point map**: `tatePoint (u·v) = tatePoint u +
 tatePoint v` for all units, by the translation trick `P(u·v) = P(u·s) + P(s⁻¹·v)` with an
-auxiliary unit `s` avoiding finitely many `qᶻ`-classes and square-classes. -/
+auxiliary unit `s` avoiding finitely many `qᶻ`-classes and square-classes.
+@isnad1 id=eq.2h4v.s8.cff0be4999b4 from=translated src=- shape=8b48378c vocab=42173cce
+-/
 theorem tatePoint_mul (u v : Kˣ) :
     t.tatePoint hmem h12 (u * v) = t.tatePoint hmem h12 u + t.tatePoint hmem h12 v := by
   classical
@@ -364,11 +388,16 @@ def tatePointHom : Kˣ →* Multiplicative t.tateCurve.toAffine.Point where
   map_one' := by rw [t.tatePoint_one hmem h12]; rfl
   map_mul' u v := by rw [t.tatePoint_mul hmem h12 u v]; rfl
 
+/--
+@isnad1 id=eq.2h3v.s9.f706a31cf1f4 from=translated src=- shape=b86f2d26 vocab=f98702f5
+-/
 @[simp] lemma tatePointHom_apply (u : Kˣ) :
     t.tatePointHom hmem h12 u = Multiplicative.ofAdd (t.tatePoint hmem h12 u) := rfl
 
 omit [DecidableEq K] in
-/-- The point map kills exactly the orbit subgroup `qᶻ`. -/
+/-- The point map kills exactly the orbit subgroup `qᶻ`.
+@isnad1 id=iff.2h3v.s8.06f972b5c78c from=translated src=- shape=8e3bf8d8 vocab=68d5016c
+-/
 theorem tatePoint_eq_zero_iff {u : Kˣ} :
     t.tatePoint hmem h12 u = 0 ↔ u ∈ t.qpowers := by
   refine ⟨fun h => ?_, t.tatePoint_of_mem hmem h12⟩
@@ -376,7 +405,9 @@ theorem tatePoint_eq_zero_iff {u : Kˣ} :
   rw [t.tatePoint_of_notMem hmem h12 hu] at h
   exact WeierstrassCurve.Affine.Point.some_ne_zero _ h
 
-/-- The kernel of the Tate point homomorphism is exactly `qᶻ`. -/
+/-- The kernel of the Tate point homomorphism is exactly `qᶻ`.
+@isnad1 id=eq.2h2v.s8.9a1dd65b7170 from=translated src=- shape=478d60aa vocab=27e56b1c
+-/
 theorem tatePointHom_ker : (t.tatePointHom hmem h12).ker = t.qpowers := by
   ext u
   rw [MonoidHom.mem_ker, tatePointHom_apply, ofAdd_eq_one,
@@ -388,11 +419,16 @@ def mapTatePointHom : t.AnalyticQuotient →* Multiplicative t.tateCurve.toAffin
   QuotientGroup.lift t.qpowers (t.tatePointHom hmem h12)
     (le_of_eq (t.tatePointHom_ker hmem h12).symm)
 
+/--
+@isnad1 id=eq.2h3v.s9.d63d6b1bc1af from=translated src=- shape=a5bfb16d vocab=c76c33ac
+-/
 @[simp] lemma mapTatePointHom_mk (u : Kˣ) :
     t.mapTatePointHom hmem h12 (t.toAnalyticQuotient u) =
       Multiplicative.ofAdd (t.tatePoint hmem h12 u) := rfl
 
-/-- The homomorphism refines the bare descended map `mapTatePoint` of `PointMap.lean`. -/
+/-- The homomorphism refines the bare descended map `mapTatePoint` of `PointMap.lean`.
+@isnad1 id=eq.2h3v.s9.53743917a715 from=translated src=- shape=d5fcf367 vocab=d9ccb501
+-/
 lemma toAdd_mapTatePointHom (x : t.AnalyticQuotient) :
     Multiplicative.toAdd (t.mapTatePointHom hmem h12 x) = t.mapTatePoint hmem h12 x := by
   obtain ⟨u, rfl⟩ := QuotientGroup.mk_surjective x
@@ -400,7 +436,9 @@ lemma toAdd_mapTatePointHom (x : t.AnalyticQuotient) :
 
 /-- **Injectivity of the Tate uniformization**: the homomorphism `Kˣ/qᶻ →* E_q(K)` is
 injective — the analytic quotient embeds into the Mordell–Weil group. This is the core of
-issue #118. -/
+issue #118.
+@isnad1 id=injectiv.2h2v.s8.433321c6f1a3 from=translated src=- shape=edcb6d53 vocab=bcdf14ed
+-/
 theorem mapTatePointHom_injective :
     Function.Injective (t.mapTatePointHom hmem h12) := by
   rw [injective_iff_map_eq_one]
@@ -410,7 +448,9 @@ theorem mapTatePointHom_injective :
   exact hx
 
 omit [DecidableEq K] in
-/-- Injectivity of the bare descended point map. -/
+/-- Injectivity of the bare descended point map.
+@isnad1 id=injectiv.2h2v.s7.e5c28b93d4e5 from=translated src=- shape=5632c746 vocab=f2bae477
+-/
 theorem mapTatePoint_injective : Function.Injective (t.mapTatePoint hmem h12) := by
   classical
   intro x y hxy
@@ -426,7 +466,9 @@ points outside the closed unit polydisc. -/
 
 omit [DecidableEq K] in
 /-- **Large-point surjectivity**: every affine point of the Tate curve whose
-`x`-coordinate has norm `> 1` is a Tate point. -/
+`x`-coordinate has norm `> 1` is a Tate point.
+@isnad1 id=ex.4h4v.s8.6af255490d14 from=translated src=- shape=36854673 vocab=73135520
+-/
 theorem exists_tatePoint_eq_some {x y : K} (hns : t.tateCurve.toAffine.Nonsingular x y)
     (hx : 1 < ‖x‖) :
     ∃ u : Kˣ, t.tatePoint hmem h12 u = .some x y hns := by

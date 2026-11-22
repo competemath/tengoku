@@ -36,7 +36,9 @@ namespace AlgebraicGeometry
 
 set_option backward.isDefEq.respectTransparency false in
 /-- **The equaliser of two morphisms into a formally unramified scheme of finite type is an open
-immersion**: it is the pullback of the diagonal, which is an open immersion. -/
+immersion**: it is the pullback of the diagonal, which is an open immersion.
+@isnad1 id=isopenim.0h5v.s7.9883c249c39a from=translated src=- shape=b625654d vocab=51e69aeb
+-/
 instance isOpenImmersion_equalizer_ι_left {S : Scheme.{u}} {X Y : Over S}
     [FormallyUnramified Y.hom] [LocallyOfFiniteType Y.hom] (f g : X ⟶ Y) :
     IsOpenImmersion (equalizer.ι f g).left := by
@@ -50,7 +52,9 @@ instance isOpenImmersion_equalizer_ι_left {S : Scheme.{u}} {X Y : Over S}
 set_option backward.isDefEq.respectTransparency false in
 /-- **Morphisms into an unramified scheme are determined on closed points**: let `X` be a Jacobson
 scheme and `s : Y ⟶ Z` formally unramified and locally of finite type. If `f g : X ⟶ Y` agree over
-`Z` and `Spec κ(x) ⟶ X ⟶ Y` agree for every closed point `x`, then `f = g`. -/
+`Z` and `Spec κ(x) ⟶ X ⟶ Y` agree for every closed point `x`, then `f = g`.
+@isnad1 id=eq.2h6v.s7.f4e2b577032c from=translated src=- shape=00c60233 vocab=afd2c95c
+-/
 theorem ext_of_fromSpecResidueField_eq_of_formallyUnramified {X Y Z : Scheme.{u}}
     [JacobsonSpace X] {f g : X ⟶ Y} (s : Y ⟶ Z) [FormallyUnramified s] [LocallyOfFiniteType s]
     (h : f ≫ s = g ≫ s)

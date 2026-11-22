@@ -55,7 +55,9 @@ section ProdMap
 variable {A E X I : Type*} [TopologicalSpace A] [TopologicalSpace E] [TopologicalSpace X]
   [TopologicalSpace I] {f : E → X}
 
-/-- If `x` is evenly covered by `f`, then `(a, x)` is evenly covered by `id × f`. -/
+/-- If `x` is evenly covered by `f`, then `(a, x)` is evenly covered by `id × f`.
+@isnad1 id=isevenly.1h7v.s6.8bc9068a10b8 from=translated src=- shape=da23b474 vocab=bfe2bb33
+-/
 theorem IsEvenlyCovered.prodMap_id {x : X} (h : IsEvenlyCovered f x I) (a : A) :
     IsEvenlyCovered (Prod.map (id : A → A) f) (a, x) I := by
   obtain ⟨hI, U, hxU, hU, hfU, H, hH⟩ := h
@@ -80,7 +82,9 @@ theorem IsEvenlyCovered.prodMap_id {x : X} (h : IsEvenlyCovered f x I) (a : A) :
   change ((z.1.1, (H ⟨z.1.2, z.2.2⟩).1.1) : A × X) = (z.1.1, f z.1.2)
   rw [hH]
 
-/-- The product of a covering map on `s` with an identity map is a covering map on `univ ×ˢ s`. -/
+/-- The product of a covering map on `s` with an identity map is a covering map on `univ ×ˢ s`.
+@isnad1 id=iscoveri.1h5v.s6.ac9cc06f760e from=translated src=- shape=7ab2cdb6 vocab=15493af2
+-/
 theorem IsCoveringMapOn.prodMap_id {s : Set X} (hf : IsCoveringMapOn f s) :
     IsCoveringMapOn (Prod.map (id : A → A) f) (univ ×ˢ s) := by
   rintro ⟨a, x⟩ ⟨-, hx⟩
@@ -97,6 +101,9 @@ variable {E : Type*} (B : Set E)
 /-- The punctured open unit disc in `ℂ`. -/
 def puncturedDisc : Set ℂ := {u | u ≠ 0 ∧ ‖u‖ < 1}
 
+/--
+@isnad1 id=isopen.0h0v.s4.08f267f0228f from=translated src=- shape=25b03439 vocab=34866754
+-/
 lemma isOpen_puncturedDisc : IsOpen puncturedDisc :=
   isOpen_compl_singleton.inter (isOpen_lt continuous_norm continuous_const)
 
@@ -104,12 +111,21 @@ lemma isOpen_puncturedDisc : IsOpen puncturedDisc :=
 def base : Set (E × ℂ) := B ×ˢ puncturedDisc
 
 variable {B} in
+/--
+@isnad1 id=iff.0h3v.s6.d3630ced1c0b from=translated src=- shape=f2e26caa vocab=9931251b
+-/
 lemma mem_base {x : E × ℂ} : x ∈ base B ↔ x.1 ∈ B ∧ x.2 ≠ 0 ∧ ‖x.2‖ < 1 :=
   Iff.rfl
 
+/--
+@isnad1 id=isopen.1h2v.s5.12377b0916b6 from=translated src=- shape=33872581 vocab=eb390176
+-/
 lemma isOpen_base [TopologicalSpace E] {B : Set E} (hB : IsOpen B) : IsOpen (base B) :=
   hB.prod isOpen_puncturedDisc
 
+/--
+@isnad1 id=eq.0h3v.s5.61d142793e8c from=translated src=- shape=0fe517fb vocab=ed47cebc
+-/
 lemma preimage_prodMap_pow_base (k : ℕ+) :
     Prod.map (id : E → E) (fun u : ℂ ↦ u ^ (k : ℕ)) ⁻¹' base B = base B := by
   ext ⟨b, u⟩
@@ -122,11 +138,16 @@ def cover (k : ℕ+) (y : base B) : base B :=
     rw [norm_pow]
     exact pow_lt_one₀ (norm_nonneg _) y.2.2.2 k.ne_zero⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.d0ee3f0c906a from=translated src=- shape=f7d81f84 vocab=683c6ff3
+-/
 @[simp]
 lemma cover_apply (k : ℕ+) (y : base B) : (cover B k y : E × ℂ) = (y.1.1, y.1.2 ^ (k : ℕ)) :=
   rfl
 
-/-- The Kummer map is a covering map. -/
+/-- The Kummer map is a covering map.
+@isnad1 id=iscoveri.0h3v.s6.d82f8c7eee09 from=translated src=- shape=189bea93 vocab=2222fb38
+-/
 theorem isCoveringMap_cover [TopologicalSpace E] (k : ℕ+) : IsCoveringMap (cover B k) := by
   have h : IsCoveringMapOn (Prod.map (id : E → E) fun u : ℂ ↦ u ^ (k : ℕ)) (base B) :=
     (isCoveringMapOn_npow (𝕜 := ℂ) (k : ℕ) (by simp)).prodMap_id.mono
@@ -136,7 +157,9 @@ theorem isCoveringMap_cover [TopologicalSpace E] (k : ℕ+) : IsCoveringMap (cov
   funext y
   rfl
 
-/-- The fibres of the Kummer map are finite. -/
+/-- The fibres of the Kummer map are finite.
+@isnad1 id=finite.0h4v.s6.31f87a712aa5 from=translated src=- shape=bb383787 vocab=b954e5fb
+-/
 theorem finite_preimage_cover (k : ℕ+) (y : base B) : (cover B k ⁻¹' {y}).Finite := by
   classical
   refine Finite.of_finite_image (f := fun z : base B ↦ z.1.2) ?_ ?_
@@ -151,13 +174,22 @@ theorem finite_preimage_cover (k : ℕ+) (y : base B) : (cover B k ⁻¹' {y}).F
 /-- The subset `B × {Re w < 0}` of `E × ℂ`, the universal covering space of `B × Δ*`. -/
 def logCover : Set (E × ℂ) := B ×ˢ {w | w.re < 0}
 
+/--
+@isnad1 id=isopen.1h2v.s5.29b9e67a6a41 from=translated src=- shape=33872581 vocab=db516ce7
+-/
 lemma isOpen_logCover [TopologicalSpace E] {B : Set E} (hB : IsOpen B) : IsOpen (logCover B) :=
   hB.prod (isOpen_lt Complex.continuous_re continuous_const)
 
+/--
+@isnad1 id=convex.1h2v.s7.37d7299b5f82 from=translated src=- shape=482ba61d vocab=3c8380e0
+-/
 lemma convex_logCover [AddCommGroup E] [Module ℝ E] {B : Set E} (hB : Convex ℝ B) :
     Convex ℝ (logCover B) :=
   hB.prod (convex_halfSpace_re_lt 0)
 
+/--
+@isnad1 id=eq.0h2v.s4.06e9c9052f2d from=translated src=- shape=d7651118 vocab=f206762b
+-/
 lemma preimage_prodMap_exp_base :
     Prod.map (id : E → E) Complex.exp ⁻¹' base B = logCover B := by
   ext ⟨b, w⟩
@@ -169,12 +201,17 @@ def expMap (x : logCover B) : base B :=
     rw [Complex.norm_exp]
     exact Real.exp_lt_one_iff.2 x.2.2⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.dbd5a4adb491 from=translated src=- shape=0e20926e vocab=ae7fb754
+-/
 @[simp]
 lemma expMap_apply (x : logCover B) :
     (expMap B x : E × ℂ) = (x.1.1, Complex.exp x.1.2) :=
   rfl
 
-/-- The map `(b, w) ↦ (b, exp w)` is a covering map. -/
+/-- The map `(b, w) ↦ (b, exp w)` is a covering map.
+@isnad1 id=iscoveri.0h2v.s6.db1ff91d7af0 from=translated src=- shape=843bb653 vocab=b8c28fc4
+-/
 theorem isCoveringMap_expMap [TopologicalSpace E] : IsCoveringMap (expMap B) := by
   have h : IsCoveringMapOn (Prod.map (id : E → E) Complex.exp) (base B) :=
     Complex.isCoveringMapOn_exp.prodMap_id.mono fun x hx ↦ ⟨trivial, hx.2.1⟩
@@ -189,10 +226,16 @@ def logLift (y : base B) : logCover B :=
     rw [mem_ofPred_eq, Complex.log_re]
     exact Real.log_neg (norm_pos_iff.2 y.2.2.1) y.2.2.2⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.420de51c4e1d from=translated src=- shape=17d6ac76 vocab=74ab64c0
+-/
 @[simp]
 lemma expMap_logLift (y : base B) : expMap B (logLift B y) = y :=
   Subtype.ext (Prod.ext rfl (Complex.exp_log y.2.2.1))
 
+/--
+@isnad1 id=surjecti.0h2v.s4.af19c8a1aa63 from=translated src=- shape=8c87c225 vocab=bb321605
+-/
 lemma surjective_expMap : Function.Surjective (expMap B) :=
   fun y ↦ ⟨logLift B y, expMap_logLift B y⟩
 
@@ -200,27 +243,45 @@ lemma surjective_expMap : Function.Surjective (expMap B) :=
 def shift (j : ℤ) (x : logCover B) : logCover B :=
   ⟨(x.1.1, x.1.2 + j * (2 * Real.pi * Complex.I)), x.2.1, by simpa using x.2.2⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.50239d75e1a5 from=translated src=- shape=480983d5 vocab=bdd306e0
+-/
 @[simp]
 lemma shift_apply (j : ℤ) (x : logCover B) :
     (shift B j x : E × ℂ) = (x.1.1, x.1.2 + j * (2 * Real.pi * Complex.I)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.ea660f856db4 from=translated src=- shape=22948bf4 vocab=04badd05
+-/
 lemma shift_zero (x : logCover B) : shift B 0 x = x :=
   Subtype.ext (Prod.ext rfl (by simp))
 
+/--
+@isnad1 id=eq.0h5v.s5.19d7daae7e05 from=translated src=- shape=3cdb8880 vocab=38b2643f
+-/
 lemma shift_add (i j : ℤ) (x : logCover B) : shift B (i + j) x = shift B i (shift B j x) :=
   Subtype.ext (Prod.ext rfl (by simp; ring))
 
+/--
+@isnad1 id=continuo.0h3v.s6.f9b28d22960d from=translated src=- shape=189bea93 vocab=164d63e8
+-/
 @[fun_prop]
 lemma continuous_shift [TopologicalSpace E] (j : ℤ) : Continuous (shift B j) := by
   unfold shift
   fun_prop
 
+/--
+@isnad1 id=eq.0h4v.s5.de1202c026f7 from=translated src=- shape=4cd96b60 vocab=c0a9ce6c
+-/
 @[simp]
 lemma expMap_shift (j : ℤ) (x : logCover B) : expMap B (shift B j x) = expMap B x :=
   Subtype.ext (Prod.ext rfl (by simp [Complex.exp_add, Complex.exp_int_mul_two_pi_mul_I]))
 
 variable {B} in
+/--
+@isnad1 id=ex.1h4v.s5.9331ce31ab10 from=translated src=- shape=d4039098 vocab=c0a9ce6c
+-/
 lemma exists_eq_shift {x x' : logCover B} (h : expMap B x = expMap B x') :
     ∃ j : ℤ, x = shift B j x' := by
   have h₁ := congrArg (fun y : base B ↦ y.1.1) h
@@ -233,10 +294,15 @@ instance : AddAction ℤ (logCover B) where
   zero_vadd := shift_zero B
   add_vadd := shift_add B
 
+/--
+@isnad1 id=eq.0h4v.s6.8f7ca922a1a7 from=translated src=- shape=8c0a1962 vocab=d55e868f
+-/
 lemma vadd_def (j : ℤ) (x : logCover B) : j +ᵥ x = shift B j x :=
   rfl
 
-/-- **`B × Δ*` is the quotient of `B × {Re w < 0}` by the translations by `2πiℤ`.** -/
+/-- **`B × Δ*` is the quotient of `B × {Re w < 0}` by the translations by `2πiℤ`.**
+@isnad1 id=isaddquo.0h2v.s6.a5ce2c5d9002 from=translated src=- shape=2340bf1c vocab=316ace99
+-/
 theorem isAddQuotientCoveringMap_expMap [TopologicalSpace E] :
     IsAddQuotientCoveringMap (expMap B) ℤ where
   toIsQuotientMap := (isCoveringMap_expMap B).isQuotientMap (surjective_expMap B)
@@ -274,6 +340,9 @@ theorem isAddQuotientCoveringMap_expMap [TopologicalSpace E] :
 
 variable {B}
 
+/--
+@isnad1 id=nonempty.0h3v.s4.a4f5d5a3d621 from=translated src=- shape=c0e71478 vocab=c2607742
+-/
 lemma nonempty_logCover (y : base B) : (logCover B).Nonempty :=
   ⟨_, (logLift B y).2⟩
 
@@ -303,28 +372,46 @@ def unscale (k : ℕ+) (x : logCover B) : logCover B :=
     rw [Complex.div_natCast_re]
     exact div_neg_of_neg_of_pos this (by exact_mod_cast k.pos)⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.10972594d456 from=translated src=- shape=0c5c6bb6 vocab=d0d49687
+-/
 lemma scale_unscale (k : ℕ+) (x : logCover B) : scale k (unscale k x) = x :=
   Subtype.ext (Prod.ext rfl (mul_div_cancel₀ _ (by exact_mod_cast k.ne_zero)))
 
+/--
+@isnad1 id=injectiv.0h3v.s4.39ecb1617612 from=translated src=- shape=bcc15988 vocab=72afb2da
+-/
 lemma scale_injective (k : ℕ+) : Function.Injective (scale (B := B) k) := by
   intro x x' h
   have h₁ := congrArg (fun y : logCover B ↦ y.1.1) h
   have h₂ := congrArg (fun y : logCover B ↦ y.1.2) h
   exact Subtype.ext (Prod.ext h₁ (mul_left_cancel₀ (by exact_mod_cast k.ne_zero) h₂))
 
+/--
+@isnad1 id=continuo.0h3v.s6.22ea746399f7 from=translated src=- shape=189bea93 vocab=07c62073
+-/
 @[fun_prop]
 lemma continuous_scale [TopologicalSpace E] (k : ℕ+) : Continuous (scale (B := B) k) := by
   unfold scale
   fun_prop
 
+/--
+@isnad1 id=eq.0h5v.s5.10753713b1fe from=translated src=- shape=d7d5c577 vocab=94113fbd
+-/
 lemma scale_shift (k : ℕ+) (j : ℤ) (x : logCover B) :
     scale k (shift B j x) = shift B (k * j) (scale k x) :=
   Subtype.ext (Prod.ext rfl (by simp [scale]; ring))
 
+/--
+@isnad1 id=eq.0h4v.s5.06ba2452f86b from=translated src=- shape=a7e965cd vocab=bed1022c
+-/
 lemma expMap_scale (k : ℕ+) (x : logCover B) :
     expMap B (scale k x) = cover B k (expMap B x) :=
   Subtype.ext (Prod.ext rfl (by simp [scale, Complex.exp_nat_mul]))
 
+/--
+@isnad1 id=surjecti.0h3v.s4.5e6a0a9866e3 from=translated src=- shape=bcc15988 vocab=0d91c0ec
+-/
 lemma surjective_cover (k : ℕ+) : Function.Surjective (cover B k) := by
   intro y
   obtain ⟨x, rfl⟩ := surjective_expMap B y
@@ -341,7 +428,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] {B : Set E}
 
 /-- **The path components of a covering of `B × Δ*` are Kummer coverings.** Let `p` be a
 covering map of `B × Δ*` with finite fibres, `B` convex and open. The path component of any
-`e₀` is the image of an open embedding `Φ` of `B × Δ*` with `p ∘ Φ` a Kummer map. -/
+`e₀` is the image of an open embedding `Φ` of `B × Δ*` with `p ∘ Φ` a Kummer map.
+@isnad1 id=ex.4h5v.s8.66bfcbceca1a from=translated src=- shape=224bd2d8 vocab=c5cd6f88
+-/
 theorem IsCoveringMap.exists_kummer (hB : Convex ℝ B) (hBo : IsOpen B) (hp : IsCoveringMap p)
     (hfin : ∀ y, (p ⁻¹' {y}).Finite) (e₀ : X) :
     ∃ (k : ℕ+) (Φ : base B → X), Continuous Φ ∧ IsOpenMap Φ ∧ Function.Injective Φ ∧
@@ -432,7 +521,9 @@ theorem IsCoveringMap.exists_kummer (hB : Convex ℝ B) (hBo : IsOpen B) (hp : I
       simpa using congrFun this 1
 
 /-- **A covering of `B × Δ*` with finite fibres is a finite disjoint union of Kummer
-coverings**, indexed by its path components. -/
+coverings**, indexed by its path components.
+@isnad1 id=and.4h4v.s9.c1b1bc3c918e from=translated src=- shape=9e8b31d8 vocab=287faccc
+-/
 theorem IsCoveringMap.exists_homeomorph_sigma_kummer (hB : Convex ℝ B) (hBo : IsOpen B)
     (hp : IsCoveringMap p) (hfin : ∀ y, (p ⁻¹' {y}).Finite) :
     Finite (ZerothHomotopy X) ∧ ∃ (k : ZerothHomotopy X → ℕ+)

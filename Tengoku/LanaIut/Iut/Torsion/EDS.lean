@@ -54,46 +54,88 @@ section eds
 
 variable (W : Affine F) (x y : F)
 
+/--
+@isnad1 id=eq.0h4v.s5.6e7d2d5b4724 from=translated src=- shape=a017740e vocab=1591c008
+-/
 @[simp] theorem eds_zero : eds W x y 0 = 0 := normEDS_zero ..
+/--
+@isnad1 id=eq.0h4v.s5.3047c28b9e6a from=translated src=- shape=a017740e vocab=1591c008
+-/
 @[simp] theorem eds_one : eds W x y 1 = 1 := normEDS_one ..
+/--
+@isnad1 id=eq.0h4v.s5.8f0f9a06e96d from=translated src=- shape=049162c3 vocab=936194a0
+-/
 @[simp] theorem eds_two : eds W x y 2 = 2 * y := normEDS_two ..
+/--
+@isnad1 id=eq.0h4v.s5.0751edf76293 from=translated src=- shape=7721073e vocab=ac707cbc
+-/
 @[simp] theorem eds_three : eds W x y 3 = W.Ψ₃.eval x := normEDS_three ..
+/--
+@isnad1 id=eq.0h4v.s6.b5fa1b8612b0 from=translated src=- shape=f0d22f37 vocab=50052647
+-/
 @[simp] theorem eds_four : eds W x y 4 = W.preΨ₄.eval x * (2 * y) := normEDS_four ..
+/--
+@isnad1 id=eq.0h5v.s5.95485766cc2c from=translated src=- shape=605d6f6c vocab=985615c8
+-/
 @[simp] theorem eds_neg (n : ℤ) : eds W x y (-n) = -eds W x y n := normEDS_neg ..
 
+/--
+@isnad1 id=eq.0h5v.s8.1d6f64fb497c from=translated src=- shape=e922b9c4 vocab=b0df849c
+-/
 theorem eds_even (m : ℤ) : eds W x y (2 * m) * (2 * y) =
     eds W x y (m - 1) ^ 2 * eds W x y m * eds W x y (m + 2) -
       eds W x y (m - 2) * eds W x y m * eds W x y (m + 1) ^ 2 :=
   normEDS_even ..
 
+/--
+@isnad1 id=eq.0h5v.s7.968708caaf96 from=translated src=- shape=28971c91 vocab=b0df849c
+-/
 theorem eds_odd (m : ℤ) : eds W x y (2 * m + 1) =
     eds W x y (m + 2) * eds W x y m ^ 3 - eds W x y (m - 1) * eds W x y (m + 1) ^ 3 :=
   normEDS_odd ..
 
+/--
+@isnad1 id=eq.0h5v.s6.580ad9d0f348 from=translated src=- shape=c3e45be3 vocab=b640c9e5
+-/
 theorem eds_mul_edsC (k : ℤ) : eds W x y k * edsC W x y k = eds W x y (2 * k) :=
   normEDS_mul_complEDS₂ ..
 
+/--
+@isnad1 id=eq.0h5v.s7.0e5af4002d25 from=translated src=- shape=4ba11104 vocab=65184567
+-/
 theorem edsC_mul (k : ℤ) : edsC W x y k * (2 * y) =
     eds W x y (k - 1) ^ 2 * eds W x y (k + 2) - eds W x y (k - 2) * eds W x y (k + 1) ^ 2 :=
   complEDS₂_mul_b ..
 
+/--
+@isnad1 id=eq.0h4v.s5.0078a3144878 from=translated src=- shape=049162c3 vocab=aa91bdf3
+-/
 @[simp] theorem edsC_one : edsC W x y 1 = 2 * y := complEDS₂_one ..
+/--
+@isnad1 id=eq.0h4v.s5.b3359d2f5629 from=translated src=- shape=7721073e vocab=f54ca9f1
+-/
 @[simp] theorem edsC_two : edsC W x y 2 = W.preΨ₄.eval x := complEDS₂_two ..
 
-/-- `eₙ` is the value of Mathlib's `ψₙ` at `(x, y)`. -/
+/-- `eₙ` is the value of Mathlib's `ψₙ` at `(x, y)`.
+@isnad1 id=eq.2h5v.s6.476e628a9b7e from=translated src=- shape=1dc78a12 vocab=90a7040a
+-/
 theorem eds_eq_evalEval (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0) (n : ℤ) :
     eds W x y n = (W.ψ n).evalEval x y := by
   rw [eds, WeierstrassCurve.ψ, ← coe_evalEvalRingHom, map_normEDS, coe_evalEvalRingHom,
     evalEval_C, evalEval_C, ψ₂, evalEval_polynomialY, ha₁, ha₃]
   ring_nf
 
-/-- `eds 5 = preΨ₄(x)(2y)⁴ − Ψ₃(x)³`. -/
+/-- `eds 5 = preΨ₄(x)(2y)⁴ − Ψ₃(x)³`.
+@isnad1 id=eq.0h4v.s7.3042ff749439 from=translated src=- shape=97f8fc33 vocab=69e1dfe5
+-/
 theorem eds_five : eds W x y 5 = W.preΨ₄.eval x * (2 * y) ^ 4 - (W.Ψ₃.eval x) ^ 3 := by
   have := eds_odd W x y 2
   norm_num at this
   linear_combination this
 
-/-- `c₃ · 2y = (2y)²·e₅ − e₄²`. -/
+/-- `c₃ · 2y = (2y)²·e₅ − e₄²`.
+@isnad1 id=eq.0h4v.s8.6d89a264dfa2 from=translated src=- shape=21c3f20c vocab=c735d064
+-/
 theorem edsC_three_mul :
     edsC W x y 3 * (2 * y) =
       (2 * y) ^ 2 * (W.preΨ₄.eval x * (2 * y) ^ 4 - (W.Ψ₃.eval x) ^ 3) -
@@ -104,6 +146,9 @@ theorem edsC_three_mul :
 
 /-! ### The recursions in canonical index form -/
 
+/--
+@isnad1 id=eq.0h5v.s7.1cd76a7c7421 from=translated src=- shape=b43e3f2a vocab=b0df849c
+-/
 theorem eds_two_mul_sub_one (m : ℤ) : eds W x y (2 * m - 1) =
     eds W x y (m + 1) * eds W x y (m - 1) ^ 3 - eds W x y (m - 2) * eds W x y m ^ 3 := by
   have := eds_odd W x y (m - 1)
@@ -111,19 +156,31 @@ theorem eds_two_mul_sub_one (m : ℤ) : eds W x y (2 * m - 1) =
     show m - 1 - 1 = m - 2 by ring, show m - 1 + 1 = m by ring] at this
   exact this
 
+/--
+@isnad1 id=eq.0h5v.s6.f694ae907760 from=translated src=- shape=6d3fdbfd vocab=5816d45b
+-/
 theorem eds_two_mul_add_two (m : ℤ) :
     eds W x y (2 * m + 2) = eds W x y (m + 1) * edsC W x y (m + 1) := by
   rw [eds_mul_edsC, show 2 * (m + 1) = 2 * m + 2 by ring]
 
+/--
+@isnad1 id=eq.0h5v.s6.74eafb99645b from=translated src=- shape=6d3fdbfd vocab=518ee0bb
+-/
 theorem eds_two_mul_sub_two (m : ℤ) :
     eds W x y (2 * m - 2) = eds W x y (m - 1) * edsC W x y (m - 1) := by
   rw [eds_mul_edsC, show 2 * (m - 1) = 2 * m - 2 by ring]
 
+/--
+@isnad1 id=eq.0h5v.s8.47ad0c33606d from=translated src=- shape=ccf7c40f vocab=65184567
+-/
 theorem edsC_two_mul (m : ℤ) : edsC W x y (2 * m) * (2 * y) =
     eds W x y (2 * m - 1) ^ 2 * eds W x y (2 * m + 2) -
       eds W x y (2 * m - 2) * eds W x y (2 * m + 1) ^ 2 :=
   edsC_mul W x y (2 * m)
 
+/--
+@isnad1 id=eq.0h5v.s8.8fb768544031 from=translated src=- shape=93f22aa6 vocab=65184567
+-/
 theorem edsC_two_mul_add_one (m : ℤ) : edsC W x y (2 * m + 1) * (2 * y) =
     eds W x y (2 * m) ^ 2 * eds W x y (2 * m + 3) -
       eds W x y (2 * m - 1) * eds W x y (2 * m + 2) ^ 2 := by
@@ -132,6 +189,9 @@ theorem edsC_two_mul_add_one (m : ℤ) : edsC W x y (2 * m + 1) * (2 * y) =
     show 2 * m + 1 - 2 = 2 * m - 1 by ring, show 2 * m + 1 + 1 = 2 * m + 2 by ring] at this
   exact this
 
+/--
+@isnad1 id=eq.0h5v.s7.152d42198c30 from=translated src=- shape=45ff4d8e vocab=b0df849c
+-/
 theorem eds_two_mul_add_three (m : ℤ) : eds W x y (2 * m + 3) =
     eds W x y (m + 3) * eds W x y (m + 1) ^ 3 - eds W x y m * eds W x y (m + 2) ^ 3 := by
   have := eds_odd W x y (m + 1)
@@ -149,28 +209,46 @@ variable [NeZero (2 : F)] (ha₁ : W.a₁ = 0) (ha₃ : W.a₃ = 0)
 include ha₁ ha₃
 
 omit [NeZero (2 : F)] in
+/--
+@isnad1 id=eq.2h4v.s6.9098ca1f2336 from=translated src=- shape=bc844ad5 vocab=0f8c332e
+-/
 theorem negY_eq (x y : F) : W.negY x y = -y := by
   simp [negY, ha₁, ha₃]
 
 omit [NeZero (2 : F)] in
+/--
+@isnad1 id=iff.2h4v.s7.2a20aa0b8df1 from=translated src=- shape=ad3f7b42 vocab=d42f7287
+-/
 theorem equation_iff₀ (x y : F) :
     W.Equation x y ↔ y ^ 2 = x ^ 3 + W.a₂ * x ^ 2 + W.a₄ * x + W.a₆ := by
   rw [equation_iff, ha₁, ha₃]; simp
 
 omit [NeZero (2 : F)] in
+/--
+@isnad1 id=eq.2h5v.s7.223069a4f117 from=translated src=- shape=af45860c vocab=0c958598
+-/
 theorem addX_eq (x₁ x₂ ℓ : F) : W.addX x₁ x₂ ℓ = ℓ ^ 2 - W.a₂ - x₁ - x₂ := by
   simp [addX, ha₁]
 
 omit [NeZero (2 : F)] in
+/--
+@isnad1 id=eq.2h6v.s7.af0d70720269 from=translated src=- shape=ca111901 vocab=6e00d516
+-/
 theorem addY_eq (x₁ x₂ y₁ ℓ : F) :
     W.addY x₁ x₂ y₁ ℓ = -(ℓ * ((ℓ ^ 2 - W.a₂ - x₁ - x₂) - x₁) + y₁) := by
   simp [addY, negY, negAddY, addX, ha₁, ha₃]
 
 omit [NeZero (2 : F)] in
+/--
+@isnad1 id=eq.3h6v.s7.76b2025ba1c5 from=translated src=- shape=8af76b6e vocab=5ca28876
+-/
 theorem slope_mul_of_X_ne {x₁ x₂ : F} (y₁ y₂ : F) (hx : x₁ ≠ x₂) :
     W.slope x₁ x₂ y₁ y₂ * (x₁ - x₂) = y₁ - y₂ := by
   rw [slope_of_X_ne hx, div_mul_cancel₀ _ (sub_ne_zero.mpr hx)]
 
+/--
+@isnad1 id=eq.3h4v.s8.5f1ad4f3466e from=translated src=- shape=bd765d30 vocab=5a5c0498
+-/
 theorem slope_mul_of_Y_ne {x₁ y₁ : F} (hy : y₁ ≠ 0) :
     W.slope x₁ x₁ y₁ y₁ * (2 * y₁) = 3 * x₁ ^ 2 + 2 * W.a₂ * x₁ + W.a₄ := by
   have hy' : y₁ ≠ W.negY x₁ y₁ := by
@@ -185,18 +263,26 @@ theorem slope_mul_of_Y_ne {x₁ y₁ : F} (hy : y₁ ≠ 0) :
   ring
 
 omit [NeZero (2 : F)] in
+/--
+@isnad1 id=eq.2h3v.s6.c0bbbf499d62 from=translated src=- shape=67d77d7c vocab=a32558d3
+-/
 theorem Ψ₃_eval (x : F) : W.Ψ₃.eval x = Ident.Ψ₃v W.a₂ W.a₄ W.a₆ x := by
   simp only [WeierstrassCurve.Ψ₃, b₂, b₄, b₆, b₈, ha₁, ha₃, Ident.Ψ₃v]
   simp only [eval_add, eval_mul, eval_pow, eval_C, eval_X, eval_ofNat]
   ring
 
 omit [NeZero (2 : F)] in
+/--
+@isnad1 id=eq.2h3v.s6.995ee69a2024 from=translated src=- shape=67d77d7c vocab=f57710fc
+-/
 theorem preΨ₄_eval (x : F) : W.preΨ₄.eval x = Ident.preΨ₄v W.a₂ W.a₄ W.a₆ x := by
   simp only [WeierstrassCurve.preΨ₄, b₂, b₄, b₆, b₈, ha₁, ha₃, Ident.preΨ₄v]
   simp only [eval_add, eval_mul, eval_pow, eval_C, eval_X, eval_ofNat]
   ring
 
-/-- `y ≠ 0` is the condition `y ≠ −y` for a point not to be `2`-torsion. -/
+/-- `y ≠ 0` is the condition `y ≠ −y` for a point not to be `2`-torsion.
+@isnad1 id=iff.2h4v.s6.6136df2a5565 from=translated src=- shape=dc7c8da5 vocab=137e632e
+-/
 theorem ne_negY_iff (x y : F) : y ≠ W.negY x y ↔ y ≠ 0 := by
   rw [negY_eq ha₁ ha₃]
   constructor
@@ -225,6 +311,9 @@ def Good (n : ℕ) : Prop :=
 
 variable {h}
 
+/--
+@isnad1 id=iff.2h5v.s7.b36a7a9f81b2 from=translated src=- shape=9155ca7b vocab=9f5af046
+-/
 theorem Good.smul_eq_zero_iff {n : ℕ} (hg : Good h n) :
     n • Point.some x y h = 0 ↔ eds W x y n = 0 := by
   refine ⟨fun h0 => ?_, hg.1⟩
@@ -233,35 +322,55 @@ theorem Good.smul_eq_zero_iff {n : ℕ} (hg : Good h n) :
   rw [hn] at h0
   exact Point.some_ne_zero hXY h0
 
+/--
+@isnad1 id=ne.3h5v.s7.e0574f6548a2 from=translated src=- shape=90c02b93 vocab=9f5af046
+-/
 theorem Good.eds_ne_zero {n : ℕ} (hg : Good h n) (hn : n • Point.some x y h ≠ 0) :
     eds W x y n ≠ 0 :=
   fun h0 => hn (hg.1 h0)
 
+/--
+@isnad1 id=eq.3h5v.s7.4f9a8c483c04 from=translated src=- shape=90c02b93 vocab=9f5af046
+-/
 theorem Good.eds_eq_zero {n : ℕ} (hg : Good h n) (hn : n • Point.some x y h = 0) :
     eds W x y n = 0 :=
   hg.smul_eq_zero_iff.mp hn
 
 variable (h)
 
+/--
+@isnad1 id=good.1h4v.s6.d52410983d21 from=translated src=- shape=7ef68b35 vocab=5fe98654
+-/
 theorem good_zero : Good h 0 := by
   refine ⟨fun _ => zero_smul ℕ _, fun h0 => absurd (by simp) h0⟩
 
+/--
+@isnad1 id=good.1h4v.s6.58c1c56b2329 from=translated src=- shape=7ef68b35 vocab=5fe98654
+-/
 theorem good_one : Good h 1 := by
   refine ⟨fun h0 => absurd h0 (by simp), fun _ => ⟨x, y, h, one_smul ℕ _, by simp, by simp⟩⟩
 
 include ha₁ ha₃
 
+/--
+@isnad1 id=eq.3h4v.s8.b215ba9a5492 from=translated src=- shape=0e96e135 vocab=c2cb5bf2
+-/
 theorem hQ_of (hXY : W.Nonsingular x y) :
     y ^ 2 = x ^ 3 + W.a₂ * x ^ 2 + W.a₄ * x + W.a₆ :=
   (equation_iff₀ ha₁ ha₃ x y).mp hXY.1
 
-/-- `2P` for `y ≠ 0`, with its coordinates. -/
+/-- `2P` for `y ≠ 0`, with its coordinates.
+@isnad1 id=eq.4h4v.s8.551177b3506b from=translated src=- shape=e6e1c4e8 vocab=a326e287
+-/
 theorem two_smul_eq (hy : y ≠ 0) :
     2 • Point.some x y h =
       Point.some (W.addX x x (W.slope x x y y)) (W.addY x x y (W.slope x x y y))
         (nonsingular_add h h fun hxy => ((ne_negY_iff ha₁ ha₃ x y).mpr hy) hxy.2) := by
   rw [two_nsmul, Point.add_self_of_Y_ne ((ne_negY_iff ha₁ ha₃ x y).mpr hy)]
 
+/--
+@isnad1 id=good.4h4v.s7.7f72f4364099 from=translated src=- shape=0579e866 vocab=fafb2675
+-/
 theorem good_two (hy : y ≠ 0) : Good h 2 := by
   have hb : (2 : F) * y ≠ 0 := mul_ne_zero (NeZero.ne 2) hy
   refine ⟨fun h0 => absurd h0 (by simpa using hb), fun _ => ?_⟩
@@ -278,7 +387,9 @@ theorem good_two (hy : y ≠ 0) : Good h 2 := by
     linear_combination hI3
 
 include h in
-/-- The `x`-coordinate of `2P`: `x(2P)·(2y)² = x·(2y)² − Ψ₃(x)`. -/
+/-- The `x`-coordinate of `2P`: `x(2P)·(2y)² = x·(2y)² − Ψ₃(x)`.
+@isnad1 id=eq.4h4v.s8.007fee90b645 from=translated src=- shape=d43f6afd vocab=2bd885b5
+-/
 theorem two_smul_X (hy : y ≠ 0) :
     W.addX x x (W.slope x x y y) * (2 * y) ^ 2 = x * (2 * y) ^ 2 - W.Ψ₃.eval x := by
   have hμ := slope_mul_of_Y_ne ha₁ ha₃ (x₁ := x) hy
@@ -287,7 +398,9 @@ theorem two_smul_X (hy : y ≠ 0) :
   linear_combination hI2
 
 include h in
-/-- The `y`-coordinate of `2P`: `2y(2P)·(2y)³ = preΨ₄(x)`. -/
+/-- The `y`-coordinate of `2P`: `2y(2P)·(2y)³ = preΨ₄(x)`.
+@isnad1 id=eq.4h4v.s8.869048f9bcbb from=translated src=- shape=91599efe vocab=af57b858
+-/
 theorem two_smul_Y (hy : y ≠ 0) :
     2 * W.addY x x y (W.slope x x y y) * (2 * y) ^ 3 = W.preΨ₄.eval x := by
   have hμ := slope_mul_of_Y_ne ha₁ ha₃ (x₁ := x) hy
@@ -295,6 +408,9 @@ theorem two_smul_Y (hy : y ≠ 0) :
   rw [addY_eq ha₁ ha₃, preΨ₄_eval ha₁ ha₃]
   linear_combination hI3
 
+/--
+@isnad1 id=good.4h4v.s7.cacfe73bd27b from=translated src=- shape=0579e866 vocab=fafb2675
+-/
 theorem good_three (hy : y ≠ 0) : Good h 3 := by
   have h2 : (2 : F) ≠ 0 := NeZero.ne 2
   have hb : (2 : F) * y ≠ 0 := mul_ne_zero h2 hy
@@ -377,28 +493,40 @@ theorem good_three (hy : y ≠ 0) : Good h 3 := by
 /-! ### The even step -/
 
 omit ha₁ ha₃ in
-/-- `Good n` when `eₙ = 0` and `n • P = 0`. -/
+/-- `Good n` when `eₙ = 0` and `n • P = 0`.
+@isnad1 id=good.3h5v.s7.d30a70af3636 from=translated src=- shape=41349ac0 vocab=9f5af046
+-/
 theorem good_of_eq_zero {n : ℕ} (h0 : eds W x y n = 0) (hn : n • Point.some x y h = 0) :
     Good h n :=
   ⟨fun _ => hn, fun hne => absurd h0 hne⟩
 
 omit ha₁ ha₃ in
+/--
+@isnad1 id=eq.1h5v.s8.f5fde14be1f3 from=translated src=- shape=e6f4ba33 vocab=64062803
+-/
 theorem smul_succ (k : ℕ) : (k + 1) • Point.some x y h = k • Point.some x y h + Point.some x y h :=
   succ_nsmul _ _
 
 omit ha₁ ha₃ in
+/--
+@isnad1 id=eq.2h5v.s8.83ab7b63eb22 from=translated src=- shape=f19b6775 vocab=793772bf
+-/
 theorem smul_pred {k : ℕ} (hk : 1 ≤ k) :
     (k - 1) • Point.some x y h = k • Point.some x y h - Point.some x y h := by
   conv_rhs => rw [← Nat.sub_add_cancel hk, succ_nsmul, add_sub_cancel_right]
 
-/-- Coordinates of `Q + P` for `X ≠ x`. -/
+/-- Coordinates of `Q + P` for `X ≠ x`.
+@isnad1 id=eq.5h6v.s7.086a93a1e395 from=translated src=- shape=26373b3d vocab=11a5a8cf
+-/
 theorem add_eq_of_X_ne {X Y : F} (hQ : W.Nonsingular X Y) (hX : X ≠ x) :
     Point.some X Y hQ + Point.some x y h =
       Point.some (W.addX X x (W.slope X x Y y)) (W.addY X x Y (W.slope X x Y y))
         (nonsingular_add hQ h fun hxy => hX hxy.1) :=
   Point.add_of_X_ne hX
 
-/-- Coordinates of `Q − P` for `X ≠ x`. -/
+/-- Coordinates of `Q − P` for `X ≠ x`.
+@isnad1 id=eq.5h6v.s8.551c6fdf030d from=translated src=- shape=8a769afc vocab=4483a535
+-/
 theorem sub_eq_of_X_ne {X Y : F} (hQ : W.Nonsingular X Y) (hX : X ≠ x) :
     Point.some X Y hQ - Point.some x y h =
       Point.some (W.addX X x (W.slope X x Y (W.negY x y)))
@@ -406,13 +534,17 @@ theorem sub_eq_of_X_ne {X Y : F} (hQ : W.Nonsingular X Y) (hX : X ≠ x) :
         (nonsingular_add hQ ((nonsingular_neg ..).mpr h) fun hxy => hX hxy.1) := by
   rw [sub_eq_add_neg, Point.neg_some, Point.add_of_X_ne hX]
 
-/-- The slope of the chord through `Q` and `−P`. -/
+/-- The slope of the chord through `Q` and `−P`.
+@isnad1 id=eq.3h6v.s7.1462ec0ffc82 from=translated src=- shape=fcd4c413 vocab=45340e65
+-/
 theorem slope_neg_mul {X Y : F} (hX : X ≠ x) :
     W.slope X x Y (W.negY x y) * (X - x) = Y + y := by
   rw [slope_of_X_ne hX, negY_eq ha₁ ha₃, div_mul_cancel₀ _ (sub_ne_zero.mpr hX)]
   ring
 
-/-- If `Q = m • P = (X, Y)` with `(m − 1) • P ≠ 0` and `(m + 1) • P ≠ 0`, then `X ≠ x`. -/
+/-- If `Q = m • P = (X, Y)` with `(m − 1) • P ≠ 0` and `(m + 1) • P ≠ 0`, then `X ≠ x`.
+@isnad1 id=ne.8h7v.s8.e5147e1337f2 from=translated src=- shape=96d140ce vocab=15cd246a
+-/
 theorem X_ne_of_smul {m : ℕ} (hm : 1 ≤ m) {X Y : F} {hQ : W.Nonsingular X Y}
     (hmP : m • Point.some x y h = Point.some X Y hQ)
     (h₁ : (m - 1) • Point.some x y h ≠ 0) (h₂ : (m + 1) • Point.some x y h ≠ 0) : X ≠ x := by
@@ -423,7 +555,9 @@ theorem X_ne_of_smul {m : ℕ} (hm : 1 ≤ m) {X Y : F} {hQ : W.Nonsingular X Y}
   · apply h₂
     rw [smul_succ h, hmP, h', neg_add_cancel]
 
-/-- Coordinates of `−(2 • P)` for `y ≠ 0`. -/
+/-- Coordinates of `−(2 • P)` for `y ≠ 0`.
+@isnad1 id=eq.4h4v.s8.8e3a2dcab62d from=translated src=- shape=4729d549 vocab=20e122cd
+-/
 theorem neg_two_smul_eq (hy : y ≠ 0) :
     -(2 • Point.some x y h) =
       Point.some (W.addX x x (W.slope x x y y))
@@ -433,7 +567,9 @@ theorem neg_two_smul_eq (hy : y ≠ 0) :
   rw [two_smul_eq ha₁ ha₃ h hy, Point.neg_some]
 
 /-- The even step of the induction: `Good (2m)` from `Good (m − 1)`, `Good m`, `Good (m + 1)`,
-for `m ≥ 2`. -/
+for `m ≥ 2`.
+@isnad1 id=good.8h5v.s7.66d2a41c72ab from=translated src=- shape=6defed7f vocab=ae5c3871
+-/
 theorem good_even (hy : y ≠ 0) (m : ℕ) (hm : 2 ≤ m)
     (g₁ : Good h (m - 1)) (g₂ : Good h m) (g₃ : Good h (m + 1)) : Good h (2 * m) := by
   have h2 : (2 : F) ≠ 0 := NeZero.ne 2
@@ -669,7 +805,9 @@ theorem good_even (hy : y ≠ 0) (m : ℕ) (hm : 2 ≤ m)
     exact sub_eq_zero.mp ((mul_eq_zero.mp this).resolve_right hb)
 
 /-- The odd step of the induction: `Good (2m + 1)` from `Good (m − 1)`, …, `Good (m + 2)`, for
-`m ≥ 2`. -/
+`m ≥ 2`.
+@isnad1 id=good.9h5v.s7.afdf3e62a50e from=translated src=- shape=0f480e10 vocab=ae5c3871
+-/
 theorem good_odd (hy : y ≠ 0) (m : ℕ) (hm : 2 ≤ m) (g₁ : Good h (m - 1)) (g₂ : Good h m)
     (g₃ : Good h (m + 1)) (g₄ : Good h (m + 2)) : Good h (2 * m + 1) := by
   have h2 : (2 : F) ≠ 0 := NeZero.ne 2
@@ -855,7 +993,9 @@ theorem good_odd (hy : y ≠ 0) (m : ℕ) (hm : 2 ≤ m) (g₁ : Good h (m - 1))
 /-! ### The `2`-torsion points and the main theorem -/
 
 omit ha₁ ha₃ in
-/-- The odd terms of the auxiliary sequence with `b = 0` are nonzero when `c ≠ 0`. -/
+/-- The odd terms of the auxiliary sequence with `b = 0` are nonzero when `c ≠ 0`.
+@isnad1 id=ne.1h4v.s7.6916a84d579d from=translated src=- shape=42236ed3 vocab=7b52b697
+-/
 theorem preNormEDS'_odd_ne_zero {c d : F} (hc : c ≠ 0) (k : ℕ) :
     preNormEDS' (0 : F) c d (2 * k + 1) ≠ 0 := by
   induction k using Nat.strong_induction_on with
@@ -883,12 +1023,16 @@ theorem preNormEDS'_odd_ne_zero {c d : F} (hc : c ≠ 0) (k : ℕ) :
       exact mul_ne_zero h2 (pow_ne_zero _ h1)
 
 omit [NeZero (2 : F)] ha₁ ha₃ in
-/-- The even terms of `eₙ` vanish at a `2`-torsion point. -/
+/-- The even terms of `eₙ` vanish at a `2`-torsion point.
+@isnad1 id=eq.2h5v.s6.1e428db16443 from=translated src=- shape=8ba09a40 vocab=246728c6
+-/
 theorem eds_eq_zero_of_even (hy : y = 0) {n : ℤ} (hn : Even n) : eds W x y n = 0 := by
   rw [eds, normEDS, ite_eq_left hn, hy]; ring
 
 include h in
-/-- `Ψ₃(x) ≠ 0` at a `2`-torsion point `(x, 0)`: `Ψ₃(x) = −f'(x)²` there. -/
+/-- `Ψ₃(x) ≠ 0` at a `2`-torsion point `(x, 0)`: `Ψ₃(x) = −f'(x)²` there.
+@isnad1 id=ne.4h4v.s7.6a4ad6157f16 from=translated src=- shape=4bc83174 vocab=ddd4b705
+-/
 theorem Ψ₃_ne_zero_of_y_eq_zero (hy : y = 0) : W.Ψ₃.eval x ≠ 0 := by
   have hf := hQ_of ha₁ ha₃ h
   rw [hy] at hf
@@ -907,7 +1051,9 @@ theorem Ψ₃_ne_zero_of_y_eq_zero (hy : y = 0) : W.Ψ₃.eval x ≠ 0 := by
   exact pow_ne_zero _ hf'
 
 include h in
-/-- The odd terms of `eₙ` do not vanish at a `2`-torsion point. -/
+/-- The odd terms of `eₙ` do not vanish at a `2`-torsion point.
+@isnad1 id=ne.4h5v.s7.fc7bf336f5df from=translated src=- shape=ed23bf9a vocab=ecffff37
+-/
 theorem eds_ne_zero_of_odd (hy : y = 0) (k : ℕ) : eds W x y (2 * k + 1) ≠ 0 := by
   have hc := Ψ₃_ne_zero_of_y_eq_zero ha₁ ha₃ h hy
   have hodd : ¬Even (2 * (k : ℤ) + 1) := Int.not_even_iff_odd.mpr ⟨k, rfl⟩
@@ -915,7 +1061,9 @@ theorem eds_ne_zero_of_odd (hy : y = 0) (k : ℕ) : eds W x y (2 * k + 1) ≠ 0 
     show (2 * (k : ℤ) + 1) = ((2 * k + 1 : ℕ) : ℤ) by push_cast; ring, preNormEDS_ofNat]
   simpa using preNormEDS'_odd_ne_zero hc k
 
-/-- `Good n` for every `n` at a `2`-torsion point `(x, 0)`. -/
+/-- `Good n` for every `n` at a `2`-torsion point `(x, 0)`.
+@isnad1 id=good.4h5v.s6.19510e83aa89 from=translated src=- shape=e761b22b vocab=fafb2675
+-/
 theorem good_of_y_eq_zero (hy : y = 0) (n : ℕ) : Good h n := by
   have h2P : 2 • Point.some x y h = 0 := by
     rw [two_nsmul, Point.add_self_of_Y_eq]
@@ -933,7 +1081,9 @@ theorem good_of_y_eq_zero (hy : y = 0) (n : ℕ) : Good h n := by
 
 /-- **The division polynomials describe the multiples of a point**: for every nonsingular point
 `P = (x, y)` of `y² = x³ + a₂x² + a₄x + a₆` and every `n`, `eₙ = ψₙ(x, y) = 0` iff `nP = 0`, and
-if `eₙ ≠ 0` then `nP = (Xₙ, Yₙ)` with `Xₙ eₙ² = x eₙ² − eₙ₊₁ eₙ₋₁` and `2Yₙ eₙ³ = cₙ`. -/
+if `eₙ ≠ 0` then `nP = (Xₙ, Yₙ)` with `Xₙ eₙ² = x eₙ² − eₙ₊₁ eₙ₋₁` and `2Yₙ eₙ³ = cₙ`.
+@isnad1 id=good.3h5v.s6.3921686477f4 from=translated src=- shape=5aa3a89c vocab=fafb2675
+-/
 theorem good (n : ℕ) : Good h n := by
   by_cases hy : y = 0
   · exact good_of_y_eq_zero ha₁ ha₃ h hy n
@@ -952,7 +1102,9 @@ theorem good (n : ℕ) : Good h n := by
       exact good_odd ha₁ ha₃ h hy m (by omega) (ih _ (by omega)) (ih _ (by omega))
         (ih _ (by omega)) (ih _ (by omega))
 
-/-- `n • P = 0 ↔ ψₙ(P) = 0`. -/
+/-- `n • P = 0 ↔ ψₙ(P) = 0`.
+@isnad1 id=iff.3h5v.s7.c31d997df842 from=translated src=- shape=4367c030 vocab=e76c19e3
+-/
 theorem smul_eq_zero_iff_eds (n : ℕ) : n • Point.some x y h = 0 ↔ eds W x y n = 0 :=
   (good ha₁ ha₃ h n).smul_eq_zero_iff
 

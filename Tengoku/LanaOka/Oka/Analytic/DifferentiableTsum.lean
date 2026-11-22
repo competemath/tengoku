@@ -29,7 +29,9 @@ namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Complex Metric Set MeasureTheory
 open scoped Topology
 
-/-- Term-by-term integration over a torus of a series dominated by a summable sequence. -/
+/-- Term-by-term integration over a torus of a series dominated by a summable sequence.
+@isnad1 id=hassum.4h7v.s7.1751a7fb0465 from=translated src=- shape=8300d0db vocab=6d01613f
+-/
 theorem _root_.Tengoku.LanaOka.hasSum_torusIntegral_of_dominated {ι : Type*} [Countable ι] {m : ℕ}
     {F : ι → (Fin m → ℂ) → ℂ} {G : (Fin m → ℂ) → ℂ} {c : Fin m → ℂ} {R : Fin m → ℝ}
     (hF : ∀ i, Continuous fun θ ↦ F i (torusMap c R θ)) {u : ι → ℝ} (hu : Summable u)
@@ -55,7 +57,9 @@ theorem _root_.Tengoku.LanaOka.hasSum_torusIntegral_of_dominated {ι : Type*} [C
 
 /-- **Weierstrass theorem** for series of holomorphic functions of several variables: if each
 term is holomorphic on the open set `U` and near every point of `U` the terms are dominated by a
-summable sequence, then the sum is holomorphic on `U`. -/
+summable sequence, then the sum is holomorphic on `U`.
+@isnad1 id=differen.3h4v.s8.9ac5e264037b from=translated src=- shape=b83c0543 vocab=677cd35f
+-/
 theorem _root_.Tengoku.LanaOka.differentiableOn_tsum_of_locally_summable {ι : Type*} [Countable ι] {m : ℕ}
     {F : ι → (Fin m → ℂ) → ℂ} {U : Set (Fin m → ℂ)} (hU : IsOpen U)
     (hF : ∀ i, DifferentiableOn ℂ (F i) U)

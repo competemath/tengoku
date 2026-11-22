@@ -34,7 +34,9 @@ open MvPolynomial
 
 namespace Algebra.Etale
 
-/-- A surjective ring homomorphism with kernel contained in the nilradical reflects units. -/
+/-- A surjective ring homomorphism with kernel contained in the nilradical reflects units.
+@isnad1 id=isunit.3h4v.s7.13e26db63d55 from=translated src=- shape=e5851078 vocab=32bb075a
+-/
 lemma _root_.RingHom.isUnit_of_isUnit_of_ker_le_nilradical {R S : Type*} [CommRing R]
     [CommRing S] (f : R →+* S) (hf : Function.Surjective f) (hker : RingHom.ker f ≤ nilradical R)
     {x : R} (hx : IsUnit (f x)) : IsUnit x := by
@@ -48,7 +50,9 @@ variable {A A₀ B₀ : Type u} [CommRing A] [CommRing A₀] [CommRing B₀] [Al
 /-- **Finite étale algebras lift along nil thickenings.** If `π : A →+* A₀` is surjective with
 kernel contained in the nilradical, every finite étale `A₀`-algebra `B₀` is the target of a
 surjection `φ : B →+* B₀` over `π` from a finite étale `A`-algebra `B`, with kernel contained in
-the nilradical of `B`. -/
+the nilradical of `B`.
+@isnad1 id=ex.2h4v.s9.b679192e60bf from=translated src=- shape=0f15861c vocab=39342799
+-/
 theorem exists_lift_of_ker_le_nilradical [Algebra.Etale A₀ B₀] [Module.Finite A₀ B₀]
     (π : A →+* A₀) (hπ : Function.Surjective π) (hker : RingHom.ker π ≤ nilradical A) :
     ∃ (B : Type u) (_ : CommRing B) (_ : Algebra A B) (φ : B →+* B₀),

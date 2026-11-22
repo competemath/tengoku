@@ -100,7 +100,9 @@ variable [CompleteSpace K]
 
 /-- **Leading term of the Eisenstein series.** `sₖ(q) = q + O(q²)`: the `m = 1` term is
 `q / (1 - q) = q + q²/(1 - q)` and every later term has norm `≤ ‖q‖²`, so in the ultrametric world
-`‖sₖ(q) - q‖ ≤ ‖q‖²`. -/
+`‖sₖ(q) - q‖ ≤ ‖q‖²`.
+@isnad1 id=le.0h3v.s7.92801a10289f from=translated src=- shape=f2f7a9c4 vocab=52f90cc5
+-/
 lemma norm_eisenstein_sub_q_le (k : ℕ) :
     ‖t.eisenstein k - (t.q : K)‖ ≤ ‖(t.q : K)‖ ^ 2 := by
   have hsum := t.eisenstein_summand_summable k
@@ -129,14 +131,18 @@ lemma norm_eisenstein_sub_q_le (k : ℕ) :
     refine (t.norm_eisenstein_term_le k (n + 1)).trans ?_
     exact pow_le_pow_of_le_one (norm_nonneg _) t.norm_lt_one.le (by omega)
 
-/-- The Eisenstein series is norm-bounded by `‖q‖`: `‖sₖ(q)‖ ≤ ‖q‖`. -/
+/-- The Eisenstein series is norm-bounded by `‖q‖`: `‖sₖ(q)‖ ≤ ‖q‖`.
+@isnad1 id=le.0h3v.s6.e602bb2bb7b3 from=translated src=- shape=d5fce1bf vocab=5e6879f8
+-/
 lemma norm_eisenstein_le (k : ℕ) : ‖t.eisenstein k‖ ≤ ‖(t.q : K)‖ := by
   have h := t.norm_eisenstein_sub_q_le k
   rw [show t.eisenstein k = (t.eisenstein k - (t.q : K)) + (t.q : K) from by ring]
   refine (IsUltrametricDist.norm_add_le_max _ _).trans (max_le ?_ (le_refl _))
   exact h.trans t.norm_q_sq_le
 
-/-- The Tate coefficient `a₄(q) = -5 s₃(q)` is norm-bounded by `‖q‖`. -/
+/-- The Tate coefficient `a₄(q) = -5 s₃(q)` is norm-bounded by `‖q‖`.
+@isnad1 id=le.0h2v.s6.6500eae50a57 from=translated src=- shape=b4e5607a vocab=8927b0af
+-/
 lemma norm_a₄_le : ‖t.a₄‖ ≤ ‖(t.q : K)‖ := by
   simp only [a₄_def, norm_mul, norm_neg]
   calc ‖(5 : K)‖ * ‖t.eisenstein 3‖
@@ -147,14 +153,18 @@ lemma norm_a₄_le : ‖t.a₄‖ ≤ ‖(t.q : K)‖ := by
 omit [IsUltrametricDist K] [CompleteSpace K] in
 /-- **The discriminant of the Tate curve in terms of its coefficients.** Expanding
 `Δ = -b₂²b₈ - 8b₄³ - 27b₆² + 9b₂b₄b₆` with the Tate `b`-invariants `b₂ = 1`, `b₄ = 2a₄`,
-`b₆ = 4a₆`, `b₈ = a₆ - a₄²` gives a polynomial in `a₄(q), a₆(q)`. -/
+`b₆ = 4a₆`, `b₈ = a₆ - a₄²` gives a polynomial in `a₄(q), a₆(q)`.
+@isnad1 id=eq.0h2v.s8.ee63182b30c0 from=translated src=- shape=322913ee vocab=19f161f4
+-/
 lemma tateCurve_Δ_eq :
     t.tateCurve.Δ = -t.a₆ + t.a₄ ^ 2 - 64 * t.a₄ ^ 3 - 432 * t.a₆ ^ 2 + 72 * t.a₄ * t.a₆ := by
   simp only [WeierstrassCurve.Δ, t.tateCurve_b₂, t.tateCurve_b₄, t.tateCurve_b₆, t.tateCurve_b₈]
   ring
 
 /-- **Leading-term estimate for the discriminant**: `‖Δ(E_q) - q‖ ≤ ‖q‖²` — the
-discriminant is `q` to leading order (the `q`-expansion `Δ = q - 24q² + …`). -/
+discriminant is `q` to leading order (the `q`-expansion `Δ = q - 24q² + …`).
+@isnad1 id=le.1h2v.s7.1acb7bc6e23b from=translated src=- shape=4eea6b64 vocab=2ca56a55
+-/
 lemma norm_tateCurve_Δ_sub_q_le (h12 : (12 : K) ≠ 0) :
     ‖t.tateCurve.Δ - (t.q : K)‖ ≤ ‖(t.q : K)‖ ^ 2 := by
   have hΔ := t.tateCurve_Δ_eq
@@ -199,7 +209,9 @@ lemma norm_tateCurve_Δ_sub_q_le (h12 : (12 : K) ≠ 0) :
         ((IsUltrametricDist.norm_add_le_max _ _).trans (max_le b1 b2)) b3)) b4)) b5)
 
 omit [IsUltrametricDist K] [CompleteSpace K] in
-/-- The strict inequality `‖q‖² < ‖q‖` for a Tate parameter. -/
+/-- The strict inequality `‖q‖² < ‖q‖` for a Tate parameter.
+@isnad1 id=lt.0h2v.s6.62a7b837b28c from=translated src=- shape=8e43ac6b vocab=dc822618
+-/
 lemma norm_q_sq_lt : ‖(t.q : K)‖ ^ 2 < ‖(t.q : K)‖ := by
   calc ‖(t.q : K)‖ ^ 2 = ‖(t.q : K)‖ * ‖(t.q : K)‖ := by rw [pow_two]
     _ < 1 * ‖(t.q : K)‖ := by
@@ -208,7 +220,9 @@ lemma norm_q_sq_lt : ‖(t.q : K)‖ ^ 2 < ‖(t.q : K)‖ := by
     _ = ‖(t.q : K)‖ := one_mul _
 
 /-- **The exact norm of the discriminant**: `‖Δ(E_q)‖ = ‖q‖`, by the ultrametric isosceles
-law applied to the leading-term estimate. -/
+law applied to the leading-term estimate.
+@isnad1 id=eq.1h2v.s6.4d04b1eff67d from=translated src=- shape=4116a153 vocab=b0e82147
+-/
 theorem norm_tateCurve_Δ (h12 : (12 : K) ≠ 0) : ‖t.tateCurve.Δ‖ = ‖(t.q : K)‖ := by
   have hDnorm := t.norm_tateCurve_Δ_sub_q_le h12
   have hlt : ‖t.tateCurve.Δ - (t.q : K)‖ < ‖(t.q : K)‖ :=
@@ -226,7 +240,9 @@ theorem norm_tateCurve_Δ (h12 : (12 : K) ≠ 0) : ‖t.tateCurve.Δ‖ = ‖(t.
   exact le_antisymm hup hdown
 
 /-- **Nonvanishing of the discriminant.** Over a complete nonarchimedean field with
-`(12 : K) ≠ 0`, `Δ(E_q) ≠ 0`: indeed `‖Δ(E_q)‖ = ‖q‖ > 0`. -/
+`(12 : K) ≠ 0`, `Δ(E_q) ≠ 0`: indeed `‖Δ(E_q)‖ = ‖q‖ > 0`.
+@isnad1 id=ne.1h2v.s6.c736dad41b70 from=translated src=- shape=13c13d3f vocab=908b4329
+-/
 theorem tateCurve_Δ_ne_zero (h12 : (12 : K) ≠ 0) : t.tateCurve.Δ ≠ 0 := by
   intro h
   have := t.norm_tateCurve_Δ h12
@@ -236,7 +252,9 @@ theorem tateCurve_Δ_ne_zero (h12 : (12 : K) ≠ 0) : t.tateCurve.Δ ≠ 0 := by
 /-- **The Tate curve is an elliptic curve.** Under the hypothesis `(12 : K) ≠ 0`, the
 nonvanishing of the discriminant upgrades `E_q` to a
 `WeierstrassCurve.IsElliptic` instance (the current Mathlib replacement for a standalone
-`EllipticCurve` structure). -/
+`EllipticCurve` structure).
+@isnad1 id=isellipt.1h2v.s6.a2cc8f5cbf03 from=translated src=- shape=05af9bb7 vocab=63c48a83
+-/
 theorem tateCurve_isElliptic (h12 : (12 : K) ≠ 0) : t.tateCurve.IsElliptic :=
   ⟨(t.tateCurve_Δ_ne_zero h12).isUnit⟩
 

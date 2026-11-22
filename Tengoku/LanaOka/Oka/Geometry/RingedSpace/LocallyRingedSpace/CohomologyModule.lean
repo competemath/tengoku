@@ -45,28 +45,46 @@ noncomputable def restrictGlobal (r : Y.presheaf.obj (op ⊤)) (U : (Opens Y)ᵒ
     Y.ringSheaf.obj.obj U :=
   Y.presheaf.map (homOfLE le_top : U.unop ⟶ ⊤).op r
 
+/--
+@isnad1 id=eq.0h5v.s12.abda7e310a72 from=translated src=- shape=3a7320e7 vocab=76e133fe
+-/
 lemma restrictGlobal_map (r : Y.presheaf.obj (op ⊤)) {U V : (Opens Y)ᵒᵖ} (f : U ⟶ V) :
     Y.ringSheaf.obj.map f (restrictGlobal r U) = restrictGlobal r V := by
   change Y.presheaf.map f (Y.presheaf.map _ r) = _
   rw [← ConcreteCategory.comp_apply, ← Y.presheaf.map_comp]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s12.0a87c645813f from=translated src=- shape=8d08efed vocab=50f423a4
+-/
 @[simp]
 lemma restrictGlobal_one (U : (Opens Y)ᵒᵖ) : restrictGlobal (1 : Y.presheaf.obj (op ⊤)) U = 1 :=
   map_one (Y.presheaf.map _).hom
 
+/--
+@isnad1 id=eq.0h4v.s12.64ac79dc8525 from=translated src=- shape=9deb9bc9 vocab=21c9d3af
+-/
 lemma restrictGlobal_mul (r s : Y.presheaf.obj (op ⊤)) (U : (Opens Y)ᵒᵖ) :
     restrictGlobal (r * s) U = restrictGlobal r U * restrictGlobal s U :=
   map_mul (Y.presheaf.map _).hom r s
 
+/--
+@isnad1 id=eq.0h4v.s12.2856c03d02fd from=translated src=- shape=9deb9bc9 vocab=96d0db6f
+-/
 lemma restrictGlobal_add (r s : Y.presheaf.obj (op ⊤)) (U : (Opens Y)ᵒᵖ) :
     restrictGlobal (r + s) U = restrictGlobal r U + restrictGlobal s U :=
   map_add (Y.presheaf.map _).hom r s
 
+/--
+@isnad1 id=eq.0h2v.s12.68e2df719642 from=translated src=- shape=8d08efed vocab=50f423a4
+-/
 @[simp]
 lemma restrictGlobal_zero (U : (Opens Y)ᵒᵖ) : restrictGlobal (0 : Y.presheaf.obj (op ⊤)) U = 0 :=
   map_zero (Y.presheaf.map _).hom
 
+/--
+@isnad1 id=eq.0h4v.s12.e3d30f16e012 from=translated src=- shape=edaeed13 vocab=035fdf54
+-/
 lemma mul_comm_ringSheaf {U : (Opens Y)ᵒᵖ} (a b : Y.ringSheaf.obj.obj U) : a * b = b * a :=
   @mul_comm (Y.presheaf.obj U) _ a b
 
@@ -84,6 +102,9 @@ noncomputable def modulesSMul (M : SheafOfModules.{u} Y.ringSheaf) (r : Y.preshe
       change restrictGlobal r U • s • m = s • restrictGlobal r U • m
       rw [smul_smul, smul_smul, mul_comm_ringSheaf]
 
+/--
+@isnad1 id=eq.0h5v.s16.916a36d476c3 from=translated src=- shape=058da722 vocab=0ad4647e
+-/
 @[simp]
 lemma modulesSMul_val_app_apply (M : SheafOfModules.{u} Y.ringSheaf) (r : Y.presheaf.obj (op ⊤))
     (U : (Opens Y)ᵒᵖ) (m : M.val.obj U) :
@@ -92,28 +113,42 @@ lemma modulesSMul_val_app_apply (M : SheafOfModules.{u} Y.ringSheaf) (r : Y.pres
 
 variable (M : SheafOfModules.{u} Y.ringSheaf)
 
+/--
+@isnad1 id=eq.0h2v.s11.2800868a0b6e from=translated src=- shape=83ee61fc vocab=b6949fc3
+-/
 lemma modulesSMul_one : modulesSMul M 1 = 𝟙 M := by
   ext U m
   simp
 
+/--
+@isnad1 id=eq.0h4v.s12.615a1692bcc1 from=translated src=- shape=df6268e2 vocab=1e5da76c
+-/
 lemma modulesSMul_mul (r s : Y.presheaf.obj (op ⊤)) :
     modulesSMul M (r * s) = modulesSMul M s ≫ modulesSMul M r := by
   ext U m
   simp only [modulesSMul_val_app_apply, restrictGlobal_mul, mul_smul]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s13.aa47b49f95db from=translated src=- shape=24435f07 vocab=45cf3dbb
+-/
 lemma modulesSMul_add (r s : Y.presheaf.obj (op ⊤)) :
     modulesSMul M (r + s) = modulesSMul M r + modulesSMul M s := by
   ext U m
   simp [restrictGlobal_add, add_smul]
 
+/--
+@isnad1 id=eq.0h2v.s12.ffa8977240c3 from=translated src=- shape=0dbf0b6c vocab=17b4e0c2
+-/
 lemma modulesSMul_zero : modulesSMul M 0 = 0 := by
   ext U m
   simp only [modulesSMul_val_app_apply, restrictGlobal_zero, zero_smul]
   rfl
 
 variable {M} in
-/-- Multiplication by a global section commutes with morphisms of sheaves of modules. -/
+/-- Multiplication by a global section commutes with morphisms of sheaves of modules.
+@isnad1 id=eq.0h5v.s10.11116f70ef6b from=translated src=- shape=a19b2a41 vocab=840eb899
+-/
 @[reassoc]
 lemma modulesSMul_naturality {N : SheafOfModules.{u} Y.ringSheaf} (φ : M ⟶ N)
     (r : Y.presheaf.obj (op ⊤)) : φ ≫ modulesSMul N r = modulesSMul M r ≫ φ := by
@@ -142,13 +177,18 @@ noncomputable instance module (q : ℕ) : Module (Y.presheaf.obj (op ⊤)) (H M 
     change map _ q x = 0
     rw [modulesSMul_zero, map, Functor.map_zero, TopCat.Sheaf.H.map_zero_apply]
 
+/--
+@isnad1 id=eq.0h5v.s13.fec7e41f4771 from=translated src=- shape=47893a0a vocab=da035738
+-/
 lemma smul_def {q : ℕ} (r : Y.presheaf.obj (op ⊤)) (x : H M q) :
     r • x = map (modulesSMul M r) q x :=
   rfl
 
 variable {M}
 
-/-- Maps induced by morphisms of sheaves of modules are `Γ(Y, 𝒪_Y)`-linear. -/
+/-- Maps induced by morphisms of sheaves of modules are `Γ(Y, 𝒪_Y)`-linear.
+@isnad1 id=eq.0h7v.s14.76469839d914 from=translated src=- shape=bc0affcd vocab=fd4bb003
+-/
 lemma map_smul {N : SheafOfModules.{u} Y.ringSheaf} (φ : M ⟶ N) {q : ℕ}
     (r : Y.presheaf.obj (op ⊤)) (x : H M q) : map φ q (r • x) = r • map φ q x := by
   rw [smul_def, smul_def, ← map_comp_apply, ← map_comp_apply, modulesSMul_naturality]
@@ -161,6 +201,9 @@ noncomputable def mapₗ {N : SheafOfModules.{u} Y.ringSheaf} (φ : M ⟶ N) (q 
   map_add' := map_add _
   map_smul' := map_smul φ
 
+/--
+@isnad1 id=eq.0h6v.s14.fd9f7eece5ce from=translated src=- shape=67ecb377 vocab=f207f28d
+-/
 @[simp]
 lemma mapₗ_apply {N : SheafOfModules.{u} Y.ringSheaf} (φ : M ⟶ N) {q : ℕ} (x : H M q) :
     mapₗ φ q x = map φ q x :=
@@ -177,7 +220,9 @@ noncomputable def shortComplexSMul (S : ShortComplex (SheafOfModules.{u} Y.ringS
   comm₁₂ := (modulesSMul_naturality S.f r).symm
   comm₂₃ := (modulesSMul_naturality S.g r).symm
 
-/-- The connecting homomorphisms are `Γ(Y, 𝒪_Y)`-linear. -/
+/-- The connecting homomorphisms are `Γ(Y, 𝒪_Y)`-linear.
+@isnad1 id=eq.2h6v.s16.4160234780bd from=translated src=- shape=bb16733a vocab=3f99edbc
+-/
 lemma δ_smul {S : ShortComplex (SheafOfModules.{u} Y.ringSheaf)} (hS : S.ShortExact)
     {n₀ n₁ : ℕ} (h : n₀ + 1 = n₁) (r : Y.presheaf.obj (op ⊤)) (x : H S.X₃ n₀) :
     δ hS n₀ n₁ h (r • x) = r • δ hS n₀ n₁ h x :=
@@ -202,7 +247,9 @@ noncomputable abbrev Hom.globalSectionsRingHom :
     Y.presheaf.obj (op ⊤) →+* X.presheaf.obj (op ⊤) :=
   (Γ.map f.op).hom
 
-/-- The pushforward of multiplication by `Γ(f) r` is multiplication by `r`. -/
+/-- The pushforward of multiplication by `Γ(f) r` is multiplication by `r`.
+@isnad1 id=eq.0h5v.s13.47af024eed25 from=translated src=- shape=731167d5 vocab=46188ed0
+-/
 lemma pushforward_map_modulesSMul (N : SheafOfModules.{u} X.ringSheaf)
     (r : Y.presheaf.obj (op ⊤)) :
     (SheafOfModules.pushforward.{u} f.toRingSheafHom).map

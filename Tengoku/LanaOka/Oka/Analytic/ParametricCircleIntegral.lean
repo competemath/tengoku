@@ -105,7 +105,9 @@ namespace MvPowerSeries
 variable {ι : Type*} [Fintype ι] [DecidableEq ι] {P : MvPowerSeries ι ℂ}
 
 /-- If `P` converges absolutely at the constant point `ρ`, then `P.eval` is the sum of its
-formal multilinear series on the ball of radius `ρ`. -/
+formal multilinear series on the ball of radius `ρ`.
+@isnad1 id=hasfpowe.2h3v.s7.aec654d0c1e8 from=translated src=- shape=73f24ecb vocab=acc89be9
+-/
 theorem hasFPowerSeriesOnBall_of_summableAt_const {ρ : ℝ} (hρ : 0 < ρ)
     (hsum : P.SummableAt (fun _ ↦ (ρ : ℂ))) :
     HasFPowerSeriesOnBall P.eval (toFPS P) 0 (ENNReal.ofReal ρ) := by
@@ -136,7 +138,9 @@ theorem hasFPowerSeriesOnBall_of_summableAt_const {ρ : ℝ} (hρ : 0 < ρ)
     simpa only [toFPS_apply_diag, zero_add] using this
 
 omit [DecidableEq ι] in
-/-- `P.eval` is analytic at every point of the open ball of radius `ρ`. -/
+/-- `P.eval` is analytic at every point of the open ball of radius `ρ`.
+@isnad1 id=analytic.3h4v.s7.abf159d6c888 from=translated src=- shape=4cb70d53 vocab=81ea8b70
+-/
 theorem analyticAt_eval_of_summableAt_const {ρ : ℝ} (hρ : 0 < ρ)
     (hsum : P.SummableAt (fun _ ↦ (ρ : ℂ))) {x : ι → ℂ} (hx : ‖x‖ < ρ) :
     AnalyticAt ℂ P.eval x := by
@@ -148,12 +152,18 @@ theorem analyticAt_eval_of_summableAt_const {ρ : ℝ} (hρ : 0 < ρ)
 end MvPowerSeries
 
 open MvPowerSeries in
+/--
+@isnad1 id=analytic.2h3v.s7.71359f7cc658 from=translated src=- shape=cbfe15c8 vocab=7996bdbb
+-/
 lemma _root_.Tengoku.LanaOka.analyticAt_of_represents {m : ℕ} {P : MvPowerSeries (Fin m) ℂ} {g : (Fin m → ℂ) → ℂ}
     (hP : LocallyConvergent P) (hrep : Represents P g) : AnalyticAt ℂ g 0 := by
   refine hP.analyticAt.congr ?_
   filter_upwards [hrep] with x hx
   exact hx.tsum_eq
 
+/--
+@isnad1 id=analytic.1h3v.s7.04f375e6f3c9 from=translated src=- shape=1398d2e7 vocab=cb8f8c2d
+-/
 lemma _root_.Tengoku.LanaOka.analyticAt_of_shift {m : ℕ} {f : (Fin m → ℂ) → ℂ} {x₀ : Fin m → ℂ}
     (h : AnalyticAt ℂ (fun y ↦ f (x₀ + y)) 0) : AnalyticAt ℂ f x₀ := by
   have hcomp : AnalyticAt ℂ ((fun y ↦ f (x₀ + y)) ∘ (fun x ↦ x - x₀)) x₀ :=
@@ -172,14 +182,22 @@ noncomputable def _root_.Tengoku.LanaOka.finsuppConsEquiv (m : ℕ) : (Fin (m + 
   left_inv t := Finsupp.cons_tail t
   right_inv p := by obtain ⟨y, s⟩ := p; simp
 
+/--
+@isnad1 id=eq.0h2v.s8.9d584d561712 from=translated src=- shape=f598cc7b vocab=2a4f5171
+-/
 @[simp] lemma _root_.Tengoku.LanaOka.finsuppConsEquiv_apply (m : ℕ) (t : Fin (m + 1) →₀ ℕ) :
     finsuppConsEquiv m t = (t 0, Finsupp.tail t) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.525446e87094 from=translated src=- shape=9c1d0158 vocab=19959f39
+-/
 @[simp] lemma _root_.Tengoku.LanaOka.finsuppConsEquiv_symm_apply (m : ℕ) (p : ℕ × (Fin m →₀ ℕ)) :
     (finsuppConsEquiv m).symm p = Finsupp.cons p.1 p.2 := rfl
 
 /-- The multivariate geometric series converges absolutely: if `‖a i‖ < 1` for every `i`, then
-the family `d ↦ ∏ i, a i ^ d i` indexed by multi-indices `d : Fin m →₀ ℕ` is norm-summable. -/
+the family `d ↦ ∏ i, a i ^ d i` indexed by multi-indices `d : Fin m →₀ ℕ` is norm-summable.
+@isnad1 id=summable.1h2v.s6.bffa7a2fef07 from=translated src=- shape=4bbc2c98 vocab=27b85244
+-/
 theorem _root_.Tengoku.LanaOka.summable_norm_multiGeometric :
     ∀ (m : ℕ) (a : Fin m → ℂ), (∀ i, ‖a i‖ < 1) →
       Summable (fun d : Fin m →₀ ℕ ↦ ‖∏ i, (a i) ^ (d i)‖) := by
@@ -210,7 +228,9 @@ theorem _root_.Tengoku.LanaOka.summable_norm_multiGeometric :
         (g := fun t : Fin m →₀ ℕ => ∏ i, (a (Fin.succ i)) ^ (t i)) hf hg
 
 /-- The multivariate geometric series: if `‖a i‖ < 1` for every `i`, then the family
-`d ↦ ∏ i, a i ^ d i` indexed by multi-indices `d : Fin m →₀ ℕ` sums to `∏ i, (1 - a i)⁻¹`. -/
+`d ↦ ∏ i, a i ^ d i` indexed by multi-indices `d : Fin m →₀ ℕ` sums to `∏ i, (1 - a i)⁻¹`.
+@isnad1 id=hassum.1h2v.s7.55b65875e39f from=translated src=- shape=3a1e74b5 vocab=93716a68
+-/
 theorem _root_.Tengoku.LanaOka.hasSum_multiGeometric :
     ∀ (m : ℕ) (a : Fin m → ℂ), (∀ i, ‖a i‖ < 1) →
       HasSum (fun d : Fin m →₀ ℕ ↦ ∏ i, (a i) ^ (d i)) (∏ i, (1 - a i)⁻¹) := by
@@ -256,7 +276,9 @@ theorem _root_.Tengoku.LanaOka.hasSum_multiGeometric :
       rw [hfun]
       exact hmul
 
-/-- Geometric expansion of the Cauchy kernel in the multi-index `d`. -/
+/-- Geometric expansion of the Cauchy kernel in the multi-index `d`.
+@isnad1 id=hassum.2h3v.s7.303241e67cd3 from=translated src=- shape=68103461 vocab=17f0a9f5
+-/
 theorem _root_.Tengoku.LanaOka.hasSum_cauchyKernel {m : ℕ} (ζ w : Fin m → ℂ)
     (hζ : ∀ i, ζ i ≠ 0) (hlt : ∀ i, ‖w i‖ < ‖ζ i‖) :
     HasSum (fun d : Fin m →₀ ℕ ↦ (∏ i, (ζ i ^ (d i + 1))⁻¹) * ∏ i, (w i) ^ (d i))
@@ -284,7 +306,9 @@ theorem _root_.Tengoku.LanaOka.hasSum_cauchyKernel {m : ℕ} (ζ w : Fin m → �
   exact hmul
 
 open MeasureTheory in
-/-- Term-by-term integration over a torus. -/
+/-- Term-by-term integration over a torus.
+@isnad1 id=hassum.3h5v.s8.cd61a07202e6 from=translated src=- shape=b0c46be8 vocab=4ca084eb
+-/
 theorem _root_.Tengoku.LanaOka.hasSum_torusIntegral {m : ℕ} {c : Fin m → ℂ} {R : Fin m → ℝ}
     {F : (Fin m →₀ ℕ) → (Fin m → ℂ) → ℂ} {S : (Fin m → ℂ) → ℂ}
     (hint : ∀ d, TorusIntegrable (F d) c R)
@@ -311,7 +335,9 @@ theorem _root_.Tengoku.LanaOka.hasSum_torusIntegral {m : ℕ} {c : Fin m → ℂ
   exact key
 
 open MeasureTheory in
-/-- Each Cauchy term is torus-integrable on the polydisc of radius `ρ`. -/
+/-- Each Cauchy term is torus-integrable on the polydisc of radius `ρ`.
+@isnad1 id=torusint.2h5v.s8.12e21bfd1868 from=translated src=- shape=65020191 vocab=e130454c
+-/
 theorem _root_.Tengoku.LanaOka.torusIntegrable_cauchyTerm {m : ℕ} {ρ : ℝ} (hρ : 0 < ρ)
     {g : (Fin m → ℂ) → ℂ}
     (hg : ContinuousOn g (Set.univ.pi fun _ : Fin m ↦ Metric.closedBall (0 : ℂ) ρ))
@@ -348,7 +374,9 @@ theorem _root_.Tengoku.LanaOka.torusIntegrable_cauchyTerm {m : ℕ} {ρ : ℝ} (
     (hker.continuousOn.mul (hg.comp htm.continuousOn hmaps))
 
 open MeasureTheory in
-/-- Geometric summability of the integral-norms of the Cauchy terms. -/
+/-- Geometric summability of the integral-norms of the Cauchy terms.
+@isnad1 id=summable.2h4v.s8.85ddbe3f8aa3 from=translated src=- shape=f940adf7 vocab=3701ad93
+-/
 theorem _root_.Tengoku.LanaOka.summable_integral_norm_cauchyTerm {m : ℕ} {ρ : ℝ} (hρ : 0 < ρ)
     {g : (Fin m → ℂ) → ℂ}
     {x : Fin m → ℂ} (hx : ∀ i, ‖x i‖ < ρ) :
@@ -416,6 +444,9 @@ theorem _root_.Tengoku.LanaOka.summable_integral_norm_cauchyTerm {m : ℕ} {ρ :
     (∫ θ in Set.Icc (0 : Fin m → ℝ) (fun _ ↦ 2 * Real.pi), ‖g (tm θ)‖)).congr (fun d => ?_)
   exact (hEq d).symm
 
+/--
+@isnad1 id=differen.2h5v.s9.3da8fe02f582 from=translated src=- shape=50ea0966 vocab=39237473
+-/
 lemma _root_.Tengoku.LanaOka.differentiableOn_cons_slice {m : ℕ} {f : (Fin (m + 1) → ℂ) → ℂ}
     {c : Fin (m + 1) → ℂ} {R : Fin (m + 1) → ℝ}
     (hf : DifferentiableOn ℂ f (Set.univ.pi fun i ↦ Metric.closedBall (c i) (R i)))
@@ -435,6 +466,9 @@ lemma _root_.Tengoku.LanaOka.differentiableOn_cons_slice {m : ℕ} {f : (Fin (m 
   · simpa using hx
   · simpa using hy j
 
+/--
+@isnad1 id=eq.3h5v.s8.7253f1559ba8 from=translated src=- shape=a74e63b7 vocab=1ad56449
+-/
 theorem _root_.Tengoku.LanaOka.cauchy_torus_formula {m : ℕ} (f : (Fin m → ℂ) → ℂ) (c : Fin m → ℂ) (R : Fin m → ℝ)
     (hR : ∀ i, 0 < R i)
     (hf : DifferentiableOn ℂ f (Set.univ.pi fun i ↦ Metric.closedBall (c i) (R i)))
@@ -556,7 +590,9 @@ theorem _root_.Tengoku.LanaOka.cauchy_torus_formula {m : ℕ} (f : (Fin m → �
       rw [hJ, smul_smul, ← pow_succ]
     rw [hval, smul_smul, ← mul_pow, inv_mul_cancel₀ h2pi, one_pow, one_smul]
 
-/-- A continuous function satisfying the Cauchy representation on a polydisc is analytic. -/
+/-- A continuous function satisfying the Cauchy representation on a polydisc is analytic.
+@isnad1 id=analytic.3h3v.s8.861c952c922e from=translated src=- shape=7c381254 vocab=78bc9373
+-/
 theorem _root_.Tengoku.LanaOka.analyticAt_of_cauchyRepr {m : ℕ} {g : (Fin m → ℂ) → ℂ} {ρ : ℝ} (hρ : 0 < ρ)
     (hcont : ContinuousOn g (Set.univ.pi fun _ : Fin m ↦ Metric.closedBall (0 : ℂ) ρ))
     (hrepr : ∀ y : Fin m → ℂ, (∀ i, ‖y i‖ < ρ) →
@@ -618,7 +654,9 @@ theorem _root_.Tengoku.LanaOka.analyticAt_of_cauchyRepr {m : ℕ} {g : (Fin m �
   exact analyticAt_of_represents hRep.locallyConvergent hRep
 
 open MeasureTheory in
-/-- Fubini: a torus integral and a circle integral of a jointly continuous function commute. -/
+/-- Fubini: a torus integral and a circle integral of a jointly continuous function commute.
+@isnad1 id=eq.1h5v.s7.9717648e4d25 from=translated src=- shape=90828b94 vocab=0649c128
+-/
 theorem _root_.Tengoku.LanaOka.torusIntegral_circleIntegral_swap {m : ℕ} (c : Fin m → ℂ) (R : Fin m → ℝ)
     (ε : ℝ) (H : (Fin m → ℂ) → ℂ → ℂ)
     (hH : Continuous fun p : (Fin m → ℝ) × ℝ ↦
@@ -674,7 +712,9 @@ theorem _root_.Tengoku.LanaOka.torusIntegral_circleIntegral_swap {m : ℕ} (c : 
   exact integral_integral_swap hint
 
 open MeasureTheory in
-/-- A circle integral depending continuously on a parameter is continuous in the parameter. -/
+/-- A circle integral depending continuously on a parameter is continuous in the parameter.
+@isnad1 id=continuo.1h4v.s7.d00571c43384 from=translated src=- shape=25d173b0 vocab=3b863fcd
+-/
 theorem _root_.Tengoku.LanaOka.continuousOn_circleIntegral {m : ℕ} {ε : ℝ} {s : Set (Fin m → ℂ)}
     {G : (Fin m → ℂ) → ℂ → ℂ}
     (hG : Continuous fun p : s × ℝ ↦ G (p.1 : Fin m → ℂ) (circleMap 0 ε p.2)) :
@@ -691,7 +731,9 @@ theorem _root_.Tengoku.LanaOka.continuousOn_circleIntegral {m : ℕ} {ε : ℝ} 
     (hJ.smul hG) 0 (2 * Real.pi)
 
 open MeasureTheory in
-/-- A circle integral of a family that is holomorphic in the parameter is analytic. -/
+/-- A circle integral of a family that is holomorphic in the parameter is analytic.
+@isnad1 id=analytic.4h4v.s9.1cb0b3bc91bf from=translated src=- shape=71499b6b vocab=a32290ae
+-/
 theorem _root_.Tengoku.LanaOka.analyticAt_circleIntegral {m : ℕ} {ε ρ : ℝ} (hε : 0 < ε) (hρ : 0 < ρ)
     {G : (Fin m → ℂ) → ℂ → ℂ}
     (hdiff : ∀ ζ : ℂ, ‖ζ‖ = ε → DifferentiableOn ℂ (fun x ↦ G x ζ)
@@ -751,7 +793,9 @@ theorem _root_.Tengoku.LanaOka.analyticAt_circleIntegral {m : ℕ} {ε ρ : ℝ}
     (fun ξ ζ ↦ (∏ i, (ξ i - y i)⁻¹) * G ξ ζ) hHcont]
   simp_rw [circleIntegral.integral_const_mul]
 
-/-- The affine map `x ↦ Fin.snoc (Fin.init x) ζ` is differentiable. -/
+/-- The affine map `x ↦ Fin.snoc (Fin.init x) ζ` is differentiable.
+@isnad1 id=differen.0h2v.s8.637b02004a83 from=translated src=- shape=649a96c1 vocab=8b903bcf
+-/
 lemma _root_.Tengoku.LanaOka.differentiable_snocInit {m : ℕ} (ζ : ℂ) :
     Differentiable ℂ (fun x : Fin (m + 1) → ℂ ↦ (Fin.snoc (Fin.init x) ζ : Fin (m + 1) → ℂ)) := by
   refine differentiable_pi.mpr fun j ↦ ?_
@@ -761,7 +805,9 @@ lemma _root_.Tengoku.LanaOka.differentiable_snocInit {m : ℕ} (ζ : ℂ) :
   · simp only [Fin.snoc_castSucc, Fin.init_def]
     exact differentiable_apply (𝕜 := ℂ) i.castSucc
 
-/-- A norm bound for `Fin.snoc (Fin.init x) ζ`. -/
+/-- A norm bound for `Fin.snoc (Fin.init x) ζ`.
+@isnad1 id=le.2h4v.s7.da8f2074fc00 from=translated src=- shape=1a748fb9 vocab=63d9cb3e
+-/
 lemma _root_.Tengoku.LanaOka.norm_snocInit_le {m : ℕ} {x : Fin (m + 1) → ℂ} {ζ : ℂ} {a : ℝ}
     (hx : ∀ i : Fin m, ‖x i.castSucc‖ ≤ a) (hζ : ‖ζ‖ ≤ a) :
     ‖(Fin.snoc (Fin.init x) ζ : Fin (m + 1) → ℂ)‖ ≤ a := by
@@ -770,7 +816,9 @@ lemma _root_.Tengoku.LanaOka.norm_snocInit_le {m : ℕ} {x : Fin (m + 1) → ℂ
   · simpa only [Fin.snoc_last] using hζ
   · simpa only [Fin.snoc_castSucc, Fin.init_def] using hx i
 
-/-- Joint continuity of `(x, θ) ↦ Fin.snoc (Fin.init x) (circleMap 0 ε θ)`. -/
+/-- Joint continuity of `(x, θ) ↦ Fin.snoc (Fin.init x) (circleMap 0 ε θ)`.
+@isnad1 id=continuo.0h3v.s8.f2d0fc6eabc7 from=translated src=- shape=fc6e0eac vocab=ffb31e07
+-/
 lemma _root_.Tengoku.LanaOka.continuous_snocInit_circleMap {m : ℕ} (ε : ℝ) (s : Set (Fin (m + 1) → ℂ)) :
     Continuous fun p : s × ℝ ↦
       (Fin.snoc (Fin.init (p.1 : Fin (m + 1) → ℂ)) (circleMap 0 ε p.2) :
@@ -783,7 +831,9 @@ lemma _root_.Tengoku.LanaOka.continuous_snocInit_circleMap {m : ℕ} (ε : ℝ) 
   · simp only [Fin.snoc_castSucc, Fin.init_def]
     exact (continuous_apply i.castSucc).comp (continuous_subtype_val.comp continuous_fst)
 
-/-- The affine map `w ↦ Fin.snoc w ζ` is differentiable. -/
+/-- The affine map `w ↦ Fin.snoc w ζ` is differentiable.
+@isnad1 id=differen.0h2v.s8.dad9629a15a4 from=translated src=- shape=3021459b vocab=b736726c
+-/
 lemma _root_.Tengoku.LanaOka.differentiable_snoc {m : ℕ} (ζ : ℂ) :
     Differentiable ℂ (fun w : Fin m → ℂ ↦ (Fin.snoc w ζ : Fin (m + 1) → ℂ)) := by
   refine differentiable_pi.mpr fun j ↦ ?_
@@ -793,7 +843,9 @@ lemma _root_.Tengoku.LanaOka.differentiable_snoc {m : ℕ} (ζ : ℂ) :
   · simp only [Fin.snoc_castSucc]
     exact differentiable_apply (𝕜 := ℂ) i
 
-/-- A norm bound for `Fin.snoc w ζ`. -/
+/-- A norm bound for `Fin.snoc w ζ`.
+@isnad1 id=le.2h4v.s7.d6fb5f9328bd from=translated src=- shape=e882057e vocab=0d68fba0
+-/
 lemma _root_.Tengoku.LanaOka.norm_snoc_le {m : ℕ} {w : Fin m → ℂ} {ζ : ℂ} {a : ℝ}
     (hw : ∀ i, ‖w i‖ ≤ a) (hζ : ‖ζ‖ ≤ a) :
     ‖(Fin.snoc w ζ : Fin (m + 1) → ℂ)‖ ≤ a := by
@@ -802,7 +854,9 @@ lemma _root_.Tengoku.LanaOka.norm_snoc_le {m : ℕ} {w : Fin m → ℂ} {ζ : �
   · simpa only [Fin.snoc_last] using hζ
   · simpa only [Fin.snoc_castSucc] using hw i
 
-/-- Joint continuity of `(w, θ) ↦ Fin.snoc w (circleMap 0 ε θ)`. -/
+/-- Joint continuity of `(w, θ) ↦ Fin.snoc w (circleMap 0 ε θ)`.
+@isnad1 id=continuo.0h3v.s7.fd09d33caa86 from=translated src=- shape=44752e39 vocab=136db1ec
+-/
 lemma _root_.Tengoku.LanaOka.continuous_snoc_circleMap {m : ℕ} (ε : ℝ) (s : Set (Fin m → ℂ)) :
     Continuous fun p : s × ℝ ↦
       (Fin.snoc (p.1 : Fin m → ℂ) (circleMap 0 ε p.2) : Fin (m + 1) → ℂ) := by
@@ -814,7 +868,9 @@ lemma _root_.Tengoku.LanaOka.continuous_snoc_circleMap {m : ℕ} (ε : ℝ) (s :
   · simp only [Fin.snoc_castSucc]
     exact (continuous_apply i).comp (continuous_subtype_val.comp continuous_fst)
 
-/-- The affine map `s ↦ Fin.snoc w s` (varying the last coordinate) is differentiable. -/
+/-- The affine map `s ↦ Fin.snoc w s` (varying the last coordinate) is differentiable.
+@isnad1 id=differen.0h2v.s7.85ff036839df from=translated src=- shape=38ad4e5a vocab=b736726c
+-/
 lemma _root_.Tengoku.LanaOka.differentiable_snoc_last {m : ℕ} (w : Fin m → ℂ) :
     Differentiable ℂ (fun s : ℂ ↦ (Fin.snoc w s : Fin (m + 1) → ℂ)) := by
   refine differentiable_pi.mpr fun j ↦ ?_
@@ -825,7 +881,9 @@ lemma _root_.Tengoku.LanaOka.differentiable_snoc_last {m : ℕ} (w : Fin m → �
     exact differentiable_const _
 
 open MeasureTheory in
-/-- Analyticity of a circle integral of `F/G · E` along the last coordinate. -/
+/-- Analyticity of a circle integral of `F/G · E` along the last coordinate.
+@isnad1 id=analytic.9h7v.s10.c17dfdf7a222 from=translated src=- shape=9d73c967 vocab=d9f6c43e
+-/
 theorem _root_.Tengoku.LanaOka.analyticAt_circleIntegral_snoc {m : ℕ} {ε ρ r : ℝ}
     (hε : 0 < ε) (hρ : 0 < ρ) (hρε : ρ < ε) (hεr : ε < r)
     {F G : (Fin (m + 1) → ℂ) → ℂ}
@@ -899,6 +957,9 @@ theorem _root_.Tengoku.LanaOka.analyticAt_circleIntegral_snoc {m : ℕ} {ε ρ r
     have h := p.1.2 i (Set.mem_univ _)
     rwa [Metric.mem_closedBall, dist_zero_right] at h
 
+/--
+@isnad1 id=analytic.3h4v.s8.fbb0255edbe8 from=translated src=- shape=8d2da71b vocab=7afa7192
+-/
 theorem _root_.Tengoku.LanaOka.analyticAt_of_differentiableOn {m : ℕ} {f : (Fin m → ℂ) → ℂ}
     {s : Set (Fin m → ℂ)} (hs : IsOpen s) (hf : DifferentiableOn ℂ f s)
     {x₀ : Fin m → ℂ} (hx₀ : x₀ ∈ s) : AnalyticAt ℂ f x₀ := by

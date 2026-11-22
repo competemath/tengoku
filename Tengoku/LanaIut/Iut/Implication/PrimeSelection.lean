@@ -54,18 +54,26 @@ structure ChebyshevBound where
 /-- `θ_A = ∑_{p ∈ A} log p` for a finite set of natural numbers. -/
 noncomputable def thetaSet (A : Finset ℕ) : ℝ := ∑ p ∈ A, Real.log p
 
+/--
+@isnad1 id=le.0h1v.s3.7a44f993508d from=translated src=- shape=942babd5 vocab=4d1fb8ea
+-/
 lemma thetaSet_nonneg (A : Finset ℕ) : 0 ≤ thetaSet A :=
   Finset.sum_nonneg fun p _ => by
     rcases Nat.eq_zero_or_pos p with h | h
     · simp [h]
     · exact Real.log_nonneg (by exact_mod_cast h)
 
+/--
+@isnad1 id=le.0h1v.s4.59d87a02bf9b from=translated src=- shape=134723b7 vocab=a0466d8a
+-/
 lemma log_natCast_nonneg (p : ℕ) : 0 ≤ Real.log p := by
   rcases Nat.eq_zero_or_pos p with h | h
   · simp [h]
   · exact Real.log_nonneg (by exact_mod_cast h)
 
-/-- The sum of a nonnegative function over a union is at most the sum of the sums. -/
+/-- The sum of a nonnegative function over a union is at most the sum of the sums.
+@isnad1 id=le.1h4v.s6.fcfeb56150b1 from=translated src=- shape=d402b565 vocab=62ad4521
+-/
 lemma sum_union_le_of_nonneg {ι : Type*} [DecidableEq ι] (s t : Finset ι) (f : ι → ℝ)
     (hf : ∀ i, 0 ≤ f i) : ∑ i ∈ s ∪ t, f i ≤ ∑ i ∈ s, f i + ∑ i ∈ t, f i := by
   have := Finset.sum_union_inter (s₁ := s) (s₂ := t) (f := f)
@@ -73,7 +81,9 @@ lemma sum_union_le_of_nonneg {ι : Type*} [DecidableEq ι] (s t : Finset ι) (f 
   linarith
 
 /-- The sum of a nonnegative function over a finite union is at most the sum of the
-sums. -/
+sums.
+@isnad1 id=le.1h5v.s6.166e96431603 from=translated src=- shape=d72095d8 vocab=7cb873de
+-/
 lemma sum_biUnion_le_of_nonneg {ι κ : Type*} [DecidableEq κ] (s : Finset ι)
     (t : ι → Finset κ) (f : κ → ℝ) (hf : ∀ k, 0 ≤ f k) :
     ∑ k ∈ s.biUnion t, f k ≤ ∑ i ∈ s, ∑ k ∈ t i, f k := by
@@ -84,7 +94,9 @@ lemma sum_biUnion_le_of_nonneg {ι κ : Type*} [DecidableEq κ] (s : Finset ι)
     rw [Finset.biUnion_insert, Finset.sum_insert ha]
     exact (sum_union_le_of_nonneg _ _ f hf).trans (by linarith)
 
-/-- `∑_{p ∣ n} log p ≤ log n` for `n ≠ 0`. -/
+/-- `∑_{p ∣ n} log p ≤ log n` for `n ≠ 0`.
+@isnad1 id=le.1h1v.s5.4e0f5bba8ffa from=translated src=- shape=d7556991 vocab=0bc8f351
+-/
 lemma sum_log_primeFactors_le (n : ℕ) (hn : n ≠ 0) :
     ∑ p ∈ n.primeFactors, Real.log p ≤ Real.log n := by
   have hne : ∀ p ∈ n.primeFactors, (p : ℝ) ≠ 0 := fun p hp => by
@@ -102,7 +114,9 @@ namespace ChebyshevBound
 variable (cheb : ChebyshevBound)
 
 /-- **Proposition 2.1(ii)**: for every finite set `A` of natural numbers there is a
-prime `p ∉ A` with `p ≤ 2(θ_A + ξ_prm)`. -/
+prime `p ∉ A` with `p ≤ 2(θ_A + ξ_prm)`.
+@isnad1 id=ex.0h2v.s5.8fa9f248cd79 from=translated src=- shape=0652ee4c vocab=d71ba39a
+-/
 theorem exists_prime_notMem (A : Finset ℕ) :
     ∃ p : ℕ, p.Prime ∧ p ∉ A ∧ (p : ℝ) ≤ 2 * (thetaSet A + cheb.ξ) := by
   set x : ℝ := 2 * (thetaSet A + cheb.ξ) with hx
@@ -180,12 +194,21 @@ noncomputable def heightOther (a b : ℕ) : ℝ :=
   (∑ v ∈ L.bad.filter (fun v => L.p v ≠ a ∧ L.p v ≠ b),
     (L.hv v : ℝ) * L.f v * Real.log (L.p v)) / L.deg
 
+/--
+@isnad1 id=le.0h2v.s5.3c4eff0841c3 from=translated src=- shape=5da05d37 vocab=4760db04
+-/
 lemma term_nonneg (v : L.ι) : 0 ≤ (L.hv v : ℝ) * L.f v * Real.log (L.p v) :=
   mul_nonneg (by positivity) (log_natCast_nonneg _)
 
+/--
+@isnad1 id=le.0h1v.s3.345c176b8ccc from=translated src=- shape=b9369acb vocab=a6c9ece3
+-/
 lemma height_nonneg : 0 ≤ L.height :=
   div_nonneg (Finset.sum_nonneg fun v _ => L.term_nonneg v) (by positivity)
 
+/--
+@isnad1 id=eq.0h1v.s5.e02fab7e832e from=translated src=- shape=384aede6 vocab=fcfe19c5
+-/
 lemma deg_mul_height : (L.deg : ℝ) * L.height =
     ∑ v ∈ L.bad, (L.hv v : ℝ) * L.f v * Real.log (L.p v) := by
   unfold height
@@ -194,7 +217,9 @@ lemma deg_mul_height : (L.deg : ℝ) * L.height =
   field_simp
 
 /-- The decomposition `h = h_{(a)} + h_{(b)} + h_{(≠a,≠b)}` of the height by residue
-characteristic, for `a ≠ b`. -/
+characteristic, for `a ≠ b`.
+@isnad1 id=eq.1h3v.s5.4da25694c956 from=translated src=- shape=f4b353d8 vocab=69b2eed4
+-/
 lemma height_eq_add (a b : ℕ) (hab : a ≠ b) :
     L.height = L.heightEq a + L.heightEq b + L.heightOther a b := by
   classical
@@ -211,7 +236,9 @@ lemma height_eq_add (a b : ℕ) (hab : a ≠ b) :
 /-- **The choice of `ℓ` in the proof of Corollary 2.2**, conditions (P1)–(P3): given
 Chebyshev bounds, local height data with `[F : ℚ] ≤ δ`, `δ ≥ 2`, and `√h ≥ ξ_prm`, there
 is a prime `ℓ` with `√h ≤ ℓ ≤ 10δ·√h·log(2δh)`, dividing no nonzero `h_v`, and with
-`h_v < √h` whenever `p_v = ℓ`. -/
+`h_v < √h` whenever `p_v = ℓ`.
+@isnad1 id=ex.3h3v.s7.e49150a60d77 from=translated src=- shape=c41f2056 vocab=e6e831df
+-/
 theorem exists_prime_selection (cheb : ChebyshevBound) (δ : ℝ) (hδ : 2 ≤ δ)
     (hdeg : (L.deg : ℝ) ≤ δ) (hξ : cheb.ξ ≤ Real.sqrt L.height) :
     ∃ ℓ : ℕ, ℓ.Prime ∧ Real.sqrt L.height ≤ ℓ ∧

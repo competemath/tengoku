@@ -36,6 +36,9 @@ def conjI : Ideal (MvPowerSeries (Fin 3) ℂ) :=
 abbrev T := MvPowerSeries (Fin 3) ℂ ⧸ conjI
 
 open MvPowerSeries in
+/--
+@isnad1 id=ne.0h0v.s6.8868711e4358 from=translated src=- shape=169e5754 vocab=86e83e5f
+-/
 theorem conjI_ne_top : conjI ≠ ⊤ := by
   apply Ideal.span_singleton_ne_top
   rw [MvPowerSeries.isUnit_iff_constantCoeff]
@@ -53,6 +56,9 @@ noncomputable def ψMap : Fin 3 → MvPowerSeries (Fin 2) ℂ :=
   | 1 => (X 0) ^ 2
   | 2 => (X 1) ^ 2
 
+/--
+@isnad1 id=hassubst.0h0v.s4.935e03b54ebd from=translated src=- shape=434a9ff5 vocab=797b5232
+-/
 lemma ψ_hasSubst : HasSubst (a := ψMap) := by
   apply hasSubst_of_constantCoeff_zero
   intro s
@@ -64,11 +70,17 @@ noncomputable def ψHom :
     MvPowerSeries (Fin 3) ℂ →ₐ[ℂ] MvPowerSeries (Fin 2) ℂ :=
   MvPowerSeries.substAlgHom ψ_hasSubst
 
+/--
+@isnad1 id=eq.0h0v.s8.a638fb1bda75 from=translated src=- shape=e9f7286d vocab=1db82154
+-/
 lemma ψ_kills_gen : ψHom ((X 0) ^ 2 - (X 1) * (X 2)) = 0 := by
   simp only [map_sub, map_pow, map_mul, ψHom, MvPowerSeries.substAlgHom_X]
   simp [ψMap]
   ring
 
+/--
+@isnad1 id=le.0h0v.s8.dc4b7c249c33 from=translated src=- shape=925b287b vocab=9816af5b
+-/
 lemma conjI_le_ker_ψ : conjI ≤ RingHom.ker ψHom.toRingHom := by
   rw [show conjI = Ideal.span {(X (0 : Fin 3) : MvPowerSeries (Fin 3) ℂ) ^ 2 -
     X 1 * X 2} from rfl, Ideal.span_le]
@@ -77,6 +89,9 @@ lemma conjI_le_ker_ψ : conjI ≤ RingHom.ker ψHom.toRingHom := by
   subst hx
   exact RingHom.mem_ker.mpr ψ_kills_gen
 
+/--
+@isnad1 id=ne.0h0v.s8.fab25a62fa95 from=translated src=- shape=67fd6cf6 vocab=355c2e22
+-/
 lemma anderson_gen_ne_zero : (X (0 : Fin 3) : MvPowerSeries (Fin 3) ℂ) ^ 2 -
     X 1 * X 2 ≠ 0 := by
   have hdegrees : Finsupp.single (0 : Fin 3) 2 ≠
@@ -107,6 +122,9 @@ def mkFin3 (a b c : ℕ) : Fin 3 →₀ ℕ :=
 @[simp] private lemma mkFin3_one : mkFin3 a b c 1 = b := rfl
 @[simp] private lemma mkFin3_two : mkFin3 a b c 2 = c := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.eba2d3dc2d05 from=translated src=- shape=46f37a07 vocab=a5ab3ec4
+-/
 lemma mkFin3_ext (n : Fin 3 →₀ ℕ) : n = mkFin3 (n 0) (n 1) (n 2) := by
   ext i
   fin_cases i <;> rfl
@@ -122,7 +140,9 @@ def divQ (f : MvPowerSeries (Fin 3) ℂ) : MvPowerSeries (Fin 3) ℂ :=
     f (mkFin3 (n 0 + 2 + 2 * k) (n 1 - k) (n 2 - k))
 
 /-- Substitution sends a monomial with degree `d` to
-`u^(d₀ + 2d₁) * v^(d₀ + 2d₂)`. -/
+`u^(d₀ + 2d₁) * v^(d₀ + 2d₂)`.
+@isnad1 id=eq.0h1v.s9.28eb367dd42b from=translated src=- shape=aea987d5 vocab=2b75cee4
+-/
 lemma ψMap_prod_eq (d : Fin 3 →₀ ℕ) :
     d.prod (fun s n => ψMap s ^ n) =
     MvPowerSeries.monomial (mkFin2 (d 0 + 2 * d 1) (d 0 + 2 * d 2)) (1 : ℂ) := by
@@ -145,12 +165,18 @@ lemma ψMap_prod_eq (d : Fin 3 →₀ ℕ) :
     fin_cases i <;> simp [mkFin2]
   rw [this]
 
+/--
+@isnad1 id=iff.0h4v.s5.0ad3fc2a5bed from=translated src=- shape=71ada6db vocab=73c02f20
+-/
 lemma mkFin2_inj {a b c d : ℕ} : mkFin2 a b = mkFin2 c d ↔ a = c ∧ b = d := by
   constructor
   · intro h
     exact ⟨congr_fun (congr_arg DFunLike.coe h) 0, congr_fun (congr_arg DFunLike.coe h) 1⟩
   · simp_all
 
+/--
+@isnad1 id=iff.0h6v.s5.41a539953fb4 from=translated src=- shape=6fe97741 vocab=bf7fd51e
+-/
 lemma mkFin3_inj {a b c d e f : ℕ} :
     mkFin3 a b c = mkFin3 d e f ↔ a = d ∧ b = e ∧ c = f := by
   constructor
@@ -161,6 +187,9 @@ lemma mkFin3_inj {a b c d e f : ℕ} :
   · simp_all
 
 -- Fiber characterization: preimages under ψ are {mkFin3(m₀+2k)(m₁-k)(m₂-k) : k ≤ min(m₁,m₂)}
+/--
+@isnad1 id=iff.1h4v.s8.43d46978546a from=translated src=- shape=04dbde21 vocab=8332a9f7
+-/
 lemma ψ_fiber_char (m₀ m₁ m₂ : ℕ) (hm₀ : m₀ ≤ 1) (d : Fin 3 →₀ ℕ) :
     mkFin2 (d 0 + 2 * d 1) (d 0 + 2 * d 2) = mkFin2 (m₀ + 2 * m₁) (m₀ + 2 * m₂) ↔
     ∃ k ≤ min m₁ m₂, d = mkFin3 (m₀ + 2 * k) (m₁ - k) (m₂ - k) := by
@@ -180,6 +209,9 @@ lemma ψ_fiber_char (m₀ m₁ m₂ : ℕ) (hm₀ : m₀ ≤ 1) (d : Fin 3 →�
     simp only [mkFin3_zero, mkFin3_one, mkFin3_two]
     constructor <;> omega
 
+/--
+@isnad1 id=eq.1h4v.s8.ecbbd796462c from=translated src=- shape=5c055e33 vocab=d5e0383c
+-/
 lemma ψHom_coeff_sum
     (f : MvPowerSeries (Fin 3) ℂ) (m₀ m₁ m₂ : ℕ) (hm₀ : m₀ ≤ 1) :
     ∑ k ∈ Finset.range (min m₁ m₂ + 1),
@@ -259,7 +291,9 @@ private lemma divQ_recurrence (f : MvPowerSeries (Fin 3) ℂ) (a b c : ℕ) :
 The coefficients of `divQ f` telescope along the substitution fibers. For `x`-degree
 at least two, this gives the coefficient of `f` directly. For degrees zero and one,
 `ψHom_coeff_sum` identifies the remaining sum with a coefficient of `ψHom f`,
-which vanishes when `f` is in the kernel. -/
+which vanishes when `f` is in the kernel.
+@isnad1 id=injectiv.0h0v.s6.0f61caee9507 from=translated src=- shape=a43ba9b0 vocab=1deadb39
+-/
 lemma ψBar_injective : Function.Injective ψBar := by
   apply RingHom.lift_injective_of_ker_le_ideal
   intro f hf
@@ -310,6 +344,9 @@ lemma ψBar_injective : Function.Injective ψBar := by
 
 end T_isDomain_proof
 
+/--
+@isnad1 id=isdomain.0h0v.s4.6236450131a2 from=translated src=- shape=49959d42 vocab=a69cfaa0
+-/
 instance T_isDomain : IsDomain T :=
   letI : Nontrivial T := Ideal.Quotient.nontrivial_iff.mpr conjI_ne_top
   letI : NoZeroDivisors T := ⟨fun {a b} hab => by

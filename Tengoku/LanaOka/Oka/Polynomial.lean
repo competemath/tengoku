@@ -40,7 +40,9 @@ variable {ι : Type*} [Fintype ι]
 
 namespace MvPolynomial
 
-/-- Evaluating a polynomial in `ι` complex variables is analytic at every point. -/
+/-- Evaluating a polynomial in `ι` complex variables is analytic at every point.
+@isnad1 id=analytic.0h3v.s7.6288c6271dbd from=translated src=- shape=f742e885 vocab=af5484b7
+-/
 theorem analyticAt_eval (p : MvPolynomial ι ℂ) (x : ι → ℂ) :
     AnalyticAt ℂ (fun z : ι → ℂ ↦ MvPolynomial.eval z p) x := by
   induction p using MvPolynomial.induction_on with
@@ -56,7 +58,9 @@ theorem analyticAt_eval (p : MvPolynomial ι ℂ) (x : ι → ℂ) :
       simp only [map_mul, MvPolynomial.eval_X]
       exact hp.mul hi
 
-/-- Evaluating a polynomial in `ι` complex variables is analytic on every set. -/
+/-- Evaluating a polynomial in `ι` complex variables is analytic on every set.
+@isnad1 id=analytic.0h3v.s7.79f624413d30 from=translated src=- shape=26526c21 vocab=f398ce8f
+-/
 theorem analyticOn_eval (p : MvPolynomial ι ℂ) (s : Set (ι → ℂ)) :
     AnalyticOn ℂ (fun z : ι → ℂ ↦ MvPolynomial.eval z p) s :=
   fun x _ ↦ (analyticAt_eval p x).analyticWithinAt
@@ -67,7 +71,9 @@ namespace Tengoku.LanaOka.OkaRing
 
 variable (U : Opens (ι → ℂ))
 
-/-- The function on `U` defined by a polynomial is holomorphic. -/
+/-- The function on `U` defined by a polynomial is holomorphic.
+@isnad1 id=okaanaly.0h3v.s8.3b270b849f07 from=translated src=- shape=f16caa6e vocab=8a948400
+-/
 theorem okaAnalytic_eval (p : MvPolynomial ι ℂ) :
     OkaAnalytic (fun z : U ↦ MvPolynomial.eval (z : ι → ℂ) p) := by
   refine (MvPolynomial.analyticOn_eval p (U : Set (ι → ℂ))).congr fun x hx ↦ ?_
@@ -86,18 +92,26 @@ noncomputable def ofMvPolynomial : MvPolynomial ι ℂ →ₐ[ℂ] OkaRing U whe
   map_add' p q := Subtype.ext (funext fun z ↦ map_add (MvPolynomial.eval (z : ι → ℂ)) p q)
   commutes' c := Subtype.ext (funext fun z ↦ MvPolynomial.eval_C (f := (z : ι → ℂ)) c)
 
+/--
+@isnad1 id=eq.0h3v.s9.0c048b351e06 from=translated src=- shape=96d8fa18 vocab=aab694ef
+-/
 @[simp]
 lemma toFun_ofMvPolynomial (p : MvPolynomial ι ℂ) :
     (ofMvPolynomial U p).toFun U = fun z : U ↦ MvPolynomial.eval (z : ι → ℂ) p :=
   rfl
 
 /-- The holomorphic function attached to `p` takes the value `MvPolynomial.eval x p` at `x`.
-Together with `OkaRing.ext` this characterises `OkaRing.ofMvPolynomial`. -/
+Together with `OkaRing.ext` this characterises `OkaRing.ofMvPolynomial`.
+@isnad1 id=eq.1h4v.s8.a0dea816d9dc from=translated src=- shape=9bd0b7f5 vocab=d0a9347e
+-/
 @[simp]
 lemma evalHom_ofMvPolynomial {x : ι → ℂ} (hx : x ∈ U) (p : MvPolynomial ι ℂ) :
     OkaRing.evalHom hx (ofMvPolynomial U p) = MvPolynomial.eval x p :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s8.c53f386412db from=translated src=- shape=9eb281d8 vocab=588c9118
+-/
 @[simp]
 lemma toGlobalFun_ofMvPolynomial {x : ι → ℂ} (hx : x ∈ U) (p : MvPolynomial ι ℂ) :
     (ofMvPolynomial U p).toGlobalFun U x = MvPolynomial.eval x p :=
@@ -105,7 +119,9 @@ lemma toGlobalFun_ofMvPolynomial {x : ι → ℂ} (hx : x ∈ U) (p : MvPolynomi
 
 /-- Reading a polynomial as a holomorphic function commutes with restriction: `ofMvPolynomial`
 is a map of presheaves of `ℂ`-algebras from the constant presheaf with value
-`MvPolynomial ι ℂ`. -/
+`MvPolynomial ι ℂ`.
+@isnad1 id=eq.1h4v.s9.106663c59de1 from=translated src=- shape=a63a4130 vocab=619270ef
+-/
 @[simp]
 lemma restrict_ofMvPolynomial {U V : Opens (ι → ℂ)} (h : U ≤ V) (p : MvPolynomial ι ℂ) :
     OkaRing.restrict h (ofMvPolynomial V p) = ofMvPolynomial U p :=

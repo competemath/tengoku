@@ -60,7 +60,9 @@ namespace TateCurvesTheta
 /-- The divisor power sum `σₖ(N) = ∑_{d ∣ N} dᵏ`, as an integer. -/
 def sigmaZ (k N : ℕ) : ℤ := ∑ d ∈ N.divisors, (d : ℤ) ^ k
 
-/-- The divisor power sum computed over the second components of `divisorsAntidiagonal`. -/
+/-- The divisor power sum computed over the second components of `divisorsAntidiagonal`.
+@isnad1 id=eq.0h2v.s5.309c9ba45329 from=translated src=- shape=fd2aa7ea vocab=3de8c629
+-/
 lemma sigmaZ_eq_sum_divisorsAntidiagonal (k s : ℕ) :
     ∑ p ∈ s.divisorsAntidiagonal, (p.2 : ℤ) ^ k = sigmaZ k s :=
   Nat.sum_divisorsAntidiagonal' (f := fun _ d => (d : ℤ) ^ k)
@@ -74,7 +76,9 @@ def tateQuad (N : ℕ) : Finset ((ℕ × ℕ) × ℕ × ℕ) :=
     fun q => q.1.1 * q.1.2 + q.2.1 * q.2.2 = N ∧ 0 < q.1.1 ∧ 0 < q.1.2 ∧ 0 < q.2.1 ∧ 0 < q.2.2
 
 /-- Membership in `tateQuad N` is exactly the equation `a*x + b*y = N` together with
-positivity of all four entries; the auxiliary range bounds are automatic. -/
+positivity of all four entries; the auxiliary range bounds are automatic.
+@isnad1 id=iff.0h2v.s7.21b097392ff0 from=translated src=- shape=f7299d3e vocab=61752fc1
+-/
 lemma mem_tateQuad {N : ℕ} {q : (ℕ × ℕ) × ℕ × ℕ} :
     q ∈ tateQuad N ↔
       q.1.1 * q.1.2 + q.2.1 * q.2.2 = N ∧ 0 < q.1.1 ∧ 0 < q.1.2 ∧ 0 < q.2.1 ∧ 0 < q.2.2 := by
@@ -93,7 +97,9 @@ lemma mem_tateQuad {N : ℕ} {q : (ℕ × ℕ) × ℕ × ℕ} :
 The four basic power sums, in the divisibility-free form `(∑ …) * c = polynomial in M`,
 valid for **all** `M : ℕ` (including `M = 0, 1`). -/
 
-/-- `2·∑_{1 ≤ x < M} x = M² - M`. -/
+/-- `2·∑_{1 ≤ x < M} x = M² - M`.
+@isnad1 id=eq.0h1v.s6.031851254d75 from=translated src=- shape=bfbadabb vocab=dc28020e
+-/
 lemma sum_Ico_pow_one (M : ℕ) : (∑ x ∈ Finset.Ico 1 M, (x : ℤ)) * 2 = (M : ℤ) ^ 2 - M := by
   induction M with
   | zero => simp
@@ -104,7 +110,9 @@ lemma sum_Ico_pow_one (M : ℕ) : (∑ x ∈ Finset.Ico 1 M, (x : ℤ)) * 2 = (M
       push_cast
       linear_combination ih
 
-/-- `6·∑_{1 ≤ x < M} x² = 2M³ - 3M² + M`. -/
+/-- `6·∑_{1 ≤ x < M} x² = 2M³ - 3M² + M`.
+@isnad1 id=eq.0h1v.s7.f76e4ead7507 from=translated src=- shape=cab04d29 vocab=ffc2166a
+-/
 lemma sum_Ico_pow_two (M : ℕ) :
     (∑ x ∈ Finset.Ico 1 M, (x : ℤ) ^ 2) * 6 = 2 * (M : ℤ) ^ 3 - 3 * (M : ℤ) ^ 2 + M := by
   induction M with
@@ -116,7 +124,9 @@ lemma sum_Ico_pow_two (M : ℕ) :
       push_cast
       linear_combination ih
 
-/-- `4·∑_{1 ≤ x < M} x³ = M⁴ - 2M³ + M²`. -/
+/-- `4·∑_{1 ≤ x < M} x³ = M⁴ - 2M³ + M²`.
+@isnad1 id=eq.0h1v.s7.e35ecf3a4d60 from=translated src=- shape=05e909c2 vocab=ffc2166a
+-/
 lemma sum_Ico_pow_three (M : ℕ) :
     (∑ x ∈ Finset.Ico 1 M, (x : ℤ) ^ 3) * 4 = (M : ℤ) ^ 4 - 2 * (M : ℤ) ^ 3 + (M : ℤ) ^ 2 := by
   induction M with
@@ -128,7 +138,9 @@ lemma sum_Ico_pow_three (M : ℕ) :
       push_cast
       linear_combination ih
 
-/-- `30·∑_{1 ≤ x < M} x⁴ = 6M⁵ - 15M⁴ + 10M³ - M`. -/
+/-- `30·∑_{1 ≤ x < M} x⁴ = 6M⁵ - 15M⁴ + 10M³ - M`.
+@isnad1 id=eq.0h1v.s7.1e2de7d73300 from=translated src=- shape=739f4276 vocab=ffc2166a
+-/
 lemma sum_Ico_pow_four (M : ℕ) :
     (∑ x ∈ Finset.Ico 1 M, (x : ℤ) ^ 4) * 30
       = 6 * (M : ℤ) ^ 5 - 15 * (M : ℤ) ^ 4 + 10 * (M : ℤ) ^ 3 - M := by
@@ -141,7 +153,9 @@ lemma sum_Ico_pow_four (M : ℕ) :
       push_cast
       linear_combination ih
 
-/-- Reflection `x ↦ M - x` is a bijection of `Ico 1 M`, so it preserves sums. -/
+/-- Reflection `x ↦ M - x` is a bijection of `Ico 1 M`, so it preserves sums.
+@isnad1 id=eq.0h2v.s5.8dde41a25408 from=translated src=- shape=8cfc62a6 vocab=3a51bd1d
+-/
 lemma sum_Ico_reflect (M : ℕ) (f : ℕ → ℤ) :
     ∑ x ∈ Finset.Ico 1 M, f (M - x) = ∑ x ∈ Finset.Ico 1 M, f x := by
   refine Finset.sum_nbij' (i := fun x => M - x) (j := fun x => M - x) ?_ ?_ ?_ ?_ ?_ <;>
@@ -152,7 +166,9 @@ lemma sum_Ico_reflect (M : ℕ) (f : ℕ → ℤ) :
   · omega
   · rfl
 
-/-- `6·∑_{1 ≤ x < M} x(M - x) = M³ - M`. -/
+/-- `6·∑_{1 ≤ x < M} x(M - x) = M³ - M`.
+@isnad1 id=eq.0h1v.s6.f88d73f203c4 from=translated src=- shape=33f9e795 vocab=dc28020e
+-/
 lemma sum_Ico_mul_sub (M : ℕ) :
     (∑ x ∈ Finset.Ico 1 M, (x : ℤ) * ((M - x : ℕ) : ℤ)) * 6 = (M : ℤ) ^ 3 - M := by
   have hcast : ∑ x ∈ Finset.Ico 1 M, (x : ℤ) * ((M - x : ℕ) : ℤ)
@@ -163,7 +179,9 @@ lemma sum_Ico_mul_sub (M : ℕ) :
     ring
   linear_combination 6 * hcast + 3 * (M : ℤ) * sum_Ico_pow_one M - sum_Ico_pow_two M
 
-/-- `60·∑_{1 ≤ x < M} x(M - x)³ = 3M⁵ - 5M³ + 2M`. -/
+/-- `60·∑_{1 ≤ x < M} x(M - x)³ = 3M⁵ - 5M³ + 2M`.
+@isnad1 id=eq.0h1v.s7.551c07a03ed0 from=translated src=- shape=29ad9bc1 vocab=ffc2166a
+-/
 lemma sum_Ico_mul_sub_cube (M : ℕ) :
     (∑ x ∈ Finset.Ico 1 M, (x : ℤ) * ((M - x : ℕ) : ℤ) ^ 3) * 60
       = 3 * (M : ℤ) ^ 5 - 5 * (M : ℤ) ^ 3 + 2 * M := by
@@ -181,7 +199,9 @@ lemma sum_Ico_mul_sub_cube (M : ℕ) :
     - 30 * (M : ℤ) ^ 2 * sum_Ico_pow_two M + 45 * (M : ℤ) * sum_Ico_pow_three M
     - 2 * sum_Ico_pow_four M
 
-/-- `30·∑_{1 ≤ x < M} x²(M - x)² = M⁵ - M`. -/
+/-- `30·∑_{1 ≤ x < M} x²(M - x)² = M⁵ - M`.
+@isnad1 id=eq.0h1v.s6.4dd08687084f from=translated src=- shape=a5d4b042 vocab=dc28020e
+-/
 lemma sum_Ico_sq_mul_sub_sq (M : ℕ) :
     (∑ x ∈ Finset.Ico 1 M, (x : ℤ) ^ 2 * ((M - x : ℕ) : ℤ) ^ 2) * 30 = (M : ℤ) ^ 5 - M := by
   have hcast : ∑ x ∈ Finset.Ico 1 M, (x : ℤ) ^ 2 * ((M - x : ℕ) : ℤ) ^ 2
@@ -195,7 +215,9 @@ lemma sum_Ico_sq_mul_sub_sq (M : ℕ) :
   linear_combination 30 * hcast + 5 * (M : ℤ) ^ 2 * sum_Ico_pow_two M
     - 15 * (M : ℤ) * sum_Ico_pow_three M + sum_Ico_pow_four M
 
-/-- `6·∑_{1 ≤ x < M} (M - x)² = 2M³ - 3M² + M`. -/
+/-- `6·∑_{1 ≤ x < M} (M - x)² = 2M³ - 3M² + M`.
+@isnad1 id=eq.0h1v.s7.14112bda2d06 from=translated src=- shape=b4bade3e vocab=ffc2166a
+-/
 lemma sum_Ico_sub_pow_two (M : ℕ) :
     (∑ x ∈ Finset.Ico 1 M, ((M - x : ℕ) : ℤ) ^ 2) * 6
       = 2 * (M : ℤ) ^ 3 - 3 * (M : ℤ) ^ 2 + M := by
@@ -203,7 +225,9 @@ lemma sum_Ico_sub_pow_two (M : ℕ) :
     sum_Ico_reflect M fun n => (n : ℤ) ^ 2
   linear_combination 6 * h + sum_Ico_pow_two M
 
-/-- `30·∑_{1 ≤ x < M} (M - x)⁴ = 6M⁵ - 15M⁴ + 10M³ - M`. -/
+/-- `30·∑_{1 ≤ x < M} (M - x)⁴ = 6M⁵ - 15M⁴ + 10M³ - M`.
+@isnad1 id=eq.0h1v.s7.ac22aa9c64e9 from=translated src=- shape=2fdcfe3f vocab=ffc2166a
+-/
 lemma sum_Ico_sub_pow_four (M : ℕ) :
     (∑ x ∈ Finset.Ico 1 M, ((M - x : ℕ) : ℤ) ^ 4) * 30
       = 6 * (M : ℤ) ^ 5 - 15 * (M : ℤ) ^ 4 + 10 * (M : ℤ) ^ 3 - M := by
@@ -213,12 +237,16 @@ lemma sum_Ico_sub_pow_four (M : ℕ) :
 
 /-! ### Divisor-sum plumbing -/
 
-/-- Summing `(N/d)ᵏ` over the divisors of `N` gives `σₖ(N)`. -/
+/-- Summing `(N/d)ᵏ` over the divisors of `N` gives `σₖ(N)`.
+@isnad1 id=eq.0h2v.s5.ffa6b9185e7e from=translated src=- shape=0539449b vocab=9dd24718
+-/
 lemma sum_divisors_div_pow (N k : ℕ) :
     ∑ d ∈ N.divisors, ((N / d : ℕ) : ℤ) ^ k = sigmaZ k N :=
   Nat.sum_div_divisors N fun d => (d : ℤ) ^ k
 
-/-- Summing `(N/d)·dᵏ` over the divisors of `N` gives `N·σ_{k-1}(N)`, for `1 ≤ k`. -/
+/-- Summing `(N/d)·dᵏ` over the divisors of `N` gives `N·σ_{k-1}(N)`, for `1 ≤ k`.
+@isnad1 id=eq.1h2v.s6.42d010b4fe99 from=translated src=- shape=49198edb vocab=5fa53e02
+-/
 lemma sum_divisors_div_mul_pow (N k : ℕ) (hk : 1 ≤ k) :
     ∑ d ∈ N.divisors, ((N / d : ℕ) : ℤ) * (d : ℤ) ^ k = (N : ℤ) * sigmaZ (k - 1) N := by
   have h : ∀ d ∈ N.divisors,
@@ -236,7 +264,9 @@ lemma sum_divisors_div_mul_pow (N k : ℕ) (hk : 1 ≤ k) :
   rw [Finset.sum_congr rfl h, ← Finset.mul_sum]
   rfl
 
-/-- The `x = y` diagonal value: `∑_{d ∣ N} (N/d - 1)·dʲ = N·σ_{j-1}(N) - σⱼ(N)` for `1 ≤ j`. -/
+/-- The `x = y` diagonal value: `∑_{d ∣ N} (N/d - 1)·dʲ = N·σ_{j-1}(N) - σⱼ(N)` for `1 ≤ j`.
+@isnad1 id=eq.1h2v.s6.8b0a980e7ada from=translated src=- shape=7da59a6a vocab=5fa53e02
+-/
 lemma diag_xy_value (N j : ℕ) (hj : 1 ≤ j) :
     ∑ x ∈ N.divisors, (((N / x : ℕ) : ℤ) - 1) * (x : ℤ) ^ j
       = (N : ℤ) * sigmaZ (j - 1) N - sigmaZ j N := by
@@ -251,7 +281,9 @@ lemma diag_xy_value (N j : ℕ) (hj : 1 ≤ j) :
 
 /-- **Master bijection** (Euclidean descent): `((a,x),(b,y)) ↦ ((a-b,x),(b,x+y))` identifies
 the region `b < a` of `tateQuad N` with the region `x < y`, shifting the weight's second
-argument by the first. -/
+argument by the first.
+@isnad1 id=eq.0h2v.s8.ba03e033f79e from=translated src=- shape=af7b6f01 vocab=73649015
+-/
 lemma sum_master (N : ℕ) (f : ℕ → ℕ → ℤ) :
     ∑ q ∈ (tateQuad N).filter fun q => q.2.1 < q.1.1, f q.1.2 q.2.2
       = ∑ q ∈ (tateQuad N).filter fun q => q.1.2 < q.2.2, f q.1.2 (q.2.2 - q.1.2) := by
@@ -290,7 +322,9 @@ lemma sum_master (N : ℕ) (f : ℕ → ℕ → ℤ) :
     rw [Nat.add_sub_cancel_left]
 
 /-- **Swap symmetry** for the `(a, b)` comparison: the involution
-`((a,x),(b,y)) ↦ ((b,y),(a,x))` exchanges the regions `a < b` and `b < a`. -/
+`((a,x),(b,y)) ↦ ((b,y),(a,x))` exchanges the regions `a < b` and `b < a`.
+@isnad1 id=eq.0h2v.s7.768904dd4192 from=translated src=- shape=79bd76ab vocab=5df85913
+-/
 lemma sum_swap_lt (N : ℕ) (f : ℕ → ℕ → ℤ) :
     ∑ q ∈ (tateQuad N).filter fun q => q.1.1 < q.2.1, f q.1.2 q.2.2
       = ∑ q ∈ (tateQuad N).filter fun q => q.2.1 < q.1.1, f q.2.2 q.1.2 := by
@@ -310,7 +344,9 @@ lemma sum_swap_lt (N : ℕ) (f : ℕ → ℕ → ℤ) :
   · exact fun q _ => rfl
 
 /-- **Swap symmetry** for the `(x, y)` comparison: the involution
-`((a,x),(b,y)) ↦ ((b,y),(a,x))` exchanges the regions `y < x` and `x < y`. -/
+`((a,x),(b,y)) ↦ ((b,y),(a,x))` exchanges the regions `y < x` and `x < y`.
+@isnad1 id=eq.0h2v.s7.78c093540698 from=translated src=- shape=ca38b664 vocab=5df85913
+-/
 lemma sum_swap_xy (N : ℕ) (f : ℕ → ℕ → ℤ) :
     ∑ q ∈ (tateQuad N).filter fun q => q.2.2 < q.1.2, f q.1.2 q.2.2
       = ∑ q ∈ (tateQuad N).filter fun q => q.1.2 < q.2.2, f q.2.2 q.1.2 := by
@@ -329,7 +365,9 @@ lemma sum_swap_xy (N : ℕ) (f : ℕ → ℕ → ℤ) :
   · exact fun q _ => rfl
   · exact fun q _ => rfl
 
-/-- **Region split** by the trichotomy `b < a`, `a < b`, `a = b`. -/
+/-- **Region split** by the trichotomy `b < a`, `a < b`, `a = b`.
+@isnad1 id=eq.0h2v.s8.3e64989b652b from=translated src=- shape=ef5311d5 vocab=9d30874d
+-/
 lemma sum_split_ab (N : ℕ) (f : ℕ → ℕ → ℤ) :
     ∑ q ∈ tateQuad N, f q.1.2 q.2.2
       = (∑ q ∈ (tateQuad N).filter fun q => q.2.1 < q.1.1, f q.1.2 q.2.2)
@@ -345,7 +383,9 @@ lemma sum_split_ab (N : ℕ) (f : ℕ → ℕ → ℤ) :
   · exact Finset.sum_congr (Finset.filter_congr fun q _ => by omega) fun _ _ => rfl
   · exact Finset.sum_congr (Finset.filter_congr fun q _ => by omega) fun _ _ => rfl
 
-/-- **Region split** by the trichotomy `y < x`, `x < y`, `x = y`. -/
+/-- **Region split** by the trichotomy `y < x`, `x < y`, `x = y`.
+@isnad1 id=eq.0h2v.s8.cfc0a3dda16c from=translated src=- shape=12377985 vocab=9d30874d
+-/
 lemma sum_split_xy (N : ℕ) (f : ℕ → ℕ → ℤ) :
     ∑ q ∈ tateQuad N, f q.1.2 q.2.2
       = (∑ q ∈ (tateQuad N).filter fun q => q.2.2 < q.1.2, f q.1.2 q.2.2)
@@ -364,7 +404,9 @@ lemma sum_split_xy (N : ℕ) (f : ℕ → ℕ → ℤ) :
 /-! ### Diagonal evaluations and the convolution factorization -/
 
 /-- **Diagonal `a = b`**: a solution with `a = b` is `d·(x + y) = N`, i.e. a divisor `d` of `N`
-together with a split `x + (N/d - x)` of `N/d`. -/
+together with a split `x + (N/d - x)` of `N/d`.
+@isnad1 id=eq.1h2v.s7.e44ed8764233 from=translated src=- shape=426f0d65 vocab=016a009c
+-/
 lemma sum_diag_ab (N : ℕ) (hN : 0 < N) (f : ℕ → ℕ → ℤ) :
     ∑ q ∈ (tateQuad N).filter fun q => q.1.1 = q.2.1, f q.1.2 q.2.2
       = ∑ d ∈ N.divisors, ∑ x ∈ Finset.Ico 1 (N / d), f x (N / d - x) := by
@@ -412,7 +454,9 @@ lemma sum_diag_ab (N : ℕ) (hN : 0 < N) (f : ℕ → ℕ → ℤ) :
     rw [show N / a - x = y by omega]
 
 /-- **Diagonal `x = y`**: a solution with `x = y` is `(a + b)·x = N`, i.e. a divisor `x` of `N`
-together with a split `a + (N/x - a)` of `N/x`; the weight is constant on each fiber. -/
+together with a split `a + (N/x - a)` of `N/x`; the weight is constant on each fiber.
+@isnad1 id=eq.1h2v.s7.fad6f85cc348 from=translated src=- shape=5ea4a230 vocab=c0f64fbc
+-/
 lemma sum_diag_xy (N : ℕ) (hN : 0 < N) (f : ℕ → ℕ → ℤ) :
     ∑ q ∈ (tateQuad N).filter fun q => q.1.2 = q.2.2, f q.1.2 q.2.2
       = ∑ x ∈ N.divisors, ∑ _a ∈ Finset.Ico 1 (N / x), f x x := by
@@ -457,7 +501,9 @@ lemma sum_diag_xy (N : ℕ) (hN : 0 < N) (f : ℕ → ℕ → ℤ) :
     rfl
 
 /-- **Convolution factorization**: partitioning `tateQuad N` by `s = a·x` turns a product
-weight `f(x)·g(y)` into the convolution of the divisor sums of `f` and `g`. -/
+weight `f(x)·g(y)` into the convolution of the divisor sums of `f` and `g`.
+@isnad1 id=eq.1h3v.s7.0612dc6755c1 from=translated src=- shape=dbaaeb89 vocab=a332a470
+-/
 lemma sum_tateQuad_mul (N : ℕ) (_hN : 0 < N) (f g : ℕ → ℤ) :
     ∑ q ∈ tateQuad N, f q.1.2 * g q.2.2
       = ∑ s ∈ Finset.Ico 1 N,
@@ -778,7 +824,9 @@ private lemma tSum_conv_three (N : ℕ) (hN : 0 < N) :
 
 /-! ### The two convolution identities -/
 
-/-- **Besge's identity**: the classical `σ₁∗σ₁` convolution evaluation. -/
+/-- **Besge's identity**: the classical `σ₁∗σ₁` convolution evaluation.
+@isnad1 id=eq.1h1v.s7.5834c6de23c5 from=translated src=- shape=bcc99d03 vocab=1dde6d19
+-/
 theorem besge_identity (N : ℕ) (hN : 0 < N) :
     12 * ∑ s ∈ Finset.Ico 1 N, sigmaZ 1 s * sigmaZ 1 (N - s)
       = 5 * sigmaZ 3 N + sigmaZ 1 N - 6 * (N : ℤ) * sigmaZ 1 N := by
@@ -794,7 +842,9 @@ theorem besge_identity (N : ℕ) (hN : 0 < N) :
   linear_combination (-12) * hconv + 12 * hsplit + 6 * he1 - 12 * hdX02 + 2 * hdA02
     + 6 * hdX11 + hdA11
 
-/-- **The `σ₁∗σ₃` convolution evaluation** (weight-6 Liouville/Glaisher identity). -/
+/-- **The `σ₁∗σ₃` convolution evaluation** (weight-6 Liouville/Glaisher identity).
+@isnad1 id=eq.1h1v.s7.a799c5177068 from=translated src=- shape=7860b748 vocab=1dde6d19
+-/
 theorem sigma_one_three_conv (N : ℕ) (hN : 0 < N) :
     240 * ∑ s ∈ Finset.Ico 1 N, sigmaZ 1 s * sigmaZ 3 (N - s)
       = 21 * sigmaZ 5 N + 10 * sigmaZ 3 N - sigmaZ 1 N - 30 * (N : ℤ) * sigmaZ 3 N := by

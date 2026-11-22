@@ -57,6 +57,9 @@ noncomputable def simplexD (S : Type u) (n : ℕ) :
     FreeAbelianGroup (Fin (n + 2) → S) →+ FreeAbelianGroup (Fin (n + 1) → S) :=
   ((simplexChains S).d (n + 1) n).hom
 
+/--
+@isnad1 id=eq.0h3v.s9.6ed20ceed143 from=translated src=- shape=9eaa6b0d vocab=5368a7e8
+-/
 lemma simplexD_of (S : Type u) (n : ℕ) (σ : Fin (n + 2) → S) :
     simplexD S n (FreeAbelianGroup.of σ) =
       ∑ i : Fin (n + 2), (-1 : ℤ) ^ (i : ℕ) • FreeAbelianGroup.of (σ ∘ i.succAbove) := by
@@ -65,6 +68,9 @@ lemma simplexD_of (S : Type u) (n : ℕ) (σ : Fin (n + 2) → S) :
   erw [AddCommGrpCat.finsetSum_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.9a9a1594e19b from=translated src=- shape=55d13d24 vocab=22ba4832
+-/
 lemma cons_comp_succAbove_succ {S : Type u} {n : ℕ} (s₀ : S) (σ : Fin (n + 1) → S)
     (k : Fin (n + 1)) :
     (Fin.cons s₀ σ : Fin (n + 2) → S) ∘ k.succ.succAbove = Fin.cons s₀ (σ ∘ k.succAbove) := by
@@ -76,6 +82,9 @@ noncomputable def simplexCone {S : Type u} (s₀ : S) (n : ℕ) :
     FreeAbelianGroup (Fin (n + 1) → S) →+ FreeAbelianGroup (Fin (n + 2) → S) :=
   FreeAbelianGroup.map fun σ => (Fin.cons s₀ σ : Fin (n + 2) → S)
 
+/--
+@isnad1 id=eq.0h4v.s11.f2914ad6439d from=translated src=- shape=67dbbbf5 vocab=f7020f2d
+-/
 lemma simplexChains_homotopy {S : Type u} (s₀ : S) (n : ℕ)
     (x : FreeAbelianGroup (Fin (n + 2) → S)) :
     simplexD S (n + 1) (simplexCone s₀ (n + 1) x) + simplexCone s₀ n (simplexD S n x) = x := by
@@ -93,7 +102,9 @@ lemma simplexChains_homotopy {S : Type u} (s₀ : S) (n : ℕ)
   | neg x hx => rw [map_neg, map_neg, map_neg, map_neg, ← neg_add, hx]
   | add x y hx hy => rw [map_add, map_add, map_add, map_add, add_add_add_comm, hx, hy]
 
-/-- The chains on the full simplex on `S` are exact in positive degrees. -/
+/-- The chains on the full simplex on `S` are exact in positive degrees.
+@isnad1 id=ex.1h3v.s10.6c7d970c2620 from=translated src=- shape=28d2ade0 vocab=083cfb20
+-/
 lemma simplexD_exact (S : Type u) (n : ℕ) (x : FreeAbelianGroup (Fin (n + 2) → S))
     (hx : simplexD S n x = 0) : ∃ y, simplexD S (n + 1) y = x := by
   by_cases hS : Nonempty S
@@ -109,10 +120,16 @@ lemma simplexD_exact (S : Type u) (n : ℕ) (x : FreeAbelianGroup (Fin (n + 2) �
       | add y z hy hz => rw [hy, hz, add_zero]
     exact ⟨0, by rw [map_zero, h0 x]⟩
 
+/--
+@isnad1 id=eq.0h3v.s10.36c8a1571dae from=translated src=- shape=1bf571a5 vocab=083cfb20
+-/
 lemma simplexD_comp (S : Type u) (n : ℕ) (x : FreeAbelianGroup (Fin (n + 3) → S)) :
     simplexD S n (simplexD S (n + 1) x) = 0 :=
   ConcreteCategory.congr_hom ((simplexChains S).d_comp_d (n + 2) (n + 1) n) x
 
+/--
+@isnad1 id=eq.0h5v.s11.d648b70a7930 from=translated src=- shape=56513a2f vocab=63d6bcde
+-/
 lemma simplexD_map {S S' : Type u} (f : S → S') (n : ℕ) (x : FreeAbelianGroup (Fin (n + 2) → S)) :
     simplexD S' n (FreeAbelianGroup.map (fun σ => f ∘ σ) x) =
       FreeAbelianGroup.map (fun σ => f ∘ σ) (simplexD S n x) := by
@@ -126,6 +143,9 @@ lemma simplexD_map {S S' : Type u} (f : S → S') (n : ℕ) (x : FreeAbelianGrou
 
 section Resolution
 
+/--
+@isnad1 id=eq.1h4v.s8.bc505a260b0f from=translated src=- shape=ed994345 vocab=da5cd2b5
+-/
 lemma freeHom_ext {S : Type u} {A : AddCommGrpCat.{u}}
     {f g : AddCommGrpCat.of (FreeAbelianGroup S) ⟶ A}
     (h : ∀ σ, f (FreeAbelianGroup.of σ) = g (FreeAbelianGroup.of σ)) : f = g :=
@@ -157,12 +177,18 @@ noncomputable def cechK (n : ℕ) : (Opens X)ᵒᵖ ⥤ AddCommGrpCat.{u} where
     simp only [FreeAbelianGroup.map_of_apply]
     rfl
 
+/--
+@isnad1 id=eq.0h8v.s9.a4ceb924e7d5 from=translated src=- shape=413bb23d vocab=7848cbd7
+-/
 lemma cechK_map_of {n : ℕ} {V V' : (Opens X)ᵒᵖ} (f : V ⟶ V')
     (σ : Fin (n + 1) → cechIdx U V.unop) :
     (cechK U n).map f (FreeAbelianGroup.of σ) =
       FreeAbelianGroup.of (cechIdxMap U (leOfHom f.unop) ∘ σ) :=
   FreeAbelianGroup.map_of_apply σ
 
+/--
+@isnad1 id=eq.1h8v.s10.15a01e563734 from=translated src=- shape=2caa0fd1 vocab=1cb9f104
+-/
 lemma cechK_hom_ext {n : ℕ} {V : (Opens X)ᵒᵖ} {A : AddCommGrpCat.{u}}
     {f g : (cechK U n).obj V ⟶ A}
     (h : ∀ σ, f (FreeAbelianGroup.of σ) = g (FreeAbelianGroup.of σ)) : f = g :=
@@ -180,7 +206,9 @@ noncomputable def cechKsc (n : ℕ) : ShortComplex ((Opens X)ᵒᵖ ⥤ AddCommG
       simplexD_comp _ n (FreeAbelianGroup.of σ)))
 
 /-- A short complex of abelian presheaves is exact if it is exact after evaluation at every
-object. -/
+object.
+@isnad1 id=exact.1h2v.s6.9651b49c9ecf from=translated src=- shape=96d68cb7 vocab=a4a08243
+-/
 lemma exact_of_evaluation {C : Type*} [Category C]
     {S : ShortComplex (C ⥤ AddCommGrpCat.{u})}
     (h : ∀ c, (S.map ((evaluation _ _).obj c)).Exact) : S.Exact := by
@@ -189,6 +217,9 @@ lemma exact_of_evaluation {C : Type*} [Category C]
   exact ((ShortComplex.exact_iff_isZero_homology _).1 (h c)).of_iso
     (S.mapHomologyIso ((evaluation _ _).obj c)).symm
 
+/--
+@isnad1 id=exact.0h4v.s6.3026730e50b4 from=translated src=- shape=ece0e9e1 vocab=2897edb5
+-/
 lemma cechKsc_exact (n : ℕ) : (cechKsc U n).Exact := by
   refine exact_of_evaluation fun V => ?_
   rw [ShortComplex.ab_exact_iff]
@@ -196,6 +227,9 @@ lemma cechKsc_exact (n : ℕ) : (cechKsc U n).Exact := by
 
 variable (P : (Opens X)ᵒᵖ ⥤ AddCommGrpCat.{u})
 
+/--
+@isnad1 id=le.0h6v.s7.5ae4fd8f5c10 from=translated src=- shape=bbf0af9a vocab=8904921f
+-/
 lemma le_cechOpen_val {V : Opens X} {n : ℕ} (τ : Fin (n + 1) → cechIdx U V) :
     V ≤ cechOpen U (Subtype.val ∘ τ) :=
   le_iInf fun a => (τ a).2
@@ -211,6 +245,9 @@ noncomputable def cechKHom {n : ℕ} (c : CechCochain U P n) : cechK U n ⟶ P w
       ← ConcreteCategory.comp_apply, ← P.map_comp]
     rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.d9dede76d825 from=translated src=- shape=f69ddba2 vocab=33918bd5
+-/
 lemma cechKHom_app_of {n : ℕ} (c : CechCochain U P n) (V : (Opens X)ᵒᵖ)
     (τ : Fin (n + 1) → cechIdx U V.unop) :
     (cechKHom U P c).app V (FreeAbelianGroup.of τ) =
@@ -221,6 +258,9 @@ lemma cechKHom_app_of {n : ℕ} (c : CechCochain U P n) (V : (Opens X)ᵒᵖ)
 noncomputable def cechKCochain {n : ℕ} (φ : cechK U n ⟶ P) : CechCochain U P n :=
   fun σ => φ.app (op (cechOpen U σ)) (FreeAbelianGroup.of fun a => ⟨σ a, iInf_le _ a⟩)
 
+/--
+@isnad1 id=eq.0h6v.s6.347e95a8c869 from=translated src=- shape=6bcd7b93 vocab=c084b8b7
+-/
 lemma cechKCochain_cechKHom {n : ℕ} (c : CechCochain U P n) :
     cechKCochain U P (cechKHom U P c) = c := by
   funext σ
@@ -229,6 +269,9 @@ lemma cechKCochain_cechKHom {n : ℕ} (c : CechCochain U P n) :
   rw [P.map_id]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.591f224d02b1 from=translated src=- shape=ebcb3bf1 vocab=b93f2082
+-/
 lemma cechKHom_zero {n : ℕ} : cechKHom U P (0 : CechCochain U P n) = 0 :=
   NatTrans.ext (funext fun V => cechK_hom_ext U fun τ => by
     rw [cechKHom_app_of]

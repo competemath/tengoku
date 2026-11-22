@@ -83,7 +83,9 @@ thetaProd u · thetaProdRecip u = 1,
 so `thetaProdRecip u` is the reciprocal `1 / thetaProd u`. The proof multiplies the three
 `thetaProdFactor · (reciprocal series) = 1` identities (`thetaProdFactor_mul_tsum_recipCoeff`
 for the two non-constant factors, `mul_inv_cancel₀` for the nonzero constant factor
-`thetaProdFactor (-q)`) after regrouping the six factors. -/
+`thetaProdFactor (-q)`) after regrouping the six factors.
+@isnad1 id=eq.2h3v.s7.b1336e2ea6bd from=translated src=- shape=71e77349 vocab=18765b7e
+-/
 theorem thetaProd_mul_thetaProdRecip (u : Kˣ)
     (hqu : ‖(t.q : K) * (u : K)‖ < 1) (huinv : ‖((u : K)⁻¹)‖ < 1) :
     t.thetaProd u * t.thetaProdRecip u = 1 := by
@@ -110,14 +112,18 @@ theorem thetaProd_mul_thetaProdRecip (u : Kˣ)
     _ = 1 * 1 * 1 := by rw [ha, hb, hc]
     _ = 1 := by ring
 
-/-- The symmetric form of the reciprocal identity, `thetaProdRecip u · thetaProd u = 1`. -/
+/-- The symmetric form of the reciprocal identity, `thetaProdRecip u · thetaProd u = 1`.
+@isnad1 id=eq.2h3v.s7.0ed5f1acd68e from=translated src=- shape=71e77349 vocab=18765b7e
+-/
 theorem thetaProdRecip_mul_thetaProd (u : Kˣ)
     (hqu : ‖(t.q : K) * (u : K)‖ < 1) (huinv : ‖((u : K)⁻¹)‖ < 1) :
     t.thetaProdRecip u * t.thetaProd u = 1 := by
   rw [mul_comm]; exact t.thetaProd_mul_thetaProdRecip u hqu huinv
 
 /-- On the fundamental annulus `thetaProd u` is a unit, hence nonzero — a direct sanity check
-against `thetaProd_eq_zero_iff` (its zeros `u ∈ -qᶻ` all lie off the open annulus). -/
+against `thetaProd_eq_zero_iff` (its zeros `u ∈ -qᶻ` all lie off the open annulus).
+@isnad1 id=ne.2h3v.s7.172fc1804d54 from=translated src=- shape=62a1c205 vocab=d54a7b9a
+-/
 theorem thetaProd_ne_zero_of_annulus (u : Kˣ)
     (hqu : ‖(t.q : K) * (u : K)‖ < 1) (huinv : ‖((u : K)⁻¹)‖ < 1) :
     t.thetaProd u ≠ 0 := by
@@ -126,7 +132,9 @@ theorem thetaProd_ne_zero_of_annulus (u : Kˣ)
   rw [h, zero_mul] at hone
   exact one_ne_zero hone.symm
 
-/-- On the fundamental annulus, `thetaProdRecip u` is literally the inverse `(thetaProd u)⁻¹`. -/
+/-- On the fundamental annulus, `thetaProdRecip u` is literally the inverse `(thetaProd u)⁻¹`.
+@isnad1 id=eq.2h3v.s7.50330eabc124 from=translated src=- shape=60963971 vocab=18765b7e
+-/
 theorem inv_thetaProd_eq_thetaProdRecip (u : Kˣ)
     (hqu : ‖(t.q : K) * (u : K)‖ < 1) (huinv : ‖((u : K)⁻¹)‖ < 1) :
     (t.thetaProd u)⁻¹ = t.thetaProdRecip u :=
@@ -134,7 +142,9 @@ theorem inv_thetaProd_eq_thetaProdRecip (u : Kˣ)
 
 /-- The annulus reciprocal, expressed through the norm bounds `1 < ‖u‖` and `‖q‖ · ‖u‖ < 1`
 that describe the fundamental annulus `1 < ‖u‖ < ‖q‖⁻¹` more readably than the raw factor-norm
-hypotheses of `thetaProd_mul_thetaProdRecip`. -/
+hypotheses of `thetaProd_mul_thetaProdRecip`.
+@isnad1 id=eq.2h3v.s7.b3732c5045fb from=translated src=- shape=6576114c vocab=471e1747
+-/
 theorem thetaProd_mul_thetaProdRecip_of_annulus (u : Kˣ)
     (hlo : 1 < ‖(u : K)‖) (hhi : ‖(t.q : K)‖ * ‖(u : K)‖ < 1) :
     t.thetaProd u * t.thetaProdRecip u = 1 := by

@@ -31,7 +31,9 @@ section Points
 variable {R : Type*} [CommRing R] [Algebra ℂ R] [Algebra.FiniteType ℂ R]
 
 /-- **Nullstellensatz**: a maximal ideal of a finitely generated `ℂ`-algebra is the kernel of a
-`ℂ`-point. -/
+`ℂ`-point.
+@isnad1 id=ex.0h2v.s6.9d5ba2d1f945 from=translated src=- shape=2da1bb05 vocab=b9a46c65
+-/
 theorem exists_point_of_isMaximal (w : Ideal R) [hw : w.IsMaximal] :
     ∃ ψ : R →ₐ[ℂ] ℂ, RingHom.ker ψ = w := by
   letI : Field (R ⧸ w) := Ideal.Quotient.field w
@@ -45,10 +47,16 @@ theorem exists_point_of_isMaximal (w : Ideal R) [hw : w.IsMaximal] :
   simp [Ideal.Quotient.eq_zero_iff_mem]
 
 omit [Algebra.FiniteType ℂ R] in
+/--
+@isnad1 id=ismaxima.0h2v.s6.3e1fa86f2b2a from=translated src=- shape=bbbde91a vocab=c2469b34
+-/
 theorem ker_isMaximal (ψ : R →ₐ[ℂ] ℂ) : (RingHom.ker ψ).IsMaximal :=
   RingHom.ker_isMaximal_of_surjective _ fun c ↦ ⟨algebraMap ℂ R c, by simp⟩
 
 omit [Algebra.FiniteType ℂ R] in
+/--
+@isnad1 id=eq.1h3v.s7.ca1d8e0d5a8c from=translated src=- shape=d64090ae vocab=5f734ffc
+-/
 theorem point_ext_of_ker {ψ ψ' : R →ₐ[ℂ] ℂ} (h : RingHom.ker ψ = RingHom.ker ψ') : ψ = ψ' := by
   ext r
   have : r - algebraMap ℂ R (ψ r) ∈ RingHom.ker ψ := by simp
@@ -68,7 +76,9 @@ abbrev PtOver (B : Type*) [CommRing B] [Algebra ℂ B] [Algebra A B] (χ : A →
   {ψ : B →ₐ[ℂ] ℂ // ∀ a, ψ (algebraMap A B a) = χ a}
 
 omit [IsDomain B] in
-/-- The residue field of a maximal ideal of a finitely generated `ℂ`-algebra is `ℂ`. -/
+/-- The residue field of a maximal ideal of a finitely generated `ℂ`-algebra is `ℂ`.
+@isnad1 id=surjecti.0h2v.s9.3130e0dc2190 from=translated src=- shape=ceabfeca vocab=6a689f21
+-/
 theorem surjective_algebraMap_residueField (q : Ideal B) [q.IsMaximal] :
     Function.Surjective (algebraMap ℂ q.ResidueField) := by
   letI : Field (B ⧸ q) := Ideal.Quotient.field q
@@ -86,6 +96,9 @@ variable [Module.Finite A B] [Module.Flat A B]
 
 omit [IsDomain A] [Algebra.FiniteType ℂ A] [IsDomain B] [Algebra ℂ B] [Algebra.FiniteType ℂ B]
   [IsScalarTower ℂ A B] [Module.Flat A B] in
+/--
+@isnad1 id=ismaxima.1h4v.s7.aa954b1059d7 from=translated src=- shape=e7b46e09 vocab=52561390
+-/
 theorem isMaximal_of_mem_primesOver (χ : A →ₐ[ℂ] ℂ) {q : Ideal B}
     (hq : q ∈ (RingHom.ker χ).primesOver B) : q.IsMaximal := by
   haveI := ker_isMaximal χ
@@ -121,7 +134,9 @@ noncomputable def ptOverEquiv (χ : A →ₐ[ℂ] ℂ) : PtOver B χ ≃ (RingHo
     exact congrFun (congrArg DFunLike.coe (point_ext_of_ker h1)) a
 
 omit [Algebra.FiniteType ℂ A] [IsDomain B] in
-/-- **`Σ e = n`** over a point of `A` (all residue fields are `ℂ`). -/
+/-- **`Σ e = n`** over a point of `A` (all residue fields are `ℂ`).
+@isnad1 id=eq.0h3v.s9.b7b773154031 from=translated src=- shape=a33d007c vocab=2be184d5
+-/
 theorem sum_ramificationIdx (χ : A →ₐ[ℂ] ℂ) [Fintype ((RingHom.ker χ).primesOver B)] :
     ∑ q : (RingHom.ker χ).primesOver B, q.1.ramificationIdx A = Module.finrank A B := by
   classical
@@ -142,7 +157,9 @@ theorem sum_ramificationIdx (χ : A →ₐ[ℂ] ℂ) [Fintype ((RingHom.ker χ).
   rw [this, mul_one]
 
 omit [Algebra.FiniteType ℂ A] [IsDomain B] in
-/-- **Exactly `n` points over every point**, for an unramified extension. -/
+/-- **Exactly `n` points over every point**, for an unramified extension.
+@isnad1 id=eq.1h3v.s7.78d6d50fb06d from=translated src=- shape=ce84f632 vocab=2d5839aa
+-/
 theorem card_points_over (het : ∀ w : Ideal B, w.IsMaximal → w.ramificationIdx A = 1)
     (χ : A →ₐ[ℂ] ℂ) : Nat.card (PtOver B χ) = Module.finrank A B := by
   classical
@@ -159,7 +176,9 @@ section Separate
 
 variable {B : Type*} [CommRing B] [Algebra ℂ B]
 
-/-- One step of separation: adding a generic multiple of a separator keeps the old separations. -/
+/-- One step of separation: adding a generic multiple of a separator keeps the old separations.
+@isnad1 id=ex.2h8v.s8.9b8875dbf6b7 from=translated src=- shape=675b2feb vocab=21f794e9
+-/
 theorem exists_separate_step {ι : Type*} [DecidableEq ι] (f : ι → B →ₐ[ℂ] ℂ) (T : Finset (ι × ι))
     {b s : B}
     (hb : ∀ p ∈ T, f p.1 b ≠ f p.2 b) {i j : ι} (hs : f i s ≠ f j s) :
@@ -182,7 +201,9 @@ theorem exists_separate_step {ι : Type*} [DecidableEq ι] (f : ι → B →ₐ[
   linear_combination -h
 
 /-- **Separating element**: finitely many distinct `ℂ`-points of `B` are separated by one
-element. -/
+element.
+@isnad1 id=ex.1h3v.s6.c98325b4a542 from=translated src=- shape=858d93dd vocab=23919308
+-/
 theorem exists_separating {ι : Type*} [Finite ι] (f : ι → B →ₐ[ℂ] ℂ)
     (hf : Function.Injective f) : ∃ b : B, Function.Injective fun i ↦ f i b := by
   classical
@@ -217,7 +238,9 @@ variable {A B : Type*} [CommRing A] [IsDomain A] [Algebra ℂ A]
 
 omit [IsDomain B] [Algebra ℂ A] [Algebra ℂ B] [Algebra.FiniteType ℂ B] [IsScalarTower ℂ A B] in
 /-- In an unramified extension of Dedekind domains, `𝔭 B` is the intersection of the primes
-over `𝔭`. -/
+over `𝔭`.
+@isnad1 id=mem.3h4v.s8.f8c38113372e from=translated src=- shape=67d04feb vocab=52f925e6
+-/
 theorem mem_map_of_forall_mem [IsDedekindDomain B] [FaithfulSMul A B] {p : Ideal A}
     [p.IsMaximal] (hp : p ≠ ⊥) (het : ∀ w : Ideal B, w.IsMaximal → w.ramificationIdx A = 1)
     {b : B} (hb : ∀ q ∈ p.primesOver B, b ∈ q) : b ∈ p.map (algebraMap A B) := by
@@ -263,7 +286,9 @@ theorem mem_map_of_forall_mem [IsDedekindDomain B] [FaithfulSMul A B] {p : Ideal
 attribute [local instance] FractionRing.liftAlgebra
 
 omit [IsDomain B] in
-/-- **Local presentation** of an unramified finite extension at a point `χ` of `A`. -/
+/-- **Local presentation** of an unramified finite extension at a point `χ` of `A`.
+@isnad1 id=ex.2h3v.s9.1296661dcc51 from=translated src=- shape=0ff08431 vocab=ad0a3478
+-/
 theorem exists_locPres [Algebra.FiniteType ℂ A] [IsIntegrallyClosed A] [IsDedekindDomain B]
     [Module.Finite A B] [Module.Flat A B] [FaithfulSMul A B] (hA : ¬ IsField A)
     (het : ∀ w : Ideal B, w.IsMaximal → w.ramificationIdx A = 1) (χ : A →ₐ[ℂ] ℂ) :

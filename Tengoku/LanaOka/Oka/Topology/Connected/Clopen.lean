@@ -71,7 +71,9 @@ preconnected, being the image of the connected `β i` under `Sigma.mk i`, so it 
 component by `IsPreconnected.subset_connectedComponent`.
 
 **`[∀ i, ConnectedSpace (β i)]` is used in the second inclusion only**, and only through
-`isPreconnected_univ`: the first holds for any family whatever. -/
+`isPreconnected_univ`: the first holds for any family whatever.
+@isnad1 id=eq.0h4v.s6.5bbe863785d2 from=translated src=- shape=51555f87 vocab=f63746e5
+-/
 theorem _root_.Tengoku.LanaOka.connectedComponent_sigmaMk {ι : Type*} {β : ι → Type*} [∀ i, TopologicalSpace (β i)]
     [∀ i, ConnectedSpace (β i)] (i : ι) (y : β i) :
     connectedComponent (⟨i, y⟩ : Σ i, β i) = Set.range (Sigma.mk i) := by

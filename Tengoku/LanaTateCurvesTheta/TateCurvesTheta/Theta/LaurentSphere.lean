@@ -99,7 +99,9 @@ namespace TateParameter
 variable [IsUltrametricDist K] (t : TateParameter K)
 
 /-- **The norm-one units `1 + qᵏ⁺¹`.** Since `‖qᵏ⁺¹‖ = ‖q‖ᵏ⁺¹ < 1 = ‖1‖`, the ultrametric
-isosceles law forces `‖1 + qᵏ⁺¹‖ = max ‖1‖ ‖qᵏ⁺¹‖ = 1`. -/
+isosceles law forces `‖1 + qᵏ⁺¹‖ = max ‖1‖ ‖qᵏ⁺¹‖ = 1`.
+@isnad1 id=eq.0h3v.s6.a2d41487e4e3 from=translated src=- shape=90702d5d vocab=616c7f18
+-/
 lemma norm_one_add_qpow (k : ℕ) : ‖(1 : K) + (t.q : K) ^ (k + 1)‖ = 1 := by
   have hlt : ‖(t.q : K) ^ (k + 1)‖ < 1 := by
     rw [norm_pow]
@@ -108,7 +110,9 @@ lemma norm_one_add_qpow (k : ℕ) : ‖(1 : K) + (t.q : K) ^ (k + 1)‖ = 1 := b
     rw [norm_one]; exact ne_of_gt hlt
   rw [IsUltrametricDist.norm_add_eq_max_of_norm_ne_norm hne, norm_one, max_eq_left hlt.le]
 
-/-- The elements `1 + qᵏ⁺¹` are nonzero (their norm is `1`), hence lie in `Kˣ`. -/
+/-- The elements `1 + qᵏ⁺¹` are nonzero (their norm is `1`), hence lie in `Kˣ`.
+@isnad1 id=ne.0h3v.s7.ec02e0c7f8e1 from=translated src=- shape=f0e0ded2 vocab=b190b823
+-/
 lemma one_add_qpow_ne_zero (k : ℕ) : (1 : K) + (t.q : K) ^ (k + 1) ≠ 0 := by
   intro h
   have := t.norm_one_add_qpow k
@@ -119,12 +123,17 @@ lemma one_add_qpow_ne_zero (k : ℕ) : (1 : K) + (t.q : K) ^ (k + 1) ≠ 0 := by
 noncomputable def sphereWitness (k : ℕ) : Kˣ :=
   Units.mk0 ((1 : K) + (t.q : K) ^ (k + 1)) (t.one_add_qpow_ne_zero k)
 
+/--
+@isnad1 id=eq.0h3v.s7.f7b67bf95c6e from=translated src=- shape=7fa8d3cb vocab=afc64d0e
+-/
 @[simp] lemma sphereWitness_val (k : ℕ) :
     (t.sphereWitness k : K) = (1 : K) + (t.q : K) ^ (k + 1) := rfl
 
 /-- The witnesses `1 + qᵏ⁺¹` are pairwise distinct: their `q`-parts `qᵏ⁺¹` have distinct norms
 `‖q‖ᵏ⁺¹` (strictly antitone since `0 < ‖q‖ < 1`), so `pow_right_injective₀` separates the
-exponents. -/
+exponents.
+@isnad1 id=injectiv.0h2v.s5.af51562d5ad3 from=translated src=- shape=faad3acd vocab=92189cfa
+-/
 lemma sphereWitness_injective : Function.Injective t.sphereWitness := by
   intro j k h
   have hv : (1 : K) + (t.q : K) ^ (j + 1) = (1 : K) + (t.q : K) ^ (k + 1) := by
@@ -141,7 +150,9 @@ the difference `c := a - b`) coefficient uniqueness is equivalent to: a summable
 that vanishes identically on `Kˣ` is the zero family. If such a family `c` were nonzero, then by
 `LaurentSphereZerosFinite` its zeros on the unit sphere `{u | ‖u‖ = 1}` are finite; but the
 infinitely many distinct norm-one units `1 + qᵏ⁺¹` (`k : ℕ`, `sphereWitness`) are all zeros of
-the series, a contradiction. Hence `c = 0`, i.e. `a = b`. -/
+the series, a contradiction. Hence `c = 0`, i.e. `a = b`.
+@isnad1 id=laurentc.1h2v.s4.54f788767544 from=translated src=- shape=7ddc04c7 vocab=12bfbea0
+-/
 theorem laurentCoeffUnique_of_sphereZerosFinite (t : TateParameter K)
     (hfin : LaurentSphereZerosFinite K) : LaurentCoeffUnique K := by
   intro a b hsa hsb heq
@@ -172,7 +183,9 @@ theorem laurentCoeffUnique_of_sphereZerosFinite (t : TateParameter K)
 `const_of_qinvariant_laurent`, with its `LaurentCoeffUnique` hypothesis replaced by
 `LaurentSphereZerosFinite`: a `q`-invariant convergent Laurent series equals its constant term
 `a₀` at every `u : Kˣ`. Unlike the `LaurentStrictDom` variant, the seam consumed here is not
-vacuous for discretely-valued `K`. -/
+vacuous for discretely-valued `K`.
+@isnad1 id=eq.3h4v.s8.4727220ca123 from=translated src=- shape=3473a06d vocab=bfc11b5c
+-/
 theorem const_of_qinvariant_laurent_of_sphereZerosFinite (hfin : LaurentSphereZerosFinite K)
     (a : ℤ → K) (hsum : ∀ u : Kˣ, Summable fun n : ℤ => a n * (u : K) ^ n)
     (hqinv : ∀ u : Kˣ,

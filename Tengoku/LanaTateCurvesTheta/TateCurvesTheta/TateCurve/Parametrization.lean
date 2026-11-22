@@ -87,9 +87,15 @@ def Xterm (u : Kˣ) (n : ℤ) : K :=
 def Yterm (u : Kˣ) (n : ℤ) : K :=
   ((t.q : K) ^ n * (u : K)) ^ 2 / (1 - (t.q : K) ^ n * (u : K)) ^ 3
 
+/--
+@isnad1 id=eq.0h4v.s7.7623f9a239fb from=translated src=- shape=9f48721e vocab=42597267
+-/
 @[simp] lemma Xterm_apply (u : Kˣ) (n : ℤ) :
     t.Xterm u n = (t.q : K) ^ n * (u : K) / (1 - (t.q : K) ^ n * (u : K)) ^ 2 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.a68b45cdc28a from=translated src=- shape=7343a4f7 vocab=df11f6f0
+-/
 @[simp] lemma Yterm_apply (u : Kˣ) (n : ℤ) :
     t.Yterm u n = ((t.q : K) ^ n * (u : K)) ^ 2 / (1 - (t.q : K) ^ n * (u : K)) ^ 3 := rfl
 
@@ -99,19 +105,29 @@ def X (u : Kˣ) : K := (∑' n : ℤ, t.Xterm u n) - 2 * t.eisenstein 1
 /-- The **Tate `Y`-coordinate** `Y q u = ∑' n, (qⁿ u)² / (1 - qⁿ u)³ + s₁(q)`. -/
 def Y (u : Kˣ) : K := (∑' n : ℤ, t.Yterm u n) + t.eisenstein 1
 
+/--
+@isnad1 id=eq.0h3v.s7.f34e4dadfff9 from=translated src=- shape=545a8f63 vocab=f06be920
+-/
 lemma X_apply (u : Kˣ) : t.X u = (∑' n : ℤ, t.Xterm u n) - 2 * t.eisenstein 1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.1c754cbd7410 from=translated src=- shape=0bc688ea vocab=68d7741e
+-/
 lemma Y_apply (u : Kˣ) : t.Y u = (∑' n : ℤ, t.Yterm u n) + t.eisenstein 1 := rfl
 
 /-- **`q`-periodicity of the `X`-terms.** Substituting `u ↦ q·u` shifts the index by one:
-`Xterm (q·u) n = Xterm u (n + 1)`, because `qⁿ (q u) = qⁿ⁺¹ u`. Unconditional. -/
+`Xterm (q·u) n = Xterm u (n + 1)`, because `qⁿ (q u) = qⁿ⁺¹ u`. Unconditional.
+@isnad1 id=eq.0h4v.s6.a9965e978b78 from=translated src=- shape=1cafe74f vocab=82336945
+-/
 lemma Xterm_q_smul (u : Kˣ) (n : ℤ) : t.Xterm (t.q * u) n = t.Xterm u (n + 1) := by
   have hq : (t.q : K) ≠ 0 := t.q.ne_zero
   simp only [Xterm_apply, Units.val_mul, zpow_add_one₀ hq]
   ring
 
 /-- **`q`-periodicity of the `Y`-terms.** Substituting `u ↦ q·u` shifts the index by one:
-`Yterm (q·u) n = Yterm u (n + 1)`, because `qⁿ (q u) = qⁿ⁺¹ u`. Unconditional. -/
+`Yterm (q·u) n = Yterm u (n + 1)`, because `qⁿ (q u) = qⁿ⁺¹ u`. Unconditional.
+@isnad1 id=eq.0h4v.s6.e870a135c004 from=translated src=- shape=1cafe74f vocab=5bc31540
+-/
 lemma Yterm_q_smul (u : Kˣ) (n : ℤ) : t.Yterm (t.q * u) n = t.Yterm u (n + 1) := by
   have hq : (t.q : K) ≠ 0 := t.q.ne_zero
   simp only [Yterm_apply, Units.val_mul, zpow_add_one₀ hq]
@@ -120,7 +136,9 @@ lemma Yterm_q_smul (u : Kˣ) (n : ℤ) : t.Yterm (t.q * u) n = t.Yterm u (n + 1)
 /-- **`q`-periodicity of the Tate `X`-coordinate.** `X(q·u) = X(u)`: the bi-infinite series is
 invariant under the index shift `n ↦ n + 1` induced by `u ↦ q·u` (`Equiv.tsum_eq` with
 `Equiv.addRight 1`), while the constant `-2 s₁(q)` is unchanged. This is the analytic fact that
-makes the Tate parametrization descend to the analytic quotient `Kˣ/qᶻ`. -/
+makes the Tate parametrization descend to the analytic quotient `Kˣ/qᶻ`.
+@isnad1 id=eq.0h3v.s6.40ea074db1d3 from=translated src=- shape=b390b445 vocab=3036ca7b
+-/
 lemma X_q_smul (u : Kˣ) : t.X (t.q * u) = t.X u := by
   have key : ∑' n : ℤ, t.Xterm (t.q * u) n = ∑' n : ℤ, t.Xterm u n := by
     rw [← (Equiv.addRight (1 : ℤ)).tsum_eq (t.Xterm u)]
@@ -130,7 +148,9 @@ lemma X_q_smul (u : Kˣ) : t.X (t.q * u) = t.X u := by
 /-- **`q`-periodicity of the Tate `Y`-coordinate.** `Y(q·u) = Y(u)`: as for `X`, the bi-infinite
 series is invariant under the index shift `n ↦ n + 1` induced by `u ↦ q·u`, and the constant
 `+ s₁(q)` is unchanged. Together with `X_q_smul` this lets `u ↦ (X(u), Y(u))` factor through
-`Kˣ/qᶻ`. -/
+`Kˣ/qᶻ`.
+@isnad1 id=eq.0h3v.s6.6317b8854a26 from=translated src=- shape=b390b445 vocab=7c7166ff
+-/
 lemma Y_q_smul (u : Kˣ) : t.Y (t.q * u) = t.Y u := by
   have key : ∑' n : ℤ, t.Yterm (t.q * u) n = ∑' n : ℤ, t.Yterm u n := by
     rw [← (Equiv.addRight (1 : ℤ)).tsum_eq (t.Yterm u)]
@@ -138,7 +158,9 @@ lemma Y_q_smul (u : Kˣ) : t.Y (t.q * u) = t.Y u := by
   rw [Y_apply, Y_apply, key]
 
 /-- For `u ∉ qᶻ` — equivalently `qⁿ u ≠ 1` for all `n : ℤ` — the factor `1 - qⁿ u` occurring in
-the denominators of the Tate coordinate series is nonzero. -/
+the denominators of the Tate coordinate series is nonzero.
+@isnad1 id=ne.1h4v.s7.b9eeddc96b85 from=translated src=- shape=db31511c vocab=cddcf02a
+-/
 lemma one_sub_qzpow_mul_ne_zero {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) (n : ℤ) :
     (1 : K) - (t.q : K) ^ n * (u : K) ≠ 0 :=
   sub_ne_zero.mpr (hu n).symm
@@ -187,7 +209,9 @@ section Nonarchimedean
 variable [IsUltrametricDist K]
 
 /-- In a nonarchimedean field, `‖1 - x‖ = max 1 ‖x‖` whenever `‖x‖ ≠ 1`: the ultrametric
-"isosceles" law makes the norm of the difference the larger of the two norms. -/
+"isosceles" law makes the norm of the difference the larger of the two norms.
+@isnad1 id=eq.1h2v.s6.946ec1250470 from=translated src=- shape=2c2a1f2c vocab=b5ac7dbe
+-/
 lemma norm_one_sub_of_norm_ne_one {x : K} (h : ‖x‖ ≠ 1) : ‖(1 : K) - x‖ = max 1 ‖x‖ := by
   have hne : ‖(1 : K)‖ ≠ ‖-x‖ := by rw [norm_one, norm_neg]; exact h.symm
   rw [sub_eq_add_neg, IsUltrametricDist.norm_add_eq_max_of_norm_ne_norm hne, norm_one, norm_neg]
@@ -196,7 +220,9 @@ variable [CompleteSpace K]
 
 /-- **Convergence of the Tate `X`-coordinate series.** Over a complete nonarchimedean field the
 family `n ↦ qⁿ u / (1 - qⁿ u)²` is unconditionally summable: its term norm equals `‖q‖ⁿ‖u‖` for
-`n → +∞` and `(‖q‖ⁿ‖u‖)⁻¹` for `n → -∞`, both of which tend to `0`. -/
+`n → +∞` and `(‖q‖ⁿ‖u‖)⁻¹` for `n → -∞`, both of which tend to `0`.
+@isnad1 id=summable.0h3v.s6.f2c96fd960c5 from=translated src=- shape=8ce2512c vocab=6198a20e
+-/
 theorem Xterm_summable (u : Kˣ) : Summable (t.Xterm u) := by
   apply NonarchimedeanAddGroup.summable_of_tendsto_cofinite_zero
   apply tendsto_zero_iff_norm_tendsto_zero.mpr
@@ -222,7 +248,9 @@ theorem Xterm_summable (u : Kˣ) : Summable (t.Xterm u) := by
 
 /-- **Convergence of the Tate `Y`-coordinate series.** Over a complete nonarchimedean field the
 family `n ↦ (qⁿ u)² / (1 - qⁿ u)³` is unconditionally summable: its term norm equals `(‖q‖ⁿ‖u‖)²`
-for `n → +∞` and `(‖q‖ⁿ‖u‖)⁻¹` for `n → -∞`, both of which tend to `0`. -/
+for `n → +∞` and `(‖q‖ⁿ‖u‖)⁻¹` for `n → -∞`, both of which tend to `0`.
+@isnad1 id=summable.0h3v.s6.c559bbaf0216 from=translated src=- shape=8ce2512c vocab=a2096753
+-/
 theorem Yterm_summable (u : Kˣ) : Summable (t.Yterm u) := by
   apply NonarchimedeanAddGroup.summable_of_tendsto_cofinite_zero
   apply tendsto_zero_iff_norm_tendsto_zero.mpr

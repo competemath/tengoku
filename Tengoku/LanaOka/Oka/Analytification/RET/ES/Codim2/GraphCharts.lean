@@ -51,23 +51,35 @@ def smoothChartInv (ψ : E × ℂ → ℂ) (z : (E × ℂ) × (Fin 1 → ℂ)) :
   (z.1, z.2 0 + ψ z.1)
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
+/--
+@isnad1 id=eq.0h3v.s4.adf69b825ff1 from=translated src=- shape=e21fc5a3 vocab=4103b69e
+-/
 lemma smoothChartInv_smoothChart (ψ : E × ℂ → ℂ) (x : (E × ℂ) × ℂ) :
     smoothChartInv ψ (smoothChart ψ x) = x :=
   Prod.ext rfl (sub_add_cancel _ _)
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
+/--
+@isnad1 id=eq.0h3v.s5.ee03fef41d72 from=translated src=- shape=870732f5 vocab=d42bf6f4
+-/
 lemma smoothChart_smoothChartInv (ψ : E × ℂ → ℂ) (z : (E × ℂ) × (Fin 1 → ℂ)) :
     smoothChart ψ (smoothChartInv ψ z) = z := by
   refine Prod.ext rfl (funext fun i ↦ ?_)
   rw [Subsingleton.elim i 0]
   exact add_sub_cancel_right _ _
 
+/--
+@isnad1 id=differen.1h3v.s9.c55101537626 from=translated src=- shape=5d42f8af vocab=9130aafd
+-/
 lemma differentiableOn_smoothChart {ψ : E × ℂ → ℂ} {V : Set (E × ℂ)}
     (hψ : DifferentiableOn ℂ ψ V) : DifferentiableOn ℂ (smoothChart ψ) (Prod.fst ⁻¹' V) := by
   have h : DifferentiableOn ℂ (fun x : (E × ℂ) × ℂ ↦ ψ x.1) (Prod.fst ⁻¹' V) :=
     hψ.comp differentiableOn_fst fun _ hx ↦ hx
   exact differentiableOn_fst.prodMk (differentiableOn_pi.2 fun _ ↦ differentiableOn_snd.sub h)
 
+/--
+@isnad1 id=differen.1h3v.s9.e8a3bdb2845d from=translated src=- shape=351487bf vocab=d31650c2
+-/
 lemma differentiableOn_smoothChartInv {ψ : E × ℂ → ℂ} {V : Set (E × ℂ)}
     (hψ : DifferentiableOn ℂ ψ V) : DifferentiableOn ℂ (smoothChartInv ψ) (Prod.fst ⁻¹' V) := by
   have h : DifferentiableOn ℂ (fun z : (E × ℂ) × (Fin 1 → ℂ) ↦ ψ z.1) (Prod.fst ⁻¹' V) :=
@@ -77,7 +89,9 @@ lemma differentiableOn_smoothChartInv {ψ : E × ℂ → ℂ} {V : Set (E × ℂ
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
 /-- A point lies on the graph of `ψ` if and only if its last coordinate in
-`Codim2.smoothChart ψ` vanishes. -/
+`Codim2.smoothChart ψ` vanishes.
+@isnad1 id=iff.1h4v.s6.6d9ee3585d73 from=translated src=- shape=65861ced vocab=d53d7cd0
+-/
 lemma mem_graphs_iff_smoothChart {ψ : E × ℂ → ℂ} {V : Set (E × ℂ)} {x : (E × ℂ) × ℂ}
     (hx : x.1 ∈ V) : x ∈ graphs V (fun _ : Unit ↦ ψ) ↔ ∃ i, (smoothChart ψ x).2 i = 0 := by
   simp [mem_graphs, smoothChart, hx, sub_eq_zero]
@@ -93,16 +107,25 @@ def verticalChartInv (χ : E × ℂ → ℂ) (z : E × (Fin 2 → ℂ)) : (E × 
   ((z.1, z.2 0), z.2 1 + χ (z.1, z.2 0))
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
+/--
+@isnad1 id=eq.0h3v.s4.9479addd805f from=translated src=- shape=e21fc5a3 vocab=9ad78b2a
+-/
 lemma verticalChartInv_verticalChart (χ : E × ℂ → ℂ) (x : (E × ℂ) × ℂ) :
     verticalChartInv χ (verticalChart χ x) = x := by
   simp [verticalChart, verticalChartInv]
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
+/--
+@isnad1 id=eq.0h3v.s5.d99657e6a549 from=translated src=- shape=2adef850 vocab=f19142b9
+-/
 lemma verticalChart_verticalChartInv (χ : E × ℂ → ℂ) (z : E × (Fin 2 → ℂ)) :
     verticalChart χ (verticalChartInv χ z) = z := by
   refine Prod.ext rfl (funext fun i ↦ ?_)
   fin_cases i <;> simp [verticalChart, verticalChartInv]
 
+/--
+@isnad1 id=differen.1h3v.s9.cf71604693fd from=translated src=- shape=a35dfb3c vocab=71f7a081
+-/
 lemma differentiableOn_verticalChart {χ : E × ℂ → ℂ} {V : Set (E × ℂ)}
     (hχ : DifferentiableOn ℂ χ V) : DifferentiableOn ℂ (verticalChart χ) (Prod.fst ⁻¹' V) := by
   have h : DifferentiableOn ℂ (fun x : (E × ℂ) × ℂ ↦ χ x.1) (Prod.fst ⁻¹' V) :=
@@ -115,6 +138,9 @@ lemma differentiableOn_verticalChart {χ : E × ℂ → ℂ} {V : Set (E × ℂ)
   · simp only [Fin.mk_one, Matrix.cons_val_one, Matrix.cons_val_fin_one]
     exact differentiableOn_snd.sub h
 
+/--
+@isnad1 id=differen.1h3v.s9.1426898a08c6 from=translated src=- shape=95c230dc vocab=aa9112e8
+-/
 lemma differentiableOn_verticalChartInv {χ : E × ℂ → ℂ} {V : Set (E × ℂ)}
     (hχ : DifferentiableOn ℂ χ V) :
     DifferentiableOn ℂ (verticalChartInv χ) {z | (z.1, z.2 0) ∈ V} := by
@@ -126,7 +152,9 @@ lemma differentiableOn_verticalChartInv {χ : E × ℂ → ℂ} {V : Set (E × �
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
 /-- A point lies on `{t = 0} ∪ {w = χ}` if and only if a coordinate of the second component of
-`Codim2.verticalChart χ` vanishes. -/
+`Codim2.verticalChart χ` vanishes.
+@isnad1 id=iff.1h4v.s6.682d69224474 from=translated src=- shape=dc67dbbe vocab=02a72a47
+-/
 lemma mem_iff_verticalChart {χ : E × ℂ → ℂ} {V : Set (E × ℂ)} {x : (E × ℂ) × ℂ}
     (hx : x.1 ∈ V) : x ∈ vertical V ∪ graphs V (fun _ : Unit ↦ χ) ↔
       ∃ i, (verticalChart χ x).2 i = 0 := by
@@ -147,6 +175,9 @@ def transversalChartInv (ψ u : E × ℂ → ℂ) (z : E × (Fin 2 → ℂ)) : (
   ((z.1, z.2 0 - z.2 1), ψ (z.1, z.2 0 - z.2 1) + u (z.1, z.2 0 - z.2 1) * z.2 0)
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
+/--
+@isnad1 id=eq.1h4v.s5.eca7e92fb4b5 from=translated src=- shape=3c23d0cd vocab=6b215ec3
+-/
 lemma transversalChartInv_transversalChart (ψ u : E × ℂ → ℂ) {x : (E × ℂ) × ℂ}
     (hx : u x.1 ≠ 0) : transversalChartInv ψ u (transversalChart ψ u x) = x := by
   have h₁ : ((x.1.1, (x.2 - ψ x.1) / u x.1 - ((x.2 - ψ x.1) / u x.1 - x.1.2)) : E × ℂ) = x.1 :=
@@ -156,6 +187,9 @@ lemma transversalChartInv_transversalChart (ψ u : E × ℂ → ℂ) {x : (E × 
   rw [mul_div_cancel₀ _ hx, add_sub_cancel]
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
+/--
+@isnad1 id=eq.1h4v.s7.f0d2cfb513c5 from=translated src=- shape=28cfcb74 vocab=8c5e15c8
+-/
 lemma transversalChart_transversalChartInv (ψ u : E × ℂ → ℂ) {z : E × (Fin 2 → ℂ)}
     (hz : u (z.1, z.2 0 - z.2 1) ≠ 0) :
     transversalChart ψ u (transversalChartInv ψ u z) = z := by
@@ -164,6 +198,9 @@ lemma transversalChart_transversalChartInv (ψ u : E × ℂ → ℂ) {z : E × (
   · simp [transversalChart, transversalChartInv, mul_div_cancel_left₀ _ hz]
   · simp [transversalChart, transversalChartInv, mul_div_cancel_left₀ _ hz]
 
+/--
+@isnad1 id=differen.3h4v.s9.5c6fa7c26e12 from=translated src=- shape=020200f6 vocab=eacc478c
+-/
 lemma differentiableOn_transversalChart {ψ u : E × ℂ → ℂ} {V : Set (E × ℂ)}
     (hψ : DifferentiableOn ℂ ψ V) (hu : DifferentiableOn ℂ u V) (hu0 : ∀ z ∈ V, u z ≠ 0) :
     DifferentiableOn ℂ (transversalChart ψ u) (Prod.fst ⁻¹' V) := by
@@ -182,6 +219,9 @@ lemma differentiableOn_transversalChart {ψ u : E × ℂ → ℂ} {V : Set (E ×
   · simp only [Fin.mk_one, Matrix.cons_val_one, Matrix.cons_val_fin_one]
     exact hq.sub (by fun_prop)
 
+/--
+@isnad1 id=differen.2h4v.s9.d24c3c5cab6a from=translated src=- shape=8f881d70 vocab=92b04b52
+-/
 lemma differentiableOn_transversalChartInv {ψ u : E × ℂ → ℂ} {V : Set (E × ℂ)}
     (hψ : DifferentiableOn ℂ ψ V) (hu : DifferentiableOn ℂ u V) :
     DifferentiableOn ℂ (transversalChartInv ψ u) {z | (z.1, z.2 0 - z.2 1) ∈ V} := by
@@ -196,7 +236,9 @@ lemma differentiableOn_transversalChartInv {ψ u : E × ℂ → ℂ} {V : Set (E
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
 /-- A point lies on the union of the graphs of `ψ` and `ψ + t u` if and only if a coordinate of
-the second component of `Codim2.transversalChart ψ u` vanishes. -/
+the second component of `Codim2.transversalChart ψ u` vanishes.
+@isnad1 id=iff.2h5v.s7.356347c00089 from=translated src=- shape=600b3f51 vocab=d2a02bbd
+-/
 lemma mem_iff_transversalChart {ψ u : E × ℂ → ℂ} {V : Set (E × ℂ)} {x : (E × ℂ) × ℂ}
     (hx : x.1 ∈ V) (hu : u x.1 ≠ 0) :
     x ∈ graphs V ![ψ, fun z ↦ ψ z + z.2 * u z] ↔ ∃ i, (transversalChart ψ u x).2 i = 0 := by

@@ -35,6 +35,9 @@ as a set of points of `X`. -/
 def specialFibre {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of R)) : Set X :=
   f ⁻¹' {(closedPoint R : PrimeSpectrum R)}
 
+/--
+@isnad1 id=iff.0h4v.s8.9b62d09d48a6 from=translated src=- shape=4c6fd4fa vocab=f14d4be4
+-/
 lemma mem_specialFibre {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of R)) (x : X) :
     x ∈ specialFibre f ↔ f x = (closedPoint R : PrimeSpectrum R) :=
   Iff.rfl
@@ -42,6 +45,9 @@ lemma mem_specialFibre {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of R)) (x :
 variable {X X' X'' : Scheme.{u}} {f : X ⟶ Spec (CommRingCat.of R)}
   {f' : X' ⟶ Spec (CommRingCat.of R)} {f'' : X'' ⟶ Spec (CommRingCat.of R)}
 
+/--
+@isnad1 id=mem.2h7v.s8.03a51bd112b3 from=translated src=- shape=776df91e vocab=0c86ead0
+-/
 lemma mem_specialFibre_of_comp (ψ : X ⟶ X') (hψ : ψ ≫ f' = f) {x : X}
     (hx : x ∈ specialFibre f) : ψ x ∈ specialFibre f' := by
   rw [mem_specialFibre, ← Scheme.Hom.comp_apply, hψ]
@@ -51,21 +57,33 @@ lemma mem_specialFibre_of_comp (ψ : X ⟶ X') (hψ : ψ ≫ f' = f) {x : X}
 def specialFibreMap (ψ : X ⟶ X') (hψ : ψ ≫ f' = f) : specialFibre f → specialFibre f' :=
   fun x ↦ ⟨ψ x.1, mem_specialFibre_of_comp ψ hψ x.2⟩
 
+/--
+@isnad1 id=eq.1h7v.s8.541c6499924a from=translated src=- shape=d09790d7 vocab=8aae8b5d
+-/
 @[simp]
 lemma coe_specialFibreMap (ψ : X ⟶ X') (hψ : ψ ≫ f' = f) (x : specialFibre f) :
     (specialFibreMap ψ hψ x : X') = ψ x :=
   rfl
 
+/--
+@isnad1 id=continuo.1h6v.s8.381044c9e46c from=translated src=- shape=297700bd vocab=fc859bfb
+-/
 @[fun_prop]
 lemma continuous_specialFibreMap (ψ : X ⟶ X') (hψ : ψ ≫ f' = f) :
     Continuous (specialFibreMap ψ hψ) :=
   (ψ.continuous.comp continuous_subtype_val).subtype_mk _
 
+/--
+@isnad1 id=eq.0h4v.s6.7b7f18855dc6 from=translated src=- shape=3a4ecf54 vocab=4247eed7
+-/
 @[simp]
 lemma specialFibreMap_id (x : specialFibre f) :
     specialFibreMap (𝟙 X) (Category.id_comp f) x = x :=
   rfl
 
+/--
+@isnad1 id=eq.2h10v.s7.1336f71ae2c0 from=translated src=- shape=17368b08 vocab=58741269
+-/
 lemma specialFibreMap_comp (ψ : X ⟶ X') (hψ : ψ ≫ f' = f) (φ : X' ⟶ X'') (hφ : φ ≫ f'' = f')
     (x : specialFibre f) :
     specialFibreMap (ψ ≫ φ) (by rw [Category.assoc, hφ, hψ]) x =
@@ -92,6 +110,9 @@ def specialFibreHomeomorph (e : X ≅ X') (he : e.hom ≫ f' = f) :
   continuous_toFun := continuous_specialFibreMap _ _
   continuous_invFun := continuous_specialFibreMap _ _
 
+/--
+@isnad1 id=eq.1h7v.s9.150c496e5aef from=translated src=- shape=975b8b25 vocab=0e2586e9
+-/
 @[simp]
 lemma coe_specialFibreHomeomorph (e : X ≅ X') (he : e.hom ≫ f' = f) (x : specialFibre f) :
     (specialFibreHomeomorph e he x : X') = e.hom x :=
@@ -110,6 +131,9 @@ def valToField : O →+* Ω :=
   (algebraMap K Ω).comp O.subtype
 
 variable {O V} in
+/--
+@isnad1 id=iff.0h5v.s8.fe11f7a849a3 from=translated src=- shape=eef77a54 vocab=9f4c492b
+-/
 lemma valToField_mem (a : O) : valToField O a ∈ V ↔ (a : K) ∈ V.comap (algebraMap K Ω) :=
   (ValuationSubring.mem_comap).symm
 
@@ -121,14 +145,23 @@ def valToVal : O →+* V :=
     rw [valToField_mem, hV]
     exact a.2
 
+/--
+@isnad1 id=eq.1h5v.s9.9cd9b5d615a0 from=translated src=- shape=48291d27 vocab=038ec959
+-/
 @[simp]
 lemma coe_valToVal (a : O) : (valToVal O V hV a : Ω) = valToField O a :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s8.744ab575d63c from=translated src=- shape=fcb38e81 vocab=f9baa20b
+-/
 lemma valToVal_comp_algebraMap :
     (algebraMap V Ω).comp (valToVal O V hV) = valToField O :=
   rfl
 
+/--
+@isnad1 id=islocalh.1h4v.s9.0e6a5065d95f from=translated src=- shape=f85b33e9 vocab=5ce40174
+-/
 instance isLocalHom_valToVal : IsLocalHom (valToVal O V hV) := by
   refine ⟨fun a ha ↦ ?_⟩
   obtain ⟨u, hu⟩ := ha.exists_left_inv
@@ -145,6 +178,9 @@ instance isLocalHom_valToVal : IsLocalHom (valToVal O V hV) := by
   rw [hV] at hmem
   exact isUnit_iff_exists_inv.mpr ⟨⟨_, hmem⟩, Subtype.ext (mul_inv_cancel₀ ha0)⟩
 
+/--
+@isnad1 id=eq.1h4v.s7.4eef19288c42 from=translated src=- shape=618ad294 vocab=be5a40b3
+-/
 lemma valToVal_closedPoint :
     PrimeSpectrum.comap (valToVal O V hV) (closedPoint V) = closedPoint O :=
   comap_closedPoint _
@@ -171,16 +207,25 @@ noncomputable def spLift [UniversallyClosed f] (x : Spec (CommRingCat.of Ω) ⟶
     (UniversallyClosed.eq_valuativeCriterion ▸ (inferInstance : UniversallyClosed f)).1
   (hf (spSquare O V hV f x hx)).exists_lift.some
 
+/--
+@isnad1 id=eq.2h7v.s10.721835daaea4 from=translated src=- shape=3357eaa7 vocab=b8e2a7cf
+-/
 lemma spLift_fac_left [UniversallyClosed f] (x : Spec (CommRingCat.of Ω) ⟶ X)
     (hx : x ≫ f = Spec.map (CommRingCat.ofHom (valToField O))) :
     Spec.map (CommRingCat.ofHom (algebraMap V Ω)) ≫ (spLift (hV := hV) x hx).l = x :=
   (spLift x hx).fac_left
 
+/--
+@isnad1 id=eq.2h7v.s10.1cb0d287d96a from=translated src=- shape=3f7d0e71 vocab=a5367b60
+-/
 lemma spLift_fac_right [UniversallyClosed f] (x : Spec (CommRingCat.of Ω) ⟶ X)
     (hx : x ≫ f = Spec.map (CommRingCat.ofHom (valToField O))) :
     (spLift (hV := hV) x hx).l ≫ f = Spec.map (CommRingCat.ofHom (valToVal O V hV)) :=
   (spLift x hx).fac_right
 
+/--
+@isnad1 id=eq.4h8v.s10.3fed7fd5db84 from=translated src=- shape=1f86870a vocab=48fa4356
+-/
 lemma spLift_unique [UniversallyClosed f] [IsSeparated f] (x : Spec (CommRingCat.of Ω) ⟶ X)
     (hx : x ≫ f = Spec.map (CommRingCat.ofHom (valToField O)))
     (ℓ : Spec (CommRingCat.of V) ⟶ X)

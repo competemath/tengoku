@@ -32,7 +32,9 @@ satisfies `℘′′ = 6℘² - g₂/2`.
 The proof differentiates mathlib's cubic equation.  Analytic functions on the
 connected lattice complement have no zero divisors, so either `℘′` vanishes
 identically or the desired second factor does.  The first alternative would
-make `℘` constant off the lattice, contradicting its order-two pole. -/
+make `℘` constant off the lattice, contradicting its order-two pole.
+@isnad1 id=eq.1h2v.s7.e3f98b2baebb from=translated src=- shape=c8cbf178 vocab=ace8f83d
+-/
 theorem deriv_derivWeierstrassP (L : PeriodPair) (z : ℂ)
     (hz : z ∉ L.lattice) :
     deriv L.derivWeierstrassP z =

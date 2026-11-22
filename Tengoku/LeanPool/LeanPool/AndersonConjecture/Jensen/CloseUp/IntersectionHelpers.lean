@@ -250,6 +250,9 @@ private def close_up_aux_factor_intersection_large_proof
       rw [Ideal.map_span, ← Finset.coe_image]
 ⟩
 
+/--
+@isnad1 id=ex.19h13v.s13.2aa4340549ad from=translated src=- shape=f70b9569 vocab=1d10d305
+-/
 theorem close_up_aux_factor_intersection_large
     (n'' : ℕ)
     (ih : ∀ (R : NSubring T) (_ : Cardinal.mk R.carrier < Cardinal.mk T)
@@ -310,6 +313,9 @@ theorem close_up_aux_factor_intersection_large
       _hrest_card ha_rest hb_rest hgcd_rest hq' _hq'_dvd hAext₁ hle₁ hS₁_card w div_q_b2
       hdiv_b2 rest'2 hrest'2_def _h_ml_b2 hw_mem_T ha_rest'2 hrest'2_card hb_rest'2
     ).down
+/--
+@isnad1 id=lt.6h7v.s10.093c8d802e8a from=translated src=- shape=cb5e5f4a vocab=a1d26b0e
+-/
 theorem gcdComplexity_div_prime_strict
     {R : NSubring T}
     [DecidableEq R.carrier]

@@ -33,7 +33,9 @@ noncomputable def modularJ (τ : ℍ) : ℂ :=
 
 /-- The modular `j`-function is invariant under the integral special linear
 group. This is the reduction needed to move a preimage into the standard
-fundamental domain. -/
+fundamental domain.
+@isnad1 id=eq.0h2v.s7.b4f975de9ecc from=translated src=- shape=5b9dc79e vocab=e16fd1d2
+-/
 theorem modularJ_smul (γ : SL(2, ℤ)) (τ : ℍ) : modularJ (γ • τ) = modularJ τ := by
   have hE : ModularForm.E₄ (γ • τ) = denom γ τ ^ (4 : ℤ) * ModularForm.E₄ τ := by
     letI : SlashInvariantFormClass (ModularForm 𝒮ℒ 4) Γ(1) 4 :=
@@ -49,7 +51,9 @@ theorem modularJ_smul (γ : SL(2, ℤ)) (τ : ℍ) : modularJ (γ • τ) = modu
 
 /-- Surjectivity of modular `j` would already give a preimage in the standard
 fundamental domain. Thus the certificate interface does not require a separate
-fundamental-domain existence theorem once surjectivity is available. -/
+fundamental-domain existence theorem once surjectivity is available.
+@isnad1 id=ex.1h1v.s4.c7f38f3c437e from=translated src=- shape=a599ef2b vocab=45dfd5ee
+-/
 theorem exists_mem_fd_modularJ_eq_of_surjective
     (hsurj : Function.Surjective modularJ) (z : ℂ) :
     ∃ τ : ℍ, τ ∈ ModularGroup.fd ∧ modularJ τ = z := by
@@ -57,7 +61,9 @@ theorem exists_mem_fd_modularJ_eq_of_surjective
   obtain ⟨γ, hγ⟩ := ModularGroup.exists_smul_mem_fd τ
   exact ⟨γ • τ, hγ, (modularJ_smul γ τ).trans hτ⟩
 
-/-- Silverman's modular discriminant does not vanish on the upper half-plane. -/
+/-- Silverman's modular discriminant does not vanish on the upper half-plane.
+@isnad1 id=ne.0h1v.s3.151671f7701e from=translated src=- shape=a311c14d vocab=1afb88ec
+-/
 theorem silvermanModularDiscriminant_ne_zero (τ : ℍ) :
     silvermanModularDiscriminant τ ≠ 0 := by
   apply mul_ne_zero
@@ -66,24 +72,32 @@ theorem silvermanModularDiscriminant_ne_zero (τ : ℍ) :
   · exact ModularForm.discriminant_ne_zero τ
 
 /-- In particular, the norm used as an argument of `Real.log` in the height
-formula is strictly positive. -/
+formula is strictly positive.
+@isnad1 id=lt.0h1v.s4.114948f960f1 from=translated src=- shape=0b352fea vocab=93d9240b
+-/
 theorem silvermanModularDiscriminant_norm_pos (τ : ℍ) :
     0 < ‖silvermanModularDiscriminant τ‖ :=
   norm_pos_iff.mpr (silvermanModularDiscriminant_ne_zero τ)
 
-/-- Clearing the nonzero discriminant denominator recovers `E₄ ^ 3`. -/
+/-- Clearing the nonzero discriminant denominator recovers `E₄ ^ 3`.
+@isnad1 id=eq.0h1v.s8.0d66558263c0 from=translated src=- shape=d840ea99 vocab=ab52b0a0
+-/
 theorem modularJ_mul_discriminant (τ : ℍ) :
     modularJ τ * ModularForm.discriminant τ = ModularForm.E₄ τ ^ 3 := by
   exact div_mul_cancel₀ _ (ModularForm.discriminant_ne_zero τ)
 
 /-- The only zeros of modular `j` on the upper half-plane are the zeros of
-`E₄`; the modular discriminant contributes no zeros. -/
+`E₄`; the modular discriminant contributes no zeros.
+@isnad1 id=iff.0h1v.s8.30cec4f67a68 from=translated src=- shape=da8fead3 vocab=4eb017a6
+-/
 theorem modularJ_eq_zero_iff (τ : ℍ) :
     modularJ τ = 0 ↔ ModularForm.E₄ τ = 0 := by
   rw [modularJ, div_eq_zero_iff]
   simp [ModularForm.discriminant_ne_zero τ]
 
-/-- The `q`-product formula with Silverman's normalization kept explicit. -/
+/-- The `q`-product formula with Silverman's normalization kept explicit.
+@isnad1 id=eq.0h1v.s6.465d6bd4627a from=translated src=- shape=b2749692 vocab=c5978111
+-/
 theorem silvermanModularDiscriminant_eq_q_prod (τ : ℍ) :
     silvermanModularDiscriminant τ =
       (2 * (Real.pi : ℂ)) ^ 12 *
@@ -92,14 +106,18 @@ theorem silvermanModularDiscriminant_eq_q_prod (τ : ℍ) :
   rw [silvermanModularDiscriminant, ModularForm.discriminant_eq_q_prod]
 
 /-- The algebraic identity confirming the normalization of the denominator in
-`modularJ`. -/
+`modularJ`.
+@isnad1 id=eq.0h1v.s9.6408749f6bdb from=translated src=- shape=587d7f62 vocab=13ad6460
+-/
 theorem modularJ_denominator_eq_E₄_E₆ (τ : ℍ) :
     ModularForm.discriminant τ =
       (ModularForm.E₄ τ ^ 3 - ModularForm.E₆ τ ^ 2) / 1728 :=
   ModularForm.discriminant_eq_E₄_cube_sub_E₆_sq τ
 
 /-- The normalized Eisenstein series `E₄` tends to its constant term `1` at
-`i∞`. -/
+`i∞`.
+@isnad1 id=tendsto.0h0v.s8.d86d6440be57 from=translated src=- shape=b53ef523 vocab=8f4b2c09
+-/
 theorem modularE₄_tendsto_atImInfty :
     Tendsto (fun τ : ℍ => ModularForm.E₄ τ) atImInfty (𝓝 1) := by
   have hper := SlashInvariantFormClass.periodic_comp_ofComplex ModularForm.E₄
@@ -187,7 +205,9 @@ private theorem modularDeltaJComparison_eq_core (τ : ℍ) :
   ring
 
 /-- On the standard fundamental domain, `-log |Δ_Silv|` and
-`log max (|j|, 1)` differ by an absolute bounded amount. -/
+`log max (|j|, 1)` differ by an absolute bounded amount.
+@isnad1 id=ex.0h0v.s6.f130c1e12c20 from=translated src=- shape=d8ed87de vocab=670b2ec6
+-/
 theorem modularDeltaJ_fd_comparison :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ τ : ℍ, τ ∈ ModularGroup.fd →
       |(-Real.log ‖silvermanModularDiscriminant τ‖) -
@@ -247,14 +267,18 @@ private theorem exp_two_pi_im_tendsto_atImInfty : Tendsto
   exact Real.tendsto_exp_atTop.comp
     (im_tendsto_atImInfty.const_mul_atTop (mul_pos two_pos Real.pi_pos))
 
-/-- The modular `j`-function is holomorphic on the upper half-plane. -/
+/-- The modular `j`-function is holomorphic on the upper half-plane.
+@isnad1 id=mdiffere.0h0v.s6.60a62695c9d3 from=translated src=- shape=38f10366 vocab=53975b86
+-/
 theorem modularJ_mdifferentiable : MDiff modularJ := by
   exact (ModularFormClass.holo ModularForm.E₄).pow 3 |>.div
     (by simpa only [CuspForm.coe_discriminant] using
       ModularFormClass.holo CuspForm.discriminant)
     (fun τ => ModularForm.discriminant_ne_zero τ)
 
-/-- The norm of modular `j` tends to infinity at the cusp. -/
+/-- The norm of modular `j` tends to infinity at the cusp.
+@isnad1 id=tendsto.0h0v.s3.2890ab80e75b from=translated src=- shape=7d2757f8 vocab=91f3d238
+-/
 theorem modularJ_norm_tendsto_atImInfty :
     Tendsto (fun τ : ℍ => ‖modularJ τ‖) atImInfty atTop := by
   rw [tendsto_atTop]
@@ -276,7 +300,9 @@ theorem modularJ_norm_tendsto_atImInfty :
   nlinarith [Real.exp_pos (2 * Real.pi * τ.im)]
 
 /-- The image of modular `j` is open. This is the open mapping theorem, with
-nonconstancy supplied by its growth at the cusp. -/
+nonconstancy supplied by its growth at the cusp.
+@isnad1 id=isopen.0h0v.s4.42ef3b09cf0f from=translated src=- shape=aba4b0e5 vocab=fb77b159
+-/
 theorem isOpen_range_modularJ : IsOpen (Set.range modularJ) := by
   let g : ℂ → ℂ := modularJ ∘ UpperHalfPlane.ofComplex
   have hg : AnalyticOnNhd ℂ g upperHalfPlaneSet := by
@@ -308,7 +334,9 @@ theorem isOpen_range_modularJ : IsOpen (Set.range modularJ) := by
 /-- The image of modular `j` is closed. Move a convergent sequence of values
 into the standard fundamental domain. Cusp growth bounds the corresponding
 imaginary parts, so compactness of a truncated fundamental domain supplies a
-convergent subsequence of preimages. -/
+convergent subsequence of preimages.
+@isnad1 id=isclosed.0h0v.s4.a5d7ff87efe0 from=translated src=- shape=aba4b0e5 vocab=6e92d7fe
+-/
 theorem isClosed_range_modularJ : IsClosed (Set.range modularJ) := by
   apply IsSeqClosed.isClosed
   intro u z hu huz
@@ -353,7 +381,9 @@ theorem isClosed_range_modularJ : IsClosed (Set.range modularJ) := by
 
 /-- The normalized modular `j`-function maps the upper half-plane onto the
 complex plane. The image is nonempty, open by holomorphic nonconstancy, and
-closed by cusp growth and compactness of truncated fundamental domains. -/
+closed by cusp growth and compactness of truncated fundamental domains.
+@isnad1 id=surjecti.0h0v.s2.e6fd70f24c0f from=translated src=- shape=54c8eceb vocab=9245fba4
+-/
 theorem modularJ_surjective : Function.Surjective modularJ := by
   have hrange : Set.range modularJ = Set.univ :=
     IsClopen.eq_univ ⟨isClosed_range_modularJ, isOpen_range_modularJ⟩
@@ -445,7 +475,9 @@ private theorem modularImLogLogJComparisonCore_tendsto :
   ring
 
 /-- On the standard fundamental domain, `log (im τ)` differs by an absolute
-bounded amount from `log log max (|j(τ)|, e)`. -/
+bounded amount from `log log max (|j(τ)|, e)`.
+@isnad1 id=ex.0h0v.s5.6e5991931954 from=translated src=- shape=5a873de4 vocab=f7e1c94b
+-/
 theorem modularIm_logLogJ_fd_comparison :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ τ : ℍ, τ ∈ ModularGroup.fd →
       |Real.log τ.im -

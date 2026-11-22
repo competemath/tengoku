@@ -46,7 +46,9 @@ isomorphism.**
 is the `IsIso` form for a specialization arising from an equality, which is the shape in which it
 is needed after `AlgebraicGeometry.LocallyRingedSpace.stalkMap_congr_hom` — that lemma produces a
 `stalkSpecializes` whose proof argument is manufactured from an equation between morphisms, and
-one cannot name the resulting proof term in advance. -/
+one cannot name the resulting proof term in advance.
+@isnad1 id=isiso.2h5v.s5.ab9ca509ce86 from=translated src=- shape=36dd42e1 vocab=7100e8d0
+-/
 lemma isIso_stalkSpecializes_of_eq {X : TopCat.{v}} (F : X.Presheaf C) {a b : X} (h : a ⤳ b)
     (h' : b = a) : IsIso (F.stalkSpecializes h) := by
   subst h'
@@ -68,7 +70,9 @@ applied form for the isomorphism `TopCat.Presheaf.stalkCongr`, which is what one
 
 Note that the membership `hy` is an argument rather than derived from `hx`: any proof will do,
 and taking it as given is what lets the caller write the germ at `y` in whatever form the
-surrounding statement already produced. -/
+surrounding statement already produced.
+@isnad1 id=eq.3h9v.s9.b5f9dbb4b505 from=translated src=- shape=a77412a2 vocab=be3fe2b8
+-/
 lemma stalkCongr_hom_germ {X : TopCat.{v}} (F : X.Presheaf C) {x y : X} (e : Inseparable x y)
     (U : Opens X) (hx : x ∈ U) (hy : y ∈ U) (s : ToType (F.obj (op U))) :
     ConcreteCategory.hom (F.stalkCongr e).hom (F.germ U x hx s) = F.germ U y hy s :=

@@ -40,7 +40,9 @@ group `Γ ⊆ SL(2, ℝ)` this is equivalent to the existence of a hyperbolic co
 def AdmitsCore {G : Type*} [Group G] (Γ : Subgroup G) : Prop :=
   Γ.relIndex (commensurator Γ) ≠ 0
 
-/-- If `Γ` admits a core, then every element of the commensurator has a positive power in `Γ`. -/
+/-- If `Γ` admits a core, then every element of the commensurator has a positive power in `Γ`.
+@isnad1 id=ex.2h3v.s6.f4058e6fe448 from=translated src=- shape=331ef566 vocab=02208531
+-/
 lemma AdmitsCore.exists_pow_mem {G : Type*} [Group G] {Γ : Subgroup G} (h : AdmitsCore Γ)
     {σ : G} (hσ : σ ∈ commensurator Γ) : ∃ n : ℕ, 0 < n ∧ σ ^ n ∈ Γ := by
   obtain ⟨n, hn, -, hmem⟩ := exists_pow_mem_of_relIndex_ne_zero h hσ
@@ -50,7 +52,9 @@ section conj
 
 variable {G H : Type*} [Group G] [Group H]
 
-/-- Conjugation commutes with taking images. -/
+/-- Conjugation commutes with taking images.
+@isnad1 id=eq.0h5v.s8.b31f63858226 from=translated src=- shape=c1b824a2 vocab=a5fa1f84
+-/
 lemma map_conjAct_smul (f : G →* H) (x : G) (K : Subgroup G) :
     (ConjAct.toConjAct x • K).map f = ConjAct.toConjAct (f x) • K.map f := by
   ext y
@@ -70,7 +74,9 @@ end conj
 noncomputable def diagTwo : GL (Fin 2) ℚ :=
   Matrix.GeneralLinearGroup.mkOfDetNeZero !![2, 0; 0, 1] (by simp [det_fin_two])
 
-/-- The squared trace `2ⁿ + 2 + 2⁻ⁿ` is not an integer for `n ≥ 1`. -/
+/-- The squared trace `2ⁿ + 2 + 2⁻ⁿ` is not an integer for `n ≥ 1`.
+@isnad1 id=ne.1h2v.s6.5c2cea018741 from=translated src=- shape=23484bbf vocab=a5f50e8d
+-/
 lemma not_int_two_pow {n : ℕ} (hn : 0 < n) (m : ℤ) :
     ((2 : ℝ) ^ n + 1) ^ 2 / 2 ^ n ≠ m := by
   intro h

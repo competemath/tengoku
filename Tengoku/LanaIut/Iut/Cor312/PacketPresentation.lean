@@ -93,6 +93,9 @@ instance : TopologicalSpace P.Total := inferInstanceAs (TopologicalSpace (∀ c,
 with every component in the integral structure of its summand. -/
 def integralRegion : Set P.Total := {x | ∀ c, x c ∈ P.integral c}
 
+/--
+@isnad1 id=iff.0h3v.s5.e21e522534fe from=translated src=- shape=6695d463 vocab=397eb9ff
+-/
 @[simp]
 lemma mem_integralRegion {x : P.Total} : x ∈ P.integralRegion ↔ ∀ c, x c ∈ P.integral c :=
   Iff.rfl
@@ -106,13 +109,22 @@ def IsProductRegion (R : Set P.Total) : Prop :=
 /-- The product region attached to a family of component regions. -/
 def productRegion (U : ∀ c, Set (P.Summand c)) : Set P.Total := {x | ∀ c, x c ∈ U c}
 
+/--
+@isnad1 id=iff.0h4v.s5.f679e7cda06f from=translated src=- shape=76cbfcfe vocab=9a77de3d
+-/
 @[simp]
 lemma mem_productRegion {U : ∀ c, Set (P.Summand c)} {x : P.Total} :
     x ∈ P.productRegion U ↔ ∀ c, x c ∈ U c := Iff.rfl
 
+/--
+@isnad1 id=isproduc.0h3v.s4.658e9d397301 from=translated src=- shape=204b620b vocab=b39cbf91
+-/
 lemma isProductRegion_productRegion (U : ∀ c, Set (P.Summand c)) :
     P.IsProductRegion (P.productRegion U) := ⟨U, rfl⟩
 
+/--
+@isnad1 id=isproduc.0h2v.s3.4bd22165d415 from=translated src=- shape=65532ca2 vocab=4f8c46af
+-/
 lemma isProductRegion_integralRegion : P.IsProductRegion P.integralRegion :=
   ⟨fun c => P.integral c, rfl⟩
 
@@ -127,15 +139,24 @@ candidate holomorphic hulls of IUT III, Remark 3.9.5(i). -/
 def scaledIntegral (a : P.Total) : Set P.Total :=
   {x | ∀ c, x c ∈ a c • P.integral c}
 
+/--
+@isnad1 id=iff.0h4v.s6.dc26f557a886 from=translated src=- shape=6829adf9 vocab=73a8aed5
+-/
 @[simp]
 lemma mem_scaledIntegral {a x : P.Total} :
     x ∈ P.scaledIntegral a ↔ ∀ c, x c ∈ a c • P.integral c :=
   Iff.rfl
 
+/--
+@isnad1 id=isproduc.0h3v.s4.b2274e522837 from=translated src=- shape=659903fc vocab=847779f8
+-/
 lemma isProductRegion_scaledIntegral (a : P.Total) :
     P.IsProductRegion (P.scaledIntegral a) :=
   ⟨fun c => a c • P.integral c, rfl⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.25f8e1619ebd from=translated src=- shape=788234dc vocab=b59462c0
+-/
 @[simp]
 lemma scaledIntegral_one : P.scaledIntegral (fun _ => 1) = P.integralRegion := by
   ext x
@@ -147,6 +168,9 @@ of a region `U` is the least hull region containing `U`; see `Iut.HullSystem`. -
 def IsHullRegion (R : Set P.Total) : Prop :=
   ∃ a : P.Total, (∀ c, IsUnit (a c)) ∧ R = P.scaledIntegral a
 
+/--
+@isnad1 id=ishullre.0h2v.s3.f7b975ba25fc from=translated src=- shape=65532ca2 vocab=9b9a97e5
+-/
 lemma isHullRegion_integralRegion : P.IsHullRegion P.integralRegion :=
   ⟨fun _ => 1, fun _ => isUnit_one, (P.scaledIntegral_one).symm⟩
 

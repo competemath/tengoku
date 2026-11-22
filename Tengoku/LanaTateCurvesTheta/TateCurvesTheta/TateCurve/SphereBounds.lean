@@ -59,11 +59,15 @@ variable (t : TateParameter K)
 
 /-! ### Closed forms of the leading terms -/
 
-/-- The `n = 0` term of the `X`-coordinate series is `u/(1-u)²`. -/
+/-- The `n = 0` term of the `X`-coordinate series is `u/(1-u)²`.
+@isnad1 id=eq.0h3v.s7.0183e8e40bd7 from=translated src=- shape=9d18b3b5 vocab=fbd00b30
+-/
 lemma Xterm_zero_apply (u : Kˣ) : t.Xterm u 0 = (u : K) / (1 - (u : K)) ^ 2 := by
   rw [Xterm_apply, zpow_zero, one_mul]
 
-/-- The `n = 0` term of the `Y`-coordinate series is `u²/(1-u)³`. -/
+/-- The `n = 0` term of the `Y`-coordinate series is `u²/(1-u)³`.
+@isnad1 id=eq.0h3v.s7.39db5f1dfd18 from=translated src=- shape=8d14af1e vocab=743845ed
+-/
 lemma Yterm_zero_apply (u : Kˣ) : t.Yterm u 0 = (u : K) ^ 2 / (1 - (u : K)) ^ 3 := by
   rw [Yterm_apply, zpow_zero, one_mul]
 
@@ -76,26 +80,34 @@ variable [IsUltrametricDist K]
 Writing `w = qⁿu`, the isosceles law `‖1 - w‖ = max 1 ‖w‖` gives `‖Xterm‖ = ‖w‖` and
 `‖Yterm‖ = ‖w‖²` for `‖w‖ < 1`, and `‖Xterm‖ = ‖Yterm‖ = ‖w‖⁻¹` for `‖w‖ > 1`. -/
 
-/-- For `‖qⁿu‖ < 1` the `X`-term has norm exactly `‖qⁿu‖`. -/
+/-- For `‖qⁿu‖ < 1` the `X`-term has norm exactly `‖qⁿu‖`.
+@isnad1 id=eq.1h4v.s7.1247b53eeaa2 from=translated src=- shape=c68158b5 vocab=0271e1b3
+-/
 lemma norm_Xterm_of_norm_lt_one {u : Kˣ} {n : ℤ} (h : ‖(t.q : K) ^ n * (u : K)‖ < 1) :
     ‖t.Xterm u n‖ = ‖(t.q : K) ^ n * (u : K)‖ := by
   rw [Xterm_apply, norm_div, norm_pow, norm_one_sub_of_norm_ne_one h.ne,
     max_eq_left h.le, one_pow, div_one]
 
-/-- For `‖qⁿu‖ > 1` the `X`-term has norm exactly `‖qⁿu‖⁻¹`. -/
+/-- For `‖qⁿu‖ > 1` the `X`-term has norm exactly `‖qⁿu‖⁻¹`.
+@isnad1 id=eq.1h4v.s7.7af2ab150e66 from=translated src=- shape=885ea113 vocab=98029a20
+-/
 lemma norm_Xterm_of_one_lt_norm {u : Kˣ} {n : ℤ} (h : 1 < ‖(t.q : K) ^ n * (u : K)‖) :
     ‖t.Xterm u n‖ = ‖(t.q : K) ^ n * (u : K)‖⁻¹ := by
   have h0 : ‖(t.q : K) ^ n * (u : K)‖ ≠ 0 := (lt_trans one_pos h).ne'
   rw [Xterm_apply, norm_div, norm_pow, norm_one_sub_of_norm_ne_one h.ne',
     max_eq_right h.le, pow_two, div_mul_cancel_left₀ h0]
 
-/-- For `‖qⁿu‖ < 1` the `Y`-term has norm exactly `‖qⁿu‖²`. -/
+/-- For `‖qⁿu‖ < 1` the `Y`-term has norm exactly `‖qⁿu‖²`.
+@isnad1 id=eq.1h4v.s7.436c74e84ee4 from=translated src=- shape=39dae696 vocab=a87daa82
+-/
 lemma norm_Yterm_of_norm_lt_one {u : Kˣ} {n : ℤ} (h : ‖(t.q : K) ^ n * (u : K)‖ < 1) :
     ‖t.Yterm u n‖ = ‖(t.q : K) ^ n * (u : K)‖ ^ 2 := by
   rw [Yterm_apply, norm_div, norm_pow, norm_pow, norm_one_sub_of_norm_ne_one h.ne,
     max_eq_left h.le, one_pow, div_one]
 
-/-- For `‖qⁿu‖ > 1` the `Y`-term has norm exactly `‖qⁿu‖⁻¹`. -/
+/-- For `‖qⁿu‖ > 1` the `Y`-term has norm exactly `‖qⁿu‖⁻¹`.
+@isnad1 id=eq.1h4v.s7.c08619d17730 from=translated src=- shape=885ea113 vocab=64d722f2
+-/
 lemma norm_Yterm_of_one_lt_norm {u : Kˣ} {n : ℤ} (h : 1 < ‖(t.q : K) ^ n * (u : K)‖) :
     ‖t.Yterm u n‖ = ‖(t.q : K) ^ n * (u : K)‖⁻¹ := by
   have h0 : ‖(t.q : K) ^ n * (u : K)‖ ≠ 0 := (lt_trans one_pos h).ne'
@@ -107,13 +119,17 @@ lemma norm_Yterm_of_one_lt_norm {u : Kˣ} {n : ℤ} (h : 1 < ‖(t.q : K) ^ n * 
 
 /-! ### Exact norms of the leading terms on the middle annulus -/
 
-/-- On `‖u‖ < 1` the leading `X`-term has norm `‖u‖`. -/
+/-- On `‖u‖ < 1` the leading `X`-term has norm `‖u‖`.
+@isnad1 id=eq.1h3v.s6.cc54f1318021 from=translated src=- shape=78253d57 vocab=dd6524be
+-/
 lemma norm_Xterm_zero {u : Kˣ} (hhi : ‖(u : K)‖ < 1) : ‖t.Xterm u 0‖ = ‖(u : K)‖ := by
   have h : ‖(t.q : K) ^ (0 : ℤ) * (u : K)‖ < 1 := by rwa [zpow_zero, one_mul]
   have := t.norm_Xterm_of_norm_lt_one h
   rwa [zpow_zero, one_mul] at this
 
-/-- On `‖u‖ < 1` the leading `Y`-term has norm `‖u‖²`. -/
+/-- On `‖u‖ < 1` the leading `Y`-term has norm `‖u‖²`.
+@isnad1 id=eq.1h3v.s6.209e5c32e1c3 from=translated src=- shape=5dcb3556 vocab=13704458
+-/
 lemma norm_Yterm_zero {u : Kˣ} (hhi : ‖(u : K)‖ < 1) : ‖t.Yterm u 0‖ = ‖(u : K)‖ ^ 2 := by
   have h : ‖(t.q : K) ^ (0 : ℤ) * (u : K)‖ < 1 := by rwa [zpow_zero, one_mul]
   have := t.norm_Yterm_of_norm_lt_one h
@@ -125,7 +141,9 @@ private lemma norm_qzpow_neg_one_mul (u : Kˣ) :
     ‖(t.q : K) ^ (-1 : ℤ) * (u : K)‖ = ‖(u : K)‖ / ‖(t.q : K)‖ := by
   rw [norm_mul, norm_zpow, zpow_neg_one, inv_mul_eq_div]
 
-/-- On `‖q‖ < ‖u‖` the subleading `X`-term (`n = -1`) has norm `‖q‖/‖u‖`. -/
+/-- On `‖q‖ < ‖u‖` the subleading `X`-term (`n = -1`) has norm `‖q‖/‖u‖`.
+@isnad1 id=eq.1h3v.s7.b644fa465e53 from=translated src=- shape=6b1a67da vocab=6b7aa3ef
+-/
 lemma norm_Xterm_neg_one {u : Kˣ} (hlo : ‖(t.q : K)‖ < ‖(u : K)‖) :
     ‖t.Xterm u (-1)‖ = ‖(t.q : K)‖ / ‖(u : K)‖ := by
   have h1 : 1 < ‖(t.q : K) ^ (-1 : ℤ) * (u : K)‖ := by
@@ -136,7 +154,9 @@ lemma norm_Xterm_neg_one {u : Kˣ} (hlo : ‖(t.q : K)‖ < ‖(u : K)‖) :
 /-- On `‖q‖ < ‖u‖` the subleading `Y`-term (`n = -1`) has norm `‖q‖/‖u‖`.
 
 Note the exact norm is `‖q‖/‖u‖` and **not** `(‖q‖/‖u‖)²`: for `‖w‖ > 1` the `Y`-term
-`w²/(1-w)³` has norm `‖w‖²/‖w‖³ = ‖w‖⁻¹`, here with `w = u/q`. -/
+`w²/(1-w)³` has norm `‖w‖²/‖w‖³ = ‖w‖⁻¹`, here with `w = u/q`.
+@isnad1 id=eq.1h3v.s7.7d3319046c60 from=translated src=- shape=6b1a67da vocab=0c8864f6
+-/
 lemma norm_Yterm_neg_one {u : Kˣ} (hlo : ‖(t.q : K)‖ < ‖(u : K)‖) :
     ‖t.Yterm u (-1)‖ = ‖(t.q : K)‖ / ‖(u : K)‖ := by
   have h1 : 1 < ‖(t.q : K) ^ (-1 : ℤ) * (u : K)‖ := by
@@ -241,7 +261,9 @@ private lemma norm_two_mul_eisenstein_le : ‖2 * t.eisenstein 1‖ ≤ ‖(t.q 
 
 /-- **Unit-sphere approximation of `X`.** For `‖u‖ = 1` the Tate `X`-coordinate is the
 node coordinate `u/(1-u)²` up to an error of norm `≤ ‖q‖`: every series term with `n ≠ 0`
-and the Eisenstein constant are `O(q)`. -/
+and the Eisenstein constant are `O(q)`.
+@isnad1 id=le.1h3v.s7.82f6c37dc43b from=translated src=- shape=6884c3e4 vocab=77a58ba1
+-/
 theorem norm_X_sub_node_le {u : Kˣ} (hu : ‖(u : K)‖ = 1) :
     ‖t.X u - (u : K) / (1 - (u : K)) ^ 2‖ ≤ ‖(t.q : K)‖ := by
   have hkey : t.X u - (u : K) / (1 - (u : K)) ^ 2
@@ -259,7 +281,9 @@ theorem norm_X_sub_node_le {u : Kˣ} (hu : ‖(u : K)‖ = 1) :
     exact t.norm_two_mul_eisenstein_le
 
 /-- **Unit-sphere approximation of `Y`.** For `‖u‖ = 1` the Tate `Y`-coordinate is the
-node coordinate `u²/(1-u)³` up to an error of norm `≤ ‖q‖`. -/
+node coordinate `u²/(1-u)³` up to an error of norm `≤ ‖q‖`.
+@isnad1 id=le.1h3v.s8.72971bc133f2 from=translated src=- shape=af2807a8 vocab=7858fa8e
+-/
 theorem norm_Y_sub_node_le {u : Kˣ} (hu : ‖(u : K)‖ = 1) :
     ‖t.Y u - (u : K) ^ 2 / (1 - (u : K)) ^ 3‖ ≤ ‖(t.q : K)‖ := by
   have hkey : t.Y u - (u : K) ^ 2 / (1 - (u : K)) ^ 3
@@ -278,7 +302,9 @@ theorem norm_Y_sub_node_le {u : Kˣ} (hu : ‖(u : K)‖ = 1) :
 /-! ### Leading-term approximation on the middle annulus -/
 
 /-- **Middle-annulus approximation of `X`.** For `‖q‖ < ‖u‖ < 1` the Tate `X`-coordinate
-is the sum of its `n = 0` and `n = -1` terms up to an error of norm `≤ ‖q‖`. -/
+is the sum of its `n = 0` and `n = -1` terms up to an error of norm `≤ ‖q‖`.
+@isnad1 id=le.2h3v.s7.055b633fcf51 from=translated src=- shape=b59b9cc7 vocab=faf539eb
+-/
 theorem norm_X_sub_annulus_le {u : Kˣ} (hlo : ‖(t.q : K)‖ < ‖(u : K)‖)
     (hhi : ‖(u : K)‖ < 1) :
     ‖t.X u - t.Xterm u 0 - t.Xterm u (-1)‖ ≤ ‖(t.q : K)‖ := by
@@ -310,7 +336,9 @@ theorem norm_X_sub_annulus_le {u : Kˣ} (hlo : ‖(t.q : K)‖ < ‖(u : K)‖)
     exact t.norm_two_mul_eisenstein_le
 
 /-- **Middle-annulus approximation of `Y`.** For `‖q‖ < ‖u‖ < 1` the Tate `Y`-coordinate
-is the sum of its `n = 0` and `n = -1` terms up to an error of norm `≤ ‖q‖`. -/
+is the sum of its `n = 0` and `n = -1` terms up to an error of norm `≤ ‖q‖`.
+@isnad1 id=le.2h3v.s7.bdbdf5393bba from=translated src=- shape=b59b9cc7 vocab=7694ea44
+-/
 theorem norm_Y_sub_annulus_le {u : Kˣ} (hlo : ‖(t.q : K)‖ < ‖(u : K)‖)
     (hhi : ‖(u : K)‖ < 1) :
     ‖t.Y u - t.Yterm u 0 - t.Yterm u (-1)‖ ≤ ‖(t.q : K)‖ := by
@@ -345,7 +373,9 @@ theorem norm_Y_sub_annulus_le {u : Kˣ} (hlo : ‖(t.q : K)‖ < ‖(u : K)‖)
 /-- **Integral points stay integral.** On the Tate curve `y² + xy = x³ + a₄x + a₆`
 (`TameResidueChar K`; only `12 ≠ 0` is used), an affine point with `‖x‖ ≤ 1` has `‖y‖ ≤ 1`:
 otherwise `‖y² + xy‖ = ‖y‖² > 1` would exceed the norm of the right-hand side, which is `≤ 1` by the
-integrality `‖a₄‖, ‖a₆‖ ≤ ‖q‖ < 1`. -/
+integrality `‖a₄‖, ‖a₆‖ ≤ ‖q‖ < 1`.
+@isnad1 id=le.3h4v.s7.e728df74d960 from=translated src=- shape=7a3faa5b vocab=a4d1515e
+-/
 theorem norm_y_le_one_of_norm_x_le_one (h12 : TameResidueChar K) {x y : K}
     (hxy : y ^ 2 + x * y = x ^ 3 + t.a₄ * x + t.a₆) (hx : ‖x‖ ≤ 1) : ‖y‖ ≤ 1 := by
   by_contra hcon
@@ -380,7 +410,9 @@ theorem norm_y_le_one_of_norm_x_le_one (h12 : TameResidueChar K) {x y : K}
 
 The a-priori disjunction (either `‖y‖² = ‖q‖`, or the boundary case `‖x‖² = ‖q‖` with
 `‖y‖ ≤ ‖x‖`) collapses: `‖y‖ < ‖x‖` would give `‖q‖ = ‖y‖·‖x‖ < ‖x‖² ≤ ‖q‖`, and
-`‖y‖ = ‖x‖` forces `‖x‖² = ‖q‖ = ‖y‖²`, so the first alternative always holds. -/
+`‖y‖ = ‖x‖` forces `‖x‖² = ‖q‖ = ‖y‖²`, so the first alternative always holds.
+@isnad1 id=and.4h4v.s8.14185ce837e4 from=translated src=- shape=aa382024 vocab=a71bfa88
+-/
 theorem norm_y_sq_eq_of_node (h12 : TameResidueChar K) {x y : K}
     (hxy : y ^ 2 + x * y = x ^ 3 + t.a₄ * x + t.a₆)
     (hx : ‖x‖ ^ 2 ≤ ‖(t.q : K)‖) (hx1 : ‖x‖ < 1) :

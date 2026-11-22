@@ -41,7 +41,9 @@ namespace Codim2
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
 /-- Let `δ` be holomorphic on an open `V ⊆ E × ℂ` without zeros off `t = 0`. If `δ(y₀, 0) = 0`,
-then `δ(y, 0) = 0` for all `y` near `y₀`. -/
+then `δ(y, 0) = 0` for all `y` near `y₀`.
+@isnad1 id=eventual.5h4v.s8.9b029f35e477 from=translated src=- shape=7d113512 vocab=c63a28b1
+-/
 theorem eventually_apply_zero_eq_zero {V : Set (E × ℂ)} (hV : IsOpen V) {δ : E × ℂ → ℂ}
     (hδ : DifferentiableOn ℂ δ V) (hne : ∀ z ∈ V, z.2 ≠ 0 → δ z ≠ 0) {y₀ : E}
     (hy₀ : (y₀, 0) ∈ V) (h0 : δ (y₀, 0) = 0) : ∀ᶠ y in 𝓝 y₀, δ (y, 0) = 0 := by
@@ -97,7 +99,9 @@ theorem eventually_apply_zero_eq_zero {V : Set (E × ℂ)} (hV : IsOpen V) {δ :
     exact inv_anti₀ (half_pos hc) (hy t ht).le
 
 /-- Let `δ` be holomorphic on an open `V ⊆ E × ℂ` without zeros off `t = 0`, and let `G` be a
-preconnected open with `G × {0} ⊆ V`. Then `δ(·, 0)` vanishes identically or nowhere on `G`. -/
+preconnected open with `G × {0} ⊆ V`. Then `δ(·, 0)` vanishes identically or nowhere on `G`.
+@isnad1 id=or.6h4v.s8.2078695f633e from=translated src=- shape=0b2fbec8 vocab=b911fdf9
+-/
 theorem apply_zero_eq_zero_or_ne_zero {G : Set E} (hGo : IsOpen G) (hG : IsPreconnected G)
     {V : Set (E × ℂ)} (hV : IsOpen V) (hGV : ∀ y ∈ G, (y, 0) ∈ V) {δ : E × ℂ → ℂ}
     (hδ : DifferentiableOn ℂ δ V) (hne : ∀ z ∈ V, z.2 ≠ 0 → δ z ≠ 0) :
@@ -126,7 +130,9 @@ theorem apply_zero_eq_zero_or_ne_zero {G : Set E} (hGo : IsOpen G) (hG : IsPreco
   exact fun y hy ↦ (show ∀ᶠ y' in 𝓝 y, δ (y', 0) = 0 from hGu hy).self_of_nhds
 
 omit [NormedSpace ℂ E] in
-/-- The hyperplane `t = 0` has empty interior in any subset of `E × ℂ`. -/
+/-- The hyperplane `t = 0` has empty interior in any subset of `E × ℂ`.
+@isnad1 id=eq.0h2v.s6.202641b16a06 from=translated src=- shape=957f5e89 vocab=4db4f791
+-/
 lemma interior_inter_preimage_snd_zero (V : Set (E × ℂ)) :
     interior (V ∩ Prod.snd ⁻¹' {0}) = ∅ := by
   refine eq_empty_of_subset_empty ((interior_mono inter_subset_right).trans ?_)
@@ -135,7 +141,9 @@ lemma interior_inter_preimage_snd_zero (V : Set (E × ℂ)) :
 variable [FiniteDimensional ℂ E]
 
 /-- A holomorphic function on an open `V ⊆ E × ℂ` which vanishes on `t = 0` is `t` times a
-holomorphic function on `V`. -/
+holomorphic function on `V`.
+@isnad1 id=ex.3h3v.s8.34a86b4936ce from=translated src=- shape=e20f5904 vocab=53e3587c
+-/
 theorem exists_eq_mul_of_apply_zero {V : Set (E × ℂ)} (hV : IsOpen V) {δ : E × ℂ → ℂ}
     (hδ : DifferentiableOn ℂ δ V) (h0 : ∀ z ∈ V, z.2 = 0 → δ z = 0) :
     ∃ δ₁ : E × ℂ → ℂ, DifferentiableOn ℂ δ₁ V ∧ ∀ z ∈ V, δ z = z.2 * δ₁ z := by
@@ -184,7 +192,9 @@ theorem exists_eq_mul_of_apply_zero {V : Set (E × ℂ)} (hV : IsOpen V) {δ : E
 
 /-- **Contact order.** Let `G ⊆ E` be open and preconnected and let `δ` be holomorphic on
 `G × Δ_r` without zeros off `t = 0`. Then `δ = tᵏ u` for some `k` and some holomorphic `u` without
-zeros on `G × Δ_r`. -/
+zeros on `G × Δ_r`.
+@isnad1 id=ex.4h4v.s9.f13fdec30be8 from=translated src=- shape=9fa68691 vocab=2c386ca1
+-/
 theorem exists_eq_pow_mul {G : Set E} (hGo : IsOpen G) (hG : IsPreconnected G) {r : ℝ}
     {δ : E × ℂ → ℂ} (hδ : DifferentiableOn ℂ δ (G ×ˢ ball 0 r))
     (hne : ∀ z ∈ G ×ˢ ball (0 : ℂ) r, z.2 ≠ 0 → δ z ≠ 0) :

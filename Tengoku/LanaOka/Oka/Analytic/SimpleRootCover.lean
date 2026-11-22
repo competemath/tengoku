@@ -53,7 +53,9 @@ private lemma pow_card_le_multiset_prod {s : Multiset ℝ} {a : ℝ} (ha : 0 ≤
       (ha.trans hx)
 
 /-- For parameters near `x₀`, a continuous family of monic polynomials of fixed degree has a root
-near each root of `p x₀`. -/
+near each root of `p x₀`.
+@isnad1 id=eventual.5h6v.s6.ebd467edc02f from=translated src=- shape=ac31775b vocab=255c188c
+-/
 theorem eventually_exists_isRoot_near_of_continuous (hm : ∀ x, (p x).Monic)
     (hd : ∀ x, (p x).natDegree = d) (hc : ∀ i, Continuous fun x ↦ (p x).coeff i) {x₀ : Z}
     {τ : ℂ} (hτ : (p x₀).IsRoot τ) {ε : ℝ} (hε : 0 < ε) :
@@ -83,20 +85,26 @@ theorem eventually_exists_isRoot_near_of_continuous (hm : ∀ x, (p x).Monic)
     exact h σ (isRoot_of_mem_roots hσ)
   exact lt_irrefl _ (hle.trans_lt hx)
 
-/-- A separable monic complex polynomial is the product of `X - C τ` over its roots. -/
+/-- A separable monic complex polynomial is the product of `X - C τ` over its roots.
+@isnad1 id=eq.2h1v.s6.d762274ae8c1 from=translated src=- shape=818a7eb5 vocab=c9967297
+-/
 theorem prod_roots_toFinset_of_separable {q : ℂ[X]} (hm : q.Monic) (hs : q.Separable) :
     ∏ τ ∈ q.roots.toFinset, (X - C τ) = q := by
   rw [Finset.prod_eq_multiset_prod, Multiset.toFinset_val,
     Multiset.dedup_eq_self.2 (nodup_roots hs)]
   exact prod_multiset_X_sub_C_of_monic_of_roots_card_eq hm IsAlgClosed.card_roots_eq_natDegree
 
-/-- A separable complex polynomial has as many distinct roots as its degree. -/
+/-- A separable complex polynomial has as many distinct roots as its degree.
+@isnad1 id=eq.1h1v.s4.cce9fb2d406b from=translated src=- shape=04a8c777 vocab=90cf8aa3
+-/
 theorem card_roots_toFinset_of_separable {q : ℂ[X]} (hs : q.Separable) :
     q.roots.toFinset.card = q.natDegree := by
   rw [Multiset.toFinset_card_of_nodup (nodup_roots hs), IsAlgClosed.card_roots_eq_natDegree]
 
 /-- **The zero locus of a continuous separable family of monic polynomials of fixed degree is a
-covering of the parameter space.** -/
+covering of the parameter space.**
+@isnad1 id=iscoveri.4h3v.s7.d769ca349eb5 from=translated src=- shape=658d79ac vocab=f6d1f9b3
+-/
 theorem isCoveringMap_fst_zeroLocus (hm : ∀ x, (p x).Monic) (hd : ∀ x, (p x).natDegree = d)
     (hc : ∀ i, Continuous fun x ↦ (p x).coeff i) (hs : ∀ x, (p x).Separable) :
     IsCoveringMap fun q : {q : Z × ℂ // (p q.1).eval q.2 = 0} ↦ (q : Z × ℂ).1 := by
@@ -216,7 +224,9 @@ section Holomorphic
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {p : E → ℂ[X]} {n : ℕ} {x₀ : E}
 
 /-- **A continuous simple root of a family of polynomials with holomorphic coefficients is
-holomorphic.** -/
+holomorphic.**
+@isnad1 id=differen.5h5v.s8.3d2d190ad305 from=translated src=- shape=0de48142 vocab=96ed4f1d
+-/
 theorem differentiableAt_of_isRoot_of_differentiableAt_coeff (hd : ∀ x, (p x).natDegree ≤ n)
     (hdiff : ∀ i, DifferentiableAt ℂ (fun x ↦ (p x).coeff i) x₀) {ρ : E → ℂ}
     (hρ : ContinuousAt ρ x₀) (hroot : ∀ᶠ x in 𝓝 x₀, (p x).IsRoot (ρ x))

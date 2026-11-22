@@ -96,7 +96,9 @@ def DefectLaurentRepr : Prop :=
 principle `LaurentCoeffUnique K` and the Laurent representation of the defect
 (`DefectLaurentRepr t`), the `q`-difference engine `const_of_qinvariant_laurent` collapses the
 representing series to its constant term `c₀ := c 0`, so `tateDefect u = c₀` for every off-orbit
-`u : Kˣ`. -/
+`u : Kˣ`.
+@isnad1 id=ex.2h2v.s7.f83375d5eac6 from=translated src=- shape=de353282 vocab=f7794c9f
+-/
 theorem tateDefect_eq_const (huniq : LaurentCoeffUnique K) (hrepr : t.DefectLaurentRepr) :
     ∃ d : K, ∀ u : Kˣ, (∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) → t.tateDefect u = d := by
   obtain ⟨c, hsum, hid, hqinv⟩ := hrepr
@@ -110,7 +112,9 @@ and the defect's Laurent representation, all that is needed is one normalization
 off-orbit point `u₀` where the defect already vanishes, `tateDefect u₀ = 0`. This pins the constant
 `d` of `tateDefect_eq_const` to `0`, so the defect vanishes at every off-orbit `u`, and the Tate
 point `(X(u), Y(u))` lies on the Tate curve `E_q`:
-`Y(u)² + X(u)·Y(u) = X(u)³ + a₄·X(u) + a₆`. -/
+`Y(u)² + X(u)·Y(u) = X(u)³ + a₄·X(u) + a₆`.
+@isnad1 id=equation.5h4v.s8.1b3364d8fa0f from=translated src=- shape=d02ab473 vocab=099b618c
+-/
 theorem tatePoint_mem (huniq : LaurentCoeffUnique K) (hrepr : t.DefectLaurentRepr)
     {u₀ : Kˣ} (hu₀ : ∀ n : ℤ, (t.q : K) ^ n * (u₀ : K) ≠ 1) (hnorm : t.tateDefect u₀ = 0)
     {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) :

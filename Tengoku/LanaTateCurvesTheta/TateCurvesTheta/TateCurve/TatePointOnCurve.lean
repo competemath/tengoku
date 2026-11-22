@@ -140,7 +140,9 @@ section SeriesIdentities
 
 /-- **Besge's identity in convergent-series form**: `12·s₁² + 6·ρ = 5·s₃ + s₁`, where
 `ρ = t.rSum = ∑_N Nσ₁(N)qᴺ` is the weight-2 weighted Eisenstein series. Each `qᴺ`-slot is
-the classical Besge evaluation of the `σ₁∗σ₁` convolution. -/
+the classical Besge evaluation of the `σ₁∗σ₁` convolution.
+@isnad1 id=eq.0h2v.s7.1228220e7f48 from=translated src=- shape=0d53f0a2 vocab=f22998cf
+-/
 theorem eisenstein_besge :
     12 * t.eisenstein 1 ^ 2 + 6 * t.rSum = 5 * t.eisenstein 3 + t.eisenstein 1 := by
   rw [t.eisenstein_one_sq_eq_qexp, t.rSum_eq_qexp, t.eisenstein_eq_qexp 3, t.eisenstein_eq_qexp 1]
@@ -178,7 +180,9 @@ theorem eisenstein_besge :
   linear_combination (t.q : K) ^ (N + 1) * hcast
 
 /-- **The `σ₁∗σ₃` evaluation in convergent-series form**:
-`30·𝔪 + 240·s₁s₃ + s₁ = 10·s₃ + 21·s₅`, where `𝔪 = t.psiSum = ∑_N Nσ₃(N)qᴺ`. -/
+`30·𝔪 + 240·s₁s₃ + s₁ = 10·s₃ + 21·s₅`, where `𝔪 = t.psiSum = ∑_N Nσ₃(N)qᴺ`.
+@isnad1 id=eq.0h2v.s8.29d427bd5291 from=translated src=- shape=1c99ae13 vocab=e798391e
+-/
 theorem eisenstein_sigma_one_three :
     30 * t.psiSum + 240 * (t.eisenstein 1 * t.eisenstein 3) + t.eisenstein 1
       = 10 * t.eisenstein 3 + 21 * t.eisenstein 5 := by
@@ -231,16 +235,22 @@ end SeriesIdentities
 
 section Brackets
 
-/-- The unweighted `p`-series is `s₁`: the divisor-swap symmetry of the double series. -/
+/-- The unweighted `p`-series is `s₁`: the divisor-swap symmetry of the double series.
+@isnad1 id=eq.0h2v.s5.e1c5ab2b3bed from=translated src=- shape=fb2fae1f vocab=4120faf2
+-/
 lemma pSum_eq_eisenstein_one : t.pSum = t.eisenstein 1 := by
   rw [t.pSum_eq_qexp, t.eisenstein_eq_qexp 1]
   exact tsum_congr fun N => by simp only [pow_one]
 
-/-- The unweighted `φ`-series is `s₃`. -/
+/-- The unweighted `φ`-series is `s₃`.
+@isnad1 id=eq.0h2v.s5.4231ff964414 from=translated src=- shape=fb2fae1f vocab=aec8da52
+-/
 lemma phiSum_eq_eisenstein_three : t.phiSum = t.eisenstein 3 := by
   rw [t.phiSum_eq_qexp, t.eisenstein_eq_qexp 3]
 
-/-- The squared-`p` series evaluates to `(s₃ - s₁)/6`, in division-free form. -/
+/-- The squared-`p` series evaluates to `(s₃ - s₁)/6`, in division-free form.
+@isnad1 id=eq.0h2v.s6.b68b8540cd72 from=translated src=- shape=728e3a14 vocab=25b35a36
+-/
 lemma pSqSum_six_eq : 6 * t.pSqSum = t.eisenstein 3 - t.eisenstein 1 := by
   rw [t.pSqSum_mul_six_eq_qexp, t.eisenstein_eq_qexp 3, t.eisenstein_eq_qexp 1]
   have hC := t.summable_qexp (c := fun N => ∑ d ∈ (N + 1).divisors, (d : K) ^ 3)
@@ -252,7 +262,9 @@ lemma pSqSum_six_eq : 6 * t.pSqSum = t.eisenstein 3 - t.eisenstein 1 := by
   simp only [pow_one, Finset.sum_sub_distrib]
   ring
 
-/-- The weighted `p·r`-series evaluates to `(𝔪 - ρ)/12`, in division-free form. -/
+/-- The weighted `p·r`-series evaluates to `(𝔪 - ρ)/12`, in division-free form.
+@isnad1 id=eq.0h2v.s6.12686ea8df48 from=translated src=- shape=fc534503 vocab=cc3fb538
+-/
 lemma prSum_twelve_eq : 12 * t.prSum = t.psiSum - t.rSum := by
   rw [t.prSum_mul_twelve_eq_qexp, t.psiSum_eq_qexp, t.rSum_eq_qexp]
   have hA := t.summable_qexp (c := fun N => ((N + 1 : ℕ) : K)
@@ -270,7 +282,9 @@ lemma prSum_twelve_eq : 12 * t.prSum = t.psiSum - t.rSum := by
 
 /-- **The weight-4 bracket identity**: the coefficient of `S` in the Eisenstein assembly of
 the Weierstrass defect vanishes. Equivalent to Besge's identity together with
-`a₄ = -5s₃`. -/
+`a₄ = -5s₃`.
+@isnad1 id=eq.1h2v.s8.8a7c978b70be from=translated src=- shape=22b72930 vocab=c321b85e
+-/
 theorem bracketA_eq_zero (h3 : (3 : K) ≠ 0) :
     12 * t.phiSum + 8 * t.pSqSum + 8 * t.rSum + 16 * t.eisenstein 1 ^ 2 + 4 * t.a₄ = 0 := by
   apply mul_left_cancel₀ h3
@@ -280,7 +294,9 @@ theorem bracketA_eq_zero (h3 : (3 : K) ≠ 0) :
 
 /-- **The weight-6 bracket identity**: the constant term of the Eisenstein assembly of the
 Weierstrass defect vanishes. Equivalent to the `σ₁∗σ₃` convolution evaluation together with
-Besge's identity and `a₆ = -(5s₃ + 7s₅)/12`. -/
+Besge's identity and `a₆ = -(5s₃ + 7s₅)/12`.
+@isnad1 id=eq.2h2v.s9.a81d9de38bde from=translated src=- shape=92afc8c7 vocab=e4c63999
+-/
 theorem bracketB_eq (h3 : (3 : K) ≠ 0) (h12 : (12 : K) ≠ 0) :
     2 * t.psiSum + 16 * t.prSum + 2 * t.rSum + 4 * t.eisenstein 1 ^ 2 + 4 * t.a₆
       = 16 * t.eisenstein 1 * t.rSum + 32 * t.eisenstein 1 ^ 3
@@ -307,7 +323,9 @@ variable {u : Kˣ}
 /-- **Vanishing of the Weierstrass defect** at every point off the `q`-orbit, over any
 complete nonarchimedean field of characteristic prime to `12`. This is the analytic heart
 of Silverman, *Advanced Topics*, Thm V.3.1, proved by the elementary Eisenstein
-computation — uniformly in `u`, with no annulus or value-group restriction. -/
+computation — uniformly in `u`, with no annulus or value-group restriction.
+@isnad1 id=eq.2h3v.s7.f734143902ae from=translated src=- shape=0eb20546 vocab=ed9a9476
+-/
 theorem tateDefect_eq_zero (h12 : (12 : K) ≠ 0)
     (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) : t.tateDefect u = 0 := by
   have h2 : (2 : K) ≠ 0 := fun h => h12 (by rw [show (12 : K) = 2 * 6 by norm_num, h, zero_mul])
@@ -320,7 +338,9 @@ theorem tateDefect_eq_zero (h12 : (12 : K) ≠ 0)
 
 /-- **The residual analytic seam `DefectLaurentRepr` holds** (with the zero coefficient
 family): the defect is represented off the orbit by the identically-zero `q`-invariant
-Laurent series. This discharges the seam of `TateCurve/TatePointMem.lean` (#146/#170). -/
+Laurent series. This discharges the seam of `TateCurve/TatePointMem.lean` (#146/#170).
+@isnad1 id=defectla.1h2v.s6.47b57c872a25 from=translated src=- shape=f2d3ac87 vocab=e539a494
+-/
 theorem defectLaurentRepr (h12 : (12 : K) ≠ 0) : t.DefectLaurentRepr := by
   refine ⟨fun _ => 0, fun u => ?_, fun u hu => ?_, fun u => ?_⟩
   · exact summable_zero.congr fun n => (zero_mul _).symm
@@ -332,7 +352,9 @@ theorem defectLaurentRepr (h12 : (12 : K) ≠ 0) : t.DefectLaurentRepr := by
 the `q`-orbit the Tate point `(X(u), Y(u))` lies on the Tate curve `E_q`,
 `Y(u)² + X(u)·Y(u) = X(u)³ + a₄·X(u) + a₆` (Silverman, *Advanced Topics*, Thm V.3.1).
 This supersedes the conditional `tatePoint_mem`, whose `LaurentCoeffUnique` and
-`DefectLaurentRepr` inputs are now both theorems. -/
+`DefectLaurentRepr` inputs are now both theorems.
+@isnad1 id=equation.2h3v.s7.ab04158ceaec from=translated src=- shape=8fb4b687 vocab=003b3354
+-/
 theorem tatePoint_mem' (h12 : (12 : K) ≠ 0)
     (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) :
     t.tateCurve.toAffine.Equation (t.X u) (t.Y u) :=
@@ -346,7 +368,9 @@ the sphere `‖·‖ = ‖u‖` through the rescaled family `ℓ ↦ defectAnnul
 kills the infinitely many norm-one witnesses `1 + qᵏ⁺¹` — the coefficients themselves are
 zero. (For discretely-valued `K` with `‖Kˣ‖ = ‖q‖ᶻ` the annulus is empty and this
 statement requires a base-change argument instead; the parametrization itself needs only
-`tateDefect_eq_zero`, which is unconditional.) -/
+`tateDefect_eq_zero`, which is unconditional.)
+@isnad1 id=eq.3h4v.s7.f27b585af489 from=translated src=- shape=77979832 vocab=b85ed674
+-/
 theorem defectAnnulusCoeff_eq_zero (h12 : (12 : K) ≠ 0) {u : Kˣ}
     (h1 : 1 < ‖(u : K)‖) (h2 : ‖(t.q : K)‖ * ‖(u : K)‖ < 1) (ℓ : ℤ) :
     t.defectAnnulusCoeff ℓ = 0 := by

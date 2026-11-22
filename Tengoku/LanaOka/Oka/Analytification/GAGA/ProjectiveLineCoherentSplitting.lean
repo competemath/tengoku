@@ -33,10 +33,16 @@ noncomputable def matCLM : Matrix ι ι ℂ →* (ι → ℂ) →L[ℂ] (ι → 
   map_one' := by ext1 v; simp
   map_mul' A B := by ext1 v; simp [Matrix.mulVec_mulVec]
 
+/--
+@isnad1 id=eq.0h3v.s10.8d16ef0909d4 from=translated src=- shape=3920e2dc vocab=252b594a
+-/
 @[simp]
 lemma matCLM_apply (A : Matrix ι ι ℂ) (v : ι → ℂ) : matCLM A v = A *ᵥ v := by
   simp [matCLM]
 
+/--
+@isnad1 id=differen.1h4v.s10.20164e2b87a6 from=translated src=- shape=89e66955 vocab=a43666ad
+-/
 lemma differentiableOn_matCLM {X : Type*} [NormedAddCommGroup X] [NormedSpace ℂ X]
     {g : X → Matrix ι ι ℂ} {s : Set X} (hg : DifferentiableOn ℂ g s) :
     DifferentiableOn ℂ (fun p ↦ matCLM (g p)) s := by
@@ -51,9 +57,15 @@ lemma differentiableOn_matCLM {X : Type*} [NormedAddCommGroup X] [NormedSpace �
 /-- The annulus `{r₁⁻¹ < ‖z‖ < r₀}`, the intersection of `{‖z‖ < r₀}` and `{‖z⁻¹‖ < r₁}`. -/
 def annulusSet (r₀ r₁ : ℝ) : Set ℂ := {z | r₁⁻¹ < ‖z‖ ∧ ‖z‖ < r₀}
 
+/--
+@isnad1 id=isopen.0h2v.s4.e072b52fd6df from=translated src=- shape=215a98a0 vocab=08088ec5
+-/
 lemma isOpen_annulusSet (r₀ r₁ : ℝ) : IsOpen (annulusSet r₀ r₁) :=
   (isOpen_lt continuous_const continuous_norm).inter (isOpen_lt continuous_norm continuous_const)
 
+/--
+@isnad1 id=iff.1h3v.s6.5bc9051f9c94 from=translated src=- shape=f045aa5d vocab=17223475
+-/
 lemma mem_annulusSet_iff {l ρ : ℝ} (hl : 0 < l) {w : ℂ} :
     w ∈ annulusSet (l * ρ) (ρ / l) ↔ w / (l : ℂ) ∈ overlap ρ := by
   have hl' : ‖(l : ℂ)‖ = l := by rw [Complex.norm_real, Real.norm_of_nonneg hl.le]
@@ -67,7 +79,9 @@ variable [FiniteDimensional ℂ E]
 `{l / ρ < ‖z‖ < l ρ}`. Let `g` be holomorphic with invertible matrix values on `U` times the
 annulus and `K ⊆ U` compact. Then there are an open `U' ⊇ K` and `k₀` such that for all `k ≥ k₀`
 and all open `W ⊆ U'`, every holomorphic `h` on `W` times the annulus is `h = s₀ - zᵏ g t(z⁻¹)`
-with `s₀` holomorphic on `W × {‖z‖ < l ρ}` and `t` holomorphic on `W × {‖w‖ < ρ / l}`. -/
+with `s₀` holomorphic on `W × {‖z‖ < l ρ}` and `t` holomorphic on `W × {‖w‖ < ρ / l}`.
+@isnad1 id=ex.7h7v.s10.29f02be3f744 from=translated src=- shape=2603c242 vocab=8c21481c
+-/
 theorem exists_vanishing_scaled {l ρ : ℝ} (hl : 0 < l) (hρ : 1 < ρ) {U : Set E} (hU : IsOpen U)
     {g : E × ℂ → Matrix ι ι ℂ} (hg : DifferentiableOn ℂ g (U ×ˢ annulusSet (l * ρ) (ρ / l)))
     (hgu : ∀ p ∈ U ×ˢ annulusSet (l * ρ) (ρ / l), IsUnit (g p)) {K : Set E} (hK : IsCompact K)

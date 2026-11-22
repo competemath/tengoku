@@ -90,7 +90,9 @@ def defectAnnulusCoeff (ℓ : ℤ) : K :=
 `tateDefect u = ∑' ℓ : ℤ, defectAnnulusCoeff ℓ · uˡ`, obtained by nonarchimedean Cauchy products of
 the coordinate developments `X_hasSum_laurent`/`Y_hasSum_laurent`. This is step 4 of the
 pole-cancellation Laurent development of the defect (#146); the resulting series converges globally
-only after the `qᶻ`-pole cancellation, which is the residual analytic seam. -/
+only after the `qᶻ`-pole cancellation, which is the residual analytic seam.
+@isnad1 id=hassum.2h3v.s7.d702787a8e46 from=translated src=- shape=56df601f vocab=9a8bc83a
+-/
 theorem tateDefect_hasSum_laurent (h1 : 1 < ‖(u : K)‖) (h2 : ‖(t.q : K)‖ * ‖(u : K)‖ < 1) :
     HasSum (fun ℓ : ℤ => t.defectAnnulusCoeff ℓ * (u : K) ^ ℓ) (t.tateDefect u) := by
   have hX := t.X_hasSum_laurent u h1 h2

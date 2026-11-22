@@ -53,6 +53,9 @@ variable {X : TopCat.{u}} {ι : Type w} (U : ι → Opens X)
 /-- The intersection `U_σ = U (σ 0) ∩ ⋯ ∩ U (σ n)`. -/
 def cechOpen {n : ℕ} (σ : Fin (n + 1) → ι) : Opens X := ⨅ a, U (σ a)
 
+/--
+@isnad1 id=le.0h7v.s7.2d8b78ae9c93 from=translated src=- shape=7110e979 vocab=ad87fb86
+-/
 lemma cechOpen_le_comp {m n : ℕ} (τ : Fin (n + 1) → ι) (θ : Fin (m + 1) → Fin (n + 1)) :
     cechOpen U τ ≤ cechOpen U (τ ∘ θ) :=
   le_iInf fun a => iInf_le _ (θ a)
@@ -68,15 +71,24 @@ def cechMap {m n : ℕ} (θ : Fin (m + 1) → Fin (n + 1)) : CechCochain U P m �
   map_zero' := by ext; simp
   map_add' c c' := by ext; simp
 
+/--
+@isnad1 id=eq.0h9v.s11.9eedcd8d2ca8 from=translated src=- shape=46de0b43 vocab=aa5c5135
+-/
 lemma cechMap_apply {m n : ℕ} (θ : Fin (m + 1) → Fin (n + 1)) (c : CechCochain U P m) (τ) :
     cechMap U P θ c τ = P.map (homOfLE (cechOpen_le_comp U τ θ)).op (c (τ ∘ θ)) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.df7006d1dd7d from=translated src=- shape=e9678d65 vocab=ca25123c
+-/
 lemma cechMap_id {n : ℕ} (c : CechCochain U P n) : cechMap U P id c = c := by
   ext τ
   change (P.map (𝟙 (op (cechOpen U τ)))) (c τ) = c τ
   rw [P.map_id]
   rfl
 
+/--
+@isnad1 id=eq.0h10v.s12.7e4722a43598 from=translated src=- shape=b3dac9c7 vocab=d79f66cf
+-/
 lemma cechMap_comp {l m n : ℕ} (θ : Fin (l + 1) → Fin (m + 1)) (θ' : Fin (m + 1) → Fin (n + 1))
     (c : CechCochain U P l) : cechMap U P (θ' ∘ θ) c = cechMap U P θ' (cechMap U P θ c) := by
   ext τ
@@ -124,24 +136,35 @@ def cechComplexFunctor :
 /-- The Čech complex `Č•(U, P)`. -/
 abbrev cechComplex : CochainComplex AddCommGrpCat.{max w u} ℕ := (cechComplexFunctor U).obj P
 
+/--
+@isnad1 id=eq.0h5v.s7.7bf69f2d7eb7 from=translated src=- shape=f9294da6 vocab=c3ab4726
+-/
 lemma cechComplex_X (n : ℕ) : (cechComplex U P).X n = AddCommGrpCat.of (CechCochain U P n) := rfl
 
 /-- The Čech differential `Čⁿ → Čⁿ⁺¹`, `d = ∑ⱼ (-1)ʲ δʲ`. -/
 def cechD (n : ℕ) : CechCochain U P n →+ CechCochain U P (n + 1) :=
   ∑ j : Fin (n + 2), (-1 : ℤ) ^ (j : ℕ) • cechMap U P j.succAbove
 
-/-- `(d c)(τ) = ∑ⱼ (-1)ʲ c(τ ∘ δⱼ)|_{U_τ}`. -/
+/-- `(d c)(τ) = ∑ⱼ (-1)ʲ c(τ ∘ δⱼ)|_{U_τ}`.
+@isnad1 id=eq.0h7v.s11.a8cfed8088a0 from=translated src=- shape=df09920e vocab=0149e0fe
+-/
 lemma cechD_apply (n : ℕ) (c : CechCochain U P n) (τ : Fin (n + 2) → ι) :
     cechD U P n c τ = ∑ j : Fin (n + 2), (-1 : ℤ) ^ (j : ℕ) •
       P.map (homOfLE (cechOpen_le_comp U τ j.succAbove)).op (c (τ ∘ j.succAbove)) := by
   simp [cechD, Finset.sum_apply, cechMap_apply]
 
+/--
+@isnad1 id=eq.0h5v.s7.d35e2e741fc2 from=translated src=- shape=368b39a8 vocab=6c8ca9af
+-/
 lemma cechComplex_d (n : ℕ) :
     (cechComplex U P).d n (n + 1) =
       AlgebraicTopology.AlternatingCofaceMapComplex.objD (cechCosimplicial U P) n :=
   CochainComplex.of_d (V := AddCommGrpCat.{max w u}) _
     (AlgebraicTopology.AlternatingCofaceMapComplex.objD (cechCosimplicial U P)) n
 
+/--
+@isnad1 id=eq.0h6v.s8.5eee820c1f50 from=translated src=- shape=a645a1f0 vocab=671c8b75
+-/
 lemma _root_.AddCommGrpCat.finsetSum_apply {M N : AddCommGrpCat.{w}} {α : Type*} (s : Finset α)
     (f : α → (M ⟶ N)) (x : M) : (∑ i ∈ s, f i) x = ∑ i ∈ s, f i x := by
   classical
@@ -149,6 +172,9 @@ lemma _root_.AddCommGrpCat.finsetSum_apply {M N : AddCommGrpCat.{w}} {α : Type*
   | empty => simp
   | insert a s ha ih => simp [Finset.sum_insert ha, ih]
 
+/--
+@isnad1 id=eq.0h7v.s11.d6e8d26052cd from=translated src=- shape=5078078d vocab=8eb80ec0
+-/
 lemma cechComplex_d_apply (n : ℕ) (c : (cechComplex U P).X n) (τ : Fin (n + 2) → ι) :
     ((cechComplex U P).d n (n + 1) c : CechCochain U P (n + 1)) τ =
       cechD U P n c τ := by
@@ -158,13 +184,17 @@ lemma cechComplex_d_apply (n : ℕ) (c : (cechComplex U P).X n) (τ : Fin (n + 2
   erw [Finset.sum_apply, AddMonoidHom.finsetSum_apply, Finset.sum_apply]
   rfl
 
-/-- Restriction maps compose. -/
+/-- Restriction maps compose.
+@isnad1 id=eq.2h6v.s11.f357cb3697aa from=translated src=- shape=e0b7f6ca vocab=b90d17bf
+-/
 lemma map_homOfLE_map_homOfLE {A B C : Opens X} (h₁ : A ≤ B) (h₂ : B ≤ C) (x : P.obj (op C)) :
     P.map (homOfLE h₁).op (P.map (homOfLE h₂).op x) = P.map (homOfLE (h₁.trans h₂)).op x := by
   rw [← ConcreteCategory.comp_apply, ← P.map_comp]
   rfl
 
-/-- Restricting a component of a cochain only depends on the index up to equality. -/
+/-- Restricting a component of a cochain only depends on the index up to equality.
+@isnad1 id=eq.3h9v.s10.825021fada11 from=translated src=- shape=cbb9634d vocab=d4c7ce58
+-/
 lemma map_homOfLE_congr {n : ℕ} (c : CechCochain U P n) {σ σ' : Fin (n + 1) → ι} (h : σ = σ')
     {W : Opens X} (hW : W ≤ cechOpen U σ) (hW' : W ≤ cechOpen U σ') :
     P.map (homOfLE hW).op (c σ) = P.map (homOfLE hW').op (c σ') := by
@@ -174,7 +204,9 @@ lemma map_homOfLE_congr {n : ℕ} (c : CechCochain U P n) {σ σ' : Fin (n + 1) 
 /-- The Čech complex is exact in all positive degrees. -/
 def IsCechAcyclic : Prop := ∀ n : ℕ, (cechComplex U P).ExactAt (n + 1)
 
-/-- Exactness of the Čech complex in degree `n + 1`, in terms of cochains. -/
+/-- Exactness of the Čech complex in degree `n + 1`, in terms of cochains.
+@isnad1 id=iff.0h5v.s12.d161a9037de8 from=translated src=- shape=cd67c8c3 vocab=aaa5de4a
+-/
 lemma exactAt_cechComplex_succ_iff (n : ℕ) :
     (cechComplex U P).ExactAt (n + 1) ↔ ∀ c : CechCochain U P (n + 1),
       cechD U P (n + 1) c = 0 → ∃ b : CechCochain U P n, cechD U P n b = c := by
@@ -194,6 +226,9 @@ lemma exactAt_cechComplex_succ_iff (n : ℕ) :
     obtain ⟨b, hb⟩ := H c ((h₂ c).symm.trans hc)
     exact ⟨b, (h₁ b).trans hb⟩
 
+/--
+@isnad1 id=iff.0h4v.s12.4b9af80495ef from=translated src=- shape=9251e504 vocab=73cd9518
+-/
 lemma isCechAcyclic_iff : IsCechAcyclic U P ↔ ∀ (n : ℕ) (c : CechCochain U P (n + 1)),
     cechD U P (n + 1) c = 0 → ∃ b : CechCochain U P n, cechD U P n b = c :=
   forall_congr' fun n => exactAt_cechComplex_succ_iff U P n
@@ -203,6 +238,9 @@ section Augmentation
 variable {W : Opens X} (hW : ∀ i, U i ≤ W)
 
 include hW in
+/--
+@isnad1 id=le.1h6v.s6.ced5775e9493 from=translated src=- shape=b2c5136f vocab=4aac6217
+-/
 lemma cechOpen_le {n : ℕ} (σ : Fin (n + 1) → ι) : cechOpen U σ ≤ W :=
   (iInf_le _ 0).trans (hW _)
 
@@ -212,9 +250,15 @@ def cechAugment : P.obj (op W) →+ CechCochain U P 0 where
   map_zero' := by ext; simp
   map_add' s t := by ext; simp
 
+/--
+@isnad1 id=eq.1h7v.s11.842cdc3cba51 from=translated src=- shape=2ba2d8d9 vocab=f91d0f02
+-/
 lemma cechAugment_apply (s : P.obj (op W)) (σ : Fin 1 → ι) :
     cechAugment U P hW s σ = P.map (homOfLE (cechOpen_le U hW σ)).op s := rfl
 
+/--
+@isnad1 id=eq.1h6v.s11.1977d3530d4c from=translated src=- shape=7547a735 vocab=15cdb35b
+-/
 lemma cechD_cechAugment (s : P.obj (op W)) : cechD U P 0 (cechAugment U P hW s) = 0 := by
   ext τ
   rw [cechD_apply, Fin.sum_univ_two]
@@ -222,15 +266,22 @@ lemma cechD_cechAugment (s : P.obj (op W)) : cechD U P 0 (cechAugment U P hW s) 
     Fin.val_one, pow_one, neg_smul, Pi.zero_apply]
   exact add_neg_eq_zero.2 rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.461dcd1feb6c from=translated src=- shape=0b47a038 vocab=00dd0f92
+-/
 lemma fin_one_eq_const (σ : Fin 1 → ι) : σ = fun _ => σ 0 :=
   funext fun a => by rw [Subsingleton.elim a 0]
 
-/-- The open `U i`, seen as the intersection `U_σ` for the constant `σ : Fin 1 → ι`. -/
+/-- The open `U i`, seen as the intersection `U_σ` for the constant `σ : Fin 1 → ι`.
+@isnad1 id=eq.0h4v.s5.1dd205de6f30 from=translated src=- shape=b807f641 vocab=ee9f9f4c
+-/
 lemma cechOpen_const (i : ι) : cechOpen U (fun _ : Fin 1 => i) = U i := by
   simp [cechOpen]
 
 omit hW in
-/-- The cocycle condition for a Čech `0`-cochain: the components agree on overlaps. -/
+/-- The cocycle condition for a Čech `0`-cochain: the components agree on overlaps.
+@isnad1 id=eq.3h8v.s12.70174a01333f from=translated src=- shape=e3d1a38e vocab=11095e45
+-/
 lemma cocycle_zero_compat (c : CechCochain U P 0) (hc : cechD U P 0 c = 0) (i j : ι)
     {W' : Opens X} (hi : W' ≤ cechOpen U (fun _ : Fin 1 => i))
     (hj : W' ≤ cechOpen U (fun _ : Fin 1 => j)) :
@@ -255,7 +306,9 @@ lemma cocycle_zero_compat (c : CechCochain U P 0) (hc : cechD U P 0 c = 0) (i j 
 variable (F : TopCat.AbSheaf X) (hcov : W ≤ ⨆ i, U i)
 
 include hcov in
-/-- For a sheaf, `F(W) → Č⁰(U, F)` is injective if `U` covers `W`. -/
+/-- For a sheaf, `F(W) → Č⁰(U, F)` is injective if `U` covers `W`.
+@isnad1 id=injectiv.2h5v.s12.b583ff014a7b from=translated src=- shape=85bac114 vocab=06f384b6
+-/
 lemma cechAugment_injective : Function.Injective (cechAugment U F.obj hW) := by
   rw [injective_iff_map_eq_zero]
   intro s hs
@@ -267,7 +320,9 @@ lemma cechAugment_injective : Function.Injective (cechAugment U F.obj hW) := by
     exact congrFun hs (fun _ => i)
 
 include hcov in
-/-- For a sheaf, a Čech `0`-cocycle comes from a section over `W` if `U` covers `W`. -/
+/-- For a sheaf, a Čech `0`-cocycle comes from a section over `W` if `U` covers `W`.
+@isnad1 id=ex.3h6v.s13.b06bf6f6c37b from=translated src=- shape=a9767007 vocab=7fcc2b6b
+-/
 lemma exists_cechAugment_eq (c : CechCochain U F.obj 0) (hc : cechD U F.obj 0 c = 0) :
     ∃ s : F.obj.obj (op W), cechAugment U F.obj hW s = c := by
   let V : ι → Opens X := fun i => cechOpen U (fun _ : Fin 1 => i)
@@ -291,6 +346,9 @@ noncomputable def cechAugmentAddEquivKer : F.obj.obj (op W) ≃+ (cechD U F.obj 
       obtain ⟨s, hs⟩ := exists_cechAugment_eq U hW F hcov c.1 c.2
       exact ⟨s, Subtype.ext hs⟩⟩
 
+/--
+@isnad1 id=eq.2h6v.s15.d19710147f18 from=translated src=- shape=ebd5df50 vocab=e78859d6
+-/
 @[simp]
 lemma cechAugmentAddEquivKer_apply_coe (s : F.obj.obj (op W)) :
     (cechAugmentAddEquivKer U hW F hcov s : CechCochain U F.obj 0) = cechAugment U F.obj hW s :=
@@ -308,7 +366,9 @@ section ShortExact
 variable {U}
 
 /-- A short exact sequence of presheaves which is short exact on every finite intersection
-`U_σ` induces a short exact sequence of Čech complexes. -/
+`U_σ` induces a short exact sequence of Čech complexes.
+@isnad1 id=shortexa.1h4v.s9.823aa27d1a71 from=translated src=- shape=41a65e83 vocab=a77aecbc
+-/
 lemma cechComplex_shortExact {S : ShortComplex ((Opens X)ᵒᵖ ⥤ AddCommGrpCat.{u})}
     (hS : ∀ (n : ℕ) (σ : Fin (n + 1) → ι),
       (S.map ((evaluation _ _).obj (op (cechOpen U σ)))).ShortExact) :
@@ -334,7 +394,9 @@ lemma cechComplex_shortExact {S : ShortComplex ((Opens X)ᵒᵖ ⥤ AddCommGrpCa
     choose x hx using fun σ => hsurj σ (y σ)
     exact ⟨x, funext hx⟩
 
-/-- Sections of a short exact sequence of sheaves form a left exact sequence. -/
+/-- Sections of a short exact sequence of sheaves form a left exact sequence.
+@isnad1 id=and.1h3v.s14.e93c2edfa3c6 from=translated src=- shape=42b027d0 vocab=8db5d1c4
+-/
 lemma sections_exact {S : ShortComplex (TopCat.AbSheaf X)} (hS : S.ShortExact) (V : Opens X) :
     Function.Injective (S.f.hom.app (op V)) ∧
       ∀ y, S.g.hom.app (op V) y = 0 → ∃ x, S.f.hom.app (op V) x = y := by
@@ -345,7 +407,9 @@ lemma sections_exact {S : ShortComplex (TopCat.AbSheaf X)} (hS : S.ShortExact) (
   exact ⟨(AddCommGrpCat.mono_iff_injective _).1 this, (ShortComplex.ab_exact_iff _).1 hex⟩
 
 /-- A short exact sequence of sheaves which is surjective on sections over every finite
-intersection `U_σ` induces a short exact sequence of Čech complexes. -/
+intersection `U_σ` induces a short exact sequence of Čech complexes.
+@isnad1 id=shortexa.2h4v.s12.b7144198079c from=translated src=- shape=7c5abbf2 vocab=282ba30b
+-/
 lemma cechComplex_shortExact_of_sheaf {S : ShortComplex (TopCat.AbSheaf X)} (hS : S.ShortExact)
     (hsurj : ∀ (n : ℕ) (σ : Fin (n + 1) → ι),
       Function.Surjective (S.g.hom.app (op (cechOpen U σ)))) :

@@ -63,13 +63,18 @@ namespace MvPowerSeries
 
 variable {ι : Type u}
 
+/--
+@isnad1 id=eq.0h3v.s4.5381cc64f298 from=translated src=- shape=6f1b2032 vocab=9fb7577d
+-/
 @[simp]
 lemma evalMonomial_single_one (i : ι) (x : ι → ℂ) :
     evalMonomial (Finsupp.single i 1) x = x i :=
   (Finsupp.prod_single_index (by simp)).trans (pow_one _)
 
 /-- The coefficients of `X i * P`: the `d`-th one is the `(d - single i 1)`-th coefficient of
-`P` when `d` involves the variable `i`, and vanishes otherwise. -/
+`P` when `d` involves the variable `i`, and vanishes otherwise.
+@isnad1 id=eq.0h4v.s8.f2ba2af4474b from=translated src=- shape=8399142c vocab=679142da
+-/
 lemma coeff_X_mul' (i : ι) (P : MvPowerSeries ι ℂ) (d : ι →₀ ℕ) :
     coeff d (X i * P) = if d i = 0 then 0 else coeff (d - Finsupp.single i 1) P := by
   classical
@@ -86,7 +91,9 @@ coordinates, and the `Q i` may be taken to converge wherever the series itself d
 The `Q i` are built by splitting the exponents: a nonzero exponent `d` is assigned to a single
 coordinate `idx d` occurring in it, and `Q i` collects the coefficients of the exponents assigned
 to `i`, shifted down by one in the `i`-th place. Convergence is then inherited termwise, the shift
-costing exactly one factor of the polyradius. -/
+costing exactly one factor of the polyradius.
+@isnad1 id=ex.1h2v.s8.5c6a0197d37f from=translated src=- shape=e1f917e5 vocab=e0061411
+-/
 theorem exists_eq_sum_X_mul [Fintype ι] [Nonempty ι]
     {P : MvPowerSeries ι ℂ} (hP : constantCoeff P = 0) :
     ∃ Q : ι → MvPowerSeries ι ℂ, P = ∑ i, X i * Q i ∧
@@ -166,6 +173,9 @@ theorem exists_eq_sum_X_mul [Fintype ι] [Nonempty ι]
 
 /-! ### The formal picture -/
 
+/--
+@isnad1 id=iff.0h2v.s7.7ec73ed68ca0 from=translated src=- shape=48307c6d vocab=9821f9f6
+-/
 lemma mem_maximalIdeal_iff {P : MvPowerSeries ι ℂ} :
     P ∈ IsLocalRing.maximalIdeal (MvPowerSeries ι ℂ) ↔ constantCoeff P = 0 := by
   rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff, isUnit_iff_constantCoeff,
@@ -173,7 +183,9 @@ lemma mem_maximalIdeal_iff {P : MvPowerSeries ι ℂ} :
 
 /-- The `k`-th power of the maximal ideal of `MvPowerSeries ι ℂ` consists of the series whose
 coefficients in total degree less than `k` vanish. This is the formal counterpart of
-`LocalOkaRing.mem_maximalIdeal_pow_iff`. -/
+`LocalOkaRing.mem_maximalIdeal_pow_iff`.
+@isnad1 id=iff.0h3v.s8.5181e42e8e47 from=translated src=- shape=4c6a5310 vocab=5c82f7f4
+-/
 theorem mem_maximalIdeal_pow_iff [Fintype ι] {k : ℕ} {P : MvPowerSeries ι ℂ} :
     P ∈ IsLocalRing.maximalIdeal (MvPowerSeries ι ℂ) ^ k ↔
       ∀ d : ι →₀ ℕ, ∑ i, d i < k → coeff d P = 0 := by
@@ -220,13 +232,17 @@ theorem mem_maximalIdeal_pow_iff [Fintype ι] {k : ℕ} {P : MvPowerSeries ι �
         · exact mem_maximalIdeal_iff.mpr (by simp)
         · exact ih.mpr fun e he ↦ hQvan k hP i e he
 
-/-- A power series with only finitely many nonzero coefficients converges everywhere. -/
+/-- A power series with only finitely many nonzero coefficients converges everywhere.
+@isnad1 id=locallyc.1h3v.s7.ff776478c139 from=translated src=- shape=f4d01598 vocab=a3db6cf2
+-/
 lemma locallyConvergent_of_coeff_eq_zero {P : MvPowerSeries ι ℂ} {s : Finset (ι →₀ ℕ)}
     (h : ∀ d ∉ s, coeff d P = 0) : P.LocallyConvergent :=
   .of_forall fun x ↦ summable_of_ne_finset_zero (s := s) fun d hd ↦ by
     rw [term, h d hd, zero_mul, norm_zero]
 
-/-- Absolute convergence at a constant polyradius implies local convergence. -/
+/-- Absolute convergence at a constant polyradius implies local convergence.
+@isnad1 id=locallyc.2h3v.s5.dd927001e47c from=translated src=- shape=b25214a6 vocab=0ad3ad98
+-/
 lemma locallyConvergent_of_summableAt_const [Finite ι] {P : MvPowerSeries ι ℂ} {ρ : ℝ}
     (hρ : 0 < ρ) (h : P.SummableAt (fun _ ↦ (ρ : ℂ))) : P.LocallyConvergent := by
   have := Fintype.ofFinite ι
@@ -249,12 +265,17 @@ noncomputable def coord (i : ι) : LocalOkaRing ι :=
     rw [Finset.mem_singleton] at hd
     rw [MvPowerSeries.term, MvPowerSeries.coeff_X, ite_eq_right hd, zero_mul, norm_zero]⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.c50d624a39e4 from=translated src=- shape=099c04cb vocab=1f36eecd
+-/
 @[simp]
 lemma coe_coord (i : ι) : (coord i : MvPowerSeries ι ℂ) = MvPowerSeries.X i := rfl
 
 /-- **A coordinate is a nonzero germ.** Mathlib has `PowerSeries.X_ne_zero` but no multivariate
 counterpart, so the coefficient argument is spelled out here: `X i` has coefficient `1` on the
-exponent `Finsupp.single i 1`. -/
+exponent `Finsupp.single i 1`.
+@isnad1 id=ne.0h2v.s6.9236a2b37084 from=translated src=- shape=01a861da vocab=1c0b3538
+-/
 lemma coord_ne_zero (i : ι) : coord i ≠ 0 := fun h ↦ by
   classical
   simpa using congrArg
@@ -263,6 +284,9 @@ lemma coord_ne_zero (i : ι) : coord i ≠ 0 := fun h ↦ by
 -- Not `@[simp]`: `constantCoeff_apply` is `@[simp]` and rewrites the left-hand side to
 -- `MvPowerSeries.constantCoeff ↑(coord i)`, which `coe_coord` and
 -- `MvPowerSeries.constantCoeff_X` then finish, so the attribute here would never fire.
+/--
+@isnad1 id=eq.0h2v.s6.e5cc5ec4ce52 from=translated src=- shape=2d9f0dc1 vocab=a7a12690
+-/
 lemma constantCoeff_coord (i : ι) : constantCoeff (coord i) = 0 := by
   rw [constantCoeff_apply, coe_coord, ← MvPowerSeries.coeff_zero_eq_constantCoeff_apply]
   classical
@@ -275,10 +299,16 @@ variable [Finite ι]
 
 /-! ### The maximal ideal as the germs vanishing at the origin -/
 
+/--
+@isnad1 id=iff.0h2v.s8.14dd69c02751 from=translated src=- shape=fbde2b60 vocab=296f8da5
+-/
 lemma mem_maximalIdeal_iff {P : LocalOkaRing ι} :
     P ∈ IsLocalRing.maximalIdeal (LocalOkaRing ι) ↔ constantCoeff P = 0 := by
   rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff, isUnit_iff, not_not]
 
+/--
+@isnad1 id=eq.0h1v.s7.f5c094678662 from=translated src=- shape=b925b91d vocab=b29eebdb
+-/
 lemma maximalIdeal_eq_ker_constantCoeff :
     IsLocalRing.maximalIdeal (LocalOkaRing ι) = RingHom.ker (constantCoeff (ι := ι)) :=
   Ideal.ext fun _ ↦ mem_maximalIdeal_iff.trans RingHom.mem_ker.symm
@@ -289,7 +319,9 @@ lemma maximalIdeal_eq_ker_constantCoeff :
 
 The inclusion `⊇` is the observation that a coordinate vanishes at the origin. The inclusion
 `⊆` is the substance: a germ vanishing at the origin can be written `∑ i, Xᵢ · Qᵢ` with the `Qᵢ`
-again *convergent*, which is `MvPowerSeries.exists_eq_sum_X_mul`. -/
+again *convergent*, which is `MvPowerSeries.exists_eq_sum_X_mul`.
+@isnad1 id=eq.0h1v.s6.494aaf34a228 from=translated src=- shape=6d069ee8 vocab=6d74bb92
+-/
 theorem maximalIdeal_eq_span_coord :
     IsLocalRing.maximalIdeal (LocalOkaRing ι) = Ideal.span (Set.range (coord (ι := ι))) := by
   classical
@@ -334,7 +366,9 @@ variable [Fintype ι]
 /-! ### Powers of the maximal ideal are the germs vanishing to a given order -/
 
 /-- **The `k`-th power of the maximal ideal is the ideal of germs vanishing to order `k`**: it
-consists exactly of the germs all of whose coefficients in total degree less than `k` vanish. -/
+consists exactly of the germs all of whose coefficients in total degree less than `k` vanish.
+@isnad1 id=iff.0h3v.s9.d3832ffbb6a6 from=translated src=- shape=143cac8a vocab=b4f7ed51
+-/
 theorem mem_maximalIdeal_pow_iff {k : ℕ} {P : LocalOkaRing ι} :
     P ∈ IsLocalRing.maximalIdeal (LocalOkaRing ι) ^ k ↔
       ∀ d : ι →₀ ℕ, ∑ i, d i < k → MvPowerSeries.coeff d (P : MvPowerSeries ι ℂ) = 0 := by
@@ -406,7 +440,9 @@ variable [Finite ι]
 
 /-- **Krull intersection for the germ ring**, in the concrete form: a germ vanishing to every
 order is zero. This is the identity theorem for convergent power series, read off from
-`mem_maximalIdeal_pow_iff`; no appeal to the general Krull intersection theorem is needed. -/
+`mem_maximalIdeal_pow_iff`; no appeal to the general Krull intersection theorem is needed.
+@isnad1 id=eq.0h1v.s8.5c3d20738a9b from=translated src=- shape=920d1f22 vocab=dcf30619
+-/
 theorem iInf_maximalIdeal_pow_eq_bot :
     ⨅ k : ℕ, IsLocalRing.maximalIdeal (LocalOkaRing ι) ^ k = ⊥ := by
   refine le_antisymm (fun P hP ↦ ?_) bot_le

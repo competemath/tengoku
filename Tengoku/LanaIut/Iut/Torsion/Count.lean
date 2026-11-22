@@ -50,7 +50,9 @@ section univariate
 
 include ha₁ ha₃
 
-/-- `Ψ₂Sq(x) = 4 f(x)` for `a₁ = a₃ = 0`. -/
+/-- `Ψ₂Sq(x) = 4 f(x)` for `a₁ = a₃ = 0`.
+@isnad1 id=eq.2h3v.s8.8caacf5e0eda from=translated src=- shape=9f5a0447 vocab=c4145b72
+-/
 theorem Ψ₂Sq_eval (x : K) :
     W.Ψ₂Sq.eval x = 4 * (x ^ 3 + W.a₂ * x ^ 2 + W.a₄ * x + W.a₆) := by
   simp only [Ψ₂Sq, b₂, b₄, b₆, ha₁, ha₃, eval_add, eval_mul, eval_pow, eval_C, eval_X]
@@ -59,39 +61,53 @@ theorem Ψ₂Sq_eval (x : K) :
 variable {x y : K} (h : W.Nonsingular x y)
 include h
 
-/-- `Ψ₂Sq(x) = (2y)²` at a point of the curve. -/
+/-- `Ψ₂Sq(x) = (2y)²` at a point of the curve.
+@isnad1 id=eq.3h4v.s7.337dfb061e32 from=translated src=- shape=f0b3cd6a vocab=5ac677a1
+-/
 theorem Ψ₂Sq_eval_eq : W.Ψ₂Sq.eval x = (2 * y) ^ 2 := by
   rw [Ψ₂Sq_eval ha₁ ha₃, ← hQ_of ha₁ ha₃ h]; ring
 
-/-- `preΨₙ(x)` is the auxiliary sequence of `eₙ`. -/
+/-- `preΨₙ(x)` is the auxiliary sequence of `eₙ`.
+@isnad1 id=eq.3h5v.s7.f15d97743364 from=translated src=- shape=a93491b9 vocab=3f36f832
+-/
 theorem preΨ_eval (n : ℤ) :
     (W.preΨ n).eval x = preNormEDS ((2 * y) ^ 4) (W.Ψ₃.eval x) (W.preΨ₄.eval x) n := by
   rw [preΨ, ← coe_evalRingHom, map_preNormEDS, coe_evalRingHom, eval_pow, Ψ₂Sq_eval_eq ha₁ ha₃ h,
     ← pow_mul]
 
-/-- `eₙ² = ΨSqₙ(x)`. -/
+/-- `eₙ² = ΨSqₙ(x)`.
+@isnad1 id=eq.3h5v.s7.819166b61dd7 from=translated src=- shape=4abbc9f9 vocab=3c60c3d1
+-/
 theorem eds_sq_eq (n : ℤ) : eds W x y n ^ 2 = (W.ΨSq n).eval x := by
   rw [eds, normEDS, ΨSq, eval_mul, eval_pow, preΨ_eval ha₁ ha₃ h, mul_pow, ite_pow, one_pow,
     apply_ite (eval x), eval_one, Ψ₂Sq_eval_eq ha₁ ha₃ h]
 
-/-- `eₙ₊₁ eₙ₋₁ = preΨₙ₊₁(x) preΨₙ₋₁(x) · (Ψ₂Sq(x) if `n` is odd)`. -/
+/-- `eₙ₊₁ eₙ₋₁ = preΨₙ₊₁(x) preΨₙ₋₁(x) · (Ψ₂Sq(x) if `n` is odd)`.
+@isnad1 id=eq.3h5v.s8.74e3f4a350e3 from=translated src=- shape=02a4d843 vocab=d554d1d9
+-/
 theorem eds_succ_mul_pred (n : ℤ) : eds W x y (n + 1) * eds W x y (n - 1) =
     (W.preΨ (n + 1) * W.preΨ (n - 1) * if Even n then 1 else W.Ψ₂Sq).eval x := by
   simp only [eds, normEDS, eval_mul, preΨ_eval ha₁ ha₃ h, apply_ite (eval x), eval_one,
     Ψ₂Sq_eval_eq ha₁ ha₃ h, Int.even_add_one, Int.even_sub_one]
   split_ifs <;> ring
 
-/-- `Φₙ(x) = x ΨSqₙ(x) − eₙ₊₁ eₙ₋₁`. -/
+/-- `Φₙ(x) = x ΨSqₙ(x) − eₙ₊₁ eₙ₋₁`.
+@isnad1 id=eq.3h5v.s7.6306702c7d3a from=translated src=- shape=46179120 vocab=db3bab67
+-/
 theorem Φ_eval (n : ℤ) :
     (W.Φ n).eval x = x * (W.ΨSq n).eval x - eds W x y (n + 1) * eds W x y (n - 1) := by
   rw [WeierstrassCurve.Φ, eval_sub, eval_mul, eval_X, eds_succ_mul_pred ha₁ ha₃ h]
 
-/-- `n • P = 0 ↔ ΨSqₙ(x) = 0` for an affine point `P = (x, y)`. -/
+/-- `n • P = 0 ↔ ΨSqₙ(x) = 0` for an affine point `P = (x, y)`.
+@isnad1 id=iff.3h5v.s7.256e27bd6a65 from=translated src=- shape=a0203d04 vocab=53888fa9
+-/
 theorem smul_eq_zero_iff_ΨSq (n : ℕ) :
     n • Point.some x y h = 0 ↔ (W.ΨSq n).eval x = 0 := by
   rw [smul_eq_zero_iff_eds ha₁ ha₃ h, ← eds_sq_eq ha₁ ha₃ h, pow_eq_zero_iff two_ne_zero]
 
-/-- If `ΨSqₙ(x) ≠ 0`, then `n • P = (X, Y)` is affine with `X ΨSqₙ(x) = Φₙ(x)`. -/
+/-- If `ΨSqₙ(x) ≠ 0`, then `n • P = (X, Y)` is affine with `X ΨSqₙ(x) = Φₙ(x)`.
+@isnad1 id=ex.4h5v.s8.3e48f8ce40ae from=translated src=- shape=9e5d3a26 vocab=450d46e6
+-/
 theorem smul_eq_of_ΨSq_ne_zero (n : ℕ) (hne : (W.ΨSq n).eval x ≠ 0) :
     ∃ (X Y : K) (hXY : W.Nonsingular X Y), n • Point.some x y h = Point.some X Y hXY ∧
       X * (W.ΨSq n).eval x = (W.Φ n).eval x := by
@@ -109,7 +125,9 @@ section finite
 
 include ha₁ ha₃
 
-/-- The `n`-torsion of `W(K)` is finite for `n ≠ 0`. -/
+/-- The `n`-torsion of `W(K)` is finite for `n ≠ 0`.
+@isnad1 id=finite.3h3v.s7.9a0600ef2538 from=translated src=- shape=0cf13701 vocab=92085a5d
+-/
 theorem torsion_finite (n : ℕ) (hn : n ≠ 0) : {P : W.Point | n • P = 0}.Finite := by
   have hΨ : W.ΨSq n ≠ 0 := ΨSq_ne_zero W (by exact_mod_cast hn)
   -- the finite set of candidate coordinates
@@ -148,7 +166,9 @@ section count
 variable [IsAlgClosed K] [W.IsElliptic]
 include ha₁ ha₃
 
-/-- Every `x₁` is the `x`-coordinate of a point of `W`. -/
+/-- Every `x₁` is the `x`-coordinate of a point of `W`.
+@isnad1 id=ex.2h3v.s6.7b6e21aba674 from=translated src=- shape=adb340e1 vocab=4cba9985
+-/
 theorem exists_point (x₁ : K) : ∃ y₁, W.Nonsingular x₁ y₁ := by
   obtain ⟨y₁, hy₁⟩ := IsAlgClosed.exists_pow_nat_eq (x₁ ^ 3 + W.a₂ * x₁ ^ 2 + W.a₄ * x₁ + W.a₆)
     two_pos
@@ -160,6 +180,9 @@ noncomputable def fibrePoly (W : Affine K) (n : ℕ) (x₀ : K) : K[X] :=
   W.Φ n - C x₀ * W.ΨSq n
 
 omit ha₁ ha₃ in
+/--
+@isnad1 id=eq.1h4v.s6.e2382df7b646 from=translated src=- shape=d6ed7d40 vocab=4baec2e0
+-/
 theorem natDegree_fibrePoly (n : ℕ) (hn : n ≠ 0) (x₀ : K) :
     (fibrePoly W n x₀).natDegree = n ^ 2 := by
   have hn' : ((n : ℤ) : K) ≠ 0 := by exact_mod_cast hn
@@ -171,6 +194,9 @@ theorem natDegree_fibrePoly (n : ℕ) (hn : n ≠ 0) (x₀ : K) :
   omega
 
 omit ha₁ ha₃ in
+/--
+@isnad1 id=ne.1h4v.s6.83e882a4e16b from=translated src=- shape=06f6823b vocab=383daed3
+-/
 theorem fibrePoly_ne_zero (n : ℕ) (hn : n ≠ 0) (x₀ : K) : fibrePoly W n x₀ ≠ 0 := by
   intro h0
   have := natDegree_fibrePoly (W := W) n hn x₀
@@ -178,12 +204,17 @@ theorem fibrePoly_ne_zero (n : ℕ) (hn : n ≠ 0) (x₀ : K) : fibrePoly W n x�
   exact hn (pow_eq_zero_iff two_ne_zero |>.mp this.symm)
 
 omit ha₁ ha₃ in
+/--
+@isnad1 id=eq.0h5v.s7.eb5d278d56d3 from=translated src=- shape=60f3fa11 vocab=a78a4616
+-/
 theorem eval_fibrePoly (n : ℕ) (x₀ x₁ : K) :
     (fibrePoly W n x₀).eval x₁ = (W.Φ n).eval x₁ - x₀ * (W.ΨSq n).eval x₁ := by
   rw [fibrePoly, eval_sub, eval_mul, eval_C]
 
 /-- `Φₙ` and `ΨSqₙ` have no common root: a common root `x₁` would give a point `P` with
-`nP = 0` and `(n+1)P = 0` or `(n−1)P = 0`. -/
+`nP = 0` and `(n+1)P = 0` or `(n−1)P = 0`.
+@isnad1 id=ne.4h4v.s7.67b36c8a3201 from=translated src=- shape=fa18251d vocab=bcae15c4
+-/
 theorem ΨSq_ne_zero_of_Φ_eq_zero (n : ℕ) (hn : n ≠ 0) {x₁ : K} (hΦ : (W.Φ n).eval x₁ = 0) :
     (W.ΨSq n).eval x₁ ≠ 0 := by
   intro hΨ
@@ -201,7 +232,9 @@ theorem ΨSq_ne_zero_of_Φ_eq_zero (n : ℕ) (hn : n ≠ 0) {x₁ : K} (hΦ : (W
     rw [smul_pred h₁ (Nat.one_le_iff_ne_zero.mpr hn), hnP, zero_sub, neg_eq_zero] at this
     exact Point.some_ne_zero h₁ this
 
-/-- A root of `hₓ₀` is not a root of `ΨSqₙ`. -/
+/-- A root of `hₓ₀` is not a root of `ΨSqₙ`.
+@isnad1 id=ne.4h5v.s7.f458bb455e93 from=translated src=- shape=7e152b16 vocab=2e669e72
+-/
 theorem ΨSq_ne_zero_of_root (n : ℕ) (hn : n ≠ 0) {x₀ x₁ : K}
     (hr : (fibrePoly W n x₀).IsRoot x₁) : (W.ΨSq n).eval x₁ ≠ 0 := by
   intro hΨ
@@ -210,7 +243,9 @@ theorem ΨSq_ne_zero_of_root (n : ℕ) (hn : n ≠ 0) {x₀ x₁ : K}
   linear_combination hr
 
 /-- The points `P` with `nP = ±Q`, for `Q = (x₀, y₀)` with `y₀ ≠ 0`, are the affine points whose
-`x`-coordinate is a root of `hₓ₀`. -/
+`x`-coordinate is a root of `hₓ₀`.
+@isnad1 id=iff.5h6v.s8.e5213501bfc7 from=translated src=- shape=ff98582b vocab=e27aa295
+-/
 theorem smul_eq_or_neg_iff (n : ℕ) (hn : n ≠ 0) {x₀ y₀ : K} (hQ : W.Nonsingular x₀ y₀)
     (hy₀ : y₀ ≠ 0) (P : W.Point) :
     (n • P = Point.some x₀ y₀ hQ ∨ n • P = -Point.some x₀ y₀ hQ) ↔
@@ -252,7 +287,9 @@ theorem smul_eq_or_neg_iff (n : ℕ) (hn : n ≠ 0) {x₀ y₀ : K} (hQ : W.Nons
     rw [hnP]
     exact (Point.X_eq_iff (h₁ := hXY) (h₂ := hQ)).mp hXx
 
-/-- The `y`-coordinate of a point `P` with `nP = ±Q` is nonzero. -/
+/-- The `y`-coordinate of a point `P` with `nP = ±Q` is nonzero.
+@isnad1 id=ne.6h7v.s8.2598f2a8f4c4 from=translated src=- shape=ed34d200 vocab=3bfe2af8
+-/
 theorem y_ne_zero_of_smul_eq (n : ℕ) {x₀ y₀ : K} (hQ : W.Nonsingular x₀ y₀)
     (hy₀ : y₀ ≠ 0) {x₁ y₁ : K} (h₁ : W.Nonsingular x₁ y₁)
     (hP : n • Point.some x₁ y₁ h₁ = Point.some x₀ y₀ hQ ∨
@@ -277,7 +314,9 @@ theorem y_ne_zero_of_smul_eq (n : ℕ) {x₀ y₀ : K} (hQ : W.Nonsingular x₀ 
 
 omit ha₁ ha₃ in
 /-- A nonzero element of an algebraically closed field of characteristic `≠ 2` has exactly two
-square roots. -/
+square roots.
+@isnad1 id=eq.1h2v.s6.c52eb751da7d from=translated src=- shape=ba88dc00 vocab=ceb73568
+-/
 theorem card_sq_eq (c : K) (hc : c ≠ 0) : Nat.card {s : K // s ^ 2 = c} = 2 := by
   obtain ⟨t, ht⟩ := IsAlgClosed.exists_pow_nat_eq c two_pos
   have ht0 : t ≠ 0 := by rintro rfl; rw [zero_pow two_ne_zero] at ht; exact hc ht.symm
@@ -296,7 +335,9 @@ theorem card_sq_eq (c : K) (hc : c ≠ 0) : Nat.card {s : K // s ^ 2 = c} = 2 :=
 noncomputable abbrev cubic (W : Affine K) (t : K) : K := t ^ 3 + W.a₂ * t ^ 2 + W.a₄ * t + W.a₆
 
 /-- The points with `nP = ±Q` are in bijection with the pairs `(x₁, y₁)` with `x₁` a root of
-`hₓ₀` and `y₁² = f(x₁)`. -/
+`hₓ₀` and `y₁² = f(x₁)`.
+@isnad1 id=eq.5h5v.s8.16b222f67f2e from=translated src=- shape=72ef54f0 vocab=b79fe74a
+-/
 theorem card_fibre (n : ℕ) (hn : n ≠ 0) {x₀ y₀ : K} (hQ : W.Nonsingular x₀ y₀)
     (hy₀ : y₀ ≠ 0) :
     Nat.card {P : W.Point // n • P = Point.some x₀ y₀ hQ ∨ n • P = -Point.some x₀ y₀ hQ} =
@@ -353,7 +394,9 @@ theorem card_fibre (n : ℕ) (hn : n ≠ 0) {x₀ y₀ : K} (hQ : W.Nonsingular 
   ring
 
 omit ha₁ ha₃ in
-/-- A fibre of the multiplication by `n` is in bijection with the `n`-torsion. -/
+/-- A fibre of the multiplication by `n` is in bijection with the `n`-torsion.
+@isnad1 id=eq.1h5v.s8.59a0f5ef7375 from=translated src=- shape=f3dbc46f vocab=a1639983
+-/
 theorem card_coset (n : ℕ) {Q P₀ : W.Point} (hP₀ : n • P₀ = Q) :
     Nat.card {P : W.Point // n • P = Q} = Nat.card (AddSubgroup.torsionBy W.Point n) := by
   refine Nat.card_congr
@@ -364,7 +407,9 @@ theorem card_coset (n : ℕ) {Q P₀ : W.Point} (hP₀ : n • P₀ = Q) :
   · rw [AddSubgroup.torsionBy.nsmul_iff, smul_sub, P.2, hP₀, sub_self]
   · rw [smul_add, hP₀, AddSubgroup.torsionBy.nsmul_iff.mp T.2, add_zero]
 
-/-- The number of points with `nP = ±Q` is twice `|E[n]|`. -/
+/-- The number of points with `nP = ±Q` is twice `|E[n]|`.
+@isnad1 id=eq.5h5v.s9.3173cd96aabb from=translated src=- shape=cd973d9f vocab=1936f1e4
+-/
 theorem card_fibre_eq_two_mul (n : ℕ) (hn : n ≠ 0) {x₀ y₀ : K} (hQ : W.Nonsingular x₀ y₀)
     (hy₀ : y₀ ≠ 0) [Finite (AddSubgroup.torsionBy W.Point n)] :
     Nat.card {P : W.Point // n • P = Point.some x₀ y₀ hQ ∨ n • P = -Point.some x₀ y₀ hQ} =
@@ -404,7 +449,9 @@ theorem card_fibre_eq_two_mul (n : ℕ) (hn : n ≠ 0) {x₀ y₀ : K} (hQ : W.N
 
 omit ha₁ ha₃ in
 /-- The polynomial `w = Φₙ' ΨSqₙ − Φₙ ΨSqₙ'` is nonzero: its coefficient of degree `2n² − 2` is
-`n²`. -/
+`n²`.
+@isnad1 id=ne.1h3v.s9.14fc79c3fd5d from=translated src=- shape=79ea83a5 vocab=624f9120
+-/
 theorem wpoly_ne_zero (n : ℕ) (hn : n ≠ 0) :
     derivative (W.Φ n) * W.ΨSq n - W.Φ n * derivative (W.ΨSq n) ≠ 0 := by
   have hn' : ((n : ℤ) : K) ≠ 0 := by exact_mod_cast hn
@@ -460,7 +507,9 @@ theorem wpoly_ne_zero (n : ℕ) (hn : n ≠ 0) :
   apply hNK
   linear_combination hc
 
-/-- There is an `x₀` with `f(x₀) ≠ 0` such that `hₓ₀` has only simple roots. -/
+/-- There is an `x₀` with `f(x₀) ≠ 0` such that `hₓ₀` has only simple roots.
+@isnad1 id=ex.3h3v.s7.2ea3e73995aa from=translated src=- shape=d1c92a2d vocab=3929a15d
+-/
 theorem exists_good_x₀ (n : ℕ) (hn : n ≠ 0) :
     ∃ x₀ : K, cubic W x₀ ≠ 0 ∧ (fibrePoly W n x₀).roots.Nodup := by
   set w := derivative (W.Φ n) * W.ΨSq n - W.Φ n * derivative (W.ΨSq n) with hw
@@ -504,7 +553,9 @@ theorem exists_good_x₀ (n : ℕ) (hn : n ≠ 0) :
       rw [div_eq_iff hΨ]; linear_combination hr
 
 /-- **The `n`-torsion of an elliptic curve over an algebraically closed field of
-characteristic `0` has `n²` elements.** -/
+characteristic `0` has `n²` elements.**
+@isnad1 id=eq.3h3v.s7.1d99859f7f79 from=translated src=- shape=15e04507 vocab=771e1234
+-/
 theorem card_torsionBy_eq_sq (n : ℕ) (hn : n ≠ 0) :
     Nat.card (AddSubgroup.torsionBy W.Point n) = n ^ 2 := by
   obtain ⟨x₀, hf, hnodup⟩ := exists_good_x₀ ha₁ ha₃ n hn
@@ -529,7 +580,9 @@ theorem card_torsionBy_eq_sq (n : ℕ) (hn : n ≠ 0) :
     natDegree_fibrePoly n hn] at h2
   omega
 
-/-- **`E[ℓ] ≅ (ℤ/ℓ)²` for a prime `ℓ`.** -/
+/-- **`E[ℓ] ≅ (ℤ/ℓ)²` for a prime `ℓ`.**
+@isnad1 id=nonempty.2h3v.s8.5e8450ee832f from=translated src=- shape=8d220cdf vocab=41a7f1d6
+-/
 theorem torsionBasis (ℓ : ℕ) [hℓ : Fact ℓ.Prime] :
     Nonempty (AddSubgroup.torsionBy W.Point ℓ ≃+ (Fin 2 → ZMod ℓ)) := by
   haveI : NeZero ℓ := ⟨hℓ.out.ne_zero⟩

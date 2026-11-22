@@ -31,7 +31,9 @@ open CategoryTheory TensorProduct
 
 namespace ModuleCat
 
-/-- A localisation of a ring of global dimension `≤ d` has global dimension `≤ d`. -/
+/-- A localisation of a ring of global dimension `≤ d` has global dimension `≤ d`.
+@isnad1 id=hasgloba.1h4v.s5.52ef3bf7bd40 from=translated src=- shape=772ff670 vocab=4de1d2ef
+-/
 lemma HasGlobalDimensionLE.of_isLocalization {R : Type u} [CommRing R] (S : Submonoid R)
     (R' : Type u) [CommRing R'] [Algebra R R'] [IsLocalization S R'] {d : ℕ}
     (h : HasGlobalDimensionLE R d) : HasGlobalDimensionLE R' d := by
@@ -48,7 +50,9 @@ lemma HasGlobalDimensionLE.of_isLocalization {R : Type u} [CommRing R] (S : Subm
   exact hasProjectiveDimensionLE_of_linearEquiv.{u, u} (M := ModuleCat.of R' (R' ⊗[R] M))
     (N := ModuleCat.of R' M) hb.equiv d
 
-/-- Every module over a localisation of `k[X₁, …, Xₙ]` has projective dimension at most `n`. -/
+/-- Every module over a localisation of `k[X₁, …, Xₙ]` has projective dimension at most `n`.
+@isnad1 id=hasgloba.0h4v.s7.b9aeb81f2360 from=translated src=- shape=a4103bf2 vocab=f07bbabe
+-/
 theorem hasGlobalDimensionLE_of_isLocalization_mvPolynomial (k : Type u) [Field k] (n : ℕ)
     (S : Submonoid (MvPolynomial (Fin n) k)) (R' : Type u) [CommRing R']
     [Algebra (MvPolynomial (Fin n) k) R'] [IsLocalization S R'] : HasGlobalDimensionLE R' n :=

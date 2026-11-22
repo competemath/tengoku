@@ -50,7 +50,9 @@ variable {K : Type*} [NormedField K]
 variable (L : Type*) [NormedField L] [NormedAlgebra K L]
 variable (t : TateParameter K)
 
-/-- The underlying element of the image of a unit under the algebra map. -/
+/-- The underlying element of the image of a unit under the algebra map.
+@isnad1 id=eq.0h3v.s8.d6792a112ee5 from=translated src=- shape=8cdf27a7 vocab=e7b2cdcb
+-/
 lemma coe_units_map_algebraMap (u : Kˣ) :
     ((Units.map (algebraMap K L).toMonoidHom u : Lˣ) : L) = algebraMap K L (u : K) :=
   Units.coe_map _ _
@@ -63,14 +65,18 @@ private lemma algebraMap_tsum' {ι : Type*} {f : ι → K} (hf : Summable f) :
 
 /-! ### The general terms -/
 
-/-- The general term of the `X`-coordinate series commutes with an isometric extension. -/
+/-- The general term of the `X`-coordinate series commutes with an isometric extension.
+@isnad1 id=eq.0h5v.s8.f06af01eee9d from=translated src=- shape=27afc73e vocab=7066de51
+-/
 lemma algebraMap_Xterm (u : Kˣ) (n : ℤ) :
     algebraMap K L (t.Xterm u n)
       = (t.baseChange L).Xterm (Units.map (algebraMap K L).toMonoidHom u) n := by
   rw [Xterm_apply, Xterm_apply, map_div₀, map_pow, map_sub, map_one, map_mul, map_zpow₀,
     baseChange_q_coe, coe_units_map_algebraMap]
 
-/-- The general term of the `Y`-coordinate series commutes with an isometric extension. -/
+/-- The general term of the `Y`-coordinate series commutes with an isometric extension.
+@isnad1 id=eq.0h5v.s8.82349f063dcc from=translated src=- shape=27afc73e vocab=e346aa7a
+-/
 lemma algebraMap_Yterm (u : Kˣ) (n : ℤ) :
     algebraMap K L (t.Yterm u n)
       = (t.baseChange L).Yterm (Units.map (algebraMap K L).toMonoidHom u) n := by
@@ -78,7 +84,9 @@ lemma algebraMap_Yterm (u : Kˣ) (n : ℤ) :
     map_zpow₀, baseChange_q_coe, coe_units_map_algebraMap]
 
 /-- A unit avoiding `qᶻ` in `K` still avoids `qᶻ` after an isometric extension, since the
-algebra map is injective. -/
+algebra map is injective.
+@isnad1 id=ne.1h5v.s9.4d0e8e4186e4 from=translated src=- shape=da1cea88 vocab=c4df0aec
+-/
 lemma baseChange_notMem {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) (n : ℤ) :
     ((t.baseChange L).q : L) ^ n * ((Units.map (algebraMap K L).toMonoidHom u : Lˣ) : L)
       ≠ 1 := by
@@ -92,7 +100,9 @@ section Coordinates
 
 variable [IsUltrametricDist K] [CompleteSpace K]
 
-/-- The Tate `X`-coordinate commutes with an isometric extension. -/
+/-- The Tate `X`-coordinate commutes with an isometric extension.
+@isnad1 id=eq.0h4v.s8.0630dc2b41d8 from=translated src=- shape=f5969e72 vocab=868469a7
+-/
 theorem algebraMap_X (u : Kˣ) :
     algebraMap K L (t.X u) = (t.baseChange L).X (Units.map (algebraMap K L).toMonoidHom u) := by
   rw [X_apply, X_apply, map_sub, map_mul, map_ofNat, t.algebraMap_eisenstein L,
@@ -100,7 +110,9 @@ theorem algebraMap_X (u : Kˣ) :
   congr 1
   exact tsum_congr fun n => t.algebraMap_Xterm L u n
 
-/-- The Tate `Y`-coordinate commutes with an isometric extension. -/
+/-- The Tate `Y`-coordinate commutes with an isometric extension.
+@isnad1 id=eq.0h4v.s8.5a41bf143390 from=translated src=- shape=f5969e72 vocab=77f2a050
+-/
 theorem algebraMap_Y (u : Kˣ) :
     algebraMap K L (t.Y u) = (t.baseChange L).Y (Units.map (algebraMap K L).toMonoidHom u) := by
   rw [Y_apply, Y_apply, map_add, t.algebraMap_eisenstein L,
@@ -111,12 +123,16 @@ theorem algebraMap_Y (u : Kˣ) :
 /-! ### The Tate curve and its `j`-invariant -/
 
 /-- The Tate Weierstrass curve `E_q` base-changes to the Tate curve of the base-changed
-parameter. -/
+parameter.
+@isnad1 id=eq.0h3v.s6.6710d30aca7c from=translated src=- shape=83158ddf vocab=166a53a3
+-/
 theorem map_tateCurve : t.tateCurve.map (algebraMap K L) = (t.baseChange L).tateCurve := by
   simp only [WeierstrassCurve.map, tateCurve, map_one, map_zero, t.algebraMap_a₄ L,
     t.algebraMap_a₆ L]
 
-/-- The `j`-invariant `c₄³ / Δ` of the Tate curve commutes with an isometric extension. -/
+/-- The `j`-invariant `c₄³ / Δ` of the Tate curve commutes with an isometric extension.
+@isnad1 id=eq.0h3v.s7.fe4ccabf7830 from=translated src=- shape=4d0e0024 vocab=48ba3545
+-/
 theorem algebraMap_tateJ : algebraMap K L t.tateJ = (t.baseChange L).tateJ := by
   rw [tateJ_def, tateJ_def, map_div₀, map_pow, ← WeierstrassCurve.map_c₄,
     ← WeierstrassCurve.map_Δ, t.map_tateCurve L]

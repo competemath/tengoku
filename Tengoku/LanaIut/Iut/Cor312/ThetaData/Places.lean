@@ -74,7 +74,9 @@ field. For a place over the rational prime `p` this is `p`. -/
 noncomputable def residueChar (w : FinitePlace k) : ℕ :=
   ringChar (𝓞 k ⧸ w.maximalIdeal.asIdeal)
 
-/-- The residue characteristic of a finite place of a number field is prime. -/
+/-- The residue characteristic of a finite place of a number field is prime.
+@isnad1 id=prime.0h2v.s4.c5d1af890fb7 from=translated src=- shape=d025193f vocab=7a868d00
+-/
 lemma residueChar_prime (w : FinitePlace k) : (residueChar w).Prime := by
   haveI : w.maximalIdeal.asIdeal.IsMaximal :=
     w.maximalIdeal.isPrime.isMaximal w.maximalIdeal.ne_bot

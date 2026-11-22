@@ -42,11 +42,17 @@ section Formulas
 
 variable {L : Type*} [Field L] [DecidableEq L] {V : Affine L}
 
+/--
+@isnad1 id=ne.1h4v.s7.f3d0a0f7451f from=translated src=- shape=b38472cd vocab=d6e92aec
+-/
 lemma units_smul_ne_zero (ε : ℤˣ) {Q : V.Point} (hQ : Q ≠ 0) : ε • Q ≠ 0 := by
   rcases Int.units_eq_one_or ε with rfl | rfl
   · rwa [one_smul]
   · rwa [Units.neg_smul, one_smul, neg_ne_zero]
 
+/--
+@isnad1 id=eq.0h4v.s6.6730dc957373 from=translated src=- shape=0c049ce4 vocab=06c308a0
+-/
 lemma xOf_units_smul (ε : ℤˣ) (Q : V.Point) : xOf (ε • Q) = xOf Q := by
   rcases Int.units_eq_one_or ε with rfl | rfl
   · rw [one_smul]
@@ -55,6 +61,9 @@ lemma xOf_units_smul (ε : ℤˣ) (Q : V.Point) : xOf (ε • Q) = xOf Q := by
     | zero => rfl
     | some x y h => rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.555f3c2d211d from=translated src=- shape=826d6308 vocab=9e5b6145
+-/
 lemma yOf_units_smul (ε : ℤˣ) (Q : V.Point) (hQ : Q ≠ 0) :
     yOf (ε • Q) = if ε = 1 then yOf Q else V.negY (xOf Q) (yOf Q) := by
   rcases Int.units_eq_one_or ε with rfl | rfl
@@ -64,6 +73,9 @@ lemma yOf_units_smul (ε : ℤˣ) (Q : V.Point) (hQ : Q ≠ 0) :
     | zero => exact absurd rfl hQ
     | some x y h => rfl
 
+/--
+@isnad1 id=and.3h4v.s8.bdbfff47d696 from=translated src=- shape=1d6e3d58 vocab=adbe0aa0
+-/
 lemma add_of_xOf_ne {P R : V.Point} (hP : P ≠ 0) (hR : R ≠ 0) (hx : xOf P ≠ xOf R) :
     P + R ≠ 0 ∧
       xOf (P + R) = V.addX (xOf P) (xOf R) ((yOf P - yOf R) / (xOf P - xOf R)) ∧
@@ -95,42 +107,71 @@ def ringOf [DecidableEq k] (S : Set W.toAffine.Point) : Subalgebra k (funField W
 
 variable {W}
 
+/--
+@isnad1 id=mem.2h4v.s6.8693bac42de6 from=translated src=- shape=d20b6fe5 vocab=1e21b1f5
+-/
 lemma xOf_mem_xSet [DecidableEq k] {S : Set W.toAffine.Point} {P : W.toAffine.Point}
     (hPS : P ∈ S) (hP : P ≠ 0) : xOf P ∈ xSet W S :=
   ⟨P, ⟨hPS, hP⟩, rfl⟩
 
+/--
+@isnad1 id=finite.1h3v.s5.9015f1a474b0 from=translated src=- shape=5f1d67f7 vocab=b72df0a8
+-/
 lemma xSet_finite [DecidableEq k] {S : Set W.toAffine.Point} (hS : S.Finite) :
     (xSet W S).Finite :=
   (hS.sdiff).image _
 
 variable {T T' : Set k}
 
+/--
+@isnad1 id=mem.0h3v.s10.f7ed2eea37dd from=translated src=- shape=c6a984a1 vocab=0094a4b1
+-/
 lemma xGen_mem_ringOfX : xGen W ∈ ringOfX W T :=
   Algebra.subset_adjoin (Or.inl (Set.mem_insert _ _))
 
+/--
+@isnad1 id=mem.0h3v.s10.1fa3acaf5ba6 from=translated src=- shape=c6a984a1 vocab=45766880
+-/
 lemma yGen_mem_ringOfX : yGen W ∈ ringOfX W T :=
   Algebra.subset_adjoin (Or.inl (Set.mem_insert_of_mem _ rfl))
 
+/--
+@isnad1 id=mem.1h4v.s11.5bbce62d0fc7 from=translated src=- shape=5f24acad vocab=520e7a9a
+-/
 lemma inv_mem_ringOfX {a : k} (ha : a ∈ T) :
     (xGen W - algebraMap k (funField W) a)⁻¹ ∈ ringOfX W T :=
   Algebra.subset_adjoin (Or.inr ⟨a, ha, rfl⟩)
 
+/--
+@isnad1 id=le.1h4v.s10.bfc8077ee8df from=translated src=- shape=2917aa16 vocab=1e81b8d5
+-/
 lemma ringOfX_mono (h : T ⊆ T') : ringOfX W T ≤ ringOfX W T' :=
   Algebra.adjoin_mono (Set.union_subset_union_right _ (Set.image_mono h))
 
+/--
+@isnad1 id=fg.1h3v.s8.9303ab4f376e from=translated src=- shape=66bf56cc vocab=69dee3c4
+-/
 lemma ringOfX_fg (hT : T.Finite) : (ringOfX W T).FG :=
   Subalgebra.fg_def.mpr ⟨_, ((Set.toFinite _).union (hT.image _)), rfl⟩
 
+/--
+@isnad1 id=fg.1h3v.s8.6e40f6cb050f from=translated src=- shape=4d7aad97 vocab=cdc2b45c
+-/
 lemma ringOf_fg [DecidableEq k] {S : Set W.toAffine.Point} (hS : S.Finite) : (ringOf W S).FG :=
   ringOfX_fg (xSet_finite hS)
 
 variable (W) in
+/--
+@isnad1 id=ne.0h3v.s10.dc1afd88f7be from=translated src=- shape=b087c0b8 vocab=868f51fe
+-/
 lemma xGen_sub_ne_zero (a : k) : xGen W - algebraMap k (funField W) a ≠ 0 := fun h => by
   apply transcendental_xGen W
   rw [sub_eq_zero.mp h]
   exact isAlgebraic_algebraMap a
 
-/-- The image of the coordinate ring `k[W]` lies in `ringOfX W T`. -/
+/-- The image of the coordinate ring `k[W]` lies in `ringOfX W T`.
+@isnad1 id=mem.0h4v.s11.74b3c455af43 from=translated src=- shape=a88a5d43 vocab=19b749bd
+-/
 lemma algebraMap_mem_ringOfX (c : W.toAffine.CoordinateRing) :
     algebraMap W.toAffine.CoordinateRing (funField W) c ∈ ringOfX W T := by
   obtain ⟨p, rfl⟩ := AdjoinRoot.mk_surjective c
@@ -166,17 +207,32 @@ def yR : ringOfX W T := ⟨yGen W, yGen_mem_ringOfX⟩
 /-- The element `(x - a)⁻¹` of `ringOfX W T`, for `a ∈ T`. -/
 def invR {a : k} (ha : a ∈ T) : ringOfX W T := ⟨_, inv_mem_ringOfX ha⟩
 
+/--
+@isnad1 id=eq.0h3v.s10.4f50e7158797 from=translated src=- shape=e2e822d3 vocab=be4b74a5
+-/
 @[simp] lemma coe_xR : (xR W T : funField W) = xGen W := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.3fb0669fef16 from=translated src=- shape=e2e822d3 vocab=1e4592cd
+-/
 @[simp] lemma coe_yR : (yR W T : funField W) = yGen W := rfl
 
+/--
+@isnad1 id=eq.1h4v.s14.a39096f384bf from=translated src=- shape=073f59aa vocab=8f7bd67b
+-/
 lemma invR_mul {a : k} (ha : a ∈ T) : invR ha * (xR W T - algebraMap k _ a) = 1 :=
   Subtype.ext (inv_mul_cancel₀ (xGen_sub_ne_zero W a))
 
+/--
+@isnad1 id=isunit.1h4v.s14.29556779c412 from=translated src=- shape=9d62230c vocab=723c427b
+-/
 lemma isUnit_xR_sub {a : k} (ha : a ∈ T) : IsUnit (xR W T - algebraMap k _ a) :=
   isUnit_iff_exists_inv'.mpr ⟨invR ha, invR_mul ha⟩
 
 variable (W T) in
+/--
+@isnad1 id=equation.0h3v.s11.015637983609 from=translated src=- shape=7d9e6231 vocab=1f4f6699
+-/
 lemma equation_R : (W.toAffine⁄(ringOfX W T)).Equation (xR W T) (yR W T) :=
   (W.toAffine.baseChange_equation (f := (ringOfX W T).val) Subtype.val_injective _ _).mp
     (equation_gen W)
@@ -217,14 +273,29 @@ variable [W.IsElliptic] {L : Type*} [Field L] [Algebra k L]
 def pointOf (χ : ringOfX W T →ₐ[k] L) : (W.toAffine⁄L).Point :=
   .some (χ (xR W T)) (χ (yR W T)) (nonsingular_of_equation ((equation_R W T).baseChange χ))
 
+/--
+@isnad1 id=ne.0h5v.s11.d102d501526d from=translated src=- shape=de67892e vocab=96ce205d
+-/
 @[simp] lemma pointOf_ne_zero (χ : ringOfX W T →ₐ[k] L) : pointOf χ ≠ 0 := Point.some_ne_zero _
 
+/--
+@isnad1 id=eq.0h5v.s13.58cab31e9be1 from=translated src=- shape=d8b7fcc7 vocab=5b6aada8
+-/
 @[simp] lemma xOf_pointOf (χ : ringOfX W T →ₐ[k] L) : xOf (pointOf χ) = χ (xR W T) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s13.89b80c1784a5 from=translated src=- shape=d8b7fcc7 vocab=80878515
+-/
 @[simp] lemma yOf_pointOf (χ : ringOfX W T →ₐ[k] L) : yOf (pointOf χ) = χ (yR W T) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.0ce4ad602859 from=translated src=- shape=972602e8 vocab=5f05fad7
+-/
 lemma pointOf_val : pointOf (ringOfX W T).val = genericPoint W := rfl
 
+/--
+@isnad1 id=ne.1h6v.s11.ec6e0f47072b from=translated src=- shape=737b221c vocab=ebc54653
+-/
 lemma xOf_pointOf_ne (χ : ringOfX W T →ₐ[k] L) {a : k} (ha : a ∈ T) :
     xOf (pointOf χ) ≠ algebraMap k L a := fun h => by
   have := congrArg χ (invR_mul ha)
@@ -233,6 +304,9 @@ lemma xOf_pointOf_ne (χ : ringOfX W T →ₐ[k] L) {a : k} (ha : a ∈ T) :
 
 variable [DecidableEq L]
 
+/--
+@isnad1 id=eq.0h6v.s13.4842ab9ddade from=translated src=- shape=44f3026c vocab=194cf82a
+-/
 lemma yOf_units_smul_pointOf (χ : ringOfX W T →ₐ[k] L) (ε : ℤˣ) :
     yOf (ε • pointOf χ) = χ (yεR T ε) := by
   rw [yOf_units_smul _ _ (pointOf_ne_zero χ), yεR]
@@ -242,7 +316,9 @@ lemma yOf_units_smul_pointOf (χ : ringOfX W T →ₐ[k] L) (ε : ℤˣ) :
 
 variable [DecidableEq k]
 
-/-- The coordinates of `g(pointOf χ)` for `g = (ε, m)` with `m ≠ 0`, `x(m) ∈ T`. -/
+/-- The coordinates of `g(pointOf χ)` for `g = (ε, m)` with `m ≠ 0`, `x(m) ∈ T`.
+@isnad1 id=and.2h6v.s14.4df6a57a8274 from=translated src=- shape=166ec14d vocab=5a10b29f
+-/
 theorem act_pointOf (χ : ringOfX W T →ₐ[k] L) (g : AffAut W) (hm0 : g.m ≠ 0)
     (hm : xOf g.m ∈ T) :
     g.act L (pointOf χ) ≠ 0 ∧ xOf (g.act L (pointOf χ)) = χ (g.xR hm) ∧
@@ -271,7 +347,9 @@ theorem act_pointOf (χ : ringOfX W T →ₐ[k] L) (g : AffAut W) (hm0 : g.m ≠
   · rw [AffAut.act_def, hx, AffAut.xR, baseChange_addX]
   · rw [AffAut.act_def, hy, AffAut.yR, baseChange_addY]
 
-/-- The coordinates of `g(pointOf χ)` for `g = (ε, 0)`. -/
+/-- The coordinates of `g(pointOf χ)` for `g = (ε, 0)`.
+@isnad1 id=and.1h6v.s14.81844fc67b86 from=translated src=- shape=d66e35a8 vocab=ea9f7edc
+-/
 theorem act_pointOf_of_m_eq_zero (χ : ringOfX W T →ₐ[k] L) (g : AffAut W) (hm0 : g.m = 0) :
     g.act L (pointOf χ) ≠ 0 ∧ xOf (g.act L (pointOf χ)) = χ (xR W T) ∧
       yOf (g.act L (pointOf χ)) = χ (yεR T g.ε) := by
@@ -279,7 +357,9 @@ theorem act_pointOf_of_m_eq_zero (χ : ringOfX W T →ₐ[k] L) (g : AffAut W) (
   exact ⟨units_smul_ne_zero g.ε (pointOf_ne_zero χ), by rw [xOf_units_smul, xOf_pointOf],
     yOf_units_smul_pointOf χ g.ε⟩
 
-/-- The coordinates of `g(genericPoint W)` lie in `ringOfX W T` if `x(m) ∈ T` for `m ≠ 0`. -/
+/-- The coordinates of `g(genericPoint W)` lie in `ringOfX W T` if `x(m) ∈ T` for `m ≠ 0`.
+@isnad1 id=and.1h4v.s11.74b39bd175bd from=translated src=- shape=42d5da88 vocab=3eff016b
+-/
 theorem coords_act_genericPoint_mem (g : AffAut W) (hm : g.m ≠ 0 → xOf g.m ∈ T) :
     xOf (g.act _ (genericPoint W)) ∈ ringOfX W T ∧
       yOf (g.act _ (genericPoint W)) ∈ ringOfX W T := by
@@ -292,11 +372,17 @@ theorem coords_act_genericPoint_mem (g : AffAut W) (hm : g.m ≠ 0 → xOf g.m �
     rw [hx, hy]
     exact ⟨Subtype.prop _, Subtype.prop _⟩
 
+/--
+@isnad1 id=mem.1h4v.s11.3dd6ae263961 from=translated src=- shape=55e78853 vocab=5480d61f
+-/
 lemma pullback_xGen_mem (g : AffAut W) (hm : g.m ≠ 0 → xOf g.m ∈ T) :
     pullback W g (xGen W) ∈ ringOfX W T := by
   rw [pullback_xGen]
   exact (coords_act_genericPoint_mem g hm).1
 
+/--
+@isnad1 id=mem.1h4v.s11.3686d7496205 from=translated src=- shape=55e78853 vocab=37d582ea
+-/
 lemma pullback_yGen_mem (g : AffAut W) (hm : g.m ≠ 0 → xOf g.m ∈ T) :
     pullback W g (yGen W) ∈ ringOfX W T := by
   rw [pullback_yGen]

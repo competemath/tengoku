@@ -60,20 +60,28 @@ variable {K : Type*} [NormedField K] (T : TateDatum K)
 
 /-! ### The exact sequence `1 → qᶻ → Kˣ → Kˣ/qᶻ → 1` -/
 
-/-- The uniformization projection `Kˣ → Kˣ / qᶻ` is surjective. -/
+/-- The uniformization projection `Kˣ → Kˣ / qᶻ` is surjective.
+@isnad1 id=surjecti.0h2v.s8.3110f2d5dcb1 from=translated src=- shape=47d524f1 vocab=3db4d702
+-/
 lemma toAnalyticQuotient_surjective : Function.Surjective T.toAnalyticQuotient :=
   QuotientGroup.mk'_surjective T.qpowers
 
-/-- The kernel of the uniformization projection is exactly the subgroup `qᶻ`. -/
+/-- The kernel of the uniformization projection is exactly the subgroup `qᶻ`.
+@isnad1 id=eq.0h2v.s6.7cfbc8dded2c from=translated src=- shape=3fd4aa6a vocab=8e0ad3ec
+-/
 @[simp] lemma ker_toAnalyticQuotient : T.toAnalyticQuotient.ker = T.qpowers :=
   QuotientGroup.ker_mk' T.qpowers
 
-/-- An element of `Kˣ` maps to the identity of `Kˣ / qᶻ` iff it is an integer power of `q`. -/
+/-- An element of `Kˣ` maps to the identity of `Kˣ / qᶻ` iff it is an integer power of `q`.
+@isnad1 id=iff.0h3v.s8.5665df820bed from=translated src=- shape=b992b655 vocab=175f4f3f
+-/
 lemma toAnalyticQuotient_eq_one_iff {x : Kˣ} :
     T.toAnalyticQuotient x = 1 ↔ x ∈ T.qpowers := by
   rw [QuotientGroup.mk'_apply, QuotientGroup.eq_one_iff]
 
-/-- Two units have the same image in `Kˣ / qᶻ` iff they differ by an integer power of `q`. -/
+/-- Two units have the same image in `Kˣ / qᶻ` iff they differ by an integer power of `q`.
+@isnad1 id=iff.0h4v.s9.f98fec2308e2 from=translated src=- shape=eed931a0 vocab=4992034e
+-/
 lemma toAnalyticQuotient_eq_iff {x y : Kˣ} :
     T.toAnalyticQuotient x = T.toAnalyticQuotient y ↔ x⁻¹ * y ∈ T.qpowers := by
   rw [QuotientGroup.mk'_apply, QuotientGroup.mk'_apply, QuotientGroup.eq]
@@ -92,11 +100,16 @@ def baseChange : TateDatum L where
       rw [Units.coe_map]; exact norm_algebraMap' L (T.q : K)
     rw [h]; exact T.norm_q_lt_one
 
+/--
+@isnad1 id=eq.0h3v.s7.b16f4e255600 from=translated src=- shape=4f140b71 vocab=9b18fcd1
+-/
 @[simp] lemma baseChange_q_coe :
     ((T.baseChange L).q : L) = algebraMap K L (T.q : K) :=
   Units.coe_map _ _
 
-/-- Base change sends `qᶻ ≤ Kˣ` into `qᶻ ≤ Lˣ` under the induced unit map `Units.map`. -/
+/-- Base change sends `qᶻ ≤ Kˣ` into `qᶻ ≤ Lˣ` under the induced unit map `Units.map`.
+@isnad1 id=le.0h3v.s8.b85a0b2d3245 from=translated src=- shape=ff2534f8 vocab=8d19bad5
+-/
 lemma qpowers_le_comap :
     T.qpowers ≤
       Subgroup.comap (Units.map (algebraMap K L).toMonoidHom) (T.baseChange L).qpowers := by
@@ -111,7 +124,9 @@ def mapAnalyticQuotient : T.AnalyticQuotient →* (T.baseChange L).AnalyticQuoti
     (Units.map (algebraMap K L).toMonoidHom) (T.qpowers_le_comap L)
 
 /-- The induced map on analytic quotients commutes with the two uniformization projections:
-it sends the class of `x` to the class of `algebraMap K L x`. -/
+it sends the class of `x` to the class of `algebraMap K L x`.
+@isnad1 id=eq.0h4v.s10.5b92d0c20ed0 from=translated src=- shape=be6828ea vocab=5bbf325f
+-/
 @[simp] lemma mapAnalyticQuotient_comp_toAnalyticQuotient (x : Kˣ) :
     T.mapAnalyticQuotient L (T.toAnalyticQuotient x) =
       (T.baseChange L).toAnalyticQuotient (Units.map (algebraMap K L).toMonoidHom x) :=

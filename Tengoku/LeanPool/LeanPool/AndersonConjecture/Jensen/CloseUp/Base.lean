@@ -63,6 +63,9 @@ lemma eq_of_prime_le_prime_height_le_one
       hbot_lt_P hbot_fin
   simp_all
 
+/--
+@isnad1 id=mem.2h4v.s10.05a5575c7743 from=translated src=- shape=51c85236 vocab=e9d89c9b
+-/
 theorem close_up_principal
     (R : NSubring T) (y : R.carrier) (hy : Prime y) (c : R.carrier)
     (hc : (c : T) ∈ Ideal.span {(y : T)}) : c ∈ Ideal.span {y} := by
@@ -120,7 +123,9 @@ close_up_principal.
 
 /-- Generalized close-up for arbitrary elements: if y ∈ R
 (NSubring, UFD) and c ∈ yT ∩ R, then c ∈ yR.
-Proved by induction on prime factorization. -/
+Proved by induction on prime factorization.
+@isnad1 id=mem.1h4v.s10.5b634b2c1f2e from=translated src=- shape=d54a1559 vocab=df9802e0
+-/
 theorem close_up_dvd
     (R : NSubring T) (y c : R.carrier)
     (hc : (c : T) ∈ Ideal.span {(y : T)}) : c ∈ Ideal.span {y} := by

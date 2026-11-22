@@ -39,11 +39,17 @@ def Distinct4 (y₁ y₂ y₃ y₄ : OnePoint k) : Prop :=
   y₁ ≠ y₂ ∧ y₁ ≠ y₃ ∧ y₁ ≠ y₄ ∧ y₂ ≠ y₃ ∧ y₂ ≠ y₄ ∧ y₃ ≠ y₄
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=ne.1h3v.s5.85ad78d4ad62 from=translated src=- shape=7a72f560 vocab=c2afeb65
+-/
 lemma br_ne_zero_of_ne {x y : OnePoint k} (h : x ≠ y) : br (lift x) (lift y) ≠ 0 := by
   classical
   rw [Ne, br_lift_eq_zero_iff]; exact h
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=eq.1h5v.s5.0ad5aa51cdf4 from=translated src=- shape=dbe5718d vocab=1c91d6c7
+-/
 lemma wcr_swap₁₂ {y₁ y₂ y₃ y₄ : OnePoint k} (h : Distinct4 y₁ y₂ y₃ y₄) :
     wcr y₂ y₁ y₃ y₄ = (wcr y₁ y₂ y₃ y₄)⁻¹ := by
   obtain ⟨-, h13, h14, h23, h24, -⟩ := h
@@ -52,6 +58,9 @@ lemma wcr_swap₁₂ {y₁ y₂ y₃ y₄ : OnePoint k} (h : Distinct4 y₁ y₂
   simp only [wcr]; field_simp
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=eq.1h5v.s5.f2dc03bab894 from=translated src=- shape=99dabb72 vocab=1c91d6c7
+-/
 lemma wcr_swap₃₄ {y₁ y₂ y₃ y₄ : OnePoint k} (h : Distinct4 y₁ y₂ y₃ y₄) :
     wcr y₁ y₂ y₄ y₃ = (wcr y₁ y₂ y₃ y₄)⁻¹ := by
   obtain ⟨-, h13, h14, h23, h24, -⟩ := h
@@ -60,6 +69,9 @@ lemma wcr_swap₃₄ {y₁ y₂ y₃ y₄ : OnePoint k} (h : Distinct4 y₁ y₂
   simp only [wcr]; field_simp
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=ne.1h5v.s5.dff158006f7b from=translated src=- shape=309201b9 vocab=0737feef
+-/
 lemma wcr_ne_zero {y₁ y₂ y₃ y₄ : OnePoint k} (h : Distinct4 y₁ y₂ y₃ y₄) :
     wcr y₁ y₂ y₃ y₄ ≠ 0 := by
   obtain ⟨-, h13, h14, h23, h24, -⟩ := h
@@ -68,12 +80,17 @@ lemma wcr_ne_zero {y₁ y₂ y₃ y₄ : OnePoint k} (h : Distinct4 y₁ y₂ y�
     (mul_ne_zero (br_ne_zero_of_ne h14) (br_ne_zero_of_ne h23))
 
 omit [DecidableEq k] in
-/-- The Plücker relation `[a,c][b,d] − [a,d][b,c] = [a,b][c,d]`. -/
+/-- The Plücker relation `[a,c][b,d] − [a,d][b,c] = [a,b][c,d]`.
+@isnad1 id=eq.0h5v.s6.394d070a8a8e from=translated src=- shape=cae4e51e vocab=df79a33d
+-/
 lemma br_plucker (a b c d : k × k) :
     br a c * br b d - br a d * br b c = br a b * br c d := by
   simp only [br]; ring
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=ne.1h5v.s5.36ee6d51aa8a from=translated src=- shape=309201b9 vocab=0737feef
+-/
 lemma wcr_ne_one {y₁ y₂ y₃ y₄ : OnePoint k} (h : Distinct4 y₁ y₂ y₃ y₄) :
     wcr y₁ y₂ y₃ y₄ ≠ 1 := by
   obtain ⟨h12, h13, h14, h23, h24, h34⟩ := h
@@ -91,12 +108,17 @@ def crMat (p q : k × k) (c : k) : Matrix (Fin 2) (Fin 2) k :=
     p.2 * q.2 - c * q.2 * p.2, -(p.1 * q.2) + c * q.1 * p.2]
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=eq.0h5v.s7.1c94906609c7 from=translated src=- shape=318ba8c1 vocab=c6ded028
+-/
 lemma mv_crMat (p q y : k × k) (c : k) :
     mv (crMat p q c) y = br y p • q - (c * br y q) • p := by
   ext <;> simp [mv, crMat, br] <;> ring
 
 omit [DecidableEq k] in
-/-- If `wcr y y' p q = c`, then `y'` is proportional to `[y,p] q − c [y,q] p`. -/
+/-- If `wcr y y' p q = c`, then `y'` is proportional to `[y,p] q − c [y,q] p`.
+@isnad1 id=eq.2h6v.s6.b65bb76c110a from=translated src=- shape=a5ceca10 vocab=c79e45a8
+-/
 lemma br_crMat_eq_zero {y y' p q : OnePoint k} (h : Distinct4 y y' p q) {c : k}
     (hc : wcr y y' p q = c) : br (lift y') (mv (crMat (lift p) (lift q) c) (lift y)) = 0 := by
   classical
@@ -110,6 +132,9 @@ lemma br_crMat_eq_zero {y y' p q : OnePoint k} (h : Distinct4 y y' p q) {c : k}
   linear_combination hc
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=eq.0h4v.s9.8226d4e3ce88 from=translated src=- shape=a1e7f287 vocab=529796d8
+-/
 lemma br_mv_mv (P R : Matrix (Fin 2) (Fin 2) k) (v : k × k) :
     br (mv P v) (mv R v) = quad (P 0 0 * R 1 0 - P 1 0 * R 0 0)
       (P 0 0 * R 1 1 + P 0 1 * R 1 0 - P 1 0 * R 0 1 - P 1 1 * R 0 0)
@@ -117,7 +142,9 @@ lemma br_mv_mv (P R : Matrix (Fin 2) (Fin 2) k) (v : k × k) :
   simp only [br, mv, quad]; ring
 
 omit [DecidableEq k] in
-/-- The zeros of a binary quadratic form not vanishing at one given point are finite. -/
+/-- The zeros of a binary quadratic form not vanishing at one given point are finite.
+@isnad1 id=finite.1h5v.s6.b3304eb7c8ad from=translated src=- shape=f257b171 vocab=0b2f5009
+-/
 lemma finite_quad_zeros {A B C : k} {v₀ : k × k} (h : quad A B C v₀ ≠ 0) :
     {y : OnePoint k | quad A B C (lift y) = 0}.Finite := by
   by_contra hinf
@@ -130,6 +157,9 @@ lemma finite_quad_zeros {A B C : k} {v₀ : k × k} (h : quad A B C v₀ ≠ 0) 
   exact h (by simp [quad, hA, hB, hC])
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=eq.3h4v.s7.853726e8fba4 from=translated src=- shape=47272951 vocab=bf386cf3
+-/
 lemma br_eq_zero_of_parallel {v a b : k × k} (hv : v ≠ 0) (ha : br v a = 0) (hb : br v b = 0) :
     br a b = 0 := by
   simp only [br] at ha hb ⊢
@@ -150,7 +180,9 @@ lemma br_eq_zero_of_parallel {v a b : k × k} (hv : v ≠ 0) (ha : br v a = 0) (
 omit [DecidableEq k] in
 /-- **Two reference pairs.** Given `p ≠ q`, `p' ≠ q'` with `p ∉ {p', q'}`, a value `c ≠ 0` and
 a value `c' ≠ 1`, only finitely many `y` admit some `y'` with `wcr y y' p q = c` and
-`wcr y y' p' q' = c'`. -/
+`wcr y y' p' q' = c'`.
+@isnad1 id=finite.5h7v.s7.95607388deac from=translated src=- shape=e7828e13 vocab=ea06b1f6
+-/
 lemma finite_of_two_refs {p q p' q' : OnePoint k} (hpq : p ≠ q) (hpp' : p ≠ p') (hpq' : p ≠ q')
     {c c' : k} (hc : c ≠ 0) (hc' : c' ≠ 1) :
     {y : OnePoint k | ∃ y', Distinct4 y y' p q ∧ Distinct4 y y' p' q' ∧ wcr y y' p q = c ∧
@@ -189,6 +221,9 @@ variable {k : Type*} [NontriviallyNormedField k] [ProperSpace k] [DecidableEq k]
   [MeasurableSpace k] [BorelSpace k]
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=measurab.0h1v.s6.3164654bb8c1 from=translated src=- shape=fa1be2cc vocab=197b5645
+-/
 lemma measurable_lift : Measurable (lift : OnePoint k → k × k) := by
   intro T hT
   have hcoe : MeasurableEmbedding ((↑) : k → OnePoint k) :=
@@ -207,6 +242,9 @@ lemma measurable_lift : Measurable (lift : OnePoint k → k × k) := by
     · simp [h]
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=measurab.0h1v.s7.a4b6e7b0647b from=translated src=- shape=028a2fea vocab=cd1a0834
+-/
 lemma measurable_wcr : Measurable fun y : OnePoint k × OnePoint k × OnePoint k × OnePoint k ↦
     wcr y.1 y.2.1 y.2.2.1 y.2.2.2 := by
   have hl : ∀ {f : OnePoint k × OnePoint k × OnePoint k × OnePoint k → OnePoint k},

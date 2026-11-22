@@ -51,16 +51,25 @@ def annulus (k : ℕ) : Set ℂ := {u | r < ‖u‖ ^ k ∧ ‖u‖ ^ k < R}
 def base (k : ℕ) : Set (E × ℂ) := B ×ˢ annulus r R k
 
 variable {B r R} in
+/--
+@isnad1 id=iff.0h6v.s6.3021dfa49f8a from=translated src=- shape=6c98bb24 vocab=8766827d
+-/
 lemma mem_base {k : ℕ} {x : E × ℂ} :
     x ∈ base B r R k ↔ x.1 ∈ B ∧ r < ‖x.2‖ ^ k ∧ ‖x.2‖ ^ k < R :=
   Iff.rfl
 
+/--
+@isnad1 id=isopen.1h5v.s5.0102a4428599 from=translated src=- shape=ef7124fc vocab=317cfc2c
+-/
 lemma isOpen_base [TopologicalSpace E] {B : Set E} (hB : IsOpen B) (k : ℕ) :
     IsOpen (base B r R k) :=
   hB.prod ((isOpen_lt continuous_const (continuous_norm.pow k)).inter
     (isOpen_lt (continuous_norm.pow k) continuous_const))
 
 variable {r R} in
+/--
+@isnad1 id=lt.3h6v.s6.a06f96bd635f from=translated src=- shape=7dea622a vocab=f57964cb
+-/
 lemma pos_of_mem_base (hr : 0 ≤ r) {k : ℕ} (hk : k ≠ 0) {x : E × ℂ}
     (hx : x ∈ base B r R k) : 0 < ‖x.2‖ := by
   rcases (norm_nonneg x.2).lt_or_eq with h | h
@@ -73,6 +82,9 @@ lemma pos_of_mem_base (hr : 0 ≤ r) {k : ℕ} (hk : k ≠ 0) {x : E × ℂ}
 def cover (k : ℕ+) (y : base B r R k) : base B r R 1 :=
   ⟨(y.1.1, y.1.2 ^ (k : ℕ)), y.2.1, by simpa [annulus, norm_pow] using y.2.2⟩
 
+/--
+@isnad1 id=eq.0h6v.s7.8961c3d5b999 from=translated src=- shape=c8e3d926 vocab=3fba6ac0
+-/
 @[simp]
 lemma cover_apply (k : ℕ+) (y : base B r R k) :
     (cover B r R k y : E × ℂ) = (y.1.1, y.1.2 ^ (k : ℕ)) :=
@@ -88,17 +100,29 @@ def irad (k : ℕ) (t : ℝ) : ℝ := (r + (R - r) * t ^ k) ^ ((k : ℝ)⁻¹)
 
 variable {r R}
 
+/--
+@isnad1 id=eq.3h4v.s6.6646cf9220e4 from=translated src=- shape=59779ad2 vocab=36703430
+-/
 lemma rad_pow {k : ℕ} (hk : k ≠ 0) {s : ℝ} (hs : r ≤ s ^ k) (hrR : r < R) :
     rad r R k s ^ k = (s ^ k - r) / (R - r) :=
   Real.rpow_inv_natCast_pow (div_nonneg (sub_nonneg.2 hs) (sub_nonneg.2 hrR.le)) hk
 
+/--
+@isnad1 id=eq.4h4v.s6.d3e2adac9cd2 from=translated src=- shape=33024a52 vocab=9696dad1
+-/
 lemma irad_pow {k : ℕ} (hk : k ≠ 0) (hr : 0 ≤ r) (hrR : r < R) {t : ℝ} (ht : 0 ≤ t) :
     irad r R k t ^ k = r + (R - r) * t ^ k :=
   Real.rpow_inv_natCast_pow (by have := sub_nonneg.2 hrR.le; positivity) hk
 
+/--
+@isnad1 id=lt.2h4v.s5.eca345dff338 from=translated src=- shape=e43d8181 vocab=d7b222c1
+-/
 lemma rad_pos {k : ℕ} {s : ℝ} (hs : r < s ^ k) (hrR : r < R) : 0 < rad r R k s :=
   Real.rpow_pos_of_pos (div_pos (sub_pos.2 hs) (sub_pos.2 hrR)) _
 
+/--
+@isnad1 id=lt.3h4v.s5.a44f2fbd9acf from=translated src=- shape=ff5162b0 vocab=a2b63813
+-/
 lemma irad_pos {k : ℕ} (hr : 0 ≤ r) (hrR : r < R) {t : ℝ} (ht : 0 < t) :
     0 < irad r R k t := by
   refine Real.rpow_pos_of_pos ?_ _
@@ -109,11 +133,17 @@ lemma irad_pos {k : ℕ} (hr : 0 ≤ r) (hrR : r < R) {t : ℝ} (ht : 0 < t) :
     rw [sub_zero, zero_add]
     positivity
 
+/--
+@isnad1 id=eq.4h4v.s6.3486b85bb510 from=translated src=- shape=de7076f9 vocab=dc48cdcd
+-/
 lemma irad_rad {k : ℕ} (hk : k ≠ 0) (hrR : r < R) {s : ℝ} (hs0 : 0 ≤ s) (hs : r ≤ s ^ k) :
     irad r R k (rad r R k s) = s := by
   rw [irad, rad_pow hk hs hrR, mul_div_cancel₀ _ (sub_pos.2 hrR).ne', add_sub_cancel,
     Real.pow_rpow_inv_natCast hs0 hk]
 
+/--
+@isnad1 id=eq.4h4v.s5.e78046d3f329 from=translated src=- shape=4e6c1afe vocab=a432a733
+-/
 lemma rad_irad {k : ℕ} (hk : k ≠ 0) (hr : 0 ≤ r) (hrR : r < R) {t : ℝ} (ht : 0 ≤ t) :
     rad r R k (irad r R k t) = t := by
   rw [rad, irad_pow hk hr hrR ht, add_sub_cancel_left, mul_div_cancel_left₀ _ (sub_pos.2 hrR).ne',
@@ -144,6 +174,9 @@ def fromDiscFun (hr : 0 ≤ r) (hrR : r < R) (k : ℕ+) (y : Kummer.base B) : ba
     have h3 := sub_pos.2 hrR
     constructor <;> nlinarith⟩
 
+/--
+@isnad1 id=eq.2h6v.s6.270fce89adbc from=translated src=- shape=8e912a36 vocab=f4e506d1
+-/
 lemma norm_toDiscFun (hr : 0 ≤ r) (hrR : r < R) (k : ℕ+) (y : base B r R k) :
     ‖(toDiscFun B hr hrR k y).1.2‖ = rad r R k ‖y.1.2‖ := by
   have hs := pos_of_mem_base B hr k.ne_zero y.2
@@ -152,6 +185,9 @@ lemma norm_toDiscFun (hr : 0 ≤ r) (hrR : r < R) (k : ℕ+) (y : base B r R k) 
   rw [norm_mul, Complex.norm_real, Real.norm_of_nonneg (div_pos hrad hs).le,
     div_mul_cancel₀ _ hs.ne']
 
+/--
+@isnad1 id=eq.2h6v.s6.7dc15991e32f from=translated src=- shape=8b713e3c vocab=fbb43f35
+-/
 lemma norm_fromDiscFun (hr : 0 ≤ r) (hrR : r < R) (k : ℕ+) (y : Kummer.base B) :
     ‖(fromDiscFun B hr hrR k y).1.2‖ = irad r R k ‖y.1.2‖ := by
   have ht := norm_pos_iff.2 y.2.2.1
@@ -160,9 +196,15 @@ lemma norm_fromDiscFun (hr : 0 ≤ r) (hrR : r < R) (k : ℕ+) (y : Kummer.base 
   rw [norm_mul, Complex.norm_real, Real.norm_of_nonneg (div_pos hirad ht).le,
     div_mul_cancel₀ _ ht.ne']
 
+/--
+@isnad1 id=continuo.0h3v.s4.2d1de76fa2cf from=translated src=- shape=e420c2d0 vocab=744ae93c
+-/
 lemma continuous_rad (k : ℕ) : Continuous (rad r R k) :=
   (Real.continuous_rpow_const (inv_nonneg.2 k.cast_nonneg)).comp (by fun_prop)
 
+/--
+@isnad1 id=continuo.0h3v.s4.be2965968acf from=translated src=- shape=e420c2d0 vocab=44818419
+-/
 lemma continuous_irad (k : ℕ) : Continuous (irad r R k) :=
   (Real.continuous_rpow_const (inv_nonneg.2 k.cast_nonneg)).comp (by fun_prop)
 
@@ -204,13 +246,18 @@ def toDisc (hr : 0 ≤ r) (hrR : r < R) (k : ℕ+) : base B r R k ≃ₜ Kummer.
       fun y ↦ (norm_pos_iff.2 y.2.2.1).ne')
     exact (continuous_irad k).comp (by fun_prop)
 
+/--
+@isnad1 id=eq.2h6v.s9.9bc901f01786 from=translated src=- shape=e388c336 vocab=fadb6294
+-/
 @[simp]
 lemma toDisc_apply (hr : 0 ≤ r) (hrR : r < R) (k : ℕ+) (y : base B r R k) :
     (toDisc B hr hrR k y : E × ℂ) = (y.1.1, ((rad r R k ‖y.1.2‖ / ‖y.1.2‖ : ℝ) : ℂ) * y.1.2) :=
   rfl
 
 /-- **The radial homeomorphisms conjugate the Kummer coverings** of the annulus and of the
-punctured disc. -/
+punctured disc.
+@isnad1 id=eq.2h6v.s9.3d034eb637a5 from=translated src=- shape=62f9c92f vocab=e30ab666
+-/
 theorem toDisc_cover (hr : 0 ≤ r) (hrR : r < R) (k : ℕ+) (y : base B r R k) :
     toDisc B hr hrR 1 (cover B r R k y) = Kummer.cover B k (toDisc B hr hrR k y) := by
   have hs := pos_of_mem_base B hr k.ne_zero y.2

@@ -44,6 +44,9 @@ abbrev _root_.StandardEtalePair.π {R : Type*} [CommRing R] (Q : StandardEtalePa
   Ideal.Quotient.mk (Ideal.span {C Q.f, X * C Q.g - 1})
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h3v.s9.909f67f2b6da from=translated src=- shape=5cd76814 vocab=e6682be6
+-/
 lemma _root_.StandardEtalePair.π_C {R : Type*} [CommRing R] (Q : StandardEtalePair R) (a : R[X]) :
     Q.π (C a) = aeval Q.X a := by
   have : aeval (R := R) Q.X = (Ideal.Quotient.mkₐ R _).comp Polynomial.CAlgHom := by
@@ -51,11 +54,17 @@ lemma _root_.StandardEtalePair.π_C {R : Type*} [CommRing R] (Q : StandardEtaleP
   rw [this]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.5f6d4e348b90 from=translated src=- shape=697503d6 vocab=0617a3bd
+-/
 lemma _root_.StandardEtalePair.π_X_mul {R : Type*} [CommRing R] (Q : StandardEtalePair R) :
     Q.π X * aeval Q.X Q.g = 1 := by
   rw [mul_comm]
   exact Q.aeval_X_g_mul_mk_X
 
+/--
+@isnad1 id=ex.0h3v.s8.654a95674cc6 from=translated src=- shape=7aa5fde9 vocab=5a57ff0e
+-/
 lemma _root_.StandardEtalePair.exists_mul_pow_eq_aeval {R : Type*} [CommRing R]
     (Q : StandardEtalePair R) (z : Q.Ring) :
     ∃ (H : R[X]) (K : ℕ), z * aeval Q.X Q.g ^ K = aeval Q.X H := by
@@ -72,6 +81,9 @@ lemma _root_.StandardEtalePair.exists_mul_pow_eq_aeval {R : Type*} [CommRing R]
     rw [← C_mul_X_pow_eq_monomial, map_mul, map_pow, StandardEtalePair.π_C, mul_assoc,
       ← mul_pow, Q.π_X_mul, one_pow, mul_one]
 
+/--
+@isnad1 id=etale.2h5v.s7.19478635801e from=translated src=- shape=d1514d4d vocab=c4f5a619
+-/
 lemma _root_.RingHom.Etale.comp_of_bijective {R S T : Type*} [CommRing R] [CommRing S]
     [CommRing T] {f : R →+* S} {g : S →+* T} (hf : Function.Bijective f) (hg : g.Etale) :
     (g.comp f).Etale := by
@@ -80,7 +92,9 @@ lemma _root_.RingHom.Etale.comp_of_bijective {R S T : Type*} [CommRing R] [CommR
   exact ⟨hf'.1.comp hg.1, hf'.2.comp hg.2⟩
 
 /-- **Generic étaleness.** A finite extension `A` of domains of `R = ℂ[x₁, …, x_d]` becomes étale
-over `R` after inverting a suitable nonzero `e ∈ R`. -/
+over `R` after inverting a suitable nonzero `e ∈ R`.
+@isnad1 id=ex.0h2v.s8.350b6f43a63f from=translated src=- shape=e59544e1 vocab=375ff20b
+-/
 theorem exists_etale_localizationAway :
     ∃ e : MvPolynomial (Fin d) ℂ, e ≠ 0 ∧ ∀ (A' : Type*) [CommRing A'] [Algebra A A']
       [IsLocalization.Away (algebraMap (MvPolynomial (Fin d) ℂ) A e) A'],
@@ -170,7 +184,9 @@ section Dimension
 variable {R S : Type*} [CommRing R] [CommRing S] [Algebra R S] [Algebra.IsIntegral R S]
 
 /-- **Going up for chains**: along an injective integral ring map every chain of primes of the
-base lifts to a chain of the same length. -/
+base lifts to a chain of the same length.
+@isnad1 id=ex.1h3v.s9.009ba6189956 from=translated src=- shape=04123c4d vocab=e25f3053
+-/
 lemma exists_ltSeries_of_isIntegral (hinj : Function.Injective (algebraMap R S))
     (l : LTSeries (PrimeSpectrum R)) :
     ∃ L : LTSeries (PrimeSpectrum S), L.length = l.length ∧
@@ -191,7 +207,9 @@ lemma exists_ltSeries_of_isIntegral (hinj : Function.Injective (algebraMap R S))
         h).trans hQp)))
     exact ⟨L.snoc ⟨Q, hQ⟩ hlt, by simp [hL], by simpa using hQp⟩
 
-/-- **The Krull dimension does not decrease along an injective integral ring map.** -/
+/-- **The Krull dimension does not decrease along an injective integral ring map.**
+@isnad1 id=le.1h2v.s6.b44ee6c1ba20 from=translated src=- shape=e3a90ee3 vocab=1a19cc10
+-/
 theorem ringKrullDim_le_of_isIntegral_of_injective (hinj : Function.Injective (algebraMap R S)) :
     ringKrullDim R ≤ ringKrullDim S := by
   refine iSup_le fun l ↦ ?_
@@ -200,7 +218,9 @@ theorem ringKrullDim_le_of_isIntegral_of_injective (hinj : Function.Injective (a
   exact Order.LTSeries.length_le_krullDim L
 
 /-- **Noether normalisation of a curve**: a ring of finite type and of dimension one over a
-field `k` is finite over a polynomial ring in one variable. -/
+field `k` is finite over a polynomial ring in one variable.
+@isnad1 id=ex.1h2v.s9.bb9693aa27e9 from=translated src=- shape=819a83fd vocab=2df36f56
+-/
 theorem exists_finite_injective_of_ringKrullDim_eq_one {k A : Type*} [Field k] [CommRing A]
     [Algebra k A] [Algebra.FiniteType k A] (hdim : ringKrullDim A = 1) :
     ∃ g : MvPolynomial (Fin 1) k →ₐ[k] A, Function.Injective g ∧ g.Finite := by

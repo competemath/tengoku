@@ -28,6 +28,9 @@ namespace OrbicurveCores.M2
 noncomputable def dact (γ : SL(2, ℝ)) (p : OnePoint ℝ × OnePoint ℝ) : OnePoint ℝ × OnePoint ℝ :=
   (γ • p.1, γ • p.2)
 
+/--
+@isnad1 id=ne.0h0v.s5.f83b2c9d4d25 from=translated src=- shape=10d37ea3 vocab=4bf3d2f7
+-/
 lemma bdry_ne_zero : bdry ≠ 0 := by
   intro h
   have : bdry univ = 0 := by rw [h]; rfl

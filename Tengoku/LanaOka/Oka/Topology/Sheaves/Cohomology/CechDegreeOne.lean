@@ -49,10 +49,16 @@ namespace TopCat.Presheaf
 
 variable {X : TopCat.{u}} {ι : Type u} (U : ι → Opens X)
 
+/--
+@isnad1 id=eq.0h10v.s12.11c94dc48608 from=translated src=- shape=95d8030b vocab=f9aca3f3
+-/
 lemma cechCochainMap_comp {P Q R : (Opens X)ᵒᵖ ⥤ AddCommGrpCat.{u}} (φ : P ⟶ Q) (ψ : Q ⟶ R)
     (n : ℕ) (c : CechCochain U P n) :
     cechCochainMap U (φ ≫ ψ) n c = cechCochainMap U ψ n (cechCochainMap U φ n c) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.5106a5bf70a2 from=translated src=- shape=d8fb9512 vocab=e61cfb20
+-/
 lemma cechCochainMap_id (P : (Opens X)ᵒᵖ ⥤ AddCommGrpCat.{u}) (n : ℕ) (c : CechCochain U P n) :
     cechCochainMap U (𝟙 P) n c = c := rfl
 
@@ -61,6 +67,9 @@ section Refinement
 variable {κ : Type u} {V : κ → Opens X} {τ : κ → ι} (hτ : ∀ k, V k ≤ U (τ k))
 
 include hτ in
+/--
+@isnad1 id=le.1h8v.s7.b0d73e1bec46 from=translated src=- shape=92e6b863 vocab=ad87fb86
+-/
 lemma cechOpen_le_cechOpen_comp {n : ℕ} (σ : Fin (n + 1) → κ) :
     cechOpen V σ ≤ cechOpen U (τ ∘ σ) :=
   le_iInf fun a => (iInf_le _ a).trans (hτ _)
@@ -74,17 +83,24 @@ def cechRefine (n : ℕ) : CechCochain U P n →+ CechCochain V P n where
   map_zero' := by ext; simp
   map_add' c c' := by ext; simp
 
+/--
+@isnad1 id=eq.1h10v.s11.b71cd0bbca3a from=translated src=- shape=c31c9115 vocab=6bf28add
+-/
 lemma cechRefine_apply {n : ℕ} (c : CechCochain U P n) (σ : Fin (n + 1) → κ) :
     cechRefine U hτ P n c σ = P.map (homOfLE (cechOpen_le_cechOpen_comp U hτ σ)).op (c (τ ∘ σ)) :=
   rfl
 
-/-- Refinement commutes with the augmentation. -/
+/-- Refinement commutes with the augmentation.
+@isnad1 id=eq.3h9v.s12.e4e0aa19dbb0 from=translated src=- shape=f7ad6a0b vocab=63d01852
+-/
 lemma cechRefine_cechAugment {W : Opens X} (hW : ∀ i, U i ≤ W) (hV : ∀ k, V k ≤ W)
     (s : P.obj (op W)) : cechRefine U hτ P 0 (cechAugment U P hW s) = cechAugment V P hV s := by
   funext σ
   simp only [cechRefine_apply, cechAugment_apply, map_homOfLE_map_homOfLE]
 
-/-- Refinement is natural in the presheaf. -/
+/-- Refinement is natural in the presheaf.
+@isnad1 id=eq.1h11v.s12.4b0d8336dcc3 from=translated src=- shape=3e1a405e vocab=d8f947a1
+-/
 lemma cechRefine_cechCochainMap {Q : (Opens X)ᵒᵖ ⥤ AddCommGrpCat.{u}} (φ : P ⟶ Q) (n : ℕ)
     (c : CechCochain U P n) :
     cechRefine U hτ Q n (cechCochainMap U φ n c) =
@@ -111,14 +127,21 @@ variable {S S' : ShortComplex (AbSheaf X)} (hS : S.ShortExact) (hS' : S'.ShortEx
 noncomputable def H.δSections : S.X₃.obj.obj (op ⊤) →+ H S.X₁ 1 :=
   (H.δ hS 0 1 rfl).comp (H.equiv₀ S.X₃).symm.toAddMonoidHom
 
+/--
+@isnad1 id=eq.1h3v.s15.265d36ecbee2 from=translated src=- shape=e200d64a vocab=2b1fb58f
+-/
 lemma H.δSections_apply (s : S.X₃.obj.obj (op ⊤)) :
     H.δSections hS s = H.δ hS 0 1 rfl ((H.equiv₀ S.X₃).symm s) := rfl
 
-/-- Global sections of `S.X₃` coming from `S.X₂` have zero connecting image. -/
+/-- Global sections of `S.X₃` coming from `S.X₂` have zero connecting image.
+@isnad1 id=eq.1h3v.s14.b1382c4265b8 from=translated src=- shape=cb77b9d3 vocab=03c4bfbb
+-/
 lemma H.δSections_g (a : S.X₂.obj.obj (op ⊤)) : H.δSections hS (S.g.hom.app _ a) = 0 := by
   rw [H.δSections_apply, ← H.map_equiv₀_symm, H.δ_map_g]
 
-/-- The connecting image of a global section of `S.X₃` vanishes iff it lifts to `S.X₂`. -/
+/-- The connecting image of a global section of `S.X₃` vanishes iff it lifts to `S.X₂`.
+@isnad1 id=iff.1h3v.s14.ad243722c037 from=translated src=- shape=a519dda2 vocab=03c4bfbb
+-/
 lemma H.δSections_eq_zero_iff (s : S.X₃.obj.obj (op ⊤)) :
     H.δSections hS s = 0 ↔ ∃ a, S.g.hom.app _ a = s := by
   refine ⟨fun h => ?_, fun ⟨a, ha⟩ => ha ▸ H.δSections_g hS a⟩
@@ -126,7 +149,9 @@ lemma H.δSections_eq_zero_iff (s : S.X₃.obj.obj (op ⊤)) :
   refine ⟨H.equiv₀ _ w, ?_⟩
   rw [← H.equiv₀_map, hw, AddEquiv.apply_symm_apply]
 
-/-- The connecting map on global sections is natural in the short exact sequence. -/
+/-- The connecting map on global sections is natural in the short exact sequence.
+@isnad1 id=eq.2h5v.s15.8ab512693ce1 from=translated src=- shape=f015e9dd vocab=9a5f9e9c
+-/
 lemma H.δSections_naturality (Φ : S ⟶ S') (s : S.X₃.obj.obj (op ⊤)) :
     H.δSections hS' (Φ.τ₃.hom.app _ s) = H.map Φ.τ₁ 1 (H.δSections hS s) := by
   rw [H.δSections_apply, H.δSections_apply, ← H.map_equiv₀_symm, H.δ_naturality hS hS' Φ]
@@ -147,6 +172,9 @@ def IsCechLift (z : CechCochain U S.X₁.obj 1) (t : CechCochain U S.X₂.obj 0)
 
 variable {U S}
 
+/--
+@isnad1 id=eq.0h6v.s15.b3700072beda from=translated src=- shape=8a664ffd vocab=a8cdca44
+-/
 lemma cechCochainMap_g_f {n : ℕ} (x : CechCochain U S.X₁.obj n) :
     cechCochainMap U S.g.hom n (cechCochainMap U S.f.hom n x) = 0 := by
   rw [← cechCochainMap_comp]
@@ -154,7 +182,9 @@ lemma cechCochainMap_g_f {n : ℕ} (x : CechCochain U S.X₁.obj n) :
   rw [this]
   rfl
 
-/-- Morphisms of short complexes transport lifts. -/
+/-- Morphisms of short complexes transport lifts.
+@isnad1 id=iscechli.1h9v.s15.617bb9d81676 from=translated src=- shape=b9d0b415 vocab=42cd0feb
+-/
 lemma IsCechLift.map {S' : ShortComplex (AbSheaf X)} (Φ : S ⟶ S')
     {z : CechCochain U S.X₁.obj 1} {t : CechCochain U S.X₂.obj 0} {s : S.X₃.obj.obj (op ⊤)}
     (h : IsCechLift U S z t s) :
@@ -166,7 +196,9 @@ lemma IsCechLift.map {S' : ShortComplex (AbSheaf X)} (Φ : S ⟶ S')
   · rw [← cechCochainMap_cechAugment, ← h.2, ← cechCochainMap_comp, ← cechCochainMap_comp]
     exact congrArg (fun φ : S.X₂ ⟶ S'.X₃ => cechCochainMap U φ.hom 0 t) Φ.comm₂₃
 
-/-- Two lifts of the same cochain have the same connecting image. -/
+/-- Two lifts of the same cochain have the same connecting image.
+@isnad1 id=eq.4h9v.s14.0cc9416ae44b from=translated src=- shape=0fa9e495 vocab=c4ea16e2
+-/
 lemma IsCechLift.δSections_eq (hS : S.ShortExact) {z : CechCochain U S.X₁.obj 1}
     {t t' : CechCochain U S.X₂.obj 0}
     {s s' : S.X₃.obj.obj (op ⊤)} (h : IsCechLift U S z t s) (h' : IsCechLift U S z t' s')
@@ -193,6 +225,9 @@ variable {U} (hU : ⨆ i, U i = ⊤)
 include hU
 
 omit hU in
+/--
+@isnad1 id=ex.0h5v.s9.53c9e7a3bfb4 from=translated src=- shape=727a9723 vocab=03db368e
+-/
 lemma exists_homologyπ_eq {P : (Opens X)ᵒᵖ ⥤ AddCommGrpCat.{u}}
     (x : (cechComplex U P).homology 1) : ∃ c, (cechComplex U P).homologyπ 1 c = x :=
   (AddCommGrpCat.epi_iff_surjective _).1 inferInstance x

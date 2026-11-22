@@ -18,7 +18,9 @@ residue field `R ⧸ 𝔪` is finite over `k` (Zariski's lemma), hence embeds in
 namespace TemperedFundamentalGroups.Orbicurve
 
 /-- **Nullstellensatz unit criterion.** An element of a finitely generated `k`-algebra which
-does not vanish under any `k`-algebra map to `AlgebraicClosure k` is a unit. -/
+does not vanish under any `k`-algebra map to `AlgebraicClosure k` is a unit.
+@isnad1 id=isunit.1h3v.s7.c90a3d37be0f from=translated src=- shape=4197a644 vocab=d4fa1d44
+-/
 theorem isUnit_of_forall_algHom_ne_zero {k R : Type*} [Field k] [CommRing R] [Algebra k R]
     [Algebra.FiniteType k R] {u : R}
     (h : ∀ χ : R →ₐ[k] AlgebraicClosure k, χ u ≠ 0) : IsUnit u := by

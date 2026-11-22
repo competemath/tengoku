@@ -75,6 +75,9 @@ noncomputable def takeuchiPair : Fin 4 → SL(2, ℝ) × SL(2, ℝ)
   | 2 => (pairIIIA, pairIIIB)
   | 3 => (pairIVA, pairIVB)
 
+/--
+@isnad1 id=eq.3h3v.s6.abd90179f8a3 from=translated src=- shape=f257c7fd vocab=117eaa13
+-/
 lemma div_sqrt_eq_sqrt {t n X : ℝ} (ht : 0 ≤ t) (hn : 0 < n) (h : t ^ 2 = X * n) :
     t / Real.sqrt n = Real.sqrt X := by
   have hX : 0 ≤ X := by
@@ -83,6 +86,9 @@ lemma div_sqrt_eq_sqrt {t n X : ℝ} (ht : 0 ≤ t) (hn : 0 < n) (h : t ^ 2 = X 
     Real.mul_self_sqrt hn.le, eq_div_iff hn.ne', ← h]
   ring
 
+/--
+@isnad1 id=eq.4h4v.s6.4c4c5b95f260 from=translated src=- shape=957bdaf9 vocab=117eaa13
+-/
 lemma div_sqrt_mul_sqrt_eq_sqrt {t n k X : ℝ} (ht : 0 ≤ t) (hn : 0 < n) (hk : 0 < k)
     (h : t ^ 2 = X * (n * k)) : t / (Real.sqrt n * Real.sqrt k) = Real.sqrt X := by
   rw [← Real.sqrt_mul hn.le]

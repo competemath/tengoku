@@ -60,7 +60,9 @@ Type mismatch: RingHom.toAlgebra ?m has type @Algebra ?A ?B ?_ CommSemiring.toSe
 ```
 
 so the weaker binder is rejected by the proof and not by the theorem. A different construction of
-the algebra structure would presumably weaken it. -/
+the algebra structure would presumably weaken it.
+@isnad1 id=finite.1h4v.s8.70d199b80d01 from=translated src=- shape=f80ecc50 vocab=9c57c122
+-/
 theorem of_ringEquiv {A B N : Type*} [CommSemiring A] [CommSemiring B] [AddCommMonoid N]
     [Module A N] [Module B N] (e : A ≃+* B) (he : ∀ (a : A) (n : N), a • n = e a • n)
     [Module.Finite A N] : Module.Finite B N := by

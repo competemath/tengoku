@@ -40,7 +40,9 @@ attribute [local instance 20] Classical.propDecidable
 variable {T : Type*} [CommRing T] [IsLocalRing T]
 
 omit [IsLocalRing T] in
-/-- Extract `u - r ∈ P` from `u ∈ ↑P + {r}` (Minkowski sum). -/
+/-- Extract `u - r ∈ P` from `u ∈ ↑P + {r}` (Minkowski sum).
+@isnad1 id=mem.1h4v.s7.28095a0133d2 from=translated src=- shape=9553aaed vocab=05223194
+-/
 lemma mem_sub_of_mem_add_singleton {P : Ideal T} {r u : T}
     (hmem : u ∈ (P : Set T) + ({r} : Set T)) : u - r ∈ P := by
   obtain ⟨p, hp, s, hs, h⟩ := hmem
@@ -50,7 +52,9 @@ lemma mem_sub_of_mem_add_singleton {P : Ideal T} {r u : T}
   rwa [add_sub_cancel_right]
 
 omit [IsLocalRing T] in
-/-- If `u ∈ P + {r}` and `y ∉ P`, then `u + y ∉ P + {r}`. -/
+/-- If `u ∈ P + {r}` and `y ∉ P`, then `u + y ∉ P + {r}`.
+@isnad1 id=not.2h5v.s7.58397e10d1bc from=translated src=- shape=7519589a vocab=7a0067be
+-/
 lemma not_mem_add_singleton_of_add {P : Ideal T}
     {r u y : T} (hu : u ∈ (P : Set T) + ({r} : Set T)) (hy : y ∉ P) :
     u + y ∉ (P : Set T) + ({r} : Set T) := by
@@ -61,7 +65,9 @@ lemma not_mem_add_singleton_of_add {P : Ideal T}
 
 /-- Separation for translates: if `x ∉ P + {r}` with `P` prime `≠ 𝔪` in a Noetherian
 local ring, then `∃ N` such that adding any element of `𝔪^N` preserves non-membership.
-Uses the Krull intersection theorem in `T ⧸ P`. -/
+Uses the Krull intersection theorem in `T ⧸ P`.
+@isnad1 id=ex.3h4v.s8.459fbf442f8e from=translated src=- shape=eeed33c9 vocab=9cc9b8ee
+-/
 lemma separation_for_translate [IsNoetherianRing T]
     (P : Ideal T) (hP : P.IsPrime) (_hP_ne : P ≠ IsLocalRing.maximalIdeal T)
     (x r : T) (hx : x ∉ (P : Set T) + ({r} : Set T)) :
@@ -107,7 +113,9 @@ lemma separation_for_translate [IsNoetherianRing T]
   exact hxr (Ideal.Quotient.eq_zero_iff_mem.mp hmem)
 
 /-- Membership in `I` via Krull intersection: if `L ∈ I + 𝔪^n` for all `n`, then `L ∈ I`.
-Uses the Artin-Rees lemma (via `Ideal.mem_iInf_smul_pow_eq_bot_iff`) on `T ⧸ I`. -/
+Uses the Artin-Rees lemma (via `Ideal.mem_iInf_smul_pow_eq_bot_iff`) on `T ⧸ I`.
+@isnad1 id=mem.1h3v.s7.4ed7e9aa2310 from=translated src=- shape=25f432cf vocab=b4fc9a5d
+-/
 lemma mem_of_mem_sup_pow [IsNoetherianRing T]
     (I : Ideal T) (L : T)
     (h : ∀ n, L ∈ I ⊔ IsLocalRing.maximalIdeal T ^ n) : L ∈ I := by
@@ -164,6 +172,9 @@ def buildSeq [IsNoetherianRing T]
       (r_of n) (exists_avoid _ (hP_mem n)) prev.1 prev.2
 
 -- Properties of avoidStep
+/--
+@isnad1 id=le.3h6v.s8.2f77397de33d from=translated src=- shape=b4195f5b vocab=e9617cc4
+-/
 lemma avoidStep_q_inc [IsNoetherianRing T]
     (I P : Ideal T) (hP : P.IsPrime) (hP_ne : P ≠ IsLocalRing.maximalIdeal T)
     (r : T) (ea : ∀ n, ∃ z ∈ I * IsLocalRing.maximalIdeal T ^ n, z ∉ P) (u : T) (q : ℕ) :
@@ -171,6 +182,9 @@ lemma avoidStep_q_inc [IsNoetherianRing T]
   unfold avoidStep
   split <;> exact le_max_left _ _
 
+/--
+@isnad1 id=mem.3h6v.s8.2b56514a1d27 from=translated src=- shape=c8c8faa3 vocab=dbc2ef33
+-/
 lemma avoidStep_diff [IsNoetherianRing T]
     (I P : Ideal T) (hP : P.IsPrime) (hP_ne : P ≠ IsLocalRing.maximalIdeal T)
     (r : T) (ea : ∀ n, ∃ z ∈ I * IsLocalRing.maximalIdeal T ^ n, z ∉ P) (u : T) (q : ℕ) :
@@ -183,6 +197,9 @@ lemma avoidStep_diff [IsNoetherianRing T]
     exact (ea q).choose_spec.1
   · simp_all
 
+/--
+@isnad1 id=not.3h6v.s8.3de3e783d7d5 from=translated src=- shape=9d9e5294 vocab=b279f565
+-/
 lemma avoidStep_avoids [IsNoetherianRing T]
     (I P : Ideal T) (hP : P.IsPrime) (hP_ne : P ≠ IsLocalRing.maximalIdeal T)
     (r : T) (ea : ∀ n, ∃ z ∈ I * IsLocalRing.maximalIdeal T ^ n, z ∉ P) (u : T) (q : ℕ) :
@@ -192,6 +209,9 @@ lemma avoidStep_avoids [IsNoetherianRing T]
   · exact not_mem_add_singleton_of_add ‹_› (ea q).choose_spec.2
   · exact ‹_›
 
+/--
+@isnad1 id=not.4h7v.s8.46899f860bcf from=translated src=- shape=8d924de7 vocab=29f44a23
+-/
 lemma avoidStep_sep [IsNoetherianRing T]
     (I P : Ideal T) (hP : P.IsPrime) (hP_ne : P ≠ IsLocalRing.maximalIdeal T)
     (r : T) (ea : ∀ n, ∃ z ∈ I * IsLocalRing.maximalIdeal T ^ n, z ∉ P) (u : T) (q : ℕ) :
@@ -209,6 +229,9 @@ lemma avoidStep_sep [IsNoetherianRing T]
     apply hN
     exact Ideal.pow_le_pow_right (le_max_right _ _) hm
 
+/--
+@isnad1 id=le.4h6v.s8.eff4b12d9583 from=translated src=- shape=87411c70 vocab=df8b9e91
+-/
 lemma buildSeqQInc [IsNoetherianRing T]
     (I : Ideal T)
     {C : Set (Ideal T)} (hC_prime : ∀ P ∈ C, P.IsPrime)
@@ -220,6 +243,9 @@ lemma buildSeqQInc [IsNoetherianRing T]
   avoidStep_q_inc I (P_of n) (hC_prime _ (hP_mem n)) (hC_ne_max _ (hP_mem n))
     (r_of n) (ea _ (hP_mem n)) _ _
 
+/--
+@isnad1 id=mem.4h6v.s9.8ea3a56cbea9 from=translated src=- shape=e6b93ba1 vocab=df89cdc2
+-/
 lemma buildSeqDiff [IsNoetherianRing T]
     (I : Ideal T)
     {C : Set (Ideal T)} (hC_prime : ∀ P ∈ C, P.IsPrime)
@@ -232,6 +258,9 @@ lemma buildSeqDiff [IsNoetherianRing T]
   avoidStep_diff I (P_of n) (hC_prime _ (hP_mem n)) (hC_ne_max _ (hP_mem n))
     (r_of n) (ea _ (hP_mem n)) _ _
 
+/--
+@isnad1 id=not.4h6v.s9.1246788d7dbd from=translated src=- shape=f0b017c0 vocab=b92d8530
+-/
 lemma buildSeqAvoids [IsNoetherianRing T]
     (I : Ideal T)
     {C : Set (Ideal T)} (hC_prime : ∀ P ∈ C, P.IsPrime)
@@ -243,6 +272,9 @@ lemma buildSeqAvoids [IsNoetherianRing T]
   avoidStep_avoids I (P_of n) (hC_prime _ (hP_mem n)) (hC_ne_max _ (hP_mem n))
     (r_of n) (ea _ (hP_mem n)) _ _
 
+/--
+@isnad1 id=not.5h7v.s9.0d7658a60116 from=translated src=- shape=a4f9f66d vocab=72555dc6
+-/
 lemma buildSeqSep [IsNoetherianRing T]
     (I : Ideal T)
     {C : Set (Ideal T)} (hC_prime : ∀ P ∈ C, P.IsPrime)
@@ -269,7 +301,9 @@ Given a countable set C of primes not containing M, a countable set D ⊆ T,
 and an ideal I not contained in any P ∈ C, there exists u ∈ I such that
 u ∉ P + {r} for all P ∈ C and r ∈ D.
 
-The proof constructs a Cauchy sequence in I whose limit avoids all translates. -/
+The proof constructs a Cauchy sequence in I whose limit avoids all translates.
+@isnad1 id=ex.5h4v.s8.b3f23e6a3434 from=translated src=- shape=a4b3ef87 vocab=3a6c4509
+-/
 theorem countable_avoidance
     [IsNoetherianRing T]
     [IsAdicComplete (IsLocalRing.maximalIdeal T) T]
@@ -453,7 +487,9 @@ cannot be covered by fewer than |k| proper subspaces.
 
 /-- Covering number argument: in a Noetherian local ring, if |C| < |T/M| and I ⊄ P
 for all primes P ∈ C, then ∃ t ∈ I avoiding all P ∈ C.
-Proof by induction on the number of generators of I. -/
+Proof by induction on the number of generators of I.
+@isnad1 id=ex.4h4v.s8.d88c23148d56 from=translated src=- shape=2d8f8905 vocab=92078036
+-/
 lemma ideal_avoidance_of_card_lt_aux :
     ∀ (n : ℕ) (I : Ideal T) (C : Set (Ideal T)),
     (∀ P ∈ C, P.IsPrime) →
@@ -541,7 +577,9 @@ lemma ideal_avoidance_of_card_lt_aux :
     exact hsub
 
 /-- Wrapper: in a Noetherian local ring, |C| < |T/M| and I ⊄ P
-implies ∃ t ∈ I, t ∉ P for all P. -/
+implies ∃ t ∈ I, t ∉ P for all P.
+@isnad1 id=ex.3h3v.s8.557561120d02 from=translated src=- shape=d12a3cf0 vocab=c28f9261
+-/
 lemma ideal_avoidance_of_card_lt [IsNoetherianRing T]
     (I : Ideal T) (C : Set (Ideal T)) (hC_prime : ∀ P ∈ C, P.IsPrime)
     (hC_card : Cardinal.mk C < Cardinal.mk (IsLocalRing.ResidueField T))
@@ -553,7 +591,9 @@ lemma ideal_avoidance_of_card_lt [IsNoetherianRing T]
 /-- Heitmann Lemma 3: Uncountable avoidance.
 If the product |C × D| has cardinality strictly less than |T/M|,
 and I is not contained in any P ∈ C, then there exists u ∈ I
-avoiding all translates P + r. -/
+avoiding all translates P + r.
+@isnad1 id=ex.3h4v.s8.7705d681739f from=translated src=- shape=370901b1 vocab=dc7b4258
+-/
 theorem uncountable_avoidance [IsNoetherianRing T]
     {C : Set (Ideal T)} (hC_prime : ∀ P ∈ C, P.IsPrime)
     {D : Set T}
@@ -682,7 +722,9 @@ theorem uncountable_avoidance [IsNoetherianRing T]
 
 /-- Combined avoidance: works for both countable and uncountable residue fields.
 If C is a finite or countable set of primes (M ∉ C) and D is appropriately bounded,
-find u ∈ I avoiding all P + r. -/
+find u ∈ I avoiding all P + r.
+@isnad1 id=ex.4h4v.s8.db352f440295 from=translated src=- shape=8bdb73a2 vocab=a82ad2be
+-/
 theorem avoidance
     [IsAdicComplete (IsLocalRing.maximalIdeal T) T]
     [IsNoetherianRing T]

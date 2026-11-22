@@ -115,6 +115,9 @@ instance (i : Fin (n + 1)) :
 instance (i : Fin (n + 1)) : IsOpenImmersion (chart (R := R) i) := by
   rw [chart]; infer_instance
 
+/--
+@isnad1 id=eq.0h3v.s7.8477b10a33ae from=translated src=- shape=413ab3e9 vocab=3dad2452
+-/
 @[reassoc]
 lemma chart_toSpec (i : Fin (n + 1)) :
     chart i ≫ toSpec n R = Spec.map (CommRingCat.ofHom C) := by
@@ -133,14 +136,23 @@ variable (n R) in
 noncomputable def U (i : Fin (n + 1)) : ℙ(n; R).Opens :=
   Proj.basicOpen 𝒜 (X i)
 
+/--
+@isnad1 id=eq.0h3v.s6.e1be90204c3d from=translated src=- shape=0615bd25 vocab=f2fe239f
+-/
 lemma opensRange_chart (i : Fin (n + 1)) : (chart (R := R) i).opensRange = U n R i := by
   unfold chart
   rw [Scheme.Hom.opensRange_comp_of_isIso, Proj.opensRange_awayι, U]
 
+/--
+@isnad1 id=isaffine.0h3v.s5.af4d8ba8c55e from=translated src=- shape=72329e51 vocab=6d9faa1d
+-/
 lemma isAffineOpen_U (i : Fin (n + 1)) : IsAffineOpen (U n R i) :=
   Proj.isAffineOpen_basicOpen _ _ (X_mem_homogeneousSubmodule_one i) Nat.one_pos
 
 variable (n R) in
+/--
+@isnad1 id=eq.0h2v.s7.b7a28b1a3e11 from=translated src=- shape=e11fe55d vocab=abf5e286
+-/
 lemma iSup_U : ⨆ i, U n R i = ⊤ :=
   Proj.iSup_basicOpen_eq_top' _ _ (fun i ↦ ⟨1, X_mem_homogeneousSubmodule_one i⟩)
     (adjoin_range_X_gradeZero_eq_top R _)
@@ -157,10 +169,15 @@ noncomputable def affineOpenCover : ℙ(n; R).AffineOpenCover where
     rw [opensRange_chart]
     exact (TopologicalSpace.Opens.mem_iSup.mp ((iSup_U n R).ge (Set.mem_univ x))).choose_spec
 
+/--
+@isnad1 id=eq.0h3v.s5.f15c7c0c0ae1 from=translated src=- shape=7979bba0 vocab=cd80065c
+-/
 @[simp]
 lemma affineOpenCover_f (i : Fin (n + 1)) : (affineOpenCover n R).f i = chart i := rfl
 
-/-- The chart `i` meets `U j` in the basic open of the coordinate `Xⱼ / Xᵢ`. -/
+/-- The chart `i` meets `U j` in the basic open of the coordinate `Xⱼ / Xᵢ`.
+@isnad1 id=eq.0h4v.s9.d9317a2c1c6b from=translated src=- shape=9256a9d3 vocab=07bd4aff
+-/
 lemma chart_preimage_U (i j : Fin (n + 1)) :
     chart i ⁻¹ᵁ U n R j = PrimeSpectrum.basicOpen (dehomogenize R i (X j)) := by
   rw [chart, Scheme.Hom.comp_preimage, U,
@@ -177,6 +194,9 @@ variable (n R) in
 noncomputable abbrev UI (I : Finset (Fin (n + 1))) : ℙ(n; R).Opens :=
   Proj.basicOpen 𝒜 (∏ j ∈ I, X j)
 
+/--
+@isnad1 id=eq.0h3v.s8.652d211aec8d from=translated src=- shape=d5bfa573 vocab=a600c617
+-/
 lemma UI_eq_iInf (I : Finset (Fin (n + 1))) : UI n R I = ⨅ j ∈ I, U n R j := by
   classical
   induction I using Finset.induction_on with
@@ -185,17 +205,29 @@ lemma UI_eq_iInf (I : Finset (Fin (n + 1))) : UI n R I = ⨅ j ∈ I, U n R j :=
     simp only [UI] at ih ⊢
     rw [Finset.prod_insert ha, Proj.basicOpen_mul, ih, Finset.iInf_insert, U]
 
+/--
+@isnad1 id=eq.0h3v.s6.7af5a1998844 from=translated src=- shape=0ef62aa1 vocab=2e83f925
+-/
 @[simp]
 lemma UI_singleton (i : Fin (n + 1)) : UI n R {i} = U n R i := by
   simp [UI, U]
 
+/--
+@isnad1 id=le.1h4v.s7.1b103975357a from=translated src=- shape=2067ac6a vocab=def8f9e2
+-/
 lemma UI_le_U {I : Finset (Fin (n + 1))} {i : Fin (n + 1)} (hi : i ∈ I) : UI n R I ≤ U n R i := by
   rw [UI_eq_iInf]
   exact iInf₂_le i hi
 
+/--
+@isnad1 id=lt.1h3v.s7.fa5bb0d5b4cc from=translated src=- shape=1cb82691 vocab=ced5a5ab
+-/
 lemma card_pos_of_mem {I : Finset (Fin (n + 1))} {i : Fin (n + 1)} (hi : i ∈ I) : 0 < I.card :=
   Finset.card_pos.mpr ⟨i, hi⟩
 
+/--
+@isnad1 id=isaffine.1h4v.s6.cada886729d1 from=translated src=- shape=9af6cab1 vocab=f7da274f
+-/
 lemma isAffineOpen_UI {I : Finset (Fin (n + 1))} {i : Fin (n + 1)} (hi : i ∈ I) :
     IsAffineOpen (UI n R I) :=
   Proj.isAffineOpen_basicOpen _ _ (prod_X_mem_homogeneousSubmodule I) (card_pos_of_mem hi)
@@ -216,7 +248,9 @@ noncomputable def UIIsoSpec (i : Fin (n + 1)) (I : Finset (Fin (n + 1))) (hi : i
           RingEquiv.self_trans_symm, RingEquiv.toRingHom_refl, CommRingCat.ofHom_id, Spec.map_id] }
 
 /-- `UIIsoSpec` is compatible with the chart: the inclusion `UI I ⊆ ℙ(n; R)` is
-`Spec R[Y][1/f] ⟶ Spec R[Y] ⟶ ℙ(n; R)`. -/
+`Spec R[Y][1/f] ⟶ Spec R[Y] ⟶ ℙ(n; R)`.
+@isnad1 id=eq.1h4v.s13.ad9acf5af3a9 from=translated src=- shape=5bd3ecc6 vocab=ba802a1d
+-/
 @[reassoc]
 lemma UIIsoSpec_inv_ι (i : Fin (n + 1)) (I : Finset (Fin (n + 1))) (hi : i ∈ I) :
     (UIIsoSpec i I hi).inv ≫ (UI n R I).ι =

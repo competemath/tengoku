@@ -35,7 +35,9 @@ open RingTheory.Sequence Pointwise
 
 section Height
 
-/-- Weakly regular sequences are transported by ring isomorphisms. -/
+/-- Weakly regular sequences are transported by ring isomorphisms.
+@isnad1 id=isweakly.1h4v.s7.bfca5c199acb from=translated src=- shape=2662f060 vocab=133f26a6
+-/
 lemma RingTheory.Sequence.IsWeaklyRegular.map_ringEquiv {R S : Type*} [CommRing R]
     [CommRing S] (φ : R ≃+* S) {rs : List R} (h : IsWeaklyRegular R rs) :
     IsWeaklyRegular S (rs.map φ) :=
@@ -45,7 +47,9 @@ lemma RingTheory.Sequence.IsWeaklyRegular.map_ringEquiv {R S : Type*} [CommRing 
 variable {R S : Type*} [CommRing R] [CommRing S] [Algebra R S]
 
 /-- In an integral extension, **the height of a prime is at most the height of its
-contraction**: contraction is strictly monotone on chains of primes (incomparability). -/
+contraction**: contraction is strictly monotone on chains of primes (incomparability).
+@isnad1 id=le.0h3v.s6.1b6da929ed30 from=translated src=- shape=c5031043 vocab=980c467d
+-/
 theorem Ideal.height_le_height_comap_of_isIntegral [Algebra.IsIntegral R S] (P : Ideal S)
     [P.IsPrime] : P.height ≤ (P.comap (algebraMap R S)).height := by
   have h1 := PrimeSpectrum.height_eq_orderHeight (⟨P, inferInstance⟩ : PrimeSpectrum S)
@@ -56,7 +60,9 @@ theorem Ideal.height_le_height_comap_of_isIntegral [Algebra.IsIntegral R S] (P :
     (PrimeSpectrum.comap (algebraMap R S)) (fun p q hpq ↦ ?_) ⟨P, inferInstance⟩
   exact Ideal.IsIntegral.comap_lt_comap (R := R) hpq
 
-/-- With going down, **the height of a prime is at least the height of its contraction**. -/
+/-- With going down, **the height of a prime is at least the height of its contraction**.
+@isnad1 id=le.0h3v.s7.63445876e511 from=translated src=- shape=bc0c85bd vocab=ed4fd880
+-/
 theorem Ideal.height_comap_le_height [IsNoetherianRing R] [IsNoetherianRing S]
     [Algebra.HasGoingDown R S]
     (P : Ideal S) [P.IsPrime] : (P.comap (algebraMap R S)).height ≤ P.height := by
@@ -71,7 +77,9 @@ section Normal
 variable {A : Type*} [CommRing A] [IsDomain A] [IsNoetherianRing A] [IsIntegrallyClosed A]
 
 /-- **Primes associated to principal ideals of a normal domain have height at most one.** If
-`P = {a | a x ∈ yA}` is prime, `y ≠ 0`, then `P` has height at most one. -/
+`P = {a | a x ∈ yA}` is prime, `y ≠ 0`, then `P` has height at most one.
+@isnad1 id=le.2h4v.s7.b1ea382115cc from=translated src=- shape=bb512124 vocab=55e2d69a
+-/
 theorem Ideal.height_le_one_of_forall_mem_iff_exists_mul_eq {P : Ideal A} [P.IsPrime] {x y : A}
     (hy : y ≠ 0) (hP : ∀ a, a ∈ P ↔ ∃ b, a * x = y * b) : P.height ≤ 1 := by
   let K := FractionRing A
@@ -123,7 +131,9 @@ theorem Ideal.height_le_one_of_forall_mem_iff_exists_mul_eq {P : Ideal A} [P.IsP
     exact (hQ.1.mem_or_mem hmu).resolve_right fun h ↦ huP (hQP h)
 
 /-- **Weak regularity of a pair in a normal domain.** If `g ≠ 0` and no prime of height at most
-one contains both `g` and `h`, then `[g, h]` is weakly regular on `A`. -/
+one contains both `g` and `h`, then `[g, h]` is weakly regular on `A`.
+@isnad1 id=isweakly.2h3v.s7.ab6b1c90326b from=translated src=- shape=63ec18a3 vocab=216e82b8
+-/
 theorem _root_.Tengoku.LanaOka.isWeaklyRegular_pair_of_forall_height_le_one {g h : A} (hg : g ≠ 0)
     (H : ∀ P : Ideal A, P.IsPrime → P.height ≤ 1 → g ∈ P → h ∉ P) :
     IsWeaklyRegular A [g, h] := by
@@ -165,7 +175,9 @@ variable {R : Type*} [CommRing R] [IsDomain R] [IsNoetherianRing R]
 
 /-- **A pair without common primes of height one.** If every prime containing `J` has height at
 least two, then `J` contains `g ≠ 0` and `h` such that no prime of height at most one contains
-both. -/
+both.
+@isnad1 id=ex.1h2v.s8.613adbabcbf6 from=translated src=- shape=eb61dcf1 vocab=d83fd56f
+-/
 theorem _root_.Tengoku.LanaOka.exists_pair_of_forall_two_le_height (J : Ideal R)
     (hJ : ∀ P : Ideal R, P.IsPrime → J ≤ P → 2 ≤ P.height) :
     ∃ g ∈ J, ∃ h ∈ J, g ≠ 0 ∧ ∀ P : Ideal R, P.IsPrime → P.height ≤ 1 → g ∈ P → h ∉ P := by
@@ -228,7 +240,9 @@ variable {R A : Type*} [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsIntegra
 /-- **A regular pair from a finite extension.** Let `R ⊆ A` be a finite injective extension of
 noetherian normal domains and `I ⊆ A` an ideal all of whose primes have height at least two.
 Then the contraction of `I` contains `p₁, p₂` forming weakly regular sequences on `R` and on
-`A`. -/
+`A`.
+@isnad1 id=ex.2h3v.s9.75e02e59fe60 from=translated src=- shape=df8abb9b vocab=fa3ab70e
+-/
 theorem _root_.Tengoku.LanaOka.exists_isWeaklyRegular_pair_of_isIntegral
     (hinj : Function.Injective (algebraMap R A)) (I : Ideal A)
     (hI : ∀ P : Ideal A, P.IsPrime → I ≤ P → 2 ≤ P.height) :

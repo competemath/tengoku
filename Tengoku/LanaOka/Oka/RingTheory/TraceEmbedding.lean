@@ -30,7 +30,9 @@ variable {R S B : Type*} [CommRing R] [CommRing S] [Algebra R S] [Module.Flat R 
   [AddCommGroup B] [Module R B] {r m : ℕ}
 
 /-- After a flat base change, `∑ⱼ cⱼ ⊗ bⱼ = 0` iff all coordinates of `∑ⱼ cⱼ λ(bⱼ)` vanish, for
-an injective linear map `λ : B → R^r`. -/
+an injective linear map `λ : B → R^r`.
+@isnad1 id=iff.1h8v.s9.b8b9a339dcd3 from=translated src=- shape=30ef503d vocab=cc4cbf5c
+-/
 theorem TensorProduct.sum_tmul_eq_zero_iff_of_injective (ℓ : B →ₗ[R] (Fin r → R))
     (hℓ : Function.Injective ℓ) (b : Fin m → B) (c : Fin m → S) :
     ∑ j, c j ⊗ₜ[R] b j = 0 ↔ ∀ k, ∑ j, c j * algebraMap R S (ℓ (b j) k) = 0 := by
@@ -60,7 +62,9 @@ variable (A B : Type*) [CommRing A] [IsDomain A] [IsIntegrallyClosed A]
   [CharZero A] [CommRing B] [IsDomain B] [Algebra A B] [Module.Finite A B]
 
 /-- **A finite torsion-free algebra over a normal domain of characteristic zero embeds into a
-free module**, through the trace forms `b ↦ Tr(b bⱼ)` for generators `bⱼ`. -/
+free module**, through the trace forms `b ↦ Tr(b bⱼ)` for generators `bⱼ`.
+@isnad1 id=ex.1h2v.s8.a5481387e9ec from=translated src=- shape=5f5f7503 vocab=75a0722a
+-/
 theorem _root_.Tengoku.LanaOka.exists_injective_linearMap_pi_of_finite (hinj : Function.Injective (algebraMap A B)) :
     ∃ (r : ℕ) (ℓ : B →ₗ[A] (Fin r → A)), Function.Injective ℓ := by
   classical

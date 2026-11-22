@@ -98,7 +98,9 @@ private lemma summable_norm_qpow_mul (c : K) :
 `thetaProdFactor c = ∏' n, (1 + qⁿ c)` vanishes **iff** one of its factors vanishes. The forward
 direction is the contrapositive of `tprod_one_add_ne_zero_of_summable` (all factors nonzero ⇒
 nonzero product); the backward direction peels the vanishing factor off with
-`Multipliable.prod_mul_tprod_nat_mul'`. -/
+`Multipliable.prod_mul_tprod_nat_mul'`.
+@isnad1 id=iff.0h3v.s7.a51c555e9c89 from=translated src=- shape=f326a574 vocab=aae820aa
+-/
 lemma thetaProdFactor_eq_zero_iff [CompleteSpace K] (c : K) :
     t.thetaProdFactor c = 0 ↔ ∃ n : ℕ, (1 : K) + (t.q : K) ^ n * c = 0 := by
   have hsum := t.summable_norm_qpow_mul c
@@ -123,7 +125,9 @@ lemma thetaProdFactor_eq_zero_iff [CompleteSpace K] (c : K) :
       Finset.prod_eq_zero (Finset.mem_range.mpr (Nat.lt_succ_self m)) hm, zero_mul]
 
 /-- The **constant factor never vanishes**: `thetaProdFactor (-q) = ∏' n, (1 - qⁿ⁺¹) ≠ 0`, since
-`q` is not a root of unity (`thetaProdFactor_neg_q_factor_ne_zero`). -/
+`q` is not a root of unity (`thetaProdFactor_neg_q_factor_ne_zero`).
+@isnad1 id=ne.0h2v.s6.e3f92fadec56 from=translated src=- shape=af7ef6ef vocab=9d4c7387
+-/
 lemma thetaProdFactor_neg_q_ne_zero [CompleteSpace K] :
     t.thetaProdFactor (-(t.q : K)) ≠ 0 := by
   rw [ne_eq, t.thetaProdFactor_eq_zero_iff]
@@ -156,7 +160,9 @@ thetaProd q u = 0  ↔  ∃ k : ℤ, (u : K) = -qᵏ.
 ```
 The constant factor `thetaProdFactor (-q)` is nonzero, so `thetaProd u = 0` iff one of the two
 `u`-dependent factors vanishes; `factor2_pointwise`/`factor3_pointwise` locate their zeros at the
-exponents `-(n+1)` and `n`, which together sweep out all of `ℤ`. -/
+exponents `-(n+1)` and `n`, which together sweep out all of `ℤ`.
+@isnad1 id=iff.0h3v.s7.3d5611061665 from=translated src=- shape=87e5bbf3 vocab=ced15e80
+-/
 theorem thetaProd_eq_zero_iff [CompleteSpace K] (u : Kˣ) :
     t.thetaProd u = 0 ↔ ∃ k : ℤ, (u : K) = -(t.q : K) ^ k := by
   rw [thetaProd_apply, mul_eq_zero, mul_eq_zero, or_iff_right t.thetaProdFactor_neg_q_ne_zero,
@@ -178,7 +184,9 @@ theorem thetaProd_eq_zero_iff [CompleteSpace K] (u : Kˣ) :
 
 /-- **The zeros form a single `qᶻ`-orbit.** Any two zeros of `thetaProd` differ by an integer
 power of `q`, so the zero locus descends to a single point of `Kˣ/qᶻ` — a degree-one divisor on
-the Tate curve. -/
+the Tate curve.
+@isnad1 id=ex.2h4v.s7.95ccaa13c0ba from=translated src=- shape=4b9b9761 vocab=71e61986
+-/
 theorem thetaProd_zero_orbit [CompleteSpace K] {u v : Kˣ}
     (hu : t.thetaProd u = 0) (hv : t.thetaProd v = 0) :
     ∃ k : ℤ, (u : K) = (t.q : K) ^ k * (v : K) := by
@@ -192,7 +200,9 @@ theorem thetaProd_zero_orbit [CompleteSpace K] {u v : Kˣ}
 /-- **The zero divisor of the series `theta`, granted the `theta = thetaProd` identity.** Once the
 Jacobi-triple-product identity `theta u = thetaProd u` (the documented seam in
 `TateCurvesTheta.Theta.Product`) is available at `u`, the divisor of the naive theta series is the
-same `qᶻ`-orbit of `-1` as for the product form. -/
+same `qᶻ`-orbit of `-1` as for the product form.
+@isnad1 id=iff.1h3v.s7.03cedbd7a277 from=translated src=- shape=fd164ca0 vocab=3b2cc0b6
+-/
 theorem theta_eq_zero_iff_of_eq_thetaProd [CompleteSpace K] (u : Kˣ)
     (h : t.theta u = t.thetaProd u) :
     t.theta u = 0 ↔ ∃ k : ℤ, (u : K) = -(t.q : K) ^ k := by

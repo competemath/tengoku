@@ -42,7 +42,9 @@ variable {K : Type*} [NormedField K] [CompleteSpace K] [IsUltrametricDist K]
 variable (t : TateParameter K)
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- Off the orbit, `u⁻¹` is off the orbit as well. -/
+/-- Off the orbit, `u⁻¹` is off the orbit as well.
+@isnad1 id=ne.1h4v.s7.091605ce1cf9 from=translated src=- shape=7f7f6e0d vocab=366aec35
+-/
 lemma inv_off_orbit {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) (n : ℤ) :
     (t.q : K) ^ n * ((u⁻¹ : Kˣ) : K) ≠ 1 := by
   intro hcontra
@@ -68,7 +70,9 @@ private lemma orbit_inv_eq (u : Kˣ) (n : ℤ) :
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
 /-- Termwise inversion of the `X`-series: `Xterm(u⁻¹, n) = Xterm(u, -n)` — the evenness
-`p(x⁻¹) = p(x)` of the Eisenstein kernel at `x = qⁿu⁻¹`. -/
+`p(x⁻¹) = p(x)` of the Eisenstein kernel at `x = qⁿu⁻¹`.
+@isnad1 id=eq.1h4v.s7.14a016b3de0e from=translated src=- shape=f2533b2e vocab=d1b50dcf
+-/
 lemma Xterm_inv {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) (n : ℤ) :
     t.Xterm u⁻¹ n = t.Xterm u (-n) := by
   have hx0 : (t.q : K) ^ n * ((u⁻¹ : Kˣ) : K) ≠ 0 := orbit_ne_zero t u⁻¹ n
@@ -91,7 +95,9 @@ private lemma ykernel_inv {x : K} (hx0 : x ≠ 0) (hx1 : x ≠ 1) :
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
 /-- Termwise inversion of the `Y`-series:
-`Yterm(u⁻¹, n) = -Yterm(u, -n) - Xterm(u, -n)`. -/
+`Yterm(u⁻¹, n) = -Yterm(u, -n) - Xterm(u, -n)`.
+@isnad1 id=eq.1h4v.s7.7230da1ef0ea from=translated src=- shape=c600f1de vocab=b58980b9
+-/
 lemma Yterm_inv {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) (n : ℤ) :
     t.Yterm u⁻¹ n = -t.Yterm u (-n) - t.Xterm u (-n) := by
   have hx0 : (t.q : K) ^ (-n) * (u : K) ≠ 0 := orbit_ne_zero t u (-n)
@@ -105,7 +111,9 @@ lemma Yterm_inv {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) (n :
   exact h
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- **Evenness of the Tate `X`-coordinate**: `X(u⁻¹) = X(u)`. -/
+/-- **Evenness of the Tate `X`-coordinate**: `X(u⁻¹) = X(u)`.
+@isnad1 id=eq.1h3v.s7.e683330bf848 from=translated src=- shape=42484abc vocab=4f48c393
+-/
 theorem X_inv {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) :
     t.X u⁻¹ = t.X u := by
   rw [X_apply, X_apply]
@@ -117,7 +125,9 @@ theorem X_inv {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) :
         exact tsum_congr fun n => rfl
 
 /-- **Negation of the Tate `Y`-coordinate**: `Y(u⁻¹) = -Y(u) - X(u)` — the substitution
-`u ↦ u⁻¹` realizes the elliptic involution `(x, y) ↦ (x, -y - x)` of the Tate curve. -/
+`u ↦ u⁻¹` realizes the elliptic involution `(x, y) ↦ (x, -y - x)` of the Tate curve.
+@isnad1 id=eq.1h3v.s7.7dd779b3fad3 from=translated src=- shape=19baff5f vocab=a53d21c9
+-/
 theorem Y_inv {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) :
     t.Y u⁻¹ = -t.Y u - t.X u := by
   have hX := t.Xterm_summable u

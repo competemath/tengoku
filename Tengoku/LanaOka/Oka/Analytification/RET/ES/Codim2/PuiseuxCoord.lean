@@ -65,20 +65,35 @@ def coordRoot (s : ℕ) (x : ι → ℂ) : ι → ℂ :=
 
 variable {i₀}
 
+/--
+@isnad1 id=eq.0h4v.s5.7b81d18fdf0c from=translated src=- shape=0e169df6 vocab=92b9a956
+-/
 @[simp]
 lemma coordPow_self (s : ℕ) (x : ι → ℂ) : coordPow i₀ s x i₀ = x i₀ ^ s := by
   simp [coordPow]
 
+/--
+@isnad1 id=eq.1h5v.s5.7c272976da46 from=translated src=- shape=73f95793 vocab=16f2f79f
+-/
 lemma coordPow_of_ne (s : ℕ) (x : ι → ℂ) {j : ι} (hj : j ≠ i₀) : coordPow i₀ s x j = x j := by
   simp [coordPow, hj]
 
+/--
+@isnad1 id=eq.0h4v.s5.fab17d258c52 from=translated src=- shape=fcbe57c2 vocab=465f78da
+-/
 @[simp]
 lemma coordRot_self (ζ : ℂ) (x : ι → ℂ) : coordRot i₀ ζ x i₀ = ζ * x i₀ := by
   simp [coordRot]
 
+/--
+@isnad1 id=eq.1h5v.s5.3f7e11ee0c35 from=translated src=- shape=9b317f6b vocab=f3bce2df
+-/
 lemma coordRot_of_ne (ζ : ℂ) (x : ι → ℂ) {j : ι} (hj : j ≠ i₀) : coordRot i₀ ζ x j = x j := by
   simp [coordRot, hj]
 
+/--
+@isnad1 id=eq.1h5v.s5.5bff8cde57ad from=translated src=- shape=4eb5361b vocab=f293d2e6
+-/
 lemma coordPow_coordRot {s : ℕ} {ζ : ℂ} (hζ : ζ ^ s = 1) (x : ι → ℂ) :
     coordPow i₀ s (coordRot i₀ ζ x) = coordPow i₀ s x := by
   funext j
@@ -87,6 +102,9 @@ lemma coordPow_coordRot {s : ℕ} {ζ : ℂ} (hζ : ζ ^ s = 1) (x : ι → ℂ)
     simp [mul_pow, hζ]
   · simp [coordPow_of_ne _ _ hj, coordRot_of_ne _ _ hj]
 
+/--
+@isnad1 id=eq.0h5v.s5.2f945bfc4485 from=translated src=- shape=2da4ff1e vocab=465f78da
+-/
 lemma coordRot_coordRot (ζ ξ : ℂ) (x : ι → ℂ) :
     coordRot i₀ ζ (coordRot i₀ ξ x) = coordRot i₀ (ζ * ξ) x := by
   funext j
@@ -95,10 +113,16 @@ lemma coordRot_coordRot (ζ ξ : ℂ) (x : ι → ℂ) :
     simp [mul_assoc]
   · simp [coordRot_of_ne _ _ hj]
 
+/--
+@isnad1 id=eq.0h3v.s4.0f2983161919 from=translated src=- shape=f3abf27a vocab=f3bce2df
+-/
 @[simp]
 lemma coordRot_one (x : ι → ℂ) : coordRot i₀ 1 x = x := by
   simp [coordRot]
 
+/--
+@isnad1 id=eq.2h4v.s5.b5fe4ee8380c from=translated src=- shape=74114089 vocab=2b53b65d
+-/
 lemma coordRoot_of_eq_zero {s : ℕ} (hs : s ≠ 0) {x : ι → ℂ} (hx : x i₀ = 0) :
     coordRoot i₀ s x = x := by
   funext j
@@ -107,6 +131,9 @@ lemma coordRoot_of_eq_zero {s : ℕ} (hs : s ≠ 0) {x : ι → ℂ} (hx : x i�
     simp [coordRoot, hx, Complex.zero_cpow (inv_ne_zero (Nat.cast_ne_zero.2 hs))]
   · simp [coordRoot, hj]
 
+/--
+@isnad1 id=eq.1h4v.s5.da2e3b20fd6d from=translated src=- shape=37da182a vocab=8f622fb1
+-/
 lemma coordPow_coordRoot {s : ℕ} (hs : s ≠ 0) (x : ι → ℂ) :
     coordPow i₀ s (coordRoot i₀ s x) = x := by
   funext j
@@ -115,6 +142,9 @@ lemma coordPow_coordRoot {s : ℕ} (hs : s ≠ 0) (x : ι → ℂ) :
     simp [coordRoot, Complex.cpow_nat_inv_pow _ hs]
   · simp [coordPow_of_ne _ _ hj, coordRoot, hj]
 
+/--
+@isnad1 id=differen.0h3v.s7.01cf06905090 from=translated src=- shape=ade1d730 vocab=2da147e2
+-/
 @[fun_prop]
 lemma differentiable_coordPow [Finite ι] (s : ℕ) :
     Differentiable ℂ (coordPow (ι := ι) i₀ s) := by
@@ -127,10 +157,16 @@ lemma differentiable_coordPow [Finite ι] (s : ℕ) :
   · simp only [coordPow_of_ne _ _ hj]
     fun_prop
 
+/--
+@isnad1 id=continuo.0h3v.s5.9fa35dce2e2d from=translated src=- shape=08fede1e vocab=bfee91a4
+-/
 @[fun_prop]
 lemma continuous_coordPow (s : ℕ) : Continuous (coordPow (ι := ι) i₀ s) :=
   continuous_id.update i₀ ((continuous_apply i₀).pow s)
 
+/--
+@isnad1 id=differen.0h3v.s7.fef294bc4df7 from=translated src=- shape=00927585 vocab=1041d626
+-/
 @[fun_prop]
 lemma differentiable_coordRot [Finite ι] (ζ : ℂ) :
     Differentiable ℂ (coordRot (ι := ι) i₀ ζ) := by
@@ -143,27 +179,43 @@ lemma differentiable_coordRot [Finite ι] (ζ : ℂ) :
   · simp only [coordRot_of_ne _ _ hj]
     fun_prop
 
+/--
+@isnad1 id=continuo.0h3v.s5.858d682779e2 from=translated src=- shape=3f61c99d vocab=57fd5083
+-/
 @[fun_prop]
 lemma continuous_coordRot (ζ : ℂ) : Continuous (coordRot (ι := ι) i₀ ζ) :=
   continuous_id.update i₀ (continuous_const.mul (continuous_apply i₀))
 
-/-- `zetaᵏ` only depends on `k` modulo `s`. -/
+/-- `zetaᵏ` only depends on `k` modulo `s`.
+@isnad1 id=eq.1h2v.s5.309bae07c031 from=translated src=- shape=5751702f vocab=f59ad74e
+-/
 lemma zeta_pow_mod {s : ℕ} (hs : 0 < s) (a : ℕ) : zeta s ^ (a % s) = zeta s ^ a := by
   conv_rhs => rw [← Nat.mod_add_div a s, pow_add, pow_mul, (isPrimitiveRoot_zeta hs).pow_eq_one,
     one_pow, mul_one]
 
+/--
+@isnad1 id=eq.1h3v.s6.7dcff793b540 from=translated src=- shape=5ef4899f vocab=495c9d9d
+-/
 lemma zeta_pow_add {s : ℕ} (hs : 0 < s) (k l : Fin s) :
     zeta s ^ ((k + l : Fin s) : ℕ) = zeta s ^ (k : ℕ) * zeta s ^ (l : ℕ) := by
   rw [Fin.val_add, zeta_pow_mod hs, pow_add]
 
+/--
+@isnad1 id=eq.1h2v.s5.2a4b5fb278a9 from=translated src=- shape=bfc35e08 vocab=938d79f0
+-/
 lemma zeta_pow_pow {s : ℕ} (hs : 0 < s) (k : ℕ) : (zeta s ^ k) ^ s = 1 := by
   rw [← pow_mul, mul_comm, pow_mul, (isPrimitiveRoot_zeta hs).pow_eq_one, one_pow]
 
+/--
+@isnad1 id=eq.1h2v.s5.38dd479f3564 from=translated src=- shape=42434988 vocab=d31bb36f
+-/
 lemma norm_zeta_pow {s : ℕ} (hs : 0 < s) (k : ℕ) : ‖zeta s ^ k‖ = 1 := by
   have h : ‖zeta s ^ k‖ ^ s = 1 := by rw [← norm_pow, zeta_pow_pow hs k, norm_one]
   exact (pow_eq_one_iff_of_nonneg (norm_nonneg _) hs.ne').1 h
 
-/-- **The fibres of the Puiseux map are the orbits of the rotations.** -/
+/-- **The fibres of the Puiseux map are the orbits of the rotations.**
+@isnad1 id=ex.2h5v.s6.ff43d873613c from=translated src=- shape=9417fb46 vocab=1dc89089
+-/
 lemma exists_coordRot_eq {s : ℕ} (hs : 0 < s) {x y : ι → ℂ}
     (h : coordPow i₀ s x = coordPow i₀ s y) :
     ∃ k : Fin s, y = coordRot i₀ (zeta s ^ (k : ℕ)) x := by
@@ -202,6 +254,9 @@ def unsplitAt (p : ({j // j ≠ i₀} → ℂ) × ℂ) : ι → ℂ :=
 
 variable {i₀}
 
+/--
+@isnad1 id=eq.0h3v.s4.447a34e2a5e4 from=translated src=- shape=d7d23731 vocab=98b9714d
+-/
 @[simp]
 lemma unsplitAt_splitAt (x : ι → ℂ) : unsplitAt i₀ (splitAt i₀ x) = x := by
   funext j
@@ -211,12 +266,18 @@ lemma unsplitAt_splitAt (x : ι → ℂ) : unsplitAt i₀ (splitAt i₀ x) = x :
   · simp [unsplitAt, splitAt, hj]
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=differen.0h2v.s8.3bea6622be6d from=translated src=- shape=fa3002af vocab=6c1756cc
+-/
 lemma differentiable_splitAt [Finite ι] : Differentiable ℂ (splitAt (ι := ι) i₀) := by
   have := Fintype.ofFinite {j // j ≠ i₀}
   have := Fintype.ofFinite ι
   unfold splitAt
   fun_prop
 
+/--
+@isnad1 id=differen.0h2v.s8.90e07a66acb6 from=translated src=- shape=2adc1009 vocab=c85b3d4c
+-/
 lemma differentiable_unsplitAt [Finite ι] : Differentiable ℂ (unsplitAt (ι := ι) i₀) := by
   have := Fintype.ofFinite {j // j ≠ i₀}
   have := Fintype.ofFinite ι
@@ -227,6 +288,9 @@ lemma differentiable_unsplitAt [Finite ι] : Differentiable ℂ (unsplitAt (ι :
   · simp only [unsplitAt, dite_eq_right hj]
     fun_prop
 
+/--
+@isnad1 id=eq.0h4v.s5.fe82be6d95a2 from=translated src=- shape=0636e9a7 vocab=5e8104d0
+-/
 lemma coordPow_unsplitAt (s : ℕ) (p : ({j // j ≠ i₀} → ℂ) × ℂ) :
     coordPow i₀ s (unsplitAt i₀ p) = unsplitAt i₀ (powMap s p) := by
   funext j
@@ -235,6 +299,9 @@ lemma coordPow_unsplitAt (s : ℕ) (p : ({j // j ≠ i₀} → ℂ) × ℂ) :
     simp [unsplitAt]
   · simp [coordPow_of_ne _ _ hj, unsplitAt, hj]
 
+/--
+@isnad1 id=eq.0h4v.s5.346d3773319b from=translated src=- shape=8c66428b vocab=1506e2b6
+-/
 lemma splitAt_coordPow (s : ℕ) (x : ι → ℂ) :
     splitAt i₀ (coordPow i₀ s x) = powMap s (splitAt i₀ x) := by
   refine Prod.ext (funext fun j ↦ ?_) ?_
@@ -246,7 +313,9 @@ lemma splitAt_coordPow (s : ℕ) (x : ι → ℂ) :
 variable [Finite ι]
 
 omit [DecidableEq ι] in
-/-- The zero set of the coordinate `i₀` has empty interior. -/
+/-- The zero set of the coordinate `i₀` has empty interior.
+@isnad1 id=eq.0h3v.s6.b109000d6b87 from=translated src=- shape=3bb17256 vocab=2409f76d
+-/
 lemma interior_inter_preimage_apply_eq_empty (U : Set (ι → ℂ)) :
     interior (U ∩ (fun x : ι → ℂ ↦ x i₀) ⁻¹' {0}) = ∅ := by
   have := Fintype.ofFinite ι
@@ -257,7 +326,9 @@ lemma interior_inter_preimage_apply_eq_empty (U : Set (ι → ℂ)) :
   exact subset_empty_iff.1 (h ▸ interior_mono (inter_subset_inter_left _ (subset_univ U)))
 
 /-- **Holomorphic functions on the preimage under the Puiseux map**: a holomorphic function on
-`α⁻¹(G)` is `∑_{j < s} tʲ gⱼ ∘ α` with `gⱼ` holomorphic on `G`, where `t = x i₀`. -/
+`α⁻¹(G)` is `∑_{j < s} tʲ gⱼ ∘ α` with `gⱼ` holomorphic on `G`, where `t = x i₀`.
+@isnad1 id=ex.3h5v.s8.c57c7ce4278d from=translated src=- shape=881b2984 vocab=9d75c403
+-/
 theorem exists_eqOn_sum_pow_mul_comp_coordPow {s : ℕ} (hs : 0 < s) {G : Set (ι → ℂ)}
     (hG : IsOpen G) {f : (ι → ℂ) → ℂ} (hf : DifferentiableOn ℂ f (coordPow i₀ s ⁻¹' G)) :
     ∃ g : Fin s → (ι → ℂ) → ℂ, (∀ j, DifferentiableOn ℂ (g j) G) ∧
@@ -303,7 +374,9 @@ theorem exists_eqOn_sum_pow_mul_comp_coordPow {s : ℕ} (hs : 0 < s) {G : Set (�
     simp only [Function.comp_apply, splitAt_coordPow]
     rfl
 
-/-- `∑_{k < s} (ζʲ)ᵏ` is `s` for `j = 0` and `0` for `0 < j < s`. -/
+/-- `∑_{k < s} (ζʲ)ᵏ` is `s` for `j = 0` and `0` for `0 < j < s`.
+@isnad1 id=eq.1h2v.s6.7c75af601b23 from=translated src=- shape=4472d889 vocab=3a7f05da
+-/
 lemma sum_zeta_pow_pow {s : ℕ} (hs : 0 < s) (j : Fin s) :
     ∑ k : Fin s, (zeta s ^ (j : ℕ)) ^ (k : ℕ) = if (j : ℕ) = 0 then (s : ℂ) else 0 := by
   rw [Fin.sum_univ_eq_sum_range (fun k ↦ (zeta s ^ (j : ℕ)) ^ k)]
@@ -314,7 +387,9 @@ lemma sum_zeta_pow_pow {s : ℕ} (hs : 0 < s) (j : Fin s) :
     rw [geom_sum_eq hne, zeta_pow_pow hs, sub_self, zero_div]
 
 /-- **Descent of holomorphy along the Puiseux map**: if `h ∘ α` is holomorphic on `α⁻¹(G)`, then
-`h` is holomorphic on `G`. -/
+`h` is holomorphic on `G`.
+@isnad1 id=differen.3h5v.s8.11543c24d4a9 from=translated src=- shape=5a4614fa vocab=06f29841
+-/
 theorem differentiableOn_of_comp_coordPow {s : ℕ} (hs : 0 < s) {G : Set (ι → ℂ)}
     (hG : IsOpen G) {h : (ι → ℂ) → ℂ}
     (hh : DifferentiableOn ℂ (h ∘ coordPow i₀ s) (coordPow i₀ s ⁻¹' G)) :
@@ -351,7 +426,9 @@ theorem differentiableOn_of_comp_coordPow {s : ℕ} (hs : 0 < s) {G : Set (ι �
 
 /-! ### Pieces of the preimage off `t = 0` -/
 
-/-- The powers of `zeta s` below `s` are at pairwise distance at least some `d > 0`. -/
+/-- The powers of `zeta s` below `s` are at pairwise distance at least some `d > 0`.
+@isnad1 id=ex.1h1v.s6.4fd0369cd595 from=translated src=- shape=84d56f69 vocab=99e06a3d
+-/
 lemma exists_le_norm_zeta_pow_sub {s : ℕ} (hs : 0 < s) :
     ∃ d > 0, ∀ k l : Fin s, k ≠ l → d ≤ ‖zeta s ^ (k : ℕ) - zeta s ^ (l : ℕ)‖ := by
   classical
@@ -366,7 +443,9 @@ lemma exists_le_norm_zeta_pow_sub {s : ℕ} (hs : 0 < s) :
   · refine ⟨1, one_pos, fun k l hkl ↦ absurd ⟨(k, l), ?_⟩ hS⟩
     exact Finset.mem_filter.2 ⟨Finset.mem_univ _, hkl⟩
 
-/-- If `aˢ` is close to `bˢ`, then `a` is close to `ζᵏ b` for some `k`. -/
+/-- If `aˢ` is close to `bˢ`, then `a` is close to `ζᵏ b` for some `k`.
+@isnad1 id=ex.3h4v.s7.b32b82f3d052 from=translated src=- shape=457b343b vocab=9990eb7e
+-/
 lemma exists_norm_sub_zeta_pow_mul_lt {s : ℕ} (hs : 0 < s) {a b : ℂ} {r : ℝ} (hr : 0 < r)
     (h : ‖a ^ s - b ^ s‖ < r ^ s) : ∃ k : Fin s, ‖a - zeta s ^ (k : ℕ) * b‖ < r := by
   by_contra hcon
@@ -386,7 +465,9 @@ lemma exists_norm_sub_zeta_pow_mul_lt {s : ℕ} (hs : 0 < s) {a b : ℂ} {r : �
 /-- **The preimage of a small neighbourhood off `t = 0` splits into `s` pieces.** Let `y'` be a
 point with `t = y' i₀ ≠ 0` and `O k` a neighbourhood of `ζᵏ y'` for every `k < s`. There are a
 neighbourhood `V` of `α(y')` and open pieces `P k ⊆ O k` such that every point of `α⁻¹(V)` lies
-in exactly one piece, and exactly one rotation `ζᵏ` takes it into the piece `P 0`. -/
+in exactly one piece, and exactly one rotation `ζᵏ` takes it into the piece `P 0`.
+@isnad1 id=ex.3h5v.s8.1aab8823c378 from=translated src=- shape=acc041fe vocab=5ce4a151
+-/
 theorem exists_pieces_coordPow {s : ℕ} (hs : 0 < s) {y' : ι → ℂ} (hy' : y' i₀ ≠ 0)
     {O : Fin s → Set (ι → ℂ)} (hO : ∀ k : Fin s, O k ∈ 𝓝 (coordRot i₀ (zeta s ^ (k : ℕ)) y')) :
     ∃ V ∈ 𝓝 (coordPow i₀ s y'), ∃ P : Fin s → Set (ι → ℂ), (∀ k, IsOpen (P k)) ∧
@@ -482,7 +563,9 @@ theorem exists_pieces_coordPow {s : ℕ} (hs : 0 < s) {y' : ι → ℂ} (hy' : y
 
 omit [Finite ι] in
 /-- **The roots of `tˢ` depend continuously on `t`**: if `α(y)` is close to `α(x)`, then `y` is
-close to `ζᵏ x` for some `k`. -/
+close to `ζᵏ x` for some `k`.
+@isnad1 id=ex.3h6v.s7.2b9194fe7f20 from=translated src=- shape=cfbcb19e vocab=af8c2f81
+-/
 lemma exists_coordRot_norm_sub_lt [Fintype ι] {s : ℕ} (hs : 0 < s) {x y : ι → ℂ} {r : ℝ}
     (hr : 0 < r) (h : ‖coordPow i₀ s y - coordPow i₀ s x‖ < min r (r ^ s)) :
     ∃ k : Fin s, ‖y - coordRot i₀ (zeta s ^ (k : ℕ)) x‖ < r := by
@@ -501,7 +584,9 @@ lemma exists_coordRot_norm_sub_lt [Fintype ι] {s : ℕ} (hs : 0 < s) {x y : ι 
     exact this.trans_le (min_le_left _ _)
 
 omit [Finite ι] in
-/-- A sum over all rotations is invariant under rotations. -/
+/-- A sum over all rotations is invariant under rotations.
+@isnad1 id=eq.1h7v.s7.c8167866593b from=translated src=- shape=b469c894 vocab=074fe010
+-/
 lemma sum_comp_coordRot_coordRot {s : ℕ} (hs : 0 < s) {M : Type*} [AddCommMonoid M]
     (G : (ι → ℂ) → M) (j : Fin s) (x : ι → ℂ) :
     ∑ l : Fin s, G (coordRot i₀ (zeta s ^ (l : ℕ)) (coordRot i₀ (zeta s ^ (j : ℕ)) x)) =
@@ -511,7 +596,9 @@ lemma sum_comp_coordRot_coordRot {s : ℕ} (hs : 0 < s) {M : Type*} [AddCommMono
   exact Fintype.sum_equiv (Equiv.addRight j) _ _ fun _ ↦ rfl
 
 omit [Finite ι] in
-/-- A sum over all rotations only depends on the image under the Puiseux map. -/
+/-- A sum over all rotations only depends on the image under the Puiseux map.
+@isnad1 id=eq.1h6v.s6.d6f93f394048 from=translated src=- shape=94705cbe vocab=ed56418c
+-/
 lemma sum_comp_coordRot_coordRoot {s : ℕ} (hs : 0 < s) {M : Type*} [AddCommMonoid M]
     (G : (ι → ℂ) → M) (x : ι → ℂ) :
     ∑ l : Fin s, G (coordRot i₀ (zeta s ^ (l : ℕ)) (coordRoot i₀ s (coordPow i₀ s x))) =
@@ -538,13 +625,18 @@ variable {s : ℕ} {V₀ P₀ : Set (ι → ℂ)} (hP : IsPiece i₀ s V₀ P₀
 include hP
 
 omit [Finite ι] in
+/--
+@isnad1 id=isopen.1h5v.s5.192f63a1e3f3 from=translated src=- shape=8165a4dc vocab=9b312cd6
+-/
 lemma isOpen_piece : IsOpen P₀ :=
   isOpen_iff_mem_nhds.2 fun x hx ↦ Filter.mem_of_superset
     (hP.eventually_mem_iff x (hP.subset hx)) fun _ hz ↦ hz.2 hx
 
 omit [Finite ι] in
 open Classical in
-/-- Over a point of `P₀`, only the trivial rotation lands in `P₀`. -/
+/-- Over a point of `P₀`, only the trivial rotation lands in `P₀`.
+@isnad1 id=eq.3h8v.s7.a1545dc59043 from=translated src=- shape=4704248a vocab=b736c496
+-/
 lemma sum_ite {M : Type*} [AddCommMonoid M] (hs : 0 < s) {x : ι → ℂ} (hx : x ∈ P₀)
     (G : Fin s → M) :
     ∑ k : Fin s, (if coordRot i₀ (zeta s ^ (k : ℕ)) x ∈ P₀ then G k else 0) = G ⟨0, hs⟩ := by
@@ -554,14 +646,18 @@ lemma sum_ite {M : Type*} [AddCommMonoid M] (hs : 0 < s) {x : ι → ℂ} (hx : 
     (huniq _ h0).symm)) (fun h ↦ absurd (Finset.mem_univ _) h), ite_eq_left h0]
 
 omit [Finite ι] in
-/-- Every point of `α⁻¹(V₀)` has a rotation in `P₀`. -/
+/-- Every point of `α⁻¹(V₀)` has a rotation in `P₀`.
+@isnad1 id=ex.2h6v.s6.590a731b24c3 from=translated src=- shape=604a0d8e vocab=e2255090
+-/
 lemma exists_coordRot_mem {x : ι → ℂ} (hx : x ∈ coordPow i₀ s ⁻¹' V₀) :
     ∃ k : Fin s, coordRot i₀ (zeta s ^ (k : ℕ)) x ∈ P₀ :=
   (hP.existsUnique x hx).exists
 
 omit [Finite ι] in
 open Classical in
-/-- A function holomorphic on `P₀ ∩ Z`, extended by zero, is holomorphic on `Z ⊆ α⁻¹(V₀)`. -/
+/-- A function holomorphic on `P₀ ∩ Z`, extended by zero, is holomorphic on `Z ⊆ α⁻¹(V₀)`.
+@isnad1 id=differen.4h7v.s8.cb0ad19a97fb from=translated src=- shape=1b60d0cd vocab=96eda3e8
+-/
 lemma differentiableOn_ite {Z : Set (ι → ℂ)} (hZ : IsOpen Z) (hZV : Z ⊆ coordPow i₀ s ⁻¹' V₀)
     {G : (ι → ℂ) → ℂ} (hG : DifferentiableOn ℂ G (P₀ ∩ Z)) :
     DifferentiableOn ℂ (fun x ↦ if x ∈ P₀ then G x else 0) Z := by
@@ -582,7 +678,9 @@ lemma differentiableOn_ite {Z : Set (ι → ℂ)} (hZ : IsOpen Z) (hZV : Z ⊆ c
 end IsPiece
 
 /-- **Pieces off `t = 0`**: near a point `y'` with `y' i₀ ≠ 0`, there is a piece `P₀ ⊆ O` of
-`α⁻¹(V₀)` for an open `V₀ ∋ α(y')`, for any neighbourhood `O` of `y'`. -/
+`α⁻¹(V₀)` for an open `V₀ ∋ α(y')`, for any neighbourhood `O` of `y'`.
+@isnad1 id=ex.3h5v.s7.48c54049cd3b from=translated src=- shape=859a3d3d vocab=e1725ed9
+-/
 theorem exists_isPiece {s : ℕ} (hs : 0 < s) {y' : ι → ℂ} (hy' : y' i₀ ≠ 0) {O : Set (ι → ℂ)}
     (hO : O ∈ 𝓝 y') : ∃ V₀ P₀ : Set (ι → ℂ), coordPow i₀ s y' ∈ V₀ ∧ P₀ ⊆ O ∧
       IsPiece i₀ s V₀ P₀ := by

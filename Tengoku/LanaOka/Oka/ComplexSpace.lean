@@ -46,9 +46,15 @@ noncomputable def _root_.Tengoku.LanaOka.okaCommPresheaf (ι : Type u) [Fintype 
   map_id U := by ext f; rfl
   map_comp f g := by ext h; rfl
 
+/--
+@isnad1 id=eq.0h1v.s9.ae937cf50851 from=translated src=- shape=bf37ece5 vocab=abebf8b5
+-/
 lemma _root_.Tengoku.LanaOka.okaCommPresheaf_comp_forget₂ (ι : Type u) [Fintype ι] :
     okaCommPresheaf ι ⋙ forget₂ CommRingCat.{u} RingCat.{u} = okaPresheaf ι := rfl
 
+/--
+@isnad1 id=issheaf.0h1v.s7.c0bb1af8f9e1 from=translated src=- shape=9a66d125 vocab=fd6f3215
+-/
 theorem _root_.Tengoku.LanaOka.okaCommPresheaf_isSheaf (ι : Type u) [Fintype ι] :
     Presheaf.IsSheaf (Opens.grothendieckTopology (ι → ℂ)) (okaCommPresheaf ι) := by
   rw [Presheaf.isSheaf_iff_isSheaf_forget _ _ (CategoryTheory.forget CommRingCat.{u})]
@@ -69,7 +75,9 @@ instance (x : ι → ℂ) : Nontrivial ((okaCommPresheaf ι).stalk x) := by
   simp only [OkaRing.evalHom_apply] at h2
   exact one_ne_zero h2
 
-/-- A holomorphic function which does not vanish at `x` has invertible germ at `x`. -/
+/-- A holomorphic function which does not vanish at `x` has invertible germ at `x`.
+@isnad1 id=isunit.2h4v.s11.d86c5e94cb41 from=translated src=- shape=0ee489c9 vocab=b4896d3d
+-/
 lemma _root_.Tengoku.LanaOka.isUnit_okaGerm {x : ι → ℂ} (hx : x ∈ U) (f : OkaRing U)
     (hf : OkaRing.evalHom hx f ≠ 0) :
     IsUnit ((okaCommPresheaf ι).germ U x hx f) := by
@@ -119,6 +127,9 @@ noncomputable def _root_.Tengoku.LanaOka.complexSpace (ι : Type u) [Fintype ι]
   IsSheaf := okaCommPresheaf_isSheaf ι
   isLocalRing := inferInstance
 
+/--
+@isnad1 id=eq.0h1v.s5.3ae021258dbc from=translated src=- shape=8508b481 vocab=a0167912
+-/
 @[simp]
 lemma _root_.Tengoku.LanaOka.complexSpace_presheaf (ι : Type u) [Fintype ι] :
     (complexSpace ι).presheaf = okaCommPresheaf ι :=

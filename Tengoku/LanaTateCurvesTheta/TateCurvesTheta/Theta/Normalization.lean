@@ -60,7 +60,9 @@ omit [CompleteSpace K] [IsUltrametricDist K] in
 `thetaProdLaurentCoeff 0 = thetaProdFactor(-q) · ∑' m, aLaurentCoeff(-m)·bLaurentCoeff(m)` and
 reindexing the convolution by `m = -k` (only `m ≤ 0` contributes), with
 `aLaurentCoeff k · bLaurentCoeff (-k) = factorCoeff k · qᵏ · factorCoeff k = factorCoeff k ² · qᵏ`,
-gives `thetaProdFactor(-q) · ∑' k, factorCoeff k ² · qᵏ`. -/
+gives `thetaProdFactor(-q) · ∑' k, factorCoeff k ² · qᵏ`.
+@isnad1 id=eq.0h2v.s7.121a556cfb6c from=translated src=- shape=749f97d9 vocab=8c14628d
+-/
 lemma thetaProdLaurentCoeff_zero_eq :
     t.thetaProdLaurentCoeff 0
       = t.thetaProdFactor (-(t.q : K)) * ∑' k : ℕ, factorCoeff t k ^ 2 * (t.q : K) ^ k := by
@@ -85,7 +87,9 @@ lemma thetaProdLaurentCoeff_zero_eq :
 `thetaProd u = b₀ · theta u` on all of `Kˣ`, coefficient uniqueness (`laurentCoeffUnique`) applied
 to the two Laurent developments of `thetaProd` — its own `thetaProdLaurentCoeff` and the scaled
 `theta`-coefficients `n ↦ b₀ · q^(e n)` — forces `thetaProdLaurentCoeff = fun n => b₀ · q^(e n)`,
-and evaluating at `n = 0` (where `q^(e 0) = q^0 = 1`) gives `b₀ = thetaProdLaurentCoeff 0`. -/
+and evaluating at `n = 0` (where `q^(e 0) = q^0 = 1`) gives `b₀ = thetaProdLaurentCoeff 0`.
+@isnad1 id=eq.1h3v.s6.5d67babf07eb from=translated src=- shape=f39e0b38 vocab=e04c6714
+-/
 lemma const_eq_thetaProdLaurentCoeff_zero {b₀ : K}
     (hb₀ : ∀ u : Kˣ, t.thetaProd u = b₀ * t.theta u) :
     b₀ = t.thetaProdLaurentCoeff 0 := by
@@ -114,7 +118,9 @@ The Jacobi triple product identity is exactly the statement `thetaProdNormConst 
 noncomputable def thetaProdNormConst : K :=
   t.thetaProdFactor (-(t.q : K)) * ∑' k : ℕ, factorCoeff t k ^ 2 * (t.q : K) ^ k
 
-/-- The constant `b₀` of `thetaProd_eq_const_mul_theta` equals `thetaProdNormConst`. -/
+/-- The constant `b₀` of `thetaProd_eq_const_mul_theta` equals `thetaProdNormConst`.
+@isnad1 id=eq.1h3v.s6.a4a1ccc85022 from=translated src=- shape=d4d5bc03 vocab=32ba81eb
+-/
 lemma const_eq_thetaProdNormConst {b₀ : K} (hb₀ : ∀ u : Kˣ, t.thetaProd u = b₀ * t.theta u) :
     b₀ = t.thetaProdNormConst := by
   rw [t.const_eq_thetaProdLaurentCoeff_zero hb₀, t.thetaProdLaurentCoeff_zero_eq,
@@ -124,7 +130,9 @@ lemma const_eq_thetaProdNormConst {b₀ : K} (hb₀ : ∀ u : Kˣ, t.thetaProd u
 analytic content is discharged: given only the scalar normalization `thetaProdNormConst = 1`
 (equivalently the Durfee square identity `thetaProdFactor(-q) · ∑' k, factorCoeff k ² · qᵏ = 1`),
 the naive `q`-theta series equals its product form on all of `Kˣ`. The coefficient-uniqueness
-principle is discharged unconditionally via `laurentCoeffUnique`. -/
+principle is discharged unconditionally via `laurentCoeffUnique`.
+@isnad1 id=eq.1h3v.s6.f892530c8573 from=translated src=- shape=a8ac3ce8 vocab=8787769a
+-/
 theorem theta_eq_thetaProd_of_durfee (hnorm : t.thetaProdNormConst = 1) (u : Kˣ) :
     t.theta u = t.thetaProd u := by
   obtain ⟨b₀, hb₀⟩ :=
