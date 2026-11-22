@@ -329,7 +329,10 @@
     "https://github.com/qkkqk1234/jsp-000907-lean",
     "https://github.com/Riflonnade/RandomSetTheory",
     "https://github.com/urdvr/superpermutations-hunter",
-    "https://github.com/jimpeebles/rainich-kaluza-reconstruction"
+    "https://github.com/jimpeebles/rainich-kaluza-reconstruction",
+    "https://github.com/TJC-LP/goemans",
+    "https://github.com/innerlightr-wq/eoc-lean-verification",
+    "https://github.com/savarin/lean-spectral-theory"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -671,7 +674,10 @@
     "https://github.com/qkkqk1234/jsp-000907-lean": "Apache-2.0",
     "https://github.com/Riflonnade/RandomSetTheory": "Apache-2.0",
     "https://github.com/urdvr/superpermutations-hunter": "Apache-2.0",
-    "https://github.com/jimpeebles/rainich-kaluza-reconstruction": "MIT"
+    "https://github.com/jimpeebles/rainich-kaluza-reconstruction": "MIT",
+    "https://github.com/TJC-LP/goemans": "MIT",
+    "https://github.com/innerlightr-wq/eoc-lean-verification": "Apache-2.0",
+    "https://github.com/savarin/lean-spectral-theory": "Apache-2.0"
   },
   "corpora": {
     "equational-theories": {
@@ -3279,6 +3285,29 @@
       "commit": "33a5fc9ae279c1cc5b0dad9b6517d2d026c7cc54",
       "roots": [
         "RainichKaluza"
+      ]
+    },
+    "goemans": {
+      "repo": "https://github.com/TJC-LP/goemans",
+      "commit": "45d8ef778c8c68a3f0bf54f2382c295bef407444",
+      "roots": [
+        "Goemans"
+      ]
+    },
+    "eoc-lean-verification": {
+      "repo": "https://github.com/innerlightr-wq/eoc-lean-verification",
+      "commit": "6057a0d519566a32fc4153a8920e93f18d70b064",
+      "roots": [
+        "EOC"
+      ]
+    },
+    "lean-spectral-theory": {
+      "repo": "https://github.com/savarin/lean-spectral-theory",
+      "commit": "d19e279f0ab244657f02ce678e8d67fa69e2f407",
+      "roots": [
+        "Spectral",
+        "SpectralStoneChallenge",
+        "SpectralStoneSolution"
       ]
     }
   },
