@@ -47,27 +47,37 @@ noncomputable def li2 : ℝ := ∫ t in (0:ℝ)..1, g t
 
 /-! ### Basic Properties -/
 
-/-- The integrand g(t) equals 1/log(1+t) + 1/log(1-t) -/
+/-- The integrand g(t) equals 1/log(1+t) + 1/log(1-t)
+@isnad1 id=eq.0h1v.s6.817767077a91 from=translated src=- shape=a11f9cec vocab=0d838692
+-/
 theorem g_eq (t : ℝ) : g t = 1 / Real.log (1 + t) + 1 / Real.log (1 - t) := rfl
 
-/-- g(t) has an alternative form: log(1-t²)/(log(1+t)·log(1-t)) -/
+/-- g(t) has an alternative form: log(1-t²)/(log(1+t)·log(1-t))
+@isnad1 id=eq.2h1v.s6.1218866983a4 from=translated src=- shape=a65ca507 vocab=e4d79c12
+-/
 theorem g_alt (t : ℝ) (ht_pos : 0 < t) (ht_lt : t < 1) :
     g t = Real.log (1 - t^2) / (Real.log (1 + t) * Real.log (1 - t)) :=
   symmetricLogCombination_alt t ht_pos ht_lt
 
-/-- g(t) → 1 as t → 0⁺ (the removable singularity) -/
+/-- g(t) → 1 as t → 0⁺ (the removable singularity)
+@isnad1 id=tendsto.0h0v.s5.e4b0724831a7 from=translated src=- shape=7068697d vocab=c57828a9
+-/
 theorem g_tendsto_one :
     Filter.Tendsto g (nhdsWithin 0 (Set.Ioi 0)) (nhds 1) :=
   symmetricLogCombination_tendsto_one
 
-/-- |g(t)| ≤ 2 for t ∈ (0, 1/2] -/
+/-- |g(t)| ≤ 2 for t ∈ (0, 1/2]
+@isnad1 id=le.2h1v.s5.8b4803b5faae from=translated src=- shape=e15ba7a2 vocab=eb1a25f4
+-/
 theorem g_bounded (t : ℝ) (ht_pos : 0 < t) (ht_le : t < 1/2) :
     |g t| ≤ 2 :=
   symmetricLogCombination_bounded t ht_pos ht_le
 
 /-! ### Positivity and Global Upper Bound -/
 
-/-- g(t) > 0 for t ∈ (0, 1). -/
+/-- g(t) > 0 for t ∈ (0, 1).
+@isnad1 id=lt.2h1v.s5.373397bcf848 from=translated src=- shape=05b24c01 vocab=c2c2bd3a
+-/
 theorem g_pos (t : ℝ) (ht_pos : 0 < t) (ht_lt : t < 1) : 0 < g t := by
   have h1mt2_pos : 0 < 1 - t^2 := by nlinarith [sq_nonneg t]
   have h1mt2_lt1 : 1 - t^2 < 1 := by nlinarith [sq_nonneg t, ht_lt]
@@ -84,7 +94,9 @@ theorem g_pos (t : ℝ) (ht_pos : 0 < t) (ht_lt : t < 1) : 0 < g t := by
     div_pos_of_neg_of_neg hlog1mt2_neg hdenom_neg
   simpa [g_alt t ht_pos ht_lt] using hpos
 
-/-- g(t) ≤ 2 for t ∈ (0, 1). -/
+/-- g(t) ≤ 2 for t ∈ (0, 1).
+@isnad1 id=le.2h1v.s5.bc0c32b365ee from=translated src=- shape=359dc2be vocab=1328ec65
+-/
 theorem g_le_two (t : ℝ) (ht_pos : 0 < t) (ht_lt : t < 1) : g t ≤ 2 := by
   have h1pt_pos : 0 < 1 + t := by linarith
   have h1mt_pos : 0 < 1 - t := by linarith
@@ -139,7 +151,9 @@ theorem g_le_two (t : ℝ) (ht_pos : 0 < t) (ht_lt : t < 1) : g t ≤ 2 := by
 
 /-! ### Integrability -/
 
-/-- g is integrable on [0, 1]. -/
+/-- g is integrable on [0, 1].
+@isnad1 id=interval.0h0v.s4.fcb3070a025c from=translated src=- shape=aefc7754 vocab=9d48d111
+-/
 theorem g_intervalIntegrable_full : IntervalIntegrable g volume (0:ℝ) 1 := by
   have hmeas : Measurable g := by
     have hlog1p : Measurable fun t : ℝ => Real.log (1 + t) :=
@@ -171,7 +185,9 @@ theorem g_intervalIntegrable_full : IntervalIntegrable g volume (0:ℝ) 1 := by
   have hab : (0:ℝ) ≤ 1 := by norm_num
   exact (intervalIntegrable_iff_integrableOn_Ioo_of_le (μ:=volume) (f:=g) hab).2 hInt_Ioo
 
-/-- g is integrable on any closed subinterval of (0, 1). -/
+/-- g is integrable on any closed subinterval of (0, 1).
+@isnad1 id=interval.3h2v.s5.ad214307ec19 from=translated src=- shape=f31221b2 vocab=ab481c52
+-/
 theorem g_intervalIntegrable (a b : ℝ) (ha_pos : 0 < a) (hb_lt : b < 1) (hab : a ≤ b) :
     IntervalIntegrable g volume a b := by
   have hmeas : Measurable g := by
@@ -206,7 +222,9 @@ theorem g_intervalIntegrable (a b : ℝ) (ha_pos : 0 < a) (hb_lt : b < 1) (hab :
 /-! ### Crude Bounds (Analytic) -/
 
 /-- Crude upper bound: li(2) ≤ 2.
-    This follows from g(t) ≤ 2 on (0, 1). -/
+    This follows from g(t) ≤ 2 on (0, 1).
+@isnad1 id=le.0h0v.s3.f20cfcb4ada4 from=translated src=- shape=ffdda526 vocab=ab62ee42
+-/
 theorem li2_upper_crude : li2 ≤ 2 := by
   have hInt := g_intervalIntegrable_full
   have hInt_const : IntervalIntegrable (fun _ : ℝ => (2:ℝ)) volume (0:ℝ) 1 :=
@@ -222,7 +240,9 @@ theorem li2_upper_crude : li2 ≤ 2 := by
     simp [intervalIntegral.integral_const]
   simpa [li2, hconst] using hle
 
-/-- li(2) > 0. -/
+/-- li(2) > 0.
+@isnad1 id=lt.0h0v.s3.3391baecffa5 from=translated src=- shape=ff3a10fc vocab=2a7ef2b4
+-/
 theorem li2_pos : 0 < li2 := by
   have hInt := g_intervalIntegrable_full
   have hpos : ∀ t ∈ Set.Ioo (0:ℝ) 1, 0 < g t := by

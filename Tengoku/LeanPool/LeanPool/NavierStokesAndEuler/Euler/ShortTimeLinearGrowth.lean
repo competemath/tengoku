@@ -22,6 +22,9 @@ open Set
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
+/--
+@isnad1 id=le.5h7v.s8.d43df0071437 from=translated src=- shape=55c9a7e3 vocab=d0590004
+-/
 theorem norm_le_two (T L : ℝ) (hL : 0 ≤ L)
     (f f' : ℝ → E)
     (hd : ∀ t ∈ Icc (0 : ℝ) T, HasDerivWithinAt f (f' t) (Icc (0 : ℝ) T) t)

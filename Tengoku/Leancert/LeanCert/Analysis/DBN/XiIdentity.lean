@@ -140,7 +140,9 @@ private theorem thetaMellin_change_integrand (z : ℂ) (u : ℝ) :
     ofReal_one, ofReal_ofNat, ofReal_exp, Complex.cos]
   ring_nf
 
-/-- The pole-subtracted completion in exactly the DBN cosine normalization. -/
+/-- The pole-subtracted completion in exactly the DBN cosine normalization.
+@isnad1 id=eq.0h1v.s6.7f98c0a210ac from=translated src=- shape=63ec5e81 vocab=5353cdae
+-/
 theorem completedRiemannZeta₀_eq_thetaCosIntegral (z : ℂ) :
     completedRiemannZeta₀ (1/2 + I*z/2) = 8 * thetaCosIntegral z := by
   let g := thetaMellinIntegrand (1/2 + I*z/2)
@@ -161,7 +163,9 @@ theorem completedRiemannZeta₀_eq_thetaCosIntegral (z : ℂ) :
   rw [hi]
   ring
 
-/-- Exact identity for the original heat integral, valid also at z = ±i. -/
+/-- Exact identity for the original heat integral, valid also at z = ±i.
+@isnad1 id=eq.0h1v.s3.f6ab0da3d369 from=translated src=- shape=0600d945 vocab=f6be0ba0
+-/
 theorem H_zero_eq_xiModel (z : ℂ) : H 0 z = xiModel z := by
   rw [H_zero_eq_thetaCosIntegral, xiModel, riemannXi, completedRiemannZeta₀_eq_thetaCosIntegral]
   have hI := Complex.I_sq
@@ -169,16 +173,23 @@ theorem H_zero_eq_xiModel (z : ℂ) : H 0 z = xiModel z := by
   simp [hI]
   ring
 
-/-- The classical normalization, with the entire pole-safe xi function. -/
+/-- The classical normalization, with the entire pole-safe xi function.
+@isnad1 id=eq.0h1v.s6.def0806d8659 from=translated src=- shape=c9aebc56 vocab=3e33e58f
+-/
 theorem H_zero_eq_riemannXi (z : ℂ) :
     H 0 z = riemannXi (1/2 + I*z/2) / 8 := H_zero_eq_xiModel z
 
-/-- The actual initial heat function has all its zeros in the closed unit strip. -/
+/-- The actual initial heat function has all its zeros in the closed unit strip.
+@isnad1 id=le.1h1v.s5.c1a4bafdb9fe from=translated src=- shape=3f3b3158 vocab=a701e030
+-/
 theorem H_zero_strip {z : ℂ} (hz : H 0 z = 0) : |z.im| ≤ 1 := by
   apply xiModel_zero_strip
   rw [← H_zero_eq_xiModel]
   exact hz
 
+/--
+@isnad1 id=ne.1h1v.s5.ac459043f09b from=translated src=- shape=1072bdc1 vocab=ef32494c
+-/
 theorem H_zero_ne_zero_of_one_lt_abs_im {z : ℂ} (hz : 1 < |z.im|) : H 0 z ≠ 0 :=
   fun h => (not_le_of_gt hz) (H_zero_strip h)
 

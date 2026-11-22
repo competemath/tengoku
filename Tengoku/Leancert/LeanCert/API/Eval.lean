@@ -63,7 +63,9 @@ theorems. -/
 def BoxEnvMem (rho : Nat → ℝ) (box : List IntervalRat) : Prop :=
   ∀ i, rho i ∈ box.getD i (IntervalRat.singleton 0)
 
-/-- Recover membership in an in-bounds box coordinate. -/
+/-- Recover membership in an in-bounds box coordinate.
+@isnad1 id=mem.2h3v.s5.7f7a71e90b6f from=translated src=- shape=28acfb12 vocab=5a31f8a9
+-/
 theorem BoxEnvMem.get {rho : Nat → ℝ} {box : List IntervalRat}
     (h : BoxEnvMem rho box) (i : Nat) (hi : i < box.length) :
     rho i ∈ box[i]'hi := by
@@ -92,7 +94,9 @@ def evalInterval (e : Expr) (box : List IntervalRat)
 /-- A successful public interval evaluation encloses the expression value.
 
 Coordinates beyond `box.length` are interpreted as zero, matching the
-evaluator's box-to-environment conversion. -/
+evaluator's box-to-environment conversion.
+@isnad1 id=mem.2h5v.s5.89dccdc82464 from=translated src=- shape=88d1312c vocab=f7790f7a
+-/
 theorem evalInterval_correct {e : Expr} {box : List IntervalRat}
     {options : EvalOptions} {outcome : IntervalOutcome}
     (hsuccess : evalInterval e box options = .ok outcome)
@@ -114,7 +118,9 @@ def evalInterval1 (e : Expr) (interval : IntervalRat)
   evalInterval e [interval] options
 
 /-- A successful one-dimensional evaluation encloses every value obtained by
-substituting a point from the input interval for `var 0`. -/
+substituting a point from the input interval for `var 0`.
+@isnad1 id=mem.2h5v.s5.8f2f3888092e from=translated src=- shape=b3ee2c9b vocab=f66ea79a
+-/
 theorem evalInterval1_correct {e : Expr} {interval : IntervalRat}
     {options : EvalOptions} {outcome : IntervalOutcome}
     (hsuccess : evalInterval1 e interval options = .ok outcome)

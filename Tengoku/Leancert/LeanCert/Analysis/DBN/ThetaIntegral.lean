@@ -50,6 +50,9 @@ private theorem theta_term_domination {u : ℝ} (hu : 0 ≤ u) (n : ℕ) :
   · simpa using mul_le_mul_of_nonneg_right h1 hp
   · nlinarith [mul_le_mul_of_nonneg_right h2 hp]
 
+/--
+@isnad1 id=le.1h1v.s4.b0061d3e8379 from=translated src=- shape=a9660fc2 vocab=7b995cd4
+-/
 theorem thetaPrimitive_norm_le_Phi {u : ℝ} (hu : 0 ≤ u) :
     ‖thetaPrimitive u‖ ≤ ‖Phi u‖ := by
   rw [thetaPrimitive_eq_tsum]
@@ -57,6 +60,9 @@ theorem thetaPrimitive_norm_le_Phi {u : ℝ} (hu : 0 ≤ u) :
     (((hasSum_thetaTerm u).summable.norm.tsum_le_tsum
       (fun n => (theta_term_domination hu n).1) (kernel_summable u)).trans (le_abs_self (Phi u)))
 
+/--
+@isnad1 id=le.1h1v.s6.027dcf397e99 from=translated src=- shape=ca9f4160 vocab=ca006135
+-/
 theorem deriv_thetaPrimitive_norm_le_Phi {u : ℝ} (hu : 0 ≤ u) :
     ‖deriv thetaPrimitive u‖ ≤ 2 * ‖Phi u‖ := by
   rw [deriv_thetaPrimitive]
@@ -84,6 +90,9 @@ private theorem trig_sin_bound (z : ℂ) {u : ℝ} (hu : 0 ≤ u) :
   simpa [Complex.sub_im, Complex.mul_im, abs_mul, abs_of_nonneg hu] using
     norm_cos_le_exp_abs_im (z*(u : ℂ)-Real.pi/2)
 
+/--
+@isnad1 id=le.1h2v.s5.a9074af12487 from=translated src=- shape=869a2ed1 vocab=71c80a49
+-/
 theorem thetaCosIntegrand_bound (z : ℂ) {u : ℝ} (hu : 0 ≤ u) :
     ‖thetaCosIntegrand z u‖ ≤ heatMajorant 0 z * Real.exp (-u^2) := by
   have h := mul_le_mul (thetaPrimitive_norm_le_Phi hu) (trig_cos_bound z hu)
@@ -91,6 +100,9 @@ theorem thetaCosIntegrand_bound (z : ℂ) {u : ℝ} (hu : 0 ≤ u) :
   have hw := heat_weight_bound 0 z hu
   simpa [thetaCosIntegrand, norm_mul] using h.trans (by simpa using hw)
 
+/--
+@isnad1 id=integrab.0h1v.s5.591c9805908b from=translated src=- shape=f0b22433 vocab=9dd83260
+-/
 theorem thetaCosIntegrand_integrable (z : ℂ) :
     IntegrableOn (thetaCosIntegrand z) (Ioi 0) := by
   have hc : Continuous (thetaCosIntegrand z) := by
@@ -110,9 +122,15 @@ noncomputable def thetaBoundary (z : ℂ) (u : ℝ) : ℂ :=
   ((deriv thetaPrimitive u : ℝ) : ℂ) * Complex.cos (z*(u : ℂ)) +
     z * (thetaPrimitive u : ℂ) * Complex.sin (z*(u : ℂ))
 
+/--
+@isnad1 id=eq.0h1v.s5.6d9281d5d937 from=translated src=- shape=5947dde6 vocab=3d136f15
+-/
 theorem thetaBoundary_zero (z : ℂ) : thetaBoundary z 0 = -1/2 := by
   simp [thetaBoundary, hasDerivAt_thetaPrimitive_zero.deriv]
 
+/--
+@isnad1 id=le.1h2v.s6.7d4b82bf94f0 from=translated src=- shape=e09c62b5 vocab=28f63df1
+-/
 theorem thetaBoundary_bound (z : ℂ) {u : ℝ} (hu : 0 ≤ u) :
     ‖thetaBoundary z u‖ ≤ (2+‖z‖) * (heatMajorant 0 z * Real.exp (-u^2)) := by
   have h1 := mul_le_mul (deriv_thetaPrimitive_norm_le_Phi hu) (trig_cos_bound z hu)
@@ -129,6 +147,9 @@ theorem thetaBoundary_bound (z : ℂ) {u : ℝ} (hu : 0 ≤ u) :
   nlinarith [mul_le_mul_of_nonneg_left h2 (norm_nonneg z),
     mul_le_mul_of_nonneg_left hw (norm_nonneg z)]
 
+/--
+@isnad1 id=tendsto.0h1v.s4.93b57315ac6d from=translated src=- shape=e0462002 vocab=e17e6f01
+-/
 theorem thetaBoundary_tendsto_zero (z : ℂ) : Tendsto (thetaBoundary z) atTop (𝓝 0) := by
   have hg : Tendsto (fun u : ℝ => Real.exp (-u^2)) atTop (𝓝 0) :=
     Real.tendsto_exp_atBot.comp (tendsto_neg_atTop_atBot.comp (tendsto_pow_atTop two_ne_zero))
@@ -136,6 +157,9 @@ theorem thetaBoundary_tendsto_zero (z : ℂ) : Tendsto (thetaBoundary z) atTop (
   filter_upwards [eventually_ge_atTop (0 : ℝ)] with u hu
   exact thetaBoundary_bound z hu
 
+/--
+@isnad1 id=hasderiv.0h2v.s7.039ff11f21a2 from=translated src=- shape=4301b49d vocab=c3fff25f
+-/
 theorem hasDerivAt_thetaBoundary (z : ℂ) (u : ℝ) :
     HasDerivAt (thetaBoundary z)
       (8 * heatIntegrand 0 z u + (1+z^2)*thetaCosIntegrand z u) u := by
@@ -152,7 +176,9 @@ theorem hasDerivAt_thetaBoundary (z : ℂ) (u : ℝ) :
     Complex.ofRealCLM_apply, Complex.ofReal_one, mul_one]
   ring
 
-/-- Exact identity for the actual H_0 integral, with its nonzero endpoint term. -/
+/-- Exact identity for the actual H_0 integral, with its nonzero endpoint term.
+@isnad1 id=eq.0h1v.s6.d40fa103f7bc from=translated src=- shape=998184db vocab=5cb8fafb
+-/
 theorem H_zero_eq_thetaCosIntegral (z : ℂ) :
     H 0 z = 1/16 - (z^2+1)*thetaCosIntegral z/8 := by
   have hi := ((heatIntegrand_integrable 0 z).const_mul (8 : ℂ)).add
@@ -167,11 +193,16 @@ theorem H_zero_eq_thetaCosIntegral (z : ℂ) :
   change 8 * H 0 z + (1+z^2)*thetaCosIntegral z = 0 - (-1/2) at h
   linear_combination h / 8
 
-/-- An exact value of the actual heat integral at an initial-strip endpoint. -/
+/-- An exact value of the actual heat integral at an initial-strip endpoint.
+@isnad1 id=eq.0h0v.s5.a0efd929e3e3 from=translated src=- shape=63c0f1ba vocab=75ead773
+-/
 theorem H_zero_I : H 0 Complex.I = 1/16 := by
   rw [H_zero_eq_thetaCosIntegral]
   norm_num [Complex.I_sq]
 
+/--
+@isnad1 id=eq.0h0v.s5.bff2c3dacd52 from=translated src=- shape=5f6c407e vocab=d7801728
+-/
 theorem H_zero_neg_I : H 0 (-Complex.I) = 1/16 := by
   rw [H_zero_eq_thetaCosIntegral]
   norm_num [Complex.I_sq]

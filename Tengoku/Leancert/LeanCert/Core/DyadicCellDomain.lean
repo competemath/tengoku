@@ -45,12 +45,21 @@ instance : CertifiedCellDomain IntervalDyadic ℝ where
     rw [width_toRat]
     exact sub_nonneg.mpr I.le
 
+/--
+@isnad1 id=eq.0h1v.s4.59e9c28e5088 from=translated src=- shape=6f9c056a vocab=baec08e3
+-/
 @[simp] theorem certifiedCell_children (I : IntervalDyadic) :
     CertifiedCellDomain.children I = [I.bisect.1, I.bisect.2] := rfl
 
+/--
+@isnad1 id=iff.0h2v.s4.dc99c9fc6921 from=translated src=- shape=baee052f vocab=e984e716
+-/
 @[simp] theorem certifiedCell_contains (I : IntervalDyadic) (x : ℝ) :
     CertifiedCellDomain.contains I x ↔ x ∈ I := Iff.rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.735dd11eb0b6 from=translated src=- shape=9254ed94 vocab=4a2d5edd
+-/
 @[simp] theorem certifiedCell_diameter (I : IntervalDyadic) :
     CertifiedCellDomain.diameter I = I.width.toRat := rfl
 

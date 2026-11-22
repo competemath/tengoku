@@ -36,7 +36,9 @@ Orbitwise circle inequalities lifted to a fixed product annulus.
 Scaffolding notes: `ScaffoldingNotes/Circle/product_annulus_circle.md`.
 -/
 
-/-- Reverse-triangle comparison for modulus defects. -/
+/-- Reverse-triangle comparison for modulus defects.
+@isnad1 id=le.0h3v.s5.e4421967dfef from=translated src=- shape=69d66a93 vocab=3cb63ea3
+-/
 theorem rhoPointwise
     (a u v : ℂ) :
     rho a u ≤ rho a v + ‖u - v‖ := by
@@ -55,7 +57,9 @@ theorem rhoPointwise
     _ ≤ ‖u - v‖ + |B| := by gcongr
     _ = rho a v + ‖u - v‖ := by simp [rho, B, add_comm]
 
-/-- Quadratic defect comparison derived from `rhoPointwise`. -/
+/-- Quadratic defect comparison derived from `rhoPointwise`.
+@isnad1 id=le.0h3v.s6.84d0c9d12deb from=translated src=- shape=2a3590cf vocab=9d38de1a
+-/
 theorem rhoPointwiseSq
     (a u v : ℂ) :
     rho a u ^ 2 ≤ 2 * rho a v ^ 2 + 2 * ‖u - v‖ ^ 2 := by

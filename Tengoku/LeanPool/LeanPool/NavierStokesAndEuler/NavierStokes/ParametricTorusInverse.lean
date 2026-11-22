@@ -81,24 +81,42 @@ noncomputable def inverse (d : Direction) (f : Source) (z : Point) : ℂ :=
 noncomputable def iterateInverse (d : Direction) (n : ℕ) (f : Source) : Source :=
   (inverse d)^[n] f
 
+/--
+@isnad1 id=eq.0h2v.s6.2b3882ac8a37 from=translated src=- shape=e1fda60e vocab=66e930ed
+-/
 theorem mean_eq_integral (f : Source) (p : ℝ) :
     mean f p = ∫ y in (0 : ℝ)..1, ∫ x in (0 : ℝ)..1, f (p, (x, y)) :=
   SmoothFourierData.coefficient_zero_eq_integral _
 
+/--
+@isnad1 id=contdiff.1h2v.s7.a8404e87d6aa from=translated src=- shape=9e1b7104 vocab=ef5ee413
+-/
 theorem slice_smooth {f : Source} (hf : ContDiff ℝ ∞ f) (p : ℝ) :
     ContDiff ℝ ∞ (slice f p) :=
   hf.comp (contDiff_const.prodMk contDiff_id)
 
+/--
+@isnad1 id=contdiff.1h2v.s9.4622e9c0fb0e from=translated src=- shape=c4a86728 vocab=d697d8aa
+-/
 theorem fixedPartial_smooth {f : Source} (hf : ContDiff ℝ ∞ f) (v : Point) :
     ContDiff ℝ ∞ (fun z => fderiv ℝ f z v) :=
   (ContinuousLinearMap.apply ℝ ℂ v).contDiff.comp (hf.fderiv_right (by simp))
 
+/--
+@isnad1 id=contdiff.1h1v.s7.ec1c8f67c017 from=translated src=- shape=0dd33416 vocab=fdb015cf
+-/
 theorem parameterPartial_smooth {f : Source} (hf : ContDiff ℝ ∞ f) :
     ContDiff ℝ ∞ (parameterPartial f) := fixedPartial_smooth hf (1, 0)
 
+/--
+@isnad1 id=contdiff.1h1v.s7.32011ffe2495 from=translated src=- shape=0dd33416 vocab=0a731ea1
+-/
 theorem torusXPartial_smooth {f : Source} (hf : ContDiff ℝ ∞ f) :
     ContDiff ℝ ∞ (torusXPartial f) := fixedPartial_smooth hf (0, (1, 0))
 
+/--
+@isnad1 id=periodic.1h2v.s9.5a3d3c5ccb0c from=translated src=- shape=38584e71 vocab=1bd52254
+-/
 theorem fixedPartial_periodic {f : Source} (hp : Periodic f) (v : Point) :
     Periodic (fun z => fderiv ℝ f z v) := by
   intro p Y k
@@ -111,18 +129,30 @@ theorem fixedPartial_periodic {f : Source} (hp : Periodic f) (v : Point) :
   simpa only [slice, Prod.mk_add_mk, add_zero] using
     congrArg (fun L : Point →L[ℝ] ℂ => L v) hd
 
+/--
+@isnad1 id=periodic.1h1v.s3.9beb4b884acf from=translated src=- shape=2c86d966 vocab=ad71dced
+-/
 theorem parameterPartial_periodic {f : Source} (hp : Periodic f) :
     Periodic (parameterPartial f) := fixedPartial_periodic hp (1, 0)
 
+/--
+@isnad1 id=periodic.1h1v.s3.8a9e5ff30d58 from=translated src=- shape=2c86d966 vocab=1c2afe07
+-/
 theorem torusXPartial_periodic {f : Source} (hp : Periodic f) :
     Periodic (torusXPartial f) := fixedPartial_periodic hp (0, (1, 0))
 
+/--
+@isnad1 id=contdiff.1h2v.s7.ea4dc8b92659 from=translated src=- shape=a00f997a vocab=744fb03b
+-/
 theorem torusXJet_smooth {f : Source} (hf : ContDiff ℝ ∞ f) (n : ℕ) :
     ContDiff ℝ ∞ (torusXJet n f) := by
   induction n with
   | zero => exact hf
   | succ n ih => exact torusXPartial_smooth ih
 
+/--
+@isnad1 id=contdiff.1h2v.s7.4261ad571a38 from=translated src=- shape=a00f997a vocab=a654fa81
+-/
 theorem parameterJet_smooth {f : Source} (hf : ContDiff ℝ ∞ f) (n : ℕ) :
     ContDiff ℝ ∞ (parameterJet n f) := by
   induction n with
@@ -131,6 +161,9 @@ theorem parameterJet_smooth {f : Source} (hf : ContDiff ℝ ∞ f) (n : ℕ) :
       rw [parameterJet, Function.iterate_succ_apply']
       exact parameterPartial_smooth ih
 
+/--
+@isnad1 id=periodic.1h2v.s3.0b926b7fd8ab from=translated src=- shape=f56d9504 vocab=d4d8871f
+-/
 theorem parameterJet_periodic {f : Source} (hp : Periodic f) (n : ℕ) :
     Periodic (parameterJet n f) := by
   induction n with
@@ -139,28 +172,43 @@ theorem parameterJet_periodic {f : Source} (hp : Periodic f) (n : ℕ) :
       rw [parameterJet, Function.iterate_succ_apply']
       exact parameterPartial_periodic ih
 
+/--
+@isnad1 id=contdiff.1h1v.s7.2a2f38d1a714 from=translated src=- shape=0dd33416 vocab=7db101cd
+-/
 theorem swapTorus_smooth {f : Source} (hf : ContDiff ℝ ∞ f) :
     ContDiff ℝ ∞ (swapTorus f) :=
   hf.comp (contDiff_fst.prodMk (contDiff_snd.snd.prodMk contDiff_snd.fst))
 
+/--
+@isnad1 id=hasderiv.1h3v.s7.77e419c96dff from=translated src=- shape=6e312fef vocab=8c45a3ac
+-/
 theorem parameter_slice_hasDerivAt {f : Source} (hf : ContDiff ℝ ∞ f)
     (p : ℝ) (Y : Plane) :
     HasDerivAt (fun q => f (q, Y)) (parameterPartial f (p, Y)) p := by
   exact ((hf.differentiable (by simp)) (p, Y)).hasFDerivAt.comp_hasDerivAt p
     ((hasDerivAt_id p).prodMk (hasDerivAt_const p Y))
 
+/--
+@isnad1 id=hasfderi.1h3v.s9.8e9257d55507 from=translated src=- shape=6bb44296 vocab=b3dbc69e
+-/
 theorem slice_hasFDerivAt {f : Source} (hf : ContDiff ℝ ∞ f) (p : ℝ) (Y : Plane) :
     HasFDerivAt (slice f p)
       ((fderiv ℝ f (p, Y)).comp (ContinuousLinearMap.inr ℝ ℝ Plane)) Y := by
   exact ((hf.differentiable (by simp)) (p, Y)).hasFDerivAt.comp Y
     ((hasFDerivAt_const p Y).prodMk (hasFDerivAt_id Y))
 
+/--
+@isnad1 id=eq.1h2v.s6.0ca7f57acf9c from=translated src=- shape=c9302617 vocab=5d5a77d9
+-/
 theorem slice_torusXPartial {f : Source} (hf : ContDiff ℝ ∞ f) (p : ℝ) :
     slice (torusXPartial f) p = SmoothFourierData.partialX (slice f p) := by
   funext Y
   symm
   exact congrArg (fun L : Plane →L[ℝ] ℂ => L (1, 0)) (slice_hasFDerivAt hf p Y).fderiv
 
+/--
+@isnad1 id=eq.1h3v.s6.a709326ce218 from=translated src=- shape=2a058df4 vocab=1c4a6607
+-/
 theorem slice_torusXJet {f : Source} (hf : ContDiff ℝ ∞ f) (n : ℕ) (p : ℝ) :
     slice (torusXJet n f) p = SmoothFourierData.xJet n (slice f p) := by
   induction n with
@@ -169,18 +217,29 @@ theorem slice_torusXJet {f : Source} (hf : ContDiff ℝ ∞ f) (n : ℕ) (p : �
       rw [torusXJet, slice_torusXPartial (torusXJet_smooth hf n),
         SmoothFourierData.xJet_succ, ih]
 
+/--
+@isnad1 id=eq.0h2v.s4.893e78465645 from=translated src=- shape=4346f55c vocab=3126c774
+-/
 theorem kernel_eq_mode (k : Frequency) (Y : Plane) :
     SmoothFourierData.kernel k Y = mode (-k) Y := by
   rw [mode_eq_torusMode]
   rfl
 
+/--
+@isnad1 id=contdiff.0h1v.s6.ad7a8d6cf283 from=translated src=- shape=cefd6c4b vocab=9f1dfddd
+-/
 theorem mode_smooth (k : Frequency) : ContDiff ℝ ∞ (mode k) :=
   Complex.contDiff_exp.comp (phase k).contDiff
 
+/--
+@isnad1 id=contdiff.0h1v.s6.8b8c6a23e01c from=translated src=- shape=cefd6c4b vocab=34bf3ecc
+-/
 theorem kernel_smooth (k : Frequency) : ContDiff ℝ ∞ (SmoothFourierData.kernel k) := by
   simpa only [funext (kernel_eq_mode k)] using mode_smooth (-k)
 
-/-- Differentiation of an actual fixed-interval integral. -/
+/-- Differentiation of an actual fixed-interval integral.
+@isnad1 id=hasderiv.2h5v.s8.a6b0eb023a61 from=translated src=- shape=4d35e40e vocab=e397643e
+-/
 theorem integral_hasDerivAt {g g' : ℝ × ℝ → ℂ} (hg : ContDiff ℝ ∞ g)
     (hd : ∀ p u, HasDerivAt (fun q => g (q, u)) (g' (p, u)) p)
     (a b p : ℝ) :
@@ -201,11 +260,17 @@ q.1.2))`. -/
 noncomputable def weightedSource (k : Frequency) (f : Source) (q : (ℝ × ℝ) × ℝ) : ℂ :=
   SmoothFourierData.kernel k (q.2, q.1.2) * f (q.1.1, (q.2, q.1.2))
 
+/--
+@isnad1 id=contdiff.1h2v.s7.4839192d2f2c from=translated src=- shape=3d44262d vocab=a8505a99
+-/
 theorem weightedSource_smooth {f : Source} (hf : ContDiff ℝ ∞ f) (k : Frequency) :
     ContDiff ℝ ∞ (weightedSource k f) :=
   ((kernel_smooth k).comp (contDiff_snd.prodMk contDiff_fst.snd)).mul
     (hf.comp (contDiff_fst.fst.prodMk (contDiff_snd.prodMk contDiff_fst.snd)))
 
+/--
+@isnad1 id=contdiff.1h2v.s7.52584d489082 from=translated src=- shape=f1b51f52 vocab=45eb3bab
+-/
 theorem coefficient_smooth {f : Source} (hf : ContDiff ℝ ∞ f) (k : Frequency) :
     ContDiff ℝ ∞ (fun p => coefficient f p k) := by
   have hi := TransportPrimitive.parameterIntegral_contDiff (weightedSource_smooth hf k)
@@ -214,6 +279,9 @@ theorem coefficient_smooth {f : Source} (hf : ContDiff ℝ ∞ f) (k : Frequency
   simpa only [coefficient, SmoothFourierData.coefficient_eq_doubleIntegral, weightedSource,
     slice] using ho
 
+/--
+@isnad1 id=hasderiv.1h3v.s7.84f5acac1028 from=translated src=- shape=c6388f87 vocab=f64764bc
+-/
 theorem coefficient_hasDerivAt {f : Source} (hf : ContDiff ℝ ∞ f)
     (k : Frequency) (p : ℝ) :
     HasDerivAt (fun q => coefficient f q k) (coefficient (parameterPartial f) p k) p := by
@@ -237,6 +305,9 @@ theorem coefficient_hasDerivAt {f : Source} (hf : ContDiff ℝ ∞ f)
   simpa only [coefficient, SmoothFourierData.coefficient_eq_doubleIntegral, slice,
     inner, innerD, weightedSource] using ho
 
+/--
+@isnad1 id=zeromean.2h1v.s6.927721a6a867 from=translated src=- shape=63e3a1b9 vocab=4c8bbda0
+-/
 theorem parameterPartial_zeroMean {f : Source} (hf : ContDiff ℝ ∞ f)
     (hm : ZeroMean f) : ZeroMean (parameterPartial f) := by
   intro p
@@ -246,7 +317,9 @@ theorem parameterPartial_zeroMean {f : Source} (hf : ContDiff ℝ ∞ f)
   exact hd.symm
 
 /-- Uniform polynomial decay on any fixed compact parameter interval,
-derived from bounds for actual torus derivatives. -/
+derived from bounds for actual torus derivatives.
+@isnad1 id=ex.2h4v.s7.5ff48ff84a9f from=translated src=- shape=b1715ee4 vocab=2200fa38
+-/
 theorem exists_uniform_coefficient_bound {f : Source} (hf : ContDiff ℝ ∞ f)
     (hp : Periodic f) (n : ℕ) (a b : ℝ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ p ∈ Icc a b, ∀ k,
@@ -285,6 +358,9 @@ noncomputable def multiplierX (m : Frequency → ℂ) (k : Frequency) : ℂ := f
 /-- Multiplier Y, given by `freqY k * m k`. -/
 noncomputable def multiplierY (m : Frequency → ℂ) (k : Frequency) : ℂ := freqY k * m k
 
+/--
+@isnad1 id=polynomi.1h1v.s3.97f6c90894b0 from=translated src=- shape=b6154235 vocab=693cee19
+-/
 theorem PolynomialGrowth.mulX {m : Frequency → ℂ} (hm : PolynomialGrowth m) :
     PolynomialGrowth (multiplierX m) := by
   obtain ⟨s, C, hC, hm⟩ := hm
@@ -297,6 +373,9 @@ theorem PolynomialGrowth.mulX {m : Frequency → ℂ} (hm : PolynomialGrowth m) 
       mul_le_mul (norm_freqX_le k) (hm k) (norm_nonneg _) (by positivity)
     _ = _ := by rw [pow_succ]; ring
 
+/--
+@isnad1 id=polynomi.1h1v.s3.6a77ab61daa0 from=translated src=- shape=b6154235 vocab=ed8f0575
+-/
 theorem PolynomialGrowth.mulY {m : Frequency → ℂ} (hm : PolynomialGrowth m) :
     PolynomialGrowth (multiplierY m) := by
   obtain ⟨s, C, hC, hm⟩ := hm
@@ -309,9 +388,15 @@ theorem PolynomialGrowth.mulY {m : Frequency → ℂ} (hm : PolynomialGrowth m) 
       mul_le_mul (norm_freqY_le k) (hm k) (norm_nonneg _) (by positivity)
     _ = _ := by rw [pow_succ]; ring
 
+/--
+@isnad1 id=polynomi.0h1v.s2.73b78f0348e4 from=translated src=- shape=76a08d12 vocab=ccb6102d
+-/
 theorem inverseMultiplier_growth (d : Direction) : PolynomialGrowth (multiplier d) :=
   ⟨1, 6 * ‖omega⁻¹‖, by positivity, fun k => by simpa using norm_multiplier_le d k⟩
 
+/--
+@isnad1 id=rapid.2h2v.s4.f3fae86ba51e from=translated src=- shape=9d4756f6 vocab=7e6c0f9a
+-/
 theorem PolynomialGrowth.rapid_mul {m a : Frequency → ℂ} (hm : PolynomialGrowth m)
     (ha : Rapid a) : Rapid (fun k => m k * a k) := by
   obtain ⟨s, C, hC, hm⟩ := hm
@@ -328,6 +413,9 @@ theorem PolynomialGrowth.rapid_mul {m a : Frequency → ℂ} (hm : PolynomialGro
       exact hm k
     _ = _ := by rw [pow_add]; ring
 
+/--
+@isnad1 id=le.3h6v.s7.f16a64cecfd3 from=translated src=- shape=6ab66d6f vocab=236a1901
+-/
 theorem multiplied_coeff_bound {m a : Frequency → ℂ} {s : ℕ} {C B : ℝ}
     (hC : 0 ≤ C) (hm : ∀ k, ‖m k‖ ≤ C * weight k ^ s)
     (ha : ∀ k, weight k ^ (s + 4) * ‖a k‖ ≤ B) (k : Frequency) :
@@ -343,6 +431,9 @@ theorem multiplied_coeff_bound {m a : Frequency → ℂ} {s : ℕ} {C B : ℝ}
     _ = C * (weight k ^ (s + 4) * ‖a k‖) := by rw [pow_add]; ring
     _ ≤ C * B := mul_le_mul_of_nonneg_left (ha k) hC
 
+/--
+@isnad1 id=ex.3h4v.s7.17159f138c1f from=translated src=- shape=1a735b73 vocab=092cf51d
+-/
 theorem uniform_multiplied_coeff_bound {m : Frequency → ℂ} (hm : PolynomialGrowth m)
     {f : Source} (hf : ContDiff ℝ ∞ f) (hp : Periodic f) (a b : ℝ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ p ∈ Icc a b, ∀ k,
@@ -355,9 +446,15 @@ theorem uniform_multiplied_coeff_bound {m : Frequency → ℂ} (hm : PolynomialG
 noncomputable def applyMultiplier (m : Frequency → ℂ) (f : Source) (z : Point) : ℂ :=
   series (fun k => m k * coefficient f z.1 k) z.2
 
+/--
+@isnad1 id=eq.0h2v.s3.13dce89d7f0f from=translated src=- shape=aea9d4b7 vocab=79057bd8
+-/
 theorem inverse_eq_applyMultiplier (d : Direction) (f : Source) :
     inverse d f = applyMultiplier (multiplier d) f := rfl
 
+/--
+@isnad1 id=rapid.3h3v.s6.a13207018ca1 from=translated src=- shape=7b6b8ec9 vocab=1c964843
+-/
 theorem multiplied_coeff_rapid {m : Frequency → ℂ} (hm : PolynomialGrowth m)
     {f : Source} (hf : ContDiff ℝ ∞ f) (hp : Periodic f) (p : ℝ) :
     Rapid (fun k => m k * coefficient f p k) :=
@@ -382,8 +479,17 @@ noncomputable def jointLiftX : ℂ →L[ℝ] (Point →L[ℝ] ℂ) :=
 noncomputable def jointLiftY : ℂ →L[ℝ] (Point →L[ℝ] ℂ) :=
   ContinuousLinearMap.smulRightL ℝ Point ℂ jointDY
 
+/--
+@isnad1 id=eq.0h2v.s10.df7770352c4e from=translated src=- shape=5862519b vocab=660269c2
+-/
 @[simp] theorem jointLiftP_apply (c : ℂ) (v : Point) : jointLiftP c v = v.1 • c := rfl
+/--
+@isnad1 id=eq.0h2v.s10.42823942c57b from=translated src=- shape=169533ed vocab=dc3f4c54
+-/
 @[simp] theorem jointLiftX_apply (c : ℂ) (v : Point) : jointLiftX c v = v.2.1 • c := rfl
+/--
+@isnad1 id=eq.0h2v.s10.44da6b887e60 from=translated src=- shape=7b3c705c vocab=39d0740b
+-/
 @[simp] theorem jointLiftY_apply (c : ℂ) (v : Point) : jointLiftY c v = v.2.2 • c := rfl
 
 /-- Multiplier term derivative, constructed using `jointLiftP`. -/
@@ -393,6 +499,9 @@ noncomputable def multiplierTermDerivative (m : Frequency → ℂ) (f : Source)
   jointLiftX (multiplierX m k * coefficient f z.1 k * mode k z.2) +
   jointLiftY (multiplierY m k * coefficient f z.1 k * mode k z.2)
 
+/--
+@isnad1 id=hasfderi.1h4v.s7.20661c16c612 from=translated src=- shape=319e4247 vocab=06c2e7ff
+-/
 theorem hasFDerivAt_multiplierTerm {f : Source} (hf : ContDiff ℝ ∞ f)
     (m : Frequency → ℂ) (k : Frequency) (z : Point) :
     HasFDerivAt (fun w : Point => m k * coefficient f w.1 k * mode k w.2)
@@ -421,6 +530,9 @@ theorem hasFDerivAt_multiplierTerm {f : Source} (hf : ContDiff ℝ ∞ f)
   rw [hd]
   exact (hc.const_mul (m k)).mul he
 
+/--
+@isnad1 id=le.0h4v.s11.0f89390a8429 from=translated src=- shape=fb79975b vocab=9784a94d
+-/
 theorem norm_multiplierTermDerivative_le (m : Frequency → ℂ) (f : Source)
     (k : Frequency) (z : Point) :
     ‖multiplierTermDerivative m f k z‖ ≤
@@ -439,6 +551,9 @@ theorem norm_multiplierTermDerivative_le (m : Frequency → ℂ) (f : Source)
   · simpa only [norm_mul, norm_mode, mul_one] using
       jointLiftY.le_opNorm (multiplierY m k * coefficient f z.1 k * mode k z.2)
 
+/--
+@isnad1 id=ex.3h4v.s8.ced9a9675b6f from=translated src=- shape=5a61a013 vocab=a620c274
+-/
 theorem uniform_multiplierDerivative_bound {m : Frequency → ℂ} (hm : PolynomialGrowth m)
     {f : Source} (hf : ContDiff ℝ ∞ f) (hp : Periodic f) (a b : ℝ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ z : Point, z.1 ∈ Icc a b → ∀ k,
@@ -460,6 +575,9 @@ theorem uniform_multiplierDerivative_bound {m : Frequency → ℂ} (hm : Polynom
       · exact hY z.1 hz k
     _ = _ := by ring
 
+/--
+@isnad1 id=hasfderi.3h3v.s9.a2b8ca7fe0d3 from=translated src=- shape=ec0a0049 vocab=93298235
+-/
 theorem hasFDerivAt_applyMultiplier {m : Frequency → ℂ} (hm : PolynomialGrowth m)
     {f : Source} (hf : ContDiff ℝ ∞ f) (hp : Periodic f) (z : Point) :
     HasFDerivAt (applyMultiplier m f) (∑' k, multiplierTermDerivative m f k z) z := by
@@ -482,6 +600,9 @@ theorem hasFDerivAt_applyMultiplier {m : Frequency → ℂ} (hm : PolynomialGrow
     (summable_terms (multiplied_coeff_rapid hm hf hp z.1) z.2)
     (Metric.mem_ball_self (by norm_num : (0 : ℝ) < 1))
 
+/--
+@isnad1 id=eq.3h3v.s12.6fc7c6514461 from=translated src=- shape=068a9694 vocab=9472e276
+-/
 theorem fderiv_applyMultiplier {m : Frequency → ℂ} (hm : PolynomialGrowth m)
     {f : Source} (hf : ContDiff ℝ ∞ f) (hp : Periodic f) (z : Point) :
     fderiv ℝ (applyMultiplier m f) z =
@@ -501,7 +622,9 @@ theorem fderiv_applyMultiplier {m : Frequency → ℂ} (hm : PolynomialGrowth m)
   rfl
 
 /-- Joint smoothness is derived from actual locally uniform Fourier
-differentiation, allowing arbitrary polynomially growing multipliers. -/
+differentiation, allowing arbitrary polynomially growing multipliers.
+@isnad1 id=contdiff.3h3v.s7.e5a0203a0e1c from=translated src=- shape=c4ee6214 vocab=647c996f
+-/
 theorem applyMultiplier_smooth_nat (n : ℕ) {m : Frequency → ℂ} (hm : PolynomialGrowth m)
     {f : Source} (hf : ContDiff ℝ ∞ f) (hp : Periodic f) :
     ContDiff ℝ n (applyMultiplier m f) := by
@@ -524,15 +647,24 @@ theorem applyMultiplier_smooth_nat (n : ℕ) {m : Frequency → ℂ} (hm : Polyn
         (jointLiftX.contDiff.comp (ih hm.mulX hf hp))).add
         (jointLiftY.contDiff.comp (ih hm.mulY hf hp))
 
+/--
+@isnad1 id=contdiff.3h2v.s7.32081c29eb2a from=translated src=- shape=774723a6 vocab=53301914
+-/
 theorem applyMultiplier_smooth {m : Frequency → ℂ} (hm : PolynomialGrowth m)
     {f : Source} (hf : ContDiff ℝ ∞ f) (hp : Periodic f) :
     ContDiff ℝ ∞ (applyMultiplier m f) :=
   contDiff_infty.mpr (fun n => applyMultiplier_smooth_nat n hm hf hp)
 
+/--
+@isnad1 id=contdiff.2h2v.s7.40e67e43f0cd from=translated src=- shape=c7da82ed vocab=cfe6313c
+-/
 theorem inverse_smooth (d : Direction) {f : Source} (hf : ContDiff ℝ ∞ f)
     (hp : Periodic f) : ContDiff ℝ ∞ (inverse d f) :=
   applyMultiplier_smooth (inverseMultiplier_growth d) hf hp
 
+/--
+@isnad1 id=eq.3h2v.s6.8d7fa83767cc from=translated src=- shape=574dd168 vocab=5e686087
+-/
 theorem parameterPartial_applyMultiplier {m : Frequency → ℂ} (hm : PolynomialGrowth m)
     {f : Source} (hf : ContDiff ℝ ∞ f) (hp : Periodic f) :
     parameterPartial (applyMultiplier m f) = applyMultiplier m (parameterPartial f) := by
@@ -540,15 +672,23 @@ theorem parameterPartial_applyMultiplier {m : Frequency → ℂ} (hm : Polynomia
   simp [parameterPartial, fderiv_applyMultiplier hm hf hp, jointLiftP_apply,
     jointLiftX_apply, jointLiftY_apply]
 
+/--
+@isnad1 id=eq.2h2v.s6.466fbfb47ca3 from=translated src=- shape=1f7be8d2 vocab=a4d97297
+-/
 theorem parameterPartial_inverse (d : Direction) {f : Source} (hf : ContDiff ℝ ∞ f)
     (hp : Periodic f) : parameterPartial (inverse d f) = inverse d (parameterPartial f) :=
   parameterPartial_applyMultiplier (inverseMultiplier_growth d) hf hp
 
+/--
+@isnad1 id=periodic.0h2v.s3.856cfe8105eb from=translated src=- shape=c57da3d9 vocab=93ab78d8
+-/
 theorem inverse_periodic (d : Direction) (f : Source) : Periodic (inverse d f) := by
   intro p Y k
   exact directionalInverse_periodic d (coefficient f p) Y k.1 k.2
 
-/-- The inverse has zero mean even if the input has a nonzero constant mode. -/
+/-- The inverse has zero mean even if the input has a nonzero constant mode.
+@isnad1 id=zeromean.2h2v.s6.0bca2aba1d21 from=translated src=- shape=09f1c011 vocab=26546a77
+-/
 theorem inverse_zeroMean (d : Direction) {f : Source} (hf : ContDiff ℝ ∞ f)
     (hp : Periodic f) : ZeroMean (inverse d f) := by
   intro p
@@ -568,7 +708,9 @@ noncomputable def directionalPartial (d : Direction) (f : Source) (z : Point) : 
   fderiv ℝ f z (0, vector d)
 
 /-- Exact inversion for the given function, with the derivative taken in the
-joint parameter--torus space. -/
+joint parameter--torus space.
+@isnad1 id=eq.3h2v.s6.3e79beca1943 from=translated src=- shape=add534d9 vocab=70c4d4d5
+-/
 theorem inverse_solves (d : Direction) {f : Source} (hf : ContDiff ℝ ∞ f)
     (hp : Periodic f) (hm : ZeroMean f) : directionalPartial d (inverse d f) = f := by
   funext z
@@ -581,6 +723,9 @@ theorem inverse_solves (d : Direction) {f : Source} (hf : ContDiff ℝ ∞ f)
     (slice_hasFDerivAt (inverse_smooth d hf hp) z.1 z.2).fderiv
   exact hd.symm.trans hz
 
+/--
+@isnad1 id=eq.2h5v.s6.7b9026ab86d1 from=translated src=- shape=c6a69163 vocab=6662ee04
+-/
 theorem inverse_preserves_parameter_support (d : Direction) (f : Source) (S : Set ℝ)
     (hs : ∀ p, p ∉ S → ∀ Y, f (p, Y) = 0) :
     ∀ p, p ∉ S → ∀ Y, inverse d f (p, Y) = 0 := by
@@ -589,12 +734,21 @@ theorem inverse_preserves_parameter_support (d : Direction) (f : Source) (S : Se
   simp only [coefficient, SmoothFourierData.coefficient_eq_doubleIntegral, slice,
     hs p hp, mul_zero, intervalIntegral.integral_zero]
 
+/--
+@isnad1 id=eq.0h1v.s3.1de91866f088 from=translated src=- shape=5b483ac0 vocab=9db48133
+-/
 @[simp] theorem parameterJet_zero (f : Source) : parameterJet 0 f = f := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.40a250f8fa45 from=translated src=- shape=442880ac vocab=cd008d6a
+-/
 theorem parameterJet_succ (n : ℕ) (f : Source) :
     parameterJet (n + 1) f = parameterPartial (parameterJet n f) :=
   Function.iterate_succ_apply' _ _ _
 
+/--
+@isnad1 id=zeromean.2h2v.s6.4c070559ae0f from=translated src=- shape=bcf78c8b vocab=f2cb292c
+-/
 theorem parameterJet_zeroMean {f : Source} (hf : ContDiff ℝ ∞ f)
     (hm : ZeroMean f) (n : ℕ) : ZeroMean (parameterJet n f) := by
   induction n with
@@ -603,7 +757,9 @@ theorem parameterJet_zeroMean {f : Source} (hf : ContDiff ℝ ∞ f)
       rw [parameterJet_succ]
       exact parameterPartial_zeroMean (parameterJet_smooth hf n) ih
 
-/-- All actual derivatives in the external parameter commute with inversion. -/
+/-- All actual derivatives in the external parameter commute with inversion.
+@isnad1 id=eq.2h3v.s6.8b195f7016f1 from=translated src=- shape=6a4875f9 vocab=ea670cb4
+-/
 theorem parameterJet_inverse (d : Direction) {f : Source} (hf : ContDiff ℝ ∞ f)
     (hp : Periodic f) (n : ℕ) :
     parameterJet n (inverse d f) = inverse d (parameterJet n f) := by
@@ -613,13 +769,22 @@ theorem parameterJet_inverse (d : Direction) {f : Source} (hf : ContDiff ℝ ∞
       rw [parameterJet_succ, ih, parameterPartial_inverse d (parameterJet_smooth hf n)
         (parameterJet_periodic hp n), parameterJet_succ]
 
+/--
+@isnad1 id=eq.0h2v.s3.e0ff540e21fd from=translated src=- shape=0e10026a vocab=ff526f58
+-/
 @[simp] theorem iterateInverse_zero (d : Direction) (f : Source) :
     iterateInverse d 0 f = f := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.536a36fd6b91 from=translated src=- shape=ed7a8b34 vocab=d5244113
+-/
 theorem iterateInverse_succ (d : Direction) (n : ℕ) (f : Source) :
     iterateInverse d (n + 1) f = inverse d (iterateInverse d n f) :=
   Function.iterate_succ_apply' _ _ _
 
+/--
+@isnad1 id=periodic.1h3v.s3.a124628aed7f from=translated src=- shape=a71d1bc4 vocab=36838e3d
+-/
 theorem iterateInverse_periodic (d : Direction) {f : Source} (hp : Periodic f)
     (n : ℕ) : Periodic (iterateInverse d n f) := by
   induction n with
@@ -628,6 +793,9 @@ theorem iterateInverse_periodic (d : Direction) {f : Source} (hp : Periodic f)
       rw [iterateInverse_succ]
       exact inverse_periodic d _
 
+/--
+@isnad1 id=contdiff.2h3v.s7.2da13771b751 from=translated src=- shape=8bc74408 vocab=d68f32b6
+-/
 theorem iterateInverse_smooth (d : Direction) {f : Source} (hf : ContDiff ℝ ∞ f)
     (hp : Periodic f) (n : ℕ) : ContDiff ℝ ∞ (iterateInverse d n f) := by
   induction n with
@@ -636,6 +804,9 @@ theorem iterateInverse_smooth (d : Direction) {f : Source} (hf : ContDiff ℝ �
       rw [iterateInverse_succ]
       exact inverse_smooth d ih (iterateInverse_periodic d hp n)
 
+/--
+@isnad1 id=zeromean.3h3v.s6.a52215b87d76 from=translated src=- shape=569e5f05 vocab=ba17525e
+-/
 theorem iterateInverse_zeroMean (d : Direction) {f : Source} (hf : ContDiff ℝ ∞ f)
     (hp : Periodic f) (hm : ZeroMean f) (n : ℕ) : ZeroMean (iterateInverse d n f) := by
   induction n with
@@ -645,6 +816,9 @@ theorem iterateInverse_zeroMean (d : Direction) {f : Source} (hf : ContDiff ℝ 
       exact inverse_zeroMean d (iterateInverse_smooth d hf hp n)
         (iterateInverse_periodic d hp n)
 
+/--
+@isnad1 id=eq.2h3v.s6.440a24589d14 from=translated src=- shape=044a6052 vocab=ce8cdb46
+-/
 theorem parameterPartial_iterateInverse (d : Direction) {f : Source}
     (hf : ContDiff ℝ ∞ f) (hp : Periodic f) (n : ℕ) :
     parameterPartial (iterateInverse d n f) = iterateInverse d n (parameterPartial f) := by
@@ -654,6 +828,9 @@ theorem parameterPartial_iterateInverse (d : Direction) {f : Source}
       rw [iterateInverse_succ, parameterPartial_inverse d (iterateInverse_smooth d hf hp n)
         (iterateInverse_periodic d hp n), ih, iterateInverse_succ]
 
+/--
+@isnad1 id=eq.2h4v.s6.c8a4c2874911 from=translated src=- shape=96a38964 vocab=7d7de584
+-/
 theorem parameterJet_iterateInverse (d : Direction) {f : Source}
     (hf : ContDiff ℝ ∞ f) (hp : Periodic f) (n q : ℕ) :
     parameterJet q (iterateInverse d n f) = iterateInverse d n (parameterJet q f) := by
@@ -663,6 +840,9 @@ theorem parameterJet_iterateInverse (d : Direction) {f : Source}
       rw [parameterJet_succ, ih, parameterPartial_iterateInverse d
         (parameterJet_smooth hf q) (parameterJet_periodic hp q), parameterJet_succ]
 
+/--
+@isnad1 id=eq.3h3v.s7.a543595bac2e from=translated src=- shape=6ac60760 vocab=675c672e
+-/
 theorem iterateInverse_solves (d : Direction) {f : Source} (hf : ContDiff ℝ ∞ f)
     (hp : Periodic f) (hm : ZeroMean f) (n : ℕ) :
     directionalPartial d (iterateInverse d (n + 1) f) = iterateInverse d n f := by
@@ -670,6 +850,9 @@ theorem iterateInverse_solves (d : Direction) {f : Source} (hf : ContDiff ℝ �
   exact inverse_solves d (iterateInverse_smooth d hf hp n)
     (iterateInverse_periodic d hp n) (iterateInverse_zeroMean d hf hp hm n)
 
+/--
+@isnad1 id=eq.2h6v.s6.ce94e19dce0e from=translated src=- shape=da6f3bc7 vocab=0e639c98
+-/
 theorem iterateInverse_preserves_parameter_support (d : Direction) (f : Source) (S : Set ℝ)
     (hs : ∀ p, p ∉ S → ∀ Y, f (p, Y) = 0) (n : ℕ) :
     ∀ p, p ∉ S → ∀ Y, iterateInverse d n f (p, Y) = 0 := by
@@ -690,13 +873,18 @@ noncomputable def mixedLossConstant (r : ℕ) : ℝ :=
   ((6 * ‖omega⁻¹‖) * ‖omega‖ ^ r) * 3 ^ (r + 5) *
     ∑' k : Frequency, (weight k ^ 4)⁻¹
 
+/--
+@isnad1 id=le.0h1v.s3.fbc2e6645a3e from=translated src=- shape=b9369acb vocab=b446cbe3
+-/
 theorem mixedLossConstant_nonneg (r : ℕ) : 0 ≤ mixedLossConstant r := by
   unfold mixedLossConstant
   positivity
 
 /-- Uniform finite loss: a mixed output jet with r torus derivatives requires
 only r+5 pure torus derivatives of the same parameter jet of the input.
-The constant is independent of the parameter set and the function. -/
+The constant is independent of the parameter set and the function.
+@isnad1 id=le.6h8v.s8.b81c3b363f68 from=translated src=- shape=8749c06c vocab=e8d15868
+-/
 theorem mixedJet_inverse_bound (d : Direction) {f : Source} (hf : ContDiff ℝ ∞ f)
     (hp : Periodic f) (q : ℕ) (w : List Bool) (S : Set ℝ) {C : ℝ}
     (hzero : ∀ p ∈ S, ∀ x ∈ Icc (0 : ℝ) 1, ∀ y ∈ Icc (0 : ℝ) 1,

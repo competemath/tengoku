@@ -43,21 +43,36 @@ mutual
     | t :: ts => tmul (coprodTree t) (coprodForest ts)
 end
 
+/--
+@isnad1 id=eq.0h1v.s4.46335393fac8 from=translated src=- shape=6a8a9b48 vocab=952a7dab
+-/
 @[simp] theorem _root_.CK.tmul_unit_left (y : Tens) : tmul [([], [])] y = y := by simp [tmul]
 
+/--
+@isnad1 id=eq.0h1v.s4.ca0fa85c856b from=translated src=- shape=df19ca4d vocab=952a7dab
+-/
 @[simp] theorem _root_.CK.tmul_unit_right (x : Tens) : tmul x [([], [])] = x := by
   induction x with
   | nil => rfl
   | cons a xs ih => obtain ⟨p, r⟩ := a; simp [tmul, List.append_nil]
 
+/--
+@isnad1 id=eq.0h3v.s5.eea6093d0952 from=translated src=- shape=2f6dc6a8 vocab=a376f847
+-/
 theorem _root_.CK.tmul_append_left (x₁ x₂ y : Tens) :
     tmul (x₁ ++ x₂) y = tmul x₁ y ++ tmul x₂ y := by simp [tmul, List.flatMap_append]
 
+/--
+@isnad1 id=eq.0h4v.s6.755e669bf20b from=translated src=- shape=53580f37 vocab=6e1ac25b
+-/
 theorem _root_.CK.tmul_cons (p r : Forest) (xs y : Tens) :
     tmul ((p, r) :: xs) y =
       y.map (fun (p', r') => (p ++ p', r ++ r')) ++ tmul xs y := by
   simp [tmul]
 
+/--
+@isnad1 id=eq.0h3v.s4.e0550e7290aa from=translated src=- shape=b8c031c3 vocab=3cf96649
+-/
 theorem _root_.CK.tmul_assoc (x y z : Tens) : tmul (tmul x y) z = tmul x (tmul y z) := by
   induction x with
   | nil => rfl
@@ -67,6 +82,9 @@ theorem _root_.CK.tmul_assoc (x y z : Tens) : tmul (tmul x y) z = tmul x (tmul y
     congr 1
     simp [tmul, List.flatMap_map, List.map_flatMap, List.append_assoc, Function.comp_def]
 
+/--
+@isnad1 id=eq.0h2v.s4.1ef833f35225 from=translated src=- shape=3887891b vocab=520749d6
+-/
 theorem _root_.CK.coprodForest_append (F G : Forest) :
     coprodForest (F ++ G) = tmul (coprodForest F) (coprodForest G) := by
   induction F with
@@ -78,6 +96,9 @@ theorem _root_.CK.coprodForest_append (F G : Forest) :
         show tmul (coprodTree t) (coprodForest ts) = coprodForest (t :: ts) from rfl]
 
 open List in
+/--
+@isnad1 id=perm.0h5v.s6.74db1e9a50b5 from=translated src=- shape=762679b4 vocab=4fc8f5b3
+-/
 theorem _root_.CK.perm_middle_swap {α} (A B C D : List α) :
     ((A ++ B) ++ (C ++ D)).Perm ((A ++ C) ++ (B ++ D)) := by
   calc (A ++ B) ++ (C ++ D)
@@ -86,6 +107,9 @@ theorem _root_.CK.perm_middle_swap {α} (A B C D : List α) :
     _ = (A ++ C) ++ (B ++ D) := by simp [List.append_assoc]
 
 open List in
+/--
+@isnad1 id=perm.0h5v.s6.2f8561fd0c5e from=translated src=- shape=f9ff859c vocab=4bac4c14
+-/
 theorem _root_.CK.flatMap_append_distrib {α β} (l : List α) (X Y : α → List β) :
     (l.flatMap (fun a => X a ++ Y a)).Perm (l.flatMap X ++ l.flatMap Y) := by
   induction l with
@@ -96,10 +120,16 @@ theorem _root_.CK.flatMap_append_distrib {α β} (l : List α) (X Y : α → Lis
     exact perm_middle_swap (X a) (Y a) (as.flatMap X) (as.flatMap Y)
 
 open List in
+/--
+@isnad1 id=eq.0h3v.s4.d0950e600a99 from=translated src=- shape=7dbf3818 vocab=a115a9d4
+-/
 theorem _root_.CK.flatMap_const_nil {α β} (l : List α) :
     l.flatMap (fun _ => ([] : List β)) = [] := by
   simp_all
 
+/--
+@isnad1 id=eq.0h4v.s5.06c434addb11 from=translated src=- shape=f51712e5 vocab=beb091c0
+-/
 theorem _root_.CK.flatMap_singleton_eq_map {α β} (g : α → β) (l : List α) :
     l.flatMap (fun a => [g a]) = l.map g := by
   induction l with
@@ -107,6 +137,9 @@ theorem _root_.CK.flatMap_singleton_eq_map {α β} (g : α → β) (l : List α)
   | cons a as ih => simp [List.flatMap_cons, ih]
 
 open List in
+/--
+@isnad1 id=perm.0h6v.s5.c7ef9730110e from=translated src=- shape=268f73f6 vocab=3bfcc3ff
+-/
 theorem _root_.CK.flatMap_comm {α β γ} (l1 : List α) (l2 : List β)
     (f : α → β → List γ) :
     (l1.flatMap (fun a => l2.flatMap (fun b => f a b))).Perm
@@ -119,6 +152,9 @@ theorem _root_.CK.flatMap_comm {α β γ} (l1 : List α) (l2 : List β)
     refine (List.Perm.append_left (l2.flatMap (fun b => f a b)) ih).trans ?_
     exact (flatMap_append_distrib l2 (fun b => f a b) (fun b => as.flatMap (fun a => f a b))).symm
 
+/--
+@isnad1 id=perm.1h5v.s5.7a3762911bbf from=translated src=- shape=2b175cc4 vocab=3bfcc3ff
+-/
 theorem _root_.CK.Perm.flatMap_congr_right {α β} (l : List α) {f g : α → List β}
     (h : ∀ a, (f a).Perm (g a)) : (l.flatMap f).Perm (l.flatMap g) := by
   induction l with
@@ -140,32 +176,50 @@ def _root_.CK.coRight (x : Tens) : Tens3 :=
 def _root_.CK.tmul3 (x y : Tens3) : Tens3 :=
   x.flatMap (fun (a, b, c) => y.map (fun (a', b', c') => (a ++ a', b ++ b', c ++ c')))
 
+/--
+@isnad1 id=perm.0h2v.s4.7be084186854 from=translated src=- shape=76e4c8f0 vocab=1fca670d
+-/
 theorem _root_.CK.coLeft_tmul (x y : Tens) :
     (coLeft (tmul x y)).Perm (tmul3 (coLeft x) (coLeft y)) := by
   simp only [coLeft, tmul, tmul3, List.flatMap_map, List.map_flatMap, List.map_map,
     List.flatMap_assoc, Function.comp_def, coprodForest_append]
   exact Perm.flatMap_congr_right x (fun pr => flatMap_comm _ _ _)
 
+/--
+@isnad1 id=perm.0h2v.s4.e726eb3db419 from=translated src=- shape=76e4c8f0 vocab=e0c9d772
+-/
 theorem _root_.CK.coRight_tmul (x y : Tens) :
     (coRight (tmul x y)).Perm (tmul3 (coRight x) (coRight y)) := by
   simp only [coRight, tmul, tmul3, List.flatMap_map, List.map_flatMap, List.map_map,
     List.flatMap_assoc, Function.comp_def, coprodForest_append]
   exact Perm.flatMap_congr_right x (fun pr => flatMap_comm _ _ _)
 
+/--
+@isnad1 id=eq.0h1v.s5.412a901d48c1 from=translated src=- shape=337a6e60 vocab=5acceb3b
+-/
 theorem _root_.CK.coprodTree_node (F : Forest) :
     coprodTree (RTree.node F)
       = ([RTree.node F], []) :: (coprodForest F).map (fun pr => (pr.1, [RTree.node pr.2])) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.11aa8fb9eb7e from=translated src=- shape=0ff65e0d vocab=6062eda1
+-/
 theorem _root_.CK.coprodForest_single (t : RTree) : coprodForest [t] = coprodTree t := by
   change tmul (coprodTree t) (coprodForest []) = coprodTree t
   rw [show coprodForest ([] : Forest) = [([], [])] from rfl, tmul_unit_right]
 
+/--
+@isnad1 id=perm.2h4v.s5.36cbd877b74f from=translated src=- shape=924b6060 vocab=808be09f
+-/
 theorem _root_.CK.tmul3_perm {a a' b b' : Tens3} (ha : a.Perm a') (hb : b.Perm b') :
     (tmul3 a b).Perm (tmul3 a' b') := by
   refine (ha.flatMap_right _).trans ?_
   exact Perm.flatMap_congr_right a' (fun _ => hb.map _)
 
 mutual
+  /--
+  @isnad1 id=perm.0h1v.s3.43ef2d55be51 from=translated src=- shape=8be70c0e vocab=87d33344
+  -/
   theorem _root_.CK.coassocTree (t : RTree) :
       (coLeft (coprodTree t)).Perm (coRight (coprodTree t)) := by
     cases t with
@@ -203,6 +257,9 @@ mutual
         rw [e1, e2]
         exact (coassocForest F).map _
       exact (List.Perm.append_left _ hkey).trans hR2.symm
+  /--
+  @isnad1 id=perm.0h1v.s3.a3e3c391c600 from=translated src=- shape=a1a65d82 vocab=c1bc93bb
+  -/
   theorem _root_.CK.coassocForest (F : Forest) :
       (coLeft (coprodForest F)).Perm (coRight (coprodForest F)) := by
     cases F with
@@ -223,7 +280,9 @@ abbrev _root_.CK.H := MonoidAlgebra k (FreeMonoid RTree)
 
 /-- Extensionality for linear maps out of `H k`, tested on the forest basis. A `Forest`-indexed
     repackaging of `MonoidAlgebra.lhom_ext'` (`Forest` and `FreeMonoid RTree` are definitionally
-    but not reducibly equal, and `rw` needs the former). -/
+    but not reducibly equal, and `rw` needs the former).
+@isnad1 id=eq.1h4v.s8.387d144b6a2d from=translated src=- shape=420fba18 vocab=983f8831
+-/
 theorem _root_.CK.lhom_ext {N : Type*} [AddCommMonoid N] [Module k N] ⦃φ ψ : H k →ₗ[k] N⦄
     (h : ∀ (f : Forest) (b : k),
       φ (MonoidAlgebra.single f b) = ψ (MonoidAlgebra.single f b)) : φ = ψ :=
@@ -248,12 +307,17 @@ noncomputable def _root_.CK.E3 (l : Tens3) : H k ⊗[k] (H k ⊗[k] H k) := (l.m
 noncomputable def _root_.CK.Δ : H k →ₗ[k] H k ⊗[k] H k :=
   Finsupp.linearCombination k (Δ₀ k) ∘ₗ (MonoidAlgebra.coeffLinearEquiv k).toLinearMap
 
+/--
+@isnad1 id=eq.0h3v.s10.f91d38f97e15 from=translated src=- shape=5cca9761 vocab=c1c07ad1
+-/
 theorem _root_.CK.Δ_single (f : Forest) (b : k) :
     Δ k (MonoidAlgebra.single f b) = b • Δ₀ k f := by
   change Finsupp.linearCombination k (Δ₀ k) (Finsupp.single f b) = b • Δ₀ k f
   rw [Finsupp.linearCombination_single]
 
-/-- E3 distributes over `flatMap`. -/
+/-- E3 distributes over `flatMap`.
+@isnad1 id=eq.0h3v.s10.08c54b0f48b2 from=translated src=- shape=fd30dfe5 vocab=a0f71c99
+-/
 theorem _root_.CK.E3_flatMap (L : Tens) (g : Forest × Forest → Tens3) :
     E3 k (L.flatMap g) = (L.map (fun x => E3 k (g x))).sum := by
   unfold E3
@@ -261,14 +325,18 @@ theorem _root_.CK.E3_flatMap (L : Tens) (g : Forest × Forest → Tens3) :
   | nil => simp
   | cons a as ih => simp [List.flatMap_cons, List.map_append, List.sum_append, ih]
 
-/-- A linear map commutes with a `List.sum` of mapped terms. -/
+/-- A linear map commutes with a `List.sum` of mapped terms.
+@isnad1 id=eq.0h7v.s7.c4803d5b05d3 from=translated src=- shape=6214cabf vocab=fc3ea770
+-/
 theorem _root_.CK.linmap_list_sum {α} {M N : Type*} [AddCommMonoid M] [AddCommMonoid N]
     [Module k M] [Module k N] (φ : M →ₗ[k] N) (l : List α) (h : α → M) :
     φ ((l.map h).sum) = (l.map (fun a => φ (h a))).sum := by
   rw [map_list_sum, List.map_map]; rfl
 
 /-- The per-cut computation: `assoc ∘ rTensor Δ` on a pure 2-tensor `e2 (p,r)`
-    equals `E3` of the left-leg refinement. This is the heart of the coassoc bridge. -/
+    equals `E3` of the left-leg refinement. This is the heart of the coassoc bridge.
+@isnad1 id=eq.0h2v.s13.71e3eaec3e37 from=translated src=- shape=f8924dda vocab=8566abd5
+-/
 theorem _root_.CK.elem_lemma (pr : Forest × Forest) :
     (TensorProduct.assoc k (H k) (H k) (H k))
         (LinearMap.rTensor (H k) (Δ k) (e2 k pr))
@@ -291,7 +359,9 @@ theorem _root_.CK.elem_lemma (pr : Forest × Forest) :
     TensorProduct.mk_apply, LinearMap.flip_apply, TensorProduct.assoc_tmul]
 
 /-- Right-leg analogue: `lTensor Δ` on `e2 (p,r)` equals `E3` of the right-leg refinement.
-    No `assoc` needed — the tensor is already right-associated. -/
+    No `assoc` needed — the tensor is already right-associated.
+@isnad1 id=eq.0h2v.s11.c64d9af8abf1 from=translated src=- shape=7d27b8e6 vocab=0ce1cf08
+-/
 theorem _root_.CK.elem_lemma_R (pr : Forest × Forest) :
     LinearMap.lTensor (H k) (Δ k) (e2 k pr)
       = E3 k ((coprodForest pr.2).map (fun bc => (pr.1, bc.1, bc.2))) := by
@@ -305,7 +375,9 @@ theorem _root_.CK.elem_lemma_R (pr : Forest × Forest) :
   intro bc _
   simp only [Function.comp_def, Θ, e2, e3, TensorProduct.mk_apply]
 
-/-- LHS structural map on `Δ₀ f`. -/
+/-- LHS structural map on `Δ₀ f`.
+@isnad1 id=eq.0h2v.s13.dcc72b917f00 from=translated src=- shape=9fd6b526 vocab=c94c49d8
+-/
 theorem _root_.CK.lhs_core (f : Forest) :
     (TensorProduct.assoc k (H k) (H k) (H k))
         (LinearMap.rTensor (H k) (Δ k) (Δ₀ k f))
@@ -322,7 +394,9 @@ theorem _root_.CK.lhs_core (f : Forest) :
   intro pr _
   exact elem_lemma k pr
 
-/-- RHS structural map on `Δ₀ f`. -/
+/-- RHS structural map on `Δ₀ f`.
+@isnad1 id=eq.0h2v.s11.4ecdbd0af3a3 from=translated src=- shape=e99fe05b vocab=f80f5afe
+-/
 theorem _root_.CK.rhs_core (f : Forest) :
     LinearMap.lTensor (H k) (Δ k) (Δ₀ k f) = E3 k (coRight (coprodForest f)) := by
   rw [Δ₀]
@@ -332,12 +406,16 @@ theorem _root_.CK.rhs_core (f : Forest) :
   intro pr _
   exact elem_lemma_R k pr
 
-/-- The combinatorial coassoc, transported to `E3`. -/
+/-- The combinatorial coassoc, transported to `E3`.
+@isnad1 id=eq.0h2v.s8.675ea034c07d from=translated src=- shape=3d2282b3 vocab=2b689819
+-/
 theorem _root_.CK.perm_E3 (f : Forest) :
     E3 k (coLeft (coprodForest f)) = E3 k (coRight (coprodForest f)) :=
   (List.Perm.map (e3 k) (coassocForest f)).sum_eq
 
-/-- **Coassociativity** as an equality of linear maps. -/
+/-- **Coassociativity** as an equality of linear maps.
+@isnad1 id=eq.0h1v.s12.82afcffb1178 from=translated src=- shape=71f1b381 vocab=50c0d85d
+-/
 theorem _root_.CK.coassoc_map :
     (TensorProduct.assoc k (H k) (H k) (H k)).toLinearMap ∘ₗ
         LinearMap.rTensor (H k) (Δ k) ∘ₗ Δ k
@@ -356,14 +434,26 @@ theorem _root_.CK.coassoc_map :
 /-- Counit monoid hom: every generator ↦ 0, so a word ↦ `0 ^ len` = indicator of empty. -/
 def _root_.CK.εmon : FreeMonoid RTree →* k := FreeMonoid.lift (fun _ => (0 : k))
 
+/--
+@isnad1 id=eq.0h1v.s6.3e7fa47261fe from=translated src=- shape=2b363d56 vocab=20b8cde4
+-/
 @[simp] theorem _root_.CK.εmon_nil : εmon k ([] : Forest) = 1 := map_one _
 
+/--
+@isnad1 id=eq.0h2v.s6.2680eba93fcd from=translated src=- shape=c0972a0f vocab=91d96a22
+-/
 @[simp] theorem _root_.CK.εmon_of (a : RTree) : εmon k (FreeMonoid.of a) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.be67fadda340 from=translated src=- shape=142cb0f8 vocab=ce923427
+-/
 @[simp] theorem _root_.CK.εmon_cons (a : RTree) (l : Forest) : εmon k (a :: l) = 0 := by
   change εmon k (FreeMonoid.of a * FreeMonoid.ofList l) = 0
   rw [map_mul, εmon_of, zero_mul]
 
+/--
+@isnad1 id=eq.0h3v.s7.7554f8c22e71 from=translated src=- shape=3e72007a vocab=1b9e8e9b
+-/
 theorem _root_.CK.εmon_append (p p' : Forest) : εmon k (p ++ p') = εmon k p * εmon k p' := by
   induction p with
   | nil => simp
@@ -376,6 +466,9 @@ noncomputable def _root_.CK.εalg : H k →ₐ[k] k :=
 /-- The Connes-Kreimer counit as a linear map. -/
 noncomputable def _root_.CK.ε : H k →ₗ[k] k := (εalg k).toLinearMap
 
+/--
+@isnad1 id=eq.0h3v.s8.eaf3904ba744 from=translated src=- shape=97497d32 vocab=36908b63
+-/
 theorem _root_.CK.ε_single (f : Forest) (b : k) :
     ε k (MonoidAlgebra.single f b) = b * εmon k f := by
   have h : εalg k (MonoidAlgebra.single (FreeMonoid.ofList f) b)
@@ -383,32 +476,42 @@ theorem _root_.CK.ε_single (f : Forest) (b : k) :
     rw [εalg, MonoidAlgebra.lift_single, smul_eq_mul]
   exact h
 
-/-- Scalar smul commutes with a `List.sum`. -/
+/-- Scalar smul commutes with a `List.sum`.
+@isnad1 id=eq.0h4v.s7.b3778764d6d1 from=translated src=- shape=ced462d5 vocab=cb4dc003
+-/
 theorem _root_.CK.smul_list_sum {M : Type*} [AddCommMonoid M] [Module k M] (c : k) (l : List M) :
     c • l.sum = (l.map (fun x => c • x)).sum := by
   induction l with
   | nil => simp
   | cons a as ih => simp [smul_add, ih]
 
-/-- Smul through a mapped `List.sum`. -/
+/-- Smul through a mapped `List.sum`.
+@isnad1 id=eq.0h6v.s7.d67803a7793a from=translated src=- shape=9497a36d vocab=cb4dc003
+-/
 theorem _root_.CK.smul_list_sum' {α M : Type*} [AddCommMonoid M] [Module k M]
     (c : k) (l : List α) (F : α → M) :
     c • (l.map F).sum = (l.map (fun x => c • F x)).sum := by
   rw [smul_list_sum, List.map_map]; rfl
 
-/-- Pull a base-ring scalar out of the right tensor leg (avoids `CompatibleSMul`). -/
+/-- Pull a base-ring scalar out of the right tensor leg (avoids `CompatibleSMul`).
+@isnad1 id=eq.0h3v.s8.c2b3942ff083 from=translated src=- shape=d804cc2f vocab=e17b3402
+-/
 theorem _root_.CK.tmul_scalar_right (m : H k) (c : k) :
     m ⊗ₜ[k] c = c • (m ⊗ₜ[k] (1 : k)) := by
   conv_lhs => rw [show c = c • (1 : k) from by rw [smul_eq_mul, mul_one]]
   rw [← TensorProduct.smul_tmul, TensorProduct.smul_tmul']
 
-/-- Pull a base-ring scalar out of the left tensor leg. -/
+/-- Pull a base-ring scalar out of the left tensor leg.
+@isnad1 id=eq.0h3v.s8.12fc11da093a from=translated src=- shape=b45f8725 vocab=e17b3402
+-/
 theorem _root_.CK.tmul_scalar_left (c : k) (m : H k) :
     (c : k) ⊗ₜ[k] m = c • ((1 : k) ⊗ₜ[k] m) := by
   conv_lhs => rw [show c = c • (1 : k) from by rw [smul_eq_mul, mul_one]]
   rw [TensorProduct.smul_tmul']
 
-/-- Generic map-over-`flatMap` `List.sum` distribution. -/
+/-- Generic map-over-`flatMap` `List.sum` distribution.
+@isnad1 id=eq.0h6v.s6.e8c9ba5a56bb from=translated src=- shape=87ca2ade vocab=96e7ba86
+-/
 theorem _root_.CK.map_flatMap_sum {α β : Type*} {M : Type*} [AddCommMonoid M]
     (L : List α) (G : α → List β) (h : β → M) :
     ((L.flatMap G).map h).sum = (L.map (fun a => ((G a).map h).sum)).sum := by
@@ -418,6 +521,9 @@ theorem _root_.CK.map_flatMap_sum {α β : Type*} {M : Type*} [AddCommMonoid M]
 
 /-! The left-counit collapse: `ε` on the left leg selects the unique `([], f)` cut. -/
 mutual
+  /--
+  @isnad1 id=eq.0h4v.s7.337a82c069df from=translated src=- shape=9595ecb5 vocab=e77667fe
+  -/
   theorem _root_.CK.collapseL_tree {M : Type*} [AddCommMonoid M] [Module k M]
       (t : RTree) (g : Forest → M) :
       ((coprodTree t).map (fun pr => εmon k pr.1 • g pr.2)).sum = g [t] := by
@@ -427,6 +533,9 @@ mutual
       simp only [List.map_cons, List.sum_cons, List.map_map, Function.comp_def, εmon_cons,
         zero_smul, zero_add]
       exact collapseL_forest F (fun r => g [RTree.node r])
+  /--
+  @isnad1 id=eq.0h4v.s7.1c3f21edb1fe from=translated src=- shape=162031cc vocab=ee77e7f5
+  -/
   theorem _root_.CK.collapseL_forest {M : Type*} [AddCommMonoid M] [Module k M]
       (f : Forest) (g : Forest → M) :
       ((coprodForest f).map (fun pr => εmon k pr.1 • g pr.2)).sum = g f := by
@@ -459,6 +568,9 @@ end
 
 /-! The right-counit collapse: `ε` on the right leg selects the unique `(f, [])` cut. -/
 mutual
+  /--
+  @isnad1 id=eq.0h4v.s7.6dd074f10ce2 from=translated src=- shape=9595ecb5 vocab=e77667fe
+  -/
   theorem _root_.CK.collapseR_tree {M : Type*} [AddCommMonoid M] [Module k M]
       (t : RTree) (g : Forest → M) :
       ((coprodTree t).map (fun pr => εmon k pr.2 • g pr.1)).sum = g [t] := by
@@ -467,6 +579,9 @@ mutual
       simp only [coprodTree_node, List.map_cons, List.sum_cons, List.map_map, Function.comp_def,
         εmon_nil, εmon_cons, zero_smul, one_smul]
       simp_all
+  /--
+  @isnad1 id=eq.0h4v.s7.43dc966c13d6 from=translated src=- shape=162031cc vocab=ee77e7f5
+  -/
   theorem _root_.CK.collapseR_forest {M : Type*} [AddCommMonoid M] [Module k M]
       (f : Forest) (g : Forest → M) :
       ((coprodForest f).map (fun pr => εmon k pr.2 • g pr.1)).sum = g f := by
@@ -497,7 +612,9 @@ mutual
           exact collapseR_forest ts (fun r => g (pr.1 ++ r))
 end
 
-/-- `(ε ⊗ id) ∘ Δ` on a basis forest gives `1 ⊗ single f 1`. -/
+/-- `(ε ⊗ id) ∘ Δ` on a basis forest gives `1 ⊗ single f 1`.
+@isnad1 id=eq.0h2v.s10.6f49f1dba18a from=translated src=- shape=7ef0586c vocab=1d82ea9a
+-/
 theorem _root_.CK.rTensor_ε_Δ₀ (f : Forest) :
     LinearMap.rTensor (H k) (ε k) (Δ₀ k f) = (1 : k) ⊗ₜ[k] MonoidAlgebra.single f 1 := by
   rw [Δ₀, linmap_list_sum]
@@ -511,6 +628,9 @@ theorem _root_.CK.rTensor_ε_Δ₀ (f : Forest) :
     rw [e2, LinearMap.rTensor_tmul, ε_single, one_mul]
     apply tmul_scalar_left
 
+/--
+@isnad1 id=eq.0h3v.s7.e5d07f0d6855 from=translated src=- shape=5dbf520e vocab=54f0687d
+-/
 theorem _root_.CK.single_smul_one (f : FreeMonoid RTree) (b : k) :
     MonoidAlgebra.single f b = b • MonoidAlgebra.single f 1 := by
   simp
@@ -521,7 +641,9 @@ noncomputable instance : CoalgebraStruct k (H k) where
 
 /-! ### Bialgebra: `Δ` and `ε` are algebra homs. -/
 
-/-- `single` of a concatenation is the product (algebra structure of `H`). -/
+/-- `single` of a concatenation is the product (algebra structure of `H`).
+@isnad1 id=eq.0h3v.s7.ca9e8fb8ffc7 from=translated src=- shape=fe82af2f vocab=468ef18b
+-/
 theorem _root_.CK.single_append (p p' : Forest) :
     (MonoidAlgebra.single (p ++ p') (1 : k) : H k)
       = (MonoidAlgebra.single p 1 : H k) * (MonoidAlgebra.single p' 1 : H k) := by
@@ -531,19 +653,25 @@ theorem _root_.CK.single_append (p p' : Forest) :
     rw [MonoidAlgebra.single_mul_single, mul_one]
   exact h
 
-/-- `e2` is multiplicative across leg-wise concatenation. -/
+/-- `e2` is multiplicative across leg-wise concatenation.
+@isnad1 id=eq.0h3v.s9.03e6ad056380 from=translated src=- shape=45f5eb11 vocab=4d91d3b1
+-/
 theorem _root_.CK.e2_mul (pr pr' : Forest × Forest) :
     e2 k (pr.1 ++ pr'.1, pr.2 ++ pr'.2) = e2 k pr * e2 k pr' := by
   simp only [e2, Algebra.TensorProduct.tmul_mul_tmul, single_append]
 
-/-- Left-distribute a product over a `List.sum`. -/
+/-- Left-distribute a product over a `List.sum`.
+@isnad1 id=eq.0h3v.s6.dc0a5a77900f from=translated src=- shape=1381a535 vocab=5d14e75c
+-/
 theorem _root_.CK.mul_list_sum {M : Type*} [NonUnitalNonAssocSemiring M] (a : M) (L : List M) :
     a * L.sum = (L.map (fun b => a * b)).sum := by
   induction L with
   | nil => simp
   | cons b bs ih => simp [mul_add, ih]
 
-/-- Product of two `List.sum`s is the double sum. -/
+/-- Product of two `List.sum`s is the double sum.
+@isnad1 id=eq.0h3v.s6.181f1accb0fd from=translated src=- shape=aaf7cf7e vocab=9046867b
+-/
 theorem _root_.CK.list_sum_mul_sum {M : Type*} [NonUnitalNonAssocSemiring M] (L1 L2 : List M) :
     L1.sum * L2.sum = (L1.flatMap (fun a => L2.map (fun b => a * b))).sum := by
   induction L1 with
@@ -551,12 +679,16 @@ theorem _root_.CK.list_sum_mul_sum {M : Type*} [NonUnitalNonAssocSemiring M] (L1
   | cons a as ih =>
     rw [List.sum_cons, add_mul, ih, mul_list_sum, List.flatMap_cons, List.sum_append]
 
-/-- `Δ₀` is multiplicative. -/
+/-- `Δ₀` is multiplicative.
+@isnad1 id=eq.0h3v.s8.706eedd21607 from=translated src=- shape=820419c2 vocab=92aa4f8c
+-/
 theorem _root_.CK.Δ₀_mul (F G : Forest) : Δ₀ k (F ++ G) = Δ₀ k F * Δ₀ k G := by
   rw [Δ₀, Δ₀, Δ₀, coprodForest_append, list_sum_mul_sum, tmul]
   simp only [List.map_flatMap, List.flatMap_map, List.map_map, Function.comp_def, e2_mul]
 
-/-- `Δ` is multiplicative on all of `H` (reduce to the forest basis, bilinearly). -/
+/-- `Δ` is multiplicative on all of `H` (reduce to the forest basis, bilinearly).
+@isnad1 id=eq.0h3v.s11.5f9225a952f5 from=translated src=- shape=fab16f1e vocab=c07da5b3
+-/
 theorem _root_.CK.Δ_mul (a b : H k) : Δ k (a * b) = Δ k a * Δ k b := by
   induction a using MonoidAlgebra.induction_on with
   | of F =>
@@ -574,7 +706,9 @@ theorem _root_.CK.Δ_mul (a b : H k) : Δ k (a * b) = Δ k a * Δ k b := by
   | add a1 a2 h1 h2 => rw [add_mul, map_add, map_add, h1, h2, add_mul]
   | smul r a ha => rw [smul_mul_assoc, map_smul, map_smul, ha, smul_mul_assoc]
 
-/-- `Δ 1 = 1`. -/
+/-- `Δ 1 = 1`.
+@isnad1 id=eq.0h1v.s9.280143195b47 from=translated src=- shape=68264907 vocab=2a9bb16f
+-/
 theorem _root_.CK.Δ_one : Δ k (1 : H k) = 1 := by
   rw [show (1 : H k) = MonoidAlgebra.single (M := FreeMonoid RTree) ([] : Forest) (1 : k) from rfl,
       Δ_single, one_smul]
@@ -596,12 +730,18 @@ mutual
     | t :: ts => sizeT t + sizeF ts
 end
 
+/--
+@isnad1 id=eq.0h2v.s4.5d475f8deb9b from=translated src=- shape=0438c7a3 vocab=8ed7dbcc
+-/
 theorem _root_.CK.sizeF_append (F G : Forest) : sizeF (F ++ G) = sizeF F + sizeF G := by
   induction F with
   | nil => simp [sizeF]
   | cons t ts ih => simp only [List.cons_append, sizeF, ih]; ring
 
 mutual
+  /--
+  @isnad1 id=eq.1h2v.s5.6bbd9291b9d5 from=translated src=- shape=dc9ebef7 vocab=8c44c547
+  -/
   theorem _root_.CK.size_consTree (t : RTree) :
       ∀ pr ∈ coprodTree t, sizeF pr.1 + sizeF pr.2 = sizeT t := by
     cases t with
@@ -614,6 +754,9 @@ mutual
       · simp only [sizeF, sizeT]
         have := size_consForest F q hq
         omega
+  /--
+  @isnad1 id=eq.1h2v.s5.c2e417686998 from=translated src=- shape=f80b0220 vocab=d87fb55b
+  -/
   theorem _root_.CK.size_consForest (f : Forest) :
       ∀ pr ∈ coprodForest f, sizeF pr.1 + sizeF pr.2 = sizeF f := by
     cases f with
@@ -633,6 +776,9 @@ mutual
       omega
 end
 
+/--
+@isnad1 id=lt.1h1v.s4.5c0d222e4da6 from=translated src=- shape=ab1d09ab vocab=c283e10b
+-/
 theorem _root_.CK.sizeF_pos {f : Forest} (h : f ≠ []) : 0 < sizeF f := by
   cases f with
   | nil => exact absurd rfl h
@@ -642,9 +788,15 @@ theorem _root_.CK.sizeF_pos {f : Forest} (h : f ≠ []) : 0 < sizeF f := by
     via `ofList` (so it is always typed `H k`, even on the empty forest). -/
 noncomputable def _root_.CK.sf (r : Forest) : H k := MonoidAlgebra.single (FreeMonoid.ofList r) 1
 
+/--
+@isnad1 id=eq.0h1v.s5.4db1b450cbc7 from=translated src=- shape=c99bb6ce vocab=f6f8a7d2
+-/
 @[simp] theorem _root_.CK.sf_nil : sf k [] = 1 := by
   rw [sf, FreeMonoid.ofList_nil, ← MonoidAlgebra.one_def]
 
+/--
+@isnad1 id=eq.0h3v.s6.1ca8ea5d67c6 from=translated src=- shape=2a28db59 vocab=1f3fff07
+-/
 theorem _root_.CK.sf_append (a b : Forest) : sf k (a ++ b) = sf k a * sf k b := by
   rw [sf, sf, sf, MonoidAlgebra.single_mul_single, mul_one, FreeMonoid.ofList_append]
 
@@ -672,12 +824,17 @@ decreasing_by
 noncomputable def _root_.CK.antipode : H k →ₗ[k] H k :=
   Finsupp.linearCombination k (antipodeF k) ∘ₗ (MonoidAlgebra.coeffLinearEquiv k).toLinearMap
 
+/--
+@isnad1 id=eq.0h3v.s8.e91166d2e088 from=translated src=- shape=edfcdb67 vocab=2be16b7e
+-/
 theorem _root_.CK.antipode_single (f : Forest) (b : k) :
     antipode k (MonoidAlgebra.single f b) = b • antipodeF k f := by
   change Finsupp.linearCombination k (antipodeF k) (Finsupp.single f b) = b • antipodeF k f
   rw [Finsupp.linearCombination_single]
 
-/-- `antipodeF` on a nonempty forest, as a plain (non-`attach`) sum. -/
+/-- `antipodeF` on a nonempty forest, as a plain (non-`attach`) sum.
+@isnad1 id=eq.0h3v.s7.676127bdf8d0 from=translated src=- shape=4ee1744f vocab=0efa62e7
+-/
 theorem _root_.CK.antipodeF_cons (t : RTree) (ts : Forest) :
     antipodeF k (t :: ts)
       = - (((coprodForest (t :: ts)).filter (fun pr => !pr.2.isEmpty)).map
@@ -685,12 +842,16 @@ theorem _root_.CK.antipodeF_cons (t : RTree) (ts : Forest) :
   conv_lhs => rw [antipodeF]
   simp only [List.map_attach_eq_pmap, List.pmap_eq_map]
 
-/-- `r ++ b` is nonempty when `r` is. -/
+/-- `r ++ b` is nonempty when `r` is.
+@isnad1 id=eq.1h2v.s4.9efc0a903bea from=translated src=- shape=d22ad99c vocab=070b6747
+-/
 theorem _root_.CK.isEmpty_append_of_ne {r b : Forest} (h : r ≠ []) :
     (r ++ b).isEmpty = false := by
   simp_all
 
-/-- Filtering cuts by "empty right leg" factorizes over `tmul`. -/
+/-- Filtering cuts by "empty right leg" factorizes over `tmul`.
+@isnad1 id=eq.0h2v.s5.603d75c74e7f from=translated src=- shape=6f9fc455 vocab=900da425
+-/
 theorem _root_.CK.filter_emptyR_tmul (A B : Tens) :
     (tmul A B).filter (fun pr => pr.2.isEmpty)
       = tmul (A.filter (fun pr => pr.2.isEmpty)) (B.filter (fun pr => pr.2.isEmpty)) := by
@@ -706,7 +867,9 @@ theorem _root_.CK.filter_emptyR_tmul (A B : Tens) :
       simp_all
 
 mutual
-  /-- The unique empty-right cut of a tree `t` is `([t], [])`. -/
+  /-- The unique empty-right cut of a tree `t` is `([t], [])`.
+  @isnad1 id=eq.0h1v.s5.ab2a9bda7fb8 from=translated src=- shape=f645c30e vocab=c7c372cc
+  -/
   theorem _root_.CK.coprodTree_filter_emptyR (t : RTree) :
       (coprodTree t).filter (fun pr => pr.2.isEmpty) = [([t], [])] := by
     cases t with
@@ -714,6 +877,9 @@ mutual
       rw [coprodTree_node, List.filter_cons]
       simp only [List.isEmpty_nil, ite_true, List.filter_map, Function.comp_def]
       simp_all
+  /--
+  @isnad1 id=eq.0h1v.s5.cb94c49550af from=translated src=- shape=3015b990 vocab=c57b0e0c
+  -/
   theorem _root_.CK.coprodForest_filter_emptyR (f : Forest) :
       (coprodForest f).filter (fun pr => pr.2.isEmpty) = [(f, [])] := by
     cases f with
@@ -726,7 +892,9 @@ mutual
       simp [tmul]
 end
 
-/-- Filtering cuts by "empty left leg" factorizes over `tmul`. -/
+/-- Filtering cuts by "empty left leg" factorizes over `tmul`.
+@isnad1 id=eq.0h2v.s5.7578be9094bb from=translated src=- shape=6f9fc455 vocab=7280346a
+-/
 theorem _root_.CK.filter_emptyL_tmul (A B : Tens) :
     (tmul A B).filter (fun pr => pr.1.isEmpty)
       = tmul (A.filter (fun pr => pr.1.isEmpty)) (B.filter (fun pr => pr.1.isEmpty)) := by
@@ -742,7 +910,9 @@ theorem _root_.CK.filter_emptyL_tmul (A B : Tens) :
       simp_all
 
 mutual
-  /-- The unique empty-left cut of a tree `t` is `([], [t])`. -/
+  /-- The unique empty-left cut of a tree `t` is `([], [t])`.
+  @isnad1 id=eq.0h1v.s5.051dc9bc3d33 from=translated src=- shape=1c2f0144 vocab=99f5472d
+  -/
   theorem _root_.CK.coprodTree_filter_emptyL (t : RTree) :
       (coprodTree t).filter (fun pr => pr.1.isEmpty) = [([], [t])] := by
     cases t with
@@ -752,6 +922,9 @@ mutual
         Function.comp_def]
       rw [coprodForest_filter_emptyL F]
       rfl
+  /--
+  @isnad1 id=eq.0h1v.s5.774ff7caacd5 from=translated src=- shape=97a50b78 vocab=87ea7db8
+  -/
   theorem _root_.CK.coprodForest_filter_emptyL (f : Forest) :
       (coprodForest f).filter (fun pr => pr.1.isEmpty) = [([], f)] := by
     cases f with
@@ -764,7 +937,9 @@ mutual
       simp [tmul]
 end
 
-/-- Split a mapped `List.sum` by a boolean predicate. -/
+/-- Split a mapped `List.sum` by a boolean predicate.
+@isnad1 id=eq.0h5v.s8.3ef94549d4c8 from=translated src=- shape=b4fecf69 vocab=cf46711e
+-/
 theorem _root_.CK.map_sum_filter_split {α : Type*} (L : List α) (P : α → Bool)
     (g : α → H k) :
     (L.map g).sum
@@ -772,7 +947,9 @@ theorem _root_.CK.map_sum_filter_split {α : Type*} (L : List α) (P : α → Bo
   rw [← List.sum_append, ← List.map_append]
   exact (List.Perm.map g (List.filter_append_perm P L).symm).sum_eq
 
-/-- **Left convolution axiom** on a basis forest: `(S ⋆ id)(f) = ε(f)·1`. Near-definitional. -/
+/-- **Left convolution axiom** on a basis forest: `(S ⋆ id)(f) = ε(f)·1`. Near-definitional.
+@isnad1 id=eq.0h2v.s8.faf5f273e6b7 from=translated src=- shape=226ad115 vocab=e5299b4e
+-/
 theorem _root_.CK.leftConvF (f : Forest) :
     ((coprodForest f).map (fun pr => antipodeF k pr.1 * sf k pr.2)).sum =
       εmon k f • (1 : H k) := by
@@ -790,14 +967,18 @@ theorem _root_.CK.leftConvF (f : Forest) :
     rw [εmon_cons, zero_smul, antipodeF_cons]
     abel
 
-/-- `μ ∘ (S ⊗ id)` on a pure 2-tensor `e2 (p,r)` gives `S(p)·r`. -/
+/-- `μ ∘ (S ⊗ id)` on a pure 2-tensor `e2 (p,r)` gives `S(p)·r`.
+@isnad1 id=eq.0h2v.s11.e450896dc81e from=translated src=- shape=289cbef9 vocab=67519a4e
+-/
 theorem _root_.CK.mul_rTensor_antipode_e2 (pr : Forest × Forest) :
     LinearMap.mul' k (H k) (LinearMap.rTensor (H k) (antipode k) (e2 k pr))
       = antipodeF k pr.1 * sf k pr.2 := by
   rw [e2, LinearMap.rTensor_tmul, LinearMap.mul'_apply, antipode_single, one_smul]
   rfl
 
-/-- `μ ∘ (S ⊗ id) ∘ Δ` on a basis forest equals `ε(f)·1` (left antipode identity). -/
+/-- `μ ∘ (S ⊗ id) ∘ Δ` on a basis forest equals `ε(f)·1` (left antipode identity).
+@isnad1 id=eq.0h2v.s10.0ca3b651a151 from=translated src=- shape=7c45c91c vocab=95b2730a
+-/
 theorem _root_.CK.rTensor_antipode_Δ₀ (f : Forest) :
     (LinearMap.mul' k (H k) ∘ₗ LinearMap.rTensor (H k) (antipode k)) (Δ₀ k f)
       = εmon k f • (1 : H k) := by
@@ -831,6 +1012,9 @@ decreasing_by
   have hlt : sizeF pr.val.2 < sizeF pr.val.1 + sizeF pr.val.2 := by omega
   simp_all
 
+/--
+@isnad1 id=eq.0h3v.s7.7690a279763e from=translated src=- shape=49d32477 vocab=e3bb1cb3
+-/
 theorem _root_.CK.antipodeF'_cons (t : RTree) (ts : Forest) :
     antipodeF' k (t :: ts)
       = - (((coprodForest (t :: ts)).filter (fun pr => !pr.1.isEmpty)).map
@@ -838,7 +1022,9 @@ theorem _root_.CK.antipodeF'_cons (t : RTree) (ts : Forest) :
   conv_lhs => rw [antipodeF']
   simp only [List.map_attach_eq_pmap, List.pmap_eq_map]
 
-/-- Right convolution `id ⋆ S'` on a basis forest equals `ε(f)·1`. Near-definitional. -/
+/-- Right convolution `id ⋆ S'` on a basis forest equals `ε(f)·1`. Near-definitional.
+@isnad1 id=eq.0h2v.s8.c965c07ba8d8 from=translated src=- shape=226ad115 vocab=d7ff8e6e
+-/
 theorem _root_.CK.rightConvF' (f : Forest) :
     ((coprodForest f).map (fun pr => sf k pr.1 * antipodeF' k pr.2)).sum =
       εmon k f • (1 : H k) := by
@@ -860,18 +1046,26 @@ theorem _root_.CK.rightConvF' (f : Forest) :
 noncomputable def _root_.CK.antipode' : H k →ₗ[k] H k :=
   Finsupp.linearCombination k (antipodeF' k) ∘ₗ (MonoidAlgebra.coeffLinearEquiv k).toLinearMap
 
+/--
+@isnad1 id=eq.0h3v.s8.4b4b77a4ab22 from=translated src=- shape=edfcdb67 vocab=dc616db3
+-/
 theorem _root_.CK.antipode'_single (f : Forest) (b : k) :
     antipode' k (MonoidAlgebra.single f b) = b • antipodeF' k f := by
   change Finsupp.linearCombination k (antipodeF' k) (Finsupp.single f b) = b • antipodeF' k f
   rw [Finsupp.linearCombination_single]
 
+/--
+@isnad1 id=eq.0h2v.s11.700ddc91c8fe from=translated src=- shape=289cbef9 vocab=f1870bea
+-/
 theorem _root_.CK.mul_lTensor_antipode'_e2 (pr : Forest × Forest) :
     LinearMap.mul' k (H k) (LinearMap.lTensor (H k) (antipode' k) (e2 k pr))
       = sf k pr.1 * antipodeF' k pr.2 := by
   rw [e2, LinearMap.lTensor_tmul, LinearMap.mul'_apply, antipode'_single, one_smul]
   rfl
 
-/-- `μ ∘ (id ⊗ S') ∘ Δ` on a basis forest equals `ε(f)·1` (right antipode identity). -/
+/-- `μ ∘ (id ⊗ S') ∘ Δ` on a basis forest equals `ε(f)·1` (right antipode identity).
+@isnad1 id=eq.0h2v.s10.90a90c468baf from=translated src=- shape=7c45c91c vocab=3191d90f
+-/
 theorem _root_.CK.lTensor_antipode'_Δ₀ (f : Forest) :
     (LinearMap.mul' k (H k) ∘ₗ LinearMap.lTensor (H k) (antipode' k)) (Δ₀ k f)
       = εmon k f • (1 : H k) := by
@@ -886,7 +1080,9 @@ theorem _root_.CK.lTensor_antipode'_Δ₀ (f : Forest) :
     rw [LinearMap.comp_apply]
     exact mul_lTensor_antipode'_e2 k pr
 
-/-- Left antipode identity as a linear-map equality (the Hopf left axiom). -/
+/-- Left antipode identity as a linear-map equality (the Hopf left axiom).
+@isnad1 id=eq.0h1v.s10.8d7dc4a96033 from=translated src=- shape=137d7747 vocab=20189ee0
+-/
 theorem _root_.CK.leftAntipode_eq :
     LinearMap.mul' k (H k) ∘ₗ LinearMap.rTensor (H k) (antipode k) ∘ₗ Δ k
       = Algebra.linearMap k (H k) ∘ₗ ε k := by
@@ -901,7 +1097,9 @@ theorem _root_.CK.leftAntipode_eq :
         = εmon k f • (1 : H k) from rTensor_antipode_Δ₀ k f,
       ε_single, Algebra.linearMap_apply, Algebra.algebraMap_eq_smul_one, mul_smul]
 
-/-- Right antipode identity for `S'` as a linear-map equality. -/
+/-- Right antipode identity for `S'` as a linear-map equality.
+@isnad1 id=eq.0h1v.s10.e2d16b292012 from=translated src=- shape=137d7747 vocab=41a9b871
+-/
 theorem _root_.CK.rightAntipode'_eq :
     LinearMap.mul' k (H k) ∘ₗ LinearMap.lTensor (H k) (antipode' k) ∘ₗ Δ k
       = Algebra.linearMap k (H k) ∘ₗ ε k := by
@@ -933,18 +1131,24 @@ theorem _root_.CK.rightAntipode'_eq :
     Hence the series `log_⋆(id) = Σ_{k≥1} ((-1)^{k+1}/k)·J^{⋆k}` is finite in each degree — the
     connected-graded local nilpotency on which the Aguiar–Lauve Eulerian spectrum rests. -/
 
-/-- `Δ` on a basis forest, packaged for `sf`. -/
+/-- `Δ` on a basis forest, packaged for `sf`.
+@isnad1 id=eq.0h2v.s9.709e12f0ff31 from=translated src=- shape=1cb1842d vocab=6b57b18e
+-/
 theorem _root_.CK.Δ_sf (f : Forest) : Δ k (sf k f) = Δ₀ k f := by
   change Finsupp.linearCombination k (Δ₀ k) (Finsupp.single f (1 : k)) = Δ₀ k f
   rw [Finsupp.linearCombination_single, one_smul]
 
-/-- `ε` on a basis forest: the counit of `sf f` is `εmon f`. -/
+/-- `ε` on a basis forest: the counit of `sf f` is `εmon f`.
+@isnad1 id=eq.0h2v.s7.6c91992b778f from=translated src=- shape=4ece634e vocab=5987aa0e
+-/
 theorem _root_.CK.ε_sf (p : Forest) : ε k (sf k p) = εmon k p := by
   have h := ε_single k p 1
   rw [one_mul] at h
   exact h
 
-/-- `μ ∘ (F ⊗ G)` on a pure cut-tensor `e2 (p,r)` is `F(p)·G(r)`. -/
+/-- `μ ∘ (F ⊗ G)` on a pure cut-tensor `e2 (p,r)` is `F(p)·G(r)`.
+@isnad1 id=eq.0h4v.s11.ceb7c23fd6d5 from=translated src=- shape=22f0635a vocab=35db55b4
+-/
 theorem _root_.CK.mul_map_e2 (F G : H k →ₗ[k] H k) (pr : Forest × Forest) :
     LinearMap.mul' k (H k) (TensorProduct.map F G (e2 k pr))
       = F (sf k pr.1) * G (sf k pr.2) := by
@@ -952,12 +1156,16 @@ theorem _root_.CK.mul_map_e2 (F G : H k →ₗ[k] H k) (pr : Forest × Forest) :
   rw [e2, TensorProduct.map_tmul, LinearMap.mul'_apply]
   rfl
 
-/-- `comul` on a basis forest equals the combinatorial `Δ₀`. -/
+/-- `comul` on a basis forest equals the combinatorial `Δ₀`.
+@isnad1 id=eq.0h2v.s9.5d2dfd291afe from=translated src=- shape=da684137 vocab=367c8bab
+-/
 theorem _root_.CK.comul_sf (f : Forest) :
     (Coalgebra.comul (R := k) (A := H k)) (sf k f) = Δ₀ k f := Δ_sf k f
 
 /-- **Convolution-on-basis engine.** `(F ⋆ G)` on a basis forest is the sum over cuts:
-    `(F ⋆ G)(f) = Σ_{(p,r) ∈ coprodForest f} F(p)·G(r)`. Reusable for all of Part 2. -/
+    `(F ⋆ G)(f) = Σ_{(p,r) ∈ coprodForest f} F(p)·G(r)`. Reusable for all of Part 2.
+@isnad1 id=eq.0h4v.s10.caa0aa2e2bec from=translated src=- shape=1ccdb6c1 vocab=f20e1bf4
+-/
 theorem _root_.CK.conv_ofConv_sf (F G : H k →ₗ[k] H k) (f : Forest) :
     (WithConv.toConv F * WithConv.toConv G).ofConv (sf k f)
       = ((coprodForest f).map (fun pr => F (sf k pr.1) * G (sf k pr.2))).sum := by
@@ -984,13 +1192,17 @@ theorem _root_.CK.conv_ofConv_sf (F G : H k →ₗ[k] H k) (f : Forest) :
 /-- A primitive element: `Δx = x⊗1 + 1⊗x`. -/
 def _root_.CK.IsPrimitive (x : H k) : Prop := Δ k x = x ⊗ₜ[k] (1 : H k) + (1 : H k) ⊗ₜ[k] x
 
-/-- Convolution at the element level: `(F ⋆ G)(x) = μ((F⊗G)(Δx))`. -/
+/-- Convolution at the element level: `(F ⋆ G)(x) = μ((F⊗G)(Δx))`.
+@isnad1 id=eq.0h4v.s12.523b394ca9bd from=translated src=- shape=3f64bc8d vocab=1ed24296
+-/
 theorem _root_.CK.conv_apply (F G : H k →ₗ[k] H k) (x : H k) :
     (WithConv.toConv F * WithConv.toConv G).ofConv x
       = LinearMap.mul' k (H k) (TensorProduct.map F G (Δ k x)) := by
   rw [LinearMap.convMul_def]; rfl
 
-/-- `Δ(1) = 1⊗1` (the unit is grouplike), in pure-tensor form. -/
+/-- `Δ(1) = 1⊗1` (the unit is grouplike), in pure-tensor form.
+@isnad1 id=eq.0h1v.s9.c76eb9d0ae80 from=translated src=- shape=ea28e473 vocab=1c08e9dc
+-/
 theorem _root_.CK.Δ_one_tmul : Δ k (1 : H k) = (1 : H k) ⊗ₜ[k] (1 : H k) := by
   rw [Δ_one, Algebra.TensorProduct.one_def]
 
@@ -1007,9 +1219,15 @@ variable [Algebra ℚ k]
 /-- Coefficient `(-1)^{j+1}/j` of the convolution-log series, pushed into `k`. `j = 0 ↦ 0`. -/
 noncomputable def _root_.CK.eulerCoef (j : ℕ) : k := algebraMap ℚ k ((-1) ^ (j + 1) / (j : ℚ))
 
+/--
+@isnad1 id=eq.0h1v.s5.0f7aa5fe5b8c from=translated src=- shape=9d504e60 vocab=499dfa34
+-/
 @[simp] theorem _root_.CK.eulerCoef_zero : eulerCoef k 0 = 0 := by
   simp [eulerCoef]
 
+/--
+@isnad1 id=eq.0h1v.s5.d1ab5243167c from=translated src=- shape=9d504e60 vocab=499dfa34
+-/
 @[simp] theorem _root_.CK.eulerCoef_one : eulerCoef k 1 = 1 := by
   simp [eulerCoef]
 
@@ -1021,7 +1239,9 @@ noncomputable def _root_.CK.eulerCoef (j : ℕ) : k := algebraMap ℚ k ((-1) ^ 
     `e⁽¹⁾` agrees on degree-`≤N` elements with the finite truncation `Σ_{j≤N} c_j J^{⋆j}` (extra
     terms vanish by nilpotency); on a primitive only the `j=1` term survives, giving `e⁽¹⁾(x)=x`. -/
 
-/-- Bridge: a `List.range` map-sum equals the corresponding `Finset.range` sum. -/
+/-- Bridge: a `List.range` map-sum equals the corresponding `Finset.range` sum.
+@isnad1 id=eq.0h3v.s5.16fd85615028 from=translated src=- shape=0201db1d vocab=98dcbbb1
+-/
 theorem _root_.CK.list_range_sum_eq {M : Type*} [AddCommMonoid M] (m : ℕ) (g : ℕ → M) :
     ((List.range m).map g).sum = ∑ j ∈ Finset.range m, g j := by
   induction m with
@@ -1032,7 +1252,9 @@ theorem _root_.CK.list_range_sum_eq {M : Type*} [AddCommMonoid M] (m : ℕ) (g :
 
 omit [Algebra ℚ k] in
 /-- A linear endomorphism of `H` is the basis-sum of its values on the singletons (proved by
-    `exact`, sidestepping the `MonoidAlgebra`/`Finsupp` syntactic wall in `rw`). -/
+    `exact`, sidestepping the `MonoidAlgebra`/`Finsupp` syntactic wall in `rw`).
+@isnad1 id=eq.0h3v.s9.1dd274f3bb50 from=translated src=- shape=68290cd2 vocab=d95be0ef
+-/
 theorem _root_.CK.lmap_eq_sum (g : H k →ₗ[k] H k) (y : H k) :
     g y = y.coeff.sum (fun a b => g (MonoidAlgebra.single a b)) := by
   conv_lhs => rw [← MonoidAlgebra.sum_coeff_single y]
@@ -1068,10 +1290,16 @@ noncomputable instance : CommRing (Hab k) where
     exact RingQuot.mkAlgHom_rel k (commRel.mul x y)
 
 omit [Algebra ℚ k] in
+/--
+@isnad1 id=surjecti.0h1v.s8.4a21a09ba797 from=translated src=- shape=8ba1c623 vocab=6de29305
+-/
 theorem _root_.CK.π_surjective : Function.Surjective (π k) :=
   RingQuot.mkAlgHom_surjective k (commRel k)
 
 omit [Algebra ℚ k] in
+/--
+@isnad1 id=eq.0h3v.s9.ffa772c07876 from=translated src=- shape=b3cba70e vocab=1e39e3b5
+-/
 theorem _root_.CK.π_mul_comm (x y : H k) : π k (x * y) = π k (y * x) :=
   RingQuot.mkAlgHom_rel k (commRel.mul x y)
 
@@ -1082,7 +1310,9 @@ noncomputable def _root_.CK.ΔAlg : H k →ₐ[k] H k ⊗[k] H k :=
   AlgHom.ofLinearMap (Δ k) (Δ_one k) (Δ_mul k)
 
 omit [Algebra ℚ k] in
-/-- `(π⊗π)∘Δ` respects the commutator relation, since `H_ab ⊗ H_ab` is commutative. -/
+/-- `(π⊗π)∘Δ` respects the commutator relation, since `H_ab ⊗ H_ab` is commutative.
+@isnad1 id=eq.1h3v.s12.117674dee13f from=translated src=- shape=49d71409 vocab=db5a3371
+-/
 theorem _root_.CK.ΔAlg_resp_commRel ⦃a b : H k⦄ (h : commRel k a b) :
     (Algebra.TensorProduct.map (π k) (π k)).comp (ΔAlg k) a
       = (Algebra.TensorProduct.map (π k) (π k)).comp (ΔAlg k) b := by
@@ -1095,7 +1325,9 @@ noncomputable def _root_.CK.Δab : Hab k →ₐ[k] Hab k ⊗[k] Hab k :=
     ⟨(Algebra.TensorProduct.map (π k) (π k)).comp (ΔAlg k), ΔAlg_resp_commRel k⟩
 
 omit [Algebra ℚ k] in
-/-- The descent square commutes: `Delta_ab ∘ π = (π⊗π) ∘ Δ`. -/
+/-- The descent square commutes: `Delta_ab ∘ π = (π⊗π) ∘ Δ`.
+@isnad1 id=eq.0h2v.s12.a74a959dd49c from=translated src=- shape=9fbffa4d vocab=016450c0
+-/
 theorem _root_.CK.Δab_π (x : H k) :
     Δab k (π k x) = Algebra.TensorProduct.map (π k) (π k) (ΔAlg k x) :=
   RingQuot.liftAlgHom_mkAlgHom_apply k _ (ΔAlg_resp_commRel k) x
@@ -1103,7 +1335,9 @@ theorem _root_.CK.Δab_π (x : H k) :
 /-! #### S3 — the counit descends to `epsilon_ab : H_ab → k`. -/
 
 omit [Algebra ℚ k] in
-/-- `ε` respects the commutator relation (`k` is commutative). -/
+/-- `ε` respects the commutator relation (`k` is commutative).
+@isnad1 id=eq.1h3v.s8.50da942b7ab6 from=translated src=- shape=499f5011 vocab=b1d8c8c5
+-/
 theorem _root_.CK.εalg_resp_commRel ⦃a b : H k⦄ (h : commRel k a b) :
     εalg k a = εalg k b := by
   obtain ⟨x, y⟩ := h
@@ -1114,13 +1348,18 @@ noncomputable def _root_.CK.εab : Hab k →ₐ[k] k :=
   RingQuot.liftAlgHom k ⟨εalg k, εalg_resp_commRel k⟩
 
 omit [Algebra ℚ k] in
+/--
+@isnad1 id=eq.0h2v.s9.61e82ef81247 from=translated src=- shape=710e8b0a vocab=2c7990ea
+-/
 theorem _root_.CK.εab_π (x : H k) : εab k (π k x) = εalg k x :=
   RingQuot.liftAlgHom_mkAlgHom_apply k _ (εalg_resp_commRel k) x
 
 /-! #### S4 — `H_ab` is a coalgebra (coassoc + counit laws descend through `π`). -/
 
 omit [Algebra ℚ k] in
-/-- Extensionality on `H_ab`: a linear map out of `H_ab` is determined by its values on `π`. -/
+/-- Extensionality on `H_ab`: a linear map out of `H_ab` is determined by its values on `π`.
+@isnad1 id=eq.1h4v.s10.1cbdf752dadc from=translated src=- shape=e1fb9745 vocab=8d1eb3f6
+-/
 theorem _root_.CK.Hab_lhom_ext {M : Type*} [AddCommMonoid M] [Module k M]
     {g₁ g₂ : Hab k →ₗ[k] M} (h : ∀ x : H k, g₁ (π k x) = g₂ (π k x)) :
     g₁ = g₂ := by
@@ -1129,7 +1368,9 @@ theorem _root_.CK.Hab_lhom_ext {M : Type*} [AddCommMonoid M] [Module k M]
   exact h x
 
 omit [Algebra ℚ k] in
-/-- `ε` (right) counit naturality: `(epsilon_ab⊗id)∘(π⊗π) = ε⊗π`. -/
+/-- `ε` (right) counit naturality: `(epsilon_ab⊗id)∘(π⊗π) = ε⊗π`.
+@isnad1 id=eq.0h1v.s12.ba1b5311a364 from=translated src=- shape=53eb7585 vocab=b8f942db
+-/
 theorem _root_.CK.εab_rTensor_natural :
     (LinearMap.rTensor (Hab k) (εab k).toLinearMap) ∘ₗ
         (Algebra.TensorProduct.map (π k) (π k)).toLinearMap
@@ -1143,7 +1384,9 @@ theorem _root_.CK.εab_rTensor_natural :
   rw [εab_π]; rfl
 
 omit [Algebra ℚ k] in
-/-- `ε` (left) counit naturality: `(id⊗epsilon_ab)∘(π⊗π) = π⊗ε`. -/
+/-- `ε` (left) counit naturality: `(id⊗epsilon_ab)∘(π⊗π) = π⊗ε`.
+@isnad1 id=eq.0h1v.s12.55832569858b from=translated src=- shape=441e54fa vocab=3d15838f
+-/
 theorem _root_.CK.εab_lTensor_natural :
     (LinearMap.lTensor (Hab k) (εab k).toLinearMap) ∘ₗ
         (Algebra.TensorProduct.map (π k) (π k)).toLinearMap
@@ -1157,7 +1400,9 @@ theorem _root_.CK.εab_lTensor_natural :
   rw [εab_π]; rfl
 
 omit [Algebra ℚ k] in
-/-- `Delta_ab ∘ π = (π⊗π) ∘ Δ` in purely linear (TensorProduct.map) form. -/
+/-- `Delta_ab ∘ π = (π⊗π) ∘ Δ` in purely linear (TensorProduct.map) form.
+@isnad1 id=eq.0h2v.s12.948fe2867c37 from=translated src=- shape=b1181201 vocab=29033bcb
+-/
 theorem _root_.CK.Δab_π' (x : H k) :
     Δab k (π k x)
       = TensorProduct.map (π k).toLinearMap (π k).toLinearMap (Δ k x) := by
@@ -1168,7 +1413,9 @@ theorem _root_.CK.Δab_π' (x : H k) :
   rfl
 
 omit [Algebra ℚ k] in
-/-- `Delta_ab ∘ π` in `.toLinearMap` form (for use inside compositions). -/
+/-- `Delta_ab ∘ π` in `.toLinearMap` form (for use inside compositions).
+@isnad1 id=eq.0h2v.s13.461ab8d19ee4 from=translated src=- shape=e6933e93 vocab=29033bcb
+-/
 theorem _root_.CK.Δab_tl_π (x : H k) :
     (Δab k).toLinearMap (π k x)
       = TensorProduct.map (π k).toLinearMap (π k).toLinearMap (Δ k x) := by
@@ -1176,7 +1423,9 @@ theorem _root_.CK.Δab_tl_π (x : H k) :
 
 omit [Algebra ℚ k] in
 /-- Coproduct (right) naturality for the descent:
-    `(Delta_ab⊗id)∘(π⊗π) = ((π⊗π)⊗π)∘(Δ⊗id)`. -/
+    `(Delta_ab⊗id)∘(π⊗π) = ((π⊗π)⊗π)∘(Δ⊗id)`.
+@isnad1 id=eq.0h1v.s14.99e9c3ec8c20 from=translated src=- shape=6dda9f64 vocab=2f567c38
+-/
 theorem _root_.CK.Δab_rTensor_natural :
     (LinearMap.rTensor (Hab k) (Δab k).toLinearMap)
         ∘ₗ TensorProduct.map (π k).toLinearMap (π k).toLinearMap
@@ -1190,7 +1439,9 @@ theorem _root_.CK.Δab_rTensor_natural :
 
 omit [Algebra ℚ k] in
 /-- Coproduct (left) naturality for the descent:
-    `(id⊗Delta_ab)∘(π⊗π) = (π⊗(π⊗π))∘(id⊗Δ)`. -/
+    `(id⊗Delta_ab)∘(π⊗π) = (π⊗(π⊗π))∘(id⊗Δ)`.
+@isnad1 id=eq.0h1v.s14.e690f88f2435 from=translated src=- shape=fe20318f vocab=dc492a05
+-/
 theorem _root_.CK.Δab_lTensor_natural :
     (LinearMap.lTensor (Hab k) (Δab k).toLinearMap)
         ∘ₗ TensorProduct.map (π k).toLinearMap (π k).toLinearMap
@@ -1220,7 +1471,9 @@ through `RingQuot`. The two antipode axioms then descend through `π` exactly li
 coassociativity in S4. -/
 
 omit [Algebra ℚ k] in
-/-- `mu_ab ∘ (π⊗π) = π ∘ μ` (multiplication naturality, `π` an algebra hom). -/
+/-- `mu_ab ∘ (π⊗π) = π ∘ μ` (multiplication naturality, `π` an algebra hom).
+@isnad1 id=eq.0h1v.s11.a8904602a465 from=translated src=- shape=83207904 vocab=ff7b9638
+-/
 theorem _root_.CK.mul'_π :
     LinearMap.mul' k (Hab k) ∘ₗ TensorProduct.map (π k).toLinearMap (π k).toLinearMap
       = (π k).toLinearMap ∘ₗ LinearMap.mul' k (H k) := by
@@ -1238,7 +1491,9 @@ Brick 1 (no commutativity yet): the Adams operators on `H_ab`, and their natural
 (`Ψⁿ_ab ∘ π = π ∘ Ψⁿ`), which both defines `Ψⁿ_ab` and ties it to the planar `Ψⁿ`. -/
 
 omit [Algebra ℚ k] in
-/-- Element-level convolution on `H_ab`: `(F⋆G)(x) = mu_ab((F⊗G)(Delta_ab x))`. -/
+/-- Element-level convolution on `H_ab`: `(F⋆G)(x) = mu_ab((F⊗G)(Delta_ab x))`.
+@isnad1 id=eq.0h4v.s13.0cd38640180c from=translated src=- shape=faee9343 vocab=499170c7
+-/
 theorem _root_.CK.conv_apply_ab (F G : Hab k →ₗ[k] Hab k) (x : Hab k) :
     (WithConv.toConv F * WithConv.toConv G).ofConv x
       = LinearMap.mul' k (Hab k) (TensorProduct.map F G ((Δab k).toLinearMap x)) := by
@@ -1274,7 +1529,9 @@ finite-difference engine.
 /-- **Finite-difference engine**: the `j`-th finite difference of the identity sequence `i ↦ i`,
     `∑ᵢ (-1)^{j-i} C(j,i)·i = δ_{j,1}`. This collapses the convolution-log of an
     Adams eigenvector to its weight-1 component, which is the combinatorial heart of the
-    Eulerian idempotency on `H_ab`. -/
+    Eulerian idempotency on `H_ab`.
+@isnad1 id=eq.0h1v.s6.47e4358010b7 from=translated src=- shape=ca6ef442 vocab=a52340aa
+-/
 theorem _root_.CK.alternating_choose_weighted (j : ℕ) :
     ∑ i ∈ Finset.range (j + 1), ((-1 : ℤ) ^ (j - i) * (j.choose i) * i)
       = if j = 1 then 1 else 0 := by
@@ -1330,7 +1587,9 @@ algebra hom) is a ⋆-ring hom, sending `J_ab ↦ Yᵖ − 1` (`Y = toConv id_ab
 /-! Brick A step 2 — eval₂ plumbing: bridge the PowerSeries coeff identity (`coeff_logTrunc_pow`)
     to the convolution sums via `eval₂ (X ↦ J_ab)`, then kill high powers with nilpotency. -/
 
-/-- The Eulerian coefficient `(-1)^{j+1}/j` equals the `j`-th coefficient of the formal `log`. -/
+/-- The Eulerian coefficient `(-1)^{j+1}/j` equals the `j`-th coefficient of the formal `log`.
+@isnad1 id=eq.0h2v.s7.5bc9ba285b68 from=translated src=- shape=20b5fa5d vocab=bf5cd2ec
+-/
 theorem _root_.CK.eulerCoef_eq_coeff_log (j : ℕ) :
     eulerCoef k j = PowerSeries.coeff j (PowerSeries.log k) := by
   rw [eulerCoef, PowerSeries.coeff_log]

@@ -46,7 +46,9 @@ def psiUB (N : Nat) (depth : Nat := 20) : Rat :=
 
 /-! ### Correctness theorems -/
 
-/-- The von Mangoldt function is bounded above by our computable bound. -/
+/-- The von Mangoldt function is bounded above by our computable bound.
+@isnad1 id=le.0h2v.s4.63ddcf4d6883 from=translated src=- shape=95c42d4b vocab=e6705cb9
+-/
 theorem vonMangoldt_le_vonMangoldtUB (n : Nat) (depth : Nat) :
     (vonMangoldt n : Real) <= (vonMangoldtUB n depth : Real) := by
   rw [vonMangoldt_apply]
@@ -60,7 +62,9 @@ theorem vonMangoldt_le_vonMangoldtUB (n : Nat) (depth : Nat) :
   case neg =>
     simp [vonMangoldtUB, hp]
 
-/-- The Chebyshev function `psi(N)` is bounded above by `psiUB(N)`. -/
+/-- The Chebyshev function `psi(N)` is bounded above by `psiUB(N)`.
+@isnad1 id=le.0h2v.s4.ddd6bac14b7f from=translated src=- shape=a2973c2c vocab=28252e7a
+-/
 theorem psi_le_psiUB (N : Nat) (depth : Nat) :
     psi (N : Real) <= (psiUB N depth : Real) := by
   unfold psi psiUB
@@ -71,7 +75,9 @@ theorem psi_le_psiUB (N : Nat) (depth : Nat) :
 /-! ### Decidable comparison infrastructure -/
 
 /-- Master theorem: if `psiUB(N, depth) <= slope` is verified computationally,
-then `psi(N) <= slope`. -/
+then `psi(N) <= slope`.
+@isnad1 id=le.1h3v.s5.972d2859612d from=translated src=- shape=4b9dccf7 vocab=07f07d3b
+-/
 theorem psi_le_of_psiUB_le (N : Nat) (depth : Nat) (slope : Rat)
     (h : decide (psiUB N depth <= slope) = true) :
     psi (N : Real) <= (slope : Real) := by
@@ -85,7 +91,9 @@ theorem psi_le_of_psiUB_le (N : Nat) (depth : Nat) (slope : Rat)
 def checkPsiLeMulWith (N : Nat) (slope : Rat) (depth : Nat := 20) : Bool :=
   decide (psiUB N depth <= slope * (N : Rat))
 
-/-- If `checkPsiLeMulWith N slope depth` holds, then `psi(N) <= slope * N`. -/
+/-- If `checkPsiLeMulWith N slope depth` holds, then `psi(N) <= slope * N`.
+@isnad1 id=le.1h3v.s5.2331afa85cbc from=translated src=- shape=77dc33a0 vocab=2cd01ac8
+-/
 theorem psi_le_of_checkPsiLeMulWith (N depth : Nat) (slope : Rat)
     (h : checkPsiLeMulWith N slope depth = true) :
     psi (N : Real) <= (slope : Real) * N := by
@@ -99,7 +107,9 @@ theorem psi_le_of_checkPsiLeMulWith (N depth : Nat) (slope : Rat)
 
 /-- Real-variable form:
 if `checkPsiLeMulWith floor(x) slope depth` holds and `slope >= 0`,
-then `psi(x) <= slope*x`. -/
+then `psi(x) <= slope*x`.
+@isnad1 id=le.3h3v.s5.552623af1dbb from=translated src=- shape=29835ffb vocab=7f45c462
+-/
 theorem psi_le_mul_real_of_checkPsiLeMulWith
     (x : Real) (slope : Rat) (depth : Nat)
     (hslope : 0 <= slope) (hx : 0 < x)
@@ -190,7 +200,9 @@ private theorem go_true_implies_checkPsiLeMulWith
   termination_by bound + 1 - n
 
 /-- If `checkAllPsiLeMulWith bound slope depth` returns true, then
-`checkPsiLeMulWith N slope depth` is true for all `N in {1, ..., bound}`. -/
+`checkPsiLeMulWith N slope depth` is true for all `N in {1, ..., bound}`.
+@isnad1 id=eq.3h4v.s5.f28b024d21cb from=translated src=- shape=a8998067 vocab=79c1b822
+-/
 theorem checkAllPsiLeMulWith_implies_checkPsiLeMulWith
     (bound : Nat) (slope : Rat) (depth : Nat)
     (h : checkAllPsiLeMulWith bound slope depth = true)
@@ -201,14 +213,18 @@ theorem checkAllPsiLeMulWith_implies_checkPsiLeMulWith
 /-! ### Golden theorem aliases -/
 
 /-- Golden theorem: a successful `checkPsiLeMulWith` certificate proves
-`ψ(N) ≤ slope * N`. -/
+`ψ(N) ≤ slope * N`.
+@isnad1 id=le.1h3v.s5.2331afa85cbc from=translated src=- shape=77dc33a0 vocab=2cd01ac8
+-/
 theorem verify_psi_le_mul (N depth : Nat) (slope : Rat)
     (hcheck : checkPsiLeMulWith N slope depth = true) :
     psi (N : Real) ≤ (slope : Real) * N :=
   psi_le_of_checkPsiLeMulWith N depth slope hcheck
 
 /-- Golden theorem, real-variable form: a successful checker at `⌊x⌋₊`
-proves `ψ(x) ≤ slope * x`. -/
+proves `ψ(x) ≤ slope * x`.
+@isnad1 id=le.3h3v.s5.552623af1dbb from=translated src=- shape=29835ffb vocab=7f45c462
+-/
 theorem verify_psi_le_mul_real
     (x : Real) (slope : Rat) (depth : Nat)
     (hslope : 0 ≤ slope) (hx : 0 < x)
@@ -217,7 +233,9 @@ theorem verify_psi_le_mul_real
   psi_le_mul_real_of_checkPsiLeMulWith x slope depth hslope hx hcheck
 
 /-- Golden theorem for the incremental checker over all natural inputs up to
-`bound`. -/
+`bound`.
+@isnad1 id=le.3h4v.s5.5991829b9a58 from=translated src=- shape=7280af23 vocab=1f724ec4
+-/
 theorem verify_all_psi_le_mul
     (bound depth : Nat) (slope : Rat)
     (hcheck : checkAllPsiLeMulWith bound slope depth = true) :
@@ -228,7 +246,9 @@ theorem verify_all_psi_le_mul
     (checkAllPsiLeMulWith_implies_checkPsiLeMulWith bound slope depth hcheck N hN hNb)
 
 /-- Golden theorem for the incremental checker over all real inputs
-`0 < x ≤ bound`. The `⌊x⌋₊ = 0` case is discharged by `ψ(x) = 0`. -/
+`0 < x ≤ bound`. The `⌊x⌋₊ = 0` case is discharged by `ψ(x) = 0`.
+@isnad1 id=le.4h4v.s5.df30d5a47235 from=translated src=- shape=777ca92f vocab=1f724ec4
+-/
 theorem verify_all_psi_le_mul_real
     (bound depth : Nat) (slope : Rat)
     (hslope : 0 ≤ slope)

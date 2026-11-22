@@ -68,7 +68,9 @@ def k : ℕ → ℕ
     half + k half + k halfUp
 termination_by n => n
 
-/-- The partition problem is equivalent to bounding unique coverage. -/
+/-- The partition problem is equivalent to bounding unique coverage.
+@isnad1 id=iff.0h3v.s5.7d5daeeddc61 from=translated src=- shape=4ccefcd2 vocab=1abbd930
+-/
 theorem partition_iff_uniqueCoverage {V : Type*} [DecidableEq V]
     (edges : Hypergraph V) (n : ℕ) :
     NoLargePartition edges n ↔

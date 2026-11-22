@@ -55,6 +55,9 @@ def failingIndicesFrom (checker : Row → Bool) : List Row → Nat → List Nat
 def failingIndices (T : TableCert Row) (checker : Row → Bool) : List Nat :=
   failingIndicesFrom checker T.rows.toList 0
 
+/--
+@isnad1 id=eq.2h4v.s5.f370bc998fd6 from=translated src=- shape=56646e2e vocab=2029abf7
+-/
 theorem row_checked_of_list_all {checker : Row → Bool} {rows : List Row} {row : Row}
     (hall : rows.all checker = true) (hmem : row ∈ rows) :
     checker row = true := by
@@ -62,7 +65,9 @@ theorem row_checked_of_list_all {checker : Row → Bool} {rows : List Row} {row 
 
 /-- Golden theorem for a checked table: if every row's boolean checker is true
 and each true checker implies the semantic row claim, then every row in the
-table satisfies that claim. -/
+table satisfies that claim.
+@isnad1 id=var.2h6v.s5.18d55c51e59f from=translated src=- shape=334bb1c8 vocab=baa8cbb8
+-/
 theorem verify
     {Claim : Row → Prop} {checker : Row → Bool} (T : TableCert Row)
     (hsound : ∀ row, checker row = true → Claim row)
@@ -96,6 +101,9 @@ def checkAdjacentList (rel : Row → Row → Bool) : List Row → Bool
 def checkAdjacent (rows : Array Row) (rel : Row → Row → Bool) : Bool :=
   checkAdjacentList rel rows.toList
 
+/--
+@isnad1 id=adjacent.1h5v.s5.e9c1eb4d57c7 from=translated src=- shape=99003022 vocab=3e66f43a
+-/
 theorem adjacentAll_of_checkAdjacentList
     {Rel : Row → Row → Prop} {rel : Row → Row → Bool}
     (hsound : ∀ a b, rel a b = true → Rel a b) :
@@ -113,7 +121,9 @@ theorem adjacentAll_of_checkAdjacentList
       exact AdjacentAll.cons (hsound a b hab)
         (adjacentAll_of_checkAdjacentList hsound htail)
 
-/-- Soundness theorem for array adjacent-pair checkers. -/
+/-- Soundness theorem for array adjacent-pair checkers.
+@isnad1 id=adjacent.1h5v.s5.74f7502705b8 from=translated src=- shape=be279695 vocab=6f27431c
+-/
 theorem adjacentAll_of_checkAdjacent
     {Rel : Row → Row → Prop} {rel : Row → Row → Bool} {rows : Array Row}
     (hsound : ∀ a b, rel a b = true → Rel a b)
@@ -127,7 +137,9 @@ def checkLinkedRows
     (rows : Array Row) (key : Row → Key) (nextKey : Row → Key) (eqKey : Key → Key → Bool) : Bool :=
   checkAdjacent rows fun current following => eqKey (nextKey current) (key following)
 
-/-- Soundness theorem for explicit next-entry witnesses. -/
+/-- Soundness theorem for explicit next-entry witnesses.
+@isnad1 id=adjacent.2h6v.s6.40273231a229 from=translated src=- shape=1628e892 vocab=a8e4814a
+-/
 theorem linkedRows_of_checkLinkedRows
     {rows : Array Row} {key nextKey : Row → Key} {eqKey : Key → Key → Bool}
     (heq : ∀ a b, eqKey a b = true → a = b)
@@ -143,7 +155,9 @@ def checkStrictlyIncreasingBy [LT Key] [DecidableRel (fun a b : Key => a < b)]
     (rows : Array Row) (key : Row → Key) : Bool :=
   checkAdjacent rows fun current following => decide (key current < key following)
 
-/-- Soundness theorem for adjacent strict-increase checks. -/
+/-- Soundness theorem for adjacent strict-increase checks.
+@isnad1 id=adjacent.1h4v.s5.b204227c3a3d from=translated src=- shape=b6896c33 vocab=5f57b56c
+-/
 theorem adjacentIncreasing_of_checkStrictlyIncreasingBy
     [LT Key] [DecidableRel (fun a b : Key => a < b)]
     {rows : Array Row} {key : Row → Key}

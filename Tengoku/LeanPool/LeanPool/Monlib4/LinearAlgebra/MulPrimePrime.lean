@@ -31,6 +31,9 @@ section
 
 variable {R A B : Type _} [CommSemiring R]
 
+/--
+@isnad1 id=iff.0h4v.s8.6cb0b6aa8ca6 from=translated src=- shape=31210a30 vocab=eacaed5b
+-/
 theorem _root_.Tengoku.LeanPool.commutes_with_unit_iff [Semiring A] [Semiring B] [Algebra R A] [Algebra R B]
     (f : A →ₗ[R] B) :
     f ∘ₗ Algebra.linearMap R A = Algebra.linearMap R B ↔ f 1 = 1 := by
@@ -39,6 +42,9 @@ theorem _root_.Tengoku.LeanPool.commutes_with_unit_iff [Semiring A] [Semiring B]
   refine ⟨fun h => ?_, fun h x => by rw [h]⟩
   simpa using h 1
 
+/--
+@isnad1 id=iff.0h4v.s9.88694fcd282e from=translated src=- shape=78c632dc vocab=73bcf98a
+-/
 theorem _root_.Tengoku.LeanPool.commutes_with_mul'_iff [NonUnitalNonAssocSemiring A] [Module R A]
     [SMulCommClass R A A] [IsScalarTower R A A]
     [NonUnitalNonAssocSemiring B] [Module R B] [SMulCommClass R B B] [IsScalarTower R B B]
@@ -50,6 +56,9 @@ theorem _root_.Tengoku.LeanPool.commutes_with_mul'_iff [NonUnitalNonAssocSemirin
 
 end
 
+/--
+@isnad1 id=iff.0h4v.s15.49f6eadd2182 from=translated src=- shape=2e08177d vocab=4b078fad
+-/
 theorem LinearMap.adjoint_commutes_with_mul_adjoint_iff {𝕜 X Y : Type*} [RCLike 𝕜]
     [NormedAddCommGroupOfRing X] [NormedAddCommGroupOfRing Y]
     [InnerProductSpace 𝕜 X] [InnerProductSpace 𝕜 Y] [SMulCommClass 𝕜 X X]
@@ -65,6 +74,9 @@ theorem LinearMap.adjoint_commutes_with_mul_adjoint_iff {𝕜 X Y : Type*} [RCLi
   apply_fun LinearMap.adjoint at h
   simpa only [LinearMap.adjoint_adjoint] using h
 
+/--
+@isnad1 id=iff.0h4v.s15.30c747dbb9e4 from=translated src=- shape=a3504392 vocab=4b078fad
+-/
 lemma LinearMap.commutes_with_mul_adjoint_iff {𝕜 X Y : Type*} [RCLike 𝕜]
     [NormedAddCommGroupOfRing X] [NormedAddCommGroupOfRing Y] [InnerProductSpace 𝕜 X]
     [InnerProductSpace 𝕜 Y] [SMulCommClass 𝕜 X X] [SMulCommClass 𝕜 Y Y]
@@ -80,6 +92,9 @@ lemma LinearMap.commutes_with_mul_adjoint_iff {𝕜 X Y : Type*} [RCLike 𝕜]
     apply_fun LinearMap.adjoint at h
     simpa only [adjoint_comp, TensorProduct.map_adjoint, adjoint_adjoint] using h
 
+/--
+@isnad1 id=iff.0h4v.s15.98ecfb176f4b from=translated src=- shape=99fd956f vocab=6b0fe2f7
+-/
 lemma LinearIsometryEquiv.commutes_with_mul_adjoint_iff_of_surjective_isometry
     {𝕜 X Y : Type*} [RCLike 𝕜] [NormedAddCommGroupOfRing X]
     [NormedAddCommGroupOfRing Y] [InnerProductSpace 𝕜 X] [InnerProductSpace 𝕜 Y]
@@ -115,6 +130,9 @@ lemma LinearIsometryEquiv.commutes_with_mul_adjoint_iff_of_surjective_isometry
     rw [← h, symm_apply_apply]
 
 -- MOVE:
+/--
+@isnad1 id=iff.0h6v.s9.5cf0db3091b0 from=translated src=- shape=95fe1930 vocab=2a4b85a5
+-/
 theorem Matrix.KroneckerProduct.ext_iff {R P n₁ n₂ : Type _} [Finite n₁] [Finite n₂]
     [CommSemiring R] [AddCommMonoid P] [Module R P]
     {g h : Matrix (n₁ × n₂) (n₁ × n₂) R →ₗ[R] P} :

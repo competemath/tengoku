@@ -13,6 +13,9 @@ noncomputable def shiftIter (a : ℝ) : ℕ → (ℂ → ℂ) → ℂ → ℂ
   | 0, f => f
   | n+1, f => shiftAverage (shiftIter a n f) a
 
+/--
+@isnad1 id=eq.0h4v.s4.168ced71cfc4 from=translated src=- shape=bb61930a vocab=b9ccb7d5
+-/
 theorem eval_shiftPolynomialIter (a : ℝ) (n : ℕ) (p : ℂ[X]) (z : ℂ) :
     (shiftPolynomialIter a n p).eval z = shiftIter a n p.eval z := by
   induction n generalizing z with
@@ -33,6 +36,9 @@ private theorem cos_shift_pair (a u : ℝ) (z : ℂ) :
   rw [hc]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s6.aea50cb77cf7 from=translated src=- shape=b9d6ebb7 vocab=a624b40f
+-/
 theorem shiftHeatIntegrand_succ (t a : ℝ) (n : ℕ) (z : ℂ) (u : ℝ) :
     shiftHeatIntegrand t a (n+1) z u =
       (shiftHeatIntegrand t a n (z+(a : ℂ)*I) u +
@@ -42,6 +48,9 @@ theorem shiftHeatIntegrand_succ (t a : ℝ) (n : ℕ) (z : ℂ) (u : ℝ) :
   rw [pow_succ]
   linear_combination -((Real.cosh (a*u) : ℂ)^n * ((Real.exp (t*u^2)*Phi u : ℝ) : ℂ)) * h
 
+/--
+@isnad1 id=integrab.0h4v.s5.04c4d636d36e from=translated src=- shape=990d68e0 vocab=e082f37d
+-/
 theorem shiftHeatIntegrand_integrable (t a : ℝ) (n : ℕ) (z : ℂ) :
     IntegrableOn (shiftHeatIntegrand t a n z) (Ioi 0) := by
   change IntegrableOn (fun u => shiftHeatIntegrand t a n z u) (Ioi 0)
@@ -51,7 +60,9 @@ theorem shiftHeatIntegrand_integrable (t a : ℝ) (n : ℕ) (z : ℂ) :
     simp only [IntegrableOn, shiftHeatIntegrand_succ]
     exact ((ih (z+(a : ℂ)*I)).add (ih (z-(a : ℂ)*I))).div_const 2
 
-/-- Finite shifts multiply the actual Fourier kernel by a power of `cosh`. -/
+/-- Finite shifts multiply the actual Fourier kernel by a power of `cosh`.
+@isnad1 id=eq.0h4v.s5.61642de88ff0 from=translated src=- shape=f37c8625 vocab=6a839796
+-/
 theorem shiftIter_H_eq_integral (t a : ℝ) (n : ℕ) (z : ℂ) :
     shiftIter a n (H t) z = ∫ u in Ioi (0 : ℝ), shiftHeatIntegrand t a n z u := by
   induction n generalizing z with
@@ -61,7 +72,9 @@ theorem shiftIter_H_eq_integral (t a : ℝ) (n : ℕ) (z : ℂ) :
     rw [integral_div, integral_add (shiftHeatIntegrand_integrable t a n _)
       (shiftHeatIntegrand_integrable t a n _)]
 
-/-- The finite multipliers have exactly the Gaussian domination needed for the heat limit. -/
+/-- The finite multipliers have exactly the Gaussian domination needed for the heat limit.
+@isnad1 id=le.0h3v.s6.9df0101f4068 from=translated src=- shape=6dd0d5ca vocab=f12ad8ae
+-/
 theorem cosh_pow_le_heat_multiplier (a u : ℝ) (n : ℕ) :
     Real.cosh (a*u)^n ≤ Real.exp (((n : ℝ)*a^2/2)*u^2) := by
   have h := pow_le_pow_left₀ (Real.cosh_pos (a*u)).le (Real.cosh_le_exp_half_sq (a*u)) n
@@ -70,7 +83,9 @@ theorem cosh_pow_le_heat_multiplier (a u : ℝ) (n : ℕ) :
     Real.cosh (a*u)^n ≤ Real.exp ((n : ℝ)*((a*u)^2/2)) := h
     _ = Real.exp (((n : ℝ)*a^2/2)*u^2) := by congr 1; ring
 
-/-- Domination by the corresponding Gaussian heat weight, before taking any limit. -/
+/-- Domination by the corresponding Gaussian heat weight, before taking any limit.
+@isnad1 id=le.0h5v.s6.fd4aea988322 from=translated src=- shape=045147d3 vocab=35de61f5
+-/
 theorem shiftHeatIntegrand_norm_le (t a : ℝ) (n : ℕ) (z : ℂ) (u : ℝ) :
     ‖shiftHeatIntegrand t a n z u‖ ≤ ‖heatIntegrand (t+(n : ℝ)*a^2/2) z u‖ := by
   have h := cosh_pow_le_heat_multiplier a u n
@@ -86,7 +101,9 @@ theorem shiftHeatIntegrand_norm_le (t a : ℝ) (n : ℕ) (z : ℂ) (u : ℝ) :
     (show 0 ≤ Real.exp (t*u^2) * |Phi u| * ‖Complex.cos (z*(u : ℂ))‖ by positivity)]
 
 /-- Gaussian domination on bounded imaginary parts, uniform in all finite shifts
-whose squared budget is exactly one. -/
+whose squared budget is exactly one.
+@isnad1 id=le.3h5v.s7.f40bc4570e9e from=translated src=- shape=9a5a22c7 vocab=e2aa7d28
+-/
 theorem shiftHeatIntegrand_bound_unit (a : ℝ) (n : ℕ) (hbudget : (n : ℝ)*a^2 = 1)
     (Y : ℝ) {z : ℂ} (hz : |z.im| ≤ Y) {u : ℝ} (hu : 0 ≤ u) :
     ‖shiftHeatIntegrand 0 a n z u‖ ≤

@@ -44,10 +44,16 @@ def cover : Plane →L[ℝ] Plane :=
   (3 • ContinuousLinearMap.fst ℝ ℝ ℝ + ContinuousLinearMap.snd ℝ ℝ ℝ).prod
     (ContinuousLinearMap.fst ℝ ℝ ℝ + 5 • ContinuousLinearMap.snd ℝ ℝ ℝ)
 
+/--
+@isnad1 id=eq.0h1v.s7.65762f8c3801 from=translated src=- shape=8058fe85 vocab=c8a9e4aa
+-/
 @[simp] theorem cover_apply (x : Plane) :
     cover x = (3 * x.1 + x.2, x.1 + 5 * x.2) := by
   simp [cover]
 
+/--
+@isnad1 id=injectiv.0h0v.s7.f1c5c0c0b263 from=translated src=- shape=033eb262 vocab=e4de2563
+-/
 theorem cover_injective : Function.Injective cover := by
   intro x y h
   have h1 := congrArg Prod.fst h
@@ -55,6 +61,9 @@ theorem cover_injective : Function.Injective cover := by
   simp only [cover_apply] at h1 h2
   apply Prod.ext <;> linarith
 
+/--
+@isnad1 id=injectiv.0h1v.s9.fb437578b3dd from=translated src=- shape=ffb5415b vocab=7f6145a8
+-/
 theorem cover_pow_injective (n : ℕ) : Function.Injective (cover ^ n : Plane →L[ℝ] Plane) := by
   induction n with
   | zero => simpa using Function.injective_id
@@ -63,6 +72,9 @@ theorem cover_pow_injective (n : ℕ) : Function.Injective (cover ^ n : Plane �
       rw [pow_succ', _root_.mul_apply_eq_comp, _root_.mul_apply_eq_comp] at h
       exact ih (cover_injective h)
 
+/--
+@isnad1 id=le.0h1v.s7.d0e872f76825 from=translated src=- shape=dad60bb4 vocab=9fe5bd74
+-/
 theorem norm_cover_le (x : Plane) : ‖cover x‖ ≤ 6 * ‖x‖ := by
   have hx : |x.1| ≤ ‖x‖ := le_max_left _ _
   have hy : |x.2| ≤ ‖x‖ := le_max_right _ _
@@ -76,6 +88,9 @@ theorem norm_cover_le (x : Plane) : ‖cover x‖ ≤ 6 * ‖x‖ := by
       |x.1 + 5 * x.2| ≤ |x.1| + |5 * x.2| := abs_add_le _ _
       _ ≤ 6 * ‖x‖ := by rw [abs_mul]; norm_num; linarith
 
+/--
+@isnad1 id=le.0h2v.s9.49cfb700e72c from=translated src=- shape=38ea6c92 vocab=4bbb4af0
+-/
 theorem norm_cover_pow_le (n : ℕ) (x : Plane) :
     ‖(cover ^ n) x‖ ≤ (6 : ℝ) ^ n * ‖x‖ := by
   induction n with
@@ -87,6 +102,9 @@ theorem norm_cover_pow_le (n : ℕ) (x : Plane) :
         _ ≤ 6 * ((6 : ℝ) ^ n * ‖x‖) := mul_le_mul_of_nonneg_left ih (by norm_num)
         _ = _ := by ring
 
+/--
+@isnad1 id=and.2h2v.s10.2e3609258cc6 from=translated src=- shape=d9a83aae vocab=03e81dc7
+-/
 theorem cover_pow_positive (n : ℕ) (x : Plane) (hx : 0 < x.1) (hy : 0 ≤ x.2) :
     0 < ((cover ^ n) x).1 ∧ 0 ≤ ((cover ^ n) x).2 := by
   induction n with
@@ -96,6 +114,9 @@ theorem cover_pow_positive (n : ℕ) (x : Plane) (hx : 0 < x.1) (hy : 0 ≤ x.2)
       dsimp
       constructor <;> linarith [ih.1, ih.2]
 
+/--
+@isnad1 id=lt.3h2v.s9.f4005f1c012c from=translated src=- shape=821ffa84 vocab=03e81dc7
+-/
 theorem cover_pow_second_positive {n : ℕ} (hn : 0 < n) (x : Plane)
     (hx : 0 < x.1) (hy : 0 ≤ x.2) : 0 < ((cover ^ n) x).2 := by
   obtain ⟨k, rfl⟩ := Nat.exists_eq_succ_of_ne_zero (Nat.ne_of_gt hn)
@@ -107,6 +128,9 @@ theorem cover_pow_second_positive {n : ℕ} (hn : 0 < n) (x : Plane)
 /-- Denominator, given by `((m : ℝ) + 1) * (6 : ℝ) ^ D`. -/
 def denominator (m D : ℕ) : ℝ := ((m : ℝ) + 1) * (6 : ℝ) ^ D
 
+/--
+@isnad1 id=lt.0h2v.s4.4ff3d0a062bd from=translated src=- shape=5ffe46ab vocab=12af0c2f
+-/
 theorem denominator_pos (m D : ℕ) : 0 < denominator m D := by
   unfold denominator
   positivity
@@ -115,19 +139,31 @@ theorem denominator_pos (m D : ℕ) : 0 < denominator m D := by
 def center (m D : ℕ) (i : Fin m) : Plane :=
   (((i.val : ℝ) + 1) / denominator m D, 0)
 
+/--
+@isnad1 id=ex.0h3v.s5.b5c3bd028cb8 from=translated src=- shape=a4b54190 vocab=5bf5996d
+-/
 theorem center_rational (m D : ℕ) (i : Fin m) :
     ∃ a b : ℚ, center m D i = ((a : ℝ), (b : ℝ)) := by
   refine ⟨((i.val : ℚ) + 1) / (((m : ℚ) + 1) * 6 ^ D), 0, ?_⟩
   simp [center, denominator]
 
+/--
+@isnad1 id=lt.0h3v.s4.abb7fa4a6c42 from=translated src=- shape=1d9cb5a9 vocab=c3525702
+-/
 theorem center_first_pos (m D : ℕ) (i : Fin m) : 0 < (center m D i).1 := by
   exact div_pos (by positivity) (denominator_pos m D)
 
+/--
+@isnad1 id=eq.0h3v.s4.4c3dcc551a6c from=translated src=- shape=c2621590 vocab=06d46e4c
+-/
 theorem center_norm (m D : ℕ) (i : Fin m) : ‖center m D i‖ = (center m D i).1 := by
   change max |(center m D i).1| |(0 : ℝ)| = (center m D i).1
   rw [abs_zero, abs_of_pos (center_first_pos m D i),
     max_eq_left (center_first_pos m D i).le]
 
+/--
+@isnad1 id=lt.0h3v.s5.2ebf96462fef from=translated src=- shape=57fa3d31 vocab=7e76fa58
+-/
 theorem scaled_center_lt_one (m D : ℕ) (i : Fin m) :
     (6 : ℝ) ^ D * ‖center m D i‖ < 1 := by
   rw [center_norm]
@@ -139,6 +175,9 @@ theorem scaled_center_lt_one (m D : ℕ) (i : Fin m) :
   apply (div_lt_one (by positivity : 0 < (m : ℝ) + 1)).mpr
   exact_mod_cast Nat.add_lt_add_right i.isLt 1
 
+/--
+@isnad1 id=injectiv.0h2v.s3.781709dd0532 from=translated src=- shape=5f4cdcf6 vocab=1d4facc5
+-/
 theorem center_injective (m D : ℕ) : Function.Injective (center m D) := by
   intro i j h
   have h1 := congrArg Prod.fst h
@@ -154,9 +193,15 @@ def lattice : Set Plane := (Set.range (Int.cast : ℤ → ℝ)) ×ˢ (Set.range 
 /-- Equality on the torus, stated on its universal cover. -/
 def torusEq (x y : Plane) : Prop := x - y ∈ lattice
 
+/--
+@isnad1 id=isclosed.0h0v.s4.fe3f517e308b from=translated src=- shape=25b03439 vocab=e9ad5561
+-/
 theorem isClosed_lattice : IsClosed lattice :=
   Int.isClosedEmbedding_coe_real.isClosed_range.prod Int.isClosedEmbedding_coe_real.isClosed_range
 
+/--
+@isnad1 id=eq.2h1v.s5.8bb16629181c from=translated src=- shape=22a84263 vocab=7d2ccc91
+-/
 theorem lattice_norm_lt_one {x : Plane} (hx : x ∈ lattice) (hn : ‖x‖ < 1) : x = 0 := by
   rcases hx with ⟨⟨a, ha⟩, ⟨b, hb⟩⟩
   have hx1 : |x.1| < 1 := lt_of_le_of_lt (le_max_left _ _) hn
@@ -175,6 +220,9 @@ theorem lattice_norm_lt_one {x : Plane} (hx : x ∈ lattice) (hn : ‖x‖ < 1) 
   · simpa [ha0] using ha.symm
   · simpa [hb0] using hb.symm
 
+/--
+@isnad1 id=eq.7h2v.s6.1529f21825bc from=translated src=- shape=636b7aea vocab=dcd34890
+-/
 theorem torusEq_of_unit_square {x y : Plane} (hxy : torusEq x y)
     (hx1 : 0 ≤ x.1) (hx2 : 0 ≤ x.2) (hy1 : 0 ≤ y.1) (hy2 : 0 ≤ y.2)
     (hx : ‖x‖ < 1) (hy : ‖y‖ < 1) : x = y := by
@@ -188,6 +236,9 @@ theorem torusEq_of_unit_square {x y : Plane} (hxy : torusEq x y)
   rw [max_lt_iff, abs_lt, abs_lt]
   constructor <;> constructor <;> linarith
 
+/--
+@isnad1 id=lt.1h4v.s9.750b2334b510 from=translated src=- shape=edcdeb31 vocab=d6f2f80b
+-/
 theorem cover_center_norm_lt_one (m D : ℕ) (i : Fin m) (n : ℕ) (hn : n ≤ D) :
     ‖(cover ^ n) (center m D i)‖ < 1 := by
   calc
@@ -197,7 +248,9 @@ theorem cover_center_norm_lt_one (m D : ℕ) (i : Fin m) (n : ℕ) (hn : n ≤ D
     _ < 1 := scaled_center_lt_one m D i
 
 /-- All forbidden coincidences are ruled out for the explicit centers,
-including self-coincidence under every positive allowed covering power. -/
+including self-coincidence under every positive allowed covering power.
+@isnad1 id=not.2h5v.s9.670860121b13 from=translated src=- shape=118a4692 vocab=ac0596d4
+-/
 theorem centers_avoid_covering (m D : ℕ) (i j : Fin m) (n : ℕ) (hn : n ≤ D)
     (hij : 0 < n ∨ i ≠ j) : ¬ torusEq ((cover ^ n) (center m D i)) (center m D j) := by
   intro h
@@ -292,7 +345,9 @@ The rectangles of radius `2*r` already include fixed padding.
 
 Distinct colors have disjoint slots at equal levels, and every positive
 covering difference up to `D` separates even equal colors. Every covering
-power up to `D` is also injective modulo the lattice on each padded slot. -/
+power up to `D` is also injective modulo the lattice on each padded slot.
+@isnad1 id=ex.0h2v.s11.40951d6ccb3f from=translated src=- shape=0b2848f7 vocab=0424db40
+-/
 theorem exists_common_radius (m D : ℕ) :
     ∃ r : ℝ, 0 < r ∧
       (∀ n ≤ D, ∀ i j : Fin m, 0 < n ∨ i ≠ j →
@@ -322,9 +377,15 @@ theorem exists_common_radius (m D : ℕ) :
     rw [hsub, map_sub] at hi
     exact cover_pow_injective n (sub_eq_zero.mp (lattice_norm_lt_one hxy hi))
 
+/--
+@isnad1 id=toruseq.0h1v.s2.53370eff7f27 from=translated src=- shape=b3bac8d8 vocab=c1f9bffb
+-/
 theorem torusEq_refl (x : Plane) : torusEq x x := by
   refine ⟨⟨0, ?_⟩, ⟨0, ?_⟩⟩ <;> simp
 
+/--
+@isnad1 id=toruseq.1h2v.s3.d4ad2187b3a9 from=translated src=- shape=7e524d71 vocab=c1f9bffb
+-/
 theorem torusEq_symm {x y : Plane} (h : torusEq x y) : torusEq y x := by
   rcases h with ⟨⟨a, ha⟩, ⟨b, hb⟩⟩
   refine ⟨⟨-a, ?_⟩, ⟨-b, ?_⟩⟩
@@ -335,6 +396,9 @@ theorem torusEq_symm {x y : Plane} (h : torusEq x y) : torusEq y x := by
     dsimp at hb ⊢
     linarith
 
+/--
+@isnad1 id=toruseq.2h3v.s4.5d2d0308ff28 from=translated src=- shape=0bc0c4a6 vocab=c1f9bffb
+-/
 theorem torusEq_trans {x y z : Plane} (hxy : torusEq x y) (hyz : torusEq y z) :
     torusEq x z := by
   rcases hxy with ⟨⟨a, ha⟩, ⟨b, hb⟩⟩
@@ -347,7 +411,9 @@ theorem torusEq_trans {x y z : Plane} (hxy : torusEq x y) (hyz : torusEq y z) :
     dsimp at hb hd ⊢
     linarith
 
-/-- The covering preserves the integer lattice and therefore torus equality. -/
+/-- The covering preserves the integer lattice and therefore torus equality.
+@isnad1 id=toruseq.1h2v.s8.f59e9e5cc52a from=translated src=- shape=73870003 vocab=4709a88b
+-/
 theorem cover_torusEq {x y : Plane} (h : torusEq x y) : torusEq (cover x) (cover y) := by
   rcases h with ⟨⟨a, ha⟩, ⟨b, hb⟩⟩
   refine ⟨⟨3 * a + b, ?_⟩, ⟨a + 5 * b, ?_⟩⟩
@@ -360,6 +426,9 @@ theorem cover_torusEq {x y : Plane} (h : torusEq x y) : torusEq (cover x) (cover
     dsimp at ha hb ⊢
     linarith
 
+/--
+@isnad1 id=toruseq.1h3v.s10.dc87b962f1b6 from=translated src=- shape=abfb67b9 vocab=ca006097
+-/
 theorem cover_pow_torusEq (n : ℕ) {x y : Plane} (h : torusEq x y) :
     torusEq ((cover ^ n) x) ((cover ^ n) y) := by
   induction n with
@@ -372,6 +441,9 @@ theorem cover_pow_torusEq (n : ℕ) {x y : Plane} (h : torusEq x y) :
 def liftedSupport (level : ℕ) (slot : Set Plane) : Set Plane :=
   {Y | ∃ x ∈ slot, torusEq ((cover ^ level) Y) x}
 
+/--
+@isnad1 id=disjoint.1h4v.s9.b83601b97398 from=translated src=- shape=cc1413e4 vocab=d35233eb
+-/
 theorem liftedSupport_disjoint_of_separation (level n : ℕ) (S T : Set Plane)
     (hsep : ∀ x ∈ S, ∀ y ∈ T, ¬ torusEq ((cover ^ n) x) y) :
     Disjoint (liftedSupport level S) (liftedSupport (level + n) T) := by
@@ -386,7 +458,9 @@ theorem liftedSupport_disjoint_of_separation (level n : ℕ) (S T : Set Plane)
   exact hsep x hx y hy (torusEq_trans (torusEq_symm hcover) hYy)
 
 /-- The padded native slots are disjoint on the actual absolute lift, at
-arbitrary levels whose difference is at most `D`. -/
+arbitrary levels whose difference is at most `D`.
+@isnad1 id=ex.0h2v.s7.f61b7ad311fc from=translated src=- shape=ae18d713 vocab=27adb7b9
+-/
 theorem exists_disjoint_lifted_slots (m D : ℕ) :
     ∃ r : ℝ, 0 < r ∧ ∀ level n, n ≤ D → ∀ i j : Fin m,
       0 < n ∨ i ≠ j →
@@ -401,6 +475,9 @@ theorem exists_disjoint_lifted_slots (m D : ℕ) :
 def orientedRectangle (c a b : Plane) (r : ℝ) : Set Plane :=
   {x | ∃ ξ η : ℝ, |ξ| ≤ r ∧ |η| ≤ r ∧ x = c + ξ • a + η • b}
 
+/--
+@isnad1 id=le.1h4v.s6.8ee3061aa378 from=translated src=- shape=b304ec58 vocab=36adf5ef
+-/
 theorem orientedRectangle_subset (c a b : Plane) (r : ℝ) (hr : 0 ≤ r) :
     orientedRectangle c a b (r / (1 + ‖a‖ + ‖b‖)) ⊆ rectangle c r := by
   intro x hx
@@ -420,7 +497,9 @@ theorem orientedRectangle_subset (c a b : Plane) (r : ℝ) (hr : 0 ≤ r) :
     _ = r := div_mul_cancel₀ _ (ne_of_gt hden)
 
 /-- In particular this applies to the manuscript's two eigendirections.
-The same coordinate radius works for all colors, levels, and padded slots. -/
+The same coordinate radius works for all colors, levels, and padded slots.
+@isnad1 id=ex.0h4v.s10.853372ad87f8 from=translated src=- shape=f87925bb vocab=f4ab59f8
+-/
 theorem exists_oriented_slots (m D : ℕ) (a b : Plane) :
     ∃ r : ℝ, 0 < r ∧
       (∀ level n, n ≤ D → ∀ i j : Fin m, 0 < n ∨ i ≠ j →
@@ -446,7 +525,9 @@ theorem exists_oriented_slots (m D : ℕ) (a b : Plane) :
     exact hinj n hn i x (hsub i hx) y (hsub i hy) hxy
 
 /-- The manuscript's axes are `(1,-β)` and `(β,1)`, with `β=sqrt(2)-1`.
-They define genuine coordinates for every real `β`. -/
+They define genuine coordinates for every real `β`.
+@isnad1 id=injectiv.0h1v.s6.d7d109a7314d from=translated src=- shape=4e3ffba6 vocab=ad5181e7
+-/
 theorem rotated_axes_injective (β : ℝ) :
     Function.Injective (fun q : Plane =>
       q.1 • ((1, -β) : Plane) + q.2 • ((β, 1) : Plane)) := by
@@ -464,7 +545,9 @@ theorem rotated_axes_injective (β : ℝ) :
 
 /-- Application to any label family with a finite proper coloring and a
 bounded difference of interacting levels. Constructing that coloring from
-the physical grid is a separate combinatorial obligation. -/
+the physical grid is a separate combinatorial obligation.
+@isnad1 id=ex.2h8v.s7.a7c6ff1c740b from=translated src=- shape=8b503c66 vocab=f4d2df9f
+-/
 theorem colored_labels_have_slots {Label : Type*} (m D : ℕ) (a b : Plane)
     (Adj : Label → Label → Prop) (color : Label → Fin m) (level : Label → ℕ)
     (hcolor : ∀ i j, Adj i j → color i ≠ color j)

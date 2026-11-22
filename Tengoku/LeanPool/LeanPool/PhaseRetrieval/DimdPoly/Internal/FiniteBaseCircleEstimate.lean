@@ -677,6 +677,9 @@ def circleGap (D : Nat) : Nat :=
 /-- `circleConst`: circle Const. -/
 def circleConst (D : Nat) : ℝ := 64 * ((circleGap D : Nat) : ℝ) ^ 2
 
+/--
+@isnad1 id=le.0h1v.s3.597d48ab0dee from=translated src=- shape=8a62b088 vocab=b8ad2da1
+-/
 theorem circleBadConst_pos (D : Nat) : 1 <= circleBadConst D := by
   unfold circleBadConst
   exact le_max_left 1 (max (82 * D) (2 ^ D - 1))
@@ -691,34 +694,55 @@ private theorem circleBadConst_ge_succ_of_pos {D : Nat} (hD : 0 < D) :
     exact hbad_inner.trans (le_max_right 1 (max (82 * D) (2 ^ D - 1)))
   exact hsucc_le.trans hbad
 
+/--
+@isnad1 id=le.0h1v.s3.738a32da3a2f from=translated src=- shape=8a62b088 vocab=0d9e9b4f
+-/
 theorem circleGoodBudget_pos (D : Nat) : 1 <= circleGoodBudget D := by
   unfold circleGoodBudget
   have hbad : 1 <= circleBadConst D := circleBadConst_pos D
   omega
 
+/--
+@isnad1 id=le.0h1v.s3.c8eab463f1c7 from=translated src=- shape=8a62b088 vocab=16db9e0e
+-/
 theorem circleGap_ge_37 (D : Nat) : 37 <= circleGap D := by
   unfold circleGap
   exact le_max_left 37 (2 * circleBadConst D * circleGoodBudget D)
 
+/--
+@isnad1 id=le.0h1v.s4.8a487f1b259a from=translated src=- shape=299f5447 vocab=7ee2e4fd
+-/
 theorem circleGap_ge_bad_budget (D : Nat) :
     2 * circleBadConst D * circleGoodBudget D <= circleGap D := by
   unfold circleGap
   exact le_max_right 37 (2 * circleBadConst D * circleGoodBudget D)
 
+/--
+@isnad1 id=le.0h1v.s3.c6543eb08c2d from=translated src=- shape=8a62b088 vocab=16db9e0e
+-/
 theorem circleGap_pos (D : Nat) : 1 <= circleGap D :=
   (by norm_num : 1 <= 37).trans (circleGap_ge_37 D)
 
+/--
+@isnad1 id=lt.0h1v.s3.b625809465b8 from=translated src=- shape=b9369acb vocab=bbc2d87b
+-/
 theorem circleConst_pos (D : Nat) : 0 < circleConst D := by
   dsimp [circleConst]
   have hgap : (0 : ℝ) < ((circleGap D : Nat) : ℝ) := by
     exact_mod_cast (lt_of_lt_of_le (by norm_num : 0 < 37) (circleGap_ge_37 D))
   positivity
 
+/--
+@isnad1 id=le.0h1v.s3.37cb5953a5fd from=translated src=- shape=b9369acb vocab=444878b2
+-/
 theorem circleConst_ge_one (D : Nat) : 1 <= circleConst D := by
   dsimp [circleConst]
   have hgap : (1 : ℝ) <= ((circleGap D : Nat) : ℝ) := by exact_mod_cast circleGap_pos D
   nlinarith [sq_nonneg (((circleGap D : Nat) : ℝ) - 1)]
 
+/--
+@isnad1 id=le.0h1v.s3.4b2ba13e667c from=translated src=- shape=b9369acb vocab=444878b2
+-/
 theorem thirty_two_le_circleConst (D : Nat) : (32 : ℝ) <= circleConst D := by
   dsimp [circleConst]
   have hgap : (1 : ℝ) <= ((circleGap D : Nat) : ℝ) := by exact_mod_cast circleGap_pos D
@@ -4211,6 +4235,9 @@ private theorem circle_variance_error_le_quarter_l2
       mul_le_mul_of_nonneg_right hbound hM
     _ = (1 / 4) * M := by norm_num
 
+/--
+@isnad1 id=le.2h5v.s6.5525394905eb from=translated src=- shape=5932e103 vocab=59bbebe0
+-/
 theorem finite_base_circle_estimate
     (D : Nat) :
     ∀ {L N : Nat}, 1 <= L ->
@@ -4381,6 +4408,9 @@ theorem finite_base_circle_estimate
           mul_le_mul_of_nonneg_right hconst hDef_nonneg
         _ = circleConst D * defectSq (lowPoly q) (bandPoly N p) := rfl
 
+/--
+@isnad1 id=ex.0h1v.s6.9db0c413c1d2 from=translated src=- shape=55e10f38 vocab=c3f9a2a4
+-/
 theorem finite_base_circle_estimate_exists (D : Nat) :
     ∃ A : Nat, 1 <= A ∧
       ∃ C : ℝ, 0 < C ∧

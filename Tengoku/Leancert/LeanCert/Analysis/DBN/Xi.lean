@@ -22,16 +22,28 @@ open Complex
 noncomputable def riemannXi (s : ℂ) : ℂ :=
   (s * (s - 1) * completedRiemannZeta₀ s + 1) / 2
 
+/--
+@isnad1 id=eq.0h0v.s5.833354adc49e from=translated src=- shape=d4f6e56f vocab=c008fd6a
+-/
 @[simp] theorem riemannXi_zero : riemannXi 0 = 1 / 2 := by
   simp [riemannXi]
 
+/--
+@isnad1 id=eq.0h0v.s5.f713b255809e from=translated src=- shape=d4f6e56f vocab=c008fd6a
+-/
 @[simp] theorem riemannXi_one : riemannXi 1 = 1 / 2 := by
   simp [riemannXi]
 
+/--
+@isnad1 id=differen.0h0v.s6.2ca778291c3c from=translated src=- shape=aa9fb30a vocab=586819cc
+-/
 theorem riemannXi_entire : Differentiable ℂ riemannXi := by
   exact (((differentiable_id.mul (differentiable_id.sub (differentiable_const (1 : ℂ)))).mul
     differentiable_completedZeta₀).add (differentiable_const (1 : ℂ))).div_const 2
 
+/--
+@isnad1 id=eq.2h1v.s6.fdfe2d3e353c from=translated src=- shape=fbb305ef vocab=84a65223
+-/
 theorem riemannXi_eq_mul_completed {s : ℂ} (h0 : s ≠ 0) (h1 : s ≠ 1) :
     riemannXi s = s * (s - 1) * completedRiemannZeta s / 2 := by
   rw [riemannXi, completedRiemannZeta_eq]
@@ -39,10 +51,16 @@ theorem riemannXi_eq_mul_completed {s : ℂ} (h0 : s ≠ 0) (h1 : s ≠ 1) :
   field_simp [h0, h]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s4.9f44188f105b from=translated src=- shape=0d0922af vocab=26c3e998
+-/
 theorem riemannXi_one_sub (s : ℂ) : riemannXi (1 - s) = riemannXi s := by
   simp only [riemannXi, completedRiemannZeta₀_one_sub]
   ring
 
+/--
+@isnad1 id=ne.1h1v.s4.2ecf37e35539 from=translated src=- shape=555d9df8 vocab=da95c6b8
+-/
 theorem riemannXi_ne_zero_of_one_lt_re {s : ℂ} (hs : 1 < s.re) :
     riemannXi s ≠ 0 := by
   have h0 : s ≠ 0 := by intro h; norm_num [h] at hs
@@ -55,6 +73,9 @@ theorem riemannXi_ne_zero_of_one_lt_re {s : ℂ} (hs : 1 < s.re) :
   rw [riemannXi_eq_mul_completed h0 h1]
   exact div_ne_zero (mul_ne_zero (mul_ne_zero h0 (sub_ne_zero.mpr h1)) hc) (by norm_num)
 
+/--
+@isnad1 id=ne.1h1v.s4.a637436ed377 from=translated src=- shape=7cc8a206 vocab=da95c6b8
+-/
 theorem riemannXi_ne_zero_of_re_lt_zero {s : ℂ} (hs : s.re < 0) :
     riemannXi s ≠ 0 := by
   rw [← riemannXi_one_sub s]
@@ -62,7 +83,9 @@ theorem riemannXi_ne_zero_of_re_lt_zero {s : ℂ} (hs : s.re < 0) :
   simp only [sub_re, one_re]
   linarith
 
-/-- No numerical RH verification is needed for the closed critical strip. -/
+/-- No numerical RH verification is needed for the closed critical strip.
+@isnad1 id=and.1h1v.s5.db8b4b9b16f5 from=translated src=- shape=1c67ac5e vocab=cb1c25f0
+-/
 theorem riemannXi_zero_strip {s : ℂ} (hs : riemannXi s = 0) :
     0 ≤ s.re ∧ s.re ≤ 1 := by
   constructor
@@ -75,17 +98,25 @@ theorem riemannXi_zero_strip {s : ℂ} (hs : riemannXi s = 0) :
 noncomputable def xiModel (z : ℂ) : ℂ :=
   riemannXi (1 / 2 + I * z / 2) / 8
 
+/--
+@isnad1 id=differen.0h0v.s6.49ca30f98d59 from=translated src=- shape=aa9fb30a vocab=5cbe8bb0
+-/
 theorem xiModel_entire : Differentiable ℂ xiModel := by
   exact (riemannXi_entire.comp
     (differentiable_const _ |>.add
       ((differentiable_const _ |>.mul differentiable_id).div_const 2))).div_const 8
 
+/--
+@isnad1 id=eq.0h1v.s3.4e484a741239 from=translated src=- shape=cd419dad vocab=df1d3e68
+-/
 theorem xiModel_even (z : ℂ) : xiModel (-z) = xiModel z := by
   unfold xiModel
   rw [show (1 / 2 + I * -z / 2 : ℂ) = 1 - (1 / 2 + I * z / 2) by ring,
     riemannXi_one_sub]
 
-/-- The normalized xi model has no zeros outside the initial DBN strip. -/
+/-- The normalized xi model has no zeros outside the initial DBN strip.
+@isnad1 id=le.1h1v.s4.38c30d7fd5cc from=translated src=- shape=e902ce3e vocab=caef63a5
+-/
 theorem xiModel_zero_strip {z : ℂ} (hz : xiModel z = 0) : |z.im| ≤ 1 := by
   have hx : riemannXi (1 / 2 + I * z / 2) = 0 := by
     simpa [xiModel, div_eq_zero_iff] using hz
@@ -97,6 +128,9 @@ theorem xiModel_zero_strip {z : ℂ} (hz : xiModel z = 0) : |z.im| ≤ 1 := by
   rw [abs_le]
   constructor <;> linarith [hs.1, hs.2]
 
+/--
+@isnad1 id=ne.1h1v.s4.74e48fafdd95 from=translated src=- shape=eb33fa53 vocab=72b33cec
+-/
 theorem xiModel_ne_zero_of_one_lt_abs_im {z : ℂ} (hz : 1 < |z.im|) :
     xiModel z ≠ 0 := fun h => (not_le_of_gt hz) (xiModel_zero_strip h)
 

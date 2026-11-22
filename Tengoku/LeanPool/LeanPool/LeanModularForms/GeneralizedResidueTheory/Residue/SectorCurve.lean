@@ -75,43 +75,59 @@ def sectorCurve (r : ℝ) (α : ℝ) (t : ℝ) : ℂ :=
 
 /-! ### Basic properties of the sector curve -/
 
-/-- The sector curve at t=0 is 0. -/
+/-- The sector curve at t=0 is 0.
+@isnad1 id=eq.0h2v.s4.442512d56cac from=translated src=- shape=b5500b83 vocab=479ce82e
+-/
 theorem sectorCurve_zero (r : ℝ) (α : ℝ) :
     sectorCurve r α 0 = 0 := by simp [sectorCurve]
 
-/-- The sector curve at t=3 is 0. -/
+/-- The sector curve at t=3 is 0.
+@isnad1 id=eq.0h2v.s4.a334f7554728 from=translated src=- shape=b5500b83 vocab=821034c9
+-/
 theorem sectorCurve_three (r : ℝ) (α : ℝ) :
     sectorCurve r α 3 = 0 := by
   simp only [sectorCurve, show ¬(3 : ℝ) ≤ 1 from by norm_num,
     show ¬(3 : ℝ) ≤ 2 from by norm_num, ↓reduceIte, sub_self, zero_mul,
     Complex.ofReal_zero, zero_mul]
 
-/-- The sector curve is a closed curve (starts and ends at 0). -/
+/-- The sector curve is a closed curve (starts and ends at 0).
+@isnad1 id=eq.0h2v.s4.ac9012fbaa6e from=translated src=- shape=336f71ee vocab=821034c9
+-/
 theorem sectorCurve_closed (r : ℝ) (α : ℝ) :
     sectorCurve r α 0 = sectorCurve r α 3 := by rw [sectorCurve_zero, sectorCurve_three]
 
-/-- The sector curve at t=1 is r (the transition from radial to arc). -/
+/-- The sector curve at t=1 is r (the transition from radial to arc).
+@isnad1 id=eq.0h2v.s4.8e1b8389cca1 from=translated src=- shape=e185e377 vocab=8b854051
+-/
 theorem sectorCurve_one (r : ℝ) (α : ℝ) :
     sectorCurve r α 1 = ↑r := by simp [sectorCurve]
 
-/-- The sector curve at t=2 is r * exp(i * alpha) (end of arc). -/
+/-- The sector curve at t=2 is r * exp(i * alpha) (end of arc).
+@isnad1 id=eq.0h2v.s5.71d6bac513c2 from=translated src=- shape=f0f7d537 vocab=28424e80
+-/
 theorem sectorCurve_two (r : ℝ) (α : ℝ) :
     sectorCurve r α 2 = ↑r * exp (I * ↑α) := by
   simp only [sectorCurve, show ¬(2 : ℝ) ≤ 1 from by norm_num, show (2 : ℝ) ≤ 2 from le_refl 2,
     ↓reduceIte]; congr 1; congr 1; push_cast; ring
 
-/-- Segment 1: for t in [0,1], the sector curve is `t * r`. -/
+/-- Segment 1: for t in [0,1], the sector curve is `t * r`.
+@isnad1 id=eq.1h3v.s5.5dcddfe77889 from=translated src=- shape=237634f7 vocab=153dc331
+-/
 theorem sectorCurve_seg1 (r : ℝ) (α : ℝ) (t : ℝ) (ht : t ∈ Icc 0 1) :
     sectorCurve r α t = ↑(t * r) := by simp [sectorCurve, ht.2]
 
-/-- Segment 2: for t in [1,2], the sector curve is `r * exp(i*(t-1)*alpha)`. -/
+/-- Segment 2: for t in [1,2], the sector curve is `r * exp(i*(t-1)*alpha)`.
+@isnad1 id=eq.1h3v.s6.af5a4fd55781 from=translated src=- shape=a871fcd1 vocab=0f5c1e5e
+-/
 theorem sectorCurve_seg2 (r : ℝ) (α : ℝ) (t : ℝ) (ht : t ∈ Icc 1 2) :
     sectorCurve r α t = ↑r * exp (I * ↑((t - 1) * α)) := by
   rcases eq_or_lt_of_le ht.1 with rfl | h1
   · simp [sectorCurve, Complex.exp_zero]
   · simp only [sectorCurve, ite_eq_right (not_le.mpr h1), ite_eq_left ht.2]
 
-/-- Segment 3: for t in [2,3], the sector curve is `(3-t)*r * exp(i*alpha)`. -/
+/-- Segment 3: for t in [2,3], the sector curve is `(3-t)*r * exp(i*alpha)`.
+@isnad1 id=eq.1h3v.s6.d39fdca05e16 from=translated src=- shape=f55845a4 vocab=0f5c1e5e
+-/
 theorem sectorCurve_seg3 (r : ℝ) (α : ℝ) (t : ℝ) (ht : t ∈ Icc 2 3) :
     sectorCurve r α t = ↑((3 - t) * r) * exp (I * ↑α) := by
   rcases eq_or_lt_of_le ht.1 with rfl | h2
@@ -121,7 +137,9 @@ theorem sectorCurve_seg3 (r : ℝ) (α : ℝ) (t : ℝ) (ht : t ∈ Icc 2 3) :
   · simp only [sectorCurve, ite_eq_right (not_le.mpr (lt_trans one_lt_two h2)),
       ite_eq_right (not_le.mpr h2)]
 
-/-- The sector curve is continuous on [0,3]. -/
+/-- The sector curve is continuous on [0,3].
+@isnad1 id=continuo.0h2v.s5.abc5b080c7f0 from=translated src=- shape=eaa034ba vocab=cca1c6bd
+-/
 theorem sectorCurve_continuousOn (r : ℝ) (α : ℝ) :
     ContinuousOn (sectorCurve r α) (Icc 0 3) := by
   have h_union : Icc (0 : ℝ) 3 = Icc 0 1 ∪ Icc 1 2 ∪ Icc 2 3 := by
@@ -149,12 +167,16 @@ theorem sectorCurve_continuousOn (r : ℝ) (α : ℝ) :
   exact ((hc1.union_of_isClosed hc2 isClosed_Icc isClosed_Icc).union_of_isClosed hc3
     (isClosed_Icc.union isClosed_Icc) isClosed_Icc)
 
-/-- The sector curve passes through the origin at t=0 and t=3. -/
+/-- The sector curve passes through the origin at t=0 and t=3.
+@isnad1 id=and.0h2v.s5.3d7b58216562 from=translated src=- shape=696023ef vocab=821034c9
+-/
 theorem sectorCurve_passes_through_origin (r : ℝ) (α : ℝ) :
     sectorCurve r α 0 = 0 ∧ sectorCurve r α 3 = 0 :=
   ⟨sectorCurve_zero r α, sectorCurve_three r α⟩
 
-/-- On the arc segment (t in [1,2]), the sector curve has modulus r. -/
+/-- On the arc segment (t in [1,2]), the sector curve has modulus r.
+@isnad1 id=eq.2h3v.s5.42574e96c9c6 from=translated src=- shape=cb81f1a1 vocab=3c6abee6
+-/
 theorem sectorCurve_norm_on_arc (r : ℝ) (hr : 0 < r) (α : ℝ) (t : ℝ)
     (ht : t ∈ Icc 1 2) :
     ‖sectorCurve r α t‖ = r := by
@@ -164,7 +186,9 @@ theorem sectorCurve_norm_on_arc (r : ℝ) (hr : 0 < r) (α : ℝ) (t : ℝ)
 
 /-! ### Derivative of the sector curve -/
 
-/-- Derivative on segment 1 (t in (0,1)): `deriv (sectorCurve r alpha) t = r`. -/
+/-- Derivative on segment 1 (t in (0,1)): `deriv (sectorCurve r alpha) t = r`.
+@isnad1 id=eq.1h3v.s6.5bc93ce27faf from=translated src=- shape=c4632f28 vocab=b82c3293
+-/
 theorem deriv_sectorCurve_seg1 (r : ℝ) (α : ℝ) (t : ℝ) (ht : t ∈ Ioo 0 1) :
     deriv (sectorCurve r α) t = ↑r := by
   have h_eq : sectorCurve r α =ᶠ[𝓝 t] fun s => ↑(s * r) := by
@@ -176,7 +200,9 @@ theorem deriv_sectorCurve_seg1 (r : ℝ) (α : ℝ) (t : ℝ) (ht : t ∈ Ioo 0 
   exact h1.ofReal_comp.deriv
 
 /-- Derivative on segment 2 (t in (1,2)):
-  `deriv (sectorCurve r alpha) t = r * (I * alpha) * exp(I * (t-1) * alpha)`. -/
+  `deriv (sectorCurve r alpha) t = r * (I * alpha) * exp(I * (t-1) * alpha)`.
+@isnad1 id=eq.1h3v.s7.0e6c210aaf99 from=translated src=- shape=dd8aac0c vocab=d8c08ae0
+-/
 theorem deriv_sectorCurve_seg2 (r : ℝ) (α : ℝ) (t : ℝ) (ht : t ∈ Ioo 1 2) :
     deriv (sectorCurve r α) t =
       ↑r * (I * ↑α) * exp (I * ↑((t - 1) * α)) := by
@@ -201,7 +227,9 @@ theorem deriv_sectorCurve_seg2 (r : ℝ) (α : ℝ) (t : ℝ) (ht : t ∈ Ioo 1 
   rw [h_full.deriv]; ring
 
 /-- Derivative on segment 3 (t in (2,3)):
-  `deriv (sectorCurve r alpha) t = -r * exp(I * alpha)`. -/
+  `deriv (sectorCurve r alpha) t = -r * exp(I * alpha)`.
+@isnad1 id=eq.1h3v.s6.df42409f9583 from=translated src=- shape=4cc2ab59 vocab=9b330e28
+-/
 theorem deriv_sectorCurve_seg3 (r : ℝ) (α : ℝ) (t : ℝ) (ht : t ∈ Ioo 2 3) :
     deriv (sectorCurve r α) t = -(↑r) * exp (I * ↑α) := by
   have h_eq : sectorCurve r α =ᶠ[𝓝 t] fun s => ↑((3 - s) * r) * exp (I * ↑α) := by
@@ -224,7 +252,9 @@ theorem deriv_sectorCurve_seg3 (r : ℝ) (α : ℝ) (t : ℝ) (ht : t ∈ Ioo 2 
 /-! ### PV integrand analysis -/
 
 /-- The integrand `(sectorCurve r alpha t)^(-1) * deriv (sectorCurve r alpha) t`
-on segment 1 (t in (0,1)) simplifies to `1/t` (as a complex number). -/
+on segment 1 (t in (0,1)) simplifies to `1/t` (as a complex number).
+@isnad1 id=eq.2h3v.s6.0d29cefcf198 from=translated src=- shape=98794eed vocab=055fe4b6
+-/
 theorem pv_integrand_seg1 (r : ℝ) (hr : 0 < r) (α : ℝ) (t : ℝ) (ht : t ∈ Ioo 0 1) :
     (sectorCurve r α t)⁻¹ * deriv (sectorCurve r α) t = ↑(t⁻¹) := by
   rw [sectorCurve_seg1 r α t ⟨le_of_lt ht.1, le_of_lt ht.2⟩,
@@ -233,7 +263,9 @@ theorem pv_integrand_seg1 (r : ℝ) (hr : 0 < r) (α : ℝ) (t : ℝ) (ht : t �
   have hr_ne : (r : ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr (ne_of_gt hr)
   push_cast; field_simp
 
-/-- The integrand on segment 2 (t in (1,2)) simplifies to `I * alpha`. -/
+/-- The integrand on segment 2 (t in (1,2)) simplifies to `I * alpha`.
+@isnad1 id=eq.2h3v.s6.6922df631da0 from=translated src=- shape=4f5c76e9 vocab=cf82acf9
+-/
 theorem pv_integrand_seg2 (r : ℝ) (hr : 0 < r) (α : ℝ) (t : ℝ) (ht : t ∈ Ioo 1 2) :
     (sectorCurve r α t)⁻¹ * deriv (sectorCurve r α) t = I * ↑α := by
   rw [sectorCurve_seg2 r α t ⟨le_of_lt ht.1, le_of_lt ht.2⟩,
@@ -242,7 +274,9 @@ theorem pv_integrand_seg2 (r : ℝ) (hr : 0 < r) (α : ℝ) (t : ℝ) (ht : t �
   have h_exp_ne : exp (I * ↑((t - 1) * α)) ≠ 0 := Complex.exp_ne_zero _
   field_simp
 
-/-- The integrand on segment 3 (t in (2,3)) simplifies to `-1/(3-t)`. -/
+/-- The integrand on segment 3 (t in (2,3)) simplifies to `-1/(3-t)`.
+@isnad1 id=eq.2h3v.s7.e75710068b3d from=translated src=- shape=4e2eb6c7 vocab=ea14ff4f
+-/
 theorem pv_integrand_seg3 (r : ℝ) (hr : 0 < r) (α : ℝ) (t : ℝ) (ht : t ∈ Ioo 2 3) :
     (sectorCurve r α t)⁻¹ * deriv (sectorCurve r α) t = -↑((3 - t)⁻¹) := by
   rw [sectorCurve_seg3 r α t ⟨le_of_lt ht.1, le_of_lt ht.2⟩,
@@ -255,12 +289,16 @@ theorem pv_integrand_seg3 (r : ℝ) (hr : 0 < r) (α : ℝ) (t : ℝ) (ht : t �
 
 /-! ### PV computation: Lemma 3.1 -/
 
-/-- The integral of `1/t` from `epsilon` to `1` is `-log(epsilon)`. -/
+/-- The integral of `1/t` from `epsilon` to `1` is `-log(epsilon)`.
+@isnad1 id=eq.2h1v.s5.0968df9a7906 from=translated src=- shape=650d8d76 vocab=5a41fe49
+-/
 theorem integral_seg1_eq_neg_log (ε : ℝ) (hε : 0 < ε) (_hε1 : ε < 1) :
     ∫ t in ε..1, (t : ℝ)⁻¹ = -Real.log ε := by
   simp_all
 
-/-- The integral of `-1/(3-t)` from `2` to `3-epsilon` is `log(epsilon)`. -/
+/-- The integral of `-1/(3-t)` from `2` to `3-epsilon` is `log(epsilon)`.
+@isnad1 id=eq.2h1v.s6.189cd85641e8 from=translated src=- shape=bff88638 vocab=762b5df7
+-/
 theorem integral_seg3_eq_log (ε : ℝ) (hε : 0 < ε) (_hε1 : ε < 1) :
     ∫ t in (2 : ℝ)..(3 - ε), -((3 - t)⁻¹) = Real.log ε := by
   rw [intervalIntegral.integral_neg]
@@ -271,19 +309,25 @@ theorem integral_seg3_eq_log (ε : ℝ) (hε : 0 < ε) (_hε1 : ε < 1) :
     congr 1 <;> ring
   simp_all
 
-/-- On segment 1, the norm of the sector curve is `t * r`. -/
+/-- On segment 1, the norm of the sector curve is `t * r`.
+@isnad1 id=eq.2h3v.s5.71fa83732794 from=translated src=- shape=449750a1 vocab=8f9c55db
+-/
 theorem sectorCurve_norm_seg1 (r : ℝ) (hr : 0 < r) (α : ℝ) (t : ℝ) (ht : t ∈ Icc 0 1) :
     ‖sectorCurve r α t‖ = t * r := by
   rw [sectorCurve_seg1 r α t ht]
   exact Complex.norm_of_nonneg (mul_nonneg ht.1 (le_of_lt hr))
 
-/-- On segment 3, the norm of the sector curve is `(3 - t) * r`. -/
+/-- On segment 3, the norm of the sector curve is `(3 - t) * r`.
+@isnad1 id=eq.2h3v.s6.d349d67799cc from=translated src=- shape=46087afd vocab=3ceb0665
+-/
 theorem sectorCurve_norm_seg3' (r : ℝ) (hr : 0 < r) (α : ℝ) (t : ℝ) (ht : t ∈ Icc 2 3) :
     ‖sectorCurve r α t‖ = (3 - t) * r := by
   rw [sectorCurve_seg3 r α t ht, norm_mul, Complex.norm_exp_I_mul_ofReal, mul_one,
     Complex.norm_of_nonneg (mul_nonneg (by linarith [ht.2]) (le_of_lt hr))]
 
-/-- The logarithmic integrals from segments 1 and 3 cancel. -/
+/-- The logarithmic integrals from segments 1 and 3 cancel.
+@isnad1 id=eq.3h2v.s7.f17e65471e61 from=translated src=- shape=3588d022 vocab=10d74fee
+-/
 theorem log_cancellation (r : ℝ) (hr : 0 < r) (ε : ℝ) (hε : 0 < ε) (hεr : ε < r) :
     (∫ t in (ε / r)..(1 : ℝ), (↑(t⁻¹) : ℂ)) +
     (∫ t in (2 : ℝ)..(3 - ε / r), (-(↑((3 - t)⁻¹)) : ℂ)) = 0 := by

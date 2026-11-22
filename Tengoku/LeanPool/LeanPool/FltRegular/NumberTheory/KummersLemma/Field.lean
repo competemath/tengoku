@@ -39,6 +39,9 @@ variable (u : (𝓞 K)ˣ)
 open Polynomial IsCyclotomicExtension.Rat
 
 include hcong hp in
+/--
+@isnad1 id=dvd.3h4v.s10.cf86bd6d48a5 from=translated src=- shape=8065c590 vocab=71dd916e
+-/
 lemma zeta_sub_one_pow_dvd_poly :
     C ((hζ.toInteger - 1 : 𝓞 K) ^ p) ∣
       (C (hζ.toInteger - 1 : 𝓞 K) * X - 1) ^ p + C (u : 𝓞 K) := by
@@ -52,12 +55,18 @@ lemma zeta_sub_one_pow_dvd_poly :
 
 namespace KummersLemma
 
+/--
+@isnad1 id=eq.1h4v.s9.363baa8ecf69 from=translated src=- shape=33307325 vocab=7253f5e8
+-/
 lemma natDegree_poly_aux :
     natDegree ((C (hζ.toInteger - 1 : 𝓞 K) * X - 1) ^ p + C (u : 𝓞 K)) = p := by
   rw [natDegree_add_C, natDegree_pow, ← C.map_one, natDegree_sub_C, natDegree_mul_X, natDegree_C,
     zero_add, mul_one]
   exact C_ne_zero.mpr (hζ.toInteger_isPrimitiveRoot.sub_one_ne_zero hpri.out.one_lt)
 
+/--
+@isnad1 id=eq.1h4v.s9.7d11a2c6a6d9 from=translated src=- shape=054e0c6d vocab=7f04e6cc
+-/
 lemma monic_poly_aux :
     leadingCoeff ((C (hζ.toInteger - 1 : 𝓞 K) * X - 1) ^ p + C (u : 𝓞 K)) =
       (hζ.toInteger - 1 : 𝓞 K) ^ p := by
@@ -73,11 +82,17 @@ lemma monic_poly_aux :
 /-- The monic polynomial used in Kummer's lemma after dividing by `(ζ - 1)^p`. -/
 noncomputable def poly : (𝓞 K)[X] := (zeta_sub_one_pow_dvd_poly hp hζ u hcong).choose
 
+/--
+@isnad1 id=eq.3h4v.s10.2dd5a8ec8e9e from=translated src=- shape=1111f426 vocab=5e5a3e01
+-/
 lemma poly_spec :
     C ((hζ.toInteger - 1 : 𝓞 K) ^ p) * poly hp hζ u hcong =
       (C (hζ.toInteger - 1 : 𝓞 K) * X - 1) ^ p + C (u : 𝓞 K) :=
   (zeta_sub_one_pow_dvd_poly hp hζ u hcong).choose_spec.symm
 
+/--
+@isnad1 id=monic.3h4v.s8.f3105c18ea76 from=translated src=- shape=86091dc4 vocab=066e6f6f
+-/
 lemma monic_poly : Monic (poly hp hζ u hcong) := by
   have := congr_arg leadingCoeff (poly_spec hp hζ u hcong)
   simp only [map_pow, leadingCoeff_mul, leadingCoeff_pow, leadingCoeff_C,
@@ -85,11 +100,17 @@ lemma monic_poly : Monic (poly hp hζ u hcong) := by
   refine mul_right_injective₀ ?_ (this.trans (mul_one _).symm)
   exact pow_ne_zero _ (hζ.toInteger_isPrimitiveRoot.sub_one_ne_zero hpri.out.one_lt)
 
+/--
+@isnad1 id=eq.3h4v.s8.064444099752 from=translated src=- shape=a007135e vocab=c336da0b
+-/
 lemma natDegree_poly : natDegree (poly hp hζ u hcong) = p := by
   have := congr_arg natDegree (poly_spec hp hζ u hcong)
   rwa [natDegree_C_mul, natDegree_poly_aux hζ] at this
   exact pow_ne_zero _ (hζ.toInteger_isPrimitiveRoot.sub_one_ne_zero hpri.out.one_lt)
 
+/--
+@isnad1 id=eq.3h4v.s9.5f7c6aad1664 from=translated src=- shape=7cc3fa1d vocab=f4c0d063
+-/
 lemma map_poly : (poly hp hζ u hcong).map (algebraMap (𝓞 K) K) =
     (X - C (1 / (ζ - 1))) ^ p + C (u / (ζ - 1) ^ p : K) := by
   ext i
@@ -118,6 +139,9 @@ lemma map_poly : (poly hp hζ u hcong).map (algebraMap (𝓞 K) K) =
   · exact pow_ne_zero _ (hζ.sub_one_ne_zero hpri.out.one_lt)
 
 include hu in
+/--
+@isnad1 id=irreduci.4h4v.s8.d85be36f23c3 from=translated src=- shape=3e5e98ad vocab=be26b6e7
+-/
 lemma irreducible_map_poly :
     Irreducible ((poly hp hζ u hcong).map (algebraMap (𝓞 K) K)) := by
   rw [map_poly]
@@ -131,6 +155,9 @@ lemma irreducible_map_poly :
   rw [mul_pow, (hpri.out.odd_of_ne_two hp).neg_pow, hb, neg_neg,
     div_mul_cancel₀ _ (pow_ne_zero _ (hζ.sub_one_ne_zero hpri.out.one_lt))]
 
+/--
+@isnad1 id=eq.4h7v.s9.11a32aad427f from=translated src=- shape=44f516d5 vocab=1b7792a1
+-/
 theorem aeval_poly {L : Type*} [Field L] [Algebra K L] (α : L)
     (e : α ^ p = algebraMap K L u) (m : ℕ) :
     aeval (((1 : L) - ζ ^ m • α) / (algebraMap K L (ζ - 1))) (poly hp hζ u hcong) = 0 := by
@@ -154,6 +181,9 @@ def polyRoot {L : Type*} [Field L] [Algebra K L] (α : L)
   ⟨((1 : L) - ζ ^ m • α) / (algebraMap K L (ζ - 1)), isIntegral_trans _
       ⟨poly hp hζ u hcong, monic_poly hp hζ u hcong, aeval_poly hp hζ u hcong α e m⟩⟩
 
+/--
+@isnad1 id=eq.4h6v.s9.d744f7931ed8 from=translated src=- shape=152e70f3 vocab=deb0abf0
+-/
 theorem roots_poly {L : Type*} [Field L] [Algebra K L] (α : L)
     (e : α ^ p = algebraMap K L u) :
     roots ((poly hp hζ u hcong).map (algebraMap (𝓞 K) L)) =
@@ -184,6 +214,9 @@ theorem roots_poly {L : Type*} [Field L] [Algebra K L] (α : L)
     refine (Polynomial.card_roots' _).trans ?_
     rw [(monic_poly hp hζ u hcong).natDegree_map, natDegree_poly hp hζ]
 
+/--
+@isnad1 id=splits.4h6v.s9.b422adfb3aa1 from=translated src=- shape=4ccc0ea2 vocab=ff276b8f
+-/
 theorem splits_poly {L : Type*} [Field L] [Algebra K L] (α : L)
     (e : α ^ p = algebraMap K L u) :
     ((poly hp hζ u hcong).map (algebraMap (𝓞 K) L)).Splits := by
@@ -191,6 +224,9 @@ theorem splits_poly {L : Type*} [Field L] [Algebra K L] (α : L)
     (monic_poly hp hζ u hcong).natDegree_map, natDegree_poly hp hζ,
     Finset.range_val, Multiset.card_map, Multiset.card_range]
 
+/--
+@isnad1 id=eq.4h6v.s9.a4ea271ed2b0 from=translated src=- shape=7aa3db19 vocab=3905705f
+-/
 theorem map_poly_eq_prod {L : Type*} [Field L] [Algebra K L] (α : L)
     (e : α ^ p = algebraMap K L u) :
     (poly hp hζ u hcong).map (algebraMap (𝓞 K) (𝓞 L)) =
@@ -202,6 +238,9 @@ theorem map_poly_eq_prod {L : Type*} [Field L] [Algebra K L] (α : L)
   simp [polyRoot]
 
 include hu in
+/--
+@isnad1 id=eq.5h7v.s9.d088690034dd from=translated src=- shape=52ad4620 vocab=31ee2631
+-/
 lemma minpoly_polyRoot'' {L : Type*} [Field L] [Algebra K L] (α : L)
     (e : α ^ p = algebraMap K L u) (i) :
     minpoly K (polyRoot hp hζ u hcong α e i : L) =
@@ -217,6 +256,9 @@ lemma minpoly_polyRoot'' {L : Type*} [Field L] [Algebra K L] (α : L)
 variable [NumberField K]
 
 include hu in
+/--
+@isnad1 id=eq.5h7v.s9.49f832b3628f from=translated src=- shape=c42b5f9f vocab=74e64e92
+-/
 lemma minpoly_polyRoot' {L : Type*} [Field L] [Algebra K L] (α : L)
     (e : α ^ p = algebraMap K L u) (i) :
     minpoly (𝓞 K) (polyRoot hp hζ u hcong α e i : L) = (poly hp hζ u hcong) := by
@@ -226,6 +268,9 @@ lemma minpoly_polyRoot' {L : Type*} [Field L] [Algebra K L] (α : L)
   · exact IsIntegral.tower_top (polyRoot hp hζ u hcong α e i).prop
 
 omit [NumberField K] in
+/--
+@isnad1 id=separabl.4h6v.s9.bbdf70f06d6d from=translated src=- shape=d3df8453 vocab=dae8d293
+-/
 lemma separable_poly_aux {L : Type*} [Field L] [Algebra K L] (α : L)
     (e : α ^ p = algebraMap K L u) : Separable ((poly hp hζ u hcong).map
     (algebraMap (𝓞 K) (𝓞 L))) := by
@@ -272,6 +317,9 @@ include hu in
 open scoped KummerExtension in
 attribute [local instance] Ideal.Quotient.field in
 omit [NumberField K] in
+/--
+@isnad1 id=separabl.4h5v.s9.524c7d378a66 from=translated src=- shape=58570391 vocab=814d38f9
+-/
 lemma separable_poly (I : Ideal (𝓞 K)) [I.IsMaximal] :
     Separable ((poly hp hζ u hcong).map (Ideal.Quotient.mk I)) := by
   let L := K[p√(u : K)]
@@ -293,6 +341,9 @@ lemma separable_poly (I : Ideal (𝓞 K)) [I.IsMaximal] :
     separable_poly_aux hp hζ u hcong (AdjoinRoot.root _) (root_X_pow_sub_C_pow _ _)
 
 omit [NumberField K] in
+/--
+@isnad1 id=eq.4h7v.s9.8d3631781018 from=translated src=- shape=801967c5 vocab=7e7d37e7
+-/
 lemma polyRoot_spec {L : Type*} [Field L] [Algebra K L] (α : L)
     (e : α ^ p = algebraMap K L u) (i) :
     α = (ζ ^ i)⁻¹ • (1 - (ζ - 1) • (polyRoot hp hζ u hcong α e i : L)) := by
@@ -306,6 +357,9 @@ lemma polyRoot_spec {L : Type*} [Field L] [Algebra K L] (α : L)
     inv_mul_cancel₀ (pow_ne_zero _ <| hζ.ne_zero (NeZero.pos p).ne.symm), one_smul]
 
 omit [NumberField K] in
+/--
+@isnad1 id=mem.4h7v.s9.7ebdd66e6505 from=translated src=- shape=2e1d25ce vocab=4665a444
+-/
 lemma mem_adjoin_polyRoot {L : Type*} [Field L] [Algebra K L] (α : L)
     (e : α ^ p = algebraMap K L u) (i) :
     α ∈ Algebra.adjoin K {(polyRoot hp hζ u hcong α e i : L)} := by
@@ -317,6 +371,9 @@ lemma mem_adjoin_polyRoot {L : Type*} [Field L] [Algebra K L] (α : L)
 
 include hu hp hζ hcong in
 attribute [local instance] Ideal.Quotient.field in
+/--
+@isnad1 id=unramifi.4h5v.s9.0dc417775244 from=translated src=- shape=1a88da25 vocab=ff95e63b
+-/
 lemma isUnramified (L) [Field L] [Algebra K L] [IsSplittingField K L (X ^ p - C (u : K))] :
     Algebra.Unramified (𝓞 K) (𝓞 L) := by
   let α := polyRoot hp hζ u hcong _ (rootOfSplitsXPowSubC_pow _ L) 0

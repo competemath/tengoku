@@ -74,7 +74,9 @@ instance (N : NSubring T) : IsLocalRing N.carrier := N.isLocalRing
 /-- Coercion: an N-subring is a subring of T. -/
 instance : CoeOut (NSubring T) (Subring T) := ⟨NSubring.carrier⟩
 
-/-- An N-subring of a domain is itself a domain (as a subring of a domain). -/
+/-- An N-subring of a domain is itself a domain (as a subring of a domain).
+@isnad1 id=isdomain.0h2v.s7.6d6dd9e87b16 from=translated src=- shape=e3817e57 vocab=41c068bb
+-/
 instance isDomain (N : NSubring T) : IsDomain N.carrier := inferInstance
 
 end NSubring
@@ -107,7 +109,9 @@ In characteristic 0 over ℂ, this is essentially ℚ embedded in T.
 -/
 
 /-- The prime subring of T (image of ℤ → T), localized at its intersection with M,
-is an N-subring when T has depth ≥ 2 and no integer is a zero divisor. -/
+is an N-subring when T has depth ≥ 2 and no integer is a zero divisor.
+@isnad1 id=ex.1h1v.s7.851211df9a48 from=translated src=- shape=3ee974a3 vocab=732599a0
+-/
 theorem initial_NSubring
     (hchar : ∀ (n : ℤ), n ≠ 0 → (algebraMap ℤ T n) ≠ 0) :
     ∃ N : NSubring T, Cardinal.mk N.carrier ≤ Cardinal.aleph0 := by
@@ -195,7 +199,9 @@ theorem initial_NSubring
 def NSubring.subtype (N : NSubring T) : N.carrier →+* T :=
   N.carrier.subtype
 
-/-- Two N-subrings are equal if their carriers are equal. -/
+/-- Two N-subrings are equal if their carriers are equal.
+@isnad1 id=eq.1h3v.s6.d48cec8238f3 from=translated src=- shape=296f7bd8 vocab=1c33bacd
+-/
 theorem NSubring.ext {N₁ N₂ : NSubring T} (h : N₁.carrier = N₂.carrier) : N₁ = N₂ := by
   cases N₁
   simp_all

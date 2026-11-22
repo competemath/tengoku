@@ -215,7 +215,9 @@ private lemma circleIntegral_logDeriv_regular_zero
 /-! ### q-radius positivity -/
 
 omit f hf in
-/-- `seg5QRadiusH H > 0` for any `H`. -/
+/-- `seg5QRadiusH H > 0` for any `H`.
+@isnad1 id=lt.0h1v.s3.5e79b50b615f from=translated src=- shape=8a62b088 vocab=f6243504
+-/
 lemma seg5_q_radius_H_pos (H : ℝ) : 0 < seg5QRadiusH H :=
   Real.exp_pos _
 
@@ -229,7 +231,9 @@ private lemma seg5_q_radius_H_lt_one' {H : ℝ} (hH : 0 < H) : seg5QRadiusH H < 
 /-- Circle integral of logDeriv(cuspFunction) at any radius `0 < R < 1`.
 
 This is the radius-parameterized version. The factorization `F(q) = q^m · g(q)` gives:
-`∮ logDeriv(F) = m · ∮ 1/q + ∮ logDeriv(g) = m · 2πi + 0`. -/
+`∮ logDeriv(F) = m · ∮ 1/q + ∮ logDeriv(g) = m · 2πi + 0`.
+@isnad1 id=eq.4h3v.s10.0cdd91ae5f2a from=translated src=- shape=a1cf101a vocab=ddb3a595
+-/
 lemma circleIntegral_logDeriv_cuspFunction_of_radius (hf : f ≠ 0)
     {R : ℝ} (hR_pos : 0 < R) (hR_lt : R < 1) (hcusp_nonvan : ∀ q ∈ Metric.closedBall (0 : ℂ) R,
         q ≠ 0 → UpperHalfPlane.cuspFunction (1 : ℝ) f q ≠ 0) :
@@ -378,7 +382,9 @@ private lemma logDeriv_modularForm_eq_logDeriv_cuspFn_mul_qderiv_H
 
 omit hf in
 /-- **Stage 1 (H)**: The parametric integral of logDeriv(f) along seg5 at height H
-equals the circle integral of logDeriv(cuspFunction) at radius `seg5QRadiusH H`. -/
+equals the circle integral of logDeriv(cuspFunction) at radius `seg5QRadiusH H`.
+@isnad1 id=eq.1h3v.s9.e77a72f54933 from=translated src=- shape=9b8e0c0d vocab=c6ea4660
+-/
 lemma seg5_integral_eq_circleIntegral_H {H : ℝ} (hH : 0 < H) :
     ∫ t in (4 : ℝ)..5,
       logDeriv (modularFormCompOfComplex f) (fdBoundarySeg5H H t) =
@@ -420,7 +426,9 @@ lemma seg5_integral_eq_circleIntegral_H {H : ℝ} (hH : 0 < H) :
   simp only [circleIntegral, hg_def]
 
 /-- Combination of Stages 1 and 2 at height H:
-the logDeriv integral along seg5 at height H = 2πi · orderAtCusp'. -/
+the logDeriv integral along seg5 at height H = 2πi · orderAtCusp'.
+@isnad1 id=eq.3h3v.s10.ba895c4d2da5 from=translated src=- shape=848fda8e vocab=03b851fe
+-/
 lemma seg5_logDeriv_integral_eq_H (hf : f ≠ 0) {H : ℝ} (hH : 0 < H)
     (hcusp_nonvan : ∀ q ∈ Metric.closedBall (0 : ℂ) (seg5QRadiusH H),
         q ≠ 0 → UpperHalfPlane.cuspFunction (1 : ℝ) f q ≠ 0) :
@@ -441,7 +449,9 @@ This connects `seg5_logDeriv_integral_eq_H` (which integrates just `logDeriv f(z
 to the form used in `PVChain.Assembly`, which integrates `logDeriv f(z(t)) * z'(t)`.
 
 For `t > 4`, `fdBoundaryH H t = fdBoundarySeg5H H t` and `deriv (fdBoundaryH H) t = 1`,
-so the integrand with `* deriv ...` equals the integrand without. -/
+so the integrand with `* deriv ...` equals the integrand without.
+@isnad1 id=eq.3h3v.s10.1744a9db72d3 from=translated src=- shape=e4aa306d vocab=cfb4cc9a
+-/
 theorem seg5_logDeriv_integral_value_bridge {H : ℝ} (hH : Real.sqrt 3 / 2 < H)
     (hcusp_nonvan : ∀ q ∈ Metric.closedBall (0 : ℂ) (seg5QRadiusH H),
       q ≠ 0 → UpperHalfPlane.cuspFunction (1 : ℝ) f q ≠ 0) :

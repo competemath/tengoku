@@ -47,14 +47,18 @@ def stepUpperRat (S : StepFn) (m N : Nat) : ℚ :=
 noncomputable def stepSum (S : StepFn) (m N : Nat) : ℝ :=
   ∑ n ∈ Finset.Icc m N, S.value n
 
-/-- A finite step sum is bounded below by the sum of the lower envelopes. -/
+/-- A finite step sum is bounded below by the sum of the lower envelopes.
+@isnad1 id=le.0h3v.s4.81f738467dec from=translated src=- shape=3cc01298 vocab=6eed7cf7
+-/
 theorem stepLowerRat_le_stepSum (S : StepFn) (m N : Nat) :
     (stepLowerRat S m N : ℝ) ≤ stepSum S m N := by
   unfold stepLowerRat stepSum
   rw [Rat.cast_sum]
   exact Finset.sum_le_sum fun n _ => S.lower_correct n
 
-/-- A finite step sum is bounded above by the sum of the upper envelopes. -/
+/-- A finite step sum is bounded above by the sum of the upper envelopes.
+@isnad1 id=le.0h3v.s4.003036752f01 from=translated src=- shape=5a1b6c10 vocab=d1e9499a
+-/
 theorem stepSum_le_stepUpperRat (S : StepFn) (m N : Nat) :
     stepSum S m N ≤ (stepUpperRat S m N : ℝ) := by
   unfold stepUpperRat stepSum
@@ -73,20 +77,26 @@ def checkStepSumLower (S : StepFn) (m N : Nat) (lo : ℚ) : Bool :=
 def checkStepSumUpper (S : StepFn) (m N : Nat) (hi : ℚ) : Bool :=
   LeanCert.Cert.checkRatUpper (stepUpperRat S m N) hi
 
-/-- Golden theorem for finite step-sum interval certificates. -/
+/-- Golden theorem for finite step-sum interval certificates.
+@isnad1 id=and.1h5v.s5.d27739b91abc from=translated src=- shape=20e6c19a vocab=c72d51e4
+-/
 theorem verify_stepSum_interval (S : StepFn) (m N : Nat) (lo hi : ℚ)
     (hcheck : checkStepSumInterval S m N lo hi = true) :
     (lo : ℝ) ≤ stepSum S m N ∧ stepSum S m N ≤ (hi : ℝ) := by
   exact LeanCert.Cert.verify_rat_interval (stepLowerRat_le_stepSum S m N)
     (stepSum_le_stepUpperRat S m N) hcheck
 
-/-- Golden theorem for finite step-sum lower certificates. -/
+/-- Golden theorem for finite step-sum lower certificates.
+@isnad1 id=le.1h4v.s4.5b664cdf056a from=translated src=- shape=48f16c2b vocab=5248a9af
+-/
 theorem verify_stepSum_lower (S : StepFn) (m N : Nat) (lo : ℚ)
     (hcheck : checkStepSumLower S m N lo = true) :
     (lo : ℝ) ≤ stepSum S m N := by
   exact LeanCert.Cert.verify_rat_lower (stepLowerRat_le_stepSum S m N) hcheck
 
-/-- Golden theorem for finite step-sum upper certificates. -/
+/-- Golden theorem for finite step-sum upper certificates.
+@isnad1 id=le.1h4v.s4.2ae4bd084935 from=translated src=- shape=f141fd47 vocab=5dc4d5ce
+-/
 theorem verify_stepSum_upper (S : StepFn) (m N : Nat) (hi : ℚ)
     (hcheck : checkStepSumUpper S m N hi = true) :
     stepSum S m N ≤ (hi : ℝ) := by

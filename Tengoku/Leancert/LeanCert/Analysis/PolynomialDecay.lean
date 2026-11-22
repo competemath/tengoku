@@ -6,7 +6,9 @@ import Tengoku.Seed.Tactic
 /-! Explicit absorption of polynomial factors into exponential decay. -/
 namespace LeanCert.Analysis
 
-/-- Retain half of the exponential decay while absorbing any natural power. -/
+/-- Retain half of the exponential decay while absorbing any natural power.
+@isnad1 id=le.1h2v.s6.f0f053bdc9aa from=translated src=- shape=7dbd31f2 vocab=f75798cc
+-/
 theorem pow_mul_exp_neg_le (x : ℝ) (hx : 0 ≤ x) (m : ℕ) :
     x^m * Real.exp (-x) ≤ (2^m * (m.factorial : ℝ)) * Real.exp (-x/2) := by
   have h := Real.pow_div_factorial_le_exp (x/2) (show 0 ≤ x/2 by positivity) m

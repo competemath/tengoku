@@ -31,6 +31,9 @@ noncomputable section
 
 namespace CKN
 
+/--
+@isnad1 id=locallyi.0h0v.s6.e908731507a6 from=translated src=- shape=fbcb2c9b vocab=978ba5ef
+-/
 lemma pressure_neg_kernel_locallyIntegrable :
     LocallyIntegrable (fun z : Vec3 => -Foundation.Heat.newtonianKernel z) volume := by
   have hbound : ∀ᵐ z : Vec3, ‖-Foundation.Heat.newtonianKernel z‖ ≤
@@ -51,6 +54,9 @@ lemma pressure_neg_kernel_locallyIntegrable :
     (by change 1 ≤ Module.finrank ℝ (Fin 3 → ℝ); rw [Module.finrank_fin_fun]; norm_num)
     (by norm_num) hbound hmeas.aestronglyMeasurable
 
+/--
+@isnad1 id=eq.3h3v.s8.12304f888ccd from=translated src=- shape=4180861e vocab=72b365fe
+-/
 lemma smooth_integration_by_parts {u φ : Vec3 → ℝ}
     (hu : ContDiff ℝ (⊤ : ℕ∞) u) (hφ : ContDiff ℝ (⊤ : ℕ∞) φ)
     (hφc : HasCompactSupport φ) (i : Fin 3) :
@@ -80,6 +86,9 @@ lemma smooth_integration_by_parts {u φ : Vec3 → ℝ}
 
 /- The Newtonian potential is smooth because the compactly supported datum is
    the left convolution factor, while the Newtonian kernel is locally integrable. -/
+/--
+@isnad1 id=contdiff.2h1v.s8.dd34e33d68d4 from=translated src=- shape=ada28091 vocab=340d183e
+-/
 theorem pressureNewtonianPotential_smooth {F : Vec3 → ℝ}
     (hF : ContDiff ℝ (⊤ : ℕ∞) F) (hFc : HasCompactSupport F) :
     ContDiff ℝ (⊤ : ℕ∞) (pressureNewtonianPotential F) := by
@@ -98,6 +107,9 @@ theorem pressureNewtonianPotential_smooth {F : Vec3 → ℝ}
 
 /- The first derivative may be computed on the compactly supported datum.
    This is the decay input needed on the large cutoff annuli. -/
+/--
+@isnad1 id=eq.2h3v.s8.d2ea795fccd2 from=translated src=- shape=914ab3dc vocab=fd5c7a5e
+-/
 theorem pressureNewtonianPotential_spatialDeriv_convolution
     {F : Vec3 → ℝ} (hF : ContDiff ℝ (⊤ : ℕ∞) F)
     (hFc : HasCompactSupport F) (i : Fin 3) (x : Vec3) :
@@ -239,7 +251,9 @@ private lemma mixed_hessian_pair {u : Vec3 → ℝ}
       rfl
 
 /-- The squared `L²` Hessian norm equals the squared `L²` Laplacian norm for a
-smooth compactly supported scalar function on `Vec3`. -/
+smooth compactly supported scalar function on `Vec3`.
+@isnad1 id=eq.2h1v.s8.430610bc31cd from=translated src=- shape=5edd071b vocab=c306f3ab
+-/
 theorem hessian_l2_eq_laplacian_l2 {u : Vec3 → ℝ}
     (hu : ContDiff ℝ (⊤ : ℕ∞) u) (huc : HasCompactSupport u) :
     ∑ i : Fin 3, ∑ j : Fin 3, ∫ x, (mixedSecond u i j x) ^ (2 : ℕ) =
@@ -296,6 +310,9 @@ theorem hessian_l2_eq_laplacian_l2 {u : Vec3 → ℝ}
 /- The component estimate is the form used by the singular-integral
    construction: each Hessian coordinate is controlled by the common
    Laplacian energy. -/
+/--
+@isnad1 id=le.2h3v.s8.dc0388acbbf2 from=translated src=- shape=a3d68acb vocab=e31c71d8
+-/
 theorem riesz_second_l2_bound {u : Vec3 → ℝ}
     (hu : ContDiff ℝ (⊤ : ℕ∞) u) (huc : HasCompactSupport u)
     (i j : Fin 3) :

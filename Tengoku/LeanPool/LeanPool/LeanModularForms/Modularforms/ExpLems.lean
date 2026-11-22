@@ -22,6 +22,9 @@ open UpperHalfPlane TopologicalSpace Set
 
 open scoped Interval Real NNReal ENNReal Topology BigOperators Nat
 
+/--
+@isnad1 id=lt.0h1v.s5.f45253aa19c8 from=translated src=- shape=ae6ea656 vocab=a16f3cd4
+-/
 theorem exp_upperHalfPlane_lt_one (z : ℍ) :
     ‖(Complex.exp (2 * ↑π * Complex.I * z))‖ < 1 := by
   simp only [norm_exp, mul_re, re_ofNat, ofReal_re, im_ofNat, ofReal_im, mul_zero, sub_zero,
@@ -29,6 +32,9 @@ theorem exp_upperHalfPlane_lt_one (z : ℍ) :
     zero_sub, Real.exp_lt_one_iff, Left.neg_neg_iff]
   positivity
 
+/--
+@isnad1 id=lt.0h2v.s6.5ae090086e2b from=translated src=- shape=0f23b682 vocab=78f1e64e
+-/
 theorem exp_upperHalfPlane_lt_one_nat (z : ℍ) (n : ℕ) :
     ‖(Complex.exp (2 * ↑π * Complex.I * (n+1) * z))‖ < 1 := by
   simp only [norm_exp, mul_re, re_ofNat, ofReal_re, im_ofNat, ofReal_im, mul_zero, sub_zero,
@@ -37,6 +43,9 @@ theorem exp_upperHalfPlane_lt_one_nat (z : ℍ) (n : ℕ) :
     Left.neg_neg_iff]
   positivity
 
+/--
+@isnad1 id=eq.0h2v.s6.b990043d94db from=translated src=- shape=a8e5ae56 vocab=dfe1d745
+-/
 lemma exp_periodo (z : ℍ) (n : ℕ) :
   cexp (2 * ↑π * Complex.I * ↑↑n * (1 + ↑z)) = cexp (2 * ↑π * Complex.I * ↑↑n * ↑z) := by
   rw [mul_add]

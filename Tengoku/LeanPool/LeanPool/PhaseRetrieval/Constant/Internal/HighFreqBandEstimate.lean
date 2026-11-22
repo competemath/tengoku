@@ -1056,7 +1056,9 @@ private lemma rho_integral_lower_bound {N L : ℕ}
 /-- **Theorem 4.1**: High-frequency band estimate.
     For N ≥ 1, L ≥ 1, 1343·L² ≤ N², and
     P(t) = ∑ b(m)·fourier(N+m)(t):
-      circleNormSq(P) ≤ 32 · ∫ ρ(P)² d(haar). -/
+      circleNormSq(P) ≤ 32 · ∫ ρ(P)² d(haar).
+@isnad1 id=le.4h4v.s8.933fe6087fa9 from=translated src=- shape=fe9fe41f vocab=fcfe1e7d
+-/
 theorem high_freq_band_estimate {N L : ℕ}
     (hN : 1 ≤ N) (hL : 1 ≤ L)
     (hNL : 1343 * L ^ 2 ≤ N ^ 2)

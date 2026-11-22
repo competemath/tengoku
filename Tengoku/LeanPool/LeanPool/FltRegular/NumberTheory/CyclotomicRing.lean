@@ -39,6 +39,9 @@ instance : CommRing (CyclotomicIntegers p) := by
   infer_instance
 
 open Polynomial in
+/--
+@isnad1 id=eq.1h2v.s8.e653b96db3bf from=translated src=- shape=52972161 vocab=6bbcec05
+-/
 lemma IsPrimitiveRoot.cyclotomic_eq_minpoly
     (x : 𝓞 (CyclotomicField p ℚ)) (hx : IsPrimitiveRoot x.1 p) :
     minpoly ℤ x = cyclotomic p ℤ := by
@@ -69,10 +72,16 @@ instance : IsDomain (CyclotomicIntegers p) :=
 /-- The tautological primitive root of unity in `CyclotomicIntegers p`. -/
 def zeta : CyclotomicIntegers p := AdjoinRoot.root _
 
+/--
+@isnad1 id=eq.0h1v.s8.7df1095e5b5b from=translated src=- shape=1cddddbf vocab=f8aff61f
+-/
 lemma equiv_zeta : equiv p (zeta p) = (IsCyclotomicExtension.zeta_spec
     p ℚ (CyclotomicField p ℚ)).toInteger := by
   simp [equiv_apply, zeta]
 
+/--
+@isnad1 id=prime.0h1v.s6.3030ee6495b2 from=translated src=- shape=7be907f5 vocab=19839bb5
+-/
 lemma prime_one_sub_zeta :
     Prime (1 - zeta p) := by
   rw [← prime_units_mul (u := -1), Units.val_neg, Units.val_one, neg_mul, one_mul, neg_sub]
@@ -80,26 +89,44 @@ lemma prime_one_sub_zeta :
   simp only [(equiv p).map_sub, (equiv p).map_one, equiv_zeta]
   exact (IsCyclotomicExtension.zeta_spec p ℚ (CyclotomicField p ℚ)).zeta_sub_one_prime'
 
+/--
+@isnad1 id=mem.0h1v.s7.8502fb46fffa from=translated src=- shape=8b6e34e0 vocab=e1aabb90
+-/
 lemma one_sub_zeta_mem_nonZeroDivisors :
     1 - zeta p ∈ nonZeroDivisors (CyclotomicIntegers p) := by
   simpa only [mem_nonZeroDivisors_iff_ne_zero] using (prime_one_sub_zeta p).1
 
+/--
+@isnad1 id=not.0h1v.s6.e6260658f9de from=translated src=- shape=1eecab03 vocab=52f03086
+-/
 lemma not_isUnit_one_sub_zeta :
     ¬ IsUnit (1 - zeta p) := (prime_one_sub_zeta p).irreducible.1
 
+/--
+@isnad1 id=iff.0h2v.s6.456162764733 from=translated src=- shape=8d3072b3 vocab=83ac3578
+-/
 lemma one_sub_zeta_dvd_int_iff (n : ℤ) : 1 - zeta p ∣ n ↔ ↑p ∣ n := by
   rw [← map_dvd_iff (equiv p), map_sub, map_one, equiv_zeta, map_intCast,
     ← neg_dvd, neg_sub]
   exact IsCyclotomicExtension.Rat.zeta_sub_one_dvd_intCast_iff' p
     (IsCyclotomicExtension.zeta_spec p ℚ (CyclotomicField p ℚ))
 
+/--
+@isnad1 id=dvd.0h1v.s6.1479dc1378e4 from=translated src=- shape=b5c8b615 vocab=86df3fde
+-/
 lemma one_sub_zeta_dvd : 1 - zeta p ∣ p :=
   (one_sub_zeta_dvd_int_iff _ _).2 dvd_rfl
 
+/--
+@isnad1 id=iscoprim.1h2v.s6.d44be67eaf54 from=translated src=- shape=b662cfea vocab=1518e64b
+-/
 lemma isCoprime_one_sub_zeta (n : ℤ) (hn : ¬ (p : ℤ) ∣ n) : IsCoprime (1 - zeta p) n :=
   (((Nat.prime_iff_prime_int.mp hpri.out).coprime_iff_not_dvd.mpr hn).map
     (algebraMap ℤ <| CyclotomicIntegers p)).of_isCoprime_of_dvd_left (one_sub_zeta_dvd p)
 
+/--
+@isnad1 id=ex.1h2v.s6.36d1f81d3820 from=translated src=- shape=a9927c2a vocab=4943f697
+-/
 lemma exists_dvd_int (n : CyclotomicIntegers p) (hn : n ≠ 0) :
     ∃ m : ℤ, m ≠ 0 ∧ n ∣ m := by
   refine ⟨Algebra.norm ℤ ((equiv p) n), by simpa, ?_⟩
@@ -115,11 +142,17 @@ lemma exists_dvd_int (n : CyclotomicIntegers p) (hn : n ≠ 0) :
 def powerBasis : PowerBasis ℤ (CyclotomicIntegers p) :=
   AdjoinRoot.powerBasis' (cyclotomic.monic _ _)
 
+/--
+@isnad1 id=eq.0h1v.s5.1dddc785436a from=translated src=- shape=3b8e0eba vocab=050d5096
+-/
 lemma powerBasis_dim : (powerBasis p).dim = p - 1 := by
   simp [powerBasis, Nat.totient_prime hpri.out, natDegree_cyclotomic]
 
 instance : Module.Free ℤ (CyclotomicIntegers p) := ⟨_, (powerBasis p).basis⟩
 
+/--
+@isnad1 id=nontrivi.1h1v.s3.43367f51347f from=translated src=- shape=01e184dd vocab=4f12ea63
+-/
 lemma nontrivial {p} (hp : p ≠ 0) : Nontrivial (CyclotomicIntegers p) := by
   apply Ideal.Quotient.nontrivial_iff.mpr
   simp only [ne_eq, Ideal.span_singleton_eq_top]
@@ -128,6 +161,9 @@ lemma nontrivial {p} (hp : p ≠ 0) : Nontrivial (CyclotomicIntegers p) := by
   rw [natDegree_cyclotomic] at hdegree
   exact hdegree.not_gt (Nat.totient_pos.2 <| Nat.zero_lt_of_ne_zero hp)
 
+/--
+@isnad1 id=charzero.1h1v.s4.27111fa4b8ec from=translated src=- shape=01e184dd vocab=c1d10fd7
+-/
 lemma charZero {p} (hp : p ≠ 0) : CharZero (CyclotomicIntegers p) :=
   have := nontrivial hp
   ⟨(FaithfulSMul.algebraMap_injective _ _).comp (algebraMap ℕ ℤ).injective_nat⟩

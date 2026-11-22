@@ -34,7 +34,9 @@ noncomputable section
 
 namespace CKN.Foundation.Heat
 
-/-- The Newtonian kernel as a real power of the quadratic form `q`. -/
+/-- The Newtonian kernel as a real power of the quadratic form `q`.
+@isnad1 id=eq.0h1v.s6.3c728611d686 from=translated src=- shape=4257ea7d vocab=2cc543a6
+-/
 theorem newtonianKernel_eq_q_rpow (z : Vec3) :
     newtonianKernel z = (4 * Real.pi)⁻¹ * q z ^ (-(1 : ℝ) / 2) := by
   by_cases hz : z = 0
@@ -48,7 +50,9 @@ theorem newtonianKernel_eq_q_rpow (z : Vec3) :
       show -(1 : ℝ) / 2 = -(1 / (2 : ℝ)) by ring,
       Real.rpow_neg hqnonneg (1 / (2 : ℝ))]
 
-/-- The Newtonian kernel has every finite differentiability order away from the origin. -/
+/-- The Newtonian kernel has every finite differentiability order away from the origin.
+@isnad1 id=contdiff.1h2v.s7.56bdd0ed3ca4 from=translated src=- shape=56fb2570 vocab=34e6e557
+-/
 theorem contDiffAt_newtonianKernel (n : ℕ) {x : Vec3} (hx : x ≠ 0) :
     ContDiffAt ℝ n newtonianKernel x := by
   have hq : ContDiff ℝ n q := by
@@ -68,7 +72,9 @@ theorem contDiffAt_newtonianKernel (n : ℕ) {x : Vec3} (hx : x ≠ 0) :
       from funext newtonianKernel_eq_q_rpow]
   exact hgoal
 
-/-- Homogeneity of degree `-1` of the Newtonian kernel. -/
+/-- Homogeneity of degree `-1` of the Newtonian kernel.
+@isnad1 id=eq.1h2v.s5.465f6cad4c9a from=translated src=- shape=2c0837a1 vocab=86e65db0
+-/
 theorem newtonianKernel_smul_left {r : ℝ} (hr : 0 < r) (x : Vec3) :
     newtonianKernel (r • x) = r⁻¹ * newtonianKernel x := by
   unfold newtonianKernel

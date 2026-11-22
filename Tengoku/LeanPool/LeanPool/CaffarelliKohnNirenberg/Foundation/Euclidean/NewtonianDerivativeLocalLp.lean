@@ -46,7 +46,9 @@ three-dimensional Newtonian derivative. -/
 def truncatedNewtonianDerivative (R : ℝ) (i : Fin 3) : Vec3 → ℝ := fun z =>
   if ‖z‖ < R then spatialDeriv newtonianKernel i z else 0
 
-/-- The truncated Newtonian derivative kernel is measurable. -/
+/-- The truncated Newtonian derivative kernel is measurable.
+@isnad1 id=measurab.0h2v.s5.675417464081 from=translated src=- shape=eb519e68 vocab=29a156e7
+-/
 theorem measurable_truncatedNewtonianDerivative (R : ℝ) (i : Fin 3) :
     Measurable (truncatedNewtonianDerivative R i) := by
   exact (measurable_fderiv_apply_const ℝ newtonianKernel (CKN.basisVec i)).piecewise
@@ -59,7 +61,9 @@ be assembled from a Young bound and a pointwise tail bound. -/
 def farNewtonianDerivative (R : ℝ) (i : Fin 3) : Vec3 → ℝ := fun z =>
   if R ≤ ‖z‖ then spatialDeriv newtonianKernel i z else 0
 
-/-- The complementary Newtonian derivative kernel is measurable. -/
+/-- The complementary Newtonian derivative kernel is measurable.
+@isnad1 id=measurab.0h2v.s5.4c7e5b4c4343 from=translated src=- shape=eb519e68 vocab=c82e9360
+-/
 theorem measurable_farNewtonianDerivative (R : ℝ) (i : Fin 3) :
     Measurable (farNewtonianDerivative R i) := by
   exact (measurable_fderiv_apply_const ℝ newtonianKernel (CKN.basisVec i)).piecewise

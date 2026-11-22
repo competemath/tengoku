@@ -38,6 +38,9 @@ namespace NavierStokes.AxisEvaluation
 def polynomialJet (n k : ℕ) (Y : ℝ) : ℝ :=
   (n.descFactorial k : ℝ) * Y ^ (n - k)
 
+/--
+@isnad1 id=hasderiv.0h3v.s5.4a2021930b7d from=translated src=- shape=46dee1fe vocab=0c14198c
+-/
 theorem polynomialJet_hasDerivAt (n k : ℕ) (Y : ℝ) :
     HasDerivAt (polynomialJet n k) (polynomialJet n (k + 1) Y) Y := by
   have hd := (hasDerivAt_pow (n - k) Y).const_mul (n.descFactorial k : ℝ)
@@ -60,6 +63,9 @@ def mixedSeries (I : Window) (ε : ℝ) (A : AxisSpace I ε) (k m : ℕ) (p : �
 def profile (I : Window) (ε : ℝ) (A : AxisSpace I ε) (p : ℝ × ℝ) : ℝ :=
   ∑' n : ℕ, p.1 ^ n * coefficient I (weight ε) A n p.2
 
+/--
+@isnad1 id=eq.0h3v.s8.7ebf41813e1f from=translated src=- shape=3009b7be vocab=797b77cf
+-/
 theorem mixedSeries_zero (I : Window) (ε : ℝ) (A : AxisSpace I ε) :
     mixedSeries I ε A 0 0 = profile I ε A := by
   funext p
@@ -70,6 +76,9 @@ def majorant (ε C R : ℝ) (k m n : ℕ) : ℝ :=
   (C * (ε⁻¹) ^ m * (m.factorial : ℝ) * ((m : ℝ) + 1) ^ m) *
     (((n : ℝ) + 1) ^ (k + m) * (R / 20) ^ n)
 
+/--
+@isnad1 id=le.1h3v.s7.88cf2b96bbcb from=translated src=- shape=3011f632 vocab=4f6f936d
+-/
 theorem weight_upper {ε : ℝ} (hε : 0 < ε) (n m : ℕ) :
     weight ε n m ≤ (1 / 20 : ℝ) ^ n * (ε⁻¹) ^ m * (m.factorial : ℝ) *
       (((m : ℝ) + 1) ^ m * ((n : ℝ) + 1) ^ m) := by
@@ -96,6 +105,9 @@ theorem weight_upper {ε : ℝ} (hε : 0 < ε) (n m : ℕ) :
       nlinarith
     _ ≤ _ := mul_le_mul_of_nonneg_left hc (by positivity)
 
+/--
+@isnad1 id=le.2h4v.s6.a0b634c39574 from=translated src=- shape=b2b6c842 vocab=db44cba7
+-/
 theorem polynomialJet_bound {R Y : ℝ} (hR : 1 ≤ R) (hY : |Y| ≤ R) (n k : ℕ) :
     |polynomialJet n k Y| ≤ ((n : ℝ) + 1) ^ k * R ^ n := by
   have hd : (n.descFactorial k : ℝ) ≤ ((n : ℝ) + 1) ^ k := by
@@ -110,6 +122,9 @@ theorem polynomialJet_bound {R Y : ℝ} (hR : 1 ≤ R) (hY : |Y| ≤ R) (n k : �
     abs_of_nonneg (show (0 : ℝ) ≤ n.descFactorial k by positivity), abs_pow]
   exact mul_le_mul hd hp (by positivity) (by positivity)
 
+/--
+@isnad1 id=le.3h8v.s10.c5ebfd29b6af from=translated src=- shape=e7b686e1 vocab=cc102411
+-/
 theorem term_bound (I : Window) {ε R : ℝ} (hε : 0 < ε) (hR : 1 ≤ R)
     (A : AxisSpace I ε) (k m n : ℕ) {p : ℝ × ℝ} (hp : |p.1| ≤ R) :
     ‖term I ε A k m n p‖ ≤ majorant ε ‖A‖ R k m n := by
@@ -130,6 +145,9 @@ theorem term_bound (I : Window) {ε R : ℝ} (hε : 0 < ε) (hR : 1 ≤ R)
       simp only [pow_add, div_pow, one_pow]
       ring
 
+/--
+@isnad1 id=summable.2h5v.s5.9c6fd3ef45ab from=translated src=- shape=2d4656ab vocab=37043d3e
+-/
 theorem summable_majorant {ε C R : ℝ} (hR : 1 ≤ R) (hR20 : R < 20) (k m : ℕ) :
     Summable (majorant ε C R k m) := by
   have hr : 0 < R / 20 := by positivity
@@ -142,11 +160,17 @@ theorem summable_majorant {ε C R : ℝ} (hR : 1 ≤ R) (hR20 : R < 20) (k m : �
       mul_inv_cancel₀ hr.ne', mul_one] using hs.mul_right (R / 20)⁻¹
   exact ht.mul_left _
 
+/--
+@isnad1 id=summable.4h7v.s8.ef5539b36543 from=translated src=- shape=25417883 vocab=c85d744d
+-/
 theorem summable_term (I : Window) {ε R : ℝ} (hε : 0 < ε)
     (hR : 1 ≤ R) (hR20 : R < 20) (A : AxisSpace I ε) (k m : ℕ)
     {p : ℝ × ℝ} (hp : |p.1| ≤ R) : Summable (fun n => term I ε A k m n p) :=
   .of_norm_bounded (summable_majorant hR hR20 k m) (fun n => term_bound I hε hR A k m n hp)
 
+/--
+@isnad1 id=continuo.0h6v.s8.5e1361e29924 from=translated src=- shape=82e0b96f vocab=87612706
+-/
 theorem term_continuous (I : Window) (ε : ℝ) (A : AxisSpace I ε) (k m n : ℕ) :
     Continuous (term I ε A k m n) := by
   exact (continuous_const.mul (continuous_fst.pow (n - k))).mul
@@ -154,7 +178,9 @@ theorem term_continuous (I : Window) (ε : ℝ) (A : AxisSpace I ε) (k m n : �
 
 /-- Uniform convergence of every mixed derivative series on every strictly
 smaller closed radial interval, uniformly over the parameter interval. In
-fact the clamped coefficient extension gives uniformity over all real `η`. -/
+fact the clamped coefficient extension gives uniformity over all real `η`.
+@isnad1 id=tendstou.2h6v.s8.f61847c11260 from=translated src=- shape=2dcc104b vocab=f61b8b14
+-/
 theorem mixedSeries_uniform (I : Window) {ε R : ℝ} (hε : 0 < ε) (hR20 : R < 20)
     (A : AxisSpace I ε) (k m : ℕ) :
     TendstoUniformlyOn
@@ -169,9 +195,15 @@ theorem mixedSeries_uniform (I : Window) {ε R : ℝ} (hε : 0 < ε) (hR20 : R <
 def strip (I : Window) (R : ℝ) : Set (ℝ × ℝ) :=
   Ioo (-R) R ×ˢ Ioo I.left I.right
 
+/--
+@isnad1 id=isopen.0h2v.s4.5b4be0859524 from=translated src=- shape=281ec7a3 vocab=eca6bb59
+-/
 theorem strip_isOpen (I : Window) (R : ℝ) : IsOpen (strip I R) :=
   isOpen_Ioo.prod isOpen_Ioo
 
+/--
+@isnad1 id=isprecon.0h2v.s4.16d84a9cb769 from=translated src=- shape=281ec7a3 vocab=b82638b3
+-/
 theorem strip_isPreconnected (I : Window) (R : ℝ) : IsPreconnected (strip I R) :=
   isPreconnected_Ioo.prod isPreconnected_Ioo
 
@@ -180,6 +212,9 @@ theorem strip_isPreconnected (I : Window) (R : ℝ) : IsPreconnected (strip I R)
 def linearForm (u v : ℝ) : (ℝ × ℝ) →L[ℝ] ℝ :=
   u • ContinuousLinearMap.fst ℝ ℝ ℝ + v • ContinuousLinearMap.snd ℝ ℝ ℝ
 
+/--
+@isnad1 id=le.0h2v.s7.36234fb97b8e from=translated src=- shape=908f08b0 vocab=ee9b109b
+-/
 theorem linearForm_norm (u v : ℝ) : ‖linearForm u v‖ ≤ |u| + |v| := by
   apply ContinuousLinearMap.opNorm_le_bound _ (add_nonneg (abs_nonneg _) (abs_nonneg _))
   intro x
@@ -192,6 +227,9 @@ theorem linearForm_norm (u v : ℝ) : ‖linearForm u v‖ ≤ |u| + |v| := by
       (mul_le_mul_of_nonneg_left (norm_snd_le x) (abs_nonneg _))
     _ = (|u| + |v|) * ‖x‖ := by ring
 
+/--
+@isnad1 id=hasfderi.1h7v.s8.1903da4fb5cd from=translated src=- shape=b32d2db8 vocab=fe34a48d
+-/
 theorem term_hasFDerivAt (I : Window) (ε : ℝ) (A : AxisSpace I ε) (k m n : ℕ)
     {p : ℝ × ℝ} (hp : p.2 ∈ Ioo I.left I.right) :
     HasFDerivAt (term I ε A k m n)
@@ -207,12 +245,18 @@ theorem term_hasFDerivAt (I : Window) (ε : ℝ) (A : AxisSpace I ε) (k m n : �
   simp [linearForm, term]
   ring
 
+/--
+@isnad1 id=eq.2h2v.s8.cc4a5e59ef52 from=translated src=- shape=d3e8bd02 vocab=29a36f45
+-/
 theorem linearForm_tsum {u v : ℕ → ℝ} (hu : Summable u) (hv : Summable v) :
     (∑' n, linearForm (u n) (v n)) = linearForm (∑' n, u n) (∑' n, v n) := by
   unfold linearForm
   rw [Summable.tsum_add (hu.smul_const _) (hv.smul_const _),
     hu.tsum_smul_const, hv.tsum_smul_const]
 
+/--
+@isnad1 id=hasfderi.4h7v.s8.c94105de3273 from=translated src=- shape=d74f7f70 vocab=2cedb05e
+-/
 theorem mixedSeries_hasFDerivAt_strip (I : Window) {ε R : ℝ} (hε : 0 < ε)
     (hR : 1 ≤ R) (hR20 : R < 20) (A : AxisSpace I ε) (k m : ℕ)
     {p : ℝ × ℝ} (hp : p ∈ strip I R) :
@@ -233,7 +277,9 @@ theorem mixedSeries_hasFDerivAt_strip (I : Window) {ε R : ℝ} (hε : 0 < ε)
     (summable_term I hε hR hR20 A k (m + 1) hpR)] at hd
   exact hd
 
-/-- Actual joint differentiation of every mixed derivative series. -/
+/-- Actual joint differentiation of every mixed derivative series.
+@isnad1 id=hasfderi.2h6v.s8.c6d209354787 from=translated src=- shape=d7a6b1e0 vocab=465399e9
+-/
 theorem mixedSeries_hasFDerivAt (I : Window) {ε : ℝ} (hε : 0 < ε)
     (A : AxisSpace I ε) (k m : ℕ) {p : ℝ × ℝ} (hp : p ∈ strip I 20) :
     HasFDerivAt (mixedSeries I ε A k m)
@@ -245,6 +291,9 @@ theorem mixedSeries_hasFDerivAt (I : Window) {ε : ℝ} (hε : 0 < ε)
     ⟨abs_lt.mp ((le_max_right 1 |p.1|).trans_lt hR), hp.2⟩
   exact mixedSeries_hasFDerivAt_strip I hε hR1 hR20 A k m hpR
 
+/--
+@isnad1 id=contdiff.2h7v.s8.dec432aefdb2 from=translated src=- shape=b6dd404c vocab=76a89e98
+-/
 theorem mixedSeries_contDiffAt_nat (I : Window) {ε : ℝ} (hε : 0 < ε)
     (A : AxisSpace I ε) (r : ℕ) :
     ∀ (k m : ℕ) (p : ℝ × ℝ), p ∈ strip I 20 →
@@ -266,18 +315,26 @@ theorem mixedSeries_contDiffAt_nat (I : Window) {ε : ℝ} (hε : 0 < ε)
           ((ih k (m + 1) p hp).smul contDiffAt_const)
 
 /-- The evaluated profile is jointly smooth. This is a consequence of the
-proved derivative equations, not an assumed property of the infinite sum. -/
+proved derivative equations, not an assumed property of the infinite sum.
+@isnad1 id=contdiff.2h6v.s8.92ae8051d37c from=translated src=- shape=0909a00f vocab=1fba1f18
+-/
 theorem mixedSeries_smooth (I : Window) {ε : ℝ} (hε : 0 < ε)
     (A : AxisSpace I ε) (k m : ℕ) {p : ℝ × ℝ} (hp : p ∈ strip I 20) :
     ContDiffAt ℝ ∞ (mixedSeries I ε A k m) p :=
   contDiffAt_infty.mpr (fun r => mixedSeries_contDiffAt_nat I hε A r k m p hp)
 
+/--
+@isnad1 id=contdiff.1h3v.s8.6af8ce792e86 from=translated src=- shape=69a60787 vocab=4870c8d7
+-/
 theorem profile_smooth (I : Window) {ε : ℝ} (hε : 0 < ε)
     (A : AxisSpace I ε) : ContDiffOn ℝ ∞ (profile I ε A) (strip I 20) := by
   rw [← mixedSeries_zero]
   intro p hp
   exact (mixedSeries_smooth I hε A 0 0 hp).contDiffWithinAt
 
+/--
+@isnad1 id=hasderiv.3h7v.s8.40b69a89798e from=translated src=- shape=ac4af9a2 vocab=b97c1bbe
+-/
 theorem mixedSeries_hasDerivAt_Y (I : Window) {ε : ℝ} (hε : 0 < ε)
     (A : AxisSpace I ε) (k m : ℕ) {Y η : ℝ}
     (hY : Y ∈ Ioo (-20 : ℝ) 20) (hη : η ∈ Ioo I.left I.right) :
@@ -287,6 +344,9 @@ theorem mixedSeries_hasDerivAt_Y (I : Window) {ε : ℝ} (hε : 0 < ε)
   simpa [linearForm, Function.comp_def] using hd.comp_hasDerivAt Y
     ((hasDerivAt_id Y).prodMk (hasDerivAt_const Y η))
 
+/--
+@isnad1 id=hasderiv.3h7v.s8.b4dfbffa1cc8 from=translated src=- shape=95714cee vocab=b97c1bbe
+-/
 theorem mixedSeries_hasDerivAt_eta (I : Window) {ε : ℝ} (hε : 0 < ε)
     (A : AxisSpace I ε) (k m : ℕ) {Y η : ℝ}
     (hY : Y ∈ Ioo (-20 : ℝ) 20) (hη : η ∈ Ioo I.left I.right) :
@@ -296,6 +356,9 @@ theorem mixedSeries_hasDerivAt_eta (I : Window) {ε : ℝ} (hε : 0 < ε)
   simpa [linearForm, Function.comp_def] using hd.comp_hasDerivAt η
     ((hasDerivAt_const η Y).prodMk (hasDerivAt_id η))
 
+/--
+@isnad1 id=eq.3h8v.s8.5020a67681cd from=translated src=- shape=3ef593cd vocab=4048f877
+-/
 theorem iteratedDeriv_Y (I : Window) {ε : ℝ} (hε : 0 < ε)
     (A : AxisSpace I ε) (k m r : ℕ) {Y η : ℝ}
     (hY : Y ∈ Ioo (-20 : ℝ) 20) (hη : η ∈ Ioo I.left I.right) :
@@ -312,6 +375,9 @@ theorem iteratedDeriv_Y (I : Window) {ε : ℝ} (hε : 0 < ε)
       rw [heq.deriv_eq, (mixedSeries_hasDerivAt_Y I hε A (k + r) m hY hη).deriv]
       simp only [Nat.add_assoc]
 
+/--
+@isnad1 id=eq.3h8v.s8.598fe76e4f12 from=translated src=- shape=38e66e3b vocab=4048f877
+-/
 theorem iteratedDeriv_eta (I : Window) {ε : ℝ} (hε : 0 < ε)
     (A : AxisSpace I ε) (k m r : ℕ) {Y η : ℝ}
     (hY : Y ∈ Ioo (-20 : ℝ) 20) (hη : η ∈ Ioo I.left I.right) :
@@ -328,7 +394,9 @@ theorem iteratedDeriv_eta (I : Window) {ε : ℝ} (hε : 0 < ε)
       rw [heq.deriv_eq, (mixedSeries_hasDerivAt_eta I hε A k (m + r) hY hη).deriv]
       simp only [Nat.add_assoc]
 
-/-- The series is the actual mixed derivative of the evaluated profile. -/
+/-- The series is the actual mixed derivative of the evaluated profile.
+@isnad1 id=eq.3h7v.s9.c454ad3efb4f from=translated src=- shape=cf393db9 vocab=56fee227
+-/
 theorem mixed_derivative_profile (I : Window) {ε : ℝ} (hε : 0 < ε)
     (A : AxisSpace I ε) (k m : ℕ) {Y η : ℝ}
     (hY : Y ∈ Ioo (-20 : ℝ) 20) (hη : η ∈ Ioo I.left I.right) :
@@ -347,11 +415,17 @@ theorem mixed_derivative_profile (I : Window) {ε : ℝ} (hε : 0 < ε)
 /-- Jet bound, given by `∑' n : ℕ, majorant ε 1 R k m n`. -/
 def jetBound (ε R : ℝ) (k m : ℕ) : ℝ := ∑' n : ℕ, majorant ε 1 R k m n
 
+/--
+@isnad1 id=eq.0h6v.s5.b620fcc16242 from=translated src=- shape=420dbc32 vocab=d6a9ba5f
+-/
 theorem majorant_scale (ε C R : ℝ) (k m n : ℕ) :
     majorant ε C R k m n = C * majorant ε 1 R k m n := by
   unfold majorant
   ring
 
+/--
+@isnad1 id=le.2h4v.s5.b88a28b31202 from=translated src=- shape=4cfbbef7 vocab=2ad4e6e0
+-/
 theorem jetBound_nonneg {ε R : ℝ} (hε : 0 < ε) (hR : 1 ≤ R) (k m : ℕ) :
     0 ≤ jetBound ε R k m := by
   apply tsum_nonneg
@@ -360,7 +434,9 @@ theorem jetBound_nonneg {ε R : ℝ} (hε : 0 < ε) (hR : 1 ≤ R) (k m : ℕ) :
   positivity
 
 /-- The evaluated mixed derivatives depend boundedly on the coefficient
-space norm, uniformly on every smaller radial interval. -/
+space norm, uniformly on every smaller radial interval.
+@isnad1 id=le.4h7v.s10.4a2469843722 from=translated src=- shape=93dab8f6 vocab=50123777
+-/
 theorem mixedSeries_bound (I : Window) {ε R : ℝ} (hε : 0 < ε)
     (hR : 1 ≤ R) (hR20 : R < 20) (A : AxisSpace I ε) (k m : ℕ)
     {p : ℝ × ℝ} (hp : |p.1| ≤ R) :
@@ -377,43 +453,66 @@ theorem mixedSeries_bound (I : Window) {ε R : ℝ} (hε : 0 < ε)
       rw [tsum_mul_left]
       exact mul_comm _ _
 
-/-- Absolute convergence holds at every point of the radius-20 domain. -/
+/-- Absolute convergence holds at every point of the radius-20 domain.
+@isnad1 id=summable.2h6v.s8.ee24194aafce from=translated src=- shape=da225dc1 vocab=03ddad2b
+-/
 theorem mixedSeries_summable (I : Window) {ε : ℝ} (hε : 0 < ε)
     (A : AxisSpace I ε) (k m : ℕ) {p : ℝ × ℝ} (hp : |p.1| < 20) :
     Summable (fun n => term I ε A k m n p) :=
   summable_term I hε (le_max_left 1 |p.1|) (max_lt (by norm_num) hp) A k m
     (le_max_right 1 |p.1|)
 
+/--
+@isnad1 id=hassum.2h4v.s8.cb330d5b5950 from=translated src=- shape=f61dcf7c vocab=74c7bedc
+-/
 theorem profile_hasSum (I : Window) {ε : ℝ} (hε : 0 < ε)
     (A : AxisSpace I ε) {p : ℝ × ℝ} (hp : |p.1| < 20) :
     HasSum (fun n : ℕ => p.1 ^ n * coefficient I (weight ε) A n p.2) (profile I ε A p) := by
   simpa only [term, polynomialJet, Nat.descFactorial_zero, Nat.cast_one, Nat.sub_zero,
     one_mul, coefficient, mixedSeries, profile] using (mixedSeries_summable I hε A 0 0 hp).hasSum
 
+/--
+@isnad1 id=eq.0h8v.s11.6d588390deda from=translated src=- shape=7788acf5 vocab=c681c3a8
+-/
 theorem term_add (I : Window) (ε : ℝ) (A B : AxisSpace I ε) (k m n : ℕ) (p : ℝ × ℝ) :
     term I ε (A + B) k m n p = term I ε A k m n p + term I ε B k m n p := by
   simp only [term, Submodule.coe_add, jet_add, mul_add]
 
+/--
+@isnad1 id=eq.0h8v.s10.9f2881c4513c from=translated src=- shape=47b14099 vocab=326a9225
+-/
 theorem term_smul (I : Window) (ε c : ℝ) (A : AxisSpace I ε) (k m n : ℕ) (p : ℝ × ℝ) :
     term I ε (c • A) k m n p = c * term I ε A k m n p := by
   simp only [term, Submodule.coe_smul, jet_smul]
   ring
 
+/--
+@isnad1 id=eq.0h8v.s11.22f22ca4404a from=translated src=- shape=7788acf5 vocab=09624e06
+-/
 theorem term_sub (I : Window) (ε : ℝ) (A B : AxisSpace I ε) (k m n : ℕ) (p : ℝ × ℝ) :
     term I ε (A - B) k m n p = term I ε A k m n p - term I ε B k m n p := by
   simp only [term, Submodule.coe_sub, jet_sub, mul_sub]
 
+/--
+@isnad1 id=eq.2h7v.s11.21e6fd1df86c from=translated src=- shape=d3168128 vocab=27ffffcc
+-/
 theorem mixedSeries_add (I : Window) {ε : ℝ} (hε : 0 < ε)
     (A B : AxisSpace I ε) (k m : ℕ) {p : ℝ × ℝ} (hp : |p.1| < 20) :
     mixedSeries I ε (A + B) k m p = mixedSeries I ε A k m p + mixedSeries I ε B k m p := by
   simp only [mixedSeries, term_add]
   exact (mixedSeries_summable I hε A k m hp).tsum_add (mixedSeries_summable I hε B k m hp)
 
+/--
+@isnad1 id=eq.0h7v.s10.23c7c21a183d from=translated src=- shape=84517e0f vocab=18c8a4c1
+-/
 theorem mixedSeries_smul (I : Window) (ε c : ℝ)
     (A : AxisSpace I ε) (k m : ℕ) (p : ℝ × ℝ) :
     mixedSeries I ε (c • A) k m p = c * mixedSeries I ε A k m p := by
   simp only [mixedSeries, term_smul, tsum_mul_left]
 
+/--
+@isnad1 id=eq.2h7v.s11.ff99f35dafa5 from=translated src=- shape=d3168128 vocab=d39c7e5a
+-/
 theorem mixedSeries_sub (I : Window) {ε : ℝ} (hε : 0 < ε)
     (A B : AxisSpace I ε) (k m : ℕ) {p : ℝ × ℝ} (hp : |p.1| < 20) :
     mixedSeries I ε (A - B) k m p = mixedSeries I ε A k m p - mixedSeries I ε B k m p := by
@@ -435,13 +534,18 @@ def evaluationCLM (I : Window) {ε R : ℝ} (hε : 0 < ε)
   (evaluationLinearMap I hε k m p (hp.trans_lt hR20)).mkContinuous (jetBound ε R k m)
     (fun A => mixedSeries_bound I hε hR hR20 A k m hp)
 
+/--
+@isnad1 id=eq.4h7v.s11.8fb99ae96c2b from=translated src=- shape=15910e1e vocab=2e6cdebb
+-/
 @[simp] theorem evaluationCLM_apply (I : Window) {ε R : ℝ} (hε : 0 < ε)
     (hR : 1 ≤ R) (hR20 : R < 20) (k m : ℕ) (p : ℝ × ℝ) (hp : |p.1| ≤ R)
     (A : AxisSpace I ε) :
     evaluationCLM I hε hR hR20 k m p hp A = mixedSeries I ε A k m p := rfl
 
 /-- Norm convergence in the coefficient space controls every evaluated jet
-uniformly throughout a smaller radial interval. -/
+uniformly throughout a smaller radial interval.
+@isnad1 id=le.4h8v.s11.f465d6d11376 from=translated src=- shape=4cf00414 vocab=19668d69
+-/
 theorem mixedSeries_sub_bound (I : Window) {ε R : ℝ} (hε : 0 < ε)
     (hR : 1 ≤ R) (hR20 : R < 20) (A B : AxisSpace I ε) (k m : ℕ)
     {p : ℝ × ℝ} (hp : |p.1| ≤ R) :
@@ -452,12 +556,18 @@ theorem mixedSeries_sub_bound (I : Window) {ε R : ℝ} (hε : 0 < ε)
       rw [mixedSeries_sub I hε A B k m (hp.trans_lt hR20)]
     _ ≤ _ := mixedSeries_bound I hε hR hR20 (A - B) k m hp
 
+/--
+@isnad1 id=contdiff.2h4v.s8.2d27eb9031f9 from=translated src=- shape=a708ad2e vocab=4870c8d7
+-/
 theorem profile_smooth_radius (I : Window) {ε R : ℝ} (hε : 0 < ε) (hR20 : R < 20)
     (A : AxisSpace I ε) : ContDiffOn ℝ ∞ (profile I ε A) (strip I R) := by
   apply (profile_smooth I hε A).mono
   intro p hp
   exact ⟨⟨(neg_lt_neg hR20).trans hp.1.1, hp.1.2.trans hR20⟩, hp.2⟩
 
+/--
+@isnad1 id=eq.1h6v.s9.ed85fdab39ec from=translated src=- shape=83653958 vocab=46bcf3eb
+-/
 theorem coefficient_iteratedDeriv (I : Window) (ε : ℝ) (A : AxisSpace I ε)
     (n m : ℕ) {η : ℝ} (hη : η ∈ Ioo I.left I.right) :
     iteratedDeriv m (coefficient I (weight ε) A n) η = jet I (weight ε) A.1 n m η := by
@@ -472,7 +582,9 @@ theorem coefficient_iteratedDeriv (I : Window) (ε : ℝ) (A : AxisSpace I ε)
       rw [heq.deriv_eq, (hasDerivAt_jet_interior I (weight ε) A n m hη).deriv]
 
 /-- Termwise mixed differentiation stated entirely using ordinary
-derivatives of the actual coefficient functions. -/
+derivatives of the actual coefficient functions.
+@isnad1 id=eq.3h7v.s9.327e23bab900 from=translated src=- shape=60d2313d vocab=f194e532
+-/
 theorem mixed_derivative_profile_coefficients (I : Window) {ε : ℝ} (hε : 0 < ε)
     (A : AxisSpace I ε) (k m : ℕ) {Y η : ℝ}
     (hY : Y ∈ Ioo (-20 : ℝ) 20) (hη : η ∈ Ioo I.left I.right) :
@@ -490,13 +602,18 @@ def enlargedUnitWindow (δ : ℝ) (hδ : 0 < δ) : Window where
   right := 1 + δ
   nondegenerate := by linarith
 
+/--
+@isnad1 id=le.1h1v.s5.7c9df18f485e from=translated src=- shape=f481c3b5 vocab=37a459ec
+-/
 theorem unitInterval_in_enlargedWindow {δ : ℝ} (hδ : 0 < δ) :
     Icc (-1 : ℝ) 1 ⊆ Ioo (enlargedUnitWindow δ hδ).left (enlargedUnitWindow δ hδ).right := by
   intro x hx
   constructor <;> dsimp [enlargedUnitWindow] <;> linarith [hx.1, hx.2]
 
 /-- In particular both endpoints of the target interval `[-1,1]` have
-ordinary open-neighborhood smoothness; no endpoint extension is assumed. -/
+ordinary open-neighborhood smoothness; no endpoint extension is assumed.
+@isnad1 id=contdiff.4h5v.s9.7c8870d95ab9 from=translated src=- shape=efe4db16 vocab=503ab831
+-/
 theorem profile_smooth_target {δ ε : ℝ} (hδ : 0 < δ) (hε : 0 < ε)
     (A : AxisSpace (enlargedUnitWindow δ hδ) ε) {Y η : ℝ}
     (hY : Y ∈ Ioo (-20 : ℝ) 20) (hη : η ∈ Icc (-1 : ℝ) 1) :

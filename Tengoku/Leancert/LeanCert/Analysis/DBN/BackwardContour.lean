@@ -77,7 +77,9 @@ private theorem gaussian_heat_joint_integrable (z : ℂ) (c : ℝ) :
   rw [he] at h
   exact mul_le_mul_of_nonneg_left h (Real.exp_pos _).le
 
-/-- Exact backward heat evolution as real Gaussian averaging. -/
+/-- Exact backward heat evolution as real Gaussian averaging.
+@isnad1 id=eq.0h2v.s7.11d449ef1c99 from=translated src=- shape=3136b30a vocab=3c081e47
+-/
 theorem gaussian_average_H_zero (z : ℂ) (c : ℝ) :
     (∫ x : ℝ, (Real.exp (-x^2) : ℂ)*H 0 (z+(c*x : ℝ))) =
       (Real.sqrt Real.pi : ℂ)*H (-c^2/4) z := by
@@ -107,7 +109,9 @@ theorem gaussian_average_H_zero (z : ℂ) (c : ℝ) :
   rw [integral_integral_swap hj]
   simp_rw [he]
 
-/-- Absolute integrability of the Gaussian representation, not a totalized integral identity. -/
+/-- Absolute integrability of the Gaussian representation, not a totalized integral identity.
+@isnad1 id=integrab.0h2v.s6.a5eca718043b from=translated src=- shape=c4008fb4 vocab=b215f39c
+-/
 theorem gaussian_average_H_zero_integrable (z : ℂ) (c : ℝ) :
     Integrable (fun x : ℝ => (Real.exp (-x^2) : ℂ)*H 0 (z+(c*x : ℝ))) := by
   have h := (gaussian_heat_joint_integrable z c).integral_prod_left
@@ -116,6 +120,9 @@ theorem gaussian_average_H_zero_integrable (z : ℂ) (c : ℝ) :
 /-- Gaussian with a complex center, used to obtain any fixed vertical contour. -/
 noncomputable def gaussianShift (q : ℂ) (x : ℝ) : ℂ := Complex.exp (-((x : ℂ)-q)^2)
 
+/--
+@isnad1 id=integrab.0h1v.s5.34db0c31e1de from=translated src=- shape=2790faf7 vocab=6ce0304b
+-/
 theorem gaussianShift_integrable (q : ℂ) : Integrable (gaussianShift q) := by
   have he : gaussianShift q = fun x : ℝ => Complex.exp (-(x : ℂ)^2+(2*q)*x+(-q^2)) := by
     funext x
@@ -134,6 +141,9 @@ private theorem gaussianShift_cos_eq (q z : ℂ) (c x : ℝ) :
   rw [← mul_div_assoc, mul_add, ← Complex.exp_add, ← Complex.exp_add]
   congr 2 <;> congr 1 <;> ring
 
+/--
+@isnad1 id=eq.0h3v.s7.a78bb399c7ed from=translated src=- shape=31a1c462 vocab=8c25e6b7
+-/
 theorem gaussianShift_cos_integral (q z : ℂ) (c : ℝ) :
     (∫ x : ℝ, gaussianShift q x * Complex.cos (z+(c*x : ℝ))) =
       (Real.sqrt Real.pi * Real.exp (-c^2/4) : ℝ) * Complex.cos (z+(c : ℂ)*q) := by
@@ -150,6 +160,9 @@ theorem gaussianShift_cos_integral (q z : ℂ) (c : ℝ) :
   rw [neg_mul]
   ring
 
+/--
+@isnad1 id=integrab.0h3v.s6.cf47f507b57a from=translated src=- shape=5320202d vocab=e8e09110
+-/
 theorem gaussianShift_heat_joint_integrable (q z : ℂ) (c : ℝ) :
     Integrable (fun p : ℝ × ℝ => gaussianShift q p.1 *
       heatIntegrand 0 (z+(c*p.1 : ℝ)) p.2)
@@ -179,7 +192,9 @@ theorem gaussianShift_heat_joint_integrable (q z : ℂ) (c : ℝ) :
   rw [he] at h
   exact mul_le_mul_of_nonneg_left h (norm_nonneg _)
 
-/-- Complex-centered Gaussian averaging gives the actual backward heat value. -/
+/-- Complex-centered Gaussian averaging gives the actual backward heat value.
+@isnad1 id=eq.0h3v.s7.c0edcf3db056 from=translated src=- shape=7933c4ad vocab=9ec24dd0
+-/
 theorem gaussianShift_average_H_zero (q z : ℂ) (c : ℝ) :
     (∫ x : ℝ, gaussianShift q x * H 0 (z+(c*x : ℝ))) =
       (Real.sqrt Real.pi : ℂ)*H (-c^2/4) (z+(c : ℂ)*q) := by
@@ -206,6 +221,9 @@ theorem gaussianShift_average_H_zero (q z : ℂ) (c : ℝ) :
   rw [integral_integral_swap hj]
   simp_rw [he]
 
+/--
+@isnad1 id=integrab.0h3v.s6.d179e3f5099e from=translated src=- shape=0e158a24 vocab=b9221eda
+-/
 theorem gaussianShift_average_H_zero_integrable (q z : ℂ) (c : ℝ) :
     Integrable (fun x : ℝ => gaussianShift q x * H 0 (z+(c*x : ℝ))) := by
   have h := (gaussianShift_heat_joint_integrable q z c).integral_prod_left
@@ -252,7 +270,9 @@ private theorem verticalGaussianIntegrand_eq (b : ℝ) (hb : 0 < b) (σ : ℝ) (
   unfold verticalGaussianIntegrand
   ring
 
-/-- Absolute integrability on every fixed vertical line. -/
+/-- Absolute integrability on every fixed vertical line.
+@isnad1 id=integrab.1h3v.s5.784c6b703a99 from=translated src=- shape=38c1d933 vocab=a5cc96a1
+-/
 theorem verticalGaussianIntegral_integrable (b : ℝ) (hb : 0 < b) (σ : ℝ) (s : ℂ) :
     Integrable (verticalGaussianIntegrand b σ s) := by
   change Integrable (fun x => verticalGaussianIntegrand b σ s x)
@@ -261,7 +281,9 @@ theorem verticalGaussianIntegral_integrable (b : ℝ) (hb : 0 < b) (σ : ℝ) (s
 
 /-- Exact representation on ANY fixed vertical line, including σ=2.
 Derived directly by Gaussian/Fubini calculus, avoiding a separate contour
-shift and its horizontal-edge limits. The parameter is scaled by sqrt(b). -/
+shift and its horizontal-edge limits. The parameter is scaled by sqrt(b).
+@isnad1 id=eq.1h3v.s5.de4836ae9334 from=translated src=- shape=7bfb7478 vocab=f463e7c8
+-/
 theorem verticalGaussianIntegral (b : ℝ) (hb : 0 < b) (σ : ℝ) (s : ℂ) :
     (∫ x : ℝ, verticalGaussianIntegrand b σ s x) =
       (Real.sqrt Real.pi : ℂ)*xiHeat (-b) s := by

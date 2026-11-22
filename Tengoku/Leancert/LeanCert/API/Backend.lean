@@ -30,7 +30,9 @@ namespace Rational
 def eval (e : Expr) (box : List IntervalRat) : EvalResult IntervalRat :=
   evalIntervalChecked e (intervalEnvOfList box)
 
-/-- Successful native rational evaluation encloses every point of the box. -/
+/-- Successful native rational evaluation encloses every point of the box.
+@isnad1 id=mem.2h4v.s5.7b7f693ba5d8 from=translated src=- shape=b17cedcb vocab=675e83a7
+-/
 theorem eval_correct {e : Expr} {box : List IntervalRat} {result : IntervalRat}
     (hsuccess : eval e box = .ok result) {rho : Nat → ℝ}
     (hrho : BoxEnvMem rho box) : Expr.eval rho e ∈ result := by
@@ -54,7 +56,9 @@ def eval (e : Expr) (box : List IntervalRat)
     evalIntervalDyadicChecked e
       (toDyadicEnv (intervalEnvOfList box) precision.dyadicExponent) cfg
 
-/-- Successful native dyadic evaluation encloses every point of the box. -/
+/-- Successful native dyadic evaluation encloses every point of the box.
+@isnad1 id=mem.2h5v.s5.f47835344aef from=translated src=- shape=114634f2 vocab=ab61252b
+-/
 theorem eval_correct {e : Expr} {box : List IntervalRat}
     {precision : PrecisionOptions} {result : IntervalDyadic}
     (hsuccess : eval e box precision = .ok result) {rho : Nat → ℝ}
@@ -89,7 +93,9 @@ def eval (e : Expr) (box : List IntervalRat)
   evalIntervalAffineChecked e (toAffineEnv box) cfg
 
 /-- Successful native affine evaluation encloses every point of the box after
-conversion to an ordinary rational interval. -/
+conversion to an ordinary rational interval.
+@isnad1 id=mem.2h5v.s5.40d51d69bff9 from=translated src=- shape=88d1312c vocab=b9993efa
+-/
 theorem eval_correct {e : Expr} {box : List IntervalRat}
     {precision : PrecisionOptions} {result : AffineForm}
     (hsuccess : eval e box precision = .ok result) {rho : Nat → ℝ}

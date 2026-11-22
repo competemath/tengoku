@@ -88,6 +88,9 @@ private lemma measurableSet_norm_gt_Icc {f : ℝ → ℂ} {a b : ℝ} (ε : ℝ)
     MeasurableSet ({t | ε < ‖f t‖} ∩ Icc a b) :=
   measurableSet_norm_gt_of_continuousOn ε hf isClosed_Icc.measurableSet
 
+/--
+@isnad1 id=aestrong.1h4v.s6.8a08bda833d9 from=translated src=- shape=b1ab36b8 vocab=2a7d24e1
+-/
 theorem aEStronglyMeasurable_of_continuousOn_off_finite {f : ℝ → ℂ} {a b : ℝ} {P : Finset ℝ}
     (hf_cont : ContinuousOn f (Icc a b \ P)) :
     AEStronglyMeasurable f (volume.restrict (Icc a b)) := by
@@ -277,6 +280,9 @@ private lemma goodset_piecewise_ae_eq_decomposed {g_reg : ℂ → ℂ} {γ : ℝ
   · simp_all
   · simp_all
 
+/--
+@isnad1 id=aestrong.4h8v.s8.12bdcecf4559 from=translated src=- shape=58a01ed6 vocab=d5a285b9
+-/
 theorem aEStronglyMeasurable_pv_integrand_decomposed {g_reg : ℂ → ℂ} {γ : ℝ → ℂ}
     {a b ε : ℝ} {P : Finset ℝ} (S : Finset ℂ) (coeffs : ℂ → ℂ) (hε : 0 < ε)
     (hg : ContinuousOn g_reg (γ '' Icc a b)) (hγ : ContinuousOn γ (Icc a b))
@@ -292,6 +298,9 @@ theorem aEStronglyMeasurable_pv_integrand_decomposed {g_reg : ℂ → ℂ} {γ :
     (goodset_piecewise_ae_eq_decomposed
       S coeffs).symm
 
+/--
+@isnad1 id=integrab.2h4v.s6.9a90b87c10de from=translated src=- shape=f3835b0b vocab=2fac3216
+-/
 theorem integrableOn_of_bounded_aeMeasurable
     {f : ℝ → ℂ} {a b : ℝ} (M : ℝ)
     (hf_meas : AEStronglyMeasurable f
@@ -304,6 +313,9 @@ theorem integrableOn_of_bounded_aeMeasurable
     isClosed_Icc.measurableSet] with x hx
   exact (hf_bound x hx).trans (le_max_left M 0)
 
+/--
+@isnad1 id=tendsto.4h5v.s8.8f369511c7ec from=translated src=- shape=93386ef2 vocab=db4a0ad0
+-/
 theorem tendsto_integral_of_dominated' {a b : ℝ} {F : ℝ → ℝ → ℂ} {f : ℝ → ℂ}
     {g : ℝ → ℝ} (hF_meas : ∀ ε > 0,
       AEStronglyMeasurable (F ε) (volume.restrict (Ι a b)))
@@ -319,7 +331,9 @@ theorem tendsto_integral_of_dominated' {a b : ℝ} {F : ℝ → ℝ → ℂ} {f 
 
 /-! ## Finite Set Separation -/
 
-/-- Positive minimum separation in a finite set. -/
+/-- Positive minimum separation in a finite set.
+@isnad1 id=ex.2h1v.s7.be9fb7159ea8 from=translated src=- shape=0a4693ea vocab=12a17b00
+-/
 lemma finset_discrete_min_sep (S0 : Finset ℂ) (hS0_nonempty : S0.Nonempty)
     (hS0_discrete : ∀ s ∈ S0, ∀ s' ∈ S0, s ≠ s' → 0 < ‖s' - s‖) :
     ∃ δ > 0, ∀ s ∈ S0, ∀ s' ∈ S0, s ≠ s' → δ ≤ ‖s' - s‖ := by
@@ -357,7 +371,9 @@ lemma finset_discrete_min_sep (S0 : Finset ℂ) (hS0_nonempty : S0.Nonempty)
       exact ⟨s, hs, s', ⟨hs', hne.symm⟩, rfl⟩
     exact Finset.min'_le dists _ h_in
 
-/-- Disjoint balls for small epsilon. -/
+/-- Disjoint balls for small epsilon.
+@isnad1 id=disjoint.7h5v.s7.ef34815d7ae2 from=translated src=- shape=230041b9 vocab=54971e74
+-/
 lemma disjoint_balls_of_small_epsilon (S0 : Finset ℂ) (ε : ℝ) (_hε : 0 < ε) (δ : ℝ)
     (_hδ : 0 < δ) (hε_small : ε < δ / 2)
     (h_sep : ∀ s ∈ S0, ∀ s' ∈ S0, s ≠ s' → δ ≤ ‖s' - s‖) :
@@ -370,13 +386,17 @@ lemma disjoint_balls_of_small_epsilon (S0 : Finset ℂ) (ε : ℝ) (_hε : 0 < �
 
 /-! ## Boundedness Lemmas -/
 
-/-- Continuous functions on a compact image are bounded. -/
+/-- Continuous functions on a compact image are bounded.
+@isnad1 id=ex.2h4v.s6.14d622c41876 from=translated src=- shape=4c51d630 vocab=5d68a4f5
+-/
 lemma continuousOn_image_bounded {g : ℂ → ℂ} {γ : ℝ → ℂ} {a b : ℝ}
     (hγ_cont : ContinuousOn γ (Icc a b)) (hg_cont : ContinuousOn g (γ '' Icc a b)) :
     ∃ Mg : ℝ, ∀ z ∈ γ '' Icc a b, ‖g z‖ ≤ Mg :=
   (isCompact_Icc.image_of_continuousOn hγ_cont).exists_bound_of_continuousOn hg_cont
 
-/-- Piecewise if-then-else is bounded when the active branch is bounded. -/
+/-- Piecewise if-then-else is bounded when the active branch is bounded.
+@isnad1 id=le.3h6v.s6.321f19771c3e from=translated src=- shape=1a1804af vocab=f32c1b63
+-/
 lemma piecewise_if_bounded {f : ℝ → ℂ} {a b M : ℝ} {cond : ℝ → Prop} [DecidablePred cond]
     (hf_bound : ∀ t ∈ Icc a b, cond t → ‖f t‖ ≤ M) (hM : 0 ≤ M) :
     ∀ t ∈ Icc a b, ‖if cond t then f t else 0‖ ≤ M := by
@@ -384,7 +404,9 @@ lemma piecewise_if_bounded {f : ℝ → ℂ} {a b M : ℝ} {cond : ℝ → Prop}
   · simp only [hcond, ↓reduceIte]; exact hf_bound t ht hcond
   · simp only [hcond, ↓reduceIte, norm_zero]; exact hM
 
-/-- Residue term is bounded when separated from the singularity. -/
+/-- Residue term is bounded when separated from the singularity.
+@isnad1 id=le.3h7v.s6.042747b5f716 from=translated src=- shape=ccaaaea1 vocab=b82770e5
+-/
 lemma residue_term_bounded_when_separated {γ : ℝ → ℂ} {s c : ℂ} {a b ε : ℝ}
     (hε : 0 < ε) (h_sep : ∀ t ∈ Icc a b, ε < ‖γ t - s‖) :
     ∀ t ∈ Icc a b, ‖c / (γ t - s)‖ ≤ ‖c‖ / ε := by
@@ -394,6 +416,9 @@ lemma residue_term_bounded_when_separated {γ : ℝ → ℂ} {s c : ℂ} {a b ε
 /-- The sum of the norms of the simple-pole residues of `f` over a finite set `S`. -/
 def residueNormSum (f : ℂ → ℂ) (S : Finset ℂ) : ℝ := ∑ s ∈ S, ‖residueSimplePole f s‖
 
+/--
+@isnad1 id=le.8h10v.s8.0f30c27236c5 from=translated src=- shape=e1527e09 vocab=bc4a6360
+-/
 lemma A_int_bound_good_set {S0 : Finset ℂ} {f g_reg : ℂ → ℂ} {γ : ℝ → ℂ}
     {a b ε Mg Mγ : ℝ} (hε : 0 < ε) (hMg : 0 ≤ Mg) (_hMγ : 0 ≤ Mγ)
     (hg_decomp : ∀ z, z ∉ (S0 : Set ℂ) →
@@ -427,7 +452,9 @@ lemma A_int_bound_good_set {S0 : Finset ℂ} {f g_reg : ℂ → ℂ} {γ : ℝ �
 
 /-! ## Integrability Lemmas -/
 
-/-- Multi-point PV integrand is interval integrable. -/
+/-- Multi-point PV integrand is interval integrable.
+@isnad1 id=interval.2h4v.s6.9227ab48c7ca from=translated src=- shape=e7c2be2c vocab=3d2490eb
+-/
 lemma intervalIntegrable_cauchyPrincipalValueIntegrandOn {S0 : Finset ℂ} {f : ℂ → ℂ}
     {γ : PiecewiseC1Immersion} {ε : ℝ} (_hε : 0 < ε)
     (hf_cont : ContinuousOn f (γ.toFun '' Icc γ.a γ.b)) :
@@ -463,7 +490,9 @@ lemma intervalIntegrable_cauchyPrincipalValueIntegrandOn {S0 : Finset ℂ} {f : 
       h_meas _h_bound
   · exact Ioc_subset_Icc_self
 
-/-- Residue term integrand is interval integrable. -/
+/-- Residue term integrand is interval integrable.
+@isnad1 id=interval.1h4v.s7.2e4ce108450f from=translated src=- shape=8d6f7d6c vocab=b9407794
+-/
 lemma intervalIntegrable_residueTerm
     {γ : PiecewiseC1Immersion} {s c : ℂ} {ε : ℝ}
     (hε : 0 < ε) :
@@ -521,6 +550,9 @@ lemma intervalIntegrable_residueTerm
 
 /-! ## Measurability Lemmas -/
 
+/--
+@isnad1 id=aestrong.3h7v.s8.3539fd2869ad from=translated src=- shape=ec89e0ff vocab=c873b54a
+-/
 lemma aEStronglyMeasurable_pv_sum_residue
     (S : Finset ℂ) (f : ℂ → ℂ) (γ : ℝ → ℂ)
     (ε : ℝ) (hε : 0 < ε) (a b : ℝ)
@@ -548,6 +580,9 @@ lemma aEStronglyMeasurable_pv_sum_residue
     refine ae_of_all _ (fun t => ?_)
     simp only [Pi.add_apply, Finset.sum_insert hx]
 
+/--
+@isnad1 id=aestrong.4h7v.s8.26cb468d7c51 from=translated src=- shape=50c8e8d0 vocab=67260bc4
+-/
 lemma aEStronglyMeasurable_multipointPV_diff
     (S0 : Finset ℂ) (f : ℂ → ℂ) (γ : ℝ → ℂ)
     (ε : ℝ) (hε : 0 < ε) (a b : ℝ)

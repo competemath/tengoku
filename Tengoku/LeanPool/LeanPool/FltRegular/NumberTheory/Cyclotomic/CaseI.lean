@@ -37,7 +37,9 @@ open FractionalIdeal NumberField IsCMField
 namespace FltRegular.CaseI
 
 omit [NeZero p] in
-/-- The difference between a `p`-th power and its complex conjugate is divisible by `p`. -/
+/-- The difference between a `p`-th power and its complex conjugate is divisible by `p`.
+@isnad1 id=mem.1h3v.s9.1e70d591a706 from=translated src=- shape=e2fd7b11 vocab=e919407c
+-/
 theorem pow_sub_intGalConj_mem (α : 𝓞 K) [Fact (p.Prime)] (hp : 2 < p) :
     haveI := IsCyclotomicExtension.Rat.isCMField (S := {p}) K ⟨p, rfl, hp⟩
     (α ^ p - ringOfIntegersComplexConj K (α ^ p)) ∈
@@ -49,7 +51,9 @@ theorem pow_sub_intGalConj_mem (α : 𝓞 K) [Fact (p.Prime)] (hp : 2 < p) :
     add_sub_add_right_eq_sub, ← mul_sub]
   exact dvd_mul_right _ _
 
-/-- Complex conjugation negates the exponent of the distinguished cyclotomic unit. -/
+/-- Complex conjugation negates the exponent of the distinguished cyclotomic unit.
+@isnad1 id=eq.2h6v.s9.2858fe5fee55 from=translated src=- shape=7dcc84c9 vocab=fb854416
+-/
 theorem exists_int_sum_eq_zero'_aux (x y i : ℤ) (hp : 2 < p) :
     haveI := IsCyclotomicExtension.Rat.isCMField (S := {p}) K ⟨p, rfl, hp⟩
     ringOfIntegersComplexConj K (x + y * ↑(zetaUnit ^ i) : 𝓞 K) =
@@ -66,7 +70,9 @@ theorem exists_int_sum_eq_zero'_aux (x y i : ℤ) (hp : 2 < p) :
   change (complexConj K) ζ = ζ⁻¹
   exact complexConj_zeta hζ hp
 
-/-- A natural exponent giving the Case I complex-conjugation congruence modulo `p`. -/
+/-- A natural exponent giving the Case I complex-conjugation congruence modulo `p`.
+@isnad1 id=ex.3h8v.s10.a987b7f80c02 from=translated src=- shape=6eac9faf vocab=40d737d8
+-/
 theorem exists_int_sum_eq_zero' (x y i : ℤ) {u : (𝓞 K)ˣ} {α : 𝓞 K}
     (h : (x : 𝓞 K) + y * (zetaUnit ^ i : (𝓞 K)ˣ) = u * α ^ p) [Fact (p.Prime)]
     (hp : 2 < p) :
@@ -85,7 +91,9 @@ theorem exists_int_sum_eq_zero' (x y i : ℤ) {u : (𝓞 K)ˣ} {α : 𝓞 K}
     coe_ringOfIntegersComplexConj, ne_eq, EmbeddingLike.map_eq_zero_iff,
     FaithfulSMul.algebraMap_eq_zero_iff, Units.ne_zero, not_false_eq_true, inv_mul_cancel_left₀]
 
-/-- An integer exponent giving the Case I complex-conjugation congruence modulo `p`. -/
+/-- An integer exponent giving the Case I complex-conjugation congruence modulo `p`.
+@isnad1 id=ex.3h8v.s10.1450849bf526 from=translated src=- shape=0f7681d8 vocab=40d737d8
+-/
 theorem exists_int_sum_eq_zero (x y i : ℤ) {u : (𝓞 K)ˣ} {α : 𝓞 K}
     (h : (x : 𝓞 K) + y * (zetaUnit ^ i : (𝓞 K)ˣ) = u * α ^ p) [Fact (p.Prime)]
     (hp : 2 < p) :

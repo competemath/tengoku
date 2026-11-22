@@ -42,6 +42,9 @@ private instance : NormSMulClass ℝ ℂ := NormedSpace.toNormSMulClass
 
 noncomputable section
 
+/--
+@isnad1 id=le.8h9v.s8.40260c5479cc from=translated src=- shape=ce064f5b vocab=283f6466
+-/
 lemma annulus_t_measure_bound {γ : ℝ → ℂ}
     {a b t₀ : ℝ} {L : ℂ} {ε₁ ε₂ δ₁ : ℝ}
     (hL : L ≠ 0) (hε₁_pos : 0 < ε₁)
@@ -124,6 +127,9 @@ private lemma remainder_annulus_pw_bound
       (le_max_right 0 C)
   · simp only [hcond, ↓reduceIte, norm_zero, le_max_iff, le_refl, true_or]
 
+/--
+@isnad1 id=other.7h10v.s9.367deb4e2f0c from=translated src=- shape=7007387e vocab=a278bbed
+-/
 lemma remainder_integral_bound_on_annulus
     {γ : ℝ → ℂ} {a b t₀ : ℝ}
     {C δ₀ δ₁ ε₁ ε₂ : ℝ} {L : ℂ}
@@ -196,6 +202,9 @@ lemma remainder_integral_bound_on_annulus
           _ = ENNReal.ofReal ((t₀ + R) - (t₀ - R)) := Real.volume_Icc
           _ = ENNReal.ofReal (4 * ε₁ / ‖L‖) := by simp only [R]; ring_nf
 
+/--
+@isnad1 id=le.2h6v.s8.1280f70c86e7 from=translated src=- shape=a47e4520 vocab=7be8daac
+-/
 lemma norm_linear_approx_bound {γ : ℝ → ℂ}
     {t₀ : ℝ} {L : ℂ} {K₀ δ₀ : ℝ}
     (h_quad : ∀ t, |t - t₀| < δ₀ →
@@ -216,6 +225,9 @@ lemma norm_linear_approx_bound {γ : ℝ → ℂ}
   rw [h3, mul_comm] at h2
   exact le_trans h2 h1
 
+/--
+@isnad1 id=le.1h3v.s6.fb9b79f18545 from=translated src=- shape=8d91ff97 vocab=142c4b5b
+-/
 lemma volume_shell_le {t₀ r₁ r₂ : ℝ}
     (hr : r₁ ≤ r₂) :
     volume {t : ℝ |
@@ -261,6 +273,9 @@ private lemma abs_sub_threshold_le {g x ε e : ℝ} (h_approx : |g - x| ≤ e)
   rw [abs_le] at h_approx ⊢
   rcases h_between with ⟨h1, h2⟩ | ⟨h1, h2⟩ <;> constructor <;> linarith
 
+/--
+@isnad1 id=or.2h5v.s6.503d51114a38 from=translated src=- shape=ce218aea vocab=593bbeec
+-/
 lemma symmDiff_subset_boundaryLayers
     {g x e ε₁ ε₂ : ℝ}
     (h_approx : |g - x| ≤ e)
@@ -288,11 +303,17 @@ lemma symmDiff_subset_boundaryLayers
         exact hnotA ⟨hg_le_ε₂, h_not⟩
       exact Or.inr (abs_sub_threshold_le h_approx (Or.inr ⟨hx_upper, by linarith⟩))
 
+/--
+@isnad1 id=le.2h3v.s5.2eba71b0b637 from=translated src=- shape=56469c88 vocab=8b1f73a6
+-/
 lemma tAnnLin_implies_r_le
     {L_norm r ε₁ : ℝ} (hL_pos : 0 < L_norm)
     (h_in : L_norm * r ≤ ε₁) :
     r ≤ ε₁ / L_norm := by rw [le_div_iff₀ hL_pos, mul_comm]; exact h_in
 
+/--
+@isnad1 id=and.6h5v.s7.063c5afd94d4 from=translated src=- shape=99aa3172 vocab=36ea17d5
+-/
 lemma near_threshold_implies_r_in_shell
     {L_norm r ε K₀ R_max : ℝ}
     (hL_pos : 0 < L_norm)
@@ -387,6 +408,9 @@ private lemma shell_vol_le_of_large_eps {t₀ ε Δ L_norm : ℝ}
         congr 1; show 2 * (r₂ - r₁) = 4 * Δ / L_norm
         simp only [r₁, r₂]; field_simp; ring
 
+/--
+@isnad1 id=le.3h4v.s7.a0d23a599c16 from=translated src=- shape=93f29b29 vocab=e64ab00b
+-/
 lemma shell_vol_le {t₀ ε Δ L_norm : ℝ}
     (hL_pos : 0 < L_norm)
     (hΔ_nonneg : 0 ≤ Δ) (_hε_pos : 0 < ε) :
@@ -421,6 +445,9 @@ private lemma annulus_lower_bound {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ} {K�
   nlinarith [h2, h4, abs_nonneg (t - t₀),
     mul_nonneg (abs_nonneg (t - t₀)) (le_of_lt (by linarith : (0 : ℝ) < ‖L‖ / 2 - K₀ * |t - t₀|))]
 
+/--
+@isnad1 id=ex.5h5v.s8.38644b526d98 from=translated src=- shape=f9c6e0b7 vocab=56d4285f
+-/
 lemma annulus_symmDiff_measure_bound
     {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ}
     (_hab : a < b) (ht₀ : t₀ ∈ Set.Ioo a b)

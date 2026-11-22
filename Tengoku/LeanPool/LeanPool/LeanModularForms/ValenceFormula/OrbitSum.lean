@@ -36,7 +36,9 @@ noncomputable section
 
 variable {k : ℤ} (f : ModularForm (Gamma 1) k)
 
-/-- `orderOfVanishingAt'` is invariant under the action of any `g ∈ SL(2, ℤ)`. -/
+/-- `orderOfVanishingAt'` is invariant under the action of any `g ∈ SL(2, ℤ)`.
+@isnad1 id=eq.0h4v.s9.5f52419a8331 from=translated src=- shape=5dff1168 vocab=dd07675a
+-/
 theorem ord_smul_eq (g : SL(2, ℤ)) (p : ℍ) :
     orderOfVanishingAt' (⇑f) (g • p) = orderOfVanishingAt' (⇑f) p := by
   have hg_mem : g ∈ Subgroup.closure {ModularGroup.S, ModularGroup.T} := by
@@ -71,6 +73,9 @@ def ordOrbit (q : Orbit) : ℤ :=
       obtain ⟨g, hg⟩ := hab
       rw [← hg]; exact ord_smul_eq f g b)
 
+/--
+@isnad1 id=eq.0h3v.s8.1b8991b77b87 from=translated src=- shape=512c771e vocab=ade4069a
+-/
 @[simp]
 theorem ordOrbit_mk (p : ℍ) : ordOrbit f (orb p) = orderOfVanishingAt' (⇑f) p := rfl
 
@@ -83,7 +88,9 @@ def orho : Orbit := orb ellipticPointRho'
 /-- A non-elliptic orbit is one distinct from both `oi` and `orho`. -/
 def NonEllOrbit := {q : Orbit // q ≠ oi ∧ q ≠ orho}
 
-/-- Every orbit has a representative in the fundamental domain `𝒟`. -/
+/-- Every orbit has a representative in the fundamental domain `𝒟`.
+@isnad1 id=ex.0h1v.s4.2f58078917f9 from=translated src=- shape=aff2ef46 vocab=584052fa
+-/
 theorem orbit_has_fd_rep (q : Orbit) : ∃ p : ℍ, orb p = q ∧ p ∈ 𝒟 := by
   induction q using Quotient.inductionOn' with
   | h z =>
@@ -111,7 +118,9 @@ private theorem G_eval_eq_f (p : ℍ) :
   · congr 1
   · exact absurd p.im_pos h
 
-/-- If `f p ≠ 0`, then `orderOfVanishingAt' f p = 0`. -/
+/-- If `f p ≠ 0`, then `orderOfVanishingAt' f p = 0`.
+@isnad1 id=eq.1h3v.s9.e1a9e9d5f5d2 from=translated src=- shape=7a921e66 vocab=378e3deb
+-/
 theorem orderOfVanishingAt'_eq_zero_of_ne_zero' (p : ℍ) (hp : f p ≠ 0) :
     orderOfVanishingAt' f p = 0 := by
   unfold orderOfVanishingAt'
@@ -125,7 +134,9 @@ theorem eq_zero_of_orderOfVanishingAt'_ne_zero' (p : ℍ)
     (hp : orderOfVanishingAt' (⇑f) p ≠ 0) : f p = 0 :=
   by_contra fun h => hp (orderOfVanishingAt'_eq_zero_of_ne_zero' f p h)
 
-/-- `f ≠ 0` and `f p = 0` implies `orderOfVanishingAt' f p ≠ 0`. -/
+/-- `f ≠ 0` and `f p = 0` implies `orderOfVanishingAt' f p ≠ 0`.
+@isnad1 id=ne.2h3v.s10.f51614abb9b8 from=translated src=- shape=e6881e3c vocab=378e3deb
+-/
 theorem orderOfVanishingAt'_ne_zero_of_eq_zero (hf : f ≠ 0) (p : ℍ) (hp : f p = 0) :
     orderOfVanishingAt' (⇑f) p ≠ 0 := by
   unfold orderOfVanishingAt'
@@ -152,6 +163,9 @@ private theorem modularFormCompOfComplex_eq' (p : ℍ) :
     modularFormCompOfComplex f (p : ℂ) = f p := by
   simp [modularFormCompOfComplex, UpperHalfPlane.ofComplex_apply_of_im_pos p.im_pos]
 
+/--
+@isnad1 id=lt.1h1v.s5.94a353f065d4 from=translated src=- shape=94a705ed vocab=ceb8739e
+-/
 theorem fd_im_gt_half (p : ℍ) (hp : p ∈ 𝒟) : (1 : ℝ)/2 < (p : ℂ).im := by
   by_contra h_le; push Not at h_le
   obtain ⟨hnormSq, habs_re⟩ := hp
@@ -180,7 +194,9 @@ private theorem no_zeros_above_height' (hf : f ≠ 0) :
     simpa only [Function.Periodic.qParam, ne_eq] using Complex.exp_ne_zero _
   exact hH₀_nonvan _ h_qParam_mem h_qParam_ne (h_eq ▸ hfp)
 
-/-- The set of zeros (with nonzero order) in `𝒟` is finite. -/
+/-- The set of zeros (with nonzero order) in `𝒟` is finite.
+@isnad1 id=finite.1h2v.s10.c8ca78eec56c from=translated src=- shape=dbc085cc vocab=03c44f44
+-/
 theorem finite_zeros_in_fd (hf : f ≠ 0) :
     Set.Finite {p : ℍ | p ∈ 𝒟 ∧ orderOfVanishingAt' (⇑f) p ≠ 0} := by
   apply Set.Finite.subset (s := {p : ℍ | p ∈ 𝒟 ∧ f p = 0})
@@ -208,7 +224,9 @@ theorem finite_zeros_in_fd (hf : f ≠ 0) :
     exact absurd hp_zero (hH₀_no_zeros p this)
   · exact (modularFormCompOfComplex_eq' f p).symm ▸ hp_zero
 
-/-- The set of orbits with nonzero `ordOrbit` is finite. -/
+/-- The set of orbits with nonzero `ordOrbit` is finite.
+@isnad1 id=finite.1h2v.s9.8bba0adbe561 from=translated src=- shape=f6f1b877 vocab=04a1503a
+-/
 theorem finite_support_ordOrbit (hf : f ≠ 0) :
     Set.Finite {q : Orbit | ordOrbit f q ≠ 0} := by
   choose rep hrep using fun q : Orbit => orbit_has_fd_rep q
@@ -223,7 +241,9 @@ theorem finite_support_ordOrbit (hf : f ≠ 0) :
     rw [(hrep q₁).1, (hrep q₂).1] at this; exact this
   exact (finite_zeros_in_fd f hf).subset h_image |>.of_finite_image h_inj
 
-/-- The set of non-elliptic orbits with nonzero `ordOrbit` is finite. -/
+/-- The set of non-elliptic orbits with nonzero `ordOrbit` is finite.
+@isnad1 id=finite.1h2v.s9.1738bc402f66 from=translated src=- shape=a61e671e vocab=2977d213
+-/
 theorem finite_support_ordOrbit_nonEll (hf : f ≠ 0) :
     Set.Finite {q : NonEllOrbit | ordOrbit f q.val ≠ 0} := by
   apply Set.Finite.subset ((finite_support_ordOrbit f hf).preimage
@@ -235,16 +255,22 @@ theorem finite_support_ordOrbit_nonEll (hf : f ≠ 0) :
 /-- The canonical finite set of zeros (with nonzero order) in `𝒟`. -/
 noncomputable def s₀ (hf : f ≠ 0) : Finset ℍ := (finite_zeros_in_fd f hf).toFinset
 
-/-- Every point in `s₀` lies in the fundamental domain `𝒟`. -/
+/-- Every point in `s₀` lies in the fundamental domain `𝒟`.
+@isnad1 id=mem.2h3v.s9.8335a395d4b2 from=translated src=- shape=1d23160b vocab=23fd4d0e
+-/
 theorem s₀_mem_fd (hf : f ≠ 0) : ∀ p ∈ s₀ f hf, p ∈ 𝒟 := by
   intro p hp; rw [s₀, Set.Finite.mem_toFinset] at hp; exact hp.1
 
-/-- `s₀` captures all points in `𝒟` with nonzero order of vanishing. -/
+/-- `s₀` captures all points in `𝒟` with nonzero order of vanishing.
+@isnad1 id=mem.3h3v.s10.e924f57d7898 from=translated src=- shape=fafa1fb3 vocab=18495e27
+-/
 theorem s₀_complete (hf : f ≠ 0) :
     ∀ p, p ∈ 𝒟 → orderOfVanishingAt' (⇑f) p ≠ 0 → p ∈ s₀ f hf := by
   intro p hp hord; rw [s₀, Set.Finite.mem_toFinset]; exact ⟨hp, hord⟩
 
-/-- The orbit of `ρ+1` equals the orbit of `ρ`. -/
+/-- The orbit of `ρ+1` equals the orbit of `ρ`.
+@isnad1 id=eq.0h0v.s2.db04534fbed1 from=translated src=- shape=4b736592 vocab=7e04ee7c
+-/
 theorem orb_rho_plus_one_eq_orb_rho :
     orb ellipticPointRhoPlusOne' = (orho : Orbit) := by
   change Quotient.mk'' ellipticPointRhoPlusOne' = Quotient.mk'' ellipticPointRho'

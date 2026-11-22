@@ -57,7 +57,9 @@ interest for Noetherian local rings.) -/
 def IsAnalyticallyIrreducible : Prop :=
   IsDomain (AdicCompletion (IsLocalRing.maximalIdeal R) R)
 
-/-- Quasi-completeness implies weak quasi-completeness. -/
+/-- Quasi-completeness implies weak quasi-completeness.
+@isnad1 id=isweakly.1h1v.s4.bcd52e5afde3 from=translated src=- shape=affebb5f vocab=7867fac1
+-/
 theorem IsQuasiComplete.isWeaklyQuasiComplete
     (h : IsQuasiComplete R) : IsWeaklyQuasiComplete R := by
   intro A hA hInt k
@@ -66,7 +68,9 @@ theorem IsQuasiComplete.isWeaklyQuasiComplete
 
 /-- If `R` is quasi-complete, then every quotient `R ⧸ I` is weakly
 quasi-complete.
-This is one direction of Anderson Theorem 5, Item 3. -/
+This is one direction of Anderson Theorem 5, Item 3.
+@isnad1 id=isweakly.2h2v.s6.e5d5fab3c9ce from=translated src=- shape=dd2db833 vocab=e5c76cef
+-/
 theorem IsQuasiComplete.quotient_isWeaklyQuasiComplete
     (h : IsQuasiComplete R) (I : Ideal R) (hI : I ≠ ⊤) :
     letI : Nontrivial (R ⧸ I) :=

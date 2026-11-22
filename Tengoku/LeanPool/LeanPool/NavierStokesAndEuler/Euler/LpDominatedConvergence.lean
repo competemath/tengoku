@@ -21,6 +21,9 @@ open scoped Topology ENNReal
 
 variable {X V : Type*} [MeasurableSpace X] [NormedAddCommGroup V] (μ : Measure X)
 
+/--
+@isnad1 id=eq.0h4v.s9.48b0bd1eb489 from=translated src=- shape=8732f352 vocab=77b1772e
+-/
 theorem norm_sq_eq_integral (u : Lp V 2 μ) : ‖u‖^2 = ∫ x, ‖u x‖^2 ∂μ := by
   rw [Lp.norm_def, MemLp.eLpNorm_eq_integral_rpow_norm (by norm_num : (2 : ℝ≥0∞) ≠ 0)
     (by norm_num : (2 : ℝ≥0∞) ≠ ∞) (Lp.memLp u)]
@@ -28,7 +31,9 @@ theorem norm_sq_eq_integral (u : Lp V 2 μ) : ‖u‖^2 = ∫ x, ‖u x‖^2 ∂
   rw [ENNReal.toReal_ofReal (Real.rpow_nonneg (integral_nonneg (fun _ => sq_nonneg _)) _)]
   rw [inv_eq_one_div, ← Real.sqrt_eq_rpow, Real.sq_sqrt (integral_nonneg (fun _ => sq_nonneg _))]
 
-/-- Domination of literal representatives controls convergence of their actual L² classes. -/
+/-- Domination of literal representatives controls convergence of their actual L² classes.
+@isnad1 id=tendsto.5h10v.s11.1e51cbdaf79c from=translated src=- shape=c8bcbd3c vocab=bf024a92
+-/
 theorem tendsto_of_dominated {ι : Type*} {l : Filter ι} [l.IsCountablyGenerated]
     (U : ι → Lp V 2 μ) (v : Lp V 2 μ) (F : ι → X → V) (g : X → V)
     (hU : ∀ i, U i =ᵐ[μ] F i) (hv : v =ᵐ[μ] g)

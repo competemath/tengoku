@@ -10,16 +10,25 @@ open Complex Polynomial ComplexConjugate
 noncomputable def shiftPolynomial (a : ℝ) (p : ℂ[X]) : ℂ[X] :=
   C (1/2) * (p.comp (X + C ((a : ℂ)*I)) + p.comp (X + C (-(a : ℂ)*I)))
 
+/--
+@isnad1 id=eq.0h3v.s4.22bb1695e032 from=translated src=- shape=0a6f2dd5 vocab=e0f55e4d
+-/
 @[simp] theorem eval_shiftPolynomial (a : ℝ) (p : ℂ[X]) (z : ℂ) :
     (shiftPolynomial a p).eval z = shiftAverage p.eval a z := by
   simp [shiftPolynomial, shiftAverage, sub_eq_add_neg, div_eq_mul_inv, mul_comm]
 
+/--
+@isnad1 id=eq.1h2v.s5.c3664d2808b7 from=translated src=- shape=b8bebce9 vocab=bfe10c6b
+-/
 theorem shiftPolynomial_conj (a : ℝ) (p : ℂ[X])
     (hp : p.map (starRingEnd ℂ) = p) :
     (shiftPolynomial a p).map (starRingEnd ℂ) = shiftPolynomial a p := by
   have htwo : (starRingEnd ℂ) (2 : ℂ) = 2 := map_ofNat _ 2
   simp [shiftPolynomial, Polynomial.map_comp, hp, add_comm, htwo]
 
+/--
+@isnad1 id=ne.1h2v.s5.5312c372f2f6 from=translated src=- shape=7d53437a vocab=090a772b
+-/
 theorem shiftPolynomial_ne_zero (a : ℝ) (p : ℂ[X]) (hp : p ≠ 0) :
     shiftPolynomial a p ≠ 0 := by
   have hc (c : ℂ) : (p.comp (X + C c)).leadingCoeff = p.leadingCoeff := by
@@ -45,12 +54,18 @@ noncomputable def shiftPolynomialIter (a : ℝ) : ℕ → ℂ[X] → ℂ[X]
   | 0, p => p
   | n+1, p => shiftPolynomial a (shiftPolynomialIter a n p)
 
+/--
+@isnad1 id=ne.1h3v.s5.4119a25a87e1 from=translated src=- shape=d5897f05 vocab=e6831984
+-/
 theorem shiftPolynomialIter_ne_zero (a : ℝ) (n : ℕ) (p : ℂ[X]) (hp : p ≠ 0) :
     shiftPolynomialIter a n p ≠ 0 := by
   induction n with
   | zero => exact hp
   | succ n ih => exact shiftPolynomial_ne_zero a _ ih
 
+/--
+@isnad1 id=eq.1h3v.s5.102e590c738c from=translated src=- shape=7f99d0f0 vocab=8c348ccb
+-/
 theorem shiftPolynomialIter_conj (a : ℝ) (n : ℕ) (p : ℂ[X])
     (hp : p.map (starRingEnd ℂ) = p) :
     (shiftPolynomialIter a n p).map (starRingEnd ℂ) = shiftPolynomialIter a n p := by
@@ -58,7 +73,9 @@ theorem shiftPolynomialIter_conj (a : ℝ) (n : ℕ) (p : ℂ[X])
   | zero => exact hp
   | succ n ih => exact shiftPolynomial_conj a _ ih
 
-/-- Each step subtracts exactly `a²` from the squared strip budget, until zero. -/
+/-- Each step subtracts exactly `a²` from the squared strip budget, until zero.
+@isnad1 id=le.5h5v.s7.82dea39a2b2d from=translated src=- shape=5014b6a9 vocab=e2222f4d
+-/
 theorem shiftPolynomialIter_strip (p : ℂ[X]) (hp : p ≠ 0)
     (hc : p.map (starRingEnd ℂ) = p) {b a : ℝ} (ha : 0 < a)
     (hstrip : ∀ z : ℂ, p.eval z = 0 → z.im^2 ≤ b^2) (n : ℕ)
@@ -85,7 +102,9 @@ theorem shiftPolynomialIter_strip (p : ℂ[X]) (hp : p ≠ 0)
           max_eq_right (by nlinarith [sq_nonneg a])]
     rwa [he] at h
 
-/-- A total squared shift budget covering the initial strip gives real zeros. -/
+/-- A total squared shift budget covering the initial strip gives real zeros.
+@isnad1 id=eq.6h5v.s7.7417e793e9b6 from=translated src=- shape=6f9ca747 vocab=cc0461fe
+-/
 theorem shiftPolynomialIter_real (p : ℂ[X]) (hp : p ≠ 0)
     (hc : p.map (starRingEnd ℂ) = p) {b a : ℝ} (ha : 0 < a)
     (hstrip : ∀ z : ℂ, p.eval z = 0 → z.im^2 ≤ b^2) (n : ℕ)
@@ -95,7 +114,9 @@ theorem shiftPolynomialIter_real (p : ℂ[X]) (hp : p ≠ 0)
   rw [max_eq_right (sub_nonpos.mpr hbudget)] at h
   nlinarith [sq_nonneg z.im]
 
-/-- The exact finite approximants proposed for time `1/2` have only real zeros. -/
+/-- The exact finite approximants proposed for time `1/2` have only real zeros.
+@isnad1 id=eq.5h3v.s7.ec094eeefe89 from=translated src=- shape=2a689141 vocab=2631a14b
+-/
 theorem shiftPolynomialIter_unit_real (p : ℂ[X]) (hp : p ≠ 0)
     (hc : p.map (starRingEnd ℂ) = p)
     (hstrip : ∀ z : ℂ, p.eval z = 0 → z.im^2 ≤ 1)

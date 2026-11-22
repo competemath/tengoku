@@ -791,6 +791,9 @@ private lemma fockNorm_polar_local {D : ℕ} (a : Fin D → ℂ) :
     field_simp
   rw [← mul_assoc, hT_eq]
 
+/--
+@isnad1 id=eq.0h3v.s7.6d1821a1307d from=translated src=- shape=4f362ed3 vocab=77728630
+-/
 lemma gaussian_integral_const_add_polyEval {D : ℕ} (a : Fin D → ℂ) (c : ℂ) :
     (1 / Real.pi) * ∫ z : ℂ, ‖c + polyEval a z‖ ^ 2 * Real.exp (-‖z‖ ^ 2) =
       ‖c‖ ^ 2 + fockNormSq a := by
@@ -1433,6 +1436,9 @@ private lemma local_fock_closing_arith
     _ ≤ (23003 * m) ^ 2 := hsq
     _ = 23003 ^ 2 * m2 := by rw [← hm_sq]; ring
 
+/--
+@isnad1 id=le.2h1v.s8.a6ce4ceddec8 from=translated src=- shape=7f9c5a19 vocab=63a52855
+-/
 theorem LocalFockSPR_of_small_norm
     (p : Polynomial ℂ)
     (hp_real : Complex.im (p.eval 0) = 0)

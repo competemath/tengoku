@@ -47,7 +47,9 @@ noncomputable def orderedTensorBasis :
 def swapIndex (p : OrderedTensorIndex) : OrderedTensorIndex :=
   toLex (ofLex p).swap
 
-/-- The flip involution on ordered tensor indices is self-inverse. Paper: §2. -/
+/-- The flip involution on ordered tensor indices is self-inverse. Paper: §2.
+@isnad1 id=eq.0h1v.s3.3e34fcc22d52 from=translated src=- shape=47dcad53 vocab=a23dacf4
+-/
 theorem swapIndex_involutive (p : OrderedTensorIndex) :
     swapIndex (swapIndex p) = p := by
   simp [swapIndex]
@@ -57,7 +59,9 @@ def coeffMap (i j : OrderedBasisIndex) : TensorAA →ₗ[k] k :=
   (Finsupp.lapply (toLex (i, j))).comp (orderedTensorBasis.repr :
     TensorAA →ₗ[k] (OrderedTensorIndex →₀ k))
 
-/-- Flip exchanges the two ordered tensor coordinates. Paper: §2. -/
+/-- Flip exchanges the two ordered tensor coordinates. Paper: §2.
+@isnad1 id=eq.0h3v.s13.e9e3f6118b5c from=translated src=- shape=d6cbcaf3 vocab=2b319fed
+-/
 theorem coeffMap_flip (x : TensorAA) (i j : OrderedBasisIndex) :
     coeffMap i j (TensorProduct.comm k A A x) = coeffMap j i x := by
   let f : TensorAA →ₗ[k] k :=
@@ -75,7 +79,9 @@ theorem coeffMap_flip (x : TensorAA) (i j : OrderedBasisIndex) :
     ring
   exact congrArg (fun h : TensorAA →ₗ[k] k => h x) hfg
 
-/-- Flip exchanges ordered tensor-basis coefficients. Paper: §2. -/
+/-- Flip exchanges ordered tensor-basis coefficients. Paper: §2.
+@isnad1 id=eq.0h2v.s13.469d963b25a0 from=translated src=- shape=56e5de8d vocab=a2d56e98
+-/
 theorem coeff_flip (x : TensorAA) (p : OrderedTensorIndex) :
     orderedTensorBasis.repr (TensorProduct.comm k A A x) p =
       orderedTensorBasis.repr x (swapIndex p) := by
@@ -86,7 +92,9 @@ theorem coeff_flip (x : TensorAA) (p : OrderedTensorIndex) :
   simpa [coeffMap, swapIndex, orderedTensorBasis] using
     coeffMap_flip x i j
 
-/-- The expansion of a tensor in the ordered tensor basis. Paper: §2. -/
+/-- The expansion of a tensor in the ordered tensor basis. Paper: §2.
+@isnad1 id=eq.0h1v.s12.8ac9c2b7ff19 from=translated src=- shape=34167ca2 vocab=8770ef6c
+-/
 theorem basis_expansion (x : TensorAA) :
     x = ∑ p ∈ (orderedTensorBasis.repr x).support,
       (orderedTensorBasis.repr x p) • orderedTensorBasis p := by
@@ -109,12 +117,16 @@ def diagonalIndex (p : OrderedTensorIndex) : Prop :=
 def offDiagonalIndex (p : OrderedTensorIndex) : Prop :=
   (ofLex p).1 ≠ (ofLex p).2
 
-/-- Swapping preserves the off-diagonal predicate. Paper: §2. -/
+/-- Swapping preserves the off-diagonal predicate. Paper: §2.
+@isnad1 id=offdiago.1h1v.s3.5c6b24ff6298 from=translated src=- shape=2c86d966 vocab=c6878c61
+-/
 theorem swapIndex_offDiagonal {p : OrderedTensorIndex}
     (hp : offDiagonalIndex p) : offDiagonalIndex (swapIndex p) := by
   simpa [offDiagonalIndex, swapIndex] using (Ne.symm hp)
 
-/-- An off-diagonal index is not fixed by swapping. Paper: §2. -/
+/-- An off-diagonal index is not fixed by swapping. Paper: §2.
+@isnad1 id=ne.1h1v.s3.5d1d207f3d02 from=translated src=- shape=5b131564 vocab=c6878c61
+-/
 theorem swapIndex_ne_self_of_offDiagonal {p : OrderedTensorIndex}
     (hp : offDiagonalIndex p) : swapIndex p ≠ p := by
   intro h
@@ -124,7 +136,9 @@ theorem swapIndex_ne_self_of_offDiagonal {p : OrderedTensorIndex}
   have hcoord := congrArg Prod.fst hpair
   exact hp hcoord.symm
 
-/-- Fixed tensors have swap-symmetric ordered coefficients. Paper: §2. -/
+/-- Fixed tensors have swap-symmetric ordered coefficients. Paper: §2.
+@isnad1 id=eq.0h2v.s13.feb853836962 from=translated src=- shape=0236e4ce vocab=5da17b19
+-/
 theorem repr_swap_eq (c : C) (p : OrderedTensorIndex) :
     orderedTensorBasis.repr (c : TensorAA) (swapIndex p) =
       orderedTensorBasis.repr (c : TensorAA) p := by
@@ -133,7 +147,9 @@ theorem repr_swap_eq (c : C) (p : OrderedTensorIndex) :
   rw [hc] at h
   exact h.symm
 
-/-- A diagonal tensor-basis vector lies in the square span. Paper: §2. -/
+/-- A diagonal tensor-basis vector lies in the square span. Paper: §2.
+@isnad1 id=mem.1h1v.s11.971f4504686f from=translated src=- shape=4797e027 vocab=3a63c0ef
+-/
 theorem basis_mem_squareSpan_of_diagonal {p : OrderedTensorIndex}
     (hp : diagonalIndex p) : orderedTensorBasis p ∈ squareSpan := by
   let ij := ofLex p
@@ -148,7 +164,9 @@ theorem basis_mem_squareSpan_of_diagonal {p : OrderedTensorIndex}
     Submodule.subset_span ⟨orderedBasis i, rfl⟩
   simpa [orderedTensorBasis, Module.Basis.tensorProduct_apply] using hgen
 
-/-- Flip symmetry preserves the finite coefficient support. Paper: §2. -/
+/-- Flip symmetry preserves the finite coefficient support. Paper: §2.
+@isnad1 id=mem.1h2v.s13.b893b5f031f8 from=translated src=- shape=71ce9f9d vocab=cb671633
+-/
 theorem repr_support_swap_mem (c : C) {p : OrderedTensorIndex}
     (hp : p ∈ (orderedTensorBasis.repr (c : TensorAA)).support) :
     swapIndex p ∈ (orderedTensorBasis.repr (c : TensorAA)).support := by

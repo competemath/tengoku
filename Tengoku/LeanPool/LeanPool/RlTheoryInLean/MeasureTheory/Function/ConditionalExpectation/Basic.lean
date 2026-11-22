@@ -24,6 +24,9 @@ open scoped RealInnerProductSpace
 
 namespace MeasureTheory
 
+/--
+@isnad1 id=eventual.2h8v.s8.a804a456ccd4 from=translated src=- shape=2fbdaa15 vocab=4daa9ff8
+-/
 theorem ContinuousLinearMap.condExp_comp
   {Ω α β : Type*}
   [MeasurableSpace α]
@@ -47,6 +50,9 @@ theorem ContinuousLinearMap.condExp_comp
       L.integral_comp_comm hf.restrict]
   · exact (L.continuous.measurable.comp stronglyMeasurable_condExp.measurable).aestronglyMeasurable
 
+/--
+@isnad1 id=eventual.4h7v.s9.064ad2e33f9c from=translated src=- shape=d4ba5fae vocab=575463b5
+-/
 theorem condExp_inner
   {Ω : Type*} {m m₀ : MeasurableSpace Ω} {μ : Measure[m₀] Ω} {d : ℕ}
   {f g : Ω → EuclideanSpace ℝ (Fin d)}
@@ -87,6 +93,9 @@ theorem condExp_inner
         filter_upwards with ω
         simp only [Finset.sum_apply, Pi.mul_apply]
 
+/--
+@isnad1 id=eventual.4h6v.s8.4fef240c097a from=translated src=- shape=65759c25 vocab=ce47183a
+-/
 theorem norm_condExp_le_condExp_norm
   {Ω : Type*} {m m₀ : MeasurableSpace Ω} [StandardBorelSpace Ω]
   {μ : Measure[m₀] Ω}

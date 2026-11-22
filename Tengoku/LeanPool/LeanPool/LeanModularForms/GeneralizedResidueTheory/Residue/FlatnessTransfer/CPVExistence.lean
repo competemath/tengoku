@@ -195,7 +195,9 @@ private lemma continuousOn_cutoff_integral
 /-- PV of `(z-z₀)⁻¹` exists along a closed PiecewiseC1Immersion with unique crossing.
 This is the C²-free version of `cpv_exists_inv_sub`: it uses the exp-convergence
 from `tendsto_exp_cutoff_integral_crossing` (which doesn't need C²) together with
-a Cauchy transfer argument to extract convergence of the integral itself. -/
+a Cauchy transfer argument to extract convergence of the integral itself.
+@isnad1 id=cauchypr.5h3v.s6.92be73dc805b from=translated src=- shape=d8f1d30d vocab=08b260c1
+-/
 lemma cpv_exists_inv_sub_of_closed_unique
     (γ : PiecewiseC1Immersion) (z₀ : ℂ)
     (hclosed : γ.toPiecewiseC1Curve.IsClosed)

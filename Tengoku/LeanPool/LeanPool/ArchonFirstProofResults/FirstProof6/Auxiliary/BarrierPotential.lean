@@ -51,7 +51,9 @@ def barrierPotential (u : ℝ) (M : Matrix V V ℝ) : ℝ :=
   (u • (1 : Matrix V V ℝ) - M)⁻¹.trace
 
 /-- Real form of the spectral theorem: a real Hermitian matrix equals
-    `U * diagonal eigenvalues * star U` for its eigenvector unitary `U`. -/
+    `U * diagonal eigenvalues * star U` for its eigenvector unitary `U`.
+@isnad1 id=eq.1h2v.s8.b427bfa663eb from=translated src=- shape=f1fdf52e vocab=c1f28a47
+-/
 lemma realSpectralDecomp {M : Matrix V V ℝ} (hM : M.IsHermitian) :
     M = (hM.eigenvectorUnitary : Matrix V V ℝ) * diagonal hM.eigenvalues *
       star (hM.eigenvectorUnitary : Matrix V V ℝ) := by
@@ -60,7 +62,9 @@ lemma realSpectralDecomp {M : Matrix V V ℝ} (hM : M.IsHermitian) :
     RCLike.ofReal_real_eq_id, id] using h
 
 omit [DecidableEq V] in
-/-- PSD factorization via spectral theorem: P PSD implies P = Nᴴ * N for some N. -/
+/-- PSD factorization via spectral theorem: P PSD implies P = Nᴴ * N for some N.
+@isnad1 id=ex.1h2v.s6.ba204f715bbe from=translated src=- shape=a8832d86 vocab=26f6992f
+-/
 lemma psd_factorization (P : Matrix V V ℝ) (hP : P.PosSemidef) :
     ∃ (N : Matrix V V ℝ), P = Nᴴ * N := by
   classical
@@ -81,7 +85,9 @@ lemma psd_factorization (P : Matrix V V ℝ) (hP : P.PosSemidef) :
   rw [hP_eq, hNH, Matrix.mul_assoc, Matrix.mul_assoc,
       ← Matrix.mul_assoc (diagonal sqrt_eig), h_sqrt_sq]
 
-/-- The Hermitian, invertible square root of a positive definite matrix. -/
+/-- The Hermitian, invertible square root of a positive definite matrix.
+@isnad1 id=ex.1h2v.s6.57996271f36f from=translated src=- shape=d37ba1c9 vocab=13053a66
+-/
 lemma posDef_sqrt_exists (U : Matrix V V ℝ) (hU : U.PosDef) :
     ∃ R : Matrix V V ℝ, R.IsHermitian ∧ IsUnit R.det ∧ R * R = U := by
   classical
@@ -124,7 +130,9 @@ lemma posDef_sqrt_exists (U : Matrix V V ℝ) (hU : U.PosDef) :
 
 omit [DecidableEq V] in
 /-- For PSD matrices P, Q over ℝ, tr(P * Q) ≥ 0.
-    Proof: write P = Nᴴ * N, then tr(PQ) = tr(NQNᴴ) ≥ 0 since NQNᴴ is PSD. -/
+    Proof: write P = Nᴴ * N, then tr(PQ) = tr(NQNᴴ) ≥ 0 since NQNᴴ is PSD.
+@isnad1 id=le.2h3v.s6.99369ec00599 from=translated src=- shape=4666f9eb vocab=4a762aad
+-/
 lemma trace_mul_nonneg_of_posSemidef
     (P Q : Matrix V V ℝ) (hP : P.PosSemidef) (hQ : Q.PosSemidef) :
     0 ≤ (P * Q).trace := by
@@ -135,7 +143,9 @@ lemma trace_mul_nonneg_of_posSemidef
 omit [DecidableEq V] in
 /-- Trace monotonicity under Loewner order: if X ≤ Y (Loewner) and C ≥ 0,
     then tr(X * C) ≤ tr(Y * C). This follows from tr((Y-X)*C) ≥ 0
-    since Y-X ≥ 0 and C ≥ 0. -/
+    since Y-X ≥ 0 and C ≥ 0.
+@isnad1 id=le.2h4v.s6.24708462be51 from=translated src=- shape=0d5a93af vocab=826c0760
+-/
 lemma trace_mul_le_of_loewner
     (X Y C : Matrix V V ℝ)
     (hXY : (Y - X).PosSemidef) (hC : C.PosSemidef) :
@@ -145,7 +155,9 @@ lemma trace_mul_le_of_loewner
   linarith [Matrix.trace_sub (Y * C) (X * C)]
 
 omit [Fintype V] in
-/-- Helper: u'I - M is positive definite when uI - M is positive definite and u' > u. -/
+/-- Helper: u'I - M is positive definite when uI - M is positive definite and u' > u.
+@isnad1 id=posdef.2h4v.s7.8004b0290b74 from=translated src=- shape=e0c8f61c vocab=c2563b11
+-/
 lemma barrier_shift_posDef
     (M : Matrix V V ℝ) (u u' : ℝ) (hu : u < u')
     (hM : (u • (1 : Matrix V V ℝ) - M).PosDef) :
@@ -157,7 +169,9 @@ lemma barrier_shift_posDef
   exact hM.add_posSemidef (Matrix.PosSemidef.one.smul (sub_nonneg.mpr hu.le))
 
 /-- The barrier potential decreases as the barrier level increases:
-    Φ_u(M) - Φ_{u'}(M) ≥ δ · tr(U²) where δ = u' - u and U = (u'I - M)⁻¹. -/
+    Φ_u(M) - Φ_{u'}(M) ≥ δ · tr(U²) where δ = u' - u and U = (u'I - M)⁻¹.
+@isnad1 id=le.2h4v.s8.139b262d8edc from=translated src=- shape=dbf87a9e vocab=cb747a14
+-/
 lemma barrier_potential_decrease
     (M : Matrix V V ℝ) (u u' : ℝ) (hu : u < u')
     (hM : (u • (1 : Matrix V V ℝ) - M).PosDef) :
@@ -211,7 +225,9 @@ lemma barrier_potential_decrease
   simp_all
 
 /-- Helper: the barrier potential gap is positive when u' > u and M ≺ uI.
-    Requires Nonempty V since trace is 0 on the empty type. -/
+    Requires Nonempty V since trace is 0 on the empty type.
+@isnad1 id=lt.2h4v.s6.958ce5fa453b from=translated src=- shape=52d871ff vocab=6cb8754a
+-/
 lemma barrier_gap_pos [Nonempty V]
     (M : Matrix V V ℝ) (u u' : ℝ) (hu : u < u')
     (hM : (u • (1 : Matrix V V ℝ) - M).PosDef) :
@@ -230,7 +246,9 @@ lemma barrier_gap_pos [Nonempty V]
   linarith [mul_pos (sub_pos.mpr hu) hU_sq_pd.trace_pos]
 
 /-- Key scalar rearrangement: if a + b/c ≤ 1 with c > 0 and 0 ≤ a < 1, 0 ≤ b,
-    then b/(1-a) ≤ c. This is the algebraic core of the barrier argument. -/
+    then b/(1-a) ≤ c. This is the algebraic core of the barrier argument.
+@isnad1 id=le.5h3v.s6.4d3f5ea030ce from=translated src=- shape=e4dc85e4 vocab=39238a67
+-/
 lemma barrier_rearrange {a b c : ℝ} (hc : 0 < c)
     (_ha_nn : 0 ≤ a) (_hb_nn : 0 ≤ b) (ha_lt : a < 1)
     (hbarr : a + b / c ≤ 1) :
@@ -242,7 +260,9 @@ lemma barrier_rearrange {a b c : ℝ} (hc : 0 < c)
     _ ≤ (1 - a) * c := by nlinarith
     _ = c * (1 - a) := by ring
 
-/-- For a PSD matrix, each eigenvalue is at most the trace. -/
+/-- For a PSD matrix, each eigenvalue is at most the trace.
+@isnad1 id=le.1h3v.s5.3cfbdb31208f from=translated src=- shape=e3c5ce4e vocab=1d0ae9c0
+-/
 lemma eigenvalue_le_trace_of_posSemidef
     (K : Matrix V V ℝ)
     (hK : K.PosSemidef)
@@ -258,7 +278,9 @@ lemma eigenvalue_le_trace_of_posSemidef
   rw [htr]
   exact Finset.single_le_sum (fun j _ => h_eig_nn j) (Finset.mem_univ i)
 
-/-- If `K` is PSD with trace `< 1`, then `I - K` is positive definite. -/
+/-- If `K` is PSD with trace `< 1`, then `I - K` is positive definite.
+@isnad1 id=posdef.2h2v.s6.70945e4cd8d7 from=translated src=- shape=fab77607 vocab=42b5726a
+-/
 lemma one_sub_posDef_of_trace_lt_one (K : Matrix V V ℝ) (hK_psd : K.PosSemidef)
     (htrK_lt : K.trace < 1) :
     ((1 : Matrix V V ℝ) - K).PosDef := by

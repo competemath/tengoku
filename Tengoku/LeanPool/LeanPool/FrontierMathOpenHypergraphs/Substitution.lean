@@ -185,11 +185,17 @@ noncomputable def allNewVertices {t : ℕ}
     (F : Multiset (SupportPattern t)) : Finset (SubstVertex t F) :=
   (Finset.univ : Finset (Fin F.card)).image SubstVertex.new
 
+/--
+@isnad1 id=iff.0h4v.s5.9c5087ca4771 from=translated src=- shape=c09d4fe0 vocab=d9008ac1
+-/
 @[simp] lemma mem_supportVerticesOnBlock_iff {t : ℕ}
     {F : Multiset (SupportPattern t)} {i : Fin t} {s : SupportOcc F} :
     SubstVertex.new s ∈ supportVerticesOnBlock F i ↔ i ∈ supportSetAt F s := by
   simp [supportVerticesOnBlock]
 
+/--
+@isnad1 id=iff.0h6v.s6.f101b63c4cbb from=translated src=- shape=a408c0c5 vocab=9d533e01
+-/
 @[simp] lemma old_mem_liftBlockEdge_iff {t : ℕ}
     {F : Multiset (SupportPattern t)} {i j : Fin t} {v : ℕ} {e : Finset ℕ} :
     SubstVertex.old i v ∈ liftBlockEdge F j e ↔ i = j ∧ v ∈ e := by
@@ -203,11 +209,17 @@ noncomputable def allNewVertices {t : ℕ}
   · rintro ⟨rfl, hv⟩
     simp [liftBlockEdge, hv]
 
+/--
+@isnad1 id=iff.0h5v.s6.dbbc23ac0c8c from=translated src=- shape=3b4301ea vocab=94a31aca
+-/
 @[simp] lemma new_mem_liftBlockEdge_iff {t : ℕ}
     {F : Multiset (SupportPattern t)} {s : SupportOcc F} {i : Fin t} {e : Finset ℕ} :
     SubstVertex.new s ∈ liftBlockEdge F i e ↔ i ∈ supportSetAt F s := by
   simp [liftBlockEdge]
 
+/--
+@isnad1 id=injectiv.0h3v.s4.41769b4b4749 from=translated src=- shape=ac76940f vocab=1ed03ad9
+-/
 lemma liftBlockEdge_injective {t : ℕ}
     (F : Multiset (SupportPattern t)) (i : Fin t) :
     Function.Injective (liftBlockEdge F i) := by
@@ -224,6 +236,9 @@ lemma liftBlockEdge_injective {t : ℕ}
     rw [← hEq] at hmem
     simpa using (old_mem_liftBlockEdge_iff.mp hmem).2
 
+/--
+@isnad1 id=le.0h5v.s5.82289e77cd62 from=translated src=- shape=eef84b65 vocab=1d4ab854
+-/
 lemma selectedBlockEdges_subset {t : ℕ}
     (F : Multiset (SupportPattern t))
     (blocks : BlockFamily t)
@@ -232,6 +247,9 @@ lemma selectedBlockEdges_subset {t : ℕ}
   intro e he
   exact (Finset.mem_filter.mp he).1
 
+/--
+@isnad1 id=mem.2h4v.s6.3959184dab54 from=translated src=- shape=bb5d421a vocab=7ac5518b
+-/
 lemma mem_vertexSet_of_count_eq_one {V : Type*} [DecidableEq V]
     {edges P : Hypergraph V} {x : V} (hP : P ⊆ edges)
     (hx : (P.filter fun E => x ∈ E).card = 1) :
@@ -241,6 +259,9 @@ lemma mem_vertexSet_of_count_eq_one {V : Type*} [DecidableEq V]
   rw [vertexSet, Finset.mem_biUnion]
   exact ⟨E, hP (Finset.mem_filter.mp hE).1, (Finset.mem_filter.mp hE).2⟩
 
+/--
+@isnad1 id=ne.4h7v.s6.21c7ebc12a6e from=translated src=- shape=86150654 vocab=134cf35c
+-/
 lemma liftBlockEdge_ne_of_ne {t : ℕ}
     (F : Multiset (SupportPattern t))
     (blocks : BlockFamily t)
@@ -265,6 +286,9 @@ lemma liftBlockEdge_ne_of_ne {t : ℕ}
       exact Finset.disjoint_left.mp (hEdgeDisjoint hij)
         (by simpa [he0] using he) (by simpa [he'0] using he')
 
+/--
+@isnad1 id=disjoint.2h5v.s7.9abf169000a9 from=translated src=- shape=a6f43b61 vocab=b0e97bb3
+-/
 lemma liftedBlockImages_disjoint {t : ℕ}
     (F : Multiset (SupportPattern t))
     (blocks : BlockFamily t)
@@ -278,6 +302,9 @@ lemma liftedBlockImages_disjoint {t : ℕ}
   rcases Finset.mem_image.mp hEj with ⟨e', he', hEq⟩
   exact (liftBlockEdge_ne_of_ne F blocks hEdgeDisjoint hij he he') hEq.symm
 
+/--
+@isnad1 id=iff.0h5v.s6.86e6cc62fc5b from=translated src=- shape=4c83776a vocab=58cfda54
+-/
 lemma old_mem_vertexSet_substitution_iff {t : ℕ}
     (F : Multiset (SupportPattern t))
     (blocks : BlockFamily t)
@@ -304,6 +331,9 @@ lemma old_mem_vertexSet_substitution_iff {t : ℕ}
       exact ⟨i, Finset.mem_univ i, Finset.mem_image.mpr ⟨e, he, rfl⟩⟩
     · exact old_mem_liftBlockEdge_iff.mpr ⟨rfl, hv⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.feddc4ec0350 from=translated src=- shape=bf0ad8de vocab=fa8a14b1
+-/
 lemma new_mem_vertexSet_substitution_iff {t : ℕ}
     (F : Multiset (SupportPattern t))
     (blocks : BlockFamily t)
@@ -325,6 +355,9 @@ lemma new_mem_vertexSet_substitution_iff {t : ℕ}
       exact ⟨i, Finset.mem_univ i, Finset.mem_image.mpr ⟨e, he, rfl⟩⟩
     · exact new_mem_liftBlockEdge_iff.mpr hi
 
+/--
+@isnad1 id=eq.1h6v.s6.fa4411de7b6d from=translated src=- shape=5047cc34 vocab=e7015f16
+-/
 lemma old_selected_count_eq {t : ℕ}
     (F : Multiset (SupportPattern t))
     (blocks : BlockFamily t)
@@ -355,6 +388,9 @@ lemma old_selected_count_eq {t : ℕ}
   rw [hEq, Finset.card_image_of_injective _ (liftBlockEdge_injective F i)]
   simp [selectedOldVertexCount]
 
+/--
+@isnad1 id=eq.1h5v.s7.de048ebe59ba from=translated src=- shape=4af601e3 vocab=41992c1f
+-/
 lemma filter_new_eq_biUnion {t : ℕ}
     (F : Multiset (SupportPattern t))
     (blocks : BlockFamily t)
@@ -379,6 +415,9 @@ lemma filter_new_eq_biUnion {t : ℕ}
     rcases Finset.mem_image.mp hEi with ⟨e, he, rfl⟩
     exact Finset.mem_filter.mpr ⟨(Finset.mem_filter.mp he).2, by simp [hi]⟩
 
+/--
+@isnad1 id=pairwise.1h5v.s6.29793d4d58c9 from=translated src=- shape=6af2024e vocab=df0aed08
+-/
 lemma selectedImages_disjoint {t : ℕ}
     (F : Multiset (SupportPattern t))
     (blocks : BlockFamily t)
@@ -395,6 +434,9 @@ lemma selectedImages_disjoint {t : ℕ}
   exact (liftBlockEdge_ne_of_ne F blocks hEdgeDisjoint hij
     (Finset.mem_filter.mp he).1 (Finset.mem_filter.mp he').1) hEq.symm
 
+/--
+@isnad1 id=eq.2h5v.s6.54665d289b4d from=translated src=- shape=65f95a48 vocab=f071c092
+-/
 lemma new_selected_count_eq_sum {t : ℕ}
     (F : Multiset (SupportPattern t))
     (blocks : BlockFamily t)
@@ -411,6 +453,9 @@ lemma new_selected_count_eq_sum {t : ℕ}
   intro i hi
   rw [Finset.card_image_of_injective _ (liftBlockEdge_injective F i), selectedBlockCount]
 
+/--
+@isnad1 id=iff.0h5v.s5.480a0fa6b96a from=translated src=- shape=d9af27c2 vocab=0cea864e
+-/
 @[simp] lemma mem_tOf_iff {t : ℕ}
     {F : Multiset (SupportPattern t)}
     {blocks : BlockFamily t}
@@ -418,6 +463,9 @@ lemma new_selected_count_eq_sum {t : ℕ}
     i ∈ tOf F blocks P ↔ selectedBlockCount F blocks P i ≤ 1 := by
   simp [tOf]
 
+/--
+@isnad1 id=iff.0h5v.s5.c504ed2641d0 from=translated src=- shape=d9af27c2 vocab=36667a24
+-/
 @[simp] lemma mem_iOf_iff {t : ℕ}
     {F : Multiset (SupportPattern t)}
     {blocks : BlockFamily t}
@@ -425,6 +473,9 @@ lemma new_selected_count_eq_sum {t : ℕ}
     i ∈ iOf F blocks P ↔ selectedBlockCount F blocks P i = 1 := by
   simp [iOf]
 
+/--
+@isnad1 id=eq.0h5v.s6.2f7b12f9678d from=translated src=- shape=b8f3fac3 vocab=2cf228dd
+-/
 lemma card_inter_iOf_eq_sum_indicator {t : ℕ}
     (F : Multiset (SupportPattern t))
     (blocks : BlockFamily t)
@@ -438,6 +489,9 @@ lemma card_inter_iOf_eq_sum_indicator {t : ℕ}
       simp [iOf]]
   rw [Finset.card_eq_sum_ones, Finset.sum_filter]
 
+/--
+@isnad1 id=eq.1h5v.s6.d75accf6df3f from=translated src=- shape=4ca72c28 vocab=7c378928
+-/
 lemma sum_selected_eq_card_inter_iOf {t : ℕ}
     (F : Multiset (SupportPattern t))
     (blocks : BlockFamily t)
@@ -452,6 +506,9 @@ lemma sum_selected_eq_card_inter_iOf {t : ℕ}
     exact (mem_tOf_iff.mp (hST hi))
   lia
 
+/--
+@isnad1 id=iff.0h5v.s6.b0c10b2a9c9b from=translated src=- shape=ca1c0f03 vocab=7c378928
+-/
 lemma sum_selected_eq_one_iff {t : ℕ}
     (F : Multiset (SupportPattern t))
     (blocks : BlockFamily t)
@@ -473,6 +530,9 @@ lemma sum_selected_eq_one_iff {t : ℕ}
   · rintro ⟨hST, hcard⟩
     rw [sum_selected_eq_card_inter_iOf F blocks P S hST, hcard]
 
+/--
+@isnad1 id=iff.2h5v.s7.5a4578af80cf from=translated src=- shape=d07fb5ad vocab=f0ab03b2
+-/
 lemma new_unique_iff {t : ℕ}
     (F : Multiset (SupportPattern t))
     (blocks : BlockFamily t)
@@ -486,6 +546,9 @@ lemma new_unique_iff {t : ℕ}
   rw [new_selected_count_eq_sum F blocks P hP hEdgeDisjoint s]
   exact sum_selected_eq_one_iff F blocks P (supportSetAt F s)
 
+/--
+@isnad1 id=ex.2h5v.s6.dccf43f66aa1 from=translated src=- shape=63472567 vocab=bb8a29d7
+-/
 lemma support_vertex_realized {t : ℕ}
     (F : Multiset (SupportPattern t))
     (edgeCounts : Fin t → ℕ)
@@ -533,7 +596,9 @@ structure CountedBlocks {t : ℕ}
 /-- If `F` is an `n`-frame and each block hypergraph has no partition larger than its
     capacity, then the substituted hypergraph has no partition larger than the total
     capacity. The hypotheses on pairwise disjoint vertex and edge sets match the setup
-    in `frontier.tex`. -/
+    in `frontier.tex`.
+@isnad1 id=nolargep.2h4v.s5.382503ede3c7 from=translated src=- shape=9d656ce4 vocab=78349c86
+-/
 theorem substitution_theorem {t : ℕ}
     (F : Multiset (SupportPattern t))
     (cap : Fin t → ℕ)
@@ -705,7 +770,9 @@ theorem substitution_theorem {t : ℕ}
 
 /-- Quantitative corollary of the substitution theorem used throughout the recursive
     constructions. Since hypergraphs are encoded by their edge sets, "no isolated
-    vertices" is implicit in the use of `vertexSet`. -/
+    vertices" is implicit in the use of `vertexSet`.
+@isnad1 id=and.2h5v.s6.ea89d7a6b8e3 from=translated src=- shape=cb4bd587 vocab=bd5d1b70
+-/
 theorem frame_recurrence {t : ℕ}
     (F : Multiset (SupportPattern t))
     (edgeCounts vertexCounts : Fin t → ℕ)

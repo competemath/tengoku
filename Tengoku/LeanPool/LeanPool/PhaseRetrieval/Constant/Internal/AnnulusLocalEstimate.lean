@@ -402,6 +402,9 @@ private lemma annulus_high_freq {D : ℕ} (hD : 1 ≤ D) (a : Fin D → ℂ)
           (fun t => sq_nonneg _))
         norm_num
 
+/--
+@isnad1 id=le.4h4v.s8.e68fea4255d2 from=translated src=- shape=63956ff0 vocab=c37ffbee
+-/
 theorem annulus_local_estimate {D : ℕ} (hD : 1 ≤ D) (a : Fin D → ℂ)
     (j : ℕ) {r : ℝ} (hr_nn : 0 ≤ r) (_hr_lo : (j : ℝ) ≤ r)
     (_hr_hi : r ≤ (j : ℝ) + 1) :

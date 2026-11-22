@@ -18,6 +18,9 @@ namespace EulerPacketTailBound
 
 open Finset
 
+/--
+@isnad1 id=le.2h2v.s6.c18f14e619b3 from=translated src=- shape=f7f5ae88 vocab=f9b94969
+-/
 theorem sum_geometric_le_two (q : ℝ) (hq : 0 ≤ q) (hqhalf : q ≤ 1 / 2) (N : ℕ) :
     (∑ i ∈ range N, q^i) ≤ 2 := by
   induction N with
@@ -29,6 +32,9 @@ theorem sum_geometric_le_two (q : ℝ) (hq : 0 ≤ q) (hqhalf : q ≤ 1 / 2) (N 
       have h := mul_le_mul_of_nonneg_right ih hq
       linarith
 
+/--
+@isnad1 id=le.2h3v.s6.41c9833d8481 from=translated src=- shape=232e401d vocab=198f057e
+-/
 theorem sum_geometric_Ico_le (q : ℝ) (hq : 0 ≤ q) (hqhalf : q ≤ 1 / 2) (a b : ℕ) :
     (∑ i ∈ Ico a b, q^i) ≤ 2*q^a := by
   rw [sum_Ico_eq_sum_range]
@@ -40,6 +46,9 @@ theorem sum_geometric_Ico_le (q : ℝ) (hq : 0 ≤ q) (hqhalf : q ≤ 1 / 2) (a 
 variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   [NormedAddCommGroup F] [NormedSpace ℝ F]
 
+/--
+@isnad1 id=le.4h5v.s8.1e6a1f4e4917 from=translated src=- shape=ba612ff7 vocab=a97c919b
+-/
 theorem finite_tail_norm_le (κ B : ℝ) (hκ : 0 ≤ κ) (hB : 0 ≤ B)
     (hsmall : κ * B ≤ 1 / 2) (N : ℕ) (c : ℕ → E)
     (hc : ∀ n ∈ Ico (N + 1) (2 * N + 3), ‖c n‖ ≤ B ^ (n + 1)) :
@@ -60,7 +69,9 @@ theorem finite_tail_norm_le (κ B : ℝ) (hκ : 0 ≤ κ) (hB : 0 ≤ B)
       (sum_geometric_Ico_le (κ*B) (mul_nonneg hκ hB) hsmall (N+1) (2*N+3)) hB
     _ = _ := by ring
 
-/-- Includes the source's final k times inverse-frame normalization. -/
+/-- Includes the source's final k times inverse-frame normalization.
+@isnad1 id=le.5h8v.s9.735e329a7bf5 from=translated src=- shape=87e9f255 vocab=f973d5ab
+-/
 theorem normalized_tail_norm_le (k B C : ℝ) (hk : 0 ≤ k) (hB : 0 ≤ B)
     (hsmall : B / k ≤ 1 / 2) (L : E →L[ℝ] F) (hL : ‖L‖ ≤ C) (N : ℕ) (c : ℕ → E)
     (hc : ∀ n ∈ Ico (N + 1) (2 * N + 3), ‖c n‖ ≤ B ^ (n + 1)) :

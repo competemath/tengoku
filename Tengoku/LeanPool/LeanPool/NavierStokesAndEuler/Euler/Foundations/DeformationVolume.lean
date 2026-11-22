@@ -25,7 +25,9 @@ section ChangeOfVariables
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
 
-/-- A bijective differentiable map with unit Jacobian preserves Lebesgue measure. -/
+/-- A bijective differentiable map with unit Jacobian preserves Lebesgue measure.
+@isnad1 id=measurep.3h4v.s7.39003ac19f72 from=translated src=- shape=0c71ac2c vocab=34b6de23
+-/
 theorem measurePreserving_of_det_one (μ : Measure E) [Measure.IsAddHaarMeasure μ]
     (f : E → E) (F : E → E →L[ℝ] E)
     (hf : ∀ x, HasFDerivAt f (F x) x) (hbij : Function.Bijective f)

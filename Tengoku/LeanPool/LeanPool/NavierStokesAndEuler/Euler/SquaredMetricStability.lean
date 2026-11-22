@@ -23,7 +23,9 @@ open scoped Topology
 variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
 
 /-- A literal transport-pressure-heat equation gives a squared metric differential bound without
-differentiating a zero norm. -/
+differentiating a zero norm.
+@isnad1 id=le.14h17v.s11.19ec7a410de0 from=translated src=- shape=3dd0d025 vocab=85cec53d
+-/
 theorem metric_derivative_bound (K : ℝ → H →L[ℝ] H) (e : ℝ → H)
     (t ν c β h L ε M : ℝ) (K' : H →L[ℝ] H) (e' transport pressure forcing lap : H)
     (hc : 0 < c) (hν : 0 ≤ ν) (hβ : 0 ≤ β) (hh : 0 ≤ h) (hL : 0 ≤ L)
@@ -59,7 +61,9 @@ theorem metric_derivative_bound (K : ℝ → H →L[ℝ] H) (e : ℝ → H)
     _ = _ := by ring
 
 /-- A genuine interior differential inequality yields a finite-interval linear-growth bound,
-including both endpoints. -/
+including both endpoints.
+@isnad1 id=le.8h6v.s7.d76a021e75e8 from=translated src=- shape=ad1d2654 vocab=77b93549
+-/
 theorem linear_growth_bound (E E' : ℝ → ℝ) (A B T : ℝ) (hA : 0 ≤ A) (hB : 0 ≤ B) (hT : 0 ≤ T)
     (hcont : ContinuousOn E (Icc 0 T)) (hzero : E 0 ≤ 0)
     (hder : ∀ t ∈ Ioo 0 T, HasDerivAt E (E' t) t)

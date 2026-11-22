@@ -20,6 +20,9 @@ namespace EulerEnergyBootstrap
 
 open Set Real
 
+/--
+@isnad1 id=and.9h7v.s8.3fd13c3a2648 from=translated src=- shape=d007c445 vocab=6bd1dd2d
+-/
 theorem radius_bounds (C B Δ ρ₀ S R₀ : ℝ) (hC : 0 ≤ C) (hB : 0 ≤ B)
     (hΔ : 0 ≤ Δ) (hρ : 0 < ρ₀) (_hS : 0 ≤ S) (hR : 0 ≤ R₀)
     (hdecay : 2 * C * (B + Δ) * S ≤ ρ₀ / 2) (hscale : ρ₀ * R₀ ≤ 1)
@@ -35,6 +38,9 @@ theorem radius_bounds (C B Δ ρ₀ S R₀ : ℝ) (hC : 0 ≤ C) (hB : 0 ≤ B)
   · linarith
   · nlinarith
 
+/--
+@isnad1 id=le.7h6v.s7.889de13e9994 from=translated src=- shape=49294e78 vocab=a2de11dc
+-/
 theorem shrinking_radius_cancels_loss (C B Δ ρ R₀ X : ℝ)
     (hC : 0 ≤ C) (hB : 0 ≤ B) (hΔ : 0 ≤ Δ) (hρ : 0 < ρ)
     (hR : 0 ≤ R₀) (hscale : ρ * R₀ ≤ 1) (hX : X ≤ Δ) :
@@ -52,7 +58,9 @@ theorem shrinking_radius_cancels_loss (C B Δ ρ R₀ X : ℝ)
   rw [hneg]
   linarith
 
-/-- The shrinking-radius energy inequality closes without assuming the bootstrap conclusion. -/
+/-- The shrinking-radius energy inequality closes without assuming the bootstrap conclusion.
+@isnad1 id=and.17h11v.s9.9325cf74615a from=translated src=- shape=a60ceddf vocab=483b3c7d
+-/
 theorem close_energy_estimate
     (X X' Y : ℝ → ℝ) (C B Δ r ρ₀ S R₀ : ℝ)
     (hC : 0 < C) (hB : 0 ≤ B) (hΔ : 0 < Δ) (hΔ1 : Δ ≤ 1)
@@ -107,7 +115,9 @@ theorem close_energy_estimate
   intro t ht
   exact ⟨hbound t ht, (hbound t ht).trans (hFle t ht)⟩
 
-/-- Uniform stability from a quadratic differential inequality and small initial error. -/
+/-- Uniform stability from a quadratic differential inequality and small initial error.
+@isnad1 id=le.9h6v.s8.0ac1a67c7afb from=translated src=- shape=b02f3842 vocab=94296583
+-/
 theorem quadratic_stability (X X' : ℝ → ℝ) (C ε S : ℝ)
     (hC : 0 < C) (hε : 0 < ε) (hS : 0 ≤ S)
     (hsmall : 2 * ε * exp (3 * C * S) ≤ 1 / 2)

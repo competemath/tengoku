@@ -33,7 +33,9 @@ def checkRatUpper (upper hi : ℚ) : Bool :=
 def checkRatLower (lower lo : ℚ) : Bool :=
   decide (lo ≤ lower)
 
-/-- Generic Golden Theorem for rational interval endpoints. -/
+/-- Generic Golden Theorem for rational interval endpoints.
+@isnad1 id=and.3h5v.s5.239401ddbe66 from=translated src=- shape=c5a8e7de vocab=2ec722de
+-/
 theorem verify_rat_interval {value : ℝ} {lower upper lo hi : ℚ}
     (hlower : (lower : ℝ) ≤ value)
     (hupper : value ≤ (upper : ℝ))
@@ -44,7 +46,9 @@ theorem verify_rat_interval {value : ℝ} {lower upper lo hi : ℚ}
   have hhi : (upper : ℝ) ≤ (hi : ℝ) := by exact_mod_cast hcheck.2
   exact ⟨hlo.trans hlower, hupper.trans hhi⟩
 
-/-- Generic Golden Theorem for rational upper endpoints. -/
+/-- Generic Golden Theorem for rational upper endpoints.
+@isnad1 id=le.2h3v.s4.3a30774e633b from=translated src=- shape=9f3c5268 vocab=8fea76b4
+-/
 theorem verify_rat_upper {value : ℝ} {upper hi : ℚ}
     (hupper : value ≤ (upper : ℝ))
     (hcheck : checkRatUpper upper hi = true) :
@@ -53,7 +57,9 @@ theorem verify_rat_upper {value : ℝ} {upper hi : ℚ}
   have hhi : (upper : ℝ) ≤ (hi : ℝ) := by exact_mod_cast hcheck
   exact hupper.trans hhi
 
-/-- Generic Golden Theorem for rational lower endpoints. -/
+/-- Generic Golden Theorem for rational lower endpoints.
+@isnad1 id=le.2h3v.s4.5dc800a83f32 from=translated src=- shape=fc1e2e12 vocab=3796e26d
+-/
 theorem verify_rat_lower {value : ℝ} {lower lo : ℚ}
     (hlower : (lower : ℝ) ≤ value)
     (hcheck : checkRatLower lower lo = true) :

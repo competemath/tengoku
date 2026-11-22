@@ -36,6 +36,9 @@ namespace NavierStokes.CauchyRestriction
 /-- Disk: an abbreviation for `↥(closedBall c r)`. -/
 abbrev Disk (c : ℂ) (r : ℝ) := ↥(closedBall c r)
 
+/--
+@isnad1 id=compacts.0h2v.s5.fb4cd37fbf25 from=translated src=- shape=c57da3d9 vocab=e215d70b
+-/
 instance diskCompactSpace (c : ℂ) (r : ℝ) : CompactSpace (Disk c r) :=
   isCompact_iff_compactSpace.mp (isCompact_closedBall c r)
 
@@ -53,6 +56,9 @@ def restrictionLinear (c : ℂ) {ρ σ : ℝ} (h : ρ ≤ σ) :
   map_add' f g := by ext z; rfl
   map_smul' a f := by ext z; rfl
 
+/--
+@isnad1 id=le.1h5v.s10.1b8e7877e14d from=translated src=- shape=68bb6943 vocab=04796791
+-/
 theorem norm_restrictionLinear_le (c : ℂ) {ρ σ : ℝ} (h : ρ ≤ σ)
     (f : C(Disk c σ, E)) : ‖restrictionLinear c h f‖ ≤ ‖f‖ := by
   apply (ContinuousMap.norm_le _ (norm_nonneg f)).2
@@ -67,22 +73,34 @@ def restrictionCLM (c : ℂ) {ρ σ : ℝ} (h : ρ ≤ σ) :
     intro f
     simpa only [one_mul] using norm_restrictionLinear_le c h f)
 
+/--
+@isnad1 id=eq.1h6v.s10.160698b1f715 from=translated src=- shape=5ec6ac97 vocab=b977d919
+-/
 @[simp] theorem restrictionCLM_apply (c : ℂ) {ρ σ : ℝ} (h : ρ ≤ σ)
     (f : C(Disk c σ, E)) (z : Disk c ρ) :
     restrictionCLM c h f z = f ⟨z.1, closedBall_subset_closedBall h z.2⟩ := rfl
 
+/--
+@isnad1 id=eq.2h5v.s10.b798471a5cad from=translated src=- shape=bcdf444c vocab=dd4d35d1
+-/
 theorem restrictionCLM_comp (c : ℂ) {r ρ σ : ℝ} (h₁ : r ≤ ρ) (h₂ : ρ ≤ σ) :
     (restrictionCLM (E := E) c h₁).comp (restrictionCLM c h₂) =
       restrictionCLM c (h₁.trans h₂) := by
   ext f z
   rfl
 
+/--
+@isnad1 id=ne.1h2v.s5.b315c38285dc from=translated src=- shape=dac64d00 vocab=f28ab30f
+-/
 theorem offset_ne_zero {δ : ℝ} (hδ : 0 < δ) (θ : ℝ) : circleMap 0 δ θ ≠ 0 := by
   intro h
   have hn := congrArg norm h
   simp only [norm_circleMap_zero, abs_of_pos hδ, norm_zero] at hn
   exact hδ.ne' hn
 
+/--
+@isnad1 id=mem.1h5v.s6.b20d61b5fbc3 from=translated src=- shape=6f3c6785 vocab=530e9367
+-/
 theorem translated_mem (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
     (z : Disk c ρ) (θ : ℝ) : z.1 + circleMap 0 (σ - ρ) θ ∈ closedBall c σ := by
   change dist (z.1 + circleMap 0 (σ - ρ) θ) c ≤ σ
@@ -102,9 +120,15 @@ def sample (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ) (θ : ℝ) :
 /-- Weight, given by `I / circleMap 0 δ θ`. -/
 def weight (δ θ : ℝ) : ℂ := I / circleMap 0 δ θ
 
+/--
+@isnad1 id=continuo.1h1v.s5.84a6a7208b23 from=translated src=- shape=b8038e13 vocab=6540956b
+-/
 theorem continuous_weight {δ : ℝ} (hδ : 0 < δ) : Continuous (weight δ) :=
   continuous_const.div (continuous_circleMap 0 δ) (offset_ne_zero hδ)
 
+/--
+@isnad1 id=eq.1h2v.s4.944d19ae2b65 from=translated src=- shape=eaa74477 vocab=681a0041
+-/
 theorem norm_weight {δ : ℝ} (hδ : 0 < δ) (θ : ℝ) : ‖weight δ θ‖ = δ⁻¹ := by
   simp [weight, norm_circleMap_zero, abs_of_pos hδ, one_div]
 
@@ -113,6 +137,9 @@ def integrand (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
     (f : C(Disk c σ, E)) (θ : ℝ) : C(Disk c ρ, E) :=
   weight (σ - ρ) θ • f.comp (sample c hgap θ)
 
+/--
+@isnad1 id=continuo.1h5v.s7.531f09f5977b from=translated src=- shape=cedb7fec vocab=88585a3d
+-/
 theorem continuous_integrand (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
     (f : C(Disk c σ, E)) : Continuous (integrand c hgap f) := by
   apply ContinuousMap.continuous_of_continuous_uncurry
@@ -123,6 +150,9 @@ theorem continuous_integrand (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
   exact f.continuous.comp ((continuous_snd.subtype_val.add
     ((continuous_circleMap 0 (σ - ρ)).comp continuous_fst)).subtype_mk _)
 
+/--
+@isnad1 id=le.1h6v.s8.612b8314424f from=translated src=- shape=24299324 vocab=72c13520
+-/
 theorem norm_integrand_le (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
     (f : C(Disk c σ, E)) (θ : ℝ) :
     ‖integrand c hgap f θ‖ ≤ (σ - ρ)⁻¹ * ‖f‖ := by
@@ -139,6 +169,9 @@ def cauchyMap (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
     (f : C(Disk c σ, E)) : C(Disk c ρ, E) :=
   (2 * Real.pi * I : ℂ)⁻¹ • ∫ θ : ℝ in (0)..(2 * Real.pi), integrand c hgap f θ
 
+/--
+@isnad1 id=eq.1h6v.s9.8d702625870c from=translated src=- shape=a367d87b vocab=9ebb89ea
+-/
 theorem cauchyMap_add (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
     (f g : C(Disk c σ, E)) : cauchyMap c hgap (f + g) = cauchyMap c hgap f + cauchyMap c hgap g :=
         by
@@ -151,6 +184,9 @@ theorem cauchyMap_add (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
     ((continuous_integrand c hgap g).intervalIntegrable _ _), smul_add]
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s9.817f58d4cb7e from=translated src=- shape=71a11437 vocab=cd345053
+-/
 theorem cauchyMap_smul (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
     (a : ℂ) (f : C(Disk c σ, E)) : cauchyMap c hgap (a • f) = a • cauchyMap c hgap f := by
   have heq : integrand c hgap (a • f) = fun θ => a • integrand c hgap f θ := by
@@ -160,6 +196,9 @@ theorem cauchyMap_smul (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
   rw [cauchyMap, heq, intervalIntegral.integral_smul, smul_comm]
   rfl
 
+/--
+@isnad1 id=le.1h5v.s8.a0ec38a3878f from=translated src=- shape=aef348e3 vocab=7a7e664f
+-/
 theorem norm_cauchyMap_le (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
     (f : C(Disk c σ, E)) : ‖cauchyMap c hgap f‖ ≤ (σ - ρ)⁻¹ * ‖f‖ := by
   have hi := intervalIntegral.norm_integral_le_of_norm_le_const
@@ -185,12 +224,18 @@ def derivativeCLM (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ) :
        C(Disk c σ, E) →ₗ[ℂ] C(Disk c ρ, E)).mkContinuous
     (σ - ρ)⁻¹ (norm_cauchyMap_le c hgap)
 
+/--
+@isnad1 id=le.1h4v.s9.3d61a624b915 from=translated src=- shape=46ed22e2 vocab=921adfbc
+-/
 theorem norm_derivativeCLM_le (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ) :
     ‖derivativeCLM (E := E) c hgap‖ ≤ (σ - ρ)⁻¹ := by
   have hδ : 0 < σ - ρ := sub_pos.mpr hgap
   apply ContinuousLinearMap.opNorm_le_bound _ (by positivity)
   exact norm_cauchyMap_le c hgap
 
+/--
+@isnad1 id=le.1h4v.s9.2c85c4db149d from=translated src=- shape=5a24536b vocab=cadac74c
+-/
 theorem norm_restrictionCLM_le (c : ℂ) {ρ σ : ℝ} (h : ρ ≤ σ) :
     ‖restrictionCLM (E := E) c h‖ ≤ 1 := by
   apply ContinuousLinearMap.opNorm_le_bound _ zero_le_one
@@ -200,6 +245,9 @@ theorem norm_restrictionCLM_le (c : ℂ) {ρ σ : ℝ} (h : ρ ≤ σ) :
 
 variable [CompleteSpace E]
 
+/--
+@isnad1 id=eq.1h6v.s10.74b955e0a00e from=translated src=- shape=b3331b93 vocab=245bc137
+-/
 theorem derivativeCLM_apply_integral (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
     (f : C(Disk c σ, E)) (z : Disk c ρ) :
     derivativeCLM c hgap f z = (2 * Real.pi * I : ℂ)⁻¹ •
@@ -213,6 +261,9 @@ theorem derivativeCLM_apply_integral (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
   exact ((ContinuousMap.evalCLM ℂ z).intervalIntegral_comp_comm
     hi).symm
 
+/--
+@isnad1 id=le.0h4v.s6.a6cd54586af5 from=translated src=- shape=6b70d39e vocab=92ab54a3
+-/
 theorem ball_subset_outer (c : ℂ) {ρ σ : ℝ} (z : Disk c ρ) :
     ball (z : ℂ) (σ - ρ) ⊆ ball c σ := by
   intro w hw
@@ -223,6 +274,9 @@ theorem ball_subset_outer (c : ℂ) {ρ σ : ℝ} (z : Disk c ρ) :
     _ = σ := by ring
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=eq.1h5v.s8.93dc28895b0b from=translated src=- shape=710c1cc5 vocab=50cd5f4d
+-/
 theorem circle_kernel_identity {δ : ℝ} (hδ : 0 < δ) (z : ℂ) (θ : ℝ) (v : E) :
     weight δ θ • v = deriv (circleMap z δ) θ •
       ((circleMap z δ θ - z) ^ (-2 : ℤ) • v) := by
@@ -233,7 +287,9 @@ theorem circle_kernel_identity {δ : ℝ} (hδ : 0 < δ) (z : ℂ) (θ : ℝ) (v
   rw [weight, zpow_neg, zpow_two]
   field_simp [offset_ne_zero hδ θ]
 
-/-- Use any holomorphic extension agreeing with the continuous outer-disk input. -/
+/-- Use any holomorphic extension agreeing with the continuous outer-disk input.
+@isnad1 id=eq.3h7v.s10.534e18b117ca from=translated src=- shape=b512643f vocab=d25494ef
+-/
 theorem derivativeCLM_apply_of_eq (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
     (f : C(Disk c σ, E)) (F : ℂ → E)
     (hF : DiffContOnCl ℂ F (ball c σ))
@@ -265,19 +321,26 @@ noncomputable def ofContinuousOn (c : ℂ) (r : ℝ) (F : ℂ → E)
   ⟨fun z => F z, hF.domRestrict⟩
 
 omit [NormedSpace ℂ E] [CompleteSpace E] in
+/--
+@isnad1 id=eq.1h5v.s7.2ed4cf4388b0 from=translated src=- shape=f3a44992 vocab=f2880a0f
+-/
 @[simp] theorem ofContinuousOn_apply (c : ℂ) (r : ℝ) (F : ℂ → E)
     (hF : ContinuousOn F (closedBall c r)) (z : Disk c r) :
     ofContinuousOn c r F hF z = F z := rfl
 
 /-- Agreement with the actual derivative under holomorphy in the open disk and
-continuity on its closure. No smoothness of the derivative is assumed. -/
+continuity on its closure. No smoothness of the derivative is assumed.
+@isnad1 id=eq.2h6v.s10.8a2a207ba9c6 from=translated src=- shape=aeb2f7b0 vocab=bac82d33
+-/
 theorem derivativeCLM_apply_of_diffContOnCl (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
     (F : ℂ → E) (hF : DiffContOnCl ℂ F (ball c σ)) (z : Disk c ρ) :
     derivativeCLM c hgap (ofContinuousOn c σ F hF.continuousOn_ball) z = deriv F z :=
   derivativeCLM_apply_of_eq c hgap _ F hF (fun _ => rfl) z
 
 /-- On holomorphic data, further restriction of the derivative does not depend
-on which smaller target disk was used to construct the Cauchy integral. -/
+on which smaller target disk was used to construct the Cauchy integral.
+@isnad1 id=eq.4h7v.s11.8a9a33c8984c from=translated src=- shape=dd53beb3 vocab=498011d6
+-/
 theorem restrict_derivativeCLM_of_eq (c : ℂ) {r ρ σ : ℝ}
     (hr : r ≤ ρ) (hgap : ρ < σ) (f : C(Disk c σ, E)) (F : ℂ → E)
     (hF : DiffContOnCl ℂ F (ball c σ))
@@ -291,7 +354,9 @@ theorem restrict_derivativeCLM_of_eq (c : ℂ) {r ρ σ : ℝ}
     _ = _ := (derivativeCLM_apply_of_eq c (hr.trans_lt hgap) f F hF hvalues z).symm
 
 /-- Restricting the source disk also gives the same derivative on common
-smaller disks, provided the source represents a holomorphic function. -/
+smaller disks, provided the source represents a holomorphic function.
+@isnad1 id=eq.4h7v.s11.6c1d51fb2bbd from=translated src=- shape=7d9453ef vocab=1d0bf90b
+-/
 theorem derivativeCLM_restrict_of_eq (c : ℂ) {r ρ σ : ℝ}
     (hgap : r < ρ) (houter : ρ ≤ σ) (f : C(Disk c σ, E)) (F : ℂ → E)
     (hF : DiffContOnCl ℂ F (ball c σ))
@@ -306,12 +371,18 @@ theorem derivativeCLM_restrict_of_eq (c : ℂ) {r ρ σ : ℝ}
     _ = _ := (derivativeCLM_apply_of_eq c (hgap.trans_le houter) f F hF hvalues z).symm
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=continuo.2h6v.s10.cf2f4f90d53b from=translated src=- shape=e41bde83 vocab=ace71ae5
+-/
 theorem continuous_derivative_path {X : Type*} [TopologicalSpace X]
     (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ) {f : X → C(Disk c σ, E)} (hf : Continuous f) :
     Continuous (fun x => derivativeCLM c hgap (f x)) :=
   (derivativeCLM c hgap).continuous.comp hf
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=contdiff.2h7v.s10.002d68421387 from=translated src=- shape=31bab26c vocab=b30b9915
+-/
 theorem contDiff_derivative_path {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
     (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ) {n : WithTop ℕ∞}
     {f : X → C(Disk c σ, E)} (hf : ContDiff ℝ n f) :

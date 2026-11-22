@@ -43,26 +43,36 @@ noncomputable section
 
 namespace CKN.Foundation.Heat
 
-/-- Space with the origin removed; the Newtonian kernel is smooth there. -/
+/-- Space with the origin removed; the Newtonian kernel is smooth there.
+@isnad1 id=isopen.0h0v.s6.cdd5230fbc74 from=translated src=- shape=8ad9b493 vocab=2b2c4d55
+-/
 theorem isOpen_vec3Punctured : IsOpen {z : Vec3 | z ≠ 0} := isOpen_ne
 
-/-- The Newtonian kernel has every finite differentiability order off the origin. -/
+/-- The Newtonian kernel has every finite differentiability order off the origin.
+@isnad1 id=contdiff.0h1v.s7.79b6d34fe28e from=translated src=- shape=390c9957 vocab=aef90553
+-/
 theorem contDiffOn_newtonianKernel (n : ℕ) :
     ContDiffOn ℝ (n : ℕ) newtonianKernel {z : Vec3 | z ≠ 0} := fun _z hz =>
   (contDiffAt_newtonianKernel n hz).contDiffWithinAt
 
-/-- Every iterated derivative of the Newtonian kernel is differentiable off the origin. -/
+/-- Every iterated derivative of the Newtonian kernel is differentiable off the origin.
+@isnad1 id=differen.1h2v.s10.14dc8501ec97 from=translated src=- shape=72efc1f9 vocab=137c33fb
+-/
 theorem differentiableAt_iteratedFDeriv_newtonianKernel (k : ℕ) {x : Vec3} (hx : x ≠ 0) :
     DifferentiableAt ℝ (iteratedFDeriv ℝ k newtonianKernel) x :=
   differentiableAt_iteratedFDeriv_of_isOpen isOpen_vec3Punctured k
     (contDiffOn_newtonianKernel (k + 1)) hx
 
-/-- Every iterated derivative of the Newtonian kernel is continuous off the origin. -/
+/-- Every iterated derivative of the Newtonian kernel is continuous off the origin.
+@isnad1 id=continuo.0h1v.s9.53f8f92cfe01 from=translated src=- shape=28755d24 vocab=2a6a0c28
+-/
 theorem continuousOn_iteratedFDeriv_newtonianKernel (k : ℕ) :
     ContinuousOn (iteratedFDeriv ℝ k newtonianKernel) {z : Vec3 | z ≠ 0} :=
   continuousOn_iteratedFDeriv_of_isOpen isOpen_vec3Punctured k (contDiffOn_newtonianKernel k)
 
-/-- The `k`-th derivative of the Newtonian kernel is homogeneous of degree `-(1 + k)`. -/
+/-- The `k`-th derivative of the Newtonian kernel is homogeneous of degree `-(1 + k)`.
+@isnad1 id=eq.2h3v.s10.60acc04c4ff8 from=translated src=- shape=117aa3cc vocab=4e22b7ba
+-/
 theorem iteratedFDeriv_newtonianKernel_smul (k : ℕ) {r : ℝ} (hr : 0 < r) :
     ∀ {x : Vec3}, x ≠ 0 →
       iteratedFDeriv ℝ k newtonianKernel (r • x) =
@@ -108,7 +118,9 @@ theorem iteratedFDeriv_newtonianKernel_smul (k : ℕ) {r : ℝ} (hr : 0 < r) :
       rw [iteratedFDeriv_succ_apply_left, happly (m 0)]
       simp only [smul_apply, iteratedFDeriv_succ_apply_left]
 
-/-- The size of the `k`-th derivative of the Newtonian kernel away from the origin. -/
+/-- The size of the `k`-th derivative of the Newtonian kernel away from the origin.
+@isnad1 id=ex.0h1v.s9.52b2bc5aacfb from=translated src=- shape=477485c8 vocab=ba509df9
+-/
 theorem exists_norm_iteratedFDeriv_newtonianKernel_le (k : ℕ) :
     ∃ c : ℝ, 0 ≤ c ∧ ∀ x : Vec3, x ≠ 0 →
       ‖iteratedFDeriv ℝ k newtonianKernel x‖ ≤ c * (vec3EuclideanNorm x ^ (1 + k))⁻¹ := by
@@ -134,14 +146,18 @@ theorem exists_norm_iteratedFDeriv_newtonianKernel_le (k : ℕ) :
         exact mul_le_mul_of_nonneg_left (hc _ hunit) (by positivity)
     _ = c * (R ^ (1 + k))⁻¹ := by ring
 
-/-- Each coordinate basis vector has sup norm at most one. -/
+/-- Each coordinate basis vector has sup norm at most one.
+@isnad1 id=le.0h1v.s6.deabe5329991 from=translated src=- shape=e1c1058d vocab=f68a4f44
+-/
 theorem norm_basisVec_le_one (j : Fin 3) : ‖CKN.basisVec j‖ ≤ 1 := by
   rw [pi_norm_le_iff_of_nonneg zero_le_one]
   intro i
   rw [Real.norm_eq_abs, CKN.basisVec_apply]
   by_cases h : i = j <;> simp [h]
 
-/-- The size of the `k`-th derivative of a first-order Newtonian kernel `∂_j N`. -/
+/-- The size of the `k`-th derivative of a first-order Newtonian kernel `∂_j N`.
+@isnad1 id=ex.0h2v.s9.e41f6ba7cc92 from=translated src=- shape=4101fd5c vocab=a1b7f1b3
+-/
 theorem exists_norm_iteratedFDeriv_newtonianKernel_spatialDeriv_le (j : Fin 3) (k : ℕ) :
     ∃ c : ℝ, 0 ≤ c ∧ ∀ x : Vec3, x ≠ 0 →
       ‖iteratedFDeriv ℝ k (CKN.spatialDeriv newtonianKernel j) x‖ ≤

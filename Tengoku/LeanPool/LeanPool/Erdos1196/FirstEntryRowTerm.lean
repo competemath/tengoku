@@ -52,13 +52,17 @@ noncomputable def firstEntryPairWeight (x Y : ℕ) (mq : ℕ × ℕ) : ℝ :=
     Λ mq.2 / (((mq.1 * mq.2 : ℕ) : ℝ) * (Real.log ((mq.1 * mq.2 : ℕ) : ℝ)) ^ 2)
   else 0
 
-/-- The lower-threshold condition is exactly the conjunction `q ≥ Y` and `x ≤ m * q`. -/
+/-- The lower-threshold condition is exactly the conjunction `q ≥ Y` and `x ≤ m * q`.
+@isnad1 id=iff.1h4v.s5.4fec9607c365 from=translated src=- shape=eefebb00 vocab=50aa2afb
+-/
 lemma entryThreshold_le_iff (x Y m q : ℕ) (hm : 0 < m) :
     entryThreshold x Y m ≤ q ↔ Y ≤ q ∧ x ≤ m * q := by
   simp [entryThreshold, ceilDiv_le_iff_le_mul hm]
 
 /-- For a parent state already known to satisfy `1 ≤ m < x`, the pairwise first-entry weight is
-the corresponding scaled tail summand. -/
+the corresponding scaled tail summand.
+@isnad1 id=eq.2h4v.s7.a6130423e813 from=translated src=- shape=2a291ddb vocab=2ae8a7ec
+-/
 lemma firstEntryPairWeight_eq {x Y m q : ℕ} (hm1 : 1 ≤ m) (hmx : m < x) :
     firstEntryPairWeight x Y (m, q) =
       (1 / (m : ℝ)) *
@@ -74,7 +78,9 @@ lemma firstEntryPairWeight_eq {x Y m q : ℕ} (hm1 : 1 ≤ m) (hmx : m < x) :
     · exact fun h => hq h.2.2
 
 /-- For a fixed parent state `m`, the first-entry row is either the scaled tail summand row when
-`1 ≤ m < x`, or identically zero otherwise. -/
+`1 ≤ m < x`, or identically zero otherwise.
+@isnad1 id=eq.0h3v.s7.c88b46d9ae9e from=translated src=- shape=313f5bbf vocab=2ae8a7ec
+-/
 lemma firstEntryPairWeight_row (x Y m : ℕ) :
     (fun q : ℕ => firstEntryPairWeight x Y (m, q)) =
       if 1 ≤ m ∧ m < x then

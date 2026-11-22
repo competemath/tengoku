@@ -55,26 +55,47 @@ def shiftInterval : IntervalRat → ℤ → IntervalRat := LeanCert.Core.TrigRed
 def reduceToMainPeriod : IntervalRat → IntervalRat × ℤ :=
   LeanCert.Core.TrigReduction.reduceToMainPeriod
 
+/--
+@isnad1 id=lt.0h0v.s3.b12b91460c7d from=translated src=- shape=28fc0566 vocab=1a76d89b
+-/
 theorem piRatLo_lt_pi : (piRatLo : ℝ) < Real.pi :=
   LeanCert.Core.TrigReduction.piRatLo_lt_pi
 
+/--
+@isnad1 id=lt.0h0v.s3.26571a448392 from=translated src=- shape=dfaa3aa7 vocab=57ca1f5f
+-/
 theorem pi_lt_piRatHi : Real.pi < (piRatHi : ℝ) :=
   LeanCert.Core.TrigReduction.pi_lt_piRatHi
 
+/--
+@isnad1 id=lt.0h0v.s4.a27695150fed from=translated src=- shape=f88084c2 vocab=a4eb2854
+-/
 theorem twoPiRatLo_lt_two_pi : (twoPiRatLo : ℝ) < 2 * Real.pi :=
   LeanCert.Core.TrigReduction.twoPiRatLo_lt_two_pi
 
+/--
+@isnad1 id=lt.0h0v.s4.3b40f9aaa87c from=translated src=- shape=b6e781e9 vocab=159b63b1
+-/
 theorem two_pi_lt_twoPiRatHi : 2 * Real.pi < (twoPiRatHi : ℝ) :=
   LeanCert.Core.TrigReduction.two_pi_lt_twoPiRatHi
 
+/--
+@isnad1 id=le.0h0v.s2.97035a5fff12 from=translated src=- shape=54c8eceb vocab=3bf3eb62
+-/
 theorem twoPiRatLo_le_twoPiRatHi : twoPiRatLo ≤ twoPiRatHi :=
   LeanCert.Core.TrigReduction.twoPiRatLo_le_twoPiRatHi
 
+/--
+@isnad1 id=mem.1h3v.s5.9d1d318119fa from=translated src=- shape=fdef543f vocab=877b90e6
+-/
 theorem mem_shiftInterval_of_mem {x : ℝ} {I : IntervalRat} {k : ℤ}
     (hx : x ∈ I) : x - 2 * Real.pi * k ∈ shiftInterval I k := by
   change x - 2 * Real.pi * k ∈ LeanCert.Core.TrigReduction.shiftInterval I k
   exact LeanCert.Core.TrigReduction.mem_shiftInterval_of_mem hx
 
+/--
+@isnad1 id=mem.1h2v.s5.2a3bebccdd56 from=translated src=- shape=9354b22e vocab=18004490
+-/
 theorem mem_reduceToMainPeriod_of_mem {x : ℝ} {I : IntervalRat} (hx : x ∈ I) :
     x - 2 * Real.pi * (reduceToMainPeriod I).2 ∈ (reduceToMainPeriod I).1 := by
   change x - 2 * Real.pi * (LeanCert.Core.TrigReduction.reduceToMainPeriod I).2 ∈
@@ -101,7 +122,9 @@ noncomputable def cosIntervalReduced (I : IntervalRat) (degree : ℕ := 15) : In
 
 /-! ### Correctness theorems -/
 
-/-- sin x ∈ sinIntervalReduced I for all x ∈ I -/
+/-- sin x ∈ sinIntervalReduced I for all x ∈ I
+@isnad1 id=mem.1h3v.s4.8678ed315ab2 from=translated src=- shape=71d4a1f7 vocab=79dc36df
+-/
 theorem mem_sinIntervalReduced {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (degree : ℕ := 15) :
     Real.sin x ∈ sinIntervalReduced I degree := by
   unfold sinIntervalReduced reduceToMainPeriod
@@ -124,7 +147,9 @@ theorem mem_sinIntervalReduced {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (degre
     exact taylorModel_correct (tmSin Ired degree) Real.sin
       (fun z hz => tmSin_correct Ired degree z hz) (x - 2 * Real.pi * k) hxred
 
-/-- cos x ∈ cosIntervalReduced I for all x ∈ I -/
+/-- cos x ∈ cosIntervalReduced I for all x ∈ I
+@isnad1 id=mem.1h3v.s4.886d0f0ae1b2 from=translated src=- shape=71d4a1f7 vocab=7df9766c
+-/
 theorem mem_cosIntervalReduced {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (degree : ℕ := 15) :
     Real.cos x ∈ cosIntervalReduced I degree := by
   unfold cosIntervalReduced reduceToMainPeriod
@@ -172,7 +197,9 @@ def cosComputableReduced (I : IntervalRat) (n : ℕ := 10) : IntervalRat :=
   else
     IntervalRat.cosComputable Ired n
 
-/-- sin x ∈ sinComputableReduced I for all x ∈ I -/
+/-- sin x ∈ sinComputableReduced I for all x ∈ I
+@isnad1 id=mem.1h3v.s4.b9a9e3f96827 from=translated src=- shape=71d4a1f7 vocab=f821dfa3
+-/
 theorem mem_sinComputableReduced {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ := 10) :
     Real.sin x ∈ sinComputableReduced I n := by
   unfold sinComputableReduced reduceToMainPeriod
@@ -194,7 +221,9 @@ theorem mem_sinComputableReduced {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n :
     rw [hsin_eq]
     exact IntervalRat.mem_sinComputable hxred n
 
-/-- cos x ∈ cosComputableReduced I for all x ∈ I -/
+/-- cos x ∈ cosComputableReduced I for all x ∈ I
+@isnad1 id=mem.1h3v.s4.8b5b1fa31b7a from=translated src=- shape=71d4a1f7 vocab=10947600
+-/
 theorem mem_cosComputableReduced {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (n : ℕ := 10) :
     Real.cos x ∈ cosComputableReduced I n := by
   unfold cosComputableReduced reduceToMainPeriod

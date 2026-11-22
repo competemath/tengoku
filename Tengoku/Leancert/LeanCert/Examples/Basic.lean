@@ -32,7 +32,9 @@ open LeanCert.Engine
 /-- The expression x² (x squared) -/
 def xSq : Expr := Expr.mul (Expr.var 0) (Expr.var 0)
 
-/-- Proof that x² is in the supported subset -/
+/-- Proof that x² is in the supported subset
+@isnad1 id=adsuppor.0h0v.s1.ddd02a808595 from=translated src=- shape=49959d42 vocab=45d5811b
+-/
 theorem xSq_supported : ADSupported xSq :=
   ADSupported.mul (ADSupported.var 0) (ADSupported.var 0)
 
@@ -42,7 +44,9 @@ def exprSquare : Expr :=
                      (Expr.mul (Expr.const 2) (Expr.var 0)))
            (Expr.const 1)
 
-/-- Proof that x² + 2x + 1 is in the supported subset -/
+/-- Proof that x² + 2x + 1 is in the supported subset
+@isnad1 id=adsuppor.0h0v.s1.c272753bcc8d from=translated src=- shape=49959d42 vocab=bfbd6e6e
+-/
 theorem exprSquare_supported : ADSupported exprSquare :=
   ADSupported.add
     (ADSupported.add
@@ -54,7 +58,9 @@ theorem exprSquare_supported : ADSupported exprSquare :=
 def exprSinCos : Expr :=
   Expr.add (Expr.sin (Expr.var 0)) (Expr.cos (Expr.var 0))
 
-/-- Proof that sin(x) + cos(x) is in the supported subset -/
+/-- Proof that sin(x) + cos(x) is in the supported subset
+@isnad1 id=adsuppor.0h0v.s1.36fb0df39236 from=translated src=- shape=49959d42 vocab=07ba28c4
+-/
 theorem exprSinCos_supported : ADSupported exprSinCos :=
   ADSupported.add
     (ADSupported.sin (ADSupported.var 0))
@@ -88,6 +94,9 @@ def xSq' : { e : Expr // ADSupported e } :=
 /-- The expression x * y (product of two variables) -/
 def exprXY : Expr := Expr.mul (Expr.var 0) (Expr.var 1)
 
+/--
+@isnad1 id=adsuppor.0h0v.s1.c9bff197263d from=translated src=- shape=49959d42 vocab=38b0c5e6
+-/
 theorem exprXY_supported : ADSupported exprXY :=
   ADSupported.mul (ADSupported.var 0) (ADSupported.var 1)
 

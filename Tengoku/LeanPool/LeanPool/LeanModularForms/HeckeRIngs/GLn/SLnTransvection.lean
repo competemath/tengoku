@@ -502,7 +502,9 @@ private lemma to_block_form {m : ℕ} (τ : Matrix.SpecialLinearGroup (Fin (m + 
       by rw [hprod]; exact hσ₂_00,
       fun i hi => by rw [hprod]; exact hσ₂_i0 i hi⟩
 
-/-- Every element of `SL_m(ℤ)` is a product of transvections. -/
+/-- Every element of `SL_m(ℤ)` is a product of transvections.
+@isnad1 id=ex.0h2v.s6.387037b86ed1 from=translated src=- shape=9a28a199 vocab=0da78905
+-/
 theorem SLnZ_transvec_gen (m : ℕ) (σ : Matrix.SpecialLinearGroup (Fin m) ℤ) :
     ∃ (L : List (Matrix.SpecialLinearGroup (Fin m) ℤ)),
       (∀ E ∈ L, IsTransvec E) ∧ σ = L.prod := by

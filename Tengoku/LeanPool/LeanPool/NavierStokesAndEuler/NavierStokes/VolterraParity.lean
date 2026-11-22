@@ -97,6 +97,9 @@ def DerivativeShape (A : Coeff) : Prop :=
 def LowZero (F : Field) : Prop :=
   ∀ r z (i : Fin 6), i.val < 4 → F r z i = 0
 
+/--
+@isnad1 id=lowzero.1h2v.s3.535224d8e780 from=translated src=- shape=2f425f95 vocab=efc3e220
+-/
 theorem lowZero_matrixAction {A : Coeff} (hA : DerivativeShape A) (F : Field) :
     LowZero (matrixAction A F) := by
   intro r z i hi
@@ -106,6 +109,9 @@ theorem lowZero_matrixAction {A : Coeff} (hA : DerivativeShape A) (F : Field) :
   change A r z i j * F r z j = 0
   rw [hA r z i j (Or.inl hi), zero_mul]
 
+/--
+@isnad1 id=lowzero.1h1v.s3.5e2dbe333643 from=translated src=- shape=2c86d966 vocab=3c84f76f
+-/
 theorem lowZero_parameterDeriv {F : Field} (hF : LowZero F) :
     LowZero (parameterDeriv F) := by
   intro r z i hi
@@ -114,6 +120,9 @@ theorem lowZero_parameterDeriv {F : Field} (hF : LowZero F) :
     exact hF r w i hi
   simp only [parameterDeriv, heq, deriv_const]
 
+/--
+@isnad1 id=lowzero.1h1v.s3.ba1c60787ef3 from=translated src=- shape=2c86d966 vocab=97a99707
+-/
 theorem lowZero_radialInverse {F : Field} (hF : LowZero F) :
     LowZero (radialInverse F) := by
   intro r z i hi
@@ -125,6 +134,9 @@ theorem lowZero_radialInverse {F : Field} (hF : LowZero F) :
   rw [heq]
   simp
 
+/--
+@isnad1 id=eq.2h2v.s5.ef69f68fa435 from=translated src=- shape=70f987bc vocab=c59c6040
+-/
 theorem matrixAction_lowZero_eq_zero {A : Coeff} (hA : DerivativeShape A)
     {F : Field} (hF : LowZero F) : matrixAction A F = 0 := by
   funext r z i
@@ -136,25 +148,43 @@ theorem matrixAction_lowZero_eq_zero {A : Coeff} (hA : DerivativeShape A)
   · rw [hF r z j hj4, mul_zero]
   · rw [hA r z i j (Or.inr (Nat.le_of_not_gt hj4)), zero_mul]
 
+/--
+@isnad1 id=eq.0h0v.s6.af3e3ff054af from=translated src=- shape=3c26ae4f vocab=fbc6d8c9
+-/
 @[simp] theorem radialInverse_zero : radialInverse 0 = 0 := by
   funext r z i
   simp [radialInverse]
 
+/--
+@isnad1 id=eq.0h0v.s6.1294e06cc1ca from=translated src=- shape=3c26ae4f vocab=1eea7b6e
+-/
 @[simp] theorem parameterDeriv_zero : parameterDeriv 0 = 0 := by
   funext r z i
   simp [parameterDeriv]
 
+/--
+@isnad1 id=eq.0h1v.s6.c481fec11696 from=translated src=- shape=9b4d794a vocab=a842a16d
+-/
 @[simp] theorem matrixAction_zero (A : Coeff) : matrixAction A 0 = 0 := by
   funext r z i
   simp [matrixAction, Matrix.mulVec, dotProduct]
 
+/--
+@isnad1 id=eq.0h3v.s6.68d472b9f647 from=translated src=- shape=993496bf vocab=38f4c536
+-/
 @[simp] theorem letter_zero (A₀ A₁ : Coeff) (b : Bool) : letter A₀ A₁ b 0 = 0 := by
   cases b <;> simp [letter]
 
+/--
+@isnad1 id=lowzero.1h3v.s3.befde6bfa46a from=translated src=- shape=755f3c39 vocab=d455cc73
+-/
 theorem derivativeLetter_lowZero (A₀ : Coeff) {A₁ : Coeff}
     (hA : DerivativeShape A₁) (F : Field) : LowZero (letter A₀ A₁ true F) := by
   exact lowZero_radialInverse (lowZero_matrixAction hA (parameterDeriv F))
 
+/--
+@isnad1 id=eq.2h3v.s5.56c5053d33d5 from=translated src=- shape=215ac1e7 vocab=4222c819
+-/
 theorem derivativeLetter_of_lowZero (A₀ : Coeff) {A₁ : Coeff}
     (hA : DerivativeShape A₁) {F : Field} (hF : LowZero F) :
     letter A₀ A₁ true F = 0 := by
@@ -163,7 +193,9 @@ theorem derivativeLetter_of_lowZero (A₀ : Coeff) {A₁ : Coeff}
 
 /-- This is an identity of actual differentiated integral operators.
 The proof differentiates identically zero components, so it includes the
-terms where the parameter derivative would hit the adjacent coefficient. -/
+terms where the parameter derivative would hit the adjacent coefficient.
+@isnad1 id=eq.1h3v.s6.f135bc3ac47a from=translated src=- shape=9c23fea6 vocab=c706e756
+-/
 theorem adjacent_derivative_letters_zero (A₀ : Coeff) {A₁ : Coeff}
     (hA : DerivativeShape A₁) (F : Field) :
     letter A₀ A₁ true (letter A₀ A₁ true F) = 0 :=
@@ -183,6 +215,9 @@ def GoodWord : List Bool → Prop
   | true :: false :: w => GoodWord w
   | true :: true :: _ => False
 
+/--
+@isnad1 id=le.1h1v.s5.853d2c22e07a from=translated src=- shape=ae0afade vocab=38f7a792
+-/
 theorem goodWord_losses (w : List Bool) (hw : GoodWord w) :
     2 * losses w ≤ w.length + 1 := by
   match w with
@@ -199,12 +234,17 @@ theorem goodWord_losses (w : List Bool) (hw : GoodWord w) :
   | true :: true :: w => exact False.elim hw
 termination_by w.length
 
+/--
+@isnad1 id=le.1h1v.s5.e16781dd3f22 from=translated src=- shape=49ffbd3f vocab=2982050d
+-/
 theorem losses_le_half (w : List Bool) (hw : GoodWord w) :
     losses w ≤ (w.length + 1) / 2 := by
   have := goodWord_losses w hw
   omega
 
-/-- Forbidden words are identically zero, for arbitrary actual input functions. -/
+/-- Forbidden words are identically zero, for arbitrary actual input functions.
+@isnad1 id=eq.2h4v.s6.72ba8a1ea6fb from=translated src=- shape=7fd4fd2b vocab=8cc7af87
+-/
 theorem word_eq_zero_of_not_good (A₀ : Coeff) {A₁ : Coeff}
     (hA : DerivativeShape A₁) (w : List Bool) (hw : ¬ GoodWord w) (F : Field) :
     word A₀ A₁ w F = 0 := by
@@ -233,14 +273,23 @@ def MatrixBound (A : Coeff) (T : ℝ) (c : ℂ) (ρ M : ℝ) : Prop :=
   ∀ r ∈ Icc 0 T, ∀ z ∈ closedBall c ρ, ∀ i,
     ∑ j, ‖A r z i j‖ ≤ M
 
+/--
+@isnad1 id=radialbo.2h7v.s5.dd0a7955da1b from=translated src=- shape=528944f9 vocab=703a4905
+-/
 theorem RadialBound.mono_radius {F : Field} {T ρ σ B : ℝ} {c : ℂ} {k : ℕ}
     (h : RadialBound F T c σ B k) (hρ : ρ ≤ σ) : RadialBound F T c ρ B k :=
   fun r hr z hz i => h r hr z (closedBall_subset_closedBall hρ hz) i
 
+/--
+@isnad1 id=matrixbo.2h6v.s4.1a2d4d484007 from=translated src=- shape=ea2a1be9 vocab=e36db03d
+-/
 theorem MatrixBound.mono_radius {A : Coeff} {T ρ σ M : ℝ} {c : ℂ}
     (h : MatrixBound A T c σ M) (hρ : ρ ≤ σ) : MatrixBound A T c ρ M :=
   fun r hr z hz i => h r hr z (closedBall_subset_closedBall hρ hz) i
 
+/--
+@isnad1 id=radialbo.3h8v.s5.a526514f4b9b from=translated src=- shape=b91e4c80 vocab=b1095450
+-/
 theorem RadialBound.matrixAction {A : Coeff} {F : Field} {T ρ B M : ℝ}
     {c : ℂ} {k : ℕ} (hB : 0 ≤ B) (hA : MatrixBound A T c ρ M)
     (hF : RadialBound F T c ρ B k) :
@@ -262,7 +311,9 @@ theorem RadialBound.matrixAction {A : Coeff} {F : Field} {T ρ B M : ℝ}
     _ = _ := by ring
 
 /-- The elementary radial integral supplies one full factorial denominator.
-No radial analyticity, and no estimate on radial derivatives, is used. -/
+No radial analyticity, and no estimate on radial derivatives, is used.
+@isnad1 id=radialbo.2h6v.s5.d2715206d248 from=translated src=- shape=cb0166e0 vocab=fe2adbbf
+-/
 theorem RadialBound.radialInverse {F : Field} {T ρ B : ℝ} {c : ℂ} {k : ℕ}
     (hB : 0 ≤ B) (hF : RadialBound F T c ρ B k) :
     RadialBound (radialInverse F) T c ρ B (k + 1) := by
@@ -302,7 +353,9 @@ theorem RadialBound.radialInverse {F : Field} {T ρ B : ℝ} {c : ℂ} {k : ℕ}
       simp only [div_eq_mul_inv, mul_inv_rev]
       ring
 
-/-- Cauchy's first derivative estimate from the actual circle integral. -/
+/-- Cauchy's first derivative estimate from the actual circle integral.
+@isnad1 id=le.3h4v.s7.f36d79f17c5e from=translated src=- shape=06ee99ba vocab=a4e6fd81
+-/
 theorem norm_deriv_le {f : ℂ → ℂ} {c : ℂ} {δ C : ℝ}
     (hδ : 0 < δ) (hf : DifferentiableOn ℂ f (closedBall c δ))
     (hb : ∀ z ∈ sphere c δ, ‖f z‖ ≤ C) :
@@ -333,12 +386,17 @@ theorem norm_deriv_le {f : ℂ → ℂ} {c : ℂ} {δ C : ℝ}
   rw [heq]
   simpa [div_eq_mul_inv, mul_comm] using hc
 
+/--
+@isnad1 id=le.1h4v.s6.884cc7e47f49 from=translated src=- shape=3a874e9e vocab=48913b7b
+-/
 theorem nested_closedBall {c z : ℂ} {ρ δ : ℝ} (hz : z ∈ closedBall c ρ) :
     closedBall z δ ⊆ closedBall c (ρ + δ) := by
   intro w hw
   exact (dist_triangle w z c).trans (by linarith [mem_closedBall.mp hw, mem_closedBall.mp hz])
 
-/-- One real Cauchy loss, on a fixed smaller disk, without any radial loss. -/
+/-- One real Cauchy loss, on a fixed smaller disk, without any radial loss.
+@isnad1 id=radialbo.3h7v.s6.51e183a520fb from=translated src=- shape=f868d520 vocab=f474bd12
+-/
 theorem RadialBound.parameterDeriv {F : Field} {T ρ δ B : ℝ} {c : ℂ} {k : ℕ}
     (hδ : 0 < δ) (ha : AnalyticField F T c (ρ + δ))
     (hF : RadialBound F T c (ρ + δ) B k) :
@@ -352,10 +410,16 @@ theorem RadialBound.parameterDeriv {F : Field} {T ρ δ B : ℝ} {c : ℂ} {k : 
   convert! h using 1
   ring
 
+/--
+@isnad1 id=analytic.2h5v.s4.f5677735496a from=translated src=- shape=652c6676 vocab=0a68aa9d
+-/
 theorem AnalyticField.mono_radius {F : Field} {T ρ σ : ℝ} {c : ℂ}
     (h : AnalyticField F T c σ) (hρ : ρ ≤ σ) : AnalyticField F T c ρ :=
   fun r hr i => (h r hr i).mono (closedBall_subset_closedBall hρ)
 
+/--
+@isnad1 id=radialbo.2h7v.s5.d77191a6c2c8 from=translated src=- shape=b53afbba vocab=703a4905
+-/
 theorem RadialBound.mono_const {F : Field} {T ρ B C : ℝ} {c : ℂ} {k : ℕ}
     (h : RadialBound F T c ρ B k) (hBC : B ≤ C) : RadialBound F T c ρ C k := by
   intro r hr z hz i
@@ -364,7 +428,9 @@ theorem RadialBound.mono_const {F : Field} {T ρ B C : ℝ} {c : ℂ} {k : ℕ}
 
 /-- The exact word estimate. Holomorphy of the finite words is a regularity
 input, independently obtained by closure of holomorphic curve-valued maps.
-Neither a convergent series nor a solution is assumed. -/
+Neither a convergent series nor a solution is assumed.
+@isnad1 id=radialbo.8h11v.s7.edff3436adfd from=translated src=- shape=565a3f1c vocab=2a6834f9
+-/
 theorem word_radialBound {A₀ A₁ : Coeff} {F : Field} {T σ B M δ : ℝ} {c : ℂ}
     (hB : 0 ≤ B) (hM : 0 ≤ M) (hδ : 0 < δ)
     (hA₀ : MatrixBound A₀ T c σ M) (hA₁ : MatrixBound A₁ T c σ M)
@@ -413,13 +479,18 @@ noncomputable def halfLength (k : ℕ) : ℕ := (k + 1) / 2
 noncomputable def wordMajorant (a b : ℝ) (k : ℕ) : ℝ :=
   a ^ k * (b * (max 1 (halfLength k) : ℕ)) ^ halfLength k / (k.factorial : ℝ)
 
+/--
+@isnad1 id=le.2h3v.s5.60ca09a8537d from=translated src=- shape=b4e35a70 vocab=3d98e256
+-/
 theorem wordMajorant_nonneg {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (k : ℕ) :
     0 ≤ wordMajorant a b k := by
   unfold wordMajorant
   positivity
 
 /-- Uniform bound on an entire finite radial interval. The strip gap is split
-only among the possible derivative letters, and not among all letters. -/
+only among the possible derivative letters, and not among all letters.
+@isnad1 id=le.11h13v.s7.0a8862e90d09 from=translated src=- shape=c7e2a0bc vocab=4ec41862
+-/
 theorem norm_word_le {A₀ A₁ : Coeff} {F : Field} {T ρ σ B M : ℝ} {c : ℂ}
     (hB : 0 ≤ B) (hM : 0 ≤ M) (hT : 0 ≤ T) (hgap : ρ < σ)
     (hshape : DerivativeShape A₁)
@@ -473,7 +544,9 @@ theorem norm_word_le {A₀ A₁ : Coeff} {F : Field} {T ρ σ B M : ℝ} {c : �
       (wordMajorant_nonneg (mul_nonneg hM hT) (le_trans zero_le_one (le_max_left _ _)) w.length)
 
 /-- The factorial cancels all powers introduced by at most half as many
-Cauchy losses, leaving an exponential-series denominator. -/
+Cauchy losses, leaving an exponential-series denominator.
+@isnad1 id=le.0h1v.s5.4c0a71e5d67b from=translated src=- shape=3544a365 vocab=3a8585f8
+-/
 theorem factorial_half_bound (k : ℕ) :
     (max 1 (halfLength k)) ^ halfLength k * (k / 2).factorial ≤ k.factorial := by
   have hsum : k / 2 + halfLength k = k := by unfold halfLength; omega
@@ -487,6 +560,9 @@ theorem factorial_half_bound (k : ℕ) :
         (Nat.pow_succ_le_ascFactorial _ _))
     _ = _ := by rw [Nat.factorial_mul_ascFactorial, hsum]
 
+/--
+@isnad1 id=le.0h1v.s6.26c2d45b80a3 from=translated src=- shape=0aeebe2f vocab=11e3ce5c
+-/
 theorem half_power_div_factorial_le (k : ℕ) :
     ((max 1 (halfLength k) : ℕ) : ℝ) ^ halfLength k / (k.factorial : ℝ) ≤
       1 / ((k / 2).factorial : ℝ) := by
@@ -496,6 +572,9 @@ theorem half_power_div_factorial_le (k : ℕ) :
         ((k / 2).factorial : ℝ) ≤ (k.factorial : ℝ) by
       exact_mod_cast factorial_half_bound k)
 
+/--
+@isnad1 id=le.2h3v.s7.2fba1c641e5d from=translated src=- shape=1c67c414 vocab=2dc19990
+-/
 theorem wordMajorant_le_exponential {a b : ℝ} (ha : 1 ≤ a) (hb : 1 ≤ b) (k : ℕ) :
     wordMajorant a b k ≤
       (a * b) * ((a ^ 2 * b) ^ (k / 2) / ((k / 2).factorial : ℝ)) := by
@@ -521,6 +600,9 @@ theorem wordMajorant_le_exponential {a b : ℝ} (ha : 1 ≤ a) (hb : 1 ≤ b) (k
       mul_le_mul hpow (half_power_div_factorial_le k) (by positivity) (by positivity)
     _ = _ := by ring
 
+/--
+@isnad1 id=le.4h5v.s5.6cdd8219249f from=translated src=- shape=0cecb703 vocab=3d98e256
+-/
 theorem wordMajorant_mono {a a' b b' : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b)
     (haa : a ≤ a') (hbb : b ≤ b') (k : ℕ) :
     wordMajorant a b k ≤ wordMajorant a' b' k := by
@@ -528,7 +610,9 @@ theorem wordMajorant_mono {a a' b b' : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b)
   unfold wordMajorant
   gcongr
 
-/-- Repeating each exponential-series term twice preserves summability. -/
+/-- Repeating each exponential-series term twice preserves summability.
+@isnad1 id=summable.0h2v.s6.c62ebdf18588 from=translated src=- shape=b1814b1b vocab=88dbab22
+-/
 theorem summable_half_exponential (x C : ℝ) :
     Summable (fun k : ℕ => C * (x ^ (k / 2) / ((k / 2).factorial : ℝ))) := by
   have hs := (Real.summable_pow_div_factorial x).mul_left C
@@ -547,7 +631,9 @@ theorem summable_half_exponential (x C : ℝ) :
   exact hprod.comp_injective (i := index) hinj
 
 /-- The Cauchy/Volterra majorant is summable for every finite coefficient,
-radial, and strip-gap constant. There is no smallness assumption. -/
+radial, and strip-gap constant. There is no smallness assumption.
+@isnad1 id=summable.2h2v.s5.2763431113ec from=translated src=- shape=3f7e53a8 vocab=baa32728
+-/
 theorem summable_wordMajorant {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
     Summable (wordMajorant a b) := by
   have hs := summable_half_exponential ((max 1 a) ^ 2 * max 1 b) (max 1 a * max 1 b)
@@ -557,7 +643,9 @@ theorem summable_wordMajorant {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
     (wordMajorant_le_exponential (le_max_left _ _) (le_max_left _ _) k)
 
 /-- The factor 2^k counting all Boolean words is absorbed into the first
-majorant constant, so the entire Picard layer is still summable. -/
+majorant constant, so the entire Picard layer is still summable.
+@isnad1 id=summable.2h3v.s6.f806e6d741d3 from=translated src=- shape=f39a4e4f vocab=d993a9c8
+-/
 theorem summable_wordLayers {a b B : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
     Summable (fun k : ℕ => B * (2 : ℝ) ^ k * wordMajorant a b k) := by
   have hs := (summable_wordMajorant (mul_nonneg (by norm_num : (0 : ℝ) ≤ 2) ha) hb).mul_left B
@@ -571,6 +659,9 @@ theorem summable_wordLayers {a b B : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) :
 noncomputable def wordLayer (A₀ A₁ : Coeff) (F : Field) (k : ℕ) : Field :=
   fun r z i => ∑ v : Fin k → Bool, word A₀ A₁ (List.ofFn v) F r z i
 
+/--
+@isnad1 id=le.11h13v.s7.bda8caddea10 from=translated src=- shape=2647b07a vocab=efd14549
+-/
 theorem norm_wordLayer_le {A₀ A₁ : Coeff} {F : Field} {T ρ σ B M : ℝ} {c : ℂ}
     (hB : 0 ≤ B) (hM : 0 ≤ M) (hT : 0 ≤ T) (hgap : ρ < σ)
     (hshape : DerivativeShape A₁)
@@ -592,7 +683,9 @@ theorem norm_wordLayer_le {A₀ A₁ : Coeff} {F : Field} {T ρ σ B M : ℝ} {c
 
 /-- Absolute convergence of the actual Volterra-word expansion at every
 point of a smaller closed parameter disk, uniformly bounded by one summable
-sequence independent of that point. -/
+sequence independent of that point.
+@isnad1 id=summable.11h12v.s7.b837e52f7928 from=translated src=- shape=5525bc99 vocab=47748359
+-/
 theorem summable_norm_wordLayer {A₀ A₁ : Coeff} {F : Field}
     {T ρ σ B M : ℝ} {c : ℂ}
     (hB : 0 ≤ B) (hM : 0 ≤ M) (hT : 0 ≤ T) (hgap : ρ < σ)
@@ -607,6 +700,9 @@ theorem summable_norm_wordLayer {A₀ A₁ : Coeff} {F : Field}
     (fun k => norm_wordLayer_le hB hM hT hgap hshape hA₀ hA₁ hF ha k hr hz i)
     (summable_wordLayers (mul_nonneg hM hT) (zero_le_one.trans (le_max_left _ _)))
 
+/--
+@isnad1 id=summable.11h12v.s7.433f782ab075 from=translated src=- shape=5a50cf2c vocab=d0eb7f6f
+-/
 theorem summable_wordLayer {A₀ A₁ : Coeff} {F : Field}
     {T ρ σ B M : ℝ} {c : ℂ}
     (hB : 0 ≤ B) (hM : 0 ≤ M) (hT : 0 ≤ T) (hgap : ρ < σ)
@@ -620,7 +716,9 @@ theorem summable_wordLayer {A₀ A₁ : Coeff} {F : Field}
   (summable_norm_wordLayer hB hM hT hgap hshape hA₀ hA₁ hF ha hr hz i).of_norm
 
 /-- Uniform convergence of the actual partial sums on every smaller closed
-parameter disk and the entire fixed radial interval. -/
+parameter disk and the entire fixed radial interval.
+@isnad1 id=tendstou.9h10v.s7.0f32bead12fc from=translated src=- shape=9fcd5720 vocab=7aa6a179
+-/
 theorem tendstoUniformlyOn_wordLayer {A₀ A₁ : Coeff} {F : Field}
     {T ρ σ B M : ℝ} {c : ℂ}
     (hB : 0 ≤ B) (hM : 0 ≤ M) (hT : 0 ≤ T) (hgap : ρ < σ)
@@ -664,24 +762,38 @@ def weightedMean (c : ℕ) (f : ℝ → E) (ξ : ℝ) : E :=
 def regularPrimitive (c : ℕ) (f : ℝ → E) (ξ : ℝ) : E :=
   ξ • weightedMean c f ξ
 
+/--
+@isnad1 id=continuo.1h3v.s5.9addb509a431 from=translated src=- shape=032162da vocab=483fdce3
+-/
 theorem weightedMean_continuous (c : ℕ) {f : ℝ → E} (hf : Continuous f) :
     Continuous (weightedMean c f) := by
   exact intervalIntegral.continuous_parametric_intervalIntegral_of_continuous'
     ((continuous_snd.pow c).smul (hf.comp (continuous_snd.mul continuous_fst))) 0 1
 
+/--
+@isnad1 id=continuo.1h3v.s5.a3d3c0ed34ee from=translated src=- shape=032162da vocab=a375a71e
+-/
 theorem regularPrimitive_continuous (c : ℕ) {f : ℝ → E} (hf : Continuous f) :
     Continuous (regularPrimitive c f) :=
   continuous_id.smul (weightedMean_continuous c hf)
 
+/--
+@isnad1 id=eq.0h3v.s5.2c3247b50e39 from=translated src=- shape=333c9886 vocab=c37c6253
+-/
 @[simp] theorem regularPrimitive_zero (c : ℕ) (f : ℝ → E) :
     regularPrimitive c f 0 = 0 := by simp [regularPrimitive]
 
+/--
+@isnad1 id=eq.0h3v.s7.c70f52406a62 from=translated src=- shape=16603b10 vocab=73e7b02e
+-/
 theorem weightedMean_zero [CompleteSpace E] (c : ℕ) (f : ℝ → E) :
     weightedMean c f 0 = (1 / ((c : ℝ) + 1)) • f 0 := by
   simp only [weightedMean, mul_zero, intervalIntegral.integral_smul_const,
     integral_pow, one_pow, zero_pow (Nat.succ_ne_zero c), sub_zero]
 
-/-- Multiplication by the integrating factor gives the ordinary primitive. -/
+/-- Multiplication by the integrating factor gives the ordinary primitive.
+@isnad1 id=eq.0h4v.s7.026113d6562a from=translated src=- shape=0b5012f0 vocab=7c62b7ae
+-/
 theorem regularPrimitive_integratingFactor (c : ℕ) (f : ℝ → E) (ξ : ℝ) :
     ξ ^ c • regularPrimitive c f ξ = ∫ s in (0 : ℝ)..ξ, s ^ c • f s := by
   calc
@@ -699,12 +811,17 @@ theorem regularPrimitive_integratingFactor (c : ℕ) (f : ℝ → E) (ξ : ℝ) 
         intervalIntegral.smul_integral_comp_mul_right (a := 0) (b := 1)
           (fun s => s ^ c • f s) ξ
 
+/--
+@isnad1 id=eq.1h4v.s7.7f896b915948 from=translated src=- shape=c0239643 vocab=e14ec0a9
+-/
 theorem regularPrimitive_eq_div (c : ℕ) (f : ℝ → E) {ξ : ℝ} (hξ : ξ ≠ 0) :
     regularPrimitive c f ξ = (ξ ^ c)⁻¹ • ∫ s in (0 : ℝ)..ξ, s ^ c • f s := by
   rw [← regularPrimitive_integratingFactor]
   simp only [inv_smul_smul₀ (pow_ne_zero c hξ)]
 
-/-- The axis derivative is the normalized average at zero. -/
+/-- The axis derivative is the normalized average at zero.
+@isnad1 id=hasderiv.1h3v.s6.22a33a4424fd from=translated src=- shape=cd5f2472 vocab=db522a74
+-/
 theorem regularPrimitive_hasDerivAt_zero (c : ℕ) {f : ℝ → E} (hf : Continuous f) :
     HasDerivAt (regularPrimitive c f) (weightedMean c f 0) 0 := by
   rw [hasDerivAt_iff_tendsto_slope_zero]
@@ -713,6 +830,9 @@ theorem regularPrimitive_hasDerivAt_zero (c : ℕ) {f : ℝ → E} (hf : Continu
   have hne : t ≠ 0 := by simpa only [mem_compl_iff, mem_singleton_iff] using ht
   simp only [zero_add, regularPrimitive, zero_smul, sub_zero, inv_smul_smul₀ hne]
 
+/--
+@isnad1 id=le.1h5v.s6.22e745dfa5e3 from=translated src=- shape=9eb75436 vocab=c72fa3fb
+-/
 theorem weightedMean_norm_le (c : ℕ) (f : ℝ → E) (ξ M : ℝ)
     (hf : ∀ t ∈ Icc (0 : ℝ) 1, ‖f (t * ξ)‖ ≤ M) :
     ‖weightedMean c f ξ‖ ≤ M := by
@@ -726,6 +846,9 @@ theorem weightedMean_norm_le (c : ℕ) (f : ℝ → E) (ξ M : ℝ)
   exact (mul_le_mul (pow_le_one₀ ht'.1 ht'.2) (hf t ht') (norm_nonneg _) zero_le_one).trans_eq
     (one_mul M)
 
+/--
+@isnad1 id=le.1h5v.s6.aa854f9a6abe from=translated src=- shape=f1837519 vocab=4cef00fb
+-/
 theorem regularPrimitive_norm_le (c : ℕ) (f : ℝ → E) (ξ M : ℝ)
     (hf : ∀ t ∈ Icc (0 : ℝ) 1, ‖f (t * ξ)‖ ≤ M) :
     ‖regularPrimitive c f ξ‖ ≤ |ξ| * M := by
@@ -733,7 +856,9 @@ theorem regularPrimitive_norm_le (c : ℕ) (f : ℝ → E) (ξ M : ℝ)
   exact mul_le_mul_of_nonneg_left (weightedMean_norm_le c f ξ M hf) (abs_nonneg ξ)
 
 /-- Differentiating the integrating-factor formula gives a nonsingular
-formula for the radial derivative away from the axis. -/
+formula for the radial derivative away from the axis.
+@isnad1 id=hasderiv.2h4v.s7.dcd23c259500 from=translated src=- shape=4a4d59a7 vocab=0f770e14
+-/
 theorem regularPrimitive_hasDerivAt_ne_zero [CompleteSpace E] (c : ℕ)
     {f : ℝ → E} (hf : Continuous f) {ξ : ℝ} (hξ : ξ ≠ 0) :
     HasDerivAt (regularPrimitive c f)
@@ -760,7 +885,9 @@ theorem regularPrimitive_hasDerivAt_ne_zero [CompleteSpace E] (c : ℕ)
   simp only [sub_eq_add_neg]
 
 /-- The same derivative formula is valid at zero; no singular division
-is used to define or differentiate the solution there. -/
+is used to define or differentiate the solution there.
+@isnad1 id=hasderiv.1h4v.s7.e12c1a265a85 from=translated src=- shape=eca8c716 vocab=0f770e14
+-/
 theorem regularPrimitive_hasDerivAt [CompleteSpace E] (c : ℕ)
     {f : ℝ → E} (hf : Continuous f) (ξ : ℝ) :
     HasDerivAt (regularPrimitive c f)
@@ -778,12 +905,18 @@ theorem regularPrimitive_hasDerivAt [CompleteSpace E] (c : ℕ)
         field_simp; ring
   · exact regularPrimitive_hasDerivAt_ne_zero c hf hξ
 
+/--
+@isnad1 id=eq.2h4v.s7.fafcfaa7f121 from=translated src=- shape=94426ec2 vocab=8e44ea50
+-/
 theorem regularPrimitive_equation [CompleteSpace E] (c : ℕ)
     {f : ℝ → E} (hf : Continuous f) {ξ : ℝ} (hξ : ξ ≠ 0) :
     deriv (regularPrimitive c f) ξ + ((c : ℝ) / ξ) • regularPrimitive c f ξ = f ξ := by
   rw [(regularPrimitive_hasDerivAt c hf ξ).deriv, regularPrimitive, smul_smul,
     div_mul_cancel₀ _ hξ, sub_add_cancel]
 
+/--
+@isnad1 id=continuo.1h3v.s6.0c4bc47944be from=translated src=- shape=49c4e7d2 vocab=e5ba57f3
+-/
 theorem regularPrimitive_derivative_continuous [CompleteSpace E] (c : ℕ)
     {f : ℝ → E} (hf : Continuous f) : Continuous (deriv (regularPrimitive c f)) := by
   have he : deriv (regularPrimitive c f) = fun ξ => f ξ - (c : ℝ) • weightedMean c f ξ :=
@@ -806,10 +939,16 @@ abbrev CoefficientPath (R : ℝ) := C(Icc (0 : ℝ) R, Vec →L[ℂ] Vec)
 def extendPath {R : ℝ} (hR : 0 ≤ R) (f : Path R) (ξ : ℝ) : Vec :=
   f (projIcc 0 R hR ξ)
 
+/--
+@isnad1 id=continuo.1h2v.s5.74e73f5d6fca from=translated src=- shape=45edd25d vocab=273cb070
+-/
 theorem extendPath_continuous {R : ℝ} (hR : 0 ≤ R) (f : Path R) :
     Continuous (extendPath hR f) :=
   f.continuous.comp continuous_projIcc
 
+/--
+@isnad1 id=eq.1h3v.s7.8db3e052bf35 from=translated src=- shape=07641322 vocab=4520d3d2
+-/
 theorem extendPath_apply {R : ℝ} (hR : 0 ≤ R) (f : Path R) (ξ : Icc (0 : ℝ) R) :
     extendPath hR f ξ = f ξ := by simp only [extendPath, projIcc_val]
 
@@ -820,6 +959,9 @@ def pathInverseValue {R : ℝ} (hR : 0 ≤ R) (c : Fin 6 → ℕ) (f : Path R) :
       (regularPrimitive_continuous (c i)
         ((continuous_apply i).comp (extendPath_continuous hR f))).comp continuous_subtype_val⟩
 
+/--
+@isnad1 id=le.1h3v.s7.44b7bd0bf9a3 from=translated src=- shape=7ac2a574 vocab=f1771704
+-/
 theorem norm_pathInverseValue_le {R : ℝ} (hR : 0 ≤ R)
     (c : Fin 6 → ℕ) (f : Path R) : ‖pathInverseValue hR c f‖ ≤ R * ‖f‖ := by
   apply (ContinuousMap.norm_le _ (mul_nonneg hR (norm_nonneg f))).mpr
@@ -861,6 +1003,9 @@ def pathInverse {R : ℝ} (hR : 0 ≤ R) (c : Fin 6 → ℕ) : Path R →L[ℂ] 
       rw [intervalIntegral.integral_smul, smul_comm]
   } R (norm_pathInverseValue_le hR c)
 
+/--
+@isnad1 id=eq.1h5v.s10.609452f99a2a from=translated src=- shape=64475cfa vocab=9be45958
+-/
 theorem pathInverse_apply {R : ℝ} (hR : 0 ≤ R) (c : Fin 6 → ℕ)
     (f : Path R) (ξ : Icc (0 : ℝ) R) (i : Fin 6) :
     pathInverse hR c f ξ i =
@@ -871,6 +1016,9 @@ f.continuous⟩`. -/
 noncomputable def coefficientActionValue {R : ℝ} (A : CoefficientPath R) (f : Path R) : Path R :=
   ⟨fun ξ => A ξ (f ξ), A.continuous.clm_apply f.continuous⟩
 
+/--
+@isnad1 id=le.0h3v.s9.61e289ed9729 from=translated src=- shape=24c48d0a vocab=0bd6734d
+-/
 theorem norm_coefficientActionValue_le {R : ℝ} (A : CoefficientPath R) (f : Path R) :
     ‖coefficientActionValue A f‖ ≤ ‖A‖ * ‖f‖ := by
   apply (ContinuousMap.norm_le _ (mul_nonneg (norm_nonneg A) (norm_nonneg f))).mpr
@@ -898,6 +1046,9 @@ def coefficientAction {R : ℝ} : CoefficientPath R →L[ℂ] Path R →L[ℂ] P
       change ‖coefficientActionValue A f‖ ≤ 1 * ‖A‖ * ‖f‖
       simpa only [one_mul] using norm_coefficientActionValue_le A f)
 
+/--
+@isnad1 id=eq.0h4v.s13.d2ddff5847ca from=translated src=- shape=12688fb7 vocab=93bed325
+-/
 theorem coefficientAction_apply {R : ℝ} (A : CoefficientPath R) (f : Path R)
     (ξ : Icc (0 : ℝ) R) : coefficientAction A f ξ = A ξ (f ξ) := rfl
 
@@ -914,6 +1065,9 @@ def pathWord {R : ℝ} (hR : 0 ≤ R) (c : Fin 6 → ℕ)
   | [], F => F
   | b :: w, F => pathLetter hR c A₀ A₁ b (pathWord hR c A₀ A₁ w F)
 
+/--
+@isnad1 id=differen.5h7v.s11.1d80773004bc from=translated src=- shape=2bafe52a vocab=381975b4
+-/
 theorem pathLetter_holomorphic {R : ℝ} (hR : 0 ≤ R) (c : Fin 6 → ℕ)
     {A₀ A₁ : ℂ → CoefficientPath R} {F : ℂ → Path R} {U : Set ℂ}
     (hU : IsOpen U) (hA₀ : DifferentiableOn ℂ A₀ U) (hA₁ : DifferentiableOn ℂ A₁ U)
@@ -928,7 +1082,9 @@ theorem pathLetter_holomorphic {R : ℝ} (hR : 0 ≤ R) (c : Fin 6 → ℕ)
   · exact (pathInverse hR c).differentiable.comp_differentiableOn
       ((hAction.comp_differentiableOn hA₁).clm_apply (hF.deriv hU))
 
-/-- Every finite word is holomorphic before any convergence is asserted. -/
+/-- Every finite word is holomorphic before any convergence is asserted.
+@isnad1 id=differen.5h7v.s11.268e3ac8f587 from=translated src=- shape=846dd06e vocab=e9bb2700
+-/
 theorem pathWord_holomorphic {R : ℝ} (hR : 0 ≤ R) (c : Fin 6 → ℕ)
     {A₀ A₁ : ℂ → CoefficientPath R} {F : ℂ → Path R} {U : Set ℂ}
     (hU : IsOpen U) (hA₀ : DifferentiableOn ℂ A₀ U) (hA₁ : DifferentiableOn ℂ A₁ U)
@@ -942,10 +1098,15 @@ theorem pathWord_holomorphic {R : ℝ} (hR : 0 ≤ R) (c : Fin 6 → ℕ)
 def pathEvaluation {R : ℝ} (ξ : Icc (0 : ℝ) R) (i : Fin 6) : Path R →L[ℂ] ℂ :=
   (ContinuousLinearMap.proj i).comp (ContinuousMap.evalCLM ℂ ξ)
 
+/--
+@isnad1 id=eq.0h4v.s9.782c3c8671f8 from=translated src=- shape=a0575cbe vocab=40bfd7fd
+-/
 theorem pathEvaluation_apply {R : ℝ} (ξ : Icc (0 : ℝ) R) (i : Fin 6) (f : Path R) :
     pathEvaluation ξ i f = f ξ i := rfl
 
-/-- Coordinate evaluation commutes with the genuine complex derivative. -/
+/-- Coordinate evaluation commutes with the genuine complex derivative.
+@isnad1 id=eq.1h5v.s9.20761e5d54c0 from=translated src=- shape=be94a369 vocab=4b33fad0
+-/
 theorem pathEvaluation_deriv {R : ℝ} {F : ℂ → Path R} {z : ℂ}
     (hF : DifferentiableAt ℂ F z) (ξ : Icc (0 : ℝ) R) (i : Fin 6) :
     deriv (fun w => F w ξ i) z = deriv F z ξ i := by
@@ -961,12 +1122,18 @@ def rawCoefficient {R : ℝ} (hR : 0 ≤ R) (A : ℂ → CoefficientPath R) :
     VolterraAnalyticBounds.Coeff :=
   fun r z => LinearMap.toMatrix' (A z (projIcc 0 R hR r)).toLinearMap
 
+/--
+@isnad1 id=eq.1h5v.s9.55b2ee8291aa from=translated src=- shape=ec076e9f vocab=dfb10188
+-/
 theorem rawCoefficient_mulVec {R : ℝ} (hR : 0 ≤ R) (A : ℂ → CoefficientPath R)
     (r : ℝ) (z : ℂ) (v : Vec) :
     (rawCoefficient hR A r z).mulVec v = A z (projIcc 0 R hR r) v := by
   rw [rawCoefficient, ← Matrix.toLin'_apply, Matrix.toLin'_toMatrix']
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s9.f3f094ce0ff0 from=translated src=- shape=ebac11ef vocab=b947c144
+-/
 theorem rawField_deriv {R : ℝ} (hR : 0 ≤ R) {F : ℂ → Path R} {z : ℂ}
     (hF : DifferentiableAt ℂ F z) (r : ℝ) :
     VolterraAnalyticBounds.parameterDeriv (rawField hR F) r z =
@@ -974,11 +1141,16 @@ theorem rawField_deriv {R : ℝ} (hR : 0 ≤ R) {F : ℂ → Path R} {z : ℂ}
   funext i
   exact pathEvaluation_deriv hF (projIcc 0 R hR r) i
 
+/--
+@isnad1 id=mem.2h3v.s6.f477ab3da62d from=translated src=- shape=f6dcc193 vocab=ffb953a1
+-/
 theorem scaled_radius_mem {R r t : ℝ} (hr : r ∈ Icc (0 : ℝ) R)
     (ht : t ∈ Icc (0 : ℝ) 1) : t * r ∈ Icc (0 : ℝ) R :=
   ⟨mul_nonneg ht.1 hr.1, (mul_le_of_le_one_left hr.1 ht.2).trans hr.2⟩
 
-/-- Every path letter is the actual integral/derivative letter on its radial interval. -/
+/-- Every path letter is the actual integral/derivative letter on its radial interval.
+@isnad1 id=eq.3h7v.s8.fc467fc16247 from=translated src=- shape=75024b8d vocab=b00a25dd
+-/
 theorem rawField_pathLetter {R : ℝ} (hR : 0 ≤ R)
     (A₀ A₁ : ℂ → CoefficientPath R) {F : ℂ → Path R} {z : ℂ}
     (hF : DifferentiableAt ℂ F z) (b : Bool) {r : ℝ} (hr : r ∈ Icc (0 : ℝ) R) :
@@ -1001,6 +1173,9 @@ theorem rawField_pathLetter {R : ℝ} (hR : 0 ≤ R)
     simp only [VolterraAnalyticBounds.matrixAction, rawCoefficient_mulVec, rawField_deriv hR hF,
       rawField, extendPath, coefficientAction_apply]
 
+/--
+@isnad1 id=eq.4h9v.s6.5f9bc4b23617 from=translated src=- shape=5034fe2b vocab=2382caee
+-/
 theorem letter_congrOn {R : ℝ} {U : Set ℂ} (hU : IsOpen U)
     (A₀ A₁ : VolterraAnalyticBounds.Coeff) (b : Bool)
     {F G : VolterraAnalyticBounds.Field}
@@ -1029,7 +1204,9 @@ theorem letter_congrOn {R : ℝ} {U : Set ℂ} (hU : IsOpen U)
     have ht' : t ∈ Icc (0 : ℝ) 1 := by simpa only [uIcc_of_le zero_le_one] using ht
     simp only [VolterraAnalyticBounds.matrixAction, hd (t * r) (scaled_radius_mem hr ht')]
 
-/-- The finite path construction represents precisely the raw Volterra words. -/
+/-- The finite path construction represents precisely the raw Volterra words.
+@isnad1 id=eq.7h8v.s11.1d0a289aaf4a from=translated src=- shape=8b2421d1 vocab=939cc409
+-/
 theorem rawField_pathWord {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → CoefficientPath R} {F : ℂ → Path R} {U : Set ℂ}
     (hU : IsOpen U) (hA₀ : DifferentiableOn ℂ A₀ U) (hA₁ : DifferentiableOn ℂ A₁ U)
@@ -1045,6 +1222,9 @@ theorem rawField_pathWord {R : ℝ} (hR : 0 ≤ R)
         ((pathWord_holomorphic hR _ hU hA₀ hA₁ hF w).differentiableAt (hU.mem_nhds hz)) b hr]
       exact letter_congrOn hU _ _ b (fun r hr z hz => ih hr hz) hr hz
 
+/--
+@isnad1 id=analytic.6h8v.s11.ab81a58398a3 from=translated src=- shape=ce339c93 vocab=a56a304c
+-/
 theorem raw_word_analytic {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → CoefficientPath R} {F : ℂ → Path R} {U : Set ℂ}
     (hU : IsOpen U) (hA₀ : DifferentiableOn ℂ A₀ U) (hA₁ : DifferentiableOn ℂ A₁ U)
@@ -1070,11 +1250,17 @@ def binaryWords : ℕ → List (List Bool)
   | 0 => [[]]
   | k + 1 => (binaryWords k).map (List.cons false) ++ (binaryWords k).map (List.cons true)
 
+/--
+@isnad1 id=eq.0h1v.s4.1cc0e55ff5ed from=translated src=- shape=03b7b62c vocab=f04e23ab
+-/
 theorem binaryWords_length (k : ℕ) : (binaryWords k).length = 2 ^ k := by
   induction k with
   | zero => rfl
   | succ k ih => simp [binaryWords, ih, pow_succ, Nat.mul_two]
 
+/--
+@isnad1 id=eq.1h2v.s4.bd3a0bb54255 from=translated src=- shape=a98abcef vocab=dde0df5d
+-/
 theorem length_of_mem_binaryWords {k : ℕ} {w : List Bool} (hw : w ∈ binaryWords k) :
     w.length = k := by
   induction k generalizing w with
@@ -1084,6 +1270,9 @@ theorem length_of_mem_binaryWords {k : ℕ} {w : List Bool} (hw : w ∈ binaryWo
       rcases hw with ⟨v, hv, rfl⟩ | ⟨v, hv, rfl⟩ <;>
         simpa only [List.length_cons] using congrArg Nat.succ (ih hv)
 
+/--
+@isnad1 id=eq.0h4v.s6.c42ee84608ea from=translated src=- shape=0711cec7 vocab=6707e770
+-/
 theorem list_sum_eval {X E : Type*} [AddCommMonoid E] (l : List (X → E)) (x : X) :
     l.sum x = (l.map (fun f => f x)).sum := by
   induction l with
@@ -1091,6 +1280,9 @@ theorem list_sum_eval {X E : Type*} [AddCommMonoid E] (l : List (X → E)) (x : 
   | cons f l ih =>
       simpa only [List.sum_cons, List.map_cons, Pi.add_apply] using congrArg (f x + ·) ih
 
+/--
+@isnad1 id=le.1h3v.s6.2e2a6b6b98d0 from=translated src=- shape=d28cdae9 vocab=536aef24
+-/
 theorem norm_list_sum_le {E : Type*} [SeminormedAddCommGroup E]
     (l : List E) (M : ℝ) (h : ∀ x ∈ l, ‖x‖ ≤ M) :
     ‖l.sum‖ ≤ (l.length : ℝ) * M := by
@@ -1105,6 +1297,9 @@ theorem norm_list_sum_le {E : Type*} [SeminormedAddCommGroup E]
               hy)))
         _ = _ := by ring
 
+/--
+@isnad1 id=differen.1h3v.s7.baccc06afa35 from=translated src=- shape=1ae2e87b vocab=ed791fd8
+-/
 theorem holomorphic_list_sum {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     (l : List (ℂ → E)) {U : Set ℂ} (h : ∀ f ∈ l, DifferentiableOn ℂ f U) :
     DifferentiableOn ℂ l.sum U := by
@@ -1118,6 +1313,9 @@ def layer {R : ℝ} (hR : 0 ≤ R) (c : Fin 6 → ℕ)
     (A₀ A₁ : ℂ → CoefficientPath R) (F : ℂ → Path R) (k : ℕ) : ℂ → Path R :=
   ((binaryWords k).map (fun w => pathWord hR c A₀ A₁ w F)).sum
 
+/--
+@isnad1 id=differen.5h7v.s11.0b28d620439d from=translated src=- shape=e0e64289 vocab=824edac7
+-/
 theorem layer_holomorphic {R : ℝ} (hR : 0 ≤ R) (c : Fin 6 → ℕ)
     {A₀ A₁ : ℂ → CoefficientPath R} {F : ℂ → Path R} {U : Set ℂ}
     (hU : IsOpen U) (hA₀ : DifferentiableOn ℂ A₀ U) (hA₁ : DifferentiableOn ℂ A₁ U)
@@ -1128,10 +1326,16 @@ theorem layer_holomorphic {R : ℝ} (hR : 0 ≤ R) (c : Fin 6 → ℕ)
   rcases List.mem_map.mp hg with ⟨w, hw, rfl⟩
   exact pathWord_holomorphic hR c hU hA₀ hA₁ hF w
 
+/--
+@isnad1 id=eq.1h5v.s5.7d5cf4e498e2 from=translated src=- shape=13511d76 vocab=09ae3455
+-/
 @[simp] theorem layer_zero {R : ℝ} (hR : 0 ≤ R) (c : Fin 6 → ℕ)
     (A₀ A₁ : ℂ → CoefficientPath R) (F : ℂ → Path R) :
     layer hR c A₀ A₁ F 0 = F := by simp [layer, binaryWords, pathWord]
 
+/--
+@isnad1 id=eq.3h8v.s10.441e41396afe from=translated src=- shape=6e6e276e vocab=460e0f6f
+-/
 theorem pathLetter_add {R : ℝ} (hR : 0 ≤ R) (c : Fin 6 → ℕ)
     (A₀ A₁ : ℂ → CoefficientPath R) (b : Bool) {F G : ℂ → Path R} {z : ℂ}
     (hF : DifferentiableAt ℂ F z) (hG : DifferentiableAt ℂ G z) :
@@ -1143,6 +1347,9 @@ theorem pathLetter_add {R : ℝ} (hR : 0 ≤ R) (c : Fin 6 → ℕ)
     rw [deriv_fun_add hF hG]
     simp only [map_add]
 
+/--
+@isnad1 id=eq.4h8v.s9.78616913d67a from=translated src=- shape=9c7dce80 vocab=02667934
+-/
 theorem pathLetter_list_sum {R : ℝ} (hR : 0 ≤ R) (c : Fin 6 → ℕ)
     (A₀ A₁ : ℂ → CoefficientPath R) (b : Bool) (l : List (ℂ → Path R))
     {U : Set ℂ} (hU : IsOpen U) (h : ∀ F ∈ l, DifferentiableOn ℂ F U)
@@ -1157,6 +1364,9 @@ theorem pathLetter_list_sum {R : ℝ} (hR : 0 ≤ R) (c : Fin 6 → ℕ)
           ((holomorphic_list_sum l (fun G hG => h G (List.mem_cons_of_mem _ hG))).differentiableAt
             (hU.mem_nhds hz)), ih (fun G hG => h G (List.mem_cons_of_mem _ hG))]
 
+/--
+@isnad1 id=eq.6h8v.s11.3deee8c649bc from=translated src=- shape=dc216f04 vocab=e7e6cb88
+-/
 theorem layer_succ {R : ℝ} (hR : 0 ≤ R) (c : Fin 6 → ℕ)
     {A₀ A₁ : ℂ → CoefficientPath R} {F : ℂ → Path R} {U : Set ℂ}
     (hU : IsOpen U) (hA₀ : DifferentiableOn ℂ A₀ U) (hA₁ : DifferentiableOn ℂ A₁ U)
@@ -1174,6 +1384,9 @@ theorem layer_succ {R : ℝ} (hR : 0 ≤ R) (c : Fin 6 → ℕ)
   simpa only [layer, binaryWords, List.map_append, List.sum_append, Pi.add_apply,
     List.map_map, Function.comp_def, pathWord] using congrArg₂ (· + ·) hfalse htrue
 
+/--
+@isnad1 id=radialbo.2h5v.s7.78b056edee57 from=translated src=- shape=8bea8ae9 vocab=41252066
+-/
 theorem rawField_bound {R : ℝ} (hR : 0 ≤ R) (F : ℂ → Path R)
     {center : ℂ} {ρ B : ℝ} (hF : ∀ z ∈ Metric.closedBall center ρ, ‖F z‖ ≤ B) :
     VolterraAnalyticBounds.RadialBound (rawField hR F) R center ρ B 0 := by
@@ -1183,6 +1396,9 @@ theorem rawField_bound {R : ℝ} (hR : 0 ≤ R) (F : ℂ → Path R)
   simpa only [rawField, extendPath, pow_zero, Nat.factorial_zero, Nat.cast_one,
     mul_one, div_one] using h.trans (hF z hz)
 
+/--
+@isnad1 id=matrixbo.2h5v.s9.c78b6eb3a264 from=translated src=- shape=dea29667 vocab=fd3f6e00
+-/
 theorem rawCoefficient_bound {R : ℝ} (hR : 0 ≤ R) (A : ℂ → CoefficientPath R)
     {center : ℂ} {ρ M : ℝ} (hA : ∀ z ∈ Metric.closedBall center ρ, ‖A z‖ ≤ M) :
     VolterraAnalyticBounds.MatrixBound (rawCoefficient hR A) R center ρ (6 * M) := by
@@ -1201,6 +1417,9 @@ theorem rawCoefficient_bound {R : ℝ} (hR : 0 ≤ R) (A : ℂ → CoefficientPa
         _ ≤ M := hA z hz
     _ = 6 * M := by simp
 
+/--
+@isnad1 id=le.14h12v.s11.df2ea091ceb8 from=translated src=- shape=4dce05cc vocab=c0714fcd
+-/
 theorem pathWord_bound {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → CoefficientPath R} {F : ℂ → Path R} {U : Set ℂ}
     (hU : IsOpen U) (hA₀ : DifferentiableOn ℂ A₀ U) (hA₁ : DifferentiableOn ℂ A₁ U)
@@ -1228,6 +1447,9 @@ theorem pathWord_bound {R : ℝ} (hR : 0 ≤ R)
     (hDisk (Metric.closedBall_subset_closedBall hgap.le hz))] at hb
   simpa only [rawField, extendPath, projIcc_val] using hb
 
+/--
+@isnad1 id=le.14h12v.s11.87cb9cb7c4de from=translated src=- shape=3d10f9b3 vocab=914d9ed5
+-/
 theorem layer_bound {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → CoefficientPath R} {F : ℂ → Path R} {U : Set ℂ}
     (hU : IsOpen U) (hA₀ : DifferentiableOn ℂ A₀ U) (hA₁ : DifferentiableOn ℂ A₁ U)
@@ -1273,6 +1495,9 @@ variable {R : ℝ} (hR : 0 ≤ R)
 
 include hR hU hA₀ hA₁ hF hDisk hgap hB hM hshape hbA₀ hbA₁ hbF
 
+/--
+@isnad1 id=hassum.14h11v.s12.b46d1e4d7ec0 from=translated src=- shape=e9ab95e0 vocab=6588e213
+-/
 theorem solutionSeries_hasSum {z : ℂ} (hz : z ∈ Metric.closedBall center ρ) :
     HasSum (fun k => layer hR VolterraAnalyticBounds.exponent A₀ A₁ F k z)
       (solutionSeries hR A₀ A₁ F z) := by
@@ -1284,7 +1509,9 @@ theorem solutionSeries_hasSum {z : ℂ} (hz : z ∈ Metric.closedBall center ρ)
     exact layer_bound hR hU hA₀ hA₁ hF hDisk hgap hB hM hshape hbA₀ hbA₁ hbF k hz
 
 /-- The infinite series is a holomorphic map into the space of actual
-continuous radial paths, with no smallness restriction on the coefficients. -/
+continuous radial paths, with no smallness restriction on the coefficients.
+@isnad1 id=differen.13h10v.s12.f92e1ddaf539 from=translated src=- shape=34cb4a53 vocab=3b28dd38
+-/
 theorem solutionSeries_holomorphic :
     DifferentiableOn ℂ (solutionSeries hR A₀ A₁ F) (Metric.ball center ρ) := by
   apply Complex.differentiableOn_tsum_of_summable_norm
@@ -1299,7 +1526,9 @@ theorem solutionSeries_holomorphic :
     exact layer_bound hR hU hA₀ hA₁ hF hDisk hgap hB hM hshape hbA₀ hbA₁ hbF k
       (Metric.ball_subset_closedBall hz)
 
-/-- Actual complex differentiation commutes with the convergent Volterra series. -/
+/-- Actual complex differentiation commutes with the convergent Volterra series.
+@isnad1 id=hassum.14h11v.s12.9e0715b8c103 from=translated src=- shape=689f900d vocab=62233702
+-/
 theorem solutionSeries_deriv_hasSum {z : ℂ} (hz : z ∈ Metric.ball center ρ) :
     HasSum (fun k => deriv (layer hR VolterraAnalyticBounds.exponent A₀ A₁ F k) z)
       (deriv (solutionSeries hR A₀ A₁ F) z) := by
@@ -1317,7 +1546,9 @@ theorem solutionSeries_deriv_hasSum {z : ℂ} (hz : z ∈ Metric.ball center ρ)
   · exact hz
 
 /-- The convergent series solves the genuine integral equation. In
-particular, convergence is not merely convergence of unrelated scalar bounds. -/
+particular, convergence is not merely convergence of unrelated scalar bounds.
+@isnad1 id=eq.14h11v.s14.9db63d66abb7 from=translated src=- shape=7a4ac327 vocab=bc76362c
+-/
 theorem solutionSeries_equation {z : ℂ} (hz : z ∈ Metric.ball center ρ) :
     solutionSeries hR A₀ A₁ F z = F z + pathInverse hR VolterraAnalyticBounds.exponent
       (coefficientAction (A₀ z) (solutionSeries hR A₀ A₁ F z) +
@@ -1348,7 +1579,9 @@ def integralSolution {R : ℝ} (hR : 0 ≤ R)
   solutionSeries hR A₀ A₁ (fun z => pathInverse hR VolterraAnalyticBounds.exponent (f z))
 
 /-- Compactness supplies all coefficient bounds. Thus the actual solution
-theorem assumes neither a word bound nor convergence of its defining series. -/
+theorem assumes neither a word bound nor convergence of its defining series.
+@isnad1 id=and.8h8v.s14.6871d0fa7f9b from=translated src=- shape=b5ca4283 vocab=2cd00f94
+-/
 theorem integralSolution_spec {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → CoefficientPath R} {f : ℂ → Path R} {U : Set ℂ}
     (hU : IsOpen U) (hA₀ : DifferentiableOn ℂ A₀ U) (hA₁ : DifferentiableOn ℂ A₁ U)
@@ -1401,6 +1634,9 @@ def liftedField {R : ℝ} (hR : 0 ≤ R) (A₀ A₁ : ℂ → CoefficientPath R)
   fun r z i => regularPrimitive (VolterraAnalyticBounds.exponent i)
     (fun s => extendPath hR (rhsPath A₀ A₁ f W z) s i) r
 
+/--
+@isnad1 id=hasderiv.1h8v.s7.d0e019ddec68 from=translated src=- shape=94fdb5ae vocab=cf62a048
+-/
 theorem liftedField_hasDerivAt {R : ℝ} (hR : 0 ≤ R) (A₀ A₁ : ℂ → CoefficientPath R)
     (f W : ℂ → Path R) (r : ℝ) (z : ℂ) (i : Fin 6) :
     HasDerivAt (fun s => liftedField hR A₀ A₁ f W s z i)
@@ -1409,17 +1645,26 @@ theorem liftedField_hasDerivAt {R : ℝ} (hR : 0 ≤ R) (A₀ A₁ : ℂ → Coe
           (fun s => extendPath hR (rhsPath A₀ A₁ f W z) s i) r) r :=
   regularPrimitive_hasDerivAt _ ((continuous_apply i).comp (extendPath_continuous hR _)) r
 
+/--
+@isnad1 id=continuo.1h7v.s6.0034c159b6a5 from=translated src=- shape=f9ec2172 vocab=9ab7e8d5
+-/
 theorem liftedField_derivative_continuous {R : ℝ} (hR : 0 ≤ R)
     (A₀ A₁ : ℂ → CoefficientPath R) (f W : ℂ → Path R) (z : ℂ) (i : Fin 6) :
     Continuous (deriv (fun r => liftedField hR A₀ A₁ f W r z i)) :=
   regularPrimitive_derivative_continuous _ ((continuous_apply i).comp (extendPath_continuous hR _))
 
+/--
+@isnad1 id=eq.1h6v.s6.d6358d219f50 from=translated src=- shape=1ad94cb1 vocab=71e97b67
+-/
 theorem liftedField_axis_zero {R : ℝ} (hR : 0 ≤ R)
     (A₀ A₁ : ℂ → CoefficientPath R) (f W : ℂ → Path R) (z : ℂ) :
     liftedField hR A₀ A₁ f W 0 z = 0 := by
   funext i
   exact regularPrimitive_zero _ _
 
+/--
+@isnad1 id=eq.3h7v.s10.813fe09b7383 from=translated src=- shape=6b7adc2e vocab=4bb7ff5c
+-/
 theorem liftedField_eq_trace {R : ℝ} (hR : 0 ≤ R)
     (A₀ A₁ : ℂ → CoefficientPath R) (f W : ℂ → Path R) {z : ℂ}
     (hW : W z = pathInverse hR VolterraAnalyticBounds.exponent (rhsPath A₀ A₁ f W z))
@@ -1466,6 +1711,9 @@ variable {R : ℝ} (hR : 0 ≤ R)
 
 include hU hWholo hW
 
+/--
+@isnad1 id=eq.6h8v.s10.6907c5e133be from=translated src=- shape=0b61c64c vocab=7c9884ff
+-/
 theorem liftedField_parameterDeriv {r : ℝ} (hr : r ∈ Icc (0 : ℝ) R)
     {z : ℂ} (hz : z ∈ U) :
     VolterraAnalyticBounds.parameterDeriv (liftedField hR A₀ A₁ f W) r z =
@@ -1477,6 +1725,9 @@ theorem liftedField_parameterDeriv {r : ℝ} (hr : r ∈ Icc (0 : ℝ) R)
   exact congrFun (liftedField_eq_trace hR A₀ A₁ f W (hW w hw) hr) i
 
 omit hU in
+/--
+@isnad1 id=differen.4h8v.s10.19721844ff02 from=translated src=- shape=cc3e2c52 vocab=6288c009
+-/
 theorem liftedField_holomorphic {r : ℝ} (hr : r ∈ Icc (0 : ℝ) R) (i : Fin 6) :
     DifferentiableOn ℂ (fun z => liftedField hR A₀ A₁ f W r z i) U := by
   have hh := (pathEvaluation (projIcc 0 R hR r) i).differentiable.comp_differentiableOn hWholo
@@ -1484,6 +1735,9 @@ theorem liftedField_holomorphic {r : ℝ} (hr : r ∈ Icc (0 : ℝ) R) (i : Fin 
   intro z hz
   exact congrFun (liftedField_eq_trace hR A₀ A₁ f W (hW z hz) hr) i
 
+/--
+@isnad1 id=eq.6h8v.s10.6a6676fa3116 from=translated src=- shape=2318eb11 vocab=c8235999
+-/
 theorem liftedField_rhs {r : ℝ} (hr : r ∈ Icc (0 : ℝ) R) {z : ℂ} (hz : z ∈ U) :
     extendPath hR (rhsPath A₀ A₁ f W z) r =
       equationRHS (rawCoefficient hR A₀) (rawCoefficient hR A₁) (rawField hR f)
@@ -1495,6 +1749,9 @@ theorem liftedField_rhs {r : ℝ} (hr : r ∈ Icc (0 : ℝ) R) {z : ℂ} (hz : z
   rfl
 
 omit hU in
+/--
+@isnad1 id=continuo.3h6v.s10.338ac50db7dd from=translated src=- shape=7d23e4e2 vocab=2ba62f02
+-/
 theorem liftedField_jointly_continuous :
     ContinuousOn (fun p : ℝ × ℂ => liftedField hR A₀ A₁ f W p.1 p.2)
       (Icc (0 : ℝ) R ×ˢ U) := by
@@ -1509,6 +1766,9 @@ theorem liftedField_jointly_continuous :
   intro p hp
   exact liftedField_eq_trace hR A₀ A₁ f W (hW p.2 hp.2) hp.1
 
+/--
+@isnad1 id=isregula.4h6v.s10.2eabade148aa from=translated src=- shape=06c22bb9 vocab=23265fc0
+-/
 theorem liftedField_isRegularSolution :
     IsRegularSolution R U (rawCoefficient hR A₀) (rawCoefficient hR A₁)
       (rawField hR f) (liftedField hR A₀ A₁ f W) := by
@@ -1546,7 +1806,9 @@ end LiftSolution
 
 /-- A regular solution on any prescribed finite radial interval. Only
 the parameter neighborhood is reduced; coefficient size places no upper
-bound on the length of the radial interval. -/
+bound on the length of the radial interval.
+@isnad1 id=ex.8h8v.s11.fd37ba65019b from=translated src=- shape=addc254f vocab=1122120b
+-/
 theorem exists_regular_solution {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → CoefficientPath R} {f : ℂ → Path R} {U : Set ℂ}
     (hU : IsOpen U) (hA₀ : DifferentiableOn ℂ A₀ U) (hA₁ : DifferentiableOn ℂ A₁ U)
@@ -1561,6 +1823,9 @@ theorem exists_regular_solution {R : ℝ} (hR : 0 ≤ R)
     liftedField_isRegularSolution hR A₀ A₁ f (integralSolution hR A₀ A₁ f)
       Metric.isOpen_ball holo heq⟩
 
+/--
+@isnad1 id=eq.7h7v.s14.d664dcd249a4 from=translated src=- shape=29c231e0 vocab=80483a60
+-/
 theorem homogeneous_layer_eq {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → CoefficientPath R} {V : ℂ → Path R} {U : Set ℂ}
     (hU : IsOpen U) (hA₀ : DifferentiableOn ℂ A₀ U) (hA₁ : DifferentiableOn ℂ A₁ U)
@@ -1580,6 +1845,9 @@ theorem homogeneous_layer_eq {R : ℝ} (hR : 0 ≤ R)
       rw [ih hz, hevent.deriv_eq, ← map_add]
       exact (heq z hz).symm
 
+/--
+@isnad1 id=eq.15h11v.s14.bde1ee4fe3ac from=translated src=- shape=430dd0d3 vocab=cc644ffa
+-/
 theorem homogeneous_zero_on_closedDisk {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → CoefficientPath R} {V : ℂ → Path R} {U : Set ℂ}
     (hU : IsOpen U) (hA₀ : DifferentiableOn ℂ A₀ U) (hA₁ : DifferentiableOn ℂ A₁ U)
@@ -1602,7 +1870,9 @@ theorem homogeneous_zero_on_closedDisk {R : ℝ} (hR : 0 ≤ R)
   exact norm_eq_zero.mp (le_antisymm hnorm (norm_nonneg _))
 
 /-- Local compact bounds and the convergent majorant force every
-holomorphic homogeneous zero-axis solution to vanish. -/
+holomorphic homogeneous zero-axis solution to vanish.
+@isnad1 id=eq.8h6v.s14.b85d5144949b from=translated src=- shape=93416df1 vocab=c1f14208
+-/
 theorem homogeneous_solution_zero {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → CoefficientPath R} {V : ℂ → Path R} {U : Set ℂ}
     (hU : IsOpen U) (hA₀ : DifferentiableOn ℂ A₀ U) (hA₁ : DifferentiableOn ℂ A₁ U)
@@ -1636,7 +1906,9 @@ theorem homogeneous_solution_zero {R : ℝ} (hR : 0 ≤ R)
     (Metric.mem_closedBall_self (show 0 ≤ δ / 4 by positivity))
 
 /-- Uniqueness in the holomorphic continuous-path class, with all local
-growth bounds derived from compactness. -/
+growth bounds derived from compactness.
+@isnad1 id=eqon.9h7v.s12.56759bfbc384 from=translated src=- shape=e0a016e3 vocab=fb02621e
+-/
 theorem integral_solution_unique {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → CoefficientPath R} {f W₀ W₁ : ℂ → Path R} {U : Set ℂ}
     (hU : IsOpen U) (hA₀ : DifferentiableOn ℂ A₀ U) (hA₁ : DifferentiableOn ℂ A₁ U)
@@ -1666,7 +1938,9 @@ theorem integral_solution_unique {R : ℝ} (hR : 0 ≤ R)
 
 /-- The same canonical series works locally on every disk in an arbitrary
 open parameter domain. Consequently its values are holomorphic on that
-domain; uniform estimates are taken on smaller compact neighborhoods. -/
+domain; uniform estimates are taken on smaller compact neighborhoods.
+@isnad1 id=and.6h5v.s12.f61545453740 from=translated src=- shape=b4ecd7df vocab=3197ebf1
+-/
 theorem integralSolution_spec_open {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → CoefficientPath R} {f : ℂ → Path R} {U : Set ℂ}
     (hU : IsOpen U) (hA₀ : DifferentiableOn ℂ A₀ U) (hA₁ : DifferentiableOn ℂ A₁ U)
@@ -1691,7 +1965,9 @@ theorem integralSolution_spec_open {R : ℝ} (hR : 0 ≤ R)
   exact ⟨fun z hz => (hlocal z hz).1.differentiableWithinAt, fun z hz => (hlocal z hz).2⟩
 
 /-- Existence on any finite radial interval and any open parameter
-neighborhood carrying the fixed holomorphic input data. -/
+neighborhood carrying the fixed holomorphic input data.
+@isnad1 id=ex.6h5v.s11.93b17d129c93 from=translated src=- shape=f0855c5a vocab=5c3923bb
+-/
 theorem exists_regular_solution_open {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → CoefficientPath R} {f : ℂ → Path R} {U : Set ℂ}
     (hU : IsOpen U) (hA₀ : DifferentiableOn ℂ A₀ U) (hA₁ : DifferentiableOn ℂ A₁ U)
@@ -1703,7 +1979,9 @@ theorem exists_regular_solution_open {R : ℝ} (hR : 0 ≤ R)
   exact ⟨liftedField hR A₀ A₁ f (integralSolution hR A₀ A₁ f),
     liftedField_isRegularSolution hR A₀ A₁ f (integralSolution hR A₀ A₁ f) hU holo heq⟩
 
-/-- Zero axis data make the axis derivative depend only on the given forcing. -/
+/-- Zero axis data make the axis derivative depend only on the given forcing.
+@isnad1 id=eq.3h8v.s7.c72c8431d890 from=translated src=- shape=43fd3bca vocab=169ac87a
+-/
 theorem IsRegularSolution.axis_derivative_eq_forcing
     {R : ℝ} {U : Set ℂ} {A₀ A₁ : VolterraAnalyticBounds.Coeff}
     {f W : VolterraAnalyticBounds.Field} (hsol : IsRegularSolution R U A₀ A₁ f W)
@@ -1745,12 +2023,21 @@ ContinuousLinearMap.proj i)`. -/
 noncomputable def parityVec : Vec →L[ℂ] Vec :=
   ContinuousLinearMap.pi (fun i => paritySign i • ContinuousLinearMap.proj i)
 
+/--
+@isnad1 id=eq.0h2v.s8.690a34439595 from=translated src=- shape=7317f8f1 vocab=f670231f
+-/
 @[simp] theorem parityVec_apply (v : Vec) (i : Fin 6) :
     parityVec v i = paritySign i * v i := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.fd12af5dc368 from=translated src=- shape=4975ee10 vocab=4fe73ecf
+-/
 @[simp] theorem paritySign_mul_self (i : Fin 6) : paritySign i * paritySign i = 1 := by
   by_cases hi : i.val < 4 <;> simp [paritySign, hi]
 
+/--
+@isnad1 id=eq.0h1v.s9.357769511092 from=translated src=- shape=f29aefcb vocab=df50dd4c
+-/
 @[simp] theorem parityVec_involutive (v : Vec) : parityVec (parityVec v) = v := by
   funext i
   simp only [parityVec_apply, ← mul_assoc, paritySign_mul_self, one_mul]
@@ -1783,22 +2070,37 @@ noncomputable def reflectCoeff (A : Coeff) : Coeff := fun r z => -A (-r) z
 /-- Reflected forcing, defined pointwise by `-f (-r) z`. -/
 noncomputable def reflectedForcing (f : Field) : Field := fun r z => -f (-r) z
 
+/--
+@isnad1 id=eq.0h1v.s3.8537610b32f6 from=translated src=- shape=47dcad53 vocab=4827ec88
+-/
 @[simp] theorem reflectField_twice (W : Field) : reflectField (reflectField W) = W := by
   funext r z
   simp [reflectField]
 
+/--
+@isnad1 id=eq.0h1v.s3.784fd4a54f5a from=translated src=- shape=47dcad53 vocab=d3c17bcc
+-/
 @[simp] theorem reflectCoeff_twice (A : Coeff) : reflectCoeff (reflectCoeff A) = A := by
   funext r z
   simp [reflectCoeff]
 
+/--
+@isnad1 id=eq.0h1v.s3.1030d00ccc31 from=translated src=- shape=47dcad53 vocab=b03e9f5d
+-/
 @[simp] theorem reflectedForcing_twice (f : Field) :
     reflectedForcing (reflectedForcing f) = f := by
   funext r z
   simp [reflectedForcing]
 
+/--
+@isnad1 id=eq.0h1v.s3.ae9a91a4ba39 from=translated src=- shape=2e76f3a7 vocab=27aea38f
+-/
 @[simp] theorem parameterDeriv_reflect (W : Field) :
     parameterDeriv (reflectField W) = reflectField (parameterDeriv W) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.c58cc627ac6b from=translated src=- shape=17232a41 vocab=380901d1
+-/
 theorem equationRHS_reflect (A₀ A₁ : Coeff) (f W : Field) :
     equationRHS (reflectCoeff A₀) (reflectCoeff A₁) (reflectedForcing f) (reflectField W) =
       reflectedForcing (equationRHS A₀ A₁ f W) := by
@@ -1808,13 +2110,18 @@ theorem equationRHS_reflect (A₀ A₁ : Coeff) (f W : Field) :
   ring
 
 /-- The sign from radial reflection is exactly the sign in the reflected
-forcing. This is an identity of actual Bochner integrals. -/
+forcing. This is an identity of actual Bochner integrals.
+@isnad1 id=eq.0h1v.s3.32c3f10a3fd8 from=translated src=- shape=2e76f3a7 vocab=c059df02
+-/
 theorem radialInverse_reflect (F : Field) :
     radialInverse (reflectedForcing F) = reflectField (radialInverse F) := by
   funext r z i
   simp [radialInverse, reflectedForcing, reflectField, smul_neg,
     intervalIntegral.integral_neg, mul_neg, neg_smul]
 
+/--
+@isnad1 id=eq.0h4v.s4.8898978dcfeb from=translated src=- shape=061bd30f vocab=0eea6dc4
+-/
 theorem radialInverse_equationRHS_reflect (A₀ A₁ : Coeff) (f W : Field) :
     radialInverse (equationRHS (reflectCoeff A₀) (reflectCoeff A₁)
       (reflectedForcing f) (reflectField W)) =
@@ -1825,6 +2132,9 @@ theorem radialInverse_equationRHS_reflect (A₀ A₁ : Coeff) (f W : Field) :
 def IntegralEquationOn (S : Set ℝ) (U : Set ℂ) (A₀ A₁ : Coeff) (f W : Field) : Prop :=
   ∀ r ∈ S, ∀ z ∈ U, W r z = radialInverse (equationRHS A₀ A₁ f W) r z
 
+/--
+@isnad1 id=integral.1h6v.s5.ee6916c0234e from=translated src=- shape=6fc7a0b4 vocab=6b19280d
+-/
 theorem IntegralEquationOn.reflect {S : Set ℝ} {U : Set ℂ}
     {A₀ A₁ : Coeff} {f W : Field} (h : IntegralEquationOn S U A₀ A₁ f W) :
     IntegralEquationOn {r | -r ∈ S} U (reflectCoeff A₀) (reflectCoeff A₁)
@@ -1833,6 +2143,9 @@ theorem IntegralEquationOn.reflect {S : Set ℝ} {U : Set ℂ}
   rw [radialInverse_equationRHS_reflect]
   exact h (-r) hr z hz
 
+/--
+@isnad1 id=integral.1h6v.s5.29d210388d3e from=translated src=- shape=da438e94 vocab=f6e4dfdf
+-/
 theorem negativeHalf_equation {R : ℝ} {U : Set ℂ} {A₀ A₁ : Coeff} {f W : Field}
     (h : IntegralEquationOn (Icc 0 R) U (reflectCoeff A₀) (reflectCoeff A₁)
       (reflectedForcing f) W) :
@@ -1845,9 +2158,15 @@ theorem negativeHalf_equation {R : ℝ} {U : Set ℂ} {A₀ A₁ : Coeff} {f W :
 noncomputable def glue (Wp Wm : Field) : Field :=
   fun r z => if 0 ≤ r then Wp r z else Wm (-r) z
 
+/--
+@isnad1 id=eq.1h4v.s4.8a82de2fc5df from=translated src=- shape=05d81083 vocab=986b9006
+-/
 theorem glue_nonneg (Wp Wm : Field) {r : ℝ} (hr : 0 ≤ r) (z : ℂ) :
     glue Wp Wm r z = Wp r z := by simp [glue, hr]
 
+/--
+@isnad1 id=eq.2h4v.s5.5ed3a53bc8ed from=translated src=- shape=c402fbde vocab=d17b397e
+-/
 theorem glue_nonpos {Wp Wm : Field} (h0 : ∀ z, Wp 0 z = Wm 0 z)
     {r : ℝ} (hr : r ≤ 0) (z : ℂ) : glue Wp Wm r z = Wm (-r) z := by
   by_cases hr0 : r = 0
@@ -1855,6 +2174,9 @@ theorem glue_nonpos {Wp Wm : Field} (h0 : ∀ z, Wp 0 z = Wm 0 z)
     simpa [glue] using h0 z
   · simp [glue, show ¬ 0 ≤ r by exact not_le.mpr (lt_of_le_of_ne hr hr0)]
 
+/--
+@isnad1 id=eq.1h7v.s5.16e7ad4bb295 from=translated src=- shape=8b3654ac vocab=f6c76ebd
+-/
 theorem equationRHS_congr_at {A₀ A₁ : Coeff} {f W V : Field} {r : ℝ}
     (h : ∀ z, W r z = V r z) (z : ℂ) :
     equationRHS A₀ A₁ f W r z = equationRHS A₀ A₁ f V r z := by
@@ -1866,6 +2188,9 @@ theorem equationRHS_congr_at {A₀ A₁ : Coeff} {f W V : Field} {r : ℝ}
   simp only [equationRHS, matrixAction]
   rw [h z, hd]
 
+/--
+@isnad1 id=eq.1h4v.s6.381a9802b38a from=translated src=- shape=9827258e vocab=c493d1bc
+-/
 theorem radialInverse_congr_at {F G : Field} {r : ℝ} {z : ℂ}
     (h : ∀ t ∈ Icc (0 : ℝ) 1, F (t * r) z = G (t * r) z) :
     radialInverse F r z = radialInverse G r z := by
@@ -1878,7 +2203,9 @@ theorem radialInverse_congr_at {F G : Field} {r : ℝ} {z : ℂ}
   rw [congrFun (h t (by simpa only [uIcc_of_le zero_le_one] using ht)) i]
 
 /-- Gluing solves the equation on the entire symmetric interval. Equality
-of the axis traces is the only matching fact needed for this identity. -/
+of the axis traces is the only matching fact needed for this identity.
+@isnad1 id=integral.3h7v.s6.685c19f8d3ff from=translated src=- shape=aa396449 vocab=70cebab7
+-/
 theorem glue_integralEquation {R : ℝ} {U : Set ℂ} {A₀ A₁ : Coeff}
     {f Wp Wm : Field} (h0 : ∀ z, Wp 0 z = Wm 0 z)
     (hp : IntegralEquationOn (Icc 0 R) U A₀ A₁ f Wp)
@@ -1900,6 +2227,9 @@ theorem glue_integralEquation {R : ℝ} {U : Set ℂ} {A₀ A₁ : Coeff}
     exact (equationRHS_congr_at
       (fun w => glue_nonpos h0 (mul_nonpos_of_nonneg_of_nonpos ht.1 hs') w) z).symm
 
+/--
+@isnad1 id=differen.3h6v.s8.587d8c9f8c2e from=translated src=- shape=a7e54daa vocab=a9fdfb84
+-/
 theorem glue_parameter_holomorphic {R : ℝ} {U : Set ℂ} {Wp Wm : Field}
     (hp : ∀ r ∈ Icc 0 R, ∀ i, DifferentiableOn ℂ (fun z => Wp r z i) U)
     (hm : ∀ r ∈ Icc 0 R, ∀ i, DifferentiableOn ℂ (fun z => Wm r z i) U)
@@ -1910,6 +2240,9 @@ theorem glue_parameter_holomorphic {R : ℝ} {U : Set ℂ} {Wp Wm : Field}
   · have hn : -r ∈ Icc 0 R := ⟨neg_nonneg.mpr (le_of_not_ge hs), by linarith [hr.1]⟩
     simpa [glue, hs] using hm (-r) hn i
 
+/--
+@isnad1 id=continuo.3h4v.s8.869ac742b913 from=translated src=- shape=bc27b93f vocab=f3a9594f
+-/
 theorem glue_jointly_continuous {R : ℝ} {U : Set ℂ} {Wp Wm : Field}
     (h0 : ∀ z ∈ U, Wp 0 z = Wm 0 z)
     (hp : ContinuousOn (fun p : ℝ × ℂ => Wp p.1 p.2) (Icc 0 R ×ˢ U))
@@ -1994,18 +2327,27 @@ noncomputable def sideData {R : ℝ} {E : Type*}
     (F : ℂ → SymmetricPath R E) : ℂ → C(Icc (0 : ℝ) R, E) :=
   fun z => signedRestriction hR b (F z)
 
+/--
+@isnad1 id=eq.1h5v.s8.364bf84f1f40 from=translated src=- shape=15fcf53c vocab=a56f4b1d
+-/
 @[simp] theorem sideData_false {R : ℝ} {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℂ E] (hR : 0 ≤ R)
     (F : ℂ → SymmetricPath R E) (z : ℂ) (x : Icc (0 : ℝ) R) :
     sideData hR false F z x = F z (positiveEmbedding hR x) := by
   simp [sideData, signedRestriction, sideRestriction, sideEmbedding]
 
+/--
+@isnad1 id=eq.1h5v.s8.4e56b8abd844 from=translated src=- shape=f4d498bf vocab=c76f520c
+-/
 @[simp] theorem sideData_true {R : ℝ} {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℂ E] (hR : 0 ≤ R)
     (F : ℂ → SymmetricPath R E) (z : ℂ) (x : Icc (0 : ℝ) R) :
     sideData hR true F z x = -F z (negativeEmbedding hR x) := by
   simp [sideData, signedRestriction, sideRestriction, sideEmbedding]
 
+/--
+@isnad1 id=differen.2h5v.s9.066acabf688b from=translated src=- shape=9a831d77 vocab=e791e36a
+-/
 theorem sideData_holomorphic {R : ℝ} {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℂ E] (hR : 0 ≤ R) (b : Bool)
     {F : ℂ → SymmetricPath R E} {U : Set ℂ} (hF : DifferentiableOn ℂ F U) :
@@ -2023,6 +2365,9 @@ noncomputable def symmetricRawCoefficient {R : ℝ} (hR : 0 ≤ R)
     (A : ℂ → SymmetricCoefficientPath R) : Coeff :=
   fun r z => LinearMap.toMatrix' (A z (projIcc (-R) R (by linarith) r)).toLinearMap
 
+/--
+@isnad1 id=eq.2h4v.s7.9b71465b73f8 from=translated src=- shape=a207ed98 vocab=47b6c6eb
+-/
 theorem sideRawField_pos {R : ℝ} (hR : 0 ≤ R)
     (F : ℂ → SymmetricPath R Vec) {r : ℝ} (hr : r ∈ Icc 0 R) (z : ℂ) :
     NilpotentVolterra.rawField hR (sideData hR false F) r z =
@@ -2033,6 +2378,9 @@ theorem sideRawField_pos {R : ℝ} (hR : 0 ≤ R)
     ⟨(neg_nonpos.mpr hR).trans hr.1, hr.2⟩]
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s7.1e416d73769d from=translated src=- shape=a6e159ea vocab=5f0d10b8
+-/
 theorem sideRawField_neg {R : ℝ} (hR : 0 ≤ R)
     (F : ℂ → SymmetricPath R Vec) {r : ℝ} (hr : r ∈ Icc 0 R) (z : ℂ) :
     NilpotentVolterra.rawField hR (sideData hR true F) r z =
@@ -2043,6 +2391,9 @@ theorem sideRawField_neg {R : ℝ} (hR : 0 ≤ R)
     ⟨neg_le_neg hr.2, (neg_nonpos.mpr hr.1).trans hR⟩]
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s9.48b925731a43 from=translated src=- shape=0e62cf3e vocab=a1137dd4
+-/
 theorem sideRawCoefficient_pos {R : ℝ} (hR : 0 ≤ R)
     (A : ℂ → SymmetricCoefficientPath R) {r : ℝ} (hr : r ∈ Icc 0 R) (z : ℂ) :
     NilpotentVolterra.rawCoefficient hR (sideData hR false A) r z =
@@ -2052,6 +2403,9 @@ theorem sideRawCoefficient_pos {R : ℝ} (hR : 0 ≤ R)
     ⟨(neg_nonpos.mpr hR).trans hr.1, hr.2⟩]
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s9.eb7c700418b1 from=translated src=- shape=518298a2 vocab=9c450967
+-/
 theorem sideRawCoefficient_neg {R : ℝ} (hR : 0 ≤ R)
     (A : ℂ → SymmetricCoefficientPath R) {r : ℝ} (hr : r ∈ Icc 0 R) (z : ℂ) :
     NilpotentVolterra.rawCoefficient hR (sideData hR true A) r z =
@@ -2063,6 +2417,9 @@ theorem sideRawCoefficient_neg {R : ℝ} (hR : 0 ≤ R)
   ext i j
   rfl
 
+/--
+@isnad1 id=derivati.2h3v.s9.471433b6ede8 from=translated src=- shape=f8b049bb vocab=1898adec
+-/
 theorem side_shape {R : ℝ} (hR : 0 ≤ R)
     {A : ℂ → SymmetricCoefficientPath R}
     (hA : DerivativeShape (symmetricRawCoefficient hR A)) (b : Bool) :
@@ -2081,7 +2438,9 @@ theorem side_shape {R : ℝ} (hR : 0 ≤ R)
       rw [hA (-s) z i j hij, neg_zero]
 
 /-- The positive solver's lifted function satisfies the normalized integral
-equation, including its value at zero. -/
+equation, including its value at zero.
+@isnad1 id=integral.4h6v.s10.f53131e9718c from=translated src=- shape=ef51b2b5 vocab=80925540
+-/
 theorem lifted_integralEquation {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → NilpotentVolterra.CoefficientPath R}
     {f W : ℂ → NilpotentVolterra.Path R} {U : Set ℂ}
@@ -2099,6 +2458,9 @@ theorem lifted_integralEquation {R : ℝ} (hR : 0 ≤ R)
   exact NilpotentVolterra.liftedField_rhs hR A₀ A₁ f W hU hWholo hW
     (NilpotentVolterra.scaled_radius_mem hr ht) hz
 
+/--
+@isnad1 id=integral.4h9v.s7.baf4da7a9c8e from=translated src=- shape=39996ac5 vocab=b84fc9d5
+-/
 theorem positive_equation_change_data {R : ℝ} {U : Set ℂ}
     {A₀ A₁ B₀ B₁ : Coeff} {f g W : Field}
     (h : IntegralEquationOn (Icc 0 R) U A₀ A₁ f W)
@@ -2126,6 +2488,9 @@ noncomputable def symmetricSolution {R : ℝ} (hR : 0 ≤ R)
     (A₀ A₁ : ℂ → SymmetricCoefficientPath R) (f : ℂ → SymmetricPath R Vec) : Field :=
   glue (sideSolution hR false A₀ A₁ f) (sideSolution hR true A₀ A₁ f)
 
+/--
+@isnad1 id=and.6h6v.s12.c230d25f4c4f from=translated src=- shape=03d49ada vocab=a84c3c30
+-/
 theorem sideSolution_spec {R : ℝ} (hR : 0 ≤ R) (b : Bool)
     {A₀ A₁ : ℂ → SymmetricCoefficientPath R} {f : ℂ → SymmetricPath R Vec}
     {U : Set ℂ} (hU : IsOpen U)
@@ -2149,7 +2514,9 @@ theorem sideSolution_spec {R : ℝ} (hR : 0 ≤ R) (b : Bool)
     NilpotentVolterra.liftedField_axis_zero hR _ _ _ _⟩
 
 /-- Actual existence on a symmetric radial interval. Only holomorphy in
-the parameter and continuity in the radial coordinate are used here. -/
+the parameter and continuity in the radial coordinate are used here.
+@isnad1 id=issymmet.6h5v.s11.ba5d3162afe2 from=translated src=- shape=82d6387c vocab=a8f17280
+-/
 theorem symmetricSolution_spec {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → SymmetricCoefficientPath R} {f : ℂ → SymmetricPath R Vec}
     {U : Set ℂ} (hU : IsOpen U)
@@ -2187,6 +2554,9 @@ theorem symmetricSolution_spec {R : ℝ} (hR : 0 ≤ R)
     integral_equation := glue_integralEquation hzero hpEq' hmEq'
     axis_zero := fun z _ => (glue_nonneg _ _ le_rfl z).trans (hpZero z) }
 
+/--
+@isnad1 id=ex.6h5v.s11.dd7138e5f1c8 from=translated src=- shape=018f64e5 vocab=1af6ca74
+-/
 theorem exists_symmetric_integral_solution {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → SymmetricCoefficientPath R} {f : ℂ → SymmetricPath R Vec}
     {U : Set ℂ} (hU : IsOpen U)
@@ -2197,6 +2567,9 @@ theorem exists_symmetric_integral_solution {R : ℝ} (hR : 0 ≤ R)
       (symmetricRawCoefficient hR A₁) (symmetricRawField hR f) W :=
   ⟨symmetricSolution hR A₀ A₁ f, symmetricSolution_spec hR hU hA₀ hA₁ hf hshape⟩
 
+/--
+@isnad1 id=eq.3h6v.s9.87888def7a50 from=translated src=- shape=848c7e22 vocab=bd0ca963
+-/
 theorem reflected_matrix_parity {S : Set ℝ} {U : Set ℂ} {A : Coeff}
     (hA : CoefficientParityOn S U A) {r : ℝ} (hr : r ∈ S)
     {z : ℂ} (hz : z ∈ U) (v : Vec) :
@@ -2211,6 +2584,9 @@ theorem reflected_matrix_parity {S : Set ℝ} {U : Set ℂ} {A : Coeff}
     _ = paritySign i * A r z i j * (paritySign j * paritySign j) * v j := by ring
     _ = _ := by rw [paritySign_mul_self]; ring
 
+/--
+@isnad1 id=eq.3h5v.s8.61627f48c28b from=translated src=- shape=5172e4a4 vocab=82990bdc
+-/
 theorem reflected_forcing_parity {S : Set ℝ} {U : Set ℂ} {f : Field}
     (hf : ForcingParityOn S U f) {r : ℝ} (hr : r ∈ S) {z : ℂ} (hz : z ∈ U) :
     reflectedForcing f r z = parityVec (f r z) := by
@@ -2224,20 +2600,31 @@ noncomputable def parityPath (R : ℝ) :
     NilpotentVolterra.Path R →L[ℂ] NilpotentVolterra.Path R :=
   ContinuousLinearMap.compLeftContinuous ℂ (Icc (0 : ℝ) R) parityVec
 
+/--
+@isnad1 id=eq.0h3v.s10.7442a4357df6 from=translated src=- shape=207b607a vocab=b684819d
+-/
 @[simp] theorem parityPath_apply {R : ℝ} (W : NilpotentVolterra.Path R)
     (r : Icc (0 : ℝ) R) : parityPath R W r = parityVec (W r) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s11.b7b2b181b378 from=translated src=- shape=5dbefae5 vocab=f203807d
+-/
 @[simp] theorem parityPath_involutive {R : ℝ} (W : NilpotentVolterra.Path R) :
     parityPath R (parityPath R W) = W := by
   ext r i
   exact congrFun (parityVec_involutive (W r)) i
 
+/--
+@isnad1 id=eq.1h3v.s11.737b022ed2dc from=translated src=- shape=40e1aa9b vocab=d5cf145e
+-/
 theorem parityPath_deriv {R : ℝ} {W : ℂ → NilpotentVolterra.Path R} {z : ℂ}
     (hW : DifferentiableAt ℂ W z) :
     deriv (fun w => parityPath R (W w)) z = parityPath R (deriv W z) :=
   ((parityPath R).hasFDerivAt.comp_hasDerivAt z hW.hasDerivAt).deriv
 
-/-- The diagonal parity action commutes with the actual radial integral. -/
+/-- The diagonal parity action commutes with the actual radial integral.
+@isnad1 id=eq.1h2v.s12.e8c397d52929 from=translated src=- shape=fa7d5117 vocab=6e2a72f6
+-/
 theorem parityPath_inverse {R : ℝ} (hR : 0 ≤ R) (W : NilpotentVolterra.Path R) :
     parityPath R (NilpotentVolterra.pathInverse hR exponent W) =
       NilpotentVolterra.pathInverse hR exponent (parityPath R W) := by
@@ -2252,6 +2639,9 @@ theorem parityPath_inverse {R : ℝ} (hR : 0 ≤ R) (W : NilpotentVolterra.Path 
   intro t ht
   exact smul_comm _ _ _
 
+/--
+@isnad1 id=eq.3h6v.s12.4820010d9f1d from=translated src=- shape=44fb5e24 vocab=5e7f07eb
+-/
 theorem sideData_coefficient_parity {R : ℝ} (hR : 0 ≤ R)
     {A : ℂ → SymmetricCoefficientPath R} {U : Set ℂ}
     (hA : CoefficientParityOn (Icc 0 R) U (symmetricRawCoefficient hR A))
@@ -2261,6 +2651,9 @@ theorem sideData_coefficient_parity {R : ℝ} (hR : 0 ≤ R)
   rw [← sideRawCoefficient_neg hR A r.2 z, ← sideRawCoefficient_pos hR A r.2 z] at hh
   simpa only [NilpotentVolterra.rawCoefficient_mulVec, projIcc_val] using hh
 
+/--
+@isnad1 id=eq.3h5v.s9.0498fddeaa28 from=translated src=- shape=5f32d0d1 vocab=bd9b3400
+-/
 theorem sideData_forcing_parity {R : ℝ} (hR : 0 ≤ R)
     {f : ℂ → SymmetricPath R Vec} {U : Set ℂ}
     (hf : ForcingParityOn (Icc 0 R) U (symmetricRawField hR f))
@@ -2270,6 +2663,9 @@ theorem sideData_forcing_parity {R : ℝ} (hR : 0 ≤ R)
   rw [← sideRawField_neg hR f r.2 z, ← sideRawField_pos hR f r.2 z] at hh
   simpa only [NilpotentVolterra.rawField, NilpotentVolterra.extendPath, projIcc_val] using hh
 
+/--
+@isnad1 id=eq.6h7v.s12.a77fff88f8ca from=translated src=- shape=535715da vocab=173e6f80
+-/
 theorem rhsPath_parity {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → SymmetricCoefficientPath R} {f : ℂ → SymmetricPath R Vec}
     {W : ℂ → NilpotentVolterra.Path R} {U : Set ℂ}
@@ -2294,7 +2690,9 @@ theorem rhsPath_parity {R : ℝ} (hR : 0 ≤ R)
     sideData_coefficient_parity hR hA₁ hz r, map_add, map_add]
 
 /-- Parity transforms a solution of the positive equation into a solution
-of the reflected positive equation. -/
+of the reflected positive equation.
+@isnad1 id=eq.8h7v.s13.3fc4f9695bf8 from=translated src=- shape=087d6ced vocab=ce9241a4
+-/
 theorem parity_transforms_equation {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → SymmetricCoefficientPath R} {f : ℂ → SymmetricPath R Vec}
     {W : ℂ → NilpotentVolterra.Path R} {U : Set ℂ} (hU : IsOpen U)
@@ -2313,7 +2711,9 @@ theorem parity_transforms_equation {R : ℝ} (hR : 0 ≤ R)
     heq z hz, parityPath_inverse]
 
 /-- The half-interval solutions have the required relation by uniqueness
-of the genuine integral equation. -/
+of the genuine integral equation.
+@isnad1 id=eqon.9h5v.s12.d3a304de49a9 from=translated src=- shape=11ef3736 vocab=ab37c038
+-/
 theorem side_curves_parity {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → SymmetricCoefficientPath R} {f : ℂ → SymmetricPath R Vec}
     {U : Set ℂ} (hU : IsOpen U)
@@ -2340,6 +2740,9 @@ theorem side_curves_parity {R : ℝ} (hR : 0 ≤ R)
     (side_shape hR hshape true) hmEq
     (parity_transforms_equation hR hU hp hpA₀ hpA₁ hpf hpEq)
 
+/--
+@isnad1 id=eq.11h7v.s12.757c27120303 from=translated src=- shape=1522430b vocab=e39c2b70
+-/
 theorem sideSolution_parity {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → SymmetricCoefficientPath R} {f : ℂ → SymmetricPath R Vec}
     {U : Set ℂ} (hU : IsOpen U)
@@ -2366,7 +2769,9 @@ theorem sideSolution_parity {R : ℝ} (hR : 0 ≤ R)
 
 /-- The actual symmetric solution has the prescribed vector parity.
 The coefficient/source parity hypotheses are transformed through the
-integral equation, and equality follows from holomorphic uniqueness. -/
+integral equation, and equality follows from holomorphic uniqueness.
+@isnad1 id=eq.11h7v.s12.31e6b57e3d9a from=translated src=- shape=b5f69d8f vocab=fcaa065c
+-/
 theorem symmetricSolution_parity {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → SymmetricCoefficientPath R} {f : ℂ → SymmetricPath R Vec}
     {U : Set ℂ} (hU : IsOpen U)
@@ -2394,6 +2799,9 @@ theorem symmetricSolution_parity {R : ℝ} (hR : 0 ≤ R)
       sideSolution_parity hR hU hA₀ hA₁ hf hshape hpA₀ hpA₁ hpf hn hz,
       parityVec_involutive]
 
+/--
+@isnad1 id=eq.11h7v.s12.d7300be22ded from=translated src=- shape=9f1ef92c vocab=a4e52df2
+-/
 theorem symmetricSolution_parity_of_global {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → SymmetricCoefficientPath R} {f : ℂ → SymmetricPath R Vec}
     {U : Set ℂ} (hU : IsOpen U)
@@ -2410,7 +2818,9 @@ theorem symmetricSolution_parity_of_global {R : ℝ} (hR : 0 ≤ R)
     (fun r _ z _ => hpA₀ r z) (fun r _ z _ => hpA₁ r z)
     (fun r _ z _ => hpf r z) hr hz
 
-/-- This is the component form used by the smooth even-descent theorem. -/
+/-- This is the component form used by the smooth even-descent theorem.
+@isnad1 id=eq.4h6v.s8.04b2f9c12858 from=translated src=- shape=a686d975 vocab=cddc73cd
+-/
 theorem first_components_even {W : Field} {R : ℝ} {U : Set ℂ}
     (hW : ∀ r ∈ Icc (-R) R, ∀ z ∈ U, W (-r) z = parityVec (W r z))
     (i : Fin 6) (hi : i.val < 4) {z : ℂ} (hz : z ∈ U) :
@@ -2418,6 +2828,9 @@ theorem first_components_even {W : Field} {R : ℝ} {U : Set ℂ}
   intro r hr
   simpa [parityVec_apply, paritySign, hi] using congrFun (hW r ⟨hr.1.le, hr.2.le⟩ z hz) i
 
+/--
+@isnad1 id=eq.4h6v.s8.4b435cef638e from=translated src=- shape=952007f5 vocab=19a7ba6d
+-/
 theorem last_components_odd {W : Field} {R : ℝ} {U : Set ℂ}
     (hW : ∀ r ∈ Icc (-R) R, ∀ z ∈ U, W (-r) z = parityVec (W r z))
     (i : Fin 6) (hi : 4 ≤ i.val) {z : ℂ} (hz : z ∈ U) :

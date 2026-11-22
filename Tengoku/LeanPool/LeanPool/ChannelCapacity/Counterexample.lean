@@ -140,6 +140,9 @@ noncomputable def rowPMF : Fin 6 → PMF (Fin 3)
 noncomputable def permutationRows : Fin 6 → ProbabilityMeasure (Fin 3) :=
   fun i => asProbabilityMeasure (rowPMF i)
 
+/--
+@isnad1 id=eq.0h2v.s7.66aa673350a5 from=translated src=- shape=000de0ee vocab=b372cfe1
+-/
 @[simp]
 lemma permutationRows_apply_singleton (i : Fin 6) (y : Fin 3) :
     (permutationRows i).toMeasure {y} = rowPMF i y := by
@@ -149,15 +152,24 @@ lemma permutationRows_apply_singleton (i : Fin 6) (y : Fin 3) :
 noncomputable def permutationKernel : Kernel (Fin 6) (Fin 3) :=
   Kernel.ofFunOfCountable fun i => (permutationRows i).toMeasure
 
+/--
+@isnad1 id=eq.0h1v.s6.42a2911b71f6 from=translated src=- shape=11e298fe vocab=93b26afa
+-/
 @[simp]
 lemma permutationKernel_apply (i : Fin 6) :
     permutationKernel i = (rowPMF i).toMeasure := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.47eb0355efc9 from=translated src=- shape=f6b3a7b3 vocab=45f84d64
+-/
 lemma permutationKernel_apply_singleton (i : Fin 6) (y : Fin 3) :
     permutationKernel i {y} = rowPMF i y := by
   simp [permutationKernel_apply]
 
+/--
+@isnad1 id=ismarkov.0h0v.s4.3a2afbec97e9 from=translated src=- shape=8bd98729 vocab=8b59530c
+-/
 noncomputable instance permutationKernel_isMarkov :
     IsMarkovKernel permutationKernel := by
   constructor
@@ -208,6 +220,9 @@ def rowCode : Fin 6 → Fin 3 → Rat
   | _, 1 => 1 / 3
   | _, _ => 1 / 2
 
+/--
+@isnad1 id=injectiv.0h0v.s4.87a71203f742 from=translated src=- shape=fec59ab0 vocab=f4019ea7
+-/
 lemma rowCode_injective : Function.Injective rowCode := by
   intro a b hab
   have h0 := congrFun hab 0
@@ -235,6 +250,9 @@ def prior₂Code : Fin 6 → Rat
 def outputCode (w : Fin 6 → Rat) : Fin 3 → Rat :=
   fun y => ∑ x, w x * rowCode x y
 
+/--
+@isnad1 id=and.0h0v.s4.b384ddeea80d from=translated src=- shape=eade7ccb vocab=4a03a10d
+-/
 lemma priorCode_counterexample :
     prior₁Code ≠ prior₂Code ∧ outputCode prior₁Code = outputCode prior₂Code := by
   refine ⟨?_, ?_⟩
@@ -248,12 +266,18 @@ lemma priorCode_counterexample :
     all_goals simp [outputCode, Fin.sum_univ_six, prior₁Code, prior₂Code, rowCode]
     all_goals norm_num
 
+/--
+@isnad1 id=ne.0h0v.s4.d7c04a7f6b8a from=translated src=- shape=2a30f11b vocab=8f2378c3
+-/
 lemma prior_ne : prior₁ ≠ prior₂ := by
   intro h
   have h0 := congrArg (fun p : ProbabilityMeasure (Fin 6) => p.toMeasure {0}) h
   simp [prior₁, prior₂, uniformTriple, ProbabilityMeasure.convexCombination_toMeasure,
     Measure.add_apply, Measure.smul_apply] at h0
 
+/--
+@isnad1 id=eq.0h0v.s5.d006772f85b5 from=translated src=- shape=8163cf6d vocab=fa5d49a3
+-/
 lemma pushforward_prior₁ :
     ChannelCapacity.Kernel.priorPushforward permutationKernel prior₁ = uniformOutput := by
   change ChannelCapacity.Kernel.priorPushforward permutationKernel (uniformTriple 0 3 4) =
@@ -280,6 +304,9 @@ lemma pushforward_prior₁ :
     simpa [one_div, add_comm, add_left_comm, add_assoc, mul_comm, mul_left_comm, mul_assoc] using
       prior₁_case2
 
+/--
+@isnad1 id=eq.0h0v.s5.7a886f7e1b46 from=translated src=- shape=8163cf6d vocab=80f7b1fd
+-/
 lemma pushforward_prior₂ :
     ChannelCapacity.Kernel.priorPushforward permutationKernel prior₂ = uniformOutput := by
   change ChannelCapacity.Kernel.priorPushforward permutationKernel (uniformTriple 1 2 5) =
@@ -306,11 +333,17 @@ lemma pushforward_prior₂ :
     simpa [one_div, add_comm, add_left_comm, add_assoc, mul_comm, mul_left_comm, mul_assoc] using
       prior₂_case2
 
+/--
+@isnad1 id=not.0h0v.s4.a1db33baad28 from=translated src=- shape=81835d3d vocab=0d9ce481
+-/
 theorem permutationKernel_not_injectivePriorPushforward :
     ¬ ChannelCapacity.Kernel.InjectivePriorPushforward permutationKernel := by
   intro h
   exact prior_ne (h (pushforward_prior₁.trans pushforward_prior₂.symm))
 
+/--
+@isnad1 id=injectiv.0h0v.s3.5b2e9929587b from=translated src=- shape=a44d54a8 vocab=48f3f42b
+-/
 lemma rowPMF_injective : Function.Injective rowPMF := by
   intro i j hij
   have h0 := congrArg (fun p : PMF (Fin 3) => p 0) hij

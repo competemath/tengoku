@@ -105,6 +105,9 @@ noncomputable section AristotleLemmas
 /-
 The total degree of the Vandermonde polynomial is (k + 1) choose 2.
 -/
+/--
+@isnad1 id=eq.0h2v.s5.5b1d1518e90a from=translated src=- shape=5ba442ea vocab=4c43f2f1
+-/
 lemma _root_.Tengoku.LeanPool.vandermonde_degree_eq (k : ℕ) (p : ℕ) [Fact (Nat.Prime p)] :
   (vandermondePolynomial k : MvPolynomial (Fin (k + 1)) (ZMod p)).totalDegree = (k + 1).choose 2 :=
       by
@@ -161,6 +164,9 @@ lemma _root_.Tengoku.LeanPool.vandermonde_degree_eq (k : ℕ) (p : ℕ) [Fact (N
 
 /-
 If the sum of sizes of A_i is bounded by p + (k + 2 choose 2) - 1, then m < p.
+-/
+/--
+@isnad1 id=other.2h3v.s8.9ef55b681b96 from=translated src=- shape=f2478b59 vocab=840abe56
 -/
 lemma _root_.Tengoku.LeanPool.restricted_sum_m_bound (A : Fin (k + 1) → Finset (ZMod p))
     (h_nonempty : ∀ i, (A i).Nonempty)

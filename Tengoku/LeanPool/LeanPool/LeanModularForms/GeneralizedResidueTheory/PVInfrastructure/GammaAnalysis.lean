@@ -63,7 +63,9 @@ private lemma abs_norm_gamma_sub_smul_le {γ : ℝ → ℂ} {t₀ : ℝ} {L : �
 
 /-- The integrand times (t-t₀) tends to 1.
 This is the key estimate:
-(t-t₀) * (γ-γ₀)⁻¹ * γ' → 1 as t → t₀. -/
+(t-t₀) * (γ-γ₀)⁻¹ * γ' → 1 as t → t₀.
+@isnad1 id=tendsto.3h3v.s8.abb3f3711ec2 from=translated src=- shape=7fd01592 vocab=2cf2dc41
+-/
 lemma integrand_times_t_tendsto_one
     (γ : ℝ → ℂ) (t₀ : ℝ) (L : ℂ) (hL : L ≠ 0)
     (hγ_hasderiv : HasDerivAt γ L t₀)
@@ -109,7 +111,9 @@ lemma integrand_times_t_tendsto_one
   simp_all
 
 /-- Asymptotic control:
-‖(γ-γ₀)⁻¹ * γ' - (t-t₀)⁻¹‖ ≤ ε / |t-t₀|. -/
+‖(γ-γ₀)⁻¹ * γ' - (t-t₀)⁻¹‖ ≤ ε / |t-t₀|.
+@isnad1 id=ex.5h4v.s8.36e47256ce68 from=translated src=- shape=34d58bcb vocab=ec7abd92
+-/
 lemma integrand_asymptotic
     (γ : ℝ → ℂ) (t₀ : ℝ) (L : ℂ)
     (_hL : L ≠ 0)
@@ -152,7 +156,9 @@ lemma integrand_asymptotic
 
 /-- Lower bound on ‖γ t - γ t₀‖ from non-zero derivative.
 Uses `hasDerivAt_remainder_bound` + reverse triangle
-inequality. -/
+inequality.
+@isnad1 id=ex.2h3v.s7.698e1e545e90 from=translated src=- shape=5d5ec183 vocab=a79e39f6
+-/
 lemma gamma_lower_bound_of_hasDerivAt
     {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ} (hL : L ≠ 0)
     (hγ_hasderiv : HasDerivAt γ L t₀) :
@@ -168,7 +174,9 @@ lemma gamma_lower_bound_of_hasDerivAt
   nlinarith [h.1]
 
 /-- Upper bound on ‖γ t - γ t₀‖ from non-zero derivative.
-Uses `hasDerivAt_remainder_bound` + triangle inequality. -/
+Uses `hasDerivAt_remainder_bound` + triangle inequality.
+@isnad1 id=ex.2h3v.s7.7464920a19db from=translated src=- shape=65331a33 vocab=afba8a8a
+-/
 lemma gamma_upper_bound_of_hasDerivAt
     {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ} (hL : L ≠ 0)
     (hγ_hasderiv : HasDerivAt γ L t₀) :
@@ -184,7 +192,9 @@ lemma gamma_upper_bound_of_hasDerivAt
 
 /-- If γ is continuous on [a,b] and injective at γ(t₀),
 then γ stays bounded away from γ(t₀) outside any
-neighborhood of t₀. -/
+neighborhood of t₀.
+@isnad1 id=ex.3h5v.s7.c16d8307bc55 from=translated src=- shape=d0ef2bb5 vocab=e1e95e54
+-/
 lemma no_return_of_inj_continuous
     {γ : ℝ → ℂ} {a b t₀ : ℝ} {c : ℝ}
     (hc_pos : 0 < c)
@@ -208,7 +218,9 @@ lemma no_return_of_inj_continuous
 
 /-- From γ-space upper bound to t-space upper bound:
 If ‖γ t - γ t₀‖ ≤ εC and we have the lower bound,
-then |t - t₀| ≤ 2*εC/‖L‖. -/
+then |t - t₀| ≤ 2*εC/‖L‖.
+@isnad1 id=le.6h6v.s7.8f9ca6aefac9 from=translated src=- shape=3ae80a10 vocab=e020930e
+-/
 lemma t_bound_from_gamma_bound
     {γ : ℝ → ℂ} {t₀ t : ℝ} {L : ℂ} {εC δ : ℝ}
     (hL : L ≠ 0) (_hδ_pos : 0 < δ)
@@ -228,7 +240,9 @@ lemma t_bound_from_gamma_bound
 
 /-- From γ-space lower bound to t-space lower bound:
 If ‖γ t - γ t₀‖ > εC and we have the upper bound,
-then |t - t₀| > εC/(2*‖L‖). -/
+then |t - t₀| > εC/(2*‖L‖).
+@isnad1 id=lt.6h6v.s7.051d0e3bc50c from=translated src=- shape=cabf2b10 vocab=c0cde35d
+-/
 lemma t_lower_from_gamma_lower
     {γ : ℝ → ℂ} {t₀ t : ℝ} {L : ℂ} {εC δ : ℝ}
     (hL : L ≠ 0) (_hδ_pos : 0 < δ)
@@ -245,7 +259,9 @@ lemma t_lower_from_gamma_lower
         div_lt_div_of_pos_right h1 (by linarith [norm_pos_iff.mpr hL])
     _ = |t - t₀| := by field_simp
 
-/-- If γ is C² at t₀, then deriv γ is continuous at t₀. -/
+/-- If γ is C² at t₀, then deriv γ is continuous at t₀.
+@isnad1 id=continuo.1h2v.s6.5ccb18bd26cb from=translated src=- shape=f3aff3a6 vocab=474808c9
+-/
 lemma contAt_deriv_of_contDiffAt_two
     {γ : ℝ → ℂ} {t₀ : ℝ}
     (hγ_C2 : ContDiffAt ℝ 2 γ t₀) :

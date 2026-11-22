@@ -623,13 +623,17 @@ def aux3 (n : ℕ) (f : flute (n + 3)) (j : ℕ)
                 · simp [hij, hij₂, hij₃, f.div (i+1)]
   exact ⟨a3 n f j hj, pos, hd, period, div⟩
 
-/-- The set of `n`-flutes is nonempty. -/
+/-- The set of `n`-flutes is nonempty.
+@isnad1 id=nonempty.0h1v.s3.f67ffd052983 from=translated src=- shape=a3b6389d vocab=487b807e
+-/
 lemma fluteSetNonEmpty (n : ℕ) : Nonempty (fluteSet n) := by
   rcases csteFlute n with ⟨f⟩
   exact ⟨f, trivial⟩
 
 /-- Every `n`-flute either has `f.a 1 = 1`, has `f.a (n-2) = 1`, or admits a *reducible*
-index `i` where `f.a (i+1) = f.a i + f.a (i+2)`. -/
+index `i` where `f.a (i+1) = f.a i + f.a (i+2)`.
+@isnad1 id=or.0h2v.s6.7f6b2b036c5a from=translated src=- shape=dc199d94 vocab=6c4a40ed
+-/
 lemma FluteReduction (n : ℕ) (f : flute n) : ((f.a 1 = 1) ∨ (f.a (n - 2) = 1)) ∨
     (∃ i ≤ n - 3, f.a (i + 1) = f.a i + f.a (i + 2)) := by
   by_contra! H
@@ -680,6 +684,9 @@ lemma FluteReduction (n : ℕ) (f : flute n) : ((f.a 1 = 1) ∨ (f.a (n - 2) = 1
     specialize key₂ n (by omega)
     linarith
 
+/--
+@isnad1 id=le.2h3v.s5.b190997e724c from=translated src=- shape=3d9f0fc8 vocab=d0d9a2b0
+-/
 theorem FluteBounded (n : ℕ) (hn : n > 0) (f : flute n) :
     ∀ i ≤ n - 1, f.a i ≤ Nat.fib n := by
   -- note the statement is false without hn

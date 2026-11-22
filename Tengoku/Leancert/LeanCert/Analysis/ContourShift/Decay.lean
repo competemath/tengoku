@@ -61,7 +61,9 @@ def horizontalBoundOfStrip (F : ℂ → ℂ) (σ₀ σ₁ : ℝ) (T : ℕ → �
     exact (hbound n x (uIoc_subset_uIcc hx)).2
 
 /-- The certificate's limits are actual Lebesgue integrals when the two
-vertical parameterizations are integrable. -/
+vertical parameterizations are integrable.
+@isnad1 id=eq.4h3v.s8.aaea2f84a135 from=translated src=- shape=b8292a52 vocab=acf23c73
+-/
 theorem integral_vertical_eq_of_holomorphic_of_vanish
     (F : ℂ → ℂ) (σ₀ σ₁ : ℝ)
     (hF : ∀ z : ℂ, z.re ∈ uIcc σ₀ σ₁ → DifferentiableAt ℂ F z)

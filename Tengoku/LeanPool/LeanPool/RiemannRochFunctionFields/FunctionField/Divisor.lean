@@ -54,7 +54,9 @@ noncomputable def placeDegree (v : PlaceA k K) : ℕ :=
     letI : Field (infiniteIntegers k K ⧸ w.asIdeal) := Ideal.Quotient.field w.asIdeal
     Module.finrank k (infiniteIntegers k K ⧸ w.asIdeal)
 
-/-- Every coordinate place has strictly positive degree. -/
+/-- Every coordinate place has strictly positive degree.
+@isnad1 id=lt.0h3v.s8.657489589371 from=translated src=- shape=927b4882 vocab=ba7339e0
+-/
 theorem placeDegree_pos (v : PlaceA k K) : 0 < placeDegree k K v := by
   rcases v with v | v
   · change 0 < Module.finrank k (ringOfIntegers k K ⧸ v.asIdeal)
@@ -68,7 +70,9 @@ theorem placeDegree_pos (v : PlaceA k K) : 0 < placeDegree k K v := by
 
 omit [IsScalarTower k[X] k⟮X⟯ K] in
 /-- At an infinite coordinate place, the place degree is its inertia degree over the unique
-place at infinity of `k(X)`. -/
+place at infinity of `k(X)`.
+@isnad1 id=eq.0h3v.s11.a8f5bc7ccee3 from=translated src=- shape=ba4af1ce vocab=fd28b693
+-/
 theorem placeDegree_infinite_eq_inertiaDeg
     (v : IsDedekindDomain.HeightOneSpectrum (infiniteIntegers k K)) :
     placeDegree k K (Sum.inr v) =
@@ -103,7 +107,9 @@ theorem placeDegree_infinite_eq_inertiaDeg
   exact htower.symm
 
 /-- At a finite coordinate place, the place degree is the degree of the prime below times its
-inertia degree. -/
+inertia degree.
+@isnad1 id=eq.0h3v.s11.3f04304a8de9 from=translated src=- shape=489d1278 vocab=4c221387
+-/
 theorem placeDegree_finite_eq_base_mul_inertiaDeg
     (v : IsDedekindDomain.HeightOneSpectrum (ringOfIntegers k K)) :
     placeDegree k K (Sum.inl v) =
@@ -133,7 +139,9 @@ theorem placeDegree_finite_eq_base_mul_inertiaDeg
 
 /-- The relative ideal norm of a finite coordinate prime has exponent equal to its inertia
 degree; unlike Mathlib's perfect-field version, this uses only the standing separability
-hypothesis. -/
+hypothesis.
+@isnad1 id=eq.0h3v.s12.71951aa924a5 from=translated src=- shape=31d52c82 vocab=fb4d1f53
+-/
 theorem relNorm_asIdeal_finite
     (v : IsDedekindDomain.HeightOneSpectrum (ringOfIntegers k K)) :
     Ideal.relNorm k[X] v.asIdeal =
@@ -159,7 +167,9 @@ theorem relNorm_asIdeal_finite
     v.asIdeal (v.asIdeal.under k[X])
 
 omit [Algebra k[X] K] [IsScalarTower k[X] k⟮X⟯ K] in
-/-- The corresponding relative-norm formula on the infinity chart. -/
+/-- The corresponding relative-norm formula on the infinity chart.
+@isnad1 id=eq.0h3v.s14.a08a5743763e from=translated src=- shape=8ab46664 vocab=9dc21569
+-/
 theorem relNorm_asIdeal_infinite
     (v : IsDedekindDomain.HeightOneSpectrum (infiniteIntegers k K)) :
     Ideal.relNorm (inftyValuationSubring k) v.asIdeal =
@@ -186,7 +196,9 @@ theorem relNorm_asIdeal_infinite
   exact Ideal.relNorm_eq_pow_of_isMaximal_of_isSeparable
     v.asIdeal (v.asIdeal.under A)
 
-/-- Weighted factor degree on the finite chart is preserved by relative ideal norm. -/
+/-- Weighted factor degree on the finite chart is preserved by relative ideal norm.
+@isnad1 id=eq.1h3v.s13.2a6360826939 from=translated src=- shape=c45352cf vocab=6fa57ca7
+-/
 theorem finite_factorDegree_eq_relNorm (I : Ideal (ringOfIntegers k K)) (hI : I ≠ ⊥) :
     ((UniqueFactorizationMonoid.normalizedFactors I).map fun P =>
       Module.finrank k (k[X] ⧸ P.under k[X]) * P.inertiaDeg k[X]).sum =
@@ -213,7 +225,9 @@ theorem finite_factorDegree_eq_relNorm (I : Ideal (ringOfIntegers k K)) (hI : I 
       (fun p : Ideal k[X] => Module.finrank k (k[X] ⧸ p))
 
 omit [Algebra k[X] K] [IsScalarTower k[X] k⟮X⟯ K] in
-/-- The analogous relative-norm identity on the infinity chart. -/
+/-- The analogous relative-norm identity on the infinity chart.
+@isnad1 id=eq.1h3v.s15.23e502f1c99a from=translated src=- shape=6db6c26d vocab=e3641909
+-/
 theorem infinite_factorDegree_eq_relNorm
     (I : Ideal (infiniteIntegers k K)) (hI : I ≠ ⊥) :
     ((UniqueFactorizationMonoid.normalizedFactors I).map fun P =>
@@ -241,7 +255,9 @@ theorem infinite_factorDegree_eq_relNorm
     (fun _ : Ideal A => 1)
 
 /-- Over the finite chart of `k(X)`, the weighted prime-factor degree of a principal polynomial
-ideal is the polynomial degree. -/
+ideal is the polynomial degree.
+@isnad1 id=eq.1h2v.s9.484cd4289a18 from=translated src=- shape=bf660ff1 vocab=c78b46f2
+-/
 theorem polynomial_factorDegree_span (p : k[X]) (hp : p ≠ 0) :
     ((UniqueFactorizationMonoid.normalizedFactors (Ideal.span {p})).map
       (fun P : Ideal k[X] => Module.finrank k (k[X] ⧸ P))).sum = p.natDegree := by
@@ -260,7 +276,9 @@ theorem polynomial_factorDegree_span (p : k[X]) (hp : p ≠ 0) :
     (Polynomial.degree_eq_degree_of_associated hassoc)
 
 /-- Over the infinity chart of `k(X)`, the number of prime factors of a nonzero principal ideal
-is the negative rational-function degree of its generator. -/
+is the negative rational-function degree of its generator.
+@isnad1 id=eq.1h2v.s11.bcd0bcfd3fa3 from=translated src=- shape=a49dd346 vocab=ebd6a2c9
+-/
 theorem infinity_factorDegree_span (a : inftyValuationSubring k) (ha : a ≠ 0) :
     ((((UniqueFactorizationMonoid.normalizedFactors (Ideal.span {a})).map
       (fun _ : Ideal (inftyValuationSubring k) => (1 : ℕ))).sum : ℕ) : ℤ) =
@@ -338,7 +356,9 @@ theorem infinity_factorDegree_span (a : inftyValuationSubring k) (ha : a ≠ 0) 
   omega
 
 /-- Compatibility of integral norm on the finite chart with the field norm after passing to
-fraction fields. -/
+fraction fields.
+@isnad1 id=eq.1h5v.s13.d42da2bbd93a from=translated src=- shape=d87e35e2 vocab=ffdaf8c0
+-/
 theorem finite_intNorm_div_eq_norm (x : Kˣ) (n : ringOfIntegers k K)
     (d : nonZeroDivisors (ringOfIntegers k K))
     (hnd : IsLocalization.mk' K n d = (x : K)) :
@@ -369,7 +389,9 @@ theorem finite_intNorm_div_eq_norm (x : Kˣ) (n : ringOfIntegers k K)
   simpa [Algebra.intNorm_eq_norm k[X] (ringOfIntegers k K)] using hx
 
 omit [Algebra k[X] K] [IsScalarTower k[X] k⟮X⟯ K] in
-/-- Compatibility of integral norm with field norm on the infinity chart. -/
+/-- Compatibility of integral norm with field norm on the infinity chart.
+@isnad1 id=eq.1h5v.s15.15105d81e2df from=translated src=- shape=acd723ce vocab=5d2e696c
+-/
 theorem infinite_intNorm_div_eq_norm (x : Kˣ) (n : infiniteIntegers k K)
     (d : nonZeroDivisors (infiniteIntegers k K))
     (hnd : IsLocalization.mk' K n d = (x : K)) :
@@ -408,7 +430,9 @@ noncomputable def infiniteIdealWeight (P : Ideal (infiniteIntegers k K)) : ℕ :
   Module.finrank (inftyValuationSubring k ⧸ P.under (inftyValuationSubring k))
     (infiniteIntegers k K ⧸ P)
 
-/-- At a maximal ideal, the quotient-based finite weight agrees with the residue-field formula. -/
+/-- At a maximal ideal, the quotient-based finite weight agrees with the residue-field formula.
+@isnad1 id=eq.0h3v.s10.cd58b64cc5e8 from=translated src=- shape=42d48297 vocab=dd8bac76
+-/
 theorem finiteIdealWeight_eq_inertiaDeg (P : Ideal (ringOfIntegers k K)) [P.IsMaximal] :
     finiteIdealWeight k K P =
       Module.finrank k (k[X] ⧸ P.under k[X]) * P.inertiaDeg k[X] := by
@@ -417,7 +441,9 @@ theorem finiteIdealWeight_eq_inertiaDeg (P : Ideal (ringOfIntegers k K)) [P.IsMa
 
 omit [Algebra k[X] K] [IsScalarTower k[X] k⟮X⟯ K] [FunctionField k K]
   [Algebra.IsSeparable k⟮X⟯ K] in
-/-- At a maximal ideal, the quotient-based infinite weight is its residue-field inertia degree. -/
+/-- At a maximal ideal, the quotient-based infinite weight is its residue-field inertia degree.
+@isnad1 id=eq.0h3v.s11.8528f138b532 from=translated src=- shape=3346067a vocab=253eea74
+-/
 theorem infiniteIdealWeight_eq_inertiaDeg (P : Ideal (infiniteIntegers k K)) [P.IsMaximal] :
     infiniteIdealWeight k K P = P.inertiaDeg (inftyValuationSubring k) := by
   let : (P.under (inftyValuationSubring k)).IsMaximal :=
@@ -426,7 +452,9 @@ theorem infiniteIdealWeight_eq_inertiaDeg (P : Ideal (infiniteIntegers k K)) [P.
     Ideal.inertiaDeg_eq_of_isMaximal (P.under (inftyValuationSubring k)) P]
 
 /-- The finite-chart contribution of a principal divisor is the degree at infinity of the field
-norm. -/
+norm.
+@isnad1 id=eq.0h3v.s11.8ec6ffeabbbd from=translated src=- shape=ec04aba3 vocab=ba83c497
+-/
 theorem finitePrincipalDegree_eq_intDegree_norm (x : Kˣ) :
     (FractionalIdeal.principalDivisor
       (R := ringOfIntegers k K) (K := K) (Additive.ofMul x)).sum
@@ -485,7 +513,9 @@ theorem finitePrincipalDegree_eq_intDegree_norm (x : Kˣ) :
 
 omit [IsScalarTower k[X] k⟮X⟯ K] in
 /-- The infinite-chart contribution of a principal divisor is the negative degree at infinity of
-the field norm. -/
+the field norm.
+@isnad1 id=eq.0h3v.s12.5b91608b3e42 from=translated src=- shape=79e15f2c vocab=4488e945
+-/
 theorem infinitePrincipalDegree_eq_neg_intDegree_norm (x : Kˣ) :
     (FractionalIdeal.principalDivisor
       (R := infiniteIntegers k K) (K := K) (Additive.ofMul x)).sum
@@ -562,7 +592,9 @@ noncomputable def placeValuationSubring (v : PlaceA k K) : ValuationSubring K :=
 noncomputable def deg (D : DivisorA k K) : ℤ :=
   D.sum fun v n => (n : ℤ) * (placeDegree k K v : ℤ)
 
-/-- Product formula: the global degree of a principal divisor is zero. -/
+/-- Product formula: the global degree of a principal divisor is zero.
+@isnad1 id=eq.0h3v.s9.565a6b942433 from=translated src=- shape=b85b1bbd vocab=6e85a770
+-/
 theorem deg_principalDivisorA_eq_zero (x : Kˣ) :
     deg k K (principalDivisorA k K (Additive.ofMul x)) = 0 := by
   let Dfin := FractionalIdeal.principalDivisor
@@ -588,26 +620,41 @@ def IsEffective (D : DivisorA k K) : Prop :=
   ∀ v, 0 ≤ D v
 
 omit [IsScalarTower k[X] k⟮X⟯ K] [FunctionField k K] [Algebra.IsSeparable k⟮X⟯ K] in
+/--
+@isnad1 id=eq.0h2v.s6.351113e40278 from=translated src=- shape=cac95ac4 vocab=55fe19de
+-/
 theorem deg_zero : deg k K (0 : DivisorA k K) = 0 := by
   simp [deg, placeDegree]
 
 omit [IsScalarTower k[X] k⟮X⟯ K] [FunctionField k K] [Algebra.IsSeparable k⟮X⟯ K] in
+/--
+@isnad1 id=eq.0h4v.s7.808ae158a677 from=translated src=- shape=588e8589 vocab=b0a2b0ac
+-/
 theorem deg_add (D₁ D₂ : DivisorA k K) :
     deg k K (D₁ + D₂) = deg k K D₁ + deg k K D₂ := by
   classical
   simp [deg, Finsupp.sum_add_index, add_mul]
 
 omit [IsScalarTower k[X] k⟮X⟯ K] [FunctionField k K] [Algebra.IsSeparable k⟮X⟯ K] in
+/--
+@isnad1 id=eq.0h3v.s6.0bd58b6e2129 from=translated src=- shape=3398a381 vocab=0b073af6
+-/
 theorem deg_neg (D : DivisorA k K) : deg k K (-D) = -deg k K D := by
   classical
   simp [deg, Finsupp.sum_neg_index, neg_mul]
 
 omit [IsScalarTower k[X] k⟮X⟯ K] [FunctionField k K] [Algebra.IsSeparable k⟮X⟯ K] in
+/--
+@isnad1 id=eq.0h4v.s7.e77617d7babe from=translated src=- shape=588e8589 vocab=74c13cab
+-/
 theorem deg_sub (D D' : DivisorA k K) :
     deg k K (D - D') = deg k K D - deg k K D' := by
   simp [deg_add, deg_neg, sub_eq_add_neg]
 
 omit [IsScalarTower k[X] k⟮X⟯ K] [FunctionField k K] [Algebra.IsSeparable k⟮X⟯ K] in
+/--
+@isnad1 id=eq.0h4v.s7.318a7f36adc0 from=translated src=- shape=3c6efb81 vocab=13f7c7ad
+-/
 theorem deg_nsmul {D : DivisorA k K} (n : ℕ) :
     deg k K (n • D) = (n : ℤ) * deg k K D := by
   induction n with
@@ -617,12 +664,17 @@ theorem deg_nsmul {D : DivisorA k K} (n : ℕ) :
       simp only [Nat.cast_add, Nat.cast_one, one_mul, add_mul, add_comm]
 
 omit [IsScalarTower k[X] k⟮X⟯ K] [FunctionField k K] [Algebra.IsSeparable k⟮X⟯ K] in
+/--
+@isnad1 id=eq.1h4v.s7.d0295e21da64 from=translated src=- shape=99fcb34e vocab=d5f12723
+-/
 theorem deg_nsmul_effective {D : DivisorA k K} (n : ℕ) (_hD : IsEffective k K D) :
     deg k K (n • D) = (n : ℤ) * deg k K D :=
   deg_nsmul (k := k) (K := K) (D := D) n
 
 omit [IsScalarTower k[X] k⟮X⟯ K] [FunctionField k K] [Algebra.IsSeparable k⟮X⟯ K] in
-/-- Effective divisors have nonnegative degree. -/
+/-- Effective divisors have nonnegative degree.
+@isnad1 id=le.1h3v.s6.60def3a91b78 from=translated src=- shape=6f767710 vocab=a67f817f
+-/
 theorem deg_nonneg {D : DivisorA k K} (hD : IsEffective k K D) :
     0 ≤ deg k K D := by
   classical
@@ -647,12 +699,17 @@ theorem eq_zero_of_effective_deg_zero {D : DivisorA k K} (hD : IsEffective k K D
   · simpa only [Finsupp.mem_support_iff, not_not] using hv
 
 omit [IsScalarTower k[X] k⟮X⟯ K] [FunctionField k K] [Algebra.IsSeparable k⟮X⟯ K] in
+/--
+@isnad1 id=eq.0h4v.s6.eaf59a0d692a from=translated src=- shape=2cc6847a vocab=fbd6c977
+-/
 theorem deg_single (v : PlaceA k K) (n : ℤ) :
     deg k K (Finsupp.single v n) = n * placeDegree k K v := by
   simp [deg, Finsupp.sum_single_index]
 
 omit [IsScalarTower k[X] k⟮X⟯ K] [FunctionField k K] [Algebra.IsSeparable k⟮X⟯ K] in
-/-- The degree map is monotone for the pointwise order on divisors. -/
+/-- The degree map is monotone for the pointwise order on divisors.
+@isnad1 id=le.1h4v.s7.e4e305abd044 from=translated src=- shape=d4399001 vocab=69f6b517
+-/
 theorem deg_mono {D D' : DivisorA k K} (h : D ≤ D') :
     deg k K D ≤ deg k K D' := by
   rw [← sub_nonneg, ← deg_sub]
@@ -661,11 +718,16 @@ theorem deg_mono {D D' : DivisorA k K} (h : D ≤ D') :
   exact sub_nonneg.mpr (h v)
 
 omit [IsScalarTower k[X] k⟮X⟯ K] [FunctionField k K] [Algebra.IsSeparable k⟮X⟯ K] in
-/-- A nonpositive divisor has nonpositive degree. -/
+/-- A nonpositive divisor has nonpositive degree.
+@isnad1 id=le.1h3v.s7.69cf3d8925da from=translated src=- shape=0a242b98 vocab=69f6b517
+-/
 theorem deg_nonpos {D : DivisorA k K} (hD : D ≤ 0) : deg k K D ≤ 0 := by
   simpa only [deg_zero] using deg_mono k K hD
 
 omit [IsScalarTower k[X] k⟮X⟯ K] [FunctionField k K] [Algebra.IsSeparable k⟮X⟯ K] in
+/--
+@isnad1 id=iff.0h4v.s7.42e44788d519 from=translated src=- shape=5aab3bfa vocab=1b8e8b38
+-/
 theorem le_iff_sub_effective {D D' : DivisorA k K} :
     D ≤ D' ↔ IsEffective k K (D' - D) := by
   simp only [Finsupp.le_def, IsEffective, Finsupp.sub_apply, sub_nonneg]

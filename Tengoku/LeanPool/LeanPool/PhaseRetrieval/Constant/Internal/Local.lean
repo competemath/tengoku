@@ -55,6 +55,9 @@ there exists a unit complex number `w` with
 
   `∫ |w (1 + p(z)) − 1|² exp(−‖z‖²) dm ≤ M² ∫ ||1 + p(z)| − 1|² exp(−‖z‖²) dm`.
 -/
+/--
+@isnad1 id=ex.0h0v.s8.d9a614f31350 from=translated src=- shape=0fda5644 vocab=4d4392cb
+-/
 theorem LocalFockSPR_constants :
     ∃ δ M : ℝ,
       δ = (1 / 4601 : ℝ) ∧
@@ -67,6 +70,9 @@ theorem LocalFockSPR_constants :
   exact ⟨(1 / 4601 : ℝ), (23003 : ℝ), rfl, rfl,
     fun p hsmall => LocalFockSPR_of_small_norm_exists_phase p hsmall⟩
 
+/--
+@isnad1 id=ex.1h1v.s8.6d76746358e5 from=translated src=- shape=a5602d10 vocab=4d4392cb
+-/
 theorem LocalFockSPR_exists_phase
     (p : Polynomial ℂ)
     (hsmall :

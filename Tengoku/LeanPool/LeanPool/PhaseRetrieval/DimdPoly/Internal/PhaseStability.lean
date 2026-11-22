@@ -48,6 +48,9 @@ def phasedCoeffDistance {d : Nat} {kappa : MultiIndex d} (F Q : Pkappa d kappa)
     (phase : ℂ) : ℝ :=
   ‖phase • Q - F‖
 
+/--
+@isnad1 id=eq.0h5v.s6.dba9438cd243 from=translated src=- shape=0c585004 vocab=c243fb26
+-/
 theorem pkappaInner_smul_left
     {d : Nat} {kappa : MultiIndex d} (c : ℂ)
     (Q F : Pkappa d kappa) :
@@ -61,6 +64,9 @@ theorem pkappaInner_smul_left
     intro alpha halpha
     simp [Finsupp.smul_apply, mul_assoc]
 
+/--
+@isnad1 id=ex.0h4v.s6.26b5e6e21929 from=translated src=- shape=2cdeadb1 vocab=c3af602c
+-/
 theorem exists_phase_positivePhaseGauge
     {d : Nat} {kappa : MultiIndex d} (F Q : Pkappa d kappa) :
     ∃ phase : ℂ, ‖phase‖ = 1 ∧ positivePhaseGauge F (phase • Q) := by
@@ -88,7 +94,9 @@ private theorem defect_phase_sub_eq_modulusDefect
     simp_all
   rw [heval, norm_mul, hphase, one_mul]
 
-/-- Rewriting the perturbation defect as the two-signal modulus defect. -/
+/-- Rewriting the perturbation defect as the two-signal modulus defect.
+@isnad1 id=eq.1h4v.s5.ea406442983f from=translated src=- shape=19755603 vocab=ff677962
+-/
 theorem defect_sub_eq_modulusDefect
     {d : Nat} (hd : 0 < d) (kappa : MultiIndex d)
     (F Q : Pkappa d kappa) :
@@ -97,6 +105,9 @@ theorem defect_sub_eq_modulusDefect
     defect_phase_sub_eq_modulusDefect (d := d) hd kappa F Q (phase := 1) (by simp)
   simpa using h
 
+/--
+@isnad1 id=eq.2h5v.s6.65a77ab5d212 from=translated src=- shape=5ac4db57 vocab=2db6d475
+-/
 theorem modulusDefect_phase_smul
     {d : Nat} (hd : 0 < d) (kappa : MultiIndex d)
     (F Q : Pkappa d kappa) {phase : ℂ} (hphase : ‖phase‖ = 1) :

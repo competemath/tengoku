@@ -37,7 +37,9 @@ open scoped Real Interval
 
 noncomputable section
 
-/-- C¹ regularity of `deriv γ` from C² regularity of `γ`. -/
+/-- C¹ regularity of `deriv γ` from C² regularity of `γ`.
+@isnad1 id=contdiff.1h2v.s7.2245500b6c98 from=translated src=- shape=3cc694a7 vocab=a757616e
+-/
 lemma contDiffAt_one_deriv_of_contDiffAt_two
     {γ : ℝ → ℂ} {t₀ : ℝ}
     (hγ_C2 : ContDiffAt ℝ 2 γ t₀) :
@@ -46,7 +48,9 @@ lemma contDiffAt_one_deriv_of_contDiffAt_two
     (contDiffAt_const (c := (1 : ℝ)))
   simp_all
 
-/-- Lipschitz-type bound on `deriv γ` deviation from C². -/
+/-- Lipschitz-type bound on `deriv γ` deviation from C².
+@isnad1 id=ex.2h3v.s7.2d8ae2d57d04 from=translated src=- shape=4283dc4f vocab=fb3e9018
+-/
 lemma deriv_deviation_bound_of_C2
     {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ}
     (hγ_C2 : ContDiffAt ℝ 2 γ t₀)
@@ -62,7 +66,9 @@ lemma deriv_deviation_bound_of_C2
     t₀ (hball_sub (Metric.mem_ball.mpr (by simp [hδ_pos])))
   rwa [dist_eq_norm, hγ_deriv, Real.dist_eq] at h
 
-/-- Quadratic Taylor approximation from C² smoothness. -/
+/-- Quadratic Taylor approximation from C² smoothness.
+@isnad1 id=ex.2h3v.s8.fdcb15e08954 from=translated src=- shape=3111c072 vocab=c94cbe27
+-/
 lemma quadratic_approx_of_contDiffAt_two
     {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ}
     (hγ_C2 : ContDiffAt ℝ 2 γ t₀)
@@ -160,7 +166,9 @@ lemma quadratic_approx_of_contDiffAt_two
     _ = M * |t - t₀| ^ 2 := by ring
     _ ≤ K * |t - t₀| ^ 2 := by nlinarith [sq_nonneg |t - t₀|]
 
-/-- Bounded slope deviation from C² smoothness. -/
+/-- Bounded slope deviation from C² smoothness.
+@isnad1 id=ex.2h3v.s7.1197dd44864e from=translated src=- shape=cab56c10 vocab=f2d06bd2
+-/
 lemma bounded_slope_deviation_of_contDiffAt_two
     {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ}
     (hγ_C2 : ContDiffAt ℝ 2 γ t₀)
@@ -184,7 +192,9 @@ lemma bounded_slope_deviation_of_contDiffAt_two
         div_le_div_of_nonneg_right (h_quad t ht_lt) ht_pos.le
     _ = K₁ * |t - t₀| := by field_simp
 
-/-- Numerator quadratic bound for `(t-t₀)γ'(t) - (γt - γt₀)`. -/
+/-- Numerator quadratic bound for `(t-t₀)γ'(t) - (γt - γt₀)`.
+@isnad1 id=ex.2h3v.s8.15e1473537e7 from=translated src=- shape=ea669493 vocab=1f8af708
+-/
 lemma numerator_quadratic_bound
     {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ}
     (hγ_C2 : ContDiffAt ℝ 2 γ t₀)
@@ -230,7 +240,9 @@ lemma numerator_quadratic_bound
     _ = (K₁ + K₂) * |t - t₀| ^ 2 := by ring
     _ ≤ (K₁ + K₂ + 1) * |t - t₀| ^ 2 := by nlinarith [sq_nonneg |t - t₀|]
 
-/-- Bounded remainder from C² smoothness. -/
+/-- Bounded remainder from C² smoothness.
+@isnad1 id=ex.3h3v.s8.38d054367038 from=translated src=- shape=9abdf747 vocab=a90460d1
+-/
 lemma remainder_bounded_of_C2
     {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ} (hL : L ≠ 0)
     (hγ_C2 : ContDiffAt ℝ 2 γ t₀)

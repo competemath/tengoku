@@ -40,6 +40,9 @@ def localValidResidues (p : ℕ) (b : ℕ) (T : Finset ℕ) : Finset ℕ :=
   (Finset.range (p ^ 2)).filter fun r =>
     ¬(p ^ 2 ∣ r) ∧ ∀ d ∈ T, ¬(p ^ 2 ∣ (b * r + d))
 
+/--
+@isnad1 id=eq.1h3v.s5.ceaf72860e01 from=translated src=- shape=9655e72e vocab=bf616aad
+-/
 lemma localValidResidues_card_eq (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (T : Finset ℕ) :
     ((localValidResidues p b T).card : ℝ) = (p : ℝ) ^ 2 * localDensityFactor p b T := by
   have hp2 : ((p ^ 2 : ℕ) : ℝ) ≠ 0 := by exact_mod_cast pow_ne_zero 2 hp.pos.ne'
@@ -47,12 +50,18 @@ lemma localValidResidues_card_eq (p : ℕ) (hp : Nat.Prime p) (b : ℕ) (T : Fin
   rw [show ((p : ℝ) ^ 2 : ℝ) = (p ^ 2 : ℕ) by norm_cast]
   field_simp [hp2]
 
+/--
+@isnad1 id=coprime.1h2v.s5.a53dde37268b from=translated src=- shape=f4edb629 vocab=77162040
+-/
 lemma prime_sq_coprime (p q : Nat.Primes) (hne : p ≠ q) :
     ((p : ℕ) ^ 2).Coprime ((q : ℕ) ^ 2) := by
   have hpq : (p : ℕ) ≠ (q : ℕ) := fun h => hne (Subtype.ext h)
   exact Nat.Coprime.pow_right 2
     (Nat.Coprime.pow_left 2 ((Nat.coprime_primes p.prop q.prop).mpr hpq))
 
+/--
+@isnad1 id=pairwise.0h1v.s6.b8fc83d563df from=translated src=- shape=1e059347 vocab=6a33e408
+-/
 lemma pairwise_coprime_prime_squares (S : Finset Nat.Primes) :
     (S : Set Nat.Primes).Pairwise (fun p q => ((p : ℕ) ^ 2).Coprime ((q : ℕ) ^ 2)) := by
   intro p _ q _ hpq
@@ -67,18 +76,25 @@ lemma pairwise_coprime_prime_squares (S : Finset Nat.Primes) :
     Specifically, uses `List.Nodup.pairwise_of_set_pairwise : l.Nodup → {x | x ∈ l}.Pairwise r →
     List.Pairwise r l`
     together with `Finset.nodup_toList : ∀ (s : Finset α), s.toList.Nodup` and
-    `Finset.coe_toList : ↑s.toList = ↑s` (as sets). -/
+    `Finset.coe_toList : ↑s.toList = ↑s` (as sets).
+@isnad1 id=pairwise.0h1v.s5.7bd2dd176bf7 from=translated src=- shape=7d73eda7 vocab=90d4fa48
+-/
 lemma toList_pairwise_coprime_prime_squares (S : Finset Nat.Primes) :
     List.Pairwise (Function.onFun Nat.Coprime (fun p : Nat.Primes => (p : ℕ) ^ 2)) S.toList := by
   apply List.Nodup.pairwise_of_set_pairwise (Finset.nodup_toList S)
   simp only [Finset.mem_toList]
   exact pairwise_coprime_prime_squares S
 
+/--
+@isnad1 id=eq.0h1v.s5.95f26fb0f4e6 from=translated src=- shape=58789be0 vocab=093145ee
+-/
 lemma list_map_prod_eq_primeSquareProduct (S : Finset Nat.Primes) :
     (List.map (fun p : Nat.Primes => (p : ℕ) ^ 2) S.toList).prod = primeSquareProduct S := by
   aesop
 
-/-- Congruence modulo each prime-square factor implies congruence modulo their product. -/
+/-- Congruence modulo each prime-square factor implies congruence modulo their product.
+@isnad1 id=modeq.1h3v.s5.06deade87cf5 from=translated src=- shape=b1b010ed vocab=38f29c4b
+-/
 lemma modEq_primeSquareProduct_of_forall_modEq (S : Finset Nat.Primes) (r₁ r₂ : ℕ)
     (h : ∀ p ∈ S, r₁ ≡ r₂ [MOD (p : ℕ) ^ 2]) :
     r₁ ≡ r₂ [MOD primeSquareProduct S] := by
@@ -86,7 +102,9 @@ lemma modEq_primeSquareProduct_of_forall_modEq (S : Finset Nat.Primes) (r₁ r�
   rw [Nat.modEq_list_map_prod_iff (toList_pairwise_coprime_prime_squares S)]
   simp_all
 
-/-- The CRT remainder map is injective on residues below the product modulus. -/
+/-- The CRT remainder map is injective on residues below the product modulus.
+@isnad1 id=injon.0h1v.s6.b0bcf36b1089 from=translated src=- shape=7805271e vocab=90f589c1
+-/
 lemma crtMap_injective_on_range (S : Finset Nat.Primes) :
     Set.InjOn (fun r => fun p (_hp : p ∈ S) => r % ((p : ℕ) ^ 2))
       {r | r < primeSquareProduct S} := by
@@ -96,15 +114,24 @@ lemma crtMap_injective_on_range (S : Finset Nat.Primes) :
   exact Nat.ModEq.eq_of_lt_of_lt
     (modEq_primeSquareProduct_of_forall_modEq S r₁ r₂ h_modEq) hr₁ hr₂
 
+/--
+@isnad1 id=iff.1h2v.s6.9fea06c9467b from=translated src=- shape=065cd162 vocab=0f4b56fa
+-/
 lemma dvd_iff_mod_dvd (p : ℕ) (_hp : 0 < p ^ 2) (r : ℕ) :
     p ^ 2 ∣ r ↔ r % (p ^ 2) = 0 :=
   Nat.dvd_iff_mod_eq_zero
 
+/--
+@isnad1 id=iff.1h4v.s7.f020a5a8ac54 from=translated src=- shape=517f6695 vocab=b829fdfc
+-/
 lemma shifted_dvd_iff_mod (p b d r : ℕ) (_hp : 0 < p ^ 2) :
     p ^ 2 ∣ (b * r + d) ↔ p ^ 2 ∣ (b * (r % (p ^ 2)) + d) := by
   rw [Nat.dvd_iff_mod_eq_zero, Nat.dvd_iff_mod_eq_zero]
   simp [Nat.add_mod, Nat.mul_mod]
 
+/--
+@isnad1 id=iff.0h4v.s8.b99779a720bc from=translated src=- shape=d25d5f19 vocab=6ef47b89
+-/
 lemma valid_iff_locally_valid (b : ℕ) (T : Finset ℕ) (S : Finset Nat.Primes) (r : ℕ) :
     (∀ p ∈ S, ¬((p : ℕ) ^ 2 ∣ r) ∧ ∀ d ∈ T, ¬((p : ℕ) ^ 2 ∣ (b * r + d))) ↔
     (∀ p ∈ S, ¬((p : ℕ) ^ 2 ∣ (r % (p : ℕ) ^ 2)) ∧ ∀ d ∈ T, ¬((p : ℕ) ^ 2 ∣ (b * (r % (p : ℕ) ^ 2) +
@@ -134,11 +161,16 @@ lemma valid_iff_locally_valid (b : ℕ) (T : Finset ℕ) (S : Finset Nat.Primes)
     This is needed to apply `Nat.chineseRemainderOfFinset`.
     Uses `Nat.Prime.pos : ∀ {p : ℕ}, Nat.Prime p → 0 < p` and
     `pow_ne_zero : ∀ {M₀ : Type u_1} [inst : MonoidWithZero M₀] {a : M₀} [NoZeroDivisors M₀] (n :
-    ℕ), a ≠ 0 → a ^ n ≠ 0`. -/
+    ℕ), a ≠ 0 → a ^ n ≠ 0`.
+@isnad1 id=ne.0h1v.s5.5411c14aa9ac from=translated src=- shape=70287146 vocab=e1a05b63
+-/
 lemma prime_sq_ne_zero (p : Nat.Primes) : (p : ℕ) ^ 2 ≠ 0 := by
   have hp : Nat.Prime p := p.2
   exact pow_ne_zero 2 hp.pos.ne'
 
+/--
+@isnad1 id=ex.1h2v.s7.a000312b7436 from=translated src=- shape=efe209fd vocab=48ec788c
+-/
 lemma crt_surjective (S : Finset Nat.Primes) (t : (p : Nat.Primes) → p ∈ S → ℕ)
     (ht : ∀ p (hp : p ∈ S), t p hp < (p : ℕ) ^ 2) :
     ∃ r, r < primeSquareProduct S ∧ ∀ p (hp : p ∈ S), r % ((p : ℕ) ^ 2) = t p hp := by
@@ -157,6 +189,9 @@ lemma crt_surjective (S : Finset Nat.Primes) (t : (p : Nat.Primes) → p ∈ S �
     rw [ha] at hcong
     exact Nat.mod_eq_of_modEq hcong (ht p hp)
 
+/--
+@isnad1 id=mem.2h5v.s6.fd66c86c734a from=translated src=- shape=7abd71fc vocab=2e68df59
+-/
 lemma crtMap_mapsTo_pi (b : ℕ) (T : Finset ℕ) (S : Finset Nat.Primes) (r : ℕ)
     (hr : r ∈ validResiduesMod b T S) (p : Nat.Primes) (hp : p ∈ S) :
     r % ((p : ℕ) ^ 2) ∈ localValidResidues (p : ℕ) b T := by
@@ -180,6 +215,9 @@ lemma crtMap_mapsTo_pi (b : ℕ) (T : Finset ℕ) (S : Finset Nat.Primes) (r : �
       hadd.dvd_iff dvd_rfl
     exact h_not_dvd (hdvd_equiv.mp hdvd_shifted)
 
+/--
+@isnad1 id=not.3h3v.s6.ba1e92407858 from=translated src=- shape=7b798fb6 vocab=0f4b56fa
+-/
 lemma not_dvd_of_mod_eq_not_dvd (p r f : ℕ) (_hp : 0 < p ^ 2) (hr_eq : r % p ^ 2 = f)
     (hf_ndiv : ¬(p ^ 2 ∣ f)) : ¬(p ^ 2 ∣ r) := by
   intro h_dvd_r
@@ -188,6 +226,9 @@ lemma not_dvd_of_mod_eq_not_dvd (p r f : ℕ) (_hp : 0 < p ^ 2) (hr_eq : r % p ^
     exact Nat.mod_eq_zero_of_dvd h_dvd_r
   exact hf_ndiv (h_f_eq_zero ▸ dvd_zero _)
 
+/--
+@isnad1 id=not.3h5v.s7.2f26e8331d54 from=translated src=- shape=6bdfa553 vocab=b829fdfc
+-/
 lemma not_dvd_shift_of_mod_eq (p b r f d : ℕ) (_hp : 0 < p ^ 2) (hr_eq : r % p ^ 2 = f)
     (hf_shift : ¬(p ^ 2 ∣ b * f + d)) : ¬(p ^ 2 ∣ b * r + d) := by
   intro h
@@ -195,6 +236,9 @@ lemma not_dvd_shift_of_mod_eq (p b r f d : ℕ) (_hp : 0 < p ^ 2) (hr_eq : r % p
   have : p ^ 2 ∣ b * (r % p ^ 2) + d := (shifted_dvd_iff_mod p b d r _hp).mp h
   rwa [hr_eq] at this
 
+/--
+@isnad1 id=ex.1h4v.s7.c1fe2f480d61 from=translated src=- shape=6654a0a3 vocab=2e68df59
+-/
 lemma crt_inverse_mapsTo (b : ℕ) (T : Finset ℕ) (S : Finset Nat.Primes)
     (f : (p : Nat.Primes) → p ∈ S → ℕ)
     (hf : ∀ p (hp : p ∈ S), f p hp ∈ localValidResidues (p : ℕ) b T) :
@@ -219,6 +263,9 @@ lemma crt_inverse_mapsTo (b : ℕ) (T : Finset ℕ) (S : Finset Nat.Primes)
     · intro d hd
       exact not_dvd_shift_of_mod_eq (p : ℕ) b r (f p hp) d hp_pos hr_eq (hf_shift d hd)
 
+/--
+@isnad1 id=nonempty.0h3v.s7.7f1276391e26 from=translated src=- shape=0a3a4598 vocab=2cd4e693
+-/
 lemma validResidues_equiv_pi (b : ℕ) (T : Finset ℕ) (S : Finset Nat.Primes) :
     Nonempty ((validResiduesMod b T S) ≃ (S.pi (fun p => localValidResidues (p : ℕ) b T))) := by
   have hfwd : ∀ r, r ∈ validResiduesMod b T S →
@@ -253,18 +300,26 @@ lemma validResidues_equiv_pi (b : ℕ) (T : Finset ℕ) (S : Finset Nat.Primes) 
     exact hr_eq p hp
   exact ⟨Equiv.ofBijective f ⟨hf_inj, hf_surj⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.bf69b0d47d51 from=translated src=- shape=da28b60a vocab=26ca67bb
+-/
 lemma validResiduesMod_card_eq_pi_card (b : ℕ) (T : Finset ℕ) (S : Finset Nat.Primes) :
     (validResiduesMod b T S).card =
       (S.pi (fun p => localValidResidues (p : ℕ) b T)).card := by
   exact Finset.card_eq_of_equiv (validResidues_equiv_pi b T S).some
 
-/-- Valid residue counts factor as the product of local valid residue counts. -/
+/-- Valid residue counts factor as the product of local valid residue counts.
+@isnad1 id=eq.0h3v.s5.c3c8f30508c4 from=translated src=- shape=7a3fe4dd vocab=daca63e7
+-/
 lemma validResiduesMod_card_eq_prod (b : ℕ) (T : Finset ℕ) (S : Finset Nat.Primes) :
     ((validResiduesMod b T S).card : ℝ) =
       ∏ p ∈ S, ((localValidResidues (p : ℕ) b T).card : ℝ) := by
   rw [validResiduesMod_card_eq_pi_card]
   simp_all
 
+/--
+@isnad1 id=eq.2h3v.s5.b041858a7585 from=translated src=- shape=c56db2c9 vocab=bae6beec
+-/
 lemma validResidues_card_eq_mul (b : ℕ) (_hb : 2 ≤ b) (T : Finset ℕ) (_hT : T ⊆ Finset.range b)
     (S : Finset Nat.Primes) :
     ((validResiduesMod b T S).card : ℝ) =
@@ -277,15 +332,24 @@ lemma validResidues_card_eq_mul (b : ℕ) (_hb : 2 ≤ b) (T : Finset ℕ) (_hT 
   rw [Finset.prod_mul_distrib]
   simp only [primeSquareProduct, localDensityProduct, Nat.cast_prod, Nat.cast_pow]
 
+/--
+@isnad1 id=dvd.1h2v.s5.e59132c228a0 from=translated src=- shape=d44a3fad vocab=9d023dfe
+-/
 lemma prime_sq_dvd_primeSquareProduct (S : Finset Nat.Primes) (p : Nat.Primes) (hp : p ∈ S) :
     (p : ℕ) ^ 2 ∣ primeSquareProduct S :=
   Finset.dvd_prod_of_mem _ hp
 
+/--
+@isnad1 id=iff.2h4v.s6.af407f71d947 from=translated src=- shape=6b5150b8 vocab=920dfbd6
+-/
 lemma dvd_iff_of_mod_eq_primeSquareProduct (S : Finset Nat.Primes) (p : Nat.Primes) (hp : p ∈ S)
     (N₁ N₂ : ℕ) (hmod : N₁ % primeSquareProduct S = N₂ % primeSquareProduct S) :
     ((p : ℕ) ^ 2 ∣ N₁ ↔ (p : ℕ) ^ 2 ∣ N₂) :=
   Nat.ModEq.dvd_iff hmod (prime_sq_dvd_primeSquareProduct S p hp)
 
+/--
+@isnad1 id=iff.2h6v.s7.7eb9e3844175 from=translated src=- shape=7f753d1d vocab=752ac3d7
+-/
 lemma shifted_dvd_iff_of_mod_eq_primeSquareProduct (b d : ℕ) (S : Finset Nat.Primes)
     (p : Nat.Primes) (hp : p ∈ S) (N₁ N₂ : ℕ)
     (hmod : N₁ % primeSquareProduct S = N₂ % primeSquareProduct S) :
@@ -293,6 +357,9 @@ lemma shifted_dvd_iff_of_mod_eq_primeSquareProduct (b d : ℕ) (S : Finset Nat.P
   have hN : N₁ ≡ N₂ [MOD (p : ℕ) ^ 2] :=
     Nat.ModEq.of_dvd (prime_sq_dvd_primeSquareProduct S p hp) hmod
   exact Nat.ModEq.dvd_iff ((hN.mul_left b).add_right d) dvd_rfl
+/--
+@isnad1 id=iff.1h5v.s7.e5783cbef4ab from=translated src=- shape=72b336ba vocab=752ac3d7
+-/
 theorem condition_mod_invariant (b : ℕ) (T : Finset ℕ) (S : Finset Nat.Primes)
     (N₁ N₂ : ℕ) (hmod : N₁ % primeSquareProduct S = N₂ % primeSquareProduct S) :
     (∀ p ∈ S, ¬((p : ℕ) ^ 2 ∣ N₁) ∧ ∀ d ∈ T, ¬((p : ℕ) ^ 2 ∣ b * N₁ + d)) ↔

@@ -106,7 +106,9 @@ noncomputable def bisectRoot (e : Expr) (I : IntervalRat) (maxIter : ℕ)
 
 /-! ### Bisection correctness -/
 
-/-- Key lemma: checkRootStatus returns noRoot only when excludesZero is true -/
+/-- Key lemma: checkRootStatus returns noRoot only when excludesZero is true
+@isnad1 id=eq.1h2v.s4.285d7129a8e1 from=translated src=- shape=7f34ef90 vocab=0eeb8d33
+-/
 theorem checkRootStatus_noRoot_implies_excludesZero (e : Expr) (J : IntervalRat) :
     checkRootStatus e J = RootStatus.noRoot → excludesZero (LeanCert.Internal.Rational.evalUnchecked1 e J) = true := by
   unfold checkRootStatus
@@ -120,7 +122,9 @@ theorem checkRootStatus_noRoot_implies_excludesZero (e : Expr) (J : IntervalRat)
     · simp only [hsign, Bool.false_eq_true, ↓reduceIte] at h
       cases h
 
-/-- Key lemma: checkRootStatus returns hasRoot only when signChange is true -/
+/-- Key lemma: checkRootStatus returns hasRoot only when signChange is true
+@isnad1 id=eq.1h2v.s4.51867b1dacc2 from=translated src=- shape=aabd8b84 vocab=35fb3bd2
+-/
 theorem checkRootStatus_hasRoot_implies_signChange (e : Expr) (J : IntervalRat) :
     checkRootStatus e J = RootStatus.hasRoot → signChange e J = true := by
   unfold checkRootStatus
@@ -145,7 +149,9 @@ def BisectInv (e : Expr) (pairs : List (IntervalRat × RootStatus)) : Prop :=
 def SubIntervalInv (I : IntervalRat) (pairs : List (IntervalRat × RootStatus)) : Prop :=
   ∀ J s, (J, s) ∈ pairs → I.lo ≤ J.lo ∧ J.hi ≤ I.hi
 
-/-- The invariant holds for the initial work list -/
+/-- The invariant holds for the initial work list
+@isnad1 id=bisectin.0h2v.s4.8d428009b791 from=translated src=- shape=180230bb vocab=aa34d725
+-/
 theorem bisect_inv_initial (e : Expr) (I : IntervalRat) :
     BisectInv e [(I, RootStatus.unknown)] := by
   intro J s hmem hs
@@ -154,7 +160,9 @@ theorem bisect_inv_initial (e : Expr) (I : IntervalRat) :
   subst hs'
   contradiction
 
-/-- The sub-interval invariant holds initially -/
+/-- The sub-interval invariant holds initially
+@isnad1 id=subinter.0h1v.s4.bfeb356e6fca from=translated src=- shape=aacd1653 vocab=4c3ee3fd
+-/
 theorem subinterval_inv_initial (I : IntervalRat) :
     SubIntervalInv I [(I, RootStatus.unknown)] := by
   intro J s hmem
@@ -163,7 +171,9 @@ theorem subinterval_inv_initial (I : IntervalRat) :
   subst hJ
   exact ⟨le_refl _, le_refl _⟩
 
-/-- BisectInv is preserved when adding a hasRoot interval with signChange = true -/
+/-- BisectInv is preserved when adding a hasRoot interval with signChange = true
+@isnad1 id=bisectin.2h3v.s5.a5176991127b from=translated src=- shape=6b68991e vocab=fd5da651
+-/
 theorem bisect_inv_cons_hasRoot (e : Expr) (J : IntervalRat) (pairs : List (IntervalRat × RootStatus))
     (hInv : BisectInv e pairs) (hsign : signChange e J = true) :
     BisectInv e ((J, RootStatus.hasRoot) :: pairs) := by
@@ -176,7 +186,9 @@ theorem bisect_inv_cons_hasRoot (e : Expr) (J : IntervalRat) (pairs : List (Inte
     exact hsign
   | inr h => exact hInv K s h hs
 
-/-- BisectInv is preserved when adding non-hasRoot intervals -/
+/-- BisectInv is preserved when adding non-hasRoot intervals
+@isnad1 id=bisectin.2h4v.s5.379f88c1dd3f from=translated src=- shape=235e8225 vocab=19834588
+-/
 theorem bisect_inv_cons_other (e : Expr) (J : IntervalRat) (s : RootStatus) (pairs : List (IntervalRat × RootStatus))
     (hInv : BisectInv e pairs) (hne : s ≠ RootStatus.hasRoot) :
     BisectInv e ((J, s) :: pairs) := by
@@ -189,7 +201,9 @@ theorem bisect_inv_cons_other (e : Expr) (J : IntervalRat) (s : RootStatus) (pai
     contradiction
   | inr h => exact hInv K s' h hs'
 
-/-- BisectInv holds for list append -/
+/-- BisectInv holds for list append
+@isnad1 id=bisectin.2h3v.s5.de030951dafa from=translated src=- shape=b06e5791 vocab=c023b402
+-/
 theorem bisect_inv_append (e : Expr) (l₁ l₂ : List (IntervalRat × RootStatus))
     (h₁ : BisectInv e l₁) (h₂ : BisectInv e l₂) :
     BisectInv e (l₁ ++ l₂) := by
@@ -199,7 +213,9 @@ theorem bisect_inv_append (e : Expr) (l₁ l₂ : List (IntervalRat × RootStatu
   | inl h => exact h₁ J s h hs
   | inr h => exact h₂ J s h hs
 
-/-- SubIntervalInv holds for list append -/
+/-- SubIntervalInv holds for list append
+@isnad1 id=subinter.2h3v.s5.bc4e91db9bd6 from=translated src=- shape=fddac7f8 vocab=43621aaa
+-/
 theorem subinterval_inv_append (I : IntervalRat) (l₁ l₂ : List (IntervalRat × RootStatus))
     (h₁ : SubIntervalInv I l₁) (h₂ : SubIntervalInv I l₂) :
     SubIntervalInv I (l₁ ++ l₂) := by
@@ -209,7 +225,9 @@ theorem subinterval_inv_append (I : IntervalRat) (l₁ l₂ : List (IntervalRat 
   | inl h => exact h₁ J s h
   | inr h => exact h₂ J s h
 
-/-- SubIntervalInv is preserved when adding a sub-interval -/
+/-- SubIntervalInv is preserved when adding a sub-interval
+@isnad1 id=subinter.2h4v.s5.4812b548df46 from=translated src=- shape=692e0bd0 vocab=2dc7ae8b
+-/
 theorem subinterval_inv_cons (I J : IntervalRat) (s : RootStatus)
     (pairs : List (IntervalRat × RootStatus))
     (hInv : SubIntervalInv I pairs) (hJ : I.lo ≤ J.lo ∧ J.hi ≤ I.hi) :
@@ -223,7 +241,9 @@ theorem subinterval_inv_cons (I J : IntervalRat) (s : RootStatus)
     exact hJ
   | inr h => exact hInv K s' h
 
-/-- Bisecting preserves the sub-interval property -/
+/-- Bisecting preserves the sub-interval property
+@isnad1 id=match1.1h2v.s5.522d2b50b04f from=translated src=- shape=14bc172f vocab=7579698a
+-/
 theorem bisect_subinterval (I J : IntervalRat) (hJ : I.lo ≤ J.lo ∧ J.hi ≤ I.hi) :
     let (J₁, J₂) := J.bisect
     (I.lo ≤ J₁.lo ∧ J₁.hi ≤ I.hi) ∧ (I.lo ≤ J₂.lo ∧ J₂.hi ≤ I.hi) := by
@@ -246,7 +266,9 @@ theorem bisect_subinterval (I J : IntervalRat) (hJ : I.lo ≤ J.lo ∧ J.hi ≤ 
 /-! ### Main correctness proofs -/
 
 /-- noRoot never appears in output - the algorithm discards such intervals.
-    We prove this by induction on iter. -/
+    We prove this by induction on iter.
+@isnad1 id=ne.3h8v.s6.562b5c7ff993 from=translated src=- shape=b8342e73 vocab=b56d2432
+-/
 theorem go_noRoot_not_in_output (e : Expr) (tol : ℚ) (maxIter : ℕ)
     (work : List (IntervalRat × RootStatus)) (iter : ℕ)
     (done : List (IntervalRat × RootStatus))
@@ -339,7 +361,9 @@ theorem go_noRoot_not_in_output (e : Expr) (tol : ℚ) (maxIter : ℕ)
 
 /-- Every hasRoot interval in output has signChange = true.
     We prove this by induction on iter.
-    Note: We need BisectInv for work too, since at iter=0 we output work as-is. -/
+    Note: We need BisectInv for work too, since at iter=0 we output work as-is.
+@isnad1 id=bisectin.2h6v.s5.bf27126ad345 from=translated src=- shape=52b92e54 vocab=84ac1e26
+-/
 theorem go_hasRoot_has_signChange (e : Expr) (tol : ℚ) (maxIter : ℕ)
     (work : List (IntervalRat × RootStatus)) (iter : ℕ)
     (done : List (IntervalRat × RootStatus))
@@ -420,7 +444,9 @@ theorem go_hasRoot_has_signChange (e : Expr) (tol : ℚ) (maxIter : ℕ)
           exact ih _ done hNewWork hDone
 
 /-- Every interval in output is a sub-interval of the original.
-    We prove this by induction on iter. -/
+    We prove this by induction on iter.
+@isnad1 id=subinter.2h7v.s5.b1e5a98fca62 from=translated src=- shape=efde6f46 vocab=41ec221c
+-/
 theorem go_subinterval (e : Expr) (tol : ℚ) (maxIter : ℕ) (I : IntervalRat)
     (work : List (IntervalRat × RootStatus)) (iter : ℕ)
     (done : List (IntervalRat × RootStatus))
@@ -516,7 +542,9 @@ theorem go_subinterval (e : Expr) (tol : ℚ) (maxIter : ℕ) (I : IntervalRat)
     has signChange e J = true, then applying signChange_correct.
 
     **Note about noRoot**: The algorithm discards noRoot intervals, so they
-    never appear in the output. Thus bisectRoot_noRoot_correct is vacuously true.  -/
+    never appear in the output. Thus bisectRoot_noRoot_correct is vacuously true.
+@isnad1 id=other.3h4v.s6.5bbaa9fa094f from=translated src=- shape=71888b79 vocab=0ae27fdb
+-/
 theorem bisectRoot_hasRoot_correct (e : Expr) (hsupp : ADSupported e) (I : IntervalRat)
     (maxIter : ℕ) (tol : ℚ) (htol : 0 < tol)
     (hCont : ContinuousOn (fun x => Expr.eval (fun _ => x) e) (Set.Icc I.lo I.hi)) :
@@ -558,7 +586,9 @@ theorem bisectRoot_hasRoot_correct (e : Expr) (hsupp : ADSupported e) (I : Inter
     returns noRoot, we call `go rest n done` without adding J to done. So noRoot
     never appears in the output intervals list.
 
-    This means the theorem is vacuously true: there are no (J, noRoot) pairs in the output. -/
+    This means the theorem is vacuously true: there are no (J, noRoot) pairs in the output.
+@isnad1 id=other.2h4v.s6.17cfac17fa2d from=translated src=- shape=55a6a3da vocab=d372a9c1
+-/
 theorem bisectRoot_noRoot_correct (e : Expr) (_hsupp : ADSupported e) (I : IntervalRat)
     (maxIter : ℕ) (tol : ℚ) (htol : 0 < tol) :
     let result := bisectRoot e I maxIter tol htol

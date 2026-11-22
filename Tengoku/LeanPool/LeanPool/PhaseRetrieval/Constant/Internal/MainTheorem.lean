@@ -767,6 +767,9 @@ private lemma pre_absorption {D : ℕ} (hD : 1 ≤ D) (a : Fin D → ℂ) :
   change fockNormSq a < 8 * 1620 ^ 2 * rhoFockNormSq a + δ
   nlinarith [h_chain, h_absorb, hfock_nn, hrho_nn]
 
+/--
+@isnad1 id=le.1h2v.s5.6ab11837e75b from=translated src=- shape=f279f04e vocab=f6b842b6
+-/
 theorem fock_space_coercivity {D : ℕ} (hD : 1 ≤ D) (a : Fin D → ℂ) :
     fockNormSq a ≤ 4600 ^ 2 * rhoFockNormSq a := by
   have hpre := pre_absorption hD a
@@ -774,7 +777,9 @@ theorem fock_space_coercivity {D : ℕ} (hD : 1 ≤ D) (a : Fin D → ℂ) :
       ≤ 8 * 1620 ^ 2 * rhoFockNormSq a := hpre
     _ ≤ 4600 ^ 2 * rhoFockNormSq a := by nlinarith [final_constant_check, rhoFockNormSq_nonneg a]
 
-/-- Fock-space coercivity for complex polynomials with zero constant term. -/
+/-- Fock-space coercivity for complex polynomials with zero constant term.
+@isnad1 id=le.1h1v.s8.061772bcfb77 from=translated src=- shape=65c0042d vocab=15deda53
+-/
 theorem LocalFockSPR
     (p : Polynomial ℂ)
     (hp : p.eval 0 = 0) :

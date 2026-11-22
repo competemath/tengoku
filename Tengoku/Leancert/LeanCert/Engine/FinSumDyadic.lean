@@ -67,7 +67,9 @@ open LeanCert.Core
 These are general lemmas for peeling elements from Finset sums.
 Reusable by any accumulator-based sum evaluator. -/
 
-/-- Sum over Icc starting at first element -/
+/-- Sum over Icc starting at first element
+@isnad1 id=eq.1h4v.s6.ef8db41902cd from=translated src=- shape=1870a89a vocab=54b50a0a
+-/
 theorem Finset.sum_Icc_eq_add_sum_Ioc' {α : Type*} [AddCommMonoid α] (f : ℕ → α) (a b : ℕ)
     (h : a ≤ b) : ∑ k ∈ Finset.Icc a b, f k = f a + ∑ k ∈ Finset.Ioc a b, f k := by
   rw [← Finset.sum_insert (s := Finset.Ioc a b) (a := a)]
@@ -78,7 +80,9 @@ theorem Finset.sum_Icc_eq_add_sum_Ioc' {α : Type*} [AddCommMonoid α] (f : ℕ 
   · simp only [Finset.mem_Ioc]
     omega
 
-/-- Ioc a b equals Icc (a+1) b -/
+/-- Ioc a b equals Icc (a+1) b
+@isnad1 id=eq.0h2v.s4.9cbc676d1378 from=translated src=- shape=3d9c19fa vocab=2b32e982
+-/
 theorem Finset.Ioc_eq_Icc_succ' (a b : ℕ) : Finset.Ioc a b = Finset.Icc (a + 1) b := by
   ext k
   simp only [Finset.mem_Ioc, Finset.mem_Icc]
@@ -97,7 +101,9 @@ def sumBodyEnvSimple (k : Nat) (prec : Int) : IntervalDyadicEnv :=
 /-- Real environment: all variables equal (k : ℝ). -/
 noncomputable def sumBodyRealEnv (k : Nat) : Nat → ℝ := fun _ => (k : ℝ)
 
-/-- The real environment is contained in the dyadic environment. -/
+/-- The real environment is contained in the dyadic environment.
+@isnad1 id=envmemdy.1h2v.s4.98e6fb01127d from=translated src=- shape=b5fc476f vocab=db152af5
+-/
 theorem sumBodyEnvSimple_correct (k : Nat) (prec : Int) (hprec : prec ≤ 0) :
     envMemDyadic (sumBodyRealEnv k) (sumBodyEnvSimple k prec) := by
   intro i
@@ -118,7 +124,9 @@ def evalSumTermDyadic (body : Expr) (k : Nat) (cfg : DyadicConfig) : IntervalDya
 /-- Zero interval for accumulator initialization. -/
 def finSumZero : IntervalDyadic := IntervalDyadic.singleton Core.Dyadic.zero
 
-/-- Zero is in the zero interval. -/
+/-- Zero is in the zero interval.
+@isnad1 id=mem.0h0v.s3.ff6d323c68cc from=translated src=- shape=ddfd6e86 vocab=69811d92
+-/
 theorem mem_finSumZero : (0 : ℝ) ∈ finSumZero := by
   simp only [finSumZero, IntervalDyadic.singleton, IntervalDyadic.mem_def]
   have hz : Core.Dyadic.zero.toRat = 0 := Core.Dyadic.toRat_zero
@@ -154,7 +162,9 @@ def checkFinSumLowerBound (body : Expr) (a b : Nat) (target : ℚ)
 
 /-! ### Correctness Theorems -/
 
-/-- Per-term correctness: the true value is in the computed interval. -/
+/-- Per-term correctness: the true value is in the computed interval.
+@isnad1 id=mem.2h4v.s5.34ec5c48e7ca from=translated src=- shape=4d833fca vocab=adb8845e
+-/
 theorem mem_evalSumTermDyadic (body : Expr) (hsupp : ExprSupportedCore body)
     (k : Nat) (cfg : DyadicConfig) (hprec : cfg.precision ≤ 0 := by norm_num)
     (hdom : evalDomainValidDyadic body (sumBodyEnvSimple k cfg.precision) cfg) :
@@ -166,7 +176,9 @@ theorem mem_evalSumTermDyadic (body : Expr) (hsupp : ExprSupportedCore body)
 /-- Accumulator correctness: if we've accumulated correctly so far,
     adding terms preserves correctness.
 
-    Proof structure mirrors `mem_bklnwSumAux` from ReflectiveSum.lean. -/
+    Proof structure mirrors `mem_bklnwSumAux` from ReflectiveSum.lean.
+@isnad1 id=mem.3h7v.s6.0aa87bdacf11 from=translated src=- shape=f5d9adc1 vocab=91ccf1d7
+-/
 theorem mem_finSumAux (body : Expr) (hsupp : ExprSupportedCore body)
     (current limit : Nat) (acc : IntervalDyadic) (partialSum : ℝ)
     (hacc : partialSum ∈ acc)
@@ -208,7 +220,9 @@ theorem mem_finSumAux (body : Expr) (hsupp : ExprSupportedCore body)
 /-- Main correctness theorem: the computed interval contains the true sum.
 
     This is the "golden theorem" connecting the computable evaluator to the
-    mathematical definition of the finite sum. -/
+    mathematical definition of the finite sum.
+@isnad1 id=mem.2h5v.s6.a84ee93be067 from=translated src=- shape=21a2370c vocab=f68a181e
+-/
 theorem mem_finSumDyadic (body : Expr) (hsupp : ExprSupportedCore body)
     (a b : Nat) (cfg : DyadicConfig := {}) (hprec : cfg.precision ≤ 0 := by norm_num)
     (hdom : ∀ k, a ≤ k → k ≤ b →
@@ -223,7 +237,9 @@ theorem mem_finSumDyadic (body : Expr) (hsupp : ExprSupportedCore body)
 
 /-- If checkFinSumUpperBound returns true, the sum is bounded above.
 
-    This connects `native_decide` verification to mathematical truth. -/
+    This connects `native_decide` verification to mathematical truth.
+@isnad1 id=le.3h6v.s6.131065c7b604 from=translated src=- shape=2565b012 vocab=3ecff646
+-/
 theorem verify_finsum_upper (body : Expr) (hsupp : ExprSupportedCore body)
     (a b : Nat) (target : ℚ) (cfg : DyadicConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -237,7 +253,9 @@ theorem verify_finsum_upper (body : Expr) (hsupp : ExprSupportedCore body)
   simp only [checkFinSumUpperBound, IntervalDyadic.upperBoundedBy, decide_eq_true_eq] at h_check
   exact le_trans hhi (by exact_mod_cast h_check)
 
-/-- If checkFinSumLowerBound returns true, the sum is bounded below. -/
+/-- If checkFinSumLowerBound returns true, the sum is bounded below.
+@isnad1 id=le.3h6v.s6.4f4f05013b2d from=translated src=- shape=4f7c09bf vocab=557156ed
+-/
 theorem verify_finsum_lower (body : Expr) (hsupp : ExprSupportedCore body)
     (a b : Nat) (target : ℚ) (cfg : DyadicConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -292,7 +310,9 @@ def evaluateFinSumCandidate (body : Expr) (a b : Nat)
   | none => .success (finSumDyadic body a b cfg)
 
 /-- Bridge theorem: if checkDomainValidAllAux returns true,
-    domain validity holds for all indices in [current, limit]. -/
+    domain validity holds for all indices in [current, limit].
+@isnad1 id=evaldoma.3h5v.s5.927338b6f462 from=translated src=- shape=64abf0b6 vocab=3b671d5a
+-/
 theorem checkDomainValidAllAux_correct (body : Expr) (current limit : Nat)
     (cfg : DyadicConfig)
     (h : checkDomainValidAllAux body current limit cfg = true) :
@@ -317,7 +337,9 @@ theorem checkDomainValidAllAux_correct (body : Expr) (current limit : Nat)
         have hm' : limit + 1 - (current + 1) < m := by omega
         exact ih (limit + 1 - (current + 1)) hm' (current + 1) h.2 rfl k hk1' hk2
 
-/-- Bridge theorem for checkDomainValidAll. -/
+/-- Bridge theorem for checkDomainValidAll.
+@isnad1 id=evaldoma.3h5v.s5.3038f0e74e10 from=translated src=- shape=64abf0b6 vocab=8ca78273
+-/
 theorem checkDomainValidAll_correct (body : Expr) (a b : Nat) (cfg : DyadicConfig)
     (h : checkDomainValidAll body a b cfg = true) :
     ∀ k, a ≤ k → k ≤ b →
@@ -339,7 +361,9 @@ def checkFinSumLowerBoundFull (body : Expr) (a b : Nat) (target : ℚ)
 /-! ### Combined Bridge Theorems (ExprSupportedCore) -/
 
 /-- If checkFinSumUpperBoundFull returns true, the sum is bounded above.
-    Domain validity is verified as part of the check. -/
+    Domain validity is verified as part of the check.
+@isnad1 id=le.2h6v.s6.762b3632938b from=translated src=- shape=3bfd6816 vocab=a299ca5f
+-/
 theorem verify_finsum_upper_full (body : Expr) (hsupp : ExprSupportedCore body)
     (a b : Nat) (target : ℚ) (cfg : DyadicConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -350,7 +374,9 @@ theorem verify_finsum_upper_full (body : Expr) (hsupp : ExprSupportedCore body)
     (checkDomainValidAll_correct body a b cfg h_check.1) h_check.2
 
 /-- If checkFinSumLowerBoundFull returns true, the sum is bounded below.
-    Domain validity is verified as part of the check. -/
+    Domain validity is verified as part of the check.
+@isnad1 id=le.2h6v.s6.1c494ba31aaf from=translated src=- shape=9b99f6e6 vocab=12874f11
+-/
 theorem verify_finsum_lower_full (body : Expr) (hsupp : ExprSupportedCore body)
     (a b : Nat) (target : ℚ) (cfg : DyadicConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -362,7 +388,9 @@ theorem verify_finsum_lower_full (body : Expr) (hsupp : ExprSupportedCore body)
 
 /-! ### Checked Correctness Chain -/
 
-/-- Per-term correctness for arbitrary expression bodies. -/
+/-- Per-term correctness for arbitrary expression bodies.
+@isnad1 id=mem.1h4v.s5.72e43b17accb from=translated src=- shape=d14b4558 vocab=b57d0b25
+-/
 theorem mem_evalSumTermDyadic_checked (body : Expr)
     (k : Nat) (cfg : DyadicConfig) (hprec : cfg.precision ≤ 0 := by norm_num)
     (hdom : evalDomainValidDyadic body (sumBodyEnvSimple k cfg.precision) cfg) :
@@ -371,7 +399,9 @@ theorem mem_evalSumTermDyadic_checked (body : Expr)
     (sumBodyEnvSimple k cfg.precision) (sumBodyEnvSimple_correct k cfg.precision hprec)
     cfg hprec hdom
 
-/-- Accumulator correctness for arbitrary expression bodies. -/
+/-- Accumulator correctness for arbitrary expression bodies.
+@isnad1 id=mem.2h7v.s6.b35baa17af6f from=translated src=- shape=9f67892d vocab=5b916ed1
+-/
 theorem mem_finSumAux_checked (body : Expr)
     (current limit : Nat) (acc : IntervalDyadic) (partialSum : ℝ)
     (hacc : partialSum ∈ acc)
@@ -403,7 +433,9 @@ theorem mem_finSumAux_checked (body : Expr)
         fun k hk1 hk2 => hdom k (by omega) hk2
       exact ih (limit + 1 - (current + 1)) hm' (current + 1) _ _ hnewAcc hdom' rfl
 
-/-- Golden theorem for arbitrary expression bodies. -/
+/-- Golden theorem for arbitrary expression bodies.
+@isnad1 id=mem.1h5v.s6.f7d9cf6c96d7 from=translated src=- shape=feb2fed9 vocab=b3018282
+-/
 theorem mem_finSumDyadic_checked (body : Expr)
     (a b : Nat) (cfg : DyadicConfig := {}) (hprec : cfg.precision ≤ 0 := by norm_num)
     (hdom : ∀ k, a ≤ k → k ≤ b →
@@ -414,7 +446,9 @@ theorem mem_finSumDyadic_checked (body : Expr)
   simp only [zero_add] at h
   exact h
 
-/-- Bridge theorem: upper bound for arbitrary expressions. -/
+/-- Bridge theorem: upper bound for arbitrary expressions.
+@isnad1 id=le.2h6v.s6.487e52166d83 from=translated src=- shape=80417fcf vocab=f91389d4
+-/
 theorem verify_finsum_upper_checked (body : Expr)
     (a b : Nat) (target : ℚ) (cfg : DyadicConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -428,7 +462,9 @@ theorem verify_finsum_upper_checked (body : Expr)
   simp only [checkFinSumUpperBound, IntervalDyadic.upperBoundedBy, decide_eq_true_eq] at h_check
   exact le_trans hhi (by exact_mod_cast h_check)
 
-/-- Bridge theorem: lower bound for arbitrary expressions. -/
+/-- Bridge theorem: lower bound for arbitrary expressions.
+@isnad1 id=le.2h6v.s6.6bb25715277f from=translated src=- shape=6599c5a3 vocab=fdbb9fbd
+-/
 theorem verify_finsum_lower_checked (body : Expr)
     (a b : Nat) (target : ℚ) (cfg : DyadicConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -444,7 +480,9 @@ theorem verify_finsum_lower_checked (body : Expr)
 
 /-! ### Combined Bridge Theorems (arbitrary expressions) -/
 
-/-- Combined upper bound check for arbitrary expression bodies. -/
+/-- Combined upper bound check for arbitrary expression bodies.
+@isnad1 id=le.1h6v.s6.2d8012ca2879 from=translated src=- shape=e707dea9 vocab=7929c05a
+-/
 theorem verify_finsum_upper_full_checked (body : Expr)
     (a b : Nat) (target : ℚ) (cfg : DyadicConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -454,7 +492,9 @@ theorem verify_finsum_upper_full_checked (body : Expr)
   exact verify_finsum_upper_checked body a b target cfg hprec
     (checkDomainValidAll_correct body a b cfg h_check.1) h_check.2
 
-/-- Combined lower bound check for arbitrary expression bodies. -/
+/-- Combined lower bound check for arbitrary expression bodies.
+@isnad1 id=le.1h6v.s6.d3831c5a1d0f from=translated src=- shape=e9102709 vocab=de58b0f3
+-/
 theorem verify_finsum_lower_full_checked (body : Expr)
     (a b : Nat) (target : ℚ) (cfg : DyadicConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -521,7 +561,9 @@ def evaluateFinSumListCandidate (body : Expr) (indices : List Nat)
   | some index => .domainObstruction index
   | none => .success (finSumDyadicList body indices cfg)
 
-/-- Domain validity correctness for list-based checker. -/
+/-- Domain validity correctness for list-based checker.
+@isnad1 id=evaldoma.2h4v.s5.d3398f2f0700 from=translated src=- shape=7bd748f0 vocab=94fd98e5
+-/
 theorem checkDomainValidAllList_correct (body : Expr) (indices : List Nat)
     (cfg : DyadicConfig)
     (h : checkDomainValidAllList body indices cfg = true) :
@@ -551,7 +593,9 @@ def checkFinSumLowerBoundListFull (body : Expr) (S : Finset Nat)
 
 /-! ### List Correctness Theorems (ExprSupportedCore) -/
 
-/-- Accumulator correctness for list iteration. -/
+/-- Accumulator correctness for list iteration.
+@isnad1 id=mem.3h6v.s6.61b8c10f8056 from=translated src=- shape=b4388fba vocab=ec7239aa
+-/
 theorem mem_finSumAuxList (body : Expr) (hsupp : ExprSupportedCore body)
     (indices : List Nat) (acc : IntervalDyadic) (partialSum : ℝ)
     (hacc : partialSum ∈ acc)
@@ -575,7 +619,9 @@ theorem mem_finSumAuxList (body : Expr) (hsupp : ExprSupportedCore body)
       exact IntervalDyadic.mem_add hacc hterm
     exact ih _ _ hnewAcc (fun j hj => hdom j (.tail k hj))
 
-/-- Golden theorem for list-based sum: the interval contains the true sum. -/
+/-- Golden theorem for list-based sum: the interval contains the true sum.
+@isnad1 id=mem.3h4v.s6.8caf467e1abe from=translated src=- shape=2909b12f vocab=56e7ba57
+-/
 theorem mem_finSumDyadicList (body : Expr) (hsupp : ExprSupportedCore body)
     (indices : List Nat) (hnodup : indices.Nodup)
     (cfg : DyadicConfig := {}) (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -592,7 +638,9 @@ theorem mem_finSumDyadicList (body : Expr) (hsupp : ExprSupportedCore body)
 /-! ### List Bridge Theorems (ExprSupportedCore) -/
 
 /-- If checkFinSumUpperBoundListFull returns true, the sum is bounded above.
-    This is the main theorem used by the tactic. -/
+    This is the main theorem used by the tactic.
+@isnad1 id=le.2h6v.s6.b83e674c0d9c from=translated src=- shape=c88f3550 vocab=a7dd463f
+-/
 theorem verify_finsum_upper_list_full (body : Expr) (hsupp : ExprSupportedCore body)
     (S : Finset Nat) (indices : List Nat) (target : ℚ)
     (cfg : DyadicConfig := {}) (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -608,7 +656,9 @@ theorem verify_finsum_upper_list_full (body : Expr) (hsupp : ExprSupportedCore b
       decide_eq_true_eq] at hbound
     exact_mod_cast hbound)
 
-/-- If checkFinSumLowerBoundListFull returns true, the sum is bounded below. -/
+/-- If checkFinSumLowerBoundListFull returns true, the sum is bounded below.
+@isnad1 id=le.2h6v.s6.a07ec81ae88b from=translated src=- shape=f2c6687a vocab=a55914a7
+-/
 theorem verify_finsum_lower_list_full (body : Expr) (hsupp : ExprSupportedCore body)
     (S : Finset Nat) (indices : List Nat) (target : ℚ)
     (cfg : DyadicConfig := {}) (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -626,7 +676,9 @@ theorem verify_finsum_lower_list_full (body : Expr) (hsupp : ExprSupportedCore b
 
 /-! ### List Correctness Theorems (arbitrary expressions) -/
 
-/-- Accumulator correctness for arbitrary expression bodies over a list. -/
+/-- Accumulator correctness for arbitrary expression bodies over a list.
+@isnad1 id=mem.2h6v.s6.0583a9d71fb4 from=translated src=- shape=ccab08e8 vocab=97661309
+-/
 theorem mem_finSumAuxList_checked (body : Expr)
     (indices : List Nat) (acc : IntervalDyadic) (partialSum : ℝ)
     (hacc : partialSum ∈ acc)
@@ -650,7 +702,9 @@ theorem mem_finSumAuxList_checked (body : Expr)
       exact IntervalDyadic.mem_add hacc hterm
     exact ih _ _ hnewAcc (fun j hj => hdom j (.tail k hj))
 
-/-- Golden theorem for arbitrary expressions over a list. -/
+/-- Golden theorem for arbitrary expressions over a list.
+@isnad1 id=mem.2h4v.s6.c4493543b041 from=translated src=- shape=48dc1686 vocab=48d40d9d
+-/
 theorem mem_finSumDyadicList_checked (body : Expr)
     (indices : List Nat) (hnodup : indices.Nodup)
     (cfg : DyadicConfig := {}) (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -666,7 +720,9 @@ theorem mem_finSumDyadicList_checked (body : Expr)
 
 /-! ### List Bridge Theorems (arbitrary expressions) -/
 
-/-- Combined upper bound for arbitrary expressions over a list. -/
+/-- Combined upper bound for arbitrary expressions over a list.
+@isnad1 id=le.1h6v.s6.927710ae1ab0 from=translated src=- shape=85e07eeb vocab=6c7b89c2
+-/
 theorem verify_finsum_upper_list_full_checked (body : Expr)
     (S : Finset Nat) (indices : List Nat) (target : ℚ)
     (cfg : DyadicConfig := {}) (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -682,7 +738,9 @@ theorem verify_finsum_upper_list_full_checked (body : Expr)
       decide_eq_true_eq] at hbound
     exact_mod_cast hbound)
 
-/-- Combined lower bound for arbitrary expressions over a list. -/
+/-- Combined lower bound for arbitrary expressions over a list.
+@isnad1 id=le.1h6v.s6.4f985fa061be from=translated src=- shape=ba7a9622 vocab=b5f8cdcf
+-/
 theorem verify_finsum_lower_list_full_checked (body : Expr)
     (S : Finset Nat) (indices : List Nat) (target : ℚ)
     (cfg : DyadicConfig := {}) (hprec : cfg.precision ≤ 0 := by norm_num)

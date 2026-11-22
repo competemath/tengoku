@@ -101,7 +101,9 @@ def checkWitnessSumLowerBoundCached {Cache : Type}
 /-! ### Correctness Theorems -/
 
 /-- Accumulator correctness: if the evaluator is sound for each term,
-    the accumulator produces a sound interval for the partial sum. -/
+    the accumulator produces a sound interval for the partial sum.
+@isnad1 id=mem.2h7v.s6.b2a3bb1fd40c from=translated src=- shape=ab059d30 vocab=5358a46f
+-/
 theorem mem_witnessSumAux (f : Nat → ℝ) (evalTerm : Nat → DyadicConfig → IntervalDyadic)
     (current limit : Nat) (acc : IntervalDyadic) (partialSum : ℝ)
     (hacc : partialSum ∈ acc) (cfg : DyadicConfig)
@@ -129,7 +131,9 @@ theorem mem_witnessSumAux (f : Nat → ℝ) (evalTerm : Nat → DyadicConfig →
         fun k hk1 hk2 => hmem k (by omega) hk2
       exact ih (limit + 1 - (current + 1)) hm' (current + 1) _ _ hnewAcc hmem' rfl
 
-/-- Golden theorem: the computed interval contains the true sum. -/
+/-- Golden theorem: the computed interval contains the true sum.
+@isnad1 id=mem.1h5v.s6.493688e04a58 from=translated src=- shape=8ff31a46 vocab=96e7ccab
+-/
 theorem mem_witnessSumDyadic (f : Nat → ℝ) (evalTerm : Nat → DyadicConfig → IntervalDyadic)
     (a b : Nat) (cfg : DyadicConfig)
     (hmem : ∀ k, a ≤ k → k ≤ b → f k ∈ evalTerm k cfg) :
@@ -139,7 +143,9 @@ theorem mem_witnessSumDyadic (f : Nat → ℝ) (evalTerm : Nat → DyadicConfig 
   simp only [zero_add] at h
   exact h
 
-/-- Golden theorem for cached witness sums. -/
+/-- Golden theorem for cached witness sums.
+@isnad1 id=mem.1h7v.s6.53ac854f3d32 from=translated src=- shape=fd06399e vocab=c009feec
+-/
 theorem mem_witnessSumDyadicCached {Cache : Type} (f : Nat → ℝ)
     (init : DyadicConfig → Cache)
     (evalTerm : Cache → Nat → DyadicConfig → IntervalDyadic)
@@ -152,7 +158,9 @@ theorem mem_witnessSumDyadicCached {Cache : Type} (f : Nat → ℝ)
 
 /-! ### Bridge Theorems -/
 
-/-- If checkWitnessSumUpperBound returns true, the sum is bounded above. -/
+/-- If checkWitnessSumUpperBound returns true, the sum is bounded above.
+@isnad1 id=le.2h6v.s6.d8f39469e9b3 from=translated src=- shape=e20163c2 vocab=0c6fe53c
+-/
 theorem verify_witness_sum_upper (f : Nat → ℝ)
     (evalTerm : Nat → DyadicConfig → IntervalDyadic)
     (a b : Nat) (target : ℚ) (cfg : DyadicConfig)
@@ -166,7 +174,9 @@ theorem verify_witness_sum_upper (f : Nat → ℝ)
     decide_eq_true_eq] at h_check
   exact le_trans hhi (by exact_mod_cast h_check)
 
-/-- If checkWitnessSumLowerBound returns true, the sum is bounded below. -/
+/-- If checkWitnessSumLowerBound returns true, the sum is bounded below.
+@isnad1 id=le.2h6v.s6.a6c5620f7c47 from=translated src=- shape=7f404139 vocab=65be9cd1
+-/
 theorem verify_witness_sum_lower (f : Nat → ℝ)
     (evalTerm : Nat → DyadicConfig → IntervalDyadic)
     (a b : Nat) (target : ℚ) (cfg : DyadicConfig)
@@ -180,7 +190,9 @@ theorem verify_witness_sum_lower (f : Nat → ℝ)
     decide_eq_true_eq] at h_check
   exact le_trans (by exact_mod_cast h_check) hlo
 
-/-- If `checkWitnessSumUpperBoundCached` returns true, the cached sum is bounded above. -/
+/-- If `checkWitnessSumUpperBoundCached` returns true, the cached sum is bounded above.
+@isnad1 id=le.2h8v.s6.aef163328c39 from=translated src=- shape=ac824891 vocab=c1b1378e
+-/
 theorem verify_witness_sum_upper_cached {Cache : Type} (f : Nat → ℝ)
     (init : DyadicConfig → Cache)
     (evalTerm : Cache → Nat → DyadicConfig → IntervalDyadic)
@@ -195,7 +207,9 @@ theorem verify_witness_sum_upper_cached {Cache : Type} (f : Nat → ℝ)
     decide_eq_true_eq] at h_check
   exact le_trans hhi (by exact_mod_cast h_check)
 
-/-- If `checkWitnessSumLowerBoundCached` returns true, the cached sum is bounded below. -/
+/-- If `checkWitnessSumLowerBoundCached` returns true, the cached sum is bounded below.
+@isnad1 id=le.2h8v.s6.222ae39d624f from=translated src=- shape=002a6350 vocab=55d660c1
+-/
 theorem verify_witness_sum_lower_cached {Cache : Type} (f : Nat → ℝ)
     (init : DyadicConfig → Cache)
     (evalTerm : Cache → Nat → DyadicConfig → IntervalDyadic)
@@ -244,7 +258,9 @@ def checkWitnessSumLowerBoundList (evalTerm : Nat → DyadicConfig → IntervalD
 
 /-! ### List Correctness Theorems -/
 
-/-- Accumulator correctness for list-based witness sum. -/
+/-- Accumulator correctness for list-based witness sum.
+@isnad1 id=mem.2h6v.s6.ad7734b3cf99 from=translated src=- shape=b1364ad9 vocab=5be5502a
+-/
 theorem mem_witnessSumAuxList (f : Nat → ℝ) (evalTerm : Nat → DyadicConfig → IntervalDyadic)
     (indices : List Nat) (acc : IntervalDyadic) (partialSum : ℝ)
     (hacc : partialSum ∈ acc) (cfg : DyadicConfig)
@@ -265,7 +281,9 @@ theorem mem_witnessSumAuxList (f : Nat → ℝ) (evalTerm : Nat → DyadicConfig
       exact IntervalDyadic.mem_add hacc hterm
     exact ih _ _ hnewAcc (fun j hj => hmem j (.tail k hj))
 
-/-- Golden theorem for list-based witness sum. -/
+/-- Golden theorem for list-based witness sum.
+@isnad1 id=mem.2h4v.s5.d9754b7a4057 from=translated src=- shape=6df1e9cd vocab=167b1792
+-/
 theorem mem_witnessSumDyadicList (f : Nat → ℝ) (evalTerm : Nat → DyadicConfig → IntervalDyadic)
     (indices : List Nat) (hnodup : indices.Nodup) (cfg : DyadicConfig)
     (hmem : ∀ k, k ∈ indices → f k ∈ evalTerm k cfg) :
@@ -278,7 +296,9 @@ theorem mem_witnessSumDyadicList (f : Nat → ℝ) (evalTerm : Nat → DyadicCon
 
 /-! ### List Bridge Theorems -/
 
-/-- Upper bound for witness sum over a list. -/
+/-- Upper bound for witness sum over a list.
+@isnad1 id=le.3h5v.s6.3b2b60632797 from=translated src=- shape=b4d750da vocab=c890ec37
+-/
 theorem verify_witness_sum_upper_list (f : Nat → ℝ)
     (evalTerm : Nat → DyadicConfig → IntervalDyadic)
     (indices : List Nat) (hnodup : indices.Nodup)
@@ -292,7 +312,9 @@ theorem verify_witness_sum_upper_list (f : Nat → ℝ)
       decide_eq_true_eq] at h_check
     exact_mod_cast h_check)
 
-/-- Lower bound for witness sum over a list. -/
+/-- Lower bound for witness sum over a list.
+@isnad1 id=le.3h5v.s6.8979c6912b9a from=translated src=- shape=6bf885b5 vocab=2a61c674
+-/
 theorem verify_witness_sum_lower_list (f : Nat → ℝ)
     (evalTerm : Nat → DyadicConfig → IntervalDyadic)
     (indices : List Nat) (hnodup : indices.Nodup)
@@ -324,7 +346,9 @@ def checkWitnessSumLowerBoundListFull (evalTerm : Nat → DyadicConfig → Inter
 
 /-! ### List Combined Bridge Theorems -/
 
-/-- If checkWitnessSumUpperBoundListFull returns true, the sum is bounded above. -/
+/-- If checkWitnessSumUpperBoundListFull returns true, the sum is bounded above.
+@isnad1 id=le.2h6v.s6.9043c33dd4f9 from=translated src=- shape=84f1bfac vocab=ccddc6eb
+-/
 theorem verify_witness_sum_upper_list_full (f : Nat → ℝ)
     (evalTerm : Nat → DyadicConfig → IntervalDyadic)
     (S : Finset Nat) (indices : List Nat) (target : ℚ) (cfg : DyadicConfig)
@@ -338,7 +362,9 @@ theorem verify_witness_sum_upper_list_full (f : Nat → ℝ)
     fun k hk => hmem k (heq ▸ List.mem_toFinset.mpr hk)
   exact verify_witness_sum_upper_list f evalTerm indices hnodup target cfg hmem' hbound
 
-/-- If checkWitnessSumLowerBoundListFull returns true, the sum is bounded below. -/
+/-- If checkWitnessSumLowerBoundListFull returns true, the sum is bounded below.
+@isnad1 id=le.2h6v.s6.e7a0fcb14620 from=translated src=- shape=2d5c92b7 vocab=27800bd0
+-/
 theorem verify_witness_sum_lower_list_full (f : Nat → ℝ)
     (evalTerm : Nat → DyadicConfig → IntervalDyadic)
     (S : Finset Nat) (indices : List Nat) (target : ℚ) (cfg : DyadicConfig)

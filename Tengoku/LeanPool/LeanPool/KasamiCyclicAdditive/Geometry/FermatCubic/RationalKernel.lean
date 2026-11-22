@@ -92,7 +92,9 @@ def IsKernelPoint (k : ℕ) (X Y Z : K) : Prop :=
 
 /-! ### Basic facts about the origin and the points at infinity -/
 
-/-- On a point at infinity (`Z = 0`) both remaining coordinates are nonzero. -/
+/-- On a point at infinity (`Z = 0`) both remaining coordinates are nonzero.
+@isnad1 id=and.1h3v.s6.13e883179317 from=translated src=- shape=e09bae0d vocab=4409848b
+-/
 lemma ne_zero_of_isPoint_infinity {X Y : K} (hP : IsPoint X Y 0) : X ≠ 0 ∧ Y ≠ 0 := by
   obtain ⟨hne, heq⟩ := hP
   rw [zero_pow (by norm_num)] at heq
@@ -104,7 +106,9 @@ lemma ne_zero_of_isPoint_infinity {X Y : K} (hP : IsPoint X Y 0) : X ≠ 0 ∧ Y
     have hX : X ^ 3 = 0 := by simpa using heq
     exact hne ⟨pow_eq_zero_iff (by norm_num) |>.mp hX, rfl, rfl⟩
 
-/-- On a point at infinity in characteristic `2` we have `Y³ = X³`. -/
+/-- On a point at infinity in characteristic `2` we have `Y³ = X³`.
+@isnad1 id=eq.2h3v.s6.e72127fbd8ae from=translated src=- shape=d1b80d33 vocab=acbda490
+-/
 lemma cube_eq_of_isPoint_infinity (h2 : (2 : K) = 0) {X Y : K} (hP : IsPoint X Y 0) :
     Y ^ 3 = X ^ 3 := by
   obtain ⟨-, heq⟩ := hP
@@ -112,7 +116,9 @@ lemma cube_eq_of_isPoint_infinity (h2 : (2 : K) = 0) {X Y : K} (hP : IsPoint X Y
   linear_combination heq - X ^ 3 * h2
 
 /-- In characteristic `2`, the ratio `ω = Y / X` of a point at infinity
-`[X : Y : 0]` is a cube root of unity, so the point is `[1 : ω : 0]`. -/
+`[X : Y : 0]` is a cube root of unity, so the point is `[1 : ω : 0]`.
+@isnad1 id=eq.2h3v.s6.8f78833d96c4 from=translated src=- shape=cd24436f vocab=9a440878
+-/
 lemma cube_ratio_of_isPoint_infinity (h2 : (2 : K) = 0) {X Y : K} (hP : IsPoint X Y 0) :
     (Y / X) ^ 3 = 1 := by
   obtain ⟨hX, -⟩ := ne_zero_of_isPoint_infinity hP
@@ -121,7 +127,9 @@ lemma cube_ratio_of_isPoint_infinity (h2 : (2 : K) = 0) {X Y : K} (hP : IsPoint 
 
 /-! ### Characteristic and Frobenius facts for a field with `2^n` elements -/
 
-/-- A field with `2^n` elements has characteristic `2`. -/
+/-- A field with `2^n` elements has characteristic `2`.
+@isnad1 id=eq.1h2v.s6.bc90141d3353 from=translated src=- shape=9bbabf14 vocab=3ad55457
+-/
 lemma two_eq_zero_of_card [Fintype K] {n : ℕ} (hcard : Fintype.card K = 2 ^ n) : (2 : K) = 0 := by
   have hn : n ≠ 0 := by
     rintro rfl
@@ -133,7 +141,9 @@ lemma two_eq_zero_of_card [Fintype K] {n : ℕ} (hcard : Fintype.card K = 2 ^ n)
   push_cast at h
   exact (pow_eq_zero_iff hn).mp h
 
-/-- Every element of a field with `2^n` elements is fixed by the `n`-th power of Frobenius. -/
+/-- Every element of a field with `2^n` elements is fixed by the `n`-th power of Frobenius.
+@isnad1 id=eq.1h3v.s6.6ef479f1b141 from=translated src=- shape=fd93c421 vocab=3ad55457
+-/
 lemma pow_two_pow_card [Fintype K] {n : ℕ} (hcard : Fintype.card K = 2 ^ n) (x : K) :
     x ^ 2 ^ n = x := by
   rw [← hcard]; exact FiniteField.pow_card x
@@ -148,7 +158,9 @@ private lemma coprime_three_two_pow_sub_one_of_odd {n : ℕ} (hn : Odd n) :
   rw [hg2]
   norm_num
 
-/-- For odd `n` the only cube root of unity in a field with `2^n` elements is `1`. -/
+/-- For odd `n` the only cube root of unity in a field with `2^n` elements is `1`.
+@isnad1 id=eq.3h3v.s6.bea246a7c866 from=translated src=- shape=24264897 vocab=1a1219cc
+-/
 lemma cube_root_eq_one_of_odd [Fintype K] {n : ℕ} (hn : Odd n)
     (hcard : Fintype.card K = 2 ^ n) {a : K} (ha : a ^ 3 = 1) : a = 1 := by
   have ha0 : a ≠ 0 := by
@@ -182,7 +194,9 @@ private lemma affine_fixed_by_two_k_of_isKernelPoint {k : ℕ} {X Y Z : K}
   rw [he, pow_mul, hxy, hyx]
 
 /-- The core computation: an affine (`Z ≠ 0`) kernel point whose affine `x`-coordinate lies in
-`𝔽₄` cannot exist. -/
+`𝔽₄` cannot exist.
+@isnad1 id=false.5h5v.s7.cc4f8cf1750d from=translated src=- shape=cea5c758 vocab=723281ac
+-/
 lemma not_kernel_of_Z_ne_zero (h2 : (2 : K) = 0) {k : ℕ} {X Y Z : K} (hP : IsPoint X Y Z)
     (hK : IsKernelPoint k X Y Z) (hZ : Z ≠ 0) (h4 : (X / Z) ^ 4 = X / Z) : False := by
   obtain ⟨-, hcurve⟩ := hP
@@ -211,7 +225,9 @@ lemma not_kernel_of_Z_ne_zero (h2 : (2 : K) = 0) {k : ℕ} {X Y Z : K} (hP : IsP
     exact zero_ne_one this
 
 /-- **No affine kernel points.**  If `gcd (k, n) = 1` then every `K`-rational point of
-`ker (1 + π^k)` is a point at infinity. -/
+`ker (1 + π^k)` is a point at infinity.
+@isnad1 id=eq.4h6v.s6.b5c75b0805c6 from=translated src=- shape=bf5bf464 vocab=77da3c7b
+-/
 theorem Z_eq_zero_of_isKernelPoint [Fintype K] {n k : ℕ} (hcard : Fintype.card K = 2 ^ n)
     (hkn : Nat.Coprime k n) {X Y Z : K} (hP : IsPoint X Y Z) (hK : IsKernelPoint k X Y Z) :
     Z = 0 := by
@@ -236,7 +252,9 @@ theorem Z_eq_zero_of_isKernelPoint [Fintype K] {n k : ℕ} (hcard : Fintype.card
 /-! ### The points at infinity and the kernel condition -/
 
 /-- For a point at infinity `[X : Y : 0]` with `ω = Y / X`, the kernel condition
-`π^k R = -R` is equivalent to `ω^(2^k) = ω²`. -/
+`π^k R = -R` is equivalent to `ω^(2^k) = ω²`.
+@isnad1 id=iff.2h4v.s7.af8ad3d89a19 from=translated src=- shape=d2a67eba vocab=723281ac
+-/
 lemma isKernelPoint_infinity_iff (h2 : (2 : K) = 0) {k : ℕ} {X Y : K} (hP : IsPoint X Y 0) :
     IsKernelPoint k X Y 0 ↔ (Y / X) ^ 2 ^ k = (Y / X) ^ 2 := by
   obtain ⟨hX, hY⟩ := ne_zero_of_isPoint_infinity hP
@@ -262,7 +280,9 @@ lemma isKernelPoint_infinity_iff (h2 : (2 : K) = 0) {k : ℕ} {X Y : K} (hP : Is
         _ = X ^ 2 * (X ^ 2 ^ k * X) := by ring
 
 /-- For odd `k` we have `2^k ≡ 2 [MOD 3]`, hence `ω^(2^k) = ω²` for every cube root of unity.
-(`π^k = π` on `E(𝔽₄)`.) -/
+(`π^k = π` on `E(𝔽₄)`.)
+@isnad1 id=eq.2h3v.s6.2ca5631a8981 from=translated src=- shape=93b872c3 vocab=7d2ba022
+-/
 lemma pow_two_pow_of_cube_root {k : ℕ} (hk : Odd k) {w : K} (hw : w ^ 3 = 1) :
     w ^ 2 ^ k = w ^ 2 := by
   have hmod := two_pow_mod_three_of_odd hk
@@ -280,7 +300,9 @@ lemma pow_two_pow_of_cube_root {k : ℕ} (hk : Odd k) {w : K} (hw : w ^ 3 = 1) :
 For `K` a field with `2^n` elements, `n` odd and `gcd (k, n) = 1`, a point of `E(K)` lies in
 `ker (1 + π^k)` if and only if it is the origin `O = [1 : 1 : 0]` (i.e. `Z = 0` and `X = Y`).
 
-The hypothesis "`k` is odd" of the informal statement is not needed here. -/
+The hypothesis "`k` is odd" of the informal statement is not needed here.
+@isnad1 id=iff.4h6v.s6.52f1936a8db0 from=translated src=- shape=a817a3a5 vocab=670b166a
+-/
 theorem rational_kernel_odd [Fintype K] {n k : ℕ} (hn : Odd n) (hkn : Nat.Coprime k n)
     (hcard : Fintype.card K = 2 ^ n) {X Y Z : K} (hP : IsPoint X Y Z) :
     IsKernelPoint k X Y Z ↔ (Z = 0 ∧ X = Y) := by
@@ -304,7 +326,9 @@ theorem rational_kernel_odd [Fintype K] {n k : ℕ} (hn : Odd n) (hkn : Nat.Copr
 For `K` a field with `2^n` elements, `n` even and `gcd (k, n) = 1`, a point of `E(K)` lies in
 `ker (1 + π^k)` if and only if it is a point at infinity, `Z = 0`.
 
-Note that `k` is automatically odd here, since `gcd (k, n) = 1` and `n` is even. -/
+Note that `k` is automatically odd here, since `gcd (k, n) = 1` and `n` is even.
+@isnad1 id=iff.4h6v.s6.3fbc35d8fbf1 from=translated src=- shape=57fad1d8 vocab=a3142588
+-/
 theorem rational_kernel_even [Fintype K] {n k : ℕ} (hn : Even n) (hkn : Nat.Coprime k n)
     (hcard : Fintype.card K = 2 ^ n) {X Y Z : K} (hP : IsPoint X Y Z) :
     IsKernelPoint k X Y Z ↔ Z = 0 := by
@@ -325,7 +349,9 @@ theorem rational_kernel_even [Fintype K] {n k : ℕ} (hn : Even n) (hkn : Nat.Co
 
 Over *any* field of characteristic `2` (in particular over an algebraic closure of `𝔽₂`), the
 kernel of `1 + π` consists exactly of the points at infinity `[1 : ω : 0]`, `ω³ = 1`, so it has
-exactly three points, without appealing to the degree of the isogeny or to separability. -/
+exactly three points, without appealing to the degree of the isogeny or to separability.
+@isnad1 id=iff.2h4v.s6.0162d79c198e from=translated src=- shape=8c4ebcd5 vocab=8fce745b
+-/
 theorem geometric_kernel_one_add_frobenius (h2 : (2 : K) = 0) {X Y Z : K} (hP : IsPoint X Y Z) :
     IsKernelPoint 1 X Y Z ↔ Z = 0 := by
   constructor

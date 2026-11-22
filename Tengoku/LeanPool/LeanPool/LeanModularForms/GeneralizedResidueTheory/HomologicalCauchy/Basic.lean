@@ -147,7 +147,9 @@ sub-interval `[a', b']` whose endpoints belong to the partition and that
 contains at most `n` interior partition points, the integral of
 `f(γ(t)) · γ'(t)` equals `F(γ(b')) - F(γ(a'))`, provided `F ∘ γ` is
 continuous, its derivative equals the integrand off the partition, and the
-integrand is interval-integrable. -/
+integrand is interval-integrable.
+@isnad1 id=eq.8h6v.s8.75aea62b1dd4 from=translated src=- shape=efbc8c8b vocab=5b7c4884
+-/
 lemma ftc_piecewise_contour_induction {F : ℂ → ℂ} {f : ℂ → ℂ}
     (γ : PiecewiseC1Curve) (n : ℕ) (a' b' : ℝ)
     (h_int : IntervalIntegrable
@@ -177,7 +179,9 @@ lemma ftc_piecewise_contour_induction {F : ℂ → ℂ} {f : ℂ → ℂ}
 /-- Fundamental theorem of calculus for piecewise C¹ contours: if `F` is a
 primitive of `f` on `U` (i.e. `HasDerivAt F (f z) z` for every `z ∈ U`) and
 `γ` is a piecewise C¹ curve lying in `U`, then
-`∫_γ f(z) dz = F(γ(b)) - F(γ(a))`. -/
+`∫_γ f(z) dz = F(γ(b)) - F(γ(a))`.
+@isnad1 id=eq.3h4v.s8.e821477a0f90 from=translated src=- shape=51d71bbd vocab=c8c9d42d
+-/
 theorem ftc_piecewise_contour {F : ℂ → ℂ} {f : ℂ → ℂ}
     (γ : PiecewiseC1Curve) (U : Set ℂ) (hγ_in_U : ∀ t ∈ Icc γ.a γ.b, γ.toFun t ∈ U)
     (hF_prim : ∀ z ∈ U, HasDerivAt F (f z) z)
@@ -208,7 +212,9 @@ private lemma mem_Ioo_of_Icc_not_partition (γ : PiecewiseC1Curve)
 
 /-- The integrand `(γ(t) - z)⁻¹ · γ'(t)` is interval-integrable whenever `z`
 is not in the image of `γ`. The proof uses compactness of `[a, b]` to bound
-`‖(γ(t) - z)⁻¹‖` and the piecewise C¹ bound on `‖γ'(t)‖`. -/
+`‖(γ(t) - z)⁻¹‖` and the piecewise C¹ bound on `‖γ'(t)‖`.
+@isnad1 id=interval.1h2v.s7.055dcefc76fd from=translated src=- shape=cbd2f793 vocab=f835a624
+-/
 theorem integrand_intervalIntegrable_of_avoids (γ : PiecewiseC1Immersion)
     (z : ℂ) (h_avoids : ∀ t ∈ Icc γ.a γ.b, γ.toFun t ≠ z) :
     IntervalIntegrable

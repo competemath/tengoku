@@ -96,6 +96,9 @@ noncomputable def realHermiteGenerating (t : ℝ) (u : ℂ) : ℂ :=
     Complex.exp
       (-(((t : ℂ) ^ 2) / 2) + (Real.sqrt 2 : ℂ) * (t : ℂ) * u - u ^ 2 / 2)
 
+/--
+@isnad1 id=eq.0h2v.s6.4aa59942551b from=translated src=- shape=2e171569 vocab=b128ec12
+-/
 theorem realHermiteGenerating_conj (t : ℝ) (u : ℂ) :
     star (realHermiteGenerating t u) = realHermiteGenerating t (star u) := by
   unfold realHermiteGenerating
@@ -113,6 +116,9 @@ theorem realHermiteGenerating_conj (t : ℝ) (u : ℂ) :
   have htwo : (starRingEnd ℂ) 2 = (2 : ℂ) := Complex.conj_ofReal 2
   simp_all
 
+/--
+@isnad1 id=eq.0h2v.s5.f6d25fd79522 from=translated src=- shape=cf6d118f vocab=4c4f189a
+-/
 theorem realHermiteGenerating_integral_mul (u w : ℂ) :
     (∫ t : ℝ, realHermiteGenerating t u * realHermiteGenerating t w) =
       Complex.exp (u * w) := by
@@ -153,12 +159,18 @@ theorem realHermiteGenerating_integral_mul (u w : ℂ) :
     ring_nf
   · simp
 
+/--
+@isnad1 id=eq.0h2v.s6.bd714fc97355 from=translated src=- shape=b992b22d vocab=8ae89b9f
+-/
 theorem realHermiteGenerating_integral_mul_conj (u w : ℂ) :
     (∫ t : ℝ, realHermiteGenerating t u * star (realHermiteGenerating t w)) =
       Complex.exp (u * star w) := by
   simp_rw [realHermiteGenerating_conj]
   exact realHermiteGenerating_integral_mul u (star w)
 
+/--
+@isnad1 id=eq.0h4v.s8.19df0b5e808c from=translated src=- shape=f3259ae0 vocab=8fa28b5d
+-/
 theorem realHermiteGenerating_stft_integral_raw
     (x ω : ℝ) (u v : ℂ) :
     (∫ t : ℝ,
@@ -222,6 +234,9 @@ theorem realHermiteGenerating_stft_integral_raw
     ring_nf
   · simp
 
+/--
+@isnad1 id=eq.0h4v.s8.e74764e007db from=translated src=- shape=ebc35fb5 vocab=8fa28b5d
+-/
 theorem realHermiteGenerating_integral_shift_mul_modulated_completed
     (u v : ℂ) (x ω : ℝ) :
     (∫ t : ℝ,
@@ -234,6 +249,9 @@ theorem realHermiteGenerating_integral_shift_mul_modulated_completed
               (2 * Real.pi : ℂ) * Complex.I * (ω : ℂ)) ^ 2) / 4) :=
   realHermiteGenerating_stft_integral_raw x ω u v
 
+/--
+@isnad1 id=eq.0h4v.s8.911c4109bb61 from=translated src=- shape=2f134dd1 vocab=8fa28b5d
+-/
 theorem realHermiteGenerating_integral_shift_mul_modulated
     (u v : ℂ) (x ω : ℝ) :
     (∫ t : ℝ,
@@ -249,6 +267,9 @@ theorem realHermiteGenerating_integral_shift_mul_modulated
   congr 1
   ring
 
+/--
+@isnad1 id=eq.0h4v.s8.8485cad267fd from=translated src=- shape=93428b2f vocab=68f086e7
+-/
 theorem realHermiteGenerating_stft_integral_kernel
     (x ω : ℝ) (u v : ℂ) :
     (∫ t : ℝ,
@@ -272,6 +293,9 @@ theorem realHermiteGenerating_stft_integral_kernel
   norm_num [← Complex.ofReal_pow]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s8.74350e000c54 from=translated src=- shape=876b067c vocab=8fa28b5d
+-/
 theorem realHermiteGenerating_ambiguity_integral_raw
     (x ω : ℝ) (u v : ℂ) :
     (∫ t : ℝ,
@@ -378,6 +402,9 @@ theorem realHermiteGenerating_ambiguity_integral_raw
     ring_nf
   · simp
 
+/--
+@isnad1 id=eq.0h4v.s8.8ed02a42aa57 from=translated src=- shape=c37689e2 vocab=8fa28b5d
+-/
 theorem realHermiteGenerating_ambiguity_integral_linear_form
     (x ω : ℝ) (u v : ℂ) :
     (∫ t : ℝ,
@@ -398,6 +425,9 @@ theorem realHermiteGenerating_ambiguity_integral_linear_form
   rw [sqrtTwoC_sq, Complex.I_sq]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s8.ee7ef0d43adb from=translated src=- shape=662b1491 vocab=68f086e7
+-/
 theorem realHermiteGenerating_ambiguity_integral_kernel
     (x ω : ℝ) (u w : ℂ) :
     (∫ t : ℝ,
@@ -425,6 +455,9 @@ theorem realHermiteGenerating_ambiguity_integral_kernel
     norm_num [← Complex.ofReal_pow]]
   ring_nf
 
+/--
+@isnad1 id=eq.0h4v.s9.c5d7cf9993d6 from=translated src=- shape=fc884359 vocab=38c9c6b4
+-/
 theorem realHermiteGenerating_ambiguity_integral_conj_raw
     (x ω : ℝ) (u v : ℂ) :
     (∫ t : ℝ,
@@ -441,6 +474,9 @@ theorem realHermiteGenerating_ambiguity_integral_conj_raw
   simp_rw [realHermiteGenerating_conj]
   simpa using realHermiteGenerating_ambiguity_integral_raw x ω u (star v)
 
+/--
+@isnad1 id=eq.0h4v.s8.c2777e1b25ef from=translated src=- shape=a1d649a5 vocab=68f086e7
+-/
 theorem realHermiteGenerating_ambiguity_integral_conj_kernel
     (x ω : ℝ) (u v : ℂ) :
     (∫ t : ℝ,
@@ -469,6 +505,9 @@ theorem realHermiteGenerating_ambiguity_integral_conj_kernel
     norm_num [← Complex.ofReal_pow]]
   ring_nf
 
+/--
+@isnad1 id=eq.0h4v.s8.ee7ef0d43adb from=translated src=- shape=662b1491 vocab=68f086e7
+-/
 theorem realHermiteGenerating_ambiguity_integral_independent_kernel
     (x ω : ℝ) (u w : ℂ) :
     (∫ t : ℝ,
@@ -502,6 +541,9 @@ noncomputable def shiftedGeneratingRightDerivBound
       (Real.sqrt 2 * (|x| / 2) + (‖w0‖ + R)))) *
     Real.exp (-(t ^ 2) / 2)
 
+/--
+@isnad1 id=hasderiv.0h4v.s9.38c8915c8b4c from=translated src=- shape=de2bb804 vocab=2b2fc172
+-/
 theorem hasDerivAt_integral_shifted_generating_mul_modulated_right_closed
     (u w0 : ℂ) (x ω : ℝ) :
     HasDerivAt
@@ -550,6 +592,9 @@ theorem hasDerivAt_integral_shifted_generating_mul_modulated_right_closed
     rw [heq]; exact h
   simpa [z, E, mul_assoc, mul_left_comm, mul_comm] using hlin.cexp.mul_const E
 
+/--
+@isnad1 id=hasderiv.0h4v.s9.16320dea3362 from=translated src=- shape=f1297c77 vocab=2b2fc172
+-/
 theorem hasDerivAt_integral_shifted_generating_mul_modulated_left_closed
     (u0 w : ℂ) (x ω : ℝ) :
     HasDerivAt
@@ -595,6 +640,9 @@ theorem hasDerivAt_integral_shifted_generating_mul_modulated_left_closed
       (hw.add hz).sub_const (star z * w)
   simpa [z, E, mul_assoc, mul_left_comm, mul_comm] using hlin.cexp.mul_const E
 
+/--
+@isnad1 id=eq.0h2v.s5.1921bbff8709 from=translated src=- shape=b057805c vocab=bc3fb51a
+-/
 theorem iteratedDeriv_cexp_mul_right_at_zero (n : ℕ) (w : ℂ) :
     iteratedDeriv n (fun u : ℂ => Complex.exp (u * w)) 0 = w ^ n := by
   rw [show (fun u : ℂ => Complex.exp (u * w)) =
@@ -603,11 +651,17 @@ theorem iteratedDeriv_cexp_mul_right_at_zero (n : ℕ) (w : ℂ) :
     rw [mul_comm]]
   simp [iteratedDeriv_cexp_const_mul]
 
+/--
+@isnad1 id=eq.0h2v.s6.765ec90e2e7d from=translated src=- shape=f7f28a08 vocab=9aaf3291
+-/
 theorem iteratedDeriv_pow_at_zero (m n : ℕ) :
     iteratedDeriv m (fun w : ℂ => w ^ n) 0 =
       if m = n then (Nat.factorial n : ℂ) else 0 := by
   simpa using (iteratedDeriv_fun_pow_zero (𝕜 := ℂ) (n := m) (m := n))
 
+/--
+@isnad1 id=eq.0h2v.s6.b000fed97a37 from=translated src=- shape=e84f971c vocab=57ed006b
+-/
 theorem iteratedDeriv_iteratedDeriv_cexp_mul_at_zero (m n : ℕ) :
     iteratedDeriv m
       (fun w : ℂ => iteratedDeriv n (fun u : ℂ => Complex.exp (u * w)) 0) 0 =
@@ -785,6 +839,9 @@ private theorem inv_factorial_mul_complexHermite_self_eq_phi1D
   rw [phi1D, hsqrt]
   norm_num
 
+/--
+@isnad1 id=eq.0h1v.s7.97ce75482a8e from=translated src=- shape=56db907f vocab=a3456b50
+-/
 theorem realHermiteGenerating_deriv_zero (t : ℝ) :
     deriv (realHermiteGenerating t) 0 =
       (Real.sqrt 2 : ℂ) * (t : ℂ) * ((Real.pi ^ (-(1 / 4 : ℝ)) : ℝ) : ℂ) *
@@ -814,18 +871,30 @@ noncomputable def realHermite1D (n : ℕ) (t : ℝ) : ℂ :=
   ((Real.sqrt (Nat.factorial n : ℝ) : ℂ) / (Nat.factorial n : ℂ)) *
     iteratedDeriv n (realHermiteGenerating t) 0
 
+/--
+@isnad1 id=eq.0h1v.s4.8998ffeb3c25 from=translated src=- shape=c95b6568 vocab=d75b1d87
+-/
 theorem realHermite1D_zero (t : ℝ) :
     realHermite1D 0 t = realHermiteGenerating t 0 := by simp [realHermite1D]
 
+/--
+@isnad1 id=eq.0h1v.s5.22090a5fd246 from=translated src=- shape=36f12cab vocab=af8beb52
+-/
 theorem realHermite1D_one (t : ℝ) :
     realHermite1D 1 t = (Real.sqrt 2 : ℂ) * (t : ℂ) * realHermiteGenerating t 0 := by
   simp [realHermite1D, realHermiteGenerating_deriv_zero, realHermiteGenerating]
   ring_nf
 
+/--
+@isnad1 id=eq.0h0v.s6.af990f6c7c2d from=translated src=- shape=2c80951d vocab=468899af
+-/
 theorem realHermite1D_inner_zero_zero :
     (∫ t : ℝ, realHermite1D 0 t * star (realHermite1D 0 t)) = 1 := by
   simpa [realHermite1D] using realHermiteGenerating_integral_mul_conj 0 0
 
+/--
+@isnad1 id=eq.0h0v.s6.fb46c2eb7fbf from=translated src=- shape=fcfb679a vocab=063c71ef
+-/
 theorem integral_real_sq_exp_neg_sq :
     (∫ x : ℝ, x ^ (2 : ℕ) * Real.exp (-(x ^ (2 : ℕ)))) = Real.sqrt Real.pi / 2 := by
   have h_abs : (fun x : ℝ => x ^ (2 : ℕ) * Real.exp (-(x ^ (2 : ℕ)))) =
@@ -850,6 +919,9 @@ theorem integral_real_sq_exp_neg_sq :
   · norm_num
   · norm_num
 
+/--
+@isnad1 id=eq.0h0v.s5.0c599218f1a3 from=translated src=- shape=268e2746 vocab=e1b05cfa
+-/
 theorem integral_real_mul_exp_neg_sq :
     (∫ x : ℝ, x * Real.exp (-(x ^ (2 : ℕ)))) = 0 := by
   have h := MeasureTheory.integral_neg_eq_self
@@ -862,6 +934,9 @@ theorem integral_real_mul_exp_neg_sq :
   rw [MeasureTheory.integral_neg] at h
   linarith
 
+/--
+@isnad1 id=eq.0h0v.s6.b80a61d3dd76 from=translated src=- shape=2c80951d vocab=468899af
+-/
 theorem realHermite1D_inner_one_one :
     (∫ t : ℝ, realHermite1D 1 t * star (realHermite1D 1 t)) = 1 := by
   simp_rw [realHermite1D_one]
@@ -913,6 +988,9 @@ theorem realHermite1D_inner_one_one :
     rw [← Real.rpow_add Real.pi_pos]
     norm_num]
 
+/--
+@isnad1 id=eq.0h0v.s6.ef78b5ee1fd7 from=translated src=- shape=2c80951d vocab=468899af
+-/
 theorem realHermite1D_inner_zero_one :
     (∫ t : ℝ, realHermite1D 0 t * star (realHermite1D 1 t)) = 0 := by
   simp_rw [realHermite1D_zero, realHermite1D_one]
@@ -953,6 +1031,9 @@ theorem realHermite1D_inner_zero_one :
   rw [integral_complex_ofReal, integral_real_mul_exp_neg_sq]
   simp
 
+/--
+@isnad1 id=eq.0h0v.s6.c3e256dbfa5f from=translated src=- shape=2c80951d vocab=468899af
+-/
 theorem realHermite1D_inner_one_zero :
     (∫ t : ℝ, realHermite1D 1 t * star (realHermite1D 0 t)) = 0 := by
   calc
@@ -982,6 +1063,9 @@ private lemma real_exp_neg_sq_eq_sq (t : ℝ) :
   congr 1
   ring
 
+/--
+@isnad1 id=memlp.0h0v.s6.7a9514e2578a from=translated src=- shape=5b3f7e87 vocab=387a5f8c
+-/
 theorem realHermite1D_zero_memLp :
     MemLp (realHermite1D 0) 2 (volume : Measure ℝ) := by
   have hfun : realHermite1D 0 = (fun t : ℝ =>
@@ -1004,6 +1088,9 @@ theorem realHermite1D_zero_memLp :
     rw [real_exp_neg_sq_eq_sq t]
     ring
 
+/--
+@isnad1 id=memlp.0h0v.s6.5099a1909196 from=translated src=- shape=5b3f7e87 vocab=387a5f8c
+-/
 theorem realHermite1D_one_memLp :
     MemLp (realHermite1D 1) 2 (volume : Measure ℝ) := by
   have hfun : realHermite1D 1 = (fun t : ℝ =>
@@ -1042,6 +1129,9 @@ private lemma integrable_pow_mul_exp_neg_sq
   have h := integrable_rpow_mul_exp_neg_mul_sq one_pos hs
   simp_all
 
+/--
+@isnad1 id=memlp.0h1v.s7.0159e671a086 from=translated src=- shape=21b81527 vocab=9aeadf72
+-/
 theorem complex_monomial_gaussian_memLp
     (k : ℕ) :
     MemLp (fun t : ℝ => (t : ℂ) ^ k *
@@ -1069,6 +1159,9 @@ theorem complex_monomial_gaussian_memLp
 noncomputable def complexMonomialGaussian (k : ℕ) (t : ℝ) : ℂ :=
   (t : ℂ) ^ k * Complex.exp (-(((t : ℂ) ^ 2) / 2))
 
+/--
+@isnad1 id=integrab.0h2v.s5.9631f96462e0 from=translated src=- shape=cf93548b vocab=2b251509
+-/
 theorem complex_monomial_gaussian_product_integrable
     (k l : ℕ) :
     Integrable
@@ -1084,6 +1177,9 @@ theorem complex_monomial_gaussian_product_integrable
   filter_upwards with t
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.b07bfc7fa153 from=translated src=- shape=0661bf34 vocab=cd2abf5c
+-/
 theorem complex_monomial_gaussian_product_integral_of_odd
     {k l : ℕ} (hodd : Odd (k + l)) :
     (∫ t : ℝ,
@@ -1117,6 +1213,9 @@ theorem complex_monomial_gaussian_product_integral_of_odd
   rw [hpoint, MeasureTheory.integral_neg] at hneg
   exact CharZero.neg_eq_self_iff.mp hneg
 
+/--
+@isnad1 id=eq.1h1v.s6.f445cef591ca from=translated src=- shape=35d5859c vocab=df84c723
+-/
 theorem integral_real_pow_exp_neg_sq_of_even
     {n : ℕ} (heven : Even n) :
     (∫ x : ℝ, x ^ n * Real.exp (-(x ^ (2 : ℕ)))) =
@@ -1143,6 +1242,9 @@ theorem integral_real_pow_exp_neg_sq_of_even
   · exact_mod_cast (show -1 < (n : ℤ) by omega)
   · norm_num
 
+/--
+@isnad1 id=eq.1h2v.s6.c039b1825ea5 from=translated src=- shape=03b2f6a1 vocab=bc7cd0a8
+-/
 theorem complex_monomial_gaussian_product_integral_of_even
     {k l : ℕ} (heven : Even (k + l)) :
     (∫ t : ℝ,
@@ -1181,6 +1283,9 @@ theorem complex_monomial_gaussian_product_integral_of_even
   rw [integral_complex_ofReal, integral_real_pow_exp_neg_sq_of_even heven]
 
 open scoped Nat in
+/--
+@isnad1 id=eq.1h3v.s7.b449581b86f2 from=translated src=- shape=6f8e0e70 vocab=644dd751
+-/
 theorem complex_monomial_gaussian_product_integral_of_eq_two_mul
     {k l r : ℕ} (hkl : k + l = 2 * r) :
     (∫ t : ℝ,
@@ -1196,6 +1301,9 @@ theorem complex_monomial_gaussian_product_integral_of_eq_two_mul
     ring]
   rw [Real.Gamma_nat_add_half, Complex.ofReal_div, Complex.ofReal_mul]
 
+/--
+@isnad1 id=eq.0h2v.s6.2e0c00c8355d from=translated src=- shape=c5bb6c28 vocab=2e673fe6
+-/
 theorem complex_monomial_gaussian_product_integral_eq_ite
     (k l : ℕ) :
     (∫ t : ℝ,
@@ -1220,6 +1328,9 @@ private theorem monomial_gaussian_bilinear_row_integrable
   intro l hl
   exact (complex_monomial_gaussian_product_integrable k l).const_mul (a k * b l)
 
+/--
+@isnad1 id=integrab.0h4v.s6.88d4dc1696b9 from=translated src=- shape=46320de0 vocab=717bc449
+-/
 theorem complex_monomial_gaussian_finite_bilinear_integrable
     (s t : Finset ℕ) (a b : ℕ → ℂ) :
     Integrable
@@ -1233,6 +1344,9 @@ theorem complex_monomial_gaussian_finite_bilinear_integrable
   intro k hk
   exact monomial_gaussian_bilinear_row_integrable t a b k
 
+/--
+@isnad1 id=eq.0h4v.s7.6cacda449830 from=translated src=- shape=43152c1c vocab=4ae03c45
+-/
 theorem complex_monomial_gaussian_finite_bilinear_integral_eq_ite
     (s t : Finset ℕ) (a b : ℕ → ℂ) :
     (∫ x : ℝ,
@@ -1259,6 +1373,9 @@ theorem complex_monomial_gaussian_finite_bilinear_integral_eq_ite
   · intro k hk
     exact monomial_gaussian_bilinear_row_integrable t a b k
 
+/--
+@isnad1 id=eq.1h4v.s7.9eaf6d1e6c75 from=translated src=- shape=431afd78 vocab=c6323427
+-/
 theorem complex_monomial_gaussian_finite_bilinear_integral_eq_zero_of_odd
     (s t : Finset ℕ) (a b : ℕ → ℂ)
     (hodd : ∀ k ∈ s, ∀ l ∈ t, Odd (k + l)) :
@@ -1271,6 +1388,9 @@ theorem complex_monomial_gaussian_finite_bilinear_integral_eq_zero_of_odd
   refine Finset.sum_eq_zero fun k hk => Finset.sum_eq_zero fun l hl => ?_
   rw [ite_eq_right (Nat.not_even_iff_odd.mpr (hodd k hk l hl)), mul_zero]
 
+/--
+@isnad1 id=eq.1h4v.s7.a9d13c3ff45a from=translated src=- shape=bb945ce8 vocab=44d08b24
+-/
 theorem complex_monomial_gaussian_finite_bilinear_integral_eq_even_moments
     (s t : Finset ℕ) (a b : ℕ → ℂ)
     (heven : ∀ k ∈ s, ∀ l ∈ t, Even (k + l)) :
@@ -1357,6 +1477,9 @@ private theorem iteratedDeriv_cexp_neg_sq_div_two_zero_of_even
   simpa [Nat.mul_div_right _ (by norm_num : 0 < 2)]
     using iteratedDeriv_cexp_neg_sq_div_two_zero_of_two_mul r
 
+/--
+@isnad1 id=eq.0h2v.s8.8f18a225936d from=translated src=- shape=0eadc72b vocab=d02f849a
+-/
 theorem realHermiteGenerating_iteratedDeriv_zero_expansion
     (n : ℕ) (t : ℝ) :
     iteratedDeriv n (realHermiteGenerating t) 0 =
@@ -1419,12 +1542,18 @@ noncomputable def realHermiteGeneratingExpansionCoeff (n k : ℕ) : ℂ :=
       iteratedDeriv (n - k)
         (fun u : ℂ => Complex.exp (-(u ^ (2 : ℕ)) / 2)) 0))
 
+/--
+@isnad1 id=eq.1h2v.s4.16b1fce68541 from=translated src=- shape=e1c7e1c0 vocab=edf31816
+-/
 theorem realHermiteGeneratingExpansionCoeff_eq_zero_of_odd_sub
     {n k : ℕ} (hodd : Odd (n - k)) :
     realHermiteGeneratingExpansionCoeff n k = 0 := by
   simp [realHermiteGeneratingExpansionCoeff,
     iteratedDeriv_cexp_neg_sq_div_two_zero_of_odd hodd]
 
+/--
+@isnad1 id=eq.2h2v.s5.244a0a42d2f1 from=translated src=- shape=49f038af vocab=2496e971
+-/
 theorem realHermiteGeneratingExpansionCoeff_eq_zero_of_odd_add
     {n k : ℕ} (hk : k ≤ n) (hodd : Odd (n + k)) :
     realHermiteGeneratingExpansionCoeff n k = 0 := by
@@ -1432,6 +1561,9 @@ theorem realHermiteGeneratingExpansionCoeff_eq_zero_of_odd_add
   rw [Nat.odd_sub hk]
   exact Nat.odd_add.mp hodd
 
+/--
+@isnad1 id=eq.1h2v.s7.e2091c84c584 from=translated src=- shape=533463b6 vocab=570f6fd7
+-/
 theorem realHermiteGeneratingExpansionCoeff_eq_of_even_sub
     {n k : ℕ} (heven : Even (n - k)) :
     realHermiteGeneratingExpansionCoeff n k =
@@ -1442,6 +1574,9 @@ theorem realHermiteGeneratingExpansionCoeff_eq_of_even_sub
   unfold realHermiteGeneratingExpansionCoeff
   rw [iteratedDeriv_cexp_neg_sq_div_two_zero_of_even heven]
 
+/--
+@isnad1 id=eq.2h2v.s7.2643d7c445bb from=translated src=- shape=94ca5ece vocab=6336c7f5
+-/
 theorem realHermiteGeneratingExpansionCoeff_eq_even_add_closed
     {n k : ℕ} (hk : k ≤ n) (heven : Even (n + k)) :
     realHermiteGeneratingExpansionCoeff n k =
@@ -1453,6 +1588,9 @@ theorem realHermiteGeneratingExpansionCoeff_eq_even_add_closed
   rw [Nat.even_sub hk]
   exact Nat.even_add.mp heven
 
+/--
+@isnad1 id=eq.2h2v.s6.a0f49bd31f97 from=translated src=- shape=e254c12f vocab=8a362737
+-/
 theorem realHermiteGeneratingExpansionCoeff_eq_scaled_hermite_coeff_of_even_add
     {n k : ℕ} (hk : k ≤ n) (heven : Even (n + k)) :
     realHermiteGeneratingExpansionCoeff n k =
@@ -1465,6 +1603,9 @@ theorem realHermiteGeneratingExpansionCoeff_eq_scaled_hermite_coeff_of_even_add
   ring_nf
   simp
 
+/--
+@isnad1 id=eq.0h2v.s6.84b3a0c1003e from=translated src=- shape=60404209 vocab=89b2ffeb
+-/
 theorem realHermiteGeneratingExpansionCoeff_eq_scaled_hermite_coeff
     (n k : ℕ) :
     realHermiteGeneratingExpansionCoeff n k =
@@ -1839,6 +1980,9 @@ private lemma realHermiteGeneratingExpansionCoeff_eq_scale_coeff
   simpa [realHermiteCoeffScale]
     using realHermiteGeneratingExpansionCoeff_eq_scaled_hermite_coeff n k
 
+/--
+@isnad1 id=eq.0h2v.s5.4c719afd042c from=translated src=- shape=56ea8f56 vocab=b819aede
+-/
 theorem realHermiteGenerating_iteratedDeriv_zero_expansion_monomial
     (n : ℕ) (t : ℝ) :
     iteratedDeriv n (realHermiteGenerating t) 0 =
@@ -1850,6 +1994,9 @@ theorem realHermiteGenerating_iteratedDeriv_zero_expansion_monomial
   intro k hk
   simp only [realHermiteGeneratingExpansionCoeff, complexMonomialGaussian]
 
+/--
+@isnad1 id=eq.0h3v.s7.340d422afd27 from=translated src=- shape=8bdd2942 vocab=b819aede
+-/
 theorem realHermiteGenerating_iteratedDeriv_zero_product_expansion
     (n m : ℕ) (t : ℝ) :
     iteratedDeriv n (realHermiteGenerating t) 0 *
@@ -1869,6 +2016,9 @@ theorem realHermiteGenerating_iteratedDeriv_zero_product_expansion
   intro l hl
   ring
 
+/--
+@isnad1 id=eq.0h2v.s7.8190e5d750cb from=translated src=- shape=cd5102f0 vocab=b88cdeb2
+-/
 theorem realHermiteGenerating_iteratedDeriv_inner_finite_sum
     (n m : ℕ) :
     (∫ t : ℝ,
@@ -1904,6 +2054,9 @@ theorem realHermiteGenerating_iteratedDeriv_inner_finite_sum
             (realHermiteGeneratingExpansionCoeff n)
             (realHermiteGeneratingExpansionCoeff m)
 
+/--
+@isnad1 id=eq.1h2v.s6.98a107834700 from=translated src=- shape=0dd57ebe vocab=9981ab09
+-/
 theorem realHermiteGenerating_iteratedDeriv_inner_eq_zero_of_odd_add
     {n m : ℕ} (hodd : Odd (n + m)) :
     (∫ t : ℝ,
@@ -1927,6 +2080,9 @@ theorem realHermiteGenerating_iteratedDeriv_inner_eq_zero_of_odd_add
       have hkl_odd : Odd (k + l) := by grind [Nat.odd_add]
       simp_all
 
+/--
+@isnad1 id=eq.0h2v.s7.8e09da93ca18 from=translated src=- shape=58a2d209 vocab=c687b84a
+-/
 theorem realHermiteGenerating_inner_finite_sum_eq_factorial
     (n m : ℕ) :
     (∑ k ∈ Finset.range (n + 1), ∑ l ∈ Finset.range (m + 1),
@@ -1946,6 +2102,9 @@ theorem realHermiteGenerating_inner_finite_sum_eq_factorial
   rw [← scaled_gamma_moment_eq_standard (k + l), pow_add]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s6.1acbee9ce057 from=translated src=- shape=b3ea94a0 vocab=d71d5545
+-/
 theorem realHermiteGenerating_iteratedDeriv_inner_eq_factorial
     (n m : ℕ) :
     (∫ t : ℝ,
@@ -1955,6 +2114,9 @@ theorem realHermiteGenerating_iteratedDeriv_inner_eq_factorial
   rw [realHermiteGenerating_iteratedDeriv_inner_finite_sum]
   exact realHermiteGenerating_inner_finite_sum_eq_factorial n m
 
+/--
+@isnad1 id=eq.0h2v.s7.e3e44ccf2be5 from=translated src=- shape=8073534b vocab=6596bb37
+-/
 theorem realHermiteGenerating_no_conj_interchange_of_finite_sum
     (n m : ℕ) :
     (∫ t : ℝ,
@@ -1991,6 +2153,9 @@ theorem realHermiteGenerating_no_conj_interchange_of_finite_sum
             simpa [eq_comm] using iteratedDeriv_iteratedDeriv_cexp_mul_at_zero m n
   exact hleft.trans hright.symm
 
+/--
+@isnad1 id=memlp.0h1v.s6.fc357a806b62 from=translated src=- shape=bfdc72e5 vocab=b3271727
+-/
 theorem realHermiteGenerating_iteratedDeriv_zero_memLp
     (n : ℕ) :
     MemLp (fun t : ℝ => iteratedDeriv n (realHermiteGenerating t) 0)
@@ -2014,6 +2179,9 @@ theorem realHermiteGenerating_iteratedDeriv_zero_memLp
             (fun u : ℂ => Complex.exp (-(u ^ (2 : ℕ)) / 2)) 0))
   simpa [realHermiteGenerating_iteratedDeriv_zero_expansion] using hsum
 
+/--
+@isnad1 id=memlp.0h1v.s6.0f5f5bf5b5de from=translated src=- shape=00bb7809 vocab=387a5f8c
+-/
 theorem realHermite1D_memLp (n : ℕ) :
     MemLp (realHermite1D n) 2 (volume : Measure ℝ) := by
   refine MeasureTheory.MemLp.ae_eq ?_
@@ -2022,6 +2190,9 @@ theorem realHermite1D_memLp (n : ℕ) :
   filter_upwards with t
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s7.2f5888f41dce from=translated src=- shape=9ad2fc09 vocab=f1f0dc01
+-/
 theorem realHermite1D_inner_of_iteratedDeriv_inner (n m : ℕ)
     (hderiv :
       (∫ t : ℝ,
@@ -2096,6 +2267,9 @@ private lemma star_iteratedDeriv_of_conj_symm {f : ℂ → ℂ}
         ih
         z
 
+/--
+@isnad1 id=eq.0h2v.s6.8335fc777e06 from=translated src=- shape=9ded5d1b vocab=4139b000
+-/
 theorem realHermiteGenerating_iteratedDeriv_zero_star (n : ℕ) (t : ℝ) :
     star (iteratedDeriv n (realHermiteGenerating t) 0) =
       iteratedDeriv n (realHermiteGenerating t) 0 := by
@@ -2486,6 +2660,9 @@ private theorem realHermite1D_stft_integral_formula_of_halfCentered_interchange
   realHermite1D_stft_integral_formula_of_interchange n k x ω
     (realHermiteGenerating_stft_interchange_of_halfCentered_interchange n k x ω hhalf)
 
+/--
+@isnad1 id=eq.1h2v.s8.7d6ca3a2c283 from=translated src=- shape=d4f37de9 vocab=9912e3a7
+-/
 theorem realHermiteGenerating_iteratedDeriv_inner_of_no_conj_interchange
     (n m : ℕ)
     (hinterchange :
@@ -2526,6 +2703,9 @@ theorem realHermiteGenerating_iteratedDeriv_inner_of_no_conj_interchange
     _ = if n = m then (Nat.factorial n : ℂ) else 0 := by
           simpa [eq_comm] using iteratedDeriv_iteratedDeriv_cexp_mul_at_zero m n
 
+/--
+@isnad1 id=eq.1h2v.s7.54659a767527 from=translated src=- shape=3d213b84 vocab=8ea6df57
+-/
 theorem realHermite1D_inner_orthonormal_of_no_conj_interchange
     (hinterchange : ∀ n m : ℕ,
       (∫ t : ℝ,
@@ -2549,6 +2729,9 @@ theorem realHermite1D_inner_orthonormal_of_no_conj_interchange
       m n (hinterchange m n)
   simpa [eq_comm] using realHermite1D_inner_of_iteratedDeriv_inner m n hderiv
 
+/--
+@isnad1 id=and.2h0v.s8.33d79bc55ff5 from=translated src=- shape=8df58c75 vocab=fd6bcad6
+-/
 theorem realHermite1D_memLp_inner_orthonormal_of_no_conj_interchange
     (hmem : ∀ n : Nat, MemLp (realHermite1D n) 2 (volume : Measure ℝ))
     (hinterchange : ∀ n m : ℕ,
@@ -2599,6 +2782,9 @@ noncomputable def bKappaRep {d : Nat} (kappa : MultiIndex d) (U : Skappa d kappa
     RealVec d -> ℂ :=
   (bKappa kappa U : L2Real d)
 
+/--
+@isnad1 id=eq.0h4v.s15.3e8ede2095b8 from=translated src=- shape=dea97fa3 vocab=b29bdb41
+-/
 theorem bKappa_smul
     {d : Nat} (kappa : MultiIndex d) (w : ℂ) (U : Skappa d kappa) :
     bKappa kappa (w • U) = w • bKappa kappa U := by
@@ -2615,6 +2801,9 @@ theorem bKappa_smul
     _ = w • ∑' alpha : Idx d, coeffSkappa U alpha • realHermiteTensorL2 alpha := by
           rw [tsum_const_smul'']
 
+/--
+@isnad1 id=eq.1h2v.s11.4df326194de6 from=translated src=- shape=4285e4cf vocab=7443e4f0
+-/
 theorem realHermiteTensorL2_eq_toLp_of_memLp
     {d : Nat} (alpha : Idx d)
     (h : MemLp (realHermiteTensorRep alpha) 2
@@ -2623,6 +2812,9 @@ theorem realHermiteTensorL2_eq_toLp_of_memLp
   unfold realHermiteTensorL2 varphiKappa
   simp [h]
 
+/--
+@isnad1 id=eq.2h3v.s11.7f963b399d06 from=translated src=- shape=67e6d109 vocab=5bc0cb38
+-/
 theorem realHermiteTensorL2_inner_eq_integral_of_memLp
     {d : Nat} (alpha beta : Idx d)
     (hα : MemLp (realHermiteTensorRep alpha) 2
@@ -2638,6 +2830,9 @@ theorem realHermiteTensorL2_inner_eq_integral_of_memLp
   filter_upwards [hα.coeFn_toLp, hβ.coeFn_toLp] with x hαx hβx
   simp_all
 
+/--
+@isnad1 id=orthonor.2h1v.s12.02c67c135e6a from=translated src=- shape=5f9ad80e vocab=d2828364
+-/
 theorem realHermiteTensorL2_orthonormal_of_memLp_integral
     {d : Nat}
     (hmem : ∀ alpha : Idx d,
@@ -2655,6 +2850,9 @@ theorem realHermiteTensorL2_orthonormal_of_memLp_integral
     (hmem alpha) (hmem beta)]
   exact hinner alpha beta
 
+/--
+@isnad1 id=and.0h0v.s7.026810cd0c81 from=translated src=- shape=641531c6 vocab=fdd3febd
+-/
 theorem realHermite1D_memLp_inner_orthonormal :
     (∀ n : Nat, MemLp (realHermite1D n) 2 (volume : Measure ℝ)) ∧
       ∀ n m : Nat,
@@ -2672,6 +2870,9 @@ theorem realHermite1D_memLp_inner_orthonormal :
   · intro n m
     exact realHermiteGenerating_no_conj_interchange_of_finite_sum n m
 
+/--
+@isnad1 id=memlp.1h2v.s8.7a8719bec74e from=translated src=- shape=4d826d6c vocab=7171de27
+-/
 theorem realHermiteTensorRep_memLp_of_realHermite1D_memLp
     {d : Nat} (alpha : Idx d)
     (hmem1 : ∀ n : Nat, MemLp (realHermite1D n) 2 (volume : Measure ℝ)) :
@@ -2745,6 +2946,9 @@ theorem realHermiteTensorRep_memLp_of_realHermite1D_memLp
   filter_upwards with x
   simp only [Function.comp_apply, g, realHermiteTensorRep]
 
+/--
+@isnad1 id=eq.1h3v.s8.8fe32d096b58 from=translated src=- shape=ddabb217 vocab=1d0b22b9
+-/
 theorem realHermiteTensorRep_inner_of_realHermite1D_inner
     {d : Nat} (alpha beta : Idx d)
     (hinner1 : ∀ n m : Nat,
@@ -2800,6 +3004,9 @@ theorem realHermiteTensorRep_inner_of_realHermite1D_inner
           rw [Finset.prod_eq_zero_iff]
           exact ⟨q, Finset.mem_univ q, hfactor⟩]
 
+/--
+@isnad1 id=orthonor.0h1v.s12.94c3ec469e3e from=translated src=- shape=e04787ae vocab=3bd296e5
+-/
 theorem realHermiteTensorL2_orthonormal {d : Nat} :
     Orthonormal ℂ (fun alpha : Idx d => realHermiteTensorL2 alpha) := by
   /-
@@ -2825,6 +3032,9 @@ theorem realHermiteTensorL2_orthonormal {d : Nat} :
             realHermite1D_memLp_inner_orthonormal.2⟩
   exact realHermiteTensorL2_orthonormal_of_memLp_integral hpackage.1 hpackage.2
 
+/--
+@isnad1 id=isl2rep.0h2v.s3.513a120454bb from=translated src=- shape=a0164760 vocab=aeea53bc
+-/
 theorem varphiKappa_isL2Rep
     {d : Nat} (kappa : MultiIndex d) :
     IsL2Rep (varphiKappa kappa) (realHermiteTensorRep kappa) := by
@@ -2837,6 +3047,9 @@ theorem varphiKappa_isL2Rep
   unfold varphiKappa
   simp [hmem]
 
+/--
+@isnad1 id=eventual.0h2v.s11.c83f8568c6db from=translated src=- shape=8788fd9d vocab=c217a911
+-/
 theorem varphiKappa_coe_ae_eq_realHermiteTensorRep
     {d : Nat} (kappa : MultiIndex d) :
     ((varphiKappa kappa : L2Real d) : RealVec d -> ℂ)
@@ -2845,6 +3058,9 @@ theorem varphiKappa_coe_ae_eq_realHermiteTensorRep
   rw [← h_eq]
   exact hmem.coeFn_toLp
 
+/--
+@isnad1 id=summable.1h3v.s15.894cf6024dc6 from=translated src=- shape=4db03fda vocab=0ea3ee3c
+-/
 theorem summable_realHermiteTensorL2_coeff_smul_of_orthonormal
     {d : Nat} (kappa : MultiIndex d)
     (horth : Orthonormal ℂ (fun alpha : Idx d => realHermiteTensorL2 alpha))
@@ -2858,6 +3074,9 @@ theorem summable_realHermiteTensorL2_coeff_smul_of_orthonormal
     (hOrthogonalFamily.summable_iff_norm_sq_summable
       (fun alpha : Idx d => coeffSkappa U alpha)).2 hcoeff
 
+/--
+@isnad1 id=eq.1h4v.s12.ef68c2db0b52 from=translated src=- shape=7fb3b0a2 vocab=71b5f17a
+-/
 theorem bKappa_coeff_recovery_of_realHermite_orthonormal
     {d : Nat} (kappa : MultiIndex d)
     (horth : Orthonormal ℂ (fun alpha : Idx d => realHermiteTensorL2 alpha))
@@ -2898,6 +3117,9 @@ private theorem skappa_ext_coeff_from_realHermite
   funext alpha
   exact hcoeff alpha
 
+/--
+@isnad1 id=injectiv.1h2v.s11.7cf66014fafa from=translated src=- shape=5fd7dbc9 vocab=5dd670c0
+-/
 theorem bKappa_injective_of_realHermite_coeff_recovery
     {d : Nat} (kappa : MultiIndex d)
     (hcoeff : ∀ (U : Skappa d kappa) (alpha : Idx d),
@@ -2908,6 +3130,9 @@ theorem bKappa_injective_of_realHermite_coeff_recovery
   apply skappa_ext_coeff_from_realHermite
   simp_all
 
+/--
+@isnad1 id=injectiv.1h2v.s12.b0f1bf2d6448 from=translated src=- shape=e9d25a76 vocab=66fe2b1c
+-/
 theorem bKappa_injective_of_realHermite_orthonormal
     {d : Nat} (kappa : MultiIndex d)
     (horth : Orthonormal ℂ (fun alpha : Idx d => realHermiteTensorL2 alpha)) :
@@ -2916,10 +3141,16 @@ theorem bKappa_injective_of_realHermite_orthonormal
     (fun U alpha =>
       bKappa_coeff_recovery_of_realHermite_orthonormal kappa horth U alpha)
 
+/--
+@isnad1 id=injectiv.0h2v.s10.eb13e6b75449 from=translated src=- shape=a263d8ba vocab=ed07c1ff
+-/
 theorem bKappa_injective {d : Nat} (kappa : MultiIndex d) :
     Function.Injective (bKappa kappa) := bKappa_injective_of_realHermite_orthonormal kappa
     (realHermiteTensorL2_orthonormal (d := d))
 
+/--
+@isnad1 id=isl2rep.0h3v.s4.5d9c6e42aced from=translated src=- shape=40be3398 vocab=7733488d
+-/
 theorem bKappaRep_isL2Rep
     {d : Nat} (kappa : MultiIndex d) (U : Skappa d kappa) :
     IsL2Rep (bKappa kappa U) (bKappaRep kappa U) := by
@@ -2980,6 +3211,9 @@ noncomputable def WKappa {d : Nat} :
     PhaseSpace d -> ℝ :=
   fun ξ => Real.exp (-(QKappa ξ))
 
+/--
+@isnad1 id=lt.0h2v.s4.3c00eff09b71 from=translated src=- shape=9363a417 vocab=014d5bb5
+-/
 theorem WKappa_pos {d : Nat} (ξ : PhaseSpace d) :
     0 < WKappa ξ := by
   dsimp [WKappa]
@@ -3077,6 +3311,9 @@ noncomputable def PKappa {d : Nat} (kappa : MultiIndex d) :
     (-1 : ℂ) ^ ((Finset.univ : Finset (Fin d)).sum fun q => kappa q) *
       Phi kappa kappa (TKappa ξ)
 
+/--
+@isnad1 id=isphases.1h2v.s4.22442c1e2cd1 from=translated src=- shape=1d4bda41 vocab=ea2a6060
+-/
 theorem PKappa_isPolynomial {d : Nat} (hd : 0 < d) (kappa : MultiIndex d) :
     IsPhaseSpacePolynomial (PKappa kappa) := by
   let _ := hd
@@ -4816,6 +5053,9 @@ private theorem stft_model_modulus_of_global_phase_formula
   have hW_nonneg : 0 ≤ WKappa ξ := le_of_lt (WKappa_pos ξ)
   simp_all
 
+/--
+@isnad1 id=eq.1h4v.s5.1f64698c02cd from=translated src=- shape=17dd189c vocab=aa99b0ef
+-/
 theorem stft_model_modulus
     {d : Nat} (hd : 0 < d) (kappa : MultiIndex d)
     (U : Skappa d kappa) (ξ : PhaseSpace d) :
@@ -5069,6 +5309,9 @@ private theorem tensorRep_windowAmbiguity_integral_eq_PKappa_exp_of_oneD
     simp_all]
   exact prod_oneDWindowAmbiguity_closed_eq_PKappa_exp kappa ξ
 
+/--
+@isnad1 id=eq.1h3v.s5.5569184dd36f from=translated src=- shape=375355cd vocab=a98e25fc
+-/
 theorem windowAmbiguity_factorization
     {d : Nat} (hd : 0 < d) (kappa : MultiIndex d) (ξ : PhaseSpace d) :
     ambiguityRep (varphiKappa kappa) (varphiKappa kappa) ξ =
@@ -5080,6 +5323,9 @@ theorem windowAmbiguity_factorization
   simpa [TKappa] using
     oneDWindowAmbiguityFactor_closed (kappa q) (ξ.1 q) (ξ.2 q)
 
+/--
+@isnad1 id=ne.1h2v.s5.45d52c1c246f from=translated src=- shape=42c6967c vocab=1fea6b1b
+-/
 theorem windowAmbiguity_polynomial_nonzero
     {d : Nat} (hd : 0 < d) (kappa : MultiIndex d) :
     PKappa kappa ≠ 0 := by
@@ -5161,6 +5407,9 @@ private lemma dense_ne_zero_of_phaseSpace_polynomial
   refine ⟨line t, ?_⟩
   simp_all
 
+/--
+@isnad1 id=dense.1h2v.s6.bb3f3b584be6 from=translated src=- shape=a80bb5fb vocab=7621a28a
+-/
 theorem windowAmbiguity_dense_nonvanishing
     {d : Nat} (hd : 0 < d) (kappa : MultiIndex d) :
     Dense {ξ : PhaseSpace d |
@@ -5498,6 +5747,9 @@ private lemma sectionDiff_fourier_eq_ambiguity_sub
   rw [integral_sub hFphase hGphase]
   simp [ambiguityRep, Fsec, Gsec, phase, real_inner_comm, mul_assoc, mul_comm]
 
+/--
+@isnad1 id=eventual.3h5v.s12.867348d6eb8f from=translated src=- shape=f823dcbd vocab=2ea1a75c
+-/
 theorem equalAmbiguity_to_rankOneKernel_ae
     {d : Nat} {f g : L2Real d} {fRep gRep : RealVec d -> ℂ}
     (hf_rep : IsL2Rep f fRep) (hg_rep : IsL2Rep g gRep)
@@ -5664,6 +5916,9 @@ private lemma norm_eq_one_of_mul_star_eq_one {w : ℂ}
   have hw_nonneg : 0 ≤ ‖w‖ := norm_nonneg w
   nlinarith
 
+/--
+@isnad1 id=or.3h5v.s15.95aa69e63cce from=translated src=- shape=08b12c02 vocab=1a7745cb
+-/
 theorem rankOneKernel_ae_to_unimodular_phase
     {d : Nat} {f g : L2Real d} {fRep gRep : RealVec d -> ℂ}
     (hf_rep : IsL2Rep f fRep) (hg_rep : IsL2Rep g gRep)
@@ -5763,6 +6018,9 @@ theorem rankOneKernel_ae_to_unimodular_phase
       simp_all
     exact ⟨w, norm_eq_one_of_mul_star_eq_one hunit_mul, hL2⟩
 
+/--
+@isnad1 id=or.3h5v.s15.39d65b786838 from=translated src=- shape=6d7ec99e vocab=32754eb1
+-/
 theorem rankOneRecoveryFromAmbiguity
     {d : Nat} {f g : L2Real d} {fRep gRep : RealVec d -> ℂ}
     (hf_rep : IsL2Rep f fRep) (hg_rep : IsL2Rep g gRep)
@@ -5771,6 +6029,9 @@ theorem rankOneRecoveryFromAmbiguity
   rankOneKernel_ae_to_unimodular_phase hf_rep hg_rep
     (equalAmbiguity_to_rankOneKernel_ae hf_rep hg_rep hAmb)
 
+/--
+@isnad1 id=eq.2h5v.s15.1ff5c5707652 from=translated src=- shape=ba1dccfd vocab=6b719a49
+-/
 theorem lift_unimodular_phase_L2_to_Skappa
     {d : Nat} (hd : 0 < d) (kappa : MultiIndex d)
     {U V : Skappa d kappa} {w : ℂ}
@@ -5809,6 +6070,9 @@ private theorem skappa_eq_zero_of_bKappa_eq_zero_exact_wip
   apply bKappa_injective kappa
   rw [hU, bKappa_zero_exact_wip]
 
+/--
+@isnad1 id=ex.2h4v.s6.344ef7df1d64 from=translated src=- shape=d518568e vocab=ef71204e
+-/
 theorem ambiguity_eq_to_skappa_phase
     {d : Nat} (hd : 0 < d) (kappa : MultiIndex d)
     {U V : Skappa d kappa}

@@ -72,7 +72,9 @@ def N : ℕ := 2 ^ 20
 
 /-! ### Bridge: Mathlib's `harmonic` as a `FinSumDyadic` sum -/
 
-/-- `harmonic n` is the semantic sum that `finSumDyadic body 1 n` encloses. -/
+/-- `harmonic n` is the semantic sum that `finSumDyadic body 1 n` encloses.
+@isnad1 id=eq.0h1v.s4.7511ae404bde from=translated src=- shape=535ec217 vocab=1f17b4da
+-/
 theorem harmonic_eq_finsum (n : ℕ) :
     (harmonic n : ℝ) = ∑ k ∈ Finset.Icc 1 n, Expr.eval (sumBodyRealEnv k) body := by
   simp only [body, Expr.eval, sumBodyRealEnv]
@@ -88,12 +90,17 @@ theorem harmonic_eq_finsum (n : ℕ) :
 
 /-! ### Logarithm bounds at `N = 2^20` -/
 
+/--
+@isnad1 id=eq.0h0v.s4.aaba5aa333be from=translated src=- shape=ab137915 vocab=5dc822b1
+-/
 theorem log_N_eq : Real.log (N : ℝ) = 20 * Real.log 2 := by
   have h : (N : ℝ) = (2 : ℝ) ^ (20 : ℕ) := by norm_num [N]
   rw [h, Real.log_pow]
   norm_num
 
-/-- `log (N + 1) ≤ 20 * log 2 + 1/N` via `log x ≤ x - 1`. -/
+/-- `log (N + 1) ≤ 20 * log 2 + 1/N` via `log x ≤ x - 1`.
+@isnad1 id=le.0h0v.s6.21d888e46445 from=translated src=- shape=cfed8401 vocab=bef09801
+-/
 theorem log_N_succ_le :
     Real.log ((N : ℝ) + 1) ≤ 20 * Real.log 2 + 1 / (N : ℝ) := by
   have hNpos : (0 : ℝ) < (N : ℝ) := by norm_num [N]

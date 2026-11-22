@@ -21,9 +21,15 @@ noncomputable def heatCoordinate (s : ℂ) : ℂ := (2*s-1)/I
 /-- Completed heat function in the classical xi normalization. -/
 noncomputable def xiHeat (t : ℝ) (s : ℂ) : ℂ := 8 * H t (heatCoordinate s)
 
+/--
+@isnad1 id=eq.0h1v.s5.583fcc44f2ee from=translated src=- shape=a6652439 vocab=470c04bf
+-/
 @[simp] theorem heatCoordinate_im (s : ℂ) : (heatCoordinate s).im = 1-2*s.re := by
   simp [heatCoordinate, div_I, Complex.mul_im]
 
+/--
+@isnad1 id=eq.0h1v.s3.d60d7282946d from=translated src=- shape=0600d945 vocab=c1f7fbb8
+-/
 theorem xiHeat_zero (s : ℂ) : xiHeat 0 s = riemannXi s := by
   rw [xiHeat, H_zero_eq_riemannXi]
   have he : (1/2 : ℂ) + I * heatCoordinate s / 2 = s := by
@@ -37,12 +43,17 @@ theorem xiHeat_zero (s : ℂ) : xiHeat 0 s = riemannXi s := by
 noncomputable def dobnerMap (a : ℝ) (s : ℂ) : ℂ :=
   s + (a : ℂ)*Complex.log (s/(2*Real.pi : ℂ))
 
+/--
+@isnad1 id=eq.0h2v.s5.c9cce64348bd from=translated src=- shape=5034a627 vocab=22220c47
+-/
 theorem dobnerMap_re (a : ℝ) (s : ℂ) :
     (dobnerMap a s).re = s.re + a*Real.log ‖s/(2*Real.pi : ℂ)‖ := by
   simp [dobnerMap, Complex.mul_re, Complex.log_re]
 
 /-- A concrete height threshold moves a left-bounded strip strictly to the
-right of the critical line. -/
+right of the critical line.
+@isnad1 id=lt.3h3v.s6.2a49b0130772 from=translated src=- shape=a56216ed vocab=81317fce
+-/
 theorem dobnerMap_re_gt_half {a R : ℝ} (ha : 0 < a) {s : ℂ}
     (hs : -R ≤ s.re)
     (hh : 2*Real.pi*Real.exp ((R+1)/a) ≤ |s.im|) :
@@ -63,7 +74,9 @@ theorem dobnerMap_re_gt_half {a R : ℝ} (ha : 0 < a) {s : ℂ}
   rw [dobnerMap_re]
   nlinarith [mul_le_mul_of_nonneg_left hl ha.le]
 
-/-- A zero to the right of the critical line is a nonreal heat zero. -/
+/-- A zero to the right of the critical line is a nonreal heat zero.
+@isnad1 id=and.2h2v.s6.d09c7aa40aa0 from=translated src=- shape=1e9a0515 vocab=0a90f261
+-/
 theorem nonreal_heat_zero_of_xiHeat_zero {t : ℝ} {s : ℂ}
     (hz : xiHeat t s = 0) (hs : (1/2 : ℝ) < s.re) :
     H t (heatCoordinate s) = 0 ∧ (heatCoordinate s).im ≠ 0 := by
@@ -73,7 +86,9 @@ theorem nonreal_heat_zero_of_xiHeat_zero {t : ℝ} {s : ℂ}
     linarith
 
 /-- On every fixed compact set, unbounded upward translations eventually land
-to the right of the critical line after the Dobner chart. -/
+to the right of the critical line after the Dobner chart.
+@isnad1 id=eventual.3h3v.s6.394363a658d5 from=translated src=- shape=2df1745e vocab=9bea2811
+-/
 theorem eventually_dobnerMap_right_on_compact {a : ℝ} (ha : 0 < a)
     {τ : ℕ → ℝ} (hτ : Tendsto τ atTop atTop) {K : Set ℂ} (hK : IsCompact K) :
     ∀ᶠ n in atTop, ∀ s ∈ K, (1/2 : ℝ) < (dobnerMap a (s+(τ n : ℂ)*I)).re := by

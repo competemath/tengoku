@@ -18,6 +18,9 @@ namespace EulerDNSelection
 
 open InnerProductSpace
 
+/--
+@isnad1 id=le.1h4v.s9.80d58fc55f43 from=translated src=- shape=1e5b7fdf vocab=bb1fb3ff
+-/
 theorem positive_cross_sq_le {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] (Λ : E →L[ℝ] E) (hΛ : Λ.IsPositive) (p q : E) :
     ⟪Λ p, q⟫_ℝ ^ 2 ≤ ⟪Λ p, p⟫_ℝ * ⟪Λ q, q⟫_ℝ := by
@@ -35,7 +38,9 @@ theorem positive_cross_sq_le {E : Type*} [NormedAddCommGroup E]
   linarith
 
 /-- A positive semidefinite endpoint matrix, perturbed by a unit shear and a small
-matrix with negative first diagonal entry, allows the required polarized output. -/
+matrix with negative first diagonal entry, allows the required polarized output.
+@isnad1 id=ex.13h9v.s8.bff4e1f07dbf from=translated src=- shape=c6ba9d1e vocab=10695d03
+-/
 theorem select_endpoint
     (C ε a b d cpp cpq cqp cqq : ℝ)
     (hC : 1 ≤ C) (hε : 0 ≤ ε) (hsmall : 16 * (C + 1) * ε ≤ 1)
@@ -128,7 +133,9 @@ theorem select_endpoint
           (b - cpq) * ((a - cpp) / Δ) = 0 := by ring
       rw [heq]
 
-/-- The endpoint choice at an arbitrary positive shear scale `h`. -/
+/-- The endpoint choice at an arbitrary positive shear scale `h`.
+@isnad1 id=ex.14h10v.s9.32384f19518d from=translated src=- shape=261b6310 vocab=4475062e
+-/
 theorem select_endpoint_scaled
     (C ε h a b d cpp cpq cqp cqq : ℝ)
     (hC : 1 ≤ C) (hε : 0 ≤ ε) (hsmall : 16 * (C + 1) * ε ≤ 1)
@@ -162,6 +169,9 @@ theorem select_endpoint_scaled
   rw [abs_div, abs_div, abs_of_pos hh, ← add_div]
   exact div_le_div_of_nonneg_right hnorm hh.le
 
+/--
+@isnad1 id=ex.11h8v.s10.7961f71df63a from=translated src=- shape=a9b66f8e vocab=cd24cb5f
+-/
 theorem select_endpoint_hilbert {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℝ E] (Λ B : E →L[ℝ] E) (p q : E)
     (C ε h : ℝ) (hΛ : Λ.IsPositive) (hp : ‖p‖ = 1) (hq : ‖q‖ = 1)

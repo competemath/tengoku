@@ -92,7 +92,9 @@ private lemma oneDimPhi_phaseLaw
   rw [hrot, hleft, hexp, hright]
   ring
 
-/-- Global phase law on the product basis. -/
+/-- Global phase law on the product basis.
+@isnad1 id=eq.0h5v.s6.bbad017edf49 from=translated src=- shape=31f04d3c vocab=bd4a2c95
+-/
 theorem productBasisPhaseLaw
     {d : ℕ} (κ α : MultiIndex d) (t : ℝ) (z : CSpace d) :
     PhiKappaAlpha κ α (fun q => Complex.exp (Complex.I * t) * z q) =
@@ -121,7 +123,9 @@ theorem productBasisPhaseLaw
   simpa [totalDegree, mul_assoc] using
     congrArg (fun c : ℂ => c * ∏ q, oneDimPhi (κ q) (α q) (z q)) haux
 
-/-- The same phase law for a fixed total-degree piece. -/
+/-- The same phase law for a fixed total-degree piece.
+@isnad1 id=eq.0h6v.s6.f51ae5caea71 from=translated src=- shape=46973202 vocab=df2bff11
+-/
 theorem totalDegreePiecePhaseLaw
     {d : ℕ} (κ : MultiIndex d) (n : ℕ) (G : FiniteHermiteSum d) (t : ℝ) (z : CSpace d) :
     evalHermiteSum κ (totalDegreePiece n G) (fun q => Complex.exp (Complex.I * t) * z q) =
@@ -137,7 +141,9 @@ theorem totalDegreePiecePhaseLaw
     simp [hdeg, mul_assoc, mul_left_comm, mul_comm]
   · simp [hdeg]
 
-/-- Partition of the Gaussian norm by product annuli. -/
+/-- Partition of the Gaussian norm by product annuli.
+@isnad1 id=eq.1h2v.s6.ca060007f626 from=translated src=- shape=ff7d42ff vocab=8a7176d5
+-/
 theorem partitionOfGaussianNorm
     {d : ℕ} (F : CSpace d → ℂ)
     (hF : Integrable (fun z : CSpace d => ‖F z‖ ^ 2) (gaussianMeasure d)) :
@@ -179,7 +185,9 @@ theorem partitionOfGaussianNorm
               (f := fun z : CSpace d => ‖F z‖ ^ 2)
               (hs := hmeas j)).symm
 
-/-- Rotation preserves a product annulus. -/
+/-- Rotation preserves a product annulus.
+@isnad1 id=iff.0h4v.s5.f17054c6c4a9 from=translated src=- shape=fb6bb04e vocab=5b6b870a
+-/
 theorem annulusRotationInvariant
     {d : ℕ} (j : MultiIndex d) (t : ℝ) (z : CSpace d) :
     z ∈ productAnnulus j ↔
@@ -392,7 +400,9 @@ private lemma PhiKappaAlpha_rotate_one
       simp)]
   ring
 
-/-- Rotation averaging on a product annulus for nonnegative measurable functions. -/
+/-- Rotation averaging on a product annulus for nonnegative measurable functions.
+@isnad1 id=eq.1h3v.s8.3636b1ecd66d from=translated src=- shape=21e55754 vocab=6d3cf0da
+-/
 theorem annulusRotationAveraging
     {d : ℕ} (j : MultiIndex d) (F : CSpace d → ENNReal) (hF : Measurable F) :
     by
@@ -478,7 +488,9 @@ theorem annulusRotationAveraging
           simp_all
     _ = ∫⁻ z : CSpace d, if h : z ∈ productAnnulus j then F z else 0 ∂ gaussianMeasure d := by rfl
 
-/-- Annulus orthogonality of distinct basis vectors. -/
+/-- Annulus orthogonality of distinct basis vectors.
+@isnad1 id=eq.1h5v.s5.253fd6ed4767 from=translated src=- shape=0ec090dc vocab=9523b291
+-/
 theorem annulusOrthogonality
     {d : ℕ} (κ j α β : MultiIndex d) (hαβ : α ≠ β) :
     annulusInner j (PhiKappaAlpha κ α) (PhiKappaAlpha κ β) = 0 := by

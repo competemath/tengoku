@@ -27,6 +27,7 @@ power.
 
 This is a LeanCert-facing wrapper around
 `ArithmeticFunction.IsMultiplicative.eq_iff_eq_on_prime_powers`.
+@isnad1 id=eq.3h3v.s7.e7899f1cfd7d from=translated src=- shape=31a6bd1b vocab=89b85e5d
 -/
 theorem ext_prime_powers {R : Type*} [CommMonoidWithZero R]
     (f g : ArithmeticFunction R)
@@ -61,7 +62,9 @@ structure LocalPrimePowerCert {R : Type*} [CommMonoidWithZero R]
 
 namespace LocalPrimePowerCert
 
-/-- Soundness theorem for a local prime-power equality certificate. -/
+/-- Soundness theorem for a local prime-power equality certificate.
+@isnad1 id=eq.1h3v.s5.4de367606864 from=translated src=- shape=4e331f19 vocab=8f7f2168
+-/
 theorem sound {R : Type*} [CommMonoidWithZero R] {f g : ArithmeticFunction R}
     (cert : LocalPrimePowerCert f g) :
     f = g :=

@@ -17,11 +17,17 @@ open scoped Topology
 noncomputable def gaussianAverage (c x : ℝ) : ℝ :=
   ∫ v : ℝ, Real.exp (-v^2) * evenPhi (x+v/c)
 
+/--
+@isnad1 id=le.0h1v.s5.bc95f4e5b2ec from=translated src=- shape=c01e38e1 vocab=0374be3f
+-/
 theorem evenPhi_bounded (u : ℝ) : ‖evenPhi u‖ ≤ 44*Real.exp 1 := by
   apply (evenPhi_bound u).trans
   have h : Real.exp (-u^2) ≤ 1 := Real.exp_le_one_iff.mpr (by nlinarith [sq_nonneg u])
   nlinarith [Real.exp_pos 1]
 
+/--
+@isnad1 id=tendsto.0h1v.s5.9bae8546f975 from=translated src=- shape=2a7573e6 vocab=41bcec58
+-/
 theorem gaussianAverage_tendsto (x : ℝ) :
     Tendsto (fun n : ℕ => gaussianAverage (n+1) x) atTop
       (𝓝 (Real.sqrt Real.pi * evenPhi x)) := by
@@ -68,6 +74,9 @@ private theorem gaussian_integrable (c x : ℝ) :
   simpa only [Real.norm_eq_abs, abs_of_pos (evenPhi_pos u), one_mul] using mul_le_mul_of_nonneg_right
     (Real.exp_le_one_iff.mpr (show -(c*(u-x))^2 ≤ 0 by nlinarith [sq_nonneg (c*(u-x))])) (norm_nonneg (evenPhi u))
 
+/--
+@isnad1 id=eq.1h2v.s6.d2e06212a89a from=translated src=- shape=56670bd4 vocab=fd0ee3e9
+-/
 theorem gaussianAverage_eq_convolution {c : ℝ} (hc : 0 < c) (x : ℝ) :
     gaussianAverage c x =
       c * ∫ u : ℝ, Real.exp (-(c*(u-x))^2)*evenPhi u := by
@@ -84,6 +93,9 @@ theorem gaussianAverage_eq_convolution {c : ℝ} (hc : 0 < c) (x : ℝ) :
   congr 2 <;> field_simp
   ring
 
+/--
+@isnad1 id=eq.0h2v.s6.45bab261f5fa from=translated src=- shape=e1c864d5 vocab=00d719b8
+-/
 theorem H_imaginary_re (t y : ℝ) :
     (H t ((y : ℂ)*I)).re =
       ∫ u in Ioi (0 : ℝ), Real.exp (t*u^2)*Phi u*Real.cosh (y*u) := by
@@ -97,6 +109,9 @@ theorem H_imaginary_re (t y : ℝ) :
   simp only [heatIntegrand, he, Complex.cos_mul_I, ← Complex.ofReal_cosh,
     ← Complex.ofReal_mul, Complex.ofReal_re]
 
+/--
+@isnad1 id=eq.0h2v.s4.3331f61e1a22 from=translated src=- shape=4aff32c1 vocab=c1118683
+-/
 theorem H_imaginary_im (t y : ℝ) : (H t ((y : ℂ)*I)).im = 0 := by
   have h := H_conj t ((y : ℂ)*I)
   have he : starRingEnd ℂ ((y : ℂ)*I) = -((y : ℂ)*I) := by simp
@@ -105,6 +120,9 @@ theorem H_imaginary_im (t y : ℝ) : (H t ((y : ℂ)*I)).im = 0 := by
   simp only [Complex.conj_im] at hh
   linarith
 
+/--
+@isnad1 id=eq.1h2v.s7.a6ea2c466255 from=translated src=- shape=c18f502a vocab=1a4b1481
+-/
 theorem gaussianAverage_eq_H {c : ℝ} (hc : 0 < c) (x : ℝ) :
     gaussianAverage c x =
       (2*c) * Real.exp (-c^2*x^2) * (H (-c^2) ((2*c^2*x : ℝ)*I)).re := by

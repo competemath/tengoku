@@ -39,6 +39,9 @@ def widestDecision? (B : Box) (upper : Bool) : Option (BoxDecision B.length) :=
 def descend {dimension : Nat} (B : Box) (decision : BoxDecision dimension) : Box :=
   if decision.2 then (B.split decision.1.val).2 else (B.split decision.1.val).1
 
+/--
+@isnad1 id=eq.1h3v.s5.b3cf833952ac from=translated src=- shape=5bf6e933 vocab=ad786db7
+-/
 theorem descend_widestDecision?_eq {B : Box} {upper : Bool} {decision : BoxDecision B.length}
     (hdecision : widestDecision? B upper = some decision) :
     descend B decision = if upper then B.splitWidest.2 else B.splitWidest.1 := by
@@ -58,19 +61,30 @@ def decode {dimension : Nat} (root : Box) : BoxPath dimension → Box
 def decode? {dimension : Nat} (root : Box) (path : BoxPath dimension) : Option Box :=
   if root.length = dimension then some (decode root path) else none
 
+/--
+@isnad1 id=eq.0h2v.s3.e8b257691b3f from=translated src=- shape=c32549db vocab=cf1f7e1c
+-/
 @[simp] theorem decode_nil {dimension : Nat} (root : Box) :
     decode (dimension := dimension) root [] = root := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.948b5efd62af from=translated src=- shape=b32c437b vocab=42919145
+-/
 @[simp] theorem decode_cons {dimension : Nat} (root : Box)
     (decision : BoxDecision dimension) (rest : BoxPath dimension) :
     decode root (decision :: rest) = decode (descend root decision) rest := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.f9120840ce11 from=translated src=- shape=6a6d030c vocab=2bde8055
+-/
 theorem descend_length {dimension : Nat} (B : Box) (decision : BoxDecision dimension) :
     (descend B decision).length = B.length := by
   unfold descend
   split <;> simp only [Box.split_length_eq]
 
-/-- Address replay preserves the dimension of the root box. -/
+/-- Address replay preserves the dimension of the root box.
+@isnad1 id=eq.0h3v.s4.d7b49daeb068 from=translated src=- shape=6a6d030c vocab=4d5cace7
+-/
 theorem decode_length {dimension : Nat} (root : Box) (path : BoxPath dimension) :
     (decode root path).length = root.length := by
   induction path generalizing root with
@@ -78,7 +92,9 @@ theorem decode_length {dimension : Nat} (root : Box) (path : BoxPath dimension) 
   | cons decision rest ih =>
       rw [decode_cons, ih, descend_length]
 
-/-- Every addressed leaf remains a semantic sub-box of its root. -/
+/-- Every addressed leaf remains a semantic sub-box of its root.
+@isnad1 id=envmem.1h4v.s4.dd78c848e565 from=translated src=- shape=f7d11f8e vocab=056096c3
+-/
 theorem envMem_decode_subset {dimension : Nat} (root : Box) (path : BoxPath dimension)
     (ρ : Nat → ℝ) : Box.envMem ρ (decode root path) → Box.envMem ρ root := by
   induction path generalizing root with
@@ -120,6 +136,9 @@ def toBoxPath (address : MortonAddress) : BoxPath address.dimension :=
   address.bits.zipIdx.map fun (bit, index) =>
     (⟨index % address.dimension, Nat.mod_lt _ address.dimension_pos⟩, bit)
 
+/--
+@isnad1 id=eq.0h1v.s4.be87821ba811 from=translated src=- shape=f5c14870 vocab=3c708e63
+-/
 @[simp] theorem toBoxPath_length (address : MortonAddress) :
     address.toBoxPath.length = address.dimension * address.depth := by
   simp [toBoxPath, address.bits_length]

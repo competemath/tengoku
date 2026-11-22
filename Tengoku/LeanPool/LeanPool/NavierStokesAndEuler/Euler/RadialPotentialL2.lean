@@ -29,7 +29,9 @@ namespace Euler.ComparatorBridge
 
 local notation "Space" => EuclideanSpace ℝ (Fin 3)
 
-/-- A square substitution removes the singular weight in the radial estimate. -/
+/-- A square substitution removes the singular weight in the radial estimate.
+@isnad1 id=eq.1h2v.s9.5c12c69eb7c4 from=translated src=- shape=02471675 vocab=4b344f49
+-/
 theorem radial_average_eq_quadratic (u : Space → Space) (hu : Continuous u) (x : Space) :
     (∫ t in (0 : ℝ)..1, t • u (t • x)) =
       ∫ r in (0 : ℝ)..1, (2 * r ^ 3) • u (r ^ 2 • x) := by
@@ -48,7 +50,9 @@ theorem radial_average_eq_quadratic (u : Space → Space) (hu : Continuous u) (x
   dsimp only
   rw [show 2 * r * r ^ 2 = 2 * r ^ 3 by ring]
 
-/-- Squared L² energy of a dilated field, with its compensating factor. -/
+/-- Squared L² energy of a dilated field, with its compensating factor.
+@isnad1 id=eq.1h2v.s10.2b75003964f0 from=translated src=- shape=f18af66f vocab=8fb513ab
+-/
 theorem quadratic_dilation_energy (u : Space → Space) {r : ℝ} (hr : r ≠ 0) :
     (∫ x : Space, ‖(2 * r ^ 3) • u (r ^ 2 • x)‖ ^ 2) =
       4 * (∫ x : Space, ‖u x‖ ^ 2) := by
@@ -61,7 +65,9 @@ theorem quadratic_dilation_energy (u : Space → Space) {r : ℝ} (hr : r ≠ 0)
   ring
 
 /-- The quadratic parametrization has finite total action, exactly four times
-that of the original field. -/
+that of the original field.
+@isnad1 id=and.2h1v.s11.b3928582aab3 from=translated src=- shape=21585fb0 vocab=735150f6
+-/
 theorem quadratic_radial_action (u : Space → Space) (hu : Continuous u)
     (hL2 : MemLp u 2) :
     Integrable (fun x : Space => ∫ r in Ioc (0 : ℝ) 1,
@@ -102,7 +108,9 @@ theorem quadratic_radial_action (u : Space → Space) (hu : Continuous u)
     _ = 4 * (∫ x : Space, ‖u x‖ ^ 2) := by
       simp [ν]
 
-/-- Pointwise Cauchy--Schwarz for the regularized radial parametrization. -/
+/-- Pointwise Cauchy--Schwarz for the regularized radial parametrization.
+@isnad1 id=le.1h2v.s9.c998b649fd42 from=translated src=- shape=e87b1428 vocab=baeaff81
+-/
 theorem radial_average_sq_le_action (u : Space → Space) (hu : Continuous u) (x : Space) :
     ‖∫ t in (0 : ℝ)..1, t • u (t • x)‖ ^ 2 ≤
       ∫ r in Ioc (0 : ℝ) 1, ‖(2 * r ^ 3) • u (r ^ 2 • x)‖ ^ 2 := by
@@ -116,7 +124,9 @@ theorem radial_average_sq_le_action (u : Space → Space) (hu : Continuous u) (x
     intervalIntegral.integral_of_le (by norm_num : (0 : ℝ) ≤ 1)]
   simpa [W] using h
 
-/-- The radial homotopy average preserves L², with operator norm at most two. -/
+/-- The radial homotopy average preserves L², with operator norm at most two.
+@isnad1 id=and.2h1v.s11.01bb4b36ebc0 from=translated src=- shape=757de09d vocab=c3d2fe4f
+-/
 theorem radial_average_memLp_and_energy (u : Space → Space) (hu : Continuous u)
     (hL2 : MemLp u 2) :
     MemLp (fun x => ∫ t in (0 : ℝ)..1, t • u (t • x)) 2 ∧

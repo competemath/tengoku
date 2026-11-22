@@ -19,8 +19,14 @@ open UpperHalfPlane
 
 /-This is from the Sphere Pack project, so might not actually be for mathlib.-/
 
+/--
+@isnad1 id=iff.0h1v.s4.0733157c991c from=translated src=- shape=5b2a6a31 vocab=1d829a9a
+-/
 theorem isBoundedAtImInfty_neg_iff (f : ℍ → ℂ) :
     IsBoundedAtImInfty (-f) ↔ IsBoundedAtImInfty f := by
   simp_rw [UpperHalfPlane.isBoundedAtImInfty_iff, Pi.neg_apply, norm_neg]
 
+/--
+@isnad1 id=isbounde.1h1v.s4.2f4359d4a7d9 from=translated src=- shape=9b6969b2 vocab=1d829a9a
+-/
 alias ⟨_, IsBoundedAtImInfty.neg⟩ := isBoundedAtImInfty_neg_iff

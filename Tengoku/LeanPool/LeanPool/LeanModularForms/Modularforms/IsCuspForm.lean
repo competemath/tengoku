@@ -41,6 +41,9 @@ def ModFormMk (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : CuspForm Γ k) : Modular
   holo' := f.holo'
   bdd_at_cusps' := fun hc ↦ bdd_at_cusps f hc
 
+/--
+@isnad1 id=ne.1h3v.s10.a256b52551e5 from=translated src=- shape=9eced3a6 vocab=779f2284
+-/
 lemma ModForm_mk_inj (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : CuspForm Γ k) (hf : f ≠ 0) :
   ModFormMk _ _ f ≠ 0 := by
   rw [@DFunLike.ne_iff] at *
@@ -71,6 +74,9 @@ def CuspFormIsoCuspFormSubmodule (Γ : Subgroup SL(2, ℤ)) (k : ℤ) :
   ext z
   simpa using congr_fun (congr_arg (fun x => x.toFun) hf) z
 
+/--
+@isnad1 id=ex.1h3v.s12.7f49cbeb88a2 from=translated src=- shape=42cb4380 vocab=0208a15e
+-/
 lemma mem_CuspFormSubmodule (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : ModularForm Γ k)
     (hf : f ∈ CuspFormSubmodule Γ k) :
     ∃ g : CuspForm Γ k, f = CuspFormToModularForm Γ k g := by
@@ -91,6 +97,9 @@ def IsCuspFormToCuspForm (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : ModularForm �
   rw [IsCuspForm, CuspFormSubmodule, LinearMap.mem_range] at hf
   exact hf.choose
 
+/--
+@isnad1 id=eq.1h3v.s9.39ae2cb20009 from=translated src=- shape=21df7f8a vocab=50095914
+-/
 lemma CuspForm_to_ModularForm_coe (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : ModularForm Γ k)
     (hf : IsCuspForm Γ k f) : (IsCuspFormToCuspForm Γ k f hf).toSlashInvariantForm =
     f.toSlashInvariantForm := by
@@ -100,6 +109,9 @@ lemma CuspForm_to_ModularForm_coe (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : Modu
   simp only [CuspFormToModularForm, ModFormMk, LinearMap.coe_mk, AddHom.coe_mk] at hg
   exact congr_arg (fun x ↦ x.toSlashInvariantForm) hg
 
+/--
+@isnad1 id=eq.1h3v.s9.1ecd477c76fb from=translated src=- shape=d178278e vocab=e5512b02
+-/
 lemma CuspForm_to_ModularForm_Fun_coe (Γ : Subgroup SL(2, ℤ)) (k : ℤ) (f : ModularForm Γ k)
     (hf : IsCuspForm Γ k f) : (IsCuspFormToCuspForm Γ k f hf).toFun =
     f.toFun := by
@@ -154,6 +166,9 @@ noncomputable def cuspFormOfCoeffZero {k : ℤ}
     rw [f.slash_action_eq' A ⟨A', CongruenceSubgroup.mem_Gamma_one A', hA'⟩]
     exact isZeroAtImInfty_of_coeffZero f h
 
+/--
+@isnad1 id=iff.0h2v.s9.851934384d9c from=translated src=- shape=ca391f7b vocab=35e18163
+-/
 lemma IsCuspForm_iff_coeffZero_eq_zero (k : ℤ) (f : ModularForm Γ(1) k) :
     IsCuspForm Γ(1) k f ↔ (qExpansion 1 f).coeff 0 = 0 := by
   constructor
@@ -170,6 +185,9 @@ lemma IsCuspForm_iff_coeffZero_eq_zero (k : ℤ) (f : ModularForm Γ(1) k) :
     rw [IsCuspForm, CuspFormSubmodule, LinearMap.mem_range]
     exact ⟨cuspFormOfCoeffZero f h, by ext; rfl⟩
 
+/--
+@isnad1 id=iff.0h2v.s11.f1155e603719 from=translated src=- shape=33e18cad vocab=9165ba7b
+-/
 lemma CuspFormSubmodule_mem_iff_coeffZero_eq_zero (k : ℤ) (f : ModularForm Γ(1) k) :
     f ∈ CuspFormSubmodule Γ(1) k ↔ (qExpansion 1 f).coeff 0 = 0 :=
   IsCuspForm_iff_coeffZero_eq_zero k f

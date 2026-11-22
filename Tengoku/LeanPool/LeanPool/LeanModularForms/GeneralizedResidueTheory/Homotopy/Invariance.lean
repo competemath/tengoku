@@ -309,7 +309,9 @@ private theorem generalizedWindingNumber'_eq_of_eq_on
       heq_val t (Ioc_subset_Icc_self ht_mem)]
   rw [h_fun_eq]
 
-/-- Winding number is invariant under piecewise C¹ homotopy. -/
+/-- Winding number is invariant under piecewise C¹ homotopy.
+@isnad1 id=eq.2h6v.s5.b5f6c594389e from=translated src=- shape=760a4f6c vocab=40ef74ca
+-/
 theorem windingNumber_eq_of_piecewise_homotopic
     (γ₀ γ₁ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ)
     (P : Finset ℝ) (hab : a < b)
@@ -444,7 +446,9 @@ private theorem windingNumber_continuous_in_param
     ((smooth_winding_integral_continuousOn hab hγ_cont hγ_avoid
       hγ_deriv_cont hM).continuousWithinAt hs₀)
 
-/-- Winding number is invariant under smooth homotopy. -/
+/-- Winding number is invariant under smooth homotopy.
+@isnad1 id=eq.2h5v.s5.2b4e8b71f9f6 from=translated src=- shape=b3fbdcca vocab=c15b79d3
+-/
 theorem windingNumber_eq_of_homotopic_closed
     (γ₀ γ₁ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ)
     (hab : a < b)
@@ -498,7 +502,9 @@ theorem windingNumber_eq_of_homotopic_closed
   rw [← hn0_eq, ← hn1_eq, heq]
 
 /-- When γ avoids z₀, the PV winding number equals the
-classical contour integral. -/
+classical contour integral.
+@isnad1 id=eq.1h2v.s7.7171daca651d from=translated src=- shape=5ec7dc04 vocab=ef4bf01c
+-/
 theorem generalizedWindingNumber_eq_classical_away
     (γ : PiecewiseC1Curve) (z₀ : ℂ)
     (hoff : ∀ t ∈ Icc γ.a γ.b, γ.toFun t ≠ z₀) :
@@ -549,7 +555,9 @@ private lemma integral_congr_homotopy_endpoint
     (h_eq.deriv isOpen_Ioo) (ht.mpr ht_Ioc)]
 
 /-- Contour integrals of a holomorphic function are equal
-along homotopic curves. -/
+along homotopic curves.
+@isnad1 id=eq.14h6v.s10.d7965055b46b from=translated src=- shape=8df155c6 vocab=df5a8d86
+-/
 theorem contourIntegral_eq_of_homotopic
     (f : ℂ → ℂ) (γ₀ γ₁ : ℝ → ℂ) (a b : ℝ)
     (hab : a < b)

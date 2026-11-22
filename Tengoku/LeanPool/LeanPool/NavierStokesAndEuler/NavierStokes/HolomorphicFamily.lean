@@ -44,13 +44,22 @@ noncomputable def angleExtend (f : C(Angles, E)) (θ : ℝ) : E :=
   f (projIcc 0 (2 * Real.pi) Real.two_pi_pos.le θ)
 
 omit [NormedSpace ℂ E] in
+/--
+@isnad1 id=continuo.0h2v.s6.6cf106f8fbed from=translated src=- shape=f1d19c06 vocab=ea0c9ab9
+-/
 theorem continuous_angleExtend (f : C(Angles, E)) : Continuous (angleExtend f) :=
   f.continuous.comp continuous_projIcc
 
 omit [NormedSpace ℂ E] in
+/--
+@isnad1 id=eq.0h3v.s7.7a05eddf8aec from=translated src=- shape=5bd80e99 vocab=c49f2978
+-/
 theorem angleExtend_coe (f : C(Angles, E)) (θ : Angles) : angleExtend f θ = f θ := by
   simp only [angleExtend, projIcc_val]
 
+/--
+@isnad1 id=le.0h2v.s7.0ef3176a5aaf from=translated src=- shape=1560d236 vocab=e47244a2
+-/
 theorem norm_angleIntegral_le (f : C(Angles, E)) :
     ‖∫ θ in (0 : ℝ)..(2 * Real.pi), angleExtend f θ‖ ≤ (2 * Real.pi) * ‖f‖ := by
   have h := intervalIntegral.norm_integral_le_of_norm_le_const
@@ -96,6 +105,9 @@ noncomputable def sampleCircle (c : ℂ) {σ : ℝ} (hσ : 0 < σ) :
 noncomputable def multiplyPaths (k : C(Angles, ℂ)) (v : C(Angles, E)) : C(Angles, E) :=
   ⟨fun θ => k θ • v θ, k.continuous.smul v.continuous⟩
 
+/--
+@isnad1 id=le.0h3v.s8.c053e08abdfd from=translated src=- shape=5a72cac9 vocab=94e5b51f
+-/
 theorem norm_multiplyPaths_le (k : C(Angles, ℂ)) (v : C(Angles, E)) :
     ‖multiplyPaths k v‖ ≤ ‖k‖ * ‖v‖ := by
   apply (ContinuousMap.norm_le _ (mul_nonneg (norm_nonneg _) (norm_nonneg _))).mpr
@@ -132,6 +144,9 @@ noncomputable def pathAction :
 noncomputable def kernel (c : ℂ) (σ : ℝ) (p : ℂ × ℝ) : ℂ :=
   (circleMap 0 σ p.2 * I) * (circleMap c σ p.2 - p.1)⁻¹
 
+/--
+@isnad1 id=contdiff.0h2v.s6.ee8df9fad56a from=translated src=- shape=01a0a7c4 vocab=441cffa6
+-/
 theorem contDiffOn_kernel (c : ℂ) (σ : ℝ) :
     ContDiffOn ℝ ∞ (kernel c σ) (ball c σ ×ˢ (univ : Set ℝ)) := by
   have hc : ContDiff ℝ ∞ (fun p : ℂ × ℝ => circleMap c σ p.2) :=
@@ -145,12 +160,18 @@ theorem contDiffOn_kernel (c : ℂ) (σ : ℝ) :
 noncomputable def kernelPath (c : ℂ) (σ : ℝ) : ℂ → C(Angles, ℂ) :=
   CompactSmoothFamily.family (Icc (0 : ℝ) (2 * Real.pi)) (kernel c σ)
 
+/--
+@isnad1 id=contdiff.0h2v.s7.0d0f20fbf8e8 from=translated src=- shape=e996a7fe vocab=1116f2cf
+-/
 theorem contDiffOn_kernelPath (c : ℂ) (σ : ℝ) :
     ContDiffOn ℝ ∞ (kernelPath c σ) (ball c σ) :=
   CompactSmoothFamily.contDiffOn_family_of_joint (Icc (0 : ℝ) (2 * Real.pi))
     (ball c σ) univ isOpen_ball isOpen_univ (subset_univ _)
     (kernel c σ) (contDiffOn_kernel c σ)
 
+/--
+@isnad1 id=eq.1h4v.s8.44607900eecb from=translated src=- shape=9bd19123 vocab=af5b14fa
+-/
 theorem kernelPath_apply (c : ℂ) (σ : ℝ) {z : ℂ} (hz : z ∈ ball c σ) (θ : Angles) :
     kernelPath c σ z θ = (circleMap 0 σ θ * I) * (circleMap c σ θ - z)⁻¹ :=
   CompactSmoothFamily.family_apply_of_joint (Icc (0 : ℝ) (2 * Real.pi)) (subset_univ _)
@@ -163,7 +184,9 @@ noncomputable def cauchyValue (c : ℂ) {σ : ℝ} (hσ : 0 < σ)
     (pathAction (E := E) (kernelPath c σ p.2) (sampleCircle c hσ (V p.1)))
 
 /-- Joint smoothness of the actual Cauchy integral follows from bounded
-bilinearity and supremum-norm smoothness of its two contour inputs. -/
+bilinearity and supremum-norm smoothness of its two contour inputs.
+@isnad1 id=contdiff.2h5v.s8.f25df7da9c99 from=translated src=- shape=13d0d380 vocab=ba6133b4
+-/
 theorem contDiffOn_cauchyValue (c : ℂ) {σ : ℝ} (hσ : 0 < σ)
     {S : Set ℝ} (V : ℝ → C(Disk c σ, E)) (hV : ContDiffOn ℝ ∞ V S) :
     ContDiffOn ℝ ∞ (cauchyValue c hσ V) (S ×ˢ ball c σ) := by
@@ -185,7 +208,9 @@ theorem contDiffOn_cauchyValue (c : ℂ) {σ : ℝ} (hσ : 0 < σ)
   exact ((ContinuousLinearMap.contDiff (𝕜 := ℝ) (n := ∞)
     (E := C(Angles, E)) (F := E) (angleIntegral (E := E))).comp_contDiffOn hp).const_smul _
 
-/-- Continuous disk data supplies the boundary-continuity part of the Cauchy formula. -/
+/-- Continuous disk data supplies the boundary-continuity part of the Cauchy formula.
+@isnad1 id=diffcont.2h5v.s8.d227984840b3 from=translated src=- shape=066de70c vocab=8d7438cd
+-/
 theorem diffContOnCl_of_values (c : ℂ) {σ : ℝ} (v : C(Disk c σ, E)) (F : ℂ → E)
     (hF : DifferentiableOn ℂ F (ball c σ)) (hvalues : ∀ z : Disk c σ, v z = F z) :
     DiffContOnCl ℂ F (ball c σ) := by
@@ -198,7 +223,9 @@ theorem diffContOnCl_of_values (c : ℂ) {σ : ℝ} (v : C(Disk c σ, E)) (F : �
 variable [CompleteSpace E]
 
 /-- The jointly smooth Cauchy expression agrees with every holomorphic slice
-represented by the given continuous disk input. -/
+represented by the given continuous disk input.
+@isnad1 id=eq.4h7v.s8.10169fcdd55c from=translated src=- shape=3eac28db vocab=9aa147fe
+-/
 theorem cauchyValue_eq (c : ℂ) {σ : ℝ} (hσ : 0 < σ)
     (V : ℝ → C(Disk c σ, E)) (F : ℝ → ℂ → E) {r : ℝ}
     (hF : DifferentiableOn ℂ (F r) (ball c σ))
@@ -224,7 +251,9 @@ theorem cauchyValue_eq (c : ℂ) {σ : ℝ} (hσ : 0 < σ)
   rfl
 
 /-- A genuine smooth Banach-valued disk family of holomorphic slices is jointly
-real smooth throughout the open disk. -/
+real smooth throughout the open disk.
+@isnad1 id=contdiff.4h6v.s9.ae5795b8bd38 from=translated src=- shape=67c79e8c vocab=58d38fc7
+-/
 theorem contDiffOn_of_disk_family (c : ℂ) {σ : ℝ} (hσ : 0 < σ)
     {S : Set ℝ} (V : ℝ → C(Disk c σ, E)) (F : ℝ → ℂ → E)
     (hV : ContDiffOn ℝ ∞ V S)
@@ -235,7 +264,9 @@ theorem contDiffOn_of_disk_family (c : ℂ) {σ : ℝ} (hσ : 0 < σ)
   intro p hp
   exact (cauchyValue_eq c hσ V F (hF p.1 hp.1) (hvalues p.1 hp.1) hp.2).symm
 
-/-- The smaller-disk form used by the Volterra regularity construction. -/
+/-- The smaller-disk form used by the Volterra regularity construction.
+@isnad1 id=contdiff.5h7v.s9.f053d876e9ec from=translated src=- shape=9463c0d1 vocab=58d38fc7
+-/
 theorem contDiffOn_of_disk_family_smaller (c : ℂ) {ρ σ : ℝ} (hσ : 0 < σ) (hgap : ρ < σ)
     {S : Set ℝ} (V : ℝ → C(Disk c σ, E)) (F : ℝ → ℂ → E)
     (hV : ContDiffOn ℝ ∞ V S)
@@ -252,12 +283,17 @@ noncomputable def jointDerivative (a b : E) : ℝ × ℂ →L[ℝ] E :=
     (((1 : ℂ →L[ℂ] ℂ).smulRight b).restrictScalars ℝ)
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=eq.0h4v.s8.c98b63782c5e from=translated src=- shape=b8ff9590 vocab=78640b5f
+-/
 @[simp] theorem jointDerivative_apply (a b : E) (v : ℝ × ℂ) :
     jointDerivative a b v = v.1 • a + v.2 • b := rfl
 
 omit [CompleteSpace E] in
 /-- The radial partial derivative is obtained by evaluating the genuine
-supremum-norm derivative of the supplied disk curve. -/
+supremum-norm derivative of the supplied disk curve.
+@isnad1 id=hasderiv.4h8v.s9.22d4f0729982 from=translated src=- shape=23ba99d5 vocab=e207240b
+-/
 theorem hasDerivAt_parameter (c : ℂ) {σ : ℝ} {S : Set ℝ} (hS : IsOpen S)
     (V : ℝ → C(Disk c σ, E)) (F : ℝ → ℂ → E)
     (hV : ContDiffOn ℝ ∞ V S)
@@ -274,7 +310,9 @@ theorem hasDerivAt_parameter (c : ℂ) {σ : ℝ} {S : Set ℝ} (hS : IsOpen S)
   filter_upwards [hS.mem_nhds hr] with s hs
   exact (hvalues s hs z).symm
 
-/-- CauchyRestriction's bounded operator is the actual complex partial. -/
+/-- CauchyRestriction's bounded operator is the actual complex partial.
+@isnad1 id=hasderiv.3h7v.s10.b2a8bd2f6203 from=translated src=- shape=a2da6358 vocab=754dc770
+-/
 theorem hasDerivAt_complex (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
     (v : C(Disk c σ, E)) (F : ℂ → E)
     (hF : DifferentiableOn ℂ F (ball c σ))
@@ -284,7 +322,9 @@ theorem hasDerivAt_complex (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
   exact (hF.differentiableAt (isOpen_ball.mem_nhds (z.2.trans_lt hgap))).hasDerivAt
 
 /-- The actual joint Fréchet derivative combines the supremum-norm radial
-derivative with the bounded Cauchy differentiation operator. -/
+derivative with the bounded Cauchy differentiation operator.
+@isnad1 id=hasfderi.7h9v.s11.176c1e01b469 from=translated src=- shape=45aa1de6 vocab=a3f79c7a
+-/
 theorem hasFDerivAt_joint (c : ℂ) {ρ σ : ℝ} (hσ : 0 < σ) (hgap : ρ < σ)
     {S : Set ℝ} (hS : IsOpen S) (V : ℝ → C(Disk c σ, E)) (F : ℝ → ℂ → E)
     (hV : ContDiffOn ℝ ∞ V S)
@@ -333,7 +373,9 @@ theorem hasFDerivAt_joint (c : ℂ) {ρ σ : ℝ} (hσ : 0 < σ) (hgap : ρ < σ
   simpa only [hD] using hg
 
 omit [CompleteSpace E] in
-/-- The Cauchy partial has the expected inverse-gap bound. -/
+/-- The Cauchy partial has the expected inverse-gap bound.
+@isnad1 id=le.1h6v.s10.3cfa6edf8a44 from=translated src=- shape=f58d2023 vocab=7839c0c2
+-/
 theorem norm_complex_partial_le (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
     (v : C(Disk c σ, E)) (z : Disk c ρ) :
     ‖derivativeCLM c hgap v z‖ ≤ (σ - ρ)⁻¹ * ‖v‖ := by
@@ -344,7 +386,9 @@ theorem norm_complex_partial_le (c : ℂ) {ρ σ : ℝ} (hgap : ρ < σ)
 omit [CompleteSpace E] in
 /-- Real differentiability into a compact-function Banach space upgrades to
 complex differentiability when every evaluation has a complex derivative.
-The complex linearity is proved by the separating evaluation maps. -/
+The complex linearity is proved by the separating evaluation maps.
+@isnad1 id=differen.2h4v.s8.08ce92fffbb8 from=translated src=- shape=316f8bb5 vocab=271c2ffb
+-/
 theorem differentiableAt_of_evaluations {K : Type*} [TopologicalSpace K] [CompactSpace K]
     (G : ℂ → C(K, E)) {z : ℂ} (hG : DifferentiableAt ℝ G z)
     (heval : ∀ x : K, DifferentiableAt ℂ (fun w => G w x) z) :
@@ -374,7 +418,9 @@ theorem differentiableAt_of_evaluations {K : Type*} [TopologicalSpace K] [Compac
 
 /-- Joint real smoothness near a compact radial set and holomorphic parameter
 slices give genuine complex differentiability of the compact-valued family.
-This is the input bridge for compact-family Volterra operators. -/
+This is the input bridge for compact-family Volterra operators.
+@isnad1 id=differen.5h5v.s8.6299762eb6de from=translated src=- shape=9c65d6c0 vocab=07aad85f
+-/
 theorem differentiableOn_family_of_joint {B : Type} [NormedAddCommGroup B] [NormedSpace ℂ B]
     (K : Set ℝ) [CompactSpace K]
     (U : Set ℂ) (V : Set ℝ) (hU : IsOpen U) (hV : IsOpen V) (hKV : K ⊆ V)

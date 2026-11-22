@@ -27,6 +27,9 @@ variable {k : ℤ} {F : Type*} [FunLike F ℍ ℂ] {Γ : Subgroup SL(2, ℤ)} (n
 
 open scoped Real MatrixGroups CongruenceSubgroup
 
+/--
+@isnad1 id=tendsto.0h4v.s8.956b38f88c16 from=translated src=- shape=69f707e4 vocab=4bcd9d5e
+-/
 theorem modform_tendto_ndhs_zero {k : ℤ} (n : ℕ) [ModularFormClass F Γ(n) k] [inst : NeZero n] :
     Tendsto (fun x ↦ (⇑f ∘ ↑ofComplex) (Periodic.invQParam (↑n) x)) (𝓝[≠] 0)
     (𝓝 (cuspFunction n f 0)) := by
@@ -61,6 +64,9 @@ theorem modform_tendto_ndhs_zero {k : ℤ} (n : ℕ) [ModularFormClass F Γ(n) k
   apply Function.Periodic.cuspFunction_eq_of_nonzero
   simpa only [ne_eq, mem_compl_iff, mem_singleton_iff] using hy0
 
+/--
+@isnad1 id=eq.2h3v.s8.c04d5b670d9f from=translated src=- shape=e7cf2930 vocab=e725603c
+-/
 theorem derivWithin_mul2 (f g : ℂ → ℂ) (s : Set ℂ) (hf : DifferentiableOn ℂ f s)
     (hd : DifferentiableOn ℂ g s) :
     s.domRestrict (derivWithin (fun y => f y * g y) s) =
@@ -69,6 +75,9 @@ theorem derivWithin_mul2 (f g : ℂ → ℂ) (s : Set ℂ) (hf : DifferentiableO
   simp only [domRestrict_apply, Pi.add_apply, Pi.mul_apply]
   rw [derivWithin_fun_mul (hf y y.2) (hd y y.2)]
 
+/--
+@isnad1 id=eq.4h5v.s7.dcb76bdaa0a4 from=translated src=- shape=19232849 vocab=b5bf270d
+-/
 lemma iteratedDerivWithin_mul' (f g : ℂ → ℂ) (s : Set ℂ) (hs : IsOpen s)
     (x : ℂ) (hx : x ∈ s) (m : ℕ)
     (hf : ContDiffOn ℂ ⊤ f s) (hg : ContDiffOn ℂ ⊤ g s) :
@@ -111,6 +120,9 @@ lemma iteratedDerivWithin_mul' (f g : ℂ → ℂ) (s : Set ℂ) (hs : IsOpen s)
       · apply ContDiffOn.derivWithin hg (by exact IsOpen.uniqueDiffOn hs) (m := m) (by simp)
       exact hx
 
+/--
+@isnad1 id=eq.0h5v.s10.9fd94006edf0 from=translated src=- shape=4559be1d vocab=ffd7e88f
+-/
 lemma qExpansion_mul_coeff (a b : ℤ) (f : ModularForm Γ(n) a) (g : ModularForm Γ(n) b)
     [hn : NeZero n] : qExpansion n (f.mul g) = qExpansion n f * qExpansion n g := by
   simpa using
@@ -121,6 +133,9 @@ lemma qExpansion_mul_coeff (a b : ℤ) (f : ModularForm Γ(n) a) (g : ModularFor
 variable {𝕜 : Type*} [NontriviallyNormedField 𝕜]
 variable {F : Type*} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
 
+/--
+@isnad1 id=eq.0h3v.s6.ff4eba00277c from=translated src=- shape=73a6c98a vocab=3a22b3f3
+-/
 lemma IteratedDeriv_smul (a : ℂ) (f : ℂ → ℂ) (m : ℕ) :
     iteratedDeriv m (a • f) = a • iteratedDeriv m f := by
   induction m with
@@ -128,6 +143,9 @@ lemma IteratedDeriv_smul (a : ℂ) (f : ℂ → ℂ) (m : ℕ) :
   | succ m hm =>
     ext x; simp_all
 
+/--
+@isnad1 id=eq.0h4v.s9.582908fe98ce from=translated src=- shape=b89bfe35 vocab=95d60d7d
+-/
 lemma qExpansion_smul2 (a : ℂ) (f : ModularForm Γ(n) k) [NeZero n] :
     (a • qExpansion n f) = (qExpansion n (a • f)) :=
   (ModularForm.qExpansion_smul (Γ := Γ(n)) (h := n)
@@ -136,27 +154,45 @@ lemma qExpansion_smul2 (a : ℂ) (f : ModularForm Γ(n) k) [NeZero n] :
 instance instFunLikeUpperHalfPlaneFun :
     FunLike (ℍ → ℂ) ℍ ℂ := { coe := fun ⦃a₁⦄ ↦ a₁, coe_injective := fun ⦃_ _⦄ a ↦ a}
 
+/--
+@isnad1 id=eq.1h2v.s5.331e43efcb81 from=translated src=- shape=20e6682e vocab=0ad5e463
+-/
 lemma qExpansion_ext (f g : ℍ → ℂ) (h : f = g) : qExpansion 1 f =
     qExpansion 1 g := by rw [h]
 
+/--
+@isnad1 id=eq.1h5v.s6.de997c0906a5 from=translated src=- shape=bce166db vocab=caae2f1b
+-/
 lemma cuspFunction_congr_funLike
     {α β : Type*} [FunLike α ℍ ℂ] [FunLike β ℍ ℂ] (n : ℕ) (f : α) (g : β) (h : ⇑f = ⇑g) :
     cuspFunction n f = cuspFunction n g := by
   simp_all
 
+/--
+@isnad1 id=eq.1h4v.s6.01c8930b5e51 from=translated src=- shape=8075f59f vocab=dfb95bad
+-/
 lemma qExpansion_ext2 {α β : Type*} [FunLike α ℍ ℂ] [FunLike β ℍ ℂ] (f : α) (g : β) (h : ⇑f = ⇑g) :
     qExpansion 1 f = qExpansion 1 g := by
   ext m; simp [qExpansion_coeff, congrArg (cuspFunction 1) h]
 
 --generalize this away from ℂ
+/--
+@isnad1 id=eq.0h2v.s5.2fe2af800cfb from=translated src=- shape=98c7f06b vocab=7c718352
+-/
 lemma IteratedDeriv_zero_fun (n : ℕ) (z : ℂ) : iteratedDeriv n (fun _ : ℂ => (0 : ℂ)) z = 0 := by
   induction n <;> simp
 
+/--
+@isnad1 id=eq.1h2v.s5.2dbf80ec7edb from=translated src=- shape=5ec886e2 vocab=8e535b1d
+-/
 lemma iteratedDeriv_const_eq_zero (m : ℕ) (hm : 0 < m) (c : ℂ) :
     iteratedDeriv m (fun _ : ℂ => c) = fun _ : ℂ => 0 := by
   ext z; simpa only [add_zero, IteratedDeriv_zero_fun] using
     iteratedDeriv_const_add hm (f := fun (x : ℂ) => (0 : ℂ)) c (x := z)
 
+/--
+@isnad1 id=eq.0h3v.s13.431577353842 from=translated src=- shape=250e9e76 vocab=053e569c
+-/
 lemma qExpansion_pow (f : ModularForm Γ(1) k) (n : ℕ) :
   qExpansion 1 ((((DirectSum.of (ModularForm Γ(1)) k ) f) ^ n) (n * k)) = (qExpansion 1 f) ^ n := by
   exact_mod_cast

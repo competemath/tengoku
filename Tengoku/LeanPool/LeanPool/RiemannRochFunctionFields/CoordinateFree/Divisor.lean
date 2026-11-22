@@ -55,7 +55,9 @@ noncomputable local instance finiteVspAlgebra
     (IsDedekindDomain.HeightOneSpectrum.valuationSubringAtPrime K w)).comp
       (algebraMap k (ringOfIntegers k K))).toAlgebra
 
-/-- Scalar-tower compatibility for a finite-place valuation subring. -/
+/-- Scalar-tower compatibility for a finite-place valuation subring.
+@isnad1 id=isscalar.0h3v.s11.257bf7fad015 from=translated src=- shape=16b0b076 vocab=5c9684ba
+-/
 local instance finiteVspTower
     (w : IsDedekindDomain.HeightOneSpectrum (ringOfIntegers k K)) :
     IsScalarTower k (ringOfIntegers k K)
@@ -100,6 +102,9 @@ noncomputable def finiteResidueAlgEquiv
     IsLocalRing.ResidueField.mapAlgEquiv (finiteValuationSubringAlgEquiv k K w)
   exact e₀.trans (e₁.trans e₂)
 
+/--
+@isnad1 id=eq.0h3v.s11.b6d1873b181c from=translated src=- shape=069c4de8 vocab=29b9c58b
+-/
 theorem finite_degree_eq (w : IsDedekindDomain.HeightOneSpectrum (ringOfIntegers k K)) :
     (Place.ofChart k K (Sum.inl w)).degree = placeDegree k K (Sum.inl w) := by
   exact (finiteResidueAlgEquiv k K w).toLinearEquiv.finrank_eq.symm
@@ -112,7 +117,9 @@ noncomputable local instance infiniteVspAlgebra
     (IsDedekindDomain.HeightOneSpectrum.valuationSubringAtPrime K w)).comp
       (algebraMap k (infiniteIntegers k K))).toAlgebra
 
-/-- Scalar-tower compatibility for an infinite-place valuation subring. -/
+/-- Scalar-tower compatibility for an infinite-place valuation subring.
+@isnad1 id=isscalar.0h3v.s13.48694a4da83e from=translated src=- shape=ecbb611f vocab=9bc8c8f3
+-/
 local instance infiniteVspTower
     (w : IsDedekindDomain.HeightOneSpectrum (infiniteIntegers k K)) :
     IsScalarTower k (infiniteIntegers k K)
@@ -157,13 +164,18 @@ noncomputable def infiniteResidueAlgEquiv
     IsLocalRing.ResidueField.mapAlgEquiv (infiniteValuationSubringAlgEquiv k K w)
   exact e₀.trans (e₁.trans e₂)
 
+/--
+@isnad1 id=eq.0h3v.s11.1056ed079c51 from=translated src=- shape=647ab3f8 vocab=7aa302dd
+-/
 theorem infinite_degree_eq (w : IsDedekindDomain.HeightOneSpectrum (infiniteIntegers k K)) :
     (Place.ofChart k K (Sum.inr w)).degree = placeDegree k K (Sum.inr w) := by
   exact (infiniteResidueAlgEquiv k K w).toLinearEquiv.finrank_eq.symm
 
 end Place
 
-/-- The chart degree agrees with the intrinsic residue-field degree. -/
+/-- The chart degree agrees with the intrinsic residue-field degree.
+@isnad1 id=eq.0h3v.s9.d0ea4da7c5b6 from=translated src=- shape=8ed7eb3d vocab=223c2954
+-/
 theorem placeDegree_eq (w : PlaceA k K) :
     placeDegree k K w = (chartToPlace k K w).degree := by
   rcases w with w | w
@@ -190,10 +202,16 @@ noncomputable def deg (D : Divisor k K) : ℤ :=
 omit [Algebra k[X] K] [Algebra k⟮X⟯ K] [IsScalarTower k k[X] K]
     [IsScalarTower k[X] k⟮X⟯ K] [FunctionField k K]
     [Algebra.IsSeparable k⟮X⟯ K] in
+/--
+@isnad1 id=eq.0h4v.s6.e16cc11780e5 from=translated src=- shape=b391da62 vocab=368d8b5c
+-/
 theorem deg_add (D E : Divisor k K) : deg k K (D + E) = deg k K D + deg k K E := by
   classical
   simp [deg, Finsupp.sum_add_index, add_mul]
 
+/--
+@isnad1 id=eq.0h3v.s9.77c7fcd57e8b from=translated src=- shape=a8c82a3f vocab=4fa221d1
+-/
 theorem deg_equivChart (D : DivisorA k K) :
     deg k K (divisorEquivChart k K D) = Chart.deg k K D := by
   classical

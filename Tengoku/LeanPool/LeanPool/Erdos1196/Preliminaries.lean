@@ -623,7 +623,9 @@ private lemma integral_tailKernel_mainTerm {m y : ℕ} (hm : 1 ≤ m) (hy : 2 �
             integral_Ioi_inv_log_sq hm_pos hmy
 
 /-- The logarithmic tail sum satisfies
-`tailSum m y = 1 / log (my) + O(log(my)⁻²)` uniformly for `m ≥ 1` and `y ≥ 2`. -/
+`tailSum m y = 1 / log (my) + O(log(my)⁻²)` uniformly for `m ≥ 1` and `y ≥ 2`.
+@isnad1 id=ex.0h0v.s6.ebdd435921d3 from=translated src=- shape=c3a644c8 vocab=49bc8aa8
+-/
 lemma tailEstimate :
     ∃ C : ℝ, 0 < C ∧
       ∀ ⦃m y : ℕ⦄, 1 ≤ m → 2 ≤ y →

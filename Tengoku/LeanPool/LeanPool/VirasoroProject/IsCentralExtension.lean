@@ -120,14 +120,23 @@ def _root_.VirasoroProject.LieTwoCocycle.CentralExtension.proj : γ.CentralExten
   map_smul' := by intro c ⟨X, A⟩; rfl
   map_lie' := by intro ⟨X₁, A₁⟩ ⟨X₂, A₂⟩; rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.c85d54ac8e97 from=translated src=- shape=308a8f04 vocab=33f13e69
+-/
 lemma _root_.VirasoroProject.LieTwoCocycle.CentralExtension.range_proj_eq_top :
     (LieTwoCocycle.CentralExtension.proj γ).range = ⊤ :=
   (LieHom.range_eq_top (proj γ)).mpr fun X ↦ ⟨⟨X, 0⟩, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.d6b6358e8b09 from=translated src=- shape=461d1af6 vocab=8ff95b45
+-/
 lemma _root_.VirasoroProject.LieTwoCocycle.CentralExtension.ker_emb_eq_bot [IsLieAbelian 𝓪] :
     (LieTwoCocycle.CentralExtension.emb γ).ker = ⊥ :=
   (LieHom.ker_eq_bot (emb γ)).mpr fun _ _ hA ↦ congr_arg (fun Z ↦ Z.2) hA
 
+/--
+@isnad1 id=iff.0h5v.s8.d4c755192a24 from=translated src=- shape=6610809c vocab=2f57a222
+-/
 lemma _root_.VirasoroProject.LieTwoCocycle.CentralExtension.mem_range_emb_iff
     [IsLieAbelian 𝓪] (Z : γ.CentralExtension) :
     Z ∈ (LieTwoCocycle.CentralExtension.emb γ).range ↔ Z.1 = 0 := by
@@ -141,6 +150,9 @@ lemma _root_.VirasoroProject.LieTwoCocycle.CentralExtension.mem_range_emb_iff
     · exact h.symm
     · rfl
 
+/--
+@isnad1 id=iff.0h5v.s8.6bc69b568c2c from=translated src=- shape=5e10be99 vocab=3f52aaa5
+-/
 lemma _root_.VirasoroProject.LieTwoCocycle.CentralExtension.mem_ker_proj_iff
     (Z : γ.CentralExtension) :
     Z ∈ (LieTwoCocycle.CentralExtension.proj γ).ker ↔ Z.1 = 0 := by
@@ -151,6 +163,9 @@ lemma _root_.VirasoroProject.LieTwoCocycle.CentralExtension.mem_ker_proj_iff
     cases Z
     simpa only [proj, LieHom.coe_mk] using h
 
+/--
+@isnad1 id=eq.0h4v.s8.abfd0d31a9c5 from=translated src=- shape=1ee45ea7 vocab=50f1e356
+-/
 lemma _root_.VirasoroProject.LieTwoCocycle.CentralExtension.range_emb_eq_ker_proj [IsLieAbelian 𝓪] :
     (LieTwoCocycle.CentralExtension.emb γ).range = (LieTwoCocycle.CentralExtension.proj γ).ker := by
   ext Z
@@ -161,7 +176,9 @@ lemma _root_.VirasoroProject.LieTwoCocycle.CentralExtension.range_emb_eq_ker_pro
 /-- If `𝓮` is the (central) extension of `𝓰` by `𝓪` defined by a 2-cocycle `γ ∈ Z²(𝓰,𝓪)`,
 then `𝓮` is an extension of `𝓰` by `𝓪` in the sense that there is a short exact sequence
 `0 ⟶ 𝓪 ⟶ 𝓮 ⟶ 𝓰 ⟶ 0` where the two maps are `LieTwoCocycle.CentralExtension.emb` and
-`LieTwoCocycle.CentralExtension.proj`. -/
+`LieTwoCocycle.CentralExtension.proj`.
+@isnad1 id=isextens.0h4v.s7.d0a9e5539d2f from=translated src=- shape=57c765b4 vocab=e9ff6728
+-/
 theorem _root_.VirasoroProject.LieTwoCocycle.CentralExtension.isExtension [IsLieAbelian 𝓪] :
     LieAlgebra.IsExtension (emb γ) (proj γ) where
   ker_eq_bot := ker_emb_eq_bot γ
@@ -171,7 +188,9 @@ theorem _root_.VirasoroProject.LieTwoCocycle.CentralExtension.isExtension [IsLie
 /-- If `𝓮` is the central extension of `𝓰` by `𝓪` defined by a 2-cocycle `γ ∈ Z²(𝓰,𝓪)`,
 then `𝓮` is a central extension of `𝓰` by `𝓪` in the sense that there is a short exact sequence
 `0 ⟶ 𝓪 ⟶ 𝓮 ⟶ 𝓰 ⟶ 0` where the two maps are `LieTwoCocycle.CentralExtension.emb` and
-`LieTwoCocycle.CentralExtension.proj` and the image of `𝓪` is contained in the centre of `𝓮`. -/
+`LieTwoCocycle.CentralExtension.proj` and the image of `𝓪` is contained in the centre of `𝓮`.
+@isnad1 id=iscentra.0h4v.s7.da28517bdeaa from=translated src=- shape=503e61d9 vocab=7ae7420f
+-/
 theorem _root_.VirasoroProject.LieTwoCocycle.CentralExtension.isCentralExtension
     [IsLieAbelian 𝓪] (γ : LieTwoCocycle 𝕜 𝓰 𝓪) :
     LieAlgebra.IsCentralExtension (emb γ) (proj γ) where
@@ -198,6 +217,9 @@ noncomputable def _root_.VirasoroProject.LieTwoCocycle.CentralExtension.stdSecti
     · rfl
     · exact (smul_zero c).symm
 
+/--
+@isnad1 id=eq.0h4v.s8.b6658663d3ae from=translated src=- shape=cd880804 vocab=75b6e662
+-/
 lemma _root_.VirasoroProject.LieTwoCocycle.CentralExtension.stdSection_prop
     (γ : LieTwoCocycle 𝕜 𝓰 𝓪) :
     proj γ ∘ₗ stdSection γ = (1 : 𝓰 →ₗ[𝕜] 𝓰) :=
@@ -228,6 +250,9 @@ noncomputable def _root_.VirasoroProject.LieAlgebra.IsExtension.basis
   sesBasis basA basG (LieSubmodule.mk_eq_bot_iff.mp ex.ker_eq_bot)
     (congr_arg LieSubalgebra.toSubmodule ex.exact) hσ
 
+/--
+@isnad1 id=eq.2h12v.s9.289b74b984e2 from=translated src=- shape=571da489 vocab=7d6ecbc5
+-/
 @[simp] lemma _root_.VirasoroProject.LieAlgebra.IsExtension.basis_eq_of_left
     {ιA ιG : Type u'} (basA : Basis ιA 𝕜 𝓪) (basG : Basis ιG 𝕜 𝓰)
     (ia : ιA) :
@@ -236,6 +261,9 @@ noncomputable def _root_.VirasoroProject.LieAlgebra.IsExtension.basis
     (LieSubmodule.mk_eq_bot_iff.mp ex.ker_eq_bot)
     (congr_arg LieSubalgebra.toSubmodule ex.exact) hσ ia
 
+/--
+@isnad1 id=eq.2h12v.s9.fa3982ca7d31 from=translated src=- shape=569739fa vocab=3a5209e1
+-/
 @[simp] lemma _root_.VirasoroProject.LieAlgebra.IsExtension.basis_eq_of_right
     {ιA ιG : Type u'} (basA : Basis ιA 𝕜 𝓪) (basG : Basis ιG 𝕜 𝓰)
     (ig : ιG) :

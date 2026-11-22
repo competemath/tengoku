@@ -23,6 +23,9 @@ variable {P E : Type*}
   [NormedAddCommGroup P] [NormedSpace ℝ P]
   [NormedAddCommGroup E] [NormedSpace ℝ E]
 
+/--
+@isnad1 id=hasfderi.2h6v.s9.a114e524a759 from=translated src=- shape=5e466e4f vocab=d61bc0eb
+-/
 theorem hasFDerivAt_all (τ : P → E →ₗᵢ[ℝ] E)
     (hadd : ∀ a b u, τ a (τ b u) = τ (a + b) u)
     (u : E) (D : P →L[ℝ] E) (h : HasFDerivAt (fun a => τ a u) D 0) (a : P) :
@@ -42,6 +45,9 @@ theorem hasFDerivAt_all (τ : P → E →ₗᵢ[ℝ] E)
   simpa only [Function.comp_def, id_eq, sub_self, he, ContinuousLinearMap.comp_id] using hd
 
 omit [NormedAddCommGroup P] [NormedSpace ℝ P] in
+/--
+@isnad1 id=tendstou.1h7v.s7.188ec2b7b600 from=translated src=- shape=cf56a6ca vocab=3f8bd2ca
+-/
 theorem orbits_tendstoUniformly (τ : P → E →ₗᵢ[ℝ] E) {ι : Type*} {l : Filter ι}
     (u : ι → E) (v : E) (hu : Tendsto u l (𝓝 v)) :
     TendstoUniformly (fun n a => τ a (u n)) (fun a => τ a v) l := by
@@ -51,6 +57,9 @@ theorem orbits_tendstoUniformly (τ : P → E →ₗᵢ[ℝ] E) {ι : Type*} {l 
   rw [(τ a).dist_map]
   simpa only [Metric.mem_ball, dist_comm] using hn
 
+/--
+@isnad1 id=tendstou.1h7v.s9.b9b970e5f59f from=translated src=- shape=fb551578 vocab=e6542688
+-/
 theorem derivatives_tendstoUniformly (τ : P → E →ₗᵢ[ℝ] E) {ι : Type*} {l : Filter ι}
     (D : ι → P →L[ℝ] E) (D₀ : P →L[ℝ] E) (hD : Tendsto D l (𝓝 D₀)) :
     TendstoUniformly (fun n a => (τ a).toContinuousLinearMap.comp (D n))
@@ -67,7 +76,9 @@ theorem derivatives_tendstoUniformly (τ : P → E →ₗᵢ[ℝ] E) {ι : Type*
       LinearIsometry.norm_map] using (D₀-D n).le_opNorm v
   exact hb.trans_lt (by simpa only [Metric.mem_ball, dist_comm] using hn)
 
-/-- Derivatives of an isometric orbit form a closed operator. -/
+/-- Derivatives of an isometric orbit form a closed operator.
+@isnad1 id=hasfderi.5h7v.s10.fbfd1b4d1eb2 from=translated src=- shape=5b203798 vocab=ca916319
+-/
 theorem hasFDerivAt_limit (τ : P → E →ₗᵢ[ℝ] E)
     (hadd : ∀ a b u, τ a (τ b u) = τ (a + b) u) (hzero : ∀ u, τ 0 u = u)
     (u : ℕ → E) (D : ℕ → P →L[ℝ] E) (u₀ : E) (D₀ : P →L[ℝ] E)

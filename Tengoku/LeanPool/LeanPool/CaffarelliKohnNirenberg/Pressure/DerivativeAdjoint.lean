@@ -30,6 +30,9 @@ noncomputable section
 
 namespace CKN
 
+/--
+@isnad1 id=eq.1h3v.s9.c9871ce050b5 from=translated src=- shape=d4fbde96 vocab=8ad8aff6
+-/
 lemma pressure_coord_fderiv_eq_deriv_update {f : Vec3 → ℝ} {x : Vec3}
     (hf : DifferentiableAt ℝ f x) (i : Fin 3) :
     (fderiv ℝ f x) (basisVec i) =

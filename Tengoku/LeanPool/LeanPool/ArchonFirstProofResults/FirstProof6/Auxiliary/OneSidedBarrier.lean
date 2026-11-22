@@ -30,6 +30,9 @@ namespace Problem6
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
+/--
+@isnad1 id=le.6h5v.s9.6794d9bdd889 from=translated src=- shape=550637d8 vocab=d6e212da
+-/
 lemma barrier_smw_trace_bound
     (M B : Matrix V V ℝ)
     (u u' : ℝ) (hu : u < u')
@@ -59,6 +62,9 @@ lemma barrier_smw_trace_bound
   rw [hgoal_eq, hphi_eq]
   exact psd_resolvent_trace_bound U B hU_pd hB htrBU_lt htrBU_nn
 
+/--
+@isnad1 id=le.3h6v.s8.70ff20de6e68 from=translated src=- shape=d08b5b7d vocab=d6e212da
+-/
 lemma one_sided_barrier
     (M B : Matrix V V ℝ)
     (u u' : ℝ) (hu : u < u')
@@ -116,6 +122,9 @@ lemma one_sided_barrier
       linarith [barrier_smw_trace_bound M B u u' hu hM_bound hB htrBU_lt htrBU_nn htrBU2_nn,
         barrier_rearrange hgap_pos htrBU_nn htrBU2_nn htrBU_lt hbarrier']
 
+/--
+@isnad1 id=posdef.3h3v.s6.3932e49714b9 from=translated src=- shape=4fc9619c vocab=36683cbf
+-/
 lemma inv_sub_posDef_of_trace_lt_one
     (U B : Matrix V V ℝ)
     (hU : U.PosDef) (hB : B.PosSemidef)

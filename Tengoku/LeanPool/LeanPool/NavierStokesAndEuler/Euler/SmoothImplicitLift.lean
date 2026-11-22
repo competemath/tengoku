@@ -26,6 +26,9 @@ variable {P E F : Type*}
   [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
   [NormedAddCommGroup F] [NormedSpace ℝ F]
 
+/--
+@isnad1 id=contdiff.6h9v.s8.cc8f077c3959 from=translated src=- shape=c7f8153e vocab=0907bec9
+-/
 theorem contDiffAt_of_identity
     (Y : P → E) (G : E → F) (H : P → F) (x : P) (n : ℕ∞ω)
     (hn : n ≠ 0) (hY : ContinuousAt Y x)

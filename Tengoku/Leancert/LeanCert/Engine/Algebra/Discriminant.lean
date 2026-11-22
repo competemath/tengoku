@@ -28,6 +28,9 @@ namespace LeanCert.Engine.Algebra
 def quadraticZeroSet (a b c : ℝ) : Set ℝ :=
   {x | a * (x * x) + b * x + c = 0}
 
+/--
+@isnad1 id=eq.1h3v.s5.2bd6df5331de from=translated src=- shape=7efd152b vocab=61d75123
+-/
 theorem quadraticZeroSet_ncard_eq_zero_of_discrim_neg {a b c : ℝ}
     (hΔ : discrim a b c < 0) : (quadraticZeroSet a b c).ncard = 0 := by
   have hempty : quadraticZeroSet a b c = ∅ := by
@@ -38,6 +41,9 @@ theorem quadraticZeroSet_ncard_eq_zero_of_discrim_neg {a b c : ℝ}
     nlinarith [sq_nonneg s]
   simp [hempty]
 
+/--
+@isnad1 id=eq.2h3v.s5.9f6df994f5a0 from=translated src=- shape=57e12c9a vocab=90652428
+-/
 theorem quadraticZeroSet_ncard_eq_one_of_discrim_eq_zero {a b c : ℝ}
     (ha : a ≠ 0) (hΔ : discrim a b c = 0) :
     (quadraticZeroSet a b c).ncard = 1 := by
@@ -47,6 +53,9 @@ theorem quadraticZeroSet_ncard_eq_one_of_discrim_eq_zero {a b c : ℝ}
     exact quadratic_eq_zero_iff_of_discrim_eq_zero ha hΔ x
   simp [hset]
 
+/--
+@isnad1 id=eq.2h3v.s5.c824777948ee from=translated src=- shape=02af932b vocab=61d75123
+-/
 theorem quadraticZeroSet_ncard_eq_two_of_discrim_pos {a b c : ℝ}
     (ha : a ≠ 0) (hΔ : 0 < discrim a b c) :
     (quadraticZeroSet a b c).ncard = 2 := by
@@ -72,6 +81,9 @@ theorem quadraticZeroSet_ncard_eq_two_of_discrim_pos {a b c : ℝ}
     linarith
   rw [hset, Set.ncard_pair hxne]
 
+/--
+@isnad1 id=finite.1h3v.s4.a624e7bc0b6d from=translated src=- shape=1897b47b vocab=23adab26
+-/
 theorem quadraticZeroSet_finite (a b c : ℝ) (ha : a ≠ 0) :
     (quadraticZeroSet a b c).Finite := by
   let p : Polynomial ℝ :=
@@ -170,6 +182,9 @@ private theorem cubicZeroSet_eq_insert_quotientZeroSet (P : Cubic ℝ) {r : ℝ}
     · simp
     · exact mul_eq_zero_of_right _ hx
 
+/--
+@isnad1 id=eq.2h1v.s5.d36c4eed84ea from=translated src=- shape=3099f490 vocab=ca2342fa
+-/
 theorem cubicZeroSet_ncard_eq_one_of_discr_neg (P : Cubic ℝ)
     (ha : P.a ≠ 0) (hΔ : P.discr < 0) : (cubicZeroSet P).ncard = 1 := by
   obtain ⟨r, hr⟩ := exists_cubic_root P ha
@@ -190,6 +205,9 @@ theorem cubicZeroSet_ncard_eq_one_of_discr_neg (P : Cubic ℝ)
     nlinarith [sq_nonneg s]
   simp [hempty]
 
+/--
+@isnad1 id=eq.2h1v.s5.c78b5146dbe4 from=translated src=- shape=9172bae9 vocab=ca2342fa
+-/
 theorem cubicZeroSet_ncard_eq_three_of_discr_pos (P : Cubic ℝ)
     (ha : P.a ≠ 0) (hΔ : 0 < P.discr) : (cubicZeroSet P).ncard = 3 := by
   obtain ⟨r, hr⟩ := exists_cubic_root P ha
@@ -221,7 +239,9 @@ corresponding discriminant product is below `d` is a strict lower bound for
 `|x-y|`.
 
 The bounds `A` and `M` are essential: the discriminant alone has no
-scale-independent quantitative separation consequence. -/
+scale-independent quantitative separation consequence.
+@isnad1 id=lt.7h8v.s7.1842abd8dbaa from=translated src=- shape=b718edfc vocab=d4e5121d
+-/
 theorem cubic_root_gap_gt_of_discr_bound (P : Cubic ℝ) {x y z d A M eps : ℝ}
     (ha : P.a ≠ 0) (hroots : P.roots = {x, y, z})
     (hd : d ≤ |P.discr|) (hA : |P.a| ≤ A)
@@ -261,7 +281,9 @@ theorem cubic_root_gap_gt_of_discr_bound (P : Cubic ℝ) {x y z d A M eps : ℝ}
 
 /-- A convenient pairwise-separation corollary using a common root-radius
 bound. Once all three roots lie in `[-R, R]`, every auxiliary gap is at most
-`2*R`, so one discriminant threshold separates all three pairs. -/
+`2*R`, so one discriminant threshold separates all three pairs.
+@isnad1 id=and.8h8v.s7.edd54add9769 from=translated src=- shape=0efdee9b vocab=d4e5121d
+-/
 theorem cubic_roots_pairwise_gap_gt_of_discr_bound_and_radius
     (P : Cubic ℝ) {x y z d A R eps : ℝ}
     (ha : P.a ≠ 0) (hroots : P.roots = {x, y, z})

@@ -10,7 +10,9 @@ namespace LeanCert.Analysis.DBN
 open Complex MeasureTheory Set Filter
 open scoped Topology
 
-/-- The first two nonnegative terms of the cosh series give the lower squeeze. -/
+/-- The first two nonnegative terms of the cosh series give the lower squeeze.
+@isnad1 id=le.0h1v.s5.3f946b38f2bb from=translated src=- shape=7a4f80b1 vocab=6383a13c
+-/
 theorem one_add_half_sq_le_cosh (x : ℝ) : 1+x^2/2 ≤ Real.cosh x := by
   have h := (Real.hasSum_cosh x).summable.sum_le_tsum (Finset.range 2)
     (fun n _ => div_nonneg (by rw [pow_mul]; exact pow_nonneg (sq_nonneg x) n) (Nat.cast_nonneg _))
@@ -19,7 +21,9 @@ theorem one_add_half_sq_le_cosh (x : ℝ) : 1+x^2/2 ≤ Real.cosh x := by
   norm_num [Finset.sum_range_succ] at h'
   exact h'
 
-/-- The scalar heat-limit prototype needs no Taylor remainder or l'Hopital rule. -/
+/-- The scalar heat-limit prototype needs no Taylor remainder or l'Hopital rule.
+@isnad1 id=tendsto.0h1v.s6.5f70e0ba4dfb from=translated src=- shape=4920ea8d vocab=93b79638
+-/
 theorem cosh_multiplier_tendsto (u : ℝ) :
     Filter.Tendsto (fun n : ℕ => Real.cosh (Real.sqrt (1/(n : ℝ))*u)^n)
       Filter.atTop (nhds (Real.exp (u^2/2))) := by
@@ -43,6 +47,9 @@ theorem cosh_multiplier_tendsto (u : ℝ) :
 noncomputable def unitShift (n : ℕ) : ℂ → ℂ :=
   shiftIter (Real.sqrt (1 / ((n+1 : ℕ) : ℝ))) (n+1) (H 0)
 
+/--
+@isnad1 id=eq.0h1v.s6.ebc8a7ce55a9 from=translated src=- shape=d97e7185 vocab=76137117
+-/
 theorem unitShift_budget (n : ℕ) :
     ((n+1 : ℕ) : ℝ) * (Real.sqrt (1 / ((n+1 : ℕ) : ℝ))) ^ 2 = 1 := by
   rw [Real.sq_sqrt (by positivity)]
@@ -54,7 +61,9 @@ private theorem multiplier_succ_tendsto (u : ℝ) :
   (cosh_multiplier_tendsto u).comp (tendsto_add_atTop_nat 1)
 
 /-- Joint convergence with a moving complex argument; this is stronger than
-pointwise convergence and supplies the locally uniform heat limit. -/
+pointwise convergence and supplies the locally uniform heat limit.
+@isnad1 id=tendsto.0h1v.s6.b1b627aa29d4 from=translated src=- shape=03ada389 vocab=0abb19ea
+-/
 theorem unitShift_joint_tendsto (z : ℂ) :
     Tendsto (fun p : ℕ × ℂ => unitShift p.1 p.2)
       (atTop ×ˢ 𝓝 z) (𝓝 (H (1/2) z)) := by
@@ -95,6 +104,9 @@ theorem unitShift_joint_tendsto (z : ℂ) :
   have h := tendsto_integral_filter_of_dominated_convergence B hm hb hi hl
   simpa only [unitShift, shiftIter_H_eq_integral, H] using h
 
+/--
+@isnad1 id=tendstol.0h0v.s5.a7baabccbb8a from=translated src=- shape=55d5458f vocab=d4d64a51
+-/
 theorem unitShift_convergence : TendstoLocallyUniformly unitShift (H (1/2)) atTop := by
   apply tendstoLocallyUniformly_iff_forall_tendsto.mpr
   intro z

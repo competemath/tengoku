@@ -201,7 +201,9 @@ private lemma immersion_dir_tendsto_left (γ : PiecewiseC1Immersion) {z₀ : ℂ
 
 /-- Helper: g = ‖γ(·) - z₀‖ is strictly decreasing on a left neighborhood of t₀ and
 strictly increasing on a right neighborhood, when γ is an immersion at t₀.
-This is the key "local monotonicity" fact that makes the cutoff boundary well-defined. -/
+This is the key "local monotonicity" fact that makes the cutoff boundary well-defined.
+@isnad1 id=ex.2h3v.s6.c64be3d8d62e from=translated src=- shape=e5827f9a vocab=b9251f4a
+-/
 lemma piecewiseC1Immersion_norm_strictMono_near_crossing
     (γ : PiecewiseC1Immersion) (z₀ : ℂ)
     (t₀ : ℝ) (ht₀ : t₀ ∈ Ioo γ.a γ.b)
@@ -312,6 +314,9 @@ lemma piecewiseC1Immersion_norm_strictMono_near_crossing
       rw [(hasDerivAt_norm_sub γ.toFun t _ hdiff.hasDerivAt hne).deriv]
       exact hpos_R t ht
 
+/--
+@isnad1 id=ex.3h3v.s8.fc04e5f9639f from=translated src=- shape=25da712a vocab=31274885
+-/
 lemma exists_cutoff_boundary_times
     (γ : PiecewiseC1Immersion) (z₀ : ℂ)
     (t₀ : ℝ) (ht₀ : t₀ ∈ Ioo γ.a γ.b)
@@ -422,7 +427,9 @@ lemma exists_cutoff_boundary_times
 
 /-- Extended version of `exists_cutoff_boundary_times` that also exposes the
 strict monotonicity interval and the bounds `δ ≤ ‖γ(l) - z₀‖`,
-`δ ≤ ‖γ(r) - z₀‖`. -/
+`δ ≤ ‖γ(r) - z₀‖`.
+@isnad1 id=ex.3h3v.s8.faeea9b10b6c from=translated src=- shape=63490beb vocab=be5dc2f0
+-/
 lemma exists_cutoff_boundary_times_with_mono
     (γ : PiecewiseC1Immersion) (z₀ : ℂ)
     (t₀ : ℝ) (ht₀ : t₀ ∈ Ioo γ.a γ.b)
@@ -507,7 +514,9 @@ private lemma exp_cutoff_G_const_on
 
 /-- For a closed piecewise C¹ immersion, when the cutoff integral is split
 at boundary times where ‖γ-z₀‖ = ε with strict inequality outside, the
-exponential equals the ratio (γ(σ₁)-z₀)/(γ(σ₂)-z₀) by FTC + closedness. -/
+exponential equals the ratio (γ(σ₁)-z₀)/(γ(σ₂)-z₀) by FTC + closedness.
+@isnad1 id=eq.10h5v.s8.f7da39855ea5 from=translated src=- shape=998f71ce vocab=3bd21ab0
+-/
 lemma exp_cutoff_integral_eq_ratio
     (γ : PiecewiseC1Immersion) (hclosed : γ.toPiecewiseC1Curve.IsClosed)
     (z₀ : ℂ) (σ₁ σ₂ ε : ℝ)
@@ -748,7 +757,9 @@ converges to exp(-i·angleAtCrossing). This follows from the immersion property:
 γ(σ₁)-z₀ ≈ L_left·(σ₁-t₀) with σ₁-t₀ < 0, so direction → -L_left/|L_left|,
 and γ(σ₂)-z₀ ≈ L_right·(σ₂-t₀) with σ₂-t₀ > 0,
 so direction → L_right/|L_right|.
-The ratio of directions is exp(-i·α) where α = arg(L_right) - arg(-L_left). -/
+The ratio of directions is exp(-i·α) where α = arg(L_right) - arg(-L_left).
+@isnad1 id=tendsto.9h5v.s8.2e7747f34970 from=translated src=- shape=dc2e6698 vocab=8232131e
+-/
 lemma crossing_ratio_tendsto
     (γ : PiecewiseC1Immersion) (z₀ : ℂ)
     (t₀ : ℝ) (ht₀ : t₀ ∈ Ioo γ.a γ.b)
@@ -872,7 +883,9 @@ cutoff integral `∫ 1_{‖γ-z₀‖>ε} (γ-z₀)⁻¹ γ'` and `α` is the cr
 4. Since `‖γ(σ₁)-z₀‖ = ε = ‖γ(σ₂)-z₀‖`, this ratio has modulus 1.
 5. By the immersion property: as `ε → 0`, `σ₁ → t₀⁻` and `σ₂ → t₀⁺`, and
    `arg(γ(σ₁)-z₀) → arg(-L_left)`, `arg(γ(σ₂)-z₀) → arg(L_right)`.
-6. Therefore `exp(R(ε)) → exp(i(arg(-L_left) - arg(L_right))) = exp(-iα)`. -/
+6. Therefore `exp(R(ε)) → exp(i(arg(-L_left) - arg(L_right))) = exp(-iα)`.
+@isnad1 id=tendsto.4h3v.s8.a724018e8322 from=translated src=- shape=1d19205a vocab=b60d7be9
+-/
 lemma tendsto_exp_cutoff_integral_crossing
     (γ : PiecewiseC1Immersion)
     (hclosed : γ.toPiecewiseC1Curve.IsClosed) (z₀ : ℂ)

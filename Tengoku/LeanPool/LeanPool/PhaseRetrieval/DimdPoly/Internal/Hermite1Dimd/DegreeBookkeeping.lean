@@ -68,7 +68,9 @@ private theorem degreeWidth_le_of_coord_bound
     _ ≤ d * (Y ^ 2 - 1) + 1 := Nat.add_le_add_right hupper_sum 1
     _ ≤ d * Y ^ 2 := hfinal
 
-/-- Local degree support lies in an explicit interval. -/
+/-- Local degree support lies in an explicit interval.
+@isnad1 id=and.0h4v.s5.be0b3955bf6e from=translated src=- shape=90555f58 vocab=e9a0c802
+-/
 theorem localDegreeInterval
     {d : ℕ} (j : MultiIndex d) (M : ℕ) (G : FiniteHermiteSum d) :
     (∀ n ∈ localDegreeSet j M G, degreeIntervalLower j M ≤ n ∧ n ≤ degreeIntervalUpper j M) ∧
@@ -144,7 +146,9 @@ theorem localDegreeInterval
       omega
     exact le_trans hcard hIcc
 
-/-- Crude bounds on the degree interval in terms of the annulus radius. -/
+/-- Crude bounds on the degree interval in terms of the annulus radius.
+@isnad1 id=le.0h3v.s4.fd2a240ad837 from=translated src=- shape=e463188e vocab=64b718ae
+-/
 theorem degreeIntervalOrder
     {d : ℕ} (j : MultiIndex d) (M : ℕ) :
     degreeIntervalLower j M ≤ degreeIntervalUpper j M := by
@@ -156,7 +160,9 @@ theorem degreeIntervalOrder
   have hstep : (j q) ^ 2 + 1 ≤ (j q + 1) ^ 2 := by ring_nf; omega
   omega
 
-/-- Low-annulus crude width bound in terms of the annulus radius. -/
+/-- Low-annulus crude width bound in terms of the annulus radius.
+@isnad1 id=le.2h3v.s6.c0ee20222de7 from=translated src=- shape=8eb11e9b vocab=ab763181
+-/
 theorem lowAnnulusDegreeWidthBound
     {d : ℕ} (hd : 1 ≤ d) (j : MultiIndex d) (M : ℕ)
     (_hj : annulusRadius j < M + 1) :
@@ -164,7 +170,9 @@ theorem lowAnnulusDegreeWidthBound
   degreeWidth_le_of_coord_bound hd j M (annulusRadius j + M + 1) (by omega)
     (fun q => by have := coord_le_annulusRadius j q; omega)
 
-/-- Uniform low-annulus width bound at the frozen threshold `J(d,M)`. -/
+/-- Uniform low-annulus width bound at the frozen threshold `J(d,M)`.
+@isnad1 id=le.2h3v.s6.6b8a3ee1e6ad from=translated src=- shape=6a569db4 vocab=b231e8e1
+-/
 theorem uniformLowAnnulusWidthBound
     {d : ℕ} (hd : 1 ≤ d) (j : MultiIndex d) (M : ℕ)
     (hj : annulusRadius j < degreeThreshold d M) :
@@ -267,7 +275,9 @@ private theorem degreeWidth_eq_gap_sum
         (g := fun q : Fin d => (max (j q) M - M) ^ 2) hfg)
   rw [hdistrib]
 
-/-- High-annulus crude degree lower/width upper bounds in terms of the annulus radius. -/
+/-- High-annulus crude degree lower/width upper bounds in terms of the annulus radius.
+@isnad1 id=and.2h3v.s7.c6b9f88e700f from=translated src=- shape=6823532a vocab=f8634c0b
+-/
 theorem highAnnulusDegreeBounds
     {d : ℕ} (hd : 1 ≤ d) (j : MultiIndex d) (M : ℕ)
     (hj : M + 1 ≤ annulusRadius j) :
@@ -312,7 +322,9 @@ theorem highAnnulusDegreeBounds
       _ = d * C := by simp
   exact ⟨hlower, by simpa [C, R, Nat.mul_assoc] using hwidth⟩
 
-/-- High-frequency threshold needed for the imported band estimate. -/
+/-- High-frequency threshold needed for the imported band estimate.
+@isnad1 id=le.2h3v.s6.895b33881fb6 from=translated src=- shape=9ffd20ac vocab=fa1f9cb7
+-/
 theorem highFrequencyThreshold
     {d : ℕ} (hd : 1 ≤ d) (j : MultiIndex d) (M : ℕ)
     (hj : degreeThreshold d M ≤ annulusRadius j) :
@@ -366,7 +378,9 @@ theorem highFrequencyThreshold
     simpa [pow_two, pow_succ, x, mul_assoc, mul_left_comm, mul_comm] using hsq
   exact le_trans h1343 hlower_sq
 
-/-- Zero-padding turns arbitrary finite support inside a band into a full band. -/
+/-- Zero-padding turns arbitrary finite support inside a band into a full band.
+@isnad1 id=ex.1h4v.s6.0d0b0a7cae93 from=translated src=- shape=f9e11f17 vocab=9efe372a
+-/
 theorem zeroPaddingBand
     (N L : ℕ) (E : Finset ℕ) (b : ℕ → ℂ)
     (hE : ∀ n ∈ E, N ≤ n ∧ n < N + L) :

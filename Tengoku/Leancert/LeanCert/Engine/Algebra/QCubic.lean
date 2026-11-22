@@ -54,28 +54,46 @@ def QCubic.toExpr (P : QCubic) : Expr :=
   .add (.mul (.add (.mul (.add (.mul (.const P.a) (.var 0)) (.const P.b)) (.var 0))
     (.const P.c)) (.var 0)) (.const P.d)
 
+/--
+@isnad1 id=eq.0h2v.s6.228430050d07 from=translated src=- shape=4e7d28d7 vocab=375fd893
+-/
 @[simp] theorem QCubic.eval_toExpr (P : QCubic) (x : ℝ) :
     Expr.eval (fun _ => x) P.toExpr =
       (P.a : ℝ) * x ^ 3 + (P.b : ℝ) * x ^ 2 + (P.c : ℝ) * x + P.d := by
   simp [QCubic.toExpr]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s3.770f1590c2ed from=translated src=- shape=58a91df6 vocab=d1ca4b62
+-/
 @[simp] theorem QCubic.toReal_discr (P : QCubic) :
     P.toReal.discr = P.discr := by
   simp [QCubic.toReal, QCubic.discr, Cubic.discr]
 
+/--
+@isnad1 id=eq.0h1v.s3.5dd47428636f from=translated src=- shape=0a9af14d vocab=3cbd5c52
+-/
 @[simp] theorem QCubic.toCubicRat_discr (P : QCubic) :
     P.toCubicRat.discr = P.discr := by
   simp [QCubic.toCubicRat, QCubic.discr, Cubic.discr]
 
+/--
+@isnad1 id=adsuppor.0h1v.s2.70e1236b6451 from=translated src=- shape=76a08d12 vocab=19941ca8
+-/
 theorem QCubic.toExpr_supported (P : QCubic) : ADSupported P.toExpr := by
   rw [← Expr.checkADSupported_eq_true_iff]
   rfl
 
+/--
+@isnad1 id=usesonly.0h1v.s2.cc6ca28fad64 from=translated src=- shape=76a08d12 vocab=99d0ed7f
+-/
 theorem QCubic.toExpr_usesOnlyVar0 (P : QCubic) : UsesOnlyVar0 P.toExpr := by
   rw [← Expr.usesOnlyVar0_iff_UsesOnlyVar0]
   rfl
 
+/--
+@isnad1 id=continuo.0h1v.s4.616e1cc35c84 from=translated src=- shape=88e63999 vocab=25e34ecf
+-/
 theorem QCubic.toExpr_continuous (P : QCubic) :
     Continuous (fun x : ℝ => Expr.eval (fun _ => x) P.toExpr) := by
   have hpoly : Continuous (fun x : ℝ =>
@@ -89,6 +107,9 @@ theorem QCubic.toExpr_continuous (P : QCubic) :
 def QCubic.threeRootCountCheck (P : QCubic) : Bool :=
   decide (P.a ≠ 0) && decide (0 < P.discr)
 
+/--
+@isnad1 id=eq.1h1v.s4.a97be9b86fe5 from=translated src=- shape=d01cfc75 vocab=719948a5
+-/
 theorem QCubic.threeRootCountCheck_sound (P : QCubic)
     (h : P.threeRootCountCheck = true) :
     (cubicZeroSet P.toReal).ncard = 3 := by
@@ -101,7 +122,9 @@ theorem QCubic.threeRootCountCheck_sound (P : QCubic)
 
 /-! ### Generic exhaustion -/
 
-/-- Three distinct members exhaust a set of cardinality three. -/
+/-- Three distinct members exhaust a set of cardinality three.
+@isnad1 id=eq.7h5v.s6.d20008f64766 from=translated src=- shape=7e0d3e89 vocab=11101918
+-/
 theorem three_mem_exhaust_ncard {α : Type*} {S : Set α} {x₁ x₂ x₃ : α}
     (hcard : S.ncard = 3) (h₁ : x₁ ∈ S) (h₂ : x₂ ∈ S) (h₃ : x₃ ∈ S)
     (h₁₂ : x₁ ≠ x₂) (h₁₃ : x₁ ≠ x₃) (h₂₃ : x₂ ≠ x₃) :
@@ -119,7 +142,9 @@ theorem three_mem_exhaust_ncard {α : Type*} {S : Set α} {x₁ x₂ x₃ : α}
       simp [hcard, h₁₂, h₁₃, h₂₃])
   exact heq.symm
 
-/-- Three roots in pairwise-disjoint regions exhaust a three-element root set. -/
+/-- Three roots in pairwise-disjoint regions exhaust a three-element root set.
+@isnad1 id=le.7h4v.s7.e46aacdc0d6e from=translated src=- shape=9b204873 vocab=f3f20641
+-/
 theorem three_unique_roots_exhaust {S I₁ I₂ I₃ : Set ℝ}
     (hcard : S.ncard = 3)
     (h₁ : ∃! x, x ∈ I₁ ∧ x ∈ S) (h₂ : ∃! x, x ∈ I₂ ∧ x ∈ S)
@@ -168,9 +193,15 @@ def CubicIsolationCert.intervalsOrdered (cert : CubicIsolationCert) : Bool :=
 /-- The real set represented by a rational interval. -/
 def intervalSet (I : IntervalRat) : Set ℝ := Set.Icc I.lo I.hi
 
+/--
+@isnad1 id=iff.0h2v.s4.5eb96172b98b from=translated src=- shape=a80f3c36 vocab=58ac34ca
+-/
 theorem mem_intervalSet_iff (I : IntervalRat) (x : ℝ) :
     x ∈ intervalSet I ↔ x ∈ I := by rfl
 
+/--
+@isnad1 id=and.1h1v.s6.f9af54025d7b from=translated src=- shape=36b787ed vocab=bc89162d
+-/
 theorem CubicIsolationCert.ordered_disjoint (cert : CubicIsolationCert)
     (h : cert.intervalsOrdered = true) :
     Disjoint (intervalSet cert.left) (intervalSet cert.middle) ∧

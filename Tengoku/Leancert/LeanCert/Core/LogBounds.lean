@@ -36,7 +36,9 @@ open Real Set
 /-! ## Taylor-style lower bound for log(1+t) -/
 
 /-- For t ≥ 0, we have t - t²/2 ≤ log(1+t).
-    Proof: Chain `t - t²/2 ≤ 2t/(t+2) ≤ log(1+t)` using `le_log_one_add_of_nonneg`. -/
+    Proof: Chain `t - t²/2 ≤ 2t/(t+2) ≤ log(1+t)` using `le_log_one_add_of_nonneg`.
+@isnad1 id=le.1h1v.s6.e78a1665cf82 from=translated src=- shape=26f41464 vocab=1789be8f
+-/
 theorem log_lower_taylor (t : ℝ) (ht : 0 ≤ t) : t - t^2 / 2 ≤ log (1 + t) := by
   have h1pt_pos : 0 < 1 + t := by linarith
   have h_chain : t - t^2 / 2 ≤ 2 * t / (t + 2) := by
@@ -55,7 +57,9 @@ theorem log_lower_taylor (t : ℝ) (ht : 0 ≤ t) : t - t^2 / 2 ≤ log (1 + t) 
 /-! ## Concavity bound for log(1-t) -/
 
 /-- For 0 ≤ t ≤ t₀ < 1, we have (t/t₀) * log(1-t₀) ≤ log(1-t).
-    This follows from concavity of log on (0, ∞). -/
+    This follows from concavity of log on (0, ∞).
+@isnad1 id=le.3h2v.s6.38b515dc9e2b from=translated src=- shape=b58657c7 vocab=015aa236
+-/
 theorem log_ge' (t t₀ : ℝ) (ht : 0 ≤ t) (ht0 : t ≤ t₀) (ht0' : t₀ < 1) :
     (t / t₀) * log (1 - t₀) ≤ log (1 - t) := by
   by_cases ht0_eq : t₀ = 0
@@ -90,7 +94,9 @@ theorem log_ge' (t t₀ : ℝ) (ht : 0 ≤ t) (ht0 : t ≤ t₀) (ht0' : t₀ < 
 noncomputable def symmetricLogComb (t : ℝ) : ℝ := 1 / log (1 + t) + 1 / log (1 - t)
 
 /-- g(t) > 0 for 0 < t < 1.
-    Key identity: g(t) = log(1-t²) / (log(1+t) · log(1-t)) = (neg)/(neg) > 0. -/
+    Key identity: g(t) = log(1-t²) / (log(1+t) · log(1-t)) = (neg)/(neg) > 0.
+@isnad1 id=lt.2h1v.s5.2807814346b4 from=translated src=- shape=05b24c01 vocab=861ec25c
+-/
 theorem symmetricLogComb_pos (t : ℝ) (ht_pos : 0 < t) (ht_lt : t < 1) :
     0 < symmetricLogComb t := by
   have h1pt_pos : 0 < 1 + t := by linarith
@@ -114,7 +120,9 @@ theorem symmetricLogComb_pos (t : ℝ) (ht_pos : 0 < t) (ht_lt : t < 1) :
   rw [halt]
   exact div_pos_of_neg_of_neg hlog1mt2_neg hdenom_neg
 
-/-- Alternative form: g(t) = log(1-t²) / (log(1+t) · log(1-t)) for t ∈ (0, 1). -/
+/-- Alternative form: g(t) = log(1-t²) / (log(1+t) · log(1-t)) for t ∈ (0, 1).
+@isnad1 id=eq.2h1v.s6.dc527d623d65 from=translated src=- shape=a65ca507 vocab=938451eb
+-/
 theorem symmetricLogComb_alt (t : ℝ) (ht_pos : 0 < t) (ht_lt : t < 1) :
     symmetricLogComb t = log (1 - t^2) / (log (1 + t) * log (1 - t)) := by
   have h1pt_pos : 0 < 1 + t := by linarith
@@ -132,7 +140,9 @@ theorem symmetricLogComb_alt (t : ℝ) (ht_pos : 0 < t) (ht_lt : t < 1) :
 /-- g(t) ≤ 2 for 0 < t < 1.
     Proof uses: log(1+t) ≥ t/(1+t), log(1-t) ≥ -t/(1-t)
     Hence: 1/log(1+t) ≤ (1+t)/t, 1/log(1-t) ≤ -(1-t)/t
-    Sum: ≤ (1+t)/t - (1-t)/t = 2 -/
+    Sum: ≤ (1+t)/t - (1-t)/t = 2
+@isnad1 id=le.2h1v.s5.cba9f4001334 from=translated src=- shape=359dc2be vocab=d30346c0
+-/
 theorem symmetricLogComb_le_two (t : ℝ) (ht_pos : 0 < t) (ht_lt : t < 1) :
     symmetricLogComb t ≤ 2 := by
   have h1pt_pos : 0 < 1 + t := by linarith
@@ -184,7 +194,9 @@ theorem symmetricLogComb_le_two (t : ℝ) (ht_pos : 0 < t) (ht_lt : t < 1) :
     _ = 2 * t / t := by ring
     _ = 2 := by field_simp
 
-/-- |g(t)| ≤ 2 for 0 < t < 1. -/
+/-- |g(t)| ≤ 2 for 0 < t < 1.
+@isnad1 id=le.2h1v.s5.58d3722a3df3 from=translated src=- shape=97ec0f49 vocab=9efd4ee0
+-/
 theorem symmetricLogComb_abs_le_two (t : ℝ) (ht_pos : 0 < t) (ht_lt : t < 1) :
     |symmetricLogComb t| ≤ 2 := by
   have hpos := symmetricLogComb_pos t ht_pos ht_lt
@@ -207,7 +219,9 @@ clearly incorrect since g(t) → 1. The correct bound should be around 4/3.
 
 /-! ## Numerical bounds on log values -/
 
-/-- log(3/2) ≥ 2/5. From le_log_one_add_of_nonneg with t = 1/2. -/
+/-- log(3/2) ≥ 2/5. From le_log_one_add_of_nonneg with t = 1/2.
+@isnad1 id=le.0h0v.s5.377b7bfd025d from=translated src=- shape=573007ee vocab=78a65fa7
+-/
 theorem log_three_half_ge : 2/5 ≤ log (3/2) := by
   have h := le_log_one_add_of_nonneg (by norm_num : (0:ℝ) ≤ 1/2)
   have heq : (1:ℝ) + 1/2 = 3/2 := by norm_num
@@ -215,13 +229,17 @@ theorem log_three_half_ge : 2/5 ≤ log (3/2) := by
   convert h using 1
   norm_num
 
-/-- log(3/2) > 2/5. Strict version. -/
+/-- log(3/2) > 2/5. Strict version.
+@isnad1 id=lt.0h0v.s5.8b1e5deeb4a3 from=translated src=- shape=573007ee vocab=26a59d5f
+-/
 theorem log_three_half_gt : 2/5 < log (3/2) := by
   calc (2:ℝ)/5 = 2 * (1/2) / ((1/2) + 2) := by norm_num
     _ < log (1 + 1/2) := lt_log_one_add_of_pos (by norm_num : (0:ℝ) < 1/2)
     _ = log (3/2) := by norm_num
 
-/-- g(1/2) = 1/log(3/2) - 1/log(2). Explicit computation. -/
+/-- g(1/2) = 1/log(3/2) - 1/log(2). Explicit computation.
+@isnad1 id=eq.0h0v.s6.28ffb2706a57 from=translated src=- shape=1879b8d1 vocab=c893d734
+-/
 theorem symmetricLogComb_half : symmetricLogComb (1/2) = 1 / log (3/2) - 1 / log 2 := by
   unfold symmetricLogComb
   have hlog32_ne : log (3/2) ≠ 0 := ne_of_gt (log_pos (by norm_num : (1:ℝ) < 3/2))
@@ -233,7 +251,9 @@ theorem symmetricLogComb_half : symmetricLogComb (1/2) = 1 / log (3/2) - 1 / log
   field_simp
   ring
 
-/-- g(1/2) < 4/3. Numerical verification using bounds on log 2 and log(3/2). -/
+/-- g(1/2) < 4/3. Numerical verification using bounds on log 2 and log(3/2).
+@isnad1 id=lt.0h0v.s5.51cbb158bb41 from=translated src=- shape=6675909f vocab=ee174b29
+-/
 theorem symmetricLogComb_half_lt_four_thirds : symmetricLogComb (1/2) < 4/3 := by
   rw [symmetricLogComb_half]
   -- We have: log(3/2) > 2/5 = 0.4, log(2) > 0.6931471803
@@ -258,7 +278,9 @@ theorem symmetricLogComb_half_lt_four_thirds : symmetricLogComb (1/2) < 4/3 := b
     _ < 4/3 := by norm_num
 
 /-- g(t) ≤ 4/3 for 0 < t ≤ 1/2.
-    Proof is direct from explicit log inequalities. -/
+    Proof is direct from explicit log inequalities.
+@isnad1 id=le.2h1v.s6.6de5107e21c5 from=translated src=- shape=41a6cf66 vocab=1af0955c
+-/
 theorem symmetricLogComb_le_four_thirds (t : ℝ) (ht_pos : 0 < t) (ht_le : t ≤ 1/2) :
     symmetricLogComb t ≤ 4/3 := by
   have ht_lt : t < 1 := by linarith
@@ -358,7 +380,9 @@ theorem symmetricLogComb_le_four_thirds (t : ℝ) (ht_pos : 0 < t) (ht_le : t �
 /-! ## Limit theorems for the symmetric combination -/
 
 /-- Helper: log(1+t)/t → 1 as t → 0⁺.
-    This follows from log'(1) = 1. -/
+    This follows from log'(1) = 1.
+@isnad1 id=tendsto.0h0v.s6.d76ee3183ae8 from=translated src=- shape=2e13cb97 vocab=7c4bc13e
+-/
 theorem tendsto_log_one_add_div_self :
     Filter.Tendsto (fun t => log (1 + t) / t) (nhdsWithin 0 (Set.Ioi 0)) (nhds 1) := by
   have hderiv : HasDerivAt log 1 1 := by
@@ -369,7 +393,9 @@ theorem tendsto_log_one_add_div_self :
   simp only [log_one, sub_zero, smul_eq_mul, inv_mul_eq_div] at htendsto
   exact htendsto
 
-/-- Helper: log(1-t)/t → -1 as t → 0⁺. -/
+/-- Helper: log(1-t)/t → -1 as t → 0⁺.
+@isnad1 id=tendsto.0h0v.s6.d39c4dc7c9c0 from=translated src=- shape=fd836708 vocab=e8145fd8
+-/
 theorem tendsto_log_one_sub_div_self :
     Filter.Tendsto (fun t => log (1 - t) / t) (nhdsWithin 0 (Set.Ioi 0)) (nhds (-1)) := by
   have hderiv : HasDerivAt (fun x : ℝ => log (1 - x)) (-1) 0 := by
@@ -381,7 +407,9 @@ theorem tendsto_log_one_sub_div_self :
   convert htendsto using 2 with t
   ring
 
-/-- Helper: log(1-t²)/t² → -1 as t → 0⁺. -/
+/-- Helper: log(1-t²)/t² → -1 as t → 0⁺.
+@isnad1 id=tendsto.0h0v.s6.84d9e8b100e4 from=translated src=- shape=5456e3d0 vocab=cc622af4
+-/
 theorem tendsto_log_one_sub_sq_div_sq :
     Filter.Tendsto (fun t => log (1 - t^2) / t^2) (nhdsWithin 0 (Set.Ioi 0)) (nhds (-1)) := by
   have h := tendsto_log_one_sub_div_self
@@ -407,7 +435,9 @@ theorem tendsto_log_one_sub_sq_div_sq :
       - log(1-t²)/t² → -1
       - log(1+t)/t → 1
       - log(1-t)/t → -1
-    So g(t) → (-1) / (1 · (-1)) = 1. -/
+    So g(t) → (-1) / (1 · (-1)) = 1.
+@isnad1 id=tendsto.0h0v.s5.f9107565b97d from=translated src=- shape=7068697d vocab=14619aa7
+-/
 theorem symmetricLogComb_tendsto_one :
     Filter.Tendsto symmetricLogComb (nhdsWithin 0 (Set.Ioi 0)) (nhds 1) := by
   -- Use the alternative form for t ∈ (0, 1)

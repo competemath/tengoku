@@ -54,7 +54,9 @@ private theorem sum_Icc_eq_sum_Fin {α : Type*} [AddCommMonoid α]
     Finset.sum_map]
   rfl
 
-/-- Imported theorem A: local circle estimate for positive frequencies. -/
+/-- Imported theorem A: local circle estimate for positive frequencies.
+@isnad1 id=le.1h2v.s6.2011f8cf97e1 from=translated src=- shape=5d748092 vocab=bf5f47bf
+-/
 theorem local_circle_estimate
     (E : Finset ℕ)
     (hpos : ∀ n ∈ E, 1 ≤ n)
@@ -71,7 +73,9 @@ theorem local_circle_estimate
       FockSPR.circleNormSq, rho, FockSPR.rho, sq_abs] at h ⊢
     exact h
 
-/-- Imported theorem B: high-frequency circle estimate. -/
+/-- Imported theorem B: high-frequency circle estimate.
+@isnad1 id=le.3h3v.s6.126449a6b50c from=translated src=- shape=9cf4f8f6 vocab=03e7127e
+-/
 theorem high_frequency_circle_estimate
     (N L : ℕ)
     (hN : 1 ≤ N)
@@ -92,7 +96,9 @@ theorem high_frequency_circle_estimate
     frequencyBand, FockSPR.circleNormSq, rho, FockSPR.rho, sq_abs] at h ⊢
   exact h
 
-/-- Imported theorem C: phase-normalized orthogonal reduction. -/
+/-- Imported theorem C: phase-normalized orthogonal reduction.
+@isnad1 id=ex.6h4v.s9.38c67e12ba00 from=translated src=- shape=6c87e974 vocab=b505fefb
+-/
 theorem phase_normalized_orthogonal_reduction
     {H : Type*}
     [NormedAddCommGroup H]

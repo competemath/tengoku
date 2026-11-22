@@ -45,6 +45,9 @@ def IsDivisionRing (R : Type*) [Ring R] : Prop :=
   (∃ x : R, x ≠ 0) ∧ (∀ x : R, x ≠ 0 → ∃ y : R, y * x = 1 ∧ x * y = 1)
 
 -- if every nonzero element has a left inverse then the ring is a division ring
+/--
+@isnad1 id=isdivisi.1h1v.s5.0f31307aeac7 from=translated src=- shape=685e20bd vocab=936db11b
+-/
 theorem left_inv_implies_divring [Nontrivial R]
     (h : ∀ x : R, x ≠ 0 → ∃ y : R, y * x = 1) : IsDivisionRing R := by
   unfold IsDivisionRing
@@ -74,6 +77,9 @@ def IsDivisionRingToDivisionRing (div : IsDivisionRing R) : DivisionRing R := by
     exact Or.inl ⟨y, hy2, hy1⟩
 
 -- a ring isomorphic to a division ring is itself a division ring
+/--
+@isnad1 id=isdivisi.1h3v.s5.42b540c50202 from=translated src=- shape=f6cd0652 vocab=b327620a
+-/
 theorem isomorphic_ring_div {R' : Type*} [Ring R'] (f : R ≃+* R') (h_div : IsDivisionRing R) :
     IsDivisionRing R' := by
   unfold IsDivisionRing at *

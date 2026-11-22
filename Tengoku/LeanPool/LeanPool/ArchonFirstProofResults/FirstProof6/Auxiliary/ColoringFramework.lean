@@ -56,7 +56,9 @@ structure PartialColoring (V : Type*) [Fintype V] (r : ℕ) where
   color : V → Fin r
 
 omit [DecidableEq V] in
-/-- The largest color class in a coloring has size at least |T|/r (pigeonhole). -/
+/-- The largest color class in a coloring has size at least |T|/r (pigeonhole).
+@isnad1 id=ex.1h3v.s6.66c2d4d1f20a from=translated src=- shape=b74cf9de vocab=f32ca195
+-/
 lemma largest_color_class_bound
     (pc : PartialColoring V r) (hr : 0 < r) :
     ∃ γ : Fin r,
@@ -93,7 +95,9 @@ lemma largest_color_class_bound
     The proof uses averaging: the average barrier cost over all (vertex, color) choices
     is < 1 (by `averaging_step`), so some valid (v, γ) choice exists. Then
     `one_sided_barrier` ensures the barrier condition propagates.
-    This is the core mathematical step of the coloring construction. -/
+    This is the core mathematical step of the coloring construction.
+@isnad1 id=other.11h8v.s9.325069fcad4c from=translated src=- shape=4638377e vocab=cdaef3f3
+-/
 lemma coloring_step_exists
     (ε : ℝ) (hε : 0 < ε) (_hε1 : ε ≤ 1)
     (n : ℕ) (hn : 4 ≤ n)
@@ -225,7 +229,9 @@ lemma coloring_step_exists
     coloring of k = n/4 vertices satisfying the barrier invariant.
     Starting from the empty coloring (t = 0, u_0 = ε/2), we iteratively extend
     the coloring. At each step, `coloring_step_exists` provides the next coloring.
-    After k steps, we have a coloring of k vertices with the barrier invariant at u_k. -/
+    After k steps, we have a coloring of k vertices with the barrier invariant at u_k.
+@isnad1 id=other.8h6v.s8.5754802f84ed from=translated src=- shape=f80ddb05 vocab=c65e24b0
+-/
 lemma coloring_iterate
     (ε : ℝ) (hε : 0 < ε) (hε1 : ε ≤ 1)
     (n : ℕ) (hn : 4 ≤ n) (hn_eq : n = Fintype.card V)
@@ -285,7 +291,9 @@ lemma coloring_iterate
 /-- **Parameter bound (Step 3)**: The final barrier parameter u_k = eps/2 + k*(eps/n)
     satisfies u_k <= 3*eps/4 < eps when k = n/4 and n >= 4.
     Proof: u_k = eps/2 + (n/4)*(eps/n). Since n/4 <= n/4 (integer division),
-    (n/4)*(eps/n) <= (n/4)*(eps/n) = eps/4. So u_k <= eps/2 + eps/4 = 3*eps/4 < eps. -/
+    (n/4)*(eps/n) <= (n/4)*(eps/n) = eps/4. So u_k <= eps/2 + eps/4 = 3*eps/4 < eps.
+@isnad1 id=other.2h2v.s7.3442ccb12c4f from=translated src=- shape=701ada8f vocab=3a4e774d
+-/
 lemma barrier_parameter_bound
     (ε : ℝ) (hε : 0 < ε)
     (n : ℕ) (hn : 4 ≤ n) :

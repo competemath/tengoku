@@ -45,28 +45,38 @@ namespace ArcCalculus
 noncomputable def unitArc (θ₁ θ₂ a b : ℝ) (t : ℝ) : ℂ :=
   exp (↑(θ₁ + (t - a) / (b - a) * (θ₂ - θ₁)) * I)
 
-/-- Points on the unit arc have norm 1. -/
+/-- Points on the unit arc have norm 1.
+@isnad1 id=eq.0h5v.s4.5e7c9522d4dd from=translated src=- shape=d5a8da39 vocab=68bd569d
+-/
 theorem unitArc_norm (θ₁ θ₂ a b t : ℝ) : ‖unitArc θ₁ θ₂ a b t‖ = 1 := by
   simp only [unitArc, Complex.norm_exp_ofReal_mul_I]
 
-/-- The arc starts at exp(iθ₁). -/
+/-- The arc starts at exp(iθ₁).
+@isnad1 id=eq.0h4v.s4.23222abbca50 from=translated src=- shape=18319254 vocab=a6671ca3
+-/
 theorem unitArc_at_start (θ₁ θ₂ a b : ℝ) :
     unitArc θ₁ θ₂ a b a = exp (↑θ₁ * I) := by
   simp only [unitArc, sub_self, zero_div, zero_mul, add_zero]
 
-/-- The arc ends at exp(iθ₂). -/
+/-- The arc ends at exp(iθ₂).
+@isnad1 id=eq.1h4v.s5.832400f4c968 from=translated src=- shape=3444db55 vocab=a6671ca3
+-/
 theorem unitArc_at_end (θ₁ θ₂ a b : ℝ) (hab : a ≠ b) :
     unitArc θ₁ θ₂ a b b = exp (↑θ₂ * I) := by
   simp only [unitArc]
   have hba : b - a ≠ 0 := sub_ne_zero.mpr (Ne.symm hab)
   simp_all
 
-/-- The unit arc is continuous. -/
+/-- The unit arc is continuous.
+@isnad1 id=continuo.0h4v.s5.50b35439948a from=translated src=- shape=fbf1ee82 vocab=d13ed8d9
+-/
 theorem unitArc_continuous (θ₁ θ₂ a b : ℝ) : Continuous (unitArc θ₁ θ₂ a b) := by
   unfold unitArc
   fun_prop
 
-/-- Key distance formula: squared norm of difference of two points on the unit circle. -/
+/-- Key distance formula: squared norm of difference of two points on the unit circle.
+@isnad1 id=eq.0h2v.s6.500495013396 from=translated src=- shape=207e4890 vocab=a2e7fd59
+-/
 theorem exp_sub_norm_sq (θ₁ θ₂ : ℝ) :
     ‖exp (↑θ₁ * I) - exp (↑θ₂ * I)‖ ^ 2 = 2 - 2 * Real.cos (θ₁ - θ₂) := by
   rw [← Complex.normSq_eq_norm_sq]
@@ -82,11 +92,15 @@ theorem exp_sub_norm_sq (θ₁ θ₂ : ℝ) :
   nlinarith [sq_nonneg (Real.cos θ₁ - Real.cos θ₂),
              sq_nonneg (Real.sin θ₁ - Real.sin θ₂)]
 
-/-- sin is positive on the open interval (0, π). -/
+/-- sin is positive on the open interval (0, π).
+@isnad1 id=lt.1h1v.s4.4d61d26d53ac from=translated src=- shape=5096659d vocab=569d8727
+-/
 theorem sin_pos_of_mem_Ioo_zero_pi {θ : ℝ} (hθ : θ ∈ Ioo 0 π) : 0 < Real.sin θ :=
   Real.sin_pos_of_pos_of_lt_pi hθ.1 hθ.2
 
-/-- |cos θ| ≤ 1/2 for θ ∈ [π/3, 2π/3]. -/
+/-- |cos θ| ≤ 1/2 for θ ∈ [π/3, 2π/3].
+@isnad1 id=le.1h1v.s6.80c05ee8694e from=translated src=- shape=bd10823d vocab=50ac21a1
+-/
 theorem abs_cos_le_half_of_mem_Icc {θ : ℝ} (hθ : θ ∈ Icc (π / 3) (2 * π / 3)) :
     |Real.cos θ| ≤ 1 / 2 := by
   have hpi := Real.pi_pos

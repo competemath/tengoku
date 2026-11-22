@@ -65,7 +65,9 @@ def thetaLB (N : Nat) (depth : Nat := 20) : Rat :=
 /-! ### Correctness theorems -/
 
 /-- The theta summand `log p` is bounded above by our computable bound for primes,
-and is zero (hence bounded) for non-primes. -/
+and is zero (hence bounded) for non-primes.
+@isnad1 id=le.0h2v.s4.948e67c135d1 from=translated src=- shape=dfdbf1a8 vocab=2321d9bc
+-/
 theorem log_prime_le_logPrimeUB (n : Nat) (depth : Nat) :
     (if n.Prime then Real.log n else 0 : Real) ≤ (logPrimeUB n depth : Real) := by
   by_cases hp : n.Prime
@@ -78,7 +80,9 @@ theorem log_prime_le_logPrimeUB (n : Nat) (depth : Nat) :
   case neg =>
     simp [logPrimeUB, hp]
 
-/-- The theta summand is bounded below by our computable bound. -/
+/-- The theta summand is bounded below by our computable bound.
+@isnad1 id=le.0h2v.s4.efd649851bc7 from=translated src=- shape=7c8af4f8 vocab=0fea2a81
+-/
 theorem logPrimeLB_le_log_prime (n : Nat) (depth : Nat) :
     (logPrimeLB n depth : Real) ≤ (if n.Prime then Real.log n else 0 : Real) := by
   by_cases hp : n.Prime
@@ -97,7 +101,9 @@ private theorem theta_eq_ite_sum (N : Nat) :
   unfold theta
   rw [Nat.floor_natCast, sum_filter]
 
-/-- `theta(N)` is bounded above by `thetaUB(N)`. -/
+/-- `theta(N)` is bounded above by `thetaUB(N)`.
+@isnad1 id=le.0h2v.s4.a0f9906de753 from=translated src=- shape=a2973c2c vocab=90478668
+-/
 theorem theta_le_thetaUB (N : Nat) (depth : Nat) :
     theta (N : Real) ≤ (thetaUB N depth : Real) := by
   rw [theta_eq_ite_sum]
@@ -105,7 +111,9 @@ theorem theta_le_thetaUB (N : Nat) (depth : Nat) :
   rw [Rat.cast_sum]
   exact Finset.sum_le_sum fun n _ => log_prime_le_logPrimeUB n depth
 
-/-- `theta(N)` is bounded below by `thetaLB(N)`. -/
+/-- `theta(N)` is bounded below by `thetaLB(N)`.
+@isnad1 id=le.0h2v.s4.a884916f7919 from=translated src=- shape=91b8b064 vocab=771b7363
+-/
 theorem thetaLB_le_theta (N : Nat) (depth : Nat) :
     (thetaLB N depth : Real) ≤ theta (N : Real) := by
   rw [theta_eq_ite_sum]
@@ -115,7 +123,9 @@ theorem thetaLB_le_theta (N : Nat) (depth : Nat) :
 
 /-! ### Decidable comparison infrastructure -/
 
-/-- If `thetaUB(N, depth) <= slope` computationally, then `theta(N) <= slope`. -/
+/-- If `thetaUB(N, depth) <= slope` computationally, then `theta(N) <= slope`.
+@isnad1 id=le.1h3v.s5.7f10f7a6ccd3 from=translated src=- shape=4b9dccf7 vocab=62c70db8
+-/
 theorem theta_le_of_thetaUB_le (N : Nat) (depth : Nat) (slope : Rat)
     (h : decide (thetaUB N depth <= slope) = true) :
     theta (N : Real) <= (slope : Real) := by
@@ -129,7 +139,9 @@ theorem theta_le_of_thetaUB_le (N : Nat) (depth : Nat) (slope : Rat)
 def checkThetaLeMulWith (N : Nat) (slope : Rat) (depth : Nat := 20) : Bool :=
   decide (thetaUB N depth <= slope * (N : Rat))
 
-/-- If `checkThetaLeMulWith N slope depth` holds, then `theta(N) <= slope * N`. -/
+/-- If `checkThetaLeMulWith N slope depth` holds, then `theta(N) <= slope * N`.
+@isnad1 id=le.1h3v.s5.174d83ea5ce6 from=translated src=- shape=77dc33a0 vocab=58fd4cfc
+-/
 theorem theta_le_of_checkThetaLeMulWith (N depth : Nat) (slope : Rat)
     (h : checkThetaLeMulWith N slope depth = true) :
     theta (N : Real) <= (slope : Real) * N := by
@@ -149,7 +161,9 @@ def checkThetaAbsError (N : Nat) (bound : Rat) (depth : Nat := 20) : Bool :=
   decide (thetaUB N depth - (N : Rat) <= bound) &&
   decide ((N : Rat) - thetaLB N depth <= bound)
 
-/-- If `checkThetaAbsError N bound depth` holds, then `|theta(N) - N| <= bound`. -/
+/-- If `checkThetaAbsError N bound depth` holds, then `|theta(N) - N| <= bound`.
+@isnad1 id=le.1h3v.s5.ea970a1a7833 from=translated src=- shape=50fc4a02 vocab=cd1f8afb
+-/
 theorem abs_theta_sub_le_of_checkThetaAbsError (N depth : Nat) (bound : Rat)
     (h : checkThetaAbsError N bound depth = true) :
     |theta (N : Real) - N| <= (bound : Real) := by
@@ -245,7 +259,9 @@ private theorem go_true_implies_checkThetaLeMulWith
   termination_by bound + 1 - n
 
 /-- If `checkAllThetaLeMulWith bound slope depth` returns true, then
-`checkThetaLeMulWith N slope depth` is true for all `N in {1, ..., bound}`. -/
+`checkThetaLeMulWith N slope depth` is true for all `N in {1, ..., bound}`.
+@isnad1 id=eq.3h4v.s5.33f6b8e0a8ff from=translated src=- shape=a8998067 vocab=c6c4d780
+-/
 theorem checkAllThetaLeMulWith_implies_checkThetaLeMulWith
     (bound : Nat) (slope : Rat) (depth : Nat)
     (h : checkAllThetaLeMulWith bound slope depth = true)
@@ -338,7 +354,9 @@ private theorem go_true_implies_checkThetaAbsError
   termination_by limit + 1 - n
 
 /-- If `checkAllThetaAbsError limit bound depth` returns true, then
-`checkThetaAbsError N bound depth` is true for all `N in {1, ..., limit}`. -/
+`checkThetaAbsError N bound depth` is true for all `N in {1, ..., limit}`.
+@isnad1 id=eq.3h4v.s5.161932646bb9 from=translated src=- shape=a8998067 vocab=ffbad06b
+-/
 theorem checkAllThetaAbsError_implies_checkThetaAbsError
     (limit : Nat) (bound : Rat) (depth : Nat)
     (h : checkAllThetaAbsError limit bound depth = true)
@@ -357,7 +375,9 @@ def checkThetaRelError (N : Nat) (bound : Rat) (depth : Nat := 20) : Bool :=
   decide (thetaUB N depth <= (1 + bound) * (N : Rat)) &&
   decide ((1 - bound) * (N : Rat) <= thetaLB N depth)
 
-/-- If `checkThetaRelError N bound depth` holds, then `|theta(N) - N| <= bound * N`. -/
+/-- If `checkThetaRelError N bound depth` holds, then `|theta(N) - N| <= bound * N`.
+@isnad1 id=le.1h3v.s5.374769d6ca12 from=translated src=- shape=1049a4b9 vocab=6c75c954
+-/
 theorem abs_theta_sub_le_mul_of_checkThetaRelError (N depth : Nat) (bound : Rat)
     (h : checkThetaRelError N bound depth = true) :
     |theta (N : Real) - N| <= (bound : Real) * N := by
@@ -466,7 +486,9 @@ private theorem go_true_implies_checkThetaRelError
   termination_by limit + 1 - n
 
 /-- If `checkAllThetaRelError start limit bound depth` returns true, then
-`checkThetaRelError N bound depth` holds for all `N in {start, ..., limit}`. -/
+`checkThetaRelError N bound depth` holds for all `N in {start, ..., limit}`.
+@isnad1 id=eq.4h5v.s5.8d53b469d01d from=translated src=- shape=e304d310 vocab=f28dba4c
+-/
 theorem checkAllThetaRelError_implies_checkThetaRelError
     (start limit : Nat) (bound : Rat) (depth : Nat)
     (h : checkAllThetaRelError start limit bound depth = true)
@@ -491,7 +513,9 @@ def checkThetaRelErrorReal (N : Nat) (bound : Rat) (depth : Nat := 20) : Bool :=
   decide ((1 - bound) * ((N : Rat) + 1) <= thetaLB N depth)
 
 /-- If `checkThetaRelErrorReal N bound depth` holds, then for all real `x ∈ [N, N+1)`,
-`|θ(x) - x| ≤ bound * x`. -/
+`|θ(x) - x| ≤ bound * x`.
+@isnad1 id=le.5h4v.s6.eb8abf96f1fd from=translated src=- shape=d9dbe4d0 vocab=007e61a8
+-/
 theorem abs_theta_sub_le_mul_of_checkThetaRelErrorReal (N depth : Nat) (bound : Rat)
     (hbound : 0 ≤ bound) (hbound1 : bound ≤ 1)
     (h : checkThetaRelErrorReal N bound depth = true)
@@ -626,7 +650,9 @@ private theorem go_true_implies_checkAllThetaRelErrorReal
 
 /-- If `checkAllThetaRelErrorReal start limit bound depth` returns true, then:
 - for `N ∈ {start, ..., limit-1}`: `checkThetaRelErrorReal N bound depth` holds
-- for `N = limit`: `checkThetaRelError N bound depth` holds -/
+- for `N = limit`: `checkThetaRelError N bound depth` holds
+@isnad1 id=eq.4h5v.s5.adf628129e3e from=translated src=- shape=e9105838 vocab=55eb1809
+-/
 theorem checkAllThetaRelErrorReal_implies
     (start limit : Nat) (bound : Rat) (depth : Nat)
     (h : checkAllThetaRelErrorReal start limit bound depth = true)
@@ -639,26 +665,34 @@ theorem checkAllThetaRelErrorReal_implies
 /-! ### Golden theorem aliases -/
 
 /-- Golden theorem: a successful `checkThetaLeMulWith` certificate proves
-`θ(N) ≤ slope * N`. -/
+`θ(N) ≤ slope * N`.
+@isnad1 id=le.1h3v.s5.174d83ea5ce6 from=translated src=- shape=77dc33a0 vocab=58fd4cfc
+-/
 theorem verify_theta_le_mul (N depth : Nat) (slope : Rat)
     (hcheck : checkThetaLeMulWith N slope depth = true) :
     theta (N : Real) ≤ (slope : Real) * N :=
   theta_le_of_checkThetaLeMulWith N depth slope hcheck
 
-/-- Golden theorem for absolute-error certificates at one natural input. -/
+/-- Golden theorem for absolute-error certificates at one natural input.
+@isnad1 id=le.1h3v.s5.ea970a1a7833 from=translated src=- shape=50fc4a02 vocab=cd1f8afb
+-/
 theorem verify_theta_abs_error (N depth : Nat) (bound : Rat)
     (hcheck : checkThetaAbsError N bound depth = true) :
     |theta (N : Real) - N| ≤ (bound : Real) :=
   abs_theta_sub_le_of_checkThetaAbsError N depth bound hcheck
 
-/-- Golden theorem for relative-error certificates at one natural input. -/
+/-- Golden theorem for relative-error certificates at one natural input.
+@isnad1 id=le.1h3v.s5.374769d6ca12 from=translated src=- shape=1049a4b9 vocab=6c75c954
+-/
 theorem verify_theta_rel_error (N depth : Nat) (bound : Rat)
     (hcheck : checkThetaRelError N bound depth = true) :
     |theta (N : Real) - N| ≤ (bound : Real) * N :=
   abs_theta_sub_le_mul_of_checkThetaRelError N depth bound hcheck
 
 /-- Golden theorem for strengthened real-variable relative-error certificates
-on a single unit interval `[N, N+1)`. -/
+on a single unit interval `[N, N+1)`.
+@isnad1 id=le.5h4v.s6.eb8abf96f1fd from=translated src=- shape=d9dbe4d0 vocab=007e61a8
+-/
 theorem verify_theta_rel_error_real (N depth : Nat) (bound : Rat)
     (hbound : 0 ≤ bound) (hbound1 : bound ≤ 1)
     (hcheck : checkThetaRelErrorReal N bound depth = true)
@@ -668,7 +702,9 @@ theorem verify_theta_rel_error_real (N depth : Nat) (bound : Rat)
     x hxlo hxhi
 
 /-- Golden theorem for the incremental upper-bound checker over all natural
-inputs up to `bound`. -/
+inputs up to `bound`.
+@isnad1 id=le.3h4v.s5.003824ca3fca from=translated src=- shape=7280af23 vocab=ab0c903d
+-/
 theorem verify_all_theta_le_mul
     (bound depth : Nat) (slope : Rat)
     (hcheck : checkAllThetaLeMulWith bound slope depth = true) :
@@ -679,7 +715,9 @@ theorem verify_all_theta_le_mul
     (checkAllThetaLeMulWith_implies_checkThetaLeMulWith bound slope depth hcheck N hN hNb)
 
 /-- Golden theorem for the incremental absolute-error checker over all natural
-inputs up to `limit`. -/
+inputs up to `limit`.
+@isnad1 id=le.3h4v.s5.ea0804fe2e49 from=translated src=- shape=a9200dd7 vocab=3fcce839
+-/
 theorem verify_all_theta_abs_error
     (limit depth : Nat) (bound : Rat)
     (hcheck : checkAllThetaAbsError limit bound depth = true) :
@@ -690,7 +728,9 @@ theorem verify_all_theta_abs_error
     (checkAllThetaAbsError_implies_checkThetaAbsError limit bound depth hcheck N hN hNb)
 
 /-- Golden theorem for the incremental relative-error checker over all natural
-inputs in `[start, limit]`. -/
+inputs in `[start, limit]`.
+@isnad1 id=le.4h5v.s6.837210199715 from=translated src=- shape=450d8024 vocab=6fa2bd09
+-/
 theorem verify_all_theta_rel_error
     (start limit depth : Nat) (bound : Rat)
     (hcheck : checkAllThetaRelError start limit bound depth = true) :

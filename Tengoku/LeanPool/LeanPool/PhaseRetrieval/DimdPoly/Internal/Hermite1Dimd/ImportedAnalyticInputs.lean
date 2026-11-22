@@ -270,7 +270,9 @@ Statement-only scaffold for the one-variable and abstract analytic inputs.
 Scaffolding notes: `ScaffoldingNotes/Imported/analytic_inputs.md`.
 -/
 
-/-- Imported one-variable basis orthonormality at fixed true-Hermite level. -/
+/-- Imported one-variable basis orthonormality at fixed true-Hermite level.
+@isnad1 id=eq.0h3v.s5.31ae02077465 from=translated src=- shape=bd741a0c vocab=b77789d0
+-/
 theorem oneVariableBasisOrthonormal
     (k m n : ℕ) :
     gaussianInner (d := 1) (oneDimLift (oneDimPhi k m)) (oneDimLift (oneDimPhi k n)) =
@@ -283,7 +285,9 @@ theorem oneVariableBasisOrthonormal
   rw [gaussianInner_oneDimPhi_eq_weightedInner]
   simpa using (HermitekLEAN.phi_orthonormal (k := k) (m := m) (n := n))
 
-/-- Imported one-variable localization estimate for `n ≥ 1`. -/
+/-- Imported one-variable localization estimate for `n ≥ 1`.
+@isnad1 id=ex.0h1v.s7.b3c46e3c2585 from=translated src=- shape=99d402d5 vocab=ddc55c59
+-/
 theorem oneVariableLocalization
     (k : ℕ) :
     ∃ C c : ℝ, 0 < C ∧ 0 < c ∧
@@ -346,7 +350,9 @@ private lemma zero_shift_exp_compare
       simpa [y] using hsq
     nlinarith [hc0, hsq']
 
-/-- Imported positive-frequency circle estimate with frozen constant `144`. -/
+/-- Imported positive-frequency circle estimate with frozen constant `144`.
+@isnad1 id=le.2h2v.s6.4587376c6917 from=translated src=- shape=1ac2ede1 vocab=0ab149a4
+-/
 theorem positiveFrequencyCircleEstimate
     (E : Finset ℕ) (b : ℕ → ℂ)
     (hpos : ∀ n ∈ E, 0 < n)
@@ -372,7 +378,9 @@ theorem positiveFrequencyCircleEstimate
         exact Nat.succ_le_of_lt (hpos n hn))
       b
 
-/-- Imported high-frequency band estimate with frozen constants `32` and `1343`. -/
+/-- Imported high-frequency band estimate with frozen constants `32` and `1343`.
+@isnad1 id=le.2h3v.s6.b405bdbfa7f9 from=translated src=- shape=5f716f17 vocab=d85bb8ad
+-/
 theorem highFrequencyBandEstimate
     (N L : ℕ) (c : Fin L → ℂ)
     (hgap : 1343 * L ^ 2 ≤ N ^ 2)
@@ -414,7 +422,9 @@ theorem highFrequencyBandEstimate
             simp [circleL2NormSq, rho, HermiteLEAN.circleRhoNormSq, HermiteLEAN.rho,
               sq_abs]
 
-/-- Project-owned upgrade of localization that now includes the zero mode. -/
+/-- Project-owned upgrade of localization that now includes the zero mode.
+@isnad1 id=ex.0h1v.s7.63a40957a77b from=translated src=- shape=1b4217bb vocab=ddc55c59
+-/
 theorem localizationIncludingZero
     (k : ℕ) :
     ∃ C c : ℝ, 0 < C ∧ 0 < c ∧
@@ -499,7 +509,9 @@ theorem localizationIncludingZero
               nlinarith [hcle,
                 sq_nonneg (max (|((j : ℕ) : ℝ) - Real.sqrt (n : ℝ)| - ((k + 4 : ℕ) : ℝ)) 0)]
 
-/-- Scalar-rescaled positive-frequency estimate for an arbitrary background `a`. -/
+/-- Scalar-rescaled positive-frequency estimate for an arbitrary background `a`.
+@isnad1 id=le.2h3v.s6.d8bbb0b740d9 from=translated src=- shape=0bfdc048 vocab=6f5bc0b9
+-/
 theorem scaledPositiveFrequencyCircleEstimate
     (a : ℂ) (E : Finset ℕ) (P : Circle → ℂ)
     (hpos : ∀ n ∈ E, 0 < n)
@@ -560,7 +572,9 @@ theorem scaledPositiveFrequencyCircleEstimate
       _ = 144 * E.card * circleL2NormSq (fun t => ‖a‖ * rho 1 (Q t)) := by rw [hconstR]
       _ = 144 * E.card * circleL2NormSq (fun t => rho a (a * Q t)) := by rw [hmulR]
 
-/-- Scalar-rescaled high-frequency estimate for an arbitrary background `a`. -/
+/-- Scalar-rescaled high-frequency estimate for an arbitrary background `a`.
+@isnad1 id=le.2h4v.s6.ef74fc53b744 from=translated src=- shape=f572f4cf vocab=8b208c0b
+-/
 theorem scaledHighFrequencyBandEstimate
     (a : ℂ) (N L : ℕ) (P : Circle → ℂ)
     (hgap : 1343 * L ^ 2 ≤ N ^ 2)
@@ -657,6 +671,9 @@ private lemma oneVariableAngularFactorization_termwise
             ((-1 : ℂ) ^ j * ((↑r : ℂ) ^ (n + k - j * 2) * ((↑√↑k.factorial)⁻¹ *
                 (↑√↑n.factorial)⁻¹))))) := by ring
 
+/--
+@isnad1 id=ex.0h2v.s7.d6c1a2d42111 from=translated src=- shape=4aa17427 vocab=842c060a
+-/
 theorem oneVariableAngularFactorization
     (k n : ℕ) :
     ∃ radial : Polynomial ℝ,

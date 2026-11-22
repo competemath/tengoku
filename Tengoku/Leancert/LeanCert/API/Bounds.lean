@@ -61,7 +61,9 @@ def checkLowerBoundBox (e : Expr) (box : List IntervalRat) (bound : ℚ)
       verified := decide (bound ≤ outcome.interval.lo)
     }
 
-/-- A successful box upper-bound check proves the requested semantic bound. -/
+/-- A successful box upper-bound check proves the requested semantic bound.
+@isnad1 id=le.3h6v.s5.d936859c5726 from=translated src=- shape=e766c855 vocab=a61f31b3
+-/
 theorem verifyUpperBoundBox {e : Expr} {box : List IntervalRat} {bound : ℚ}
     {options : EvalOptions} {outcome : BoundCheckOutcome}
     (hcheck : checkUpperBoundBox e box bound options = .ok outcome)
@@ -79,7 +81,9 @@ theorem verifyUpperBoundBox {e : Expr} {box : List IntervalRat} {bound : ℚ}
       have hmem := evalInterval_correct heval hrho
       exact le_trans hmem.2 (by exact_mod_cast hle)
 
-/-- A successful box lower-bound check proves the requested semantic bound. -/
+/-- A successful box lower-bound check proves the requested semantic bound.
+@isnad1 id=le.3h6v.s5.78f5796a175d from=translated src=- shape=558cbf49 vocab=6f6b2bb8
+-/
 theorem verifyLowerBoundBox {e : Expr} {box : List IntervalRat} {bound : ℚ}
     {options : EvalOptions} {outcome : BoundCheckOutcome}
     (hcheck : checkLowerBoundBox e box bound options = .ok outcome)
@@ -120,7 +124,9 @@ def checkBounds (e : Expr) (interval : IntervalRat) (lower upper : ℚ)
   checkLowerBound e interval lower precision &&
     checkUpperBound e interval upper precision
 
-/-- A successful public upper-bound certificate proves the semantic bound. -/
+/-- A successful public upper-bound certificate proves the semantic bound.
+@isnad1 id=le.2h5v.s5.107d09522781 from=translated src=- shape=901b5a6c vocab=b12d0690
+-/
 theorem verifyUpperBound {e : Expr} {interval : IntervalRat} {bound : ℚ}
     {precision : PrecisionOptions}
     (hcheck : checkUpperBound e interval bound precision = true) :
@@ -132,7 +138,9 @@ theorem verifyUpperBound {e : Expr} {interval : IntervalRat} {bound : ℚ}
       precision.dyadicExponent precision.taylorDepth hcheck.1 hcheck.2
   rwa [← IntervalRat.mem_iff_mem_Icc]
 
-/-- A successful public lower-bound certificate proves the semantic bound. -/
+/-- A successful public lower-bound certificate proves the semantic bound.
+@isnad1 id=le.2h5v.s5.57eb7972353f from=translated src=- shape=4da2a9d8 vocab=029ed938
+-/
 theorem verifyLowerBound {e : Expr} {interval : IntervalRat} {bound : ℚ}
     {precision : PrecisionOptions}
     (hcheck : checkLowerBound e interval bound precision = true) :
@@ -144,7 +152,9 @@ theorem verifyLowerBound {e : Expr} {interval : IntervalRat} {bound : ℚ}
       precision.dyadicExponent precision.taylorDepth hcheck.1 hcheck.2
   rwa [← IntervalRat.mem_iff_mem_Icc]
 
-/-- A successful two-sided certificate proves both semantic bounds. -/
+/-- A successful two-sided certificate proves both semantic bounds.
+@isnad1 id=and.2h6v.s5.3d943409f38e from=translated src=- shape=e9a9b10c vocab=848b49ef
+-/
 theorem verifyBounds {e : Expr} {interval : IntervalRat} {lower upper : ℚ}
     {precision : PrecisionOptions}
     (hcheck : checkBounds e interval lower upper precision = true) :

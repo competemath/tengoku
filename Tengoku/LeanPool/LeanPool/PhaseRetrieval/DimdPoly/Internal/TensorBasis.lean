@@ -35,12 +35,18 @@ Statement-first scaffold for the frozen coefficient model and realization maps
 for the fixed-dimension polyanalytic Fock basis.
 -/
 
+/--
+@isnad1 id=eq.1h4v.s5.b0de5c947822 from=translated src=- shape=1effb38c vocab=9d6464af
+-/
 theorem coeff_ofPkappa
     {d : Nat} (hd : 0 < d) (kappa : MultiIndex d) (F : Pkappa d kappa) (alpha : Idx d) :
     coeffSkappa (ofPkappa kappa F) alpha = coeffPkappa F alpha := by
   let _ := hd
   simp [coeffSkappa, coeffPkappa, ofPkappa]
 
+/--
+@isnad1 id=eq.1h2v.s5.e9d66e6682c8 from=translated src=- shape=efd7005e vocab=9e350345
+-/
 theorem evalPkappa_zero
     {d : Nat} (hd : 0 < d) (kappa : MultiIndex d) :
     evalPkappa kappa (0 : Pkappa d kappa) = 0 := by
@@ -48,6 +54,9 @@ theorem evalPkappa_zero
   ext z
   simp [evalPkappa]
 
+/--
+@isnad1 id=eq.1h4v.s6.bee6df7eb79c from=translated src=- shape=f0789ff8 vocab=02d20050
+-/
 theorem evalPkappa_add
     {d : Nat} (hd : 0 < d) (kappa : MultiIndex d)
     (F G : Pkappa d kappa) :
@@ -56,6 +65,9 @@ theorem evalPkappa_add
   ext z
   simp [evalPkappa, Finsupp.sum_add_index, add_mul]
 
+/--
+@isnad1 id=eq.1h4v.s6.a911d7593145 from=translated src=- shape=3a64e375 vocab=d1915214
+-/
 theorem evalPkappa_smul
     {d : Nat} (hd : 0 < d) (kappa : MultiIndex d)
     (c : ℂ) (F : Pkappa d kappa) :
@@ -72,6 +84,9 @@ theorem evalPkappa_smul
     rw [Finsupp.smul_apply]
     simp [mul_left_comm, mul_comm]
 
+/--
+@isnad1 id=eq.1h4v.s6.e3ba13eeba01 from=translated src=- shape=f0789ff8 vocab=b57035b8
+-/
 theorem evalPkappa_sub
     {d : Nat} (hd : 0 < d) (kappa : MultiIndex d)
     (F G : Pkappa d kappa) :
@@ -84,6 +99,9 @@ theorem evalPkappa_sub
   ext z
   simp [sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.1h4v.s5.db5bda540e8c from=translated src=- shape=62cc8f5f vocab=f7624258
+-/
 theorem projFinset_idempotent
     {d : Nat} (hd : 0 < d) {kappa : MultiIndex d}
     (E : Finset (Idx d)) (F : Pkappa d kappa) :
@@ -94,6 +112,9 @@ theorem projFinset_idempotent
   · simp [projFinset, h]
   · simp [projFinset, h]
 
+/--
+@isnad1 id=eq.1h4v.s6.082999425a96 from=translated src=- shape=80191cc3 vocab=a86d030c
+-/
 theorem exact_truncate_coeff_energy
     {d : Nat} (hd : 0 < d) {kappa : MultiIndex d}
     (E : Finset (Idx d)) (F : Skappa d kappa) :
@@ -211,6 +232,9 @@ private lemma oneDimPhi_phaseLaw
           rw [hexp, hright]
           ring_nf
 
+/--
+@isnad1 id=eq.0h6v.s6.96a2313d868d from=translated src=- shape=4cc3b40f vocab=97650b1b
+-/
 theorem Phi_rotate_one_exp
     {d : Nat} (kappa alpha : MultiIndex d) (q0 : Fin d) (t : ℝ) (z : Cd d) :
     Phi kappa alpha (Function.update z q0 (Complex.exp (Complex.I * t) * z q0)) =
@@ -246,6 +270,9 @@ private lemma fourier_mk_eq_exp
   push_cast
   field_simp
 
+/--
+@isnad1 id=eq.0h6v.s9.a792d69affa8 from=translated src=- shape=0eed7f6f vocab=ade521f1
+-/
 theorem Phi_rotateCoord_circle_phase
     {d : Nat} (kappa alpha : MultiIndex d) (q0 : Fin d)
     (x : Circle) (z : Cd d) :
@@ -277,6 +304,9 @@ theorem Phi_rotateCoord_circle_phase
         ring_nf
       exact hphase
 
+/--
+@isnad1 id=eq.0h6v.s8.1372b74c705e from=translated src=- shape=72fde710 vocab=5e93d366
+-/
 theorem evalPkappa_rotateCoord_circle_phase_sum
     {d : Nat} (kappa : MultiIndex d) (q0 : Fin d)
     (F : Pkappa d kappa) (x : Circle) (z : Cd d) :
@@ -309,6 +339,9 @@ theorem evalPkappa_rotateCoord_circle_phase_sum
           rw [hchar]
           ring_nf
 
+/--
+@isnad1 id=eq.0h3v.s4.dc84f0cfaf3c from=translated src=- shape=374e1d40 vocab=6f6c6811
+-/
 theorem toFun_ofPkappa
     {d : Nat} (kappa : MultiIndex d) (F : Pkappa d kappa) :
     toFun kappa (ofPkappa kappa F) = evalPkappa kappa F := by
@@ -324,6 +357,9 @@ theorem toFun_ofPkappa
   intro alpha halpha
   simp [coeffSkappa, ofPkappa]
 
+/--
+@isnad1 id=summable.1h4v.s6.8da5584065d4 from=translated src=- shape=5c5866a4 vocab=2b7bcc9d
+-/
 theorem summable_skappa_eval_mul_of_phi_sq
     {d : Nat} (kappa : MultiIndex d) (U : Skappa d kappa) (z : Cd d)
     (hPhi : Summable (fun alpha : Idx d => ‖Phi kappa alpha z‖ ^ 2)) :
@@ -345,6 +381,9 @@ theorem summable_skappa_eval_mul_of_phi_sq
     nlinarith [sq_nonneg (‖coeffSkappa U alpha‖ - ‖Phi kappa alpha z‖)]
   exact le_trans hmul hsq
 
+/--
+@isnad1 id=le.1h3v.s5.cd97d6562406 from=translated src=- shape=3e4373f3 vocab=9ee5e8e1
+-/
 theorem box_subset_box
     {d : Nat} {J K : MultiIndex d} (hJK : J ≤ K) :
     box J ⊆ box K := by
@@ -355,6 +394,9 @@ theorem box_subset_box
   rw [Finset.mem_range] at hq ⊢
   exact Nat.lt_succ_of_le (le_trans (Nat.lt_succ_iff.mp hq) (hJK q))
 
+/--
+@isnad1 id=ex.0h2v.s4.40548f5ac919 from=translated src=- shape=50964bb7 vocab=c61b337f
+-/
 theorem finite_subset_box
     {d : Nat} (E : Finset (Idx d)) :
     ∃ J : MultiIndex d, E ⊆ box J := by
@@ -365,6 +407,9 @@ theorem finite_subset_box
   rw [Finset.mem_range, Nat.lt_succ_iff]
   exact Finset.le_sup (s := E) (f := fun beta : Idx d => beta q) halpha
 
+/--
+@isnad1 id=tendsto.0h1v.s5.a3b68ac1a843 from=translated src=- shape=4ddf9fa2 vocab=391ceba9
+-/
 theorem tendsto_box_atTop
     {d : Nat} :
     Filter.Tendsto (fun J : MultiIndex d => box J) Filter.atTop Filter.atTop := by
@@ -423,12 +468,18 @@ def L2BoxPartialSumsTendTo
     Filter.atTop (nhds F) ∧
   IsTensorL2Rep F (toFun kappa U)
 
+/--
+@isnad1 id=continuo.0h3v.s5.d36ae7c4d92c from=translated src=- shape=d35f8eae vocab=98ee9cde
+-/
 theorem continuous_Phi
     {d : Nat} (kappa alpha : MultiIndex d) :
     Continuous (Phi kappa alpha) := by
   unfold Phi phi1D complexHermite
   continuity
 
+/--
+@isnad1 id=continuo.0h3v.s5.80733a6afc8f from=translated src=- shape=5bec2a81 vocab=05051386
+-/
 theorem continuous_evalPkappa
     {d : Nat} (kappa : MultiIndex d) (F : Pkappa d kappa) :
     Continuous (evalPkappa kappa F) := by
@@ -437,6 +488,9 @@ theorem continuous_evalPkappa
   intro alpha halpha
   exact continuous_const.mul (continuous_Phi kappa alpha)
 
+/--
+@isnad1 id=eq.1h4v.s6.26230f74888b from=translated src=- shape=3f6cfaa3 vocab=b739d10c
+-/
 theorem evalPkappa_truncateFinset
     {d : Nat} (hd : 0 < d) (kappa : MultiIndex d) (U : Skappa d kappa)
     (E : Finset (Idx d)) :
@@ -468,6 +522,9 @@ private def phiMajorant (k n : Nat) (R : ℝ) : ℝ :=
   ((2 : ℝ) ^ k * (n + 1 : ℝ) ^ k * R ^ k * R ^ n) /
     Real.sqrt ((Nat.factorial k : ℝ) * (Nat.factorial n : ℝ))
 
+/--
+@isnad1 id=continuo.1h4v.s6.6fc66433ea70 from=translated src=- shape=369f7bf1 vocab=ec4a9550
+-/
 theorem partialSum_continuous
     {d : Nat} (hd : 0 < d) (kappa : MultiIndex d) (U : Skappa d kappa)
     (J : MultiIndex d) :
@@ -478,6 +535,9 @@ theorem partialSum_continuous
   intro alpha halpha
   exact continuous_const.mul (continuous_Phi kappa alpha)
 
+/--
+@isnad1 id=continuo.2h4v.s6.eab39e2da643 from=translated src=- shape=e8955780 vocab=80df7419
+-/
 theorem continuous_limit_of_locallyUniform_boxPartialSums
     {d : Nat} (hd : 0 < d) (kappa : MultiIndex d) (U : Skappa d kappa)
     {f : Cd d -> ℂ}
@@ -487,6 +547,9 @@ theorem continuous_limit_of_locallyUniform_boxPartialSums
   exact hlim.continuous <| Filter.Frequently.of_forall fun J =>
     partialSum_continuous hd kappa U J
 
+/--
+@isnad1 id=eq.2h4v.s8.aea1e38d7111 from=translated src=- shape=436c3db5 vocab=b4d3e0ce
+-/
 theorem toL2_eq_of_toFun_eq
     {d : Nat} (hd : 0 < d) {kappa : MultiIndex d} {U V : Skappa d kappa}
     (h : ∀ z, toFun kappa U z = toFun kappa V z) :
@@ -496,6 +559,9 @@ theorem toL2_eq_of_toFun_eq
   unfold toL2
   rw [hfun]
 
+/--
+@isnad1 id=eq.1h4v.s5.b5750fcd21fb from=translated src=- shape=3f995efc vocab=65b9c5d4
+-/
 theorem skappa_ext_of_coeff_eq
     {d : Nat} {kappa : MultiIndex d} {U V : Skappa d kappa}
     (hcoeff : ∀ alpha, coeffSkappa U alpha = coeffSkappa V alpha) :
@@ -507,6 +573,9 @@ theorem skappa_ext_of_coeff_eq
   funext alpha
   exact hcoeff alpha
 
+/--
+@isnad1 id=eq.0h4v.s5.9601c0961dea from=translated src=- shape=58819626 vocab=e63d126e
+-/
 theorem toFun_smul_complex
     {d : Nat} (kappa : MultiIndex d) (w : ℂ) (U : Skappa d kappa) :
     toFun kappa (w • U) = fun z => w * toFun kappa U z := by

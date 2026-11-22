@@ -18,6 +18,9 @@ namespace EulerPacketTailBound
 
 open Real
 
+/--
+@isnad1 id=le.2h2v.s6.3fee913b32be from=translated src=- shape=2bca18e9 vocab=f1b8075e
+-/
 theorem grade_ratio_le_decay (k B : ℝ) (hk : 0 < k) (hB : B ≤ k ^ (1 / 100 : ℝ)) :
     B/k ≤ k^(-99/100 : ℝ) := by
   calc
@@ -26,6 +29,9 @@ theorem grade_ratio_le_decay (k B : ℝ) (hk : 0 < k) (hB : B ≤ k ^ (1 / 100 :
       rw [← Real.rpow_sub_one hk.ne']
       norm_num
 
+/--
+@isnad1 id=le.2h2v.s6.e45d3714203d from=translated src=- shape=3e958b0a vocab=57a6a273
+-/
 theorem grade_ratio_le_half (k B : ℝ) (hk : 4 ≤ k) (hB : B ≤ k ^ (1 / 100 : ℝ)) :
     B/k ≤ 1/2 := by
   have hk0 : 0 < k := by linarith
@@ -40,6 +46,9 @@ theorem grade_ratio_le_half (k B : ℝ) (hk : 4 ≤ k) (hB : B ≤ k ^ (1 / 100 
     _ ≤ 1/2 := by
       simpa only [one_div] using one_div_le_one_div_of_le (by norm_num : (0 : ℝ)<2) hsqrt
 
+/--
+@isnad1 id=le.7h5v.s8.7e32404fa808 from=translated src=- shape=ecdeb571 vocab=e6866297
+-/
 theorem normalized_tail_exponential (k B C X : ℝ) (hk : 4 ≤ k) (hB0 : 0 ≤ B)
     (hC0 : 0 ≤ C) (hB : B ≤ k ^ (1 / 100 : ℝ)) (hC : C ≤ k ^ (1 / 100 : ℝ))
     (N : ℕ) (hX : 6 ≤ X) (hN : X - 1 ≤ (N : ℝ)) :

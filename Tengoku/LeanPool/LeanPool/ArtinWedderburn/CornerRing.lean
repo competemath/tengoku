@@ -42,6 +42,9 @@ variable {e : R}
 def CornerRingSet (e : R) : Set R := bothMul e e
 
 -- an element x of R is in the corner ring if and only if x = e * x * e
+/--
+@isnad1 id=iff.1h3v.s6.0bd1950d1b5c from=translated src=- shape=054c6292 vocab=703ff033
+-/
 theorem corner_ring_set_mem {x : R} (idem_e : IsIdempotentElem e) :
     x ∈ CornerRingSet e ↔ x = e * x * e := by
   constructor
@@ -52,6 +55,9 @@ theorem corner_ring_set_mem {x : R} (idem_e : IsIdempotentElem e) :
     exact ⟨x, hx⟩
 
 -- an element is in the set of corner ring if it can be written as e * y * e for some y
+/--
+@isnad1 id=ex.1h3v.s5.8526f161bc2c from=translated src=- shape=db178cb0 vocab=413fc854
+-/
 theorem x_in_corner_x_eq_e_y_e {x : R} (h : x ∈ CornerRingSet e) :
     ∃ (y : R), x = e * y * e := h
 
@@ -76,8 +82,14 @@ def CornerSubringNonUnital (e : R) : NonUnitalSubring R where
     noncomm_ring
 
 -- definition unfolding theorems
+/--
+@isnad1 id=eq.0h2v.s6.73bbf4c48337 from=translated src=- shape=c1bd6e6d vocab=895f8fe4
+-/
 theorem corner_ring_carrier : (CornerSubringNonUnital e).carrier = bothMul e e := rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.166da4518baa from=translated src=- shape=83fd6492 vocab=0ec7083d
+-/
 theorem el_in_corner_ring (x : R) : x ∈ bothMul e e ↔ x ∈ CornerSubringNonUnital e := Iff.rfl
 
 -- reducing corner subring equality to set equality
@@ -93,6 +105,9 @@ def CornerSubring (idem_e : IsIdempotentElem e) : NonUnitalSubring R :=
   have : IsIdempotentElem e := idem_e
   CornerSubringNonUnital e
 
+/--
+@isnad1 id=eq.2h2v.s5.30ec16168cb9 from=translated src=- shape=acf215f2 vocab=73378457
+-/
 theorem CornerSubringEq (idem_e idem_e' : IsIdempotentElem e) :
     CornerSubring idem_e = CornerSubring idem_e' := rfl
 
@@ -101,6 +116,9 @@ variable (idem_e : IsIdempotentElem e)
 variable {x : R}
 
 -- an element is in the corner subring if it stays the same when it is multiplied by e on both sides
+/--
+@isnad1 id=iff.1h3v.s6.5826ef718552 from=translated src=- shape=b1de78f5 vocab=45c05b53
+-/
 theorem subring_mem_idem : x ∈ CornerSubring idem_e ↔ x = e * x * e := by
   rw [← corner_ring_set_mem]
   · rfl
@@ -108,6 +126,9 @@ theorem subring_mem_idem : x ∈ CornerSubring idem_e ↔ x = e * x * e := by
 
 -- if x and y are in the corner ring, then so is x * w * y
 -- note that e does not have to be an idempotent element
+/--
+@isnad1 id=mem.2h5v.s7.ac071f3c2158 from=translated src=- shape=3b4c6747 vocab=e94ed58a
+-/
 theorem corner_ring_both_mul_mem (x w y : R) (hx : x ∈ CornerSubringNonUnital e)
     (hy : y ∈ CornerSubringNonUnital e) : (x * w * y) ∈ CornerSubringNonUnital e := by
   have ⟨u, hx⟩ := hx
@@ -117,11 +138,17 @@ theorem corner_ring_both_mul_mem (x w y : R) (hx : x ∈ CornerSubringNonUnital 
   noncomm_ring
 
 -- e is the left/right unit in the subring
+/--
+@isnad1 id=eq.2h3v.s6.7d3994193187 from=translated src=- shape=d3b52b21 vocab=4c9a4c8e
+-/
 theorem left_unit_mul (idem_e : IsIdempotentElem e) (h : x ∈ CornerSubringNonUnital e) :
     e * x = x := by
   rw [(corner_ring_set_mem idem_e).1 h]
   rw [← mul_assoc, ← mul_assoc, idem_e]
 
+/--
+@isnad1 id=eq.2h3v.s6.77bea679ad89 from=translated src=- shape=c5e6f77e vocab=4c9a4c8e
+-/
 theorem right_unit_mul (idem_e : IsIdempotentElem e) (h : x ∈ CornerSubringNonUnital e) :
     x * e = x := by
   rw [(corner_ring_set_mem idem_e).1 h]
@@ -133,6 +160,9 @@ open NonUnitalSubringClass
 abbrev CornerSubringIsNonUNitalRing := toNonUnitalRing (CornerSubringNonUnital e)
 
 -- inclusion homomorphism of the corner subring
+/--
+@isnad1 id=eq.0h4v.s8.9da2d998c531 from=translated src=- shape=fb96b7a3 vocab=b51d2264
+-/
 theorem corner_ring_hom (a b : CornerSubringNonUnital e) :
     (a * b : CornerSubringNonUnital e) = (a : R) * (b : R) := rfl
 
@@ -140,10 +170,16 @@ theorem corner_ring_hom (a b : CornerSubringNonUnital e) :
 instance CornerRingOne (idem_e : IsIdempotentElem e) : One (CornerSubring idem_e) :=
   ⟨e, by rw [subring_mem_idem idem_e]; rw [idem_e, idem_e]⟩
 
+/--
+@isnad1 id=eq.1h2v.s7.8582125be337 from=translated src=- shape=9b7f20e1 vocab=b4000f6c
+-/
 theorem corner_ring_one (idem_e : IsIdempotentElem e) :
     (1 : CornerSubring idem_e) = e := rfl
 
 -- e is the left/right unit but e is now written as 1
+/--
+@isnad1 id=eq.1h3v.s8.74c41f25c923 from=translated src=- shape=46f601af vocab=6b9e725a
+-/
 theorem is_left_unit : ∀ (x : CornerSubring idem_e), 1 * x = x := by
   rw [Subtype.forall]
   intro a hx
@@ -151,6 +187,9 @@ theorem is_left_unit : ∀ (x : CornerSubring idem_e), 1 * x = x := by
   simp only [NonUnitalSubring.val_mul]
   rw [corner_ring_one, left_unit_mul idem_e hx]
 
+/--
+@isnad1 id=eq.1h3v.s8.7eefa9efb669 from=translated src=- shape=c0122506 vocab=6b9e725a
+-/
 theorem is_right_unit : ∀ (x : CornerSubring idem_e), x * 1 = x := by
   rw [Subtype.forall]
   intro a hx
@@ -159,11 +198,17 @@ theorem is_right_unit : ∀ (x : CornerSubring idem_e), x * 1 = x := by
   rw [corner_ring_one, right_unit_mul idem_e hx]
 
 -- e is in the subring belonging to it
+/--
+@isnad1 id=mem.1h2v.s5.094d5f646be0 from=translated src=- shape=cf6f2a06 vocab=87d8d6dd
+-/
 lemma e_in_corner_ring : e ∈ (CornerSubring idem_e) := by
   rw [subring_mem_idem]
   rw [IsIdempotentElem.eq idem_e, IsIdempotentElem.eq idem_e]
 
 -- the underlying set of the corner subring defined by 1 is the whole ring
+/--
+@isnad1 id=eq.0h1v.s5.c6208bee4af0 from=translated src=- shape=d063f6e5 vocab=8a187026
+-/
 theorem both_mul_one_one_eq_R : bothMul (1 : R) 1 = ⊤ := by
   ext x
   constructor
@@ -194,11 +239,17 @@ def isoCornerOne :
   exact both_mul_one_one_eq_R
 
 -- a nonzero element in the corner subring is nonzero in R
+/--
+@isnad1 id=iff.1h3v.s7.530279891549 from=translated src=- shape=6fc267be vocab=b4000f6c
+-/
 lemma nonzero (x : CornerSubring idem_e) :
     (x : CornerSubring idem_e) ≠ 0 ↔ x.val ≠ 0 := by
   simp_all
 
 -- nonzero elements produces a non-zero corner subring
+/--
+@isnad1 id=nontrivi.2h2v.s6.10c4442d4c23 from=translated src=- shape=acb01e48 vocab=27369e1d
+-/
 lemma e_nonzero_corner_nontrivial (R : Type*) [Ring R] {e : R} (idem_e : IsIdempotentElem e)
     (e_nonzero : e ≠ 0) : Nontrivial (CornerSubring idem_e) := by
   refine ⟨⟨⟨e, e_in_corner_ring idem_e⟩, 0, ?_⟩⟩
@@ -207,6 +258,9 @@ lemma e_nonzero_corner_nontrivial (R : Type*) [Ring R] {e : R} (idem_e : IsIdemp
 lemma eq_iff_val (x y z : CornerSubring idem_e) :
     (x + y).val = z.val ↔ x.val + y.val = z.val := Eq.congr_right rfl
 
+/--
+@isnad1 id=mem.1h3v.s6.6208c910b3f5 from=translated src=- shape=b2265f0b vocab=45c05b53
+-/
 lemma e_x_e_in_corner : ∀ (x : R), e * x * e ∈ CornerSubring idem_e := by
   intro x
   rw [subring_mem_idem, eq_comm]
@@ -232,6 +286,9 @@ def coercionToERe (e f : R) (idem_e : IsIdempotentElem e) (idem_f : IsIdempotent
   exact h
 
 -- If eRe is a division ring then e is nonzero
+/--
+@isnad1 id=ne.2h2v.s6.1a6f3627a6c2 from=translated src=- shape=691faa44 vocab=66d34109
+-/
 lemma corner_ring_division_e_nonzero
     (idem_e : IsIdempotentElem e) (heRe : IsDivisionRing (CornerSubring idem_e)) : e ≠ 0 := by
   by_contra he
@@ -295,6 +352,9 @@ def idealLift (I : Ideal (CornerSubring idem_e)) : Ideal R := Ideal.span (I.carr
 instance : CoeOut (Ideal (CornerSubring idem_e)) (Ideal R) := { coe := idealLift idem_e }
 
 -- I ⊆ J -> RI ⊆ RJ
+/--
+@isnad1 id=le.2h4v.s9.0b07c6b8f136 from=translated src=- shape=892c096f vocab=e7a263c7
+-/
 theorem lift_monotonicity (I J : Ideal (CornerSubring idem_e)) :
     I ≤ J → (idealLift idem_e I) ≤ (idealLift idem_e J) := by
   intro I_leq_J
@@ -332,6 +392,9 @@ def idealPush (idem_e : IsIdempotentElem e) (J : Ideal R) : Ideal (CornerSubring
     noncomm_ring
 
 -- pushing is an additive homomorphism
+/--
+@isnad1 id=eq.1h4v.s8.62f7ce128945 from=translated src=- shape=9d1618a4 vocab=6682faf2
+-/
 theorem add_el_push_eq_add (x y : R) :
     elPush idem_e x + elPush idem_e y = elPush idem_e (x + y) := by
   simp only [elPush]
@@ -339,6 +402,9 @@ theorem add_el_push_eq_add (x y : R) :
   simp only [AddMemClass.mk_add_mk]
 
 -- multiplication by scalar keeps pushed element in ideal
+/--
+@isnad1 id=mem.2h5v.s10.01dbacb7ddc6 from=translated src=- shape=2e26b555 vocab=443b2d70
+-/
 lemma el_push_smul_in_I (a y : R) (I : Ideal (CornerSubring idem_e)) :
     y ∈ (I.carrier : Set R) → elPush idem_e (a • y) ∈ I := by
   intro hy
@@ -366,6 +432,9 @@ lemma el_push_smul_in_I (a y : R) (I : Ideal (CornerSubring idem_e)) :
   exact h'
 
 -- if x in the lift of I then its push is in I
+/--
+@isnad1 id=mem.2h4v.s9.31cb0a8bbfbc from=translated src=- shape=adc6a06d vocab=d37246ad
+-/
 theorem ideal_push_pull_inclusion (I : Ideal (CornerSubring idem_e)) (x : R) :
     (x ∈ idealLift idem_e I) → (elPush idem_e x) ∈ I := by
   intro hx
@@ -382,6 +451,9 @@ theorem ideal_push_pull_inclusion (I : Ideal (CornerSubring idem_e)) (x : R) :
   | smul_mem a y hy => exact el_push_smul_in_I idem_e a y I hy
 
 -- pushing and pulling an ideal brings us back to the same ideal
+/--
+@isnad1 id=eq.1h3v.s7.507cf29b0d1e from=translated src=- shape=a91ebdbd vocab=e33c1502
+-/
 theorem push_pull (idem_e : IsIdempotentElem e) (I : Ideal (CornerSubring idem_e)) :
     idealPush idem_e (idealLift idem_e I) = I := by
   ext x
@@ -404,6 +476,9 @@ theorem push_pull (idem_e : IsIdempotentElem e) (I : Ideal (CornerSubring idem_e
     symm
     exact SetLike.coe_eq_coe.mp hx'
 
+/--
+@isnad1 id=lt.2h4v.s9.1aa7f92e4ed3 from=translated src=- shape=892c096f vocab=168ddc7a
+-/
 theorem lift_strict_monotonicity (I J : Ideal (CornerSubring idem_e)) :
     I < J → (idealLift idem_e I) < (idealLift idem_e J) := by
   intro I_leq_J
@@ -419,6 +494,9 @@ theorem lift_strict_monotonicity (I J : Ideal (CornerSubring idem_e)) :
   exact lt_of_le_of_ne lift_leq lift_neq
 
 -- if the lift of an ideal is accesible then so is the ideal
+/--
+@isnad1 id=acc.3h3v.s9.79f29a4a039c from=translated src=- shape=f67fe21b vocab=a51f3213
+-/
 theorem lift_acc_then_ideal_acc (idem_e : IsIdempotentElem e) (J : Ideal R)
     (h_J_is_lift : ∃ I3 : Ideal (CornerSubring idem_e), J = idealLift idem_e I3)
     (h_acc_J : Acc (fun x y => x < y) J) :
@@ -437,6 +515,9 @@ theorem lift_acc_then_ideal_acc (idem_e : IsIdempotentElem e) (J : Ideal R)
 
 -- Lemma 2.10
 -- a) If R is artinian, then the corner ring is artinian
+/--
+@isnad1 id=mem.1h5v.s7.83ad3eb56381 from=translated src=- shape=618053fe vocab=0484b596
+-/
 theorem corner_ring_both_mul_mem' (x y : CornerSubring idem_e) (w : R) :
     x * w * y ∈ CornerSubring idem_e := by
   apply corner_ring_both_mul_mem
@@ -444,6 +525,9 @@ theorem corner_ring_both_mul_mem' (x y : CornerSubring idem_e) (w : R) :
   · exact y.property
 
 -- if a and b in eRe, then a (e R e) b = a R b as sets
+/--
+@isnad1 id=eq.1h4v.s8.047342f078e6 from=translated src=- shape=60f688b1 vocab=dd4bc55f
+-/
 theorem both_mul_lift (x y : CornerSubring idem_e) :
     (bothMul (x : CornerSubring idem_e) y) = bothMul (x : R) (y : R) := by
   ext a
@@ -468,6 +552,9 @@ theorem both_mul_lift (x y : CornerSubring idem_e) :
     · simp only [NonUnitalSubring.val_mul, ha]
 
 -- b) If R is a prime ring, then the corner ring is prime
+/--
+@isnad1 id=isprimer.2h2v.s5.7d532b181ce8 from=translated src=- shape=60789af2 vocab=08dc1cc4
+-/
 theorem corner_ring_prime (hRP : IsPrimeRing R) : IsPrimeRing (CornerSubring idem_e) := by
   rw [prime_ring_equiv]
   intro a b h
@@ -478,6 +565,9 @@ theorem corner_ring_prime (hRP : IsPrimeRing R) : IsPrimeRing (CornerSubring ide
   simp_all
 
 -- if a cornersubring is a division subring then it is a division ring on its own
+/--
+@isnad1 id=isdivisi.2h2v.s6.fe2311533d5b from=translated src=- shape=46cd4c79 vocab=f51f075f
+-/
 theorem div_subring_to_div_ring (e : R) (idem_e : IsIdempotentElem e)
     (h : IsDivisionSubring (CornerSubringNonUnital e) e) :
     IsDivisionRing (CornerSubring idem_e) := by

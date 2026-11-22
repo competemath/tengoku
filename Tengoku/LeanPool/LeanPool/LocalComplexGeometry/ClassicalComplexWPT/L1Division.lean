@@ -59,6 +59,9 @@ noncomputable def embedFun (e : I ↪ J) (f : L1Coeff I) (j : J) : ℂ := by
   classical
   exact if h : ∃ i, e i = j then f h.choose else 0
 
+/--
+@isnad1 id=eq.0h5v.s8.d64db541173e from=translated src=- shape=2122905e vocab=6e2c1be1
+-/
 @[simp] lemma embedFun_apply_self (e : I ↪ J) (f : L1Coeff I) (i : I) :
     embedFun e f (e i) = f i := by
   classical
@@ -67,6 +70,9 @@ noncomputable def embedFun (e : I ↪ J) (f : L1Coeff I) (j : J) : ℂ := by
   have hk : e h.choose = e i := h.choose_spec
   rw [e.injective hk]
 
+/--
+@isnad1 id=eq.1h5v.s7.5cb3a82ce0dc from=translated src=- shape=41ba992e vocab=4974584c
+-/
 lemma embedFun_apply_of_not_mem (e : I ↪ J) (f : L1Coeff I) (j : J)
     (hj : j ∉ Set.range e) : embedFun e f j = 0 := by
   classical
@@ -82,9 +88,15 @@ def embed (e : I ↪ J) (f : L1Coeff I) : L1Coeff J :=
     · simpa [Function.comp_def] using L1Coeff.summable_norm f
     · simp [embedFun_apply_of_not_mem e f j hj]⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.22003848c9e4 from=translated src=- shape=2c724e0d vocab=247df782
+-/
 @[simp] lemma embed_apply_self (e : I ↪ J) (f : L1Coeff I) (i : I) :
     embed e f (e i) = f i := embedFun_apply_self e f i
 
+/--
+@isnad1 id=eq.1h5v.s8.2343b41492f7 from=translated src=- shape=aacbb242 vocab=7124883a
+-/
 lemma embed_apply_of_not_mem (e : I ↪ J) (f : L1Coeff I) (j : J)
     (hj : j ∉ Set.range e) : embed e f j = 0 := embedFun_apply_of_not_mem e f j hj
 
@@ -106,10 +118,16 @@ def lowIndex (d : ℕ) : A × ℕ ↪ A × ℕ where
 def lowShift (d : ℕ) (f : L1Coeff (A × ℕ)) : L1Coeff (A × ℕ) :=
   L1Coeff.embed (lowIndex (A := A) d) f
 
+/--
+@isnad1 id=eq.0h5v.s9.04d82b5b9429 from=translated src=- shape=f4521a61 vocab=cc4d2f9e
+-/
 @[simp] lemma lowShift_apply_add (d : ℕ) (f : L1Coeff (A × ℕ)) (a : A) (n : ℕ) :
     lowShift d f (a, n + d) = f (a,n) := by
   exact L1Coeff.embed_apply_self (lowIndex (A := A) d) f (a,n)
 
+/--
+@isnad1 id=eq.1h5v.s8.98c6f3e08bc1 from=translated src=- shape=5b871792 vocab=075076ca
+-/
 lemma lowShift_apply_of_lt (d : ℕ) (f : L1Coeff (A × ℕ)) (a : A) {n : ℕ}
     (hn : n < d) : lowShift d f (a,n) = 0 := by
   apply L1Coeff.embed_apply_of_not_mem
@@ -118,6 +136,9 @@ lemma lowShift_apply_of_lt (d : ℕ) (f : L1Coeff (A × ℕ)) (a : A) {n : ℕ}
   have h' := congrArg Prod.snd h
   omega
 
+/--
+@isnad1 id=eq.1h5v.s9.1c1c9a2bf303 from=translated src=- shape=7b290f4b vocab=d6b342e3
+-/
 lemma lowShift_apply_of_le (d : ℕ) (f : L1Coeff (A × ℕ)) (a : A) {n : ℕ}
     (hn : d ≤ n) : lowShift d f (a,n) = f (a, n - d) := by
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le hn
@@ -125,6 +146,9 @@ lemma lowShift_apply_of_le (d : ℕ) (f : L1Coeff (A × ℕ)) (a : A) {n : ℕ}
   rw [hsub]
   simpa only [Nat.add_comm] using lowShift_apply_add d f a m
 
+/--
+@isnad1 id=eq.0h3v.s8.e1c40d78d7ba from=translated src=- shape=022ff77e vocab=6551848b
+-/
 @[simp] lemma highShift_lowShift (d : ℕ) (f : L1Coeff (A × ℕ)) :
     highShift d (lowShift d f) = f := by
   apply lp.ext
@@ -132,6 +156,9 @@ lemma lowShift_apply_of_le (d : ℕ) (f : L1Coeff (A × ℕ)) (a : A) {n : ℕ}
   rcases x with ⟨a,n⟩
   simp
 
+/--
+@isnad1 id=eq.0h3v.s9.7bb2fd7ff2a8 from=translated src=- shape=48eb6e5f vocab=4d357b16
+-/
 @[simp] lemma highShift_lowCut (d : ℕ) (f : L1Coeff (A × ℕ)) :
     highShift d (lowCut d f) = 0 := by
   apply lp.ext
@@ -141,6 +168,9 @@ lemma lowShift_apply_of_le (d : ℕ) (f : L1Coeff (A × ℕ)) (a : A) {n : ℕ}
   rw [lowCut_apply_of_le d f a (by omega)]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.0f5f1db88419 from=translated src=- shape=e02d5d44 vocab=474913a3
+-/
 theorem lowShift_highShift_add_lowCut (d : ℕ) (f : L1Coeff (A × ℕ)) :
     lowShift d (highShift d f) + lowCut d f = f := by
   apply lp.ext
@@ -159,6 +189,9 @@ section Division
 
 variable {A : Type*} [AddCommMonoid A] [Finset.HasAntidiagonal A]
 
+/--
+@isnad1 id=eq.0h3v.s8.eef0c48d5119 from=translated src=- shape=9136e1dd vocab=211c6533
+-/
 lemma convolution_comm (f g : L1Coeff A) : convolution f g = convolution g f := by
   apply lp.ext
   funext n
@@ -173,10 +206,16 @@ lemma convolution_comm (f g : L1Coeff A) : convolution f g = convolution g f := 
   · intro kl hkl
     simp [mul_comm]
 
+/--
+@isnad1 id=eq.0h4v.s10.2027ef300f89 from=translated src=- shape=455bfb2e vocab=243c14a6
+-/
 lemma convolution_add_right (f g₁ g₂ : L1Coeff A) :
     convolution f (g₁ + g₂) = convolution f g₁ + convolution f g₂ := by
   rw [convolution_comm f, convolution_add_left, convolution_comm g₁, convolution_comm g₂]
 
+/--
+@isnad1 id=eq.0h4v.s12.b0459f79aebc from=translated src=- shape=9beaaf2a vocab=e19702fd
+-/
 lemma convolution_smul_right (c : ℂ) (f g : L1Coeff A) :
     convolution f (c • g) = c • convolution f g := by
   rw [convolution_comm f, convolution_smul_left, convolution_comm g]
@@ -201,6 +240,9 @@ def convolutionRightMap :
         intro p
         simpa using norm_convolutionRight_le p)
 
+/--
+@isnad1 id=eq.0h2v.s14.c270e892eff9 from=translated src=- shape=c24ce4d4 vocab=ba3c6b86
+-/
 @[simp] lemma convolutionRightMap_apply (p : L1Coeff A) :
     convolutionRightMap p = convolutionRight p := rfl
 
@@ -209,9 +251,15 @@ def divisionPerturbation (d : ℕ) (p : L1Coeff (A × ℕ)) :
     L1Coeff (A × ℕ) →L[ℂ] L1Coeff (A × ℕ) :=
   highShiftCLM d ∘L convolutionRight p
 
+/--
+@isnad1 id=eq.0h4v.s12.2b9f4d26b4e3 from=translated src=- shape=88242813 vocab=240d07c8
+-/
 @[simp] lemma divisionPerturbation_apply (d : ℕ) (p q : L1Coeff (A × ℕ)) :
     divisionPerturbation d p q = highShift d (convolution q p) := rfl
 
+/--
+@isnad1 id=le.0h3v.s11.643ceaa03056 from=translated src=- shape=ecbaf343 vocab=38a5fefc
+-/
 theorem norm_divisionPerturbation_le (d : ℕ) (p : L1Coeff (A × ℕ)) :
     ‖divisionPerturbation d p‖ ≤ ‖p‖ := by
   calc
@@ -244,6 +292,9 @@ def divisionPerturbationMap (d : ℕ) :
         intro p
         simpa using norm_divisionPerturbation_le (A := A) d p)
 
+/--
+@isnad1 id=eq.0h3v.s14.4d8275b6f56b from=translated src=- shape=f6becc1b vocab=975184c8
+-/
 @[simp] lemma divisionPerturbationMap_apply (d : ℕ) (p : L1Coeff (A × ℕ)) :
     divisionPerturbationMap d p = divisionPerturbation d p := rfl
 
@@ -268,6 +319,9 @@ noncomputable def divisionQuotientGlobal (d : ℕ)
     (pf : L1Coeff (A × ℕ) × L1Coeff (A × ℕ)) : L1Coeff (A × ℕ) :=
   Ring.inverse (1 + divisionPerturbation d pf.1) (highShift d pf.2)
 
+/--
+@isnad1 id=analytic.1h5v.s11.0762e6550f94 from=translated src=- shape=07bb387c vocab=cba7a298
+-/
 theorem analyticAt_inverseOneAdd_apply
     {X E : Type*} [NormedAddCommGroup X] [NormedSpace ℂ X]
     [NormedAddCommGroup E] [NormedSpace ℂ E] [CompleteSpace E]
@@ -302,11 +356,17 @@ def divisionRhsInput (d : ℕ) :
   highShiftCLM d ∘L
     ContinuousLinearMap.snd ℂ (L1Coeff (A × ℕ)) (L1Coeff (A × ℕ))
 
+/--
+@isnad1 id=eq.0h3v.s15.1a5fac798310 from=translated src=- shape=b3730d64 vocab=331d3d78
+-/
 @[simp] lemma divisionOperatorInput_apply (d : ℕ)
     (pf : L1Coeff (A × ℕ) × L1Coeff (A × ℕ)) :
     divisionOperatorInput d pf = divisionPerturbation d pf.1 := rfl
 
 omit [AddCommMonoid A] [Finset.HasAntidiagonal A] in
+/--
+@isnad1 id=eq.0h3v.s13.87d46a5e0f1c from=translated src=- shape=4529e06e vocab=a9d60237
+-/
 @[simp] lemma divisionRhsInput_apply (d : ℕ)
     (pf : L1Coeff (A × ℕ) × L1Coeff (A × ℕ)) :
     divisionRhsInput d pf = highShift d pf.2 := rfl
@@ -316,6 +376,9 @@ noncomputable def divisionRemainder (d : ℕ) (p : L1Coeff (A × ℕ)) (hp : ‖
     (f : L1Coeff (A × ℕ)) : L1Coeff (A × ℕ) :=
   lowCut d (f - convolution (divisionQuotient d p hp f) p)
 
+/--
+@isnad1 id=eq.1h4v.s10.4c9384c5753c from=translated src=- shape=ad828e95 vocab=53a8cbcc
+-/
 @[simp] theorem highShift_divisionRemainder (d : ℕ) (p : L1Coeff (A × ℕ))
     (hp : ‖p‖ < 1) (f : L1Coeff (A × ℕ)) :
     highShift d (divisionRemainder d p hp f) = 0 := by
@@ -334,9 +397,15 @@ def seqHighShift (d : ℕ) (f : L1Coeff ℕ) : L1Coeff ℕ :=
     simpa [Function.comp_def] using
       (L1Coeff.summable_norm f).comp_injective (fun _ _ h ↦ Nat.add_right_cancel h)⟩
 
+/--
+@isnad1 id=eq.0h3v.s8.2af2823002e7 from=translated src=- shape=f34d62de vocab=4a04bb31
+-/
 @[simp] lemma seqHighShift_apply (d : ℕ) (f : L1Coeff ℕ) (n : ℕ) :
     seqHighShift d f n = f (n + d) := rfl
 
+/--
+@isnad1 id=le.0h2v.s8.bc8410ff4bee from=translated src=- shape=49c75246 vocab=25008e2b
+-/
 theorem norm_seqHighShift_le (d : ℕ) (f : L1Coeff ℕ) : ‖seqHighShift d f‖ ≤ ‖f‖ := by
   rw [L1Coeff.norm_eq_tsum_norm, L1Coeff.norm_eq_tsum_norm]
   apply (L1Coeff.summable_norm (seqHighShift d f)).tsum_le_tsum_of_inj (fun n ↦ n + d)
@@ -347,12 +416,18 @@ theorem norm_seqHighShift_le (d : ℕ) (f : L1Coeff ℕ) : ‖seqHighShift d f�
     exact le_rfl
   · exact L1Coeff.summable_norm f
 
+/--
+@isnad1 id=eq.0h3v.s10.06a38908138b from=translated src=- shape=8db5fda9 vocab=ea5c547d
+-/
 lemma seqHighShift_add (d : ℕ) (f g : L1Coeff ℕ) :
     seqHighShift d (f + g) = seqHighShift d f + seqHighShift d g := by
   apply lp.ext
   funext n
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s12.1ab4616a8c7f from=translated src=- shape=0bc9060d vocab=428dcb49
+-/
 lemma seqHighShift_smul (d : ℕ) (c : ℂ) (f : L1Coeff ℕ) :
     seqHighShift d (c • f) = c • seqHighShift d f := by
   apply lp.ext
@@ -378,9 +453,15 @@ def seqLowIndex (d : ℕ) : ℕ ↪ ℕ where
 def seqLowShift (d : ℕ) (f : L1Coeff ℕ) : L1Coeff ℕ :=
   L1Coeff.embed (seqLowIndex d) f
 
+/--
+@isnad1 id=eq.0h3v.s8.1bdc85e5e761 from=translated src=- shape=5f2748c5 vocab=a6eeaa60
+-/
 @[simp] lemma seqLowShift_apply_add (d : ℕ) (f : L1Coeff ℕ) (n : ℕ) :
     seqLowShift d f (n + d) = f n := L1Coeff.embed_apply_self (seqLowIndex d) f n
 
+/--
+@isnad1 id=eq.1h3v.s8.561463901d39 from=translated src=- shape=57b6032a vocab=7dee3e3f
+-/
 lemma seqLowShift_apply_of_lt (d : ℕ) (f : L1Coeff ℕ) {n : ℕ} (hn : n < d) :
     seqLowShift d f n = 0 := by
   apply L1Coeff.embed_apply_of_not_mem
@@ -388,6 +469,9 @@ lemma seqLowShift_apply_of_lt (d : ℕ) (f : L1Coeff ℕ) {n : ℕ} (hn : n < d)
   change m + d = n at hm
   omega
 
+/--
+@isnad1 id=eq.1h3v.s8.59a1e93b41b8 from=translated src=- shape=f9f32c39 vocab=28d7b7da
+-/
 lemma seqLowShift_apply_of_le (d : ℕ) (f : L1Coeff ℕ) {n : ℕ} (hn : d ≤ n) :
     seqLowShift d f n = f (n - d) := by
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le hn
@@ -402,12 +486,21 @@ def seqLowCut (d : ℕ) (f : L1Coeff ℕ) : L1Coeff ℕ :=
     simpa using (L1Coeff.summable_norm f).of_nonneg_of_le
       (fun _ ↦ norm_nonneg _) (fun n ↦ by split_ifs <;> simp)⟩
 
+/--
+@isnad1 id=eq.1h3v.s8.ff58afc772e2 from=translated src=- shape=bf2a8428 vocab=d1adb026
+-/
 @[simp] lemma seqLowCut_apply_of_lt (d : ℕ) (f : L1Coeff ℕ) {n : ℕ} (hn : n < d) :
     seqLowCut d f n = f n := by simp [seqLowCut, hn]
 
+/--
+@isnad1 id=eq.1h3v.s8.3e46bb7ba25c from=translated src=- shape=e47949d9 vocab=ee7c842a
+-/
 @[simp] lemma seqLowCut_apply_of_le (d : ℕ) (f : L1Coeff ℕ) {n : ℕ} (hn : d ≤ n) :
     seqLowCut d f n = 0 := by simp [seqLowCut, Nat.not_lt.mpr hn]
 
+/--
+@isnad1 id=le.0h2v.s8.b84fc1825534 from=translated src=- shape=49c75246 vocab=e20bab18
+-/
 theorem norm_seqLowCut_le (d : ℕ) (f : L1Coeff ℕ) : ‖seqLowCut d f‖ ≤ ‖f‖ := by
   rw [L1Coeff.norm_eq_tsum_norm, L1Coeff.norm_eq_tsum_norm]
   apply (L1Coeff.summable_norm (seqLowCut d f)).tsum_le_tsum
@@ -416,6 +509,9 @@ theorem norm_seqLowCut_le (d : ℕ) (f : L1Coeff ℕ) : ‖seqLowCut d f‖ ≤ 
     split_ifs <;> simp
   · exact L1Coeff.summable_norm f
 
+/--
+@isnad1 id=eq.0h3v.s10.1488ebff4d2c from=translated src=- shape=8db5fda9 vocab=2c0eab31
+-/
 lemma seqLowCut_add (d : ℕ) (f g : L1Coeff ℕ) :
     seqLowCut d (f + g) = seqLowCut d f + seqLowCut d g := by
   apply lp.ext
@@ -423,6 +519,9 @@ lemma seqLowCut_add (d : ℕ) (f g : L1Coeff ℕ) :
   simp only [seqLowCut, lp.coeFn_add, Pi.add_apply]
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s12.2f9f332d6641 from=translated src=- shape=0bc9060d vocab=e8ce87bc
+-/
 lemma seqLowCut_smul (d : ℕ) (c : ℂ) (f : L1Coeff ℕ) :
     seqLowCut d (c • f) = c • seqLowCut d f := by
   apply lp.ext
@@ -440,12 +539,18 @@ def seqLowCutCLM (d : ℕ) : L1Coeff ℕ →L[ℂ] L1Coeff ℕ :=
       intro f
       simpa using norm_seqLowCut_le d f)
 
+/--
+@isnad1 id=eq.0h2v.s7.f7e1fabb8e4e from=translated src=- shape=8ab8ea21 vocab=11f502b8
+-/
 @[simp] theorem seqHighShift_seqLowShift (d : ℕ) (f : L1Coeff ℕ) :
     seqHighShift d (seqLowShift d f) = f := by
   apply lp.ext
   funext n
   simp
 
+/--
+@isnad1 id=eq.0h2v.s8.974ca3f98f3f from=translated src=- shape=184b6f35 vocab=b94ff639
+-/
 @[simp] theorem seqHighShift_seqLowCut (d : ℕ) (f : L1Coeff ℕ) :
     seqHighShift d (seqLowCut d f) = 0 := by
   apply lp.ext
@@ -453,6 +558,9 @@ def seqLowCutCLM (d : ℕ) : L1Coeff ℕ →L[ℂ] L1Coeff ℕ :=
   rw [seqHighShift_apply, seqLowCut_apply_of_le d f (by omega)]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.454a0d476028 from=translated src=- shape=5efd544a vocab=6b9b7b67
+-/
 theorem seqLowShift_highShift_add_lowCut (d : ℕ) (f : L1Coeff ℕ) :
     seqLowShift d (seqHighShift d f) + seqLowCut d f = f := by
   apply lp.ext
@@ -468,9 +576,15 @@ theorem seqLowShift_highShift_add_lowCut (d : ℕ) (f : L1Coeff ℕ) :
 def seqDivisionPerturbation (d : ℕ) (p : L1Coeff ℕ) : L1Coeff ℕ →L[ℂ] L1Coeff ℕ :=
   seqHighShiftCLM d ∘L convolutionRight p
 
+/--
+@isnad1 id=eq.0h3v.s11.dfa7323d3d03 from=translated src=- shape=285df935 vocab=44db683a
+-/
 @[simp] lemma seqDivisionPerturbation_apply (d : ℕ) (p q : L1Coeff ℕ) :
     seqDivisionPerturbation d p q = seqHighShift d (convolution q p) := rfl
 
+/--
+@isnad1 id=le.0h2v.s11.397b5b666957 from=translated src=- shape=65e6aeb8 vocab=2f19c6ea
+-/
 theorem norm_seqDivisionPerturbation_le (d : ℕ) (p : L1Coeff ℕ) :
     ‖seqDivisionPerturbation d p‖ ≤ ‖p‖ := by
   calc
@@ -509,6 +623,9 @@ def seqDivisionPerturbationMap (d : ℕ) :
       intro p
       simpa using norm_seqDivisionPerturbation_le d p)
 
+/--
+@isnad1 id=eq.0h2v.s14.3c533a2cd3ca from=translated src=- shape=a63ca851 vocab=24fefbdd
+-/
 @[simp] lemma seqDivisionPerturbationMap_apply (d : ℕ) (p : L1Coeff ℕ) :
     seqDivisionPerturbationMap d p = seqDivisionPerturbation d p := rfl
 
@@ -523,6 +640,9 @@ noncomputable def seqDivisionInverse (d : ℕ) (p : L1Coeff ℕ) (hp : ‖p‖ <
   ↑((Units.oneSub (-(seqDivisionPerturbation d p))
     (by exact norm_neg_seqDivisionPerturbation_lt_one d p hp))⁻¹)
 
+/--
+@isnad1 id=eq.1h3v.s12.1dbb9c1b26e3 from=translated src=- shape=6cf3f12a vocab=c7072652
+-/
 theorem seqDivisionInverse_right (d : ℕ) (p : L1Coeff ℕ) (hp : ‖p‖ < 1)
     (b : L1Coeff ℕ) :
     seqDivisionInverse d p hp b +
@@ -534,6 +654,9 @@ theorem seqDivisionInverse_right (d : ℕ) (p : L1Coeff ℕ) (hp : ‖p‖ < 1)
   simpa [seqDivisionInverse, T, hT, seqDivisionPerturbation_apply,
     sub_eq_add_neg] using h
 
+/--
+@isnad1 id=eq.1h3v.s12.b46f5736a036 from=translated src=- shape=765f98d6 vocab=c7072652
+-/
 theorem seqDivisionInverse_left (d : ℕ) (p : L1Coeff ℕ) (hp : ‖p‖ < 1)
     (q : L1Coeff ℕ) :
     seqDivisionInverse d p hp (q + seqHighShift d (convolution q p)) = q := by
@@ -565,9 +688,15 @@ def seqDivisionRhsInput (d : ℕ) :
     (L1Coeff ℕ × L1Coeff ℕ) →L[ℂ] L1Coeff ℕ :=
   seqHighShiftCLM d ∘L ContinuousLinearMap.snd ℂ (L1Coeff ℕ) (L1Coeff ℕ)
 
+/--
+@isnad1 id=eq.0h2v.s14.f83b9d5cd0ce from=translated src=- shape=d188cf35 vocab=8bc346b6
+-/
 @[simp] lemma seqDivisionOperatorInput_apply (d : ℕ) (pf : L1Coeff ℕ × L1Coeff ℕ) :
     seqDivisionOperatorInput d pf = seqDivisionPerturbation d pf.1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s12.98e9a9d3ff85 from=translated src=- shape=2254daed vocab=2887ee70
+-/
 @[simp] lemma seqDivisionRhsInput_apply (d : ℕ) (pf : L1Coeff ℕ × L1Coeff ℕ) :
     seqDivisionRhsInput d pf = seqHighShift d pf.2 := rfl
 
@@ -576,6 +705,9 @@ noncomputable def seqDivisionQuotientGlobal (d : ℕ) (pf : L1Coeff ℕ × L1Coe
     L1Coeff ℕ :=
   Ring.inverse (1 + seqDivisionOperatorInput d pf) (seqDivisionRhsInput d pf)
 
+/--
+@isnad1 id=eq.1h3v.s9.bdab8d117de5 from=translated src=- shape=f9ccfa67 vocab=fce2a2a6
+-/
 theorem seqDivisionQuotientGlobal_eq (d : ℕ) (p f : L1Coeff ℕ) (hp : ‖p‖ < 1) :
     seqDivisionQuotientGlobal d (p,f) = seqDivisionQuotient d p hp f := by
   let K := seqDivisionPerturbation d p
@@ -587,6 +719,9 @@ theorem seqDivisionQuotientGlobal_eq (d : ℕ) (p f : L1Coeff ℕ) (hp : ‖p‖
     (↑((Units.oneSub (-K) hK)⁻¹) : L1Coeff ℕ →L[ℂ] L1Coeff ℕ) (seqHighShift d f)
   rw [hinv]
 
+/--
+@isnad1 id=analytic.1h2v.s10.0ba4daef1243 from=translated src=- shape=3bf8ad3b vocab=ca76ad53
+-/
 theorem analyticAt_seqDivisionQuotientGlobal (d : ℕ)
     (pf : L1Coeff ℕ × L1Coeff ℕ) (hp : ‖pf.1‖ < 1) :
     AnalyticAt ℂ (seqDivisionQuotientGlobal d) pf := by
@@ -600,11 +735,17 @@ noncomputable def seqDivisionRemainderGlobal (d : ℕ) (pf : L1Coeff ℕ × L1Co
     L1Coeff ℕ :=
   seqLowCut d (pf.2 - convolution (seqDivisionQuotientGlobal d pf) pf.1)
 
+/--
+@isnad1 id=eq.1h3v.s9.92b4d68d4801 from=translated src=- shape=f9ccfa67 vocab=b665dfe9
+-/
 theorem seqDivisionRemainderGlobal_eq (d : ℕ) (p f : L1Coeff ℕ) (hp : ‖p‖ < 1) :
     seqDivisionRemainderGlobal d (p,f) = seqDivisionRemainder d p hp f := by
   simp only [seqDivisionRemainderGlobal, seqDivisionRemainder]
   rw [seqDivisionQuotientGlobal_eq d p f hp]
 
+/--
+@isnad1 id=analytic.1h2v.s10.7c560bdc514c from=translated src=- shape=3bf8ad3b vocab=218a8d47
+-/
 theorem analyticAt_seqDivisionRemainderGlobal (d : ℕ)
     (pf : L1Coeff ℕ × L1Coeff ℕ) (hp : ‖pf.1‖ < 1) :
     AnalyticAt ℂ (seqDivisionRemainderGlobal d) pf := by
@@ -627,6 +768,9 @@ theorem analyticAt_seqDivisionRemainderGlobal (d : ℕ)
   have hcomp := AnalyticAt.comp (x := pf) hout hdiff
   simpa [seqLowCutCLM, Function.comp_def] using hcomp
 
+/--
+@isnad1 id=eq.1h3v.s9.bebe0f1b3459 from=translated src=- shape=2cfe8496 vocab=78205108
+-/
 theorem seqDivisionQuotient_equation (d : ℕ) (p : L1Coeff ℕ) (hp : ‖p‖ < 1)
     (f : L1Coeff ℕ) :
     seqDivisionQuotient d p hp f +
@@ -634,11 +778,17 @@ theorem seqDivisionQuotient_equation (d : ℕ) (p : L1Coeff ℕ) (hp : ‖p‖ <
         seqHighShift d f := by
   exact seqDivisionInverse_right d p hp (seqHighShift d f)
 
+/--
+@isnad1 id=eq.1h3v.s9.d0b07157f6bf from=translated src=- shape=a7a5f7c9 vocab=29b3f7e7
+-/
 @[simp] theorem seqHighShift_divisionRemainder (d : ℕ) (p : L1Coeff ℕ)
     (hp : ‖p‖ < 1) (f : L1Coeff ℕ) :
     seqHighShift d (seqDivisionRemainder d p hp f) = 0 :=
   seqHighShift_seqLowCut d _
 
+/--
+@isnad1 id=eq.1h3v.s10.6cc3b498d516 from=translated src=- shape=93b77a70 vocab=e49a39cc
+-/
 theorem seqDivision_factorization (d : ℕ) (p : L1Coeff ℕ) (hp : ‖p‖ < 1)
     (f : L1Coeff ℕ) :
     f = seqLowShift d (seqDivisionQuotient d p hp f) +
@@ -660,6 +810,9 @@ theorem seqDivision_factorization (d : ℕ) (p : L1Coeff ℕ) (hp : ‖p‖ < 1)
       congrArg (fun x ↦ x + convolution q p) hdec.symm
     _ = seqLowShift d q + convolution q p + seqLowCut d (f - convolution q p) := by abel
 
+/--
+@isnad1 id=eq.3h5v.s11.1e8d62750156 from=translated src=- shape=23be22c9 vocab=471e6894
+-/
 theorem seqDivisionQuotient_unique (d : ℕ) (p : L1Coeff ℕ) (hp : ‖p‖ < 1)
     (f q r : L1Coeff ℕ)
     (hfac : f = seqLowShift d q + convolution q p + r)
@@ -673,7 +826,9 @@ theorem seqDivisionQuotient_unique (d : ℕ) (p : L1Coeff ℕ) (hp : ‖p‖ < 1
   rw [← heq]
   exact (seqDivisionInverse_left d p hp q).symm
 
-/-- The direct Nat-indexed division theorem with a unique quotient/remainder pair. -/
+/-- The direct Nat-indexed division theorem with a unique quotient/remainder pair.
+@isnad1 id=existsun.1h3v.s11.6cd8e7c4949c from=translated src=- shape=7ed16677 vocab=88419c67
+-/
 theorem seqDivision_existsUnique (d : ℕ) (p : L1Coeff ℕ) (hp : ‖p‖ < 1)
     (f : L1Coeff ℕ) :
     ∃! qr : L1Coeff ℕ × L1Coeff ℕ,
@@ -693,10 +848,16 @@ theorem seqDivision_existsUnique (d : ℕ) (p : L1Coeff ℕ) (hp : ‖p‖ < 1)
   subst r'
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s9.88dbcc61ff93 from=translated src=- shape=8be0037c vocab=33bbb64d
+-/
 theorem seqDivisionRemainder_apply_of_le (d : ℕ) (p : L1Coeff ℕ)
     (hp : ‖p‖ < 1) (f : L1Coeff ℕ) {n : ℕ} (hn : d ≤ n) :
     seqDivisionRemainder d p hp f n = 0 := seqLowCut_apply_of_le d _ hn
 
+/--
+@isnad1 id=eq.1h3v.s11.adf5c0948614 from=translated src=- shape=c9cc0027 vocab=d1909ad0
+-/
 theorem seqDivisionGlobal_factorization (d : ℕ) (p f : L1Coeff ℕ) (hp : ‖p‖ < 1) :
     f = seqLowShift d (seqDivisionQuotientGlobal d (p,f)) +
       convolution (seqDivisionQuotientGlobal d (p,f)) p +
@@ -704,6 +865,9 @@ theorem seqDivisionGlobal_factorization (d : ℕ) (p f : L1Coeff ℕ) (hp : ‖p
   rw [seqDivisionQuotientGlobal_eq d p f hp, seqDivisionRemainderGlobal_eq d p f hp]
   exact seqDivision_factorization d p hp f
 
+/--
+@isnad1 id=eq.1h3v.s9.a3357d2a4e3c from=translated src=- shape=ddd85cd1 vocab=628e2455
+-/
 @[simp] theorem seqHighShift_divisionRemainderGlobal (d : ℕ) (p f : L1Coeff ℕ)
     (hp : ‖p‖ < 1) :
     seqHighShift d (seqDivisionRemainderGlobal d (p,f)) = 0 := by

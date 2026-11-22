@@ -52,14 +52,22 @@ def refineLevel : Nat → Cell → List Cell
   | depth + 1, cell =>
       (CertifiedCellDomain.children cell).flatMap (refineLevel depth)
 
+/--
+@isnad1 id=eq.0h3v.s4.e62af3434b63 from=translated src=- shape=48dedfad vocab=4d43b77d
+-/
 @[simp] theorem refineLevel_zero (cell : Cell) :
     refineLevel (Point := Point) 0 cell = [cell] := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.c0dfdd04d6d2 from=translated src=- shape=5c880ed1 vocab=79c26a91
+-/
 @[simp] theorem refineLevel_succ (depth : Nat) (cell : Cell) :
     refineLevel (Point := Point) (depth + 1) cell =
       (CertifiedCellDomain.children cell).flatMap (refineLevel depth) := rfl
 
-/-- Every descendant in a complete level remains semantically inside its root. -/
+/-- Every descendant in a complete level remains semantically inside its root.
+@isnad1 id=contains.2h6v.s5.7c5b3ad59511 from=translated src=- shape=fcf10ce8 vocab=fb94d2bb
+-/
 theorem contains_of_mem_refineLevel {depth : Nat} {root child : Cell} {x : Point}
     (hchild : child ∈ refineLevel (Point := Point) depth root)
     (hx : CertifiedCellDomain.contains child x) :
@@ -74,7 +82,9 @@ theorem contains_of_mem_refineLevel {depth : Nat} {root child : Cell} {x : Point
       obtain ⟨parent, hparent, hchild⟩ := hchild
       exact CertifiedCellDomain.childSubset hparent (ih hchild)
 
-/-- Complete finite refinement preserves coverage at every depth. -/
+/-- Complete finite refinement preserves coverage at every depth.
+@isnad1 id=ex.1h5v.s5.8e381ef5d36b from=translated src=- shape=fb61134f vocab=fb94d2bb
+-/
 theorem exists_mem_refineLevel {depth : Nat} {root : Cell} {x : Point}
     (hx : CertifiedCellDomain.contains root x) :
     ∃ child, child ∈ refineLevel (Point := Point) depth root ∧

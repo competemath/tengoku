@@ -290,6 +290,9 @@ def pressureNewtonianPotential (g : Vec3 → ℝ) (x : Vec3) : ℝ :=
 def pressureNewtonianDerivativePotential (i : Fin 3) (g : Vec3 → ℝ) (x : Vec3) : ℝ :=
   ∫ y, CKN.spatialDeriv newtonianKernel i (x-y) * g y
 
+/--
+@isnad1 id=locallyi.2h1v.s7.2ae33c81d24a from=translated src=- shape=8ad7883c vocab=616d4f7b
+-/
 theorem pressureNewtonianPotential_locallyIntegrable {g : Vec3 → ℝ}
     (hg : Integrable g volume) (hgc : HasCompactSupport g) :
     LocallyIntegrable (pressureNewtonianPotential g) volume := by
@@ -297,6 +300,9 @@ theorem pressureNewtonianPotential_locallyIntegrable {g : Vec3 → ℝ}
   exact pressure_potential_locallyIntegrable_of_compact_integrable
     pressure_neg_kernel_locallyIntegrable pressure_neg_kernel_meas hg hgc
 
+/--
+@isnad1 id=integrab.4h2v.s8.29f4d6623d10 from=translated src=- shape=5ecd98c0 vocab=5dac7faf
+-/
 theorem pressureNewtonianPotential_mul_smooth_integrable {g φ : Vec3 → ℝ}
     (hg : Integrable g volume) (hgc : HasCompactSupport g)
     (hφ : ContDiff ℝ (⊤ : ℕ∞) φ) (hφc : HasCompactSupport φ) :
@@ -305,6 +311,9 @@ theorem pressureNewtonianPotential_mul_smooth_integrable {g φ : Vec3 → ℝ}
     (pressureNewtonianPotential_locallyIntegrable hg hgc).integrable_smul_right_of_hasCompactSupport
       hφ.continuous hφc
 
+/--
+@isnad1 id=eq.4h2v.s9.79a33bbed821 from=translated src=- shape=13e326a6 vocab=150eee30
+-/
 theorem pressureNewtonianPotential_pairing {g φ : Vec3 → ℝ}
     (hg : Integrable g volume) (hgc : HasCompactSupport g)
     (hφ : ContDiff ℝ (⊤ : ℕ∞) φ) (hφc : HasCompactSupport φ) :

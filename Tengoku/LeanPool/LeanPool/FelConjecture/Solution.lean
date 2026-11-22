@@ -42,25 +42,34 @@ noncomputable def gapPolynomial (S : NumericalSemigroup) : Polynomial ℚ :=
 noncomputable def hilbertSeries (S : NumericalSemigroup) : PowerSeries ℚ :=
   PowerSeries.mk fun n => if Classical.propDecidable (n ∈ S.carrier) |>.decide then 1 else 0
 
-/-- The coefficient of the Hilbert series at position n is 1 if n ∈ S.carrier, else 0. -/
+/-- The coefficient of the Hilbert series at position n is 1 if n ∈ S.carrier, else 0.
+@isnad1 id=eq.0h2v.s7.90b5a022d86e from=translated src=- shape=6c31f06e vocab=6b5a3c5d
+-/
 lemma hilbertSeries_coeff (S : NumericalSemigroup) (n : ℕ) :
     (PowerSeries.coeff n) S.hilbertSeries =
     if Classical.propDecidable (n ∈ S.carrier) |>.decide then 1 else 0 := by
   simp only [hilbertSeries, PowerSeries.coeff_mk]
 
 /-- The coefficient of the gap polynomial (viewed as a power series) at position n is 1 if n ∈
-  S.gaps, else 0. -/
+  S.gaps, else 0.
+@isnad1 id=eq.0h2v.s6.51a2a916ed82 from=translated src=- shape=42e179c0 vocab=c592298a
+-/
 lemma gapPolynomial_coeff (S : NumericalSemigroup) (n : ℕ) :
     (PowerSeries.coeff n) (S.gapPolynomial : PowerSeries ℚ) =
     if n ∈ S.gaps then 1 else 0 := by
   unfold gapPolynomial
   simp_all
 
-/-- For any n, we have n ∈ S.gaps ↔ n ∉ S.carrier. -/
+/-- For any n, we have n ∈ S.gaps ↔ n ∉ S.carrier.
+@isnad1 id=iff.0h2v.s4.cba90e668008 from=translated src=- shape=a40f9295 vocab=75100cec
+-/
 lemma mem_gaps_iff_not_mem_carrier (S : NumericalSemigroup) (n : ℕ) :
     n ∈ S.gaps ↔ n ∉ S.carrier := by
   simp only [gaps, Set.Finite.mem_toFinset, Set.mem_compl_iff]
 
+/--
+@isnad1 id=eq.0h2v.s7.bb0b56af0edc from=translated src=- shape=6b116de3 vocab=3ef88ec9
+-/
 lemma semigroupGapDecomposition_aux (S : NumericalSemigroup) (n : ℕ) :
     (PowerSeries.coeff n) (S.hilbertSeries + (S.gapPolynomial : PowerSeries ℚ)) =
     (PowerSeries.coeff n) (PowerSeries.mk (1 : ℕ → ℚ)) := by
@@ -77,6 +86,9 @@ lemma semigroupGapDecomposition_aux (S : NumericalSemigroup) (n : ℕ) :
     rw [ite_eq_left (by rw [mem_gaps_iff_not_mem_carrier]; exact h)]
     ring
 
+/--
+@isnad1 id=eq.0h1v.s5.a6b1a8489d8e from=translated src=- shape=958aec4d vocab=47e0fd12
+-/
 theorem semigroupGapDecomposition (S : NumericalSemigroup) :
     S.hilbertSeries + (S.gapPolynomial : PowerSeries ℚ) = PowerSeries.mk (1 : ℕ → ℚ) := by
   apply PowerSeries.ext
@@ -123,6 +135,9 @@ noncomputable def hilbertNumerator {S : NumericalSemigroup} (G : NumericalSemigr
       ((∑ k ∈ Finset.range (n + 1), P.coeff k) -
        (∑ g ∈ S.gaps.filter (· ≤ n), P.coeff (n - g)))
 
+/--
+@isnad1 id=eq.0h3v.s8.c758f9920c2a from=translated src=- shape=8fd17ab5 vocab=98838e73
+-/
 lemma coeff_mul_hilbert_product {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n :
   ℕ) :
     (PowerSeries.coeff n) (S.hilbertSeries *
@@ -134,6 +149,9 @@ lemma coeff_mul_hilbert_product {S : NumericalSemigroup} (G : NumericalSemigroup
   rw [Finset.Nat.sum_antidiagonal_eq_sum_range_succ_mk]
   simp_all
 
+/--
+@isnad1 id=eq.1h3v.s6.349f576b0c3d from=translated src=- shape=9f81b6a9 vocab=b500f87f
+-/
 lemma hilbertNumerator_coeff_lt {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n :
   ℕ)
     (hn : n < G.hilbertNumeratorDegBound) :
@@ -146,6 +164,9 @@ lemma hilbertNumerator_coeff_lt {S : NumericalSemigroup} (G : NumericalSemigroup
   simp only [Polynomial.coeff_monomial]
   simp_all
 
+/--
+@isnad1 id=eq.0h3v.s8.b40abb2ca721 from=translated src=- shape=274a2830 vocab=7de7f359
+-/
 lemma lhs_eq_sum_over_carrier {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n : ℕ)
   :
     ∑ k ∈ Finset.range (n + 1),
@@ -156,6 +177,9 @@ lemma lhs_eq_sum_over_carrier {S : NumericalSemigroup} (G : NumericalSemigroupGe
   rw [Finset.sum_filter]
   simp_all
 
+/--
+@isnad1 id=eq.0h3v.s8.728af33c09e4 from=translated src=- shape=defdc0fc vocab=09a8c50b
+-/
 lemma partition_sum {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n : ℕ) :
     ∑ k ∈ Finset.range (n + 1), (Int.castRingHom ℚ) (G.productPolynomial.coeff (n - k)) =
     ∑ k ∈ (Finset.range (n + 1)).filter (fun k => (Classical.propDecidable (k ∈ S.carrier)).decide),
@@ -175,6 +199,9 @@ lemma partition_sum {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S
     ext k
     simp only [Finset.mem_filter, Bool.not_eq_true', decide_eq_false_iff_not]
 
+/--
+@isnad1 id=eq.0h2v.s6.32748b810946 from=translated src=- shape=136e6ac8 vocab=df5f3965
+-/
 lemma filter_not_carrier_eq_gaps {S : NumericalSemigroup} (n : ℕ) :
     (Finset.range (n + 1)).filter (fun k => !(Classical.propDecidable (k ∈ S.carrier)).decide) =
     S.gaps.filter (· ≤ n) := by
@@ -186,6 +213,9 @@ lemma filter_not_carrier_eq_gaps {S : NumericalSemigroup} (n : ℕ) :
   · simp_all
   · simp_all
 
+/--
+@isnad1 id=eq.0h3v.s8.85571dc658b0 from=translated src=- shape=14924db2 vocab=0be100d6
+-/
 lemma carrier_sum_eq_full_minus_gaps {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S)
   (n : ℕ) :
     ∑ k ∈ (Finset.range (n + 1)).filter (fun k => (Classical.propDecidable (k ∈ S.carrier)).decide),
@@ -196,6 +226,9 @@ lemma carrier_sum_eq_full_minus_gaps {S : NumericalSemigroup} (G : NumericalSemi
   have hfilter := filter_not_carrier_eq_gaps (S := S) n
   simp_all
 
+/--
+@isnad1 id=eq.0h2v.s5.7cede44bba02 from=translated src=- shape=531a709e vocab=0c092b01
+-/
 lemma sum_range_reindex (f : ℕ → ℚ) (n : ℕ) :
     ∑ k ∈ Finset.range (n + 1), f (n - k) = ∑ j ∈ Finset.range (n + 1), f j := by
   apply Finset.sum_bij' (fun k _ => n - k) (fun k _ => n - k)
@@ -205,6 +238,9 @@ lemma sum_range_reindex (f : ℕ → ℚ) (n : ℕ) :
   · intros k hk; rw [Finset.mem_range] at hk; omega
   · intros k _; rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.79440183e194 from=translated src=- shape=8ddfe03d vocab=21f9532d
+-/
 lemma large_n_both_zero {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n : ℕ)
     (_hn : n ≥ G.hilbertNumeratorDegBound) :
     (∑ k ∈ Finset.range (n + 1),
@@ -217,6 +253,9 @@ lemma large_n_both_zero {S : NumericalSemigroup} (G : NumericalSemigroupGenerato
   rw [sum_range_reindex (fun k => (Int.castRingHom ℚ) (G.productPolynomial.coeff k)) n]
   rw [map_sub, map_sum, map_sum]
 
+/--
+@isnad1 id=eq.0h3v.s8.419501a56892 from=translated src=- shape=1cc6ee06 vocab=3e0a0752
+-/
 lemma coeff_mul_eq_indicator_sum {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n :
   ℕ) :
     (PowerSeries.coeff n) (S.hilbertSeries *
@@ -229,6 +268,9 @@ lemma coeff_mul_eq_indicator_sum {S : NumericalSemigroup} (G : NumericalSemigrou
   intro k _
   rw [S.hilbertSeries_coeff]
 
+/--
+@isnad1 id=eq.0h2v.s4.a39c6317ed53 from=translated src=- shape=d9fc4a15 vocab=8f0846f4
+-/
 lemma productPolynomial_eval_one {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) :
     Polynomial.eval 1 G.productPolynomial = 0 := by
   unfold productPolynomial
@@ -236,6 +278,9 @@ lemma productPolynomial_eval_one {S : NumericalSemigroup} (G : NumericalSemigrou
   apply Finset.prod_eq_zero (i := ⟨0, G.hm_pos⟩) (Finset.mem_univ _)
   simp
 
+/--
+@isnad1 id=eq.0h2v.s5.77b77c7815d7 from=translated src=- shape=b2406632 vocab=743a1a4d
+-/
 lemma sum_coeff_eq_eval_one {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) :
     ∑ k ∈ Finset.range (G.productPolynomial.natDegree + 1), G.productPolynomial.coeff k =
     Polynomial.eval 1 G.productPolynomial := by
@@ -245,6 +290,9 @@ lemma sum_coeff_eq_eval_one {S : NumericalSemigroup} (G : NumericalSemigroupGene
     simp [add_comm]
   rw [h₁]
 
+/--
+@isnad1 id=eq.2h4v.s6.f97d9015a623 from=translated src=- shape=95889140 vocab=9fb737ed
+-/
 lemma coeff_Ico_eq_zero {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S)
     (n : ℕ) (_hn : G.productPolynomial.natDegree + 1 ≤ n)
     (k : ℕ) (hk : k ∈ Finset.Ico (G.productPolynomial.natDegree + 1) (n + 1)) :
@@ -252,6 +300,9 @@ lemma coeff_Ico_eq_zero {S : NumericalSemigroup} (G : NumericalSemigroupGenerato
   apply Polynomial.coeff_eq_zero_of_natDegree_lt
   simp_all
 
+/--
+@isnad1 id=eq.1h3v.s6.55c01e61bc56 from=translated src=- shape=5ae55778 vocab=679c2deb
+-/
 lemma sum_coeff_large_eq_sum_coeff_deg {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S)
     (n : ℕ) (hn : G.productPolynomial.natDegree + 1 ≤ n) :
     ∑ k ∈ Finset.range (n + 1), G.productPolynomial.coeff k =
@@ -265,6 +316,9 @@ lemma sum_coeff_large_eq_sum_coeff_deg {S : NumericalSemigroup} (G : NumericalSe
     exact coeff_Ico_eq_zero G n hn k hk
   linarith [hsplit, htail]
 
+/--
+@isnad1 id=eq.1h3v.s5.73de22b8ad29 from=translated src=- shape=1c356c94 vocab=a6298def
+-/
 lemma first_sum_zero {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n : ℕ)
     (hn : n ≥ G.hilbertNumeratorDegBound) :
     ∑ k ∈ Finset.range (n + 1), G.productPolynomial.coeff k = 0 := by
@@ -275,6 +329,9 @@ lemma first_sum_zero {S : NumericalSemigroup} (G : NumericalSemigroupGenerators 
   rw [sum_coeff_eq_eval_one G]
   exact productPolynomial_eval_one G
 
+/--
+@isnad1 id=eq.3h4v.s5.294881be17ff from=translated src=- shape=a83bb7b9 vocab=42c0a1f2
+-/
 lemma coeff_n_minus_gap_zero {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S)
     (n g : ℕ) (hn : n ≥ G.hilbertNumeratorDegBound) (hg : g ∈ S.gaps) (hgn : g ≤ n) :
     G.productPolynomial.coeff (n - g) = 0 := by
@@ -283,6 +340,9 @@ lemma coeff_n_minus_gap_zero {S : NumericalSemigroup} (G : NumericalSemigroupGen
   have hn' : n ≥ G.productPolynomial.natDegree + S.gaps.sup id + 1 := hn
   omega
 
+/--
+@isnad1 id=eq.1h3v.s5.1cb7cf292a0c from=translated src=- shape=65ed476a vocab=c6fde14a
+-/
 lemma second_sum_zero {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n : ℕ)
     (hn : n ≥ G.hilbertNumeratorDegBound) :
     ∑ g ∈ S.gaps.filter (· ≤ n), G.productPolynomial.coeff (n - g) = 0 := by
@@ -291,6 +351,9 @@ lemma second_sum_zero {S : NumericalSemigroup} (G : NumericalSemigroupGenerators
   rw [Finset.mem_filter] at hg
   exact coeff_n_minus_gap_zero G n g hn hg.1 hg.2
 
+/--
+@isnad1 id=eq.1h3v.s6.498dbc8be08d from=translated src=- shape=85943a84 vocab=b51c13a5
+-/
 lemma rhs_zero_of_large {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n : ℕ)
     (hn : n ≥ G.hilbertNumeratorDegBound) :
     (∑ k ∈ Finset.range (n + 1), G.productPolynomial.coeff k) -
@@ -298,6 +361,9 @@ lemma rhs_zero_of_large {S : NumericalSemigroup} (G : NumericalSemigroupGenerato
   rw [first_sum_zero G n hn, second_sum_zero G n hn]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s7.aed44fdfe1f3 from=translated src=- shape=e3631f52 vocab=2c20b8dc
+-/
 lemma coeff_eq_zero_of_large {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n : ℕ)
     (hn : n ≥ G.hilbertNumeratorDegBound) :
     (PowerSeries.coeff n) (S.hilbertSeries *
@@ -355,6 +421,9 @@ end Tengoku.LeanPool.NumericalSemigroupGenerators
 
 namespace FelsConjectureProof
 
+/--
+@isnad1 id=lt.0h2v.s4.4a20b8593e0a from=translated src=- shape=9363a417 vocab=d8704a06
+-/
 lemma pi_m_pos {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) :
     0 < G.piM := by
   apply Finset.prod_pos
@@ -367,6 +436,9 @@ private lemma pos_of_mem_gaps {S : NumericalSemigroup} {g : ℕ} (hg : g ∈ S.g
     exact absurd S.zero_mem hg
   · exact hpos
 
+/--
+@isnad1 id=eq.1h2v.s5.9ac8a037383a from=translated src=- shape=145801d5 vocab=8a39cd7a
+-/
 lemma choose_mul_sub_factorial_eq_div (n r : ℕ) (hr : r ≤ n) :
     ((n.choose r : ℚ) * ((n - r).factorial : ℚ)) = (n.factorial : ℚ) / (r.factorial : ℚ) := by
   have h₁ : (n.choose r : ℚ) * (r.factorial : ℚ) * ((n - r).factorial : ℚ) = (n.factorial : ℚ) := by
@@ -376,6 +448,9 @@ lemma choose_mul_sub_factorial_eq_div (n r : ℕ) (hr : r ≤ n) :
   field_simp [h₂]
   linarith
 
+/--
+@isnad1 id=eq.1h4v.s7.03a6ce9137f1 from=translated src=- shape=16f5ad22 vocab=02dc29ad
+-/
 lemma bernoulli_term_simplify (m p : ℕ) (piM : ℕ) (hpi : 0 < piM)
     (coeff : ℚ) :
     ((-1 : ℚ)^m * (p.factorial : ℚ)) / (((m + p).factorial : ℚ) * (piM : ℚ)) *
@@ -389,6 +464,9 @@ lemma bernoulli_term_simplify (m p : ℕ) (piM : ℕ) (hpi : 0 < piM)
   ring_nf
   simp_all
 
+/--
+@isnad1 id=eq.0h4v.s7.385b83f12b84 from=translated src=- shape=984d57f2 vocab=610fec55
+-/
 lemma outer_factor_cancel {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (p : ℕ)
     (sum_term : ℚ) :
     ((-1 : ℚ)^G.m * (p.factorial : ℚ)) / (((G.m + p).factorial : ℚ) * (G.piM : ℚ)) *
@@ -403,6 +481,9 @@ lemma outer_factor_cancel {S : NumericalSemigroup} (G : NumericalSemigroupGenera
   rw [h1]
   ring
 
+/--
+@isnad1 id=eq.1h5v.s7.0b32f389d9e3 from=translated src=- shape=e024177d vocab=0034bd5b
+-/
 lemma term_simplify (m p r : ℕ) (hr : r ≤ p) (A_coeff G_r : ℚ) :
     (p.factorial : ℚ) / ((m + p).factorial : ℚ) *
       (((m + p).choose r : ℚ) * ((m + p - r).factorial : ℚ) * A_coeff * G_r) =
@@ -414,6 +495,9 @@ lemma term_simplify (m p r : ℕ) (hr : r ≤ p) (A_coeff G_r : ℚ) :
   rw [h₁]
   field_simp
 
+/--
+@isnad1 id=eq.0h3v.s8.c2c020899aa5 from=translated src=- shape=ac29cbfd vocab=7e1c8ebc
+-/
 lemma gap_sum_simplify {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (p : ℕ) :
     ((-1 : ℚ)^G.m * (p.factorial : ℚ)) / (((G.m + p).factorial : ℚ) * (G.piM : ℚ)) *
       ((-1 : ℚ)^G.m * (G.piM : ℚ) *
@@ -447,6 +531,9 @@ noncomputable def hilbertNumeratorExpSub {S : NumericalSemigroup}
     (∑ j ∈ Finset.range G.hilbertNumeratorDegBound, (G.hilbertNumerator.coeff j : ℚ) * (j : ℚ)^n) /
       (n.factorial : ℚ)
 
+/--
+@isnad1 id=eq.0h3v.s7.0ec690017561 from=translated src=- shape=196d419c vocab=2671b286
+-/
 lemma hilbertNumerator_exp_sub_coeff {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (n : ℕ) :
     (PowerSeries.coeff n) (hilbertNumeratorExpSub G) =
@@ -455,6 +542,9 @@ lemma hilbertNumerator_exp_sub_coeff {S : NumericalSemigroup}
         (n.factorial : ℚ) := by
   simp only [hilbertNumeratorExpSub, PowerSeries.coeff_mk]
 
+/--
+@isnad1 id=eq.1h3v.s6.108315622d60 from=translated src=- shape=99c9472e vocab=af451798
+-/
 lemma alternatingPowerSum_eq_neg_sum {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (n : ℕ) (hn : 1 ≤ n) :
     G.alternatingPowerSum n =
@@ -468,6 +558,9 @@ lemma alternatingPowerSum_eq_neg_sum {S : NumericalSemigroup}
   apply Finset.sum_congr rfl
   simp_all
 
+/--
+@isnad1 id=eq.1h3v.s6.4f37f9bc5a40 from=translated src=- shape=e93cc281 vocab=19b58072
+-/
 lemma alternatingPowerSum_eq_coeff_hilbert_exp {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (n : ℕ) (hn : 1 ≤ n) :
     G.alternatingPowerSum n =
@@ -477,6 +570,9 @@ lemma alternatingPowerSum_eq_coeff_hilbert_exp {S : NumericalSemigroup}
   have hfact : (n.factorial : ℚ) ≠ 0 := by positivity
   field_simp
 
+/--
+@isnad1 id=eq.0h3v.s8.1f386f2b746b from=translated src=- shape=69a01a85 vocab=e523831b
+-/
 lemma B_term_coeff_shift {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (p : ℕ) :
     (PowerSeries.coeff (G.m + p)) (PowerSeries.X ^ (G.m - 1) * G.BSeries) =
     (PowerSeries.coeff (p + 1)) G.BSeries := by
@@ -489,6 +585,9 @@ lemma B_term_coeff_shift {S : NumericalSemigroup} (G : NumericalSemigroupGenerat
     simp [h₁]
   rw [h₃, h₂]
 
+/--
+@isnad1 id=eq.0h3v.s8.a1bc673c46bc from=translated src=- shape=e2b9ab5d vocab=b394cf7e
+-/
 lemma coeff_A_mul_E {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (p : ℕ) :
     (PowerSeries.coeff p) (G.ASeries * PowerSeries.mk fun n => ∑ g ∈ S.gaps,
       (g : ℚ)^n / (n.factorial : ℚ)) =
@@ -505,6 +604,9 @@ lemma coeff_A_mul_E {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S
     omega
   · simp_all
 
+/--
+@isnad1 id=eq.0h3v.s8.0d9c68520a92 from=translated src=- shape=14d70a55 vocab=dee69829
+-/
 lemma sum_swap_gaps_range {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (p : ℕ) :
     ∑ r ∈ Finset.range (p + 1), (PowerSeries.coeff (p - r)) G.ASeries * (∑ g ∈ S.gaps,
       (g : ℚ)^r / (r.factorial : ℚ)) =
@@ -524,6 +626,9 @@ lemma sum_swap_gaps_range {S : NumericalSemigroup} (G : NumericalSemigroupGenera
   intro r _
   ring
 
+/--
+@isnad1 id=eq.0h3v.s8.4faad2593296 from=translated src=- shape=a19e0c2a vocab=9d90c0a6
+-/
 lemma gap_term_coeff_shift {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (p : ℕ) :
     (PowerSeries.coeff (G.m + p)) (PowerSeries.X ^ G.m * G.ASeries *
        PowerSeries.mk fun n => ∑ g ∈ S.gaps, (g : ℚ)^n / (n.factorial : ℚ)) =
@@ -539,6 +644,9 @@ lemma gap_term_coeff_shift {S : NumericalSemigroup} (G : NumericalSemigroupGener
   rw [coeff_A_mul_E]
   exact sum_swap_gaps_range G p
 
+/--
+@isnad1 id=eq.0h3v.s8.0491354533a6 from=translated src=- shape=97850161 vocab=9a60b9ed
+-/
 lemma Q_exp_coeff_at_m_plus_p {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (p : ℕ)
   :
     (PowerSeries.coeff (G.m + p)) (QExpSeries G) =
@@ -552,6 +660,9 @@ lemma Q_exp_coeff_at_m_plus_p {S : NumericalSemigroup} (G : NumericalSemigroupGe
   rw [B_term_coeff_shift, gap_term_coeff_shift]
   simp only [smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h3v.s8.5232c57cd811 from=translated src=- shape=138c0013 vocab=65392ec7
+-/
 lemma gap_coeff_to_leibniz {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (p : ℕ) :
     ((G.m + p).factorial : ℚ) *
       ∑ g ∈ S.gaps, ∑ r ∈ Finset.range (p + 1),
@@ -568,6 +679,9 @@ lemma gap_coeff_to_leibniz {S : NumericalSemigroup} (G : NumericalSemigroupGener
   have hr_fac : (r.factorial : ℚ) ≠ 0 := by positivity
   field_simp [hr_fac]
 
+/--
+@isnad1 id=eq.0h3v.s8.d7ae765b794e from=translated src=- shape=4c658e5c vocab=8b4dc329
+-/
 lemma gap_sum_swap {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (p : ℕ) :
     ∑ g ∈ S.gaps, ∑ r ∈ Finset.range (p + 1),
         ((G.m + p).factorial : ℚ) / (r.factorial : ℚ) *
@@ -586,6 +700,9 @@ lemma gap_sum_swap {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S)
   rw [Finset.mul_sum]
   simp_all
 
+/--
+@isnad1 id=eq.0h3v.s8.2fea4e41f335 from=translated src=- shape=0ad54612 vocab=8b4dc329
+-/
 lemma gap_term_final_form {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (p : ℕ) :
     ((G.m + p).factorial : ℚ) *
       ∑ g ∈ S.gaps, ∑ r ∈ Finset.range (p + 1),
@@ -601,11 +718,17 @@ noncomputable def expPolySub (P : Polynomial ℤ) : PowerSeries ℚ :=
   PowerSeries.mk fun n =>
     (∑ j ∈ Finset.range (P.natDegree + 1), (P.coeff j : ℚ) * (j : ℚ)^n) / (n.factorial : ℚ)
 
+/--
+@isnad1 id=eq.0h2v.s7.27684ca9480b from=translated src=- shape=f872e4e0 vocab=8f1196f9
+-/
 lemma exp_poly_sub_coeff (P : Polynomial ℤ) (n : ℕ) :
     (PowerSeries.coeff n) (expPolySub P) =
     (∑ j ∈ Finset.range (P.natDegree + 1), (P.coeff j : ℚ) * (j : ℚ)^n) / (n.factorial : ℚ) := by
   simp only [expPolySub, PowerSeries.coeff_mk]
 
+/--
+@isnad1 id=eq.1h3v.s6.9e46729a6b04 from=translated src=- shape=f35da458 vocab=da656500
+-/
 lemma exp_poly_sub_sum_extend (P : Polynomial ℤ) (k : ℕ) (n : ℕ) (hk : P.natDegree + 1 ≤ k) :
     ∑ j ∈ Finset.range (P.natDegree + 1), (P.coeff j : ℚ) * (j : ℚ)^n =
     ∑ j ∈ Finset.range k, (P.coeff j : ℚ) * (j : ℚ)^n := by
@@ -616,6 +739,9 @@ lemma exp_poly_sub_sum_extend (P : Polynomial ℤ) (k : ℕ) (n : ℕ) (hk : P.n
     exact_mod_cast Polynomial.coeff_eq_zero_of_natDegree_lt (by omega)]
   ring
 
+/--
+@isnad1 id=le.0h2v.s4.8b857b5ca149 from=translated src=- shape=be7d486e vocab=1a01ec34
+-/
 lemma hilbertNumerator_natDegree_le_pred_bound {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) :
     G.hilbertNumerator.natDegree ≤ G.hilbertNumeratorDegBound - 1 := by
@@ -628,12 +754,18 @@ lemma hilbertNumerator_natDegree_le_pred_bound {S : NumericalSemigroup}
         rw [Finset.mem_range] at hn
         omega
 
+/--
+@isnad1 id=lt.0h2v.s4.d71b7cbcb17c from=translated src=- shape=9363a417 vocab=d2f52f71
+-/
 lemma hilbertNumeratorDegBound_pos {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) :
     0 < G.hilbertNumeratorDegBound := by
   unfold NumericalSemigroupGenerators.hilbertNumeratorDegBound
   omega
 
+/--
+@isnad1 id=le.0h2v.s4.e8a8bb7d9264 from=translated src=- shape=fc498f5f vocab=52751f23
+-/
 lemma hilbertNumerator_natDegree_lt_bound {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) :
     G.hilbertNumerator.natDegree + 1 ≤ G.hilbertNumeratorDegBound := by
@@ -641,6 +773,9 @@ lemma hilbertNumerator_natDegree_lt_bound {S : NumericalSemigroup}
   have hpos := hilbertNumeratorDegBound_pos G
   omega
 
+/--
+@isnad1 id=eq.0h2v.s3.99a57f93eadc from=translated src=- shape=6579c946 vocab=2f282dd5
+-/
 lemma hilbertNumerator_exp_sub_eq_exp_poly_sub {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) :
     hilbertNumeratorExpSub G = expPolySub G.hilbertNumerator := by
@@ -651,6 +786,9 @@ lemma hilbertNumerator_exp_sub_eq_exp_poly_sub {S : NumericalSemigroup}
   exact (exp_poly_sub_sum_extend G.hilbertNumerator G.hilbertNumeratorDegBound n
     (hilbertNumerator_natDegree_lt_bound G)).symm
 
+/--
+@isnad1 id=eq.0h3v.s8.bb3eeb490295 from=translated src=- shape=d97aaa54 vocab=3cffcc6e
+-/
 lemma Q_exp_series_coeff {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (n : ℕ) :
     (PowerSeries.coeff n) (QExpSeries G) =
@@ -660,6 +798,9 @@ lemma Q_exp_series_coeff {S : NumericalSemigroup}
          PowerSeries.mk fun k => ∑ g ∈ S.gaps, (g : ℚ)^k / (k.factorial : ℚ))) := by
   simp only [QExpSeries, PowerSeries.coeff_smul, smul_eq_mul, map_add]
 
+/--
+@isnad1 id=lt.1h3v.s5.b9a356ee18aa from=translated src=- shape=906b1e80 vocab=9f356ad8
+-/
 lemma j_lt_bound_of_mem_range_natDegree {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (j : ℕ)
     (hj : j ∈ Finset.range (G.hilbertNumerator.natDegree + 1)) :
@@ -667,6 +808,9 @@ lemma j_lt_bound_of_mem_range_natDegree {S : NumericalSemigroup}
   have hj_lt := Finset.mem_range.mp hj
   exact Nat.lt_of_lt_of_le hj_lt (hilbertNumerator_natDegree_lt_bound G)
 
+/--
+@isnad1 id=eq.0h3v.s7.031070b71c61 from=translated src=- shape=37f984c7 vocab=a28e019a
+-/
 lemma hilbert_sum_decomposition_natDegree {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (n : ℕ) :
     ∑ j ∈ Finset.range (G.hilbertNumerator.natDegree + 1),
@@ -683,6 +827,9 @@ lemma hilbert_sum_decomposition_natDegree {S : NumericalSemigroup}
   simp only [coeff_eq, Int.cast_sub, Int.cast_sum]
   ring
 
+/--
+@isnad1 id=eq.1h3v.s5.2035ea836875 from=translated src=- shape=d186cb7e vocab=c2ae3290
+-/
 lemma partial_sum_eq_zero_when_large {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S)
     (D : ℕ) (hD : G.productPolynomial.natDegree ≤ D) :
     (∑ k ∈ Finset.range (D + 1), (G.productPolynomial.coeff k : ℚ)) = 0 := by
@@ -700,6 +847,9 @@ lemma partial_sum_eq_zero_when_large {S : NumericalSemigroup} (G : NumericalSemi
   simp only [← Int.cast_sum]
   simp_all
 
+/--
+@isnad1 id=eq.1h1v.s6.03d4e7ba8a0f from=translated src=- shape=3f34287d vocab=a5cb0db7
+-/
 lemma leadingCoeff_one_sub_X_pow (k : ℕ) (hk : 0 < k) :
     (1 - Polynomial.X ^ k : Polynomial ℤ).leadingCoeff = -1 := by
   have h₁ : (1 - Polynomial.X ^ k : Polynomial ℤ) = -(Polynomial.X ^ k - 1 : Polynomial ℤ) :=
@@ -709,6 +859,9 @@ lemma leadingCoeff_one_sub_X_pow (k : ℕ) (hk : 0 < k) :
     omega
   simp only [h₁, Polynomial.leadingCoeff_neg, h₂.leadingCoeff]
 
+/--
+@isnad1 id=eq.0h2v.s5.194ddd5b86f1 from=translated src=- shape=6bcc889b vocab=7a17d725
+-/
 lemma productPolynomial_leadingCoeff {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) :
     G.productPolynomial.leadingCoeff = (-1 : ℤ) ^ G.m := by
   unfold NumericalSemigroupGenerators.productPolynomial
@@ -718,6 +871,9 @@ lemma productPolynomial_leadingCoeff {S : NumericalSemigroup} (G : NumericalSemi
     exact leadingCoeff_one_sub_X_pow (G.d i) (G.hd_pos i)
   simpa only [h] using Fin.prod_const G.m (-1 : ℤ)
 
+/--
+@isnad1 id=le.1h2v.s4.2aa78e571884 from=translated src=- shape=036f639d vocab=46222de4
+-/
 lemma natDegree_ge_of_gaps_nonempty {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S)
     (h : S.gaps.Nonempty) :
     G.productPolynomial.natDegree ≤ G.hilbertNumerator.natDegree := by
@@ -765,6 +921,9 @@ lemma natDegree_ge_of_gaps_nonempty {S : NumericalSemigroup} (G : NumericalSemig
       omega
   omega
 
+/--
+@isnad1 id=eq.0h3v.s7.06bc3729c8d9 from=translated src=- shape=f22bd5e7 vocab=48c1ea53
+-/
 lemma telescoping_general (D n : ℕ) (P : Polynomial ℤ) :
     (∑ j ∈ Finset.range (D + 1),
       (∑ k ∈ Finset.range (j + 1), (P.coeff k : ℚ)) *
@@ -780,6 +939,9 @@ lemma telescoping_general (D n : ℕ) (P : Polynomial ℤ) :
     simp [Finset.sum_range_succ, add_assoc] at *
     ring_nf at *
 
+/--
+@isnad1 id=eq.1h3v.s7.0d4402207ed1 from=translated src=- shape=07e68b36 vocab=def535b8
+-/
 lemma telescoping_sum_gaps_nonempty {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S)
     (n : ℕ) (hgaps : S.gaps.Nonempty) :
     (∑ j ∈ Finset.range (G.hilbertNumerator.natDegree + 1),
@@ -799,6 +961,9 @@ lemma telescoping_sum_gaps_nonempty {S : NumericalSemigroup} (G : NumericalSemig
     exp_poly_sub_sum_extend G.productPolynomial (D + 1) n (Nat.add_le_add_right hDge 1)
   rw [← hext]
 
+/--
+@isnad1 id=eq.2h3v.s5.00f77b2d794d from=translated src=- shape=7871c63f vocab=13f34666
+-/
 lemma hilbertNumerator_coeff_eq_partial_sum_gaps_empty {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (hgaps : ¬S.gaps.Nonempty) (j : ℕ)
     (hj : j < G.hilbertNumeratorDegBound) :
@@ -818,6 +983,9 @@ lemma hilbertNumerator_coeff_eq_partial_sum_gaps_empty {S : NumericalSemigroup}
     rw [h₄, h₂ n, sub_zero]
   exact h₃ j hj
 
+/--
+@isnad1 id=eq.3h3v.s6.0c6aff19c442 from=translated src=- shape=581d3a6b vocab=aed78cab
+-/
 lemma partial_sum_zero_after_natDegree_gaps_empty {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (hgaps : ¬S.gaps.Nonempty) (j : ℕ)
     (hj1 : G.hilbertNumerator.natDegree < j) (hj2 : j < G.hilbertNumeratorDegBound) :
@@ -829,6 +997,9 @@ lemma partial_sum_zero_after_natDegree_gaps_empty {S : NumericalSemigroup}
   rw [← Int.cast_sum]
   simp only [h_sum_zero, Int.cast_zero]
 
+/--
+@isnad1 id=eq.0h2v.s6.1881f5b03e0b from=translated src=- shape=c99120ea vocab=bc78f71b
+-/
 lemma coeff_eq_partial_sum_diff (P : Polynomial ℤ) (n : ℕ) :
     (P.coeff n : ℚ) = (∑ k ∈ Finset.range (n + 1), (P.coeff k : ℚ)) -
                       (∑ k ∈ Finset.range n, (P.coeff k : ℚ)) := by
@@ -837,6 +1008,9 @@ lemma coeff_eq_partial_sum_diff (P : Polynomial ℤ) (n : ℕ) :
     rw [Finset.sum_range_succ]
   simp_all
 
+/--
+@isnad1 id=eq.2h2v.s6.0d11d2c708f4 from=translated src=- shape=f639c96b vocab=a86cb6ce
+-/
 lemma coeff_at_D_plus_one_gaps_empty {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (hgaps : ¬S.gaps.Nonempty)
     (hbound : G.hilbertNumerator.natDegree + 1 < G.hilbertNumeratorDegBound) :
@@ -854,6 +1028,9 @@ lemma coeff_at_D_plus_one_gaps_empty {S : NumericalSemigroup}
     · exact hbound
   rw [h1, h2, zero_sub]
 
+/--
+@isnad1 id=eq.4h3v.s6.519cfa0f0005 from=translated src=- shape=4d76e712 vocab=0b443cb4
+-/
 lemma coeff_zero_after_D_plus_one_gaps_empty {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (hgaps : ¬S.gaps.Nonempty)
     (_hbound : G.hilbertNumerator.natDegree + 1 < G.hilbertNumeratorDegBound)
@@ -880,6 +1057,9 @@ lemma coeff_zero_after_D_plus_one_gaps_empty {S : NumericalSemigroup}
     exact partial_sum_zero_after_natDegree_gaps_empty G hgaps (j - 1) hjm1_gt_D hjm1_bound
   simp_all
 
+/--
+@isnad1 id=eq.2h3v.s6.56669eef31f1 from=translated src=- shape=c5641f0d vocab=76454722
+-/
 lemma sum_tail_eq_zero {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (n : ℕ) (hgaps : ¬S.gaps.Nonempty)
     (hbound : G.hilbertNumerator.natDegree + 1 < G.hilbertNumeratorDegBound) :
@@ -894,6 +1074,9 @@ lemma sum_tail_eq_zero {S : NumericalSemigroup}
     coeff_zero_after_D_plus_one_gaps_empty G hgaps hbound j hj_lo hj_hi
   simp_all
 
+/--
+@isnad1 id=eq.2h3v.s7.e3e60cd5dc3d from=translated src=- shape=07193784 vocab=99b38731
+-/
 lemma poly_sum_tail_eq_neg_partial_gaps_empty {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (n : ℕ) (hgaps : ¬S.gaps.Nonempty)
     (hbound : G.hilbertNumerator.natDegree + 1 < G.hilbertNumeratorDegBound) :
@@ -932,6 +1115,9 @@ lemma poly_sum_tail_eq_neg_partial_gaps_empty {S : NumericalSemigroup}
     rw [coeff_at_D_plus_one_gaps_empty G hgaps hbound]
     simp only [← hD_def, Nat.cast_add, Nat.cast_one, neg_mul]
 
+/--
+@isnad1 id=eq.1h3v.s7.ce078abf7a1e from=translated src=- shape=624168e5 vocab=def535b8
+-/
 lemma telescoping_sum_gaps_empty {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S)
     (n : ℕ) (hgaps : ¬S.gaps.Nonempty) :
     (∑ j ∈ Finset.range (G.hilbertNumerator.natDegree + 1),
@@ -963,6 +1149,9 @@ lemma telescoping_sum_gaps_empty {S : NumericalSemigroup} (G : NumericalSemigrou
     have hext := exp_poly_sub_sum_extend G.productPolynomial (D + 1) n (by omega)
     simp_all
 
+/--
+@isnad1 id=eq.0h3v.s7.806e83648db7 from=translated src=- shape=84f3f0c7 vocab=acac346c
+-/
 lemma telescoping_sum {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n : ℕ) :
     (∑ j ∈ Finset.range (G.hilbertNumerator.natDegree + 1),
       (∑ k ∈ Finset.range (j + 1), (G.productPolynomial.coeff k : ℚ)) *
@@ -981,6 +1170,9 @@ noncomputable def partialSumGenFunc {S : NumericalSemigroup} (G : NumericalSemig
       (∑ k ∈ Finset.range (j + 1),
         (G.productPolynomial.coeff k : ℚ)) * (j : ℚ)^n) / (n.factorial : ℚ)
 
+/--
+@isnad1 id=eq.0h3v.s7.944ac48f42d0 from=translated src=- shape=ee5f4463 vocab=536fbe52
+-/
 lemma partialSumGenFunc_coeff {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n : ℕ)
   :
     (PowerSeries.coeff n) (partialSumGenFunc G) =
@@ -989,6 +1181,9 @@ lemma partialSumGenFunc_coeff {S : NumericalSemigroup} (G : NumericalSemigroupGe
         (G.productPolynomial.coeff k : ℚ)) * (j : ℚ)^n) / (n.factorial : ℚ) := by
   simp only [partialSumGenFunc, PowerSeries.coeff_mk]
 
+/--
+@isnad1 id=eq.0h0v.s4.270245974fb8 from=translated src=- shape=6b6a19fe vocab=892ef813
+-/
 lemma exp_poly_sub_one : expPolySub 1 = 1 := by
   ext n
   simp only [expPolySub, PowerSeries.coeff_mk, PowerSeries.coeff_one]
@@ -999,6 +1194,9 @@ lemma exp_poly_sub_one : expPolySub 1 = 1 := by
   | zero => simp
   | succ n => simp [zero_pow (Nat.succ_ne_zero n)]
 
+/--
+@isnad1 id=eq.0h3v.s8.804d11ca7192 from=translated src=- shape=d990754c vocab=325726d0
+-/
 lemma coeff_mul_expand (P Q : Polynomial ℤ) (n : ℕ) :
     (PowerSeries.coeff n) (expPolySub P * expPolySub Q) =
     ∑ k ∈ Finset.range (n + 1),
@@ -1011,6 +1209,9 @@ lemma coeff_mul_expand (P Q : Polynomial ℤ) (n : ℕ) :
   ext k
   simp only [expPolySub, PowerSeries.coeff_mk]
 
+/--
+@isnad1 id=eq.0h3v.s8.3fd1403dc20e from=translated src=- shape=6bb90906 vocab=683af083
+-/
 lemma lhs_to_triple_sum (P Q : Polynomial ℤ) (n : ℕ) :
     ∑ k ∈ Finset.range (n + 1),
       ((∑ a ∈ Finset.range (P.natDegree + 1), (P.coeff a : ℚ) * (a : ℚ)^k) / k.factorial) *
@@ -1031,6 +1232,9 @@ lemma lhs_to_triple_sum (P Q : Polynomial ℤ) (n : ℕ) :
   intro b _
   ring
 
+/--
+@isnad1 id=eq.1h6v.s7.b11d7388b999 from=translated src=- shape=b17d2e98 vocab=e75e9be8
+-/
 lemma term_factorial_to_choose (Pa Qb : ℚ) (a b k n : ℕ) (hk : k ≤ n) :
     Pa * Qb * (a : ℚ)^k * (b : ℚ)^(n - k) / (k.factorial * (n - k).factorial) =
     Pa * Qb * (a : ℚ)^k * (b : ℚ)^(n - k) * ((n.choose k : ℚ) / (n.factorial : ℚ)) := by
@@ -1045,15 +1249,24 @@ lemma term_factorial_to_choose (Pa Qb : ℚ) (a b k n : ℕ) (hk : k ≤ n) :
     nlinarith
   rw [div_eq_mul_one_div, h₁]
 
+/--
+@isnad1 id=le.0h1v.s6.c7cdc566bbbc from=translated src=- shape=66112e13 vocab=6d6033e0
+-/
 lemma natDegree_one_sub_X_pow_le (k : ℕ) :
     (1 - Polynomial.X ^ k : Polynomial ℤ).natDegree ≤ k := by
   refine Polynomial.natDegree_sub_le _ _ |>.trans ?_
   simp [Polynomial.natDegree_pow, Polynomial.natDegree_X]
 
+/--
+@isnad1 id=eq.1h1v.s6.2648bdceba45 from=translated src=- shape=36c2c909 vocab=b4578a36
+-/
 lemma sum_coeff_one_sub_X_pow (k : ℕ) (_hk : 0 < k) :
     ∑ j ∈ Finset.range (k + 1), ((1 - Polynomial.X ^ k : Polynomial ℤ).coeff j : ℚ) = 0 := by
   aesop
 
+/--
+@isnad1 id=eq.1h1v.s7.fc94b9d33571 from=translated src=- shape=a6b42620 vocab=d3a58cc7
+-/
 lemma exp_poly_sub_one_sub_X_pow_coeff_zero (k : ℕ) (hk : 0 < k) :
     (PowerSeries.coeff 0) (expPolySub (1 - Polynomial.X ^ k)) = 0 := by
   unfold expPolySub
@@ -1069,6 +1282,9 @@ lemma exp_poly_sub_one_sub_X_pow_coeff_zero (k : ℕ) (hk : 0 < k) :
     have : (1 - Polynomial.X ^ k : Polynomial ℤ).natDegree < j := by omega
     simpa only [Int.cast_eq_zero] using Polynomial.coeff_eq_zero_of_natDegree_lt this
 
+/--
+@isnad1 id=eq.1h1v.s6.219346c2fa28 from=translated src=- shape=ff64396d vocab=17804858
+-/
 lemma natDegree_one_sub_X_pow_eq (k : ℕ) (hk : 0 < k) :
     (1 - Polynomial.X ^ k : Polynomial ℤ).natDegree = k := by
   have h₁ : (1 - Polynomial.X ^ k : Polynomial ℤ).natDegree ≤ k := natDegree_one_sub_X_pow_le k
@@ -1078,6 +1294,9 @@ lemma natDegree_one_sub_X_pow_eq (k : ℕ) (hk : 0 < k) :
   refine le_antisymm h₁ (Polynomial.le_natDegree_of_ne_zero ?_)
   simp_all
 
+/--
+@isnad1 id=eq.4h3v.s7.04c4bd213310 from=translated src=- shape=cad7949e vocab=2aa419b4
+-/
 lemma one_sub_X_pow_term_eq_zero (k n j : ℕ) (_hk : 0 < k) (hn : 1 ≤ n)
     (_hj_mem : j ∈ Finset.range (k + 1)) (hj_ne : j ≠ k) :
     ((1 - Polynomial.X ^ k : Polynomial ℤ).coeff j : ℚ) * (j : ℚ)^n = 0 := by
@@ -1089,6 +1308,9 @@ lemma one_sub_X_pow_term_eq_zero (k n j : ℕ) (_hk : 0 < k) (hn : 1 ≤ n)
         ite_eq_right h, ite_eq_right hj_ne, sub_self]
     simp_all
 
+/--
+@isnad1 id=eq.1h2v.s6.d855cb61bd19 from=translated src=- shape=b8889749 vocab=fe015d29
+-/
 lemma one_sub_X_pow_term_at_k (k n : ℕ) (hk : 0 < k) :
     ((1 - Polynomial.X ^ k : Polynomial ℤ).coeff k : ℚ) * (k : ℚ)^n = -((k : ℚ)^n) := by
   have h₁ : (1 - Polynomial.X ^ k : Polynomial ℤ).coeff k = (-1 : ℤ) := by
@@ -1096,6 +1318,9 @@ lemma one_sub_X_pow_term_at_k (k n : ℕ) (hk : 0 < k) :
     cases k <;> simp_all
   simp_all
 
+/--
+@isnad1 id=eq.2h2v.s7.4d954482497c from=translated src=- shape=bceb8d48 vocab=30a9ff8e
+-/
 lemma one_sub_X_pow_sum_eq (k n : ℕ) (hk : 0 < k) (hn : 1 ≤ n) :
     ∑ j ∈ Finset.range ((1 - Polynomial.X ^ k : Polynomial ℤ).natDegree + 1),
       ((1 - Polynomial.X ^ k : Polynomial ℤ).coeff j : ℚ) * (j : ℚ)^n = -((k : ℚ)^n) := by
@@ -1106,16 +1331,25 @@ lemma one_sub_X_pow_sum_eq (k n : ℕ) (hk : 0 < k) (hn : 1 ≤ n) :
   · intro j hj_mem hj_ne
     exact one_sub_X_pow_term_eq_zero k n j hk hn hj_mem hj_ne
 
+/--
+@isnad1 id=eq.2h2v.s7.3b073f3d0572 from=translated src=- shape=53451e71 vocab=d529115f
+-/
 lemma exp_poly_sub_one_sub_X_pow_coeff_pos (k n : ℕ) (hk : 0 < k) (hn : 1 ≤ n) :
     (PowerSeries.coeff n) (expPolySub (1 -
       Polynomial.X ^ k)) = -((k : ℚ)^n) / (n.factorial : ℚ) := by
   rw [exp_poly_sub_coeff]
   rw [one_sub_X_pow_sum_eq k n hk hn]
 
+/--
+@isnad1 id=eq.0h3v.s7.419cbdde2f92 from=translated src=- shape=20da4b37 vocab=30e9287d
+-/
 lemma rhs_coeff_zero {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (i : Fin G.m) :
     (PowerSeries.coeff 0) (-(G.d i : ℚ) • (PowerSeries.X * G.scaledExpFactor i)) = 0 := by
   simp_all
 
+/--
+@isnad1 id=eq.1h4v.s7.f1adff990a87 from=translated src=- shape=1ab4e719 vocab=f24f1cfd
+-/
 lemma rhs_coeff_pos {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (i : Fin G.m)
     (n : ℕ) (hn : 1 ≤ n) :
     (PowerSeries.coeff n) (-(G.d i : ℚ) • (PowerSeries.X * G.scaledExpFactor i)) =
@@ -1128,6 +1362,9 @@ lemma rhs_coeff_pos {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S
   simp only [smul_eq_mul, Nat.succ_eq_add_one]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.6d16b71357b1 from=translated src=- shape=2a182c63 vocab=8e14138d
+-/
 lemma single_factor_exp_transform {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S)
     (i : Fin G.m) :
     expPolySub (1 - Polynomial.X ^ (G.d i)) =
@@ -1140,21 +1377,33 @@ lemma single_factor_exp_transform {S : NumericalSemigroup} (G : NumericalSemigro
   · rw [exp_poly_sub_one_sub_X_pow_coeff_pos (G.d i) n (G.hd_pos i) hn]
     rw [rhs_coeff_pos G i n hn]
 
+/--
+@isnad1 id=eq.0h3v.s7.952c3ca3e0b9 from=translated src=- shape=85298730 vocab=2faa4be3
+-/
 lemma prod_smul_eq_smul_prod (m : ℕ) (c : Fin m → ℚ) (f : Fin m → PowerSeries ℚ) :
     ∏ i : Fin m, (c i • f i) = (∏ i : Fin m, c i) • (∏ i : Fin m, f i) := by
   simp only [MvPowerSeries.smul_eq_C_mul]
   rw [Finset.prod_mul_distrib]
   rw [← map_prod]
 
+/--
+@isnad1 id=eq.0h2v.s6.1dd0ef59ed12 from=translated src=- shape=4779e612 vocab=337bd899
+-/
 lemma prod_X_mul_eq_X_pow_mul (m : ℕ) (f : Fin m → PowerSeries ℚ) :
     ∏ i : Fin m, (PowerSeries.X * f i) = PowerSeries.X ^ m * ∏ i : Fin m, f i := by
   simp_rw [Finset.prod_mul_distrib, Fin.prod_const]
 
+/--
+@isnad1 id=eq.0h2v.s6.6a8dec7bca94 from=translated src=- shape=ed5e4dd6 vocab=225b6038
+-/
 lemma prod_neg_eq_neg_one_pow_mul (m : ℕ) (c : Fin m → ℚ) :
     ∏ i : Fin m, (-c i) = (-1 : ℚ) ^ m * ∏ i : Fin m, c i := by
   rw [show (fun i => -c i) = fun i => (-1 : ℚ) * c i from by funext i; ring,
     Finset.prod_mul_distrib, Finset.prod_const, Finset.card_univ, Fintype.card_fin]
 
+/--
+@isnad1 id=eq.0h2v.s7.9ba8a14adcbf from=translated src=- shape=7357e2f1 vocab=9a95a289
+-/
 lemma prod_single_factor_eq_final_form {S : NumericalSemigroup} (G : NumericalSemigroupGenerators
   S) :
     ∏ i : Fin G.m, (-(G.d i : ℚ) • (PowerSeries.X * G.scaledExpFactor i)) =
@@ -1171,6 +1420,9 @@ lemma prod_single_factor_eq_final_form {S : NumericalSemigroup} (G : NumericalSe
 
 -- productPolynomial_exp_transform: defined later at productPolynomial_exp_transform'
 
+/--
+@isnad1 id=eq.0h3v.s8.486c465ea18e from=translated src=- shape=8f9e5db8 vocab=b855fe45
+-/
 lemma triple_sum_factorial_to_choose (P Q : Polynomial ℤ) (n : ℕ) :
     ∑ k ∈ Finset.range (n + 1),
       ∑ a ∈ Finset.range (P.natDegree + 1),
@@ -1191,6 +1443,9 @@ lemma triple_sum_factorial_to_choose (P Q : Polynomial ℤ) (n : ℕ) :
   have hkn : k ≤ n := Nat.lt_succ_iff.mp (Finset.mem_range.mp hk)
   exact term_factorial_to_choose (P.coeff a : ℚ) (Q.coeff b : ℚ) a b k n hkn
 
+/--
+@isnad1 id=eq.0h3v.s8.71a7cd1f6ecc from=translated src=- shape=91086323 vocab=b855fe45
+-/
 lemma factor_out_factorial (P Q : Polynomial ℤ) (n : ℕ) :
     ∑ k ∈ Finset.range (n + 1),
       ∑ a ∈ Finset.range (P.natDegree + 1),
@@ -1210,6 +1465,9 @@ lemma factor_out_factorial (P Q : Polynomial ℤ) (n : ℕ) :
   intro b _
   ring
 
+/--
+@isnad1 id=eq.0h3v.s8.dfa5bf405695 from=translated src=- shape=5dcdb662 vocab=bfb0c785
+-/
 lemma sum_rearrange (P Q : Polynomial ℤ) (n : ℕ) :
     ∑ k ∈ Finset.range (n + 1),
       ∑ a ∈ Finset.range (P.natDegree + 1),
@@ -1224,6 +1482,9 @@ lemma sum_rearrange (P Q : Polynomial ℤ) (n : ℕ) :
   intro a _
   rw [Finset.sum_comm]
 
+/--
+@isnad1 id=eq.0h3v.s8.ee257831031c from=translated src=- shape=680e5201 vocab=bfb0c785
+-/
 lemma factor_coeffs_from_inner_sum (P Q : Polynomial ℤ) (n : ℕ) :
     ∑ a ∈ Finset.range (P.natDegree + 1),
       ∑ b ∈ Finset.range (Q.natDegree + 1),
@@ -1242,6 +1503,9 @@ lemma factor_coeffs_from_inner_sum (P Q : Polynomial ℤ) (n : ℕ) :
   intro k _
   ring
 
+/--
+@isnad1 id=eq.0h3v.s6.e216879cd1a4 from=translated src=- shape=e2f54934 vocab=7aa6ef92
+-/
 lemma binomial_sum_eq_power (a b n : ℕ) :
     ∑ k ∈ Finset.range (n + 1),
       (n.choose k : ℚ) * (a : ℚ)^k * (b : ℚ)^(n - k) = ((a : ℚ) + b)^n := by
@@ -1252,6 +1516,9 @@ lemma binomial_sum_eq_power (a b n : ℕ) :
   simp only [mul_comm ((n.choose k : ℚ)) _]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s8.702645a7fad9 from=translated src=- shape=00730553 vocab=bfb0c785
+-/
 lemma apply_binomial_to_inner_sum (P Q : Polynomial ℤ) (n : ℕ) :
     ∑ a ∈ Finset.range (P.natDegree + 1),
       ∑ b ∈ Finset.range (Q.natDegree + 1),
@@ -1266,6 +1533,9 @@ lemma apply_binomial_to_inner_sum (P Q : Polynomial ℤ) (n : ℕ) :
   intro b _
   rw [binomial_sum_eq_power]
 
+/--
+@isnad1 id=eq.0h3v.s7.987e6b3f60fa from=translated src=- shape=8ab2300c vocab=8f1196f9
+-/
 lemma exp_poly_sub_mul_coeff_eq (P Q : Polynomial ℤ) (n : ℕ) :
     (PowerSeries.coeff n) (expPolySub P * expPolySub Q) =
     (∑ a ∈ Finset.range (P.natDegree + 1),
@@ -1280,6 +1550,9 @@ lemma exp_poly_sub_mul_coeff_eq (P Q : Polynomial ℤ) (n : ℕ) :
   rw [apply_binomial_to_inner_sum]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.db0680425d58 from=translated src=- shape=dc11d0e8 vocab=469e9704
+-/
 lemma convolution_sum_eq (P Q : Polynomial ℤ) (n : ℕ) :
     ∑ j ∈ Finset.range ((P * Q).natDegree + 1), ((P * Q).coeff j : ℚ) * (j : ℚ)^n =
     ∑ j ∈ Finset.range (P.natDegree + Q.natDegree + 1),
@@ -1304,6 +1577,9 @@ lemma convolution_sum_eq (P Q : Polynomial ℤ) (n : ℕ) :
   apply Finset.sum_congr rfl
   simp_all
 
+/--
+@isnad1 id=le.0h2v.s6.dd5765216d38 from=translated src=- shape=97313b44 vocab=f573af58
+-/
 lemma rectangle_subset_triangle (P Q : Polynomial ℤ) :
     Finset.range (P.natDegree + 1) ×ˢ Finset.range (Q.natDegree + 1) ⊆
     (Finset.range (P.natDegree + Q.natDegree + 1)).biUnion Finset.antidiagonal := by
@@ -1313,6 +1589,9 @@ lemma rectangle_subset_triangle (P Q : Polynomial ℤ) :
   refine ⟨ab.1 + ab.2, ?_, rfl⟩
   omega
 
+/--
+@isnad1 id=eq.2h4v.s7.b9f4bc7678ed from=translated src=- shape=e6481510 vocab=204fb170
+-/
 lemma term_vanishes_outside_rectangle (P Q : Polynomial ℤ) (n : ℕ) (ab : ℕ × ℕ)
     (_h_in_tri : ab ∈ (Finset.range (P.natDegree + Q.natDegree + 1)).biUnion Finset.antidiagonal)
     (h_not_rect : ab ∉ Finset.range (P.natDegree + 1) ×ˢ Finset.range (Q.natDegree + 1)) :
@@ -1328,12 +1607,18 @@ lemma term_vanishes_outside_rectangle (P Q : Polynomial ℤ) (n : ℕ) (ab : ℕ
       exact_mod_cast Polynomial.coeff_eq_zero_of_natDegree_lt h₁]
     ring
 
+/--
+@isnad1 id=pairwise.0h1v.s4.46d7a3a394c4 from=translated src=- shape=c0c4a345 vocab=d9b6cbc1
+-/
 lemma pairwiseDisjoint_antidiagonal (s : Finset ℕ) :
     (s : Set ℕ).PairwiseDisjoint Finset.antidiagonal := by
   intro j₁ _ j₂ _ hne
   rw [Function.onFun, Finset.disjoint_left]
   simp_all
 
+/--
+@isnad1 id=eq.0h3v.s7.b220271f4d1c from=translated src=- shape=a46b8a94 vocab=3705736b
+-/
 lemma nested_sum_eq_biUnion_sum (P Q : Polynomial ℤ) (n : ℕ) :
     ∑ j ∈ Finset.range (P.natDegree + Q.natDegree + 1),
       ∑ ab ∈ Finset.antidiagonal j,
@@ -1342,6 +1627,9 @@ lemma nested_sum_eq_biUnion_sum (P Q : Polynomial ℤ) (n : ℕ) :
       (P.coeff ab.1 : ℚ) * (Q.coeff ab.2 : ℚ) * ((ab.1 : ℚ) + ab.2)^n := by
   exact (Finset.sum_biUnion (pairwiseDisjoint_antidiagonal _)).symm
 
+/--
+@isnad1 id=eq.0h3v.s7.da6f67ed5916 from=translated src=- shape=30cc1d51 vocab=834e8835
+-/
 lemma product_sum_eq_nested (P Q : Polynomial ℤ) (n : ℕ) :
     ∑ ab ∈ Finset.range (P.natDegree + 1) ×ˢ Finset.range (Q.natDegree + 1),
       (P.coeff ab.1 : ℚ) * (Q.coeff ab.2 : ℚ) * ((ab.1 : ℚ) + ab.2)^n =
@@ -1350,6 +1638,9 @@ lemma product_sum_eq_nested (P Q : Polynomial ℤ) (n : ℕ) :
         (P.coeff a : ℚ) * (Q.coeff b : ℚ) * ((a : ℚ) + b)^n := by
   rw [Finset.sum_product]
 
+/--
+@isnad1 id=eq.0h3v.s7.7f911f4a95f3 from=translated src=- shape=a430b334 vocab=469e9704
+-/
 lemma triangular_to_rectangular_sum (P Q : Polynomial ℤ) (n : ℕ) :
     ∑ j ∈ Finset.range (P.natDegree + Q.natDegree + 1),
       ∑ ab ∈ Finset.antidiagonal j,
@@ -1364,6 +1655,9 @@ lemma triangular_to_rectangular_sum (P Q : Polynomial ℤ) (n : ℕ) :
   intro ab h_in_tri h_not_rect
   exact term_vanishes_outside_rectangle P Q n ab h_in_tri h_not_rect
 
+/--
+@isnad1 id=eq.0h3v.s7.d991803725cd from=translated src=- shape=bca201bf vocab=8f1196f9
+-/
 lemma exp_poly_sub_prod_coeff_eq (P Q : Polynomial ℤ) (n : ℕ) :
     (PowerSeries.coeff n) (expPolySub (P * Q)) =
     (∑ a ∈ Finset.range (P.natDegree + 1),
@@ -1373,12 +1667,18 @@ lemma exp_poly_sub_prod_coeff_eq (P Q : Polynomial ℤ) (n : ℕ) :
   rw [convolution_sum_eq]
   rw [triangular_to_rectangular_sum]
 
+/--
+@isnad1 id=eq.0h2v.s5.8698bc287620 from=translated src=- shape=735a947b vocab=2372be1c
+-/
 lemma exp_poly_sub_mul (P Q : Polynomial ℤ) :
     expPolySub (P * Q) = expPolySub P * expPolySub Q := by
   apply PowerSeries.ext
   intro n
   rw [exp_poly_sub_prod_coeff_eq, exp_poly_sub_mul_coeff_eq]
 
+/--
+@isnad1 id=eq.0h2v.s6.91d258fa6507 from=translated src=- shape=ee1f16b3 vocab=8dc2409f
+-/
 lemma exp_poly_sub_prod' {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) :
     expPolySub G.productPolynomial =
     ∏ i : Fin G.m, expPolySub (1 - Polynomial.X ^ (G.d i)) := by
@@ -1391,6 +1691,9 @@ lemma exp_poly_sub_prod' {S : NumericalSemigroup} (G : NumericalSemigroupGenerat
   · intro a b c hbc
     rw [exp_poly_sub_mul, hbc]
 
+/--
+@isnad1 id=eq.0h2v.s6.577c509af5bb from=translated src=- shape=92fb9ef3 vocab=814340e4
+-/
 lemma productPolynomial_exp_transform {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S)
   :
     expPolySub G.productPolynomial =
@@ -1399,6 +1702,9 @@ lemma productPolynomial_exp_transform {S : NumericalSemigroup} (G : NumericalSem
   conv_lhs => arg 2; ext i; rw [single_factor_exp_transform]
   exact prod_single_factor_eq_final_form G
 
+/--
+@isnad1 id=eq.0h1v.s7.990f08ec44fd from=translated src=- shape=5dc4502c vocab=dd13bb07
+-/
 lemma coeff_one_sub_exp (n : ℕ) :
     (PowerSeries.coeff n) (1 - PowerSeries.exp ℚ) =
     if n = 0 then 0 else -1 / (n.factorial : ℚ) := by
@@ -1408,6 +1714,9 @@ lemma coeff_one_sub_exp (n : ℕ) :
   · simp [h]
   · ring
 
+/--
+@isnad1 id=eq.0h2v.s6.9386862e36df from=translated src=- shape=450c00ae vocab=52d7e501
+-/
 lemma binomial_sum_minus_j_pow (j n : ℕ) :
     (∑ k ∈ Finset.range (n + 1), if k = 0 then 0 else (n.choose k : ℚ) * (j : ℚ)^(n - k)) =
     ((j : ℚ) + 1)^n - (j : ℚ)^n := by
@@ -1428,6 +1737,9 @@ lemma binomial_sum_minus_j_pow (j n : ℕ) :
         apply Finset.sum_congr rfl; intro k _; ring
     _ = ((j : ℚ) + 1)^n - (j : ℚ)^n := by linarith
 
+/--
+@isnad1 id=eq.0h3v.s8.01782e1f622a from=translated src=- shape=30bef3e0 vocab=d5b62eda
+-/
 lemma coeff_mul_as_range_sum {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n : ℕ) :
     (PowerSeries.coeff n) ((1 - PowerSeries.exp ℚ) * partialSumGenFunc G) =
     ∑ k ∈ Finset.range (n + 1),
@@ -1438,6 +1750,9 @@ lemma coeff_mul_as_range_sum {S : NumericalSemigroup} (G : NumericalSemigroupGen
     (fun k m => (PowerSeries.coeff k) (1 - PowerSeries.exp ℚ) *
       (PowerSeries.coeff m) (partialSumGenFunc G)) n
 
+/--
+@isnad1 id=eq.0h3v.s8.473a86e18865 from=translated src=- shape=a5772985 vocab=c7ef9dfd
+-/
 lemma coeff_sum_substitute {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n : ℕ) :
     ∑ k ∈ Finset.range (n + 1),
       (PowerSeries.coeff k) (1 - PowerSeries.exp ℚ) *
@@ -1451,6 +1766,9 @@ lemma coeff_sum_substitute {S : NumericalSemigroup} (G : NumericalSemigroupGener
   intro k _
   rw [coeff_one_sub_exp, partialSumGenFunc_coeff]
 
+/--
+@isnad1 id=eq.0h3v.s8.30f71a7a4588 from=translated src=- shape=98588231 vocab=591f1799
+-/
 lemma drop_k_eq_zero_term {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n : ℕ) :
     ∑ k ∈ Finset.range (n + 1),
       (if k = 0 then 0 else -1 / (k.factorial : ℚ)) *
@@ -1465,6 +1783,9 @@ lemma drop_k_eq_zero_term {S : NumericalSemigroup} (G : NumericalSemigroupGenera
          ((n - k).factorial : ℚ))) := by
   simp_all
 
+/--
+@isnad1 id=eq.2h4v.s8.87c443350eea from=translated src=- shape=30a2d17d vocab=5e4239d4
+-/
 lemma summand_eq_for_pos {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n k : ℕ)
     (_hk_pos : k ≠ 0) (hk_le : k ≤ n) :
     (-1 / (k.factorial : ℚ)) *
@@ -1489,6 +1810,9 @@ lemma summand_eq_for_pos {S : NumericalSemigroup} (G : NumericalSemigroupGenerat
   rw [neg_div, neg_div, h₈]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s8.3a2fc2054efd from=translated src=- shape=1ea6232c vocab=b7bce1e3
+-/
 lemma apply_factorial_identity {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n :
   ℕ) :
     ∑ k ∈ Finset.range (n + 1),
@@ -1510,6 +1834,9 @@ lemma apply_factorial_identity {S : NumericalSemigroup} (G : NumericalSemigroupG
       simp_all
     exact summand_eq_for_pos G n k hk_zero hk_le
 
+/--
+@isnad1 id=eq.0h3v.s8.3155831e65eb from=translated src=- shape=e07d4bab vocab=2534705c
+-/
 lemma factor_neg_choose_div_factorial (D n : ℕ) (coeff : ℕ → ℚ) :
     ∑ k ∈ Finset.range (n + 1),
       (if k = 0 then 0 else
@@ -1529,6 +1856,9 @@ lemma factor_neg_choose_div_factorial (D n : ℕ) (coeff : ℕ → ℚ) :
     have hfac : (n.factorial : ℚ) ≠ 0 := by positivity
     field_simp
 
+/--
+@isnad1 id=eq.0h3v.s7.0963c1b11cf4 from=translated src=- shape=f336ff0f vocab=52d7e501
+-/
 lemma swap_and_apply_binomial (D n : ℕ) (coeff : ℕ → ℚ) :
     ∑ k ∈ Finset.range (n + 1),
       (if k = 0 then 0 else
@@ -1557,6 +1887,9 @@ lemma swap_and_apply_binomial (D n : ℕ) (coeff : ℕ → ℚ) :
   rw [← Finset.mul_sum]
   rw [binomial_sum_minus_j_pow]
 
+/--
+@isnad1 id=eq.0h3v.s8.d92e8e4f97a0 from=translated src=- shape=e195b969 vocab=b7bce1e3
+-/
 lemma factor_and_apply_binomial {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n :
   ℕ) :
     ∑ k ∈ Finset.range (n + 1),
@@ -1574,6 +1907,9 @@ lemma factor_and_apply_binomial {S : NumericalSemigroup} (G : NumericalSemigroup
     (fun j => ∑ m ∈ Finset.range (j + 1), (G.productPolynomial.coeff m : ℚ))
   rw [step1, step2]
 
+/--
+@isnad1 id=eq.0h3v.s8.98b5efaa95d9 from=translated src=- shape=90e48683 vocab=7988d77b
+-/
 lemma coeff_lhs_expand {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n : ℕ) :
     (PowerSeries.coeff n) ((1 - PowerSeries.exp ℚ) * partialSumGenFunc G) =
     (-1 / (n.factorial : ℚ)) *
@@ -1586,18 +1922,27 @@ lemma coeff_lhs_expand {S : NumericalSemigroup} (G : NumericalSemigroupGenerator
   rw [apply_factorial_identity]
   rw [factor_and_apply_binomial]
 
+/--
+@isnad1 id=eq.0h3v.s7.25740be46f94 from=translated src=- shape=5a467bbb vocab=0b1c9bfb
+-/
 lemma coeff_lhs_eq_rhs {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n : ℕ) :
     (PowerSeries.coeff n) ((1 - PowerSeries.exp ℚ) * partialSumGenFunc G) =
     (PowerSeries.coeff n) (expPolySub G.productPolynomial) := by
   rw [coeff_lhs_expand, telescoping_sum, exp_poly_sub_coeff]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s6.3a9543fd1412 from=translated src=- shape=1e6b3ec3 vocab=bf88d037
+-/
 lemma partialSumGenFunc_mul_one_sub_exp {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) :
     (1 - PowerSeries.exp ℚ) * partialSumGenFunc G = expPolySub G.productPolynomial := by
   ext n
   exact coeff_lhs_eq_rhs G n
 
+/--
+@isnad1 id=eq.0h2v.s7.c56e08af25f1 from=translated src=- shape=e94c4dca vocab=6a53aeeb
+-/
 lemma partialSumGenFunc_identity {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) :
     PowerSeries.X * partialSumGenFunc G =
     ((-1 : ℚ)^(G.m + 1) * (G.piM : ℚ)) • (PowerSeries.X ^ G.m * G.BSeries) := by
@@ -1631,10 +1976,19 @@ lemma partialSumGenFunc_identity {S : NumericalSemigroup} (G : NumericalSemigrou
     ring_nf
   simp_all
 
+/--
+@isnad1 id=iff.0h2v.s5.95f8cf016e6b from=translated src=- shape=af196f4c vocab=8577ebb4
+-/
 lemma cond_equiv (m n : ℕ) : (m ≤ n + 1) ↔ (m - 1 ≤ n) := by aesop
 
+/--
+@isnad1 id=eq.2h2v.s6.59149416ee40 from=translated src=- shape=5fa57758 vocab=327f97a7
+-/
 lemma index_eq (m n : ℕ) (hm : 0 < m) (h : m ≤ n + 1) : (n + 1) - m = n - (m - 1) := by omega
 
+/--
+@isnad1 id=eq.0h3v.s8.247af5868092 from=translated src=- shape=eb8195ef vocab=e523831b
+-/
 lemma coeff_X_pow_shift {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n : ℕ) :
     (PowerSeries.coeff (n + 1)) (PowerSeries.X ^ G.m * G.BSeries) =
     (PowerSeries.coeff n) (PowerSeries.X ^ (G.m - 1) * G.BSeries) := by
@@ -1644,6 +1998,9 @@ lemma coeff_X_pow_shift {S : NumericalSemigroup} (G : NumericalSemigroupGenerato
   · rw [index_eq G.m n G.hm_pos (cond_equiv G.m n |>.mpr h)]
   · rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.c8847b0c1c29 from=translated src=- shape=cdd3fd62 vocab=fc6a6a89
+-/
 lemma partialSumGenFunc_coeff_eq_bernoulli_term {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (n : ℕ) :
     (PowerSeries.coeff n) (partialSumGenFunc G) =
@@ -1659,6 +2016,9 @@ lemma partialSumGenFunc_coeff_eq_bernoulli_term {S : NumericalSemigroup}
   rw [coeff_X_pow_shift G n] at h_coeff
   simp_all
 
+/--
+@isnad1 id=eq.0h3v.s8.9bef96c5a92f from=translated src=- shape=48b43555 vocab=ba7e7a4d
+-/
 lemma sum_part_equals_bernoulli_term_natDegree {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (n : ℕ) :
     (∑ j ∈ Finset.range (G.hilbertNumerator.natDegree + 1),
@@ -1668,11 +2028,20 @@ lemma sum_part_equals_bernoulli_term_natDegree {S : NumericalSemigroup}
       (PowerSeries.coeff n) (PowerSeries.X ^ (G.m - 1) * G.BSeries) := by
   rw [← partialSumGenFunc_coeff, partialSumGenFunc_coeff_eq_bernoulli_term]
 
+/--
+@isnad1 id=le.1h2v.s5.2d7b0cfad88c from=translated src=- shape=39a52ad1 vocab=a50cdee1
+-/
 lemma gap_le_sup {S : NumericalSemigroup} (g : ℕ) (hg : g ∈ S.gaps) : g ≤ S.gaps.sup id :=
   Finset.le_sup (f := id) hg
 
+/--
+@isnad1 id=eq.0h1v.s5.80ca9c85e2ef from=translated src=- shape=1e9389ef vocab=9d237249
+-/
 lemma neg_neg_one_pow_eq (m : ℕ) : -((-1 : ℤ) ^ m) = (-1 : ℤ) ^ (m + 1) := by ring
 
+/--
+@isnad1 id=eq.1h2v.s7.a4a7705dd858 from=translated src=- shape=92c7bae2 vocab=c7abc8e5
+-/
 lemma gap_sum_at_jstar {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S)
     (hnonempty : S.gaps.Nonempty) :
     ∑ g ∈ S.gaps.filter (· ≤ G.productPolynomial.natDegree + S.gaps.sup id),
@@ -1699,6 +2068,9 @@ lemma gap_sum_at_jstar {S : NumericalSemigroup} (G : NumericalSemigroupGenerator
     simp only [hgmax_eq]
     omega
 
+/--
+@isnad1 id=eq.1h2v.s6.5318abfac33b from=translated src=- shape=84722e3c vocab=a3cd0a2f
+-/
 lemma hilbertNumerator_coeff_at_jstar {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S)
     (hnonempty : S.gaps.Nonempty) :
     G.hilbertNumerator.coeff (G.productPolynomial.natDegree + S.gaps.sup id) = (-1 : ℤ) ^ (G.m +
@@ -1724,8 +2096,14 @@ lemma hilbertNumerator_coeff_at_jstar {S : NumericalSemigroup} (G : NumericalSem
   have hgap := gap_sum_at_jstar G hnonempty
   rw [hgap, neg_neg_one_pow_eq]
 
+/--
+@isnad1 id=ne.0h1v.s5.e2b1cc33b85e from=translated src=- shape=ef809ff9 vocab=9d237249
+-/
 lemma neg_one_pow_ne_zero' (m : ℕ) : ((-1 : ℤ) ^ (m + 1)) ≠ 0 := by exact Int.neg_one_pow_ne_zero
 
+/--
+@isnad1 id=le.1h2v.s5.a7f45f26c72f from=translated src=- shape=3b9ea3d4 vocab=56488a92
+-/
 lemma hilbertNumerator_natDegree_ge_jstar {S : NumericalSemigroup} (G :
   NumericalSemigroupGenerators S)
     (hnonempty : S.gaps.Nonempty) :
@@ -1734,6 +2112,9 @@ lemma hilbertNumerator_natDegree_ge_jstar {S : NumericalSemigroup} (G :
   rw [hilbertNumerator_coeff_at_jstar G hnonempty]
   exact neg_one_pow_ne_zero' G.m
 
+/--
+@isnad1 id=le.1h3v.s5.9a99da806ec0 from=translated src=- shape=0a428f32 vocab=58e161c5
+-/
 lemma hilbertNumerator_natDegree_ge_prod_plus_gap {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (g : ℕ) (hg : g ∈ S.gaps) :
     G.productPolynomial.natDegree + g ≤ G.hilbertNumerator.natDegree := by
@@ -1743,6 +2124,9 @@ lemma hilbertNumerator_natDegree_ge_prod_plus_gap {S : NumericalSemigroup}
       ≤ G.productPolynomial.natDegree + S.gaps.sup id := by omega
     _ ≤ G.hilbertNumerator.natDegree := hilbertNumerator_natDegree_ge_jstar G hnonempty
 
+/--
+@isnad1 id=mem.1h4v.s6.f1f14bf24c91 from=translated src=- shape=3ba2baf8 vocab=600f1a46
+-/
 lemma forward_map_mem {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (g j : ℕ)
     (hj : j ∈ (Finset.range (G.hilbertNumerator.natDegree + 1)).filter (g ≤ ·)) :
@@ -1750,6 +2134,9 @@ lemma forward_map_mem {S : NumericalSemigroup}
   simp only [Finset.mem_filter, Finset.mem_range] at hj ⊢
   omega
 
+/--
+@isnad1 id=mem.1h4v.s6.992800aa35f5 from=translated src=- shape=d249565b vocab=600f1a46
+-/
 lemma inverse_map_mem {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (g k : ℕ)
     (hk : k ∈ Finset.range (G.hilbertNumerator.natDegree + 1 - g)) :
@@ -1757,6 +2144,9 @@ lemma inverse_map_mem {S : NumericalSemigroup}
   simp only [Finset.mem_filter, Finset.mem_range] at hk ⊢
   omega
 
+/--
+@isnad1 id=eq.1h4v.s7.e2732168e69b from=translated src=- shape=afe65323 vocab=fc7e2cb0
+-/
 lemma inner_sum_reindex {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (n g : ℕ) (_hg : g ∈ S.gaps) :
     ∑ j ∈ (Finset.range (G.hilbertNumerator.natDegree + 1)).filter (g ≤ ·),
@@ -1772,6 +2162,9 @@ lemma inner_sum_reindex {S : NumericalSemigroup}
   · simp_all
   · simp_all
 
+/--
+@isnad1 id=le.1h3v.s6.242b181f02d1 from=translated src=- shape=b547d805 vocab=7a59af7c
+-/
 lemma range_subset_from_degree_bound' {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (g : ℕ) (hg : g ∈ S.gaps) :
     Finset.range (G.productPolynomial.natDegree + 1) ⊆
@@ -1780,6 +2173,9 @@ lemma range_subset_from_degree_bound' {S : NumericalSemigroup}
   have h := hilbertNumerator_natDegree_ge_prod_plus_gap G g hg
   omega
 
+/--
+@isnad1 id=eq.2h5v.s7.bc7c09f8dfb1 from=translated src=- shape=0eb9c0a7 vocab=c8ff54a9
+-/
 lemma summand_zero_beyond_degree' {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (g n k : ℕ)
     (_hk : k ∈ Finset.range (G.hilbertNumerator.natDegree + 1 - g))
@@ -1790,6 +2186,9 @@ lemma summand_zero_beyond_degree' {S : NumericalSemigroup}
     exact_mod_cast Polynomial.coeff_eq_zero_of_natDegree_lt (by omega)]
   ring
 
+/--
+@isnad1 id=eq.1h4v.s7.9d799b5ba4fe from=translated src=- shape=80ea71e9 vocab=9d6cb93d
+-/
 lemma inner_sum_extend_range' {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (n g : ℕ) (hg : g ∈ S.gaps) :
     ∑ k ∈ Finset.range (G.hilbertNumerator.natDegree + 1 - g),
@@ -1801,12 +2200,18 @@ lemma inner_sum_extend_range' {S : NumericalSemigroup}
   intro k hk hk_not
   exact summand_zero_beyond_degree' G g n k hk hk_not
 
+/--
+@isnad1 id=eq.0h4v.s7.a7dc4c194818 from=translated src=- shape=9bab1e07 vocab=2e3bb719
+-/
 lemma distribute_j_pow_into_sum {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (n j : ℕ) :
     (∑ g ∈ S.gaps.filter (· ≤ j), (G.productPolynomial.coeff (j - g) : ℚ)) * (j : ℚ)^n =
     ∑ g ∈ S.gaps.filter (· ≤ j), (G.productPolynomial.coeff (j - g) : ℚ) * (j : ℚ)^n := by
   rw [Finset.sum_mul]
 
+/--
+@isnad1 id=iff.0h4v.s6.0f87e92154bc from=translated src=- shape=c7645a9b vocab=41368cae
+-/
 lemma sum_exchange_condition' {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) :
     ∀ (j : ℕ) (g : ℕ),
@@ -1816,6 +2221,9 @@ lemma sum_exchange_condition' {S : NumericalSemigroup}
        g ∈ S.gaps) := by
   aesop
 
+/--
+@isnad1 id=eq.0h3v.s7.aa6b990024cf from=translated src=- shape=f22f3122 vocab=a28e019a
+-/
 lemma distribute_and_swap_sums {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (n : ℕ) :
     ∑ j ∈ Finset.range (G.hilbertNumerator.natDegree + 1),
@@ -1829,6 +2237,9 @@ lemma distribute_and_swap_sums {S : NumericalSemigroup}
       rw [distribute_j_pow_into_sum G n j]
   exact Finset.sum_comm' (sum_exchange_condition' G)
 
+/--
+@isnad1 id=eq.0h3v.s7.60a7e94a4cb7 from=translated src=- shape=556be4e2 vocab=a28e019a
+-/
 lemma gap_sum_exchange {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n : ℕ) :
     ∑ j ∈ Finset.range (G.hilbertNumerator.natDegree + 1),
       (∑ g ∈ S.gaps.filter (· ≤ j), (G.productPolynomial.coeff (j - g) : ℚ)) * (j : ℚ)^n =
@@ -1839,6 +2250,9 @@ lemma gap_sum_exchange {S : NumericalSemigroup} (G : NumericalSemigroupGenerator
   intro g hg
   rw [inner_sum_reindex G n g hg, inner_sum_extend_range' G n g hg]
 
+/--
+@isnad1 id=eq.0h3v.s6.3572d4280354 from=translated src=- shape=3d99b7a0 vocab=7aa6ef92
+-/
 lemma binomial_sum_eq_add_pow (a b : ℚ) (n : ℕ) :
     ∑ k ∈ Finset.range (n + 1), (n.choose k : ℚ) * a^k * b^(n - k) = (a + b)^n := by
   rw [add_pow]
@@ -1846,6 +2260,9 @@ lemma binomial_sum_eq_add_pow (a b : ℚ) (n : ℕ) :
   intro k _
   ring
 
+/--
+@isnad1 id=eq.0h4v.s7.eabea8eb3c2c from=translated src=- shape=846831e3 vocab=ca826c6f
+-/
 lemma triple_sum_exchange (gaps : Finset ℕ) (degP : ℕ) (coeff : ℕ → ℚ) (n : ℕ) :
     ∑ g ∈ gaps, ∑ k ∈ Finset.range (degP + 1), ∑ r ∈ Finset.range (n + 1),
       (coeff k) * (n.choose r : ℚ) * (k : ℚ)^r * (g : ℚ)^(n - r) =
@@ -1857,6 +2274,9 @@ lemma triple_sum_exchange (gaps : Finset ℕ) (degP : ℕ) (coeff : ℕ → ℚ)
   intro g _
   rw [Finset.sum_comm]
 
+/--
+@isnad1 id=eq.0h5v.s7.0f95beac4d0e from=translated src=- shape=64a99c9b vocab=ca826c6f
+-/
 lemma factor_binomial_coeff_from_double_sum (gaps : Finset ℕ) (degP : ℕ) (coeff : ℕ → ℚ) (n r : ℕ) :
     ∑ g ∈ gaps, ∑ k ∈ Finset.range (degP + 1),
       (coeff k) * (n.choose r : ℚ) * (k : ℚ)^r * (g : ℚ)^(n - r) =
@@ -1871,6 +2291,9 @@ lemma factor_binomial_coeff_from_double_sum (gaps : Finset ℕ) (degP : ℕ) (co
   intro k _
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.0822e5717db7 from=translated src=- shape=d5261dec vocab=a6dad5fe
+-/
 lemma sum_choose_mul_div_factorial_eq_sum_div_factorials (n : ℕ) (A B : ℕ → ℚ) :
     ∑ r ∈ Finset.range (n + 1), ((n.choose r : ℚ) * A r * B r) / (n.factorial : ℚ) =
     ∑ r ∈ Finset.range (n + 1), (A r / (r.factorial : ℚ)) * (B r / ((n - r).factorial : ℚ)) := by
@@ -1886,6 +2309,9 @@ lemma sum_choose_mul_div_factorial_eq_sum_div_factorials (n : ℕ) (A B : ℕ �
   field_simp
   linear_combination (A r * B r) * h₃
 
+/--
+@isnad1 id=eq.0h3v.s7.1a7296f452c7 from=translated src=- shape=c480b5bc vocab=a5b6cf13
+-/
 lemma gap_sum_binomial_expand {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n : ℕ)
   :
     (∑ g ∈ S.gaps, ∑ k ∈ Finset.range (G.productPolynomial.natDegree + 1),
@@ -1937,6 +2363,9 @@ lemma gap_sum_binomial_expand {S : NumericalSemigroup} (G : NumericalSemigroupGe
         (G.productPolynomial.coeff k : ℚ) * (k : ℚ)^r)
     (fun r => ∑ g ∈ S.gaps, (g : ℚ)^(n - r))
 
+/--
+@isnad1 id=eq.0h3v.s7.ff62b1c17815 from=translated src=- shape=59b2158d vocab=d59222ec
+-/
 lemma P_sum_to_exp_coeff {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (r : ℕ) :
     (∑ k ∈ Finset.range (G.productPolynomial.natDegree + 1),
       (G.productPolynomial.coeff k : ℚ) * (k : ℚ)^r) / (r.factorial : ℚ) =
@@ -1945,21 +2374,33 @@ lemma P_sum_to_exp_coeff {S : NumericalSemigroup} (G : NumericalSemigroupGenerat
   rw [productPolynomial_exp_transform]
   simp only [map_smul, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h2v.s7.f9da2793e283 from=translated src=- shape=c6e3f9ed vocab=19078530
+-/
 lemma gap_sum_to_coeff {S : NumericalSemigroup} (k : ℕ) :
     (∑ g ∈ S.gaps, (g : ℚ)^k) / (k.factorial : ℚ) =
     (PowerSeries.coeff k) (PowerSeries.mk fun j => ∑ g ∈ S.gaps,
       (g : ℚ)^j / (j.factorial : ℚ)) := by
   simp [PowerSeries.coeff_mk, Finset.sum_div]
 
+/--
+@isnad1 id=eq.0h4v.s8.b8f865697a56 from=translated src=- shape=0cd570a2 vocab=2383e521
+-/
 lemma coeff_mul_range' {R : Type*} [Semiring R] (φ ψ : PowerSeries R) (n : ℕ) :
     (PowerSeries.coeff n) (φ * ψ) =
     ∑ r ∈ Finset.range (n + 1), (PowerSeries.coeff r) φ * (PowerSeries.coeff (n - r)) ψ := by
   rw [PowerSeries.coeff_mul, Finset.Nat.sum_antidiagonal_eq_sum_range_succ_mk]
 
+/--
+@isnad1 id=eq.0h5v.s6.bf24ffe613d7 from=translated src=- shape=41ec7e89 vocab=f1f138c6
+-/
 lemma sum_factor_scalar' {α : Type*} (s : Finset α) (c : ℚ) (a b : α → ℚ) :
     ∑ r ∈ s, (c * a r) * b r = c * ∑ r ∈ s, a r * b r := by
   simp_rw [mul_assoc, Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h3v.s8.b27d862e5984 from=translated src=- shape=4b64ec20 vocab=9d2c19a3
+-/
 lemma binomial_sum_to_convolution {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n
   : ℕ) :
     ∑ r ∈ Finset.range (n + 1),
@@ -1981,6 +2422,9 @@ lemma binomial_sum_to_convolution {S : NumericalSemigroup} (G : NumericalSemigro
   congr 1
   rw [← coeff_mul_range']
 
+/--
+@isnad1 id=eq.0h3v.s8.f478ba7d8916 from=translated src=- shape=eecfbace vocab=47bf0a5d
+-/
 lemma gap_part_equals_gap_term_natDegree {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) (n : ℕ) :
     (∑ j ∈ Finset.range (G.hilbertNumerator.natDegree + 1),
@@ -1994,6 +2438,9 @@ lemma gap_part_equals_gap_term_natDegree {S : NumericalSemigroup}
   rw [binomial_sum_to_convolution]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s3.dab5175f43de from=translated src=- shape=74e016e8 vocab=bd1efbb8
+-/
 lemma exp_poly_sub_hilbertNumerator_eq {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) :
     expPolySub G.hilbertNumerator = QExpSeries G := by
@@ -2004,16 +2451,25 @@ lemma exp_poly_sub_hilbertNumerator_eq {S : NumericalSemigroup}
   rw [sum_part_equals_bernoulli_term_natDegree, gap_part_equals_gap_term_natDegree]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s3.700ed5ab6483 from=translated src=- shape=2421c1eb vocab=e62f9f44
+-/
 lemma hilbertNumerator_exp_eq_Q_exp {S : NumericalSemigroup}
     (G : NumericalSemigroupGenerators S) :
     hilbertNumeratorExpSub G = QExpSeries G := by
   rw [hilbertNumerator_exp_sub_eq_exp_poly_sub, exp_poly_sub_hilbertNumerator_eq]
 
+/--
+@isnad1 id=eq.1h3v.s6.6c550402893d from=translated src=- shape=e93cc281 vocab=ba509090
+-/
 lemma alternatingPowerSum_eq_neg_factorial_coeff
     {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (n : ℕ) (hn : 1 ≤ n) :
     G.alternatingPowerSum n = -((n.factorial : ℚ) * (PowerSeries.coeff n) (QExpSeries G)) := by
   rw [alternatingPowerSum_eq_coeff_hilbert_exp G n hn, hilbertNumerator_exp_eq_Q_exp]
 
+/--
+@isnad1 id=eq.0h3v.s8.e91c82001a3b from=translated src=- shape=ba1d8672 vocab=228fa1d6
+-/
 lemma C_m_plus_p_formula {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (p : ℕ) :
     G.alternatingPowerSum (G.m + p) =
     ((-1 : ℚ)^G.m * (G.piM : ℚ) * ((G.m + p).factorial : ℚ) *
@@ -2041,6 +2497,9 @@ lemma C_m_plus_p_formula {S : NumericalSemigroup} (G : NumericalSemigroupGenerat
             ↑((G.m + p).choose r) * ↑(G.m + p - r).factorial *
               (PowerSeries.coeff (p - r)) G.ASeries * S.gapPowerSum r := by rw [h_gap]
 
+/--
+@isnad1 id=eq.0h3v.s8.36fe2e43f063 from=translated src=- shape=45fc5bd3 vocab=4485b52d
+-/
 lemma K_invariant_expanded {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (p : ℕ) :
     G.KInvariant p =
     (p.factorial : ℚ) * (PowerSeries.coeff (p + 1)) G.BSeries +
@@ -2052,6 +2511,9 @@ lemma K_invariant_expanded {S : NumericalSemigroup} (G : NumericalSemigroupGener
   have hpi : 0 < G.piM := pi_m_pos G
   rw [bernoulli_term_simplify G.m p G.piM hpi, gap_sum_simplify]
 
+/--
+@isnad1 id=eq.0h3v.s7.d7eda4973a8d from=translated src=- shape=a2ab12b3 vocab=62da925f
+-/
 lemma bernoulli_coeff_to_T_delta {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (p :
   ℕ) :
     (p.factorial : ℚ) * (PowerSeries.coeff (p + 1)) G.BSeries =
@@ -2068,6 +2530,9 @@ lemma bernoulli_coeff_to_T_delta {S : NumericalSemigroup} (G : NumericalSemigrou
   rw [h2]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s5.2ccf67d6290f from=translated src=- shape=668e55cd vocab=8a39cd7a
+-/
 lemma factorial_div_eq_choose_mul {p r : ℕ} (hr : r ≤ p) :
     (p.factorial : ℚ) / r.factorial = (p.choose r : ℚ) * (p - r).factorial := by
   have h_main : ((p.choose r : ℕ) : ℚ) * (r.factorial : ℚ) *
@@ -2078,6 +2543,9 @@ lemma factorial_div_eq_choose_mul {p r : ℕ} (hr : r ≤ p) :
   field_simp [h_r_pos]
   linarith
 
+/--
+@isnad1 id=eq.1h4v.s7.82ae4f01db98 from=translated src=- shape=75ebb7f1 vocab=a9382721
+-/
 lemma A_coeff_to_T_sigma {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (p r : ℕ)
     (hr : r ≤ p) :
     ((p.factorial : ℚ) / (r.factorial : ℚ)) * (PowerSeries.coeff (p - r)) G.ASeries =
@@ -2087,6 +2555,9 @@ lemma A_coeff_to_T_sigma {S : NumericalSemigroup} (G : NumericalSemigroupGenerat
   rw [hfact]
   ring
 
+/--
+@isnad1 id=eq.0h3v.s7.d8c8d7c3d66f from=translated src=- shape=c4b7be2b vocab=56c168b6
+-/
 lemma sum_A_coeff_eq_sum_T_sigma {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (p :
   ℕ) :
     ∑ r ∈ Finset.range (p + 1),
@@ -2100,6 +2571,9 @@ lemma sum_A_coeff_eq_sum_T_sigma {S : NumericalSemigroup} (G : NumericalSemigrou
   have hrp : r ≤ p := Nat.lt_succ_iff.mp hr
   rw [A_coeff_to_T_sigma G p r hrp]
 
+/--
+@isnad1 id=eq.0h3v.s7.716d2de3139a from=translated src=- shape=43e6224c vocab=20a748a4
+-/
 lemma fels_conjecture_main {S : NumericalSemigroup} (G : NumericalSemigroupGenerators S) (p : ℕ) :
     G.KInvariant p =
       ∑ r ∈ Finset.range (p + 1),
@@ -2112,6 +2586,9 @@ lemma fels_conjecture_main {S : NumericalSemigroup} (G : NumericalSemigroupGener
 
 end FelsConjectureProof
 
+/--
+@isnad1 id=eq.0h3v.s7.716d2de3139a from=translated src=- shape=43e6224c vocab=20a748a4
+-/
 theorem _root_.Tengoku.LeanPool.fels_conjecture (S : NumericalSemigroup) (G : NumericalSemigroupGenerators S) (p : ℕ) :
     G.KInvariant p =
       ∑ r ∈ Finset.range (p + 1),

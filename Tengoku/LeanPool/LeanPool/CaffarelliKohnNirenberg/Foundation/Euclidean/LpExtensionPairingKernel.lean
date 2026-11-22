@@ -33,7 +33,9 @@ open CKN
 The compact support confines the function to a finite-measure set, where the
 `L^p` membership with `p ≥ 1` yields integrability, and integrability on the
 support is equivalent to integrability on the whole space.  This is the
-integrability input for the pairing identities of `cor:CZ-harmonic`. -/
+integrability input for the pairing identities of `cor:CZ-harmonic`.
+@isnad1 id=integrab.3h2v.s7.a90864836f18 from=translated src=- shape=acca593f vocab=892902d7
+-/
 theorem integrable_of_memLp_hasCompactSupport {p : ℝ≥0∞} (hp : 1 ≤ p)
     {G : Vec3 → ℝ} (hG : MemLp G p volume) (hGc : HasCompactSupport G) :
     Integrable G volume := by

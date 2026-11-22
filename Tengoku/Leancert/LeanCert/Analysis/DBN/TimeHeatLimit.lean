@@ -10,6 +10,9 @@ open scoped Topology
 noncomputable def timeShift (t δ : ℝ) (n : ℕ) : ℂ → ℂ :=
   shiftIter (Real.sqrt (2*δ) * Real.sqrt (1 / ((n+1 : ℕ) : ℝ))) (n+1) (H t)
 
+/--
+@isnad1 id=eq.1h2v.s7.b92a7c713bb2 from=translated src=- shape=022a5919 vocab=baac4c46
+-/
 theorem timeShift_budget (δ : ℝ) (hδ : 0 ≤ δ) (n : ℕ) :
     ((n+1 : ℕ) : ℝ) * (Real.sqrt (2*δ) * Real.sqrt (1 / ((n+1 : ℕ) : ℝ))) ^ 2 = 2*δ := by
   rw [mul_pow, Real.sq_sqrt (by positivity), Real.sq_sqrt (by positivity)]
@@ -26,7 +29,9 @@ private theorem timeMultiplier_tendsto (δ : ℝ) (hδ : 0 ≤ δ) (u : ℝ) :
   simpa only [Function.comp_def, he, mul_assoc, mul_left_comm] using h
 
 /-- Joint convergence with a moving complex argument; this is stronger than
-pointwise convergence and supplies the locally uniform heat limit. -/
+pointwise convergence and supplies the locally uniform heat limit.
+@isnad1 id=tendsto.1h3v.s6.0f4458452184 from=translated src=- shape=0079469c vocab=6e8c9d73
+-/
 theorem timeShift_joint_tendsto (t δ : ℝ) (hδ : 0 ≤ δ) (z : ℂ) :
     Tendsto (fun p : ℕ × ℂ => timeShift t δ p.1 p.2)
       (atTop ×ˢ 𝓝 z) (𝓝 (H (t+δ) z)) := by
@@ -71,6 +76,9 @@ theorem timeShift_joint_tendsto (t δ : ℝ) (hδ : 0 ≤ δ) (z : ℂ) :
   have h := tendsto_integral_filter_of_dominated_convergence B hm hb hi hl
   simpa only [timeShift, shiftIter_H_eq_integral, H] using h
 
+/--
+@isnad1 id=tendstol.1h2v.s5.5b8d45ce693d from=translated src=- shape=fc7f0752 vocab=06b91330
+-/
 theorem timeShift_convergence (t δ : ℝ) (hδ : 0 ≤ δ) :
     TendstoLocallyUniformly (timeShift t δ) (H (t+δ)) atTop := by
   apply tendstoLocallyUniformly_iff_forall_tendsto.mpr

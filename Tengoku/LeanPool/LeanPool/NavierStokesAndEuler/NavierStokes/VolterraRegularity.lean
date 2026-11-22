@@ -42,6 +42,9 @@ open NilpotentVolterra
 /-- Radial domain: an abbreviation for `Metric.ball 0 R`. -/
 abbrev radialDomain (R : ℝ) : Set ℝ := Metric.ball 0 R
 
+/--
+@isnad1 id=mem.2h3v.s5.5c7a8592b1fb from=translated src=- shape=b77e1409 vocab=bdb1289f
+-/
 theorem scaled_mem_radialDomain {R r t : ℝ} (hr : r ∈ radialDomain R)
     (ht : t ∈ Icc (0 : ℝ) 1) : t * r ∈ radialDomain R := by
   simp only [radialDomain, Metric.mem_ball, dist_zero_right, Real.norm_eq_abs] at hr ⊢
@@ -54,7 +57,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- Continuity of the actual weighted integral needs continuity only on the
 radial domain. The integration variable is clamped solely outside `[0,1]`
-to apply the global parameter-integral continuity theorem. -/
+to apply the global parameter-integral continuity theorem.
+@isnad1 id=continuo.1h4v.s6.618de402c51c from=translated src=- shape=86502fb7 vocab=c71ddd00
+-/
 theorem weightedMean_continuousOn (c : ℕ) {R : ℝ} {f : ℝ → E}
     (hf : ContinuousOn f (radialDomain R)) :
     ContinuousOn (weightedMean c f) (radialDomain R) := by
@@ -80,6 +85,9 @@ theorem weightedMean_continuousOn (c : ℕ) {R : ℝ} {f : ℝ → E}
   have hqt : q t = t := congrArg Subtype.val (projIcc_of_mem zero_le_one ht')
   simp only [hqt]
 
+/--
+@isnad1 id=eq.2h6v.s5.498bfcaf8f93 from=translated src=- shape=3bd0cf43 vocab=1fd69ef6
+-/
 theorem weightedMean_eq_of_eqOn (c : ℕ) {R : ℝ} {f g : ℝ → E}
     (hfg : EqOn f g (radialDomain R)) {r : ℝ} (hr : r ∈ radialDomain R) :
     weightedMean c f r = weightedMean c g r := by
@@ -89,6 +97,9 @@ theorem weightedMean_eq_of_eqOn (c : ℕ) {R : ℝ} {f g : ℝ → E}
   change t ^ c • f (t * r) = t ^ c • g (t * r)
   rw [hfg (scaled_mem_radialDomain hr ht')]
 
+/--
+@isnad1 id=eq.2h6v.s5.9db56d3d53c1 from=translated src=- shape=3bd0cf43 vocab=80d1008d
+-/
 theorem regularPrimitive_eq_of_eqOn (c : ℕ) {R : ℝ} {f g : ℝ → E}
     (hfg : EqOn f g (radialDomain R)) {r : ℝ} (hr : r ∈ radialDomain R) :
     regularPrimitive c f r = regularPrimitive c g r := by
@@ -98,7 +109,9 @@ variable [CompleteSpace E]
 
 /-- The nonsingular first derivative formula is local on the radial domain.
 Its proof uses a continuous extension only to invoke the already established
-integral identity; the claimed function remains the original integral. -/
+integral identity; the claimed function remains the original integral.
+@isnad1 id=hasderiv.2h5v.s7.fffd5b6d6078 from=translated src=- shape=aa623436 vocab=38a4a4c0
+-/
 theorem regularPrimitive_hasDerivAt_on (c : ℕ) {R : ℝ} {f : ℝ → E}
     (hf : ContinuousOn f (radialDomain R)) {r : ℝ} (hr : r ∈ radialDomain R) :
     HasDerivAt (regularPrimitive c f)
@@ -138,7 +151,9 @@ theorem regularPrimitive_hasDerivAt_on (c : ℕ) {R : ℝ} {f : ℝ → E}
 omit [CompleteSpace E] in
 /-- Differentiation under the actual weighted integral. A compact radial
 subinterval supplies the integrable domination, so no global derivative
-bound or radial analyticity is needed. -/
+bound or radial analyticity is needed.
+@isnad1 id=hasderiv.4h5v.s7.ba253fd3aab0 from=translated src=- shape=d95ef758 vocab=4e706d05
+-/
 theorem weightedMean_hasDerivAt_on (c : ℕ) {R : ℝ} {f : ℝ → E}
     (hf : ContinuousOn f (radialDomain R))
     (hdf : DifferentiableOn ℝ f (radialDomain R))
@@ -213,7 +228,9 @@ theorem weightedMean_hasDerivAt_on (c : ℕ) {R : ℝ} {f : ℝ → E}
     (intervalIntegrable_const) hv_diff).2
 
 omit [CompleteSpace E] in
-/-- The weighted mean preserves every finite radial differentiability order. -/
+/-- The weighted mean preserves every finite radial differentiability order.
+@isnad1 id=contdiff.1h5v.s6.61c8a898c401 from=translated src=- shape=b54103d3 vocab=83e95ba9
+-/
 theorem weightedMean_contDiffOn (n : ℕ) (c : ℕ) {R : ℝ} {f : ℝ → E}
     (hf : ContDiffOn ℝ n f (radialDomain R)) :
     ContDiffOn ℝ n (weightedMean c f) (radialDomain R) := by
@@ -235,7 +252,9 @@ theorem weightedMean_contDiffOn (n : ℕ) (c : ℕ) {R : ℝ} {f : ℝ → E}
       simpa only [Nat.cast_add, Nat.cast_one] using hout
 
 /-- The regular Volterra integral gains one full real derivative. The domain
-contains zero, so this includes the formerly singular endpoint. -/
+contains zero, so this includes the formerly singular endpoint.
+@isnad1 id=contdiff.1h5v.s6.9ce5254a014f from=translated src=- shape=7d5bfbf3 vocab=ef91fc0c
+-/
 theorem regularPrimitive_contDiffOn_succ (n : ℕ) (c : ℕ) {R : ℝ} {f : ℝ → E}
     (hf : ContDiffOn ℝ n f (radialDomain R)) :
     ContDiffOn ℝ (n + 1 : ℕ) (regularPrimitive c f) (radialDomain R) := by
@@ -250,6 +269,9 @@ theorem regularPrimitive_contDiffOn_succ (n : ℕ) (c : ℕ) {R : ℝ} {f : ℝ 
         (fun r hr => (hfirst r hr).deriv)
   simpa only [Nat.cast_add, Nat.cast_one] using hout
 
+/--
+@isnad1 id=contdiff.1h4v.s6.f8f0915c955e from=translated src=- shape=63608e6c vocab=b07032ce
+-/
 theorem regularPrimitive_contDiffOn_infty (c : ℕ) {R : ℝ} {f : ℝ → E}
     (hf : ContDiffOn ℝ ∞ f (radialDomain R)) :
     ContDiffOn ℝ ∞ (regularPrimitive c f) (radialDomain R) := by
@@ -270,6 +292,9 @@ integer singular exponents. In the six-component system these are
 noncomputable def diagonalRegularPrimitive (c : ι → ℕ) (f : ℝ → ι → E) : ℝ → ι → E :=
   fun r i => regularPrimitive (c i) (fun s => f s i) r
 
+/--
+@isnad1 id=contdiff.1h6v.s7.3b7795d2ad30 from=translated src=- shape=fa91c6b1 vocab=93bcae9e
+-/
 theorem diagonalRegularPrimitive_contDiffOn_succ [CompleteSpace E]
     (n : ℕ) (c : ι → ℕ) {R : ℝ} {f : ℝ → ι → E}
     (hf : ContDiffOn ℝ n f (radialDomain R)) :
@@ -290,7 +315,9 @@ variable {B : ℕ → Type u} [∀ j, NormedAddCommGroup (B j)]
 
 /-- A genuine radial bootstrap on a sequence of Banach spaces. The next
 level is the larger parameter disk; its bounded Cauchy derivative is folded
-into `A₁`. The only initial regularity imposed on the solution is continuity. -/
+into `A₁`. The only initial regularity imposed on the solution is continuity.
+@isnad1 id=contdiff.5h9v.s11.ceebd0ea178f from=translated src=- shape=6d75c0e1 vocab=5d09dce9
+-/
 theorem scale_contDiffOn (c : ι → ℕ) {R : ℝ}
     (W f : ∀ j, ℝ → ι → B j)
     (A₀ : ∀ j, ℝ → (ι → B j) →L[ℝ] (ι → B j))
@@ -331,7 +358,9 @@ variable {B : ℕ → Type u} [∀ j, NormedRing (B j)]
   [∀ j, NormedAlgebra ℝ (B j)] [∀ j, CompleteSpace (B j)]
 
 /-- Entrywise version of the scale bootstrap, convenient for matrices of
-continuous functions on compact parameter disks. -/
+continuous functions on compact parameter disks.
+@isnad1 id=contdiff.5h11v.s10.8c3f9a87bc60 from=translated src=- shape=71888a9b vocab=cfbaf843
+-/
 theorem algebraScale_contDiffOn (c : ι → ℕ) {R : ℝ}
     (W f : ∀ j, ℝ → ι → B j) (a₀ a₁ : ∀ j, ℝ → ι → ι → B j)
     (D : ∀ j, B (j + 1) →L[ℝ] B j)
@@ -377,7 +406,9 @@ variable {K E : Type*} [TopologicalSpace K] [CompactSpace K]
   [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
 
 /-- Evaluation commutes with the actual radial integral when its source is
-continuous on the radial domain. -/
+continuous on the radial domain.
+@isnad1 id=eq.2h7v.s7.4533b472c479 from=translated src=- shape=cf8565d3 vocab=c93110fd
+-/
 theorem regularPrimitive_evaluate (c : ℕ) {R : ℝ} {f : ℝ → C(K, E)}
     (hf : ContinuousOn f (radialDomain R)) {r : ℝ} (hr : r ∈ radialDomain R) (z : K) :
     regularPrimitive c f r z = regularPrimitive c (fun s => f s z) r := by
@@ -393,6 +424,9 @@ theorem regularPrimitive_evaluate (c : ℕ) {R : ℝ} {f : ℝ → C(K, E)}
 
 end CompactEvaluation
 
+/--
+@isnad1 id=le.0h1v.s4.8b3139312d65 from=translated src=- shape=102e9580 vocab=c8e370b2
+-/
 theorem radialDomain_subset_Icc (R : ℝ) : radialDomain R ⊆ Icc (-R) R := by
   intro r hr
   have h : |r| < R := by simpa only [radialDomain, Metric.mem_ball,
@@ -404,9 +438,15 @@ to the open radial domain will be asserted to be smooth. -/
 noncomputable def radiusProjection (R : ℝ) (hR : 0 ≤ R) (r : ℝ) : Icc (-R) R :=
   projIcc (-R) R (by linarith) r
 
+/--
+@isnad1 id=continuo.1h1v.s5.0eea7a8130f0 from=translated src=- shape=a74b4e3f vocab=56379cb1
+-/
 theorem radiusProjection_continuous (R : ℝ) (hR : 0 ≤ R) :
     Continuous (radiusProjection R hR) := continuous_projIcc (h := by linarith)
 
+/--
+@isnad1 id=eq.2h2v.s5.f177acf8cb2d from=translated src=- shape=cfcfdd1f vocab=4fdf7458
+-/
 theorem radiusProjection_eq (R : ℝ) (hR : 0 ≤ R) {r : ℝ} (hr : r ∈ Icc (-R) R) :
     (radiusProjection R hR r : ℝ) = r := by
   exact congrArg Subtype.val (projIcc_of_mem (by linarith : -R ≤ R) hr)
@@ -429,6 +469,9 @@ noncomputable def fieldDiskCurve (R : ℝ) (hR : 0 ≤ R) {U : Set ℂ}
       (hW.comp_continuous (continuous_const.prodMk continuous_subtype_val)
         (fun z => ⟨(radiusProjection R hR r).property, hDisk z.property⟩))
 
+/--
+@isnad1 id=continuo.3h6v.s8.b54ddd2f6026 from=translated src=- shape=e5139fb0 vocab=56399076
+-/
 theorem fieldDiskCurve_continuous (R : ℝ) (hR : 0 ≤ R) {U : Set ℂ}
     (W : Field)
     (hW : ContinuousOn (fun p : ℝ × ℂ => W p.1 p.2) (Icc (-R) R ×ˢ U))
@@ -441,6 +484,9 @@ theorem fieldDiskCurve_continuous (R : ℝ) (hR : 0 ≤ R) {U : Set ℂ}
         (continuous_subtype_val.comp continuous_snd))
       (fun p => ⟨(radiusProjection R hR p.1).property, hDisk p.2.property⟩))
 
+/--
+@isnad1 id=eq.4h8v.s8.ed3b24949f63 from=translated src=- shape=fbcdbb14 vocab=03ae6a87
+-/
 theorem fieldDiskCurve_apply (R : ℝ) (hR : 0 ≤ R) {U : Set ℂ}
     (W : Field)
     (hW : ContinuousOn (fun p : ℝ × ℂ => W p.1 p.2) (Icc (-R) R ×ˢ U))
@@ -451,7 +497,9 @@ theorem fieldDiskCurve_apply (R : ℝ) (hR : 0 ≤ R) {U : Set ℂ}
   rw [radiusProjection_eq R hR hr]
 
 /-- Smoothness of the disk-valued curve implies actual scalar radial
-smoothness, by bounded evaluation. -/
+smoothness, by bounded evaluation.
+@isnad1 id=contdiff.4h8v.s8.3ab35cb3ba73 from=translated src=- shape=e8a42bab vocab=297ca452
+-/
 theorem fieldDiskCurve_radial_contDiffOn (R : ℝ) (hR : 0 ≤ R) {U : Set ℂ}
     (W : Field)
     (hW : ContinuousOn (fun p : ℝ × ℂ => W p.1 p.2) (Icc (-R) R ×ˢ U))
@@ -472,7 +520,9 @@ constructed solution come solely from `IsSymmetricIntegralSolution`.
 
 The radii increase with the level. Each induction step spends one disk gap
 through the concrete bounded Cauchy operator and gains one radial derivative
-through the actual regular Volterra integral. -/
+through the actual regular Volterra integral.
+@isnad1 id=contdiff.10h13v.s10.7c0574791a0e from=translated src=- shape=ed6aaf54 vocab=a92f5fd9
+-/
 theorem symmetric_solution_disk_curves_contDiffOn
     {R : ℝ} (hR : 0 ≤ R) {U : Set ℂ} {A₀ A₁ : Coeff} {f W : Field}
     (hW : VolterraParity.IsSymmetricIntegralSolution R U A₀ A₁ f W)
@@ -554,6 +604,9 @@ noncomputable def cauchyJetCurve (center : ℂ) (ρ : ℕ → ℝ)
       (cauchyJetCurve center ρ hρ V k (j + 1) r)
 
 omit [CompleteSpace E] in
+/--
+@isnad1 id=contdiff.2h8v.s8.c1353cc8c7c2 from=translated src=- shape=bda3e596 vocab=f07930a6
+-/
 theorem cauchyJetCurve_contDiffOn (center : ℂ) (ρ : ℕ → ℝ)
     (hρ : ∀ j, ρ j < ρ (j + 1))
     (V : ∀ j, ℝ → C(Disk center (ρ j), E)) {S : Set ℝ} {n : WithTop ℕ∞}
@@ -567,6 +620,9 @@ theorem cauchyJetCurve_contDiffOn (center : ℂ) (ρ : ℕ → ℝ)
       exact ((CauchyRestriction.derivativeCLM (E := E) center (hρ j)).restrictScalars
           ℝ).contDiff.comp_contDiffOn (ih (j + 1))
 
+/--
+@isnad1 id=differen.2h4v.s7.02190089991b from=translated src=- shape=674aa449 vocab=e604f7bd
+-/
 theorem holomorphic_iteratedDeriv {U : Set ℂ} (hU : IsOpen U) {F : ℂ → E}
     (hF : DifferentiableOn ℂ F U) (k : ℕ) :
     DifferentiableOn ℂ (iteratedDeriv k F) U := by
@@ -575,7 +631,9 @@ theorem holomorphic_iteratedDeriv {U : Set ℂ} (hU : IsOpen U) {F : ℂ → E}
   | succ k ih => simpa only [iteratedDeriv_succ] using ih.deriv hU
 
 /-- On holomorphic data the iterated bounded operators are the actual
-iterated complex derivatives, at every point of the smaller closed disk. -/
+iterated complex derivatives, at every point of the smaller closed disk.
+@isnad1 id=eq.6h11v.s9.9b349b8c7422 from=translated src=- shape=79a8c83e vocab=6543bcd7
+-/
 theorem cauchyJetCurve_apply_of_eq (center : ℂ) (ρ : ℕ → ℝ)
     (hρ : ∀ j, ρ j < ρ (j + 1))
     (V : ∀ j, ℝ → C(Disk center (ρ j), E)) {S : Set ℝ} {U : Set ℂ}
@@ -598,7 +656,9 @@ theorem cauchyJetCurve_apply_of_eq (center : ℂ) (ρ : ℕ → ℝ)
 
 /-- All parameter jets are smooth functions of the real radial variable.
 The assertion follows from bounded operators and does not posit mixed
-regularity of the original field. -/
+regularity of the original field.
+@isnad1 id=contdiff.6h10v.s9.586e1a8e9314 from=translated src=- shape=4ced4994 vocab=ca9a99b4
+-/
 theorem parameterJets_radial_contDiffOn (center : ℂ) (ρ : ℕ → ℝ)
     (hρ : ∀ j, ρ j < ρ (j + 1))
     (V : ∀ j, ℝ → C(Disk center (ρ j), E)) {S : Set ℝ} {U : Set ℂ}
@@ -612,6 +672,9 @@ theorem parameterJets_radial_contDiffOn (center : ℂ) (ρ : ℕ → ℝ)
   intro r hr
   exact (cauchyJetCurve_apply_of_eq center ρ hρ V hU hDisk F hF hV k j r hr z).symm
 
+/--
+@isnad1 id=contdiff.2h4v.s6.7388de197689 from=translated src=- shape=db3479e9 vocab=cdfeaed6
+-/
 theorem real_iteratedDeriv_contDiffOn {G : Type*} [NormedAddCommGroup G] [NormedSpace ℝ G]
     {S : Set ℝ} (hS : IsOpen S) {f : ℝ → G} (hf : ContDiffOn ℝ ∞ f S) (n : ℕ) :
     ContDiffOn ℝ ∞ (iteratedDeriv n f) S := by
@@ -623,7 +686,9 @@ theorem real_iteratedDeriv_contDiffOn {G : Type*} [NormedAddCommGroup G] [Normed
 
 omit [CompleteSpace E] in
 /-- Evaluation of a smooth compact-function curve commutes with every
-fixed radial derivative. -/
+fixed radial derivative.
+@isnad1 id=eq.3h7v.s8.417b744cdf6d from=translated src=- shape=5f7be2e4 vocab=de2a974a
+-/
 theorem iteratedDeriv_evaluate {K : Type*} [TopologicalSpace K] [CompactSpace K]
     {S : Set ℝ} (hS : IsOpen S) {f : ℝ → C(K, E)} (hf : ContDiffOn ℝ ∞ f S)
     {r : ℝ} (hr : r ∈ S) (n : ℕ) (z : K) :
@@ -639,7 +704,9 @@ theorem iteratedDeriv_evaluate {K : Type*} [TopologicalSpace K] [CompactSpace K]
 
 /-- Compact radial subintervals have uniform bounds for each fixed mixed
 derivative on the full inner parameter disk. Constants may depend on both
-derivative orders; no radial analyticity estimate is asserted. -/
+derivative orders; no radial analyticity estimate is asserted.
+@isnad1 id=ex.9h11v.s9.6568d8ac11a6 from=translated src=- shape=81aaa92e vocab=0b3d5c21
+-/
 theorem parameterJets_uniform_mixed_bound (center : ℂ) (ρ : ℕ → ℝ)
     (hρ : ∀ j, ρ j < ρ (j + 1))
     (V : ∀ j, ℝ → C(Disk center (ρ j), E)) {S : Set ℝ} (hS : IsOpen S) {U : Set ℂ}
@@ -680,7 +747,9 @@ structure SmoothCoefficientData (R : ℝ) (U : Set ℂ)
   first : ∀ i k, ContDiffOn ℝ ∞ (fun p : ℝ × ℂ => A₁ p.1 p.2 i k) (radialDomain R ×ˢ U)
 
 /-- The smooth disk-valued inputs required by the bootstrap are constructed
-from the actual jointly smooth coefficient entries. -/
+from the actual jointly smooth coefficient entries.
+@isnad1 id=contdiff.6h10v.s8.2632d09e0511 from=translated src=- shape=799c6ed9 vocab=ec652a05
+-/
 theorem symmetric_solution_disk_curves_of_smooth_coefficients
     {R : ℝ} (hR : 0 ≤ R) {U : Set ℂ} (hU : IsOpen U)
     {A₀ A₁ : Coeff} {f W : Field}
@@ -712,7 +781,9 @@ theorem symmetric_solution_disk_curves_of_smooth_coefficients
     exact family_apply_of_joint _ (hDisk j) _ (hdata.first i k).continuousOn hr z
 
 /-- Every fixed complex parameter derivative of the actual symmetric
-solution is real smooth through the radial origin. -/
+solution is real smooth through the radial origin.
+@isnad1 id=contdiff.6h12v.s7.ec3f6de841df from=translated src=- shape=29bff077 vocab=bf692adb
+-/
 theorem symmetric_solution_parameterJets_radial_contDiffOn
     {R : ℝ} (hR : 0 ≤ R) {U : Set ℂ} (hU : IsOpen U)
     {A₀ A₁ : Coeff} {f W : Field}
@@ -738,15 +809,24 @@ theorem symmetric_solution_parameterJets_radial_contDiffOn
 gaps before the boundary of the available parameter neighborhood. -/
 noncomputable def interiorRadii (δ : ℝ) (j : ℕ) : ℝ := δ - δ / ((j : ℝ) + 2)
 
+/--
+@isnad1 id=lt.1h2v.s4.f531aeadfa74 from=translated src=- shape=9141f3a7 vocab=61fcd6be
+-/
 theorem interiorRadii_pos {δ : ℝ} (hδ : 0 < δ) (j : ℕ) : 0 < interiorRadii δ j := by
   apply sub_pos.mpr
   apply (div_lt_iff₀ (by positivity : 0 < (j : ℝ) + 2)).mpr
   have hp : 0 ≤ δ * (j : ℝ) := mul_nonneg hδ.le (Nat.cast_nonneg j)
   nlinarith
 
+/--
+@isnad1 id=lt.1h2v.s4.caac22cf33f7 from=translated src=- shape=4d1758ce vocab=61fcd6be
+-/
 theorem interiorRadii_lt {δ : ℝ} (hδ : 0 < δ) (j : ℕ) : interiorRadii δ j < δ := by
   exact sub_lt_self _ (div_pos hδ (by positivity))
 
+/--
+@isnad1 id=lt.1h2v.s5.73a800cfc327 from=translated src=- shape=0cd69d1a vocab=b9efc10e
+-/
 theorem interiorRadii_increasing {δ : ℝ} (hδ : 0 < δ) (j : ℕ) :
     interiorRadii δ j < interiorRadii δ (j + 1) := by
   have hdiv : δ / (((j + 1 : ℕ) : ℝ) + 2) < δ / ((j : ℝ) + 2) := by
@@ -755,6 +835,9 @@ theorem interiorRadii_increasing {δ : ℝ} (hδ : 0 < δ) (j : ℕ) :
     linarith
   exact sub_lt_sub_left hdiv δ
 
+/--
+@isnad1 id=le.2h4v.s5.5169715c5c0b from=translated src=- shape=1421b9c7 vocab=bef24a52
+-/
 theorem interiorRadii_subset {δ : ℝ} (hδ : 0 < δ) (center : ℂ) {U : Set ℂ}
     (hball : Metric.ball center δ ⊆ U) (j : ℕ) :
     Metric.closedBall center (interiorRadii δ j) ⊆ U :=
@@ -762,7 +845,9 @@ theorem interiorRadii_subset {δ : ℝ} (hδ : 0 < δ) (center : ℂ) {U : Set �
 
 /-- The nested disks can always be selected inside an open parameter
 domain. Thus every actual parameter jet is radially smooth at every
-parameter point, with no auxiliary disk-family hypothesis. -/
+parameter point, with no auxiliary disk-family hypothesis.
+@isnad1 id=contdiff.5h9v.s7.fcc97cf60f84 from=translated src=- shape=77317f93 vocab=c9337f96
+-/
 theorem symmetric_solution_parameterJets_radial_contDiffOn_local
     {R : ℝ} (hR : 0 ≤ R) {U : Set ℂ} (hU : IsOpen U)
     {A₀ A₁ : Coeff} {f W : Field}
@@ -779,7 +864,9 @@ theorem symmetric_solution_parameterJets_radial_contDiffOn_local
 
 /-- All fixed mixed derivatives of the constructed field exist smoothly
 through the real radial origin. The order of operations here is parameter
-differentiation followed by radial differentiation. -/
+differentiation followed by radial differentiation.
+@isnad1 id=contdiff.5h10v.s7.b7b88bd8f0b4 from=translated src=- shape=bfca9d3e vocab=c9337f96
+-/
 theorem symmetric_solution_mixed_contDiffOn
     {R : ℝ} (hR : 0 ≤ R) {U : Set ℂ} (hU : IsOpen U)
     {A₀ A₁ : Coeff} {f W : Field}
@@ -792,6 +879,9 @@ theorem symmetric_solution_mixed_contDiffOn
   real_iteratedDeriv_contDiffOn Metric.isOpen_ball
     (symmetric_solution_parameterJets_radial_contDiffOn_local hR hU hW hdata hz k i) n
 
+/--
+@isnad1 id=contdiff.5h10v.s7.747d6b632116 from=translated src=- shape=8c3d487e vocab=7518663b
+-/
 theorem symmetric_solution_mixed_contDiffAt_zero
     {R : ℝ} (hR : 0 < R) {U : Set ℂ} (hU : IsOpen U)
     {A₀ A₁ : Coeff} {f W : Field}
@@ -803,6 +893,9 @@ theorem symmetric_solution_mixed_contDiffAt_zero
   (symmetric_solution_mixed_contDiffOn hR.le hU hW hdata hz n k i).contDiffAt
     (Metric.ball_mem_nhds 0 hR)
 
+/--
+@isnad1 id=contdiff.5h7v.s7.e6172fcdc249 from=translated src=- shape=0d649c93 vocab=99defa03
+-/
 theorem symmetric_solution_radial_contDiffOn
     {R : ℝ} (hR : 0 ≤ R) {U : Set ℂ} (hU : IsOpen U)
     {A₀ A₁ : Coeff} {f W : Field}
@@ -815,6 +908,9 @@ theorem symmetric_solution_radial_contDiffOn
   simpa only [iteratedDeriv_zero] using
     symmetric_solution_parameterJets_radial_contDiffOn_local hR hU hW hdata hz 0 i
 
+/--
+@isnad1 id=ex.8h13v.s7.e75a322ed907 from=translated src=- shape=743d241b vocab=a2e5480a
+-/
 theorem symmetric_solution_uniform_mixed_bound
     {R : ℝ} (hR : 0 ≤ R) {U : Set ℂ} (hU : IsOpen U)
     {A₀ A₁ : Coeff} {f W : Field}
@@ -842,7 +938,9 @@ theorem symmetric_solution_uniform_mixed_bound
 
 /-- Direct specialization to the two-sided solution constructed from the
 convergent nilpotent Volterra series. No regularity of that output is an
-input to this theorem. -/
+input to this theorem.
+@isnad1 id=contdiff.8h9v.s11.135aaa6fa785 from=translated src=- shape=2a0ecb64 vocab=9038a02b
+-/
 theorem symmetricSolution_mixed_contDiffOn
     {R : ℝ} (hR : 0 ≤ R)
     {A₀ A₁ : ℂ → VolterraParity.SymmetricCoefficientPath R}
@@ -861,6 +959,9 @@ theorem symmetricSolution_mixed_contDiffOn
   symmetric_solution_mixed_contDiffOn hR hU
     (VolterraParity.symmetricSolution_spec hR hU hA₀ hA₁ hf hshape) hdata hz n k i
 
+/--
+@isnad1 id=contdiff.8h9v.s11.0a3a8525bce9 from=translated src=- shape=9b4fef76 vocab=9d4ab732
+-/
 theorem symmetricSolution_mixed_contDiffAt_zero
     {R : ℝ} (hR : 0 < R)
     {A₀ A₁ : ℂ → VolterraParity.SymmetricCoefficientPath R}

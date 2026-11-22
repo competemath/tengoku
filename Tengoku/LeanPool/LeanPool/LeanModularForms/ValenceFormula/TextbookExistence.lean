@@ -51,15 +51,27 @@ noncomputable def repLeftArc : Finset ℍ :=
 noncomputable def repCanon : Finset ℍ :=
   repStrict f hf ∪ repLeftVert f hf ∪ repLeftArc f hf
 
+/--
+@isnad1 id=mem.2h3v.s9.a8df1dc11117 from=translated src=- shape=6a67b731 vocab=8284cfe0
+-/
 lemma repStrict_mem_s₀ {p : ℍ} (hp : p ∈ repStrict f hf) : p ∈ s₀ f hf :=
   (Finset.mem_filter.mp hp).1
 
+/--
+@isnad1 id=mem.2h3v.s9.54d3ac266dbe from=translated src=- shape=6a67b731 vocab=b9a2c218
+-/
 lemma repLeftVert_mem_s₀ {p : ℍ} (hp : p ∈ repLeftVert f hf) : p ∈ s₀ f hf :=
   (Finset.mem_filter.mp hp).1
 
+/--
+@isnad1 id=mem.2h3v.s9.5fd3b47057bf from=translated src=- shape=6a67b731 vocab=323296af
+-/
 lemma repLeftArc_mem_s₀ {p : ℍ} (hp : p ∈ repLeftArc f hf) : p ∈ s₀ f hf :=
   (Finset.mem_filter.mp hp).1
 
+/--
+@isnad1 id=mem.2h3v.s9.d11b44dcc598 from=translated src=- shape=6a67b731 vocab=08ae00b5
+-/
 lemma repCanon_mem_s₀ {p : ℍ} (hp : p ∈ repCanon f hf) : p ∈ s₀ f hf := by
   simp only [repCanon, Finset.mem_union] at hp
   obtain (h | h) | h := hp
@@ -67,10 +79,15 @@ lemma repCanon_mem_s₀ {p : ℍ} (hp : p ∈ repCanon f hf) : p ∈ s₀ f hf :
   · exact repLeftVert_mem_s₀ f hf h
   · exact repLeftArc_mem_s₀ f hf h
 
+/--
+@isnad1 id=mem.2h3v.s9.b53eebd61afb from=translated src=- shape=1d23160b vocab=eb53740b
+-/
 lemma repCanon_mem_fd {p : ℍ} (hp : p ∈ repCanon f hf) : p ∈ 𝒟 :=
   s₀_mem_fd f hf p (repCanon_mem_s₀ f hf hp)
 
-/-- T⁻¹-translation preserves orbits: `orb((-1)+ᵥp) = orb(p)`. -/
+/-- T⁻¹-translation preserves orbits: `orb((-1)+ᵥp) = orb(p)`.
+@isnad1 id=eq.0h1v.s5.7f57bf5734fd from=translated src=- shape=334c4c04 vocab=9d244481
+-/
 lemma orb_vAdd_neg_one_eq (p : ℍ) :
     orb ((-1 : ℝ) +ᵥ p) = orb p := by
   have h_eq : ModularGroup.T⁻¹ • p = (-1 : ℝ) +ᵥ p := by
@@ -86,7 +103,9 @@ lemma orb_vAdd_neg_one_eq (p : ℍ) :
     MulAction.mem_orbit_iff]
   exact ⟨ModularGroup.T⁻¹, h_eq⟩
 
-/-- S-action preserves orbits: `orb(S • p) = orb(p)`. -/
+/-- S-action preserves orbits: `orb(S • p) = orb(p)`.
+@isnad1 id=eq.0h1v.s7.359e23d5d27d from=translated src=- shape=c7db8980 vocab=0e660528
+-/
 lemma orb_S_smul_eq (p : ℍ) :
     orb (ModularGroup.S • p) = orb p := by
   change Quotient.mk'' (ModularGroup.S • p) = Quotient.mk'' p
@@ -148,7 +167,9 @@ private lemma case_right_arc_via_S (q : NonEllOrbit) (p0 : ℍ)
   exact Finset.mem_filter.mpr ⟨hp1_s₀, hp1_ne_rho,
     S_smul_norm_of_unit p0 h_norm_eq, hp1_re_neg⟩
 
-/-- Every non-elliptic orbit with nonzero order has a representative in `repCanon`. -/
+/-- Every non-elliptic orbit with nonzero order has a representative in `repCanon`.
+@isnad1 id=ex.2h3v.s9.53bf22f90394 from=translated src=- shape=edb052dc vocab=9496f7d6
+-/
 theorem exists_repCanon_of_nonEllOrbit :
     ∀ q : NonEllOrbit,
       ordOrbit f q.val ≠ 0 →

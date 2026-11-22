@@ -65,7 +65,9 @@ noncomputable def _root_.Tengoku.LeanPool.productPolynomial (k : ℕ) (E : Multi
     MvPolynomial (Fin (k + 1)) (ZMod p) :=
   (E.map (fun e => sumXPolynomial - C e)).prod
 
-/-- Lemma 2.1.1 : Construction_polynomial vanishes on ∏ A_i -/
+/-- Lemma 2.1.1 : Construction_polynomial vanishes on ∏ A_i
+@isnad1 id=eq.2h6v.s10.f7a19b25e639 from=translated src=- shape=e06996dc vocab=79742f11
+-/
 lemma _root_.Tengoku.LeanPool.constructionPolynomial_vanishes
     (h : MvPolynomial (Fin (k + 1)) (ZMod p))
     (A : Fin (k + 1) → Finset (ZMod p))
@@ -90,7 +92,9 @@ lemma _root_.Tengoku.LeanPool.constructionPolynomial_vanishes
         Multiset.mem_map.mpr ⟨∑ i, x i, h_sum_in_E, rfl⟩, by simp [sumXPolynomial]⟩
     simp [h_prod_zero]
 
-/-- Lemma 2.1.2 : The product polynomial ∏_{e∈E} (∑X_i - C e) is always nonzero -/
+/-- Lemma 2.1.2 : The product polynomial ∏_{e∈E} (∑X_i - C e) is always nonzero
+@isnad1 id=ne.0h3v.s7.f9405411c844 from=translated src=- shape=406624c6 vocab=276c5a30
+-/
 lemma _root_.Tengoku.LeanPool.productPolynomial_ne_zero (k : ℕ) (E : Multiset (ZMod p)) :
     productPolynomial k E ≠ 0 := by
   unfold productPolynomial

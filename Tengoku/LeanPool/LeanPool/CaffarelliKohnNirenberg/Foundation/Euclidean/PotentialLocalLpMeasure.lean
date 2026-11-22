@@ -45,7 +45,9 @@ private lemma pressureNewtonianKernel_deriv_meas (i : Fin 3) :
   unfold CKN.spatialDeriv
   exact measurable_fderiv_apply_const ℝ newtonianKernel (CKN.basisVec i)
 
-/-- The Newtonian potential of measurable data is almost everywhere strongly measurable. -/
+/-- The Newtonian potential of measurable data is almost everywhere strongly measurable.
+@isnad1 id=aestrong.1h1v.s7.2d5540c112e5 from=translated src=- shape=aa2a0b76 vocab=7ea91c9f
+-/
 theorem aestronglyMeasurable_pressureNewtonianPotential {G : Vec3 → ℝ}
     (hG : Measurable G) :
     AEStronglyMeasurable (pressureNewtonianPotential G) volume := by
@@ -60,7 +62,9 @@ theorem aestronglyMeasurable_pressureNewtonianPotential {G : Vec3 → ℝ}
   exact hF.integral_prod_right'
 
 /-- The first-derivative Newtonian potential of measurable data is almost everywhere strongly
-measurable. -/
+measurable.
+@isnad1 id=aestrong.1h2v.s7.ace91888ddc9 from=translated src=- shape=36d67576 vocab=80f17959
+-/
 theorem aestronglyMeasurable_pressureNewtonianDerivativePotential (i : Fin 3) {G : Vec3 → ℝ}
     (hG : Measurable G) :
     AEStronglyMeasurable (pressureNewtonianDerivativePotential i G) volume := by
@@ -75,7 +79,9 @@ theorem aestronglyMeasurable_pressureNewtonianDerivativePotential (i : Fin 3) {G
   exact hF.integral_prod_right'
 
 /-- The Newtonian potential only sees the data up to a null set, so it is unchanged when the
-data is replaced by an almost-everywhere equal function. -/
+data is replaced by an almost-everywhere equal function.
+@isnad1 id=eq.1h2v.s6.17e1f441d5d7 from=translated src=- shape=1254dc69 vocab=52ff2d15
+-/
 theorem pressureNewtonianPotential_congr_of_ae_eq {G G' : Vec3 → ℝ}
     (h : G =ᵐ[volume] G') :
     pressureNewtonianPotential G = pressureNewtonianPotential G' := by
@@ -86,7 +92,9 @@ theorem pressureNewtonianPotential_congr_of_ae_eq {G G' : Vec3 → ℝ}
   filter_upwards [h] with y hy
   rw [hy]
 
-/-- The same statement for the first-derivative Newtonian potential. -/
+/-- The same statement for the first-derivative Newtonian potential.
+@isnad1 id=eq.1h3v.s7.86b7019e2c25 from=translated src=- shape=a75c005a vocab=ec3efefa
+-/
 theorem pressureNewtonianDerivativePotential_congr_of_ae_eq (i : Fin 3) {G G' : Vec3 → ℝ}
     (h : G =ᵐ[volume] G') :
     pressureNewtonianDerivativePotential i G = pressureNewtonianDerivativePotential i G' := by

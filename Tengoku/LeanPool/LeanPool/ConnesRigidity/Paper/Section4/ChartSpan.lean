@@ -46,6 +46,9 @@ abbrev C := PaperKernel.C
 
 /- A chart square with bounded polynomial coordinates belongs to the finite
 chart span. Paper: §4. -/
+/--
+@isnad1 id=mem.2h4v.s13.a9e4fbcc8b5c from=translated src=- shape=329d7109 vocab=f7291ee2
+-/
 lemma diagonal_chartVector_mem_of_mem (N : ℕ) (s : Fin 3) (f h : R)
     (hf : f ∈ polynomialChart N) (hh : h ∈ polynomialChart N) :
     PaperKernel.diagonal (chartVector s f h) ∈ chartSubmodule N := by
@@ -56,14 +59,18 @@ lemma diagonal_chartVector_mem_of_mem (N : ℕ) (s : Fin 3) (f h : R)
   simp only [chartSquare, chartPoint, chartVector]
   rw [hvf, hvh]
 
-/-- The zero polynomial occurs at every finite chart level. Paper: §4. -/
+/-- The zero polynomial occurs at every finite chart level. Paper: §4.
+@isnad1 id=mem.0h1v.s5.9afad9a3166c from=translated src=- shape=026eb24b vocab=3a15d5d3
+-/
 lemma zero_mem_polynomialChart (N : ℕ) :
     (0 : R) ∈ polynomialChart N := by
   rw [mem_polynomialChart_iff]
   refine ⟨0, ?_⟩
   simp
 
-/-- The constant polynomial is represented at the first positive chart level. Paper: §4. -/
+/-- The constant polynomial is represented at the first positive chart level. Paper: §4.
+@isnad1 id=mem.0h0v.s5.3b73ef341c38 from=translated src=- shape=3a324339 vocab=3a15d5d3
+-/
 lemma one_mem_polynomialChart_one :
     (1 : R) ∈ polynomialChart 1 := by
   rw [mem_polynomialChart_iff]
@@ -77,20 +84,28 @@ lemma one_mem_polynomialChart_one :
   · rw [Polynomial.ofFn_coeff_eq_zero_of_ge _ (Nat.one_le_iff_ne_zero.mpr hn)]
     simp [Polynomial.coeff_one, hn]
 
-/-- The constant polynomial persists under chart enlargement. Paper: §4. -/
+/-- The constant polynomial persists under chart enlargement. Paper: §4.
+@isnad1 id=mem.1h1v.s5.4a10e8e8ab25 from=translated src=- shape=72c84ca5 vocab=ad30b16f
+-/
 lemma one_mem_polynomialChart {N : ℕ} (hN : 0 < N) :
     (1 : R) ∈ polynomialChart N := by
   exact polynomialChart_mono (by omega) one_mem_polynomialChart_one
 
-/-- The cyclic coordinate successor closes after two steps. Paper: §4. -/
+/-- The cyclic coordinate successor closes after two steps. Paper: §4.
+@isnad1 id=eq.0h1v.s4.ba2dabc7e57b from=translated src=- shape=848cd2ae vocab=bd535fb7
+-/
 lemma next_cycle (s : Fin 3) : next (nextNext s) = s := by
   fin_cases s <;> rfl
 
-/-- The second cyclic successor reduces to the remaining coordinate. Paper: §4. -/
+/-- The second cyclic successor reduces to the remaining coordinate. Paper: §4.
+@isnad1 id=eq.0h1v.s4.7f546eb1841e from=translated src=- shape=9c75e381 vocab=bd535fb7
+-/
 lemma nextNext_cycle (s : Fin 3) : nextNext (nextNext s) = next s := by
   fin_cases s <;> rfl
 
-/-- A characteristic-two six-square identity isolates one diagonal coordinate. Paper: §4. -/
+/-- A characteristic-two six-square identity isolates one diagonal coordinate. Paper: §4.
+@isnad1 id=eq.0h2v.s15.1d41bd85c75f from=translated src=- shape=16cbbe2f vocab=4cf8d7c8
+-/
 lemma diagonal_single_next_identity (s : Fin 3) (w : A) :
     PaperKernel.diagonal w =
       PaperKernel.diagonal (basisVector s + w) +
@@ -118,7 +133,9 @@ lemma diagonal_single_next_identity (s : Fin 3) (w : A) :
   simp only [h2Z, h3Z, h4Z]
   simp only [zero_add, add_zero]
 
-/-- A bounded scalar multiple of a coordinate diagonal lies in a finite chart span. Paper: §4. -/
+/-- A bounded scalar multiple of a coordinate diagonal lies in a finite chart span. Paper: §4.
+@isnad1 id=mem.2h3v.s13.9297b74f7b95 from=translated src=- shape=78215efa vocab=55775241
+-/
 lemma diagonal_smul_basis_mem (N : ℕ) (hN : 0 < N) (s : Fin 3) (f : R)
     (hf : f ∈ polynomialChart N) :
     PaperKernel.diagonal (f • basisVector (next s)) ∈ chartSubmodule N := by
@@ -157,14 +174,18 @@ lemma diagonal_smul_basis_mem (N : ℕ) (hN : 0 < N) (s : Fin 3) (f : R)
   have h₁₂₃₄₅ := (chartSubmodule N).add_mem h₁₂₃₄ h₅
   exact (chartSubmodule N).add_mem h₁₂₃₄₅ h₆
 
-/-- Every coordinate diagonal has the same finite-chart membership property. Paper: §4. -/
+/-- Every coordinate diagonal has the same finite-chart membership property. Paper: §4.
+@isnad1 id=mem.2h3v.s13.4ec98f535984 from=translated src=- shape=adaa0b1d vocab=23043f99
+-/
 lemma diagonal_smul_basis_any_mem (N : ℕ) (hN : 0 < N)
     (i : Fin 3) (f : R) (hf : f ∈ polynomialChart N) :
     PaperKernel.diagonal (f • basisVector i) ∈ chartSubmodule N := by
   simpa [next_cycle] using
     diagonal_smul_basis_mem N hN (nextNext i) f hf
 
-/-- A cross term on two distinct coordinates expands into four chart squares. Paper: §4. -/
+/-- A cross term on two distinct coordinates expands into four chart squares. Paper: §4.
+@isnad1 id=eq.0h3v.s14.e64e208c56c3 from=translated src=- shape=e1a7ae7c vocab=c8ccb42d
+-/
 lemma cross_distinct_identity (s : Fin 3) (f h : R) :
     cross (f • basisVector (next s)) (h • basisVector (nextNext s)) =
       PaperKernel.diagonal
@@ -188,6 +209,9 @@ lemma cross_distinct_identity (s : Fin 3) (f h : R) :
 
 /- Distinct-coordinate cross terms with bounded coefficients lie in a finite
 chart span. Paper: §4. -/
+/--
+@isnad1 id=mem.2h4v.s13.910a7c36a754 from=translated src=- shape=a112af41 vocab=024f8663
+-/
 lemma cross_distinct_mem (N : ℕ) (s : Fin 3)
     (f h : R) (hf : f ∈ polynomialChart N) (hh : h ∈ polynomialChart N) :
     cross (f • basisVector (next s)) (h • basisVector (nextNext s)) ∈
@@ -214,7 +238,9 @@ lemma cross_distinct_mem (N : ℕ) (s : Fin 3)
   have h₁₂₃ := (chartSubmodule N).add_mem h₁₂ h₃
   exact (chartSubmodule N).add_mem h₁₂₃ h₄
 
-/-- A same-coordinate cross term reduces to three diagonal squares. Paper: §4. -/
+/-- A same-coordinate cross term reduces to three diagonal squares. Paper: §4.
+@isnad1 id=eq.0h3v.s13.73eb3c12bf4e from=translated src=- shape=d0795b71 vocab=defd0fc5
+-/
 lemma cross_same_identity (i : Fin 3) (f h : R) :
     cross (f • basisVector i) (h • basisVector i) =
       PaperKernel.diagonal ((f + h) • basisVector i) +
@@ -230,7 +256,9 @@ lemma cross_same_identity (i : Fin 3) (f h : R) :
   simp only [h2CZ]
   simp only [add_zero]
 
-/-- Same-coordinate cross terms with bounded coefficients lie in a finite chart span. Paper: §4. -/
+/-- Same-coordinate cross terms with bounded coefficients lie in a finite chart span. Paper: §4.
+@isnad1 id=mem.4h4v.s13.bde6ed2142c3 from=translated src=- shape=72ba3e05 vocab=592f4a65
+-/
 lemma cross_same_mem (N : ℕ) (hN : 0 < N) (i : Fin 3)
     (f h : R) (hf : f ∈ polynomialChart N) (hh : h ∈ polynomialChart N)
     (hfh : f + h ∈ polynomialChart N) :
@@ -241,7 +269,9 @@ lemma cross_same_mem (N : ℕ) (hN : 0 < N) (i : Fin 3)
   rw [cross_same_identity]
   exact (chartSubmodule N).add_mem ((chartSubmodule N).add_mem h₁ h₂) h₃
 
-/-- The symmetric cross term is additive in its left input. Paper: §4. -/
+/-- The symmetric cross term is additive in its left input. Paper: §4.
+@isnad1 id=eq.0h3v.s13.71640fff3f93 from=translated src=- shape=a01ea88b vocab=bc6b3787
+-/
 lemma cross_add_left (a b c : A) :
     cross (a + b) c = cross a c + cross b c := by
   apply Subtype.ext
@@ -249,7 +279,9 @@ lemma cross_add_left (a b c : A) :
     TensorProduct.tmul_add]
   abel
 
-/-- The symmetric cross term is additive in its right input. Paper: §4. -/
+/-- The symmetric cross term is additive in its right input. Paper: §4.
+@isnad1 id=eq.0h3v.s13.55d9f2db671b from=translated src=- shape=ee78e4f7 vocab=bc6b3787
+-/
 lemma cross_add_right (a b c : A) :
     cross a (b + c) = cross a b + cross a c := by
   apply Subtype.ext
@@ -257,7 +289,9 @@ lemma cross_add_right (a b c : A) :
     TensorProduct.tmul_add]
   abel
 
-/-- A diagonal tensor decomposes into coordinate diagonals and pairwise cross terms. Paper: §4. -/
+/-- A diagonal tensor decomposes into coordinate diagonals and pairwise cross terms. Paper: §4.
+@isnad1 id=eq.0h1v.s15.d167689d3bdf from=translated src=- shape=75ab18c4 vocab=a52bec88
+-/
 lemma diagonal_three_decompose (a : A) :
     PaperKernel.diagonal a =
       PaperKernel.diagonal (a 0 • basisVector 0) +
@@ -278,13 +312,17 @@ lemma diagonal_three_decompose (a : A) :
       rw [diagonal_add, diagonal_add, cross_add_left]
       abel
 
-/-- The symmetric cross term is invariant under exchanging its inputs. Paper: §4. -/
+/-- The symmetric cross term is invariant under exchanging its inputs. Paper: §4.
+@isnad1 id=eq.0h2v.s10.e64ea215560a from=translated src=- shape=b730fac5 vocab=e04afc01
+-/
 lemma cross_comm (a b : A) : cross a b = cross b a := by
   apply Subtype.ext
   simp only [cross]
   abel
 
-/-- Every bounded cross term on distinct standard coordinates is chart-generated. Paper: §4. -/
+/-- Every bounded cross term on distinct standard coordinates is chart-generated. Paper: §4.
+@isnad1 id=mem.3h5v.s13.b2acdea17db3 from=translated src=- shape=3368fc2f vocab=ddbd4b0a
+-/
 lemma cross_scalar_basis_ne_mem (N : ℕ)
     (i j : Fin 3) (hij : i ≠ j) (f h : R)
     (hf : f ∈ polynomialChart N) (hh : h ∈ polynomialChart N) :
@@ -303,7 +341,9 @@ lemma cross_scalar_basis_ne_mem (N : ℕ)
     simpa [next, nextNext] using cross_distinct_mem N 0 h f hh hf
   · exact False.elim (hij rfl)
 
-/-- A vector with bounded coordinates has its diagonal in one finite chart span. Paper: §4. -/
+/-- A vector with bounded coordinates has its diagonal in one finite chart span. Paper: §4.
+@isnad1 id=mem.4h2v.s13.447575f4547e from=translated src=- shape=be7f292b vocab=91d2d102
+-/
 lemma diagonal_mem_chart_of_coeff (N : ℕ) (hN : 0 < N) (a : A)
     (h0 : a 0 ∈ polynomialChart N)
     (h1 : a 1 ∈ polynomialChart N)
@@ -326,7 +366,9 @@ lemma diagonal_mem_chart_of_coeff (N : ℕ) (hN : 0 < N) (a : A)
           ((chartSubmodule N).add_mem hdiag0 hdiag1) hdiag2) hcross01)
       hcross02) hcross12
 
-/-- A polynomial is represented by a finite coefficient chart. Paper: §4. -/
+/-- A polynomial is represented by a finite coefficient chart. Paper: §4.
+@isnad1 id=mem.0h1v.s5.7160a0bdfd3e from=translated src=- shape=7d4eebb8 vocab=7ddd6d51
+-/
 lemma polynomial_mem_chart_succ (p : R) :
     p ∈ polynomialChart (p.natDegree + 1) := by
   apply (mem_polynomialChart_iff _ _).mpr
@@ -334,7 +376,9 @@ lemma polynomial_mem_chart_succ (p : R) :
   exact Polynomial.ofFn_comp_toFn_eq_id_of_natDegree_lt
     (Nat.lt_succ_self p.natDegree)
 
-/-- Every vector diagonal is captured by a finite chart span. Paper: §4. -/
+/-- Every vector diagonal is captured by a finite chart span. Paper: §4.
+@isnad1 id=ex.0h1v.s13.29441234089e from=translated src=- shape=ce36a53d vocab=61f7eda1
+-/
 lemma diagonal_mem_some_chart (a : A) :
     ∃ N, PaperKernel.diagonal a ∈ chartSubmodule N := by
   let N0 : ℕ := (a 0).natDegree + 1
@@ -371,7 +415,9 @@ lemma diagonal_mem_some_chart (a : A) :
   · exact polynomialChart_mono hN1N h1
   · exact polynomialChart_mono hN2N h2
 
-/-- The square span has symmetry and finite-chart witnesses. Paper: §2 and §4. -/
+/-- The square span has symmetry and finite-chart witnesses. Paper: §2 and §4.
+@isnad1 id=and.1h1v.s14.ad9d98502c18 from=translated src=- shape=cee78921 vocab=c99881d2
+-/
 lemma span_has_chart (x : PaperKernel.TensorAA) (hx : x ∈ squareSpan) :
     TensorProduct.comm k A A x = x ∧
       ∃ N, ∃ c : C, (c : PaperKernel.TensorAA) = x ∧

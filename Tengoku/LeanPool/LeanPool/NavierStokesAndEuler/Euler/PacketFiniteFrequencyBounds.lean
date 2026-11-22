@@ -14,6 +14,9 @@ public import Tengoku
 
 namespace EulerPacketFiniteFrequency
 
+/--
+@isnad1 id=le.3h2v.s6.f5f6c5a8affb from=translated src=- shape=1ee2a299 vocab=57a6a273
+-/
 theorem fourth_power_le_frequency (k B : ℝ) (hk : 1 ≤ k) (hB0 : 0 ≤ B)
     (hB : B ≤ k ^ (1 / 100 : ℝ)) : B^4 ≤ k := by
   have hk0 : 0 ≤ k := zero_le_one.trans hk
@@ -23,6 +26,9 @@ theorem fourth_power_le_frequency (k B : ℝ) (hk : 1 ≤ k) (hB0 : 0 ≤ B)
     _ ≤ k^(1 : ℝ) := Real.rpow_le_rpow_of_exponent_le hk (by norm_num)
     _ = k := Real.rpow_one k
 
+/--
+@isnad1 id=le.3h4v.s7.c59ad80ecbdd from=translated src=- shape=af8f7199 vocab=a2cad4f3
+-/
 theorem normalized_low_high_le (k B C₁ C₂ : ℝ) (hk : 2 ≤ k) (hC₂ : 0 ≤ C₂)
     (hB4 : B ^ 4 ≤ k) :
     k*(k⁻¹*C₁+(k⁻¹)^2*C₂+2*B*(k⁻¹*B)^3) ≤ C₁+C₂+1 := by
@@ -34,6 +40,9 @@ theorem normalized_low_high_le (k B C₁ C₂ : ℝ) (hk : 2 ≤ k) (hC₂ : 0 �
   rw [he]
   linarith
 
+/--
+@isnad1 id=le.2h3v.s7.9f4afeae8099 from=translated src=- shape=12c9ab78 vocab=0014576e
+-/
 theorem remainder_low_high_le (k B C₂ : ℝ) (hk : 0 < k) (hB4 : B ^ 4 ≤ k) :
     (k⁻¹)^2*C₂+2*B*(k⁻¹*B)^3 ≤ (C₂+2)/k^2 := by
   have he : (k⁻¹)^2*C₂+2*B*(k⁻¹*B)^3 = (C₂+2*B^4/k)/k^2 := by

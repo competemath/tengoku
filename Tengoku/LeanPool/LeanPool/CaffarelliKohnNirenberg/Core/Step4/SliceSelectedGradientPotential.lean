@@ -38,7 +38,9 @@ a vector-valued source. -/
 integrability input that display (3.5) of the pressure-gradient section takes for
 granted: the source of the Newtonian derivative potential is supported on a compact
 set of finite measure, so membership in `L^{6/5}` may be lowered to membership in
-`L^1`. -/
+`L^1`.
+@isnad1 id=integrab.2h1v.s7.709002c562c9 from=translated src=- shape=b9d8f95a vocab=8c39dabf
+-/
 theorem memLp_six_fifths_integrable_of_hasCompactSupport {G : Vec3 → ℝ}
     (hG : MemLp G (ENNReal.ofReal (6 / 5 : ℝ)) volume) (hGc : HasCompactSupport G) :
     Integrable G volume := by

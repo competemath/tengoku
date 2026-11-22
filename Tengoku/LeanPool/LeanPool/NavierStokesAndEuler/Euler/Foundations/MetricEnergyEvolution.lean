@@ -22,7 +22,9 @@ open InnerProductSpace Real
 
 variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
 
-/-- The exact time derivative of a quadratic energy with a moving metric. -/
+/-- The exact time derivative of a quadratic energy with a moving metric.
+@isnad1 id=hasderiv.3h6v.s10.a6f8074d7369 from=translated src=- shape=2790c190 vocab=7d2f74f9
+-/
 theorem metric_energy_hasDerivAt (K : ℝ → H →L[ℝ] H) (e : ℝ → H)
     (t : ℝ) (K' : H →L[ℝ] H) (e' : H)
     (hK : HasDerivAt K K' t) (he : HasDerivAt e e' t)
@@ -34,7 +36,9 @@ theorem metric_energy_hasDerivAt (K : ℝ → H →L[ℝ] H) (e : ℝ → H)
   ring
 
 /-- Cancellation of pressure and integration by parts for transport leave only
-metric variation and the forcing in the time derivative. -/
+metric variation and the forcing in the time derivative.
+@isnad1 id=hasderiv.5h9v.s10.f7d0cdb82034 from=translated src=- shape=8803a918 vocab=e3215272
+-/
 theorem metric_energy_evolution (K : ℝ → H →L[ℝ] H) (e : ℝ → H)
     (t : ℝ) (K' : H →L[ℝ] H) (e' transport pressure forcing : H)
     (hK : HasDerivAt K K' t) (he : HasDerivAt e e' t)
@@ -49,6 +53,9 @@ theorem metric_energy_evolution (K : ℝ → H →L[ℝ] H) (e : ℝ → H)
   simp only [inner_add_right, hp, add_zero] at h
   linarith
 
+/--
+@isnad1 id=le.2h7v.s10.ba0a757c5221 from=translated src=- shape=59e12c0c vocab=d7bda0ad
+-/
 theorem energy_derivative_bound (K K' : H →L[ℝ] H) (e transport forcing : H)
     (B : ℝ) (_hB : 0 ≤ B) (ht : |⟪K e, transport⟫_ℝ| ≤ B * ‖e‖ ^ 2) :
     ⟪K' e, e⟫_ℝ + 2 * ⟪K e, forcing⟫_ℝ - 2 * ⟪K e, transport⟫_ℝ ≤
@@ -64,7 +71,9 @@ theorem energy_derivative_bound (K K' : H →L[ℝ] H) (e transport forcing : H)
   have ht' := (abs_le.mp ht).1
   linarith
 
-/-- A positive regularization gives a differentiable metric norm even at zero. -/
+/-- A positive regularization gives a differentiable metric norm even at zero.
+@isnad1 id=hasderiv.5h7v.s10.a2bacc209afc from=translated src=- shape=b0ce6313 vocab=22c8bb10
+-/
 theorem regularized_metric_norm_hasDerivAt (K : ℝ → H →L[ℝ] H) (e : ℝ → H)
     (t δ : ℝ) (K' : H →L[ℝ] H) (e' : H)
     (hδ : 0 < δ) (hpos : 0 ≤ ⟪K t (e t), e t⟫_ℝ)
@@ -77,7 +86,9 @@ theorem regularized_metric_norm_hasDerivAt (K : ℝ → H →L[ℝ] H) (e : ℝ 
     ((metric_energy_hasDerivAt K e t K' e' hK he hsym).add_const (δ ^ 2)) (by nlinarith)
 
 /-- The norm estimate used before summing Gevrey weights. All terms come from
-the actual differential equation; no estimate for the energy derivative is assumed. -/
+the actual differential equation; no estimate for the energy derivative is assumed.
+@isnad1 id=le.10h12v.s11.b18e68a23b9e from=translated src=- shape=c64f2f85 vocab=6e9af3f5
+-/
 theorem regularized_metric_norm_evolution (K : ℝ → H →L[ℝ] H) (e : ℝ → H)
     (t δ c B : ℝ) (K' : H →L[ℝ] H) (e' transport pressure forcing : H)
     (hδ : 0 < δ) (hc : 0 < c) (hB : 0 ≤ B)
