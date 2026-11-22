@@ -327,6 +327,9 @@
     "https://github.com/arex1337/erdos-263-lean",
     "https://github.com/AxiomMath/ramanujan-tau-misses-primes",
     "https://github.com/qkkqk1234/jsp-000907-lean",
+    "https://github.com/Riflonnade/RandomSetTheory",
+    "https://github.com/urdvr/superpermutations-hunter",
+    "https://github.com/jimpeebles/rainich-kaluza-reconstruction",
     "https://github.com/TJC-LP/goemans",
     "https://github.com/innerlightr-wq/eoc-lean-verification",
     "https://github.com/savarin/lean-spectral-theory"
@@ -669,6 +672,9 @@
     "https://github.com/arex1337/erdos-263-lean": "Apache-2.0",
     "https://github.com/AxiomMath/ramanujan-tau-misses-primes": "MIT",
     "https://github.com/qkkqk1234/jsp-000907-lean": "Apache-2.0",
+    "https://github.com/Riflonnade/RandomSetTheory": "Apache-2.0",
+    "https://github.com/urdvr/superpermutations-hunter": "Apache-2.0",
+    "https://github.com/jimpeebles/rainich-kaluza-reconstruction": "MIT",
     "https://github.com/TJC-LP/goemans": "MIT",
     "https://github.com/innerlightr-wq/eoc-lean-verification": "Apache-2.0",
     "https://github.com/savarin/lean-spectral-theory": "Apache-2.0"
@@ -3257,6 +3263,28 @@
       "commit": "f820373fea69f3f959cdaaf3a1d9dd70ce6a3e1a",
       "roots": [
         "JSP907"
+      ]
+    },
+    "randomsettheory": {
+      "repo": "https://github.com/Riflonnade/RandomSetTheory",
+      "commit": "544f98470c3960a282d6f95c6e08c5487a195664",
+      "roots": [
+        "RandomSetTheory"
+      ]
+    },
+    "superpermutations-hunter": {
+      "repo": "https://github.com/urdvr/superpermutations-hunter",
+      "commit": "d45222190031d162feb1f6f3cf5fe2d11fab726d",
+      "roots": [
+        "AxiomCheck",
+        "Hunter"
+      ]
+    },
+    "rainich-kaluza-reconstruction": {
+      "repo": "https://github.com/jimpeebles/rainich-kaluza-reconstruction",
+      "commit": "33a5fc9ae279c1cc5b0dad9b6517d2d026c7cc54",
+      "roots": [
+        "RainichKaluza"
       ]
     },
     "goemans": {

@@ -104,6 +104,7 @@ import Tengoku.DamianFormalizare
 import Tengoku.Arklib
 import Tengoku.InverseGeneratorLean
 import Tengoku.Vcvio
+import Tengoku.Goemans
 import Tengoku.Jsp000958Lean
 import Tengoku.PcfCyclotomicLean
 import Tengoku.LanaPi1
@@ -140,6 +141,7 @@ import Tengoku.TdaLib
 import Tengoku.RobustInverseUncertaintyLean
 import Tengoku.Ieantn
 import Tengoku.Lmlf
+import Tengoku.RainichKaluzaReconstruction
 import Tengoku.GroebnerProj
 import Tengoku.NiceNumbersLean
 import Tengoku.Biyoneda
@@ -171,6 +173,7 @@ import Tengoku.RamanujanTauMissesPrimes
 import Tengoku.SalemTheorem
 import Tengoku.Apap
 import Tengoku.Sendov
+import Tengoku.SuperpermutationsHunter
 import Tengoku.DgLean
 import Tengoku.SquarefreeFugledeLean
 import Tengoku.LeanEvalPiSuccSphereNMulequivZmodTwo
@@ -236,12 +239,15 @@ import Tengoku.CaratheodoryLoewner
 import Tengoku.Erdos815Lean
 import Tengoku.Cslib
 import Tengoku.FormalMath
+import Tengoku.LeanSpectralTheory
 import Tengoku.RiemannhypothesisFormalization
+import Tengoku.EocLeanVerification
 import Tengoku.LeanDescriptiveSetTheory
 import Tengoku.PdtLean
 import Tengoku.Ben27Formalization
 import Tengoku.Formalslt
 import Tengoku.Formalizedsparse
+import Tengoku.Randomsettheory
 import Tengoku.LeanTnorms
 import Tengoku.Linearhadwiger
 import Tengoku.CkHopfFormalization

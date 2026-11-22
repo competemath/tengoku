@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "31fa6e0278d604df7a29d50c835a2d45c5e914b8c93fd091c3e81d3900b3176c",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "randomsettheory",
+ "lint_mode": "proposed",
+ "modules": 172,
+ "part": 1,
+ "theorems": 1676
+}

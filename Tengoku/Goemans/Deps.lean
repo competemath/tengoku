@@ -1,0 +1,1 @@
+-- Goemans: a factory bundle (data/intake/goemans). This file only marks the library for Tengoku/All.lean.
