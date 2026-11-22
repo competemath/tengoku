@@ -83,9 +83,163 @@ FIELDS = (
 )
 
 
+def load_licences(root: Path) -> dict[str, str]:
+    """source_url prefix -> licence, from the registry"""
+    return json.loads((root / "schemas" / "sources.json").read_text(encoding="utf-8")).get("licences", {})
+
+
+def command_words(root: Path) -> frozenset[str]:
+    """the words that begin a command in a module of the tree (schemas/command-keywords.json: the content gate lets a word at column 0 begin a command only if it is one of these)"""
+    return frozenset(json.loads((root / "schemas" / "command-keywords.json").read_text(encoding="utf-8"))["commands"])
+
+
+def starts_command(line: str, words: frozenset[str]) -> bool:
+    """a line that begins a command: it starts at column 0 with a command keyword, an attribute list (`@[`) or a doc comment"""
+    if not line or line[0].isspace():
+        return False
+    if line.startswith(("@[", "/--", "/-!")):
+        return True
+    m = re.match(r"«[^»]*»|[#A-Za-z_][^\s(\[{:⟨]*", line)
+    return bool(m) and m.group(0) in words
+
+
+def comment_end(text: str, i: int) -> int:
+    """the index just after the block comment that opens at `i` (they nest); the end of the text when it never closes"""
+    depth, n = 0, len(text)
+    while i < n:
+        if text.startswith("/-", i):
+            depth, i = depth + 1, i + 2
+        elif text.startswith("-/", i):
+            depth, i = depth - 1, i + 2
+            if depth == 0:
+                return i
+        else:
+            i += 1
+    return n
+
+
+ISNAD_TAG = re.compile(r"@isnad1 id=(\S+) from=\S+ src=\S+ shape=\S+ vocab=\S+\s*-/\Z")
+
+
+def locate_header(text: str, statement: str) -> int | None:
+    """where the header `statement` begins in the text of its module: it must be there once and begin a line (a header found twice, or in the middle of a line, may be another declaration or a comment)"""
+    start = text.find(statement)
+    if start < 0 or text.find(statement, start + 1) >= 0 or text[text.rfind("\n", 0, start) + 1 : start].strip():
+        return None
+    return start
+
+
+def declaration_tag(text: str, statement: str) -> str | None:
+    """the statement id in the isnad tag of the docstring that ends right above the header (docs/isnad.md: the tag, `@isnad1 id=... from=... src=... shape=... vocab=...`, is the last line of a theorem's
+    docstring). None when the header is not found as `locate_header` finds it, when nothing but white space does not separate the docstring from it (another declaration's docstring is not this one's), when
+    the docstring has no tag as its last line, or when the id is not shaped like one. The tag was written by the tag gate from the compiled module (docs/pr-classes.md, section 7); it is read here, not recomputed."""
+    start = locate_header(text, statement)
+    if start is None:
+        return None
+    before = text[:start].rstrip()
+    k = before.rfind("/--") if before.endswith("-/") else -1
+    if k < 0 or "-/" in before[k:-2]:
+        return None
+    m = ISNAD_TAG.search(before[k:])
+    return m.group(1) if m and v2.ISNAD_ID.match(m.group(1)) else None
+
+
+def declaration_proof(text: str, statement: str, words: frozenset[str]) -> str | None:
+    """the proof of the declaration whose header is `statement`, read from the text of its module: from the `:=` (or `where`) to the end of the declaration. None when it cannot be said without guessing.
+
+    The manifest keeps a theorem's header exactly as the module has it, so the header is found in the module's text. It must be there once and begin a line (a header found twice, or in the middle of a
+    line, may be another declaration or a comment); what follows it is the proof, up to the next command. A command begins where the tree's own gate says it does (`starts_command`): at column 0 with
+    a command keyword. Any other word at column 0, an indented line and a `--` comment inside the proof belong to the proof; comments after its last line (a `--` or a block comment at column 0) do not.
+    A header that has no `:=` after it (equation-style definitions keep their match arms in the header) has no proof text: the module has the whole declaration."""
+    start = locate_header(text, statement)
+    if start is None:
+        return None
+    i = start + len(statement)
+    pos = text.find("\n", i)
+    end = len(text) if pos < 0 else pos  # the rest of the header's last line is the beginning of the proof
+    while pos >= 0:
+        nxt = pos + 1
+        eol = text.find("\n", nxt)
+        line_end = len(text) if eol < 0 else eol
+        line = text[nxt:line_end]
+        if not line.strip() or line.startswith("--"):
+            pass
+        elif line.startswith("/-") and not line.startswith(("/--", "/-!")):
+            close = comment_end(text, nxt)
+            eol = text.find("\n", close)
+            # a block comment at column 0 is skipped, and not part of the proof unless the proof goes on after it: on the line where it closes, a command
+            # begins the next declaration (`/- note -/ theorem bar ...`), any other code goes on with the proof above
+            rest = text[close : len(text) if eol < 0 else eol]
+            if rest.strip():
+                if starts_command(rest.lstrip(), words):
+                    break
+                end = len(text) if eol < 0 else eol
+        elif line[0].isspace():
+            end = line_end
+        elif starts_command(line, words):
+            break
+        else:
+            end = line_end  # a word that is not a command continues the command above
+        pos = eol
+    proof = text[i:end].strip()
+    return proof if proof.startswith((":=", "where")) else None
+
+
+def module_text(root: Path, module: str, cache: dict[str, str | None]) -> str | None:
+    """the source of a module of the tree (`Tengoku.A.B` is Tengoku/A/B.lean), or None when the file is not there"""
+    if module not in cache:
+        f = root.joinpath(*module.split(".")).with_name(module.split(".")[-1] + ".lean")
+        cache.clear()  # the manifest lists a library module by module: one file at a time is enough
+        cache[module] = f.read_text(encoding="utf-8") if f.is_file() else None
+    return cache[module]
+
+
+def intake_rows(root: Path, licences: dict[str, str], ids: dict | None = None, proofs: bool = True) -> tuple[list[dict], dict[str, int]]:
+    """schema 2 rows for the theorems that arrived in the tree as modules: one per line of `data/intake/<library>/manifest.jsonl` (docs/v2.md, "The theorems that arrived as modules").
+
+    The manifest of a library is exactly what the tree holds of it: a raze removes the lines of the modules it removes (docs/pr-classes.md, section 8), so nothing is retracted here. `ids` is the
+    optional table of `v2.load_ids`; an id goes to the theorem it names by its tree module, its upstream module or no module at all (a library's names are unique, so a name names one theorem).
+    With `proofs` the modules are read: a row gets the proof text `declaration_proof` reads out of its module, where it can be read (a row without one has the module, `tree_module`, for its proof), and the
+    statement id `declaration_tag` reads from the isnad tag of its docstring (the table `ids` wins where both have one)."""
+    rows: list[dict] = []
+    counts: dict[str, int] = {}
+    base = root / "data" / "intake"
+    words: frozenset[str] | None = None  # read when the first manifest is: a tree with no intake needs no keyword list
+    cache: dict[str, str | None] = {}
+    for d in sorted(p for p in base.iterdir() if p.is_dir()) if base.is_dir() else []:
+        manifest = d / "manifest.jsonl"
+        if not manifest.is_file():
+            continue
+        entries = list(lines(manifest))
+        if proofs and words is None:
+            words = command_words(root)
+        order = sorted(
+            range(len(entries)), key=lambda k: str(entries[k].get("module"))
+        )  # a module's theorems together: its file is read once (the rows keep the manifest's order)
+        proof_of: dict[int, str | None] = {}
+        tag_of: dict[int, str | None] = {}
+        for k in order if proofs else []:
+            m = entries[k]
+            text = module_text(root, str(m.get("module")), cache)
+            proof_of[k] = declaration_proof(text, str(m.get("statement")), words) if text is not None else None
+            tag_of[k] = declaration_tag(text, str(m.get("statement"))) if text is not None else None
+        for k, m in enumerate(entries):
+            library = m.get("library") or d.name
+            keys = (
+                (library, m.get("name"), m.get("module")),
+                (library, m.get("name"), v2.module_of(m.get("source_url"))),
+                (library, m.get("name"), None),
+            )
+            ident = next((ids[x] for x in keys if ids and x in ids), None) or tag_of.get(
+                k
+            )  # a table the caller gives wins over the tag in the module
+            rows.append(v2.intake_row(m, licence_of(str(m.get("source_url", "")), licences), ident, proof_of.get(k)))
+            counts[library] = counts.get(library, 0) + 1
+    return rows, counts
+
+
 def dataset(root: Path) -> tuple[list[dict], dict[str, dict[str, int]]]:
-    sources = json.loads((root / "schemas" / "sources.json").read_text(encoding="utf-8"))
-    licences = sources.get("licences", {})
+    licences = load_licences(root)
     records: list[dict] = []
     counts: dict[str, dict[str, int]] = {}
     for tier in ("trusted", "staging", "tentative"):
@@ -258,6 +412,15 @@ def release_notes(
                 f"the dataset's schema changed from {old.get('schema', 1)} to {schema}: every record now has a `ref`, version 1's cut names are repaired and null fields are left out; "
                 "`scripts/v2.py migrate` turns a version 1 dataset (or a name, or a Lean file) into the new one, and `docs/v2.md` says what each reader has to do"
             )
+        tree = sum(1 for r in records if "tree_module" in r)
+        if tree:
+            read = sum(1 for r in records if "tree_module" in r and "proof" in r)
+            tagged = sum(1 for r in records if "tree_module" in r and "id" in r)
+            why.append(
+                f"the dataset now holds every trusted theorem of the tree, {tree:,} of them theorems of libraries that arrived as modules: {read:,} of those rows have a `proof` read "
+                "from their module, the others have none (their proof is the module `tree_module`, in the source release of the same version), "
+                f"{tagged:,} have an `id`, the statement id of the isnad tag in their module's docstring, and all carry `via`, how Gate 2 related the statement to the original's"
+            )
         if gone:
             why.append(f"record fields were removed or renamed ({', '.join(gone)}): code reading the dataset must stop expecting them")
         lines.append("Major version: " + "; ".join(why) + ".")
@@ -301,7 +464,15 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
     records, counts = dataset(root)
     if args.schema == 2:
-        records, _ = v2.upgrade_dataset(records, v2.load_ids(v2.checked_path(Path(args.ids))) if args.ids else None)
+        ids = v2.load_ids(v2.checked_path(Path(args.ids))) if args.ids else None
+        records, _ = v2.upgrade_dataset(records, ids)
+        tree_rows, tree_counts = intake_rows(
+            root, load_licences(root), ids
+        )  # schema 2 holds every trusted theorem of the tree: the intake libraries too
+        records += tree_rows
+        tree_n, tree_proofs, tree_ids = len(tree_rows), sum(1 for r in tree_rows if "proof" in r), sum(1 for r in tree_rows if "id" in r)
+        for library, n in tree_counts.items():
+            counts.setdefault(library, {})["intake"] = n
         problems = v2.check(records)
         if problems:
             raise SystemExit("the schema 2 dataset breaks its own invariants: " + "; ".join(problems[:5]))
@@ -344,8 +515,12 @@ def main() -> None:
             "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
             "uncompressed_sha256": hashlib.sha256(raw).hexdigest(),
         },
+        **({"tree": {"theorems": tree_n, "with_proof": tree_proofs, "with_id": tree_ids}} if args.schema == 2 else {}),
         "libraries": {k: counts[k] for k in sorted(counts)},
-        "totals": {t: sum(c.get(t, 0) for c in counts.values()) for t in ("trusted", "staging", "tentative")},
+        "totals": {
+            t: sum(c.get(t, 0) for c in counts.values())
+            for t in (("trusted", "intake", "staging", "tentative") if args.schema == 2 else ("trusted", "staging", "tentative"))
+        },
     }
     (out / "snapshot.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     if args.notes:

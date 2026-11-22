@@ -19,6 +19,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
+import snapshot  # noqa: E402
 import v2  # noqa: E402
 
 TC = "leanprover/lean4:v4.34.0-rc2"
@@ -175,10 +176,10 @@ class Upgrade(unittest.TestCase):
                 "name",
                 "library",
                 "statement",
-                "proof",
                 "source_url",
                 "toolchain",
                 "module",
+                "proof",
                 "licence",
                 "credit",
                 "headline",
@@ -261,7 +262,8 @@ class Check(unittest.TestCase):
             return v2.check(rows)
 
         self.assertTrue(any("already used" in p for p in broken(lambda r: r[1].__setitem__("ref", r[0]["ref"]))))
-        self.assertTrue(any("missing proof" in p for p in broken(lambda r: r[0].pop("proof"))))
+        self.assertTrue(any("nowhere to find the proof" in p for p in broken(lambda r: r[0].pop("proof"))))
+        self.assertTrue(any("missing source_url" in p for p in broken(lambda r: r[0].pop("source_url"))))
         self.assertTrue(any("schema is" in p for p in broken(lambda r: r[0].__setitem__("schema", 1))))
         self.assertTrue(any("unknown fields" in p for p in broken(lambda r: r[0].__setitem__("surprise", 1))))
         self.assertTrue(any("is not an isnad id" in p for p in broken(lambda r: r[0].__setitem__("id", "nope"))))
@@ -927,6 +929,441 @@ class SnapshotSchema2(unittest.TestCase):
         text = self.snap(self.root / "r2b", "--schema", "2", "--previous", str(self.root / "r2")).read_text()
         self.assertIn("**Retracted:** 1", text)
         self.assertIn("**Added:** 2 trusted theorems", text)
+
+
+WORDS = frozenset(
+    [
+        "theorem",
+        "lemma",
+        "def",
+        "end",
+        "namespace",
+        "open",
+        "section",
+        "variable",
+        "instance",
+        "import",
+        "universe",
+        "example",
+        "private",
+        "protected",
+        "set_option",
+        "attribute",
+    ]
+)
+
+
+class DeclarationProof(unittest.TestCase):
+    """snapshot.declaration_proof: the proof of a theorem of the tree, read out of its module, or nothing (never a guess)"""
+
+    def proof(self, text, statement):
+        return snapshot.declaration_proof(text, statement, WORDS)
+
+    def test_a_proof_runs_to_the_next_command(self):
+        text = "namespace A\n\ntheorem foo : 1 = 1 := by\n  rfl\n\ntheorem bar : 2 = 2 := rfl\n\nend A\n"
+        self.assertEqual(self.proof(text, "theorem foo : 1 = 1"), ":= by\n  rfl")
+        self.assertEqual(self.proof(text, "theorem bar : 2 = 2"), ":= rfl")
+
+    def test_what_follows_the_last_line_is_not_the_proof(self):
+        text = "theorem foo : 1 = 1 := by\n  simp\n\n-- about the next one\n/- and a block\n   comment -/\n/-- its doc -/\ntheorem baz : 3 = 3 := rfl\n"
+        self.assertEqual(self.proof(text, "theorem foo : 1 = 1"), ":= by\n  simp")
+        self.assertEqual(
+            self.proof("theorem foo : 1 = 1 := by\n  simp\n\n@[simp]\ntheorem x : 1 = 1 := rfl\n", "theorem foo : 1 = 1"), ":= by\n  simp"
+        )
+
+    def test_a_comment_inside_the_proof_is_part_of_it(self):
+        text = "theorem foo : 1 = 1 := by\n  -- why\n  simp\n-- a line at column 0\n  rfl\n/- a block\n  comment -/\n  done\n\nend A\n"
+        self.assertEqual(
+            self.proof(text, "theorem foo : 1 = 1"),
+            ":= by\n  -- why\n  simp\n-- a line at column 0\n  rfl\n/- a block\n  comment -/\n  done",
+        )
+
+    def test_a_word_at_column_0_that_is_not_a_command_goes_on_with_the_proof(self):
+        text = "def f (n : Nat) : Nat := f (n - 1)\ntermination_by n\n\ntheorem x : True := trivial\n"
+        self.assertEqual(self.proof(text, "def f (n : Nat) : Nat"), ":= f (n - 1)\ntermination_by n")
+
+    def test_where_is_a_proof_and_the_last_declaration_of_a_file_without_a_final_newline_is_read(self):
+        self.assertEqual(self.proof("instance : Foo Nat where\n  x := 1\n", "instance : Foo Nat"), "where\n  x := 1")
+        self.assertEqual(self.proof("theorem foo : True := trivial", "theorem foo : True"), ":= trivial")
+
+    def test_nothing_is_guessed(self):
+        header = "theorem foo : 1 = 1"
+        self.assertIsNone(self.proof("theorem bar : 2 = 2 := rfl\n", header))  # not in the module (a generated lemma)
+        self.assertIsNone(self.proof(f"{header} := rfl\n\nnamespace B\n\n{header} := by simp\n", header))  # twice: which one is it?
+        self.assertIsNone(self.proof(f"-- {header} := rfl\n", header))  # in the middle of a line: a comment, not a declaration
+        eqn = "theorem f : ∀ n : Nat, n = n\n  | 0 => rfl\n  | n + 1 => rfl"  # equation-style: the header has the arms, there is no `:=`
+        self.assertIsNone(self.proof(eqn + "\n\ntheorem g : True := trivial\n", eqn))
+
+    def test_code_after_a_block_comment_on_a_column_0_line_is_read(self):
+        header = "theorem foo : 1 = 1"
+        # a command after the comment begins the next declaration, whatever follows it: foo's proof stops above the comment
+        text = f"{header} := by\n  simp\n/- note -/ theorem bar : 2 = 2 := by\n  simp\n"
+        self.assertEqual(self.proof(text, header), ":= by\n  simp")
+        self.assertEqual(
+            self.proof(text, "theorem bar : 2 = 2"), None
+        )  # its header is not at the beginning of its line, so it is not read (nothing is guessed)
+        # the comment may span lines and close in the middle of one
+        text = f"{header} := by\n  simp\n/- a note\n   over two lines -/ theorem bar : 2 = 2 := rfl\n"
+        self.assertEqual(self.proof(text, header), ":= by\n  simp")
+        # anything else after the comment goes on with the proof above, and the comment with it
+        text = f"{header} := by\n  simp\n/- note -/ exact trivial\n\ntheorem baz : 3 = 3 := rfl\n"
+        self.assertEqual(self.proof(text, header), ":= by\n  simp\n/- note -/ exact trivial")
+        # a comment alone on its line is still skipped, and the proof ends above it
+        text = f"{header} := by\n  simp\n/- note -/\ntheorem baz : 3 = 3 := rfl\n"
+        self.assertEqual(self.proof(text, header), ":= by\n  simp")
+        # a docstring or an attribute after the comment is a command too
+        self.assertEqual(self.proof(f"{header} := by\n  simp\n/- note -/ @[simp] theorem q : 1 = 1 := rfl\n", header), ":= by\n  simp")
+
+    def test_a_block_comment_that_never_closes_ends_the_proof_where_the_comment_began(self):
+        self.assertEqual(
+            self.proof("theorem foo : True := by\n  trivial\n/- never closed\n  theorem x", "theorem foo : True"), ":= by\n  trivial"
+        )
+
+
+TAG = "@isnad1 id=eq.1h3v.s4.01215b3d171d from=translated src=- shape=3fa9c1d2 vocab=b27e40a1"
+
+
+class DeclarationTag(unittest.TestCase):
+    """snapshot.declaration_tag: the statement id in the isnad tag of the docstring right above a theorem, or nothing"""
+
+    def tag(self, text, statement="theorem foo : 1 = 1"):
+        return snapshot.declaration_tag(text, statement)
+
+    def test_the_tag_in_the_docstring_right_above_the_header_is_read(self):
+        text = f"namespace A\n\n/-- Foo is one.\n\n{TAG} -/\ntheorem foo : 1 = 1 := rfl\n"
+        self.assertEqual(self.tag(text), "eq.1h3v.s4.01215b3d171d")
+        self.assertEqual(self.tag(f"/--\n{TAG}\n-/\ntheorem foo : 1 = 1 := rfl\n"), "eq.1h3v.s4.01215b3d171d")
+
+    def test_attributes_are_part_of_the_header_so_the_docstring_is_still_right_above(self):
+        statement = "@[simp]\ntheorem foo : 1 = 1"
+        self.assertEqual(self.tag(f"/-- doc\n{TAG} -/\n{statement} := rfl\n", statement), "eq.1h3v.s4.01215b3d171d")
+
+    def test_another_declarations_docstring_is_not_this_ones(self):
+        text = f"/-- doc\n{TAG} -/\ntheorem bar : 2 = 2 := rfl\n\ntheorem foo : 1 = 1 := rfl\n"
+        self.assertIsNone(self.tag(text))
+
+    def test_no_tag_no_docstring_or_a_tag_that_is_not_the_last_line_is_nothing(self):
+        self.assertIsNone(self.tag("theorem foo : 1 = 1 := rfl\n"))
+        self.assertIsNone(self.tag("/-- just a doc -/\ntheorem foo : 1 = 1 := rfl\n"))
+        self.assertIsNone(self.tag(f"/-- doc\n{TAG}\nand more -/\ntheorem foo : 1 = 1 := rfl\n"))
+        self.assertIsNone(self.tag("/- an ordinary comment -/\ntheorem foo : 1 = 1 := rfl\n"))
+
+    def test_an_id_that_is_not_shaped_like_one_is_nothing(self):
+        self.assertIsNone(
+            self.tag("/-- doc\n@isnad1 id=nonsense from=seed src=0 shape=00000000 vocab=00000000 -/\ntheorem foo : 1 = 1 := rfl\n")
+        )
+
+    def test_a_header_that_is_not_found_once_at_the_start_of_a_line_has_no_tag(self):
+        self.assertIsNone(self.tag(f"/-- doc\n{TAG} -/\ntheorem foo : 1 = 1 := rfl\n\ntheorem foo : 1 = 1 := rfl\n"))  # twice
+        self.assertIsNone(self.tag(f"/-- doc\n{TAG} -/\n-- theorem foo : 1 = 1 := rfl\n"))  # in a comment, in the middle of a line
+
+    def test_two_docstrings_are_not_taken_for_one(self):
+        text = f"/-- first {TAG} -/ /-- second -/\ntheorem foo : 1 = 1 := rfl\n"
+        self.assertIsNone(self.tag(text))
+
+
+def manifest_line(name="TauCeti.A.foo", library="tauceti", path="TauCeti/A.lean", via="equal", **kw):
+    """one line of data/intake/<library>/manifest.jsonl as the tree has them (name = the full Lean name, statement = the header, module = the TREE's module)"""
+    m = {
+        "name": name,
+        "statement": f"theorem {name.rsplit('.', 1)[-1]} : True",
+        "module": "Tengoku.Tauceti." + path[: -len(".lean")].replace("/", "."),
+        "source_path": path,
+        "library": library,
+        "source_url": f"https://github.com/TauCetiProject/TauCeti/blob/{'b' * 40}/{path}",
+        "toolchain": TC,
+        "via": via,
+    }
+    m.update(kw)
+    return m
+
+
+class IntakeRows(unittest.TestCase):
+    """the theorems that arrived in the tree as modules (docs/v2.md): a row from a manifest line"""
+
+    def test_a_manifest_line_becomes_a_row_with_no_proof(self):
+        row = v2.intake_row(manifest_line(), "Apache-2.0")
+        self.assertEqual(
+            list(row),
+            [
+                "schema",
+                "ref",
+                "status",
+                "name",
+                "library",
+                "statement",
+                "source_url",
+                "toolchain",
+                "module",
+                "tree_module",
+                "via",
+                "licence",
+            ],
+        )
+        self.assertEqual(
+            (row["ref"], row["name"], row["module"], row["tree_module"], row["via"], row["licence"]),
+            ("tauceti:TauCeti.A.foo", "TauCeti.A.foo", "TauCeti.A", "Tengoku.Tauceti.TauCeti.A", "equal", "Apache-2.0"),
+        )
+        self.assertNotIn("proof", row)
+        self.assertEqual(v2.check([row]), [])
+
+    def test_nothing_is_invented_for_a_line_that_lacks_a_field(self):
+        line = manifest_line()
+        del line["source_url"]
+        row = v2.intake_row(line)
+        self.assertNotIn("source_url", row)
+        self.assertNotIn("module", row)
+        self.assertTrue(any("missing source_url" in p for p in v2.check([row])))
+        nameless = v2.intake_row(manifest_line(name=""))
+        self.assertTrue(any("missing ref" in p for p in v2.check([nameless])))
+
+    def test_a_library_with_no_licence_in_the_registry_has_none_and_the_field_is_left_out(self):
+        row = v2.intake_row(manifest_line(), None)
+        self.assertNotIn("licence", row)
+        self.assertEqual(v2.check([row]), [])
+
+    def test_an_empty_via_is_left_out_and_an_unknown_one_is_refused(self):
+        self.assertNotIn("via", v2.intake_row(manifest_line(via="")))
+        self.assertEqual(v2.check([v2.intake_row(manifest_line(via=""))]), [])
+        self.assertTrue(any("via 'maybe'" in p for p in v2.check([v2.intake_row(manifest_line(via="maybe"))])))
+
+    def test_a_tree_module_has_to_be_a_module_of_the_tree(self):
+        self.assertTrue(any("tree_module" in p for p in v2.check([v2.intake_row(manifest_line(module="Mathlib.A"))])))
+
+    def test_a_row_has_its_proof_or_a_module_to_find_it_in(self):
+        row = v2.intake_row(manifest_line())
+        del row["tree_module"]
+        self.assertTrue(any("nowhere to find the proof" in p for p in v2.check([row])))
+
+    def test_an_id_is_carried_when_given(self):
+        row = v2.intake_row(manifest_line(), None, "eq.1h3v.s4.01215b3d171d")
+        self.assertEqual(row["id"], "eq.1h3v.s4.01215b3d171d")
+        self.assertEqual(v2.check([row]), [])
+        self.assertTrue(any("not an isnad id" in p for p in v2.check([v2.intake_row(manifest_line(), None, "nope")])))
+
+    def test_the_downgrade_of_a_new_row_has_a_null_proof_and_every_version_1_field(self):
+        d = v2.downgrade(v2.intake_row(manifest_line(), "Apache-2.0"))
+        self.assertEqual(list(d), list(v2.V1_FIELDS))
+        self.assertIsNone(d["proof"])
+        self.assertEqual((d["name"], d["licence"]), ("TauCeti.A.foo", "Apache-2.0"))
+
+    def test_a_move_in_the_tree_is_moved_and_a_new_verdict_is_a_correction(self):
+        a = v2.intake_row(manifest_line(), "Apache-2.0")
+        moved = dict(a, tree_module="Tengoku.Elsewhere.A")
+        self.assertEqual([c["change"] for c in v2.classify([a], [moved])], ["moved"])
+        self.assertEqual([c["change"] for c in v2.classify([a], [dict(a, via="entails")])], ["corrected"])
+        self.assertEqual([c["change"] for c in v2.classify([a], [dict(a)])], ["unchanged"])
+
+    def test_rows_of_the_tier_files_and_of_the_tree_live_in_one_dataset(self):
+        tier = v2.upgrade_dataset([rec("a"), rec("b")])[0]
+        tree = [v2.intake_row(manifest_line(name=f"TauCeti.A.t{i}")) for i in range(3)]
+        rows = tier + tree
+        self.assertEqual(v2.check(rows), [])
+        idx = v2.Index(rows)
+        self.assertEqual(idx.resolve("tauceti:TauCeti.A.t1").one()["tree_module"], "Tengoku.Tauceti.TauCeti.A")
+        self.assertEqual(idx.resolve("TauCeti.A.t2").status, "unique-name")
+
+
+class SnapshotWithTheTree(unittest.TestCase):
+    """snapshot.py --schema 2 holds every trusted theorem of the tree: the tier files and the manifests of data/intake. Schema 1 does not."""
+
+    def setUp(self):
+        self.root = Path(tempfile.mkdtemp())
+        (self.root / "schemas").mkdir()
+        (self.root / "schemas" / "sources.json").write_text(
+            json.dumps(
+                {
+                    "licences": {
+                        "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
+                        "https://github.com/TauCetiProject/TauCeti": "MIT",
+                    }
+                }
+            )
+        )
+        (self.root / "schemas" / "command-keywords.json").write_text(json.dumps({"commands": sorted(WORDS)}))
+        (self.root / "lean-toolchain").write_text(TC + "\n")
+        (self.root / "data" / "trusted").mkdir(parents=True)
+        fields = ("name", "statement", "proof", "source_url", "toolchain", "library")
+        tier = {**{k: v for k, v in rec("m1").items() if k in fields}, "status": "trusted"}
+        (self.root / "data" / "trusted" / "mathlib.jsonl").write_text(json.dumps(tier) + "\n")
+        self.lines = [
+            manifest_line(name=f"TauCeti.A.t{i}", path=f"TauCeti/{'AB'[i % 2]}.lean", via=["equal", "entails"][i % 2]) for i in range(4)
+        ]
+        self.write_manifest(self.lines)
+        (self.root / "data" / "intake" / "nomanifest").mkdir(parents=True)  # a folder with no manifest is not a library
+
+    def write_manifest(self, lines):
+        d = self.root / "data" / "intake" / "tauceti"
+        d.mkdir(parents=True, exist_ok=True)
+        (d / "manifest.jsonl").write_text("".join(json.dumps(x, ensure_ascii=False) + "\n" for x in lines))
+
+    def tearDown(self):
+        shutil.rmtree(self.root)
+
+    def snap(self, out, *extra, check=True):
+        notes = out.parent / (out.name + ".md")
+        r = subprocess.run(
+            [
+                sys.executable,
+                str(ROOT / "scripts" / "snapshot.py"),
+                "--out",
+                str(out),
+                "--root",
+                str(self.root),
+                "--notes",
+                str(notes),
+                *extra,
+            ],
+            capture_output=True,
+            text=True,
+        )
+        if check:
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        return notes
+
+    def test_schema_2_holds_the_tier_files_and_the_tree(self):
+        out = self.root / "out2"
+        self.snap(out, "--schema", "2")
+        rows = v2.read_jsonl(out / "tengoku-dataset.jsonl.gz")
+        self.assertEqual(v2.check(rows), [])
+        self.assertEqual(len(rows), 5)
+        self.assertEqual(sorted(r["library"] for r in rows), ["mathlib"] + ["tauceti"] * 4)
+        tree = [r for r in rows if r["library"] == "tauceti"]
+        self.assertTrue(all("proof" not in r and r["licence"] == "MIT" and r["status"] == "trusted" for r in tree))
+        self.assertEqual(sorted(r["via"] for r in tree), ["entails", "entails", "equal", "equal"])
+        m = json.loads((out / "snapshot.json").read_text())
+        self.assertEqual(m["dataset"]["records"], 5)
+        self.assertEqual(m["totals"], {"trusted": 1, "intake": 4, "staging": 0, "tentative": 0})
+        self.assertEqual(m["libraries"]["tauceti"], {"intake": 4})
+        self.assertIn("tree_module", m["fields"])
+
+    def test_schema_1_is_what_it_was(self):
+        out = self.root / "out1"
+        self.snap(out)
+        m = json.loads((out / "snapshot.json").read_text())
+        self.assertEqual(m["dataset"]["records"], 1)
+        self.assertEqual(set(m["totals"]), {"trusted", "staging", "tentative"})
+        self.assertNotIn("tauceti", m["libraries"])
+
+    def test_the_same_tree_gives_the_same_bytes(self):
+        self.snap(self.root / "a", "--schema", "2")
+        self.snap(self.root / "b", "--schema", "2")
+        self.assertEqual(
+            (self.root / "a" / "tengoku-dataset.jsonl.gz").read_bytes(), (self.root / "b" / "tengoku-dataset.jsonl.gz").read_bytes()
+        )
+
+    def test_going_from_1_to_2_adds_the_tree_and_says_what_it_is(self):
+        self.snap(self.root / "r1")
+        notes = self.snap(self.root / "r2", "--schema", "2", "--previous", str(self.root / "r1"))
+        self.assertEqual(json.loads((self.root / "r2" / "snapshot.json").read_text())["version"], "2.0.0")
+        text = notes.read_text()
+        self.assertIn("**Added:** 4 trusted theorems (tauceti 4)", text)
+        self.assertIn("every trusted theorem of the tree, 4 of them", text)
+        self.assertIn("`tree_module`", text)
+
+    def test_a_raze_is_a_retraction_and_a_new_part_a_minor_release(self):
+        self.snap(self.root / "r2", "--schema", "2")
+        self.write_manifest(
+            self.lines[:3] + [manifest_line(name="TauCeti.B.new")]
+        )  # one theorem leaves with its module, another arrives (a raze, then a part)
+        notes = self.snap(self.root / "r2b", "--schema", "2", "--previous", str(self.root / "r2"))
+        text = notes.read_text()
+        self.assertEqual(json.loads((self.root / "r2b" / "snapshot.json").read_text())["version"], "1.1.0")
+        self.assertIn("**Added:** 1 trusted theorems", text)
+        self.assertIn("**Retracted:** 1: `tauceti:TauCeti.A.t3`", text)
+
+    def test_a_restructure_moves_a_theorem_and_is_not_a_new_release_of_its_content(self):
+        self.snap(self.root / "r2", "--schema", "2")
+        moved = [dict(x, module=x["module"].replace("Tengoku.Tauceti", "Tengoku.Tauceti.Sub")) for x in self.lines]
+        self.write_manifest(moved)
+        notes = self.snap(self.root / "r2b", "--schema", "2", "--previous", str(self.root / "r2"))
+        self.assertIn("**Corrected:** 4 existing theorems", notes.read_text())
+        self.assertIn("**Added:** 0 trusted theorems", notes.read_text())
+
+    def test_an_id_table_reaches_the_tree_rows_by_either_module_or_none(self):
+        ids = self.root / "ids.tsv"
+        ids.write_text(
+            "tauceti\tTauCeti.A.t0\teq.1h3v.s4.01215b3d171d\n"  # no module: the library's names are unique, so the name is enough
+            "tauceti\tTauCeti.A.t1\teq.1h3v.s4.111111111111\tTengoku.Tauceti.TauCeti.B\n"  # by the module of the tree
+            "tauceti\tTauCeti.A.t2\teq.1h3v.s4.222222222222\tTauCeti.A\n"  # by the module upstream
+            "tauceti\tTauCeti.A.t3\teq.1h3v.s4.333333333333\tTauCeti.Z\n"  # a module that is neither: not this theorem's
+        )
+        out = self.root / "out2"
+        self.snap(out, "--schema", "2", "--ids", str(ids))
+        by = {r["name"]: r for r in v2.read_jsonl(out / "tengoku-dataset.jsonl.gz")}
+        self.assertEqual(by["TauCeti.A.t0"]["id"], "eq.1h3v.s4.01215b3d171d")
+        self.assertEqual(by["TauCeti.A.t1"]["id"], "eq.1h3v.s4.111111111111")
+        self.assertEqual(by["TauCeti.A.t2"]["id"], "eq.1h3v.s4.222222222222")
+        self.assertNotIn("id", by["TauCeti.A.t3"])
+
+    def write_modules(self):
+        d = self.root / "Tengoku" / "Tauceti" / "TauCeti"
+        d.mkdir(parents=True)
+        (d / "A.lean").write_text(
+            "import Tengoku.Seed.Init\n\nnamespace TauCeti.A\n\ntheorem t0 : True := trivial\n\n/-- doc\n@isnad1 id=eq.1h3v.s4.01215b3d171d from=translated src=- shape=3fa9c1d2 vocab=b27e40a1 -/\ntheorem t2 : True := by\n  -- a note\n  trivial\n\nend TauCeti.A\n"
+        )
+        (d / "B.lean").write_text(
+            "theorem t1 : True := rfl\n\ntheorem t3 : True := rfl\n\ntheorem t3 : True := by\n  rfl\n"
+        )  # t3 twice: no proof is read for it
+
+    def test_a_row_has_the_proof_read_from_its_module_where_it_can_be(self):
+        self.write_modules()
+        out = self.root / "out2"
+        notes = self.snap(out, "--schema", "2")
+        by = {r["name"]: r for r in v2.read_jsonl(out / "tengoku-dataset.jsonl.gz")}
+        self.assertEqual(by["TauCeti.A.t0"]["proof"], ":= trivial")
+        self.assertEqual(by["TauCeti.A.t2"]["proof"], ":= by\n  -- a note\n  trivial")
+        self.assertEqual(by["TauCeti.A.t1"]["proof"], ":= rfl")
+        self.assertNotIn("proof", by["TauCeti.A.t3"])
+        self.assertEqual(v2.check(list(by.values())), [])
+        self.assertEqual(json.loads((out / "snapshot.json").read_text())["tree"], {"theorems": 4, "with_proof": 3, "with_id": 1})
+        self.assertEqual(by["TauCeti.A.t2"]["id"], "eq.1h3v.s4.01215b3d171d")
+        self.assertNotIn("id", by["TauCeti.A.t0"])
+        self.snap(self.root / "r1")
+        text = self.snap(self.root / "r2", "--schema", "2", "--previous", str(self.root / "r1")).read_text()
+        self.assertIn("3 of those rows have a `proof` read from their module", text)
+        self.assertIn("1 have an `id`, the statement id of the isnad tag", text)
+        self.assertTrue(notes.exists())
+
+    def test_a_module_that_is_not_there_gives_a_row_with_no_proof(self):
+        out = self.root / "out2"
+        self.snap(out, "--schema", "2")
+        self.assertEqual(json.loads((out / "snapshot.json").read_text())["tree"], {"theorems": 4, "with_proof": 0, "with_id": 0})
+
+    def test_a_manifest_line_without_a_source_url_stops_the_cut(self):
+        bad = dict(self.lines[0])
+        del bad["source_url"]
+        self.write_manifest([bad] + self.lines[1:])
+        self.snap(self.root / "out2", "--schema", "2", check=False)
+        self.assertFalse((self.root / "out2" / "snapshot.json").exists())
+
+
+@unittest.skipUnless(any((ROOT / "data" / "intake").glob("*/manifest.jsonl")), "this checkout has no data/intake manifests")
+class TheTreeOfThisRepository(unittest.TestCase):
+    """the manifests of data/intake as they are in this checkout (about 7 s): what a schema 2 cut would ship, held to the dataset's own invariants before anyone cuts it"""
+
+    @classmethod
+    def setUpClass(cls):
+        sys.path.insert(0, str(ROOT / "scripts"))
+        import snapshot
+
+        cls.rows, cls.counts = snapshot.intake_rows(
+            ROOT, snapshot.load_licences(ROOT), proofs=False
+        )  # reading every module for its proof takes a minute: not on every PR
+
+    def test_every_theorem_of_the_tree_is_a_valid_row(self):
+        self.assertEqual(v2.check(self.rows), [])
+        self.assertEqual(len(self.rows), sum(self.counts.values()))
+
+    def test_every_row_has_a_licence_a_verdict_and_an_upstream_module(self):
+        # a library whose source_url has no licence in schemas/sources.json would be published with no licence: the cut must not
+        for key in ("licence", "via", "module", "tree_module"):
+            missing = sorted({r["library"] for r in self.rows if key not in r})
+            self.assertEqual(missing, [], f"libraries with theorems that have no {key}")
+
+    def test_the_libraries_of_the_tier_files_are_not_in_the_tree_manifests(self):
+        tier = {f.stem.split("-")[0] if f.stem.startswith("mathlib-") else f.stem for f in (ROOT / "data" / "trusted").glob("*.jsonl")}
+        self.assertEqual(sorted(tier & set(self.counts)), [])
 
 
 @unittest.skipUnless(

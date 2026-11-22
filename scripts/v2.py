@@ -13,6 +13,9 @@ Version 1 (the 1.0.0 release) has no key: 14,911 of its 198,172 records share a 
 `A₂_mem_circumsphere`); and three of its twelve fields are null in every row. Version 2 gives every record a `ref`, repairs the cut names (`legacy_name` keeps what version 1 said), drops what is null,
 renames the one clumsy field, and carries the statement identity (isnad, docs/isnad.md) when it is known. Everything version 1 said, version 2 says:
 `downgrade(upgrade(r)) == r` for every version 1 record, and `upgrade` is a pure function of the version 1 data (plus the optional ids), so nobody needs a lookup table to migrate.
+
+Version 1 held only the records of the tier files (`data/trusted`): 198,172 theorems. Version 2 holds every trusted theorem of the tree, and most of them arrived as modules (`data/intake`); `intake_row`
+makes their rows from the manifests (docs/v2.md, "The theorems that arrived as modules").
 """
 
 from __future__ import annotations
@@ -46,11 +49,27 @@ V1_FIELDS = (
     "headline",
     "upstream",
 )
-# the version 2 fields: the required ones first, then the optional ones, which are left out when they do not apply
-V2_REQUIRED = ("schema", "ref", "status", "name", "library", "statement", "proof", "source_url", "toolchain")
-V2_OPTIONAL = ("id", "legacy_name", "module", "licence", "credit", "credit_evidence", "promoted_at", "headline", "upstream")
+# the version 2 fields: the required ones first, then the optional ones, which are left out when they do not apply.
+# `proof` is optional: a theorem of a library that arrived in the tree as modules (data/intake) has no proof text in the dataset, its proof is the module `tree_module` of the same release's source
+VIA = ("equal", "entails")  # how Gate 2 related the tree's statement to the upstream original's (docs/v2.md)
+V2_REQUIRED = ("schema", "ref", "status", "name", "library", "statement", "source_url", "toolchain")
+V2_OPTIONAL = (
+    "id",
+    "legacy_name",
+    "module",
+    "tree_module",
+    "proof",
+    "via",
+    "licence",
+    "credit",
+    "credit_evidence",
+    "promoted_at",
+    "headline",
+    "upstream",
+)
 V2_FIELDS = V2_REQUIRED + V2_OPTIONAL
 RENAMED_FIELD = ("credit_corrected_evidence", "credit_evidence")
+TREE_MODULE = re.compile(r"^Tengoku\.\S+$")
 ISNAD_ID = re.compile(r"^[a-z0-9]{1,8}\.\d+h\d+v\.s\d+\.[0-9a-f]{12}$")
 REF = re.compile(r"^[^:\s]+:\S.*$")
 BLOB = re.compile(r"/blob/[0-9a-f]{7,40}/(.+?)(?:#L\d+(?:-L\d+)?)?$")
@@ -267,8 +286,40 @@ def upgrade_dataset(
     }
 
 
+def intake_row(
+    m: Dict[str, Any], licence: Optional[str] = None, ident: Optional[str] = None, proof: Optional[str] = None
+) -> Dict[str, Any]:
+    """one version 2 row from one line of `data/intake/<library>/manifest.jsonl`: a theorem of a library that arrived in the tree as modules (docs/pr-classes.md, sections 3 and 6).
+
+    A manifest line is the theorem as the tree holds it: `name` is the full Lean name, `statement` the declaration's header, `module` the module of the TREE that holds it (`tree_module` here),
+    `source_url` the upstream file at a fixed commit, `via` how Gate 2 related the statement to the upstream original's (`equal`: the same type; `entails`: the tree's statement implies the original's,
+    checked by the kernel). The row has a `proof` only when the caller read one out of the module (`proof`, the text from the `:=` on: snapshot.py `declaration_proof`); otherwise the proof is the module,
+    which is in the release's source archive. `module` is the UPSTREAM module (what `source_url` points into), as for every other row.
+    A field the line lacks is left out, and `check` says which required one is missing: nothing is invented here. A library's names are unique (the intake gate refuses a repeat), and a library
+    is never both in `data/trusted` and in `data/intake`, so the plain ref `<library>:<name>` is unique: `check` verifies it."""
+    library, name = m.get("library"), m.get("name")
+    row: Dict[str, Any] = {
+        "schema": SCHEMA,
+        "ref": f"{library}:{name}" if library and name else None,
+        "status": "trusted",
+        "id": ident,
+        "name": name,
+        "library": library,
+        "module": module_of(m.get("source_url")),
+        "tree_module": m.get("module") or None,
+        "statement": m.get("statement"),
+        "proof": proof or None,
+        "via": m.get("via") or None,  # the factory leaves it empty when its ledger had none
+        "source_url": m.get("source_url"),
+        "licence": licence or None,
+        "toolchain": m.get("toolchain"),
+    }
+    return {k: row[k] for k in V2_FIELDS if row.get(k) is not None}
+
+
 def downgrade(row: Dict[str, Any]) -> Dict[str, Any]:
-    """one version 2 row -> the version 1 row it came from (every version 1 field, null where the row has none)"""
+    """one version 2 row -> the version 1 row it came from (every version 1 field, null where the row has none).
+    A row that is new in version 2 (a tree theorem, `tree_module`) has no version 1 row: it comes back with a null `proof`, and `tree_module` and `via` have no place in version 1."""
     out: Dict[str, Any] = {}
     for key in V1_FIELDS:
         if key == "headline":
@@ -318,6 +369,16 @@ def check(rows: List[Dict[str, Any]]) -> List[str]:
             problems.append(f"row {i}: id {r['id']!r} is not an isnad id")
         if "module" in r and module_of(r.get("source_url")) != r["module"]:
             problems.append(f"row {i}: module {r['module']!r} is not the module of the source_url")
+        if "tree_module" in r and not TREE_MODULE.match(str(r["tree_module"])):
+            problems.append(f"row {i}: tree_module {r['tree_module']!r} is not a module of the tree (Tengoku.<...>)")
+        if "via" in r and r["via"] not in VIA:
+            problems.append(f"row {i}: via {r['via']!r} is not one of {', '.join(VIA)}")
+        if "proof" not in r and "tree_module" not in r:
+            problems.append(f"row {i}: neither a proof nor a tree_module: nowhere to find the proof")
+        if "tree_module" in r and "proof" in r and not str(r["proof"]).strip():
+            problems.append(
+                f"row {i}: an empty proof must be left out"
+            )  # (a version 1 record keeps the empty proof it had: the round trip is exact)
         for k, v in r.items():
             if v is None or (k == "headline" and v is not True):
                 problems.append(f"row {i}: {k} must be left out when it does not apply")
@@ -429,8 +490,9 @@ def shape_text(r: Dict[str, Any]) -> str:
 
 
 def content(r: Dict[str, Any]) -> Dict[str, Any]:
-    """what a record says, without where it is and when it was promoted: the source_url (an upstream bump changes its commit), the module and the date are not content"""
-    return {k: v for k, v in r.items() if k not in ("source_url", "module", "promoted_at")}
+    """what a record says, without where it is and when it was promoted: the source_url (an upstream bump changes its commit), the modules (upstream's and the tree's: a restructure moves a theorem
+    and does not change it) and the date are not content"""
+    return {k: v for k, v in r.items() if k not in ("source_url", "module", "tree_module", "promoted_at")}
 
 
 def classify(old: List[Dict[str, Any]], new: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -497,7 +559,7 @@ def classify(old: List[Dict[str, Any]], new: List[Dict[str, Any]]) -> List[Dict[
             change = "restated"
         elif content(a) != content(b):
             change = "corrected"
-        elif a.get("module") != b.get("module"):
+        elif (a.get("module"), a.get("tree_module")) != (b.get("module"), b.get("tree_module")):
             change = "moved"
         else:
             change = "unchanged"
