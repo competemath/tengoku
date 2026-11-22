@@ -83,17 +83,26 @@ def YLaurentCoeff : ℤ → K := fun m =>
   else t.eisenstein 1
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
+/--
+@isnad1 id=eq.1h3v.s7.746aae306724 from=translated src=- shape=c5691394 vocab=f35185fb
+-/
 lemma YLaurentCoeff_of_pos {m : ℤ} (hm : 0 < m) :
     t.YLaurentCoeff m
       = (m.toNat.choose 2 : K) * (t.q : K) ^ m.toNat / (1 - (t.q : K) ^ m.toNat) := by
   simp only [YLaurentCoeff, ite_eq_left hm]
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
+/--
+@isnad1 id=eq.1h3v.s7.bfce3e1c1994 from=translated src=- shape=85834cee vocab=35b4db1f
+-/
 lemma YLaurentCoeff_of_neg {m : ℤ} (hm : m < 0) :
     t.YLaurentCoeff m = -(((-m).toNat + 1).choose 2 : K) / (1 - (t.q : K) ^ (-m).toNat) := by
   simp only [YLaurentCoeff, ite_eq_right (not_lt.mpr hm.le), ite_eq_left hm]
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
+/--
+@isnad1 id=eq.0h2v.s4.50589f4ce357 from=translated src=- shape=b4dc09d6 vocab=0b1ee5b0
+-/
 lemma YLaurentCoeff_zero : t.YLaurentCoeff 0 = t.eisenstein 1 := by
   simp only [YLaurentCoeff, lt_self_iff_false, ite_false]
 
@@ -127,7 +136,9 @@ private lemma YouterFamily_eq (j m : ℕ) :
 
 /-- **Inner half-collapse of `Y`.** On the inner side `‖q‖·‖u‖ < 1`, the `ℤ`-index sum
 `∑_{n ≥ 1} Yterm u n` equals the closed-form one-sided power series
-`∑_{m ≥ 0} [C(m+2,2)·q^{m+2}/(1-q^{m+2})]·u^{m+2}` (both summing to the same value `S`). -/
+`∑_{m ≥ 0} [C(m+2,2)·q^{m+2}/(1-q^{m+2})]·u^{m+2}` (both summing to the same value `S`).
+@isnad1 id=ex.1h3v.s8.d58566527bd1 from=translated src=- shape=b9567800 vocab=edf9944f
+-/
 lemma Y_inner_collapse (h2 : ‖(t.q : K)‖ * ‖(u : K)‖ < 1) :
     ∃ S : K, HasSum (fun j : ℕ => t.Yterm u ((j : ℤ) + 1)) S ∧
       HasSum (fun m : ℕ =>
@@ -194,7 +205,9 @@ lemma Y_inner_collapse (h2 : ‖(t.q : K)‖ * ‖(u : K)‖ < 1) :
 
 /-- **Outer half-collapse of `Y`.** On the outer side `1 < ‖u‖`, the `ℤ`-index sum
 `∑_{n ≤ 0} Yterm u n` equals the closed-form one-sided power series in `u⁻¹`,
-`∑_{m ≥ 0} -[C(m+2,2)/(1-q^{m+1})]·(u⁻¹)^{m+1}` (both summing to the same value `S`). -/
+`∑_{m ≥ 0} -[C(m+2,2)/(1-q^{m+1})]·(u⁻¹)^{m+1}` (both summing to the same value `S`).
+@isnad1 id=ex.1h3v.s8.390bb3f7db2a from=translated src=- shape=e109f115 vocab=22991b72
+-/
 lemma Y_outer_collapse (h1 : 1 < ‖(u : K)‖) :
     ∃ S : K, HasSum (fun j : ℕ => t.Yterm u (-(j : ℤ))) S ∧
       HasSum (fun m : ℕ =>
@@ -252,7 +265,9 @@ lemma Y_outer_collapse (h1 : 1 < ‖(u : K)‖) :
 `1 < ‖u‖` and `‖q‖·‖u‖ < 1` (equivalently `1 < ‖u‖ < ‖q‖⁻¹`),
 `Y(u) = ∑' m : ℤ, YLaurentCoeff m · uᵐ`, a convergent two-sided Laurent series with
 binomial-Eisenstein-type coefficients. This is the `Y`-coordinate companion of `X_hasSum_laurent`,
-feeding the pole-cancellation Laurent development of the Weierstrass defect (#146). -/
+feeding the pole-cancellation Laurent development of the Weierstrass defect (#146).
+@isnad1 id=hassum.2h3v.s7.149d533b0fe5 from=translated src=- shape=56df601f vocab=f6e2b1a8
+-/
 theorem Y_hasSum_laurent (h1 : 1 < ‖(u : K)‖) (h2 : ‖(t.q : K)‖ * ‖(u : K)‖ < 1) :
     HasSum (fun m : ℤ => t.YLaurentCoeff m * (u : K) ^ m) (t.Y u) := by
   obtain ⟨Sin, hYin, hGin⟩ := t.Y_inner_collapse u h2

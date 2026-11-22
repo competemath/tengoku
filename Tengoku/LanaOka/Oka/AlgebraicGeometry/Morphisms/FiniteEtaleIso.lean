@@ -41,7 +41,9 @@ namespace AlgebraicGeometry
 variable {X Y : Scheme.{u}} {K : Type u} [Field K] [IsAlgClosed K]
 
 /-- A closed morphism `f : X ⟶ Y` into a Jacobson scheme whose image contains all closed points
-of `Y` is surjective. -/
+of `Y` is surjective.
+@isnad1 id=surjecti.2h3v.s8.6e6b24c08fc0 from=translated src=- shape=829a3ba5 vocab=bb9f7a23
+-/
 theorem surjective_of_isClosedMap_of_closedPoints_subset [JacobsonSpace Y] (f : X ⟶ Y)
     (hf : IsClosedMap f) (hsurj : ∀ y : Y, IsClosed {y} → ∃ x, f x = y) : Surjective f := by
   refine ⟨fun y ↦ ?_⟩

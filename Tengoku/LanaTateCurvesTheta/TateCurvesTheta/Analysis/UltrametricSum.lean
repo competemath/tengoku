@@ -54,7 +54,9 @@ set_option linter.unusedSectionVars false in
 /-- **Uniform strict bound on the non-dominant part.** If `g` is summable and `‖g i‖ < r` for
 every `i` while `0 < r`, and moreover the family decays (which summability supplies), there is a
 single `C < r` bounding every `‖g i‖`. Stated for the `if`-masked family so it can bound the
-tail of a dominant-term decomposition. -/
+tail of a dominant-term decomposition.
+@isnad1 id=ex.3h4v.s6.bf010fe24372 from=translated src=- shape=d8419cef vocab=4a0835d3
+-/
 theorem exists_uniform_bound_lt_of_summable {g : ι → M} (hg : Summable g) {r : ℝ} (hr : 0 < r)
     (hlt : ∀ i, ‖g i‖ < r) : ∃ C, C < r ∧ ∀ i, ‖g i‖ ≤ C := by
   classical
@@ -85,7 +87,9 @@ theorem exists_uniform_bound_lt_of_summable {g : ι → M} (hg : Summable g) {r 
 
 /-- **Dominant-term principle for ultrametric sums.** For a summable family `g : ι → M` over a
 complete ultrametric normed additive group, if the term at `i₀` strictly dominates all others in
-norm (`‖g i‖ < ‖g i₀‖` for `i ≠ i₀`), then the whole sum has norm exactly `‖g i₀‖`. -/
+norm (`‖g i‖ < ‖g i₀‖` for `i ≠ i₀`), then the whole sum has norm exactly `‖g i₀‖`.
+@isnad1 id=eq.2h4v.s6.f76489624fde from=translated src=- shape=ccffad23 vocab=7142e08a
+-/
 theorem norm_tsum_eq_of_dominant {g : ι → M} (hg : Summable g) {i₀ : ι}
     (hdom : ∀ i, i ≠ i₀ → ‖g i‖ < ‖g i₀‖) : ‖∑' i, g i‖ = ‖g i₀‖ := by
   classical
@@ -121,7 +125,9 @@ theorem norm_tsum_eq_of_dominant {g : ι → M} (hg : Summable g) {i₀ : ι}
     rw [hdecomp, norm_add_eq_max_of_norm_ne_norm (ne_of_gt htlt), max_eq_left htlt.le]
 
 /-- **A dominant-term ultrametric sum is nonzero.** If `g` is summable, `g i₀ ≠ 0`, and `i₀`
-strictly dominates every other term in norm, then `∑' i, g i ≠ 0`. -/
+strictly dominates every other term in norm, then `∑' i, g i ≠ 0`.
+@isnad1 id=ne.3h4v.s7.2fb2f449b6c0 from=translated src=- shape=b73560f2 vocab=7142e08a
+-/
 theorem tsum_ne_zero_of_dominant {g : ι → M} (hg : Summable g) {i₀ : ι} (hi₀ : g i₀ ≠ 0)
     (hdom : ∀ i, i ≠ i₀ → ‖g i‖ < ‖g i₀‖) : ∑' i, g i ≠ 0 := by
   rw [← norm_ne_zero_iff, norm_tsum_eq_of_dominant hg hdom]

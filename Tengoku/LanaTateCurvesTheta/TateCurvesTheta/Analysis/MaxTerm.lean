@@ -48,7 +48,9 @@ open Filter Topology
 
 Summability makes the norms tend to `0` along the cofinite filter, so the superlevel set
 `{i | ‖g i₁‖ ≤ ‖g i‖}` is finite and nonempty (it contains `i₁`); a maximum over it dominates
-every term, since outside it `‖g i‖ < ‖g i₁‖ ≤ ‖g i₀‖`. -/
+every term, since outside it `‖g i‖ < ‖g i₁‖ ≤ ‖g i₀‖`.
+@isnad1 id=ex.2h4v.s6.1bd3cc9cb644 from=translated src=- shape=b0c8310d vocab=a96ff887
+-/
 theorem Summable.exists_max_norm {ι M : Type*} [NormedAddCommGroup M] {g : ι → M}
     (hg : Summable g) {i₁ : ι} (hi₁ : g i₁ ≠ 0) :
     ∃ i₀, g i₀ ≠ 0 ∧ ∀ i, ‖g i‖ ≤ ‖g i₀‖ := by
@@ -84,7 +86,9 @@ the term of maximal norm is attained at an index `n₀` with `cₙ₀ ≠ 0`:
 `‖cₙ · uⁿ‖ ≤ ‖cₙ₀ · uⁿ₀‖` for every `n`.
 
 This is the fixed-radius maximum-term selection feeding the Newton-polygon vertex step of the
-`LaurentStrictDom` seam in `Theta/LaurentUnique.lean`. -/
+`LaurentStrictDom` seam in `Theta/LaurentUnique.lean`.
+@isnad1 id=ex.2h4v.s8.3ce30dac7bd3 from=translated src=- shape=6fba64fb vocab=9742e907
+-/
 theorem exists_max_norm_laurent {K : Type*} [NormedField K] {c : ℤ → K} {u : Kˣ}
     (hsum : Summable fun n : ℤ => c n * (u : K) ^ n) {m : ℤ} (hm : c m ≠ 0) :
     ∃ n₀ : ℤ, c n₀ ≠ 0 ∧ ∀ n : ℤ, ‖c n * (u : K) ^ n‖ ≤ ‖c n₀ * (u : K) ^ n₀‖ := by

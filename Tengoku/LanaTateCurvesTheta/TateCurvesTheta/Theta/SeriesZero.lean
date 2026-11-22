@@ -65,7 +65,9 @@ private lemma thetaExp_neg_add_one (n : ℤ) : thetaExp (-(n + 1)) = thetaExp n 
 `σ n = -(n+1)` of `ℤ` is fixed-point-free and sends the `n`-th term `q^(e n) · (-1)ⁿ` of `theta(-1)`
 to its negative (`e` is `σ`-invariant while `(-1)^{-(n+1)} = -(-1)ⁿ`). Reindexing the defining sum
 by `σ` thus yields `theta(-1) = -theta(-1)`, so `2 · theta(-1) = 0`; since `2 ≠ 0`,
-`theta(-1) = 0`. -/
+`theta(-1) = 0`.
+@isnad1 id=eq.1h2v.s7.f70c50554206 from=translated src=- shape=86237b83 vocab=30e36a39
+-/
 theorem theta_neg_one_eq_zero (h2 : (2 : K) ≠ 0) : T.theta (-1) = 0 := by
   -- The involution `σ n = -(n + 1)` as a permutation of `ℤ`.
   have hinv : Function.Involutive (fun n : ℤ => -(n + 1)) := by
@@ -99,7 +101,9 @@ theorem theta_neg_one_eq_zero (h2 : (2 : K) ≠ 0) : T.theta (-1) = 0 := by
 
 /-- **The `q`-theta series vanishes on the orbit `-qᶻ`.** If `(u : K) = -qᵏ` for some `k : ℤ`, then
 `theta u = 0` (in characteristic `≠ 2`). Writing `u = qᵏ · (-1)` and applying the `qᶻ`-automorphy
-`theta_zpow_q_smul`, `theta u` is the unit automorphy factor times `theta(-1) = 0`. -/
+`theta_zpow_q_smul`, `theta u` is the unit automorphy factor times `theta(-1) = 0`.
+@isnad1 id=eq.2h4v.s7.dc5ae26a992e from=translated src=- shape=681f003d vocab=d86c7068
+-/
 theorem theta_eq_zero_of_neg_qzpow (h2 : (2 : K) ≠ 0) (k : ℤ) {u : Kˣ}
     (hu : (u : K) = -(T.q : K) ^ k) : T.theta u = 0 := by
   have huu : u = T.q ^ k * (-1 : Kˣ) := by

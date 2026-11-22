@@ -76,10 +76,16 @@ section Eval
 noncomputable def evalMonomial (d : ι →₀ ℕ) (x : ι → ℂ) : ℂ :=
   d.prod fun i k ↦ x i ^ k
 
+/--
+@isnad1 id=eq.0h2v.s5.b83fa29c3661 from=translated src=- shape=705a9773 vocab=ae871651
+-/
 @[simp]
 lemma evalMonomial_zero (x : ι → ℂ) : evalMonomial (0 : ι →₀ ℕ) x = 1 :=
   Finsupp.prod_zero_index
 
+/--
+@isnad1 id=eq.0h4v.s6.898e4f94f393 from=translated src=- shape=335c264f vocab=cd91c815
+-/
 lemma evalMonomial_add (d e : ι →₀ ℕ) (x : ι → ℂ) :
     evalMonomial (d + e) x = evalMonomial d x * evalMonomial e x :=
   Finsupp.prod_add_index' (by simp) (by simp [pow_add])
@@ -88,15 +94,24 @@ lemma evalMonomial_add (d e : ι →₀ ℕ) (x : ι → ℂ) :
 noncomputable def term (P : MvPowerSeries ι ℂ) (x : ι → ℂ) (d : ι →₀ ℕ) : ℂ :=
   coeff d P * evalMonomial d x
 
+/--
+@isnad1 id=eq.0h3v.s5.5977badbf73d from=translated src=- shape=3c60507c vocab=1ab39ca8
+-/
 @[simp]
 lemma term_zero (x : ι → ℂ) (d : ι →₀ ℕ) : (0 : MvPowerSeries ι ℂ).term x d = 0 := by
   simp [term]
 
+/--
+@isnad1 id=eq.0h5v.s6.27edc745baa9 from=translated src=- shape=c5133ab8 vocab=599af6bd
+-/
 @[simp]
 lemma term_add (P Q : MvPowerSeries ι ℂ) (x : ι → ℂ) (d : ι →₀ ℕ) :
     (P + Q).term x d = P.term x d + Q.term x d := by
   simp [term, add_mul]
 
+/--
+@isnad1 id=eq.0h3v.s6.0fd58a6627b9 from=translated src=- shape=3840c748 vocab=2da60f73
+-/
 @[simp]
 lemma term_algebraMap_zero (c : ℂ) (x : ι → ℂ) :
     (algebraMap ℂ (MvPowerSeries ι ℂ) c).term x 0 = c := by
@@ -104,11 +119,17 @@ lemma term_algebraMap_zero (c : ℂ) (x : ι → ℂ) :
   rw [term, algebraMap_apply, coeff_C, ite_eq_left rfl, evalMonomial_zero, mul_one]
   simp
 
+/--
+@isnad1 id=eq.1h4v.s6.d318d52845b5 from=translated src=- shape=af3b313b vocab=2da60f73
+-/
 lemma term_algebraMap_of_ne_zero (c : ℂ) (x : ι → ℂ) {d : ι →₀ ℕ} (hd : d ≠ 0) :
     (algebraMap ℂ (MvPowerSeries ι ℂ) c).term x d = 0 := by
   classical
   rw [term, algebraMap_apply, coeff_C, ite_eq_right hd, zero_mul]
 
+/--
+@isnad1 id=eq.0h5v.s7.7c4ed4c34e87 from=translated src=- shape=657bc9fc vocab=832c782b
+-/
 lemma term_mul [DecidableEq ι] (P Q : MvPowerSeries ι ℂ) (x : ι → ℂ) (d : ι →₀ ℕ) :
     (P * Q).term x d =
       ∑ p ∈ Finset.HasAntidiagonal.antidiagonal d, P.term x p.1 * Q.term x p.2 := by
@@ -123,11 +144,17 @@ see `MvPowerSeries.SummableAt.hasSum`. -/
 noncomputable def eval (P : MvPowerSeries ι ℂ) (x : ι → ℂ) : ℂ :=
   ∑' d, P.term x d
 
+/--
+@isnad1 id=eq.1h2v.s6.468dd1ceeadb from=translated src=- shape=a411f583 vocab=ae871651
+-/
 lemma evalMonomial_eq_zero {d : ι →₀ ℕ} (hd : d ≠ 0) : evalMonomial d 0 = 0 := by
   obtain ⟨i, hi⟩ := Finsupp.support_nonempty_iff.mpr hd
   refine Finset.prod_eq_zero hi ?_
   exact zero_pow (Finsupp.mem_support_iff.mp hi)
 
+/--
+@isnad1 id=eq.0h2v.s6.d548a5475062 from=translated src=- shape=4ae0c325 vocab=4e9be08f
+-/
 @[simp]
 lemma eval_zero (P : MvPowerSeries ι ℂ) : P.eval 0 = constantCoeff P := by
   rw [eval, tsum_eq_single 0 fun d hd ↦ by rw [term, evalMonomial_eq_zero hd, mul_zero], term,
@@ -138,20 +165,32 @@ summable. -/
 def SummableAt (P : MvPowerSeries ι ℂ) (x : ι → ℂ) : Prop :=
   Summable fun d ↦ ‖P.term x d‖
 
+/--
+@isnad1 id=summable.1h3v.s5.890d95c616e1 from=translated src=- shape=4903b1dc vocab=a831b3d2
+-/
 lemma SummableAt.summable {P : MvPowerSeries ι ℂ} {x : ι → ℂ} (h : P.SummableAt x) :
     Summable (P.term x) :=
   Summable.of_norm h
 
+/--
+@isnad1 id=hassum.1h3v.s5.12ffbac613f2 from=translated src=- shape=c452dcb7 vocab=affd682e
+-/
 lemma SummableAt.hasSum {P : MvPowerSeries ι ℂ} {x : ι → ℂ} (h : P.SummableAt x) :
     HasSum (P.term x) (P.eval x) :=
   h.summable.hasSum
 
+/--
+@isnad1 id=summable.0h3v.s6.aaa16012992a from=translated src=- shape=319ac1cc vocab=466d97c8
+-/
 lemma summableAt_algebraMap (c : ℂ) (x : ι → ℂ) :
     (algebraMap ℂ (MvPowerSeries ι ℂ) c).SummableAt x := by
   classical
   refine summable_of_ne_finset_zero (s := {0}) fun d hd ↦ ?_
   rw [term_algebraMap_of_ne_zero c x (by simpa using hd), norm_zero]
 
+/--
+@isnad1 id=summable.2h4v.s5.5c569f1441a6 from=translated src=- shape=c9856741 vocab=03f599bf
+-/
 lemma SummableAt.add {P Q : MvPowerSeries ι ℂ} {x : ι → ℂ} (hP : P.SummableAt x)
     (hQ : Q.SummableAt x) : (P + Q).SummableAt x := by
   refine Summable.of_nonneg_of_le (fun d ↦ norm_nonneg _) (fun d ↦ ?_) (Summable.add hP hQ)
@@ -172,7 +211,9 @@ noncomputable def antidiagonalSigmaEquiv [DecidableEq ι] :
     subst hp
     rfl
 
-/-- The Cauchy product of two absolutely convergent power series converges absolutely. -/
+/-- The Cauchy product of two absolutely convergent power series converges absolutely.
+@isnad1 id=summable.2h4v.s5.5c294ff71805 from=translated src=- shape=c9856741 vocab=759f40f3
+-/
 lemma SummableAt.mul {P Q : MvPowerSeries ι ℂ} {x : ι → ℂ} (hP : P.SummableAt x)
     (hQ : Q.SummableAt x) : (P * Q).SummableAt x := by
   classical
@@ -197,20 +238,35 @@ of the origin. -/
 def LocallyConvergent (P : MvPowerSeries ι ℂ) : Prop :=
   ∀ᶠ x in 𝓝 (0 : ι → ℂ), P.SummableAt x
 
+/--
+@isnad1 id=locallyc.0h2v.s6.2fc6f92ac3c2 from=translated src=- shape=73552dd3 vocab=5ff7abc3
+-/
 lemma locallyConvergent_algebraMap (c : ℂ) :
     (algebraMap ℂ (MvPowerSeries ι ℂ) c).LocallyConvergent :=
   .of_forall fun x ↦ summableAt_algebraMap c x
 
+/--
+@isnad1 id=locallyc.0h1v.s4.b36626c65fe7 from=translated src=- shape=eb105b30 vocab=577a7938
+-/
 lemma locallyConvergent_zero : (0 : MvPowerSeries ι ℂ).LocallyConvergent := by
   simpa using locallyConvergent_algebraMap (ι := ι) 0
 
+/--
+@isnad1 id=locallyc.0h1v.s4.0dd3f2020d5b from=translated src=- shape=eb105b30 vocab=577a7938
+-/
 lemma locallyConvergent_one : (1 : MvPowerSeries ι ℂ).LocallyConvergent := by
   simpa using locallyConvergent_algebraMap (ι := ι) 1
 
+/--
+@isnad1 id=locallyc.2h3v.s5.02c7dfed9f2c from=translated src=- shape=42c9f699 vocab=edada018
+-/
 lemma LocallyConvergent.add {P Q : MvPowerSeries ι ℂ} (hP : P.LocallyConvergent)
     (hQ : Q.LocallyConvergent) : (P + Q).LocallyConvergent := by
   filter_upwards [hP, hQ] with x hx hx' using hx.add hx'
 
+/--
+@isnad1 id=locallyc.2h3v.s5.fffbc2682cab from=translated src=- shape=42c9f699 vocab=55960b4d
+-/
 lemma LocallyConvergent.mul {P Q : MvPowerSeries ι ℂ} (hP : P.LocallyConvergent)
     (hQ : Q.LocallyConvergent) : (P * Q).LocallyConvergent := by
   filter_upwards [hP, hQ] with x hx hx' using hx.mul hx'
@@ -224,19 +280,30 @@ origin. -/
 def Represents (P : MvPowerSeries ι ℂ) (f : (ι → ℂ) → ℂ) : Prop :=
   ∀ᶠ x in 𝓝 (0 : ι → ℂ), HasSum (P.term x) (f x)
 
+/--
+@isnad1 id=represen.2h4v.s6.943686952d62 from=translated src=- shape=c4fad234 vocab=7a8f4387
+-/
 lemma Represents.congr {P : MvPowerSeries ι ℂ} {f g : (ι → ℂ) → ℂ} (hP : P.Represents f)
     (h : f =ᶠ[𝓝 (0 : ι → ℂ)] g) : P.Represents g := by
   filter_upwards [hP, h] with x hx hx' using hx' ▸ hx
 
-/-- Two functions summed to by the same power series agree near the origin. -/
+/-- Two functions summed to by the same power series agree near the origin.
+@isnad1 id=eventual.2h4v.s6.95dad5ce4a3f from=translated src=- shape=be2d6114 vocab=7a8f4387
+-/
 lemma Represents.eventuallyEq {P : MvPowerSeries ι ℂ} {f g : (ι → ℂ) → ℂ}
     (hf : P.Represents f) (hg : P.Represents g) : f =ᶠ[𝓝 (0 : ι → ℂ)] g := by
   filter_upwards [hf, hg] with x hx hx' using hx.unique hx'
 
+/--
+@isnad1 id=represen.1h2v.s4.206173b34390 from=translated src=- shape=089affe3 vocab=abe9e9a2
+-/
 lemma LocallyConvergent.represents_eval {P : MvPowerSeries ι ℂ} (hP : P.LocallyConvergent) :
     P.Represents P.eval := by
   filter_upwards [hP] with x hx using hx.hasSum
 
+/--
+@isnad1 id=represen.2h5v.s6.c9d5278e139d from=translated src=- shape=45b92ee7 vocab=ce0ac628
+-/
 lemma Represents.add {P Q : MvPowerSeries ι ℂ} {f g : (ι → ℂ) → ℂ} (hP : P.Represents f)
     (hQ : Q.Represents g) : (P + Q).Represents (f + g) := by
   filter_upwards [hP, hQ] with x hx hx'
@@ -244,20 +311,31 @@ lemma Represents.add {P Q : MvPowerSeries ι ℂ} {f g : (ι → ℂ) → ℂ} (
   rw [h, Pi.add_apply]
   exact hx.add hx'
 
+/--
+@isnad1 id=represen.0h2v.s6.173bbd50b4a3 from=translated src=- shape=b4b72558 vocab=ced50dee
+-/
 lemma represents_algebraMap (c : ℂ) :
     (algebraMap ℂ (MvPowerSeries ι ℂ) c).Represents (Function.const (ι → ℂ) c) := by
   refine .of_forall fun x ↦ ?_
   simpa using hasSum_single (f := (algebraMap ℂ (MvPowerSeries ι ℂ) c).term x) 0
     (fun d hd ↦ term_algebraMap_of_ne_zero c x hd)
 
+/--
+@isnad1 id=represen.0h1v.s4.4fb2d2515a72 from=translated src=- shape=8debde6e vocab=4c5b9dda
+-/
 lemma represents_zero : (0 : MvPowerSeries ι ℂ).Represents (Function.const (ι → ℂ) 0) := by
   simpa using represents_algebraMap (ι := ι) 0
 
+/--
+@isnad1 id=represen.0h1v.s4.0d2c38e812e3 from=translated src=- shape=8debde6e vocab=4c5b9dda
+-/
 lemma represents_one : (1 : MvPowerSeries ι ℂ).Represents (Function.const (ι → ℂ) 1) := by
   simpa using represents_algebraMap (ι := ι) 1
 
 /-- Power series representing functions multiply to power series representing the product:
-the Cauchy product formula. -/
+the Cauchy product formula.
+@isnad1 id=represen.4h5v.s6.81e4443ac753 from=translated src=- shape=00bd97bc vocab=3cce707a
+-/
 lemma Represents.mul {P Q : MvPowerSeries ι ℂ} {f g : (ι → ℂ) → ℂ}
     (hPc : P.LocallyConvergent) (hQc : Q.LocallyConvergent)
     (hP : P.Represents f) (hQ : Q.Represents g) : (P * Q).Represents (f * g) := by
@@ -294,15 +372,24 @@ section Basic
 
 variable [Fintype ι]
 
+/--
+@isnad1 id=eq.0h3v.s6.0067b9361403 from=translated src=- shape=ad8b8b18 vocab=d807c5c3
+-/
 lemma evalMonomial_eq_prod (d : ι →₀ ℕ) (x : ι → ℂ) : evalMonomial d x = ∏ i, x i ^ d i :=
   Finsupp.prod_fintype _ _ fun _ ↦ pow_zero _
 
+/--
+@isnad1 id=eq.0h3v.s6.7ac7dc95a593 from=translated src=- shape=3ac80af0 vocab=85a1881b
+-/
 lemma norm_evalMonomial (d : ι →₀ ℕ) (x : ι → ℂ) :
     ‖evalMonomial d x‖ = ∏ i, ‖x i‖ ^ d i := by
   rw [evalMonomial_eq_prod, norm_prod]
   exact Finset.prod_congr rfl fun i _ ↦ norm_pow _ _
 
 omit [Fintype ι] in
+/--
+@isnad1 id=le.1h4v.s5.fd925b8e5a65 from=translated src=- shape=995de134 vocab=5cf70d34
+-/
 lemma norm_evalMonomial_le (h : ∀ i, ‖x i‖ ≤ ‖y i‖) (d : ι →₀ ℕ) :
     ‖evalMonomial d x‖ ≤ ‖evalMonomial d y‖ := by
   simp only [evalMonomial, Finsupp.prod, norm_prod, norm_pow]
@@ -310,6 +397,9 @@ lemma norm_evalMonomial_le (h : ∀ i, ‖x i‖ ≤ ‖y i‖) (d : ι →₀ �
     fun i _ ↦ pow_le_pow_left₀ (norm_nonneg _) (h i) _
 
 omit [Fintype ι] in
+/--
+@isnad1 id=le.1h5v.s5.6365d1692093 from=translated src=- shape=bbbadf3b vocab=6cdaeeb2
+-/
 lemma norm_term_le (h : ∀ i, ‖x i‖ ≤ ‖y i‖) (d : ι →₀ ℕ) :
     ‖P.term x d‖ ≤ ‖P.term y d‖ := by
   rw [term, term, norm_mul, norm_mul]
@@ -317,13 +407,17 @@ lemma norm_term_le (h : ∀ i, ‖x i‖ ≤ ‖y i‖) (d : ι →₀ ℕ) :
 
 omit [Fintype ι] in
 /-- Absolute convergence at a point implies absolute convergence at every point which is
-smaller in each coordinate. -/
+smaller in each coordinate.
+@isnad1 id=summable.2h4v.s5.1cf3230d040e from=translated src=- shape=15b0aae0 vocab=33dbe837
+-/
 lemma SummableAt.mono (hy : P.SummableAt y) (h : ∀ i, ‖x i‖ ≤ ‖y i‖) : P.SummableAt x :=
   Summable.of_nonneg_of_le (fun _ ↦ norm_nonneg _) (fun d ↦ norm_term_le h d) hy
 
 omit [Fintype ι] in
 /-- Absolute convergence on a neighbourhood of the origin gives absolute convergence on a
-polydisc around the origin. -/
+polydisc around the origin.
+@isnad1 id=ex.1h2v.s5.d958e3cfd8a7 from=translated src=- shape=9843e251 vocab=0ad3ad98
+-/
 lemma LocallyConvergent.exists_summableAt_const [Finite ι] (hP : P.LocallyConvergent) :
     ∃ ρ : ℝ, 0 < ρ ∧ P.SummableAt (fun _ ↦ (ρ : ℂ)) := by
   have := Fintype.ofFinite ι
@@ -346,11 +440,16 @@ noncomputable def degFinset (ι : Type u) [Fintype ι] [DecidableEq ι] (n : ℕ
     Finset (ι →₀ ℕ) :=
   Finset.finsuppAntidiag Finset.univ n
 
+/--
+@isnad1 id=iff.0h3v.s6.22de18bcbe8e from=translated src=- shape=4ec458dd vocab=d180df10
+-/
 lemma mem_degFinset {n : ℕ} {d : ι →₀ ℕ} : d ∈ degFinset ι n ↔ ∑ i, d i = n := by
   rw [degFinset, Finset.mem_finsuppAntidiag]
   exact and_iff_left (Finset.subset_univ _)
 
-/-- Every exponent has a well-defined total degree. -/
+/-- Every exponent has a well-defined total degree.
+@isnad1 id=mem.0h2v.s6.cb40fd7fd1fa from=translated src=- shape=eb26a6e1 vocab=d180df10
+-/
 lemma self_mem_degFinset (d : ι →₀ ℕ) : d ∈ degFinset ι (∑ i, d i) :=
   mem_degFinset.mpr rfl
 
@@ -365,7 +464,9 @@ noncomputable def degreeSigmaEquiv :
     subst hd
     rfl
 
-/-- Regrouping a summable family of exponents by total degree. -/
+/-- Regrouping a summable family of exponents by total degree.
+@isnad1 id=hassum.1h4v.s6.d0a2e901a516 from=translated src=- shape=829f11e5 vocab=1aa49962
+-/
 lemma hasSum_degFinset {α : Type*} [AddCommMonoid α] [TopologicalSpace α] [ContinuousAdd α]
     [RegularSpace α] {f : (ι →₀ ℕ) → α} {s : α} (h : HasSum f s) :
     HasSum (fun n ↦ ∑ d ∈ degFinset ι n, f d) s := by
@@ -375,11 +476,16 @@ lemma hasSum_degFinset {α : Type*} [AddCommMonoid α] [TopologicalSpace α] [Co
   rw [← hval]
   exact hasSum_fintype _
 
-/-- Regrouping the terms of a power series by total degree. -/
+/-- Regrouping the terms of a power series by total degree.
+@isnad1 id=hassum.1h4v.s6.3f02a4425886 from=translated src=- shape=4979d5ff vocab=6abec261
+-/
 lemma hasSum_degree {s : ℂ} (h : HasSum (P.term x) s) :
     HasSum (fun n ↦ ∑ d ∈ degFinset ι n, P.term x d) s :=
   hasSum_degFinset h
 
+/--
+@isnad1 id=hassum.1h3v.s6.aad5048a8782 from=translated src=- shape=014e074e vocab=ad62137b
+-/
 lemma hasSum_degree_norm (h : P.SummableAt x) :
     HasSum (fun n ↦ ∑ d ∈ degFinset ι n, ‖P.term x d‖) (∑' d, ‖P.term x d‖) :=
   hasSum_degFinset (Summable.hasSum h)
@@ -399,6 +505,9 @@ noncomputable def monomialCMM (d : ι →₀ ℕ) (n : ℕ) :
       fun k ↦ ContinuousLinearMap.proj ((Fintype.equivFinOfCardEq h).symm k).1
   else 0
 
+/--
+@isnad1 id=eq.1h4v.s7.cee9da6f595b from=translated src=- shape=e047f00b vocab=b91b761f
+-/
 lemma monomialCMM_apply_diag {d : ι →₀ ℕ} {n : ℕ} (hd : d ∈ degFinset ι n) (y : ι → ℂ) :
     monomialCMM d n (fun _ ↦ y) = evalMonomial d y := by
   have hcard : Fintype.card ((i : ι) × Fin (d i)) = n := by
@@ -413,6 +522,9 @@ lemma monomialCMM_apply_diag {d : ι →₀ ℕ} {n : ℕ} (hd : d ∈ degFinset
   simp [evalMonomial_eq_prod]
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=le.0h3v.s7.b79d44e4718d from=translated src=- shape=6d2e435b vocab=fcf38b78
+-/
 lemma norm_monomialCMM_le (d : ι →₀ ℕ) (n : ℕ) : ‖monomialCMM d n‖ ≤ 1 := by
   rw [monomialCMM]
   split
@@ -428,17 +540,26 @@ variable (P) in
 noncomputable def toFPS : FormalMultilinearSeries ℂ (ι → ℂ) ℂ :=
   fun n ↦ ∑ d ∈ degFinset ι n, coeff d P • monomialCMM d n
 
+/--
+@isnad1 id=eq.0h4v.s7.98ed1932fe93 from=translated src=- shape=472c0fec vocab=3abed4a1
+-/
 lemma toFPS_apply_diag (n : ℕ) (y : ι → ℂ) :
     toFPS P n (fun _ ↦ y) = ∑ d ∈ degFinset ι n, P.term y d := by
   rw [toFPS, sum_apply]
   refine Finset.sum_congr rfl fun d hd ↦ ?_
   rw [smul_apply, monomialCMM_apply_diag hd, term, smul_eq_mul]
 
+/--
+@isnad1 id=le.0h3v.s8.389545771666 from=translated src=- shape=0d7d6428 vocab=b767f142
+-/
 lemma norm_toFPS_le (n : ℕ) : ‖toFPS P n‖ ≤ ∑ d ∈ degFinset ι n, ‖coeff d P‖ := by
   refine (norm_sum_le _ _).trans (Finset.sum_le_sum fun d _ ↦ ?_)
   rw [norm_smul]
   exact mul_le_of_le_one_right (norm_nonneg _) (norm_monomialCMM_le d n)
 
+/--
+@isnad1 id=eq.2h5v.s7.74acee8819b6 from=translated src=- shape=d37b19aa vocab=b3381fc4
+-/
 lemma norm_term_const {ρ : ℝ} (hρ : 0 ≤ ρ) {n : ℕ} {d : ι →₀ ℕ} (hd : d ∈ degFinset ι n) :
     ‖P.term (fun _ ↦ (ρ : ℂ)) d‖ = ‖coeff d P‖ * ρ ^ n := by
   rw [term, norm_mul, norm_evalMonomial]
@@ -448,7 +569,9 @@ lemma norm_term_const {ρ : ℝ} (hρ : 0 ≤ ρ) {n : ℕ} {d : ι →₀ ℕ} 
     rw [Complex.norm_real, Real.norm_of_nonneg hρ]
 
 /-- A locally convergent power series is the sum of its associated formal multilinear series
-on a ball around the origin. -/
+on a ball around the origin.
+@isnad1 id=ex.1h2v.s6.228c403c2d47 from=translated src=- shape=fa348082 vocab=f181fe0a
+-/
 theorem LocallyConvergent.hasFPowerSeriesOnBall (hP : P.LocallyConvergent) :
     ∃ ρ : ℝ, 0 < ρ ∧ HasFPowerSeriesOnBall P.eval (toFPS P) 0 (ENNReal.ofReal ρ) := by
   obtain ⟨ρ, hρ, hsum⟩ := hP.exists_summableAt_const
@@ -481,7 +604,9 @@ theorem LocallyConvergent.hasFPowerSeriesOnBall (hP : P.LocallyConvergent) :
     simpa only [toFPS_apply_diag, zero_add] using this
 
 omit [DecidableEq ι] in
-/-- The sum of a locally convergent power series is holomorphic near the origin. -/
+/-- The sum of a locally convergent power series is holomorphic near the origin.
+@isnad1 id=analytic.1h2v.s6.d091d3e97b8d from=translated src=- shape=0a5580b4 vocab=8622c665
+-/
 theorem LocallyConvergent.analyticAt_aux (hP : P.LocallyConvergent) :
     AnalyticAt ℂ P.eval 0 := by
   classical
@@ -497,6 +622,9 @@ variable [Fintype ι] [DecidableEq ι]
 /-- The `i`-th standard basis vector of `ι → ℂ`. -/
 def basisVec (i : ι) : ι → ℂ := fun j ↦ if i = j then 1 else 0
 
+/--
+@isnad1 id=le.0h2v.s5.01cded2b5886 from=translated src=- shape=257ec9fc vocab=168bacd4
+-/
 lemma norm_basisVec_le (i : ι) : ‖basisVec i‖ ≤ 1 :=
   (pi_norm_le_iff_of_nonneg zero_le_one).mpr fun j ↦ by
     rw [basisVec]; split <;> simp
@@ -509,11 +637,17 @@ noncomputable def tupleFinset (n : ℕ) (d : ι →₀ ℕ) : Finset (Fin n → 
   Finset.univ.filter fun s ↦ tupleDeg s = d
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.0h4v.s6.2495a24bf910 from=translated src=- shape=62ce0dda vocab=178cee62
+-/
 lemma tupleDeg_apply {n : ℕ} (s : Fin n → ι) (i : ι) :
     tupleDeg s i = (Finset.univ.filter fun k ↦ s k = i).card := by
   rw [tupleDeg, Finsupp.finsetSum_apply, Finset.card_filter]
   exact Finset.sum_congr rfl fun k _ ↦ by rw [Finsupp.single_apply]
 
+/--
+@isnad1 id=mem.0h3v.s5.173ffad92daf from=translated src=- shape=53f98449 vocab=00085b26
+-/
 lemma tupleDeg_mem_degFinset {n : ℕ} (s : Fin n → ι) : tupleDeg s ∈ degFinset ι n := by
   rw [mem_degFinset]
   simp_rw [tupleDeg_apply]
@@ -521,6 +655,9 @@ lemma tupleDeg_mem_degFinset {n : ℕ} (s : Fin n → ι) : tupleDeg s ∈ degFi
   simp
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h4v.s5.e3533c28ba57 from=translated src=- shape=69a370a4 vocab=74856cb4
+-/
 lemma prod_eq_evalMonomial [Finite ι] {n : ℕ} (s : Fin n → ι) (y : ι → ℂ) :
     ∏ k, y (s k) = evalMonomial (tupleDeg s) y := by
   classical
@@ -539,11 +676,16 @@ noncomputable def fpsCoeff (p : FormalMultilinearSeries ℂ (ι → ℂ) ℂ) (n
 noncomputable def ofFPS (p : FormalMultilinearSeries ℂ (ι → ℂ) ℂ) : MvPowerSeries ι ℂ :=
   fun d ↦ fpsCoeff p (∑ i, d i) d
 
+/--
+@isnad1 id=eq.1h4v.s7.f6053017d541 from=translated src=- shape=0e8ca2ba vocab=12edeb39
+-/
 lemma coeff_ofFPS (p : FormalMultilinearSeries ℂ (ι → ℂ) ℂ) {n : ℕ} {d : ι →₀ ℕ}
     (hd : d ∈ degFinset ι n) : coeff d (ofFPS p) = fpsCoeff p n d := by
   rw [coeff_apply, ofFPS, mem_degFinset.mp hd]
 
-/-- The value of `p n` on the diagonal is the degree `n` part of the associated power series. -/
+/-- The value of `p n` on the diagonal is the degree `n` part of the associated power series.
+@isnad1 id=eq.0h4v.s8.0bc9fcf32948 from=translated src=- shape=49d45d61 vocab=33b1ac00
+-/
 lemma apply_diag_eq_sum (p : FormalMultilinearSeries ℂ (ι → ℂ) ℂ) (n : ℕ) (y : ι → ℂ) :
     p n (fun _ ↦ y) = ∑ d ∈ degFinset ι n, (ofFPS p).term y d := by
   conv_lhs => rw [show (fun _ : Fin n ↦ y) = fun _ : Fin n ↦ ∑ i, y i • basisVec i from
@@ -560,6 +702,9 @@ lemma apply_diag_eq_sum (p : FormalMultilinearSeries ℂ (ι → ℂ) ℂ) (n : 
   refine Finset.sum_congr rfl fun s hs ↦ ?_
   rw [(Finset.mem_filter.mp hs).2, mul_comm]
 
+/--
+@isnad1 id=le.0h4v.s8.e97f0b430c90 from=translated src=- shape=e3acc6cd vocab=5c320b8e
+-/
 lemma norm_fpsCoeff_le (p : FormalMultilinearSeries ℂ (ι → ℂ) ℂ) (n : ℕ) (d : ι →₀ ℕ) :
     ‖fpsCoeff p n d‖ ≤ (tupleFinset n d).card * ‖p n‖ := by
   refine (norm_sum_le _ _).trans ?_
@@ -569,6 +714,9 @@ lemma norm_fpsCoeff_le (p : FormalMultilinearSeries ℂ (ι → ℂ) ℂ) (n : �
   refine mul_le_of_le_one_right (norm_nonneg _) ?_
   exact Finset.prod_le_one (fun _ _ ↦ norm_nonneg _) fun k _ ↦ norm_basisVec_le _
 
+/--
+@isnad1 id=eq.0h2v.s6.f49848be4201 from=translated src=- shape=e9321890 vocab=1e7f833a
+-/
 lemma sum_card_fibers (n : ℕ) :
     ∑ d ∈ degFinset ι n, ((tupleFinset n d).card : ℝ) = (Fintype.card ι : ℝ) ^ n := by
   simp only [tupleFinset]
@@ -576,6 +724,9 @@ lemma sum_card_fibers (n : ℕ) :
     (f := fun s : Fin n → ι ↦ tupleDeg s) fun s _ ↦ tupleDeg_mem_degFinset s]
   simp
 
+/--
+@isnad1 id=le.2h5v.s6.2cacb8e4cc93 from=translated src=- shape=4307dce3 vocab=7e0403a4
+-/
 lemma norm_evalMonomial_le_pow {ρ : ℝ} {y : ι → ℂ} (hy : ‖y‖ ≤ ρ) {n : ℕ} {d : ι →₀ ℕ}
     (hd : d ∈ degFinset ι n) : ‖evalMonomial d y‖ ≤ ρ ^ n := by
   have h1 : ∀ i, ‖y i‖ ≤ ρ := fun i ↦ (norm_le_pi_norm y i).trans hy
@@ -583,7 +734,9 @@ lemma norm_evalMonomial_le_pow {ρ : ℝ} {y : ι → ℂ} (hy : ‖y‖ ≤ ρ)
   exact Finset.prod_le_prod (fun i _ ↦ by positivity)
     fun i _ ↦ pow_le_pow_left₀ (norm_nonneg _) (h1 i) _
 
-/-- Absolute convergence can be checked after regrouping by total degree. -/
+/-- Absolute convergence can be checked after regrouping by total degree.
+@isnad1 id=summable.2h2v.s6.37d95d60f4a2 from=translated src=- shape=eb1ea401 vocab=9e7145db
+-/
 lemma summable_of_summable_degFinset {g : (ι →₀ ℕ) → ℝ} (hg : ∀ d, 0 ≤ g d)
     (h : Summable fun n ↦ ∑ d ∈ degFinset ι n, g d) : Summable g := by
   rw [← degreeSigmaEquiv.summable_iff]
@@ -594,7 +747,9 @@ lemma summable_of_summable_degFinset {g : (ι →₀ ℕ) → ℝ} (hg : ∀ d, 
   exact (Finset.sum_coe_sort _ g).symm
 
 omit [DecidableEq ι] in
-/-- Every function holomorphic at the origin is the sum of a locally convergent power series. -/
+/-- Every function holomorphic at the origin is the sum of a locally convergent power series.
+@isnad1 id=ex.1h2v.s6.afee96a94ebe from=translated src=- shape=d19d14f7 vocab=5afdca98
+-/
 theorem exists_represents_aux {f : (ι → ℂ) → ℂ} (hf : AnalyticAt ℂ f 0) :
     ∃ P : MvPowerSeries ι ℂ, P.LocallyConvergent ∧ P.Represents f := by
   classical
@@ -675,11 +830,17 @@ section Unique
 variable [Fintype ι]
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.0h5v.s6.0baf918d3c79 from=translated src=- shape=c5133ab8 vocab=8a87aed9
+-/
 lemma term_sub (P Q : MvPowerSeries ι ℂ) (x : ι → ℂ) (d : ι →₀ ℕ) :
     (P - Q).term x d = P.term x d - Q.term x d := by
   simp [term, sub_mul]
 
 omit [Fintype ι] in
+/--
+@isnad1 id=represen.2h5v.s6.e563736eefaf from=translated src=- shape=45b92ee7 vocab=5ce3606d
+-/
 lemma Represents.sub {f g : (ι → ℂ) → ℂ} (hP : P.Represents f) (hQ : Q.Represents g) :
     (P - Q).Represents (f - g) := by
   filter_upwards [hP, hQ] with x hx hx'
@@ -688,12 +849,17 @@ lemma Represents.sub {f g : (ι → ℂ) → ℂ} (hP : P.Represents f) (hQ : Q.
   exact hx.sub hx'
 
 omit [Fintype ι] in
-/-- A power series which converges pointwise near the origin converges absolutely there. -/
+/-- A power series which converges pointwise near the origin converges absolutely there.
+@isnad1 id=locallyc.1h3v.s4.351742fa026a from=translated src=- shape=afafc207 vocab=03e07003
+-/
 lemma Represents.locallyConvergent {f : (ι → ℂ) → ℂ} (hP : P.Represents f) :
     P.LocallyConvergent := by
   filter_upwards [hP] with x hx
   exact summable_norm_iff.mpr hx.summable
 
+/--
+@isnad1 id=eq.0h4v.s6.929bd7d5c4c8 from=translated src=- shape=cf27aec4 vocab=0ff86e52
+-/
 lemma evalMonomial_smul (t : ℂ) (y : ι → ℂ) (d : ι →₀ ℕ) :
     evalMonomial d (t • y) = t ^ (∑ i, d i) * evalMonomial d y := by
   rw [evalMonomial_eq_prod, evalMonomial_eq_prod, ← Finset.prod_pow_eq_pow_sum,
@@ -813,7 +979,9 @@ theorem eq_zero_of_represents_zero [Finite ι] {R : MvPowerSeries ι ℂ} (hR : 
 
 omit [Fintype ι] [DecidableEq ι] in
 /-- A power series is determined by the germ at the origin of the function it represents:
-the identity theorem for convergent power series. -/
+the identity theorem for convergent power series.
+@isnad1 id=eq.2h4v.s5.5edb8044f622 from=translated src=- shape=f6c8f138 vocab=e2f01f9b
+-/
 theorem Represents.unique [Finite ι] {f : (ι → ℂ) → ℂ} (hP : P.Represents f)
     (hQ : Q.Represents f) : P = Q := by
   have h : (P - Q).Represents 0 := by
@@ -826,13 +994,17 @@ end Unique
 end AnalyticDictionary
 
 /-- Every function which is holomorphic near the origin is the sum of a locally convergent
-power series, namely of its Taylor series at the origin. -/
+power series, namely of its Taylor series at the origin.
+@isnad1 id=ex.1h2v.s6.afee96a94ebe from=translated src=- shape=d19d14f7 vocab=5afdca98
+-/
 theorem exists_represents [Fintype ι] {f : (ι → ℂ) → ℂ} (hf : AnalyticAt ℂ f 0) :
     ∃ P : MvPowerSeries ι ℂ, P.LocallyConvergent ∧ P.Represents f := by
   classical
   exact exists_represents_aux hf
 
-/-- The sum of a locally convergent power series is holomorphic near the origin. -/
+/-- The sum of a locally convergent power series is holomorphic near the origin.
+@isnad1 id=analytic.1h2v.s6.c0df826fe802 from=translated src=- shape=779bf4a0 vocab=8622c665
+-/
 theorem LocallyConvergent.analyticAt [Fintype ι] {P : MvPowerSeries ι ℂ}
     (hP : P.LocallyConvergent) : AnalyticAt ℂ P.eval 0 := by
   classical
@@ -840,7 +1012,9 @@ theorem LocallyConvergent.analyticAt [Fintype ι] {P : MvPowerSeries ι ℂ}
 
 /-- If the constant term of a locally convergent power series does not vanish, its formal
 inverse is again locally convergent: the inverse of a nonvanishing holomorphic function is
-holomorphic. -/
+holomorphic.
+@isnad1 id=locallyc.2h2v.s6.325762fa2f8c from=translated src=- shape=b14346e7 vocab=0fa37805
+-/
 theorem LocallyConvergent.inv [Finite ι] {P : MvPowerSeries ι ℂ} (hP : P.LocallyConvergent)
     (h : constantCoeff P ≠ 0) : P⁻¹.LocallyConvergent := by
   have := Fintype.ofFinite ι
@@ -889,10 +1063,16 @@ noncomputable instance : CommRing (LocalOkaRing ι) :=
 noncomputable instance : Algebra ℂ (LocalOkaRing ι) :=
   inferInstanceAs <| Algebra ℂ (localOkaSubring ι)
 
+/--
+@isnad1 id=locallyc.0h2v.s6.40439b8af97e from=translated src=- shape=6c0c3f78 vocab=a0fa70e9
+-/
 @[simp]
 lemma locallyConvergent (P : LocalOkaRing ι) : (P : MvPowerSeries ι ℂ).LocallyConvergent :=
   P.2
 
+/--
+@isnad1 id=eq.1h3v.s7.b477d67304e5 from=translated src=- shape=a1b0d61b vocab=3b34545a
+-/
 @[ext]
 lemma ext {P Q : LocalOkaRing ι} (h : (P : MvPowerSeries ι ℂ) = Q) : P = Q :=
   Subtype.ext h
@@ -901,6 +1081,9 @@ lemma ext {P Q : LocalOkaRing ι} (h : (P : MvPowerSeries ι ℂ) = Q) : P = Q :
 noncomputable def constantCoeff : LocalOkaRing ι →+* ℂ :=
   (MvPowerSeries.constantCoeff (σ := ι) (R := ℂ)).comp (localOkaSubring ι).val.toRingHom
 
+/--
+@isnad1 id=eq.0h2v.s7.b69a8c518569 from=translated src=- shape=11e576a5 vocab=87ea5d63
+-/
 @[simp]
 lemma constantCoeff_apply (P : LocalOkaRing ι) :
     constantCoeff P = MvPowerSeries.constantCoeff (P : MvPowerSeries ι ℂ) :=
@@ -910,7 +1093,9 @@ lemma constantCoeff_apply (P : LocalOkaRing ι) :
 -- `MvPowerSeries.constantCoeff ↑(algebraMap ℂ (LocalOkaRing ι) c)`, which
 -- `Subalgebra.coe_algebraMap` and `MvPowerSeries.constantCoeff_C` then finish, so the attribute
 -- here would never fire.
-/-- A constant power series has that constant as its constant term. -/
+/-- A constant power series has that constant as its constant term.
+@isnad1 id=eq.0h2v.s7.751c6e2aee40 from=translated src=- shape=c3155228 vocab=d9acd410
+-/
 lemma constantCoeff_algebraMap (c : ℂ) :
     constantCoeff (algebraMap ℂ (LocalOkaRing ι) c) = c := by
   rw [constantCoeff_apply, show ((algebraMap ℂ (LocalOkaRing ι) c : LocalOkaRing ι) :
@@ -924,7 +1109,9 @@ instance : Nontrivial (LocalOkaRing ι) :=
 variable [Finite ι]
 
 /-- A locally convergent power series is invertible if and only if its constant term does not
-vanish. -/
+vanish.
+@isnad1 id=iff.0h2v.s6.d7b01c39f609 from=translated src=- shape=89229322 vocab=9d46135d
+-/
 theorem isUnit_iff {P : LocalOkaRing ι} : IsUnit P ↔ constantCoeff P ≠ 0 := by
   refine ⟨fun h ↦ (h.map constantCoeff).ne_zero, fun h ↦ ?_⟩
   exact (IsUnit.of_mul_eq_one ⟨(P : MvPowerSeries ι ℂ)⁻¹, P.2.inv h⟩
@@ -937,7 +1124,9 @@ instance : IsLocalRing (LocalOkaRing ι) := by
 
 omit [Finite ι] in
 /-- A germ in no variables is its own constant term, so it is a unit as soon as it is nonzero:
-`LocalOkaRing ι` is a field for `ι` empty. -/
+`LocalOkaRing ι` is a field for `ι` empty.
+@isnad1 id=iff.0h2v.s6.e0dfa2449cfb from=translated src=- shape=2dc5266c vocab=68ea76e8
+-/
 theorem isUnit_iff_ne_zero [IsEmpty ι] {P : LocalOkaRing ι} : IsUnit P ↔ P ≠ 0 := by
   rw [isUnit_iff, constantCoeff_apply, ne_eq, ne_eq, not_iff_not]
   refine ⟨fun h ↦ ?_, fun h ↦ by rw [h]; simp⟩
@@ -952,7 +1141,9 @@ section Germ
 
 variable [Fintype ι] {U : Opens (ι → ℂ)}
 
-/-- A holomorphic function on `U` is holomorphic at every point of `U`. -/
+/-- A holomorphic function on `U` is holomorphic at every point of `U`.
+@isnad1 id=analytic.1h4v.s7.e375688678ab from=translated src=- shape=7b518b82 vocab=a9d80e78
+-/
 lemma Tengoku.LanaOka.OkaRing.analyticAt_toGlobalFun (f : OkaRing U) {x : ι → ℂ} (hx : x ∈ U) :
     AnalyticAt ℂ (f.toGlobalFun _) x :=
   (okaAnalytic_iff _).mp f.2 x hx
@@ -965,19 +1156,26 @@ noncomputable def Tengoku.LanaOka.OkaRing.toLocalOkaRing (h0 : (0 : ι → ℂ) 
   ⟨(exists_represents (f.analyticAt_toGlobalFun h0)).choose,
     (exists_represents (f.analyticAt_toGlobalFun h0)).choose_spec.1⟩
 
+/--
+@isnad1 id=represen.1h3v.s7.19e2763d2ebc from=translated src=- shape=dad421bd vocab=d2f0ae96
+-/
 lemma Tengoku.LanaOka.OkaRing.toLocalOkaRing_represents (h0 : (0 : ι → ℂ) ∈ U) (f : OkaRing U) :
     ((f.toLocalOkaRing h0 : LocalOkaRing ι) : MvPowerSeries ι ℂ).Represents (f.toGlobalFun _) :=
   (exists_represents (f.analyticAt_toGlobalFun h0)).choose_spec.2
 
 /-- The Taylor series is the unique locally convergent power series representing the given
-function. -/
+function.
+@isnad1 id=eq.2h4v.s7.672210dd25ce from=translated src=- shape=ba077479 vocab=b23fa821
+-/
 lemma Tengoku.LanaOka.OkaRing.toLocalOkaRing_eq_of_represents {h0 : (0 : ι → ℂ) ∈ U} {f : OkaRing U}
     {P : LocalOkaRing ι} (h : (P : MvPowerSeries ι ℂ).Represents (f.toGlobalFun _)) :
     f.toLocalOkaRing h0 = P :=
   LocalOkaRing.ext ((f.toLocalOkaRing_represents h0).unique h)
 
 /-- Away from `U`, the values of `f : OkaRing U` do not matter: near the origin, the extension
-by zero of `f` is any function agreeing with `f` on `U`. -/
+by zero of `f` is any function agreeing with `f` on `U`.
+@isnad1 id=eventual.2h4v.s8.0675024943c8 from=translated src=- shape=27abeb4e vocab=a7c0b3fd
+-/
 lemma Tengoku.LanaOka.OkaRing.toGlobalFun_eventuallyEq (h0 : (0 : ι → ℂ) ∈ U) {f : OkaRing U}
     {g : (ι → ℂ) → ℂ} (h : ∀ x : U, f.toFun _ x = g x) :
     f.toGlobalFun _ =ᶠ[𝓝 (0 : ι → ℂ)] g := by
@@ -1025,13 +1223,18 @@ noncomputable def Tengoku.LanaOka.OkaRing.toLocalOkaRingHom (h0 : (0 : ι → �
     exact (represents_algebraMap (ι := ι) c).congr
       (toGlobalFun_eventuallyEq h0 (g := Function.const _ c) fun _ ↦ rfl).symm
 
+/--
+@isnad1 id=eq.1h3v.s8.4929647f3b61 from=translated src=- shape=392add95 vocab=333b070d
+-/
 @[simp]
 lemma Tengoku.LanaOka.OkaRing.toLocalOkaRingHom_apply (h0 : (0 : ι → ℂ) ∈ U) (f : OkaRing U) :
     OkaRing.toLocalOkaRingHom U h0 f = f.toLocalOkaRing h0 :=
   rfl
 
 /-- Every locally convergent power series is the Taylor series at the origin of a holomorphic
-function on some open neighbourhood of the origin. -/
+function on some open neighbourhood of the origin.
+@isnad1 id=ex.0h2v.s8.3aab2cefebb6 from=translated src=- shape=718c653d vocab=440c7207
+-/
 theorem Tengoku.LanaOka.LocalOkaRing.exists_okaRing (P : LocalOkaRing ι) :
     ∃ (U : Opens (ι → ℂ)) (h0 : (0 : ι → ℂ) ∈ U) (f : OkaRing U),
       OkaRing.toLocalOkaRingHom U h0 f = P := by
@@ -1051,6 +1254,9 @@ open Polynomial
 
 variable {σ τ : Type*} {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=tendstoc.0h2v.s3.1c772548bf75 from=translated src=- shape=650ca721 vocab=29300988
+-/
 instance Filter.TendstoCofinite.subtypeVal {α : Type*} {p : α → Prop} :
     TendstoCofinite (Subtype.val : Subtype p → α) :=
   tendstoCofinite_of_injective Subtype.val_injective
@@ -1140,23 +1346,34 @@ private lemma notMem_range_subtypeVal :
   rintro ⟨⟨j, hj⟩, hji⟩
   exact hj hji
 
+/--
+@isnad1 id=eq.0h4v.s9.972a30b91dac from=translated src=- shape=057c4034 vocab=cb676c37
+-/
 @[simp]
 lemma fromPolynomial_C (P : MvPowerSeries { j : σ // j ≠ i } R) :
     fromPolynomial i (Polynomial.C P) = rename Subtype.val P :=
   Polynomial.eval₂_C _ _
 
+/--
+@isnad1 id=eq.0h3v.s8.6719d524030f from=translated src=- shape=5fb1b33e vocab=07feff02
+-/
 @[simp]
 lemma fromPolynomial_X : fromPolynomial (R := R) i Polynomial.X = X i :=
   Polynomial.eval₂_X _ _
 
 /-- The coefficients of `MvPowerSeries.fromPolynomial i Q` are the coefficients of the
-coefficients of `Q`. -/
+coefficients of `Q`.
+@isnad1 id=eq.0h6v.s9.3a2ed44bcbc5 from=translated src=- shape=e46236e8 vocab=861014d0
+-/
 lemma coeff_fromPolynomial (Q : (MvPowerSeries { j : σ // j ≠ i } R)[X])
     (e : { j : σ // j ≠ i } →₀ ℕ) (k : ℕ) :
     coeff (Finsupp.mapDomain Subtype.val e + Finsupp.single i k) (fromPolynomial i Q) =
       coeff e (Q.coeff k) :=
   coeff_eval₂AlgHom_rename _ Subtype.val_injective notMem_range_subtypeVal Q e k
 
+/--
+@isnad1 id=injectiv.0h3v.s8.7a0032017077 from=translated src=- shape=73bc59e3 vocab=475058c2
+-/
 lemma fromPolynomial_injective : Function.Injective (fromPolynomial (R := R) i) :=
   eval₂AlgHom_rename_injective _ Subtype.val_injective notMem_range_subtypeVal
 
@@ -1174,22 +1391,33 @@ private lemma last_notMem_range_castSucc :
     Fin.last n ∉ Set.range (Fin.castSucc : Fin n → Fin (n + 1)) := by
   simp
 
+/--
+@isnad1 id=eq.0h3v.s9.b531bf984f5d from=translated src=- shape=9a0feb22 vocab=a327742f
+-/
 @[simp]
 lemma fromPolynomial'_C (P : MvPowerSeries (Fin n) R) :
     fromPolynomial' (Polynomial.C P) = rename Fin.castSucc P :=
   Polynomial.eval₂_C _ _
 
+/--
+@isnad1 id=eq.0h2v.s8.0067ecb4d9ef from=translated src=- shape=11760ce0 vocab=49f24ccb
+-/
 @[simp]
 lemma fromPolynomial'_X : fromPolynomial' (R := R) (n := n) Polynomial.X = X (Fin.last n) :=
   Polynomial.eval₂_X _ _
 
 /-- The coefficients of `MvPowerSeries.fromPolynomial' Q` are the coefficients of the
-coefficients of `Q`. -/
+coefficients of `Q`.
+@isnad1 id=eq.0h5v.s9.0ad37472322b from=translated src=- shape=aa855f2a vocab=6c647e71
+-/
 lemma coeff_fromPolynomial' (Q : (MvPowerSeries (Fin n) R)[X]) (e : Fin n →₀ ℕ) (k : ℕ) :
     coeff (Finsupp.mapDomain Fin.castSucc e + Finsupp.single (Fin.last n) k)
       (fromPolynomial' Q) = coeff e (Q.coeff k) :=
   coeff_eval₂AlgHom_rename _ (Fin.castSucc_injective n) last_notMem_range_castSucc Q e k
 
+/--
+@isnad1 id=injectiv.0h2v.s8.30dcc139c724 from=translated src=- shape=49e9f736 vocab=8a76be4a
+-/
 lemma fromPolynomial'_injective :
     Function.Injective (fromPolynomial' (R := R) (n := n)) :=
   eval₂AlgHom_rename_injective _ (Fin.castSucc_injective n) last_notMem_range_castSucc
@@ -1222,6 +1450,9 @@ noncomputable def partialEval : MvPowerSeries σ R →ₐ[R] PowerSeries R :=
 
 variable {i}
 
+/--
+@isnad1 id=eq.0h5v.s8.bd6c628152ff from=translated src=- shape=b2c99910 vocab=f14eb65c
+-/
 @[simp]
 lemma coeff_partialEval (P : MvPowerSeries σ R) (k : ℕ) :
     PowerSeries.coeff k (partialEval i P) = coeff (Finsupp.single i k) P :=
@@ -1229,18 +1460,30 @@ lemma coeff_partialEval (P : MvPowerSeries σ R) (k : ℕ) :
     rw [Finsupp.embDomain_single]
     rfl)
 
+/--
+@isnad1 id=eq.0h4v.s8.ed662318dcb4 from=translated src=- shape=3380c3af vocab=7255d222
+-/
 @[simp]
 lemma partialEval_C (r : R) : partialEval i (C r : MvPowerSeries σ R) = PowerSeries.C r :=
   killCompl_C r
 
+/--
+@isnad1 id=eq.0h3v.s7.f2294c261953 from=translated src=- shape=8d11aabe vocab=1e1c2135
+-/
 @[simp]
 lemma partialEval_X_self : partialEval i (X i : MvPowerSeries σ R) = PowerSeries.X :=
   killCompl_X ()
 
+/--
+@isnad1 id=eq.1h4v.s7.568e85507c67 from=translated src=- shape=2b274fa9 vocab=2e815979
+-/
 @[simp]
 lemma partialEval_X_of_ne {j : σ} (h : j ≠ i) : partialEval i (X j : MvPowerSeries σ R) = 0 :=
   killCompl_X_eq_zero (by simpa using h)
 
+/--
+@isnad1 id=eq.0h4v.s8.1b094da6494b from=translated src=- shape=27f6308f vocab=99624c8e
+-/
 @[simp]
 lemma constantCoeff_partialEval (P : MvPowerSeries σ R) :
     PowerSeries.constantCoeff (partialEval i P) = constantCoeff P := by
@@ -1256,7 +1499,9 @@ coefficient is nonzero.
 `PowerSeries.order_eq_nat` into the two exponents `0` and `Finsupp.single i 1` and no others.
 **No derivative appears**, and that is the point: the linear coefficient *is* the first
 derivative along the axis up to nothing at all, so a consumer that has a derivative may use it
-and a consumer that does not need not acquire one. -/
+and a consumer that does not need not acquire one.
+@isnad1 id=iff.0h4v.s8.cec1630eef17 from=translated src=- shape=bd436cb0 vocab=399ef3f8
+-/
 lemma order_partialEval_eq_one_iff (P : MvPowerSeries σ R) :
     PowerSeries.order (partialEval i P) = 1 ↔
       constantCoeff P = 0 ∧ coeff (Finsupp.single i 1) P ≠ 0 := by
@@ -1268,7 +1513,9 @@ lemma order_partialEval_eq_one_iff (P : MvPowerSeries σ R) :
   simpa using h0
 
 /-- Restricting `MvPowerSeries.fromPolynomial i Q` to the `i`-th axis amounts to evaluating the
-coefficients of `Q` at the origin. -/
+coefficients of `Q` at the origin.
+@isnad1 id=eq.0h4v.s9.cc3eb4cba17f from=translated src=- shape=3d9e1def vocab=11ad22ca
+-/
 lemma partialEval_fromPolynomial (Q : (MvPowerSeries { j : σ // j ≠ i } R)[X]) :
     partialEval i (fromPolynomial i Q) = (Q.map constantCoeff).toPowerSeries := by
   refine PowerSeries.ext fun k ↦ ?_
@@ -1290,6 +1537,9 @@ def IsGeneralIn (P : MvPowerSeries ι R) (i : ι) :
     Prop :=
   MvPowerSeries.partialEval i P ≠ 0
 
+/--
+@isnad1 id=iff.0h4v.s5.a65573edaa3b from=translated src=- shape=614bddad vocab=a77388a5
+-/
 lemma isGeneralIn_iff_orderIn_ne_top
     (P : MvPowerSeries ι R) (i : ι) :
     P.IsGeneralIn i ↔ P.orderIn i < ⊤ := by

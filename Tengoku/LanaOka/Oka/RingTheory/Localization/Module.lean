@@ -66,7 +66,9 @@ for `S` a localisation of `R`.
 
 Note that neither `f` nor `g` is assumed to have any property beyond finiteness of the index
 types: the hypothesis `hgen` is the only thing that ties them together, and it is exactly what
-noetherianity of `R` supplies for a suitable finite `g`. -/
+noetherianity of `R` supplies for a suitable finite `g`.
+@isnad1 id=ex.2h8v.s9.f6f2b165f927 from=translated src=- shape=c533b8ae vocab=1f5ac878
+-/
 theorem exists_fun_eq_sum_of_sum_mul_eq_zero (M : Submonoid R) [IsLocalization M S]
     {ι κ : Type*} [Fintype ι] [Fintype κ] (f : ι → R) (g : κ → (ι → R))
     (hgen : ∀ b : ι → R, ∑ i, b i * f i = 0 → b ∈ Submodule.span R (Set.range g))

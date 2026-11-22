@@ -21,9 +21,14 @@ open scoped MatrixGroups ENNReal
 
 namespace OrbicurveCores.M2
 
+/--
+@isnad1 id=eq.0h1v.s3.ec874de05f07 from=translated src=- shape=c7188113 vocab=eec1b801
+-/
 lemma exp_neg_eq_inv' (s : ℝ) : exp (-s) = (exp s)⁻¹ := exp_neg s
 
-/-- The substitution `η = k e^{-2s}`. -/
+/-- The substitution `η = k e^{-2s}`.
+@isnad1 id=eq.1h2v.s7.aa3b4503e151 from=translated src=- shape=fe9cf16f vocab=89413680
+-/
 lemma lintegral_exp_subst {k : ℝ} (hk : 0 < k) (L : ℝ → ℝ≥0∞) :
     ∫⁻ s, ENNReal.ofReal (exp (2 * s)) * L (k * exp (-(2 * s))) =
       ENNReal.ofReal (k / 2) * ∫⁻ η in Ioi 0, ENNReal.ofReal ((η ^ 2)⁻¹) * L η := by
@@ -62,10 +67,15 @@ lemma lintegral_exp_subst {k : ℝ} (hk : 0 < k) (L : ℝ → ℝ≥0∞) :
 /-- The length of a horizontal slice. -/
 noncomputable def sliceLen (S : Set (ℝ × ℝ)) (η : ℝ) : ℝ≥0∞ := ∫⁻ x, S.indicator 1 (x, η)
 
+/--
+@isnad1 id=measurab.1h1v.s4.a09bc054104b from=translated src=- shape=be284ae3 vocab=f684644f
+-/
 lemma measurable_sliceLen {S : Set (ℝ × ℝ)} (hS : MeasurableSet S) : Measurable (sliceLen S) :=
   (measurable_one.indicator hS).lintegral_prod_left'
 
-/-- **The base-point integral in Hopf coordinates.** -/
+/-- **The base-point integral in Hopf coordinates.**
+@isnad1 id=eq.1h1v.s8.aeb785a632f4 from=translated src=- shape=e427cbbf vocab=fc382e8b
+-/
 lemma lintegral_basept (S : Set (ℝ × ℝ)) (hS : MeasurableSet S) :
     ∫⁻ p : ℝ × ℝ × ℝ, S.indicator 1 (p.1 - p.2.1 / (exp (2 * p.2.2) ^ 2 + p.2.1 ^ 2),
       exp (2 * p.2.2) / (exp (2 * p.2.2) ^ 2 + p.2.1 ^ 2)) =
@@ -126,11 +136,17 @@ lemma lintegral_basept (S : Set (ℝ × ℝ)) (hS : MeasurableSet S) :
 def realCoords (E : Set ℍ) : Set (ℝ × ℝ) :=
   Complex.measurableEquivRealProd.symm ⁻¹' (((↑) : ℍ → ℂ) '' E)
 
+/--
+@isnad1 id=measurab.1h1v.s4.f265eae7f481 from=translated src=- shape=75c7e2f9 vocab=f2ef7585
+-/
 lemma measurableSet_realCoords {E : Set ℍ} (hE : MeasurableSet E) :
     MeasurableSet (realCoords E) :=
   (measurableEmbedding_coe.measurableSet_image.mpr hE).preimage
     Complex.measurableEquivRealProd.symm.measurable
 
+/--
+@isnad1 id=iff.0h2v.s5.756b96514472 from=translated src=- shape=b3aa43e1 vocab=0ef6e1bf
+-/
 lemma mem_realCoords (E : Set ℍ) (z : ℍ) : (z.re, z.im) ∈ realCoords E ↔ z ∈ E := by
   simp only [realCoords, Set.mem_preimage, Complex.measurableEquivRealProd_symm_apply,
     Set.mem_image]
@@ -141,6 +157,9 @@ lemma mem_realCoords (E : Set ℍ) (z : ℍ) : (z.re, z.im) ∈ realCoords E ↔
   · intro hz
     exact ⟨z, hz, rfl⟩
 
+/--
+@isnad1 id=lt.1h2v.s5.457bb5b2aaf9 from=translated src=- shape=9e8b43fa vocab=339948ee
+-/
 lemma pos_of_mem_realCoords {E : Set ℍ} {q : ℝ × ℝ} (hq : q ∈ realCoords E) : 0 < q.2 := by
   obtain ⟨w, -, hw⟩ := hq
   have := congrArg Complex.im hw
@@ -148,7 +167,9 @@ lemma pos_of_mem_realCoords {E : Set ℍ} {q : ℝ × ℝ} (hq : q ∈ realCoord
   rw [← this]
   exact w.im_pos
 
-/-- **Hyperbolic area via horizontal slices.** -/
+/-- **Hyperbolic area via horizontal slices.**
+@isnad1 id=eq.1h1v.s6.d8f3a6a3b417 from=translated src=- shape=8330848e vocab=f485b2dd
+-/
 lemma volume_eq_sliceLen {E : Set ℍ} (hE : MeasurableSet E) :
     volume E = ∫⁻ η in Ioi 0, ENNReal.ofReal ((η ^ 2)⁻¹) * sliceLen (realCoords E) η := by
   have hE₂ := measurableSet_realCoords hE

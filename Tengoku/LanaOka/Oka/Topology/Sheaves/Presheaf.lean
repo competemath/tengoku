@@ -50,7 +50,9 @@ variable {C : Type u} [Category.{v} C] {X Y : TopCat.{w}} {f g : X ⟶ Y}
 
 /-- **Any natural transformation between the pullback-of-opens functors of two equal maps induces
 the transport of `TopCat.Presheaf.pushforwardEq`**, because its components live in a poset and
-so are unique. -/
+so are unique.
+@isnad1 id=eq.1h7v.s9.538c5494fc99 from=translated src=- shape=08d0e704 vocab=b081fc0d
+-/
 lemma whiskerRight_eq_pushforwardEq_hom (h : f = g) (F : X.Presheaf C)
     (e : (Opens.map f).op ⟶ (Opens.map g).op) :
     Functor.whiskerRight e F = (pushforwardEq h F).hom := by
@@ -63,7 +65,9 @@ lemma whiskerRight_eq_pushforwardEq_hom (h : f = g) (F : X.Presheaf C)
 Stated for a composite `α ≫ β ≫ _` rather than for the pair alone, because that is the shape the
 `c`-component of a composition of morphisms of presheafed spaces has, and because a caller given
 only the pair form could not finish with it: `rw` reassociates and applies it happily, and then
-cannot cancel the identity it is left with. See the module docstring. -/
+cannot cancel the identity it is left with. See the module docstring.
+@isnad1 id=eq.1h11v.s10.4ae0b29ec33a from=translated src=- shape=40d68f8c vocab=3a77f8a2
+-/
 lemma comp_pushforwardEq_inv_comp_whiskerRight (h : f = g) (F : X.Presheaf C)
     {P Q : Y.Presheaf C} (α : P ⟶ Q) (β : Q ⟶ g _* F)
     (e : (Opens.map f).op ⟶ (Opens.map g).op) :

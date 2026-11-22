@@ -37,7 +37,9 @@ variable {C : Type u} [Category.{v} C]
 domains of its arrows.
 
 The index type is the arrows of the sieves, so that no choice is involved and the family lives
-in the same universes as the site. -/
+in the same universes as the site.
+@isnad1 id=coversto.1h3v.s8.83ebfba898da from=translated src=- shape=d0850a06 vocab=d784e906
+-/
 lemma coversTop_of_sieves (J : GrothendieckTopology C) (S : ∀ Z : C, Sieve Z)
     (hS : ∀ Z, S Z ∈ J Z) :
     J.CoversTop (fun (t : Σ (Z : C), Σ (W : C), {g : W ⟶ Z // (S Z).arrows g}) ↦ t.2.1) := by

@@ -46,7 +46,9 @@ def HasFGGlobalDimensionLE (R : Type u) [CommRing R] (d : ℕ) : Prop :=
 
 attribute [local instance] RingHomInvPair.of_ringEquiv in
 /-- Bounds on the projective dimension of finitely generated modules are invariant under ring
-isomorphisms. -/
+isomorphisms.
+@isnad1 id=hasfgglo.1h4v.s5.b31680b5bf53 from=translated src=- shape=ff3f24c4 vocab=45b730cc
+-/
 lemma HasFGGlobalDimensionLE.of_ringEquiv {R R' : Type u} [CommRing R] [CommRing R']
     (e : R ≃+* R') {d : ℕ} (h : HasFGGlobalDimensionLE R d) : HasFGGlobalDimensionLE R' d := by
   intro M _ _ _
@@ -70,7 +72,9 @@ lemma HasFGGlobalDimensionLE.of_ringEquiv {R R' : Type u} [CommRing R] [CommRing
   have := h M
   exact ModuleCat.hasProjectiveDimensionLE_of_semiLinearEquiv e e' d
 
-/-- A field has finitely generated global dimension `0`. -/
+/-- A field has finitely generated global dimension `0`.
+@isnad1 id=hasfgglo.1h1v.s4.9a815a4fadd3 from=translated src=- shape=ba4d4541 vocab=7cee40bd
+-/
 lemma hasFGGlobalDimensionLE_zero_of_isField {R : Type u} [CommRing R] (hR : IsField R) :
     HasFGGlobalDimensionLE R 0 := by
   letI := hR.toField
@@ -81,7 +85,9 @@ lemma hasFGGlobalDimensionLE_zero_of_isField {R : Type u} [CommRing R] (hR : IsF
 
 variable {R : Type u} [CommRing R]
 
-/-- A first syzygy of a module is `x`-regular as soon as `R` is. -/
+/-- A first syzygy of a module is `x`-regular as soon as `R` is.
+@isnad1 id=issmulre.1h5v.s9.ab5b70632cfa from=translated src=- shape=c145c434 vocab=ec8a4c00
+-/
 lemma isSMulRegular_ker {k : ℕ} {M : Type u} [AddCommGroup M] [Module R M]
     (f : (Fin k → R) →ₗ[R] M) {x : R} (hx : IsSMulRegular R x) :
     IsSMulRegular (LinearMap.ker f) x := by
@@ -96,7 +102,9 @@ variable [IsLocalRing R] [IsNoetherianRing R] {x : R}
 
 omit [IsLocalRing R] [IsNoetherianRing R] in
 /-- The sequence `0 → L ⧸ x L → F ⧸ x F → K ⧸ x K` obtained from `0 → L → F → K` is injective
-on the left when `x` is regular on `K`. -/
+on the left when `x` is regular on `K`.
+@isnad1 id=injectiv.1h5v.s16.db8b9f617e5c from=translated src=- shape=af406e8e vocab=90a49b65
+-/
 lemma injective_quotSMulTop_map_subtype_ker {F K : Type u} [AddCommGroup F] [Module R F]
     [AddCommGroup K] [Module R K] (f : F →ₗ[R] K) (hK : IsSMulRegular K x) :
     Function.Injective (QuotSMulTop.map x (LinearMap.ker f).subtype) := by
@@ -117,7 +125,9 @@ lemma injective_quotSMulTop_map_subtype_ker {F K : Type u} [AddCommGroup F] [Mod
 /-- **Change of rings for projective dimension.** Let `x ∈ 𝔪` be a nonzerodivisor of the
 Noetherian local ring `R` and `K` a finitely generated `R`-module on which `x` is regular. If
 `K ⧸ x K` has projective dimension `≤ e` over `R ⧸ (x)`, then `K` has projective dimension `≤ e`
-over `R`. -/
+over `R`.
+@isnad1 id=hasproje.4h4v.s9.2504ba37169d from=translated src=- shape=26ed1e6a vocab=21db67f1
+-/
 theorem hasProjectiveDimensionLE_of_quotSMulTop (hreg : IsSMulRegular R x)
     (hx : x ∈ maximalIdeal R) (e : ℕ) :
     ∀ (K : Type u) [AddCommGroup K] [Module R K] [Module.Finite R K], IsSMulRegular K x →
@@ -166,7 +176,9 @@ theorem hasProjectiveDimensionLE_of_quotSMulTop (hreg : IsSMulRegular R x)
 
 /-- **Global dimension and quotients by a regular element.** If `x ∈ 𝔪` is a nonzerodivisor of
 the Noetherian local ring `R` and every finitely generated `R ⧸ (x)`-module has projective
-dimension `≤ d`, then every finitely generated `R`-module has projective dimension `≤ d + 1`. -/
+dimension `≤ d`, then every finitely generated `R`-module has projective dimension `≤ d + 1`.
+@isnad1 id=hasfgglo.3h3v.s7.795aeb0dcab4 from=translated src=- shape=bea50b42 vocab=6c684d80
+-/
 theorem HasFGGlobalDimensionLE.of_quotient (hreg : IsSMulRegular R x) (hx : x ∈ maximalIdeal R)
     {d : ℕ} (h : HasFGGlobalDimensionLE (R ⧸ Ideal.span {x}) d) :
     HasFGGlobalDimensionLE R (d + 1) := by

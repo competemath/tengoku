@@ -191,7 +191,9 @@ section over `f.opensRange`.**
 `f ''ᵁ ⊤`; the content here is only that transporting it to `f.opensRange` changes nothing, which
 is `AlgebraicGeometry.Scheme.basicOpen_res_eq` at the isomorphism of opens inside
 `AlgebraicGeometry.IsOpenImmersion.ΓIsoTop`'s definition — see this file's header for why that
-lemma is reachable at all. -/
+lemma is reachable at all.
+@isnad1 id=eq.0h4v.s11.5dd6056162e5 from=translated src=- shape=3a5e2c6c vocab=31da29c4
+-/
 theorem image_basicOpen_ΓIsoTop (r : Γ(X, ⊤)) :
     f ''ᵁ X.basicOpen r = Y.basicOpen ((ΓIsoTop f).hom r) := by
   have h : (ΓIsoTop f).hom = ((f.appIso ⊤).symm ≪≫
@@ -224,7 +226,9 @@ def specΓIsoTop : R ≅ Γ(Y, f.opensRange) :=
 
 **This is the statement that makes the isomorphism above usable rather than only true.** Without
 it a caller who replaces a section over `f.opensRange` by an element of `R` has lost the open it
-cuts out; with it the two descriptions are the same open of `Y`. -/
+cuts out; with it the two descriptions are the same open of `Y`.
+@isnad1 id=eq.0h4v.s9.106c53607838 from=translated src=- shape=6c150cbf vocab=bfb418d0
+-/
 theorem image_primeSpectrum_basicOpen (a : R) :
     f ''ᵁ PrimeSpectrum.basicOpen a = Y.basicOpen ((specΓIsoTop f).hom a) := by
   have h : (specΓIsoTop f).hom = ((Scheme.ΓSpecIso R).symm ≪≫ ΓIsoTop f).hom := rfl

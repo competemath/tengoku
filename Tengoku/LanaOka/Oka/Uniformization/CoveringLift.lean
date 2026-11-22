@@ -33,7 +33,9 @@ open Set Function Topology
 
 namespace Uniformization
 
-/-- A homeomorphism is a covering map. -/
+/-- A homeomorphism is a covering map.
+@isnad1 id=iscoveri.0h3v.s5.fdef84dd709e from=translated src=- shape=bb88c798 vocab=d50622df
+-/
 theorem isCoveringMap_homeomorph {E X : Type*} [TopologicalSpace E] [TopologicalSpace X]
     (e : E ≃ₜ X) : IsCoveringMap e := by
   intro x
@@ -55,7 +57,9 @@ variable {E X : Type*} [TopologicalSpace E] [TopologicalSpace X]
 
 /-- **Lifting through a covering, convex source.** Let `f` be a covering on `V`, `D` a convex set
 and `g` continuous on `D` with values in `V`. Given `a₀ ∈ D` and `e₀` over `g a₀`, there is a
-continuous `σ` on `D` with `f ∘ σ = g` on `D` and `σ a₀ = e₀`. -/
+continuous `σ` on `D` with `f ∘ σ = g` on `D` and `σ a₀ = e₀`.
+@isnad1 id=ex.6h9v.s7.b4c99389b1d2 from=translated src=- shape=60bdfd84 vocab=67f94db0
+-/
 theorem IsCoveringMapOn.exists_lift_of_convex {f : E → X} {V : Set X} (hf : IsCoveringMapOn f V)
     {D : Set F} (hD : Convex ℝ D) {g : F → X} (hg : ContinuousOn g D) (hgV : MapsTo g D V)
     {a₀ : F} (ha₀ : a₀ ∈ D) {e₀ : E} (he₀ : f e₀ = g a₀) :
@@ -77,7 +81,9 @@ theorem IsCoveringMapOn.exists_lift_of_convex {f : E → X} {V : Set X} (hf : Is
 
 omit [NormedSpace ℝ F] in
 /-- **Uniqueness of lifts.** Two continuous lifts through a covering on `V`, of the same map into
-`V` on a preconnected set `D`, which agree at one point of `D`, agree on `D`. -/
+`V` on a preconnected set `D`, which agree at one point of `D`, agree on `D`.
+@isnad1 id=eqon.8h9v.s7.2565706b2181 from=translated src=- shape=bdc65881 vocab=99947359
+-/
 theorem IsCoveringMapOn.eqOn_of_lift {f : E → X} {V : Set X} (hf : IsCoveringMapOn f V)
     {D : Set F} (hD : IsPreconnected D) {σ₁ σ₂ : F → E} (h₁ : ContinuousOn σ₁ D)
     (h₂ : ContinuousOn σ₂ D) (hV : ∀ a ∈ D, f (σ₁ a) ∈ V) (heq : ∀ a ∈ D, f (σ₁ a) = f (σ₂ a))
@@ -114,7 +120,9 @@ namespace Uniformization
 variable {E X : Type*} [TopologicalSpace E] [TopologicalSpace X]
 
 /-- Two continuous sections of a locally injective map over a preconnected set `V`, agreeing at
-one point, agree on `V`. -/
+one point, agree on `V`.
+@isnad1 id=eqon.8h7v.s7.bbe5f5b77f68 from=translated src=- shape=cefc1e06 vocab=e603b41d
+-/
 theorem eqOn_of_sections [T2Space E] {f : E → X} {V : Set X} (hV : IsPreconnected V)
     {s₁ s₂ : X → E} (h₁ : ContinuousOn s₁ V) (h₂ : ContinuousOn s₂ V)
     (hs₁ : ∀ v ∈ V, f (s₁ v) = v) (hs₂ : ∀ v ∈ V, f (s₂ v) = v)
@@ -139,7 +147,9 @@ theorem eqOn_of_sections [T2Space E] {f : E → X} {V : Set X} (hV : IsPreconnec
   have : (⟨v, hv⟩ : V) ∈ A := hAu ▸ mem_univ _
   exact this
 
-/-- The image of a section of a locally injective continuous map over an open set is open. -/
+/-- The image of a section of a locally injective continuous map over an open set is open.
+@isnad1 id=isopen.7h6v.s7.318e0c84a291 from=translated src=- shape=97c8aef4 vocab=06edffcf
+-/
 theorem isOpen_image_of_section {f : E → X} {B V : Set X} (hVo : IsOpen V) (hVB : V ⊆ B)
     (hopen : IsOpen (f ⁻¹' B)) (hcont : ContinuousOn f (f ⁻¹' B))
     (hinj : ∀ e ∈ f ⁻¹' B, ∃ W ∈ 𝓝 e, InjOn f W) {s : X → E} (hs : ContinuousOn s V)

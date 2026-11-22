@@ -93,7 +93,9 @@ variable (t : TateParameter K)
 factor of `thetaProd` is `thetaProdFactor` at a suitable constant `c`. -/
 noncomputable def thetaProdFactor (c : K) : K := ∏' n : ℕ, (1 + (t.q : K) ^ n * c)
 
-/-- The defining unfolding of `thetaProdFactor`. -/
+/-- The defining unfolding of `thetaProdFactor`.
+@isnad1 id=eq.0h3v.s7.0d83a47611e7 from=translated src=- shape=0db75ff9 vocab=2efdffbc
+-/
 lemma thetaProdFactor_apply (c : K) :
     t.thetaProdFactor c = ∏' n : ℕ, (1 + (t.q : K) ^ n * c) := rfl
 
@@ -105,7 +107,9 @@ noncomputable def thetaProd (u : Kˣ) : K :=
   t.thetaProdFactor (-(t.q : K)) * t.thetaProdFactor ((t.q : K) * (u : K)) *
     t.thetaProdFactor ((u : K)⁻¹)
 
-/-- The defining unfolding of `thetaProd`. -/
+/-- The defining unfolding of `thetaProd`.
+@isnad1 id=eq.0h3v.s7.ec3987c1419f from=translated src=- shape=ae981aa7 vocab=ac62c299
+-/
 lemma thetaProd_apply (u : Kˣ) :
     t.thetaProd u = t.thetaProdFactor (-(t.q : K)) * t.thetaProdFactor ((t.q : K) * (u : K)) *
       t.thetaProdFactor ((u : K)⁻¹) := rfl
@@ -113,7 +117,9 @@ lemma thetaProd_apply (u : Kˣ) :
 /-- **Multipliability of the elementary factor family.** Over a complete field the family
 `n ↦ 1 + qⁿ · c` is `Multipliable`: its factors are `1 + (small)` with
 `‖qⁿ · c‖ = ‖q‖ⁿ · ‖c‖` a geometric (hence summable) sequence, so the Banach-ring criterion
-`multipliable_one_add_of_summable` applies. No ultrametric hypothesis is needed. -/
+`multipliable_one_add_of_summable` applies. No ultrametric hypothesis is needed.
+@isnad1 id=multipli.0h3v.s7.0786b253202f from=translated src=- shape=124bf226 vocab=17c3d8ad
+-/
 lemma multipliable_thetaProdFactor [CompleteSpace K] (c : K) :
     Multipliable (fun n : ℕ => 1 + (t.q : K) ^ n * c) := by
   apply multipliable_one_add_of_summable
@@ -122,15 +128,23 @@ lemma multipliable_thetaProdFactor [CompleteSpace K] (c : K) :
   rw [hnorm]
   exact (summable_geometric_of_lt_one (norm_nonneg _) t.norm_lt_one).mul_right ‖c‖
 
-/-- The three factor families of `thetaProd` are each `Multipliable`. -/
+/-- The three factor families of `thetaProd` are each `Multipliable`.
+@isnad1 id=multipli.0h2v.s7.a53137b3f7aa from=translated src=- shape=d845ef74 vocab=38dd8323
+-/
 lemma multipliable_thetaProd_qpow [CompleteSpace K] :
     Multipliable (fun n : ℕ => 1 + (t.q : K) ^ n * (-(t.q : K))) :=
   t.multipliable_thetaProdFactor _
 
+/--
+@isnad1 id=multipli.0h3v.s7.d9f735536c9f from=translated src=- shape=639a3466 vocab=dce5ec99
+-/
 lemma multipliable_thetaProd_u [CompleteSpace K] (u : Kˣ) :
     Multipliable (fun n : ℕ => 1 + (t.q : K) ^ n * ((t.q : K) * (u : K))) :=
   t.multipliable_thetaProdFactor _
 
+/--
+@isnad1 id=multipli.0h3v.s7.80fc65b522ed from=translated src=- shape=d547169b vocab=e982a37e
+-/
 lemma multipliable_thetaProd_uinv [CompleteSpace K] (u : Kˣ) :
     Multipliable (fun n : ℕ => 1 + (t.q : K) ^ n * (u : K)⁻¹) :=
   t.multipliable_thetaProdFactor _
@@ -138,7 +152,9 @@ lemma multipliable_thetaProd_uinv [CompleteSpace K] (u : Kˣ) :
 /-- **The index-shift (quasi-periodicity) relation for the elementary factor.** Peeling off the
 `n = 0` factor and re-absorbing the shift `q ^ (n+1) = qⁿ · q` gives
 `thetaProdFactor c = (1 + c) · thetaProdFactor (q · c)`. This is the multiplicative engine
-behind the `q`-periodicity of the product form. -/
+behind the `q`-periodicity of the product form.
+@isnad1 id=eq.0h3v.s7.15b1c2e5a6c8 from=translated src=- shape=072844b6 vocab=f0fc5515
+-/
 lemma thetaProdFactor_eq [CompleteSpace K] (c : K) :
     t.thetaProdFactor c = (1 + c) * t.thetaProdFactor ((t.q : K) * c) := by
   -- Peel the `n = 0` factor.  `Multipliable.tprod_eq_zero_mul` lives in the topological-*group*
@@ -167,7 +183,9 @@ translation `u ↦ q · u` the product form `thetaProd` transforms by exactly th
 The proof applies the shift relation `thetaProdFactor_eq` to the two `u`-dependent factors,
 `thetaProdFactor (q·u)` and `thetaProdFactor (q·u)⁻¹`, and collapses the resulting scalars using
 `(1 + w⁻¹) = w⁻¹ · (1 + w)` for `w = q·u ≠ 0`. It holds unconditionally on `u : Kˣ` (no
-avoidance of the divisor is needed). -/
+avoidance of the divisor is needed).
+@isnad1 id=eq.0h3v.s7.94271fecfe9f from=translated src=- shape=cad33dcc vocab=d89a99f7
+-/
 theorem thetaProd_q_smul [CompleteSpace K] (u : Kˣ) :
     t.thetaProd (t.q * u) = ((t.q : K) * (u : K))⁻¹ * t.thetaProd u := by
   set w : K := (t.q : K) * (u : K) with hw
@@ -193,7 +211,9 @@ theorem thetaProd_q_smul [CompleteSpace K] (u : Kˣ) :
 
 /-- Every factor of the constant term `thetaProdFactor (-q) = ∏' n, (1 - q ^ (n+1))` is nonzero:
 `1 - q ^ (n+1) ≠ 0` because `q ^ (n+1) ≠ 1` (`q` is not a root of unity), rewritten in the
-`thetaProdFactor` normalization `1 + qⁿ · (-q)`. -/
+`thetaProdFactor` normalization `1 + qⁿ · (-q)`.
+@isnad1 id=ne.0h3v.s7.05d373bd3e39 from=translated src=- shape=fc4bf227 vocab=8de7b722
+-/
 lemma thetaProdFactor_neg_q_factor_ne_zero (n : ℕ) :
     (1 : K) + (t.q : K) ^ n * (-(t.q : K)) ≠ 0 := by
   have h : (1 : K) + (t.q : K) ^ n * (-(t.q : K)) = 1 - (t.q : K) ^ (n + 1) := by

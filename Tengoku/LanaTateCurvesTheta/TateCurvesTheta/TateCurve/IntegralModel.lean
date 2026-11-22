@@ -91,7 +91,9 @@ variable [IsUltrametricDist K]
 variable [CompleteSpace K]
 
 /-- **Integrality of `a₄`.** The Tate coefficient `a₄(q) = -5 s₃(q)` has norm `< 1`, so it reduces
-to `0` in the residue field. -/
+to `0` in the residue field.
+@isnad1 id=lt.0h2v.s5.383d74d25531 from=translated src=- shape=15741cad vocab=fc19f1ed
+-/
 lemma norm_a₄_lt_one : ‖t.a₄‖ < 1 := by
   refine lt_of_le_of_lt ?_ t.norm_lt_one
   rw [a₄_def, neg_mul, norm_neg, norm_mul]
@@ -105,18 +107,24 @@ lemma norm_a₄_lt_one : ‖t.a₄‖ < 1 := by
 
 /-- **Integrality of `a₆`.** For `(12 : K) ≠ 0` the Tate coefficient
 `a₆(q) = -(5 s₃(q) + 7 s₅(q))/12` has norm `< 1`, so it too reduces to `0` in the residue field.
-This is the strict form of `A6Series.norm_a₆_le`. -/
+This is the strict form of `A6Series.norm_a₆_le`.
+@isnad1 id=lt.1h2v.s6.c4e49a353cb8 from=translated src=- shape=01c94d11 vocab=4d8ad535
+-/
 lemma norm_a₆_lt_one (h12 : (12 : K) ≠ 0) : ‖t.a₆‖ < 1 :=
   lt_of_le_of_lt (t.norm_a₆_le h12) t.norm_lt_one
 
 omit [IsUltrametricDist K] [CompleteSpace K] in
-/-- The `c₄`-invariant of the Tate curve is `c₄ = 1 - 48 a₄(q)` (from `b₂ = 1`, `b₄ = 2 a₄`). -/
+/-- The `c₄`-invariant of the Tate curve is `c₄ = 1 - 48 a₄(q)` (from `b₂ = 1`, `b₄ = 2 a₄`).
+@isnad1 id=eq.0h2v.s6.3c18448130b3 from=translated src=- shape=6aafa921 vocab=1772b604
+-/
 lemma tateCurve_c₄ : t.tateCurve.c₄ = 1 - 48 * t.a₄ := by
   simp only [WeierstrassCurve.c₄, t.tateCurve_b₂, t.tateCurve_b₄]; ring
 
 /-- **`c₄` is a unit of `𝒪`.** `‖c₄(E_q)‖ = 1`: since `‖48 a₄‖ ≤ ‖a₄‖ < 1 = ‖1‖`, the ultrametric
 isosceles law gives `‖1 - 48 a₄‖ = 1`. Thus `c₄` reduces to a *nonzero* element of the residue
-field — the node of the special fiber is multiplicative (not a cusp). Unconditional. -/
+field — the node of the special fiber is multiplicative (not a cusp). Unconditional.
+@isnad1 id=eq.0h2v.s5.b903f1c877c9 from=translated src=- shape=93649975 vocab=db8d7cc3
+-/
 lemma norm_c₄_eq_one : ‖t.tateCurve.c₄‖ = 1 := by
   have hlt : ‖(48 : K) * t.a₄‖ < 1 := by
     rw [norm_mul]
@@ -133,7 +141,9 @@ lemma norm_c₄_eq_one : ‖t.tateCurve.c₄‖ = 1 := by
 /-- **The discriminant reduces to `0`.** `‖Δ(E_q)‖ < 1`: expanding
 `Δ = -a₆ + a₄² - 64 a₄³ - 432 a₆² + 72 a₄ a₆` (`Discriminant.tateCurve_Δ_eq`), each term has norm
 `< 1` because `‖a₄‖, ‖a₆‖ < 1` and the integer coefficients have norm `≤ 1`; the ultrametric bound
-then gives `‖Δ‖ < 1`. Needs only `(12:K) ≠ 0`. -/
+then gives `‖Δ‖ < 1`. Needs only `(12:K) ≠ 0`.
+@isnad1 id=lt.1h2v.s6.6a568b3ef30a from=translated src=- shape=348ca819 vocab=5284e0aa
+-/
 lemma norm_Δ_lt_one (h12 : (12 : K) ≠ 0) : ‖t.tateCurve.Δ‖ < 1 := by
   have ha₄ := t.norm_a₄_lt_one
   have ha₆ := t.norm_a₆_lt_one h12
@@ -172,7 +182,9 @@ lemma norm_Δ_lt_one (h12 : (12 : K) ≠ 0) : ‖t.tateCurve.Δ‖ < 1 := by
 /-- **Multiplicative reduction of the Tate curve.** The invariant-level criterion: over the
 valuation ring `𝒪` the discriminant reduces to `0` (`‖Δ‖ < 1`, singular special fiber) while `c₄`
 reduces to a nonzero element (`‖c₄‖ = 1`). The singularity is therefore a *node* — the reduction is
-multiplicative, not additive (`(12:K) ≠ 0`). -/
+multiplicative, not additive (`(12:K) ≠ 0`).
+@isnad1 id=and.1h2v.s7.be4246958564 from=translated src=- shape=6ba5e8b3 vocab=6d3c1f68
+-/
 theorem tateCurve_multiplicative_reduction (h12 : (12 : K) ≠ 0) :
     ‖t.tateCurve.c₄‖ = 1 ∧ ‖t.tateCurve.Δ‖ < 1 :=
   ⟨t.norm_c₄_eq_one, t.norm_Δ_lt_one h12⟩
@@ -191,14 +203,31 @@ def nodalCubic (R : Type*) [CommRing R] : WeierstrassCurve R where
   a₄ := 0
   a₆ := 0
 
+/--
+@isnad1 id=eq.0h1v.s4.cea9f3826c37 from=translated src=- shape=5f1ef773 vocab=c866ca90
+-/
 @[simp] lemma nodalCubic_a₁ (R : Type*) [CommRing R] : (nodalCubic R).a₁ = 1 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.6e7f489edcf5 from=translated src=- shape=5f1ef773 vocab=7ff184c8
+-/
 @[simp] lemma nodalCubic_a₂ (R : Type*) [CommRing R] : (nodalCubic R).a₂ = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.940270af5d82 from=translated src=- shape=5f1ef773 vocab=7b94b169
+-/
 @[simp] lemma nodalCubic_a₃ (R : Type*) [CommRing R] : (nodalCubic R).a₃ = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.ee92e0fca5fb from=translated src=- shape=5f1ef773 vocab=a4c24d6a
+-/
 @[simp] lemma nodalCubic_a₄ (R : Type*) [CommRing R] : (nodalCubic R).a₄ = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.2ebe1ca85e4a from=translated src=- shape=5f1ef773 vocab=8c26a5cd
+-/
 @[simp] lemma nodalCubic_a₆ (R : Type*) [CommRing R] : (nodalCubic R).a₆ = 0 := rfl
 
 /-- The special fiber is **singular**: its discriminant vanishes, so `E_q` has (potentially)
-multiplicative — not good — reduction. -/
+multiplicative — not good — reduction.
+@isnad1 id=eq.0h1v.s4.59c665d78342 from=translated src=- shape=5f1ef773 vocab=86abf9d2
+-/
 lemma nodalCubic_Δ (R : Type*) [CommRing R] : (nodalCubic R).Δ = 0 := by
   simp only [WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄, WeierstrassCurve.b₆,
     WeierstrassCurve.b₈, nodalCubic_a₁, nodalCubic_a₂, nodalCubic_a₃, nodalCubic_a₄, nodalCubic_a₆]
@@ -207,7 +236,9 @@ lemma nodalCubic_Δ (R : Type*) [CommRing R] : (nodalCubic R).Δ = 0 := by
 /-- **Split multiplicative reduction.** The tangent cone of the node at `(0,0)` — the lowest-degree
 part `y² + x y` of the affine equation `y² + x y - x³` — factors over the base ring into the two
 distinct *rational* tangent lines `y = 0` and `y = -x`. Rationality of the two branches is exactly
-the statement that the multiplicative reduction is **split**. -/
+the statement that the multiplicative reduction is **split**.
+@isnad1 id=eq.0h3v.s6.4fbb036d46c4 from=translated src=- shape=7d125e46 vocab=a1216c81
+-/
 lemma nodalCubic_tangentCone (R : Type*) [CommRing R] (x y : R) :
     y ^ 2 + x * y = y * (y + x) := by ring
 

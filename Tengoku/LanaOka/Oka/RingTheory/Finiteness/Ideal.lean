@@ -36,7 +36,9 @@ below is the forward lemma applied to `e.symm`.
 -/
 
 /-- Finite generation of an ideal can be checked after transporting it along a ring
-isomorphism. -/
+isomorphism.
+@isnad1 id=fg.1h4v.s8.c77d68b2341f from=translated src=- shape=749611c6 vocab=ffa55be6
+-/
 theorem Ideal.FG.of_map_ringEquiv {A B : Type*} [CommRing A] [CommRing B] (e : A ≃+* B)
     {I : Ideal A} (h : (I.map (e : A →+* B)).FG) : I.FG := by
   have h2 := h.map (e.symm : B →+* A)

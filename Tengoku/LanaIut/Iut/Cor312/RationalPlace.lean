@@ -49,8 +49,14 @@ def residueChar : RationalPlace → ℕ
   | finite p => p
   | infinite => 0
 
+/--
+@isnad1 id=eq.0h1v.s3.51819617e246 from=translated src=- shape=5559387b vocab=1c93b5a8
+-/
 @[simp] lemma residueChar_finite (p : Nat.Primes) : (finite p).residueChar = p := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.bd7f666d6fbe from=translated src=- shape=b0ae1d2b vocab=d8c0714c
+-/
 @[simp] lemma residueChar_infinite : (infinite).residueChar = 0 := rfl
 
 end RationalPlace

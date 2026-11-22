@@ -32,22 +32,34 @@ namespace Uniformization
 /-- The trace of `g ∈ SL(2, ℝ)`. -/
 def trSL (g : SL(2, ℝ)) : ℝ := g 0 0 + g 1 1
 
+/--
+@isnad1 id=eq.0h1v.s8.72b7b000cdc5 from=translated src=- shape=3d4d5f77 vocab=cbbf6f40
+-/
 theorem det_SL (g : SL(2, ℝ)) : g 0 0 * g 1 1 - g 0 1 * g 1 0 = 1 := by
   have := g.2; rwa [Matrix.det_fin_two] at this
 
 /-- The fixed-point polynomial `Q_g(z) = c z² + (d - a) z - b`. -/
 def fixPoly (g : SL(2, ℝ)) (z : ℂ) : ℂ := (g 1 0 : ℂ) * z ^ 2 + (g 1 1 - g 0 0) * z - g 0 1
 
+/--
+@isnad1 id=iff.0h2v.s7.56c9664c52d9 from=translated src=- shape=1330cd7f vocab=e914e085
+-/
 theorem smul_eq_self_iff (g : SL(2, ℝ)) (z : ℍ) : g • z = z ↔ fixPoly g z = 0 := by
   rw [UpperHalfPlane.ext_iff, coe_SL2R_smul, div_eq_iff (denom_SL2R_ne_zero g z.im_pos), fixPoly]
   constructor <;> intro h <;> linear_combination -h
 
+/--
+@isnad1 id=eq.0h2v.s8.65c84481505c from=translated src=- shape=2de00c66 vocab=a64a1e06
+-/
 theorem coe_smul_sub (g : SL(2, ℝ)) (z : ℍ) :
     ((g • z : ℍ) : ℂ) - z = -fixPoly g z / ((g 1 0 : ℂ) * z + g 1 1) := by
   have hd := denom_SL2R_ne_zero g z.im_pos
   rw [coe_SL2R_smul, eq_div_iff hd, fixPoly, sub_mul, div_mul_cancel₀ _ hd]
   ring
 
+/--
+@isnad1 id=ex.2h4v.s7.cbcab605c0fe from=translated src=- shape=f2a9d7ac vocab=067af3bd
+-/
 theorem exists_root_of_disc_neg (a b c d : ℝ) (hdet : a * d - b * c = 1)
     (h : (a + d) ^ 2 < 4) :
     ∃ z : ℂ, 0 < z.im ∧ (c : ℂ) * z ^ 2 + ((d : ℂ) - a) * z - b = 0 := by
@@ -78,13 +90,17 @@ theorem exists_root_of_disc_neg (a b c d : ℝ) (hdet : a * d - b * c = 1)
     field_simp
     ring
 
-/-- If `(tr g)² < 4`, then `g` fixes a point of `ℍ`. -/
+/-- If `(tr g)² < 4`, then `g` fixes a point of `ℍ`.
+@isnad1 id=ex.1h1v.s7.c05fd12dd510 from=translated src=- shape=3f475a59 vocab=3a253f25
+-/
 theorem exists_smul_eq_self_of_trace_sq_lt (g : SL(2, ℝ)) (h : trSL g ^ 2 < 4) :
     ∃ z : ℍ, g • z = z := by
   obtain ⟨z, hz, hQ⟩ := exists_root_of_disc_neg (g 0 0) (g 0 1) (g 1 0) (g 1 1) (det_SL g) h
   exact ⟨⟨z, hz⟩, (smul_eq_self_iff g _).mpr hQ⟩
 
-/-- The quantity `|Q_g(z)|²` dominates `((tr g)² - 4) (Im z)²`. -/
+/-- The quantity `|Q_g(z)|²` dominates `((tr g)² - 4) (Im z)²`.
+@isnad1 id=le.0h2v.s6.4246c05dcffd from=translated src=- shape=8e3035c8 vocab=cefa9276
+-/
 theorem fixPoly_norm_sq_ge (g : SL(2, ℝ)) (z : ℂ) :
     (trSL g ^ 2 - 4) * z.im ^ 2 ≤ normSq (fixPoly g z) := by
   set a := g 0 0; set b := g 0 1; set c := g 1 0; set d := g 1 1
@@ -108,7 +124,9 @@ theorem fixPoly_norm_sq_ge (g : SL(2, ℝ)) (z : ℂ) :
     have hc2 : 0 < 16 * c ^ 2 := by positivity
     nlinarith [sq_nonneg ((2 * c * z.re + d - a) ^ 2 + 4 * c ^ 2 * z.im ^ 2 - ((a + d) ^ 2 - 4))]
 
-/-- **Displacement lower bound.** -/
+/-- **Displacement lower bound.**
+@isnad1 id=le.0h2v.s9.b4799e1628e9 from=translated src=- shape=07d427e5 vocab=0a9cbff9
+-/
 theorem displacement_lower_bound (g : SL(2, ℝ)) (z : ℍ) :
     (trSL g ^ 2 - 4) * normSq ((g • z : ℍ) - (starRingEnd ℂ) (z : ℂ)) ≤
       trSL g ^ 2 * normSq ((g • z : ℍ) - (z : ℂ)) := by
@@ -143,7 +161,9 @@ theorem displacement_lower_bound (g : SL(2, ℝ)) (z : ℍ) :
 def conjFix (η : ℝ) : SL(2, ℝ) :=
   ⟨!![η, -1; 1, 0], by simp [Matrix.det_fin_two]⟩
 
-/-- **The commutator trace for upper triangular `Y`.** -/
+/-- **The commutator trace for upper triangular `Y`.**
+@isnad1 id=eq.1h2v.s10.913ce581c00d from=translated src=- shape=ba02e968 vocab=66f28a78
+-/
 theorem trace_commutator_sub_two (X Y : SL(2, ℝ)) (hY : Y 1 0 = 0) :
     trSL (X * Y * X⁻¹ * Y⁻¹) - 2 = X 1 0 * (X 1 0 * Y 0 1 ^ 2 +
       Y 0 1 * (Y 1 1 - Y 0 0) * (X 1 1 - X 0 0) - X 0 1 * (Y 1 1 - Y 0 0) ^ 2) := by
@@ -157,36 +177,65 @@ theorem trace_commutator_sub_two (X Y : SL(2, ℝ)) (hY : Y 1 0 = 0) :
 
 /-! ### Traces, conjugation and upper triangular matrices -/
 
+/--
+@isnad1 id=eq.0h1v.s6.2bacf4a35e36 from=translated src=- shape=d26050cd vocab=b446d328
+-/
 theorem trSL_eq_trace (g : SL(2, ℝ)) : trSL g = Matrix.trace (g : Matrix (Fin 2) (Fin 2) ℝ) := by
   simp [trSL, Matrix.trace_fin_two]
 
+/--
+@isnad1 id=eq.0h2v.s8.24c581b30cd1 from=translated src=- shape=833eca6d vocab=8dea281b
+-/
 theorem trSL_mul_comm (g h : SL(2, ℝ)) : trSL (g * h) = trSL (h * g) := by
   rw [trSL_eq_trace, trSL_eq_trace, Matrix.SpecialLinearGroup.coe_mul,
     Matrix.SpecialLinearGroup.coe_mul, Matrix.trace_mul_comm]
 
+/--
+@isnad1 id=eq.0h2v.s8.113e8764ef20 from=translated src=- shape=4fd3b455 vocab=9269d931
+-/
 theorem trSL_conj (M g : SL(2, ℝ)) : trSL (M⁻¹ * g * M) = trSL g := by
   rw [trSL_mul_comm, ← mul_assoc, mul_inv_cancel, one_mul]
 
+/--
+@isnad1 id=eq.0h1v.s6.71c886b9d48f from=translated src=- shape=684a6fb0 vocab=e61c6963
+-/
 theorem trSL_inv (g : SL(2, ℝ)) : trSL g⁻¹ = trSL g := by
   simp [trSL, Matrix.SpecialLinearGroup.coe_inv, Matrix.adjugate_fin_two]; ring
 
+/--
+@isnad1 id=eq.0h1v.s8.ccce55e064b9 from=translated src=- shape=1eb519bb vocab=d533e3ea
+-/
 theorem inv_apply_zero_zero (g : SL(2, ℝ)) : g⁻¹ 0 0 = g 1 1 := by
   simp [Matrix.SpecialLinearGroup.coe_inv, Matrix.adjugate_fin_two]
 
+/--
+@isnad1 id=eq.0h1v.s8.3157235e8185 from=translated src=- shape=04f15318 vocab=626cf30c
+-/
 theorem inv_apply_one_zero (g : SL(2, ℝ)) : g⁻¹ 1 0 = -g 1 0 := by
   simp [Matrix.SpecialLinearGroup.coe_inv, Matrix.adjugate_fin_two]
 
+/--
+@isnad1 id=eq.0h1v.s8.855c7ba65475 from=translated src=- shape=1eb519bb vocab=d533e3ea
+-/
 theorem inv_apply_one_one (g : SL(2, ℝ)) : g⁻¹ 1 1 = g 0 0 := by
   simp [Matrix.SpecialLinearGroup.coe_inv, Matrix.adjugate_fin_two]
 
+/--
+@isnad1 id=eq.0h1v.s8.5003095c7e5e from=translated src=- shape=04f15318 vocab=626cf30c
+-/
 theorem inv_apply_zero_one (g : SL(2, ℝ)) : g⁻¹ 0 1 = -g 0 1 := by
   simp [Matrix.SpecialLinearGroup.coe_inv, Matrix.adjugate_fin_two]
 
+/--
+@isnad1 id=eq.0h4v.s9.17ded63c8aaf from=translated src=- shape=e9797867 vocab=11d68106
+-/
 theorem mul_apply_SL (g h : SL(2, ℝ)) (i j : Fin 2) :
     (g * h) i j = g i 0 * h 0 j + g i 1 * h 1 j := by
   simp [Matrix.SpecialLinearGroup.coe_mul, Matrix.mul_apply, Fin.sum_univ_two]
 
-/-- The commutator `X⁻¹ Y⁻¹ X Y` of two upper triangular elements is upper unipotent. -/
+/-- The commutator `X⁻¹ Y⁻¹ X Y` of two upper triangular elements is upper unipotent.
+@isnad1 id=and.2h2v.s10.4c8a3524dc88 from=translated src=- shape=6985fd04 vocab=c9150b49
+-/
 theorem commutator_unipotent {X Y : SL(2, ℝ)} (hX : X 1 0 = 0) (hY : Y 1 0 = 0) :
     (X⁻¹ * Y⁻¹ * X * Y) 1 0 = 0 ∧ (X⁻¹ * Y⁻¹ * X * Y) 0 0 = 1 ∧
       (X⁻¹ * Y⁻¹ * X * Y) 1 1 = 1 := by
@@ -200,7 +249,9 @@ theorem commutator_unipotent {X Y : SL(2, ℝ)} (hX : X 1 0 = 0) (hY : Y 1 0 = 0
   · linear_combination (Y 1 1 * Y 0 0) * dX + dY
 
 /-- Conjugating an upper unipotent element by an upper triangular one multiplies its upper right
-entry by the square of the upper left entry. -/
+entry by the square of the upper left entry.
+@isnad1 id=and.2h2v.s11.9694d8e71510 from=translated src=- shape=8927d906 vocab=d82fc3ef
+-/
 theorem conj_unipotent {X V : SL(2, ℝ)} (hX : X 1 0 = 0) (hV : V 1 0 = 0 ∧ V 0 0 = 1 ∧ V 1 1 = 1) :
     (X * V * X⁻¹) 1 0 = 0 ∧ (X * V * X⁻¹) 0 0 = 1 ∧ (X * V * X⁻¹) 1 1 = 1 ∧
       (X * V * X⁻¹) 0 1 = X 0 0 ^ 2 * V 0 1 := by
@@ -214,6 +265,9 @@ theorem conj_unipotent {X V : SL(2, ℝ)} (hX : X 1 0 = 0) (hV : V 1 0 = 0 ∧ V
   · linear_combination dX
   · ring
 
+/--
+@isnad1 id=and.2h3v.s11.0e03eecda412 from=translated src=- shape=0b2575f8 vocab=d82fc3ef
+-/
 theorem pow_conj_unipotent {X V : SL(2, ℝ)} (hX : X 1 0 = 0)
     (hV : V 1 0 = 0 ∧ V 0 0 = 1 ∧ V 1 1 = 1) (n : ℕ) :
     (X ^ n * V * (X ^ n)⁻¹) 1 0 = 0 ∧ (X ^ n * V * (X ^ n)⁻¹) 0 0 = 1 ∧
@@ -228,11 +282,16 @@ theorem pow_conj_unipotent {X V : SL(2, ℝ)} (hX : X 1 0 = 0)
     refine ⟨h1, h2, h3, ?_⟩
     rw [h4, ih.2.2.2]; ring
 
+/--
+@isnad1 id=eq.1h1v.s9.443c6ad62666 from=translated src=- shape=988a6265 vocab=06727af3
+-/
 theorem coe_unipotent_smul_I {V : SL(2, ℝ)} (hV : V 1 0 = 0 ∧ V 0 0 = 1 ∧ V 1 1 = 1) :
     ((V • UpperHalfPlane.I : ℍ) : ℂ) = I + V 0 1 := by
   rw [coe_SL2R_smul, hV.1, hV.2.1, hV.2.2]; simp
 
-/-- A real fixed point of a non-elliptic element with nonzero lower-left entry. -/
+/-- A real fixed point of a non-elliptic element with nonzero lower-left entry.
+@isnad1 id=ex.2h1v.s9.54cb795e6c3e from=translated src=- shape=cd4e5e04 vocab=1815cb54
+-/
 theorem exists_real_fix (g : SL(2, ℝ)) (h : 4 ≤ trSL g ^ 2) (hc : g 1 0 ≠ 0) :
     ∃ η : ℝ, g 1 0 * η ^ 2 + (g 1 1 - g 0 0) * η - g 0 1 = 0 := by
   set a := g 0 0; set b := g 0 1; set c := g 1 0; set d := g 1 1

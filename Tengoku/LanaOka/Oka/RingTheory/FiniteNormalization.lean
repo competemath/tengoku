@@ -49,7 +49,9 @@ variable (k D : Type*) [Field k] [CharZero k] [CommRing D] [IsDomain D] [Algebra
 
 include k in
 /-- **The normalisation of a domain of finite type over a field of characteristic zero is
-finite.** -/
+finite.**
+@isnad1 id=finite.0h2v.s10.af64205b3bc2 from=translated src=- shape=799b9463 vocab=c95e1df9
+-/
 theorem Algebra.FiniteType.finite_integralClosure :
     Module.Finite D (integralClosure D (FractionRing D)) := by
   obtain ⟨s, g, hginj, hgfin⟩ := exists_finite_inj_algHom_of_fg k D
@@ -85,7 +87,9 @@ section Dimension
 
 variable {R S : Type*} [CommRing R] [CommRing S] [Algebra R S]
 
-/-- The Krull dimension does not increase along an integral extension. -/
+/-- The Krull dimension does not increase along an integral extension.
+@isnad1 id=le.0h2v.s5.87bbd3c6d390 from=translated src=- shape=35d53890 vocab=97bd58c3
+-/
 theorem _root_.Tengoku.LanaOka.ringKrullDim_le_of_isIntegral [Algebra.IsIntegral R S] :
     ringKrullDim S ≤ ringKrullDim R := by
   refine Order.krullDim_le_of_strictMono (PrimeSpectrum.comap (algebraMap R S)) fun p q hpq ↦ ?_
@@ -113,11 +117,16 @@ def _root_.Tengoku.LanaOka.conductorIdeal : Ideal R where
 
 variable {R S}
 
+/--
+@isnad1 id=iff.0h3v.s7.e1e6662cb895 from=translated src=- shape=9194eb85 vocab=0a59dd55
+-/
 lemma _root_.Tengoku.LanaOka.mem_conductorIdeal_iff {a : R} :
     a ∈ conductorIdeal R S ↔ ∀ s : S, ∃ r, algebraMap R S r = algebraMap R S a * s :=
   Iff.rfl
 
-/-- The conductor is an ideal of `S`. -/
+/-- The conductor is an ideal of `S`.
+@isnad1 id=ex.1h4v.s7.bda7bb654a27 from=translated src=- shape=b5d640bf vocab=0a59dd55
+-/
 lemma _root_.Tengoku.LanaOka.exists_mem_conductorIdeal {i : R} (hi : i ∈ conductorIdeal R S) (s : S) :
     ∃ r ∈ conductorIdeal R S, algebraMap R S r = algebraMap R S i * s := by
   obtain ⟨r, hr⟩ := hi s
@@ -135,6 +144,9 @@ def _root_.Tengoku.LanaOka.IsFiniteProductOfNormalDomains (R : Type u) [CommRing
   ∃ (ι : Type u) (_ : Finite ι) (D : ι → Type u) (_ : ∀ i, CommRing (D i))
     (_ : ∀ i, IsDomain (D i)) (_ : ∀ i, IsIntegrallyClosed (D i)), Nonempty (R ≃+* ∀ i, D i)
 
+/--
+@isnad1 id=isfinite.1h3v.s5.d7889ce0acf4 from=translated src=- shape=96a879ac vocab=0511d280
+-/
 lemma Tengoku.LanaOka.IsFiniteProductOfNormalDomains.of_ringEquiv {R R' : Type u} [CommRing R] [CommRing R']
     (e : R ≃+* R') (h : IsFiniteProductOfNormalDomains R') : IsFiniteProductOfNormalDomains R := by
   obtain ⟨ι, hι, D, h₁, h₂, h₃, ⟨e'⟩⟩ := h
@@ -150,12 +162,18 @@ minimal primes `p`, of the integral closures of `A ⧸ p` in their fraction fiel
 abbrev _root_.Tengoku.LanaOka.Normalization : Type u :=
   (p : minimalPrimes A) → integralClosure (A ⧸ p.1) (FractionRing (A ⧸ p.1))
 
+/--
+@isnad1 id=eq.0h3v.s16.6ce4a54af310 from=translated src=- shape=1e29f987 vocab=bc414a0b
+-/
 lemma _root_.Tengoku.LanaOka.normalization_apply_coe (a : A) (p : minimalPrimes A) :
     ((algebraMap A (Normalization A) a p : integralClosure (A ⧸ p.1) (FractionRing (A ⧸ p.1))) :
       FractionRing (A ⧸ p.1)) = algebraMap (A ⧸ p.1) (FractionRing (A ⧸ p.1))
         (Ideal.Quotient.mk p.1 a) :=
   rfl
 
+/--
+@isnad1 id=isfinite.0h1v.s13.07d37bae070a from=translated src=- shape=9499e9bc vocab=d1f9ba4e
+-/
 lemma _root_.Tengoku.LanaOka.isFiniteProductOfNormalDomains_normalization [IsNoetherianRing A] :
     IsFiniteProductOfNormalDomains (Normalization A) :=
   ⟨minimalPrimes A, Set.finite_coe_iff.2 (minimalPrimes.finite_of_isNoetherianRing A), _,
@@ -163,6 +181,9 @@ lemma _root_.Tengoku.LanaOka.isFiniteProductOfNormalDomains_normalization [IsNoe
     fun p ↦ integralClosure.isIntegrallyClosedOfFiniteExtension (FractionRing (A ⧸ p.1)),
     ⟨RingEquiv.refl _⟩⟩
 
+/--
+@isnad1 id=injectiv.0h1v.s15.bd8aab5e078c from=translated src=- shape=16f61887 vocab=288995c9
+-/
 lemma _root_.Tengoku.LanaOka.injective_algebraMap_normalization [IsReduced A] :
     Function.Injective (algebraMap A (Normalization A)) := by
   rw [injective_iff_map_eq_zero]
@@ -184,6 +205,9 @@ lemma _root_.Tengoku.LanaOka.injective_algebraMap_normalization [IsReduced A] :
 variable (k : Type*) [Field k] [CharZero k] [Algebra k A] [Algebra.FiniteType k A]
 
 include k in
+/--
+@isnad1 id=finite.0h2v.s16.7608998b811e from=translated src=- shape=903b7194 vocab=1433ff8a
+-/
 lemma _root_.Tengoku.LanaOka.finite_normalization :
     Module.Finite A (Normalization A) := by
   haveI : IsNoetherianRing A := Algebra.FiniteType.isNoetherianRing k A
@@ -198,7 +222,9 @@ lemma _root_.Tengoku.LanaOka.finite_normalization :
   exact Module.Finite.pi
 
 include k in
-/-- **The conductor of `A` in its normalisation is contained in no minimal prime.** -/
+/-- **The conductor of `A` in its normalisation is contained in no minimal prime.**
+@isnad1 id=not.1h3v.s15.d3617d8ad462 from=translated src=- shape=c00332b1 vocab=7ffc51a3
+-/
 lemma _root_.Tengoku.LanaOka.not_conductorIdeal_le (p : Ideal A) (hp : p ∈ minimalPrimes A) :
     ¬ conductorIdeal A (Normalization A) ≤ p := by
   classical

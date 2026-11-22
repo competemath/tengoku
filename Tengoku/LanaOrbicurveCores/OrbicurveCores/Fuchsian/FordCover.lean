@@ -26,7 +26,9 @@ open scoped MatrixGroups ENNReal NNReal
 
 namespace OrbicurveCores.Fuchsian
 
-/-- The strip `a ≤ Re z ≤ b`, `Im z ≥ η > 0`, has finite hyperbolic area. -/
+/-- The strip `a ≤ Re z ≤ b`, `Im z ≥ η > 0`, has finite hyperbolic area.
+@isnad1 id=lt.1h3v.s6.bb21168a78f0 from=translated src=- shape=3b5e83ae vocab=2738f8dc
+-/
 lemma volume_strip_lt_top (a b η : ℝ) (hη : 0 < η) :
     volume {z : ℍ | z.re ∈ Icc a b ∧ η ≤ z.im} < ∞ := by
   rw [volume_eq_lintegral]

@@ -53,7 +53,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [FiniteDimension
 
 /-- **Holomorphy of parametric circle integrals.** If `G : E → ℂ → ℂ` is jointly continuous on
 `U × sphere 0 r` and holomorphic on `U` in the first variable, then `x ↦ ∮ ζ in C(0, r), G x ζ`
-is holomorphic on `U`. -/
+is holomorphic on `U`.
+@isnad1 id=differen.4h4v.s8.cbbb7d7e9e17 from=translated src=- shape=e0fa493f vocab=ad5aac63
+-/
 theorem _root_.Tengoku.LanaOka.differentiableOn_circleIntegral {U : Set E} (hU : IsOpen U) {r : ℝ} (hr : 0 < r)
     {G : E → ℂ → ℂ} (hdiff : ∀ ζ ∈ sphere (0 : ℂ) r, DifferentiableOn ℂ (G · ζ) U)
     (hcont : ContinuousOn (Function.uncurry G) (U ×ˢ sphere (0 : ℂ) r)) :
@@ -75,7 +77,9 @@ section OneVariable
 
 /-- **Riemann extension theorem in one variable**: a holomorphic function off a set `S` of
 isolated points in an open set `D ⊆ ℂ`, bounded near every point of `D`, extends to a holomorphic
-function on `D`. -/
+function on `D`.
+@isnad1 id=ex.4h3v.s8.65fa68926bb6 from=translated src=- shape=8ff05bec vocab=0ed081e3
+-/
 theorem _root_.Tengoku.LanaOka.exists_differentiableOn_eqOn_of_isolated {D S : Set ℂ} (hD : IsOpen D)
     (hS : ∀ p ∈ D, ∀ᶠ t in 𝓝[≠] p, t ∉ S) {h : ℂ → ℂ} (hh : DifferentiableOn ℂ h (D \ S))
     (hb : ∀ p ∈ D, IsBoundedUnder (· ≤ ·) (𝓝[≠] p) (fun t ↦ ‖h t‖)) :
@@ -130,7 +134,9 @@ section Density
 variable {X : Type*} [TopologicalSpace X] {U : Set X} {g : X → ℂ}
 
 /-- If the zero set of `g` in the open set `U` has empty interior, its complement is dense in
-`U`. -/
+`U`.
+@isnad1 id=le.2h3v.s6.1aa8c5795076 from=translated src=- shape=2f5375df vocab=56ad9a02
+-/
 theorem _root_.Tengoku.LanaOka.subset_closure_diff_zero (hU : IsOpen U) (hZ : interior (U ∩ g ⁻¹' {0}) = ∅) :
     U ⊆ closure (U \ g ⁻¹' {0}) := by
   intro z hz
@@ -144,14 +150,18 @@ theorem _root_.Tengoku.LanaOka.subset_closure_diff_zero (hU : IsOpen U) (hZ : in
   simp [hZ] at this
 
 /-- Two functions continuous on the open set `U` which agree off the zero set of `g` agree on
-`U`, provided this zero set has empty interior. -/
+`U`, provided this zero set has empty interior.
+@isnad1 id=eqon.5h6v.s6.92de218830eb from=translated src=- shape=50d44828 vocab=44ba0a6d
+-/
 theorem Set.EqOn.of_eqOn_diff_zero {Y : Type*} [TopologicalSpace Y] [T2Space Y] {F₁ F₂ : X → Y}
     (hU : IsOpen U) (hZ : interior (U ∩ g ⁻¹' {0}) = ∅) (h₁ : ContinuousOn F₁ U)
     (h₂ : ContinuousOn F₂ U) (h : EqOn F₁ F₂ (U \ g ⁻¹' {0})) : EqOn F₁ F₂ U :=
   h.of_subset_closure h₁ h₂ sdiff_subset (subset_closure_diff_zero hU hZ)
 
 /-- If the zero sets of `g₁` and `g₂` in `U` have empty interior and `g₁` is
-continuous on `U`, then the zero set of `g₁ * g₂` in `U` has empty interior. -/
+continuous on `U`, then the zero set of `g₁ * g₂` in `U` has empty interior.
+@isnad1 id=eq.3h4v.s7.bfb2c5635c67 from=translated src=- shape=bd9d4427 vocab=5084c3f5
+-/
 theorem _root_.Tengoku.LanaOka.interior_inter_preimage_zero_mul_eq_empty {g₁ g₂ : X → ℂ}
     (hg₁ : ContinuousOn g₁ U) (h₁ : interior (U ∩ g₁ ⁻¹' {0}) = ∅)
     (h₂ : interior (U ∩ g₂ ⁻¹' {0}) = ∅) : interior (U ∩ (g₁ * g₂) ⁻¹' {0}) = ∅ := by
@@ -170,7 +180,9 @@ theorem _root_.Tengoku.LanaOka.interior_inter_preimage_zero_mul_eq_empty {g₁ g
   exact (eq_empty_iff_forall_notMem.mp hO₂) w ⟨hw, hg⟩
 
 /-- If the zero sets of finitely many functions `g i`, continuous on `U`, have empty
-interior in `U`, then so has the zero set of their product. -/
+interior in `U`, then so has the zero set of their product.
+@isnad1 id=eq.2h5v.s7.4f5f862abd92 from=translated src=- shape=03eb005a vocab=0df7dd47
+-/
 theorem _root_.Tengoku.LanaOka.interior_inter_preimage_zero_prod_eq_empty {ι : Type*} (s : Finset ι) {g : ι → X → ℂ}
     (hg : ∀ i ∈ s, ContinuousOn (g i) U)
     (hZ : ∀ i ∈ s, interior (U ∩ g i ⁻¹' {0}) = ∅) :
@@ -192,7 +204,9 @@ section SeveralVariables
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {U : Set E} {g : E → ℂ}
 
 /-- If `U` is preconnected and `g` is analytic on `U` and not identically zero, the zero set of `g`
-in `U` has empty interior. -/
+in `U` has empty interior.
+@isnad1 id=eq.4h4v.s6.671114392f88 from=translated src=- shape=5f1910d5 vocab=0ae5f0fb
+-/
 theorem AnalyticOnNhd.interior_inter_preimage_zero_eq_empty (hg : AnalyticOnNhd ℂ g U)
     (hU : IsPreconnected U) {z : E} (hz : z ∈ U) (hgz : g z ≠ 0) :
     interior (U ∩ g ⁻¹' {0}) = ∅ := by
@@ -337,7 +351,9 @@ private lemma exists_local_extension (hU : IsOpen U) (hg : DifferentiableOn ℂ 
 
 /-- **Riemann extension theorem.** Let `U` be an open subset of a finite-dimensional complex space
 and `g` holomorphic on `U` whose zero set in `U` has empty interior. A function holomorphic on
-`U \ g ⁻¹' {0}` and bounded near every point of `U` extends to a holomorphic function on `U`. -/
+`U \ g ⁻¹' {0}` and bounded near every point of `U` extends to a holomorphic function on `U`.
+@isnad1 id=ex.5h4v.s8.74cbdc7cfd87 from=translated src=- shape=e431baff vocab=80fb2d16
+-/
 theorem _root_.Tengoku.LanaOka.exists_differentiableOn_eqOn_of_isBoundedUnder (hU : IsOpen U)
     (hg : DifferentiableOn ℂ g U) (hZ : interior (U ∩ g ⁻¹' {0}) = ∅) {f : E → ℂ}
     (hf : DifferentiableOn ℂ f (U \ g ⁻¹' {0}))
@@ -368,7 +384,9 @@ theorem _root_.Tengoku.LanaOka.exists_differentiableOn_eqOn_of_isBoundedUnder (h
       nhdsWithin_le_nhds).limUnder_eq
 
 /-- A function continuous on `U` and holomorphic off the zero set of `g` is holomorphic on `U`,
-provided `g` is holomorphic on `U` and its zero set in `U` has empty interior. -/
+provided `g` is holomorphic on `U` and its zero set in `U` has empty interior.
+@isnad1 id=differen.5h4v.s8.98b385c2caff from=translated src=- shape=66006e39 vocab=191e4cfa
+-/
 theorem DifferentiableOn.of_continuousOn_of_differentiableOn_diff_zero (hU : IsOpen U)
     (hg : DifferentiableOn ℂ g U) (hZ : interior (U ∩ g ⁻¹' {0}) = ∅) {f : E → ℂ}
     (hfc : ContinuousOn f U) (hf : DifferentiableOn ℂ f (U \ g ⁻¹' {0})) :
@@ -379,7 +397,9 @@ theorem DifferentiableOn.of_continuousOn_of_differentiableOn_diff_zero (hU : IsO
   exact hFd.congr (EqOn.of_eqOn_diff_zero hU hZ hfc hFd.continuousOn hFf.symm)
 
 /-- If `U` is open and preconnected, `g` is holomorphic on `U` and the zero set of `g` in `U` has
-empty interior, then its complement `U \ g ⁻¹' {0}` is preconnected. -/
+empty interior, then its complement `U \ g ⁻¹' {0}` is preconnected.
+@isnad1 id=isprecon.4h3v.s7.94030b2ec6fc from=translated src=- shape=4f211b54 vocab=103ee0e5
+-/
 theorem IsPreconnected.diff_zero (hU : IsOpen U) (hUc : IsPreconnected U)
     (hg : DifferentiableOn ℂ g U) (hZ : interior (U ∩ g ⁻¹' {0}) = ∅) :
     IsPreconnected (U \ g ⁻¹' {0}) := by
@@ -440,7 +460,9 @@ theorem IsPreconnected.diff_zero (hU : IsOpen U) (hUc : IsPreconnected U)
     norm_num at this
 
 /-- If `U` is open and connected, `g` is holomorphic on `U` and the zero set of `g` in `U` has
-empty interior, then its complement `U \ g ⁻¹' {0}` is connected. -/
+empty interior, then its complement `U \ g ⁻¹' {0}` is connected.
+@isnad1 id=isconnec.4h3v.s7.105302a1538a from=translated src=- shape=4f211b54 vocab=49069a69
+-/
 theorem IsConnected.diff_zero (hU : IsOpen U) (hUc : IsConnected U)
     (hg : DifferentiableOn ℂ g U) (hZ : interior (U ∩ g ⁻¹' {0}) = ∅) :
     IsConnected (U \ g ⁻¹' {0}) := by
@@ -450,7 +472,9 @@ theorem IsConnected.diff_zero (hU : IsOpen U) (hUc : IsConnected U)
 
 /-- If `U` is open and preconnected and `g i`, `i ∈ s`, are finitely many functions holomorphic on
 `U` whose zero sets in `U` have empty interior, then `U` minus the union of these zero sets is
-preconnected. -/
+preconnected.
+@isnad1 id=isprecon.4h5v.s8.044d746bb15b from=translated src=- shape=228a597c vocab=f737110b
+-/
 theorem IsPreconnected.diff_biUnion_zero {ι : Type*} (s : Finset ι) {g : ι → E → ℂ}
     (hU : IsOpen U) (hUc : IsPreconnected U) (hg : ∀ i ∈ s, DifferentiableOn ℂ (g i) U)
     (hZ : ∀ i ∈ s, interior (U ∩ g i ⁻¹' {0}) = ∅) :

@@ -46,23 +46,35 @@ def prodCoord (x : E × (Fin r → ℂ)) : ℂ := ∏ i, x.2 i
 noncomputable def rotMap (M : ℕ) (a : Fin r → ℤ) (x : E × (Fin r → ℂ)) : E × (Fin r → ℂ) :=
   (x.1, fun i ↦ Complex.exp (2 * Real.pi * Complex.I * a i / M) * x.2 i)
 
+/--
+@isnad1 id=differen.0h3v.s8.b6ed89848b0d from=translated src=- shape=7267927b vocab=01fca920
+-/
 @[fun_prop]
 lemma differentiable_powMap (M : ℕ) : Differentiable ℂ (powMap (E := E) (r := r) M) := by
   unfold powMap
   fun_prop
 
+/--
+@isnad1 id=differen.0h2v.s7.68491497d203 from=translated src=- shape=0c6636bc vocab=b56931c4
+-/
 @[fun_prop]
 lemma differentiable_prodCoord : Differentiable ℂ (prodCoord (E := E) (r := r)) := by
   unfold prodCoord
   fun_prop
 
 omit [NormedSpace ℂ E] in
+/--
+@isnad1 id=continuo.0h4v.s6.351c4f821007 from=translated src=- shape=f9981552 vocab=9545dcec
+-/
 @[fun_prop]
 lemma continuous_rotMap (M : ℕ) (a : Fin r → ℤ) : Continuous (rotMap (E := E) M a) := by
   unfold rotMap
   fun_prop
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] in
+/--
+@isnad1 id=eq.1h5v.s5.2de963111cab from=translated src=- shape=c41cf95f vocab=974746c0
+-/
 lemma powMap_rotMap {M : ℕ} (hM : M ≠ 0) (a : Fin r → ℤ) (x : E × (Fin r → ℂ)) :
     powMap M (rotMap M a x) = powMap M x := by
   refine Prod.ext rfl (funext fun i ↦ ?_)
@@ -70,7 +82,9 @@ lemma powMap_rotMap {M : ℕ} (hM : M ≠ 0) (a : Fin r → ℤ) (x : E × (Fin 
   rw [show (M : ℂ) * (2 * Real.pi * Complex.I * a i / M) = a i * (2 * Real.pi * Complex.I) by
     field_simp, Complex.exp_int_mul_two_pi_mul_I, one_mul]
 
-/-- The divisor `u₁ ⋯ uᵣ = 0` has empty interior in any subset of `E × ℂʳ`. -/
+/-- The divisor `u₁ ⋯ uᵣ = 0` has empty interior in any subset of `E × ℂʳ`.
+@isnad1 id=eq.0h3v.s7.d4113dc4333f from=translated src=- shape=bec3a673 vocab=c4f2f586
+-/
 lemma interior_inter_preimage_prod_eq_empty (U : Set (E × (Fin r → ℂ))) :
     interior (U ∩ prodCoord ⁻¹' {0}) = ∅ := by
   have hi (i : Fin r) : interior (univ ∩ (fun x : E × (Fin r → ℂ) ↦ x.2 i) ⁻¹' {0}) = ∅ :=
@@ -86,7 +100,9 @@ variable [FiniteDimensional ℂ E]
 
 /-- **Riemann extension on a Kummer covering along a normal crossings divisor.** A holomorphic
 function on `κ⁻¹(V) \ {u₁ ⋯ uᵣ = 0}` which is bounded near every point of `κ⁻¹(V)` extends
-holomorphically to `κ⁻¹(V)`. -/
+holomorphically to `κ⁻¹(V)`.
+@isnad1 id=ex.3h5v.s9.1bdb7c47a8ef from=translated src=- shape=94a1dd19 vocab=d0fb152d
+-/
 theorem exists_differentiableOn_powMap_eqOn (M : ℕ) {V : Set (E × (Fin r → ℂ))} (hV : IsOpen V)
     {f : E × (Fin r → ℂ) → ℂ}
     (hf : DifferentiableOn ℂ f (powMap M ⁻¹' V \ prodCoord ⁻¹' {0}))
@@ -101,7 +117,9 @@ theorem exists_differentiableOn_powMap_eqOn (M : ℕ) {V : Set (E × (Fin r → 
 omit [FiniteDimensional ℂ E] in
 /-- **Invariance of the extension**: if `F` is continuous on `κ⁻¹(V)` and invariant under a
 multiplication of the coordinates by roots of unity off `u₁ ⋯ uᵣ = 0`, then it is invariant on
-`κ⁻¹(V)`. -/
+`κ⁻¹(V)`.
+@isnad1 id=eqon.4h6v.s8.77aed2c828a3 from=translated src=- shape=d53d68f1 vocab=734682b6
+-/
 theorem eqOn_comp_rotMap {M : ℕ} (hM : M ≠ 0) (a : Fin r → ℤ) {V : Set (E × (Fin r → ℂ))}
     (hV : IsOpen V) {F : E × (Fin r → ℂ) → ℂ} (hF : ContinuousOn F (powMap M ⁻¹' V))
     (h : EqOn (F ∘ rotMap M a) F (powMap M ⁻¹' V \ prodCoord ⁻¹' {0})) :

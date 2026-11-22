@@ -29,7 +29,9 @@ namespace TopCat.Sheaf
 
 variable {X : TopCat.{u}}
 
-/-- The map on cohomology induced by a finite sum of morphisms is the sum of the maps. -/
+/-- The map on cohomology induced by a finite sum of morphisms is the sum of the maps.
+@isnad1 id=eq.0h8v.s11.08d4997e1e46 from=translated src=- shape=e3767e3f vocab=5038ad9e
+-/
 lemma H.map_sum_apply {F G : AbSheaf X} {ι : Type*} (s : Finset ι) (φ : ι → (F ⟶ G)) {n : ℕ}
     (x : H F n) : H.map (∑ i ∈ s, φ i) n x = ∑ i ∈ s, H.map (φ i) n x := by
   classical
@@ -37,14 +39,18 @@ lemma H.map_sum_apply {F G : AbSheaf X} {ι : Type*} (s : Finset ι) (φ : ι �
   | empty => simp [H.map_zero_apply]
   | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, H.map_add_apply, ih]
 
-/-- A retract of a sheaf with vanishing `Hⁿ` has vanishing `Hⁿ`. -/
+/-- A retract of a sheaf with vanishing `Hⁿ` has vanishing `Hⁿ`.
+@isnad1 id=subsingl.1h6v.s9.2823f75288a5 from=translated src=- shape=ce351cbe vocab=f892a379
+-/
 lemma subsingleton_H_of_retract {F G : AbSheaf X} (i : F ⟶ G) (r : G ⟶ F) (h : i ≫ r = 𝟙 F)
     (n : ℕ) [Subsingleton (H G n)] : Subsingleton (H F n) := by
   refine subsingleton_of_forall_eq 0 fun x => ?_
   rw [← H.map_id_apply x, ← h, H.map_comp_apply, Subsingleton.elim (H.map i n x) 0, map_zero]
 
 /-- If `𝟙 F = ∑_{i ∈ s} pᵢ ≫ eᵢ` with `pᵢ : F ⟶ Aᵢ` and `Hⁿ(Aᵢ) = 0` for `i ∈ s`, then
-`Hⁿ(F) = 0`. -/
+`Hⁿ(F) = 0`.
+@isnad1 id=subsingl.2h8v.s10.9ae98f232c95 from=translated src=- shape=aea0fe81 vocab=e2139653
+-/
 lemma subsingleton_H_of_sum {F : AbSheaf X} {ι : Type*} (s : Finset ι) (A : ι → AbSheaf X)
     (p : ∀ i, F ⟶ A i) (e : ∀ i, A i ⟶ F) (h : ∑ i ∈ s, p i ≫ e i = 𝟙 F) (n : ℕ)
     (hA : ∀ i ∈ s, Subsingleton (H (A i) n)) : Subsingleton (H F n) := by
@@ -55,7 +61,9 @@ lemma subsingleton_H_of_sum {F : AbSheaf X} {ι : Type*} (s : Finset ι) (A : ι
   rw [H.map_comp_apply, Subsingleton.elim (H.map (p i) n x) 0, map_zero]
 
 /-- **Dimension shifting.** For a short exact sequence `0 → S.X₁ → S.X₂ → S.X₃ → 0` of abelian
-sheaves, if `Hⁿ(S.X₂) = 0` and `Hⁿ⁺¹(S.X₁) = 0`, then `Hⁿ(S.X₃) = 0`. -/
+sheaves, if `Hⁿ(S.X₂) = 0` and `Hⁿ⁺¹(S.X₁) = 0`, then `Hⁿ(S.X₃) = 0`.
+@isnad1 id=subsingl.1h3v.s10.f6065ea554f7 from=translated src=- shape=3eed3e0a vocab=c244349e
+-/
 lemma subsingleton_H_X₃_of_shortExact {S : ShortComplex (AbSheaf X)} (hS : S.ShortExact)
     (n : ℕ) [Subsingleton (H S.X₂ n)] [Subsingleton (H S.X₁ (n + 1))] :
     Subsingleton (H S.X₃ n) := by
@@ -63,7 +71,9 @@ lemma subsingleton_H_X₃_of_shortExact {S : ShortComplex (AbSheaf X)} (hS : S.S
   obtain ⟨y, hy⟩ := (H.exact₃ hS n (n + 1) rfl x).1 (Subsingleton.elim _ _)
   rw [← hy, Subsingleton.elim y 0, map_zero]
 
-/-- Isomorphic sheaves have simultaneously vanishing cohomology. -/
+/-- Isomorphic sheaves have simultaneously vanishing cohomology.
+@isnad1 id=subsingl.0h5v.s6.71a140461a71 from=translated src=- shape=af7dc7ed vocab=d54a0944
+-/
 lemma subsingleton_H_of_iso {F G : AbSheaf X} (e : F ≅ G) (n : ℕ) [Subsingleton (H G n)] :
     Subsingleton (H F n) :=
   (H.addEquivOfIso e n).toEquiv.subsingleton

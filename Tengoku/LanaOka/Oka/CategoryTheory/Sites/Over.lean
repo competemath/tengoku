@@ -71,7 +71,9 @@ covering sieve of the twice-sliced topology `(J.over X).over Y` to a covering si
 Not proved directly. `CategoryTheory.Adjunction.isCocontinuous_iff_coverPreserving` turns
 cocontinuity of one adjoint into cover preservation of the other, and
 `CategoryTheory.Over.iteratedSliceBackward` is cocontinuous because it is half of an
-equivalence. -/
+equivalence.
+@isnad1 id=coverpre.0h4v.s6.55032a060c8f from=translated src=- shape=843ad071 vocab=2aaccb06
+-/
 lemma coverPreserving_iteratedSliceForward {X : C} (Y : Over X) :
     CoverPreserving ((J.over X).over Y) (J.over Y.left) Y.iteratedSliceForward :=
   (Y.iteratedSliceEquiv.symm.toAdjunction.isCocontinuous_iff_coverPreserving
@@ -80,7 +82,9 @@ lemma coverPreserving_iteratedSliceForward {X : C} (Y : Over X) :
 
 /-- **The backward iterated slice functor preserves covers**, in the other direction. The mirror
 image of `CategoryTheory.coverPreserving_iteratedSliceForward` with the two functors of the
-equivalence exchanged; see its docstring for the argument, which is the same one. -/
+equivalence exchanged; see its docstring for the argument, which is the same one.
+@isnad1 id=coverpre.0h4v.s6.76657a90cbb6 from=translated src=- shape=73e52ad1 vocab=68e028cf
+-/
 lemma coverPreserving_iteratedSliceBackward {X : C} (Y : Over X) :
     CoverPreserving (J.over Y.left) ((J.over X).over Y) Y.iteratedSliceBackward :=
   (Y.iteratedSliceEquiv.toAdjunction.isCocontinuous_iff_coverPreserving

@@ -174,7 +174,9 @@ private theorem translate_eventuallyEq (L : PeriodPair) (z w : ℂ)
   exact (hf.frequently_eq_iff_eventually_eq hg).mp hfreq
 
 /-- Equality of `℘` and `℘′` at two non-poles forces their difference to be a
-period. This is the ODE-uniqueness input behind the fibers of `℘`. -/
+period. This is the ODE-uniqueness input behind the fibers of `℘`.
+@isnad1 id=mem.4h3v.s7.b11cbdc07b55 from=translated src=- shape=a4319631 vocab=fdac9a38
+-/
 theorem sub_mem_lattice_of_weierstrassP_eq_of_deriv_eq (L : PeriodPair)
     (z w : ℂ) (hz : z ∉ L.lattice) (hw : w ∉ L.lattice)
     (h0 : L.weierstrassP z = L.weierstrassP w)
@@ -272,7 +274,9 @@ theorem sub_mem_lattice_of_weierstrassP_eq_of_deriv_eq (L : PeriodPair)
   exact (not_le_of_gt hneg) hnonneg
 
 /-- The fibers of `℘` away from its poles are exactly the two classes related
-by negation. -/
+by negation.
+@isnad1 id=iff.2h3v.s7.fef0a05944e2 from=translated src=- shape=fb90fb15 vocab=4b08b137
+-/
 theorem weierstrassP_eq_iff_sub_mem_or_add_mem (L : PeriodPair) (z w : ℂ)
     (hz : z ∉ L.lattice) (hw : w ∉ L.lattice) :
     L.weierstrassP z = L.weierstrassP w ↔
@@ -299,7 +303,9 @@ theorem weierstrassP_eq_iff_sub_mem_or_add_mem (L : PeriodPair) (z w : ℂ)
       have hzw : -w + (l : ℂ) = z := by dsimp [l]; ring
       rw [← hzw, L.weierstrassP_add_coe, L.weierstrassP_neg]
 
-/-- The ordered pair `(℘, ℘′)` separates classes modulo the period lattice. -/
+/-- The ordered pair `(℘, ℘′)` separates classes modulo the period lattice.
+@isnad1 id=iff.2h3v.s7.6c21c6bbb86f from=translated src=- shape=6ec16ba4 vocab=fdac9a38
+-/
 theorem weierstrassP_deriv_eq_iff_sub_mem (L : PeriodPair) (z w : ℂ)
     (hz : z ∉ L.lattice) (hw : w ∉ L.lattice) :
     (L.weierstrassP z = L.weierstrassP w ∧

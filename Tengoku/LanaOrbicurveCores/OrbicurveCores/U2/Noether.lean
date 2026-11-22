@@ -25,6 +25,9 @@ variable {k A : Type*} [Field k] [CommRing A] [IsDomain A] [IsDedekindDomain A] 
   [Algebra.FiniteType k A]
 
 omit [IsDomain A] in
+/--
+@isnad1 id=ex.1h2v.s7.c4a6a88f5949 from=translated src=- shape=8845bb5b vocab=7f4707c2
+-/
 theorem exists_transcendental_isIntegral (hA : ¬ IsField A) :
     ∃ c : A, Transcendental k c ∧ ∀ a : A, IsIntegral (Algebra.adjoin k {c}) a := by
   classical

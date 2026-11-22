@@ -76,8 +76,17 @@ def eisPsi (x : K) : K := x * (1 + 11 * x + 11 * x ^ 2 + x ^ 3) / (1 - x) ^ 5
 `ψ₃(x) + ψ₃(x⁻¹) = φ(x)` (`eisPsi3_add_inv`). -/
 def eisPsi3 (x : K) : K := x * (2 * x + 1) / (1 - x) ^ 4
 
+/--
+@isnad1 id=eq.0h2v.s6.5266e77dc034 from=translated src=- shape=43cc6a7e vocab=e053551f
+-/
 lemma eisP_def (x : K) : eisP x = x / (1 - x) ^ 2 := rfl
+/--
+@isnad1 id=eq.0h2v.s7.a1ef46ffb6b7 from=translated src=- shape=62585136 vocab=22283989
+-/
 lemma eisR_def (x : K) : eisR x = x * (1 + x) / (1 - x) ^ 3 := rfl
+/--
+@isnad1 id=eq.0h2v.s6.8bea01d9c46a from=translated src=- shape=88ec9694 vocab=fc6da751
+-/
 lemma eisZ_def (x : K) : eisZ x = (1 + x) / (1 - x) := rfl
 
 private lemma one_sub_ne_zero {x : K} (h : x ≠ 1) : (1 : K) - x ≠ 0 :=
@@ -88,14 +97,18 @@ section Parity
 variable {x : K} (hx0 : x ≠ 0) (hx1 : x ≠ 1)
 include hx0 hx1
 
-/-- The kernel `p` is even under inversion: `p(x⁻¹) = p(x)`. -/
+/-- The kernel `p` is even under inversion: `p(x⁻¹) = p(x)`.
+@isnad1 id=eq.2h2v.s6.199c4b5a7f39 from=translated src=- shape=ececbf3f vocab=2ccbf22b
+-/
 lemma eisP_inv : eisP x⁻¹ = eisP x := by
   have h1 : (1 : K) - x ≠ 0 := one_sub_ne_zero (K := K) hx1
   have hinv : (1 : K) - x⁻¹ = -((1 - x) / x) := by field_simp; ring
   rw [eisP, eisP, hinv]
   field_simp
 
-/-- The kernel `r` is odd under inversion: `r(x⁻¹) = -r(x)`. -/
+/-- The kernel `r` is odd under inversion: `r(x⁻¹) = -r(x)`.
+@isnad1 id=eq.2h2v.s6.88dd03410627 from=translated src=- shape=34e6c081 vocab=eda0807b
+-/
 lemma eisR_inv : eisR x⁻¹ = -eisR x := by
   have h1 : (1 : K) - x ≠ 0 := one_sub_ne_zero (K := K) hx1
   have hinv : (1 : K) - x⁻¹ = -((1 - x) / x) := by field_simp; ring
@@ -103,7 +116,9 @@ lemma eisR_inv : eisR x⁻¹ = -eisR x := by
   field_simp
   ring
 
-/-- The kernel `z` is odd under inversion: `z(x⁻¹) = -z(x)`. -/
+/-- The kernel `z` is odd under inversion: `z(x⁻¹) = -z(x)`.
+@isnad1 id=eq.2h2v.s6.2e5fd7b34a52 from=translated src=- shape=34e6c081 vocab=a20f90f3
+-/
 lemma eisZ_inv : eisZ x⁻¹ = -eisZ x := by
   have h1 : (1 : K) - x ≠ 0 := one_sub_ne_zero (K := K) hx1
   have hinv : (1 : K) - x⁻¹ = -((1 - x) / x) := by field_simp; ring
@@ -111,7 +126,9 @@ lemma eisZ_inv : eisZ x⁻¹ = -eisZ x := by
   field_simp
   ring
 
-/-- The kernel `φ` is even under inversion: `φ(x⁻¹) = φ(x)`. -/
+/-- The kernel `φ` is even under inversion: `φ(x⁻¹) = φ(x)`.
+@isnad1 id=eq.2h2v.s6.819835380b27 from=translated src=- shape=ececbf3f vocab=fbfebe4b
+-/
 lemma eisPhi_inv : eisPhi x⁻¹ = eisPhi x := by
   have h1 : (1 : K) - x ≠ 0 := one_sub_ne_zero (K := K) hx1
   have hinv : (1 : K) - x⁻¹ = -((1 - x) / x) := by field_simp; ring
@@ -119,7 +136,9 @@ lemma eisPhi_inv : eisPhi x⁻¹ = eisPhi x := by
   field_simp
   ring
 
-/-- The kernel `ψ` is odd under inversion: `ψ(x⁻¹) = -ψ(x)`. -/
+/-- The kernel `ψ` is odd under inversion: `ψ(x⁻¹) = -ψ(x)`.
+@isnad1 id=eq.2h2v.s6.f48cebf0518d from=translated src=- shape=34e6c081 vocab=cd897e79
+-/
 lemma eisPsi_inv : eisPsi x⁻¹ = -eisPsi x := by
   have h1 : (1 : K) - x ≠ 0 := one_sub_ne_zero (K := K) hx1
   have hinv : (1 : K) - x⁻¹ = -((1 - x) / x) := by field_simp; ring
@@ -127,7 +146,9 @@ lemma eisPsi_inv : eisPsi x⁻¹ = -eisPsi x := by
   field_simp
   ring
 
-/-- The kernel `ψ₃` averages to `φ` under inversion: `ψ₃(x) + ψ₃(x⁻¹) = φ(x)`. -/
+/-- The kernel `ψ₃` averages to `φ` under inversion: `ψ₃(x) + ψ₃(x⁻¹) = φ(x)`.
+@isnad1 id=eq.2h2v.s6.6557e67e054b from=translated src=- shape=fad79816 vocab=d6612e0d
+-/
 lemma eisPsi3_add_inv : eisPsi3 x + eisPsi3 x⁻¹ = eisPhi x := by
   have h1 : (1 : K) - x ≠ 0 := one_sub_ne_zero (K := K) hx1
   have hinv : (1 : K) - x⁻¹ = -((1 - x) / x) := by field_simp; ring
@@ -139,7 +160,9 @@ end Parity
 
 /-- **The nodal-cubic relation** `r(x)² = 4p(x)³ + p(x)²`: the single term of the Tate
 parametrization lies on the nodal cubic `w² = 4x³ + x²`, the degenerate Weierstrass
-equation. All the arithmetic content of the Tate curve lives in the cross terms. -/
+equation. All the arithmetic content of the Tate curve lives in the cross terms.
+@isnad1 id=eq.1h2v.s7.5121c8390392 from=translated src=- shape=3c7a4793 vocab=147511ca
+-/
 lemma eisR_sq {x : K} (hx1 : x ≠ 1) : eisR x ^ 2 = 4 * eisP x ^ 3 + eisP x ^ 2 := by
   have h1 : (1 : K) - x ≠ 0 := sub_ne_zero.mpr (Ne.symm hx1)
   rw [eisR, eisP]
@@ -157,7 +180,9 @@ include ht1 hv1 htv
 
 The product of two translated `X`-kernels is a linear combination of the kernels at the
 two points, with coefficients the kernels at the ratio `t`. Summed over the `qᶻ`-orbit,
-the `z`-difference telescopes; this is the analytic engine behind the `X²` expansion. -/
+the `z`-difference telescopes; this is the analytic engine behind the `X²` expansion.
+@isnad1 id=eq.3h3v.s8.84b366865d44 from=translated src=- shape=045487d4 vocab=c9e1cb21
+-/
 lemma eisP_mul_eisP :
     2 * (eisP (t * v) * eisP v)
       = 2 * eisP t * (eisP v + eisP (t * v)) - eisR t * (eisZ v - eisZ (t * v)) := by
@@ -169,7 +194,9 @@ lemma eisP_mul_eisP :
   ring
 
 /-- **Eisenstein pair identity for `r·r`** (denominator-free form): for `w = tv`,
-`2·r(w)r(v) = 2·r(t)(r(v) - r(w)) - 4·φ(t)(p(v) + p(w)) + ψ(t)(z(v) - z(w))`. -/
+`2·r(w)r(v) = 2·r(t)(r(v) - r(w)) - 4·φ(t)(p(v) + p(w)) + ψ(t)(z(v) - z(w))`.
+@isnad1 id=eq.3h3v.s8.da1d13a91f99 from=translated src=- shape=9079a012 vocab=6e589973
+-/
 lemma eisR_mul_eisR :
     2 * (eisR (t * v) * eisR v)
       = 2 * eisR t * (eisR v - eisR (t * v)) - 4 * eisPhi t * (eisP v + eisP (t * v))
@@ -186,7 +213,9 @@ lemma eisR_mul_eisR :
 2·p(w)²p(v) = 2·p(t)·p(w)² + r(t)·r(w) + (2ψ₃(t) - r(t))·p(w) + 2·p(t)r(t)·z(w)
                 + 2·p(t)²·p(v) - 2·p(t)r(t)·z(v).
 ```
-This is the four-term partial-fraction decomposition feeding the `X³` expansion. -/
+This is the four-term partial-fraction decomposition feeding the `X³` expansion.
+@isnad1 id=eq.3h3v.s9.dc23e27d079e from=translated src=- shape=a990d1cc vocab=88bf6660
+-/
 lemma eisP_sq_mul_eisP :
     2 * (eisP (t * v) ^ 2 * eisP v)
       = 2 * eisP t * eisP (t * v) ^ 2 + eisR t * eisR (t * v)

@@ -77,7 +77,9 @@ genuine integer thanks to `twelve_dvd_five_mul_cube_add_seven_mul_pow`. -/
 def a₆Coeff (n : ℕ) : ℕ := (5 * (n + 1) ^ 3 + 7 * (n + 1) ^ 5) / 12
 
 /-- The term-wise divisibility `12 ∣ 5 m³ + 7 m⁵` underlying the integrality of the Tate
-coefficient `a₆`. Proved by checking all residues in `ZMod 12`. -/
+coefficient `a₆`. Proved by checking all residues in `ZMod 12`.
+@isnad1 id=dvd.0h1v.s6.8e17bc58090f from=translated src=- shape=8fb84bf9 vocab=0eadfadb
+-/
 lemma twelve_dvd_five_mul_cube_add_seven_mul_pow (n : ℕ) :
     12 ∣ 5 * (n + 1) ^ 3 + 7 * (n + 1) ^ 5 := by
   have h : ∀ x : ZMod 12, 5 * x ^ 3 + 7 * x ^ 5 = 0 := by decide
@@ -85,12 +87,16 @@ lemma twelve_dvd_five_mul_cube_add_seven_mul_pow (n : ℕ) :
   push_cast
   exact h ((n : ZMod 12) + 1)
 
-/-- Defining property of `a₆Coeff`: `12 · cₘ = 5 m³ + 7 m⁵`. -/
+/-- Defining property of `a₆Coeff`: `12 · cₘ = 5 m³ + 7 m⁵`.
+@isnad1 id=eq.0h1v.s6.6aa4b1ecd483 from=translated src=- shape=c7e377bc vocab=05748c36
+-/
 lemma twelve_mul_a₆Coeff (n : ℕ) :
     12 * a₆Coeff n = 5 * (n + 1) ^ 3 + 7 * (n + 1) ^ 5 :=
   Nat.mul_div_cancel' (twelve_dvd_five_mul_cube_add_seven_mul_pow n)
 
-/-- The leading coefficient of the `a₆` series is `c₀ = (5 + 7)/12 = 1`. -/
+/-- The leading coefficient of the `a₆` series is `c₀ = (5 + 7)/12 = 1`.
+@isnad1 id=eq.0h0v.s3.9af54f989345 from=translated src=- shape=3c26ae4f vocab=708d4f5d
+-/
 @[simp] lemma a₆Coeff_zero : a₆Coeff 0 = 1 := by decide
 
 namespace TateParameter
@@ -101,13 +107,17 @@ variable (t : TateParameter K)
 /-- The common analytic factor `qⁿ⁺¹ / (1 - qⁿ⁺¹)` shared by every Eisenstein term. -/
 def qFactor (n : ℕ) : K := (t.q : K) ^ (n + 1) / (1 - (t.q : K) ^ (n + 1))
 
-/-- The Eisenstein series written with the shared factor pulled out. -/
+/-- The Eisenstein series written with the shared factor pulled out.
+@isnad1 id=eq.0h3v.s6.2707aa23a8b0 from=translated src=- shape=26e92a9b vocab=d0af7959
+-/
 lemma eisenstein_eq_tsum_qFactor (k : ℕ) :
     t.eisenstein k = ∑' n : ℕ, ((n + 1 : ℕ) : K) ^ k * t.qFactor n := by
   simp only [eisenstein, qFactor, mul_div_assoc]
 
 /-- The term-wise identity `5 (m³ Q) + 7 (m⁵ Q) = 12 (cₘ Q)`, where `Q = qᵐ/(1-qᵐ)` and
-`cₘ = a₆Coeff`, packaging the divisibility `12 ∣ 5 m³ + 7 m⁵`. -/
+`cₘ = a₆Coeff`, packaging the divisibility `12 ∣ 5 m³ + 7 m⁵`.
+@isnad1 id=eq.0h3v.s8.286b6e29f686 from=translated src=- shape=cfa75dae vocab=fd80bc15
+-/
 lemma term_combo (n : ℕ) :
     5 * (((n + 1 : ℕ) : K) ^ 3 * t.qFactor n) + 7 * (((n + 1 : ℕ) : K) ^ 5 * t.qFactor n)
       = 12 * ((a₆Coeff n : K) * t.qFactor n) := by
@@ -124,7 +134,9 @@ variable [IsUltrametricDist K]
 
 /-- **Ultrametric power-difference bound**: `‖x^(n+1) - y^(n+1)‖ ≤ max ‖x‖ ‖y‖ ^ n · ‖x - y‖`,
 by induction from `x^(n+2) - y^(n+2) = x (x^(n+1) - y^(n+1)) + y^(n+1) (x - y)` and the
-ultrametric inequality. -/
+ultrametric inequality.
+@isnad1 id=le.0h4v.s7.bb1c68632fa0 from=translated src=- shape=3f404d5f vocab=9b1b1710
+-/
 lemma norm_pow_sub_pow_le (x y : K) (n : ℕ) :
     ‖x ^ (n + 1) - y ^ (n + 1)‖ ≤ (max ‖x‖ ‖y‖) ^ n * ‖x - y‖ := by
   induction n with
@@ -143,18 +155,24 @@ lemma norm_pow_sub_pow_le (x y : K) (n : ℕ) :
       exact mul_le_mul_of_nonneg_right
         (pow_le_pow_left₀ (norm_nonneg _) (le_max_right _ _) _) (norm_nonneg _)
 
-/-- The shared factor has norm `‖q‖ⁿ⁺¹`. -/
+/-- The shared factor has norm `‖q‖ⁿ⁺¹`.
+@isnad1 id=eq.0h3v.s6.ccfbee105568 from=translated src=- shape=cd0a1fc2 vocab=ac9a7b0f
+-/
 lemma norm_qFactor (n : ℕ) : ‖t.qFactor n‖ = ‖(t.q : K)‖ ^ (n + 1) := by
   rw [qFactor, norm_div, norm_pow, t.norm_one_sub_qpow n, div_one]
 
-/-- The leading factor `Q₀ = q/(1 - q)` differs from `q` by `q²/(1 - q)`. -/
+/-- The leading factor `Q₀ = q/(1 - q)` differs from `q` by `q²/(1 - q)`.
+@isnad1 id=eq.0h2v.s7.f0be50a2779f from=translated src=- shape=0d00b5ee vocab=1290d884
+-/
 lemma qFactor_zero_sub_q : t.qFactor 0 - (t.q : K) = (t.q : K) ^ 2 / (1 - (t.q : K)) := by
   have hne : (1 : K) - (t.q : K) ≠ 0 := by simpa using t.one_sub_qpow_ne_zero 0
   simp only [qFactor, zero_add, pow_one]
   field_simp
   ring
 
-/-- A natural-number weight is harmless in a nonarchimedean field: `‖(c n) Qₙ‖ ≤ ‖q‖ⁿ⁺¹`. -/
+/-- A natural-number weight is harmless in a nonarchimedean field: `‖(c n) Qₙ‖ ≤ ‖q‖ⁿ⁺¹`.
+@isnad1 id=le.0h4v.s6.88ac293a65a6 from=translated src=- shape=367ea1a4 vocab=61ea632f
+-/
 lemma norm_coeff_mul_qFactor_le (c : ℕ → ℕ) (n : ℕ) :
     ‖(c n : K) * t.qFactor n‖ ≤ ‖(t.q : K)‖ ^ (n + 1) := by
   rw [norm_mul, t.norm_qFactor n]
@@ -164,7 +182,9 @@ lemma norm_coeff_mul_qFactor_le (c : ℕ → ℕ) (n : ℕ) :
     _ = ‖(t.q : K)‖ ^ (n + 1) := one_mul _
 
 /-- Termwise Lipschitz estimate for the shared factor: `Qₙ` at two Tate parameters differs by at
-most `max ‖q₁‖ ‖q₂‖ ^ n · ‖q₁ - q₂‖`. -/
+most `max ‖q₁‖ ‖q₂‖ ^ n · ‖q₁ - q₂‖`.
+@isnad1 id=le.0h4v.s7.68a2ecd6d5a3 from=translated src=- shape=b927d6b4 vocab=199da7e0
+-/
 lemma norm_qFactor_sub_le (t₁ t₂ : TateParameter K) (n : ℕ) :
     ‖t₁.qFactor n - t₂.qFactor n‖
       ≤ (max ‖(t₁.q : K)‖ ‖(t₂.q : K)‖) ^ n * ‖(t₁.q : K) - (t₂.q : K)‖ := by
@@ -179,7 +199,9 @@ lemma norm_qFactor_sub_le (t₁ t₂ : TateParameter K) (n : ℕ) :
 
 /-- The head-term estimate of the degree-`≥ 2` Lipschitz bound:
 `‖q₁²/(1 - q₁) - q₂²/(1 - q₂)‖ ≤ max ‖q₁‖ ‖q₂‖ · ‖q₁ - q₂‖`, from the factorization
-`q₁²/(1-q₁) - q₂²/(1-q₂) = (q₁ - q₂)(q₁ + q₂ - q₁q₂)/((1-q₁)(1-q₂))`. -/
+`q₁²/(1-q₁) - q₂²/(1-q₂) = (q₁ - q₂)(q₁ + q₂ - q₁q₂)/((1-q₁)(1-q₂))`.
+@isnad1 id=le.0h3v.s8.c4336d9035b0 from=translated src=- shape=c09b81b7 vocab=9cd97458
+-/
 lemma norm_q_sq_div_sub_le (t₁ t₂ : TateParameter K) :
     ‖(t₁.q : K) ^ 2 / (1 - (t₁.q : K)) - (t₂.q : K) ^ 2 / (1 - (t₂.q : K))‖
       ≤ max ‖(t₁.q : K)‖ ‖(t₂.q : K)‖ * ‖(t₁.q : K) - (t₂.q : K)‖ := by
@@ -212,7 +234,9 @@ lemma norm_q_sq_div_sub_le (t₁ t₂ : TateParameter K) :
         mul_le_mul_of_nonneg_left hfac (norm_nonneg _)
     _ = max ‖(t₁.q : K)‖ ‖(t₂.q : K)‖ * ‖(t₁.q : K) - (t₂.q : K)‖ := mul_comm _ _
 
-/-- An integer-weighted series is norm-bounded by `‖q‖`: `‖∑ₙ (c n) Qₙ‖ ≤ ‖q‖`. -/
+/-- An integer-weighted series is norm-bounded by `‖q‖`: `‖∑ₙ (c n) Qₙ‖ ≤ ‖q‖`.
+@isnad1 id=le.0h3v.s7.21f3082b58b8 from=translated src=- shape=ed707eb9 vocab=6730d18b
+-/
 lemma norm_weighted_le (c : ℕ → ℕ) :
     ‖∑' n : ℕ, (c n : K) * t.qFactor n‖ ≤ ‖(t.q : K)‖ := by
   refine IsUltrametricDist.norm_tsum_le_of_forall_le_of_nonneg (norm_nonneg _) fun n => ?_
@@ -221,13 +245,17 @@ lemma norm_weighted_le (c : ℕ → ℕ) :
 
 variable [CompleteSpace K]
 
-/-- The Eisenstein summands, written with the shared factor, are summable. -/
+/-- The Eisenstein summands, written with the shared factor, are summable.
+@isnad1 id=summable.0h3v.s7.5f6cde460d74 from=translated src=- shape=6181120d vocab=ac992647
+-/
 lemma summable_qFactor_smul (k : ℕ) :
     Summable fun n : ℕ => ((n + 1 : ℕ) : K) ^ k * t.qFactor n := by
   simpa only [qFactor, mul_div_assoc] using t.eisenstein_summand_summable k
 
 /-- An integer-weighted series `∑ₙ (c n) · qⁿ⁺¹/(1-qⁿ⁺¹)` is summable: each term has norm
-`≤ ‖q‖ⁿ⁺¹`, dominated by the geometric series `∑ ‖q‖ⁿ⁺¹`. -/
+`≤ ‖q‖ⁿ⁺¹`, dominated by the geometric series `∑ ‖q‖ⁿ⁺¹`.
+@isnad1 id=summable.0h3v.s6.a8a1335c7dcd from=translated src=- shape=aeaa2a24 vocab=71f64e30
+-/
 lemma summable_coeff_mul_qFactor (c : ℕ → ℕ) :
     Summable fun n : ℕ => (c n : K) * t.qFactor n := by
   have hg : Summable fun n : ℕ => ‖(t.q : K)‖ ^ (n + 1) := by
@@ -235,12 +263,16 @@ lemma summable_coeff_mul_qFactor (c : ℕ → ℕ) :
       (summable_geometric_of_lt_one (norm_nonneg _) t.norm_lt_one).mul_right ‖(t.q : K)‖
   exact hg.of_norm_bounded fun n => t.norm_coeff_mul_qFactor_le c n
 
-/-- The `a₆`-coefficient series `∑ₘ cₘ · qᵐ/(1-qᵐ)` is summable. -/
+/-- The `a₆`-coefficient series `∑ₘ cₘ · qᵐ/(1-qᵐ)` is summable.
+@isnad1 id=summable.0h2v.s6.4acf06235df2 from=translated src=- shape=8c15b0f0 vocab=e03707b0
+-/
 lemma summable_a₆Coeff_qFactor :
     Summable fun n : ℕ => (a₆Coeff n : K) * t.qFactor n :=
   t.summable_coeff_mul_qFactor a₆Coeff
 
-/-- The `5 s₃ + 7 s₅` combination collapses, term by term, into `12` times an *integer* series. -/
+/-- The `5 s₃ + 7 s₅` combination collapses, term by term, into `12` times an *integer* series.
+@isnad1 id=eq.0h2v.s8.2347f619d9c6 from=translated src=- shape=a6ef8272 vocab=27a14ae2
+-/
 lemma eisenstein_combo :
     5 * t.eisenstein 3 + 7 * t.eisenstein 5
       = 12 * ∑' n : ℕ, (a₆Coeff n : K) * t.qFactor n := by
@@ -251,7 +283,9 @@ lemma eisenstein_combo :
 
 /-- **The integral form of `a₆`.** For `(12 : K) ≠ 0`, the Tate coefficient is the negative of an
 *integer-coefficient* series, `a₆(q) = -∑ₘ cₘ · qᵐ/(1-qᵐ)`, which makes its integrality
-manifest. -/
+manifest.
+@isnad1 id=eq.1h2v.s7.aa982650e84b from=translated src=- shape=b1dc7212 vocab=926ef768
+-/
 lemma a₆_eq_neg_tsum (h12 : (12 : K) ≠ 0) :
     t.a₆ = -∑' n : ℕ, (a₆Coeff n : K) * t.qFactor n := by
   rw [a₆_def, t.eisenstein_combo]
@@ -261,7 +295,9 @@ lemma a₆_eq_neg_tsum (h12 : (12 : K) ≠ 0) :
 
 /-- **Leading term of an integer-weighted series.** When `c 0 = 1`, `∑ₙ (c n) Qₙ = q + O(q²)`:
 the `n = 0` term is `q/(1 - q) = q + q²/(1 - q)` and every later term has norm `≤ ‖q‖²`, so
-`‖∑ₙ (c n) Qₙ - q‖ ≤ ‖q‖²`. -/
+`‖∑ₙ (c n) Qₙ - q‖ ≤ ‖q‖²`.
+@isnad1 id=le.1h3v.s7.acc8ad958507 from=translated src=- shape=3b7c42af vocab=d85559b4
+-/
 lemma norm_weighted_sub_q_le (c : ℕ → ℕ) (hc : c 0 = 1) :
     ‖(∑' n : ℕ, (c n : K) * t.qFactor n) - (t.q : K)‖ ≤ ‖(t.q : K)‖ ^ 2 := by
   rw [(t.summable_coeff_mul_qFactor c).tsum_eq_zero_add, add_sub_right_comm, hc, Nat.cast_one,
@@ -276,7 +312,9 @@ lemma norm_weighted_sub_q_le (c : ℕ → ℕ) (hc : c 0 = 1) :
     exact pow_le_pow_of_le_one (norm_nonneg _) t.norm_lt_one.le (by omega)
 
 /-- **Lipschitz estimate for integer-weighted series**:
-`‖∑ₙ (c n) Qₙ(q₁) - ∑ₙ (c n) Qₙ(q₂)‖ ≤ ‖q₁ - q₂‖`. -/
+`‖∑ₙ (c n) Qₙ(q₁) - ∑ₙ (c n) Qₙ(q₂)‖ ≤ ‖q₁ - q₂‖`.
+@isnad1 id=le.0h4v.s8.585b0972fb52 from=translated src=- shape=3e68ae54 vocab=0102b1e0
+-/
 lemma norm_weighted_sub_le (t₁ t₂ : TateParameter K) (c : ℕ → ℕ) :
     ‖(∑' n : ℕ, (c n : K) * t₁.qFactor n) - ∑' n : ℕ, (c n : K) * t₂.qFactor n‖
       ≤ ‖(t₁.q : K) - (t₂.q : K)‖ := by
@@ -298,7 +336,9 @@ lemma norm_weighted_sub_le (t₁ t₂ : TateParameter K) (c : ℕ → ℕ) :
 
 /-- **Degree-`≥ 2` Lipschitz estimate for integer-weighted series**: when `c 0 = 1`,
 subtracting the common leading term `q` improves the Lipschitz constant to `max ‖q₁‖ ‖q₂‖`:
-`‖(∑ₙ (c n) Qₙ(q₁) - q₁) - (∑ₙ (c n) Qₙ(q₂) - q₂)‖ ≤ max ‖q₁‖ ‖q₂‖ · ‖q₁ - q₂‖`. -/
+`‖(∑ₙ (c n) Qₙ(q₁) - q₁) - (∑ₙ (c n) Qₙ(q₂) - q₂)‖ ≤ max ‖q₁‖ ‖q₂‖ · ‖q₁ - q₂‖`.
+@isnad1 id=le.1h4v.s8.1e3664dfa9dd from=translated src=- shape=f8aca1aa vocab=912d54b1
+-/
 lemma norm_weighted_sub_q_sub_le (t₁ t₂ : TateParameter K) (c : ℕ → ℕ) (hc : c 0 = 1) :
     ‖((∑' n : ℕ, (c n : K) * t₁.qFactor n) - (t₁.q : K))
         - ((∑' n : ℕ, (c n : K) * t₂.qFactor n) - (t₂.q : K))‖
@@ -339,25 +379,33 @@ lemma norm_weighted_sub_q_sub_le (t₁ t₂ : TateParameter K) (c : ℕ → ℕ)
 /-! ### The bounds for `a₆` -/
 
 /-- **Leading term of `a₆`.** `a₆(q) = -q + O(q²)`, i.e. `‖a₆(q) + q‖ ≤ ‖q‖²`. Requires only
-`(12 : K) ≠ 0`. -/
+`(12 : K) ≠ 0`.
+@isnad1 id=le.1h2v.s7.450a9d50c024 from=translated src=- shape=c008f218 vocab=48d3ff85
+-/
 lemma norm_a₆_add_q_le (h12 : (12 : K) ≠ 0) :
     ‖t.a₆ + (t.q : K)‖ ≤ ‖(t.q : K)‖ ^ 2 := by
   rw [t.a₆_eq_neg_tsum h12, neg_add_eq_sub, norm_sub_rev]
   exact t.norm_weighted_sub_q_le a₆Coeff a₆Coeff_zero
 
-/-- The Tate coefficient `a₆(q)` is norm-bounded by `‖q‖` (`(12 : K) ≠ 0`). -/
+/-- The Tate coefficient `a₆(q)` is norm-bounded by `‖q‖` (`(12 : K) ≠ 0`).
+@isnad1 id=le.1h2v.s6.b6882fb73044 from=translated src=- shape=da8e2bf2 vocab=d1271ee8
+-/
 lemma norm_a₆_le (h12 : (12 : K) ≠ 0) : ‖t.a₆‖ ≤ ‖(t.q : K)‖ := by
   rw [t.a₆_eq_neg_tsum h12, norm_neg]
   exact t.norm_weighted_le a₆Coeff
 
-/-- **Lipschitz estimate for `a₆`**: `‖a₆(q₁) - a₆(q₂)‖ ≤ ‖q₁ - q₂‖` (`(12 : K) ≠ 0`). -/
+/-- **Lipschitz estimate for `a₆`**: `‖a₆(q₁) - a₆(q₂)‖ ≤ ‖q₁ - q₂‖` (`(12 : K) ≠ 0`).
+@isnad1 id=le.1h3v.s7.955dd66fe460 from=translated src=- shape=9ad0b807 vocab=62701114
+-/
 lemma norm_a₆_sub_le (t₁ t₂ : TateParameter K) (h12 : (12 : K) ≠ 0) :
     ‖t₁.a₆ - t₂.a₆‖ ≤ ‖(t₁.q : K) - (t₂.q : K)‖ := by
   rw [t₁.a₆_eq_neg_tsum h12, t₂.a₆_eq_neg_tsum h12, neg_sub_neg, norm_sub_rev]
   exact t₁.norm_weighted_sub_le t₂ a₆Coeff
 
 /-- **Degree-`≥ 2` Lipschitz estimate for `a₆ + q`**:
-`‖(a₆(q₁) + q₁) - (a₆(q₂) + q₂)‖ ≤ max ‖q₁‖ ‖q₂‖ · ‖q₁ - q₂‖` (`(12 : K) ≠ 0`). -/
+`‖(a₆(q₁) + q₁) - (a₆(q₂) + q₂)‖ ≤ max ‖q₁‖ ‖q₂‖ · ‖q₁ - q₂‖` (`(12 : K) ≠ 0`).
+@isnad1 id=le.1h3v.s8.f230a00e6a82 from=translated src=- shape=66303307 vocab=df6e64f2
+-/
 lemma norm_a₆_add_q_sub_le (t₁ t₂ : TateParameter K) (h12 : (12 : K) ≠ 0) :
     ‖(t₁.a₆ + (t₁.q : K)) - (t₂.a₆ + (t₂.q : K))‖
       ≤ max ‖(t₁.q : K)‖ ‖(t₂.q : K)‖ * ‖(t₁.q : K) - (t₂.q : K)‖ := by

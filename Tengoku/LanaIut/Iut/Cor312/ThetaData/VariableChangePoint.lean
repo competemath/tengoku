@@ -36,14 +36,23 @@ def vcX (x : k) : k := (x - C.r) / (C.u : k) ^ 2
 /-- The `Y`-coordinate in the model `C • W` of the point `(x, y)`. -/
 def vcY (x y : k) : k := (y - C.t - C.s * (x - C.r)) / (C.u : k) ^ 3
 
+/--
+@isnad1 id=ne.0h2v.s5.3388c88c9ce4 from=translated src=- shape=7101dedf vocab=0fd0ad29
+-/
 lemma u_ne_zero : (C.u : k) ≠ 0 := C.u.ne_zero
 
+/--
+@isnad1 id=injectiv.0h2v.s4.b47f03a37af9 from=translated src=- shape=5922b6b2 vocab=0216ba03
+-/
 lemma vcX_injective : Function.Injective (vcX C) := by
   intro a b h
   unfold vcX at h
   rw [div_left_inj' (pow_ne_zero _ (u_ne_zero C))] at h
   linear_combination h
 
+/--
+@isnad1 id=iff.0h5v.s5.415dd9831488 from=translated src=- shape=afbb742c vocab=8c51498e
+-/
 lemma vcY_inj (x y y' : k) : vcY C x y = vcY C x y' ↔ y = y' := by
   unfold vcY
   rw [div_left_inj' (pow_ne_zero _ (u_ne_zero C))]
@@ -53,20 +62,26 @@ lemma vcY_inj (x y y' : k) : vcY C x y = vcY C x y' ↔ y = y' := by
   · intro h
     rw [h]
 
-/-- `x = u²X' + r` recovers `x` from `X'`. -/
+/-- `x = u²X' + r` recovers `x` from `X'`.
+@isnad1 id=eq.0h3v.s6.bd724ee75c5b from=translated src=- shape=e2053b6f vocab=c4f240ef
+-/
 lemma vcX_of (x' : k) : vcX C ((C.u : k) ^ 2 * x' + C.r) = x' := by
   unfold vcX
   field_simp
   ring
 
-/-- `y = u³Y' + u²sX' + t` recovers `y` from `(X', Y')`. -/
+/-- `y = u³Y' + u²sX' + t` recovers `y` from `(X', Y')`.
+@isnad1 id=eq.0h4v.s8.18c55d3bbf1a from=translated src=- shape=1fe1bc1f vocab=33c053f7
+-/
 lemma vcY_of (x' y' : k) :
     vcY C ((C.u : k) ^ 2 * x' + C.r) ((C.u : k) ^ 3 * y' + (C.u : k) ^ 2 * C.s * x' + C.t) = y' := by
   unfold vcY
   field_simp
   ring
 
-/-- The coefficients of `C • W`, in terms of the inverse of the unit `u`. -/
+/-- The coefficients of `C • W`, in terms of the inverse of the unit `u`.
+@isnad1 id=and.0h3v.s10.95ded29af703 from=translated src=- shape=a43a3885 vocab=ba384586
+-/
 lemma variableChange_coeffs :
     (C • W).a₁ = (C.u : k)⁻¹ * (W.a₁ + 2 * C.s) ∧
     (C • W).a₂ = (C.u : k)⁻¹ ^ 2 * (W.a₂ - C.s * W.a₁ + 3 * C.r - C.s ^ 2) ∧
@@ -79,7 +94,9 @@ lemma variableChange_coeffs :
     simp only [variableChange_a₁, variableChange_a₂, variableChange_a₃, variableChange_a₄,
       variableChange_a₆, Units.val_inv_eq_inv_val]
 
-/-- The Weierstrass polynomial of `C • W` at the transformed point. -/
+/-- The Weierstrass polynomial of `C • W` at the transformed point.
+@isnad1 id=eq.0h5v.s7.24f74f90b738 from=translated src=- shape=55f718fa vocab=39f35ba4
+-/
 lemma evalEval_polynomial_vc (x y : k) :
     (C • W).toAffine.polynomial.evalEval (vcX C x) (vcY C x y) =
       (C.u : k)⁻¹ ^ 6 * W.toAffine.polynomial.evalEval x y := by
@@ -90,13 +107,17 @@ lemma evalEval_polynomial_vc (x y : k) :
   field_simp
   ring
 
-/-- The equation of `W` at `(x, y)` is the equation of `C • W` at the transformed point. -/
+/-- The equation of `W` at `(x, y)` is the equation of `C • W` at the transformed point.
+@isnad1 id=iff.0h5v.s6.1cbda8d6da57 from=translated src=- shape=8de97cd0 vocab=804191d5
+-/
 lemma equation_vc (x y : k) :
     W.toAffine.Equation x y ↔ (C • W).toAffine.Equation (vcX C x) (vcY C x y) := by
   rw [Affine.Equation, Affine.Equation, evalEval_polynomial_vc, mul_eq_zero, or_iff_right]
   exact pow_ne_zero _ (inv_ne_zero (u_ne_zero C))
 
-/-- The partial derivative in `X` transforms as `∂_X' = u⁻⁴(∂_x + s ∂_y)`. -/
+/-- The partial derivative in `X` transforms as `∂_X' = u⁻⁴(∂_x + s ∂_y)`.
+@isnad1 id=eq.0h5v.s7.350a003d931e from=translated src=- shape=ae2b4ee2 vocab=3828b3e2
+-/
 lemma polynomialX_vc (x y : k) :
     (C • W).toAffine.polynomialX.evalEval (vcX C x) (vcY C x y) =
       (C.u : k)⁻¹ ^ 4 * (W.toAffine.polynomialX.evalEval x y
@@ -109,7 +130,9 @@ lemma polynomialX_vc (x y : k) :
   field_simp
   ring
 
-/-- The partial derivative in `Y` transforms as `∂_Y' = u⁻³ ∂_y`. -/
+/-- The partial derivative in `Y` transforms as `∂_Y' = u⁻³ ∂_y`.
+@isnad1 id=eq.0h5v.s7.de784e314b9d from=translated src=- shape=55f718fa vocab=06eb7eaa
+-/
 lemma polynomialY_vc (x y : k) :
     (C • W).toAffine.polynomialY.evalEval (vcX C x) (vcY C x y) =
       (C.u : k)⁻¹ ^ 3 * W.toAffine.polynomialY.evalEval x y := by
@@ -120,7 +143,9 @@ lemma polynomialY_vc (x y : k) :
   field_simp
   ring
 
-/-- Nonsingularity of `W` at `(x, y)` is nonsingularity of `C • W` at the transformed point. -/
+/-- Nonsingularity of `W` at `(x, y)` is nonsingularity of `C • W` at the transformed point.
+@isnad1 id=iff.0h5v.s6.13b55a34f9c2 from=translated src=- shape=8de97cd0 vocab=95047004
+-/
 lemma nonsingular_vc (x y : k) :
     W.toAffine.Nonsingular x y ↔ (C • W).toAffine.Nonsingular (vcX C x) (vcY C x y) := by
   rw [Affine.Nonsingular, Affine.Nonsingular, ← equation_vc, polynomialX_vc, polynomialY_vc]
@@ -140,7 +165,9 @@ lemma nonsingular_vc (x y : k) :
       exact h (by linear_combination hc.1 + C.s * hc.2)
     · exact Or.inr h
 
-/-- Negation commutes with the transformation of coordinates. -/
+/-- Negation commutes with the transformation of coordinates.
+@isnad1 id=eq.0h5v.s6.4368fd3955cb from=translated src=- shape=e8c7f046 vocab=26bd0ed8
+-/
 lemma vcY_negY (x y : k) :
     vcY C x (W.toAffine.negY x y) = (C • W).toAffine.negY (vcX C x) (vcY C x y) := by
   obtain ⟨h₁, h₂, h₃, h₄, h₆⟩ := variableChange_coeffs C W
@@ -152,7 +179,9 @@ lemma vcY_negY (x y : k) :
   ring
 
 /-- The `X`-coordinate of a sum transforms compatibly, the slope transforming as
-`ℓ ↦ (ℓ - s)/u`. -/
+`ℓ ↦ (ℓ - s)/u`.
+@isnad1 id=eq.0h6v.s7.65db875be198 from=translated src=- shape=328f57eb vocab=decb1c49
+-/
 lemma vcX_addX (x₁ x₂ ℓ : k) :
     vcX C (W.toAffine.addX x₁ x₂ ℓ) =
       (C • W).toAffine.addX (vcX C x₁) (vcX C x₂) ((ℓ - C.s) / (C.u : k)) := by
@@ -164,7 +193,9 @@ lemma vcX_addX (x₁ x₂ ℓ : k) :
   field_simp
   ring
 
-/-- The `Y`-coordinate of a sum transforms compatibly. -/
+/-- The `Y`-coordinate of a sum transforms compatibly.
+@isnad1 id=eq.0h7v.s7.d91f4fe8e171 from=translated src=- shape=8dc44dd5 vocab=db9c3626
+-/
 lemma vcY_addY (x₁ x₂ y₁ ℓ : k) :
     vcY C (W.toAffine.addX x₁ x₂ ℓ) (W.toAffine.addY x₁ x₂ y₁ ℓ) =
       (C • W).toAffine.addY (vcX C x₁) (vcX C x₂) (vcY C x₁ y₁) ((ℓ - C.s) / (C.u : k)) := by
@@ -176,7 +207,9 @@ lemma vcY_addY (x₁ x₂ y₁ ℓ : k) :
   field_simp
   ring
 
-/-- The slope of the line through two points transforms as `ℓ ↦ (ℓ - s)/u`. -/
+/-- The slope of the line through two points transforms as `ℓ ↦ (ℓ - s)/u`.
+@isnad1 id=eq.3h7v.s7.7047d32a745c from=translated src=- shape=2fd68472 vocab=3982598e
+-/
 lemma slope_vc {x₁ x₂ y₁ y₂ : k} (h₁ : W.toAffine.Equation x₁ y₁) (h₂ : W.toAffine.Equation x₂ y₂)
     (hxy : ¬(x₁ = x₂ ∧ y₁ = W.toAffine.negY x₂ y₂)) :
     (C • W).toAffine.slope (vcX C x₁) (vcX C x₂) (vcY C x₁ y₁) (vcY C x₂ y₂) =
@@ -241,18 +274,29 @@ def vcPoint : W.toAffine.Point → (C • W).toAffine.Point
   | .zero => .zero
   | .some x y h => .some (vcX C x) (vcY C x y) ((nonsingular_vc C W x y).mp h)
 
-/-- Two affine points with the same coordinates are equal. -/
+/-- Two affine points with the same coordinates are equal.
+@isnad1 id=eq.4h6v.s6.ee212241d88e from=translated src=- shape=4fc3b8f8 vocab=e2b07ff3
+-/
 lemma some_ext {W : WeierstrassCurve k} {x y x' y' : k} {h : W.toAffine.Nonsingular x y}
     {h' : W.toAffine.Nonsingular x' y'} (hx : x = x') (hy : y = y') :
     Affine.Point.some x y h = Affine.Point.some x' y' h' := by
   subst hx hy
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.931d83a02e32 from=translated src=- shape=412b9988 vocab=4267a3d5
+-/
 @[simp] lemma vcPoint_zero : vcPoint C W 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.f387190664cd from=translated src=- shape=379229a8 vocab=86f1bcde
+-/
 lemma vcPoint_some {x y : k} (h : W.toAffine.Nonsingular x y) :
     vcPoint C W (.some x y h) = .some (vcX C x) (vcY C x y) ((nonsingular_vc C W x y).mp h) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.075ed9f4e6e9 from=translated src=- shape=c1d7f89a vocab=9b6c86a8
+-/
 lemma vcPoint_neg (P : W.toAffine.Point) : vcPoint C W (-P) = -vcPoint C W P := by
   cases P with
   | zero => rfl
@@ -260,6 +304,9 @@ lemma vcPoint_neg (P : W.toAffine.Point) : vcPoint C W (-P) = -vcPoint C W P := 
     rw [Affine.Point.neg_some, vcPoint_some, vcPoint_some, Affine.Point.neg_some]
     exact some_ext rfl (vcY_negY C W x y)
 
+/--
+@isnad1 id=eq.0h5v.s8.3b4492d5037a from=translated src=- shape=6484261e vocab=aacba19f
+-/
 lemma vcPoint_add (P Q : W.toAffine.Point) :
     vcPoint C W (P + Q) = vcPoint C W P + vcPoint C W Q := by
   cases P with
@@ -295,8 +342,14 @@ def vcHom : W.toAffine.Point →+ (C • W).toAffine.Point where
   map_zero' := rfl
   map_add' := vcPoint_add C W
 
+/--
+@isnad1 id=eq.0h4v.s8.6b2cc1bee0bf from=translated src=- shape=6ffa335e vocab=fd9e3f72
+-/
 @[simp] lemma vcHom_apply (P : W.toAffine.Point) : vcHom C W P = vcPoint C W P := rfl
 
+/--
+@isnad1 id=injectiv.0h3v.s5.57c4162a1af2 from=translated src=- shape=e13c3a27 vocab=8f28454d
+-/
 lemma vcPoint_injective : Function.Injective (vcPoint C W) := by
   intro P Q h
   cases P with
@@ -322,6 +375,9 @@ lemma vcPoint_injective : Function.Injective (vcPoint C W) := by
       subst hy
       rfl
 
+/--
+@isnad1 id=surjecti.0h3v.s5.1bfc70693cd9 from=translated src=- shape=e13c3a27 vocab=b748ecd3
+-/
 lemma vcPoint_surjective : Function.Surjective (vcPoint C W) := by
   intro P'
   cases P' with
@@ -339,8 +395,14 @@ lemma vcPoint_surjective : Function.Surjective (vcPoint C W) := by
 def vcEquiv : W.toAffine.Point ≃+ (C • W).toAffine.Point :=
   AddEquiv.ofBijective (vcHom C W) ⟨vcPoint_injective C W, vcPoint_surjective C W⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.de5adb397842 from=translated src=- shape=6ffa335e vocab=70a356ff
+-/
 @[simp] lemma vcEquiv_apply (P : W.toAffine.Point) : vcEquiv C W P = vcPoint C W P := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.5c2efbbc6b3d from=translated src=- shape=f94e758a vocab=f735e9c1
+-/
 lemma vcEquiv_symm_apply (P' : (C • W).toAffine.Point) :
     vcPoint C W ((vcEquiv C W).symm P') = P' :=
   (vcEquiv C W).apply_symm_apply P'
@@ -363,21 +425,33 @@ def pointCongr {W W' : WeierstrassCurve k} (h : W = W') :
   subst h
   exact AddEquiv.refl _
 
+/--
+@isnad1 id=eq.1h4v.s7.1eacbfc7c905 from=translated src=- shape=f965ae7c vocab=3681546a
+-/
 @[simp] lemma ptX_pointCongr {W W' : WeierstrassCurve k} (h : W = W') (P : W.toAffine.Point) :
     ptX (pointCongr h P) = ptX P := by
   subst h
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.f4a79af84591 from=translated src=- shape=f965ae7c vocab=7ba7f17c
+-/
 @[simp] lemma ptY_pointCongr {W W' : WeierstrassCurve k} (h : W = W') (P : W.toAffine.Point) :
     ptY (pointCongr h P) = ptY P := by
   subst h
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s8.18b76b33010c from=translated src=- shape=144eecd5 vocab=8fec3a5f
+-/
 @[simp] lemma ptX_pointCongr_symm {W W' : WeierstrassCurve k} (h : W = W')
     (P : W'.toAffine.Point) : ptX ((pointCongr h).symm P) = ptX P := by
   subst h
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s8.3ee7a8cdd29e from=translated src=- shape=144eecd5 vocab=db778ab2
+-/
 @[simp] lemma ptY_pointCongr_symm {W W' : WeierstrassCurve k} (h : W = W')
     (P : W'.toAffine.Point) : ptY ((pointCongr h).symm P) = ptY P := by
   subst h

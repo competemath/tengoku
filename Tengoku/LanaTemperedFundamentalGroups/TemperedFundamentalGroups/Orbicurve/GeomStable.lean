@@ -44,6 +44,9 @@ variable {k : Type u} [Field k] [DecidableEq k] {W : WeierstrassCurve k} [W.IsEl
 /-! ### Coordinates of `g(pointOf χ)` -/
 
 omit [DecidableEq k] [W.IsElliptic] in
+/--
+@isnad1 id=eq.3h7v.s7.1060feba96af from=translated src=- shape=1946830e vocab=973a5547
+-/
 lemma evalHom_congr {A : Type*} [CommRing A] [Algebra k A] {x y x' y' : A}
     (h : (W.toAffine⁄A).Equation x y) (hx : x = x') (hy : y = y') :
     evalHom W x y h = evalHom W x' y' (hx ▸ hy ▸ h) := by
@@ -51,7 +54,9 @@ lemma evalHom_congr {A : Type*} [CommRing A] [Algebra k A] {x y x' y' : A}
   rfl
 
 /-- The coordinates of `g(pointOf χ)` are the images under `χ` of fixed elements of
-`ringOfX W T`, if `x(m) ∈ T` for `m ≠ 0`. -/
+`ringOfX W T`, if `x(m) ∈ T` for `m ≠ 0`.
+@isnad1 id=ex.1h4v.s14.76c1361d2293 from=translated src=- shape=b94c8f99 vocab=aeaadd21
+-/
 lemma exists_coords_act (g : AffAut W) (hm : g.m ≠ 0 → xOf g.m ∈ T) :
     ∃ X Y : ringOfX W T, ∀ (L : Type u) [Field L] [DecidableEq L] [Algebra k L]
       (χ : ringOfX W T →ₐ[k] L), g.act L (pointOf χ) ≠ 0 ∧
@@ -61,6 +66,9 @@ lemma exists_coords_act (g : AffAut W) (hm : g.m ≠ 0 → xOf g.m ∈ T) :
   · exact ⟨_, _, fun L _ _ _ χ => act_pointOf χ g hm0 (hm hm0)⟩
 
 omit [DecidableEq k] [W.IsElliptic] in
+/--
+@isnad1 id=le.3h4v.s12.71f989095cfb from=translated src=- shape=7134f048 vocab=ce4c2a7c
+-/
 lemma ringOfX_le {B : Subalgebra k (funField W)} (hx : xGen W ∈ B) (hy : yGen W ∈ B)
     (hT : ∀ a ∈ T, (xGen W - algebraMap k (funField W) a)⁻¹ ∈ B) : ringOfX W T ≤ B := by
   refine Algebra.adjoin_le ?_
@@ -80,6 +88,9 @@ def evalRingOfX {Q : GeomPoint W} (hQ : Q ≠ 0) (hQD : evalPt hQ D ≠ 0) :
   (evalLoc (evalPt hQ) hQD).comp ((locMapInv hD).comp (Subalgebra.inclusion hT))
 
 omit [DecidableEq k] [W.IsElliptic] in
+/--
+@isnad1 id=eq.1h4v.s14.f66fcdeff0a3 from=translated src=- shape=8ec49aa0 vocab=c071b2e7
+-/
 lemma locMapInv_algebraMap (c : W.toAffine.CoordinateRing) :
     locMapInv hD ⟨algebraMap _ (funField W) c, algebraMap_mem_range_locMap hD c⟩ =
       algebraMap _ _ c := by
@@ -87,6 +98,9 @@ lemma locMapInv_algebraMap (c : W.toAffine.CoordinateRing) :
   rw [locMap_locMapInv, locMap_algebraMap]
 
 omit [DecidableEq k] [W.IsElliptic] in
+/--
+@isnad1 id=eq.5h6v.s13.a7685bfb93a5 from=translated src=- shape=09abb5e2 vocab=1ce8e445
+-/
 lemma evalRingOfX_algebraMap {Q : GeomPoint W} (hQ : Q ≠ 0) (hQD : evalPt hQ D ≠ 0)
     (c : W.toAffine.CoordinateRing) (hc : algebraMap _ (funField W) c ∈ ringOfX W T) :
     evalRingOfX hD hT hQ hQD ⟨_, hc⟩ = evalPt hQ c := by
@@ -96,6 +110,9 @@ lemma evalRingOfX_algebraMap {Q : GeomPoint W} (hQ : Q ≠ 0) (hQD : evalPt hQ D
   rw [this, locMapInv_algebraMap, evalLoc_algebraMap]
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=eq.4h5v.s11.c80faa7efaaa from=translated src=- shape=3c9f7614 vocab=93745e3f
+-/
 lemma pointOf_evalRingOfX {Q : GeomPoint W} (hQ : Q ≠ 0) (hQD : evalPt hQ D ≠ 0) :
     pointOf (evalRingOfX hD hT hQ hQD) = Q := by
   refine Point.ext_xOf_yOf (pointOf_ne_zero _) hQ ?_ ?_
@@ -106,7 +123,9 @@ lemma pointOf_evalRingOfX {Q : GeomPoint W} (hQ : Q ≠ 0) (hQD : evalPt hQ D �
 
 include hD hT in
 /-- **The pullback of a regular function.** For `h ∈ k[W]`, `pullback W g h = a / D^N` with
-`a ∈ k[W]` and `a(Q) = h(g Q) · D(Q)^N` at every affine point `Q` with `D(Q) ≠ 0`. -/
+`a ∈ k[W]` and `a(Q) = h(g Q) · D(Q)^N` at every affine point `Q` with `D(Q) ≠ 0`.
+@isnad1 id=ex.3h6v.s13.ae4dfae60ca9 from=translated src=- shape=cc41170d vocab=c50cc28e
+-/
 theorem exists_pullback_eq (g : AffAut W) (hm : g.m ≠ 0 → xOf g.m ∈ T)
     (h : W.toAffine.CoordinateRing) :
     ∃ (a : W.toAffine.CoordinateRing) (N : ℕ),
@@ -150,13 +169,18 @@ theorem exists_pullback_eq (g : AffAut W) (hm : g.m ≠ 0 → xOf g.m ∈ T)
   rw [h1, h2, evalLoc_mk'_mul]
 
 omit [DecidableEq k] [W.IsElliptic] in
+/--
+@isnad1 id=mem.1h5v.s11.5fc9838a33b6 from=translated src=- shape=51280e77 vocab=c9aa6c1a
+-/
 lemma inv_algebraMap_pow_mem_ringAway {𝒮 : Set (GeomPoint W)} (hD𝒮 : zeroSet W D ⊆ 𝒮)
     (N : ℕ) : (algebraMap _ (funField W) D)⁻¹ ^ N ∈ ringAway W 𝒮 :=
   pow_mem (inv_mem_ringAway hD𝒮) N
 
 include hD hT in
 /-- The stability theorem, for an auxiliary `D` whose zeros lie in `𝒮` and with
-`ringOfX W T ⊆ k[W][D⁻¹]`. -/
+`ringOfX W T ⊆ k[W][D⁻¹]`.
+@isnad1 id=mem.6h7v.s12.f4be42f266e9 from=translated src=- shape=07c986ea vocab=f2b39e6b
+-/
 theorem pullback_mem_ringAway_aux {𝒮 : Set (GeomPoint W)} (hD𝒮 : zeroSet W D ⊆ 𝒮)
     {g : AffAut W} (hm : g.m ≠ 0 → xOf g.m ∈ T) (hg : ∀ P ∈ 𝒮, g⁻¹.act _ P ∈ 𝒮) {f : funField W}
     (hf : f ∈ ringAway W 𝒮) : pullback W g f ∈ ringAway W 𝒮 := by
@@ -181,6 +205,9 @@ end Pullback
 /-! ### Stability -/
 
 omit [DecidableEq k] [W.IsElliptic] in
+/--
+@isnad1 id=ne.0h3v.s8.69be0aa61670 from=translated src=- shape=b14ec905 vocab=455d3fe5
+-/
 lemma xC_sub_ne_zero (a : k) : xC W - algebraMap k W.toAffine.CoordinateRing a ≠ 0 := by
   intro h
   apply xGen_sub_ne_zero W a
@@ -188,7 +215,9 @@ lemma xC_sub_ne_zero (a : k) : xC W - algebraMap k W.toAffine.CoordinateRing a �
   rwa [map_sub, algebraMap_xC, ← IsScalarTower.algebraMap_apply, map_zero] at this
 
 /-- **Stability.** If `g⁻¹` maps `𝒮` into itself and `±m ∈ 𝒮` (for `m ≠ 0`), the pullback along
-`g = (ε, m)` preserves the ring `ringAway W 𝒮` of functions regular on `W ∖ ({0} ∪ 𝒮)`. -/
+`g = (ε, m)` preserves the ring `ringAway W 𝒮` of functions regular on `W ∖ ({0} ∪ 𝒮)`.
+@isnad1 id=mem.3h5v.s12.3c3637426982 from=translated src=- shape=d47f27c7 vocab=9e295bdb
+-/
 theorem pullback_mem_ringAway {𝒮 : Set (GeomPoint W)} {g : AffAut W}
     (hg : ∀ P ∈ 𝒮, g⁻¹.act _ P ∈ 𝒮)
     (hm : g.m ≠ 0 → bc W (AlgebraicClosure k) g.m ∈ 𝒮 ∧ -bc W (AlgebraicClosure k) g.m ∈ 𝒮)
@@ -227,6 +256,9 @@ class IsAffStableGeom (𝒮 : Set (GeomPoint W)) (A : Subgroup (AffAut W)) : Pro
 
 variable (𝒮 : Set (GeomPoint W)) (A : Subgroup (AffAut W)) [IsAffStableGeom W 𝒮 A]
 
+/--
+@isnad1 id=mem.1h6v.s11.65d1396468e8 from=translated src=- shape=fff30ea8 vocab=25494e01
+-/
 lemma smul_mem_ringAway (g : A) {f : funField W} (hf : f ∈ ringAway W 𝒮) :
     (g : AffAut W) • f ∈ ringAway W 𝒮 := by
   rw [smul_funField_def]
@@ -247,6 +279,9 @@ instance : MulSemiringAction A (ringAway W 𝒮) where
   smul_one g := Subtype.ext (smul_one (g : AffAut W))
   smul_mul g r s := Subtype.ext (smul_mul' (g : AffAut W) (r : funField W) s)
 
+/--
+@isnad1 id=eq.0h6v.s15.d00dfab03329 from=translated src=- shape=cb36b9c7 vocab=25494e01
+-/
 @[simp] lemma coe_smul_ringAway (g : A) (r : ringAway W 𝒮) :
     ((g • r : ringAway W 𝒮) : funField W) = (g : AffAut W) • (r : funField W) := rfl
 
@@ -266,10 +301,16 @@ def removedSetIn (ℓ : ℕ) (M : AddSubgroup W.toAffine.Point) : Set (W.toAffin
 variable {W K} {ℓ : ℕ} {M : AddSubgroup W.toAffine.Point}
 
 omit [W.IsElliptic] in
+/--
+@isnad1 id=mem.0h5v.s7.4dc0932021d6 from=translated src=- shape=020359bd vocab=5198a99c
+-/
 lemma zero_mem_removedSetIn : (0 : (W.toAffine⁄K).Point) ∈ removedSetIn W K ℓ M :=
   ⟨0, M.zero_mem, by rw [map_zero, sub_zero, smul_zero]⟩
 
 omit [W.IsElliptic] in
+/--
+@isnad1 id=mem.1h6v.s8.c5f6efe84a1c from=translated src=- shape=c9be2310 vocab=78dc0588
+-/
 lemma neg_mem_removedSetIn {P : (W.toAffine⁄K).Point} (hP : P ∈ removedSetIn W K ℓ M) :
     -P ∈ removedSetIn W K ℓ M := by
   obtain ⟨m, hm, h⟩ := hP
@@ -277,6 +318,9 @@ lemma neg_mem_removedSetIn {P : (W.toAffine⁄K).Point} (hP : P ∈ removedSetIn
   rw [map_neg, neg_sub_neg, ← neg_sub, smul_neg, h, neg_zero]
 
 omit [W.IsElliptic] in
+/--
+@isnad1 id=mem.2h8v.s8.d578e10d5352 from=translated src=- shape=0071270f vocab=1a373638
+-/
 lemma act_mem_removedSetIn {pm : Bool} {g : AffAut W} (hg : g ∈ affGroup W M pm)
     {P : (W.toAffine⁄K).Point} (hP : P ∈ removedSetIn W K ℓ M) :
     g.act K P ∈ removedSetIn W K ℓ M := by
@@ -288,12 +332,17 @@ lemma act_mem_removedSetIn {pm : Bool} {g : AffAut W} (hg : g ∈ affGroup W M p
       smul_comm, h, smul_zero]
 
 omit [W.IsElliptic] in
+/--
+@isnad1 id=mem.1h6v.s8.79265519d66a from=translated src=- shape=f85541d0 vocab=c992057a
+-/
 lemma bc_mem_removedSetIn {m : W.toAffine.Point} (hm : m ∈ M) :
     bc W K m ∈ removedSetIn W K ℓ M :=
   ⟨m, hm, by rw [sub_self, smul_zero]⟩
 
 omit [W.IsElliptic] in
-/-- The rational points of `removedSetIn W K ℓ M` are those of `removedSet W ℓ M`. -/
+/-- The rational points of `removedSetIn W K ℓ M` are those of `removedSet W ℓ M`.
+@isnad1 id=iff.0h6v.s8.e95c125e92de from=translated src=- shape=7cca50b7 vocab=de29f445
+-/
 lemma bc_mem_removedSetIn_iff {P : W.toAffine.Point} :
     bc W K P ∈ removedSetIn W K ℓ M ↔ P ∈ removedSet W ℓ M := by
   refine exists_congr fun m => and_congr_right fun _ => ?_

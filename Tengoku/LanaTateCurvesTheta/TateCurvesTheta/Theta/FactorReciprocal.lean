@@ -72,8 +72,14 @@ noncomputable def recipCoeff (t : TateParameter K) : ℕ → K
   | (n + 1) => -∑ k ∈ Finset.range (n + 1), t.factorCoeff (k + 1) * recipCoeff t (n - k)
   decreasing_by exact Nat.lt_succ_of_le (Nat.sub_le n k)
 
+/--
+@isnad1 id=eq.0h2v.s5.9251ced0bb0b from=translated src=- shape=b999d37c vocab=6e8ce0ae
+-/
 @[simp] lemma recipCoeff_zero : recipCoeff t 0 = 1 := by rw [recipCoeff]
 
+/--
+@isnad1 id=eq.0h3v.s7.fe6cdf55cd72 from=translated src=- shape=5a730f22 vocab=875a1673
+-/
 lemma recipCoeff_succ (n : ℕ) :
     recipCoeff t (n + 1)
       = -∑ k ∈ Finset.range (n + 1), t.factorCoeff (k + 1) * recipCoeff t (n - k) := by
@@ -81,7 +87,9 @@ lemma recipCoeff_succ (n : ℕ) :
 
 /-- **Every reciprocal coefficient has norm at most one.** By strong induction: the constant term
 is `1`, and each `F (n+1)` is (minus) an ultrametric finite sum of products `E (k+1) · F (n-k)`,
-whose norms are `≤ 1` since `‖E (k+1)‖ ≤ 1` and `‖F (n-k)‖ ≤ 1` (induction hypothesis). -/
+whose norms are `≤ 1` since `‖E (k+1)‖ ≤ 1` and `‖F (n-k)‖ ≤ 1` (induction hypothesis).
+@isnad1 id=le.0h3v.s5.67745373009e from=translated src=- shape=f1c58a5a vocab=2a66b671
+-/
 lemma norm_recipCoeff_le_one [IsUltrametricDist K] (n : ℕ) : ‖recipCoeff t n‖ ≤ 1 := by
   induction n using Nat.strong_induction_on with
   | _ n ih =>
@@ -98,7 +106,9 @@ lemma norm_recipCoeff_le_one [IsUltrametricDist K] (n : ℕ) : ‖recipCoeff t n
         _ = 1 := one_mul 1
 
 /-- **Absolute summability of the `q`-binomial power series on the unit ball.** For `‖c‖ < 1` the
-term norms `‖E k cᵏ‖ = ‖E k‖·‖c‖ᵏ ≤ ‖c‖ᵏ` are dominated by the convergent geometric series. -/
+term norms `‖E k cᵏ‖ = ‖E k‖·‖c‖ᵏ ≤ ‖c‖ᵏ` are dominated by the convergent geometric series.
+@isnad1 id=summable.1h3v.s6.1ae081902c30 from=translated src=- shape=f33f29b0 vocab=5c30a424
+-/
 lemma summable_norm_factorCoeff_mul_pow [IsUltrametricDist K] {c : K} (hc : ‖c‖ < 1) :
     Summable (fun k : ℕ => ‖factorCoeff t k * c ^ k‖) := by
   refine Summable.of_nonneg_of_le (fun k => norm_nonneg _) (fun k => ?_)
@@ -107,7 +117,9 @@ lemma summable_norm_factorCoeff_mul_pow [IsUltrametricDist K] {c : K} (hc : ‖c
   exact mul_le_of_le_one_left (pow_nonneg (norm_nonneg c) k) (t.norm_factorCoeff_le_one k)
 
 /-- **Absolute summability of the reciprocal power series on the unit ball.** As above, using
-`‖F k‖ ≤ 1`. -/
+`‖F k‖ ≤ 1`.
+@isnad1 id=summable.1h3v.s6.915c7cedce5a from=translated src=- shape=f33f29b0 vocab=d15a6093
+-/
 lemma summable_norm_recipCoeff_mul_pow [IsUltrametricDist K] {c : K} (hc : ‖c‖ < 1) :
     Summable (fun k : ℕ => ‖recipCoeff t k * c ^ k‖) := by
   refine Summable.of_nonneg_of_le (fun k => norm_nonneg _) (fun k => ?_)
@@ -115,14 +127,18 @@ lemma summable_norm_recipCoeff_mul_pow [IsUltrametricDist K] {c : K} (hc : ‖c�
   rw [norm_mul, norm_pow]
   exact mul_le_of_le_one_left (pow_nonneg (norm_nonneg c) k) (t.norm_recipCoeff_le_one k)
 
-/-- The reciprocal power series `∑ F k cᵏ` converges for every `c` on the open unit ball. -/
+/-- The reciprocal power series `∑ F k cᵏ` converges for every `c` on the open unit ball.
+@isnad1 id=summable.1h3v.s7.a87ece647e49 from=translated src=- shape=ae2a146d vocab=ebbc564d
+-/
 lemma recipCoeff_summable [CompleteSpace K] [IsUltrametricDist K] {c : K} (hc : ‖c‖ < 1) :
     Summable (fun k : ℕ => recipCoeff t k * c ^ k) :=
   (t.summable_norm_recipCoeff_mul_pow hc).of_norm
 
 /-- **The Cauchy convolution of `E` and `F` is the Kronecker delta at `0`.** This is the defining
 property of the reciprocal coefficients: `∑_{k ≤ n} E k · F (n-k) = 1` if `n = 0` and `0`
-otherwise. The `n ≥ 1` case is the recursion `recipCoeff_succ` after peeling the `k = 0` term. -/
+otherwise. The `n ≥ 1` case is the recursion `recipCoeff_succ` after peeling the `k = 0` term.
+@isnad1 id=eq.0h3v.s7.e852e113019c from=translated src=- shape=dd32084f vocab=4b39c9b4
+-/
 lemma factorCoeff_recipCoeff_convolution (n : ℕ) :
     ∑ k ∈ Finset.range (n + 1), t.factorCoeff k * recipCoeff t (n - k)
       = if n = 0 then 1 else 0 := by
@@ -142,7 +158,9 @@ thetaProdFactor c · (∑' k, F k cᵏ) = 1,
 so `∑' k, F k cᵏ` is the reciprocal `1 / thetaProdFactor c`. The proof rewrites `thetaProdFactor c`
 as the Euler `q`-binomial series (`thetaProdFactor_eq_tsum`), forms the absolutely convergent Cauchy
 product with the reciprocal series, and collapses each Cauchy coefficient via
-`factorCoeff_recipCoeff_convolution`, leaving only the constant term `1`. -/
+`factorCoeff_recipCoeff_convolution`, leaving only the constant term `1`.
+@isnad1 id=eq.1h3v.s7.687a3e791ccd from=translated src=- shape=c7e21c43 vocab=de651086
+-/
 theorem thetaProdFactor_mul_tsum_recipCoeff [CompleteSpace K] [IsUltrametricDist K]
     {c : K} (hc : ‖c‖ < 1) :
     t.thetaProdFactor c * ∑' k : ℕ, recipCoeff t k * c ^ k = 1 := by

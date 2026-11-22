@@ -73,6 +73,9 @@ private lemma eq_of_q_eq {t₁ t₂ : TateParameter K} (h : (t₁.q : K) = (t₂
 def ofNormLtOne {x : K} (h0 : x ≠ 0) (h1 : ‖x‖ < 1) : TateParameter K :=
   ⟨Units.mk0 x h0, by simpa using h1⟩
 
+/--
+@isnad1 id=eq.2h2v.s6.321ae2e131da from=translated src=- shape=6599b47d vocab=72490ac3
+-/
 @[simp] lemma ofNormLtOne_q {x : K} (h0 : x ≠ 0) (h1 : ‖x‖ < 1) :
     ((ofNormLtOne h0 h1).q : K) = x := rfl
 
@@ -117,7 +120,9 @@ private lemma norm_eisensteinSummand_sub_le (k n : ℕ) :
 variable [CompleteSpace K]
 
 /-- **Lipschitz estimate for the Eisenstein series**:
-`‖sₖ(q₁) - sₖ(q₂)‖ ≤ ‖q₁ - q₂‖`. -/
+`‖sₖ(q₁) - sₖ(q₂)‖ ≤ ‖q₁ - q₂‖`.
+@isnad1 id=le.0h4v.s7.5fd76b209447 from=translated src=- shape=92500a71 vocab=171b8668
+-/
 lemma norm_eisenstein_sub_le (k : ℕ) :
     ‖t₁.eisenstein k - t₂.eisenstein k‖ ≤ ‖(t₁.q : K) - (t₂.q : K)‖ := by
   have h1 := t₁.eisenstein_summand_summable k
@@ -134,7 +139,9 @@ lemma norm_eisenstein_sub_le (k : ℕ) :
 
 /-- **Degree-`≥ 2` Lipschitz estimate for the Eisenstein series**: subtracting the common
 leading term `q` improves the Lipschitz constant to `max ‖q₁‖ ‖q₂‖`:
-`‖(sₖ(q₁) - q₁) - (sₖ(q₂) - q₂)‖ ≤ max ‖q₁‖ ‖q₂‖ · ‖q₁ - q₂‖`. -/
+`‖(sₖ(q₁) - q₁) - (sₖ(q₂) - q₂)‖ ≤ max ‖q₁‖ ‖q₂‖ · ‖q₁ - q₂‖`.
+@isnad1 id=le.0h4v.s8.a5d0a01cee6b from=translated src=- shape=f943b85d vocab=7c6ca3a1
+-/
 lemma norm_eisenstein_sub_q_sub_le (k : ℕ) :
     ‖(t₁.eisenstein k - (t₁.q : K)) - (t₂.eisenstein k - (t₂.q : K))‖
       ≤ max ‖(t₁.q : K)‖ ‖(t₂.q : K)‖ * ‖(t₁.q : K) - (t₂.q : K)‖ := by
@@ -214,7 +221,9 @@ lemma norm_eisenstein_sub_q_sub_le (k : ℕ) :
     exact mul_le_mul_of_nonneg_right (pow_le_of_le_one hM0 hM1 n.succ_ne_zero)
       (norm_nonneg _)
 
-/-- **Lipschitz estimate for `a₄`**: `‖a₄(q₁) - a₄(q₂)‖ ≤ ‖q₁ - q₂‖`. -/
+/-- **Lipschitz estimate for `a₄`**: `‖a₄(q₁) - a₄(q₂)‖ ≤ ‖q₁ - q₂‖`.
+@isnad1 id=le.0h3v.s7.2977726dba48 from=translated src=- shape=40c01633 vocab=587d2f9e
+-/
 lemma norm_a₄_sub_le : ‖t₁.a₄ - t₂.a₄‖ ≤ ‖(t₁.q : K) - (t₂.q : K)‖ := by
   rw [show t₁.a₄ - t₂.a₄ = -5 * (t₁.eisenstein 3 - t₂.eisenstein 3) from by
       rw [a₄_def, a₄_def]; ring,
@@ -225,7 +234,9 @@ lemma norm_a₄_sub_le : ‖t₁.a₄ - t₂.a₄‖ ≤ ‖(t₁.q : K) - (t₂
           zero_le_one
     _ = ‖(t₁.q : K) - (t₂.q : K)‖ := one_mul _
 
-/-- **Lipschitz estimate for `c₄`**: `‖c₄(E_{q₁}) - c₄(E_{q₂})‖ ≤ ‖q₁ - q₂‖`. -/
+/-- **Lipschitz estimate for `c₄`**: `‖c₄(E_{q₁}) - c₄(E_{q₂})‖ ≤ ‖q₁ - q₂‖`.
+@isnad1 id=le.0h3v.s7.ffae2071cc5b from=translated src=- shape=8807a882 vocab=d264b054
+-/
 lemma norm_tateCurve_c₄_sub_le :
     ‖t₁.tateCurve.c₄ - t₂.tateCurve.c₄‖ ≤ ‖(t₁.q : K) - (t₂.q : K)‖ := by
   rw [show t₁.tateCurve.c₄ - t₂.tateCurve.c₄ = -48 * (t₁.a₄ - t₂.a₄) from by
@@ -237,7 +248,9 @@ lemma norm_tateCurve_c₄_sub_le :
     _ = ‖(t₁.q : K) - (t₂.q : K)‖ := one_mul _
 
 /-- **Lipschitz estimate for `c₄³`**: `‖c₄(E_{q₁})³ - c₄(E_{q₂})³‖ ≤ ‖q₁ - q₂‖`, since
-`‖c₄‖ = 1`. -/
+`‖c₄‖ = 1`.
+@isnad1 id=le.0h3v.s7.7b8b76bef5f4 from=translated src=- shape=c46ee5dd vocab=a13d7a3e
+-/
 lemma norm_tateCurve_c₄_cube_sub_le :
     ‖t₁.tateCurve.c₄ ^ 3 - t₂.tateCurve.c₄ ^ 3‖ ≤ ‖(t₁.q : K) - (t₂.q : K)‖ := by
   have h := norm_pow_sub_pow_le t₁.tateCurve.c₄ t₂.tateCurve.c₄ 2
@@ -246,7 +259,9 @@ lemma norm_tateCurve_c₄_cube_sub_le :
 
 /-- **Degree-`≥ 2` Lipschitz estimate for `Δ - q`**:
 `‖(Δ(E_{q₁}) - q₁) - (Δ(E_{q₂}) - q₂)‖ ≤ max ‖q₁‖ ‖q₂‖ · ‖q₁ - q₂‖`
-(`(12 : K) ≠ 0`). -/
+(`(12 : K) ≠ 0`).
+@isnad1 id=le.1h3v.s8.47a49a13aba2 from=translated src=- shape=ba80cbe1 vocab=87bee050
+-/
 lemma norm_tateCurve_Δ_sub_q_sub_le (h12 : (12 : K) ≠ 0) :
     ‖(t₁.tateCurve.Δ - (t₁.q : K)) - (t₂.tateCurve.Δ - (t₂.q : K))‖
       ≤ max ‖(t₁.q : K)‖ ‖(t₂.q : K)‖ * ‖(t₁.q : K) - (t₂.q : K)‖ := by
@@ -317,7 +332,9 @@ lemma norm_tateCurve_Δ_sub_q_sub_le (h12 : (12 : K) ≠ 0) :
 
 /-- **The discriminant is an isometry in the Tate parameter**:
 `‖Δ(E_{q₁}) - Δ(E_{q₂})‖ = ‖q₁ - q₂‖`, by the ultrametric isosceles law applied to the
-degree-`≥ 2` estimate for `Δ - q` (`(12 : K) ≠ 0`). -/
+degree-`≥ 2` estimate for `Δ - q` (`(12 : K) ≠ 0`).
+@isnad1 id=eq.1h3v.s7.bc36bb2ba2c5 from=translated src=- shape=2d933048 vocab=7ea873dd
+-/
 theorem norm_tateCurve_Δ_sub_Δ (h12 : (12 : K) ≠ 0) :
     ‖t₁.tateCurve.Δ - t₂.tateCurve.Δ‖ = ‖(t₁.q : K) - (t₂.q : K)‖ := by
   by_cases hq : (t₁.q : K) = (t₂.q : K)
@@ -336,7 +353,9 @@ theorem norm_tateCurve_Δ_sub_Δ (h12 : (12 : K) ≠ 0) :
 /-- **The `j`-isometry**: `‖j(E_{q₁}) - j(E_{q₂})‖ = ‖q₁ - q₂‖ / (‖q₁‖ · ‖q₂‖)`
 (`(12 : K) ≠ 0`). The numerator `c₄₁³·Δ₂ - Δ₁·c₄₂³` decomposes as
 `c₄₁³·(Δ₂ - Δ₁) + Δ₁·(c₄₁³ - c₄₂³)`, in which the first summand has exact norm
-`‖q₁ - q₂‖` and strictly dominates the second, so the isosceles law applies. -/
+`‖q₁ - q₂‖` and strictly dominates the second, so the isosceles law applies.
+@isnad1 id=eq.1h3v.s7.9331d85377e1 from=translated src=- shape=0e8ee411 vocab=b8d3a66f
+-/
 theorem norm_tateJ_sub_tateJ (h12 : (12 : K) ≠ 0) :
     ‖t₁.tateJ - t₂.tateJ‖
       = ‖(t₁.q : K) - (t₂.q : K)‖ / (‖(t₁.q : K)‖ * ‖(t₂.q : K)‖) := by
@@ -374,7 +393,9 @@ theorem norm_tateJ_sub_tateJ (h12 : (12 : K) ≠ 0) :
     rw [hkey, norm_div, hnum, norm_mul, t₁.norm_tateCurve_Δ h12, t₂.norm_tateCurve_Δ h12]
 
 /-- **Injectivity of `q ↦ j(E_q)`**: distinct Tate parameters have distinct `j`-invariants
-(`(12 : K) ≠ 0`). -/
+(`(12 : K) ≠ 0`).
+@isnad1 id=eq.2h3v.s6.c88c96ebb545 from=translated src=- shape=a6ceb4fb vocab=4101a3ae
+-/
 theorem tateJ_injective (h12 : (12 : K) ≠ 0) (h : t₁.tateJ = t₂.tateJ) : t₁ = t₂ := by
   have h0 := t₁.norm_tateJ_sub_tateJ t₂ h12
   rw [h, sub_self, norm_zero] at h0
@@ -548,7 +569,9 @@ private lemma norm_jSeq_sub_le (h12 : (12 : K) ≠ 0) {j : K} (hj : 1 < ‖j‖)
 /-- **Existence of the Tate parameter with prescribed `j`-invariant**: for every `j : K`
 with `1 < ‖j‖` there is a Tate parameter `q` with `j(E_q) = j` (`(12 : K) ≠ 0`). The
 parameter is produced as the limit of the contracting fixed-point iteration
-`x₀ = j⁻¹`, `x_{k+1} = x_k·c₄(E_{x_k})³/(j·Δ(E_{x_k}))` on the sphere `‖x‖ = ‖j‖⁻¹`. -/
+`x₀ = j⁻¹`, `x_{k+1} = x_k·c₄(E_{x_k})³/(j·Δ(E_{x_k}))` on the sphere `‖x‖ = ‖j‖⁻¹`.
+@isnad1 id=ex.2h2v.s6.062cd2cbec39 from=translated src=- shape=1b05a90e vocab=280ea69d
+-/
 theorem exists_tateParameter_tateJ_eq (h12 : (12 : K) ≠ 0) {j : K} (hj : 1 < ‖j‖) :
     ∃ t : TateParameter K, t.tateJ = j := by
   have hjpos : 0 < ‖j‖ := lt_trans one_pos hj
@@ -591,7 +614,9 @@ theorem exists_tateParameter_tateJ_eq (h12 : (12 : K) ≠ 0) {j : K} (hj : 1 < �
 
 /-- **Existence and uniqueness of the Tate parameter with prescribed `j`-invariant**:
 `q ↦ j(E_q)` is a bijection from Tate parameters onto `{j : K | 1 < ‖j‖}`
-(`(12 : K) ≠ 0`). -/
+(`(12 : K) ≠ 0`).
+@isnad1 id=existsun.2h2v.s6.92f99c3d7a1a from=translated src=- shape=1b05a90e vocab=19b02c0d
+-/
 theorem existsUnique_tateParameter_tateJ_eq (h12 : (12 : K) ≠ 0) {j : K}
     (hj : 1 < ‖j‖) : ∃! t : TateParameter K, t.tateJ = j := by
   obtain ⟨t, ht⟩ := exists_tateParameter_tateJ_eq h12 hj

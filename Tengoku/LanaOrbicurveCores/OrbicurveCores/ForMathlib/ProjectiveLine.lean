@@ -32,7 +32,9 @@ variable {X : Type*} [TopologicalSpace X] [SecondCountableTopology X] [LocallyCo
   [T2Space X]
 
 /-- The one-point compactification of a second countable locally compact Hausdorff space is
-second countable. -/
+second countable.
+@isnad1 id=secondco.0h1v.s4.2dfa9c6141c4 from=translated src=- shape=a3e755af vocab=7ffdf4f3
+-/
 instance secondCountableTopology : SecondCountableTopology (OnePoint X) := by
   obtain ⟨b, hbc, -, hb⟩ := exists_countable_basis X
   let K : CompactExhaustion X := CompactExhaustion.choice X
@@ -77,9 +79,18 @@ def lift : OnePoint k → k × k
 /-- The determinant bracket `[v, w]`. -/
 def br (v w : k × k) : k := v.1 * w.2 - v.2 * w.1
 
+/--
+@isnad1 id=eq.0h1v.s5.c49efb86b10c from=translated src=- shape=dbe09b1e vocab=b5993080
+-/
 @[simp] lemma lift_infty : lift (∞ : OnePoint k) = (1, 0) := rfl
+/--
+@isnad1 id=eq.0h2v.s5.d2fb83998cd3 from=translated src=- shape=62d06e81 vocab=f77e6af9
+-/
 @[simp] lemma lift_coe (a : k) : lift (a : OnePoint k) = (a, 1) := rfl
 
+/--
+@isnad1 id=ne.0h2v.s5.658924118257 from=translated src=- shape=e8623a66 vocab=33617de6
+-/
 lemma lift_ne_zero (x : OnePoint k) : lift x ≠ 0 := by
   cases x <;> simp [Prod.ext_iff]
 
@@ -88,9 +99,15 @@ variable [DecidableEq k]
 /-- The point of `ℙ¹(k) = OnePoint k` with homogeneous coordinates `[a : b]`. -/
 def proj (v : k × k) : OnePoint k := if v.2 = 0 then ∞ else ((v.1 / v.2 : k) : OnePoint k)
 
+/--
+@isnad1 id=eq.0h2v.s4.028af7784fb8 from=translated src=- shape=e17ccb0b vocab=45f79849
+-/
 @[simp] lemma proj_lift (x : OnePoint k) : proj (lift x) = x := by
   cases x <;> simp [proj]
 
+/--
+@isnad1 id=eq.1h3v.s6.3766bd909397 from=translated src=- shape=b7bf7f40 vocab=2a83490f
+-/
 lemma proj_smul {c : k} (hc : c ≠ 0) (v : k × k) : proj (c • v) = proj v := by
   unfold proj
   simp only [Prod.smul_snd, smul_eq_mul, mul_eq_zero, hc, false_or]
@@ -98,6 +115,9 @@ lemma proj_smul {c : k} (hc : c ≠ 0) (v : k × k) : proj (c • v) = proj v :=
   · rfl
   · rw [Prod.smul_fst, smul_eq_mul, mul_div_mul_left _ _ hc]
 
+/--
+@isnad1 id=ex.1h2v.s7.8f5fa58d1057 from=translated src=- shape=3c6a7a63 vocab=aae8d215
+-/
 lemma lift_proj {v : k × k} (hv : v ≠ 0) : ∃ c : k, c ≠ 0 ∧ lift (proj v) = c • v := by
   unfold proj
   split_ifs with h
@@ -105,6 +125,9 @@ lemma lift_proj {v : k × k} (hv : v ≠ 0) : ∃ c : k, c ≠ 0 ∧ lift (proj 
     exact ⟨v.1⁻¹, inv_ne_zero h1, by simp [Prod.ext_iff, h, h1]⟩
   · exact ⟨v.2⁻¹, inv_ne_zero h, by simp [Prod.ext_iff, h, div_eq_inv_mul]⟩
 
+/--
+@isnad1 id=iff.2h3v.s7.810cc67efa0e from=translated src=- shape=8300688d vocab=a6ca6f6e
+-/
 lemma proj_eq_proj_iff {v w : k × k} (hv : v ≠ 0) (hw : w ≠ 0) :
     proj v = proj w ↔ br v w = 0 := by
   unfold proj br
@@ -119,6 +142,9 @@ lemma proj_eq_proj_iff {v w : k × k} (hv : v ≠ 0) (hw : w ≠ 0) :
   · rw [OnePoint.coe_eq_coe, div_eq_div_iff h1 h2, sub_eq_zero, mul_comm w.1]
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=iff.0h3v.s5.15363a1276b0 from=translated src=- shape=b2c6c495 vocab=c2afeb65
+-/
 lemma br_lift_eq_zero_iff {x y : OnePoint k} : br (lift x) (lift y) = 0 ↔ x = y := by
   classical
   rw [← proj_eq_proj_iff (lift_ne_zero x) (lift_ne_zero y), proj_lift, proj_lift]
@@ -133,16 +159,25 @@ def mv (M : Matrix (Fin 2) (Fin 2) k) (v : k × k) : k × k :=
 def mob (M : Matrix (Fin 2) (Fin 2) k) (x : OnePoint k) : OnePoint k := proj (mv M (lift x))
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=eq.0h4v.s7.ae9061ba2185 from=translated src=- shape=8d51cd68 vocab=4ee11de1
+-/
 lemma mv_smul (M : Matrix (Fin 2) (Fin 2) k) (c : k) (v : k × k) : mv M (c • v) = c • mv M v := by
   simp only [mv, Prod.smul_mk, Prod.smul_fst, Prod.smul_snd, smul_eq_mul, Prod.mk.injEq]
   constructor <;> ring
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=eq.0h4v.s7.4d1944074f94 from=translated src=- shape=b2c4e5a9 vocab=0426d5e5
+-/
 lemma mv_mul (M N : Matrix (Fin 2) (Fin 2) k) (v : k × k) : mv (M * N) v = mv M (mv N v) := by
   simp only [mv, Matrix.mul_apply, Fin.sum_univ_two, Prod.mk.injEq]
   constructor <;> ring
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=ne.2h3v.s7.acc2d3b8948a from=translated src=- shape=f1107e06 vocab=4e44d312
+-/
 lemma mv_ne_zero {M : Matrix (Fin 2) (Fin 2) k} (hM : M.det ≠ 0) {v : k × k} (hv : v ≠ 0) :
     mv M v ≠ 0 := by
   intro h
@@ -155,22 +190,34 @@ lemma mv_ne_zero {M : Matrix (Fin 2) (Fin 2) k} (hM : M.det ≠ 0) {v : k × k} 
     linear_combination M 0 0 * h.2 - M 1 0 * h.1
   exact Prod.ext ((mul_eq_zero.mp e1).resolve_left hM) ((mul_eq_zero.mp e2).resolve_left hM)
 
+/--
+@isnad1 id=eq.1h3v.s6.cad50abab9a8 from=translated src=- shape=39c6ac4e vocab=38a7bb3f
+-/
 lemma mob_proj (M : Matrix (Fin 2) (Fin 2) k) {v : k × k} (hv : v ≠ 0) :
     mob M (proj v) = proj (mv M v) := by
   obtain ⟨c, hc, e⟩ := lift_proj hv
   rw [mob, e, mv_smul, proj_smul hc]
 
+/--
+@isnad1 id=eq.1h4v.s7.2dcf2e319174 from=translated src=- shape=aed86844 vocab=88be76e0
+-/
 lemma mob_mul {M N : Matrix (Fin 2) (Fin 2) k} (hN : N.det ≠ 0) (x : OnePoint k) :
     mob (M * N) x = mob M (mob N x) := by
   rw [show mob N x = proj (mv N (lift x)) from rfl,
     mob_proj M (mv_ne_zero hN (lift_ne_zero x)), mob, mv_mul]
 
+/--
+@isnad1 id=eq.0h3v.s8.76357393ea43 from=translated src=- shape=5229370e vocab=f787c541
+-/
 lemma gl_smul_eq_mob (g : GL (Fin 2) k) (x : OnePoint k) :
     g • x = mob (g : Matrix (Fin 2) (Fin 2) k) x := by
   cases x with
   | infty => simp [smul_infty_eq_ite, mob, mv, proj]
   | coe a => simp [smul_some_eq_ite, mob, mv, proj]
 
+/--
+@isnad1 id=eq.1h4v.s7.5b2ee4a60023 from=translated src=- shape=8a45df6a vocab=5ea40311
+-/
 lemma mob_smul_matrix {c : k} (hc : c ≠ 0) (M : Matrix (Fin 2) (Fin 2) k) (x : OnePoint k) :
     mob (c • M) x = mob M x := by
   have : mv (c • M) (lift x) = c • mv M (lift x) := by
@@ -178,17 +225,25 @@ lemma mob_smul_matrix {c : k} (hc : c ≠ 0) (M : Matrix (Fin 2) (Fin 2) k) (x :
     constructor <;> ring
   rw [mob, this, proj_smul hc, mob]
 
+/--
+@isnad1 id=eq.0h2v.s6.34ccf10ce591 from=translated src=- shape=14765a47 vocab=a6ac0d04
+-/
 lemma mob_one (x : OnePoint k) : mob (1 : Matrix (Fin 2) (Fin 2) k) x = x := by
   have : mv (1 : Matrix (Fin 2) (Fin 2) k) (lift x) = lift x := by
     simp [mv]
   rw [mob, this, proj_lift]
 
+/--
+@isnad1 id=eq.1h3v.s6.146c4de82dc5 from=translated src=- shape=a54fe659 vocab=4d3fa6f1
+-/
 lemma mob_adjugate_mul {N : Matrix (Fin 2) (Fin 2) k} (hN : N.det ≠ 0) (x : OnePoint k) :
     mob N.adjugate (mob N x) = x := by
   rw [← mob_mul hN, Matrix.adjugate_mul, mob_smul_matrix hN, mob_one]
 
 omit [DecidableEq k] in
-/-- A binary quadratic form vanishing at three distinct points of `ℙ¹` is zero. -/
+/-- A binary quadratic form vanishing at three distinct points of `ℙ¹` is zero.
+@isnad1 id=and.6h7v.s8.7b700821fd51 from=translated src=- shape=d2be13cf vocab=46c704f6
+-/
 lemma quad_eq_zero_aux {A B C a₁ a₂ a₃ : k} (h12 : a₁ ≠ a₂) (h13 : a₁ ≠ a₃) (h23 : a₂ ≠ a₃)
     (e₁ : A * a₁ ^ 2 + B * a₁ + C = 0) (e₂ : A * a₂ ^ 2 + B * a₂ + C = 0)
     (e₃ : A * a₃ ^ 2 + B * a₃ + C = 0) : A = 0 ∧ B = 0 ∧ C = 0 := by
@@ -206,6 +261,9 @@ lemma quad_eq_zero_aux {A B C a₁ a₂ a₃ : k} (h12 : a₁ ≠ a₂) (h13 : a
   rw [hA, hB] at e₁; linear_combination e₁
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=and.4h6v.s8.2f773fe20345 from=translated src=- shape=9275108f vocab=46c704f6
+-/
 lemma quad_eq_zero_aux' {A B C a₂ a₃ : k} (h23 : a₂ ≠ a₃) (e₁ : A = 0)
     (e₂ : A * a₂ ^ 2 + B * a₂ + C = 0) (e₃ : A * a₃ ^ 2 + B * a₃ + C = 0) :
     A = 0 ∧ B = 0 ∧ C = 0 := by
@@ -220,6 +278,9 @@ lemma quad_eq_zero_aux' {A B C a₂ a₃ : k} (h23 : a₂ ≠ a₃) (e₁ : A = 
 def quad (A B C : k) (v : k × k) : k := A * v.1 ^ 2 + B * v.1 * v.2 + C * v.2 ^ 2
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=and.6h7v.s7.f318720d0211 from=translated src=- shape=babf2a9e vocab=1fdd3483
+-/
 lemma quad_eq_zero {A B C : k} {x y z : OnePoint k} (hxy : x ≠ y) (hxz : x ≠ z) (hyz : y ≠ z)
     (ex : quad A B C (lift x) = 0) (ey : quad A B C (lift y) = 0)
     (ez : quad A B C (lift z) = 0) : A = 0 ∧ B = 0 ∧ C = 0 := by
@@ -255,11 +316,16 @@ lemma quad_eq_zero {A B C : k} {x y z : OnePoint k} (hxy : x ≠ y) (hxz : x ≠
           (fun h ↦ hyz (congrArg _ h)) (by simpa using ex) (by simpa using ey) (by simpa using ez)
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=eq.0h3v.s7.6b0d19555b5e from=translated src=- shape=cac6c6e5 vocab=697dcc12
+-/
 lemma br_mv_self (P : Matrix (Fin 2) (Fin 2) k) (v : k × k) :
     br (mv P v) v = quad (-P 1 0) (P 0 0 - P 1 1) (P 0 1) v := by
   simp only [br, mv, quad]; ring
 
-/-- A Möbius map with three distinct fixed points is the identity (its matrix is scalar). -/
+/-- A Möbius map with three distinct fixed points is the identity (its matrix is scalar).
+@isnad1 id=eq.7h5v.s8.1f7be8d4bc6c from=translated src=- shape=198773f0 vocab=ef8117e7
+-/
 lemma scalar_of_three_fixed {P : Matrix (Fin 2) (Fin 2) k} (hP : P.det ≠ 0)
     {x y z : OnePoint k} (hxy : x ≠ y) (hxz : x ≠ z) (hyz : y ≠ z) (hx : mob P x = x)
     (hy : mob P y = y) (hz : mob P z = z) : P = P 0 0 • (1 : Matrix (Fin 2) (Fin 2) k) := by
@@ -277,7 +343,9 @@ lemma scalar_of_three_fixed {P : Matrix (Fin 2) (Fin 2) k} (hP : P.det ≠ 0)
       Matrix.one_apply_ne, mul_zero, one_ne_zero] <;>
     first | rfl | linear_combination h3 | linear_combination -h1 | linear_combination -h2
 
-/-- Two Möbius maps agreeing at three distinct points agree everywhere. -/
+/-- Two Möbius maps agreeing at three distinct points agree everywhere.
+@isnad1 id=eq.8h7v.s7.48294c017fb1 from=translated src=- shape=d96d9411 vocab=844a07c4
+-/
 lemma mob_eq_of_three {M N : Matrix (Fin 2) (Fin 2) k} (hM : M.det ≠ 0) (hN : N.det ≠ 0)
     {x y z : OnePoint k} (hxy : x ≠ y) (hxz : x ≠ z) (hyz : y ≠ z) (hx : mob M x = mob N x)
     (hy : mob M y = mob N y) (hz : mob M z = mob N z) (w : OnePoint k) : mob M w = mob N w := by
@@ -306,7 +374,9 @@ def Distinct3 (t : OnePoint k × OnePoint k × OnePoint k) : Prop :=
   t.1 ≠ t.2.1 ∧ t.1 ≠ t.2.2 ∧ t.2.1 ≠ t.2.2
 
 omit [DecidableEq k] in
-/-- The Plücker identity `[u,v] w + [v,w] u + [w,u] v = 0` in `k²`. -/
+/-- The Plücker identity `[u,v] w + [v,w] u + [w,u] v = 0` in `k²`.
+@isnad1 id=eq.0h4v.s8.407e6908bc8a from=translated src=- shape=3c1ba67d vocab=278c32e3
+-/
 lemma plucker (u v w : k × k) : br u v • w + br v w • u + br w u • v = 0 := by
   simp only [br, Prod.smul_fst, Prod.smul_snd, smul_eq_mul, Prod.ext_iff, Prod.fst_add,
     Prod.snd_add, Prod.fst_zero, Prod.snd_zero]
@@ -317,6 +387,9 @@ def triV (u₁ u₂ u₃ : k × k) : Matrix (Fin 2) (Fin 2) k :=
   !![br u₁ u₂ * u₃.1, br u₂ u₃ * u₁.1; br u₁ u₂ * u₃.2, br u₂ u₃ * u₁.2]
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=eq.0h7v.s8.8626842f4455 from=translated src=- shape=f33043f8 vocab=efa24ca0
+-/
 lemma triV_smul (c₁ c₂ c₃ : k) (u₁ u₂ u₃ : k × k) :
     triV (c₁ • u₁) (c₂ • u₂) (c₃ • u₃) = (c₁ * c₂ * c₃) • triV u₁ u₂ u₃ := by
   ext i j
@@ -327,12 +400,18 @@ def tri (t : OnePoint k × OnePoint k × OnePoint k) : Matrix (Fin 2) (Fin 2) k 
   triV (lift t.1) (lift t.2.1) (lift t.2.2)
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=eq.0h2v.s7.acf03f2de8e4 from=translated src=- shape=8f4593fc vocab=56344509
+-/
 lemma det_tri (t : OnePoint k × OnePoint k × OnePoint k) :
     (tri t).det = br (lift t.1) (lift t.2.1) * br (lift t.2.1) (lift t.2.2) *
       br (lift t.2.2) (lift t.1) := by
   simp only [tri, triV, Matrix.det_fin_two_of, br]; ring
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=ne.1h2v.s5.b6c75fbca37c from=translated src=- shape=2f7dc759 vocab=629749d1
+-/
 lemma det_tri_ne_zero {t : OnePoint k × OnePoint k × OnePoint k} (ht : Distinct3 t) :
     (tri t).det ≠ 0 := by
   classical
@@ -340,6 +419,9 @@ lemma det_tri_ne_zero {t : OnePoint k × OnePoint k × OnePoint k} (ht : Distinc
   refine mul_ne_zero (mul_ne_zero ?_ ?_) ?_ <;> rw [Ne, br_lift_eq_zero_iff]
   exacts [ht.1, ht.2.2, fun h ↦ ht.2.1 h.symm]
 
+/--
+@isnad1 id=eq.1h2v.s5.85524392203b from=translated src=- shape=19d7c7e7 vocab=fbd23618
+-/
 lemma mob_tri_zero {t : OnePoint k × OnePoint k × OnePoint k} (ht : Distinct3 t) :
     mob (tri t) ((0 : k) : OnePoint k) = t.1 := by
   have hb : br (lift t.2.1) (lift t.2.2) ≠ 0 := by rw [Ne, br_lift_eq_zero_iff]; exact ht.2.2
@@ -347,6 +429,9 @@ lemma mob_tri_zero {t : OnePoint k × OnePoint k × OnePoint k} (ht : Distinct3 
     ext <;> simp [mv, tri, triV]
   rw [mob, this, proj_smul hb, proj_lift]
 
+/--
+@isnad1 id=eq.1h2v.s5.4047173e85fd from=translated src=- shape=5914eb9f vocab=748c80cd
+-/
 lemma mob_tri_infty {t : OnePoint k × OnePoint k × OnePoint k} (ht : Distinct3 t) :
     mob (tri t) ∞ = t.2.2 := by
   have hb : br (lift t.1) (lift t.2.1) ≠ 0 := by rw [Ne, br_lift_eq_zero_iff]; exact ht.1
@@ -354,6 +439,9 @@ lemma mob_tri_infty {t : OnePoint k × OnePoint k × OnePoint k} (ht : Distinct3
     ext <;> simp [mv, tri, triV]
   rw [mob, this, proj_smul hb, proj_lift]
 
+/--
+@isnad1 id=eq.1h2v.s6.b6ceb8b9d690 from=translated src=- shape=733fa9c0 vocab=928090a6
+-/
 lemma mob_tri_one {t : OnePoint k × OnePoint k × OnePoint k} (ht : Distinct3 t) :
     mob (tri t) ((1 : k) : OnePoint k) = t.2.1 := by
   have hb : br (lift t.1) (lift t.2.2) ≠ 0 := by rw [Ne, br_lift_eq_zero_iff]; exact ht.2.1
@@ -377,34 +465,51 @@ lemma mob_tri_one {t : OnePoint k × OnePoint k × OnePoint k} (ht : Distinct3 t
 def smul3 (g : GL (Fin 2) k) (t : OnePoint k × OnePoint k × OnePoint k) :
     OnePoint k × OnePoint k × OnePoint k := (g • t.1, g • t.2.1, g • t.2.2)
 
+/--
+@isnad1 id=distinct.1h3v.s5.314a86d4a020 from=translated src=- shape=a4524567 vocab=17db0a02
+-/
 lemma distinct3_smul3 (g : GL (Fin 2) k) {t : OnePoint k × OnePoint k × OnePoint k}
     (ht : Distinct3 t) : Distinct3 (smul3 g t) := by
   simp only [Distinct3, smul3, ne_eq, smul_left_cancel_iff]
   exact ht
 
+/--
+@isnad1 id=eq.1h2v.s6.06ece6c45197 from=translated src=- shape=ddbf8903 vocab=f99c9c03
+-/
 lemma mob_adjugate_tri_fst {t : OnePoint k × OnePoint k × OnePoint k} (ht : Distinct3 t) :
     mob (tri t).adjugate t.1 = ((0 : k) : OnePoint k) := by
   conv_lhs => rw [← mob_tri_zero ht]
   exact mob_adjugate_mul (det_tri_ne_zero ht) _
 
+/--
+@isnad1 id=eq.1h2v.s6.1cc79f0a313c from=translated src=- shape=f95f595f vocab=cd907e9e
+-/
 lemma mob_adjugate_tri_snd {t : OnePoint k × OnePoint k × OnePoint k} (ht : Distinct3 t) :
     mob (tri t).adjugate t.2.1 = ((1 : k) : OnePoint k) := by
   conv_lhs => rw [← mob_tri_one ht]
   exact mob_adjugate_mul (det_tri_ne_zero ht) _
 
+/--
+@isnad1 id=eq.1h2v.s6.0aeaf77584b2 from=translated src=- shape=ccdbd1e2 vocab=24df5627
+-/
 lemma mob_adjugate_tri_thd {t : OnePoint k × OnePoint k × OnePoint k} (ht : Distinct3 t) :
     mob (tri t).adjugate t.2.2 = ∞ := by
   conv_lhs => rw [← mob_tri_infty ht]
   exact mob_adjugate_mul (det_tri_ne_zero ht) _
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=ne.1h2v.s6.9d57a3de6284 from=translated src=- shape=ce3c8bc9 vocab=21ab4fae
+-/
 lemma det_adjugate_tri_ne_zero {t : OnePoint k × OnePoint k × OnePoint k} (ht : Distinct3 t) :
     (tri t).adjugate.det ≠ 0 := by
   classical
   rw [Matrix.det_adjugate]; simpa using det_tri_ne_zero ht
 
 /-- **Sharp 3-transitivity.** A Möbius map is determined by the images of three distinct
-points: `g x = h(g t) (h(t)⁻¹ x)`. -/
+points: `g x = h(g t) (h(t)⁻¹ x)`.
+@isnad1 id=eq.1h4v.s8.398fa0260c23 from=translated src=- shape=ea4ed796 vocab=f41a53ac
+-/
 lemma smul_eq_mob_tri (g : GL (Fin 2) k) {t : OnePoint k × OnePoint k × OnePoint k}
     (ht : Distinct3 t) (x : OnePoint k) :
     g • x = mob (tri (smul3 g t)) (mob (tri t).adjugate x) := by
@@ -431,7 +536,9 @@ section topology
 variable {k : Type*} [NontriviallyNormedField k] [ProperSpace k] [DecidableEq k]
 
 omit [DecidableEq k] in
-/-- Points of large norm are close to `∞`. -/
+/-- Points of large norm are close to `∞`.
+@isnad1 id=ex.1h2v.s6.1a6e0c4baf33 from=translated src=- shape=66f65a54 vocab=8f7968e5
+-/
 lemma exists_norm_ge_mem {U : Set (OnePoint k)} (hU : U ∈ 𝓝 (∞ : OnePoint k)) :
     ∃ R : ℝ, 0 < R ∧ ∀ a : k, R ≤ ‖a‖ → (a : OnePoint k) ∈ U := by
   have h1 : Tendsto ((↑) : k → OnePoint k) (Bornology.cobounded k) (𝓝 ∞) := by
@@ -443,6 +550,9 @@ lemma exists_norm_ge_mem {U : Set (OnePoint k)} (hU : U ∈ 𝓝 (∞ : OnePoint
   obtain ⟨R, hR⟩ := mem_atTop_sets.mp ht
   refine ⟨max R 1, by positivity, fun a ha ↦ hts (hR _ (le_trans (le_max_left _ _) ha))⟩
 
+/--
+@isnad1 id=continuo.1h2v.s7.401e41436d96 from=translated src=- shape=34682c32 vocab=13ee4df9
+-/
 lemma continuousAt_proj {v : k × k} (hv : v ≠ 0) : ContinuousAt proj v := by
   by_cases h2 : v.2 = 0
   · have h1 : v.1 ≠ 0 := fun h1 ↦ hv (Prod.ext h1 h2)
@@ -479,6 +589,9 @@ def secInf : OnePoint k → k × k
   | (a : k) => if a = 0 then (0, 1) else (1, a⁻¹)
 
 omit [ProperSpace k] in
+/--
+@isnad1 id=ex.0h2v.s6.aa87dd566047 from=translated src=- shape=4b5367ae vocab=c6f176e9
+-/
 lemma secInf_eq (y : OnePoint k) : ∃ c : k, c ≠ 0 ∧ secInf y = c • lift y := by
   cases y with
   | infty => exact ⟨1, one_ne_zero, by simp [secInf]⟩
@@ -488,10 +601,16 @@ lemma secInf_eq (y : OnePoint k) : ∃ c : k, c ≠ 0 ∧ secInf y = c • lift 
     · exact ⟨a⁻¹, inv_ne_zero ha, by simp [secInf, ha]⟩
 
 omit [ProperSpace k] [DecidableEq k] in
+/--
+@isnad1 id=continuo.0h2v.s6.634290801d72 from=translated src=- shape=4dc4672f vocab=1d7363c6
+-/
 lemma continuousAt_lift_coe (a : k) : ContinuousAt lift (a : OnePoint k) := by
   rw [← isOpenEmbedding_coe.continuousAt_iff]
   exact (continuous_id.prodMk continuous_const).continuousAt
 
+/--
+@isnad1 id=continuo.0h1v.s6.9ea72a55a18e from=translated src=- shape=ace4758b vocab=80a11244
+-/
 lemma continuousAt_secInf : ContinuousAt secInf (∞ : OnePoint k) := by
   rw [continuousAt_infty', coclosedCompact_eq_cocompact, ← Metric.cobounded_eq_cocompact]
   have h0 : ∀ᶠ a : k in Bornology.cobounded k, a ≠ 0 := by
@@ -504,7 +623,9 @@ lemma continuousAt_secInf : ContinuousAt secInf (∞ : OnePoint k) := by
   simp [secInf, ha]
 
 omit [DecidableEq k] in
-/-- Every point has a coordinate vector depending continuously on the point nearby. -/
+/-- Every point has a coordinate vector depending continuously on the point nearby.
+@isnad1 id=ex.0h2v.s7.ded8f4e721da from=translated src=- shape=e2f69419 vocab=cfe2025c
+-/
 lemma exists_sec (x₀ : OnePoint k) : ∃ s : OnePoint k → k × k, ContinuousAt s x₀ ∧
     ∀ y, ∃ c : k, c ≠ 0 ∧ s y = c • lift y := by
   classical
@@ -513,10 +634,16 @@ lemma exists_sec (x₀ : OnePoint k) : ∃ s : OnePoint k → k × k, Continuous
   | coe a => exact ⟨lift, continuousAt_lift_coe a, fun y ↦ ⟨1, one_ne_zero, (one_smul _ _).symm⟩⟩
 
 omit [ProperSpace k] in
+/--
+@isnad1 id=eq.2h5v.s7.37d40403869f from=translated src=- shape=a53b8774 vocab=41e70839
+-/
 lemma mob_eq_proj_of_sec {M : Matrix (Fin 2) (Fin 2) k} {x : OnePoint k} {v : k × k} {c : k}
     (hc : c ≠ 0) (hv : v = c • lift x) : mob M x = proj (mv M v) := by
   rw [hv, mv_smul, proj_smul hc, mob]
 
+/--
+@isnad1 id=continuo.1h4v.s8.5ca31cdcda82 from=translated src=- shape=f14f57b2 vocab=6dbd061e
+-/
 lemma continuousAt_mob_tri {t₀ : OnePoint k × OnePoint k × OnePoint k} (ht : Distinct3 t₀)
     (x₀ : OnePoint k) (adj : Bool) :
     ContinuousAt (fun p : (OnePoint k × OnePoint k × OnePoint k) × OnePoint k ↦
@@ -592,29 +719,43 @@ def mobTri (q : (OnePoint k × OnePoint k × OnePoint k) × OnePoint k) : OnePoi
 def mobAdj (q : (OnePoint k × OnePoint k × OnePoint k) × OnePoint k) : OnePoint k :=
   mob (tri q.1).adjugate q.2
 
+/--
+@isnad1 id=continuo.1h3v.s7.75ea57e7334d from=translated src=- shape=e80da217 vocab=ab5f0d25
+-/
 lemma continuousAt_mobTri {t : OnePoint k × OnePoint k × OnePoint k} (ht : Distinct3 t)
     (x : OnePoint k) : ContinuousAt mobTri (t, x) := by
   have h := continuousAt_mob_tri ht x false
   simp only [Bool.false_eq_true, ↓reduceIte] at h
   exact h
 
+/--
+@isnad1 id=continuo.1h3v.s7.1cab3dcb0380 from=translated src=- shape=e80da217 vocab=e6d5457a
+-/
 lemma continuousAt_mobAdj {t : OnePoint k × OnePoint k × OnePoint k} (ht : Distinct3 t)
     (x : OnePoint k) : ContinuousAt mobAdj (t, x) := by
   have h := continuousAt_mob_tri ht x true
   simp only [↓reduceIte] at h
   exact h
 
+/--
+@isnad1 id=continuo.1h2v.s6.0bbe32067df9 from=translated src=- shape=521f9a5b vocab=ac9926fb
+-/
 lemma continuous_mob_tri {t : OnePoint k × OnePoint k × OnePoint k} (ht : Distinct3 t) :
     Continuous (mob (tri t)) :=
   continuous_iff_continuousAt.2 fun x ↦
     (continuousAt_mobTri ht x).comp (Continuous.prodMk_right t).continuousAt
 
+/--
+@isnad1 id=continuo.1h2v.s6.1a94f31fe798 from=translated src=- shape=3aa9e737 vocab=7f387118
+-/
 lemma continuous_mob_adjugate_tri {t : OnePoint k × OnePoint k × OnePoint k} (ht : Distinct3 t) :
     Continuous (mob (tri t).adjugate) :=
   continuous_iff_continuousAt.2 fun x ↦
     (continuousAt_mobAdj ht x).comp (Continuous.prodMk_right t).continuousAt
 
-/-- `GL(2, k)` acts by homeomorphisms. -/
+/-- `GL(2, k)` acts by homeomorphisms.
+@isnad1 id=continuo.0h2v.s8.a9239253d481 from=translated src=- shape=366a9c97 vocab=52dee818
+-/
 lemma continuous_gl_smul (g : GL (Fin 2) k) : Continuous fun x : OnePoint k ↦ g • x := by
   have ht : Distinct3 (((0 : k) : OnePoint k), ((1 : k) : OnePoint k), (∞ : OnePoint k)) :=
     ⟨by simp, by simp, by simp⟩

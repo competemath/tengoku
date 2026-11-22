@@ -47,11 +47,16 @@ structure PlaneData (Ω U₀ : Set ℂ) (p₀ : ℂ → ℂ) : Prop where
 variable {Ω U₀ : Set ℂ} {p₀ : ℂ → ℂ}
 
 /-- A holomorphic function has a strict derivative at every point of an open set where it is
-holomorphic. -/
+holomorphic.
+@isnad1 id=hasstric.3h3v.s7.5b4966c55727 from=translated src=- shape=7ff341a6 vocab=0b712539
+-/
 theorem hasStrictDerivAt_of_differentiableOn {f : ℂ → ℂ} {U : Set ℂ} (hf : DifferentiableOn ℂ f U)
     (hU : IsOpen U) {z : ℂ} (hz : z ∈ U) : HasStrictDerivAt f (deriv f z) z :=
   (hf.analyticAt (hU.mem_nhds hz)).hasStrictDerivAt
 
+/--
+@isnad1 id=ne.2h4v.s6.41f108b070fa from=translated src=- shape=d0df29f1 vocab=bcc1198e
+-/
 theorem PlaneData.deriv_ne_zero (h : PlaneData Ω U₀ p₀) {u : ℂ} (hu : u ∈ U₀) :
     deriv p₀ u ≠ 0 := by
   have hu' : u ∈ p₀ ⁻¹' Ω := h.preimage_eq ▸ hu
@@ -68,6 +73,9 @@ theorem PlaneData.deriv_ne_zero (h : PlaneData Ω U₀ p₀) {u : ℂ} (hu : u �
 noncomputable def rescaled (U₀ : Set ℂ) (n : ℕ) (z : ℂ) : ℂ :=
   proj U₀ n (inradius (seq U₀ n) * z)
 
+/--
+@isnad1 id=mem.2h3v.s5.c9bd7f2de447 from=translated src=- shape=4cc43f9d vocab=273e5c8f
+-/
 theorem Good.mul_mem_seq (hU₀ : Good U₀) (n : ℕ) {z : ℂ} (hz : z ∈ ball (0 : ℂ) 1) :
     (inradius (seq U₀ n) : ℂ) * z ∈ seq U₀ n := by
   apply ball_inradius_subset
@@ -76,18 +84,30 @@ theorem Good.mul_mem_seq (hU₀ : Good U₀) (n : ℕ) {z : ℂ} (hz : z ∈ bal
   rw [norm_mul, Complex.norm_of_nonneg hρ.le]
   exact mul_lt_of_lt_one_right hρ hz
 
+/--
+@isnad1 id=mem.2h3v.s5.fd6645cbf136 from=translated src=- shape=1337642d vocab=b2f12e9e
+-/
 theorem Good.rescaled_mem (hU₀ : Good U₀) (n : ℕ) {z : ℂ} (hz : z ∈ ball (0 : ℂ) 1) :
     rescaled U₀ n z ∈ U₀ :=
   mapsTo_proj n (hU₀.mul_mem_seq n hz)
 
+/--
+@isnad1 id=differen.1h2v.s6.d196333bffa2 from=translated src=- shape=a84d0194 vocab=355b61d6
+-/
 theorem Good.differentiableOn_rescaled (hU₀ : Good U₀) (n : ℕ) :
     DifferentiableOn ℂ (rescaled U₀ n) (ball 0 1) :=
   (hU₀.differentiableOn_proj n).comp ((differentiableOn_const _).mul differentiableOn_id)
     fun _ hz ↦ hU₀.mul_mem_seq n hz
 
+/--
+@isnad1 id=eq.0h2v.s4.7913a976286a from=translated src=- shape=a25016ad vocab=7a8309b5
+-/
 theorem rescaled_zero (n : ℕ) : rescaled U₀ n 0 = 0 := by
   simp [rescaled, proj_zero]
 
+/--
+@isnad1 id=tendsto.1h1v.s4.3ecf95162eda from=translated src=- shape=eae81958 vocab=571fa400
+-/
 theorem Good.tendsto_inradius (hU₀ : Good U₀) :
     Tendsto (fun n ↦ inradius (seq U₀ n)) atTop (𝓝 1) := by
   rw [Metric.tendsto_atTop]
@@ -100,7 +120,9 @@ theorem Good.tendsto_inradius (hU₀ : Good U₀) :
   constructor <;> linarith
 
 /-- Reindexing a locally uniformly convergent sequence along a sequence of indices tending to
-infinity. -/
+infinity.
+@isnad1 id=tendstol.2h4v.s6.fd4ff742f48d from=translated src=- shape=f3a093ba vocab=e578ad9e
+-/
 theorem tendstoLocallyUniformlyOn_comp_atTop {F : ℕ → ℂ → ℂ} {f : ℂ → ℂ} {s : Set ℂ}
     (h : TendstoLocallyUniformlyOn F f atTop s) {k : ℕ → ℕ} (hk : Tendsto k atTop atTop) :
     TendstoLocallyUniformlyOn (fun j ↦ F (k j)) f atTop s := by
@@ -109,7 +131,9 @@ theorem tendstoLocallyUniformlyOn_comp_atTop {F : ℕ → ℂ → ℂ} {f : ℂ 
   exact ⟨t, ht, hk.eventually hev⟩
 
 /-- **The limit map.** A subsequence of the rescaled maps converges locally uniformly on `𝔻` to a
-holomorphic `ϖ` with `ϖ 0 = 0`, and `ϖ` maps `𝔻` into `U₀` (Hurwitz). -/
+holomorphic `ϖ` with `ϖ 0 = 0`, and `ϖ` maps `𝔻` into `U₀` (Hurwitz).
+@isnad1 id=ex.1h1v.s7.fa55ee92189e from=translated src=- shape=3282fe7a vocab=11c54c15
+-/
 theorem Good.exists_limit (hU₀ : Good U₀) :
     ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∃ ϖ : ℂ → ℂ, DifferentiableOn ℂ ϖ (ball 0 1) ∧
       TendstoLocallyUniformlyOn (fun k ↦ rescaled U₀ (φ k)) ϖ atTop (ball 0 1) ∧
@@ -145,12 +169,17 @@ noncomputable def limitMap (p₀ ϖ : ℂ → ℂ) (c₀ : ℂ) (z : ℂ) : ℂ 
   classical
   exact if z ∈ ball (0 : ℂ) 1 then p₀ (ϖ z) else c₀
 
+/--
+@isnad1 id=eq.1h4v.s5.b885c2a8834c from=translated src=- shape=ab1443a0 vocab=ae231e5e
+-/
 theorem limitMap_of_mem {ϖ : ℂ → ℂ} {c₀ z : ℂ} (hz : z ∈ ball (0 : ℂ) 1) :
     limitMap p₀ ϖ c₀ z = p₀ (ϖ z) := by
   simp [limitMap, hz]
 
 /-- **Local sections of the limit.** For a disc `Δ = ball w ε ⊆ Ω` and `z ∈ 𝔻` with `ψ z ∈ Δ`,
-there is a holomorphic section `σ : Δ → 𝔻` of `ψ` with `σ (ψ z) = z`. -/
+there is a holomorphic section `σ : Δ → 𝔻` of `ψ` with `σ (ψ z) = z`.
+@isnad1 id=ex.8h9v.s8.204da1377026 from=translated src=- shape=889967ab vocab=7e278600
+-/
 theorem PlaneData.exists_section (h : PlaneData Ω U₀ p₀) {φ : ℕ → ℕ} (hφ : StrictMono φ)
     {ϖ : ℂ → ℂ} (hϖd : DifferentiableOn ℂ ϖ (ball 0 1))
     (hlim : TendstoLocallyUniformlyOn (fun k ↦ rescaled U₀ (φ k)) ϖ atTop (ball 0 1))

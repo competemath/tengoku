@@ -35,6 +35,9 @@ open Cardinal Ideal
 
 variable {T : Type*} [CommRing T] [IsLocalRing T] [IsNoetherianRing T] [IsDomain T]
 
+/--
+@isnad1 id=ex.11h9v.s13.ac92e7dbc685 from=translated src=- shape=7938b316 vocab=5716936d
+-/
 theorem close_up_aux_factor_dvd_a
     (n'' : ℕ)
     (ih : ∀ (R : NSubring T) (_ : Cardinal.mk R.carrier < Cardinal.mk T)
@@ -187,6 +190,9 @@ theorem close_up_aux_factor_dvd_a
             hq'_dvd_all div_q_a hdiv_a hinj_qa) hs_gcd
         exact ih_a (div_q_a a) hdvd t_q' ht_gcd ht_card_eq ha'_mem c_n' hc_n'_mem
 
+/--
+@isnad1 id=ex.13h9v.s13.ebe07b175917 from=translated src=- shape=bafee26a vocab=265c03d4
+-/
 theorem close_up_aux_factor_dvd_c
     (hM_not_assoc : ∀ (r : T), r ≠ 0 →
       IsLocalRing.maximalIdeal T ∉ associatedPrimes T (T ⧸ Ideal.span {r}))

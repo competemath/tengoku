@@ -60,7 +60,9 @@ variable (t : TateParameter K)
 /-! ### Weight membership of the coordinate families -/
 
 /-- The coefficient family of `X(u)·θ(-u)²` is a weight-`2` family with multiplier
-`Aθ² = ((q·(-1))⁻¹)²`. -/
+`Aθ² = ((q·(-1))⁻¹)²`.
+@isnad1 id=isweight.0h2v.s8.151c9c70fc8f from=translated src=- shape=48b315c6 vocab=a30ddfad
+-/
 theorem isWeightFamily_XThetaSq :
     t.IsWeightFamily 2 ((t.q * (-1))⁻¹ ^ 2) t.XThetaSqCoeff := by
   refine isWeightFamily_of_tsum_q_smul_off_orbit t.summable_XThetaSqCoeff_mul_zpow
@@ -91,7 +93,9 @@ theorem isWeightFamily_XThetaSq :
   field_simp
 
 /-- The coefficient family of `Y(u)·θ(-u)³` is a weight-`3` family with multiplier
-`Aθ³ = ((q·(-1))⁻¹)³`. -/
+`Aθ³ = ((q·(-1))⁻¹)³`.
+@isnad1 id=isweight.0h2v.s8.f96d24ca92db from=translated src=- shape=48b315c6 vocab=5e4e1917
+-/
 theorem isWeightFamily_YThetaCube :
     t.IsWeightFamily 3 ((t.q * (-1))⁻¹ ^ 3) t.YThetaCubeCoeff := by
   refine isWeightFamily_of_tsum_q_smul_off_orbit t.summable_YThetaCubeCoeff_mul_zpow
@@ -125,7 +129,9 @@ theorem isWeightFamily_YThetaCube :
 /-! ### The line family and its values -/
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- Weight families are closed under pointwise subtraction. -/
+/-- Weight families are closed under pointwise subtraction.
+@isnad1 id=isweight.2h6v.s6.2ec106efc2ca from=translated src=- shape=bd03e657 vocab=144dc518
+-/
 lemma IsWeightFamily.sub {t : TateParameter K} {k : ℕ} {A : Kˣ} {c d : ℤ → K}
     (hc : t.IsWeightFamily k A c) (hd : t.IsWeightFamily k A d) :
     t.IsWeightFamily k A (c - d) := by
@@ -151,6 +157,9 @@ def thetaCubeFam : ℤ → K := fun n => ∑' m : ℤ, t.thetaBlock (-1) (n - m)
 def lineFam (lam mu : K) : ℤ → K :=
   fun n => t.YThetaCubeCoeff n - lam * t.xThetaCubeFam n - mu * t.thetaCubeFam n
 
+/--
+@isnad1 id=isweight.0h2v.s8.7a398a9a7b03 from=translated src=- shape=48b315c6 vocab=695b9e4f
+-/
 theorem isWeightFamily_xThetaCubeFam :
     t.IsWeightFamily 3 ((t.q * (-1))⁻¹ ^ 3) t.xThetaCubeFam := by
   have h := (isWeightFamily_thetaBlock (t := t) (-1)).conv t.isWeightFamily_XThetaSq
@@ -158,6 +167,9 @@ theorem isWeightFamily_xThetaCubeFam :
     (pow_succ' _ 2).symm] at h
   exact h
 
+/--
+@isnad1 id=isweight.0h2v.s8.025e76f1e30f from=translated src=- shape=48b315c6 vocab=46f6ac40
+-/
 theorem isWeightFamily_thetaSqFam :
     t.IsWeightFamily 2 ((t.q * (-1))⁻¹ ^ 2) t.thetaSqFam := by
   have h := (isWeightFamily_thetaBlock (t := t) (-1)).conv
@@ -165,6 +177,9 @@ theorem isWeightFamily_thetaSqFam :
   rw [show (t.q * (-1))⁻¹ * (t.q * (-1))⁻¹ = (t.q * (-1))⁻¹ ^ 2 from (pow_two _).symm] at h
   exact h
 
+/--
+@isnad1 id=isweight.0h2v.s8.5f01d807a2c5 from=translated src=- shape=48b315c6 vocab=c4180e6c
+-/
 theorem isWeightFamily_thetaCubeFam :
     t.IsWeightFamily 3 ((t.q * (-1))⁻¹ ^ 3) t.thetaCubeFam := by
   have h := (isWeightFamily_thetaBlock (t := t) (-1)).conv t.isWeightFamily_thetaSqFam
@@ -172,7 +187,9 @@ theorem isWeightFamily_thetaCubeFam :
     (pow_succ' _ 2).symm] at h
   exact h
 
-/-- The line family lies in the three-dimensional weight space `W 3 (Aθ³)`. -/
+/-- The line family lies in the three-dimensional weight space `W 3 (Aθ³)`.
+@isnad1 id=isweight.0h4v.s8.8b8ab98fbdcd from=translated src=- shape=99227c76 vocab=2c5d5f1b
+-/
 theorem isWeightFamily_lineFam (lam mu : K) :
     t.IsWeightFamily 3 ((t.q * (-1))⁻¹ ^ 3) (t.lineFam lam mu) := by
   have h := (t.isWeightFamily_YThetaCube.sub (t.isWeightFamily_xThetaCubeFam.smul lam)).sub
@@ -184,7 +201,9 @@ theorem isWeightFamily_lineFam (lam mu : K) :
     simp only [lineFam]
     linear_combination hstep
 
-/-- The series of `thetaSqFam` is `θ(-u)²`, at every unit. -/
+/-- The series of `thetaSqFam` is `θ(-u)²`, at every unit.
+@isnad1 id=hassum.0h3v.s7.a45204a0ca5e from=translated src=- shape=8302c78d vocab=bd969b11
+-/
 lemma hasSum_thetaSqFam (u : Kˣ) :
     HasSum (fun n : ℤ => t.thetaSqFam n * (u : K) ^ n) (t.theta (-u) ^ 2) := by
   have h := (isWeightFamily_thetaBlock (t := t) (-1)).conv_hasSum
@@ -192,7 +211,9 @@ lemma hasSum_thetaSqFam (u : Kˣ) :
   rw [tsum_thetaBlock, neg_one_mul, ← pow_two] at h
   exact h
 
-/-- The series of `thetaCubeFam` is `θ(-u)³`, at every unit. -/
+/-- The series of `thetaCubeFam` is `θ(-u)³`, at every unit.
+@isnad1 id=hassum.0h3v.s7.a87a862885ce from=translated src=- shape=8302c78d vocab=f8b9bcbd
+-/
 lemma hasSum_thetaCubeFam (u : Kˣ) :
     HasSum (fun n : ℤ => t.thetaCubeFam n * (u : K) ^ n) (t.theta (-u) ^ 3) := by
   have h := (isWeightFamily_thetaBlock (t := t) (-1)).conv_hasSum
@@ -200,7 +221,9 @@ lemma hasSum_thetaCubeFam (u : Kˣ) :
   rw [tsum_thetaBlock, neg_one_mul, (t.hasSum_thetaSqFam u).tsum_eq, ← pow_succ'] at h
   exact h
 
-/-- The series of `xThetaCubeFam` is `θ(-u)·(X(u)·θ(-u)²)`, off the orbit. -/
+/-- The series of `xThetaCubeFam` is `θ(-u)·(X(u)·θ(-u)²)`, off the orbit.
+@isnad1 id=hassum.1h3v.s8.e84e154f1e7c from=translated src=- shape=f8530cb9 vocab=2fd0ebdc
+-/
 lemma hasSum_xThetaCubeFam {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) :
     HasSum (fun n : ℤ => t.xThetaCubeFam n * (u : K) ^ n)
       (t.theta (-u) * (t.X u * t.theta (-u) ^ 2)) := by
@@ -210,7 +233,9 @@ lemma hasSum_xThetaCubeFam {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) 
   exact h
 
 /-- **The value of the line family**: off the orbit, its series is
-`(Y(u) - λ·X(u) - μ)·θ(-u)³`. -/
+`(Y(u) - λ·X(u) - μ)·θ(-u)³`.
+@isnad1 id=eq.1h5v.s8.6d4b38dae57b from=translated src=- shape=7e3c0bd1 vocab=9d512b46
+-/
 theorem tsum_lineFam (lam mu : K) {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) :
     (∑' n : ℤ, t.lineFam lam mu n * (u : K) ^ n)
       = (t.Y u - lam * t.X u - mu) * t.theta (-u) ^ 3 := by
@@ -231,12 +256,16 @@ theorem tsum_lineFam (lam mu : K) {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (
 
 /-! ### Division helpers -/
 
-/-- `θ(-1) = 0`: the point `-1` lies on the zero orbit of the theta function. -/
+/-- `θ(-1) = 0`: the point `-1` lies on the zero orbit of the theta function.
+@isnad1 id=eq.0h2v.s7.7f9740bd9bd4 from=translated src=- shape=a10514e3 vocab=97547434
+-/
 lemma theta_neg_one : t.theta (-1) = 0 := by
   rw [theta_eq_zero_iff]
   exact ⟨0, by simp⟩
 
-/-- `θ(-x) ≠ 0` for `x` off the orbit `qᶻ`. -/
+/-- `θ(-x) ≠ 0` for `x` off the orbit `qᶻ`.
+@isnad1 id=ne.1h3v.s7.ea0cf7ddd957 from=translated src=- shape=11af9710 vocab=26ccc509
+-/
 lemma theta_neg_ne_zero {x : Kˣ} (hx : ∀ n : ℤ, (t.q : K) ^ n * (x : K) ≠ 1) :
     t.theta (-x) ≠ 0 := by
   intro h0
@@ -246,7 +275,9 @@ lemma theta_neg_ne_zero {x : Kˣ} (hx : ∀ n : ℤ, (t.q : K) ^ n * (x : K) ≠
   rw [hk, ← zpow_add₀ t.q.ne_zero]
   simp
 
-/-- The series of a double theta-block convolution is the product of the two thetas. -/
+/-- The series of a double theta-block convolution is the product of the two thetas.
+@isnad1 id=hassum.0h5v.s8.67dcf30e4da8 from=translated src=- shape=ab24ee4a vocab=850fa7a8
+-/
 lemma hasSum_doubleBlock (e₁ e₂ x : Kˣ) :
     HasSum (fun n : ℤ =>
         (∑' m : ℤ, t.thetaBlock e₁ (n - m) * t.thetaBlock e₂ m) * (x : K) ^ n)
@@ -255,7 +286,9 @@ lemma hasSum_doubleBlock (e₁ e₂ x : Kˣ) :
     (isWeightFamily_thetaBlock (t := t) e₂) x
   rwa [tsum_thetaBlock, tsum_thetaBlock] at h
 
-/-- The series of a triple theta-block convolution is the product of the three thetas. -/
+/-- The series of a triple theta-block convolution is the product of the three thetas.
+@isnad1 id=hassum.0h6v.s9.01bd3b25db02 from=translated src=- shape=e96322de vocab=850fa7a8
+-/
 lemma hasSum_tripleBlock (e₁ e₂ e₃ x : Kˣ) :
     HasSum (fun n : ℤ => (∑' m : ℤ, t.thetaBlock e₁ (n - m)
         * (∑' j : ℤ, t.thetaBlock e₂ (m - j) * t.thetaBlock e₃ j)) * (x : K) ^ n)
@@ -266,7 +299,9 @@ lemma hasSum_tripleBlock (e₁ e₂ e₃ x : Kˣ) :
   rwa [tsum_thetaBlock, h2.tsum_eq] at h
 
 /-- If `F` is the convolution of the block at `e` with a weight family `c`, its series
-factors as `θ(e·x)` times the series of `c` — the value form of a block division. -/
+factors as `θ(e·x)` times the series of `c` — the value form of a block division.
+@isnad1 id=eq.1h8v.s10.a22e2a39952c from=translated src=- shape=57e5e8c2 vocab=5c009b0b
+-/
 lemma tsum_eq_theta_mul_of_forall_conv_eq {k : ℕ} {A : Kˣ} {e : Kˣ} {F : ℤ → K}
     (c : t.weightSpace k A)
     (hc : ∀ n : ℤ, (∑' m : ℤ, t.thetaBlock e (n - m) * (c : ℤ → K) m) = F n) (x : Kˣ) :
@@ -284,7 +319,9 @@ lemma tsum_eq_theta_mul_of_forall_conv_eq {k : ℕ} {A : Kˣ} {e : Kˣ} {F : ℤ
 
 /-- **The nonarchimedean Abel step.** If the line `y = λx + μ` passes through the Tate
 points of `u` and `v` — off-orbit, in distinct `qᶻ`-classes — and `w := (u·v)⁻¹` is
-off-orbit, then it passes through the Tate point of `w`. -/
+off-orbit, then it passes through the Tate point of `w`.
+@isnad1 id=eq.6h6v.s9.bf58cc165676 from=translated src=- shape=9dc93363 vocab=ab73dc13
+-/
 theorem line_third_intersection {u v : Kˣ}
     (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1)
     (hv : ∀ n : ℤ, (t.q : K) ^ n * (v : K) ≠ 1)
@@ -448,7 +485,9 @@ theorem line_third_intersection {u v : Kˣ}
 /-! ### Norm blow-up of `X` along the unit-sphere witnesses -/
 
 omit [CompleteSpace K] in
-/-- The norm-one witnesses `1 + qᵏ⁺¹` are off the orbit `qᶻ`. -/
+/-- The norm-one witnesses `1 + qᵏ⁺¹` are off the orbit `qᶻ`.
+@isnad1 id=ne.0h4v.s6.29116c0477aa from=translated src=- shape=4d3c43b1 vocab=95de2dd3
+-/
 lemma sphereWitness_off_orbit (j : ℕ) :
     ∀ n : ℤ, (t.q : K) ^ n * ((t.sphereWitness j : Kˣ) : K) ≠ 1 := by
   intro n hcontra
@@ -474,7 +513,9 @@ lemma sphereWitness_off_orbit (j : ℕ) :
 
 /-- **Norm blow-up of `X`**: `‖X(1 + qᵏ⁺¹)‖ = ‖q‖⁻²⁽ᵏ⁺¹⁾`. The `n = 0` term of the `X`-series
 has this huge norm, and everything else (`n ≠ 0` terms, the Eisenstein constant) has norm at
-most `1`. -/
+most `1`.
+@isnad1 id=eq.0h3v.s6.4c0101bd0c1c from=translated src=- shape=4ec13a69 vocab=8e04e275
+-/
 lemma norm_X_sphereWitness (k : ℕ) :
     ‖t.X (t.sphereWitness k)‖ = ‖(t.q : K)‖⁻¹ ^ (2 * (k + 1)) := by
   classical
@@ -553,7 +594,9 @@ lemma norm_X_sphereWitness (k : ℕ) :
 /-! ### `X`-separation -/
 
 /-- **The `X`-coordinate separates `qᶻ`-classes up to inversion.** If two off-orbit units
-have the same `X`-value, they lie in the same `qᶻ`-class or in mutually inverse classes. -/
+have the same `X`-value, they lie in the same `qᶻ`-class or in mutually inverse classes.
+@isnad1 id=or.3h4v.s8.e209e1fa5f8e from=translated src=- shape=0accaac1 vocab=e566fa3c
+-/
 theorem class_eq_or_inv_of_X_eq {a b : Kˣ}
     (ha : ∀ n : ℤ, (t.q : K) ^ n * (a : K) ≠ 1)
     (hb : ∀ n : ℤ, (t.q : K) ^ n * (b : K) ≠ 1)

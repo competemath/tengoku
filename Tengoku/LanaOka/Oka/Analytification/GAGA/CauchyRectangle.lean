@@ -54,6 +54,9 @@ section Edges
 
 variable {a b : ℂ}
 
+/--
+@isnad1 id=mapsto.3h3v.s6.acbdf48483dc from=translated src=- shape=488daec1 vocab=ad30d62a
+-/
 lemma mapsTo_horizontal_rectBoundary (hre : a.re ≤ b.re) (him : a.im ≤ b.im) {y : ℝ}
     (hy : y = a.im ∨ y = b.im) :
     MapsTo (fun x : ℝ ↦ (x : ℂ) + y * I) [[a.re, b.re]] (rectBoundary a b) := by
@@ -66,6 +69,9 @@ lemma mapsTo_horizontal_rectBoundary (hre : a.re ≤ b.re) (him : a.im ≤ b.im)
       mul_zero, add_zero, zero_add, mem_Ioo] at this
     rcases hy with rfl | rfl <;> simp at this
 
+/--
+@isnad1 id=mapsto.3h3v.s6.26a45446bdc6 from=translated src=- shape=e33201ed vocab=ad30d62a
+-/
 lemma mapsTo_vertical_rectBoundary (hre : a.re ≤ b.re) (him : a.im ≤ b.im) {x : ℝ}
     (hx : x = a.re ∨ x = b.re) :
     MapsTo (fun y : ℝ ↦ (x : ℂ) + y * I) [[a.im, b.im]] (rectBoundary a b) := by
@@ -78,7 +84,9 @@ lemma mapsTo_vertical_rectBoundary (hre : a.re ≤ b.re) (him : a.im ≤ b.im) {
       mul_one, sub_self, add_zero, mem_Ioo] at this
     rcases hx with rfl | rfl <;> simp at this
 
-/-- The boundary integral is additive for functions continuous on the boundary. -/
+/-- The boundary integral is additive for functions continuous on the boundary.
+@isnad1 id=eq.4h5v.s7.bd017b115ac5 from=translated src=- shape=1adb97f3 vocab=54e70ea9
+-/
 lemma rectBoundaryIntegral_sub (hre : a.re ≤ b.re) (him : a.im ≤ b.im) {f g : ℂ → E}
     (hf : ContinuousOn f (rectBoundary a b)) (hg : ContinuousOn g (rectBoundary a b)) :
     rectBoundaryIntegral (fun ζ ↦ f ζ - g ζ) a b =
@@ -99,7 +107,9 @@ lemma rectBoundaryIntegral_sub (hre : a.re ≤ b.re) (him : a.im ≤ b.im) {f g 
   simp only [smul_sub]
   abel
 
-/-- The boundary integral only depends on the values on the boundary. -/
+/-- The boundary integral only depends on the values on the boundary.
+@isnad1 id=eq.3h5v.s6.d160d7f9031f from=translated src=- shape=80f0d404 vocab=dfce81a5
+-/
 lemma rectBoundaryIntegral_congr (hre : a.re ≤ b.re) (him : a.im ≤ b.im) {f g : ℂ → E}
     (h : EqOn f g (rectBoundary a b)) :
     rectBoundaryIntegral f a b = rectBoundaryIntegral g a b := by
@@ -113,7 +123,9 @@ lemma rectBoundaryIntegral_congr (hre : a.re ≤ b.re) (him : a.im ≤ b.im) {f 
     intervalIntegral.integral_congr fun y hy ↦
       h (mapsTo_vertical_rectBoundary hre him (Or.inl rfl) hy)]
 
-/-- Scalar functions times a constant vector. -/
+/-- Scalar functions times a constant vector.
+@isnad1 id=eq.0h5v.s7.9f74a8d23579 from=translated src=- shape=0e95de1d vocab=a0f0543e
+-/
 lemma rectBoundaryIntegral_smul_const [CompleteSpace E] (g : ℂ → ℂ) (c : E) :
     rectBoundaryIntegral (fun ζ ↦ g ζ • c) a b = rectBoundaryIntegral g a b • c := by
   simp only [rectBoundaryIntegral, intervalIntegral.integral_smul_const, sub_smul, add_smul,
@@ -122,7 +134,9 @@ lemma rectBoundaryIntegral_smul_const [CompleteSpace E] (g : ℂ → ℂ) (c : E
 end Edges
 
 /-- An integral of `u / (u t + v)` along a segment in the slit plane is a difference of
-logarithms. -/
+logarithms.
+@isnad1 id=eq.1h4v.s7.6c116ce2469c from=translated src=- shape=7bafe0f3 vocab=031c0d89
+-/
 lemma integral_div_affine_eq_log (u v : ℂ) {t₀ t₁ : ℝ}
     (h : ∀ t ∈ [[t₀, t₁]], u * t + v ∈ slitPlane) :
     ∫ t in t₀..t₁, u / (u * t + v) = log (u * t₁ + v) - log (u * t₀ + v) := by
@@ -134,13 +148,21 @@ lemma integral_div_affine_eq_log (u v : ℂ) {t₀ t₁ : ℝ}
   · exact (continuousOn_const.div (by fun_prop)
       fun t ht ↦ slitPlane_ne_zero (h t ht)).intervalIntegrable
 
+/--
+@isnad1 id=eq.1h1v.s5.0c5851f41e4f from=translated src=- shape=5cf8103d vocab=4d99a4d1
+-/
 lemma log_neg_of_im_pos {w : ℂ} (hw : 0 < w.im) : log (-w) = log w - (π : ℂ) * I := by
   apply Complex.ext <;> simp [log_re, log_im, arg_neg_eq_arg_sub_pi_of_im_pos hw]
 
+/--
+@isnad1 id=eq.1h1v.s5.2770e74ae880 from=translated src=- shape=a71bd848 vocab=d7eb6f2b
+-/
 lemma log_neg_of_im_neg {w : ℂ} (hw : w.im < 0) : log (-w) = log w + (π : ℂ) * I := by
   apply Complex.ext <;> simp [log_re, log_im, arg_neg_eq_arg_add_pi_of_im_neg hw]
 
-/-- The winding number of the boundary of a rectangle around an interior point is one. -/
+/-- The winding number of the boundary of a rectangle around an interior point is one.
+@isnad1 id=eq.1h3v.s6.910d9097e139 from=translated src=- shape=d3307ed1 vocab=1139e3f1
+-/
 theorem rectBoundaryIntegral_sub_inv {a b z : ℂ}
     (hz : z ∈ Ioo a.re b.re ×ℂ Ioo a.im b.im) :
     rectBoundaryIntegral (fun ζ ↦ (ζ - z)⁻¹) a b = 2 * π * I := by
@@ -187,7 +209,9 @@ theorem rectBoundaryIntegral_sub_inv {a b z : ℂ}
 
 /-- **Cauchy integral formula on a rectangle.** If `f` is continuous on a closed rectangle and
 holomorphic on its interior, then `∮_{∂R} (ζ - z)⁻¹ • f ζ dζ = 2πi • f z` for every `z` in the
-interior. -/
+interior.
+@isnad1 id=eq.3h5v.s8.8bf5039b38e3 from=translated src=- shape=97042072 vocab=6f373111
+-/
 theorem rectBoundaryIntegral_sub_inv_smul [CompleteSpace E] {a b z : ℂ} {f : ℂ → E}
     (hc : ContinuousOn f (Icc a.re b.re ×ℂ Icc a.im b.im))
     (hd : DifferentiableOn ℂ f (Ioo a.re b.re ×ℂ Ioo a.im b.im))

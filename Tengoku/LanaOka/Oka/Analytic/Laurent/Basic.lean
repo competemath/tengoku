@@ -61,32 +61,54 @@ noncomputable def coeff (f : ℂ → ℂ) (ρ : ℝ) (k : ℤ) : ℂ :=
 
 variable {r : ℝ} {R : ℝ≥0∞} {ρ : ℝ}
 
+/--
+@isnad1 id=iff.0h3v.s6.937d87150327 from=translated src=- shape=d9ee1511 vocab=16cc85f9
+-/
 lemma mem_annulus {z : ℂ} : z ∈ annulus r R ↔ r < ‖z‖ ∧ ‖z‖ₑ < R := Iff.rfl
 
+/--
+@isnad1 id=isopen.0h2v.s4.7a03cb0e88fa from=translated src=- shape=6ad8120f vocab=61981c7e
+-/
 lemma isOpen_annulus : IsOpen (annulus r R) :=
   (isOpen_lt continuous_const continuous_norm).inter (isOpen_lt continuous_enorm continuous_const)
 
+/--
+@isnad1 id=iff.0h2v.s6.a40204fd6655 from=translated src=- shape=12d9c512 vocab=03fc058c
+-/
 lemma enorm_lt_iff_ofReal_lt {z : ℂ} : ‖z‖ₑ < R ↔ ENNReal.ofReal ‖z‖ < R := by
   rw [ofReal_norm]
 
+/--
+@isnad1 id=iff.1h3v.s5.6f2b0f56461c from=translated src=- shape=19b18c76 vocab=c246d90e
+-/
 lemma mem_annulus_iff_isRadius {z : ℂ} (hz : z ≠ 0) : z ∈ annulus r R ↔ IsRadius r R ‖z‖ := by
   simp [mem_annulus, IsRadius, enorm_lt_iff_ofReal_lt, norm_pos_iff.2 hz]
 
+/--
+@isnad1 id=lt.1h3v.s4.fb75d3fec511 from=translated src=- shape=3feda0ff vocab=10514a3c
+-/
 lemma IsRadius.pos (h : IsRadius r R ρ) : 0 < ρ := h.1
 
-/-- Every point of the annulus with norm between two admissible radii lies in the annulus. -/
+/-- Every point of the annulus with norm between two admissible radii lies in the annulus.
+@isnad1 id=mem.4h5v.s5.53855bffa025 from=translated src=- shape=9d987d8e vocab=a46bbdcf
+-/
 lemma mem_annulus_of_le {ρ₁ ρ₂ : ℝ} (h₁ : IsRadius r R ρ₁) (h₂ : IsRadius r R ρ₂) {z : ℂ}
     (hz₁ : ρ₁ ≤ ‖z‖) (hz₂ : ‖z‖ ≤ ρ₂) : z ∈ annulus r R := by
   refine ⟨h₁.2.1.trans_le hz₁, ?_⟩
   rw [enorm_lt_iff_ofReal_lt]
   exact (ENNReal.ofReal_le_ofReal hz₂).trans_lt h₂.2.2
 
+/--
+@isnad1 id=le.1h3v.s5.024092faaafe from=translated src=- shape=0cb66db3 vocab=82de8370
+-/
 lemma sphere_subset_annulus (h : IsRadius r R ρ) : sphere (0 : ℂ) ρ ⊆ annulus r R := by
   intro z hz
   rw [mem_sphere_zero_iff_norm] at hz
   exact mem_annulus_of_le h h hz.ge hz.le
 
-/-- An admissible radius below a nonzero point of the annulus. -/
+/-- An admissible radius below a nonzero point of the annulus.
+@isnad1 id=ex.2h3v.s5.c7cf36bfc4d5 from=translated src=- shape=5a141fd1 vocab=b55df872
+-/
 lemma exists_isRadius_lt {z : ℂ} (hz : z ∈ annulus r R) (hz0 : z ≠ 0) :
     ∃ ρ, IsRadius r R ρ ∧ ρ < ‖z‖ := by
   have h0 := norm_pos_iff.2 hz0
@@ -95,6 +117,9 @@ lemma exists_isRadius_lt {z : ℂ} (hz : z ∈ annulus r R) (hz0 : z ≠ 0) :
     ?_⟩, by linarith⟩
   exact (ENNReal.ofReal_le_ofReal (by linarith)).trans_lt (enorm_lt_iff_ofReal_lt.1 hz.2)
 
+/--
+@isnad1 id=ex.1h3v.s5.9cadbd88cde6 from=translated src=- shape=0d5be1ab vocab=b55df872
+-/
 lemma exists_isRadius_gt {z : ℂ} (hz : z ∈ annulus r R) :
     ∃ ρ, IsRadius r R ρ ∧ ‖z‖ < ρ := by
   have h := enorm_lt_iff_ofReal_lt.1 hz.2
@@ -104,7 +129,9 @@ lemma exists_isRadius_gt {z : ℂ} (hz : z ∈ annulus r R) :
     exact (not_le.2 ht1) (ENNReal.ofReal_le_ofReal hle)
   refine ⟨t, ⟨(norm_nonneg z).trans_lt hzt, hz.1.trans hzt, ht2⟩, hzt⟩
 
-/-- Term-by-term integration over a circle of a series dominated by a summable sequence. -/
+/-- Term-by-term integration over a circle of a series dominated by a summable sequence.
+@isnad1 id=hassum.5h6v.s7.f387a8488996 from=translated src=- shape=a6001243 vocab=b1e3ebef
+-/
 theorem hasSum_circleIntegral_of_dominated {ι : Type*} [Countable ι] {F : ι → ℂ → ℂ}
     {G : ℂ → ℂ} {c : ℂ} (hρ : 0 ≤ ρ) (hF : ∀ i, ContinuousOn (F i) (sphere c ρ))
     {u : ι → ℝ} (hu : Summable u) (hle : ∀ i, ∀ z ∈ sphere c ρ, ‖F i z‖ ≤ u i)
@@ -125,7 +152,9 @@ theorem hasSum_circleIntegral_of_dominated {ι : Type*} [Countable ι] {F : ι �
   · exact .of_forall fun θ _ ↦ hu.mul_left ρ
   · exact .of_forall fun θ _ ↦ (hG _ (circleMap_mem_sphere c hρ θ)).const_smul _
 
-/-- An admissible radius above any point of the disc `{‖z‖ < R}`. -/
+/-- An admissible radius above any point of the disc `{‖z‖ < R}`.
+@isnad1 id=ex.2h4v.s6.69ebf22f97cf from=translated src=- shape=15dc1a66 vocab=21b14b7b
+-/
 lemma exists_isRadius_gt_of_enorm_lt (hρ : IsRadius r R ρ) {w : ℂ} (hw : ‖w‖ₑ < R) :
     ∃ b, IsRadius r R b ∧ ‖w‖ < b := by
   set z : ℂ := ((max ρ ‖w‖ : ℝ) : ℂ)
@@ -138,15 +167,24 @@ lemma exists_isRadius_gt_of_enorm_lt (hρ : IsRadius r R ρ) {w : ℂ} (hw : ‖
   obtain ⟨b, hb, hzb⟩ := exists_isRadius_gt hzA
   exact ⟨b, hb, (le_max_right ρ ‖w‖).trans_lt (hz ▸ hzb)⟩
 
+/--
+@isnad1 id=ne.2h2v.s5.1e27a902a023 from=translated src=- shape=fbbd8bef vocab=81e31866
+-/
 lemma ne_zero_of_mem_sphere_zero (hρ : 0 < ρ) {z : ℂ} (hz : z ∈ sphere (0 : ℂ) ρ) : z ≠ 0 := by
   rintro rfl
   rw [mem_sphere_zero_iff_norm, norm_zero] at hz
   exact hρ.ne hz
 
+/--
+@isnad1 id=eq.0h2v.s6.f70a746ad03e from=translated src=- shape=82c36b95 vocab=ecf49c92
+-/
 lemma zpow_neg_natCast_sub_one (z : ℂ) (k : ℕ) : z ^ (-(k : ℤ) - 1) = (z ^ k)⁻¹ * z⁻¹ := by
   rw [show -(k : ℤ) - 1 = -((k + 1 : ℕ) : ℤ) by push_cast; ring, zpow_neg, zpow_natCast,
     pow_succ, mul_inv]
 
+/--
+@isnad1 id=summable.2h1v.s5.b12c9a876544 from=translated src=- shape=b40c272f vocab=f654b9a9
+-/
 lemma summable_pow_natAbs {q : ℝ} (h0 : 0 ≤ q) (h1 : q < 1) :
     Summable fun k : ℤ ↦ q ^ k.natAbs := by
   refine Summable.of_nat_of_neg_add_one ?_ ?_
@@ -161,13 +199,18 @@ section coefficients
 
 variable {f g : ℂ → ℂ}
 
+/--
+@isnad1 id=eq.2h4v.s5.452426c24ff1 from=translated src=- shape=8f27eab9 vocab=13d14b1d
+-/
 lemma coeff_congr (hρ : 0 ≤ ρ) (h : EqOn f g (sphere 0 ρ)) (k : ℤ) :
     coeff f ρ k = coeff g ρ k := by
   unfold coeff
   congr 1
   exact circleIntegral.integral_congr hρ fun z hz ↦ by simp [h hz]
 
-/-- The Cauchy estimate for Laurent coefficients. -/
+/-- The Cauchy estimate for Laurent coefficients.
+@isnad1 id=le.2h4v.s6.36d7fad47474 from=translated src=- shape=a33a7457 vocab=35d47220
+-/
 theorem norm_coeff_le (hρ : 0 < ρ) {M : ℝ} (hM : ∀ z ∈ sphere (0 : ℂ) ρ, ‖f z‖ ≤ M) (k : ℤ) :
     ‖coeff f ρ k‖ ≤ M * ρ ^ (-k) := by
   have h := circleIntegral.norm_two_pi_i_inv_smul_integral_le_of_norm_le_const
@@ -180,12 +223,17 @@ theorem norm_coeff_le (hρ : 0 < ρ) {M : ℝ} (hM : ∀ z ∈ sphere (0 : ℂ) 
   rw [zpow_sub_one₀ hρ.ne']
   field_simp
 
+/--
+@isnad1 id=differen.3h5v.s7.c05f08c44873 from=translated src=- shape=3eb562a8 vocab=6d2df428
+-/
 lemma differentiableAt_zpow_mul (hf : DifferentiableOn ℂ f (annulus r R)) {z : ℂ}
     (hz : z ∈ annulus r R) (hz0 : z ≠ 0) (m : ℤ) :
     DifferentiableAt ℂ (fun z ↦ z ^ m * f z) z :=
   (differentiableAt_zpow.2 (Or.inl hz0)).mul (hf.differentiableAt (isOpen_annulus.mem_nhds hz))
 
-/-- The Laurent coefficients do not depend on the choice of the circle. -/
+/-- The Laurent coefficients do not depend on the choice of the circle.
+@isnad1 id=eq.3h6v.s6.50cf30ae6328 from=translated src=- shape=929e2997 vocab=d310bdf9
+-/
 theorem coeff_eq_of_isRadius (hf : DifferentiableOn ℂ f (annulus r R)) {ρ₁ ρ₂ : ℝ}
     (h₁ : IsRadius r R ρ₁) (h₂ : IsRadius r R ρ₂) (k : ℤ) : coeff f ρ₁ k = coeff f ρ₂ k := by
   wlog hle : ρ₁ ≤ ρ₂ generalizing ρ₁ ρ₂
@@ -205,7 +253,9 @@ theorem coeff_eq_of_isRadius (hf : DifferentiableOn ℂ f (annulus r R)) {ρ₁ 
       ⟨ball_subset_closedBall hz.1.1, fun h ↦ hz.1.2 (ball_subset_closedBall h)⟩
     exact differentiableAt_zpow_mul hf (hmem z hz').1 (hmem z hz').2 _
 
-/-- On a disc the Laurent coefficients of negative degree vanish. -/
+/-- On a disc the Laurent coefficients of negative degree vanish.
+@isnad1 id=eq.4h5v.s6.f0fc6ee0d451 from=translated src=- shape=5b970de2 vocab=d8030a1d
+-/
 theorem coeff_eq_zero_of_neg (hf : DifferentiableOn ℂ f (annulus r R)) (hr : r < 0)
     (hρ : IsRadius r R ρ) {k : ℤ} (hk : k < 0) : coeff f ρ k = 0 := by
   obtain ⟨n, hn⟩ := Int.eq_ofNat_of_zero_le (by omega : 0 ≤ -k - 1)
@@ -229,7 +279,9 @@ section expansion
 variable {f : ℂ → ℂ}
 
 /-- The Cauchy integral formula on an annulus: `2πi f(w)` is the difference of the Cauchy
-integrals over an outer and an inner circle. -/
+integrals over an outer and an inner circle.
+@isnad1 id=eq.5h6v.s7.974531280982 from=translated src=- shape=f609cf55 vocab=18f5691d
+-/
 theorem circleIntegral_sub_circleIntegral (hf : DifferentiableOn ℂ f (annulus r R))
     {ρ₁ ρ₂ : ℝ} (h₁ : IsRadius r R ρ₁) (h₂ : IsRadius r R ρ₂) {w : ℂ} (hw₁ : ρ₁ < ‖w‖)
     (hw₂ : ‖w‖ < ρ₂) :
@@ -292,7 +344,9 @@ theorem circleIntegral_sub_circleIntegral (hf : DifferentiableOn ℂ f (annulus 
   rw [← key]
   ring
 
-/-- The expansion of the Cauchy integral over the outer circle in nonnegative powers. -/
+/-- The expansion of the Cauchy integral over the outer circle in nonnegative powers.
+@isnad1 id=hassum.3h3v.s7.0cce6ce64a2f from=translated src=- shape=1f3c0461 vocab=18e7137f
+-/
 theorem hasSum_coeff_nat (hρ : 0 < ρ) (hf : ContinuousOn f (sphere 0 ρ)) {w : ℂ}
     (hw : ‖w‖ < ρ) :
     HasSum (fun k : ℕ ↦ coeff f ρ k * w ^ k) ((2 * π * I)⁻¹ * ∮ z in C(0, ρ), (z - w)⁻¹ * f z) := by
@@ -338,11 +392,16 @@ theorem hasSum_coeff_nat (hρ : 0 < ρ) (hf : ContinuousOn f (sphere 0 ρ)) {w :
     rw [e1, e2]
     exact h
 
+/--
+@isnad1 id=eq.0h3v.s5.ee15e3934a47 from=translated src=- shape=9305d119 vocab=d311d2bb
+-/
 lemma circleIntegral_neg (g : ℂ → ℂ) (c : ℂ) (ρ : ℝ) :
     (∮ z in C(c, ρ), -g z) = -∮ z in C(c, ρ), g z := by
   simp only [circleIntegral, smul_neg, intervalIntegral.integral_neg]
 
-/-- The expansion of the Cauchy integral over the inner circle in negative powers. -/
+/-- The expansion of the Cauchy integral over the inner circle in negative powers.
+@isnad1 id=hassum.3h3v.s7.976fe43fca23 from=translated src=- shape=af2bf205 vocab=2cbe2cb8
+-/
 theorem hasSum_coeff_neg (hρ : 0 < ρ) (hf : ContinuousOn f (sphere 0 ρ)) {w : ℂ}
     (hw : ρ < ‖w‖) :
     HasSum (fun k : ℕ ↦ coeff f ρ (-((k : ℤ) + 1)) * w ^ (-((k : ℤ) + 1)))
@@ -395,6 +454,9 @@ theorem hasSum_coeff_neg (hρ : 0 < ρ) (hf : ContinuousOn f (sphere 0 ρ)) {w :
     rw [e1, e2]
     exact h
 
+/--
+@isnad1 id=le.2h3v.s5.5a7daba4bf7d from=translated src=- shape=d9d44854 vocab=d419f538
+-/
 lemma closedBall_subset_annulus (hr : r < 0) (hρ : IsRadius r R ρ) :
     closedBall (0 : ℂ) ρ ⊆ annulus r R := fun z hz ↦ by
   rw [mem_closedBall_zero_iff] at hz
@@ -403,7 +465,9 @@ lemma closedBall_subset_annulus (hr : r < 0) (hρ : IsRadius r R ρ) :
   exact (ENNReal.ofReal_le_ofReal hz).trans_lt hρ.2.2
 
 /-- **Laurent expansion**: a function holomorphic on an annulus is the sum of its Laurent
-series there. -/
+series there.
+@isnad1 id=hassum.3h5v.s7.498f94a8b2fb from=translated src=- shape=e82b4c4f vocab=0f252261
+-/
 theorem hasSum_coeff (hf : DifferentiableOn ℂ f (annulus r R)) (hρ : IsRadius r R ρ) {w : ℂ}
     (hw : w ∈ annulus r R) : HasSum (fun k : ℤ ↦ coeff f ρ k * w ^ k) (f w) := by
   have hcont : ∀ {s : ℝ}, IsRadius r R s → ContinuousOn f (sphere 0 s) :=
@@ -433,6 +497,9 @@ theorem hasSum_coeff (hf : DifferentiableOn ℂ f (annulus r R)) (hρ : IsRadius
     rw [e]
     exact h
 
+/--
+@isnad1 id=le.5h9v.s7.e6fbdcb1dcee from=translated src=- shape=3f802244 vocab=6904b211
+-/
 lemma norm_coeff_mul_le_of_le (hf : DifferentiableOn ℂ f (annulus r R)) (hρ : IsRadius r R ρ)
     {b M t : ℝ} (hb : IsRadius r R b) (hM : ∀ z ∈ sphere (0 : ℂ) b, ‖f z‖ ≤ M) {z : ℂ}
     (hz : ‖z‖ ≤ t) (n : ℕ) : ‖coeff f ρ n * z ^ (n : ℤ)‖ ≤ M * (t / b) ^ n := by
@@ -443,6 +510,9 @@ lemma norm_coeff_mul_le_of_le (hf : DifferentiableOn ℂ f (annulus r R)) (hρ :
         mul_le_mul h1 h2 (by positivity) ((norm_nonneg _).trans h1)
     _ = M * (t / b) ^ n := by rw [zpow_neg, zpow_natCast, div_pow]; ring
 
+/--
+@isnad1 id=le.6h9v.s7.8300608352d1 from=translated src=- shape=aa2a6a65 vocab=889c570e
+-/
 lemma norm_coeff_mul_le_of_ge (hf : DifferentiableOn ℂ f (annulus r R)) (hρ : IsRadius r R ρ)
     {a M t : ℝ} (ha : IsRadius r R a) (hM : ∀ z ∈ sphere (0 : ℂ) a, ‖f z‖ ≤ M) (ht : 0 < t)
     {z : ℂ} (hz : t ≤ ‖z‖) (n : ℕ) :
@@ -457,7 +527,9 @@ lemma norm_coeff_mul_le_of_ge (hf : DifferentiableOn ℂ f (annulus r R)) (hρ :
     _ = M * (a / t) ^ n := by rw [div_pow]; ring
 
 /-- The Weierstrass bound behind the local uniform convergence of the Laurent series: near every
-point of the annulus its terms are dominated by a summable sequence. -/
+point of the annulus its terms are dominated by a summable sequence.
+@isnad1 id=ex.3h5v.s7.252875c31f20 from=translated src=- shape=a90641e4 vocab=030e9932
+-/
 theorem exists_summable_bound (hf : DifferentiableOn ℂ f (annulus r R)) (hρ : IsRadius r R ρ)
     {w : ℂ} (hw : w ∈ annulus r R) :
     ∃ u : ℤ → ℝ, Summable u ∧ ∃ V ∈ 𝓝 w, ∀ k, ∀ z ∈ V, ‖coeff f ρ k * z ^ k‖ ≤ u k := by
@@ -506,14 +578,18 @@ theorem exists_summable_bound (hf : DifferentiableOn ℂ f (annulus r R)) (hρ :
       simp only [Int.natAbs_neg, Int.natAbs_natCast]
       linarith [mul_nonneg hMb0 (pow_nonneg hq₂' n)]
 
-/-- The Laurent series converges absolutely on the annulus. -/
+/-- The Laurent series converges absolutely on the annulus.
+@isnad1 id=summable.3h5v.s7.37baf8359d55 from=translated src=- shape=23782bac vocab=2bcd15d6
+-/
 theorem summable_norm_coeff_mul (hf : DifferentiableOn ℂ f (annulus r R))
     (hρ : IsRadius r R ρ) {w : ℂ} (hw : w ∈ annulus r R) :
     Summable fun k : ℤ ↦ ‖coeff f ρ k * w ^ k‖ := by
   obtain ⟨u, hu, V, hV, hle⟩ := exists_summable_bound hf hρ hw
   exact hu.of_nonneg_of_le (fun _ ↦ norm_nonneg _) fun k ↦ hle k w (mem_of_mem_nhds hV)
 
-/-- The Laurent series converges locally uniformly on the annulus. -/
+/-- The Laurent series converges locally uniformly on the annulus.
+@isnad1 id=tendstol.2h4v.s7.c520e55aaa4c from=translated src=- shape=e11635ff vocab=5f66b92d
+-/
 theorem tendstoLocallyUniformlyOn (hf : DifferentiableOn ℂ f (annulus r R))
     (hρ : IsRadius r R ρ) :
     TendstoLocallyUniformlyOn (fun (s : Finset ℤ) (z : ℂ) ↦ ∑ k ∈ s, coeff f ρ k * z ^ k) f
@@ -526,7 +602,9 @@ theorem tendstoLocallyUniformlyOn (hf : DifferentiableOn ℂ f (annulus r R))
   exact h U hU
 
 /-- **Uniqueness of Laurent coefficients**: if `f` is the sum of an absolutely convergent Laurent
-series on the circle of radius `ρ`, then its coefficients are the Laurent coefficients of `f`. -/
+series on the circle of radius `ρ`, then its coefficients are the Laurent coefficients of `f`.
+@isnad1 id=eq.3h4v.s7.e0cd69e2dca1 from=translated src=- shape=b841a184 vocab=8ab27e3c
+-/
 theorem coeff_eq_of_hasSum (hρ : 0 < ρ) {b : ℤ → ℂ} (hb : Summable fun k ↦ ‖b k‖ * ρ ^ k)
     (hf : ∀ z ∈ sphere (0 : ℂ) ρ, HasSum (fun k ↦ b k * z ^ k) (f z)) (k : ℤ) :
     coeff f ρ k = b k := by
@@ -564,7 +642,9 @@ theorem coeff_eq_of_hasSum (hρ : 0 < ρ) {b : ℤ → ℂ} (hb : Summable fun k
     rw [e]
     exact (hf z hz).mul_left _
 
-/-- An admissible radius below any nonzero point of `{r < ‖z‖}`. -/
+/-- An admissible radius below any nonzero point of `{r < ‖z‖}`.
+@isnad1 id=ex.3h4v.s5.f89e3d026b0f from=translated src=- shape=b3725a28 vocab=3e6eccd9
+-/
 lemma exists_isRadius_lt_of_lt (hρ : IsRadius r R ρ) {w : ℂ} (hw : r < ‖w‖) (hw0 : w ≠ 0) :
     ∃ a, IsRadius r R a ∧ a < ‖w‖ := by
   set z : ℂ := ((min ρ ‖w‖ : ℝ) : ℂ)
@@ -588,7 +668,9 @@ noncomputable def plusPart (f : ℂ → ℂ) (ρ : ℝ) (z : ℂ) : ℂ :=
 noncomputable def minusPart (f : ℂ → ℂ) (ρ : ℝ) (z : ℂ) : ℂ :=
   ∑' k : ℕ, coeff f ρ (-((k : ℤ) + 1)) * z ^ (-((k : ℤ) + 1))
 
-/-- The **Laurent splitting** `f = f₊ + f₋` on the annulus. -/
+/-- The **Laurent splitting** `f = f₊ + f₋` on the annulus.
+@isnad1 id=eq.3h5v.s6.419f38fc818d from=translated src=- shape=2b60874f vocab=de09ef65
+-/
 theorem plusPart_add_minusPart (hf : DifferentiableOn ℂ f (annulus r R)) (hρ : IsRadius r R ρ)
     {w : ℂ} (hw : w ∈ annulus r R) : plusPart f ρ w + minusPart f ρ w = f w := by
   have hs : Summable fun k : ℤ ↦ coeff f ρ k * w ^ k :=
@@ -604,7 +686,9 @@ theorem plusPart_add_minusPart (hf : DifferentiableOn ℂ f (annulus r R)) (hρ 
   simp only [zpow_natCast] at h
   exact h
 
-/-- The part of nonnegative degree is holomorphic on the disc `{‖z‖ < R}`. -/
+/-- The part of nonnegative degree is holomorphic on the disc `{‖z‖ < R}`.
+@isnad1 id=differen.2h4v.s7.3c1ffb9ecb15 from=translated src=- shape=99dbbe87 vocab=4bd393db
+-/
 theorem differentiableOn_plusPart (hf : DifferentiableOn ℂ f (annulus r R))
     (hρ : IsRadius r R ρ) : DifferentiableOn ℂ (plusPart f ρ) (eball 0 R) := by
   intro w hw
@@ -626,6 +710,9 @@ theorem differentiableOn_plusPart (hf : DifferentiableOn ℂ f (annulus r R))
   exact (hd.differentiableAt (isOpen_ball.mem_nhds (by
     rw [mem_ball_zero_iff]; simp only [t]; linarith))).differentiableWithinAt
 
+/--
+@isnad1 id=le.6h9v.s8.40e6a07e712b from=translated src=- shape=fe3973bb vocab=f0694c0e
+-/
 lemma norm_coeff_mul_le_neg_succ (hf : DifferentiableOn ℂ f (annulus r R))
     (hρ : IsRadius r R ρ) {a M t : ℝ} (ha : IsRadius r R a)
     (hM : ∀ z ∈ sphere (0 : ℂ) a, ‖f z‖ ≤ M) (ht : 0 < t) {z : ℂ} (hz : t ≤ ‖z‖) (n : ℕ) :
@@ -633,7 +720,9 @@ lemma norm_coeff_mul_le_neg_succ (hf : DifferentiableOn ℂ f (annulus r R))
   have := norm_coeff_mul_le_of_ge hf hρ ha hM ht hz (n + 1)
   simpa using this
 
-/-- The part of negative degree is holomorphic on `{r < ‖z‖}`. -/
+/-- The part of negative degree is holomorphic on `{r < ‖z‖}`.
+@isnad1 id=differen.2h4v.s7.13674c4bcb56 from=translated src=- shape=88ac0eed vocab=3a8a1f40
+-/
 theorem differentiableOn_minusPart (hf : DifferentiableOn ℂ f (annulus r R))
     (hρ : IsRadius r R ρ) : DifferentiableOn ℂ (minusPart f ρ) {z | r < ‖z‖} := by
   rcases lt_or_ge r 0 with hr | hr
@@ -662,7 +751,9 @@ theorem differentiableOn_minusPart (hf : DifferentiableOn ℂ f (annulus r R))
   exact (hd.differentiableAt (hV.mem_nhds (by
     simp only [mem_ofPred_eq, t]; linarith))).differentiableWithinAt
 
-/-- The part of negative degree tends to `0` at infinity. -/
+/-- The part of negative degree tends to `0` at infinity.
+@isnad1 id=tendsto.2h4v.s6.6e72082e3253 from=translated src=- shape=8f8564b7 vocab=3ef4943a
+-/
 theorem tendsto_minusPart_cobounded (hf : DifferentiableOn ℂ f (annulus r R))
     (hρ : IsRadius r R ρ) : Tendsto (minusPart f ρ) (cobounded ℂ) (𝓝 0) := by
   obtain ⟨M, hM⟩ := (isCompact_sphere (0 : ℂ) ρ).exists_bound_of_continuousOn

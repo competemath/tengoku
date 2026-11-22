@@ -68,7 +68,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι] {U : Opens (ι → ℂ)} {y 
 omit [DecidableEq ι] in
 /-- **The extension by zero of a holomorphic function, at a point of its domain, is the value of
 the evaluation homomorphism there.** Both sides are `f.toFun _ ⟨y, hy⟩`; this is
-`OkaRing.toGlobalFun_apply` said in the spelling the sheaf-theoretic statements use. -/
+`OkaRing.toGlobalFun_apply` said in the spelling the sheaf-theoretic statements use.
+@isnad1 id=eq.1h4v.s7.96c432791830 from=translated src=- shape=49d8770f vocab=e0fc3812
+-/
 theorem toGlobalFun_eq_evalHom (f : OkaRing U) (hy : y ∈ U) :
     f.toGlobalFun U y = OkaRing.evalHom hy f :=
   OkaRing.toGlobalFun_apply f hy
@@ -76,7 +78,9 @@ theorem toGlobalFun_eq_evalHom (f : OkaRing U) (hy : y ∈ U) :
 /-- **The linear coefficient of the germ at `y` is the derivative at `y` in that direction.**
 
 The germ sums to `z ↦ f (z + y)` near the origin, so its linear coefficients are the partial
-derivatives of that translate at the origin, which are the partial derivatives of `f` at `y`. -/
+derivatives of that translate at the origin, which are the partial derivatives of `f` at `y`.
+@isnad1 id=eq.1h5v.s9.0574dea1f95a from=translated src=- shape=de5bf83a vocab=8c94f2ee
+-/
 theorem coeff_single_one_germ (hy : y ∈ U) (f : OkaRing U) (j : ι) :
     MvPowerSeries.coeff (Finsupp.single j 1)
         ((germ hy f : LocalOkaRing ι) : MvPowerSeries ι ℂ) =

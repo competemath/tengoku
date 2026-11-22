@@ -37,7 +37,9 @@ variable {𝕜 E F : Type*} [NontriviallyNormedField 𝕜]
   [FirstCountableTopology F] [CompleteSpace F]
 
 /-- Baire step of the open mapping theorem: for `u` surjective onto a complete metrizable `F`,
-the closure of the image of a neighbourhood of `0` is a neighbourhood of `0`. -/
+the closure of the image of a neighbourhood of `0` is a neighbourhood of `0`.
+@isnad1 id=mem.2h5v.s9.ab038b6a5935 from=translated src=- shape=b9b6f2ef vocab=1e7d7669
+-/
 theorem closure_image_mem_nhds_zero_of_surjective (u : E →L[𝕜] F) (hu : Function.Surjective u)
     {W : Set E} (hW : W ∈ 𝓝 (0 : E)) : closure (u '' W) ∈ 𝓝 (0 : F) := by
   haveI : (uniformity F).IsCountablyGenerated := IsUniformAddGroup.uniformity_countably_generated
@@ -77,7 +79,9 @@ theorem closure_image_mem_nhds_zero_of_surjective (u : E →L[𝕜] F) (hu : Fun
 variable [FirstCountableTopology E] [CompleteSpace E] [T2Space F]
 
 /-- **Open mapping theorem** (complete metrizable TVS, neighbourhoods of `0`): a surjective
-continuous linear map maps neighbourhoods of `0` to neighbourhoods of `0`. -/
+continuous linear map maps neighbourhoods of `0` to neighbourhoods of `0`.
+@isnad1 id=mem.2h5v.s9.f593c5b117d0 from=translated src=- shape=32db26b2 vocab=68b352c0
+-/
 theorem image_mem_nhds_zero_of_surjective (u : E →L[𝕜] F) (hu : Function.Surjective u)
     {W : Set E} (hW : W ∈ 𝓝 (0 : E)) : u '' W ∈ 𝓝 (0 : F) := by
   obtain ⟨N, hNnhds, hN, hNW, hNbasis, hanti⟩ := exists_add_subset_basis_nhds_zero hW
@@ -138,7 +142,9 @@ theorem image_mem_nhds_zero_of_surjective (u : E →L[𝕜] F) (hu : Function.Su
     simpa using tendsto_nhds_unique h1 h2
 
 /-- **Open mapping theorem** for complete metrizable topological vector spaces (e.g. Fréchet
-spaces): a surjective continuous linear map is open. -/
+spaces): a surjective continuous linear map is open.
+@isnad1 id=isopenma.1h4v.s9.586ded7931a6 from=translated src=- shape=1edaad28 vocab=8cf9eb3e
+-/
 theorem isOpenMap_of_surjective (u : E →L[𝕜] F) (hu : Function.Surjective u) : IsOpenMap u := by
   refine IsOpenMap.of_nhds_le fun a t ht ↦ ?_
   rw [mem_map] at ht

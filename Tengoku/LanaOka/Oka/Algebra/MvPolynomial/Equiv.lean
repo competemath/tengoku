@@ -37,7 +37,9 @@ variable {R : Type*} [CommSemiring R] {σ : Type*}
 into the coefficients and the variable `none` into the polynomial variable.
 
 This is `MvPolynomial.eval_eq_eval_mv_eval'` for the `Option` splitting rather than the
-`Fin.cons` one. -/
+`Fin.cons` one.
+@isnad1 id=eq.0h4v.s8.695cc4f29607 from=translated src=- shape=0c189c8c vocab=41823b12
+-/
 theorem eval_eq_eval_optionEquivLeft (x : Option σ → R) (p : MvPolynomial (Option σ) R) :
     eval x p =
       Polynomial.eval (x none)

@@ -113,12 +113,16 @@ structure EntireBound (D : ℤ → ℝ) : Prop where
   nonneg : ∀ m, 0 ≤ D m
   summable : ∀ r : ℝ, 0 < r → Summable fun m : ℤ => D m * r ^ m
 
-/-- An entire bound family is summable (radius `r = 1`). -/
+/-- An entire bound family is summable (radius `r = 1`).
+@isnad1 id=summable.1h1v.s4.add02a49b7bb from=translated src=- shape=3bfa6ba8 vocab=becf7c5d
+-/
 lemma EntireBound.summable_one {A : ℤ → ℝ} (hA : EntireBound A) : Summable A := by
   have h := hA.summable 1 one_pos
   exact h.congr fun m => by simp
 
-/-- Each convolution slice `m ↦ A (ℓ - m) · B m` of two entire bound families is summable. -/
+/-- Each convolution slice `m ↦ A (ℓ - m) · B m` of two entire bound families is summable.
+@isnad1 id=summable.2h3v.s5.3ec1a826c05f from=translated src=- shape=0ea3f836 vocab=6cb6ba7d
+-/
 lemma summable_rconv_slice {A B : ℤ → ℝ} (hA : EntireBound A) (hB : EntireBound B) (ℓ : ℤ) :
     Summable fun m : ℤ => A (ℓ - m) * B m := by
   have hprod : Summable fun p : ℤ × ℤ => A p.1 * B p.2 :=
@@ -135,7 +139,9 @@ private def shearZ : ℤ × ℤ ≃ ℤ × ℤ where
   left_inv p := by simp
   right_inv p := by simp
 
-/-- Entire bound families are closed under real convolution. -/
+/-- Entire bound families are closed under real convolution.
+@isnad1 id=entirebo.2h2v.s4.93c188578bf6 from=translated src=- shape=088ed7b6 vocab=c241bf81
+-/
 lemma EntireBound.rconv {A B : ℤ → ℝ} (hA : EntireBound A) (hB : EntireBound B) :
     EntireBound (rconv A B) := by
   constructor
@@ -157,7 +163,9 @@ lemma EntireBound.rconv {A B : ℤ → ℝ} (hA : EntireBound A) (hB : EntireBou
       ((summable_rconv_slice hA hB ℓ).hasSum.mul_right (r ^ ℓ))
     exact (hshear.hasSum.prod_fiberwise hfib).summable
 
-/-- Entire bound families are closed under index shifts. -/
+/-- Entire bound families are closed under index shifts.
+@isnad1 id=entirebo.1h2v.s4.20a8b6fd7459 from=translated src=- shape=dcc414f3 vocab=0a2b6423
+-/
 lemma EntireBound.shift {A : ℤ → ℝ} (hA : EntireBound A) (d : ℤ) :
     EntireBound fun m => A (m - d) := by
   constructor
@@ -172,7 +180,9 @@ lemma EntireBound.shift {A : ℤ → ℝ} (hA : EntireBound A) (d : ℤ) :
     rw [hfun]
     exact (hA.summable r hr).mul_right _
 
-/-- Entire bound families are closed under pointwise sums. -/
+/-- Entire bound families are closed under pointwise sums.
+@isnad1 id=entirebo.2h2v.s4.5e0620021b6e from=translated src=- shape=393a0e80 vocab=8fede10f
+-/
 lemma EntireBound.add {A B : ℤ → ℝ} (hA : EntireBound A) (hB : EntireBound B) :
     EntireBound fun m => A m + B m := by
   constructor
@@ -183,7 +193,9 @@ lemma EntireBound.add {A B : ℤ → ℝ} (hA : EntireBound A) (hB : EntireBound
 omit [CompleteSpace K] in
 /-- **Domination of the Laurent convolution.** If `α, β` are termwise dominated by entire
 bound families `A, B`, then `lconv α β` is termwise dominated by `rconv A B`. This is the
-ultrametric `‖tsum‖ ≤ ⨆ ‖·‖` bound followed by `A (ℓ-m) · B m ≤ rconv A B ℓ`. -/
+ultrametric `‖tsum‖ ≤ ⨆ ‖·‖` bound followed by `A (ℓ-m) · B m ≤ rconv A B ℓ`.
+@isnad1 id=le.4h6v.s6.9f9ade34184a from=translated src=- shape=8998715c vocab=9e73cc1f
+-/
 lemma norm_lconv_le {α β : ℤ → K} {A B : ℤ → ℝ} (hA : EntireBound A) (hB : EntireBound B)
     (hα : ∀ k, ‖α k‖ ≤ A k) (hβ : ∀ m, ‖β m‖ ≤ B m) (ℓ : ℤ) :
     ‖lconv α β ℓ‖ ≤ rconv A B ℓ := by
@@ -265,14 +277,23 @@ noncomputable def pFactorCoeff : ℕ → ℕ → K
       (t.q : K) ^ (k + 1) * pFactorCoeff p (k + 1) + (t.q : K) ^ k * pFactorCoeff p k
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
+/--
+@isnad1 id=eq.0h3v.s6.02f323a8adbd from=translated src=- shape=c26f0527 vocab=adfee0e7
+-/
 lemma pFactorCoeff_zero (k : ℕ) : t.pFactorCoeff 0 k = factorCoeff t k * (t.q : K) ^ k := by
   simp [pFactorCoeff]
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
+/--
+@isnad1 id=eq.0h3v.s5.d83884d55d13 from=translated src=- shape=ca264a56 vocab=3c555b14
+-/
 lemma pFactorCoeff_succ_zero (p : ℕ) : t.pFactorCoeff (p + 1) 0 = t.pFactorCoeff p 0 := by
   simp [pFactorCoeff]
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
+/--
+@isnad1 id=eq.0h4v.s7.82548859622a from=translated src=- shape=66cf5a73 vocab=6ff157cb
+-/
 lemma pFactorCoeff_succ_succ (p k : ℕ) :
     t.pFactorCoeff (p + 1) (k + 1)
       = (t.q : K) ^ (k + 1) * t.pFactorCoeff p (k + 1) + (t.q : K) ^ k * t.pFactorCoeff p k := by
@@ -280,7 +301,9 @@ lemma pFactorCoeff_succ_succ (p k : ℕ) :
 
 omit [CompleteSpace K] in
 /-- **Uniform norm bound for the punctured coefficients**: `‖pFactorCoeff p k‖ ≤ ‖q‖^{k(k-1)/2}`,
-independently of the puncture `p`. -/
+independently of the puncture `p`.
+@isnad1 id=le.0h4v.s6.f01218693fe1 from=translated src=- shape=27912715 vocab=7ca1b531
+-/
 lemma norm_pFactorCoeff_le (p k : ℕ) :
     ‖t.pFactorCoeff p k‖ ≤ ‖(t.q : K)‖ ^ (k * (k - 1) / 2) := by
   induction p generalizing k with
@@ -322,7 +345,9 @@ private lemma summable_norm_q_triangle_mul (r : ℝ) (hr : 0 ≤ r) :
     abs_of_nonneg (by positivity), key]
   exact mul_le_mul_of_nonneg_right hk (by positivity)
 
-/-- The punctured factor series `∑ₖ pFactorCoeff p k · cᵏ` converges for every `c : K`. -/
+/-- The punctured factor series `∑ₖ pFactorCoeff p k · cᵏ` converges for every `c : K`.
+@isnad1 id=summable.0h4v.s6.0f16d46af77d from=translated src=- shape=1a7619a1 vocab=182f8b37
+-/
 lemma summable_pFactorCoeff_mul_pow (p : ℕ) (c : K) :
     Summable fun k : ℕ => t.pFactorCoeff p k * c ^ k := by
   apply NonarchimedeanAddGroup.summable_of_tendsto_cofinite_zero
@@ -339,7 +364,9 @@ the punctured Euler product `∏_{j≠p}(1 + qʲc)`. -/
 noncomputable def pFactorSeries (p : ℕ) (c : K) : K := ∑' k : ℕ, t.pFactorCoeff p k * c ^ k
 
 /-- Peeling the `j = 0` factor of the punctured product:
-`S_{p+1}(c) = (1 + c) · S_p(q·c)`. -/
+`S_{p+1}(c) = (1 + c) · S_p(q·c)`.
+@isnad1 id=eq.0h4v.s7.320238a2dd29 from=translated src=- shape=866f661a vocab=6dff56aa
+-/
 lemma pFactorSeries_succ (p : ℕ) (c : K) :
     t.pFactorSeries (p + 1) c = (1 + c) * t.pFactorSeries p ((t.q : K) * c) := by
   have hg := t.summable_pFactorCoeff_mul_pow p ((t.q : K) * c)
@@ -362,7 +389,9 @@ lemma pFactorSeries_succ (p : ℕ) (c : K) :
 /-- **The defining identity of the punctured factor series.** Restoring the removed factor
 recovers the elementary theta factor: `(1 + q^p·c) · S_p(c) = thetaProdFactor c`. Division
 never occurs: the identity is proved by induction on the puncture from the shift relation
-`thetaProdFactor c = (1 + c)·thetaProdFactor (q·c)`. -/
+`thetaProdFactor c = (1 + c)·thetaProdFactor (q·c)`.
+@isnad1 id=eq.0h4v.s7.cae0a22617a9 from=translated src=- shape=e0e30616 vocab=ab49ea1b
+-/
 lemma one_add_qpow_mul_pFactorSeries (p : ℕ) (c : K) :
     (1 + (t.q : K) ^ p * c) * t.pFactorSeries p c = t.thetaProdFactor c := by
   induction p generalizing c with
@@ -1189,7 +1218,9 @@ private lemma hasSum_thetaNegCube (u : Kˣ) :
   hasSum_laurentConvolution u (t.hasSum_thetaNegSq u) (t.hasSum_thetaNegCoeff u)
 
 /-- **Global convergence of the `X·Θ²` coefficient family.** For *every* unit `u` (on or off
-the orbit `qᶻ`), the family `n ↦ XThetaSqCoeff n · uⁿ` is summable. -/
+the orbit `qᶻ`), the family `n ↦ XThetaSqCoeff n · uⁿ` is summable.
+@isnad1 id=summable.0h3v.s7.98432e001767 from=translated src=- shape=51356576 vocab=c10dfe3c
+-/
 lemma summable_XThetaSqCoeff_mul_zpow (u : Kˣ) :
     Summable fun n : ℤ => t.XThetaSqCoeff n * (u : K) ^ n := by
   have h1 := (t.hasSum_xFam_marginal u).summable
@@ -1199,7 +1230,9 @@ lemma summable_XThetaSqCoeff_mul_zpow (u : Kˣ) :
   ring
 
 /-- **Global convergence of the `Y·Θ³` coefficient family.** For *every* unit `u` (on or off
-the orbit `qᶻ`), the family `n ↦ YThetaCubeCoeff n · uⁿ` is summable. -/
+the orbit `qᶻ`), the family `n ↦ YThetaCubeCoeff n · uⁿ` is summable.
+@isnad1 id=summable.0h3v.s7.d7c016dea840 from=translated src=- shape=51356576 vocab=6f20de15
+-/
 lemma summable_YThetaCubeCoeff_mul_zpow (u : Kˣ) :
     Summable fun n : ℤ => t.YThetaCubeCoeff n * (u : K) ^ n := by
   have h1 := (t.hasSum_yFam_marginal u).summable
@@ -1209,7 +1242,9 @@ lemma summable_YThetaCubeCoeff_mul_zpow (u : Kˣ) :
   ring
 
 /-- **`X(u)·theta(-u)²` as a global two-sided Laurent series.** Off the orbit `qᶻ` — i.e. when
-`qⁿ·u ≠ 1` for all `n` — the coefficient family `XThetaSqCoeff` sums to `X u · theta (-u)²`. -/
+`qⁿ·u ≠ 1` for all `n` — the coefficient family `XThetaSqCoeff` sums to `X u · theta (-u)²`.
+@isnad1 id=hassum.1h3v.s8.38b2d0d2cf1e from=translated src=- shape=2d7a8d54 vocab=06e49e7b
+-/
 theorem hasSum_XThetaSqCoeff {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) :
     HasSum (fun n : ℤ => t.XThetaSqCoeff n * (u : K) ^ n)
       (t.X u * t.theta (-u) ^ 2) := by
@@ -1241,7 +1276,9 @@ theorem hasSum_XThetaSqCoeff {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K
   rwa [hfun, hval] at h
 
 /-- **`Y(u)·theta(-u)³` as a global two-sided Laurent series.** Off the orbit `qᶻ` — i.e. when
-`qⁿ·u ≠ 1` for all `n` — the coefficient family `YThetaCubeCoeff` sums to `Y u · theta (-u)³`. -/
+`qⁿ·u ≠ 1` for all `n` — the coefficient family `YThetaCubeCoeff` sums to `Y u · theta (-u)³`.
+@isnad1 id=hassum.1h3v.s8.39d9a2ed5c2f from=translated src=- shape=2d7a8d54 vocab=fbfa1792
+-/
 theorem hasSum_YThetaCubeCoeff {u : Kˣ} (hu : ∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) :
     HasSum (fun n : ℤ => t.YThetaCubeCoeff n * (u : K) ^ n)
       (t.Y u * t.theta (-u) ^ 3) := by

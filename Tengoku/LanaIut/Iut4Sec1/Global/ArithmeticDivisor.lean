@@ -46,11 +46,17 @@ noncomputable def normalizedArithmeticDivisorDegree
     {K : Type*} [Field K] [NumberField K] (D : ArithmeticDivisor K) : ℝ :=
   arithmeticDivisorDegree D / Module.finrank ℚ K
 
+/--
+@isnad1 id=eq.0h1v.s5.5c436ebcc628 from=translated src=- shape=7828fa0d vocab=2a654b98
+-/
 @[simp]
 lemma arithmeticDivisorDegree_zero {K : Type*} [Field K] [NumberField K] :
     arithmeticDivisorDegree (0 : ArithmeticDivisor K) = 0 := by
   simp [arithmeticDivisorDegree]
 
+/--
+@isnad1 id=eq.0h3v.s6.966f819d13e7 from=translated src=- shape=39731974 vocab=b4be632a
+-/
 lemma arithmeticDivisorDegree_add {K : Type*} [Field K] [NumberField K]
     (D₁ D₂ : ArithmeticDivisor K) :
     arithmeticDivisorDegree (D₁ + D₂) =
@@ -67,6 +73,9 @@ noncomputable def arithmeticDivisorDegreeHom
   map_zero' := arithmeticDivisorDegree_zero
   map_add' := arithmeticDivisorDegree_add
 
+/--
+@isnad1 id=eq.0h2v.s6.07aa23b307b7 from=translated src=- shape=96645c70 vocab=7c1ddcb0
+-/
 @[simp]
 lemma arithmeticDivisorDegreeHom_apply {K : Type*} [Field K] [NumberField K]
     (D : ArithmeticDivisor K) : arithmeticDivisorDegreeHom D = arithmeticDivisorDegree D := rfl
@@ -77,6 +86,9 @@ noncomputable def arithmeticDivisorPart {K : Type*} [Field K] [NumberField K]
   classical
   exact (show ArithmeticPlace K →₀ ℝ from D).filter p
 
+/--
+@isnad1 id=eq.0h5v.s6.52625a5a514f from=translated src=- shape=7972a209 vocab=76ab749c
+-/
 lemma arithmeticDivisorPart_apply_of_mem {K : Type*} [Field K] [NumberField K]
     (D : ArithmeticDivisor K) (p : ArithmeticPlace K → Prop) (v : ArithmeticPlace K)
     (hv : p v) :
@@ -85,6 +97,9 @@ lemma arithmeticDivisorPart_apply_of_mem {K : Type*} [Field K] [NumberField K]
   classical
   simp [arithmeticDivisorPart, hv]
 
+/--
+@isnad1 id=eq.1h4v.s6.9d6bf2817aa6 from=translated src=- shape=7a24d6bb vocab=76ab749c
+-/
 lemma arithmeticDivisorPart_apply_of_not_mem {K : Type*} [Field K] [NumberField K]
     (D : ArithmeticDivisor K) (p : ArithmeticPlace K → Prop) (v : ArithmeticPlace K)
     (hv : ¬p v) :
@@ -92,12 +107,18 @@ lemma arithmeticDivisorPart_apply_of_not_mem {K : Type*} [Field K] [NumberField 
   classical
   simp [arithmeticDivisorPart, hv]
 
+/--
+@isnad1 id=le.0h2v.s4.4dab71b1276f from=translated src=- shape=abec20dc vocab=9178fda4
+-/
 lemma arithmeticPlaceWeight_nonneg {K : Type*} [Field K] [NumberField K]
     (v : ArithmeticPlace K) : 0 ≤ arithmeticPlaceWeight v := by
   cases v with
   | inl v => exact Real.log_natCast_nonneg _
   | inr v => simp [arithmeticPlaceWeight]
 
+/--
+@isnad1 id=le.1h2v.s5.15f4647b4239 from=translated src=- shape=c159bac7 vocab=02687813
+-/
 lemma arithmeticDivisorDegree_nonneg {K : Type*} [Field K] [NumberField K]
     (D : ArithmeticDivisor K) (hD : ArithmeticDivisorEffective D) :
     0 ≤ arithmeticDivisorDegree D := by
@@ -106,7 +127,9 @@ lemma arithmeticDivisorDegree_nonneg {K : Type*} [Field K] [NumberField K]
   intro v _
   exact mul_nonneg (hD v) (arithmeticPlaceWeight_nonneg v)
 
-/-- Effective arithmetic divisors have nonnegative normalized degree. -/
+/-- Effective arithmetic divisors have nonnegative normalized degree.
+@isnad1 id=le.1h2v.s5.418827e7b191 from=translated src=- shape=c159bac7 vocab=309fb4ea
+-/
 theorem normalizedArithmeticDivisorDegree_nonneg
     {K : Type*} [Field K] [NumberField K]
     (D : ArithmeticDivisor K)

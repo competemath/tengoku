@@ -154,20 +154,26 @@ is not. -/
 def _root_.Tengoku.LanaOka.dividedDifference (R : ℝ) (h : ℂ → ℂ) (x : Fin 2 → ℂ) : ℂ :=
   (2 * π * I : ℂ)⁻¹ * ∮ ζ in C(0, R), ((ζ - x 0) * (ζ - x 1))⁻¹ * h ζ
 
-/-- A point strictly inside the circle is not on it, in the form the Cauchy kernel needs. -/
+/-- A point strictly inside the circle is not on it, in the form the Cauchy kernel needs.
+@isnad1 id=ne.2h3v.s5.afebc50c0b52 from=translated src=- shape=a409b03a vocab=352b2871
+-/
 lemma _root_.Tengoku.LanaOka.sub_ne_zero_of_mem_sphere_of_norm_lt {w ζ : ℂ} (hw : ‖w‖ < R)
     (hζ : ζ ∈ sphere (0 : ℂ) R) : ζ - w ≠ 0 := by
   rw [mem_sphere_iff_norm, sub_zero] at hζ
   rw [sub_ne_zero]
   exact fun hcon ↦ absurd (hcon ▸ hζ) hw.ne
 
-/-- The Cauchy integral formula, in the multiplicative form used below. -/
+/-- The Cauchy integral formula, in the multiplicative form used below.
+@isnad1 id=eq.2h3v.s7.c223fbc596a5 from=translated src=- shape=b8e01673 vocab=68d2f5fb
+-/
 lemma _root_.Tengoku.LanaOka.circleIntegral_sub_inv_mul (hd : DifferentiableOn ℂ h (closedBall 0 R)) {w : ℂ}
     (hw : ‖w‖ < R) : (∮ ζ in C(0, R), (ζ - w)⁻¹ * h ζ) = (2 * π * I : ℂ) * h w := by
   have := hd.circleIntegral_sub_inv_smul (w := w) (by simpa [Complex.dist_eq] using hw)
   simpa only [smul_eq_mul] using this
 
-/-- The integrand of the Cauchy integral formula is circle-integrable. -/
+/-- The integrand of the Cauchy integral formula is circle-integrable.
+@isnad1 id=circlein.3h3v.s7.b99765944c40 from=translated src=- shape=fdb50571 vocab=a28dbe59
+-/
 lemma _root_.Tengoku.LanaOka.circleIntegrable_sub_inv_mul (hR : 0 < R) (hd : DifferentiableOn ℂ h (closedBall 0 R))
     {w : ℂ} (hw : ‖w‖ < R) : CircleIntegrable (fun ζ ↦ (ζ - w)⁻¹ * h ζ) 0 R := by
   refine ContinuousOn.circleIntegrable hR.le ?_
@@ -178,7 +184,9 @@ lemma _root_.Tengoku.LanaOka.circleIntegrable_sub_inv_mul (hR : 0 < R) (hd : Dif
 /-- **The divided-difference identity for `dividedDifference`.**
 
 Partial fractions turn the kernel with two poles into the difference of two Cauchy kernels, and
-the Cauchy integral formula evaluates each. The diagonal case is free: both sides vanish. -/
+the Cauchy integral formula evaluates each. The diagonal case is free: both sides vanish.
+@isnad1 id=eq.4h4v.s7.c7e83efa74c5 from=translated src=- shape=37d03b2c vocab=d396b32e
+-/
 theorem _root_.Tengoku.LanaOka.sub_eq_mul_dividedDifference (hR : 0 < R) (hd : DifferentiableOn ℂ h (closedBall 0 R))
     {a b : ℂ} (ha : ‖a‖ < R) (hb : ‖b‖ < R) :
     h a - h b = (a - b) * dividedDifference R h ![a, b] := by
@@ -202,7 +210,9 @@ theorem _root_.Tengoku.LanaOka.sub_eq_mul_dividedDifference (hR : 0 < R) (hd : D
 
 This is `analyticAt_circleIntegral` applied to the two-pole Cauchy kernel, recentred at the
 point by `analyticAt_of_shift`; the two hypotheses reduce to the poles not meeting the contour,
-which is `‖x₀ i‖ + ρ < R` for a small enough polyradius `ρ`. -/
+which is `‖x₀ i‖ + ρ < R` for a small enough polyradius `ρ`.
+@isnad1 id=analytic.3h3v.s8.8580c64ee94a from=translated src=- shape=fe67add9 vocab=af6ff42c
+-/
 theorem _root_.Tengoku.LanaOka.analyticAt_dividedDifference (hR : 0 < R) (hd : DifferentiableOn ℂ h (closedBall 0 R))
     {x₀ : Fin 2 → ℂ} (hx₀ : ∀ i, ‖x₀ i‖ < R) :
     AnalyticAt ℂ (dividedDifference R h) x₀ := by
@@ -259,7 +269,9 @@ theorem _root_.Tengoku.LanaOka.analyticAt_dividedDifference (hR : 0 < R) (hd : D
     simp [dividedDifference]
   exact analyticAt_of_shift key2
 
-/-- Off the diagonal, `dividedDifference` is the difference quotient, i.e. `dslope`. -/
+/-- Off the diagonal, `dividedDifference` is the difference quotient, i.e. `dslope`.
+@isnad1 id=eq.5h4v.s7.ff3c04f52cc1 from=translated src=- shape=d8ece0d6 vocab=c23927f2
+-/
 lemma _root_.Tengoku.LanaOka.dividedDifference_eq_dslope_of_ne (hR : 0 < R)
     (hd : DifferentiableOn ℂ h (closedBall 0 R)) {a b : ℂ} (ha : ‖a‖ < R) (hb : ‖b‖ < R)
     (hab : b ≠ a) : dividedDifference R h ![a, b] = dslope h a b := by
@@ -272,7 +284,9 @@ lemma _root_.Tengoku.LanaOka.dividedDifference_eq_dslope_of_ne (hR : 0 < R)
 Off the diagonal this is `dividedDifference_eq_dslope_of_ne`. On it, both sides are continuous
 at the point — the left by `analyticAt_dividedDifference`, the right by
 `continuousAt_dslope_same`, which is where the differentiability of `h` is used — and they agree
-on a punctured neighbourhood, so they agree. -/
+on a punctured neighbourhood, so they agree.
+@isnad1 id=eq.4h4v.s7.0b458b5299fe from=translated src=- shape=9d387d40 vocab=c23927f2
+-/
 theorem _root_.Tengoku.LanaOka.dividedDifference_eq_dslope (hR : 0 < R) (hd : DifferentiableOn ℂ h (closedBall 0 R))
     {a b : ℂ} (ha : ‖a‖ < R) (hb : ‖b‖ < R) :
     dividedDifference R h ![a, b] = dslope h a b := by
@@ -306,7 +320,9 @@ arguments.**
 For `h` differentiable on `closedBall 0 R`, the function `x ↦ dslope h (x 0) (x 1)` of two
 complex variables is analytic at every point of the open polydisc of radius `R`. Every lemma
 about `dslope` in Mathlib fixes the first argument; this is the statement about both at once,
-and it is what makes `dslope` usable as a function of two holomorphic functions. -/
+and it is what makes `dslope` usable as a function of two holomorphic functions.
+@isnad1 id=analytic.3h3v.s8.87fabc8468eb from=translated src=- shape=15c0ee82 vocab=d7b4f07a
+-/
 theorem _root_.Tengoku.LanaOka.analyticAt_dslope_pair (hR : 0 < R) (hd : DifferentiableOn ℂ h (closedBall 0 R))
     {x₀ : Fin 2 → ℂ} (hx₀ : ∀ i, ‖x₀ i‖ < R) :
     AnalyticAt ℂ (fun x : Fin 2 → ℂ ↦ dslope h (x 0) (x 1)) x₀ := by
@@ -330,7 +346,9 @@ one-variable `dslope` lemmas of Mathlib, `G'` would have to be constant.
 
 **No proof in the library uses this, and none is expected to**: the argument it was built for was
 abandoned in favour of a uniqueness argument. It is retained as a Mathlib upstreaming candidate; see
-`## Status` in the module docstring, which is the disposition rather than a fresh observation. -/
+`## Status` in the module docstring, which is the disposition rather than a fresh observation.
+@isnad1 id=analytic.6h6v.s7.de41f6101dca from=translated src=- shape=207d3db9 vocab=64882e4a
+-/
 theorem AnalyticAt.dslope_comp {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     {G G' : E → ℂ} {z₀ : E} (hR : 0 < R) (hd : DifferentiableOn ℂ h (closedBall 0 R))
     (hG : AnalyticAt ℂ G z₀) (hG' : AnalyticAt ℂ G' z₀) (hGb : ‖G z₀‖ < R)

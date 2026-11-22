@@ -32,7 +32,9 @@ namespace ModuleCat
 
 variable {R : Type u} [CommRing R]
 
-/-- A module of projective dimension `≤ 0` is projective. -/
+/-- A module of projective dimension `≤ 0` is projective.
+@isnad1 id=projecti.0h2v.s6.7821eef44d10 from=translated src=- shape=51fdb576 vocab=4853e452
+-/
 lemma projective_of_hasProjectiveDimensionLE_zero (M : Type u) [AddCommGroup M] [Module R M]
     [h : HasProjectiveDimensionLE (ModuleCat.of R M) 0] : Module.Projective R M := by
   simp only [HasProjectiveDimensionLE, zero_add, ← projective_iff_hasProjectiveDimensionLT_one,
@@ -41,7 +43,9 @@ lemma projective_of_hasProjectiveDimensionLE_zero (M : Type u) [AddCommGroup M] 
 
 /-- A finitely generated module `M` of projective dimension `≤ n + 1` over a Noetherian ring is
 the cokernel of an injection `K → Rᵏ` with `K` finitely generated of projective dimension
-`≤ n`. -/
+`≤ n`.
+@isnad1 id=ex.0h3v.s10.9d1e85908c4c from=translated src=- shape=58c7e849 vocab=4d448e4a
+-/
 lemma exists_shortExact_of_hasProjectiveDimensionLE_succ [IsNoetherianRing R] (n : ℕ)
     (M : Type u) [AddCommGroup M] [Module R M] [Module.Finite R M]
     [HasProjectiveDimensionLE (ModuleCat.of R M) (n + 1)] :
@@ -56,7 +60,9 @@ lemma exists_shortExact_of_hasProjectiveDimensionLE_succ [IsNoetherianRing R] (n
 /-- Induction principle for finitely generated modules of projective dimension `≤ n` over a
 Noetherian ring: a property which holds for finitely generated projective modules and passes
 from `K` to `M` along every short exact sequence `0 → K → Rᵏ → M → 0` of finitely generated
-modules holds for all such modules. -/
+modules holds for all such modules.
+@isnad1 id=var.0h6v.s9.dc24cff7d6d0 from=translated src=- shape=75a20612 vocab=6eeac780
+-/
 theorem induction_of_hasProjectiveDimensionLE [IsNoetherianRing R]
     (P : ∀ (M : Type u) [AddCommGroup M] [Module R M], Prop)
     (proj : ∀ (M : Type u) [AddCommGroup M] [Module R M] [Module.Finite R M]
@@ -77,7 +83,9 @@ theorem induction_of_hasProjectiveDimensionLE [IsNoetherianRing R]
       (Submodule.injective_subtype _) hg (ih _)
 
 /-- Over a ring of global dimension `≤ n`, the induction principle
-`induction_of_hasProjectiveDimensionLE` applies to every finitely generated module. -/
+`induction_of_hasProjectiveDimensionLE` applies to every finitely generated module.
+@isnad1 id=var.1h6v.s9.cdcd133311d8 from=translated src=- shape=9b882964 vocab=197e95a5
+-/
 theorem HasGlobalDimensionLE.induction [IsNoetherianRing R] {n : ℕ}
     (hR : HasGlobalDimensionLE R n)
     (P : ∀ (M : Type u) [AddCommGroup M] [Module R M], Prop)
@@ -94,7 +102,9 @@ theorem HasGlobalDimensionLE.induction [IsNoetherianRing R] {n : ℕ}
 /-- **Hilbert's syzygy theorem, resolution form**: every finitely generated module over a
 localisation `R'` of `k[X₁, …, Xₙ]` (e.g. `k[X₁, …, Xₙ]` itself, or `k[X₁, …, Xₙ][1/f]`)
 satisfies every property which holds for finitely generated projective modules and passes from
-`K` to `M` along short exact sequences `0 → K → R'ᵏ → M → 0` of finitely generated modules. -/
+`K` to `M` along short exact sequences `0 → K → R'ᵏ → M → 0` of finitely generated modules.
+@isnad1 id=var.0h8v.s10.afdbcc583652 from=translated src=- shape=b807d992 vocab=d509f2a6
+-/
 theorem induction_of_isLocalization_mvPolynomial (k : Type u) [Field k] (n : ℕ)
     (S : Submonoid (MvPolynomial (Fin n) k)) (R' : Type u) [CommRing R']
     [Algebra (MvPolynomial (Fin n) k) R'] [IsLocalization S R']

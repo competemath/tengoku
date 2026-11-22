@@ -64,25 +64,37 @@ variable {ℓ n : ℕ}
 instance decidable (ℓ n : ℕ) : Decidable (PrimeToOrder ℓ n) :=
   inferInstanceAs (Decidable (Nat.Coprime ℓ n))
 
-/-- Unfold the predicate to `Nat.Coprime`. -/
+/-- Unfold the predicate to `Nat.Coprime`.
+@isnad1 id=iff.0h2v.s3.23cb97008b4d from=translated src=- shape=f4bb34bc vocab=f57046a0
+-/
 @[simp] theorem iff_coprime : PrimeToOrder ℓ n ↔ Nat.Coprime ℓ n := Iff.rfl
 
 /-- Everything is prime to the order `1` (the degenerate, good-reduction end of the
-convention). -/
+convention).
+@isnad1 id=primetoo.0h1v.s3.117e7e293438 from=translated src=- shape=3d52821e vocab=3a86196a
+-/
 theorem order_one : PrimeToOrder ℓ 1 := Nat.coprime_one_right ℓ
 
-/-- `1` is prime to every order. -/
+/-- `1` is prime to every order.
+@isnad1 id=primetoo.0h1v.s3.4a3b7bc0dcb6 from=translated src=- shape=56f853c1 vocab=3a86196a
+-/
 theorem one : PrimeToOrder 1 n := Nat.coprime_one_left n
 
-/-- The condition is symmetric in its two arguments, as `Nat.Coprime`. -/
+/-- The condition is symmetric in its two arguments, as `Nat.Coprime`.
+@isnad1 id=primetoo.1h2v.s3.eb2b924fa0d9 from=translated src=- shape=7e524d71 vocab=3a86196a
+-/
 theorem symm (h : PrimeToOrder ℓ n) : PrimeToOrder n ℓ := Nat.Coprime.symm h
 
 /-- For a prime `ℓ`, being prime to the order is exactly *not dividing* it: this is the
-nondegeneracy form in which the Θ-data condition is checked. -/
+nondegeneracy form in which the Θ-data condition is checked.
+@isnad1 id=iff.1h2v.s4.200a10c73de9 from=translated src=- shape=03cb52c3 vocab=5929b2f8
+-/
 theorem prime_iff_not_dvd (hℓ : ℓ.Prime) : PrimeToOrder ℓ n ↔ ¬ ℓ ∣ n :=
   hℓ.coprime_iff_not_dvd
 
-/-- If `ℓ` is prime to the order `n`, it is prime to every divisor of `n`. -/
+/-- If `ℓ` is prime to the order `n`, it is prime to every divisor of `n`.
+@isnad1 id=primetoo.2h3v.s4.bcef13586247 from=translated src=- shape=0a516ea1 vocab=ee06cfdf
+-/
 theorem of_dvd (h : PrimeToOrder ℓ n) {d : ℕ} (hd : d ∣ n) : PrimeToOrder ℓ d :=
   Nat.Coprime.coprime_dvd_right hd h
 
@@ -114,10 +126,14 @@ def PrimeToOrder (ℓ : ℕ) : Prop := TateCurvesTheta.PrimeToOrder ℓ t.orderN
 instance decidable (ℓ : ℕ) : Decidable (t.PrimeToOrder ℓ) :=
   inferInstanceAs (Decidable (Nat.Coprime ℓ t.orderNat))
 
-/-- Unfold the Θ-data condition to `Nat.Coprime`. -/
+/-- Unfold the Θ-data condition to `Nat.Coprime`.
+@isnad1 id=iff.0h3v.s4.6cd6b4b4979a from=translated src=- shape=102ff184 vocab=1b902da1
+-/
 theorem primeToOrder_iff (ℓ : ℕ) : t.PrimeToOrder ℓ ↔ Nat.Coprime ℓ t.orderNat := Iff.rfl
 
-/-- For a prime `ℓ`, the Θ-data condition is exactly that `ℓ` does not divide the order. -/
+/-- For a prime `ℓ`, the Θ-data condition is exactly that `ℓ` does not divide the order.
+@isnad1 id=iff.1h3v.s4.3b0cd703b3a7 from=translated src=- shape=da69c363 vocab=9c2640d8
+-/
 theorem primeToOrder_iff_not_dvd {ℓ : ℕ} (hℓ : ℓ.Prime) :
     t.PrimeToOrder ℓ ↔ ¬ ℓ ∣ t.orderNat :=
   hℓ.coprime_iff_not_dvd

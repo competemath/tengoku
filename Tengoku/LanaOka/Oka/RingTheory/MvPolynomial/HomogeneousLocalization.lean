@@ -50,17 +50,25 @@ variable {R : Type*} [CommRing R] {n : ℕ}
 
 local notation "𝒜" => homogeneousSubmodule (Fin (n + 1)) R
 
+/--
+@isnad1 id=mem.0h3v.s7.2eb7f0439f78 from=translated src=- shape=72134f87 vocab=44bfa9b4
+-/
 lemma X_mem_homogeneousSubmodule_one {σ : Type*} (i : σ) :
     (X i : MvPolynomial σ R) ∈ homogeneousSubmodule σ R 1 :=
   isHomogeneous_X R i
 
+/--
+@isnad1 id=mem.0h3v.s7.da71d6324c15 from=translated src=- shape=df0ca7f5 vocab=4db96e4d
+-/
 lemma prod_X_mem_homogeneousSubmodule {σ : Type*} (s : Finset σ) :
     (∏ j ∈ s, X j : MvPolynomial σ R) ∈ homogeneousSubmodule σ R s.card := by
   simpa using SetLike.prod_mem_graded (homogeneousSubmodule σ R) (fun _ ↦ 1) (fun j ↦ X j)
     (fun j _ ↦ X_mem_homogeneousSubmodule_one j)
 
 variable (R) in
-/-- The variables generate `R[X]` over its degree-zero part. -/
+/-- The variables generate `R[X]` over its degree-zero part.
+@isnad1 id=eq.0h2v.s13.b02b2d8ec110 from=translated src=- shape=2ac49845 vocab=df27abf1
+-/
 lemma adjoin_range_X_gradeZero_eq_top (σ : Type*) :
     Algebra.adjoin (homogeneousSubmodule σ R 0)
       (Set.range (X : σ → MvPolynomial σ R)) = ⊤ := by
@@ -79,18 +87,30 @@ noncomputable def dehomogenize (i : Fin (n + 1)) :
     MvPolynomial (Fin (n + 1)) R →ₐ[R] MvPolynomial (Fin n) R :=
   aeval (Fin.insertNth (α := fun _ ↦ MvPolynomial (Fin n) R) i 1 X)
 
+/--
+@isnad1 id=eq.0h3v.s8.fcaa39a52428 from=translated src=- shape=4d6668ca vocab=b0789dd4
+-/
 @[simp]
 lemma dehomogenize_X_self (i : Fin (n + 1)) : dehomogenize R i (X i) = 1 := by
   simp [dehomogenize]
 
+/--
+@isnad1 id=eq.0h4v.s8.888242341a6a from=translated src=- shape=e3f73791 vocab=f5023658
+-/
 @[simp]
 lemma dehomogenize_X_succAbove (i : Fin (n + 1)) (j : Fin n) :
     dehomogenize R i (X (i.succAbove j)) = X j := by
   simp [dehomogenize]
 
+/--
+@isnad1 id=eq.0h4v.s9.cbf7bcd65b78 from=translated src=- shape=e1c87ffa vocab=9a425af0
+-/
 lemma dehomogenize_C (i : Fin (n + 1)) (r : R) : dehomogenize R i (C r) = C r := by
   simp [dehomogenize]
 
+/--
+@isnad1 id=eq.0h4v.s10.d387287d928b from=translated src=- shape=dcf778d9 vocab=a6371ac6
+-/
 lemma dehomogenize_prod_X_erase (i : Fin (n + 1)) (I : Finset (Fin (n + 1))) :
     dehomogenize R i (∏ j ∈ I.erase i, X j) = dehomogenize R i (∏ j ∈ I, X j) := by
   by_cases hi : i ∈ I
@@ -103,11 +123,17 @@ noncomputable def awayXDiv (i k : Fin (n + 1)) : Away 𝒜 (X i) :=
   Away.mk 𝒜 (X_mem_homogeneousSubmodule_one i) 1 (X k)
     (by rw [smul_eq_mul, mul_one]; exact X_mem_homogeneousSubmodule_one k)
 
+/--
+@isnad1 id=eq.0h4v.s10.5249171b9a73 from=translated src=- shape=7571601e vocab=7ade8c23
+-/
 lemma val_awayXDiv (i k : Fin (n + 1)) :
     (awayXDiv R i k).val =
       Localization.mk (X k) (⟨X i ^ 1, 1, rfl⟩ : Submonoid.powers (X i)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.de793e4c0bd3 from=translated src=- shape=1501ed9e vocab=f35a4dce
+-/
 @[simp]
 lemma awayXDiv_self (i : Fin (n + 1)) : awayXDiv R i i = 1 := by
   ext
@@ -125,11 +151,17 @@ variable (R) in
 noncomputable def toAwayX (i : Fin (n + 1)) : MvPolynomial (Fin n) R →+* Away 𝒜 (X i) :=
   eval₂Hom (awayXBase R i) fun j ↦ awayXDiv R i (i.succAbove j)
 
+/--
+@isnad1 id=eq.0h4v.s11.2f5191707d29 from=translated src=- shape=5ad3b449 vocab=c381da39
+-/
 @[simp]
 lemma toAwayX_X (i : Fin (n + 1)) (j : Fin n) :
     toAwayX R i (X j) = awayXDiv R i (i.succAbove j) := by
   simp [toAwayX]
 
+/--
+@isnad1 id=eq.0h4v.s12.8cff8b9144c5 from=translated src=- shape=15a1c16e vocab=da5af716
+-/
 @[simp]
 lemma toAwayX_C (i : Fin (n + 1)) (r : R) :
     toAwayX R i (C r) = awayXBase R i r := by
@@ -143,6 +175,9 @@ noncomputable def fromAwayX (i : Fin (n + 1)) : Away 𝒜 (X i) →+* MvPolynomi
     (isUnit_iff_exists_inv.mpr ⟨1, by simp⟩)).comp
       (algebraMap (Away 𝒜 (X i)) (Localization.Away (X i)))
 
+/--
+@isnad1 id=eq.1h5v.s12.1abbf037d5ec from=translated src=- shape=230a057c vocab=862b2eaf
+-/
 lemma fromAwayX_mk (i : Fin (n + 1)) (m : ℕ) (a : MvPolynomial (Fin (n + 1)) R)
     (ha : a ∈ 𝒜 (m • 1)) :
     fromAwayX R i (Away.mk 𝒜 (X_mem_homogeneousSubmodule_one i) m a ha) =
@@ -152,6 +187,9 @@ lemma fromAwayX_mk (i : Fin (n + 1)) (m : ℕ) (a : MvPolynomial (Fin (n + 1)) R
   rw [Localization.awayLift_mk (v := 1) (hv := by simp)]
   simp
 
+/--
+@isnad1 id=eq.0h4v.s12.8af857b6528c from=translated src=- shape=16d701a0 vocab=b2fe3f83
+-/
 @[simp]
 lemma fromAwayX_toAwayX (i : Fin (n + 1)) (p : MvPolynomial (Fin n) R) :
     fromAwayX R i (toAwayX R i p) = p := by
@@ -166,11 +204,17 @@ lemma fromAwayX_toAwayX (i : Fin (n + 1)) (p : MvPolynomial (Fin n) R) :
     rw [fromAwayX_mk]
     simp
 
+/--
+@isnad1 id=mem.0h4v.s12.ce763726600f from=translated src=- shape=a9bb0cb9 vocab=d82a6c51
+-/
 lemma awayXDiv_mem_range (i k : Fin (n + 1)) : awayXDiv R i k ∈ (toAwayX R i).range := by
   obtain rfl | ⟨j, rfl⟩ := Fin.eq_self_or_eq_succAbove i k
   · rw [awayXDiv_self]; exact one_mem _
   · exact ⟨X j, toAwayX_X i j⟩
 
+/--
+@isnad1 id=surjecti.0h3v.s11.d1d29e9bafa6 from=translated src=- shape=6e019335 vocab=1a78d3c2
+-/
 lemma toAwayX_surjective (i : Fin (n + 1)) : Function.Surjective (toAwayX R i) := by
   intro z
   have hgen := Away.adjoin_mk_prod_pow_eq_top (X_mem_homogeneousSubmodule_one i)
@@ -212,11 +256,17 @@ noncomputable def awayXEquiv (i : Fin (n + 1)) : MvPolynomial (Fin n) R ≃+* Aw
   RingEquiv.ofBijective (toAwayX R i)
     ⟨Function.LeftInverse.injective (fromAwayX_toAwayX i), toAwayX_surjective i⟩
 
+/--
+@isnad1 id=eq.0h4v.s12.9725d8d3d00b from=translated src=- shape=62431c31 vocab=6ae4282e
+-/
 @[simp]
 lemma awayXEquiv_apply (i : Fin (n + 1)) (p : MvPolynomial (Fin n) R) :
     awayXEquiv R i p = toAwayX R i p :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s13.70db61ec87d1 from=translated src=- shape=6b93f8d3 vocab=f78a7fda
+-/
 @[simp]
 lemma awayXEquiv_symm_apply (i : Fin (n + 1)) (z : Away 𝒜 (X i)) :
     (awayXEquiv R i).symm z = fromAwayX R i z := by
@@ -224,11 +274,17 @@ lemma awayXEquiv_symm_apply (i : Fin (n + 1)) (z : Away 𝒜 (X i)) :
   obtain ⟨p, rfl⟩ := toAwayX_surjective (R := R) i z
   simp
 
+/--
+@isnad1 id=eq.0h4v.s12.b317a0b70864 from=translated src=- shape=762e39d6 vocab=b2fe3f83
+-/
 @[simp]
 lemma toAwayX_fromAwayX (i : Fin (n + 1)) (z : Away 𝒜 (X i)) :
     toAwayX R i (fromAwayX R i z) = z := by
   rw [← awayXEquiv_symm_apply, ← awayXEquiv_apply, RingEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h4v.s12.005c3a27f7c6 from=translated src=- shape=4bf283ef vocab=13231307
+-/
 lemma toAwayX_dehomogenize_prod_X (i : Fin (n + 1)) (s : Finset (Fin (n + 1))) :
     toAwayX R i (dehomogenize R i (∏ j ∈ s, X j)) =
       Away.mk 𝒜 (X_mem_homogeneousSubmodule_one i) s.card (∏ j ∈ s, X j)
@@ -249,7 +305,9 @@ noncomputable def toAwayProdX : MvPolynomial (Fin n) R →+* Away 𝒜 (∏ j �
 include hi in
 /-- **The chart description of `A_(∏_{j ∈ I} Xⱼ)`**: for `i ∈ I` it is the localisation of the
 chart ring `R[Y₀, …, Yₙ₋₁]` of `Xᵢ` away from the dehomogenisation of `∏_{j ∈ I} Xⱼ`, i.e. away
-from `∏_{j ∈ I, j ≠ i} Y_j`. -/
+from `∏_{j ∈ I, j ≠ i} Y_j`.
+@isnad1 id=away.1h4v.s11.1b91cbddb54c from=translated src=- shape=8e63f4f4 vocab=362716e4
+-/
 theorem isLocalization_awayProdX :
     letI := (toAwayProdX R i I hi).toAlgebra
     IsLocalization.Away (dehomogenize R i (∏ j ∈ I, X j)) (Away 𝒜 (∏ j ∈ I, X j)) := by
@@ -275,6 +333,9 @@ noncomputable def awayProdXEquiv :
   haveI := isLocalization_awayProdX (R := R) i I hi
   (IsLocalization.algEquiv (Submonoid.powers (dehomogenize R i (∏ j ∈ I, X j))) _ _).toRingEquiv
 
+/--
+@isnad1 id=eq.1h5v.s14.c3996e3cc6cc from=translated src=- shape=493a8f5f vocab=6371a101
+-/
 lemma awayProdXEquiv_algebraMap (p : MvPolynomial (Fin n) R) :
     awayProdXEquiv R i I hi (algebraMap _ _ p) = toAwayProdX R i I hi p := by
   letI := (toAwayProdX R i I hi).toAlgebra

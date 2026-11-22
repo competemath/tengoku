@@ -47,6 +47,9 @@ noncomputable def lift₁ : O ⊗[R] A →+* ∀ v, P v :=
     fun _ _ ↦ Commute.all _ _).toRingHom
 
 include hαβ hγδ in
+/--
+@isnad1 id=eq.2h15v.s10.d710deea4346 from=translated src=- shape=48113e1b vocab=2d7976c9
+-/
 lemma comp_γ_comp_αP (w : J) (r : R) :
     (γ (π w) ⟨w, rfl⟩).comp (αP (π w)) (algebraMap R O r) = δ w (algebraMap R B r) := by
   rw [IsScalarTower.algebraMap_apply R A B, hγδ, RingHom.comp_apply, hαβ]
@@ -78,13 +81,22 @@ noncomputable def liftAt (v : ι) :
         exact hγδ w a }
     fun _ _ ↦ Commute.all _ _).toRingHom
 
+/--
+@isnad1 id=eq.1h10v.s9.1d1436544878 from=translated src=- shape=8a0d7a0d vocab=49abe609
+-/
 lemma lift₁_tmul (s : O) (a : A) (v : ι) : lift₁ P αP βP hαβ (s ⊗ₜ a) v = αP v s * βP v a :=
   rfl
 
+/--
+@isnad1 id=eq.2h16v.s11.588a30a52f36 from=translated src=- shape=c6637d87 vocab=01c12827
+-/
 lemma lift₂_tmul (s : O) (b : B) (w : J) :
     lift₂ P αP βP hαβ π Q γ δ hγδ (s ⊗ₜ b) w = γ (π w) ⟨w, rfl⟩ (αP (π w) s) * δ w b :=
   rfl
 
+/--
+@isnad1 id=eq.1h14v.s11.eb74b3385ecd from=translated src=- shape=4a3d9d65 vocab=1681e532
+-/
 lemma liftAt_tmul (v : ι) (p : P v) (b : B) (w : {w // π w = v}) :
     letI := (βP v).toAlgebra
     liftAt P βP π Q γ δ hγδ v (p ⊗ₜ b) w = γ v w p * δ w.1 b :=
@@ -92,7 +104,9 @@ lemma liftAt_tmul (v : ι) (p : P v) (b : B) (w : {w // π w = v}) :
 
 /-- **Splitting a finite algebra along a splitting of the base.** If `O ⊗[R] A ≅ ∏ᵥ Pᵥ` and
 `O ⊗[R] B ≅ ∏_w Q_w` compatibly, with `w` lying over `π w`, then `Pᵥ ⊗[A] B ≅ ∏_{π w = v} Q_w` for
-every `v`. -/
+every `v`.
+@isnad1 id=bijectiv.4h14v.s11.7e8c1cf61e4f from=translated src=- shape=0ffe2404 vocab=31bb1787
+-/
 theorem bijective_liftAt (h₁ : Function.Bijective (lift₁ P αP βP hαβ))
     (h₂ : Function.Bijective (lift₂ P αP βP hαβ π Q γ δ hγδ)) (v : ι) :
     letI := (βP v).toAlgebra
@@ -195,6 +209,9 @@ variable {R R₀ T O S Pt : Type*} [CommRing R] [CommRing R₀] [CommRing T] [Co
   (α : O →+* Pt) (β : S →+* Pt) (hαβ : ∀ r, α (algebraMap R O r) = β (algebraMap R S r))
 
 include hσ hS hαβ in
+/--
+@isnad1 id=eq.3h11v.s10.548ce1cdb3d2 from=translated src=- shape=03f6423b vocab=324485a0
+-/
 lemma hαβ₀ (r₀ : R₀) : α (σ (algebraMap R₀ T r₀)) = β (algebraMap R₀ S r₀) := by
   obtain ⟨r, rfl⟩ := θ.surjective r₀
   rw [hσ, hS]
@@ -220,7 +237,9 @@ noncomputable def transferLift₀ : T ⊗[R₀] S →+* Pt :=
       commutes' := fun r ↦ (hαβ₀ θ σ hσ hS α β hαβ r).symm }
     fun _ _ ↦ Commute.all _ _).toRingHom
 
-/-- **Changing the base ring and the local ring along isomorphisms.** -/
+/-- **Changing the base ring and the local ring along isomorphisms.**
+@isnad1 id=bijectiv.4h10v.s10.68464b004c67 from=translated src=- shape=d3559850 vocab=d1753fe1
+-/
 theorem bijective_transferLift (h : Function.Bijective (transferLift₀ θ σ hσ hS α β hαβ)) :
     Function.Bijective (transferLift α β hαβ) := by
   letI : Algebra R (T ⊗[R₀] S) := ((algebraMap R₀ (T ⊗[R₀] S)).comp θ.toRingHom).toAlgebra

@@ -71,7 +71,9 @@ section General
 variable {K : Type*} [NormedField K]
 
 /-- The q-Pochhammer symbol as the partial product of the `thetaProdFactor(-q)` family:
-`(q;q)_N = ∏_{j<N} (1 - q^{j+1}) = ∏_{j<N} (1 + qʲ·(-q))`. -/
+`(q;q)_N = ∏_{j<N} (1 - q^{j+1}) = ∏_{j<N} (1 + qʲ·(-q))`.
+@isnad1 id=eq.0h3v.s7.fbcf1570d2ab from=translated src=- shape=e73d584a vocab=71c81b64
+-/
 lemma qPoch_eq_prod (q : K) (N : ℕ) :
     qPoch q N = ∏ n ∈ Finset.range N, (1 + q ^ n * (-q)) := by
   induction N with
@@ -81,7 +83,9 @@ lemma qPoch_eq_prod (q : K) (N : ℕ) :
     ring
 
 /-- **Uniform norm bound on Gaussian binomials.** Over an ultrametric field with `‖q‖ ≤ 1`,
-`‖[n;k]_q‖ ≤ 1` for all `n, k`, by induction on the q-Pascal recursion. -/
+`‖[n;k]_q‖ ≤ 1` for all `n, k`, by induction on the q-Pascal recursion.
+@isnad1 id=le.1h4v.s6.0a5626aa5767 from=translated src=- shape=4daf6aaa vocab=a3b512d1
+-/
 lemma norm_gaussBinom_le_one [IsUltrametricDist K] {q : K} (hq : ‖q‖ ≤ 1) :
     ∀ n k : ℕ, ‖gaussBinom q n k‖ ≤ 1
   | _, 0 => by rw [gaussBinom_zero_right]; simp
@@ -106,7 +110,9 @@ variable (t : TateParameter K)
 omit [CompleteSpace K] in
 /-- **Division-free closed form of the Euler coefficients:** `factorCoeff k · (q;q)ₖ =
 q^{k(k-1)/2}`. Both sides satisfy the same recursion, the inverse `(1 - q^{k+1})⁻¹` in
-`factorCoeff` cancelling the extra `(q;q)` factor. -/
+`factorCoeff` cancelling the extra `(q;q)` factor.
+@isnad1 id=eq.0h3v.s7.95d081a6a617 from=translated src=- shape=33565527 vocab=30bcffcd
+-/
 lemma factorCoeff_mul_qPoch (k : ℕ) :
     factorCoeff t k * qPoch (t.q : K) k = (t.q : K) ^ (k * (k - 1) / 2) := by
   induction k with
@@ -143,7 +149,9 @@ private lemma durfee_exp (k : ℕ) : k * (k - 1) / 2 * 2 + k = k * k := by
 omit [CompleteSpace K] in
 /-- **The Durfee summand in closed form:** `factorCoeff k ² · qᵏ · (q;q)ₖ² = q^{k²}`
 (division-free). Squaring `factorCoeff_mul_qPoch` and multiplying by `qᵏ`, the exponents add to
-`k(k-1) + k = k²`. -/
+`k(k-1) + k = k²`.
+@isnad1 id=eq.0h3v.s7.cf43159baaa5 from=translated src=- shape=061aae4e vocab=409cdb9d
+-/
 lemma factorCoeff_sq_mul (k : ℕ) :
     factorCoeff t k ^ 2 * (t.q : K) ^ k * qPoch (t.q : K) k ^ 2 = (t.q : K) ^ (k * k) := by
   have h : (factorCoeff t k * qPoch (t.q : K) k) ^ 2 = ((t.q : K) ^ (k * (k - 1) / 2)) ^ 2 := by
@@ -160,13 +168,17 @@ lemma factorCoeff_sq_mul (k : ℕ) :
 /-! ### Convergence of the partial q-Pochhammer products -/
 
 omit [CompleteSpace K] in
-/-- `(q;q)ₖ ≠ 0`: each factor `1 - q^{j+1}` is a unit. -/
+/-- `(q;q)ₖ ≠ 0`: each factor `1 - q^{j+1}` is a unit.
+@isnad1 id=ne.0h3v.s6.13260d3d2882 from=translated src=- shape=0a2eb8e6 vocab=e39eb97f
+-/
 lemma qPoch_ne_zero' (k : ℕ) : qPoch (t.q : K) k ≠ 0 :=
   qPoch_ne_zero (t.q : K) t.one_sub_qpow_ne_zero k
 
 omit [IsUltrametricDist K] in
 /-- **The partial q-Pochhammer products converge to `thetaProdFactor(-q)`.** They are exactly the
-partial products of the multipliable family `n ↦ 1 + qⁿ·(-q)`. -/
+partial products of the multipliable family `n ↦ 1 + qⁿ·(-q)`.
+@isnad1 id=tendsto.0h2v.s6.2b1688efa54d from=translated src=- shape=93663080 vocab=b51d3666
+-/
 lemma qPoch_tendsto :
     Tendsto (fun N => qPoch (t.q : K) N) atTop (𝓝 (t.thetaProdFactor (-(t.q : K)))) := by
   have h := (t.multipliable_thetaProdFactor (-(t.q : K))).hasProd.tendsto_prod_nat
@@ -184,7 +196,9 @@ private lemma tendsto_two_mul_atTop : Tendsto (fun n : ℕ => 2 * n) atTop atTop
 /-! ### The two limits and the Durfee identity -/
 
 /-- **Termwise limit of the finite Durfee summand.** For each fixed `k`,
-`q^{k²}·([n;k]_q)² → factorCoeff k ²·qᵏ` as `n → ∞`. -/
+`q^{k²}·([n;k]_q)² → factorCoeff k ²·qᵏ` as `n → ∞`.
+@isnad1 id=tendsto.0h3v.s8.d89aa5e76d1a from=translated src=- shape=f9e0e04d vocab=20fbfb9d
+-/
 lemma tendsto_durfee_summand (k : ℕ) :
     Tendsto (fun n => (t.q : K) ^ (k * k) * gaussBinom (t.q : K) n k ^ 2) atTop
       (𝓝 (factorCoeff t k ^ 2 * (t.q : K) ^ k)) := by
@@ -219,7 +233,9 @@ lemma tendsto_durfee_summand (k : ℕ) :
 
 /-- **The Durfee-square identity** `thetaProdNormConst = 1`, obtained as the `n → ∞` limit of the
 finite q-Vandermonde identity `∑ₖ q^{k²}·([n;k]_q)² = [2n;n]_q`. This is the sole scalar residual of
-the whole `theta = thetaProd` flagship. -/
+the whole `theta = thetaProd` flagship.
+@isnad1 id=eq.0h2v.s5.c4b71d533e7e from=translated src=- shape=b1b5223d vocab=b78636ae
+-/
 theorem thetaProdNormConst_eq_one : t.thetaProdNormConst = 1 := by
   set P := t.thetaProdFactor (-(t.q : K)) with hP
   have hPne : P ≠ 0 := t.thetaProdFactor_neg_q_ne_zero
@@ -279,13 +295,17 @@ theorem thetaProdNormConst_eq_one : t.thetaProdNormConst = 1 := by
 nonarchimedean field the naive `q`-theta series equals its product form for every `u : Kˣ`. All
 analytic content (the rigid-analytic global Laurent expansion, #148) and the scalar normalization
 (the Durfee-square identity, `thetaProdNormConst_eq_one`) are discharged; the coefficient-uniqueness
-principle is `laurentCoeffUnique`. -/
+principle is `laurentCoeffUnique`.
+@isnad1 id=eq.0h3v.s5.2619ab845ba7 from=translated src=- shape=b2d88094 vocab=2141d467
+-/
 theorem theta_eq_thetaProd (u : Kˣ) : t.theta u = t.thetaProd u :=
   t.theta_eq_thetaProd_of_durfee t.thetaProdNormConst_eq_one u
 
 /-- **The zero divisor of the naive theta series, unconditionally.** `theta u = 0` exactly on the
 `qᶻ`-orbit of `-1`. This discharges the conditionality of `theta_eq_zero_iff_of_eq_thetaProd`
-(`Theta/Divisor.lean`, #88). -/
+(`Theta/Divisor.lean`, #88).
+@isnad1 id=iff.0h3v.s7.e43c9de55f01 from=translated src=- shape=29ababdc vocab=55b6cbde
+-/
 theorem theta_eq_zero_iff (u : Kˣ) :
     t.theta u = 0 ↔ ∃ k : ℤ, (u : K) = -(t.q : K) ^ k :=
   t.theta_eq_zero_iff_of_eq_thetaProd u (t.theta_eq_thetaProd u)

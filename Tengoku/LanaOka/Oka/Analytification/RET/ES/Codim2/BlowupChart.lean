@@ -68,10 +68,16 @@ def graphs (V : Set (E × ℂ)) (ψ : ι → E × ℂ → ℂ) : Set ((E × ℂ)
 def vertical (V : Set (E × ℂ)) : Set ((E × ℂ) × ℂ) :=
   {x | x.1 ∈ V ∧ x.1.2 = 0}
 
+/--
+@isnad1 id=iff.0h5v.s6.4ebbbc66dd39 from=translated src=- shape=0d8493b9 vocab=eef7467f
+-/
 lemma mem_graphs {V : Set (E × ℂ)} {ψ : ι → E × ℂ → ℂ} {x : (E × ℂ) × ℂ} :
     x ∈ graphs V ψ ↔ x.1 ∈ V ∧ ∃ i, x.2 = ψ i x.1 :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s6.e9ffa9b1c530 from=translated src=- shape=8f13af86 vocab=e1f760a4
+-/
 lemma mem_vertical {V : Set (E × ℂ)} {x : (E × ℂ) × ℂ} :
     x ∈ vertical V ↔ x.1 ∈ V ∧ x.1.2 = 0 :=
   Iff.rfl
@@ -94,6 +100,9 @@ namespace IsContactFamily
 
 variable {V : Set (E × ℂ)} {ψ : ι → E × ℂ → ℂ} {k : ι → ι → ℕ}
 
+/--
+@isnad1 id=iscontac.2h6v.s6.a34bc5648782 from=translated src=- shape=142ebc92 vocab=65892866
+-/
 lemma mono (h : IsContactFamily V ψ k) {W : Set (E × ℂ)} (hWV : W ⊆ V) :
     IsContactFamily W ψ k where
   differentiableOn i := (h.differentiableOn i).mono hWV
@@ -101,6 +110,9 @@ lemma mono (h : IsContactFamily V ψ k) {W : Set (E × ℂ)} (hWV : W ⊆ V) :
     obtain ⟨u, hu, hu0, hψu⟩ := h.exists_unit i j hij
     exact ⟨u, hu.mono hWV, fun z hz ↦ hu0 z (hWV hz), fun z hz ↦ hψu z (hWV hz)⟩
 
+/--
+@isnad1 id=iscontac.2h7v.s6.7490d071bf7e from=translated src=- shape=8736f4d9 vocab=27f49ba3
+-/
 lemma comp (h : IsContactFamily V ψ k) {ι' : Type*} {e : ι' → ι} (he : Function.Injective e) :
     IsContactFamily V (fun i ↦ ψ (e i)) (fun i j ↦ k (e i) (e j)) where
   differentiableOn i := h.differentiableOn (e i)
@@ -114,11 +126,16 @@ lemma eq_iff_one_le (h : IsContactFamily V ψ k) {i j : ι} (hij : i ≠ j) {z :
   rw [← sub_eq_zero, hψu z hz, hz0, mul_eq_zero, pow_eq_zero_iff', Nat.one_le_iff_ne_zero]
   simp [hu0 z hz]
 
+/--
+@isnad1 id=le.5h8v.s6.15e774c659d2 from=translated src=- shape=cb8be2a4 vocab=e3cf3d2a
+-/
 lemma one_le_of_eq (h : IsContactFamily V ψ k) {i j : ι} (hij : i ≠ j) {z : E × ℂ}
     (hz : z ∈ V) (hz0 : z.2 = 0) (he : ψ i z = ψ j z) : 1 ≤ k i j :=
   (h.eq_iff_one_le hij hz hz0).1 he
 
-/-- Members of a contact family are disjoint over `t ≠ 0`. -/
+/-- Members of a contact family are disjoint over `t ≠ 0`.
+@isnad1 id=ne.4h8v.s6.3fc16f05656d from=translated src=- shape=ce0afef7 vocab=a02d6575
+-/
 lemma ne_of_ne_zero (h : IsContactFamily V ψ k) {i j : ι} (hij : i ≠ j) {z : E × ℂ}
     (hz : z ∈ V) (hz0 : z.2 ≠ 0) : ψ i z ≠ ψ j z := by
   obtain ⟨u, -, hu0, hψu⟩ := h.exists_unit i j hij
@@ -126,7 +143,9 @@ lemma ne_of_ne_zero (h : IsContactFamily V ψ k) {i j : ι} (hij : i ≠ j) {z :
   exact mul_ne_zero (pow_ne_zero _ hz0) (hu0 z hz)
 
 /-- **Localisation.** Near a point `(z₀, w₀)` with `z₀ ∈ V`, only the members of the family
-passing through it contribute to `graphs V ψ`. -/
+passing through it contribute to `graphs V ψ`.
+@isnad1 id=eventual.3h7v.s7.c1fbdb9b5537 from=translated src=- shape=7947d5f7 vocab=7b01bfe7
+-/
 theorem eventually_mem_graphs_iff [Finite ι] (h : IsContactFamily V ψ k) (hV : IsOpen V)
     {z₀ : E × ℂ} (hz₀ : z₀ ∈ V) (w₀ : ℂ) :
     ∀ᶠ x in 𝓝 (z₀, w₀), x ∈ graphs V ψ ↔
@@ -150,7 +169,9 @@ theorem eventually_mem_graphs_iff [Finite ι] (h : IsContactFamily V ψ k) (hV :
 
 /-- **Strict transforms.** Let `ψ` be a contact family on an open `V` all of whose members pass
 through `{t = 0, w = ψᵢ₀}`, i.e. all contact orders are positive. Then `ψᵢ = ψᵢ₀ + t χᵢ` for a
-contact family `χ` with contact orders `kᵢⱼ - 1` and `χᵢ₀ = 0`. -/
+contact family `χ` with contact orders `kᵢⱼ - 1` and `χᵢ₀ = 0`.
+@isnad1 id=ex.3h6v.s7.61266d959fbe from=translated src=- shape=e090e984 vocab=ec96da7a
+-/
 theorem blowup (h : IsContactFamily V ψ k) (hV : IsOpen V) (i₀ : ι)
     (hk : ∀ i j, i ≠ j → 1 ≤ k i j) :
     ∃ χ : ι → E × ℂ → ℂ, (∀ i, ∀ z ∈ V, ψ i z = ψ i₀ z + z.2 * χ i z) ∧
@@ -183,7 +204,9 @@ end IsContactFamily
 
 /-- **Branches disjoint off `t = 0` form a contact family.** Let `G ⊆ E` be open and
 preconnected and let `ψ` be a family of holomorphic functions on `G × Δ_r` which is injective at
-every point with `t ≠ 0`. Then `ψ` is a contact family on `G × Δ_r`. -/
+every point with `t ≠ 0`. Then `ψ` is a contact family on `G × Δ_r`.
+@isnad1 id=ex.4h5v.s8.03d383b5422a from=translated src=- shape=267f922e vocab=3b2f26f9
+-/
 theorem isContactFamily_of_injective [FiniteDimensional ℂ E] {G : Set E} (hGo : IsOpen G)
     (hG : IsPreconnected G) {r : ℝ} {ψ : ι → E × ℂ → ℂ}
     (hψ : ∀ i, DifferentiableOn ℂ (ψ i) (G ×ˢ ball 0 r))
@@ -222,41 +245,67 @@ def shear (χ : E × ℂ → ℂ) (x : (E × ℂ) × ℂ) : (E × ℂ) × ℂ :=
 
 variable (φ : E × ℂ → ℂ)
 
+/--
+@isnad1 id=eq.0h3v.s5.14039b4c7b68 from=translated src=- shape=d116126d vocab=77aef151
+-/
 @[simp]
 lemma chart₁_fst (x : (E × ℂ) × ℂ) : (chart₁ φ x).1 = x.1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.caea2f5d702a from=translated src=- shape=baa3b799 vocab=c7a52247
+-/
 @[simp]
 lemma chart₁_snd (x : (E × ℂ) × ℂ) : (chart₁ φ x).2 = φ x.1 + x.1.2 * x.2 :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.29ab19217cb3 from=translated src=- shape=32ba9331 vocab=a7a235ea
+-/
 lemma chart₁_chart₁Inv {x : (E × ℂ) × ℂ} (hx : x.1.2 ≠ 0) : chart₁ φ (chart₁Inv φ x) = x := by
   refine Prod.ext rfl ?_
   simp only [chart₁, chart₁Inv]
   rw [mul_div_cancel₀ _ hx, add_sub_cancel]
 
+/--
+@isnad1 id=eq.1h3v.s5.f107cecb98b2 from=translated src=- shape=32ba9331 vocab=a7a235ea
+-/
 lemma chart₁Inv_chart₁ {x : (E × ℂ) × ℂ} (hx : x.1.2 ≠ 0) : chart₁Inv φ (chart₁ φ x) = x := by
   refine Prod.ext rfl ?_
   simp only [chart₁, chart₁Inv]
   rw [add_sub_cancel_left, mul_div_cancel_left₀ _ hx]
 
+/--
+@isnad1 id=eq.1h3v.s5.aba9d4103b57 from=translated src=- shape=494e00cb vocab=804ae6bf
+-/
 lemma chart₂_chart₂Inv {x : (E × ℂ) × ℂ} (hx : x.2 ≠ φ x.1) : chart₂ φ (chart₂Inv φ x) = x := by
   have hx' : x.2 - φ x.1 ≠ 0 := sub_ne_zero.2 hx
   have h₁ : ((x.1.1, (x.2 - φ x.1) * (x.1.2 / (x.2 - φ x.1))) : E × ℂ) = x.1 :=
     Prod.ext rfl (mul_div_cancel₀ _ hx')
   simp only [chart₂, chart₂Inv, h₁, add_sub_cancel]
 
+/--
+@isnad1 id=eq.1h3v.s5.0702f72813fd from=translated src=- shape=32ba9331 vocab=804ae6bf
+-/
 lemma chart₂Inv_chart₂ {x : (E × ℂ) × ℂ} (hx : x.1.2 ≠ 0) : chart₂Inv φ (chart₂ φ x) = x := by
   simp only [chart₂, chart₂Inv, add_sub_cancel_left, mul_div_cancel_left₀ _ hx]
 
-/-- The two charts agree on their overlap: `v' = v⁻¹`, `s = t v`. -/
+/-- The two charts agree on their overlap: `v' = v⁻¹`, `s = t v`.
+@isnad1 id=eq.1h3v.s6.2c1b1c872fc3 from=translated src=- shape=87e6ce85 vocab=64932190
+-/
 lemma chart₂_eq_chart₁ {x : (E × ℂ) × ℂ} (hx : x.2 ≠ 0) :
     chart₂ φ ((x.1.1, x.1.2 * x.2), x.2⁻¹) = chart₁ φ x := by
   simp only [chart₂, chart₁, mul_assoc, mul_inv_cancel₀ hx, mul_one]
 
+/--
+@isnad1 id=eq.0h3v.s5.1fe9ca400176 from=translated src=- shape=48f1337e vocab=93217d63
+-/
 lemma chart₂_fst (x : (E × ℂ) × ℂ) : (chart₂ φ x).1 = (x.1.1, x.1.2 * x.2) :=
   rfl
 
+/--
+@isnad1 id=injectiv.0h2v.s4.444d338bc7da from=translated src=- shape=2cd5d9cf vocab=47d0e7c6
+-/
 lemma shear_injective (χ : E × ℂ → ℂ) : Function.Injective (shear χ) := by
   intro x x' h
   obtain ⟨h₁, h₂⟩ := Prod.mk.inj h
@@ -269,6 +318,9 @@ section Differentiable
 
 variable [NormedAddCommGroup E] [NormedSpace ℂ E]
 
+/--
+@isnad1 id=differen.1h3v.s8.c5e92b9fd16e from=translated src=- shape=31c0560f vocab=ba8489e6
+-/
 lemma differentiableOn_chart₁ {V : Set (E × ℂ)} (hφ : DifferentiableOn ℂ φ V) :
     DifferentiableOn ℂ (chart₁ φ) (Prod.fst ⁻¹' V) := by
   have h₁ : DifferentiableOn ℂ (fun x : (E × ℂ) × ℂ ↦ φ x.1) (Prod.fst ⁻¹' V) :=
@@ -276,6 +328,9 @@ lemma differentiableOn_chart₁ {V : Set (E × ℂ)} (hφ : DifferentiableOn ℂ
   exact differentiableOn_fst.prodMk (h₁.add
     (by fun_prop : Differentiable ℂ fun x : (E × ℂ) × ℂ ↦ x.1.2 * x.2).differentiableOn)
 
+/--
+@isnad1 id=differen.1h3v.s8.fc053e7026bd from=translated src=- shape=f93de807 vocab=05c7d874
+-/
 lemma differentiableOn_chart₁Inv {V : Set (E × ℂ)} (hφ : DifferentiableOn ℂ φ V) :
     DifferentiableOn ℂ (chart₁Inv φ) (Prod.fst ⁻¹' V ∩ {x | x.1.2 ≠ 0}) := by
   have h₁ : DifferentiableOn ℂ (fun x : (E × ℂ) × ℂ ↦ x.2 - φ x.1)
@@ -290,6 +345,9 @@ lemma differentiableOn_chart₁Inv {V : Set (E × ℂ)} (hφ : DifferentiableOn 
   simp only [div_eq_mul_inv]
   exact h₁.mul h₂
 
+/--
+@isnad1 id=differen.1h3v.s9.d07c33dc2cbf from=translated src=- shape=50a7aea7 vocab=2d5f7163
+-/
 lemma differentiableOn_chart₂ {V : Set (E × ℂ)} (hφ : DifferentiableOn ℂ φ V) :
     DifferentiableOn ℂ (chart₂ φ) {x | (x.1.1, x.1.2 * x.2) ∈ V} := by
   have hm : Differentiable ℂ fun x : (E × ℂ) × ℂ ↦ ((x.1.1, x.1.2 * x.2) : E × ℂ) := by
@@ -300,6 +358,9 @@ lemma differentiableOn_chart₂ {V : Set (E × ℂ)} (hφ : DifferentiableOn ℂ
   exact hm.differentiableOn.prodMk (h₁.add
     (by fun_prop : Differentiable ℂ fun x : (E × ℂ) × ℂ ↦ x.1.2).differentiableOn)
 
+/--
+@isnad1 id=differen.1h3v.s8.b6569e4ae2a7 from=translated src=- shape=78542ef8 vocab=a9b20f8f
+-/
 lemma differentiableOn_chart₂Inv {V : Set (E × ℂ)} (hφ : DifferentiableOn ℂ φ V) :
     DifferentiableOn ℂ (chart₂Inv φ) (Prod.fst ⁻¹' V ∩ {x | x.2 ≠ φ x.1}) := by
   have hs : DifferentiableOn ℂ (fun x : (E × ℂ) × ℂ ↦ x.2 - φ x.1)
@@ -314,6 +375,9 @@ lemma differentiableOn_chart₂Inv {V : Set (E × ℂ)} (hφ : DifferentiableOn 
   simp only [div_eq_mul_inv]
   exact (by fun_prop : Differentiable ℂ fun x : (E × ℂ) × ℂ ↦ x.1.2).differentiableOn.mul hi
 
+/--
+@isnad1 id=differen.1h3v.s8.7df63087082f from=translated src=- shape=42b92b42 vocab=4006395c
+-/
 lemma differentiableOn_shear {χ : E × ℂ → ℂ} {V : Set (E × ℂ)} (hχ : DifferentiableOn ℂ χ V) :
     DifferentiableOn ℂ (shear χ) (Prod.fst ⁻¹' V) :=
   differentiableOn_fst.prodMk
@@ -326,11 +390,16 @@ end Differentiable
 
 variable {V : Set (E × ℂ)} {ψ χ : ι → E × ℂ → ℂ}
 
+/--
+@isnad1 id=iff.0h4v.s6.1cc8bdfe00ba from=translated src=- shape=2114f047 vocab=5d39ae36
+-/
 lemma chart₁_mem_vertical_iff {x : (E × ℂ) × ℂ} : chart₁ φ x ∈ vertical V ↔ x ∈ vertical V :=
   Iff.rfl
 
 /-- **The total transform in the first chart.** If `ψᵢ = φ + t χᵢ` on `V` for all `i`, then
-`chart₁ φ` pulls `graphs V ψ` back to `graphs V χ ∪ vertical V`. -/
+`chart₁ φ` pulls `graphs V ψ` back to `graphs V χ ∪ vertical V`.
+@isnad1 id=iff.1h7v.s7.3fbd95895ab2 from=translated src=- shape=d0697672 vocab=99297a12
+-/
 theorem chart₁_mem_graphs_iff [Nonempty ι] (hχ : ∀ i, ∀ z ∈ V, ψ i z = φ z + z.2 * χ i z)
     {x : (E × ℂ) × ℂ} : chart₁ φ x ∈ graphs V ψ ↔ x ∈ graphs V χ ∨ x ∈ vertical V := by
   simp only [mem_graphs, mem_vertical, chart₁_fst, chart₁_snd]
@@ -345,12 +414,17 @@ theorem chart₁_mem_graphs_iff [Nonempty ι] (hχ : ∀ i, ∀ z ∈ V, ψ i z 
     · obtain ⟨i⟩ := ‹Nonempty ι›
       exact ⟨hx, i, by rw [hχ i _ hx, h0, zero_mul, zero_mul]⟩
 
+/--
+@isnad1 id=iff.0h4v.s6.dffe588d1569 from=translated src=- shape=97e23fc0 vocab=5074dbb2
+-/
 lemma chart₂_mem_vertical_iff {x : (E × ℂ) × ℂ} :
     chart₂ φ x ∈ vertical V ↔ (x.1.1, x.1.2 * x.2) ∈ V ∧ (x.1.2 = 0 ∨ x.2 = 0) := by
   simp only [mem_vertical, chart₂_fst, mul_eq_zero]
 
 /-- **The total transform in the second chart.** If `ψᵢ = φ + t χᵢ` on `V` for all `i`, then
-`chart₂ φ` pulls `graphs V ψ` back to `{s = 0} ∪ ⋃ᵢ {v' χᵢ(y, s v') = 1}`. -/
+`chart₂ φ` pulls `graphs V ψ` back to `{s = 0} ∪ ⋃ᵢ {v' χᵢ(y, s v') = 1}`.
+@isnad1 id=iff.1h7v.s7.5784cfcaa145 from=translated src=- shape=fe9768ae vocab=e3387077
+-/
 theorem chart₂_mem_graphs_iff [Nonempty ι] (hχ : ∀ i, ∀ z ∈ V, ψ i z = φ z + z.2 * χ i z)
     {x : (E × ℂ) × ℂ} : chart₂ φ x ∈ graphs V ψ ↔ (x.1.1, x.1.2 * x.2) ∈ V ∧
       (x.1.2 = 0 ∨ ∃ i, x.2 * χ i (x.1.1, x.1.2 * x.2) = 1) := by
@@ -374,7 +448,9 @@ section Topology
 variable [NormedAddCommGroup E]
 
 /-- Near the point `v' = 0` of the exceptional divisor over `z₀ = (y₀, 0)`, the preimage of
-`graphs V ψ` under `chart₂ φ` is the exceptional divisor `s = 0`. -/
+`graphs V ψ` under `chart₂ φ` is the exceptional divisor `s = 0`.
+@isnad1 id=eventual.4h7v.s8.20a65d6cb9f2 from=translated src=- shape=ec6cc93a vocab=79fd4f41
+-/
 theorem eventually_chart₂_mem_graphs_iff [Nonempty ι] [Finite ι] (hV : IsOpen V)
     (hχ : ∀ i, ∀ z ∈ V, ψ i z = φ z + z.2 * χ i z) (hχc : ∀ i, ContinuousOn (χ i) V)
     {y₀ : E} (hy₀ : (y₀, 0) ∈ V) :
@@ -405,13 +481,17 @@ theorem eventually_chart₂_mem_graphs_iff [Nonempty ι] [Finite ι] (hV : IsOpe
 
 end Topology
 
-/-- The shear by `χ` takes the graph of `χ` to the hyperplane `v = 0`. -/
+/-- The shear by `χ` takes the graph of `χ` to the hyperplane `v = 0`.
+@isnad1 id=iff.0h4v.s6.dd222c4739d9 from=translated src=- shape=b24b071c vocab=dd7c59d1
+-/
 lemma mem_graphs_unique_iff {χ : E × ℂ → ℂ} {x : (E × ℂ) × ℂ} :
     x ∈ graphs V (fun _ : Unit ↦ χ) ↔ x.1 ∈ V ∧ (shear χ x).2 = 0 := by
   simp [mem_graphs, shear, sub_eq_zero]
 
 /-- A family through a point of `t = 0` with at most one member: near that point, `graphs V ψ`
-is the graph of that member or empty. -/
+is the graph of that member or empty.
+@isnad1 id=iff.0h6v.s6.5f8ef9a369a1 from=translated src=- shape=ab1fd35a vocab=84f64977
+-/
 lemma mem_graphs_iff_of_subsingleton [Subsingleton ι] {i : ι} {x : (E × ℂ) × ℂ} :
     x ∈ graphs V ψ ↔ x.1 ∈ V ∧ (shear (ψ i) x).2 = 0 := by
   simp only [mem_graphs, shear, sub_eq_zero]

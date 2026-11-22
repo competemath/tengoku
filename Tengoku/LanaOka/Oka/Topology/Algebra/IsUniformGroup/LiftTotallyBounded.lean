@@ -37,7 +37,9 @@ section Halving
 variable {G : Type*} [AddCommMonoid G]
 
 /-- If `N (n + 1) + N (n + 1) ⊆ N n` and `e n ∈ N (n + 1)`, every finite sum of terms `e i`
-with `i ≥ m` lies in `N m`. -/
+with `i ≥ m` lies in `N m`.
+@isnad1 id=mem.4h5v.s7.35d4a7462502 from=translated src=- shape=630b624b vocab=5700d980
+-/
 theorem Finset.sum_mem_of_add_subset {N : ℕ → Set G} (h0 : ∀ n, (0 : G) ∈ N n)
     (hN : ∀ n, N (n + 1) + N (n + 1) ⊆ N n) {e : ℕ → G} (he : ∀ n, e n ∈ N (n + 1))
     {t : Finset ℕ} {m : ℕ} (ht : ∀ i ∈ t, m ≤ i) : ∑ i ∈ t, e i ∈ N m := by
@@ -53,7 +55,9 @@ theorem Finset.sum_mem_of_add_subset {N : ℕ → Set G} (h0 : ∀ n, (0 : G) �
 variable [TopologicalSpace G]
 
 /-- If `N (n + 1) + N (n + 1) ⊆ N n`, `0 ∈ N n` and `e n ∈ N (n + 1)`, then any sum of `e`
-lies in the closure of `N 0`. -/
+lies in the closure of `N 0`.
+@isnad1 id=mem.4h4v.s7.6d1bdcd2cc44 from=translated src=- shape=323ea16a vocab=4d120130
+-/
 theorem HasSum.mem_closure_of_add_subset {N : ℕ → Set G} (h0 : ∀ n, (0 : G) ∈ N n)
     (hN : ∀ n, N (n + 1) + N (n + 1) ⊆ N n) {e : ℕ → G} (he : ∀ n, e n ∈ N (n + 1)) {x : G}
     (hx : HasSum e x) : x ∈ closure (N 0) :=
@@ -67,7 +71,9 @@ section Summable
 variable {G : Type*} [AddCommGroup G] [UniformSpace G] [IsUniformAddGroup G] [CompleteSpace G]
 
 /-- In a complete group, a series with `e n ∈ N (n + 1)` converges, where `N` is a halving
-sequence of sets which is cofinal in the neighbourhoods of `0`. -/
+sequence of sets which is cofinal in the neighbourhoods of `0`.
+@isnad1 id=summable.4h3v.s7.de57459ff15c from=translated src=- shape=67f07ed7 vocab=9e831e63
+-/
 theorem _root_.Tengoku.LanaOka.summable_of_add_subset {N : ℕ → Set G} (h0 : ∀ n, (0 : G) ∈ N n)
     (hN : ∀ n, N (n + 1) + N (n + 1) ⊆ N n) (hbasis : ∀ V ∈ 𝓝 (0 : G), ∃ n, N n ⊆ V)
     {e : ℕ → G} (he : ∀ n, e n ∈ N (n + 1)) : Summable e := by
@@ -86,7 +92,9 @@ variable {E F : Type*} [AddCommGroup E] [UniformSpace E] [IsUniformAddGroup E]
   [FirstCountableTopology E]
   [AddCommGroup F] [UniformSpace F] [IsUniformAddGroup F] [T2Space F]
 
-/-- A halving sequence of neighbourhoods of `0`, cofinal in `𝓝 0`, starting inside `W`. -/
+/-- A halving sequence of neighbourhoods of `0`, cofinal in `𝓝 0`, starting inside `W`.
+@isnad1 id=ex.1h2v.s7.9440fcb2a543 from=translated src=- shape=77472761 vocab=2da024e3
+-/
 theorem _root_.Tengoku.LanaOka.exists_add_subset_basis_nhds_zero {W : Set E} (hW : W ∈ 𝓝 (0 : E)) :
     ∃ N : ℕ → Set E, (∀ n, N n ∈ 𝓝 (0 : E)) ∧ (∀ n, N (n + 1) + N (n + 1) ⊆ N n) ∧
       N 0 ⊆ W ∧ (∀ V ∈ 𝓝 (0 : E), ∃ n, N n ⊆ V) ∧ Antitone N := by
@@ -102,7 +110,9 @@ theorem _root_.Tengoku.LanaOka.exists_add_subset_basis_nhds_zero {W : Set E} (hW
 between commutative topological groups which maps neighbourhoods of `0` to neighbourhoods of `0`,
 with `E` complete and first countable and `F` Hausdorff. Then every totally bounded `K ⊆ F`
 admits a lift `ℓ` with `ℓ '' K` totally bounded, and, for any neighbourhood `W` of `0` in `E`,
-with values in `Φ + W` for some finite `Φ`. -/
+with values in `Φ + W` for some finite `Φ`.
+@isnad1 id=ex.5h6v.s8.170d00d61cdc from=translated src=- shape=c323ca8e vocab=6f9b7585
+-/
 theorem _root_.Tengoku.LanaOka.exists_lift_of_totallyBounded {M : Type*} [FunLike M E F] [AddMonoidHomClass M E F]
     [CompleteSpace E] (u : M) (hu : Continuous u) (hsurj : Function.Surjective u)
     (hopen : ∀ W ∈ 𝓝 (0 : E), u '' W ∈ 𝓝 (0 : F)) {K : Set F} (hK : TotallyBounded K)

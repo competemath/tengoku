@@ -69,7 +69,9 @@ def LaurentUnitSphereZerosFinite (K : Type*) [NormedField K] : Prop :=
 sphere: fixing `u₀` with `‖u₀‖ = ρ` and rescaling `u = u₀ · v` sends the sphere `{‖u‖ = ρ}`
 bijectively to the unit sphere `{‖v‖ = 1}` and the series `∑' cₙ uⁿ` to the series
 `∑' (cₙ u₀ⁿ) vⁿ` of the nonzero, everywhere-summable family `dₙ = cₙ u₀ⁿ`. Empty spheres are
-trivially finite. -/
+trivially finite.
+@isnad1 id=laurents.1h1v.s3.8f5679837867 from=translated src=- shape=c612a321 vocab=d8609615
+-/
 theorem laurentSphereZerosFinite_of_unitSphere (h : LaurentUnitSphereZerosFinite K) :
     LaurentSphereZerosFinite K := by
   intro c hc hsum ρ

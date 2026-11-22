@@ -85,10 +85,16 @@ variable {t}
 variable {k l : ℕ} {A B : Kˣ} {c d : ℤ → K}
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
+/--
+@isnad1 id=isweight.0h4v.s5.c21c286d79a4 from=translated src=- shape=659ada1d vocab=92d9511e
+-/
 lemma zero : t.IsWeightFamily k A (fun _ => 0) :=
   ⟨fun u => by simp, fun n => by simp⟩
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
+/--
+@isnad1 id=isweight.2h6v.s6.72c84ddabac7 from=translated src=- shape=bd03e657 vocab=8c8a1e4d
+-/
 lemma add (hc : t.IsWeightFamily k A c) (hd : t.IsWeightFamily k A d) :
     t.IsWeightFamily k A (c + d) := by
   refine ⟨fun u => ?_, fun n => ?_⟩
@@ -100,6 +106,9 @@ lemma add (hc : t.IsWeightFamily k A c) (hd : t.IsWeightFamily k A d) :
     linear_combination h1 + h2
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
+/--
+@isnad1 id=isweight.1h6v.s6.10b34596bc8b from=translated src=- shape=212b9ad4 vocab=2a710231
+-/
 lemma smul (a : K) (hc : t.IsWeightFamily k A c) : t.IsWeightFamily k A (a • c) := by
   refine ⟨fun u => ?_, fun n => ?_⟩
   · refine ((hc.summable u).mul_left a).congr fun n => ?_
@@ -108,7 +117,9 @@ lemma smul (a : K) (hc : t.IsWeightFamily k A c) : t.IsWeightFamily k A (a • c
     simp only [Pi.smul_apply, smul_eq_mul]
     linear_combination a * h1
 
-/-- **The value-level functional equation**: `∑ₙ cₙ (qu)ⁿ = A·u⁻ᵏ·∑ₙ cₙ uⁿ`. -/
+/-- **The value-level functional equation**: `∑ₙ cₙ (qu)ⁿ = A·u⁻ᵏ·∑ₙ cₙ uⁿ`.
+@isnad1 id=eq.1h6v.s8.281d1a016933 from=translated src=- shape=c8ba5039 vocab=92c18210
+-/
 theorem tsum_q_smul (hc : t.IsWeightFamily k A c) (u : Kˣ) :
     (∑' n : ℤ, c n * ((t.q : K) * (u : K)) ^ n)
       = (A : K) * (u : K) ^ (-(k : ℤ)) * ∑' n : ℤ, c n * (u : K) ^ n := by
@@ -134,7 +145,9 @@ theorem tsum_q_smul (hc : t.IsWeightFamily k A c) (u : Kˣ) :
   exact tsum_congr fun n => rfl
 
 /-- **The converse**: a globally summable family whose series satisfies the value-level
-functional equation is a weight family — by coefficient uniqueness. -/
+functional equation is a weight family — by coefficient uniqueness.
+@isnad1 id=isweight.2h5v.s8.1473d5f2a1b7 from=translated src=- shape=305e449b vocab=c88ee72f
+-/
 theorem of_tsum_q_smul (hsum : ∀ u : Kˣ, Summable fun n : ℤ => c n * (u : K) ^ n)
     (h : ∀ u : Kˣ, (∑' n : ℤ, c n * ((t.q : K) * (u : K)) ^ n)
       = (A : K) * (u : K) ^ (-(k : ℤ)) * ∑' n : ℤ, c n * (u : K) ^ n) :
@@ -181,7 +194,9 @@ theorem of_tsum_q_smul (hsum : ∀ u : Kˣ, Summable fun n : ℤ => c n * (u : K
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
 /-- **Determination**: a weight-`k` family is pinned down by its `k` initial coefficients
-`c 0, …, c (k-1)`. -/
+`c 0, …, c (k-1)`.
+@isnad1 id=eq.4h6v.s6.9da520adf8ba from=translated src=- shape=6da81948 vocab=f7ffc1c3
+-/
 theorem ext_initial (hk : 0 < k) (hc : t.IsWeightFamily k A c) (hd : t.IsWeightFamily k A d)
     (h : ∀ i : ℕ, i < k → c i = d i) : c = d := by
   have hq0 : (t.q : K) ≠ 0 := t.q.ne_zero
@@ -225,7 +240,9 @@ theorem ext_initial (hk : 0 < k) (hc : t.IsWeightFamily k A c) (hd : t.IsWeightF
   rwa [hmod] at this
 
 /-- **Convolution of weight families**: weights add and multipliers multiply. This is the
-coefficient-level product of theta functions. -/
+coefficient-level product of theta functions.
+@isnad1 id=isweight.2h8v.s7.c7672a8c8b1d from=translated src=- shape=b3ec5974 vocab=ad80124c
+-/
 theorem conv (hc : t.IsWeightFamily k A c) (hd : t.IsWeightFamily l B d) :
     t.IsWeightFamily (k + l) (A * B) fun n => ∑' m : ℤ, c (n - m) * d m := by
   have hq0 : (t.q : K) ≠ 0 := t.q.ne_zero
@@ -256,7 +273,9 @@ theorem conv (hc : t.IsWeightFamily k A c) (hd : t.IsWeightFamily l B d) :
                 omega
       _ = (t.q : K) ^ n * ∑' m : ℤ, c (n - m) * d m := by rw [tsum_mul_left]
 
-/-- The series of a convolution evaluates to the product of the two series. -/
+/-- The series of a convolution evaluates to the product of the two series.
+@isnad1 id=hassum.2h9v.s8.32bb42f010dc from=translated src=- shape=62a5c8cb vocab=eb3f9e42
+-/
 theorem conv_hasSum (hc : t.IsWeightFamily k A c) (hd : t.IsWeightFamily l B d) (u : Kˣ) :
     HasSum (fun n : ℤ => (∑' m : ℤ, c (n - m) * d m) * (u : K) ^ n)
       ((∑' n : ℤ, c n * (u : K) ^ n) * ∑' n : ℤ, d n * (u : K) ^ n) :=
@@ -301,7 +320,9 @@ private lemma weightExtend_fiber (hk : 0 < k) (v : Fin k → K) (i : ℕ) (hi : 
     simp [h1]
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- The extension restricts to the initial coefficients. -/
+/-- The extension restricts to the initial coefficients.
+@isnad1 id=eq.2h6v.s6.e28cbdc2d398 from=translated src=- shape=11c2f65b vocab=6383d26d
+-/
 lemma weightExtend_initial (hk : 0 < k) (v : Fin k → K) (i : ℕ) (hi : i < k) :
     weightExtend (t := t) hk A v i = v ⟨i, hi⟩ := by
   have h := weightExtend_fiber (t := t) (A := A) hk v i hi 0
@@ -310,7 +331,9 @@ lemma weightExtend_initial (hk : 0 < k) (v : Fin k → K) (i : ℕ) (hi : i < k)
   simpa using h
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- The extension satisfies the weight recursion. -/
+/-- The extension satisfies the weight recursion.
+@isnad1 id=eq.1h6v.s7.1a443f40e142 from=translated src=- shape=3fc94648 vocab=aae42ed1
+-/
 lemma weightExtend_step (hk : 0 < k) (v : Fin k → K) (n : ℤ) :
     (A : K) * weightExtend (t := t) hk A v (n + k)
       = (t.q : K) ^ n * weightExtend (t := t) hk A v n := by
@@ -440,7 +463,9 @@ private lemma summable_weightExtend (hk : 0 < k) (v : Fin k → K) (u : Kˣ) :
     _ = f n := by
         rw [Finset.sum_ite_eq' (Finset.range k) ((n % k).toNat) fun _ => f n, ite_eq_left hmem]
 
-/-- The weight extension is a weight family. -/
+/-- The weight extension is a weight family.
+@isnad1 id=isweight.1h5v.s6.14c24d6da655 from=translated src=- shape=78a5744c vocab=455a0e94
+-/
 lemma isWeightFamily_weightExtend (hk : 0 < k) (v : Fin k → K) :
     t.IsWeightFamily k A (weightExtend (t := t) hk A v) :=
   ⟨fun u => summable_weightExtend (t := t) (A := A) hk v u, weightExtend_step hk v⟩
@@ -463,6 +488,9 @@ def weightSpace (k : ℕ) (A : Kˣ) : Submodule K (ℤ → K) where
 variable {t}
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
+/--
+@isnad1 id=iff.0h5v.s7.eb20fa6124fa from=translated src=- shape=7037fd5b vocab=d31b7c42
+-/
 @[simp] lemma mem_weightSpace {c : ℤ → K} :
     c ∈ t.weightSpace k A ↔ t.IsWeightFamily k A c := Iff.rfl
 
@@ -484,12 +512,17 @@ def weightEquiv (hk : 0 < k) : t.weightSpace k A ≃ₗ[K] (Fin k → K) where
     have h := weightExtend_initial (t := t) (A := A) hk v i i.2
     simpa using h
 
-/-- The weight-`k` space is `k`-dimensional. -/
+/-- The weight-`k` space is `k`-dimensional.
+@isnad1 id=eq.1h4v.s8.185795d7b327 from=translated src=- shape=7fd2e33e vocab=45e22bd5
+-/
 lemma finrank_weightSpace (hk : 0 < k) :
     Module.finrank K (t.weightSpace k A) = k := by
   rw [LinearEquiv.finrank_eq (weightEquiv (t := t) (A := A) hk)]
   simp [Module.finrank_fintype_fun_eq_card]
 
+/--
+@isnad1 id=finitedi.1h4v.s8.c156a01d1b60 from=translated src=- shape=aa78600b vocab=9803a0f7
+-/
 lemma finiteDimensional_weightSpace (hk : 0 < k) :
     FiniteDimensional K (t.weightSpace k A) :=
   Module.Finite.equiv (weightEquiv (t := t) (A := A) hk).symm
@@ -509,9 +542,15 @@ def thetaBlock (e : Kˣ) : ℤ → K := fun n => (t.q : K) ^ thetaExp n * (e : K
 variable {t}
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
+/--
+@isnad1 id=eq.0h4v.s6.ea2422500690 from=translated src=- shape=550bd32e vocab=379edfe7
+-/
 @[simp] lemma thetaBlock_apply (e : Kˣ) (n : ℤ) :
     t.thetaBlock e n = (t.q : K) ^ thetaExp n * (e : K) ^ n := rfl
 
+/--
+@isnad1 id=summable.0h4v.s7.21795de6250a from=translated src=- shape=2f8cb0d6 vocab=01757ea2
+-/
 lemma summable_thetaBlock (e u : Kˣ) :
     Summable fun n : ℤ => t.thetaBlock e n * (u : K) ^ n := by
   refine (t.thetaTerm_summable (e * u)).congr fun n => ?_
@@ -519,7 +558,9 @@ lemma summable_thetaBlock (e u : Kˣ) :
   ring
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- The theta block's series is `θ(e·u)`. -/
+/-- The theta block's series is `θ(e·u)`.
+@isnad1 id=eq.0h4v.s7.19880866cce9 from=translated src=- shape=164d9545 vocab=a7392325
+-/
 lemma tsum_thetaBlock (e u : Kˣ) :
     (∑' n : ℤ, t.thetaBlock e n * (u : K) ^ n) = t.theta (e * u) := by
   rw [theta_apply]
@@ -527,7 +568,9 @@ lemma tsum_thetaBlock (e u : Kˣ) :
   rw [thetaBlock_apply, Units.val_mul, mul_zpow]
   ring
 
-/-- The theta block is a weight-one family with multiplier `(q·e)⁻¹`. -/
+/-- The theta block is a weight-one family with multiplier `(q·e)⁻¹`.
+@isnad1 id=isweight.0h3v.s7.1a14fa7ed697 from=translated src=- shape=165817b3 vocab=68997a5a
+-/
 lemma isWeightFamily_thetaBlock (e : Kˣ) :
     t.IsWeightFamily 1 (t.q * e)⁻¹ (t.thetaBlock e) := by
   have hq0 : (t.q : K) ≠ 0 := t.q.ne_zero
@@ -551,7 +594,9 @@ private lemma summable_mul_pointwise' {f g : ℤ → K} (hf : Summable f) (hg : 
   exact NonarchimedeanAddGroup.summable_of_tendsto_cofinite_zero h
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- A weight family is summable as a bare coefficient family. -/
+/-- A weight family is summable as a bare coefficient family.
+@isnad1 id=summable.1h5v.s6.39667a471948 from=translated src=- shape=83ad8f3b vocab=5b40d193
+-/
 lemma IsWeightFamily.summable_coeff {c : ℤ → K} (hc : t.IsWeightFamily k A c) :
     Summable c := by
   have h := hc.summable 1
@@ -574,6 +619,9 @@ def evalAt (x : Kˣ) (k : ℕ) (A : Kˣ) : t.weightSpace k A →ₗ[K] K where
     simp [mul_assoc]
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=eq.0h6v.s10.7605e25f2405 from=translated src=- shape=e85c5738 vocab=c152bc73
+-/
 @[simp] lemma evalAt_apply (x : Kˣ) (c : t.weightSpace k A) :
     evalAt x k A c = ∑' n : ℤ, (c : ℤ → K) n * (x : K) ^ n := rfl
 
@@ -602,11 +650,16 @@ def convBlock (e : Kˣ) (k : ℕ) (A : Kˣ) :
     refine tsum_congr fun m => ?_
     ring
 
+/--
+@isnad1 id=eq.0h7v.s12.1022fdcea95c from=translated src=- shape=915b8090 vocab=687ab812
+-/
 @[simp] lemma convBlock_apply (e : Kˣ) (c : t.weightSpace k A) (n : ℤ) :
     (convBlock (t := t) e k A c : ℤ → K) n
       = ∑' m : ℤ, t.thetaBlock e (n - m) * (c : ℤ → K) m := rfl
 
-/-- The series of a block convolution is `θ(e·u)` times the series. -/
+/-- The series of a block convolution is `θ(e·u)` times the series.
+@isnad1 id=eq.0h7v.s12.d9123d2a89b3 from=translated src=- shape=1eb65885 vocab=e64656c7
+-/
 lemma evalAt_convBlock (e : Kˣ) (c : t.weightSpace k A) (u : Kˣ) :
     evalAt u (1 + k) ((t.q * e)⁻¹ * A) (convBlock (t := t) e k A c)
       = t.theta (e * u) * evalAt u k A c := by
@@ -621,7 +674,9 @@ lemma evalAt_convBlock (e : Kˣ) (c : t.weightSpace k A) (u : Kˣ) :
 
 /-- **Injectivity of block multiplication**: convolving with a theta block kills no
 weight family — a nonzero family's series has finitely many unit-sphere zeros, while a
-vanishing block product forces vanishing off a single unit-sphere point. -/
+vanishing block product forces vanishing off a single unit-sphere point.
+@isnad1 id=injectiv.0h5v.s12.4c747bbd06f9 from=translated src=- shape=e0e2af20 vocab=2639d839
+-/
 theorem convBlock_injective (e : Kˣ) (k : ℕ) (A : Kˣ) :
     Function.Injective (convBlock (t := t) e k A) := by
   rw [injective_iff_map_eq_zero]
@@ -694,7 +749,9 @@ theorem convBlock_injective (e : Kˣ) (k : ℕ) (A : Kˣ) :
 /-- **Division by a theta block.** If a weight-`(1+k)` family `F` vanishes at one point
 `x₀` of the block's zero class, and the space contains a witness `g` NOT vanishing at
 `x₀`, then `F` is a block convolution: `F = θ_e ⋆ c` for some weight-`k` family `c`.
-This is the nonarchimedean Abel step, executed by pure dimension counting. -/
+This is the nonarchimedean Abel step, executed by pure dimension counting.
+@isnad1 id=ex.4h8v.s13.16d137d5dacb from=translated src=- shape=46dfd4a5 vocab=a9c43a8c
+-/
 theorem exists_convBlock_eq (hk : 0 < k) (e : Kˣ) {x₀ : Kˣ}
     (hx₀ : t.theta (e * x₀) = 0)
     (g : t.weightSpace (1 + k) ((t.q * e)⁻¹ * A))
@@ -743,7 +800,9 @@ theorem exists_convBlock_eq (hk : 0 < k) (e : Kˣ) {x₀ : Kˣ}
   exact hFmem
 
 /-- Family-level form of the division theorem, with the ambient multiplier given by a
-propositional equation — convenient at application sites. -/
+propositional equation — convenient at application sites.
+@isnad1 id=ex.5h9v.s12.d9249982b68b from=translated src=- shape=482921a9 vocab=4697a693
+-/
 theorem exists_convBlock_eq' (hk : 0 < k) (e : Kˣ) {M : Kˣ} (hM : (t.q * e)⁻¹ * A = M)
     {x₀ : Kˣ} (hx₀ : t.theta (e * x₀) = 0)
     (g : t.weightSpace (1 + k) M) (hg : evalAt x₀ (1 + k) M g ≠ 0)
@@ -755,7 +814,9 @@ theorem exists_convBlock_eq' (hk : 0 < k) (e : Kˣ) {M : Kˣ} (hM : (t.q * e)⁻
   exact ⟨c, fun n => by rw [← hc]; rfl⟩
 
 /-- **Weight-one classification**: a weight-one family is a scalar multiple of the theta
-block with the matching multiplier. -/
+block with the matching multiplier.
+@isnad1 id=eq.1h4v.s7.d6268da6d013 from=translated src=- shape=aa83c0a0 vocab=31bf05e4
+-/
 theorem w1_eq_smul_thetaBlock {A : Kˣ} {c : ℤ → K}
     (hc : t.IsWeightFamily 1 A c) :
     c = c 0 • t.thetaBlock ((t.q * A)⁻¹) := by
@@ -769,7 +830,9 @@ theorem w1_eq_smul_thetaBlock {A : Kˣ} {c : ℤ → K}
 
 /-- **Uniqueness off one orbit**: globally summable families whose series agree at every
 point off the `qᶻ`-orbit are equal — Strassmann finiteness against the infinitely many
-norm-one witnesses. -/
+norm-one witnesses.
+@isnad1 id=eq.3h4v.s9.2d39a8303c3b from=translated src=- shape=2777e2ee vocab=99113a52
+-/
 theorem laurent_ext_off_orbit {a b : ℤ → K}
     (ha : ∀ u : Kˣ, Summable fun n : ℤ => a n * (u : K) ^ n)
     (hb : ∀ u : Kˣ, Summable fun n : ℤ => b n * (u : K) ^ n)
@@ -822,7 +885,9 @@ theorem laurent_ext_off_orbit {a b : ℤ → K}
     fun x y hxy => t.sphereWitness_injective (Units.ext hxy)
   exact Set.infinite_of_injective_forall_mem hinj hmem hfin
 
-/-- Weight-family membership from the value functional equation off the orbit. -/
+/-- Weight-family membership from the value functional equation off the orbit.
+@isnad1 id=isweight.2h5v.s9.30114fd8187c from=translated src=- shape=e70175b0 vocab=c88ee72f
+-/
 theorem isWeightFamily_of_tsum_q_smul_off_orbit {k : ℕ} {A : Kˣ} {c : ℤ → K}
     (hsum : ∀ u : Kˣ, Summable fun n : ℤ => c n * (u : K) ^ n)
     (h : ∀ u : Kˣ, (∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) →
@@ -870,7 +935,9 @@ theorem isWeightFamily_of_tsum_q_smul_off_orbit {k : ℕ} {A : Kˣ} {c : ℤ →
 
 omit [CompleteSpace K] in
 /-- **Avoiding finitely many orbit classes**: some unit lies outside every `qᶻy`-class for
-`y` in a given finite set — infinitely many witnesses, finitely many classes. -/
+`y` in a given finite set — infinitely many witnesses, finitely many classes.
+@isnad1 id=ex.0h3v.s7.8c958ba7956a from=translated src=- shape=3b970cc5 vocab=df54bd76
+-/
 theorem exists_unit_avoiding (S : Finset Kˣ) :
     ∃ s : Kˣ, ∀ y ∈ S, ∀ n : ℤ, (s : K) ≠ (t.q : K) ^ n * (y : K) := by
   by_contra hcontra
@@ -1003,7 +1070,9 @@ private lemma witness_sq_class_unique (h2 : ‖(2 : K)‖ = 1) {y : Kˣ} {j₁ j
 omit [CompleteSpace K] in
 /-- **Avoidance with square conditions** (residue characteristic away from `2`): some unit
 avoids finitely many prescribed `qᶻ`-classes while its square also avoids finitely many
-prescribed classes. Each condition disqualifies at most one norm-one witness `1 + qʲ⁺¹`. -/
+prescribed classes. Each condition disqualifies at most one norm-one witness `1 + qʲ⁺¹`.
+@isnad1 id=ex.1h4v.s8.2a07b5cfb68c from=translated src=- shape=f8bb6e99 vocab=f66a8d35
+-/
 theorem exists_unit_avoiding_sq (h2 : ‖(2 : K)‖ = 1) (S T : Finset Kˣ) :
     ∃ s : Kˣ, (∀ y ∈ S, ∀ n : ℤ, (s : K) ≠ (t.q : K) ^ n * (y : K)) ∧
       ∀ y ∈ T, ∀ n : ℤ, ((s : K)) ^ 2 ≠ (t.q : K) ^ n * (y : K) := by

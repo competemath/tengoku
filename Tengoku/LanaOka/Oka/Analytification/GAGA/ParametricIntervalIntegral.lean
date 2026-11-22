@@ -31,7 +31,9 @@ open Complex MeasureTheory
 open scoped Topology Interval
 
 /-- Fubini: a torus integral and an interval integral of a jointly continuous function
-commute. -/
+commute.
+@isnad1 id=eq.2h6v.s7.3c4094ced848 from=translated src=- shape=46fdaddd vocab=447da688
+-/
 theorem _root_.Tengoku.LanaOka.torusIntegral_intervalIntegral_swap {m : ℕ} (c : Fin m → ℂ) (R : Fin m → ℝ)
     {a b : ℝ} (hab : a ≤ b) (H : (Fin m → ℂ) → ℝ → ℂ)
     (hH : Continuous fun p : (Fin m → ℝ) × ℝ ↦ H (torusMap c R p.1) p.2) :
@@ -64,7 +66,9 @@ theorem _root_.Tengoku.LanaOka.torusIntegral_intervalIntegral_swap {m : ℕ} (c 
   exact integral_integral_swap hint
 
 /-- An interval integral of a family that is holomorphic in the parameter on a closed polydisc,
-and jointly continuous, is analytic at the centre of the polydisc. -/
+and jointly continuous, is analytic at the centre of the polydisc.
+@isnad1 id=analytic.4h5v.s9.2f4cbb547fb6 from=translated src=- shape=8d6ca332 vocab=b6512d19
+-/
 theorem _root_.Tengoku.LanaOka.analyticAt_intervalIntegral {m : ℕ} {ρ : ℝ} (hρ : 0 < ρ) {a b : ℝ} (hab : a ≤ b)
     {G : (Fin m → ℂ) → ℝ → ℂ}
     (hdiff : ∀ t : ℝ, DifferentiableOn ℂ (fun x ↦ G x t)
@@ -138,7 +142,9 @@ noncomputable def _root_.Tengoku.LanaOka.complexChart (E : Type*) [NormedAddComm
   ContinuousLinearEquiv.ofFinrankEq (by simp)
 
 /-- Around a point `x₀` of an open set `U ⊆ E`, the image of a small closed polydisc under the
-affine chart `y ↦ x₀ + complexChart E y` lies in `U`. -/
+affine chart `y ↦ x₀ + complexChart E y` lies in `U`.
+@isnad1 id=ex.2h3v.s9.ca1627c9a8a6 from=translated src=- shape=f9f3cf55 vocab=de557e02
+-/
 lemma _root_.Tengoku.LanaOka.exists_complexChart_polydisc_subset {U : Set E} (hU : IsOpen U) {x₀ : E} (hx₀ : x₀ ∈ U) :
     ∃ ρ > 0, ∀ y ∈ Set.univ.pi fun _ : Fin (Module.finrank ℂ E) ↦ Metric.closedBall (0 : ℂ) ρ,
       x₀ + complexChart E y ∈ U := by
@@ -152,7 +158,9 @@ lemma _root_.Tengoku.LanaOka.exists_complexChart_polydisc_subset {U : Set E} (hU
   simpa using hy i (Set.mem_univ i)
 
 /-- Analyticity at `x₀` follows from analyticity at `0` in the affine chart
-`y ↦ x₀ + complexChart E y`. -/
+`y ↦ x₀ + complexChart E y`.
+@isnad1 id=analytic.1h3v.s10.e951e6744db8 from=translated src=- shape=ec62eb94 vocab=46b44cef
+-/
 lemma _root_.Tengoku.LanaOka.analyticAt_of_complexChart {f : E → ℂ} {x₀ : E}
     (h : AnalyticAt ℂ (fun y ↦ f (x₀ + complexChart E y)) 0) : AnalyticAt ℂ f x₀ := by
   have hlin : AnalyticAt ℂ (fun x : E ↦ (complexChart E).symm (x - x₀)) x₀ :=
@@ -164,7 +172,9 @@ lemma _root_.Tengoku.LanaOka.analyticAt_of_complexChart {f : E → ℂ} {x₀ : 
   simp
 
 /-- A holomorphic function on an open subset of a finite-dimensional complex normed space is
-analytic. -/
+analytic.
+@isnad1 id=analytic.3h4v.s7.7d677ed40ec4 from=translated src=- shape=e16a5ede vocab=12a16ef8
+-/
 theorem _root_.Tengoku.LanaOka.analyticAt_of_differentiableOn_of_finiteDimensional {U : Set E} (hU : IsOpen U)
     {f : E → ℂ} (hf : DifferentiableOn ℂ f U) {x₀ : E} (hx₀ : x₀ ∈ U) : AnalyticAt ℂ f x₀ := by
   refine analyticAt_of_complexChart ?_
@@ -175,7 +185,9 @@ theorem _root_.Tengoku.LanaOka.analyticAt_of_differentiableOn_of_finiteDimension
 
 /-- **Holomorphy of parametric interval integrals.** If `G : E → ℝ → ℂ` is jointly continuous
 on `U × [a, b]` and holomorphic on `U` in the first variable, then `x ↦ ∫ t in a..b, G x t` is
-holomorphic on `U`. -/
+holomorphic on `U`.
+@isnad1 id=differen.3h5v.s8.55436162cddf from=translated src=- shape=806a03e1 vocab=d16a6e36
+-/
 theorem _root_.Tengoku.LanaOka.differentiableOn_intervalIntegral {U : Set E} (hU : IsOpen U) {a b : ℝ}
     {G : E → ℝ → ℂ} (hdiff : ∀ t ∈ [[a, b]], DifferentiableOn ℂ (fun x ↦ G x t) U)
     (hcont : ContinuousOn (fun p : E × ℝ ↦ G p.1 p.2) (U ×ˢ [[a, b]])) :

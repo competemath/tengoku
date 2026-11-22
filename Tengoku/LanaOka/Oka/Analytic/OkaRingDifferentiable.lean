@@ -20,7 +20,9 @@ open TopologicalSpace
 
 variable {ι : Type*} [Fintype ι]
 
-/-- Elements of `OkaRing U` are holomorphic on `U`. -/
+/-- Elements of `OkaRing U` are holomorphic on `U`.
+@isnad1 id=differen.0h3v.s7.e438015f95d2 from=translated src=- shape=de903bc6 vocab=f2c7f1a2
+-/
 lemma Tengoku.LanaOka.OkaRing.differentiableOn_toGlobalFun {U : Opens (ι → ℂ)} (f : OkaRing U) :
     DifferentiableOn ℂ (f.toGlobalFun _) U := fun x hx ↦
   ((okaAnalytic_iff _).1 f.2 x hx).differentiableAt.differentiableWithinAt

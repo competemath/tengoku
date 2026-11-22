@@ -205,7 +205,9 @@ hypotheses does which half, which its own docstring says.
 Two points of the source are separated by the hypothesis when they have the same image, and by the
 preimages of a separation downstairs when they do not. `Topology.IsEmbedding.t2Space` is the same
 shape at a stronger hypothesis on the map; this asks only that the map separate the points of its
-own fibres. -/
+own fibres.
+@isnad1 id=t2space.2h3v.s5.8d08f0bc7e2b from=translated src=- shape=e3bc226d vocab=d4fa007c
+-/
 theorem IsSeparatedMap.t2Space {E : Type*} {X : Type*} [TopologicalSpace E] [TopologicalSpace X]
     [T2Space X] {f : E → X} (hsep : IsSeparatedMap f) (hf : Continuous f) : T2Space E := by
   refine ⟨fun x y hxy => ?_⟩
@@ -220,7 +222,9 @@ Two points of the source with the same image under `g ∘ f` either have the sam
 where `hf` separates them, or different ones, where `hg` separates the two images and their
 preimages separate the points. **Neither map is asked to be injective**, which is what separates
 this from Mathlib's `IsSeparatedMap.comp_left` and `IsSeparatedMap.comp_right`: each of those
-spends an injectivity and asks nothing of the other map. -/
+spends an injectivity and asks nothing of the other map.
+@isnad1 id=issepara.3h5v.s5.7f5553aaf742 from=translated src=- shape=78879869 vocab=8c782adc
+-/
 theorem IsSeparatedMap.comp {X Y : Type*} {Z : Sort*} [TopologicalSpace X] [TopologicalSpace Y]
     {f : X → Y} {g : Y → Z} (hf : IsSeparatedMap f) (hg : IsSeparatedMap g)
     (hcont : Continuous f) : IsSeparatedMap (g ∘ f) := by
@@ -235,7 +239,9 @@ second — not continuity, not injectivity, not separatedness, and not a topolog
 
 Two points with the same image under `f` have the same image under `g ∘ f`, so the hypothesis
 applies to them unchanged; `g` is an explicit argument only because it appears in neither the
-hypothesis's binder nor the conclusion in a position elaboration could read it from. -/
+hypothesis's binder nor the conclusion in a position elaboration could read it from.
+@isnad1 id=issepara.1h5v.s5.ba3d89022e59 from=translated src=- shape=9d6a67b0 vocab=aaaf64b9
+-/
 theorem IsSeparatedMap.of_comp {X : Type*} {Y Z : Sort*} [TopologicalSpace X] {f : X → Y}
     (g : Y → Z) (h : IsSeparatedMap (g ∘ f)) : IsSeparatedMap f :=
   fun x₁ x₂ he hne ↦ h x₁ x₂ (congrArg g he) hne
@@ -259,7 +265,9 @@ available and the decomposition it gives is the point. The module docstring's
 so in terms of the diagonal of `f.Pullback f`, which is a closed embedding for the first and an
 open embedding for the second. Dropping either leaves a set with one half of the conclusion, and
 the statement below has no form with one hypothesis that is not already one of those two
-lemmas. -/
+lemmas.
+@isnad1 id=isclopen.5h6v.s6.46540d35c0f0 from=translated src=- shape=cfc15d84 vocab=bd74cbe3
+-/
 theorem IsSeparatedMap.isClopen_eqLocus {X Y A : Type*} [TopologicalSpace X] [TopologicalSpace A]
     {f : X → Y} {g₁ g₂ : A → X} (sep : IsSeparatedMap f) (inj : IsLocallyInjective f)
     (h₁ : Continuous g₁) (h₂ : Continuous g₂) (he : f ∘ g₁ = f ∘ g₂) :

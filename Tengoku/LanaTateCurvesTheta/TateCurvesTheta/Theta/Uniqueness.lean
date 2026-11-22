@@ -91,7 +91,9 @@ variable (t : TateParameter K)
 
 /-- **A Tate parameter is not a root of unity (integer exponents).** For `n ≠ 0`, `qⁿ ≠ 1`.
 This extends `TateParameter.pow_ne_one` (natural exponents) to all of `ℤ`, and is the
-nonvanishing `qⁿ − 1 ≠ 0` that drives the `q`-difference engine. -/
+nonvanishing `qⁿ − 1 ≠ 0` that drives the `q`-difference engine.
+@isnad1 id=ne.1h3v.s6.39845c76db4a from=translated src=- shape=9d878d17 vocab=86a4afc2
+-/
 lemma zpow_ne_one {n : ℤ} (hn : n ≠ 0) : (t.q : K) ^ n ≠ 1 := by
   rcases lt_or_gt_of_ne hn with hneg | hpos
   · intro h
@@ -108,7 +110,9 @@ lemma zpow_ne_one {n : ℤ} (hn : n ≠ 0) : (t.q : K) ^ n ≠ 1 := by
 /-- **Collapse of a `q`-invariant Laurent series to its constant term.** If the coefficients
 satisfy the shift relation `aₙ · qⁿ = aₙ` for every `n`, then `aₙ = 0` for `n ≠ 0`
 (`qⁿ − 1 ≠ 0` by `zpow_ne_one`) and the two-sided sum reduces to `a₀`. No convergence
-hypothesis is needed: the family is supported at `0`. -/
+hypothesis is needed: the family is supported at `0`.
+@isnad1 id=eq.1h4v.s7.1ea812e6bcab from=translated src=- shape=8273a7de vocab=e5d13ee4
+-/
 theorem tsum_eq_coeff_zero_of_qinv (a : ℤ → K) (hcoeff : ∀ n : ℤ, a n * (t.q : K) ^ n = a n)
     (u : Kˣ) : (∑' n : ℤ, a n * (u : K) ^ n) = a 0 := by
   have haz : ∀ n : ℤ, n ≠ 0 → a n = 0 := by
@@ -141,7 +145,9 @@ def _root_.TateCurvesTheta.LaurentCoeffUnique (K : Type*) [NormedField K] : Prop
 `a₀` at every `u : Kˣ`.
 
 The proof reindexes `f (q·u) = ∑' n, (aₙ qⁿ) uⁿ`; uniqueness forces `aₙ qⁿ = aₙ`, and
-`tsum_eq_coeff_zero_of_qinv` collapses the sum to `a₀`. -/
+`tsum_eq_coeff_zero_of_qinv` collapses the sum to `a₀`.
+@isnad1 id=eq.3h4v.s8.9b78ff0de2ee from=translated src=- shape=b886622e vocab=e2961aff
+-/
 theorem const_of_qinvariant_laurent (huniq : LaurentCoeffUnique K) (a : ℤ → K)
     (hsum : ∀ u : Kˣ, Summable fun n : ℤ => a n * (u : K) ^ n)
     (hqinv : ∀ u : Kˣ,
@@ -172,7 +178,9 @@ under `u ↦ q·u` by the *same* automorphy factor `(q·u)⁻¹` (`theta_q_smul`
 `theta (q·u) · thetaProd (q·u)⁻¹ = theta u · thetaProd u⁻¹`.
 
 This is the precise `q`-invariance hypothesis fed to `const_of_qinvariant_laurent` (once the
-ratio is exhibited as a convergent Laurent series) to force `theta = thetaProd`. -/
+ratio is exhibited as a convergent Laurent series) to force `theta = thetaProd`.
+@isnad1 id=eq.0h3v.s8.c1e55ac9eaab from=translated src=- shape=aea7c25d vocab=67621bb3
+-/
 theorem thetaDiv_q_smul [CompleteSpace K] (u : Kˣ) :
     t.theta (t.q * u) * (t.thetaProd (t.q * u))⁻¹ = t.theta u * (t.thetaProd u)⁻¹ := by
   have wne : (t.q : K) * (u : K) ≠ 0 := mul_ne_zero t.q.ne_zero u.ne_zero

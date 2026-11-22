@@ -32,9 +32,15 @@ local notation "SL2" => Matrix.SpecialLinearGroup (Fin 2) R
 /-- The trace of an element of `SL(2, R)`. -/
 abbrev tr (A : SL2) : R := trace (A : Matrix (Fin 2) (Fin 2) R)
 
+/--
+@isnad1 id=eq.0h2v.s7.3bccd2257910 from=translated src=- shape=0607ed45 vocab=067c8ac4
+-/
 lemma tr_def (A : SL2) : tr A = A 0 0 + A 1 1 := by
   simp [tr, trace_fin_two]
 
+/--
+@isnad1 id=eq.0h1v.s6.c8bb10152d89 from=translated src=- shape=860d6470 vocab=24d49db1
+-/
 @[simp]
 lemma tr_one : tr (1 : SL2) = 2 := by
   simp [tr_def]
@@ -47,8 +53,14 @@ noncomputable def lucas : ℕ → ℤ[X]
   | 1 => X
   | n + 2 => X * lucas (n + 1) - lucas n
 
+/--
+@isnad1 id=eq.0h1v.s6.2e7ad8e3680e from=translated src=- shape=edae3316 vocab=902c3077
+-/
 lemma lucas_add_two (n : ℕ) : lucas (n + 2) = X * lucas (n + 1) - lucas n := rfl
 
+/--
+@isnad1 id=and.0h1v.s5.7a9619d0d77f from=translated src=- shape=4608eea5 vocab=bc6bdabd
+-/
 lemma lucas_monic_natDegree (n : ℕ) :
     (lucas (n + 1)).Monic ∧ (lucas (n + 1)).natDegree = n + 1 := by
   induction n using Nat.strong_induction_on with
@@ -76,6 +88,9 @@ lemma lucas_monic_natDegree (n : ℕ) :
           natDegree_sub_eq_left_of_natDegree_lt, hXd]
         rw [hXd, hd0]; lia
 
+/--
+@isnad1 id=monic.1h1v.s4.b3ff44458aa7 from=translated src=- shape=238e953f vocab=bf622bf3
+-/
 lemma lucas_monic {n : ℕ} (hn : 0 < n) : (lucas n).Monic := by
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_lt hn
   simpa using (lucas_monic_natDegree m).1

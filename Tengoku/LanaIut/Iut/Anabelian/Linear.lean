@@ -25,15 +25,27 @@ variable {ℓ : ℕ} [hℓ : Fact ℓ.Prime]
 def mulVecHom (A : Matrix (Fin 2) (Fin 2) (ZMod ℓ)) : (Fin 2 → ZMod ℓ) →+ (Fin 2 → ZMod ℓ) :=
   (Matrix.mulVecLin A).toAddMonoidHom
 
+/--
+@isnad1 id=eq.0h3v.s8.e153aa36e39d from=translated src=- shape=bd406e8c vocab=bed8a482
+-/
 @[simp] lemma mulVecHom_apply (A : Matrix (Fin 2) (Fin 2) (ZMod ℓ)) (v : Fin 2 → ZMod ℓ) :
     mulVecHom A v = A.mulVec v := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.e509f79da54f from=translated src=- shape=4d0c8a2f vocab=e9af30aa
+-/
 lemma nsmul_self_eq_zero (v : Fin 2 → ZMod ℓ) : ℓ • v = 0 := by
   rw [← Nat.cast_smul_eq_nsmul (ZMod ℓ), ZMod.natCast_self, zero_smul]
 
+/--
+@isnad1 id=eq.1h2v.s7.ecb7bd577b06 from=translated src=- shape=3beab6b5 vocab=dc7620fd
+-/
 lemma addOrderOf_eq_of_ne_zero {v : Fin 2 → ZMod ℓ} (hv : v ≠ 0) : addOrderOf v = ℓ :=
   addOrderOf_eq_prime (nsmul_self_eq_zero v) hv
 
+/--
+@isnad1 id=eq.1h2v.s8.bb32b305308e from=translated src=- shape=fb62b4c3 vocab=c48b5265
+-/
 lemma card_zmultiples_of_ne_zero {v : Fin 2 → ZMod ℓ} (hv : v ≠ 0) :
     Nat.card (AddSubgroup.zmultiples v) = ℓ := by
   rw [Nat.card_zmultiples, addOrderOf_eq_of_ne_zero hv]
@@ -45,7 +57,9 @@ lemma eq_zmultiples_of_card {L : AddSubgroup (Fin 2 → ZMod ℓ)} (hL : Nat.car
   haveI : Finite L := Nat.finite_of_card_ne_zero (by rw [hL]; exact hℓ.out.ne_zero)
   exact (AddSubgroup.eq_of_le_of_card_ge hle (by rw [hL, card_zmultiples_of_ne_zero hv0])).symm
 
-/-- A subgroup of order `ℓ` has a nonzero element. -/
+/-- A subgroup of order `ℓ` has a nonzero element.
+@isnad1 id=ex.1h2v.s8.fa848996df2a from=translated src=- shape=2678e264 vocab=687a2443
+-/
 lemma exists_ne_zero_of_card {L : AddSubgroup (Fin 2 → ZMod ℓ)} (hL : Nat.card L = ℓ) :
     ∃ v ∈ L, v ≠ 0 := by
   by_contra h
@@ -54,7 +68,9 @@ lemma exists_ne_zero_of_card {L : AddSubgroup (Fin 2 → ZMod ℓ)} (hL : Nat.ca
   rw [hbot, AddSubgroup.card_bot] at hL
   exact hℓ.out.one_lt.ne hL
 
-/-- Scalar multiples lie in the subgroup generated. -/
+/-- Scalar multiples lie in the subgroup generated.
+@isnad1 id=mem.0h3v.s8.654ec40d728c from=translated src=- shape=918c71b8 vocab=b9428e1e
+-/
 lemma smul_mem_zmultiples (c : ZMod ℓ) (v : Fin 2 → ZMod ℓ) :
     c • v ∈ AddSubgroup.zmultiples v := by
   rw [← ZMod.intCast_zmod_cast c, Int.cast_smul_eq_zsmul]

@@ -97,13 +97,17 @@ variable {C : Type u} [Category.{v} C] {J : GrothendieckTopology C}
   {F G : Sheaf J AddCommGrpCat.{w}}
 
 /-- A morphism of sheaves of abelian groups is locally surjective exactly when it is an
-epimorphism. -/
+epimorphism.
+@isnad1 id=iff.0h5v.s8.f85bb00bcbdf from=translated src=- shape=f6577ea7 vocab=51fcb281
+-/
 lemma isLocallySurjective_iff_epi_addCommGrp (f : F ⟶ G) :
     IsLocallySurjective f ↔ Epi f :=
   isLocallySurjective_iff_epi' (A := AddCommGrpCat.{w}) f
 
 /-- An epimorphism of sheaves of abelian groups is locally surjective: every section of the
-target is, on a covering sieve, in the image. -/
+target is, on a covering sieve, in the image.
+@isnad1 id=islocall.0h5v.s8.abc202f500c7 from=translated src=- shape=330f84fb vocab=51fcb281
+-/
 lemma isLocallySurjective_of_epi_addCommGrp (f : F ⟶ G) [Epi f] : IsLocallySurjective f :=
   (isLocallySurjective_iff_epi_addCommGrp f).2 ‹_›
 

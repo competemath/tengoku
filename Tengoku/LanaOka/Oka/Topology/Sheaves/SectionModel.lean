@@ -73,25 +73,40 @@ variable {F E} (M : SectionModel F E)
 def res (q q' : 𝒬) (h : M.Q q' ≤ M.Q q) : E q →+ E q' :=
   (M.ε q').symm.toAddMonoidHom.comp ((F.obj.map (homOfLE h).op).hom.comp (M.ε q).toAddMonoidHom)
 
+/--
+@isnad1 id=eq.1h8v.s12.6078e9314ef4 from=translated src=- shape=b3aac130 vocab=2246756d
+-/
 lemma ε_res {q q' : 𝒬} (h : M.Q q' ≤ M.Q q) (x : E q) :
     M.ε q' (M.res q q' h x) = F.obj.map (homOfLE h).op (M.ε q x) := by
   simp [res]
 
+/--
+@isnad1 id=eq.1h8v.s13.6dbdbc9440a1 from=translated src=- shape=d00b10ab vocab=aa950662
+-/
 lemma res_apply {q q' : 𝒬} (h : M.Q q' ≤ M.Q q) (x : E q) :
     M.res q q' h x = (M.ε q').symm (F.obj.map (homOfLE h).op (M.ε q x)) :=
   rfl
 
+/--
+@isnad1 id=eq.1h9v.s9.3fcfa4b24349 from=translated src=- shape=350408af vocab=73e7e01d
+-/
 lemma res_smul {q q' : 𝒬} (h : M.Q q' ≤ M.Q q) (c : ℂ) (x : E q) :
     M.res q q' h (c • x) = c • M.res q q' h x := by
   apply (M.ε q').injective
   rw [ε_res, M.ε_smul, M.ε_smul, ε_res, ← ConcreteCategory.comp_apply,
     ← ConcreteCategory.comp_apply, NatTrans.naturality]
 
+/--
+@isnad1 id=eq.0h7v.s7.8d2078d245a3 from=translated src=- shape=54fd0200 vocab=d739e762
+-/
 lemma res_self (q : 𝒬) (x : E q) : M.res q q le_rfl x = x := by
   apply (M.ε q).injective
   rw [ε_res, show (homOfLE (le_refl (M.Q q))).op = 𝟙 (op (M.Q q)) from rfl, F.obj.map_id]
   rfl
 
+/--
+@isnad1 id=eq.2h9v.s9.465523d08659 from=translated src=- shape=299039c1 vocab=30e42076
+-/
 lemma res_res {q q' q'' : 𝒬} (h : M.Q q' ≤ M.Q q) (h' : M.Q q'' ≤ M.Q q') (x : E q) :
     M.res q' q'' h' (M.res q q' h x) = M.res q q'' (h'.trans h) x := by
   apply (M.ε q'').injective
@@ -105,6 +120,9 @@ def resL (q q' : 𝒬) (h : M.Q q' ≤ M.Q q) : E q →L[ℂ] E q' where
   map_smul' := M.res_smul h
   cont := M.continuous_res q q' h
 
+/--
+@isnad1 id=eq.1h8v.s8.23014e720741 from=translated src=- shape=d947937e vocab=9f27ce50
+-/
 @[simp]
 lemma resL_apply {q q' : 𝒬} (h : M.Q q' ≤ M.Q q) (x : E q) : M.resL q q' h x = M.res q q' h x :=
   rfl
@@ -124,11 +142,17 @@ def compat : Submodule ℂ (∀ j, E (v j)) where
   smul_mem' c a ha j₁ j₂ q h₁ h₂ := by
     simp only [Pi.smul_apply, res_smul, ha j₁ j₂ q h₁ h₂]
 
+/--
+@isnad1 id=iff.0h8v.s9.064f89e48fe0 from=translated src=- shape=c82e4fbb vocab=675d13c0
+-/
 lemma mem_compat {y : ∀ j, E (v j)} :
     y ∈ M.compat v ↔ ∀ j₁ j₂ q (h₁ : M.Q q ≤ M.Q (v j₁)) (h₂ : M.Q q ≤ M.Q (v j₂)),
       M.res _ q h₁ (y j₁) = M.res _ q h₂ (y j₂) :=
   Iff.rfl
 
+/--
+@isnad1 id=isclosed.0h7v.s7.95b78b41261e from=translated src=- shape=1932a1a3 vocab=3392f279
+-/
 lemma isClosed_compat [∀ q, T2Space (E q)] : IsClosed (M.compat v : Set (∀ j, E (v j))) := by
   have : (M.compat v : Set (∀ j, E (v j))) = ⋂ (j₁ : J) (j₂ : J) (q : 𝒬)
       (h₁ : M.Q q ≤ M.Q (v j₁)) (h₂ : M.Q q ≤ M.Q (v j₂)),
@@ -149,16 +173,25 @@ def family : F.obj.obj (op W) →+ ∀ j, E (v j) where
   map_zero' := by ext; simp
   map_add' s t := by ext; simp
 
+/--
+@isnad1 id=eq.1h10v.s13.243e3f43e8d9 from=translated src=- shape=08d9e081 vocab=4229b3ff
+-/
 lemma family_apply (s : F.obj.obj (op W)) (j : J) :
     M.family v hv s j = (M.ε (v j)).symm (F.obj.map (homOfLE (hv j)).op s) :=
   rfl
 
+/--
+@isnad1 id=eq.2h11v.s13.1dedd9404ac3 from=translated src=- shape=14d591dd vocab=f1bfa47e
+-/
 lemma res_family (s : F.obj.obj (op W)) (j : J) (q : 𝒬) (h : M.Q q ≤ M.Q (v j)) :
     M.res _ q h (M.family v hv s j) = (M.ε q).symm (F.obj.map (homOfLE (h.trans (hv j))).op s) := by
   rw [res_apply, family_apply, AddEquiv.apply_symm_apply, ← ConcreteCategory.comp_apply,
     ← F.obj.map_comp]
   rfl
 
+/--
+@isnad1 id=mem.1h9v.s11.bb27a4dd3a5a from=translated src=- shape=0d5de545 vocab=b853979d
+-/
 lemma family_mem_compat (s : F.obj.obj (op W)) : M.family v hv s ∈ M.compat v :=
   fun j₁ j₂ q h₁ h₂ ↦ by rw [res_family, res_family]
 
@@ -175,6 +208,9 @@ lemma eq_of_forall_map_eq {V : Opens X} {s t : F.obj.obj (op V)}
 variable {v hv}
 
 include hv in
+/--
+@isnad1 id=injectiv.2h8v.s11.680ebaa50c1c from=translated src=- shape=8d8f5abe vocab=cdaef9d3
+-/
 lemma family_injective (hcov : W ≤ ⨆ j, M.Q (v j)) : Function.Injective (M.family v hv) := by
   rw [injective_iff_map_eq_zero]
   intro s hs
@@ -185,6 +221,9 @@ lemma family_injective (hcov : W ≤ ⨆ j, M.Q (v j)) : Function.Injective (M.f
   rw [this, map_zero]
 
 include hv in
+/--
+@isnad1 id=ex.3h9v.s11.48792aa81fa2 from=translated src=- shape=b872ff4c vocab=39a9da65
+-/
 lemma exists_family_eq (hcov : W ≤ ⨆ j, M.Q (v j)) {y : ∀ j, E (v j)} (hy : y ∈ M.compat v) :
     ∃ s, M.family v hv s = y := by
   let sf : ∀ j, F.obj.obj (op (M.Q (v j))) := fun j ↦ M.ε (v j) (y j)
@@ -215,6 +254,9 @@ abbrev Idx (W : Opens X) : Type u := {q : 𝒬 // M.Q q ≤ W}
 abbrev sub (W : Opens X) : Submodule ℂ (∀ q : M.Idx W, E q.1) :=
   M.compat (Subtype.val : M.Idx W → 𝒬)
 
+/--
+@isnad1 id=le.0h6v.s7.38d4e709f7d7 from=translated src=- shape=d1ce42bd vocab=75410193
+-/
 lemma le_iSup_Idx (W : Opens X) : W ≤ ⨆ q : M.Idx W, M.Q q.1 := fun x hx ↦ by
   obtain ⟨q, hxq, hq⟩ := M.exists_mem_le W x hx
   exact Opens.mem_iSup.2 ⟨⟨q, hq⟩, hxq⟩
@@ -227,6 +269,9 @@ noncomputable def sectionsEquiv (W : Opens X) : F.obj.obj (op W) ≃+ M.sub W :=
       obtain ⟨s, hs⟩ := M.exists_family_eq (M.le_iSup_Idx W) y.2
       exact ⟨s, Subtype.ext hs⟩⟩
 
+/--
+@isnad1 id=eq.0h8v.s14.c97e465265c2 from=translated src=- shape=c8822169 vocab=6f899668
+-/
 lemma sectionsEquiv_apply_coe {W : Opens X} (s : F.obj.obj (op W)) (q : M.Idx W) :
     (M.sectionsEquiv W s : ∀ q : M.Idx W, E q.1) q =
       (M.ε q.1).symm (F.obj.map (homOfLE q.2).op s) :=
@@ -247,11 +292,16 @@ def subRes {W W' : Opens X} (h : W' ≤ W) : M.sub W →L[ℂ] M.sub W' where
   cont := Continuous.subtype_mk (continuous_pi fun q ↦
     (continuous_apply (⟨q.1, q.2.trans h⟩ : M.Idx W)).comp continuous_subtype_val) _
 
+/--
+@isnad1 id=eq.1h9v.s14.33ec3a846c06 from=translated src=- shape=0bed2852 vocab=a9fbfd26
+-/
 lemma subRes_apply_coe {W W' : Opens X} (h : W' ≤ W) (x : M.sub W) (q : M.Idx W') :
     (M.subRes h x : ∀ q : M.Idx W', E q.1) q = (x : ∀ q : M.Idx W, E q.1) ⟨q.1, q.2.trans h⟩ :=
   rfl
 
-/-- Restriction of sections is the coordinate projection. -/
+/-- Restriction of sections is the coordinate projection.
+@isnad1 id=eq.1h8v.s15.65d474586ecd from=translated src=- shape=916d33fd vocab=bf620a2a
+-/
 lemma sectionsEquiv_map {W W' : Opens X} (h : W' ≤ W) (s : F.obj.obj (op W)) :
     M.sectionsEquiv W' (F.obj.map (homOfLE h).op s) = M.subRes h (M.sectionsEquiv W s) := by
   ext q
@@ -290,7 +340,9 @@ instance : CompleteSpace (M.compat v) := (M.isClosed_compat v).completeSpace_coe
 end Instances
 
 /-- **Locality of the model topology.** For a countable family of model opens `Q (v j) ≤ Q q`
-covering `Q q`, the restrictions `E q → ∏ⱼ E (v j)` form a closed embedding. -/
+covering `Q q`, the restrictions `E q → ∏ⱼ E (v j)` form a closed embedding.
+@isnad1 id=isclosed.2h8v.s9.7cfd47e73a2f from=translated src=- shape=add24cf7 vocab=3874c99d
+-/
 theorem isClosedEmbedding_family {J : Type u} [Countable J] (q : 𝒬) (v : J → 𝒬)
     (hv : ∀ j, M.Q (v j) ≤ M.Q q) (hcov : M.Q q ≤ ⨆ j, M.Q (v j)) :
     IsClosedEmbedding (fun (x : E q) (j : J) ↦ M.res q (v j) (hv j) x) := by
@@ -312,7 +364,9 @@ theorem isClosedEmbedding_family {J : Type u} [Countable J] (q : 𝒬) (v : J �
 omit [∀ q, IsUniformAddGroup (E q)] [∀ q, ContinuousSMul ℂ (E q)]
   [∀ q, FirstCountableTopology (E q)] [∀ q, CompleteSpace (E q)] in
 /-- A compact subset of the model of the sections over `W'`: the families all of whose
-coordinates lie in given compact sets. -/
+coordinates lie in given compact sets.
+@isnad1 id=iscompac.1h7v.s13.1f5edd00145e from=translated src=- shape=da94dd38 vocab=fbd71b5a
+-/
 lemma isCompact_setOf_forall_mem {W : Opens X} (L : ∀ q : M.Idx W, Set (E q.1))
     (hL : ∀ q, IsCompact (L q)) :
     IsCompact {y : M.sub W | ∀ q, (y : ∀ q : M.Idx W, E q.1) q ∈ L q} := by
@@ -329,7 +383,9 @@ variable [Countable 𝒬]
 /-- **Restriction to a relatively compact open is a compact operator.** Assume that every point
 of every open `W` lies in a model open `Q q'` with `Q q' ≤ Q q ≤ W` for which the restriction
 `E q → E q'` is a compact operator. Then for `W'` with compact closure inside `W`, the
-restriction `F(W) → F(W')` is a compact operator on the models. -/
+restriction `F(W) → F(W')` is a compact operator on the models.
+@isnad1 id=iscompac.4h7v.s15.47d34f48c166 from=translated src=- shape=43ffe760 vocab=c3e74069
+-/
 theorem isCompactOperator_subRes
     (hK : ∀ (W : Opens X) (x : X), x ∈ W → ∃ (q q' : 𝒬) (h : M.Q q' ≤ M.Q q),
       x ∈ M.Q q' ∧ M.Q q ≤ W ∧ IsCompactOperator (M.resL q q' h))

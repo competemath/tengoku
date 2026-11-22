@@ -32,9 +32,15 @@ def uU (t : ℝ) : SL(2, ℝ) := ⟨!![1, t; 0, 1], by simp [det_fin_two]⟩
 /-- The lower unipotent `[[1, 0], [t, 1]]`. -/
 def uL (t : ℝ) : SL(2, ℝ) := ⟨!![1, 0; t, 1], by simp [det_fin_two]⟩
 
+/--
+@isnad1 id=eq.0h1v.s8.7e5336718d04 from=translated src=- shape=459109f9 vocab=756864c7
+-/
 @[simp] lemma coe_uU (t : ℝ) : ((uU t : SL(2, ℝ)) : Matrix (Fin 2) (Fin 2) ℝ) = !![1, t; 0, 1] :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.80218122338c from=translated src=- shape=303c012e vocab=1a9d8e58
+-/
 @[simp] lemma coe_uL (t : ℝ) : ((uL t : SL(2, ℝ)) : Matrix (Fin 2) (Fin 2) ℝ) = !![1, 0; t, 1] :=
   rfl
 

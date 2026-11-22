@@ -37,6 +37,9 @@ local notation "ι" => algebraMap K[X] (RatFunc K)
 noncomputable def homog (A n q : K[X]) : K[X] :=
   ∑ i ∈ Finset.range (A.natDegree + 1), C (A.coeff i) * n ^ i * q ^ (A.natDegree - i)
 
+/--
+@isnad1 id=eq.1h4v.s10.efae35a489b7 from=translated src=- shape=a7f1daec vocab=73cbd929
+-/
 theorem algebraMap_homog (A n q : K[X]) (hq : q ≠ 0) :
     ι (homog A n q) = ι q ^ A.natDegree * aeval (ι n / ι q) A := by
   have hq' : ι q ≠ 0 := by
@@ -51,6 +54,9 @@ theorem algebraMap_homog (A n q : K[X]) (hq : q ≠ 0) :
   rw [Algebra.smul_def, map_mul, map_mul, map_pow, map_pow, div_pow, hpow, hC]
   field_simp
 
+/--
+@isnad1 id=eq.1h5v.s7.259277dce0ad from=translated src=- shape=bbd17e18 vocab=1b985478
+-/
 theorem eval_homog_of_root {A n q : K[X]} {x : K} (hx : q.eval x = 0) :
     (homog A n q).eval x = A.leadingCoeff * n.eval x ^ A.natDegree := by
   rw [homog, eval_finsetSum, Finset.sum_range_succ, Finset.sum_eq_zero, leadingCoeff]
@@ -59,6 +65,9 @@ theorem eval_homog_of_root {A n q : K[X]} {x : K} (hx : q.eval x = 0) :
     have : 0 < A.natDegree - i := Nat.sub_pos_of_lt (Finset.mem_range.mp hi)
     simp [hx, zero_pow this.ne']
 
+/--
+@isnad1 id=eq.1h6v.s7.05648bdf2842 from=translated src=- shape=ac71821f vocab=725eddb2
+-/
 theorem eval_homog_of_eq {A n q : K[X]} {x β : K} (hx : n.eval x = β * q.eval x) :
     (homog A n q).eval x = q.eval x ^ A.natDegree * A.eval β := by
   rw [homog, eval_finsetSum, eval_eq_sum_range (p := A) β, Finset.mul_sum]
@@ -69,6 +78,9 @@ theorem eval_homog_of_eq {A n q : K[X]} {x β : K} (hx : n.eval x = β * q.eval 
   simp only [eval_mul, eval_C, eval_pow, hx, hpow]
   ring
 
+/--
+@isnad1 id=not.2h4v.s6.3a86f6089aa7 from=translated src=- shape=8415ded0 vocab=21da486a
+-/
 theorem not_isCoprime_of_common_root {A B : K[X]} {β : K} (hA : A.eval β = 0)
     (hB : B.eval β = 0) : ¬ IsCoprime A B := by
   rintro ⟨u, v, h⟩
@@ -76,7 +88,9 @@ theorem not_isCoprime_of_common_root {A B : K[X]} {β : K} (hA : A.eval β = 0)
   simp [hA, hB] at this
 
 /-- **The pole argument.** Let `g = n/q` with `n, q` coprime and `deg q < deg n`. A polynomial in
-`K(g)` is a polynomial expression in `g`. -/
+`K(g)` is a polynomial expression in `g`.
+@isnad1 id=ex.4h4v.s11.d7a3376706b5 from=translated src=- shape=0adfacce vocab=cbf41928
+-/
 theorem exists_aeval_of_mem [IsAlgClosed K] {n q : K[X]} (hcop : IsCoprime n q) (hq : q ≠ 0)
     (hdeg : q.natDegree < n.natDegree) {P : K[X]} (hP : ι P ∈ K⟮ι n / ι q⟯) :
     ∃ A : K[X], ι P = aeval (ι n / ι q) A := by
@@ -134,7 +148,9 @@ theorem exists_aeval_of_mem [IsAlgClosed K] {n q : K[X]} (hcop : IsCoprime n q) 
   rw [map_mul, aeval_C, ← hP₁, hb, aeval_C]
   rw [mul_comm, mul_assoc, ← map_mul, mul_inv_cancel₀ hb0, map_one, mul_one]
 
-/-- If the denominator of `g = n/q` has a root, the polynomials in `K(g)` are constant. -/
+/-- If the denominator of `g = n/q` has a root, the polynomials in `K(g)` are constant.
+@isnad1 id=eq.5h5v.s10.990d481a7bd0 from=translated src=- shape=ae9cfc3a vocab=fe732112
+-/
 theorem natDegree_eq_zero_of_mem [IsAlgClosed K] {n q : K[X]} (hcop : IsCoprime n q) (hq : q ≠ 0)
     (hdeg : q.natDegree < n.natDegree) {x₀ : K} (hx₀ : q.eval x₀ = 0) {P : K[X]}
     (hP : ι P ∈ K⟮ι n / ι q⟯) : P.natDegree = 0 := by
@@ -158,7 +174,9 @@ theorem natDegree_eq_zero_of_mem [IsAlgClosed K] {n q : K[X]} (hcop : IsCoprime 
   rw [hinj (hA.trans (by rw [IsScalarTower.algebraMap_apply K K[X] (RatFunc K)]; rfl) :
     ι P = ι (C (A.coeff 0))), natDegree_C]
 
-/-- Polynomials in `K(s)`, `s` a non-constant polynomial, are polynomials in `s`. -/
+/-- Polynomials in `K(s)`, `s` a non-constant polynomial, are polynomials in `s`.
+@isnad1 id=ex.2h3v.s9.2b4cc0c0e659 from=translated src=- shape=d908086a vocab=cd8de25a
+-/
 theorem exists_comp_of_mem [IsAlgClosed K] {s : K[X]} (hs : 0 < s.natDegree) {P : K[X]}
     (hP : ι P ∈ K⟮ι s⟯) : ∃ A : K[X], P = A.comp s := by
   have hinj : Function.Injective ι := IsFractionRing.injective K[X] (RatFunc K)
@@ -170,7 +188,9 @@ theorem exists_comp_of_mem [IsAlgClosed K] {s : K[X]} (hs : 0 < s.natDegree) {P 
 
 /-- **Subalgebras of `K[X]` lie in `K[s]`** (Lüroth). If a `K`-subalgebra `R ⊆ K[X]` contains a
 non-constant polynomial, there is a non-constant polynomial `s`, a quotient of two elements of
-`R`, with `R ⊆ K[s]`. -/
+`R`, with `R ⊆ K[s]`.
+@isnad1 id=ex.1h2v.s9.8edd52bfab3b from=translated src=- shape=54907e9c vocab=f6f37211
+-/
 theorem exists_poly_generator [IsAlgClosed K] (R : Subalgebra K K[X])
     (hR : ∃ p ∈ R, 0 < p.natDegree) :
     ∃ s : K[X], 0 < s.natDegree ∧ (∃ r ∈ R, ∃ q ∈ R, q ≠ 0 ∧ s * q = r) ∧

@@ -60,15 +60,24 @@ variable {E : Type*}
 /-- The map `(b, u) ↦ (b, uᵏ)` on `E × ℂ`. -/
 def powMap (k : ℕ) (x : E × ℂ) : E × ℂ := (x.1, x.2 ^ k)
 
+/--
+@isnad1 id=eq.0h3v.s5.70463210e90b from=translated src=- shape=5ade3994 vocab=4439bd08
+-/
 @[simp]
 lemma powMap_apply (k : ℕ) (x : E × ℂ) : powMap k x = (x.1, x.2 ^ k) :=
   rfl
 
+/--
+@isnad1 id=continuo.0h2v.s6.280903ad4d6b from=translated src=- shape=cadea172 vocab=b0173131
+-/
 @[fun_prop]
 lemma continuous_powMap [NormedAddCommGroup E] (k : ℕ) : Continuous (powMap (E := E) k) := by
   unfold powMap
   fun_prop
 
+/--
+@isnad1 id=differen.0h2v.s7.8626552dfc09 from=translated src=- shape=67ecf6bf vocab=17b0c120
+-/
 @[fun_prop]
 lemma differentiable_powMap [NormedAddCommGroup E] [NormedSpace ℂ E] (k : ℕ) :
     Differentiable ℂ (powMap (E := E) k) := by
@@ -78,6 +87,9 @@ lemma differentiable_powMap [NormedAddCommGroup E] [NormedSpace ℂ E] (k : ℕ)
 /-- The primitive `k`-th root of unity `exp(2πi / k)`. -/
 def zeta (k : ℕ) : ℂ := Complex.exp (2 * Real.pi * Complex.I / k)
 
+/--
+@isnad1 id=isprimit.1h1v.s4.e1be8eb0db25 from=translated src=- shape=0143b885 vocab=d210b3ca
+-/
 lemma isPrimitiveRoot_zeta {k : ℕ} (hk : 0 < k) : IsPrimitiveRoot (zeta k) k :=
   Complex.isPrimitiveRoot_exp k hk.ne'
 
@@ -86,6 +98,9 @@ lemma isPrimitiveRoot_zeta {k : ℕ} (hk : 0 < k) : IsPrimitiveRoot (zeta k) k :
 def trace (k j : ℕ) (f : E × ℂ → ℂ) (x : E × ℂ) : ℂ :=
   (k : ℂ)⁻¹ * ((Polynomial.nthRoots k x.2).map fun r ↦ r ^ (k - j) * f (x.1, r)).sum
 
+/--
+@isnad1 id=eq.2h6v.s7.18f9e60e0131 from=translated src=- shape=9e849a71 vocab=85bda5ce
+-/
 lemma trace_eq {k : ℕ} (hk : 0 < k) (j : ℕ) (f : E × ℂ → ℂ) {x : E × ℂ} {r : ℂ}
     (hr : r ^ k = x.2) :
     trace k j f x = (k : ℂ)⁻¹ *
@@ -94,12 +109,17 @@ lemma trace_eq {k : ℕ} (hk : 0 < k) (j : ℕ) (f : E × ℂ → ℂ) {x : E ×
     Finset.range_val]
   rfl
 
+/--
+@isnad1 id=ex.1h2v.s5.bef246f73d13 from=translated src=- shape=8f46a36a vocab=b5107a42
+-/
 lemma exists_pow_eq (t : ℂ) {k : ℕ} (hk : 0 < k) : ∃ r : ℂ, r ^ k = t :=
   ⟨t ^ ((k : ℂ)⁻¹), Complex.cpow_nat_inv_pow t hk.ne'⟩
 
 variable [NormedAddCommGroup E] [NormedSpace ℂ E]
 
-/-- The zero set of the second coordinate has empty interior in any subset of `E × ℂ`. -/
+/-- The zero set of the second coordinate has empty interior in any subset of `E × ℂ`.
+@isnad1 id=eq.0h2v.s6.18e826d78830 from=translated src=- shape=eb4cc0ef vocab=fc37423a
+-/
 lemma interior_inter_preimage_snd_eq_empty (U : Set (E × ℂ)) :
     interior (U ∩ Prod.snd ⁻¹' {0}) = ∅ := by
   have h : interior (univ ∩ (Prod.snd : E × ℂ → ℂ) ⁻¹' {0}) = ∅ :=
@@ -111,7 +131,9 @@ lemma interior_inter_preimage_snd_eq_empty (U : Set (E × ℂ)) :
 variable [FiniteDimensional ℂ E]
 
 /-- The Riemann extension theorem across `u = 0`, with boundedness required only at the points
-of `u = 0`. -/
+of `u = 0`.
+@isnad1 id=ex.3h3v.s8.d84c18b30e01 from=translated src=- shape=85dcb759 vocab=4f4eb0d7
+-/
 lemma exists_differentiableOn_eqOn_diff_snd {V : Set (E × ℂ)} (hV : IsOpen V) {F : E × ℂ → ℂ}
     (hF : DifferentiableOn ℂ F (V \ Prod.snd ⁻¹' {0}))
     (hb : ∀ x ∈ V, x.2 = 0 → IsBoundedUnder (· ≤ ·) (𝓝[V \ Prod.snd ⁻¹' {0}] x) (‖F ·‖)) :
@@ -127,7 +149,9 @@ lemma exists_differentiableOn_eqOn_diff_snd {V : Set (E × ℂ)} (hV : IsOpen V)
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] [FiniteDimensional ℂ E] in
 /-- The bound on `trace k j f` near `u = 0`: if `‖t‖ < ηᵏ` with `η ≤ 1` and `f` is bounded by `M`
-at all points `(b, r)` with `rᵏ = t`, then the trace is bounded by `M η` at `(b, t)`. -/
+at all points `(b, r)` with `rᵏ = t`, then the trace is bounded by `M η` at `(b, t)`.
+@isnad1 id=le.6h7v.s7.55bd91aa66bf from=translated src=- shape=d0412e89 vocab=bc389155
+-/
 lemma norm_trace_le {k j : ℕ} (hk : 0 < k) (hj : j < k) {f : E × ℂ → ℂ} {M η : ℝ}
     (hη0 : 0 ≤ η) (hη : η ≤ 1) {y : E × ℂ} (hy : ‖y.2‖ < η ^ k)
     (hf : ∀ r : ℂ, r ^ k = y.2 → ‖f (y.1, r)‖ ≤ M) : ‖trace k j f y‖ ≤ M * η := by
@@ -158,6 +182,9 @@ lemma norm_trace_le {k j : ℕ} (hk : 0 < k) (hj : j < k) {f : E × ℂ → ℂ}
         field_simp
 
 omit [NormedSpace ℂ E] [FiniteDimensional ℂ E] in
+/--
+@isnad1 id=mem.3h4v.s7.501ecf49d3fc from=translated src=- shape=1ccd9023 vocab=86938fd6
+-/
 lemma setOf_norm_lt_mem_nhds {x : E × ℂ} (hx : x.2 = 0) {a c : ℝ} (ha : 0 < a) (hc : 0 < c) :
     {y : E × ℂ | ‖y.1 - x.1‖ < a ∧ ‖y.2‖ < c} ∈ 𝓝 x := by
   refine mem_of_superset (ball_mem_nhds x (lt_min ha hc)) fun y hy ↦ ?_
@@ -168,7 +195,9 @@ lemma setOf_norm_lt_mem_nhds {x : E × ℂ} (hx : x.2 = 0) {a c : ℝ} (ha : 0 <
   · have := hy.2.2
     rwa [hx, dist_zero_right] at this
 
-/-- For `j < k`, the function `trace k j f / t` extends holomorphically over `V`. -/
+/-- For `j < k`, the function `trace k j f / t` extends holomorphically over `V`.
+@isnad1 id=ex.5h5v.s9.b5aadf186d47 from=translated src=- shape=e0613049 vocab=02fd4efc
+-/
 theorem exists_differentiableOn_eqOn_trace_div {k j : ℕ} (hk : 0 < k) (hj : j < k)
     {V : Set (E × ℂ)} (hV : IsOpen V) {f : E × ℂ → ℂ}
     (hf : DifferentiableOn ℂ f (powMap k ⁻¹' V \ Prod.snd ⁻¹' {0}))
@@ -326,7 +355,9 @@ theorem exists_differentiableOn_eqOn_trace_div {k j : ℕ} (hk : 0 < k) (hj : j 
   rw [hHeq hy]
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] [FiniteDimensional ℂ E] in
-/-- The orthogonality relation behind the decomposition. -/
+/-- The orthogonality relation behind the decomposition.
+@isnad1 id=eq.2h3v.s7.2fea4b125112 from=translated src=- shape=3f0fcc0e vocab=54798439
+-/
 lemma sum_pow_mul_div {k : ℕ} (hk : 0 < k) {u : ℂ} (hu : u ≠ 0) (F : ℂ → ℂ) :
     ∑ j : Fin k, u ^ (j : ℕ) * (((k : ℂ)⁻¹ *
       ∑ i ∈ Finset.range k, (zeta k ^ i * u) ^ (k - j) * F (zeta k ^ i * u)) / u ^ k) = F u := by
@@ -364,7 +395,9 @@ lemma sum_pow_mul_div {k : ℕ} (hk : 0 < k) {u : ℂ} (hu : u ≠ 0) (F : ℂ �
 
 /-- **Bounded holomorphic functions on a Kummer covering.** A holomorphic function on
 `κ⁻¹(V) \ {u = 0}` which is bounded near `u = 0` is `∑_{j < k} uʲ gⱼ(b, uᵏ)` with `gⱼ` holomorphic
-on `V`, where `κ(b, u) = (b, uᵏ)`. -/
+on `V`, where `κ(b, u) = (b, uᵏ)`.
+@isnad1 id=ex.4h4v.s9.0a7a230f69ae from=translated src=- shape=b9dc5f41 vocab=4dae0083
+-/
 theorem exists_eqOn_sum_pow_mul_comp_powMap {k : ℕ} (hk : 0 < k) {V : Set (E × ℂ)}
     (hV : IsOpen V) {f : E × ℂ → ℂ}
     (hf : DifferentiableOn ℂ f (powMap k ⁻¹' V \ Prod.snd ⁻¹' {0}))
@@ -386,7 +419,9 @@ theorem exists_eqOn_sum_pow_mul_comp_powMap {k : ℕ} (hk : 0 < k) {V : Set (E �
 
 omit [FiniteDimensional ℂ E] in
 /-- **Uniqueness of the decomposition**: if `∑_{j < k} uʲ gⱼ(b, uᵏ)` vanishes on
-`κ⁻¹(V) \ {u = 0}` for continuous `gⱼ`, then every `gⱼ` vanishes on `V`. -/
+`κ⁻¹(V) \ {u = 0}` for continuous `gⱼ`, then every `gⱼ` vanishes on `V`.
+@isnad1 id=eqon.4h5v.s8.19683e0e1b80 from=translated src=- shape=5c951fff vocab=19d4df49
+-/
 theorem eqOn_zero_of_sum_pow_mul_comp_powMap {k : ℕ} (hk : 0 < k) {V : Set (E × ℂ)}
     (hV : IsOpen V) {g : Fin k → E × ℂ → ℂ} (hg : ∀ j, ContinuousOn (g j) V)
     (h : EqOn (fun x ↦ ∑ j : Fin k, x.2 ^ (j : ℕ) * g j (powMap k x)) 0
@@ -429,7 +464,9 @@ theorem eqOn_zero_of_sum_pow_mul_comp_powMap {k : ℕ} (hk : 0 < k) {V : Set (E 
   exact this
 
 omit [FiniteDimensional ℂ E] in
-/-- Conversely, `∑_{j < k} uʲ gⱼ(b, uᵏ)` is holomorphic on `κ⁻¹(V)` for `gⱼ` holomorphic on `V`. -/
+/-- Conversely, `∑_{j < k} uʲ gⱼ(b, uᵏ)` is holomorphic on `κ⁻¹(V)` for `gⱼ` holomorphic on `V`.
+@isnad1 id=differen.1h4v.s8.b080bc3619ee from=translated src=- shape=61a8f7e9 vocab=3b1b94ea
+-/
 theorem differentiableOn_sum_pow_mul_comp_powMap {k : ℕ} {V : Set (E × ℂ)}
     {g : Fin k → E × ℂ → ℂ} (hg : ∀ j, DifferentiableOn ℂ (g j) V) :
     DifferentiableOn ℂ (fun x ↦ ∑ j : Fin k, x.2 ^ (j : ℕ) * g j (powMap k x))
@@ -438,7 +475,9 @@ theorem differentiableOn_sum_pow_mul_comp_powMap {k : ℕ} {V : Set (E × ℂ)}
     ((hg j).comp (differentiable_powMap k).differentiableOn fun _ hx ↦ hx)
 
 /-- **Riemann extension on a Kummer covering**: a holomorphic function on `κ⁻¹(V) \ {u = 0}`
-which is bounded near `u = 0` extends holomorphically to `κ⁻¹(V)`. -/
+which is bounded near `u = 0` extends holomorphically to `κ⁻¹(V)`.
+@isnad1 id=ex.4h4v.s9.0a8845c58739 from=translated src=- shape=61830835 vocab=798daabe
+-/
 theorem exists_differentiableOn_powMap_eqOn {k : ℕ} (hk : 0 < k) {V : Set (E × ℂ)}
     (hV : IsOpen V) {f : E × ℂ → ℂ}
     (hf : DifferentiableOn ℂ f (powMap k ⁻¹' V \ Prod.snd ⁻¹' {0}))
@@ -450,7 +489,9 @@ theorem exists_differentiableOn_powMap_eqOn {k : ℕ} (hk : 0 < k) {V : Set (E �
   exact ⟨_, differentiableOn_sum_pow_mul_comp_powMap hgd, hgeq.symm⟩
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] [FiniteDimensional ℂ E] in
 /-- A root of a monic polynomial is bounded in terms of its coefficients: if
-`zⁿ + ∑_{i < n} aᵢ zⁱ = 0` with `‖aᵢ‖ ≤ A`, then `‖z‖ ≤ max 1 (n A)`. -/
+`zⁿ + ∑_{i < n} aᵢ zⁱ = 0` with `‖aᵢ‖ ≤ A`, then `‖z‖ ≤ max 1 (n A)`.
+@isnad1 id=le.2h4v.s6.0068ee3aec9b from=translated src=- shape=78344b6e vocab=e27c61c5
+-/
 lemma norm_le_of_pow_add_sum_eq_zero {n : ℕ} {z : ℂ} {a : ℕ → ℂ} {A : ℝ}
     (ha : ∀ i < n, ‖a i‖ ≤ A) (h : z ^ n + ∑ i ∈ Finset.range n, a i * z ^ i = 0) :
     ‖z‖ ≤ max 1 (n * A) := by
@@ -484,7 +525,9 @@ lemma norm_le_of_pow_add_sum_eq_zero {n : ℕ} {z : ℂ} {a : ℕ → ℂ} {A : 
 
 /-- **Integral functions are bounded**: if `f` satisfies eventually along `l` a monic equation
 `fⁿ + ∑_{i < n} aᵢ fⁱ = 0` whose coefficients are bounded along `l`, then `f` is bounded along
-`l`. -/
+`l`.
+@isnad1 id=isbounde.2h5v.s7.481c48afc591 from=translated src=- shape=31882175 vocab=5ba080fd
+-/
 theorem isBoundedUnder_of_pow_add_sum_eq_zero {α : Type*} {l : Filter α} {f : α → ℂ} {n : ℕ}
     {a : ℕ → α → ℂ} (ha : ∀ i < n, IsBoundedUnder (· ≤ ·) l (‖a i ·‖))
     (h : ∀ᶠ x in l, f x ^ n + ∑ i ∈ Finset.range n, a i x * f x ^ i = 0) :

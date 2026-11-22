@@ -53,7 +53,9 @@ variable (hmem : ∀ u : Kˣ, (∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) →
     t.tateCurve.toAffine.Equation (t.X u) (t.Y u)) (h12 : TameResidueChar K)
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- The ultrametric domination law: `‖b‖ < ‖a‖` forces `‖a + b‖ = ‖a‖`. -/
+/-- The ultrametric domination law: `‖b‖ < ‖a‖` forces `‖a + b‖ = ‖a‖`.
+@isnad1 id=eq.1h3v.s6.30090e6e762c from=translated src=- shape=cee4aef5 vocab=15d3aad6
+-/
 lemma norm_add_eq_left_of_norm_lt [IsUltrametricDist K] {a b : K} (h : ‖b‖ < ‖a‖) :
     ‖a + b‖ = ‖a‖ := by
   refine le_antisymm ((IsUltrametricDist.norm_add_le_max a b).trans
@@ -65,13 +67,17 @@ lemma norm_add_eq_left_of_norm_lt [IsUltrametricDist K] {a b : K} (h : ‖b‖ <
   exact absurd (hle.trans_lt (max_lt hcon h)) (lt_irrefl _)
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- Ultrametric bound for differences: `‖a - b‖ ≤ max ‖a‖ ‖b‖`. -/
+/-- Ultrametric bound for differences: `‖a - b‖ ≤ max ‖a‖ ‖b‖`.
+@isnad1 id=le.0h3v.s6.27ead3c707ad from=translated src=- shape=33c74510 vocab=36597316
+-/
 lemma norm_sub_le_max' [IsUltrametricDist K] (a b : K) : ‖a - b‖ ≤ max ‖a‖ ‖b‖ := by
   rw [sub_eq_add_neg]
   exact (IsUltrametricDist.norm_add_le_max a (-b)).trans (by rw [norm_neg])
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- A unit of norm one other than `1` is off the orbit subgroup `qᶻ`. -/
+/-- A unit of norm one other than `1` is off the orbit subgroup `qᶻ`.
+@isnad1 id=not.2h3v.s7.a599c6f61ad7 from=translated src=- shape=47817ed5 vocab=629b934e
+-/
 lemma notMem_qpowers_of_norm_one {s : Kˣ} (hs : ‖(s : K)‖ = 1) (hs1 : s ≠ 1) :
     s ∉ t.qpowers := by
   intro h
@@ -99,7 +105,9 @@ lemma notMem_qpowers_of_norm_one {s : Kˣ} (hs : ‖(s : K)‖ = 1) (hs1 : s ≠
   exact hs1 (Units.ext (by simpa using hn))
 
 /-- **Exact-hit branch selector**: if `X(s) = x` for an off-orbit unit `s`, then the
-affine point `(x, y)` is `tatePoint s` or `tatePoint s⁻¹`. -/
+affine point `(x, y)` is `tatePoint s` or `tatePoint s⁻¹`.
+@isnad1 id=ex.5h5v.s8.d322f02c1edb from=translated src=- shape=b1efbbc1 vocab=a58d3fc9
+-/
 lemma mem_range_of_X_eq {s : Kˣ} (hs : s ∉ t.qpowers) {x y : K}
     (hns : t.tateCurve.toAffine.Nonsingular x y) (hXeq : t.X s = x) :
     ∃ u : Kˣ, t.tatePoint hmem h12 u =
@@ -127,7 +135,9 @@ lemma mem_range_of_X_eq {s : Kˣ} (hs : s ∉ t.qpowers) {x y : K}
 /-- **The translation engine**: a secant of slope-norm `> 1` from an affine point to an
 off-orbit Tate point of integral abscissa pushes the sum into the solved large-point
 region `1 < ‖x'‖`; subtracting the Tate point exhibits the original point in the range
-of the parametrization. -/
+of the parametrization.
+@isnad1 id=ex.8h5v.s9.b1636512b4ad from=translated src=- shape=c4b37d43 vocab=3cd93dd8
+-/
 lemma mem_range_of_slope_norm_gt {s : Kˣ} (hs : s ∉ t.qpowers)
     {x y : K} (hns : t.tateCurve.toAffine.Nonsingular x y) (hne : x ≠ t.X s)
     (hx1 : ‖x‖ ≤ 1) (hXs1 : ‖t.X s‖ ≤ 1)
@@ -178,7 +188,9 @@ lemma mem_range_of_slope_norm_gt {s : Kˣ} (hs : s ∉ t.qpowers)
 
 /-- **Unit-sphere surjectivity**: every affine point of the Tate curve with `‖x‖ = 1`
 and `‖y‖ ≤ 1` — i.e. reducing to the smooth locus of the nodal special fibre — lies in
-the range of the Tate point map. -/
+the range of the Tate point map.
+@isnad1 id=ex.5h4v.s8.a510a5fc35f3 from=translated src=- shape=e4599109 vocab=51ed3a9d
+-/
 theorem mem_range_tatePoint_of_unit_sphere {x y : K}
     (hns : t.tateCurve.toAffine.Nonsingular x y) (hx : ‖x‖ = 1) (hy : ‖y‖ ≤ 1) :
     ∃ u : Kˣ, t.tatePoint hmem h12 u =

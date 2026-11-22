@@ -41,21 +41,33 @@ namespace Iut.Torsion.Ident
 
 variable {F : Type*} [Field F] [NeZero (2 : F)]
 
+/--
+@isnad1 id=ne.0h1v.s6.266e4f954516 from=translated src=- shape=f36f0cea vocab=b850d6e5
+-/
 theorem four_ne_zero' : (4 : F) ≠ 0 := by
   have h := NeZero.ne (2 : F)
   have : (4 : F) = 2 * 2 := by norm_num
   rw [this]; exact mul_ne_zero h h
 
+/--
+@isnad1 id=ne.0h1v.s6.239c35e190e2 from=translated src=- shape=f36f0cea vocab=b850d6e5
+-/
 theorem eight_ne_zero' : (8 : F) ≠ 0 := by
   have h := NeZero.ne (2 : F)
   have : (8 : F) = 2 * 2 * 2 := by norm_num
   rw [this]; exact mul_ne_zero (mul_ne_zero h h) h
 
+/--
+@isnad1 id=ne.0h1v.s6.8e6fe9d55a30 from=translated src=- shape=f36f0cea vocab=b850d6e5
+-/
 theorem c32_ne_zero' : (32 : F) ≠ 0 := by
   have h := NeZero.ne (2 : F)
   have : (32 : F) = 2 ^ 5 := by norm_num
   rw [this]; exact pow_ne_zero _ h
 
+/--
+@isnad1 id=ne.0h1v.s6.9f0a02d01f85 from=translated src=- shape=f36f0cea vocab=b850d6e5
+-/
 theorem c128_ne_zero' : (128 : F) ≠ 0 := by
   have h := NeZero.ne (2 : F)
   have : (128 : F) = 2 ^ 7 := by norm_num
@@ -84,7 +96,9 @@ variable {a₂ a₄ a₆ X Y x y lp lm mu : F}
 
 omit [NeZero (2 : F)] in
 include hX hp hm in
-/-- `(x(Q−P) − x(Q+P))·(X − x)² = 2Y·2y`. -/
+/-- `(x(Q−P) − x(Q+P))·(X − x)² = 2Y·2y`.
+@isnad1 id=eq.3h8v.s8.df56ffba255c from=translated src=- shape=0a23f665 vocab=7c99a4e5
+-/
 theorem chord_diff :
     ((lm ^ 2 - a₂ - X - x) - (lp ^ 2 - a₂ - X - x)) * (X - x) ^ 2 = 4 * Y * y := by
   have h : (X - x) ^ 4 * ((((lm ^ 2 - a₂ - X - x) - (lp ^ 2 - a₂ - X - x)) * (X - x) ^ 2) -
@@ -101,7 +115,9 @@ theorem chord_diff :
 
 omit [NeZero (2 : F)] in
 include hQ hP hX hp hm in
-/-- `(x(Q+P) + x(Q−P))·(X − x)² = sumv`. -/
+/-- `(x(Q+P) + x(Q−P))·(X − x)² = sumv`.
+@isnad1 id=eq.5h10v.s9.7065e8f56d77 from=translated src=- shape=c1cf7b69 vocab=82040d27
+-/
 theorem chord_sum :
     ((lp ^ 2 - a₂ - X - x) + (lm ^ 2 - a₂ - X - x)) * (X - x) ^ 2 = sumv a₂ a₄ a₆ X x := by
   have h : (X - x) ^ 4 * ((((lp ^ 2 - a₂ - X - x) + (lm ^ 2 - a₂ - X - x)) * (X - x) ^ 2) -
@@ -119,7 +135,9 @@ theorem chord_sum :
   · exact sub_eq_zero.mp h
 
 include hQ hmu in
-/-- `x(2Q)·(2Y)² = X·(2Y)² − Ψ₃(X)`. -/
+/-- `x(2Q)·(2Y)² = X·(2Y)² − Ψ₃(X)`.
+@isnad1 id=eq.3h7v.s9.cf790b3e8d20 from=translated src=- shape=e0f240ef vocab=fff1f0f0
+-/
 theorem double_X (hY : Y ≠ 0) :
     (mu ^ 2 - a₂ - 2 * X) * (4 * Y ^ 2) = X * (4 * Y ^ 2) - Ψ₃v a₂ a₄ a₆ X := by
   have h : 4 * Y ^ 2 *
@@ -134,7 +152,9 @@ theorem double_X (hY : Y ≠ 0) :
   · exact sub_eq_zero.mp h
 
 include hQ hmu in
-/-- `2y(2Q)·(2Y)³ = preΨ₄(X)`. -/
+/-- `2y(2Q)·(2Y)³ = preΨ₄(X)`.
+@isnad1 id=eq.3h7v.s9.24fdded4b7aa from=translated src=- shape=3b120b6f vocab=d3c629db
+-/
 theorem double_Y (hY : Y ≠ 0) :
     2 * (-(mu * ((mu ^ 2 - a₂ - 2 * X) - X) + Y)) * (8 * Y ^ 3) = preΨ₄v a₂ a₄ a₆ X := by
   have h : 8 * Y ^ 3 *
@@ -152,7 +172,9 @@ theorem double_Y (hY : Y ≠ 0) :
   · exact sub_eq_zero.mp h
 
 include hQ hP hX hp hm hmu in
-/-- `(x − x(2Q))·(2Y)² = (x − X)²(X − x(Q+P))(x(Q−P) − X)`. -/
+/-- `(x − x(2Q))·(2Y)² = (x − X)²(X − x(Q+P))(x(Q−P) − X)`.
+@isnad1 id=eq.7h11v.s10.b3482354b286 from=translated src=- shape=11d08770 vocab=d4041564
+-/
 theorem double_X_sub (hY : Y ≠ 0) :
     (x - (mu ^ 2 - a₂ - 2 * X)) * (4 * Y ^ 2) =
       (x - X) ^ 2 * (X - (lp ^ 2 - a₂ - X - x)) * ((lm ^ 2 - a₂ - X - x) - X) := by
@@ -220,7 +242,9 @@ theorem double_X_sub (hY : Y ≠ 0) :
   · exact sub_eq_zero.mp h
 
 include hQ hP hX hp hm hmu in
-/-- `ψ₂(2Q)ψ₂(Q)³ψ₂(P) = (x−X)⁴((x(Q−P) − X)²ψ₂(Q+P) − (X − x(Q+P))²ψ₂(Q−P))`. -/
+/-- `ψ₂(2Q)ψ₂(Q)³ψ₂(P) = (x−X)⁴((x(Q−P) − X)²ψ₂(Q+P) − (X − x(Q+P))²ψ₂(Q−P))`.
+@isnad1 id=eq.7h11v.s10.14016cae720b from=translated src=- shape=2a1c2f50 vocab=c8bcd12d
+-/
 theorem double_Y_mul (hY : Y ≠ 0) :
     2 * (-(mu * ((mu ^ 2 - a₂ - 2 * X) - X) + Y)) * (2 * Y) ^ 3 * (2 * y) =
       (x - X) ^ 4 * (((lm ^ 2 - a₂ - X - x) - X) ^ 2 * (2 * (-(lp * ((lp ^ 2 - a₂ - X - x) - X) +
@@ -278,7 +302,9 @@ variable {a₂ a₄ a₆ X Y x y lam nu : F}
 include hQ hP hl hn in
 /-- The `ψ₂`-coordinate of `Q + Q'` for `Q = (X, Y)`, `Q' = (x, y)`: with `R = Q' − Q =
 (xR, yR)` and `Q + Q' = (Xs, Ys)`,
-`2Ys(X − x)³·2yR = (x − X)(4Y²(xR − x)² − 4y²(xR − X)²) + 16 yR Y y (Y − y)`. -/
+`2Ys(X − x)³·2yR = (x − X)(4Y²(xR − x)² − 4y²(xR − X)²) + 16 yR Y y (Y − y)`.
+@isnad1 id=eq.4h10v.s10.688938423744 from=translated src=- shape=85df4a71 vocab=c8bcd12d
+-/
 theorem odd_Y :
     2 * (-(lam * ((lam ^ 2 - a₂ - X - x) - X) + Y)) * (X - x) ^ 3 *
         (2 * (-(nu * ((nu ^ 2 - a₂ - x - X) - x) + y))) =
@@ -343,7 +369,9 @@ variable {a₂ a₄ a₆ x y X Y nu : F}
 include hP hQ hT hD2 hn in
 /-- The `ψ₂`-coordinate of `3P = 2P + P` for `P = (x, y)`, `2P = (X, Y)`, `3P = (x₃, y₃)`:
 `2y₃(x − X)³ = 2y(4yY − (x − X)³ − 4Y²)`. The point `2P` is described by the tangent line
-(`hT`) and the doubling formula for its `x`-coordinate (`hD2`). -/
+(`hT`) and the doubling formula for its `x`-coordinate (`hD2`).
+@isnad1 id=eq.6h9v.s10.aa07b5cb39d7 from=translated src=- shape=c82a025f vocab=c8bcd12d
+-/
 theorem three_Y (hy : y ≠ 0) :
     2 * (-(nu * ((nu ^ 2 - a₂ - X - x) - X) + Y)) * (x - X) ^ 3 =
       2 * y * (4 * y * Y - (x - X) ^ 3 - 4 * Y ^ 2) := by

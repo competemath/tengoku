@@ -109,7 +109,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace 𝕜 E] [CompleteSpace 
 homeomorphism of the implicit function theorem is defined.
 
 Two points of the source with the same `rightFun` and the same `leftFun` have the same image
-under `z ↦ (leftFun z, rightFun z)`, which is injective on its source. -/
+under `z ↦ (leftFun z, rightFun z)`, which is injective on its source.
+@isnad1 id=injon.0h5v.s8.63b68dbf932b from=translated src=- shape=3b8ff603 vocab=abe02959
+-/
 theorem injOn_rightFun_levelSet :
     Set.InjOn φ.rightFun
       (φ.toOpenPartialHomeomorph.source ∩ {z | φ.leftFun z = φ.leftFun φ.pt}) := by
@@ -121,7 +123,9 @@ theorem injOn_rightFun_levelSet :
 
 The image of `s ∩ {leftFun = leftFun pt}` is the slice of the open set
 `toOpenPartialHomeomorph '' s` at the first coordinate `leftFun pt`, and slicing is taking a
-preimage under a continuous map. -/
+preimage under a continuous map.
+@isnad1 id=isopen.2h6v.s8.48e15d4b4897 from=translated src=- shape=6a007eab vocab=76edfe68
+-/
 theorem isOpen_image_rightFun_levelSet {s : Set E} (hs : IsOpen s)
     (hsub : s ⊆ φ.toOpenPartialHomeomorph.source) :
     IsOpen (φ.rightFun '' (s ∩ {z | φ.leftFun z = φ.leftFun φ.pt})) := by
@@ -203,16 +207,25 @@ noncomputable def ofCoordProj (he : ∀ i, i ≠ j → i ∈ Set.range e) (hj : 
         funext k
         simp [hsingle k]
 
+/--
+@isnad1 id=eq.4h8v.s9.cbbd53c04dee from=translated src=- shape=b48d9ede vocab=b3c0f948
+-/
 @[simp]
 theorem ofCoordProj_leftFun (he : ∀ i, i ≠ j → i ∈ Set.range e) (hj : j ∉ Set.range e)
     (hf : HasStrictFDerivAt f f' a) (hf' : f' (Pi.single j 1) ≠ 0) :
     (ofCoordProj he hj hf hf').leftFun = f := rfl
 
+/--
+@isnad1 id=eq.4h8v.s9.085a0739e055 from=translated src=- shape=a09975b9 vocab=64c4e53c
+-/
 @[simp]
 theorem ofCoordProj_rightFun (he : ∀ i, i ≠ j → i ∈ Set.range e) (hj : j ∉ Set.range e)
     (hf : HasStrictFDerivAt f f' a) (hf' : f' (Pi.single j 1) ≠ 0) :
     (ofCoordProj he hj hf hf').rightFun = fun z ↦ z ∘ e := rfl
 
+/--
+@isnad1 id=eq.4h8v.s9.a0ec02a149b1 from=translated src=- shape=455feccc vocab=bb1fb177
+-/
 @[simp]
 theorem ofCoordProj_pt (he : ∀ i, i ≠ j → i ∈ Set.range e) (hj : j ∉ Set.range e)
     (hf : HasStrictFDerivAt f f' a) (hf' : f' (Pi.single j 1) ≠ 0) :
@@ -241,7 +254,9 @@ source of the partial homeomorphism `z ↦ (f z, z ∘ e)` of
 halves of `IsOpenEmbedding` on it are
 `ImplicitFunctionData.injOn_rightFun_levelSet` and
 `ImplicitFunctionData.isOpen_image_rightFun_levelSet`. Openness of the image needs that an open
-subset of the domain is `g ⁻¹' W` for some open `W`, which is `Topology.IsInducing.isOpen_iff`. -/
+subset of the domain is `g ⁻¹' W` for some open `W`, which is `Topology.IsInducing.isOpen_iff`.
+@isnad1 id=islocalh.6h10v.s9.e5eab7f101fe from=translated src=- shape=98de1cb2 vocab=99776305
+-/
 theorem _root_.Tengoku.LanaOka.isLocalHomeomorph_coordProj_comp_of_isEmbedding
     {T : Type*} [TopologicalSpace T] {g : T → (ι → 𝕜)} (hg : Topology.IsEmbedding g)
     (he : ∀ i, i ≠ j → i ∈ Set.range e) (hj : j ∉ Set.range e)
@@ -317,7 +332,9 @@ never looks there.
 is not available to every consumer of this theorem: a caller whose level set is cut out by a
 function it is required to keep — continuous, holomorphic, a section of a structure sheaf — has
 in general no replacement with level set `{z | f z = c} ∩ Ω`, and for such a caller the restricted
-statement is not a corollary of the unrestricted one. -/
+statement is not a corollary of the unrestricted one.
+@isnad1 id=islocalh.7h11v.s10.8719bf60bf52 from=translated src=- shape=f24041a0 vocab=422c2fc4
+-/
 theorem _root_.Tengoku.LanaOka.isLocalHomeomorph_coordProj_comp_of_isEmbedding_inter
     {T : Type*} [TopologicalSpace T] {g : T → (ι → 𝕜)} {Ω : Set (ι → 𝕜)}
     (hg : Topology.IsEmbedding g) (hΩ : IsOpen Ω)
@@ -343,7 +360,9 @@ theorem _root_.Tengoku.LanaOka.isLocalHomeomorph_coordProj_comp_of_isEmbedding_i
 
 /-- **The level set itself, as a subtype, is locally homeomorphic to the remaining
 coordinates.** `isLocalHomeomorph_coordProj_comp_of_isEmbedding` at the inclusion of the level
-set. -/
+set.
+@isnad1 id=islocalh.4h8v.s9.c8341d75ceee from=translated src=- shape=31949897 vocab=91b81d58
+-/
 theorem _root_.Tengoku.LanaOka.isLocalHomeomorph_coordProj_levelSet
     (he : ∀ i, i ≠ j → i ∈ Set.range e) (hj : j ∉ Set.range e)
     (hf : ∀ z, f z = c → HasStrictFDerivAt f (f' z) z)

@@ -29,7 +29,9 @@ variable [Zero α]
 
 This is the `simp` normal form that `Fin.init` needs: without it a goal such as
 `TopologicalSpace.Opens.zero_mem_extend'` normalises to `Fin.init 0 ∈ U` and `simp` gets
-stuck one rewrite short of the answer. -/
+stuck one rewrite short of the answer.
+@isnad1 id=eq.0h2v.s7.50ce4c7ab6b5 from=translated src=- shape=6e6b09bc vocab=85098bab
+-/
 @[simp]
 lemma init_zero : Fin.init (0 : Fin (n + 1) → α) = 0 :=
   rfl
@@ -41,7 +43,9 @@ end Zero
 `Fin.append_left` and `Fin.append_right` say what `Fin.append` does at each of the two families
 of indices, and `Fin.addCases` says those are all the indices; this is the two of them read as a
 statement about the image, which is the form a consumer indexing a span or a `∀` by a
-concatenated family needs. -/
+concatenated family needs.
+@isnad1 id=eq.0h5v.s5.4df3a99d3847 from=translated src=- shape=295de2dc vocab=171c2d71
+-/
 theorem range_append {m n : ℕ} (a : Fin m → α) (b : Fin n → α) :
     Set.range (Fin.append a b) = Set.range a ∪ Set.range b := by
   ext x

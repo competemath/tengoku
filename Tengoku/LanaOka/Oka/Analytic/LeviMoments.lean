@@ -42,7 +42,9 @@ variable {f : ℂ → ℂ} {r : ℝ} {R : ENNReal} {ρ : ℝ}
 
 /-- If `f` is holomorphic on an annulus and all its moments `∮ z ^ k f z dz`, `k ≥ 0`, on a
 circle of radius `ρ` in the annulus vanish, then the Cauchy integral over this circle is `f` on
-the part of the annulus inside the circle. -/
+the part of the annulus inside the circle.
+@isnad1 id=eq.5h5v.s7.a3cda5864ff7 from=translated src=- shape=2ade2906 vocab=1ef498f2
+-/
 theorem cauchyIntegral_eq_of_forall_moment_eq_zero (hf : DifferentiableOn ℂ f (annulus r R))
     (hρ : IsRadius r R ρ) (hmom : ∀ k : ℕ, ∮ z in C(0, ρ), z ^ k * f z = 0) {w : ℂ}
     (hw : r < ‖w‖) (hwρ : ‖w‖ < ρ) :
@@ -61,7 +63,9 @@ theorem cauchyIntegral_eq_of_forall_moment_eq_zero (hf : DifferentiableOn ℂ f 
 
 end Laurent
 
-/-- The moments of a function holomorphic near a closed disc vanish. -/
+/-- The moments of a function holomorphic near a closed disc vanish.
+@isnad1 id=eq.2h3v.s6.c58d8a73fc3f from=translated src=- shape=34bb98e7 vocab=b8b7bc4e
+-/
 theorem _root_.Tengoku.LanaOka.circleIntegral_pow_mul_eq_zero {f : ℂ → ℂ} {ρ : ℝ} (hρ : 0 ≤ ρ)
     (hf : AnalyticOnNhd ℂ f (closedBall 0 ρ)) (k : ℕ) :
     ∮ z in C(0, ρ), z ^ k * f z = 0 := by
@@ -71,7 +75,9 @@ theorem _root_.Tengoku.LanaOka.circleIntegral_pow_mul_eq_zero {f : ℂ → ℂ} 
   exact ⟨hd.mono ball_subset_closedBall, hd.continuousOn.mono closure_ball_subset_closedBall⟩
 
 /-- The points of a compact set `K` at which a function meromorphic at every point of `K` is not
-analytic form a finite set. -/
+analytic form a finite set.
+@isnad1 id=finite.2h2v.s6.9ab06e37b115 from=translated src=- shape=1c51bec2 vocab=f161a637
+-/
 theorem _root_.Tengoku.LanaOka.finite_setOf_not_analyticAt {f : ℂ → ℂ} {K : Set ℂ} (hK : IsCompact K)
     (hf : ∀ t ∈ K, MeromorphicAt f t) : {t ∈ K | ¬AnalyticAt ℂ f t}.Finite := by
   have hclosed : IsClosed {t : ℂ | ¬AnalyticAt ℂ f t} := by
@@ -85,7 +91,9 @@ theorem _root_.Tengoku.LanaOka.finite_setOf_not_analyticAt {f : ℂ → ℂ} {K 
 
 /-- For `f` meromorphic at every point of a compact set `K` there is a monic polynomial `p` such
 that `p * f` is analytic at every point of `K`, and every root of `p` is a point at which `f` is
-not analytic. -/
+not analytic.
+@isnad1 id=ex.2h2v.s7.5d6d7e49f3a7 from=translated src=- shape=3afbe135 vocab=8996a426
+-/
 theorem _root_.Tengoku.LanaOka.exists_monic_analyticOnNhd_eval_mul {f : ℂ → ℂ} {K : Set ℂ} (hK : IsCompact K)
     (hf : ∀ t ∈ K, MeromorphicAt f t) :
     ∃ p : ℂ[X], p.Monic ∧ AnalyticOnNhd ℂ (fun z ↦ p.eval z * f z) K ∧

@@ -29,7 +29,9 @@ open Set TopologicalSpace
 
 /-- Let `S` be an open cover of `E` in which each member meets only finitely many members, and
 let `F ⊆ E` meet each member of the cover in a finite set. Then every preconnected subset of `E`
-meets `F` in a countable set. -/
+meets `F` in a countable set.
+@isnad1 id=countabl.5h5v.s6.c238d08744dc from=translated src=- shape=fec5dff0 vocab=144d4322
+-/
 theorem _root_.Tengoku.LanaTemperedFundamentalGroups.countable_inter_of_isPreconnected {E ι : Type*} [TopologicalSpace E]
     (S : ι → Set E) (hS : ∀ i, IsOpen (S i)) (hcov : ∀ x, ∃ i, x ∈ S i)
     (hfin : ∀ i, {j | (S i ∩ S j).Nonempty}.Finite) {F : Set E} (hF : ∀ i, (S i ∩ F).Finite)
@@ -65,7 +67,9 @@ theorem _root_.Tengoku.LanaTemperedFundamentalGroups.countable_inter_of_isPrecon
   exact (countable_iUnion fun n ↦ ((hI n).biUnion fun i _ ↦ hF i).countable).mono hsub
 
 /-- A preconnected subset of the total space of a covering of a noetherian space meets every
-fibre in a countable set. -/
+fibre in a countable set.
+@isnad1 id=countabl.2h5v.s5.9b861aed71bd from=translated src=- shape=4dce942e vocab=84c1ca1c
+-/
 theorem IsCoveringMap.countable_inter_fibre_of_isPreconnected {E Z : Type*} [TopologicalSpace E]
     [TopologicalSpace Z] [NoetherianSpace Z] {p : E → Z} (hp : IsCoveringMap p) {C : Set E}
     (hC : IsPreconnected C) (z : Z) : (C ∩ p ⁻¹' {z}).Countable := by
@@ -119,14 +123,18 @@ theorem IsCoveringMap.countable_inter_fibre_of_isPreconnected {E Z : Type*} [Top
     exact congrArg Subtype.val ((H j.1).injective this)
 
 /-- The fibres of a covering map with connected total space onto a noetherian space are
-countable. -/
+countable.
+@isnad1 id=countabl.1h4v.s5.ff8964d35f4a from=translated src=- shape=ef8c715e vocab=10a8bf80
+-/
 theorem IsCoveringMap.countable_fibre {E Z : Type*} [TopologicalSpace E] [TopologicalSpace Z]
     [NoetherianSpace Z] {p : E → Z} (hp : IsCoveringMap p) [PreconnectedSpace E] (z : Z) :
     (p ⁻¹' {z}).Countable := by
   simpa using hp.countable_inter_fibre_of_isPreconnected isPreconnected_univ z
 
 /-- For a covering map onto a noetherian space, every connected component of the total space
-meets every fibre in a countable set. -/
+meets every fibre in a countable set.
+@isnad1 id=countabl.1h5v.s5.16eac3b983b7 from=translated src=- shape=660225ed vocab=8fd7d3ab
+-/
 theorem IsCoveringMap.countable_connectedComponent_inter_fibre {E Z : Type*} [TopologicalSpace E]
     [TopologicalSpace Z] [NoetherianSpace Z] {p : E → Z} (hp : IsCoveringMap p) (e : E) (z : Z) :
     (connectedComponent e ∩ p ⁻¹' {z}).Countable :=

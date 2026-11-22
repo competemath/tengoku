@@ -31,7 +31,9 @@ open scoped Topology
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [FiniteDimensional ℂ E]
 
 /-- **Weierstrass' theorem** in several variables: a locally uniform limit of holomorphic
-functions on an open subset of a finite-dimensional space is holomorphic. -/
+functions on an open subset of a finite-dimensional space is holomorphic.
+@isnad1 id=differen.3h6v.s7.bdc60fdd0c2d from=translated src=- shape=44c6afd0 vocab=e9582991
+-/
 theorem _root_.Tengoku.LanaOka.differentiableOn_of_tendstoLocallyUniformlyOn {ι : Type*} {l : Filter ι} [l.NeBot]
     {U : Set E} (hU : IsOpen U) {F : ι → E → ℂ} {G : E → ℂ}
     (hF : ∀ n, DifferentiableOn ℂ (F n) U) (hFG : TendstoLocallyUniformlyOn F G l U) :
@@ -124,7 +126,9 @@ theorem _root_.Tengoku.LanaOka.differentiableOn_of_tendstoLocallyUniformlyOn {ι
   exact (tendsto_nhds_unique (hunif'.tendsto_at hy') h2).symm
 
 /-- A series of holomorphic functions on an open subset of a finite-dimensional space, dominated
-by a summable sequence, has a holomorphic sum. -/
+by a summable sequence, has a holomorphic sum.
+@isnad1 id=differen.4h4v.s7.5d3324115d18 from=translated src=- shape=9ec3f74c vocab=735b6c81
+-/
 theorem _root_.Tengoku.LanaOka.differentiableOn_tsum_of_summable_norm_le {U : Set E} (hU : IsOpen U)
     {F : ℕ → E → ℂ} (hF : ∀ n, DifferentiableOn ℂ (F n) U) {u : ℕ → ℝ} (hu : Summable u)
     (hle : ∀ n, ∀ z ∈ U, ‖F n z‖ ≤ u n) :
@@ -136,7 +140,9 @@ theorem _root_.Tengoku.LanaOka.differentiableOn_tsum_of_summable_norm_le {U : Se
 /-- **Mittag-Leffler.** Let `U₀ ⊆ U₁ ⊆ ⋯` be open, such that every function holomorphic on
 `U_{k+1}` is a uniform limit on `U_k` of functions holomorphic on `⋃ U_j`. Then for all
 `g_k` holomorphic on `U_k` there are `f_k` holomorphic on `U_k` with `g_k = f_k - f_{k+1}` on
-`U_k`. In other words `lim¹_k 𝒪(U_k) = 0`. -/
+`U_k`. In other words `lim¹_k 𝒪(U_k) = 0`.
+@isnad1 id=ex.4h3v.s8.2c9182b14358 from=translated src=- shape=9f4d28ca vocab=a3345ddb
+-/
 theorem _root_.Tengoku.LanaOka.exists_mittagLeffler {U : ℕ → Set E} (hU : ∀ k, IsOpen (U k)) (hmono : Monotone U)
     (happrox : ∀ k (g : E → ℂ), DifferentiableOn ℂ g (U (k + 1)) → ∀ ε > 0,
       ∃ h : E → ℂ, DifferentiableOn ℂ h (⋃ j, U j) ∧ ∀ z ∈ U k, ‖g z - h z‖ ≤ ε)

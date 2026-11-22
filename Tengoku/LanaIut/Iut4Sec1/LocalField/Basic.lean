@@ -220,13 +220,17 @@ private theorem discreteValuation_p_lt_one :
   have hpO : algebraMap D.ringOfIntegers L pO = pElement (p := p) (L := L) := rfl
   rwa [hpO] at h
 
-/-- The residue field is finite, as a consequence of spectral compactness. -/
+/-- The residue field is finite, as a consequence of spectral compactness.
+@isnad1 id=finite.0h3v.s7.325afd4f7ac4 from=translated src=- shape=0fcb1a9a vocab=9e763d90
+-/
 theorem residueFieldFinite : Finite (IsLocalRing.ResidueField D.ringOfIntegers) := by
   rcases D with ⟨valuation, hvaluation, hp⟩
   subst valuation
   exact spectralResidueFieldFinite p L
 
-/-- The constructed ramification index is positive. -/
+/-- The constructed ramification index is positive.
+@isnad1 id=lt.0h3v.s6.6e947bd3683a from=translated src=- shape=aa9fc2f7 vocab=8c0b272c
+-/
 theorem ramificationIndex_pos : 0 < D.ramificationIndex := by
   have hne : D.discreteValuation (pElement (p := p) (L := L)) ≠ 0 := by
     simp [p_ne_zero (p := p) (L := L)]
@@ -239,7 +243,9 @@ theorem ramificationIndex_pos : 0 < D.ramificationIndex := by
   have hz := Int.toNat_eq_zero.mp h
   omega
 
-/-- The valuation-theoretic and ideal-theoretic ramification indices agree. -/
+/-- The valuation-theoretic and ideal-theoretic ramification indices agree.
+@isnad1 id=eq.0h3v.s6.849441b662fb from=translated src=- shape=b6451bff vocab=76413e19
+-/
 theorem ramificationIndex_eq_idealRamificationIndex :
     D.ramificationIndex = D.idealRamificationIndex := by
   letI := D.valuationExtension
@@ -281,7 +287,9 @@ theorem ramificationIndex_eq_idealRamificationIndex :
       (IsDiscreteValuationRing.maximalIdeal (baseValuation p).integer).ne_bot
   rw [ramificationIndex, hlog, Int.toNat_natCast, heOld]
 
-/-- The constructed rational order has the normalization `ord(p) = 1`. -/
+/-- The constructed rational order has the normalization `ord(p) = 1`.
+@isnad1 id=eq.0h3v.s6.f98c90f59d46 from=translated src=- shape=78f8692c vocab=50ce49b3
+-/
 theorem normalizedOrder_p :
     D.normalizedOrder (pElement (p := p) (L := L)) = 1 := by
   have hp := p_ne_zero (p := p) (L := L)
@@ -301,7 +309,9 @@ theorem normalizedOrder_p :
   norm_num [ne_of_lt hlog]
 
 /-- Membership in the spectral integer ring is equivalent to integrality over the base
-spectral integer ring. -/
+spectral integer ring.
+@isnad1 id=iff.0h4v.s7.26cee1a93256 from=translated src=- shape=3ee31fa9 vocab=0cc86461
+-/
 theorem mem_ringOfIntegers_iff_isIntegral (x : L) : x ∈ D.ringOfIntegers ↔
     IsIntegral (baseRingOfIntegers (p := p)) x := by
   letI : Algebra.IsAlgebraic ℚ_[p] L := Algebra.IsAlgebraic.of_finite ℚ_[p] L
@@ -352,7 +362,9 @@ theorem mem_ringOfIntegers_iff_isIntegral (x : L) : x ∈ D.ringOfIntegers ↔
     rw [D.valuation_eq_spectral, spectralValuation, NormedField.valuation_apply]
     exact_mod_cast hs
 
-/-- The packaged different is mathlib's Dedekind different ideal. -/
+/-- The packaged different is mathlib's Dedekind different ideal.
+@isnad1 id=eq.0h3v.s8.f123d3cc560f from=translated src=- shape=4dda87fb vocab=e4a1a261
+-/
 theorem different_eq_differentIdeal :
     letI := D.valuationExtension
     letI := D.integerRingIsDVR
@@ -428,7 +440,9 @@ noncomputable def aParam (p e : ℕ) : ℝ :=
 noncomputable def bParam (p e : ℕ) : ℝ :=
   ((⌊Real.log (((p : ℝ) * e) / (p - 1 : ℕ)) / Real.log p⌋ : ℤ) : ℝ) - 1 / e
 
-/-- For `0 < e ≤ p - 2`, the two Proposition 1.2 parameters are `±1/e`. -/
+/-- For `0 < e ≤ p - 2`, the two Proposition 1.2 parameters are `±1/e`.
+@isnad1 id=and.4h2v.s6.a33ea7d23d02 from=translated src=- shape=e71538e9 vocab=8c8eb329
+-/
 theorem localParameters_eq_of_smallRamification
     (p e : ℕ) (hp : p.Prime) (hp2 : 2 < p)
     (he : 0 < e) (hsmall : e ≤ p - 2) :

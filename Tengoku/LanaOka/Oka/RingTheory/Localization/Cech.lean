@@ -57,6 +57,9 @@ universe u v w
 
 variable {R : Type u} [CommRing R] (M : Type v) [AddCommGroup M] [Module R M]
 
+/--
+@isnad1 id=isunit.2h4v.s8.959c0939b6dc from=translated src=- shape=57517888 vocab=e13890d5
+-/
 lemma isUnit_algebraMap_of_dvd {N : Type*} [AddCommGroup N] [Module R N] {a b : R} (h : a ∣ b)
     (hb : IsUnit (algebraMap R (Module.End R N) b)) :
     IsUnit (algebraMap R (Module.End R N) a) := by
@@ -64,6 +67,9 @@ lemma isUnit_algebraMap_of_dvd {N : Type*} [AddCommGroup N] [Module R N] {a b : 
   rw [map_mul] at hb
   exact ((Commute.all a c).map (algebraMap R (Module.End R N)) |>.isUnit_mul_iff.mp hb).1
 
+/--
+@isnad1 id=isunit.1h4v.s10.b31a4a68c01a from=translated src=- shape=1a9aabfb vocab=04dd593e
+-/
 lemma isUnit_algebraMap_of_dvd_pow {a b : R} (h : ∃ n, a ∣ b ^ n) :
     IsUnit (algebraMap R (Module.End R (LocalizedModule (powers b) M)) a) := by
   obtain ⟨n, hn⟩ := h
@@ -71,12 +77,18 @@ lemma isUnit_algebraMap_of_dvd_pow {a b : R} (h : ∃ n, a ∣ b ^ n) :
   rw [map_pow]
   exact (IsLocalizedModule.Away.isUnit_algebraMap (mkLinearMap (powers b) M) b).pow n
 
+/--
+@isnad1 id=isunit.1h5v.s10.69381d2dcfd1 from=translated src=- shape=a3d63758 vocab=50c0585b
+-/
 lemma isUnit_algebraMap_of_mem_powers {a b : R} (h : ∃ n, a ∣ b ^ n) (s : powers a) :
     IsUnit (algebraMap R (Module.End R (LocalizedModule (powers b) M)) s) := by
   obtain ⟨_, k, rfl⟩ := s
   rw [map_pow]
   exact (isUnit_algebraMap_of_dvd_pow M h).pow k
 
+/--
+@isnad1 id=ex.2h4v.s7.4351c11c0f79 from=translated src=- shape=5d602c14 vocab=2b720951
+-/
 lemma exists_dvd_pow_trans {a b c : R} (h : ∃ n, a ∣ b ^ n) (h' : ∃ n, b ∣ c ^ n) :
     ∃ n, a ∣ c ^ n := by
   obtain ⟨n, hn⟩ := h
@@ -89,16 +101,25 @@ noncomputable def awayMap {a b : R} (h : ∃ n, a ∣ b ^ n) :
     LocalizedModule (powers a) M →ₗ[R] LocalizedModule (powers b) M :=
   lift (powers a) (mkLinearMap (powers b) M) (isUnit_algebraMap_of_mem_powers M h)
 
+/--
+@isnad1 id=eq.1h4v.s9.df612fa4ada3 from=translated src=- shape=487711aa vocab=d86d52ad
+-/
 @[simp]
 lemma awayMap_comp_mkLinearMap {a b : R} (h : ∃ n, a ∣ b ^ n) :
     awayMap M h ∘ₗ mkLinearMap (powers a) M = mkLinearMap (powers b) M :=
   lift_comp _ _ _
 
+/--
+@isnad1 id=eq.1h5v.s9.8f01f760a841 from=translated src=- shape=9bc1d762 vocab=b8ca641f
+-/
 @[simp]
 lemma awayMap_mk_one {a b : R} (h : ∃ n, a ∣ b ^ n) (m : M) :
     awayMap M h (mk m 1) = mk m 1 :=
   lift_mk_one _ _ _ m
 
+/--
+@isnad1 id=eq.2h8v.s10.7b3139351765 from=translated src=- shape=6c819865 vocab=f1811eae
+-/
 lemma awayMap_mk {a b : R} (h : ∃ n, a ∣ b ^ n) (m : M) (s : powers a) (t : powers b) (e : R)
     (he : (t : R) = s * e) : awayMap M h (mk m s) = mk (e • m) t := by
   apply ((Module.End.isUnit_iff _).mp (isUnit_algebraMap_of_mem_powers M h s)).1
@@ -106,6 +127,9 @@ lemma awayMap_mk {a b : R} (h : ∃ n, a ∣ b ^ n) (m : M) (s : powers a) (t : 
   rw [← map_smul, smul'_mk, smul'_mk, ← Submonoid.smul_def, mk_cancel, awayMap_mk_one, smul_smul,
     ← he, ← Submonoid.smul_def, mk_cancel]
 
+/--
+@isnad1 id=eq.2h6v.s10.88f8ae6e7b6e from=translated src=- shape=59cbe810 vocab=174412ef
+-/
 @[simp]
 lemma awayMap_awayMap {a b c : R} (h : ∃ n, a ∣ b ^ n) (h' : ∃ n, b ∣ c ^ n) (x) :
     awayMap M h' (awayMap M h x) = awayMap M (exists_dvd_pow_trans h h') x := by
@@ -115,6 +139,9 @@ lemma awayMap_awayMap {a b c : R} (h : ∃ n, a ∣ b ^ n) (h' : ∃ n, b ∣ c 
       (by rw [LinearMap.comp_assoc]; simp)
   exact LinearMap.congr_fun this x
 
+/--
+@isnad1 id=eq.1h4v.s9.d7e8cebc04dd from=translated src=- shape=907821e3 vocab=499724a7
+-/
 @[simp]
 lemma awayMap_self {a : R} (h : ∃ n, a ∣ a ^ n) (x) : awayMap M h x = x := by
   have : awayMap M h = LinearMap.id :=
@@ -122,13 +149,17 @@ lemma awayMap_self {a : R} (h : ∃ n, a ∣ a ^ n) (x) : awayMap M h x = x := b
       (isUnit_algebraMap_of_mem_powers M h) (by simp)
   exact LinearMap.congr_fun this x
 
-/-- Transport of a restriction along an equality of indices. -/
+/-- Transport of a restriction along an equality of indices.
+@isnad1 id=eq.2h8v.s10.09c2d1a52579 from=translated src=- shape=a7b33238 vocab=e4012608
+-/
 lemma awayMap_congr {κ : Type*} {w : κ → R} (x : ∀ k, LocalizedModule (powers (w k)) M)
     {k k' : κ} (e : k = k') {b : R} (h : ∃ n, w k ∣ b ^ n) :
     awayMap M h (x k) = awayMap M (e ▸ h) (x k') := by
   subst e; rfl
 
-/-- If `D(b) = D(c) ∩ D(a)`, then `M_a → M_b` is the localisation away from `c`. -/
+/-- If `D(b) = D(c) ∩ D(a)`, then `M_a → M_b` is the localisation away from `c`.
+@isnad1 id=islocali.3h5v.s8.18a834ab21fb from=translated src=- shape=d0785183 vocab=8ae678ed
+-/
 lemma isLocalizedModule_awayMap {a b c : R} (h : ∃ n, a ∣ b ^ n) (hc : ∃ n, c ∣ b ^ n)
     (hb : ∃ n, b ∣ (c * a) ^ n) : IsLocalizedModule (powers c) (awayMap M h) := by
   obtain ⟨n₀, hn₀⟩ := h
@@ -174,6 +205,9 @@ variable {ι : Type w} (f : ι → R)
 abbrev cechObj (n : ℕ) : Type _ :=
   ∀ i : Fin (n + 1) → ι, LocalizedModule (powers (∏ a, f (i a))) M
 
+/--
+@isnad1 id=ex.0h7v.s6.c1e7b20dbedf from=translated src=- shape=618da298 vocab=bb18383e
+-/
 lemma exists_prod_comp_dvd_pow {m n : ℕ} (i : Fin n → ι) (θ : Fin m → Fin n) :
     ∃ k, ∏ a, f (i (θ a)) ∣ (∏ a, f (i a)) ^ k := by
   refine ⟨m, ?_⟩
@@ -188,6 +222,9 @@ noncomputable def cechRestrict {m n : ℕ} (θ : Fin (m + 1) → Fin (n + 1)) :
     cechObj M f m →ₗ[R] cechObj M f n :=
   LinearMap.pi fun i ↦ awayMap M (exists_prod_comp_dvd_pow f i θ) ∘ₗ LinearMap.proj fun a ↦ i (θ a)
 
+/--
+@isnad1 id=eq.0h9v.s12.dbab133b7b24 from=translated src=- shape=220d8354 vocab=9fa2df57
+-/
 @[simp]
 lemma cechRestrict_apply {m n : ℕ} (θ : Fin (m + 1) → Fin (n + 1)) (x : cechObj M f m)
     (i : Fin (n + 1) → ι) :
@@ -199,6 +236,9 @@ lemma cechRestrict_apply {m n : ℕ} (θ : Fin (m + 1) → Fin (n + 1)) (x : cec
 noncomputable def cechD (n : ℕ) : cechObj M f n →ₗ[R] cechObj M f (n + 1) :=
   ∑ k : Fin (n + 2), ((-1 : ℤ) ^ (k : ℕ)) • cechRestrict f k.succAbove
 
+/--
+@isnad1 id=eq.0h7v.s13.9766125078f3 from=translated src=- shape=59a10e25 vocab=20a594b3
+-/
 @[simp]
 lemma cechD_apply (n : ℕ) (x : cechObj M f n) (i : Fin (n + 2) → ι) :
     cechD M f n x i = ∑ k : Fin (n + 2), ((-1 : ℤ) ^ (k : ℕ)) •
@@ -206,11 +246,17 @@ lemma cechD_apply (n : ℕ) (x : cechObj M f n) (i : Fin (n + 2) → ι) :
   simp only [cechD, LinearMap.coe_sum, Finset.sum_apply]
   exact Finset.sum_congr rfl fun k _ ↦ rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.271f3de77c6e from=translated src=- shape=587501a2 vocab=b6cec14f
+-/
 @[simp]
 lemma cechRestrict_id (n : ℕ) (x : cechObj M f n) : cechRestrict f id x = x := by
   ext i
   exact awayMap_self M (exists_prod_comp_dvd_pow f i id) _
 
+/--
+@isnad1 id=eq.0h10v.s13.ecd046169634 from=translated src=- shape=ebcbf1ce vocab=ee518322
+-/
 @[simp]
 lemma cechRestrict_cechRestrict {l m n : ℕ} (θ : Fin (l + 1) → Fin (m + 1))
     (θ' : Fin (m + 1) → Fin (n + 1)) (x : cechObj M f l) :
@@ -230,17 +276,25 @@ noncomputable def cechCosimplicial : CosimplicialObject (ModuleCat.{max u v w} R
     ext x : 2
     exact (cechRestrict_cechRestrict M f θ.toOrderHom θ'.toOrderHom x).symm
 
+/--
+@isnad1 id=eq.0h6v.s11.bee72518fcec from=translated src=- shape=45988aa5 vocab=d5fa8564
+-/
 lemma cechCosimplicial_δ (n : ℕ) (k : Fin (n + 2)) :
     (cechCosimplicial M f).δ k = ModuleCat.ofHom (cechRestrict f k.succAbove) :=
   rfl
 
-/-- `cechD` is the differential of the alternating coface map complex of `cechCosimplicial`. -/
+/-- `cechD` is the differential of the alternating coface map complex of `cechCosimplicial`.
+@isnad1 id=eq.0h5v.s11.536e320d1249 from=translated src=- shape=001e5954 vocab=9d787386
+-/
 lemma cechD_eq_objD (n : ℕ) : cechD M f n =
     (AlgebraicTopology.AlternatingCofaceMapComplex.objD (cechCosimplicial M f) n).hom := by
   simp only [cechD, AlgebraicTopology.AlternatingCofaceMapComplex.objD, cechCosimplicial_δ,
     ModuleCat.hom_sum, ModuleCat.hom_zsmul]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s13.1d50a2bdcb49 from=translated src=- shape=1525afca vocab=9c3564b4
+-/
 @[simp]
 lemma cechD_cechD (n : ℕ) (x : cechObj M f n) : cechD M f (n + 1) (cechD M f n x) = 0 := by
   have h := congrArg
@@ -257,15 +311,24 @@ lemma cechD_cechD (n : ℕ) (x : cechObj M f n) : cechD M f (n + 1) (cechD M f n
 noncomputable def cechAug : M →ₗ[R] cechObj M f 0 :=
   LinearMap.pi fun _ ↦ mkLinearMap _ M
 
+/--
+@isnad1 id=eq.0h6v.s11.65f065cef1d9 from=translated src=- shape=a634fc64 vocab=b0e17aed
+-/
 @[simp]
 lemma cechAug_apply (m : M) (i : Fin 1 → ι) : cechAug M f m i = mk m 1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.fee563e86268 from=translated src=- shape=370faaa0 vocab=b6b4fc87
+-/
 @[simp]
 lemma cechD_cechAug (m : M) : cechD M f 0 (cechAug M f m) = 0 := by
   ext i
   simp [cechD_apply, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=ex.1h5v.s7.89bf21bdebbf from=translated src=- shape=1c5fa8d6 vocab=bb18383e
+-/
 lemma exists_dvd_pow_prod_fin_one {c : R} (hc : ∀ i, ∃ n, c ∣ f i ^ n) (i : Fin 1 → ι) :
     ∃ n, c ∣ (∏ a, f (i a)) ^ n := by
   simpa using hc (i 0)
@@ -277,11 +340,17 @@ noncomputable def cechAugAway {c : R} (hc : ∀ i, ∃ n, c ∣ f i ^ n) :
     LocalizedModule (powers c) M →ₗ[R] cechObj M f 0 :=
   LinearMap.pi fun i ↦ awayMap M (exists_dvd_pow_prod_fin_one f hc i)
 
+/--
+@isnad1 id=eq.1h7v.s11.dbf66d79b846 from=translated src=- shape=3cff2568 vocab=40723487
+-/
 @[simp]
 lemma cechAugAway_apply {c : R} (hc : ∀ i, ∃ n, c ∣ f i ^ n) (x : LocalizedModule (powers c) M)
     (i : Fin 1 → ι) : cechAugAway hc x i = awayMap M (exists_dvd_pow_prod_fin_one f hc i) x :=
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s13.89a1b573f042 from=translated src=- shape=48e339c0 vocab=10ce9049
+-/
 @[simp]
 lemma cechD_cechAugAway {c : R} (hc : ∀ i, ∃ n, c ∣ f i ^ n) (x : LocalizedModule (powers c) M) :
     cechD M f 0 (cechAugAway hc x) = 0 := by
@@ -291,6 +360,9 @@ lemma cechD_cechAugAway {c : R} (hc : ∀ i, ∃ n, c ∣ f i ^ n) (x : Localize
 /-! ### Changing the family -/
 
 variable {f} in
+/--
+@isnad1 id=ex.1h6v.s6.c58f1e4742fb from=translated src=- shape=cb3507e9 vocab=bb18383e
+-/
 lemma exists_prod_dvd_prod_pow {g : ι → R} (h : ∀ i, f i ∣ g i) {n : ℕ} (i : Fin n → ι) :
     ∃ k, ∏ a, f (i a) ∣ (∏ a, g (i a)) ^ k :=
   ⟨1, by rw [pow_one]; exact Finset.prod_dvd_prod_of_dvd _ _ fun a _ ↦ h (i a)⟩
@@ -301,24 +373,35 @@ noncomputable def cechMap {g : ι → R} (h : ∀ i, f i ∣ g i) (n : ℕ) :
     cechObj M f n →ₗ[R] cechObj M g n :=
   LinearMap.pi fun i ↦ awayMap M (exists_prod_dvd_prod_pow h i) ∘ₗ LinearMap.proj i
 
+/--
+@isnad1 id=eq.1h8v.s12.dde7433a77c9 from=translated src=- shape=720b376c vocab=d78a31b9
+-/
 @[simp]
 lemma cechMap_apply {g : ι → R} (h : ∀ i, f i ∣ g i) (n : ℕ) (x : cechObj M f n)
     (i : Fin (n + 1) → ι) : cechMap M h n x i = awayMap M (exists_prod_dvd_prod_pow h i) (x i) :=
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s14.423e04f81fb8 from=translated src=- shape=3318e898 vocab=44ee5e6f
+-/
 @[simp]
 lemma cechMap_cechD {g : ι → R} (h : ∀ i, f i ∣ g i) (n : ℕ) (x : cechObj M f n) :
     cechMap M h (n + 1) (cechD M f n x) = cechD M g n (cechMap M h n x) := by
   ext i
   simp [cechD_apply, map_sum, map_zsmul]
 
+/--
+@isnad1 id=eq.1h6v.s13.05bb16f9d66c from=translated src=- shape=5f7caa56 vocab=3f6e95e3
+-/
 @[simp]
 lemma cechMap_cechAug {g : ι → R} (h : ∀ i, f i ∣ g i) (m : M) :
     cechMap M h 0 (cechAug M f m) = cechAug M g m := by
   ext i
   simp
 
-/-- Restricting from `f` to `c • f` localises the Čech cochains away from `c`. -/
+/-- Restricting from `f` to `c • f` localises the Čech cochains away from `c`.
+@isnad1 id=islocali.0h6v.s10.7d4d8d7cf871 from=translated src=- shape=2df15bac vocab=17143201
+-/
 instance isLocalizedModule_cechMap [Finite ι] (c : R) (n : ℕ) :
     IsLocalizedModule (powers c) (cechMap M (fun i ↦ dvd_mul_left (f i) c) n) := by
   have (i : Fin (n + 1) → ι) : IsLocalizedModule (powers c)
@@ -340,6 +423,9 @@ section Homotopy
 variable {f} {j : ι} (hj : ∀ i, ∃ m, f j ∣ f i ^ m)
 include hj
 
+/--
+@isnad1 id=ex.1h6v.s8.89466ecc2066 from=translated src=- shape=d7aac9ca vocab=9b87a016
+-/
 lemma exists_prod_cons_dvd_pow {n : ℕ} (i : Fin (n + 1) → ι) :
     ∃ m, ∏ a, f ((Fin.cons j i : Fin (n + 2) → ι) a) ∣ (∏ a, f (i a)) ^ m := by
   obtain ⟨m, hm⟩ := hj (i 0)
@@ -355,6 +441,9 @@ noncomputable def cechHtpy (n : ℕ) : cechObj M f (n + 1) →ₗ[R] cechObj M f
   LinearMap.pi fun i ↦
     awayMap M (exists_prod_cons_dvd_pow hj i) ∘ₗ LinearMap.proj (Fin.cons j i : Fin (n + 2) → ι)
 
+/--
+@isnad1 id=eq.1h8v.s12.1f09f2b1db74 from=translated src=- shape=ac9204f0 vocab=91d883ef
+-/
 @[simp]
 lemma cechHtpy_apply (n : ℕ) (x : cechObj M f (n + 1)) (i : Fin (n + 1) → ι) :
     cechHtpy M hj n x i =
@@ -362,6 +451,9 @@ lemma cechHtpy_apply (n : ℕ) (x : cechObj M f (n + 1)) (i : Fin (n + 1) → ι
   rfl
 
 omit hj in
+/--
+@isnad1 id=ex.1h5v.s7.473892ab52d2 from=translated src=- shape=f7910c03 vocab=bb18383e
+-/
 lemma exists_prod_const_dvd_pow {c : R} (hjc : ∃ k, f j ∣ c ^ k) :
     ∃ k, ∏ _a : Fin 1, f j ∣ c ^ k := by
   simpa using hjc
@@ -374,11 +466,17 @@ noncomputable def cechHtpy₀ {c : R} (hjc : ∃ k, f j ∣ c ^ k) :
   awayMap M (exists_prod_const_dvd_pow hjc) ∘ₗ LinearMap.proj fun _ ↦ j
 
 omit hj in
+/--
+@isnad1 id=eq.1h7v.s11.f0c29284eaf1 from=translated src=- shape=ac666a37 vocab=c50a7c57
+-/
 @[simp]
 lemma cechHtpy₀_apply {c : R} (hjc : ∃ k, f j ∣ c ^ k) (x : cechObj M f 0) :
     cechHtpy₀ M hjc x = awayMap M (exists_prod_const_dvd_pow hjc) (x fun _ ↦ j) :=
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s14.304c0382121f from=translated src=- shape=b3548ee6 vocab=0a2efbcf
+-/
 lemma cechD_cechHtpy_add (n : ℕ) (x : cechObj M f (n + 1)) :
     cechD M f n (cechHtpy M hj n x) + cechHtpy M hj (n + 1) (cechD M f (n + 1) x) = x := by
   ext i
@@ -410,10 +508,16 @@ variable {c : R} (hjc : ∃ k, f j ∣ c ^ k) (hc : ∀ i, ∃ n, c ∣ f i ^ n)
 include hjc
 
 omit hj in
+/--
+@isnad1 id=eq.2h7v.s12.27f9dbe8617a from=translated src=- shape=6d49524c vocab=8d417463
+-/
 lemma cechHtpy₀_cechAugAway (y : LocalizedModule (powers c) M) :
     cechHtpy₀ M hjc (cechAugAway hc y) = y := by
   simp
 
+/--
+@isnad1 id=eq.3h7v.s13.a3ca7eee948f from=translated src=- shape=7817d08f vocab=1cedf5fe
+-/
 lemma cechAugAway_cechHtpy₀_add (x : cechObj M f 0) :
     cechAugAway hc (cechHtpy₀ M hjc x) + cechHtpy M hj 0 (cechD M f 0 x) = x := by
   ext i
@@ -429,7 +533,9 @@ lemma cechAugAway_cechHtpy₀_add (x : cechObj M f 0) :
   abel
 
 omit hjc in
-/-- A Čech complex with a contracting homotopy is exact. -/
+/-- A Čech complex with a contracting homotopy is exact.
+@isnad1 id=exact.1h6v.s13.471b13db8a80 from=translated src=- shape=494e6f50 vocab=2b8dc9a7
+-/
 lemma cechD_exact_of_dvd (n : ℕ) : Function.Exact (cechD M f n) (cechD M f (n + 1)) := by
   intro y
   refine ⟨fun hy ↦ ⟨cechHtpy M hj n y, ?_⟩, ?_⟩
@@ -438,9 +544,15 @@ lemma cechD_exact_of_dvd (n : ℕ) : Function.Exact (cechD M f n) (cechD M f (n 
     exact cechD_cechD M f n x
 
 omit hj in
+/--
+@isnad1 id=injectiv.2h6v.s11.6b923eed1e88 from=translated src=- shape=e5caacf0 vocab=3e2c01c2
+-/
 lemma cechAugAway_injective : Function.Injective (cechAugAway (M := M) hc) :=
   Function.LeftInverse.injective (cechHtpy₀_cechAugAway M hjc hc)
 
+/--
+@isnad1 id=exact.3h6v.s13.c240f098306a from=translated src=- shape=407371f5 vocab=5bae36c1
+-/
 lemma cechAugAway_exact : Function.Exact (cechAugAway (M := M) hc) (cechD M f 0) := by
   intro y
   refine ⟨fun hy ↦ ⟨cechHtpy₀ M hjc y, ?_⟩, ?_⟩
@@ -456,6 +568,9 @@ section Exactness
 
 variable [Finite ι]
 
+/--
+@isnad1 id=eq.0h6v.s15.684b9697c773 from=translated src=- shape=eb0a8bde vocab=44eca8df
+-/
 lemma map_cechD (c : R) (n : ℕ) :
     IsLocalizedModule.map (powers c) (cechMap M (fun i ↦ dvd_mul_left (f i) c) n)
       (cechMap M (fun i ↦ dvd_mul_left (f i) c) (n + 1)) (cechD M f n) =
@@ -467,9 +582,15 @@ lemma map_cechD (c : R) (n : ℕ) :
   simp
 
 omit [Finite ι] in
+/--
+@isnad1 id=ex.0h5v.s6.1d0805137649 from=translated src=- shape=d99c78b2 vocab=b884e33a
+-/
 lemma exists_dvd_pow_mul_left (c : R) (i : ι) : ∃ n, c ∣ (c * f i) ^ n :=
   ⟨1, by rw [pow_one]; exact dvd_mul_right c (f i)⟩
 
+/--
+@isnad1 id=eq.0h5v.s14.a134faf23527 from=translated src=- shape=8d4c94a6 vocab=2b4061c4
+-/
 lemma map_cechAug (c : R) :
     IsLocalizedModule.map (powers c) (mkLinearMap (powers c) M)
       (cechMap M (fun i ↦ dvd_mul_left (f i) c) 0) (cechAug M f) =
@@ -488,7 +609,9 @@ omit [Finite ι] in
 private lemma dvd_pow_mul_self' (j : ι) : ∃ m, f j * f j ∣ f j ^ m :=
   ⟨2, by rw [sq]⟩
 
-/-- The augmentation `M → ∏ M_{f i}` is injective if the `f i` generate the unit ideal. -/
+/-- The augmentation `M → ∏ M_{f i}` is injective if the `f i` generate the unit ideal.
+@isnad1 id=injectiv.1h4v.s11.22b32430841b from=translated src=- shape=2788686c vocab=5d7c9bfb
+-/
 theorem cechAug_injective (hf : Ideal.span (Set.range f) = ⊤) :
     Function.Injective (cechAug M f) := by
   refine injective_of_isLocalized_span (Set.range f) hf
@@ -500,7 +623,9 @@ theorem cechAug_injective (hf : Ideal.span (Set.range f) = ⊤) :
   exact cechAugAway_injective M (f := fun i ↦ f j * f i) (j := j) (dvd_pow_mul_self' f j) _
 
 /-- The augmented Čech complex is exact at `∏ M_{f i}`: a compatible family of sections over the
-`D(f i)` comes from a unique element of `M` (see also `cechAug_injective`). -/
+`D(f i)` comes from a unique element of `M` (see also `cechAug_injective`).
+@isnad1 id=exact.1h4v.s12.72c530c14604 from=translated src=- shape=c08c7f9f vocab=9e023dfb
+-/
 theorem cechAug_exact (hf : Ideal.span (Set.range f) = ⊤) :
     Function.Exact (cechAug M f) (cechD M f 0) := by
   refine exact_of_isLocalized_span (Set.range f) hf
@@ -523,6 +648,9 @@ noncomputable def cechAugEquivKer (hf : Ideal.span (Set.range f) = ⊤) :
         obtain ⟨m, rfl⟩ := (cechAug_exact M f hf y).mp hy
         exact ⟨m, rfl⟩⟩
 
+/--
+@isnad1 id=eq.1h5v.s15.c2dd21dccf5c from=translated src=- shape=06ae91ce vocab=ef2ce584
+-/
 @[simp]
 lemma cechAugEquivKer_apply_coe (hf : Ideal.span (Set.range f) = ⊤) (m : M) :
     (cechAugEquivKer M f hf m : cechObj M f 0) = cechAug M f m :=
@@ -538,9 +666,15 @@ end Exactness
 noncomputable def cechComplex : CochainComplex (ModuleCat.{max u v w} R) ℕ :=
   (AlgebraicTopology.alternatingCofaceMapComplex _).obj (cechCosimplicial M f)
 
+/--
+@isnad1 id=eq.0h5v.s9.62a46af2a835 from=translated src=- shape=094b3c49 vocab=7669a12b
+-/
 lemma cechComplex_X (n : ℕ) : (cechComplex M f).X n = ModuleCat.of R (cechObj M f n) :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.02668dfa9cea from=translated src=- shape=4b6c8dd7 vocab=a241f1b4
+-/
 @[simp]
 lemma cechComplex_d (n : ℕ) :
     (cechComplex M f).d n (n + 1) = ModuleCat.ofHom (cechD M f n) := by

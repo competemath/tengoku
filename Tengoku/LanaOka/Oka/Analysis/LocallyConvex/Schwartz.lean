@@ -52,7 +52,9 @@ section Convex
 variable {E ι : Type*} [AddCommGroup E] [Module ℝ E]
 
 /-- A convex set containing `0` contains all sums `∑ wᵢ • zᵢ` with `zᵢ` in the set, `wᵢ ≥ 0` and
-`∑ wᵢ ≤ 1`. -/
+`∑ wᵢ ≤ 1`.
+@isnad1 id=mem.5h6v.s8.40f106d51277 from=translated src=- shape=3cd49ed4 vocab=7a1bcd80
+-/
 theorem Convex.sum_smul_mem_of_sum_le_one {s : Set E} (hs : Convex ℝ s) (h0 : (0 : E) ∈ s)
     {t : Finset ι} {w : ι → ℝ} {z : ι → E} (hw0 : ∀ i ∈ t, 0 ≤ w i)
     (hw1 : ∑ i ∈ t, w i ≤ 1) (hz : ∀ i ∈ t, z i ∈ s) : ∑ i ∈ t, w i • z i ∈ s := by
@@ -79,7 +81,9 @@ variable {𝕜 E : Type*} [RCLike 𝕜] [AddCommGroup E] [Module 𝕜 E] [Unifor
   [LocallyConvexSpace ℝ E]
 
 /-- In a complete locally convex space, `∑ rₙ • ℓₙ` converges for `ℓₙ` in a bounded set and
-`rₙ ≥ 0` summable. -/
+`rₙ ≥ 0` summable.
+@isnad1 id=summable.4h5v.s8.d0a1b88ed355 from=translated src=- shape=9184dd1e vocab=b868e433
+-/
 theorem Bornology.IsVonNBounded.summable_real_smul {L : Set E} (hL : IsVonNBounded 𝕜 L)
     {r : ℕ → ℝ} (hr0 : ∀ n, 0 ≤ r n) (hr : Summable r) {ℓ : ℕ → E} (hℓ : ∀ n, ℓ n ∈ L) :
     Summable fun n ↦ r n • ℓ n := by
@@ -116,7 +120,9 @@ variable {𝕜 E F : Type*} [RCLike 𝕜]
   [FirstCountableTopology F] [CompleteSpace F] [T2Space F]
 
 /-- **Schwartz's theorem** (Fréchet spaces): for `u` surjective and `v` compact there is a
-finite dimensional subspace `G` with `range (u + v) ⊔ G = ⊤`. -/
+finite dimensional subspace `G` with `range (u + v) ⊔ G = ⊤`.
+@isnad1 id=ex.2h5v.s10.c1524f895cf7 from=translated src=- shape=d3ff3c4c vocab=dc5fb135
+-/
 theorem exists_range_add_sup_eq_top_of_locallyConvex {u v : E →L[𝕜] F}
     (hu : Function.Surjective u) (hv : IsCompactOperator v) :
     ∃ G : Submodule 𝕜 F, FiniteDimensional 𝕜 G ∧
@@ -160,7 +166,9 @@ theorem exists_range_add_sup_eq_top_of_locallyConvex {u v : E →L[𝕜] F}
     exact ⟨t, v x', mem_image_of_mem v hx', map_smul v t x'⟩
 
 /-- **Schwartz's theorem** (Fréchet spaces): for `u` surjective and `v` compact, the cokernel
-`F ⧸ range (u + v)` is finite dimensional. -/
+`F ⧸ range (u + v)` is finite dimensional.
+@isnad1 id=finitedi.2h5v.s11.365d45bf87fd from=translated src=- shape=4e5c5ecb vocab=de15e7c8
+-/
 theorem finiteDimensional_quotient_range_add_of_locallyConvex {u v : E →L[𝕜] F}
     (hu : Function.Surjective u) (hv : IsCompactOperator v) :
     FiniteDimensional 𝕜 (F ⧸ LinearMap.range (u + v).toLinearMap) := by
@@ -168,7 +176,9 @@ theorem finiteDimensional_quotient_range_add_of_locallyConvex {u v : E →L[𝕜
   exact Submodule.finiteDimensional_quotient_of_sup_eq_top h
 
 /-- **Schwartz's theorem** (Fréchet spaces): for `u` surjective and `v` compact, the range of
-`u + v` is closed. -/
+`u + v` is closed.
+@isnad1 id=isclosed.2h5v.s10.c933dd55bf9c from=translated src=- shape=00470c6f vocab=b783f53b
+-/
 theorem isClosed_range_add_of_locallyConvex {u v : E →L[𝕜] F}
     (hu : Function.Surjective u) (hv : IsCompactOperator v) :
     IsClosed (LinearMap.range (u + v).toLinearMap : Set F) := by

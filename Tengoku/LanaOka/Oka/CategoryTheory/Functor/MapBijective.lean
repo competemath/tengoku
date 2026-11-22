@@ -29,7 +29,9 @@ namespace CategoryTheory.Functor
 
 variable {C D : Type*} [Category C] [Category D] (A : C ⥤ D)
 
-/-- Bijectivity of `A.map` on `(P ⟶ Q)` transfers along an isomorphism `P ≅ P'`. -/
+/-- Bijectivity of `A.map` on `(P ⟶ Q)` transfers along an isomorphism `P ≅ P'`.
+@isnad1 id=bijectiv.1h7v.s6.f744d5709c00 from=translated src=- shape=15b5fbed vocab=c0ec5c29
+-/
 lemma bijective_map_of_iso_left {P P' : C} (e : P ≅ P') (Q : C)
     (h : Function.Bijective (A.map : (P ⟶ Q) → _)) :
     Function.Bijective (A.map : (P' ⟶ Q) → _) := by
@@ -42,7 +44,9 @@ lemma bijective_map_of_iso_left {P P' : C} (e : P ≅ P') (Q : C)
       Category.id_comp]
 
 /-- Bijectivity of `A.map` on `(Pᵢ ⟶ Q)` for all `i` implies bijectivity on `(∐ Pᵢ ⟶ Q)` if `A`
-preserves the coproduct. -/
+preserves the coproduct.
+@isnad1 id=bijectiv.1h6v.s7.fb81bdd0583f from=translated src=- shape=ab0ee6c0 vocab=0c05a6cd
+-/
 lemma bijective_map_sigma {I : Type*} (P : I → C) [HasCoproduct P]
     [hA : PreservesColimit (Discrete.functor P) A] (Q : C)
     (h : ∀ i, Function.Bijective (A.map : (P i ⟶ Q) → _)) :
@@ -56,7 +60,9 @@ lemma bijective_map_sigma {I : Type*} (P : I → C) [HasCoproduct P]
     rw [← A.map_comp, Sigma.ι_desc, hg]
 
 /-- Injectivity of `A.map` on `(P ⟶ Q)` implies injectivity on `(F ⟶ Q)` for an epimorphism
-`P ⟶ F`. -/
+`P ⟶ F`.
+@isnad1 id=injectiv.1h7v.s6.a361f0ae5710 from=translated src=- shape=cc676758 vocab=8502c493
+-/
 lemma injective_map_of_epi {P F : C} (p : P ⟶ F) [Epi p] (Q : C)
     (h : Function.Injective (A.map : (P ⟶ Q) → _)) :
     Function.Injective (A.map : (F ⟶ Q) → _) := fun g g' hg ↦
@@ -64,7 +70,9 @@ lemma injective_map_of_epi {P F : C} (p : P ⟶ F) [Epi p] (Q : C)
 
 /-- **Surjectivity along a presentation.** For an epimorphism `p : P ⟶ F` in an abelian category
 with `A.map p` epi, surjectivity of `A.map` on `(P ⟶ Q)` and injectivity on `(ker p ⟶ Q)` imply
-surjectivity on `(F ⟶ Q)`. -/
+surjectivity on `(F ⟶ Q)`.
+@isnad1 id=surjecti.2h7v.s7.2c076ba7833b from=translated src=- shape=f77a03d4 vocab=949e4e7f
+-/
 lemma surjective_map_of_epi [Abelian C] [HasZeroMorphisms D] [hA : A.PreservesZeroMorphisms]
     {P F : C} (p : P ⟶ F) [Epi p] [hAp : Epi (A.map p)] (Q : C)
     (hP : Function.Surjective (A.map : (P ⟶ Q) → _))
@@ -83,7 +91,9 @@ lemma surjective_map_of_epi [Abelian C] [HasZeroMorphisms D] [hA : A.PreservesZe
 
 /-- **Transport along a commuting autoequivalence.** If `T ⋙ A ≅ A ⋙ T'` with `T` fully faithful
 and `T'` faithful, then bijectivity of `A.map` on `(T P ⟶ T Q)` implies bijectivity on
-`(P ⟶ Q)`. -/
+`(P ⟶ Q)`.
+@isnad1 id=bijectiv.1h8v.s7.96c231dd7a20 from=translated src=- shape=9f9dca1f vocab=ad950c0f
+-/
 lemma bijective_map_of_natIso {T : C ⥤ C} {T' : D ⥤ D} (e : T ⋙ A ≅ A ⋙ T') [hTfull : T.Full]
     [hTfaith : T.Faithful] [hT' : T'.Faithful] (P Q : C)
     (h : Function.Bijective (A.map : (T.obj P ⟶ T.obj Q) → _)) :

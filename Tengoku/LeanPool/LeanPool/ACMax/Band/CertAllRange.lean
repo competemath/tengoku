@@ -22,7 +22,9 @@ gives a uniform certificate with no upper bound on the order.
 namespace ACMax
 
 /-- The small-exponent power estimate in the parameter range used by the
-paper. -/
+paper.
+@isnad1 id=le.6h3v.s7.44148e411d7a from=translated src=- shape=31e067f2 vocab=cdb4433a
+-/
 theorem small_exponent_power_growth (t v ell : ℕ)
     (ht43 : 43 ≤ t) (htv : t ≤ v) (hv107 : v ≤ 107)
     (hell4 : 4 ≤ ell) (hell7 : ell ≤ 7)
@@ -30,7 +32,9 @@ theorem small_exponent_power_growth (t v ell : ℕ)
     (t - 9) * v ^ ell ≤ (v + 2 * t) ^ ell :=
   uniform_power_certificate t v ell ht43 htv (by omega) hell4 (by omega) hlin
 
-/-- The binomial expansion through its fourth nonconstant term. -/
+/-- The binomial expansion through its fourth nonconstant term.
+@isnad1 id=le.0h3v.s9.6cba4428f937 from=translated src=- shape=1c370838 vocab=6e2f5509
+-/
 theorem binomial_lower_four (v t k : ℕ) :
     3 * (v + 2 * t) ^ (k + 4) ≥
       3 * v ^ (k + 4) +
@@ -67,7 +71,9 @@ theorem binomial_lower_four (v t k : ℕ) :
             nlinarith [Nat.zero_le
               (4 * (k + 4) * (k + 3) * (k + 2) * (k + 1) * t ^ 5 * v ^ k)]
 
-/-- At `t = 43`, the fourth-term inequality is minimized at `ell = 8`. -/
+/-- At `t = 43`, the fourth-term inequality is minimized at `ell = 8`.
+@isnad1 id=le.2h2v.s7.fedd7a15be21 from=translated src=- shape=32c57c13 vocab=cdb4433a
+-/
 theorem fourth_term_corner_t43 (v ell : ℕ) (hell8 : 8 ≤ ell)
     (hlin : 5 * v + 41 ≤ 50 * ell + 3 * 43) :
     3 * v ^ 4 ≤
@@ -87,7 +93,9 @@ theorem fourth_term_corner_t43 (v ell : ℕ) (hell8 : 8 ≤ ell)
     _ = 2 * (8 + u) * (7 + u) * (6 + u) * (5 + u) * 43 ^ 3 := by ring
 
 /-- Increasing `t` by one cannot worsen the scaled fourth-term ratio when
-`A ≥ 5t`. -/
+`A ≥ 5t`.
+@isnad1 id=le.3h3v.s7.b2a62cf79731 from=translated src=- shape=bb39bb02 vocab=f96c6fce
+-/
 theorem fourth_term_ratio_step (t A C : ℕ) (ht : 1 ≤ t) (hAt : 5 * t ≤ A)
     (hbase : 3 * A ^ 4 ≤ C * t ^ 3) :
     3 * (A + 3) ^ 4 ≤ C * (t + 1) ^ 3 := by
@@ -124,7 +132,9 @@ theorem fourth_term_ratio_step (t A C : ℕ) (ht : 1 ≤ t) (hAt : 5 * t ≤ A)
       _ = t ^ 3 * (C * (t + 1) ^ 3) := by ring
   exact Nat.le_of_mul_le_mul_left hscaled (pow_pos (by omega) 3)
 
-/-- The fourth binomial term implies the exact Moore side condition. -/
+/-- The fourth binomial term implies the exact Moore side condition.
+@isnad1 id=lt.4h3v.s8.0e6a9074ff59 from=translated src=- shape=6a150c8c vocab=62399aff
+-/
 theorem sum_cert_of_fourth {t v ell : ℕ} (ht : 0 < t) (hv : 0 < v)
     (hell8 : 8 ≤ ell)
     (hfourth : 3 * v ^ 4 ≤
@@ -178,7 +188,9 @@ theorem sum_cert_of_fourth {t v ell : ℕ} (ht : 0 < t) (hv : 0 < v)
       _ < (v + t) * (t * v ^ ell) := hmul
   exact hstrict.trans_le (Nat.mul_le_mul_left (v + t) hdiff)
 
-/-- The order-free parameter bounds supplied by the strengthened census. -/
+/-- The order-free parameter bounds supplied by the strengthened census.
+@isnad1 id=other.3h3v.s8.6f4231784de7 from=translated src=- shape=6128ceda vocab=e32ddfcd
+-/
 theorem uniform_region_bounds_ge_48 (n X h : ℕ)
     (hM : 10 * X + 7 * h + 186 ≤ 4 * n)
     (hhX : h ≤ X) (hn48 : 48 ≤ n) :

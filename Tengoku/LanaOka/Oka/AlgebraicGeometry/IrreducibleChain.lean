@@ -30,7 +30,9 @@ namespace AlgebraicGeometry
 
 variable (X : Scheme.{u})
 
-/-- The irreducible components of a locally Noetherian scheme form a locally finite family. -/
+/-- The irreducible components of a locally Noetherian scheme form a locally finite family.
+@isnad1 id=locallyf.0h1v.s7.dfd10cfc7597 from=translated src=- shape=ffb29207 vocab=c47b77d3
+-/
 theorem Scheme.locallyFinite_irreducibleComponents [IsLocallyNoetherian X] :
     LocallyFinite (fun Z : irreducibleComponents X ↦ (Z : Set X)) := by
   refine _root_.Tengoku.LanaOka.locallyFinite_irreducibleComponents fun x ↦ ?_
@@ -41,7 +43,9 @@ theorem Scheme.locallyFinite_irreducibleComponents [IsLocallyNoetherian X] :
 
 /-- **Chain lemma for schemes.** In a connected, locally Noetherian, Jacobson scheme any two
 closed points are linked by a chain of closed points in which consecutive points lie in a common
-irreducible component. -/
+irreducible component.
+@isnad1 id=refltran.2h3v.s8.2f3079dbf75b from=translated src=- shape=83f6b57b vocab=45c4efdf
+-/
 theorem Scheme.reflTransGen_irreducibleComponents [IsLocallyNoetherian X] [JacobsonSpace X]
     [ConnectedSpace X] {x y : X} (hx : IsClosed {x}) (hy : IsClosed {y}) :
     Relation.ReflTransGen (fun a b : X ↦ IsClosed {a} ∧ IsClosed {b} ∧

@@ -58,7 +58,9 @@ vanish. The induction is `MvPolynomial.induction_on`, so no monomial expansion a
 
 `MvPolynomial.coeff_mul_X'` decides membership in a `Finsupp.support`, so the proof opens
 `classical`; the statement needs no `DecidableEq σ` and the `unusedDecidableInType` linter is
-what says so. -/
+what says so.
+@isnad1 id=eq.0h5v.s9.8a471ddce014 from=translated src=- shape=6b20792f vocab=55cbfb4b
+-/
 theorem coeff_single_one_taylorAlgHom (z : σ → R) (i : σ) (p : MvPolynomial σ R) :
     coeff (Finsupp.single i 1) (taylorAlgHom z p) = eval z (pderiv i p) := by
   classical

@@ -19,7 +19,9 @@ neighbourhoods of `x`, and images of convex sets under linear maps are convex.
 
 open Topology Filter Set
 
-/-- **Local convexity passes to open quotients.** -/
+/-- **Local convexity passes to open quotients.**
+@isnad1 id=locallyc.1h4v.s6.07a734f7dca7 from=translated src=- shape=93e0f922 vocab=88eb44fd
+-/
 theorem LocallyConvexSpace.of_isOpenQuotientMap {𝕜 E F : Type*} [Semiring 𝕜] [PartialOrder 𝕜]
     [AddCommMonoid E] [Module 𝕜 E] [TopologicalSpace E] [LocallyConvexSpace 𝕜 E]
     [AddCommMonoid F] [Module 𝕜 F] [TopologicalSpace F] (f : E →ₗ[𝕜] F)

@@ -76,7 +76,9 @@ section Nonarchimedean
 variable [IsUltrametricDist K]
 
 /-- In a nonarchimedean field, `1 - qⁿ⁺¹` has norm `1`: since `‖qⁿ⁺¹‖ < 1 = ‖1‖`, the
-ultrametric "isosceles" law makes the norm of the difference equal to the larger of the two. -/
+ultrametric "isosceles" law makes the norm of the difference equal to the larger of the two.
+@isnad1 id=eq.0h3v.s7.b223f5f8dea4 from=translated src=- shape=a1a9c986 vocab=106962f5
+-/
 lemma norm_one_sub_qpow (n : ℕ) : ‖(1 : K) - (t.q : K) ^ (n + 1)‖ = 1 := by
   have hlt : ‖(t.q : K) ^ (n + 1)‖ < 1 := by
     rw [norm_pow]
@@ -87,14 +89,18 @@ lemma norm_one_sub_qpow (n : ℕ) : ‖(1 : K) - (t.q : K) ^ (n + 1)‖ = 1 := b
     IsUltrametricDist.norm_add_eq_max_of_norm_ne_norm (by rwa [norm_neg]),
     norm_neg, norm_one, max_eq_left hlt.le]
 
-/-- The factor `1 - qⁿ⁺¹` in the denominator of the Eisenstein series is nonzero. -/
+/-- The factor `1 - qⁿ⁺¹` in the denominator of the Eisenstein series is nonzero.
+@isnad1 id=ne.0h3v.s7.0bd53cb87daa from=translated src=- shape=62a19f34 vocab=91cdb93e
+-/
 lemma one_sub_qpow_ne_zero (n : ℕ) : (1 : K) - (t.q : K) ^ (n + 1) ≠ 0 :=
   norm_pos_iff.mp (by rw [t.norm_one_sub_qpow n]; exact one_pos)
 
 variable [CompleteSpace K]
 
 /-- The family defining the Eisenstein series `sₖ(q)` is summable: each term has norm
-`‖(n + 1 : K)‖ᵏ · ‖q‖ⁿ⁺¹ ≤ ‖q‖ⁿ⁺¹`, dominated by the convergent geometric series `∑ ‖q‖ⁿ⁺¹`. -/
+`‖(n + 1 : K)‖ᵏ · ‖q‖ⁿ⁺¹ ≤ ‖q‖ⁿ⁺¹`, dominated by the convergent geometric series `∑ ‖q‖ⁿ⁺¹`.
+@isnad1 id=summable.0h3v.s8.802bb7a9f458 from=translated src=- shape=fd23b733 vocab=e217d9fc
+-/
 lemma eisenstein_summand_summable (k : ℕ) :
     Summable fun n : ℕ =>
       ((n + 1 : ℕ) : K) ^ k * (t.q : K) ^ (n + 1) / (1 - (t.q : K) ^ (n + 1)) := by
@@ -118,8 +124,14 @@ def a₄ : K := -5 * t.eisenstein 3
 /-- The Tate coefficient `a₆(q) = -(5 s₃(q) + 7 s₅(q)) / 12`. -/
 def a₆ : K := -(5 * t.eisenstein 3 + 7 * t.eisenstein 5) / 12
 
+/--
+@isnad1 id=eq.0h2v.s6.b2c3bbbbee9c from=translated src=- shape=810d0e29 vocab=5ee75762
+-/
 lemma a₄_def : t.a₄ = -5 * t.eisenstein 3 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.3d40c74ab488 from=translated src=- shape=67b57112 vocab=beb2c47e
+-/
 lemma a₆_def : t.a₆ = -(5 * t.eisenstein 3 + 7 * t.eisenstein 5) / 12 := rfl
 
 /-- The **Tate Weierstrass curve** `E_q : y² + xy = x³ + a₄(q) x + a₆(q)`. -/
@@ -130,25 +142,48 @@ def tateCurve : WeierstrassCurve K where
   a₄ := t.a₄
   a₆ := t.a₆
 
+/--
+@isnad1 id=eq.0h2v.s5.80738446bfc0 from=translated src=- shape=7101dedf vocab=74141775
+-/
 @[simp] lemma tateCurve_a₁ : t.tateCurve.a₁ = 1 := rfl
+/--
+@isnad1 id=eq.0h2v.s5.b3e38dea176b from=translated src=- shape=7101dedf vocab=68e58ac1
+-/
 @[simp] lemma tateCurve_a₂ : t.tateCurve.a₂ = 0 := rfl
+/--
+@isnad1 id=eq.0h2v.s5.59200511de69 from=translated src=- shape=7101dedf vocab=0fa91647
+-/
 @[simp] lemma tateCurve_a₃ : t.tateCurve.a₃ = 0 := rfl
+/--
+@isnad1 id=eq.0h2v.s4.7ddaa3915734 from=translated src=- shape=0800dc30 vocab=3dc812a0
+-/
 @[simp] lemma tateCurve_a₄ : t.tateCurve.a₄ = t.a₄ := rfl
+/--
+@isnad1 id=eq.0h2v.s4.dd1b262d8227 from=translated src=- shape=0800dc30 vocab=4ba99fea
+-/
 @[simp] lemma tateCurve_a₆ : t.tateCurve.a₆ = t.a₆ := rfl
 
-/-- The `b₂`-invariant of the Tate curve is `1`. -/
+/-- The `b₂`-invariant of the Tate curve is `1`.
+@isnad1 id=eq.0h2v.s5.6266b172d1c5 from=translated src=- shape=7101dedf vocab=2a76317a
+-/
 lemma tateCurve_b₂ : t.tateCurve.b₂ = 1 := by
   simp only [WeierstrassCurve.b₂, tateCurve_a₁, tateCurve_a₂]; ring
 
-/-- The `b₄`-invariant of the Tate curve is `2 a₄(q)`. -/
+/-- The `b₄`-invariant of the Tate curve is `2 a₄(q)`.
+@isnad1 id=eq.0h2v.s6.8644c99c945b from=translated src=- shape=cfd0a80f vocab=86ae6419
+-/
 lemma tateCurve_b₄ : t.tateCurve.b₄ = 2 * t.a₄ := by
   simp only [WeierstrassCurve.b₄, tateCurve_a₄, tateCurve_a₁, tateCurve_a₃]; ring
 
-/-- The `b₆`-invariant of the Tate curve is `4 a₆(q)`. -/
+/-- The `b₆`-invariant of the Tate curve is `4 a₆(q)`.
+@isnad1 id=eq.0h2v.s6.e1c988fb6389 from=translated src=- shape=cfd0a80f vocab=08cafa73
+-/
 lemma tateCurve_b₆ : t.tateCurve.b₆ = 4 * t.a₆ := by
   simp only [WeierstrassCurve.b₆, tateCurve_a₆, tateCurve_a₃]; ring
 
-/-- The `b₈`-invariant of the Tate curve is `a₆(q) - a₄(q)²`. -/
+/-- The `b₈`-invariant of the Tate curve is `a₆(q) - a₄(q)²`.
+@isnad1 id=eq.0h2v.s6.794fb36f4a02 from=translated src=- shape=1a53fabc vocab=3eb5c2ad
+-/
 lemma tateCurve_b₈ : t.tateCurve.b₈ = t.a₆ - t.a₄ ^ 2 := by
   simp only [WeierstrassCurve.b₈, tateCurve_a₆, tateCurve_a₄, tateCurve_a₁, tateCurve_a₂,
     tateCurve_a₃]; ring

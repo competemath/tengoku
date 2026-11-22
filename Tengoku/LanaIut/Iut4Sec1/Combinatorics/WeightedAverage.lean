@@ -75,7 +75,9 @@ private lemma sum_coordinate_mul_tupleWeight {E : Type*} [Fintype E]
       rw [herase, Finset.prod_const, Finset.card_erase_of_mem (Finset.mem_univ i),
         Finset.card_univ, Fintype.card_fin]
 
-/-- Proposition 1.7: the symmetrized and fixed-coordinate weighted averages agree. -/
+/-- Proposition 1.7: the symmetrized and fixed-coordinate weighted averages agree.
+@isnad1 id=and.1h5v.s8.a98022698921 from=translated src=- shape=d97c506d vocab=9b0fb602
+-/
 theorem weighted_average_eq {E : Type*} [Fintype E] [Nonempty E]
     {n : ℕ} [NeZero n] (weight β : E → ℝ)
     (hweight : ∀ e, 0 < weight e) (i : Fin n) :
@@ -131,11 +133,17 @@ noncomputable def rawPacketWeight {A E : Type*} [Fintype A]
     (localDegree : E → ℝ) (t : A → E) : ℝ :=
   ∏ a, localDegree (t a)
 
+/--
+@isnad1 id=lt.1h4v.s5.56cc3893b983 from=translated src=- shape=c10aaf20 vocab=09c69808
+-/
 lemma rawPacketWeight_pos {A E : Type*} [Fintype A]
     (localDegree : E → ℝ) (hlocalDegree : ∀ e, 0 < localDegree e) (t : A → E) :
     0 < rawPacketWeight localDegree t := by
   exact Finset.prod_pos fun a _ => hlocalDegree (t a)
 
+/--
+@isnad1 id=lt.1h3v.s6.9241f0b6b7dc from=translated src=- shape=5b690018 vocab=f5266324
+-/
 lemma rawPacketWeight_sum_pos {A E : Type*} [Fintype A] [DecidableEq A]
     [Fintype E] [Nonempty E]
     (localDegree : E → ℝ) (hlocalDegree : ∀ e, 0 < localDegree e) :
@@ -149,6 +157,9 @@ noncomputable def normalizedPacketWeight {A E : Type*} [Fintype A] [DecidableEq 
     (localDegree : E → ℝ) (t : A → E) : ℝ :=
   rawPacketWeight localDegree t / ∑ u : A → E, rawPacketWeight localDegree u
 
+/--
+@isnad1 id=lt.1h4v.s5.03901bee013c from=translated src=- shape=bb366925 vocab=2779946d
+-/
 lemma normalizedPacketWeight_pos {A E : Type*} [Fintype A] [DecidableEq A]
     [Fintype E] [Nonempty E]
     (localDegree : E → ℝ) (hlocalDegree : ∀ e, 0 < localDegree e) (t : A → E) :
@@ -156,7 +167,9 @@ lemma normalizedPacketWeight_pos {A E : Type*} [Fintype A] [DecidableEq A]
   div_pos (rawPacketWeight_pos localDegree hlocalDegree t)
     (rawPacketWeight_sum_pos localDegree hlocalDegree)
 
-/-- Positive raw packet weights normalize to a probability distribution. -/
+/-- Positive raw packet weights normalize to a probability distribution.
+@isnad1 id=eq.1h3v.s6.fa71f0392c53 from=translated src=- shape=785e87e9 vocab=fc867a03
+-/
 theorem sum_normalizedPacketWeight_eq_one {A E : Type*}
     [Fintype A] [DecidableEq A] [Fintype E] [Nonempty E]
     (localDegree : E → ℝ) (hlocalDegree : ∀ e, 0 < localDegree e) :

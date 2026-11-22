@@ -44,11 +44,20 @@ variable {L : PeriodPair} (U : Unif L)
 /-- The covering `ψ : ℍ → ℂ ∖ Λ`. -/
 def ψ (τ : ℍ) : ℂ := U.Ψ τ
 
+/--
+@isnad1 id=not.0h3v.s5.febef746e149 from=translated src=- shape=b9fc4861 vocab=f07662d4
+-/
 theorem ψ_notMem (τ : ℍ) : U.ψ τ ∉ L.lattice := U.notMem τ τ.im_pos
 
+/--
+@isnad1 id=continuo.0h2v.s4.8fd9dbfa1f57 from=translated src=- shape=aae9536c vocab=d2ddb45a
+-/
 theorem continuous_ψ : Continuous U.ψ :=
   U.differentiableOn.continuousOn.comp_continuous continuous_coe fun τ ↦ τ.im_pos
 
+/--
+@isnad1 id=not.2h3v.s6.f887d07fd9cb from=translated src=- shape=235f2cb8 vocab=f29bb500
+-/
 theorem add_notMem {z l : ℂ} (hz : z ∉ L.lattice) (hl : l ∈ L.lattice) : z + l ∉ L.lattice :=
   fun h ↦ hz (by simpa using sub_mem h hl)
 
@@ -63,7 +72,9 @@ theorem eq_of_comp_eq {A B : ℍ → ℍ} (hA : Continuous A) (hB : Continuous B
   funext τ
   exact (congrArg (fun F : C(ℍ, ℍ) ↦ F τ) this).symm
 
-/-- Translations by periods lift through `ψ`. -/
+/-- Translations by periods lift through `ψ`.
+@isnad1 id=ex.2h5v.s6.24bc755c38ee from=translated src=- shape=8532be46 vocab=45c7f5cf
+-/
 theorem exists_lift {l : ℂ} (hl : l ∈ L.lattice) (τ τ' : ℍ) (h : U.ψ τ' = U.ψ τ + l) :
     ∃ T : ℍ → ℍ, Continuous T ∧ T τ = τ' ∧ ∀ σ, U.ψ (T σ) = U.ψ σ + l := by
   obtain ⟨F, ⟨hF0, hF⟩, -⟩ := U.covering.existsUnique_continuousMap_lifts ⟨fun σ ↦ U.ψ σ + l,
@@ -71,10 +82,15 @@ theorem exists_lift {l : ℂ} (hl : l ∈ L.lattice) (τ τ' : ℍ) (h : U.ψ τ
     fun σ ↦ add_notMem (U.ψ_notMem σ) hl
   exact ⟨F, F.continuous, hF0, fun σ ↦ congrFun hF σ⟩
 
+/--
+@isnad1 id=hasstric.1h3v.s6.39fe2045535b from=translated src=- shape=ccb443bd vocab=82230388
+-/
 theorem hasStrictDerivAt_Ψ {z : ℂ} (hz : 0 < z.im) : HasStrictDerivAt U.Ψ (deriv U.Ψ z) z :=
   (U.differentiableOn.analyticAt (isOpen_upper.mem_nhds hz)).hasStrictDerivAt
 
-/-- A continuous lift of a translation is holomorphic. -/
+/-- A continuous lift of a translation is holomorphic.
+@isnad1 id=holomorp.2h4v.s5.86336e4a86a0 from=translated src=- shape=8ef18562 vocab=4e868ace
+-/
 theorem holomorphicH_of_lift {T : ℍ → ℍ} (hT : Continuous T) {l : ℂ}
     (h : ∀ σ, U.ψ (T σ) = U.ψ σ + l) : HolomorphicH T := by
   intro z hz

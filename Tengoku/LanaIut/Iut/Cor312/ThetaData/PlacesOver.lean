@@ -36,6 +36,9 @@ section Places
 
 variable {k K : Type*} [Field k] [NumberField k] [Field K] [NumberField K] [Algebra k K]
 
+/--
+@isnad1 id=injectiv.0h2v.s7.c6694d633402 from=translated src=- shape=ac04e773 vocab=5fa2c59d
+-/
 lemma algebraMap_ringOfIntegers_injective :
     Function.Injective (algebraMap (𝓞 k) (𝓞 K)) := by
   intro a b h
@@ -44,7 +47,9 @@ lemma algebraMap_ringOfIntegers_injective :
     IsScalarTower.algebraMap_apply (𝓞 k) k K, IsScalarTower.algebraMap_apply (𝓞 k) k K] at h'
   exact RingOfIntegers.coe_injective ((algebraMap k K).injective h')
 
-/-- **Every finite place of `k` has a finite place of `K` over it.** -/
+/-- **Every finite place of `k` has a finite place of `K` over it.**
+@isnad1 id=ex.0h3v.s5.ba3ad2c8b5f4 from=translated src=- shape=5beaacbc vocab=89104b41
+-/
 theorem FinitePlace.exists_liesOver (v : FinitePlace k) :
     ∃ w : FinitePlace K, FinitePlace.LiesOver w v := by
   haveI : v.maximalIdeal.asIdeal.IsPrime := v.maximalIdeal.isPrime
@@ -61,7 +66,9 @@ theorem FinitePlace.exists_liesOver (v : FinitePlace k) :
   rw [FinitePlace.maximalIdeal_mk]
   exact ⟨hQv.symm⟩
 
-/-- A number field is algebraic over any subfield (for any algebra structure). -/
+/-- A number field is algebraic over any subfield (for any algebra structure).
+@isnad1 id=isalgebr.0h2v.s5.ee382bfa2b1d from=translated src=- shape=77f58693 vocab=b55e342b
+-/
 instance numberField_isAlgebraic : Algebra.IsAlgebraic k K := by
   haveI : Algebra.IsAlgebraic ℚ K := Algebra.IsAlgebraic.of_finite ℚ K
   constructor
@@ -73,7 +80,9 @@ instance numberField_isAlgebraic : Algebra.IsAlgebraic k K := by
     Subsingleton.elim ((algebraMap k K).comp (algebraMap ℚ k)) (algebraMap ℚ K),
     ← Polynomial.aeval_def, hpx]
 
-/-- **Every infinite place of `k` has an infinite place of `K` over it.** -/
+/-- **Every infinite place of `k` has an infinite place of `K` over it.**
+@isnad1 id=ex.0h3v.s7.f248c3cb3a2a from=translated src=- shape=cbf61834 vocab=a1cbf243
+-/
 theorem InfinitePlace.exists_liesOver (v : InfinitePlace k) :
     ∃ w : InfinitePlace K, w.1.LiesOver v.1 := by
   obtain ⟨w, hw⟩ := NumberField.InfinitePlace.comap_surjective (k := k) (K := K) v
@@ -85,6 +94,9 @@ theorem InfinitePlace.exists_liesOver (v : InfinitePlace k) :
 noncomputable def galRestrictInt (σ : K ≃ₐ[k] K) : 𝓞 K ≃ₐ[𝓞 k] 𝓞 K :=
   galRestrict (𝓞 k) k K (𝓞 K) σ
 
+/--
+@isnad1 id=eq.0h4v.s7.f73b58622ec2 from=translated src=- shape=bbd6dd20 vocab=5458ea0e
+-/
 lemma coe_galRestrictInt (σ : K ≃ₐ[k] K) (x : 𝓞 K) :
     (galRestrictInt σ x : K) = σ (x : K) :=
   algebraMap_galRestrict_apply (A := 𝓞 k) (K := k) (L := K) (B := 𝓞 K) σ x
@@ -95,6 +107,9 @@ noncomputable def galPlace (σ : K ≃ₐ[k] K) (w : FinitePlace K) : FinitePlac
   FinitePlace.mk (HeightOneSpectrum.comap (galRestrictInt σ⁻¹ : 𝓞 K →+* 𝓞 K)
     (galRestrictInt σ⁻¹).surjective w.maximalIdeal)
 
+/--
+@isnad1 id=eq.0h4v.s9.ab80d675335a from=translated src=- shape=2e5fe277 vocab=a68af79d
+-/
 lemma galPlace_maximalIdeal (σ : K ≃ₐ[k] K) (w : FinitePlace K) :
     (galPlace σ w).maximalIdeal.asIdeal =
       w.maximalIdeal.asIdeal.comap (galRestrictInt σ⁻¹ : 𝓞 K →+* 𝓞 K) := by
@@ -103,7 +118,9 @@ lemma galPlace_maximalIdeal (σ : K ≃ₐ[k] K) (w : FinitePlace K) :
   rfl
 
 /-- **The action preserves the place below**, for places of any subfield `k₀ ⊆ k` (with
-the algebra structure of `K` over `k₀` factoring through `k`). -/
+the algebra structure of `K` over `k₀` factoring through `k`).
+@isnad1 id=liesover.2h6v.s8.2fc54bf1805a from=translated src=- shape=0054db83 vocab=c726458b
+-/
 theorem galPlace_liesOver {k₀ : Type*} [Field k₀] [NumberField k₀] [Algebra k₀ k] [Algebra k₀ K]
     (halg : ∀ x : k₀, algebraMap k₀ K x = algebraMap k K (algebraMap k₀ k x))
     (σ : K ≃ₐ[k] K) {w : FinitePlace K} {v : FinitePlace k₀}
@@ -128,6 +145,9 @@ variable (K) (Fbar : Type*) [Field Fbar] [Algebra K Fbar]
 /-- The integral closure of `𝓞_K` in `F̄`. -/
 abbrev intClosure : Subalgebra (𝓞 K) Fbar := integralClosure (𝓞 K) Fbar
 
+/--
+@isnad1 id=injectiv.0h2v.s9.5bfa43bbf2df from=translated src=- shape=5acf8ba1 vocab=3b7f628f
+-/
 lemma algebraMap_intClosure_injective :
     Function.Injective (algebraMap (𝓞 K) (intClosure K Fbar)) := by
   intro a b h
@@ -136,7 +156,9 @@ lemma algebraMap_intClosure_injective :
     IsScalarTower.algebraMap_apply (𝓞 K) K Fbar, IsScalarTower.algebraMap_apply (𝓞 K) K Fbar] at h'
   exact RingOfIntegers.coe_injective ((algebraMap K Fbar).injective h')
 
-/-- A prime of the integral closure of `𝓞_K` in `F̄` over `𝔓_w` exists. -/
+/-- A prime of the integral closure of `𝓞_K` in `F̄` over `𝔓_w` exists.
+@isnad1 id=ex.0h3v.s10.adeba6ab8d07 from=translated src=- shape=43563af6 vocab=8e013fda
+-/
 theorem exists_prime_over (w : FinitePlace K) :
     ∃ Q : Ideal (intClosure K Fbar), Q.IsPrime ∧
       Q.comap (algebraMap (𝓞 K) (intClosure K Fbar)) = w.maximalIdeal.asIdeal := by
@@ -151,9 +173,15 @@ theorem exists_prime_over (w : FinitePlace K) :
 noncomputable def primeOver (w : FinitePlace K) : Ideal (intClosure K Fbar) :=
   (exists_prime_over K Fbar w).choose
 
+/--
+@isnad1 id=isprime.0h3v.s7.3c7bd06ee93b from=translated src=- shape=c5b9b9da vocab=fcb10073
+-/
 lemma primeOver_isPrime (w : FinitePlace K) : (primeOver K Fbar w).IsPrime :=
   (exists_prime_over K Fbar w).choose_spec.1
 
+/--
+@isnad1 id=eq.0h3v.s9.c88a344ff002 from=translated src=- shape=791b6bb3 vocab=359e35f5
+-/
 lemma primeOver_comap (w : FinitePlace K) :
     (primeOver K Fbar w).comap (algebraMap (𝓞 K) (intClosure K Fbar)) =
       w.maximalIdeal.asIdeal :=
@@ -177,7 +205,9 @@ def decompGroup (w : FinitePlace K) : Subgroup (Fbar ≃ₐ[K] Fbar) where
     rw [← AlgEquiv.mul_apply, mul_inv_cancel, AlgEquiv.one_apply] at h
     exact h.symm
 
-/-- The set of automorphisms sending `x` to `y` is open (Krull topology). -/
+/-- The set of automorphisms sending `x` to `y` is open (Krull topology).
+@isnad1 id=isopen.0h4v.s7.dae85208249b from=translated src=- shape=1d45b275 vocab=9ab2db01
+-/
 lemma isOpen_eval_eq [Algebra.IsIntegral K Fbar] (x y : Fbar) :
     IsOpen {σ : Fbar ≃ₐ[K] Fbar | σ x = y} := by
   by_cases h : ∃ σ₀ : Fbar ≃ₐ[K] Fbar, σ₀ x = y
@@ -202,7 +232,9 @@ lemma isOpen_eval_eq [Algebra.IsIntegral K Fbar] (x y : Fbar) :
     rw [this]
     exact isOpen_empty
 
-/-- The set of automorphisms sending `x` into (resp. out of) a set is open. -/
+/-- The set of automorphisms sending `x` into (resp. out of) a set is open.
+@isnad1 id=isopen.0h4v.s7.9c91554dee75 from=translated src=- shape=2789973d vocab=4526786e
+-/
 lemma isOpen_eval_mem [Algebra.IsIntegral K Fbar] (x : Fbar) (S : Set Fbar) :
     IsOpen {σ : Fbar ≃ₐ[K] Fbar | σ x ∈ S} := by
   have : {σ : Fbar ≃ₐ[K] Fbar | σ x ∈ S} = ⋃ y ∈ S, {σ | σ x = y} := by

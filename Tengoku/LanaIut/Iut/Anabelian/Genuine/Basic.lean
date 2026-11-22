@@ -51,6 +51,9 @@ def xF : E.toAffine.FunctionField :=
 def yF : E.toAffine.FunctionField :=
   algebraMap E.toAffine.CoordinateRing _ (Affine.CoordinateRing.mk E.toAffine X)
 
+/--
+@isnad1 id=equation.0h2v.s9.66ad13993a6f from=translated src=- shape=a39dd3ee vocab=bf6963a7
+-/
 lemma equation_xF_yF : (E⁄E.toAffine.FunctionField).toAffine.Equation (xF E) (yF E) := by
   rw [Affine.equation_iff]
   have h : Affine.CoordinateRing.mk E.toAffine (X ^ 2 + C (C E.a₁ * X + C E.a₃) * X -
@@ -72,6 +75,9 @@ def xG : Ω E := algebraMap E.toAffine.FunctionField (Ω E) (xF E)
 /-- The `y`-coordinate of the generic point, in `Ω`. -/
 def yG : Ω E := algebraMap E.toAffine.FunctionField (Ω E) (yF E)
 
+/--
+@isnad1 id=nonsingu.0h2v.s8.fdb293bfabb2 from=translated src=- shape=63bb81e2 vocab=4e0bf7df
+-/
 lemma nonsingular_generic [E.IsElliptic] : (E⁄(Ω E)).toAffine.Nonsingular (xG E) (yG E) := by
   rw [← Affine.equation_iff_nonsingular]
   exact (equation_xF_yF E).baseChange (IsScalarTower.toAlgHom k E.toAffine.FunctionField (Ω E))
@@ -91,25 +97,46 @@ def baseField : IntermediateField k (Ω E) :=
 /-- The embedding `k(E) → Ω`. -/
 abbrev ιF : E.toAffine.FunctionField →ₐ[k] Ω E := IsScalarTower.toAlgHom k _ _
 
+/--
+@isnad1 id=eq.0h2v.s10.a995ed452aa7 from=translated src=- shape=362b6044 vocab=085f67ab
+-/
 lemma xG_eq : xG E = ιF E (xF E) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.2ef791932d35 from=translated src=- shape=362b6044 vocab=91fec007
+-/
 lemma yG_eq : yG E = ιF E (yF E) := rfl
 
 /-- The subfield `k(x, y) = k(E) ⊆ Ω`, over `k(x)`. -/
 def fnField : IntermediateField (xLine E) (Ω E) := IntermediateField.adjoin (xLine E) {yG E}
 
+/--
+@isnad1 id=mem.0h2v.s9.06f729c5bd33 from=translated src=- shape=bca05be4 vocab=404bffdd
+-/
 lemma xG_mem_xLine : xG E ∈ xLine E := IntermediateField.subset_adjoin k _ (Set.mem_singleton _)
 
+/--
+@isnad1 id=mem.0h2v.s12.9d58b42b2fcc from=translated src=- shape=2b982155 vocab=8befdba5
+-/
 lemma xG_mem_fnField : xG E ∈ fnField E :=
   (fnField E).algebraMap_mem ⟨xG E, xG_mem_xLine E⟩
 
+/--
+@isnad1 id=mem.0h2v.s12.27d3dfa52655 from=translated src=- shape=2b982155 vocab=95c6c588
+-/
 lemma yG_mem_fnField : yG E ∈ fnField E :=
   IntermediateField.subset_adjoin _ _ (Set.mem_singleton _)
 
+/--
+@isnad1 id=mem.0h3v.s12.db7ca0d9c43d from=translated src=- shape=b8124755 vocab=4a801a94
+-/
 lemma algebraMap_mem_fnField (c : k) : algebraMap k (Ω E) c ∈ fnField E := by
   have : algebraMap k (Ω E) c ∈ xLine E := (xLine E).algebraMap_mem c
   exact (fnField E).algebraMap_mem ⟨_, this⟩
 
+/--
+@isnad1 id=mem.0h3v.s12.6f43d8fc1cde from=translated src=- shape=0ed21bf8 vocab=09b35f3d
+-/
 lemma coordRing_mem_fnField (a : E.toAffine.CoordinateRing) :
     ιF E (algebraMap _ E.toAffine.FunctionField a) ∈ fnField E := by
   obtain ⟨p, rfl⟩ := AdjoinRoot.mk_surjective a
@@ -131,11 +158,17 @@ lemma coordRing_mem_fnField (a : E.toAffine.CoordinateRing) :
     rw [pow_succ, ← mul_assoc, map_mul, map_mul, map_mul]
     exact mul_mem hq (yG_mem_fnField E)
 
+/--
+@isnad1 id=mem.0h3v.s12.8d2b78a064e1 from=translated src=- shape=17cb4065 vocab=8d2c0f12
+-/
 lemma ιF_mem_fnField (f : E.toAffine.FunctionField) : ιF E f ∈ fnField E := by
   obtain ⟨a, b, _, rfl⟩ := IsFractionRing.div_surjective (A := E.toAffine.CoordinateRing) f
   rw [map_div₀]
   exact div_mem (coordRing_mem_fnField E a) (coordRing_mem_fnField E b)
 
+/--
+@isnad1 id=isintegr.0h2v.s11.7b6f68f888fb from=translated src=- shape=9970ceec vocab=f732062e
+-/
 lemma isIntegral_yG : IsIntegral (xLine E) (yG E) := by
   have h := equation_xF_yF E
   rw [Affine.equation_iff] at h
@@ -156,11 +189,17 @@ lemma isIntegral_yG : IsIntegral (xLine E) (yG E) := by
       algebraMap k (Ω E) E.a₄ * ιF E (xF E) + algebraMap k (Ω E) E.a₆)) = 0
     linear_combination h'
 
+/--
+@isnad1 id=mem.0h2v.s9.a1b424b80a11 from=translated src=- shape=bca05be4 vocab=2cb0a3e1
+-/
 lemma xG_mem_baseField : xG E ∈ baseField E := by
   change xG E ∈ perfectClosure (xLine E) (Ω E)
   exact (perfectClosure (xLine E) (Ω E)).algebraMap_mem
     ⟨xG E, IntermediateField.subset_adjoin k _ (Set.mem_singleton _)⟩
 
+/--
+@isnad1 id=isalgebr.0h2v.s11.e163d7cadfb0 from=translated src=- shape=7bc0d177 vocab=7694fe3d
+-/
 instance isAlgebraic_xLine : Algebra.IsAlgebraic (xLine E) (Ω E) := by
   haveI : Algebra.IsAlgebraic (xLine E) (fnField E) :=
     IntermediateField.isAlgebraic_adjoin_simple (isIntegral_yG E)
@@ -183,26 +222,41 @@ abbrev Gal : Type u := Ω E ≃ₐ[baseField E] Ω E
 /-- An automorphism in `Gal(Ω / P)`, as a `k`-algebra map. -/
 def σk (σ : Gal E) : Ω E →ₐ[k] Ω E := σ.toAlgHom.restrictScalars k
 
+/--
+@isnad1 id=eq.0h4v.s12.b4544db36a20 from=translated src=- shape=ae610c27 vocab=d032bc25
+-/
 @[simp] lemma σk_apply (σ : Gal E) (a : Ω E) : σk E σ a = σ a := rfl
 
 /-- The action of `Gal(Ω / P)` on the points `E(Ω)`. -/
 def act (σ : Gal E) : (E⁄(Ω E)).toAffine.Point →+ (E⁄(Ω E)).toAffine.Point :=
   Affine.Point.map (W' := E) (S := k) (σk E σ)
 
+/--
+@isnad1 id=eq.2h5v.s14.5127a54ea0c1 from=translated src=- shape=f1ff4979 vocab=34e16760
+-/
 lemma act_some (σ : Gal E) {x y : Ω E} (h : (E⁄(Ω E)).toAffine.Nonsingular x y)
     (h' : (E⁄(Ω E)).toAffine.Nonsingular (σ x) (σ y)) :
     act E σ (Affine.Point.some x y h) = Affine.Point.some (σ x) (σ y) h' := rfl
 
+/--
+@isnad1 id=eq.0h5v.s14.20565cb61c66 from=translated src=- shape=bccddc6b vocab=17fac8c4
+-/
 lemma act_mul (σ τ : Gal E) (Q : (E⁄(Ω E)).toAffine.Point) :
     act E (σ * τ) Q = act E σ (act E τ Q) := by
   cases Q <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s13.5709947fccfb from=translated src=- shape=50942d07 vocab=16a8449d
+-/
 lemma act_one (Q : (E⁄(Ω E)).toAffine.Point) : act E 1 Q = Q := by
   cases Q <;> rfl
 
 /-- A `k`-rational point of `E`, as a point of `E(Ω)`. -/
 abbrev base : E.toAffine.Point →+ (E⁄(Ω E)).toAffine.Point := pointMap E (algebraMap k (Ω E))
 
+/--
+@isnad1 id=eq.0h4v.s13.196067e9c324 from=translated src=- shape=13f81688 vocab=846f8ed4
+-/
 lemma act_base (σ : Gal E) (T : E.toAffine.Point) : act E σ (base E T) = base E T := by
   rcases T with _ | ⟨x, y, h⟩
   · rfl

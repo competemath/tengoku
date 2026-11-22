@@ -37,7 +37,9 @@ universe u
 namespace TemperedFundamentalGroups
 
 /-- **Chevalley's extension theorem** for valuation subrings: a valuation subring `O` of `k`
-extends to a valuation subring `V` of any field extension `Ω` with `V ∩ k = O`. -/
+extends to a valuation subring `V` of any field extension `Ω` with `V ∩ k = O`.
+@isnad1 id=ex.0h3v.s6.55a3daa8e2a3 from=translated src=- shape=8e93eab5 vocab=907ea376
+-/
 theorem ValuationSubring.exists_comap_eq {k Ω : Type*} [Field k] [Field Ω] [Algebra k Ω]
     (O : ValuationSubring k) : ∃ V : ValuationSubring Ω, V.comap (algebraMap k Ω) = O := by
   obtain ⟨V, hV⟩ := (O.toLocalSubring.map (algebraMap k Ω)).exists_le_valuationSubring
@@ -76,12 +78,18 @@ is `O_v`), and the trivial valuation ring `k` otherwise. -/
 noncomputable def canonicalValuationSubring (k : Type u) [Field k] : ValuationSubring k :=
   if h : ∃ O : ValuationSubring k, IsHenselianDVR O then h.choose else ⊤
 
+/--
+@isnad1 id=ishensel.1h1v.s4.0b8ef026566e from=translated src=- shape=2cfb47a8 vocab=2853df81
+-/
 lemma canonicalValuationSubring_isHenselianDVR {k : Type u} [Field k]
     (h : ∃ O : ValuationSubring k, IsHenselianDVR O) :
     IsHenselianDVR (canonicalValuationSubring k) := by
   rw [canonicalValuationSubring, dite_eq_left h]
   exact h.choose_spec
 
+/--
+@isnad1 id=eq.1h1v.s5.e5e203c6f249 from=translated src=- shape=ede5a83b vocab=4c93416d
+-/
 lemma canonicalValuationSubring_eq_top {k : Type u} [Field k]
     (h : ¬ ∃ O : ValuationSubring k, IsHenselianDVR O) :
     canonicalValuationSubring k = ⊤ := by

@@ -81,27 +81,38 @@ def coimageOpens (V : Opens X) : Opens Y :=
 variable {i}
 
 /-- **For an inducing map, every open set of the source is the preimage of an open set of the
-target.** This is the whole input from topology. -/
+target.** This is the whole input from topology.
+@isnad1 id=ex.1h4v.s7.eba222946c89 from=translated src=- shape=3b5688b0 vocab=2a447b73
+-/
 lemma exists_opens_map_obj_eq (hi : IsInducing i) (V : Opens X) :
     ∃ U : Opens Y, (Opens.map i).obj U = V := by
   obtain ⟨t, ht, hpre⟩ := hi.isOpen_iff.1 V.isOpen
   exact ⟨⟨t, ht⟩, Opens.ext hpre⟩
 
-/-- The unit of the adjunction `Opens.map i ⊣ coimageOpens i`. -/
+/-- The unit of the adjunction `Opens.map i ⊣ coimageOpens i`.
+@isnad1 id=le.0h4v.s6.c9a5ab236912 from=translated src=- shape=1e165db6 vocab=200da6ee
+-/
 lemma le_coimageOpens (U : Opens Y) : U ≤ coimageOpens i ((Opens.map i).obj U) :=
   le_sSup (Set.mem_ofPred.2 (le_refl _))
 
-/-- The counit of the adjunction `Opens.map i ⊣ coimageOpens i`. -/
+/-- The counit of the adjunction `Opens.map i ⊣ coimageOpens i`.
+@isnad1 id=le.0h4v.s6.f50fc7ff0658 from=translated src=- shape=82e719a4 vocab=200da6ee
+-/
 lemma opens_map_coimageOpens_le (V : Opens X) : (Opens.map i).obj (coimageOpens i V) ≤ V := by
   rintro x hx
   obtain ⟨-, ⟨U, rfl⟩, -, ⟨hU, rfl⟩, hxU⟩ := hx
   exact hU hxU
 
+/--
+@isnad1 id=monotone.0h3v.s5.346045bdcef8 from=translated src=- shape=cc58f701 vocab=3a5934ef
+-/
 lemma coimageOpens_mono : Monotone (coimageOpens i) := fun _ _ h ↦
   sSup_le_sSup fun _ (hU : _ ≤ _) ↦ Set.mem_ofPred.2 (hU.trans h)
 
 /-- **For an inducing map the counit is an isomorphism**, i.e. `i⁻¹ (coimageOpens i V) = V`; only
-this inequality is used, the other being `opens_map_coimageOpens_le`. -/
+this inequality is used, the other being `opens_map_coimageOpens_le`.
+@isnad1 id=le.1h4v.s7.80aac7d9bb7d from=translated src=- shape=783dfd7a vocab=cc55520a
+-/
 lemma le_opens_map_coimageOpens (hi : IsInducing i) (V : Opens X) :
     V ≤ (Opens.map i).obj (coimageOpens i V) := by
   obtain ⟨U, hU⟩ := exists_opens_map_obj_eq hi V
@@ -156,7 +167,9 @@ def pushforwardPreimage (hi : IsInducing i) (τ : i _* F ⟶ i _* G) : F ⟶ G w
               hτ'.symm).trans (Category.assoc _ _ _)))
     exact congrArg (fun z ↦ F.map (homOfLE (opens_map_coimageOpens_le W.unop)).op ≫ z) step.symm
 
-/-- `pushforwardPreimage` is a section of the pushforward: pushing it forward returns `τ`. -/
+/-- `pushforwardPreimage` is a section of the pushforward: pushing it forward returns `τ`.
+@isnad1 id=eq.1h7v.s8.6a2804cd493a from=translated src=- shape=0615d865 vocab=0c79a705
+-/
 lemma pushforward_map_pushforwardPreimage (hi : IsInducing i) (τ : i _* F ⟶ i _* G) :
     (pushforward C i).map (pushforwardPreimage hi τ) = τ := by
   ext U
@@ -178,7 +191,9 @@ lemma pushforward_map_pushforwardPreimage (hi : IsInducing i) (τ : i _* F ⟶ i
 
 variable (i) in
 /-- **The pushforward of presheaves along an inducing map is faithful**: every open set of the
-source is the preimage of one of the target, so no component is forgotten. -/
+source is the preimage of one of the target, so no component is forgotten.
+@isnad1 id=faithful.1h4v.s6.477c71cfa6a3 from=translated src=- shape=08f8a0d2 vocab=90349906
+-/
 lemma pushforward_faithful (hi : IsInducing i) : (pushforward C i).Faithful where
   map_injective {F G _ _} h := by
     ext W
@@ -197,6 +212,9 @@ def pushforwardFullyFaithful (hi : IsInducing i) : (pushforward C i).FullyFaithf
     exact (pushforward C i).map_injective (pushforward_map_pushforwardPreimage hi _)
 
 variable (i) in
+/--
+@isnad1 id=full.1h4v.s6.31232db73cd2 from=translated src=- shape=08f8a0d2 vocab=a59025db
+-/
 lemma pushforward_full (hi : IsInducing i) : (pushforward C i).Full :=
   (pushforwardFullyFaithful i hi).full
 
@@ -208,12 +226,17 @@ def pushforwardHomEquiv (hi : IsInducing i) (F G : X.Presheaf C) :
   (pushforwardFullyFaithful i hi).homEquiv
 
 /-- The equivalence of `TopCat.Presheaf.pushforwardHomEquiv` is the pushforward itself, and not
-some other bijection: this is what makes the statement say what it is meant to say. -/
+some other bijection: this is what makes the statement say what it is meant to say.
+@isnad1 id=eq.1h7v.s9.8c6ff0e880f0 from=translated src=- shape=92e54300 vocab=36734a69
+-/
 @[simp]
 lemma pushforwardHomEquiv_apply (hi : IsInducing i) (F G : X.Presheaf C) (σ : F ⟶ G) :
     pushforwardHomEquiv i hi F G σ = (pushforward C i).map σ :=
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s9.c1d3eb706de7 from=translated src=- shape=8f2abccf vocab=c54cc28c
+-/
 @[simp]
 lemma pushforwardHomEquiv_symm_apply (hi : IsInducing i) (F G : X.Presheaf C)
     (τ : i _* F ⟶ i _* G) :
@@ -247,7 +270,9 @@ noncomputable def pushforwardHomEquiv (hi : IsInducing i) (F G : X.Sheaf C) :
     (F ⟶ G) ≃ ((pushforward C i).obj F ⟶ (pushforward C i).obj G) :=
   (pushforwardFullyFaithful i hi).homEquiv
 
-/-- The equivalence of `TopCat.Sheaf.pushforwardHomEquiv` is the pushforward itself. -/
+/-- The equivalence of `TopCat.Sheaf.pushforwardHomEquiv` is the pushforward itself.
+@isnad1 id=eq.1h7v.s9.39ee06322ad1 from=translated src=- shape=92e54300 vocab=576fc098
+-/
 @[simp]
 lemma pushforwardHomEquiv_apply (hi : IsInducing i) (F G : X.Sheaf C) (σ : F ⟶ G) :
     pushforwardHomEquiv i hi F G σ = (pushforward C i).map σ :=

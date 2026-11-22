@@ -55,7 +55,9 @@ with the same non-vanishing locus**, the locus being recorded by the two divisib
 divides a power of `r` and `r` divides a power of `r'`.
 
 Strictly weaker hypotheses than `IsLocalization.Away.of_associated`, which asks that `r` and `r'`
-differ by a unit. -/
+differ by a unit.
+@isnad1 id=away.2h4v.s6.70cb62c98c09 from=translated src=- shape=4aa1fc19 vocab=44be593d
+-/
 lemma of_dvd_pow {r r' : R} [IsLocalization.Away r S] (h : ∃ n, r' ∣ r ^ n)
     (h' : ∃ m, r ∣ r' ^ m) : IsLocalization.Away r' S := by
   obtain ⟨m, c, hc⟩ := h'
@@ -71,7 +73,9 @@ lemma of_dvd_pow {r r' : R} [IsLocalization.Away r S] (h : ∃ n, r' ∣ r ^ n)
 
 /-- **`IsLocalization.Away r S` depends on `r` only through its non-vanishing locus.** The `Iff`
 form of `IsLocalization.Away.of_dvd_pow`, in the shape of
-`IsLocalization.Away.iff_of_associated`. -/
+`IsLocalization.Away.iff_of_associated`.
+@isnad1 id=iff.2h4v.s6.3c08310894ff from=translated src=- shape=d67e6374 vocab=44be593d
+-/
 lemma iff_of_dvd_pow {r r' : R} (h : ∃ n, r' ∣ r ^ n) (h' : ∃ m, r ∣ r' ^ m) :
     IsLocalization.Away r S ↔ IsLocalization.Away r' S :=
   ⟨fun _ ↦ of_dvd_pow S h h', fun _ ↦ of_dvd_pow S h' h⟩

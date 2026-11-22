@@ -54,6 +54,9 @@ noncomputable def gcdComplexityNsub (R : NSubring T) (s : Finset R.carrier) : �
   haveI : UniqueFactorizationMonoid R.carrier := R.isUFD
   gcdComplexity s
 
+/--
+@isnad1 id=eq.2h4v.s10.d256fce25ad7 from=translated src=- shape=655e9687 vocab=7c9e6de6
+-/
 lemma normalizedFactors_card_inclusion
     (R S₁ : NSubring T) (hAext : IsAExtension R S₁)
     (hle : R.carrier ≤ S₁.carrier)
@@ -100,6 +103,9 @@ lemma normalizedFactors_card_inclusion
           UniqueFactorizationMonoid.normalizedFactors_irreducible hi_S₁.irreducible,
           Multiset.card_singleton, Multiset.card_singleton, ih_a])
 
+/--
+@isnad1 id=eq.2h4v.s7.75c0c392d623 from=translated src=- shape=df774b2c vocab=ce4015be
+-/
 lemma span_eq_mul_span_image_div {R₀ : Type*} [CommRing R₀]
     [DecidableEq R₀]
     (p : R₀) (s : Finset R₀)
@@ -141,6 +147,9 @@ lemma span_eq_mul_span_image_div {R₀ : Type*} [CommRing R₀]
         exact Ideal.mul_mem_left _ r hx)
       hb
 
+/--
+@isnad1 id=le.1h5v.s7.f8a500094679 from=translated src=- shape=367bf080 vocab=004b7e4d
+-/
 lemma prime_mul_span_insert_le {R₀ : Type*} [CommRing R₀]
     [DecidableEq R₀]
     (q' a : R₀) (rest : Finset R₀)
@@ -179,6 +188,9 @@ lemma prime_mul_span_insert_le {R₀ : Type*} [CommRing R₀]
     hy
 
 -- Regularity: q prime, q ∤ a implies a is regular on T/qT, so a*t ∈ span{q} forces t ∈ span{q}.
+/--
+@isnad1 id=ex.4h5v.s9.1231c4088d3f from=translated src=- shape=72b29345 vocab=a35153b0
+-/
 lemma nzd_element_in_span_prime
     (R : NSubring T)
     (q a : R.carrier)
@@ -245,6 +257,9 @@ lemma nzd_element_in_span_prime
   exact Ideal.mem_span_singleton.mp h_t_mem
 
 omit [IsLocalRing T] [IsNoetherianRing T] in
+/--
+@isnad1 id=le.4h5v.s10.50fc22368efd from=translated src=- shape=551375b8 vocab=53185858
+-/
 lemma gcdComplexity_div_le {R₀ : Subring T}
     [UniqueFactorizationMonoid R₀]
     [DecidableEq R₀]

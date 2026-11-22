@@ -86,7 +86,9 @@ namespace IsCoefficientField
 The induction is the whole content: an element is a constant plus an element of `𝔪`, and an
 element of `𝔪` is an `S`-combination of the generators, so the difference of the two values is a
 sum of terms `θ (v i) * (θ x - θ' x)` with the second factor in `𝔪 ^ k` by induction. Each
-`θ (v i)` lies in the maximal ideal of `A` because `θ` is local and `v i` is a non-unit. -/
+`θ (v i)` lies in the maximal ideal of `A` because `θ` is local and `v i` is a non-unit.
+@isnad1 id=mem.4h10v.s9.9be1480e6d9d from=translated src=- shape=aa839199 vocab=f735e619
+-/
 theorem sub_mem_pow_maximalIdeal {A : Type*} [CommRing A] [IsLocalRing A]
     (h : IsCoefficientField α) {ι : Type*} [Finite ι] {v : ι → S}
     (hv : maximalIdeal S = Ideal.span (Set.range v))
@@ -120,7 +122,9 @@ in every power of the maximal ideal of the target; Krull's intersection theorem
 says it is zero.
 
 The hypothesis that the maximal ideal of `S` is *finitely* generated cannot be dropped in this
-form, since the induction consumes a finite sum; `S` itself need not be Noetherian. -/
+form, since the induction consumes a finite sum; `S` itself need not be Noetherian.
+@isnad1 id=eq.4h8v.s8.39207c60440a from=translated src=- shape=f913db91 vocab=97ea1300
+-/
 theorem ringHom_ext {A : Type*} [CommRing A] [IsLocalRing A] [IsNoetherianRing A]
     (h : IsCoefficientField α) {ι : Type*} [Finite ι] {v : ι → S}
     (hv : maximalIdeal S = Ideal.span (Set.range v))

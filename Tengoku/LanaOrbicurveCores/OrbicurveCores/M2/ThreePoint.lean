@@ -27,6 +27,9 @@ variable {k : Type*} [Field k] [DecidableEq k]
 def e₃ : Triple k := (((0 : k) : OnePoint k), ((1 : k) : OnePoint k), ∞)
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=distinct.0h1v.s3.d1d68defaf0e from=translated src=- shape=84bfdc15 vocab=f00bb51c
+-/
 lemma distinct3_e₃ : Distinct3 (e₃ (k := k)) := by
   refine ⟨?_, ?_, ?_⟩ <;> simp [e₃]
 
@@ -37,6 +40,9 @@ def mob3 (M : Matrix (Fin 2) (Fin 2) k) (t : Triple k) : Triple k :=
 /-- `G s t = h(s) h(t)⁻¹ (0, 1, ∞)`. -/
 def G3 (s t : Triple k) : Triple k := mob3 (tri s) (mob3 (tri t).adjugate e₃)
 
+/--
+@isnad1 id=eq.1h2v.s4.39714b88d2dd from=translated src=- shape=0f0f84d9 vocab=eec37671
+-/
 lemma mob3_tri {t : Triple k} (ht : Distinct3 t) : mob3 (tri t) e₃ = t := by
   simp only [mob3, e₃, mob_tri_zero ht, mob_tri_one ht, mob_tri_infty ht]
 
@@ -45,6 +51,9 @@ section topology
 variable {k : Type*} [NontriviallyNormedField k] [ProperSpace k] [DecidableEq k]
 
 omit [DecidableEq k] in
+/--
+@isnad1 id=isopen.0h1v.s6.c771881426f0 from=translated src=- shape=1f67485d vocab=a047dd07
+-/
 lemma isOpen_distinct3 : IsOpen {t : Triple k | Distinct3 t} := by
   have e : {t : Triple k | Distinct3 t} =
       {y | y.1 ≠ y.2.1} ∩ {y | y.1 ≠ y.2.2} ∩ {y | y.2.1 ≠ y.2.2} := by

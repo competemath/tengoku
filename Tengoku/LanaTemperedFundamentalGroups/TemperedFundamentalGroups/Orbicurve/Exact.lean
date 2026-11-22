@@ -48,7 +48,9 @@ def IsGaloisStable (𝒮 : Set (GeomPoint W)) : Prop :=
   ∀ σ : AlgebraicClosure k ≃ₐ[k] AlgebraicClosure k, ∀ P ∈ 𝒮,
     Point.map (σ : AlgebraicClosure k →ₐ[k] AlgebraicClosure k) P ∈ 𝒮
 
-/-- Two affine geometric points with conjugate `x`-coordinates are, up to sign, conjugate. -/
+/-- Two affine geometric points with conjugate `x`-coordinates are, up to sign, conjugate.
+@isnad1 id=ex.3h4v.s11.e003254649f6 from=translated src=- shape=70350cb0 vocab=099f65d7
+-/
 lemma exists_map_eq_or_neg {P Q : GeomPoint W} (hP : P ≠ 0) (hQ : Q ≠ 0)
     (h : aeval (xOf Q) (minpoly k (xOf P)) = 0) :
     ∃ σ : AlgebraicClosure k ≃ₐ[k] AlgebraicClosure k,
@@ -68,7 +70,9 @@ lemma exists_map_eq_or_neg {P Q : GeomPoint W} (hP : P ≠ 0) (hQ : Q ≠ 0)
   rfl
 
 /-- **A finite, symmetric, Galois stable set of geometric points is the zero set of a function
-of `x`.** -/
+of `x`.**
+@isnad1 id=ex.3h3v.s9.69d9235eefa2 from=translated src=- shape=422d9901 vocab=631185ff
+-/
 theorem exists_polynomial_zeroSet {𝒮 : Set (GeomPoint W)} (hfin : 𝒮.Finite)
     (hneg : ∀ P ∈ 𝒮, -P ∈ 𝒮) (hgal : IsGaloisStable W 𝒮) :
     ∃ Ψ : k[X], Ψ ≠ 0 ∧
@@ -91,7 +95,9 @@ theorem exists_polynomial_zeroSet {𝒮 : Set (GeomPoint W)} (hfin : 𝒮.Finite
 /-! ### The Nullstellensatz on the affine curve -/
 
 /-- A maximal ideal `𝔪` of a finitely generated `k`-algebra `R` is the kernel of a `k`-algebra
-map `R → k̄` (Zariski's lemma). -/
+map `R → k̄` (Zariski's lemma).
+@isnad1 id=ex.0h3v.s8.17d4bf3935eb from=translated src=- shape=e74592e2 vocab=51a5d8ea
+-/
 theorem exists_algHom_eq_zero_iff {R : Type*} [CommRing R] [Algebra k R] [Algebra.FiniteType k R]
     (𝔪 : Ideal R) [𝔪.IsMaximal] :
     ∃ χ : R →ₐ[k] AlgebraicClosure k, ∀ r, χ r = 0 ↔ r ∈ 𝔪 := by
@@ -108,7 +114,9 @@ instance : Algebra.FiniteType k W.toAffine.CoordinateRing :=
 variable [W.IsElliptic]
 
 /-- **Nullstellensatz on the affine curve.** If every geometric zero of `h ∈ k[W]` is a zero of
-`D`, then some power of `D` is a multiple of `h`. -/
+`D`, then some power of `D` is a multiple of `h`.
+@isnad1 id=ex.1h4v.s8.ca1c4bda24f9 from=translated src=- shape=bb1df1ba vocab=b0a076ca
+-/
 theorem exists_pow_mem_span_of_zeroSet_subset {h D : W.toAffine.CoordinateRing}
     (hsub : zeroSet W h ⊆ zeroSet W D) : ∃ n : ℕ, D ^ n ∈ Ideal.span {h} := by
   haveI : IsJacobsonRing W.toAffine.CoordinateRing := isJacobsonRing_of_finiteType (A := k)
@@ -127,7 +135,9 @@ section Localization
 
 variable {𝒮 : Set (GeomPoint W)} {D : W.toAffine.CoordinateRing}
 
-/-- If `𝒮 ∖ {0}` is the zero set of `D ≠ 0`, then `ringAway W 𝒮 = k[W][D⁻¹]` inside `k(W)`. -/
+/-- If `𝒮 ∖ {0}` is the zero set of `D ≠ 0`, then `ringAway W 𝒮 = k[W][D⁻¹]` inside `k(W)`.
+@isnad1 id=eq.2h4v.s10.52ca2daf6895 from=translated src=- shape=cfdcf173 vocab=e89713f9
+-/
 theorem ringAway_eq_range (hD : D ≠ 0) (h𝒮 : zeroSet W D = 𝒮 \ {0}) :
     ringAway W 𝒮 = (locMap D hD).range := by
   have hD𝒮 : zeroSet W D ⊆ 𝒮 := h𝒮 ▸ Set.sdiff_subset
@@ -153,10 +163,16 @@ def ringAwayEquiv (hD : D ≠ 0) (h𝒮 : zeroSet W D = 𝒮 \ {0}) :
   (AlgEquiv.ofInjective _ (injective_locMap hD)).trans
     (Subalgebra.equivOfEq _ _ (ringAway_eq_range hD h𝒮).symm)
 
+/--
+@isnad1 id=eq.2h5v.s13.7321280f336a from=translated src=- shape=3d38ed50 vocab=487f88fc
+-/
 @[simp] lemma coe_ringAwayEquiv (hD : D ≠ 0) (h𝒮 : zeroSet W D = 𝒮 \ {0})
     (z : Localization.Away D) : (ringAwayEquiv hD h𝒮 z : funField W) = locMap D hD z :=
   rfl
 
+/--
+@isnad1 id=eq.2h5v.s13.d907e388ecb3 from=translated src=- shape=484afeaf vocab=355f354e
+-/
 lemma ringAwayEquiv_algebraMap (hD : D ≠ 0) (h𝒮 : zeroSet W D = 𝒮 \ {0})
     (c : W.toAffine.CoordinateRing) :
     (ringAwayEquiv hD h𝒮 (algebraMap _ _ c) : funField W) = algebraMap _ (funField W) c := by
@@ -170,13 +186,18 @@ instance (𝒮 : Set (GeomPoint W)) : Algebra W.toAffine.CoordinateRing (ringAwa
     algebraMap_mem_ringAway).toAlgebra
 
 omit [W.IsElliptic] in
+/--
+@isnad1 id=eq.0h4v.s13.026c81bcade6 from=translated src=- shape=034cd34e vocab=bee358a3
+-/
 @[simp] lemma coe_algebraMap_ringAway (𝒮 : Set (GeomPoint W)) (c : W.toAffine.CoordinateRing) :
     (algebraMap W.toAffine.CoordinateRing (ringAway W 𝒮) c : funField W) =
       algebraMap _ (funField W) c :=
   rfl
 
 /-- **Exactness.** If `𝒮 ∖ {0}` is the zero set of `D ≠ 0`, then `ringAway W 𝒮` is the
-localization of `k[W]` away from `D`. -/
+localization of `k[W]` away from `D`.
+@isnad1 id=away.2h4v.s10.aa75ca370515 from=translated src=- shape=d19be3d7 vocab=9046789d
+-/
 theorem isLocalization_away_ringAway {𝒮 : Set (GeomPoint W)} {D : W.toAffine.CoordinateRing}
     (hD : D ≠ 0) (h𝒮 : zeroSet W D = 𝒮 \ {0}) : IsLocalization.Away D (ringAway W 𝒮) := by
   have hD𝒮 : zeroSet W D ⊆ 𝒮 := h𝒮 ▸ Set.sdiff_subset

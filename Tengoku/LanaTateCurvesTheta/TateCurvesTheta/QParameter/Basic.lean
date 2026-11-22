@@ -65,7 +65,9 @@ namespace TateParameter
 variable {K}
 variable (t : TateParameter K)
 
-/-- The norm of a Tate parameter is strictly positive. -/
+/-- The norm of a Tate parameter is strictly positive.
+@isnad1 id=lt.0h2v.s5.a526d06d1efe from=translated src=- shape=5d667721 vocab=136847d0
+-/
 lemma norm_q_pos : 0 < ‖(t.q : K)‖ :=
   norm_pos_iff.mpr t.q.ne_zero
 
@@ -75,12 +77,16 @@ This is the real-valued local order/height of `q`; the discrete (integer- or rat
 normalization supplied by a normalized additive valuation refines it. -/
 noncomputable def ord : ℝ := -Real.log ‖(t.q : K)‖
 
-/-- The normalized additive order of a Tate parameter is strictly positive. -/
+/-- The normalized additive order of a Tate parameter is strictly positive.
+@isnad1 id=lt.0h2v.s4.82c75334ebbc from=translated src=- shape=38fc717e vocab=633be08e
+-/
 lemma ord_pos : 0 < t.ord := by
   have hlog : Real.log ‖(t.q : K)‖ < 0 := Real.log_neg t.norm_q_pos t.norm_lt_one
   simpa [ord] using neg_pos.mpr hlog
 
-/-- A Tate parameter is not a root of unity: no positive power of `q` equals `1`. -/
+/-- A Tate parameter is not a root of unity: no positive power of `q` equals `1`.
+@isnad1 id=ne.1h3v.s6.986355be6684 from=translated src=- shape=ea2baa9b vocab=713f5f36
+-/
 lemma pow_ne_one {n : ℕ} (hn : 0 < n) : (t.q : K) ^ n ≠ 1 := by
   intro h
   have hnorm : ‖(t.q : K)‖ ^ n = 1 := by rw [← norm_pow, h, norm_one]
@@ -90,7 +96,9 @@ lemma pow_ne_one {n : ℕ} (hn : 0 < n) : (t.q : K) ^ n ≠ 1 := by
   exact lt_irrefl (1 : ℝ) hlt
 
 /-- The positive powers of a Tate parameter tend to `0`: the subgroup `qᶻ` accumulates only
-at `0`. -/
+at `0`.
+@isnad1 id=tendsto.0h2v.s6.4d307bc1990d from=translated src=- shape=24d3f883 vocab=fe9c2a1a
+-/
 lemma tendsto_pow_atTop_zero :
     Tendsto (fun n : ℕ => (t.q : K) ^ n) atTop (𝓝 0) :=
   tendsto_pow_atTop_nhds_zero_of_norm_lt_one t.norm_lt_one

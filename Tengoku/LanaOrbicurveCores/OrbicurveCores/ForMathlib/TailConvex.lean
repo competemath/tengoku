@@ -29,6 +29,9 @@ def tailHull (x : ℕ → E) (n : ℕ) : Set E :=
   {y | ∃ w : ℕ →₀ ℝ, (∀ k, 0 ≤ w k) ∧ (w.sum fun _ c ↦ c) = 1 ∧ (∀ k ∈ w.support, n ≤ k) ∧
     y = w.sum fun k c ↦ c • x k}
 
+/--
+@isnad1 id=mem.0h3v.s5.16944dd034e5 from=translated src=- shape=00f47bcd vocab=c5b238cc
+-/
 lemma self_mem_tailHull (x : ℕ → E) (n : ℕ) : x n ∈ tailHull x n := by
   refine ⟨Finsupp.single n 1, fun k ↦ ?_, by simp, fun k hk ↦ ?_, by simp⟩
   · rw [Finsupp.single_apply]; split_ifs <;> norm_num
@@ -37,10 +40,16 @@ lemma self_mem_tailHull (x : ℕ → E) (n : ℕ) : x n ∈ tailHull x n := by
     · exact h.le
     · exact absurd rfl hk
 
+/--
+@isnad1 id=le.1h4v.s5.8aa6abec5ea3 from=translated src=- shape=5d2a44e9 vocab=922ac1ac
+-/
 lemma tailHull_anti (x : ℕ → E) {n m : ℕ} (h : n ≤ m) : tailHull x m ⊆ tailHull x n := by
   rintro y ⟨w, h0, h1, hs, rfl⟩
   exact ⟨w, h0, h1, fun k hk ↦ h.trans (hs k hk), rfl⟩
 
+/--
+@isnad1 id=mem.2h5v.s7.9f953d113234 from=translated src=- shape=b6822792 vocab=04bcf174
+-/
 lemma midpoint_mem_tailHull (x : ℕ → E) (n : ℕ) {y y' : E} (hy : y ∈ tailHull x n)
     (hy' : y' ∈ tailHull x n) : (1 / 2 : ℝ) • (y + y') ∈ tailHull x n := by
   obtain ⟨w, h0, h1, hs, rfl⟩ := hy
@@ -60,7 +69,9 @@ lemma midpoint_mem_tailHull (x : ℕ → E) (n : ℕ) {y y' : E} (hy : y ∈ tai
     simp only [Finsupp.smul_sum, smul_smul, smul_eq_mul]
 
 /-- **Tail convex combinations.** A bounded sequence in a real Hilbert space has convex
-combinations of its tails that converge in norm. -/
+combinations of its tails that converge in norm.
+@isnad1 id=ex.1h3v.s8.bc33238ed9bc from=translated src=- shape=e05e7322 vocab=6a318fdd
+-/
 theorem exists_tail_convex_tendsto [CompleteSpace E] (x : ℕ → E) {M : ℝ}
     (hx : ∀ n, ‖x n‖ ≤ M) :
     ∃ w : ℕ → ℕ →₀ ℝ, (∀ n k, 0 ≤ w n k) ∧ (∀ n, ((w n).sum fun _ c ↦ c) = 1) ∧

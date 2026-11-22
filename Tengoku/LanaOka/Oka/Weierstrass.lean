@@ -51,6 +51,9 @@ the dictionary between functions and germs used to reduce Oka's coherence lemma 
 -/
 namespace Tengoku.LanaOka end Tengoku.LanaOka open Tengoku.LanaOka
 open Polynomial in
+/--
+@isnad1 id=ex.1h3v.s8.838cb05a1aa3 from=translated src=- shape=a3b11120 vocab=710cc9e1
+-/
 theorem _root_.Tengoku.LanaOka.exists_diffQuotient
     {R : Type*} [CommRing R] [Nontrivial R]
     (q : R[X]) (hq : q ≠ 0) (c : R) :
@@ -64,7 +67,9 @@ theorem _root_.Tengoku.LanaOka.exists_diffQuotient
     exact (eq_sub_of_add_eq' h).symm
 
 open Polynomial in
-/-- Divided difference: `p(c) - p(t) = (c - t) * (p /ₘ (X - C c))(t)`. -/
+/-- Divided difference: `p(c) - p(t) = (c - t) * (p /ₘ (X - C c))(t)`.
+@isnad1 id=eq.0h4v.s7.e50fb1ceafac from=translated src=- shape=8a60f00e vocab=50e7e671
+-/
 theorem _root_.Tengoku.LanaOka.eval_sub_eval_eq_mul_divByMonic {R : Type*} [CommRing R] (p : R[X]) (c t : R) :
     p.eval c - p.eval t = (c - t) * (p /ₘ (X - C c)).eval t := by
   have h := modByMonic_add_div p (X - C c)
@@ -74,7 +79,9 @@ theorem _root_.Tengoku.LanaOka.eval_sub_eval_eq_mul_divByMonic {R : Type*} [Comm
   linear_combination h2
 
 open Finset Polynomial in
-/-- Divided-difference identity for a finite power sum with leading coefficient one. -/
+/-- Divided-difference identity for a finite power sum with leading coefficient one.
+@isnad1 id=eq.1h4v.s7.144d4a7545dd from=translated src=- shape=f9941671 vocab=e4e848d9
+-/
 theorem _root_.Tengoku.LanaOka.sum_pow_sub_sum_pow_eq (d : ℕ) (c : ℕ → ℂ) (hcd : c d = 1) (ζ t : ℂ) :
     (∑ j ∈ range (d + 1), c j * ζ ^ j) - (∑ j ∈ range (d + 1), c j * t ^ j)
       = (ζ - t) * ∑ i ∈ range d, t ^ i *
@@ -148,32 +155,53 @@ noncomputable def uncurry (g : MvPowerSeries σ (MvPowerSeries τ R)) : MvPowerS
   fun d ↦ coeff (Finsupp.sumFinsuppEquivProdFinsupp d).2
               (coeff (Finsupp.sumFinsuppEquivProdFinsupp d).1 g)
 
+/--
+@isnad1 id=eq.0h6v.s9.909abbfa9ccb from=translated src=- shape=c33a8a89 vocab=65fb1ba9
+-/
 @[simp] lemma coeff_curry (f : MvPowerSeries (σ ⊕ τ) R) (dσ : σ →₀ ℕ) (dτ : τ →₀ ℕ) :
     coeff dτ (coeff dσ (curry f)) =
       coeff (Finsupp.sumFinsuppEquivProdFinsupp.symm (dσ, dτ)) f := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.e3c20939d681 from=translated src=- shape=b107781a vocab=df303a03
+-/
 @[simp] lemma coeff_uncurry (g : MvPowerSeries σ (MvPowerSeries τ R)) (d : σ ⊕ τ →₀ ℕ) :
     coeff d (uncurry g) =
       coeff (Finsupp.sumFinsuppEquivProdFinsupp d).2
         (coeff (Finsupp.sumFinsuppEquivProdFinsupp d).1 g) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.923684c7e93b from=translated src=- shape=3ce30b45 vocab=e97f41b5
+-/
 lemma uncurry_curry (f : MvPowerSeries (σ ⊕ τ) R) : uncurry (curry f) = f := by
   ext d
   rw [coeff_uncurry, coeff_curry, Prod.mk.eta, Equiv.symm_apply_apply]
 
+/--
+@isnad1 id=eq.0h4v.s5.e1d1a5c79e08 from=translated src=- shape=ba0dae1d vocab=5a05e8c9
+-/
 lemma curry_uncurry (g : MvPowerSeries σ (MvPowerSeries τ R)) : curry (uncurry g) = g := by
   ext dσ dτ
   rw [coeff_curry, coeff_uncurry, Equiv.apply_symm_apply]
 
+/--
+@isnad1 id=eq.0h5v.s7.cbb615013201 from=translated src=- shape=185f72ab vocab=6ac1c5e0
+-/
 @[simp] lemma curry_add (f g : MvPowerSeries (σ ⊕ τ) R) :
     curry (f + g) = curry f + curry g := by
   ext dσ dτ
   simp [map_add]
 
+/--
+@isnad1 id=eq.0h3v.s6.c0c87dba8246 from=translated src=- shape=12a780ce vocab=38b100f9
+-/
 @[simp] lemma curry_zero : curry (0 : MvPowerSeries (σ ⊕ τ) R) = 0 := by
   ext dσ dτ
   simp
 
+/--
+@isnad1 id=eq.0h3v.s6.7c84ce9cd964 from=translated src=- shape=12a780ce vocab=38b100f9
+-/
 lemma curry_one : curry (1 : MvPowerSeries (σ ⊕ τ) R) = 1 := by
   classical
   have he0 : Finsupp.sumFinsuppEquivProdFinsupp (0 : σ ⊕ τ →₀ ℕ) = (0, 0) := by
@@ -193,6 +221,9 @@ lemma curry_one : curry (1 : MvPowerSeries (σ ⊕ τ) R) = 1 := by
       · subst hσ; simp [coeff_one, ite_eq_right h']
       · simp [coeff_one, ite_eq_right hσ]
 
+/--
+@isnad1 id=eq.0h4v.s7.ec3feaa42748 from=translated src=- shape=7b07cd69 vocab=e3da7b7a
+-/
 lemma symm_prod_eq_sumElim (a : σ →₀ ℕ) (b : τ →₀ ℕ) :
     Finsupp.sumFinsuppEquivProdFinsupp.symm (a, b) = Finsupp.sumElim a b := by
   ext x
@@ -200,6 +231,9 @@ lemma symm_prod_eq_sumElim (a : σ →₀ ℕ) (b : τ →₀ ℕ) :
   | inl x => simp
   | inr x => simp
 
+/--
+@isnad1 id=eq.0h5v.s6.08d8deb2f039 from=translated src=- shape=185f72ab vocab=2f82d1af
+-/
 lemma curry_mul (f g : MvPowerSeries (σ ⊕ τ) R) : curry (f * g) = curry f * curry g := by
   classical
   ext dσ dτ
@@ -270,6 +304,9 @@ end MvPowerSeries
 
 namespace MvPowerSeries
 
+/--
+@isnad1 id=summable.0h3v.s4.ec2ad979ca18 from=translated src=- shape=1cec45f5 vocab=04d7f169
+-/
 lemma summableAt_X {ι : Type*} (i : ι) (x : ι → ℂ) :
     (X i : MvPowerSeries ι ℂ).SummableAt x := by
   classical
@@ -277,10 +314,16 @@ lemma summableAt_X {ι : Type*} (i : ι) (x : ι → ℂ) :
   rw [Finset.mem_singleton] at hd
   rw [term, coeff_X, ite_eq_right hd, zero_mul, norm_zero]
 
+/--
+@isnad1 id=locallyc.0h2v.s3.6c74c243bb6c from=translated src=- shape=cd05088a vocab=883988fc
+-/
 lemma locallyConvergent_X {ι : Type*} (i : ι) :
     (X i : MvPowerSeries ι ℂ).LocallyConvergent :=
   .of_forall fun x ↦ summableAt_X i x
 
+/--
+@isnad1 id=eq.0h3v.s4.352dbcde6ae5 from=translated src=- shape=b8dca3a3 vocab=bbb39388
+-/
 lemma eval_X {ι : Type*} (i : ι) (x : ι → ℂ) :
     (X i : MvPowerSeries ι ℂ).eval x = x i := by
   classical
@@ -289,6 +332,9 @@ lemma eval_X {ι : Type*} (i : ι) (x : ι → ℂ) :
   · intro d hd
     rw [term, coeff_X, ite_eq_right hd, zero_mul]
 
+/--
+@isnad1 id=eq.2h4v.s6.5fb8f24bc79b from=translated src=- shape=8c25ea29 vocab=48c6f5fc
+-/
 lemma eval_add_of_summableAt {ι : Type*} {P Q : MvPowerSeries ι ℂ} {x : ι → ℂ}
     (hP : P.SummableAt x) (hQ : Q.SummableAt x) :
     (P + Q).eval x = P.eval x + Q.eval x := by
@@ -298,6 +344,9 @@ lemma eval_add_of_summableAt {ι : Type*} {P Q : MvPowerSeries ι ℂ} {x : ι �
   rw [hfun]
   exact hP.hasSum.add hQ.hasSum
 
+/--
+@isnad1 id=eq.2h4v.s6.db0a9c84c036 from=translated src=- shape=8c25ea29 vocab=279eabd6
+-/
 lemma eval_mul_of_summableAt {ι : Type*} {P Q : MvPowerSeries ι ℂ} {x : ι → ℂ}
     (hP : P.SummableAt x) (hQ : Q.SummableAt x) :
     (P * Q).eval x = P.eval x * Q.eval x := by
@@ -319,24 +368,42 @@ lemma eval_mul_of_summableAt {ι : Type*} {P Q : MvPowerSeries ι ℂ} {x : ι �
     exact hasSum_fintype _
   exact ((hσ.sigma hfib).unique (hP.mul hQ).hasSum).symm
 
+/--
+@isnad1 id=summable.0h2v.s4.9ecfd16521ba from=translated src=- shape=af435407 vocab=09079249
+-/
 lemma summableAt_zero {ι : Type*} (x : ι → ℂ) : (0 : MvPowerSeries ι ℂ).SummableAt x := by
   simpa using summableAt_algebraMap 0 x
 
+/--
+@isnad1 id=summable.0h2v.s4.f2cbb3f54a25 from=translated src=- shape=af435407 vocab=09079249
+-/
 lemma summableAt_one {ι : Type*} (x : ι → ℂ) : (1 : MvPowerSeries ι ℂ).SummableAt x := by
   simpa using summableAt_algebraMap 1 x
 
+/--
+@isnad1 id=eq.0h3v.s6.7fd9e476da16 from=translated src=- shape=6a0f59a7 vocab=b86827b6
+-/
 lemma eval_algebraMap {ι : Type*} (c : ℂ) (x : ι → ℂ) :
     (algebraMap ℂ (MvPowerSeries ι ℂ) c).eval x = c := by
   classical
   rw [eval, tsum_eq_single 0 (fun d hd ↦ term_algebraMap_of_ne_zero c x hd),
     term_algebraMap_zero]
 
+/--
+@isnad1 id=eq.0h2v.s4.94a0f51a3954 from=translated src=- shape=4844a290 vocab=e9f18bb2
+-/
 lemma eval_of_zero {ι : Type*} (x : ι → ℂ) : (0 : MvPowerSeries ι ℂ).eval x = 0 := by
   simpa using eval_algebraMap 0 x
 
+/--
+@isnad1 id=eq.0h2v.s4.92a28b65c206 from=translated src=- shape=4844a290 vocab=e9f18bb2
+-/
 lemma eval_one {ι : Type*} (x : ι → ℂ) : (1 : MvPowerSeries ι ℂ).eval x = 1 := by
   simpa using eval_algebraMap 1 x
 
+/--
+@isnad1 id=summable.1h5v.s5.162c822793aa from=translated src=- shape=1c454795 vocab=25a99ea5
+-/
 lemma SummableAt.sum {ι κ : Type*} {x : ι → ℂ} {s : Finset κ} {P : κ → MvPowerSeries ι ℂ} :
     (∀ k ∈ s, (P k).SummableAt x) → (∑ k ∈ s, P k).SummableAt x := by
   classical
@@ -347,6 +414,9 @@ lemma SummableAt.sum {ι κ : Type*} {x : ι → ℂ} {s : Finset κ} {P : κ �
       rw [Finset.sum_insert hk]
       exact (h k (by simp)).add (ih fun j hj ↦ h j (Finset.mem_insert_of_mem hj))
 
+/--
+@isnad1 id=eq.1h5v.s6.3c8675f2c1df from=translated src=- shape=648d3984 vocab=2c7a6b6e
+-/
 lemma eval_sum_of_summableAt {ι κ : Type*} {x : ι → ℂ} {s : Finset κ}
     {P : κ → MvPowerSeries ι ℂ} :
     (∀ k ∈ s, (P k).SummableAt x) → (∑ k ∈ s, P k).eval x = ∑ k ∈ s, (P k).eval x := by
@@ -359,11 +429,17 @@ lemma eval_sum_of_summableAt {ι κ : Type*} {x : ι → ℂ} {s : Finset κ}
       rw [Finset.sum_insert hk, Finset.sum_insert hk,
         eval_add_of_summableAt (h k (by simp)) (SummableAt.sum hs), ih hs]
 
+/--
+@isnad1 id=summable.1h4v.s5.0322dccceb75 from=translated src=- shape=59cda35c vocab=fbeedd07
+-/
 lemma SummableAt.pow {ι : Type*} {P : MvPowerSeries ι ℂ} {x : ι → ℂ} (h : P.SummableAt x) :
     ∀ m : ℕ, (P ^ m).SummableAt x
   | 0 => by simpa using summableAt_one x
   | m + 1 => by rw [pow_succ]; exact (SummableAt.pow h m).mul h
 
+/--
+@isnad1 id=eq.1h4v.s6.4894c2444c5f from=translated src=- shape=5e380b49 vocab=51b38a65
+-/
 lemma eval_pow_of_summableAt {ι : Type*} {P : MvPowerSeries ι ℂ} {x : ι → ℂ}
     (h : P.SummableAt x) :
     ∀ m : ℕ, (P ^ m).eval x = P.eval x ^ m
@@ -371,6 +447,9 @@ lemma eval_pow_of_summableAt {ι : Type*} {P : MvPowerSeries ι ℂ} {x : ι →
   | m + 1 => by
       rw [pow_succ, pow_succ, eval_mul_of_summableAt (h.pow m) h, eval_pow_of_summableAt h m]
 
+/--
+@isnad1 id=summable.0h2v.s4.7a341eb62992 from=translated src=- shape=6f4a302b vocab=09079249
+-/
 lemma summableAt_zero_pt {ι : Type*} (P : MvPowerSeries ι ℂ) :
     P.SummableAt (0 : ι → ℂ) := by
   classical
@@ -393,16 +472,25 @@ open Filter Topology
 
 variable {σ τ : Type*}
 
+/--
+@isnad1 id=eq.0h5v.s5.b9088d8fc8c0 from=translated src=- shape=9c7c3e6d vocab=adec9bf3
+-/
 lemma evalMonomial_mapDomain (e : σ ↪ τ) (d : σ →₀ ℕ) (x : τ → ℂ) :
     evalMonomial (Finsupp.mapDomain e d) x = evalMonomial d (x ∘ e) :=
   Finsupp.prod_mapDomain_index_inj e.injective
 
+/--
+@isnad1 id=eq.0h6v.s7.17017ddc6d2a from=translated src=- shape=50174a39 vocab=4801e838
+-/
 lemma term_rename (e : σ ↪ τ) [TendstoCofinite (e : σ → τ)]
     (P : MvPowerSeries σ ℂ) (x : τ → ℂ) (d : σ →₀ ℕ) :
     (rename (e : σ → τ) P).term x (Finsupp.mapDomain e d) = P.term (x ∘ e) d := by
   rw [term, term, ← Finsupp.embDomain_eq_mapDomain, coeff_embDomain_rename,
     Finsupp.embDomain_eq_mapDomain, evalMonomial_mapDomain]
 
+/--
+@isnad1 id=eq.0h5v.s7.d7863f4e57ab from=translated src=- shape=721f773b vocab=4d33aaf7
+-/
 lemma eval_rename (e : σ ↪ τ) [TendstoCofinite (e : σ → τ)]
     (P : MvPowerSeries σ ℂ) (x : τ → ℂ) :
     (rename (e : σ → τ) P).eval x = P.eval (x ∘ e) := by
@@ -417,6 +505,9 @@ lemma eval_rename (e : σ ↪ τ) [TendstoCofinite (e : σ → τ)]
     (Finsupp.mapDomain_injective e.injective) hzero]
   exact tsum_congr fun d ↦ term_rename e P x d
 
+/--
+@isnad1 id=summable.1h5v.s7.79787584e631 from=translated src=- shape=4240a467 vocab=23aa5dc0
+-/
 lemma SummableAt.rename (e : σ ↪ τ) [TendstoCofinite (e : σ → τ)]
     {P : MvPowerSeries σ ℂ} {x : τ → ℂ} (h : P.SummableAt (x ∘ e)) :
     (rename (e : σ → τ) P).SummableAt x := by
@@ -427,6 +518,9 @@ lemma SummableAt.rename (e : σ ↪ τ) [TendstoCofinite (e : σ → τ)]
     rw [term, coeff_rename_eq_zero _ _ hd', zero_mul, norm_zero]
   · simpa [SummableAt, Function.comp_def, term_rename] using h
 
+/--
+@isnad1 id=locallyc.1h4v.s7.507c1873da99 from=translated src=- shape=c76f35f7 vocab=18f2dc9f
+-/
 lemma LocallyConvergent.rename (e : σ ↪ τ) [TendstoCofinite (e : σ → τ)]
     {P : MvPowerSeries σ ℂ} (hP : P.LocallyConvergent) :
     (rename (e : σ → τ) P).LocallyConvergent := by
@@ -469,7 +563,9 @@ section FromPolynomial
 namespace MvPowerSeries
 
 /-- A power series in `n` variables representing `F` represents, as a power series in `n + 1`
-variables, the pullback of `F` along the projection to the first `n` coordinates. -/
+variables, the pullback of `F` along the projection to the first `n` coordinates.
+@isnad1 id=represen.1h3v.s8.e608106798bc from=translated src=- shape=b6a83408 vocab=ce141330
+-/
 lemma Represents.rename_castSucc {P : MvPowerSeries (Fin n) ℂ} {F : (Fin n → ℂ) → ℂ}
     (hP : P.Represents F) :
     (rename (Fin.castSuccEmb : Fin n → Fin (n + 1)) P).Represents
@@ -493,7 +589,9 @@ lemma Represents.rename_castSucc {P : MvPowerSeries (Fin n) ℂ} {F : (Fin n →
 
 variable {ι : Type*}
 
-/-- The power series `X i` represents the `i`-th coordinate function. -/
+/-- The power series `X i` represents the `i`-th coordinate function.
+@isnad1 id=represen.0h2v.s4.d69ada5c6cc5 from=translated src=- shape=0afc8173 vocab=47011fd7
+-/
 lemma represents_X (i : ι) : (X i : MvPowerSeries ι ℂ).Represents (fun x ↦ x i) := by
   classical
   refine .of_forall fun x ↦ ?_
@@ -511,6 +609,9 @@ namespace Tengoku.LanaOka.LocalOkaRing
 
 open MvPowerSeries
 
+/--
+@isnad1 id=eq.0h2v.s9.95fdd42d8c77 from=translated src=- shape=0aebbcaf vocab=e802d4ac
+-/
 @[simp]
 lemma coe_incl (P : LocalOkaRing (Fin n)) :
     (incl P : MvPowerSeries (Fin (n + 1)) ℂ) =
@@ -518,6 +619,9 @@ lemma coe_incl (P : LocalOkaRing (Fin n)) :
         (P : MvPowerSeries (Fin n) ℂ) :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.a402b02a3773 from=translated src=- shape=5a8f8848 vocab=57f257c3
+-/
 @[simp]
 lemma coe_lastVar :
     ((lastVar : LocalOkaRing (Fin (n + 1))) : MvPowerSeries (Fin (n + 1)) ℂ) =
@@ -535,18 +639,26 @@ noncomputable def Tengoku.LanaOka.LocalOkaRing.fromPolynomial :
 
 namespace Tengoku.LanaOka.LocalOkaRing
 
+/--
+@isnad1 id=eq.0h2v.s10.62f395caa548 from=translated src=- shape=a53fe514 vocab=25450a0a
+-/
 @[simp]
 lemma fromPolynomial_C (P : LocalOkaRing (Fin n)) :
     fromPolynomial (Polynomial.C P) = incl P :=
   Polynomial.aevalTower_C _ _ _
 
+/--
+@isnad1 id=eq.0h1v.s9.75f4cbf4601d from=translated src=- shape=9398b1f4 vocab=0e59c2f5
+-/
 @[simp]
 lemma fromPolynomial_X :
     fromPolynomial (Polynomial.X : (LocalOkaRing (Fin n))[X]) = lastVar :=
   Polynomial.aevalTower_X _ _
 
 /-- The underlying power series of `LocalOkaRing.fromPolynomial Q` is
-`MvPowerSeries.fromPolynomial'` applied to the underlying polynomial of power series. -/
+`MvPowerSeries.fromPolynomial'` applied to the underlying polynomial of power series.
+@isnad1 id=eq.0h2v.s10.412398f11482 from=translated src=- shape=42b4e2a4 vocab=8a2b464c
+-/
 lemma coe_fromPolynomial (Q : (LocalOkaRing (Fin n))[X]) :
     (fromPolynomial Q : MvPowerSeries (Fin (n + 1)) ℂ) =
       MvPowerSeries.fromPolynomial'
@@ -562,6 +674,9 @@ lemma coe_fromPolynomial (Q : (LocalOkaRing (Fin n))[X]) :
     simp only [MulMemClass.coe_mul, SubmonoidClass.coe_pow, coe_incl, coe_lastVar]
     rfl
 
+/--
+@isnad1 id=injectiv.0h1v.s9.5bcb939d5890 from=translated src=- shape=86182bf9 vocab=002fdfd9
+-/
 lemma fromPolynomial_injective :
     Function.Injective (fromPolynomial (n := n)) := by
   intro Q₁ Q₂ h
@@ -573,6 +688,9 @@ lemma fromPolynomial_injective :
 
 end Tengoku.LanaOka.LocalOkaRing
 
+/--
+@isnad1 id=eq.0h3v.s9.0f98a35f3db1 from=translated src=- shape=9c85371e vocab=a4e18d4d
+-/
 lemma Tengoku.LanaOka.LocalOkaRing.eval_incl (a : LocalOkaRing (Fin n)) (z : Fin (n + 1) → ℂ) :
     ((incl a : LocalOkaRing (Fin (n + 1))) : MvPowerSeries (Fin (n + 1)) ℂ).eval z
       = (a : MvPowerSeries (Fin n) ℂ).eval (fun j ↦ z j.castSucc) := by
@@ -581,17 +699,26 @@ lemma Tengoku.LanaOka.LocalOkaRing.eval_incl (a : LocalOkaRing (Fin n)) (z : Fin
   rw [MvPowerSeries.eval_rename]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.c963632a2a0b from=translated src=- shape=115ddaf5 vocab=a0f37385
+-/
 lemma Tengoku.LanaOka.LocalOkaRing.eval_lastVar (z : Fin (n + 1) → ℂ) :
     ((lastVar : LocalOkaRing (Fin (n + 1))) : MvPowerSeries (Fin (n + 1)) ℂ).eval z
       = z (Fin.last n) :=
   MvPowerSeries.eval_X _ _
 
+/--
+@isnad1 id=eq.0h2v.s10.7d150bfa858a from=translated src=- shape=71fa6fe1 vocab=715d126d
+-/
 lemma Tengoku.LanaOka.LocalOkaRing.fromPolynomial_eq_sum (q : (LocalOkaRing (Fin n))[X]) :
     fromPolynomial q
       = ∑ i ∈ Finset.range (q.natDegree + 1), incl (q.coeff i) * lastVar ^ i := by
   rw [fromPolynomial]
   exact Polynomial.eval₂_eq_sum_range _ _
 
+/--
+@isnad1 id=summable.1h3v.s9.04469601303a from=translated src=- shape=21cefbd6 vocab=e592cb18
+-/
 lemma Tengoku.LanaOka.LocalOkaRing.summableAt_incl (a : LocalOkaRing (Fin n)) (z : Fin (n + 1) → ℂ)
     (ha : (a : MvPowerSeries (Fin n) ℂ).SummableAt (fun j ↦ z j.castSucc)) :
     ((incl a : LocalOkaRing (Fin (n + 1))) : MvPowerSeries (Fin (n + 1)) ℂ).SummableAt z := by
@@ -599,6 +726,9 @@ lemma Tengoku.LanaOka.LocalOkaRing.summableAt_incl (a : LocalOkaRing (Fin n)) (z
       (a : MvPowerSeries (Fin n) ℂ)).SummableAt z
   exact MvPowerSeries.SummableAt.rename _ ha
 
+/--
+@isnad1 id=eq.1h3v.s10.fa39cca4425d from=translated src=- shape=0f431fe6 vocab=1ac44596
+-/
 lemma Tengoku.LanaOka.LocalOkaRing.eval_fromPolynomial (q : (LocalOkaRing (Fin n))[X]) (z : Fin (n + 1) → ℂ)
     (hz : ∀ i, ((q.coeff i : LocalOkaRing (Fin n)) : MvPowerSeries (Fin n) ℂ).SummableAt
       (fun j ↦ z j.castSucc)) :
@@ -626,6 +756,9 @@ lemma Tengoku.LanaOka.LocalOkaRing.eval_fromPolynomial (q : (LocalOkaRing (Fin n
   rw [MvPowerSeries.eval_mul_of_summableAt (summableAt_incl _ z (hz i)) (hX.pow i),
     MvPowerSeries.eval_pow_of_summableAt hX, eval_incl, MvPowerSeries.eval_X]
 
+/--
+@isnad1 id=eq.0h3v.s10.3296187e2ab3 from=translated src=- shape=978a29c4 vocab=389c28fa
+-/
 lemma Tengoku.LanaOka.LocalOkaRing.eval_fromPolynomial_axis (q : (LocalOkaRing (Fin n))[X]) (w : ℂ) :
     ((fromPolynomial q : LocalOkaRing (Fin (n + 1))) : MvPowerSeries (Fin (n + 1)) ℂ).eval
         (Fin.snoc (0 : Fin n → ℂ) w : Fin (n + 1) → ℂ)
@@ -639,6 +772,9 @@ lemma Tengoku.LanaOka.LocalOkaRing.eval_fromPolynomial_axis (q : (LocalOkaRing (
   refine Finset.sum_congr rfl fun i _ ↦ ?_
   rw [hpt, MvPowerSeries.eval_zero]
 
+/--
+@isnad1 id=eq.1h3v.s10.703605614e2c from=translated src=- shape=739f81fe vocab=0bd5ea76
+-/
 lemma Tengoku.LanaOka.LocalOkaRing.eval_fromPolynomial_axis_weierstrass
     (q : (LocalOkaRing (Fin n))[X])
     (hq : IsLocalWeierstrassPolynomial
@@ -668,6 +804,9 @@ lemma Tengoku.LanaOka.LocalOkaRing.eval_fromPolynomial_axis_weierstrass
       exact_mod_cast hilt
     rw [hcoeff, hq.apply_zero i hidQ, zero_mul]
 
+/--
+@isnad1 id=eventual.0h2v.s8.acf0a765d52f from=translated src=- shape=a0ac0af3 vocab=c06a08b6
+-/
 lemma Tengoku.LanaOka.LocalOkaRing.eventually_summableAt_coeffs (q : (LocalOkaRing (Fin n))[X]) :
     ∀ᶠ z' : Fin n → ℂ in nhds 0,
       ∀ i ∈ Finset.range (q.natDegree + 1),
@@ -676,6 +815,9 @@ lemma Tengoku.LanaOka.LocalOkaRing.eventually_summableAt_coeffs (q : (LocalOkaRi
   intro i _
   exact (q.coeff i).locallyConvergent
 
+/--
+@isnad1 id=eq.1h3v.s9.0e7e4679e45d from=translated src=- shape=503e4818 vocab=527c3287
+-/
 lemma Tengoku.LanaOka.LocalOkaRing.eval_coeff_natDegree
     (q : (LocalOkaRing (Fin n))[X])
     (hq : IsLocalWeierstrassPolynomial
@@ -693,6 +835,9 @@ lemma Tengoku.LanaOka.LocalOkaRing.eval_coeff_natDegree
   rw [hcoeff1, show ((1 : LocalOkaRing (Fin n)) : MvPowerSeries (Fin n) ℂ) = 1 by simp]
   exact MvPowerSeries.eval_one z'
 
+/--
+@isnad1 id=eventual.2h3v.s9.cea1fa96cd2c from=translated src=- shape=5c24ff29 vocab=d31d25c8
+-/
 lemma Tengoku.LanaOka.LocalOkaRing.eventually_error_lt
     (q : (LocalOkaRing (Fin n))[X])
     (hq : IsLocalWeierstrassPolynomial
@@ -731,6 +876,9 @@ lemma Tengoku.LanaOka.LocalOkaRing.eventually_error_lt
       ((q.coeff i).locallyConvergent.analyticAt.continuousAt.norm)
   exact htend.eventually (gt_mem_nhds (pow_pos hε _))
 
+/--
+@isnad1 id=eventual.2h3v.s10.d443e51027a6 from=translated src=- shape=7ae7267b vocab=005500b7
+-/
 lemma Tengoku.LanaOka.LocalOkaRing.eventually_fromPolynomial_ne_zero
     (q : (LocalOkaRing (Fin n))[X])
     (hq : IsLocalWeierstrassPolynomial
@@ -782,7 +930,9 @@ lemma Tengoku.LanaOka.LocalOkaRing.eventually_fromPolynomial_ne_zero
   rw [hzero, norm_zero] at hlow
   exact lt_irrefl 0 hlow
 
-/-- The value of `fromPolynomial q` along a `Fin.snoc` slice. -/
+/-- The value of `fromPolynomial q` along a `Fin.snoc` slice.
+@isnad1 id=eq.1h4v.s10.f102bfe8b893 from=translated src=- shape=11290595 vocab=2d868102
+-/
 lemma Tengoku.LanaOka.LocalOkaRing.eval_fromPolynomial_snoc (q : (LocalOkaRing (Fin n))[X]) (w : Fin n → ℂ)
     (hwc : ∀ j, ((q.coeff j : LocalOkaRing (Fin n)) : MvPowerSeries (Fin n) ℂ).SummableAt w)
     (s : ℂ) :
@@ -796,7 +946,9 @@ lemma Tengoku.LanaOka.LocalOkaRing.eval_fromPolynomial_snoc (q : (LocalOkaRing (
   simp only [Fin.snoc_last, hsnocc]
 
 /-- Evaluation of `fromPolynomial b` along a slice, with the sum taken over any range
-containing the degree of `b`. -/
+containing the degree of `b`.
+@isnad1 id=eq.2h5v.s10.832cd6669fb3 from=translated src=- shape=97eeadb8 vocab=2251a683
+-/
 lemma Tengoku.LanaOka.LocalOkaRing.eval_fromPolynomial_snoc_range (b : (LocalOkaRing (Fin n))[X]) (m : ℕ)
     (hbm : b.degree < (m : WithBot ℕ)) (w : Fin n → ℂ)
     (hwc : ∀ j, ((b.coeff j : LocalOkaRing (Fin n)) : MvPowerSeries (Fin n) ℂ).SummableAt w)
@@ -817,7 +969,9 @@ lemma Tengoku.LanaOka.LocalOkaRing.eval_fromPolynomial_snoc_range (b : (LocalOka
       rw [Polynomial.coeff_eq_zero_of_natDegree_lt (by omega), ZeroMemClass.coe_zero,
         MvPowerSeries.eval_of_zero, zero_mul]
 
-/-- The pointwise algebraic identity behind Weierstrass division. -/
+/-- The pointwise algebraic identity behind Weierstrass division.
+@isnad1 id=eq.3h7v.s7.59f15804da0b from=translated src=- shape=9e438f1a vocab=565a34a9
+-/
 lemma _root_.Tengoku.LanaOka.div_sub_div_add_sum_eq {d : ℕ} (F Qz Qt ζ t : ℂ) (E : ℕ → ℂ)
     (hQz : Qz ≠ 0) (hne : ζ - t ≠ 0)
     (hE : Qz - Qt = (ζ - t) * ∑ i ∈ Finset.range d, t ^ i * E i) :
@@ -831,7 +985,9 @@ lemma _root_.Tengoku.LanaOka.div_sub_div_add_sum_eq {d : ℕ} (F Qz Qt ζ t : �
   field_simp
   linear_combination F * hE
 
-/-- The Weierstrass division integrand identity, pointwise on the circle. -/
+/-- The Weierstrass division integrand identity, pointwise on the circle.
+@isnad1 id=eqon.5h7v.s12.b4a96c7af54d from=translated src=- shape=903f8ec4 vocab=dd33d24e
+-/
 lemma _root_.Tengoku.LanaOka.localweierstrass_integrand_eqOn
     (q : (LocalOkaRing (Fin n))[X])
     (hq : IsLocalWeierstrassPolynomial
@@ -882,7 +1038,9 @@ lemma _root_.Tengoku.LanaOka.localweierstrass_integrand_eqOn
   simp only [smul_eq_mul, inv_mul_eq_div]
   exact div_sub_div_add_sum_eq _ _ _ ζ t _ hQz hne hE
 
-/-- The Weierstrass division integral identity. -/
+/-- The Weierstrass division integral identity.
+@isnad1 id=eq.10h8v.s12.76b638d74f95 from=translated src=- shape=c6c1a301 vocab=70e8dde4
+-/
 lemma _root_.Tengoku.LanaOka.localweierstrass_division_lemma_four
     (q : (LocalOkaRing (Fin n))[X])
     (hq : IsLocalWeierstrassPolynomial
@@ -1014,6 +1172,9 @@ lemma _root_.Tengoku.LanaOka.localweierstrass_division_lemma_four
     rw [circleIntegral.integral_const_mul]
     ring
 
+/--
+@isnad1 id=ex.1h3v.s11.773f3b0fba41 from=translated src=- shape=ec6f0330 vocab=91cf2ca3
+-/
 lemma _root_.Tengoku.LanaOka.localweierstrass_division_lemma_one
       (q : (LocalOkaRing (Fin n))[X])
       (hq : IsLocalWeierstrassPolynomial (Polynomial.map (localOkaSubring _).val.toRingHom q))
@@ -1061,6 +1222,9 @@ lemma _root_.Tengoku.LanaOka.localweierstrass_division_lemma_one
   have hprop2 := hprop hz'dist (z (Fin.last n)) hz₂
   rwa [hzeq] at hprop2
 
+/--
+@isnad1 id=ex.7h6v.s11.2926c3b65650 from=translated src=- shape=35aa946e vocab=0b6ddff9
+-/
 lemma _root_.Tengoku.LanaOka.localweierstrass_division_lemma_two
     (q : (LocalOkaRing (Fin n))[X])
     (_hq : IsLocalWeierstrassPolynomial (Polynomial.map (localOkaSubring _).val.toRingHom q))
@@ -1229,6 +1393,9 @@ lemma _root_.Tengoku.LanaOka.localweierstrass_division_lemma_two
   obtain ⟨P, hconv, hrep⟩ := MvPowerSeries.exists_represents hF
   exact ⟨⟨P, hconv⟩, hrep⟩
 
+/--
+@isnad1 id=analytic.6h7v.s11.d6d35b958541 from=translated src=- shape=9d6fde74 vocab=86345e47
+-/
 lemma _root_.Tengoku.LanaOka.localweierstrass_division_lemma_three
     (q : (LocalOkaRing (Fin n))[X])
     (f : LocalOkaRing (Fin (n + 1)))
@@ -1318,14 +1485,18 @@ namespace MvPowerSeries
 
 variable {ι : Type*}
 
-/-- The sum of a power series representing `F` agrees with `F` near the origin. -/
+/-- The sum of a power series representing `F` agrees with `F` near the origin.
+@isnad1 id=eventual.1h3v.s6.35e07e17eec9 from=translated src=- shape=61eeb8e1 vocab=6d4b7319
+-/
 lemma Represents.eval_eq {P : MvPowerSeries ι ℂ} {F : (ι → ℂ) → ℂ} (hP : P.Represents F) :
     ∀ᶠ x in nhds (0 : ι → ℂ), P.eval x = F x := by
   filter_upwards [hP] with x hx
   rw [eval]
   exact hx.tsum_eq
 
-/-- The value at the origin of a function represented by `P` is the constant term of `P`. -/
+/-- The value at the origin of a function represented by `P` is the constant term of `P`.
+@isnad1 id=eq.1h3v.s6.2279cbcd6ebd from=translated src=- shape=12d29950 vocab=e15c549e
+-/
 lemma Represents.apply_zero {P : MvPowerSeries ι ℂ} {F : (ι → ℂ) → ℂ} (hP : P.Represents F) :
     F 0 = constantCoeff P := by
   rw [← eval_zero P, hP.eval_eq.self_of_nhds]
@@ -1333,14 +1504,18 @@ lemma Represents.apply_zero {P : MvPowerSeries ι ℂ} {F : (ι → ℂ) → ℂ
 variable [Fintype ι] [DecidableEq ι]
 
 /-- The sum of a locally convergent power series has the associated formal multilinear series
-as a power series expansion at the origin. -/
+as a power series expansion at the origin.
+@isnad1 id=hasfpowe.1h2v.s6.e02f9dbbc27b from=translated src=- shape=3891e10d vocab=db3da2a2
+-/
 lemma LocallyConvergent.hasFPowerSeriesAt_eval {P : MvPowerSeries ι ℂ}
     (hP : P.LocallyConvergent) : HasFPowerSeriesAt P.eval (toFPS P) 0 := by
   obtain ⟨ρ, hρ, h⟩ := hP.hasFPowerSeriesOnBall
   exact h.hasFPowerSeriesAt
 
 /-- The partial derivatives at the origin of the sum of a locally convergent power series are
-the linear coefficients of the series. -/
+the linear coefficients of the series.
+@isnad1 id=eq.1h3v.s9.22a4b3373c88 from=translated src=- shape=2c4dc63f vocab=0b659a80
+-/
 lemma LocallyConvergent.fderiv_eval_zero {ι : Type*} [Finite ι] [DecidableEq ι]
     {P : MvPowerSeries ι ℂ} (hP : P.LocallyConvergent) (j : ι) :
     fderiv ℂ P.eval 0 (Pi.single j 1) = coeff (Finsupp.single j 1) P := by
@@ -1394,6 +1569,9 @@ variable {R S : Type*} [CommRing R] [CommRing S]
 noncomputable def _root_.Tengoku.LanaOka.weierstrassOfCoeffs {d : ℕ} (c : Fin d → R) : R[X] :=
   Polynomial.X ^ d + ∑ j : Fin d, Polynomial.C (c j) * Polynomial.X ^ (j : ℕ)
 
+/--
+@isnad1 id=lt.0h3v.s7.d0aac73fa9e7 from=translated src=- shape=c25c71b3 vocab=9b5e53a8
+-/
 lemma _root_.Tengoku.LanaOka.degree_sum_C_mul_X_pow_lt {d : ℕ} (c : Fin d → R) :
     (∑ j : Fin d, Polynomial.C (c j) * Polynomial.X ^ (j : ℕ)).degree < (d : WithBot ℕ) := by
   refine lt_of_le_of_lt (Polynomial.degree_sum_le _ _) ?_
@@ -1401,6 +1579,9 @@ lemma _root_.Tengoku.LanaOka.degree_sum_C_mul_X_pow_lt {d : ℕ} (c : Fin d → 
   intro j _
   exact lt_of_le_of_lt (Polynomial.degree_C_mul_X_pow_le _ _) (by exact_mod_cast j.isLt)
 
+/--
+@isnad1 id=eq.1h4v.s7.6adaa3186b25 from=translated src=- shape=c15fda4f vocab=b1efc10d
+-/
 lemma _root_.Tengoku.LanaOka.coeff_sum_C_mul_X_pow_of_lt {d : ℕ} (c : Fin d → R) {k : ℕ} (hk : k < d) :
     (∑ j : Fin d, Polynomial.C (c j) * Polynomial.X ^ (j : ℕ)).coeff k = c ⟨k, hk⟩ := by
   rw [Polynomial.finsetSum_coeff, Finset.sum_eq_single (⟨k, hk⟩ : Fin d)]
@@ -1411,10 +1592,16 @@ lemma _root_.Tengoku.LanaOka.coeff_sum_C_mul_X_pow_of_lt {d : ℕ} (c : Fin d �
   · intro h
     exact absurd (Finset.mem_univ _) h
 
+/--
+@isnad1 id=monic.0h3v.s4.10836bf7f145 from=translated src=- shape=d798f006 vocab=0c49fac9
+-/
 lemma _root_.Tengoku.LanaOka.weierstrassOfCoeffs_monic {d : ℕ} (c : Fin d → R) :
     (weierstrassOfCoeffs c).Monic :=
   Polynomial.monic_X_pow_add (degree_sum_C_mul_X_pow_lt c)
 
+/--
+@isnad1 id=eq.1h4v.s5.3eb92d448580 from=translated src=- shape=76b3d478 vocab=616d57bc
+-/
 lemma _root_.Tengoku.LanaOka.weierstrassOfCoeffs_coeff_of_lt {d : ℕ} (c : Fin d → R) {k : ℕ} (hk : k < d) :
     (weierstrassOfCoeffs c).coeff k = c ⟨k, hk⟩ := by
   rw [weierstrassOfCoeffs, Polynomial.coeff_add, Polynomial.coeff_X_pow,
@@ -1427,6 +1614,9 @@ lemma _root_.Tengoku.LanaOka.weierstrassOfCoeffs_coeff_of_lt {d : ℕ} (c : Fin 
   · intro h
     exact absurd (Finset.mem_univ _) h
 
+/--
+@isnad1 id=eq.0h3v.s5.ebea80305505 from=translated src=- shape=8f768b10 vocab=da114868
+-/
 lemma _root_.Tengoku.LanaOka.weierstrassOfCoeffs_coeff_self {d : ℕ} (c : Fin d → R) :
     (weierstrassOfCoeffs c).coeff d = 1 := by
   rw [weierstrassOfCoeffs, Polynomial.coeff_add, Polynomial.coeff_X_pow, ite_eq_left rfl,
@@ -1435,6 +1625,9 @@ lemma _root_.Tengoku.LanaOka.weierstrassOfCoeffs_coeff_self {d : ℕ} (c : Fin d
   rw [Polynomial.coeff_C_mul, Polynomial.coeff_X_pow,
     ite_eq_right (fun h ↦ absurd h.symm (Nat.ne_of_lt j.isLt)), mul_zero]
 
+/--
+@isnad1 id=eq.1h4v.s5.93daf050044e from=translated src=- shape=e82c97d9 vocab=6502c516
+-/
 lemma _root_.Tengoku.LanaOka.weierstrassOfCoeffs_coeff_of_gt {d : ℕ} (c : Fin d → R) {k : ℕ} (hk : d < k) :
     (weierstrassOfCoeffs c).coeff k = 0 := by
   rw [weierstrassOfCoeffs, Polynomial.coeff_add, Polynomial.coeff_X_pow,
@@ -1443,16 +1636,25 @@ lemma _root_.Tengoku.LanaOka.weierstrassOfCoeffs_coeff_of_gt {d : ℕ} (c : Fin 
   rw [Polynomial.coeff_C_mul, Polynomial.coeff_X_pow,
     ite_eq_right (by have := j.isLt; omega), mul_zero]
 
+/--
+@isnad1 id=eq.0h3v.s5.aefbb21450c1 from=translated src=- shape=17ebfe49 vocab=a0bf5d89
+-/
 lemma _root_.Tengoku.LanaOka.weierstrassOfCoeffs_degree [Nontrivial R] {d : ℕ} (c : Fin d → R) :
     (weierstrassOfCoeffs c).degree = d := by
   rw [weierstrassOfCoeffs, Polynomial.degree_add_eq_left_of_degree_lt
     (by rw [Polynomial.degree_X_pow]; exact degree_sum_C_mul_X_pow_lt c),
     Polynomial.degree_X_pow]
 
+/--
+@isnad1 id=eq.0h3v.s4.d8e290eff829 from=translated src=- shape=5472e2f1 vocab=84743004
+-/
 lemma _root_.Tengoku.LanaOka.weierstrassOfCoeffs_natDegree [Nontrivial R] {d : ℕ} (c : Fin d → R) :
     (weierstrassOfCoeffs c).natDegree = d :=
   Polynomial.natDegree_eq_of_degree_eq_some (weierstrassOfCoeffs_degree c)
 
+/--
+@isnad1 id=eq.0h5v.s6.087191445a45 from=translated src=- shape=824f439a vocab=b23824b5
+-/
 lemma _root_.Tengoku.LanaOka.weierstrassOfCoeffs_map {d : ℕ} (c : Fin d → R) (φ : R →+* S) :
     (weierstrassOfCoeffs c).map φ = weierstrassOfCoeffs (fun j ↦ φ (c j)) := by
   rw [weierstrassOfCoeffs, weierstrassOfCoeffs, Polynomial.map_add, Polynomial.map_pow,
@@ -1462,7 +1664,9 @@ lemma _root_.Tengoku.LanaOka.weierstrassOfCoeffs_map {d : ℕ} (c : Fin d → R)
 
 end WeierstrassOfCoeffs
 
-/-- The Weierstrass division theorem for germs; uniqueness is omitted. -/
+/-- The Weierstrass division theorem for germs; uniqueness is omitted.
+@isnad1 id=ex.1h3v.s10.d2141c94be76 from=translated src=- shape=9377a058 vocab=07dcdff1
+-/
 theorem _root_.Tengoku.LanaOka.localweierstrass_division
       (q : (LocalOkaRing (Fin n))[X])
       (hq : IsLocalWeierstrassPolynomial
@@ -1614,7 +1818,9 @@ def _root_.Tengoku.LanaOka.finNatAddEquiv (n d : ℕ) : Fin d ≃ {i : Fin (n + 
 preparation theorem: if `Φ : ℂ^{n+d} → ℂ^d` is analytic at the origin, vanishes there, and
 its Jacobian with respect to the last `d` coordinates is invertible, then near the origin
 the zero locus of `Φ` contains the graph of an analytic function `s` of the first `n`
-coordinates vanishing at the origin. -/
+coordinates vanishing at the origin.
+@isnad1 id=ex.3h3v.s10.3387c23df584 from=translated src=- shape=51841711 vocab=a72ab8c7
+-/
 theorem _root_.Tengoku.LanaOka.exists_analyticAt_implicit {n d : ℕ} (Φ : (Fin (n + d) → ℂ) → (Fin d → ℂ))
     (hΦ : AnalyticAt ℂ Φ 0) (hΦ0 : Φ 0 = 0)
     (hdet : (Matrix.of fun k j : Fin d ↦
@@ -1835,19 +2041,27 @@ def _root_.Tengoku.LanaOka.prepEmb (n d : ℕ) : Fin (n + 1) ↪ Fin (n + d + 1)
 noncomputable def _root_.Tengoku.LanaOka.lambdaVar (n : ℕ) {d : ℕ} (j : Fin d) : LocalOkaRing (Fin (n + d)) :=
   ⟨MvPowerSeries.X (Fin.natAdd n j), MvPowerSeries.locallyConvergent_X _⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.5f8de0add33e from=translated src=- shape=3126082e vocab=bb988245
+-/
 @[simp]
 lemma _root_.Tengoku.LanaOka.coe_lambdaVar (n : ℕ) {d : ℕ} (j : Fin d) :
     ((lambdaVar n j : LocalOkaRing (Fin (n + d))) : MvPowerSeries (Fin (n + d)) ℂ) =
       MvPowerSeries.X (Fin.natAdd n j) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.92d5e193040c from=translated src=- shape=1e508bfa vocab=326f8dfb
+-/
 lemma _root_.Tengoku.LanaOka.constantCoeff_lambdaVar (n : ℕ) {d : ℕ} (j : Fin d) :
     LocalOkaRing.constantCoeff (lambdaVar n j) = 0 := by
   rw [LocalOkaRing.constantCoeff_apply, coe_lambdaVar]
   exact MvPowerSeries.constantCoeff_X _
 
 /-- A monic polynomial whose lower coefficients are germs vanishing at the origin is a local
-Weierstrass polynomial. -/
+Weierstrass polynomial.
+@isnad1 id=islocalw.1h3v.s8.13339d39c716 from=translated src=- shape=b4eb66ab vocab=c1029784
+-/
 lemma _root_.Tengoku.LanaOka.isLocalWeierstrassPolynomial_weierstrassOfCoeffs {m d : ℕ}
     (c : Fin d → LocalOkaRing (Fin m)) (hc : ∀ j, LocalOkaRing.constantCoeff (c j) = 0) :
     IsLocalWeierstrassPolynomial ((weierstrassOfCoeffs c).map
@@ -1868,7 +2082,9 @@ section CoeffExtraction
 variable {n d : ℕ}
 
 /-- Restricting the function attached to a polynomial over the germ ring to the last axis
-evaluates the coefficients at the origin. -/
+evaluates the coefficients at the origin.
+@isnad1 id=eq.0h2v.s10.aba11b28e08c from=translated src=- shape=d9897a50 vocab=d345ee50
+-/
 lemma _root_.Tengoku.LanaOka.partialEval_coe_fromPolynomial {m : ℕ} (Q : (LocalOkaRing (Fin m))[X]) :
     MvPowerSeries.partialEval (Fin.last m)
       ((LocalOkaRing.fromPolynomial Q : LocalOkaRing (Fin (m + 1))) :
@@ -1886,6 +2102,9 @@ lemma _root_.Tengoku.LanaOka.partialEval_coe_fromPolynomial {m : ℕ} (Q : (Loca
   rw [MvPowerSeries.coeff_zero_eq_constantCoeff_apply, LocalOkaRing.constantCoeff_apply]
   rfl
 
+/--
+@isnad1 id=ne.0h3v.s5.f5f2e19c2214 from=translated src=- shape=697d047a vocab=3d8c4db5
+-/
 lemma _root_.Tengoku.LanaOka.castSucc_natAdd_ne_last (j : Fin d) : (Fin.natAdd n j).castSucc ≠ Fin.last (n + d) := by
   intro h
   have hval := congrArg Fin.val h
@@ -1893,7 +2112,9 @@ lemma _root_.Tengoku.LanaOka.castSucc_natAdd_ne_last (j : Fin d) : (Fin.natAdd n
   exact absurd hval (by have := j.isLt; omega)
 
 /-- The `λ`-linear coefficients of the function attached to a polynomial over the germs in
-`(y, λ)` are the `λ`-linear coefficients of its coefficients. -/
+`(y, λ)` are the `λ`-linear coefficients of its coefficients.
+@isnad1 id=eq.0h5v.s11.56c9d3552e96 from=translated src=- shape=404aeab7 vocab=e71b9c8c
+-/
 lemma _root_.Tengoku.LanaOka.coeff_lambda_coe_fromPolynomial (Q : (LocalOkaRing (Fin (n + d)))[X]) (j : Fin d)
     (k : ℕ) :
     MvPowerSeries.coeff (Finsupp.single ((Fin.natAdd n j).castSucc) 1 +
@@ -1911,7 +2132,9 @@ lemma _root_.Tengoku.LanaOka.coeff_lambda_coe_fromPolynomial (Q : (LocalOkaRing 
   rw [h1, MvPowerSeries.coeff_fromPolynomial', Polynomial.coeff_map]
   rfl
 
-/-- The function attached to the generic Weierstrass polynomial, explicitly. -/
+/-- The function attached to the generic Weierstrass polynomial, explicitly.
+@isnad1 id=eq.0h3v.s10.234c13e34501 from=translated src=- shape=2cddc07a vocab=b91e7bf1
+-/
 lemma _root_.Tengoku.LanaOka.coe_fromPolynomial_weierstrassOfCoeffs {m e : ℕ} (c : Fin e → LocalOkaRing (Fin m)) :
     ((LocalOkaRing.fromPolynomial (weierstrassOfCoeffs c) : LocalOkaRing (Fin (m + 1))) :
         MvPowerSeries (Fin (m + 1)) ℂ) =
@@ -1928,7 +2151,9 @@ lemma _root_.Tengoku.LanaOka.coe_fromPolynomial_weierstrassOfCoeffs {m e : ℕ} 
     MulMemClass.coe_mul, SubmonoidClass.coe_pow, LocalOkaRing.coe_incl,
     LocalOkaRing.coe_lastVar]
 
-/-- The `λ`-linear coefficients of `A` times the generic Weierstrass polynomial. -/
+/-- The `λ`-linear coefficients of `A` times the generic Weierstrass polynomial.
+@isnad1 id=eq.1h5v.s11.8f71c1784aac from=translated src=- shape=5c332778 vocab=601a3ab4
+-/
 lemma _root_.Tengoku.LanaOka.coeff_lambda_mul_genericWeierstrass (A : MvPowerSeries (Fin (n + d + 1)) ℂ)
     (j : Fin d) (k : ℕ) (hk : k < d) :
     MvPowerSeries.coeff (Finsupp.single ((Fin.natAdd n j).castSucc) 1 +
@@ -2047,6 +2272,9 @@ back along the projection to the first `n` coordinates.
 noncomputable def _root_.Tengoku.LanaOka.finInitCLM : (Fin (n + 1) → ℂ) →L[ℂ] (Fin n → ℂ) :=
   ContinuousLinearMap.pi fun i ↦ ContinuousLinearMap.proj i.castSucc
 
+/--
+@isnad1 id=eq.0h2v.s8.c940f4a57810 from=translated src=- shape=883015bd vocab=5cc36a16
+-/
 @[simp]
 lemma _root_.Tengoku.LanaOka.finInitCLM_apply (x : Fin (n + 1) → ℂ) : finInitCLM x = Fin.init x :=
   rfl
@@ -2063,6 +2291,9 @@ noncomputable def Tengoku.LanaOka.OkaRing.pullbackInit (U : Opens (Fin n → ℂ
   map_add' _ _ := rfl
   commutes' _ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.bdf692d42945 from=translated src=- shape=04d705a3 vocab=dac4a91d
+-/
 @[simp]
 lemma Tengoku.LanaOka.OkaRing.pullbackInit_toFun {U : Opens (Fin n → ℂ)} (f : OkaRing U)
     (y : U.extend') :
@@ -2076,6 +2307,9 @@ noncomputable def Tengoku.LanaOka.OkaRing.lastVar (U : Opens (Fin n → ℂ)) : 
       (ContinuousLinearMap.proj (R := ℂ) (φ := fun _ : Fin (n + 1) ↦ ℂ)
         (Fin.last n)).analyticAt x)
 
+/--
+@isnad1 id=eq.0h3v.s9.26f1d2c64c6a from=translated src=- shape=97eb5264 vocab=07f723c0
+-/
 @[simp]
 lemma Tengoku.LanaOka.OkaRing.lastVar_toFun (U : Opens (Fin n → ℂ)) (y : U.extend') :
     (OkaRing.lastVar U).toFun _ y = y.1 (Fin.last n) :=
@@ -2088,17 +2322,25 @@ def Polynomial.toOkaRing (U : Opens (Fin n → ℂ)) :
     (OkaRing U)[X] →ₐ[ℂ] OkaRing U.extend' :=
   Polynomial.eval₂AlgHom (OkaRing.pullbackInit U) (OkaRing.lastVar U) fun _ ↦ Commute.all _ _
 
+/--
+@isnad1 id=eq.0h3v.s10.b3ef99b17def from=translated src=- shape=9bd32694 vocab=8a2599e2
+-/
 @[simp]
 lemma Polynomial.toOkaRing_C (U : Opens (Fin n → ℂ)) (f : OkaRing U) :
     Polynomial.toOkaRing U (Polynomial.C f) = OkaRing.pullbackInit U f :=
   Polynomial.eval₂_C _ _
 
+/--
+@isnad1 id=eq.0h2v.s9.1b0521b9ea73 from=translated src=- shape=2dd91fb9 vocab=3f5f5957
+-/
 @[simp]
 lemma Polynomial.toOkaRing_X (U : Opens (Fin n → ℂ)) :
     Polynomial.toOkaRing U (Polynomial.X : (OkaRing U)[X]) = OkaRing.lastVar U :=
   Polynomial.eval₂_X _ _
 
-/-- Transporting the evaluation of a holomorphic function along an equality of points. -/
+/-- Transporting the evaluation of a holomorphic function along an equality of points.
+@isnad1 id=eq.3h5v.s8.f35e58e506b1 from=translated src=- shape=bd2cd9c0 vocab=4e36c2c4
+-/
 lemma Tengoku.LanaOka.OkaRing.evalHom_congr {U : Opens (Fin n → ℂ)} {x y : Fin n → ℂ} (hx : x ∈ U)
     (hy : y ∈ U) (h : x = y) (f : OkaRing U) :
     OkaRing.evalHom hx f = OkaRing.evalHom hy f := by
@@ -2107,7 +2349,9 @@ lemma Tengoku.LanaOka.OkaRing.evalHom_congr {U : Opens (Fin n → ℂ)} {x y : F
 
 /-- The value of `Polynomial.toOkaRing U P` at a point of the cylinder is obtained by
 evaluating the coefficients at the base point and the resulting polynomial at the last
-coordinate. -/
+coordinate.
+@isnad1 id=eq.1h4v.s10.41868b615661 from=translated src=- shape=bd5a6af0 vocab=75ea7f12
+-/
 lemma Tengoku.LanaOka.OkaRing.evalHom_toOkaRing {U : Opens (Fin n → ℂ)} {y : Fin (n + 1) → ℂ}
     (hy : y ∈ U.extend') (P : (OkaRing U)[X]) :
     OkaRing.evalHom hy (Polynomial.toOkaRing U P) =
@@ -2124,7 +2368,9 @@ lemma Tengoku.LanaOka.OkaRing.evalHom_toOkaRing {U : Opens (Fin n → ℂ)} {y :
   have := congrArg (fun Φ ↦ Φ P) key
   simpa using this
 
-/-- Interpreting polynomials as functions on the cylinder commutes with restriction. -/
+/-- Interpreting polynomials as functions on the cylinder commutes with restriction.
+@isnad1 id=eq.1h4v.s11.7c9b6172850b from=translated src=- shape=8aad82fb vocab=4d77eae9
+-/
 lemma Polynomial.toOkaRing_map_restrict {U W : Opens (Fin n → ℂ)} (h : W ≤ U)
     (P : (OkaRing U)[X]) :
     Polynomial.toOkaRing W (P.map (OkaRing.restrict h).toRingHom) =
@@ -2180,7 +2426,9 @@ noncomputable def germ (hy : y ∈ U) : OkaRing U →ₐ[ℂ] LocalOkaRing ι :=
   (toLocalOkaRingHom (U.shift y) (by simpa using hy)).comp
     (shift U y : OkaRing U ≃ₐ[ℂ] OkaRing (U.shift y)).toAlgHom
 
-/-- Near the origin, the translate of `f` by `y` agrees with `z ↦ f (z + y)`. -/
+/-- Near the origin, the translate of `f` by `y` agrees with `z ↦ f (z + y)`.
+@isnad1 id=eventual.1h4v.s8.ebcd027c8081 from=translated src=- shape=d9260a25 vocab=cfd6e5ae
+-/
 lemma shift_toGlobalFun_eventuallyEq (hy : y ∈ U) (f : OkaRing U) :
     (shift U y f).toGlobalFun _ =ᶠ[nhds (0 : ι → ℂ)] fun z ↦ f.toGlobalFun _ (z + y) := by
   filter_upwards [(U.shift y).isOpen.mem_nhds (show (0 : ι → ℂ) ∈ U.shift y by simpa using hy)]
@@ -2188,7 +2436,9 @@ lemma shift_toGlobalFun_eventuallyEq (hy : y ∈ U) (f : OkaRing U) :
   rw [(shift U y f).toGlobalFun_apply hz, f.toGlobalFun_apply (show z + y ∈ U from hz)]
   rfl
 
-/-- The germ of `f` at `y` sums to `z ↦ f (z + y)` near the origin. -/
+/-- The germ of `f` at `y` sums to `z ↦ f (z + y)` near the origin.
+@isnad1 id=represen.1h4v.s8.95a2a0a4fb59 from=translated src=- shape=d19085af vocab=69cc7072
+-/
 lemma germ_represents (hy : y ∈ U) (f : OkaRing U) :
     ((germ hy f : LocalOkaRing ι) : MvPowerSeries ι ℂ).Represents
       (fun z ↦ f.toGlobalFun _ (z + y)) :=
@@ -2197,7 +2447,9 @@ lemma germ_represents (hy : y ∈ U) (f : OkaRing U) :
     (shift_toGlobalFun_eventuallyEq hy f)
 
 /-- The germ of `f` at `y` is the unique locally convergent power series summing to
-`z ↦ f (z + y)` near the origin. -/
+`z ↦ f (z + y)` near the origin.
+@isnad1 id=eq.2h5v.s8.1372bff98b4b from=translated src=- shape=2442be1d vocab=69cc7072
+-/
 lemma germ_eq_of_represents {P : LocalOkaRing ι} (hy : y ∈ U) {f : OkaRing U}
     (h : (P : MvPowerSeries ι ℂ).Represents (fun z ↦ f.toGlobalFun _ (z + y))) :
     germ hy f = P :=
@@ -2205,7 +2457,9 @@ lemma germ_eq_of_represents {P : LocalOkaRing ι} (hy : y ∈ U) {f : OkaRing U}
     (h0 := show (0 : ι → ℂ) ∈ U.shift y by simpa using hy)
     (h.congr (shift_toGlobalFun_eventuallyEq hy f).symm)
 
-/-- At the origin, the germ is the Taylor series at the origin. -/
+/-- At the origin, the germ is the Taylor series at the origin.
+@isnad1 id=eq.1h3v.s8.a5a540a01fc8 from=translated src=- shape=428e4cc6 vocab=c64d9e6c
+-/
 lemma germ_zero_mem (h0 : (0 : ι → ℂ) ∈ U) (f : OkaRing U) :
     germ h0 f = toLocalOkaRingHom U h0 f := by
   refine germ_eq_of_represents h0 ?_
@@ -2215,7 +2469,9 @@ lemma germ_zero_mem (h0 : (0 : ι → ℂ) ∈ U) (f : OkaRing U) :
   rw [h]
   exact toLocalOkaRing_represents h0 f
 
-/-- Taking germs commutes with restriction. -/
+/-- Taking germs commutes with restriction.
+@isnad1 id=eq.2h5v.s9.620c13452279 from=translated src=- shape=a5b1c556 vocab=53375082
+-/
 @[simp]
 lemma germ_restrict {V : Opens (ι → ℂ)} (hVU : V ≤ U) (hy : y ∈ V) (f : OkaRing U) :
     germ hy (restrict hVU f) = germ (hVU hy) f := by
@@ -2227,7 +2483,9 @@ lemma germ_restrict {V : Opens (ι → ℂ)} (hVU : V ≤ U) (hy : y ∈ V) (f :
     (restrict hVU f).toGlobalFun_apply (show z + y ∈ V from hz)]
   rfl
 
-/-- The germ of a translated function is the germ at the translated point. -/
+/-- The germ of a translated function is the germ at the translated point.
+@isnad1 id=eq.3h6v.s9.cc45888f0fd4 from=translated src=- shape=38ba1b51 vocab=148a5132
+-/
 lemma germ_shift (v : ι → ℂ) {z : ι → ℂ} (hz : z ∈ U) (hy : y ∈ U.shift v)
     (hyz : y + v = z) (f : OkaRing U) :
     germ hy (shift U v f) = germ hz f := by
@@ -2245,7 +2503,9 @@ lemma germ_shift (v : ι → ℂ) {z : ι → ℂ} (hz : z ∈ U) (hy : y ∈ U.
   congr 1
   exact Subtype.ext (add_assoc w y v).symm
 
-/-- The constant term of the germ at `y` is the value at `y`. -/
+/-- The constant term of the germ at `y` is the value at `y`.
+@isnad1 id=eq.1h4v.s8.32b2b12c6ec5 from=translated src=- shape=bfa74da3 vocab=27ab62a7
+-/
 lemma constantCoeff_germ (hy : y ∈ U) (f : OkaRing U) :
     LocalOkaRing.constantCoeff (germ hy f) = evalHom hy f := by
   have h1 : HasSum (((germ hy f : LocalOkaRing ι) : MvPowerSeries ι ℂ).term 0)
@@ -2263,7 +2523,9 @@ lemma constantCoeff_germ (hy : y ∈ U) (f : OkaRing U) :
   rw [LocalOkaRing.constantCoeff_apply, h4, zero_add, f.toGlobalFun_apply hy]
   rfl
 
-/-- A function whose germ at `y` vanishes vanishes on a neighbourhood of `y`. -/
+/-- A function whose germ at `y` vanishes vanishes on a neighbourhood of `y`.
+@isnad1 id=ex.2h4v.s9.8d084d9c8301 from=translated src=- shape=27778155 vocab=654e5182
+-/
 lemma exists_restrict_eq_zero (hy : y ∈ U) {f : OkaRing U} (h : germ hy f = 0) :
     ∃ (W : Opens (ι → ℂ)) (hWU : W ≤ U), y ∈ W ∧ restrict hWU f = 0 := by
   have hrep := germ_represents hy f
@@ -2285,7 +2547,9 @@ lemma exists_restrict_eq_zero (hy : y ∈ U) {f : OkaRing U} (h : germ hy f = 0)
   rw [sub_add_cancel, f.toGlobalFun_apply hzU] at h6
   exact h6
 
-/-- Two functions with the same germ at `y` agree on a neighbourhood of `y`. -/
+/-- Two functions with the same germ at `y` agree on a neighbourhood of `y`.
+@isnad1 id=ex.2h5v.s9.a9699483c407 from=translated src=- shape=71e308ea vocab=53375082
+-/
 lemma exists_restrict_eq_of_germ_eq (hy : y ∈ U) {f g : OkaRing U}
     (h : germ hy f = germ hy g) :
     ∃ (W : Opens (ι → ℂ)) (hWU : W ≤ U), y ∈ W ∧ restrict hWU f = restrict hWU g := by
@@ -2294,7 +2558,9 @@ lemma exists_restrict_eq_of_germ_eq (hy : y ∈ U) {f g : OkaRing U}
   rw [map_sub, sub_eq_zero] at hz
   exact ⟨W, hWU, hyW, hz⟩
 
-/-- A nowhere vanishing holomorphic function is invertible. -/
+/-- A nowhere vanishing holomorphic function is invertible.
+@isnad1 id=isunit.1h3v.s7.024a7223557d from=translated src=- shape=d46f7334 vocab=5de00eb8
+-/
 lemma isUnit_of_forall_ne_zero {f : OkaRing U} (h : ∀ z : U, f.toFun _ z ≠ 0) :
     IsUnit f := by
   have hg : ∀ x ∈ U, AnalyticAt ℂ (fun w ↦ (f.toGlobalFun _ w)⁻¹) x := fun x hx ↦
@@ -2307,13 +2573,17 @@ lemma isUnit_of_forall_ne_zero {f : OkaRing U} (h : ∀ z : U, f.toFun _ z ≠ 0
     exact mul_inv_cancel₀ (h z)
   exact IsUnit.of_mul_eq_one _ hmul
 
-/-- The ring of holomorphic functions on a nonempty open set is nontrivial. -/
+/-- The ring of holomorphic functions on a nonempty open set is nontrivial.
+@isnad1 id=nontrivi.1h3v.s6.9742b92a1304 from=translated src=- shape=3d579fdf vocab=e6a5aff6
+-/
 lemma nontrivial (hy : y ∈ U) : Nontrivial (OkaRing U) :=
   ⟨⟨1, 0, fun hc ↦ one_ne_zero (α := ℂ) (by
     have h1 := congrArg (evalHom hy) hc
     rwa [map_one, map_zero] at h1)⟩⟩
 
-/-- A function whose germ at `y` is invertible is invertible on a neighbourhood of `y`. -/
+/-- A function whose germ at `y` is invertible is invertible on a neighbourhood of `y`.
+@isnad1 id=ex.2h4v.s9.8418c5747fbd from=translated src=- shape=462eaccd vocab=44ae05ca
+-/
 lemma exists_isUnit_restrict (hy : y ∈ U) {f : OkaRing U} (h : IsUnit (germ hy f)) :
     ∃ (W : Opens (ι → ℂ)) (hWU : W ≤ U), y ∈ W ∧ IsUnit (restrict hWU f) := by
   rw [LocalOkaRing.isUnit_iff, constantCoeff_germ] at h
@@ -2346,7 +2616,9 @@ content of `OkaRing.germ_toOkaRing`, which links `Polynomial.toOkaRing` with
 
 open MvPowerSeries
 
-/-- Membership in a finite infimum of open sets. -/
+/-- Membership in a finite infimum of open sets.
+@isnad1 id=iff.0h5v.s6.8606c81735ad from=translated src=- shape=45b3f353 vocab=f3307f10
+-/
 lemma TopologicalSpace.Opens.mem_finset_inf {X α : Type*} [TopologicalSpace X] {s : Finset α}
     {f : α → Opens X} {x : X} : x ∈ s.inf f ↔ ∀ i ∈ s, x ∈ f i := by
   classical
@@ -2375,6 +2647,9 @@ noncomputable def germPoly (hy' : y' ∈ V) (w : ℂ) :
       (Polynomial.X + Polynomial.C (algebraMap ℂ (LocalOkaRing (Fin n)) w))).restrictScalars
     ℂ).comp (Polynomial.mapAlgHom (germ hy'))
 
+/--
+@isnad1 id=eq.1h5v.s10.13e462260e63 from=translated src=- shape=7b50cf9d vocab=e1aa2368
+-/
 lemma germPoly_apply (hy' : y' ∈ V) (w : ℂ) (Q : (OkaRing V)[X]) :
     germPoly hy' w Q = (Q.map (germ hy').toRingHom).comp
       (Polynomial.X + Polynomial.C (algebraMap ℂ (LocalOkaRing (Fin n)) w)) := by
@@ -2382,30 +2657,42 @@ lemma germPoly_apply (hy' : y' ∈ V) (w : ℂ) (Q : (OkaRing V)[X]) :
     Polynomial.comp, Polynomial.algebraMap_eq]
   rfl
 
-/-- `OkaRing.germPoly` as a Taylor expansion. -/
+/-- `OkaRing.germPoly` as a Taylor expansion.
+@isnad1 id=eq.1h5v.s10.e477ed150f0b from=translated src=- shape=f36e6b76 vocab=27cb97e7
+-/
 lemma germPoly_eq_taylor (hy' : y' ∈ V) (w : ℂ) (Q : (OkaRing V)[X]) :
     germPoly hy' w Q = Polynomial.taylor (algebraMap ℂ (LocalOkaRing (Fin n)) w)
       (Q.map (germ hy').toRingHom) := by
   rw [germPoly_apply, Polynomial.taylor_apply]
 
 /-- At a point with vanishing last coordinate, `OkaRing.germPoly` is just the coefficientwise
-germ. -/
+germ.
+@isnad1 id=eq.1h4v.s9.cdca4d86f57b from=translated src=- shape=279e44f2 vocab=a7ebacbf
+-/
 lemma germPoly_zero (hy' : y' ∈ V) (Q : (OkaRing V)[X]) :
     germPoly hy' 0 Q = Q.map (germ hy').toRingHom := by
   rw [germPoly_eq_taylor, map_zero, Polynomial.taylor_zero]
 
+/--
+@isnad1 id=monic.2h5v.s9.112a9764595f from=translated src=- shape=e80e2814 vocab=10bf423a
+-/
 lemma monic_germPoly (hy' : y' ∈ V) (w : ℂ) {Q : (OkaRing V)[X]} (hQ : Q.Monic) :
     (germPoly hy' w Q).Monic := by
   rw [germPoly_apply]
   exact (hQ.map _).comp_X_add_C _
 
+/--
+@isnad1 id=le.1h5v.s9.92911182cb9a from=translated src=- shape=e59025dc vocab=fc3ffb97
+-/
 lemma natDegree_germPoly_le (hy' : y' ∈ V) (w : ℂ) (Q : (OkaRing V)[X]) :
     (germPoly hy' w Q).natDegree ≤ Q.natDegree := by
   rw [germPoly_eq_taylor, Polynomial.natDegree_taylor]
   exact Polynomial.natDegree_map_le
 
 /-- The germ of the pullback of `f` is the image of the germ of `f` under the inclusion of
-germ rings. -/
+germ rings.
+@isnad1 id=eq.1h4v.s10.14cfa9ce8ac2 from=translated src=- shape=84dba936 vocab=b102a0f4
+-/
 lemma germ_pullbackInit {y : Fin (n + 1) → ℂ} (hy : y ∈ V.extend') (f : OkaRing V) :
     germ hy (pullbackInit V f) =
       LocalOkaRing.incl (germ (Opens.mem_extend'.mp hy) f) := by
@@ -2425,7 +2712,9 @@ lemma germ_pullbackInit {y : Fin (n + 1) → ℂ} (hy : y ∈ V.extend') (f : Ok
     (pullbackInit V f).toGlobalFun_apply hx]
   rfl
 
-/-- The germ of the last coordinate function at `y` is `X_last + y_last`. -/
+/-- The germ of the last coordinate function at `y` is `X_last + y_last`.
+@isnad1 id=eq.1h3v.s10.2f72627f99dd from=translated src=- shape=55aafbdb vocab=8dbd5d25
+-/
 lemma germ_lastVar {y : Fin (n + 1) → ℂ} (hy : y ∈ V.extend') :
     germ hy (lastVar V) =
       LocalOkaRing.lastVar + algebraMap ℂ (LocalOkaRing (Fin (n + 1))) (y (Fin.last n)) := by
@@ -2448,7 +2737,9 @@ lemma germ_lastVar {y : Fin (n + 1) → ℂ} (hy : y ∈ V.extend') :
 
 /-- Key compatibility: the germ at `y` of the function attached to a polynomial `Q` is the
 polynomial germ `OkaRing.germPoly` of `Q`, viewed as a germ via
-`LocalOkaRing.fromPolynomial`. -/
+`LocalOkaRing.fromPolynomial`.
+@isnad1 id=eq.1h4v.s11.060751cbbc48 from=translated src=- shape=3881fa44 vocab=a7b79d7a
+-/
 theorem germ_toOkaRing {y : Fin (n + 1) → ℂ} (hy : y ∈ V.extend') (Q : (OkaRing V)[X]) :
     germ hy (Polynomial.toOkaRing V Q) =
       LocalOkaRing.fromPolynomial
@@ -2493,7 +2784,9 @@ open Tengoku.LanaOka.OkaRing TopologicalSpace
 variable {ι : Type*} [Fintype ι] {n : ℕ}
 
 /-- Every germ is realized by a holomorphic function on a neighbourhood of any prescribed
-point. -/
+point.
+@isnad1 id=ex.0h3v.s8.e2161159c103 from=translated src=- shape=7d90884c vocab=80a2bad8
+-/
 lemma exists_okaRing_germ (P : LocalOkaRing ι) (y : ι → ℂ) :
     ∃ (W : Opens (ι → ℂ)) (hy : y ∈ W) (f : OkaRing W), OkaRing.germ hy f = P := by
   obtain ⟨U, h0, f₀, hf₀⟩ := LocalOkaRing.exists_okaRing P
@@ -2502,7 +2795,9 @@ lemma exists_okaRing_germ (P : LocalOkaRing ι) (y : ι → ℂ) :
   exact hf₀
 
 /-- Every polynomial over the germ ring is realized, coefficientwise, by a polynomial over the
-holomorphic functions on a neighbourhood of any prescribed point. -/
+holomorphic functions on a neighbourhood of any prescribed point.
+@isnad1 id=ex.0h3v.s9.f7b291dae930 from=translated src=- shape=8b64ae26 vocab=e509f476
+-/
 lemma exists_poly_map_germ (g : (LocalOkaRing (Fin n))[X]) (y' : Fin n → ℂ) :
     ∃ (V : Opens (Fin n → ℂ)) (hy' : y' ∈ V) (Q : (OkaRing V)[X]),
       Q.map (OkaRing.germ hy').toRingHom = g ∧ Q.natDegree ≤ g.natDegree := by
@@ -2548,7 +2843,9 @@ lemma exists_poly_map_germ (g : (LocalOkaRing (Fin n))[X]) (y' : Fin n → ℂ) 
     simp only [Finset.mem_range] at hk
     omega
 
-/-- Monic refinement of `LocalOkaRing.exists_poly_map_germ`. -/
+/-- Monic refinement of `LocalOkaRing.exists_poly_map_germ`.
+@isnad1 id=ex.1h3v.s9.d355404e57ce from=translated src=- shape=52d71e7a vocab=e2654b69
+-/
 lemma exists_poly_map_germ_monic {g : (LocalOkaRing (Fin n))[X]} (hg : g.Monic)
     (y' : Fin n → ℂ) :
     ∃ (V : Opens (Fin n → ℂ)) (hy' : y' ∈ V) (Q : (OkaRing V)[X]),
@@ -2579,7 +2876,9 @@ lemma exists_poly_map_germ_monic {g : (LocalOkaRing (Fin n))[X]} (hg : g.Monic)
 
 open Polynomial in
 /-- A local Weierstrass polynomial is the coefficientwise germ at the origin of a Weierstrass
-polynomial over the holomorphic functions on a neighbourhood of the origin. -/
+polynomial over the holomorphic functions on a neighbourhood of the origin.
+@isnad1 id=ex.1h2v.s9.fb69731adacc from=translated src=- shape=45e65a89 vocab=9af59e67
+-/
 lemma exists_isWeierstrassPolynomial_realize {g : (LocalOkaRing (Fin n))[X]}
     (hg : IsLocalWeierstrassPolynomial
       (g.map (Subring.subtype (localOkaSubring (Fin n)).toSubring))) :
@@ -2619,7 +2918,9 @@ section Slice
 
 /-- If the holomorphic function attached to a polynomial `P` vanishes near a point of the
 cylinder, then the coefficients of `P` vanish on a neighbourhood of the base point: a
-polynomial in the last variable vanishing on an open set vanishes coefficientwise. -/
+polynomial in the last variable vanishing on an open set vanishes coefficientwise.
+@isnad1 id=ex.3h5v.s11.dcbf2e7fc929 from=translated src=- shape=fad2cb34 vocab=f639d674
+-/
 lemma Polynomial.exists_map_restrict_eq_zero {V : Opens (Fin n → ℂ)} (P : (OkaRing V)[X])
     {W : Opens (Fin (n + 1) → ℂ)} (hWV : W ≤ V.extend') {y : Fin (n + 1) → ℂ} (hy : y ∈ W)
     (h : OkaRing.restrict hWV (Polynomial.toOkaRing V P) = 0) :
@@ -2706,7 +3007,9 @@ open MvPowerSeries
 variable {ι : Type*} [Fintype ι]
 
 /-- If the function represented by `P` vanishes along the line spanned by `v` near the origin,
-all homogeneous parts of `P` vanish at `v`. -/
+all homogeneous parts of `P` vanish at `v`.
+@isnad1 id=eq.2h5v.s7.3c92c711b240 from=translated src=- shape=b2003b5a vocab=44cd8b8a
+-/
 theorem MvPowerSeries.Represents.homogeneous_eval_eq_zero [DecidableEq ι]
     {P : MvPowerSeries ι ℂ} {F : (ι → ℂ) → ℂ} (hP : P.Represents F) (v : ι → ℂ)
     (hv : ∀ᶠ t : ℂ in nhds 0, F (t • v) = 0) (k : ℕ) :
@@ -2778,7 +3081,9 @@ theorem MvPowerSeries.Represents.homogeneous_eval_eq_zero [DecidableEq ι]
 
 /-- Finitely many nonzero power series admit a common direction `v`, transverse to the
 hyperplane of the first `n` coordinates, at which some homogeneous part of each of them does
-not vanish. -/
+not vanish.
+@isnad1 id=ex.1h3v.s8.0525cf242eec from=translated src=- shape=9ea0544d vocab=164b6c79
+-/
 theorem MvPowerSeries.exists_direction {p : ℕ}
     (P : Fin p → MvPowerSeries (Fin (n + 1)) ℂ) (hP : ∀ i, P i ≠ 0) :
     ∃ v : Fin (n + 1) → ℂ, v (Fin.last n) ≠ 0 ∧
@@ -2826,7 +3131,9 @@ theorem MvPowerSeries.exists_direction {p : ℕ}
   exact hvh i
 
 /-- If the partial evaluation of `P` along the `i`-th axis vanishes, so does the represented
-function along that axis, near the origin. -/
+function along that axis, near the origin.
+@isnad1 id=eventual.2h4v.s7.5a2cc05a4a53 from=translated src=- shape=c535d342 vocab=337bea5a
+-/
 theorem MvPowerSeries.Represents.eventually_axis_eq_zero {ι : Type*} [Finite ι] [DecidableEq ι]
     {P : MvPowerSeries ι ℂ}
     {F : (ι → ℂ) → ℂ} (hP : P.Represents F) (i : ι) (h : partialEval i P = 0) :
@@ -2908,7 +3215,9 @@ noncomputable def _root_.Tengoku.LanaOka.lineEquiv (v : Fin (n + 1) → ℂ) (hv
       ring
     rw [hlast, smul_smul, sub_add_cancel]
 
-/-- The inverse of `lineEquiv` sends the last coordinate axis to the line spanned by `v`. -/
+/-- The inverse of `lineEquiv` sends the last coordinate axis to the line spanned by `v`.
+@isnad1 id=eq.1h3v.s10.edfdef3ca7db from=translated src=- shape=04bbf95c vocab=258604eb
+-/
 lemma _root_.Tengoku.LanaOka.lineEquiv_symm_smul_single (v : Fin (n + 1) → ℂ) (hv : v (Fin.last n) ≠ 0) (t : ℂ) :
     (lineEquiv v hv).symm (t • Pi.single (Fin.last n) 1) = t • v := by
   rw [ContinuousLinearEquiv.symm_apply_eq]
@@ -2925,7 +3234,9 @@ open MvPowerSeries
 
 variable {n : ℕ}
 
-/-- Being a member of `Polynomial.degreeLT R d` bounds the `natDegree` when `0 < d`. -/
+/-- Being a member of `Polynomial.degreeLT R d` bounds the `natDegree` when `0 < d`.
+@isnad1 id=lt.2h3v.s7.dc9ac0054f1c from=translated src=- shape=d6d4d7c3 vocab=7a11c7ac
+-/
 lemma Polynomial.natDegree_lt_of_mem_degreeLT {R : Type*} [CommRing R] {d : ℕ} (hd : 0 < d)
     {g : R[X]} (hg : g ∈ Polynomial.degreeLT R d) : g.natDegree < d := by
   rcases eq_or_ne g 0 with rfl | hg0
@@ -2936,7 +3247,9 @@ namespace Tengoku.LanaOka.OkaRing
 
 variable {V : Opens (Fin n → ℂ)} {y' : Fin n → ℂ}
 
-/-- Taking polynomial germs commutes with restriction of the coefficients. -/
+/-- Taking polynomial germs commutes with restriction of the coefficients.
+@isnad1 id=eq.2h6v.s10.6b9943c80520 from=translated src=- shape=1ec4a62a vocab=e9b7bfa8
+-/
 lemma germPoly_map_restrict {V' : Opens (Fin n → ℂ)} (h : V' ≤ V) (hy' : y' ∈ V') (w : ℂ)
     (R : (OkaRing V)[X]) :
     germPoly hy' w (R.map (restrict h).toRingHom) = germPoly (h hy') w R := by
@@ -2952,7 +3265,9 @@ namespace Tengoku.LanaOka.LocalOkaRing
 open Tengoku.LanaOka.OkaRing
 
 /-- Every polynomial over the germ ring arises as the polynomial germ, at any prescribed point
-of the cylinder, of a polynomial over the holomorphic functions near the base point. -/
+of the cylinder, of a polynomial over the holomorphic functions near the base point.
+@isnad1 id=ex.0h4v.s9.34004b153895 from=translated src=- shape=568b9997 vocab=fc3ffb97
+-/
 lemma exists_poly_germPoly (g : (LocalOkaRing (Fin n))[X]) (y' : Fin n → ℂ) (w : ℂ) :
     ∃ (V' : Opens (Fin n → ℂ)) (hy' : y' ∈ V') (R : (OkaRing V')[X]),
       OkaRing.germPoly hy' w R = g ∧ R.natDegree ≤ g.natDegree := by
@@ -2965,7 +3280,9 @@ lemma exists_poly_germPoly (g : (LocalOkaRing (Fin n))[X]) (y' : Fin n → ℂ) 
 
 end Tengoku.LanaOka.LocalOkaRing
 
-/-- Weierstrass polynomials restrict to Weierstrass polynomials. -/
+/-- Weierstrass polynomials restrict to Weierstrass polynomials.
+@isnad1 id=isweiers.3h4v.s8.e5024c7818c7 from=translated src=- shape=80d7f954 vocab=b9434dbc
+-/
 lemma Tengoku.LanaOka.IsWeierstrassPolynomial.map_restrict {V V' : Opens (Fin n → ℂ)} (h : V' ≤ V)
     (h0 : (0 : Fin n → ℂ) ∈ V') {Q : (OkaRing V)[X]} (hQ : IsWeierstrassPolynomial V Q) :
     IsWeierstrassPolynomial V' (Q.map (OkaRing.restrict h).toRingHom) := by

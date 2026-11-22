@@ -149,7 +149,9 @@ private lemma infinitePlaceSinglePullback_degree
       ext w
       simp
 
-/-- Raw degree scales by the field-extension degree under pullback. -/
+/-- Raw degree scales by the field-extension degree under pullback.
+@isnad1 id=eq.0h3v.s6.8e815bef9148 from=translated src=- shape=8420196f vocab=4e832ad1
+-/
 theorem arithmeticDivisorDegree_pullback (D : ArithmeticDivisor K) :
     arithmeticDivisorDegree (arithmeticDivisorPullback (L := L) D) =
       (Module.finrank K L : ℝ) * arithmeticDivisorDegree D := by
@@ -165,7 +167,9 @@ theorem arithmeticDivisorDegree_pullback (D : ArithmeticDivisor K) :
   | inr v =>
       rw [infinitePlaceSinglePullback_degree, arithmeticDivisorDegree_single]
 
-/-- The normalized degree of Definition 1.9(i) is invariant under pullback. -/
+/-- The normalized degree of Definition 1.9(i) is invariant under pullback.
+@isnad1 id=eq.0h3v.s5.4c5d9dfc8e6c from=translated src=- shape=1e5f13a8 vocab=1abcfdf5
+-/
 theorem normalizedArithmeticDivisorDegree_pullback (D : ArithmeticDivisor K) :
     normalizedArithmeticDivisorDegree (arithmeticDivisorPullback (L := L) D) =
       normalizedArithmeticDivisorDegree D := by
@@ -190,6 +194,9 @@ noncomputable def arithmeticPlaceLocalDegree : ArithmeticPlace K → ℕ
         v.maximalIdeal.asIdeal.inertiaDeg ℤ
   | .inr v => v.mult
 
+/--
+@isnad1 id=lt.0h2v.s4.86a98b780253 from=translated src=- shape=abec20dc vocab=f9e58222
+-/
 lemma arithmeticPlaceLocalDegree_pos (v : ArithmeticPlace K) :
     0 < arithmeticPlaceLocalDegree v := by
   cases v with
@@ -313,7 +320,9 @@ private lemma localDegreeSum_pos
 
 /-- The raw-degree local ratio is invariant after pulling back both the divisor
 part and its finite/infinite place fibers. This related variant does not assert
-Definition 1.9(ii), whose numerator uses globally normalized degree. -/
+Definition 1.9(ii), whose numerator uses globally normalized degree.
+@isnad1 id=eq.1h4v.s6.8c33e81e5f8b from=translated src=- shape=49a44fb7 vocab=717f75b6
+-/
 theorem rawLocalDegreeRatio_pullback
     (D : ArithmeticDivisor K) (E : Finset (ArithmeticPlace K))
     (hE : E.Nonempty) :

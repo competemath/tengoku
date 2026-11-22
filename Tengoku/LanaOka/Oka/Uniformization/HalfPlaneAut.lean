@@ -36,18 +36,30 @@ namespace Uniformization
 def HolomorphicH (F : ℍ → ℍ) : Prop :=
   DifferentiableOn ℂ (fun z ↦ (F (ofComplex z) : ℂ)) {z | 0 < z.im}
 
+/--
+@isnad1 id=eq.0h2v.s9.a1e01aae745e from=translated src=- shape=a786cd18 vocab=8bf2d3be
+-/
 theorem coe_SL2R_smul (g : SL(2, ℝ)) (τ : ℍ) :
     ((g • τ : ℍ) : ℂ) = ((g 0 0 : ℂ) * τ + g 0 1) / ((g 1 0 : ℂ) * τ + g 1 1) := by
   rw [coe_specialLinearGroup_apply]; rfl
 
+/--
+@isnad1 id=ne.1h2v.s8.8fae71c719e1 from=translated src=- shape=708e0f8d vocab=d27e21db
+-/
 theorem denom_SL2R_ne_zero (g : SL(2, ℝ)) {z : ℂ} (hz : 0 < z.im) :
     (g 1 0 : ℂ) * z + g 1 1 ≠ 0 := by
   have := UpperHalfPlane.denom_ne_zero (g : GL (Fin 2) ℝ) ⟨z, hz⟩
   simpa [UpperHalfPlane.denom] using this
 
+/--
+@isnad1 id=eq.1h1v.s5.ffa4a92d5d40 from=translated src=- shape=fdd01fe8 vocab=fefad37b
+-/
 theorem ofComplex_of_im_pos {z : ℂ} (hz : 0 < z.im) : ((ofComplex z : ℍ) : ℂ) = z := by
   rw [ofComplex_apply_of_im_pos hz]
 
+/--
+@isnad1 id=holomorp.1h2v.s7.aa91d8221863 from=translated src=- shape=456a8a2b vocab=dfff02b8
+-/
 theorem HolomorphicH.smul {F : ℍ → ℍ} (hF : HolomorphicH F) (g : SL(2, ℝ)) :
     HolomorphicH fun τ ↦ g • F τ := by
   unfold HolomorphicH at *
@@ -58,6 +70,9 @@ theorem HolomorphicH.smul {F : ℍ → ℍ} (hF : HolomorphicH F) (g : SL(2, ℝ
       fun z _ ↦ denom_SL2R_ne_zero g (F (ofComplex z)).im_pos
   exact this.congr fun z _ ↦ coe_SL2R_smul g _
 
+/--
+@isnad1 id=holomorp.1h2v.s7.f763ac92af02 from=translated src=- shape=594299cd vocab=dfff02b8
+-/
 theorem HolomorphicH.comp_smul {F : ℍ → ℍ} (hF : HolomorphicH F) (g : SL(2, ℝ)) :
     HolomorphicH fun τ ↦ F (g • τ) := by
   unfold HolomorphicH at *
@@ -79,18 +94,33 @@ theorem HolomorphicH.comp_smul {F : ℍ → ℍ} (hF : HolomorphicH F) (g : SL(2
 /-- The Cayley conjugate `w ↦ cayley (F (cayleyInv w))` of a map `F : ℍ → ℍ`. -/
 noncomputable def discConj (F : ℍ → ℍ) (w : ℂ) : ℂ := cayley (F (ofComplex (cayleyInv w)))
 
+/--
+@isnad1 id=mem.0h2v.s5.bccdf740bae4 from=translated src=- shape=4c3984a6 vocab=14966550
+-/
 theorem discConj_mem_ball (F : ℍ → ℍ) (w : ℂ) : discConj F w ∈ ball (0 : ℂ) 1 :=
   cayley_mem_ball (F _).im_pos
 
+/--
+@isnad1 id=differen.1h1v.s6.06055d8d9e02 from=translated src=- shape=76f706f0 vocab=848ceea0
+-/
 theorem differentiableOn_discConj {F : ℍ → ℍ} (hF : HolomorphicH F) :
     DifferentiableOn ℂ (discConj F) (ball 0 1) :=
   (differentiableOn_cayley.comp (hF.comp differentiableOn_cayleyInv fun _ hw ↦ im_cayleyInv_pos hw)
     fun z _ ↦ (F (ofComplex (cayleyInv z))).im_pos : _)
 
+/--
+@isnad1 id=eq.0h0v.s3.734526dd849d from=translated src=- shape=0ae4dc79 vocab=c28f675b
+-/
 theorem cayleyInv_zero : cayleyInv 0 = I := by simp [cayleyInv]
 
+/--
+@isnad1 id=eq.0h0v.s3.c1a7885b2e25 from=translated src=- shape=b0ae1d2b vocab=33a278be
+-/
 theorem cayley_I : cayley I = 0 := by simp [cayley]
 
+/--
+@isnad1 id=eq.0h3v.s4.1bbb3e9f85d7 from=translated src=- shape=01f11c1f vocab=43bb22a4
+-/
 theorem discConj_comp {F G : ℍ → ℍ} (w : ℂ) :
     discConj F (discConj G w) = discConj (F ∘ G) w := by
   unfold discConj
@@ -99,6 +129,9 @@ theorem discConj_comp {F G : ℍ → ℍ} (w : ℂ) :
   congr 3
   exact ofComplex_apply _
 
+/--
+@isnad1 id=eq.1h1v.s5.7da84bbd8796 from=translated src=- shape=3dab4fdf vocab=58842077
+-/
 theorem discConj_id {w : ℂ} (hw : w ∈ ball (0 : ℂ) 1) : discConj id w = w := by
   unfold discConj
   simp only [id]
@@ -112,6 +145,9 @@ noncomputable def rot (e : ℂ) (he : ‖e‖ = 1) : SL(2, ℝ) :=
     rw [he, normSq_apply] at this
     nlinarith⟩
 
+/--
+@isnad1 id=eq.1h2v.s7.719bd4c978bd from=translated src=- shape=3e0467eb vocab=b4e19938
+-/
 theorem cayley_rot_smul (e : ℂ) (he : ‖e‖ = 1) (τ : ℍ) :
     cayley ((rot e he • τ : ℍ) : ℂ) = e ^ 2 * cayley τ := by
   have hsq : e.re ^ 2 + e.im ^ 2 = 1 := by
@@ -137,7 +173,9 @@ theorem cayley_rot_smul (e : ℂ) (he : ‖e‖ = 1) (τ : ℍ) :
   field_simp
 
 /-- **Holomorphic automorphisms of `ℍ` are Möbius maps.** A bijection `T` of `ℍ`, holomorphic with
-holomorphic inverse `S`, is `τ ↦ g • τ` for some `g ∈ SL(2, ℝ)`. -/
+holomorphic inverse `S`, is `τ ↦ g • τ` for some `g ∈ SL(2, ℝ)`.
+@isnad1 id=ex.4h2v.s7.c139f55b3323 from=translated src=- shape=2ea8544e vocab=dfff02b8
+-/
 theorem exists_SL2R_eq_of_holomorphic {T S : ℍ → ℍ} (hT : HolomorphicH T) (hS : HolomorphicH S)
     (hTS : ∀ τ, T (S τ) = τ) (hST : ∀ τ, S (T τ) = τ) : ∃ g : SL(2, ℝ), ∀ τ, T τ = g • τ := by
   obtain ⟨g₀, hg₀⟩ := MulAction.exists_smul_eq SL(2, ℝ) (T UpperHalfPlane.I) UpperHalfPlane.I

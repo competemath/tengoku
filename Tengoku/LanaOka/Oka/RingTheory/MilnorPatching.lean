@@ -46,14 +46,18 @@ namespace Module
 
 variable {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
 
-/-- The dimension of the fibre `K ⊗[R] M` does not change along a field extension `K → L`. -/
+/-- The dimension of the fibre `K ⊗[R] M` does not change along a field extension `K → L`.
+@isnad1 id=eq.0h4v.s8.a5656ef3d776 from=translated src=- shape=d3c614f0 vocab=8f46ab51
+-/
 lemma finrank_tensorProduct_eq_of_isScalarTower (K L : Type*) [Field K] [Field L] [Algebra R K]
     [Algebra R L] [Algebra K L] [IsScalarTower R K L] :
     finrank L (L ⊗[R] M) = finrank K (K ⊗[R] M) := by
   rw [← (AlgebraTensorModule.cancelBaseChange R K L L M).finrank_eq, Module.finrank_baseChange]
 
 /-- If `v ∘ u` and `u ∘ v` are multiplication by `r` and `r` is a unit in `K`, then
-`K ⊗ u` is bijective. -/
+`K ⊗ u` is bijective.
+@isnad1 id=bijectiv.3h7v.s10.f61ddc9fe5d2 from=translated src=- shape=258d7e30 vocab=c16aef72
+-/
 lemma bijective_baseChange_of_comp_eq_smul {N : Type*} [AddCommGroup N] [Module R N]
     (K : Type*) [CommRing K] [Algebra R K] (u : M →ₗ[R] N) (v : N →ₗ[R] M) (r : R)
     (h₁ : v ∘ₗ u = r • LinearMap.id) (h₂ : u ∘ₗ v = r • LinearMap.id)
@@ -73,7 +77,9 @@ lemma bijective_baseChange_of_comp_eq_smul {N : Type*} [AddCommGroup N] [Module 
       LinearMap.baseChange_smul, LinearMap.baseChange_id, LinearMap.smul_apply,
       LinearMap.id_apply, hN]
 
-/-- **A finite module over a reduced local ring with constant fibre dimension is free.** -/
+/-- **A finite module over a reduced local ring with constant fibre dimension is free.**
+@isnad1 id=free.1h2v.s9.81fd89739ff2 from=translated src=- shape=6a1037e8 vocab=998a654a
+-/
 theorem free_of_forall_finrank_fiber_eq [IsLocalRing R] [IsReduced R] [Module.Finite R M]
     (h : ∀ (p : Ideal R) [p.IsPrime], finrank p.ResidueField (p.Fiber M) =
       finrank (IsLocalRing.ResidueField R) (IsLocalRing.ResidueField R ⊗[R] M)) :
@@ -138,7 +144,9 @@ theorem free_of_forall_finrank_fiber_eq [IsLocalRing R] [IsReduced R] [Module.Fi
     exact hmem
   exact Module.Free.of_equiv (LinearEquiv.ofBijective φ ⟨hinj, hsurj⟩)
 
-/-- The fibres of `M_S` over `Localization S` are the fibres of `M` over `R`. -/
+/-- The fibres of `M_S` over `Localization S` are the fibres of `M` over `R`.
+@isnad1 id=eq.0h4v.s9.4a2b52c48cc6 from=translated src=- shape=a2c02dc5 vocab=66781b6e
+-/
 lemma finrank_tensorProduct_localizedModule (S : Submonoid R) (K : Type*) [Field K]
     [Algebra (Localization S) K] [Algebra R K] [IsScalarTower R (Localization S) K] :
     finrank K (K ⊗[Localization S] LocalizedModule S M) = finrank K (K ⊗[R] M) :=
@@ -148,7 +156,9 @@ lemma finrank_tensorProduct_localizedModule (S : Submonoid R) (K : Type*) [Field
 
 /-- **Flatness at a prime from constant fibre dimension**, over a reduced ring: if the fibres of
 the finite module `M` at all primes `p ≤ m` have the same dimension as the fibre at `m`, then
-`M_m` is flat. -/
+`M_m` is flat.
+@isnad1 id=flat.1h3v.s10.8c5249b4d2c2 from=translated src=- shape=5efc7fb7 vocab=21a41b29
+-/
 theorem flat_localizedModule_of_forall_finrank_fiber_eq [IsReduced R] [Module.Finite R M]
     (m : Ideal R) [m.IsPrime]
     (h : ∀ (p : Ideal R) [p.IsPrime], p ≤ m →
@@ -208,6 +218,9 @@ def patch : Subalgebra R (P × Q) :=
   AlgHom.equalizer ((φ.restrictScalars R).comp (AlgHom.fst R P Q))
     ((ψ.restrictScalars R).comp (AlgHom.snd R P Q))
 
+/--
+@isnad1 id=iff.0h9v.s9.7a7e7c397917 from=translated src=- shape=176fe316 vocab=94e59074
+-/
 lemma mem_patch {x : P × Q} : x ∈ patch φ ψ ↔ φ x.1 = ψ x.2 :=
   Iff.rfl
 
@@ -219,14 +232,23 @@ def fst : patch φ ψ →ₐ[R] P :=
 def snd : patch φ ψ →ₐ[R] Q :=
   (AlgHom.snd R P Q).comp (patch φ ψ).val
 
+/--
+@isnad1 id=eq.0h9v.s10.2efc644da1bc from=translated src=- shape=7b810d1c vocab=4858662c
+-/
 @[simp]
 lemma fst_apply (x : patch φ ψ) : fst φ ψ x = x.1.1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h9v.s10.899d4485169a from=translated src=- shape=7086ec69 vocab=13860bf3
+-/
 @[simp]
 lemma snd_apply (x : patch φ ψ) : snd φ ψ x = x.1.2 :=
   rfl
 
+/--
+@isnad1 id=eq.0h9v.s11.77f689cb66c8 from=translated src=- shape=0ee192a5 vocab=00ad6909
+-/
 lemma φ_fst (x : patch φ ψ) : φ (fst φ ψ x) = ψ (snd φ ψ x) :=
   x.2
 
@@ -243,6 +265,9 @@ variable [Algebra (S ⧸ I.map (algebraMap R S)) P₀]
 omit [Algebra R P] [IsScalarTower R S P] [Algebra R P₀] [Algebra (R ⧸ I) P₀] [IsScalarTower R S P₀]
   [IsScalarTower R (R ⧸ I) P₀] [IsScalarTower (R ⧸ I) (S ⧸ I.map (algebraMap R S)) P₀] in
 include hφ in
+/--
+@isnad1 id=surjecti.1h6v.s9.8d324a225980 from=translated src=- shape=720cf1e4 vocab=fbdf4373
+-/
 lemma surjective_of_isBaseChange : Function.Surjective φ := by
   intro y
   induction y using hφ.inductionOn with
@@ -261,6 +286,9 @@ lemma surjective_of_isBaseChange : Function.Surjective φ := by
 
 omit [IsScalarTower (R ⧸ I) (S ⧸ I.map (algebraMap R S)) P₀] in
 include hφ in
+/--
+@isnad1 id=surjecti.1h8v.s11.19b7c399224b from=translated src=- shape=257ee981 vocab=62ea1c5c
+-/
 lemma surjective_snd : Function.Surjective (snd φ ψ) := fun q ↦ by
   obtain ⟨p, hp⟩ := surjective_of_isBaseChange hφ (ψ q)
   exact ⟨⟨(p, q), hp⟩, rfl⟩
@@ -268,7 +296,9 @@ lemma surjective_snd : Function.Surjective (snd φ ψ) := fun q ↦ by
 omit [Algebra R P] [IsScalarTower R S P] [Algebra R P₀] [Algebra (R ⧸ I) P₀] [IsScalarTower R S P₀]
   [IsScalarTower R (R ⧸ I) P₀] [IsScalarTower (R ⧸ I) (S ⧸ I.map (algebraMap R S)) P₀] in
 include hφ in
-/-- The kernel of `φ` is `I P`. -/
+/-- The kernel of `φ` is `I P`.
+@isnad1 id=mem.2h7v.s10.6872c8307237 from=translated src=- shape=a231dc3c vocab=6bf3197a
+-/
 lemma mem_smul_top_of_eq_zero {p : P} (hp : φ p = 0) :
     p ∈ I.map (algebraMap R S) • (⊤ : Submodule S P) := by
   have h1 : (1 : S ⧸ I.map (algebraMap R S)) ⊗ₜ[S] p = 0 := by
@@ -283,7 +313,9 @@ lemma mem_smul_top_of_eq_zero {p : P} (hp : φ p = 0) :
 
 omit [Algebra (S ⧸ I.map (algebraMap R S)) P₀] [IsScalarTower S (S ⧸ I.map (algebraMap R S)) P₀]
   [IsScalarTower (R ⧸ I) (S ⧸ I.map (algebraMap R S)) P₀] in
-/-- For `i ∈ I` and `p : P`, the pair `(i p, 0)` lies in the patched algebra. -/
+/-- For `i ∈ I` and `p : P`, the pair `(i p, 0)` lies in the patched algebra.
+@isnad1 id=mem.1h10v.s9.6f642752f0f3 from=translated src=- shape=bf281e1e vocab=ac5a523d
+-/
 lemma smul_mem_patch {i : R} (hi : i ∈ I) (p : P) : (i • p, (0 : Q)) ∈ patch φ ψ := by
   have h : φ (i • p) = i • φ p := map_smul (φ.restrictScalars R) i p
   rw [mem_patch, map_zero, h, ← algebraMap_smul (R ⧸ I) i (φ p),
@@ -294,7 +326,9 @@ def smulElem {i : R} (hi : i ∈ I) (p : P) : patch φ ψ :=
   ⟨(i • p, 0), smul_mem_patch hi p⟩
 
 include hφ hψ in
-/-- **`P` is generated over `S` by the image of the patched algebra.** -/
+/-- **`P` is generated over `S` by the image of the patched algebra.**
+@isnad1 id=mem.2h9v.s11.7ff18e9353a2 from=translated src=- shape=fb1968f9 vocab=0c938c12
+-/
 lemma mem_span_range_fst (p : P) :
     p ∈ Submodule.span S (Set.range (fst φ ψ)) := by
   have hJ : I.map (algebraMap R S) • (⊤ : Submodule S P) ≤
@@ -337,12 +371,17 @@ variable (hI : ∀ i ∈ I, ∀ s : S, ∃ r ∈ I, algebraMap R S r = algebraMa
 variable (φ ψ) in
 omit [Algebra (S ⧸ I.map (algebraMap R S)) P₀] [IsScalarTower S (S ⧸ I.map (algebraMap R S)) P₀]
   [IsScalarTower (R ⧸ I) (S ⧸ I.map (algebraMap R S)) P₀] in
+/--
+@isnad1 id=eq.1h4v.s7.a5812e9b61db from=translated src=- shape=76df4eea vocab=fe1ad347
+-/
 lemma algebraMap_eq_zero_of_mem {i : R} (hi : i ∈ I) : algebraMap R Q i = 0 := by
   rw [IsScalarTower.algebraMap_apply R (R ⧸ I) Q, Ideal.Quotient.algebraMap_eq,
     Ideal.Quotient.eq_zero_iff_mem.2 hi, map_zero]
 
 include hφ hψ hI in
-/-- **The kernel of `P ×_{P₀} Q → Q` is `I (P ×_{P₀} Q)`.** -/
+/-- **The kernel of `P ×_{P₀} Q → Q` is `I (P ×_{P₀} Q)`.**
+@isnad1 id=mem.4h9v.s12.d28518bd1c38 from=translated src=- shape=35587d9f vocab=02e1a6d7
+-/
 lemma mem_smul_top_of_snd_eq_zero (x : patch φ ψ) (hx : snd φ ψ x = 0) :
     x ∈ I • (⊤ : Submodule R (patch φ ψ)) := by
   let C : P → Prop := fun p ↦ ∃ y ∈ I • (⊤ : Submodule R (patch φ ψ)),
@@ -383,7 +422,9 @@ lemma mem_smul_top_of_snd_eq_zero (x : patch φ ψ) (hx : snd φ ψ x = 0) :
   rwa [← this]
 
 include hφ hψ hI in
-/-- **`P ×_{P₀} Q → Q` is the base change along `R → R ⧸ I`.** -/
+/-- **`P ×_{P₀} Q → Q` is the base change along `R → R ⧸ I`.**
+@isnad1 id=isbasech.3h8v.s11.4ae3fa776015 from=translated src=- shape=117822ca vocab=408d419d
+-/
 theorem isBaseChange_snd : IsBaseChange (R ⧸ I) (snd φ ψ).toLinearMap := by
   have hker : LinearMap.ker (snd φ ψ).toLinearMap = I • (⊤ : Submodule R (patch φ ψ)) := by
     refine le_antisymm (fun x hx ↦ mem_smul_top_of_snd_eq_zero hφ hψ hI x hx) ?_
@@ -408,7 +449,9 @@ variable (K : Type*) [Field K]
 omit [Algebra (S ⧸ I.map (algebraMap R S)) P₀] [IsScalarTower S (S ⧸ I.map (algebraMap R S)) P₀]
   [IsScalarTower (R ⧸ I) (S ⧸ I.map (algebraMap R S)) P₀] in
 include hI in
-/-- Fibres of the patched algebra away from `V(I)`. -/
+/-- Fibres of the patched algebra away from `V(I)`.
+@isnad1 id=eq.3h10v.s11.ee202e924e2d from=translated src=- shape=e0a7556b vocab=831d556f
+-/
 lemma finrank_tensorProduct_of_notMem [Algebra R K] [Algebra S K] [IsScalarTower R S K]
     {f : R} (hf : f ∈ I) (hfK : algebraMap S K (algebraMap R S f) ≠ 0) :
     finrank K (K ⊗[R] patch φ ψ) = finrank K (K ⊗[S] P) := by
@@ -453,7 +496,9 @@ lemma finrank_tensorProduct_of_notMem [Algebra R K] [Algebra S K] [IsScalarTower
     e₂.finrank_eq]
 
 include hφ hψ hI in
-/-- Fibres of the patched algebra over `V(I)`. -/
+/-- Fibres of the patched algebra over `V(I)`.
+@isnad1 id=eq.3h9v.s12.49813bc7ccfe from=translated src=- shape=29a91b20 vocab=5cc15386
+-/
 lemma finrank_tensorProduct_of_le [Algebra R K] [Algebra S K] [Algebra (R ⧸ I) K]
     [Algebra (S ⧸ I.map (algebraMap R S)) K]
     [IsScalarTower S (S ⧸ I.map (algebraMap R S)) K] [IsScalarTower R (R ⧸ I) K]
@@ -468,7 +513,9 @@ end Fibre
 
 include hφ hψ hI in
 /-- **The fibres of the patched algebra are the fibres of `P`**: the fibre of `P ×_{P₀} Q` at
-`q ∩ R` has the same dimension as the fibre of `P` at a prime `q` of `S`. -/
+`q ∩ R` has the same dimension as the fibre of `P` at a prime `q` of `S`.
+@isnad1 id=eq.3h9v.s12.9b79bd4fac7a from=translated src=- shape=0b738c64 vocab=de1c45b8
+-/
 theorem finrank_fiber_patch (q : Ideal S) [q.IsPrime] :
     finrank (q.comap (algebraMap R S)).ResidueField
         ((q.comap (algebraMap R S)).Fiber (patch φ ψ)) =
@@ -502,7 +549,9 @@ theorem finrank_fiber_patch (q : Ideal S) [q.IsPrime] :
     rwa [ne_eq, Ideal.algebraMap_residueField_eq_zero]
 
 include hφ hψ hI in
-/-- **The patched algebra is flat**, for `R` reduced and `R → S` injective and integral. -/
+/-- **The patched algebra is flat**, for `R` reduced and `R → S` injective and integral.
+@isnad1 id=flat.4h8v.s11.a3fd5452c1ff from=translated src=- shape=a3b854c3 vocab=12d49f0c
+-/
 theorem flat_patch [IsReduced R] [Module.Finite R (patch φ ψ)] [Module.Finite S P] [Module.Flat S P]
     (hinj : Function.Injective (algebraMap R S)) [Algebra.IsIntegral R S] :
     Module.Flat R (patch φ ψ) := by
@@ -522,7 +571,9 @@ theorem flat_patch [IsReduced R] [Module.Finite R (patch φ ψ)] [Module.Finite 
   exact Module.rankAtStalk_eq_of_le_of_finite_of_flat' P hqQ
 
 include hφ hψ hI in
-/-- **`P ×_{P₀} Q → P` is the base change along `R → S`**, for `P ×_{P₀} Q` finite flat. -/
+/-- **`P ×_{P₀} Q → P` is the base change along `R → S`**, for `P ×_{P₀} Q` finite flat.
+@isnad1 id=isbasech.3h8v.s12.e096d1de6159 from=translated src=- shape=f896f4bc vocab=2c4dc75a
+-/
 theorem isBaseChange_fst [Module.Finite R (patch φ ψ)] [Module.Flat R (patch φ ψ)]
     [Module.Finite S P] [Module.Flat S P] : IsBaseChange S (fst φ ψ).toLinearMap := by
   let F : S ⊗[R] patch φ ψ →ₗ[S] P := LinearMap.liftBaseChange S (fst φ ψ).toLinearMap
@@ -541,12 +592,16 @@ theorem isBaseChange_fst [Module.Finite R (patch φ ψ)] [Module.Flat R (patch �
 
 end BaseChange
 
-/-- **The patched algebra is finite** over a noetherian ring. -/
+/-- **The patched algebra is finite** over a noetherian ring.
+@isnad1 id=finite.0h8v.s9.217267cd9cab from=translated src=- shape=9281d8e7 vocab=b64b694c
+-/
 theorem finite_patch [IsNoetherianRing R] [Module.Finite R P] [Module.Finite R Q] :
     Module.Finite R (patch φ ψ) :=
   Module.Finite.of_injective (patch φ ψ).val.toLinearMap Subtype.val_injective
 
-/-- The fibres of `M` vanish if `S ⊗[R] M` does. -/
+/-- The fibres of `M` vanish if `S ⊗[R] M` does.
+@isnad1 id=eq.0h4v.s8.82148c36b0d3 from=translated src=- shape=c7f32beb vocab=ac0762a9
+-/
 lemma finrank_tensorProduct_eq_zero (K : Type*) [Field K] [Algebra R K] [Algebra S K]
     [IsScalarTower R S K] {M : Type*} [AddCommGroup M] [Module R M] [Subsingleton (S ⊗[R] M)] :
     finrank K (K ⊗[R] M) = 0 := by
@@ -559,7 +614,9 @@ lemma finrank_tensorProduct_eq_zero (K : Type*) [Field K] [Algebra R K] [Algebra
   rw [← (AlgebraTensorModule.cancelBaseChange R S K K M).finrank_eq]
   exact Module.finrank_zero_of_subsingleton
 
-/-- A finite `R`-module `M` with `S ⊗[R] M = 0` vanishes, for `R → S` injective and integral. -/
+/-- A finite `R`-module `M` with `S ⊗[R] M = 0` vanishes, for `R → S` injective and integral.
+@isnad1 id=subsingl.1h3v.s7.8319fb4fc0d6 from=translated src=- shape=592553d1 vocab=69921441
+-/
 lemma subsingleton_of_subsingleton_tensorProduct (hinj : Function.Injective (algebraMap R S))
     [Algebra.IsIntegral R S] {M : Type*} [AddCommGroup M] [Module R M] [Module.Finite R M]
     [Subsingleton (S ⊗[R] M)] : Subsingleton M := by
@@ -610,6 +667,9 @@ def baseChangeSnd : (R ⧸ I) ⊗[R] patch φ ψ →ₐ[R ⧸ I] Q :=
 variable (φ ψ) in
 omit [Algebra (S ⧸ I.map (algebraMap R S)) P₀] [IsScalarTower S (S ⧸ I.map (algebraMap R S)) P₀]
   [IsScalarTower (R ⧸ I) (S ⧸ I.map (algebraMap R S)) P₀] in
+/--
+@isnad1 id=eq.0h10v.s12.b05c87e98456 from=translated src=- shape=7e5e676e vocab=e174bbed
+-/
 @[simp]
 lemma baseChangeFst_tmul (s : S) (x : patch φ ψ) :
     baseChangeFst φ ψ (s ⊗ₜ x) = algebraMap S P s * fst φ ψ x :=
@@ -618,6 +678,9 @@ lemma baseChangeFst_tmul (s : S) (x : patch φ ψ) :
 variable (φ ψ) in
 omit [Algebra (S ⧸ I.map (algebraMap R S)) P₀] [IsScalarTower S (S ⧸ I.map (algebraMap R S)) P₀]
   [IsScalarTower (R ⧸ I) (S ⧸ I.map (algebraMap R S)) P₀] in
+/--
+@isnad1 id=eq.0h10v.s12.61a1df713998 from=translated src=- shape=de87d325 vocab=69639d72
+-/
 @[simp]
 lemma baseChangeSnd_tmul (a : R ⧸ I) (x : patch φ ψ) :
     baseChangeSnd φ ψ (a ⊗ₜ x) = algebraMap (R ⧸ I) Q a * snd φ ψ x :=
@@ -626,6 +689,9 @@ lemma baseChangeSnd_tmul (a : R ⧸ I) (x : patch φ ψ) :
 variable (φ ψ) in
 omit [Algebra (S ⧸ I.map (algebraMap R S)) P₀] [IsScalarTower S (S ⧸ I.map (algebraMap R S)) P₀]
   [IsScalarTower (R ⧸ I) (S ⧸ I.map (algebraMap R S)) P₀] in
+/--
+@isnad1 id=bijectiv.1h8v.s12.8629f0094f19 from=translated src=- shape=272c4196 vocab=e1e36341
+-/
 lemma bijective_baseChangeFst (h : IsBaseChange S (fst φ ψ).toLinearMap) :
     Function.Bijective (baseChangeFst φ ψ) := by
   have : ⇑(baseChangeFst φ ψ) = ⇑h.equiv := by
@@ -640,6 +706,9 @@ lemma bijective_baseChangeFst (h : IsBaseChange S (fst φ ψ).toLinearMap) :
 variable (φ ψ) in
 omit [Algebra (S ⧸ I.map (algebraMap R S)) P₀] [IsScalarTower S (S ⧸ I.map (algebraMap R S)) P₀]
   [IsScalarTower (R ⧸ I) (S ⧸ I.map (algebraMap R S)) P₀] in
+/--
+@isnad1 id=bijectiv.1h8v.s12.1ad42e117f22 from=translated src=- shape=b48e5657 vocab=608bf022
+-/
 lemma bijective_baseChangeSnd (h : IsBaseChange (R ⧸ I) (snd φ ψ).toLinearMap) :
     Function.Bijective (baseChangeSnd φ ψ) := by
   have : ⇑(baseChangeSnd φ ψ) = ⇑h.equiv := by
@@ -656,7 +725,9 @@ include hφ hψ hI hinj in
 noetherian and reduced, and let `I ⊆ R` be an ideal of `S`. If `P` is finite étale over `S`, `Q`
 is a finite `R ⧸ I`-algebra and `P ⧸ I P ≅ (S ⧸ I S) ⊗[R ⧸ I] Q` (as encoded by `φ` and `ψ`), then
 `P ×_{P₀} Q` is finite étale over `R`, with `S ⊗[R] (P ×_{P₀} Q) ≅ P` and
-`(R ⧸ I) ⊗[R] (P ×_{P₀} Q) ≅ Q` (`bijective_baseChangeFst`, `bijective_baseChangeSnd`). -/
+`(R ⧸ I) ⊗[R] (P ×_{P₀} Q) ≅ Q` (`bijective_baseChangeFst`, `bijective_baseChangeSnd`).
+@isnad1 id=and.4h8v.s13.ce2cfdda1146 from=translated src=- shape=f6a037d8 vocab=4192e3ad
+-/
 theorem etale_patch [IsNoetherianRing R] [IsReduced R] [Module.Finite R S] [Module.Finite S P]
     [Module.Finite R P] [Module.Finite R Q] [Algebra.Etale S P] :
     Algebra.Etale R (patch φ ψ) ∧ Module.Finite R (patch φ ψ) ∧

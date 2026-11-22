@@ -42,7 +42,9 @@ variable {𝕜 E F : Type*} [NontriviallyNormedField 𝕜]
   [NormedAddCommGroup F] [NormedSpace 𝕜 F] [CompleteSpace F]
 
 /-- **Schwartz's theorem** (Banach spaces): for `u` surjective and `v` compact there is a finite
-dimensional subspace `G` with `range (u + v) ⊔ G = ⊤`. -/
+dimensional subspace `G` with `range (u + v) ⊔ G = ⊤`.
+@isnad1 id=ex.2h5v.s10.550470b94a0f from=translated src=- shape=360fb1b3 vocab=c21786c0
+-/
 theorem exists_range_add_sup_eq_top [CompleteSpace 𝕜] {u v : E →L[𝕜] F}
     (hu : Function.Surjective u) (hv : IsCompactOperator v) :
     ∃ G : Submodule 𝕜 F, FiniteDimensional 𝕜 G ∧
@@ -85,7 +87,9 @@ theorem exists_range_add_sup_eq_top [CompleteSpace 𝕜] {u v : E →L[𝕜] F}
     exact hs.le
 
 /-- **Schwartz's theorem** (Banach spaces): for `u` surjective and `v` compact, the cokernel
-`F ⧸ range (u + v)` is finite dimensional. -/
+`F ⧸ range (u + v)` is finite dimensional.
+@isnad1 id=finitedi.2h5v.s11.63c5069d7164 from=translated src=- shape=1a2b6d34 vocab=9fedd4b4
+-/
 theorem finiteDimensional_quotient_range_add [CompleteSpace 𝕜] {u v : E →L[𝕜] F}
     (hu : Function.Surjective u) (hv : IsCompactOperator v) :
     FiniteDimensional 𝕜 (F ⧸ LinearMap.range (u + v).toLinearMap) := by
@@ -93,7 +97,9 @@ theorem finiteDimensional_quotient_range_add [CompleteSpace 𝕜] {u v : E →L[
   exact Submodule.finiteDimensional_quotient_of_sup_eq_top h
 
 /-- **Schwartz's theorem** (Banach spaces): for `u` surjective and `v` compact, the range of
-`u + v` is closed. -/
+`u + v` is closed.
+@isnad1 id=isclosed.2h5v.s10.014f74a84614 from=translated src=- shape=7bc49f57 vocab=372f7d59
+-/
 theorem isClosed_range_add [CompleteSpace 𝕜] {u v : E →L[𝕜] F}
     (hu : Function.Surjective u) (hv : IsCompactOperator v) :
     IsClosed (LinearMap.range (u + v).toLinearMap : Set F) := by

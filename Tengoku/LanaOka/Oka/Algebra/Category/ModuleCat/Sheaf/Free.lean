@@ -83,7 +83,9 @@ open CategoryTheory Limits
 
 namespace PresheafOfModules
 
-/-- Restriction maps of a presheaf of modules only depend on the underlying morphism. -/
+/-- Restriction maps of a presheaf of modules only depend on the underlying morphism.
+@isnad1 id=eq.1h8v.s12.172fab690e2d from=translated src=- shape=af4d9a4a vocab=8415653b
+-/
 lemma map_apply_congr {C : Type u'} [Category.{v'} C] {R : Cᵒᵖ ⥤ RingCat.{u}}
     {M : PresheafOfModules.{u} R} {X Y : Cᵒᵖ} {f g : X ⟶ Y} (h : f = g) (x : M.obj X) :
     M.map f x = M.map g x := by
@@ -104,7 +106,9 @@ noncomputable def freePUnitIso : free (R := R) PUnit.{u + 1} ≅ unit R :=
       (fun s j ↦ by cases j; exact Category.id_comp _)
       (fun s m hm ↦ by rw [← hm PUnit.unit]; exact (Category.id_comp m).symm))
 
-/-- The free sheaf of modules on an empty type is zero. -/
+/-- The free sheaf of modules on an empty type is zero.
+@isnad1 id=iszero.0h4v.s7.b78b9bc2ac0a from=translated src=- shape=5e7585b1 vocab=4a0e1438
+-/
 lemma isZero_free_of_isEmpty (I : Type u) [IsEmpty I] : IsZero (free (R := R) I) :=
   (IsZero.iff_id_eq_zero _).mpr <|
     (freeHomEquiv _).injective (funext fun i ↦ (IsEmpty.false i).elim)
@@ -115,7 +119,9 @@ variable {M N : SheafOfModules.{u} R} {I : Type u}
 
 omit [HasWeakSheafify J AddCommGrpCat.{u}] [J.WEqualsLocallyBijective AddCommGrpCat.{u}] in
 /-- A finite sum of morphisms of sheaves of modules acts on a section as the sum of the
-actions. -/
+actions.
+@isnad1 id=eq.0h10v.s13.d3a8c70709f5 from=translated src=- shape=20f08c33 vocab=dc34260d
+-/
 lemma val_app_sum {ι : Type*} (s : Finset ι) (φ : ι → (M ⟶ N)) (Z : Cᵒᵖ)
     (x : M.val.obj Z) :
     (∑ i ∈ s, φ i).val.app Z x = ∑ i ∈ s, (φ i).val.app Z x := by
@@ -126,7 +132,9 @@ lemma val_app_sum {ι : Type*} (s : Finset ι) (φ : ι → (M ⟶ N)) (Z : Cᵒ
 
 omit [HasWeakSheafify J AddCommGrpCat.{u}] [J.WEqualsLocallyBijective AddCommGrpCat.{u}] in
 /-- The morphism `unit R ⟶ M` corresponding to a section `s` multiplies by `s`: it sends a section
-`r` of the sheaf of rings to `r • s`. -/
+`r` of the sheaf of rings to `r • s`.
+@isnad1 id=eq.0h7v.s13.359558f0ca98 from=translated src=- shape=33ce7833 vocab=2a8ec96a
+-/
 lemma unitHomEquiv_symm_val_app (s : M.sections) (Z : Cᵒᵖ) (r : R.obj.obj Z) :
     (M.unitHomEquiv.symm s).val.app Z r = r • PresheafOfModules.sections.eval s Z :=
   rfl
@@ -137,7 +145,9 @@ noncomputable def freeProj [DecidableEq I] (i : I) : free (R := R) I ⟶ unit R 
   Cofan.IsColimit.desc (isColimitFreeCofan I) (fun j ↦ if j = i then 𝟙 (unit R) else 0)
 
 /-- The inclusions and the projections of a free sheaf of modules are dual to each other:
-`ιFree i ≫ freeProj R j` is the identity when `i = j` and zero otherwise. -/
+`ιFree i ≫ freeProj R j` is the identity when `i = j` and zero otherwise.
+@isnad1 id=eq.0h6v.s8.faa05f0aad1c from=translated src=- shape=413cd351 vocab=c8de623b
+-/
 @[reassoc (attr := simp)]
 lemma ιFree_comp_freeProj [DecidableEq I] (i j : I) :
     ιFree i ≫ freeProj R j = if i = j then 𝟙 (unit R) else 0 :=
@@ -145,7 +155,9 @@ lemma ιFree_comp_freeProj [DecidableEq I] (i j : I) :
 
 /-- The other half of the dual-basis relation, and the half that needs `I` finite: the
 projections followed by the inclusions sum to the identity. This is what makes a finite free
-sheaf usable as a biproduct. -/
+sheaf usable as a biproduct.
+@isnad1 id=eq.0h4v.s8.1d295a641e2e from=translated src=- shape=1045b140 vocab=1e846f20
+-/
 lemma sum_freeProj_comp_ιFree [Fintype I] [DecidableEq I] :
     ∑ i : I, freeProj R i ≫ ιFree (R := R) i = 𝟙 (free I) := by
   refine Cofan.IsColimit.hom_ext (isColimitFreeCofan I) _ _ (fun j ↦ ?_)
@@ -163,7 +175,9 @@ noncomputable def freeEval :
     (free (R := R) I).val.obj Z →ₗ[R.obj.obj Z] (I → R.obj.obj Z) :=
   LinearMap.pi fun i ↦ ((freeProj R i).val.app Z).hom
 
-/-- The `i`-th coordinate of a section is its image under the `i`-th projection. -/
+/-- The `i`-th coordinate of a section is its image under the `i`-th projection.
+@isnad1 id=eq.0h7v.s13.59943a69acfd from=translated src=- shape=a18eae4a vocab=4dd9b9fd
+-/
 @[simp]
 lemma freeEval_apply (b : (free (R := R) I).val.obj Z) (i : I) :
     freeEval Z b i = (freeProj R i).val.app Z b :=
@@ -177,13 +191,17 @@ noncomputable def freeEvalSymm :
   ∑ i : I, ((ιFree (R := R) i).val.app Z).hom ∘ₗ LinearMap.proj i
 
 omit [DecidableEq I] in
-/-- The section built from a tuple is the sum of its entries along the inclusions. -/
+/-- The section built from a tuple is the sum of its entries along the inclusions.
+@isnad1 id=eq.0h6v.s13.a5e7f9e4b60a from=translated src=- shape=e5e23bf7 vocab=793fb988
+-/
 lemma freeEvalSymm_apply (a : I → R.obj.obj Z) :
     freeEvalSymm (R := R) (I := I) Z a = ∑ i : I, (ιFree i).val.app Z (a i) := by
   rw [freeEvalSymm, LinearMap.sum_apply]
   exact Finset.sum_congr rfl fun i _ ↦ rfl
 
-/-- Reading off the coordinates of the section built from a tuple returns that tuple. -/
+/-- Reading off the coordinates of the section built from a tuple returns that tuple.
+@isnad1 id=eq.0h6v.s12.9cb065cea27c from=translated src=- shape=a5fe73ab vocab=eb32b186
+-/
 @[simp]
 lemma freeEval_freeEvalSymm (a : I → R.obj.obj Z) :
     freeEval Z (freeEvalSymm (R := R) (I := I) Z a) = a := by
@@ -198,7 +216,9 @@ lemma freeEval_freeEvalSymm (a : I → R.obj.obj Z) :
     rfl
   · simp
 
-/-- Rebuilding a section from its own coordinates returns that section. -/
+/-- Rebuilding a section from its own coordinates returns that section.
+@isnad1 id=eq.0h6v.s12.f996156b7b93 from=translated src=- shape=8d36b710 vocab=eb32b186
+-/
 @[simp]
 lemma freeEvalSymm_freeEval (b : (free (R := R) I).val.obj Z) :
     freeEvalSymm Z (freeEval (R := R) (I := I) Z b) = b := by
@@ -217,13 +237,17 @@ noncomputable def freeEvalEquiv :
     (LinearMap.ext fun a ↦ freeEval_freeEvalSymm Z a)
     (LinearMap.ext fun b ↦ freeEvalSymm_freeEval Z b)
 
-/-- The equivalence is `SheafOfModules.freeEval` in the forward direction. -/
+/-- The equivalence is `SheafOfModules.freeEval` in the forward direction.
+@isnad1 id=eq.0h6v.s12.b5d7ce066590 from=translated src=- shape=a5b39490 vocab=e858379d
+-/
 @[simp]
 lemma freeEvalEquiv_apply (b : (free (R := R) I).val.obj Z) :
     freeEvalEquiv Z b = freeEval Z b :=
   rfl
 
-/-- The equivalence is `SheafOfModules.freeEvalSymm` in the backward direction. -/
+/-- The equivalence is `SheafOfModules.freeEvalSymm` in the backward direction.
+@isnad1 id=eq.0h6v.s13.949fc972a7b6 from=translated src=- shape=9264a9bb vocab=430907b5
+-/
 @[simp]
 lemma freeEvalEquiv_symm_apply (a : I → R.obj.obj Z) :
     (freeEvalEquiv (R := R) (I := I) Z).symm a = freeEvalSymm Z a :=
@@ -233,20 +257,26 @@ omit [Fintype I] in
 /-- A section of a free sheaf of modules on a finite index type is determined by its
 coordinates. Stated at `Finite I` rather than `Fintype I`, which is what a consumer usually has;
 the proof supplies the `Fintype` and reads the injectivity off
-`SheafOfModules.freeEvalEquiv`. -/
+`SheafOfModules.freeEvalEquiv`.
+@isnad1 id=injectiv.0h5v.s11.a87fdfc09848 from=translated src=- shape=bf5b211d vocab=675b2130
+-/
 lemma freeEval_injective [Finite I] : Function.Injective (freeEval (R := R) (I := I) Z) := by
   haveI := Fintype.ofFinite I
   exact (freeEvalEquiv Z).injective
 
 omit [Fintype I] in
-/-- Taking coordinates commutes with restriction. -/
+/-- Taking coordinates commutes with restriction.
+@isnad1 id=eq.0h9v.s13.ae6c38f90f5b from=translated src=- shape=05fcfd19 vocab=793fdeab
+-/
 lemma freeEval_naturality {Z W : Cᵒᵖ} (f : Z ⟶ W) (b : (free (R := R) I).val.obj Z) (i : I) :
     freeEval W ((free (R := R) I).val.map f b) i = R.obj.map f (freeEval Z b i) :=
   PresheafOfModules.naturality_apply (freeProj R i).val f b
 
 omit [DecidableEq I] in
 /-- The same in the other direction: restricting the section built from a tuple is building it
-from the restricted tuple. -/
+from the restricted tuple.
+@isnad1 id=eq.0h8v.s13.6495c633d13b from=translated src=- shape=f6b2762e vocab=ef1afc95
+-/
 lemma map_freeEvalSymm {Z W : Cᵒᵖ} (f : Z ⟶ W) (a : I → R.obj.obj Z) :
     (free (R := R) I).val.map f (freeEvalSymm Z a) =
       freeEvalSymm W (fun i ↦ R.obj.map f (a i)) := by
@@ -255,7 +285,9 @@ lemma map_freeEvalSymm {Z W : Cᵒᵖ} (f : Z ⟶ W) (a : I → R.obj.obj Z) :
   rw [freeEval_naturality, freeEval_freeEvalSymm, freeEval_freeEvalSymm]
 
 /-- The action of a morphism out of a finite free sheaf of modules on sections, in terms of
-the corresponding family of sections. -/
+the corresponding family of sections.
+@isnad1 id=eq.0h8v.s13.53a7779be51c from=translated src=- shape=a9791963 vocab=7362d6b2
+-/
 lemma val_app_eq_sum (φ : free (R := R) I ⟶ M) (b : (free (R := R) I).val.obj Z) :
     φ.val.app Z b =
       ∑ i : I, freeEval Z b i • PresheafOfModules.sections.eval (M.freeHomEquiv φ i) Z := by
@@ -281,7 +313,9 @@ noncomputable def sectionOfTerminal (b : M.val.obj (Opposite.op T)) : M.sections
     exact PresheafOfModules.map_apply_congr (Quiver.Hom.unop_inj (hT.hom_ext _ _)) b)
 
 /-- The section built from an element over the terminal object restricts it along the unique
-morphism into `T`. -/
+morphism into `T`.
+@isnad1 id=eq.0h8v.s12.477d84f57661 from=translated src=- shape=1da62f29 vocab=7b1deb3a
+-/
 @[simp]
 lemma sectionOfTerminal_val (b : M.val.obj (Opposite.op T)) (Z : Cᵒᵖ) :
     PresheafOfModules.sections.eval (sectionOfTerminal hT M b) Z =
@@ -289,7 +323,9 @@ lemma sectionOfTerminal_val (b : M.val.obj (Opposite.op T)) (Z : Cᵒᵖ) :
   rfl
 
 /-- A section is determined by its value over the terminal object: the two directions of
-`SheafOfModules.sectionOfTerminal` are mutually inverse. -/
+`SheafOfModules.sectionOfTerminal` are mutually inverse.
+@isnad1 id=eq.0h7v.s6.3d28a0fcdf7a from=translated src=- shape=87294144 vocab=74df3ea0
+-/
 @[simp]
 lemma sectionOfTerminal_eval (s : M.sections) :
     sectionOfTerminal hT M (PresheafOfModules.sections.eval s (Opposite.op T)) = s := by
@@ -298,7 +334,9 @@ lemma sectionOfTerminal_eval (s : M.sections) :
 
 variable {M} in
 /-- Pushing a section forward along a morphism is pushing its value over the terminal object
-forward. -/
+forward.
+@isnad1 id=eq.0h9v.s12.48fcbfc14210 from=translated src=- shape=d6429be7 vocab=b3d5e972
+-/
 lemma sectionsMap_sectionOfTerminal {N : SheafOfModules.{u} R} (p : M ⟶ N)
     (b : M.val.obj (Opposite.op T)) :
     sectionsMap p (sectionOfTerminal hT M b) =

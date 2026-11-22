@@ -49,7 +49,9 @@ def ClassicalABCInt : Prop :=
     a + b + c = 0 →
       ((max |a| (max |b| |c|) : ℤ) : ℝ) ≤ C * ((radical (a * b * c) : ℤ) : ℝ) ^ (1 + ε)
 
-/-- The form over `ℤ` implies the form over `ℕ` (apply it to `(a, b, −c)`). -/
+/-- The form over `ℤ` implies the form over `ℕ` (apply it to `(a, b, −c)`).
+@isnad1 id=classica.1h0v.s1.1e41ca6b62c5 from=translated src=- shape=1d48f1ac vocab=64720150
+-/
 theorem classicalABC_of_int (h : ClassicalABCInt) : ClassicalABC := by
   intro ε hε
   obtain ⟨C, hC⟩ := h ε hε
@@ -118,7 +120,9 @@ private lemma bound_neg {C e : ℝ} {a b c : ℤ}
 
 /-- The form over `ℕ` implies the symmetric form over `ℤ`: up to a common sign and a
 permutation, a solution of `a + b + c = 0` in nonzero integers is `(a, b, −(a + b))` with
-`a, b > 0`. -/
+`a, b > 0`.
+@isnad1 id=classica.1h0v.s1.2afc4717729e from=translated src=- shape=1d48f1ac vocab=64720150
+-/
 theorem classicalABCInt_of_nat (h : ClassicalABC) : ClassicalABCInt := by
   intro ε hε
   obtain ⟨C, hC⟩ := h ε hε
@@ -144,7 +148,9 @@ theorem classicalABCInt_of_nat (h : ClassicalABC) : ClassicalABCInt := by
     · exact bound_swap23 (int_bound_of_pos hC ha hc hac (by omega))
   · exact int_bound_of_pos hC ha hb hab habc
 
-/-- **The two forms of the classical ABC conjecture are equivalent.** -/
+/-- **The two forms of the classical ABC conjecture are equivalent.**
+@isnad1 id=iff.0h0v.s1.25482883ae08 from=translated src=- shape=25b03439 vocab=64720150
+-/
 theorem classicalABC_iff_int : ClassicalABC ↔ ClassicalABCInt :=
   ⟨classicalABCInt_of_nat, classicalABC_of_int⟩
 

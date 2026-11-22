@@ -35,20 +35,35 @@ noncomputable def pointMap (E : WeierstrassCurve k) (f : k →+* K) :
 
 variable (E : WeierstrassCurve k) (f : k →+* K)
 
+/--
+@isnad1 id=eq.0h4v.s8.6eb8f9674145 from=translated src=- shape=092129a8 vocab=c6295a95
+-/
 @[simp] lemma pointMap_zero : pointMap E f 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.40e257d254e1 from=translated src=- shape=527d2c9f vocab=aa128074
+-/
 lemma pointMap_some {x y : k} (h : E.toAffine.Nonsingular x y) :
     pointMap E f (Affine.Point.some x y h) =
       Affine.Point.some (f x) (f y) ((E.toAffine.map_nonsingular f.injective x y).mpr h) := rfl
 
+/--
+@isnad1 id=injectiv.0h4v.s8.681274a1b571 from=translated src=- shape=b2a858f4 vocab=0ab91478
+-/
 lemma pointMap_injective : Function.Injective (pointMap E f) := by
   letI := f.toAlgebra
   exact Affine.Point.map_injective (W' := E) (S := k) (F := k) (K := K) (Algebra.ofId k K)
 
+/--
+@isnad1 id=eq.0h7v.s10.e84a38fb6da1 from=translated src=- shape=ce790dce vocab=5cf46a06
+-/
 lemma pointMap_map (g : K →+* L) (P : E.toAffine.Point) :
     pointMap (E.map f) g (pointMap E f P) = pointMap E (g.comp f) P := by
   cases P <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.b2d34c887835 from=translated src=- shape=cf088f4b vocab=2377d19b
+-/
 lemma pointMap_id (P : E.toAffine.Point) : pointMap E (RingHom.id k) P = P := by
   cases P <;> rfl
 

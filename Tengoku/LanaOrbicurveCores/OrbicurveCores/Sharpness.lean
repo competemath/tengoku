@@ -64,9 +64,15 @@ def neg (x : IM) : IM := ⟨-x.a, -x.b, -x.c, -x.d⟩
 /-- The real matrix. -/
 def toR (x : IM) : Matrix (Fin 2) (Fin 2) ℝ := !![(x.a : ℝ), x.b; x.c, x.d]
 
+/--
+@isnad1 id=eq.0h0v.s6.d870cdbcd92b from=translated src=- shape=20b262c4 vocab=7de4af4b
+-/
 lemma toR_one : one.toR = 1 := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [one, toR]
 
+/--
+@isnad1 id=eq.0h2v.s6.1d046b3cca86 from=translated src=- shape=52ba9162 vocab=0d995bd6
+-/
 lemma toR_smul (k : ℤ) (x : IM) : (smul k x).toR = (k : ℝ) • x.toR := by
   ext i j; fin_cases i <;> fin_cases j <;> simp [smul, toR]
 
@@ -142,12 +148,17 @@ def evalSL : List (Fin 4) → SL(2, ℝ)
 
 end evalSL
 
+/--
+@isnad1 id=eq.0h4v.s7.c56877e2fd2b from=translated src=- shape=032e4b51 vocab=f8b8467e
+-/
 lemma scal_cons (cA cB : ℝ) (x : Fin 4) (w : List (Fin 4)) :
     cA ^ countA (x :: w) * cB ^ countB (x :: w) =
       (if x.val < 2 then cA else cB) * (cA ^ countA w * cB ^ countB w) := by
   fin_cases x <;> simp [countA, countB, pow_succ] <;> ring
 
-/-- The scalar `(1/√n)^a (1/√k)^b` is `1/s` when `s² = nᵃ kᵇ`. -/
+/-- The scalar `(1/√n)^a (1/√k)^b` is `1/s` when `s² = nᵃ kᵇ`.
+@isnad1 id=eq.3h5v.s7.d8020892d9bc from=translated src=- shape=a754a94a vocab=a9ec8f72
+-/
 lemma scalar_eq {n k a b s : ℕ} (hn : 0 < n) (hk : 0 < k) (hs : s ^ 2 = n ^ a * k ^ b) :
     ((Real.sqrt n)⁻¹ ^ a * (Real.sqrt k)⁻¹ ^ b) = (s : ℝ)⁻¹ := by
   have hs' : ((s : ℝ)) = Real.sqrt n ^ a * Real.sqrt k ^ b := by
@@ -188,6 +199,9 @@ def coverOK (C : CoverCert) : Bool :=
 
 variable {M N n k}
 
+/--
+@isnad1 id=ex.1h8v.s7.0d929d620825 from=translated src=- shape=e113e751 vocab=01d5819e
+-/
 lemma entryOK_sound {R : List IM} {r g : IM} {e : Entry} (h : entryOK M N n k R r g e = true) :
     ∃ r' ∈ R, ∃ w : List (Fin 4), ∃ s : ℕ, (evalInt M N w).mul r' = IM.smul s (r.mul g) ∧
       s ^ 2 = n ^ countA w * k ^ countB w := by
@@ -197,6 +211,9 @@ lemma entryOK_sound {R : List IM} {r g : IM} {e : Entry} (h : entryOK M N n k R 
   rw [List.getD_eq_getElem _ _ hlt]
   exact List.getElem_mem hlt
 
+/--
+@isnad1 id=and.1h5v.s8.3738289668ce from=translated src=- shape=f6c63af1 vocab=41f222a9
+-/
 lemma coverOK_sound {C : CoverCert} (h : coverOK M N n k C = true) :
     IM.one ∈ C.map (·.1) ∧ ∀ r ∈ C.map (·.1), r.det = 1 ∧
       ∀ g ∈ ({genS, genT, genSi, genTi} : Set IM), ∃ r' ∈ C.map (·.1),
@@ -261,6 +278,9 @@ def transOK (C : TransCert) : Bool :=
 
 variable {M N n k}
 
+/--
+@isnad1 id=ex.1h8v.s8.9fc3e6ca2e38 from=translated src=- shape=8315a63c vocab=1d4f3079
+-/
 lemma entry2OK_sound {U : List (List (Fin 4))} {u : List (Fin 4)} {x : Fin 4} {e : Entry2}
     (h : entry2OK M N n k U u x e = true) :
     ∃ u' ∈ U, ∃ Z : IM, ∃ s : ℕ, evalInt M N (u ++ [x] ++ invWord u') = IM.smul s Z ∧

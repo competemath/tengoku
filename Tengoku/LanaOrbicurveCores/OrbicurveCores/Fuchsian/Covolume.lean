@@ -30,10 +30,15 @@ every orbit. -/
 def HasFiniteCovolume (Γ : Subgroup SL(2, ℝ)) : Prop :=
   ∃ F : Set ℍ, MeasurableSet F ∧ volume F < ∞ ∧ ∀ z : ℍ, ∃ γ ∈ Γ, γ • z ∈ F
 
+/--
+@isnad1 id=measurab.0h1v.s7.7b08e613379e from=translated src=- shape=1e2fed31 vocab=f2daae98
+-/
 lemma measurable_smul_SL (g : SL(2, ℝ)) : Measurable fun z : ℍ ↦ g • z :=
   (continuous_const_smul g).measurable
 
-/-- Nonempty balls have positive hyperbolic area. -/
+/-- Nonempty balls have positive hyperbolic area.
+@isnad1 id=lt.1h2v.s5.9571564328e3 from=translated src=- shape=54299933 vocab=992be848
+-/
 lemma volume_ball_pos (z : ℍ) {r : ℝ} (hr : 0 < r) : 0 < volume (Metric.ball z r) := by
   rw [volume_eq_lintegral]
   have hmeas : Measurable fun w : ℂ ↦ ((((1 / ‖w.im‖₊) ^ 2 : NNReal)) : ℝ≥0∞) := by fun_prop

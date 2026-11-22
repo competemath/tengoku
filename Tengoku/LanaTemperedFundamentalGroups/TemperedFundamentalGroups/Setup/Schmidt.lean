@@ -39,7 +39,9 @@ namespace TemperedFundamentalGroups
 
 section Newton
 
-/-- In a local ring, a unit plus an element of the maximal ideal is a unit. -/
+/-- In a local ring, a unit plus an element of the maximal ideal is a unit.
+@isnad1 id=isunit.2h3v.s6.2e0615678b04 from=translated src=- shape=1a7a4a6d vocab=1d23ca64
+-/
 lemma isUnit_add_of_mem_maximalIdeal {R : Type*} [CommRing R] [IsLocalRing R] {u m : R}
     (hu : IsUnit u) (hm : m ∈ maximalIdeal R) : IsUnit (u + m) := by
   by_contra h
@@ -53,7 +55,9 @@ ideal, then `f` has a root.
 Writing `e = f'(r)` and `tₖ` for the Taylor coefficients of `f` at `r`, a root is `r + e c / w`
 where `w` is a unit root of the monic polynomial
 `W^(M+2) + W^(M+1) + ∑ₖ tₖ₊₂ eᵏ cᵏ⁺¹ W^(M-k)`, which reduces to `W^(M+1) (W + 1)` modulo the
-maximal ideal and hence has a root `w ≡ -1` by henselianity. -/
+maximal ideal and hence has a root `w ≡ -1` by henselianity.
+@isnad1 id=ex.2h4v.s8.ef2e0ea34e8e from=translated src=- shape=393991a2 vocab=9b3a5b97
+-/
 theorem HenselianLocalRing.exists_isRoot_of_eval_eq {R : Type*} [CommRing R]
     [HenselianLocalRing R] (f : R[X]) (r c : R) (hc : c ∈ maximalIdeal R)
     (hf : f.eval r = f.derivative.eval r ^ 2 * c) : ∃ a, f.IsRoot a := by
@@ -137,7 +141,9 @@ section ValuationSubring
 
 variable {k : Type*} [Field k]
 
-/-- A polynomial over `k` lifts to the valuation subring `O` iff its coefficients lie in `O`. -/
+/-- A polynomial over `k` lifts to the valuation subring `O` iff its coefficients lie in `O`.
+@isnad1 id=iff.0h3v.s8.693fd3a2bbec from=translated src=- shape=3cb0d8b7 vocab=87c13db0
+-/
 lemma mem_lifts_iff_coeff_mem (O : ValuationSubring k) (P : k[X]) :
     P ∈ lifts (algebraMap O k) ↔ ∀ i, P.coeff i ∈ O := by
   rw [lifts_iff_coeff_lifts]
@@ -146,12 +152,17 @@ lemma mem_lifts_iff_coeff_mem (O : ValuationSubring k) (P : k[X]) :
   rw [← hx]
   exact x.2
 
+/--
+@isnad1 id=eq.0h4v.s8.50fe9aaec783 from=translated src=- shape=fdb89da8 vocab=801e5d9d
+-/
 lemma coe_eval_valuationSubring {O : ValuationSubring k} (F : O[X]) (r : O) :
     ((F.eval r : O) : k) = (F.map (algebraMap O k)).eval (r : k) := by
   rw [eval_map]
   exact (eval₂_at_apply (algebraMap O k) r).symm
 
-/-- A polynomial with coefficients in `O` takes values in `O` on `O`. -/
+/-- A polynomial with coefficients in `O` takes values in `O` on `O`.
+@isnad1 id=mem.2h4v.s8.54bdd255b477 from=translated src=- shape=75737bc5 vocab=2c685a01
+-/
 lemma eval_mem_of_mem_lifts {O : ValuationSubring k} {P : k[X]}
     (hP : P ∈ lifts (algebraMap O k)) {r : k} (hr : r ∈ O) : P.eval r ∈ O := by
   obtain ⟨Q, rfl⟩ := (mem_lifts _).1 hP
@@ -159,7 +170,9 @@ lemma eval_mem_of_mem_lifts {O : ValuationSubring k} {P : k[X]}
   exact SetLike.coe_mem _
 
 /-- Valuation subrings are integrally closed: a root of a monic polynomial with coefficients in
-`O` lies in `O`. -/
+`O` lies in `O`.
+@isnad1 id=mem.3h4v.s8.023fe65a9a8a from=translated src=- shape=88ba57b0 vocab=b7732750
+-/
 lemma mem_of_monic_of_eval_eq_zero {O : ValuationSubring k} {P : k[X]}
     (hP : P ∈ lifts (algebraMap O k)) (hm : P.Monic) {r : k} (hr : P.eval r = 0) : r ∈ O := by
   obtain ⟨Q, hQ⟩ := (mem_lifts _).1 hP
@@ -170,7 +183,9 @@ lemma mem_of_monic_of_eval_eq_zero {O : ValuationSubring k} {P : k[X]}
   exact y.2
 
 /-- Every polynomial over `k` has a nonzero multiple by an element of `O` with coefficients
-in `O`. -/
+in `O`.
+@isnad1 id=ex.0h3v.s8.efe5e48992af from=translated src=- shape=de33562f vocab=bd8aa4ac
+-/
 lemma exists_mul_mem_lifts (O : ValuationSubring k) (P : k[X]) :
     ∃ d : k, d ≠ 0 ∧ d ∈ O ∧ C d * P ∈ lifts (algebraMap O k) := by
   obtain ⟨b, hb, hP⟩ := IsLocalization.integerNormalization_spec (nonZeroDivisors O) P
@@ -180,7 +195,9 @@ lemma exists_mul_mem_lifts (O : ValuationSubring k) (P : k[X]) :
   exact (mem_lifts _).2 ⟨_, hP⟩
 
 /-- **Newton's lemma** for a henselian valuation subring `O` of `k`: if `f ∈ k[X]` has
-coefficients in `O`, `r ∈ O` and `v(f(r)) < v(f'(r))²`, then `f` has a root in `O`. -/
+coefficients in `O`, `r ∈ O` and `v(f(r)) < v(f'(r))²`, then `f` has a root in `O`.
+@isnad1 id=ex.3h4v.s9.fda78972d2c5 from=translated src=- shape=a0a26d92 vocab=0e9891d9
+-/
 theorem exists_eval_eq_zero_of_valuation_lt (O : ValuationSubring k) [HenselianLocalRing O]
     {f : k[X]} (hf : f ∈ lifts (algebraMap O k)) {r : k} (hr : r ∈ O)
     (h : O.valuation (f.eval r) < O.valuation (f.derivative.eval r) ^ 2) :
@@ -214,7 +231,9 @@ section Independence
 variable {k : Type*} [Field k]
 
 /-- Discrete valuation rings have rank one: if `v(x) < 1` and `δ ≠ 0`, then `v(x)ᴺ < v(δ)` for
-some `N`. -/
+some `N`.
+@isnad1 id=ex.2h4v.s8.72babc63e748 from=translated src=- shape=789c4e87 vocab=fba0827b
+-/
 lemma exists_valuation_pow_lt (O : ValuationSubring k) [IsDiscreteValuationRing O] {x δ : k}
     (hx : O.valuation x < 1) (hδ : δ ≠ 0) : ∃ N, O.valuation x ^ N < O.valuation δ := by
   have hδ0 : 0 < O.valuation δ := zero_lt_iff.2 ((Valuation.ne_zero_iff _).2 hδ)
@@ -250,7 +269,9 @@ lemma exists_valuation_pow_lt (O : ValuationSubring k) [IsDiscreteValuationRing 
   exact (pow_le_pow_right_of_le_one' hq1.le (Nat.le_mul_of_pos_left _ (Nat.pos_of_ne_zero hm))
     ).trans_lt (pow_lt_pow_right_of_lt_one₀ hq0 hq1 (Nat.lt_succ_self n))
 
-/-- A discrete valuation ring of `k` is not all of `k`. -/
+/-- A discrete valuation ring of `k` is not all of `k`.
+@isnad1 id=ne.0h2v.s5.5b8051591aa7 from=translated src=- shape=74899b7d vocab=57ecb377
+-/
 lemma ne_top_of_isDiscreteValuationRing (O : ValuationSubring k) [IsDiscreteValuationRing O] :
     O ≠ ⊤ := by
   intro h
@@ -261,14 +282,18 @@ lemma ne_top_of_isDiscreteValuationRing (O : ValuationSubring k) [IsDiscreteValu
   exact IsUnit.of_mul_eq_one (b := ⟨_, hinv⟩) (Subtype.ext (mul_inv_cancel₀ hπ0))
 
 /-- Two distinct discrete valuation rings of a field are incomparable (a discrete valuation ring
-is maximal among the proper valuation subrings). -/
+is maximal among the proper valuation subrings).
+@isnad1 id=ex.1h3v.s6.a6859814b1d0 from=translated src=- shape=57b56577 vocab=3eed7d2a
+-/
 lemma exists_mem_not_mem_of_ne {O₁ O₂ : ValuationSubring k} [IsDiscreteValuationRing O₁]
     [IsDiscreteValuationRing O₂] (hne : O₁ ≠ O₂) : ∃ a ∈ O₁, a ∉ O₂ := by
   by_contra! h
   exact hne (ValuationSubring.eq_of_le_of_ne_top O₁ h (ne_top_of_isDiscreteValuationRing O₂))
 
 /-- **Approximation** for two distinct discrete valuation rings: there is `u ∈ k` which is
-arbitrarily close to `1` for `O₁` and arbitrarily close to `0` for `O₂`. -/
+arbitrarily close to `1` for `O₁` and arbitrarily close to `0` for `O₂`.
+@isnad1 id=ex.3h5v.s8.67e653081cab from=translated src=- shape=54da63ec vocab=5ac35445
+-/
 lemma exists_valuation_one_sub_lt {O₁ O₂ : ValuationSubring k} [IsDiscreteValuationRing O₁]
     [IsDiscreteValuationRing O₂] (hne : O₁ ≠ O₂) {δ β : k} (hδ : δ ≠ 0) (hβ : β ≠ 0) :
     ∃ u : k, O₁.valuation (1 - u) < O₁.valuation δ ∧ O₂.valuation u < O₂.valuation β := by
@@ -325,17 +350,25 @@ section Main
 
 variable {k : Type*} [Field k]
 
+/--
+@isnad1 id=mem.1h3v.s8.4bae6e28323b from=translated src=- shape=2080bbb7 vocab=1d3c347f
+-/
 lemma C_mem_lifts_of_mem {O : ValuationSubring k} {a : k} (ha : a ∈ O) :
     C a ∈ lifts (algebraMap O k) :=
   C_mem_lifts (algebraMap O k) (⟨a, ha⟩ : O)
 
+/--
+@isnad1 id=mem.2h4v.s9.ae4f6f088ec9 from=translated src=- shape=0ee68927 vocab=711966a7
+-/
 lemma sub_mem_lifts_valuationSubring {O : ValuationSubring k} {P Q : k[X]}
     (hP : P ∈ lifts (algebraMap O k)) (hQ : Q ∈ lifts (algebraMap O k)) :
     P - Q ∈ lifts (algebraMap O k) := by
   rw [lifts_iff_liftsRing] at *
   exact sub_mem hP hQ
 
-/-- Rescaling the roots preserves separability (over a field, by a nonzero factor). -/
+/-- Rescaling the roots preserves separability (over a field, by a nonzero factor).
+@isnad1 id=iscoprim.2h3v.s9.c825bdb38868 from=translated src=- shape=a9551b9e vocab=c10f8209
+-/
 lemma isCoprime_scaleRoots_derivative {p : k[X]} (hp : IsCoprime p (derivative p)) {s : k}
     (hs : s ≠ 0) : IsCoprime (p.scaleRoots s) (derivative (p.scaleRoots s)) := by
   have h := isCoprime_scaleRoots p (derivative p) s (IsUnit.mk0 s hs) hp
@@ -366,7 +399,9 @@ coefficients in `O₁` has a root in `k`.
 With `h = X (X - 1)ⁿ⁻¹` and `u` close to `1` for `O₁` and to `0` for `O₂`, the monic polynomial
 `g = h + u (f - h)` is close to `h` for `O₂`, hence has a root `ρ ∈ O₂` by Newton's lemma
 (at `0`). Then `ρ ∈ O₁` (`g` is monic with coefficients in `O₁`), and `f(ρ)` is so small for
-`O₁` that, by a Bézout relation `A f + B f' = d`, Newton's lemma for `O₁` applies at `ρ`. -/
+`O₁` that, by a Bézout relation `A f + B f' = d`, Newton's lemma for `O₁` applies at `ρ`.
+@isnad1 id=ex.7h4v.s9.491ef9c67acb from=translated src=- shape=92985976 vocab=45cdeb27
+-/
 theorem exists_eval_eq_zero_of_ne {O₁ O₂ : ValuationSubring k} (h₁ : IsHenselianDVR O₁)
     (h₂ : IsHenselianDVR O₂) (hne : O₁ ≠ O₂) {f : k[X]} (hm : f.Monic) (hdeg : 0 < f.natDegree)
     (hf : f ∈ lifts (algebraMap O₁ k)) (hsep : IsCoprime f (derivative f)) :
@@ -510,7 +545,9 @@ theorem exists_eval_eq_zero_of_ne {O₁ O₂ : ValuationSubring k} (h₁ : IsHen
   exact ⟨a, ha⟩
 
 /-- **F. K. Schmidt's theorem** (discrete case): a field with two distinct henselian discrete
-valuation rings is separably closed. -/
+valuation rings is separably closed.
+@isnad1 id=issepclo.3h3v.s5.9c9d8db5885a from=translated src=- shape=d2af209d vocab=9c812c79
+-/
 theorem isSepClosed_of_isHenselianDVR_of_ne {O₁ O₂ : ValuationSubring k}
     (h₁ : IsHenselianDVR O₁) (h₂ : IsHenselianDVR O₂) (hne : O₁ ≠ O₂) : IsSepClosed k := by
   refine IsSepClosed.of_exists_root k fun p hp hirr hsep ↦ ?_
@@ -555,7 +592,9 @@ variable {k : Type*} [Field k]
 
 /-- A field with a discrete valuation ring is not separably closed: a uniformizer `π` has no
 `n`-th root for `n ≥ 2`, and `X ^ n - π` is separable for `n = 2` or `n = 3` (whichever is
-nonzero in `k`). -/
+nonzero in `k`).
+@isnad1 id=not.0h2v.s5.06d2f2e6c9dd from=translated src=- shape=43ba5d97 vocab=a9aad2b3
+-/
 theorem not_isSepClosed_of_isDiscreteValuationRing (O : ValuationSubring k)
     [IsDiscreteValuationRing O] : ¬ IsSepClosed k := by
   intro hsc
@@ -593,13 +632,17 @@ theorem eq_of_isHenselianDVR' {O₁ O₂ : ValuationSubring k} (h₁ : IsHenseli
   eq_of_isHenselianDVR (not_isSepClosed_of_isDiscreteValuationRing O₁) h₁ h₂
 
 /-- If `k` is not separably closed and `O` is a henselian discrete valuation ring of `k`, then
-`O` is the canonical valuation subring of `k`. -/
+`O` is the canonical valuation subring of `k`.
+@isnad1 id=eq.2h2v.s4.8ca7b274380f from=translated src=- shape=c2bfccc6 vocab=9ab668ac
+-/
 theorem canonicalValuationSubring_eq (hk : ¬ IsSepClosed k) {O : ValuationSubring k}
     (hO : IsHenselianDVR O) : canonicalValuationSubring k = O :=
   eq_of_isHenselianDVR hk (canonicalValuationSubring_isHenselianDVR ⟨O, hO⟩) hO
 
 /-- A henselian discrete valuation ring `O` of `k` (e.g. the valuation ring of the completion of
-a number field at a finite place) is the canonical valuation subring of `k`. -/
+a number field at a finite place) is the canonical valuation subring of `k`.
+@isnad1 id=eq.1h2v.s4.f455bb4840d1 from=translated src=- shape=260e0495 vocab=2853df81
+-/
 theorem canonicalValuationSubring_eq_of_isHenselianDVR {O : ValuationSubring k}
     (hO : IsHenselianDVR O) : canonicalValuationSubring k = O :=
   eq_of_isHenselianDVR' (canonicalValuationSubring_isHenselianDVR ⟨O, hO⟩) hO

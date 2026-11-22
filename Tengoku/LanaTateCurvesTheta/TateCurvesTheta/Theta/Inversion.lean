@@ -55,13 +55,17 @@ private def negSuccEquiv : ℤ ≃ ℤ :=
   Function.Involutive.toPerm (fun n => -(n + 1)) fun n => by ring
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- The theta exponent `n(n+1)/2` is invariant under the index flip `n ↦ -(n+1)`. -/
+/-- The theta exponent `n(n+1)/2` is invariant under the index flip `n ↦ -(n+1)`.
+@isnad1 id=eq.0h1v.s4.11e799486e90 from=translated src=- shape=5989131e vocab=9b45b051
+-/
 lemma thetaExp_neg_succ (n : ℤ) : thetaExp (-(n + 1)) = thetaExp n := by
   have h : -(n + 1) * (-(n + 1) + 1) = n * (n + 1) := by ring
   simp only [thetaExp, h]
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- Termwise inversion: `thetaTerm u⁻¹ (-(n+1)) = u · thetaTerm u n`. -/
+/-- Termwise inversion: `thetaTerm u⁻¹ (-(n+1)) = u · thetaTerm u n`.
+@isnad1 id=eq.0h4v.s6.d4879fd8aa86 from=translated src=- shape=ff4b873f vocab=019ad582
+-/
 lemma thetaTerm_inv_neg_succ (u : Kˣ) (n : ℤ) :
     t.thetaTerm u⁻¹ (-(n + 1)) = (u : K) * t.thetaTerm u n := by
   have hu : (u : K) ≠ 0 := Units.ne_zero u
@@ -71,7 +75,9 @@ lemma thetaTerm_inv_neg_succ (u : Kˣ) (n : ℤ) :
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
 /-- **The inversion functional equation of the `q`-theta function**:
-`θ(u⁻¹) = u·θ(u)`, by the exponent-preserving index flip `n ↦ -(n+1)`. -/
+`θ(u⁻¹) = u·θ(u)`, by the exponent-preserving index flip `n ↦ -(n+1)`.
+@isnad1 id=eq.0h3v.s6.2f21e02d98e5 from=translated src=- shape=a95c05b6 vocab=d6edc2c0
+-/
 @[simp]
 theorem theta_inv (u : Kˣ) : t.theta u⁻¹ = (u : K) * t.theta u := by
   calc t.theta u⁻¹ = ∑' n : ℤ, t.thetaTerm u⁻¹ n := rfl
@@ -88,10 +94,15 @@ through the naive theta function. -/
 def thetaOdd (u : Kˣ) : K := (u : K) * t.theta (-(u ^ 2))
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
+/--
+@isnad1 id=eq.0h3v.s7.0a748639359e from=translated src=- shape=e50b65e7 vocab=7e6ee271
+-/
 lemma thetaOdd_apply (u : Kˣ) : t.thetaOdd u = (u : K) * t.theta (-(u ^ 2)) := rfl
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- **Oddness of the odd theta function**: `θ̈(u⁻¹) = -θ̈(u)`. -/
+/-- **Oddness of the odd theta function**: `θ̈(u⁻¹) = -θ̈(u)`.
+@isnad1 id=eq.0h3v.s6.c9b2cbcc9fa4 from=translated src=- shape=c8888d66 vocab=5fcbcf4c
+-/
 @[simp]
 theorem thetaOdd_inv (u : Kˣ) : t.thetaOdd u⁻¹ = -t.thetaOdd u := by
   have hu : (u : K) ≠ 0 := Units.ne_zero u
@@ -103,7 +114,9 @@ theorem thetaOdd_inv (u : Kˣ) : t.thetaOdd u⁻¹ = -t.thetaOdd u := by
   field_simp
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- **Quasi-periodicity of the odd theta function**: `θ̈(q·u) = (q²·u⁴)⁻¹·θ̈(u)`. -/
+/-- **Quasi-periodicity of the odd theta function**: `θ̈(q·u) = (q²·u⁴)⁻¹·θ̈(u)`.
+@isnad1 id=eq.0h3v.s7.a30738409f74 from=translated src=- shape=515af382 vocab=ab50391f
+-/
 theorem thetaOdd_q_smul (u : Kˣ) :
     t.thetaOdd (t.q * u) = ((t.q : K) ^ 2 * (u : K) ^ 4)⁻¹ * t.thetaOdd u := by
   have hq : (t.q : K) ≠ 0 := Units.ne_zero t.q
@@ -119,7 +132,9 @@ theorem thetaOdd_q_smul (u : Kˣ) :
   field_simp
 
 /-- **The zero divisor of the odd theta function**: `θ̈(u) = 0` exactly when `u² ∈ qᶻ` —
-the theta divisor of the Tate curve, supported at the four `2`-torsion half-classes. -/
+the theta divisor of the Tate curve, supported at the four `2`-torsion half-classes.
+@isnad1 id=iff.0h3v.s7.24b9fee45dc5 from=translated src=- shape=011ad2b5 vocab=4ba36343
+-/
 theorem thetaOdd_eq_zero_iff (u : Kˣ) :
     t.thetaOdd u = 0 ↔ ∃ k : ℤ, (u : K) ^ 2 = (t.q : K) ^ k := by
   have hu : (u : K) ≠ 0 := Units.ne_zero u

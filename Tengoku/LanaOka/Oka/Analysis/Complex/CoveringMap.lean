@@ -53,7 +53,9 @@ themselves.**
 
 `isClosedMap_pow` gives it on the whole field; what is added here is that the restriction to the
 nonzero elements is again closed, which holds because the nonzero elements are exactly the
-preimage of themselves. -/
+preimage of themselves.
+@isnad1 id=isclosed.1h2v.s8.c4cad4932a67 from=translated src=- shape=16de3e68 vocab=cd468176
+-/
 theorem _root_.Tengoku.LanaOka.isClosedMap_npow (n : ℕ) (hn : n ≠ 0) :
     IsClosedMap fun x : {x : 𝕜 // x ≠ 0} ↦ (⟨x ^ n, pow_ne_zero n x.2⟩ : {x : 𝕜 // x ≠ 0}) := by
   intro C hC
@@ -76,7 +78,9 @@ omit [ProperSpace 𝕜] in
 
 Being a covering map (`isCoveringMap_npow`) makes the fibres *discrete*, which over a
 non-compact base is not finiteness. This is the polynomial statement instead: the fibre injects
-into the roots of `X ^ n - C w`, and that polynomial is nonzero exactly because `n ≠ 0`. -/
+into the roots of `X ^ n - C w`, and that polynomial is nonzero exactly because `n ≠ 0`.
+@isnad1 id=finite.1h3v.s8.0d5d08f6d29a from=translated src=- shape=eb7c4a01 vocab=1e416f68
+-/
 theorem _root_.Tengoku.LanaOka.finite_fiber_npow (n : ℕ) (hn : n ≠ 0)
     (w : {x : 𝕜 // x ≠ 0}) :
     Finite ((fun x : {x : 𝕜 // x ≠ 0} ↦ (⟨x ^ n, pow_ne_zero n x.2⟩ : {x : 𝕜 // x ≠ 0})) ⁻¹'

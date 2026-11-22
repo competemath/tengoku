@@ -34,7 +34,9 @@ variable (R : Type u) [CommRing R]
 noncomputable def projSpace (m : ℕ) : Scheme.{u} :=
   Proj (MvPolynomial.homogeneousSubmodule (Fin (m + 1)) R)
 
-/-- The degree-zero part of `R[x₀, …, xₘ]` is `R`. -/
+/-- The degree-zero part of `R[x₀, …, xₘ]` is `R`.
+@isnad1 id=bijectiv.0h2v.s12.e88729109f21 from=translated src=- shape=cba41f62 vocab=48199828
+-/
 lemma bijective_algebraMap_projSpace (m : ℕ) :
     Function.Bijective
       (algebraMap R (MvPolynomial.homogeneousSubmodule (Fin (m + 1)) R 0)) := by
@@ -67,6 +69,9 @@ open MvPolynomial HomogeneousLocalization
 
 variable {R}
 
+/--
+@isnad1 id=eq.1h3v.s9.e562548da280 from=translated src=- shape=c7c8f1d2 vocab=da4b9d6f
+-/
 lemma isHomogeneous_fin_one {p : MvPolynomial (Fin (0 + 1)) R} {n : ℕ} (hp : p.IsHomogeneous n) :
     p = C (coeff (Finsupp.single 0 n) p) * X 0 ^ n := by
   ext d
@@ -80,10 +85,16 @@ lemma isHomogeneous_fin_one {p : MvPolynomial (Fin (0 + 1)) R} {n : ℕ} (hp : p
     rw [Fin.fin_one_eq_zero i, Finsupp.single_eq_same, ← h]
     simp [Finsupp.degree_eq_sum]
 
+/--
+@isnad1 id=mem.0h1v.s8.c66ded6f5744 from=translated src=- shape=b5693848 vocab=7d23f883
+-/
 lemma X_zero_mem_homogeneousSubmodule :
     (X 0 : MvPolynomial (Fin (0 + 1)) R) ∈ homogeneousSubmodule (Fin (0 + 1)) R 1 :=
   isHomogeneous_X R 0
 
+/--
+@isnad1 id=not.0h2v.s10.dbc78b184a6c from=translated src=- shape=6629cb4f vocab=ed633e16
+-/
 lemma X_zero_not_mem (x : projSpace R 0) :
     (X 0 : MvPolynomial (Fin (0 + 1)) R) ∉ x.asHomogeneousIdeal := by
   intro h
@@ -95,6 +106,9 @@ lemma X_zero_not_mem (x : projSpace R 0) :
   rw [isHomogeneous_fin_one ha]
   exact Ideal.mul_mem_left _ _ (Ideal.pow_mem_of_mem _ h i hi)
 
+/--
+@isnad1 id=bijectiv.0h1v.s13.24c31148f8b8 from=translated src=- shape=6acc87ec vocab=b7fc1637
+-/
 lemma bijective_fromZeroRingHom_projSpace_zero :
     Function.Bijective (fromZeroRingHom (homogeneousSubmodule (Fin (0 + 1)) R)
       (Submonoid.powers (X 0))) := by
@@ -122,6 +136,9 @@ lemma bijective_fromZeroRingHom_projSpace_zero :
     conv_rhs => rw [isHomogeneous_fin_one ha']
     simp [mul_comm]
 
+/--
+@isnad1 id=isiso.0h1v.s4.f26cbbed0bb4 from=translated src=- shape=ea3d6fba vocab=a3c18785
+-/
 instance isIso_projSpace_toSpec_zero : IsIso (projSpace.toSpec R 0) := by
   let 𝒜 := homogeneousSubmodule (Fin (0 + 1)) R
   have hι : IsIso (Proj.awayι 𝒜 (X 0) X_zero_mem_homogeneousSubmodule zero_lt_one) := by
@@ -183,6 +200,9 @@ instance : IsIso (trivial R).toSpec := by
   have h₂ : IsIso (projSpace.toSpec R (trivial R).m) := isIso_projSpace_toSpec_zero
   exact MorphismProperty.comp_mem (MorphismProperty.isomorphisms _) _ _ h₁ h₂
 
+/--
+@isnad1 id=injectiv.0h1v.s8.57ce9a57f183 from=translated src=- shape=b17f21aa vocab=3f38871e
+-/
 lemma trivial_toSpec_injective : Function.Injective (trivial R).toSpec :=
   (Scheme.homeoOfIso (asIso (trivial R).toSpec)).injective
 

@@ -41,7 +41,9 @@ variable {𝕜 E F : Type*} [NormedField 𝕜]
   [AddCommGroup F] [Module 𝕜 F] [TopologicalSpace F] [IsTopologicalAddGroup F]
 
 /-- The Schwartz iteration: under the hypotheses in the module docstring, every element of `K`
-lies in `range (u + v) ⊔ G`. -/
+lies in `range (u + v) ⊔ G`.
+@isnad1 id=mem.6h10v.s10.1a063576b232 from=translated src=- shape=fc1d0f7b vocab=e62cd5b2
+-/
 theorem mem_range_add_sup_of_step {u v : E →L[𝕜] F} {K : Set F} {L : Set E}
     {G : Submodule 𝕜 F} (hG : IsClosed (G : Set F)) {c : 𝕜} (hc : ‖c‖ < 1)
     (hK : IsVonNBounded 𝕜 K)
@@ -80,7 +82,9 @@ theorem mem_range_add_sup_of_step {u v : E →L[𝕜] F} {K : Set F} {L : Set E}
   exact Submodule.add_mem_sup (LinearMap.mem_range_self _ _) (G.neg_mem hmem)
 
 /-- Schwartz's iteration, global form: if moreover `u` is surjective and every `v x` is a
-multiple of an element of `K`, then `range (u + v) ⊔ G = ⊤`. -/
+multiple of an element of `K`, then `range (u + v) ⊔ G = ⊤`.
+@isnad1 id=eq.7h9v.s10.707fa87eb743 from=translated src=- shape=c88439a6 vocab=9cb91fa2
+-/
 theorem range_add_sup_eq_top_of_step {u v : E →L[𝕜] F} {K : Set F} {L : Set E}
     {G : Submodule 𝕜 F} (hG : IsClosed (G : Set F)) {c : 𝕜} (hc : ‖c‖ < 1)
     (hK : IsVonNBounded 𝕜 K)
@@ -103,7 +107,9 @@ namespace Submodule
 
 variable {𝕜 F : Type*} [Field 𝕜] [AddCommGroup F] [Module 𝕜 F]
 
-/-- If `R ⊔ G = ⊤` with `G` finite dimensional, then `F ⧸ R` is finite dimensional. -/
+/-- If `R ⊔ G = ⊤` with `G` finite dimensional, then `F ⧸ R` is finite dimensional.
+@isnad1 id=finitedi.1h4v.s8.8e2050857fdd from=translated src=- shape=60e55bd3 vocab=31c4a6f0
+-/
 theorem finiteDimensional_quotient_of_sup_eq_top {R G : Submodule 𝕜 F} [FiniteDimensional 𝕜 G]
     (h : R ⊔ G = ⊤) : FiniteDimensional 𝕜 (F ⧸ R) := by
   refine Module.Finite.of_surjective (R.mkQ.comp G.subtype) fun y ↦ ?_
@@ -122,7 +128,9 @@ variable {𝕜 E F : Type*} [NontriviallyNormedField 𝕜] [CompleteSpace 𝕜]
   [ContinuousSMul 𝕜 F] [T2Space F]
 
 /-- If `range w ⊔ G = ⊤` for a finite dimensional `G` and `(x, g) ↦ w x + g` is an open map
-(e.g. by an open mapping theorem), then `range w` is closed. -/
+(e.g. by an open mapping theorem), then `range w` is closed.
+@isnad1 id=isclosed.2h5v.s11.941b3757af66 from=translated src=- shape=a4ec2fbc vocab=f1ea2983
+-/
 theorem isClosed_range_of_isOpenMap_coprod {w : E →L[𝕜] F} {G : Submodule 𝕜 F}
     [FiniteDimensional 𝕜 G] (h : LinearMap.range w.toLinearMap ⊔ G = ⊤)
     (hopen : IsOpenMap (w.coprod G.subtypeL)) :

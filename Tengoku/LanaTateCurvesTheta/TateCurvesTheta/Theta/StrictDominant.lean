@@ -65,7 +65,9 @@ namespace TateCurvesTheta
 
 /-- A finite subset `B` of `ℝ` cannot cover an open interval: given `a < b` there is a nonempty
 open subinterval `(a', b') ⊆ [a, b]` disjoint from `B`. Used to dodge the finitely many
-Newton-polygon tie radii before invoking density. -/
+Newton-polygon tie radii before invoking density.
+@isnad1 id=ex.2h3v.s6.0d313106d023 from=translated src=- shape=c291841f vocab=8238b794
+-/
 theorem exists_Ioo_subset_compl_of_finite {B : Set ℝ} (hB : B.Finite) {a b : ℝ} (hab : a < b) :
     ∃ a' b' : ℝ, a ≤ a' ∧ a' < b' ∧ b' ≤ b ∧ ∀ x, a' < x → x < b' → x ∉ B := by
   classical
@@ -89,7 +91,9 @@ theorem exists_Ioo_subset_compl_of_finite {B : Set ℝ} (hB : B.Finite) {a b : �
 variable {K : Type*} [DenselyNormedField K]
 
 /-- On `[a, b]` (with `0 < a`), every monomial is bounded by the sum of the endpoint monomials:
-`ρⁿ ≤ aⁿ + bⁿ`. Increasing exponents are controlled at `b`, decreasing ones at `a`. -/
+`ρⁿ ≤ aⁿ + bⁿ`. Increasing exponents are controlled at `b`, decreasing ones at `a`.
+@isnad1 id=le.3h4v.s6.31d8dfd8b8f5 from=translated src=- shape=bb899060 vocab=c66b9bb5
+-/
 theorem zpow_le_add_zpow {a b ρ : ℝ} (ha : 0 < a) (haρ : a ≤ ρ) (hρb : ρ ≤ b) (n : ℤ) :
     ρ ^ n ≤ a ^ n + b ^ n := by
   have hρ0 : 0 ≤ ρ := le_trans ha.le haρ
@@ -107,7 +111,9 @@ theorem zpow_le_add_zpow {a b ρ : ℝ} (ha : 0 < a) (haρ : a ≤ ρ) (hρb : �
     linarith
 
 /-- On `[a, b]` (with `0 < a`), every monomial dominates the smaller endpoint monomial:
-`min (aⁿ) (bⁿ) ≤ ρⁿ`. This gives a positive lower bound for the maximum term. -/
+`min (aⁿ) (bⁿ) ≤ ρⁿ`. This gives a positive lower bound for the maximum term.
+@isnad1 id=le.3h4v.s6.e43bc4f6f9b2 from=translated src=- shape=0996eb4c vocab=49b106a3
+-/
 theorem min_zpow_le_zpow {a b ρ : ℝ} (ha : 0 < a) (haρ : a ≤ ρ) (hρb : ρ ≤ b) (n : ℤ) :
     min (a ^ n) (b ^ n) ≤ ρ ^ n := by
   have hρ0 : 0 ≤ ρ := le_trans ha.le haρ
@@ -128,7 +134,9 @@ which `cₙ₀ · uⁿ₀` strictly dominates every other term in norm.
 
 The proof is a finite Newton-polygon selection: only finitely many indices can attain the maximum
 term on a fixed radius interval `[a, b]`, they pairwise tie at only finitely many radii, and
-density supplies a unit whose radius avoids all those ties. -/
+density supplies a unit whose radius avoids all those ties.
+@isnad1 id=laurents.0h1v.s3.1e4870c5478b from=translated src=- shape=c6850a32 vocab=66092839
+-/
 theorem laurentStrictDom_of_denselyNormed : LaurentStrictDom K := by
   classical
   rintro c hsum ⟨m, hm⟩
@@ -275,7 +283,9 @@ variable [CompleteSpace K] [IsUltrametricDist K]
 
 /-- **The nonarchimedean Laurent identity theorem holds for densely-normed fields.** A convergent
 two-sided Laurent series over a complete densely-normed ultrametric field is determined by its
-values on `Kˣ`. -/
+values on `Kˣ`.
+@isnad1 id=laurentc.0h1v.s5.1533d447bae4 from=translated src=- shape=affebb5f vocab=aaf7744a
+-/
 theorem laurentCoeffUnique_of_denselyNormed : LaurentCoeffUnique K :=
   laurentCoeffUnique_of_strictDom laurentStrictDom_of_denselyNormed
 
@@ -285,7 +295,9 @@ variable (t : TateParameter K)
 
 /-- **The `q`-difference engine, unconditional for densely-normed fields.** A `q`-invariant
 convergent Laurent series equals its constant term `a₀` everywhere — no residual analytic
-hypothesis remains for a complete densely-normed ultrametric `K`. -/
+hypothesis remains for a complete densely-normed ultrametric `K`.
+@isnad1 id=eq.2h4v.s9.85ee4b2021dc from=translated src=- shape=6f9cb1b2 vocab=67a7257c
+-/
 theorem const_of_qinvariant_laurent_of_denselyNormed (a : ℤ → K)
     (hsum : ∀ u : Kˣ, Summable fun n : ℤ => a n * (u : K) ^ n)
     (hqinv : ∀ u : Kˣ,

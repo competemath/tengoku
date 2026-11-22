@@ -66,7 +66,9 @@ regions is admissible for the packet's hull system. -/
 def IsAdmissible (R : D.AdmissibleRegion i) : Prop :=
   ∀ vQ, R.region vQ ∈ (H.system i vQ).Admissible
 
-/-- The holomorphic integral region is its own hull. -/
+/-- The holomorphic integral region is its own hull.
+@isnad1 id=eq.0h6v.s7.ca01e493575f from=translated src=- shape=3fc39621 vocab=7ed42035
+-/
 lemma hull_integralRegion (vQ : RationalPlace) :
     (H.system i vQ).hull (D.packet i vQ).integralRegion =
       (D.packet i vQ).integralRegion :=
@@ -83,23 +85,32 @@ def hullAdmissible (R : D.AdmissibleRegion i) : D.AdmissibleRegion i where
     rw [h]
     exact H.hull_integralRegion vQ
 
+/--
+@isnad1 id=eq.0h7v.s6.e467dff8b969 from=translated src=- shape=2b247b27 vocab=d4f1793c
+-/
 @[simp]
 lemma hullAdmissible_region (R : D.AdmissibleRegion i) (vQ : RationalPlace) :
     (H.hullAdmissible R).region vQ = (H.system i vQ).hull (R.region vQ) := rfl
 
 /-- Extensivity of the container-level hull: an admissible region is contained in its
-holomorphic hull, placewise. -/
+holomorphic hull, placewise.
+@isnad1 id=le.1h6v.s5.932c008476b8 from=translated src=- shape=0a6c525f vocab=317b920b
+-/
 lemma le_hullAdmissible {R : D.AdmissibleRegion i} (adm : H.IsAdmissible R) :
     R ≤ H.hullAdmissible R :=
   fun vQ => (H.system i vQ).subset_hull (adm vQ)
 
-/-- Monotonicity of the container-level hull on hull-admissible regions. -/
+/-- Monotonicity of the container-level hull on hull-admissible regions.
+@isnad1 id=le.3h7v.s6.82fb9c957610 from=translated src=- shape=fa47ce54 vocab=317b920b
+-/
 lemma hullAdmissible_mono {R S : D.AdmissibleRegion i} (hR : H.IsAdmissible R)
     (hS : H.IsAdmissible S) (hRS : R ≤ S) :
     H.hullAdmissible R ≤ H.hullAdmissible S :=
   fun vQ => (H.system i vQ).hull_mono (hR vQ) (hS vQ) (hRS vQ)
 
-/-- Idempotency of the container-level hull on hull-admissible regions. -/
+/-- Idempotency of the container-level hull on hull-admissible regions.
+@isnad1 id=eq.1h7v.s6.dfd3ca8f2017 from=translated src=- shape=1cf6ae69 vocab=69e178c8
+-/
 lemma hullAdmissible_idem {R : D.AdmissibleRegion i} (adm : H.IsAdmissible R) (vQ) :
     (H.hullAdmissible (H.hullAdmissible R)).region vQ = (H.hullAdmissible R).region vQ :=
   (H.system i vQ).hull_idem (adm vQ)

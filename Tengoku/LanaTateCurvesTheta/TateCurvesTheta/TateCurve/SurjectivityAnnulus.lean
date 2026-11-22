@@ -78,7 +78,9 @@ private lemma norm_sub_le_max (a b : K) : ‖a - b‖ ≤ max ‖a‖ ‖b‖ :=
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
 /-- A unit whose norm lies strictly between `‖q‖` and `1` avoids the orbit subgroup `qᶻ`:
-the norms `‖q‖ⁿ` are `≥ 1` for `n ≤ 0` and `≤ ‖q‖` for `n ≥ 1`. -/
+the norms `‖q‖ⁿ` are `≥ 1` for `n ≤ 0` and `≤ ‖q‖` for `n ≥ 1`.
+@isnad1 id=not.2h3v.s7.f689f4e05284 from=translated src=- shape=ae1da7fa vocab=82aecab5
+-/
 lemma notMem_qpowers_of_norm_lt {s : Kˣ} (hlo : ‖(t.q : K)‖ < ‖(s : K)‖)
     (hhi : ‖(s : K)‖ < 1) : s ∉ t.qpowers := by
   intro hmem'
@@ -100,7 +102,9 @@ lemma notMem_qpowers_of_norm_lt {s : Kˣ} (hlo : ‖(t.q : K)‖ < ‖(s : K)‖
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
 /-- **Closed form of the subleading `X`-term.** For a unit `u` and `c` with `u·c = q`
-(that is, `c = q/u`), the `n = -1` term of the `X`-series is exactly `c/(1-c)²`. -/
+(that is, `c = q/u`), the `n = -1` term of the `X`-series is exactly `c/(1-c)²`.
+@isnad1 id=eq.2h4v.s7.e0ceba4fc053 from=translated src=- shape=f1f37297 vocab=5ca22afb
+-/
 lemma Xterm_neg_one_eq {u : Kˣ} {c : K} (huc : (u : K) * c = (t.q : K)) (hc1 : c ≠ 1) :
     t.Xterm u (-1) = c / (1 - c) ^ 2 := by
   have hu0 : (u : K) ≠ 0 := Units.ne_zero u
@@ -123,7 +127,9 @@ lemma Xterm_neg_one_eq {u : Kˣ} {c : K} (huc : (u : K) * c = (t.q : K)) (hc1 : 
 omit [CompleteSpace K] [IsUltrametricDist K] in
 /-- **Closed form of the subleading `Y`-term.** For a unit `u` and `c` with `u·c = q`,
 the `n = -1` term of the `Y`-series is exactly `-c/(1-c)³` (note the sign: the value of
-`w²/(1-w)³` at `w = c⁻¹` is `c/(c-1)³`). -/
+`w²/(1-w)³` at `w = c⁻¹` is `c/(c-1)³`).
+@isnad1 id=eq.2h4v.s7.032cd54b3a30 from=translated src=- shape=89f52c19 vocab=21d68259
+-/
 lemma Yterm_neg_one_eq {u : Kˣ} {c : K} (huc : (u : K) * c = (t.q : K)) (hc1 : c ≠ 1) :
     t.Yterm u (-1) = -(c / (1 - c) ^ 3) := by
   have hu0 : (u : K) ≠ 0 := Units.ne_zero u
@@ -150,7 +156,9 @@ variable (hmem : ∀ u : Kˣ, (∀ n : ℤ, (t.q : K) ^ n * (u : K) ≠ 1) →
 
 /-- **Exact-hit short-circuit.** If a translate `s` off the orbit satisfies `X(s) = x`, then
 the two curve equations factor as `(y - Y(s))·(y + Y(s) + x) = 0`, so the point `(x, y)` is
-`P(s)` or `-P(s) = P(s⁻¹)`; either way it lies in the range of the Tate point map. -/
+`P(s)` or `-P(s) = P(s⁻¹)`; either way it lies in the range of the Tate point map.
+@isnad1 id=ex.5h5v.s8.4f0511143991 from=translated src=- shape=c8a55198 vocab=a58d3fc9
+-/
 lemma mem_range_tatePoint_of_X_eq {x y : K}
     (hns : t.tateCurve.toAffine.Nonsingular x y) {s : Kˣ} (hs : s ∉ t.qpowers)
     (hXeq : t.X s = x) :
@@ -177,7 +185,9 @@ lemma mem_range_tatePoint_of_X_eq {x y : K}
 /-- **The translation engine.** If a translate `s` off the orbit has `X(s) ≠ x`, both
 abscissae have norm `< 1`, and the secant slope through `(x, y)` and `(X(s), Y(s))` has norm
 `> 1`, then the sum `P + P(s)` lands in the large region `1 < ‖x'‖` — solved by
-`exists_tatePoint_eq_some` — and subtracting `P(s)` recovers `P` as a Tate point. -/
+`exists_tatePoint_eq_some` — and subtracting `P(s)` recovers `P` as a Tate point.
+@isnad1 id=ex.8h5v.s9.1a4d9ea9da06 from=translated src=- shape=2a47c24d vocab=489f5342
+-/
 lemma mem_range_tatePoint_of_one_lt_slope {x y : K}
     (hns : t.tateCurve.toAffine.Nonsingular x y) {s : Kˣ} (hs : s ∉ t.qpowers)
     (hXne : t.X s ≠ x) (hx1 : ‖x‖ < 1) (hXs1 : ‖t.X s‖ < 1)
@@ -230,7 +240,9 @@ lemma mem_range_tatePoint_of_one_lt_slope {x y : K}
 point. The translate `s = q/x` is a near-hit: by the exact value `Xterm s (-1) = x/(1-x)²`,
 `‖x - X(s)‖ ≤ max ‖x‖² (‖q‖/‖x‖) < ‖x‖`, while the curve equation forces `‖2y + x‖ = ‖x‖`.
 Since the secant slopes of the two branches `P`, `-P` differ by `(2y + x)/(x - X(s))`, of
-norm `> 1`, one branch feeds the translation engine. -/
+norm `> 1`, one branch feeds the translation engine.
+@isnad1 id=ex.5h4v.s8.2a6971380fa5 from=translated src=- shape=62c7cc2a vocab=1d4d6988
+-/
 lemma mem_range_tatePoint_of_middle_zone {x y : K}
     (hns : t.tateCurve.toAffine.Nonsingular x y) (hx1 : ‖x‖ < 1)
     (hq_lt : ‖(t.q : K)‖ < ‖x‖ ^ 2) :
@@ -377,7 +389,9 @@ lemma mem_range_tatePoint_of_middle_zone {x y : K}
 `(x² + xX(s) + X(s)² + a₄ - Y(s)) / (y + Y(s) + x)`, whose numerator has norm exactly
 `‖Y(s)‖ = ‖y‖` while the denominator is `≤ ‖q‖` by the key identity
 `y·(x + y - q/s) = x³ + a₄x + (a₆ + q)`; hence `‖λ‖ ≥ ‖y‖⁻¹ > 1`, with no sub-cases —
-the estimate holds up to and including the `2`-torsion vicinity. -/
+the estimate holds up to and including the `2`-torsion vicinity.
+@isnad1 id=ex.6h4v.s8.e7c2ea532b66 from=translated src=- shape=32fb6c19 vocab=f8a19952
+-/
 lemma mem_range_tatePoint_of_edge_zone {x y : K}
     (hns : t.tateCurve.toAffine.Nonsingular x y) (hx1 : ‖x‖ < 1) (hy1 : ‖y‖ < 1)
     (hq_ge : ‖x‖ ^ 2 ≤ ‖(t.q : K)‖) :
@@ -550,7 +564,9 @@ lemma mem_range_tatePoint_of_edge_zone {x y : K}
 /-- **Surjectivity of the Tate parametrization on the open unit polydisc.** Every affine
 point of the Tate curve with `‖x‖ < 1` and `‖y‖ < 1` lies in the range of the Tate point
 map `u ↦ (X(u), Y(u))`. Together with `exists_tatePoint_eq_some` this covers all affine
-points with `‖x‖ ≠ 1`. -/
+points with `‖x‖ ≠ 1`.
+@isnad1 id=ex.5h4v.s8.4492349a51be from=translated src=- shape=cd30bb09 vocab=73135520
+-/
 theorem mem_range_tatePoint_of_annulus {x y : K}
     (hns : t.tateCurve.toAffine.Nonsingular x y) (hx : ‖x‖ < 1) (hy : ‖y‖ < 1) :
     ∃ u : Kˣ, t.tatePoint hmem h12 u = WeierstrassCurve.Affine.Point.some x y hns := by

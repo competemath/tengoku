@@ -41,7 +41,9 @@ variable {X Y P S : Scheme.{u}} {sY : Y ⟶ S} {sP : P ⟶ S}
 
 /-- Let `c : X ⟶ Y ×_S P` be a closed immersion, `V ⊆ P` open, `t : T ⟶ V` a closed immersion
 and `ρ : T ⟶ Y` over `S`. If on `q⁻¹ V` (`q = c ≫ snd`) the projections to `V` and `Y` factor
-as `u ≫ t` and `u ≫ ρ`, then `q⁻¹ V ⟶ V` is a closed immersion. -/
+as `u ≫ t` and `u ≫ ρ`, then `q⁻¹ V ⟶ V` is a closed immersion.
+@isnad1 id=isclosed.3h12v.s10.91dc8b1f9075 from=translated src=- shape=2a0aa891 vocab=8106b63a
+-/
 theorem isClosedImmersion_morphismRestrict_of_graph (c : X ⟶ pullback sY sP)
     [IsClosedImmersion c] (V : P.Opens) {T : Scheme.{u}} (t : T ⟶ V) [IsClosedImmersion t]
     (ρ : T ⟶ Y) (hρ : ρ ≫ sY = t ≫ V.ι ≫ sP)
@@ -96,7 +98,9 @@ theorem isClosedImmersion_morphismRestrict_of_graph (c : X ⟶ pullback sY sP)
   exact IsClosedImmersion.of_comp u γ'
 
 /-- A morphism with closed range is a closed immersion if it is one over each member of a family
-of opens covering its range. -/
+of opens covering its range.
+@isnad1 id=isclosed.3h5v.s9.faceea5fe7eb from=translated src=- shape=493bac01 vocab=32f2d81c
+-/
 theorem isClosedImmersion_of_isClosed_range_of_cover {X P : Scheme.{u}} (q : X ⟶ P)
     (hq : IsClosed (Set.range q)) {α : Type*} (V : α → P.Opens)
     (hV : ∀ x, ∃ a, q x ∈ V a) (h : ∀ a, IsClosedImmersion (q ∣_ V a)) :
@@ -117,7 +121,9 @@ theorem isClosedImmersion_of_isClosed_range_of_cover {X P : Scheme.{u}} (q : X �
     · exact h a
 
 /-- The morphism to the scheme-theoretic image of a quasi-compact morphism is
-scheme-theoretically dominant. -/
+scheme-theoretically dominant.
+@isnad1 id=isscheme.0h3v.s4.c092d23a72b4 from=translated src=- shape=61ac3618 vocab=eca8f37c
+-/
 instance isSchemeTheoreticallyDominant_toImage {X Z : Scheme.{u}} (f : X ⟶ Z)
     [QuasiCompact f] : IsSchemeTheoreticallyDominant f.toImage := by
   rw [isSchemeTheoreticallyDominant_iff]
@@ -131,7 +137,9 @@ instance isSchemeTheoreticallyDominant_toImage {X Z : Scheme.{u}} (f : X ⟶ Z)
   · rw [Scheme.Hom.ker_apply, Scheme.IdealSheafData.ideal_bot, Pi.bot_apply]
     exact (RingHom.injective_iff_ker_eq_bot _).1 (f.toImage_app_injective V)
 
-/-- If `g ≫ V.ι` is quasi-compact and scheme-theoretically dominant, so is `g`. -/
+/-- If `g ≫ V.ι` is quasi-compact and scheme-theoretically dominant, so is `g`.
+@isnad1 id=isscheme.0h4v.s5.da3ee66a4481 from=translated src=- shape=8656d417 vocab=784cdb0f
+-/
 lemma IsSchemeTheoreticallyDominant.of_comp_ι {X Y : Scheme.{u}} {V : Y.Opens}
     (g : X ⟶ V) [IsSchemeTheoreticallyDominant (g ≫ V.ι)] [QuasiCompact (g ≫ V.ι)] :
     IsSchemeTheoreticallyDominant g := by
@@ -141,7 +149,9 @@ lemma IsSchemeTheoreticallyDominant.of_comp_ι {X Y : Scheme.{u}} {V : Y.Opens}
   exact iff_of_true ⟨g x, rfl⟩ ⟨x, rfl⟩
 
 /-- If the source of a scheme-theoretically dominant morphism `i` factors through an open `V`,
-then `V ⟶ X` is scheme-theoretically dominant. -/
+then `V ⟶ X` is scheme-theoretically dominant.
+@isnad1 id=isscheme.1h5v.s6.2cdeff04c228 from=translated src=- shape=b5c90647 vocab=b06d7640
+-/
 lemma IsSchemeTheoreticallyDominant.ι_of_fac {W X : Scheme.{u}} {V : X.Opens} (g : W ⟶ V)
     (i : W ⟶ X) [IsSchemeTheoreticallyDominant i] (h : g ≫ V.ι = i) :
     IsSchemeTheoreticallyDominant V.ι := by
@@ -149,7 +159,9 @@ lemma IsSchemeTheoreticallyDominant.ι_of_fac {W X : Scheme.{u}} {V : X.Opens} (
   exact Scheme.Hom.le_ker_comp _ _
 
 /-- Let `f g : X ⟶ Y` agree over some separated `s : Y ⟶ Z`. Then `f = g` if `ι ≫ f = ι ≫ g`
-for some scheme-theoretically dominant `ι`. -/
+for some scheme-theoretically dominant `ι`.
+@isnad1 id=eq.2h8v.s7.58623f336fc9 from=translated src=- shape=c3c0a0c2 vocab=83692703
+-/
 lemma ext_of_isSchemeTheoreticallyDominant_of_isSeparated {W X Y Z : Scheme.{u}} {f g : X ⟶ Y}
     (s : Y ⟶ Z) [IsSeparated s] (h : f ≫ s = g ≫ s)
     (ι : W ⟶ X) [IsSchemeTheoreticallyDominant ι] (hU : ι ≫ f = ι ≫ g) : f = g := by
@@ -173,7 +185,9 @@ lemma ext_of_isSchemeTheoreticallyDominant_of_isSeparated {W X Y Z : Scheme.{u}}
     exact Scheme.Hom.le_ker_comp _ _
   exact (cancel_epi (equalizer.ι f' g').left).1 congr($(equalizer.condition f' g').left)
 
-/-- The scheme-theoretic image of a quasi-compact morphism from a reduced scheme is reduced. -/
+/-- The scheme-theoretic image of a quasi-compact morphism from a reduced scheme is reduced.
+@isnad1 id=isreduce.0h3v.s4.72e72a8b613b from=translated src=- shape=8bfb49ed vocab=61855b6f
+-/
 lemma isReduced_image {X Z : Scheme.{u}} (f : X ⟶ Z) [QuasiCompact f] [IsReduced X] :
     IsReduced f.image :=
   IsSchemeTheoreticallyDominant.isReduced f.toImage
@@ -186,13 +200,21 @@ variable {Y P S : Scheme.{u}} (sY : Y ⟶ S) (sP : P ⟶ S) (U : Y.Opens) (g : U
 /-- The graph `U ⟶ Y ×_S P` of a morphism `g : U ⟶ P` over `S` defined on an open `U ⊆ Y`. -/
 noncomputable def graphMap : U.toScheme ⟶ pullback sY sP := pullback.lift U.ι g hg.symm
 
+/--
+@isnad1 id=eq.1h7v.s7.6522594803b2 from=translated src=- shape=00e466e3 vocab=d86ebe1a
+-/
 @[reassoc (attr := simp)]
 lemma graphMap_fst : graphMap sY sP U g hg ≫ pullback.fst sY sP = U.ι := pullback.lift_fst _ _ _
 
+/--
+@isnad1 id=eq.1h7v.s7.7d788001ac9e from=translated src=- shape=cec9c101 vocab=912aa98d
+-/
 @[reassoc (attr := simp)]
 lemma graphMap_snd : graphMap sY sP U g hg ≫ pullback.snd sY sP = g := pullback.lift_snd _ _ _
 
-/-- The graph of `g` is quasi-compact if `U ⟶ Y` is. -/
+/-- The graph of `g` is quasi-compact if `U ⟶ Y` is.
+@isnad1 id=quasicom.1h7v.s6.23693a3bbd24 from=translated src=- shape=85c6c682 vocab=6d27c48d
+-/
 lemma quasiCompact_graphMap [QuasiCompact U.ι] [QuasiSeparated sP] :
     QuasiCompact (graphMap sY sP U g hg) := by
   have : QuasiCompact (graphMap sY sP U g hg ≫ pullback.fst sY sP) := by
@@ -210,7 +232,9 @@ noncomputable abbrev graphClosureSnd : (graphMap sY sP U g hg).image ⟶ P :=
   (graphMap sY sP U g hg).imageι ≫ pullback.snd sY sP
 
 include hg in
-/-- The scheme-theoretic image of the graph is reduced if `Y` is. -/
+/-- The scheme-theoretic image of the graph is reduced if `Y` is.
+@isnad1 id=isreduce.1h7v.s6.9b7933ff0dd0 from=translated src=- shape=859d60db vocab=f7a00f3c
+-/
 lemma isReduced_graphClosure [IsReduced Y] : IsReduced (graphMap sY sP U g hg).image :=
   have := quasiCompact_graphMap sY sP U g hg
   isReduced_image _
@@ -218,7 +242,9 @@ lemma isReduced_graphClosure [IsReduced Y] : IsReduced (graphMap sY sP U g hg).i
 end graph
 
 /-- The scheme-theoretic image of a quasi-compact morphism from an irreducible scheme is
-irreducible. -/
+irreducible.
+@isnad1 id=irreduci.0h3v.s5.bc6b211cfd39 from=translated src=- shape=5bc398b3 vocab=1de21e06
+-/
 lemma irreducibleSpace_image {X Z : Scheme.{u}} (f : X ⟶ Z) [QuasiCompact f]
     [IrreducibleSpace X] : IrreducibleSpace f.image := by
   refine (irreducibleSpace_def _).2 ?_

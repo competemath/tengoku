@@ -187,20 +187,26 @@ private lemma hasSum_choose_four (hx : ‖x‖ < 1) :
   refine hasSum_of_shift (m := 4) (hasSum_choose_shift 4 4 hx) fun i hi => ?_
   rw [Nat.choose_eq_zero_of_lt hi, Nat.cast_zero, zero_mul]
 
-/-- The shifted geometric series `∑ⱼ x^{j+1} = x/(1-x)` for `‖x‖ < 1`. -/
+/-- The shifted geometric series `∑ⱼ x^{j+1} = x/(1-x)` for `‖x‖ < 1`.
+@isnad1 id=hassum.1h2v.s7.6fbe1caab413 from=translated src=- shape=c0375a3c vocab=705acfb7
+-/
 lemma hasSum_geometric_succ (hx : ‖x‖ < 1) :
     HasSum (fun j : ℕ => x ^ (j + 1)) (x / (1 - x)) := by
   have h := (hasSum_geometric_of_norm_lt_one hx).mul_left x
   rw [div_eq_mul_inv]
   simpa only [← pow_succ'] using h
 
-/-- **`p` generates the weight-one powers**: `∑ⱼ j·xʲ = p(x)` for `‖x‖ < 1`. -/
+/-- **`p` generates the weight-one powers**: `∑ⱼ j·xʲ = p(x)` for `‖x‖ < 1`.
+@isnad1 id=hassum.1h2v.s6.7053c63e9f98 from=translated src=- shape=2b4fc434 vocab=349a02c0
+-/
 lemma hasSum_pow_mul_geometric_eisP (hx : ‖x‖ < 1) :
     HasSum (fun j : ℕ => (j : K) * x ^ j) (eisP x) := by
   rw [eisP]
   exact hasSum_coe_mul_geometric_of_norm_lt_one hx
 
-/-- **`r` generates the squares**: `∑ⱼ j²·xʲ = r(x)` for `‖x‖ < 1`. -/
+/-- **`r` generates the squares**: `∑ⱼ j²·xʲ = r(x)` for `‖x‖ < 1`.
+@isnad1 id=hassum.1h2v.s7.b24d8c2758d3 from=translated src=- shape=74e4343b vocab=57941e2b
+-/
 lemma hasSum_sq_mul_geometric_eisR (hx : ‖x‖ < 1) :
     HasSum (fun j : ℕ => (j : K) ^ 2 * x ^ j) (eisR x) := by
   have hx1 : (1 : K) - x ≠ 0 := one_sub_ne_zero_of_norm_lt_one hx
@@ -221,7 +227,9 @@ lemma hasSum_sq_mul_geometric_eisR (hx : ‖x‖ < 1) :
     ring
   rwa [hval] at h
 
-/-- **`φ` generates the cubes**: `∑ⱼ j³·xʲ = φ(x)` for `‖x‖ < 1`. -/
+/-- **`φ` generates the cubes**: `∑ⱼ j³·xʲ = φ(x)` for `‖x‖ < 1`.
+@isnad1 id=hassum.1h2v.s7.f5b14860e460 from=translated src=- shape=74e4343b vocab=618df8a9
+-/
 lemma hasSum_cube_mul_geometric_eisPhi (hx : ‖x‖ < 1) :
     HasSum (fun j : ℕ => (j : K) ^ 3 * x ^ j) (eisPhi x) := by
   have hx1 : (1 : K) - x ≠ 0 := one_sub_ne_zero_of_norm_lt_one hx
@@ -245,7 +253,9 @@ lemma hasSum_cube_mul_geometric_eisPhi (hx : ‖x‖ < 1) :
     ring
   rwa [hval] at h
 
-/-- **`ψ` generates the fourth powers**: `∑ⱼ j⁴·xʲ = ψ(x)` for `‖x‖ < 1`. -/
+/-- **`ψ` generates the fourth powers**: `∑ⱼ j⁴·xʲ = ψ(x)` for `‖x‖ < 1`.
+@isnad1 id=hassum.1h2v.s7.a5342f4f1560 from=translated src=- shape=74e4343b vocab=3b3053cf
+-/
 lemma hasSum_fourth_mul_geometric_eisPsi (hx : ‖x‖ < 1) :
     HasSum (fun j : ℕ => (j : K) ^ 4 * x ^ j) (eisPsi x) := by
   have hx1 : (1 : K) - x ≠ 0 := one_sub_ne_zero_of_norm_lt_one hx
@@ -272,7 +282,9 @@ lemma hasSum_fourth_mul_geometric_eisPsi (hx : ‖x‖ < 1) :
     ring
   rwa [hval] at h
 
-/-- **Binomial expansion of `p²`**: `∑ⱼ C(j+1,3)·xʲ = p(x)²` for `‖x‖ < 1`. -/
+/-- **Binomial expansion of `p²`**: `∑ⱼ C(j+1,3)·xʲ = p(x)²` for `‖x‖ < 1`.
+@isnad1 id=hassum.1h2v.s7.bff719ddb166 from=translated src=- shape=717eba81 vocab=ec14d188
+-/
 lemma hasSum_choose_eisP_sq (hx : ‖x‖ < 1) :
     HasSum (fun j : ℕ => ((j + 1).choose 3 : K) * x ^ j) (eisP x ^ 2) := by
   have hval : eisP x ^ 2 = x ^ 2 / (1 - x) ^ 4 := by
@@ -288,7 +300,9 @@ lemma hasSum_choose_eisP_sq (hx : ‖x‖ < 1) :
   rw [Nat.choose_eq_zero_of_lt (by omega), Nat.cast_zero, zero_mul]
 
 /-- **Binomial expansion of `p·r`**: `∑ⱼ (C(j+2,4) + C(j+1,4))·xʲ = p(x)·r(x)` for
-`‖x‖ < 1`. -/
+`‖x‖ < 1`.
+@isnad1 id=hassum.1h2v.s7.f42460ffce68 from=translated src=- shape=32713556 vocab=a05a824b
+-/
 lemma hasSum_choose_eisP_mul_eisR (hx : ‖x‖ < 1) :
     HasSum (fun j : ℕ => (((j + 2).choose 4 + (j + 1).choose 4 : ℕ) : K) * x ^ j)
       (eisP x * eisR x) := by
@@ -461,14 +475,18 @@ private lemma summable_of_norm_le_geometric {f : ℕ → K}
       (summable_geometric_of_lt_one (norm_nonneg _) t.norm_lt_one).mul_right ‖(t.q : K)‖
   exact hg.of_norm_bounded hf
 
-/-- The family defining `pSum` is summable. -/
+/-- The family defining `pSum` is summable.
+@isnad1 id=summable.0h2v.s6.cd091adf7101 from=translated src=- shape=57871165 vocab=6a7fc3a0
+-/
 lemma summable_pSum_terms : Summable fun k : ℕ => eisP ((t.q : K) ^ (k + 1)) := by
   refine t.summable_of_norm_le_geometric fun k => ?_
   calc ‖eisP ((t.q : K) ^ (k + 1))‖
       ≤ ‖(t.q : K) ^ (k + 1)‖ := norm_eisP_le (t.norm_qpow_lt_one k)
     _ = ‖(t.q : K)‖ ^ (k + 1) := norm_pow _ _
 
-/-- The family defining `rSum` is summable. -/
+/-- The family defining `rSum` is summable.
+@isnad1 id=summable.0h2v.s7.a5bbace55a1b from=translated src=- shape=207b5237 vocab=36a39b6f
+-/
 lemma summable_rSum_terms :
     Summable fun k : ℕ => ((k + 1 : ℕ) : K) * eisR ((t.q : K) ^ (k + 1)) := by
   refine t.summable_of_norm_le_geometric fun k => ?_
@@ -480,14 +498,18 @@ lemma summable_rSum_terms :
         · exact norm_eisR_le (t.norm_qpow_lt_one k)
     _ = ‖(t.q : K)‖ ^ (k + 1) := by rw [one_mul, norm_pow]
 
-/-- The family defining `phiSum` is summable. -/
+/-- The family defining `phiSum` is summable.
+@isnad1 id=summable.0h2v.s6.24f9ea37e44d from=translated src=- shape=57871165 vocab=d3028c09
+-/
 lemma summable_phiSum_terms : Summable fun k : ℕ => eisPhi ((t.q : K) ^ (k + 1)) := by
   refine t.summable_of_norm_le_geometric fun k => ?_
   calc ‖eisPhi ((t.q : K) ^ (k + 1))‖
       ≤ ‖(t.q : K) ^ (k + 1)‖ := norm_eisPhi_le (t.norm_qpow_lt_one k)
     _ = ‖(t.q : K)‖ ^ (k + 1) := norm_pow _ _
 
-/-- The family defining `psiSum` is summable. -/
+/-- The family defining `psiSum` is summable.
+@isnad1 id=summable.0h2v.s7.94deb1fac2a9 from=translated src=- shape=207b5237 vocab=48495c9b
+-/
 lemma summable_psiSum_terms :
     Summable fun k : ℕ => ((k + 1 : ℕ) : K) * eisPsi ((t.q : K) ^ (k + 1)) := by
   refine t.summable_of_norm_le_geometric fun k => ?_
@@ -499,7 +521,9 @@ lemma summable_psiSum_terms :
         · exact norm_eisPsi_le (t.norm_qpow_lt_one k)
     _ = ‖(t.q : K)‖ ^ (k + 1) := by rw [one_mul, norm_pow]
 
-/-- The family defining `pSqSum` is summable. -/
+/-- The family defining `pSqSum` is summable.
+@isnad1 id=summable.0h2v.s7.24bd4e98e90d from=translated src=- shape=6379f809 vocab=6a7fc3a0
+-/
 lemma summable_pSqSum_terms : Summable fun k : ℕ => eisP ((t.q : K) ^ (k + 1)) ^ 2 := by
   refine t.summable_of_norm_le_geometric fun k => ?_
   rw [norm_pow]
@@ -511,7 +535,9 @@ lemma summable_pSqSum_terms : Summable fun k : ℕ => eisP ((t.q : K) ^ (k + 1))
         rw [norm_pow, ← pow_mul]
         exact pow_le_pow_of_le_one (norm_nonneg _) t.norm_lt_one.le (by omega)
 
-/-- The family defining `prSum` is summable. -/
+/-- The family defining `prSum` is summable.
+@isnad1 id=summable.0h2v.s7.bc1d9b9e0f77 from=translated src=- shape=029e9e0d vocab=17cc640e
+-/
 lemma summable_prSum_terms :
     Summable fun k : ℕ =>
       ((k + 1 : ℕ) : K) * (eisP ((t.q : K) ^ (k + 1)) * eisR ((t.q : K) ^ (k + 1))) := by
@@ -539,7 +565,9 @@ private def qpowFamily (f g : ℕ → ℕ) : ℕ+ × ℕ+ → K := fun r =>
 /-- **The divisor-fiber Fubini for weighted `q`-power double series.** For natural weights
 `f`, `g`, the double series `∑ₖ f(k)·(∑ⱼ g(j)·(qᵏ)ʲ)` (all indices `≥ 1`) regroups along
 the multiplication fibration `(k, j) ↦ k·j` into a `q`-expansion whose `N`-th coefficient
-is the divisor convolution `∑_{d·e = N} f(d)·g(e)`. -/
+is the divisor convolution `∑_{d·e = N} f(d)·g(e)`.
+@isnad1 id=eq.0h4v.s8.5a0e97708e9b from=translated src=- shape=3fa05b31 vocab=c82f2a3a
+-/
 lemma tsum_weighted_qpow_eq (f g : ℕ → ℕ) :
     (∑' k : ℕ, (f (k + 1) : K) * ∑' j : ℕ, (g (j + 1) : K) * ((t.q : K) ^ (k + 1)) ^ (j + 1))
       = ∑' N : ℕ, (∑ p ∈ (N + 1).divisorsAntidiagonal, ((f p.1 * g p.2 : ℕ) : K))
@@ -646,7 +674,9 @@ lemma tsum_weighted_qpow_eq (f g : ℕ → ℕ) :
 /-! ### `q`-expansions with divisor-sum coefficients -/
 
 /-- **`q`-expansion of the Eisenstein series** `sₖ(q)`:
-`sₖ(q) = ∑_{N ≥ 1} σₖ(N)·q^N` with `σₖ(N) = ∑_{d ∣ N} dᵏ`. -/
+`sₖ(q) = ∑_{N ≥ 1} σₖ(N)·q^N` with `σₖ(N) = ∑_{d ∣ N} dᵏ`.
+@isnad1 id=eq.0h3v.s7.f308f03a8e90 from=translated src=- shape=8aa0992a vocab=3cdcc090
+-/
 lemma eisenstein_eq_qexp (k : ℕ) :
     t.eisenstein k
       = ∑' N : ℕ, (∑ d ∈ (N + 1).divisors, (d : K) ^ k) * (t.q : K) ^ (N + 1) := by
@@ -676,7 +706,9 @@ lemma eisenstein_eq_qexp (k : ℕ) :
               push_cast
               ring
 
-/-- **`q`-expansion of `pSum`**: `𝔭 = ∑_{N ≥ 1} σ₁(N)·q^N`. -/
+/-- **`q`-expansion of `pSum`**: `𝔭 = ∑_{N ≥ 1} σ₁(N)·q^N`.
+@isnad1 id=eq.0h2v.s7.f454740cc6cf from=translated src=- shape=ae6666e1 vocab=32c2d3d7
+-/
 lemma pSum_eq_qexp :
     t.pSum = ∑' N : ℕ, (∑ d ∈ (N + 1).divisors, (d : K)) * (t.q : K) ^ (N + 1) := by
   have h := t.tsum_weighted_qpow_eq (fun _ => 1) fun m => m
@@ -700,7 +732,9 @@ lemma pSum_eq_qexp :
               refine Finset.sum_congr rfl fun i _ => ?_
               rw [one_mul]
 
-/-- **`q`-expansion of `rSum`**: `𝔯 = ∑_{N ≥ 1} N·σ₁(N)·q^N`. -/
+/-- **`q`-expansion of `rSum`**: `𝔯 = ∑_{N ≥ 1} N·σ₁(N)·q^N`.
+@isnad1 id=eq.0h2v.s7.ed8f6a2ae906 from=translated src=- shape=8e44db19 vocab=571dd036
+-/
 lemma rSum_eq_qexp :
     t.rSum = ∑' N : ℕ, ((N + 1 : ℕ) : K) * (∑ d ∈ (N + 1).divisors, (d : K))
       * (t.q : K) ^ (N + 1) := by
@@ -737,7 +771,9 @@ lemma rSum_eq_qexp :
               push_cast
               ring
 
-/-- **`q`-expansion of `phiSum`**: `𝛗 = ∑_{N ≥ 1} σ₃(N)·q^N`. -/
+/-- **`q`-expansion of `phiSum`**: `𝛗 = ∑_{N ≥ 1} σ₃(N)·q^N`.
+@isnad1 id=eq.0h2v.s7.ca1b6cddaa72 from=translated src=- shape=9f8d9cc6 vocab=6bab3804
+-/
 lemma phiSum_eq_qexp :
     t.phiSum = ∑' N : ℕ, (∑ d ∈ (N + 1).divisors, (d : K) ^ 3) * (t.q : K) ^ (N + 1) := by
   have h := t.tsum_weighted_qpow_eq (fun _ => 1) fun m => m ^ 3
@@ -766,7 +802,9 @@ lemma phiSum_eq_qexp :
               push_cast
               ring
 
-/-- **`q`-expansion of `psiSum`**: `𝛙 = ∑_{N ≥ 1} N·σ₃(N)·q^N`. -/
+/-- **`q`-expansion of `psiSum`**: `𝛙 = ∑_{N ≥ 1} N·σ₃(N)·q^N`.
+@isnad1 id=eq.0h2v.s8.7d7cfe73f046 from=translated src=- shape=a868562a vocab=fd2e37cb
+-/
 lemma psiSum_eq_qexp :
     t.psiSum = ∑' N : ℕ, ((N + 1 : ℕ) : K) * (∑ d ∈ (N + 1).divisors, (d : K) ^ 3)
       * (t.q : K) ^ (N + 1) := by
@@ -804,7 +842,9 @@ lemma psiSum_eq_qexp :
               ring
 
 /-- **`q`-expansion of `6·pSqSum`**: `6·𝔭₂ = ∑_{N ≥ 1} (σ₃(N) - σ₁(N))·q^N`, stated with
-the integral coefficient `∑_{d ∣ N} (d³ - d)` (no division by `6`). -/
+the integral coefficient `∑_{d ∣ N} (d³ - d)` (no division by `6`).
+@isnad1 id=eq.0h2v.s8.ea564f42e2a7 from=translated src=- shape=491cfb89 vocab=f7389b41
+-/
 lemma pSqSum_mul_six_eq_qexp :
     6 * t.pSqSum
       = ∑' N : ℕ, (∑ d ∈ (N + 1).divisors, ((d : K) ^ 3 - (d : K)))
@@ -842,7 +882,9 @@ lemma pSqSum_mul_six_eq_qexp :
         ring
 
 /-- **`q`-expansion of `12·prSum`**: `12·𝔭𝔯 = ∑_{N ≥ 1} N·(σ₃(N) - σ₁(N))·q^N`, stated
-with the integral coefficient `N·∑_{d ∣ N} (d³ - d)` (no division by `12`). -/
+with the integral coefficient `N·∑_{d ∣ N} (d³ - d)` (no division by `12`).
+@isnad1 id=eq.0h2v.s8.e311a8b84fa2 from=translated src=- shape=83277acf vocab=1eb57ac6
+-/
 lemma prSum_mul_twelve_eq_qexp :
     12 * t.prSum
       = ∑' N : ℕ, ((N + 1 : ℕ) : K) * (∑ d ∈ (N + 1).divisors, ((d : K) ^ 3 - (d : K)))
@@ -953,7 +995,9 @@ private lemma tsum_qexp_mul_tsum_qexp (c d : ℕ → K) (hc : ∀ M, ‖c M‖ �
   exact hCsum.tsum_eq.symm
 
 /-- **`q`-expansion of `s₁²`**: the coefficient of `q^N` is the convolution
-`∑_{s=1}^{N-1} σ₁(s)·σ₁(N-s)` (empty for `N = 1`). -/
+`∑_{s=1}^{N-1} σ₁(s)·σ₁(N-s)` (empty for `N = 1`).
+@isnad1 id=eq.0h2v.s8.674dd28edda0 from=translated src=- shape=53cdb76a vocab=fbecf9fe
+-/
 lemma eisenstein_one_sq_eq_qexp :
     t.eisenstein 1 ^ 2
       = ∑' N : ℕ,
@@ -971,7 +1015,9 @@ lemma eisenstein_one_sq_eq_qexp :
   exact h
 
 /-- **`q`-expansion of `s₁·s₃`**: the coefficient of `q^N` is the convolution
-`∑_{s=1}^{N-1} σ₁(s)·σ₃(N-s)`. -/
+`∑_{s=1}^{N-1} σ₁(s)·σ₃(N-s)`.
+@isnad1 id=eq.0h2v.s8.65f8b00c1601 from=translated src=- shape=785eb690 vocab=fbecf9fe
+-/
 lemma eisenstein_one_mul_three_eq_qexp :
     t.eisenstein 1 * t.eisenstein 3
       = ∑' N : ℕ,
@@ -989,7 +1035,9 @@ lemma eisenstein_one_mul_three_eq_qexp :
   exact h
 
 /-- **`q`-expansion of `s₁·rSum`**: the coefficient of `q^N` is
-`∑_{s=1}^{N-1} σ₁(s)·(N-s)·σ₁(N-s)`. -/
+`∑_{s=1}^{N-1} σ₁(s)·(N-s)·σ₁(N-s)`.
+@isnad1 id=eq.0h2v.s8.69f45bbd9ce7 from=translated src=- shape=e399df0d vocab=a32d9085
+-/
 lemma eisenstein_one_mul_rSum_eq_qexp :
     t.eisenstein 1 * t.rSum
       = ∑' N : ℕ,
@@ -1013,7 +1061,9 @@ lemma eisenstein_one_mul_rSum_eq_qexp :
 
 /-- **`q`-expansion of `s₁³`**: the coefficient of `q^N` is the double convolution
 `∑_{s=1}^{N-1} σ₁(s)·(∑_{r=1}^{N-s-1} σ₁(r)·σ₁(N-s-r))`, the inner sum being the
-`s₁²`-coefficient of `eisenstein_one_sq_eq_qexp`. -/
+`s₁²`-coefficient of `eisenstein_one_sq_eq_qexp`.
+@isnad1 id=eq.0h2v.s8.0a8ee3e9d95c from=translated src=- shape=b3377d41 vocab=fbecf9fe
+-/
 lemma eisenstein_one_cube_eq_qexp :
     t.eisenstein 1 ^ 3
       = ∑' N : ℕ,

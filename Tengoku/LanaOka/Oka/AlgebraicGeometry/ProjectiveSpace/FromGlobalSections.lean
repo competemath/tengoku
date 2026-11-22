@@ -40,7 +40,9 @@ noncomputable def awayToLocalization (t : A) : Away 𝒜 t →+* Localization.Aw
     rw [← Submonoid.map_le_iff_le_comap, Submonoid.map_powers])).comp
     (algebraMap (Away 𝒜 t) (Localization.Away t))
 
-/-- `awayToLocalization` sends `a / tⁿ` to `f a / (f t)ⁿ`. -/
+/-- `awayToLocalization` sends `a / tⁿ` to `f a / (f t)ⁿ`.
+@isnad1 id=eq.2h9v.s16.b949b649dbb6 from=translated src=- shape=6d28a8b4 vocab=029b3742
+-/
 lemma awayToLocalization_mk {t : A} {d : ℕ} (hd : t ∈ 𝒜 d) (n : ℕ) (a : A) (ha : a ∈ 𝒜 (n • d)) :
     awayToLocalization 𝒜 f t (Away.mk 𝒜 hd n a ha) =
       IsLocalization.mk' _ (f a) (⟨f t ^ n, n, rfl⟩ : Submonoid.powers (f t)) := by
@@ -48,7 +50,9 @@ lemma awayToLocalization_mk {t : A} {d : ℕ} (hd : t ∈ 𝒜 d) (n : ℕ) (a :
 
 variable (hf : (HomogeneousIdeal.irrelevant 𝒜).toIdeal.map f = ⊤)
 
-/-- On the chart `D₊(t)`, `Proj.fromOfGlobalSections` is induced by `awayToLocalization`. -/
+/-- On the chart `D₊(t)`, `Proj.fromOfGlobalSections` is induced by `awayToLocalization`.
+@isnad1 id=eq.3h7v.s15.f96951ff8c92 from=translated src=- shape=96e020b9 vocab=a2c976ff
+-/
 lemma fromOfGlobalSections_resLE_basicOpenIsoSpec_hom {t : A} {d : ℕ} (h0d : 0 < d)
     (hd : t ∈ 𝒜 d) :
     (fromOfGlobalSections 𝒜 f hf).resLE _ _

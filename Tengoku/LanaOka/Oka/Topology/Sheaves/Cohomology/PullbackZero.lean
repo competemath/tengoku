@@ -28,14 +28,18 @@ namespace TopCat.Sheaf
 
 variable {X Y : TopCat.{u}}
 
-/-- `H.equiv₀` unfolded: evaluate the adjoint `ℤ → F(X)` of a morphism `ℤ_X ⟶ F` at `1`. -/
+/-- `H.equiv₀` unfolded: evaluate the adjoint `ℤ → F(X)` of a morphism `ℤ_X ⟶ F` at `1`.
+@isnad1 id=eq.0h3v.s15.0a8106940d39 from=translated src=- shape=17ba41d4 vocab=69587b28
+-/
 lemma H.equiv₀_apply (F : AbSheaf X) (x : H F 0) :
     H.equiv₀ F x = AddCommGrpCat.uliftZMultiplesAddEquiv _
       ((constantSheafAdj _ AddCommGrpCat.{u} isTerminalTop).homEquiv _ F (Ext.addEquiv₀ x)) :=
   rfl
 
 /-- The connecting homomorphisms are natural with respect to morphisms of short exact
-sequences. -/
+sequences.
+@isnad1 id=eq.3h7v.s15.9dfdbc018bfd from=translated src=- shape=1fd70c82 vocab=2540944b
+-/
 lemma H.δ_naturality {S₁ S₂ : ShortComplex (AbSheaf X)} (h₁ : S₁.ShortExact)
     (h₂ : S₂.ShortExact) (φ : S₁ ⟶ S₂) {n₀ n₁ : ℕ} (h : n₀ + 1 = n₁) (x : H S₁.X₃ n₀) :
     H.δ h₂ n₀ n₁ h (H.map φ.τ₃ n₀ x) = H.map φ.τ₁ n₁ (H.δ h₁ n₀ n₁ h x) := by

@@ -140,7 +140,9 @@ namespace CategoryTheory
 variable {C : Type u} [Category.{v} C] (D : GlueData' C)
 
 /-- **`CategoryTheory.GlueData'.f'` on the diagonal is the `eqToHom` identifying `V (i, i)` with
-`U i`.** -/
+`U i`.**
+@isnad1 id=eq.0h3v.s7.aef60b72a06a from=translated src=- shape=172bc2f6 vocab=b762a274
+-/
 theorem GlueData'.f'_self (i : D.J) : D.f' i i = eqToHom (dite_eq_left rfl) := by
   dsimp only [GlueData'.f']
   split_ifs with h
@@ -153,7 +155,9 @@ identifying `V (i, j)` with the given overlap.**
 Stated about `f'` rather than about `CategoryTheory.GlueData.ofGlueData'`'s `f` field — they are
 the same term — because it is the `f'` spelling that a goal is left in after
 `dsimp only [GlueData.ofGlueData']`, and that is the position
-`CategoryTheory.GlueData.ofGlueData'_t_comp_f_of_ne` needs it at. -/
+`CategoryTheory.GlueData.ofGlueData'_t_comp_f_of_ne` needs it at.
+@isnad1 id=eq.1h4v.s7.d6ef95dc3826 from=translated src=- shape=f4818f19 vocab=e6441168
+-/
 theorem GlueData'.f'_of_ne {i j : D.J} (h : i ≠ j) :
     D.f' i j = eqToHom (dite_eq_right h) ≫ D.f i j h := by
   dsimp only [GlueData'.f']
@@ -162,13 +166,17 @@ theorem GlueData'.f'_of_ne {i j : D.J} (h : i ≠ j) :
   · rfl
 
 /-- **On the diagonal, `CategoryTheory.GlueData.ofGlueData'`'s inclusion is the `eqToHom` that
-identifies `V (i, i)` with `U i`.** -/
+identifies `V (i, i)` with `U i`.**
+@isnad1 id=eq.0h3v.s8.41ef68c2e32c from=translated src=- shape=57a93bb4 vocab=9918c531
+-/
 theorem GlueData.ofGlueData'_f_self (i : D.J) :
     (GlueData.ofGlueData' D).f i i = eqToHom (dite_eq_left rfl) :=
   GlueData'.f'_self D i
 
 /-- **Off the diagonal, it is the given inclusion after the `eqToHom` that identifies
-`V (i, j)` with the given overlap.** -/
+`V (i, j)` with the given overlap.**
+@isnad1 id=eq.1h4v.s8.af121cfe1654 from=translated src=- shape=5f867b8a vocab=33963136
+-/
 theorem GlueData.ofGlueData'_f_of_ne {i j : D.J} (h : i ≠ j) :
     (GlueData.ofGlueData' D).f i j = eqToHom (dite_eq_right h) ≫ D.f i j h :=
   GlueData'.f'_of_ne D h
@@ -178,7 +186,9 @@ open scoped Classical in
 
 `CategoryTheory.GlueData` requires `t i i` to be the identity up to the identification of
 `V (i, i)` with `U i`, and `ofGlueData'` discharges that; this is the value it discharges it
-with. -/
+with.
+@isnad1 id=eq.0h3v.s7.dd766fa64dfa from=translated src=- shape=234d8b88 vocab=c7f49bfc
+-/
 theorem GlueData.ofGlueData'_t_self (i : D.J) :
     (GlueData.ofGlueData' D).t i i = eqToHom (by simp) := by
   dsimp only [GlueData.ofGlueData']
@@ -188,7 +198,9 @@ theorem GlueData.ofGlueData'_t_self (i : D.J) :
 
 open scoped Classical in
 /-- **Off the diagonal, it is the given transition conjugated by the two `eqToHom`s that identify
-`V (i, j)` and `V (j, i)` with the given overlaps.** -/
+`V (i, j)` and `V (j, i)` with the given overlaps.**
+@isnad1 id=eq.1h4v.s9.14df7b8bea84 from=translated src=- shape=6c22ca9f vocab=2eefe0dd
+-/
 theorem GlueData.ofGlueData'_t_of_ne {i j : D.J} (h : i ≠ j) :
     (GlueData.ofGlueData' D).t i j =
       eqToHom (dite_eq_right h) ≫ D.t i j h ≫ eqToHom (dite_eq_right (Ne.symm h)).symm := by
@@ -204,7 +216,9 @@ The shape a caller comparing structures across an overlap works with. The `dsimp
 the rewrites and the `simp` is the whole content: without it the goal defeats `simp`, `aesop_cat`
 and `rw [Category.assoc]`, because the composition's object positions carry unreduced
 `GlueData.ofGlueData'` projections that `rw` will not unfold at reducible transparency. See the
-module docstring; that line is not discoverable from the error, which is why this is a lemma. -/
+module docstring; that line is not discoverable from the error, which is why this is a lemma.
+@isnad1 id=eq.1h4v.s9.d02a0f84ae43 from=translated src=- shape=b7b095fd vocab=c7b791ec
+-/
 theorem GlueData.ofGlueData'_t_comp_f_of_ne {i j : D.J} (h : i ≠ j) :
     (GlueData.ofGlueData' D).t i j ≫ (GlueData.ofGlueData' D).f j i =
       eqToHom (dite_eq_right h) ≫ D.t i j h ≫ D.f j i (Ne.symm h) := by
@@ -224,7 +238,9 @@ hypothesis either.
 
 The five hypotheses are `HEq`s rather than `Eq`s because the fields are dependent — `f`'s type
 mentions `V` and `U` — so a caller whose `V`s agree only propositionally has nothing else to
-offer. -/
+offer.
+@isnad1 id=eq.5h3v.s8.bdc162e39294 from=translated src=- shape=e31fb087 vocab=f55f4c85
+-/
 theorem GlueData'.ext_of_heq {D D' : GlueData' C}
     (hJ : D.J = D'.J) (hU : HEq D.U D'.U) (hV : HEq D.V D'.V) (hf : HEq D.f D'.f)
     (ht : HEq D.t D'.t) : D = D' := by

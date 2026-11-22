@@ -74,58 +74,97 @@ noncomputable def mcoeff : {n : ℕ} → ((Fin n → ℂ) → ℂ) → (Fin n �
   | _ + 1, f, ρ, k =>
     mcoeff (fun z ↦ coeff (fun ζ ↦ f (Fin.cons ζ z)) (ρ 0) (k 0)) (Fin.tail ρ) (Fin.tail k)
 
+/--
+@isnad1 id=eq.0h3v.s6.25b696b0de49 from=translated src=- shape=21c354f6 vocab=a7f85caf
+-/
 lemma mcoeff_zero (f : (Fin 0 → ℂ) → ℂ) (ρ : Fin 0 → ℝ) (k : Fin 0 → ℤ) :
     mcoeff f ρ k = f 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.1e85dba8faf9 from=translated src=- shape=c72b6dfe vocab=ab619975
+-/
 lemma mcoeff_succ (f : (Fin (n + 1) → ℂ) → ℂ) (ρ : Fin (n + 1) → ℝ) (k : Fin (n + 1) → ℤ) :
     mcoeff f ρ k =
       mcoeff (fun z ↦ coeff (fun ζ ↦ f (Fin.cons ζ z)) (ρ 0) (k 0)) (Fin.tail ρ) (Fin.tail k) :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.f92ce820ecbe from=translated src=- shape=6f225a85 vocab=ab619975
+-/
 lemma mcoeff_cons (f : (Fin (n + 1) → ℂ) → ℂ) (ρ : Fin (n + 1) → ℝ) (j : ℤ) (k : Fin n → ℤ) :
     mcoeff f ρ (Fin.cons j k) =
       mcoeff (fun z ↦ coeff (fun ζ ↦ f (Fin.cons ζ z)) (ρ 0) j) (Fin.tail ρ) k := by
   rw [mcoeff_succ, Fin.cons_zero, Fin.tail_cons]
 
+/--
+@isnad1 id=eq.0h5v.s6.ff199d6aaeef from=translated src=- shape=89af27e2 vocab=a9a2310b
+-/
 lemma monomial_cons (j : ℤ) (k : Fin n → ℤ) (ζ : ℂ) (z : Fin n → ℂ) :
     monomial (Fin.cons j k) (Fin.cons ζ z) = ζ ^ j * monomial k z := by
   simp [monomial, Fin.prod_univ_succ]
 
+/--
+@isnad1 id=eq.0h3v.s5.3504feda3151 from=translated src=- shape=4c8c8d99 vocab=28e0a681
+-/
 lemma norm_monomial (k : Fin n → ℤ) (z : Fin n → ℂ) :
     ‖monomial k z‖ = ∏ i, ‖z i‖ ^ k i := by
   simp [monomial, norm_prod, norm_zpow]
 
+/--
+@isnad1 id=iff.0h4v.s5.3511f39bfa6f from=translated src=- shape=e0430d8d vocab=1f4c653f
+-/
 lemma mem_polyAnnulus {r : Fin n → ℝ} {R : Fin n → ℝ≥0∞} {z : Fin n → ℂ} :
     z ∈ polyAnnulus r R ↔ ∀ i, z i ∈ annulus (r i) (R i) := by
   simp [polyAnnulus]
 
+/--
+@isnad1 id=isopen.0h3v.s5.8cdd5f3e4994 from=translated src=- shape=cf8aa9cd vocab=d4baa02e
+-/
 lemma isOpen_polyAnnulus (r : Fin n → ℝ) (R : Fin n → ℝ≥0∞) : IsOpen (polyAnnulus r R) :=
   isOpen_set_pi finite_univ fun _ _ ↦ isOpen_annulus
 
+/--
+@isnad1 id=iff.0h5v.s8.7b26986a3655 from=translated src=- shape=58ac4056 vocab=a571aecb
+-/
 lemma cons_mem_polyAnnulus {r : Fin (n + 1) → ℝ} {R : Fin (n + 1) → ℝ≥0∞} {ζ : ℂ}
     {z : Fin n → ℂ} :
     (Fin.cons ζ z : Fin (n + 1) → ℂ) ∈ polyAnnulus r R ↔
       ζ ∈ annulus (r 0) (R 0) ∧ z ∈ polyAnnulus (Fin.tail r) (Fin.tail R) := by
   simp only [mem_polyAnnulus, Fin.forall_fin_succ, Fin.cons_zero, Fin.cons_succ, Fin.tail]
 
+/--
+@isnad1 id=iff.0h3v.s5.c05dc301ceab from=translated src=- shape=d8d57114 vocab=b8961b84
+-/
 lemma mem_torus {ρ : Fin n → ℝ} {z : Fin n → ℂ} : z ∈ torus ρ ↔ ∀ i, ‖z i‖ = ρ i := by
   simp [torus]
 
+/--
+@isnad1 id=iff.0h4v.s7.d99431112fdb from=translated src=- shape=e56332f1 vocab=0d7c3ef0
+-/
 lemma cons_mem_torus {ρ : Fin (n + 1) → ℝ} {ζ : ℂ} {z : Fin n → ℂ} :
     (Fin.cons ζ z : Fin (n + 1) → ℂ) ∈ torus ρ ↔ ‖ζ‖ = ρ 0 ∧ z ∈ torus (Fin.tail ρ) := by
   simp only [mem_torus, Fin.forall_fin_succ, Fin.cons_zero, Fin.cons_succ, Fin.tail]
 
+/--
+@isnad1 id=le.1h4v.s5.a8e0b886d6d9 from=translated src=- shape=31994e5e vocab=0cd20f8a
+-/
 lemma torus_subset_polyAnnulus {r : Fin n → ℝ} {R : Fin n → ℝ≥0∞} {ρ : Fin n → ℝ}
     (hρ : ∀ i, IsRadius (r i) (R i) (ρ i)) : torus ρ ⊆ polyAnnulus r R := fun z hz ↦
   mem_polyAnnulus.2 fun i ↦ sphere_subset_annulus (hρ i) (by
     rw [mem_sphere_zero_iff_norm]; exact mem_torus.1 hz i)
 
+/--
+@isnad1 id=differen.0h2v.s8.4907342d1d41 from=translated src=- shape=ecfe459f vocab=f2c18bf1
+-/
 lemma differentiable_cons_right (ζ : ℂ) :
     Differentiable ℂ fun z : Fin n → ℂ ↦ (Fin.cons ζ z : Fin (n + 1) → ℂ) := by
   refine differentiable_pi.2 fun i ↦ Fin.cases ?_ (fun j ↦ ?_) i
   · simp
   · simpa using differentiable_apply (𝕜 := ℂ) j
 
+/--
+@isnad1 id=differen.0h2v.s7.d3b0db96ce22 from=translated src=- shape=fbe4265d vocab=f2c18bf1
+-/
 lemma differentiable_cons_left (z : Fin n → ℂ) :
     Differentiable ℂ fun ζ : ℂ ↦ (Fin.cons ζ z : Fin (n + 1) → ℂ) := by
   refine differentiable_pi.2 fun i ↦ Fin.cases ?_ (fun j ↦ ?_) i
@@ -134,7 +173,9 @@ lemma differentiable_cons_left (z : Fin n → ℂ) :
 
 variable {r : Fin n → ℝ} {R : Fin n → ℝ≥0∞} {ρ : Fin n → ℝ}
 
-/-- The multi-Laurent coefficients only depend on the values on the torus. -/
+/-- The multi-Laurent coefficients only depend on the values on the torus.
+@isnad1 id=eq.2h5v.s6.05baef0a0137 from=translated src=- shape=f8a161a7 vocab=e9e9b50b
+-/
 theorem mcoeff_congr {f g : (Fin n → ℂ) → ℂ} (hρ : ∀ i, 0 ≤ ρ i) (h : EqOn f g (torus ρ))
     (k : Fin n → ℤ) : mcoeff f ρ k = mcoeff g ρ k := by
   induction n with
@@ -145,7 +186,9 @@ theorem mcoeff_congr {f g : (Fin n → ℂ) → ℂ} (hρ : ∀ i, 0 ≤ ρ i) (
     rw [cons_mem_torus]
     exact ⟨by simpa using hζ, hz⟩
 
-/-- The Cauchy estimate for multi-Laurent coefficients. -/
+/-- The Cauchy estimate for multi-Laurent coefficients.
+@isnad1 id=le.2h5v.s6.b49822399115 from=translated src=- shape=4c55a8a9 vocab=120f76d0
+-/
 theorem norm_mcoeff_le {f : (Fin n → ℂ) → ℂ} (hρ : ∀ i, 0 < ρ i) {M : ℝ}
     (hM : ∀ z ∈ torus ρ, ‖f z‖ ≤ M) (k : Fin n → ℤ) :
     ‖mcoeff f ρ k‖ ≤ M * ∏ i, ρ i ^ (-k i) := by
@@ -157,6 +200,9 @@ theorem norm_mcoeff_le {f : (Fin n → ℂ) → ℂ} (hρ : ∀ i, 0 < ρ i) {M 
     rw [cons_mem_torus]
     exact ⟨by simpa using hζ, hz⟩
 
+/--
+@isnad1 id=differen.2h5v.s8.7379b4890645 from=translated src=- shape=26dc37dd vocab=dca8be86
+-/
 lemma differentiableOn_slice {r : Fin (n + 1) → ℝ} {R : Fin (n + 1) → ℝ≥0∞}
     {f : (Fin (n + 1) → ℂ) → ℂ} (hf : DifferentiableOn ℂ f (polyAnnulus r R)) {z : Fin n → ℂ}
     (hz : z ∈ polyAnnulus (Fin.tail r) (Fin.tail R)) :
@@ -165,7 +211,9 @@ lemma differentiableOn_slice {r : Fin (n + 1) → ℝ} {R : Fin (n + 1) → ℝ�
     cons_mem_polyAnnulus.2 ⟨hζ, hz⟩
 
 /-- The Laurent coefficient of `f` in the first variable is holomorphic in the remaining
-variables. -/
+variables.
+@isnad1 id=differen.2h6v.s9.42cc0ab3385a from=translated src=- shape=87c6bda7 vocab=4520dbe4
+-/
 theorem differentiableOn_coeff_cons {r : Fin (n + 1) → ℝ} {R : Fin (n + 1) → ℝ≥0∞}
     {f : (Fin (n + 1) → ℂ) → ℂ} (hf : DifferentiableOn ℂ f (polyAnnulus r R)) {ρ₀ : ℝ}
     (hρ₀ : IsRadius (r 0) (R 0) ρ₀) (j : ℤ) :
@@ -206,7 +254,9 @@ theorem differentiableOn_coeff_cons {r : Fin (n + 1) → ℝ} {R : Fin (n + 1) �
     analyticAt_const.mul ha
   exact (analyticAt_of_shift ha').differentiableAt.differentiableWithinAt
 
-/-- The multi-Laurent coefficients do not depend on the choice of the torus. -/
+/-- The multi-Laurent coefficients do not depend on the choice of the torus.
+@isnad1 id=eq.3h7v.s7.a96baf7c0dea from=translated src=- shape=4027679a vocab=e181ec50
+-/
 theorem mcoeff_eq_of_isRadius {f : (Fin n → ℂ) → ℂ} (hf : DifferentiableOn ℂ f (polyAnnulus r R))
     {ρ ρ' : Fin n → ℝ} (hρ : ∀ i, IsRadius (r i) (R i) (ρ i))
     (hρ' : ∀ i, IsRadius (r i) (R i) (ρ' i)) (k : Fin n → ℤ) : mcoeff f ρ k = mcoeff f ρ' k := by
@@ -222,7 +272,9 @@ theorem mcoeff_eq_of_isRadius {f : (Fin n → ℂ) → ℂ} (hf : Differentiable
       (fun i ↦ hρ' i.succ) _
 
 /-- If the `i`-th factor of the product is a disc, the multi-Laurent coefficients of negative
-degree in the `i`-th variable vanish. -/
+degree in the `i`-th variable vanish.
+@isnad1 id=eq.4h7v.s7.a24f23f1b3d1 from=translated src=- shape=8b2d2bbd vocab=233060c7
+-/
 theorem mcoeff_eq_zero_of_neg {f : (Fin n → ℂ) → ℂ} (hf : DifferentiableOn ℂ f (polyAnnulus r R))
     (hρ : ∀ i, IsRadius (r i) (R i) (ρ i)) {k : Fin n → ℤ} {i : Fin n} (hr : r i < 0)
     (hk : k i < 0) : mcoeff f ρ k = 0 := by
@@ -238,7 +290,9 @@ theorem mcoeff_eq_zero_of_neg {f : (Fin n → ℂ) → ℂ} (hf : Differentiable
       simpa using norm_mcoeff_le (ρ := Fin.tail ρ) (fun i ↦ (hρ i.succ).pos) h0 (Fin.tail k)
     · exact ih (differentiableOn_coeff_cons hf (hρ 0) (k 0)) (fun i ↦ hρ i.succ) (i := i) hr hk
 
-/-- A product of nonnegative summable families on `ℤ` is summable on `ℤⁿ`. -/
+/-- A product of nonnegative summable families on `ℤ` is summable on `ℤⁿ`.
+@isnad1 id=summable.2h2v.s6.631b11a0417e from=translated src=- shape=5cabf8b4 vocab=86402188
+-/
 lemma summable_prod_fin {β : Fin n → ℤ → ℝ} (h0 : ∀ i k, 0 ≤ β i k)
     (hs : ∀ i, Summable (β i)) : Summable fun k : Fin n → ℤ ↦ ∏ i, β i (k i) := by
   induction n with
@@ -250,11 +304,17 @@ lemma summable_prod_fin {β : Fin n → ℤ → ℝ} (h0 : ∀ i k, 0 ≤ β i k
     refine this.congr fun p ↦ ?_
     simp [Fin.consEquiv, Fin.prod_univ_succ]
 
+/--
+@isnad1 id=le.3h4v.s6.773de75882aa from=translated src=- shape=1f488114 vocab=f7efca01
+-/
 lemma zpow_neg_mul_zpow_le_of_le {s x t : ℝ} (hs : 0 < s) (hx : 0 ≤ x) (hxt : x ≤ t)
     (m : ℕ) : s ^ (-(m : ℤ)) * x ^ (m : ℤ) ≤ (t / s) ^ m := by
   rw [zpow_neg, zpow_natCast, zpow_natCast, div_pow, inv_mul_eq_div]
   gcongr
 
+/--
+@isnad1 id=le.3h4v.s6.c717307bf393 from=translated src=- shape=df284d4f vocab=f7efca01
+-/
 lemma zpow_neg_mul_zpow_le_of_ge {s x t : ℝ} (hs : 0 < s) (ht : 0 < t) (htx : t ≤ x)
     (m : ℕ) : s ^ (-(-(m : ℤ))) * x ^ (-(m : ℤ)) ≤ (s / t) ^ m := by
   rw [neg_neg, zpow_neg, zpow_natCast, zpow_natCast, div_pow, ← div_eq_mul_inv]
@@ -262,7 +322,9 @@ lemma zpow_neg_mul_zpow_le_of_ge {s x t : ℝ} (hs : 0 < s) (ht : 0 < t) (htx : 
 
 /-- The Weierstrass bound behind the absolute and locally uniform convergence of the
 multi-Laurent series: near every point of the product of annuli, its terms are dominated by a
-summable family. -/
+summable family.
+@isnad1 id=ex.3h6v.s8.6a1f45e47f39 from=translated src=- shape=e9d99a74 vocab=1a2b51da
+-/
 theorem exists_summable_bound_mcoeff {f : (Fin n → ℂ) → ℂ}
     (hf : DifferentiableOn ℂ f (polyAnnulus r R)) (hρ : ∀ i, IsRadius (r i) (R i) (ρ i))
     {w : Fin n → ℂ} (hw : w ∈ polyAnnulus r R) :
@@ -358,7 +420,9 @@ theorem exists_summable_bound_mcoeff {f : (Fin n → ℂ) → ℂ}
           exact (zpow_neg_mul_zpow_le_of_ge (ha i).pos (ht₁ i) hz1.le m).trans
             (le_add_of_nonneg_left (pow_nonneg (hq₂ i).1 _))
 
-/-- The multi-Laurent series converges absolutely on the product of annuli. -/
+/-- The multi-Laurent series converges absolutely on the product of annuli.
+@isnad1 id=summable.3h6v.s7.a0f69d3b3b66 from=translated src=- shape=b2a5ddf6 vocab=604e5f86
+-/
 theorem summable_norm_mcoeff_mul {f : (Fin n → ℂ) → ℂ}
     (hf : DifferentiableOn ℂ f (polyAnnulus r R)) (hρ : ∀ i, IsRadius (r i) (R i) (ρ i))
     {w : Fin n → ℂ} (hw : w ∈ polyAnnulus r R) :
@@ -366,6 +430,9 @@ theorem summable_norm_mcoeff_mul {f : (Fin n → ℂ) → ℂ}
   obtain ⟨u, hu, V, hV, hle⟩ := exists_summable_bound_mcoeff hf hρ hw
   exact hu.of_nonneg_of_le (fun _ ↦ norm_nonneg _) fun k ↦ hle k w (mem_of_mem_nhds hV)
 
+/--
+@isnad1 id=eq.0h6v.s8.03bcfdb87620 from=translated src=- shape=95177429 vocab=0bcfed30
+-/
 lemma mcoeff_mul_monomial_cons (f : (Fin (n + 1) → ℂ) → ℂ) (ρ : Fin (n + 1) → ℝ) (j : ℤ)
     (k : Fin n → ℤ) (w : Fin (n + 1) → ℂ) :
     mcoeff f ρ (Fin.cons j k) * monomial (Fin.cons j k) w =
@@ -376,6 +443,9 @@ lemma mcoeff_mul_monomial_cons (f : (Fin (n + 1) → ℂ) → ℂ) (ρ : Fin (n 
   rw [monomial_cons]
   ring
 
+/--
+@isnad1 id=eq.1h5v.s6.ca3187094b85 from=translated src=- shape=c3ae6ffc vocab=d01cd85f
+-/
 lemma norm_mul_monomial_of_mem_torus (b : ℂ) (k : Fin n → ℤ) {z : Fin n → ℂ}
     (hz : z ∈ torus ρ) : ‖b * monomial k z‖ = ‖b‖ * ∏ i, ρ i ^ k i := by
   rw [norm_mul, norm_monomial]
@@ -383,7 +453,9 @@ lemma norm_mul_monomial_of_mem_torus (b : ℂ) (k : Fin n → ℤ) {z : Fin n �
   exact Finset.prod_congr rfl fun i _ ↦ by rw [mem_torus.1 hz i]
 
 /-- **Multi-Laurent expansion**: a function holomorphic on a product of annuli is the sum of its
-multi-Laurent series there. -/
+multi-Laurent series there.
+@isnad1 id=hassum.3h6v.s7.227fc8378367 from=translated src=- shape=3f915533 vocab=b4315428
+-/
 theorem hasSum_mcoeff {f : (Fin n → ℂ) → ℂ} (hf : DifferentiableOn ℂ f (polyAnnulus r R))
     (hρ : ∀ i, IsRadius (r i) (R i) (ρ i)) {w : Fin n → ℂ} (hw : w ∈ polyAnnulus r R) :
     HasSum (fun k ↦ mcoeff f ρ k * monomial k w) (f w) := by
@@ -417,7 +489,9 @@ theorem hasSum_mcoeff {f : (Fin n → ℂ) → ℂ} (hf : DifferentiableOn ℂ f
 
 /-- **Uniqueness of multi-Laurent coefficients**: if `f` is the sum of an absolutely convergent
 Laurent series on the torus of polyradius `ρ`, its coefficients are the multi-Laurent
-coefficients of `f`. -/
+coefficients of `f`.
+@isnad1 id=eq.3h5v.s7.e41a96396d74 from=translated src=- shape=8852dc98 vocab=71290c80
+-/
 theorem mcoeff_eq_of_hasSum {f : (Fin n → ℂ) → ℂ} (hρ : ∀ i, 0 < ρ i)
     {b : (Fin n → ℤ) → ℂ} (hb : Summable fun k ↦ ‖b k‖ * ∏ i, ρ i ^ k i)
     (hf : ∀ z ∈ torus ρ, HasSum (fun k ↦ b k * monomial k z) (f z)) (k : Fin n → ℤ) :
@@ -485,7 +559,9 @@ theorem mcoeff_eq_of_hasSum {f : (Fin n → ℂ) → ℂ} (hρ : ∀ i, 0 < ρ i
     rw [hc (k 0) z' hz']
     exact (hinner' (k 0) z' hz').hasSum
 
-/-- The multi-Laurent series converges locally uniformly on the product of annuli. -/
+/-- The multi-Laurent series converges locally uniformly on the product of annuli.
+@isnad1 id=tendstol.2h5v.s8.3850b42e7e35 from=translated src=- shape=7739cca2 vocab=8f67fc7a
+-/
 theorem tendstoLocallyUniformlyOn_mcoeff {f : (Fin n → ℂ) → ℂ}
     (hf : DifferentiableOn ℂ f (polyAnnulus r R)) (hρ : ∀ i, IsRadius (r i) (R i) (ρ i)) :
     TendstoLocallyUniformlyOn
@@ -498,6 +574,9 @@ theorem tendstoLocallyUniformlyOn_mcoeff {f : (Fin n → ℂ) → ℂ}
     inter_subset_right).congr_right fun z hz ↦ (hasSum_mcoeff hf hρ hz.1).tsum_eq
   exact h U hU
 
+/--
+@isnad1 id=le.3h3v.s6.951e22e2316c from=translated src=- shape=5271ff31 vocab=b2a03d8d
+-/
 lemma zpow_le_zpow_of_neg {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) {k : ℤ} (hk : k < 0) :
     b ^ k ≤ a ^ k := by
   obtain ⟨m, rfl⟩ := Int.exists_eq_neg_ofNat hk.le
@@ -506,7 +585,9 @@ lemma zpow_le_zpow_of_neg {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) {k : ℤ} (hk
 
 /-- **Holomorphy of Laurent series**: a Laurent series which converges absolutely at every point
 of a product of annuli, and whose coefficients of negative degree in the disc factors vanish,
-has a holomorphic sum there. -/
+has a holomorphic sum there.
+@isnad1 id=differen.2h4v.s8.b600ad13b459 from=translated src=- shape=fcabb9e1 vocab=a4126b63
+-/
 theorem differentiableOn_tsum_monomial {b : (Fin n → ℤ) → ℂ}
     (hb0 : ∀ k i, r i < 0 → k i < 0 → b k = 0)
     (hsum : ∀ w ∈ polyAnnulus r R, Summable fun k ↦ ‖b k‖ * ∏ i, ‖w i‖ ^ k i) :
@@ -576,7 +657,9 @@ theorem differentiableOn_tsum_monomial {b : (Fin n → ℤ) → ℂ}
 /-- Any part `∑_{k ∈ S} a_k z ^ k` of the multi-Laurent expansion of a function `f` holomorphic
 on `polyAnnulus r R` is holomorphic on `polyAnnulus r' R` for any inner radii `r'` (e.g. filling
 in some factors to discs, `r' i < 0`), provided all exponents in `S` are nonnegative in the
-factors where `r'` differs from `r`. For `r' = r` this holds for every `S`. -/
+factors where `r'` differs from `r`. For `r' = r` this holds for every `S`.
+@isnad1 id=differen.3h7v.s8.0b2c35c6a847 from=translated src=- shape=4592996a vocab=40e96465
+-/
 theorem differentiableOn_tsum_indicator_mcoeff {f : (Fin n → ℂ) → ℂ}
     (hf : DifferentiableOn ℂ f (polyAnnulus r R)) (hρ : ∀ i, IsRadius (r i) (R i) (ρ i))
     (S : Set (Fin n → ℤ)) {r' : Fin n → ℝ}
@@ -615,7 +698,9 @@ theorem differentiableOn_tsum_indicator_mcoeff {f : (Fin n → ℂ) → ℂ}
       exact norm_nonneg _
 
 /-- The multi-Laurent coefficients of a part `∑_{k ∈ S} a_k z ^ k` of the expansion of `f` are
-those of `f` in `S` and vanish outside `S`. -/
+those of `f` in `S` and vanish outside `S`.
+@isnad1 id=eq.2h7v.s7.8faf58ac5259 from=translated src=- shape=0541e88e vocab=bd0a98b1
+-/
 theorem mcoeff_tsum_indicator_mcoeff {f : (Fin n → ℂ) → ℂ}
     (hf : DifferentiableOn ℂ f (polyAnnulus r R)) (hρ : ∀ i, IsRadius (r i) (R i) (ρ i))
     (S : Set (Fin n → ℤ)) (k : Fin n → ℤ) :
@@ -639,7 +724,9 @@ theorem mcoeff_tsum_indicator_mcoeff {f : (Fin n → ℂ) → ℂ}
     (norm_mul_monomial_of_mem_torus _ _ hz).symm)).hasSum
 
 /-- A function holomorphic on `ℂⁿ` whose multi-Laurent coefficients vanish outside a finite set
-of exponents is a polynomial. -/
+of exponents is a polynomial.
+@isnad1 id=ex.3h4v.s8.ed37804fff13 from=translated src=- shape=7400b445 vocab=b1493394
+-/
 theorem exists_mvPolynomial_eq {f : (Fin n → ℂ) → ℂ} (hf : Differentiable ℂ f)
     (hρ : ∀ i, 0 < ρ i) (s : Finset (Fin n → ℤ)) (hs : ∀ k ∉ s, mcoeff f ρ k = 0) :
     ∃ p : MvPolynomial (Fin n) ℂ, ∀ z, f z = MvPolynomial.eval z p := by

@@ -97,7 +97,9 @@ Stated as `Nat.card` of a subtype rather than as the cardinality of `Polynomial.
 because the consumer is counting the points of a fibre and `Polynomial.nthRootsFinset_toSet`
 already identifies the two sets. Mathlib has the case `a = 1` in the `IsPrimitiveRoot` namespace
 (see the module docstring on why that name is not in backticks), by a different route: that one
-goes through a primitive root and this one does not. -/
+goes through a primitive root and this one does not.
+@isnad1 id=eq.2h3v.s6.c1f1e8637289 from=translated src=- shape=93cb98ca vocab=7b7497ae
+-/
 theorem card_setOf_pow_eq {n : ℕ} {a : F} (hn : (n : F) ≠ 0) (ha : a ≠ 0) :
     Nat.card {x : F // x ^ n = a} = n := by
   classical

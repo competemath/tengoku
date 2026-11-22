@@ -53,9 +53,15 @@ def integralLaurent : Subalgebra O K[T;T⁻¹] where
     · exact ⟨r, rfl⟩
     · exact Subring.zero_mem _
 
+/--
+@isnad1 id=iff.0h2v.s9.84f2380e8032 from=translated src=- shape=14208213 vocab=35562802
+-/
 lemma mem_integralLaurent {f : K[T;T⁻¹]} :
     f ∈ integralLaurent O ↔ ∀ j, f.coeff j ∈ (algebraMap O K).range := Iff.rfl
 
+/--
+@isnad1 id=mem.0h2v.s9.15ae31b23326 from=translated src=- shape=beae5965 vocab=4f8b73ba
+-/
 lemma T_mem_integralLaurent (n : ℤ) : (T n : K[T;T⁻¹]) ∈ integralLaurent O := by
   intro j
   rw [T, AddMonoidAlgebra.coeff_single, Finsupp.single_apply]
@@ -63,7 +69,9 @@ lemma T_mem_integralLaurent (n : ℤ) : (T n : K[T;T⁻¹]) ∈ integralLaurent 
   · exact ⟨1, map_one _⟩
   · exact Subring.zero_mem _
 
-/-- The image of `O[X]` in `K[T;T⁻¹]`. -/
+/-- The image of `O[X]` in `K[T;T⁻¹]`.
+@isnad1 id=mem.0h2v.s10.43b91caf2177 from=translated src=- shape=b651f0c6 vocab=c7919b8c
+-/
 lemma toLaurent_map_mem_integralLaurent (h : Polynomial O) :
     Polynomial.toLaurent (h.map (algebraMap O K)) ∈ integralLaurent O := by
   induction h using Polynomial.induction_on' with
@@ -73,11 +81,17 @@ lemma toLaurent_map_mem_integralLaurent (h : Polynomial O) :
       Polynomial.toLaurent_C_mul_X_pow, ← LaurentPolynomial.algebraMap_apply]
     exact mul_mem (Subalgebra.algebraMap_mem _ _) (T_mem_integralLaurent _)
 
+/--
+@isnad1 id=eq.0h3v.s9.1541991e6ee1 from=translated src=- shape=dd3e050e vocab=eefd5527
+-/
 lemma coeff_toLaurent_natCast (p : Polynomial K) (k : ℕ) :
     (Polynomial.toLaurent p).coeff (k : ℤ) = p.coeff k := by
   rw [coeff_toLaurent]
   exact Finsupp.mapDomain_apply Nat.cast_injective _ k
 
+/--
+@isnad1 id=ex.1h2v.s10.9b8e0f570611 from=translated src=- shape=65663a40 vocab=c7919b8c
+-/
 lemma exists_map_eq_of_toLaurent_mem {p : Polynomial K}
     (hp : Polynomial.toLaurent p ∈ integralLaurent O) :
     ∃ h : Polynomial O, h.map (algebraMap O K) = p := by
@@ -90,6 +104,9 @@ lemma exists_map_eq_of_toLaurent_mem {p : Polynomial K}
 def Good (g : K[T;T⁻¹]) (N : ℕ) : Prop :=
   ∃ h : Polynomial O, Polynomial.toLaurent (h.map (algebraMap O K)) = T N * g
 
+/--
+@isnad1 id=good.2h4v.s5.f3a4b563575a from=translated src=- shape=b1a69f97 vocab=dbf22856
+-/
 lemma Good.mono {g : K[T;T⁻¹]} {N N' : ℕ} (hg : Good g N) (hN : N ≤ N') : Good g N' := by
   obtain ⟨h, hh⟩ := hg
   refine ⟨h * Polynomial.X ^ (N' - N), ?_⟩
@@ -98,12 +115,18 @@ lemma Good.mono {g : K[T;T⁻¹]} {N N' : ℕ} (hg : Good g N) (hN : N ≤ N') :
   congr 2
   push_cast [hN]; ring
 
+/--
+@isnad1 id=ex.1h2v.s9.469f91361a1f from=translated src=- shape=876a1740 vocab=03cfbc25
+-/
 lemma exists_good {g : K[T;T⁻¹]} (hg : g ∈ integralLaurent O) : ∃ N, Good g N := by
   obtain ⟨n, g', hg'⟩ := exists_T_pow g
   have : Polynomial.toLaurent g' ∈ integralLaurent O := hg' ▸ mul_mem hg (T_mem_integralLaurent _)
   obtain ⟨h, rfl⟩ := exists_map_eq_of_toLaurent_mem this
   exact ⟨n, h, hg'.trans (mul_comm _ _)⟩
 
+/--
+@isnad1 id=ex.1h2v.s9.799217323aa8 from=translated src=- shape=e279a0ea vocab=dd9858e3
+-/
 lemma exists_good_coeff {q : Polynomial K[T;T⁻¹]} (hq : ∀ i, q.coeff i ∈ integralLaurent O) :
     ∃ N, ∀ i, Good (q.coeff i) N := by
   classical
@@ -116,7 +139,9 @@ lemma exists_good_coeff {q : Polynomial K[T;T⁻¹]} (hq : ∀ i, q.coeff i ∈ 
 
 attribute [local instance] Polynomial.algebra in
 /-- `integralLaurent O` is integrally closed in `K[T;T⁻¹]`: a root of a monic polynomial with
-coefficients in `integralLaurent O` lies in `integralLaurent O`. -/
+coefficients in `integralLaurent O` lies in `integralLaurent O`.
+@isnad1 id=mem.3h3v.s10.614ba676ba66 from=translated src=- shape=3bfcf512 vocab=fe197ebc
+-/
 theorem mem_integralLaurent_of_eval_eq_zero [IsDomain O] [IsIntegrallyClosed O] {f : K[T;T⁻¹]}
     {q : Polynomial K[T;T⁻¹]} (hqm : q.Monic) (hq : ∀ i, q.coeff i ∈ integralLaurent O)
     (hf : q.eval f = 0) : f ∈ integralLaurent O := by
@@ -172,6 +197,9 @@ end IntegralLaurent
 
 section Scale
 
+/--
+@isnad1 id=eq.0h4v.s9.b7437bc90b9b from=translated src=- shape=7c36cca6 vocab=777253db
+-/
 lemma coeff_C_mul_T (a : K) (n j : ℤ) :
     (C a * T n : K[T;T⁻¹]).coeff j = if n = j then a else 0 := by
   rw [← single_eq_C_mul_T, AddMonoidAlgebra.coeff_single, Finsupp.single_apply]
@@ -193,6 +221,9 @@ noncomputable def scaleUnit {c : K} (hc : c ≠ 0) : (K[T;T⁻¹])ˣ where
 noncomputable def scale {c : K} (hc : c ≠ 0) : K[T;T⁻¹] →+* K[T;T⁻¹] :=
   LaurentPolynomial.eval₂ C (scaleUnit hc)
 
+/--
+@isnad1 id=eq.1h4v.s9.23d753098595 from=translated src=- shape=4d14dabb vocab=c65f3e4f
+-/
 lemma coeff_scale {c : K} (hc : c ≠ 0) (f : K[T;T⁻¹]) (j : ℤ) :
     (scale hc f).coeff j = c ^ j * f.coeff j := by
   induction f using LaurentPolynomial.induction_on' with
@@ -223,6 +254,9 @@ variable (a : O)
 
 variable {a}
 
+/--
+@isnad1 id=ne.1h2v.s8.65aa2ad6140e from=translated src=- shape=eb4e8fdf vocab=b5e4bef5
+-/
 lemma algebraMap_ne_zero (ha : a ≠ 0) : algebraMap O K a ≠ 0 :=
   (map_ne_zero_iff _ (FaithfulSMul.algebraMap_injective O K)).mpr ha
 

@@ -67,19 +67,34 @@ section Algebra
 
 variable {W : Type*} [NormedAddCommGroup W] [NormedSpace ℂ W]
 
+/--
+@isnad1 id=eq.0h5v.s10.3d0d0f4fd57c from=translated src=- shape=3d6e38bf vocab=9f97e9d1
+-/
 lemma shift_shift (m n : ℤ) (x : L1 W) : shift σ m (shift σ n x) = shift σ (m + n) x :=
   ext_coeff (zero_lt_one.trans_le hσ.out) fun j ↦ by simp [sub_sub]
 
+/--
+@isnad1 id=eq.0h3v.s8.09d042589b13 from=translated src=- shape=fcf0705a vocab=3446fec9
+-/
 @[simp]
 lemma shift_zero_apply (x : L1 W) : shift σ 0 x = x :=
   ext_coeff (zero_lt_one.trans_le hσ.out) fun j ↦ by simp
 
+/--
+@isnad1 id=eq.0h4v.s9.dbd4bd9a87eb from=translated src=- shape=397cf282 vocab=a1d91160
+-/
 lemma shift_neg_shift (m : ℤ) (x : L1 W) : shift σ (-m) (shift σ m x) = x := by
   rw [shift_shift, neg_add_cancel, shift_zero_apply]
 
+/--
+@isnad1 id=eq.0h4v.s9.d7716a117290 from=translated src=- shape=e5eb2fb5 vocab=a1d91160
+-/
 lemma shift_shift_neg (m : ℤ) (x : L1 W) : shift σ m (shift σ (-m) x) = x := by
   rw [shift_shift, add_neg_cancel, shift_zero_apply]
 
+/--
+@isnad1 id=eq.0h5v.s10.5e174ba3ad1e from=translated src=- shape=d5a8b856 vocab=ad732833
+-/
 lemma proj_shift (S : Set ℤ) (m : ℤ) (x : L1 W) :
     proj W S (shift σ m x) = shift σ m (proj W ((· + m) ⁻¹' S) x) :=
   ext_coeff (zero_lt_one.trans_le hσ.out) fun j ↦ by
@@ -88,25 +103,40 @@ lemma proj_shift (S : Set ℤ) (m : ℤ) (x : L1 W) :
     · simp [hj]
 
 omit hσ in
+/--
+@isnad1 id=eq.0h4v.s10.c1453e166676 from=translated src=- shape=565c79bb vocab=f7bcb957
+-/
 lemma proj_proj (S T : Set ℤ) (x : L1 W) : proj W S (proj W T x) = proj W (S ∩ T) x :=
   lp.ext <| funext fun j ↦ by
     by_cases hS : j ∈ S <;> by_cases hT : j ∈ T <;> simp [proj_apply, hS, hT]
 
 omit hσ in
+/--
+@isnad1 id=eq.0h3v.s9.4e6c7dc7374b from=translated src=- shape=f8c4e853 vocab=4203c207
+-/
 lemma proj_add_proj_compl (S : Set ℤ) (x : L1 W) : proj W S x + proj W Sᶜ x = x :=
   lp.ext <| funext fun j ↦ by
     by_cases hS : j ∈ S <;> simp [proj_apply, hS]
 
 omit hσ in
+/--
+@isnad1 id=eq.0h2v.s8.79dd00536fdc from=translated src=- shape=78691474 vocab=4e149432
+-/
 lemma proj_univ (x : L1 W) : proj W univ x = x :=
   lp.ext <| funext fun j ↦ by simp [proj_apply]
 
 omit hσ in
+/--
+@isnad1 id=eq.2h4v.s9.4a24a33d47b3 from=translated src=- shape=34321bc5 vocab=515daa1d
+-/
 lemma proj_of_subset {S T : Set ℤ} (h : T ⊆ S) {x : L1 W} (hx : proj W T x = x) :
     proj W S x = x := by
   rw [← hx, proj_proj, inter_eq_right.2 h]
 
 omit hσ in
+/--
+@isnad1 id=iff.0h3v.s9.80a7e587f687 from=translated src=- shape=89f5f654 vocab=631d998f
+-/
 lemma proj_eq_self_iff {S : Set ℤ} {x : L1 W} :
     proj W S x = x ↔ ∀ j ∉ S, x j = 0 := by
   refine ⟨fun h j hj ↦ ?_, fun h ↦ lp.ext <| funext fun j ↦ ?_⟩
@@ -116,6 +146,9 @@ lemma proj_eq_self_iff {S : Set ℤ} {x : L1 W} :
     · simp [proj_apply, hj, h j hj]
 
 omit hσ in
+/--
+@isnad1 id=eq.2h5v.s9.f9a4de6eec4e from=translated src=- shape=3f77dc04 vocab=386310cf
+-/
 lemma coeff_eq_zero_of_proj_eq_self {S : Set ℤ} {x : L1 W} (hx : proj W S x = x) {j : ℤ}
     (hj : j ∉ S) : coeff σ x j = 0 := by
   rw [coeff, proj_eq_self_iff.1 hx j hj, smul_zero]
@@ -131,10 +164,16 @@ variable (σ V) in
 noncomputable def mulL : L1 (V →L[ℂ] V) →L[ℂ] L1 V →L[ℂ] L1 V :=
   conv σ (ContinuousLinearMap.id ℂ (V →L[ℂ] V))
 
+/--
+@isnad1 id=eq.0h5v.s12.97bb0893531b from=translated src=- shape=4702cc75 vocab=ac63449b
+-/
 lemma coeff_mulL (g : L1 (V →L[ℂ] V)) (x : L1 V) (m : ℤ) :
     coeff σ (mulL V σ g x) m = ∑' i, coeff σ g i (coeff σ x (m - i)) :=
   coeff_conv _ g x m
 
+/--
+@isnad1 id=le.0h3v.s12.efae61fcb569 from=translated src=- shape=ec4910aa vocab=57ab75b2
+-/
 lemma norm_mulL_le (g : L1 (V →L[ℂ] V)) : ‖mulL V σ g‖ ≤ ‖g‖ := by
   refine ContinuousLinearMap.opNorm_le_bound _ (norm_nonneg _) fun x ↦ ?_
   refine (norm_conv_apply_apply_le _ g x).trans ?_
@@ -143,6 +182,9 @@ lemma norm_mulL_le (g : L1 (V →L[ℂ] V)) : ‖mulL V σ g‖ ≤ ‖g‖ := b
   calc ‖ContinuousLinearMap.id ℂ (V →L[ℂ] V)‖ * ‖g‖ ≤ 1 * ‖g‖ := by gcongr
     _ = ‖g‖ := one_mul _
 
+/--
+@isnad1 id=eq.0h5v.s13.48604bf04ce5 from=translated src=- shape=78883542 vocab=f4ce398a
+-/
 lemma mulL_shift (g : L1 (V →L[ℂ] V)) (m : ℤ) (x : L1 V) :
     mulL V σ g (shift σ m x) = shift σ m (mulL V σ g x) :=
   ext_coeff (zero_lt_one.trans_le hσ.out) fun j ↦ by
@@ -150,7 +192,9 @@ lemma mulL_shift (g : L1 (V →L[ℂ] V)) (m : ℤ) (x : L1 V) :
     exact tsum_congr fun i ↦ by rw [sub_right_comm]
 
 /-- The product of a series of degree at most `p` with one of degree at most `q` has degree at
-most `p + q`. -/
+most `p + q`.
+@isnad1 id=eq.3h7v.s13.397aa4a070c0 from=translated src=- shape=5ed6680d vocab=22114db5
+-/
 lemma proj_mulL_eq_zero_of_le {g : L1 (V →L[ℂ] V)} {x : L1 V} {p q n : ℤ}
     (hg : proj _ (Iic p) g = g) (hx : proj V (Iic q) x = x) (hn : p + q ≤ n) :
     proj V (Ioi n) (mulL V σ g x) = 0 :=
@@ -165,7 +209,9 @@ lemma proj_mulL_eq_zero_of_le {g : L1 (V →L[ℂ] V)} {x : L1 V} {p q n : ℤ}
     · exact indicator_of_notMem hm _
 
 /-- The product of a series of order at least `p` with one of order at least `q` has order at
-least `p + q`. -/
+least `p + q`.
+@isnad1 id=eq.3h7v.s13.6cf0fe0ea6b2 from=translated src=- shape=a45d6291 vocab=ec9212ed
+-/
 lemma proj_mulL_eq_zero_of_ge {g : L1 (V →L[ℂ] V)} {x : L1 V} {p q n : ℤ}
     (hg : proj _ (Ici p) g = g) (hx : proj V (Ici q) x = x) (hn : n < p + q) :
     proj V (Iic n) (mulL V σ g x) = 0 :=
@@ -179,7 +225,9 @@ lemma proj_mulL_eq_zero_of_ge {g : L1 (V →L[ℂ] V)} {x : L1 V} {p q n : ℤ}
         (lt_of_le_of_lt hm hn)
     · exact indicator_of_notMem hm _
 
-/-- **Tail estimate**: `‖π_{> k} (g · π_{< 0} x)‖ ≤ ‖π_{> k} g‖ ‖x‖`. -/
+/-- **Tail estimate**: `‖π_{> k} (g · π_{< 0} x)‖ ≤ ‖π_{> k} g‖ ‖x‖`.
+@isnad1 id=le.0h5v.s13.65858076e5c6 from=translated src=- shape=16f20551 vocab=f7456db1
+-/
 lemma norm_proj_Ioi_mulL_proj_Iio_le (g : L1 (V →L[ℂ] V)) (k : ℤ) (x : L1 V) :
     ‖proj V (Ioi k) (mulL V σ g (proj V (Iio 0) x))‖ ≤ ‖proj _ (Ioi k) g‖ * ‖x‖ := by
   have hsplit := proj_add_proj_compl (Iic k) g
@@ -200,7 +248,9 @@ lemma norm_proj_Ioi_mulL_proj_Iio_le (g : L1 (V →L[ℂ] V)) (k : ℤ) (x : L1 
         exact (ContinuousLinearMap.le_opNorm _ _).trans
           (mul_le_of_le_one_left (norm_nonneg _) (norm_proj_le _))
 
-/-- **Tail estimate**: `‖π_{≤ m} (g · π_{≥ 0} x)‖ ≤ ‖π_{≤ m} g‖ ‖x‖`. -/
+/-- **Tail estimate**: `‖π_{≤ m} (g · π_{≥ 0} x)‖ ≤ ‖π_{≤ m} g‖ ‖x‖`.
+@isnad1 id=le.0h5v.s13.7d8a3bb385be from=translated src=- shape=16f20551 vocab=21488e77
+-/
 lemma norm_proj_Iic_mulL_proj_Ici_le (g : L1 (V →L[ℂ] V)) (m : ℤ) (x : L1 V) :
     ‖proj V (Iic m) (mulL V σ g (proj V (Ici 0) x))‖ ≤ ‖proj _ (Iic m) g‖ * ‖x‖ := by
   have hsplit := proj_add_proj_compl (Iic m) g
@@ -236,6 +286,9 @@ noncomputable def phi (k : ℤ) : L1 V × L1 V →L[ℂ] L1 V :=
   ContinuousLinearMap.fst ℂ (L1 V) (L1 V) -
     (shift σ k ∘L mulL V σ g) ∘L ContinuousLinearMap.snd ℂ (L1 V) (L1 V)
 
+/--
+@isnad1 id=eq.0h5v.s12.d97b0460202a from=translated src=- shape=4f59c813 vocab=b2128398
+-/
 lemma phi_apply (k : ℤ) (x : L1 V × L1 V) : phi σ g k x = x.1 - shift σ k (mulL V σ g x.2) :=
   rfl
 
@@ -269,11 +322,17 @@ noncomputable def linvB (m : ℤ) : L1 V →L[ℂ] L1 V :=
 
 variable {σ g u}
 
+/--
+@isnad1 id=eq.0h5v.s10.4457efbc1e4e from=translated src=- shape=628ca5c9 vocab=c336ca3c
+-/
 lemma shift_proj_shift_neg {W : Type*} [NormedAddCommGroup W] [NormedSpace ℂ W] (S : Set ℤ)
     (m : ℤ) (x : L1 W) :
     shift σ m (proj W S (shift σ (-m) x)) = proj W ((· + -m) ⁻¹' S) x := by
   rw [proj_shift, shift_shift_neg]
 
+/--
+@isnad1 id=eq.1h6v.s13.c72440d1f1a4 from=translated src=- shape=1e85f9a7 vocab=0be5f95c
+-/
 lemma phi_rinv₀ (hgu : ∀ x, mulL V σ g (mulL V σ u x) = x) (k : ℤ) (x : L1 V) :
     phi σ g k (rinv₀ σ u k x) = x - errR σ g u k x := by
   have hS : (· + -k) ⁻¹' Iic (0 : ℤ) = Iic k := by
@@ -294,6 +353,9 @@ lemma phi_rinv₀ (hgu : ∀ x, mulL V σ g (mulL V σ u x) = x) (k : ℤ) (x : 
   have e2 : errR σ g u k x = mulL V σ g (proj V (Ioi k) z) := rfl
   rw [e1, e2, phi_apply, map_neg, map_neg, h1, h4, sub_neg_eq_add, ← add_sub_assoc, h3]
 
+/--
+@isnad1 id=eq.2h6v.s13.046cdcc63e33 from=translated src=- shape=ca0059f8 vocab=fde9a787
+-/
 lemma phi_rinv (hgu : ∀ x, mulL V σ g (mulL V σ u x) = x) {k : ℤ}
     (hk : IsUnit (1 - errR σ g u k)) (x : L1 V) : phi σ g k (rinv σ g u k x) = x := by
   rw [rinv, ContinuousLinearMap.comp_apply, phi_rinv₀ hgu]
@@ -301,14 +363,23 @@ lemma phi_rinv (hgu : ∀ x, mulL V σ g (mulL V σ u x) = x) {k : ℤ}
   rw [Ring.mul_inverse_cancel _ hk]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.a80d1a34daee from=translated src=- shape=0cbd82cf vocab=7e65f78a
+-/
 lemma rinv_fst_mem (k : ℤ) (x : L1 V) :
     proj V (Ici 0) (rinv σ g u k x).1 = (rinv σ g u k x).1 := by
   simp [rinv, rinv₀, proj_proj]
 
+/--
+@isnad1 id=eq.0h6v.s11.ce23cb6d8f33 from=translated src=- shape=0cbd82cf vocab=902067e4
+-/
 lemma rinv_snd_mem (k : ℤ) (x : L1 V) :
     proj V (Iic 0) (rinv σ g u k x).2 = (rinv σ g u k x).2 := by
   simp [rinv, rinv₀, proj_proj]
 
+/--
+@isnad1 id=eq.1h4v.s10.0729aac7787e from=translated src=- shape=f3ff490d vocab=06e139dc
+-/
 lemma proj_Iic_shift_of_proj {W : Type*} [NormedAddCommGroup W] [NormedSpace ℂ W] {m : ℤ}
     {b : L1 W} (hb : proj W (Iic 0) b = b) : proj W (Iic m) (shift σ m b) = shift σ m b := by
   rw [proj_shift]
@@ -317,6 +388,9 @@ lemma proj_Iic_shift_of_proj {W : Type*} [NormedAddCommGroup W] [NormedSpace ℂ
   simp only [mem_Iic, mem_preimage] at hj ⊢
   omega
 
+/--
+@isnad1 id=and.4h7v.s13.db83eb6a0858 from=translated src=- shape=b1cc8f03 vocab=73409ac6
+-/
 lemma linv_phi (hug : ∀ x, mulL V σ u (mulL V σ g x) = x) {m : ℤ}
     (hm : IsUnit (1 - errL σ g u m)) {a b : L1 V} (ha : proj V (Ici 0) a = a)
     (hb : proj V (Iic 0) b = b) :
@@ -372,6 +446,9 @@ noncomputable def recon (k m : ℤ) : L1 V →L[ℂ] L1 V × L1 V :=
 
 variable {σ g u}
 
+/--
+@isnad1 id=eq.2h6v.s10.9921631a3fab from=translated src=- shape=f7ffcf4e vocab=40465dd5
+-/
 lemma proj_shift_of_proj {W : Type*} [NormedAddCommGroup W] [NormedSpace ℂ W] {S T : Set ℤ}
     {m : ℤ} (hST : ∀ j ∈ S, j + m ∈ T) {x : L1 W} (hx : proj W S x = x) :
     proj W T (shift σ m x) = shift σ m x := by
@@ -379,9 +456,15 @@ lemma proj_shift_of_proj {W : Type*} [NormedAddCommGroup W] [NormedSpace ℂ W] 
   congr 1
   exact proj_of_subset hST hx
 
+/--
+@isnad1 id=eq.0h5v.s10.38d521f55b8a from=translated src=- shape=4d8ed772 vocab=10bf1d40
+-/
 lemma phi_inl (k : ℤ) (x : L1 V) : phi σ g k (x, 0) = x := by
   simp [phi_apply]
 
+/--
+@isnad1 id=eq.4h8v.s13.56d1a0d29ae3 from=translated src=- shape=2882778a vocab=308ab0b4
+-/
 lemma lhigh_phi (hug : ∀ x, mulL V σ u (mulL V σ g x) = x) {k m : ℤ}
     (hm : IsUnit (1 - errL σ g u m)) {a b : L1 V} (ha : proj V (Ici (k - m)) a = a)
     (hb : proj V (Iic 0) b = b) : lhigh σ g u k m (phi σ g k (a, b)) = (a, b) := by
@@ -394,19 +477,27 @@ lemma lhigh_phi (hug : ∀ x, mulL V σ u (mulL V σ g x) = x) {k m : ℤ}
     linvB σ g u m (shift σ (m - k) (phi σ g k (a, b)))) = (a, b)
   rw [hphi, h1, h2, shift_shift, show k - m + (m - k) = 0 by ring, shift_zero_apply]
 
+/--
+@isnad1 id=eq.2h7v.s13.b3aaa8bf7478 from=translated src=- shape=8345fd2a vocab=74a99b70
+-/
 lemma phi_sol (hgu : ∀ x, mulL V σ g (mulL V σ u x) = x) {k : ℤ}
     (hk : IsUnit (1 - errR σ g u k)) (m : ℤ) (x : L1 V) : phi σ g k (sol σ g u k m x) = x := by
   change phi σ g k (lhigh σ g u k m x +
     rinv σ g u k (x - phi σ g k (lhigh σ g u k m x))) = x
   rw [map_add, phi_rinv hgu hk, add_sub_cancel]
 
+/--
+@isnad1 id=eq.2h7v.s13.2c0b89493240 from=translated src=- shape=42e57eb6 vocab=b347ab32
+-/
 lemma phi_recon (hgu : ∀ x, mulL V σ g (mulL V σ u x) = x) {k : ℤ}
     (hk : IsUnit (1 - errR σ g u k)) (m : ℤ) (x : L1 V) : phi σ g k (recon σ g u k m x) = 0 := by
   change phi σ g k ((x, 0) - sol σ g u k m x) = 0
   rw [map_sub, phi_inl, phi_sol hgu hk, sub_self]
 
 /-- An element `(a, b)` of the kernel of `phi σ g k` is recovered by `recon` from the terms of `a`
-of degree less than `k - m`. -/
+of degree less than `k - m`.
+@isnad1 id=eq.4h8v.s13.51f74daa293b from=translated src=- shape=0489100a vocab=84d617d4
+-/
 lemma recon_proj (hug : ∀ x, mulL V σ u (mulL V σ g x) = x) {k m : ℤ}
     (hm : IsUnit (1 - errL σ g u m)) {a b : L1 V} (hb : proj V (Iic 0) b = b)
     (hab : phi σ g k (a, b) = 0) : recon σ g u k m (proj V (Iio (k - m)) a) = (a, b) := by
@@ -434,6 +525,9 @@ lemma recon_proj (hug : ∀ x, mulL V σ u (mulL V σ g x) = x) {k m : ℤ}
   rw [hsol', sub_neg_eq_add]
   exact Prod.ext hsplit (zero_add b)
 
+/--
+@isnad1 id=eq.1h6v.s11.f98e80a362e1 from=translated src=- shape=f54fdc2f vocab=4dbc7b66
+-/
 lemma linvA_mem {m : ℤ} (hm : IsUnit (1 - errL σ g u m)) (y : L1 V) :
     proj V (Ici 0) (linvA σ g u m y) = linvA σ g u m y := by
   set w := proj V (Ici 0) ((1 - mulL V σ g ∘L proj V (Iic m) ∘L mulL V σ u) y)
@@ -450,6 +544,9 @@ lemma linvA_mem {m : ℤ} (hm : IsUnit (1 - errL σ g u m)) (y : L1 V) :
     simp [errL, proj_proj]
   rw [hv', map_add, hw, hK]
 
+/--
+@isnad1 id=eq.3h7v.s12.6f86477bfdb4 from=translated src=- shape=22561fb9 vocab=d1acc1c5
+-/
 lemma recon_fst_mem {k m : ℤ} (hm : IsUnit (1 - errL σ g u m)) (hkm : m ≤ k) {p : L1 V}
     (hp : proj V (Ici 0) p = p) : proj V (Ici 0) (recon σ g u k m p).1 = (recon σ g u k m p).1 := by
   change proj V (Ici 0) (p - (shift σ (k - m) (linvA σ g u m (shift σ (m - k) p)) +
@@ -460,6 +557,9 @@ lemma recon_fst_mem {k m : ℤ} (hm : IsUnit (1 - errL σ g u m)) (hkm : m ≤ k
     proj_shift_of_proj (S := Ici 0) (fun j hj ↦ by simp only [mem_Ici] at hj ⊢; omega)
       (linvA_mem hm _)]
 
+/--
+@isnad1 id=eq.0h7v.s11.e36d5111c278 from=translated src=- shape=fb1ef1f4 vocab=b375fb47
+-/
 lemma recon_snd_mem {k m : ℤ} (p : L1 V) :
     proj V (Iic 0) (recon σ g u k m p).2 = (recon σ g u k m p).2 := by
   change proj V (Iic 0) (0 - (shift σ (-m) (proj V (Iic m) (mulL V σ u
@@ -489,10 +589,16 @@ noncomputable def ofJet (D : ℕ) : (Fin D → V) →L[ℂ] L1 V :=
     ((wt σ i : ℂ) • ContinuousLinearMap.proj i)
 
 omit [CompleteSpace V] hσ in
+/--
+@isnad1 id=eq.0h5v.s8.b84b10e3d5dd from=translated src=- shape=ad8d2c75 vocab=1e6b7fce
+-/
 @[simp]
 lemma toJet_apply (D : ℕ) (a : L1 V) (i : Fin D) : toJet V σ D a i = coeff σ a i := rfl
 
 omit [CompleteSpace V] hσ in
+/--
+@isnad1 id=eq.0h5v.s9.3f9d89f37d41 from=translated src=- shape=a9567905 vocab=0a1e6386
+-/
 lemma ofJet_apply (D : ℕ) (c : Fin D → V) (j : ℤ) :
     ofJet V σ D c j = ∑ i : Fin D, if j = i then (wt σ i : ℂ) • c i else 0 := by
   simp only [ofJet, FunLike.coe_sum, Finset.sum_apply,
@@ -503,6 +609,9 @@ lemma ofJet_apply (D : ℕ) (c : Fin D → V) (j : ℤ) :
   rw [lp.coeFn_single, Pi.single_apply]
 
 omit [CompleteSpace V] hσ in
+/--
+@isnad1 id=eq.0h5v.s9.4dc4a889e883 from=translated src=- shape=6ebabff5 vocab=142ebead
+-/
 lemma ofJet_apply_natCast (D : ℕ) (c : Fin D → V) (i : Fin D) :
     ofJet V σ D c (i : ℤ) = (wt σ i : ℂ) • c i := by
   rw [ofJet_apply, Finset.sum_eq_single i]
@@ -513,6 +622,9 @@ lemma ofJet_apply_natCast (D : ℕ) (c : Fin D → V) (i : Fin D) :
   · simp
 
 omit [CompleteSpace V] hσ in
+/--
+@isnad1 id=eq.1h5v.s9.f69de7e6cbfe from=translated src=- shape=55f6ef42 vocab=29bc5746
+-/
 lemma ofJet_apply_of_notMem (D : ℕ) (c : Fin D → V) {j : ℤ} (hj : j ∉ Ico (0 : ℤ) D) :
     ofJet V σ D c j = 0 := by
   rw [ofJet_apply]
@@ -522,6 +634,9 @@ lemma ofJet_apply_of_notMem (D : ℕ) (c : Fin D → V) {j : ℤ} (hj : j ∉ Ic
   exact hj ⟨by positivity, by exact_mod_cast i.2⟩
 
 omit [CompleteSpace V] in
+/--
+@isnad1 id=eq.0h4v.s10.078639ebc0a8 from=translated src=- shape=3a327495 vocab=bb5fc3e5
+-/
 lemma ofJet_toJet (D : ℕ) (a : L1 V) : ofJet V σ D (toJet V σ D a) = proj V (Ico 0 D) a := by
   refine lp.ext <| funext fun j ↦ ?_
   rw [proj_apply]
@@ -535,6 +650,9 @@ lemma ofJet_toJet (D : ℕ) (a : L1 V) : ofJet V σ D (toJet V σ D a) = proj V 
   · rw [ofJet_apply_of_notMem D _ hj, indicator_of_notMem hj]
 
 omit [CompleteSpace V] hσ in
+/--
+@isnad1 id=eq.0h4v.s10.3b58b1488d2b from=translated src=- shape=dc9e245a vocab=40f557a9
+-/
 lemma proj_ofJet (D : ℕ) (c : Fin D → V) : proj V (Ici 0) (ofJet V σ D c) = ofJet V σ D c :=
   proj_eq_self_iff.2 fun _ hj ↦ ofJet_apply_of_notMem D c fun h ↦ hj h.1
 
@@ -549,7 +667,9 @@ noncomputable def jetIdem (k : ℤ) (D : ℕ) : (Fin D → V) →L[ℂ] (Fin D �
 variable {σ g u}
 
 /-- A pair `(a, b)` in the kernel of `phi σ g k` is determined by the first `D` coefficients of
-`a`. -/
+`a`.
+@isnad1 id=eq.5h8v.s13.bea6f43ce4cc from=translated src=- shape=5fa38aa9 vocab=d40797e1
+-/
 lemma recon_ofJet_toJet (hug : ∀ x, mulL V σ u (mulL V σ g x) = x) {k : ℤ} {D : ℕ}
     (hm : IsUnit (1 - errL σ g u (k - D))) {a b : L1 V} (ha : proj V (Ici 0) a = a)
     (hb : proj V (Iic 0) b = b) (hab : phi σ g k (a, b) = 0) :
@@ -561,6 +681,9 @@ lemma recon_ofJet_toJet (hug : ∀ x, mulL V σ u (mulL V σ g x) = x) {k : ℤ}
       ext j; simp only [mem_Ico, mem_inter_iff, mem_Iio, mem_Ici]; omega]
   rw [ofJet_toJet, e, h]
 
+/--
+@isnad1 id=eq.5h8v.s13.a244b2eae59a from=translated src=- shape=ee0f6d87 vocab=95a55558
+-/
 lemma jetIdem_toJet (hug : ∀ x, mulL V σ u (mulL V σ g x) = x) {k : ℤ} {D : ℕ}
     (hm : IsUnit (1 - errL σ g u (k - D))) {a b : L1 V} (ha : proj V (Ici 0) a = a)
     (hb : proj V (Iic 0) b = b) (hab : phi σ g k (a, b) = 0) :
@@ -568,11 +691,17 @@ lemma jetIdem_toJet (hug : ∀ x, mulL V σ u (mulL V σ g x) = x) {k : ℤ} {D 
   change toJet V σ D (recon σ g u k (k - D) (ofJet V σ D (toJet V σ D a))).1 = _
   rw [recon_ofJet_toJet hug hm ha hb hab]
 
+/--
+@isnad1 id=eq.2h7v.s13.3ed96f1f18d5 from=translated src=- shape=ba11199c vocab=de687e0a
+-/
 lemma phi_recon_ofJet (hgu : ∀ x, mulL V σ g (mulL V σ u x) = x) {k : ℤ}
     (hk : IsUnit (1 - errR σ g u k)) (D : ℕ) (c : Fin D → V) :
     phi σ g k (recon σ g u k (k - D) (ofJet V σ D c)) = 0 :=
   phi_recon hgu hk _ _
 
+/--
+@isnad1 id=eq.4h6v.s14.60256e09ac10 from=translated src=- shape=6446a4c8 vocab=5d6da432
+-/
 lemma jetIdem_comp_self (hgu : ∀ x, mulL V σ g (mulL V σ u x) = x)
     (hug : ∀ x, mulL V σ u (mulL V σ g x) = x) {k : ℤ} {D : ℕ}
     (hk : IsUnit (1 - errR σ g u k)) (hm : IsUnit (1 - errL σ g u (k - D))) :
@@ -593,6 +722,9 @@ section Bounds
 
 variable {g u : L1 (V →L[ℂ] V)}
 
+/--
+@isnad1 id=le.0h5v.s12.dded04d88833 from=translated src=- shape=18de8384 vocab=91d2da89
+-/
 lemma norm_errR_le (k : ℤ) : ‖errR σ g u k‖ ≤ ‖g‖ * ‖proj _ (Ioi k) u‖ := by
   refine ContinuousLinearMap.opNorm_le_bound _ (by positivity) fun x ↦ ?_
   change ‖mulL V σ g (proj V (Ioi k) (mulL V σ u (proj V (Iio 0) x)))‖ ≤ _
@@ -603,6 +735,9 @@ lemma norm_errR_le (k : ℤ) : ‖errR σ g u k‖ ≤ ‖g‖ * ‖proj _ (Ioi 
         exact norm_proj_Ioi_mulL_proj_Iio_le u k x
     _ = _ := by ring
 
+/--
+@isnad1 id=le.0h5v.s12.2da28370c19c from=translated src=- shape=18de8384 vocab=1a6f4710
+-/
 lemma norm_errL_le (m : ℤ) : ‖errL σ g u m‖ ≤ ‖g‖ * ‖proj _ (Iic m) u‖ := by
   refine ContinuousLinearMap.opNorm_le_bound _ (by positivity) fun x ↦ ?_
   change ‖proj V (Ici 0) (mulL V σ g (proj V (Iic m) (mulL V σ u (proj V (Ici 0) x))))‖ ≤ _
@@ -625,6 +760,9 @@ section Holomorphic
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {s : Set E}
   {g u : E → L1 (V →L[ℂ] V)}
 
+/--
+@isnad1 id=differen.2h7v.s10.8fb778f2a319 from=translated src=- shape=4025327c vocab=a059fa7b
+-/
 lemma differentiableOn_clm_prod {X Y Z : Type*} [NormedAddCommGroup X] [NormedSpace ℂ X]
     [NormedAddCommGroup Y] [NormedSpace ℂ Y] [NormedAddCommGroup Z] [NormedSpace ℂ Z]
     {A : E → X →L[ℂ] Y} {B : E → X →L[ℂ] Z} (hA : DifferentiableOn ℂ A s)
@@ -636,6 +774,9 @@ lemma differentiableOn_clm_prod {X Y Z : Type*} [NormedAddCommGroup X] [NormedSp
 variable (hg : DifferentiableOn ℂ g s) (hu : DifferentiableOn ℂ u s)
 include hg hu
 
+/--
+@isnad1 id=differen.3h7v.s12.111bbd712ce5 from=translated src=- shape=c853fb0a vocab=a491fd47
+-/
 lemma differentiableOn_rinv {k : ℤ} (hk : ∀ z ∈ s, IsUnit (1 - errR σ (g z) (u z) k)) :
     DifferentiableOn ℂ (fun z ↦ rinv σ (g z) (u z) k) s := by
   have hE : DifferentiableOn ℂ (fun z ↦ errR σ (g z) (u z) k) s := by
@@ -647,6 +788,9 @@ lemma differentiableOn_rinv {k : ℤ} (hk : ∀ z ∈ s, IsUnit (1 - errR σ (g 
     exact differentiableOn_clm_prod (differentiableOn_const _) (by fun_prop)
   exact h₀.clm_comp hI
 
+/--
+@isnad1 id=differen.3h7v.s12.31d3cc60e651 from=translated src=- shape=21702ede vocab=a9dd6afa
+-/
 lemma differentiableOn_linvA {m : ℤ} (hm : ∀ z ∈ s, IsUnit (1 - errL σ (g z) (u z) m)) :
     DifferentiableOn ℂ (fun z ↦ linvA σ (g z) (u z) m) s := by
   have hE : DifferentiableOn ℂ (fun z ↦ errL σ (g z) (u z) m) s := by
@@ -656,12 +800,18 @@ lemma differentiableOn_linvA {m : ℤ} (hm : ∀ z ∈ s, IsUnit (1 - errL σ (g
   unfold linvA
   exact hI.clm_comp (by fun_prop)
 
+/--
+@isnad1 id=differen.3h7v.s12.3244b8d7d2d2 from=translated src=- shape=21702ede vocab=76d1e4e8
+-/
 lemma differentiableOn_linvB {m : ℤ} (hm : ∀ z ∈ s, IsUnit (1 - errL σ (g z) (u z) m)) :
     DifferentiableOn ℂ (fun z ↦ linvB σ (g z) (u z) m) s := by
   have hA := differentiableOn_linvA hg hu hm
   unfold linvB
   fun_prop
 
+/--
+@isnad1 id=differen.4h8v.s13.4a691c574553 from=translated src=- shape=47344361 vocab=b48f11f5
+-/
 lemma differentiableOn_recon {k : ℤ} {D : ℕ} (hk : ∀ z ∈ s, IsUnit (1 - errR σ (g z) (u z) k))
     (hm : ∀ z ∈ s, IsUnit (1 - errL σ (g z) (u z) (k - D))) :
     DifferentiableOn ℂ (fun z ↦ recon σ (g z) (u z) k (k - D)) s := by
@@ -677,6 +827,9 @@ lemma differentiableOn_recon {k : ℤ} {D : ℕ} (hk : ∀ z ∈ s, IsUnit (1 - 
   unfold recon sol
   fun_prop
 
+/--
+@isnad1 id=differen.4h8v.s12.da4dbedca50f from=translated src=- shape=cad61725 vocab=6080c5a2
+-/
 lemma differentiableOn_jetIdem {k : ℤ} {D : ℕ} (hk : ∀ z ∈ s, IsUnit (1 - errR σ (g z) (u z) k))
     (hm : ∀ z ∈ s, IsUnit (1 - errL σ (g z) (u z) (k - D))) :
     DifferentiableOn ℂ (fun z ↦ jetIdem σ (g z) (u z) k D) s := by

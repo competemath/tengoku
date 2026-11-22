@@ -42,12 +42,21 @@ set of `j + 1` labels. The index convention follows the papers: the *subscript* 
 is the cardinality, so `procLabels j` is the set called `S_{j+1}`. -/
 def procLabels (j : ℕ) : Finset ℕ := Finset.Iic j
 
+/--
+@isnad1 id=eq.0h1v.s4.5d9c01c30434 from=translated src=- shape=2957bb08 vocab=2258fb47
+-/
 @[simp]
 lemma card_procLabels (j : ℕ) : (procLabels j).card = j + 1 := Nat.card_Iic j
 
+/--
+@isnad1 id=iff.0h2v.s4.9964fd77ab5e from=translated src=- shape=0a5e357a vocab=f313c788
+-/
 @[simp]
 lemma mem_procLabels {i j : ℕ} : i ∈ procLabels j ↔ i ≤ j := Finset.mem_Iic
 
+/--
+@isnad1 id=le.1h2v.s4.24ae11baef6f from=translated src=- shape=1e5c1409 vocab=b666589f
+-/
 lemma procLabels_mono {i j : ℕ} (h : i ≤ j) : procLabels i ⊆ procLabels j :=
   Finset.Iic_subset_Iic.mpr h
 
@@ -97,6 +106,9 @@ def inclusion {i j : Fin P.length} (h : i ≤ j) :
     (P.capsule i).LabelType → (P.capsule j).LabelType :=
   fun a => ⟨a.1, P.labels_mono h a.2⟩
 
+/--
+@isnad1 id=eq.1h5v.s6.bdf3a9180857 from=translated src=- shape=8e1db1f5 vocab=24b99035
+-/
 @[simp]
 lemma inclusion_coe {i j : Fin P.length} (h : i ≤ j) (a : (P.capsule i).LabelType) :
     (P.inclusion h a).1 = a.1 := rfl
@@ -111,15 +123,23 @@ def standard (n : ℕ) : Procession ℕ where
   capsule i := ⟨procLabels (i + 1)⟩
   labels_mono i j h := procLabels_mono (by exact Nat.add_le_add_right h 1)
 
+/--
+@isnad1 id=eq.0h1v.s3.a214124a1ebc from=translated src=- shape=9baae94e vocab=ce116da2
+-/
 @[simp]
 lemma standard_length (n : ℕ) : (standard n).length = n := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.72874f5234bf from=translated src=- shape=d0dada2c vocab=3c714104
+-/
 @[simp]
 lemma standard_capsule_labels (n : ℕ) (i : Fin n) :
     ((standard n).capsule i).labels = procLabels (i + 1) := rfl
 
 /-- The `i`-th capsule of the standard procession has `i + 2` labels: it is the label
-set `S_{j+1}` with `j = i + 1`, of cardinality `j + 1`. -/
+set `S_{j+1}` with `j = i + 1`, of cardinality `j + 1`.
+@isnad1 id=eq.0h2v.s4.ddbb71cee097 from=translated src=- shape=4e121a63 vocab=5a90598d
+-/
 lemma standard_capsule_card (n : ℕ) (i : Fin n) :
     ((standard n).capsule i).card = i + 2 := by
   simp [Capsule.card, standard]

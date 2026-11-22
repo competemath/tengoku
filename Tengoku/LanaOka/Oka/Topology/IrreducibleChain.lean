@@ -34,7 +34,9 @@ open Topology TopologicalSpace
 variable {X : Type*} [TopologicalSpace X]
 
 /-- If every point of `X` has an open neighbourhood which is a Noetherian topological space, then
-the irreducible components of `X` form a locally finite family. -/
+the irreducible components of `X` form a locally finite family.
+@isnad1 id=locallyf.1h1v.s6.9be9e0471aa1 from=translated src=- shape=1e0b76d4 vocab=8a2756e4
+-/
 theorem _root_.Tengoku.LanaOka.locallyFinite_irreducibleComponents
     (h : ∀ x : X, ∃ U : Set X, IsOpen U ∧ x ∈ U ∧ NoetherianSpace U) :
     LocallyFinite (fun Z : irreducibleComponents X ↦ (Z : Set X)) := by
@@ -62,7 +64,9 @@ theorem _root_.Tengoku.LanaOka.locallyFinite_irreducibleComponents
 
 /-- **Chain lemma.** In a connected Jacobson space whose irreducible components are locally
 finite, any two closed points are linked by a chain of closed points in which consecutive points
-lie in a common irreducible component. -/
+lie in a common irreducible component.
+@isnad1 id=refltran.3h3v.s7.6e2897af8c22 from=translated src=- shape=97607ddf vocab=1311beee
+-/
 theorem JacobsonSpace.reflTransGen_irreducibleComponents [JacobsonSpace X] [ConnectedSpace X]
     (hfin : LocallyFinite (fun Z : irreducibleComponents X ↦ (Z : Set X))) {x y : X}
     (hx : IsClosed {x}) (hy : IsClosed {y}) :

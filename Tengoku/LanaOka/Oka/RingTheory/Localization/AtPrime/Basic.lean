@@ -56,7 +56,9 @@ variable {A R : Type*} [CommRing A] [CommRing R] [Algebra A R]
   (p : Ideal R) [p.IsMaximal] (k : ℕ)
 
 /-- Modulo `p ^ k`, the elements outside a maximal ideal `p` are units — so the submonoid the
-localisation at `p` inverts is already invertible there. -/
+localisation at `p` inverts is already invertible there.
+@isnad1 id=le.0h3v.s10.9a04f8e03133 from=translated src=- shape=3e3db971 vocab=d21d0952
+-/
 theorem algebraMapSubmonoid_primeCompl_le_isUnit :
     Algebra.algebraMapSubmonoid (R ⧸ p ^ k) p.primeCompl ≤ IsUnit.submonoid (R ⧸ p ^ k) := by
   rintro _ ⟨x, hx, rfl⟩
@@ -70,6 +72,9 @@ def quotientPowAtPrimeEquivSelf :
   IsLocalization.atUnits (R ⧸ p ^ k) (Algebra.algebraMapSubmonoid (R ⧸ p ^ k) p.primeCompl)
     (algebraMapSubmonoid_primeCompl_le_isUnit p k)
 
+/--
+@isnad1 id=eq.0h4v.s12.e6231ac45b0c from=translated src=- shape=d49b636c vocab=b64ec73c
+-/
 theorem quotientPowAtPrimeEquivSelf_mk (x : R) :
     quotientPowAtPrimeEquivSelf p k (Ideal.Quotient.mk _ x) =
       Ideal.Quotient.mk _ (algebraMap R (Localization.AtPrime p) x) := rfl
@@ -85,6 +90,9 @@ def quotientPowAtPrimeEquiv :
     rw [quotientPowAtPrimeEquivSelf_mk, ← IsScalarTower.algebraMap_apply]
     rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.2eee14300528 from=translated src=- shape=aa0c6f0f vocab=c06508fc
+-/
 @[simp]
 theorem quotientPowAtPrimeEquiv_mk (x : R) :
     quotientPowAtPrimeEquiv (A := A) p k (Ideal.Quotient.mk _ x) =

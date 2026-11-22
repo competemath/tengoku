@@ -37,6 +37,9 @@ def frob (g : SL(2, ℝ)) : ℝ := g 0 0 ^ 2 + g 0 1 ^ 2 + g 1 0 ^ 2 + g 1 1 ^ 2
 /-- The Cauchy weight. -/
 noncomputable def cw (x : ℝ) : ℝ≥0∞ := ENNReal.ofReal (1 + x ^ 2)⁻¹
 
+/--
+@isnad1 id=measurab.0h0v.s2.cff1da419411 from=translated src=- shape=54c8eceb vocab=a93b5bb4
+-/
 lemma measurable_cw : Measurable cw := by unfold cw; fun_prop
 
 /-- The Cauchy measure on `ℝ`, and on the boundary `OnePoint ℝ` (a finite measure in the
@@ -45,14 +48,23 @@ noncomputable def cauchyR : Measure ℝ := volume.withDensity cw
 
 noncomputable def cauchy : Measure (OnePoint ℝ) := cauchyR.map ((↑) : ℝ → OnePoint ℝ)
 
+/--
+@isnad1 id=eq.1h1v.s6.1e5f62eb0e53 from=translated src=- shape=79448b30 vocab=77d5b9be
+-/
 lemma cauchy_apply {E : Set (OnePoint ℝ)} (hE : MeasurableSet E) :
     cauchy E = ∫⁻ x in (↑) ⁻¹' E, cw x := by
   rw [cauchy, Measure.map_apply OnePoint.continuous_coe.measurable hE, cauchyR,
     withDensity_apply _ (OnePoint.continuous_coe.measurable hE)]
 
+/--
+@isnad1 id=absolute.0h0v.s3.7f769e226fff from=translated src=- shape=00fb11d7 vocab=3ff65411
+-/
 lemma cauchy_absolutelyContinuous_bdry : cauchy ≪ bdry :=
   (withDensity_absolutelyContinuous _ _).map OnePoint.continuous_coe.measurable
 
+/--
+@isnad1 id=absolute.0h0v.s3.f49be8e51956 from=translated src=- shape=00fb11d7 vocab=3ff65411
+-/
 lemma bdry_absolutelyContinuous_cauchy : bdry ≪ cauchy := by
   refine Measure.AbsolutelyContinuous.map ?_ OnePoint.continuous_coe.measurable
   refine withDensity_absolutelyContinuous' measurable_cw.aemeasurable ?_

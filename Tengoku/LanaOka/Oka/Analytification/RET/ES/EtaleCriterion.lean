@@ -49,7 +49,9 @@ section Fibre
 variable {A B O : Type*} [CommRing A] [CommRing B] [CommRing O] [Algebra A B] [Algebra A O]
   {ι : Type*} [Finite ι]
 
-/-- An `O`-algebra isomorphism `O ⊗[A] B ≅ O^ι` makes `O ⊗[A] B` a flat `O`-module. -/
+/-- An `O`-algebra isomorphism `O ⊗[A] B ≅ O^ι` makes `O ⊗[A] B` a flat `O`-module.
+@isnad1 id=flat.1h5v.s9.76df2187ac60 from=translated src=- shape=5b301749 vocab=b3a88c04
+-/
 theorem flat_of_bijective (Ψ : O ⊗[A] B →ₐ[O] (ι → O)) (hΨ : Function.Bijective Ψ) :
     Module.Flat O (O ⊗[A] B) :=
   Module.Flat.of_linearEquiv (AlgEquiv.ofBijective Ψ hΨ).toLinearEquiv
@@ -66,13 +68,18 @@ noncomputable def fibreAlgEquivOfBijective : K ⊗[A] B ≃ₐ[K] (ι → K) :=
     (Algebra.TensorProduct.congr AlgEquiv.refl (AlgEquiv.ofBijective Ψ hΨ)).trans <|
       Algebra.TensorProduct.piScalarRight O K K ι
 
+/--
+@isnad1 id=eq.1h8v.s10.038fb1ba6ca2 from=translated src=- shape=afa6a500 vocab=acf86f6e
+-/
 theorem fibreAlgEquivOfBijective_one_tmul (b : B) (i : ι) :
     fibreAlgEquivOfBijective Ψ hΨ K (1 ⊗ₜ b) i = algebraMap O K (Ψ (1 ⊗ₜ b) i) := by
   simp [fibreAlgEquivOfBijective, Algebra.algebraMap_eq_smul_one]
 
 end Fibre
 
-/-- The fibre `K ⊗[A] B ≅ K^ι` of a split algebra over a field is unramified. -/
+/-- The fibre `K ⊗[A] B ≅ K^ι` of a split algebra over a field is unramified.
+@isnad1 id=formally.1h6v.s9.c62a1c30f58d from=translated src=- shape=393ba9b8 vocab=aa2610c9
+-/
 theorem formallyUnramified_of_bijective {A B O : Type*} [CommRing A] [CommRing B] [CommRing O]
     [Algebra A B] [Algebra A O] {ι : Type*} [Finite ι] (Ψ : O ⊗[A] B →ₐ[O] (ι → O))
     (hΨ : Function.Bijective Ψ) (K : Type*) [Field K] [Algebra O K] [Algebra A K]
@@ -84,7 +91,9 @@ section Kernel
 variable {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
 
 /-- The kernel of `b ↦ 1 ⊗ b : B → K ⊗[A] B` lies in every ideal `n` of `B` whose contraction
-contains the kernel of a surjection `A → K`. -/
+contains the kernel of a surjection `A → K`.
+@isnad1 id=mem.3h5v.s9.7f44fba2f972 from=translated src=- shape=fb7dcfb5 vocab=851a1506
+-/
 theorem mem_of_includeRight_eq_zero {K : Type*} [CommRing K] [Algebra A K]
     (hK : Function.Surjective (algebraMap A K)) (n : Ideal B)
     (hn : RingHom.ker (algebraMap A K) ≤ n.comap (algebraMap A B)) {b : B}
@@ -110,7 +119,9 @@ end Kernel
 
 section Primes
 
-/-- **The prime ideals of a finite product of fields** are the kernels of the projections. -/
+/-- **The prime ideals of a finite product of fields** are the kernels of the projections.
+@isnad1 id=ex.0h3v.s7.7a3801a6dff0 from=translated src=- shape=4b86ae02 vocab=de0fbd8c
+-/
 theorem _root_.Pi.exists_eq_ker_evalRingHom_of_isPrime {ι K : Type*} [Finite ι] [Field K]
     (Q : Ideal (ι → K)) [hQ : Q.IsPrime] : ∃ i, Q = RingHom.ker (Pi.evalRingHom (fun _ ↦ K) i) := by
   classical
@@ -153,7 +164,9 @@ include hK
 
 /-- **The primes of `B` over the kernel of a surjection `A → K` onto a field**: if the fibre
 `K ⊗[A] B` is `K^ι`, every prime of `B` whose contraction contains the kernel is the kernel of
-one of the coordinates `b ↦ E (1 ⊗ b) i`. -/
+one of the coordinates `b ↦ E (1 ⊗ b) i`.
+@isnad1 id=ex.2h6v.s9.e592b796d3b5 from=translated src=- shape=2dce45d5 vocab=9458d195
+-/
 theorem exists_forall_mem_iff_fibre_eq_zero (n : Ideal B) [n.IsPrime]
     (hn : RingHom.ker (algebraMap A K) ≤ n.comap (algebraMap A B)) :
     ∃ i, ∀ b, b ∈ n ↔ E (1 ⊗ₜ b) i = 0 := by
@@ -200,7 +213,9 @@ variable {A M : Type*} [CommRing A] [AddCommGroup M] [Module A M]
 
 /-- **Flatness of a localisation from a faithfully flat extension**: if `S` is the localisation
 of `A` at the prime `P` and `O` is a faithfully flat `S`-algebra with `O ⊗[A] M` flat over `O`,
-then `M_P` is flat over `A`. -/
+then `M_P` is flat over `A`.
+@isnad1 id=flat.0h5v.s8.ca91ddb86e17 from=translated src=- shape=a88affac vocab=7867ff7f
+-/
 theorem flat_localizedModule_of_faithfullyFlat (P : Ideal A) [P.IsPrime] (S O : Type*)
     [CommRing S] [CommRing O] [Algebra A S] [Algebra S O] [Algebra A O] [IsScalarTower A S O]
     [IsLocalization.AtPrime S P] [Module.FaithfullyFlat S O] [Module.Flat O (O ⊗[A] M)] :
@@ -216,7 +231,9 @@ theorem flat_localizedModule_of_faithfullyFlat (P : Ideal A) [P.IsPrime] (S O : 
     (LocalizedModule.mkLinearMap P.primeCompl M) (TensorProduct.mk A S M 1))
 
 /-- **Nakayama at all maximal ideals**: a finite `A`-module `M` such that `K ⊗[A] M = 0`
-for a surjection `A → K` with kernel `P`, at every maximal ideal `P`, is zero. -/
+for a surjection `A → K` with kernel `P`, at every maximal ideal `P`, is zero.
+@isnad1 id=subsingl.1h2v.s7.041157963696 from=translated src=- shape=c5ded4bb vocab=b43d1e0c
+-/
 theorem subsingleton_of_forall_isMaximal_tensor [Module.Finite A M]
     (H : ∀ (P : Ideal A), P.IsMaximal → ∃ (K : Type w) (_ : CommRing K) (_ : Algebra A K),
       Function.Surjective (algebraMap A K) ∧ RingHom.ker (algebraMap A K) = P ∧
@@ -254,7 +271,9 @@ namespace Algebra
 
 variable {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
 
-/-- If the fibre `K ⊗[A] B` is unramified over `K`, then `K ⊗[A] Ω[B⁄A] = 0`. -/
+/-- If the fibre `K ⊗[A] B` is unramified over `K`, then `K ⊗[A] Ω[B⁄A] = 0`.
+@isnad1 id=subsingl.0h3v.s7.ca1a333ff71a from=translated src=- shape=5fffdbcc vocab=664b8019
+-/
 theorem subsingleton_tensor_kaehlerDifferential (K : Type*) [CommRing K] [Algebra A K]
     [Algebra.FormallyUnramified K (K ⊗[A] B)] : Subsingleton (K ⊗[A] Ω[B⁄A]) :=
   letI := Algebra.TensorProduct.rightAlgebra (R := A) (A := K) (B := B)
@@ -265,7 +284,9 @@ theorem subsingleton_tensor_kaehlerDifferential (K : Type*) [CommRing K] [Algebr
 - the localisation `B_P` is flat over `A`, and
 - there is a surjection `A → K` with kernel `P` whose fibre `K ⊗[A] B` is unramified over `K`.
 
-Then `B` is étale over `A`. -/
+Then `B` is étale over `A`.
+@isnad1 id=etale.2h2v.s9.f2a8247f40ed from=translated src=- shape=e29e3579 vocab=7be982f9
+-/
 theorem Etale.of_forall_isMaximal [IsNoetherianRing A] [Module.Finite A B]
     (hflat : ∀ (P : Ideal A) [P.IsMaximal], Module.Flat A (LocalizedModule P.primeCompl B))
     (hfib : ∀ (P : Ideal A), P.IsMaximal → ∃ (K : Type w) (_ : Field K) (_ : Algebra A K),

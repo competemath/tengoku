@@ -42,6 +42,9 @@ structure Good (U : Set ℂ) : Prop where
   subset_ball : U ⊆ ball 0 1
   zero_mem : (0 : ℂ) ∈ U
 
+/--
+@isnad1 id=le.0h1v.s4.f73ea11bd46b from=translated src=- shape=a80e2b28 vocab=2f7c6d1d
+-/
 theorem ball_inradius_subset (U : Set ℂ) : ball 0 (inradius U) ⊆ U := by
   intro z hz
   by_contra h
@@ -49,25 +52,40 @@ theorem ball_inradius_subset (U : Set ℂ) : ball 0 (inradius U) ⊆ U := by
   rw [mem_ball, dist_comm] at hz
   exact absurd (this.trans_lt hz) (lt_irrefl _)
 
+/--
+@isnad1 id=nonempty.1h1v.s3.8c579fcf983f from=translated src=- shape=35326a45 vocab=3f403d05
+-/
 theorem Good.compl_nonempty {U : Set ℂ} (hU : Good U) : (Uᶜ).Nonempty :=
   ⟨1, fun h ↦ by simpa using hU.subset_ball h⟩
 
+/--
+@isnad1 id=lt.1h1v.s4.0533ea841b02 from=translated src=- shape=44835ed5 vocab=8c31b718
+-/
 theorem Good.inradius_pos {U : Set ℂ} (hU : Good U) : 0 < inradius U :=
   (hU.isOpen.isClosed_compl.notMem_iff_infDist_pos hU.compl_nonempty).mp
     fun h ↦ h hU.zero_mem
 
+/--
+@isnad1 id=le.1h1v.s4.34ff89d8237b from=translated src=- shape=949ab96e vocab=9e06cf57
+-/
 theorem Good.inradius_le_one {U : Set ℂ} (hU : Good U) : inradius U ≤ 1 := by
   have := infDist_le_dist_of_mem (x := (0 : ℂ)) (show (1 : ℂ) ∈ Uᶜ from
     fun h ↦ by simpa using hU.subset_ball h)
   change infDist (0 : ℂ) Uᶜ ≤ 1
   simpa using this
 
+/--
+@isnad1 id=le.2h2v.s5.a14ecd3bb306 from=translated src=- shape=eea78542 vocab=83d3d743
+-/
 theorem le_inradius {U : Set ℂ} (hU : Good U) {r : ℝ} (h : ball 0 r ⊆ U) : r ≤ inradius U := by
   refine (le_infDist hU.compl_nonempty).mpr fun y hy ↦ ?_
   by_contra hlt
   push Not at hlt
   exact hy (h (by rwa [mem_ball, dist_comm]))
 
+/--
+@isnad1 id=ex.1h1v.s4.35008c5c131e from=translated src=- shape=c96f10f9 vocab=a7a32397
+-/
 theorem Good.exists_crit {U : Set ℂ} (hU : Good U) : ∃ a, a ∉ U ∧ ‖a‖ = inradius U := by
   obtain ⟨a, ha, hd⟩ := hU.isOpen.isClosed_compl.exists_infDist_eq_dist hU.compl_nonempty 0
   exact ⟨a, ha, by rw [inradius, hd, dist_comm, dist_zero_right]⟩
@@ -77,6 +95,9 @@ noncomputable def crit (U : Set ℂ) : ℂ := by
   classical
   exact if h : ∃ a, a ∉ U ∧ ‖a‖ = inradius U then h.choose else 0
 
+/--
+@isnad1 id=and.1h1v.s4.6e220cd8bf08 from=translated src=- shape=d8b4728a vocab=7f2c865c
+-/
 theorem Good.crit_spec {U : Set ℂ} (hU : Good U) : crit U ∉ U ∧ ‖crit U‖ = inradius U := by
   have h := hU.exists_crit
   simp only [crit, h, dite_true]
@@ -85,9 +106,15 @@ theorem Good.crit_spec {U : Set ℂ} (hU : Good U) : crit U ∉ U ∧ ‖crit U�
 /-- A square root of `-crit U`. -/
 noncomputable def critRoot (U : Set ℂ) : ℂ := (-crit U) ^ (((2 : ℕ) : ℂ)⁻¹)
 
+/--
+@isnad1 id=eq.0h1v.s4.d49225fe4c20 from=translated src=- shape=ed446f38 vocab=2575269d
+-/
 theorem critRoot_sq (U : Set ℂ) : critRoot U ^ 2 = -crit U :=
   cpow_nat_inv_pow _ two_ne_zero
 
+/--
+@isnad1 id=eq.0h1v.s5.b12281d03595 from=translated src=- shape=d436fcbd vocab=8de3a22b
+-/
 theorem norm_critRoot_sq (U : Set ℂ) : ‖critRoot U‖ ^ 2 = ‖crit U‖ := by
   rw [← norm_pow, critRoot_sq, norm_neg]
 
@@ -96,9 +123,15 @@ noncomputable def discId (z : ℂ) : ℂ := by
   classical
   exact if z ∈ ball (0 : ℂ) 1 then z else 2
 
+/--
+@isnad1 id=eq.1h1v.s5.31701e5469f7 from=translated src=- shape=2698375f vocab=a3841f4b
+-/
 theorem discId_of_mem {z : ℂ} (hz : z ∈ ball (0 : ℂ) 1) : discId z = z := by
   simp [discId, hz]
 
+/--
+@isnad1 id=eq.1h1v.s5.d2b0b1df6969 from=translated src=- shape=7d1ebc14 vocab=3ee898b1
+-/
 theorem preimage_discId {U : Set ℂ} (hU : U ⊆ ball 0 1) : discId ⁻¹' U = U := by
   ext z
   by_cases hz : z ∈ ball (0 : ℂ) 1
@@ -114,17 +147,26 @@ noncomputable def stepMap (U : Set ℂ) : ℂ → ℂ := by
 /-- The set of one step of the iteration. -/
 def stepSet (U : Set ℂ) : Set ℂ := stepMap U ⁻¹' U
 
+/--
+@isnad1 id=mem.1h1v.s5.75dfcaf5340d from=translated src=- shape=f52d22cc vocab=7c33ee87
+-/
 theorem Good.critRoot_mem_ball {U : Set ℂ} (h : ‖crit U‖ < 1) : critRoot U ∈ ball (0 : ℂ) 1 := by
   rw [mem_ball_zero_iff]
   have := norm_critRoot_sq U
   nlinarith [norm_nonneg (critRoot U)]
 
+/--
+@isnad1 id=eq.0h1v.s4.e863b23aad88 from=translated src=- shape=6279936e vocab=8efbba07
+-/
 theorem stepMap_zero (U : Set ℂ) : stepMap U 0 = 0 := by
   unfold stepMap
   split_ifs
   · exact koebe_zero _
   · exact discId_of_mem (mem_ball_self one_pos)
 
+/--
+@isnad1 id=mem.1h2v.s6.ed5e6b5e3215 from=translated src=- shape=10869e4b vocab=ed15888e
+-/
 theorem stepMap_mem_ball {U : Set ℂ} {z : ℂ} (hz : stepMap U z ∈ ball (0 : ℂ) 1) :
     z ∈ ball (0 : ℂ) 1 := by
   unfold stepMap at hz
@@ -134,12 +176,18 @@ theorem stepMap_mem_ball {U : Set ℂ} {z : ℂ} (hz : stepMap U z ∈ ball (0 :
     simp only [discId, h, ite_false] at hz
     exact two_notMem_ball hz
 
+/--
+@isnad1 id=differen.0h1v.s6.8c3c355c4226 from=translated src=- shape=8a138bd3 vocab=7087d220
+-/
 theorem differentiableOn_stepMap {U : Set ℂ} : DifferentiableOn ℂ (stepMap U) (ball 0 1) := by
   unfold stepMap
   split_ifs with h
   · exact differentiableOn_koebe (Good.critRoot_mem_ball h)
   · exact differentiableOn_id.congr fun z hz ↦ discId_of_mem hz
 
+/--
+@isnad1 id=iscoveri.1h1v.s5.24bc4bbfa7ec from=translated src=- shape=7b455399 vocab=fd9bd348
+-/
 theorem Good.isCoveringMapOn_stepMap {U : Set ℂ} (hU : Good U) :
     IsCoveringMapOn (stepMap U) U := by
   unfold stepMap
@@ -159,6 +207,9 @@ theorem Good.isCoveringMapOn_stepMap {U : Set ℂ} (hU : Good U) :
     rw [this]
     exact isCoveringMap_homeomorph _
 
+/--
+@isnad1 id=good.1h1v.s3.ed4a2fc42879 from=translated src=- shape=354f35de vocab=4af5958d
+-/
 theorem Good.good_stepSet {U : Set ℂ} (hU : Good U) : Good (stepSet U) where
   isOpen := by
     have : stepSet U = ball 0 1 ∩ stepMap U ⁻¹' U := by
@@ -176,6 +227,9 @@ noncomputable def nextRadius (r : ℝ) : ℝ := by
   classical
   exact if r < 1 then koebeRadius r else 1
 
+/--
+@isnad1 id=le.1h1v.s5.1ec1622e0f96 from=translated src=- shape=d4708cd1 vocab=9d4d26ae
+-/
 theorem Good.ball_nextRadius_subset {U : Set ℂ} (hU : Good U) :
     ball 0 (nextRadius (inradius U)) ⊆ stepSet U := by
   obtain ⟨hcU, hcr⟩ := hU.crit_spec
@@ -198,6 +252,9 @@ theorem Good.ball_nextRadius_subset {U : Set ℂ} (hU : Good U) :
     apply ball_inradius_subset
     exact ball_subset_ball (not_lt.mp hr) hz1
 
+/--
+@isnad1 id=le.2h1v.s4.2b45855b060b from=translated src=- shape=fb6d6823 vocab=1172baac
+-/
 theorem le_nextRadius {r : ℝ} (hr0 : 0 < r) (hr1 : r ≤ 1) : r ≤ nextRadius r := by
   unfold nextRadius
   split_ifs with h
@@ -220,24 +277,39 @@ noncomputable def proj : ℕ → ℂ → ℂ
 
 variable {U₀}
 
+/--
+@isnad1 id=good.1h2v.s3.129d8b3720b8 from=translated src=- shape=20caf10a vocab=b47c2a7c
+-/
 theorem Good.good_seq (hU₀ : Good U₀) : ∀ n, Good (seq U₀ n)
   | 0 => hU₀
   | n + 1 => (hU₀.good_seq n).good_stepSet
 
+/--
+@isnad1 id=eq.0h2v.s4.015a612ca075 from=translated src=- shape=a25016ad vocab=71d7d91a
+-/
 theorem proj_zero : ∀ n, proj U₀ n 0 = 0
   | 0 => rfl
   | n + 1 => by simp [proj, stepMap_zero, proj_zero n]
 
+/--
+@isnad1 id=mapsto.0h2v.s3.12639c163b07 from=translated src=- shape=a2fab363 vocab=171334e2
+-/
 theorem mapsTo_proj : ∀ n, MapsTo (proj U₀ n) (seq U₀ n) U₀
   | 0 => fun _ h ↦ h
   | n + 1 => fun _ h ↦ mapsTo_proj n h
 
+/--
+@isnad1 id=differen.1h2v.s6.b24f6e53c3bf from=translated src=- shape=5f111296 vocab=fce1e9e3
+-/
 theorem Good.differentiableOn_proj (hU₀ : Good U₀) :
     ∀ n, DifferentiableOn ℂ (proj U₀ n) (seq U₀ n)
   | 0 => differentiableOn_id
   | n + 1 => (hU₀.differentiableOn_proj n).comp
       (differentiableOn_stepMap.mono (hU₀.good_seq (n + 1)).subset_ball) fun _ h ↦ h
 
+/--
+@isnad1 id=ex.2h3v.s5.93768d73718b from=translated src=- shape=4266b4a5 vocab=149008a1
+-/
 theorem Good.exists_nhds_injOn_proj (hU₀ : Good U₀) :
     ∀ n, ∀ z ∈ seq U₀ n, ∃ V ∈ 𝓝 z, InjOn (proj U₀ n) V
   | 0 => fun z _ ↦ ⟨univ, univ_mem, Function.injective_id.injOn⟩
@@ -254,6 +326,9 @@ theorem Good.exists_nhds_injOn_proj (hU₀ : Good U₀) :
     rw [hφ] at h1
     exact φ.injOn hx.1 hy.1 h1
 
+/--
+@isnad1 id=ne.2h3v.s6.25f00cc6856c from=translated src=- shape=3465570c vocab=651ba7ea
+-/
 theorem Good.deriv_proj_ne_zero (hU₀ : Good U₀) (n : ℕ) {z : ℂ} (hz : z ∈ seq U₀ n) :
     deriv (proj U₀ n) z ≠ 0 := by
   obtain ⟨V, hV, hinj⟩ := hU₀.exists_nhds_injOn_proj n z hz
@@ -261,7 +336,9 @@ theorem Good.deriv_proj_ne_zero (hU₀ : Good U₀) (n : ℕ) {z : ℂ} (hz : z 
     (inter_mem hV ((hU₀.good_seq n).isOpen.mem_nhds hz)) (hinj.mono inter_subset_left)
 
 /-- **Lifting through the iteration.** A continuous map from a convex set into `U₀` lifts through
-`projₙ : Uₙ → U₀`, with a prescribed value at one point. -/
+`projₙ : Uₙ → U₀`, with a prescribed value at one point.
+@isnad1 id=ex.7h6v.s7.947f18d74846 from=translated src=- shape=c75c1d18 vocab=1cef9eb7
+-/
 theorem Good.exists_lift (hU₀ : Good U₀) :
     ∀ n (D : Set ℂ), Convex ℝ D → ∀ g : ℂ → ℂ, ContinuousOn g D → MapsTo g D U₀ →
       ∀ a₀ e : ℂ, a₀ ∈ D → e ∈ seq U₀ n → proj U₀ n e = g a₀ →
@@ -285,20 +362,31 @@ theorem Good.exists_lift (hU₀ : Good U₀) :
 
 /-! ### Exhaustion -/
 
+/--
+@isnad1 id=le.1h2v.s5.f79b93f26f0a from=translated src=- shape=63e0033d vocab=80b4af6a
+-/
 theorem Good.inradius_mono (hU₀ : Good U₀) (n : ℕ) :
     nextRadius (inradius (seq U₀ n)) ≤ inradius (seq U₀ (n + 1)) :=
   le_inradius (hU₀.good_seq (n + 1)) (hU₀.good_seq n).ball_nextRadius_subset
 
+/--
+@isnad1 id=le.1h2v.s4.77794b6426b6 from=translated src=- shape=575e7559 vocab=e77d2720
+-/
 theorem Good.inradius_le_succ (hU₀ : Good U₀) (n : ℕ) :
     inradius (seq U₀ n) ≤ inradius (seq U₀ (n + 1)) :=
   (le_nextRadius (hU₀.good_seq n).inradius_pos (hU₀.good_seq n).inradius_le_one).trans
     (hU₀.inradius_mono n)
 
+/--
+@isnad1 id=monotone.1h1v.s4.81623a5160c8 from=translated src=- shape=fb9464e4 vocab=2d3fbac2
+-/
 theorem Good.inradius_monotone (hU₀ : Good U₀) : Monotone fun n ↦ inradius (seq U₀ n) :=
   monotone_nat_of_le_succ hU₀.inradius_le_succ
 
 /-- **The in-radii tend to `1`**: every disc `ball 0 R` with `R < 1` is eventually contained in
-`Uₙ`. -/
+`Uₙ`.
+@isnad1 id=ex.2h2v.s5.ca257ddc1c4d from=translated src=- shape=5517724b vocab=1a7f7f37
+-/
 theorem Good.exists_ball_subset (hU₀ : Good U₀) {R : ℝ} (hR : R < 1) :
     ∃ N, ∀ n ≥ N, ball 0 R ⊆ seq U₀ n := by
   set ρ := fun n ↦ inradius (seq U₀ n)

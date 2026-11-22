@@ -43,6 +43,9 @@ noncomputable def unip (t : ℝ) : SL(2, ℝ) :=
 noncomputable def diagA (σ : ℝ) : SL(2, ℝ) :=
   ⟨!![exp σ, 0; 0, exp (-σ)], by rw [det_fin_two_of, ← exp_add]; simp⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.efb0ab59c084 from=translated src=- shape=bae6aac5 vocab=c956ff85
+-/
 lemma exp_mul_exp_neg (s : ℝ) : exp s * exp (-s) = 1 := by rw [← exp_add]; simp
 
 /-- The Hopf chart. -/
@@ -57,6 +60,9 @@ noncomputable def hopfN (t : ℝ) (p : ℝ × ℝ × ℝ) : ℝ × ℝ × ℝ :=
 /-- The translation `(x, u, s) ↦ (x, u, s + σ)`. -/
 def hopfA (σ : ℝ) (p : ℝ × ℝ × ℝ) : ℝ × ℝ × ℝ := (p.1, p.2.1, p.2.2 + σ)
 
+/--
+@isnad1 id=eq.0h1v.s5.3b9d76201e61 from=translated src=- shape=7055138b vocab=344cb779
+-/
 lemma exp_two_mul' (s : ℝ) : exp (2 * s) = exp s * exp s := by rw [← exp_add]; ring_nf
 
 /-! ### The left action -/
@@ -73,14 +79,23 @@ noncomputable def hopfT (γ : SL(2, ℝ)) (p : ℝ × ℝ × ℝ) : ℝ × ℝ �
 
 /-! ### Measurability -/
 
+/--
+@isnad1 id=measurab.0h1v.s5.9696e9b610c1 from=translated src=- shape=81448d48 vocab=adb2d25d
+-/
 @[fun_prop]
 lemma measurable_hopfN (t : ℝ) : Measurable (hopfN t) := by unfold hopfN; fun_prop
 
+/--
+@isnad1 id=measurab.0h1v.s5.1f1a537fedc8 from=translated src=- shape=81448d48 vocab=54d03dbf
+-/
 @[fun_prop]
 lemma measurable_hopfA (σ : ℝ) : Measurable (hopfA σ) := by unfold hopfA; fun_prop
 
 /-! ### Measure preservation in coordinates -/
 
+/--
+@isnad1 id=measurep.0h1v.s6.b536c2075d9e from=translated src=- shape=9409d5b2 vocab=b7cd486a
+-/
 lemma measurePreserving_shear (t : ℝ) :
     MeasurePreserving (fun q : ℝ × ℝ ↦ (q.1 + exp (2 * q.2) * t, q.2)) volume volume := by
   have h1 : MeasurePreserving (fun q : ℝ × ℝ ↦ (q.1, q.2 + exp (2 * q.1) * t))
@@ -92,16 +107,24 @@ lemma measurePreserving_shear (t : ℝ) :
     (ν := (volume : Measure ℝ))).comp (h1.comp Measure.measurePreserving_swap)
   exact h2
 
+/--
+@isnad1 id=measurep.0h1v.s6.f4c1fa754d71 from=translated src=- shape=2252abb2 vocab=a603afa4
+-/
 lemma measurePreserving_hopfN (t : ℝ) : MeasurePreserving (hopfN t) volume volume :=
   MeasurePreserving.skew_product (f := id) (MeasurePreserving.id volume)
     (g := fun (_ : ℝ) (q : ℝ × ℝ) ↦ (q.1 + exp (2 * q.2) * t, q.2)) (by fun_prop)
     (Eventually.of_forall fun _ ↦ (measurePreserving_shear t).map_eq)
 
+/--
+@isnad1 id=measurep.0h1v.s6.9a605c6248be from=translated src=- shape=2252abb2 vocab=9d96aacf
+-/
 lemma measurePreserving_hopfA (σ : ℝ) : MeasurePreserving (hopfA σ) volume volume :=
   (MeasurePreserving.id volume).prod
     ((MeasurePreserving.id volume).prod (measurePreserving_add_right volume σ))
 
-/-- A nonzero affine function has at most one zero. -/
+/-- A nonzero affine function has at most one zero.
+@isnad1 id=subsingl.1h2v.s5.0f2f3dbb07b6 from=translated src=- shape=d2f18c96 vocab=c2e44616
+-/
 lemma subsingleton_affine {c d : ℝ} (h : c ≠ 0 ∨ d ≠ 0) :
     {x : ℝ | c * x + d = 0}.Subsingleton := by
   intro x hx y hy
@@ -111,7 +134,9 @@ lemma subsingleton_affine {c d : ℝ} (h : c ≠ 0 ∨ d ≠ 0) :
     exact absurd hx (h.resolve_left (not_not.mpr hc))
   · exact mul_left_cancel₀ hc (by linarith)
 
-/-- Affine change of variables on `ℝ`. -/
+/-- Affine change of variables on `ℝ`.
+@isnad1 id=eq.1h3v.s6.11f33c0a6c4d from=translated src=- shape=5cc6e4bf vocab=57349e86
+-/
 lemma lintegral_comp_mul_add {a : ℝ} (ha : a ≠ 0) (b : ℝ) (J : ℝ → ℝ≥0∞) :
     ∫⁻ u, J (a * u + b) = ENNReal.ofReal |a⁻¹| * ∫⁻ u, J u := by
   set e : ℝ ≃ᵐ ℝ := (Homeomorph.mulLeft₀ a ha).toMeasurableEquiv

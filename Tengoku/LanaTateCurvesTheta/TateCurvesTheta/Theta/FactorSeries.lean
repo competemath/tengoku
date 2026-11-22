@@ -72,13 +72,21 @@ noncomputable def factorCoeff (t : TateParameter K) : ℕ → K
   | 0 => 1
   | (k + 1) => (t.q : K) ^ k * (1 - (t.q : K) ^ (k + 1))⁻¹ * factorCoeff t k
 
+/--
+@isnad1 id=eq.0h2v.s5.4f8616490cfb from=translated src=- shape=b999d37c vocab=c6ba0849
+-/
 @[simp] lemma factorCoeff_zero : factorCoeff t 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.03c1dbc8c8f3 from=translated src=- shape=3f241948 vocab=6c0872aa
+-/
 lemma factorCoeff_succ (k : ℕ) :
     factorCoeff t (k + 1) = (t.q : K) ^ k * (1 - (t.q : K) ^ (k + 1))⁻¹ * factorCoeff t k := rfl
 
 /-- **Isosceles-triangle estimate for the denominators.** In an ultrametric field `‖1‖ = 1`
-strictly dominates `‖q^(k+1)‖ = ‖q‖^(k+1) < 1`, so `‖1 - q^(k+1)‖ = max 1 ‖q^(k+1)‖ = 1`. -/
+strictly dominates `‖q^(k+1)‖ = ‖q‖^(k+1) < 1`, so `‖1 - q^(k+1)‖ = max 1 ‖q^(k+1)‖ = 1`.
+@isnad1 id=eq.0h3v.s7.b223f5f8dea4 from=translated src=- shape=a1a9c986 vocab=106962f5
+-/
 lemma norm_one_sub_qpow [IsUltrametricDist K] (k : ℕ) :
     ‖(1 : K) - (t.q : K) ^ (k + 1)‖ = 1 := by
   have hlt : ‖(t.q : K) ^ (k + 1)‖ < 1 := by
@@ -90,7 +98,9 @@ lemma norm_one_sub_qpow [IsUltrametricDist K] (k : ℕ) :
   rw [sub_eq_add_neg, IsUltrametricDist.norm_add_eq_max_of_norm_ne_norm hne, norm_one, norm_neg]
   exact max_eq_left (le_of_lt hlt)
 
-/-- The denominator `1 - q^(k+1)` is nonzero (its norm is `1`). -/
+/-- The denominator `1 - q^(k+1)` is nonzero (its norm is `1`).
+@isnad1 id=ne.0h3v.s7.0bd53cb87daa from=translated src=- shape=62a19f34 vocab=91cdb93e
+-/
 lemma one_sub_qpow_ne_zero [IsUltrametricDist K] (k : ℕ) :
     (1 : K) - (t.q : K) ^ (k + 1) ≠ 0 := by
   have h := t.norm_one_sub_qpow k
@@ -100,7 +110,9 @@ lemma one_sub_qpow_ne_zero [IsUltrametricDist K] (k : ℕ) :
 
 /-- **The multiplicative form of the coefficient recursion.** Clearing the inverse in the
 definition gives `(1 - q^(k+1)) · E (k+1) = qᵏ · E k`, the shape used to match coefficients in
-the series functional equation. -/
+the series functional equation.
+@isnad1 id=eq.0h3v.s7.32a32fbaa0aa from=translated src=- shape=9a01db98 vocab=d38b2064
+-/
 lemma factorCoeff_rec [IsUltrametricDist K] (k : ℕ) :
     (1 - (t.q : K) ^ (k + 1)) * factorCoeff t (k + 1) = (t.q : K) ^ k * factorCoeff t k := by
   have hne := t.one_sub_qpow_ne_zero k
@@ -111,14 +123,18 @@ lemma factorCoeff_rec [IsUltrametricDist K] (k : ℕ) :
     mul_assoc, mul_inv_cancel₀ hne, mul_one]
 
 /-- **The norm of the successive coefficient.** Since `‖1 - q^(k+1)‖ = 1`, the recursion gives
-`‖E (k+1)‖ = ‖q‖ᵏ · ‖E k‖`. -/
+`‖E (k+1)‖ = ‖q‖ᵏ · ‖E k‖`.
+@isnad1 id=eq.0h3v.s6.ad852a61f525 from=translated src=- shape=84db879e vocab=ae6edb69
+-/
 lemma norm_factorCoeff_succ [IsUltrametricDist K] (k : ℕ) :
     ‖factorCoeff t (k + 1)‖ = ‖(t.q : K)‖ ^ k * ‖factorCoeff t k‖ := by
   rw [factorCoeff_succ, norm_mul, norm_mul, norm_pow, norm_inv, t.norm_one_sub_qpow k, inv_one]
   ring
 
 /-- **Lemma A: the norm of the Euler `q`-binomial coefficients.** By induction on the recursion,
-`‖E k‖ = ‖q‖ ^ (k * (k - 1) / 2)`, the triangular-number exponent. -/
+`‖E k‖ = ‖q‖ ^ (k * (k - 1) / 2)`, the triangular-number exponent.
+@isnad1 id=eq.0h3v.s6.d76700e84f7a from=translated src=- shape=29ae8106 vocab=e0882d9e
+-/
 lemma norm_factorCoeff [IsUltrametricDist K] (k : ℕ) :
     ‖factorCoeff t k‖ = ‖(t.q : K)‖ ^ (k * (k - 1) / 2) := by
   induction k with
@@ -129,14 +145,18 @@ lemma norm_factorCoeff [IsUltrametricDist K] (k : ℕ) :
       exact Nat.add_comm _ _
     rw [t.norm_factorCoeff_succ, ih, ← pow_add, hexp]
 
-/-- Every Euler `q`-binomial coefficient has norm at most one. -/
+/-- Every Euler `q`-binomial coefficient has norm at most one.
+@isnad1 id=le.0h3v.s5.6b6e05766dde from=translated src=- shape=f1c58a5a vocab=b4cfa36f
+-/
 lemma norm_factorCoeff_le_one [IsUltrametricDist K] (k : ℕ) : ‖factorCoeff t k‖ ≤ 1 := by
   rw [t.norm_factorCoeff k]
   exact pow_le_one₀ (norm_nonneg _) (le_of_lt t.norm_lt_one)
 
 /-- **Lemma B: summability of the power series.** For every `c`, the family `k ↦ E k · cᵏ` is
 summable: consecutive term norms satisfy `‖E (k+1) c^(k+1)‖ = (‖q‖ᵏ ‖c‖) · ‖E k cᵏ‖` and the
-ratio `‖q‖ᵏ ‖c‖ → 0`, so the ratio test applies. -/
+ratio `‖q‖ᵏ ‖c‖ → 0`, so the ratio test applies.
+@isnad1 id=summable.0h3v.s6.9449bf6bd9aa from=translated src=- shape=1bc24961 vocab=afaa5b49
+-/
 lemma factorCoeff_summable [CompleteSpace K] [IsUltrametricDist K] (c : K) :
     Summable (fun k : ℕ => factorCoeff t k * c ^ k) := by
   refine summable_of_ratio_norm_eventually_le (r := 1 / 2) (by norm_num) ?_
@@ -155,7 +175,9 @@ lemma factorCoeff_summable [CompleteSpace K] [IsUltrametricDist K] (c : K) :
 `S c = ∑' k, E k cᵏ` satisfies `S c = (1 + c) · S (q c)`, the same functional equation as
 `thetaProdFactor` (`thetaProdFactor_eq`). This is pure `tsum` algebra: expanding the right-hand
 side and subtracting the diagonal part `∑ E k qᵏ cᵏ`, the recursion
-`(1 - q^(k+1)) E (k+1) = qᵏ E k` matches the two remaining series coefficient by coefficient. -/
+`(1 - q^(k+1)) E (k+1) = qᵏ E k` matches the two remaining series coefficient by coefficient.
+@isnad1 id=eq.0h3v.s8.400efe352b88 from=translated src=- shape=b19ab536 vocab=64528943
+-/
 lemma tsum_factorCoeff_eq [CompleteSpace K] [IsUltrametricDist K] (c : K) :
     (∑' k : ℕ, factorCoeff t k * c ^ k)
       = (1 + c) * ∑' k : ℕ, factorCoeff t k * ((t.q : K) * c) ^ k := by
@@ -181,7 +203,9 @@ lemma tsum_factorCoeff_eq [CompleteSpace K] [IsUltrametricDist K] (c : K) :
   linear_combination (c ^ k * c) * hrec
 
 /-- **Iterated functional equation.** Peeling the functional equation `N` times exhibits the
-finite partial product: `S c = (∏ n < N, (1 + qⁿ c)) · S (q^N c)`. -/
+finite partial product: `S c = (∏ n < N, (1 + qⁿ c)) · S (q^N c)`.
+@isnad1 id=eq.0h4v.s8.245166cb6a20 from=translated src=- shape=a476d3be vocab=4c26def1
+-/
 lemma tsum_factorCoeff_eq_prod_mul [CompleteSpace K] [IsUltrametricDist K] (c : K) (N : ℕ) :
     (∑' k : ℕ, factorCoeff t k * c ^ k)
       = (∏ n ∈ Finset.range N, (1 + (t.q : K) ^ n * c))
@@ -196,7 +220,9 @@ lemma tsum_factorCoeff_eq_prod_mul [CompleteSpace K] [IsUltrametricDist K] (c : 
 
 /-- **Tail estimate near zero.** On the closed unit ball, `‖S x - 1‖ ≤ ‖x‖`. Peeling the constant
 term, `S x - 1 = x · ∑' k, E (k+1) xᵏ`, and the ultrametric bound `‖∑' k, E (k+1) xᵏ‖ ≤ 1`
-(each `‖E (k+1) xᵏ‖ ≤ 1`) gives the estimate. -/
+(each `‖E (k+1) xᵏ‖ ≤ 1`) gives the estimate.
+@isnad1 id=le.1h3v.s7.026e8ad78ef7 from=translated src=- shape=191149aa vocab=d0c71c71
+-/
 lemma norm_tsum_sub_one_le [CompleteSpace K] [IsUltrametricDist K] (x : K) (hx : ‖x‖ ≤ 1) :
     ‖(∑' k : ℕ, factorCoeff t k * x ^ k) - 1‖ ≤ ‖x‖ := by
   have hsum := t.factorCoeff_summable x
@@ -220,7 +246,9 @@ thetaProdFactor c = ∏' n, (1 + qⁿ c) = ∑' k, E k cᵏ.
 ```
 Both sides agree because `S c = ∑' k, E k cᵏ` satisfies the defining functional equation of
 `thetaProdFactor`; iterating it peels the finite partial product `∏ n < N, (1 + qⁿ c)`, whose limit
-is `thetaProdFactor c`, while the remainder `S (q^N c) → S 0 = 1` since `q^N c → 0`. -/
+is `thetaProdFactor c`, while the remainder `S (q^N c) → S 0 = 1` since `q^N c → 0`.
+@isnad1 id=eq.0h3v.s6.afa2d382236f from=translated src=- shape=97e7565d vocab=660612b9
+-/
 theorem thetaProdFactor_eq_tsum [CompleteSpace K] [IsUltrametricDist K] (c : K) :
     t.thetaProdFactor c = ∑' k : ℕ, factorCoeff t k * c ^ k := by
   -- Partial products converge to `thetaProdFactor c`.

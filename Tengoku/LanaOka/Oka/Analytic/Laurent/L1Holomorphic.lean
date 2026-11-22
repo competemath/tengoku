@@ -59,13 +59,18 @@ noncomputable def circleCoeff (f : ℂ → V) (τ : ℝ) (j : ℤ) : V :=
 
 variable {f g : ℂ → V} {τ : ℝ}
 
+/--
+@isnad1 id=eq.2h5v.s6.d9aea6eb9db7 from=translated src=- shape=58583867 vocab=7eeee33c
+-/
 lemma circleCoeff_congr (hτ : 0 ≤ τ) (h : EqOn f g (sphere 0 τ)) (j : ℤ) :
     circleCoeff f τ j = circleCoeff g τ j := by
   unfold circleCoeff
   congr 1
   exact circleIntegral.integral_congr hτ fun z hz ↦ by simp [h hz]
 
-/-- The Cauchy estimate for Laurent coefficients. -/
+/-- The Cauchy estimate for Laurent coefficients.
+@isnad1 id=le.2h5v.s6.c483cdaa7874 from=translated src=- shape=d2e656e1 vocab=e187134c
+-/
 theorem norm_circleCoeff_le (hτ : 0 < τ) {M : ℝ} (hM : ∀ z ∈ sphere (0 : ℂ) τ, ‖f z‖ ≤ M)
     (j : ℤ) : ‖circleCoeff f τ j‖ ≤ M * τ ^ (-j) := by
   have h := circleIntegral.norm_two_pi_i_inv_smul_integral_le_of_norm_le_const
@@ -77,13 +82,18 @@ theorem norm_circleCoeff_le (hτ : 0 < τ) {M : ℝ} (hM : ∀ z ∈ sphere (0 :
   rw [zpow_sub_one₀ hτ.ne']
   field_simp
 
+/--
+@isnad1 id=continuo.2h4v.s7.d5c04467c9ed from=translated src=- shape=0ffe9d7c vocab=41a78c41
+-/
 lemma continuousOn_zpow_smul (hτ : 0 < τ) (hf : ContinuousOn f (sphere 0 τ)) (j : ℤ) :
     ContinuousOn (fun ζ ↦ ζ ^ (-j - 1) • f ζ) (sphere 0 τ) :=
   (continuousOn_id.zpow₀ _ fun _ hz ↦ Or.inl (ne_zero_of_mem_sphere_zero hτ hz)).smul hf
 
 variable [CompleteSpace V]
 
-/-- Continuous linear functionals commute with Laurent coefficients. -/
+/-- Continuous linear functionals commute with Laurent coefficients.
+@isnad1 id=eq.2h5v.s8.da118ce46693 from=translated src=- shape=1d53f6be vocab=f1dfb00a
+-/
 lemma map_circleCoeff (ℓ : V →L[ℂ] ℂ) (hτ : 0 < τ) (hf : ContinuousOn f (sphere 0 τ)) (j : ℤ) :
     ℓ (circleCoeff f τ j) = coeff (fun ζ ↦ ℓ (f ζ)) τ j := by
   have hint : CircleIntegrable (fun ζ ↦ ζ ^ (-j - 1) • f ζ) 0 τ :=
@@ -92,7 +102,9 @@ lemma map_circleCoeff (ℓ : V →L[ℂ] ℂ) (hτ : 0 < τ) (hf : ContinuousOn 
     ← ℓ.intervalIntegral_comp_comm hint.out]
   simp [map_smul, smul_eq_mul]
 
-/-- The Laurent coefficients do not depend on the radius of the circle. -/
+/-- The Laurent coefficients do not depend on the radius of the circle.
+@isnad1 id=eq.3h7v.s6.3a57c838ae0c from=translated src=- shape=6f3e899f vocab=897de771
+-/
 theorem circleCoeff_eq_of_isRadius {r : ℝ} {R : ℝ≥0∞} (hf : DifferentiableOn ℂ f (annulus r R))
     {ρ₁ ρ₂ : ℝ} (h₁ : IsRadius r R ρ₁) (h₂ : IsRadius r R ρ₂) (j : ℤ) :
     circleCoeff f ρ₁ j = circleCoeff f ρ₂ j := by
@@ -101,7 +113,9 @@ theorem circleCoeff_eq_of_isRadius {r : ℝ} {R : ℝ≥0∞} (hf : Differentiab
     map_circleCoeff ℓ h₂.pos (hf.continuousOn.mono (sphere_subset_annulus h₂))]
   exact coeff_eq_of_isRadius (ℓ.differentiable.comp_differentiableOn hf) h₁ h₂ j
 
-/-- On a disc the Laurent coefficients of negative degree vanish. -/
+/-- On a disc the Laurent coefficients of negative degree vanish.
+@isnad1 id=eq.4h6v.s7.fe8d68d84d10 from=translated src=- shape=9b8c6734 vocab=7c77f68d
+-/
 theorem circleCoeff_eq_zero_of_neg {r : ℝ} {R : ℝ≥0∞} (hf : DifferentiableOn ℂ f (annulus r R))
     (hr : r < 0) (hρ : IsRadius r R τ) {j : ℤ} (hj : j < 0) : circleCoeff f τ j = 0 := by
   refine (SeparatingDual.eq_iff_forall_dual_eq (R := ℂ)).2 fun ℓ ↦ ?_
@@ -116,7 +130,9 @@ section Parametric
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
-/-- **Cauchy's estimate** for the derivative of a bounded holomorphic function on a ball. -/
+/-- **Cauchy's estimate** for the derivative of a bounded holomorphic function on a ball.
+@isnad1 id=le.4h7v.s8.36c69678e711 from=translated src=- shape=6c8849a2 vocab=1907e152
+-/
 theorem norm_fderiv_le_of_forall_norm_le {F : Type*} [NormedAddCommGroup F] [NormedSpace ℂ F]
     {c : E → F} {z₀ : E} {δ M : ℝ} (hδ : 0 < δ) (hc : DifferentiableOn ℂ c (ball z₀ (2 * δ)))
     (hM : ∀ z ∈ ball z₀ (2 * δ), ‖c z‖ ≤ M) {z : E} (hz : z ∈ ball z₀ δ) :
@@ -163,7 +179,9 @@ theorem norm_fderiv_le_of_forall_norm_le {F : Type*} [NormedAddCommGroup F] [Nor
 variable [FiniteDimensional ℂ E] [FiniteDimensional ℂ V]
 
 /-- The Laurent coefficients of a holomorphic family of functions depend holomorphically on the
-parameter. -/
+parameter.
+@isnad1 id=differen.4h7v.s8.beb55a9e71d5 from=translated src=- shape=3aa76293 vocab=f23d6ece
+-/
 theorem differentiableOn_circleCoeff {U : Set E} (hU : IsOpen U) {O : Set ℂ} {τ : ℝ} (hτ : 0 < τ)
     (hO : sphere (0 : ℂ) τ ⊆ O) {h : E × ℂ → V} (hh : DifferentiableOn ℂ h (U ×ˢ O)) (j : ℤ) :
     DifferentiableOn ℂ (fun z ↦ circleCoeff (fun ζ ↦ h (z, ζ)) τ j) U := by
@@ -195,6 +213,9 @@ theorem differentiableOn_circleCoeff {U : Set E} (hU : IsOpen U) {O : Set ℂ} {
   simpa [Function.comp_def] using this
 
 end Parametric
+/--
+@isnad1 id=eq.0h1v.s5.8c4f566d2800 from=translated src=- shape=c8411f0b vocab=e79eda66
+-/
 lemma annulus_neg_one_ofReal (R : ℝ) : annulus (-1) (ENNReal.ofReal R) = ball 0 R := by
   ext z
   rw [mem_annulus, enorm_lt_iff_ofReal_lt, mem_ball_zero_iff, ENNReal.ofReal_lt_ofReal_iff']
@@ -213,6 +234,9 @@ variable {σ τ : ℝ} [hσ : Fact (1 ≤ σ)]
 noncomputable def radCoeff (τ : ℝ) (f : ℂ → V) (j : ℤ) : V :=
   circleCoeff f (if 0 ≤ j then τ else τ⁻¹) j
 
+/--
+@isnad1 id=le.2h6v.s7.3f5c97639b3b from=translated src=- shape=ffb57301 vocab=3408fd26
+-/
 lemma wt_mul_norm_radCoeff_le (hστ : σ < τ) {f : ℂ → V} {M : ℝ}
     (hM : ∀ ζ ∈ sphere (0 : ℂ) τ ∪ sphere 0 τ⁻¹, ‖f ζ‖ ≤ M) (j : ℤ) :
     wt σ j * ‖radCoeff τ f j‖ ≤ M * (σ / τ) ^ j.natAbs := by
@@ -233,6 +257,9 @@ lemma wt_mul_norm_radCoeff_le (hστ : σ < τ) {f : ℂ → V} {M : ℝ}
           mul_le_mul_of_nonneg_left h (by positivity)
       _ = M * (σ ^ n / τ ^ n) := by rw [neg_neg, zpow_natCast, inv_pow]; field_simp
 
+/--
+@isnad1 id=summable.2h5v.s7.2d11eb496bfe from=translated src=- shape=c16287f4 vocab=774cc36a
+-/
 lemma summable_wt_mul_norm_radCoeff (hστ : σ < τ) {f : ℂ → V} {M : ℝ}
     (hM : ∀ ζ ∈ sphere (0 : ℂ) τ ∪ sphere 0 τ⁻¹, ‖f ζ‖ ≤ M) :
     Summable fun j ↦ wt σ j * ‖radCoeff τ f j‖ := by
@@ -254,15 +281,24 @@ noncomputable def toL1 (τ : ℝ) (f : ℂ → V) : L1 V :=
 
 variable {f : ℂ → V}
 
+/--
+@isnad1 id=eq.2h6v.s7.e7c93723a386 from=translated src=- shape=99891d95 vocab=67d5343a
+-/
 lemma coeff_toL1 (hστ : σ < τ) {M : ℝ} (hM : ∀ ζ ∈ sphere (0 : ℂ) τ ∪ sphere 0 τ⁻¹, ‖f ζ‖ ≤ M)
     (j : ℤ) : coeff σ (toL1 σ τ f) j = radCoeff τ f j := by
   rw [toL1, dite_eq_left (summable_wt_mul_norm_radCoeff hστ hM), coeff_ofCoeff]
 
+/--
+@isnad1 id=eq.2h6v.s8.bf23e3a4e0c9 from=translated src=- shape=2e2e8607 vocab=f5a0cfa7
+-/
 lemma toL1_apply (hστ : σ < τ) {M : ℝ} (hM : ∀ ζ ∈ sphere (0 : ℂ) τ ∪ sphere 0 τ⁻¹, ‖f ζ‖ ≤ M)
     (j : ℤ) : toL1 σ τ f j = (wt σ j : ℂ) • radCoeff τ f j := by
   rw [toL1, dite_eq_left (summable_wt_mul_norm_radCoeff hστ hM)]
   rfl
 
+/--
+@isnad1 id=le.2h6v.s8.86d85e2228db from=translated src=- shape=6df275ce vocab=91edd4e1
+-/
 lemma norm_toL1_apply_le (hστ : σ < τ) {M : ℝ}
     (hM : ∀ ζ ∈ sphere (0 : ℂ) τ ∪ sphere 0 τ⁻¹, ‖f ζ‖ ≤ M) (j : ℤ) :
     ‖toL1 σ τ f j‖ ≤ M * (σ / τ) ^ j.natAbs := by
@@ -271,12 +307,17 @@ lemma norm_toL1_apply_le (hστ : σ < τ) {M : ℝ}
   exact wt_mul_norm_radCoeff_le hστ hM j
 
 omit [NormedSpace ℂ V] in
+/--
+@isnad1 id=ex.1h3v.s7.c0d1efad4a3e from=translated src=- shape=710b2b8c vocab=4a3e14ce
+-/
 lemma exists_bound_of_continuousOn (hf : ContinuousOn f (sphere (0 : ℂ) τ ∪ sphere 0 τ⁻¹)) :
     ∃ M, ∀ ζ ∈ sphere (0 : ℂ) τ ∪ sphere 0 τ⁻¹, ‖f ζ‖ ≤ M :=
   ((isCompact_sphere _ _).union (isCompact_sphere _ _)).exists_bound_of_continuousOn hf
 
 /-- The Laurent series of a holomorphic family of functions depends holomorphically on the
-parameter. -/
+parameter.
+@isnad1 id=differen.4h7v.s8.ce4b8cea59f7 from=translated src=- shape=f094b399 vocab=3bc7ac27
+-/
 theorem differentiableOn_toL1 {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     [FiniteDimensional ℂ E] [FiniteDimensional ℂ V] (hστ : σ < τ) {U : Set E} (hU : IsOpen U)
     {O : Set ℂ} (hO : sphere (0 : ℂ) τ ∪ sphere 0 τ⁻¹ ⊆ O) {h : E × ℂ → V}
@@ -349,7 +390,9 @@ theorem differentiableOn_toL1 {E : Type*} [NormedAddCommGroup E] [NormedSpace �
 variable [CompleteSpace V]
 
 /-- **Laurent expansion**: if `f` is holomorphic on an annulus containing the circles
-`‖ζ‖ = τ` and `‖ζ‖ = τ⁻¹`, then its Laurent series sums to `f` on `σ⁻¹ ≤ ‖w‖ ≤ σ`. -/
+`‖ζ‖ = τ` and `‖ζ‖ = τ⁻¹`, then its Laurent series sums to `f` on `σ⁻¹ ≤ ‖w‖ ≤ σ`.
+@isnad1 id=eq.6h7v.s7.7ef6afac504a from=translated src=- shape=9f473697 vocab=8bb4a801
+-/
 theorem eval_toL1 (hστ : σ < τ) {r : ℝ} {R : ℝ≥0∞} (hf : DifferentiableOn ℂ f (annulus r R))
     (h₁ : IsRadius r R τ) (h₂ : IsRadius r R τ⁻¹) {w : ℂ} (hw₁ : σ⁻¹ ≤ ‖w‖) (hw₂ : ‖w‖ ≤ σ) :
     eval σ w (toL1 σ τ f) = f w := by
@@ -373,7 +416,9 @@ theorem eval_toL1 (hστ : σ < τ) {r : ℝ} {R : ℝ≥0∞} (hf : Differentia
   rw [e] at hA
   exact hA.unique (hasSum_coeff (ℓ.differentiable.comp_differentiableOn hf) h₁ hwA)
 
-/-- The Laurent series of a function holomorphic on a disc has no terms of negative degree. -/
+/-- The Laurent series of a function holomorphic on a disc has no terms of negative degree.
+@isnad1 id=eq.4h6v.s7.443a221a992f from=translated src=- shape=fe33fb1e vocab=f5b899fb
+-/
 lemma coeff_toL1_eq_zero_of_neg (hστ : σ < τ) {R : ℝ} (hτR : τ < R)
     (hf : DifferentiableOn ℂ f (ball 0 R)) {j : ℤ} (hj : j < 0) : coeff σ (toL1 σ τ f) j = 0 := by
   have h0 : 0 < σ := zero_lt_one.trans_le hσ.out
@@ -392,7 +437,9 @@ lemma coeff_toL1_eq_zero_of_neg (hστ : σ < τ) {R : ℝ} (hτR : τ < R)
   exact circleCoeff_eq_zero_of_neg hf' (by norm_num) hR hj
 
 /-- The coefficients of nonnegative degree of the Laurent series of a function holomorphic on a
-disc are its Taylor coefficients, computed on any circle in the disc. -/
+disc are its Taylor coefficients, computed on any circle in the disc.
+@isnad1 id=eq.6h7v.s7.07ae5f9b86bc from=translated src=- shape=505ddd66 vocab=2821ff0e
+-/
 lemma coeff_toL1_eq_circleCoeff (hστ : σ < τ) {R : ℝ} (hτR : τ < R)
     (hf : DifferentiableOn ℂ f (ball 0 R)) {r : ℝ} (hr : 0 < r) (hrR : r < R) {j : ℤ}
     (hj : 0 ≤ j) : coeff σ (toL1 σ τ f) j = circleCoeff f r j := by
@@ -412,7 +459,9 @@ lemma coeff_toL1_eq_circleCoeff (hστ : σ < τ) {R : ℝ} (hτR : τ < R)
   rw [coeff_toL1 hστ hM, radCoeff, ite_eq_left hj]
   exact circleCoeff_eq_of_isRadius hf' hR' hr' j
 
-/-- The Taylor coefficients of the part of nonnegative degree. -/
+/-- The Taylor coefficients of the part of nonnegative degree.
+@isnad1 id=eq.3h5v.s8.5c6cbceb9588 from=translated src=- shape=0a390d76 vocab=4c1445dd
+-/
 lemma circleCoeff_evalNat {r : ℝ} (hr : 0 < r) (hrσ : r < σ) (a : L1 V) {j : ℤ} (hj : 0 ≤ j) :
     circleCoeff (fun w ↦ evalNat V σ w a) r j = coeff σ a j := by
   have h0 : 0 < σ := zero_lt_one.trans_le hσ.out

@@ -42,6 +42,9 @@ def ContinuousOn.toContinuousMapOn {X Y : Type*} [TopologicalSpace X] [Topologic
     {U : Set X} {f : X → Y} (hf : ContinuousOn f U) : C(U, Y) :=
   ⟨U.domRestrict f, hf.domRestrict⟩
 
+/--
+@isnad1 id=eq.1h5v.s6.5c6f8435bd51 from=translated src=- shape=4f2c259c vocab=a93bcd2e
+-/
 @[simp]
 lemma ContinuousOn.toContinuousMapOn_apply {X Y : Type*} [TopologicalSpace X]
     [TopologicalSpace Y] {U : Set X} {f : X → Y} (hf : ContinuousOn f U) (x : U) :
@@ -51,7 +54,9 @@ lemma ContinuousOn.toContinuousMapOn_apply {X Y : Type*} [TopologicalSpace X]
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
 /-- A function holomorphic on `B(z, R)` and bounded by `M` there satisfies
-`‖f y - f z‖ ≤ 2M/R ‖y - z‖` on `B(z, R)`. -/
+`‖f y - f z‖ ≤ 2M/R ‖y - z‖` on `B(z, R)`.
+@isnad1 id=le.3h6v.s7.94ffd17b18b5 from=translated src=- shape=a16c3beb vocab=5274d2a0
+-/
 theorem _root_.Tengoku.LanaOka.norm_sub_le_of_differentiableOn_ball {f : E → ℂ} {z y : E} {R M : ℝ}
     (hf : DifferentiableOn ℂ f (ball z R)) (hM : ∀ w ∈ ball z R, ‖f w‖ ≤ M)
     (hy : y ∈ ball z R) :
@@ -88,7 +93,9 @@ theorem _root_.Tengoku.LanaOka.norm_sub_le_of_differentiableOn_ball {f : E → �
 variable [FiniteDimensional ℂ E] {ι : Type*}
 
 /-- A family of holomorphic functions on `U` which is uniformly bounded on compact subsets of `U`
-is equicontinuous on `U`. -/
+is equicontinuous on `U`.
+@isnad1 id=equicont.3h4v.s7.884920d5d0a2 from=translated src=- shape=2cc08c7a vocab=b31eec21
+-/
 theorem _root_.Tengoku.LanaOka.equicontinuous_restrict_of_differentiableOn {U : Set E} (hU : IsOpen U) {F : ι → E → ℂ}
     (hF : ∀ i, DifferentiableOn ℂ (F i) U)
     (hb : ∀ K ⊆ U, IsCompact K → ∃ C, ∀ i, ∀ x ∈ K, ‖F i x‖ ≤ C) :
@@ -107,7 +114,9 @@ theorem _root_.Tengoku.LanaOka.equicontinuous_restrict_of_differentiableOn {U : 
       (fun w hw ↦ hC i w (ball_subset_closedBall hw)) (by rw [mem_ball]; exact hx)
 
 /-- **Montel's theorem**: a family of holomorphic functions on `U` which is uniformly bounded on
-compact subsets of `U` has compact closure in `C(U, ℂ)` (topology of compact convergence). -/
+compact subsets of `U` has compact closure in `C(U, ℂ)` (topology of compact convergence).
+@isnad1 id=iscompac.3h4v.s8.8693e59c9d68 from=translated src=- shape=0f46f7c0 vocab=5b4ff4a3
+-/
 theorem _root_.Tengoku.LanaOka.isCompact_closure_of_differentiableOn {U : Set E} (hU : IsOpen U) {F : ι → E → ℂ}
     (hF : ∀ i, DifferentiableOn ℂ (F i) U)
     (hb : ∀ K ⊆ U, IsCompact K → ∃ C, ∀ i, ∀ x ∈ K, ‖F i x‖ ≤ C) :
@@ -137,7 +146,9 @@ theorem _root_.Tengoku.LanaOka.isCompact_closure_of_differentiableOn {U : Set E}
 
 /-- **Montel's theorem**, sequential form: a sequence of holomorphic functions on `U` which is
 uniformly bounded on compact subsets of `U` has a subsequence converging locally uniformly on `U`
-to a holomorphic function. -/
+to a holomorphic function.
+@isnad1 id=ex.3h3v.s8.342ee9347598 from=translated src=- shape=f97c9962 vocab=7e4ddd3a
+-/
 theorem _root_.Tengoku.LanaOka.exists_subseq_tendstoLocallyUniformlyOn {U : Set E} (hU : IsOpen U) {F : ℕ → E → ℂ}
     (hF : ∀ n, DifferentiableOn ℂ (F n) U)
     (hb : ∀ K ⊆ U, IsCompact K → ∃ C, ∀ n, ∀ x ∈ K, ‖F n x‖ ≤ C) :

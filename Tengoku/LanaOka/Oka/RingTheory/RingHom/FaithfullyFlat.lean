@@ -47,7 +47,9 @@ flat**: if `f : A →+* B` is faithfully flat and `I` is an ideal of `A`, then t
 `A ⧸ I → B ⧸ I B` is faithfully flat.
 
 This is `Module.FaithfullyFlat.quotIdealMap` with `f.toAlgebra` installed. Nothing is assumed
-about `I`, because faithful flatness is preserved by arbitrary base change. -/
+about `I`, because faithful flatness is preserved by arbitrary base change.
+@isnad1 id=faithful.1h4v.s7.bf84ae2f3741 from=translated src=- shape=7ed318c1 vocab=fce456a9
+-/
 theorem RingHom.FaithfullyFlat.quotIdealMap {f : A →+* B} (hf : f.FaithfullyFlat) (I : Ideal A) :
     (Ideal.quotientMap (I.map f) f Ideal.le_comap_map).FaithfullyFlat := by
   letI := f.toAlgebra

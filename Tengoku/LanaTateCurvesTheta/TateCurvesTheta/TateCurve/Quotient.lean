@@ -64,6 +64,9 @@ def toTateDatum : TateDatum K where
   q := t.q
   norm_q_lt_one := t.norm_lt_one
 
+/--
+@isnad1 id=eq.0h2v.s5.ddb788a3e23c from=translated src=- shape=7c2a7128 vocab=5897a962
+-/
 @[simp] lemma toTateDatum_q : t.toTateDatum.q = t.q := rfl
 
 /-- The subgroup `qᶻ ≤ Kˣ` attached to a Tate parameter. -/
@@ -75,7 +78,9 @@ abbrev AnalyticQuotient := t.toTateDatum.AnalyticQuotient
 /-- The natural projection `Kˣ → Kˣ / qᶻ` attached to a Tate parameter. -/
 abbrev toAnalyticQuotient : Kˣ →* t.AnalyticQuotient := t.toTateDatum.toAnalyticQuotient
 
-/-- The Tate parameter maps to the identity in the analytic quotient. -/
+/-- The Tate parameter maps to the identity in the analytic quotient.
+@isnad1 id=eq.0h2v.s8.276c88977dd2 from=translated src=- shape=14270c7b vocab=d456455b
+-/
 @[simp] lemma toAnalyticQuotient_q : t.toAnalyticQuotient t.q = 1 :=
   t.toTateDatum.toAnalyticQuotient_q
 

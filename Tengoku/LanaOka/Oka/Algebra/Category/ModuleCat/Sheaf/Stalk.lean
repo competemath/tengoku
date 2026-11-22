@@ -287,7 +287,9 @@ This is `TopCat.Sheaf.exact_iff_stalkFunctor_map_exact` with the site spelled
 `CategoryTheory.Sheaf (Opens.grothendieckTopology X)` rather than `TopCat.Sheaf`. The proof is
 the Mathlib lemma applied — the two statements are definitionally equal — but the restatement is
 not decoration: a `rw` with the Mathlib lemma fails on a goal in this spelling, with
-`did not find an occurrence of the pattern`. -/
+`did not find an occurrence of the pattern`.
+@isnad1 id=iff.0h2v.s9.7193bec7127a from=translated src=- shape=aac89494 vocab=ee675fd8
+-/
 theorem TopCat.Sheaf.exact_iff_stalk_exact
     (S : ShortComplex (CategoryTheory.Sheaf (Opens.grothendieckTopology X) AddCommGrpCat.{u})) :
     S.Exact ↔ ∀ x : X, (S.map (TopCat.Sheaf.stalkFunctor X x)).Exact :=
@@ -318,7 +320,9 @@ together are `SheafOfModules.exact_iff_stalk_exact`.
 needs and why the intended consumer does not* until 2026-09-22**, when the converse was proved
 here; `git show 34f83e4:Oka/Algebra/Category/ModuleCat/Sheaf/Stalk.lean` carries the retired
 wording at `:297–298`, wrapped after *what it*. **What the module docstring accounts for has
-changed with it**: it named what the converse needed and now names what it costs. -/
+changed with it**: it named what the converse needed and now names what it costs.
+@isnad1 id=exact.1h3v.s8.152fd4ef3f12 from=translated src=- shape=2de772b8 vocab=71b3eb11
+-/
 theorem SheafOfModules.exact_of_stalk_exact (S : ShortComplex (SheafOfModules.{u} R))
     (h : ∀ x : X, (S.map (SheafOfModules.stalkFunctorAddCommGrp x)).Exact) : S.Exact :=
   Functor.reflects_exact_of_faithful (SheafOfModules.toSheaf R) S
@@ -342,7 +346,9 @@ Mathlib's** — see the section above on what this costs and what upstreaming it
 **Measured**: delete this file's `Oka/Algebra/Category/ModuleCat/Sheaf/Colimits.lean` import and
 this proof, and nothing else in the file, fails — with
 `failed to synthesize (toSheaf R).PreservesLeftHomologyOf S`, which is the left half asking for
-the colimits the deleted module supplies. -/
+the colimits the deleted module supplies.
+@isnad1 id=exact.1h4v.s8.39e4cc7567a9 from=translated src=- shape=d1a0900b vocab=71b3eb11
+-/
 theorem SheafOfModules.stalk_exact_of_exact (S : ShortComplex (SheafOfModules.{u} R))
     (h : S.Exact) (x : X) : (S.map (SheafOfModules.stalkFunctorAddCommGrp x)).Exact :=
   (TopCat.Sheaf.exact_iff_stalk_exact _).mp (h.map (SheafOfModules.toSheaf R)) x
@@ -354,7 +360,9 @@ The name is `TopCat.Sheaf.exact_iff_stalk_exact`'s one namespace down, and the t
 kept as declarations of their own rather than as `.mp` and `.mpr` projections: `mpr` is
 `SheafOfModules.exact_of_stalk_exact`, which is older than this biconditional and has consumers,
 and `mp` is `SheafOfModules.stalk_exact_of_exact`, which takes `x` as an argument where this
-takes it under a `∀`. -/
+takes it under a `∀`.
+@isnad1 id=iff.0h3v.s8.c2e7857fc1b7 from=translated src=- shape=57653448 vocab=71b3eb11
+-/
 theorem SheafOfModules.exact_iff_stalk_exact (S : ShortComplex (SheafOfModules.{u} R)) :
     S.Exact ↔ ∀ x : X, (S.map (SheafOfModules.stalkFunctorAddCommGrp x)).Exact :=
   ⟨fun h x => SheafOfModules.stalk_exact_of_exact S h x, SheafOfModules.exact_of_stalk_exact S⟩

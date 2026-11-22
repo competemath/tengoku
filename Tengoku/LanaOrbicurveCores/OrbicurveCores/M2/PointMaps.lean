@@ -41,6 +41,9 @@ def NonElem (Γ : Subgroup SL(2, ℝ)) (a : SL(2, ℝ) → GL (Fin 2) k) : Prop 
     ∀ y : OnePoint k, ∃ γ ∈ Γ', a γ • y ≠ y
 
 omit [ProperSpace k] in
+/--
+@isnad1 id=eq.1h4v.s8.73c171946a4a from=translated src=- shape=124ca497 vocab=08566899
+-/
 lemma ActsOn.one {Γ : Subgroup SL(2, ℝ)} {a : SL(2, ℝ) → GL (Fin 2) k} (h : ActsOn Γ a)
     (y : OnePoint k) : a 1 • y = y := by
   have := h 1 (one_mem _) 1 (one_mem _) y
@@ -48,18 +51,30 @@ lemma ActsOn.one {Γ : Subgroup SL(2, ℝ)} {a : SL(2, ℝ) → GL (Fin 2) k} (h
   exact ((smul_left_cancel_iff (a 1)).1 this).symm
 
 omit [ProperSpace k] in
+/--
+@isnad1 id=eq.2h5v.s9.f1e4c6182cdd from=translated src=- shape=cecc4974 vocab=f1986974
+-/
 lemma ActsOn.inv {Γ : Subgroup SL(2, ℝ)} {a : SL(2, ℝ) → GL (Fin 2) k} (h : ActsOn Γ a)
     {γ : SL(2, ℝ)} (hγ : γ ∈ Γ) (y : OnePoint k) : a γ⁻¹ • a γ • y = y := by
   rw [← h _ (inv_mem hγ) _ hγ, inv_mul_cancel, h.one]
 
+/--
+@isnad1 id=eventual.1h1v.s7.e33aa34f1112 from=translated src=- shape=4e5170e4 vocab=8e3321c6
+-/
 lemma ae_fst {p : OnePoint ℝ → Prop} (h : ∀ᵐ x ∂bdry, p x) :
     ∀ᵐ q ∂(bdry.prod bdry), p q.1 :=
   Measure.quasiMeasurePreserving_fst.ae h
 
+/--
+@isnad1 id=eventual.1h1v.s7.8f20a4e90e32 from=translated src=- shape=4e5170e4 vocab=69515743
+-/
 lemma ae_snd {p : OnePoint ℝ → Prop} (h : ∀ᵐ x ∂bdry, p x) :
     ∀ᵐ q ∂(bdry.prod bdry), p q.2 :=
   Measure.quasiMeasurePreserving_snd.ae h
 
+/--
+@isnad1 id=ex.1h1v.s5.fbd144f2bace from=translated src=- shape=0ce099bb vocab=2c99b6cd
+-/
 lemma exists_of_ae {p : OnePoint ℝ → Prop} (h : ∀ᵐ x ∂bdry, p x) : ∃ x, p x := by
   by_contra hne
   push Not at hne

@@ -78,12 +78,17 @@ def baseChange (t : TateParameter K) : TateParameter L where
     rw [h]
     exact t.norm_lt_one
 
+/--
+@isnad1 id=eq.0h3v.s7.e94dbe72ecc7 from=translated src=- shape=d4f2a0e7 vocab=db38569e
+-/
 @[simp]
 lemma baseChange_q_coe (t : TateParameter K) :
     ((t.baseChange L).q : L) = algebraMap K L (t.q : K) :=
   Units.coe_map _ _
 
-/-- The absolute value of a Tate parameter is preserved under a complete field extension. -/
+/-- The absolute value of a Tate parameter is preserved under a complete field extension.
+@isnad1 id=eq.0h3v.s6.eafd56016060 from=translated src=- shape=0a01419b vocab=377f174c
+-/
 @[simp]
 lemma norm_baseChange (t : TateParameter K) :
     ‖((t.baseChange L).q : L)‖ = ‖(t.q : K)‖ := by
@@ -91,7 +96,9 @@ lemma norm_baseChange (t : TateParameter K) :
 
 /-- The real-valued normalized order is invariant under a complete field extension: the
 absolute value—and hence `ord = -log ‖q‖`—is unchanged. The ramification-index scaling is
-carried by the discrete normalized valuation instead (see the module docstring). -/
+carried by the discrete normalized valuation instead (see the module docstring).
+@isnad1 id=eq.0h3v.s5.488ddccc7725 from=translated src=- shape=c5f3ab1f vocab=48f545cf
+-/
 @[simp]
 lemma ord_baseChange (t : TateParameter K) : (t.baseChange L).ord = t.ord := by
   simp only [ord, norm_baseChange]

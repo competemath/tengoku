@@ -50,10 +50,16 @@ section
 variable {Γ : Subgroup SL(2, ℝ)} [Countable Γ] {a : SL(2, ℝ) → GL (Fin 2) k}
   {u v : OnePoint ℝ → OnePoint k}
 
+/--
+@isnad1 id=ne.0h0v.s5.527812dd36c8 from=translated src=- shape=10d37ea3 vocab=7094520f
+-/
 lemma cauchy_ne_zero : cauchy ≠ 0 := fun h ↦
   bdry_ne_zero (Measure.measure_univ_eq_zero.1 (bdry_absolutelyContinuous_cauchy (by simp [h])))
 
 omit [DecidableEq k] [ProperSpace k] in
+/--
+@isnad1 id=measurab.2h4v.s6.d634948e3cb9 from=translated src=- shape=58e7080e vocab=28b88edb
+-/
 lemma measurableSet_mem_pairAt (hu : Measurable u) (hv : Measurable v) (y : OnePoint k) :
     MeasurableSet {x | y ∈ pairAt u v x} := by
   have : {x | y ∈ pairAt u v x} = u ⁻¹' {y} ∪ v ⁻¹' {y} := by
@@ -62,7 +68,9 @@ lemma measurableSet_mem_pairAt (hu : Measurable u) (hv : Measurable v) (y : OneP
   exact (hu (measurableSet_singleton y)).union (hv (measurableSet_singleton y))
 
 omit [DecidableEq k] [ProperSpace k] in
-/-- At most two points meet any given pair: the weights sum to at most `2 ν(B)`. -/
+/-- At most two points meet any given pair: the weights sum to at most `2 ν(B)`.
+@isnad1 id=le.2h4v.s7.ddb9d9cc4561 from=translated src=- shape=78854ac8 vocab=dde4cede
+-/
 lemma sum_weight_le (hu : Measurable u) (hv : Measurable v) (T : Finset (OnePoint k)) :
     ∑ y ∈ T, cauchy {x | y ∈ pairAt u v x} ≤ 2 * cauchy univ := by
   classical
@@ -104,21 +112,33 @@ lemma eq_or_eq_inv_of_add_inv {w c : k} (hw : w ≠ 0) (hc : c ≠ 0) (h : w + w
 def jcr (y₁ y₂ y₃ y₄ : OnePoint k) : k := wcr y₁ y₂ y₃ y₄ + (wcr y₁ y₂ y₃ y₄)⁻¹
 
 omit [ProperSpace k] [DecidableEq k] in
+/--
+@isnad1 id=eq.1h5v.s5.ef09aa3b0388 from=translated src=- shape=cf2432d8 vocab=df55eb17
+-/
 lemma jcr_swap₁₂ {y₁ y₂ y₃ y₄ : OnePoint k} (h : Distinct4 y₁ y₂ y₃ y₄) :
     jcr y₂ y₁ y₃ y₄ = jcr y₁ y₂ y₃ y₄ := by
   simp only [jcr, wcr_swap₁₂ h, inv_inv]; ring
 
 omit [ProperSpace k] [DecidableEq k] in
+/--
+@isnad1 id=eq.1h5v.s5.ed4ee702fad8 from=translated src=- shape=7b63a129 vocab=df55eb17
+-/
 lemma jcr_swap₃₄ {y₁ y₂ y₃ y₄ : OnePoint k} (h : Distinct4 y₁ y₂ y₃ y₄) :
     jcr y₁ y₂ y₄ y₃ = jcr y₁ y₂ y₃ y₄ := by
   simp only [jcr, wcr_swap₃₄ h, inv_inv]; ring
 
 omit [NontriviallyNormedField k] [ProperSpace k] [DecidableEq k] in
+/--
+@isnad1 id=distinct.1h5v.s4.c6f36d8717f5 from=translated src=- shape=7686df78 vocab=179005a3
+-/
 lemma Distinct4.swap₁₂ {y₁ y₂ y₃ y₄ : OnePoint k} (h : Distinct4 y₁ y₂ y₃ y₄) :
     Distinct4 y₂ y₁ y₃ y₄ := by
   obtain ⟨h1, h2, h3, h4, h5, h6⟩ := h; exact ⟨h1.symm, h4, h5, h2, h3, h6⟩
 
 omit [NontriviallyNormedField k] [ProperSpace k] [DecidableEq k] in
+/--
+@isnad1 id=distinct.3h5v.s6.c4e148258b2c from=translated src=- shape=96719294 vocab=64d803a7
+-/
 lemma distinct4_of_disjoint {u₁ v₁ u₂ v₂ : OnePoint k} (h₁ : u₁ ≠ v₁) (h₂ : u₂ ≠ v₂)
     (hd : Disjoint ({u₁, v₁} : Set (OnePoint k)) {u₂, v₂}) : Distinct4 u₁ v₁ u₂ v₂ := by
   simp only [Set.disjoint_insert_left, Set.disjoint_insert_right, Set.disjoint_singleton_left,

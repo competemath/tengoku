@@ -24,27 +24,35 @@ noncomputable def normalizedLogHeight
     (K : Type*) [Field K] [NumberField K] (x : K) : ℝ :=
   Height.logHeight₁ x / (Module.finrank ℚ K : ℝ)
 
-/-- The degree occurring in `normalizedLogHeight` is positive. -/
+/-- The degree occurring in `normalizedLogHeight` is positive.
+@isnad1 id=lt.0h1v.s5.f3596797379b from=translated src=- shape=6f759d16 vocab=51b3f8b9
+-/
 theorem numberFieldDegree_pos
     (K : Type*) [Field K] [NumberField K] :
     (0 : ℝ) < Module.finrank ℚ K := by
   exact_mod_cast Module.finrank_pos
 
-/-- Absolute logarithmic Weil height is nonnegative. -/
+/-- Absolute logarithmic Weil height is nonnegative.
+@isnad1 id=le.0h2v.s4.a85fcf64f7bd from=translated src=- shape=c83d11cb vocab=cd788960
+-/
 theorem normalizedLogHeight_nonneg
     (K : Type*) [Field K] [NumberField K] (x : K) :
     0 ≤ normalizedLogHeight K x := by
   exact div_nonneg (Height.zero_le_logHeight₁ x) (numberFieldDegree_pos K).le
 
 /-- Over `ℚ`, the normalized logarithmic height is the logarithm of the maximum
-of the absolute numerator and the positive denominator. -/
+of the absolute numerator and the positive denominator.
+@isnad1 id=eq.0h1v.s4.0be9535dd80d from=translated src=- shape=f0e41b88 vocab=48502572
+-/
 theorem normalizedLogHeight_rat (q : ℚ) :
     normalizedLogHeight ℚ q =
       Real.log ((max q.num.natAbs q.den : ℕ) : ℝ) := by
   simp [normalizedLogHeight, Rat.logHeight₁_eq_log_max]
 
 /-- Scaling both entries in the rational numerator/denominator maximum by a
-positive natural number adds its logarithm. -/
+positive natural number adds its logarithm.
+@isnad1 id=eq.1h2v.s6.b5a3a14d7a57 from=translated src=- shape=01abe5e9 vocab=57546afe
+-/
 theorem ratHeight_scaled_denominator (q : ℚ) (n : ℕ) (hn : 0 < n) :
     Height.logHeight₁ q + Real.log (n : ℝ) =
       Real.log ((max (q.num.natAbs * n) (q.den * n) : ℕ) : ℝ) := by
@@ -60,7 +68,9 @@ theorem ratHeight_scaled_denominator (q : ℚ) (n : ℕ) (hn : 0 < n) :
 
 /-- Weighted Jensen's inequality for `log (1 + x)`, with the total weight
 kept explicit. This is the abstract concavity estimate used for the weighted
-infinite-place sum in Silverman's equation (11). -/
+infinite-place sum in Silverman's equation (11).
+@isnad1 id=le.4h4v.s7.9e41aab91de4 from=translated src=- shape=bebea5e3 vocab=d80031b3
+-/
 theorem weightedLogOneAdd_le
     {ι : Type*} [Fintype ι] (w x : ι → ℝ) (d : ℝ)
     (hw : ∀ i, 0 ≤ w i) (hx : ∀ i, 0 ≤ x i)
@@ -98,7 +108,9 @@ theorem weightedLogOneAdd_le
     _ ≤ d * Real.log (1 + (∑ i, w i * x i) / d) :=
       mul_le_mul_of_nonneg_left hJ hd_pos.le
 
-/-- The weighted logarithmic sum in `weightedLogOneAdd_le` is nonnegative. -/
+/-- The weighted logarithmic sum in `weightedLogOneAdd_le` is nonnegative.
+@isnad1 id=le.2h3v.s6.637f18c56a6d from=translated src=- shape=7a30e61c vocab=ad0cc3ae
+-/
 theorem weightedLogOneAdd_nonneg
     {ι : Type*} [Fintype ι] (w x : ι → ℝ)
     (hw : ∀ i, 0 ≤ w i) (hx : ∀ i, 0 ≤ x i) :
@@ -110,7 +122,9 @@ theorem weightedLogOneAdd_nonneg
 open NumberField in
 /-- Equation (11)'s weighted concavity bounds, specialized to infinite-place
 multiplicities. The right side retains the weighted average explicitly; a later
-height decomposition will bound that average by the normalized `j`-height. -/
+height decomposition will bound that average by the normalized `j`-height.
+@isnad1 id=and.1h2v.s8.50e7a928689f from=translated src=- shape=fdadf0fe vocab=5e6e1dc6
+-/
 theorem infinitePlaceWeightedLogOneAdd_bounds
     (K : Type*) [Field K] [NumberField K]
     (x : InfinitePlace K → ℝ) (hx : ∀ v, 0 ≤ x v) :
@@ -132,7 +146,9 @@ theorem infinitePlaceWeightedLogOneAdd_bounds
 
 open NumberField in
 /-- The normalized infinite-place contribution is bounded by the full absolute
-logarithmic height. The omitted finite-place terms are all nonnegative. -/
+logarithmic height. The omitted finite-place terms are all nonnegative.
+@isnad1 id=le.0h2v.s6.334ee01dac8b from=translated src=- shape=9abcacc4 vocab=e0d294e8
+-/
 theorem infinitePlacePosLogAverage_le_normalizedLogHeight
     (K : Type*) [Field K] [NumberField K] (z : K) :
     (∑ v : InfinitePlace K, (v.mult : ℝ) * Real.posLog (v z)) /
@@ -145,7 +161,9 @@ theorem infinitePlacePosLogAverage_le_normalizedLogHeight
 
 open NumberField in
 /-- Jensen's bound at the infinite places, now with its weighted average
-bounded by the actual normalized height of the number-field element. -/
+bounded by the actual normalized height of the number-field element.
+@isnad1 id=and.0h2v.s7.c63ade05a7af from=translated src=- shape=28fae188 vocab=dd2f2010
+-/
 theorem infinitePlaceWeightedLogOneAdd_posLog_bounds
     (K : Type*) [Field K] [NumberField K] (z : K) :
     0 ≤ ∑ v : InfinitePlace K,
@@ -174,7 +192,9 @@ theorem infinitePlaceWeightedLogOneAdd_posLog_bounds
 
 /-- A local log-log term is nonnegative and is bounded by the `log (1 + log⁺)`
 term to which weighted Jensen applies. The cutoff `exp 1` is the precise
-formal version of the conventional `e` in `log log max (a, e)`. -/
+formal version of the conventional `e` in `log log max (a, e)`.
+@isnad1 id=and.0h1v.s5.f21cd613c262 from=translated src=- shape=979ac7e5 vocab=837caa27
+-/
 theorem logLogMaxExpOne_bounds (a : ℝ) :
     0 ≤ Real.log (Real.log (max a (Real.exp 1))) ∧
       Real.log (Real.log (max a (Real.exp 1))) ≤
@@ -204,7 +224,9 @@ theorem logLogMaxExpOne_bounds (a : ℝ) :
 open NumberField in
 /-- Silverman's equation (11): the weighted archimedean log-log sum is between
 zero and the degree times `log (1 + h(z))`, where `h` is the actual absolute
-normalized Weil height. -/
+normalized Weil height.
+@isnad1 id=and.0h2v.s7.f0e17d8f08e1 from=translated src=- shape=81ea271d vocab=2016705d
+-/
 theorem infinitePlaceLogLogMax_bounds
     (K : Type*) [Field K] [NumberField K] (z : K) :
     0 ≤ ∑ v : InfinitePlace K, (v.mult : ℝ) *
@@ -231,7 +253,9 @@ theorem infinitePlaceLogLogMax_bounds
 
 /-- An explicit `ε`-absorption estimate for the log-log error. This is the
 elementary analytic inequality used in the rational specialization of
-Silverman's Corollary 2.3. -/
+Silverman's Corollary 2.3.
+@isnad1 id=le.2h2v.s6.37a70c90ef58 from=translated src=- shape=6fe9788a vocab=f4d11ea3
+-/
 theorem six_logOneAdd_log_le_epsilon_log_add
     (ε t : ℝ) (hε : 0 < ε) (ht : 1 ≤ t) :
     6 * Real.log (1 + Real.log t) ≤
@@ -266,7 +290,9 @@ theorem six_logOneAdd_log_le_epsilon_log_add
   nlinarith
 
 /-- Big-`O_ε` form of `six_logOneAdd_log_le_epsilon_log_add`: for every
-positive `ε`, one nonnegative constant works uniformly for every `t ≥ 1`. -/
+positive `ε`, one nonnegative constant works uniformly for every `t ≥ 1`.
+@isnad1 id=ex.1h1v.s6.7755864a010f from=translated src=- shape=a232c685 vocab=0b0b6a82
+-/
 theorem six_logOneAdd_log_epsilon_absorption (ε : ℝ) (hε : 0 < ε) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ t : ℝ, 1 ≤ t →
       6 * Real.log (1 + Real.log t) ≤ ε * Real.log t + C := by

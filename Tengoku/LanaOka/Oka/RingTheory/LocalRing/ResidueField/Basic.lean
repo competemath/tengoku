@@ -76,12 +76,18 @@ variable {α : K →+* S} {β : K →+* T}
 
 namespace IsCoefficientField
 
+/--
+@isnad1 id=surjecti.1h3v.s7.907354190799 from=translated src=- shape=3754274a vocab=e3febf10
+-/
 lemma surjective (h : IsCoefficientField α) :
     Function.Surjective ((residue S).comp α) := fun a ↦ by
   obtain ⟨b, rfl⟩ := residue_surjective a
   obtain ⟨c, hc⟩ := h b
   exact ⟨c, (Ideal.Quotient.eq.2 hc).symm⟩
 
+/--
+@isnad1 id=bijectiv.1h3v.s7.4ce2d890a31b from=translated src=- shape=3754274a vocab=5af1df8a
+-/
 lemma bijective (h : IsCoefficientField α) :
     Function.Bijective ((residue S).comp α) :=
   ⟨((residue S).comp α).injective, h.surjective⟩
@@ -90,6 +96,9 @@ lemma bijective (h : IsCoefficientField α) :
 noncomputable def residueFieldEquiv (h : IsCoefficientField α) : ResidueField S ≃+* K :=
   (RingEquiv.ofBijective _ h.bijective).symm
 
+/--
+@isnad1 id=eq.1h4v.s8.ef56ddbef0d0 from=translated src=- shape=ecb865d0 vocab=2c418614
+-/
 @[simp]
 lemma residueFieldEquiv_residue (h : IsCoefficientField α) (c : K) :
     h.residueFieldEquiv (residue S (α c)) = c :=
@@ -103,10 +112,16 @@ constants are fixed (`IsCoefficientField.evalHom_const`). -/
 noncomputable def evalHom (h : IsCoefficientField α) : S →+* K :=
   h.residueFieldEquiv.toRingHom.comp (residue S)
 
+/--
+@isnad1 id=eq.1h4v.s7.056be698f936 from=translated src=- shape=7c654832 vocab=bcbbc01c
+-/
 @[simp]
 lemma evalHom_const (h : IsCoefficientField α) (c : K) : h.evalHom (α c) = c :=
   h.residueFieldEquiv_residue c
 
+/--
+@isnad1 id=iff.1h4v.s7.530c9e89c6cc from=translated src=- shape=99128d66 vocab=19408e17
+-/
 @[simp]
 lemma evalHom_eq_zero_iff (h : IsCoefficientField α) {a : S} :
     h.evalHom a = 0 ↔ a ∈ maximalIdeal S := by
@@ -119,11 +134,16 @@ maximal ideal.**
 This is the characterisation of `IsCoefficientField.evalHom`, and it is what makes it usable:
 `evalHom` is defined through the residue field, but nothing that consumes a value needs to know
 that. In particular an equation between values transports along any local homomorphism, because
-membership in the maximal ideal does. -/
+membership in the maximal ideal does.
+@isnad1 id=iff.1h5v.s7.372d7404f984 from=translated src=- shape=4d97fa7f vocab=23cb12fe
+-/
 lemma evalHom_eq_iff (h : IsCoefficientField α) {a : S} {c : K} :
     h.evalHom a = c ↔ a - α c ∈ maximalIdeal S := by
   rw [← h.evalHom_eq_zero_iff, map_sub, h.evalHom_const, sub_eq_zero]
 
+/--
+@isnad1 id=mem.1h4v.s7.9e5beedd932d from=translated src=- shape=534c0de5 vocab=23cb12fe
+-/
 lemma sub_evalHom_mem (h : IsCoefficientField α) (a : S) :
     a - α (h.evalHom a) ∈ maximalIdeal S :=
   h.evalHom_eq_iff.1 rfl
@@ -132,7 +152,9 @@ lemma sub_evalHom_mem (h : IsCoefficientField α) (a : S) :
 
 Existence is the definition of a coefficient field; uniqueness holds for any homomorphism from a
 field, because the difference of two distinct constants is a unit. Both halves are
-`IsCoefficientField.evalHom_eq_iff` read in the two directions. -/
+`IsCoefficientField.evalHom_eq_iff` read in the two directions.
+@isnad1 id=existsun.1h4v.s7.a7c30f6f2a0c from=translated src=- shape=96f199d9 vocab=d0bf3096
+-/
 theorem existsUnique_sub_mem_maximalIdeal (h : IsCoefficientField α) (a : S) :
     ∃! c : K, a - α c ∈ maximalIdeal S :=
   ⟨h.evalHom a, h.sub_evalHom_mem a, fun _ hc ↦ (h.evalHom_eq_iff.2 hc).symm⟩
@@ -141,7 +163,9 @@ theorem existsUnique_sub_mem_maximalIdeal (h : IsCoefficientField α) (a : S) :
 
 The hypothesis `hcomp` is the compatibility of the two `K`-algebra structures; `f` is
 automatically a local homomorphism, since a surjection of local rings is
-(`IsLocalHom.of_surjective`). -/
+(`IsLocalHom.of_surjective`).
+@isnad1 id=iscoeffi.3h6v.s8.efc1454fc940 from=translated src=- shape=315d2ad5 vocab=fbf3806a
+-/
 theorem of_surjective (h : IsCoefficientField α) {f : S →+* T} (hf : Function.Surjective f)
     (hcomp : ∀ c, f (α c) = β c) : IsCoefficientField β := by
   have : IsLocalHom f := IsLocalHom.of_surjective f hf
@@ -151,7 +175,9 @@ theorem of_surjective (h : IsCoefficientField α) {f : S →+* T} (hf : Function
   exact ⟨c, by rw [← hcomp c, ← map_sub]; exact map_nonunit f _ hc⟩
 
 /-- Evaluation commutes with a surjection compatible with the constants: the value of `f a` in
-`K` is the value of `a`. -/
+`K` is the value of `a`.
+@isnad1 id=eq.3h7v.s8.880de9e6e9a2 from=translated src=- shape=3b6956a1 vocab=071041cb
+-/
 theorem evalHom_map (h : IsCoefficientField α) {f : S →+* T} (hf : Function.Surjective f)
     (hcomp : ∀ c, f (α c) = β c) (a : S) :
     (h.of_surjective hf hcomp).evalHom (f a) = h.evalHom a := by
@@ -168,7 +194,9 @@ soft reason: it sends the maximal ideal to `0`, which is not a unit because a lo
 nontrivial. It is the standard witness that the hypothesis "θ and θ' agree on generators of the
 maximal ideal" cannot be dropped from
 `IsLocalRing.IsCoefficientField.ringHom_ext` — this map agrees with the identity on the
-constants and, as soon as `𝔪 ≠ 0`, differs from it. -/
+constants and, as soon as `𝔪 ≠ 0`, differs from it.
+@isnad1 id=islocalh.1h3v.s7.204e43f496db from=translated src=- shape=ad5af2cd vocab=3462003e
+-/
 theorem isLocalHom_comp_evalHom (h : IsCoefficientField α) : IsLocalHom (α.comp h.evalHom) where
   map_nonunit a ha := by
     by_contra hna

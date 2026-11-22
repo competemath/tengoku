@@ -39,6 +39,9 @@ noncomputable instance : MeasurableSpace ℚ_[p] := borel _
 
 instance : BorelSpace ℚ_[p] := ⟨rfl⟩
 
+/--
+@isnad1 id=ne.0h1v.s5.8b5a55b85359 from=translated src=- shape=6a12b434 vocab=f889e549
+-/
 lemma padic_natCast_ne_zero : ((p : ℕ) : ℚ_[p]) ≠ 0 := by
   exact_mod_cast (Fact.out : p.Prime).ne_zero
 
@@ -47,6 +50,9 @@ noncomputable def mulPadic : ℚ_[p] ≃L[ℚ_[p]] ℚ_[p] :=
   (LinearEquiv.smulOfNeZero ℚ_[p] ℚ_[p] (p : ℚ_[p])
     (padic_natCast_ne_zero p)).toContinuousLinearEquiv
 
+/--
+@isnad1 id=eq.0h2v.s9.859aff452ca9 from=translated src=- shape=2f503202 vocab=ea0fb901
+-/
 lemma mulPadic_apply (x : ℚ_[p]) : mulPadic p x = (p : ℚ_[p]) * x := rfl
 
 /-! ### The ball of radius `p` as a union of `p` translates of `ℤ_p` -/
@@ -55,17 +61,29 @@ lemma mulPadic_apply (x : ℚ_[p]) : mulPadic p x = (p : ℚ_[p]) * x := rfl
 noncomputable def padicCoset (i : Fin p) : Set ℚ_[p] :=
   (fun x => -(((i : ℕ) : ℚ_[p]) / p) + x) ⁻¹' Metric.closedBall 0 1
 
+/--
+@isnad1 id=iff.0h3v.s6.cddf83cdf5f4 from=translated src=- shape=3098518d vocab=afe93547
+-/
 lemma mem_padicCoset {i : Fin p} {x : ℚ_[p]} :
     x ∈ padicCoset p i ↔ ‖x - ((i : ℕ) : ℚ_[p]) / p‖ ≤ 1 := by
   simp only [padicCoset, Set.mem_preimage, Metric.mem_closedBall, dist_zero_right, neg_add_eq_sub]
 
+/--
+@isnad1 id=measurab.0h2v.s4.ad313360a124 from=translated src=- shape=c7b3ddff vocab=0d3a533b
+-/
 lemma measurableSet_padicCoset (i : Fin p) : MeasurableSet (padicCoset p i) :=
   measurableSet_closedBall.preimage (by fun_prop)
 
+/--
+@isnad1 id=le.0h3v.s5.b097e44afa13 from=translated src=- shape=c52a6de2 vocab=927db143
+-/
 lemma norm_sub_le_max' {x y : ℚ_[p]} : ‖x - y‖ ≤ max ‖x‖ ‖y‖ := by
   rw [sub_eq_add_neg]
   exact (IsUltrametricDist.norm_add_le_max _ _).trans_eq (by rw [norm_neg])
 
+/--
+@isnad1 id=pairwise.0h1v.s6.ca325259c331 from=translated src=- shape=05709547 vocab=6167ab0f
+-/
 lemma pairwise_disjoint_padicCoset :
     Pairwise fun i j : Fin p => Disjoint (padicCoset p i) (padicCoset p j) := by
   intro i j hij

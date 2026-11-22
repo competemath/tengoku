@@ -21,9 +21,15 @@ open scoped MatrixGroups ENNReal
 
 namespace OrbicurveCores.M2
 
+/--
+@isnad1 id=eq.0h3v.s5.05d7b2236ebd from=translated src=- shape=00903c0e vocab=307967cd
+-/
 lemma hopfN_hopfN (t t' : ℝ) (p : ℝ × ℝ × ℝ) : hopfN t (hopfN t' p) = hopfN (t' + t) p := by
   simp only [hopfN]; ext <;> simp; ring
 
+/--
+@isnad1 id=eq.0h1v.s4.b07fecaeaddd from=translated src=- shape=91f58e9f vocab=2829eef7
+-/
 lemma hopfN_zero (p : ℝ × ℝ × ℝ) : hopfN 0 p = p := by simp [hopfN]
 
 /-- The shear as a measurable equivalence. -/
@@ -35,13 +41,21 @@ noncomputable def hopfNEquiv (t : ℝ) : (ℝ × ℝ × ℝ) ≃ᵐ (ℝ × ℝ 
   measurable_toFun := measurable_hopfN t
   measurable_invFun := measurable_hopfN (-t)
 
+/--
+@isnad1 id=continuo.0h0v.s6.3eeb108ae781 from=translated src=- shape=d6dd4f8c vocab=64505c22
+-/
 lemma continuous_hopfN_uncurry : Continuous fun q : ℝ × (ℝ × ℝ × ℝ) ↦ hopfN q.1 q.2 := by
   unfold hopfN; fun_prop
 
+/--
+@isnad1 id=continuo.0h1v.s5.533978e05f07 from=translated src=- shape=81448d48 vocab=bdbf5958
+-/
 lemma continuous_hopfN (t : ℝ) : Continuous (hopfN t) :=
   continuous_hopfN_uncurry.comp (continuous_const.prodMk continuous_id)
 
-/-- Dominated convergence for continuous compactly supported functions. -/
+/-- Dominated convergence for continuous compactly supported functions.
+@isnad1 id=tendsto.2h1v.s7.5ec45c618c1d from=translated src=- shape=a872a8d0 vocab=f40a7f32
+-/
 lemma tendsto_lintegral_hopfN_of_continuous {g : ℝ × ℝ × ℝ → ℝ} (hg : Continuous g)
     (hgs : HasCompactSupport g) :
     Tendsto (fun t ↦ ∫⁻ p, ‖g (hopfN t p) - g p‖ₑ) (𝓝 0) (𝓝 0) := by
@@ -83,7 +97,9 @@ lemma tendsto_lintegral_hopfN_of_continuous {g : ℝ × ℝ × ℝ → ℝ} (hg 
       simpa [hopfN_zero] using hc.tendsto 0)
   simpa using hlim
 
-/-- **Continuity of the shear in `L¹(ℝ³)`.** -/
+/-- **Continuity of the shear in `L¹(ℝ³)`.**
+@isnad1 id=tendsto.1h1v.s7.2a8ca48d9951 from=translated src=- shape=5a892e84 vocab=9766b41c
+-/
 theorem tendsto_lintegral_hopfN {φ : ℝ × ℝ × ℝ → ℝ} (hφ : Integrable φ) :
     Tendsto (fun t ↦ ∫⁻ p, ‖φ (hopfN t p) - φ p‖ₑ) (𝓝 0) (𝓝 0) := by
   rw [ENNReal.tendsto_nhds_zero]

@@ -31,14 +31,18 @@ open Filter Metric Set Topology
 
 namespace Uniformization
 
-/-- A function holomorphic on a neighbourhood of `z` is analytic at `z`. -/
+/-- A function holomorphic on a neighbourhood of `z` is analytic at `z`.
+@isnad1 id=analytic.2h3v.s7.a112f4d525c6 from=translated src=- shape=93fc5abd vocab=cd541427
+-/
 theorem analyticAt_of_differentiableOn {f : ℂ → ℂ} {U : Set ℂ} {z : ℂ} (hf : DifferentiableOn ℂ f U)
     (hU : U ∈ 𝓝 z) : AnalyticAt ℂ f z := by
   obtain ⟨V, hVU, hV, hzV⟩ := _root_.mem_nhds_iff.mp hU
   exact (hf.mono hVU).analyticAt (hV.mem_nhds hzV)
 
 /-- A holomorphic function which is injective on a neighbourhood of `z` has nonzero derivative at
-`z`. -/
+`z`.
+@isnad1 id=ne.3h3v.s7.77cb30fc6c34 from=translated src=- shape=6082588a vocab=f281a162
+-/
 theorem deriv_ne_zero_of_injOn {f : ℂ → ℂ} {U : Set ℂ} {z : ℂ} (hf : DifferentiableOn ℂ f U)
     (hU : U ∈ 𝓝 z) (hinj : InjOn f U) : deriv f z ≠ 0 := by
   intro hd
@@ -136,7 +140,9 @@ theorem deriv_ne_zero_of_injOn {f : ℂ → ℂ} {U : Set ℂ} {z : ℂ} (hf : D
 
 /-- A continuous lift of a holomorphic map through a holomorphic map with nonzero derivative is
 holomorphic: if `f ∘ σ = g` near `u`, `σ` is continuous at `u`, `f` has nonzero strict derivative
-at `σ u` and `g` is differentiable at `u`, then `σ` is differentiable at `u`. -/
+at `σ u` and `g` is differentiable at `u`, then `σ` is differentiable at `u`.
+@isnad1 id=differen.5h5v.s8.473de277dffb from=translated src=- shape=e54d0416 vocab=4e552911
+-/
 theorem differentiableAt_of_comp_eq {f g σ : ℂ → ℂ} {u f' : ℂ}
     (hf : HasStrictDerivAt f f' (σ u)) (hf' : f' ≠ 0) (hσ : ContinuousAt σ u)
     (hfg : ∀ᶠ v in 𝓝 u, f (σ v) = g v) (hg : DifferentiableAt ℂ g u) :
@@ -157,7 +163,9 @@ theorem differentiableAt_of_comp_eq {f g σ : ℂ → ℂ} {u f' : ℂ}
 
 /-- **Hurwitz's theorem**, in the form used here: if holomorphic functions `F n` on `ball z r` all
 omit the value `β` (for large `n`) and converge locally uniformly on `ball z r` to `f` with
-`f z = β`, then `f = β` on a neighbourhood of `z`. -/
+`f z = β`, then `f = β` on a neighbourhood of `z`.
+@isnad1 id=eventual.5h5v.s7.09d94e9e4a22 from=translated src=- shape=db99edf0 vocab=22a0f7e3
+-/
 theorem eventually_eq_of_tendstoLocallyUniformlyOn {F : ℕ → ℂ → ℂ} {f : ℂ → ℂ} {z β : ℂ}
     {r : ℝ} (hr : 0 < r) (hF : ∀ᶠ n in atTop, DifferentiableOn ℂ (F n) (ball z r))
     (hlim : TendstoLocallyUniformlyOn F f atTop (ball z r))
@@ -216,7 +224,9 @@ theorem eventually_eq_of_tendstoLocallyUniformlyOn {F : ℕ → ℂ → ℂ} {f 
   linarith
 
 /-- **Inverse function theorem, section form.** If `f` has a nonzero strict derivative at `a`,
-then `f` has a continuous section over a disc about `f a` taking the value `a` at `f a`. -/
+then `f` has a continuous section over a disc about `f a` taking the value `a` at `f a`.
+@isnad1 id=ex.2h3v.s7.9e44c29107a9 from=translated src=- shape=66b35082 vocab=7abb3be0
+-/
 theorem exists_localSection {f : ℂ → ℂ} {f' a : ℂ} (hf : HasStrictDerivAt f f' a) (hf' : f' ≠ 0) :
     ∃ ε > 0, ∃ s : ℂ → ℂ, ContinuousOn s (ball (f a) ε) ∧ (∀ y ∈ ball (f a) ε, f (s y) = y) ∧
       s (f a) = a := by

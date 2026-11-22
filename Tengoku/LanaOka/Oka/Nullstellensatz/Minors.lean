@@ -41,7 +41,9 @@ variable {R : Type*} [CommRing R] {I J : Type*} [Fintype I] [DecidableEq I]
 
 /-- **Expansion of a determinant along maximal minors**, a form of the Cauchy–Binet formula:
 `det (A * C) = ∑_{σ : I → J} (∏_k C (σ k) k) * det A_σ`, where `A_σ` has `k`-th column the
-`σ k`-th column of `A`. -/
+`σ k`-th column of `A`.
+@isnad1 id=eq.0h5v.s7.1053ad0e51ff from=translated src=- shape=b296e8d7 vocab=b1bd5481
+-/
 theorem det_mul_eq_sum_det_submatrix [Fintype J] (A : Matrix I J R) (C : Matrix J I R) :
     (A * C).det = ∑ σ : I → J, (∏ k, C (σ k) k) * (A.submatrix id σ).det := by
   classical
@@ -58,7 +60,9 @@ theorem det_mul_eq_sum_det_submatrix [Fintype J] (A : Matrix I J R) (C : Matrix 
         rw [AlternatingMap.map_smul_univ, smul_eq_mul, ← det_transpose (A.submatrix id σ)]
         rfl
 
-/-- If `A * C = 1` over a local ring, some maximal minor of `A` is a unit. -/
+/-- If `A * C = 1` over a local ring, some maximal minor of `A` is a unit.
+@isnad1 id=ex.1h5v.s7.c7e3779f0ab9 from=translated src=- shape=452a4211 vocab=2940bf33
+-/
 theorem exists_isUnit_det_submatrix_of_mul_eq_one [Fintype J] [IsLocalRing R]
     {A : Matrix I J R} {C : Matrix J I R} (h : A * C = 1) :
     ∃ σ : I → J, IsUnit (A.submatrix id σ).det := by
@@ -71,7 +75,9 @@ theorem exists_isUnit_det_submatrix_of_mul_eq_one [Fintype J] [IsLocalRing R]
   exact (IsLocalRing.maximalIdeal.isMaximal R).ne_top ((Ideal.eq_top_iff_one _).2 hsum)
 
 /-- **A maximal minor kills the cokernel**: `det A_σ • e_k` lies in the span of the elements
-`v_j = ∑ᵢ A i j • e_i`. -/
+`v_j = ∑ᵢ A i j • e_i`.
+@isnad1 id=mem.0h8v.s8.33f05a134856 from=translated src=- shape=8b80763d vocab=e2d3d3cf
+-/
 theorem det_submatrix_smul_mem_span {F : Type*} [AddCommGroup F] [Module R F] (e : I → F)
     (A : Matrix I J R) (σ : I → J) (k : I) :
     (A.submatrix id σ).det • e k ∈
@@ -99,7 +105,9 @@ variable {R : Type*} [CommRing R] {I J : Type*} [Fintype I] [DecidableEq I]
 
 /-- **Maximal minors of a presentation matrix annihilate the presented module.** Here `Q` is
 presented as the quotient of `F` (with basis `e`) by the span of the `v_j`, and the matrix has
-entries the coordinates of the `v_j`. -/
+entries the coordinates of the `v_j`.
+@isnad1 id=mem.2h9v.s9.2e98ddd01dfc from=translated src=- shape=218814dd vocab=da3a9daf
+-/
 theorem det_submatrix_mem_annihilator (e : Basis I R F) (v : J → F) (p : F →ₗ[R] Q)
     (hp : Function.Surjective p) (hker : Submodule.span R (Set.range v) ≤ LinearMap.ker p)
     (σ : I → J) :
@@ -121,7 +129,9 @@ theorem det_submatrix_mem_annihilator (e : Basis I R F) (v : J → F) (p : F →
   exact hker hmem
 
 /-- **If the presented module vanishes, some maximal minor of a presentation matrix is a
-unit**, over a local ring. -/
+unit**, over a local ring.
+@isnad1 id=ex.1h8v.s9.6ff9298aa713 from=translated src=- shape=6882bf5b vocab=df49a7e3
+-/
 theorem exists_isUnit_det_submatrix [IsLocalRing R] [Finite J] (e : Basis I R F) (v : J → F)
     (p : F →ₗ[R] Q) (hker : LinearMap.ker p ≤ Submodule.span R (Set.range v))
     [Subsingleton Q] :

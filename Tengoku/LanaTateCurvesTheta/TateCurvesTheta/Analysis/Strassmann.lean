@@ -50,7 +50,9 @@ namespace TateCurvesTheta.Strassmann
 variable {K : Type*} [NormedField K] [CompleteSpace K] [IsUltrametricDist K]
 
 /-- Comparison test for summability over a complete nonarchimedean field: a family dominated
-termwise in norm by a summable one is itself summable. -/
+termwise in norm by a summable one is itself summable.
+@isnad1 id=summable.2h4v.s6.16b6b836f8be from=translated src=- shape=8b021520 vocab=c32a4ccb
+-/
 theorem summable_of_norm_le {ι : Type*} {f g : ι → K} (hf : Summable f)
     (h : ∀ i, ‖g i‖ ≤ ‖f i‖) : Summable g := by
   rw [NonarchimedeanAddGroup.summable_iff_tendsto_cofinite_zero] at hf ⊢
@@ -58,7 +60,9 @@ theorem summable_of_norm_le {ι : Type*} {f g : ι → K} (hf : Summable f)
   simpa using hf.norm
 
 /-- If the coefficients are summable, the one-sided power series `∑' n, fₙ vⁿ` converges for every
-`v` in the closed unit ball `‖v‖ ≤ 1`. -/
+`v` in the closed unit ball `‖v‖ ≤ 1`.
+@isnad1 id=summable.2h3v.s7.ce5253f13c8f from=translated src=- shape=97f24927 vocab=cb4d864f
+-/
 theorem summable_mul_pow {f : ℕ → K} (hf : Summable f) {v : K} (hv : ‖v‖ ≤ 1) :
     Summable fun n : ℕ => f n * v ^ n := by
   refine summable_of_norm_le hf fun n => ?_
@@ -71,7 +75,9 @@ omit [CompleteSpace K] in
 /-- **Uniform strict bound on the tail.** If `N` is (an index attaining) the maximum term and the
 coefficients strictly beyond `N` are all strictly smaller than `‖f N‖`, then there is a single
 constant `C < ‖f N‖` bounding *all* of them. This packages the finiteness of the superlevel set
-into a usable strict bound. -/
+into a usable strict bound.
+@isnad1 id=ex.3h3v.s7.c8cab9a8000f from=translated src=- shape=30ad547a vocab=65c7edcc
+-/
 theorem exists_bound_lt {f : ℕ → K} (hf : Summable f) {N : ℕ} (hfN : f N ≠ 0)
     (hlast : ∀ n, N < n → ‖f n‖ < ‖f N‖) :
     ∃ C, 0 ≤ C ∧ C < ‖f N‖ ∧ ∀ m, N < m → ‖f m‖ ≤ C := by
@@ -94,7 +100,9 @@ theorem exists_bound_lt {f : ℕ → K} (hf : Summable f) {N : ℕ} (hfN : f N �
 
 /-- **Maximum-modulus principle (Strassmann base case).** If the constant term `f 0` strictly
 dominates every higher coefficient in norm, then `f` vanishes nowhere on the closed unit ball:
-the sum is congruent to `f 0` modulo strictly smaller terms, so its norm equals `‖f 0‖ > 0`. -/
+the sum is congruent to `f 0` modulo strictly smaller terms, so its norm equals `‖f 0‖ > 0`.
+@isnad1 id=ne.4h3v.s7.4bba919be6b2 from=translated src=- shape=0f67dad1 vocab=8d1f84e1
+-/
 theorem tsum_mul_pow_ne_zero {f : ℕ → K} (hf : Summable f) (hf0 : f 0 ≠ 0)
     (hlast : ∀ n, 0 < n → ‖f n‖ < ‖f 0‖) {v : K} (hv : ‖v‖ ≤ 1) :
     (∑' n : ℕ, f n * v ^ n) ≠ 0 := by
@@ -125,11 +133,15 @@ theorem tsum_mul_pow_ne_zero {f : ℕ → K} (hf : Summable f) (hf0 : f 0 ≠ 0)
 noncomputable def wCoeff (f : ℕ → K) (α : K) (n : ℕ) : K := ∑' j : ℕ, f (n + 1 + j) * α ^ j
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
-/-- Unfolding lemma for `wCoeff`. -/
+/-- Unfolding lemma for `wCoeff`.
+@isnad1 id=eq.0h4v.s6.b5e64bb31982 from=translated src=- shape=0e57216e vocab=85bf7f3c
+-/
 theorem wCoeff_apply (f : ℕ → K) (α : K) (n : ℕ) :
     wCoeff f α n = ∑' j : ℕ, f (n + 1 + j) * α ^ j := rfl
 
-/-- Each defining series of `wCoeff` converges (for `‖α‖ ≤ 1`). -/
+/-- Each defining series of `wCoeff` converges (for `‖α‖ ≤ 1`).
+@isnad1 id=summable.2h4v.s7.0f751c6c46d6 from=translated src=- shape=19d352ba vocab=09ec77b6
+-/
 theorem wCoeff_summable_family {f : ℕ → K} (hf : Summable f) {α : K} (hα : ‖α‖ ≤ 1) (n : ℕ) :
     Summable fun j : ℕ => f (n + 1 + j) * α ^ j := by
   have hshift : Summable fun j : ℕ => f (n + 1 + j) :=
@@ -139,7 +151,9 @@ theorem wCoeff_summable_family {f : ℕ → K} (hf : Summable f) {α : K} (hα :
   calc ‖f (n + 1 + j)‖ * ‖α‖ ^ j ≤ ‖f (n + 1 + j)‖ * 1 ^ j := by gcongr
     _ = ‖f (n + 1 + j)‖ := by rw [one_pow, mul_one]
 
-/-- The synthetic-division recursion `f (n+1) = g n - α · g (n+1)`. -/
+/-- The synthetic-division recursion `f (n+1) = g n - α · g (n+1)`.
+@isnad1 id=eq.2h4v.s7.ec3aaa4178c2 from=translated src=- shape=6ea0d531 vocab=632ead87
+-/
 theorem wCoeff_rec {f : ℕ → K} (hf : Summable f) {α : K} (hα : ‖α‖ ≤ 1) (n : ℕ) :
     f (n + 1) = wCoeff f α n - α * wCoeff f α (n + 1) := by
   have h1 : wCoeff f α n = f (n + 1) + α * wCoeff f α (n + 1) := by
@@ -153,7 +167,9 @@ theorem wCoeff_rec {f : ℕ → K} (hf : Summable f) {α : K} (hα : ‖α‖ �
       rw [hidx]; ring
   rw [h1]; ring
 
-/-- The Weierstrass quotient coefficients are again summable. -/
+/-- The Weierstrass quotient coefficients are again summable.
+@isnad1 id=summable.2h3v.s6.9300b64a5b15 from=translated src=- shape=0460607d vocab=6145c16c
+-/
 theorem wCoeff_summable {f : ℕ → K} (hf : Summable f) {α : K} (hα : ‖α‖ ≤ 1) :
     Summable (wCoeff f α) := by
   rw [NonarchimedeanAddGroup.summable_iff_tendsto_cofinite_zero, Nat.cofinite_eq_atTop,
@@ -178,7 +194,9 @@ theorem wCoeff_summable {f : ℕ → K} (hf : Summable f) {α : K} (hα : ‖α�
 /-- **The division identity.** If `α` is a root of the convergent series on the ball, then on the
 whole closed ball `f v = (v - α) · g v` where `g = wCoeff f α`. This is a pure rearrangement of
 convergent sums via the coefficient recursion; no Cauchy-product machinery is needed because
-`v - α` is a two-term polynomial. -/
+`v - α` is a two-term polynomial.
+@isnad1 id=eq.4h4v.s8.90ee0aa122af from=translated src=- shape=64756861 vocab=434242c7
+-/
 theorem tsum_wCoeff_div {f : ℕ → K} (hf : Summable f) {α : K} (hα : ‖α‖ ≤ 1)
     (hroot : (∑' n : ℕ, f n * α ^ n) = 0) {v : K} (hv : ‖v‖ ≤ 1) :
     (∑' n : ℕ, f n * v ^ n) = (v - α) * ∑' n : ℕ, wCoeff f α n * v ^ n := by
@@ -228,7 +246,9 @@ theorem tsum_wCoeff_div {f : ℕ → K} (hf : Summable f) {α : K} (hα : ‖α�
 coefficient norm (`f N` dominates weakly, and dominates *strictly* beyond `N`), then `f` has at
 most `N` zeros on the closed unit ball — in particular, finitely many. Proved by strong induction
 on `N`: with no root the zero set is empty; the base `N = 0` is the maximum-modulus principle; the
-step divides out a root and recurses on the quotient, whose largest max-index is `N - 1`. -/
+step divides out a root and recurses on the quotient, whose largest max-index is `N - 1`.
+@isnad1 id=finite.4h3v.s8.574d457eb698 from=translated src=- shape=2e93ace2 vocab=02171e49
+-/
 theorem finite_zeros_isTop (N : ℕ) : ∀ f : ℕ → K, Summable f → f N ≠ 0 →
     (∀ n, ‖f n‖ ≤ ‖f N‖) → (∀ n, N < n → ‖f n‖ < ‖f N‖) →
     {v : K | ‖v‖ ≤ 1 ∧ (∑' n : ℕ, f n * v ^ n) = 0}.Finite := by
@@ -289,7 +309,9 @@ theorem finite_zeros_isTop (N : ℕ) : ∀ f : ℕ → K, Summable f → f N ≠
 
 /-- **Strassmann's theorem on the closed unit ball.** A convergent one-sided power series
 `v ↦ ∑' n, fₙ vⁿ` over a complete nonarchimedean field, with summable coefficients and not
-identically zero, has only finitely many zeros on the closed unit ball `{v | ‖v‖ ≤ 1}`. -/
+identically zero, has only finitely many zeros on the closed unit ball `{v | ‖v‖ ≤ 1}`.
+@isnad1 id=finite.2h2v.s7.7e63b4832736 from=translated src=- shape=caef24bd vocab=589c8c3f
+-/
 theorem finite_zeros {f : ℕ → K} (hf : Summable f) (hf0 : f ≠ 0) :
     {v : K | ‖v‖ ≤ 1 ∧ (∑' n : ℕ, f n * v ^ n) = 0}.Finite := by
   -- pick an index where the coefficient norm is maximal, then the *largest* such index `N`.

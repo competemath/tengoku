@@ -43,17 +43,24 @@ noncomputable def H.mapOfExact {F : AbSheaf X} {n : ℕ} :
   map_zero' := by simp
   map_add' x y := by simp [Ext.mapExactFunctor_add]
 
+/--
+@isnad1 id=eq.0h7v.s12.e79922535bb4 from=translated src=- shape=7856b281 vocab=4e8e2916
+-/
 lemma H.mapOfExact_apply {F : AbSheaf X} {n : ℕ} (x : H F n) :
     H.mapOfExact Φ e x = (Ext.mk₀ e.inv).comp (x.mapExactFunctor Φ) (zero_add n) := rfl
 
-/-- `TopCat.Sheaf.H.mapOfExact` is natural in the sheaf. -/
+/-- `TopCat.Sheaf.H.mapOfExact` is natural in the sheaf.
+@isnad1 id=eq.0h9v.s14.9ac671446352 from=translated src=- shape=948e7cf9 vocab=b15da155
+-/
 lemma H.mapOfExact_map {F G : AbSheaf X} (φ : F ⟶ G) {n : ℕ} (x : H F n) :
     H.mapOfExact Φ e (H.map φ n x) = H.map (Φ.map φ) n (H.mapOfExact Φ e x) := by
   simp only [H.mapOfExact_apply, H.map_apply, Ext.mapExactFunctor_comp,
     Ext.mapExactFunctor_mk₀]
   rw [Ext.comp_assoc_of_third_deg_zero]
 
-/-- `TopCat.Sheaf.H.mapOfExact` commutes with the connecting homomorphisms. -/
+/-- `TopCat.Sheaf.H.mapOfExact` commutes with the connecting homomorphisms.
+@isnad1 id=eq.2h8v.s15.86bbed931c2e from=translated src=- shape=733bdbe8 vocab=d4672568
+-/
 lemma H.mapOfExact_δ {S : ShortComplex (AbSheaf X)} (hS : S.ShortExact)
     {n₀ n₁ : ℕ} (h : n₀ + 1 = n₁) (x : H S.X₃ n₀) :
     H.mapOfExact Φ e (H.δ hS n₀ n₁ h x) =
@@ -109,12 +116,16 @@ noncomputable def H.pullback {F : AbSheaf X} {n : ℕ} :
     H F n →+ H ((pullbackAb f).obj F) n :=
   H.mapOfExact (pullbackAb f) (pullbackConstZIso f)
 
-/-- The pullback map is natural in the sheaf. -/
+/-- The pullback map is natural in the sheaf.
+@isnad1 id=eq.0h8v.s14.096c94b82fcf from=translated src=- shape=a091080c vocab=4972fac1
+-/
 lemma H.pullback_map {F G : AbSheaf X} (φ : F ⟶ G) {n : ℕ} (x : H F n) :
     H.pullback f (H.map φ n x) = H.map ((pullbackAb f).map φ) n (H.pullback f x) :=
   H.mapOfExact_map _ _ φ x
 
-/-- The pullback map commutes with the connecting homomorphisms. -/
+/-- The pullback map commutes with the connecting homomorphisms.
+@isnad1 id=eq.2h7v.s15.e6e829baa773 from=translated src=- shape=db7485f5 vocab=92e86485
+-/
 lemma H.pullback_δ {S : ShortComplex (AbSheaf X)} (hS : S.ShortExact)
     {n₀ n₁ : ℕ} (h : n₀ + 1 = n₁) (x : H S.X₃ n₀) :
     H.pullback f (H.δ hS n₀ n₁ h x) =

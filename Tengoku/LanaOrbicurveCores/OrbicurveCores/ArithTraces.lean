@@ -41,6 +41,9 @@ noncomputable def ratSubfield : Subfield ℝ := (Rat.castHom ℝ).fieldRange
 
 local notation "𝐐" => ratSubfield
 
+/--
+@isnad1 id=mem.0h1v.s4.fe6c7ced68e8 from=translated src=- shape=2622c728 vocab=a7a1680e
+-/
 lemma intCast_mem_rat (n : ℤ) : (n : ℝ) ∈ 𝐐 := ⟨n, by simp⟩
 
 /-- The lower unipotent generator of `SL(2, ℤ)`. -/
@@ -51,7 +54,9 @@ of its image in `GL(2, ℝ)` is commensurable with `SL(2, ℤ)`. -/
 def IsArithmeticSL (Γ : Subgroup SL(2, ℝ)) : Prop :=
   ∃ g : GL (Fin 2) ℝ, (ConjAct.toConjAct g • Γ.map toGL).IsArithmetic
 
-/-- If `x ∈ ℝ` is a root of `Vₙ - m` for some `n ≥ 1`, `m ∈ ℤ`, then `x` is an algebraic integer. -/
+/-- If `x ∈ ℝ` is a root of `Vₙ - m` for some `n ≥ 1`, `m ∈ ℤ`, then `x` is an algebraic integer.
+@isnad1 id=isintegr.2h3v.s5.7890ecb41e88 from=translated src=- shape=c39e809c vocab=1f594e78
+-/
 lemma isIntegral_of_lucas_eq {x : ℝ} {n : ℕ} (hn : 0 < n) {m : ℤ}
     (h : (lucas n).eval₂ (Int.castRingHom ℝ) x = m) : IsIntegral ℤ x := by
   refine ⟨lucas n - C m, ?_, ?_⟩

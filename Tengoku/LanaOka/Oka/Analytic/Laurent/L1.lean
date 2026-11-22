@@ -58,13 +58,22 @@ section Basic
 
 variable {V : Type*} [NormedAddCommGroup V]
 
+/--
+@isnad1 id=iff.0h2v.s5.fc9501fa8ec9 from=translated src=- shape=26412eee vocab=e61c3e48
+-/
 lemma memℓp_one_iff {f : ℤ → V} : Memℓp f 1 ↔ Summable fun j ↦ ‖f j‖ := by
   rw [memℓp_gen_iff (by norm_num)]
   simp
 
+/--
+@isnad1 id=summable.0h2v.s7.db737ef1994a from=translated src=- shape=07723374 vocab=16253587
+-/
 lemma summable_norm (a : L1 V) : Summable fun j ↦ ‖a j‖ :=
   memℓp_one_iff.1 a.2
 
+/--
+@isnad1 id=eq.0h2v.s7.f9bb5c84ffd0 from=translated src=- shape=2e85d6e6 vocab=4a72010e
+-/
 lemma norm_eq_tsum (a : L1 V) : ‖a‖ = ∑' j, ‖a j‖ := by
   rw [lp.norm_eq_tsum_rpow (by norm_num)]
   simp
@@ -73,12 +82,21 @@ lemma norm_eq_tsum (a : L1 V) : ‖a‖ = ∑' j, ‖a j‖ := by
 def mk (f : ℤ → V) (hf : Summable fun j ↦ ‖f j‖) : L1 V :=
   ⟨f, memℓp_one_iff.2 hf⟩
 
+/--
+@isnad1 id=eq.1h3v.s7.97272a8af810 from=translated src=- shape=7c143fc8 vocab=76748858
+-/
 @[simp]
 lemma mk_apply (f : ℤ → V) (hf : Summable fun j ↦ ‖f j‖) (j : ℤ) : mk f hf j = f j := rfl
 
+/--
+@isnad1 id=eq.1h2v.s6.ce9c4cba2907 from=translated src=- shape=57ec2c89 vocab=0968529e
+-/
 lemma norm_mk (f : ℤ → V) (hf : Summable fun j ↦ ‖f j‖) : ‖mk f hf‖ = ∑' j, ‖f j‖ :=
   norm_eq_tsum _
 
+/--
+@isnad1 id=le.0h3v.s7.490f3cae4e13 from=translated src=- shape=7b47ff18 vocab=0780ccac
+-/
 lemma norm_apply_le (a : L1 V) (j : ℤ) : ‖a j‖ ≤ ‖a‖ :=
   lp.norm_apply_le_norm (by norm_num) a j
 
@@ -93,25 +111,48 @@ def wt (σ : ℝ) (j : ℤ) : ℝ := σ ^ j.natAbs
 
 variable {σ : ℝ}
 
+/--
+@isnad1 id=lt.1h2v.s4.c6b6a5fb4aa9 from=translated src=- shape=9141f3a7 vocab=76c4ee93
+-/
 lemma wt_pos (hσ : 0 < σ) (j : ℤ) : 0 < wt σ j := pow_pos hσ _
 
+/--
+@isnad1 id=le.1h2v.s4.b9ca05c5fdff from=translated src=- shape=9141f3a7 vocab=ec34ae67
+-/
 lemma one_le_wt (hσ : 1 ≤ σ) (j : ℤ) : 1 ≤ wt σ j := one_le_pow₀ hσ
 
+/--
+@isnad1 id=eq.0h1v.s4.24d4096be070 from=translated src=- shape=0e0c2bda vocab=e4164c50
+-/
 @[simp]
 lemma wt_zero : wt σ 0 = 1 := by simp [wt]
 
+/--
+@isnad1 id=eq.0h2v.s3.71d64680cc4c from=translated src=- shape=1aff131a vocab=4c66a5b7
+-/
 lemma wt_neg (j : ℤ) : wt σ (-j) = wt σ j := by simp [wt]
 
+/--
+@isnad1 id=eq.0h2v.s4.60302869aafb from=translated src=- shape=38766f1f vocab=213e5a2e
+-/
 lemma wt_natCast (n : ℕ) : wt σ n = σ ^ n := by simp [wt]
 
+/--
+@isnad1 id=le.1h3v.s5.a44ad66baac7 from=translated src=- shape=7702e19b vocab=81c46720
+-/
 lemma wt_add_le (hσ : 1 ≤ σ) (i j : ℤ) : wt σ (i + j) ≤ wt σ i * wt σ j := by
   rw [wt, wt, wt, ← pow_add]
   exact pow_le_pow_right₀ hσ (Int.natAbs_add_le i j)
 
+/--
+@isnad1 id=le.1h3v.s5.55122313f608 from=translated src=- shape=269b0199 vocab=6a2c5fa7
+-/
 lemma wt_le_wt_sub_mul (hσ : 1 ≤ σ) (j m : ℤ) : wt σ j ≤ wt σ (j - m) * wt σ m := by
   simpa using wt_add_le hσ (j - m) m
 
-/-- If `σ⁻¹ ≤ ‖w‖ ≤ σ`, then `‖wʲ‖ ≤ σ^{|j|}`. -/
+/-- If `σ⁻¹ ≤ ‖w‖ ≤ σ`, then `‖wʲ‖ ≤ σ^{|j|}`.
+@isnad1 id=le.3h3v.s5.168ff642fef9 from=translated src=- shape=757f9ffa vocab=9a4a8362
+-/
 lemma norm_zpow_le_wt (hσ : 0 < σ) {w : ℂ} (h₁ : σ⁻¹ ≤ ‖w‖) (h₂ : ‖w‖ ≤ σ) (j : ℤ) :
     ‖w ^ j‖ ≤ wt σ j := by
   have hw : 0 < ‖w‖ := (inv_pos.2 hσ).trans_le h₁
@@ -130,40 +171,70 @@ variable {V : Type*} [NormedAddCommGroup V] [NormedSpace ℂ V] {σ : ℝ}
 /-- The `j`-th coefficient `σ^{-|j|} aⱼ` of the Laurent series represented by `a`. -/
 noncomputable def coeff (σ : ℝ) (a : L1 V) (j : ℤ) : V := ((wt σ j : ℂ))⁻¹ • a j
 
+/--
+@isnad1 id=eq.1h4v.s7.d6f5f9abbaed from=translated src=- shape=b40d3ce9 vocab=25b98750
+-/
 lemma apply_eq_wt_smul_coeff (hσ : 0 < σ) (a : L1 V) (j : ℤ) :
     a j = (wt σ j : ℂ) • coeff σ a j := by
   rw [coeff, smul_smul, mul_inv_cancel₀ (by exact_mod_cast (wt_pos hσ j).ne'), one_smul]
 
+/--
+@isnad1 id=eq.1h4v.s7.c4cb699c3df0 from=translated src=- shape=c94722e1 vocab=4cc7f971
+-/
 lemma norm_apply_eq (hσ : 0 < σ) (a : L1 V) (j : ℤ) : ‖a j‖ = wt σ j * ‖coeff σ a j‖ := by
   rw [apply_eq_wt_smul_coeff hσ a j, norm_smul, norm_real, Real.norm_of_nonneg (wt_pos hσ j).le]
 
+/--
+@isnad1 id=le.1h4v.s7.f5bea1097250 from=translated src=- shape=2107f5c2 vocab=49ed9522
+-/
 lemma norm_coeff_le (hσ : 1 ≤ σ) (a : L1 V) (j : ℤ) : ‖coeff σ a j‖ ≤ ‖a j‖ := by
   rw [norm_apply_eq (by linarith) a j]
   exact le_mul_of_one_le_left (norm_nonneg _) (one_le_wt hσ j)
 
+/--
+@isnad1 id=eq.0h5v.s6.b3833e2daa5d from=translated src=- shape=5d6c7cc8 vocab=0abb2f5e
+-/
 @[simp]
 lemma coeff_add (a b : L1 V) (j : ℤ) : coeff σ (a + b) j = coeff σ a j + coeff σ b j := by
   simp [coeff, smul_add]
 
+/--
+@isnad1 id=eq.0h5v.s6.179e37c8d6ba from=translated src=- shape=5d6c7cc8 vocab=ad62a1de
+-/
 @[simp]
 lemma coeff_sub (a b : L1 V) (j : ℤ) : coeff σ (a - b) j = coeff σ a j - coeff σ b j := by
   simp [coeff, smul_sub]
 
+/--
+@isnad1 id=eq.0h4v.s6.80aa56329f9f from=translated src=- shape=ebeb09cd vocab=aaf578ee
+-/
 @[simp]
 lemma coeff_neg (a : L1 V) (j : ℤ) : coeff σ (-a) j = -coeff σ a j := by
   simp [coeff]
 
+/--
+@isnad1 id=eq.0h3v.s6.6f4a58a3ea51 from=translated src=- shape=e9e41979 vocab=d9372fcd
+-/
 @[simp]
 lemma coeff_zero (j : ℤ) : coeff σ (0 : L1 V) j = 0 := by
   simp [coeff]
 
+/--
+@isnad1 id=eq.0h5v.s8.efab84dab57f from=translated src=- shape=91deb970 vocab=780cf903
+-/
 @[simp]
 lemma coeff_smul (c : ℂ) (a : L1 V) (j : ℤ) : coeff σ (c • a) j = c • coeff σ a j := by
   simp [coeff, smul_comm c]
 
+/--
+@isnad1 id=eq.2h4v.s5.ab9a79196986 from=translated src=- shape=c8a7c7d3 vocab=c1b8f568
+-/
 lemma ext_coeff (hσ : 0 < σ) {a b : L1 V} (h : ∀ j, coeff σ a j = coeff σ b j) : a = b :=
   lp.ext <| funext fun j ↦ by rw [apply_eq_wt_smul_coeff hσ a, apply_eq_wt_smul_coeff hσ b, h]
 
+/--
+@isnad1 id=eq.1h3v.s6.77302eea3466 from=translated src=- shape=5c54acb5 vocab=8ae00f82
+-/
 lemma norm_eq_tsum_wt (hσ : 0 < σ) (a : L1 V) : ‖a‖ = ∑' j, wt σ j * ‖coeff σ a j‖ := by
   simp only [norm_eq_tsum, norm_apply_eq hσ]
 
@@ -173,6 +244,9 @@ noncomputable def ofCoeff (hσ : 0 < σ) (c : ℤ → V) (hc : Summable fun j �
   mk (fun j ↦ (wt σ j : ℂ) • c j) (hc.congr fun j ↦ by
     rw [norm_smul, norm_real, Real.norm_of_nonneg (wt_pos hσ j).le])
 
+/--
+@isnad1 id=eq.2h4v.s6.67e46f184160 from=translated src=- shape=3f1668f5 vocab=612dbcb7
+-/
 @[simp]
 lemma coeff_ofCoeff (hσ : 0 < σ) (c : ℤ → V) (hc : Summable fun j ↦ wt σ j * ‖c j‖) (j : ℤ) :
     coeff σ (ofCoeff hσ c hc) j = c j := by
@@ -183,12 +257,18 @@ lemma coeff_ofCoeff (hσ : 0 < σ) (c : ℤ → V) (hc : Summable fun j ↦ wt �
 
 section Reindex
 
+/--
+@isnad1 id=summable.1h5v.s9.ac5a3401f485 from=translated src=- shape=c5754d37 vocab=e5d77f83
+-/
 lemma summable_norm_smul_apply_equiv (e : ℤ ≃ ℤ) {c : ℤ → ℂ} {C : ℝ} (hc : ∀ j, ‖c j‖ ≤ C)
     (a : L1 V) : Summable fun j ↦ ‖c j • a (e j)‖ :=
   Summable.of_nonneg_of_le (fun _ ↦ norm_nonneg _)
     (fun j ↦ (norm_smul_le _ _).trans (mul_le_mul_of_nonneg_right (hc j) (norm_nonneg _)))
     (((summable_norm a).comp_injective e.injective).mul_left C)
 
+/--
+@isnad1 id=le.1h5v.s9.f18b8b0c6ea7 from=translated src=- shape=cc77b328 vocab=67fb68f8
+-/
 lemma tsum_norm_smul_apply_equiv_le (e : ℤ ≃ ℤ) {c : ℤ → ℂ} {C : ℝ} (hc : ∀ j, ‖c j‖ ≤ C)
     (a : L1 V) : ∑' j, ‖c j • a (e j)‖ ≤ C * ‖a‖ :=
   calc ∑' j, ‖c j • a (e j)‖ ≤ ∑' j, C * ‖a (e j)‖ :=
@@ -214,10 +294,16 @@ noncomputable def reindex (e : ℤ ≃ ℤ) (c : ℤ → ℂ) (C : ℝ) (hc : �
 
 variable {V}
 
+/--
+@isnad1 id=eq.1h6v.s10.3e12b5a35e6c from=translated src=- shape=28a81f62 vocab=37513e09
+-/
 @[simp]
 lemma reindex_apply (e : ℤ ≃ ℤ) (c : ℤ → ℂ) (C : ℝ) (hc : ∀ j, ‖c j‖ ≤ C) (a : L1 V) (j : ℤ) :
     reindex V e c C hc a j = c j • a (e j) := rfl
 
+/--
+@isnad1 id=le.1h4v.s8.486a344113b5 from=translated src=- shape=2ac35217 vocab=427295e7
+-/
 lemma norm_reindex_le (e : ℤ ≃ ℤ) (c : ℤ → ℂ) (C : ℝ) (hc : ∀ j, ‖c j‖ ≤ C) :
     ‖reindex V e c C hc‖ ≤ C :=
   ContinuousLinearMap.opNorm_le_bound _ ((norm_nonneg _).trans (hc 0)) fun a ↦ by
@@ -230,14 +316,23 @@ noncomputable def proj (S : Set ℤ) : L1 V →L[ℂ] L1 V :=
   reindex V (Equiv.refl ℤ) (S.indicator 1) 1 fun j ↦ by
     by_cases hj : j ∈ S <;> simp [hj]
 
+/--
+@isnad1 id=eq.0h4v.s9.2daafc3d7570 from=translated src=- shape=3bc0d413 vocab=4ddea007
+-/
 lemma proj_apply (S : Set ℤ) (a : L1 V) (j : ℤ) : proj V S a j = S.indicator a j := by
   by_cases hj : j ∈ S <;> simp [proj, hj]
 
+/--
+@isnad1 id=eq.0h5v.s8.5282e9d68149 from=translated src=- shape=0b78278f vocab=d4340f2a
+-/
 @[simp]
 lemma coeff_proj (S : Set ℤ) (a : L1 V) (j : ℤ) :
     coeff σ (proj V S a) j = S.indicator (coeff σ a) j := by
   by_cases hj : j ∈ S <;> simp [coeff, proj_apply, hj]
 
+/--
+@isnad1 id=le.0h2v.s8.2ebc56bdc277 from=translated src=- shape=61a1dc36 vocab=90657bbc
+-/
 lemma norm_proj_le (S : Set ℤ) : ‖proj V S‖ ≤ 1 :=
   norm_reindex_le _ _ _ _
 
@@ -250,6 +345,9 @@ noncomputable def shift [hσ : Fact (1 ≤ σ)] (m : ℤ) : L1 V →L[ℂ] L1 V 
       div_le_iff₀ h0, mul_comm]
     exact wt_le_wt_sub_mul hσ.out j m
 
+/--
+@isnad1 id=eq.0h5v.s8.ff520ad5d994 from=translated src=- shape=89b8f0ba vocab=f72fba54
+-/
 @[simp]
 lemma coeff_shift [hσ : Fact (1 ≤ σ)] (m : ℤ) (a : L1 V) (j : ℤ) :
     coeff σ (shift σ m a) j = coeff σ a (j - m) := by
@@ -266,9 +364,15 @@ variable (V) in
 noncomputable def refl : L1 V →L[ℂ] L1 V :=
   reindex V (Equiv.neg ℤ) 1 1 fun j ↦ by simp
 
+/--
+@isnad1 id=eq.0h3v.s9.fab01941b875 from=translated src=- shape=0a9ecaca vocab=61a47c6f
+-/
 lemma refl_apply (a : L1 V) (j : ℤ) : refl V a j = a (-j) := by
   simp [refl]
 
+/--
+@isnad1 id=eq.0h4v.s8.b2daffedd487 from=translated src=- shape=023da1fb vocab=93dbb1c0
+-/
 @[simp]
 lemma coeff_refl (a : L1 V) (j : ℤ) : coeff σ (refl V a) j = coeff σ a (-j) := by
   simp [coeff, refl, wt_neg]
@@ -291,6 +395,9 @@ def antidiagEquiv : ℤ × ℤ ≃ ℤ × ℤ where
   right_inv q := by simp
 
 omit [NormedSpace ℂ F₁] [NormedSpace ℂ F₂] in
+/--
+@isnad1 id=summable.0h4v.s8.7c16750ec73b from=translated src=- shape=2f657b8e vocab=a75ad5a3
+-/
 lemma summable_norm_mul_norm_sub (a : L1 F₁) (b : L1 F₂) :
     Summable fun p : ℤ × ℤ ↦ ‖a p.2‖ * ‖b (p.1 - p.2)‖ :=
   (antidiagEquiv.summable_iff (f := fun q : ℤ × ℤ ↦ ‖a q.1‖ * ‖b q.2‖)).2
@@ -298,6 +405,9 @@ lemma summable_norm_mul_norm_sub (a : L1 F₁) (b : L1 F₂) :
       fun _ ↦ norm_nonneg _)
 
 omit [NormedSpace ℂ F₁] [NormedSpace ℂ F₂] in
+/--
+@isnad1 id=eq.0h4v.s8.f81db8bff1d1 from=translated src=- shape=a722da33 vocab=bc9efdbb
+-/
 lemma tsum_tsum_norm_mul_norm_sub (a : L1 F₁) (b : L1 F₂) :
     ∑' m, ∑' i, ‖a i‖ * ‖b (m - i)‖ = ‖a‖ * ‖b‖ := by
   have h := summable_norm_mul_norm_sub a b
@@ -309,6 +419,9 @@ lemma tsum_tsum_norm_mul_norm_sub (a : L1 F₁) (b : L1 F₂) :
 
 variable (B : F₁ →L[ℂ] F₂ →L[ℂ] F₃)
 
+/--
+@isnad1 id=le.0h9v.s10.0bc5f6dc551b from=translated src=- shape=c7592302 vocab=88dd16b6
+-/
 lemma wt_mul_norm_le (a : L1 F₁) (b : L1 F₂) (m i : ℤ) :
     wt σ m * ‖B (coeff σ a i) (coeff σ b (m - i))‖ ≤ ‖B‖ * (‖a i‖ * ‖b (m - i)‖) := by
   have h0 : 0 < σ := zero_lt_one.trans_le hσ.out
@@ -320,10 +433,16 @@ lemma wt_mul_norm_le (a : L1 F₁) (b : L1 F₂) (m i : ℤ) :
           (mul_nonneg (wt_pos h0 _).le (wt_pos h0 _).le)
     _ = _ := by ring
 
+/--
+@isnad1 id=le.0h9v.s10.3dab92c9ddab from=translated src=- shape=a68e7519 vocab=829e0454
+-/
 lemma norm_le_of_coeff (a : L1 F₁) (b : L1 F₂) (m i : ℤ) :
     ‖B (coeff σ a i) (coeff σ b (m - i))‖ ≤ ‖B‖ * (‖a i‖ * ‖b (m - i)‖) :=
   (le_mul_of_one_le_left (norm_nonneg _) (one_le_wt hσ.out m)).trans (wt_mul_norm_le B a b m i)
 
+/--
+@isnad1 id=summable.0h8v.s10.21a124fe3d94 from=translated src=- shape=ac089633 vocab=f1c6429c
+-/
 lemma summable_norm_convTerm (a : L1 F₁) (b : L1 F₂) (m : ℤ) :
     Summable fun i ↦ ‖B (coeff σ a i) (coeff σ b (m - i))‖ :=
   Summable.of_nonneg_of_le (fun _ ↦ norm_nonneg _) (norm_le_of_coeff B a b m)
@@ -334,6 +453,9 @@ variable (σ) in
 noncomputable def convCoeff (a : L1 F₁) (b : L1 F₂) (m : ℤ) : F₃ :=
   ∑' i, B (coeff σ a i) (coeff σ b (m - i))
 
+/--
+@isnad1 id=le.0h8v.s10.aefb66e8ca72 from=translated src=- shape=42031ab8 vocab=c7f96191
+-/
 lemma wt_mul_norm_convCoeff_le (a : L1 F₁) (b : L1 F₂) (m : ℤ) :
     wt σ m * ‖convCoeff σ B a b m‖ ≤ ‖B‖ * ∑' i, ‖a i‖ * ‖b (m - i)‖ := by
   have h0 : 0 < σ := zero_lt_one.trans_le hσ.out
@@ -348,6 +470,9 @@ lemma wt_mul_norm_convCoeff_le (a : L1 F₁) (b : L1 F₂) (m : ℤ) :
           (((summable_norm_mul_norm_sub a b).prod_factor m).mul_left ‖B‖)
     _ = ‖B‖ * ∑' i, ‖a i‖ * ‖b (m - i)‖ := tsum_mul_left
 
+/--
+@isnad1 id=summable.0h7v.s8.234b6b9ac53d from=translated src=- shape=094da380 vocab=8ac4167d
+-/
 lemma summable_wt_mul_norm_convCoeff (a : L1 F₁) (b : L1 F₂) :
     Summable fun m ↦ wt σ m * ‖convCoeff σ B a b m‖ :=
   Summable.of_nonneg_of_le
@@ -359,10 +484,16 @@ variable (σ) in
 noncomputable def convAux (a : L1 F₁) (b : L1 F₂) : L1 F₃ :=
   ofCoeff (zero_lt_one.trans_le hσ.out) (convCoeff σ B a b) (summable_wt_mul_norm_convCoeff B a b)
 
+/--
+@isnad1 id=eq.0h8v.s8.c3bb616ba9e9 from=translated src=- shape=0b20f2ef vocab=8a8e9102
+-/
 lemma coeff_convAux (a : L1 F₁) (b : L1 F₂) (m : ℤ) :
     coeff σ (convAux σ B a b) m = convCoeff σ B a b m :=
   coeff_ofCoeff _ _ _ m
 
+/--
+@isnad1 id=le.0h7v.s9.03e25470428d from=translated src=- shape=41db780e vocab=b7c0fce0
+-/
 lemma norm_convAux_le (a : L1 F₁) (b : L1 F₂) : ‖convAux σ B a b‖ ≤ ‖B‖ * ‖a‖ * ‖b‖ := by
   have h0 : 0 < σ := zero_lt_one.trans_le hσ.out
   rw [norm_eq_tsum_wt h0, mul_assoc, ← tsum_tsum_norm_mul_norm_sub, ← tsum_mul_left]
@@ -371,6 +502,9 @@ lemma norm_convAux_le (a : L1 F₁) (b : L1 F₂) : ‖convAux σ B a b‖ ≤ �
     exact wt_mul_norm_convCoeff_le B a b m
   · simpa only [coeff_convAux] using summable_wt_mul_norm_convCoeff B a b
 
+/--
+@isnad1 id=hassum.0h8v.s10.8173825c1b97 from=translated src=- shape=1cb0548a vocab=863f2a85
+-/
 lemma hasSum_convCoeff [CompleteSpace F₃] (a : L1 F₁) (b : L1 F₂) (m : ℤ) :
     HasSum (fun i ↦ B (coeff σ a i) (coeff σ b (m - i))) (convCoeff σ B a b m) :=
   (summable_norm_convTerm B a b m).of_norm.hasSum
@@ -404,16 +538,25 @@ noncomputable def conv : L1 F₁ →L[ℂ] L1 F₂ →L[ℂ] L1 F₃ :=
         simpa only [coeff_smul, map_smul] using hasSum_convCoeff (σ := σ) B a (c • b) m))
     ‖B‖ (norm_convAux_le (σ := σ) B)
 
+/--
+@isnad1 id=eq.0h8v.s11.afae88f1c74b from=translated src=- shape=a8fe66b7 vocab=430afe86
+-/
 @[simp]
 lemma coeff_conv (a : L1 F₁) (b : L1 F₂) (m : ℤ) :
     coeff σ (conv σ B a b) m = ∑' i, B (coeff σ a i) (coeff σ b (m - i)) :=
   coeff_convAux B a b m
 
+/--
+@isnad1 id=hassum.0h8v.s11.cad3614ba582 from=translated src=- shape=0967aae7 vocab=f8895760
+-/
 lemma hasSum_coeff_conv (a : L1 F₁) (b : L1 F₂) (m : ℤ) :
     HasSum (fun i ↦ B (coeff σ a i) (coeff σ b (m - i))) (coeff σ (conv σ B a b) m) := by
   rw [coeff_conv]
   exact hasSum_convCoeff (σ := σ) B a b m
 
+/--
+@isnad1 id=le.0h7v.s11.89eafd2260bc from=translated src=- shape=d8f37b69 vocab=d997cd22
+-/
 lemma norm_conv_apply_apply_le (a : L1 F₁) (b : L1 F₂) : ‖conv σ B a b‖ ≤ ‖B‖ * ‖a‖ * ‖b‖ :=
   norm_convAux_le (σ := σ) B a b
 
@@ -426,7 +569,9 @@ variable {F₁ F₂ F₃ : Type*} [NormedAddCommGroup F₁] [NormedSpace ℂ F�
   [NormedSpace ℂ F₂] [NormedAddCommGroup F₃] [NormedSpace ℂ F₃] [CompleteSpace F₃]
   (B : F₁ →L[ℂ] F₂ →L[ℂ] F₃)
 
-/-- The Cauchy product of series of degree at most `p` and `q` has degree at most `p + q`. -/
+/-- The Cauchy product of series of degree at most `p` and `q` has degree at most `p + q`.
+@isnad1 id=eq.3h10v.s11.d1016465ac6c from=translated src=- shape=5c662476 vocab=3cfe7f3f
+-/
 lemma coeff_conv_eq_zero_of_gt {a : L1 F₁} {b : L1 F₂} {p q : ℤ}
     (ha : ∀ i, p < i → coeff σ a i = 0) (hb : ∀ j, q < j → coeff σ b j = 0) {m : ℤ}
     (hm : p + q < m) : coeff σ (conv σ B a b) m = 0 := by
@@ -436,7 +581,9 @@ lemma coeff_conv_eq_zero_of_gt {a : L1 F₁} {b : L1 F₂} {p q : ℤ}
   · rw [ha i hi, map_zero, zero_apply]
   · rw [hb (m - i) (by omega), map_zero]
 
-/-- The Cauchy product of series of order at least `p` and `q` has order at least `p + q`. -/
+/-- The Cauchy product of series of order at least `p` and `q` has order at least `p + q`.
+@isnad1 id=eq.3h10v.s11.892db03f5051 from=translated src=- shape=79530fb5 vocab=3cfe7f3f
+-/
 lemma coeff_conv_eq_zero_of_lt {a : L1 F₁} {b : L1 F₂} {p q : ℤ}
     (ha : ∀ i, i < p → coeff σ a i = 0) (hb : ∀ j, j < q → coeff σ b j = 0) {m : ℤ}
     (hm : m < p + q) : coeff σ (conv σ B a b) m = 0 := by
@@ -458,15 +605,24 @@ noncomputable def coeffCLM (j : ℤ) : L1 V →L[ℂ] V :=
   ((wt σ j : ℂ))⁻¹ • lp.evalCLM ℂ (fun _ : ℤ ↦ V) 1 j
 
 omit hσ in
+/--
+@isnad1 id=eq.0h4v.s8.9c2d504801f9 from=translated src=- shape=5cfc6322 vocab=a76ef02e
+-/
 @[simp]
 lemma coeffCLM_apply (j : ℤ) (a : L1 V) : coeffCLM σ j a = coeff σ a j := rfl
 
+/--
+@isnad1 id=le.0h3v.s7.af07f65d2117 from=translated src=- shape=eb6125bc vocab=fe246e2a
+-/
 lemma norm_coeffCLM_le (j : ℤ) : ‖coeffCLM (V := V) σ j‖ ≤ (wt σ j)⁻¹ := by
   have h0 := wt_pos (zero_lt_one.trans_le hσ.out) j
   refine ContinuousLinearMap.opNorm_le_bound _ (inv_nonneg.2 h0.le) fun a ↦ ?_
   rw [coeffCLM_apply, coeff, norm_smul, norm_inv, norm_real, Real.norm_of_nonneg h0.le]
   exact mul_le_mul_of_nonneg_left (norm_apply_le a j) (inv_nonneg.2 h0.le)
 
+/--
+@isnad1 id=le.1h5v.s9.76ae9e2aff3c from=translated src=- shape=ead02e25 vocab=44f010ed
+-/
 lemma norm_pow_smul_coeffCLM_le {w : ℂ} {r : ℝ} (hw : ‖w‖ ≤ r) (n : ℕ) :
     ‖w ^ n • coeffCLM (V := V) σ n‖ ≤ (r / σ) ^ n := by
   have h0 : 0 < σ := zero_lt_one.trans_le hσ.out
@@ -475,6 +631,9 @@ lemma norm_pow_smul_coeffCLM_le {w : ℂ} {r : ℝ} (hw : ‖w‖ ≤ r) (n : �
     ((norm_nonneg _).trans hw |> fun h ↦ pow_nonneg h n)
   simpa [wt_natCast] using norm_coeffCLM_le (V := V) (σ := σ) n
 
+/--
+@isnad1 id=le.1h5v.s9.286491ff88e2 from=translated src=- shape=448c2104 vocab=20280cb2
+-/
 lemma norm_pow_smul_coeffCLM_neg_le {w : ℂ} {r : ℝ} (hw : ‖w‖ ≤ r) (n : ℕ) :
     ‖w ^ n • coeffCLM (V := V) σ (-n)‖ ≤ (r / σ) ^ n := by
   rw [norm_smul, norm_pow, div_pow, div_eq_mul_inv]
@@ -496,6 +655,9 @@ infinity: `evalNeg σ u a = ∑_{n ≥ 0} uⁿ • coeff σ a (-n)`. It is holom
 noncomputable def evalNeg (u : ℂ) : L1 V →L[ℂ] V := ∑' n : ℕ, u ^ n • coeffCLM σ (-n)
 
 omit [CompleteSpace V] in
+/--
+@isnad1 id=summable.1h3v.s9.e2d7d970382e from=translated src=- shape=ebf2f006 vocab=f557b934
+-/
 lemma summable_evalNat {w : ℂ} (hw : ‖w‖ < σ) :
     Summable fun n : ℕ ↦ ‖w ^ n • coeffCLM (V := V) σ n‖ :=
   Summable.of_nonneg_of_le (fun _ ↦ norm_nonneg _) (norm_pow_smul_coeffCLM_le le_rfl)
@@ -503,24 +665,36 @@ lemma summable_evalNat {w : ℂ} (hw : ‖w‖ < σ) :
       ((div_lt_one (zero_lt_one.trans_le hσ.out)).2 hw))
 
 omit [CompleteSpace V] in
+/--
+@isnad1 id=summable.1h3v.s9.2c647dd4a9d1 from=translated src=- shape=bbebed95 vocab=a129a586
+-/
 lemma summable_evalNeg {u : ℂ} (hu : ‖u‖ < σ) :
     Summable fun n : ℕ ↦ ‖u ^ n • coeffCLM (V := V) σ (-n)‖ :=
   Summable.of_nonneg_of_le (fun _ ↦ norm_nonneg _) (norm_pow_smul_coeffCLM_neg_le le_rfl)
     (summable_geometric_of_lt_one (div_nonneg (norm_nonneg _) (zero_lt_one.trans_le hσ.out).le)
       ((div_lt_one (zero_lt_one.trans_le hσ.out)).2 hu))
 
+/--
+@isnad1 id=hassum.1h4v.s8.f099acef7fd6 from=translated src=- shape=5740404f vocab=df93e3ee
+-/
 lemma hasSum_evalNat_apply {w : ℂ} (hw : ‖w‖ < σ) (a : L1 V) :
     HasSum (fun n : ℕ ↦ w ^ n • coeff σ a n) (evalNat V σ w a) := by
   have h : HasSum (fun n : ℕ ↦ w ^ n • coeffCLM (V := V) σ n) (evalNat V σ w) :=
     (Summable.of_norm (E := L1 V →L[ℂ] V) (summable_evalNat hw)).hasSum
   exact h.mapL (ContinuousLinearMap.apply ℂ V a)
 
+/--
+@isnad1 id=hassum.1h4v.s8.d92aa05d541b from=translated src=- shape=457a8523 vocab=5b480fbc
+-/
 lemma hasSum_evalNeg_apply {u : ℂ} (hu : ‖u‖ < σ) (a : L1 V) :
     HasSum (fun n : ℕ ↦ u ^ n • coeff σ a (-n)) (evalNeg V σ u a) := by
   have h : HasSum (fun n : ℕ ↦ u ^ n • coeffCLM (V := V) σ (-n)) (evalNeg V σ u) :=
     (Summable.of_norm (E := L1 V →L[ℂ] V) (summable_evalNeg hu)).hasSum
   exact h.mapL (ContinuousLinearMap.apply ℂ V a)
 
+/--
+@isnad1 id=differen.0h2v.s9.1ae1a86018fe from=translated src=- shape=6de38a0c vocab=23d56275
+-/
 lemma differentiableOn_evalNat : DifferentiableOn ℂ (evalNat V σ) (ball 0 σ) := by
   intro w₀ hw₀
   rw [mem_ball_zero_iff] at hw₀
@@ -536,6 +710,9 @@ lemma differentiableOn_evalNat : DifferentiableOn ℂ (evalNat V σ) (ball 0 σ)
   exact (hd.differentiableAt (isOpen_ball.mem_nhds (by
     rw [mem_ball_zero_iff]; simp only [r]; linarith))).differentiableWithinAt
 
+/--
+@isnad1 id=differen.0h2v.s9.38145286d789 from=translated src=- shape=6de38a0c vocab=0a05f43f
+-/
 lemma differentiableOn_evalNeg : DifferentiableOn ℂ (evalNeg V σ) (ball 0 σ) := by
   intro w₀ hw₀
   rw [mem_ball_zero_iff] at hw₀
@@ -565,16 +742,25 @@ noncomputable def eval (w : ℂ) (a : L1 V) : V := ∑' j, w ^ j • coeff σ a 
 variable {w : ℂ}
 
 omit hσ in
+/--
+@isnad1 id=eq.0h3v.s6.affef3efe5b9 from=translated src=- shape=32b9765d vocab=f86d5eab
+-/
 @[simp]
 lemma eval_zero : eval σ w (0 : L1 V) = 0 := by
   simp [eval]
 
+/--
+@isnad1 id=le.2h5v.s8.3e92943995aa from=translated src=- shape=b4b2aa05 vocab=09953a25
+-/
 lemma norm_zpow_smul_coeff_le (h₁ : σ⁻¹ ≤ ‖w‖) (h₂ : ‖w‖ ≤ σ) (a : L1 V) (j : ℤ) :
     ‖w ^ j • coeff σ a j‖ ≤ ‖a j‖ := by
   have h0 : 0 < σ := zero_lt_one.trans_le hσ.out
   rw [norm_smul, norm_apply_eq h0 a j]
   exact mul_le_mul_of_nonneg_right (norm_zpow_le_wt h0 h₁ h₂ j) (norm_nonneg _)
 
+/--
+@isnad1 id=summable.2h4v.s7.bfbd72900dcf from=translated src=- shape=22cbd7b3 vocab=a3092bfd
+-/
 lemma summable_norm_zpow_smul_coeff (h₁ : σ⁻¹ ≤ ‖w‖) (h₂ : ‖w‖ ≤ σ) (a : L1 V) :
     Summable fun j ↦ ‖w ^ j • coeff σ a j‖ :=
   Summable.of_nonneg_of_le (fun _ ↦ norm_nonneg _) (norm_zpow_smul_coeff_le h₁ h₂ a)
@@ -582,11 +768,16 @@ lemma summable_norm_zpow_smul_coeff (h₁ : σ⁻¹ ≤ ‖w‖) (h₂ : ‖w‖
 
 variable [CompleteSpace V]
 
+/--
+@isnad1 id=hassum.2h4v.s7.4e8760223c15 from=translated src=- shape=b1c41f09 vocab=ec840920
+-/
 lemma hasSum_eval (h₁ : σ⁻¹ ≤ ‖w‖) (h₂ : ‖w‖ ≤ σ) (a : L1 V) :
     HasSum (fun j ↦ w ^ j • coeff σ a j) (eval σ w a) :=
   (summable_norm_zpow_smul_coeff h₁ h₂ a).of_norm.hasSum
 
-/-- For a series without terms of negative degree, `eval` is the part of nonnegative degree. -/
+/-- For a series without terms of negative degree, `eval` is the part of nonnegative degree.
+@isnad1 id=eq.3h4v.s8.ebd84bb5665c from=translated src=- shape=c616b9a2 vocab=02b631c7
+-/
 lemma eval_eq_evalNat (h₁ : σ⁻¹ ≤ ‖w‖) (h₂ : ‖w‖ < σ) {a : L1 V}
     (ha : ∀ j < 0, coeff σ a j = 0) : eval σ w a = evalNat V σ w a := by
   refine (hasSum_eval h₁ h₂.le a).unique ?_
@@ -596,7 +787,9 @@ lemma eval_eq_evalNat (h₁ : σ⁻¹ ≤ ‖w‖) (h₂ : ‖w‖ < σ) {a : L1
   · rw [ha j (by by_contra! h; exact hj ⟨j.toNat, Int.toNat_of_nonneg h⟩), smul_zero]
 
 /-- For a series without terms of positive degree, `eval` is the part of nonpositive degree, in
-the coordinate `w⁻¹`. -/
+the coordinate `w⁻¹`.
+@isnad1 id=eq.3h4v.s8.6b086f869057 from=translated src=- shape=4de54d21 vocab=c8039280
+-/
 lemma eval_eq_evalNeg (h₁ : σ⁻¹ < ‖w‖) (h₂ : ‖w‖ ≤ σ) {a : L1 V}
     (ha : ∀ j, 0 < j → coeff σ a j = 0) : eval σ w a = evalNeg V σ w⁻¹ a := by
   have h0 : 0 < σ := zero_lt_one.trans_le hσ.out
@@ -612,16 +805,25 @@ lemma eval_eq_evalNeg (h₁ : σ⁻¹ < ‖w‖) (h₂ : ‖w‖ ≤ σ) {a : L1
       simp only [Int.toNat_of_nonneg (by omega : 0 ≤ -j), neg_neg]⟩),
       smul_zero]
 
+/--
+@isnad1 id=eq.2h5v.s7.983084318f7f from=translated src=- shape=796b66f1 vocab=c705f17f
+-/
 lemma eval_add (h₁ : σ⁻¹ ≤ ‖w‖) (h₂ : ‖w‖ ≤ σ) (a b : L1 V) :
     eval σ w (a + b) = eval σ w a + eval σ w b :=
   (hasSum_eval h₁ h₂ (a + b)).unique <| by
     simpa only [coeff_add, smul_add] using (hasSum_eval h₁ h₂ a).add (hasSum_eval h₁ h₂ b)
 
+/--
+@isnad1 id=eq.2h5v.s7.e631185a4d43 from=translated src=- shape=796b66f1 vocab=22603832
+-/
 lemma eval_sub (h₁ : σ⁻¹ ≤ ‖w‖) (h₂ : ‖w‖ ≤ σ) (a b : L1 V) :
     eval σ w (a - b) = eval σ w a - eval σ w b :=
   (hasSum_eval h₁ h₂ (a - b)).unique <| by
     simpa only [coeff_sub, smul_sub] using (hasSum_eval h₁ h₂ a).sub (hasSum_eval h₁ h₂ b)
 
+/--
+@isnad1 id=eq.2h4v.s9.9808daaa8663 from=translated src=- shape=65ae0678 vocab=69d6049a
+-/
 lemma eval_refl (h₁ : σ⁻¹ ≤ ‖w‖) (h₂ : ‖w‖ ≤ σ) (a : L1 V) :
     eval σ w (refl V a) = eval σ w⁻¹ a := by
   have h0 : 0 < σ := zero_lt_one.trans_le hσ.out
@@ -634,6 +836,9 @@ lemma eval_refl (h₁ : σ⁻¹ ≤ ‖w‖) (h₂ : ‖w‖ ≤ σ) (a : L1 V) 
   funext j
   simp [zpow_neg]
 
+/--
+@isnad1 id=eq.2h5v.s9.7502d7d3bea7 from=translated src=- shape=4d4c3344 vocab=e673ab24
+-/
 lemma eval_shift (h₁ : σ⁻¹ ≤ ‖w‖) (h₂ : ‖w‖ ≤ σ) (m : ℤ) (a : L1 V) :
     eval σ w (shift σ m a) = w ^ m • eval σ w a := by
   have hw : w ≠ 0 := norm_pos_iff.1 ((inv_pos.2 (zero_lt_one.trans_le hσ.out)).trans_le h₁)
@@ -683,7 +888,9 @@ variable {F₁ F₂ F₃ : Type*} [NormedAddCommGroup F₁] [NormedSpace ℂ F�
   [NormedSpace ℂ F₂] [NormedAddCommGroup F₃] [NormedSpace ℂ F₃] [CompleteSpace F₁]
   [CompleteSpace F₂] [CompleteSpace F₃] (B : F₁ →L[ℂ] F₂ →L[ℂ] F₃)
 
-/-- Evaluation is multiplicative: the value of a Cauchy product is the product of the values. -/
+/-- Evaluation is multiplicative: the value of a Cauchy product is the product of the values.
+@isnad1 id=eq.2h8v.s11.46d47591b7c7 from=translated src=- shape=1c4f37ea vocab=19ad9164
+-/
 theorem eval_conv (h₁ : σ⁻¹ ≤ ‖w‖) (h₂ : ‖w‖ ≤ σ) (a : L1 F₁) (b : L1 F₂) :
     eval σ w (conv σ B a b) = B (eval σ w a) (eval σ w b) := by
   have hw : w ≠ 0 := norm_pos_iff.1 ((inv_pos.2 (zero_lt_one.trans_le hσ.out)).trans_le h₁)

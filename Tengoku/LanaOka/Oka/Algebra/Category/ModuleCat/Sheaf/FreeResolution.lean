@@ -51,7 +51,9 @@ inductive HasFreeResolutionLE : SheafOfModules.{u} R → ℕ → Prop
 
 namespace HasFreeResolutionLE
 
-/-- Finite free resolutions are invariant under isomorphisms. -/
+/-- Finite free resolutions are invariant under isomorphisms.
+@isnad1 id=hasfreer.1h7v.s7.e452e0b8accb from=translated src=- shape=079218c0 vocab=9d977f3c
+-/
 lemma of_iso {M N : SheafOfModules.{u} R} {n : ℕ} (e : M ≅ N) (h : HasFreeResolutionLE M n) :
     HasFreeResolutionLE N n := by
   cases h with
@@ -61,7 +63,9 @@ lemma of_iso {M N : SheafOfModules.{u} R} {n : ℕ} (e : M ≅ N) (h : HasFreeRe
     refine ShortComplex.shortExact_of_iso ?_ hS
     exact ShortComplex.isoMk (Iso.refl _) (Iso.refl _) e (by simp) (by simp)
 
-/-- A free resolution of length `≤ n` is one of length `≤ m` for `n ≤ m`. -/
+/-- A free resolution of length `≤ n` is one of length `≤ m` for `n ≤ m`.
+@isnad1 id=hasfreer.2h6v.s7.3a0437419bec from=translated src=- shape=002e7007 vocab=3d2dc320
+-/
 lemma mono {M : SheafOfModules.{u} R} {n m : ℕ} (h : HasFreeResolutionLE M n) (hnm : n ≤ m) :
     HasFreeResolutionLE M m := by
   induction h generalizing m with
@@ -81,7 +85,9 @@ variable {C : Type u₁} [Category.{v₁} C] {J : GrothendieckTopology C} {R : S
 
 /-- The image of a short exact sequence `0 → K → 𝒪^I → M → 0` under an exact functor preserving
 finite free sheaves: if the image of `K` has a free resolution of length `≤ n`, the image of `M`
-has one of length `≤ n + 1`. -/
+has one of length `≤ n + 1`.
+@isnad1 id=hasfreer.3h14v.s9.2accba0e9e92 from=translated src=- shape=af305e58 vocab=27d4e238
+-/
 lemma HasFreeResolutionLE.of_shortExact_map (F : SheafOfModules.{u} R ⥤ SheafOfModules.{u} S)
     [F.PreservesZeroMorphisms] [PreservesFiniteLimits F] [PreservesFiniteColimits F]
     (η : ∀ (I : Type u) [Finite I], F.obj (SheafOfModules.free I) ≅ SheafOfModules.free I)
@@ -94,7 +100,9 @@ lemma HasFreeResolutionLE.of_shortExact_map (F : SheafOfModules.{u} R ⥤ SheafO
   exact ShortComplex.isoMk (Iso.refl _) (η I) (Iso.refl _) (Category.id_comp _)
     ((Iso.hom_inv_id_assoc _ _).trans (Category.comp_id _).symm)
 
-/-- **Exact functors preserving finite free sheaves preserve finite free resolutions.** -/
+/-- **Exact functors preserving finite free sheaves preserve finite free resolutions.**
+@isnad1 id=hasfreer.1h10v.s8.b8347d097ddf from=translated src=- shape=92f25263 vocab=c7c4fcad
+-/
 lemma HasFreeResolutionLE.map (F : SheafOfModules.{u} R ⥤ SheafOfModules.{u} S)
     [F.PreservesZeroMorphisms] [PreservesFiniteLimits F] [PreservesFiniteColimits F]
     (η : ∀ (I : Type u) [Finite I], F.obj (SheafOfModules.free I) ≅ SheafOfModules.free I)

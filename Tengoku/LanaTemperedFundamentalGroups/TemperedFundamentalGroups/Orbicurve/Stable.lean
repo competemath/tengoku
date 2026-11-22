@@ -40,6 +40,9 @@ variable {k : Type u} [Field k] [DecidableEq k] {W : WeierstrassCurve k} [W.IsEl
 
 /-! ### The unit criterion -/
 
+/--
+@isnad1 id=false.2h6v.s11.79cc65333b2a from=translated src=- shape=7c7dea71 vocab=49834011
+-/
 lemma false_of_pointOf_eq_bc {L : Type*} [Field L] [DecidableEq L] [Algebra k L]
     (χ : ringOfX W T →ₐ[k] L) {Q : W.toAffine.Point} (hQ : Q ≠ 0 → xOf Q ∈ T)
     (h : pointOf χ = bc W L Q) : False := by
@@ -47,7 +50,9 @@ lemma false_of_pointOf_eq_bc {L : Type*} [Field L] [DecidableEq L] [Algebra k L]
   apply xOf_pointOf_ne χ (hQ hQ0)
   rw [h, xOf_bc]
 
-/-- The unit criterion in a finitely generated `ringOfX W T`. -/
+/-- The unit criterion in a finitely generated `ringOfX W T`.
+@isnad1 id=isunit.6h5v.s14.a2932df14998 from=translated src=- shape=bfaeee95 vocab=fd0eb42a
+-/
 theorem isUnit_xR_sub_of_finite (hT : T.Finite) (g : AffAut W) (hm0 : g.m ≠ 0)
     (hm : xOf g.m ∈ T) {P : W.toAffine.Point} (hP : P ≠ 0)
     (h₁ : g⁻¹ • P ≠ 0 → xOf (g⁻¹ • P) ∈ T) (h₂ : g⁻¹ • (-P) ≠ 0 → xOf (g⁻¹ • (-P)) ∈ T) :
@@ -69,6 +74,9 @@ theorem isUnit_xR_sub_of_finite (hT : T.Finite) (g : AffAut W) (hm0 : g.m ≠ 0)
     rw [AffAut.bc_smul, map_neg, ← hpm, AffAut.act_inv_act]
 
 omit [DecidableEq k] [W.IsElliptic] in
+/--
+@isnad1 id=mem.1h4v.s12.fa3be61763ae from=translated src=- shape=53f2085e vocab=ed146b48
+-/
 lemma inv_coe_mem_of_isUnit {B : Subalgebra k (funField W)} {u : B} (hu : IsUnit u) :
     (u : funField W)⁻¹ ∈ B := by
   obtain ⟨v, rfl⟩ := hu
@@ -78,7 +86,9 @@ lemma inv_coe_mem_of_isUnit {B : Subalgebra k (funField W)} {u : B} (hu : IsUnit
 
 /-- For `g = (ε, m)` and an affine rational point `P` such that the `x`-coordinates of `m`,
 `g⁻¹(P)` and `g⁻¹(-P)` (when affine) lie in `T`, the function `pullback W g (x - x(P))` is a
-unit of `ringOfX W T`. -/
+unit of `ringOfX W T`.
+@isnad1 id=mem.4h5v.s12.914426cf0a98 from=translated src=- shape=c167318d vocab=1d59f153
+-/
 theorem inv_pullback_mem (g : AffAut W) (hm : g.m ≠ 0 → xOf g.m ∈ T) {P : W.toAffine.Point}
     (hP : P ≠ 0) (h₁ : g⁻¹ • P ≠ 0 → xOf (g⁻¹ • P) ∈ T)
     (h₂ : g⁻¹ • (-P) ≠ 0 → xOf (g⁻¹ • (-P)) ∈ T) :
@@ -112,7 +122,9 @@ theorem inv_pullback_mem (g : AffAut W) (hm : g.m ≠ 0 → xOf g.m ∈ T) {P : 
 /-! ### Stability -/
 
 /-- If `S` contains `0`, is stable under negation and is mapped into itself by `g` and `g⁻¹`,
-then the pullback along `g` preserves `ringOf W S`. -/
+then the pullback along `g` preserves `ringOf W S`.
+@isnad1 id=mem.5h5v.s12.a0b6c69dfc85 from=translated src=- shape=7b4e100c vocab=991905eb
+-/
 theorem pullback_mem_ringOf {S : Set W.toAffine.Point} (h0 : 0 ∈ S)
     (hneg : ∀ P ∈ S, -P ∈ S) {g : AffAut W} (hg : ∀ P ∈ S, g • P ∈ S)
     (hg' : ∀ P ∈ S, g⁻¹ • P ∈ S) {f : funField W} (hf : f ∈ ringOf W S) :
@@ -140,6 +152,9 @@ class IsAffStable (S : Set W.toAffine.Point) (A : Subgroup (AffAut W)) : Prop wh
 
 variable (S : Set W.toAffine.Point) (A : Subgroup (AffAut W)) [IsAffStable S A]
 
+/--
+@isnad1 id=mem.1h6v.s11.1631d29205bf from=translated src=- shape=306fa9ae vocab=e1fdfa49
+-/
 lemma smul_mem_ringOf (g : A) {f : funField W} (hf : f ∈ ringOf W S) :
     (g : AffAut W) • f ∈ ringOf W S := by
   rw [smul_funField_def]
@@ -159,6 +174,9 @@ instance : MulSemiringAction A (ringOf W S) where
   smul_one g := Subtype.ext (smul_one (g : AffAut W))
   smul_mul g r s := Subtype.ext (smul_mul' (g : AffAut W) (r : funField W) s)
 
+/--
+@isnad1 id=eq.0h6v.s15.1711fd3a789f from=translated src=- shape=e39cfba1 vocab=e1fdfa49
+-/
 @[simp] lemma coe_smul_ringOf (g : A) (r : ringOf W S) :
     ((g • r : ringOf W S) : funField W) = (g : AffAut W) • (r : funField W) := rfl
 

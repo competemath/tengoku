@@ -80,16 +80,25 @@ def XLaurentCoeff : ℤ → K := fun m =>
   else -2 * t.eisenstein 1
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
+/--
+@isnad1 id=eq.1h3v.s7.96897b2bbcca from=translated src=- shape=ebb92925 vocab=b4969ba2
+-/
 lemma XLaurentCoeff_of_pos {m : ℤ} (hm : 0 < m) :
     t.XLaurentCoeff m = (m.toNat : K) * (t.q : K) ^ m.toNat / (1 - (t.q : K) ^ m.toNat) := by
   simp only [XLaurentCoeff, ite_eq_left hm]
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
+/--
+@isnad1 id=eq.1h3v.s7.597a0cd965c5 from=translated src=- shape=edd18154 vocab=a45dd14b
+-/
 lemma XLaurentCoeff_of_neg {m : ℤ} (hm : m < 0) :
     t.XLaurentCoeff m = ((-m).toNat : K) / (1 - (t.q : K) ^ (-m).toNat) := by
   simp only [XLaurentCoeff, ite_eq_right (not_lt.mpr hm.le), ite_eq_left hm]
 
 omit [CompleteSpace K] [IsUltrametricDist K] in
+/--
+@isnad1 id=eq.0h2v.s6.5654fa8a905a from=translated src=- shape=79db9cd1 vocab=3af813fb
+-/
 lemma XLaurentCoeff_zero : t.XLaurentCoeff 0 = -2 * t.eisenstein 1 := by
   simp only [XLaurentCoeff, lt_self_iff_false, ite_false]
 
@@ -121,7 +130,9 @@ private lemma XouterFamily_eq (j m : ℕ) :
 
 /-- **Inner half-collapse of `X`.** On the inner side `‖q‖·‖u‖ < 1`, the `ℤ`-index sum
 `∑_{n ≥ 1} Xterm u n` equals the closed-form one-sided power series
-`∑_{m ≥ 1} [m·qᵐ/(1-qᵐ)]·uᵐ` (both summing to the same value `S`). -/
+`∑_{m ≥ 1} [m·qᵐ/(1-qᵐ)]·uᵐ` (both summing to the same value `S`).
+@isnad1 id=ex.1h3v.s8.aac01967582e from=translated src=- shape=e3fdd915 vocab=0dab9017
+-/
 lemma X_inner_collapse (h2 : ‖(t.q : K)‖ * ‖(u : K)‖ < 1) :
     ∃ S : K, HasSum (fun j : ℕ => t.Xterm u ((j : ℤ) + 1)) S ∧
       HasSum (fun m : ℕ =>
@@ -186,7 +197,9 @@ lemma X_inner_collapse (h2 : ‖(t.q : K)‖ * ‖(u : K)‖ < 1) :
 
 /-- **Outer half-collapse of `X`.** On the outer side `1 < ‖u‖`, the `ℤ`-index sum
 `∑_{n ≤ 0} Xterm u n` equals the closed-form one-sided power series in `u⁻¹`,
-`∑_{m ≥ 1} [m/(1-qᵐ)]·u⁻ᵐ` (both summing to the same value `S`). -/
+`∑_{m ≥ 1} [m/(1-qᵐ)]·u⁻ᵐ` (both summing to the same value `S`).
+@isnad1 id=ex.1h3v.s8.fb78337565d2 from=translated src=- shape=46c95a06 vocab=00bdca61
+-/
 lemma X_outer_collapse (h1 : 1 < ‖(u : K)‖) :
     ∃ S : K, HasSum (fun j : ℕ => t.Xterm u (-(j : ℤ))) S ∧
       HasSum (fun m : ℕ =>
@@ -243,7 +256,9 @@ lemma X_outer_collapse (h1 : 1 < ‖(u : K)‖) :
 `1 < ‖u‖` and `‖q‖·‖u‖ < 1` (equivalently `1 < ‖u‖ < ‖q‖⁻¹`),
 `X(u) = ∑' m : ℤ, XLaurentCoeff m · uᵐ`, a convergent two-sided Laurent series with Eisenstein-type
 coefficients. This is step 2 of the pole-cancellation Laurent development of the Weierstrass
-defect (#146). -/
+defect (#146).
+@isnad1 id=hassum.2h3v.s7.590266c774fd from=translated src=- shape=56df601f vocab=1e475f74
+-/
 theorem X_hasSum_laurent (h1 : 1 < ‖(u : K)‖) (h2 : ‖(t.q : K)‖ * ‖(u : K)‖ < 1) :
     HasSum (fun m : ℤ => t.XLaurentCoeff m * (u : K) ^ m) (t.X u) := by
   obtain ⟨Sin, hXin, hGin⟩ := t.X_inner_collapse u h2

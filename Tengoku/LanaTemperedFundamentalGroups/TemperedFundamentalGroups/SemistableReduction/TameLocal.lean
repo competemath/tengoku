@@ -46,6 +46,9 @@ variable (O : Type*) [CommRing O] (m : ℕ)
 /-- The smooth local model `O[u] = O[w ^ m] ⊆ O[w]` of the Kummer cover `u = w ^ m`. -/
 noncomputable abbrev smoothKummer : Subalgebra O O[X] := Algebra.adjoin O {X ^ m}
 
+/--
+@isnad1 id=eq.0h2v.s6.c06dc4ce35ec from=translated src=- shape=d3da9e33 vocab=cd6de4b7
+-/
 lemma range_expand : (expand O m).range = smoothKummer O m := by
   rw [smoothKummer, Algebra.adjoin_singleton_eq_range_aeval]
   congr 1
@@ -56,10 +59,16 @@ variable {m}
 noncomputable def smoothKummerEquiv [IsDomain O] (hm : 0 < m) : O[X] ≃ₐ[O] smoothKummer O m :=
   (AlgEquiv.ofInjective _ (expand_injective hm)).trans (Subalgebra.equivOfEq _ _ (range_expand O m))
 
+/--
+@isnad1 id=eq.1h2v.s9.dff5faf600b8 from=translated src=- shape=f357668a vocab=29dcd75c
+-/
 @[simp] lemma smoothKummerEquiv_X [IsDomain O] (hm : 0 < m) :
     (smoothKummerEquiv O hm X : O[X]) = X ^ m := by
   simp [smoothKummerEquiv]
 
+/--
+@isnad1 id=eq.0h2v.s12.a59481dddf5c from=translated src=- shape=9a0f683c vocab=b10303d1
+-/
 lemma smoothKummer_adjoin_X : Algebra.adjoin (smoothKummer O m) {(X : O[X])} = ⊤ := by
   rw [eq_top_iff]
   rintro p -
@@ -72,7 +81,9 @@ lemma smoothKummer_adjoin_X : Algebra.adjoin (smoothKummer O m) {(X : O[X])} = �
     rw [pow_succ, ← mul_assoc]
     exact mul_mem h (Algebra.subset_adjoin rfl)
 
-/-- `O[w]` is finite over `O[w ^ m]` for `0 < m`. -/
+/-- `O[w]` is finite over `O[w ^ m]` for `0 < m`.
+@isnad1 id=finite.1h2v.s8.b7e3c338d16e from=translated src=- shape=57b54ed1 vocab=1c47dc9b
+-/
 theorem smoothKummer_finite (hm : 0 < m) : Module.Finite (smoothKummer O m) O[X] := by
   have h := fg_adjoin_of_finite (R := smoothKummer O m) (Set.toFinite {(X : O[X])}) (by
     rintro x rfl
@@ -83,7 +94,9 @@ theorem smoothKummer_finite (hm : 0 < m) : Module.Finite (smoothKummer O m) O[X]
   exact ⟨h⟩
 
 /-- **Local tame lemma at a smooth point.** For an integrally closed domain `O` and `0 < m`,
-`O[w]` is the integral closure of `O[u] = O[w ^ m]` in its fraction field. -/
+`O[w]` is the integral closure of `O[u] = O[w ^ m]` in its fraction field.
+@isnad1 id=isintegr.1h2v.s9.7484a5f9bb09 from=translated src=- shape=9f6f1078 vocab=22712d35
+-/
 theorem smoothKummer_isIntegralClosure [IsDomain O] [IsIntegrallyClosed O] (hm : 0 < m) :
     IsIntegralClosure O[X] (smoothKummer O m) (FractionRing O[X]) := by
   have := smoothKummer_finite O hm
