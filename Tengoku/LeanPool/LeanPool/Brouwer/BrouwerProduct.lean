@@ -171,24 +171,33 @@ noncomputable def _root_.Tengoku.LeanPool.pushTowardsZ (x : BigSimplex card) : B
   ⟩
 
 omit [DecidableEq I] [LinearOrder I] in
+/--
+@isnad1 id=lt.0h3v.s4.c08c58315115 from=translated src=- shape=eb9b5ef1 vocab=76f6ddb5
+-/
 lemma _root_.Tengoku.LeanPool.blockWeight_pos (i : I) : 0 < blockWeight card i :=
   div_pos (card_pos_real card i) (totalCard_pos_real card)
 
-/-- `blockSum card i x` is always nonnegative. -/
+/-- `blockSum card i x` is always nonnegative.
+@isnad1 id=le.0h4v.s5.10e7940146e1 from=translated src=- shape=90d97ba7 vocab=bdfdb720
+-/
 lemma _root_.Tengoku.LeanPool.blockSum_nonneg (i : I) (x : BigSimplex card) : 0 ≤ blockSum card i x := by
   unfold blockSum
   apply Finset.sum_nonneg
   intro j _
   exact x.2.1 _
 
-/-- `deficit card x` is always nonnegative. -/
+/-- `deficit card x` is always nonnegative.
+@isnad1 id=le.0h3v.s5.f50c2c3c09c4 from=translated src=- shape=e5490a5c vocab=25e4747f
+-/
 lemma _root_.Tengoku.LeanPool.deficit_nonneg (x : BigSimplex card) : 0 ≤ deficit card x := by
   unfold deficit
   apply Finset.sum_nonneg
   intro i _
   exact le_max_left _ _
 
-/-- `tPush card x` is always in `[0, 1]`. -/
+/-- `tPush card x` is always in `[0, 1]`.
+@isnad1 id=mem.0h3v.s5.a96dbb42e8a6 from=translated src=- shape=bdd38b45 vocab=018e9250
+-/
 lemma _root_.Tengoku.LeanPool.tPush_mem_Icc (x : BigSimplex card) : tPush card x ∈ Set.Icc (0 : ℝ) 1 := by
   have hdef := deficit_nonneg card x
   have hdenpos : 0 < (1 : ℝ) + deficit card x := by linarith
@@ -196,14 +205,18 @@ lemma _root_.Tengoku.LeanPool.tPush_mem_Icc (x : BigSimplex card) : tPush card x
   · simpa [tPush] using div_nonneg hdef (le_of_lt hdenpos)
   · rw [tPush, div_le_one hdenpos]; linarith
 
-/-- The block sum after pushing towards `zUniform` follows a linear formula. -/
+/-- The block sum after pushing towards `zUniform` follows a linear formula.
+@isnad1 id=eq.0h4v.s6.6333a211def1 from=translated src=- shape=cb386a9e vocab=c0493715
+-/
 lemma _root_.Tengoku.LeanPool.blockSum_pushTowardsZ_formula (i : I) (x : BigSimplex card) :
     blockSum card i (pushTowardsZ card x) =
       (1 - tPush card x) * blockSum card i x + (tPush card x) * blockWeight card i := by
   simp [blockSum, pushTowardsZ, sub_eq_add_neg, Finset.sum_add_distrib, Finset.mul_sum,
         zUniform, blockWeight, div_eq_mul_inv, mul_left_comm]
 
-/-- The block sum after pushing towards `zUniform` is always positive. -/
+/-- The block sum after pushing towards `zUniform` is always positive.
+@isnad1 id=lt.0h4v.s5.94a067012cdf from=translated src=- shape=e8adc446 vocab=2c064a22
+-/
 lemma _root_.Tengoku.LeanPool.blockSum_pushTowardsZ_pos (i : I) (x : BigSimplex card) :
     0 < blockSum card i (pushTowardsZ card x) := by
   rw [blockSum_pushTowardsZ_formula]
@@ -253,7 +266,9 @@ noncomputable def _root_.Tengoku.LeanPool.projectToProduct (x : BigSimplex card)
         field_simp
     ⟩ : standardSimplex ℝ (Fin (card i)))
 
-/-- Continuity of `blockSum card i`. -/
+/-- Continuity of `blockSum card i`.
+@isnad1 id=continuo.0h3v.s7.d7ad83e5d1e5 from=translated src=- shape=7d32bb99 vocab=2b447243
+-/
 lemma _root_.Tengoku.LeanPool.blockSum_continuous (i : I) : Continuous (blockSum card i) := by
   change Continuous (fun x : BigSimplex card =>
     ∑ j : Fin (card i), x.1 (indexCombine card ⟨i, j⟩))
@@ -261,7 +276,9 @@ lemma _root_.Tengoku.LeanPool.blockSum_continuous (i : I) : Continuous (blockSum
   intro j _
   exact (continuous_apply _).comp continuous_subtype_val
 
-/-- Continuity of `deficit card`. -/
+/-- Continuity of `deficit card`.
+@isnad1 id=continuo.0h2v.s7.e88b5087c3b5 from=translated src=- shape=8ca08cae vocab=222ac23e
+-/
 lemma _root_.Tengoku.LeanPool.deficit_continuous : Continuous (deficit card) := by
   change Continuous (fun x : BigSimplex card =>
     ∑ i, max (0 : ℝ) ((blockWeight card i) - blockSum card i x))
@@ -269,7 +286,9 @@ lemma _root_.Tengoku.LeanPool.deficit_continuous : Continuous (deficit card) := 
   intro i _
   exact continuous_const.max (continuous_const.sub (blockSum_continuous card i))
 
-/-- Continuity of `tPush card`. -/
+/-- Continuity of `tPush card`.
+@isnad1 id=continuo.0h2v.s7.467237520131 from=translated src=- shape=8ca08cae vocab=5ca152e1
+-/
 lemma _root_.Tengoku.LeanPool.tPush_continuous : Continuous (tPush card) := by
   have h_denom_cont : Continuous (fun x => (1 : ℝ) + deficit card x) :=
     continuous_const.add (deficit_continuous card)
@@ -277,7 +296,9 @@ lemma _root_.Tengoku.LeanPool.tPush_continuous : Continuous (tPush card) := by
     ne_of_gt (add_pos_of_pos_of_nonneg (by norm_num) (deficit_nonneg card x))
   exact Continuous.div (deficit_continuous card) h_denom_cont h_denom_ne
 
-/-- Continuity of `pushTowardsZ card`. -/
+/-- Continuity of `pushTowardsZ card`.
+@isnad1 id=continuo.0h2v.s7.82ec2a709082 from=translated src=- shape=c41a78d8 vocab=56df946d
+-/
 lemma _root_.Tengoku.LeanPool.pushTowardsZ_continuous : Continuous (pushTowardsZ card) := by
   apply Continuous.subtype_mk
   classical
@@ -297,7 +318,9 @@ lemma _root_.Tengoku.LeanPool.pushTowardsZ_continuous : Continuous (pushTowardsZ
     hterm1.add hterm2
   simpa [pushTowardsZ] using hsum
 
-/-- Continuity of `projectToProduct`. -/
+/-- Continuity of `projectToProduct`.
+@isnad1 id=continuo.0h2v.s7.6cfca10d295c from=translated src=- shape=3aef3422 vocab=82cb4883
+-/
 lemma _root_.Tengoku.LeanPool.project_continuous : Continuous (projectToProduct card) := by
   apply continuous_pi
   intro i

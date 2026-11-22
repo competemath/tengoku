@@ -37,19 +37,25 @@ open MeasureTheory
 /-- The constant function 1 -/
 def constOne : Expr := Expr.const 1
 
-/-- Proof that constOne is in the supported subset -/
+/-- Proof that constOne is in the supported subset
+@isnad1 id=adsuppor.0h0v.s1.63e817f20db6 from=translated src=- shape=49959d42 vocab=5f8a889c
+-/
 theorem constOne_supported : ADSupported constOne := ADSupported.const 1
 
 /-- The identity function x -/
 def identity : Expr := Expr.var 0
 
-/-- Proof that identity is supported -/
+/-- Proof that identity is supported
+@isnad1 id=adsuppor.0h0v.s1.013ae2b01b40 from=translated src=- shape=49959d42 vocab=99a399ad
+-/
 theorem identity_supported : ADSupported identity := ADSupported.var 0
 
 /-- The expression x² -/
 def xSquared : Expr := Expr.mul (Expr.var 0) (Expr.var 0)
 
-/-- Proof that xSquared is supported -/
+/-- Proof that xSquared is supported
+@isnad1 id=adsuppor.0h0v.s1.5fcbc99d9543 from=translated src=- shape=49959d42 vocab=3dd9f6ed
+-/
 theorem xSquared_supported : ADSupported xSquared :=
   ADSupported.mul (ADSupported.var 0) (ADSupported.var 0)
 
@@ -71,7 +77,9 @@ noncomputable def constOne_integral_bound : IntervalRat :=
 
 /-- Verified: the true integral ∫₀¹ 1 dx lies in our computed bound.
     This theorem has NO SORRY - it's a direct application of the
-    fully-verified `integrateInterval_correct_n1`. -/
+    fully-verified `integrateInterval_correct_n1`.
+@isnad1 id=mem.1h0v.s6.886c6f100644 from=translated src=- shape=2aa8e12b vocab=480ede4a
+-/
 theorem constOne_integral_verified
     (hInt : IntervalIntegrable (fun x => Expr.eval (fun _ => x) constOne)
                                volume unitInterval.lo unitInterval.hi) :
@@ -90,7 +98,9 @@ Our interval bound is guaranteed to contain this value.
 noncomputable def xSquared_integral_bound : IntervalRat :=
   integrateInterval xSquared unitInterval 1 (by norm_num)
 
-/-- Verified: the true integral ∫₀¹ x² dx lies in our computed bound. -/
+/-- Verified: the true integral ∫₀¹ x² dx lies in our computed bound.
+@isnad1 id=mem.1h0v.s6.8c3fd8b0e80b from=translated src=- shape=2aa8e12b vocab=c13f862c
+-/
 theorem xSquared_integral_verified
     (hInt : IntervalIntegrable (fun x => Expr.eval (fun _ => x) xSquared)
                                volume unitInterval.lo unitInterval.hi) :
@@ -107,7 +117,9 @@ For sin(x) over [0, 1], we get verified bounds using the global [-1,1] bound.
 /-- The expression sin(x) -/
 def exprSin : Expr := Expr.sin (Expr.var 0)
 
-/-- Proof that sin(x) is supported -/
+/-- Proof that sin(x) is supported
+@isnad1 id=adsuppor.0h0v.s1.d1152ada7af7 from=translated src=- shape=49959d42 vocab=257c482c
+-/
 theorem exprSin_supported : ADSupported exprSin :=
   ADSupported.sin (ADSupported.var 0)
 
@@ -115,7 +127,9 @@ theorem exprSin_supported : ADSupported exprSin :=
 noncomputable def sin_integral_bound : IntervalRat :=
   integrateInterval exprSin unitInterval 1 (by norm_num)
 
-/-- Verified: the true integral ∫₀¹ sin(x) dx lies in our computed bound. -/
+/-- Verified: the true integral ∫₀¹ sin(x) dx lies in our computed bound.
+@isnad1 id=mem.1h0v.s6.9e08153d9b05 from=translated src=- shape=2aa8e12b vocab=d40e2a7e
+-/
 theorem sin_integral_verified
     (hInt : IntervalIntegrable (fun x => Expr.eval (fun _ => x) exprSin)
                                volume unitInterval.lo unitInterval.hi) :
@@ -148,7 +162,9 @@ def xSquaredMinus2 : Expr :=
 /-- Search interval for √2 -/
 def searchInterval : IntervalRat := ⟨1, 2, by norm_num⟩
 
-/-- ADSupported proof for x² - 2 -/
+/-- ADSupported proof for x² - 2
+@isnad1 id=adsuppor.0h0v.s1.2d0d7d08a751 from=translated src=- shape=49959d42 vocab=53d19800
+-/
 theorem xSquaredMinus2_supported : ADSupported xSquaredMinus2 :=
   ADSupported.add
     (ADSupported.mul (ADSupported.var 0) (ADSupported.var 0))
@@ -164,7 +180,9 @@ and prove that when it reports `hasRoot`, there truly exists a root.
 noncomputable def sqrt2_bisect_result : BisectionResult :=
   bisectRoot xSquaredMinus2 searchInterval 20 (1/100) (by norm_num)
 
-/-- x² - 2 evaluates to a polynomial in x, which is continuous -/
+/-- x² - 2 evaluates to a polynomial in x, which is continuous
+@isnad1 id=continuo.0h0v.s5.e70878d596b6 from=translated src=- shape=628500f3 vocab=b5200af8
+-/
 theorem xSquaredMinus2_continuous :
     ContinuousOn (fun x => Expr.eval (fun _ => x) xSquaredMinus2) (Set.Icc searchInterval.lo searchInterval.hi) := by
   -- x² - 2 expands to x*x + (-2), which is just a polynomial
@@ -175,7 +193,9 @@ theorem xSquaredMinus2_continuous :
   · exact continuousOn_const
 
 /-- Correctness: every interval marked `hasRoot` in bisection result contains a true root.
-    This uses `bisectRoot_hasRoot_correct` from the verified bisection module. -/
+    This uses `bisectRoot_hasRoot_correct` from the verified bisection module.
+@isnad1 id=ex.2h2v.s5.687cd28e7f37 from=translated src=- shape=bb1957a0 vocab=9a8a070b
+-/
 theorem sqrt2_bisect_hasRoot_correct :
     ∀ J s, (J, s) ∈ sqrt2_bisect_result.intervals →
       s = RootStatus.hasRoot →
@@ -189,7 +209,9 @@ The quadratic (x-1)² = x² - 2x + 1 has minimum value 0 at x = 1.
 We demonstrate using minimizeInterval to get verified bounds.
 -/
 
-/-- ADSupported proof for quadratic (x² - 2x + 1) -/
+/-- ADSupported proof for quadratic (x² - 2x + 1)
+@isnad1 id=adsuppor.0h0v.s1.4a903140dba6 from=translated src=- shape=49959d42 vocab=0be63e1b
+-/
 theorem quadratic_supported : ADSupported quadratic :=
   ADSupported.add
     (ADSupported.add
@@ -204,7 +226,9 @@ def I02 : IntervalRat := ⟨0, 2, by norm_num⟩
 noncomputable def quad_min_result : OptResult :=
   minimizeInterval quadratic I02 0 5
 
-/-- UsesOnlyVar0 proof for quadratic -/
+/-- UsesOnlyVar0 proof for quadratic
+@isnad1 id=usesonly.0h0v.s1.55b67c4b0efe from=translated src=- shape=49959d42 vocab=f8c8f42f
+-/
 theorem quadratic_var0 : UsesOnlyVar0 quadratic :=
   -- quadratic = (x² - 2x) + 1 = add (add (mul x x) (neg (mul 2 x))) 1
   UsesOnlyVar0.add _ _
@@ -217,7 +241,9 @@ theorem quadratic_var0 : UsesOnlyVar0 quadratic :=
 /-- Correctness: the computed lower bound is indeed a lower bound on the true minimum.
 
     For all x in [0, 2], we have quad_min_result.valueBound.lo ≤ quadratic(x).
-    This uses `minimizeInterval_correct` from the verified optimization module. -/
+    This uses `minimizeInterval_correct` from the verified optimization module.
+@isnad1 id=le.1h1v.s4.763c847e3ec1 from=translated src=- shape=c618335c vocab=46a027e5
+-/
 theorem quad_min_correct :
     ∀ x ∈ I02, (quad_min_result.valueBound.lo : ℝ) ≤ Expr.eval (fun _ => x) quadratic :=
   minimizeInterval_correct quadratic quadratic_supported quadratic_var0 I02 5
@@ -234,18 +260,24 @@ def invX : Expr := Expr.inv (Expr.var 0)
 /-- Interval [1, 2] - excludes zero, so 1/x is safe to evaluate -/
 def I12 : IntervalRat := ⟨1, 2, by norm_num⟩
 
-/-- The interval [1, 2] doesn't contain zero -/
+/-- The interval [1, 2] doesn't contain zero
+@isnad1 id=not.0h0v.s1.1541bc954fe4 from=translated src=- shape=87ceb31f vocab=0301e6d4
+-/
 theorem I12_excludes_zero : ¬IntervalRat.containsZero I12 := by
   simp only [IntervalRat.containsZero, I12, not_and_or, not_le]
   left
   norm_num
 
-/-- Evaluation of 1/x on [1, 2] succeeds because the interval excludes zero -/
+/-- Evaluation of 1/x on [1, 2] succeeds because the interval excludes zero
+@isnad1 id=eq.0h0v.s3.d130b6607567 from=translated src=- shape=636a0f87 vocab=e52b6830
+-/
 theorem invX_eval_some :
     evalInterval?1 invX I12 = some (IntervalRat.invNonzero ⟨I12, I12_excludes_zero⟩) := by
   simp only [evalInterval?1, evalInterval?, invX, I12_excludes_zero, ↓reduceDIte]
 
-/-- Evaluation succeeds -/
+/-- Evaluation succeeds
+@isnad1 id=eq.0h0v.s3.6b047218ce89 from=translated src=- shape=c0075eb1 vocab=31b3b065
+-/
 theorem invX_eval_succeeds : (evalInterval?1 invX I12).isSome := by
   rw [invX_eval_some]
   rfl
@@ -257,7 +289,9 @@ noncomputable def invX_bound : IntervalRat :=
 /-- Correctness: if evaluation succeeds, the result contains the true value.
 
     For 1/x on [1, 2], we have 1/x ∈ [1/2, 1] (since x ∈ [1, 2] implies 1/x ∈ [1/2, 1]).
-    The computed bound is guaranteed to contain this. -/
+    The computed bound is guaranteed to contain this.
+@isnad1 id=mem.1h1v.s4.efb7ab1614b1 from=translated src=- shape=159cf3b1 vocab=cf4257c5
+-/
 theorem invX_correct (x : ℝ) (hx : x ∈ I12) :
     Expr.eval (fun _ => x) invX ∈ invX_bound := by
   simp only [invX_bound]
@@ -272,7 +306,9 @@ The refined evaluators use Taylor models for tighter bounds on transcendentals.
 noncomputable def sinSmall_refined : IntervalRat :=
   evalIntervalRefined1 exprSin exprSin_supported ⟨0, 1/2, by norm_num⟩
 
-/-- Correctness of refined evaluation -/
+/-- Correctness of refined evaluation
+@isnad1 id=mem.1h1v.s5.67d208896066 from=translated src=- shape=3495f182 vocab=de28a860
+-/
 theorem sinSmall_refined_correct (x : ℝ) (hx : x ∈ (⟨0, 1/2, by norm_num⟩ : IntervalRat)) :
     Expr.eval (fun _ => x) exprSin ∈ sinSmall_refined :=
   evalIntervalRefined1_correct exprSin exprSin_supported x ⟨0, 1/2, by norm_num⟩ hx

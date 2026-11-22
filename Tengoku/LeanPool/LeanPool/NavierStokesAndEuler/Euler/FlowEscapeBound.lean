@@ -29,7 +29,9 @@ namespace Euler.ComparatorBridge
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
 
 omit [CompleteSpace E] in
-/-- Cauchy--Schwarz for a vector-valued integral against a finite measure. -/
+/-- Cauchy--Schwarz for a vector-valued integral against a finite measure.
+@isnad1 id=le.1h4v.s7.021ab8c6bbf6 from=translated src=- shape=eede815c vocab=9167289d
+-/
 theorem norm_integral_sq_le_action
     {α : Type*} [MeasurableSpace α] (μ : Measure α) [IsFiniteMeasure μ]
     (V : α → E) (hV : MemLp V 2 μ) :
@@ -50,7 +52,9 @@ theorem norm_integral_sq_le_action
     Real.sq_sqrt (integral_nonneg (fun t => sq_nonneg ‖V t‖)),
     Real.sq_sqrt (measureReal_nonneg : 0 ≤ μ.real univ), mul_comm] using hs
 
-/-- The displacement of a differentiable curve is bounded by its kinetic action. -/
+/-- The displacement of a differentiable curve is bounded by its kinetic action.
+@isnad1 id=le.4h5v.s8.2ae34b738cf7 from=translated src=- shape=3092c5e6 vocab=8e979daa
+-/
 theorem curve_displacement_sq_le_action
     (a b : ℝ) (hab : a ≤ b) (X V : ℝ → E)
     (hX : ContinuousOn X (Icc a b))
@@ -73,7 +77,9 @@ theorem curve_displacement_sq_le_action
   rwa [hmass, hint] at h
 
 /-- A curve reaching radius `R` from radius at most `K` pays at least
-`(R-K)^2 / T` in action over `[0,T]`. -/
+`(R-K)^2 / T` in action over `[0,T]`.
+@isnad1 id=le.8h7v.s8.0bfee1c446cc from=translated src=- shape=96ed810d vocab=8e979daa
+-/
 theorem curve_escape_sq_le_action
     (T K R s : ℝ) (hT : 0 ≤ T) (hKR : K ≤ R) (hs : s ∈ Icc 0 T)
     (X V : ℝ → E) (hX : ContinuousOn X (Icc 0 T))
@@ -102,7 +108,9 @@ theorem curve_escape_sq_le_action
 
 omit [CompleteSpace E] [NormedSpace ℝ E] in
 /-- A measure-preserving flow converts the Eulerian energy bound into an
-integrable action with the same time-integrated bound. -/
+integrable action with the same time-integrated bound.
+@isnad1 id=and.5h8v.s8.ae32cc73285b from=translated src=- shape=3e05db02 vocab=3f590f86
+-/
 theorem flow_action_integrable_and_bound
     {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     (ν : Measure α) [IsFiniteMeasure ν] (μ : Measure β) [SFinite μ]
@@ -145,7 +153,9 @@ theorem flow_action_integrable_and_bound
 
 /-- Markov's action estimate for any measurable family of escaping curves.
 The hypothesis on the integral of `action` is obtained by volume preservation
-and the Eulerian kinetic-energy bound. -/
+and the Eulerian kinetic-energy bound.
+@isnad1 id=le.8h8v.s8.d0b0f6c8891e from=translated src=- shape=d56deacf vocab=eebbc50f
+-/
 theorem escape_measure_le_of_action
     {α : Type*} [MeasurableSpace α] (μ : Measure α)
     (S : Set α) (hS : MeasurableSet S) (hfinite : μ S ≠ ⊤)
@@ -174,7 +184,9 @@ theorem escape_measure_le_of_action
 
 /-- A finite-energy measure-preserving flow can carry at most
 `energy * T^2 / (R-K)^2` measure of points from radius `K` to radius `R`.
-The escaped set need not have a measurable choice of its hitting time. -/
+The escaped set need not have a measurable choice of its hitting time.
+@isnad1 id=le.14h9v.s9.a442f6c71a53 from=translated src=- shape=7f83b6e8 vocab=5a9e15ef
+-/
 theorem flow_escape_measure_le
     [MeasurableSpace E] (μ : Measure E) [SFinite μ]
     (T K R energy : ℝ) (hT : 0 ≤ T) (hKR : K < R)

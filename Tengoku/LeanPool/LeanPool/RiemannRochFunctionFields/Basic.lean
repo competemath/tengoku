@@ -52,6 +52,9 @@ namespace IsFullConstantField
 
 variable (k K : Type*) [Field k] [Field K] [Algebra k K] [IsFullConstantField k K]
 
+/--
+@isnad1 id=mem.1h3v.s6.9e7efd956911 from=translated src=- shape=db9cd27e vocab=23b76046
+-/
 theorem mem_range {x : K} (hx : IsAlgebraic k x) :
     x ∈ Set.range (algebraMap k K) := by
   obtain ⟨c, hc⟩ := IsFullConstantField.algebraic_mem (k := k) (K := K) x hx
@@ -61,7 +64,9 @@ end IsFullConstantField
 
 /-- `IsFullConstantField k K` is exactly the statement that `k` is relatively algebraically
 closed in `K`, i.e. it coincides with Mathlib's `algebraicClosure k K = ⊥`. This identifies the
-standing hypothesis with the standard field-theoretic notion. -/
+standing hypothesis with the standard field-theoretic notion.
+@isnad1 id=iff.0h2v.s6.fa8381dfc90b from=translated src=- shape=e8bee442 vocab=a36f4feb
+-/
 theorem isFullConstantField_iff_algebraicClosure_eq_bot (k K : Type*) [Field k] [Field K]
     [Algebra k K] : IsFullConstantField k K ↔ algebraicClosure k K = ⊥ := by
   constructor

@@ -58,6 +58,7 @@ noncomputable def rectBoundary (f : ℂ → ℂ) (z w : ℂ) : ℂ :=
 
 /--
 Mathlib's rectangle Cauchy-Goursat theorem in LeanCert's named-side notation.
+@isnad1 id=eq.2h3v.s7.b82a7b2f461c from=translated src=- shape=81d8225f vocab=0b1ee55d
 -/
 theorem rectBoundary_eq_zero_of_continuousOn_of_differentiableOn
     (f : ℂ → ℂ) (z w : ℂ)
@@ -87,7 +88,9 @@ structure VerticalShiftCert where
 
 namespace VerticalShiftCert
 
-/-- Algebraic vertical-shift identity induced by the boundary certificate. -/
+/-- Algebraic vertical-shift identity induced by the boundary certificate.
+@isnad1 id=eq.0h1v.s6.4f96ad39d186 from=translated src=- shape=5bf76b53 vocab=1af85e40
+-/
 theorem vertical_shift (C : VerticalShiftCert) :
     I * rightIntegral C.f C.z C.w =
       I * leftIntegral C.f C.z C.w +
@@ -191,7 +194,9 @@ structure HorizontalBoundCert
 
 namespace HorizontalBoundCert
 
-/-- Norm-bound horizontal certificate implies horizontal vanishing. -/
+/-- Norm-bound horizontal certificate implies horizontal vanishing.
+@isnad1 id=horizont.0h5v.s4.582b04c96cfe from=translated src=- shape=4f94473c vocab=9195b073
+-/
 theorem toVanishCert {F : ℂ → ℂ} {σ₀ σ₁ : ℝ} {T : ℕ → ℝ}
     (B : HorizontalBoundCert F σ₀ σ₁ T) :
     HorizontalVanishCert F σ₀ σ₁ T where
@@ -272,7 +277,9 @@ private theorem rectangle_identity_stable {F : ℂ → ℂ} {σ₀ σ₁ : ℝ}
 /-- Limit-passing contour-shift identity, existential-limit form.
 
 Note: the limits are along the certificate's chosen height sequence `C.T`;
-see the `ContourShiftCert` docstring for the semantic boundary. -/
+see the `ContourShiftCert` docstring for the semantic boundary.
+@isnad1 id=ex.0h4v.s7.a09406795e6a from=translated src=- shape=7edb722a vocab=17065915
+-/
 theorem shift_identity {F : ℂ → ℂ} {σ₀ σ₁ : ℝ}
     (C : ContourShiftCert F σ₀ σ₁) :
     ∃ L₀ L₁ : ℂ,
@@ -315,7 +322,9 @@ theorem shift_identity {F : ℂ → ℂ} {σ₀ σ₁ : ℝ}
   have huniq := tendsto_nhds_unique hL₀ hLeftToR
   simpa [R] using huniq
 
-/-- Limit-passing contour-shift identity using chosen limit accessors. -/
+/-- Limit-passing contour-shift identity using chosen limit accessors.
+@isnad1 id=eq.0h4v.s6.0cb0629adffd from=translated src=- shape=77bf84c7 vocab=9aed1ca9
+-/
 theorem shift_identity' {F : ℂ → ℂ} {σ₀ σ₁ : ℝ}
     (C : ContourShiftCert F σ₀ σ₁) :
     C.leftValue = C.rightValue + (2 * Real.pi * I) * C.residueSum := by

@@ -29,12 +29,18 @@ namespace Problem6
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
+/--
+@isnad1 id=possemid.0h3v.s5.6c88657c4661 from=translated src=- shape=7bf1a547 vocab=db7d1f6b
+-/
 lemma inducedLaplacian_posSemidef
     (G : SimpleGraph V) [DecidableRel G.Adj] (S : Finset V) :
     (inducedLaplacian G S).PosSemidef := by
   rw [inducedLaplacian_eq_lapMatrix]
   exact SimpleGraph.posSemidef_lapMatrix ℝ (inducedSubgraph G S)
 
+/--
+@isnad1 id=possemid.0h3v.s5.e098c0ed7d98 from=translated src=- shape=43399458 vocab=dc1e7740
+-/
 lemma inducedLaplacian_le_graphLaplacian
     (G : SimpleGraph V) [DecidableRel G.Adj] (S : Finset V) :
     (graphLaplacian G - inducedLaplacian G S).PosSemidef := by
@@ -42,6 +48,9 @@ lemma inducedLaplacian_le_graphLaplacian
   exact lapMatrix_loewner_mono (inducedSubgraph_le G S)
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.2h3v.s7.dd0dc81ba7f6 from=translated src=- shape=f2fc3e78 vocab=12b68fe3
+-/
 lemma hermitian_mulVec_zero_of_sq_zero
     (Lhalf : Matrix V V ℝ) (hLhalf_herm : Lhalf.IsHermitian) (x : V → ℝ)
     (hx : (Lhalf * Lhalf) *ᵥ x = 0) :
@@ -59,6 +68,9 @@ lemma hermitian_mulVec_zero_of_sq_zero
     (Finset.sum_eq_zero_iff_of_nonneg (fun j _ => mul_self_nonneg _) |>.mp h_sq_sum i
       (Finset.mem_univ i))
 
+/--
+@isnad1 id=eq.6h5v.s8.3b450b5e143d from=translated src=- shape=bd2a2517 vocab=51c74eea
+-/
 lemma pinv_pullback_eq
     (G : SimpleGraph V) [DecidableRel G.Adj] (S : Finset V)
     (Lhalf Lhalf_pinv : Matrix V V ℝ)
@@ -137,6 +149,9 @@ lemma pinv_pullback_eq
     rwa [hP_herm.eq, hLS_sym.eq] at h
   rw [Matrix.mul_assoc, hLP]; exact hPL
 
+/--
+@isnad1 id=possemid.1h4v.s6.89d8716cca73 from=translated src=- shape=eb488510 vocab=241621e1
+-/
 lemma normalized_mono_psd
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (Lhalf_pinv : Matrix V V ℝ) (hpinv_herm : Lhalf_pinv.IsHermitian)
@@ -146,6 +161,9 @@ lemma normalized_mono_psd
     Lhalf_pinvᴴ * inducedLaplacian G S * Lhalf_pinv from by rw [hpinv_herm.eq]]
   exact (inducedLaplacian_posSemidef G S).conjTranspose_mul_mul_same Lhalf_pinv
 
+/--
+@isnad1 id=eq.3h4v.s8.154282293463 from=translated src=- shape=b0dfe274 vocab=f7e215df
+-/
 lemma normalized_laplacian_eq_proj
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (Lhalf Lhalf_pinv : Matrix V V ℝ)
@@ -160,6 +178,9 @@ lemma normalized_laplacian_eq_proj
     _ = (Lhalf * Lhalf_pinv) * (Lhalf * Lhalf_pinv) := by rw [← hMP4]
     _ = Lhalf * Lhalf_pinv := hMP3
 
+/--
+@isnad1 id=possemid.2h2v.s6.62b3819b41a9 from=translated src=- shape=a77836bc vocab=40e1d062
+-/
 lemma proj_le_one
     (P : Matrix V V ℝ)
     (hP_herm : P.IsHermitian)
@@ -174,6 +195,9 @@ lemma proj_le_one
       by rw [hQ_herm.eq, hQ_idem]]
   exact Matrix.posSemidef_conjTranspose_mul_self _
 
+/--
+@isnad1 id=possemid.1h4v.s6.2ec988d3542f from=translated src=- shape=20f26ee3 vocab=b026a069
+-/
 lemma inducedLaplacian_mono
     (G : SimpleGraph V) [DecidableRel G.Adj] (S T : Finset V) (hST : S ⊆ T) :
     (inducedLaplacian G T - inducedLaplacian G S).PosSemidef := by
@@ -181,6 +205,9 @@ lemma inducedLaplacian_mono
   exact lapMatrix_loewner_mono (inducedSubgraph_mono G hST)
 
 omit [Fintype V] in
+/--
+@isnad1 id=possemid.2h5v.s7.bae27bdd96e3 from=translated src=- shape=3df99f17 vocab=e063f62b
+-/
 lemma psd_sub_sum_le {r : ℕ} (M : Fin r → Matrix V V ℝ) (u : ℝ)
     (hM_psd : ∀ γ, (M γ).PosSemidef)
     (h_total : (u • (1 : Matrix V V ℝ) - ∑ γ : Fin r, M γ).PosSemidef) :

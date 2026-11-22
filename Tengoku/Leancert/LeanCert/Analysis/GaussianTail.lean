@@ -8,7 +8,9 @@ or a heat-flow representation. -/
 namespace LeanCert.Analysis.SeriesTail
 
 /-- The discrete quadratic exponent has a geometric majorant beyond any
-natural cutoff, with ratio strictly below one when `a > 0`. -/
+natural cutoff, with ratio strictly below one when `a > 0`.
+@isnad1 id=le.1h3v.s7.90200f89664c from=translated src=- shape=f608d7ea vocab=fc51e49d
+-/
 theorem gaussian_le_geometric (a : ℝ) (ha : 0 ≤ a) (N k : ℕ) :
     Real.exp (-a * ((k+N : ℕ) : ℝ)^2) ≤
       Real.exp (-a * (N : ℝ)^2) * (Real.exp (-a * (2*(N : ℝ)+1)))^k := by
@@ -19,7 +21,9 @@ theorem gaussian_le_geometric (a : ℝ) (ha : 0 ≤ a) (N k : ℕ) :
   nlinarith [mul_nonneg ha (sub_nonneg.mpr hk)]
 
 /-- Gaussian norm domination proves convergence and an explicit truncation
-error in any complete normed additive group (in particular ℝ or ℂ). -/
+error in any complete normed additive group (in particular ℝ or ℂ).
+@isnad1 id=and.3h5v.s8.8b0f52af90b2 from=translated src=- shape=90f4cfa9 vocab=ba89a0b9
+-/
 theorem of_gaussian {E : Type*} [NormedAddCommGroup E] [CompleteSpace E]
     (f : ℕ → E) (N : ℕ) (C a : ℝ) (hC : 0 ≤ C) (ha : 0 < a)
     (hbound : ∀ k, ‖f (k+N)‖ ≤ C * Real.exp (-a * ((k+N : ℕ) : ℝ)^2)) :

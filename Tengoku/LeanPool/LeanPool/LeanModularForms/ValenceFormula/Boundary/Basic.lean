@@ -39,9 +39,15 @@ noncomputable section
 /-- Height cutoff for the finite-height fundamental domain boundary. -/
 def heightCutoff : ℝ := Real.sqrt 3 / 2 + 1
 
+/--
+@isnad1 id=lt.0h0v.s3.5032c1ed8fe0 from=translated src=- shape=ff3a10fc vocab=e0c887aa
+-/
 lemma one_lt_heightCutoff : 1 < heightCutoff := by
   unfold heightCutoff; linarith [Real.sqrt_pos_of_pos (show (3 : ℝ) > 0 by norm_num)]
 
+/--
+@isnad1 id=lt.0h0v.s4.baecaa94901a from=translated src=- shape=9e62e5be vocab=75b40ff6
+-/
 lemma sqrt3_div2_lt_heightCutoff :
     Real.sqrt 3 / 2 < heightCutoff := by unfold heightCutoff; linarith
 
@@ -92,11 +98,17 @@ def fdPartition : Finset ℝ := {1, 2, 3, 4}
 /-- Full partition including endpoints. -/
 def fdBoundaryFullPartition : Finset ℝ := {0, 1, 2, 3, 4, 5}
 
+/--
+@isnad1 id=eq.0h0v.s5.83ac8a2e756d from=translated src=- shape=0977d038 vocab=ba86cfb7
+-/
 lemma fdBoundary_at_zero :
     fdBoundary 0 = 1 / 2 + heightCutoff * I := by
   simp only [fdBoundary, show (0 : ℝ) ≤ 1 from by norm_num, ite_true]
   push_cast; ring
 
+/--
+@isnad1 id=eq.0h0v.s3.5e0724debe35 from=translated src=- shape=d3a93718 vocab=af7ecb1e
+-/
 lemma fdBoundary_at_one :
     fdBoundary 1 = ellipticPointRhoPlusOne := by
   simp only [fdBoundary, show (1 : ℝ) ≤ 1 from le_refl _, ite_true,
@@ -104,6 +116,9 @@ lemma fdBoundary_at_one :
     UpperHalfPlane.coe_mk, heightCutoff]
   push_cast; ring
 
+/--
+@isnad1 id=eq.0h0v.s3.06178c128e75 from=translated src=- shape=d3a93718 vocab=cf35ba05
+-/
 lemma fdBoundary_at_two :
     fdBoundary 2 = ellipticPointI := by
   simp only [fdBoundary, show ¬(2 : ℝ) ≤ 1 from by norm_num,
@@ -114,6 +129,9 @@ lemma fdBoundary_at_two :
     Real.cos_pi_div_two, Real.sin_pi_div_two]
   simp [ellipticPointI, ellipticPointI']
 
+/--
+@isnad1 id=eq.0h0v.s3.bfdc00db35ce from=translated src=- shape=d3a93718 vocab=12ad31aa
+-/
 lemma fdBoundary_at_three :
     fdBoundary 3 = ellipticPointRho := by
   simp only [fdBoundary, show ¬(3 : ℝ) ≤ 1 from by norm_num,
@@ -127,6 +145,9 @@ lemma fdBoundary_at_three :
   simp [ellipticPointRho, ellipticPointRho', UpperHalfPlane.coe_mk]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s5.2307362ecb17 from=translated src=- shape=20726076 vocab=5e20b9b3
+-/
 lemma fdBoundary_at_four :
     fdBoundary 4 = -1 / 2 + heightCutoff * I := by
   simp only [fdBoundary, show ¬(4 : ℝ) ≤ 1 from by norm_num,
@@ -134,6 +155,9 @@ lemma fdBoundary_at_four :
     show (4 : ℝ) ≤ 4 from le_refl _, ite_true, ite_false, heightCutoff]
   push_cast; ring
 
+/--
+@isnad1 id=eq.0h0v.s5.ab3db8ba03ec from=translated src=- shape=0977d038 vocab=ba86cfb7
+-/
 lemma fdBoundary_at_five :
     fdBoundary 5 = 1 / 2 + heightCutoff * I := by
   simp only [fdBoundary, show ¬(5 : ℝ) ≤ 1 from by norm_num,
@@ -141,6 +165,9 @@ lemma fdBoundary_at_five :
     show ¬(5 : ℝ) ≤ 4 from by norm_num, ite_false]
   push_cast; ring
 
+/--
+@isnad1 id=eq.0h0v.s4.c38fc477529c from=translated src=- shape=31c619a8 vocab=f10d9633
+-/
 lemma fdBoundary_closed : fdBoundary 0 = fdBoundary 5 := by
   rw [fdBoundary_at_zero, fdBoundary_at_five]
 
@@ -189,15 +216,24 @@ def fdBoundaryHPartition : Finset ℝ := {1, 3, 4}
 /-- The q-expansion radius at height H: e^(-2πH). -/
 def seg5QRadiusH (H : ℝ) : ℝ := Real.exp (-2 * Real.pi * H)
 
+/--
+@isnad1 id=eq.0h0v.s2.91719d7e8fc4 from=translated src=- shape=54fd580d vocab=7ac63c4e
+-/
 theorem fdBoundary_eq_fdBoundary_H :
     fdBoundary = fdBoundaryH heightCutoff := by
   ext t; simp only [fdBoundary, fdBoundaryH, heightCutoff]
 
+/--
+@isnad1 id=eq.0h1v.s5.6a0001e9e28e from=translated src=- shape=ec367fbd vocab=12615c05
+-/
 lemma fdBoundary_H_at_zero (H : ℝ) :
     fdBoundaryH H 0 = 1 / 2 + H * I := by
   simp only [fdBoundaryH, show (0 : ℝ) ≤ 1 from by norm_num, ite_true]
   push_cast; ring
 
+/--
+@isnad1 id=eq.0h1v.s3.572ca794581f from=translated src=- shape=a62063d2 vocab=3f77cbca
+-/
 lemma fdBoundary_H_at_one (H : ℝ) :
     fdBoundaryH H 1 = ellipticPointRhoPlusOne := by
   simp only [fdBoundaryH, show (1 : ℝ) ≤ 1 from le_refl _, ite_true,
@@ -205,6 +241,9 @@ lemma fdBoundary_H_at_one (H : ℝ) :
     UpperHalfPlane.coe_mk]
   push_cast; ring
 
+/--
+@isnad1 id=eq.0h1v.s3.eadc0133ff55 from=translated src=- shape=a62063d2 vocab=89d1152d
+-/
 lemma fdBoundary_H_at_two (H : ℝ) :
     fdBoundaryH H 2 = ellipticPointI := by
   simp only [fdBoundaryH, show ¬(2 : ℝ) ≤ 1 from by norm_num,
@@ -215,6 +254,9 @@ lemma fdBoundary_H_at_two (H : ℝ) :
     Real.cos_pi_div_two, Real.sin_pi_div_two]
   simp [ellipticPointI, ellipticPointI']
 
+/--
+@isnad1 id=eq.0h1v.s3.534f645d986e from=translated src=- shape=a62063d2 vocab=10e149af
+-/
 lemma fdBoundary_H_at_three (H : ℝ) :
     fdBoundaryH H 3 = ellipticPointRho := by
   simp only [fdBoundaryH, show ¬(3 : ℝ) ≤ 1 from by norm_num,
@@ -228,6 +270,9 @@ lemma fdBoundary_H_at_three (H : ℝ) :
   simp [ellipticPointRho, ellipticPointRho', UpperHalfPlane.coe_mk]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.b81d8166cc4d from=translated src=- shape=a0bf8e68 vocab=98735cb0
+-/
 lemma fdBoundary_H_at_four (H : ℝ) :
     fdBoundaryH H 4 = -1 / 2 + H * I := by
   simp only [fdBoundaryH, show ¬(4 : ℝ) ≤ 1 from by norm_num,
@@ -235,6 +280,9 @@ lemma fdBoundary_H_at_four (H : ℝ) :
     show (4 : ℝ) ≤ 4 from le_refl _, ite_true, ite_false]
   push_cast; ring
 
+/--
+@isnad1 id=eq.0h1v.s5.a9613aceffd6 from=translated src=- shape=ec367fbd vocab=12615c05
+-/
 lemma fdBoundary_H_at_five (H : ℝ) :
     fdBoundaryH H 5 = 1 / 2 + H * I := by
   simp only [fdBoundaryH, show ¬(5 : ℝ) ≤ 1 from by norm_num,
@@ -242,6 +290,9 @@ lemma fdBoundary_H_at_five (H : ℝ) :
     show ¬(5 : ℝ) ≤ 4 from by norm_num, ite_false]
   push_cast; ring
 
+/--
+@isnad1 id=eq.0h1v.s4.a1d0f68d350c from=translated src=- shape=b4d3c9b0 vocab=9241e0f7
+-/
 lemma fdBoundary_H_closed (H : ℝ) :
     fdBoundaryH H 0 = fdBoundaryH H 5 := by rw [fdBoundary_H_at_zero, fdBoundary_H_at_five]
 
@@ -326,6 +377,9 @@ private lemma fdBoundary_H_eq_layered (H : ℝ) (t : ℝ) :
   unfold fdBoundaryH fdBoundary_H_inner1234 fdBoundary_H_inner234 fdBoundary_H_inner34
   split_ifs <;> rfl
 
+/--
+@isnad1 id=continuo.0h1v.s4.9e2edbadebf4 from=translated src=- shape=9bb0b988 vocab=8bf1852a
+-/
 theorem fdBoundary_H_continuous (H : ℝ) :
     Continuous (fdBoundaryH H) := by
   have : (fdBoundaryH H) = (fun t => if t ≤ 1 then

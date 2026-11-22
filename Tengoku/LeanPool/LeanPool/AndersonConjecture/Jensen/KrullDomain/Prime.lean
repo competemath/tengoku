@@ -38,7 +38,9 @@ variable {T : Type*} [CommRing T] [IsLocalRing T] [IsNoetherianRing T] [IsDomain
 section AdjoinLocPrime
 
 /-- If r is prime in NSubring R and r ∤ y, then y ∉ P for any P ∈ Ass(T/(r·T)).
-Uses the NSubring height bound: ht(P∩R) ≤ 1 forces P∩R = (r), so y ∈ P → r | y. -/
+Uses the NSubring height bound: ht(P∩R) ≤ 1 forces P∩R = (r), so y ∈ P → r | y.
+@isnad1 id=not.3h5v.s9.f85907d76668 from=translated src=- shape=76b23a63 vocab=824724d2
+-/
 lemma not_mem_associatedPrime_of_ndvd
     (R : NSubring T) (r y : R.carrier) (hr : Prime r) (hry : ¬ r ∣ y)
     (P : Ideal T) (hP : P ∈ associatedPrimes T (T ⧸ Ideal.span {(↑r : T)})) :
@@ -76,7 +78,9 @@ lemma not_mem_associatedPrime_of_ndvd
   rw [← hspan_eq] at hy_comap
   exact hry (Ideal.mem_span_singleton.mp hy_comap)
 
-/-- y is a non-zero-divisor on T/(r·T) when r is prime in NSubring R and r ∤ y. -/
+/-- y is a non-zero-divisor on T/(r·T) when r is prime in NSubring R and r ∤ y.
+@isnad1 id=issmulre.2h4v.s8.9a8a093201fc from=translated src=- shape=0acbedf9 vocab=f3b96e82
+-/
 lemma isSMulRegular_of_ndvd
     (R : NSubring T) (r y : R.carrier) (hr : Prime r) (hry : ¬ r ∣ y) :
     IsSMulRegular (T ⧸ Ideal.span {(↑r : T)}) (↑y : T) := by
@@ -97,7 +101,9 @@ The proof has three key ingredients:
    P ∈ Ass(T/rT). This uses: P∩R has height ≤ 1, r ∈ P∩R with ht((r))=1, so P∩R = (r),
    and y ∉ (r) since r ∤ y.
 3. Divisibility transfer: from a₁*y^m = r*e and y regular mod r, conclude r|a₁ in T.
-   Then d := a₁/r ∈ adjoinLocSetY with witness (h₁, m₁). -/
+   Then d := a₁/r ∈ adjoinLocSetY with witness (h₁, m₁).
+@isnad1 id=or.7h8v.s9.6d9bfd462ef3 from=translated src=- shape=33b3599f vocab=aba13800
+-/
 lemma prime_in_adjoinLocSet
     (R : NSubring T) (x : T) (y : R.carrier) (r : R.carrier)
     (hx_trans : Transcendental R.carrier x)
@@ -168,7 +174,9 @@ both y₁ and y₂. This is what makes the intersection approach work.
 
 section CoprimeHeight
 
-/-- In a UFD, every nonzero prime ideal contains a prime element. -/
+/-- In a UFD, every nonzero prime ideal contains a prime element.
+@isnad1 id=ex.1h2v.s6.0718dbaa8eb3 from=translated src=- shape=37d4a954 vocab=1ac12b51
+-/
 lemma exists_prime_mem_of_ne_bot {S : Type*} [CommRing S]
     [UniqueFactorizationMonoid S]
     (Q : Ideal S) [hQ : Q.IsPrime] (hQ_ne_bot : Q ≠ ⊥) :
@@ -189,7 +197,9 @@ lemma exists_prime_mem_of_ne_bot {S : Type*} [CommRing S]
       (fun hu => hQ.ne_top (Ideal.eq_top_of_isUnit_mem Q hb_Q hu)) hb_Q
 
 /-- If y₁, y₂ are coprime in R and P∩R has height ≤ 1 and is nonzero,
-then y₁ ∉ P or y₂ ∉ P. -/
+then y₁ ∉ P or y₂ ∉ P.
+@isnad1 id=or.3h5v.s10.5ac5ec738324 from=translated src=- shape=eb49a2b7 vocab=90d48f32
+-/
 theorem coprime_not_both_in_prime (R : NSubring T)
     (y₁ y₂ : R.carrier)
     (hcoprime : ∀ p : R.carrier, Prime p → ¬(p ∣ y₁ ∧ p ∣ y₂))

@@ -66,7 +66,9 @@ vertices — a valid one.
 
 The variables of a support `S` are its *off-diagonal* pairs: no event ever reads a loop
 variable `ω (v, v)`, since every arc is irreflexive and every conditioned owner gate `(h, j)`
-has `j` a non-owner, and leaving the diagonal out is exactly what makes this true. -/
+has `j` a non-owner, and leaving the diagonal out is exactly what makes this true.
+@isnad1 id=disjoint.1h3v.s5.846ef2337b86 from=translated src=- shape=fce4dd08 vocab=b5431958
+-/
 theorem disjoint_offDiag_of_card_inter_le_one {S T : Finset ι} (h : (S ∩ T).card ≤ 1) :
     Disjoint S.offDiag T.offDiag := by
   simp only [Finset.disjoint_left, Finset.mem_offDiag]
@@ -80,6 +82,9 @@ values read off it. -/
 def ownerGates (i : ι) (T : Finset ι) : Finset (ι × ι) := {i} ×ˢ T
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=iff.0h4v.s5.3a16ba9d693d from=translated src=- shape=c43e9714 vocab=53c563ca
+-/
 @[simp]
 theorem mem_ownerGates {i : ι} {T : Finset ι} {p : ι × ι} :
     p ∈ ownerGates i T ↔ p.1 = i ∧ p.2 ∈ T := by
@@ -100,12 +105,17 @@ omit [Fintype ι]
 variable {Arc : ι → ι → Bool} {T : Finset ι} {p : ι × ι}
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=iff.0h4v.s6.3f3b7f434231 from=translated src=- shape=34c7c2a6 vocab=9f7e14d3
+-/
 @[simp]
 theorem mem_arcSet : p ∈ arcSet Arc T ↔ (p.1 ∈ T ∧ p.2 ∈ T ∧ p.1 ≠ p.2) ∧ Arc p.1 p.2 := by
   simp [arcSet, Finset.mem_offDiag]
 
 omit [DecidableEq ι] in
-/-- Swapping the two entries is a bijection from the arcs of `T` to the reversed arcs. -/
+/-- Swapping the two entries is a bijection from the arcs of `T` to the reversed arcs.
+@isnad1 id=eq.0h3v.s5.bcafd211ce84 from=translated src=- shape=6ee345ce vocab=6a96be77
+-/
 theorem card_arcSet_swap (Arc : ι → ι → Bool) (T : Finset ι) :
     (arcSet (fun a b => Arc b a) T).card = (arcSet Arc T).card := by
   classical
@@ -121,7 +131,9 @@ variable (hT : IsTournament Arc)
 include hT
 
 /-- In a tournament the arcs of `T` and the reversed arcs of `T` together exhaust the
-off-diagonal pairs of `T`. -/
+off-diagonal pairs of `T`.
+@isnad1 id=eq.1h3v.s6.74746acccb21 from=translated src=- shape=e057946c vocab=425ea45c
+-/
 theorem arcSet_union_arcSet_swap (T : Finset ι) :
     arcSet Arc T ∪ arcSet (fun a b => Arc b a) T = T.offDiag := by
   ext p
@@ -132,7 +144,9 @@ theorem arcSet_union_arcSet_swap (T : Finset ι) :
   · exact Or.inl ⟨h, rfl⟩
 
 omit [DecidableEq ι] in
-/-- A pair cannot carry an arc in both directions. -/
+/-- A pair cannot carry an arc in both directions.
+@isnad1 id=disjoint.1h3v.s5.64dcafba594a from=translated src=- shape=53209798 vocab=dc63a24d
+-/
 theorem disjoint_arcSet_arcSet_swap (T : Finset ι) :
     Disjoint (arcSet Arc T) (arcSet (fun a b => Arc b a) T) := by
   rw [Finset.disjoint_left]
@@ -141,7 +155,9 @@ theorem disjoint_arcSet_arcSet_swap (T : Finset ι) :
 
 omit [DecidableEq ι] in
 /-- A tournament on `T` has exactly `C(|T|, 2)` internal arcs: six for the four non-owners
-of a radius-one flag, and `Q = 28` for the eight non-owners of Section 9. -/
+of a radius-one flag, and `Q = 28` for the eight non-owners of Section 9.
+@isnad1 id=eq.1h3v.s5.871665a4fb6c from=translated src=- shape=7c31ee02 vocab=5652df88
+-/
 theorem card_arcSet (T : Finset ι) : (arcSet Arc T).card = Nat.choose T.card 2 := by
   classical
   have hcard := congrArg Finset.card (arcSet_union_arcSet_swap hT T)
@@ -170,16 +186,24 @@ omit [Fintype ι] [DecidableEq ι]
 variable {Arc : ι → ι → Bool} {γ γ' : ι → ι → Fin r} {Z : ι → Finset (Fin r)}
   {T T' S : Finset ι} {i j : ι}
 
+/--
+@isnad1 id=iff.0h8v.s6.d5103f75e7da from=translated src=- shape=a2714e09 vocab=2581cecb
+-/
 @[simp]
 theorem mem_missSet : j ∈ missSet Arc γ Z T i ↔ j ∈ T ∧ Arc i j ∧ γ i j ∉ Z j := by
   simp [missSet]
 
+/--
+@isnad1 id=le.1h8v.s6.3dd7dad7727c from=translated src=- shape=12f21c41 vocab=879a6604
+-/
 @[gcongr]
 theorem missSet_subset_missSet (hT : T ⊆ T') : missSet Arc γ Z T i ⊆ missSet Arc γ Z T' i :=
   Finset.filter_subset_filter _ hT
 
 /-- The misses out of `i` only read gate labels of arcs with both endpoints in `S`, so they
-are unchanged by a relabelling that fixes those arcs. -/
+are unchanged by a relabelling that fixes those arcs.
+@isnad1 id=eq.3h8v.s6.d7162001d42c from=translated src=- shape=05fd32cb vocab=8e7e3c04
+-/
 theorem missSet_congr (hT : IsTournament Arc) (hi : i ∈ S) (Z : ι → Finset (Fin r))
     (hagree : ∀ a ∈ S, ∀ b ∈ S, a ≠ b → γ a b = γ' a b) :
     missSet Arc γ Z S i = missSet Arc γ' Z S i := by
@@ -204,7 +228,9 @@ def IntObstruction (Arc : ι → ι → Bool) (ell : ℕ) (S : Finset ι) (h : �
 
 omit [Fintype ι] [DecidableEq ι] in
 /-- A centered internal obstruction only reads gate labels of arcs with both endpoints in
-its support, so it transports along any relabelling that fixes those arcs. -/
+its support, so it transports along any relabelling that fixes those arcs.
+@isnad1 id=intobstr.4h8v.s6.797288f841ae from=translated src=- shape=2a49df50 vocab=229d850c
+-/
 theorem intObstruction_congr {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     {ell : ℕ} {S : Finset ι} {h : ι} (hh : h ∈ S) {γ γ' : ι → ι → Fin r}
     (hagree : ∀ a ∈ S, ∀ b ∈ S, a ≠ b → γ a b = γ' a b)
@@ -221,13 +247,18 @@ def zeroSet (x : Input (Construction.Coord ι r)) (i : ι) : Finset (Fin r) :=
   Finset.univ.filter fun k => x (i, k) = false
 
 omit [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=iff.0h5v.s5.86b507d8ce0f from=translated src=- shape=a7341191 vocab=8960f148
+-/
 @[simp]
 theorem mem_zeroSet {x : Input (Construction.Coord ι r)} {i : ι} {k : Fin r} :
     k ∈ zeroSet x i ↔ x (i, k) = false := by
   simp [zeroSet]
 
 omit [Fintype ι] in
-/-- The zero set of a point of `C_h` in the owner's own block is empty. -/
+/-- The zero set of a point of `C_h` in the owner's own block is empty.
+@isnad1 id=eq.1h6v.s5.00bce1ecc667 from=translated src=- shape=f55582cc vocab=e8ca954b
+-/
 theorem zeroSet_owner_eq_empty {Arc : ι → ι → Bool} {γ : ι → ι → Fin r} {h : ι}
     {x : Input (Construction.Coord ι r)} (hx : (Construction.cert Arc γ h).Sat x) :
     zeroSet x h = ∅ := by
@@ -236,7 +267,9 @@ theorem zeroSet_owner_eq_empty {Arc : ι → ι → Bool} {γ : ι → ι → Fi
   simpa [zeroSet] using hx.1 k
 
 /-- The literals of `P_i` violated by `x`, spelled out: either a coordinate of the owner
-block `B_i` where `x` is `0`, or the gate coordinate of an outgoing arc where `x` is `1`. -/
+block `B_i` where `x` is `0`, or the gate coordinate of an outgoing arc where `x` is `1`.
+@isnad1 id=iff.0h7v.s7.a31a262184ce from=translated src=- shape=bd959cbc vocab=d305fe3f
+-/
 theorem mem_violSet_cert {Arc : ι → ι → Bool} {γ : ι → ι → Fin r} {i : ι}
     {x : Input (Construction.Coord ι r)} {v : Construction.Coord ι r} :
     v ∈ (Construction.cert Arc γ i).violSet x ↔
@@ -258,7 +291,9 @@ theorem mem_violSet_cert {Arc : ι → ι → Bool} {γ : ι → ι → Fin r} {
       · exact absurd ⟨ha, hb⟩ h2
 
 /-- The violated literals of `P_i` split into the zeros of `x` in the owner block and the
-outgoing gates whose target coordinate `x` fails to zero out. -/
+outgoing gates whose target coordinate `x` fails to zero out.
+@isnad1 id=eq.1h6v.s7.46ceee8c9b20 from=translated src=- shape=87cb4abb vocab=b2b854b8
+-/
 theorem violSet_cert_eq (Arc : ι → ι → Bool) (hT : IsTournament Arc)
     (γ : ι → ι → Fin r) (i : ι) (x : Input (Construction.Coord ι r)) :
     (Construction.cert Arc γ i).violSet x =
@@ -283,7 +318,9 @@ theorem violSet_cert_eq (Arc : ι → ι → Bool) (hT : IsTournament Arc)
 
 /-- The two halves of the violation set are disjoint: both halves shrink to the two halves
 of `Construction.disjoint_block_image_gateCoord`, the owner block and the image of the full
-out-neighbourhood. -/
+out-neighbourhood.
+@isnad1 id=disjoint.1h6v.s7.0ee5e9240fb6 from=translated src=- shape=2b38c1e3 vocab=33a1a312
+-/
 theorem disjoint_zeros_image_gate_image (Arc : ι → ι → Bool) (hT : IsTournament Arc)
     (γ : ι → ι → Fin r) (i : ι) (x : Input (Construction.Coord ι r)) :
     Disjoint ((zeroSet x i).image (fun k => ((i, k) : Construction.Coord ι r)))
@@ -294,7 +331,9 @@ theorem disjoint_zeros_image_gate_image (Arc : ι → ι → Bool) (hT : IsTourn
   · exact Finset.image_subset_image fun j hj ↦ mem_outNbrs.2 (mem_missSet.1 hj).2.1
 
 /-- The distance from `x` to `C_i` counts the zeros of `x` in block `i` together with the
-gates out of `i` that miss their target zero set. -/
+gates out of `i` that miss their target zero set.
+@isnad1 id=eq.1h6v.s6.83461ebb0ce0 from=translated src=- shape=c74d6e83 vocab=0f7ca5ac
+-/
 theorem dist_cert_eq (Arc : ι → ι → Bool) (hT : IsTournament Arc)
     (γ : ι → ι → Fin r) (i : ι) (x : Input (Construction.Coord ι r)) :
     (Construction.cert Arc γ i).dist x =
@@ -305,7 +344,9 @@ theorem dist_cert_eq (Arc : ι → ι → Bool) (hT : IsTournament Arc)
     Finset.card_image_of_injective _ (Construction.gateCoord_injective γ i)]
 
 /-- **Section 7**: a genuine proximity configuration yields an internal obstruction.  Only
-external misses have been discarded, so the implication is valid. -/
+external misses have been discarded, so the implication is valid.
+@isnad1 id=intobstr.3h8v.s6.8db8cb01842d from=translated src=- shape=0445e93c vocab=8325a520
+-/
 theorem intObstruction_of_close {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     {γ : ι → ι → Fin r} {S : Finset ι} {h : ι} {ell : ℕ}
     {x : Input (Construction.Coord ι r)} (hx : (Construction.cert Arc γ h).Sat x)
@@ -365,17 +406,29 @@ section Membership
 omit [Fintype ι]
 variable {F : Flag1 ι} {Arc : ι → ι → Bool} {a j : ι} {p : ι × ι}
 
+/--
+@isnad1 id=eq.1h2v.s4.d9ecbfa59231 from=translated src=- shape=44273e61 vocab=a3633e75
+-/
 theorem nonOwners_of_top_eq_none (ha : F.top = none) : F.nonOwners = F.bot := by
   rw [nonOwners, ha]
 
+/--
+@isnad1 id=eq.1h3v.s5.47db086e96de from=translated src=- shape=ab2d8554 vocab=6d0a81f6
+-/
 theorem nonOwners_of_top_eq_some (ha : F.top = some a) : F.nonOwners = insert a F.bot := by
   rw [nonOwners, ha]
 
+/--
+@isnad1 id=iff.0h3v.s5.2f42e40e7d27 from=translated src=- shape=163e99c2 vocab=698f131d
+-/
 @[simp] theorem mem_nonOwners : j ∈ F.nonOwners ↔ j ∈ F.top ∨ j ∈ F.bot := by
   cases ha : F.top with
   | none => simp [nonOwners_of_top_eq_none ha]
   | some v => simp [nonOwners_of_top_eq_some ha, eq_comm]
 
+/--
+@isnad1 id=iff.0h3v.s5.ff376cf20e4d from=translated src=- shape=152bab84 vocab=ec33e89f
+-/
 @[simp] theorem mem_supp : j ∈ F.supp ↔ j = F.owner ∨ j ∈ F.nonOwners := by
   simp [supp]
 
@@ -396,14 +449,18 @@ def Active (F : Flag1 ι) (Arc : ι → ι → Bool) : Prop :=
     v ∉ F.bot ∧ F.bot.card = 3 ∧ Arc v F.owner = true ∧
       ∀ j ∈ F.bot, Arc F.owner j = true ∧ Arc v j = true
 
-/-- Activeness of a `Type A` flag: the owner dominates its four bottom vertices. -/
+/-- Activeness of a `Type A` flag: the owner dominates its four bottom vertices.
+@isnad1 id=iff.1h3v.s6.f31575a29b3d from=translated src=- shape=49ef908b vocab=fdc2f668
+-/
 theorem active_iff_of_top_eq_none (ha : F.top = none) :
     F.Active Arc ↔ F.owner ∉ F.bot ∧ F.bot.card = 4 ∧ ∀ j ∈ F.bot, Arc F.owner j = true := by
   rw [Active, nonOwners_of_top_eq_none ha, ha]
 
 /-- Activeness of a `Type B` flag: the owner, the second top vertex `a` and the three bottom
 vertices are distinct, `a` beats the owner, and both top vertices dominate every bottom
-vertex. -/
+vertex.
+@isnad1 id=iff.1h4v.s7.9ee636157c8b from=translated src=- shape=7bed9784 vocab=952beaac
+-/
 theorem active_iff_of_top_eq_some (ha : F.top = some a) :
     F.Active Arc ↔ F.owner ≠ a ∧ F.owner ∉ F.bot ∧ a ∉ F.bot ∧ F.bot.card = 3 ∧
       Arc a F.owner = true ∧ ∀ j ∈ F.bot, Arc F.owner j = true ∧ Arc a j = true := by
@@ -414,43 +471,63 @@ namespace Active
 variable (hF : F.Active Arc)
 include hF
 
-/-- The owner of an active flag is not one of its non-owners. -/
+/-- The owner of an active flag is not one of its non-owners.
+@isnad1 id=not.1h3v.s5.2aeec017679f from=translated src=- shape=d9690072 vocab=f86b9a7d
+-/
 theorem owner_notMem_nonOwners : F.owner ∉ F.nonOwners := hF.1
 
-/-- The owner of an active flag is not one of its bottom vertices. -/
+/-- The owner of an active flag is not one of its bottom vertices.
+@isnad1 id=not.1h3v.s5.66e63e48f16e from=translated src=- shape=d9690072 vocab=20729acb
+-/
 theorem owner_notMem_bot : F.owner ∉ F.bot := fun hc ↦ hF.1 (mem_nonOwners.2 (Or.inr hc))
 
-/-- An active `Type A` flag has four bottom vertices. -/
+/-- An active `Type A` flag has four bottom vertices.
+@isnad1 id=eq.2h3v.s5.c421e06c0846 from=translated src=- shape=5134893a vocab=543fe6ca
+-/
 theorem card_bot_of_top_eq_none (ha : F.top = none) : F.bot.card = 4 :=
   ((active_iff_of_top_eq_none ha).1 hF).2.1
 
-/-- An active `Type B` flag has three bottom vertices. -/
+/-- An active `Type B` flag has three bottom vertices.
+@isnad1 id=eq.2h4v.s5.2c9ddb1debc4 from=translated src=- shape=8efb5bb9 vocab=a1684de4
+-/
 theorem card_bot_of_top_eq_some (ha : F.top = some a) : F.bot.card = 3 :=
   ((active_iff_of_top_eq_some ha).1 hF).2.2.2.1
 
-/-- The owner of an active flag differs from its second top vertex. -/
+/-- The owner of an active flag differs from its second top vertex.
+@isnad1 id=ne.2h4v.s5.2002655af195 from=translated src=- shape=41bbaec8 vocab=d5640b08
+-/
 theorem owner_ne_top (ha : F.top = some a) : F.owner ≠ a :=
   ((active_iff_of_top_eq_some ha).1 hF).1
 
-/-- The second top vertex of an active flag is not a bottom vertex. -/
+/-- The second top vertex of an active flag is not a bottom vertex.
+@isnad1 id=not.2h4v.s5.b5de6df67f52 from=translated src=- shape=8a755432 vocab=2b7f394e
+-/
 theorem top_notMem_bot (ha : F.top = some a) : a ∉ F.bot :=
   ((active_iff_of_top_eq_some ha).1 hF).2.2.1
 
-/-- The second top vertex of an active flag beats the owner. -/
+/-- The second top vertex of an active flag beats the owner.
+@isnad1 id=eq.2h4v.s5.00440133eaef from=translated src=- shape=11fe8a72 vocab=593a9c5f
+-/
 theorem arc_top_owner (ha : F.top = some a) : Arc a F.owner = true :=
   ((active_iff_of_top_eq_some ha).1 hF).2.2.2.2.1
 
-/-- The owner of an active flag dominates every bottom vertex, in both patterns. -/
+/-- The owner of an active flag dominates every bottom vertex, in both patterns.
+@isnad1 id=eq.2h4v.s5.dfb4b24e0790 from=translated src=- shape=67a572c8 vocab=87665160
+-/
 theorem arc_owner_bot (hj : j ∈ F.bot) : Arc F.owner j = true := by
   cases ha : F.top with
   | none => exact ((active_iff_of_top_eq_none ha).1 hF).2.2 j hj
   | some a => exact (((active_iff_of_top_eq_some ha).1 hF).2.2.2.2.2 j hj).1
 
-/-- The second top vertex of an active flag dominates every bottom vertex. -/
+/-- The second top vertex of an active flag dominates every bottom vertex.
+@isnad1 id=eq.3h5v.s5.a6af85e7ca3f from=translated src=- shape=77b01cf8 vocab=8de9b62c
+-/
 theorem arc_top_bot (ha : F.top = some a) (hj : j ∈ F.bot) : Arc a j = true :=
   (((active_iff_of_top_eq_some ha).1 hF).2.2.2.2.2 j hj).2
 
-/-- An active flag has exactly four non-owners. -/
+/-- An active flag has exactly four non-owners.
+@isnad1 id=eq.1h3v.s5.68665c9149ef from=translated src=- shape=d3050f7d vocab=7e3ec49c
+-/
 theorem card_nonOwners : F.nonOwners.card = 4 := by
   cases ha : F.top with
   | none => rw [nonOwners_of_top_eq_none ha, hF.card_bot_of_top_eq_none ha]
@@ -458,7 +535,9 @@ theorem card_nonOwners : F.nonOwners.card = 4 := by
     rw [nonOwners_of_top_eq_some ha, Finset.card_insert_of_notMem (hF.top_notMem_bot ha),
       hF.card_bot_of_top_eq_some ha]
 
-/-- An active flag has a five-element support. -/
+/-- An active flag has a five-element support.
+@isnad1 id=eq.1h3v.s5.a05019d48abe from=translated src=- shape=d3050f7d vocab=74c949f5
+-/
 theorem card_supp : F.supp.card = 5 := by
   rw [supp, Finset.card_insert_of_notMem hF.owner_notMem_nonOwners, hF.card_nonOwners]
 
@@ -471,7 +550,9 @@ end Flag1
 /-! #### The flag event (Section 8.1) -/
 
 omit [Fintype ι] in
-/-- An active flag has exactly six internal arcs among its four non-owners: `C(4, 2) = 6`. -/
+/-- An active flag has exactly six internal arcs among its four non-owners: `C(4, 2) = 6`.
+@isnad1 id=eq.2h3v.s5.4a0fdba9951d from=translated src=- shape=b6f8f970 vocab=63db0dfc
+-/
 theorem Flag1.Active.card_arcs {F : Flag1 ι} {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     (hF : F.Active Arc) : (arcSet Arc F.nonOwners).card = 6 := by
   rw [card_arcSet hT, hF.card_nonOwners]
@@ -480,7 +561,9 @@ theorem Flag1.Active.card_arcs {F : Flag1 ι} {Arc : ι → ι → Bool} (hT : I
 omit [Fintype ι] in
 /-- Every non-owner arc of an active flag has its head in `F.bot`, so the owner's gate into
 that head block is defined; and its tail is not the owner, so its label is a variable
-distinct from the conditioned owner gates. -/
+distinct from the conditioned owner gates.
+@isnad1 id=mem.3h4v.s6.3b6ef71b4968 from=translated src=- shape=e453b680 vocab=81de3b76
+-/
 theorem Flag1.snd_mem_bot (F : Flag1 ι) {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     (hF : F.Active Arc) {p : ι × ι} (hp : p ∈ arcSet Arc F.nonOwners) : p.2 ∈ F.bot := by
   obtain ⟨⟨hp1, hp2, -⟩, hpArc⟩ := mem_arcSet.1 hp
@@ -498,13 +581,18 @@ noncomputable def flagEvent (Arc : ι → ι → Bool) (F : Flag1 ι) :
   open scoped Classical in
   Finset.univ.filter fun ω => ∀ p ∈ arcSet Arc F.nonOwners, ω p = ω (F.owner, p.2)
 
+/--
+@isnad1 id=iff.0h5v.s6.c7f2bad6b31c from=translated src=- shape=13de4a03 vocab=e5693fd0
+-/
 theorem mem_flagEvent {Arc : ι → ι → Bool} {F : Flag1 ι} {ω : GateCfg ι r} :
     ω ∈ flagEvent Arc F ↔ ∀ p ∈ arcSet Arc F.nonOwners, ω p = ω (F.owner, p.2) := by
   classical
   simp [flagEvent]
 
 omit [Fintype ι] in
-/-- Both variables read by the flag event at an internal arc are variables of its support. -/
+/-- Both variables read by the flag event at an internal arc are variables of its support.
+@isnad1 id=and.3h4v.s6.8cb7060db7fc from=translated src=- shape=c198a401 vocab=5e3c640f
+-/
 theorem Flag1.mem_offDiag_supp {Arc : ι → ι → Bool} (hT : IsTournament Arc) {F : Flag1 ι}
     (hF : F.Active Arc) {p : ι × ι} (hp : p ∈ arcSet Arc F.nonOwners) :
     p ∈ F.supp.offDiag ∧ (F.owner, p.2) ∈ F.supp.offDiag := by
@@ -514,7 +602,9 @@ theorem Flag1.mem_offDiag_supp {Arc : ι → ι → Bool} (hT : IsTournament Arc
   exact ⟨Finset.mem_offDiag.2 ⟨Flag1.mem_supp.2 (Or.inr hp1), hp2_in, hT.ne_of_arc hp_arc⟩,
     Finset.mem_offDiag.2 ⟨Flag1.mem_supp.2 (Or.inl rfl), hp2_in, hh_ne⟩⟩
 
-/-- The flag event is determined by the arc variables inside its support. -/
+/-- The flag event is determined by the arc variables inside its support.
+@isnad1 id=determin.2h4v.s5.e6ea23ebaf9f from=translated src=- shape=2c9f68e4 vocab=301c1a9f
+-/
 theorem flagEvent_determined {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     {F : Flag1 ι} (hF : F.Active Arc) :
     Determined (β := fun _ : ι × ι => Fin r) F.supp.offDiag
@@ -526,7 +616,9 @@ theorem flagEvent_determined {Arc : ι → ι → Bool} (hT : IsTournament Arc)
 
 omit [Fintype ι] in
 /-- The owner gates conditioned on in Section 8.1 are disjoint from the internal arcs, so
-the two families of variables are independent. -/
+the two families of variables are independent.
+@isnad1 id=disjoint.1h3v.s5.b73ca6fe286d from=translated src=- shape=41506e4a vocab=9e74fbe1
+-/
 theorem Flag1.disjoint_gates_arcs (F : Flag1 ι) {Arc : ι → ι → Bool} (hF : F.Active Arc) :
     Disjoint (ownerGates F.owner F.bot) (arcSet Arc F.nonOwners) := by
   rw [Finset.disjoint_left]
@@ -535,14 +627,18 @@ theorem Flag1.disjoint_gates_arcs (F : Flag1 ι) {Arc : ι → ι → Bool} (hF 
 
 omit [Fintype ι] in
 /-- The owner gate into the head block of an internal arc is one of the conditioned
-gates. -/
+gates.
+@isnad1 id=mem.3h4v.s6.53657836289d from=translated src=- shape=15e2164d vocab=b2941478
+-/
 theorem Flag1.gate_mem_gates (F : Flag1 ι) {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     (hF : F.Active Arc) {p : ι × ι} (hp : p ∈ arcSet Arc F.nonOwners) :
     (F.owner, p.2) ∈ ownerGates F.owner F.bot :=
   mem_ownerGates.2 ⟨rfl, F.snd_mem_bot (p := p) hT hF hp⟩
 
 /-- **Section 8.1**: the flag event pins one uniform label per internal arc, each to a
-single value read off the owner gates. -/
+single value read off the owner gates.
+@isnad1 id=le.2h4v.s6.89d88c8bda34 from=translated src=- shape=e8b8056e vocab=fd93c217
+-/
 theorem pr_flagEvent_le_pow [NeZero r] {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     {F : Flag1 ι} (hF : F.Active Arc) :
     pr (β := fun _ : ι × ι => Fin r) (flagEvent Arc F)
@@ -568,7 +664,9 @@ theorem pr_flagEvent_le_pow [NeZero r] {Arc : ι → ι → Bool} (hT : IsTourna
 
 /-- **Section 8.1**: an active radius-one flag has probability `r ^ (-6)`.  After
 conditioning on the owner gates, the six non-owner arc labels are independent and uniform,
-and each is pinned to a single value. -/
+and each is pinned to a single value.
+@isnad1 id=le.2h4v.s6.de171944fcaf from=translated src=- shape=68dfd713 vocab=b58fe641
+-/
 theorem pr_flagEvent_le [NeZero r] {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     {F : Flag1 ι} (hF : F.Active Arc) :
     pr (β := fun _ : ι × ι => Fin r) (flagEvent Arc F) ≤ 1 / (r : ℝ) ^ 6 := by
@@ -581,7 +679,9 @@ theorem pr_flagEvent_le [NeZero r] {Arc : ι → ι → Bool} (hT : IsTournament
 
 omit [Fintype ι] [DecidableEq ι] in
 /-- Under a radius-one obstruction centred at `h`, a vertex `j` dominated by `h` has its
-zero set pinned to the single owner gate `γ h j`, and hence no internal miss of its own. -/
+zero set pinned to the single owner gate `γ h j`, and hence no internal miss of its own.
+@isnad1 id=and.5h8v.s7.01e740dfd5f5 from=translated src=- shape=e49d65e5 vocab=29083878
+-/
 theorem intObstruction_one_of_owner_arc {Arc : ι → ι → Bool} {γ : ι → ι → Fin r}
     {S : Finset ι} {h : ι} {Z : ι → Finset (Fin r)}
     (hgate : ∀ j ∈ S, Arc h j → γ h j ∈ Z j)
@@ -602,7 +702,9 @@ theorem intObstruction_one_of_owner_arc {Arc : ι → ι → Bool} {γ : ι → 
 
 omit [Fintype ι] [DecidableEq ι] in
 /-- Under a radius-one obstruction centred at `h`, a vertex `j` that beats `h` already
-spends its whole budget on the miss `j → h`, so `Z j = ∅` and it has no other miss. -/
+spends its whole budget on the miss `j → h`, so `Z j = ∅` and it has no other miss.
+@isnad1 id=and.6h8v.s7.cbe7745111af from=translated src=- shape=3d82c626 vocab=2c3fd44e
+-/
 theorem intObstruction_one_of_arc_to_owner {Arc : ι → ι → Bool} {γ : ι → ι → Fin r}
     {S : Finset ι} {h : ι} (hh : h ∈ S) {Z : ι → Finset (Fin r)} (hZh : Z h = ∅)
     (hbud : ∀ i ∈ S, i ≠ h → (Z i).card + (missSet Arc γ Z S i).card ≤ 1)
@@ -617,7 +719,9 @@ theorem intObstruction_one_of_arc_to_owner {Arc : ι → ι → Bool} {γ : ι �
 
 omit [Fintype ι] [DecidableEq ι] in
 /-- **Section 8**: at most one vertex of the support beats the centre `h`; two of them
-would give one a second internal miss. -/
+would give one a second internal miss.
+@isnad1 id=le.3h6v.s6.5c5253306531 from=translated src=- shape=dff9b43d vocab=06219f7b
+-/
 theorem intObstruction_one_card_beats_le_one {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     {γ : ι → ι → Fin r} {S : Finset ι} {h : ι} (hh : h ∈ S)
     (hobs : IntObstruction Arc 1 S h γ) :
@@ -643,7 +747,9 @@ theorem intObstruction_one_card_beats_le_one {Arc : ι → ι → Bool} (hT : Is
 omit [Fintype ι] [DecidableEq ι] in
 /-- **Section 8**: a radius-one obstruction realises exactly one of the two patterns —
 either `h` dominates the whole support (Type A), or a single `a` beats `h` and the two of
-them jointly dominate the rest (Type B). -/
+them jointly dominate the rest (Type B).
+@isnad1 id=or.3h6v.s7.d88c94df13ce from=translated src=- shape=942db9ac vocab=fcb02b8d
+-/
 theorem intObstruction_one_pattern {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     {γ : ι → ι → Fin r} {S : Finset ι} {h : ι} (hh : h ∈ S)
     (hobs : IntObstruction Arc 1 S h γ) :
@@ -675,7 +781,9 @@ theorem intObstruction_one_pattern {Arc : ι → ι → Bool} (hT : IsTournament
 
 omit [Fintype ι] [DecidableEq ι] in
 /-- **Section 8**: every non-owner arc into a dominated `j` carries the owner's label,
-since `Z j` is the singleton `{γ h j}`. -/
+since `Z j` is the singleton `{γ h j}`.
+@isnad1 id=eq.9h8v.s6.b2bf830f8f09 from=translated src=- shape=df47123f vocab=fcb02b8d
+-/
 theorem intObstruction_one_gate_eq {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     {γ : ι → ι → Fin r} {S : Finset ι} {h : ι} (hh : h ∈ S)
     (hobs : IntObstruction Arc 1 S h γ) {i j : ι} (hi : i ∈ S) (hj : j ∈ S)
@@ -692,7 +800,9 @@ theorem intObstruction_one_gate_eq {Arc : ι → ι → Bool} (hT : IsTournament
   rwa [hZj, Finset.mem_singleton] at hmem
 
 omit [Fintype ι] in
-/-- The Type A flag built from a dominating centre is active with support `S`. -/
+/-- The Type A flag built from a dominating centre is active with support `S`.
+@isnad1 id=and.3h4v.s6.78a95b94b727 from=translated src=- shape=c1984947 vocab=8f3ad1f9
+-/
 theorem active_flag_typeA {Arc : ι → ι → Bool} {S : Finset ι} (hS : S.card = 5) {h : ι}
     (hh : h ∈ S) (hdom : ∀ j ∈ S, j ≠ h → Arc h j = true) :
     ({ owner := h, top := none, bot := S.erase h } : Flag1 ι).Active Arc ∧
@@ -706,7 +816,9 @@ theorem active_flag_typeA {Arc : ι → ι → Bool} {S : Finset ι} (hS : S.car
 
 omit [Fintype ι] in
 /-- The Type B flag built from a centre `h` and the unique `a` beating it is active with
-support `S`. -/
+support `S`.
+@isnad1 id=and.6h5v.s7.44efc0257199 from=translated src=- shape=d9455e26 vocab=ec192bc0
+-/
 theorem active_flag_typeB {Arc : ι → ι → Bool} {S : Finset ι} (hS : S.card = 5) {h a : ι}
     (hh : h ∈ S) (ha : a ∈ S) (hah : a ≠ h) (harc : Arc a h = true)
     (hdom : ∀ j ∈ S, j ≠ h → j ≠ a → Arc h j = true ∧ Arc a j = true) :
@@ -726,7 +838,9 @@ theorem active_flag_typeB {Arc : ι → ι → Bool} {S : Finset ι} (hS : S.car
 
 omit [Fintype ι] in
 /-- **Section 8**: all internal arcs of the flag produced from a radius-one obstruction
-carry the owner's gate label. -/
+carry the owner's gate label.
+@isnad1 id=eq.7h8v.s7.f838ba550abd from=translated src=- shape=9eaed5fd vocab=0c3afa11
+-/
 theorem gate_eq_of_active_of_intObstruction {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     {γ : ι → ι → Fin r} {S : Finset ι} {h : ι} (hh : h ∈ S)
     (hobs : IntObstruction Arc 1 S h γ) {F : Flag1 ι} (hF : F.Active Arc)
@@ -750,7 +864,9 @@ omit [Fintype ι] in
 of the two patterns.  If `h → j` then `|Z j| = 1` and `j` can have no internal miss; if
 `j → h` then the arc `j → h` is automatically a miss, so `Z j = ∅` and again `j` has no
 other miss.  Hence any two vertices beating `h` would give one of them a second miss, so at
-most one vertex beats `h`. -/
+most one vertex beats `h`.
+@isnad1 id=ex.4h6v.s7.3e3f5e5a5336 from=translated src=- shape=28e2a2f7 vocab=5c8c1c92
+-/
 theorem exists_active_flag_of_intObstruction {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     {γ : ι → ι → Fin r} {S : Finset ι} (hS : S.card = 5) {h : ι} (hh : h ∈ S)
     (hobs : IntObstruction Arc 1 S h γ) :
@@ -764,7 +880,9 @@ theorem exists_active_flag_of_intObstruction {Arc : ι → ι → Bool} (hT : Is
     exact ⟨_, hact, hsupp, rfl,
       gate_eq_of_active_of_intObstruction hT hh hobs hact hsupp rfl⟩
 
-/-- **Section 8**: the flag produced from a radius-one obstruction satisfies its event. -/
+/-- **Section 8**: the flag produced from a radius-one obstruction satisfies its event.
+@isnad1 id=ex.4h6v.s6.3fefa45c6ecd from=translated src=- shape=2dda274c vocab=d32a147a
+-/
 theorem mem_flagEvent_of_intObstruction {Arc : ι → ι → Bool}
     (hT : IsTournament Arc)
     {ω : GateCfg ι r} {S : Finset ι} (hS : S.card = 5) {h : ι} (hh : h ∈ S)
@@ -784,12 +902,16 @@ noncomputable def radiusTwoEvent (Arc : ι → ι → Bool) (S : Finset ι) : Fi
   open scoped Classical in
   Finset.univ.filter fun ω => ∃ h ∈ S, IntObstruction Arc 2 S h (toGamma ω)
 
-/-- Membership in the radius-two event. -/
+/-- Membership in the radius-two event.
+@isnad1 id=iff.0h5v.s6.af2e55cb2673 from=translated src=- shape=a9abe5bd vocab=88bab8b4
+-/
 theorem mem_radiusTwoEvent {Arc : ι → ι → Bool} {S : Finset ι} {ω : GateCfg ι r} :
     ω ∈ radiusTwoEvent Arc S ↔ ∃ h ∈ S, IntObstruction Arc 2 S h (toGamma ω) := by
   simp [radiusTwoEvent]
 
-/-- The radius-two event is determined by the arc variables inside its support. -/
+/-- The radius-two event is determined by the arc variables inside its support.
+@isnad1 id=determin.1h4v.s5.4865adf1c8ac from=translated src=- shape=e17bb42a vocab=9d13d65c
+-/
 theorem radiusTwoEvent_determined {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     (S : Finset ι) :
     Determined (β := fun _ : ι × ι => Fin r) S.offDiag (radiusTwoEvent (r := r) Arc S) := by
@@ -809,7 +931,9 @@ def radiusTwoOwnerConst : ℕ :=
 /-- The constant `radiusTwoConst = 9 · 2 ^ 20 · ∑_{l=0}^{8} C(8,l) C(28,8-l) 2 ^ l` of Section 9. -/
 def radiusTwoConst : ℕ := 1300311466573824
 
-/-- `radiusTwoConst` has one `radiusTwoOwnerConst` for each of the nine possible owners. -/
+/-- `radiusTwoConst` has one `radiusTwoOwnerConst` for each of the nine possible owners.
+@isnad1 id=eq.0h0v.s4.7aeb2cafe082 from=translated src=- shape=f464b020 vocab=e8e07a01
+-/
 theorem radiusTwoConst_eq_nine_mul : radiusTwoConst = 9 * radiusTwoOwnerConst := by
   rw [radiusTwoConst, radiusTwoOwnerConst, ← mul_assoc]
   exact Numerics.radiusTwoSum_eq.symm
@@ -832,23 +956,37 @@ def discSet (γ : ι → ι → Fin r) (Z : ι → Finset (Fin r)) (T : Finset �
   T.filter fun j => ¬ (Z j ⊆ {γ h j})
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=iff.0h7v.s6.c8135a45b12a from=translated src=- shape=3288a8c7 vocab=f80239db
+-/
 @[simp]
 theorem mem_missArcs : p ∈ missArcs Arc γ Z T ↔ p ∈ arcSet Arc T ∧ γ p.1 p.2 ∉ Z p.2 :=
   Finset.mem_filter
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=iff.0h7v.s6.59d8c9dcdae5 from=translated src=- shape=037da39f vocab=a44189fc
+-/
 @[simp]
 theorem mem_discSet {h j : ι} : j ∈ discSet γ Z T h ↔ j ∈ T ∧ ¬ (Z j ⊆ {γ h j}) :=
   Finset.mem_filter
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=le.0h6v.s5.283bb114c3e5 from=translated src=- shape=fe3150bb vocab=008d23be
+-/
 theorem missArcs_subset : missArcs Arc γ Z T ⊆ arcSet Arc T := Finset.filter_subset _ _
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=le.0h6v.s5.8ddfdb4e83db from=translated src=- shape=f53bbc49 vocab=449427f1
+-/
 theorem discSet_subset {h : ι} : discSet γ Z T h ⊆ T := Finset.filter_subset _ _
 
 omit [DecidableEq ι] in
-/-- The discretionary vertices are counted by their indicator. -/
+/-- The discretionary vertices are counted by their indicator.
+@isnad1 id=eq.0h6v.s6.cd8faa61b33c from=translated src=- shape=c638b434 vocab=741836b0
+-/
 theorem card_discSet_eq_sum (T : Finset ι) (h : ι) :
     (discSet γ Z T h).card = ∑ j ∈ T, if Z j ⊆ {γ h j} then 0 else 1 := by
   rw [discSet, Finset.card_filter]
@@ -856,7 +994,9 @@ theorem card_discSet_eq_sum (T : Finset ι) (h : ι) :
 
 omit [DecidableEq ι] in
 /-- The missing arcs of `T` fibre over their tails, the fibre above `j` being the misses of
-`j` inside `T`. -/
+`j` inside `T`.
+@isnad1 id=eq.1h6v.s5.20c0153e578e from=translated src=- shape=0ac4875b vocab=e1a48f6c
+-/
 theorem card_missArcs_eq_sum (hT : IsTournament Arc) (T : Finset ι) :
     (missArcs Arc γ Z T).card = ∑ j ∈ T, (missSet Arc γ Z T j).card := by
   classical
@@ -887,6 +1027,9 @@ noncomputable def branch2 (Arc : ι → ι → Bool) (S : Finset ι) (h : ι) (L
     ∀ p ∈ arcSet Arc (S.erase h), p ∉ X →
       ω p = ω (h, p.2) ∨ ω p = (if hp : p.2 ∈ L then w p.2 hp else ω (h, p.2))
 
+/--
+@isnad1 id=iff.0h9v.s7.826712707c55 from=translated src=- shape=d60277ac vocab=48e23092
+-/
 theorem mem_branch2 {Arc : ι → ι → Bool} {S : Finset ι} {h : ι} {L : Finset ι}
     {w : (j : ι) → j ∈ L → Fin r} {X : Finset (ι × ι)} {ω : GateCfg ι r} :
     ω ∈ branch2 Arc S h L w X ↔ ∀ p ∈ arcSet Arc (S.erase h), p ∉ X →
@@ -895,7 +1038,9 @@ theorem mem_branch2 {Arc : ι → ι → Bool} {S : Finset ι} {h : ι} {L : Fin
   simp [branch2]
 
 open scoped Classical in
-/-- **Section 9**: the consolidated event is the union over the nine possible owners. -/
+/-- **Section 9**: the consolidated event is the union over the nine possible owners.
+@isnad1 id=le.0h4v.s7.b9ad3614b06f from=translated src=- shape=96c7d275 vocab=d9b131c9
+-/
 theorem radiusTwoEvent_subset_biUnion_owner (Arc : ι → ι → Bool) (S : Finset ι) :
     radiusTwoEvent (r := r) Arc S ⊆ S.biUnion fun h =>
       Finset.univ.filter fun ω : GateCfg ι r => IntObstruction Arc 2 S h (toGamma ω) := by
@@ -905,7 +1050,9 @@ theorem radiusTwoEvent_subset_biUnion_owner (Arc : ι → ι → Bool) (S : Fins
   exact Finset.mem_biUnion.mpr ⟨h, hh, (Finset.mem_filter_univ _).mpr hobs⟩
 
 omit [Fintype ι] in
-/-- The eight conditioned owner gates are disjoint from the arcs among the non-owners. -/
+/-- The eight conditioned owner gates are disjoint from the arcs among the non-owners.
+@isnad1 id=disjoint.0h4v.s5.ebff1ef8162f from=translated src=- shape=38b59c80 vocab=2aacea13
+-/
 theorem disjoint_ownerGates_arcSet (Arc : ι → ι → Bool) (S : Finset ι) (h : ι) :
     Disjoint (ownerGates h (S.erase h)) (arcSet Arc (S.erase h)) := by
   rw [Finset.disjoint_left]
@@ -913,7 +1060,9 @@ theorem disjoint_ownerGates_arcSet (Arc : ι → ι → Bool) (S : Finset ι) (h
   exact Finset.notMem_erase h S ((mem_ownerGates.1 hp1).1 ▸ (mem_arcSet.1 hp2).1.1)
 
 omit [Fintype ι] in
-/-- The eight non-owners of a nine-element support span `Q = C(8, 2) = 28` internal arcs. -/
+/-- The eight non-owners of a nine-element support span `Q = C(8, 2) = 28` internal arcs.
+@isnad1 id=eq.3h4v.s5.d7109bb8261a from=translated src=- shape=97c0214f vocab=902f2aa5
+-/
 theorem card_arcSet_erase {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     {S : Finset ι} (hS : S.card = 9) {h : ι}
     (hh : h ∈ S) : (arcSet Arc (S.erase h)).card = 28 := by
@@ -933,7 +1082,9 @@ omit [Fintype ι] in
 /-- **Section 9, budget at one non-owner.**  If `h → j` then `γ h j ∈ Z j`; if `j → h` then
 the arc `j → h` is an automatic miss because `Z h = ∅`.  Either way `Z j` is contained in a
 two-element set consisting of the owner gate and one discretionary zero, and `j` has at most
-one further internal discrepancy, which it loses if it uses the discretionary zero. -/
+one further internal discrepancy, which it loses if it uses the discretionary zero.
+@isnad1 id=and.6h8v.s8.1c30a56b528a from=translated src=- shape=ee7c4d21 vocab=cc578413
+-/
 theorem intObstruction_two_nonowner [NeZero r] {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     {S : Finset ι} {h : ι} (hh : h ∈ S)
     {γ : ι → ι → Fin r} {Z : ι → Finset (Fin r)} (hZh : Z h = ∅)
@@ -983,7 +1134,9 @@ theorem intObstruction_two_nonowner [NeZero r] {Arc : ι → ι → Bool} (hT : 
 
 omit [Fintype ι] in
 /-- **Section 9**: if `l` non-owners take a discretionary zero, the total number of misses
-among the twenty-eight internal non-owner arcs is at most `8 - l`. -/
+among the twenty-eight internal non-owner arcs is at most `8 - l`.
+@isnad1 id=le.6h7v.s7.01df0a039403 from=translated src=- shape=84b6fec9 vocab=e0f01fc5
+-/
 theorem card_miss_add_card_disc_le [NeZero r] {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     {S : Finset ι} (hS : S.card = 9) {h : ι} (hh : h ∈ S)
     {γ : ι → ι → Fin r} {Z : ι → Finset (Fin r)} (hZh : Z h = ∅)
@@ -1000,7 +1153,9 @@ theorem card_miss_add_card_disc_le [NeZero r] {Arc : ι → ι → Bool} (hT : I
     _ = 8 := by rw [Finset.sum_const, hEcard, smul_eq_mul, mul_one]
 
 /-- **Section 9**: every radius-two internal obstruction with owner `h` lies in one of the
-enumerated branches. -/
+enumerated branches.
+@isnad1 id=ex.4h6v.s7.5e3e30618a2d from=translated src=- shape=27e64e2e vocab=e320dbfc
+-/
 theorem intObstruction_two_data [NeZero r] {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     {S : Finset ι} (hS : S.card = 9) {h : ι} (hh : h ∈ S) {ω : GateCfg ι r}
     (hobs : IntObstruction Arc 2 S h (toGamma ω)) :
@@ -1035,7 +1190,9 @@ theorem intObstruction_two_data [NeZero r] {Arc : ι → ι → Bool} (hT : IsTo
     simpa [toGamma] using Finset.mem_singleton.mp (hsub hmem)
 
 open scoped Classical in
-/-- **Section 9**: the radius-two event for a fixed owner is covered by the branches. -/
+/-- **Section 9**: the radius-two event for a fixed owner is covered by the branches.
+@isnad1 id=le.3h5v.s8.39dac10b599e from=translated src=- shape=014e3210 vocab=d407d9f3
+-/
 theorem obs2_subset_branches [NeZero r] {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     {S : Finset ι} (hS : S.card = 9)
     {h : ι} (hh : h ∈ S) :
@@ -1053,7 +1210,9 @@ theorem obs2_subset_branches [NeZero r] {Arc : ι → ι → Bool} (hT : IsTourn
 
 /-- **Section 9**: in a fixed branch the `28 - |X|` remaining arc labels are independent and
 uniform after conditioning on the owner gates, and each must hit a target set of size at
-most two. -/
+most two.
+@isnad1 id=le.1h8v.s7.19ac37d0b55a from=translated src=- shape=12b3d631 vocab=55b7187f
+-/
 theorem pr_branch2_le [NeZero r] {Arc : ι → ι → Bool} {S : Finset ι} {h : ι}
     {L : Finset ι} (w : (j : ι) → j ∈ L → Fin r)
     {X : Finset (ι × ι)} (hX : X ⊆ arcSet Arc (S.erase h)) :
@@ -1108,7 +1267,9 @@ private theorem pow_mul_div_pow_add (hr : (r : ℝ) ≠ 0) (c : ℝ) (n l : ℕ)
 
 omit [Fintype ι] in
 /-- **Section 9**: evaluating the triple sum of the branch bounds: collapse the two inner
-constant sums, then regroup the outer powerset sum by cardinality. -/
+constant sums, then regroup the outer powerset sum by cardinality.
+@isnad1 id=eq.3h5v.s8.2ee0fb3b015f from=translated src=- shape=af7963d3 vocab=f03da9a2
+-/
 theorem sum_branch_pow_eq [NeZero r] {S : Finset ι} {h : ι} (hh : h ∈ S) (hS : S.card = 9)
     {AA : Finset (ι × ι)} (hAA : AA.card = 28) :
     ∑ L ∈ (S.erase h).powerset, ∑ _w ∈ (L.pi fun _ => (Finset.univ : Finset (Fin r))),
@@ -1150,7 +1311,9 @@ theorem sum_branch_pow_eq [NeZero r] {S : Finset ι} {h : ι} (hh : h ∈ S) (hS
 
 open scoped Classical in
 /-- **Section 9**: the radius-two obstruction for a fixed owner has probability at most
-`radiusTwoConst / (9 * r ^ 20)`. -/
+`radiusTwoConst / (9 * r ^ 20)`.
+@isnad1 id=le.3h5v.s7.5fae89e1b00d from=translated src=- shape=58472df6 vocab=ba3e1c8b
+-/
 theorem pr_intObstruction_owner_le [NeZero r] {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     {S : Finset ι} (hS : S.card = 9) {h : ι} (hh : h ∈ S) :
     pr (β := fun _ : ι × ι => Fin r)
@@ -1175,7 +1338,9 @@ open scoped Classical in
 probability at most `radiusTwoConst / r ^ 20`.  Each non-owner has one residual discrepancy;
 if `l` of them spend it on a discretionary zero there are at most `C(8,l) r ^ l` choices, at
 most `C(28, 8-l)` choices of an exceptional superset of the missing arcs, and each of the
-remaining `20 + l` arc labels must hit a target set of size at most two. -/
+remaining `20 + l` arc labels must hit a target set of size at most two.
+@isnad1 id=le.2h4v.s6.094fb9d80f9a from=translated src=- shape=d2703911 vocab=ea6487b2
+-/
 theorem pr_radiusTwoEvent_le [NeZero r] {Arc : ι → ι → Bool} (hT : IsTournament Arc)
     {S : Finset ι} (hS : S.card = 9) :
     pr (β := fun _ : ι × ι => Fin r) (radiusTwoEvent Arc S)

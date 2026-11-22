@@ -31,6 +31,9 @@ open Complex Set Metric Filter Topology
 
 namespace RectHomotopyProof
 
+/--
+@isnad1 id=eq.3h2v.s7.a90ed224b8b8 from=translated src=- shape=85f71491 vocab=521f00d9
+-/
 lemma slope_fdPolygon_seg1 (s t : ℝ) (hs : s < 1) (ht : t < 1) (hst : s ≠ t) :
     slope fdPolygon s t =
       -(HHeight - Real.sqrt 3 / 2) * I := by
@@ -47,6 +50,9 @@ lemma slope_fdPolygon_seg1 (s t : ℝ) (hs : s < 1) (ht : t < 1) (hst : s ≠ t)
   simp only [Complex.ofReal_inv, Complex.ofReal_sub]
   field_simp [hne]; ring
 
+/--
+@isnad1 id=eq.5h2v.s7.df50942b70e8 from=translated src=- shape=d18c4b48 vocab=2ec0fede
+-/
 lemma slope_fdPolygon_seg2 (s t : ℝ) (hs : s > 1) (ht : t > 1) (hs2 : s ≤ 2) (ht2 : t ≤ 2)
     (hst : s ≠ t) :
     slope fdPolygon s t = iPoint - rho' := by
@@ -62,6 +68,9 @@ lemma slope_fdPolygon_seg2 (s t : ℝ) (hs : s > 1) (ht : t > 1) (hs2 : s ≤ 2)
   simp only [Complex.ofReal_sub, Complex.ofReal_one, rho', iPoint]
   push_cast; field_simp [hne]; ring
 
+/--
+@isnad1 id=eq.5h2v.s7.eff68eab46c6 from=translated src=- shape=d18c4b48 vocab=49b124cb
+-/
 lemma slope_fdPolygon_seg3 (s t : ℝ) (hs : s > 2) (ht : t > 2) (hs3 : s ≤ 3) (ht3 : t ≤ 3)
     (hst : s ≠ t) :
     slope fdPolygon s t = rho - iPoint := by
@@ -79,6 +88,9 @@ lemma slope_fdPolygon_seg3 (s t : ℝ) (hs : s > 2) (ht : t > 2) (hs3 : s ≤ 3)
   simp only [Complex.ofReal_sub, Complex.ofReal_one, Complex.ofReal_ofNat, rho, iPoint]
   push_cast; field_simp [hne]; ring
 
+/--
+@isnad1 id=eq.5h2v.s7.aeb80a127c96 from=translated src=- shape=f2f9238e vocab=1e815073
+-/
 lemma slope_fdPolygon_seg4 (s t : ℝ) (hs : s > 3) (ht : t > 3) (hs4 : s ≤ 4) (ht4 : t ≤ 4)
     (hst : s ≠ t) :
     slope fdPolygon s t = (HHeight - Real.sqrt 3 / 2) * I := by
@@ -101,6 +113,9 @@ lemma slope_fdPolygon_seg4 (s t : ℝ) (hs : s > 3) (ht : t > 3) (hs4 : s ≤ 4)
   simp only [Complex.ofReal_inv, Complex.ofReal_sub]
   field_simp [hne]; ring
 
+/--
+@isnad1 id=eq.3h2v.s6.119fcc4dc219 from=translated src=- shape=93e3d953 vocab=2ef3e508
+-/
 lemma slope_fdPolygon_seg5 (s t : ℝ) (hs : s > 4) (ht : t > 4) (hst : s ≠ t) :
     slope fdPolygon s t = 1 := by
   have hs1 : ¬(s ≤ 1) := not_le.mpr (lt_trans (by norm_num : (1 : ℝ) < 4) hs)
@@ -124,12 +139,18 @@ lemma slope_fdPolygon_seg5 (s t : ℝ) (hs : s > 4) (ht : t > 4) (hst : s ≠ t)
 private lemma HHeight_sub_sqrt3_half : (↑HHeight - ↑(Real.sqrt 3) / 2 : ℂ) = 1 := by
   simp only [HHeight]; push_cast; ring
 
+/--
+@isnad1 id=ne.0h0v.s3.abd7d7137367 from=translated src=- shape=81fcd019 vocab=00365013
+-/
 lemma fdPolygon_deriv_ne_at_t1 : (-I : ℂ) ≠ (iPoint - rho') := by
   simp only [rho', iPoint]
   intro heq
   have h_lhs : (-I : ℂ).re = 0 := by simp only [Complex.neg_re, Complex.I_re, neg_zero]
   simp_all
 
+/--
+@isnad1 id=ne.0h0v.s4.31959faeb71c from=translated src=- shape=da60b99c vocab=97917f39
+-/
 lemma fdPolygon_deriv_ne_at_t2 : (iPoint - rho' : ℂ) ≠ (rho - iPoint) := by
   simp only [rho', iPoint, rho]
   intro heq
@@ -148,6 +169,9 @@ lemma fdPolygon_deriv_ne_at_t2 : (iPoint - rho' : ℂ) ≠ (rho - iPoint) := by
     zero_div, h_sqrt3_re] at him
   linarith
 
+/--
+@isnad1 id=ne.0h0v.s3.20bd99876bb8 from=translated src=- shape=cc017972 vocab=a6017864
+-/
 lemma fdPolygon_deriv_ne_at_t3 : (rho - iPoint : ℂ) ≠ I := by
   simp only [rho, iPoint]
   intro heq
@@ -161,11 +185,17 @@ lemma fdPolygon_deriv_ne_at_t3 : (rho - iPoint : ℂ) ≠ I := by
   have h_rhs : (I : ℂ).re = 0 := Complex.I_re
   rw [h_rhs] at h_lhs; linarith
 
+/--
+@isnad1 id=ne.0h0v.s3.e3c8d95a8d3b from=translated src=- shape=ffdda526 vocab=dd049d50
+-/
 lemma fdPolygon_deriv_ne_at_t4 : (I : ℂ) ≠ (1 : ℂ) := by
   intro heq
   have h_lhs : (I : ℂ).im = 1 := Complex.I_im
   simp_all
 
+/--
+@isnad1 id=eq.1h1v.s7.a75198f1dfbd from=translated src=- shape=f892480c vocab=521f00d9
+-/
 lemma slope_fdPolygon_at_t1_left (s : ℝ) (hs : s < 1) :
     slope fdPolygon 1 s =
       -(HHeight - Real.sqrt 3 / 2) * I := by
@@ -181,6 +211,9 @@ lemma slope_fdPolygon_at_t1_left (s : ℝ) (hs : s < 1) :
   simp only [Complex.ofReal_inv, Complex.ofReal_sub]
   field_simp [hne]; simp only [HHeight]; push_cast; ring
 
+/--
+@isnad1 id=eq.2h1v.s6.1081a5487e89 from=translated src=- shape=99401949 vocab=2ec0fede
+-/
 lemma slope_fdPolygon_at_t1_right (s : ℝ) (hs : s > 1) (hs2 : s ≤ 2) :
     slope fdPolygon 1 s = iPoint - rho' := by
   have heq1 : fdPolygon 1 = rho' := by
@@ -194,6 +227,9 @@ lemma slope_fdPolygon_at_t1_right (s : ℝ) (hs : s > 1) (hs2 : s ≤ 2) :
   simp only [Complex.ofReal_sub, Complex.ofReal_one, rho', iPoint]
   push_cast; field_simp [hne]; ring
 
+/--
+@isnad1 id=eq.2h1v.s6.a45ccf950d0f from=translated src=- shape=99401949 vocab=49c55244
+-/
 lemma slope_fdPolygon_at_t2_left (s : ℝ) (hs1 : s > 1) (hs2 : s < 2) :
     slope fdPolygon 2 s = iPoint - rho' := by
   have heq2 : fdPolygon 2 = iPoint := by
@@ -206,6 +242,9 @@ lemma slope_fdPolygon_at_t2_left (s : ℝ) (hs1 : s > 1) (hs2 : s < 2) :
   simp only [Complex.ofReal_sub, Complex.ofReal_one, rho', iPoint]
   push_cast; field_simp [hne]; ring
 
+/--
+@isnad1 id=eq.2h1v.s6.2dff994fc087 from=translated src=- shape=99401949 vocab=49b124cb
+-/
 lemma slope_fdPolygon_at_t2_right (s : ℝ) (hs2 : s > 2) (hs3 : s ≤ 3) :
     slope fdPolygon 2 s = rho - iPoint := by
   have heq2 : fdPolygon 2 = iPoint := by
@@ -220,6 +259,9 @@ lemma slope_fdPolygon_at_t2_right (s : ℝ) (hs2 : s > 2) (hs3 : s ≤ 3) :
   simp only [Complex.ofReal_sub, Complex.ofReal_ofNat, Complex.ofReal_one, rho, iPoint]
   push_cast; field_simp [hne]; ring
 
+/--
+@isnad1 id=eq.2h1v.s6.dfd29cded8cc from=translated src=- shape=99401949 vocab=1d167cba
+-/
 lemma slope_fdPolygon_at_t3_left (s : ℝ) (hs2 : s > 2) (hs3 : s < 3) :
     slope fdPolygon 3 s = rho - iPoint := by
   have heq3 : fdPolygon 3 = rho := by
@@ -235,6 +277,9 @@ lemma slope_fdPolygon_at_t3_left (s : ℝ) (hs2 : s > 2) (hs3 : s < 3) :
   simp only [Complex.ofReal_sub, Complex.ofReal_ofNat, Complex.ofReal_one, rho, iPoint]
   push_cast; field_simp [hne]; ring
 
+/--
+@isnad1 id=eq.2h1v.s7.bc0c90ac446b from=translated src=- shape=58703702 vocab=1e815073
+-/
 lemma slope_fdPolygon_at_t3_right (s : ℝ) (hs3 : s > 3) (hs4 : s ≤ 4) :
     slope fdPolygon 3 s = (HHeight - Real.sqrt 3 / 2) * I := by
   have heq3 : fdPolygon 3 = -(1 : ℂ)/2 + (Real.sqrt 3 / 2) * I := by
@@ -253,6 +298,9 @@ lemma slope_fdPolygon_at_t3_right (s : ℝ) (hs3 : s > 3) (hs4 : s ≤ 4) :
   simp only [Complex.ofReal_inv, Complex.ofReal_sub]
   field_simp [hne]; simp only [HHeight]; push_cast; ring
 
+/--
+@isnad1 id=eq.2h1v.s7.6fc4b84fb712 from=translated src=- shape=58703702 vocab=851eab3c
+-/
 lemma slope_fdPolygon_at_t4_left (s : ℝ) (hs3 : s > 3) (hs4 : s < 4) :
     slope fdPolygon 4 s = (HHeight - Real.sqrt 3 / 2) * I := by
   have heq4 : fdPolygon 4 = -(1 : ℂ)/2 + HHeight * I := by
@@ -271,6 +319,9 @@ lemma slope_fdPolygon_at_t4_left (s : ℝ) (hs3 : s > 3) (hs4 : s < 4) :
   simp only [Complex.ofReal_inv, Complex.ofReal_sub]
   field_simp [hne]; simp only [HHeight]; push_cast; ring
 
+/--
+@isnad1 id=eq.1h1v.s6.80a256574595 from=translated src=- shape=6ce0c83a vocab=2ef3e508
+-/
 lemma slope_fdPolygon_at_t4_right (s : ℝ) (hs4 : s > 4) :
     slope fdPolygon 4 s = 1 := by
   have heq4 : fdPolygon 4 = -(1 : ℂ)/2 + HHeight * I := by
@@ -288,6 +339,9 @@ lemma slope_fdPolygon_at_t4_right (s : ℝ) (hs4 : s > 4) :
   simp only [Complex.ofReal_inv, Complex.ofReal_sub]
   field_simp [hne]; push_cast; ring
 
+/--
+@isnad1 id=tendsto.0h0v.s7.7655d59684db from=translated src=- shape=0d0da248 vocab=18a7b153
+-/
 lemma slope_fdPolygon_tendsto_seg1_left :
     Tendsto (slope fdPolygon 1) (𝓝[<] 1) (𝓝 (-(HHeight - Real.sqrt 3 / 2) * I)) := by
   apply Tendsto.congr' (f₁ := fun _ => -(HHeight - Real.sqrt 3 / 2) * I)
@@ -295,6 +349,9 @@ lemma slope_fdPolygon_tendsto_seg1_left :
     exact (slope_fdPolygon_at_t1_left s hs.2).symm
   · exact tendsto_const_nhds
 
+/--
+@isnad1 id=tendsto.0h0v.s7.372c98d7fe89 from=translated src=- shape=80a5860f vocab=26fa1192
+-/
 lemma slope_fdPolygon_tendsto_seg2_right :
     Tendsto (slope fdPolygon 1) (𝓝[>] 1) (𝓝 (iPoint - rho')) := by
   apply Tendsto.congr' (f₁ := fun _ => iPoint - rho')
@@ -302,6 +359,9 @@ lemma slope_fdPolygon_tendsto_seg2_right :
     exact (slope_fdPolygon_at_t1_right s hs.1 (le_of_lt hs.2)).symm
   · exact tendsto_const_nhds
 
+/--
+@isnad1 id=tendsto.0h0v.s7.677e3306cd1b from=translated src=- shape=80a5860f vocab=ba75d604
+-/
 lemma slope_fdPolygon_tendsto_seg2_left :
     Tendsto (slope fdPolygon 2) (𝓝[<] 2) (𝓝 (iPoint - rho')) := by
   apply Tendsto.congr' (f₁ := fun _ => iPoint - rho')
@@ -309,6 +369,9 @@ lemma slope_fdPolygon_tendsto_seg2_left :
     exact (slope_fdPolygon_at_t2_left s hs.1 hs.2).symm
   · exact tendsto_const_nhds
 
+/--
+@isnad1 id=tendsto.0h0v.s7.7b270978980a from=translated src=- shape=80a5860f vocab=69ecba67
+-/
 lemma slope_fdPolygon_tendsto_seg3_right :
     Tendsto (slope fdPolygon 2) (𝓝[>] 2) (𝓝 (rho - iPoint)) := by
   apply Tendsto.congr' (f₁ := fun _ => rho - iPoint)
@@ -316,6 +379,9 @@ lemma slope_fdPolygon_tendsto_seg3_right :
     exact (slope_fdPolygon_at_t2_right s hs.1 (le_of_lt hs.2)).symm
   · exact tendsto_const_nhds
 
+/--
+@isnad1 id=tendsto.0h0v.s7.8d46f2d1f699 from=translated src=- shape=80a5860f vocab=61260528
+-/
 lemma slope_fdPolygon_tendsto_seg3_left :
     Tendsto (slope fdPolygon 3) (𝓝[<] 3) (𝓝 (rho - iPoint)) := by
   apply Tendsto.congr' (f₁ := fun _ => rho - iPoint)
@@ -323,6 +389,9 @@ lemma slope_fdPolygon_tendsto_seg3_left :
     exact (slope_fdPolygon_at_t3_left s hs.1 hs.2).symm
   · exact tendsto_const_nhds
 
+/--
+@isnad1 id=tendsto.0h0v.s7.49bea91387c8 from=translated src=- shape=8383120f vocab=cb2dcf26
+-/
 lemma slope_fdPolygon_tendsto_seg4_right :
     Tendsto (slope fdPolygon 3) (𝓝[>] 3) (𝓝 ((HHeight - Real.sqrt 3 / 2) * I)) := by
   apply Tendsto.congr' (f₁ := fun _ => (HHeight - Real.sqrt 3 / 2) * I)
@@ -330,6 +399,9 @@ lemma slope_fdPolygon_tendsto_seg4_right :
     exact (slope_fdPolygon_at_t3_right s hs.1 (le_of_lt hs.2)).symm
   · exact tendsto_const_nhds
 
+/--
+@isnad1 id=tendsto.0h0v.s7.bda9998605dc from=translated src=- shape=8383120f vocab=572b8e6b
+-/
 lemma slope_fdPolygon_tendsto_seg4_left :
     Tendsto (slope fdPolygon 4) (𝓝[<] 4) (𝓝 ((HHeight - Real.sqrt 3 / 2) * I)) := by
   apply Tendsto.congr' (f₁ := fun _ => (HHeight - Real.sqrt 3 / 2) * I)
@@ -337,6 +409,9 @@ lemma slope_fdPolygon_tendsto_seg4_left :
     exact (slope_fdPolygon_at_t4_left s hs.1 hs.2).symm
   · exact tendsto_const_nhds
 
+/--
+@isnad1 id=tendsto.0h0v.s7.76e371fc18b5 from=translated src=- shape=5211221f vocab=844774d8
+-/
 lemma slope_fdPolygon_tendsto_seg5_right :
     Tendsto (slope fdPolygon 4) (𝓝[>] 4) (𝓝 1) := by
   apply Tendsto.congr' (f₁ := fun _ => (1 : ℂ))
@@ -359,6 +434,9 @@ private lemma fdPolygon_slope_lr_eq {vL vR : ℂ} (k₀ : ℝ)
     (hslope.mono_left (nhdsWithin_mono _ (fun x hx => ne_of_gt hx))) hRtends
   rw [← hL, ← hR]
 
+/--
+@isnad1 id=not.1h1v.s7.604630ee436e from=translated src=- shape=9228d01c vocab=880e695d
+-/
 lemma fdPolygon_not_differentiableAt_partition (t : ℝ) (ht : t ∈ ({1, 2, 3, 4} : Finset ℝ)) :
     ¬DifferentiableAt ℝ fdPolygon t := by
   simp only [Finset.mem_insert, Finset.mem_singleton] at ht
@@ -382,6 +460,9 @@ lemma fdPolygon_not_differentiableAt_partition (t : ℝ) (ht : t ∈ ({1, 2, 3, 
     rw [fdPolygon_seg4_deriv_val] at h
     exact fdPolygon_deriv_ne_at_t4 h
 
+/--
+@isnad1 id=ex.0h0v.s6.950ab1318c2a from=translated src=- shape=9bc01338 vocab=af8018c8
+-/
 lemma fdPolygon_deriv_bounded :
     ∃ M : ℝ, ∀ t ∈ Icc 0 5, ‖deriv fdPolygon t‖ ≤ M := by
   use 3

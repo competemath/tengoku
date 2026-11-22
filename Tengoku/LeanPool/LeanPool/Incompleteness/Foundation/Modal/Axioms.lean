@@ -72,6 +72,9 @@ protected abbrev P : F := ∼(□⊥)
 abbrev _root_.LO.Axioms.P.set : Set F := { Axioms.P | }
 /-- Imported declaration from the Incompleteness formalization. -/
 scoped notation:max "PAx" => P.set
+/--
+@isnad1 id=eq.0h1v.s5.ecdb06f974bc from=translated src=- shape=49c2d8db vocab=45106c8f
+-/
 @[simp 1100] lemma _root_.LO.Axioms.P.set.def : PAx = {(∼(□⊥) : F)} := by ext; simp;
 
 /-- Axiom for transivity -/

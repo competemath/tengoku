@@ -50,22 +50,30 @@ noncomputable def consecutivePairs (γ : PiecewiseC1Curve) : List (ℝ × ℝ) :
 
 /-! ### Basic properties of `sortedPartition` -/
 
-/-- Membership in `sortedPartition` is equivalent to membership in the original partition. -/
+/-- Membership in `sortedPartition` is equivalent to membership in the original partition.
+@isnad1 id=iff.0h2v.s4.04f74bc7fe61 from=translated src=- shape=ceb23d78 vocab=ea983706
+-/
 @[simp]
 theorem mem_sortedPartition (γ : PiecewiseC1Curve) (x : ℝ) :
     x ∈ γ.sortedPartition ↔ x ∈ γ.partition :=
   Finset.mem_sort (· ≤ ·)
 
-/-- The `sortedPartition` is sorted with respect to `≤`. -/
+/-- The `sortedPartition` is sorted with respect to `≤`.
+@isnad1 id=pairwise.0h1v.s3.02b559bbf260 from=translated src=- shape=6439857a vocab=19349fea
+-/
 theorem sortedPartition_sorted (γ : PiecewiseC1Curve) :
     γ.sortedPartition.Pairwise (· ≤ ·) := by
   simp only [sortedPartition]; exact Finset.pairwise_sort γ.partition (· ≤ ·)
 
-/-- The `sortedPartition` has no duplicates. -/
+/-- The `sortedPartition` has no duplicates.
+@isnad1 id=nodup.0h1v.s2.55155475cb28 from=translated src=- shape=1a6c1393 vocab=531243ce
+-/
 theorem sortedPartition_nodup (γ : PiecewiseC1Curve) :
     γ.sortedPartition.Nodup := by simp only [sortedPartition, Finset.sort_nodup]
 
-/-- The `sortedPartition` is nonempty (contains at least `a` and `b`). -/
+/-- The `sortedPartition` is nonempty (contains at least `a` and `b`).
+@isnad1 id=ne.0h1v.s3.4eb68a090b84 from=translated src=- shape=8b9e0ca6 vocab=5436e5ff
+-/
 theorem sortedPartition_nonempty (γ : PiecewiseC1Curve) :
     γ.sortedPartition ≠ [] := by
   intro h
@@ -73,7 +81,9 @@ theorem sortedPartition_nonempty (γ : PiecewiseC1Curve) :
   rw [← mem_sortedPartition] at ha
   simp [h] at ha
 
-/-- Every element of the `sortedPartition` lies in `[a, b]`. -/
+/-- Every element of the `sortedPartition` lies in `[a, b]`.
+@isnad1 id=mem.1h2v.s4.918fa7c5d51b from=translated src=- shape=5366e9fe vocab=2c8e9e1f
+-/
 theorem sortedPartition_mem_Icc (γ : PiecewiseC1Curve) (x : ℝ)
     (hx : x ∈ γ.sortedPartition) : x ∈ Icc γ.a γ.b :=
   γ.partition_subset ((mem_sortedPartition γ x).mp hx)
@@ -83,7 +93,9 @@ theorem sortedPartition_mem_Icc (γ : PiecewiseC1Curve) (x : ℝ)
 /-- The first element of the sorted partition equals `γ.a`.
 
   Proof sketch: `head ∈ [a,b]` so `a ≤ head`; all elements ≥ head from sorted, and
-  `a ∈ sortedPartition`, so `head ≤ a`. Together: `head = a`. -/
+  `a ∈ sortedPartition`, so `head ≤ a`. Together: `head = a`.
+@isnad1 id=eq.0h1v.s3.05912812bffb from=translated src=- shape=1af8670f vocab=60b92228
+-/
 theorem sortedPartition_head (γ : PiecewiseC1Curve) :
     γ.sortedPartition.head (sortedPartition_nonempty γ) = γ.a := by
   have hne := sortedPartition_nonempty γ
@@ -95,7 +107,9 @@ theorem sortedPartition_head (γ : PiecewiseC1Curve) :
 /-- The last element of the sorted partition equals `γ.b`.
 
   Proof sketch: `getLast ∈ [a,b]` so `getLast ≤ b`; all elements ≤ getLast from sorted,
-  and `b ∈ sortedPartition`, so `b ≤ getLast`. Together: `getLast = b`. -/
+  and `b ∈ sortedPartition`, so `b ≤ getLast`. Together: `getLast = b`.
+@isnad1 id=eq.0h1v.s3.712d73de9a51 from=translated src=- shape=1af8670f vocab=3a4273ec
+-/
 theorem sortedPartition_last (γ : PiecewiseC1Curve) :
     γ.sortedPartition.getLast (sortedPartition_nonempty γ) = γ.b := by
   have hne := sortedPartition_nonempty γ
@@ -145,7 +159,9 @@ private theorem pairwise_consecutive_union :
             Set.mem_iUnion₂.mp (ih hys_sorted hys_ne htail_ne' y hi rfl hlast ht_sub)
           exact ⟨p, Or.inr hp_mem, hp_t⟩
 
-/-- The sorted partition has at least two elements (since `a ≠ b` are both in the partition). -/
+/-- The sorted partition has at least two elements (since `a ≠ b` are both in the partition).
+@isnad1 id=ne.0h1v.s3.5462f620fe29 from=translated src=- shape=cbcaddce vocab=9cc8e971
+-/
 theorem sortedPartition_tail_nonempty (γ : PiecewiseC1Curve) :
     γ.sortedPartition.tail ≠ [] := by
   have hcard : 1 < γ.partition.card :=
@@ -160,7 +176,9 @@ theorem sortedPartition_tail_nonempty (γ : PiecewiseC1Curve) :
     simp_all
   linarith
 
-/-- The union of `Icc p.1 p.2` over all `p ∈ consecutivePairs γ` covers `[a, b]`. -/
+/-- The union of `Icc p.1 p.2` over all `p ∈ consecutivePairs γ` covers `[a, b]`.
+@isnad1 id=le.0h1v.s6.911fd2f82eec from=translated src=- shape=eea4e4b2 vocab=921bb36b
+-/
 theorem consecutivePairs_cover (γ : PiecewiseC1Curve) :
     Icc γ.a γ.b ⊆ ⋃ p ∈ γ.consecutivePairs, Icc p.1 p.2 :=
   pairwise_consecutive_union γ.sortedPartition
@@ -184,12 +202,16 @@ private theorem pairwise_zip_tail_le {l : List ℝ} (hl : l.Pairwise (· ≤ ·)
       · exact (List.pairwise_cons.mp hl).1 y List.mem_cons_self
       · exact ih ((List.pairwise_cons.mp hl).2) h
 
-/-- For each consecutive pair `(p, q)`, we have `p ≤ q`. -/
+/-- For each consecutive pair `(p, q)`, we have `p ≤ q`.
+@isnad1 id=le.1h2v.s5.20e238dd6a6e from=translated src=- shape=e1cda544 vocab=ec05263f
+-/
 theorem consecutivePairs_le (γ : PiecewiseC1Curve) (p : ℝ × ℝ)
     (hp : p ∈ γ.consecutivePairs) : p.1 ≤ p.2 :=
   pairwise_zip_tail_le (sortedPartition_sorted γ) hp
 
-/-- Both components of a consecutive pair lie in `[a, b]`. -/
+/-- Both components of a consecutive pair lie in `[a, b]`.
+@isnad1 id=and.1h2v.s5.1c1bfbe29b41 from=translated src=- shape=0c95f2c1 vocab=a9a37b07
+-/
 theorem consecutivePairs_subset (γ : PiecewiseC1Curve) (p : ℝ × ℝ)
     (hp : p ∈ γ.consecutivePairs) :
     p.1 ∈ Icc γ.a γ.b ∧ p.2 ∈ Icc γ.a γ.b := by
@@ -201,7 +223,9 @@ theorem consecutivePairs_subset (γ : PiecewiseC1Curve) (p : ℝ × ℝ)
 /-! ### Main theorems -/
 
 /-- **Main theorem**: to prove a property `P` on `[a, b]`, it suffices to prove `P` on each
-    consecutive segment `[pᵢ, pᵢ₊₁]` of the partition. -/
+    consecutive segment `[pᵢ, pᵢ₊₁]` of the partition.
+@isnad1 id=var.1h4v.s6.3dd12b67da35 from=translated src=- shape=56c9fc9c vocab=a9a37b07
+-/
 theorem forall_Icc_of_forall_consecutive {P : ℝ → Prop}
     (γ : PiecewiseC1Curve)
     (h : ∀ p ∈ γ.consecutivePairs, ∀ t ∈ Icc p.1 p.2, P t) :
@@ -210,7 +234,9 @@ theorem forall_Icc_of_forall_consecutive {P : ℝ → Prop}
   exact h p hp_mem t hp_t
 
 /-- **Image variant**: if the image of each consecutive segment lies in `S`,
-    then the image of `[a, b]` lies in `S`. -/
+    then the image of `[a, b]` lies in `S`.
+@isnad1 id=le.1h2v.s6.9d928182dc43 from=translated src=- shape=9e5afdbb vocab=3a7f7c7c
+-/
 theorem image_subset_of_consecutive_images {S : Set ℂ}
     (γ : PiecewiseC1Curve)
     (h : ∀ p ∈ γ.consecutivePairs, γ.toFun '' Icc p.1 p.2 ⊆ S) :

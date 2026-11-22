@@ -43,9 +43,15 @@ open hasMatrixUnits
 variable (R : Type*) [Ring R]
 
 -- in a nontrivial ring, 0 and 1 are different elements
+/--
+@isnad1 id=ne.1h1v.s5.cd4477bb0c21 from=translated src=- shape=5e3b0e7f vocab=20b863dd
+-/
 theorem nontrivial_zero_not_one (nontriv : Nontrivial R) : (0 : R) ≠ (1 : R) := by
   simp_all
 
+/--
+@isnad1 id=lt.1h2v.s4.b2a62661eb18 from=translated src=- shape=186c8018 vocab=2eb5429a
+-/
 theorem nontrivial_ortidem_n_pos (nontriv : Nontrivial R) (ort_idem : OrtIdemDiv R) :
     0 < ort_idem.n := by
   refine Nat.pos_of_ne_zero ?_
@@ -59,6 +65,9 @@ theorem nontrivial_ortidem_n_pos (nontriv : Nontrivial R) (ort_idem : OrtIdemDiv
       _ = 0 := Fintype.sum_empty ort_idem.f
   exact nontrivial_zero_not_one R nontriv (Eq.symm zero_eq_one)
 
+/--
+@isnad1 id=ex.8h5v.s8.87d4717dbbef from=translated src=- shape=85f26298 vocab=bf376890
+-/
 theorem OrtIdem_imply_MatUnits' {n : ℕ} (hn : 0 < n)
     (diag_es : Fin n → R)
     (idem : (∀ i : Fin n, IsIdempotentElem (diag_es i)))
@@ -109,6 +118,9 @@ theorem OrtIdem_imply_MatUnits' {n : ℕ} (hn : 0 < n)
     mat_units.es ⟨0, hn⟩ ⟨0, hn⟩ = col_es ⟨0, hn⟩ * row_es ⟨0, hn⟩ := rfl
     _ = diag_es ⟨0, hn⟩ := by simp_rw [comp2]
 
+/--
+@isnad1 id=ex.2h2v.s6.a63417814cf8 from=translated src=- shape=c65d18cf vocab=2e1abb41
+-/
 theorem lemma_2_20' (prime : IsPrimeRing R) (ort_idem : OrtIdemDiv R) (n_pos : 0 < ort_idem.n) :
     ∃ mat_units : hasMatrixUnits R ort_idem.n,
       mat_units.es ⟨0, n_pos⟩ ⟨0, n_pos⟩ = ort_idem.f ⟨0, n_pos⟩ := by
@@ -129,6 +141,9 @@ theorem lemma_2_20' (prime : IsPrimeRing R) (ort_idem : OrtIdemDiv R) (n_pos : 0
 variable {n : ℕ} {hn : 0 < n} [mu : hasMatrixUnits R n]
 
 -- abbreviations for the corner ring of the first matrix unit
+/--
+@isnad1 id=isidempo.1h2v.s5.4b073131a972 from=translated src=- shape=c8285a0b vocab=b0c65d73
+-/
 theorem e00_idem : IsIdempotentElem (mu.es ⟨0, hn⟩ ⟨0, hn⟩) :=
   mu.mul_ij_kl_eq_kron_delta_jk_mul_es_il ⟨0, hn⟩ ⟨0, hn⟩ ⟨0, hn⟩ ⟨0, hn⟩
 
@@ -136,18 +151,30 @@ theorem e00_idem : IsIdempotentElem (mu.es ⟨0, hn⟩ ⟨0, hn⟩) :=
 abbrev e00Cornerring := CornerSubring (@e00_idem R _ n hn mu)
 
 -- some trivial rewriting lemmas
+/--
+@isnad1 id=eq.1h2v.s7.290fcdaa7e8c from=translated src=- shape=92f7071b vocab=b3d7d047
+-/
 lemma e00_cornerring_1 : (1 : CornerSubring (@e00_idem R _ n hn mu)) = mu.es ⟨0, hn⟩ ⟨0, hn⟩ := rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.aa6addfe6422 from=translated src=- shape=64e53274 vocab=36b39a20
+-/
 lemma e00e0i_eq_e_0i (i : Fin n) :
     mu.es ⟨0, hn⟩ ⟨0, hn⟩ * mu.es ⟨0, hn⟩ i = mu.es ⟨0, hn⟩ i := by
   rw [mu.mul_ij_kl_eq_kron_delta_jk_mul_es_il]
   simp
 
+/--
+@isnad1 id=eq.1h3v.s6.6a2ee2dd4fe0 from=translated src=- shape=285c4294 vocab=36b39a20
+-/
 lemma ei0e00_eq_e_ei0 (i : Fin n) :
     mu.es i ⟨0, hn⟩ * mu.es ⟨0, hn⟩ ⟨0, hn⟩ = mu.es i ⟨0, hn⟩ := by
   rw [mu.mul_ij_kl_eq_kron_delta_jk_mul_es_il]
   simp only [↓reduceIte]
 
+/--
+@isnad1 id=eq.1h4v.s6.61da2174aba5 from=translated src=- shape=705683eb vocab=36b39a20
+-/
 lemma ei0e0j_eq_eij (i j : Fin n) : mu.es i ⟨0, hn⟩ * mu.es ⟨0, hn⟩ j = mu.es i j := by
   rw [mu.mul_ij_kl_eq_kron_delta_jk_mul_es_il]
   simp only [↓reduceIte]
@@ -170,6 +197,9 @@ def ringToMatrixRing (n : ℕ) (hn : 0 < n) (mu : hasMatrixUnits R n) :
   fun a => fun i j => (ijCorner R i j a)
 
 -- show that this map is additive
+/--
+@isnad1 id=eq.1h4v.s8.8b9763c7b71a from=translated src=- shape=e6bb7072 vocab=c855f9b6
+-/
 theorem ring_to_matrix_ring_additive (a b : R) :
     (ringToMatrixRing R n hn mu) (a + b) =
       (ringToMatrixRing R n hn mu) a + (ringToMatrixRing R n hn mu) b := by
@@ -179,6 +209,9 @@ theorem ring_to_matrix_ring_additive (a b : R) :
   simp only [ijCorner]
   noncomm_ring
 
+/--
+@isnad1 id=eq.1h3v.s6.22adc74afa30 from=translated src=- shape=609f515c vocab=36b39a20
+-/
 theorem matrixunit_iz_zi_eq_ii :
     ∀ i : Fin n, es i i = (mu.es i ⟨0, hn⟩) * (mu.es ⟨0, hn⟩ i) := by
   intro i
@@ -186,6 +219,9 @@ theorem matrixunit_iz_zi_eq_ii :
   simp
 
 -- if a ring has matrix units then 1 = sum_i e_i0e0i
+/--
+@isnad1 id=eq.1h3v.s6.f9faad77c514 from=translated src=- shape=3b0c828a vocab=ecde5fd6
+-/
 theorem one_eq_sum_es_00e_00e (n : ℕ) (hn : 0 < n) (mu : hasMatrixUnits R n) :
     1 = ∑ i, mu.es i ⟨0, hn⟩ * mu.es ⟨0, hn⟩ i := by
   rw [← mu.diag_sum_eq_one]
@@ -199,6 +235,9 @@ theorem _lift_sum (f : Fin n → (@e00Cornerring R _ n hn mu)) :
   AddSubmonoidClass.coe_finsetSum f Finset.univ
 
 -- show that the map is multiplicative
+/--
+@isnad1 id=eq.1h4v.s8.326f3ddf0723 from=translated src=- shape=e6bb7072 vocab=7c7e42db
+-/
 theorem ring_to_matrix_ring_multiplicative (a b : R) :
     (ringToMatrixRing R n hn mu) (a * b) =
       (ringToMatrixRing R n hn mu) a * (ringToMatrixRing R n hn mu) b := by
@@ -228,10 +267,16 @@ theorem ring_to_matrix_ring_multiplicative (a b : R) :
         rw [mul_assoc, mul_assoc, mul_assoc, mul_assoc, mul_assoc, mul_assoc]
 
 -- auxiliary lemma to rewrite matrix 1
+/--
+@isnad1 id=eq.0h2v.s6.ba141a8f3b48 from=translated src=- shape=f6f95734 vocab=f07f4de9
+-/
 theorem matrix_one (S : Type*) [One S] [Zero S] [DecidableEq (Fin n)] :
     (1 : Matrix (Fin n) (Fin n) S) = (fun i j => if i = j then 1 else 0) := rfl
 
 -- a criterion that element is 0 if all its matrix elements are 0
+/--
+@isnad1 id=iff.0h3v.s6.49a23f9cbb3b from=translated src=- shape=b1fb16cc vocab=487d333b
+-/
 theorem corner_matrix_zero_equiv (a : R) :
     (∀ (i j : Fin n), (es i i) * a * (es j j) = 0) ↔ a = 0 := by
   constructor
@@ -251,6 +296,9 @@ theorem corner_matrix_zero_equiv (a : R) :
   · simp_all
 
 -- same as previous but in a more applicable form
+/--
+@isnad1 id=eq.2h3v.s8.5bb429a59183 from=translated src=- shape=be5f93a9 vocab=7b7e37f9
+-/
 theorem corner_matrix_zero_crit (a : R) :
     (∀ (i j : Fin n), @ijCorner R _ n hn mu i j a = 0) → a = 0 := by
   rw [← (@corner_matrix_zero_equiv R _ n)]
@@ -302,6 +350,9 @@ def matrixToRing (n : ℕ) (hn : 0 < n) (mu : hasMatrixUnits R n) :
   fun M => ∑ i, ∑ j, (mu.es i ⟨0, hn⟩) * M i j * (mu.es ⟨0, hn⟩ j)
 
 -- lemma: multiplying e0k with ∑ ei0 f i = e0k ek0 fk = e00 f k
+/--
+@isnad1 id=eq.1h4v.s7.886cd3c36679 from=translated src=- shape=c9d7b3cd vocab=ecde5fd6
+-/
 lemma e0k_left_mul_sum {k : Fin n} {f : Fin n → R} :
     mu.es ⟨0, hn⟩ k * ∑ i, mu.es i ⟨0, hn⟩ * f i = mu.es ⟨0, hn⟩ ⟨0, hn⟩ * f k := by
   rw [Finset.mul_sum]
@@ -313,6 +364,9 @@ lemma e0k_left_mul_sum {k : Fin n} {f : Fin n → R} :
   simp_all
 
 -- same but now from the right: ∑ f i e0i and ek0 = fk e0k ek0 = f k e00
+/--
+@isnad1 id=eq.1h4v.s7.b119da9bb809 from=translated src=- shape=c2d4a020 vocab=ecde5fd6
+-/
 lemma right_mul_sum_e0k {k : Fin n} {f : Fin n → R} :
     (∑ i, f i * mu.es ⟨0, hn⟩ i) * mu.es k ⟨0, hn⟩ = f k * mu.es ⟨0, hn⟩ ⟨0, hn⟩ := by
   rw [Finset.sum_mul]
@@ -324,16 +378,25 @@ lemma right_mul_sum_e0k {k : Fin n} {f : Fin n → R} :
     simp_all
   simp_all
 
+/--
+@isnad1 id=eq.1h2v.s8.0268cc1d9f98 from=translated src=- shape=1f5aec41 vocab=047ad669
+-/
 lemma matrixcorner1 :
     (1 : Matrix (Fin n) (Fin n) (@e00Cornerring R _ n hn mu)) =
       (fun i j => if i = j then (1 : (@e00Cornerring R _ n hn mu)) else 0) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.8c6890173fd3 from=translated src=- shape=bf11c8cf vocab=4ee5cf8e
+-/
 lemma e00_unit (a : @e00Cornerring R _ n hn mu) :
     mu.es ⟨0, hn⟩ ⟨0, hn⟩ * (a : R) = a := by
   have h : 1 * a = a := one_mul a
   nth_rewrite 2 [← h]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.81966ee8791d from=translated src=- shape=a10c55cc vocab=4ee5cf8e
+-/
 lemma unit_e00 (a : @e00Cornerring R _ n hn mu) :
     (a : R) * mu.es ⟨0, hn⟩ ⟨0, hn⟩ = a := by
   have h : a * 1 = a := mul_one a

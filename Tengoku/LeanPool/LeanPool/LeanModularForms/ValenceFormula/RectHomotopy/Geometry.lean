@@ -45,6 +45,9 @@ def rho' : ℂ := 1/2 + Real.sqrt 3 / 2 * I
 /-- The elliptic point i -/
 def iPoint : ℂ := I
 
+/--
+@isnad1 id=eq.0h0v.s3.c48cd373165b from=translated src=- shape=b3c4969c vocab=5cbd8c29
+-/
 lemma rho_norm : ‖rho‖ = 1 := by
   rw [Complex.norm_eq_sqrt_sq_add_sq]
   simp only [rho, add_re, neg_re, one_re, div_ofNat_re,
@@ -56,6 +59,9 @@ lemma rho_norm : ‖rho‖ = 1 := by
     Real.sq_sqrt (by linarith : (0 : ℝ) ≤ 3)
   rw [h]; norm_num
 
+/--
+@isnad1 id=eq.0h0v.s3.89b29c6f47d3 from=translated src=- shape=b3c4969c vocab=d3f35d03
+-/
 lemma rho'_norm : ‖rho'‖ = 1 := by
   rw [Complex.norm_eq_sqrt_sq_add_sq]
   simp only [rho', add_re, one_re, div_ofNat_re,
@@ -67,8 +73,14 @@ lemma rho'_norm : ‖rho'‖ = 1 := by
     Real.sq_sqrt (by linarith : (0 : ℝ) ≤ 3)
   rw [h]; norm_num
 
+/--
+@isnad1 id=eq.0h0v.s3.085aac7df1fc from=translated src=- shape=b3c4969c vocab=f095a190
+-/
 lemma i_point_norm : ‖iPoint‖ = 1 := by simp only [iPoint, Complex.norm_I]
 
+/--
+@isnad1 id=not.1h1v.s5.02f07fba6181 from=translated src=- shape=2b19054a vocab=2b99edc3
+-/
 lemma outside_closed_unit_ball (z : ℂ) (hz : ‖z‖ > 1) :
     z ∉ closedBall (0 : ℂ) 1 := by simpa only [mem_closedBall, dist_zero_right, not_le] using hz
 
@@ -76,13 +88,22 @@ lemma outside_closed_unit_ball (z : ℂ) (hz : ‖z‖ > 1) :
 def chordSegment (z₁ z₂ : ℂ) : ℝ → ℂ :=
   fun t => (1 - t) • z₁ + t • z₂
 
+/--
+@isnad1 id=mem.4h4v.s6.a4b53705a915 from=translated src=- shape=3e24a6ab vocab=450ae1a2
+-/
 lemma chordSegment_in_convex {z₁ z₂ : ℂ} {S : Set ℂ} (hS : Convex ℝ S) (hz₁ : z₁ ∈ S) (hz₂ : z₂ ∈ S)
     (t : ℝ) (ht : t ∈ Icc 0 1) :
     chordSegment z₁ z₂ t ∈ S :=
   hS hz₁ hz₂ (by linarith [ht.2]) ht.1 (by ring)
 
+/--
+@isnad1 id=convex.0h0v.s6.e3e33c133502 from=translated src=- shape=82dc5b2a vocab=63d20af5
+-/
 lemma convex_closedBall_zero_one : Convex ℝ (closedBall (0 : ℂ) 1) := convex_closedBall 0 1
 
+/--
+@isnad1 id=mem.3h3v.s6.ee83979beb7c from=translated src=- shape=6cb23ae2 vocab=36d99996
+-/
 lemma chord_in_closed_unit_ball (z₁ z₂ : ℂ) (hz₁ : ‖z₁‖ = 1) (hz₂ : ‖z₂‖ = 1)
     (t : ℝ) (ht : t ∈ Icc 0 1) :
     chordSegment z₁ z₂ t ∈ closedBall (0 : ℂ) 1 := by
@@ -96,6 +117,9 @@ def arcToChordHomotopy (arc chord : ℝ → ℂ) :
     ℝ × ℝ → ℂ :=
   fun (t, s) => (1 - s) • arc t + s • chord t
 
+/--
+@isnad1 id=mem.4h4v.s7.5a73678d8024 from=translated src=- shape=a0a0e4eb vocab=c21610ae
+-/
 lemma arcToChordHomotopy_in_closed_unit_ball (arc chord : ℝ → ℂ)
     (harc : ∀ t ∈ Icc 0 1,
       arc t ∈ closedBall (0 : ℂ) 1)
@@ -107,6 +131,9 @@ lemma arcToChordHomotopy_in_closed_unit_ball (arc chord : ℝ → ℂ)
   simp only [arcToChordHomotopy]
   exact chordSegment_in_convex convex_closedBall_zero_one (harc t ht) (hchord t ht) s hs
 
+/--
+@isnad1 id=ne.5h5v.s7.dfdb40074584 from=translated src=- shape=29b24d29 vocab=092de0dd
+-/
 lemma arcToChordHomotopy_avoids (arc chord : ℝ → ℂ) (p : ℂ) (hp : ‖p‖ > 1)
     (harc : ∀ t ∈ Icc 0 1, arc t ∈ closedBall (0 : ℂ) 1)
     (hchord : ∀ t ∈ Icc 0 1, chord t ∈ closedBall (0 : ℂ) 1)
@@ -130,20 +157,32 @@ def arc1 (t : ℝ) : ℂ :=
 def arc2 (t : ℝ) : ℂ :=
   Complex.exp (I * (θI + t * (θRho - θI)))
 
+/--
+@isnad1 id=eq.0h1v.s3.0c25a5cbb6b4 from=translated src=- shape=0cfb200e vocab=2961c6b9
+-/
 lemma arc1_on_unit_circle (t : ℝ) : ‖arc1 t‖ = 1 := by
   rw [arc1, show I * (↑θRho' + ↑t * (↑θI - ↑θRho')) =
       ↑(θRho' + t * (θI - θRho')) * I by push_cast; ring]
   exact Complex.norm_exp_ofReal_mul_I _
 
+/--
+@isnad1 id=eq.0h1v.s3.f994aef70d28 from=translated src=- shape=0cfb200e vocab=8a3865d3
+-/
 lemma arc2_on_unit_circle (t : ℝ) : ‖arc2 t‖ = 1 := by
   rw [arc2, show I * (↑θI + ↑t * (↑θRho - ↑θI)) =
       ↑(θI + t * (θRho - θI)) * I by push_cast; ring]
   exact Complex.norm_exp_ofReal_mul_I _
 
+/--
+@isnad1 id=mem.1h1v.s5.75432e6fef0f from=translated src=- shape=b90f593b vocab=3f59101d
+-/
 lemma arc1_in_closed_unit_ball (t : ℝ) (_ : t ∈ Icc 0 1) :
     arc1 t ∈ closedBall (0 : ℂ) 1 := by
   simp only [mem_closedBall, dist_zero_right, arc1_on_unit_circle, le_refl]
 
+/--
+@isnad1 id=mem.1h1v.s5.a7cc93ef766e from=translated src=- shape=b90f593b vocab=2e79faf9
+-/
 lemma arc2_in_closed_unit_ball (t : ℝ) (_ : t ∈ Icc 0 1) :
     arc2 t ∈ closedBall (0 : ℂ) 1 := by
   simp only [mem_closedBall, dist_zero_right, arc2_on_unit_circle, le_refl]
@@ -153,14 +192,23 @@ def chord1 : ℝ → ℂ := chordSegment rho' iPoint
 /-- The straight chord from `i` to `ρ`. -/
 def chord2 : ℝ → ℂ := chordSegment iPoint rho
 
+/--
+@isnad1 id=mem.1h1v.s5.fd2ecc3b6ea3 from=translated src=- shape=b90f593b vocab=d71e57f5
+-/
 lemma chord1_in_closed_unit_ball (t : ℝ) (ht : t ∈ Icc 0 1) :
     chord1 t ∈ closedBall (0 : ℂ) 1 :=
   chord_in_closed_unit_ball rho' iPoint rho'_norm i_point_norm t ht
 
+/--
+@isnad1 id=mem.1h1v.s5.2ccbf6232d37 from=translated src=- shape=b90f593b vocab=0b8333ab
+-/
 lemma chord2_in_closed_unit_ball (t : ℝ) (ht : t ∈ Icc 0 1) :
     chord2 t ∈ closedBall (0 : ℂ) 1 :=
   chord_in_closed_unit_ball iPoint rho i_point_norm rho_norm t ht
 
+/--
+@isnad1 id=ex.2h1v.s6.40482f708cba from=translated src=- shape=802bfa10 vocab=66d7dbf3
+-/
 lemma exists_ball_in_polygon_interior (p : ℂ) (hp : ‖p‖ > 1) (hp_im : 0 < p.im) :
     ∃ ε > 0, ∀ z, ‖z - p‖ < ε → z.im > 0 ∧ ‖z‖ > 1 := by
   use min ((‖p‖ - 1)/2) (p.im/2)
@@ -177,6 +225,9 @@ lemma exists_ball_in_polygon_interior (p : ℂ) (hp : ‖p‖ > 1) (hp_im : 0 < 
   · linarith [(abs_lt.mp (lt_of_le_of_lt h_norm_bound hz₁)).1,
               (abs_lt.mp (lt_of_le_of_lt h_norm_bound hz₁)).2]
 
+/--
+@isnad1 id=eq.1h2v.s6.b1d24899c37a from=translated src=- shape=974d3c1e vocab=da898966
+-/
 lemma circleIntegral_winding (p : ℂ) (ε : ℝ) (hε : 0 < ε) :
     (∮ z in C(p, ε), (z - p)⁻¹) =
       2 * Real.pi * I :=
@@ -185,6 +236,9 @@ lemma circleIntegral_winding (p : ℂ) (ε : ℝ) (hε : 0 < ε) :
 /-- Height parameter H = √3/2 + 1 for FD boundary. -/
 noncomputable def HHeight : ℝ := Real.sqrt 3 / 2 + 1
 
+/--
+@isnad1 id=eq.0h0v.s2.17180f3512a4 from=translated src=- shape=54c8eceb vocab=eb47eb13
+-/
 lemma H_height_eq_heightCutoff : HHeight = heightCutoff := rfl
 
 /-- Polygon: FD boundary with arcs replaced by chords. -/
@@ -235,12 +289,18 @@ noncomputable def fdBoundaryToPolygonHomotopy :
     -1/2 + (Real.sqrt 3 / 2 + (t - 3) * (HHeight - Real.sqrt 3 / 2)) * I
   else (t - 9/2) + HHeight * I
 
+/--
+@isnad1 id=eq.0h0v.s5.e7e811b8cb59 from=translated src=- shape=0977d038 vocab=7d841de7
+-/
 lemma fdBoundary_at_zero :
     fdBoundary 0 = (1/2 : ℂ) + HHeight * I := by
   simp only [fdBoundary,
     show (0 : ℝ) ≤ 1 from by norm_num, ↓reduceIte, HHeight]
   simp only [Complex.ofReal_zero, zero_mul, sub_zero]
 
+/--
+@isnad1 id=eq.0h0v.s5.6ebf54742264 from=translated src=- shape=0977d038 vocab=7d841de7
+-/
 lemma fdBoundary_at_five :
     fdBoundary 5 = (1/2 : ℂ) + HHeight * I := by
   simp only [fdBoundary,
@@ -251,12 +311,18 @@ lemma fdBoundary_at_five :
   norm_cast
   ring_nf
 
+/--
+@isnad1 id=eq.0h1v.s5.9cacbbfe5573 from=translated src=- shape=34d0edb0 vocab=81c92155
+-/
 lemma fdBoundaryToPolygonHomotopy_at_t_zero (s : ℝ) :
     fdBoundaryToPolygonHomotopy (0, s) = (1/2 : ℂ) + HHeight * I := by
   simp only [fdBoundaryToPolygonHomotopy,
     show (0 : ℝ) ≤ 1 from by norm_num, ↓reduceIte, HHeight]
   simp only [Complex.ofReal_zero, zero_mul, sub_zero]
 
+/--
+@isnad1 id=eq.0h1v.s5.5a332cc49cdc from=translated src=- shape=34d0edb0 vocab=81c92155
+-/
 lemma fdBoundaryToPolygonHomotopy_at_t_five (s : ℝ) :
     fdBoundaryToPolygonHomotopy (5, s) = (1/2 : ℂ) + HHeight * I := by
   simp only [fdBoundaryToPolygonHomotopy,
@@ -267,6 +333,9 @@ lemma fdBoundaryToPolygonHomotopy_at_t_five (s : ℝ) :
   norm_cast
   ring_nf
 
+/--
+@isnad1 id=eq.0h1v.s6.dfa92f8452ac from=translated src=- shape=118e1b14 vocab=6ef28b82
+-/
 lemma segment2_arc_on_unit_circle (t : ℝ) :
     ‖Complex.exp ((Real.pi / 3 + (t - 1) * (Real.pi / 2 - Real.pi / 3)) * I)‖ = 1 := by
   conv_lhs =>
@@ -275,6 +344,9 @@ lemma segment2_arc_on_unit_circle (t : ℝ) :
       push_cast; ring]
   exact Complex.norm_exp_ofReal_mul_I _
 
+/--
+@isnad1 id=eq.0h1v.s7.cae596fc17fe from=translated src=- shape=51167bd9 vocab=6ef28b82
+-/
 lemma segment3_arc_on_unit_circle (t : ℝ) :
     ‖Complex.exp ((Real.pi / 2 + (t - 2) * (2 * Real.pi / 3 - Real.pi / 2)) * I)‖ =
     1 := by
@@ -284,21 +356,33 @@ lemma segment3_arc_on_unit_circle (t : ℝ) :
       push_cast; ring]
   exact Complex.norm_exp_ofReal_mul_I _
 
+/--
+@isnad1 id=mem.0h1v.s7.b28b62ae0a16 from=translated src=- shape=1e124c0b vocab=859d4299
+-/
 lemma segment2_arc_in_closed_unit_ball (t : ℝ) :
     Complex.exp ((Real.pi / 3 + (t - 1) * (Real.pi / 2 - Real.pi / 3)) * I) ∈
     closedBall (0 : ℂ) 1 := by
   simp only [mem_closedBall, dist_zero_right,
     segment2_arc_on_unit_circle, le_refl]
 
+/--
+@isnad1 id=mem.0h1v.s7.ed75ceb43d74 from=translated src=- shape=c427be91 vocab=859d4299
+-/
 lemma segment3_arc_in_closed_unit_ball (t : ℝ) :
     Complex.exp ((Real.pi / 2 + (t - 2) * (2 * Real.pi / 3 - Real.pi / 2)) * I) ∈
     closedBall (0 : ℂ) 1 := by
   simp only [mem_closedBall, dist_zero_right,
     segment3_arc_on_unit_circle, le_refl]
 
+/--
+@isnad1 id=le.0h1v.s3.94dfb7c47ad2 from=translated src=- shape=4e542c2f vocab=ee1ffab7
+-/
 lemma norm_ge_abs_im (z : ℂ) : ‖z‖ ≥ |z.im| :=
   Complex.abs_im_le_norm z
 
+/--
+@isnad1 id=lt.0h0v.s3.acf88029fedf from=translated src=- shape=ffdda526 vocab=232815b8
+-/
 lemma H_height_gt_one : HHeight > 1 := by
   unfold HHeight
   linarith [Real.sqrt_pos.mpr (by norm_num : (3 : ℝ) > 0)]

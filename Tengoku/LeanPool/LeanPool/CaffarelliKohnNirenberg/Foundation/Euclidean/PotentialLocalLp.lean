@@ -57,7 +57,9 @@ support ball of a strongly measurable representative changes neither its `L^p` s
 its Newtonian potentials. -/
 
 /-- Data that vanishes off a closed ball and is almost everywhere strongly measurable agrees
-almost everywhere with measurable data that vanishes off the same ball. -/
+almost everywhere with measurable data that vanishes off the same ball.
+@isnad1 id=ex.2h2v.s8.a0e10ed8e0f1 from=translated src=- shape=f810a40a vocab=3a9bf8dc
+-/
 theorem exists_measurable_representative_of_support_closedBall
     {G : Vec3 → ℝ} {R : ℝ} (hG : AEStronglyMeasurable G volume)
     (hGzero : ∀ y, y ∉ closedBall (0 : Vec3) R → G y = 0) :

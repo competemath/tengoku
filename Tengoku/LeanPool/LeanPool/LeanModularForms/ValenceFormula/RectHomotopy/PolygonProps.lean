@@ -31,11 +31,17 @@ open Complex Set Metric Filter Topology
 
 namespace RectHomotopyProof
 
+/--
+@isnad1 id=eq.0h0v.s3.44e47dcea89e from=translated src=- shape=d3a93718 vocab=b98f157d
+-/
 lemma fdPolygon_at_t1 : fdPolygon 1 = rho' := by
   simp only [fdPolygon,
     show (1 : ℝ) ≤ 1 from le_refl 1, ↓reduceIte]
   simp only [HHeight, rho']; push_cast; ring
 
+/--
+@isnad1 id=eq.0h0v.s3.489eacf618d3 from=translated src=- shape=d3a93718 vocab=881293e2
+-/
 lemma fdPolygon_at_t2 : fdPolygon 2 = iPoint := by
   simp only [fdPolygon,
     show ¬(2 : ℝ) ≤ 1 from by norm_num,
@@ -43,6 +49,9 @@ lemma fdPolygon_at_t2 : fdPolygon 2 = iPoint := by
   simp only [chordSegment, iPoint, show (2 : ℝ) - 1 = 1 by ring, sub_self]
   simp
 
+/--
+@isnad1 id=eq.0h0v.s3.043c802719db from=translated src=- shape=d3a93718 vocab=52fa8a50
+-/
 lemma fdPolygon_at_t3 : fdPolygon 3 = rho := by
   simp only [fdPolygon,
     show ¬(3 : ℝ) ≤ 1 from by norm_num,
@@ -51,6 +60,9 @@ lemma fdPolygon_at_t3 : fdPolygon 3 = rho := by
   simp only [chordSegment, rho, show (3 : ℝ) - 2 = 1 by ring, sub_self]
   simp
 
+/--
+@isnad1 id=eq.0h0v.s5.523c8e455baf from=translated src=- shape=20726076 vocab=44fb4146
+-/
 lemma fdPolygon_at_t4 :
     fdPolygon 4 = -1/2 + HHeight * I := by
   simp only [fdPolygon,
@@ -79,27 +91,48 @@ noncomputable def fdPolygonSeg4 : ℝ → ℂ := fun t =>
 /-- The fifth segment of the boundary polygon (top horizontal edge). -/
 noncomputable def fdPolygonSeg5 : ℝ → ℂ := fun t => (t - 9/2) + HHeight * I
 
+/--
+@isnad1 id=continuo.0h0v.s4.3a55574d18c9 from=translated src=- shape=54c8eceb vocab=f5f73583
+-/
 lemma fdPolygon_seg1_continuous :
     Continuous fdPolygonSeg1 := by unfold fdPolygonSeg1; continuity
 
+/--
+@isnad1 id=continuo.0h0v.s4.ad3a11baf00d from=translated src=- shape=54c8eceb vocab=59772a40
+-/
 lemma fdPolygon_seg2_continuous :
     Continuous fdPolygonSeg2 := by unfold fdPolygonSeg2 chordSegment; continuity
 
+/--
+@isnad1 id=continuo.0h0v.s4.acc85b48d143 from=translated src=- shape=54c8eceb vocab=1d37019e
+-/
 lemma fdPolygon_seg3_continuous :
     Continuous fdPolygonSeg3 := by unfold fdPolygonSeg3 chordSegment; continuity
 
+/--
+@isnad1 id=continuo.0h0v.s4.538e629f45f0 from=translated src=- shape=54c8eceb vocab=26ba27ee
+-/
 lemma fdPolygon_seg4_continuous :
     Continuous fdPolygonSeg4 := by unfold fdPolygonSeg4; continuity
 
+/--
+@isnad1 id=continuo.0h0v.s4.9d857637e3d7 from=translated src=- shape=54c8eceb vocab=558a6981
+-/
 lemma fdPolygon_seg5_continuous :
     Continuous fdPolygonSeg5 := by unfold fdPolygonSeg5; continuity
 
+/--
+@isnad1 id=eq.0h0v.s4.39b3d26de946 from=translated src=- shape=75e56051 vocab=4953b946
+-/
 lemma fdPolygon_match_t1 :
     fdPolygonSeg1 1 = fdPolygonSeg2 1 := by
   simp only [fdPolygonSeg1, fdPolygonSeg2,
     chordSegment, HHeight, rho', sub_self]
   simp
 
+/--
+@isnad1 id=eq.0h0v.s4.8fe393ea073e from=translated src=- shape=75e56051 vocab=95d9bd0f
+-/
 lemma fdPolygon_match_t2 :
     fdPolygonSeg2 2 = fdPolygonSeg3 2 := by
   simp only [fdPolygonSeg2, fdPolygonSeg3,
@@ -107,17 +140,26 @@ lemma fdPolygon_match_t2 :
     show (2 : ℝ) - 2 = 0 by ring, sub_self]
   simp
 
+/--
+@isnad1 id=eq.0h0v.s4.d27970e41262 from=translated src=- shape=75e56051 vocab=d9624948
+-/
 lemma fdPolygon_match_t3 :
     fdPolygonSeg3 3 = fdPolygonSeg4 3 := by
   simp only [fdPolygonSeg3, fdPolygonSeg4,
     chordSegment, rho, HHeight, show (3 : ℝ) - 2 = 1 by ring, sub_self]
   simp
 
+/--
+@isnad1 id=eq.0h0v.s4.6172a0ac6eea from=translated src=- shape=75e56051 vocab=da801dc5
+-/
 lemma fdPolygon_match_t4 :
     fdPolygonSeg4 4 = fdPolygonSeg5 4 := by
   simp only [fdPolygonSeg4, fdPolygonSeg5, HHeight]
   push_cast; ring
 
+/--
+@isnad1 id=continuo.0h0v.s4.05ab2ecd5079 from=translated src=- shape=54c8eceb vocab=7dfcfaae
+-/
 lemma fdPolygon_continuous : Continuous fdPolygon := by
   have hf : ∀ a : ℝ, frontier {x : ℝ | x ≤ a} = {a} := fun _ => frontier_Iic
   have h_full : Continuous (fun t =>
@@ -145,16 +187,25 @@ lemma fdPolygon_continuous : Continuous fdPolygon := by
           · exact fdPolygon_seg5_continuous
   exact h_full
 
+/--
+@isnad1 id=eq.0h0v.s4.705837c8af04 from=translated src=- shape=31c619a8 vocab=af55cd44
+-/
 lemma fdPolygon_closed : fdPolygon 0 = fdPolygon 5 := by
   simp only [fdPolygon, show ¬(5 : ℝ) ≤ 1 from by norm_num, show ¬(5 : ℝ) ≤ 2 from by norm_num,
     show ¬(5 : ℝ) ≤ 3 from by norm_num, show ¬(5 : ℝ) ≤ 4 from by norm_num,
     show (0 : ℝ) ≤ 1 from by norm_num, ↓reduceIte, HHeight]
   push_cast; ring
 
+/--
+@isnad1 id=eq.0h0v.s6.fb73d6f32334 from=translated src=- shape=08c889d9 vocab=f2ab5641
+-/
 lemma Complex.deriv_ofReal' :
     deriv (fun t : ℝ => (↑t : ℂ)) = fun _ => 1 :=
   funext fun t => (Complex.ofRealCLM.hasDerivAt (x := t)).deriv
 
+/--
+@isnad1 id=eq.0h2v.s6.09a2424f5e41 from=translated src=- shape=041afb01 vocab=469e1c8b
+-/
 lemma deriv_affine_mul (a b : ℂ) :
     deriv (fun t : ℝ => a + ↑t * b) = fun _ => b := by
   ext t
@@ -162,6 +213,9 @@ lemma deriv_affine_mul (a b : ℂ) :
     (hasDerivAt_const t a).add (Complex.ofRealCLM.hasDerivAt.mul_const b)
   simpa using h_add.deriv
 
+/--
+@isnad1 id=eq.0h3v.s6.2a0bbea8d7ae from=translated src=- shape=fb208b8f vocab=25f51c00
+-/
 lemma deriv_affine_shifted_mul (a b : ℂ) (c : ℝ) :
     deriv (fun t : ℝ => a + (↑t - ↑c) * b) = fun _ => b := by
   ext t
@@ -171,6 +225,9 @@ lemma deriv_affine_shifted_mul (a b : ℂ) (c : ℝ) :
     (hasDerivAt_const t a).add (by simpa using h_sub.mul_const b)
   simpa using h_add.deriv
 
+/--
+@isnad1 id=eq.0h0v.s6.36a88f347ad8 from=translated src=- shape=b30e4765 vocab=14f54098
+-/
 lemma fdPolygon_deriv_seg1 :
     deriv fdPolygonSeg1 =
       fun _ => -(HHeight - Real.sqrt 3 / 2) * I := by
@@ -178,6 +235,9 @@ lemma fdPolygon_deriv_seg1 :
         (-(HHeight - Real.sqrt 3 / 2) * I) := by ext t; simp only [fdPolygonSeg1]; ring
   rw [hrw, deriv_affine_mul]
 
+/--
+@isnad1 id=eq.0h0v.s6.784cd4e7f8c6 from=translated src=- shape=eb5deafc vocab=5a1544e4
+-/
 lemma fdPolygon_deriv_seg2 :
     deriv fdPolygonSeg2 = fun _ => iPoint - rho' := by
   have hrw : fdPolygonSeg2 = fun (t : ℝ) =>
@@ -189,6 +249,9 @@ lemma fdPolygon_deriv_seg2 :
     ring
   rw [hrw, deriv_affine_shifted_mul]
 
+/--
+@isnad1 id=eq.0h0v.s6.5a7ff7b89531 from=translated src=- shape=eb5deafc vocab=0e791e5c
+-/
 lemma fdPolygon_deriv_seg3 :
     deriv fdPolygonSeg3 = fun _ => rho - iPoint := by
   have hrw : fdPolygonSeg3 = fun (t : ℝ) =>
@@ -200,6 +263,9 @@ lemma fdPolygon_deriv_seg3 :
     push_cast; ring
   rw [hrw, deriv_affine_shifted_mul]
 
+/--
+@isnad1 id=eq.0h0v.s6.29b576a9befb from=translated src=- shape=2639b612 vocab=4bb690e8
+-/
 lemma fdPolygon_deriv_seg4 :
     deriv fdPolygonSeg4 =
       fun _ => (HHeight - Real.sqrt 3 / 2) * I := by
@@ -210,6 +276,9 @@ lemma fdPolygon_deriv_seg4 :
     push_cast; ring
   rw [hrw, deriv_affine_shifted_mul]
 
+/--
+@isnad1 id=eq.0h0v.s6.10e2a535f72c from=translated src=- shape=dcdef0ad vocab=cbec4bf5
+-/
 lemma fdPolygon_deriv_seg5 :
     deriv fdPolygonSeg5 = fun _ => 1 := by
   have hrw : fdPolygonSeg5 = fun (t : ℝ) => (-(9 : ℂ)/2 + HHeight * I) + ↑t * (1 : ℂ) := by
@@ -228,12 +297,18 @@ private lemma differentiable_affine_shifted_mul (a b c : ℂ) :
   (differentiable_const _).add
     ((Complex.ofRealCLM.differentiable.sub (differentiable_const _)).mul (differentiable_const _))
 
+/--
+@isnad1 id=differen.0h0v.s6.04b9a5cff529 from=translated src=- shape=4ce37f0a vocab=47ffd526
+-/
 lemma fdPolygon_seg1_differentiable :
     Differentiable ℝ fdPolygonSeg1 := by
   have h : fdPolygonSeg1 = fun (t : ℝ) => ((1 : ℂ)/2 + HHeight * I) + ↑t *
         (-(HHeight - Real.sqrt 3 / 2) * I) := by ext t; simp only [fdPolygonSeg1]; ring
   rw [h]; exact differentiable_affine_mul _ _
 
+/--
+@isnad1 id=differen.0h0v.s6.391aa70e0c02 from=translated src=- shape=4ce37f0a vocab=9f74b85d
+-/
 lemma fdPolygon_seg2_differentiable :
     Differentiable ℝ fdPolygonSeg2 := by
   have h : fdPolygonSeg2 = fun (t : ℝ) =>
@@ -245,6 +320,9 @@ lemma fdPolygon_seg2_differentiable :
     ring
   rw [h]; exact differentiable_affine_shifted_mul _ _ _
 
+/--
+@isnad1 id=differen.0h0v.s6.4af6cc78f27c from=translated src=- shape=4ce37f0a vocab=a3c81c6d
+-/
 lemma fdPolygon_seg3_differentiable :
     Differentiable ℝ fdPolygonSeg3 := by
   have h : fdPolygonSeg3 = fun (t : ℝ) =>
@@ -256,6 +334,9 @@ lemma fdPolygon_seg3_differentiable :
     ring
   rw [h]; exact differentiable_affine_shifted_mul _ _ _
 
+/--
+@isnad1 id=differen.0h0v.s6.16d7d81d8dae from=translated src=- shape=4ce37f0a vocab=10425f81
+-/
 lemma fdPolygon_seg4_differentiable :
     Differentiable ℝ fdPolygonSeg4 := by
   have h : fdPolygonSeg4 = fun (t : ℝ) => (-(1 : ℂ)/2 + (Real.sqrt 3 / 2) * I) + (↑t - (3 : ℂ)) *
@@ -264,6 +345,9 @@ lemma fdPolygon_seg4_differentiable :
     push_cast; ring
   rw [h]; exact differentiable_affine_shifted_mul _ _ _
 
+/--
+@isnad1 id=differen.0h0v.s6.1731c975ac35 from=translated src=- shape=4ce37f0a vocab=cb67a2c2
+-/
 lemma fdPolygon_seg5_differentiable :
     Differentiable ℝ fdPolygonSeg5 := by
   have h : fdPolygonSeg5 = fun (t : ℝ) => (-(9 : ℂ)/2 + HHeight * I) + ↑t * (1 : ℂ) := by
@@ -271,6 +355,9 @@ lemma fdPolygon_seg5_differentiable :
     push_cast; ring
   rw [h]; exact differentiable_affine_mul _ _
 
+/--
+@isnad1 id=differen.2h1v.s7.25193ed63096 from=translated src=- shape=9ab5e099 vocab=21739fee
+-/
 lemma fdPolygon_differentiableAt_off_partition (t : ℝ) (ht : t ∈ Ioo 0 5)
     (ht_not_P : t ∉ ({1, 2, 3, 4} : Finset ℝ)) :
     DifferentiableAt ℝ fdPolygon t := by
@@ -339,9 +426,15 @@ lemma fdPolygon_differentiableAt_off_partition (t : ℝ) (ht : t ∈ Ioo 0 5)
               ite_false, fdPolygonSeg5]
           exact fdPolygon_seg5_differentiable.differentiableAt.congr_of_eventuallyEq heq
 
+/--
+@isnad1 id=eq.0h0v.s5.4a3a1c094823 from=translated src=- shape=11cba658 vocab=a42198c0
+-/
 lemma fdPolygon_seg1_deriv_val :
     -(HHeight - Real.sqrt 3 / 2) * I = -I := by simp only [HHeight]; push_cast; ring
 
+/--
+@isnad1 id=eq.0h0v.s5.eca7ade5862e from=translated src=- shape=aaf81d90 vocab=2dc5b011
+-/
 lemma fdPolygon_seg4_deriv_val : (HHeight - Real.sqrt 3 / 2) * I = I := by
   simp only [HHeight]; push_cast; ring
 

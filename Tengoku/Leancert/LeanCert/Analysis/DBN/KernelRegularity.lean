@@ -8,6 +8,9 @@ namespace LeanCert.Analysis.DBN
 open Set Filter MeasureTheory
 open scoped Topology
 
+/--
+@isnad1 id=continuo.0h0v.s3.85be1e23a07b from=translated src=- shape=e3d48bcb vocab=ec2c9cee
+-/
 theorem continuous_Phi : Continuous Phi := by
   rw [continuous_iff_continuousAt]
   intro x
@@ -38,10 +41,19 @@ theorem continuous_Phi : Continuous Phi := by
 /-- The even extension is used only as a real integration kernel. -/
 noncomputable def evenPhi (u : ℝ) : ℝ := Phi |u|
 
+/--
+@isnad1 id=continuo.0h0v.s3.9794ba0d59b2 from=translated src=- shape=e3d48bcb vocab=f5c7294f
+-/
 theorem continuous_evenPhi : Continuous evenPhi := continuous_Phi.comp continuous_abs
 
+/--
+@isnad1 id=lt.0h1v.s3.54a186ec2c89 from=translated src=- shape=8a62b088 vocab=8490a070
+-/
 theorem evenPhi_pos (u : ℝ) : 0 < evenPhi u := Phi_pos (abs_nonneg u)
 
+/--
+@isnad1 id=le.0h1v.s5.bfce4ad935b0 from=translated src=- shape=bc7d4a86 vocab=9c31c043
+-/
 theorem evenPhi_bound (u : ℝ) :
     ‖evenPhi u‖ ≤ (44*Real.exp 1) * Real.exp (-u^2) := by
   have h := Phi_bound_nonneg (abs_nonneg u)
@@ -53,6 +65,9 @@ theorem evenPhi_bound (u : ℝ) :
   have hk := kernelScale_ge_exp (u := |u|)
   nlinarith [sq_abs u, abs_nonneg u, sq_nonneg u]
 
+/--
+@isnad1 id=integrab.0h0v.s4.a0eacdc1457e from=translated src=- shape=e14394ff vocab=ec5aa457
+-/
 theorem integrable_evenPhi : Integrable evenPhi := by
   apply ((integrable_exp_neg_mul_sq (by norm_num : (0 : ℝ) < 1)).const_mul
     (44*Real.exp 1)).mono' continuous_evenPhi.aestronglyMeasurable

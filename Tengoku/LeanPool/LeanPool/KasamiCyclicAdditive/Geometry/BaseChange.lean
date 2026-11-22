@@ -42,7 +42,9 @@ noncomputable def basePt (K F : Type*) [Field K] [DecidableEq K]
       (curveCast (ferZ_baseChange (K := K))).symm.toAddMonoidHom)
 
 omit [CharP K 2] [CharP F 2] in
-/-- `basePt` sends an affine point to the point with base-changed coordinates. -/
+/-- `basePt` sends an affine point to the point with base-changed coordinates.
+@isnad1 id=eq.2h4v.s9.5c3059ea2c76 from=translated src=- shape=b1228cea vocab=7d8dbb99
+-/
 lemma basePt_some {x y : K} (hns : (fer K).toAffine.Nonsingular x y)
     (hns2 : (fer F).toAffine.Nonsingular (algebraMap K F x) (algebraMap K F y)) :
     basePt K F (Affine.Point.some _ _ hns) = Affine.Point.some _ _ hns2 := by
@@ -54,7 +56,9 @@ lemma basePt_some {x y : K} (hns : (fer K).toAffine.Nonsingular x y)
     WeierstrassCurve.Affine.Point.map_some, curveCast_some]
   simp only [Algebra.ofId_apply]
 
-/-- `basePt` maps affine Fermat points to affine Fermat points. -/
+/-- `basePt` maps affine Fermat points to affine Fermat points.
+@isnad1 id=eq.1h4v.s8.f0742edde4c4 from=translated src=- shape=47759a3c vocab=573843ea
+-/
 lemma basePt_pt {w t : K} (h : w ^ 3 + t ^ 3 = 1) :
     basePt K F (pt w t h) = pt (algebraMap K F w) (algebraMap K F t)
       (by rw [← map_pow, ← map_pow, ← map_add, h, map_one]) := by
@@ -72,7 +76,9 @@ lemma basePt_pt {w t : K} (h : w ^ 3 + t ^ 3 = 1) :
   rw [pt, basePt_some (chart_nonsingular h) hns2, pt]
   refine some_eq_some _ _ ?_ ?_ <;> simp [hx, hy]
 
-/-- `basePt` maps points at infinity to points at infinity. -/
+/-- `basePt` maps points at infinity to points at infinity.
+@isnad1 id=eq.1h3v.s8.05868b1d626e from=translated src=- shape=30122646 vocab=3b37652d
+-/
 lemma basePt_ptInf {a : K} (ha : a ^ 3 = 1) :
     basePt K F (ptInf a ha) = ptInf (algebraMap K F a) (by rw [← map_pow, ha, map_one]) := by
   by_cases ha1 : a = 1
@@ -89,7 +95,9 @@ lemma basePt_ptInf {a : K} (ha : a ^ 3 = 1) :
       ptInf_ne_one _ ha1']
     exact some_eq_some _ _ (map_zero (algebraMap K F)) rfl
 
-/-- **Naturality of `basePt` with respect to Frobenius.** -/
+/-- **Naturality of `basePt` with respect to Frobenius.**
+@isnad1 id=eq.0h3v.s9.06c03cf38285 from=translated src=- shape=739078ac vocab=d1e43e54
+-/
 theorem basePt_frobPt (x : (fer K).toAffine.Point) :
     basePt K F (frobPt K x) = frobPt F (basePt K F x) := by
   rcases point_repr x with rfl | ⟨a, ha, rfl⟩ | ⟨w, t, h, rfl⟩
@@ -102,13 +110,17 @@ theorem basePt_frobPt (x : (fer K).toAffine.Point) :
       frobPt_pt (by rw [← map_pow, ← map_pow, ← map_add, h, map_one])]
     refine pt_congr _ _ ?_ ?_ <;> rw [map_pow]
 
-/-- **Naturality of `basePt` with respect to `gMap`.** -/
+/-- **Naturality of `basePt` with respect to `gMap`.**
+@isnad1 id=eq.0h5v.s8.9678175a292c from=translated src=- shape=aedc15d0 vocab=b0269bcb
+-/
 theorem basePt_gMap (a b : ℤ) (x : (fer K).toAffine.Point) :
     basePt K F (Isogeny.gMap (frobPt K) a b x)
       = Isogeny.gMap (frobPt F) a b (basePt K F x) := by
   simp only [Isogeny.gMap, map_sub, map_zsmul, basePt_frobPt]
 
-/-- `basePt` commutes with `t3`. -/
+/-- `basePt` commutes with `t3`.
+@isnad1 id=eq.0h2v.s7.9422736579ac from=translated src=- shape=b3715f1b vocab=f1e6552e
+-/
 theorem basePt_t3 : basePt K F (t3 K) = t3 F := by
   rw [t3, t3, basePt_pt]
   refine pt_congr _ _ ?_ ?_ <;> simp

@@ -43,17 +43,28 @@ noncomputable def netGrowth (lam u s : ℝ) : ℝ :=
   lam / Real.sqrt (1 + s ^ 2) -
     lam * (1 + s ^ 2) / ((1 + u ^ 2) * Real.sqrt (1 + u ^ 2))
 
+/--
+@isnad1 id=lt.0h1v.s5.17bc9c77b017 from=translated src=- shape=b7e566ab vocab=65df512c
+-/
 theorem one_add_sq_pos (s : ℝ) : 0 < 1 + s ^ 2 := by
   positivity
 
+/--
+@isnad1 id=lt.0h1v.s5.2b99a925531c from=translated src=- shape=2f69cd06 vocab=08bd26e6
+-/
 theorem radius_pos (s : ℝ) : 0 < Real.sqrt (1 + s ^ 2) :=
   Real.sqrt_pos.2 (one_add_sq_pos s)
 
+/--
+@isnad1 id=lt.0h1v.s6.cfdd5a26c600 from=translated src=- shape=c2a5a46a vocab=3451a401
+-/
 theorem dampingDenominator_pos (u : ℝ) :
     0 < (1 + u ^ 2) * Real.sqrt (1 + u ^ 2) :=
   mul_pos (one_add_sq_pos u) (radius_pos u)
 
-/-- The three-halves denominator is the cube of the positive square root. -/
+/-- The three-halves denominator is the cube of the positive square root.
+@isnad1 id=eq.0h1v.s6.863decea0863 from=translated src=- shape=67f20136 vocab=0c7948ee
+-/
 theorem dampingDenominator_eq_radius_cube (u : ℝ) :
     (1 + u ^ 2) * Real.sqrt (1 + u ^ 2) = (Real.sqrt (1 + u ^ 2)) ^ 3 := by
   calc
@@ -62,7 +73,9 @@ theorem dampingDenominator_eq_radius_cube (u : ℝ) :
           rw [Real.sq_sqrt (le_of_lt (one_add_sq_pos u))]
     _ = (Real.sqrt (1 + u ^ 2)) ^ 3 := by ring
 
-/-- Squaring the proposed positive eigenvalue gives the reference discriminant. -/
+/-- Squaring the proposed positive eigenvalue gives the reference discriminant.
+@isnad1 id=eq.0h2v.s6.f94efbd58dc1 from=translated src=- shape=2ab225f5 vocab=dca88b51
+-/
 theorem reference_eigenvalue_square (lam s : ℝ) :
     (lam / Real.sqrt (1 + s ^ 2)) ^ 2 = lam ^ 2 / (1 + s ^ 2) := by
   rw [div_pow, Real.sq_sqrt (le_of_lt (one_add_sq_pos s))]
@@ -72,23 +85,30 @@ theorem reference_eigenvalue_square (lam s : ℝ) :
 Here `a = 2 F₀ Nθ` and `b = -(2 F₀ Nθ + |g₀|)` in the manuscript.
 The hypothesis is the manuscript's definition of the squared reference rate;
 its positivity from the geometric cone is not assumed to have been established.
+@isnad1 id=eq.1h4v.s7.c47a988ab1c6 from=translated src=- shape=9ee7aa93 vocab=364e2648
 -/
 theorem reference_characteristic_equation {a b lam s : ℝ} (hdisc : lam ^ 2 = a * b) :
     (lam / Real.sqrt (1 + s ^ 2)) ^ 2 - (a / (1 + s ^ 2)) * b = 0 := by
   rw [reference_eigenvalue_square, hdisc]
   ring
 
-/-- Reversing the sign of the slot parameter does not change the growth. -/
+/-- Reversing the sign of the slot parameter does not change the growth.
+@isnad1 id=eq.0h3v.s4.92bc0ab1587d from=translated src=- shape=eaf4a99a vocab=fcc90486
+-/
 theorem netGrowth_even (lam u s : ℝ) :
     netGrowth lam u (-s) = netGrowth lam u s := by
   simp [netGrowth]
 
-/-- The prescribed damping exactly cancels growth at the threshold. -/
+/-- The prescribed damping exactly cancels growth at the threshold.
+@isnad1 id=eq.0h2v.s4.d5c3986cf191 from=translated src=- shape=c2a510d9 vocab=9cdf258d
+-/
 theorem netGrowth_at_threshold (lam u : ℝ) : netGrowth lam u u = 0 := by
   unfold netGrowth
   field_simp [ne_of_gt (one_add_sq_pos u), ne_of_gt (radius_pos u)]; ring
 
-/-- Strict decrease in squared distance from zero, for a positive reference rate. -/
+/-- Strict decrease in squared distance from zero, for a positive reference rate.
+@isnad1 id=lt.2h4v.s6.5eb362d951cc from=translated src=- shape=c677a8fe vocab=c502563c
+-/
 theorem netGrowth_strictAnti_sq {lam u s t : ℝ} (hlam : 0 < lam)
     (hst : s ^ 2 < t ^ 2) : netGrowth lam u t < netGrowth lam u s := by
   have hst' : 1 + s ^ 2 < 1 + t ^ 2 := by linarith
@@ -102,17 +122,24 @@ theorem netGrowth_strictAnti_sq {lam u s t : ℝ} (hlam : 0 < lam)
     div_lt_div_of_pos_right (mul_lt_mul_of_pos_left hst' hlam) (dampingDenominator_pos u)
   exact sub_lt_sub hg hd
 
+/--
+@isnad1 id=eq.1h4v.s5.e6e8bf1ae81b from=translated src=- shape=8361d77d vocab=d9e0df4a
+-/
 theorem netGrowth_eq_of_sq_eq {lam u s t : ℝ} (hst : s ^ 2 = t ^ 2) :
     netGrowth lam u s = netGrowth lam u t := by
   simp only [netGrowth, hst]
 
-/-- Growth is positive strictly inside either threshold. -/
+/-- Growth is positive strictly inside either threshold.
+@isnad1 id=lt.2h3v.s5.1f618ba86ea0 from=translated src=- shape=af8d68d9 vocab=f208a8d2
+-/
 theorem netGrowth_pos_of_abs_lt {lam u s : ℝ} (hlam : 0 < lam)
     (hs : |s| < |u|) : 0 < netGrowth lam u s := by
   have h := netGrowth_strictAnti_sq (u := u) hlam (sq_lt_sq.2 hs)
   simpa only [netGrowth_at_threshold] using h
 
-/-- Growth vanishes at both signed thresholds. -/
+/-- Growth vanishes at both signed thresholds.
+@isnad1 id=eq.1h3v.s4.510bd35af737 from=translated src=- shape=57738cb4 vocab=c0f3f2c3
+-/
 theorem netGrowth_zero_of_abs_eq {lam u s : ℝ} (hs : |s| = |u|) :
     netGrowth lam u s = 0 := by
   have hsq : s ^ 2 = u ^ 2 := by
@@ -122,13 +149,17 @@ theorem netGrowth_zero_of_abs_eq {lam u s : ℝ} (hs : |s| = |u|) :
       _ = u ^ 2 := sq_abs u
   rw [netGrowth_eq_of_sq_eq hsq, netGrowth_at_threshold]
 
-/-- Growth is negative outside either threshold. -/
+/-- Growth is negative outside either threshold.
+@isnad1 id=lt.2h3v.s5.efecbc55b0a1 from=translated src=- shape=3df95126 vocab=f208a8d2
+-/
 theorem netGrowth_neg_of_abs_gt {lam u s : ℝ} (hlam : 0 < lam)
     (hs : |u| < |s|) : netGrowth lam u s < 0 := by
   have h := netGrowth_strictAnti_sq (u := u) hlam (sq_lt_sq.2 hs)
   simpa only [netGrowth_at_threshold] using h
 
-/-- A complete positive/zero/negative classification for a positive reference rate. -/
+/-- A complete positive/zero/negative classification for a positive reference rate.
+@isnad1 id=and.1h3v.s6.1bb2e75bd7aa from=translated src=- shape=4f6f03cd vocab=f208a8d2
+-/
 theorem netGrowth_sign {lam u s : ℝ} (hlam : 0 < lam) :
     (0 < netGrowth lam u s ↔ |s| < |u|) ∧
     (netGrowth lam u s = 0 ↔ |s| = |u|) ∧
@@ -153,7 +184,9 @@ theorem netGrowth_sign {lam u s : ℝ} (hlam : 0 < lam) :
     · constructor <;> intro h <;> linarith
     · exact ⟨fun _ => hs, fun _ => hg⟩
 
-/-- For positive magnitudes the reference growth is strictly decreasing. -/
+/-- For positive magnitudes the reference growth is strictly decreasing.
+@isnad1 id=strictan.1h2v.s5.437eaa019e6c from=translated src=- shape=d757789d vocab=be410114
+-/
 theorem netGrowth_strictAntiOn_nonneg {lam u : ℝ} (hlam : 0 < lam) :
     StrictAntiOn (netGrowth lam u) (Set.Ici 0) := by
   intro s hs t ht hst
@@ -166,29 +199,43 @@ theorem netGrowth_strictAntiOn_nonneg {lam u : ℝ} (hlam : 0 < lam) :
 /-- Magnitude of either signed schedule, in the slot-time variable. -/
 noncomputable def slotMagnitude (u ell v : ℝ) : ℝ := u / 2 + u * v / ell
 
+/--
+@isnad1 id=eq.1h2v.s5.a9ceca591811 from=translated src=- shape=c2569405 vocab=dd055ee4
+-/
 theorem slotMagnitude_midpoint (u ell : ℝ) (hell : ell ≠ 0) :
     slotMagnitude u ell (ell / 2) = u := by
   unfold slotMagnitude
   field_simp; ring
 
+/--
+@isnad1 id=le.3h3v.s5.7ca29be96a68 from=translated src=- shape=10bfa5ba vocab=fc138678
+-/
 theorem slotMagnitude_nonneg {u ell v : ℝ} (hu : 0 ≤ u) (hell : 0 < ell)
     (hv : 0 ≤ v) : 0 ≤ slotMagnitude u ell v := by
   unfold slotMagnitude
   positivity
 
+/--
+@isnad1 id=lt.3h3v.s5.d7b6e2fc53c0 from=translated src=- shape=739a9b58 vocab=458dba04
+-/
 theorem slotMagnitude_lt_threshold {u ell v : ℝ} (hu : 0 < u) (hell : 0 < ell)
     (hv : v < ell / 2) : slotMagnitude u ell v < u := by
   have hdiv : u * v / ell < u / 2 := (div_lt_iff₀ hell).2 (by nlinarith)
   unfold slotMagnitude
   linarith
 
+/--
+@isnad1 id=lt.3h3v.s5.7537fd8b1503 from=translated src=- shape=9919aff1 vocab=458dba04
+-/
 theorem slotMagnitude_gt_threshold {u ell v : ℝ} (hu : 0 < u) (hell : 0 < ell)
     (hv : ell / 2 < v) : u < slotMagnitude u ell v := by
   have hdiv : u / 2 < u * v / ell := (lt_div_iff₀ hell).2 (by nlinarith)
   unfold slotMagnitude
   linarith
 
-/-- Positive reference growth on the first half of a slot. -/
+/-- Positive reference growth on the first half of a slot.
+@isnad1 id=lt.5h4v.s6.a18a927e4f63 from=translated src=- shape=d8d66584 vocab=24b2177b
+-/
 theorem netGrowth_slot_positive {lam u ell v : ℝ} (hlam : 0 < lam) (hu : 0 < u)
     (hell : 0 < ell) (hv : 0 ≤ v) (hmid : v < ell / 2) :
     0 < netGrowth lam u (slotMagnitude u ell v) := by
@@ -196,12 +243,16 @@ theorem netGrowth_slot_positive {lam u ell v : ℝ} (hlam : 0 < lam) (hu : 0 < u
   rw [abs_of_nonneg (slotMagnitude_nonneg (le_of_lt hu) hell hv), abs_of_pos hu]
   exact slotMagnitude_lt_threshold hu hell hmid
 
-/-- Zero reference growth at the slot midpoint. -/
+/-- Zero reference growth at the slot midpoint.
+@isnad1 id=eq.1h3v.s5.ac75c8c262e5 from=translated src=- shape=e768512c vocab=6e3e0fa6
+-/
 theorem netGrowth_slot_midpoint (lam u ell : ℝ) (hell : ell ≠ 0) :
     netGrowth lam u (slotMagnitude u ell (ell / 2)) = 0 := by
   rw [slotMagnitude_midpoint u ell hell, netGrowth_at_threshold]
 
-/-- Negative reference growth on the second half of a slot (and beyond). -/
+/-- Negative reference growth on the second half of a slot (and beyond).
+@isnad1 id=lt.4h4v.s6.5f64afc71993 from=translated src=- shape=b9b62b40 vocab=b1ad48fe
+-/
 theorem netGrowth_slot_negative {lam u ell v : ℝ} (hlam : 0 < lam) (hu : 0 < u)
     (hell : 0 < ell) (hmid : ell / 2 < v) :
     netGrowth lam u (slotMagnitude u ell v) < 0 := by
@@ -226,7 +277,9 @@ open Set MeasureTheory
 noncomputable def envelope (rate : ℝ → ℝ) (midpoint time : ℝ) : ℝ :=
   Real.exp (∫ x in midpoint..time, rate x)
 
-/-- Exact integral of a centered affine rate, for either order of the endpoints. -/
+/-- Exact integral of a centered affine rate, for either order of the endpoints.
+@isnad1 id=eq.0h4v.s7.90e0fa66d98b from=translated src=- shape=c21857ff vocab=90dafb4d
+-/
 theorem integral_centered_linear (k midpoint a b : ℝ) :
     (∫ x in a..b, k * (x - midpoint)) =
       k * ((b - midpoint) ^ 2 - (a - midpoint) ^ 2) / 2 := by
@@ -242,6 +295,7 @@ theorem integral_centered_linear (k midpoint a b : ℝ) :
 
 No ordering of `midpoint` and `time` is assumed.  In the backwards case, both the
 pointwise comparison and the oriented integral reverse order.
+@isnad1 id=and.7h6v.s8.6571904d1ffb from=translated src=- shape=7cd2858e vocab=734ca54d
 -/
 theorem integral_quadratic_bounds {D : Set ℝ} {rate : ℝ → ℝ}
     {midpoint time lower upper : ℝ} (hD : Convex ℝ D)
@@ -298,7 +352,9 @@ theorem integral_quadratic_bounds {D : Set ℝ} {rate : ℝ → ℝ}
     rw [intervalIntegral.integral_symm time midpoint]
     constructor <;> linarith
 
-/-- Gaussian upper and lower bounds with the manuscript's slot-length normalization. -/
+/-- Gaussian upper and lower bounds with the manuscript's slot-length normalization.
+@isnad1 id=and.7h7v.s8.cf3d900ad9a1 from=translated src=- shape=26a9b644 vocab=4a7cde28
+-/
 theorem gaussian_envelope_bounds {D : Set ℝ} {rate : ℝ → ℝ}
     {midpoint time c C ell : ℝ} (hD : Convex ℝ D)
     (hcont : ContinuousOn rate D)
@@ -317,14 +373,22 @@ theorem gaussian_envelope_bounds {D : Set ℝ} {rate : ℝ → ℝ}
     convert! hu using 1
     ring
 
+/--
+@isnad1 id=eq.0h2v.s4.0f0cd0d7604c from=translated src=- shape=4fd65d72 vocab=3f04976b
+-/
 @[simp] theorem envelope_at_midpoint (rate : ℝ → ℝ) (midpoint : ℝ) :
     envelope rate midpoint midpoint = 1 := by
   simp [envelope]
 
+/--
+@isnad1 id=lt.0h3v.s4.f9906b1abbaf from=translated src=- shape=62aad4cb vocab=5727705c
+-/
 theorem envelope_pos (rate : ℝ → ℝ) (midpoint time : ℝ) :
     0 < envelope rate midpoint time := Real.exp_pos _
 
-/-- For positive `c` and slot length the midpoint is the unique maximum on the domain. -/
+/-- For positive `c` and slot length the midpoint is the unique maximum on the domain.
+@isnad1 id=lt.10h7v.s8.b699eb125435 from=translated src=- shape=4eb97522 vocab=b3181eb9
+-/
 theorem envelope_lt_one_away_from_midpoint {D : Set ℝ} {rate : ℝ → ℝ}
     {midpoint time c C ell : ℝ} (hD : Convex ℝ D)
     (hcont : ContinuousOn rate D)
@@ -346,7 +410,9 @@ noncomputable def referenceSlope (lam u s : ℝ) : ℝ :=
   -lam * s / ((1 + s ^ 2) * Real.sqrt (1 + s ^ 2)) -
     2 * lam * s / ((1 + u ^ 2) * Real.sqrt (1 + u ^ 2))
 
-/-- The displayed rate derivative is an actual derivative, including at zero. -/
+/-- The displayed rate derivative is an actual derivative, including at zero.
+@isnad1 id=hasderiv.0h3v.s5.e2cfd39faf27 from=translated src=- shape=fef50917 vocab=b0073fb9
+-/
 theorem hasDerivAt_netGrowth (lam u s : ℝ) :
     HasDerivAt (PulseGrowth.netGrowth lam u) (referenceSlope lam u s) s := by
   have hp : HasDerivAt (fun x : ℝ => 1 + x ^ 2) (2 * s) s := by
@@ -370,18 +436,26 @@ noncomputable def referenceMinSlope (lam u : ℝ) : ℝ :=
 noncomputable def referenceMaxSlope (lam u : ℝ) : ℝ :=
   3 * lam * u / 2 + 3 * lam * u / ((1 + u ^ 2) * Real.sqrt (1 + u ^ 2))
 
+/--
+@isnad1 id=lt.2h2v.s5.a1f4d8891443 from=translated src=- shape=6c67d60b vocab=82b68531
+-/
 theorem referenceMinSlope_pos {lam u : ℝ} (hlam : 0 < lam) (hu : 0 < u) :
     0 < referenceMinSlope lam u := by
   unfold referenceMinSlope
   exact div_pos (mul_pos hlam hu) (PulseGrowth.dampingDenominator_pos u)
 
+/--
+@isnad1 id=lt.2h2v.s5.f18c211389fc from=translated src=- shape=6c67d60b vocab=0ed4d031
+-/
 theorem referenceMaxSlope_pos {lam u : ℝ} (hlam : 0 < lam) (hu : 0 < u) :
     0 < referenceMaxSlope lam u := by
   unfold referenceMaxSlope
   exact add_pos (div_pos (mul_pos (mul_pos (by norm_num) hlam) hu) (by norm_num))
     (div_pos (mul_pos (mul_pos (by norm_num) hlam) hu) (PulseGrowth.dampingDenominator_pos u))
 
-/-- Explicit, slot-length-independent bounds on the reference derivative. -/
+/-- Explicit, slot-length-independent bounds on the reference derivative.
+@isnad1 id=and.3h3v.s6.7038f0543bc5 from=translated src=- shape=dd76fe79 vocab=e7102ac6
+-/
 theorem referenceSlope_bounds {lam u s : ℝ} (hlam : 0 < lam) (hu : 0 < u)
     (hs : s ∈ Icc (u / 2) (3 * u / 2)) :
     -referenceMaxSlope lam u ≤ referenceSlope lam u s ∧
@@ -417,6 +491,9 @@ theorem referenceSlope_bounds {lam u s : ℝ} (hlam : 0 < lam) (hu : 0 < u)
 noncomputable def referenceRate (lam u ell time : ℝ) : ℝ :=
   PulseGrowth.netGrowth lam u (PulseGrowth.slotMagnitude u ell time)
 
+/--
+@isnad1 id=hasderiv.0h4v.s6.59643f7272df from=translated src=- shape=1cc5d37c vocab=1f35ab9e
+-/
 theorem hasDerivAt_referenceRate (lam u ell time : ℝ) :
     HasDerivAt (referenceRate lam u ell)
       (referenceSlope lam u (PulseGrowth.slotMagnitude u ell time) * (u / ell)) time := by
@@ -426,6 +503,9 @@ theorem hasDerivAt_referenceRate (lam u ell time : ℝ) :
     simp
   exact (hasDerivAt_netGrowth lam u (PulseGrowth.slotMagnitude u ell time)).comp time hs
 
+/--
+@isnad1 id=mem.3h3v.s6.88168e37bf15 from=translated src=- shape=15f56a3c vocab=1c77d6b0
+-/
 theorem slotMagnitude_mem_interval {u ell time : ℝ} (hu : 0 ≤ u) (hell : 0 < ell)
     (ht : time ∈ Icc 0 ell) :
     PulseGrowth.slotMagnitude u ell time ∈ Icc (u / 2) (3 * u / 2) := by
@@ -436,7 +516,9 @@ theorem slotMagnitude_mem_interval {u ell time : ℝ} (hu : 0 ≤ u) (hell : 0 <
   unfold PulseGrowth.slotMagnitude
   constructor <;> linarith
 
-/-- Bounds on the derivative in slot time, uniformly for all positive slot lengths. -/
+/-- Bounds on the derivative in slot time, uniformly for all positive slot lengths.
+@isnad1 id=and.4h4v.s7.ea56f3c31bfd from=translated src=- shape=8bd03ba9 vocab=3f0dbbd7
+-/
 theorem referenceRate_deriv_bounds {lam u ell time : ℝ}
     (hlam : 0 < lam) (hu : 0 < u) (hell : 0 < ell) (ht : time ∈ Icc 0 ell) :
     -(u * referenceMaxSlope lam u) / ell ≤ deriv (referenceRate lam u ell) time ∧
@@ -454,6 +536,7 @@ theorem referenceRate_deriv_bounds {lam u ell time : ℝ}
 
 All analytic hypotheses of `gaussian_envelope_bounds` are proved here from the
 explicit reference formula.  The constants depend on `lam` and `u`, not `ell`.
+@isnad1 id=and.4h4v.s8.c0397ee1e745 from=translated src=- shape=89a460a4 vocab=8e7fe1b2
 -/
 theorem reference_gaussian_bounds {lam u ell time : ℝ}
     (hlam : 0 < lam) (hu : 0 < u) (hell : 0 < ell) (ht : time ∈ Icc 0 ell) :
@@ -471,7 +554,9 @@ theorem reference_gaussian_bounds {lam u ell time : ℝ}
   · exact ht
   · exact PulseGrowth.netGrowth_slot_midpoint lam u ell (ne_of_gt hell)
 
-/-- The reference envelope has positive Gaussian constants uniform in slot length. -/
+/-- The reference envelope has positive Gaussian constants uniform in slot length.
+@isnad1 id=ex.2h2v.s8.a432bd1dd213 from=translated src=- shape=61c62a18 vocab=70c37a95
+-/
 theorem reference_uniform_gaussian_bounds {lam u : ℝ} (hlam : 0 < lam) (hu : 0 < u) :
     ∃ c C : ℝ, 0 < c ∧ 0 < C ∧ ∀ ell : ℝ, 0 < ell → ∀ time ∈ Icc 0 ell,
       Real.exp (-C * (time - ell / 2) ^ 2 / ell) ≤

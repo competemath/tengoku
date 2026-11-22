@@ -37,7 +37,9 @@ noncomputable def FiniteRange.toFinset {Ω G : Type*} (X : Ω
 instance {Ω G : Type*} (X : Ω → G) [Finite G] : FiniteRange X where
   finite := Set.toFinite (Set.range X)
 
-/-- Functions ranging in a Finset have finite range -/
+/-- Functions ranging in a Finset have finite range
+@isnad1 id=finitera.1h4v.s5.addfce1c0e89 from=translated src=- shape=df816e27 vocab=dba5353a
+-/
 lemma finiteRange_of_finset {Ω G : Type*} (f : Ω → G) (A : Finset G) (h : ∀ ω, f ω ∈ A) :
     FiniteRange f := by
   constructor
@@ -47,13 +49,22 @@ lemma finiteRange_of_finset {Ω G : Type*} (f : Ω → G) (A : Finset G) (h : �
   rcases hy with ⟨ω, rfl⟩
   exact h ω
 
+/--
+@isnad1 id=eq.0h3v.s4.a47bc81b05bd from=translated src=- shape=24d1cee0 vocab=733aca8d
+-/
 lemma FiniteRange.range {Ω G : Type*} (X : Ω → G) [hX : FiniteRange X] :
     Set.range X = FiniteRange.toFinset X := by simp [FiniteRange.toFinset]
 
+/--
+@isnad1 id=mem.0h4v.s5.62cc5d3b3aea from=translated src=- shape=c8914e19 vocab=964ec056
+-/
 lemma FiniteRange.mem {Ω G : Type*} (X : Ω → G) [FiniteRange X] (ω : Ω) :
     X ω ∈ FiniteRange.toFinset X := by
   simp_rw [← Finset.mem_coe, ← FiniteRange.range X, Set.mem_range, exists_apply_eq_apply]
 
+/--
+@isnad1 id=iff.0h4v.s5.340031eb0c45 from=translated src=- shape=36b43592 vocab=964ec056
+-/
 @[simp]
 lemma FiniteRange.mem_iff {Ω G : Type*} (X : Ω → G) [FiniteRange X] (x : G) :
     x ∈ FiniteRange.toFinset X ↔ ∃ ω, X ω = x := by
@@ -81,19 +92,25 @@ instance {Ω G H : Type*} (X : Ω → G) (Y : Ω → H) [hX : FiniteRange X] [hY
     FiniteRange fun ω ↦ (X ω, Y ω) where
   finite := (hX.finite.prod hY.finite).subset (Set.range_pair_subset ..)
 
-/-- The product of functions of finite range, has finite range. -/
+/-- The product of functions of finite range, has finite range.
+@isnad1 id=finitera.0h4v.s5.fa8fb4d86070 from=translated src=- shape=ebc27b79 vocab=4f521af8
+-/
 @[to_additive /-- The sum of functions of finite range, has finite range. -/]
 instance FiniteRange.mul {Ω G : Type*} (X Y : Ω → G) [Mul G] [FiniteRange X] [FiniteRange Y] :
     FiniteRange (X * Y) := by
   change FiniteRange ((fun p ↦ p.1 * p.2) ∘ fun ω ↦ (X ω, Y ω))
   infer_instance
 
-/-- The product of functions of finite range, has finite range. -/
+/-- The product of functions of finite range, has finite range.
+@isnad1 id=finitera.0h4v.s5.77b0f2207c23 from=translated src=- shape=617c72b8 vocab=4f521af8
+-/
 @[to_additive /-- The sum of functions of finite range, has finite range. -/]
 instance FiniteRange.mul' {Ω G : Type*} (X Y : Ω → G) [Mul G] [FiniteRange X] [FiniteRange Y] :
     FiniteRange fun ω ↦ X ω * Y ω := FiniteRange.mul ..
 
-/-- The quotient of two functions with finite range, has finite range. -/
+/-- The quotient of two functions with finite range, has finite range.
+@isnad1 id=finitera.0h4v.s5.dd0ed24ccff8 from=translated src=- shape=ebc27b79 vocab=18cf73b9
+-/
 @[to_additive /-- The difference of functions of finite range, has finite range. -/]
 instance FiniteRange.div {Ω G : Type*} (X Y : Ω → G) [Div G]
     [hX : FiniteRange X] [hY : FiniteRange Y] : FiniteRange (X/Y) := by
@@ -102,6 +119,9 @@ instance FiniteRange.div {Ω G : Type*} (X Y : Ω → G) [Div G]
 
 open MeasureTheory
 
+/--
+@isnad1 id=eq.1h4v.s6.ad531bcb2536 from=translated src=- shape=020e881c vocab=f6cf7942
+-/
 lemma FiniteRange.full {Ω G : Type*} [MeasurableSpace Ω] [MeasurableSpace G]
     [MeasurableSingletonClass G] {X : Ω
       → G} (hX : Measurable X) [FiniteRange X] (μ : Measure Ω) :
@@ -111,6 +131,9 @@ lemma FiniteRange.full {Ω G : Type*} [MeasurableSpace Ω] [MeasurableSpace G]
   ext ω
   simp
 
+/--
+@isnad1 id=eq.1h4v.s5.69edc1e41af9 from=translated src=- shape=914d6012 vocab=12915493
+-/
 lemma FiniteRange.real_full {Ω G : Type*} [MeasurableSpace Ω] [MeasurableSpace G]
     [MeasurableSingletonClass G] {X : Ω
       → G} (hX : Measurable X) [FiniteRange X] (μ : Measure Ω) :
@@ -119,6 +142,9 @@ lemma FiniteRange.real_full {Ω G : Type*} [MeasurableSpace Ω] [MeasurableSpace
 
 -- `AEMeasurable X μ` is needed: without it `μ.map X` is an arbitrary Dirac mass (for `μ ≠ 0`),
 -- which need not be supported on the range of `X`.
+/--
+@isnad1 id=eq.1h4v.s6.c5bd5dac958a from=translated src=- shape=cd04aadd vocab=358962e2
+-/
 lemma FiniteRange.null_of_compl {Ω G : Type*} [MeasurableSpace Ω] [MeasurableSpace G]
     [MeasurableSingletonClass G] (μ : Measure Ω) (X : Ω → G) (hX : AEMeasurable X μ)
     [FiniteRange X] :
@@ -128,6 +154,9 @@ lemma FiniteRange.null_of_compl {Ω G : Type*} [MeasurableSpace Ω] [MeasurableS
   ext ω
   simp
 
+/--
+@isnad1 id=eventual.1h4v.s6.4294c7d795da from=translated src=- shape=712e80df vocab=04fad218
+-/
 lemma FiniteRange.ae_mem_toFinset {Ω G : Type*} [MeasurableSpace Ω] [MeasurableSpace G]
     [MeasurableSingletonClass G] (μ : Measure Ω) (X : Ω → G) (hX : AEMeasurable X μ)
     [FiniteRange X] :

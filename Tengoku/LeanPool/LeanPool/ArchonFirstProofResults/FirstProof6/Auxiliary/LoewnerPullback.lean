@@ -28,6 +28,9 @@ namespace Problem6
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
+/--
+@isnad1 id=possemid.3h5v.s8.2cf7423381d0 from=translated src=- shape=66994453 vocab=f08ad19a
+-/
 lemma sqrt_pullback_loewner
     (L : Matrix V V ℝ)
     (Lhalf : Matrix V V ℝ)
@@ -44,6 +47,9 @@ lemma sqrt_pullback_loewner
   rw [h_eq]
   exact hM.conjTranspose_mul_mul_same Lhalf
 
+/--
+@isnad1 id=isepslig.6h7v.s8.fef570cb97f9 from=translated src=- shape=9b281a7b vocab=cbbaec02
+-/
 lemma eps_light_of_loewner_bound
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (ε u : ℝ) (_hε : 0 < ε) (hu : u ≤ ε)

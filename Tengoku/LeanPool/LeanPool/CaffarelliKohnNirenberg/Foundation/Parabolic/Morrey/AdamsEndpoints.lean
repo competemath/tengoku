@@ -24,7 +24,9 @@ noncomputable section
 
 namespace CKN.Foundation.Parabolic.Morrey
 
-/-- A potential vanishes when its input vanishes almost everywhere. -/
+/-- A potential vanishes when its input vanishes almost everywhere.
+@isnad1 id=eq.1h3v.s5.c672dbbc2aed from=translated src=- shape=434c24e9 vocab=8e156702
+-/
 theorem parabolicRieszPotential_eq_zero_of_ae_eq_zero
     {β : ℝ} {f : ParabolicPoint → ℝ} (hzero : f =ᵐ[volume] 0)
     (z : ParabolicPoint) :
@@ -34,7 +36,9 @@ theorem parabolicRieszPotential_eq_zero_of_ae_eq_zero
   filter_upwards [hzero] with w hw
   simp [hw]
 
-/-- The near-field geometric constant is strictly positive. -/
+/-- The near-field geometric constant is strictly positive.
+@isnad1 id=lt.0h1v.s4.85b841478051 from=translated src=- shape=b9369acb vocab=01237e2c
+-/
 theorem parabolicHedbergNearConstant_pos {β : ℝ} :
     0 < parabolicHedbergNearConstant β := by
   unfold parabolicHedbergNearConstant

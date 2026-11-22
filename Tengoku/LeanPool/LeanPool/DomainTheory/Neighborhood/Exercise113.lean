@@ -57,14 +57,23 @@ def prefixSeq (p : ℕ → Bool) : ℕ → Str
   | 0 => []
   | (n + 1) => prefixSeq p n ++ [p n]
 
+/--
+@isnad1 id=eq.0h2v.s3.152555cf5575 from=translated src=- shape=9bea7da9 vocab=dcc9dd77
+-/
 @[simp] theorem prefixSeq_length (p : ℕ → Bool) (n : ℕ) : (prefixSeq p n).length = n := by
   induction n with
   | zero => rfl
   | succ k ih => simp [prefixSeq, ih]
 
+/--
+@isnad1 id=isprefix.0h2v.s4.82f9ede50536 from=translated src=- shape=6ae3f028 vocab=0fc5aaf1
+-/
 theorem prefixSeq_prefix_succ (p : ℕ → Bool) (n : ℕ) :
     prefixSeq p n <+: prefixSeq p (n + 1) := ⟨[p n], rfl⟩
 
+/--
+@isnad1 id=isprefix.1h3v.s4.09bbc0d9647e from=translated src=- shape=b869ca28 vocab=e7894d61
+-/
 theorem prefixSeq_mono (p : ℕ → Bool) {n m : ℕ} (h : n ≤ m) :
     prefixSeq p n <+: prefixSeq p m := by
   induction m, h using Nat.le_induction with
@@ -74,6 +83,9 @@ theorem prefixSeq_mono (p : ℕ → Bool) {n m : ℕ} (h : n ≤ m) :
 /-- The finite approximations `σₙ⊥ = (p ↾ n)⊥` along the path `p`. -/
 def branchSeq (p : ℕ → Bool) (n : ℕ) : B.Element := sigmaBot (prefixSeq p n)
 
+/--
+@isnad1 id=monotone.0h1v.s4.8107bf9c19c5 from=translated src=- shape=b3309d41 vocab=0d07d6af
+-/
 theorem branchSeq_mono (p : ℕ → Bool) : Monotone (branchSeq p) := by
   intro n m h
   exact (sigmaBot_le_iff (prefixSeq p n) (prefixSeq p m)).mpr (prefixSeq_mono p h)
@@ -85,7 +97,9 @@ picture. -/
 def branch (p : ℕ → Bool) : B.Element := B.iUnion (branchSeq p) (branchSeq_mono p)
 
 /-- `cone σ ∈ branch p` iff `σ` is an initial segment of some `p ↾ n`, i.e. `σ`
-lies on the path. -/
+lies on the path.
+@isnad1 id=iff.0h2v.s4.fb74c6346b0c from=translated src=- shape=e05f12a0 vocab=27eed661
+-/
 theorem branch_mem_iff (p : ℕ → Bool) {σ : Str} :
     (branch p).mem (cone σ) ↔ ∃ n, σ <+: prefixSeq p n := by
   constructor
@@ -97,13 +111,17 @@ theorem branch_mem_iff (p : ℕ → Bool) {σ : Str} :
       ⟨n, memB_cone σ, cone_subset_cone.mpr hn⟩
 
 /-- Every finite approximation `(p ↾ n)⊥` approximates the limit element `branch
-p`. -/
+p`.
+@isnad1 id=le.0h2v.s4.10af2b9dfa3d from=translated src=- shape=905e3a66 vocab=a0cfaf2b
+-/
 theorem branchSeq_le_branch (p : ℕ → Bool) (n : ℕ) : branchSeq p n ≤ branch p :=
   B.le_iUnion (branchSeq p) (branchSeq_mono p) n
 
 /-- Two neighbourhoods present in a common element of `|B|` have comparable
 generating prefixes
-(their cones cannot be disjoint, since the intersection is a nonempty cone). -/
+(their cones cannot be disjoint, since the intersection is a nonempty cone).
+@isnad1 id=or.2h3v.s4.c744913526f0 from=translated src=- shape=2e01c7e9 vocab=917ae068
+-/
 theorem prefix_comparable_of_mem {σ τ : Str} (y : B.Element)
     (hσ : y.mem (cone σ)) (hτ : y.mem (cone τ)) : σ <+: τ ∨ τ <+: σ := by
   have hi : y.mem (cone σ ∩ cone τ) := y.inter_mem hσ hτ
@@ -120,7 +138,9 @@ theorem prefix_comparable_of_mem {σ τ : Str} (y : B.Element)
 (maximal) element
 `branch p`: any `y` it approximates approximates it back. (These maximal elements
 are exactly the
-limit nodes along the top of the binary-tree picture.) -/
+limit nodes along the top of the binary-tree picture.)
+@isnad1 id=istotal.0h1v.s3.233e0d59a6dc from=translated src=- shape=8390ed08 vocab=365ec7bd
+-/
 theorem branch_isTotal (p : ℕ → Bool) : B.IsTotal (branch p) := by
   intro y hy X hX
   obtain ⟨σ, rfl⟩ := y.sub hX

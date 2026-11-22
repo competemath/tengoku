@@ -19,6 +19,9 @@ public import Tengoku.Seed.Algebra.Module.LinearMap.Defs
 section
 
 -- NOTE: Should be in Mathlib! But Generalize to semilinear maps first...
+/--
+@isnad1 id=eq.1h6v.s7.ea4675720446 from=translated src=- shape=fe012004 vocab=1dfc1137
+-/
 lemma LinearMap.map_finsum {ι 𝕜 : Type*} [Semiring 𝕜]
     {V : Type*} [AddCommMonoid V] [Module 𝕜 V] {W : Type*} [AddCommMonoid W] [Module 𝕜 W]
     (f : V →ₗ[𝕜] W) (a : ι → V) (ha : (Function.support a).Finite) :

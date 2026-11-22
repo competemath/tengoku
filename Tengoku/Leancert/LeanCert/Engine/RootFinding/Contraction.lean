@@ -39,7 +39,9 @@ open LeanCert.Core
 
     The key insight is that contraction of the Newton operator implies that
     f must change sign within the interval (otherwise the operator wouldn't contract).
-    This uses the structure of Newton's method, not just general contraction. -/
+    This uses the structure of Newton's method, not just general contraction.
+@isnad1 id=ex.5h3v.s6.6d8af36d6aa3 from=translated src=- shape=c335846e vocab=5317c9a6
+-/
 theorem newton_contraction_has_root (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I N : IntervalRat)
     (hN : newtonStepTM e I 0 1 = some N ∨ newtonStepSimple e I 0 = some N)
@@ -377,7 +379,9 @@ theorem newton_contraction_has_root (e : Expr) (hsupp : ADSupported e) (hvar0 : 
         · exact hx_root
 
 /-- If Newton iteration detects contraction, the root is unique in I.
-    This is THE key uniqueness theorem for Newton's method. -/
+    This is THE key uniqueness theorem for Newton's method.
+@isnad1 id=existsun.5h3v.s6.6a0dd08620fc from=translated src=- shape=dece54c8 vocab=27bf7e4d
+-/
 theorem newton_contraction_unique_root (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I N : IntervalRat)
     (hN : newtonStepTM e I 0 1 = some N ∨ newtonStepSimple e I 0 = some N)
@@ -408,7 +412,9 @@ theorem newton_contraction_unique_root (e : Expr) (hsupp : ADSupported e) (hvar0
 /-- If a root exists in J and Newton iteration doesn't return noRoot, the root is preserved.
     Key lemma for proving noRoot correctness.
 
-    Note: Uses newton_preserves_root which puts x in both J and N -/
+    Note: Uses newton_preserves_root which puts x in both J and N
+@isnad1 id=ne.4h5v.s5.119c02f1fcb4 from=translated src=- shape=a8e7c83a vocab=c281667a
+-/
 theorem newtonIntervalGo_preserves_root (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (J : IntervalRat) (iter : ℕ) (contracted : Bool)
     (x : ℝ) (hxJ : x ∈ J) (hroot : Expr.eval (fun _ => x) e = 0) :

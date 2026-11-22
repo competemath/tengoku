@@ -29,6 +29,9 @@ open scoped Real Interval
 
 noncomputable section
 
+/--
+@isnad1 id=ex.4h6v.s7.914954599538 from=translated src=- shape=6e4874a0 vocab=94cb706a
+-/
 theorem cauchyPrincipalValueIntegrand_bounded
     (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) (ε : ℝ)
     (_hε : 0 < ε)
@@ -69,6 +72,9 @@ theorem cauchyPrincipalValueIntegrand_bounded
           exact le_of_lt h⟩ h_empty
       · simp only [norm_zero, le_refl]⟩
 
+/--
+@isnad1 id=measurab.1h5v.s6.879dfbc014d7 from=translated src=- shape=59fc2df4 vocab=b8a75ae2
+-/
 lemma measurableSet_pv_support (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ)
     (ε : ℝ) (hγ_cont : ContinuousOn γ (Icc a b)) :
     MeasurableSet ({t | ε < ‖γ t - z₀‖} ∩ Icc a b) := by
@@ -95,6 +101,9 @@ lemma measurableSet_pv_support (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ)
   rw [h_eq]
   exact hU_open.measurableSet.inter isClosed_Icc.measurableSet
 
+/--
+@isnad1 id=continuo.3h6v.s8.697c0cb5b91a from=translated src=- shape=b4683f55 vocab=4e61532d
+-/
 lemma continuousOn_pv_base (f : ℂ → ℂ) (γ : ℝ → ℂ)
     (a b : ℝ) (z₀ : ℂ) (ε : ℝ)
     (hf_cont : ContinuousOn f
@@ -117,7 +126,9 @@ lemma continuousOn_pv_base (f : ℂ → ℂ) (γ : ℝ → ℂ)
       ((hγ_cont t ht_Icc).mono inter_subset_right) h_maps).mul
     ((hγ'_cont t ht_Icc).mono inter_subset_right)
 
-/-- If `f =ᶠ g` along a filter, their `limUnder` values agree. -/
+/-- If `f =ᶠ g` along a filter, their `limUnder` values agree.
+@isnad1 id=eq.1h4v.s5.ec03f2bb795d from=translated src=- shape=2f9df6c9 vocab=b7981a1e
+-/
 theorem limUnder_eventually_eq {α : Type*} [TopologicalSpace α] [Nonempty α]
     {f g : ℝ → α} {l : Filter ℝ} (h : ∀ᶠ x in l, f x = g x) :
     limUnder l f = limUnder l g := by simp only [limUnder, Filter.map_congr h]
@@ -148,6 +159,9 @@ private theorem aEStronglyMeasurable_pv_integrand
       ↓reduceIte, show ¬(ε < ‖γ t - z₀‖) from ht_S,
       ↓reduceIte]
 
+/--
+@isnad1 id=interval.5h6v.s7.0c147181542f from=translated src=- shape=804f65b2 vocab=9b2103ae
+-/
 theorem cauchyPrincipalValueIntegrand_integrable
     (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ)
     (ε : ℝ) (hε : 0 < ε) (hab : a < b)
@@ -175,7 +189,9 @@ theorem cauchyPrincipalValueIntegrand_integrable
       _ ≤ max M 0 := le_max_left M 0
   · exact Ioc_subset_Icc_self
 
-/-- Dominated convergence for principal value integrals. -/
+/-- Dominated convergence for principal value integrals.
+@isnad1 id=cauchypr.5h6v.s7.1a70baaf90cd from=translated src=- shape=3f440dbf vocab=fe4a4b33
+-/
 theorem cauchyPrincipalValue_of_dominated
     (f : ℂ → ℂ) (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ)
     (hab : a < b) (M : ℝ) (_hM : 0 < M)
@@ -239,7 +255,9 @@ private theorem pv_uniform_bound_of_continuous_aux
       _ ≤ Mg * Mγ' + 1 := by linarith
   · simp only [norm_zero]; linarith [mul_nonneg hMg_nn hMγ_nn]
 
-/-- PV exists for continuous integrands on C¹ curves. -/
+/-- PV exists for continuous integrands on C¹ curves.
+@isnad1 id=cauchypr.4h5v.s7.768d9a2266a8 from=translated src=- shape=491b36cb vocab=3b773688
+-/
 theorem cauchyPrincipalValueExists_of_continuous
     (g : ℂ → ℂ) (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) (hab : a < b)
     (hg : ContinuousOn g (γ '' Icc a b))
@@ -271,7 +289,9 @@ theorem cauchyPrincipalValueExists_of_continuous
         (by rw [uIoc_of_le hab.le]; exact Ioc_subset_Icc_self)
         le_rfl)
 
-/-- PV exists for singular 1/(z-z₀) integrands on C¹ immersions. -/
+/-- PV exists for singular 1/(z-z₀) integrands on C¹ immersions.
+@isnad1 id=cauchypr.1h2v.s7.e0b4891be5a2 from=translated src=- shape=8440817f vocab=b6bb52d3
+-/
 theorem cauchyPrincipalValueExists_of_singular_inv
     (γ : PiecewiseC1Immersion) (z₀ : ℂ)
     (h_crossing_cauchy :
@@ -308,7 +328,9 @@ theorem cauchyPrincipalValueExists_of_singular_inv
       simp only [gt_iff_lt, show ε < ‖γ.toFun t - z₀‖ from
         lt_of_lt_of_le hε.2 (hδ_le t ht), ite_true])
 
-/-- Uniform avoidance on compact sets. -/
+/-- Uniform avoidance on compact sets.
+@isnad1 id=ex.4h3v.s6.c3ef95b3e6b3 from=translated src=- shape=f31e1f09 vocab=38eda7d7
+-/
 theorem uniform_avoidance_on_compact
     (γ : ℝ → ℂ) (K : Set ℝ) (z₀ : ℂ)
     (hK_compact : IsCompact K) (hK_nonempty : K.Nonempty)

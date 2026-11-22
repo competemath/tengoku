@@ -38,6 +38,9 @@ namespace CKN.Foundation.Heat
 /-- Squared Euclidean radius in native three-dimensional coordinates. -/
 def q (z : Vec3) : ℝ := ∑ i : Fin 3, z i ^ 2
 
+/--
+@isnad1 id=lt.1h1v.s5.2b075cc6fb14 from=translated src=- shape=c87724ab vocab=73d24414
+-/
 lemma q_pos {z : Vec3} (hz : z ≠ 0) : 0 < q z := by
   have hsum : q z = vec3EuclideanNorm z ^ 2 := by
     unfold q vec3EuclideanNorm
@@ -51,6 +54,9 @@ lemma q_pos {z : Vec3} (hz : z ≠ 0) : 0 < q z := by
     exact (WithLp.toLp_eq_zero 2).mp hzero
   positivity
 
+/--
+@isnad1 id=eq.0h1v.s4.ece41d8c710e from=translated src=- shape=e6afff14 vocab=5ed785a2
+-/
 lemma q_eq_vec3Norm_sq (z : Vec3) :
     q z = vec3EuclideanNorm z ^ 2 := by
   unfold q vec3EuclideanNorm
@@ -117,6 +123,9 @@ private lemma spatialDeriv_eta_eq_zero_on_closed_inner (x₀ : Vec3) {ρ : ℝ}
   have hi := congrFun hgrad.1 i
   simpa [eta, classicalGradient, classicalGradient_apply, CKN.basisVec_apply] using hi
 
+/--
+@isnad1 id=contdiff.1h2v.s8.eb94152e8c47 from=translated src=- shape=245b8f7f vocab=cf575f9d
+-/
 lemma contDiff_spatialDeriv_two {f : Vec3 → ℝ}
     (hf : ContDiff ℝ (↑(⊤ : ℕ∞)) f) (i : Fin 3) :
     ContDiff ℝ (2 : ℕ) (spatialDeriv f i) := by
@@ -130,6 +139,9 @@ lemma contDiff_spatialDeriv_two {f : Vec3 → ℝ}
     (fun x : Vec3 => (fderiv ℝ f x) (basisVec i))
   exact hcomp
 
+/--
+@isnad1 id=eventual.2h4v.s7.0814f4706350 from=translated src=- shape=4a3120ee vocab=4ffa073e
+-/
 lemma spatialDeriv_eta_eventually_zero (x x₀ : Vec3) {ρ : ℝ}
     (hρ : 0 < ρ) (hx : x ∈ euclideanBall x₀ (13 * ρ / 20)) (i : Fin 3) :
     ∀ᶠ y in 𝓝 x, spatialDeriv (eta x₀ hρ) i y = 0 := by
@@ -174,11 +186,17 @@ private lemma kernelCutoffDerivative_contDiffAt (x x₀ : Vec3) {ρ : ℝ}
         spatialDeriv (eta x₀ hρ) i z) y
     exact hprod.of_le (by norm_num)
 
+/--
+@isnad1 id=contdiff.2h4v.s7.547e448b8e24 from=translated src=- shape=ee20114e vocab=42abcd7d
+-/
 lemma kernelCutoffDerivative_contDiff (x x₀ : Vec3) {ρ : ℝ}
     (hρ : 0 < ρ) (hx : x ∈ euclideanBall x₀ (13 * ρ / 20)) (i : Fin 3) :
     ContDiff ℝ (1 : ℕ) (kernelCutoffDerivative x x₀ hρ i) :=
   contDiff_iff_contDiffAt.mpr (kernelCutoffDerivative_contDiffAt x x₀ hρ hx i)
 
+/--
+@isnad1 id=hascompa.1h4v.s5.cd938c07436d from=translated src=- shape=2140d6c5 vocab=9fee0d53
+-/
 lemma kernelCutoffDerivative_hasCompactSupport (x x₀ : Vec3) {ρ : ℝ}
     (hρ : 0 < ρ) (i : Fin 3) :
     HasCompactSupport (kernelCutoffDerivative x x₀ hρ i) := by
@@ -189,6 +207,9 @@ lemma kernelCutoffDerivative_hasCompactSupport (x x₀ : Vec3) {ρ : ℝ}
     spatialDeriv (eta x₀ hρ) i y)
   exact hd.mul_left
 
+/--
+@isnad1 id=integrab.3h5v.s8.331c227b0f86 from=translated src=- shape=787a5265 vocab=1c8a84b3
+-/
 lemma kernelCutoffDerivative_integrable_mul_left {h : Vec3 → ℝ}
     (hh : ContDiff ℝ (⊤ : ℕ∞) h) (x x₀ : Vec3) {ρ : ℝ} (hρ : 0 < ρ)
     (hx : x ∈ euclideanBall x₀ (13 * ρ / 20)) (i : Fin 3) :
@@ -202,6 +223,9 @@ lemma kernelCutoffDerivative_integrable_mul_left {h : Vec3 → ℝ}
     exact (hh.continuous_fderiv (by simp)).clm_apply continuous_const
   exact (hhc.mul hkc).integrable_of_hasCompactSupport hk.mul_left
 
+/--
+@isnad1 id=integrab.3h5v.s8.11426b27ac68 from=translated src=- shape=c9940616 vocab=1c8a84b3
+-/
 lemma kernelCutoffDerivative_integrable_mul_right {h : Vec3 → ℝ}
     (hh : ContDiff ℝ (⊤ : ℕ∞) h) (x x₀ : Vec3) {ρ : ℝ} (hρ : 0 < ρ)
     (hx : x ∈ euclideanBall x₀ (13 * ρ / 20)) (i : Fin 3) :
@@ -230,6 +254,9 @@ private lemma kernelCutoffDerivative_integrable_mul_h {h : Vec3 → ℝ}
     (kernelCutoffDerivative_contDiff x x₀ hρ hx i).continuous
   exact (hh.continuous.mul hkc).integrable_of_hasCompactSupport hk.mul_left
 
+/--
+@isnad1 id=eq.3h5v.s8.d1f85fc92ec0 from=translated src=- shape=550283d3 vocab=e3ec31d4
+-/
 lemma integral_h_mul_kernelCutoffDerivative_spatialDeriv {h : Vec3 → ℝ}
     (hh : ContDiff ℝ (⊤ : ℕ∞) h) (x x₀ : Vec3) {ρ : ℝ} (hρ : 0 < ρ)
     (hx : x ∈ euclideanBall x₀ (13 * ρ / 20)) (i : Fin 3) :
@@ -251,17 +278,26 @@ lemma integral_h_mul_kernelCutoffDerivative_spatialDeriv {h : Vec3 → ℝ}
     (integral_mul_fderiv_eq_neg_fderiv_mul_of_integrable
       (μ := volume) (v := basisVec i) hleft hright hprod hfdiff hgdiff)
 
+/--
+@isnad1 id=integrab.2h2v.s7.1c3217a4dbd7 from=translated src=- shape=cbf77b24 vocab=6c4d124d
+-/
 lemma newtonianKernel_mul_compact_integrable {f : Vec3 → ℝ}
     (hf : Continuous f) (hfSupport : HasCompactSupport f) (x : Vec3) :
     Integrable (fun y : Vec3 => newtonianKernel (x - y) * f y) volume := by
   exact (locallyIntegrable_newtonianKernel_sub x).integrable_smul_right_of_hasCompactSupport
     hf hfSupport
 
+/--
+@isnad1 id=integrab.2h2v.s7.1c3217a4dbd7 from=translated src=- shape=cbf77b24 vocab=6c4d124d
+-/
 theorem newtonianKernel_mul_compact_integrable_global {f : Vec3 → ℝ}
     (hf : Continuous f) (hfSupport : HasCompactSupport f) (x : Vec3) :
     Integrable (fun y : Vec3 => newtonianKernel (x - y) * f y) volume :=
   newtonianKernel_mul_compact_integrable hf hfSupport x
 
+/--
+@isnad1 id=le.1h1v.s6.f2eb068701c3 from=translated src=- shape=2e7af31b vocab=52f0cd95
+-/
 theorem newtonianKernel_size_bound {z : Vec3} (hz : z ≠ 0) :
     |newtonianKernel z| ≤ (4 * Real.pi)⁻¹ * ‖z‖⁻¹ := by
   have hzn : 0 < ‖z‖ := norm_pos_iff.mpr hz
@@ -274,14 +310,23 @@ theorem newtonianKernel_size_bound {z : Vec3} (hz : z ≠ 0) :
       (4 * Real.pi)⁻¹ * (vec3EuclideanNorm z)⁻¹ by field_simp]
   exact mul_le_mul_of_nonneg_left hinv (by positivity)
 
+/--
+@isnad1 id=continuo.1h1v.s6.644e0ee35334 from=translated src=- shape=8d189fc0 vocab=5a2b6139
+-/
 theorem newtonianKernel_continuousAt {z : Vec3} (hz : z ≠ 0) :
     ContinuousAt newtonianKernel z :=
   (contDiffAt_newtonianKernel hz).continuousAt
 
+/--
+@isnad1 id=hasfderi.1h1v.s8.aad9479a04d9 from=translated src=- shape=3c6a9da1 vocab=28218e19
+-/
 theorem newtonianKernel_hasFDerivAt {z : Vec3} (hz : z ≠ 0) :
     HasFDerivAt newtonianKernel (fderiv ℝ newtonianKernel z) z :=
   (contDiffAt_newtonianKernel hz).differentiableAt (by norm_num) |>.hasFDerivAt
 
+/--
+@isnad1 id=continuo.1h2v.s6.bfe5cbab75de from=translated src=- shape=2f820368 vocab=2c5480dd
+-/
 theorem newtonianKernel_spatialDeriv_continuousAt {z : Vec3} (hz : z ≠ 0)
     (i : Fin 3) : ContinuousAt (CKN.spatialDeriv newtonianKernel i) z := by
   have hfd := (contDiffAt_newtonianKernel hz).continuousAt_fderiv (by norm_num)
@@ -289,6 +334,9 @@ theorem newtonianKernel_spatialDeriv_continuousAt {z : Vec3} (hz : z ≠ 0)
     (CKN.basisVec i)) z
   exact hfd.clm_apply continuousAt_const
 
+/--
+@isnad1 id=continuo.1h3v.s6.7452d2ed4ba8 from=translated src=- shape=fa41c330 vocab=2c5480dd
+-/
 theorem newtonianKernel_spatialDeriv_second_continuousAt
     {z : Vec3} (hz : z ≠ 0) (i j : Fin 3) :
     ContinuousAt (CKN.spatialDeriv (CKN.spatialDeriv newtonianKernel i) j) z := by

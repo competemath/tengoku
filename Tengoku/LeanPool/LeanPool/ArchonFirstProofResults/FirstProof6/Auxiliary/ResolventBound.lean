@@ -177,6 +177,9 @@ private lemma psd_resolvent_trace_le (U B Uhalf K : Matrix V V ℝ) (hU : U.PosD
   apply div_le_div_of_nonneg_left (mul_nonneg (h_eig_nn i) (hU'_diag_nn i)) h1t_pos
   linarith [eigenvalue_le_trace_of_posSemidef K hK_psd i]
 
+/--
+@isnad1 id=le.4h3v.s8.03e5961c9ea6 from=translated src=- shape=972e2390 vocab=070e6448
+-/
 lemma psd_resolvent_trace_bound
     (U B : Matrix V V ℝ)
     (hU : U.PosDef) (hB : B.PosSemidef)

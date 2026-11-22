@@ -20,6 +20,9 @@ open Filter
 namespace MeasureTheory
 variable {Ω : Type*} [m₀ : MeasurableSpace Ω]
 
+/--
+@isnad1 id=integrab.2h5v.s6.ea862651c492 from=translated src=- shape=5b1db38d vocab=9f2e3be3
+-/
 lemma integrable_of_norm_le {α : Type*} {β : Type*} {m : MeasurableSpace α}
   {μ : Measure α} [IsFiniteMeasure μ] [NormedAddCommGroup β] {f : α → β}
   (hm : AEStronglyMeasurable f μ) (hbdd : ∃ C, ∀ᵐ ω ∂μ, ‖f ω‖ ≤ C)
@@ -29,6 +32,9 @@ lemma integrable_of_norm_le {α : Type*} {β : Type*} {m : MeasurableSpace α}
     (integrable_const _)
   exact hC.mono fun ω hω => by simp [hω]
 
+/--
+@isnad1 id=integrab.1h6v.s6.94a1b43c7f50 from=translated src=- shape=ed770824 vocab=b2976bd2
+-/
 lemma Integrable.finset_sum
   {α ι : Type*} {m : MeasurableSpace α}
   {μ : Measure α} [IsFiniteMeasure μ] {s : Finset ι} {f : ι → α → ℝ}

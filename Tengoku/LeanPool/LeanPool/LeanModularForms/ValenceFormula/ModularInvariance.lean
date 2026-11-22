@@ -138,7 +138,9 @@ private lemma meromorphicOrderAt_comp_neg_inv (g : ℂ → ℂ) (p : ℂ) (hp : 
   rw [hn.symm, meromorphicOrderAt_eq_int_iff (mero_neg_inv_fwd g p hp hg_mero)]
   exact neg_inv_finite_order_witness g p hp n h hh_an hh_ne hh_eq
 
-/-- T-invariance of vanishing order: `ord(f, z+1) = ord(f, z)`. -/
+/-- T-invariance of vanishing order: `ord(f, z+1) = ord(f, z)`.
+@isnad1 id=eq.0h3v.s9.264f8c36dcd8 from=translated src=- shape=a50482e2 vocab=03c497e2
+-/
 lemma ord_add_one_eq (p : ℍ) :
     orderOfVanishingAt' f ((1 : ℝ) +ᵥ p) = orderOfVanishingAt' f p := by
   unfold orderOfVanishingAt'
@@ -157,7 +159,9 @@ lemma ord_add_one_eq (p : ℍ) :
     simp_all
   rw [meromorphicOrderAt_congr hG_eq_near, meromorphicOrderAt_comp_sub_const]
 
-/-- T-invariance at ρ: `ord(f, ρ+1) = ord(f, ρ)`. -/
+/-- T-invariance at ρ: `ord(f, ρ+1) = ord(f, ρ)`.
+@isnad1 id=eq.0h2v.s9.7a5971018087 from=translated src=- shape=8b686ac1 vocab=3f6ca450
+-/
 lemma ord_rho_plus_one_eq_ord_rho :
     orderOfVanishingAt' f ellipticPointRhoPlusOne' =
     orderOfVanishingAt' f ellipticPointRho' := by
@@ -168,7 +172,9 @@ lemma ord_rho_plus_one_eq_ord_rho :
       push_cast; ring)
   rw [← h]; exact ord_add_one_eq f ellipticPointRho'
 
-/-- S-identity for modular forms: `f(-1/z) = z^k · f(z)`. -/
+/-- S-identity for modular forms: `f(-1/z) = z^k · f(z)`.
+@isnad1 id=eq.1h3v.s9.7d5b10bf8951 from=translated src=- shape=9d5fef3f vocab=2e54a211
+-/
 lemma modform_comp_ofComplex_S_identity (z : ℂ) (hz : 0 < z.im) :
     f (UpperHalfPlane.ofComplex (-(1 : ℂ)/z)) = (z : ℂ) ^ k * f (UpperHalfPlane.ofComplex z) := by
   have hz_ne : z ≠ 0 := by intro h; simp [h] at hz
@@ -231,7 +237,9 @@ private lemma meromorphicOrderAt_zpow_eq_zero (p_cplx : ℂ) (hp_ne : p_cplx ≠
       analyticOrderAt_eq_zero.mpr (Or.inr (zpow_ne_zero k hp_ne))]
   simp only [ENat.map_zero, CharP.cast_eq_zero, WithTop.coe_zero]
 
-/-- S-invariance of vanishing order: `ord(f, S·z) = ord(f, z)`. -/
+/-- S-invariance of vanishing order: `ord(f, S·z) = ord(f, z)`.
+@isnad1 id=eq.0h3v.s9.cc6b867c6c1f from=translated src=- shape=89b3e4c6 vocab=113869d1
+-/
 lemma ord_S_eq (p : ℍ) :
     orderOfVanishingAt' f (ModularGroup.S • p) = orderOfVanishingAt' f p := by
   unfold orderOfVanishingAt'
@@ -260,9 +268,14 @@ lemma ord_S_eq (p : ℍ) :
 /-- An open box containing the truncated fundamental domain. -/
 def fdBox (M : ℝ) : Set ℂ := {z : ℂ | -1 < z.re ∧ z.re < 1 ∧ (1 : ℝ)/2 < z.im ∧ z.im < M}
 
+/--
+@isnad1 id=lt.1h2v.s4.86c5419b2d5d from=translated src=- shape=d9bd9ecf vocab=062a8537
+-/
 lemma fdBox_im_pos {M : ℝ} {z : ℂ} (hz : z ∈ fdBox M) : 0 < z.im := by linarith [hz.2.2.1]
 
-/-- A nonzero modular form has finitely many zeros in `fdBox M`. -/
+/-- A nonzero modular form has finitely many zeros in `fdBox M`.
+@isnad1 id=finite.2h3v.s9.b85bbb85b5d1 from=translated src=- shape=22652640 vocab=91ca3bb5
+-/
 theorem modularForm_finitely_many_zeros_in_fdBox (hf : f ≠ 0) {M : ℝ} (hM : (1 : ℝ) / 2 < M) :
     Set.Finite {z ∈ fdBox M | modularFormCompOfComplex f z = 0} := by
   by_contra h_inf
@@ -294,7 +307,9 @@ theorem modularForm_finitely_many_zeros_in_fdBox (hf : f ≠ 0) {M : ℝ} (hM : 
     (h_analOn.eqOn_zero_of_preconnected_of_frequently_eq_zero
       h_preconn hz₀_pos h_freq) z.im_pos
 
-/-- The cusp function of a nonzero modular form is not identically zero near 0. -/
+/-- The cusp function of a nonzero modular form is not identically zero near 0.
+@isnad1 id=not.1h2v.s10.f37ed5267dbe from=translated src=- shape=666fa749 vocab=8133b3a8
+-/
 theorem cuspFunction_not_eventually_zero (hf : f ≠ 0) :
     ¬∀ᶠ q in 𝓝 (0 : ℂ), UpperHalfPlane.cuspFunction (1 : ℝ) (⇑f) q = 0 := by
   intro h_freq
@@ -318,7 +333,9 @@ theorem cuspFunction_not_eventually_zero (hf : f ≠ 0) :
     exact_mod_cast UpperHalfPlane.norm_qParam_lt_one 1 τ
   exact h_eqOn h_qmem
 
-/-- For a nonzero modular form, the cusp function is eventually nonzero near 0. -/
+/-- For a nonzero modular form, the cusp function is eventually nonzero near 0.
+@isnad1 id=eventual.1h2v.s10.045fbdbb9aed from=translated src=- shape=f1a5447c vocab=b562472e
+-/
 theorem cuspFunction_eventually_ne_zero (hf : f ≠ 0) :
     ∀ᶠ q in 𝓝[≠] (0 : ℂ),
       UpperHalfPlane.cuspFunction (1 : ℝ) (⇑f) q ≠ 0 := by
@@ -328,7 +345,9 @@ theorem cuspFunction_eventually_ne_zero (hf : f ≠ 0) :
   exact h_anal.eventually_eq_zero_or_eventually_ne_zero.resolve_left
     (cuspFunction_not_eventually_zero f hf)
 
-/-- Existence of a nonvanishing radius for the cusp function. -/
+/-- Existence of a nonvanishing radius for the cusp function.
+@isnad1 id=ex.1h2v.s10.605e61160673 from=translated src=- shape=9d221666 vocab=b7540847
+-/
 theorem exists_radius_cusp_nonvanishing (hf : f ≠ 0) :
     ∃ r : ℝ, 0 < r ∧ ∀ q : ℂ, q ∈ Metric.closedBall (0 : ℂ) r →
       q ≠ 0 → UpperHalfPlane.cuspFunction (1 : ℝ) (⇑f) q ≠ 0 := by
@@ -342,7 +361,9 @@ theorem exists_radius_cusp_nonvanishing (hf : f ≠ 0) :
 /-- Convert a q-radius to a FD boundary height. -/
 noncomputable def heightOfRadius (r : ℝ) : ℝ := -Real.log r / (2 * Real.pi)
 
-/-- For a nonzero modular form, there exists `H > √3/2` with cusp nonvanishing. -/
+/-- For a nonzero modular form, there exists `H > √3/2` with cusp nonvanishing.
+@isnad1 id=ex.1h2v.s10.dadca0d24a06 from=translated src=- shape=02b1497b vocab=a4af65cc
+-/
 theorem exists_height_cusp_nonvanishing (hf : f ≠ 0) :
     ∃ H : ℝ, Real.sqrt 3 / 2 < H ∧
       ∀ q : ℂ, q ∈ Metric.closedBall (0 : ℂ) (Real.exp (-2 * Real.pi * H)) →
@@ -363,7 +384,9 @@ theorem exists_height_cusp_nonvanishing (hf : f ≠ 0) :
             unfold heightOfRadius; field_simp]
           exact Real.exp_log hr_pos
 
-/-- Height monotonicity for cusp nonvanishing. -/
+/-- Height monotonicity for cusp nonvanishing.
+@isnad1 id=ne.4h5v.s9.c93af08fe636 from=translated src=- shape=483fa8e7 vocab=6db6b775
+-/
 lemma cusp_nonvanishing_height_mono {H₁ H₂ : ℝ} (hH : H₁ ≤ H₂)
     (h : ∀ q ∈ Metric.closedBall (0 : ℂ) (Real.exp (-2 * Real.pi * H₁)), q ≠ 0 →
       UpperHalfPlane.cuspFunction (1 : ℝ) (⇑f) q ≠ 0) :
@@ -372,7 +395,9 @@ lemma cusp_nonvanishing_height_mono {H₁ H₂ : ℝ} (hH : H₁ ≤ H₂)
   fun q hq hq_ne => h q (Metric.closedBall_subset_closedBall
     (Real.exp_le_exp.mpr (by nlinarith [Real.pi_pos])) hq) hq_ne
 
-/-- Cusp nonvanishing above any floor height. -/
+/-- Cusp nonvanishing above any floor height.
+@isnad1 id=ex.1h3v.s10.b2b8785c1de0 from=translated src=- shape=561f4cb5 vocab=89bbe8e5
+-/
 theorem exists_height_cusp_nonvanishing_above (hf : f ≠ 0) (Hmin : ℝ) :
     ∃ H : ℝ, Hmin ≤ H ∧ Real.sqrt 3 / 2 < H ∧
       ∀ q : ℂ, q ∈ Metric.closedBall (0 : ℂ) (Real.exp (-2 * Real.pi * H)) →

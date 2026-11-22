@@ -26,7 +26,9 @@ open Complex Set Metric Filter Topology
 
 namespace RectHomotopyProof
 
-/-- Segment 1 formula (t < 1) is differentiable in t. -/
+/-- Segment 1 formula (t < 1) is differentiable in t.
+@isnad1 id=differen.0h2v.s7.1c917310a731 from=translated src=- shape=0e1c202c vocab=66d372d6
+-/
 lemma fdBoundaryToPolygonHomotopy_seg1_differentiable (t _s : ℝ) :
     DifferentiableAt ℝ (fun t' : ℝ => (1/2 : ℂ) +
         (HHeight - (↑t' : ℂ) * (HHeight - Real.sqrt 3 / 2)) * I) t :=
@@ -34,7 +36,9 @@ lemma fdBoundaryToPolygonHomotopy_seg1_differentiable (t _s : ℝ) :
     ((differentiableAt_const _ |>.sub
       (Complex.ofRealCLM.differentiableAt.mul (differentiableAt_const _))).mul_const _)
 
-/-- Segment 4 formula (3 < t ≤ 4) is differentiable in t. -/
+/-- Segment 4 formula (3 < t ≤ 4) is differentiable in t.
+@isnad1 id=differen.0h2v.s7.6d02d2689840 from=translated src=- shape=dd091516 vocab=4ac9b902
+-/
 lemma fdBoundaryToPolygonHomotopy_seg4_differentiable (t _s : ℝ) :
     DifferentiableAt ℝ (fun t' : ℝ => (-1/2 : ℂ) +
         (Real.sqrt 3 / 2 + ((↑t' : ℂ) - 3) * (HHeight - Real.sqrt 3 / 2)) * I) t :=
@@ -43,12 +47,16 @@ lemma fdBoundaryToPolygonHomotopy_seg4_differentiable (t _s : ℝ) :
       ((Complex.ofRealCLM.differentiableAt.sub (differentiableAt_const _)).mul
         (differentiableAt_const _))).mul_const _)
 
-/-- Segment 5 formula (t > 4) is differentiable in t. -/
+/-- Segment 5 formula (t > 4) is differentiable in t.
+@isnad1 id=differen.0h2v.s7.c5bd8cdc991d from=translated src=- shape=0438be9f vocab=e8656c9b
+-/
 lemma fdBoundaryToPolygonHomotopy_seg5_differentiable (t _s : ℝ) :
     DifferentiableAt ℝ (fun t' : ℝ => ((↑t' : ℂ) - 9/2) + HHeight * I) t :=
   (Complex.ofRealCLM.differentiableAt.sub (differentiableAt_const _)).add (differentiableAt_const _)
 
-/-- Segment 2 formula (1 < t ≤ 2) is differentiable in t. -/
+/-- Segment 2 formula (1 < t ≤ 2) is differentiable in t.
+@isnad1 id=differen.0h2v.s8.e35d5e776093 from=translated src=- shape=92c46ba7 vocab=45b8b6ab
+-/
 lemma fdBoundaryToPolygonHomotopy_seg2_differentiable (t s : ℝ) :
     DifferentiableAt ℝ (fun t' : ℝ =>
       let arc_point := Complex.exp ((Real.pi / 3 + (t' - 1) * (Real.pi / 2 - Real.pi / 3)) * I)
@@ -85,7 +93,9 @@ lemma fdBoundaryToPolygonHomotopy_seg2_differentiable (t s : ℝ) :
         exact DifferentiableAt.mul h2 (differentiableAt_const _)
     exact h_chord.const_smul s
 
-/-- Segment 3 formula (2 < t ≤ 3) is differentiable in t. -/
+/-- Segment 3 formula (2 < t ≤ 3) is differentiable in t.
+@isnad1 id=differen.0h2v.s8.45cf85f1e5f6 from=translated src=- shape=4900925f vocab=21d42131
+-/
 lemma fdBoundaryToPolygonHomotopy_seg3_differentiable (t s : ℝ) :
     DifferentiableAt ℝ (fun t' : ℝ =>
       let arc_point := Complex.exp ((Real.pi / 2 + (t' - 2) * (2 * Real.pi / 3 - Real.pi / 2)) * I)

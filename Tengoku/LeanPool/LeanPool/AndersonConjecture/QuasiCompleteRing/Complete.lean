@@ -27,6 +27,9 @@ open scoped Pointwise
 
 section Helpers
 variable {R : Type*} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
+/--
+@isnad1 id=eq.0h2v.s7.54af4bcaaa4a from=translated src=- shape=085757cf vocab=9a984251
+-/
 lemma krull_intersection_sup (J : Ideal R) :
     ⨅ n, (J ⊔ (IsLocalRing.maximalIdeal R) ^ n) = J := by
   set M := IsLocalRing.maximalIdeal R
@@ -70,6 +73,9 @@ lemma krull_intersection_sup (J : Ideal R) :
     rw [this]
     exact (Ideal.mem_map_iff_of_surjective _ Ideal.Quotient.mk_surjective).mpr ⟨b, hb, rfl⟩
   · exact le_iInf fun _ => le_sup_left
+/--
+@isnad1 id=other.0h2v.s9.e59dc602214b from=translated src=- shape=0c27cf46 vocab=03932625
+-/
 lemma comap_map_algebraMap_adicCompletion (I : Ideal R) :
     let M := IsLocalRing.maximalIdeal R
     Ideal.comap (algebraMap R (AdicCompletion M R))
@@ -109,6 +115,9 @@ then R is quasi-complete.
 Proof idea: Uses Artin-Rees / topology of the M-adic completion.
 Given a descending chain {A_n}, pass to M/∩A_n. The M-adic topology
 on the Artinian quotient M/J^k M forces stabilization.
+-/
+/--
+@isnad1 id=isquasic.1h1v.s5.a4a3f6d3eb9d from=translated src=- shape=403aa5a4 vocab=ca68fb8e
 -/
 theorem anderson_complete_isQuasiComplete
     (R : Type*) [CommRing R] [IsLocalRing R] [IsNoetherianRing R]

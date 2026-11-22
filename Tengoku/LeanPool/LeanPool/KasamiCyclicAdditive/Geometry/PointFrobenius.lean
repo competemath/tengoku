@@ -55,7 +55,9 @@ def ferZ : WeierstrassCurve ℤ := ⟨0, 0, 1, 0, 1⟩
 variable {K : Type*} [Field K] [DecidableEq K] [CharP K 2]
 
 omit [DecidableEq K] [CharP K 2] in
-/-- `fer K` is the base change of `ferZ` along `ℤ → K`. -/
+/-- `fer K` is the base change of `ferZ` along `ℤ → K`.
+@isnad1 id=eq.0h1v.s4.cfc77b03f7c1 from=translated src=- shape=01c023a0 vocab=8556d37e
+-/
 lemma ferZ_baseChange : ferZ.baseChange K = fer K := by
   simp [ferZ, fer, WeierstrassCurve.baseChange, WeierstrassCurve.map]
 
@@ -65,14 +67,18 @@ def curveCast {W W' : WeierstrassCurve K} (h : W = W') :
   subst h; exact AddEquiv.refl _
 
 omit [CharP K 2] in
-/-- `curveCast` leaves the coordinates of an affine point unchanged. -/
+/-- `curveCast` leaves the coordinates of an affine point unchanged.
+@isnad1 id=eq.2h5v.s7.f7b65fa38e9f from=translated src=- shape=3f7275f7 vocab=5e378343
+-/
 lemma curveCast_some {W W' : WeierstrassCurve K} (h : W = W') {x y : K}
     (hns : W.toAffine.Nonsingular x y) :
     curveCast h (Affine.Point.some _ _ hns) = Affine.Point.some _ _ (h ▸ hns) := by
   subst h; rfl
 
 omit [CharP K 2] in
-/-- The inverse of `curveCast` likewise leaves the coordinates unchanged. -/
+/-- The inverse of `curveCast` likewise leaves the coordinates unchanged.
+@isnad1 id=eq.2h5v.s8.0930f460a6e0 from=translated src=- shape=0973ea92 vocab=9c8e899b
+-/
 lemma curveCast_symm_some {W W' : WeierstrassCurve K} (h : W = W') {x y : K}
     (hns : W'.toAffine.Nonsingular x y) :
     (curveCast h).symm (Affine.Point.some _ _ hns) = Affine.Point.some _ _ (h ▸ hns) := by
@@ -101,7 +107,9 @@ private lemma frobPt_some {x y : K} (hns : (fer K).toAffine.Nonsingular x y)
   simp only [AddMonoidHom.coe_comp, Function.comp_apply, AddEquiv.coe_toAddMonoidHom,
     curveCast_symm_some, Affine.Point.map_some, curveCast_some, frobAlg_apply]
 
-/-- `π` squares both Fermat coordinates. -/
+/-- `π` squares both Fermat coordinates.
+@isnad1 id=eq.1h3v.s8.fb420d0988fc from=translated src=- shape=653e8305 vocab=5d02be5e
+-/
 lemma frobPt_pt {w t : K} (h : w ^ 3 + t ^ 3 = 1) :
     frobPt K (pt w t h) = pt (w ^ 2) (t ^ 2) (frob_fermat h 1) := by
   have hsq : (w + t) ^ 2 = w ^ 2 + t ^ 2 := by
@@ -114,7 +122,9 @@ lemma frobPt_pt {w t : K} (h : w ^ 3 + t ^ 3 = 1) :
   rw [pt, frobPt_some (chart_nonsingular h) hns2, pt]
   refine some_eq_some _ _ ?_ ?_ <;> simpa using ‹_›
 
-/-- `π` squares the parameter of a point at infinity. -/
+/-- `π` squares the parameter of a point at infinity.
+@isnad1 id=eq.1h2v.s8.89bf25e10126 from=translated src=- shape=d666358a vocab=f80a72a1
+-/
 lemma frobPt_ptInf {a : K} (ha : a ^ 3 = 1) :
     frobPt K (ptInf a ha) = ptInf (a ^ 2) (by linear_combination (a ^ 3 + 1) * ha) := by
   by_cases ha1 : a = 1
@@ -138,7 +148,9 @@ private lemma weierstrass_eq_sq {x y : K} (h : y ^ 2 + y = x ^ 3 + 1) :
 
 /-- **The CM relation.**  `fer` is defined over `𝔽₂`, where it has exactly three
 points, so its trace of Frobenius is `a = 2 + 1 - 3 = 0` and `π² + 2 = 0` in the
-endomorphism ring. -/
+endomorphism ring.
+@isnad1 id=eq.0h2v.s8.f0b9b5b34b24 from=translated src=- shape=90c670d6 vocab=56f665e4
+-/
 theorem frobPt_frobPt (P : (fer K).toAffine.Point) :
     frobPt K (frobPt K P) = (-2 : ℤ) • P := by
   have h2 : (2 : K) = 0 := CharTwo.two_eq_zero
@@ -175,7 +187,9 @@ private lemma frobEnd_pow_succ (k : ℕ) (P : (fer K).toAffine.Point) :
   rw [pow_succ]
   rfl
 
-/-- `π ^ k` raises both Fermat coordinates to the `2 ^ k`. -/
+/-- `π ^ k` raises both Fermat coordinates to the `2 ^ k`.
+@isnad1 id=eq.1h4v.s9.2d5e58d2a317 from=translated src=- shape=2167cbdd vocab=613e659c
+-/
 lemma frobEnd_pow_pt (k : ℕ) {w t : K} (h : w ^ 3 + t ^ 3 = 1) :
     (frobEnd K ^ k) (pt w t h) = pt (w ^ 2 ^ k) (t ^ 2 ^ k) (frob_fermat h k) := by
   induction k generalizing w t with
@@ -184,7 +198,9 @@ lemma frobEnd_pow_pt (k : ℕ) {w t : K} (h : w ^ 3 + t ^ 3 = 1) :
       rw [frobEnd_pow_succ, frobPt_pt h, ih]
       refine pt_congr _ _ ?_ ?_ <;> rw [← pow_mul, pow_succ']
 
-/-- `π ^ k` raises the parameter of a point at infinity to the `2 ^ k`. -/
+/-- `π ^ k` raises the parameter of a point at infinity to the `2 ^ k`.
+@isnad1 id=eq.1h3v.s8.9592bfda6d6c from=translated src=- shape=f2adc01d vocab=e51e19b8
+-/
 lemma frobEnd_pow_ptInf (k : ℕ) {a : K} (ha : a ^ 3 = 1) :
     (frobEnd K ^ k) (ptInf a ha) = ptInf (a ^ 2 ^ k) (by
       rw [← pow_mul, Nat.mul_comm, pow_mul, ha, one_pow]) := by
@@ -208,7 +224,9 @@ private lemma fermat_of_weierstrass {x y : K} (hx : x ≠ 0)
   rw [div_pow, div_pow, ← add_div, div_eq_one_iff_eq (pow_ne_zero 3 hx)]
   linear_combination h + (y ^ 3 + y ^ 2 + y + 1) * CharTwo.two_eq_zero (R := K)
 
-/-- The two charts of `FermatCubic` cover `E(K)`. -/
+/-- The two charts of `FermatCubic` cover `E(K)`.
+@isnad1 id=or.0h2v.s8.dbf530d26758 from=translated src=- shape=7c6dfb59 vocab=73f91fc1
+-/
 theorem point_repr (P : (fer K).toAffine.Point) :
     P = 0 ∨ (∃ (a : K) (ha : a ^ 3 = 1), P = ptInf a ha) ∨
       (∃ (w t : K) (h : w ^ 3 + t ^ 3 = 1), P = pt w t h) := by
@@ -237,7 +255,9 @@ theorem point_repr (P : (fer K).toAffine.Point) :
         · rw [hsum, inv_inv]
           field_simp
 
-/-- `E(K)` is finite when `K` is. -/
+/-- `E(K)` is finite when `K` is.
+@isnad1 id=finite.0h1v.s4.b50b2cb3f5f6 from=translated src=- shape=81cac5ee vocab=55e1a7d9
+-/
 instance instFinitePoint [Finite K] : Finite ((fer K).toAffine.Point) := by
   refine Finite.of_injective
     (fun P => match P with
@@ -254,7 +274,9 @@ triples; on the affine chart it is exactly `π^k P = -P`. -/
 
 /-- **The dictionary.**  For an affine Fermat point,
 `Geometry/FermatCubic/RationalKernel.lean`'s triple condition
-`IsKernelPoint k W T 1` is the group-theoretic statement `π^k P = -P`. -/
+`IsKernelPoint k W T 1` is the group-theoretic statement `π^k P = -P`.
+@isnad1 id=iff.1h4v.s8.df34db17ebd7 from=translated src=- shape=2590c962 vocab=cceef646
+-/
 theorem isKernelPoint_iff {k : ℕ} {w t : K} (h : w ^ 3 + t ^ 3 = 1) :
     KasamiCyclicAdditive.FermatCubicFrobenius.IsKernelPoint k w t 1 ↔
       (frobEnd K ^ k) (pt w t h) = -(pt w t h) := by
@@ -271,7 +293,9 @@ theorem isKernelPoint_iff {k : ℕ} {w t : K} (h : w ^ 3 + t ^ 3 = 1) :
 /-- **Trivial rational kernel for odd `n`.**  The map `1 + π^k` is injective on
 `E(K)`: its only zero is the origin.  This is
 `KasamiCyclicAdditive.FermatCubicFrobenius.rational_kernel_odd` transported through the
-dictionary. -/
+dictionary.
+@isnad1 id=eq.4h4v.s8.2ce48b8c454b from=translated src=- shape=27fb1b1e vocab=a048bbb4
+-/
 theorem kernel_trivial_odd [Fintype K] {n k : ℕ} (hn : Odd n) (hkn : Nat.Coprime k n)
     (hcard : Fintype.card K = 2 ^ n) {P : (fer K).toAffine.Point}
     (hP : (frobEnd K ^ k) P + P = 0) : P = 0 := by

@@ -41,6 +41,9 @@ def IsOrthogonal (e f : R) : Prop := e * f = 0 ∧ f * e = 0
 def AreOrthogonalIdempotents (e f : R) : Prop :=
   IsIdempotentElem e ∧ IsIdempotentElem f ∧ IsOrthogonal e f
 
+/--
+@isnad1 id=lt.2h3v.s6.4fa5eb3729cf from=translated src=- shape=c392917e vocab=b1dc2786
+-/
 theorem leq_neq_lt (I J : Ideal R) : I ≤ J → I ≠ J → I < J := by
   intro hleq hneq
   refine ⟨hleq, ?_⟩
@@ -49,6 +52,9 @@ theorem leq_neq_lt (I J : Ideal R) : I ≤ J → I ≠ J → I < J := by
   trivial
 
 -- Lemma 2.9
+/--
+@isnad1 id=lt.2h3v.s7.72a8f69956b9 from=translated src=- shape=631eb37a vocab=ee657747
+-/
 theorem one_sub_e_larger_span_on_sub_e_sub_f (e f : R)
     (ef_ort_idem : AreOrthogonalIdempotents e f) (fnz : f ≠ 0) :
     Ideal.span {1 - e - f} < Ideal.span {1 - e} := by
@@ -89,6 +95,9 @@ theorem one_sub_e_larger_span_on_sub_e_sub_f (e f : R)
     contradiction
   exact leq_neq_lt (Ideal.span {1 - e - f}) (Ideal.span {1 - e}) hleq hneq
 
+/--
+@isnad1 id=lt.2h3v.s7.25691a11a517 from=translated src=- shape=f89eecbb vocab=ee657747
+-/
 theorem e_span_larger_e_sub_f (e f : R) (h : AreOrthogonalIdempotents (1 - e) f) (fnz : f ≠ 0) :
     Ideal.span {e - f} < Ideal.span {e} := by
   have h' := one_sub_e_larger_span_on_sub_e_sub_f (1 - e) f h fnz
@@ -107,6 +116,9 @@ def kroneckerDelta (n : ℕ) (i j : Fin n) : R := if i = j then 1 else 0
 def PairwiseOrthogonal (a b : R) : Prop := a * b = 0 ∧ b * a = 0
 
 -- Lemma 2.18
+/--
+@isnad1 id=hasmatri.8h5v.s7.7f8492bdab51 from=translated src=- shape=d9707732 vocab=f64397a4
+-/
 theorem OrtIdem_imply_MatUnits {n : ℕ} (hn : 0 < n)
     (diag_es : Fin n → R)
     (idem : (∀ i : Fin n, IsIdempotentElem (diag_es i)))
@@ -145,6 +157,9 @@ theorem OrtIdem_imply_MatUnits {n : ℕ} (hn : 0 < n)
         _ = 0 := by rw [(ort j k h).left]; noncomm_ring
 
 -- If e and f are nonzero elements and R is prime then eRf contains nonzero element
+/--
+@isnad1 id=ex.3h3v.s6.5088834536df from=translated src=- shape=b4dfcb40 vocab=42fcc2b6
+-/
 lemma eRf_nonzero (h : IsPrimeRing R) (e f : R) (he : e ≠ 0) (hf : f ≠ 0) :
     ∃ (a : R), e * a * f ≠ 0 := by
   by_contra ha
@@ -162,6 +177,9 @@ lemma eRf_nonzero (h : IsPrimeRing R) (e f : R) (he : e ≠ 0) (hf : f ≠ 0) :
   simp_all
 
 -- multiplication with e and f preserves bothMul e f
+/--
+@isnad1 id=and.3h4v.s6.eaddbe8dee96 from=translated src=- shape=d8af66d1 vocab=b0bbd522
+-/
 lemma both_mul_e_f (idem_e : IsIdempotentElem e) (idem_f : IsIdempotentElem f) :
     ∀ x ∈ bothMul e f, e * x = x ∧ x * f = x := by
   rintro x ⟨y, hy⟩
@@ -176,6 +194,9 @@ lemma both_mul_e_f (idem_e : IsIdempotentElem e) (idem_f : IsIdempotentElem f) :
   exact ⟨he, hf⟩
 
 -- bothMul is closed for addition
+/--
+@isnad1 id=mem.2h5v.s6.488ac153aed1 from=translated src=- shape=18767f5b vocab=0abac7a2
+-/
 lemma both_mul_add :
     ∀ (x y : R), x ∈ bothMul e f → y ∈ bothMul e f → x + y ∈ bothMul e f := by
   intro x y ⟨a, ha⟩ ⟨b, hb⟩
@@ -184,12 +205,18 @@ lemma both_mul_add :
   noncomm_ring
 
 -- bothMul is closed for multiplication
+/--
+@isnad1 id=mem.1h4v.s5.033237eb4a87 from=translated src=- shape=2fe66670 vocab=bcb5e731
+-/
 lemma both_mul_neg : ∀ (x : R), x ∈ bothMul e f → -x ∈ bothMul e f := by
   intro x ⟨a, ha⟩
   use -a
   simp_all
 
 -- bothMul is closed for additive inverses
+/--
+@isnad1 id=mem.2h5v.s6.f6f4764aed96 from=translated src=- shape=18767f5b vocab=c49338a7
+-/
 lemma both_mul_sub :
     ∀ (x y : R), x ∈ bothMul e f → y ∈ bothMul e f → x - y ∈ bothMul e f := by
   intro x y ⟨a, ha⟩ ⟨b, hb⟩
@@ -197,6 +224,9 @@ lemma both_mul_sub :
   rw [ha, hb]
   noncomm_ring
 
+/--
+@isnad1 id=mem.2h5v.s6.b74bf5da457e from=translated src=- shape=a9999fd8 vocab=bd3e4e96
+-/
 lemma both_mul_mul :
     ∀ (x y : R), x ∈ bothMul e f → y ∈ bothMul f e → x * y ∈ bothMul e e := by
   intro x y ⟨a, ha⟩ ⟨b, hb⟩
@@ -217,6 +247,9 @@ structure twoNiceIdempotents (e f : R) where
   v_mul_u : v * u = f
 
 -- Lemma 2.19 (a)
+/--
+@isnad1 id=ex.5h3v.s7.d18de756ec82 from=translated src=- shape=df8c1e29 vocab=f28be08b
+-/
 theorem lemma_2_19 (h : IsPrimeRing R) (e f : R)
     (idem_e : IsIdempotentElem e) (idem_f : IsIdempotentElem f)
     (heRe : IsDivisionRing (CornerSubring idem_e))
@@ -320,6 +353,9 @@ def lemma219' (h : IsPrimeRing R) (e f : R)
       u_mul_v := h1,
       v_mul_u := h2 }
 
+/--
+@isnad1 id=isorthog.2h3v.s6.01380fe5e61c from=translated src=- shape=680b2d92 vocab=84a66aa8
+-/
 theorem f_in_corner_othogonal (e f : R) (idem_e : IsIdempotentElem e)
     (f_mem : f ∈ bothMul (1 - e) (1 - e)) : IsOrthogonal e f := by
   obtain ⟨x, hx⟩ := f_mem
@@ -333,12 +369,18 @@ theorem f_in_corner_othogonal (e f : R) (idem_e : IsIdempotentElem e)
       _ = (1 - e) * x * (e - e) := by rw [idem_e]
       _ = 0 := by noncomm_ring
 
+/--
+@isnad1 id=isidempo.2h3v.s7.e683682de2dd from=translated src=- shape=a17bbbb3 vocab=b4000f6c
+-/
 lemma e_idem_to_e_val_idem {e : R} {idem_e : IsIdempotentElem e}
     {x : CornerSubring idem_e} (idem_x : IsIdempotentElem x) : IsIdempotentElem x.val := by
   have pl := congrArg Subtype.val idem_x
   simp only [NonUnitalSubring.val_mul] at pl
   exact pl
 
+/--
+@isnad1 id=isidempo.1h3v.s5.2cb5fcefe7aa from=translated src=- shape=261e022f vocab=76850d69
+-/
 lemma sum_orthogonal_idem_is_idem (e f : R) (h : AreOrthogonalIdempotents e f) :
     IsIdempotentElem (e + f) := by
   let ⟨idem_e, idem_f, h1, h2⟩ := h
@@ -347,6 +389,9 @@ lemma sum_orthogonal_idem_is_idem (e f : R) (h : AreOrthogonalIdempotents e f) :
     _ = e + 0 + 0 + f := by rw [idem_e, idem_f, h1, h2]
     _ = e + f := by simp
 
+/--
+@isnad1 id=isidempo.3h3v.s6.99091fb2d412 from=translated src=- shape=e6663942 vocab=3cd54f8f
+-/
 lemma prod_orthogonal_idem_is_idem (e f : R) (_idem_e : IsIdempotentElem e)
     (idem_f : IsIdempotentElem f) (h : IsOrthogonal e f) :
     IsIdempotentElem (f * (1 - e)) := by
@@ -357,11 +402,17 @@ lemma prod_orthogonal_idem_is_idem (e f : R) (_idem_e : IsIdempotentElem e)
     _ = f - f * e := by rw [h.2]
     _ = f * (1 - e) := Eq.symm (mul_one_sub f e)
 
+/--
+@isnad1 id=eq.1h3v.s5.a7f541c4b59a from=translated src=- shape=c5be5a65 vocab=721bafdf
+-/
 lemma e_f_orhogonal_f_1_sub_e_eq_f (e f : R) (h : IsOrthogonal e f) :
     f * (1 - e) = f := by
   calc _ = f - f * e := by noncomm_ring
     _ = f := by rw [h.2]; noncomm_ring
 
+/--
+@isnad1 id=isidempo.2h3v.s8.b0acf4ca1aa8 from=translated src=- shape=118d09ed vocab=b7e60d44
+-/
 lemma f_mem_corner_e_e_sub_f_idem (e : R) (idem_e : IsIdempotentElem e)
     (f : CornerSubring idem_e) (idem_f : IsIdempotentElem f) :
     IsIdempotentElem (e - f) := by
@@ -375,10 +426,16 @@ lemma f_mem_corner_e_e_sub_f_idem (e : R) (idem_e : IsIdempotentElem e)
     _ = e - f + f * (1 - e) := by noncomm_ring
     _ = e - f := by rw [one_sub_e_f_orthogonal.2]; noncomm_ring
 
+/--
+@isnad1 id=isorthog.1h3v.s4.f4816233504b from=translated src=- shape=2da0c23b vocab=a8fb52dc
+-/
 lemma ort_comm (e f : R) (ort : IsOrthogonal e f) : IsOrthogonal f e := by
   unfold IsOrthogonal at *
   rwa [and_comm]
 
+/--
+@isnad1 id=isorthog.2h4v.s7.a953436b0846 from=translated src=- shape=b29bf314 vocab=58e154b5
+-/
 lemma orth_coercion (e : R) (idem_e : IsIdempotentElem e) (x y : CornerSubring idem_e)
     (ort : IsOrthogonal x y) : IsOrthogonal x.val y.val := by
   let ⟨h1, h2⟩ := ort
@@ -386,11 +443,17 @@ lemma orth_coercion (e : R) (idem_e : IsIdempotentElem e) (x y : CornerSubring i
   · exact (AddSubmonoid.mk_eq_zero (CornerSubring idem_e).toAddSubmonoid).mp h1
   · exact (AddSubmonoid.mk_eq_zero (CornerSubring idem_e).toAddSubmonoid).mp h2
 
+/--
+@isnad1 id=isidempo.1h4v.s7.b00511ec28c4 from=translated src=- shape=e5737890 vocab=0e0e6549
+-/
 lemma iso_idem_to_idem (R' : Type*) [Ring R'] (φ : R ≃+* R') (e : R)
     (idem_e : IsIdempotentElem e) : IsIdempotentElem (φ e) := by
   unfold IsIdempotentElem at *
   rw [← RingEquiv.map_mul, idem_e]
 
+/--
+@isnad1 id=isorthog.1h5v.s8.07cd94eed8c4 from=translated src=- shape=53b4e2c9 vocab=f716c243
+-/
 lemma iso_orthogonal_to_orthogonal (R' : Type*) [Ring R'] (φ : R ≃+* R') (x y : R)
     (ort : IsOrthogonal x y) : IsOrthogonal (φ x) (φ y) := by
   let ⟨h1, h2⟩ := ort
@@ -399,10 +462,16 @@ lemma iso_orthogonal_to_orthogonal (R' : Type*) [Ring R'] (φ : R ≃+* R') (x y
   · rw [← RingEquiv.map_mul, h2, RingEquiv.map_eq_zero_iff]
 
 -- lemma 2.14
+/--
+@isnad1 id=ex.0h1v.s6.ee60c1486717 from=translated src=- shape=faf5e9ac vocab=a03233df
+-/
 theorem artinian_ring_has_minimal_left_ideal_of_element [IsArtinian R R] [Nontrivial R] :
     ∃ I : Ideal R, IsAtom I := IsAtomic.exists_atom (Ideal R)
 
 -- obtain an element to extend OrtIdem
+/--
+@isnad1 id=ex.2h1v.s6.b557ed38e076 from=translated src=- shape=e8893fb0 vocab=8388f488
+-/
 theorem prime_and_artinian_esists_idem_corner_div [Nontrivial R]
     (h : IsPrimeRing R) (h' : IsArtinian R R) :
     ∃ (e : R), e ≠ 0 ∧ IsIdempotentElem e ∧ IsDivisionSubring (CornerSubringNonUnital e) e := by

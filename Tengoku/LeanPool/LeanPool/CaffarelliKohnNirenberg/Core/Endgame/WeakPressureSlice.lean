@@ -38,7 +38,9 @@ private theorem integrableOn_mul_test
   exact hg.integrableOn
 
 /-- Addition of locally integrable weak derivatives respects an a.e.
-decomposition of the underlying pressure. -/
+decomposition of the underlying pressure.
+@isnad1 id=hasweakp.8h7v.s9.8d75a11fe269 from=translated src=- shape=5606fc1b vocab=df6fa7d4
+-/
 theorem weak_partial_deriv_of_ae_sum
     {B : Set Vec3} (hB : IsOpen B) {p P H gp gh : Vec3 → ℝ} {k : Fin 3}
     (hrep : p =ᵐ[volume.restrict B] P + H)
@@ -72,7 +74,9 @@ theorem weak_partial_deriv_of_ae_sum
     hP ψ hψ hψc hψB, hH ψ hψ hψc hψB]
   ring
 
-/-- A whole-space weak pairing restricts to any open slice domain. -/
+/-- A whole-space weak pairing restricts to any open slice domain.
+@isnad1 id=hasweakp.2h4v.s8.f222e2768098 from=translated src=- shape=176d0606 vocab=66e012ef
+-/
 theorem weak_partial_deriv_on_of_global_pairing
     {B : Set Vec3} (hB : IsOpen B) {P D : Vec3 → ℝ} {k : Fin 3}
     (hweak : ∀ ψ : Vec3 → ℝ, ContDiff ℝ (⊤ : ℕ∞) ψ → HasCompactSupport ψ →

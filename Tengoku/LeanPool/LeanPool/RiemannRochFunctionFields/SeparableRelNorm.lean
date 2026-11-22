@@ -32,7 +32,9 @@ variable {R S : Type*} [CommRing R] [CommRing S]
 
 /-- The relative norm of a maximal ideal in a finite separable extension is the corresponding
 prime below, raised to the inertia degree.  This is the separable-extension variant of
-`Ideal.relNorm_eq_pow_of_isMaximal`. -/
+`Ideal.relNorm_eq_pow_of_isMaximal`.
+@isnad1 id=eq.0h4v.s8.387170fe2ee0 from=translated src=- shape=ba4a3f82 vocab=c1c0e0ab
+-/
 theorem relNorm_eq_pow_of_isMaximal_of_isSeparable
     [@Algebra.IsSeparable (FractionRing R) (FractionRing S) _ _
       (FractionRing.liftAlgebra R (FractionRing S))]
@@ -125,7 +127,9 @@ theorem relNorm_eq_pow_of_isMaximal_of_isSeparable
     inertiaDeg_tower (R := R) P Q, pow_mul, pow_left_inj (inertiaDeg_pos Q S).ne'] at h
 
 /-- Relative norm preserves the weighted sum of prime factors, with each prime upstairs weighted
-by its inertia degree over the prime below. -/
+by its inertia degree over the prime below.
+@isnad1 id=eq.1h4v.s9.f248669b7761 from=translated src=- shape=6f165671 vocab=8e5bc7cb
+-/
 theorem sum_normalizedFactors_relNorm_of_isSeparable
     [@Algebra.IsSeparable (FractionRing R) (FractionRing S) _ _
       (FractionRing.liftAlgebra R (FractionRing S))]

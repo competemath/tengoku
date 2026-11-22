@@ -136,7 +136,9 @@ private lemma dixonH1_cauchyIntegrand_integrable (hU : IsOpen U)
                 (le_trans (norm_nonneg _) (hM_inv t ht)))
 
 /-- Key identity: h₁(w) = h₂(w) - 2πi · n(γ,w) · f(w) for w off the curve.
-This follows from expanding dslope and splitting the integral. -/
+This follows from expanding dslope and splitting the integral.
+@isnad1 id=eq.4h4v.s7.1e1a191eda07 from=translated src=- shape=ad8f535f vocab=cb5b3548
+-/
 theorem dixonH1_eq (hU : IsOpen U) (hf : DifferentiableOn ℂ f U)
     (γ : PiecewiseC1Immersion) (hγ_in_U : ∀ t ∈ Icc γ.a γ.b, γ.toFun t ∈ U)
     (w : ℂ) (hoff : ∀ t ∈ Icc γ.a γ.b, γ.toFun t ≠ w) :
@@ -354,7 +356,9 @@ private lemma dixonH2_differentiableAt_infDist_pos (f : ℂ → ℂ)
     (dist_lower_bound_at_center γ w) (ball_avoids_curve_of_infDist_pos γ w hinfDist_pos)
     (dist_lower_bound_on_ball γ w)).differentiableAt
 
-/-- h₂ is differentiable at every point off the curve, when f is continuous on the image. -/
+/-- h₂ is differentiable at every point off the curve, when f is continuous on the image.
+@isnad1 id=differen.2h3v.s7.b6724f7acc51 from=translated src=- shape=a3874751 vocab=0e047a6d
+-/
 theorem dixonH2_differentiableAt (f : ℂ → ℂ) (γ : PiecewiseC1Immersion)
     (hf_cont : ContinuousOn f (γ.toFun '' Icc γ.a γ.b)) (w : ℂ)
     (hoff : ∀ t ∈ Icc γ.a γ.b, γ.toFun t ≠ w) :
@@ -550,7 +554,9 @@ private theorem dixonH1_dslope_intervalIntegrable (hU : IsOpen U) (hf : Differen
     exact mul_le_mul (hBd _ ⟨t, ht, rfl⟩) (hM_d t ht) (norm_nonneg _) hC_pos.le
 
 /-- h₁ is differentiable on all of U, including across the curve.
-Uses the Leibniz rule (parametric differentiation of the dslope integral). -/
+Uses the Leibniz rule (parametric differentiation of the dslope integral).
+@isnad1 id=differen.3h3v.s7.d22c6128530d from=translated src=- shape=1a992ab8 vocab=27c2eec9
+-/
 theorem dixonH1_differentiableOn (hU : IsOpen U) (hf : DifferentiableOn ℂ f U)
     (γ : PiecewiseC1Immersion) (hγ_in_U : ∀ t ∈ Icc γ.a γ.b, γ.toFun t ∈ U) :
     DifferentiableOn ℂ (dixonH1 f γ) U := by
@@ -625,7 +631,9 @@ noncomputable def dixonFunction (f : ℂ → ℂ) (U : Set ℂ)
 /-- The Dixon function is entire (differentiable on all of ℂ).
 On U: it's h₁, holomorphic by dixonH1_differentiableOn.
 On ℂ \ U: it's h₂, holomorphic by dixonH2_differentiableAt.
-Patching at ∂U: null-homologous gives n(γ,w) = 0 near ∂U, so h₁ = h₂ there. -/
+Patching at ∂U: null-homologous gives n(γ,w) = 0 near ∂U, so h₁ = h₂ there.
+@isnad1 id=differen.3h3v.s7.3aa6d879fee8 from=translated src=- shape=97fda08c vocab=66ba98ff
+-/
 theorem dixonFunction_differentiable (hU : IsOpen U) (hf : DifferentiableOn ℂ f U)
     (γ : PiecewiseC1Immersion) (h_null : IsNullHomologous γ U) :
     Differentiable ℂ (dixonFunction f U γ) := by
@@ -886,6 +894,9 @@ private lemma dixonFunction_norm_lt_of_large (hU : IsOpen U) (hf : Differentiabl
     exact lt_of_le_of_lt
       (dixonH2_norm_bound γ hM_f_nn hR hM_f hM_d hR_lt) h_bound_lt_ε
 
+/--
+@isnad1 id=tendsto.3h3v.s7.56f7f0e4a74a from=translated src=- shape=ecaf200e vocab=911fa9df
+-/
 theorem dixonFunction_tendsto_zero (hU : IsOpen U) (hf : DifferentiableOn ℂ f U)
     (γ : PiecewiseC1Immersion) (h_null : IsNullHomologous γ U) :
     Tendsto (dixonFunction f U γ) (Filter.cocompact ℂ) (𝓝 0) := by
@@ -904,7 +915,9 @@ theorem dixonFunction_tendsto_zero (hU : IsOpen U) (hf : DifferentiableOn ℂ f 
   exact zero_at_infty_of_norm_le _ fun ε hε => ⟨_, fun w hw =>
     dixonFunction_norm_lt_of_large hU hf γ h_null hM_f_nn hM_d_nn hR hM_f hM_d hε hw⟩
 
-/-- h ≡ 0 by Liouville's theorem. -/
+/-- h ≡ 0 by Liouville's theorem.
+@isnad1 id=eq.3h4v.s6.1610fc81e83e from=translated src=- shape=10af8aa0 vocab=1f40e10f
+-/
 theorem dixonFunction_eq_zero (hU : IsOpen U) (hf : DifferentiableOn ℂ f U)
     (γ : PiecewiseC1Immersion) (h_null : IsNullHomologous γ U) :
     ∀ w, dixonFunction f U γ w = 0 := fun w =>
@@ -913,7 +926,9 @@ theorem dixonFunction_eq_zero (hU : IsOpen U) (hf : DifferentiableOn ℂ f U)
     (dixonFunction_tendsto_zero hU hf γ h_null)
 
 /-- Cauchy integral formula for null-homologous curves:
-∮_γ f(z)/(z-w) dz = 2πi · n(γ,w) · f(w) for w ∈ U off the curve. -/
+∮_γ f(z)/(z-w) dz = 2πi · n(γ,w) · f(w) for w ∈ U off the curve.
+@isnad1 id=eq.5h4v.s7.6fd1f1160d37 from=translated src=- shape=f4cc1a12 vocab=30308724
+-/
 theorem cauchyIntegralFormula_nullHomologous (hU : IsOpen U) (hf : DifferentiableOn ℂ f U)
     (γ : PiecewiseC1Immersion) (h_null : IsNullHomologous γ U)
     (w : ℂ) (hw : w ∈ U) (hoff : ∀ t ∈ Icc γ.a γ.b, γ.toFun t ≠ w) :
@@ -926,7 +941,9 @@ theorem cauchyIntegralFormula_nullHomologous (hU : IsOpen U) (hf : Differentiabl
 
 /-- The image of a piecewise C¹ immersion has empty interior in ℂ.
 This follows from the fact that a Lipschitz map from ℝ to ℂ has image with
-Hausdorff dimension at most 1, hence Lebesgue measure 0 in ℂ. -/
+Hausdorff dimension at most 1, hence Lebesgue measure 0 in ℂ.
+@isnad1 id=eq.0h1v.s5.28370f88b4f1 from=translated src=- shape=7bc722c9 vocab=d6e9330c
+-/
 lemma piecewiseC1_image_interior_empty (γ : PiecewiseC1Immersion) :
     interior (γ.toFun '' Icc γ.a γ.b) = ∅ := by
   rw [interior_eq_empty_iff_dense_compl]
@@ -960,6 +977,9 @@ lemma piecewiseC1_image_interior_empty (γ : PiecewiseC1Immersion) :
   · rw [(γ.partition.finite_toSet.image γ.toFun).dimH_zero]
     simp_all
 
+/--
+@isnad1 id=eq.3h3v.s7.1cb60879ca68 from=translated src=- shape=615bd3cb vocab=8b0aa425
+-/
 theorem contourIntegral_eq_zero_of_nullHomologous (hU : IsOpen U) (hf : DifferentiableOn ℂ f U)
     (γ : PiecewiseC1Immersion) (h_null : IsNullHomologous γ U) :
     ∫ t in γ.a..γ.b, f (γ.toFun t) * deriv γ.toFun t = 0 := by

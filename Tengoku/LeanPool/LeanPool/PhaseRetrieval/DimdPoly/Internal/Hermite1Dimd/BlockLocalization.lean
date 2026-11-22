@@ -36,7 +36,9 @@ Square-block support decomposition and leakage.
 Scaffolding notes: `ScaffoldingNotes/Blocks/block_localization.md`.
 -/
 
-/-- Explicit local and far support sets relative to an annulus and width. -/
+/-- Explicit local and far support sets relative to an annulus and width.
+@isnad1 id=and.0h4v.s6.0302e296e454 from=translated src=- shape=0b0563b5 vocab=bbb18fca
+-/
 theorem explicitLocalAndFarSupport
     {d : ℕ} (j : MultiIndex d) (M : ℕ) (G : FiniteHermiteSum d) :
     Disjoint (localCoeffSet j M G) (farCoeffSet j M G) ∧
@@ -74,7 +76,9 @@ private def shellFinset (d r : ℕ) : Finset (Fin d → ℤ) :=
   (Fintype.piFinset (fun _ : Fin d => Finset.Icc (-(r : ℤ)) (r : ℤ))) \
     Fintype.piFinset (fun _ : Fin d => Finset.Icc (-((r - 1 : ℕ) : ℤ)) (((r - 1 : ℕ) : ℤ)))
 
-/-- Crude shell-count helper for sup-norm block shells. -/
+/-- Crude shell-count helper for sup-norm block shells.
+@isnad1 id=le.0h2v.s7.9b4a5b346211 from=translated src=- shape=bc4fed98 vocab=cdb4433a
+-/
 theorem shellCountingFormula
     (d r : ℕ) :
     (2 * r + 1) ^ d - (2 * r - 1) ^ d ≤ (2 * r + 1) ^ d := by
@@ -105,7 +109,9 @@ private lemma polynomialGaussianTailMajorant_summable
       (fun r => hbound (r : ℝ) (by positivity))
       ((summable_exp_neg_mul_sq (by linarith)).mul_left C)
 
-/-- Gaussian tails with polynomial weights are summable. -/
+/-- Gaussian tails with polynomial weights are summable.
+@isnad1 id=summable.1h2v.s6.3a60e933e436 from=translated src=- shape=f92467f3 vocab=c1b7a60c
+-/
 theorem polynomialGaussianSeriesSummable
     (m : ℕ) (c : ℝ) (hc : 0 < c) :
     Summable (fun r : ℕ => (r : ℝ) ^ m * Real.exp (-c * r ^ 2)) :=

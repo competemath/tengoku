@@ -41,6 +41,9 @@ def NiceIdeal (I : Ideal R) :=
   IdemIdeal I → ∀ (e : R) (idem : IsIdempotentElem e),
     I = Ideal.span {e} → OrtIdemDiv (CornerSubring idem)
 
+/--
+@isnad1 id=isidempo.2h3v.s7.e683682de2dd from=translated src=- shape=a17bbbb3 vocab=b4000f6c
+-/
 lemma idem_lift_is_idem {e : R} {idem_e : IsIdempotentElem e}
     (f : CornerSubring idem_e) (hf : IsIdempotentElem f) : IsIdempotentElem (f : R) := by
   unfold IsIdempotentElem at *
@@ -71,20 +74,35 @@ elements. -/
 def idempotents {α : Type*} {n : ℕ} (x : α) (h : Fin n → α) : Fin (n + 1) → α :=
   Fin.cases x h
 
+/--
+@isnad1 id=eq.0h4v.s5.baa89450ddda from=translated src=- shape=ca7ff8ba vocab=1d8a94de
+-/
 lemma idempotents_first {α : Type*} {n : ℕ} (x : α) (h : Fin n → α) :
     idempotents x h 0 = x := rfl
 
+/--
+@isnad1 id=eq.0h5v.s4.dcdec70e4fbe from=translated src=- shape=2080d59f vocab=d1be4f02
+-/
 lemma idempotents_rest {α : Type*} {n : ℕ} (x : α) (h : Fin n → α) (i : Fin n) :
     idempotents x h (Fin.succ i) = h i := rfl
 
+/--
+@isnad1 id=isidempo.2h5v.s6.9e11f8a95395 from=translated src=- shape=6d39a2c8 vocab=9c0a82b0
+-/
 theorem extend_idempotents {n : ℕ} (f : R) (idem_f : IsIdempotentElem f) (es : Fin n → R)
     (h : (i : Fin n) → IsIdempotentElem (es i)) :
     (i : Fin (n + 1)) → (IsIdempotentElem ((idempotents f es) i)) :=
   Fin.cases idem_f h
 
+/--
+@isnad1 id=ex.1h2v.s6.158001abecc7 from=translated src=- shape=3647dc9c vocab=2e641dff
+-/
 lemma i_nonzero_succ {n : ℕ} (i : Fin (n + 1)) (i_nonzero : i ≠ 0) :
     ∃ (k : Fin n), i = k.succ := Fin.eq_succ_of_ne_zero i_nonzero
 
+/--
+@isnad1 id=ne.2h3v.s6.6f057797eae2 from=translated src=- shape=a8648007 vocab=9c05d2a1
+-/
 lemma bot_eq_span_zero (I : Ideal R) (e : R) (h_bot : I ≠ ⊥) (h_span : I = Ideal.span {e}) :
     e ≠ 0 := by
   simp_all

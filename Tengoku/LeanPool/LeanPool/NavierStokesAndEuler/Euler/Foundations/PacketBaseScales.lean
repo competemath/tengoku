@@ -23,7 +23,9 @@ namespace EulerPacketBaseScales
 
 open Real
 
-/-- A negative total real power absorbs a fixed monomial horizon. -/
+/-- A negative total real power absorbs a fixed monomial horizon.
+@isnad1 id=tendsto.1h4v.s7.eaaa53040edd from=translated src=- shape=188bb56b vocab=8417d9b7
+-/
 theorem base_power_decay (T p : ℝ) (m k : ℕ)
     (hp : p + 2 * m + k < 0) :
     Tendsto (fun x : ℝ => x ^ p * (T * x ^ 2) ^ m * x ^ k) atTop (𝓝 0) := by
@@ -38,7 +40,9 @@ theorem base_power_decay (T p : ℝ) (m k : ℕ)
   ring
 
 /-- Exponential decay absorbs every fixed real polynomial power and
-every fixed monomial horizon power. -/
+every fixed monomial horizon power.
+@isnad1 id=tendsto.1h5v.s7.37a2118d9ce2 from=translated src=- shape=045af8e5 vocab=25fbafbc
+-/
 theorem base_exponential_decay (T p b : ℝ) (m k : ℕ) (hb : 0 < b) :
     Tendsto (fun x : ℝ => x ^ p * exp (-b * x) * (T * x ^ 2) ^ m * x ^ k)
       atTop (𝓝 0) := by
@@ -53,7 +57,9 @@ theorem base_exponential_decay (T p b : ℝ) (m k : ℕ) (hb : 0 < b) :
   ring
 
 /-- The first normal stage has `h=x₀^1000`, hence epsilon of order
-`x₀^-500`; its complete coefficient error beats `x₀^-10 Θ^-60`. -/
+`x₀^-500`; its complete coefficient error beats `x₀^-10 Θ^-60`.
+@isnad1 id=tendsto.2h4v.s8.e21df3514183 from=translated src=- shape=d6b37ab6 vocab=8193d334
+-/
 theorem first_stage_coefficient_error_tendsto_zero
     (T D N b : ℝ) (hD : 1000 ≤ D) (hb : 0 < b) :
     Tendsto (fun x : ℝ =>
@@ -73,7 +79,9 @@ theorem first_stage_coefficient_error_tendsto_zero
   ring
 
 /-- At the special second stage the older gradient is polynomial in
-the base scale, while the new inverse shear is exponentially small. -/
+the base scale, while the new inverse shear is exponentially small.
+@isnad1 id=tendsto.1h3v.s7.8d32986eaaff from=translated src=- shape=c2899cca vocab=645caf00
+-/
 theorem second_stage_shear_error_tendsto_zero
     (T b : ℝ) (hb : 0 < b) (A : ℕ) :
     Tendsto (fun x : ℝ => exp (-b * x) * (1 + x ^ (1000 : ℕ)) ^ 2 *
@@ -92,7 +100,9 @@ theorem second_stage_shear_error_tendsto_zero
   rw [hp]
   ring
 
-/-- The exact base horizon `6 J² x₀^(2-1000/2)` tends to zero. -/
+/-- The exact base horizon `6 J² x₀^(2-1000/2)` tends to zero.
+@isnad1 id=tendsto.0h1v.s6.7a749e039fad from=translated src=- shape=827c23ad vocab=577896b4
+-/
 theorem base_horizon_tendsto_zero (J : ℝ) :
     Tendsto (fun x : ℝ => 6 * J ^ 2 * x ^ (2 - 1000 / 2 : ℝ)) atTop (𝓝 0) := by
   have hh := (tendsto_rpow_neg_atTop (by norm_num : (0 : ℝ) < 498)).const_mul (6 * J ^ 2)
@@ -100,7 +110,9 @@ theorem base_horizon_tendsto_zero (J : ℝ) :
   exact hh
 
 /-- The core-volume guard `h r³ Sbase`, with `r=x₀^-1000`,
-also tends to zero from the explicit base choices. -/
+also tends to zero from the explicit base choices.
+@isnad1 id=tendsto.0h1v.s7.6c82b52928b9 from=translated src=- shape=bc316832 vocab=d78a0514
+-/
 theorem base_core_volume_cost_tendsto_zero (J : ℝ) :
     Tendsto (fun x : ℝ => x ^ (1000 : ℕ) * (x ^ (-1000 : ℝ)) ^ 3 *
       (6 * J ^ 2 * x ^ (-498 : ℝ))) atTop (𝓝 0) := by

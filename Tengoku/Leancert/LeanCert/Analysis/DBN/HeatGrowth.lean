@@ -6,7 +6,9 @@ import Tengoku.Leancert.LeanCert.Analysis.DBN.HeatRegularity
 namespace LeanCert.Analysis.DBN
 open MeasureTheory Set Complex
 
-/-- Cubic absorption gives an exponent of order `3/2`, strictly below two. -/
+/-- Cubic absorption gives an exponent of order `3/2`, strictly below two.
+@isnad1 id=le.2h2v.s6.8e5c18b153a3 from=translated src=- shape=bfdac73e vocab=1c908215
+-/
 theorem cubic_absorption {u y : ℝ} (hu : 0 ≤ u) (hy : 0 ≤ y) :
     y*u ≤ u^3 + y*Real.sqrt y := by
   by_cases h : u ≤ Real.sqrt y
@@ -17,7 +19,9 @@ theorem cubic_absorption {u y : ℝ} (hu : 0 ≤ u) (hy : 0 ≤ y) :
     nlinarith [mul_le_mul_of_nonneg_right hyu hu, mul_nonneg hy hroot]
 
 /-- Prototype of the sharper exponent estimate needed by Hadamard.
-Unlike the existing quadratic majorant, its parameter dependence is subquadratic. -/
+Unlike the existing quadratic majorant, its parameter dependence is subquadratic.
+@isnad1 id=le.2h3v.s7.5e19dd53d014 from=translated src=- shape=e916ba74 vocab=91db54bd
+-/
 theorem heat_subquadratic_exponent (t : ℝ) {u y : ℝ} (hu : 0 ≤ u) (hy : 0 ≤ y) :
     t*u^2 + y*u - kernelScale u ≤ t^2 + y*Real.sqrt y + 2 - u^2 := by
   have h := cubic_absorption hu hy
@@ -32,7 +36,9 @@ theorem heat_subquadratic_exponent (t : ℝ) {u y : ℝ} (hu : 0 ≤ u) (hy : 0 
     · nlinarith [mul_nonneg (pow_nonneg hu 3) (show 0 ≤ u-1 by linarith)]
   nlinarith [pow_nonneg hu 4, sq_nonneg (t-u^2), sq_nonneg t]
 
-/-- A subquadratic spatial majorant, with time dependence isolated in `t²`. -/
+/-- A subquadratic spatial majorant, with time dependence isolated in `t²`.
+@isnad1 id=le.1h3v.s7.2124265b5d65 from=translated src=- shape=318659e3 vocab=4cf92bd1
+-/
 theorem heatIntegrand_subquadratic (t : ℝ) {u : ℝ} (hu : 0 ≤ u) (z : ℂ) :
     ‖heatIntegrand t z u‖ ≤
       (44 * Real.exp (t^2+(|z.im|+1)*Real.sqrt (|z.im|+1)+2)) *
@@ -60,7 +66,9 @@ theorem heatIntegrand_subquadratic (t : ℝ) {u : ℝ} (hu : 0 ≤ u) (z : ℂ) 
   apply Real.exp_le_exp.mpr
   nlinarith
 
-/-- The Gaussian mass is left symbolic; no numerical integration is needed. -/
+/-- The Gaussian mass is left symbolic; no numerical integration is needed.
+@isnad1 id=le.0h2v.s7.243b10a76788 from=translated src=- shape=75197b1e vocab=aaae1428
+-/
 theorem H_subquadratic (t : ℝ) (z : ℂ) :
     ‖H t z‖ ≤ (44 * (∫ u in Ioi (0 : ℝ), Real.exp (-u^2))) *
       Real.exp (t^2+(|z.im|+1)*Real.sqrt (|z.im|+1)+2) := by
@@ -74,7 +82,9 @@ theorem H_subquadratic (t : ℝ) (z : ℂ) :
   rw [integral_const_mul] at h
   simpa only [H, mul_assoc, mul_left_comm, mul_comm] using h
 
-/-- A coarse order-3/2 spatial bound; sufficient for genus-one Hadamard. -/
+/-- A coarse order-3/2 spatial bound; sufficient for genus-one Hadamard.
+@isnad1 id=ex.0h1v.s6.7380aa8c6833 from=translated src=- shape=0391cc5c vocab=9a446b85
+-/
 theorem H_norm_le_exp_order (t : ℝ) :
     ∃ C : ℝ, 0 < C ∧ ∀ z : ℂ, ‖H t z‖ ≤ Real.exp (C*(1+‖z‖)^(3/2 : ℝ)) := by
   let A : ℝ := 44 * (∫ u in Ioi (0 : ℝ), Real.exp (-u^2))
@@ -99,21 +109,32 @@ theorem H_norm_le_exp_order (t : ℝ) :
       nlinarith [mul_nonneg (abs_nonneg A) (sub_nonneg.mpr hB),
         mul_nonneg (sq_nonneg t) (sub_nonneg.mpr hB)]
 
-/-- Compatibility specialization of the arbitrary-time exponent bound. -/
+/-- Compatibility specialization of the arbitrary-time exponent bound.
+@isnad1 id=le.2h2v.s6.372988cd1f27 from=translated src=- shape=200354a5 vocab=91db54bd
+-/
 theorem subquadratic_exponent {u y : ℝ} (hu : 0 ≤ u) (hy : 0 ≤ y) :
     y*u - kernelScale u ≤ y*Real.sqrt y + 2 - u^2 := by
   simpa using heat_subquadratic_exponent 0 hu hy
 
+/--
+@isnad1 id=le.1h2v.s7.384e866096c1 from=translated src=- shape=6674a8b1 vocab=4cf92bd1
+-/
 theorem heatIntegrand_zero_subquadratic {u : ℝ} (hu : 0 ≤ u) (z : ℂ) :
     ‖heatIntegrand 0 z u‖ ≤
       (44 * Real.exp ((|z.im|+1)*Real.sqrt (|z.im|+1)+2)) * Real.exp (-u^2) := by
   simpa using heatIntegrand_subquadratic 0 hu z
 
+/--
+@isnad1 id=le.0h1v.s7.b7fe57439c7c from=translated src=- shape=7ed260d5 vocab=aaae1428
+-/
 theorem H_zero_subquadratic (z : ℂ) :
     ‖H 0 z‖ ≤ (44 * (∫ u in Ioi (0 : ℝ), Real.exp (-u^2))) *
       Real.exp ((|z.im|+1)*Real.sqrt (|z.im|+1)+2) := by
   simpa using H_subquadratic 0 z
 
+/--
+@isnad1 id=ex.0h0v.s6.9b494790de48 from=translated src=- shape=f74eb730 vocab=9a446b85
+-/
 theorem H_zero_norm_le_exp_order :
     ∃ C : ℝ, 0 < C ∧ ∀ z : ℂ, ‖H 0 z‖ ≤ Real.exp (C*(1+‖z‖)^(3/2 : ℝ)) :=
   H_norm_le_exp_order 0

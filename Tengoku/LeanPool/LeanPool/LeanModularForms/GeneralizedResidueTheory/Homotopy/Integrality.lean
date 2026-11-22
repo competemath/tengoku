@@ -125,7 +125,9 @@ The empty partition `∅` means no breakpoints are needed: differentiability
 holds everywhere in `Ioo a b` (vacuously, the partition condition is void),
 and the global continuity of the derivative supplies the required local
 continuity on every sub-interval. The bound on `‖deriv H‖` is obtained from
-compactness of `Icc a b × Icc 0 1` together with continuity of the derivative. -/
+compactness of `Icc a b × Icc 0 1` together with continuity of the derivative.
+@isnad1 id=piecewis.1h5v.s5.bc6aa7c13577 from=translated src=- shape=49c0e450 vocab=695b9391
+-/
 theorem ClosedCurvesHomotopicAvoiding.toPiecewise
     {γ₀ γ₁ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ}
     (h : ClosedCurvesHomotopicAvoiding γ₀ γ₁ a b z₀) :
@@ -149,7 +151,9 @@ theorem ClosedCurvesHomotopicAvoiding.toPiecewise
 homotopy `H` (from `h`) satisfies `H(a,s) = z₀` and `H(b,s) = z₀` for all `s`.
 This is the endpoint condition required by `CurvesHomotopicAvoiding` (Basic.lean).
 The piecewise/closed variants only require `H(a,s) = H(b,s)` (closed curves),
-which is a strictly weaker condition — so no hypothesis-free conversion exists. -/
+which is a strictly weaker condition — so no hypothesis-free conversion exists.
+@isnad1 id=curvesho.2h6v.s7.bcf05a0a8494 from=translated src=- shape=d790ea90 vocab=44afc96e
+-/
 theorem PiecewiseCurvesHomotopicAvoiding.toBasic
     {γ₀ γ₁ : ℝ → ℂ} {a b : ℝ} {z₀ : ℂ} {P : Finset ℝ}
     (h : PiecewiseCurvesHomotopicAvoiding γ₀ γ₁ a b z₀ P)
@@ -164,12 +168,16 @@ theorem PiecewiseCurvesHomotopicAvoiding.toBasic
     hpts H hcont hH0 hH1,
     fun t ht s hs => havoid t (Set.Ioo_subset_Icc_self ht) s hs⟩
 
-/-- If f is eventually equal to a constant, `limUnder` equals that constant. -/
+/-- If f is eventually equal to a constant, `limUnder` equals that constant.
+@isnad1 id=eq.1h4v.s5.dc982730ef3d from=translated src=- shape=0d3aef2c vocab=e36c291e
+-/
 theorem limUnder_eventually_eq_const {α : Type*} {f : α → ℂ}
     {l : Filter α} {c : ℂ} [l.NeBot] (hf : ∀ᶠ x in l, f x = c) : limUnder l f = c :=
   (tendsto_const_nhds.congr' (hf.mono fun _ h => h.symm)).limUnder_eq
 
-/-- At a point not in a finite set, there is an open ball disjoint from the set. -/
+/-- At a point not in a finite set, there is an open ball disjoint from the set.
+@isnad1 id=ex.1h2v.s6.c09b7a1eac2e from=translated src=- shape=ea3aee61 vocab=4b8f1700
+-/
 lemma exists_ball_avoiding_finset {P : Finset ℝ} {t : ℝ} (ht : t ∉ P) :
     ∃ ε > 0, ∀ x ∈ Ioo (t - ε) (t + ε), x ∉ P := by
   by_cases hP_empty : P = ∅
@@ -445,6 +453,9 @@ private lemma windingNumber_integer_of_piecewise_with_bound
   rw [Complex.exp_eq_one_iff] at h_exp
   exact winding_integer_from_exp_one hab hδ_pos hδ_bound h_exp
 
+/--
+@isnad1 id=ex.7h5v.s8.2c8eb7d38d0c from=translated src=- shape=25ed1817 vocab=0eef65d0
+-/
 lemma windingNumber_integer_of_piecewise_closed_avoiding
     (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) (P : Finset ℝ) (hab : a < b)
     (hγ_closed : γ a = γ b)
@@ -462,7 +473,9 @@ lemma windingNumber_integer_of_piecewise_closed_avoiding
 
 /-- Piecewise generalization of `exp_integral_eq_endpoint_ratio`: for a piecewise C¹
 curve avoiding z₀ with bounded derivative, the exponential of the log-derivative
-integral equals the endpoint ratio. Uses the G-function technique. -/
+integral equals the endpoint ratio. Uses the G-function technique.
+@isnad1 id=eq.6h5v.s9.67e7c089ce58 from=translated src=- shape=fd105b21 vocab=25b8a61f
+-/
 theorem exp_integral_eq_endpoint_ratio_piecewise
     (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) (P : Finset ℝ) (hab : a < b)
     (hγ_cont : ContinuousOn γ (Icc a b))
@@ -495,7 +508,9 @@ theorem exp_integral_eq_endpoint_ratio_piecewise
       (Complex.exp (-(∫ t in a..b, deriv γ t / (γ t - z₀))))⁻¹ from by
     rw [Complex.exp_neg, inv_inv], h_neg, inv_div]
 
-/-- Uniform bound for winding number integrand from homotopy avoidance. -/
+/-- Uniform bound for winding number integrand from homotopy avoidance.
+@isnad1 id=le.5h8v.s8.1ba3260ddc83 from=translated src=- shape=68b83ad6 vocab=21e281ab
+-/
 theorem winding_integrand_bounded_of_uniform_avoidance
     {H : ℝ × ℝ → ℂ} {a b : ℝ} {z₀ : ℂ} {δ M : ℝ}
     (hδ_pos : 0 < δ)
@@ -597,6 +612,9 @@ private lemma exp_endpoint_ratio_from_gFunc
       (Complex.exp (-(∫ t in a..b, deriv γ t / (γ t - z₀))))⁻¹ from by
     rw [Complex.exp_neg, inv_inv], h_neg, inv_div]
 
+/--
+@isnad1 id=eq.5h4v.s8.aed54af50a97 from=translated src=- shape=826b9f1a vocab=8230d5ec
+-/
 theorem exp_integral_eq_endpoint_ratio
     (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) (hab : a < b)
     (hγ_cont : ContinuousOn γ (Icc a b))
@@ -633,7 +651,9 @@ private theorem integral_closed_curve_eq_two_pi_int
   exact ⟨n, by rw [hn]; ring⟩
 
 /-- The winding number of a smooth closed curve avoiding z₀
-is an integer. -/
+is an integer.
+@isnad1 id=ex.6h4v.s8.e3aa9c8563e6 from=translated src=- shape=6fd7474e vocab=a59a63e2
+-/
 theorem windingNumber_integer_of_closed_avoiding
     (γ : ℝ → ℂ) (a b : ℝ) (z₀ : ℂ) (hab : a < b)
     (hγ_closed : γ a = γ b)

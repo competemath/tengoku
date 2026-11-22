@@ -12,7 +12,9 @@ All estimates here concern the actual defining series.
 -/
 namespace LeanCert.Analysis.DBN
 
-/-- A deliberately coarse lower bound from the first positive summand. -/
+/-- A deliberately coarse lower bound from the first positive summand.
+@isnad1 id=le.1h1v.s5.2ea6e88c6c7b from=translated src=- shape=6573c14b vocab=7719f1e9
+-/
 theorem Phi_lower_exp {u : ℝ} (hu : 0 ≤ u) :
     Real.exp (-4 * Real.exp (4*u)) ≤ Phi u := by
   have hp := Real.pi_gt_three
@@ -38,6 +40,9 @@ theorem Phi_lower_exp {u : ℝ} (hu : 0 ≤ u) :
         nlinarith [Real.exp_pos (-Real.pi * Real.exp (4*u))]
   exact hterm.trans ((kernel_summable u).le_tsum 0 (fun n _ => (kernelTerm_pos hu n).le))
 
+/--
+@isnad1 id=le.1h1v.s5.c0e25388f628 from=translated src=- shape=c1b88ced vocab=39fda9b0
+-/
 theorem Phi_upper_exp {u : ℝ} (hu : 0 ≤ u) :
     Phi u ≤ Real.exp (44 + u - Real.exp (4*u)) := by
   have h := Phi_bound_nonneg hu
@@ -54,7 +59,9 @@ theorem Phi_upper_exp {u : ℝ} (hu : 0 ≤ u) :
     _ = Real.exp (44+u-Real.exp (4*u)) := by rw [← Real.exp_add]; congr 1; ring
 
 /-- The kernel violates the real-root four-point inequality strictly.
-No numerical quadrature or native evaluation is used. -/
+No numerical quadrature or native evaluation is used.
+@isnad1 id=lt.0h0v.s6.0595e8282221 from=translated src=- shape=77b1f164 vocab=7516dc19
+-/
 theorem Phi_four_point_obstruction :
     Phi 3 * (Phi 1)^15 < (Phi 0)^10 * (Phi 2)^6 := by
   have h4 : 32 ≤ Real.exp 4 := by

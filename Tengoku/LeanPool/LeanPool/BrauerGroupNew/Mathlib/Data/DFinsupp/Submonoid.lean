@@ -22,6 +22,9 @@ variable {ι γ β : Type*}
 
 open Finsupp
 
+/--
+@isnad1 id=mem.1h7v.s6.94f89b8dc4ea from=translated src=- shape=4bf25fe1 vocab=3c3b1e3b
+-/
 @[to_additive]
 theorem _root_.Tengoku.LeanPool.finsuppProd_mem [Zero β] [CommMonoid γ] {S : Type*} [SetLike S γ] [SubmonoidClass S γ]
     {s : S} {f : ι →₀ β} {g : ι → β → γ} (h : ∀ c, f c ≠ 0 → g c (f c) ∈ s) : f.prod g ∈ s :=

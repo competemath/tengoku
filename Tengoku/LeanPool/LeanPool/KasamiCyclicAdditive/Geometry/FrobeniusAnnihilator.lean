@@ -41,7 +41,9 @@ namespace KasamiCyclicAdditive.PointFrobenius
 
 variable {K : Type*} [Field K] [Fintype K] [DecidableEq K] [CharP K 2]
 
-/-- The `n`-th Frobenius power is the identity on `K`-rational points. -/
+/-- The `n`-th Frobenius power is the identity on `K`-rational points.
+@isnad1 id=eq.1h3v.s8.e07f969e57da from=translated src=- shape=8137e491 vocab=0a12d721
+-/
 theorem frobEnd_pow_card_eq {n : ℕ} (hcard : Fintype.card K = 2 ^ n)
     (P : (fer K).toAffine.Point) : (frobEnd K ^ n) P = P := by
   have hpow : ∀ x : K, x ^ 2 ^ n = x := by
@@ -55,7 +57,9 @@ theorem frobEnd_pow_card_eq {n : ℕ} (hcard : Fintype.card K = 2 ^ n)
 
 omit [Fintype K] in
 /-- The abstract iterate `Isogeny.piIter` agrees with the Frobenius
-endomorphism power. -/
+endomorphism power.
+@isnad1 id=eq.0h3v.s8.c98b53a21649 from=translated src=- shape=7a3048ae vocab=a64b1f68
+-/
 theorem piIter_frobPt (k : ℕ) (P : (fer K).toAffine.Point) :
     Isogeny.piIter (frobPt K) k P = (frobEnd K ^ k) P := by
   induction k generalizing P with
@@ -66,7 +70,9 @@ theorem piIter_frobPt (k : ℕ) (P : (fer K).toAffine.Point) :
       rw [pow_succ']
       rfl
 
-/-- `nn n` annihilates `E(K)` in even dimension. -/
+/-- `nn n` annihilates `E(K)` in even dimension.
+@isnad1 id=eq.2h3v.s7.437bbef513ca from=translated src=- shape=fc33adce vocab=488992b1
+-/
 theorem nn_smul_eq_zero {n : ℕ} (hn : Even n) (hcard : Fintype.card K = 2 ^ n)
     (P : (fer K).toAffine.Point) : Descent.nn n • P = 0 := by
   obtain ⟨j, hj⟩ := hn
@@ -89,7 +95,9 @@ bijection of `E(K)`, so every point has a `G`-preimage.
 The 3-primary obstruction is the separate factor `1 + π`, and `G` is inverted by
 Bézout against the annihilator `nn n`, over `K` itself.  The factorization
 `(1 + π) ∘ G = 1 + π^k` is `Isogeny.gMap_factor`, applied by the caller where it
-is needed. -/
+is needed.
+@isnad1 id=ex.5h5v.s8.472dd032099d from=translated src=- shape=2d9941d9 vocab=0db6334a
+-/
 theorem exists_gMap_preimage {n k m : ℕ} (hn : Even n) (hk : Odd k)
     (hcard : Fintype.card K = 2 ^ n) (he : 2 ^ k + 1 = 3 * m)
     (hm : Nat.Coprime m (2 ^ n - 1)) (R : (fer K).toAffine.Point) :

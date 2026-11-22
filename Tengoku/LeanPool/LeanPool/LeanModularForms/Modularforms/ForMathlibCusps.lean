@@ -18,6 +18,9 @@ namespace LeanPoolFork
 
 open scoped MatrixGroups ModularForm UpperHalfPlane
 
+/--
+@isnad1 id=iszeroat.2h4v.s9.308a6c545c66 from=translated src=- shape=6a36e555 vocab=dbd92186
+-/
 theorem zero_at_cusps_of_zero_at_infty {f : ℍ → ℂ} {c : OnePoint ℝ} {k : ℤ}
     {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic]
     (hc : IsCusp c 𝒢) (hb : ∀ A ∈ 𝒮ℒ, UpperHalfPlane.IsZeroAtImInfty (f ∣[k] A)) :
@@ -25,6 +28,9 @@ theorem zero_at_cusps_of_zero_at_infty {f : ℍ → ℂ} {c : OnePoint ℝ} {k :
   rw [Subgroup.IsArithmetic.isCusp_iff_isCusp_SL2Z] at hc
   refine (OnePoint.isZeroAt_iff_forall_SL2Z hc).mpr fun A hA ↦ hb A ⟨A, rfl⟩
 
+/--
+@isnad1 id=isbounde.2h4v.s9.8b0ced6db906 from=translated src=- shape=6a36e555 vocab=f79b1bc9
+-/
 theorem bounded_at_cusps_of_bounded_at_infty {f : ℍ → ℂ} {c : OnePoint ℝ} {k : ℤ}
     {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic]
     (hc : IsCusp c 𝒢) (hb : ∀ A ∈ 𝒮ℒ, UpperHalfPlane.IsBoundedAtImInfty (f ∣[k] A)) :

@@ -40,6 +40,9 @@ universe u v w
 open Module
 variable (K : Type u) [Field K]
 open Matrix in
+/--
+@isnad1 id=iscentra.0h2v.s5.9139def58c50 from=translated src=- shape=91fe78f9 vocab=8a8c4bb4
+-/
 instance MatrixRing.isCentral (ι : Type) [Fintype ι] [DecidableEq ι] :
     Algebra.IsCentral K (Matrix ι ι K) where
   out _ h := mem_range_scalar_of_commute_single fun _ _ _ =>
@@ -63,6 +66,9 @@ instance instAlgebraSubtypeMemSubringCenterLeanPool (B : Type*) [Ring B] [Algebr
   RingHom.toAlgebra <| (algebraMap K B).codRestrict _ fun x ↦ by
     rw [Subring.mem_center_iff]
     exact fun y ↦ Algebra.commutes x y |>.symm
+/--
+@isnad1 id=eq.2h8v.s8.e5165ee58c12 from=translated src=- shape=568c92d7 vocab=c6103508
+-/
 lemma _root_.IsCentralSimple.TensorProduct.sum_tmul_basis_right_eq_zero'
     (B : Type*) [Ring B] [Algebra K B]
     (C : Type*) [Ring C] [Algebra K C]
@@ -82,6 +88,9 @@ lemma _root_.IsCentralSimple.TensorProduct.sum_tmul_basis_right_eq_zero'
       congr!
       aesop)
   simpa using Finsupp.ext_iff.mp this i
+/--
+@isnad1 id=eq.2h8v.s8.0541943ef0cc from=translated src=- shape=4e9d38ac vocab=c6103508
+-/
 lemma _root_.IsCentralSimple.TensorProduct.sum_tmul_basis_left_eq_zero'
     (B : Type*) [Ring B] [Algebra K B]
     (C : Type*) [Ring C] [Algebra K C]
@@ -92,6 +101,9 @@ lemma _root_.IsCentralSimple.TensorProduct.sum_tmul_basis_left_eq_zero'
   apply TensorProduct.sum_tmul_basis_right_eq_zero' K C B ℬ s c
   apply_fun TensorProduct.comm K B C at h
   simpa using h
+/--
+@isnad1 id=eq.0h5v.s11.f1ee2d1019d7 from=translated src=- shape=f52df343 vocab=e4fecb86
+-/
 lemma _root_.IsCentralSimple.TensorProduct.submodule_tensor_inf_tensor_submodule
     (B C : Type u) [AddCommGroup B] [Module K B] [AddCommGroup C] [Module K C]
     (b : Submodule K B) (c : Submodule K C) :
@@ -164,6 +176,9 @@ lemma _root_.IsCentralSimple.TensorProduct.submodule_tensor_inf_tensor_submodule
 noncomputable def centerTensorCenter (B C : Type v) [Ring B] [Algebra K B] [Ring C] [Algebra K C] :
     (Subalgebra.center K B ⊗[K] Subalgebra.center K C) →ₗ[K] (B ⊗[K] C) :=
   TensorProduct.map (Subalgebra.val _).toLinearMap (Subalgebra.val _).toLinearMap
+/--
+@isnad1 id=injectiv.0h3v.s11.3a985efcc562 from=translated src=- shape=084c0f91 vocab=fd53bab9
+-/
 lemma centerTensorCenter_injective (B C : Type v) [Ring B] [Algebra K B] [Ring C] [Algebra K C] :
     Function.Injective (centerTensorCenter K B C) := by
   have : centerTensorCenter K B C =
@@ -192,8 +207,14 @@ end IsCentralSimple
 section CSA_implies_CSA
 variable (K : Type u) [Field K]
 variable (B : Type*) [Ring B]
+/--
+@isnad1 id=eq.0h1v.s5.3601973f01a4 from=translated src=- shape=beb144e4 vocab=15a2c3e3
+-/
 lemma _root_.Tengoku.LeanPool.top_eq_ring (R : Type*) [Ring R] : (⊤ : TwoSidedIdeal R) = (⊤ : Set R) := by
   aesop
+/--
+@isnad1 id=iscentra.0h4v.s6.c2678866e7d1 from=translated src=- shape=1df4f5c9 vocab=f4713393
+-/
 lemma _root_.AlgEquiv.isCentral {K B C : Type*}
     [Field K] [Ring B] [Algebra K B]
     [hc : Algebra.IsCentral K B]
@@ -204,6 +225,9 @@ lemma _root_.AlgEquiv.isCentral {K B C : Type*}
       simp only [Subalgebra.mem_center_iff] at hz ⊢
       exact fun x ↦ by simpa using congr(e.symm $(hz (e x))))
     exact ⟨k, by simpa [Algebra.ofId_apply] using congr(e $hk)⟩
+/--
+@isnad1 id=iscentra.0h6v.s7.d831c9f50ce4 from=translated src=- shape=87fe4910 vocab=44da8c93
+-/
 theorem _root_.Tengoku.LeanPool.CSA_implies_CSA (K : Type*) (B : Type*) [Field K] [Ring B] [Algebra K B]
     (n : ℕ) (D : Type*) [NeZero n] (h : DivisionRing D) [Algebra K D]
     (Wdb : B ≃ₐ[K] (Matrix (Fin n) (Fin n) D)) [Algebra.IsCentral K B] :

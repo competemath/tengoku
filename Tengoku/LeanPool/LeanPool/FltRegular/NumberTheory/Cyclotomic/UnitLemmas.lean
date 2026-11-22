@@ -46,7 +46,9 @@ theorem _root_.Tengoku.LeanPool.eq_one_mod_one_sub {A : Type*} [CommRing A] {t :
 variable [NumberField K] [IsCyclotomicExtension {p} ℚ K]
 
 include hζ in
-/-- Complex conjugation sends a primitive `p`-th root of unity to its inverse. -/
+/-- Complex conjugation sends a primitive `p`-th root of unity to its inverse.
+@isnad1 id=eq.2h3v.s7.8ef5936c8c34 from=translated src=- shape=4f8177c3 vocab=ab31b332
+-/
 theorem _root_.Tengoku.LeanPool.complexConj_zeta (hp : 2 < p) :
     haveI := IsCyclotomicExtension.Rat.isCMField (S := {p}) K ⟨p, rfl, hp⟩
     complexConj K ζ = ζ⁻¹ := by
@@ -57,6 +59,9 @@ theorem _root_.Tengoku.LeanPool.complexConj_zeta (hp : 2 < p) :
     exact hζ.pow_eq_one
   exact complexConj_torsion (K := K) ⟨η, hη⟩
 
+/--
+@isnad1 id=ex.3h4v.s8.bc4ddbdf20bd from=translated src=- shape=26a802eb vocab=620f8fd4
+-/
 theorem _root_.Tengoku.LeanPool.roots_of_unity_in_cyclo (hpo : Odd p) (x : K)
     (h : ∃ (n : ℕ) (_ : 0 < n), x ^ n = 1) :
     ∃ (m k : ℕ), x = (-1) ^ k * (η.1 : K) ^ m := by
@@ -67,6 +72,9 @@ theorem _root_.Tengoku.LeanPool.roots_of_unity_in_cyclo (hpo : Odd p) (x : K)
     (isOfFinOrder_iff_pow_eq_one.mpr ⟨n, hn, hxn⟩)
   · exact ⟨r, 2, by simp [hr]⟩
   · exact ⟨r, 1, by simp [hr]⟩
+/--
+@isnad1 id=eq.2h4v.s12.2db2e9b99195 from=translated src=- shape=dd7cf025 vocab=3cadf62d
+-/
 lemma _root_.Tengoku.LeanPool.unit_inv_conj_not_neg_zeta_runity_aux (u : (𝓞 K)ˣ) [Fact (p.Prime)] (hp : 2 < p) :
     haveI := IsCyclotomicExtension.Rat.isCMField (S := {p}) K ⟨p, rfl, hp⟩
     algebraMap (𝓞 K) (𝓞 K ⧸ I) (unitsMulComplexConjInv K u).1 = 1 := by
@@ -78,6 +86,9 @@ lemma _root_.Tengoku.LeanPool.unit_inv_conj_not_neg_zeta_runity_aux (u : (𝓞 K
   exact (RingHom.congr_fun (quotient_zero_sub_one_comp_aut hζ
     (ringOfIntegersComplexConj K).toRingEquiv.toRingHom) (u : 𝓞 K)).symm
 
+/--
+@isnad1 id=ne.2h5v.s9.235ca97e28ad from=translated src=- shape=94d7fa6b vocab=2fa1e26e
+-/
 theorem _root_.Tengoku.LeanPool.unit_inv_conj_not_neg_zeta_runity (u : (𝓞 K)ˣ) (n : ℕ) [Fact (p.Prime)] (hp : 2 < p) :
     haveI := IsCyclotomicExtension.Rat.isCMField (S := {p}) K ⟨p, rfl, hp⟩
     u * (unitsComplexConj K u)⁻¹ ≠ -η ^ n := by
@@ -99,6 +110,9 @@ theorem _root_.Tengoku.LeanPool.unit_inv_conj_not_neg_zeta_runity (u : (𝓞 K)�
     ← neg_eq_iff_add_eq_zero]
   exact hμ'.symm.trans hμ
 
+/--
+@isnad1 id=ex.2h4v.s9.17e4bbe7a0a1 from=translated src=- shape=47176f7a vocab=2e880654
+-/
 theorem _root_.Tengoku.LeanPool.unit_inv_conj_is_root_of_unity (u : (𝓞 K)ˣ) [H : Fact (p.Prime)] (hp : 2 < p) :
     haveI := IsCyclotomicExtension.Rat.isCMField (S := {p}) K ⟨p, rfl, hp⟩
     ∃ m : ℕ, u * (unitsComplexConj K u)⁻¹ = (η ^ m) ^ 2 := by

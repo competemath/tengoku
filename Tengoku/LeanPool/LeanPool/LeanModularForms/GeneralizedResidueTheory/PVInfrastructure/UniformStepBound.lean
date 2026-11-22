@@ -131,7 +131,9 @@ private lemma annulus_integral_split
     · rw [ite_eq_right hcond, ite_eq_right hcond, ite_eq_right hcond, add_zero]
   simp_all
 
-/-- Uniform step bound with epsilon-independent constant. -/
+/-- Uniform step bound with epsilon-independent constant.
+@isnad1 id=ex.9h5v.s9.692b6cece81c from=translated src=- shape=9a3231e5 vocab=0a2d6f62
+-/
 lemma pv_step_bound_ratio_two_uniform
     {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ}
     (hab : a < b) (hat₀ : t₀ ∈ Set.Ioo a b)

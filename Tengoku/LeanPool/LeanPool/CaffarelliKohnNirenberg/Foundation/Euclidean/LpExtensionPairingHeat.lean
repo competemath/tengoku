@@ -31,7 +31,9 @@ noncomputable section
 namespace CKN
 
 /-- A compactly supported bounded factor preserves integrability of the heat
-kernel on the positive-time half-space. -/
+kernel on the positive-time half-space.
+@isnad1 id=integrab.2h2v.s8.13dea2d3ea15 from=translated src=- shape=c14c60ee vocab=6696ef6e
+-/
 theorem heat_kernel_mul_compact_integrable {g : Vec3 → ℝ} {y : Vec3}
     (hg : ContDiff ℝ (⊤ : ℕ∞) g) (hgc : HasCompactSupport g) :
     Integrable (fun p : ℝ × Vec3 =>

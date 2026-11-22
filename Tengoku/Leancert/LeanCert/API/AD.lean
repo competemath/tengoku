@@ -197,7 +197,9 @@ private theorem evalWithDerivativeDyadic_correct {e : Expr} {box : List Interval
           x hxD henvD hdual
 
 /-- A successful public checked AD computation encloses both the expression
-value and the selected true partial derivative. -/
+value and the selected true partial derivative.
+@isnad1 id=and.3h7v.s6.ba80f25614bd from=translated src=- shape=6858512f vocab=8edabf25
+-/
 theorem evalWithDerivative_correct {e : Expr} {box : List IntervalRat} {idx : Nat}
     {options : ADOptions} {outcome : DerivativeOutcome}
     (hsuccess : evalWithDerivative e box idx options = .ok outcome)
@@ -306,7 +308,9 @@ private theorem evalGradientDyadic_correct {e : Expr} {box : List IntervalRat}
       exact hnative.imp fun _ _ hmem => IntervalDyadic.mem_toIntervalRat.mpr hmem
 
 /-- A successful public gradient computation encloses the corresponding true
-partial derivative in each coordinate. -/
+partial derivative in each coordinate.
+@isnad1 id=forall.2h5v.s6.9711256b6f91 from=translated src=- shape=8f04e9f3 vocab=a42de13a
+-/
 theorem evalGradient_correct {e : Expr} {box : List IntervalRat}
     {options : ADOptions} {outcome : GradientOutcome}
     (hsuccess : evalGradient e box options = .ok outcome)

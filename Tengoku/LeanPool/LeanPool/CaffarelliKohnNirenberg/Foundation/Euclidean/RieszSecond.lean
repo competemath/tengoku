@@ -120,7 +120,9 @@ private lemma measurableSet_rieszSecondCubeStar (Q : DyadicIndex) :
   exact (isClosed_Iic.preimage hc).measurableSet
 
 /-- The enlarged cube has the explicit volume comparison needed in the bad
-    region estimate. -/
+    region estimate.
+@isnad1 id=le.0h1v.s8.87717c184162 from=translated src=- shape=6547e614 vocab=d8a3dc0a
+-/
 theorem rieszSecondCubeStar_volume (Q : DyadicIndex) :
     volume (rieszSecondCubeStar Q) ≤
       ENNReal.ofReal (32 * Real.pi * Real.sqrt 3) *
@@ -161,6 +163,9 @@ theorem rieszSecondCubeStar_volume (Q : DyadicIndex) :
             rw [show (Real.sqrt 3) ^ 2 = 3 by norm_num]
       rw [hsqrt]
       ring
+/--
+@isnad1 id=le.0h3v.s7.47d7216c362d from=translated src=- shape=760492b9 vocab=be9ab42a
+-/
 theorem rieszSecondCubeStar_volume_sum {F : Vec3 → ℝ} {height : ℝ}
     (D : CZDecomposition F height) :
     (∑' Q : {Q // Q ∈ D.cubes},
@@ -184,6 +189,9 @@ theorem rieszSecondCubeStar_volume_sum {F : Vec3 → ℝ} {height : ℝ}
       exact D.cube_volume_sum_le
 /- The enlarged cubes and the exterior `L¹` estimate combine before any
    pointwise representation of the bad output is chosen. -/
+/--
+@isnad1 id=le.3h6v.s9.d7dbfc58fadb from=translated src=- shape=694703b7 vocab=5e39826c
+-/
 theorem rieszSecond_bad_output_measure {F : Vec3 → ℝ} {height level : ℝ}
     (D : CZDecomposition F height) (hlevel : 0 < level)
     {B : Vec3 → ℝ} (hB : Integrable B)
@@ -328,6 +336,9 @@ private lemma rieszSecond_hormander_exterior
       by_cases hzero : y - c = 0
       · simp [hzero]
       · exact hormander_integral_bound hC₂ hdiff hgrad hzero
+/--
+@isnad1 id=le.7h4v.s10.2547c8ed35e3 from=translated src=- shape=73984994 vocab=9b6d460f
+-/
 theorem rieszSecond_bad_cube_bridge
     {K b : Vec3 → ℝ} {Q : DyadicIndex} {C_H : ℝ≥0∞}
     (hC_H : C_H ≠ ∞)
@@ -471,6 +482,9 @@ theorem rieszSecond_bad_cube_bridge
       rw [lintegral_const_mul']
       exact hC_H
 
+/--
+@isnad1 id=le.9h4v.s11.253555738e5a from=translated src=- shape=04291ade vocab=b6f99af2
+-/
 theorem rieszSecond_bad_cube_bridge_of_kernel
     {K b : Vec3 → ℝ} {Q : DyadicIndex} {C₂ : ℝ}
     (hC₂ : 0 ≤ C₂) (hKmeas : Measurable K)
@@ -500,7 +514,9 @@ theorem rieszSecond_bad_cube_bridge_of_kernel
   intro y hy
   exact rieszSecond_hormander_exterior hC₂ hKmeas hdiff hgrad hy
 
-/-- The good part estimate after the (L^2) operator bound and Chebyshev. -/
+/-- The good part estimate after the (L^2) operator bound and Chebyshev.
+@isnad1 id=le.6h7v.s9.7168f6bc8ed6 from=translated src=- shape=13438025 vocab=faa9e120
+-/
 theorem rieszSecond_good_part_chebyshev {F : Vec3 → ℝ} {height level C A : ℝ}
     (D : CZDecomposition F height) (hheight : 0 < height) (hlevel : 0 < level)
     (hA : 0 ≤ A)
@@ -536,7 +552,9 @@ theorem rieszSecond_good_part_chebyshev {F : Vec3 → ℝ} {height level C A : �
           (8 * C ^ 2 * height / level ^ 2) * A by
             field_simp]
 
-/-- The summed bad-part estimate supplied by the Hörmander integral bound. -/
+/-- The summed bad-part estimate supplied by the Hörmander integral bound.
+@isnad1 id=le.4h3v.s9.1ba0871bb707 from=translated src=- shape=63026508 vocab=0bef35c0
+-/
 theorem rieszSecond_hormander_kernel_condition {K : Vec3 → ℝ} {C₂ : ℝ}
     (hC₂ : 0 ≤ C₂)
     (hdiff : ∀ x, x ≠ 0 → DifferentiableAt ℝ K x)
@@ -548,6 +566,9 @@ theorem rieszSecond_hormander_kernel_condition {K : Vec3 → ℝ} {C₂ : ℝ}
       ENNReal.ofReal (64 * Real.pi * C₂) := by
   exact hormander_integral_bound hC₂ hdiff hgrad hy
 
+/--
+@isnad1 id=le.1h5v.s9.09a2b144ffc2 from=translated src=- shape=461f0a00 vocab=797986a6
+-/
 theorem rieszSecond_hormander_sum_bound {F : Vec3 → ℝ} {height : ℝ}
     (D : CZDecomposition F height) {T : (Vec3 → ℝ) → Vec3 → ℝ}
     {C_H : ℝ≥0∞}
@@ -581,6 +602,9 @@ theorem rieszSecond_hormander_sum_bound {F : Vec3 → ℝ} {height : ℝ}
 /- The geometric/Fubini part of the bad estimate is supplied by the caller;
    this wrapper supplies the quantitative kernel input uniformly to every
    cube. -/
+/--
+@isnad1 id=le.4h6v.s10.448b530d6453 from=translated src=- shape=73f30816 vocab=77256e63
+-/
 theorem rieszSecond_hormander_sum_bound_of_kernel
     {F : Vec3 → ℝ} {height : ℝ} (D : CZDecomposition F height)
     {T : (Vec3 → ℝ) → Vec3 → ℝ} {K : Vec3 → ℝ} {C₂ : ℝ}
@@ -611,6 +635,9 @@ theorem rieszSecond_hormander_sum_bound_of_kernel
    hypothesis is the sole linearity/interchange interface for a concrete
    convolution operator; each summand is discharged by the per-cube bridge
    above, and the certificate supplies the final `L¹` sum. -/
+/--
+@isnad1 id=le.3h6v.s9.6f30c64db20c from=translated src=- shape=ddd98ca6 vocab=04e60bfb
+-/
 theorem rieszSecond_bad_part_exterior_bound
     {F : Vec3 → ℝ} {height : ℝ} (D : CZDecomposition F height)
     {B : Vec3 → ℝ} {Tbad : {Q // Q ∈ D.cubes} → Vec3 → ℝ}
@@ -679,6 +706,9 @@ theorem rieszSecond_bad_part_exterior_bound
    internally from the established existence theorem.  `hL2` is deliberately an
    explicit interface: it is the global operator estimate supplied by the
    separate cutoff-limit argument. -/
+/--
+@isnad1 id=le.8h8v.s10.0abdab33d894 from=translated src=- shape=d4243d0a vocab=1c54be26
+-/
 theorem rieszSecond_weak_type_unconditional
     {F : Vec3 → ℝ} {level C₂ A : ℝ} {C_H : ℝ≥0∞}
     (hF : Integrable F) (hlevel : 0 < level)

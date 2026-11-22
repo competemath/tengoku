@@ -84,7 +84,9 @@ instance inducedSubgraphDecidableRelAdj (G : SimpleGraph V) [DecidableRel G.Adj]
 
 omit [Fintype V] [DecidableEq V] in
 /-- Adjacency in the induced subgraph:
-`(inducedSubgraph G S).Adj v w ↔ G.Adj v w ∧ v ∈ S ∧ w ∈ S`. -/
+`(inducedSubgraph G S).Adj v w ↔ G.Adj v w ∧ v ∈ S ∧ w ∈ S`.
+@isnad1 id=iff.0h5v.s5.4a14baeb6cfc from=translated src=- shape=796f07ae vocab=aecc0fcd
+-/
 lemma inducedSubgraph_adj (G : SimpleGraph V)
     (S : Finset V) (v w : V) :
     (inducedSubgraph G S).Adj v w ↔ G.Adj v w ∧ v ∈ S ∧ w ∈ S := by
@@ -93,13 +95,17 @@ lemma inducedSubgraph_adj (G : SimpleGraph V)
   tauto
 
 omit [Fintype V] [DecidableEq V] in
-/-- The induced subgraph is a subgraph of G. -/
+/-- The induced subgraph is a subgraph of G.
+@isnad1 id=le.0h3v.s4.c45a4fefd0f7 from=translated src=- shape=9be8bb50 vocab=cc67fbf4
+-/
 lemma inducedSubgraph_le (G : SimpleGraph V)
     (S : Finset V) : inducedSubgraph G S ≤ G :=
   fun _ _ h => ((inducedSubgraph_adj G S _ _).mp h).1
 
 omit [Fintype V] [DecidableEq V] in
-/-- Monotonicity: S ⊆ T implies inducedSubgraph G S ≤ inducedSubgraph G T. -/
+/-- Monotonicity: S ⊆ T implies inducedSubgraph G S ≤ inducedSubgraph G T.
+@isnad1 id=le.1h4v.s5.77cd1edbc2b1 from=translated src=- shape=99d95237 vocab=cc67fbf4
+-/
 lemma inducedSubgraph_mono (G : SimpleGraph V)
     {S T : Finset V} (hST : S ⊆ T) :
     inducedSubgraph G S ≤ inducedSubgraph G T := by
@@ -107,7 +113,9 @@ lemma inducedSubgraph_mono (G : SimpleGraph V)
   rw [inducedSubgraph_adj] at h ⊢
   exact ⟨h.1, hST h.2.1, hST h.2.2⟩
 
-/-- Bridge: `inducedLaplacian G S = graphLaplacian (inducedSubgraph G S)`. -/
+/-- Bridge: `inducedLaplacian G S = graphLaplacian (inducedSubgraph G S)`.
+@isnad1 id=eq.0h3v.s5.7a6a978c5985 from=translated src=- shape=abd5bb05 vocab=14810774
+-/
 lemma inducedLaplacian_eq_graphLaplacian_inducedSubgraph
     (G : SimpleGraph V) [DecidableRel G.Adj] (S : Finset V) :
     inducedLaplacian G S = graphLaplacian (inducedSubgraph G S) := by
@@ -120,7 +128,9 @@ lemma inducedLaplacian_eq_graphLaplacian_inducedSubgraph
       inducedSubgraph_adj G S i j
     simp_all
 
-/-- The graph Laplacian equals the Mathlib lapMatrix (degree minus adjacency). -/
+/-- The graph Laplacian equals the Mathlib lapMatrix (degree minus adjacency).
+@isnad1 id=eq.0h2v.s5.d2b3964f0420 from=translated src=- shape=f8bad52d vocab=b70932c0
+-/
 lemma graphLaplacian_eq_lapMatrix (G : SimpleGraph V) [DecidableRel G.Adj] :
     graphLaplacian G = G.lapMatrix ℝ := by
   ext i j
@@ -139,20 +149,26 @@ lemma graphLaplacian_eq_lapMatrix (G : SimpleGraph V) [DecidableRel G.Adj] :
   · -- i ≠ j, ¬G.Adj i j
     norm_num
 
-/-- Bridge: `inducedLaplacian G S = (inducedSubgraph G S).lapMatrix ℝ`. -/
+/-- Bridge: `inducedLaplacian G S = (inducedSubgraph G S).lapMatrix ℝ`.
+@isnad1 id=eq.0h3v.s5.375c6c1b0180 from=translated src=- shape=39c05761 vocab=230f56ef
+-/
 lemma inducedLaplacian_eq_lapMatrix (G : SimpleGraph V) [DecidableRel G.Adj]
     (S : Finset V) :
     inducedLaplacian G S = (inducedSubgraph G S).lapMatrix ℝ := by
   rw [inducedLaplacian_eq_graphLaplacian_inducedSubgraph, graphLaplacian_eq_lapMatrix]
 
 /-- The graph Laplacian is positive semidefinite.
-    xᵀLx = ∑_{u~v} (x_u - x_v)² ≥ 0. -/
+    xᵀLx = ∑_{u~v} (x_u - x_v)² ≥ 0.
+@isnad1 id=possemid.0h2v.s4.0e31d38e02d7 from=translated src=- shape=816774ba vocab=fe9506d6
+-/
 lemma graphLaplacian_posSemidef (G : SimpleGraph V) [DecidableRel G.Adj] :
     (graphLaplacian G).PosSemidef := by
   rw [graphLaplacian_eq_lapMatrix]
   exact SimpleGraph.posSemidef_lapMatrix ℝ G
 
-/-- The graph Laplacian is symmetric (L is Hermitian since G.Adj is symmetric). -/
+/-- The graph Laplacian is symmetric (L is Hermitian since G.Adj is symmetric).
+@isnad1 id=ishermit.0h2v.s5.8d238c5711d1 from=translated src=- shape=f39ea0c3 vocab=bb2937ce
+-/
 lemma graphLaplacian_isHermitian (G : SimpleGraph V) [DecidableRel G.Adj] :
     (graphLaplacian G).IsHermitian := by
   ext i j
@@ -171,7 +187,9 @@ lemma graphLaplacian_isHermitian (G : SimpleGraph V) [DecidableRel G.Adj] :
 
 /-- Loewner monotonicity for graph Laplacians: if H₁ ≤ H₂ (subgraph ordering),
     then `(H₂.lapMatrix ℝ - H₁.lapMatrix ℝ).PosSemidef`.
-    Proof: the difference equals the lapMatrix of the edge-difference graph, which is PSD. -/
+    Proof: the difference equals the lapMatrix of the edge-difference graph, which is PSD.
+@isnad1 id=possemid.1h3v.s6.e32522bb1aa8 from=translated src=- shape=722c1c4a vocab=bfdff2c7
+-/
 lemma lapMatrix_loewner_mono {H₁ H₂ : SimpleGraph V}
     [DecidableRel H₁.Adj] [DecidableRel H₂.Adj]
     (h : H₁ ≤ H₂) :

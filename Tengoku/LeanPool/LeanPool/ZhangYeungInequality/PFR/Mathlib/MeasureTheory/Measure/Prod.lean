@@ -27,7 +27,9 @@ variable {Ω α β γ : Type*} [MeasurableSpace Ω]
   [MeasurableSpace α] [MeasurableSpace β] [MeasurableSpace γ] {X : Ω → α} {Y : Ω
     → β} {Z : Ω → γ}
 
-/-- The law of $(X, Z)$ is the image of the law of $(Z,X)$. -/
+/-- The law of $(X, Z)$ is the image of the law of $(Z,X)$.
+@isnad1 id=eq.2h6v.s6.8c9ba3418f29 from=translated src=- shape=e2415ac1 vocab=3cbf79e2
+-/
 lemma map_prod_comap_swap (hX : Measurable X) (hZ : Measurable Z) (μ : Measure Ω) :
     (μ.map (fun ω ↦ (X ω, Z ω))).comap Prod.swap = μ.map (fun ω ↦ (Z ω, X ω)) := by
   ext s hs
@@ -39,16 +41,25 @@ lemma map_prod_comap_swap (hX : Measurable X) (hZ : Measurable Z) (μ : Measure 
     · exact MeasurableEquiv.prodComm.measurableEmbedding.measurableSet_image' hs
   · exact fun t ht ↦ MeasurableEquiv.prodComm.measurableEmbedding.measurableSet_image' ht
 
+/--
+@isnad1 id=eq.0h7v.s7.76836d444822 from=translated src=- shape=8c3ffff1 vocab=dc91fe0d
+-/
 lemma prod_apply_singleton {α β : Type*} {_ : MeasurableSpace α} {_ : MeasurableSpace β}
     (μ : Measure α) (ν : Measure β) [SigmaFinite ν] (x : α × β) :
     (μ.prod ν) {x} = μ {x.1} * ν {x.2} := by
   rw [← Prod.eta x, ← Set.singleton_prod_singleton, Measure.prod_prod]
 
+/--
+@isnad1 id=eq.0h7v.s6.61cf9715ec7a from=translated src=- shape=1eae5aae vocab=821e4003
+-/
 lemma prod_real_apply_singleton {α β : Type*} {_ : MeasurableSpace α} {_ : MeasurableSpace β}
     (μ : Measure α) (ν : Measure β) [SigmaFinite ν] (x : α × β) :
     (μ.prod ν).real {x} = μ.real {x.1} * ν.real {x.2} := by
   simp [Measure.real, prod_apply_singleton]
 
+/--
+@isnad1 id=eq.2h6v.s7.9f78b358723a from=translated src=- shape=37e13e72 vocab=a1cfcf61
+-/
 lemma prod_of_full_measure_finset {μ : Measure α} {ν : Measure β} [SigmaFinite ν]
     {A : Finset α} {B : Finset β} (hA : μ Aᶜ = 0) (hB : ν Bᶜ = 0) :
     (μ.prod ν) (A ×ˢ B : Finset (α × β))ᶜ = 0 := by

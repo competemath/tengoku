@@ -7,6 +7,9 @@ import Tengoku.Seed.Analysis.SpecialFunctions.Gaussian.GaussianIntegral
 namespace LeanCert.Analysis
 open MeasureTheory Set
 
+/--
+@isnad1 id=integrab.0h1v.s6.33a78e17a25f from=translated src=- shape=01283eff vocab=d3bc01fd
+-/
 theorem integrableOn_gaussian_moment (m : ℕ) :
     IntegrableOn (fun u : ℝ => u^m * Real.exp (-u^2)) (Ioi 0) := by
   have h := integrableOn_rpow_mul_exp_neg_mul_sq (by norm_num : (0 : ℝ) < 1)

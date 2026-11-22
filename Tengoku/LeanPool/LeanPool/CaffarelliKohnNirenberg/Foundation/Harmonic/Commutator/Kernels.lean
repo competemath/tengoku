@@ -28,10 +28,16 @@ namespace CKN.Foundation.Harmonic.Commutator
 
 noncomputable section
 
+/--
+@isnad1 id=eq.0h4v.s6.21c65157a71a from=translated src=- shape=9816e486 vocab=eb92ea8f
+-/
 theorem newtonianKernel_eq_scaled (m j l : Fin 3) (x : CKN.Vec 3) :
     newtonianKernel m j l x = -(4 * Real.pi)⁻¹ * inverseThirdFormula m j l x := by
   rfl
 
+/--
+@isnad1 id=le.1h4v.s7.ae9245593f3d from=translated src=- shape=85de1c79 vocab=4ab327fe
+-/
 theorem newtonianKernel_size_bound {x : CKN.Vec 3} (hx : x ≠ 0)
     (m j l : Fin 3) :
     |newtonianKernel m j l x| ≤

@@ -33,9 +33,15 @@ open scoped Interval Real NNReal ENNReal Topology BigOperators Nat
 /-- The open upper half-plane as a subset of `ℂ`. -/
 abbrev ℍ' := {z : ℂ | 0 < z.im}
 
+/--
+@isnad1 id=isopen.0h0v.s4.8f756110abf7 from=translated src=- shape=25b03439 vocab=70b45d9f
+-/
 lemma upper_half_plane_isOpen :
     IsOpen ℍ' := by apply isOpen_lt (by fun_prop) (by fun_prop)
 
+/--
+@isnad1 id=eq.5h4v.s8.a51f9b341a7a from=translated src=- shape=1eb49d0b vocab=d263290b
+-/
 theorem derivWithin_tsum_fun' {α : Type _} (f : α → ℂ → ℂ) {s : Set ℂ}
     (hs : IsOpen s) (x : ℂ) (hx : x ∈ s) (hf : ∀ y ∈ s, Summable fun n : α => f n y)
     (hu :∀ K ⊆ s, IsCompact K →
@@ -62,6 +68,9 @@ theorem derivWithin_tsum_fun' {α : Type _} (f : α → ℂ → ℂ) {s : Set �
       (hf2 q ⟨r, hr⟩).differentiableWithinAt.hasDerivWithinAt (IsOpen.mem_nhds hs hr))
   exact IsOpen.uniqueDiffWithinAt hs hx
 
+/--
+@isnad1 id=differen.0h3v.s7.6fae93f90354 from=translated src=- shape=82db1776 vocab=1be47570
+-/
 theorem der_iter_eq_der_aux2 (k n : ℕ) (r : ℍ') :
   DifferentiableAt ℂ
     (fun z : ℂ =>
@@ -70,6 +79,9 @@ theorem der_iter_eq_der_aux2 (k n : ℕ) (r : ℍ') :
   · exact DifferentiableOn.congr (by fun_prop) (fun x hx => exp_iter_deriv_within k n hx)
   exact IsOpen.mem_nhds (isOpen_lt (by fun_prop) (by fun_prop)) r.2
 
+/--
+@isnad1 id=eq.0h3v.s7.7e39dcada4fd from=translated src=- shape=939ba270 vocab=957df549
+-/
 theorem der_iter_eq_der2 (k n : ℕ) (r : ℍ') :
     deriv (iteratedDerivWithin k (fun s : ℂ => Complex.exp (2 * ↑π * Complex.I * n * s)) ℍ') ↑r =
       derivWithin (iteratedDerivWithin k (fun s : ℂ => Complex.exp (2 * ↑π * Complex.I * n * s)) ℍ')
@@ -81,6 +93,9 @@ theorem der_iter_eq_der2 (k n : ℕ) (r : ℍ') :
   apply IsOpen.uniqueDiffOn upper_half_plane_isOpen
   apply r.2
 
+/--
+@isnad1 id=eq.0h3v.s7.870d5a5f85f6 from=translated src=- shape=f221f77a vocab=e4407833
+-/
 theorem der_iter_eq_der2' (k n : ℕ) (r : ℍ') :
     derivWithin (iteratedDerivWithin k (fun s : ℂ => Complex.exp (2 * ↑π * Complex.I * n * s)) ℍ')
       ℍ' ↑r =
@@ -92,6 +107,9 @@ theorem der_iter_eq_der2' (k n : ℕ) (r : ℍ') :
 noncomputable def ctsExpTwoPiN (K : Set ℂ) : ContinuousMap K ℂ where
   toFun := fun r : K => Complex.exp (2 * ↑π * Complex.I * r)
 
+/--
+@isnad1 id=hasderiv.5h4v.s8.1dd67929ae08 from=translated src=- shape=5e5733d4 vocab=66c64c90
+-/
 theorem hasDerivAt_tsum_fun {α : Type _} (f : α → ℂ → ℂ)
     {s : Set ℂ} (hs : IsOpen s) (x : ℂ) (hx : x ∈ s)
     (hf : ∀ y : ℂ, y ∈ s → Summable fun n : α => f n y)
@@ -112,6 +130,9 @@ theorem hasDerivAt_tsum_fun {α : Type _} (f : α → ℂ → ℂ)
   exact HasDerivAt.fun_sum (fun q _ => HasDerivWithinAt.hasDerivAt
     (hf2 q ⟨r, hr⟩).differentiableWithinAt.hasDerivWithinAt (IsOpen.mem_nhds hs hr))
 
+/--
+@isnad1 id=hasderiv.5h4v.s8.bae06fc64275 from=translated src=- shape=a442a48f vocab=32f3a156
+-/
 theorem hasDerivWithinAt_tsum_fun {α : Type _} (f : α → ℂ → ℂ)
     {s : Set ℂ} (hs : IsOpen s) (x : ℂ) (hx : x ∈ s)
     (hf : ∀ y : ℂ, y ∈ s → Summable fun n : α => f n y)

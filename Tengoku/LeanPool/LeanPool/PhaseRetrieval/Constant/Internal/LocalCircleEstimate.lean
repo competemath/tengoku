@@ -632,6 +632,9 @@ private lemma large_amplitude {L : ℕ} (hL : 1 ≤ L) {E : Finset ℕ}
 
 /-! ### Theorem 3.1 (Main statement) -/
 
+/--
+@isnad1 id=le.4h4v.s8.9e0431bbc050 from=translated src=- shape=0a5300da vocab=14bdc929
+-/
 theorem local_circle_estimate {L : ℕ} (hL : 1 ≤ L) {E : Finset ℕ}
     (hE : E.card = L) (hE_pos : ∀ n ∈ E, 1 ≤ n)
     (b : ℕ → ℂ) (P : AddCircle T → ℂ)

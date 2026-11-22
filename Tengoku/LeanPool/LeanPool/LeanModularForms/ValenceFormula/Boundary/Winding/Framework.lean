@@ -108,7 +108,9 @@ structure SingleCrossingData (γ : ℝ → ℂ) (a b : ℝ) (s : ℂ) where
 namespace SingleCrossingData
 
 /-- The PV integral of `(γ - s)⁻¹ · γ'` tends to `L`. This is the core intermediate
-result, obtained directly from `pv_tendsto_of_crossing_limit`. -/
+result, obtained directly from `pv_tendsto_of_crossing_limit`.
+@isnad1 id=tendsto.0h5v.s7.243d13ef43e1 from=translated src=- shape=6ecbdb49 vocab=92537558
+-/
 theorem pvTendsto (D : SingleCrossingData γ a b s) :
     Tendsto (fun ε => ∫ t in a..b,
       if ‖γ t - s‖ > ε then (γ t - s)⁻¹ * deriv γ t else 0)
@@ -138,7 +140,9 @@ at `s` equals `L / (2πi)`.
 
 This handles the conversion from `(γ t - s)⁻¹ * deriv γ t` (used in
 the PV integral) to the form `(γ t - s)⁻¹ * deriv (fun t => γ t - s) t`
-expected by `generalizedWindingNumber'`. -/
+expected by `generalizedWindingNumber'`.
+@isnad1 id=eq.0h5v.s5.0109ea5c342b from=translated src=- shape=ccc481e7 vocab=8cab29c5
+-/
 theorem gWN_of_singleCrossing {γ : ℝ → ℂ} {a b : ℝ} {s : ℂ}
     (D : SingleCrossingData γ a b s) :
     generalizedWindingNumber' γ a b s = D.L / (2 * ↑Real.pi * I) :=
@@ -146,7 +150,9 @@ theorem gWN_of_singleCrossing {γ : ℝ → ℂ} {a b : ℝ} {s : ℂ}
 
 /-- Specialized version: if `L = -(π * I)`, then `gWN = -1/2`.
 
-This is the most common case, used by RightEdge, LeftEdge, and UnitArc. -/
+This is the most common case, used by RightEdge, LeftEdge, and UnitArc.
+@isnad1 id=eq.1h5v.s6.fcc310e99519 from=translated src=- shape=650180e8 vocab=a60f33a2
+-/
 theorem gWN_eq_neg_half_of_singleCrossing {γ : ℝ → ℂ} {a b : ℝ} {s : ℂ}
     (D : SingleCrossingData γ a b s)
     (hL : D.L = -(↑Real.pi * I)) :
@@ -156,7 +162,9 @@ theorem gWN_eq_neg_half_of_singleCrossing {γ : ℝ → ℂ} {a b : ℝ} {s : �
 
 /-- Specialized version: if `L = -(π / 3 * I)`, then `gWN = -1/6`.
 
-Used for elliptic point winding number computations. -/
+Used for elliptic point winding number computations.
+@isnad1 id=eq.1h5v.s6.f7f7fdca6db3 from=translated src=- shape=761520e2 vocab=a60f33a2
+-/
 theorem gWN_eq_neg_sixth_of_singleCrossing {γ : ℝ → ℂ} {a b : ℝ} {s : ℂ}
     (D : SingleCrossingData γ a b s)
     (hL : D.L = -(↑Real.pi / 3 * I)) :

@@ -47,14 +47,18 @@ def nbr (supp : I → Finset A) (i : I) : Finset I :=
   Finset.univ.filter fun j ↦ j ≠ i ∧ ¬ Disjoint (supp i) (supp j)
 
 omit [Fintype A] in
-/-- Membership in the dependency neighbourhood. -/
+/-- Membership in the dependency neighbourhood.
+@isnad1 id=iff.0h5v.s5.1335e826f564 from=translated src=- shape=6c988ea8 vocab=6dd12fa9
+-/
 @[simp] theorem mem_nbr {supp : I → Finset A} {i j : I} :
     j ∈ nbr supp i ↔ j ≠ i ∧ ¬ Disjoint (supp i) (supp j) := by
   simp [nbr]
 
 omit [Fintype A] in
 /-- The events indexed outside the dependency neighbourhood of `i` are supported away from
-`supp i`. -/
+`supp i`.
+@isnad1 id=disjoint.1h5v.s6.bd978132d8ac from=translated src=- shape=ed2bd3d3 vocab=1aa7efbd
+-/
 theorem disjoint_supp_sup_sdiff_nbr {supp : I → Finset A} {i : I} {S : Finset I} (hi : i ∉ S) :
     Disjoint (supp i) ((S \ nbr supp i).sup supp) := by
   rw [Finset.disjoint_sup_right]
@@ -70,40 +74,52 @@ def avoid (Ev : I → Finset (Cfg β)) (S : Finset I) : Finset (Cfg β) :=
 section AvoidBasic
 
 omit [∀ (a : A), Nonempty (β a)] in
-/-- Membership in `avoid`. -/
+/-- Membership in `avoid`.
+@isnad1 id=iff.0h6v.s6.35c3ff3109a0 from=translated src=- shape=d29ac55b vocab=1f199260
+-/
 @[simp] theorem mem_avoid {Ev : I → Finset (Cfg β)} {S : Finset I} {ω : Cfg β} :
     ω ∈ avoid Ev S ↔ ∀ i ∈ S, ω ∉ Ev i := by
   simp [avoid]
 
 omit [∀ (a : A), Nonempty (β a)] in
-/-- Avoiding no events is the sure event. -/
+/-- Avoiding no events is the sure event.
+@isnad1 id=eq.0h4v.s6.8601601df70d from=translated src=- shape=2ee18f27 vocab=61f644bf
+-/
 @[simp] theorem avoid_empty (Ev : I → Finset (Cfg β)) :
     avoid Ev ∅ = (Finset.univ : Finset (Cfg β)) := by
   ext ω
   simp
 
 omit [∀ (a : A), Nonempty (β a)] in
-/-- Avoiding every event is avoiding all of them. -/
+/-- Avoiding every event is avoiding all of them.
+@isnad1 id=eq.0h4v.s7.f07503764bd0 from=translated src=- shape=1dc23cbe vocab=69b9a061
+-/
 theorem avoid_univ (Ev : I → Finset (Cfg β)) :
     avoid Ev (Finset.univ : Finset I) = Finset.univ.filter fun ω ↦ ∀ i, ω ∉ Ev i := by
   ext ω
   simp
 
 omit [∀ (a : A), Nonempty (β a)] in
-/-- Avoiding more events is a smaller event. -/
+/-- Avoiding more events is a smaller event.
+@isnad1 id=le.1h6v.s6.30e0441fca34 from=translated src=- shape=0673d7c9 vocab=82102094
+-/
 theorem avoid_anti {Ev : I → Finset (Cfg β)} {S T : Finset I} (h : S ⊆ T) :
     avoid Ev T ⊆ avoid Ev S :=
   fun _ hω ↦ mem_avoid.mpr fun i hi ↦ mem_avoid.mp hω i (h hi)
 
 omit [∀ (a : A), Nonempty (β a)] in
-/-- Peeling one event off `avoid`. -/
+/-- Peeling one event off `avoid`.
+@isnad1 id=eq.0h6v.s7.609bf78339e4 from=translated src=- shape=ce970877 vocab=e5de1ed3
+-/
 theorem avoid_insert (Ev : I → Finset (Cfg β)) (i : I) (S : Finset I) :
     avoid Ev (insert i S) = (Ev i)ᶜ ∩ avoid Ev S := by
   ext ω
   simp
 
 omit [∀ (a : A), Nonempty (β a)] in
-/-- `avoid Ev S` is determined by the union of the supports of the events indexed by `S`. -/
+/-- `avoid Ev S` is determined by the union of the supports of the events indexed by `S`.
+@isnad1 id=determin.1h6v.s6.43602bfd97ce from=translated src=- shape=9a890da3 vocab=d50886cb
+-/
 theorem determined_avoid {Ev : I → Finset (Cfg β)} {supp : I → Finset A}
     (hdet : ∀ i, Determined (supp i) (Ev i)) (S : Finset I) :
     Determined (S.sup supp) (avoid Ev S) := fun ω ω' h ↦ by
@@ -142,30 +158,40 @@ def fibre (G : Finset A) (c : (a : A) → a ∈ G → β a) : Finset (Cfg β) :=
   Finset.univ.filter fun ω : Cfg β ↦ ∀ a, ∀ ha : a ∈ G, ω a = c a ha
 
 omit [∀ (a : A), Nonempty (β a)] in
-/-- Membership in a fibre. -/
+/-- Membership in a fibre.
+@isnad1 id=iff.0h5v.s6.9d2e245e61a6 from=translated src=- shape=741cf769 vocab=359a2049
+-/
 @[simp] theorem mem_fibre {c : (a : A) → a ∈ G → β a} {ω : Cfg β} :
     ω ∈ fibre G c ↔ ∀ a, ∀ ha : a ∈ G, ω a = c a ha := by
   simp [fibre]
 
 omit [∀ (a : A), Nonempty (β a)] in
-/-- Every configuration lies in the fibre over its own restriction to `G`. -/
+/-- Every configuration lies in the fibre over its own restriction to `G`.
+@isnad1 id=mem.0h4v.s6.5e6a5ca5d4c8 from=translated src=- shape=eccc840f vocab=359a2049
+-/
 theorem mem_fibre_restrict (ω : Cfg β) : ω ∈ fibre G fun a _ ↦ ω a := by
   simp
 
 omit [∀ (a : A), Nonempty (β a)] in
-/-- A fibre over `G` is determined by `G`. -/
+/-- A fibre over `G` is determined by `G`.
+@isnad1 id=determin.0h4v.s5.17693dbf8914 from=translated src=- shape=ce0bd13c vocab=dfa3fa21
+-/
 theorem determined_fibre (c : (a : A) → a ∈ G → β a) : Determined G (fibre G c) :=
   determined_filter_univ _ fun _ _ h ↦
     forall_congr' fun a ↦ forall_congr' fun ha ↦ by rw [h a ha]
 
 omit [∀ (a : A), Nonempty (β a)] in
-/-- Distinct partial configurations have disjoint fibres. -/
+/-- Distinct partial configurations have disjoint fibres.
+@isnad1 id=disjoint.1h5v.s6.42365d770ddf from=translated src=- shape=f1b3bb69 vocab=8a8e17e9
+-/
 theorem disjoint_fibre {c c' : (a : A) → a ∈ G → β a} (h : c ≠ c') :
     Disjoint (fibre G c) (fibre G c') := by
   simp only [Finset.disjoint_left, mem_fibre]
   exact fun ω h1 h2 ↦ h (funext fun a ↦ funext fun ha ↦ (h1 a ha).symm.trans (h2 a ha))
 
-/-- The fibres over `G` partition the configuration space, so their probabilities sum to `1`. -/
+/-- The fibres over `G` partition the configuration space, so their probabilities sum to `1`.
+@isnad1 id=eq.0h3v.s6.5f52c6d1a8f2 from=translated src=- shape=b1dcab34 vocab=6a0717d2
+-/
 theorem sum_pr_fibre (G : Finset A) :
     ∑ c ∈ G.pi fun a ↦ (Finset.univ : Finset (β a)), pr (fibre G c) = 1 := by
   have hcover : (G.pi fun a ↦ (Finset.univ : Finset (β a))).biUnion (fibre G)
@@ -183,7 +209,9 @@ omit [∀ a, DecidableEq (β a)] in
 coordinate of `T` lands in a target set of size at most `m` that depends only on the
 coordinates of a set `G` disjoint from `T`, then `E` has probability at most
 `∏ a ∈ T, m / |β a|`.  This is the counting form of "condition on `G`; the coordinates of
-`T` are still independent and uniform". -/
+`T` are still independent and uniform".
+@isnad1 id=le.3h7v.s7.49053652bcf8 from=translated src=- shape=3e742241 vocab=8f90e9a6
+-/
 theorem pr_le_prod_of_pinned {G T : Finset A} (hGT : Disjoint G T)
     (tgt : ((a : A) → a ∈ G → β a) → (a : A) → Finset (β a)) (m : ℕ)
     (hm : ∀ c, ∀ a ∈ T, (tgt c a).card ≤ m) {E : Finset (Cfg β)}
@@ -206,7 +234,9 @@ theorem pr_le_prod_of_pinned {G T : Finset A} (hGT : Disjoint G T)
         rw [← Finset.sum_mul, sum_pr_fibre, one_mul]
 
 omit [∀ a, DecidableEq (β a)] in
-/-- The constant-alphabet form of `pr_le_prod_of_pinned`, as used in Sections 8.1 and 9. -/
+/-- The constant-alphabet form of `pr_le_prod_of_pinned`, as used in Sections 8.1 and 9.
+@isnad1 id=le.4h8v.s8.113f06a613d9 from=translated src=- shape=c4a988ec vocab=546a51e4
+-/
 theorem pr_le_pow_of_pinned {G T : Finset A} (hGT : Disjoint G T) (N : ℕ)
     (hN : ∀ a ∈ T, Fintype.card (β a) = N)
     (tgt : ((a : A) → a ∈ G → β a) → (a : A) → Finset (β a)) (m : ℕ)

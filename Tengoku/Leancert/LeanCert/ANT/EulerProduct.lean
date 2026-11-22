@@ -56,7 +56,9 @@ def logProductLowerRat (S : Finset Nat) (lo : Nat → ℚ) : ℚ :=
 def logProductUpperRat (S : Finset Nat) (hi : Nat → ℚ) : ℚ :=
   ∑ n ∈ S, hi n
 
-/-- Lower log-product certificate from pointwise logarithm envelopes. -/
+/-- Lower log-product certificate from pointwise logarithm envelopes.
+@isnad1 id=le.1h3v.s5.2135d0d1f4a3 from=translated src=- shape=76fa0605 vocab=7c9c1204
+-/
 theorem logProductLowerRat_le_finiteLogProduct
     (S : Finset Nat) (g : Nat → ℝ) (lo : Nat → ℚ)
     (hlo : ∀ n ∈ S, (lo n : ℝ) ≤ Real.log (g n)) :
@@ -65,7 +67,9 @@ theorem logProductLowerRat_le_finiteLogProduct
   rw [Rat.cast_sum]
   exact Finset.sum_le_sum hlo
 
-/-- Upper log-product certificate from pointwise logarithm envelopes. -/
+/-- Upper log-product certificate from pointwise logarithm envelopes.
+@isnad1 id=le.1h3v.s5.eae5da202c81 from=translated src=- shape=3f38ec33 vocab=b7e75229
+-/
 theorem finiteLogProduct_le_logProductUpperRat
     (S : Finset Nat) (g : Nat → ℝ) (hi : Nat → ℚ)
     (hhi : ∀ n ∈ S, Real.log (g n) ≤ (hi n : ℝ)) :
@@ -80,7 +84,9 @@ def checkLogProductInterval (S : Finset Nat) (lo hi : Nat → ℚ)
   LeanCert.Cert.checkRatInterval (logProductLowerRat S lo) (logProductUpperRat S hi)
     targetLo targetHi
 
-/-- Golden theorem for finite log-product interval certificates. -/
+/-- Golden theorem for finite log-product interval certificates.
+@isnad1 id=and.3h6v.s6.8be5cdcbca52 from=translated src=- shape=0d15c8af vocab=80e2b6eb
+-/
 theorem verify_logProduct_interval
     (S : Finset Nat) (g : Nat → ℝ) (lo hi : Nat → ℚ)
     (hlo : ∀ n ∈ S, (lo n : ℝ) ≤ Real.log (g n))
@@ -94,7 +100,9 @@ theorem verify_logProduct_interval
     (finiteLogProduct_le_logProductUpperRat S g hi hhi)
     hcheck
 
-/-- Positive finite products are exponentials of their finite log-products. -/
+/-- Positive finite products are exponentials of their finite log-products.
+@isnad1 id=eq.1h2v.s5.420f52b4e427 from=translated src=- shape=1cd9bde1 vocab=29374bc0
+-/
 theorem finiteProduct_eq_exp_finiteLogProduct
     (S : Finset Nat) (g : Nat → ℝ)
     (hpos : ∀ n ∈ S, 0 < g n) :
@@ -110,7 +118,9 @@ theorem finiteProduct_eq_exp_finiteLogProduct
       rw [Real.exp_log hprod_pos]
     _ = Real.exp (∑ n ∈ S, Real.log (g n)) := by rw [hlog]
 
-/-- Convert a certified log-product interval into an exponential product interval. -/
+/-- Convert a certified log-product interval into an exponential product interval.
+@isnad1 id=and.2h4v.s6.a7db83ed5c65 from=translated src=- shape=a348ed10 vocab=1adc830c
+-/
 theorem verify_product_interval_of_log_interval
     (S : Finset Nat) (g : Nat → ℝ) (lo hi : ℚ)
     (hpos : ∀ n ∈ S, 0 < g n)
@@ -120,7 +130,9 @@ theorem verify_product_interval_of_log_interval
   rw [finiteProduct_eq_exp_finiteLogProduct S g hpos]
   exact ⟨Real.exp_le_exp.mpr hlog.1, Real.exp_le_exp.mpr hlog.2⟩
 
-/-- Convert a certified log-product lower bound into an exponential product lower bound. -/
+/-- Convert a certified log-product lower bound into an exponential product lower bound.
+@isnad1 id=le.2h3v.s5.c6e6078d1d77 from=translated src=- shape=138f1c6b vocab=1adc830c
+-/
 theorem verify_product_lower_of_log_lower
     (S : Finset Nat) (g : Nat → ℝ) (lo : ℚ)
     (hpos : ∀ n ∈ S, 0 < g n)
@@ -129,7 +141,9 @@ theorem verify_product_lower_of_log_lower
   rw [finiteProduct_eq_exp_finiteLogProduct S g hpos]
   exact Real.exp_le_exp.mpr hlog
 
-/-- Convert a certified log-product upper bound into an exponential product upper bound. -/
+/-- Convert a certified log-product upper bound into an exponential product upper bound.
+@isnad1 id=le.2h3v.s5.9f025756cd47 from=translated src=- shape=64fd0ab5 vocab=1adc830c
+-/
 theorem verify_product_upper_of_log_upper
     (S : Finset Nat) (g : Nat → ℝ) (hi : ℚ)
     (hpos : ∀ n ∈ S, 0 < g n)

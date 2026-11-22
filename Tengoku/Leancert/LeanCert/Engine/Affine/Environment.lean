@@ -97,7 +97,9 @@ private lemma abs_sub_mid_le_rad {x : ℝ} {I : IntervalRat} (hx : x ∈ I) :
       _ = ((((I.hi : ℚ) - I.lo) / 2 : ℚ) : ℝ) := by push_cast; ring
 
 /-- Every real point of a rational box has the standard affine-noise
-representation used by `toAffineEnv`. -/
+representation used by `toAffineEnv`.
+@isnad1 id=ex.2h2v.s6.5e950e62b875 from=translated src=- shape=c704549f vocab=1229ae94
+-/
 theorem exists_noise_toAffineEnv (box : List IntervalRat) (rho : Nat → ℝ)
     (hrho : ∀ i (hi : i < box.length), rho i ∈ box[i]'hi)
     (hzero : ∀ i, i ≥ box.length → rho i = 0) :

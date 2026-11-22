@@ -45,7 +45,9 @@ open Set
 
 /-- Order-1 wall enclosure. If `num` and `den` both vanish at `w`, `den`
 has positive derivative on `(w, b)`, and the derivative ratio is trapped in
-`[lo, hi]` there, then the quotient is trapped in `[lo, hi]` on `(w, b)`. -/
+`[lo, hi]` there, then the quotient is trapped in `[lo, hi]` on `(w, b)`.
+@isnad1 id=mem.10h9v.s8.5bb0b3794e6a from=translated src=- shape=91ed11e3 vocab=1a722da9
+-/
 theorem quotient_mem_of_deriv_ratio_bounds
     {num den num' den' : ℝ → ℝ} {w b lo hi : ℝ}
     (hnum0 : num w = 0) (hden0 : den w = 0)
@@ -97,7 +99,9 @@ theorem quotient_mem_of_deriv_ratio_bounds
 
 /-- Model instance: `(eˣ − 1)/x ∈ [1, e]` on `(0, 1)`, with the wall at
 `x = 0` handled by `quotient_mem_of_deriv_ratio_bounds` and the derivative
-bounds `1 ≤ eˣ ≤ e` as the regular interval data. -/
+bounds `1 ≤ eˣ ≤ e` as the regular interval data.
+@isnad1 id=mem.1h1v.s6.cb5d0e9cc568 from=translated src=- shape=7c2647ad vocab=ac9f338b
+-/
 theorem expm1_div_self_mem {t : ℝ} (ht : t ∈ Ioo (0 : ℝ) 1) :
     (Real.exp t - 1) / t ∈ Icc (1 : ℝ) (Real.exp 1) := by
   have h := quotient_mem_of_deriv_ratio_bounds
@@ -117,7 +121,9 @@ theorem expm1_div_self_mem {t : ℝ} (ht : t ∈ Ioo (0 : ℝ) 1) :
 
 /-- Left-of-wall variant: `num` and `den` vanish at the right endpoint `w`,
 with positive `den′` on `(a, w)`. The same derivative-ratio bounds trap the
-quotient on the left side of the wall. -/
+quotient on the left side of the wall.
+@isnad1 id=mem.10h9v.s8.b13cc7ba84a3 from=translated src=- shape=79df3ca8 vocab=1a722da9
+-/
 theorem quotient_mem_of_deriv_ratio_bounds_left
     {num den num' den' : ℝ → ℝ} {a w lo hi : ℝ}
     (hnum0 : num w = 0) (hden0 : den w = 0)
@@ -162,7 +168,9 @@ theorem quotient_mem_of_deriv_ratio_bounds_left
 
 /-- Two-sided wall enclosure: `num` and `den` vanish at an interior point
 `w`, with the derivative hypotheses holding on the punctured interval. The
-quotient is trapped on both sides of the wall. -/
+quotient is trapped on both sides of the wall.
+@isnad1 id=mem.12h10v.s8.817f4eee1a12 from=translated src=- shape=bc8957d5 vocab=1a722da9
+-/
 theorem quotient_mem_of_deriv_ratio_bounds_two_sided
     {num den num' den' : ℝ → ℝ} {a b w lo hi : ℝ} (hw : w ∈ Ioo a b)
     (hnum0 : num w = 0) (hden0 : den w = 0)
@@ -227,7 +235,9 @@ def tail {k : ℕ} {w b : ℝ} (L : DerivLadder (k + 1) w b) : DerivLadder k w b
   zero i hi := L.zero (i + 1) (by omega)
 
 /-- Positivity propagates down a ladder: if the top level is positive on
-`(w, b)`, every level is, by the mean value theorem and the wall zeros. -/
+`(w, b)`, every level is, by the mean value theorem and the wall zeros.
+@isnad1 id=lt.3h6v.s6.096d3ab75023 from=translated src=- shape=3a885f3a vocab=29dfadb4
+-/
 theorem pos_of_top (k : ℕ) : ∀ (w b : ℝ) (L : DerivLadder k w b),
     (∀ x ∈ Ioo w b, 0 < L.f k x) →
     ∀ i ≤ k, ∀ x ∈ Ioo w b, 0 < L.f i x := by
@@ -263,7 +273,9 @@ end DerivLadder
 /-- **Order-`k` wall enclosure.** If numerator and denominator ladders vanish
 to order `k` at the wall and the top-level derivative ratio is trapped in
 `[lo, hi]` on `(w, b)` (with positive top denominator derivative), then the
-quotient of the bottom levels is trapped in `[lo, hi]` on `(w, b)`. -/
+quotient of the bottom levels is trapped in `[lo, hi]` on `(w, b)`.
+@isnad1 id=mem.5h8v.s7.a66887f9609e from=translated src=- shape=6e6b65d2 vocab=4c6c6ef7
+-/
 theorem quotient_mem_of_derivLadder {w b lo hi : ℝ} :
     ∀ (k : ℕ), 0 < k → ∀ (N D : DerivLadder k w b),
     (∀ x ∈ Ioo w b, 0 < D.f k x) →
@@ -362,7 +374,9 @@ private noncomputable def sqLadder : DerivLadder 2 0 1 where
 
 /-- Order-2 model instance: `(eᵗ − t − 1)/t² ∈ [1/2, e/2]` on `(0, 1)`.
 Numerator and denominator vanish to order 2 at the wall `t = 0`; the
-second-derivative ratio bounds `1 ≤ eˣ ≤ e` are the regular interval data. -/
+second-derivative ratio bounds `1 ≤ eˣ ≤ e` are the regular interval data.
+@isnad1 id=mem.1h1v.s7.da2f484c1f16 from=translated src=- shape=b4de9e66 vocab=8a84b258
+-/
 theorem expm1_sub_self_div_sq_mem {t : ℝ} (ht : t ∈ Ioo (0 : ℝ) 1) :
     (Real.exp t - t - 1) / t ^ 2 ∈ Icc (1 / 2 : ℝ) (Real.exp 1 / 2) := by
   have h := quotient_mem_of_derivLadder 2 (by omega) expm1SubLadder sqLadder

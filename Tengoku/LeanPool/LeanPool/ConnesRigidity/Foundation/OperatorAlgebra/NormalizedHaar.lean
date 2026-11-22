@@ -40,6 +40,9 @@ def normalizedAddHaar
     (⟨⟨Set.univ, isCompact_univ⟩, by
       simp only [interior_univ, Set.univ_nonempty]⟩ : PositiveCompacts A)
 
+/--
+@isnad1 id=isprobab.0h1v.s5.52b6777fd9cd from=translated src=- shape=de699033 vocab=ee8a4ab1
+-/
 instance normalizedAddHaar_isProbabilityMeasure
     (A : Type u) [AddGroup A] [TopologicalSpace A] [CompactSpace A]
     [IsTopologicalAddGroup A] [MeasurableSpace A] [BorelSpace A] :
@@ -51,6 +54,9 @@ instance normalizedAddHaar_isProbabilityMeasure
         (K₀ := (⟨⟨Set.univ, isCompact_univ⟩, by
           simp only [interior_univ, Set.univ_nonempty]⟩ : PositiveCompacts A)))
 
+/--
+@isnad1 id=isaddhaa.0h1v.s5.a43dd07ac52e from=translated src=- shape=21c02aa3 vocab=3859bd96
+-/
 instance normalizedAddHaar_isAddHaarMeasure
     (A : Type u) [AddGroup A] [TopologicalSpace A] [CompactSpace A]
     [IsTopologicalAddGroup A] [MeasurableSpace A] [BorelSpace A] :
@@ -58,7 +64,9 @@ instance normalizedAddHaar_isAddHaarMeasure
   unfold normalizedAddHaar
   infer_instance
 
-/-- Probability-normalized additive Haar measure is unique. Paper: §3. -/
+/-- Probability-normalized additive Haar measure is unique. Paper: §3.
+@isnad1 id=eq.0h2v.s6.f11deea69e1a from=translated src=- shape=40f860b8 vocab=bb2f18ea
+-/
 theorem normalizedAddHaar_unique
     (A : Type u) [AddGroup A] [TopologicalSpace A] [CompactSpace A]
     [IsTopologicalAddGroup A] [SecondCountableTopology A]
@@ -73,7 +81,9 @@ theorem normalizedAddHaar_unique
   change μ = μ Set.univ • normalizedAddHaar A at h
   simpa only [measure_univ, one_smul] using h
 
-/-- A continuous fiber shear by an additive term preserves product Haar measure. Paper: §3. -/
+/-- A continuous fiber shear by an additive term preserves product Haar measure. Paper: §3.
+@isnad1 id=measurep.1h7v.s7.b1dc06159437 from=translated src=- shape=46e81bff vocab=04f72401
+-/
 theorem skew_add_translation_measurePreserving
     {P : Type u} {Q : Type v} [AddCommGroup P] [AddCommGroup Q]
     [TopologicalSpace P] [TopologicalSpace Q]
@@ -109,6 +119,9 @@ def productHaar
     [MeasurableSpace Q] [BorelSpace Q] : Measure (P × Q) :=
   (normalizedAddHaar P).prod (normalizedAddHaar Q)
 
+/--
+@isnad1 id=isprobab.0h2v.s6.5192e6e4d6b1 from=translated src=- shape=5c1f54c0 vocab=1b3fbf49
+-/
 instance productHaar_isProbabilityMeasure
     (P : Type u) (Q : Type v)
     [AddGroup P] [AddGroup Q]
@@ -121,6 +134,9 @@ instance productHaar_isProbabilityMeasure
   unfold productHaar
   infer_instance
 
+/--
+@isnad1 id=isaddlef.0h2v.s6.3dcb5dc5f50d from=translated src=- shape=e6b57b50 vocab=7ae53f5b
+-/
 instance productHaar_isAddLeftInvariant
     (P : Type u) (Q : Type v)
     [AddCommGroup P] [AddCommGroup Q]
@@ -140,7 +156,9 @@ instance productHaar_isAddLeftInvariant
         (normalizedAddHaar P).prod (normalizedAddHaar Q)
     exact (hp.prod hq).map_eq
 
-/-- The product measure agrees with normalized Haar measure on the product group. Paper: §3. -/
+/-- The product measure agrees with normalized Haar measure on the product group. Paper: §3.
+@isnad1 id=eq.0h2v.s6.85b764881d36 from=translated src=- shape=9917c3b3 vocab=c925cf76
+-/
 theorem productHaar_eq_normalizedAddHaar
     (P : Type u) (Q : Type v)
     [AddCommGroup P] [AddCommGroup Q]

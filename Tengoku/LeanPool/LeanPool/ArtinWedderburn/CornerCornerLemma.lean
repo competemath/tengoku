@@ -30,6 +30,9 @@ namespace LeanPool.ArtinWedderburn
 
 variable {R : Type*} [Ring R]
 
+/--
+@isnad1 id=eq.0h4v.s8.795914ca3b21 from=translated src=- shape=915fcd8e vocab=6e8c8a35
+-/
 lemma val_mul_subring (S : NonUnitalSubring R) (a b : S) : (a * b : S) = a.val * b.val := by
   simp only [NonUnitalSubring.val_mul]
 
@@ -73,6 +76,9 @@ variable (f : CornerSubring idem_e)
 -- CornerSubringNonUnital of f of the corner ring of e
 
 -- the next theorem states that this is indeed true on the level of sets
+/--
+@isnad1 id=eq.1h3v.s10.7179c479bdbc from=translated src=- shape=67d9805b vocab=fcdae018
+-/
 theorem double_corner_set_eq :
     (Subtype.val '' (CornerSubringNonUnital f).carrier) =
       (CornerSubringNonUnital (f : R)).carrier := by

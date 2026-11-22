@@ -93,6 +93,7 @@ variable {E : Type*} [AddCommGroup E] [Module ℝ E]
 
 For any CLM `T : E →L[ℝ] H` and `w : H`, the map `f ↦ ⟪w, T f⟫` is a scalar
 CLF, so the intrinsic `DyninMityaginSpace.expansion` applies.
+@isnad1 id=eq.0h5v.s8.1eb6d6d3a2f4 from=translated src=- shape=4bff2fba vocab=8a68ca0b
 -/
 theorem _root_.GaussianField.DyninMityaginSpace.expansion_H
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]

@@ -56,6 +56,9 @@ noncomputable def CubicFamily.at (P : CubicFamily) (rho : Nat → ℝ) : Cubic �
   c := Expr.eval rho P.c
   d := Expr.eval rho P.d
 
+/--
+@isnad1 id=eq.0h2v.s4.042c6d592ff4 from=translated src=- shape=a21f9245 vocab=e377b62f
+-/
 @[simp] theorem CubicFamily.discrExpr_eval (P : CubicFamily) (rho : Nat → ℝ) :
     Expr.eval rho P.discrExpr = (P.at rho).discr := by
   simp [CubicFamily.discrExpr, CubicFamily.at, Cubic.discr]
@@ -115,7 +118,9 @@ private theorem Box.splitWidest_snd_length' (B : Box) :
   unfold Box.splitWidest Box.split
   split <;> simp
 
-/-- Soundness of the one-box checker. -/
+/-- Soundness of the one-box checker.
+@isnad1 id=eq.3h5v.s5.9d67d3a24f7f from=translated src=- shape=168c1485 vocab=fda5818c
+-/
 theorem cubicCountCheckBox_sound (P : CubicFamily) (B : Box)
     (count : CubicRootCount) (cfg : EvalConfig)
     (hcheck : cubicCountCheckBox P B count cfg = true) :
@@ -161,7 +166,9 @@ theorem cubicCountCheckBox_sound (P : CubicFamily) (B : Box)
               linarith
 
 /-- Golden engine theorem: successful adaptive subdivision proves a uniform
-fiberwise real-root count over the original parameter box. -/
+fiberwise real-root count over the original parameter box.
+@isnad1 id=eq.3h6v.s5.577a5143f604 from=translated src=- shape=b17b23b0 vocab=af2ba1e4
+-/
 theorem cubicCountCheckSubdiv_sound (P : CubicFamily) (B : Box)
     (count : CubicRootCount) (maxDepth : Nat) (cfg : EvalConfig)
     (hcheck : cubicCountCheckSubdiv P B count maxDepth cfg = true) :

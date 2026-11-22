@@ -343,13 +343,17 @@ def checkBKLNWExpLowerBoundDirect (b : Nat) (limit : Nat) (target : ℚ)
 
 /-! #### Helper Lemmas -/
 
-/-- Zero is contained in the zero interval -/
+/-- Zero is contained in the zero interval
+@isnad1 id=mem.0h0v.s3.dd8776a9ab98 from=translated src=- shape=ddfd6e86 vocab=5b4836f3
+-/
 theorem mem_zeroDyadic : (0 : ℝ) ∈ zeroDyadic := by
   simp only [zeroDyadic, IntervalDyadic.singleton, IntervalDyadic.mem_def]
   have hz : Core.Dyadic.zero.toRat = 0 := Core.Dyadic.toRat_zero
   simp only [hz, Rat.cast_zero, le_refl, and_self]
 
-/-- Membership in ofIntervalRat from Set.Icc membership -/
+/-- Membership in ofIntervalRat from Set.Icc membership
+@isnad1 id=mem.2h5v.s5.dc2a498932c3 from=translated src=- shape=94eecad5 vocab=d27dbd53
+-/
 theorem IntervalDyadic.mem_ofIntervalRat_of_Icc {x : ℝ} {lo hi : ℚ} (hle : lo ≤ hi)
     (hx : x ∈ Set.Icc (lo : ℝ) hi) (prec : Int) (hprec : prec ≤ 0 := by norm_num) :
     x ∈ IntervalDyadic.ofIntervalRat ⟨lo, hi, hle⟩ prec := by
@@ -476,7 +480,9 @@ private theorem bklnwF_exp_head_lower (b limit headLimit : Nat)
     positivity
   linarith
 
-/-- Correctness of single term computation -/
+/-- Correctness of single term computation
+@isnad1 id=mem.3h5v.s6.7d47329b8f28 from=translated src=- shape=8cdcbb0a vocab=dc999197
+-/
 theorem mem_bklnwTermDyadic {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I)
     (hpos : I.toIntervalRat.lo > 0) (k : Nat) (_hk : k ≥ 3) (cfg : BKLNWSumConfig)
     (hprec : cfg.precision ≤ 0 := by norm_num) :
@@ -489,7 +495,9 @@ theorem mem_bklnwTermDyadic {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I)
   rw [← hp]
   exact mem_rpowIntervalDyadic hx hpos p cfg.toDyadicConfig hprec
 
-/-- Correctness of the cached-log BKLNW term evaluator. -/
+/-- Correctness of the cached-log BKLNW term evaluator.
+@isnad1 id=mem.3h5v.s6.3bd7d5373b1e from=translated src=- shape=f85ffc1b vocab=5e7fdfaa
+-/
 theorem mem_bklnwTermFromLog {x : ℝ} {logX : IntervalDyadic}
     (hlog : Real.log x ∈ logX) (hx_pos : 0 < x)
     (k : Nat) (_hk : k ≥ 3) (cfg : BKLNWSumConfig)
@@ -503,7 +511,9 @@ theorem mem_bklnwTermFromLog {x : ℝ} {logX : IntervalDyadic}
   rw [← hp]
   exact mem_rpowFromCachedLogDyadic hlog hx_pos p cfg.toDyadicConfig hprec
 
-/-- `bklnwSumAux` is definitionally equal to `witnessSumAux` with `bklnwEvalTerm`. -/
+/-- `bklnwSumAux` is definitionally equal to `witnessSumAux` with `bklnwEvalTerm`.
+@isnad1 id=eq.0h5v.s4.c453a3e1a36f from=translated src=- shape=7b084900 vocab=bb87930d
+-/
 theorem bklnwSumAux_eq_witnessSumAux (I : IntervalDyadic) (current limit : Nat)
     (acc : IntervalDyadic) (cfg : BKLNWSumConfig) :
     bklnwSumAux I current limit acc cfg =
@@ -519,7 +529,9 @@ theorem bklnwSumAux_eq_witnessSumAux (I : IntervalDyadic) (current limit : Nat)
       exact ih (limit + 1 - (current + 1)) (by omega) (current + 1) _ rfl
 
 /-- Main correctness theorem: the reflective sum correctly bounds the mathematical sum.
-    Proved via the generic mem_witnessSumDyadic from WitnessSum. -/
+    Proved via the generic mem_witnessSumDyadic from WitnessSum.
+@isnad1 id=mem.2h5v.s6.171b01033cac from=translated src=- shape=648a85a2 vocab=615f14c7
+-/
 theorem mem_bklnwSumDyadic {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I)
     (hpos : I.toIntervalRat.lo > 0) (limit : Nat)
     (cfg : BKLNWSumConfig := {})
@@ -533,7 +545,9 @@ theorem mem_bklnwSumDyadic {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I)
   intro k hk1 _hk2
   exact mem_bklnwTermDyadic hx hpos k (by omega) cfg hprec
 
-/-- `bklnwSumAuxCached` is a witness sum over the cached-log term evaluator. -/
+/-- `bklnwSumAuxCached` is a witness sum over the cached-log term evaluator.
+@isnad1 id=eq.0h5v.s5.d8c5ba857a59 from=translated src=- shape=1ac3794f vocab=21b8e62d
+-/
 theorem bklnwSumAuxCached_eq_witnessSumAux (logX : IntervalDyadic)
     (current limit : Nat) (acc : IntervalDyadic) (cfg : BKLNWSumConfig) :
     bklnwSumAuxCached logX current limit acc cfg =
@@ -551,7 +565,9 @@ theorem bklnwSumAuxCached_eq_witnessSumAux (logX : IntervalDyadic)
           ((IntervalDyadic.add acc (bklnwTermFromLog logX current cfg)).roundOut cfg.precision)
           rfl
 
-/-- Cached-log sum correctness from a proof that `logX` contains `Real.log x`. -/
+/-- Cached-log sum correctness from a proof that `logX` contains `Real.log x`.
+@isnad1 id=mem.2h5v.s6.7db6895366fb from=translated src=- shape=3267714d vocab=91370f6a
+-/
 theorem mem_bklnwSumAuxCached {x : ℝ} {logX : IntervalDyadic}
     (hlog : Real.log x ∈ logX) (hx_pos : 0 < x)
     (limit : Nat) (cfg : BKLNWSumConfig := {})
@@ -571,7 +587,9 @@ theorem mem_bklnwSumAuxCached {x : ℝ} {logX : IntervalDyadic}
     the condition lo ≥ 1 is always satisfied.
 
     The key insight: for prec ≤ 0, we have 2^(-prec) ≥ 1, so lo * 2^(-prec) ≥ lo ≥ 1,
-    meaning floor(lo * 2^(-prec)) ≥ 1 > 0. -/
+    meaning floor(lo * 2^(-prec)) ≥ 1 > 0.
+@isnad1 id=lt.3h3v.s5.79806d7aa390 from=translated src=- shape=49135989 vocab=930f2bc4
+-/
 theorem IntervalDyadic.ofIntervalRat_lo_pos {lo hi : ℚ} (hle : lo ≤ hi)
     (hpos : lo ≥ 1) (prec : Int) (hprec : prec ≤ 0) :
     (IntervalDyadic.ofIntervalRat ⟨lo, hi, hle⟩ prec).toIntervalRat.lo > 0 := by
@@ -606,7 +624,9 @@ theorem IntervalDyadic.ofIntervalRat_lo_pos {lo hi : ℚ} (hle : lo ≤ hi)
     then the actual sum is bounded.
 
     This theorem connects native_decide verification to mathematical truth.
-    Requires x_lo ≥ 1 for positivity of the dyadic interval. -/
+    Requires x_lo ≥ 1 for positivity of the dyadic interval.
+@isnad1 id=le.4h7v.s6.c0b8b43ef18d from=translated src=- shape=ed6ac551 vocab=38db6260
+-/
 theorem checkBKLNWSumUpperBound_correct (x_lo x_hi : ℚ) (hle : x_lo ≤ x_hi)
     (hpos : x_lo ≥ 1) (limit : Nat) (target : ℚ)
     (cfg : BKLNWSumConfig := {})
@@ -630,7 +650,9 @@ theorem checkBKLNWSumUpperBound_correct (x_lo x_hi : ℚ) (hle : x_lo ≤ x_hi)
   exact le_trans hhi hbound
 
 /-- Certificate correctness for lower bounds.
-    Requires x_lo ≥ 1 for positivity of the dyadic interval. -/
+    Requires x_lo ≥ 1 for positivity of the dyadic interval.
+@isnad1 id=le.4h7v.s6.c110a33b6994 from=translated src=- shape=dc6ba3cb vocab=7cec6ae6
+-/
 theorem checkBKLNWSumLowerBound_correct (x_lo x_hi : ℚ) (hle : x_lo ≤ x_hi)
     (hpos : x_lo ≥ 1) (limit : Nat) (target : ℚ)
     (cfg : BKLNWSumConfig := {})
@@ -655,12 +677,16 @@ theorem checkBKLNWSumLowerBound_correct (x_lo x_hi : ℚ) (hle : x_lo ≤ x_hi)
 
 /-! ### Bridge Theorems for exp(b) Case -/
 
-/-- Membership in singleton interval -/
+/-- Membership in singleton interval
+@isnad1 id=mem.0h1v.s3.104a9e966a8e from=translated src=- shape=677e8cdd vocab=423e77ce
+-/
 theorem IntervalRat.mem_singleton_nat (n : Nat) : (n : ℝ) ∈ IntervalRat.singleton n := by
   simp only [IntervalRat.singleton, IntervalRat.mem_def]
   constructor <;> simp
 
-/-- exp correctness for dyadic intervals -/
+/-- exp correctness for dyadic intervals
+@isnad1 id=mem.1h4v.s5.bc709a63d48f from=translated src=- shape=82d78a64 vocab=5613f377
+-/
 theorem mem_expIntervalDyadic {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I)
     (cfg : DyadicConfig)
     (hprec : cfg.precision ≤ 0 := by norm_num) :
@@ -670,13 +696,17 @@ theorem mem_expIntervalDyadic {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I)
   have hexp := IntervalRat.mem_expComputable hrat cfg.taylorDepth
   exact IntervalDyadic.mem_ofIntervalRat hexp cfg.precision hprec
 
-/-- Natural number b as real is in the singleton interval -/
+/-- Natural number b as real is in the singleton interval
+@isnad1 id=mem.0h3v.s4.dda602d5d703 from=translated src=- shape=4125e85c vocab=26106d88
+-/
 theorem mem_bInterval_nat (b : Nat) (prec : Int) (hprec : prec ≤ 0 := by norm_num) :
     (b : ℝ) ∈ IntervalDyadic.ofIntervalRat (IntervalRat.singleton b) prec := by
   apply IntervalDyadic.mem_ofIntervalRat _ prec hprec
   exact IntervalRat.mem_singleton_nat b
 
-/-- exp(b) is contained in the dyadic interval computed by bklnwSumExpDyadic -/
+/-- exp(b) is contained in the dyadic interval computed by bklnwSumExpDyadic
+@isnad1 id=other.0h3v.s5.44b8a65844b8 from=translated src=- shape=b538f177 vocab=2e3bde71
+-/
 theorem mem_expB_of_nat (b : Nat) (cfg : BKLNWSumConfig)
     (hprec : cfg.precision ≤ 0 := by norm_num) :
     let bInterval := IntervalDyadic.ofIntervalRat (IntervalRat.singleton b) cfg.precision
@@ -687,7 +717,9 @@ theorem mem_expB_of_nat (b : Nat) (cfg : BKLNWSumConfig)
   exact mem_expIntervalDyadic hb cfg.toDyadicConfig hprec
 
 /-- `log(exp b) = b` lies in the exact dyadic singleton used by the fast
-`f(exp b)` cached-log checker. -/
+`f(exp b)` cached-log checker.
+@isnad1 id=mem.0h1v.s4.0d8d9cafabad from=translated src=- shape=1e533c4c vocab=99edf217
+-/
 theorem mem_log_exp_nat_cached (b : Nat) :
     Real.log (Real.exp (b : ℝ)) ∈
       IntervalDyadic.singleton (Core.Dyadic.ofInt b) := by
@@ -695,7 +727,9 @@ theorem mem_log_exp_nat_cached (b : Nat) :
   simp only [IntervalDyadic.singleton, IntervalDyadic.mem_def, Core.Dyadic.toRat_ofInt]
   constructor <;> norm_num
 
-/-- Correctness of the exact-log cached evaluator for `f(exp b)`. -/
+/-- Correctness of the exact-log cached evaluator for `f(exp b)`.
+@isnad1 id=mem.0h4v.s5.89f66ee2e539 from=translated src=- shape=2d78c729 vocab=5b0227bf
+-/
 theorem mem_bklnwSumExpDyadicCachedLog (b : Nat) (limit : Nat)
     (cfg : BKLNWSumConfig := {}) (hprec : cfg.precision ≤ 0 := by norm_num) :
     bklnwF (Real.exp (b : ℝ)) limit ∈ bklnwSumExpDyadicCachedLog b limit cfg := by
@@ -703,7 +737,9 @@ theorem mem_bklnwSumExpDyadicCachedLog (b : Nat) (limit : Nat)
   exact mem_bklnwSumAuxCached (mem_log_exp_nat_cached b) (Real.exp_pos _)
     limit cfg hprec
 
-/-- Upper-bound bridge for the exact-log cached `f(exp b)` checker. -/
+/-- Upper-bound bridge for the exact-log cached `f(exp b)` checker.
+@isnad1 id=le.1h5v.s5.aee943a85c9c from=translated src=- shape=89690f82 vocab=1b4d0513
+-/
 theorem checkBKLNWExpUpperBoundCachedLog_correct (b : Nat) (limit : Nat)
     (target : ℚ) (cfg : BKLNWSumConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -715,7 +751,9 @@ theorem checkBKLNWExpUpperBoundCachedLog_correct (b : Nat) (limit : Nat)
   have hbound := IntervalDyadic.upperBoundedBy_spec h_check
   exact le_trans hhi hbound
 
-/-- Lower-bound bridge for the exact-log cached `f(exp b)` checker. -/
+/-- Lower-bound bridge for the exact-log cached `f(exp b)` checker.
+@isnad1 id=le.1h5v.s5.e3cb6752e278 from=translated src=- shape=faaaa32f vocab=db529902
+-/
 theorem checkBKLNWExpLowerBoundCachedLog_correct (b : Nat) (limit : Nat)
     (target : ℚ) (cfg : BKLNWSumConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -727,7 +765,9 @@ theorem checkBKLNWExpLowerBoundCachedLog_correct (b : Nat) (limit : Nat)
   have hbound := IntervalDyadic.lowerBoundedBy_spec h_check
   exact le_trans hbound hlo
 
-/-- Correctness of the direct specialized term for `f(exp b)`. -/
+/-- Correctness of the direct specialized term for `f(exp b)`.
+@isnad1 id=mem.0h4v.s6.1b04844cfd7d from=translated src=- shape=24f9f46e vocab=1f44a7ec
+-/
 theorem mem_bklnwExpTermIntervalDyadic (b k : Nat) (cfg : BKLNWSumConfig)
     (hprec : cfg.precision ≤ 0 := by norm_num) :
     (Real.exp (b : ℝ)) ^ ((1 : ℝ) / k - 1 / 3) ∈
@@ -757,7 +797,9 @@ theorem mem_bklnwExpTermIntervalDyadic (b k : Nat) (cfg : BKLNWSumConfig)
   rw [← hq_cast]
   simpa [bklnwExpTermIntervalDyadic, q] using hexp_dyad
 
-/-- Direct `f(exp b)` accumulator is a witness-sum accumulator. -/
+/-- Direct `f(exp b)` accumulator is a witness-sum accumulator.
+@isnad1 id=eq.0h5v.s5.cc43f00ccb83 from=translated src=- shape=5ec67612 vocab=39b6d277
+-/
 theorem bklnwSumExpAuxDirect_eq_witnessSumAux (b current limit : Nat)
     (acc : IntervalDyadic) (cfg : BKLNWSumConfig) :
     bklnwSumExpAuxDirect b current limit acc cfg =
@@ -775,7 +817,9 @@ theorem bklnwSumExpAuxDirect_eq_witnessSumAux (b current limit : Nat)
           ((IntervalDyadic.add acc (bklnwExpTermIntervalDyadic b current cfg)).roundOut cfg.precision)
           rfl
 
-/-- Correctness of the direct specialized sum for `f(exp b)`. -/
+/-- Correctness of the direct specialized sum for `f(exp b)`.
+@isnad1 id=mem.0h4v.s5.5e4fbbe222a5 from=translated src=- shape=2d78c729 vocab=a42c407e
+-/
 theorem mem_bklnwSumExpDyadicDirect (b : Nat) (limit : Nat)
     (cfg : BKLNWSumConfig := {}) (hprec : cfg.precision ≤ 0 := by norm_num) :
     bklnwF (Real.exp (b : ℝ)) limit ∈ bklnwSumExpDyadicDirect b limit cfg := by
@@ -787,7 +831,9 @@ theorem mem_bklnwSumExpDyadicDirect (b : Nat) (limit : Nat)
   intro k _hk1 _hk2
   exact mem_bklnwExpTermIntervalDyadic b k cfg hprec
 
-/-- Upper-bound bridge for the direct specialized `f(exp b)` checker. -/
+/-- Upper-bound bridge for the direct specialized `f(exp b)` checker.
+@isnad1 id=le.1h5v.s5.ed1a77d81b14 from=translated src=- shape=89690f82 vocab=8840664b
+-/
 theorem checkBKLNWExpUpperBoundDirect_correct (b : Nat) (limit : Nat)
     (target : ℚ) (cfg : BKLNWSumConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -799,7 +845,9 @@ theorem checkBKLNWExpUpperBoundDirect_correct (b : Nat) (limit : Nat)
   have hbound := IntervalDyadic.upperBoundedBy_spec h_check
   exact le_trans hhi hbound
 
-/-- Lower-bound bridge for the direct specialized `f(exp b)` checker. -/
+/-- Lower-bound bridge for the direct specialized `f(exp b)` checker.
+@isnad1 id=le.1h5v.s5.1adce1f1e232 from=translated src=- shape=faaaa32f vocab=22d60d68
+-/
 theorem checkBKLNWExpLowerBoundDirect_correct (b : Nat) (limit : Nat)
     (target : ℚ) (cfg : BKLNWSumConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -816,7 +864,9 @@ theorem checkBKLNWExpLowerBoundDirect_correct (b : Nat) (limit : Nat)
 def checkExpComputableLoPos (I : IntervalRat) (taylorDepth : Nat) : Bool :=
   (IntervalRat.expComputable I taylorDepth).lo > 0
 
-/-- Helper: checkExpComputableLoPos correctness -/
+/-- Helper: checkExpComputableLoPos correctness
+@isnad1 id=lt.1h2v.s4.092b4454870f from=translated src=- shape=9423521c vocab=f1efe982
+-/
 theorem checkExpComputableLoPos_spec {I : IntervalRat} {n : Nat}
     (h : checkExpComputableLoPos I n = true) :
     (IntervalRat.expComputable I n).lo > 0 := by
@@ -830,7 +880,9 @@ def checkExpBLoGe1 (b : Nat) (prec : Int) (taylorDepth : Nat) : Bool :=
   let expResult := IntervalRat.expComputable bInterval.toIntervalRat taylorDepth
   expResult.lo ≥ 1
 
-/-- If checkExpBLoGe1 passes, then the exp interval's lo is ≥ 1 -/
+/-- If checkExpBLoGe1 passes, then the exp interval's lo is ≥ 1
+@isnad1 id=other.1h3v.s5.e8713513c3d3 from=translated src=- shape=83ae1f62 vocab=8c54fc9b
+-/
 theorem checkExpBLoGe1_spec {b : Nat} {prec : Int} {taylorDepth : Nat}
     (h : checkExpBLoGe1 b prec taylorDepth = true) :
     let bInterval := IntervalDyadic.ofIntervalRat (IntervalRat.singleton b) prec
@@ -845,7 +897,9 @@ theorem checkExpBLoGe1_spec {b : Nat} {prec : Int} {taylorDepth : Nat}
     2. With lo ≥ 1 and prec ≤ 0, the ofIntervalRat conversion preserves lo > 0
 
     The first fact follows from exp(b) ≥ e > 2.7 and the Taylor series being accurate.
-    This can be verified computationally for specific configs via checkExpBLoGe1. -/
+    This can be verified computationally for specific configs via checkExpBLoGe1.
+@isnad1 id=other.1h4v.s6.f85eb69e1306 from=translated src=- shape=76959de5 vocab=7b1f1282
+-/
 theorem expB_lo_pos (b : Nat) (_hb : b ≥ 1) (cfg : BKLNWSumConfig)
     (hprec : cfg.precision ≤ 0 := by norm_num)
     (hcheck : checkExpBLoGe1 b cfg.precision cfg.taylorDepth = true := by decide) :
@@ -877,6 +931,7 @@ theorem expB_lo_pos (b : Nat) (_hb : b ≥ 1) (cfg : BKLNWSumConfig)
       verify_bklnwF_exp_upper 300 432 (1001/1000) proofConfig
         (by decide) (by norm_num) (by decide) (by native_decide)
     ```
+@isnad1 id=le.2h6v.s6.12fc5e7ca3d3 from=translated src=- shape=cc47bd17 vocab=3fc305e1
 -/
 theorem verify_bklnwF_exp_upper (b : Nat) (limit : Nat) (target : ℚ)
     (cfg : BKLNWSumConfig := {})
@@ -901,7 +956,9 @@ theorem verify_bklnwF_exp_upper (b : Nat) (limit : Nat) (target : ℚ)
   have hbound := IntervalDyadic.upperBoundedBy_spec h_check
   exact le_trans hhi hbound
 
-/-- Bridge theorem for lower bounds. -/
+/-- Bridge theorem for lower bounds.
+@isnad1 id=le.2h6v.s6.c6c405de67f8 from=translated src=- shape=8868dd4e vocab=bf3bc667
+-/
 theorem verify_bklnwF_exp_lower (b : Nat) (limit : Nat) (target : ℚ)
     (cfg : BKLNWSumConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -930,7 +987,9 @@ theorem verify_bklnwF_exp_lower (b : Nat) (limit : Nat) (target : ℚ)
 The optimized version computes the same mathematical sum but more efficiently.
 We prove correctness by showing each optimized function contains the true value. -/
 
-/-- One is in the one interval -/
+/-- One is in the one interval
+@isnad1 id=mem.0h0v.s3.157251223f86 from=translated src=- shape=ddfd6e86 vocab=43e26e94
+-/
 theorem mem_oneDyadic : (1 : ℝ) ∈ oneDyadic := by
   simp only [oneDyadic, IntervalDyadic.singleton, IntervalDyadic.mem_def]
   have h1 : Core.Dyadic.ofInt 1 = ⟨1, 0⟩ := rfl
@@ -945,7 +1004,9 @@ private theorem bklnwTermFromLog_eq_bklnwTermDyadic
   simp only [bklnwTermFromLog, bklnwTermDyadic, rpowIntervalDyadic,
     rpowFromCachedLogDyadic, BKLNWSumConfig.toDyadicConfig]
 
-/-- Cached-log accumulator is definitionally equivalent to the standard accumulator. -/
+/-- Cached-log accumulator is definitionally equivalent to the standard accumulator.
+@isnad1 id=eq.0h5v.s4.fef6e10366c9 from=translated src=- shape=75a3d08b vocab=bdc97d0b
+-/
 theorem bklnwSumAuxCached_eq_bklnwSumAux (x : IntervalDyadic)
     (current limit : Nat) (acc : IntervalDyadic) (cfg : BKLNWSumConfig) :
     bklnwSumAuxCached (logIntervalDyadic x cfg.toDyadicConfig) current limit acc cfg =
@@ -962,7 +1023,9 @@ theorem bklnwSumAuxCached_eq_bklnwSumAux (x : IntervalDyadic)
         exact ih (limit + 1 - (current + 1)) hm' (current + 1)
           ((IntervalDyadic.add acc (bklnwTermDyadic x current cfg)).roundOut cfg.precision) rfl
 
-/-- Cached-log sum equals the standard reflective sum. -/
+/-- Cached-log sum equals the standard reflective sum.
+@isnad1 id=eq.0h3v.s4.6b50ad7cdc16 from=translated src=- shape=9336d0bf vocab=65de84d8
+-/
 theorem bklnwSumDyadicCached_eq (x : IntervalDyadic) (limit : Nat) (cfg : BKLNWSumConfig := {}) :
     bklnwSumDyadicCached x limit cfg = bklnwSumDyadic x limit cfg := by
   unfold bklnwSumDyadicCached bklnwSumDyadic
@@ -974,7 +1037,9 @@ def bklnwSumExpDyadicCached (b : Nat) (limit : Nat) (cfg : BKLNWSumConfig := {})
   let expB := expIntervalDyadic bInterval cfg.toDyadicConfig
   bklnwSumDyadicCached expB limit cfg
 
-/-- Cached-log exp sum equals the standard exp sum. -/
+/-- Cached-log exp sum equals the standard exp sum.
+@isnad1 id=eq.0h3v.s4.88cbedf28157 from=translated src=- shape=deec7992 vocab=7c8e920a
+-/
 theorem bklnwSumExpDyadicCached_eq (b : Nat) (limit : Nat) (cfg : BKLNWSumConfig := {}) :
     bklnwSumExpDyadicCached b limit cfg = bklnwSumExpDyadic b limit cfg := by
   unfold bklnwSumExpDyadicCached bklnwSumExpDyadic
@@ -1077,13 +1142,17 @@ def checkBKLNWAlphaExpBoundsDirect (b : Nat) (limit : Nat) (targetLo targetHi : 
   let result := bklnwAlphaSumExpDyadicDirect b limit cfg
   result.lowerBoundedBy targetLo && result.upperBoundedBy targetHi
 
-/-- Cached-log alpha interval equals the standard alpha interval. -/
+/-- Cached-log alpha interval equals the standard alpha interval.
+@isnad1 id=eq.0h3v.s4.5bc6bc2e01f1 from=translated src=- shape=deec7992 vocab=bf989f47
+-/
 theorem bklnwAlphaSumExpDyadicCached_eq (b : Nat) (limit : Nat) (cfg : BKLNWSumConfig := {}) :
     bklnwAlphaSumExpDyadicCached b limit cfg = bklnwAlphaSumExpDyadic b limit cfg := by
   unfold bklnwAlphaSumExpDyadicCached bklnwAlphaSumExpDyadic
   simp only [bklnwSumExpDyadicCached_eq]
 
-/-- Cached-log upper-bound checker is equivalent to the standard checker. -/
+/-- Cached-log upper-bound checker is equivalent to the standard checker.
+@isnad1 id=eq.0h4v.s5.5b0f68158f83 from=translated src=- shape=4d0e3b18 vocab=4e7f9616
+-/
 theorem checkBKLNWAlphaExpUpperBoundCached_eq (b : Nat) (limit : Nat) (target : ℚ)
     (cfg : BKLNWSumConfig := {}) :
     checkBKLNWAlphaExpUpperBoundCached b limit target cfg =
@@ -1091,7 +1160,9 @@ theorem checkBKLNWAlphaExpUpperBoundCached_eq (b : Nat) (limit : Nat) (target : 
   simp only [checkBKLNWAlphaExpUpperBoundCached, checkBKLNWAlphaExpUpperBound,
     bklnwAlphaSumExpDyadicCached_eq]
 
-/-- Cached-log lower-bound checker is equivalent to the standard checker. -/
+/-- Cached-log lower-bound checker is equivalent to the standard checker.
+@isnad1 id=eq.0h4v.s5.0511e1b06f2b from=translated src=- shape=4d0e3b18 vocab=281796d3
+-/
 theorem checkBKLNWAlphaExpLowerBoundCached_eq (b : Nat) (limit : Nat) (target : ℚ)
     (cfg : BKLNWSumConfig := {}) :
     checkBKLNWAlphaExpLowerBoundCached b limit target cfg =
@@ -1105,7 +1176,9 @@ def checkBKLNWAlphaExpBounds (b : Nat) (limit : Nat) (targetLo targetHi : ℚ)
   let result := bklnwAlphaSumExpDyadic b limit cfg
   result.lowerBoundedBy targetLo && result.upperBoundedBy targetHi
 
-/-- Extract the lower-bound checker from a successful two-sided check. -/
+/-- Extract the lower-bound checker from a successful two-sided check.
+@isnad1 id=eq.1h5v.s5.47e45341a046 from=translated src=- shape=baf47193 vocab=69f5c9bf
+-/
 theorem checkBKLNWAlphaExpBounds_spec_lower (b : Nat) (limit : Nat)
     (targetLo targetHi : ℚ) (cfg : BKLNWSumConfig := {})
     (h : checkBKLNWAlphaExpBounds b limit targetLo targetHi cfg = true) :
@@ -1113,7 +1186,9 @@ theorem checkBKLNWAlphaExpBounds_spec_lower (b : Nat) (limit : Nat)
   simp only [checkBKLNWAlphaExpBounds, Bool.and_eq_true] at h
   exact h.1
 
-/-- Extract the upper-bound checker from a successful two-sided check. -/
+/-- Extract the upper-bound checker from a successful two-sided check.
+@isnad1 id=eq.1h5v.s5.e5f49bd24164 from=translated src=- shape=34081e82 vocab=ee59c0fb
+-/
 theorem checkBKLNWAlphaExpBounds_spec_upper (b : Nat) (limit : Nat)
     (targetLo targetHi : ℚ) (cfg : BKLNWSumConfig := {})
     (h : checkBKLNWAlphaExpBounds b limit targetLo targetHi cfg = true) :
@@ -1121,7 +1196,9 @@ theorem checkBKLNWAlphaExpBounds_spec_upper (b : Nat) (limit : Nat)
   simp only [checkBKLNWAlphaExpBounds, Bool.and_eq_true] at h
   exact h.2
 
-/-- Cached-log two-sided checker is equivalent to the standard checker. -/
+/-- Cached-log two-sided checker is equivalent to the standard checker.
+@isnad1 id=eq.0h5v.s5.9615e0d34c03 from=translated src=- shape=a392b2e9 vocab=9dbde3cb
+-/
 theorem checkBKLNWAlphaExpBoundsCached_eq (b : Nat) (limit : Nat) (targetLo targetHi : ℚ)
     (cfg : BKLNWSumConfig := {}) :
     checkBKLNWAlphaExpBoundsCached b limit targetLo targetHi cfg =
@@ -1182,7 +1259,9 @@ def checkBKLNWAlphaExpBoundsHeadTail (b limit headLimit : Nat) (targetLo targetH
   checkBKLNWAlphaExpLowerBoundHeadTail b limit headLimit targetLo cfg &&
   checkBKLNWAlphaExpUpperBoundHeadTail b limit headLimit targetHi cfg
 
-/-- Extract lower checker from symbolic two-sided checker. -/
+/-- Extract lower checker from symbolic two-sided checker.
+@isnad1 id=eq.1h6v.s5.5508fd24d459 from=translated src=- shape=7359c4eb vocab=0e084874
+-/
 theorem checkBKLNWAlphaExpBoundsHeadTail_spec_lower (b limit headLimit : Nat)
     (targetLo targetHi : ℚ) (cfg : BKLNWSumConfig := {})
     (h : checkBKLNWAlphaExpBoundsHeadTail b limit headLimit targetLo targetHi cfg = true) :
@@ -1190,7 +1269,9 @@ theorem checkBKLNWAlphaExpBoundsHeadTail_spec_lower (b limit headLimit : Nat)
   simp only [checkBKLNWAlphaExpBoundsHeadTail, Bool.and_eq_true] at h
   exact h.1
 
-/-- Extract upper checker from symbolic two-sided checker. -/
+/-- Extract upper checker from symbolic two-sided checker.
+@isnad1 id=eq.1h6v.s5.28a5e5779bb9 from=translated src=- shape=737f9b27 vocab=d5b95f53
+-/
 theorem checkBKLNWAlphaExpBoundsHeadTail_spec_upper (b limit headLimit : Nat)
     (targetLo targetHi : ℚ) (cfg : BKLNWSumConfig := {})
     (h : checkBKLNWAlphaExpBoundsHeadTail b limit headLimit targetLo targetHi cfg = true) :
@@ -1198,7 +1279,9 @@ theorem checkBKLNWAlphaExpBoundsHeadTail_spec_upper (b limit headLimit : Nat)
   simp only [checkBKLNWAlphaExpBoundsHeadTail, Bool.and_eq_true] at h
   exact h.2
 
-/-- Bridge theorem for symbolic head-tail upper bounds. -/
+/-- Bridge theorem for symbolic head-tail upper bounds.
+@isnad1 id=le.4h7v.s6.fa18ce3671e1 from=translated src=- shape=bbcfe01d vocab=975c684a
+-/
 theorem verify_bklnwAlpha_exp_upper_headTail (b limit headLimit : Nat) (target : ℚ)
     (cfg : BKLNWSumConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -1270,7 +1353,9 @@ theorem verify_bklnwAlpha_exp_upper_headTail (b limit headLimit : Nat) (target :
     simpa using hcheck_r
   exact le_trans hscaled hcheck_r'
 
-/-- Bridge theorem for symbolic head-tail lower bounds. -/
+/-- Bridge theorem for symbolic head-tail lower bounds.
+@isnad1 id=le.4h7v.s6.c3a1377bb46b from=translated src=- shape=cafbea54 vocab=e67e467f
+-/
 theorem verify_bklnwAlpha_exp_lower_headTail (b limit headLimit : Nat) (target : ℚ)
     (cfg : BKLNWSumConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -1314,7 +1399,9 @@ theorem verify_bklnwAlpha_exp_lower_headTail (b limit headLimit : Nat) (target :
   exact le_trans hcheck_r hscaled
 
 /-- Bridge theorem: if checkBKLNWAlphaExpUpperBound passes,
-    then (1+α) * bklnwF(exp b, limit) ≤ target. -/
+    then (1+α) * bklnwF(exp b, limit) ≤ target.
+@isnad1 id=le.2h6v.s6.75d3088a4010 from=translated src=- shape=7c995f1b vocab=76900ade
+-/
 theorem verify_bklnwAlpha_exp_upper (b : Nat) (limit : Nat) (target : ℚ)
     (cfg : BKLNWSumConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -1344,7 +1431,9 @@ theorem verify_bklnwAlpha_exp_upper (b : Nat) (limit : Nat) (target : ℚ)
   exact le_trans hhi hbound
 
 /-- Bridge theorem: if checkBKLNWAlphaExpLowerBound passes,
-    then target ≤ (1+α) * bklnwF(exp b, limit). -/
+    then target ≤ (1+α) * bklnwF(exp b, limit).
+@isnad1 id=le.2h6v.s6.7f8ee2044277 from=translated src=- shape=732c7b40 vocab=603c2c60
+-/
 theorem verify_bklnwAlpha_exp_lower (b : Nat) (limit : Nat) (target : ℚ)
     (cfg : BKLNWSumConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -1377,7 +1466,9 @@ theorem verify_bklnwAlpha_exp_lower (b : Nat) (limit : Nat) (target : ℚ)
 
 Unlike `verify_bklnwAlpha_exp_upper`, this path uses `log(exp b) = b`
 directly, so it does not need a positivity certificate for the computed
-`exp b` interval. -/
+`exp b` interval.
+@isnad1 id=le.1h5v.s6.9e4972f72304 from=translated src=- shape=f17b7f8c vocab=1d88b89c
+-/
 theorem verify_bklnwAlpha_exp_upper_cachedLog (b : Nat) (limit : Nat) (target : ℚ)
     (cfg : BKLNWSumConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -1395,7 +1486,9 @@ theorem verify_bklnwAlpha_exp_upper_cachedLog (b : Nat) (limit : Nat) (target : 
   have hbound := IntervalDyadic.upperBoundedBy_spec h_check
   exact le_trans hhi hbound
 
-/-- Bridge theorem for the exact-log alpha lower checker. -/
+/-- Bridge theorem for the exact-log alpha lower checker.
+@isnad1 id=le.1h5v.s6.3ad5f3c84546 from=translated src=- shape=23270aba vocab=ff657392
+-/
 theorem verify_bklnwAlpha_exp_lower_cachedLog (b : Nat) (limit : Nat) (target : ℚ)
     (cfg : BKLNWSumConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -1413,7 +1506,9 @@ theorem verify_bklnwAlpha_exp_lower_cachedLog (b : Nat) (limit : Nat) (target : 
   have hbound := IntervalDyadic.lowerBoundedBy_spec h_check
   exact le_trans hbound hlo
 
-/-- Bridge theorem for the direct alpha upper checker. -/
+/-- Bridge theorem for the direct alpha upper checker.
+@isnad1 id=le.1h5v.s6.86db7b163700 from=translated src=- shape=f17b7f8c vocab=3cd5a328
+-/
 theorem verify_bklnwAlpha_exp_upper_direct (b : Nat) (limit : Nat) (target : ℚ)
     (cfg : BKLNWSumConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -1431,7 +1526,9 @@ theorem verify_bklnwAlpha_exp_upper_direct (b : Nat) (limit : Nat) (target : ℚ
   have hbound := IntervalDyadic.upperBoundedBy_spec h_check
   exact le_trans hhi hbound
 
-/-- Bridge theorem for the direct alpha lower checker. -/
+/-- Bridge theorem for the direct alpha lower checker.
+@isnad1 id=le.1h5v.s6.eb1ba52f76cd from=translated src=- shape=23270aba vocab=1a7f37cf
+-/
 theorem verify_bklnwAlpha_exp_lower_direct (b : Nat) (limit : Nat) (target : ℚ)
     (cfg : BKLNWSumConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)
@@ -1468,7 +1565,9 @@ def checkBKLNWAlphaPowUpperBound (M : Nat) (target : ℚ)
   (bklnwAlphaSumPowDyadic M cfg).upperBoundedBy target
 
 /-- Bridge theorem: if checkBKLNWAlphaPowUpperBound passes,
-    then (1+α) * bklnwF(2^M, M) ≤ target. -/
+    then (1+α) * bklnwF(2^M, M) ≤ target.
+@isnad1 id=le.1h4v.s6.520a6e872d8e from=translated src=- shape=5a40d3fa vocab=c26f698d
+-/
 theorem verify_bklnwAlpha_pow_upper (M : Nat) (target : ℚ)
     (cfg : BKLNWSumConfig := {})
     (hprec : cfg.precision ≤ 0 := by norm_num)

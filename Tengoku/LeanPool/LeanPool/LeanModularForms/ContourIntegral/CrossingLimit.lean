@@ -49,7 +49,9 @@ or `log(g(t₀-δ)) - log(g(t₀+δ)) + correction` (when the curve crosses a
 branch cut of complex log, e.g., the `-2πi` correction at the elliptic point i).
 
 This is the general version of the pattern used in all 6 ValenceFormula
-winding number computations. -/
+winding number computations.
+@isnad1 id=tendsto.10h9v.s9.47126815b080 from=translated src=- shape=25d58e6e vocab=80834ea4
+-/
 theorem pv_tendsto_of_crossing_limit
     {γ : ℝ → ℂ} {a b : ℝ} {s : ℂ} {L : ℂ}
     {t₀ : ℝ} (ht₀ : t₀ ∈ Ioo a b)
@@ -89,7 +91,9 @@ theorem pv_tendsto_of_crossing_limit
 
 /-- Asymmetric crossing limit: allows different cutoff radii on left and right
 of the crossing point. Needed for corner crossings (e.g., ρ, ρ+1) where
-the geometry differs on each side (e.g., vertical segment vs arc). -/
+the geometry differs on each side (e.g., vertical segment vs arc).
+@isnad1 id=tendsto.13h10v.s10.56cd9b142c9f from=translated src=- shape=ddf36aed vocab=5f273faf
+-/
 theorem pv_tendsto_of_crossing_limit_asymmetric
     {γ : ℝ → ℂ} {a b : ℝ} {s : ℂ} {L : ℂ}
     {t₀ : ℝ} (ht₀ : t₀ ∈ Ioo a b)

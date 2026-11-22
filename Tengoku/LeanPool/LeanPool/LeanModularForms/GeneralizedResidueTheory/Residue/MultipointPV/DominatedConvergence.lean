@@ -436,7 +436,9 @@ private lemma A_eq_integral_A_int (S0 : Finset ℂ) (f g_reg : ℂ → ℂ) (γ 
 /-! ## Dominated Convergence: Main Theorem -/
 
 /-- Core dominated convergence for multi-point PV
-decomposition. -/
+decomposition.
+@isnad1 id=other.4h4v.s9.00249fa6e967 from=translated src=- shape=4fb35e0e vocab=a92d4c9a
+-/
 lemma dominated_convergence_multipoint_helper
     (S0 : Finset ℂ) (f : ℂ → ℂ)
     (γ : PiecewiseC1Immersion) (g_reg : ℂ → ℂ)
@@ -502,7 +504,9 @@ lemma dominated_convergence_multipoint_helper
         (pointwise_ae_limit_off_crossing S0 f g_reg γ hS0_empty _h_crossing_null _hg_decomp)
 
 /-- Difference integrand converges to regular
-part integral. -/
+part integral.
+@isnad1 id=other.4h4v.s9.0f31bb68d404 from=translated src=- shape=95e7e073 vocab=a92d4c9a
+-/
 lemma multipointPV_diff_tendsto
     (S0 : Finset ℂ) (f : ℂ → ℂ)
     (γ : PiecewiseC1Immersion)
@@ -558,7 +562,9 @@ lemma multipointPV_diff_tendsto
       hS0_sep
 
 /-- Multi-point PV equals sum of single-point PVs
-when the regular part integral vanishes. -/
+when the regular part integral vanishes.
+@isnad1 id=eq.7h4v.s9.dd0672229e58 from=translated src=- shape=aa13b60d vocab=fdc80a59
+-/
 lemma multipointPV_eq_sum_of_integral_zero
     (S0 : Finset ℂ) (f : ℂ → ℂ)
     (γ : PiecewiseC1Immersion)

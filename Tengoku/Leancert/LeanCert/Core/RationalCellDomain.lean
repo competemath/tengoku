@@ -41,12 +41,21 @@ instance : CertifiedCellDomain IntervalRat ℝ where
     · exact ⟨parent.bisect.2, by simp [certifiedChildren], hright⟩
   diameter_nonneg := IntervalRat.width_nonneg
 
+/--
+@isnad1 id=eq.0h1v.s4.3797afda5654 from=translated src=- shape=6f9c056a vocab=ae301370
+-/
 @[simp] theorem certifiedCell_children (I : IntervalRat) :
     CertifiedCellDomain.children I = [I.bisect.1, I.bisect.2] := rfl
 
+/--
+@isnad1 id=iff.0h2v.s4.1d797d3a3ed9 from=translated src=- shape=baee052f vocab=242a0cbb
+-/
 @[simp] theorem certifiedCell_contains (I : IntervalRat) (x : ℝ) :
     CertifiedCellDomain.contains I x ↔ x ∈ I := Iff.rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.8fe66b37be8e from=translated src=- shape=cf7bfc94 vocab=f1b58c94
+-/
 @[simp] theorem certifiedCell_diameter (I : IntervalRat) :
     CertifiedCellDomain.diameter I = I.width := rfl
 

@@ -18,7 +18,9 @@ open Complex Polynomial ComplexConjugate
 noncomputable def shiftAverage (f : ℂ → ℂ) (a : ℝ) (z : ℂ) : ℂ :=
   (f (z + (a : ℂ)*I) + f (z - (a : ℂ)*I)) / 2
 
-/-- The exact algebra behind contraction of a conjugate pair. -/
+/-- The exact algebra behind contraction of a conjugate pair.
+@isnad1 id=eq.0h3v.s8.cc00a68ea0c9 from=translated src=- shape=867eb8f7 vocab=eb7b8b4e
+-/
 theorem conjugate_pair_shift_difference (z r : ℂ) (a : ℝ) :
     normSq ((z+(a : ℂ)*I-r)*(z+(a : ℂ)*I-conj r)) -
       normSq ((z-(a : ℂ)*I-r)*(z-(a : ℂ)*I-conj r)) =
@@ -27,6 +29,9 @@ theorem conjugate_pair_shift_difference (z r : ℂ) (a : ℝ) :
     ofReal_im, I_re, I_im, conj_re, add_im, sub_im, mul_im, conj_im]
   ring
 
+/--
+@isnad1 id=lt.3h3v.s8.86ca86e693fc from=translated src=- shape=863caec3 vocab=94600677
+-/
 theorem conjugate_pair_shift_lt {z r : ℂ} {a : ℝ}
     (ha : 0 < a) (hy : 0 < z.im) (hr : r.im^2 < z.im^2+a^2) :
     normSq ((z-(a : ℂ)*I-r)*(z-(a : ℂ)*I-conj r)) <
@@ -65,7 +70,9 @@ private theorem prod_strict {ι : Type*} (s : Multiset ι) (hs : s ≠ 0)
       simp only [Multiset.map_cons, Multiset.prod_cons]
       nlinarith
 
-/-- Finite conjugation-invariant root multisets obey a strict shifted norm inequality. -/
+/-- Finite conjugation-invariant root multisets obey a strict shifted norm inequality.
+@isnad1 id=lt.5h3v.s8.9b913b2d4b95 from=translated src=- shape=1e5aba06 vocab=ce0713fc
+-/
 theorem rootProduct_shift_lt (roots : Multiset ℂ) (hne : roots ≠ 0)
     (hc : roots.map conj = roots) {z : ℂ} {a : ℝ} (ha : 0 < a) (hy : 0 < z.im)
     (hr : ∀ r ∈ roots, r.im^2 < z.im^2+a^2) :
@@ -94,7 +101,9 @@ private theorem polynomial_roots_conj (p : ℂ[X]) (hc : p.map (starRingEnd ℂ)
   exact h.symm
 
 /-- One imaginary-shift average contracts a real polynomial's strip.
-The squared formulation includes the case when the entire strip collapses. -/
+The squared formulation includes the case when the entire strip collapses.
+@isnad1 id=le.5h4v.s7.75366d9b46cc from=translated src=- shape=640ef643 vocab=838853c7
+-/
 theorem polynomial_shiftAverage_strip (p : ℂ[X]) (hp : p ≠ 0)
     (hc : p.map (starRingEnd ℂ) = p) {b a : ℝ} (ha : 0 < a)
     (hstrip : ∀ r : ℂ, p.eval r = 0 → r.im^2 ≤ b^2)
@@ -137,7 +146,9 @@ theorem polynomial_shiftAverage_strip (p : ℂ[X]) (hp : p ≠ 0)
     exact hup (by simpa using neg_pos.mpr hy) (by simpa using hb') hz'
   · exact hup hy hb' hz
 
-/-- A shift at least as wide as the original strip leaves only real zeros. -/
+/-- A shift at least as wide as the original strip leaves only real zeros.
+@isnad1 id=eq.6h4v.s7.fa76c3a32d4a from=translated src=- shape=67043c67 vocab=e195266b
+-/
 theorem polynomial_shiftAverage_real (p : ℂ[X]) (hp : p ≠ 0)
     (hc : p.map (starRingEnd ℂ) = p) {b a : ℝ} (ha : 0 < a)
     (hba : b^2 ≤ a^2) (hstrip : ∀ r : ℂ, p.eval r = 0 → r.im^2 ≤ b^2)
@@ -146,7 +157,9 @@ theorem polynomial_shiftAverage_real (p : ℂ[X]) (hp : p ≠ 0)
   rw [max_eq_right (sub_nonpos.mpr hba)] at h
   nlinarith [sq_nonneg z.im]
 
-/-- The real-coefficient specialization of the finite contraction theorem. -/
+/-- The real-coefficient specialization of the finite contraction theorem.
+@isnad1 id=le.4h4v.s8.5b8a9a0d56a3 from=translated src=- shape=bf90c17b vocab=dd13154a
+-/
 theorem realPolynomial_shiftAverage_strip (p : ℝ[X]) (hp : p ≠ 0)
     {b a : ℝ} (ha : 0 < a)
     (hstrip : ∀ r : ℂ, (p.map (algebraMap ℝ ℂ)).eval r = 0 → r.im^2 ≤ b^2)

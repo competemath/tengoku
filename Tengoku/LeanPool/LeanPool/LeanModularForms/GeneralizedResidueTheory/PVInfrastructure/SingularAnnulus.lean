@@ -119,7 +119,9 @@ private lemma singular_annulus_indicator_diff_zero
     simp [hγ_fail, hlin_fail]
 
 /-- The annulus condition `ε₂ < ‖L‖ * |t - t₀| ∧ ‖L‖ * |t - t₀| ≤ ε₁` is equivalent to
-    `c₁ < |t - t₀| ∧ |t - t₀| ≤ c₂` where `c₁ = ε₂/‖L‖` and `c₂ = ε₁/‖L‖`. -/
+    `c₁ < |t - t₀| ∧ |t - t₀| ≤ c₂` where `c₁ = ε₂/‖L‖` and `c₂ = ε₁/‖L‖`.
+@isnad1 id=iff.1h5v.s7.a701dfb758ba from=translated src=- shape=b86187b2 vocab=d5ef45a8
+-/
 lemma norm_annulus_condition_iff {t₀ : ℝ} {L : ℂ}
     {ε₁ ε₂ : ℝ} (hL_pos : 0 < ‖L‖) (t : ℝ) :
     (ε₂ < ‖L‖ * |t - t₀| ∧ ‖L‖ * |t - t₀| ≤ ε₁) ↔
@@ -132,7 +134,9 @@ lemma norm_annulus_condition_iff {t₀ : ℝ} {L : ℂ}
     exact ⟨by rwa [div_lt_iff₀ hL_pos, mul_comm] at h1,
            by rwa [le_div_iff₀ hL_pos, mul_comm] at h2⟩
 
-/-- When an integrand is a.e. zero on an interval, its interval integral is zero. -/
+/-- When an integrand is a.e. zero on an interval, its interval integral is zero.
+@isnad1 id=eq.2h3v.s6.881467242b4e from=translated src=- shape=2d851290 vocab=debd9b73
+-/
 lemma intervalIntegral_eq_zero_of_ae_eq_zero {a b : ℝ}
     {φ : ℝ → ℂ} (_hI : IntervalIntegrable φ volume a b)
     (h_ae : ∀ᵐ t ∂volume, t ∈ Set.uIoc a b → φ t = 0) :
@@ -142,7 +146,9 @@ lemma intervalIntegral_eq_zero_of_ae_eq_zero {a b : ℝ}
       (by filter_upwards [h_ae] with t ht ht_mem; exact ht ht_mem)]
   exact intervalIntegral.integral_zero
 
-/-- Split `∫ a..b f` into five consecutive sub-integrals at four ordered intermediate points. -/
+/-- Split `∫ a..b f` into five consecutive sub-integrals at four ordered intermediate points.
+@isnad1 id=eq.5h7v.s8.5afddc679052 from=translated src=- shape=8c80d53d vocab=d613d184
+-/
 lemma integral_split_five {a p₁ p₂ p₃ p₄ b : ℝ}
     {φ : ℝ → ℂ}
     (h₁ : IntervalIntegrable φ volume a p₁)
@@ -173,6 +179,9 @@ lemma integral_split_five {a p₁ p₂ p₃ p₄ b : ℝ}
 
 /-! ### End API section -/
 
+/--
+@isnad1 id=mem.4h6v.s6.5b940d5b9c33 from=translated src=- shape=10f47ee2 vocab=5acae2df
+-/
 lemma singular_tAnnLin_inside_interval
     {t₀ a b : ℝ} (hat₀ : t₀ ∈ Set.Ioo a b)
     {L : ℂ} (hL_pos : 0 < ‖L‖) {ε₁ : ℝ}
@@ -196,6 +205,9 @@ lemma singular_tAnnLin_inside_interval
   exact Set.mem_Icc.mpr
     ⟨by linarith [h1.1], by linarith [h2.2]⟩
 
+/--
+@isnad1 id=other.3h4v.s7.3fd76dd10db4 from=translated src=- shape=a90aa273 vocab=36ea9899
+-/
 lemma singular_tAnnLin_cancel (t₀ : ℝ)
     {L : ℂ} (hL_pos : 0 < ‖L‖)
     (ε₁ ε₂ : ℝ) (hε₂_pos : 0 < ε₂)
@@ -211,6 +223,9 @@ lemma singular_tAnnLin_cancel (t₀ : ℝ)
     (div_pos (lt_of_lt_of_le hε₂_pos hε₂_le) hL_pos)
     (div_le_div_of_nonneg_right hε₂_le hL_pos.le)
 
+/--
+@isnad1 id=le.2h3v.s6.9e1452e735e2 from=translated src=- shape=24e2c7d9 vocab=7c8f6d40
+-/
 lemma singular_symmDiff_sup_bound
     {t₀ c : ℝ} (hc_pos : 0 < c)
     {t : ℝ} (ht_lower : c ≤ |t - t₀|) :
@@ -255,7 +270,9 @@ private lemma singular_annulus_f_lin_bound
     exact inv_norm_le_of_half_lower hL_pos hε₂_pos hlo.le
   · simp only [hcond, ite_false, norm_zero]; positivity
 
-/-- The linearized annular indicator is integrable on any interval. -/
+/-- The linearized annular indicator is integrable on any interval.
+@isnad1 id=interval.2h6v.s7.a8e74c310ac6 from=translated src=- shape=2b500a2a vocab=95531543
+-/
 lemma singular_annulus_f_lin_intervalIntegrable
     {t₀ : ℝ} {L : ℂ} {ε₁ ε₂ : ℝ}
     (hL_pos : 0 < ‖L‖) (hε₂_pos : 0 < ε₂) (u v : ℝ) :
@@ -521,6 +538,9 @@ private lemma singular_annulus_symmDiff_vol_via_ae
   rw [symmDiff_ae_version_null hh'_ae, zero_add]
   exact h_meas ε₁ ε₂ hε₂_pos hε₂_le hε₁_lt_δ_meas
 
+/--
+@isnad1 id=ex.7h5v.s8.ee18ebef21fc from=translated src=- shape=f4c23d80 vocab=30f2e2fa
+-/
 lemma singular_annulus_bound_explicit
     {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ}
     (hab : a < b) (hat₀ : t₀ ∈ Set.Ioo a b)

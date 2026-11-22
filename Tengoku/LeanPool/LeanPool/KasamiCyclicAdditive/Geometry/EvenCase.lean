@@ -62,7 +62,9 @@ namespace KasamiCyclicAdditive
 namespace EvenAssembly
 
 /-- If `C` is fixed by `-π` (i.e. `C + π C = 0`), then `C` is one of the three
-points at infinity: `ker(1 + π) = K0`. -/
+points at infinity: `ker(1 + π) = K0`.
+@isnad1 id=ex.1h2v.s8.8282934048d5 from=translated src=- shape=c9d771fb vocab=479c7b0e
+-/
 theorem frobFixed_eq_ptInf {F : Type*} [Field F] [DecidableEq F] [CharP F 2]
     {C : (fer F).toAffine.Point} (hC : C + frobPt F C = 0) :
     ∃ a : F, ∃ ha : a ^ 3 = 1, C = ptInf a ha := by
@@ -120,7 +122,9 @@ open EvenAssembly
 
 /-- **The even branch: the quotient-first bridge.**  For even `n` the twisted
 root equation is solvable at every affine Fermat target with nonzero
-coordinates, by the route set out in the module docstring. -/
+coordinates, by the route set out in the module docstring.
+@isnad1 id=rooteqso.5h4v.s7.ce8d9b2c0571 from=translated src=- shape=b80bf2a5 vocab=c5426c39
+-/
 theorem rootEquationSolvable_even {K : Type*} [Field K] [Fintype K] [CharP K 2]
     {n k m : ℕ} (hn : Even n) (hkn : Nat.Coprime k n)
     (hcard : Fintype.card K = 2 ^ n) (he : 2 ^ k + 1 = 3 * m)

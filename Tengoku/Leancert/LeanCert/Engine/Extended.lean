@@ -103,9 +103,15 @@ def mem (x : ℝ) (E : ExtendedInterval) : Prop :=
 instance : Membership ℝ ExtendedInterval where
   mem E x := mem x E
 
+/--
+@isnad1 id=iff.0h2v.s4.fd3874475b7f from=translated src=- shape=33ef8e08 vocab=57f43ad4
+-/
 theorem mem_def {x : ℝ} {E : ExtendedInterval} :
     x ∈ E ↔ ∃ I ∈ E.parts, x ∈ I := Iff.rfl
 
+/--
+@isnad1 id=iff.0h2v.s4.f99010dcfbd3 from=translated src=- shape=b37537ee vocab=a47e228f
+-/
 theorem mem_singleton {x : ℝ} {I : IntervalRat} :
     x ∈ singleton I ↔ x ∈ I := by
   simp only [Membership.mem, mem, singleton]
@@ -117,7 +123,9 @@ theorem mem_singleton {x : ℝ} {I : IntervalRat} :
     exact ⟨I, List.mem_singleton.mpr rfl, hx⟩
 
 /-- Helper: the foldl operation maintains the property that the accumulated interval
-    has lo ≤ head.lo and hi ≥ head.hi -/
+    has lo ≤ head.lo and hi ≥ head.hi
+@isnad1 id=other.0h2v.s5.4a7ac27f6eb4 from=translated src=- shape=5921b502 vocab=6a3d00c3
+-/
 theorem foldl_contains_head (t : List IntervalRat) (h : IntervalRat) :
     let result := t.foldl (fun acc I =>
       { lo := min acc.lo I.lo
@@ -137,7 +145,9 @@ theorem foldl_contains_head (t : List IntervalRat) (h : IntervalRat) :
            _ ≤ _ := ih'.2
 
 /-- Helper: the foldl operation maintains the property that the accumulated interval
-    contains any element from the tail -/
+    contains any element from the tail
+@isnad1 id=other.1h3v.s5.6e6dffb3bf7b from=translated src=- shape=f3b6e0e0 vocab=94e9466b
+-/
 theorem foldl_contains_tail (t : List IntervalRat) (h : IntervalRat) (I : IntervalRat)
     (hI : I ∈ t) :
     let result := t.foldl (fun acc J =>
@@ -165,7 +175,9 @@ theorem foldl_contains_tail (t : List IntervalRat) (h : IntervalRat) (I : Interv
 
 /-- If x is in some part, then x is in the hull.
     The proof follows from the fact that hull.lo = min of all lo's ≤ I.lo ≤ x
-    and x ≤ I.hi ≤ max of all hi's = hull.hi. -/
+    and x ≤ I.hi ≤ max of all hi's = hull.hi.
+@isnad1 id=mem.2h2v.s4.6e6c02dd06f9 from=translated src=- shape=75e8c3bf vocab=85a8ff48
+-/
 theorem mem_hull {x : ℝ} {E : ExtendedInterval} (hx : x ∈ E) (hne : E.parts ≠ []) :
     x ∈ E.hull := by
   obtain ⟨I, hI_mem, hx_in_I⟩ := hx
@@ -203,7 +215,9 @@ end ExtendedInterval
     Using 10^30 is sufficient for most numerical applications. -/
 def defaultLargeBound : ℚ := 10^30
 
-/-- Helper: defaultLargeBound is positive -/
+/-- Helper: defaultLargeBound is positive
+@isnad1 id=lt.0h0v.s3.fe62b7dceff6 from=translated src=- shape=ff3a10fc vocab=6b806880
+-/
 theorem defaultLargeBound_pos : 0 < defaultLargeBound := by
   simp only [defaultLargeBound]
   norm_num
@@ -265,7 +279,9 @@ def invExtended (I : IntervalRat) (large_bound : ℚ := defaultLargeBound) : Ext
 
     NOTE: This theorem has remaining sorries because the `invExtended` function itself
     has design assumption sorries for interval validity when constructing intervals near zero.
-    The membership logic is correct modulo these construction assumptions. -/
+    The membership logic is correct modulo these construction assumptions.
+@isnad1 id=mem.3h3v.s5.4f886bd30ca2 from=translated src=- shape=4760cf5a vocab=75cca8fd
+-/
 theorem mem_invExtended {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (hxne : x ≠ 0)
     (large_bound : ℚ := defaultLargeBound) (hlb : |x⁻¹| ≤ large_bound) :
     x⁻¹ ∈ invExtended I large_bound := by
@@ -379,7 +395,9 @@ theorem mem_invExtended {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (hxne : x ≠
 def liftUnary (op : IntervalRat → IntervalRat) (E : ExtendedInterval) : ExtendedInterval :=
   ⟨E.parts.map op⟩
 
-/-- Soundness of unary lifting -/
+/-- Soundness of unary lifting
+@isnad1 id=mem.2h4v.s5.c29e15ecc3b6 from=translated src=- shape=f5fe4751 vocab=4a6511dd
+-/
 theorem mem_liftUnary {f : ℝ → ℝ} {op : IntervalRat → IntervalRat}
     (hop : ∀ x I, x ∈ I → f x ∈ op I)
     {x : ℝ} {E : ExtendedInterval} (hx : x ∈ E) :
@@ -393,7 +411,9 @@ def liftBinary (op : IntervalRat → IntervalRat → IntervalRat)
     (E₁ E₂ : ExtendedInterval) : ExtendedInterval :=
   ⟨E₁.parts.flatMap (fun I₁ => E₂.parts.map (fun I₂ => op I₁ I₂))⟩
 
-/-- Soundness of binary lifting -/
+/-- Soundness of binary lifting
+@isnad1 id=mem.3h6v.s6.a689368239e7 from=translated src=- shape=12812f43 vocab=3c0223d9
+-/
 theorem mem_liftBinary {f : ℝ → ℝ → ℝ} {op : IntervalRat → IntervalRat → IntervalRat}
     (hop : ∀ x y I J, x ∈ I → y ∈ J → f x y ∈ op I J)
     {x y : ℝ} {E₁ E₂ : ExtendedInterval} (hx : x ∈ E₁) (hy : y ∈ E₂) :
@@ -540,7 +560,9 @@ def evalDomainValidExtended (e : Expr) (ρ : ExtendedEnv) (cfg : ExtendedConfig 
   | Expr.sqrt e => evalDomainValidExtended e ρ cfg
   | Expr.namedConst _ => True
 
-/-- Domain validity is trivially true for ADSupported expressions (which exclude log). -/
+/-- Domain validity is trivially true for ADSupported expressions (which exclude log).
+@isnad1 id=evaldoma.1h3v.s4.5f08ec19058a from=translated src=- shape=6531d9ec vocab=d9ca093a
+-/
 theorem evalDomainValidExtended_of_ExprSupported {e : Expr} (hsupp : ADSupported e)
     (ρ : ExtendedEnv) (cfg : ExtendedConfig := {}) : evalDomainValidExtended e ρ cfg := by
   induction hsupp with
@@ -557,7 +579,9 @@ theorem evalDomainValidExtended_of_ExprSupported {e : Expr} (hsupp : ADSupported
 
     If all variables are in their respective extended intervals, and the expression
     is in the supported core subset (no partial functions), then the result is
-    in the extended interval. -/
+    in the extended interval.
+@isnad1 id=mem.3h4v.s5.0d4f4fb3e722 from=translated src=- shape=d4a938dd vocab=d4db79df
+-/
 theorem evalExtendedUnchecked_correct_core (e : Expr) (hsupp : ExprSupportedCore e)
     (ρ_real : Nat → ℝ) (ρ_ext : ExtendedEnv) (hρ : extendedEnvMem ρ_real ρ_ext)
     (cfg : ExtendedConfig := {})
@@ -679,7 +703,9 @@ theorem evalExtendedUnchecked_correct_core (e : Expr) (hsupp : ExprSupportedCore
 
 /-! ## Utility: Hull Soundness -/
 
-/-- If x is in the extended interval, it's in the hull -/
+/-- If x is in the extended interval, it's in the hull
+@isnad1 id=mem.2h3v.s5.c865ed2e47e3 from=translated src=- shape=987794ec vocab=f984fe7e
+-/
 theorem mem_hullUnchecked_of_mem_evalUnchecked (e : Expr)
     (ρ_real : Nat → ℝ) (ρ_ext : ExtendedEnv)
     (heval : Expr.eval ρ_real e ∈ LeanCert.Internal.Extended.evalUnchecked e ρ_ext)

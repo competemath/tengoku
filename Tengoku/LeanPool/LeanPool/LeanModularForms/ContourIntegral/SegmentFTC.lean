@@ -38,7 +38,9 @@ namespace ContourIntegral
 
 /-- FTC on two consecutive segments telescopes: if the integral over [a,b] is
 log(f b) - log(f a) and the integral over [b,c] is log(f c) - log(f b),
-then the integral over [a,c] is log(f c) - log(f a). -/
+then the integral over [a,c] is log(f c) - log(f a).
+@isnad1 id=eq.6h4v.s8.6726c4792252 from=translated src=- shape=67a90a40 vocab=1c45d10a
+-/
 theorem ftc_telescope_two {f : ℝ → ℂ} {a b c : ℝ}
     (_hab : a ≤ b) (_hbc : b ≤ c)
     (hint_ab : IntervalIntegrable (fun t => deriv f t / f t) volume a b)
@@ -51,7 +53,9 @@ theorem ftc_telescope_two {f : ℝ → ℂ} {a b c : ℝ}
 
 /-- For a closed curve (f a = f b), the integral from a to (t₀ - δ) plus from
 (t₀ + δ) to b telescopes to log(f(t₀ - δ)) - log(f(t₀ + δ)), because the log
-terms at a and b cancel by closedness. -/
+terms at a and b cancel by closedness.
+@isnad1 id=eq.5h5v.s9.45e8bb282ed0 from=translated src=- shape=cd041aa3 vocab=18ee79b7
+-/
 theorem ftc_telescope_closed_split {f : ℝ → ℂ} {a b t₀ δ : ℝ}
     (h_closed : f a = f b)
     (_hint_left : IntervalIntegrable (fun t => deriv f t / f t) volume a (t₀ - δ))
@@ -65,7 +69,9 @@ theorem ftc_telescope_closed_split {f : ℝ → ℂ} {a b t₀ δ : ℝ}
   simp_all
 
 /-- FTC on three consecutive segments telescopes: the integral over [a,d] is
-log(f d) - log(f a) if each sub-interval satisfies the FTC-for-log. -/
+log(f d) - log(f a) if each sub-interval satisfies the FTC-for-log.
+@isnad1 id=eq.6h5v.s9.63c005ee3879 from=translated src=- shape=9a6abc19 vocab=56eddead
+-/
 theorem ftc_telescope_three {f : ℝ → ℂ} {a b c d : ℝ}
     (hint_ab : IntervalIntegrable (fun t => deriv f t / f t) volume a b)
     (hint_bc : IntervalIntegrable (fun t => deriv f t / f t) volume b c)
@@ -82,7 +88,9 @@ theorem ftc_telescope_three {f : ℝ → ℂ} {a b c d : ℝ}
 /-- Transfer integrability from a local function `h` to `g` given that their
 log-derivatives agree almost everywhere on the interval.  The `h_ae` hypothesis
 has the direction `deriv g / g = deriv h / h` pointwise a.e., which is reversed
-internally to match the `congr_ae` requirement. -/
+internally to match the `congr_ae` requirement.
+@isnad1 id=interval.2h4v.s8.6143b660f54a from=translated src=- shape=38206daa vocab=19a55278
+-/
 theorem ftc_telescope_integrability {g h : ℝ → ℂ} {a b : ℝ}
     (hint_h : IntervalIntegrable (fun t => deriv h t / h t) volume a b)
     (h_ae : ∀ᵐ t ∂volume, t ∈ Ι a b → deriv g t / g t = deriv h t / h t) :
@@ -92,7 +100,9 @@ theorem ftc_telescope_integrability {g h : ℝ → ℂ} {a b : ℝ}
 
 /-- Transfer an FTC result from a local function `h` to `g` given that their
 log-derivatives agree a.e. and their values agree at the endpoints.
-Produces both integrability and the FTC equality for `g`. -/
+Produces both integrability and the FTC equality for `g`.
+@isnad1 id=and.5h4v.s9.d70498927877 from=translated src=- shape=198f8292 vocab=f3aa03f9
+-/
 theorem ftc_telescope_transfer {g h : ℝ → ℂ} {a b : ℝ}
     (hint_h : IntervalIntegrable (fun t => deriv h t / h t) volume a b)
     (h_ftc : ∫ t in a..b, deriv h t / h t = Complex.log (h b) - Complex.log (h a))
@@ -107,7 +117,9 @@ theorem ftc_telescope_transfer {g h : ℝ → ℂ} {a b : ℝ}
 /-- General piecewise FTC telescope for a function `g` on `[a, b]` that is split at a
 single interior breakpoint `p`.  Given FTC results on `[a, p]` and `[p, b]` for local
 functions `h₁` and `h₂` respectively, together with a.e. agreement of log-derivatives
-and matching endpoints, the combined integral telescopes to `log(g b) - log(g a)`. -/
+and matching endpoints, the combined integral telescopes to `log(g b) - log(g a)`.
+@isnad1 id=and.12h6v.s9.2fbb04fa0c17 from=translated src=- shape=531e49aa vocab=8f4fd86f
+-/
 theorem ftc_telescope_piecewise_two {g h₁ h₂ : ℝ → ℂ} {a p b : ℝ}
     (hap : a ≤ p) (hpb : p ≤ b)
     (hint₁ : IntervalIntegrable (fun t => deriv h₁ t / h₁ t) volume a p)
@@ -128,7 +140,9 @@ theorem ftc_telescope_piecewise_two {g h₁ h₂ : ℝ → ℂ} {a p b : ℝ}
     (by rw [intervalIntegral.integral_congr_ae (h_ae₂.mono (fun t ht hm => ht hm)),
         h_ftc₂, h_gp_right, h_gb])⟩
 
-/-- Piecewise FTC telescope with three local functions (two interior breakpoints). -/
+/-- Piecewise FTC telescope with three local functions (two interior breakpoints).
+@isnad1 id=and.15h8v.s10.56d4ef99d76e from=translated src=- shape=f5e211cd vocab=f3aa03f9
+-/
 theorem ftc_telescope_piecewise_three {g h₁ h₂ h₃ : ℝ → ℂ} {a p q b : ℝ}
     (hint₁ : IntervalIntegrable (fun t => deriv h₁ t / h₁ t) volume a p)
     (hint₂ : IntervalIntegrable (fun t => deriv h₂ t / h₂ t) volume p q)
@@ -159,7 +173,9 @@ theorem ftc_telescope_piecewise_three {g h₁ h₂ h₃ : ℝ → ℂ} {a p q b 
 segments `[a, p₁], [p₁, p₂], [p₂, tₗ]` (left of gap) and `[tᵣ, p₃], [p₃, b]`
 (right of gap).  Each segment has a local function satisfying FTC, and `g` agrees
 a.e. with each.  The closed-curve condition `h₁ a = h₅ b` (implying `g a = g b`)
-means the outer log terms cancel, telescoping to `log(g tₗ) - log(g tᵣ)`. -/
+means the outer log terms cancel, telescoping to `log(g tₗ) - log(g tᵣ)`.
+@isnad1 id=and.26h13v.s11.9b7e60a1cd0b from=translated src=- shape=05a161c6 vocab=d150a64e
+-/
 theorem ftc_telescope_closed_split_five
     {g h₁ h₂ h₃ h₄ h₅ : ℝ → ℂ} {a p₁ p₂ tₗ tᵣ p₃ b : ℝ}
     (hint₁ : IntervalIntegrable (fun t => deriv h₁ t / h₁ t) volume a p₁)

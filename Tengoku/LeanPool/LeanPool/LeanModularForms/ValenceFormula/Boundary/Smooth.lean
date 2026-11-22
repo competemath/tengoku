@@ -48,6 +48,9 @@ private lemma hasDerivAt_seg5_fun (H : ℝ) (t : ℝ) :
     (hasDerivAt_const t (↑H * I : ℂ))).congr_deriv ?_
   simp only [ofReal_one]; ring
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.a57e7c8912d9 from=translated src=- shape=b5b81507 vocab=4696b360
+-/
 lemma fdBoundary_H_hasDerivAt_seg5' (H : ℝ) (t : ℝ)
     (ht : t ∈ Ioo (4 : ℝ) 5) :
     HasDerivAt (fdBoundaryH H) 1 t := by
@@ -58,6 +61,9 @@ lemma fdBoundary_H_hasDerivAt_seg5' (H : ℝ) (t : ℝ)
       show ¬s ≤ 4 from by linarith, ite_false]
   exact (hasDerivAt_seg5_fun H t).congr_of_eventuallyEq heq
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.dedde1f007bc from=translated src=- shape=94c4bba0 vocab=c36544a9
+-/
 lemma fdBoundary_H_hasDerivAt_seg5 (H : ℝ) {t : ℝ} (h4 : 4 < t) :
     HasDerivAt (fdBoundaryH H) 1 t := by
   have heq : fdBoundaryH H =ᶠ[𝓝 t] fun s : ℝ => (↑s - 9/2 : ℂ) + ↑H * I := by
@@ -68,15 +74,27 @@ lemma fdBoundary_H_hasDerivAt_seg5 (H : ℝ) {t : ℝ} (h4 : 4 < t) :
       show ¬s ≤ 4 from by linarith, ite_false]
   exact (hasDerivAt_seg5_fun H t).congr_of_eventuallyEq heq
 
+/--
+@isnad1 id=continuo.0h1v.s4.208306f56e88 from=translated src=- shape=9bb0b988 vocab=c5e30497
+-/
 theorem continuous_fdBoundary_seg1_H (H : ℝ) :
     Continuous (fdBoundarySeg1H H) := by unfold fdBoundarySeg1H; fun_prop
 
+/--
+@isnad1 id=continuo.0h1v.s4.8a9e2a4d2668 from=translated src=- shape=9bb0b988 vocab=336ca795
+-/
 theorem continuous_fdBoundary_seg4_H (H : ℝ) :
     Continuous (fdBoundarySeg4H H) := by unfold fdBoundarySeg4H; fun_prop
 
+/--
+@isnad1 id=continuo.0h1v.s4.a93b99168929 from=translated src=- shape=9bb0b988 vocab=a9e5a560
+-/
 theorem continuous_fdBoundary_seg5_H (H : ℝ) :
     Continuous (fdBoundarySeg5H H) := by unfold fdBoundarySeg5H; fun_prop
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.3f210c59f20a from=translated src=- shape=ac0b2add vocab=cc4cc078
+-/
 lemma hasDerivAt_fdBoundary_seg1_H (H t : ℝ) :
     HasDerivAt (fdBoundarySeg1H H) (-(↑(H - Real.sqrt 3 / 2) : ℂ) * I) t := by
   have hfun : fdBoundarySeg1H H = fun s : ℝ =>
@@ -86,6 +104,9 @@ lemma hasDerivAt_fdBoundary_seg1_H (H t : ℝ) :
   exact (((hasDerivAt_id t).ofReal_comp).mul_const _).const_add _
     |>.congr_deriv (by push_cast; ring)
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.2f2a319f0210 from=translated src=- shape=61a0ef49 vocab=56e42284
+-/
 lemma hasDerivAt_fdBoundary_seg4_H (H t : ℝ) :
     HasDerivAt (fdBoundarySeg4H H) ((↑(H - Real.sqrt 3 / 2) : ℂ) * I) t := by
   have hfun : fdBoundarySeg4H H = fun s : ℝ =>
@@ -98,6 +119,9 @@ lemma hasDerivAt_fdBoundary_seg4_H (H t : ℝ) :
     simp only [sub_zero, ofReal_one] at this; exact this
   exact (h_sub.mul_const _).const_add _ |>.congr_deriv (by push_cast; ring)
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.369665cc1ec1 from=translated src=- shape=aa219799 vocab=7fd99849
+-/
 lemma hasDerivAt_fdBoundary_seg5_H (H t : ℝ) :
     HasDerivAt (fdBoundarySeg5H H) 1 t := by
   have hfun : fdBoundarySeg5H H = fun s : ℝ =>
@@ -132,6 +156,9 @@ private lemma seg5_eventuallyEq_right_4 (H : ℝ) :
     · simp only [fdBoundarySeg5H, fdBoundary_H_at_four]; push_cast; ring
     · exact (fdBoundary_H_eq_seg5_H h).symm
 
+/--
+@isnad1 id=not.1h1v.s6.82fc84ed718e from=translated src=- shape=c91cef15 vocab=bba34e4a
+-/
 lemma fdBoundary_H_not_differentiableAt_4 {H : ℝ} (hH : Real.sqrt 3 / 2 < H) :
     ¬DifferentiableAt ℝ (fdBoundaryH H) 4 := by
   intro hdiff
@@ -151,6 +178,9 @@ lemma fdBoundary_H_not_differentiableAt_4 {H : ℝ} (hH : Real.sqrt 3 / 2 < H) :
   simp only [mul_im, ofReal_re, I_re, mul_zero, ofReal_im, I_im, mul_one, one_im] at him
   linarith [sub_pos.mpr hH]
 
+/--
+@isnad1 id=continuo.0h1v.s6.fcfaec1d372c from=translated src=- shape=efb39a69 vocab=4ba24360
+-/
 lemma fdBoundary_H_deriv_continuousOn_Ioo_45 (H : ℝ) :
     ContinuousOn (deriv (fdBoundaryH H)) (Ioo 4 5) := by
   intro t ht

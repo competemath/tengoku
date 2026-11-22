@@ -37,13 +37,21 @@ def paths : DyadicSubdivisionTree → List DyadicPath
   | .split left right =>
       left.paths.map (false :: ·) ++ right.paths.map (true :: ·)
 
+/--
+@isnad1 id=eq.0h0v.s3.c7f749dec389 from=translated src=- shape=dc0f3952 vocab=093a1b73
+-/
 @[simp] theorem paths_leaf : DyadicSubdivisionTree.leaf.paths = [[]] := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.cf2d72ae8090 from=translated src=- shape=698142d9 vocab=21e43258
+-/
 @[simp] theorem paths_split (left right : DyadicSubdivisionTree) :
     (DyadicSubdivisionTree.split left right).paths =
       left.paths.map (false :: ·) ++ right.paths.map (true :: ·) := rfl
 
-/-- Every point in the root belongs to at least one closed leaf cell. -/
+/-- Every point in the root belongs to at least one closed leaf cell.
+@isnad1 id=ex.1h3v.s5.de202be4b688 from=translated src=- shape=e64b452b vocab=731e6799
+-/
 theorem exists_mem_decode (tree : DyadicSubdivisionTree) (root : IntervalDyadic)
     {x : ℝ} (hx : x ∈ root) :
     ∃ path ∈ tree.paths, x ∈ path.decodeByBisection root := by
@@ -103,7 +111,9 @@ def check (leaves : List DyadicPath) : Option DyadicSubdivisionTree :=
   | some tree => if tree.paths = leaves then some tree else none
   | none => none
 
-/-- Successful checking pins the reconstructed tree to the submitted paths. -/
+/-- Successful checking pins the reconstructed tree to the submitted paths.
+@isnad1 id=eq.1h2v.s4.97c90b1e45da from=translated src=- shape=096069ad vocab=aa0d7de0
+-/
 theorem check_eq_some_paths {leaves : List DyadicPath} {tree : DyadicSubdivisionTree}
     (hcheck : check leaves = some tree) : tree.paths = leaves := by
   unfold check at hcheck
@@ -111,7 +121,9 @@ theorem check_eq_some_paths {leaves : List DyadicPath} {tree : DyadicSubdivision
   next candidate hcandidate =>
     split at hcheck <;> simp_all
 
-/-- Golden coverage theorem for an accepted flat frontier. -/
+/-- Golden coverage theorem for an accepted flat frontier.
+@isnad1 id=ex.2h4v.s5.852517912668 from=translated src=- shape=9174fcba vocab=7072c323
+-/
 theorem exists_mem_decode_of_check {leaves : List DyadicPath}
     {tree : DyadicSubdivisionTree} (hcheck : check leaves = some tree)
     (root : IntervalDyadic) {x : ℝ} (hx : x ∈ root) :

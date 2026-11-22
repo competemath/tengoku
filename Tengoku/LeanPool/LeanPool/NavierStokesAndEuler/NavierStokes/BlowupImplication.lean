@@ -27,7 +27,9 @@ open scoped Topology
 
 namespace NavierStokes.BlowupImplication
 
-/-- A positive scale tending to zero has a divergent negative real power. -/
+/-- A positive scale tending to zero has a divergent negative real power.
+@isnad1 id=tendsto.2h4v.s6.a968a44bf573 from=translated src=- shape=0153c966 vocab=225ebef1
+-/
 theorem negative_power_tendsto_atTop {ι : Type*} {l : Filter ι}
     {q : ι → ℝ} {A : ℝ} (hA : 0 < A)
     (hq : Tendsto q l (𝓝[>] (0 : ℝ))) :
@@ -40,7 +42,9 @@ theorem negative_power_tendsto_atTop {ι : Type*} {l : Filter ι}
   rw [Real.inv_rpow (le_of_lt ht), Real.rpow_neg (le_of_lt ht)]
 
 /-- The manuscript's positive scalar profile remains divergent with a vanishing
-relative error. The error is inside the factor multiplied by `q ^ (-A)`. -/
+relative error. The error is inside the factor multiplied by `q ^ (-A)`.
+@isnad1 id=tendsto.4h6v.s7.04521336b8da from=translated src=- shape=161932db vocab=503d0429
+-/
 theorem positive_profile_tendsto_atTop {ι : Type*} {l : Filter ι}
     {q error : ι → ℝ} {A E : ℝ} (hA : 0 < A) (hE : 0 < E)
     (hq : Tendsto q l (𝓝[>] (0 : ℝ)))
@@ -51,7 +55,9 @@ theorem positive_profile_tendsto_atTop {ι : Type*} {l : Filter ι}
   exact (negative_power_tendsto_atTop hA hq).atTop_mul_pos hE hfactor
 
 /-- A velocity norm bounded below by the positive leading profile diverges.
-This directly applies when the angular component has that leading term. -/
+This directly applies when the angular component has that leading term.
+@isnad1 id=tendsto.5h8v.s7.c3d4b33c4d88 from=translated src=- shape=c267f14c vocab=b896c1b3
+-/
 theorem norm_tendsto_atTop_of_profile_lower_bound {ι V : Type*}
     [NormedAddCommGroup V] {l : Filter ι} {q error : ι → ℝ}
     {v : ι → V} {A E : ℝ} (hA : 0 < A) (hE : 0 < E)
@@ -63,7 +69,9 @@ theorem norm_tendsto_atTop_of_profile_lower_bound {ι V : Type*}
     (positive_profile_tendsto_atTop hA hE hq herror)
 
 /-- A vector-valued nonzero profile with a perturbation tending to zero also
-has divergent norm. This theorem needs no sign choice for a component. -/
+has divergent norm. This theorem needs no sign choice for a component.
+@isnad1 id=tendsto.4h7v.s7.ec03d627a996 from=translated src=- shape=9f786820 vocab=4223da69
+-/
 theorem nonzero_profile_norm_tendsto_atTop {ι V : Type*}
     [NormedAddCommGroup V] [NormedSpace ℝ V] {l : Filter ι}
     {q : ι → ℝ} {error : ι → V} {profile : V} {A : ℝ}
@@ -80,7 +88,9 @@ theorem nonzero_profile_norm_tendsto_atTop {ι V : Type*}
   simp only [norm_smul, Real.norm_eq_abs,
     abs_of_pos (Real.rpow_pos_of_pos ht (-A))]
 
-/-- Divergence rules out any eventual finite bound, not only a global bound. -/
+/-- Divergence rules out any eventual finite bound, not only a global bound.
+@isnad1 id=not.5h8v.s7.00afd757fcc2 from=translated src=- shape=e78285b8 vocab=b8a738c9
+-/
 theorem no_eventual_bound_of_profile {ι V : Type*}
     [NormedAddCommGroup V] {l : Filter ι} [NeBot l]
     {q error : ι → ℝ} {v : ι → V} {A E : ℝ}
@@ -96,7 +106,9 @@ theorem no_eventual_bound_of_profile {ι V : Type*}
   exact (not_lt_of_ge ht') ht
 
 /-- A continuous extension along a convergent path contradicts the profile
-lower bound. `X` may be spacetime and `path` may move towards the singular point. -/
+lower bound. `X` may be spacetime and `path` may move towards the singular point.
+@isnad1 id=not.6h11v.s7.f7874036b890 from=translated src=- shape=f38c58b7 vocab=95540246
+-/
 theorem no_continuous_extension_of_profile {ι X V : Type*}
     [TopologicalSpace X] [NormedAddCommGroup V]
     {l : Filter ι} [NeBot l] {q error : ι → ℝ} {v : ι → V}
@@ -116,7 +128,9 @@ theorem no_continuous_extension_of_profile {ι X V : Type*}
     ‖extension endpoint‖ hv.norm
 
 /-- The remaining-time scale `T - t` tends to zero through positive values
-as `t` approaches `T` from below. -/
+as `t` approaches `T` from below.
+@isnad1 id=tendsto.0h1v.s5.785de1cd993a from=translated src=- shape=b477094e vocab=46ec22d8
+-/
 theorem remaining_time_tendsto (T : ℝ) :
     Tendsto (fun t : ℝ => T - t) (𝓝[<] T) (𝓝[>] (0 : ℝ)) := by
   apply tendsto_nhdsWithin_iff.mpr
@@ -128,7 +142,9 @@ theorem remaining_time_tendsto (T : ℝ) :
   · filter_upwards [self_mem_nhdsWithin] with t ht
     exact (show 0 < T - t from sub_pos.mpr ht)
 
-/-- Finite-time version of the scalar asymptotic in Proposition 11.7. -/
+/-- Finite-time version of the scalar asymptotic in Proposition 11.7.
+@isnad1 id=tendsto.3h4v.s6.0f0def39203e from=translated src=- shape=5f7362ca vocab=34618c11
+-/
 theorem finite_time_profile_tendsto_atTop {T A E : ℝ} {error : ℝ → ℝ}
     (hA : 0 < A) (hE : 0 < E)
     (herror : Tendsto error (𝓝[<] T) (𝓝 0)) :
@@ -137,7 +153,9 @@ theorem finite_time_profile_tendsto_atTop {T A E : ℝ} {error : ℝ → ℝ}
 
 /-- Any size which controls the velocity norm by a fixed
 positive multiplicative constant must diverge as well. An actual Sobolev
-embedding estimate may be supplied as `hcontrol`; it is not proved here. -/
+embedding estimate may be supplied as `hcontrol`; it is not proved here.
+@isnad1 id=tendsto.7h10v.s7.4a5987ed9bec from=translated src=- shape=aaecc648 vocab=b896c1b3
+-/
 theorem controlling_quantity_tendsto_atTop {ι V : Type*}
     [NormedAddCommGroup V] {l : Filter ι} {q error quantity : ι → ℝ}
     {v : ι → V} {A E C : ℝ} (hA : 0 < A) (hE : 0 < E) (hC : 0 < C)
@@ -155,7 +173,9 @@ theorem controlling_quantity_tendsto_atTop {ι V : Type*}
   exact (div_le_iff₀ hC).mpr (by simpa only [mul_comm] using ht)
 
 /-- Arbitrarily large velocities occur in every left neighborhood of the
-singular time, expressed without limit or boundedness notation. -/
+singular time, expressed without limit or boundedness notation.
+@isnad1 id=ex.5h8v.s7.9e2e43a17eef from=translated src=- shape=413050fb vocab=f5c830f9
+-/
 theorem arbitrarily_large_near_time {V : Type*} [NormedAddCommGroup V]
     {v : ℝ → V} {error : ℝ → ℝ} {T A E : ℝ}
     (hA : 0 < A) (hE : 0 < E)
@@ -170,7 +190,9 @@ theorem arbitrarily_large_near_time {V : Type*} [NormedAddCommGroup V]
   exact ⟨t, ht.1, ht.2, hbig⟩
 
 /-- The manuscript's radial sampling curve reaches the singular spacetime
-point. The zero axial coordinate is suppressed from this pair. -/
+point. The zero axial coordinate is suppressed from this pair.
+@isnad1 id=tendsto.0h2v.s6.0ff7a0d18f9a from=translated src=- shape=2358e47f vocab=ebbafa9f
+-/
 theorem concentrating_path_tendsto (T X : ℝ) :
     Tendsto (fun t : ℝ => (t, Real.sqrt (2 * X * (T - t))))
       (𝓝[<] T) (𝓝 (T, (0 : ℝ))) := by
@@ -185,7 +207,9 @@ theorem concentrating_path_tendsto (T X : ℝ) :
   exact htime.prodMk_nhds hradius
 
 /-- A field satisfying the profile lower bound along the explicit shrinking
-radial curve is discontinuous at the terminal spacetime point. -/
+radial curve is discontinuous at the terminal spacetime point.
+@isnad1 id=not.4h7v.s7.48e1fe9ce871 from=translated src=- shape=e5df5352 vocab=a89d7ba3
+-/
 theorem not_continuousAt_concentrating_profile {V : Type*}
     [NormedAddCommGroup V] {T X A E : ℝ} {error : ℝ → ℝ}
     {field : ℝ × ℝ → V} (hA : 0 < A) (hE : 0 < E)

@@ -33,7 +33,9 @@ noncomputable section
 
 namespace HermitekLEAN
 
-/-- Imported local circle estimate for positive frequencies. -/
+/-- Imported local circle estimate for positive frequencies.
+@isnad1 id=le.1h2v.s6.e8ed4fb9b727 from=translated src=- shape=5d748092 vocab=b616b4dc
+-/
 theorem local_circle_estimate
     (E : Finset ℕ)
     (hpos : ∀ n ∈ E, 1 ≤ n)
@@ -43,7 +45,9 @@ theorem local_circle_estimate
   simpa [circleL2Sq, circleRhoNormSq, positiveTrigonometricPolynomial] using
     HermiteLEAN.local_circle_estimate E hpos c
 
-/-- Imported high-frequency circle estimate. -/
+/-- Imported high-frequency circle estimate.
+@isnad1 id=le.3h3v.s6.1a5fa70cb445 from=translated src=- shape=9cf4f8f6 vocab=483c2d96
+-/
 theorem high_frequency_circle_estimate
     (N L : ℕ)
     (hN : 1 ≤ N)
@@ -55,7 +59,9 @@ theorem high_frequency_circle_estimate
   simpa [circleL2Sq, circleRhoNormSq, positiveTrigonometricPolynomial, frequencyBand] using
     HermiteLEAN.high_frequency_circle_estimate N L hN hL c hband
 
-/-- Imported phase-normalized orthogonal reduction. -/
+/-- Imported phase-normalized orthogonal reduction.
+@isnad1 id=ex.6h4v.s9.38c67e12ba00 from=translated src=- shape=6c87e974 vocab=b505fefb
+-/
 theorem phase_normalized_orthogonal_reduction
     {H : Type*}
     [NormedAddCommGroup H]

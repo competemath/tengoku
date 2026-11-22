@@ -40,16 +40,22 @@ namespace FockSPR
 def centeredPolynomial (p : Polynomial ℂ) : Polynomial ℂ :=
   p - Polynomial.C (p.eval 0)
 
-/-- The centered polynomial has zero constant term. -/
+/-- The centered polynomial has zero constant term.
+@isnad1 id=eq.0h1v.s4.21e2f330d0aa from=translated src=- shape=94b42a0a vocab=bae655c7
+-/
 theorem centeredPolynomial_eval_zero (p : Polynomial ℂ) :
     (centeredPolynomial p).eval 0 = 0 := by simp [centeredPolynomial]
 
-/-- The paper-friendly orthogonal reduction step: split off the constant term. -/
+/-- The paper-friendly orthogonal reduction step: split off the constant term.
+@isnad1 id=eq.0h1v.s6.f11227456cbb from=translated src=- shape=70e17cb7 vocab=32fd4b78
+-/
 theorem orthogonalReduction (p : Polynomial ℂ) :
     p = centeredPolynomial p + Polynomial.C (p.eval 0) := by
   simp [centeredPolynomial, sub_add_cancel]
 
-/-- The centered core estimate, stated as a reusable theorem for the paper. -/
+/-- The centered core estimate, stated as a reusable theorem for the paper.
+@isnad1 id=le.2h1v.s8.a6ce4ceddec8 from=translated src=- shape=7f9c5a19 vocab=63a52855
+-/
 theorem orthogonalReduction_core
     (p : Polynomial ℂ)
     (hp_real : Complex.im (p.eval 0) = 0)
@@ -61,7 +67,9 @@ theorem orthogonalReduction_core
         ∫ z : ℂ, (|‖1 + p.eval z‖ - 1|) ^ 2 * Real.exp (-‖z‖ ^ 2) :=
   LocalFockSPR_of_small_norm p hp_real hsmall
 
-/-- The phase-aligned version used in the final statement. -/
+/-- The phase-aligned version used in the final statement.
+@isnad1 id=ex.1h1v.s8.6d76746358e5 from=translated src=- shape=a5602d10 vocab=4d4392cb
+-/
 theorem orthogonalReduction_exists_phase
     (p : Polynomial ℂ)
     (hsmall :

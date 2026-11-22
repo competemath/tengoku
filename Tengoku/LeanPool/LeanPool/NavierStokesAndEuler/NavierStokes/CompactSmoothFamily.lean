@@ -45,12 +45,18 @@ noncomputable def family (K : Set Z) (F : P × Z → E) (p : P) : C(K, E) := by
   exact if h : Continuous (fun z : K => F (p, z)) then ⟨_, h⟩ else 0
 
 omit [NormedAddCommGroup P] [NormedSpace ℝ P] [NormedSpace ℝ Z] [NormedSpace ℝ E] in
+/--
+@isnad1 id=eq.1h7v.s7.826c0c89a38d from=translated src=- shape=961d9395 vocab=1ba7ce1d
+-/
 theorem family_apply (K : Set Z) (F : P × Z → E) (p : P)
     (hp : Continuous (fun z : K => F (p, z))) (z : K) :
     family K F p z = F (p, z) := by
   simp only [family, dite_eq_left hp, ContinuousMap.coe_mk]
 
 omit [NormedSpace ℝ P] [NormedSpace ℝ Z] [NormedSpace ℝ E] in
+/--
+@isnad1 id=continuo.2h7v.s7.445b152b8d69 from=translated src=- shape=686e81c5 vocab=84feab27
+-/
 theorem slice_continuous {K : Set Z} {U : Set P} {F : P × Z → E}
     (hF : ContinuousOn F (U ×ˢ K)) {p : P} (hp : p ∈ U) :
     Continuous (fun z : K => F (p, z)) :=
@@ -58,6 +64,9 @@ theorem slice_continuous {K : Set Z} {U : Set P} {F : P × Z → E}
     (fun z => ⟨hp, z.2⟩)
 
 omit [NormedSpace ℝ P] [NormedSpace ℝ Z] [NormedSpace ℝ E] in
+/--
+@isnad1 id=continuo.1h6v.s7.f1a3d36ebaea from=translated src=- shape=ba48a18f vocab=eff32e22
+-/
 theorem continuousOn_family {K : Set Z} {U : Set P} {F : P × Z → E}
     (hF : ContinuousOn F (U ×ˢ K)) : ContinuousOn (family K F) U := by
   apply continuousOn_iff_continuous_domRestrict.mpr
@@ -83,6 +92,9 @@ noncomputable def flipLinear (K : Set Z) :
   map_smul' := by intros; ext v z; rfl
 
 omit [NormedSpace ℝ Z] in
+/--
+@isnad1 id=le.0h6v.s11.27558b1bda46 from=translated src=- shape=b7bf2cf2 vocab=330d6bfb
+-/
 theorem norm_flipLinear_le (K : Set Z) [CompactSpace K]
     (g : C(K, P →L[ℝ] E)) (v : P) : ‖flipLinear K g v‖ ≤ ‖g‖ * ‖v‖ := by
   apply (ContinuousMap.norm_le (flipLinear K g v)
@@ -100,13 +112,18 @@ noncomputable def flipCLM (K : Set Z) [CompactSpace K] :
       simpa only [one_mul] using norm_flipLinear_le K g v)
 
 omit [NormedSpace ℝ Z] in
+/--
+@isnad1 id=eq.0h7v.s12.4d36599c8abc from=translated src=- shape=ea392d3e vocab=ae7de5d4
+-/
 theorem flipCLM_apply (K : Set Z) [CompactSpace K]
     (g : C(K, P →L[ℝ] E)) (v : P) (z : K) :
     flipCLM (P := P) (E := E) K g v z = g z v := rfl
 
 omit [NormedSpace ℝ Z] in
 /-- Actual slice derivatives and their joint continuity give the Fréchet
-derivative of the compact-family map in the supremum norm. -/
+derivative of the compact-family map in the supremum norm.
+@isnad1 id=hasfderi.5h8v.s12.e3022efca7fa from=translated src=- shape=042c199d vocab=bf027bfc
+-/
 theorem hasFDerivAt_family (K : Set Z) [CompactSpace K] {U : Set P} (hU : IsOpen U)
     (F : P × Z → E) (G : P × Z → P →L[ℝ] E)
     (hF : ContinuousOn F (U ×ˢ K)) (hG : ContinuousOn G (U ×ˢ K))
@@ -160,7 +177,9 @@ theorem hasFDerivAt_family (K : Set Z) [CompactSpace K] {U : Set P} (hU : IsOpen
 noncomputable def parameterDerivative (F : P × Z → E) (z : P × Z) : P →L[ℝ] E :=
   (fderiv ℝ F z).comp (ContinuousLinearMap.inl ℝ P Z)
 
-/-- Every finite joint differentiability order lifts to the compact-family space. -/
+/-- Every finite joint differentiability order lifts to the compact-family space.
+@isnad1 id=contdiff.4h8v.s8.3a4abc9d9584 from=translated src=- shape=6ad1fbd2 vocab=e710a9b3
+-/
 theorem contDiffOn_family_nat (K : Set Z) [CompactSpace K] (U : Set P) (V : Set Z)
     (hU : IsOpen U) (hV : IsOpen V) (hK : K ⊆ V) (n : ℕ) :
     ∀ {W : Type u} [NormedAddCommGroup W] [NormedSpace ℝ W] (F : P × Z → W),
@@ -204,7 +223,9 @@ theorem contDiffOn_family_nat (K : Set Z) [CompactSpace K] (U : Set P) (V : Set 
       exact (WithTop.coe_ne_top hω).elim
     simpa only [Nat.cast_add, Nat.cast_one] using hresult
 
-/-- Joint smoothness near the compact set gives smoothness in the supremum norm. -/
+/-- Joint smoothness near the compact set gives smoothness in the supremum norm.
+@isnad1 id=contdiff.4h7v.s8.7bf775bd117e from=translated src=- shape=b5b5126e vocab=7bc1e790
+-/
 theorem contDiffOn_family_of_joint (K : Set Z) [CompactSpace K] (U : Set P) (V : Set Z)
     (hU : IsOpen U) (hV : IsOpen V) (hK : K ⊆ V)
     (F : P × Z → E) (hF : ContDiffOn ℝ ∞ F (U ×ˢ V)) :
@@ -215,7 +236,9 @@ theorem contDiffOn_family_of_joint (K : Set Z) [CompactSpace K] (U : Set P) (V :
     (hF.of_le (ENat.natCast_le_of_coe_top_le_withTop le_rfl n))
 
 /-- Evaluating an actual compact-family jet gives the genuine parameter jet
-of the original fixed-point slice. -/
+of the original fixed-point slice.
+@isnad1 id=eq.5h11v.s10.706c05c952d0 from=translated src=- shape=6d80520d vocab=d41b7d44
+-/
 theorem iteratedFDeriv_family_apply (K : Set Z) [CompactSpace K] (U : Set P) (V : Set Z)
     (hU : IsOpen U) (hV : IsOpen V) (hK : K ⊆ V)
     (F : P × Z → E) (hF : ContDiffOn ℝ ∞ F (U ×ˢ V))
@@ -237,13 +260,18 @@ theorem iteratedFDeriv_family_apply (K : Set Z) [CompactSpace K] (U : Set P) (V 
   simpa only [iteratedFDerivWithin_of_isOpen k hU hp] using hv
 
 omit [NormedSpace ℝ P] [NormedSpace ℝ Z] [NormedSpace ℝ E] in
+/--
+@isnad1 id=eq.3h9v.s7.986e87c8bebf from=translated src=- shape=9080ac7c vocab=0091b7db
+-/
 theorem family_apply_of_joint (K : Set Z) {U : Set P} {V : Set Z}
     (hK : K ⊆ V) (F : P × Z → E) (hF : ContinuousOn F (U ×ˢ V))
     {p : P} (hp : p ∈ U) (z : K) : family K F p z = F (p, z) :=
   family_apply K F p (slice_continuous (hF.mono (Set.prod_mono Subset.rfl hK)) hp) z
 
 /-- An arbitrary open neighborhood of `U × K` suffices; a fixed product
-neighborhood is extracted locally at each parameter using compactness. -/
+neighborhood is extracted locally at each parameter using compactness.
+@isnad1 id=contdiff.3h7v.s8.39ae092e69d7 from=translated src=- shape=cf176083 vocab=7bc1e790
+-/
 theorem contDiffOn_family_of_neighborhood (K : Set Z) [CompactSpace K]
     (U : Set P) (W : Set (P × Z)) (hW : IsOpen W) (hUK : U ×ˢ K ⊆ W)
     (F : P × Z → E) (hF : ContDiffOn ℝ ∞ F W) :
@@ -261,6 +289,9 @@ theorem contDiffOn_family_of_neighborhood (K : Set Z) [CompactSpace K]
   have hlocal := contDiffOn_family_of_joint K U' V' hU' hV' hKV F (hF.mono hsub)
   exact (hlocal.contDiffAt (hU'.mem_nhds hp')).contDiffWithinAt
 
+/--
+@isnad1 id=eq.4h11v.s10.521a384a3131 from=translated src=- shape=e6e4f0e1 vocab=d41b7d44
+-/
 theorem iteratedFDeriv_family_apply_of_neighborhood (K : Set Z) [CompactSpace K]
     (U : Set P) (W : Set (P × Z)) (hW : IsOpen W) (hUK : U ×ˢ K ⊆ W)
     (F : P × Z → E) (hF : ContDiffOn ℝ ∞ F W)

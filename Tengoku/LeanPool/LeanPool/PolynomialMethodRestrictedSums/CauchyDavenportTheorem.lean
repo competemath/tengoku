@@ -44,11 +44,17 @@ variable {p : ℕ} [Fact (Nat.Prime p)] {k : ℕ}
 
 --
 -- 1.  Fin 2
+/--
+@isnad1 id=eq.0h2v.s6.9f733e4bac21 from=translated src=- shape=dc075f53 vocab=78f0b26c
+-/
 lemma _root_.Tengoku.LeanPool.sum_fin_two {M : Type*} [AddCommMonoid M] (f : Fin 2 → M) :
     ∑ i, f i = f 0 + f 1 := by
   rw [Fin.sum_univ_two]
 
 -- 2.  ZMod p
+/--
+@isnad1 id=ne.3h3v.s6.c710815ed3e6 from=translated src=- shape=770819c0 vocab=ec32c083
+-/
 lemma _root_.Tengoku.LeanPool.binomial_coeff_ne_zero_mod_p (n k : ℕ) (hp : p.Prime) (h_k : k ≤ n) (h_n : n < p) :
     (Nat.choose n k : ZMod p) ≠ 0 := by
   rw [ne_eq, CharP.cast_eq_zero_iff (ZMod p) p]

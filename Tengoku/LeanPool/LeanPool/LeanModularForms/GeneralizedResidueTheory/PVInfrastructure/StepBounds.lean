@@ -78,7 +78,9 @@ private lemma norm_integral_le_const_right {r : ℝ → ℂ} {t₀ a b B C : ℝ
     _ = C * (b - a) := by rw [show (t₀ + b) - (t₀ + a) = b - a by ring,
         abs_of_pos (by linarith)]
 
-/-- O(ε) step bound from bounded remainder. -/
+/-- O(ε) step bound from bounded remainder.
+@isnad1 id=le.3h4v.s7.15e211abb97b from=translated src=- shape=618ab14c vocab=1d1fa0d5
+-/
 lemma remainder_integral_O_eps {r : ℝ → ℂ} {t₀ ε C : ℝ}
     (hε_pos : 0 < ε) (_hC_pos : 0 < C)
     (hr_bound : ∀ t, 0 < |t - t₀| →
@@ -93,7 +95,9 @@ lemma remainder_integral_O_eps {r : ℝ → ℂ} {t₀ ε C : ℝ}
   rw [show 2 * ε - ε = ε by ring] at h_left h_right
   linarith
 
-/-- Symmetric cancellation of 1/(t-t₀). -/
+/-- Symmetric cancellation of 1/(t-t₀).
+@isnad1 id=eq.3h3v.s7.27d3127a921a from=translated src=- shape=5b2de407 vocab=0f2c3e4e
+-/
 lemma integral_inv_symm
     (t₀ ε₁ ε₂ : ℝ) (_hε₁ : 0 < ε₁)
     (_hε₂ : 0 < ε₂) (_hε₁₂ : ε₁ ≤ ε₂) :
@@ -135,7 +139,9 @@ private lemma norm_le_ae_Ioc_of_Ioo {f g : ℝ → ℝ} {lo hi : ℝ}
   refine h t ⟨ht_mem.1, lt_of_le_of_ne ht_mem.2 ?_⟩
   simpa only [Set.mem_singleton_iff] using ht_ne
 
-/-- Remainder annulus bound: O(log ratio). -/
+/-- Remainder annulus bound: O(log ratio).
+@isnad1 id=le.5h5v.s7.d576023b6c12 from=translated src=- shape=4d8150cd vocab=030997d2
+-/
 lemma remainder_annulus_bound {r : ℝ → ℂ}
     {t₀ c₁ c₂ η : ℝ}
     (hc₁_pos : 0 < c₁) (hc₂_pos : 0 < c₂)
@@ -239,7 +245,9 @@ lemma remainder_annulus_bound {r : ℝ → ℂ}
           add_le_add h_left h_right
     _ = 2 * η * Real.log (c₂ / c₁) := by ring
 
-/-- Scale-dependent η from asymptotic control. -/
+/-- Scale-dependent η from asymptotic control.
+@isnad1 id=ex.4h4v.s8.a583bfddff9f from=translated src=- shape=7a1f6957 vocab=f2b98bd8
+-/
 lemma exists_eta_delta {γ : ℝ → ℂ} {t₀ : ℝ}
     {L : ℂ} (hL : L ≠ 0)
     (hγ_hasderiv : HasDerivAt γ L t₀)
@@ -251,7 +259,9 @@ lemma exists_eta_delta {γ : ℝ → ℂ} {t₀ : ℝ}
   integrand_asymptotic γ t₀ L hL hγ_hasderiv hγ_cont_deriv
     (integrand_times_t_tendsto_one γ t₀ L hL hγ_hasderiv hγ_cont_deriv) η hη
 
-/-- Dyadic step [ε/2, ε] contributes ≤ 2η*log(2). -/
+/-- Dyadic step [ε/2, ε] contributes ≤ 2η*log(2).
+@isnad1 id=le.3h4v.s8.740d0c59badb from=translated src=- shape=fec8295b vocab=030997d2
+-/
 lemma step_bound_with_eta {r : ℝ → ℂ}
     {t₀ ε η : ℝ}
     (hε_pos : 0 < ε) (hη_pos : 0 < η)
@@ -268,7 +278,9 @@ lemma step_bound_with_eta {r : ℝ → ℂ}
           (fun t ht_lo ht_hi => hr_bound t (by linarith) ht_hi.le)
     _ = 2 * η * Real.log 2 := by rw [show ε / (ε / 2) = 2 from by field_simp]
 
-/-- Error bound extends to smaller scales. -/
+/-- Error bound extends to smaller scales.
+@isnad1 id=ex.4h4v.s8.8f655f35289e from=translated src=- shape=0e083416 vocab=f2b98bd8
+-/
 lemma error_at_smaller_scale {γ : ℝ → ℂ}
     {t₀ : ℝ} {L : ℂ} (hL : L ≠ 0)
     (hγ_hasderiv : HasDerivAt γ L t₀)
@@ -293,7 +305,9 @@ abbrev cutoffIntegral
   ∫ t in a..b, if ε < ‖γ t - γ t₀‖
     then (γ t - γ t₀)⁻¹ * deriv γ t else 0
 
-/-- δ giving error bound (1/2)^n at scale ε < δ. -/
+/-- δ giving error bound (1/2)^n at scale ε < δ.
+@isnad1 id=ex.3h4v.s8.760b41a38122 from=translated src=- shape=2e87054c vocab=d64763d2
+-/
 lemma exists_delta_for_error_bound {γ : ℝ → ℂ}
     {t₀ : ℝ} {L : ℂ} (hL : L ≠ 0)
     (hγ_hasderiv : HasDerivAt γ L t₀)
@@ -321,6 +335,9 @@ def summableSubseqAux {γ : ℝ → ℂ} {t₀ : ℝ}
     (fun m ε_m => min (ε_m / 2) (δ (m + 1)) / 2)
     n
 
+/--
+@isnad1 id=eq.3h4v.s8.fd40c6489dd8 from=translated src=- shape=a1d974a0 vocab=843a5cdc
+-/
 lemma summableSubseqAux_zero {γ : ℝ → ℂ}
     {t₀ : ℝ} {L : ℂ} (hL : L ≠ 0)
     (hγ_hasderiv : HasDerivAt γ L t₀)
@@ -332,6 +349,9 @@ lemma summableSubseqAux_zero {γ : ℝ → ℂ}
         hγ_hasderiv hγ_cont_deriv 0).choose) /
         2 := rfl
 
+/--
+@isnad1 id=other.3h5v.s8.588a2e0f8c24 from=translated src=- shape=8c73010e vocab=4b6bbe92
+-/
 lemma summableSubseqAux_succ {γ : ℝ → ℂ}
     {t₀ : ℝ} {L : ℂ} (hL : L ≠ 0)
     (hγ_hasderiv : HasDerivAt γ L t₀)
@@ -345,6 +365,9 @@ lemma summableSubseqAux_succ {γ : ℝ → ℂ}
     ε (n + 1) =
       min (ε n / 2) (δ (n + 1)) / 2 := rfl
 
+/--
+@isnad1 id=lt.4h5v.s7.f4c074130319 from=translated src=- shape=87a0e169 vocab=711aab62
+-/
 lemma summableSubseqAux_pos {γ : ℝ → ℂ}
     {t₀ : ℝ} {L : ℂ} (hL : L ≠ 0)
     (hγ_hasderiv : HasDerivAt γ L t₀)
@@ -371,6 +394,9 @@ lemma summableSubseqAux_pos {γ : ℝ → ℂ}
     have h_min_pos : 0 < min (ε m / 2) (δ (m + 1)) := lt_min (by linarith) (hδ_pos (m + 1))
     positivity
 
+/--
+@isnad1 id=le.4h5v.s7.460be18ea6b4 from=translated src=- shape=86bf81f5 vocab=8910ff0e
+-/
 lemma summableSubseqAux_halving {γ : ℝ → ℂ}
     {t₀ : ℝ} {L : ℂ} (hL : L ≠ 0)
     (hγ_hasderiv : HasDerivAt γ L t₀)
@@ -395,6 +421,9 @@ lemma summableSubseqAux_halving {γ : ℝ → ℂ}
     hγ_hasderiv hγ_cont_deriv δ₀ hδ₀_pos n
   linarith
 
+/--
+@isnad1 id=other.4h5v.s8.1816d2fc6d0a from=translated src=- shape=e3351cea vocab=ead85abf
+-/
 lemma summableSubseqAux_lt_delta {γ : ℝ → ℂ}
     {t₀ : ℝ} {L : ℂ} (hL : L ≠ 0)
     (hγ_hasderiv : HasDerivAt γ L t₀)
@@ -430,6 +459,9 @@ lemma summableSubseqAux_lt_delta {γ : ℝ → ℂ}
         (hδ_pos (m + 1))
     linarith
 
+/--
+@isnad1 id=other.4h5v.s8.5481be956239 from=translated src=- shape=32c98f46 vocab=e09dd112
+-/
 lemma summableSubseqAux_error_bound {γ : ℝ → ℂ}
     {t₀ : ℝ} {L : ℂ} (hL : L ≠ 0)
     (hγ_hasderiv : HasDerivAt γ L t₀)
@@ -455,6 +487,9 @@ lemma summableSubseqAux_error_bound {γ : ℝ → ℂ}
   exact hδ_bound n ε_n hε_pos hε_lt_δ t ht_pos
     ht_le
 
+/--
+@isnad1 id=ex.4h4v.s8.eeefd1e2cf6f from=translated src=- shape=e325bfaa vocab=c05d1ec7
+-/
 lemma exists_summable_subseq {γ : ℝ → ℂ}
     {t₀ : ℝ} {L : ℂ} (hL : L ≠ 0)
     (hγ_hasderiv : HasDerivAt γ L t₀)
@@ -477,7 +512,9 @@ lemma exists_summable_subseq {γ : ℝ → ℂ}
   · exact fun n => summableSubseqAux_error_bound hL
       hγ_hasderiv hγ_cont_deriv δ₀ hδ₀_pos n
 
-/-- Cutoff integrand is interval integrable. -/
+/-- Cutoff integrand is interval integrable.
+@isnad1 id=interval.5h6v.s8.73522d7c16b4 from=translated src=- shape=4e3d7a71 vocab=bc5e9034
+-/
 lemma cutoff_integrand_intervalIntegrable
     {γ : ℝ → ℂ} {a b t₀ : ℝ} {L : ℂ}
     (hat₀ : t₀ ∈ Set.Ioo a b) (_hL : L ≠ 0)
@@ -548,7 +585,9 @@ lemma cutoff_integrand_intervalIntegrable
         h_norm_bound_ae t ht
     · exact measurableSet_uIoc
 
-/-- Cutoff difference equals annulus integral. -/
+/-- Cutoff difference equals annulus integral.
+@isnad1 id=eq.3h7v.s8.6c0ea0cdc3c3 from=translated src=- shape=a8e9d29f vocab=aaa8d284
+-/
 lemma cutoff_diff_eq_annulus_integral
     {f : ℝ → ℂ} {γ : ℝ → ℂ} {a b t₀ : ℝ}
     {ε₁ ε₂ : ℝ} (h_le : ε₁ ≤ ε₂)
@@ -578,7 +617,9 @@ lemma cutoff_diff_eq_annulus_integral
     · exact absurd (lt_of_le_of_lt (not_lt.mp h1) (lt_of_le_of_lt h_le h2)) (lt_irrefl _)
     · simp only [h1, h2, ↓reduceIte, sub_self, false_and]
 
-/-- Singular part cancellation via odd symmetry. -/
+/-- Singular part cancellation via odd symmetry.
+@isnad1 id=eq.3h3v.s7.4c6d81d66dff from=translated src=- shape=384a24e2 vocab=3ebad210
+-/
 lemma pv_singular_cancels
     (t₀ ε δ : ℝ) (hε_pos : 0 < ε)
     (hδ_pos : 0 < δ) (hεδ : ε < δ) :
@@ -589,7 +630,9 @@ lemma pv_singular_cancels
   integral_inv_symm t₀ ε δ hε_pos hδ_pos
     (le_of_lt hεδ)
 
-/-- Remainder step bound for dyadic step. -/
+/-- Remainder step bound for dyadic step.
+@isnad1 id=le.3h4v.s8.fa5fa5aaa95a from=translated src=- shape=f52d4bfb vocab=030997d2
+-/
 lemma remainder_step_bound {r : ℝ → ℂ}
     {t₀ ε η : ℝ}
     (hε_pos : 0 < ε) (_hη_pos : 0 < η)
@@ -604,7 +647,9 @@ lemma remainder_step_bound {r : ℝ → ℂ}
         remainder_annulus_bound (by linarith) hε_pos (by linarith) (by linarith) hr_bound
     _ = 2 * η * Real.log 2 := by rw [show ε / (ε / 2) = 2 from by field_simp]
 
-/-- Remainder bounded ratio for annuli. -/
+/-- Remainder bounded ratio for annuli.
+@isnad1 id=le.6h6v.s7.bc7c6dadcb7d from=translated src=- shape=8bc1220a vocab=030997d2
+-/
 lemma remainder_bounded_ratio {r : ℝ → ℂ}
     {t₀ ε₁ ε₂ η K : ℝ}
     (hε₁_pos : 0 < ε₁) (hε₁₂ : ε₁ < ε₂)
@@ -625,7 +670,9 @@ lemma remainder_bounded_ratio {r : ℝ → ℂ}
         nlinarith [Real.log_pos _hK,
           Real.log_le_log (div_pos (lt_trans hε₁_pos hε₁₂) hε₁_pos) h_ratio]
 
-/-- Dyadic step bound for remainder. -/
+/-- Dyadic step bound for remainder.
+@isnad1 id=le.3h5v.s8.28b1a0d27efd from=translated src=- shape=047f15a1 vocab=f8696ba1
+-/
 lemma remainder_dyadic_step {r : ℝ → ℂ}
     {t₀ ε₀ η : ℝ} (n : ℕ)
     (hε₀_pos : 0 < ε₀) (hη_pos : 0 < η)
@@ -669,7 +716,9 @@ lemma remainder_dyadic_step {r : ℝ → ℂ}
     h_lt hη_pos (by norm_num : (1 : ℝ) < 2)
     (by rw [h_ratio]) hr_restricted using 2
 
-/-- Dyadic step O(ε) with bounded remainder. -/
+/-- Dyadic step O(ε) with bounded remainder.
+@isnad1 id=other.3h5v.s7.e9c7f1bc607d from=translated src=- shape=345ca00b vocab=247bcd18
+-/
 lemma pv_dyadic_step_O_eps {r : ℝ → ℂ}
     {t₀ δ₀ C : ℝ} (n : ℕ)
     (hδ₀_pos : 0 < δ₀) (_hC_pos : 0 < C)
@@ -693,7 +742,9 @@ lemma pv_dyadic_step_O_eps {r : ℝ → ℂ}
   rw [show ε_n - ε_n / 2 = ε_n / 2 by ring] at h_left h_right
   linarith
 
-/-- Dyadic sequence is Cauchy with bounded remainder. -/
+/-- Dyadic sequence is Cauchy with bounded remainder.
+@isnad1 id=cauchyse.3h3v.s7.25f34a119794 from=translated src=- shape=ffa9eed3 vocab=9d062c15
+-/
 lemma cauchySeq_pv_dyadic {I : ℝ → ℂ} {δ₀ C : ℝ}
     (_hδ₀_pos : 0 < δ₀) (_hC_pos : 0 < C)
     (h_step : ∀ n,
@@ -707,7 +758,9 @@ lemma cauchySeq_pv_dyadic {I : ℝ → ℂ} {δ₀ C : ℝ}
       ≤ C * δ₀ / 2 ^ n := h_step n
     _ = C * δ₀ * (1 / 2) ^ n := by rw [one_div, inv_pow, ← div_eq_mul_inv]
 
-/-- t-space bound from γ-annulus. -/
+/-- t-space bound from γ-annulus.
+@isnad1 id=le.6h6v.s7.b7736d39c582 from=translated src=- shape=dd5453a1 vocab=e020930e
+-/
 lemma t_bound_from_gamma_annulus
     {γ : ℝ → ℂ} {t₀ : ℝ} {L : ℂ} {δ₁ ε : ℝ}
     (hL : L ≠ 0) (_hε_pos : 0 < ε)
@@ -722,7 +775,9 @@ lemma t_bound_from_gamma_annulus
   rw [le_div_iff₀ hL_norm_pos]
   nlinarith [h_lower t ht_pos ht_lt, hγ_bound]
 
-/-- Integrand bound on γ-annulus. -/
+/-- Integrand bound on γ-annulus.
+@isnad1 id=le.3h5v.s8.9fd1e926bf57 from=translated src=- shape=24b3e5e3 vocab=ebcfc223
+-/
 lemma integrand_bound_on_annulus
     {γ : ℝ → ℂ} {t₀ : ℝ} {C δ₀ : ℝ}
     (hr_bounded : ∀ t, 0 < |t - t₀| →
@@ -739,7 +794,9 @@ lemma integrand_bound_on_annulus
   rw [h_inv_norm] at h
   linarith [hr_bounded t ht_pos ht_lt]
 
-/-- Annulus localization: γ-annulus points are local. -/
+/-- Annulus localization: γ-annulus points are local.
+@isnad1 id=and.3h8v.s7.fa55707af161 from=translated src=- shape=8b8e3a4b vocab=a2ff7e75
+-/
 lemma annulus_implies_t_local
     {γ : ℝ → ℂ} {a b t₀ : ℝ} {ε₁ δ₀ δ₁ : ℝ}
     (h_localize : ∀ t ∈ Set.Icc a b,
@@ -750,7 +807,9 @@ lemma annulus_implies_t_local
     |t - t₀| < δ₀ ∧ |t - t₀| < δ₁ := by
   simp_all
 
-/-- Bracket ε between dyadic points: for ε ∈ (0, δ], find n with δ/2^(n+1) < ε ≤ δ/2^n. -/
+/-- Bracket ε between dyadic points: for ε ∈ (0, δ], find n with δ/2^(n+1) < ε ≤ δ/2^n.
+@isnad1 id=ex.3h2v.s6.6943033e72a2 from=translated src=- shape=46c2b3a2 vocab=8b19d7e0
+-/
 lemma exists_dyadic_bracket {δ ε : ℝ}
     (hδ_pos : 0 < δ) (hε_pos : 0 < ε) (hε_le : ε ≤ δ) :
     ∃ n : ℕ, δ / 2 ^ (n + 1) < ε ∧ ε ≤ δ / 2 ^ n := by
@@ -781,7 +840,9 @@ lemma exists_dyadic_bracket {δ ε : ℝ}
       push Not at h_not
       exact Nat.find_min h_exists (by omega : n < m) h_not
 
-/-- Telescoping sum bound for geometric step bounds. -/
+/-- Telescoping sum bound for geometric step bounds.
+@isnad1 id=le.4h6v.s8.799ad2b177b3 from=translated src=- shape=68437a5e vocab=f4529825
+-/
 lemma telescoping_sum_bound {X : Type*} [SeminormedAddCommGroup X]
     {I : ℕ → X} {K δ : ℝ}
     (_hK_pos : 0 < K) (_hδ_pos : 0 < δ)

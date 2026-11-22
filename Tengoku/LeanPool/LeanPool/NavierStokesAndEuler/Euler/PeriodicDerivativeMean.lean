@@ -20,6 +20,9 @@ open MeasureTheory
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
 
+/--
+@isnad1 id=eq.3h4v.s7.8dfbe4c1ae21 from=translated src=- shape=ae7feabe vocab=da4a0c99
+-/
 theorem integral_derivative_eq_zero (P : ℝ) (f f' : ℝ → E)
     (hf : ∀ θ, HasDerivAt f (f' θ) θ) (hf' : Continuous f')
     (hper : Function.Periodic f P) : (∫ θ in 0..P, f' θ)=0 := by
@@ -27,7 +30,9 @@ theorem integral_derivative_eq_zero (P : ℝ) (f f' : ℝ → E)
     (hf'.intervalIntegrable 0 P)]
   simpa only [zero_add] using sub_eq_zero.mpr (hper 0)
 
-/-- A coefficient independent of angle cannot change this zero-mean conclusion. -/
+/-- A coefficient independent of angle cannot change this zero-mean conclusion.
+@isnad1 id=eq.3h5v.s7.6dff428a9032 from=translated src=- shape=479e1f5e vocab=f7dbae29
+-/
 theorem integral_constant_smul_derivative_eq_zero (P c : ℝ) (f f' : ℝ → E)
     (hf : ∀ θ, HasDerivAt f (f' θ) θ) (hf' : Continuous f')
     (hper : Function.Periodic f P) : (∫ θ in 0..P, c • f' θ)=0 := by

@@ -59,7 +59,9 @@ private lemma unitary_diag_conj_isHermitian (U : Matrix V V ℝ) (f : V → ℝ)
 
 /-- Product of unitary-diagonal-conjugate matrices:
     (U * D(f) * U★) * (U * D(g) * U★) = U * D(f·g) * U★.
-    Used for spectral calculus (computing products via eigenvalue multiplication). -/
+    Used for spectral calculus (computing products via eigenvalue multiplication).
+@isnad1 id=eq.1h4v.s8.9e0001bd9c03 from=translated src=- shape=d0f68e63 vocab=55befca0
+-/
 lemma unitary_diag_mul
     (U : Matrix V V ℝ) (hstarU : (star U : Matrix V V ℝ) * U = 1)
     (f g : V → ℝ) :
@@ -82,7 +84,9 @@ lemma unitary_diag_mul
     Lhalf with Lhalf * Lhalf = graphLaplacian G (the PSD square root), constructed
     via the spectral theorem. This is Step 1 of the informal proof.
     The spectral decomposition L = U * diag(λ) * U* gives
-    Lhalf = U * diag(√λ) * U*, which satisfies Lhalf² = L and IsHermitian. -/
+    Lhalf = U * diag(√λ) * U*, which satisfies Lhalf² = L and IsHermitian.
+@isnad1 id=ex.0h2v.s6.288e4ba645fe from=translated src=- shape=0d987806 vocab=36cd1384
+-/
 lemma spectral_sqrt_exists
     (G : SimpleGraph V) [DecidableRel G.Adj] :
     ∃ (Lhalf : Matrix V V ℝ),
@@ -121,7 +125,9 @@ omit [DecidableEq V] in
     (2) M_pinv * M * M_pinv = M_pinv
     (3) M * M_pinv is idempotent (a projection)
     Constructed via spectral decomposition: if M = U * diag(λ) * U★,
-    then M_pinv = U * diag(λ⁻¹) * U★ where λ⁻¹(i) = 0 if λ(i) = 0. -/
+    then M_pinv = U * diag(λ⁻¹) * U★ where λ⁻¹(i) = 0 if λ(i) = 0.
+@isnad1 id=ex.1h2v.s8.fac18e1aaaae from=translated src=- shape=8e495c30 vocab=93311f42
+-/
 lemma hermitian_pseudo_inverse_exists
     (M : Matrix V V ℝ) (hM : M.IsHermitian) :
     ∃ (M_pinv : Matrix V V ℝ),
@@ -186,7 +192,9 @@ The proof is decomposed into:
       `eps_light_of_loewner_bound` to convert barrier bounds to ε-lightness. -/
 
 /-- Off-diagonal entry equality for the cross-edge decomposition:
-    for i ≠ j, (graphLaplacian G - DS) i j = (graphLaplacian G_same) i j. -/
+    for i ≠ j, (graphLaplacian G - DS) i j = (graphLaplacian G_same) i j.
+@isnad1 id=eq.4h9v.s8.8a6a15c0ba62 from=translated src=- shape=8030f5f9 vocab=f53cc8c7
+-/
 lemma cross_edge_off_diagonal
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (r : ℕ) (pc : PartialColoring V r)
@@ -320,7 +328,9 @@ lemma cross_edge_off_diagonal
 
 omit [DecidableEq V] in
 /-- Diagonal entry derivation for the cross-edge decomposition:
-    derives diagonal from row sums and off-diagonal matching. -/
+    derives diagonal from row sums and off-diagonal matching.
+@isnad1 id=eq.3h5v.s7.552bf190d031 from=translated src=- shape=46b13de9 vocab=e5513c2f
+-/
 lemma cross_edge_diagonal
     (L DS R : Matrix V V ℝ)
     (h_off_diag : ∀ (a b : V), a ≠ b → (L - DS) a b = R a b)
@@ -338,7 +348,9 @@ lemma cross_edge_diagonal
       h_off_diag i j (Finset.ne_of_mem_erase hj).symm
   linarith
 
-/-- Base case of BSS induction: empty coloring, M_0 = 0, Φ_{ε/2}(0) = 2n/ε. -/
+/-- Base case of BSS induction: empty coloring, M_0 = 0, Φ_{ε/2}(0) = 2n/ε.
+@isnad1 id=ex.3h5v.s9.db5cfab13075 from=translated src=- shape=c7eac590 vocab=f1c9d1cd
+-/
 lemma total_barrier_bound_base
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (ε : ℝ) (hε : 0 < ε)
@@ -385,7 +397,9 @@ lemma total_barrier_bound_base
 
 /-! ### Proof of the main theorem -/
 
-/-- For 1 ≤ n ≤ 3, a single vertex is ε-light and satisfies the size bound. -/
+/-- For 1 ≤ n ≤ 3, a single vertex is ε-light and satisfies the size bound.
+@isnad1 id=ex.4h3v.s6.d45e0c17a85a from=translated src=- shape=19c346dd vocab=31488377
+-/
 lemma eps_light_small_n
     (G : SimpleGraph V) [DecidableRel G.Adj]
     (ε : ℝ) (hε : 0 < ε) (hε1 : ε ≤ 1)

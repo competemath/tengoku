@@ -35,6 +35,9 @@ abbrev L1Sequence := L1Coeff ℕ
 noncomputable def coefficientEval (k : ℕ) : L1Sequence →L[ℂ] ℂ :=
   lp.evalCLM ℂ (fun _ : ℕ ↦ ℂ) 1 k
 
+/--
+@isnad1 id=le.0h1v.s10.453e61421bdc from=translated src=- shape=3c3c1f85 vocab=33231128
+-/
 theorem norm_coefficientEval_le (k : ℕ) : ‖coefficientEval k‖ ≤ 1 := by
   apply ContinuousLinearMap.opNorm_le_bound _ zero_le_one
   intro a
@@ -46,11 +49,17 @@ noncomputable def l1OperatorSeries :
     FormalMultilinearSeries ℂ ℂ (L1Sequence →L[ℂ] ℂ) :=
   fun k ↦ (ContinuousMultilinearMap.mkPiAlgebraFin ℂ k ℂ).smulRight (coefficientEval k)
 
+/--
+@isnad1 id=le.0h1v.s12.e5a169767ed6 from=translated src=- shape=b936d868 vocab=14fda795
+-/
 theorem norm_l1OperatorSeries_le (k : ℕ) : ‖l1OperatorSeries k‖ ≤ 1 := by
   rw [l1OperatorSeries, ContinuousMultilinearMap.norm_smulRight,
     ContinuousMultilinearMap.norm_mkPiAlgebraFin, one_mul]
   exact norm_coefficientEval_le k
 
+/--
+@isnad1 id=le.0h0v.s10.9f99ad3bfd5f from=translated src=- shape=2e6e206c vocab=78ecdcae
+-/
 theorem one_le_radius_l1OperatorSeries : 1 ≤ l1OperatorSeries.radius := by
   apply l1OperatorSeries.le_radius_of_bound 1
   intro k
@@ -60,6 +69,9 @@ theorem one_le_radius_l1OperatorSeries : 1 ≤ l1OperatorSeries.radius := by
 noncomputable def l1EvalOperator (w : ℂ) : L1Sequence →L[ℂ] ℂ :=
   l1OperatorSeries.sum w
 
+/--
+@isnad1 id=analytic.0h0v.s10.9a4382650313 from=translated src=- shape=2fe644b8 vocab=73ec084e
+-/
 theorem analyticAt_l1EvalOperator : AnalyticAt ℂ l1EvalOperator 0 := by
   exact (l1OperatorSeries.hasFPowerSeriesOnBall
     (lt_of_lt_of_le (by norm_num : (0 : ℝ≥0∞) < 1) one_le_radius_l1OperatorSeries)).analyticAt
@@ -68,7 +80,9 @@ theorem analyticAt_l1EvalOperator : AnalyticAt ℂ l1EvalOperator 0 := by
 noncomputable def evalL1PowerSeries (a : L1Sequence) (w : ℂ) : ℂ :=
   l1EvalOperator w a
 
-/-- Evaluation is jointly analytic in the sequence and scalar at scalar coordinate zero. -/
+/-- Evaluation is jointly analytic in the sequence and scalar at scalar coordinate zero.
+@isnad1 id=analytic.0h1v.s10.c700362b58d0 from=translated src=- shape=25b36cc0 vocab=795090bc
+-/
 theorem analyticAt_evalL1PowerSeries (a : L1Sequence) :
     AnalyticAt ℂ (fun x : L1Sequence × ℂ ↦ evalL1PowerSeries x.1 x.2) (a, 0) := by
   let app : (L1Sequence →L[ℂ] ℂ) →L[ℂ] L1Sequence →L[ℂ] ℂ :=
@@ -79,7 +93,9 @@ theorem analyticAt_evalL1PowerSeries (a : L1Sequence) :
     analyticAt_l1EvalOperator.comp (f := fun x : L1Sequence × ℂ ↦ x.2) analyticAt_snd
   exact happ.comp₂ hop analyticAt_fst
 
-/-- An analytic family of `ℓ¹` coefficients evaluates to a jointly analytic function. -/
+/-- An analytic family of `ℓ¹` coefficients evaluates to a jointly analytic function.
+@isnad1 id=analytic.1h3v.s8.036ca301fde1 from=translated src=- shape=2dc3da96 vocab=7f001aa3
+-/
 theorem AnalyticAt.evalL1PowerSeries
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
     {q : E → L1Sequence} (hq : AnalyticAt ℂ q 0) (s : ℂ) :
@@ -98,7 +114,9 @@ theorem AnalyticAt.evalL1PowerSeries
   have hcomp := hout.comp (f := fun x : E × ℂ ↦ (q x.1, s * x.2)) hpair
   simpa [Function.comp_def] using hcomp
 
-/-- Inside the unit disc, bundled evaluation is the usual scalar power-series sum. -/
+/-- Inside the unit disc, bundled evaluation is the usual scalar power-series sum.
+@isnad1 id=eq.1h2v.s8.9d97fc7ad0fc from=translated src=- shape=587a9c0c vocab=1efc3edc
+-/
 theorem evalL1PowerSeries_eq_tsum (a : L1Sequence) {w : ℂ} (hw : ‖w‖ < 1) :
     evalL1PowerSeries a w = ∑' k : ℕ, a k * w ^ k := by
   have hball : w ∈ Metric.eball (0 : ℂ) l1OperatorSeries.radius := by
@@ -121,17 +139,25 @@ theorem evalL1PowerSeries_eq_tsum (a : L1Sequence) {w : ℂ} (hw : ‖w‖ < 1) 
       rw [show coefficientEval k a = a k from rfl]
       simp [smul_eq_mul, mul_comm]
 
+/--
+@isnad1 id=summable.1h2v.s8.65e8926d7f05 from=translated src=- shape=096dd331 vocab=b471325c
+-/
 lemma summable_norm_l1_mul_pow (a : L1Sequence) {w : ℂ} (hw : ‖w‖ ≤ 1) :
     Summable (fun k : ℕ ↦ ‖a k * w ^ k‖) := by
   exact (L1Coeff.summable_norm a).of_nonneg_of_le (fun _ ↦ norm_nonneg _) (fun k ↦ by
     rw [norm_mul, norm_pow]
     exact mul_le_of_le_one_right (norm_nonneg _) (pow_le_one₀ (norm_nonneg _) hw))
 
+/--
+@isnad1 id=summable.1h2v.s8.7a72d5c8e573 from=translated src=- shape=cf662a7a vocab=b471325c
+-/
 lemma summable_l1_mul_pow (a : L1Sequence) {w : ℂ} (hw : ‖w‖ ≤ 1) :
     Summable (fun k : ℕ ↦ a k * w ^ k) :=
   Summable.of_norm (summable_norm_l1_mul_pow a hw)
 
-/-- Evaluation turns `ℓ¹` convolution into multiplication inside the unit disc. -/
+/-- Evaluation turns `ℓ¹` convolution into multiplication inside the unit disc.
+@isnad1 id=eq.1h3v.s8.fbe9266cafb4 from=translated src=- shape=d29b6533 vocab=5eae817c
+-/
 theorem evalL1PowerSeries_convolution (a b : L1Sequence) {w : ℂ} (hw : ‖w‖ < 1) :
     evalL1PowerSeries (convolution a b) w =
       evalL1PowerSeries a w * evalL1PowerSeries b w := by

@@ -24,7 +24,9 @@ private theorem add_nat_ne_zero {s : ℂ} (hs : 0 < s.im) (j : ℕ) : s+j ≠ 0 
 private theorem im_le_norm_add_nat {s : ℂ} (hs : 0 ≤ s.im) (j : ℕ) : s.im ≤ ‖s+j‖ := by
   simpa [abs_of_nonneg hs] using Complex.abs_im_le_norm (s+j)
 
-/-- A discrete resolvent square bound uniform in the number of Euler factors. -/
+/-- A discrete resolvent square bound uniform in the number of Euler factors.
+@isnad1 id=le.2h2v.s6.93e9834410b0 from=translated src=- shape=b62277e7 vocab=fc2faf48
+-/
 theorem sum_inv_norm_sq_le {s : ℂ} (hr : 0 ≤ s.re+s.im/2) (hi : 1 ≤ s.im) (N : ℕ) :
     (∑ j ∈ range N, ‖s+j‖⁻¹^2) ≤ 8/s.im := by
   have hy : 0 < s.im := by linarith
@@ -60,7 +62,9 @@ theorem sum_inv_norm_sq_le {s : ℂ} (hr : 0 ≤ s.re+s.im/2) (hi : 1 ≤ s.im) 
       rw [div_eq_mul_inv]
       linarith
 
-/-- Cubic remainders in logarithmic Euler factors are summably bounded. -/
+/-- Cubic remainders in logarithmic Euler factors are summably bounded.
+@isnad1 id=le.2h2v.s7.a2e2dda0c5cd from=translated src=- shape=51d6bec0 vocab=fc2faf48
+-/
 theorem sum_inv_norm_cube_le {s : ℂ} (hr : 0 ≤ s.re+s.im/2) (hi : 1 ≤ s.im) (N : ℕ) :
     (∑ j ∈ range N, ‖s+j‖⁻¹^3) ≤ 8/s.im^2 := by
   have hy : 0 < s.im := by linarith
@@ -98,7 +102,9 @@ private theorem norm_log_quadratic_error {z : ℂ} (hz : ‖z‖ ≤ 1/2) :
   nlinarith [mul_le_mul_of_nonneg_left hd (pow_nonneg (norm_nonneg z) 3),
     pow_nonneg (norm_nonneg z) 3]
 
-/-- The principal logarithms telescope along this pole-free horizontal ray. -/
+/-- The principal logarithms telescope along this pole-free horizontal ray.
+@isnad1 id=eq.1h1v.s5.551bb2d7ef31 from=translated src=- shape=4ba13758 vocab=e8ce66ae
+-/
 theorem log_step {s : ℂ} (hi : 0 < s.im) :
     Complex.log (1+s⁻¹) = Complex.log (s+1)-Complex.log s := by
   have hs : s ≠ 0 := by intro h; simp [h] at hi
@@ -116,7 +122,9 @@ theorem log_step {s : ℂ} (hi : 0 < s.im) :
   rw [he] at hlog
   linear_combination hlog
 
-/-- First Euler sum/integral discrepancy, obtained without differentiating a limit. -/
+/-- First Euler sum/integral discrepancy, obtained without differentiating a limit.
+@isnad1 id=le.2h2v.s7.29957e5c4858 from=translated src=- shape=cc483d62 vocab=1f78a2d5
+-/
 theorem harmonic_error_bound {s : ℂ} (hr : 0 ≤ s.re+s.im/2) (hi : 2 ≤ s.im) (N : ℕ) :
     ‖(∑ j ∈ range N, (s+j)⁻¹) - (Complex.log (s+N)-Complex.log s)‖ ≤ 8/s.im := by
   have hy : 0 < s.im := by linarith
@@ -138,7 +146,9 @@ theorem harmonic_error_bound {s : ℂ} (hr : 0 ≤ s.re+s.im/2) (hi : 2 ≤ s.im
   · rw [norm_inv, inv_le_comm₀ (by linarith [im_le_norm_add_nat hy.le j] : 0 < ‖s+j‖) (by norm_num : (0 : ℝ) < 1/2)]
     linarith [im_le_norm_add_nat hy.le j]
 
-/-- The quadratic Euler coefficient is an inverse, up to a uniform O(y^-2) error. -/
+/-- The quadratic Euler coefficient is an inverse, up to a uniform O(y^-2) error.
+@isnad1 id=le.2h2v.s7.b6bfc6c31f1a from=translated src=- shape=a100b6d4 vocab=f8ab8d34
+-/
 theorem inverse_square_error_bound {s : ℂ} (hr : 0 ≤ s.re+s.im/2) (hi : 1 ≤ s.im) (N : ℕ) :
     ‖(∑ j ∈ range N, (s+j)⁻¹^2) - (s⁻¹-(s+N)⁻¹)‖ ≤ 8/s.im^2 := by
   have hy : 0 < s.im := by linarith
@@ -165,7 +175,9 @@ theorem inverse_square_error_bound {s : ℂ} (hr : 0 ≤ s.re+s.im/2) (hi : 1 �
   nlinarith [mul_le_mul_of_nonneg_left hinv (sq_nonneg ‖s+j‖⁻¹)]
 
 /-- A quadratic expansion of ALL finite Euler log factors with a remainder
-independent of the number of factors. -/
+independent of the number of factors.
+@isnad1 id=le.3h3v.s8.f63ca67e75e6 from=translated src=- shape=b741e200 vocab=d29b9c97
+-/
 theorem euler_log_remainder_bound {s u : ℂ} (hr : 0 ≤ s.re+s.im/2) (hi : 1 ≤ s.im)
     (hu : ‖u‖ ≤ s.im/2) (N : ℕ) :
     ‖(∑ j ∈ range N, Complex.log (1+u/(s+j))) -
@@ -203,7 +215,9 @@ noncomputable def logEulerRatio (s u : ℂ) (N : ℕ) : ℂ :=
 noncomputable def ratioError (y r : ℝ) : ℝ :=
   8*r/y + 4*r^2/y^2 + 8*r^3/y^2
 
-/-- Explicit bound on the logarithmic error before the Euler limit is taken. -/
+/-- Explicit bound on the logarithmic error before the Euler limit is taken.
+@isnad1 id=le.3h3v.s8.50f66bc74947 from=translated src=- shape=fed39f1c vocab=0b71c6b2
+-/
 theorem logEulerRatio_error_bound {s u : ℂ} (hr : 0 ≤ s.re+s.im/2) (hi : 2 ≤ s.im)
     (hu : ‖u‖ ≤ s.im/2) (N : ℕ) :
     ‖logEulerRatio s u N - (u*Complex.log s+u^2/(2*s))‖ ≤
@@ -248,7 +262,9 @@ private theorem shift_im_pos {s u : ℂ} (hi : 0 < s.im) (hu : ‖u‖ ≤ s.im/
   linarith
 
 /-- The exponentials of the finite logarithmic expressions are the ACTUAL
-ratios of Euler approximants, not a separately assumed Gamma model. -/
+ratios of Euler approximants, not a separately assumed Gamma model.
+@isnad1 id=eq.2h3v.s6.23c2511e8769 from=translated src=- shape=6327ef96 vocab=16234f2e
+-/
 theorem exp_logEulerRatio {s u : ℂ} (hi : 0 < s.im) (hu : ‖u‖ ≤ s.im/2) (N : ℕ) :
     Complex.exp (logEulerRatio s u N) =
       Complex.GammaSeq (s+u) (N+1) / Complex.GammaSeq s (N+1) := by
@@ -287,7 +303,9 @@ theorem exp_logEulerRatio {s u : ℂ} (hi : 0 < s.im) (hu : ‖u‖ ≤ s.im/2) 
   simp only [show N+1+1 = N+2 by omega]
   field_simp
 
-/-- Pass to Gamma using only the already-proved Euler limit theorem. -/
+/-- Pass to Gamma using only the already-proved Euler limit theorem.
+@isnad1 id=tendsto.2h2v.s6.40a320004e33 from=translated src=- shape=3d9a389e vocab=5662ab9f
+-/
 theorem exp_logEulerRatio_tendsto {s u : ℂ} (hi : 0 < s.im) (hu : ‖u‖ ≤ s.im/2) :
     Tendsto (fun N => Complex.exp (logEulerRatio s u N)) atTop
       (𝓝 (Complex.Gamma (s+u)/Complex.Gamma s)) := by
@@ -341,7 +359,9 @@ private theorem endpoint_limits (s : ℂ) (hi : 0 < s.im) :
     · simp
 
 /-- A uniform, quantitative quadratic Gamma-ratio estimate, obtained from the
-actual Euler limit. No Stirling formula or asymptotic hypothesis is assumed. -/
+actual Euler limit. No Stirling formula or asymptotic hypothesis is assumed.
+@isnad1 id=le.3h2v.s7.b0c7c096094b from=translated src=- shape=b2963b48 vocab=8342251f
+-/
 theorem relative_error_bound {s u : ℂ} (hr : 0 ≤ s.re+s.im/2) (hi : 2 ≤ s.im)
     (hu : ‖u‖ ≤ s.im/2) :
     ‖Complex.Gamma (s+u) / Complex.Gamma s /
@@ -368,7 +388,9 @@ theorem relative_error_bound {s u : ℂ} (hr : 0 ≤ s.re+s.im/2) (hi : 2 ≤ s.
 
 /-- A concrete growing-radius specialization: displacements of size `h^3`
 at height at least `h^5` have relative error at most `exp(20/h)-1`.
-In particular this is not restricted to fixed displacements. -/
+In particular this is not restricted to fixed displacements.
+@isnad1 id=le.4h3v.s7.c5867175eb9e from=translated src=- shape=030d08e5 vocab=d1967f07
+-/
 theorem relative_error_bound_growing {s u : ℂ} {h : ℝ} (hh : 2 ≤ h)
     (hr : 0 ≤ s.re+s.im/2) (hy : h^5 ≤ s.im) (hu : ‖u‖ ≤ h^3) :
     ‖Complex.Gamma (s+u) / Complex.Gamma s /

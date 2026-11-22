@@ -85,7 +85,9 @@ noncomputable def log1pLagrangeRemainder (domain : IntervalRat) (n : ℕ) : ℚ 
     let min_denom := min 1 base
     r^(n+1) / ((n + 1) * min_denom^(n+1))
 
-/-- Remainder bound is nonnegative for valid domains -/
+/-- Remainder bound is nonnegative for valid domains
+@isnad1 id=le.1h2v.s4.aff16a93c094 from=translated src=- shape=45539113 vocab=536fb018
+-/
 theorem log1pLagrangeRemainder_nonneg (domain : IntervalRat) (n : ℕ)
     (hdom : domain.lo > -1) :
     0 ≤ log1pLagrangeRemainder domain n := by
@@ -124,7 +126,9 @@ noncomputable def tmLog1p (J : IntervalRat) (n : ℕ) : Option TaylorModel :=
 /-- The n-th iterated derivative of log(1+x) at a point y > -1.
     Uses chain rule: since (1+x)' = 1, we have
     iteratedDeriv n (log ∘ (1+·)) y = iteratedDeriv n log (1+y).
-    Combined with iteratedDeriv_log, this gives (-1)^(n-1) * (n-1)! * (1+y)^(-n). -/
+    Combined with iteratedDeriv_log, this gives (-1)^(n-1) * (n-1)! * (1+y)^(-n).
+@isnad1 id=eq.2h2v.s7.f186b20d4e0d from=translated src=- shape=e4f0a824 vocab=4dcc6ec8
+-/
 theorem iteratedDeriv_log1p {n : ℕ} (hn : n ≠ 0) {y : ℝ} (hy : -1 < y) :
     iteratedDeriv n (fun x => Real.log (1 + x)) y = ((-1 : ℝ)^(n - 1)) * (n - 1).factorial * (1 + y)^(-(n : ℤ)) := by
   have h1py_pos : 0 < 1 + y := by linarith
@@ -135,7 +139,9 @@ theorem iteratedDeriv_log1p {n : ℕ} (hn : n ≠ 0) {y : ℝ} (hy : -1 < y) :
   rw [hchain]
   exact LeanCert.Core.iteratedDeriv_log hn h1py_pos
 
-/-- At x = 0, the n-th derivative of log(1+x) is (-1)^(n-1) * (n-1)!. -/
+/-- At x = 0, the n-th derivative of log(1+x) is (-1)^(n-1) * (n-1)!.
+@isnad1 id=eq.1h1v.s6.d7dbc5b4322d from=translated src=- shape=a4e50626 vocab=a293c3f7
+-/
 theorem iteratedDeriv_log1p_zero {n : ℕ} (hn : n ≠ 0) :
     iteratedDeriv n (fun x => Real.log (1 + x)) 0 = ((-1 : ℝ)^(n - 1)) * (n - 1).factorial := by
   have h := iteratedDeriv_log1p hn (by norm_num : (-1 : ℝ) < 0)
@@ -143,7 +149,9 @@ theorem iteratedDeriv_log1p_zero {n : ℕ} (hn : n ≠ 0) :
   rw [h]
   ring
 
-/-- The coefficients of log1pTaylorPoly match the Taylor coefficients of log(1+x). -/
+/-- The coefficients of log1pTaylorPoly match the Taylor coefficients of log(1+x).
+@isnad1 id=eq.2h2v.s6.a411d7436c74 from=translated src=- shape=ea4beacd vocab=3895a763
+-/
 theorem log1pTaylorCoeffs_eq_deriv (n i : ℕ) (hi_pos : 0 < i) (hi_le : i ≤ n) :
     (log1pTaylorCoeffs n i : ℝ) = iteratedDeriv i (fun x => Real.log (1 + x)) 0 / i.factorial := by
   simp only [log1pTaylorCoeffs, Nat.ne_of_gt hi_pos, ↓reduceIte, hi_le]
@@ -172,7 +180,9 @@ theorem log1pTaylorCoeffs_eq_deriv (n i : ℕ) (hi_pos : 0 < i) (hi_le : i ≤ n
   rw [hpow]
   field_simp [hi_ne]
 
-/-- The polynomial evaluation of log1pTaylorPoly equals the Taylor sum. -/
+/-- The polynomial evaluation of log1pTaylorPoly equals the Taylor sum.
+@isnad1 id=eq.0h2v.s7.25564a135071 from=translated src=- shape=b51390d2 vocab=1bb28869
+-/
 theorem log1pTaylorPoly_aeval_eq_sum (n : ℕ) (z : ℝ) :
     Polynomial.aeval z ((log1pTaylorPoly n).map (algebraMap ℚ ℝ)) =
     ∑ i ∈ Finset.range (n + 1), (iteratedDeriv i (fun x => Real.log (1 + x)) 0 / i.factorial) * z ^ i := by
@@ -197,7 +207,9 @@ theorem log1pTaylorPoly_aeval_eq_sum (n : ℕ) (z : ℝ) :
     This follows the standard Lagrange remainder bound proof:
     - log(1+x) is C^∞ on (-1, ∞)
     - The (n+1)th derivative is ±n!/(1+x)^(n+1)
-    - Apply taylor_remainder_bound_on to get the bound -/
+    - Apply taylor_remainder_bound_on to get the bound
+@isnad1 id=le.2h3v.s7.3c8ba5f86828 from=translated src=- shape=63e0fad6 vocab=8a3650c1
+-/
 theorem log1p_taylor_remainder_bound (J : IntervalRat) (n : ℕ) (z : ℝ)
     (hdom : J.lo > -1) (hz : z ∈ J) :
     |Real.log (1 + z) -
@@ -303,7 +315,9 @@ theorem log1p_taylor_remainder_bound (J : IntervalRat) (n : ℕ) (z : ℝ)
         apply div_le_div_of_nonneg_right _ (le_of_lt hdenom_pos)
         exact pow_le_pow_left₀ (abs_nonneg _) habs_z_le _
 
-/-- log(1+z) ∈ (tmLog1p J n).evalSet z for all z in J when J.lo > -1. -/
+/-- log(1+z) ∈ (tmLog1p J n).evalSet z for all z in J when J.lo > -1.
+@isnad1 id=mem.2h4v.s5.fef6dd3b61a6 from=translated src=- shape=1064ad68 vocab=f664eb5e
+-/
 theorem tmLog1p_correct (J : IntervalRat) (n : ℕ)
     (tm : TaylorModel) (h : tmLog1p J n = some tm) :
     ∀ z : ℝ, z ∈ J → Real.log (1 + z) ∈ tm.evalSet z := by
@@ -360,7 +374,9 @@ More precisely: g(t) = [1 + t²/2 + O(t⁴)] / [1 - t²/4 + O(t⁴)] → 1 as t 
 noncomputable def symmetricLogCombination (t : ℝ) : ℝ :=
   1 / Real.log (1 + t) + 1 / Real.log (1 - t)
 
-/-- Alternative form: g(t) = log(1-t²) / (log(1+t) · log(1-t)) -/
+/-- Alternative form: g(t) = log(1-t²) / (log(1+t) · log(1-t))
+@isnad1 id=eq.2h1v.s6.edc0371b6fac from=translated src=- shape=a65ca507 vocab=d45adc34
+-/
 theorem symmetricLogCombination_alt (t : ℝ) (ht_pos : 0 < t) (ht_lt : t < 1) :
     symmetricLogCombination t = Real.log (1 - t^2) / (Real.log (1 + t) * Real.log (1 - t)) := by
   unfold symmetricLogCombination
@@ -378,7 +394,9 @@ theorem symmetricLogCombination_alt (t : ℝ) (ht_pos : 0 < t) (ht_lt : t < 1) :
   field_simp
 
 /-- Helper: log(1+t)/t → 1 as t → 0.
-    This follows from log'(1) = 1. -/
+    This follows from log'(1) = 1.
+@isnad1 id=tendsto.0h0v.s6.d76ee3183ae8 from=translated src=- shape=2e13cb97 vocab=7c4bc13e
+-/
 theorem tendsto_log_one_add_div_self :
     Filter.Tendsto (fun t => Real.log (1 + t) / t) (nhdsWithin 0 (Set.Ioi 0)) (nhds 1) := by
   -- Follows from log'(1) = 1 via hasDerivAt_iff_tendsto_slope_zero
@@ -392,7 +410,9 @@ theorem tendsto_log_one_add_div_self :
   simp only [Real.log_one, sub_zero, smul_eq_mul, inv_mul_eq_div] at htendsto
   exact htendsto
 
-/-- Helper: log(1-t)/t → -1 as t → 0⁺. -/
+/-- Helper: log(1-t)/t → -1 as t → 0⁺.
+@isnad1 id=tendsto.0h0v.s6.d39c4dc7c9c0 from=translated src=- shape=fd836708 vocab=e8145fd8
+-/
 theorem tendsto_log_one_sub_div_self :
     Filter.Tendsto (fun t => Real.log (1 - t) / t) (nhdsWithin 0 (Set.Ioi 0)) (nhds (-1)) := by
   have hderiv : HasDerivAt (fun x : ℝ => Real.log (1 - x)) (-1) 0 := by
@@ -406,7 +426,9 @@ theorem tendsto_log_one_sub_div_self :
   convert htendsto using 2 with t
   ring_nf
 
-/-- Helper: log(1-t²)/t² → -1 as t → 0⁺. -/
+/-- Helper: log(1-t²)/t² → -1 as t → 0⁺.
+@isnad1 id=tendsto.0h0v.s6.84d9e8b100e4 from=translated src=- shape=5456e3d0 vocab=cc622af4
+-/
 theorem tendsto_log_one_sub_sq_div_sq :
     Filter.Tendsto (fun t => Real.log (1 - t^2) / t^2) (nhdsWithin 0 (Set.Ioi 0)) (nhds (-1)) := by
   -- log(1-u)/u → -1 as u → 0⁺, with u = t²
@@ -437,6 +459,7 @@ theorem tendsto_log_one_sub_sq_div_sq :
     - log(1-t)/t → -1
 
     So g(t) → (-1) / (1 · (-1)) = 1
+@isnad1 id=tendsto.0h0v.s5.55566b38fbbb from=translated src=- shape=7068697d vocab=bad510ca
 -/
 theorem symmetricLogCombination_tendsto_one :
     Filter.Tendsto symmetricLogCombination (nhdsWithin 0 (Set.Ioi 0)) (nhds 1) := by
@@ -490,6 +513,7 @@ For small t, using Taylor analysis:
 
 A crude but sufficient bound: for t ∈ (0, 1/2), |g(t)| ≤ 2.
 This can be refined using Taylor model arithmetic.
+@isnad1 id=le.2h1v.s5.a867bb067716 from=translated src=- shape=e15ba7a2 vocab=4329e557
 -/
 theorem symmetricLogCombination_bounded (t : ℝ) (ht_pos : 0 < t) (ht_lt : t < 1/2) :
     |symmetricLogCombination t| ≤ 2 := by

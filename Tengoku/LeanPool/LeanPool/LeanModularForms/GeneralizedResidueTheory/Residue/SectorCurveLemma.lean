@@ -113,7 +113,9 @@ private theorem pow_integrableOn_23 (r : ℝ) (α : ℝ) (n : ℕ) :
       deriv_sectorCurve_seg3 r α t ht])
 
 /-- For `n >= 1`, the integral of `z^(n-1) dz` along the sector curve is 0
-when `n * alpha` is a multiple of `2 * pi`. -/
+when `n * alpha` is a multiple of `2 * pi`.
+@isnad1 id=eq.5h3v.s7.19823142c2bc from=translated src=- shape=dc9481a1 vocab=029b0107
+-/
 theorem pv_sector_higher_power (r : ℝ) (_hr : 0 < r) (α : ℝ)
     (_hα_nonneg : 0 ≤ α) (_hα_le : α ≤ 2 * Real.pi)
     (n : ℕ) (hn : 1 ≤ n) (_h_angle : ∃ k : ℤ, n * α = k * (2 * Real.pi)) :
@@ -382,7 +384,9 @@ private theorem pv_cutoff_integral_eq_mid (r : ℝ) (hr : 0 < r) (α : ℝ) (n :
 /-- **Equation (3.4)**: The PV of `z^{-n}` along the sector curve is 0 when
 `(n-1) * α` is a multiple of `2π`. The cutoff integral equals
 `ε^{1-n} * (exp(i(1-n)α) - 1) / (1-n)`, which vanishes identically under
-the angle condition. By FTC with primitive `F(t) = γ(t)^{1-n}/(1-n)`. -/
+the angle condition. By FTC with primitive `F(t) = γ(t)^{1-n}/(1-n)`.
+@isnad1 id=and.5h3v.s7.cd0965e4bf0e from=translated src=- shape=2ab479f6 vocab=81b1bcd0
+-/
 theorem pv_sector_negative_power (r : ℝ) (hr : 0 < r) (α : ℝ)
     (_hα_nonneg : 0 ≤ α) (_hα_le : α ≤ 2 * Real.pi)
     (n : ℕ) (hn : 2 ≤ n)

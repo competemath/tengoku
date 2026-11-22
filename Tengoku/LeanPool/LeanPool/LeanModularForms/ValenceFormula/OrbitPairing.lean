@@ -56,51 +56,73 @@ private lemma one_le_normSq_of_norm_gt_one {z : ℂ} (h : ‖z‖ > 1) :
 private lemma normSq_eq_one_of_norm_eq_one {z : ℂ} (h : ‖z‖ = 1) :
     Complex.normSq z = 1 := by rw [normSq_eq_norm_sq, h]; norm_num
 
-/-- Coercion identity for T-translation: `((1 : ℝ) +ᵥ p : ℂ) = (p : ℂ) + 1`. -/
+/-- Coercion identity for T-translation: `((1 : ℝ) +ᵥ p : ℂ) = (p : ℂ) + 1`.
+@isnad1 id=eq.0h1v.s5.b3bd56b77579 from=translated src=- shape=d8b8f6f3 vocab=be561968
+-/
 lemma vAdd_one_coe (p : ℍ) : ((1 : ℝ) +ᵥ p : ℂ) = (p : ℂ) + 1 := by
   change ((1 : ℝ) : ℂ) + (p : ℂ) = (p : ℂ) + 1; push_cast; ring
 
-/-- T-translation shifts real part by 1. -/
+/-- T-translation shifts real part by 1.
+@isnad1 id=eq.0h1v.s5.d1bddc8f78b6 from=translated src=- shape=e6d63be3 vocab=85d20f03
+-/
 lemma vAdd_one_re (p : ℍ) : ((1 : ℝ) +ᵥ p : ℍ).re = p.re + 1 := by
   change ((1 : ℝ) +ᵥ p : ℂ).re = p.re + 1; rw [vAdd_one_coe]; simp [add_re]
 
-/-- T-translation preserves imaginary part. -/
+/-- T-translation preserves imaginary part.
+@isnad1 id=eq.0h1v.s5.16489903c16a from=translated src=- shape=4f2a1b52 vocab=cd6d9989
+-/
 lemma vAdd_one_im_eq (p : ℍ) : ((1 : ℝ) +ᵥ p : ℍ).im = p.im := by
   change ((1 : ℝ) +ᵥ p : ℂ).im = p.im; rw [vAdd_one_coe]; simp [add_im]
 
-/-- T⁻¹-translation coercion: `((-1 : ℝ) +ᵥ p : ℂ) = (p : ℂ) - 1`. -/
+/-- T⁻¹-translation coercion: `((-1 : ℝ) +ᵥ p : ℂ) = (p : ℂ) - 1`.
+@isnad1 id=eq.0h1v.s5.2adb2c8775e6 from=translated src=- shape=77a48be7 vocab=dfd60798
+-/
 lemma vAdd_neg_one_coe (p : ℍ) : ((-1 : ℝ) +ᵥ p : ℂ) = (p : ℂ) - 1 := by
   change ((-1 : ℝ) : ℂ) + (p : ℂ) = (p : ℂ) - 1; push_cast; ring
 
-/-- T⁻¹-translation shifts real part by -1. -/
+/-- T⁻¹-translation shifts real part by -1.
+@isnad1 id=eq.0h1v.s5.8ed2370f8149 from=translated src=- shape=39c8803f vocab=12fa384e
+-/
 lemma vAdd_neg_one_re (p : ℍ) : ((-1 : ℝ) +ᵥ p : ℍ).re = p.re - 1 := by
   change ((-1 : ℝ) +ᵥ p : ℂ).re = p.re - 1; rw [vAdd_neg_one_coe]; simp [sub_re]
 
-/-- T⁻¹-translation preserves imaginary part. -/
+/-- T⁻¹-translation preserves imaginary part.
+@isnad1 id=eq.0h1v.s5.b10594d6ce4e from=translated src=- shape=827c49c1 vocab=45f073fc
+-/
 lemma vAdd_neg_one_im_eq (p : ℍ) : ((-1 : ℝ) +ᵥ p : ℍ).im = p.im := by
   change ((-1 : ℝ) +ᵥ p : ℂ).im = p.im; rw [vAdd_neg_one_coe]; simp [sub_im]
 
-/-- T-translation preserves norm for left-vertical points (`re = -1/2`). -/
+/-- T-translation preserves norm for left-vertical points (`re = -1/2`).
+@isnad1 id=eq.1h1v.s5.b8ae78395d8d from=translated src=- shape=a19ee702 vocab=23cf00d4
+-/
 lemma norm_add_one_eq_of_re_neg_half (z : ℂ) (hre : z.re = -1 / 2) :
     ‖z + 1‖ = ‖z‖ :=
   norm_eq_of_normSq_eq (normSq_add_one_eq_of_re_neg_half z hre)
 
-/-- T⁻¹-translation preserves norm for right-vertical points (`re = 1/2`). -/
+/-- T⁻¹-translation preserves norm for right-vertical points (`re = 1/2`).
+@isnad1 id=eq.1h1v.s5.3474b3c868df from=translated src=- shape=9f3c9150 vocab=1993527f
+-/
 lemma norm_sub_one_eq_of_re_half (z : ℂ) (hre : z.re = 1 / 2) :
     ‖z - 1‖ = ‖z‖ :=
   norm_eq_of_normSq_eq (normSq_sub_one_eq_of_re_half z hre)
 
-/-- T-translation preserves norm for UpperHalfPlane points with `re = -1/2`. -/
+/-- T-translation preserves norm for UpperHalfPlane points with `re = -1/2`.
+@isnad1 id=eq.1h1v.s6.1078025846a4 from=translated src=- shape=c551288c vocab=73c51895
+-/
 lemma vAdd_one_norm_eq_of_re_neg_half (p : ℍ) (hre : (p : ℂ).re = -1 / 2) :
     ‖((1 : ℝ) +ᵥ p : ℂ)‖ = ‖(p : ℂ)‖ := by
   rw [vAdd_one_coe]; exact norm_add_one_eq_of_re_neg_half _ hre
 
-/-- T⁻¹-translation preserves norm for UpperHalfPlane points with `re = 1/2`. -/
+/-- T⁻¹-translation preserves norm for UpperHalfPlane points with `re = 1/2`.
+@isnad1 id=eq.1h1v.s6.3114dbc0d608 from=translated src=- shape=35cc647b vocab=73c51895
+-/
 lemma vAdd_neg_one_norm_eq_of_re_half (p : ℍ) (hre : (p : ℂ).re = 1 / 2) :
     ‖((-1 : ℝ) +ᵥ p : ℂ)‖ = ‖(p : ℂ)‖ := by
   rw [vAdd_neg_one_coe]; exact norm_sub_one_eq_of_re_half _ hre
 
-/-- T-translation sends left-vertical FD points to 𝒟. -/
+/-- T-translation sends left-vertical FD points to 𝒟.
+@isnad1 id=mem.2h1v.s6.8485de1b6811 from=translated src=- shape=8f626be3 vocab=1e865a9c
+-/
 theorem vAdd_one_mem_fd_of_left_vert (p : ℍ) (hp_fd : p ∈ 𝒟) (hre : (p : ℂ).re = -1 / 2) :
     (1 : ℝ) +ᵥ p ∈ 𝒟 := by
   obtain ⟨hnormSq, _⟩ := hp_fd
@@ -110,7 +132,9 @@ theorem vAdd_one_mem_fd_of_left_vert (p : ℍ) (hp_fd : p ∈ 𝒟) (hre : (p : 
   · change |((1 : ℝ) +ᵥ p : ℂ).re| ≤ 1 / 2
     rw [vAdd_one_coe, add_re, one_re, hre]; norm_num
 
-/-- T⁻¹-translation sends right-vertical FD points to 𝒟. -/
+/-- T⁻¹-translation sends right-vertical FD points to 𝒟.
+@isnad1 id=mem.2h1v.s6.7fd4c0cd5c69 from=translated src=- shape=d0384a68 vocab=1e865a9c
+-/
 theorem vAdd_neg_one_mem_fd_of_right_vert (p : ℍ) (hp_fd : p ∈ 𝒟) (hre : (p : ℂ).re = 1 / 2) :
     (-1 : ℝ) +ᵥ p ∈ 𝒟 := by
   obtain ⟨hnormSq, _⟩ := hp_fd
@@ -119,39 +143,53 @@ theorem vAdd_neg_one_mem_fd_of_right_vert (p : ℍ) (hp_fd : p ∈ 𝒟) (hre : 
   · change |((-1 : ℝ) +ᵥ p : ℂ).re| ≤ 1 / 2
     rw [vAdd_neg_one_coe, sub_re, one_re, hre]; norm_num
 
-/-- `(1 : ℝ) +ᵥ ρ' = ρ'+1` as UpperHalfPlane elements. -/
+/-- `(1 : ℝ) +ᵥ ρ' = ρ'+1` as UpperHalfPlane elements.
+@isnad1 id=eq.0h0v.s4.ce69b2b9b1ca from=translated src=- shape=f3630ce3 vocab=ed461209
+-/
 theorem vAdd_one_rho_eq_rho_plus_one :
     (1 : ℝ) +ᵥ ellipticPointRho' = ellipticPointRhoPlusOne' := by
   apply UpperHalfPlane.ext; rw [vAdd_one_coe]; exact ellipticPointRho_add_one_eq
 
-/-- `(-1 : ℝ) +ᵥ (ρ'+1) = ρ'` as UpperHalfPlane elements. -/
+/-- `(-1 : ℝ) +ᵥ (ρ'+1) = ρ'` as UpperHalfPlane elements.
+@isnad1 id=eq.0h0v.s4.a834b05761dc from=translated src=- shape=ffa09816 vocab=56a853f0
+-/
 theorem vAdd_neg_one_rho_plus_one_eq_rho :
     (-1 : ℝ) +ᵥ ellipticPointRhoPlusOne' = ellipticPointRho' := by
   apply UpperHalfPlane.ext; rw [vAdd_neg_one_coe, sub_eq_iff_eq_add]
   exact ellipticPointRho_add_one_eq.symm
 
-/-- ρ+1 is in the standard fundamental domain 𝒟. -/
+/-- ρ+1 is in the standard fundamental domain 𝒟.
+@isnad1 id=mem.0h0v.s3.1d592136a00e from=translated src=- shape=d1530203 vocab=5d6f0dbe
+-/
 theorem ellipticPointRhoPlusOne_mem_fd : ellipticPointRhoPlusOne' ∈ 𝒟 :=
   vAdd_one_rho_eq_rho_plus_one ▸ vAdd_one_mem_fd_of_left_vert
     ellipticPointRho' ellipticPointRho_mem_fd (by simp [ellipticPointRho'])
 
 variable {k : ℤ} (f : ModularForm (Gamma 1) k)
 
-/-- `ord(f, ρ+1) = ord(f, ρ)` via the T-translation identity. -/
+/-- `ord(f, ρ+1) = ord(f, ρ)` via the T-translation identity.
+@isnad1 id=eq.0h2v.s9.7a5971018087 from=translated src=- shape=8b686ac1 vocab=3f6ca450
+-/
 theorem ord_rho_plus_one_eq_ord_rho_via_vAdd :
     orderOfVanishingAt' (⇑f) ellipticPointRhoPlusOne' =
     orderOfVanishingAt' (⇑f) ellipticPointRho' :=
   vAdd_one_rho_eq_rho_plus_one ▸ ord_add_one_eq f ellipticPointRho'
 
-/-- S-action coe: `(S·z : ℂ) = (-z)⁻¹`. -/
+/-- S-action coe: `(S·z : ℂ) = (-z)⁻¹`.
+@isnad1 id=eq.0h1v.s7.4e79837cafb4 from=translated src=- shape=20725053 vocab=55a66825
+-/
 lemma S_smul_coe (p : ℍ) : ((ModularGroup.S • p : ℍ) : ℂ) = (-(p : ℂ))⁻¹ := by
   rw [UpperHalfPlane.modular_S_smul]
 
-/-- S-action preserves norm on the unit circle. -/
+/-- S-action preserves norm on the unit circle.
+@isnad1 id=eq.1h1v.s7.5b24f4efbdff from=translated src=- shape=dba45790 vocab=53414938
+-/
 theorem S_smul_norm_of_unit (p : ℍ) (hp : ‖(p : ℂ)‖ = 1) :
     ‖((ModularGroup.S • p : ℍ) : ℂ)‖ = 1 := by rw [S_smul_coe, norm_inv, norm_neg, hp, inv_one]
 
-/-- S-action negates real part on the unit circle. -/
+/-- S-action negates real part on the unit circle.
+@isnad1 id=eq.1h1v.s7.39a16b5f7793 from=translated src=- shape=87bba84c vocab=de589d9a
+-/
 theorem S_smul_re_neg_of_unit (p : ℍ) (hp : ‖(p : ℂ)‖ = 1) :
     (ModularGroup.S • p : ℍ).re = -p.re := by
   have hns := normSq_eq_one_of_norm_eq_one hp
@@ -159,7 +197,9 @@ theorem S_smul_re_neg_of_unit (p : ℍ) (hp : ‖(p : ℂ)‖ = 1) :
   rw [S_smul_coe]
   simp_all
 
-/-- S-action preserves 𝒟 for unit-circle points. -/
+/-- S-action preserves 𝒟 for unit-circle points.
+@isnad1 id=mem.2h1v.s7.8d8a1bc8b1be from=translated src=- shape=886eb008 vocab=22e4ce97
+-/
 theorem S_smul_mem_fd_of_unit (p : ℍ) (hp_fd : p ∈ 𝒟) (hp_norm : ‖(p : ℂ)‖ = 1) :
     ModularGroup.S • p ∈ 𝒟 := by
   obtain ⟨_, habs_re⟩ := hp_fd
@@ -179,7 +219,9 @@ def sLeftVert (S : Finset ℍ) : Finset ℍ :=
 def sRightVert (S : Finset ℍ) : Finset ℍ :=
   S.filter (fun p => (p : ℂ).re = 1/2 ∧ ‖(p : ℂ)‖ > 1)
 
-/-- T-translation maps `sLeftVert S` into `sRightVert S`. -/
+/-- T-translation maps `sLeftVert S` into `sRightVert S`.
+@isnad1 id=mem.3h4v.s9.522d7057b6e5 from=translated src=- shape=0a9e581d vocab=53387102
+-/
 theorem vAdd_one_leftVert_subset_rightVert (S : Finset ℍ)
     (hS_complete : ∀ p, p ∈ 𝒟 → orderOfVanishingAt' (⇑f) p ≠ 0 → p ∈ S) :
     ∀ p ∈ sLeftVert S,
@@ -200,13 +242,17 @@ theorem vAdd_one_leftVert_subset_rightVert (S : Finset ℍ)
   · show ‖((1 : ℝ) +ᵥ p : ℂ)‖ > 1
     rw [vAdd_one_norm_eq_of_re_neg_half p hre]; exact hnorm
 
-/-- Left-vertical sum equals sum of T-translated orders. -/
+/-- Left-vertical sum equals sum of T-translated orders.
+@isnad1 id=eq.0h3v.s9.a9c47453fe19 from=translated src=- shape=8beb9fd8 vocab=c602bfdc
+-/
 theorem sum_ord_leftVert_eq_sum_T_image (S : Finset ℍ) :
     ∑ p ∈ sLeftVert S, (orderOfVanishingAt' (⇑f) p : ℂ) =
     ∑ p ∈ sLeftVert S, (orderOfVanishingAt' (⇑f) ((1 : ℝ) +ᵥ p) : ℂ) :=
   Finset.sum_congr rfl fun p _ => by rw [ord_add_one_eq f p]
 
-/-- T⁻¹-invariance of vanishing order: `ord(f, (-1)+ᵥp) = ord(f, p)`. -/
+/-- T⁻¹-invariance of vanishing order: `ord(f, (-1)+ᵥp) = ord(f, p)`.
+@isnad1 id=eq.0h3v.s9.70be1998046a from=translated src=- shape=2f2c8df1 vocab=9ee1e673
+-/
 lemma ord_vAdd_neg_one_eq (p : ℍ) :
     orderOfVanishingAt' (⇑f) ((-1 : ℝ) +ᵥ p) = orderOfVanishingAt' (⇑f) p := by
   have h := ord_add_one_eq f ((-1 : ℝ) +ᵥ p)
@@ -226,19 +272,25 @@ private lemma S_mul_S : ModularGroup.S * ModularGroup.S = -1 := by
   ext i j
   fin_cases i <;> fin_cases j <;> norm_num [Matrix.mul_apply]
 
-/-- S² acts as the identity on ℍ. -/
+/-- S² acts as the identity on ℍ.
+@isnad1 id=eq.0h1v.s8.d7275f58f0ef from=translated src=- shape=54248e7d vocab=ee157ee2
+-/
 lemma S_smul_S_smul (p : ℍ) : ModularGroup.S • (ModularGroup.S • p) = p := by
   rw [← mul_smul, S_mul_S]
   simp_all
 
-/-- The S-action is injective on ℍ. -/
+/-- The S-action is injective on ℍ.
+@isnad1 id=injectiv.0h0v.s7.0c7c89000aa1 from=translated src=- shape=37a9380e vocab=d115a293
+-/
 lemma S_smul_injective : Function.Injective (ModularGroup.S • · : ℍ → ℍ) :=
   Function.HasLeftInverse.injective ⟨(ModularGroup.S • ·), S_smul_S_smul⟩
 
 private lemma ord_ne_zero_of_cast_ne_zero {p : ℍ} {f : ℍ → ℂ}
     (h : (orderOfVanishingAt' f p : ℂ) ≠ 0) : orderOfVanishingAt' f p ≠ 0 := by exact_mod_cast h
 
-/-- Orders on right vertical edge equal orders on left vertical edge. -/
+/-- Orders on right vertical edge equal orders on left vertical edge.
+@isnad1 id=eq.2h3v.s10.df2a3749fc7f from=translated src=- shape=3e5412c1 vocab=d1486563
+-/
 theorem sum_ord_rightVert_eq_sum_ord_leftVert (S : Finset ℍ)
     (hS : ∀ p ∈ S, p ∈ 𝒟) (hS_complete : ∀ p, p ∈ 𝒟 → orderOfVanishingAt' (⇑f) p ≠ 0 → p ∈ S) :
     ∑ p ∈ sRightVert S, (orderOfVanishingAt' (⇑f) p : ℂ) =
@@ -273,7 +325,9 @@ theorem sum_ord_rightVert_eq_sum_ord_leftVert (S : Finset ℍ)
     · simp_all
   · intro p _; rw [ord_vAdd_neg_one_eq f p]
 
-/-- Orders on right arc equal orders on left arc (via S-action). -/
+/-- Orders on right arc equal orders on left arc (via S-action).
+@isnad1 id=eq.2h3v.s10.ff8c05e60494 from=translated src=- shape=3e5412c1 vocab=aa91d1e9
+-/
 theorem sum_ord_rightArc_eq_sum_ord_leftArc (S : Finset ℍ) (hS : ∀ p ∈ S, p ∈ 𝒟)
     (hS_complete : ∀ p, p ∈ 𝒟 → orderOfVanishingAt' (⇑f) p ≠ 0 → p ∈ S) :
     ∑ p ∈ sRightArc S, (orderOfVanishingAt' (⇑f) p : ℂ) =

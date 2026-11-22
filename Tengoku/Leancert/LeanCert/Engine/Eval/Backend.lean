@@ -236,7 +236,9 @@ def dispatch (options : BackendOptions) (e : Expr)
         (fun result => { interval := result.toInterval, backend }) <$>
           evalIntervalAffineChecked e (toAffineEnv box) cfg
 
-/-- Automatic Rational selection is observationally the explicit checked path. -/
+/-- Automatic Rational selection is observationally the explicit checked path.
+@isnad1 id=eq.1h3v.s5.2b247298dff8 from=translated src=- shape=cff69640 vocab=3105b400
+-/
 theorem dispatch_auto_eq_rational_of_select (options : BackendOptions)
     (e : Expr) (box : List IntervalRat)
     (hselect : selectAutomaticIntervalBackend e = .rational) :
@@ -244,7 +246,9 @@ theorem dispatch_auto_eq_rational_of_select (options : BackendOptions)
       dispatch { options with backend := .rational } e box := by
   simp [dispatch, resolveIntervalBackend, AutomaticIntervalBackend.toConcrete, hselect]
 
-/-- Automatic Dyadic selection is observationally the explicit checked path. -/
+/-- Automatic Dyadic selection is observationally the explicit checked path.
+@isnad1 id=eq.1h3v.s5.d723c98aa05c from=translated src=- shape=cff69640 vocab=dbd9b243
+-/
 theorem dispatch_auto_eq_dyadic_of_select (options : BackendOptions)
     (e : Expr) (box : List IntervalRat)
     (hselect : selectAutomaticIntervalBackend e = .dyadic) :
@@ -252,7 +256,9 @@ theorem dispatch_auto_eq_dyadic_of_select (options : BackendOptions)
       dispatch { options with backend := .dyadic } e box := by
   simp [dispatch, resolveIntervalBackend, AutomaticIntervalBackend.toConcrete, hselect]
 
-/-- Automatic Affine selection is observationally the explicit checked path. -/
+/-- Automatic Affine selection is observationally the explicit checked path.
+@isnad1 id=eq.1h3v.s5.a60b909d069a from=translated src=- shape=cff69640 vocab=4bcf5bb8
+-/
 theorem dispatch_auto_eq_affine_of_select (options : BackendOptions)
     (e : Expr) (box : List IntervalRat)
     (hselect : selectAutomaticIntervalBackend e = .affine) :
@@ -260,7 +266,9 @@ theorem dispatch_auto_eq_affine_of_select (options : BackendOptions)
       dispatch { options with backend := .affine } e box := by
   simp [dispatch, resolveIntervalBackend, AutomaticIntervalBackend.toConcrete, hselect]
 
-/-- The Rational dispatcher branch preserves the checked evaluator theorem. -/
+/-- The Rational dispatcher branch preserves the checked evaluator theorem.
+@isnad1 id=mem.2h5v.s5.a25a232e28f7 from=translated src=- shape=87ced236 vocab=c90bb764
+-/
 theorem dispatch_rational_correct (options : BackendOptions) (e : Expr)
     (box : List IntervalRat) (outcome : IntervalOutcome)
     (hsuccess : dispatch { options with backend := .rational } e box = .ok outcome)
@@ -286,7 +294,9 @@ theorem dispatch_rational_correct (options : BackendOptions) (e : Expr)
       subst outcome
       exact hsound
 
-/-- The Dyadic dispatcher branch preserves the checked evaluator theorem. -/
+/-- The Dyadic dispatcher branch preserves the checked evaluator theorem.
+@isnad1 id=mem.2h5v.s5.f995448c8fba from=translated src=- shape=87ced236 vocab=0dafc7cd
+-/
 theorem dispatch_dyadic_correct (options : BackendOptions) (e : Expr)
     (box : List IntervalRat) (outcome : IntervalOutcome)
     (hsuccess : dispatch { options with backend := .dyadic } e box = .ok outcome)
@@ -331,7 +341,9 @@ theorem dispatch_dyadic_correct (options : BackendOptions) (e : Expr)
 
 /-- The Affine dispatcher branch preserves the checked evaluator theorem.
 The noise assignment hypotheses are the standard semantic interpretation of
-the affine box environment. -/
+the affine box environment.
+@isnad1 id=mem.3h6v.s5.064dc0c80a45 from=translated src=- shape=3d4d8903 vocab=f46970b8
+-/
 theorem dispatch_affine_correct_of_noise (options : BackendOptions) (e : Expr)
     (box : List IntervalRat) (outcome : IntervalOutcome)
     (hsuccess : dispatch { options with backend := .affine } e box = .ok outcome)
@@ -365,7 +377,9 @@ theorem dispatch_affine_correct_of_noise (options : BackendOptions) (e : Expr)
 
 /-- The Affine dispatcher has the same box-membership contract as the Rational
 and Dyadic branches. The standard correlated noise assignment is constructed
-inside the affine evaluation layer. -/
+inside the affine evaluation layer.
+@isnad1 id=mem.2h5v.s5.d2275dd7bfd2 from=translated src=- shape=87ced236 vocab=6dbecc9c
+-/
 theorem dispatch_affine_correct (options : BackendOptions) (e : Expr)
     (box : List IntervalRat) (outcome : IntervalOutcome)
     (hsuccess : dispatch { options with backend := .affine } e box = .ok outcome)
@@ -387,7 +401,9 @@ theorem dispatch_affine_correct (options : BackendOptions) (e : Expr)
   exact dispatch_affine_correct_of_noise options e box outcome hsuccess
     rho eps hvalid henv
 
-/-- A successful dispatch through any backend encloses the expression value. -/
+/-- A successful dispatch through any backend encloses the expression value.
+@isnad1 id=mem.2h5v.s5.ef05e7a78824 from=translated src=- shape=1e492cac vocab=3516c8f5
+-/
 theorem dispatch_correct (options : BackendOptions) (e : Expr)
     (box : List IntervalRat) (outcome : IntervalOutcome)
     (hsuccess : dispatch options e box = .ok outcome)

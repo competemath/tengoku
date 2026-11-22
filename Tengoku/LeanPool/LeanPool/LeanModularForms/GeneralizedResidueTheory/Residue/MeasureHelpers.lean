@@ -32,6 +32,9 @@ open scoped Real Interval
 
 noncomputable section
 
+/--
+@isnad1 id=countabl.1h1v.s6.cae9f2b4b3c1 from=translated src=- shape=85edfb79 vocab=2869f79e
+-/
 theorem Set.countable_setOf_isolated_points'
     {S : Set ℝ}
     (h : ∀ t ∈ S, ∃ ε > 0,
@@ -73,7 +76,9 @@ theorem Set.countable_setOf_isolated_points'
         (fun t => ⟨t.val, Metric.mem_ball_self (by linarith [hr_pos t])⟩)
 
 /-- Preimage of a singleton under a piecewise C¹
-immersion has measure zero. -/
+immersion has measure zero.
+@isnad1 id=eq.3h5v.s8.f43b6250b152 from=translated src=- shape=f74fe7d0 vocab=d15d838b
+-/
 theorem preimage_singleton_measure_zero_of_deriv_ne_zero
     {γ : ℝ → ℂ} {a b : ℝ} {P : Finset ℝ} (z₀ : ℂ)
     (_hγ : ContinuousOn γ (Icc a b))

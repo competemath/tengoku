@@ -205,6 +205,9 @@ private def SmallChainBiprod.shortComplexOfComplexes {K L J T : ChainComplex (Mo
       rw [CategoryTheory.Limits.biprod.lift_desc, CategoryTheory.Preadditive.neg_comp, w,
         add_neg_cancel])
 
+/--
+@isnad1 id=eq.1h9v.s10.38d1619de683 from=translated src=- shape=395d19c1 vocab=7107ac5d
+-/
 public
 theorem SmallChainBiprod.square_f {K L J T : ChainComplex (ModuleCat.{0} ℤ) ℕ} (a : J ⟶ K)
     (b : J ⟶ L) (u : K ⟶ T) (v : L ⟶ T) (w : a ≫ u = b ≫ v) (n : ℕ) :

@@ -41,7 +41,9 @@ def bezoutCheck (P : QPoly) (cert : BezoutCert) : Bool :=
     decide ((bezoutLhs P cert).trim = (QPoly.constant cert.c).trim)
 
 /-- A successful executable check implies the corresponding Mathlib
-polynomial identity. -/
+polynomial identity.
+@isnad1 id=eq.1h2v.s7.f4452ed0f7a9 from=translated src=- shape=73ff5718 vocab=0dd4572a
+-/
 theorem bezoutCheck_identity (P : QPoly) (cert : BezoutCert)
     (h : bezoutCheck P cert = true) :
     cert.A.toPoly * P.toPoly + cert.B.toPoly * P.toPoly.derivative =
@@ -52,7 +54,9 @@ theorem bezoutCheck_identity (P : QPoly) (cert : BezoutCert)
     QPoly.toPoly_derivative, QPoly.toPoly_constant] using hpoly
 
 /-- Golden theorem: a successful Bézout derivative check certifies that the
-semantic polynomial is separable. -/
+semantic polynomial is separable.
+@isnad1 id=separabl.1h2v.s4.4f29d81c11b7 from=translated src=- shape=5e661b3d vocab=d95d4454
+-/
 theorem bezoutCheck_sound (P : QPoly) (cert : BezoutCert)
     (h : bezoutCheck P cert = true) : P.toPoly.Separable := by
   have hid := bezoutCheck_identity P cert h

@@ -86,6 +86,9 @@ def finiteDirichletSumUpperRat
     (S : Finset Nat) (aLo aHi wLo wHi : Nat → ℚ) : ℚ :=
   ∑ n ∈ S, intervalMulUpperRat (aLo n) (aHi n) (wLo n) (wHi n)
 
+/--
+@isnad1 id=le.3h7v.s7.caf70da6a7fb from=translated src=- shape=d6a29da3 vocab=908a9376
+-/
 theorem finiteDirichletSumLowerRat_le
     (S : Finset Nat) (a w : Nat → ℝ) (aLo aHi wLo wHi : Nat → ℚ)
     (ha : ∀ n ∈ S, (aLo n : ℝ) ≤ a n ∧ a n ≤ (aHi n : ℝ))
@@ -98,6 +101,9 @@ theorem finiteDirichletSumLowerRat_le
   intro n hn
   exact intervalMulLowerRat_le_mul (ha n hn) (hw_nonneg n hn) (hw n hn)
 
+/--
+@isnad1 id=le.3h7v.s7.9fd24058aff2 from=translated src=- shape=80fb741f vocab=aa42d823
+-/
 theorem finiteDirichletSum_le_upperRat
     (S : Finset Nat) (a w : Nat → ℝ) (aLo aHi wLo wHi : Nat → ℚ)
     (ha : ∀ n ∈ S, (aLo n : ℝ) ≤ a n ∧ a n ≤ (aHi n : ℝ))
@@ -129,7 +135,9 @@ def checkDirichletSumUpper
   LeanCert.Cert.checkRatUpper
     (finiteDirichletSumUpperRat S aLo aHi wLo wHi) hi
 
-/-- Golden theorem for finite Dirichlet-sum interval certificates. -/
+/-- Golden theorem for finite Dirichlet-sum interval certificates.
+@isnad1 id=and.4h9v.s7.f4fa5f1b7028 from=translated src=- shape=ddaeb9a1 vocab=6b838bbb
+-/
 theorem verify_dirichletSum_interval
     (S : Finset Nat) (a w : Nat → ℝ) (aLo aHi wLo wHi : Nat → ℚ)
     (ha : ∀ n ∈ S, (aLo n : ℝ) ≤ a n ∧ a n ≤ (aHi n : ℝ))
@@ -143,7 +151,9 @@ theorem verify_dirichletSum_interval
     (finiteDirichletSum_le_upperRat S a w aLo aHi wLo wHi ha hw_nonneg hw)
     hcheck
 
-/-- Golden theorem for finite Dirichlet-sum lower certificates. -/
+/-- Golden theorem for finite Dirichlet-sum lower certificates.
+@isnad1 id=le.4h8v.s7.9c922581c137 from=translated src=- shape=b1c00e7d vocab=57bcb14f
+-/
 theorem verify_dirichletSum_lower
     (S : Finset Nat) (a w : Nat → ℝ) (aLo aHi wLo wHi : Nat → ℚ)
     (ha : ∀ n ∈ S, (aLo n : ℝ) ≤ a n ∧ a n ≤ (aHi n : ℝ))
@@ -156,7 +166,9 @@ theorem verify_dirichletSum_lower
     (finiteDirichletSumLowerRat_le S a w aLo aHi wLo wHi ha hw_nonneg hw)
     hcheck
 
-/-- Golden theorem for finite Dirichlet-sum upper certificates. -/
+/-- Golden theorem for finite Dirichlet-sum upper certificates.
+@isnad1 id=le.4h8v.s7.e0794624312f from=translated src=- shape=2b3028c7 vocab=cc4cf248
+-/
 theorem verify_dirichletSum_upper
     (S : Finset Nat) (a w : Nat → ℝ) (aLo aHi wLo wHi : Nat → ℚ)
     (ha : ∀ n ∈ S, (aLo n : ℝ) ≤ a n ∧ a n ≤ (aHi n : ℝ))
@@ -205,6 +217,9 @@ def logPrimeOverPrimeLowerRat (N depth : Nat) : ℚ :=
 def logPrimeOverPrimeUpperRat (N depth : Nat) : ℚ :=
   ∑ p ∈ primesLE N, logPrimeUB p depth / (p : ℚ)
 
+/--
+@isnad1 id=eq.0h1v.s3.a622086c96b9 from=translated src=- shape=6b4ab8ce vocab=b4c42248
+-/
 theorem harmonicSum_eq_rat (N : Nat) :
     harmonicSum N = (harmonicSumRat N : ℝ) := by
   unfold harmonicSum harmonicSumRat finiteDirichletSum naturalsIcc
@@ -217,6 +232,9 @@ theorem harmonicSum_eq_rat (N : Nat) :
   have hnq : (n : ℚ) ≠ 0 := by exact_mod_cast hn_pos.ne'
   norm_num [Rat.cast_div, hnq]
 
+/--
+@isnad1 id=eq.0h1v.s3.b5de681af03e from=translated src=- shape=6b4ab8ce vocab=c216eac6
+-/
 theorem primeHarmonicSum_eq_rat (N : Nat) :
     primeHarmonicSum N = (primeHarmonicSumRat N : ℝ) := by
   unfold primeHarmonicSum primeHarmonicSumRat finiteDirichletSum
@@ -242,6 +260,9 @@ def checkLogPrimeOverPrimeSumInterval (N depth : Nat) (lo hi : ℚ) : Bool :=
   LeanCert.Cert.checkRatInterval (logPrimeOverPrimeLowerRat N depth)
     (logPrimeOverPrimeUpperRat N depth) lo hi
 
+/--
+@isnad1 id=le.0h2v.s3.4921d156a2f1 from=translated src=- shape=584a5771 vocab=81e8c151
+-/
 theorem logPrimeOverPrimeLowerRat_le (N depth : Nat) :
     (logPrimeOverPrimeLowerRat N depth : ℝ) ≤ logPrimeOverPrimeSum N := by
   unfold logPrimeOverPrimeLowerRat logPrimeOverPrimeSum finiteDirichletSum
@@ -257,6 +278,9 @@ theorem logPrimeOverPrimeLowerRat_le (N depth : Nat) :
   have hpq : (p : ℚ) ≠ 0 := by exact_mod_cast hp'.2.pos.ne'
   simpa [Rat.cast_div, hpq, mul_div_assoc] using! h
 
+/--
+@isnad1 id=le.0h2v.s3.147436d08e33 from=translated src=- shape=1d0e0a8c vocab=f1b169e4
+-/
 theorem logPrimeOverPrime_le_upperRat (N depth : Nat) :
     logPrimeOverPrimeSum N ≤ (logPrimeOverPrimeUpperRat N depth : ℝ) := by
   unfold logPrimeOverPrimeUpperRat logPrimeOverPrimeSum finiteDirichletSum
@@ -272,18 +296,27 @@ theorem logPrimeOverPrime_le_upperRat (N depth : Nat) :
   have hpq : (p : ℚ) ≠ 0 := by exact_mod_cast hp'.2.pos.ne'
   simpa [Rat.cast_div, hpq, mul_div_assoc] using! h
 
+/--
+@isnad1 id=and.1h3v.s5.2e84c89576e9 from=translated src=- shape=12caf505 vocab=5b807b7e
+-/
 theorem verify_harmonicSum_interval (N : Nat) (lo hi : ℚ)
     (hcheck : checkHarmonicSumInterval N lo hi = true) :
     (lo : ℝ) ≤ harmonicSum N ∧ harmonicSum N ≤ (hi : ℝ) := by
   rw [harmonicSum_eq_rat N]
   exact LeanCert.Cert.verify_rat_interval le_rfl le_rfl hcheck
 
+/--
+@isnad1 id=and.1h3v.s5.bb3c85ed0443 from=translated src=- shape=12caf505 vocab=80d58e1e
+-/
 theorem verify_primeHarmonicSum_interval (N : Nat) (lo hi : ℚ)
     (hcheck : checkPrimeHarmonicSumInterval N lo hi = true) :
     (lo : ℝ) ≤ primeHarmonicSum N ∧ primeHarmonicSum N ≤ (hi : ℝ) := by
   rw [primeHarmonicSum_eq_rat N]
   exact LeanCert.Cert.verify_rat_interval le_rfl le_rfl hcheck
 
+/--
+@isnad1 id=and.1h4v.s5.d66ff4bbf04a from=translated src=- shape=b149178f vocab=1b31d763
+-/
 theorem verify_logPrimeOverPrimeSum_interval (N depth : Nat) (lo hi : ℚ)
     (hcheck : checkLogPrimeOverPrimeSumInterval N depth lo hi = true) :
     (lo : ℝ) ≤ logPrimeOverPrimeSum N ∧ logPrimeOverPrimeSum N ≤ (hi : ℝ) := by

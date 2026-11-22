@@ -277,7 +277,9 @@ def friezeF {n : ℕ} (g : flute n) : ℕ × ℕ → ℚ :=
     else (friezeF g (i + 1, m - 1) * friezeF g (i - 1, m) + 1) / friezeF g (i, m - 1)
     termination_by x => (x.2, x.1)
 
-/-- The frieze pattern built from a flute is in fact an arithmetic frieze pattern. -/
+/-- The frieze pattern built from a flute is in fact an arithmetic frieze pattern.
+@isnad1 id=arithfp.1h2v.s4.d20512519708 from=translated src=- shape=bf1a09cb vocab=28895121
+-/
 lemma fluteToFrieze {n : ℕ} (g : flute n) (hn : n ≠ 0) : arith_fp (friezeF g) n := by
   have topBordZeros : ∀ m, friezeF g (0,m) = 0 := fun m => (by simp [friezeF])
   have botBordZeros_n : ∀ i, ∀ m,  i ≥ n+1 → (friezeF g (i,m) = 0) :=
@@ -433,10 +435,16 @@ def arithFriezePatSet (n : ℕ) : Set (ℕ × ℕ → ℚ) :=
   { f | arith_fp f n}
 
 -- Now we can use the nonemptyness of Flute n to prove the nonemptyness of arithFriezePatSet n.
+/--
+@isnad1 id=nonempty.1h1v.s4.c9b8a031f885 from=translated src=- shape=a63f75c2 vocab=eebd05e4
+-/
 lemma arithFriezePatSetNonEmpty {n : ℕ} (h : n ≠ 0) : (arithFriezePatSet n).Nonempty  := by
   rcases csteFlute n with ⟨a⟩
   exact ⟨friezeF a, fluteToFrieze a h⟩
 
+/--
+@isnad1 id=le.2h3v.s5.a4423a4e5220 from=translated src=- shape=44785bce vocab=697edbdd
+-/
 lemma main1 (n : ℕ) (h : n ≠ 0) : ∀ (f : ℕ × ℕ → ℚ) (_ : arith_fp f n), ∀ (a : ℕ × ℕ),
     f a ≤ Nat.fib n := by
   intro f hf ⟨i, m⟩
@@ -473,6 +481,9 @@ lemma main1 (n : ℕ) (h : n ≠ 0) : ∀ (f : ℕ × ℕ → ℚ) (_ : arith_fp
     rw [← Rat.num_div_den (f (i, m)), hd]; simp]
   exact_mod_cast key
 
+/--
+@isnad1 id=ex.1h1v.s5.47c985a1756b from=translated src=- shape=d91b0476 vocab=c1ae2309
+-/
 lemma main2 (n : ℕ) (hn : n ≠ 0) :
     ∃ (f : ℕ × ℕ → ℚ) (_ : arith_fp f n), ∃ (a : ℕ × ℕ), f a = Nat.fib n := by
   rcases Nat.even_or_odd n with ⟨k, hk⟩ | ⟨k, hk⟩
@@ -530,6 +541,9 @@ lemma main2 (n : ℕ) (hn : n ≠ 0) :
       simp [h₂, h₄, h₅]
     simp_all
 
+/--
+@isnad1 id=ex.1h1v.s6.341582a955b8 from=translated src=- shape=e8461ee0 vocab=8c06d1d5
+-/
 theorem main3 (n : ℕ) (hn : n ≠ 0) : ∃ (g : ℕ × ℕ → ℚ) (_ : arith_fp g n),
     ∃ (b : ℕ × ℕ), (∀ (f : ℕ × ℕ → ℚ) (_ : arith_fp f n), ∀ (a : ℕ × ℕ),
       (f a ≥ g b → f a = g b)) ∧ g b = Nat.fib n := by

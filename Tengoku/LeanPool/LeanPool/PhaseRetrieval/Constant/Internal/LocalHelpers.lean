@@ -143,6 +143,9 @@ private lemma phaseDistanceSqNorm_one_eq
   unfold phaseDistanceSqNorm phaseDistanceSq
   simp_all
 
+/--
+@isnad1 id=ex.1h1v.s8.6d76746358e5 from=translated src=- shape=a5602d10 vocab=4d4392cb
+-/
 theorem LocalFockSPR_of_small_norm_exists_phase
     (p : Polynomial ℂ)
     (hsmall :

@@ -53,7 +53,9 @@ noncomputable def sinIntervalRefined (I : IntervalRat) : IntervalRat :=
   else
     sinInterval I
 
-/-- FTIA for refined sin: if x ∈ I, then sin(x) ∈ sinIntervalRefined I -/
+/-- FTIA for refined sin: if x ∈ I, then sin(x) ∈ sinIntervalRefined I
+@isnad1 id=mem.1h2v.s4.f5ae7f2c52ff from=translated src=- shape=34c11fd3 vocab=24926c79
+-/
 theorem mem_sinIntervalRefined {x : ℝ} {I : IntervalRat} (hx : x ∈ I) :
     Real.sin x ∈ sinIntervalRefined I := by
   unfold sinIntervalRefined
@@ -73,7 +75,9 @@ noncomputable def cosIntervalRefined (I : IntervalRat) : IntervalRat :=
   else
     cosInterval I
 
-/-- FTIA for refined cos: if x ∈ I, then cos(x) ∈ cosIntervalRefined I -/
+/-- FTIA for refined cos: if x ∈ I, then cos(x) ∈ cosIntervalRefined I
+@isnad1 id=mem.1h2v.s4.ab9052b0309a from=translated src=- shape=34c11fd3 vocab=cec908ba
+-/
 theorem mem_cosIntervalRefined {x : ℝ} {I : IntervalRat} (hx : x ∈ I) :
     Real.cos x ∈ cosIntervalRefined I := by
   unfold cosIntervalRefined
@@ -95,7 +99,9 @@ noncomputable def logIntervalRefined (I : IntervalRat.IntervalRatPos) : Interval
   else
     IntervalRat.logInterval I
 
-/-- FTIA for refined log: if x ∈ I and I is positive, then log(x) ∈ logIntervalRefined I -/
+/-- FTIA for refined log: if x ∈ I and I is positive, then log(x) ∈ logIntervalRefined I
+@isnad1 id=mem.1h2v.s4.e8d9c9f72900 from=translated src=- shape=e82d958e vocab=5d2f6a92
+-/
 theorem mem_logIntervalRefined {x : ℝ} {I : IntervalRat.IntervalRatPos} (hx : x ∈ I.toIntervalRat) :
     Real.log x ∈ logIntervalRefined I := by
   unfold logIntervalRefined
@@ -137,7 +143,9 @@ noncomputable def atanhIntervalRefined (I : IntervalRat) : IntervalRat :=
   else
     default  -- Not in valid domain
 
-/-- FTIA for refined atanh: if x ∈ I and I ⊂ (-1, 1), then atanh(x) ∈ atanhIntervalRefined I -/
+/-- FTIA for refined atanh: if x ∈ I and I ⊂ (-1, 1), then atanh(x) ∈ atanhIntervalRefined I
+@isnad1 id=mem.3h2v.s5.dd1f7ec9889c from=translated src=- shape=546ec9b1 vocab=f2d70c43
+-/
 theorem mem_atanhIntervalRefined {x : ℝ} {I : IntervalRat}
     (hx : x ∈ I) (hlo : -1 < I.lo) (hhi : I.hi < 1) :
     Real.atanh x ∈ atanhIntervalRefined I := by
@@ -247,7 +255,9 @@ noncomputable def evalIntervalRefined? (e : Expr) (ρ : IntervalEnv) : Option In
 noncomputable def evalIntervalRefined1? (e : Expr) (I : IntervalRat) : Option IntervalRat :=
   evalIntervalRefined? e (fun _ => I)
 
-/-- A supported expression always succeeds in the strict refined evaluator. -/
+/-- A supported expression always succeeds in the strict refined evaluator.
+@isnad1 id=eq.1h2v.s3.cba5378f6c9a from=translated src=- shape=556c246e vocab=c2003b78
+-/
 theorem evalIntervalRefined?_isSome_of_supported (e : Expr) (hsupp : ADSupported e)
     (ρ : IntervalEnv) : (evalIntervalRefined? e ρ).isSome = true := by
   induction hsupp with
@@ -280,6 +290,9 @@ noncomputable def evalIntervalRefined (e : Expr) (hsupp : ADSupported e)
   Classical.choose
     (Option.isSome_iff_exists.mp (evalIntervalRefined?_isSome_of_supported e hsupp ρ))
 
+/--
+@isnad1 id=eq.1h2v.s4.8efdcad2b965 from=translated src=- shape=ab7a266e vocab=b200e8d7
+-/
 theorem evalIntervalRefined_eq_some (e : Expr) (hsupp : ADSupported e)
     (ρ : IntervalEnv) :
     evalIntervalRefined? e ρ = some (evalIntervalRefined e hsupp ρ) :=
@@ -291,7 +304,9 @@ noncomputable def evalIntervalRefined1 (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) : IntervalRat :=
   evalIntervalRefined e hsupp (fun _ => I)
 
-/-- Strict refined interval evaluation is correct whenever it returns an interval. -/
+/-- Strict refined interval evaluation is correct whenever it returns an interval.
+@isnad1 id=mem.2h4v.s5.03b4bacbca30 from=translated src=- shape=7e305443 vocab=68fe19df
+-/
 theorem evalIntervalRefined?_correct (e : Expr)
     (ρ_real : Nat → ℝ) (ρ_int : IntervalEnv) (hρ : envMem ρ_real ρ_int)
     {I : IntervalRat} (hI : evalIntervalRefined? e ρ_int = some I) :
@@ -445,20 +460,26 @@ theorem evalIntervalRefined?_correct (e : Expr)
       simp only [Expr.eval_namedConst]
       exact c.mem_interval
 
-/-- Strict single-variable refined interval evaluation is correct. -/
+/-- Strict single-variable refined interval evaluation is correct.
+@isnad1 id=mem.2h4v.s5.1348ac23a2ae from=translated src=- shape=5c074fc0 vocab=3d2e39b1
+-/
 theorem evalIntervalRefined1?_correct (e : Expr) (x : ℝ) (I J : IntervalRat)
     (hx : x ∈ I) (hJ : evalIntervalRefined1? e I = some J) :
     Expr.eval (fun _ => x) e ∈ J :=
   evalIntervalRefined?_correct e (fun _ => x) (fun _ => I) (fun _ => hx) hJ
 
-/-- Refined interval evaluation is correct for supported expressions -/
+/-- Refined interval evaluation is correct for supported expressions
+@isnad1 id=mem.2h3v.s4.f86907dd368f from=translated src=- shape=e3f4baa0 vocab=e9e1734c
+-/
 theorem evalIntervalRefined_correct (e : Expr) (hsupp : ADSupported e)
     (ρ_real : Nat → ℝ) (ρ_int : IntervalEnv) (hρ : envMem ρ_real ρ_int) :
     Expr.eval ρ_real e ∈ evalIntervalRefined e hsupp ρ_int :=
   evalIntervalRefined?_correct e ρ_real ρ_int hρ
     (evalIntervalRefined_eq_some e hsupp ρ_int)
 
-/-- Single-variable refined evaluation is correct -/
+/-- Single-variable refined evaluation is correct
+@isnad1 id=mem.2h3v.s4.9ba36ab54544 from=translated src=- shape=0f577318 vocab=956c8d69
+-/
 theorem evalIntervalRefined1_correct (e : Expr) (hsupp : ADSupported e)
     (x : ℝ) (I : IntervalRat) (hx : x ∈ I) :
     Expr.eval (fun _ => x) e ∈ evalIntervalRefined1 e hsupp I :=
@@ -527,37 +548,49 @@ open LeanCert.Core
 
 /-! ### Correctness of refined dual evaluation -/
 
-/-- Refined exp preserves value correctness -/
+/-- Refined exp preserves value correctness
+@isnad1 id=mem.1h2v.s4.d54ba07a62ed from=translated src=- shape=9000ac34 vocab=fedd75a1
+-/
 theorem DualInterval.expRefined_val_mem {d : DualInterval} {x : ℝ} (hx : x ∈ d.val) :
     Real.exp x ∈ (DualInterval.expRefined d).val := by
   simp only [DualInterval.expRefined]
   exact mem_expIntervalRefined hx
 
-/-- Refined sin preserves value correctness -/
+/-- Refined sin preserves value correctness
+@isnad1 id=mem.1h2v.s4.c077221d39bd from=translated src=- shape=9000ac34 vocab=1f63b41a
+-/
 theorem DualInterval.sinRefined_val_mem {d : DualInterval} {x : ℝ} (hx : x ∈ d.val) :
     Real.sin x ∈ (DualInterval.sinRefined d).val := by
   simp only [DualInterval.sinRefined]
   exact mem_sinIntervalRefined hx
 
-/-- Refined cos preserves value correctness -/
+/-- Refined cos preserves value correctness
+@isnad1 id=mem.1h2v.s4.6e7672241458 from=translated src=- shape=9000ac34 vocab=1b2b1cf3
+-/
 theorem DualInterval.cosRefined_val_mem {d : DualInterval} {x : ℝ} (hx : x ∈ d.val) :
     Real.cos x ∈ (DualInterval.cosRefined d).val := by
   simp only [DualInterval.cosRefined]
   exact mem_cosIntervalRefined hx
 
-/-- atan preserves value correctness -/
+/-- atan preserves value correctness
+@isnad1 id=mem.1h2v.s4.1fb941119e9a from=translated src=- shape=9000ac34 vocab=9cd37eda
+-/
 theorem DualInterval.atan_val_mem {d : DualInterval} {x : ℝ} (hx : x ∈ d.val) :
     Real.arctan x ∈ (DualInterval.atan d).val := by
   simp only [DualInterval.atan]
   exact mem_atanInterval hx
 
-/-- arsinh preserves value correctness -/
+/-- arsinh preserves value correctness
+@isnad1 id=mem.1h2v.s4.1b618e5d039f from=translated src=- shape=9000ac34 vocab=530ddef7
+-/
 theorem DualInterval.arsinh_val_mem {d : DualInterval} {x : ℝ} (hx : x ∈ d.val) :
     Real.arsinh x ∈ (DualInterval.arsinh d).val := by
   simp only [DualInterval.arsinh]
   exact mem_arsinhInterval hx
 
-/-- Refined dual evaluation value is correct for supported expressions -/
+/-- Refined dual evaluation value is correct for supported expressions
+@isnad1 id=mem.2h3v.s5.dbea1c5e0f28 from=translated src=- shape=3b01ddfb vocab=0bc9884b
+-/
 theorem evalDualRefined_val_correct (e : Expr) (hsupp : ADSupported e)
     (ρ_real : Nat → ℝ) (ρ_dual : DualEnv) (hρ : ∀ i, ρ_real i ∈ (ρ_dual i).val) :
     Expr.eval ρ_real e ∈ (LeanCert.Internal.Refined.evalDualUnchecked e ρ_dual).val := by
@@ -587,7 +620,9 @@ theorem evalDualRefined_val_correct (e : Expr) (hsupp : ADSupported e)
     simp only [LeanCert.Internal.Refined.evalDualUnchecked, Expr.eval_exp]
     exact DualInterval.expRefined_val_mem ih
 
-/-- Single-variable refined dual evaluation is correct for values -/
+/-- Single-variable refined dual evaluation is correct for values
+@isnad1 id=mem.2h3v.s4.7ed4b48ab2b9 from=translated src=- shape=ff485a82 vocab=11278242
+-/
 theorem evalDualRefined1_val_correct (e : Expr) (hsupp : ADSupported e)
     (x : ℝ) (I : IntervalRat) (hx : x ∈ I) :
     Expr.eval (fun _ => x) e ∈ (LeanCert.Internal.Refined.evalDualUnchecked1 e I).val := by

@@ -44,18 +44,24 @@ namespace LeanCert.Core
 /-- Our target function exp(-x²). -/
 def gaussianSq (x : ℝ) : ℝ := Real.exp (-(x^2))
 
-/-- Bound on |exp(-x²)|. -/
+/-- Bound on |exp(-x²)|.
+@isnad1 id=le.0h1v.s3.fd40c8779237 from=translated src=- shape=b14ee516 vocab=d9fe4a72
+-/
 theorem gaussianSq_le_one (x : ℝ) : gaussianSq x ≤ 1 := by
   unfold gaussianSq
   calc Real.exp (-(x^2))
       ≤ Real.exp 0 := Real.exp_le_exp.mpr (by nlinarith [sq_nonneg x])
     _ = 1 := Real.exp_zero
 
-/-- exp(-x²) is positive. -/
+/-- exp(-x²) is positive.
+@isnad1 id=lt.0h1v.s3.ed8c13c6f0cc from=translated src=- shape=8a62b088 vocab=dbc2933d
+-/
 theorem gaussianSq_pos (x : ℝ) : 0 < gaussianSq x := by
   unfold gaussianSq; exact Real.exp_pos _
 
-/-- exp(-x²) is nonnegative. -/
+/-- exp(-x²) is nonnegative.
+@isnad1 id=le.0h1v.s3.a71fbe9a1ae7 from=translated src=- shape=8a62b088 vocab=d9fe4a72
+-/
 theorem gaussianSq_nonneg (x : ℝ) : 0 ≤ gaussianSq x := le_of_lt (gaussianSq_pos x)
 
 /-!

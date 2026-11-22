@@ -69,12 +69,18 @@ def cauchyPrincipalValueIntegrand' (f : ℂ → ℂ) (γ : ℝ → ℂ)
     (z₀ : ℂ) (ε : ℝ) (t : ℝ) : ℂ :=
   if ‖γ t - z₀‖ > ε then f (γ t) * deriv γ t else 0
 
+/--
+@isnad1 id=eq.1h5v.s6.d2ad23af664d from=translated src=- shape=c0cd3bac vocab=e99757a8
+-/
 @[simp]
 theorem cauchyPrincipalValueIntegrand'_of_gt {f : ℂ → ℂ} {γ : ℝ → ℂ} {z₀ : ℂ} {ε : ℝ} {t : ℝ}
     (h : ε < ‖γ t - z₀‖) :
     cauchyPrincipalValueIntegrand' f γ z₀ ε t = f (γ t) * deriv γ t := by
   simp only [cauchyPrincipalValueIntegrand', show ‖γ t - z₀‖ > ε from h, ite_true]
 
+/--
+@isnad1 id=eq.1h5v.s5.d336f33c52a7 from=translated src=- shape=ae3af6b5 vocab=52fd4822
+-/
 @[simp]
 theorem cauchyPrincipalValueIntegrand'_of_le {f : ℂ → ℂ} {γ : ℝ → ℂ} {z₀ : ℂ} {ε : ℝ} {t : ℝ}
     (h : ‖γ t - z₀‖ ≤ ε) :
@@ -127,7 +133,9 @@ private theorem aestronglyMeasurable_of_continuousOn_off_finite
       ((Finset.finite_toSet P |>.inter_of_left (Icc a b)).measure_zero _)]
   exact aestronglyMeasurable_zero_measure f
 
-/-- A piecewise continuous bounded function is interval integrable. -/
+/-- A piecewise continuous bounded function is interval integrable.
+@isnad1 id=interval.3h5v.s6.71dd7cc00b05 from=translated src=- shape=761b0940 vocab=c4ec2e4e
+-/
 theorem intervalIntegrable_of_piecewise_continuousOn_bounded
     {f : ℝ → ℂ} {a b : ℝ} {P : Finset ℝ} (M : ℝ)
     (hab : a ≤ b)
@@ -199,7 +207,9 @@ private theorem eq_on_Ioo_of_deriv_zero
   intro x hx; rw [h_ft]; exact h_eq_mid x hx
 
 /-- If f is continuous on [a,b], differentiable on (a,b)\P with f'=0 there,
-then f has zero right derivative at every point of [a,b). -/
+then f has zero right derivative at every point of [a,b).
+@isnad1 id=hasderiv.5h6v.s8.1b85b910496e from=translated src=- shape=08f39f9b vocab=4e33ccd8
+-/
 theorem hasDerivWithinAt_zero_of_deriv_zero_off_finite
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (f : ℝ → E) (a b : ℝ) (P : Finset ℝ) (_hab : a < b)
@@ -233,6 +243,9 @@ theorem hasDerivWithinAt_zero_of_deriv_zero_off_finite
       with x hx
     simp only [slope, h_eq x hx, vsub_self, smul_zero])
 
+/--
+@isnad1 id=continuo.4h7v.s7.e903e2bec0ad from=translated src=- shape=13c6ed44 vocab=bfa0cc1b
+-/
 theorem continuousWithinAt_integral_of_dominated_piecewise
     {X : Type*} [TopologicalSpace X] [FirstCountableTopology X]
     {F : X → ℝ → ℂ} {x₀ : X} {a b : ℝ} {S : Set X} {M : ℝ}

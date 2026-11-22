@@ -35,7 +35,9 @@ open LeanCert.Core
 /-! ### MVT wrapper lemmas -/
 
 /-- MVT lower bound: if f' ≥ C on interval I, then f(y) - f(x) ≥ C * (y - x) for x ≤ y in I.
-    This wraps Mathlib's Convex.mul_sub_le_image_sub_of_le_deriv for our use case. -/
+    This wraps Mathlib's Convex.mul_sub_le_image_sub_of_le_deriv for our use case.
+@isnad1 id=le.7h5v.s7.1d52f2f63e02 from=translated src=- shape=e6a504db vocab=71a33010
+-/
 lemma mvt_lower_bound (e : Expr) (hsupp : ADSupported e) (_hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat) (C : ℝ)
     (hC : ∀ ξ ∈ I, C ≤ deriv (evalFunc1 e) ξ)
@@ -65,7 +67,9 @@ lemma mvt_lower_bound (e : Expr) (hsupp : ADSupported e) (_hvar0 : UsesOnlyVar0 
   exact hConvex.mul_sub_le_image_sub_of_le_deriv hCont hDiff hC' x hx_Icc y hy_Icc hxy
 
 /-- MVT upper bound: if f' ≤ C on interval I, then f(y) - f(x) ≤ C * (y - x) for x ≤ y in I.
-    This wraps Mathlib's Convex.image_sub_le_mul_sub_of_deriv_le for our use case. -/
+    This wraps Mathlib's Convex.image_sub_le_mul_sub_of_deriv_le for our use case.
+@isnad1 id=le.7h5v.s7.043257626157 from=translated src=- shape=02f1119a vocab=71a33010
+-/
 lemma mvt_upper_bound (e : Expr) (hsupp : ADSupported e) (_hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat) (C : ℝ)
     (hC : ∀ ξ ∈ I, deriv (evalFunc1 e) ξ ≤ C)
@@ -103,7 +107,9 @@ lemma mvt_upper_bound (e : Expr) (hsupp : ADSupported e) (_hvar0 : UsesOnlyVar0 
     2. fc.hi ≥ f(c) > dI.lo * hw
     3. Q.hi = fc.hi / dI.lo > hw
     4. But contraction requires Q.hi < hw (from N.lo > I.lo)
-    5. Contradiction -/
+    5. Contradiction
+@isnad1 id=other.6h2v.s7.fc5e6f921717 from=translated src=- shape=e3c4380e vocab=fde88431
+-/
 lemma newton_positive_increasing_contradicts_contraction
     (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat)
@@ -178,7 +184,9 @@ lemma newton_positive_increasing_contradicts_contraction
     2. fc.lo ≤ f(c) < -dI.lo * hw
     3. Q.lo = fc.lo / dI.lo < -hw
     4. But contraction requires Q.lo > -hw (from N.hi < I.hi)
-    5. Contradiction -/
+    5. Contradiction
+@isnad1 id=other.6h2v.s7.ad0781562191 from=translated src=- shape=8b8c681a vocab=e665624c
+-/
 lemma newton_negative_increasing_contradicts_contraction
     (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat)
@@ -243,7 +251,9 @@ lemma newton_negative_increasing_contradicts_contraction
 
 /-- When dI.lo > 0, the quotient Q has Q.hi ≥ fc.hi / dI.lo (regardless of fc signs).
     This is because the invNonzero of positive dI is [1/dI.hi, 1/dI.lo], and the max
-    includes fc.hi * dI.lo⁻¹ as one of its corners. -/
+    includes fc.hi * dI.lo⁻¹ as one of its corners.
+@isnad1 id=other.1h2v.s5.0f40c0eeaebb from=translated src=- shape=affeadb4 vocab=15e8b048
+-/
 lemma quotient_hi_lower_bound {fc : IntervalRat} {dI : IntervalRat.IntervalRatNonzero}
     (hdI_pos : 0 < dI.lo) :
     let Q := IntervalRat.mul fc (IntervalRat.invNonzero dI)
@@ -265,7 +275,9 @@ lemma quotient_hi_lower_bound {fc : IntervalRat} {dI : IntervalRat.IntervalRatNo
   -- fc.hi * dI.lo⁻¹ ≤ max(fc.hi * dI.hi⁻¹, fc.hi * dI.lo⁻¹) ≤ max(max(..), max(..))
   exact le_trans (le_max_right _ _) (le_max_right _ _)
 
-/-- When dI.lo > 0, the quotient Q has Q.lo ≤ fc.lo / dI.lo. -/
+/-- When dI.lo > 0, the quotient Q has Q.lo ≤ fc.lo / dI.lo.
+@isnad1 id=other.1h2v.s5.8c17384ddf88 from=translated src=- shape=e43015c9 vocab=a8e3145c
+-/
 lemma quotient_lo_upper_bound {fc : IntervalRat} {dI : IntervalRat.IntervalRatNonzero}
     (hdI_pos : 0 < dI.lo) :
     let Q := IntervalRat.mul fc (IntervalRat.invNonzero dI)
@@ -287,7 +299,9 @@ lemma quotient_lo_upper_bound {fc : IntervalRat} {dI : IntervalRat.IntervalRatNo
 /-- For negative dI, the quotient Q has Q.hi ≥ fc.lo / dI.hi.
     This is because fc.lo * dI.hi⁻¹ is one of the four corners in Q = fc * inv(dI),
     and Q.hi = max of all corners.
-    This bound is used for Newton contraction contradiction when f < 0 at both endpoints. -/
+    This bound is used for Newton contraction contradiction when f < 0 at both endpoints.
+@isnad1 id=other.1h2v.s5.04fa9d8bb32e from=translated src=- shape=3a1ae628 vocab=15e8b048
+-/
 lemma quotient_hi_ge_neg {fc : IntervalRat} {dI : IntervalRat.IntervalRatNonzero}
     (hdI_neg : dI.hi < 0) :
     let Q := IntervalRat.mul fc (IntervalRat.invNonzero dI)
@@ -312,7 +326,9 @@ lemma quotient_hi_ge_neg {fc : IntervalRat} {dI : IntervalRat.IntervalRatNonzero
 /-- For negative dI, the quotient Q has Q.lo ≤ fc.hi / dI.hi.
     This is because fc.hi * dI.hi⁻¹ is one of the four corners in Q = fc * inv(dI),
     and Q.lo = min of all corners.
-    This bound is used for Newton contraction contradiction when f > 0 at both endpoints. -/
+    This bound is used for Newton contraction contradiction when f > 0 at both endpoints.
+@isnad1 id=other.1h2v.s5.fff730fe2299 from=translated src=- shape=534201b9 vocab=5534c334
+-/
 lemma quotient_lo_le_neg {fc : IntervalRat} {dI : IntervalRat.IntervalRatNonzero}
     (hdI_neg : dI.hi < 0) :
     let Q := IntervalRat.mul fc (IntervalRat.invNonzero dI)
@@ -348,7 +364,9 @@ that contains `f(c)`. This allows them to be used with both `newtonStepSimple`
     1. Contraction implies Q.hi < hw (since N.lo > I.lo means c - Q.hi > I.lo)
     2. f(c) > dI.lo * hw implies fc.hi > dI.lo * hw (since fc.hi ≥ f(c))
     3. quotient_hi_lower_bound says Q.hi ≥ fc.hi / dI.lo > hw
-    4. Contradiction: Q.hi < hw and Q.hi > hw -/
+    4. Contradiction: Q.hi < hw and Q.hi > hw
+@isnad1 id=false.7h6v.s6.cc4e5272d778 from=translated src=- shape=8e1d4367 vocab=c1b0aa94
+-/
 lemma generic_contraction_absurd_hi
     (I : IntervalRat)
     (c : ℚ) (fc dI : IntervalRat) (N : IntervalRat)
@@ -387,7 +405,9 @@ lemma generic_contraction_absurd_hi
   have hQ_hi_lt_hw_real : (Q.hi : ℝ) < hw := by exact_mod_cast hQ_hi_lt_hw
   linarith
 
-/-- Generic contradiction for Q.lo case with dI.lo > 0. -/
+/-- Generic contradiction for Q.lo case with dI.lo > 0.
+@isnad1 id=false.7h6v.s7.f246e0207abe from=translated src=- shape=7efc2307 vocab=c7c3e55b
+-/
 lemma generic_contraction_absurd_lo
     (I : IntervalRat)
     (c : ℚ) (fc dI : IntervalRat) (N : IntervalRat)
@@ -426,7 +446,9 @@ lemma generic_contraction_absurd_lo
   have hQ_lo_gt_neg_hw_real : (Q.lo : ℝ) > -hw := by exact_mod_cast hQ_lo_gt_neg_hw
   linarith
 
-/-- Generic contradiction for Q.hi case with dI.hi < 0 (decreasing function). -/
+/-- Generic contradiction for Q.hi case with dI.hi < 0 (decreasing function).
+@isnad1 id=false.7h6v.s6.68712472f4d1 from=translated src=- shape=cd5ff869 vocab=c1b0aa94
+-/
 lemma generic_contraction_absurd_hi_neg
     (I : IntervalRat)
     (c : ℚ) (fc dI : IntervalRat) (N : IntervalRat)
@@ -469,7 +491,9 @@ lemma generic_contraction_absurd_hi_neg
   have hQ_hi_lt_hw_real : (Q.hi : ℝ) < hw := by exact_mod_cast hQ_hi_lt_hw
   linarith
 
-/-- Generic contradiction for Q.lo case with dI.hi < 0 (decreasing function). -/
+/-- Generic contradiction for Q.lo case with dI.hi < 0 (decreasing function).
+@isnad1 id=false.7h6v.s7.4fdd80ff218a from=translated src=- shape=2b4f404e vocab=c5d268d4
+-/
 lemma generic_contraction_absurd_lo_neg
     (I : IntervalRat)
     (c : ℚ) (fc dI : IntervalRat) (N : IntervalRat)
@@ -514,7 +538,9 @@ lemma generic_contraction_absurd_lo_neg
 
 /-! ### Simple step contradiction lemmas (using generic lemmas) -/
 
-/-- Key contradiction: if newtonStepSimple contracts AND fc.hi/dI.lo ≥ hw (with dI.lo > 0), then False. -/
+/-- Key contradiction: if newtonStepSimple contracts AND fc.hi/dI.lo ≥ hw (with dI.lo > 0), then False.
+@isnad1 id=false.4h3v.s6.cce45036d0e7 from=translated src=- shape=9c40a340 vocab=38d586ec
+-/
 lemma newtonStepSimple_contraction_absurd_hi
     (e : Expr) (I N : IntervalRat)
     (hSimple : newtonStepSimple e I 0 = some N)
@@ -554,7 +580,9 @@ lemma newtonStepSimple_contraction_absurd_hi
   have hMVT' : fc.hi / dI.lo ≥ hw := hMVT
   linarith
 
-/-- Key contradiction: if newtonStepSimple contracts AND fc.lo/dI.lo ≤ -hw (with dI.lo > 0), then False. -/
+/-- Key contradiction: if newtonStepSimple contracts AND fc.lo/dI.lo ≤ -hw (with dI.lo > 0), then False.
+@isnad1 id=false.4h3v.s6.4f657217073b from=translated src=- shape=5140a811 vocab=71079197
+-/
 lemma newtonStepSimple_contraction_absurd_lo
     (e : Expr) (I N : IntervalRat)
     (hSimple : newtonStepSimple e I 0 = some N)
@@ -597,7 +625,9 @@ lemma newtonStepSimple_contraction_absurd_lo
 /-! ### Contradiction lemmas for decreasing functions -/
 
 /-- Contradiction lemma for decreasing function: If f > 0 at I.hi with f' ≤ dI.hi < 0 (decreasing),
-    then the Newton quotient Q.lo = fc.hi/dI.hi ≤ -hw, contradicting strict contraction Q.lo > -hw. -/
+    then the Newton quotient Q.lo = fc.hi/dI.hi ≤ -hw, contradicting strict contraction Q.lo > -hw.
+@isnad1 id=other.6h2v.s7.c2eb27090b2c from=translated src=- shape=01f69303 vocab=e665624c
+-/
 lemma newton_positive_decreasing_contradicts_contraction
     (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat)
@@ -660,7 +690,9 @@ lemma newton_positive_decreasing_contradicts_contraction
   exact hdiv
 
 /-- Contradiction lemma for decreasing function: If f < 0 at I.lo with f' ≤ dI.hi < 0 (decreasing),
-    then the Newton quotient violates contraction bounds. -/
+    then the Newton quotient violates contraction bounds.
+@isnad1 id=other.6h2v.s7.9416f50b22b8 from=translated src=- shape=d5aecfbb vocab=fde88431
+-/
 lemma newton_negative_decreasing_contradicts_contraction
     (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat)
@@ -733,7 +765,9 @@ that contains f(c), whether from `LeanCert.Internal.Rational.evalUnchecked1` or 
 
 /-- Generic MVT bound: If f' ≥ dI.lo > 0 (increasing) and f(I.lo) > 0,
     then f(c) > dI.lo * hw where c = midpoint and hw = half-width.
-    This is the core analytic fact used for Newton contraction contradictions. -/
+    This is the core analytic fact used for Newton contraction contradictions.
+@isnad1 id=other.5h2v.s7.bd63877310eb from=translated src=- shape=773e35b5 vocab=dd09098f
+-/
 lemma mvt_fc_lower_bound_pos_increasing
     (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat)
@@ -773,7 +807,9 @@ lemma mvt_fc_lower_bound_pos_increasing
     _ = dI.lo * hw := by ring
 
 /-- Generic MVT bound: If f' ≥ dI.lo > 0 (increasing) and f(I.hi) < 0,
-    then f(c) < -dI.lo * hw where c = midpoint and hw = half-width. -/
+    then f(c) < -dI.lo * hw where c = midpoint and hw = half-width.
+@isnad1 id=other.5h2v.s7.2a60625563a1 from=translated src=- shape=945f001f vocab=21ce0235
+-/
 lemma mvt_fc_upper_bound_pos_increasing
     (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat)
@@ -814,7 +850,9 @@ lemma mvt_fc_upper_bound_pos_increasing
 
 /-- Generic MVT bound: If f' ≤ dI.hi < 0 (decreasing) and f(I.lo) < 0,
     then f(c) < dI.hi * hw where c = midpoint and hw = half-width.
-    Since dI.hi < 0 and hw > 0, we have dI.hi * hw < 0, so f(c) < 0. -/
+    Since dI.hi < 0 and hw > 0, we have dI.hi * hw < 0, so f(c) < 0.
+@isnad1 id=other.6h2v.s7.6cadd621e1fc from=translated src=- shape=a11ede07 vocab=09afaca9
+-/
 lemma mvt_fc_upper_bound_neg_decreasing
     (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat)
@@ -856,7 +894,9 @@ lemma mvt_fc_upper_bound_neg_decreasing
     _ = dI.hi * hw := by ring
 
 /-- Generic MVT bound: If f' ≤ dI.hi < 0 (decreasing) and f(I.hi) > 0,
-    then f(c) > -dI.hi * hw where c = midpoint and hw = half-width. -/
+    then f(c) > -dI.hi * hw where c = midpoint and hw = half-width.
+@isnad1 id=other.6h2v.s7.7370bdc22918 from=translated src=- shape=dff3afd6 vocab=7414059e
+-/
 lemma mvt_fc_lower_bound_neg_decreasing
     (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat)

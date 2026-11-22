@@ -64,7 +64,9 @@ inductive ExprSupportedExt : Expr → Prop where
   | erf {e : Expr} : ExprSupportedExt e → ExprSupportedExt (Expr.erf e)
   | namedConst (c : MathConst) : ExprSupportedExt (Expr.namedConst c)
 
-/-- The base supported subset is a subset of the extended one -/
+/-- The base supported subset is a subset of the extended one
+@isnad1 id=exprsupp.1h1v.s2.e54c1d1bc889 from=translated src=- shape=6321fd23 vocab=a503ff5f
+-/
 theorem ADSupported.toExt {e : Expr} (h : ADSupported e) : ExprSupportedExt e := by
   induction h with
   | const q => exact ExprSupportedExt.const q
@@ -150,12 +152,16 @@ def envMemReal (ρ_real : Nat → ℝ) (ρ_int : IntervalRealEnv) : Prop :=
 
 /-! ### Membership lemmas for IntervalReal operations -/
 
-/-- Membership in singleton -/
+/-- Membership in singleton
+@isnad1 id=mem.0h1v.s3.fdc40e7986b6 from=translated src=- shape=003a2c60 vocab=798bf78a
+-/
 theorem IntervalReal.mem_singleton' (r : ℝ) : r ∈ IntervalReal.singleton r := by
   simp only [IntervalReal.mem_def, IntervalReal.singleton]
   exact ⟨le_refl r, le_refl r⟩
 
-/-- Membership for rational casts in singleton -/
+/-- Membership for rational casts in singleton
+@isnad1 id=mem.0h1v.s3.d87b113c3d76 from=translated src=- shape=fd8b5159 vocab=d3f15ff6
+-/
 theorem IntervalReal.mem_singleton_rat (q : ℚ) : (q : ℝ) ∈ IntervalReal.singleton q := by
   simp only [IntervalReal.mem_def, IntervalReal.singleton]
   constructor <;> exact le_refl _
@@ -232,7 +238,9 @@ private theorem mul_upper_bound {x y a₁ a₂ b₁ b₂ : ℝ}
       _ ≤ max (a₁ * b₁) (a₁ * b₂) := h2
       _ ≤ max (max (a₁ * b₁) (a₁ * b₂)) (max (a₂ * b₁) (a₂ * b₂)) := le_max_left _ _
 
-/-- FTIA for multiplication on IntervalReal -/
+/-- FTIA for multiplication on IntervalReal
+@isnad1 id=mem.2h4v.s5.6ae8d9811315 from=translated src=- shape=52949ecd vocab=00e805f8
+-/
 theorem IntervalReal.mem_mul' {x y : ℝ} {I J : IntervalReal}
     (hx : x ∈ I) (hy : y ∈ J) : x * y ∈ IntervalReal.mul I J := by
   simp only [IntervalReal.mem_def] at *
@@ -246,6 +254,7 @@ theorem IntervalReal.mem_mul' {x y : ℝ} {I J : IntervalReal}
 The returned `some I` certificate is the support check: unsupported partial
 operations return `none`, so callers cannot accidentally use a fallback interval
 for `inv`, `log`, or `atanh`.
+@isnad1 id=mem.2h4v.s5.e1b06b09e4ff from=translated src=- shape=7e305443 vocab=1a199c77
 -/
 theorem evalIntervalReal?_correct (e : Expr) (ρ_real : Nat → ℝ)
     (ρ_int : IntervalRealEnv) (hρ : envMemReal ρ_real ρ_int)
@@ -395,7 +404,9 @@ theorem evalIntervalReal?_correct (e : Expr) (ρ_real : Nat → ℝ)
 noncomputable def evalIntervalReal1? (e : Expr) (I : IntervalReal) : Option IntervalReal :=
   evalIntervalReal? e (fun _ => I)
 
-/-- Correctness for strict single-variable evaluation. -/
+/-- Correctness for strict single-variable evaluation.
+@isnad1 id=mem.2h4v.s5.74db1c546adc from=translated src=- shape=5c074fc0 vocab=cd414e09
+-/
 theorem evalIntervalReal1?_correct (e : Expr) (x : ℝ) (I J : IntervalReal)
     (hx : x ∈ I) (hJ : evalIntervalReal1? e I = some J) :
     Expr.eval (fun _ => x) e ∈ J :=
@@ -407,7 +418,9 @@ theorem evalIntervalReal1?_correct (e : Expr) (x : ℝ) (I J : IntervalReal)
 def toIntervalRealEnv (ρ : IntervalEnv) : IntervalRealEnv :=
   fun i => IntervalReal.ofRat (ρ i)
 
-/-- Membership is preserved under conversion -/
+/-- Membership is preserved under conversion
+@isnad1 id=mem.1h3v.s4.0f7e14ff8d45 from=translated src=- shape=673bec4e vocab=62d86322
+-/
 theorem mem_toIntervalRealEnv {x : ℝ} {ρ : IntervalEnv} {i : Nat}
     (hx : x ∈ ρ i) : x ∈ toIntervalRealEnv ρ i :=
   IntervalReal.mem_ofRat hx

@@ -34,6 +34,9 @@ namespace NavierStokes.SimilarityCoordinates
 /-- Forward scalar, given by `q - z ^ 2 * q ^ a`. -/
 def forwardScalar (a z q : ℝ) : ℝ := q - z ^ 2 * q ^ a
 
+/--
+@isnad1 id=eq.1h3v.s6.5b081a5712b5 from=translated src=- shape=4d354d02 vocab=eba31d71
+-/
 theorem forwardScalar_factor {q : ℝ} (hq : 0 < q) (a z : ℝ) :
     forwardScalar a z q = q ^ a * (q ^ (1 - a) - z ^ 2) := by
   have hpow : q ^ a * q ^ (1 - a) = q := by
@@ -45,7 +48,9 @@ theorem forwardScalar_factor {q : ℝ} (hq : 0 < q) (a z : ℝ) :
   ring
 
 /-- A positive solution exists. The proof uses the intermediate value
-theorem after the change of variable `w = q^(1-a)`. -/
+theorem after the change of variable `w = q^(1-a)`.
+@isnad1 id=ex.3h3v.s5.ed99df873de9 from=translated src=- shape=a6ddf8d1 vocab=3e989170
+-/
 theorem exists_positive_solution {a τ : ℝ} (ha : 0 < a) (ha1 : a < 1)
     (hτ : 0 < τ) (z : ℝ) : ∃ q : ℝ, 0 < q ∧ forwardScalar a z q = τ := by
   let p : ℝ := a / (1 - a)
@@ -93,7 +98,9 @@ theorem exists_positive_solution {a τ : ℝ} (ha : 0 < a) (ha1 : a < 1)
     _ = τ := hgw
 
 /-- On the region where the scalar map is positive, it is strictly
-increasing. No global monotonicity below the positive branch is asserted. -/
+increasing. No global monotonicity below the positive branch is asserted.
+@isnad1 id=lt.5h4v.s6.071dbd6e1443 from=translated src=- shape=d0045761 vocab=3e989170
+-/
 theorem forwardScalar_lt {a z q₁ q₂ : ℝ} (ha : 0 < a) (ha1 : a < 1)
     (hq₁ : 0 < q₁) (hqq : q₁ < q₂) (hf₁ : 0 < forwardScalar a z q₁) :
     forwardScalar a z q₁ < forwardScalar a z q₂ := by
@@ -113,6 +120,9 @@ theorem forwardScalar_lt {a z q₁ q₂ : ℝ} (ha : 0 < a) (ha1 : a < 1)
     _ ≤ q₂ ^ a * (q₂ ^ (1 - a) - z ^ 2) :=
       mul_le_mul_of_nonneg_right hp (hd₁.le.trans hd.le)
 
+/--
+@isnad1 id=eq.7h5v.s6.e4dd5f0cfc15 from=translated src=- shape=9471c6e7 vocab=3e989170
+-/
 theorem positive_solution_unique {a τ z q₁ q₂ : ℝ}
     (ha : 0 < a) (ha1 : a < 1) (hτ : 0 < τ)
     (hq₁ : 0 < q₁) (hq₂ : 0 < q₂)
@@ -126,6 +136,9 @@ theorem positive_solution_unique {a τ z q₁ q₂ : ℝ}
     rw [he₁, he₂] at this
     exact (lt_irrefl τ this).elim
 
+/--
+@isnad1 id=existsun.3h3v.s5.0e2dfef5b010 from=translated src=- shape=a6ddf8d1 vocab=274826b9
+-/
 theorem existsUnique_positive_solution {a τ : ℝ} (ha : 0 < a) (ha1 : a < 1)
     (hτ : 0 < τ) (z : ℝ) : ∃! q : ℝ, 0 < q ∧ forwardScalar a z q = τ := by
   obtain ⟨q, hq, he⟩ := exists_positive_solution ha ha1 hτ z
@@ -139,6 +152,9 @@ def coordinateQ (a : ℝ) (p : ℝ × ℝ) : ℝ :=
     Classical.choose (exists_positive_solution hp.1 hp.2.1 hp.2.2 p.2)
   else 1
 
+/--
+@isnad1 id=and.3h2v.s6.4613fd0f6489 from=translated src=- shape=fc16fc6d vocab=d0af9987
+-/
 theorem coordinateQ_spec {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     {p : ℝ × ℝ} (hp : 0 < p.1) :
     0 < coordinateQ a p ∧ forwardScalar a p.2 (coordinateQ a p) = p.1 := by
@@ -154,6 +170,9 @@ theorem eq_coordinateQ {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
 /-- Scalar slope, given by `1 - z ^ 2 * a * q ^ (a - 1)`. -/
 def scalarSlope (a z q : ℝ) : ℝ := 1 - z ^ 2 * a * q ^ (a - 1)
 
+/--
+@isnad1 id=lt.4h3v.s6.d336c1fd956b from=translated src=- shape=5ed96465 vocab=96ed3c64
+-/
 theorem scalarSlope_pos {a z q : ℝ} (ha : 0 < a) (ha1 : a < 1)
     (hq : 0 < q) (hf : 0 < forwardScalar a z q) : 0 < scalarSlope a z q := by
   have hsmall : z ^ 2 * q ^ a / q < 1 := by
@@ -206,12 +225,18 @@ def triangularEquiv (m b : ℝ) (hm : m ≠ 0) : (ℝ × ℝ) ≃L[ℝ] (ℝ × 
     ((continuous_fst.sub (continuous_const.mul continuous_snd)).div_const m).prodMk
       continuous_snd
 
+/--
+@isnad1 id=contdiff.1h2v.s6.e5d708488f12 from=translated src=- shape=7c62dc10 vocab=014b18b1
+-/
 theorem forwardMap_smooth {a : ℝ} {p : ℝ × ℝ} (hp : p.1 ≠ 0) :
     ContDiffAt ℝ ∞ (forwardMap a) p := by
   exact (contDiffAt_fst.sub
     ((contDiffAt_snd.pow 2).mul (contDiffAt_fst.rpow_const_of_ne hp))).prodMk
       contDiffAt_snd
 
+/--
+@isnad1 id=hasfderi.2h2v.s7.0a0fca2cf885 from=translated src=- shape=ecd2e49f vocab=083036f1
+-/
 theorem forwardMap_hasFDerivAt {a : ℝ} {p : ℝ × ℝ} (hp : p.1 ≠ 0)
     (hm : scalarSlope a p.2 p.1 ≠ 0) :
     HasFDerivAt (forwardMap a)
@@ -246,6 +271,9 @@ theorem forwardMap_hasFDerivAt {a : ℝ} {p : ℝ × ℝ} (hp : p.1 ≠ 0)
 /-- Inverse map, given by `(coordinateQ a p, p.2)`. -/
 def inverseMap (a : ℝ) (p : ℝ × ℝ) : ℝ × ℝ := (coordinateQ a p, p.2)
 
+/--
+@isnad1 id=eq.4h2v.s6.fddfb0cfad93 from=translated src=- shape=6dc3ea7c vocab=a3958a44
+-/
 theorem inverseMap_forwardMap {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     {p : ℝ × ℝ} (hq : 0 < p.1) (hF : 0 < forwardScalar a p.2 p.1) :
     inverseMap a (forwardMap a p) = p := by
@@ -253,6 +281,9 @@ theorem inverseMap_forwardMap {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
   · exact (eq_coordinateQ ha ha1 hF hq rfl).symm
   · rfl
 
+/--
+@isnad1 id=eventual.4h2v.s6.d648980cae81 from=translated src=- shape=6a1ee3d8 vocab=505c087e
+-/
 theorem eventually_inverseMap_forwardMap {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     {p : ℝ × ℝ} (hq : 0 < p.1) (hF : 0 < forwardScalar a p.2 p.1) :
     ∀ᶠ x in 𝓝 p, inverseMap a (forwardMap a x) = x := by
@@ -264,7 +295,9 @@ theorem eventually_inverseMap_forwardMap {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
   exact inverseMap_forwardMap ha ha1 hqx hFx
 
 /-- The canonical inverse is smooth at every image point on the positive
-branch, by the actual inverse function theorem. -/
+branch, by the actual inverse function theorem.
+@isnad1 id=contdiff.4h2v.s7.99e3cebd1fde from=translated src=- shape=55632b58 vocab=6a582f86
+-/
 theorem inverseMap_smooth_at_image {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     {p : ℝ × ℝ} (hq : 0 < p.1) (hF : 0 < forwardScalar a p.2 p.1) :
     ContDiffAt ℝ ∞ (inverseMap a) (forwardMap a p) := by
@@ -276,6 +309,9 @@ theorem inverseMap_smooth_at_image {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
   have heq := hs.localInverse_unique (eventually_inverseMap_forwardMap ha ha1 hq hF)
   exact (hsm.to_localInverse hder horder).congr_of_eventuallyEq heq
 
+/--
+@isnad1 id=hasfderi.4h2v.s8.115d5e6e6a5f from=translated src=- shape=f94e4676 vocab=49fc91ef
+-/
 theorem inverseMap_hasFDerivAt_image {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     {p : ℝ × ℝ} (hq : 0 < p.1) (hF : 0 < forwardScalar a p.2 p.1) :
     HasFDerivAt (inverseMap a)
@@ -289,7 +325,9 @@ theorem inverseMap_hasFDerivAt_image {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
   exact (hs.to_local_left_inverse
     (eventually_inverseMap_forwardMap ha ha1 hq hF)).hasFDerivAt
 
-/-- Smooth dependence on both physical parameters `(τ,z)` for `τ>0`. -/
+/-- Smooth dependence on both physical parameters `(τ,z)` for `τ>0`.
+@isnad1 id=contdiff.3h2v.s6.087b1f4fcb08 from=translated src=- shape=3692e2cb vocab=e1d7c087
+-/
 theorem coordinateQ_smooth {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     {p : ℝ × ℝ} (hp : 0 < p.1) : ContDiffAt ℝ ∞ (coordinateQ a) p := by
   have hspec := coordinateQ_spec ha ha1 hp
@@ -300,12 +338,17 @@ theorem coordinateQ_smooth {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
   rw [himage] at hsm
   exact hsm.fst
 
+/--
+@isnad1 id=contdiff.2h1v.s6.4ee11cb4af63 from=translated src=- shape=ef0f3578 vocab=0654aef2
+-/
 theorem coordinateQ_smoothOn {a : ℝ} (ha : 0 < a) (ha1 : a < 1) :
     ContDiffOn ℝ ∞ (coordinateQ a) {p : ℝ × ℝ | 0 < p.1} := by
   intro p hp
   exact (coordinateQ_smooth ha ha1 hp).contDiffWithinAt
 
-/-- Full Fréchet derivative of the actual implicitly defined coordinate. -/
+/-- Full Fréchet derivative of the actual implicitly defined coordinate.
+@isnad1 id=eq.3h3v.s9.4baafbe99393 from=translated src=- shape=2f0786f4 vocab=7bcf8f17
+-/
 theorem coordinateQ_fderiv_apply {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     {p : ℝ × ℝ} (hp : 0 < p.1) (v : ℝ × ℝ) :
     fderiv ℝ (coordinateQ a) p v =
@@ -323,6 +366,9 @@ theorem coordinateQ_fderiv_apply {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     scalarSlope a p.2 (coordinateQ a p) = _
   ring
 
+/--
+@isnad1 id=hasderiv.3h3v.s6.79bdff9045e4 from=translated src=- shape=3f41bddf vocab=a73cc9f0
+-/
 theorem coordinateQ_hasDerivAt_tau {a τ z : ℝ}
     (ha : 0 < a) (ha1 : a < 1) (hτ : 0 < τ) :
     HasDerivAt (fun t => coordinateQ a (t, z))
@@ -332,6 +378,9 @@ theorem coordinateQ_hasDerivAt_tau {a τ z : ℝ}
   rw [coordinateQ_fderiv_apply ha ha1 hτ] at hc
   simpa only [Function.comp_def, id_eq, Prod.fst, Prod.snd, mul_zero, add_zero] using hc
 
+/--
+@isnad1 id=hasderiv.3h3v.s7.5b32e3e98aa1 from=translated src=- shape=3dd64fea vocab=aaaf4d31
+-/
 theorem coordinateQ_hasDerivAt_z {a τ z : ℝ}
     (ha : 0 < a) (ha1 : a < 1) (hτ : 0 < τ) :
     HasDerivAt (fun x => coordinateQ a (τ, x))
@@ -342,7 +391,9 @@ theorem coordinateQ_hasDerivAt_z {a τ z : ℝ}
   rw [coordinateQ_fderiv_apply ha ha1 hτ] at hc
   simpa only [Function.comp_def, id_eq, Prod.fst, Prod.snd, mul_one, zero_add] using hc
 
-/-- The physical time is `t=1-τ`, giving the required negative sign. -/
+/-- The physical time is `t=1-τ`, giving the required negative sign.
+@isnad1 id=hasderiv.3h3v.s7.e9854f089782 from=translated src=- shape=3c8b4fe6 vocab=b16f03ad
+-/
 theorem coordinateQ_hasDerivAt_time {a t z : ℝ}
     (ha : 0 < a) (ha1 : a < 1) (ht : t < 1) :
     HasDerivAt (fun s => coordinateQ a (1 - s, z))
@@ -356,12 +407,18 @@ theorem coordinateQ_hasDerivAt_time {a t z : ℝ}
 def coordinateEta (a : ℝ) (p : ℝ × ℝ) : ℝ :=
   p.2 / coordinateQ a p ^ ((1 - a) / 2)
 
+/--
+@isnad1 id=contdiff.3h2v.s6.d7d528268494 from=translated src=- shape=3692e2cb vocab=2c340371
+-/
 theorem coordinateEta_smooth {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     {p : ℝ × ℝ} (hp : 0 < p.1) : ContDiffAt ℝ ∞ (coordinateEta a) p := by
   have hq := (coordinateQ_spec ha ha1 hp).1
   exact contDiffAt_snd.div ((coordinateQ_smooth ha ha1 hp).rpow_const_of_ne hq.ne')
     (Real.rpow_pos_of_pos hq _).ne'
 
+/--
+@isnad1 id=eq.3h2v.s6.10210ab065bc from=translated src=- shape=e429acbe vocab=57bb15fb
+-/
 theorem coordinateEta_sq {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     {p : ℝ × ℝ} (hp : 0 < p.1) :
     coordinateEta a p ^ 2 = p.2 ^ 2 * coordinateQ a p ^ a / coordinateQ a p := by
@@ -373,6 +430,9 @@ theorem coordinateEta_sq {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
   rw [he, Real.rpow_sub hq, Real.rpow_one]
   field_simp
 
+/--
+@isnad1 id=lt.3h2v.s6.ac654cf17d1c from=translated src=- shape=cb6d6d7b vocab=0585f3d0
+-/
 theorem coordinateEta_sq_lt_one {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     {p : ℝ × ℝ} (hp : 0 < p.1) : coordinateEta a p ^ 2 < 1 := by
   have hq := coordinateQ_spec ha ha1 hp
@@ -381,6 +441,9 @@ theorem coordinateEta_sq_lt_one {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
   dsimp [forwardScalar] at hq
   linarith [hq.2]
 
+/--
+@isnad1 id=lt.3h2v.s5.72f5b4f7e6fd from=translated src=- shape=faf6649e vocab=75b312df
+-/
 theorem coordinateEta_abs_lt_one {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     {p : ℝ × ℝ} (hp : 0 < p.1) : |coordinateEta a p| < 1 := by
   have hs := coordinateEta_sq_lt_one ha ha1 hp
@@ -388,7 +451,9 @@ theorem coordinateEta_abs_lt_one {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
   constructor <;> nlinarith
 
 /-- The branch lies strictly beyond the manuscript's threshold
-`|z|^(1/D)`, where `D=(1-a)/2`. -/
+`|z|^(1/D)`, where `D=(1-a)/2`.
+@isnad1 id=lt.3h2v.s6.6a1df01ef591 from=translated src=- shape=1620cede vocab=5ac4a668
+-/
 theorem coordinateQ_above_threshold {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     {p : ℝ × ℝ} (hp : 0 < p.1) :
     |p.2| ^ (((1 - a) / 2)⁻¹) < coordinateQ a p := by
@@ -402,7 +467,9 @@ theorem coordinateQ_above_threshold {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     ((div_lt_one hpow).mp hη)
 
 /-- Both implicit descriptions in equation (3) agree for the constructed
-coordinates: `τ=q(1-η²)`. -/
+coordinates: `τ=q(1-η²)`.
+@isnad1 id=eq.3h2v.s6.6c711672518f from=translated src=- shape=6570f58b vocab=b69c4aae
+-/
 theorem tau_coordinate_identity {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     {p : ℝ × ℝ} (hp : 0 < p.1) :
     p.1 = coordinateQ a p * (1 - coordinateEta a p ^ 2) := by
@@ -413,7 +480,9 @@ theorem tau_coordinate_identity {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
       rw [coordinateEta_sq ha ha1 hp]
       field_simp [hq.1.ne']
 
-/-- The actual Jacobian denominator equals the manuscript's `L`. -/
+/-- The actual Jacobian denominator equals the manuscript's `L`.
+@isnad1 id=eq.3h2v.s6.83392a146824 from=translated src=- shape=1f2abd11 vocab=00502946
+-/
 theorem scalarSlope_eq_L {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     {p : ℝ × ℝ} (hp : 0 < p.1) :
     scalarSlope a p.2 (coordinateQ a p) = 1 - a * coordinateEta a p ^ 2 := by
@@ -422,6 +491,9 @@ theorem scalarSlope_eq_L {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
   rw [Real.rpow_sub_one hq.ne', coordinateEta_sq ha ha1 hp]
   ring
 
+/--
+@isnad1 id=hasderiv.3h3v.s7.0f102e98a213 from=translated src=- shape=2d850d01 vocab=0c243fb9
+-/
 theorem coordinateQ_hasDerivAt_time_L {a t z : ℝ}
     (ha : 0 < a) (ha1 : a < 1) (ht : t < 1) :
     HasDerivAt (fun s => coordinateQ a (1 - s, z))
@@ -429,6 +501,9 @@ theorem coordinateQ_hasDerivAt_time_L {a t z : ℝ}
   have hc := coordinateQ_hasDerivAt_time (z := z) ha ha1 ht
   rwa [scalarSlope_eq_L ha ha1 (p := (1 - t, z)) (sub_pos.mpr ht)] at hc
 
+/--
+@isnad1 id=hasderiv.3h3v.s7.f0c39ac31731 from=translated src=- shape=bbf352e6 vocab=ad4e40a9
+-/
 theorem coordinateEta_hasDerivAt_tau {a τ z : ℝ}
     (ha : 0 < a) (ha1 : a < 1) (hτ : 0 < τ) :
     HasDerivAt (fun t => coordinateEta a (t, z))
@@ -446,6 +521,9 @@ theorem coordinateEta_hasDerivAt_tau {a τ z : ℝ}
   rw [Real.rpow_sub_one hq.1.ne']
   field_simp [hq.1.ne', hpow, hm]; ring
 
+/--
+@isnad1 id=hasderiv.3h3v.s7.b12b61e18ae5 from=translated src=- shape=b91c4b58 vocab=007d9750
+-/
 theorem coordinateEta_hasDerivAt_z {a τ z : ℝ}
     (ha : 0 < a) (ha1 : a < 1) (hτ : 0 < τ) :
     HasDerivAt (fun x => coordinateEta a (τ, x))
@@ -467,6 +545,9 @@ theorem coordinateEta_hasDerivAt_z {a τ z : ℝ}
   rw [Real.rpow_sub_one hq.1.ne']
   field_simp [hq.1.ne']; ring
 
+/--
+@isnad1 id=hasderiv.3h3v.s7.20a2c63f5ebe from=translated src=- shape=9bd10082 vocab=3239e442
+-/
 theorem coordinateEta_hasDerivAt_time {a t z : ℝ}
     (ha : 0 < a) (ha1 : a < 1) (ht : t < 1) :
     HasDerivAt (fun s => coordinateEta a (1 - s, z))
@@ -479,6 +560,9 @@ theorem coordinateEta_hasDerivAt_time {a t z : ℝ}
   convert! hc using 1
   ring
 
+/--
+@isnad1 id=hasderiv.3h3v.s7.0e695ee285f6 from=translated src=- shape=fe210ab7 vocab=3239e442
+-/
 theorem coordinateEta_hasDerivAt_z_L {a τ z : ℝ}
     (ha : 0 < a) (ha1 : a < 1) (hτ : 0 < τ) :
     HasDerivAt (fun x => coordinateEta a (τ, x))
@@ -488,6 +572,9 @@ theorem coordinateEta_hasDerivAt_z_L {a τ z : ℝ}
   have hc := coordinateEta_hasDerivAt_z (z := z) ha ha1 hτ
   rwa [scalarSlope_eq_L ha ha1 (p := (τ, z)) hτ] at hc
 
+/--
+@isnad1 id=hasderiv.3h3v.s7.60a7a16b8252 from=translated src=- shape=3af6bcbe vocab=3239e442
+-/
 theorem coordinateQ_hasDerivAt_z_L {a τ z : ℝ}
     (ha : 0 < a) (ha1 : a < 1) (hτ : 0 < τ) :
     HasDerivAt (fun x => coordinateQ a (τ, x))
@@ -509,11 +596,17 @@ theorem coordinateQ_hasDerivAt_z_L {a τ z : ℝ}
 /-- Coordinate X, given by `s / coordinateQ a p`. -/
 def coordinateX (a s : ℝ) (p : ℝ × ℝ) : ℝ := s / coordinateQ a p
 
+/--
+@isnad1 id=contdiff.3h3v.s6.8652eedd7d5d from=translated src=- shape=7dbaaff3 vocab=a5dbce33
+-/
 theorem coordinateX_smooth {a s : ℝ} (ha : 0 < a) (ha1 : a < 1)
     {p : ℝ × ℝ} (hp : 0 < p.1) : ContDiffAt ℝ ∞ (coordinateX a s) p := by
   exact contDiffAt_const.div (coordinateQ_smooth ha ha1 hp)
     (coordinateQ_spec ha ha1 hp).1.ne'
 
+/--
+@isnad1 id=hasderiv.3h4v.s7.8d0a73e2fbfb from=translated src=- shape=820603fc vocab=880a6310
+-/
 theorem coordinateX_hasDerivAt_time {a s t z : ℝ}
     (ha : 0 < a) (ha1 : a < 1) (ht : t < 1) :
     HasDerivAt (fun u => coordinateX a s (1 - u, z))
@@ -531,6 +624,9 @@ theorem coordinateX_hasDerivAt_time {a s t z : ℝ}
   field_simp [hq.1.ne', hm]
   ring_nf
 
+/--
+@isnad1 id=hasderiv.3h4v.s7.6fe779d543e7 from=translated src=- shape=d00b4b26 vocab=178da8ac
+-/
 theorem coordinateX_hasDerivAt_z {a s τ z : ℝ}
     (ha : 0 < a) (ha1 : a < 1) (hτ : 0 < τ) :
     HasDerivAt (fun x => coordinateX a s (τ, x))
@@ -549,7 +645,9 @@ theorem coordinateX_hasDerivAt_z {a s τ z : ℝ}
   unfold coordinateX
   field_simp [hq.1.ne', hpow, hm]; ring
 
-/-- Joint physical `(t,z)` smoothness of the actual coordinate functions. -/
+/-- Joint physical `(t,z)` smoothness of the actual coordinate functions.
+@isnad1 id=contdiff.3h2v.s7.e3bebac87b7e from=translated src=- shape=6628b256 vocab=367e0dc8
+-/
 theorem physical_coordinates_smooth {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     {p : ℝ × ℝ} (hp : p.1 < 1) :
     ContDiffAt ℝ ∞
@@ -560,7 +658,9 @@ theorem physical_coordinates_smooth {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
   exact ((coordinateQ_smooth ha ha1 (p := (1 - p.1, p.2)) (sub_pos.mpr hp)).prodMk
     (coordinateEta_smooth ha ha1 (p := (1 - p.1, p.2)) (sub_pos.mpr hp))).comp p hm
 
-/-- Equation (3), with exactly the manuscript's exponent `2h`. -/
+/-- Equation (3), with exactly the manuscript's exponent `2h`.
+@isnad1 id=existsun.3h3v.s7.1ea8a24076e3 from=translated src=- shape=067e0150 vocab=5d146496
+-/
 theorem manuscript_coordinate_existsUnique {h τ : ℝ} (hh : 0 < h)
     (hh1 : h < 1 / 2) (hτ : 0 < τ) (z : ℝ) :
     ∃! q : ℝ, 0 < q ∧ q - z ^ 2 * q ^ (2 * h) = τ := by

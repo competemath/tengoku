@@ -56,7 +56,9 @@ equals mathlib's circle integral `∮ z in C(c,R), f z`.
 This is the key bridge: mathlib defines `circleIntegral` using `smul` (scalar
 multiplication `deriv(circleMap c R) θ • f(circleMap c R θ)`), while the project
 uses `mul` (pointwise multiplication `f(γ t) * deriv γ t`). For `ℂ`-valued
-functions, `smul` and `mul` coincide. -/
+functions, `smul` and `mul` coincide.
+@isnad1 id=eq.0h3v.s7.d5a531a497c2 from=translated src=- shape=d5546b26 vocab=a1f898aa
+-/
 theorem contourIntegral_circleMap_eq_circleIntegral (f : ℂ → ℂ) (c : ℂ) (R : ℝ) :
     ∫ θ in (0 : ℝ)..2 * Real.pi,
       f (circleMap c R θ) * deriv (circleMap c R) θ =
@@ -68,7 +70,9 @@ not on the circle) equals `(2πi)⁻¹ * ∮ z in C(c,R), (z - w)⁻¹`.
 This combines `generalizedWindingNumber_eq_classical_away` (which shows the PV
 winding number equals the classical integral when the curve avoids `w`) with
 `contourIntegral_circleMap_eq_circleIntegral` (which identifies the classical
-integral with mathlib's `circleIntegral`). -/
+integral with mathlib's `circleIntegral`).
+@isnad1 id=eq.2h3v.s6.19d46bab165f from=translated src=- shape=c6e93073 vocab=63afd69d
+-/
 theorem generalizedWindingNumber_circleMap_eq_inv_circleIntegral
     (c w : ℂ) (R : ℝ) (hR : 0 < R)
     (hw : ‖w - c‖ ≠ R) :
@@ -129,7 +133,9 @@ the circle equals 1.
 This is the definitive bridge between the project's `generalizedWindingNumber'`
 and mathlib's circle integral theory. The proof factors through mathlib's
 `circleIntegral.integral_sub_inv_of_mem_ball`, which computes
-`∮ z in C(c,R), (z-w)⁻¹ = 2πi`. -/
+`∮ z in C(c,R), (z-w)⁻¹ = 2πi`.
+@isnad1 id=eq.2h3v.s6.8903729fefe5 from=translated src=- shape=09891d84 vocab=52c844a1
+-/
 theorem generalizedWindingNumber_circleMap_eq_one_of_mem_ball
     (c w : ℂ) (R : ℝ) (hR : 0 < R) (hw : w ∈ Metric.ball c R) :
     generalizedWindingNumber' (circleMap c R) 0 (2 * Real.pi) w = 1 := by
@@ -149,7 +155,9 @@ equals `2πi`, expressed in the project's interval integral format.
 
 This is a convenience wrapper: it states the result purely in terms of interval
 integrals (no `circleIntegral` notation), useful for downstream proofs that
-work with `∫ t in a..b, ...` rather than `∮`. -/
+work with `∫ t in a..b, ...` rather than `∮`.
+@isnad1 id=eq.2h3v.s7.5dd82855bf93 from=translated src=- shape=cfaf7aa9 vocab=21007c77
+-/
 theorem circleMap_contourIntegral_sub_inv_eq_two_pi_I
     (c w : ℂ) (R : ℝ) (_hR : 0 < R) (hw : w ∈ Metric.ball c R) :
     ∫ θ in (0 : ℝ)..2 * Real.pi,

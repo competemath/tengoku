@@ -12,6 +12,9 @@ open scoped Topology
 variable {α : Type*} [MeasurableSpace α] {μ : Measure α}
   {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
+/--
+@isnad1 id=continuo.6h7v.s7.0353a78b6034 from=translated src=- shape=99213d13 vocab=42c1d17b
+-/
 theorem continuous_integral {X : Type*} [TopologicalSpace X] [FirstCountableTopology X]
     (F : X → α → E) (c : X → ℝ) (g : α → ℝ) (hc : Continuous c)
     (hg : Integrable g μ) (hg0 : ∀ᵐ a ∂μ, 0 ≤ g a)
@@ -28,6 +31,9 @@ theorem continuous_integral {X : Type*} [TopologicalSpace X] [FirstCountableTopo
   filter_upwards [hb, hg0] with a ha hga
   exact (ha x).trans (mul_le_mul_of_nonneg_right hx.le hga)
 
+/--
+@isnad1 id=and.8h9v.s8.becf4c7c5cd6 from=translated src=- shape=884e1eec vocab=068e6be8
+-/
 theorem hasDerivAt_integral {𝕜 : Type*} [RCLike 𝕜] [NormedSpace 𝕜 E]
     (F F' : 𝕜 → α → E) (c : 𝕜 → ℝ) (g : α → ℝ) (hc : Continuous c)
     (hg : Integrable g μ) (hg0 : ∀ᵐ a ∂μ, 0 ≤ g a)

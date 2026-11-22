@@ -50,7 +50,9 @@ private noncomputable instance : ContinuousSMul ℝ ℂ :=
 -/
 
 /-- If f : ℝ → ℂ is C¹ on [a,b] with f(t) ∈ slitPlane for all t ∈ [a,b],
-then the log-derivative t ↦ deriv f t / f t is interval integrable on [a,b]. -/
+then the log-derivative t ↦ deriv f t / f t is interval integrable on [a,b].
+@isnad1 id=interval.4h3v.s7.f5124367f0c8 from=translated src=- shape=15ca89ce vocab=8fd89a2d
+-/
 theorem intervalIntegrable_logDeriv_of_slitPlane {f : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
     (hf_cont : ContinuousOn f (Icc a b))
     (hf_deriv_cont : ContinuousOn (deriv f) (Icc a b))
@@ -62,7 +64,9 @@ theorem intervalIntegrable_logDeriv_of_slitPlane {f : ℝ → ℂ} {a b : ℝ} (
 /-- Fundamental theorem of calculus for log-derivative integrals:
 If f : ℝ → ℂ is differentiable on (a,b) with derivative continuous on [a,b],
 and f(t) ∈ slitPlane for all t ∈ [a,b], then
-∫ t in a..b, deriv f t / f t = Complex.log (f b) - Complex.log (f a). -/
+∫ t in a..b, deriv f t / f t = Complex.log (f b) - Complex.log (f a).
+@isnad1 id=eq.5h3v.s8.0eaf8d82a20a from=translated src=- shape=c6b520fe vocab=da37790d
+-/
 theorem integral_logDeriv_eq_log_sub {f : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
     (hf_cont : ContinuousOn f (Icc a b))
     (hf_diff : ∀ t ∈ Ioo a b, DifferentiableAt ℝ f t)
@@ -88,7 +92,9 @@ that agrees with h on (a,b) up to a null set (with matching endpoint values),
 both ∫ g'/g and ∫ h'/h are interval integrable and equal Complex.log(g b) - Complex.log(g a).
 
 This generalizes the `ftc_log_piece` lemma in `ValenceFormula.WindingWeights.Common`
-to the setting where h serves as the smooth comparison function. -/
+to the setting where h serves as the smooth comparison function.
+@isnad1 id=and.8h4v.s9.87376e11211e from=translated src=- shape=233f0c07 vocab=73f84612
+-/
 theorem ftc_log_piece {g h : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
     (hh_cont : ContinuousOn h (Icc a b))
     (hh_diff : ∀ t ∈ Ioo a b, DifferentiableAt ℝ h t)
@@ -129,7 +135,9 @@ theorem ftc_log_piece {g h : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
 /-- Combined integrability and FTC for a single C¹ function staying in slitPlane.
 
 Returns both `IntervalIntegrable (f'/f)` and `∫ f'/f = log(f(b)) - log(f(a))`.
-This is the direct-function version of `ftc_log_piece` (no g/h a.e.-equal pair needed). -/
+This is the direct-function version of `ftc_log_piece` (no g/h a.e.-equal pair needed).
+@isnad1 id=and.5h3v.s8.c34300cfb52f from=translated src=- shape=1b6b262d vocab=73f84612
+-/
 theorem ftc_log_on_segment {f : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
     (hf_cont : ContinuousOn f (Icc a b))
     (hf_diff : ∀ t ∈ Ioo a b, DifferentiableAt ℝ f t)
@@ -153,7 +161,9 @@ theorem ftc_log_on_segment {f : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
 /-- Combined integrability and FTC when `-f` stays in slitPlane.
 
 Returns both `IntervalIntegrable (f'/f)` and `∫ f'/f = log(-f(b)) - log(-f(a))`.
-This is the negation variant of `ftc_log_on_segment`. -/
+This is the negation variant of `ftc_log_on_segment`.
+@isnad1 id=and.5h3v.s8.fd0e455e5958 from=translated src=- shape=32efc270 vocab=dded0003
+-/
 theorem ftc_log_neg_on_segment {f : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
     (hf_cont : ContinuousOn f (Icc a b))
     (hf_diff : ∀ t ∈ Ioo a b, DifferentiableAt ℝ f t)
@@ -179,7 +189,9 @@ theorem ftc_log_neg_on_segment {f : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
   exact ⟨hint, intervalIntegral.integral_eq_sub_of_hasDerivAt_of_le hab hF_cont hF_deriv hint⟩
 
 /-- FTC for log-derivative when the negated function stays in slitPlane:
-∫ f'/f = log(-f(b)) - log(-f(a)) when -f ∈ slitPlane on [a,b]. -/
+∫ f'/f = log(-f(b)) - log(-f(a)) when -f ∈ slitPlane on [a,b].
+@isnad1 id=eq.5h3v.s8.05e0b4306fd4 from=translated src=- shape=df6e4de5 vocab=77e3c2ed
+-/
 theorem integral_logDeriv_eq_neg_log_sub {f : ℝ → ℂ} {a b : ℝ} (hab : a ≤ b)
     (hf_cont : ContinuousOn f (Icc a b))
     (hf_diff : ∀ t ∈ Ioo a b, DifferentiableAt ℝ f t)

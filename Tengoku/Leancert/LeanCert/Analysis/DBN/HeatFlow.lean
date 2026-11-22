@@ -20,6 +20,9 @@ not for the sharp DBN nonvanishing error budget. -/
 noncomputable def heatMajorant (t : ℝ) (z : ℂ) : ℝ :=
   44 * Real.exp (t^2 + (|z.im| +1)^2 + 1)
 
+/--
+@isnad1 id=lt.0h2v.s4.11e7709c52a5 from=translated src=- shape=25b8bdde vocab=e6a0ff5d
+-/
 theorem heatMajorant_pos (t : ℝ) (z : ℂ) : 0 < heatMajorant t z := by
   unfold heatMajorant
   positivity
@@ -33,7 +36,9 @@ private theorem exponent_bound (t : ℝ) (z : ℂ) {u : ℝ} (hu : 0 ≤ u) :
     sq_nonneg t, sq_nonneg (|z.im| +1), sq_nonneg (u^2)]
 
 /-- The scalar amplitude bound also controls sine and phase-shifted cosine
-kernels, so differentiated integrands can reuse the same majorant. -/
+kernels, so differentiated integrands can reuse the same majorant.
+@isnad1 id=le.1h3v.s6.70690df86686 from=translated src=- shape=39e4b854 vocab=2a38b857
+-/
 theorem heat_weight_bound (t : ℝ) (z : ℂ) {u : ℝ} (hu : 0 ≤ u) :
     Real.exp (t*u^2)*‖Phi u‖*Real.exp (|z.im| * u) ≤
       heatMajorant t z * Real.exp (-u^2) := by
@@ -52,7 +57,9 @@ theorem heat_weight_bound (t : ℝ) (z : ℂ) {u : ℝ} (hu : 0 ≤ u) :
   simpa [heatMajorant, Real.exp_sub, Real.exp_neg, div_eq_mul_inv, mul_assoc] using h'
 
 /-- Gaussian domination of the actual heat integrand for every real time and
-complex argument, including t=0 and the endpoint u=0. -/
+complex argument, including t=0 and the endpoint u=0.
+@isnad1 id=le.1h3v.s5.9500d47d993e from=translated src=- shape=91b1868c vocab=ca87eacb
+-/
 theorem heatIntegrand_bound (t : ℝ) (z : ℂ) {u : ℝ} (hu : 0 ≤ u) :
     ‖heatIntegrand t z u‖ ≤ heatMajorant t z * Real.exp (-u^2) := by
   have hc : ‖Complex.cos (z*(u : ℂ))‖ ≤ Real.exp (|z.im| *u) := by
@@ -66,7 +73,9 @@ theorem heatIntegrand_bound (t : ℝ) (z : ℂ) {u : ℝ} (hu : 0 ≤ u) :
   exact h.trans (heat_weight_bound t z hu)
 
 /-- A common integrable Gaussian majorant on bounded time/imaginary-part boxes.
-There is no restriction on the real part of z. -/
+There is no restriction on the real part of z.
+@isnad1 id=le.3h5v.s7.fae3b2187bb2 from=translated src=- shape=33a4ef47 vocab=de91da4d
+-/
 theorem heatIntegrand_bound_box (T Y : ℝ) {t : ℝ} {z : ℂ} {u : ℝ}
     (ht : |t| ≤ T) (hz : |z.im| ≤ Y) (hu : 0 ≤ u) :
     ‖heatIntegrand t z u‖ ≤
@@ -81,12 +90,17 @@ theorem heatIntegrand_bound_box (T Y : ℝ) {t : ℝ} {z : ℂ} {u : ℝ}
   have hs : t^2 ≤ T^2 := by nlinarith [sq_abs t, mul_nonneg (sub_nonneg.mpr ht) (add_nonneg hT (abs_nonneg t))]
   nlinarith [mul_nonneg (sub_nonneg.mpr hz) (show 0 ≤ Y+|z.im|+2 by positivity)]
 
+/--
+@isnad1 id=measurab.0h2v.s3.69384602a722 from=translated src=- shape=b77e315a vocab=219c8972
+-/
 theorem measurable_heatIntegrand (t : ℝ) (z : ℂ) : Measurable (heatIntegrand t z) := by
   unfold heatIntegrand
   have hp := measurable_Phi
   fun_prop
 
-/-- Absolute integrability of H's defining integrand on its actual domain. -/
+/-- Absolute integrability of H's defining integrand on its actual domain.
+@isnad1 id=integrab.0h2v.s5.e58491d77909 from=translated src=- shape=88e70666 vocab=7fea41f4
+-/
 theorem heatIntegrand_integrable (t : ℝ) (z : ℂ) : IntegrableOn (heatIntegrand t z) (Ioi 0) := by
   have hg : IntegrableOn (fun u : ℝ => heatMajorant t z * Real.exp (-u^2)) (Ioi 0) := by
     simpa only [IntegrableOn, neg_mul, one_mul] using
@@ -95,7 +109,9 @@ theorem heatIntegrand_integrable (t : ℝ) (z : ℂ) : IntegrableOn (heatIntegra
   exact (ae_restrict_iff' measurableSet_Ioi).mpr
     (Filter.Eventually.of_forall (fun u hu => heatIntegrand_bound t z hu.le))
 
-/-- Effective truncation of the actual heat integral at any positive cutoff. -/
+/-- Effective truncation of the actual heat integral at any positive cutoff.
+@isnad1 id=le.1h3v.s6.2f41fcdb2019 from=translated src=- shape=181b8690 vocab=215a8379
+-/
 theorem H_tail (t : ℝ) (z : ℂ) (b : ℝ) (hb : 0 < b) :
     ‖H t z - ∫ u in (0 : ℝ)..b, heatIntegrand t z u‖ ≤
       heatMajorant t z * Real.exp (-b^2) / b := by

@@ -59,7 +59,9 @@ section Aux
 
 variable {K : Type*} [Field K] [Fintype K] [DecidableEq K]
 
-/-- Multiplicative Fourier inversion on `Kˣ`: additive sum to Gauss sums. -/
+/-- Multiplicative Fourier inversion on `Kˣ`: additive sum to Gauss sums.
+@isnad1 id=eq.0h4v.s8.146a0c089c73 from=translated src=- shape=a04c853c vocab=9be87609
+-/
 lemma fourier_units {psi : AddChar K ℂ} (g : Kˣ → ℂ) (a : Kˣ) :
     (Fintype.card Kˣ : ℂ) * ∑ x : Kˣ, g x * psi ((a : K) * (x : K)) =
       ∑ chi : MulChar K ℂ,
@@ -205,7 +207,9 @@ all-character Walsh identity `2 S(a) = (Q/N) ∑_χ [G(χ^e)/G(χ³)] χ(a)`, wh
 
 The derivation: expand `1_Δ = (1 + F)/2` on `K*`, invert the
 multiplicative transform, use `G(χ)G(χ⁻¹) = Q` for `χ ≠ 1` (valid because
-`-1 = 1` in characteristic two) and `Ghat(1) = -1`, `Fhat(1) = -1`. -/
+`-1 = 1` in characteristic two) and `Ghat(1) = -1`, `Fhat(1) = -1`.
+@isnad1 id=walshcha.2h3v.s6.de09b11851f0 from=translated src=- shape=f4f3a7a4 vocab=5053c617
+-/
 theorem walshCharacterFormula_of_phase_formula {k : ℕ} {ψ : AddChar K ℂ} (_hψ : ψ.IsPrimitive)
     (_hphase : DillonKashyapPhaseFormula k ψ) :
     KasamiCyclicAdditive.Phase.WalshCharacterFormula ψ (2 ^ k + 1) (walshCoefficient k ψ) := by
@@ -251,7 +255,9 @@ finite group `E(K)`.  Given a target `(p, q)` with `p, q ≠ 0` take
 `W, T ≠ 0` by the same torsion criterion.  Then
 `KasamiCyclicAdditive.FermatCubic.exists_twisted_root_equation` gives
 `W ^ (2^k+1) + p * T ^ (2^k+1) = q`, and
-`w = W ^ 3`, `z = T ^ 3` is the required pair. -/
+`w = W ^ 3`, `z = T ^ 3` is the required pair.
+@isnad1 id=rooteqso.4h4v.s6.7c1088303037 from=translated src=- shape=8a33c891 vocab=cccd94d5
+-/
 theorem rootEquationSolvable_odd {n k m : ℕ} (hn : Odd n) (hkn : Nat.Coprime k n)
     (hcard : Fintype.card K = 2 ^ n) (hm : 2 ^ k + 1 = 3 * m) :
     RootEqSolvable m K := by
@@ -322,7 +328,9 @@ so summing each cubic orbit in the Walsh identity kills every non-cube.  Hence
 The character-sum half is `KasamiCyclicAdditive.Phase.S_eq_zero_of_not_cube`;
 this lemma concludes vanishing of the triple sum.  It suffices that *one* of
 `ρ`, `1 + ρ` fail to be a cube, since the triple sum then has a vanishing factor
-either way. -/
+either way.
+@isnad1 id=eq.4h5v.s8.1bcc6166ca6d from=translated src=- shape=9fcdaec3 vocab=d9e51158
+-/
 theorem phaseTripleSum_eq_zero_of_not_cube {k m : ℕ} {ψ : AddChar K ℂ}
     {ρ : K} (_hψ : ψ.IsPrimitive) (_he : 2 ^ k + 1 = 3 * m)
     (_hW : KasamiCyclicAdditive.Phase.WalshCharacterFormula ψ (2 ^ k + 1) (walshCoefficient k ψ))
@@ -417,7 +425,9 @@ private lemma one_le_rootCount {m D : ℕ} {A B u v : K}
 /-- `Z(ρ) ≥ 0` at a cube slope.  `KasamiCyclicAdditive.Phase.phase_to_root_count`
 evaluates the correction term at the pair `(A³, B³)`, which for `ρ = A³`,
 `1 + ρ = B³` is the slope of interest, as `Q²/8 * (T - c²)` with `T` the total
-root count over `μ₃ × μ₃` and `c = |μ₃|`.  `one_le_rootCount` gives `c² ≤ T`. -/
+root count over `μ₃ × μ₃` and `c = |μ₃|`.  `one_le_rootCount` gives `c² ≤ T`.
+@isnad1 id=le.11h8v.s8.fddd61a422ab from=translated src=- shape=c33f4fc7 vocab=fd11d005
+-/
 theorem phaseTripleSum_re_nonneg_of_cube {k m D : ℕ} {ψ : AddChar K ℂ} {ρ : K}
     (hψ : ψ.IsPrimitive) (hm : m ≠ 0) (hD : D ≠ 0)
     (hmD : m * D ≡ 1 [MOD Fintype.card Kˣ]) (he : 2 ^ k + 1 = 3 * m)
@@ -473,7 +483,9 @@ variable {K : Type*} [Field K] [Fintype K] [DecidableEq K] [CharP K 2]
 
 /-- `Z(ρ) ≥ 0` for every admissible slope: cube slopes by root existence,
 non-cube slopes by the cube-support collapse.  In odd dimension every element
-is a cube, so only the first branch occurs. -/
+is a cube, so only the first branch occurs.
+@isnad1 id=le.10h7v.s8.b0b409b2f2b9 from=translated src=- shape=f2b14909 vocab=b307c632
+-/
 theorem phaseTripleSum_re_nonneg {n k m D : ℕ} {ψ : AddChar K ℂ} {ρ : K}
     (hψ : ψ.IsPrimitive) (hcard : Fintype.card K = 2 ^ n) (hkn : Nat.Coprime k n)
     (hm : m ≠ 0) (hD : D ≠ 0) (hmD : m * D ≡ 1 [MOD Fintype.card Kˣ])
@@ -522,7 +534,9 @@ explicit Walsh, triple-count, and average equations.  The Walsh hypothesis
 `hW` (`KasamiCyclicAdditive.Phase.WalshCharacterFormula`) can be obtained from
 `DillonKashyapPhaseFormula` via `walshCharacterFormula_of_phase_formula`; the
 triple-count and average hypotheses are discharged from the half-size result in
-`Assembly/Reduction.lean`. -/
+`Assembly/Reduction.lean`.
+@isnad1 id=eq.13h7v.s9.407e70cd49a5 from=translated src=- shape=8539bba1 vocab=63e4db1b
+-/
 theorem kasami_conjecture_of_inputs {n k m D : ℕ} {ψ : AddChar K ℂ}
     (hψ : ψ.IsPrimitive) (hcard : Fintype.card K = 2 ^ n) (hkn : Nat.Coprime k n)
     (hm : m ≠ 0) (hD : D ≠ 0) (hmD : m * D ≡ 1 [MOD Fintype.card Kˣ])

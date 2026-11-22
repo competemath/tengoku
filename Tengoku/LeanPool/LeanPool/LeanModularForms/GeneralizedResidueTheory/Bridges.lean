@@ -61,11 +61,15 @@ def toPath (γ : PiecewiseC1Curve) : Path (γ.toFun γ.a) (γ.toFun γ.b) where
 def toContinuousMap (γ : PiecewiseC1Curve) : C(I, ℂ) :=
   γ.toPath.toContinuousMap
 
-/-- `toPath` agrees with the original curve under rescaling. -/
+/-- `toPath` agrees with the original curve under rescaling.
+@isnad1 id=eq.0h2v.s9.006bcaeb6f39 from=translated src=- shape=382dad9e vocab=6d7ca1da
+-/
 theorem toPath_apply (γ : PiecewiseC1Curve) (t : I) :
     γ.toPath t = γ.toFun ((iccHomeoI γ.a γ.b γ.hab).symm t) := rfl
 
-/-- `toContinuousMap` agrees with the original curve under rescaling. -/
+/-- `toContinuousMap` agrees with the original curve under rescaling.
+@isnad1 id=eq.0h2v.s9.d21fbf04b269 from=translated src=- shape=fa2ab169 vocab=3c8d435c
+-/
 theorem toContinuousMap_apply (γ : PiecewiseC1Curve) (t : I) :
     γ.toContinuousMap t = γ.toFun ((iccHomeoI γ.a γ.b γ.hab).symm t) := rfl
 

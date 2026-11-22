@@ -45,6 +45,9 @@ private noncomputable instance : ContinuousSMul ℝ ℂ :=
 def circleParam (z₀ : ℂ) (r : ℝ) (a b : ℝ) (t : ℝ) : ℂ :=
   z₀ + r * exp (2 * Real.pi * I * ((t - a) / (b - a)))
 
+/--
+@isnad1 id=continuo.0h4v.s5.b00029dafe86 from=translated src=- shape=a8e94b22 vocab=a74ed64e
+-/
 lemma circleParam_continuous (z₀ : ℂ) (r : ℝ) (a b : ℝ) :
     Continuous (circleParam z₀ r a b) := by
   unfold circleParam
@@ -52,6 +55,9 @@ lemma circleParam_continuous (z₀ : ℂ) (r : ℝ) (a b : ℝ) :
     (Complex.continuous_exp.comp (Continuous.mul continuous_const
     ((continuous_ofReal.sub continuous_const).div_const _))))
 
+/--
+@isnad1 id=eq.1h4v.s4.8b42f2507738 from=translated src=- shape=c7864ff4 vocab=ac97f1ac
+-/
 lemma circleParam_closed (z₀ : ℂ) (r : ℝ) (a b : ℝ) (hab : a < b) :
     circleParam z₀ r a b a = circleParam z₀ r a b b := by
   simp only [circleParam]
@@ -59,6 +65,9 @@ lemma circleParam_closed (z₀ : ℂ) (r : ℝ) (a b : ℝ) (hab : a < b) :
     simp only [sub_ne_zero, Complex.ofReal_inj, ne_eq]; exact ne_of_gt hab
   simp_all
 
+/--
+@isnad1 id=eq.2h5v.s5.ea3b49aac702 from=translated src=- shape=f7675c3b vocab=6e0d3ca6
+-/
 lemma circleParam_dist (z₀ : ℂ) (r : ℝ) (hr : 0 ≤ r)
     (a b : ℝ) (_hab : a < b) (t : ℝ) :
     ‖circleParam z₀ r a b t - z₀‖ = r := by
@@ -67,6 +76,9 @@ lemma circleParam_dist (z₀ : ℂ) (r : ℝ) (hr : 0 ≤ r)
   ring_nf
   simp [Real.exp_zero, abs_of_nonneg hr]
 
+/--
+@isnad1 id=eq.1h5v.s7.7bbdd998c540 from=translated src=- shape=c7fb5246 vocab=32577461
+-/
 lemma circleParam_deriv (z₀ : ℂ) (r : ℝ) (a b : ℝ)
     (_hab : a < b) (t : ℝ) :
     deriv (circleParam z₀ r a b) t =
@@ -97,6 +109,9 @@ lemma circleParam_deriv (z₀ : ℂ) (r : ℝ) (a b : ℝ)
   simp only [zero_add] at hadd
   rw [hadd.deriv]; ring
 
+/--
+@isnad1 id=eq.2h5v.s7.8b1f5d8721ec from=translated src=- shape=a937c277 vocab=510ed4fc
+-/
 lemma circleParam_integrand_const (z₀ : ℂ) (r : ℝ)
     (hr : 0 < r) (a b : ℝ) (hab : a < b) (t : ℝ) :
     (circleParam z₀ r a b t - z₀)⁻¹ *
@@ -107,7 +122,9 @@ lemma circleParam_integrand_const (z₀ : ℂ) (r : ℝ)
   field_simp [Complex.ofReal_ne_zero.mpr (ne_of_gt hr),
     exp_ne_zero _]
 
-/-- The winding number of a CCW circle around its center is 1. -/
+/-- The winding number of a CCW circle around its center is 1.
+@isnad1 id=eq.2h4v.s5.3e4a24fcddaa from=translated src=- shape=2ddc0941 vocab=55a43609
+-/
 theorem circleParam_winding_eq_one (z₀ : ℂ) (r : ℝ)
     (hr : 0 < r) (a b : ℝ) (hab : a < b) :
     generalizedWindingNumber' (circleParam z₀ r a b) a b z₀ =
@@ -170,12 +187,18 @@ theorem circleParam_winding_eq_one (z₀ : ℂ) (r : ℝ)
 def circleParamCW (z₀ : ℂ) (r : ℝ) (a b : ℝ) (t : ℝ) : ℂ :=
   circleParam z₀ r a b (a + b - t)
 
+/--
+@isnad1 id=continuo.0h4v.s5.f6feb7f97302 from=translated src=- shape=a8e94b22 vocab=3b7ada57
+-/
 lemma circleParamCW_continuous (z₀ : ℂ) (r : ℝ) (a b : ℝ) :
     Continuous (circleParamCW z₀ r a b) := by
   unfold circleParamCW
   exact (circleParam_continuous z₀ r a b).comp
     (continuous_const.sub continuous_id)
 
+/--
+@isnad1 id=eq.1h4v.s4.bab0e63c3453 from=translated src=- shape=c7864ff4 vocab=e98dd779
+-/
 lemma circleParamCW_closed (z₀ : ℂ) (r : ℝ) (a b : ℝ)
     (hab : a < b) :
     circleParamCW z₀ r a b a =
@@ -183,11 +206,17 @@ lemma circleParamCW_closed (z₀ : ℂ) (r : ℝ) (a b : ℝ)
   simp only [circleParamCW, show a + b - a = b from by ring, show a + b - b = a from by ring]
   exact (circleParam_closed z₀ r a b hab).symm
 
+/--
+@isnad1 id=eq.2h5v.s5.7826adb99626 from=translated src=- shape=f7675c3b vocab=72b13b5c
+-/
 lemma circleParamCW_dist (z₀ : ℂ) (r : ℝ) (hr : 0 ≤ r)
     (a b : ℝ) (hab : a < b) (t : ℝ) :
     ‖circleParamCW z₀ r a b t - z₀‖ = r := by
   simpa only [circleParamCW] using circleParam_dist z₀ r hr a b hab (a + b - t)
 
+/--
+@isnad1 id=differen.0h4v.s6.54f1827cf3f5 from=translated src=- shape=e8ca5281 vocab=d74e514c
+-/
 lemma circleParam_differentiable (z₀ : ℂ) (r : ℝ)
     (a b : ℝ) :
     Differentiable ℝ (circleParam z₀ r a b) := by
@@ -204,6 +233,9 @@ lemma circleParam_differentiable (z₀ : ℂ) (r : ℝ)
         · exact Complex.ofRealCLM.differentiable.comp differentiable_id
         · exact differentiable_const _
 
+/--
+@isnad1 id=differen.0h4v.s6.db47dd9a7c32 from=translated src=- shape=e8ca5281 vocab=4d714ca1
+-/
 lemma circleParamCW_differentiable (z₀ : ℂ) (r : ℝ)
     (a b : ℝ) :
     Differentiable ℝ (circleParamCW z₀ r a b) := by
@@ -211,6 +243,9 @@ lemma circleParamCW_differentiable (z₀ : ℂ) (r : ℝ)
   exact (circleParam_differentiable z₀ r a b).comp
     ((differentiable_const _).sub differentiable_id)
 
+/--
+@isnad1 id=hasderiv.1h5v.s7.f5e16e3cb60b from=translated src=- shape=814c6b0a vocab=a9df09f2
+-/
 lemma circleParamCW_hasDerivAt (z₀ : ℂ) (r : ℝ)
     (a b : ℝ) (hab : a < b) (t : ℝ) :
     HasDerivAt (circleParamCW z₀ r a b)
@@ -234,6 +269,9 @@ lemma circleParamCW_hasDerivAt (z₀ : ℂ) (r : ℝ)
   simp only [neg_one_smul] at hchain
   exact hchain
 
+/--
+@isnad1 id=eq.1h5v.s7.ca8132f994e1 from=translated src=- shape=bc67936b vocab=712b9ea9
+-/
 lemma circleParamCW_deriv (z₀ : ℂ) (r : ℝ) (a b : ℝ)
     (hab : a < b) (t : ℝ) :
     deriv (circleParamCW z₀ r a b) t =
@@ -242,6 +280,9 @@ lemma circleParamCW_deriv (z₀ : ℂ) (r : ℝ) (a b : ℝ)
         (((a + b - t : ℝ) - a) / (b - a)))) :=
   (circleParamCW_hasDerivAt z₀ r a b hab t).deriv
 
+/--
+@isnad1 id=eq.2h5v.s7.41f623463d21 from=translated src=- shape=190a6824 vocab=4ea2326a
+-/
 lemma circleParamCW_integrand_neg (z₀ : ℂ) (r : ℝ)
     (hr : 0 < r) (a b : ℝ) (hab : a < b) (t : ℝ) :
     (circleParamCW z₀ r a b t - z₀)⁻¹ *
@@ -258,7 +299,9 @@ lemma circleParamCW_integrand_neg (z₀ : ℂ) (r : ℝ)
     exp_ne_zero _
   field_simp [hr_ne, hexp_ne]
 
-/-- Winding number of a CW circle around its center is -1. -/
+/-- Winding number of a CW circle around its center is -1.
+@isnad1 id=eq.2h4v.s5.60811639fd9c from=translated src=- shape=ef25304d vocab=1f211bd5
+-/
 theorem circleParamCW_winding_eq_neg_one (z₀ : ℂ)
     (r : ℝ) (hr : 0 < r) (a b : ℝ) (hab : a < b) :
     generalizedWindingNumber' (circleParamCW z₀ r a b)
@@ -326,7 +369,9 @@ private lemma hasDerivAt_ofReal_comp (θ : ℝ → ℝ) (t : ℝ)
     HasDerivAt (fun u => (θ u : ℂ)) (Complex.ofReal (deriv θ t)) t := by
   simpa using (hθ.hasDerivAt).ofReal_comp (z := t)
 
-/-- For a C¹ curve on S¹ with angle lift θ, the winding number equals the degree. -/
+/-- For a C¹ curve on S¹ with angle lift θ, the winding number equals the degree.
+@isnad1 id=other.4h5v.s7.a6398a4cd07f from=translated src=- shape=b4b830a3 vocab=27c6dd30
+-/
 theorem winding_of_S1_curve_eq_degree (z₀ : ℂ) (a b : ℝ) (_hab : a < b)
     (n : ℤ) (θ : ℝ → ℝ) (hθ_diff : Differentiable ℝ θ)
     (hθ_deriv_cont : Continuous (deriv θ))

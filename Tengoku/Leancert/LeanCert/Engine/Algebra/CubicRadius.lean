@@ -27,11 +27,16 @@ to check over exact rationals. -/
 def QCubic.cauchyRadius (P : QCubic) : ℚ :=
   1 + (|P.b| + |P.c| + |P.d|) / |P.a|
 
+/--
+@isnad1 id=le.0h1v.s3.77190e17cef3 from=translated src=- shape=b9369acb vocab=1f06af00
+-/
 theorem QCubic.one_le_cauchyRadius (P : QCubic) : 1 ≤ P.cauchyRadius := by
   simp only [QCubic.cauchyRadius]
   exact le_add_of_nonneg_right (div_nonneg (by positivity) (by positivity))
 
-/-- Every real root lies in the executable Cauchy radius. -/
+/-- Every real root lies in the executable Cauchy radius.
+@isnad1 id=le.2h2v.s5.6d0ed2d50c7c from=translated src=- shape=c216fc18 vocab=9532d63b
+-/
 theorem QCubic.root_abs_le_cauchyRadius (P : QCubic) (ha : P.a ≠ 0) {x : ℝ}
     (hx : x ∈ cubicZeroSet P.toReal) : |x| ≤ P.cauchyRadius := by
   simp only [cubicZeroSet, Set.mem_ofPred_eq, QCubic.toReal] at hx
@@ -95,7 +100,9 @@ def QCubic.automaticSeparationMesh (P : QCubic) : ℚ :=
   D / (1 + C + D)
 
 /-- The deterministic mesh constructor passes the exact checker for every
-genuine cubic with nonzero discriminant. -/
+genuine cubic with nonzero discriminant.
+@isnad1 id=eq.2h1v.s4.383da4df0fd1 from=translated src=- shape=8c3a3444 vocab=5d4728f6
+-/
 theorem QCubic.automaticSeparationMesh_check (P : QCubic)
     (ha : P.a ≠ 0) (hdiscr : P.discr ≠ 0) :
     P.separationMeshCheck P.automaticSeparationMesh = true := by
@@ -122,6 +129,9 @@ theorem QCubic.automaticSeparationMesh_check (P : QCubic)
   · simpa [QCubic.automaticSeparationMesh, D, C, T] using div_pos hD hT
   · simpa [QCubic.automaticSeparationMesh, D, C, T] using hthreshold
 
+/--
+@isnad1 id=iff.1h2v.s5.66b024f2a942 from=translated src=- shape=e12fcd9b vocab=3059fb36
+-/
 theorem QCubic.mem_roots_iff_mem_zeroSet (P : QCubic) (ha : P.a ≠ 0) (x : ℝ) :
     x ∈ P.toReal.roots ↔ x ∈ cubicZeroSet P.toReal := by
   have haR : P.toReal.a ≠ 0 := by
@@ -135,7 +145,9 @@ theorem QCubic.mem_roots_iff_mem_zeroSet (P : QCubic) (ha : P.a ≠ 0) (x : ℝ)
   rw [Cubic.mem_roots_iff hp]
   simp [cubicZeroSet]
 
-/-- Three distinct real zeros enumerate the root multiset of a genuine cubic. -/
+/-- Three distinct real zeros enumerate the root multiset of a genuine cubic.
+@isnad1 id=eq.7h4v.s6.15ccd4e8d0c2 from=translated src=- shape=2f078398 vocab=a3e29cbd
+-/
 theorem QCubic.roots_eq_three_of_mem (P : QCubic) (ha : P.a ≠ 0) {x y z : ℝ}
     (hx : x ∈ cubicZeroSet P.toReal) (hy : y ∈ cubicZeroSet P.toReal)
     (hz : z ∈ cubicZeroSet P.toReal)
@@ -161,7 +173,9 @@ theorem QCubic.roots_eq_three_of_mem (P : QCubic) (ha : P.a ≠ 0) {x y z : ℝ}
     _ ≤ P.toReal.toPoly.natDegree := Polynomial.card_roots' _
     _ = 3 := Cubic.natDegree_of_a_ne_zero haR
 
-/-- Soundness of the exact separation-mesh checker. -/
+/-- Soundness of the exact separation-mesh checker.
+@isnad1 id=and.2h5v.s6.de5269744e90 from=translated src=- shape=dc0fb817 vocab=058c14a0
+-/
 theorem QCubic.separationMeshCheck_sound (P : QCubic) {eps : ℚ} {x y z : ℝ}
     (hcheck : P.separationMeshCheck eps = true)
     (hroots : P.toReal.roots = {x, y, z}) :
@@ -194,7 +208,9 @@ theorem QCubic.separationMeshCheck_sound (P : QCubic) {eps : ℚ} {x y z : ℝ}
     norm_cast
 
 /-- User-facing separation: any two distinct real roots of a certified
-three-root cubic are farther apart than the checked mesh width. -/
+three-root cubic are farther apart than the checked mesh width.
+@isnad1 id=lt.5h4v.s6.d3886ea94a38 from=translated src=- shape=5e9f5a57 vocab=015a8301
+-/
 theorem QCubic.separationMeshCheck_sound_of_distinct_roots
     (P : QCubic) {eps : ℚ}
     (hcount : P.threeRootCountCheck = true)

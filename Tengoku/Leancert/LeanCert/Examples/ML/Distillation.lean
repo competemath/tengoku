@@ -65,20 +65,32 @@ def studentNet : SequentialNet where
 
 /-! ### Well-formedness Proofs -/
 
+/--
+@isnad1 id=wellform.0h0v.s1.a56417842a82 from=translated src=- shape=49959d42 vocab=c21fb3da
+-/
 theorem layer1_wf : layer1.WellFormed := by
   constructor
   · intro row hrow; simp only [layer1, Layer.inputDim] at hrow ⊢; fin_cases hrow <;> rfl
   · rfl
 
+/--
+@isnad1 id=wellform.0h0v.s1.43eed5d5b317 from=translated src=- shape=49959d42 vocab=5cd4a0a4
+-/
 theorem layer2_wf : layer2.WellFormed := by
   constructor
   · intro row hrow; simp only [layer2, Layer.inputDim] at hrow ⊢; fin_cases hrow; rfl
   · rfl
 
+/--
+@isnad1 id=wellform.0h0v.s2.193d4b286cb8 from=translated src=- shape=aa0f4b0e vocab=57744806
+-/
 theorem teacherNet_wf : teacherNet.WellFormed 2 := by
   simp only [SequentialNet.WellFormed, teacherNet, SequentialNet.LayersWellFormed]
   exact ⟨layer1_wf, rfl, layer2_wf, rfl, trivial⟩
 
+/--
+@isnad1 id=wellform.0h0v.s2.61cd84602c67 from=translated src=- shape=aa0f4b0e vocab=f8f9c5c8
+-/
 theorem studentNet_wf : studentNet.WellFormed 2 := by
   simp only [SequentialNet.WellFormed, studentNet, SequentialNet.LayersWellFormed]
   exact ⟨layer1_wf, rfl, layer2_wf, rfl, trivial⟩
@@ -104,7 +116,9 @@ def distillationCheck : Bool :=
 
 /-! ### Helper Lemmas -/
 
-/-- Membership in mkInterval -/
+/-- Membership in mkInterval
+@isnad1 id=mem.2h5v.s5.a7299fb96a9f from=translated src=- shape=6f2075c7 vocab=f8f7d82b
+-/
 theorem mem_mkInterval {x : ℝ} {lo hi : ℚ} (hle : lo ≤ hi)
     (hx : (lo : ℝ) ≤ x ∧ x ≤ (hi : ℝ)) (prec : Int) (hprec : prec ≤ 0 := by norm_num) :
     x ∈ mkInterval lo hi hle prec := by

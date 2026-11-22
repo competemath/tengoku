@@ -56,6 +56,9 @@ def angleAtCrossing (γ : PiecewiseC1Immersion) (t₀ : ℝ)
     arg L_right - arg (-L_left)
   else Real.pi
 
+/--
+@isnad1 id=eq.2h2v.s5.a27bc3621429 from=translated src=- shape=e9177949 vocab=56406948
+-/
 theorem angleAtCrossing_smooth (γ : PiecewiseC1Immersion)
     (t₀ : ℝ) (ht₀ : t₀ ∈ Ioo γ.a γ.b)
     (hsmooth : t₀ ∉ γ.toPiecewiseC1Curve.partition) :
@@ -76,17 +79,25 @@ def windingNumberWithAngles'
     (angleAtCrossing γ t
       (hcrossings_in t t.prop)) / (2 * Real.pi)
 
+/--
+@isnad1 id=mem.2h4v.s5.fd67ed6fc6dd from=translated src=- shape=47c545d3 vocab=019a2d0b
+-/
 theorem singleton_mem_Ioo (t₀ : ℝ) (a b : ℝ)
     (ht₀ : t₀ ∈ Ioo a b) :
     ∀ t ∈ ({t₀} : Finset ℝ), t ∈ Ioo a b := by
   simp_all [Finset.mem_singleton]
 
+/--
+@isnad1 id=eq.2h4v.s5.1e4528e20ac1 from=translated src=- shape=9f20a0c4 vocab=acaa3968
+-/
 theorem singleton_at_crossing (γ : PiecewiseC1Immersion)
     (t₀ : ℝ) (z₀ : ℂ) (hcross : γ.toFun t₀ = z₀) :
     ∀ t ∈ ({t₀} : Finset ℝ), γ.toFun t = z₀ := by
   simp_all [Finset.mem_singleton]
 
-/-- A single smooth crossing contributes 1/2 to the winding number. -/
+/-- A single smooth crossing contributes 1/2 to the winding number.
+@isnad1 id=eq.3h3v.s6.357081aaedc9 from=translated src=- shape=f8def93a vocab=cb598b96
+-/
 theorem windingNumber_smooth_crossing
     (γ : PiecewiseC1Immersion) (z₀ : ℂ)
     (t₀ : ℝ) (ht₀ : t₀ ∈ Ioo γ.a γ.b)
@@ -101,7 +112,9 @@ theorem windingNumber_smooth_crossing
   rw [angleAtCrossing_smooth γ t₀ ht₀ hsmooth]
   field_simp [Real.pi_ne_zero]
 
-/-- A corner crossing with angle α contributes α/(2π). -/
+/-- A corner crossing with angle α contributes α/(2π).
+@isnad1 id=eq.3h4v.s6.086543c55890 from=translated src=- shape=cca6b626 vocab=2db5c806
+-/
 theorem windingNumber_corner_crossing
     (γ : PiecewiseC1Immersion) (z₀ : ℂ)
     (t₀ : ℝ) (α : ℝ) (ht₀ : t₀ ∈ Ioo γ.a γ.b)
@@ -114,7 +127,9 @@ theorem windingNumber_corner_crossing
   simp only [windingNumberWithAngles']
   simp_all
 
-/-- When γ avoids z₀, the PV cutoff is trivial below minimum distance. -/
+/-- When γ avoids z₀, the PV cutoff is trivial below minimum distance.
+@isnad1 id=ex.1h2v.s6.3d84c1df09c0 from=translated src=- shape=d11c184f vocab=a4d4e801
+-/
 theorem cauchyPrincipalValue_eq_classical_off_curve'
     (γ : PiecewiseC1Curve) (z₀ : ℂ)
     (hoff : ∀ t ∈ Icc γ.a γ.b, γ.toFun t ≠ z₀) :
@@ -134,6 +149,9 @@ theorem cauchyPrincipalValue_eq_classical_off_curve'
           Metric.infDist_le_dist_of_mem (mem_image_of_mem _ ht)
       _ > ε := hε⟩
 
+/--
+@isnad1 id=eq.2h2v.s6.ffd7a099bf69 from=translated src=- shape=1c62a97e vocab=256eee8b
+-/
 theorem integral_inv_real_axis (r ε : ℝ) (hr : 0 < r)
     (hε : 0 < ε) :
     ∫ t in ε..r, (t : ℂ)⁻¹ =
@@ -179,7 +197,9 @@ def PiecewiseC1Immersion.translate
     exact ⟨L, hL_ne, by
       simp_all⟩
 
-/-- The angle at a crossing is invariant under translation. -/
+/-- The angle at a crossing is invariant under translation.
+@isnad1 id=eq.1h3v.s5.9add2fe6b4e1 from=translated src=- shape=8f7e4424 vocab=b2ec02b2
+-/
 theorem angleAtCrossing_translate
     (γ : PiecewiseC1Immersion) (c : ℂ) (t₀ : ℝ)
     (ht₀ : t₀ ∈ Ioo γ.a γ.b) :

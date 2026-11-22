@@ -87,6 +87,9 @@ def _root_.Tengoku.LeanPool.ValidSeq (k : ℕ) (b : Fin (k + 1) → ℕ) : Prop 
 /-- The base sequence `b_i = k + 1 - i`. Its sum equals `(k + 2).choose 2`. -/
 def _root_.Tengoku.LeanPool.baseSeq (k : ℕ) : Fin (k + 1) → ℕ := fun i => k + 1 - i
 
+/--
+@isnad1 id=eq.0h1v.s6.fd5907b87c3a from=translated src=- shape=fc4ab8d3 vocab=09255bf9
+-/
 lemma _root_.Tengoku.LeanPool.sum_baseSeq (k : ℕ) : ∑ i, baseSeq k i = Nat.choose (k + 2) 2 := by
   unfold baseSeq;
   induction k <;> simp_all +decide [ Nat.choose_succ_succ, Fin.sum_univ_succ ];
@@ -96,6 +99,9 @@ lemma _root_.Tengoku.LeanPool.sum_baseSeq (k : ℕ) : ∑ i, baseSeq k i = Nat.c
 Any valid sequence is component-wise greater than or equal to the base sequence (k + 1, ..., 1).
 This follows from the fact that the sequence is strictly decreasing and the last element is at least
 1.
+-/
+/--
+@isnad1 id=le.1h3v.s5.b3f58ce2c282 from=translated src=- shape=68057ee1 vocab=cb9498eb
 -/
 lemma _root_.Tengoku.LeanPool.valid_seq_ge_base {k : ℕ} {b : Fin (k + 1) → ℕ} (h : ValidSeq k b) :
     ∀ i, b i ≥ baseSeq k i := by
@@ -111,6 +117,9 @@ lemma _root_.Tengoku.LeanPool.valid_seq_ge_base {k : ℕ} {b : Fin (k + 1) → �
 If a valid sequence is not equal to the base sequence, then there must be some index where it is
 strictly greater than the base sequence. This is because valid sequences are always component-wise
 greater than or equal to the base sequence.
+-/
+/--
+@isnad1 id=ex.2h2v.s6.4fbc4e817ee0 from=translated src=- shape=a4a6d5a1 vocab=3822cdd5
 -/
 lemma _root_.Tengoku.LeanPool.exists_gt_base_of_ne_base {k : ℕ} {b : Fin (k + 1) → ℕ}
     (h_valid : ValidSeq k b) (h_ne : b ≠ baseSeq k) :
@@ -136,6 +145,9 @@ noncomputable def _root_.Tengoku.LeanPool.transformSeq (k : ℕ) (b : Fin (k + 1
 /-
 If b is a valid sequence different from the base sequence, then T(b) is also a valid sequence, its
 sum is one less than the sum of b, and T(b) is component-wise less than or equal to b.
+-/
+/--
+@isnad1 id=other.2h2v.s7.9abc837965dc from=translated src=- shape=70b33c12 vocab=a08052f2
 -/
 lemma _root_.Tengoku.LeanPool.transformSeq_props {k : ℕ} {b : Fin (k + 1) → ℕ}
     (h_valid : ValidSeq k b) (h_not_base : b ≠ baseSeq k) :
@@ -212,6 +224,9 @@ lemma _root_.Tengoku.LeanPool.transformSeq_props {k : ℕ} {b : Fin (k + 1) → 
 For any sequence b, the compressed sizes sequence is component-wise less than or equal to b. This
 follows immediately from the definition involving min.
 -/
+/--
+@isnad1 id=le.0h3v.s5.258de7c08e92 from=translated src=- shape=2d520afe vocab=e030dfc6
+-/
 lemma _root_.Tengoku.LeanPool.compressedSizes_le {k : ℕ} {b : Fin (k + 1) → ℕ} : ∀ i, compressedSizes b i ≤ b i := by
   rintro ⟨i, hi⟩
   cases i with
@@ -226,6 +241,9 @@ lemma _root_.Tengoku.LeanPool.compressedSizes_le {k : ℕ} {b : Fin (k + 1) → 
 The value of compressedSizes at index i + 1 is min(compressedSizes b i - 1, b (i + 1)) by
 definition.
 -/
+/--
+@isnad1 id=eq.0h3v.s5.ec4a5cd3be2b from=translated src=- shape=79885b9a vocab=b254f603
+-/
 lemma _root_.Tengoku.LeanPool.compressedSizes_succ {k : ℕ} {b : Fin (k + 1) → ℕ} (i : Fin k) :
     compressedSizes b (Fin.succ i) = min (compressedSizes b (Fin.castSucc i) - 1) (
         b (Fin.succ i)) := by
@@ -237,6 +255,9 @@ If the last element of the compressed sizes sequence is positive, then all eleme
 This can be proven by reverse induction or by observing that the sequence is non-increasing (or
 strictly decreasing where positive). Actually, from the recurrence, b'_{i + 1} <= b'_i - 1, so b'_i
 >= b'_{i + 1} + 1 > b'_{i + 1}. So if the last is positive, previous ones are larger.
+-/
+/--
+@isnad1 id=lt.1h3v.s5.6576bb9c3278 from=translated src=- shape=417dfdda vocab=5b3af95b
 -/
 lemma _root_.Tengoku.LeanPool.compressedSizes_pos {k : ℕ} {b : Fin (k + 1) → ℕ}
     (h_last_pos : compressedSizes b (Fin.last k) > 0) :
@@ -258,6 +279,9 @@ If a valid sequence has a sum strictly greater than the target sum (which is at 
 then there exists a valid sequence with the target sum that is component-wise less than or equal to
 the original sequence. This is proved by repeatedly applying the transformation T, which reduces the
 sum by 1 at each step while maintaining validity and the component-wise inequality.
+-/
+/--
+@isnad1 id=ex.2h3v.s8.578b3305cf41 from=translated src=- shape=65d060d2 vocab=43b4b7a4
 -/
 lemma _root_.Tengoku.LeanPool.polynomialMethod_reduction_lemma {k : ℕ} {b : Fin (k + 1) → ℕ} (h_valid : ValidSeq k b)
     (h_sum : ∑ i, b i > p + Nat.choose (k + 2) 2 - 1) :
@@ -287,6 +311,9 @@ lemma _root_.Tengoku.LeanPool.polynomialMethod_reduction_lemma {k : ℕ} {b : Fi
 The compressed sizes sequence is strictly decreasing because each term is defined as the minimum of
 the previous term minus 1 and the original sequence value. Thus, b'_{i + 1} <= b'_i - 1 < b'_i.
 Since the last term is positive by hypothesis, the sequence is valid.
+-/
+/--
+@isnad1 id=validseq.1h2v.s5.87446e39c8ed from=translated src=- shape=657e5d3a vocab=4fa71654
 -/
 lemma _root_.Tengoku.LeanPool.compressedSizes_is_valid {k : ℕ} {b : Fin (k + 1) → ℕ}
     (h_last_pos : compressedSizes b (Fin.last k) > 0) :

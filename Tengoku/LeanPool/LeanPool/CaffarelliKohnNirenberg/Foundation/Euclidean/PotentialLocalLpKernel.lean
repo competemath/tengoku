@@ -32,7 +32,9 @@ open CKN
 def truncatedNewtonianPotentialKernel (R : ℝ) : Vec3 → ℝ := fun z =>
   if ‖z‖ < R then newtonianKernel z else 0
 
-/-- The truncated Newtonian kernel is measurable. -/
+/-- The truncated Newtonian kernel is measurable.
+@isnad1 id=measurab.0h1v.s4.67cd0510c71d from=translated src=- shape=6806422f vocab=49acced5
+-/
 theorem measurable_truncatedNewtonianPotentialKernel (R : ℝ) :
     Measurable (truncatedNewtonianPotentialKernel R) := by
   unfold truncatedNewtonianPotentialKernel
