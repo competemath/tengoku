@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "5208263e46ea82f02194c5ea6c41c09cc7bac0c568e0a5ae5fb2c2eea878dc0a",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "lean-spectral-theory",
+ "lint_mode": "proposed",
+ "modules": 18,
+ "part": 1,
+ "theorems": 75
+}
