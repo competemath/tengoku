@@ -1,0 +1,24 @@
+--- a/Main.lean
++++ b/Main.lean
+@@ -7,9 +7,20 @@ def main (args : List String) : IO Unit := do
+   let (imports, constants) := args.span (· != "--")
+   let imports := imports.toArray.map fun mod => { module := Syntax.decodeNameLit ("`" ++ mod) |>.get! }
+   let env ← importModules imports {}
++  -- `--own=Tengoku.Foo` (repeatable): of the whole environment, export only the constants declared in the modules under these names (and what they need).
++  -- `moduleNames` builds its array on every call: it is taken once, and the modules under the names are marked once, not once per constant and name
++  let own : List Name := opts.filterMap fun o => if o.startsWith "--own=" then some (o.splitOn "=").getLast!.toName else none
++  let moduleNames : Array Name := env.header.moduleNames
++  let isOwn : Array Bool := moduleNames.map fun m => own.any fun p => p.isPrefixOf m
+   let constants := match constants.tail? with
+     | some cs => cs.map fun c => Syntax.decodeNameLit ("`" ++ c) |>.get!
+-    | none    => env.constants.toList.map Prod.fst |>.filter (!·.isInternal)
++    | none    =>
++      let all : List Name := env.constants.toList.map Prod.fst |>.filter (fun (n : Name) => !n.isInternal)
++      if own.isEmpty then all
++      else all.filter fun n =>
++        match env.getModuleIdxFor? n with
++        | some i => isOwn[i]!
++        | none => false
+   M.run env do
+     let _ ← initState env opts
+     dumpMetadata

@@ -315,11 +315,17 @@ def print_audit(total: int, n_intake: int, held: int, n_extra: int, unnamed: lis
         )
 
 
-def audit_records(s: Scan, records_dir: Path, by_name: dict[str, int]) -> tuple[dict, list[str]]:
-    """Every trusted record must be in the export and rest only on the standard axioms. Returns the report and the failures."""
+def audit_records(s: Scan, records_dir: Path, by_name: dict[str, int], libraries: set[str] | None = None) -> tuple[dict, list[str]]:
+    """Every trusted record must be in the export and rest only on the standard axioms. Returns the report and the failures.
+    With `libraries` only the records of those libraries are audited (a shard of the independent check, docs/releases.md: the shards' libraries are disjoint, so their reports add up)."""
     records = live_records(records_dir)
-    record_names = set(records)  # a manifest name that is also a trusted record is held to the record's rule
+    record_names = set(
+        records
+    )  # every trusted record, whatever the shard: a manifest name that is also a trusted record is held to the record's rule, in a shard as in the whole tree
     intake = intake_records(records_dir.parent / "intake")  # data/trusted -> data/intake
+    if libraries is not None:
+        records = {n: libs for n, libs in records.items() if libs & libraries}
+        intake = {n: libs for n, libs in intake.items() if libs & libraries}
     for n_, libs in intake.items():
         records.setdefault(n_, set()).update(libs)
     by_last: dict[str, list[str]] = {}
@@ -353,6 +359,7 @@ def audit_records(s: Scan, records_dir: Path, by_name: dict[str, int]) -> tuple[
         "intake_theorems": len(intake),
         "intake_not_under_manifest_name": unnamed,
         "not_in_export_libraries_not_compiled": dict(sorted(absent.items())),
+        **({"libraries": sorted(libraries)} if libraries is not None else {}),
     }
     return report, bad
 
@@ -363,6 +370,10 @@ def main() -> int:
     ap.add_argument("--records", type=Path, help="data/trusted: every record must rest only on the standard axioms")
     ap.add_argument("--permitted", type=Path, help="write the declared axioms here (a JSON list)")
     ap.add_argument("--report", type=Path, help="write the verdict here as JSON")
+    ap.add_argument(
+        "--libraries",
+        help="comma-separated library names (data/trusted/<name>.jsonl, data/intake/<name>/): audit only their records. Every declaration of the export is scanned whatever this says",
+    )
     a = ap.parse_args()
     export, records_dir = checked_path(a.export), a.records and checked_path(a.records)
     permitted, report_path = a.permitted and checked_path(a.permitted), a.report and checked_path(a.report)
@@ -388,7 +399,8 @@ def main() -> int:
         "resting_on_other_axioms": {x: sorted(users) for x, users in resting.items()},
     }
     if records_dir:
-        report["trusted_records"], record_failures = audit_records(s, records_dir, {s.name(n): n for n in s.decl})
+        wanted = {x for x in a.libraries.split(",") if x} if a.libraries is not None else None
+        report["trusted_records"], record_failures = audit_records(s, records_dir, {s.name(n): n for n in s.decl}, wanted)
         bad += record_failures
 
     if permitted:

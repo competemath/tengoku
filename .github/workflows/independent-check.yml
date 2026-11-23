@@ -10,12 +10,35 @@ name: independent-check
 #     Classical.choice and Quot.sound, or when the export declares an axiom outside the prelude.
 # A bug in Lean's own kernel, or a record that slipped something past the gate, would have to fool both. It runs on
 # the published cache of a commit of main, and nothing it runs comes from a PR.
+#
+# IN SHARDS. One `lean4export Tengoku.All` is one process that writes about 13,000 lines a second: 4 h 04 min for the 196.6
+# million lines of 2026-10-12, the last time this check passed; the tree has grown since, and the 350 minutes of the one job ran
+# out in the export on every night from 16 November. The plan job cuts the tree into shards (scripts/ci/independent_check.py:
+# shard 0 is the seeded root and the libraries of the tier files; the others are the libraries that arrived as modules, balanced
+# by the size of their sources), each shard is a job that exports its constants, has nanoda check the export and scans it, and the
+# report job joins the shards' reports into the one `independent-check` artifact a release reads, unless a shard is missing,
+# failed, or was made for another commit or by other tools. Shard 0 exports every constant of the environment its roots make (all of
+# Lean core and the seed); a library shard exports the constants declared in the modules of its own libraries and what they need
+# (`lean4export --own`, scripts/ci/lean4export-own.patch), so the union of the exports holds every constant `Tengoku.All` has: the seed
+# through shard 0, each library's own constants through its shard (the plan refuses roots that are not exactly the imports of Tengoku/All.lean).
 run-name: independent check of ${{ inputs.commit || github.sha }}   # release.yml looks runs up by this title
 on:
   workflow_dispatch:
     inputs:
       commit:
         description: "A commit of main to check (default: the newest). A release needs a passing check of its commit."
+        required: false
+        default: ""
+      shards:
+        description: "How many shards the libraries that arrived as modules are cut into (the seed is shard 0 besides)"
+        required: false
+        default: "24"
+      parallel:
+        description: "How many shards run at once (the merge queue's builds need runners too: the organization has 20 hosted runners)"
+        required: false
+        default: "8"
+      only_shard:
+        description: "A diagnosis of one shard of that plan: only it runs, and there is no report (the run is not a check of the commit)"
         required: false
         default: ""
   schedule:
@@ -36,29 +59,85 @@ env:
   NANODA_COMMIT: 3a2407216ee84a75f9e1aead6803d0578be06ae7  # pragma: allowlist secret (a commit, not a secret)
 
 jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions: { contents: read }
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      commit: ${{ steps.plan.outputs.commit }}
+    steps:
+      - name: The commit, in full (the run title names it, and a release matches the title exactly)
+        env: { WANT: "${{ inputs.commit }}", SHARDS: "${{ inputs.shards || '24' }}", PARALLEL: "${{ inputs.parallel }}" }
+        run: |
+          [ -z "$WANT" ] || [[ "$WANT" =~ ^[0-9a-f]{40}$ ]] || { echo "::error::commit must be the full 40-character SHA: git rev-parse <commit>"; exit 1; }
+          [[ "$SHARDS" =~ ^[0-9]+$ ]] && [ "$SHARDS" -ge 1 ] && [ "$SHARDS" -le 40 ] || { echo "::error::shards must be a number from 1 to 40"; exit 1; }
+          [[ "${PARALLEL:-8}" =~ ^[0-9]+$ ]] && [ "${PARALLEL:-8}" -ge 1 ] && [ "${PARALLEL:-8}" -le 12 ] || { echo "::error::parallel must be a number from 1 to 12"; exit 1; }
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: "${{ inputs.commit || github.sha }}"
+          fetch-depth: 0
+          filter: "blob:none"
+          sparse-checkout: |
+            Tengoku/All.lean
+            lean-toolchain
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+      - name: The plan (which roots go to which shard)
+        id: plan
+        env: { WANT: "${{ inputs.commit }}", SHARDS: "${{ inputs.shards || '24' }}", ONLY: "${{ inputs.only_shard }}", GH_TOKEN: "${{ github.token }}" }
+        run: |
+          [ "$(git rev-parse HEAD)" = "${WANT:-$GITHUB_SHA}" ] || { echo "::error::checked out $(git rev-parse HEAD), not ${WANT:-$GITHUB_SHA}"; exit 1; }
+          git merge-base --is-ancestor HEAD origin/main || { echo "::error::$(git rev-parse HEAD) is not on main"; exit 1; }
+          # the planner comes from this workflow's own commit, not from the (possibly older) commit being checked (with the two modules it imports)
+          for f in independent_check exempt_export axiom_scan; do git show "$GITHUB_SHA:scripts/ci/$f.py" > "$RUNNER_TEMP/$f.py"; done
+          # the sizes of the libraries' sources come from the API's listing of the Tengoku tree: `git ls-tree -l` fetches the blobs of a blobless clone one at a time
+          # (the planner reads Tengoku/All.lean, tengoku-tree.json and data-paths.txt from this directory and writes plan.json and matrix.json here: no path on its command line)
+          gh api "repos/$GITHUB_REPOSITORY/git/trees/$(git rev-parse HEAD:Tengoku)?recursive=1" > tengoku-tree.json
+          git ls-tree -r --name-only HEAD -- data/trusted data/intake > data-paths.txt
+          only=(); [[ "$ONLY" =~ ^[0-9]+$ ]] && only=(--only "$ONLY")
+          [ -z "$ONLY" ] || [ "${#only[@]}" -gt 0 ] || { echo "::error::only_shard must be a shard number"; exit 1; }
+          python3 "$RUNNER_TEMP/independent_check.py" plan --shards "$SHARDS" --commit "$(git rev-parse HEAD)" "${only[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
+          { echo "matrix=$(cat matrix.json)"; echo "commit=$(git rev-parse HEAD)"; } >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with: { name: plan, path: plan.json, retention-days: 90 }
+
   check:
+    needs: plan
     runs-on: ubuntu-latest
     timeout-minutes: 350
     permissions: { contents: read }
+    strategy:
+      fail-fast: false   # one shard's failure must not hide the others' results
+      max-parallel: ${{ fromJSON(inputs.parallel || '8') }}    # the seed shard first; the merge queue's builds need runners too
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    env:
+      SHARD: ${{ matrix.shard }}
+      ROOTS: ${{ matrix.roots }}
+      LIBRARIES: ${{ matrix.libraries }}
+      OWN: ${{ matrix.own }}
+      CHECK_COMMIT: ${{ needs.plan.outputs.commit }}
     steps:
-      - name: Free disk (the export of the whole tree is several GB)
+      - name: Free disk (the export is several GB)
         run: |
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/local/.ghcup /opt/hostedtoolcache /usr/local/share/boost /usr/share/swift /usr/lib/jvm /usr/share/miniconda /usr/local/share/powershell /usr/local/lib/node_modules /opt/az /usr/local/graalvm /usr/local/share/chromium
           sudo docker image prune --all --force >/dev/null 2>&1 || true
           sudo swapoff -a >/dev/null 2>&1 || true; sudo rm -f /mnt/swapfile /swapfile || true
           df -h /
-      - name: The commit, in full (the run title names it, and a release matches the title exactly)
-        env: { WANT: "${{ inputs.commit }}" }
-        run: '[ -z "$WANT" ] || [[ "$WANT" =~ ^[0-9a-f]{40}$ ]] || { echo "::error::commit must be the full 40-character SHA: git rev-parse <commit>"; exit 1; }'
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with: { ref: "${{ inputs.commit || github.sha }}", fetch-depth: 0, filter: "blob:none", persist-credentials: false }
+        with: { ref: "${{ inputs.commit || github.sha }}", fetch-depth: 0, filter: "blob:none", persist-credentials: false }   # as the plan job: the plan's commit is only compared with, never checked out by name
       - name: A commit of main, checked by the newest checker
-        env: { WANT: "${{ inputs.commit }}" }
         run: |
-          [ "$(git rev-parse HEAD)" = "${WANT:-$GITHUB_SHA}" ] || { echo "::error::checked out $(git rev-parse HEAD), not ${WANT:-$GITHUB_SHA}"; exit 1; }
+          [ "$(git rev-parse HEAD)" = "$CHECK_COMMIT" ] || { echo "::error::checked out $(git rev-parse HEAD), not $CHECK_COMMIT"; exit 1; }
           git merge-base --is-ancestor HEAD origin/main || { echo "::error::$(git rev-parse HEAD) is not on main"; exit 1; }
-          # the axiom scan comes from this workflow's own commit, not from the (possibly older) commit being checked
-          git show "$GITHUB_SHA:scripts/ci/axiom_scan.py" > "$RUNNER_TEMP/axiom_scan.py"
+          # the axiom scan, the tools of the check and the list of the theorems nanoda cannot check come from this workflow's own commit, not from the (possibly older) commit being checked
+          for f in independent_check exempt_export axiom_scan; do git show "$GITHUB_SHA:scripts/ci/$f.py" > "$RUNNER_TEMP/$f.py"; done
+          git show "$GITHUB_SHA:scripts/ci/independent_check_exempt.json" > exempt-list.json
+          # the roots and the libraries of this shard: plain names, checked before they reach a command line
+          read -r -a roots <<< "$ROOTS"
+          for r in "${roots[@]}"; do [[ "$r" =~ ^Tengoku(\.[A-Za-z0-9_]+)?$ ]] || { echo "::error::not a module of the tree: $r"; exit 1; }; done
+          [[ "$SHARD" =~ ^[0-9]+$ ]] && [[ "$LIBRARIES" =~ ^[A-Za-z0-9._,-]*$ ]] || { echo "::error::bad shard or libraries"; exit 1; }
+          echo "shard $SHARD: roots $ROOTS" | tee -a "$GITHUB_STEP_SUMMARY"
       - name: elan
         run: |
           curl -sSfL https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh | sh -s -- -y --default-toolchain none   # the installer at a fixed commit (as promote.yml)
@@ -69,79 +148,158 @@ jobs:
           scripts/cache.sh get 2>&1 | tail -20
           # swap after the cache is unpacked and before the build: a module at the edge of the runner's memory (tengoku#779). scripts/ci/add_swap.sh
           scripts/ci/add_swap.sh 48 40
-          # the cache may predate this commit (an older top-up is an ancestor too): build it, so the export below is
+          # the cache may predate this commit (an older top-up is an ancestor too): build the roots of this shard, so the export below is
           # the tree at exactly this commit, not the cache's
-          lake build Tengoku.All 2>&1 | tail -3
+          read -r -a roots <<< "$ROOTS"
+          targets=(); for r in "${roots[@]}"; do targets+=("+$r"); done   # `+Tengoku` is the module; `Tengoku` alone is the whole library
+          lake build "${targets[@]}" 2>&1 | tail -3
           echo "checking the tree at $(git rev-parse HEAD)"
+      # after the swap (scripts/ci/add_swap.sh, above): the workflow rule is that no `lake build` of a job that holds the tree runs before it (test_tree_swap.py)
       - name: lean4export and nanoda, at their pinned commits
         run: |
           git clone -q https://github.com/leanprover/lean4export "$RUNNER_TEMP/lean4export"
           git -C "$RUNNER_TEMP/lean4export" checkout -q "$LEAN4EXPORT_COMMIT"
-          (cd "$RUNNER_TEMP/lean4export" && lake build 2>&1 | tail -2)
+          if [ "$OWN" = true ]; then
+            # a library shard exports the constants declared in its own libraries and what they need, not every constant of the environment it imports (the whole seed):
+            # scripts/ci/lean4export-own.patch adds `--own=<module prefix>` to lean4export's main (a dozen lines; the checker re-checks whatever is exported, the plan and the report vouch for the coverage)
+            git show "$GITHUB_SHA:scripts/ci/lean4export-own.patch" > "$RUNNER_TEMP/own.patch"
+            git -C "$RUNNER_TEMP/lean4export" apply "$RUNNER_TEMP/own.patch"
+            sha256sum "$RUNNER_TEMP/own.patch" | cut -d' ' -f1 > "$RUNNER_TEMP/own.patch.sha256"
+          fi
+          (cd "$RUNNER_TEMP/lean4export" && lake build 2>&1 | tail -40)   # all of it on a failure: the patch has to compile on the pinned toolchain
           git clone -q https://github.com/ammkrn/nanoda_lib "$RUNNER_TEMP/nanoda"
           git -C "$RUNNER_TEMP/nanoda" checkout -q "$NANODA_COMMIT"
+          # two changes to nanoda, neither of which touches what it checks: the stack of its checking threads, 16 MiB compiled in (STACK_SIZE, src/lib.rs), which libraries with deep terms overflow
+          # ("thread_2 has overflowed its stack", shards 4 and 6 of the first trial); and a watcher thread that says every 20 s which declaration each checking thread is on (so that a shard that runs out of
+          # memory or time names the declaration). The report carries the sha256 of the patch
+          git show "$GITHUB_SHA:scripts/ci/nanoda.patch" > "$RUNNER_TEMP/nanoda.patch"
+          git -C "$RUNNER_TEMP/nanoda" apply "$RUNNER_TEMP/nanoda.patch"
+          sha256sum "$RUNNER_TEMP/nanoda.patch" | cut -d' ' -f1 > "$RUNNER_TEMP/nanoda.patch.sha256"
           (cd "$RUNNER_TEMP/nanoda" && cargo build --release --locked 2>&1 | tail -2)
-      - name: Export every declaration of the tree
+      - name: Export every declaration of this shard's roots
         run: |
           start=$(date +%s)
-          lake env "$RUNNER_TEMP/lean4export/.lake/build/bin/lean4export" Tengoku.All > "$RUNNER_TEMP/tengoku.ndjson"
-          echo "exported $(wc -l < "$RUNNER_TEMP/tengoku.ndjson") lines, $(du -h "$RUNNER_TEMP/tengoku.ndjson" | cut -f1), in $(( $(date +%s) - start )) s"
+          # how the export grows, every two minutes: a long export is slow throughout or stalls somewhere, and the log says which
+          ( while sleep 120; do echo "export, $(( $(date +%s) - start )) s: $(stat -c %s "$RUNNER_TEMP/tengoku.ndjson" 2>/dev/null || echo 0) bytes"; done ) &
+          progress=$!
+          read -r -a roots <<< "$ROOTS"
+          own_args=(); if [ "$OWN" = true ]; then for r in "${roots[@]}"; do own_args+=("--own=$r"); done; fi
+          lake env /usr/bin/time -v "$RUNNER_TEMP/lean4export/.lake/build/bin/lean4export" "${own_args[@]}" "${roots[@]}" > "$RUNNER_TEMP/tengoku.ndjson" 2> "$RUNNER_TEMP/export-time.txt" || { tail -20 "$RUNNER_TEMP/export-time.txt"; exit 1; }
+          kill "$progress" 2>/dev/null || true
+          echo "$(( $(date +%s) - start ))" > "$RUNNER_TEMP/export-seconds.txt"
+          echo "exported $(wc -l < "$RUNNER_TEMP/tengoku.ndjson") lines, $(du -h "$RUNNER_TEMP/tengoku.ndjson" | cut -f1), in $(cat "$RUNNER_TEMP/export-seconds.txt") s"
+          grep -E "Maximum resident|Elapsed|Major \(requiring I/O\) page faults|Swaps" "$RUNNER_TEMP/export-time.txt" || true   # the memory the exporter needed: a shard that outgrows the runner's RAM swaps and slows down by an order of magnitude
+          free -g | head -3
           head -c 300 "$RUNNER_TEMP/tengoku.ndjson"; echo
           df -h / | tail -1
       - name: Check it again with nanoda (sealed, no network)
         run: |
-          cat > "$RUNNER_TEMP/nanoda.json" <<JSON
-          {
-            "export_file_path": "$RUNNER_TEMP/tengoku.ndjson",
-            "use_stdin": false,
-            "permitted_axioms": ["propext", "Classical.choice", "Quot.sound", "sorryAx", "Lean.ofReduceBool", "Lean.ofReduceNat", "Lean.trustCompiler"],
-            "unpermitted_axiom_hard_error": true,
-            "num_threads": 4,
-            "nat_extension": true,
-            "string_extension": true,
-            "print_success_message": true,
-            "pp_to_stdout": true
-          }
-          JSON
           start=$(date +%s)
           nanoda="$RUNNER_TEMP/nanoda/target/release/nanoda_bin"
+          # the theorems nanoda cannot check (scripts/ci/independent_check_exempt.json, by name, each with its reason) are axioms in nanoda's copy of the export, when this shard's export holds one: the axiom scan below
+          # reads the original export, so they are still audited, and the Lean kernel accepted them at build time. exempt-applied.json says which were applied; the report job refuses a list that was not applied exactly
+          python3 "$RUNNER_TEMP/exempt_export.py" "$RUNNER_TEMP/tengoku.ndjson" "$RUNNER_TEMP/nanoda-input.ndjson"
+          nanoda_input="$RUNNER_TEMP/tengoku.ndjson"; [ ! -s "$RUNNER_TEMP/nanoda-input.ndjson" ] || nanoda_input="$RUNNER_TEMP/nanoda-input.ndjson"
+          python3 "$RUNNER_TEMP/independent_check.py" nanoda-config --export "$nanoda_input" > "$RUNNER_TEMP/nanoda.json"
           # nanoda on its own empty export first: a wrong binary or configuration fails here, in seconds
-          sed "s|$RUNNER_TEMP/tengoku.ndjson|$RUNNER_TEMP/nanoda/test_resources/Empty/export|" "$RUNNER_TEMP/nanoda.json" > "$RUNNER_TEMP/nanoda-selftest.json"
+          sed "s|$nanoda_input|$RUNNER_TEMP/nanoda/test_resources/Empty/export|" "$RUNNER_TEMP/nanoda.json" > "$RUNNER_TEMP/nanoda-selftest.json"
           "$nanoda" "$RUNNER_TEMP/nanoda-selftest.json"
-          # the axiom scan reads the same export alongside nanoda (one core of four)
-          python3 "$RUNNER_TEMP/axiom_scan.py" "$RUNNER_TEMP/tengoku.ndjson" --records data/trusted --report axiom-scan.json > axiom-scan.out 2>&1 &
+          # the axiom scan reads the same export alongside nanoda (one core of four); it audits the records of this shard's libraries and scans every declaration of the export
+          # a memory limit on each of the two programs (the runner has 16 GB and a swap file the build needed): the first trial's heaviest shard (Navier-Stokes) made the whole runner unresponsive for an hour
+          # ("lost communication") and left nothing to read. Each program runs in a cgroup that cannot swap (systemd-run --scope), so one that outgrows its share is killed by the kernel and the job keeps its log
+          guard() { sudo systemd-run --scope --quiet -p "MemoryMax=$1" -p MemorySwapMax=0 -- "${@:2}"; }
+          rc=0; guard 64M python3 -c 'x = b"x" * (256 << 20)' 2> /dev/null || rc=$?
+          [ "$rc" = 137 ] || { echo "the memory guard does not stop a process that outgrows it (exit $rc)"; exit 1; }
+          echo "the memory guard stops a process that outgrows it"
+          py="$(command -v python3)"
+          # shellcheck disable=SC2016  # $0 and $@ are the inner shell's: they are meant to stay unexpanded here
+          ( guard 4G runuser -u "$(id -un)" -- env RUNNER_TEMP="$RUNNER_TEMP" bash -c 'ulimit -v 12582912 && exec "$0" "$@"' "$py" "$RUNNER_TEMP/axiom_scan.py" "$RUNNER_TEMP/tengoku.ndjson" --records data/trusted --libraries "$LIBRARIES" --report axiom-scan.json ) > axiom-scan.out 2>&1 &
           scan=$!
-          # shellcheck disable=SC2024  # the output files are the runner's own, written outside the sealed namespace on purpose
-          sudo unshare --net runuser -u "$(id -un)" -- /usr/bin/time -v "$nanoda" "$RUNNER_TEMP/nanoda.json" > nanoda.out 2> time.log && ok=1 || ok=0
+          # what the two use, every minute (read in the log of a job that ended; a runner that is lost takes its log with it)
+          ( while sleep 60; do echo "t=$(( $(date +%s) - start )) s: nanoda $(ps -C nanoda_bin -o rss= | awk '{s+=$1} END{printf "%.1f", s/1048576}') GB, axiom scan $(ps -C python3 -o rss= | sort -n | tail -1 | awk '{printf "%.1f", $1/1048576}') GB; $(free -m | awk '/^Mem:/{printf "used %d MB, available %d MB", $3, $7} /^Swap:/{printf ", swap used %d MB", $3}')"; grep '^trace' time.log 2> /dev/null | tail -4; done ) &
+          mem=$!
+          # shellcheck disable=SC2024,SC2016  # the output files are the runner's own, written outside the sealed namespace on purpose; $0 and $1 are the inner shell's
+          guard 10G unshare --net runuser -u "$(id -un)" -- bash -c 'ulimit -v 20971520 && exec /usr/bin/time -v "$0" "$1"' "$nanoda" "$RUNNER_TEMP/nanoda.json" > nanoda.out 2> time.log && ok=1 || ok=0
           cat nanoda.out
-          if [ "$ok" = 1 ]; then grep -E 'Maximum resident|Elapsed' time.log || true; else cat time.log; fi
-          echo "nanoda: $([ "$ok" = 1 ] && echo 'every declaration checked' || echo FAILED) in $(( $(date +%s) - start )) s"
+          if [ "$ok" = 1 ]; then grep -E 'Maximum resident|Elapsed' time.log || true; else grep '^trace' time.log | tail -40; grep -v '^trace' time.log | tail -40; sudo dmesg 2> /dev/null | grep -iE 'out of memory|oom-kill|killed process' | tail -5 || true; fi
+          echo "$(( $(date +%s) - start ))" > "$RUNNER_TEMP/nanoda-seconds.txt"
+          echo "nanoda: $([ "$ok" = 1 ] && echo 'every declaration checked' || echo FAILED) in $(cat "$RUNNER_TEMP/nanoda-seconds.txt") s"
           wait "$scan" && scanned=1 || scanned=0
+          kill "$mem" 2>/dev/null || true
           cat axiom-scan.out
           echo "axiom scan: $([ "$scanned" = 1 ] && echo passed || echo FAILED) in $(( $(date +%s) - start )) s"
           [ "$ok" = 1 ] && [ "$scanned" = 1 ]
-          # the report a release of this commit carries: what was checked, by which programs, and the verdict
+          # this shard's report: what was checked, by which programs, and the verdict (the report job joins them)
           python3 - <<'PY'
-          import datetime, json, os, re, subprocess
+          import json, os, re, subprocess
           nanoda = re.findall(r"Checked (\d+) declarations with no errors", open("nanoda.out").read())
+          tmp = os.environ["RUNNER_TEMP"]
+          exempt = json.load(open("exempt-applied.json"))  # the sha256 of the list this shard ran with, and the exempt theorems its export held
           report = {
+              "shard": int(os.environ["SHARD"]),
+              "roots": os.environ["ROOTS"].split(),
+              "libraries": [x for x in os.environ["LIBRARIES"].split(",") if x],
               "commit": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
               "toolchain": open("lean-toolchain").read().strip(),
-              "checked_at": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-              "run": f"{os.environ['GITHUB_SERVER_URL']}/{os.environ['GITHUB_REPOSITORY']}/actions/runs/{os.environ['GITHUB_RUN_ID']}",
-              "lean4export": {"repo": "https://github.com/leanprover/lean4export", "commit": os.environ["LEAN4EXPORT_COMMIT"]},
+              "export_mode": "own" if os.environ["OWN"] == "true" else "all",
+              "lean4export": {
+                  "repo": "https://github.com/leanprover/lean4export",
+                  "commit": os.environ["LEAN4EXPORT_COMMIT"],
+                  **({"patch_sha256": open(os.path.join(tmp, "own.patch.sha256")).read().strip()} if os.environ["OWN"] == "true" else {}),
+              },
               "nanoda": {
                   "repo": "https://github.com/ammkrn/nanoda_lib",
                   "commit": os.environ["NANODA_COMMIT"],
+                  "patch_sha256": open(os.path.join(tmp, "nanoda.patch.sha256")).read().strip(),
                   "declarations_checked": int(nanoda[-1]),
                   "errors": 0,
-                  "axioms_admitted": json.load(open(os.path.join(os.environ["RUNNER_TEMP"], "nanoda.json")))["permitted_axioms"],
+                  "axioms_admitted": [a for a in json.load(open(os.path.join(tmp, "nanoda.json")))["permitted_axioms"] if a not in exempt["applied"]],
               },
+              "exempt": exempt,
               "axiom_scan": json.load(open("axiom-scan.json")),
+              "seconds": {"export": int(open(os.path.join(tmp, "export-seconds.txt")).read()), "nanoda": int(open(os.path.join(tmp, "nanoda-seconds.txt")).read())},
           }
-          json.dump(report, open("independent-check.json", "w"), indent=2)
-          print(f"report: {report['nanoda']['declarations_checked']} declarations, commit {report['commit']}")
+          json.dump(report, open(f"shard-{report['shard']}.json", "w"), indent=2)
+          print(f"shard {report['shard']}: {report['nanoda']['declarations_checked']} declarations, commit {report['commit']}")
           PY
+      - name: This shard's report
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with: { name: "shard-${{ matrix.shard }}", path: "shard-${{ matrix.shard }}.json", retention-days: 90 }
+
+  report:
+    # runs only when every shard passed: a missing shard is a missing report, and a release refuses a commit with no report
+    needs: [plan, check]
+    if: ${{ inputs.only_shard == '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions: { contents: read }
+    env:
+      CHECK_COMMIT: ${{ needs.plan.outputs.commit }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: "${{ inputs.commit || github.sha }}"
+          fetch-depth: 0
+          filter: "blob:none"
+          sparse-checkout: lean-toolchain
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with: { name: plan, path: plan }
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with: { pattern: "shard-*", path: shards, merge-multiple: true }
+      - name: The report a release reads
+        run: |
+          [ "$(git rev-parse HEAD)" = "$CHECK_COMMIT" ] || { echo "::error::checked out $(git rev-parse HEAD), not $CHECK_COMMIT"; exit 1; }
+          # the joiner (with the two modules it imports) and the list of exempt theorems come from this workflow's own commit
+          for f in independent_check exempt_export axiom_scan; do git show "$GITHUB_SHA:scripts/ci/$f.py" > "$RUNNER_TEMP/$f.py"; done
+          git show "$GITHUB_SHA:scripts/ci/independent_check_exempt.json" > exempt-list.json
+          # reads plan/plan.json, shards/**/shard-N.json (the downloaded artifacts) and exempt-list.json, writes independent-check.json
+          python3 "$RUNNER_TEMP/independent_check.py" merge --commit "$CHECK_COMMIT" \
+            --lean4export-commit "$LEAN4EXPORT_COMMIT" --nanoda-commit "$NANODA_COMMIT" \
+            --patch-sha256 "$(git show "$GITHUB_SHA:scripts/ci/lean4export-own.patch" | sha256sum | cut -d' ' -f1)" \
+            --nanoda-patch-sha256 "$(git show "$GITHUB_SHA:scripts/ci/nanoda.patch" | sha256sum | cut -d' ' -f1)" \
+            --run "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" | tee -a "$GITHUB_STEP_SUMMARY"
       - name: The report, for a release of this commit
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with: { name: independent-check, path: independent-check.json, retention-days: 90 }
