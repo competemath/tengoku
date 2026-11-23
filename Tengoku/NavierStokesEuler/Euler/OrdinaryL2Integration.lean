@@ -19,12 +19,18 @@ open scoped ContDiff ENNReal
 
 variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
 
+/--
+@isnad1 id=integrab.0h3v.s8.c131b9886a21 from=translated src=- shape=38dea99a vocab=05d9f9ea
+-/
 theorem field_inner_integrable (A B : SmoothL2Field V) :
     Integrable (fun x => ⟪A.field x,B.field x⟫_ℝ) := by
   apply (MeasureTheory.L2.integrable_inner A.toLp B.toLp).congr
   filter_upwards [A.toLp_ae,B.toLp_ae] with x ha hb
   rw [ha,hb]
 
+/--
+@isnad1 id=eq.0h3v.s11.c03d205e43d0 from=translated src=- shape=9fdbc3f9 vocab=f8790c53
+-/
 theorem field_inner (A B : SmoothL2Field V) :
     ⟪A.toLp,B.toLp⟫_ℝ=∫ x,⟪A.field x,B.field x⟫_ℝ := by
   rw [MeasureTheory.L2.inner_def]
@@ -32,6 +38,9 @@ theorem field_inner (A B : SmoothL2Field V) :
   filter_upwards [A.toLp_ae,B.toLp_ae] with x ha hb
   rw [ha,hb]
 
+/--
+@isnad1 id=eq.0h4v.s11.84f6e472a091 from=translated src=- shape=5b3c5e19 vocab=4e492c13
+-/
 theorem field_directional_ibp (A B : SmoothL2Field V) (v : Space) :
     (∫ x,⟪fderiv ℝ A.field x v,B.field x⟫_ℝ) =
       -∫ x,⟪A.field x,fderiv ℝ B.field x v⟫_ℝ := by
@@ -45,16 +54,25 @@ theorem field_directional_ibp (A B : SmoothL2Field V) (v : Space) :
     -∫ x,⟪fderiv ℝ A.field x v,B.field x⟫_ℝ at h
   linarith
 
+/--
+@isnad1 id=eq.0h4v.s12.e81d184c6cab from=translated src=- shape=7ee88b96 vocab=a0195a72
+-/
 theorem field_directional_inner (A B : SmoothL2Field V) (v : Space) :
     ⟪(A.directionalField v).toLp,B.toLp⟫_ℝ =
       -⟪A.toLp,(B.directionalField v).toLp⟫_ℝ := by
   rw [field_inner,field_inner]
   exact field_directional_ibp A B v
 
+/--
+@isnad1 id=eq.1h2v.s13.1bec6c25aba0 from=translated src=- shape=1efadffd vocab=e4408de3
+-/
 theorem field_zero_of_toLp_zero (A : SmoothL2Field V) (h : A.toLp=0) : A.field=0 := by
   have hae : A.field=ᵐ[volume] 0 := A.toLp_ae.symm.trans (by rw [h]; exact Lp.coeFn_zero V 2 volume)
   exact Measure.eq_of_ae_eq hae A.smooth.continuous continuous_const
 
+/--
+@isnad1 id=eq.1h1v.s11.f564c226f226 from=translated src=- shape=ef2e6b7e vocab=aaa33018
+-/
 theorem field_zero_of_derivative_zero (A : SmoothL2Field Space)
     (hD : ∀ x, fderiv ℝ A.field x=0) : A.field=0 := by
   have h6 := memLp_six A.field A.smooth A.memLp A.derivative.memLp
@@ -71,6 +89,9 @@ theorem field_zero_of_derivative_zero (A : SmoothL2Field Space)
     (by norm_num : (6 : ℝ≥0∞) ≠ 0)).mp (le_antisymm hb0 bot_le)
   exact Measure.eq_of_ae_eq hae A.smooth.continuous continuous_const
 
+/--
+@isnad1 id=eq.1h1v.s9.ea5338120665 from=translated src=- shape=eb28c55d vocab=b91bf197
+-/
 theorem field_zero_of_laplacian_zero (A : SmoothL2Field Space)
     (hΔ : ∀ x, Δ A.field x=0) : A.field=0 := by
   let d := fun i : Fin 3 => A.directionalField (EuclideanSpace.single i 1)

@@ -50,7 +50,9 @@ variable {x : ℝ}
 
 /-- Bound on |sin x - x| in terms of |x|³.
 For x > 0: sin x < x and x - x³/4 < sin x, so 0 < x - sin x < x³/4.
-By symmetry (sin(-x) = -sin(x)), |sin x - x| ≤ |x|³/4 for all x with |x| ≤ 1. -/
+By symmetry (sin(-x) = -sin(x)), |sin x - x| ≤ |x|³/4 for all x with |x| ≤ 1.
+@isnad1 id=le.1h1v.s6.0dd268da011b from=translated src=- shape=e489846b vocab=5a87aed0
+-/
 theorem abs_sin_sub_self_le (x : ℝ) (_hx : |x| ≤ 1) : |sin x - x| ≤ |x| ^ 3 / 4 := by
   rcases le_or_gt x 0 with hx_neg | hx_pos
   · -- Case x ≤ 0
@@ -91,7 +93,9 @@ theorem abs_sin_sub_self_le (x : ℝ) (_hx : |x| ≤ 1) : |sin x - x| ≤ |x| ^ 
 /-- The derivative of sinc at 0 is 0.
 
 The proof uses the squeeze theorem with the bound `|sinc x - 1| ≤ |x|² / 4`,
-which follows from sin bounds in Mathlib. -/
+which follows from sin bounds in Mathlib.
+@isnad1 id=hasderiv.0h0v.s5.dde835169619 from=translated src=- shape=c9cd68ae vocab=c430fcee
+-/
 theorem hasDerivAt_sinc_zero : HasDerivAt sinc 0 0 := by
   rw [hasDerivAt_iff_tendsto_slope]
   -- Need to show: Tendsto (slope sinc 0) (𝓝[≠] 0) (𝓝 0)
@@ -128,22 +132,31 @@ theorem hasDerivAt_sinc_zero : HasDerivAt sinc 0 0 := by
         have h_eps : |y| < ε * 4 := (lt_min_iff.mp hy_dist).2
         linarith
 
+/--
+@isnad1 id=differen.0h0v.s5.8da46a49710f from=translated src=- shape=7489677a vocab=7ba928be
+-/
 theorem differentiableAt_sinc_zero : DifferentiableAt ℝ sinc 0 :=
   hasDerivAt_sinc_zero.differentiableAt
 
-/-- sinc is differentiable everywhere. -/
+/-- sinc is differentiable everywhere.
+@isnad1 id=differen.0h1v.s5.78f872525fac from=translated src=- shape=1111aaa7 vocab=7ba928be
+-/
 theorem differentiableAt_sinc (x : ℝ) : DifferentiableAt ℝ sinc x := by
   by_cases hx : x = 0
   · exact hx ▸ differentiableAt_sinc_zero
   · rw [sinc_eq_dslope, differentiableAt_dslope_of_ne hx]
     exact differentiable_sin.differentiableAt
 
-/-- sinc is a differentiable function. -/
+/-- sinc is a differentiable function.
+@isnad1 id=differen.0h0v.s5.6c89fb03d321 from=translated src=- shape=aa9fb30a vocab=5fe27586
+-/
 theorem differentiable_sinc : Differentiable ℝ sinc := fun x => differentiableAt_sinc x
 
 /-- Integral representation of sinc:
     `sinc x = ∫ t in 0..1, cos (x * t)`.
-    This is the standard average-cosine form used for derivative bounds. -/
+    This is the standard average-cosine form used for derivative bounds.
+@isnad1 id=eq.0h1v.s5.7cfc3c3d1f05 from=translated src=- shape=b24cda53 vocab=95422b16
+-/
 theorem sinc_eq_integral_cos (x : ℝ) :
     sinc x = ∫ t in (0 : ℝ)..1, cos (x * t) := by
   by_cases hx : x = 0
@@ -156,7 +169,9 @@ theorem sinc_eq_integral_cos (x : ℝ) :
           (f := fun u : ℝ => cos u) (a := (0 : ℝ)) (b := 1) (c := x) hx)
     rw [hcomp, integral_cos, sin_zero, sub_zero, inv_mul_eq_div, sinc_of_ne_zero hx]
 
-/-- The derivative of sinc at a nonzero point. -/
+/-- The derivative of sinc at a nonzero point.
+@isnad1 id=hasderiv.1h1v.s6.f8f81dd6ad52 from=translated src=- shape=a8c3146e vocab=4522ad15
+-/
 theorem hasDerivAt_sinc_of_ne_zero (hx : x ≠ 0) :
     HasDerivAt sinc ((x * cos x - sin x) / x ^ 2) x := by
   have h1 : HasDerivAt sin (cos x) x := hasDerivAt_sin x
@@ -172,12 +187,17 @@ theorem hasDerivAt_sinc_of_ne_zero (hx : x ≠ 0) :
     exact sinc_of_ne_zero hy
   exact h4.congr_of_eventuallyEq heq
 
-/-- The derivative of sinc. For x = 0, deriv sinc 0 = 0. For x ≠ 0, deriv sinc x = (x cos x - sin x) / x². -/
+/-- The derivative of sinc. For x = 0, deriv sinc 0 = 0. For x ≠ 0, deriv sinc x = (x cos x - sin x) / x².
+@isnad1 id=eq.0h1v.s6.2bd0005f3a1b from=translated src=- shape=6aafbc7e vocab=f3d1cb1e
+-/
 theorem deriv_sinc : deriv sinc x = if x = 0 then 0 else (x * cos x - sin x) / x ^ 2 := by
   split_ifs with hx
   · exact hx ▸ hasDerivAt_sinc_zero.deriv
   · exact (hasDerivAt_sinc_of_ne_zero hx).deriv
 
+/--
+@isnad1 id=eq.0h0v.s5.59687d294e1c from=translated src=- shape=874afe33 vocab=79845d0e
+-/
 @[simp]
 theorem deriv_sinc_zero : deriv sinc 0 = 0 := hasDerivAt_sinc_zero.deriv
 
@@ -195,7 +215,9 @@ formalizing the integral representation. Instead we use a direct monotonicity ar
 -/
 
 /-- Bound: |x cos x - sin x| ≤ x² for all x.
-    Proof uses monotonicity of auxiliary functions on [0, ∞). -/
+    Proof uses monotonicity of auxiliary functions on [0, ∞).
+@isnad1 id=le.0h1v.s5.dfcabac81f21 from=translated src=- shape=e322b942 vocab=ac6b29e1
+-/
 theorem abs_x_mul_cos_sub_sin_le_sq (x : ℝ) : |x * cos x - sin x| ≤ x ^ 2 := by
   suffices ∀ x ≥ 0, |x * cos x - sin x| ≤ x ^ 2 by
     obtain h | h := le_total 0 x
@@ -277,6 +299,9 @@ theorem abs_x_mul_cos_sub_sin_le_sq (x : ℝ) : |x * cos x - sin x| ≤ x ^ 2 :=
         _ ≤ g x := hmono (by simp : (0:ℝ) ∈ Set.Ici 0) (Set.mem_Ici.mpr hx) hx
     linarith [g_nonneg]
 
+/--
+@isnad1 id=le.0h1v.s5.f8e176a928f4 from=translated src=- shape=d6c9d747 vocab=05356f02
+-/
 theorem abs_deriv_sinc_le_one (x : ℝ) : |deriv sinc x| ≤ 1 := by
   by_cases hx : x = 0
   · simp [hx]
@@ -287,7 +312,9 @@ theorem abs_deriv_sinc_le_one (x : ℝ) : |deriv sinc x| ≤ 1 := by
     rw [habs_sq, div_le_one hx_sq]
     exact abs_x_mul_cos_sub_sin_le_sq x
 
-/-- deriv sinc x is in [-1, 1] for all x -/
+/-- deriv sinc x is in [-1, 1] for all x
+@isnad1 id=mem.0h1v.s5.db1f302a0599 from=translated src=- shape=5b3c0016 vocab=f0f3bbdb
+-/
 theorem deriv_sinc_mem_Icc (x : ℝ) : deriv sinc x ∈ Set.Icc (-1) 1 := by
   rw [Set.mem_Icc]
   have h := abs_deriv_sinc_le_one x
@@ -309,7 +336,9 @@ since cos(t*x) is C^∞ in x and the domain [0,1] is compact, the integral is C^
 -/
 
 open MeasureTheory intervalIntegral in
-/-- The integral representation of sinc: sinc(x) = ∫ t in 0..1, cos(t * x) -/
+/-- The integral representation of sinc: sinc(x) = ∫ t in 0..1, cos(t * x)
+@isnad1 id=eq.0h1v.s5.8f128d6438a7 from=translated src=- shape=640186e1 vocab=95422b16
+-/
 theorem sinc_eq_integral (x : ℝ) : sinc x = ∫ t in (0 : ℝ)..1, cos (t * x) := by
   rcases eq_or_ne x 0 with rfl | hx
   · -- Case x = 0: both sides equal 1
@@ -343,6 +372,7 @@ For x ≠ 0:
 
 For x = 0:
   dslope (cos - sinc) 0 0 = deriv (cos - sinc) 0 = -sin 0 - deriv sinc 0 = 0 = deriv sinc 0
+@isnad1 id=eq.0h0v.s6.b17d822b7ddc from=translated src=- shape=e680031f vocab=40e8080f
 -/
 theorem deriv_sinc_eq_dslope : deriv sinc = dslope (cos - sinc) 0 := by
   ext x
@@ -358,7 +388,9 @@ theorem deriv_sinc_eq_dslope : deriv sinc = dslope (cos - sinc) 0 := by
     rw [sinc_of_ne_zero hx, smul_eq_mul]
     field_simp
 
-/-- sinc is smooth at every nonzero point. -/
+/-- sinc is smooth at every nonzero point.
+@isnad1 id=contdiff.1h1v.s5.e23206747b86 from=translated src=- shape=857fb671 vocab=11925e1c
+-/
 theorem contDiffAt_sinc_of_ne_zero {x : ℝ} (hx : x ≠ 0) : ContDiffAt ℝ ⊤ sinc x := by
   have heq : sinc =ᶠ[𝓝 x] fun y => sin y / y := by
     filter_upwards [eventually_ne_nhds hx] with y hy
@@ -370,7 +402,9 @@ theorem contDiffAt_sinc_of_ne_zero {x : ℝ} (hx : x ≠ 0) : ContDiffAt ℝ ⊤
 The proof uses the order theory of analytic functions. Since sin is analytic at 0
 with order ≥ 1 (because sin(0) = 0), there exists an analytic function g such that
 sin(z) = z • g(z) near 0. This g must equal sinc away from 0, and by continuity
-of both functions at 0, g = sinc everywhere near 0. Therefore sinc is analytic at 0. -/
+of both functions at 0, g = sinc everywhere near 0. Therefore sinc is analytic at 0.
+@isnad1 id=analytic.0h0v.s5.1aa132b030e5 from=translated src=- shape=7489677a vocab=76f29f65
+-/
 theorem analyticAt_sinc_zero : AnalyticAt ℝ sinc 0 := by
   -- sin has order ≥ 1 at 0 because sin(0) = 0 and sin is analytic
   have hsin_an : AnalyticAt ℝ sin 0 := analyticAt_sin
@@ -413,7 +447,9 @@ theorem analyticAt_sinc_zero : AnalyticAt ℝ sinc 0 := by
       field_simp [hz]
       linarith [hsin_eq])
 
-/-- sinc is analytic at every point. -/
+/-- sinc is analytic at every point.
+@isnad1 id=analytic.0h1v.s5.6eb8657f3835 from=translated src=- shape=1111aaa7 vocab=76f29f65
+-/
 theorem analyticAt_sinc (x : ℝ) : AnalyticAt ℝ sinc x := by
   by_cases hx : x = 0
   · exact hx ▸ analyticAt_sinc_zero
@@ -422,11 +458,15 @@ theorem analyticAt_sinc (x : ℝ) : AnalyticAt ℝ sinc x := by
 /-- sinc is smooth (infinitely differentiable).
 
 The proof uses that sinc is analytic everywhere (analyticAt_sinc),
-and analytic functions are smooth. -/
+and analytic functions are smooth.
+@isnad1 id=contdiff.0h0v.s5.063a32d20de5 from=translated src=- shape=1c9cf59e vocab=58209e58
+-/
 theorem contDiff_sinc : ContDiff ℝ ⊤ sinc :=
   AnalyticOnNhd.contDiff (fun x _ => analyticAt_sinc x)
 
-/-- sinc is an analytic function. -/
+/-- sinc is an analytic function.
+@isnad1 id=analytic.0h0v.s5.a033071ed475 from=translated src=- shape=96449101 vocab=3811ffc7
+-/
 theorem analyticOnNhd_sinc : AnalyticOnNhd ℝ sinc Set.univ := fun x _ => analyticAt_sinc x
 
 end Real

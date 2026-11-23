@@ -75,20 +75,31 @@ def transportConstant (B M : ℝ) : ℝ :=
 def lossConstant (M : ℝ) : ℝ := (4+32*M)*productConstant period 3
 
 omit [Fact (0 < period)] in
+/--
+@isnad1 id=le.2h2v.s5.9063b8714dd1 from=translated src=- shape=6c67d60b vocab=8866a7ab
+-/
 theorem sourceConstant_nonneg {B M : ℝ} (hB : 0 ≤ B) (hM : 0 ≤ M) : 0 ≤ sourceConstant B M := by
   unfold sourceConstant
   positivity
 
+/--
+@isnad1 id=le.2h3v.s5.ca7907a81552 from=translated src=- shape=5fed36b8 vocab=a0d03323
+-/
 theorem transportConstant_nonneg {B M : ℝ} (hB : 0 ≤ B) (hM : 0 ≤ M) : 0 ≤ transportConstant period B M := by
   unfold transportConstant
   exact add_nonneg (mul_nonneg (by norm_num) (baseTransportConstant_nonneg period))
     (mul_nonneg (mul_nonneg (by norm_num) hB)
       (mul_nonneg (mul_nonneg (by norm_num) hM) (mul_nonneg (by norm_num) (lowerProductConstant_nonneg period 3))))
 
+/--
+@isnad1 id=le.1h2v.s5.fb0659cdbbf2 from=translated src=- shape=e567b6a3 vocab=d202489c
+-/
 theorem lossConstant_nonneg {M : ℝ} (hM : 0 ≤ M) : 0 ≤ lossConstant period M :=
   mul_nonneg (by linarith) (productConstant_nonneg period 3)
 
-/-- The actual full forcing is bounded with constants depending only on fixed base coefficient bounds and the fixed inverse majorant. -/
+/-- The actual full forcing is bounded with constants depending only on fixed base coefficient bounds and the fixed inverse majorant.
+@isnad1 id=le.14h17v.s20.762b38a66900 from=translated src=- shape=2110e0be vocab=8088a4b8
+-/
 theorem correctionForcing_uniform_bound {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (K0 : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)

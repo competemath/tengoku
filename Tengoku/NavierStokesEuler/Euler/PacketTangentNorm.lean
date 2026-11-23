@@ -10,6 +10,9 @@ namespace EulerPacketMovingFrame
 
 open EulerSmoothLimit EulerPacketNormalizedPrimary EulerPacketRay InnerProductSpace
 
+/--
+@isnad1 id=le.5h7v.s8.c013d740726d from=translated src=- shape=55cba679 vocab=6bc45915
+-/
 theorem scaled_pair_le_physical_norm (m v w : ℝ → Space) {t₀ a ε τ : ℝ}
     (hε : 0 < ε) (hε1 : ε ≤ 1)
     (hm : m (physicalTime t₀ a ε τ) ≠ 0) (hv : v (physicalTime t₀ a ε τ) ≠ 0)
@@ -36,6 +39,9 @@ theorem scaled_pair_le_physical_norm (m v w : ℝ → Space) {t₀ a ε τ : ℝ
   convert! hh using 1
   ring
 
+/--
+@isnad1 id=le.15h13v.s9.4c458de6c39d from=translated src=- shape=e92adc4f vocab=ce739978
+-/
 theorem physical_velocity_le_scaled_state (m v r w : ℝ → Space)
     {s₀ t₀ a ε τ Θ ρ P₀ Q₀ : ℝ}
     (hs₀ : s₀ ≠ 0) (hε : 0 < ε) (hε1 : ε ≤ 1)

@@ -21,21 +21,27 @@ namespace LeanCert.Validity
 open LeanCert.Core
 open LeanCert.Engine
 
-/-- A successful Krawczyk check certifies exactly one real system root in the box. -/
+/-- A successful Krawczyk check certifies exactly one real system root in the box.
+@isnad1 id=existsun.1h5v.s5.d3443d064d8c from=translated src=- shape=2f1ef454 vocab=98d99d7b
+-/
 theorem verify_unique_system_root {n : Nat} (F : Fin n → Expr)
     (X : Fin n → IntervalRat) (cert : KrawczykCert n) (cfg : EvalConfig)
     (h : krawczykCheck F X cert cfg = true) :
     ∃! x, FinBoxMem x X ∧ SystemZero F x :=
   krawczykCheck_sound F X cert cfg h
 
-/-- A successful Krawczyk check supplies a real system root in the box. -/
+/-- A successful Krawczyk check supplies a real system root in the box.
+@isnad1 id=ex.1h5v.s5.ea4795ae5ca6 from=translated src=- shape=2f1ef454 vocab=a2689ae5
+-/
 theorem verify_system_root_exists {n : Nat} (F : Fin n → Expr)
     (X : Fin n → IntervalRat) (cert : KrawczykCert n) (cfg : EvalConfig)
     (h : krawczykCheck F X cert cfg = true) :
     ∃ x, FinBoxMem x X ∧ SystemZero F x :=
   (verify_unique_system_root F X cert cfg h).exists
 
-/-- A successful Krawczyk check makes any two roots in the box equal. -/
+/-- A successful Krawczyk check makes any two roots in the box equal.
+@isnad1 id=eq.3h7v.s6.aa8ef814e47d from=translated src=- shape=dda62845 vocab=a2689ae5
+-/
 theorem verify_system_root_unique {n : Nat} (F : Fin n → Expr)
     (X : Fin n → IntervalRat) (cert : KrawczykCert n) (cfg : EvalConfig)
     (h : krawczykCheck F X cert cfg = true)

@@ -12,13 +12,18 @@ open MeasureTheory InnerProductSpace EulerSmoothLimit EulerMeanSolenoidal EulerM
   EulerMeanCutoffCurl EulerGevrey Finset
 open scoped ContDiff
 
+/--
+@isnad1 id=le.1h2v.s5.36b7654d2474 from=translated src=- shape=36d09637 vocab=0a37d379
+-/
 theorem majorant_four_radius (R : ℝ) (hR : 0 ≤ R) (n : ℕ) :
     majorant R 0 n ≤ majorant (4*R) 0 n := by
   unfold majorant
   simp only [Nat.add_zero]
   exact mul_le_mul_of_nonneg_right (pow_le_pow_left₀ hR (by linarith) n) (sq_nonneg _)
 
-/-- One extra derivative costs a fixed factor in the Gevrey radius, not a factorial shift. -/
+/-- One extra derivative costs a fixed factor in the Gevrey radius, not a factorial shift.
+@isnad1 id=le.1h2v.s6.1c805e26b99c from=translated src=- shape=61017d54 vocab=9d9cfb2d
+-/
 theorem majorant_next_four_radius (R : ℝ) (hR : 0 ≤ R) (n : ℕ) :
     majorant R 0 (n+1) ≤ R * majorant (4*R) 0 n := by
   have hs : ((n : ℝ)+1)^2 ≤ (4 : ℝ)^n := by
@@ -38,6 +43,9 @@ def cutoffGevreyAmplitude (supportRadius coefficientRadius coefficientSize : ℝ
     (1 + coefficientRadius *
       (volume (Metric.closedBall (0 : Space) supportRadius)).toReal ^ (1/3 : ℝ))
 
+/--
+@isnad1 id=le.2h3v.s5.d36bd5513676 from=translated src=- shape=f22e4838 vocab=8f3157e3
+-/
 theorem cutoffGevreyAmplitude_nonneg (R Rc C : ℝ) (hRc : 0 ≤ Rc) (hC : 0 ≤ C) :
     0 ≤ cutoffGevreyAmplitude R Rc C := by
   unfold cutoffGevreyAmplitude
@@ -48,6 +56,9 @@ section LinearCutoffOperation
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
+/--
+@isnad1 id=le.8h8v.s10.8b1f30ad4fed from=translated src=- shape=43eaba6d vocab=3dab846b
+-/
 theorem cutoffOperation_gevrey (L : Cutoff → E)
     (hadd : ∀ χ ψ, L (χ.add ψ) = L χ + L ψ)
     (hsmul : ∀ χ c, L (χ.scale c) = c • L χ)
@@ -78,6 +89,9 @@ theorem cutoffOperation_gevrey (L : Cutoff → E)
 
 end LinearCutoffOperation
 
+/--
+@isnad1 id=le.4h6v.s21.5ba42e95c0ca from=translated src=- shape=425a4862 vocab=4acc09b2
+-/
 theorem cutoffCurl_gevrey (χ : Cutoff) (R Rc C : ℝ) (hRc : 0 ≤ Rc) (hC : 0 ≤ C)
     (hs : tsupport χ.field ⊆ Metric.closedBall (0 : Space) R)
     (hb : ∀ n x, ‖iteratedFDeriv ℝ n χ.field x‖ ≤ C * majorant Rc 0 n)
@@ -87,6 +101,9 @@ theorem cutoffCurl_gevrey (χ : Cutoff) (R Rc C : ℝ) (hRc : 0 ≤ Rc) (hC : 0 
   cutoffOperation_gevrey cutoffCurl cutoffCurl_add cutoffCurl_scale cutoffCurl_sub
     cutoffCurl_norm_le χ R Rc C hRc hC hs hb n a
 
+/--
+@isnad1 id=le.4h6v.s21.862c038f6d0a from=translated src=- shape=5deded57 vocab=2e158250
+-/
 theorem weakPotential_gevrey (χ : Cutoff) (R Rc C : ℝ) (hRc : 0 ≤ Rc) (hC : 0 ≤ C)
     (hs : tsupport χ.field ⊆ Metric.closedBall (0 : Space) R)
     (hb : ∀ n x, ‖iteratedFDeriv ℝ n χ.field x‖ ≤ C * majorant Rc 0 n)
@@ -96,7 +113,9 @@ theorem weakPotential_gevrey (χ : Cutoff) (R Rc C : ℝ) (hRc : 0 ≤ Rc) (hC :
   cutoffOperation_gevrey weakPotential weakPotential_add weakPotential_scale weakPotential_sub
     weakPotential_operatorNorm_le χ R Rc C hRc hC hs hb n a
 
-/-- The true derivatives split between the two cutoff positions by the bilinear derivative rule. -/
+/-- The true derivatives split between the two cutoff positions by the bilinear derivative rule.
+@isnad1 id=le.0h4v.s22.43863fc239fc from=translated src=- shape=dc36c696 vocab=800fd8a0
+-/
 theorem mixedBoundaryOperator_iteratedFDeriv_le (χ ψ : Cutoff) (n : ℕ) (a : Space) :
     ‖iteratedFDeriv ℝ n
       (fun b : Space => mixedBoundaryOperator (χ.translate b) (ψ.translate b)) a‖ ≤
@@ -112,7 +131,9 @@ theorem mixedBoundaryOperator_iteratedFDeriv_le (χ ψ : Cutoff) (n : ℕ) (a : 
         convert ContinuousLinearMap.norm_compL_le ℝ L2 homogeneousSpace L2 using 1)
   exact h
 
-/-- Factorial estimates follow from the genuine operator family, at every order and parameter. -/
+/-- Factorial estimates follow from the genuine operator family, at every order and parameter.
+@isnad1 id=le.7h9v.s19.921cd3c908aa from=translated src=- shape=2193dcbb vocab=253beb4e
+-/
 theorem mixedBoundaryOperator_gevrey (χ ψ : Cutoff) (Rχ Rψ Rc Cχ Cψ : ℝ)
     (hRc : 0 ≤ Rc) (hCχ : 0 ≤ Cχ) (hCψ : 0 ≤ Cψ)
     (hsχ : tsupport χ.field ⊆ Metric.closedBall (0 : Space) Rχ)

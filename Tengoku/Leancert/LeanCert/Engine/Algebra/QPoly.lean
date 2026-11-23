@@ -189,25 +189,46 @@ private theorem weightedDerivativeCoeffs_antiderivativeCoeffs
       · field_simp
       · exact ih (n + 1) (by omega)
 
+/--
+@isnad1 id=eq.0h0v.s4.6f9c907edff9 from=translated src=- shape=8c4e12ea vocab=35bffc8e
+-/
 @[simp] theorem toPoly_zero : zero.toPoly = 0 := by
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.3738855152a6 from=translated src=- shape=8096865d vocab=57ef3792
+-/
 @[simp] theorem toPoly_constant (c : ℚ) : (constant c).toPoly = Polynomial.C c := by
   simp [constant, toPoly, listToPoly]
 
+/--
+@isnad1 id=eq.0h0v.s3.ab711cf1feb9 from=translated src=- shape=0a817633 vocab=c4108626
+-/
 @[simp] theorem toPoly_X : X.toPoly = Polynomial.X := by
   simp [X, toPoly, listToPoly]
 
+/--
+@isnad1 id=eq.0h2v.s5.27342393da18 from=translated src=- shape=571db123 vocab=5a7581a9
+-/
 theorem toPoly_add (p q : QPoly) : (p.add q).toPoly = p.toPoly + q.toPoly := by
   simpa [add, toPoly] using listToPoly_addCoeffs p.coeffs.toList q.coeffs.toList
 
+/--
+@isnad1 id=eq.0h2v.s5.9bcc5353dfc0 from=translated src=- shape=571db123 vocab=16db90b5
+-/
 theorem toPoly_mul (p q : QPoly) : (p.mul q).toPoly = p.toPoly * q.toPoly := by
   simpa [mul, toPoly] using listToPoly_mulCoeffs p.coeffs.toList q.coeffs.toList
 
+/--
+@isnad1 id=eq.0h1v.s6.1e8ed77be869 from=translated src=- shape=3cc050ab vocab=7ca9ee1f
+-/
 theorem toPoly_derivative (p : QPoly) : p.derivative.toPoly = p.toPoly.derivative := by
   simpa [derivative, toPoly, listToPoly_trimCoeffs] using
     listToPoly_derivativeCoeffs p.coeffs.toList
 
+/--
+@isnad1 id=eq.0h1v.s6.0854123e9442 from=translated src=- shape=b4f46958 vocab=828000ba
+-/
 theorem toPoly_antiderivative_derivative (p : QPoly) :
     p.antiderivative.toPoly.derivative = p.toPoly := by
   rw [← toPoly_derivative]
@@ -215,6 +236,9 @@ theorem toPoly_antiderivative_derivative (p : QPoly) :
     weightedDerivativeCoeffs_antiderivativeCoeffs _ 1 (by omega), toPoly,
     listToPoly_trimCoeffs]
 
+/--
+@isnad1 id=eq.0h1v.s3.7ebe7ff62daa from=translated src=- shape=f589419e vocab=3133ad36
+-/
 theorem toPoly_trim (p : QPoly) : p.trim.toPoly = p.toPoly := by
   simpa [trim, toPoly] using listToPoly_trimCoeffs p.coeffs.toList
 
@@ -249,6 +273,9 @@ private theorem listToPoly_replicate_append (n : Nat) (xs : List ℚ) :
 def shiftPow (p : QPoly) (k : Nat) : QPoly :=
   ⟨(List.replicate k 0 ++ p.coeffs.toList).toArray⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.07505c310475 from=translated src=- shape=bd437506 vocab=f507e405
+-/
 theorem toPoly_shiftPow (p : QPoly) (k : Nat) :
     (p.shiftPow k).toPoly = Polynomial.X ^ k * p.toPoly := by
   simpa [shiftPow, toPoly] using listToPoly_replicate_append k p.coeffs.toList
@@ -257,6 +284,9 @@ theorem toPoly_shiftPow (p : QPoly) (k : Nat) :
 def mulOneSubPow (p : QPoly) (n : Nat) : QPoly :=
   ⟨(addCoeffs p.coeffs.toList (List.replicate n 0 ++ negCoeffs p.coeffs.toList)).toArray⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.519f8ea5f1ef from=translated src=- shape=3d390fd1 vocab=c7cb8d2d
+-/
 theorem toPoly_mulOneSubPow (p : QPoly) (n : Nat) :
     (p.mulOneSubPow n).toPoly = p.toPoly * (1 - Polynomial.X ^ n) := by
   have h := listToPoly_addCoeffs p.coeffs.toList
@@ -285,10 +315,15 @@ private theorem toPoly_composeCoeffs (q : QPoly) (cs : List ℚ) :
       simp only [composeCoeffs, toPoly_add, toPoly_constant, toPoly_mul, ih, listToPoly,
         Polynomial.add_comp, Polynomial.mul_comp, Polynomial.C_comp, Polynomial.X_comp]
 
+/--
+@isnad1 id=eq.0h2v.s4.74cd90e33858 from=translated src=- shape=74e4dd10 vocab=9aaf9a51
+-/
 theorem toPoly_compose (p q : QPoly) : (p.compose q).toPoly = p.toPoly.comp q.toPoly :=
   toPoly_composeCoeffs q p.coeffs.toList
 
-/-- Evaluating a composition evaluates the inner polynomial first. -/
+/-- Evaluating a composition evaluates the inner polynomial first.
+@isnad1 id=eq.0h3v.s8.3c13bd3c307b from=translated src=- shape=35f4b58b vocab=a4cbebd9
+-/
 theorem aeval_compose (p q : QPoly) (x : ℝ) :
     Polynomial.aeval x (p.compose q).toPoly =
       Polynomial.aeval (Polynomial.aeval x q.toPoly) p.toPoly := by
@@ -308,7 +343,9 @@ private theorem aeval_listToPoly_eq_sum (xs : List ℚ) (x : ℝ) :
       refine Finset.sum_congr rfl fun j _ => ?_
       ring
 
-/-- The represented polynomial is the finite sum of its coefficient list. -/
+/-- The represented polynomial is the finite sum of its coefficient list.
+@isnad1 id=eq.0h2v.s7.f93d53091e15 from=translated src=- shape=2510e540 vocab=8661ab47
+-/
 theorem aeval_toPoly_eq_sum (p : QPoly) (x : ℝ) :
     Polynomial.aeval x p.toPoly =
       ∑ j ∈ Finset.range p.coeffs.toList.length, (p.coeffs.toList.getD j 0 : ℝ) * x ^ j :=
@@ -331,7 +368,9 @@ private theorem eval_listToExpr (xs : List ℚ) (x : ℝ) :
         Polynomial.aeval_C, Polynomial.aeval_X]
       rfl
 
-/-- The Horner `Expr` and Mathlib polynomial have identical real semantics. -/
+/-- The Horner `Expr` and Mathlib polynomial have identical real semantics.
+@isnad1 id=eq.0h2v.s6.df313fdc56db from=translated src=- shape=57ff6a9b vocab=a867557a
+-/
 theorem eval_toExpr (p : QPoly) (x : ℝ) :
     Expr.eval (fun _ => x) p.toExpr = Polynomial.aeval x p.toPoly := by
   exact eval_listToExpr p.coeffs.toList x
@@ -342,12 +381,17 @@ private theorem cast_evalCoeffs (xs : List ℚ) (x : ℚ) :
   | nil => simp [evalCoeffs, listToExpr]
   | cons c cs ih => simp [evalCoeffs, listToExpr, Expr.eval, ih]
 
+/--
+@isnad1 id=eq.0h2v.s4.7a99c6780745 from=translated src=- shape=4449ef9c vocab=dcacf38d
+-/
 theorem cast_evalRat (p : QPoly) (x : ℚ) :
     ((p.evalRat x : ℚ) : ℝ) = Expr.eval (fun _ => (x : ℝ)) p.toExpr := by
   exact cast_evalCoeffs p.coeffs.toList x
 
 /-- The executable exact integral agrees with the interval integral of the
-represented polynomial. -/
+represented polynomial.
+@isnad1 id=eq.0h3v.s5.c3181149fae8 from=translated src=- shape=d59f5580 vocab=6cc7585e
+-/
 theorem integral_eval_toExpr (p : QPoly) (a b : ℚ) :
     (∫ x in (a : ℝ)..(b : ℝ), Expr.eval (fun _ => x) p.toExpr) =
       (p.integralRat a b : ℝ) := by
@@ -376,7 +420,9 @@ theorem integral_eval_toExpr (p : QPoly) (a b : ℚ) :
   norm_num
 
 /-- The analytic derivative of the Horner expression agrees with the formal
-polynomial derivative. -/
+polynomial derivative.
+@isnad1 id=eq.0h2v.s7.4c3d82158bca from=translated src=- shape=6f90d0d1 vocab=e53a07bf
+-/
 theorem deriv_eval_toExpr (p : QPoly) (x : ℝ) :
     deriv (fun t : ℝ => Expr.eval (fun _ => t) p.toExpr) x =
       Polynomial.aeval x p.toPoly.derivative := by

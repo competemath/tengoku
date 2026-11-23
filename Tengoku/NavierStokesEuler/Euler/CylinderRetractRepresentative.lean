@@ -28,16 +28,25 @@ variable (P : ℝ) [Fact (0 < P)] {U : Type*}
 def pointField (t : K) (x : LiftDomain P) : U :=
   L (EulerCylinderSmoothOrbit.pointField P (pathMap P J p) (pathMap_orbit_contDiff P J p hp) t x)
 
+/--
+@isnad1 id=continuo.1h6v.s16.a67ebc256223 from=translated src=- shape=ae8820f8 vocab=f8c49a8a
+-/
 theorem pointField_joint_continuous :
     Continuous (fun z : K × LiftDomain P => pointField P J L p hp z.1 z.2) :=
   L.continuous.comp (EulerCylinderSmoothOrbit.pointField_joint_continuous P
     (pathMap P J p) (pathMap_orbit_contDiff P J p hp))
 
+/--
+@isnad1 id=contdiff.1h8v.s16.f1d57dfac51d from=translated src=- shape=c042e701 vocab=2802f240
+-/
 theorem pointField_smooth (t : K) (x : LiftDomain P) :
     ContDiff ℝ ∞ (localFieldLift P (pointField P J L p hp t) x) :=
   L.contDiff.comp (EulerCylinderSmoothOrbit.pointField_smooth P
     (pathMap P J p) (pathMap_orbit_contDiff P J p hp) t x)
 
+/--
+@isnad1 id=continuo.1h7v.s16.00140c3beee8 from=translated src=- shape=7a845a0c vocab=686c26f6
+-/
 theorem pointField_continuous (t : K) : Continuous (pointField P J L p hp t) :=
   smoothField_continuous P _ (pointField_smooth P J L p hp t)
 
@@ -47,6 +56,9 @@ def pointPath (x : LiftDomain P) : C(K,U) :=
       (EulerCylinderSmoothOrbit.sobolevPath P 3 (pathMap P J p)
         (pathMap_orbit_contDiff P J p hp)).continuous)⟩
 
+/--
+@isnad1 id=eventual.2h7v.s16.36ecdd1e4bc8 from=translated src=- shape=de52f5d9 vocab=d9796634
+-/
 theorem pointField_ae (hL : ∀ v : U, L (J v) = v) (t : K) :
     p t =ᵐ[liftMeasure P] pointField P J L p hp t := by
   filter_upwards [map_ae P J (p t),EulerCylinderSmoothOrbit.pointField_ae P
@@ -55,6 +67,9 @@ theorem pointField_ae (hL : ∀ v : U, L (J v) = v) (t : K) :
   change p t x = L _
   rw [← he,hm,hL]
 
+/--
+@isnad1 id=eq.4h8v.s16.3787308d5633 from=translated src=- shape=76fece77 vocab=93a26407
+-/
 theorem pointField_eq (hL : ∀ v : U, L (J v) = v) (t : K)
     (f : LiftDomain P → U) (hf : Continuous f) (hrep : p t =ᵐ[liftMeasure P] f) :
     pointField P J L p hp t = f :=
@@ -71,6 +86,9 @@ variable (T : ℝ) (hT : 0 ≤ T)
     HasDerivWithinAt (extendPath T hT p) (q t) (Icc (0 : ℝ) T) t)
 
 include hd in
+/--
+@isnad1 id=hasderiv.4h9v.s17.3177a3f1cc0e from=translated src=- shape=843e2635 vocab=50bac6a5
+-/
 theorem pointPath_hasDerivWithinAt (x : LiftDomain P) (t : Icc (0 : ℝ) T) :
     HasDerivWithinAt (extendPath T hT (pointPath P J L p hp x))
       (pointPath P J L q hq x t) (Icc (0 : ℝ) T) t := by

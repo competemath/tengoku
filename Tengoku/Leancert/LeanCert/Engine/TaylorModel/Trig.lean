@@ -56,7 +56,9 @@ noncomputable def sinRemainderBound (domain : IntervalRat) (n : ℕ) : ℚ :=
   let r := max (|domain.lo|) (|domain.hi|)
   r ^ (n + 1) / (Nat.factorial (n + 1) : ℚ)
 
-/-- Remainder bound for sin is nonnegative -/
+/-- Remainder bound for sin is nonnegative
+@isnad1 id=le.0h2v.s3.62e042193197 from=translated src=- shape=0d4521f5 vocab=c0925676
+-/
 theorem sinRemainderBound_nonneg (domain : IntervalRat) (n : ℕ) :
     0 ≤ sinRemainderBound domain n := by
   unfold sinRemainderBound
@@ -85,7 +87,9 @@ noncomputable def cosRemainderBound (domain : IntervalRat) (n : ℕ) : ℚ :=
   let r := max (|domain.lo|) (|domain.hi|)
   r ^ (n + 1) / (Nat.factorial (n + 1) : ℚ)
 
-/-- Remainder bound for cos is nonnegative -/
+/-- Remainder bound for cos is nonnegative
+@isnad1 id=le.0h2v.s3.33750c3f58dc from=translated src=- shape=0d4521f5 vocab=19d2e0ea
+-/
 theorem cosRemainderBound_nonneg (domain : IntervalRat) (n : ℕ) :
     0 ≤ cosRemainderBound domain n := by
   unfold cosRemainderBound
@@ -125,7 +129,9 @@ noncomputable def sincRemainderBound (domain : IntervalRat) (n : ℕ) : ℚ :=
   -- Crude bound: r^{n+1} / (n+1)! (similar to sin remainder)
   r ^ (n + 1) / (Nat.factorial (n + 1) : ℚ)
 
-/-- Remainder bound for sinc is nonnegative -/
+/-- Remainder bound for sinc is nonnegative
+@isnad1 id=le.0h2v.s3.8e3e3a7f1142 from=translated src=- shape=0d4521f5 vocab=7c3e811c
+-/
 theorem sincRemainderBound_nonneg (domain : IntervalRat) (n : ℕ) :
     0 ≤ sincRemainderBound domain n := by
   unfold sincRemainderBound
@@ -192,7 +198,9 @@ private theorem iteratedDeriv_sin_cos_zero (n : ℕ) :
       rw [iteratedDeriv_succ', Real.deriv_cos', iteratedDeriv_fun_neg, ih.1]
       rcases hmod with h | h | h | h <;> (split_ifs <;> simp_all <;> omega)
 
-/-- iteratedDeriv n sin at 0 -/
+/-- iteratedDeriv n sin at 0
+@isnad1 id=eq.0h1v.s7.d8d6d15700ef from=translated src=- shape=f56527ba vocab=1e15b679
+-/
 theorem iteratedDeriv_sin_zero (n : ℕ) :
     iteratedDeriv n Real.sin 0 =
       if n % 4 = 0 then 0
@@ -201,7 +209,9 @@ theorem iteratedDeriv_sin_zero (n : ℕ) :
       else -1 :=
   (iteratedDeriv_sin_cos_zero n).1
 
-/-- iteratedDeriv n cos at 0 -/
+/-- iteratedDeriv n cos at 0
+@isnad1 id=eq.0h1v.s7.7d9e73fb9628 from=translated src=- shape=8d708a79 vocab=4e850cc5
+-/
 theorem iteratedDeriv_cos_zero (n : ℕ) :
     iteratedDeriv n Real.cos 0 =
       if n % 4 = 0 then 1
@@ -210,14 +220,18 @@ theorem iteratedDeriv_cos_zero (n : ℕ) :
       else 0 :=
   (iteratedDeriv_sin_cos_zero n).2
 
-/-- For even n, iteratedDeriv n sin 0 = 0 -/
+/-- For even n, iteratedDeriv n sin 0 = 0
+@isnad1 id=eq.1h1v.s5.6871453c278d from=translated src=- shape=7ad03d12 vocab=d2f864c9
+-/
 theorem iteratedDeriv_sin_zero_even {n : ℕ} (hn : n % 2 = 0) :
     iteratedDeriv n Real.sin 0 = 0 := by
   rw [iteratedDeriv_sin_zero]
   have h : n % 4 = 0 ∨ n % 4 = 2 := by omega
   rcases h with h | h <;> simp [h]
 
-/-- For odd n, iteratedDeriv n sin 0 = (-1)^((n-1)/2) -/
+/-- For odd n, iteratedDeriv n sin 0 = (-1)^((n-1)/2)
+@isnad1 id=eq.1h1v.s6.1233c36c661a from=translated src=- shape=0f9c5585 vocab=ee731d98
+-/
 theorem iteratedDeriv_sin_zero_odd {n : ℕ} (hn : n % 2 = 1) :
     iteratedDeriv n Real.sin 0 = (-1 : ℝ) ^ ((n - 1) / 2) := by
   rw [iteratedDeriv_sin_zero]
@@ -230,7 +244,9 @@ theorem iteratedDeriv_sin_zero_odd {n : ℕ} (hn : n % 2 = 1) :
     have hodd : Odd ((n - 1) / 2) := by rw [Nat.odd_iff]; omega
     rw [Odd.neg_one_pow hodd]
 
-/-- The sinTaylorCoeffs match the Mathlib Taylor coefficients for sin at 0 -/
+/-- The sinTaylorCoeffs match the Mathlib Taylor coefficients for sin at 0
+@isnad1 id=eq.1h2v.s5.6ba5d6bc5d3e from=translated src=- shape=9bd76783 vocab=8e7c7b9d
+-/
 theorem sinTaylorCoeffs_eq_iteratedDeriv (n i : ℕ) (hi : i ≤ n) :
     (sinTaylorCoeffs n i : ℝ) = iteratedDeriv i Real.sin 0 / i.factorial := by
   simp only [sinTaylorCoeffs, hi, ↓reduceIte]
@@ -244,7 +260,9 @@ theorem sinTaylorCoeffs_eq_iteratedDeriv (n i : ℕ) (hi : i ≤ n) :
     simp only [hodd]; norm_num
     rw [iteratedDeriv_sin_zero_even heven, zero_div]
 
-/-- For even n, iteratedDeriv n cos 0 = (-1)^(n/2) -/
+/-- For even n, iteratedDeriv n cos 0 = (-1)^(n/2)
+@isnad1 id=eq.1h1v.s6.7b577bae6dfe from=translated src=- shape=25c9c22d vocab=fc72ef2b
+-/
 theorem iteratedDeriv_cos_zero_even {n : ℕ} (hn : n % 2 = 0) :
     iteratedDeriv n Real.cos 0 = (-1 : ℝ) ^ (n / 2) := by
   rw [iteratedDeriv_cos_zero]
@@ -257,14 +275,18 @@ theorem iteratedDeriv_cos_zero_even {n : ℕ} (hn : n % 2 = 0) :
     have hodd : Odd (n / 2) := by rw [Nat.odd_iff]; omega
     rw [Odd.neg_one_pow hodd]
 
-/-- For odd n, iteratedDeriv n cos 0 = 0 -/
+/-- For odd n, iteratedDeriv n cos 0 = 0
+@isnad1 id=eq.1h1v.s5.789a64e215c4 from=translated src=- shape=7ad03d12 vocab=671de977
+-/
 theorem iteratedDeriv_cos_zero_odd {n : ℕ} (hn : n % 2 = 1) :
     iteratedDeriv n Real.cos 0 = 0 := by
   rw [iteratedDeriv_cos_zero]
   have h : n % 4 = 1 ∨ n % 4 = 3 := by omega
   rcases h with h | h <;> simp [h]
 
-/-- The cosTaylorCoeffs match the Mathlib Taylor coefficients for cos at 0 -/
+/-- The cosTaylorCoeffs match the Mathlib Taylor coefficients for cos at 0
+@isnad1 id=eq.1h2v.s5.0d97fc8e6db8 from=translated src=- shape=9bd76783 vocab=746a0a98
+-/
 theorem cosTaylorCoeffs_eq_iteratedDeriv (n i : ℕ) (hi : i ≤ n) :
     (cosTaylorCoeffs n i : ℝ) = iteratedDeriv i Real.cos 0 / i.factorial := by
   simp only [cosTaylorCoeffs, hi, ↓reduceIte]
@@ -281,7 +303,9 @@ theorem cosTaylorCoeffs_eq_iteratedDeriv (n i : ℕ) (hi : i ≤ n) :
 /-! ### Polynomial evaluation lemmas -/
 
 /-- sinTaylorPoly evaluates to the standard Taylor sum for sin at 0.
-    This connects our rational polynomial to Mathlib's Taylor series. -/
+    This connects our rational polynomial to Mathlib's Taylor series.
+@isnad1 id=eq.0h2v.s7.a06267c04386 from=translated src=- shape=10b20958 vocab=04d73af1
+-/
 theorem sinTaylorPoly_aeval_eq (n : ℕ) (z : ℝ) :
     (Polynomial.aeval z (sinTaylorPoly n) : ℝ) =
       ∑ i ∈ Finset.range (n + 1), (iteratedDeriv i Real.sin 0 / i.factorial) * z ^ i := by
@@ -295,7 +319,9 @@ theorem sinTaylorPoly_aeval_eq (n : ℕ) (z : ℝ) :
   change (sinTaylorCoeffs n i : ℝ) * z ^ i = _
   rw [h]
 
-/-- cosTaylorPoly evaluates to the standard Taylor sum for cos at 0. -/
+/-- cosTaylorPoly evaluates to the standard Taylor sum for cos at 0.
+@isnad1 id=eq.0h2v.s7.cf05bcb1b611 from=translated src=- shape=10b20958 vocab=42e03429
+-/
 theorem cosTaylorPoly_aeval_eq (n : ℕ) (z : ℝ) :
     (Polynomial.aeval z (cosTaylorPoly n) : ℝ) =
       ∑ i ∈ Finset.range (n + 1), (iteratedDeriv i Real.cos 0 / i.factorial) * z ^ i := by
@@ -331,7 +357,9 @@ private theorem mem_Icc_of_mem_interval {z : ℝ} {J : IntervalRat} (hz : z ∈ 
   exact ⟨hz.1, hz.2⟩
 
 /-- sin z ∈ (tmSin J n).evalSet z for all z in J.
-    Uses taylor_remainder_bound with f = Real.sin, c = 0, M = 1. -/
+    Uses taylor_remainder_bound with f = Real.sin, c = 0, M = 1.
+@isnad1 id=mem.1h3v.s4.c3d868e7749f from=translated src=- shape=6ef91c96 vocab=38715cb0
+-/
 theorem tmSin_correct (J : IntervalRat) (n : ℕ) :
     ∀ z : ℝ, z ∈ J → Real.sin z ∈ (tmSin J n).evalSet z := by
   intro z hz
@@ -391,7 +419,9 @@ theorem tmSin_correct (J : IntervalRat) (n : ℕ) :
   · simp only [hr_def, sub_zero]; ring_nf
 
 /-- cos z ∈ (tmCos J n).evalSet z for all z in J.
-    Uses taylor_remainder_bound with f = Real.cos, c = 0, M = 1. -/
+    Uses taylor_remainder_bound with f = Real.cos, c = 0, M = 1.
+@isnad1 id=mem.1h3v.s4.e03dfd85b6b3 from=translated src=- shape=6ef91c96 vocab=632e5e43
+-/
 theorem tmCos_correct (J : IntervalRat) (n : ℕ) :
     ∀ z : ℝ, z ∈ J → Real.cos z ∈ (tmCos J n).evalSet z := by
   intro z hz
@@ -461,7 +491,9 @@ theorem tmCos_correct (J : IntervalRat) (n : ℕ) :
 
     Technical note: The proof at x = 0 is subtle because we need to show
     that the limit defining each higher derivative exists. This follows from
-    the Taylor series representation. -/
+    the Taylor series representation.
+@isnad1 id=contdiff.0h0v.s5.063a32d20de5 from=translated src=- shape=1c9cf59e vocab=58209e58
+-/
 theorem contDiff_sinc : ContDiff ℝ ⊤ Real.sinc := Real.contDiff_sinc
 
 /-- The n-th derivative of sinc at 0 follows the pattern:
@@ -471,7 +503,9 @@ theorem contDiff_sinc : ContDiff ℝ ⊤ Real.sinc := Real.contDiff_sinc
     This matches the coefficients in sincTaylorCoeffs times n!.
 
     The proof uses the recurrence: (n+1) * sinc^{(n)}(0) = sin^{(n+1)}(0),
-    which follows from differentiating x * sinc(x) = sin(x). -/
+    which follows from differentiating x * sinc(x) = sin(x).
+@isnad1 id=eq.0h1v.s7.4e4a2510d0e7 from=translated src=- shape=2ad05628 vocab=86ca24f9
+-/
 theorem iteratedDeriv_sinc_zero (n : ℕ) :
     iteratedDeriv n Real.sinc 0 = if n % 2 = 0 then
       let k := n / 2
@@ -593,7 +627,9 @@ theorem iteratedDeriv_sinc_zero (n : ℕ) :
     have hn_ne : ((n : ℝ) + 1) ≠ 0 := by positivity
     exact mul_eq_zero.mp hr |>.resolve_left hn_ne
 
-/-- The sincTaylorCoeffs match the Taylor coefficients for sinc at 0 -/
+/-- The sincTaylorCoeffs match the Taylor coefficients for sinc at 0
+@isnad1 id=eq.1h2v.s5.d5b3206254ec from=translated src=- shape=9bd76783 vocab=07f4ebcc
+-/
 theorem sincTaylorCoeffs_eq_iteratedDeriv (n i : ℕ) (hi : i ≤ n) :
     (sincTaylorCoeffs n i : ℝ) = iteratedDeriv i Real.sinc 0 / i.factorial := by
   simp only [sincTaylorCoeffs, hi, ↓reduceIte]
@@ -623,7 +659,9 @@ theorem sincTaylorCoeffs_eq_iteratedDeriv (n i : ℕ) (hi : i ≤ n) :
     rw [iteratedDeriv_sinc_zero]
     simp only [heven, ↓reduceIte, zero_div]
 
-/-- sincTaylorPoly evaluates to the standard Taylor sum for sinc at 0. -/
+/-- sincTaylorPoly evaluates to the standard Taylor sum for sinc at 0.
+@isnad1 id=eq.0h2v.s7.57722987c273 from=translated src=- shape=10b20958 vocab=3979f253
+-/
 theorem sincTaylorPoly_aeval_eq (n : ℕ) (z : ℝ) :
     (Polynomial.aeval z (sincTaylorPoly n) : ℝ) =
       ∑ i ∈ Finset.range (n + 1), (iteratedDeriv i Real.sinc 0 / i.factorial) * z ^ i := by
@@ -637,7 +675,9 @@ theorem sincTaylorPoly_aeval_eq (n : ℕ) (z : ℝ) :
   rw [h]
 
 /-- sinc z ∈ (tmSinc J n).evalSet z for all z in J.
-    Uses the global bound `|sinc z| ≤ 1`. -/
+    Uses the global bound `|sinc z| ≤ 1`.
+@isnad1 id=mem.1h3v.s4.376f47ac68b5 from=translated src=- shape=6ef91c96 vocab=0e8ff067
+-/
 theorem tmSinc_correct (J : IntervalRat) (n : ℕ) :
     ∀ z : ℝ, z ∈ J → Real.sinc z ∈ (tmSinc J n).evalSet z := by
   intro z hz

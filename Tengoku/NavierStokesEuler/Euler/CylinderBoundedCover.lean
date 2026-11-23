@@ -30,9 +30,15 @@ def cover (u : SobolevSpace P 3) : LiftTangent →ᵇ Space :=
     (sobolevEmbeddingConstant P 3 * ‖u‖)
     (fun x => EulerSobolevPointEvaluation.representative_bound P u (coveringMap P x))
 
+/--
+@isnad1 id=eq.0h3v.s19.f62250aaa244 from=translated src=- shape=facb0e63 vocab=7b81cc31
+-/
 @[simp] theorem cover_apply (u : SobolevSpace P 3) (x : LiftTangent) :
     cover P u x = EulerSobolevPointEvaluation.pointEvaluation P (coveringMap P x) u := rfl
 
+/--
+@isnad1 id=le.0h2v.s17.09b3f5a03ef7 from=translated src=- shape=72c7f996 vocab=4aea5b87
+-/
 theorem cover_norm_le (u : SobolevSpace P 3) :
     ‖cover P u‖ ≤ sobolevEmbeddingConstant P 3 * ‖u‖ := by
   apply (BoundedContinuousFunction.norm_le
@@ -56,6 +62,9 @@ def coverMap : SobolevSpace P 3 →L[ℝ] (LiftTangent →ᵇ Space) where
   cont := AddMonoidHomClass.continuous_of_bound (coverLinear P)
     (sobolevEmbeddingConstant P 3) (cover_norm_le P)
 
+/--
+@isnad1 id=le.0h1v.s18.a0316a764dc1 from=translated src=- shape=ebd8a37a vocab=c3ba14a8
+-/
 theorem coverMap_norm_le : ‖coverMap P‖ ≤ sobolevEmbeddingConstant P 3 := by
   apply opNorm_le_bound _ (sobolevEmbeddingConstant_nonneg P 3)
   exact cover_norm_le P
@@ -70,6 +79,9 @@ private local instance : NormedSpace ℝ C(K, LiftTangent →ᵇ Space) := infer
 def coverPathMap : C(K, SobolevSpace P 3) →L[ℝ] C(K, LiftTangent →ᵇ Space) :=
   (coverMap P).compLeftContinuous ℝ K
 
+/--
+@isnad1 id=le.0h2v.s19.30b7ded597a7 from=translated src=- shape=102a656d vocab=4c999fe2
+-/
 theorem coverPathMap_norm_le :
     ‖coverPathMap (K := K) P‖ ≤ sobolevEmbeddingConstant P 3 := by
   apply opNorm_le_bound _ (sobolevEmbeddingConstant_nonneg P 3)
@@ -84,6 +96,9 @@ def coverPath (p : C(K, LiftL2 P))
     (hp : ContDiff ℝ ∞ (fun a : LiftTangent => pathTranslate P a p)) :
     C(K, LiftTangent →ᵇ Space) := coverPathMap P (sobolevPath P 3 p hp)
 
+/--
+@isnad1 id=eq.1h5v.s17.83046524cd0c from=translated src=- shape=89f55b22 vocab=478f9d68
+-/
 @[simp] theorem coverPath_apply (p : C(K, LiftL2 P))
     (hp : ContDiff ℝ ∞ (fun a : LiftTangent => pathTranslate P a p))
     (t : K) (x : LiftTangent) :
@@ -94,6 +109,9 @@ def coverOrbit (p : C(K, LiftL2 P))
     (a : LiftTangent) : C(K, LiftTangent →ᵇ Space) :=
   coverPathMap P (sobolevOrbit P 3 p hp a)
 
+/--
+@isnad1 id=contdiff.1h3v.s17.85612d87bb70 from=translated src=- shape=1310f404 vocab=8b0e7100
+-/
 theorem coverOrbit_contDiff (p : C(K, LiftL2 P))
     (hp : ContDiff ℝ ∞ (fun a : LiftTangent => pathTranslate P a p)) :
     ContDiff ℝ ∞ (coverOrbit P p hp) :=
@@ -101,6 +119,9 @@ theorem coverOrbit_contDiff (p : C(K, LiftL2 P))
     (E := C(K, SobolevSpace P 3)) (F := C(K, LiftTangent →ᵇ Space))
     (coverPathMap (K := K) P)).comp (sobolevOrbit_contDiff P 3 p hp)
 
+/--
+@isnad1 id=eq.1h6v.s17.eed38f204d38 from=translated src=- shape=2bdbe39a vocab=4c54428d
+-/
 theorem coverOrbit_apply (p : C(K, LiftL2 P))
     (hp : ContDiff ℝ ∞ (fun a : LiftTangent => pathTranslate P a p))
     (a : LiftTangent) (t : K) (x : LiftTangent) :
@@ -121,6 +142,9 @@ theorem coverOrbit_apply (p : C(K, LiftL2 P))
   rw [coveringMap_add]
   exact he
 
+/--
+@isnad1 id=eq.1h3v.s17.56bbbe5681cc from=translated src=- shape=706a9307 vocab=b38f9aea
+-/
 @[simp] theorem coverOrbit_zero (p : C(K, LiftL2 P))
     (hp : ContDiff ℝ ∞ (fun a : LiftTangent => pathTranslate P a p)) :
     coverOrbit P p hp 0 = coverPath P p hp := by

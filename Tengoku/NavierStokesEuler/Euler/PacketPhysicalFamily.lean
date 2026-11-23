@@ -17,6 +17,9 @@ namespace EulerPacketMovingFrame
 open Set EulerSmoothLimit EulerPacketNormalizedPrimary EulerPacketRay
   InnerProductSpace ContinuousLinearMap
 
+/--
+@isnad1 id=other.32h22v.s16.b92df5afc8b5 from=translated src=- shape=e8404853 vocab=1df9ca26
+-/
 theorem physical_family_amplification_and_size {α : Type*} (center : α)
     {B B₁ : ℝ → Space →L[ℝ] Space} {M E : α → ℝ → Space →L[ℝ] Space}
     {m v : ℝ → Space} {r w : α → ℝ → Space}

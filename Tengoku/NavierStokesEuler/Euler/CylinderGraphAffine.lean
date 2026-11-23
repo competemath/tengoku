@@ -13,6 +13,9 @@ open Set MeasureTheory EulerLiftedGradientSpace EulerMetricTransport
   EulerTransportDerivatives
 open scoped ContDiff
 
+/--
+@isnad1 id=eventual.1h5v.s14.7bc9861948ed from=translated src=- shape=cc78bc48 vocab=7cb75d74
+-/
 theorem affine_representative_ae {X : Type*} [MeasurableSpace X]
     (μ : Measure X) (u : Fin 3 → Lp Vector3 2 μ) (f : Fin 3 → X → Vector3)
     (hu : ∀ i, (u i : X → Vector3) =ᵐ[μ] f i) (a : ℝ) :
@@ -26,6 +29,9 @@ theorem affine_representative_ae {X : Type*} [MeasurableSpace X]
 variable (P : ℝ) [Fact (0 < P)]
 
 omit [Fact (0 < P)] in
+/--
+@isnad1 id=eq.1h4v.s10.f36bd58acdd6 from=translated src=- shape=15a182f1 vocab=bc42561c
+-/
 theorem affine_fieldDerivative (f : Fin 3 → LiftDomain P → Vector3)
     (hf : ∀ i x, ContDiff ℝ ∞ (localFieldLift P (f i) x))
     (a : ℝ) (z : LiftDomain P) :
@@ -37,6 +43,9 @@ theorem affine_fieldDerivative (f : Fin 3 → LiftDomain P → Vector3)
     ((((hf 2 z).differentiable (by simp)) 0).hasFDerivAt)
   exact congrArg (fun L : LiftTangent →L[ℝ] Vector3 => L (0,1)) h.fderiv
 
+/--
+@isnad1 id=le.5h7v.s17.a8e216a856d3 from=translated src=- shape=6de80cdb vocab=ac9fff21
+-/
 theorem graph_affine_norm_sq_le
     (f : Fin 3 → LiftDomain P → Vector3)
     (hf : ∀ i x, ContDiff ℝ ∞ (localFieldLift P (f i) x))

@@ -16,6 +16,9 @@ namespace EulerPacketMovingFrame
 open EulerSmoothLimit EulerPacketRay EulerPacketFrameStability
   EulerPacketFrameQuantitative InnerProductSpace
 
+/--
+@isnad1 id=eq.3h2v.s8.6aeeeafb583f from=translated src=- shape=4bf36b52 vocab=16c415c8
+-/
 theorem thirdRatio_from_pairing (R V : Fin 3 → ℝ) (hN : R 2 ≠ 0) (hV : V 1 ≠ 0)
     (hpair : R 0*V 0+R 1*V 1+R 2*V 2 = 0) :
     V 2/V 1 = velocityThird (R 0) (R 1) (R 2) (V 0/V 1) 1 := by
@@ -24,6 +27,9 @@ theorem thirdRatio_from_pairing (R V : Fin 3 → ℝ) (hN : R 2 ≠ 0) (hV : V 1
   field_simp
   linarith only [hpair]
 
+/--
+@isnad1 id=and.27h16v.s11.e8a36fb30d57 from=translated src=- shape=2a1e745f vocab=0dd4b306
+-/
 theorem physical_frame_renewal_order40 (M : Space →L[ℝ] Space) (m v r w : ℝ → Space)
     {s₀ t₀ a ε σ y Θ K e : ℝ} {Z Z₁ : ℝ → ℝ}
     (ha : a ≠ 0) (hs₀ : 0 < s₀) (hε : 0 < ε)

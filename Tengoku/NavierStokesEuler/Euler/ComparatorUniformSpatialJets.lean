@@ -22,7 +22,9 @@ variable {u₀ : Space → Space} {v : Space → ℝ → Space} {p : Space → �
 include h
 
 /-- The literal Laplacian of the velocity is the negative curl of its
-vorticity, by solenoidality and the ordinary curl-curl identity. -/
+vorticity, by solenoidality and the ordinary curl-curl identity.
+@isnad1 id=eq.2h4v.s8.85db79416235 from=translated src=- shape=e109e16d vocab=79ecbeb7
+-/
 theorem velocity_laplacian_eq_neg_curl_curl (t : ℝ) (ht : 0 ≤ t) :
     Δ (v · t) = -vectorCurl (vectorCurl (v · t)) := by
   have hi := vectorCurl_vectorCurl (v · t) (h.velocity_contDiff t ht)
@@ -34,14 +36,18 @@ theorem velocity_laplacian_eq_neg_curl_curl (t : ℝ) (ht : 0 ≤ t) :
   rw [hg, zero_sub] at hi
   rw [hi, neg_neg]
 
-/-- Locality of curl places the Laplacian support inside the vorticity support. -/
+/-- Locality of curl places the Laplacian support inside the vorticity support.
+@isnad1 id=le.2h4v.s8.0ec47c10ed7b from=translated src=- shape=d2751452 vocab=c0446a6f
+-/
 theorem velocity_laplacian_tsupport_subset (t : ℝ) (ht : 0 ≤ t) :
     tsupport (Δ (v · t)) ⊆ tsupport (vectorCurl (v · t)) := by
   rw [h.velocity_laplacian_eq_neg_curl_curl t ht, tsupport_neg]
   exact vectorCurl_support _
 
 /-- Every scalar component of the actual velocity Laplacian remains jointly
-smooth through time zero. -/
+smooth through time zero.
+@isnad1 id=contdiff.1h4v.s9.c61bb1ceeb6d from=translated src=- shape=e7168c05 vocab=9070187f
+-/
 theorem velocity_laplacian_component_joint_contDiffOn (j : Fin 3) :
     ContDiffOn ℝ ∞ (fun z : ℝ × Space => Δ (v · z.1) z.2 j)
       (Ici 0 ×ˢ (univ : Set Space)) := by
@@ -53,7 +59,9 @@ theorem velocity_laplacian_component_joint_contDiffOn (j : Fin 3) :
   exact vector_laplacian_coordinate (v · z.1) (h.velocity_contDiff z.1 hz.1) z.2 j
 
 /-- Common compact support of vorticity and Comparator joint smoothness
-uniformly control every scalar coordinate derivative of the Laplacian. -/
+uniformly control every scalar coordinate derivative of the Laplacian.
+@isnad1 id=ex.3h7v.s9.43459f2f0148 from=translated src=- shape=dc908e51 vocab=9c30f982
+-/
 theorem laplacian_component_word_energy_uniform_of_commonCompactCurl
     (T : ℝ) (K : Set Space) (hK : IsCompact K)
     (hsupport : ∀ t ∈ Icc (0 : ℝ) T, tsupport (vectorCurl (v · t)) ⊆ K)
@@ -69,7 +77,9 @@ theorem laplacian_component_word_energy_uniform_of_commonCompactCurl
       ((h.velocity_laplacian_tsupport_subset t ht.1).trans (hsupport t ht))
 
 /-- A Comparator solution with common compact vorticity support has uniform
-energies for all genuine scalar coordinate derivatives of its velocity. -/
+energies for all genuine scalar coordinate derivatives of its velocity.
+@isnad1 id=ex.3h7v.s9.2bcf09fd1a6b from=translated src=- shape=6d8f767b vocab=763ba4c2
+-/
 theorem component_word_energy_uniform_of_commonCompactCurl
     (T : ℝ) (K : Set Space) (hK : IsCompact K)
     (hsupport : ∀ t ∈ Icc (0 : ℝ) T, tsupport (vectorCurl (v · t)) ⊆ K)

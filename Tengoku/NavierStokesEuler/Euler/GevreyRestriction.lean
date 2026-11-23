@@ -45,7 +45,9 @@ open _root_.EulerLiftedGradientSpace _root_.EulerCylinderSobolevSpace _root_.Eul
 
 variable (period : ℝ) [Fact (0 < period)]
 
-/-- Actual Gevrey norms are identical under every restriction retaining their derivative cutoff. -/
+/-- Actual Gevrey norms are identical under every restriction retaining their derivative cutoff.
+@isnad1 id=eq.2h7v.s20.41e6fe4e1e05 from=translated src=- shape=88ca6504 vocab=b70da885
+-/
 theorem weightedNorm_restrict {p q : ℕ} (hqp : q ≤ p) (r N : ℕ) (hN : N+r ≤ q) (ρ : ℝ)
     (u : SobolevSpace period p) :
     weightedNorm period r N ρ (restrictOperator period hqp u) = weightedNorm period r N ρ u := by
@@ -55,7 +57,9 @@ theorem weightedNorm_restrict {p q : ℕ} (hqp : q ≤ p) (r N : ℕ) (hN : N+r 
   exact blockNorm_unique period (toJet period (restrictOperator period hqp u)) (toJet period u) rfl
     (by have := Finset.mem_range.mp hn; omega) (by have := Finset.mem_range.mp hn; omega)
 
-/-- The actual radius-loss sum is identical under every restriction retaining its cutoff. -/
+/-- The actual radius-loss sum is identical under every restriction retaining its cutoff.
+@isnad1 id=eq.2h7v.s20.378f813dad15 from=translated src=- shape=88ca6504 vocab=90c0a9ae
+-/
 theorem weightedLoss_restrict {p q : ℕ} (hqp : q ≤ p) (r N : ℕ) (hN : N+r ≤ q) (ρ : ℝ)
     (u : SobolevSpace period p) :
     weightedLoss period r N ρ (restrictOperator period hqp u) = weightedLoss period r N ρ u := by
@@ -65,7 +69,9 @@ theorem weightedLoss_restrict {p q : ℕ} (hqp : q ≤ p) (r N : ℕ) (hN : N+r 
   exact blockNorm_unique period (toJet period (restrictOperator period hqp u)) (toJet period u) rfl
     (by have := Finset.mem_range.mp hn; omega) (by have := Finset.mem_range.mp hn; omega)
 
-/-- Actual derivative words agree after restricting the input to any sufficiently high Sobolev level. -/
+/-- Actual derivative words agree after restricting the input to any sufficiently high Sobolev level.
+@isnad1 id=eq.2h7v.s22.e84b06ef4cd9 from=translated src=- shape=8094df23 vocab=dc63abe8
+-/
 theorem wordAtLevel_restrict {p q r n : ℕ} (hqp : q ≤ p) (w : Fin n → Fin 4) (hq : n+r ≤ q)
     (u : SobolevSpace period p) :
     wordAtLevel period r n w hq (restrictOperator period hqp u) = wordAtLevel period r n w (hq.trans hqp) u := by
@@ -73,7 +79,9 @@ theorem wordAtLevel_restrict {p q r n : ℕ} (hqp : q ≤ p) (w : Fin n → Fin 
   rw [wordAtLevel_value, wordAtLevel_value]
   exact EulerPressureJetIdentities.SpatialJet.word_unique _ _ rfl (by omega) (by omega) w
 
-/-- Every literal metric-energy derivative is unchanged by a valid Sobolev restriction. -/
+/-- Every literal metric-energy derivative is unchanged by a valid Sobolev restriction.
+@isnad1 id=eq.2h6v.s20.d313ae90309f from=translated src=- shape=4a1e59b3 vocab=1c5b0202
+-/
 theorem energyValues_restrict {p q : ℕ} (hqp : q ≤ p) (r N : ℕ) (hN : N+r ≤ q)
     (u : SobolevSpace period p) :
     energyValues period r N hN (restrictOperator period hqp u) = energyValues period r N (hN.trans hqp) u := by
@@ -84,13 +92,17 @@ theorem energyValues_restrict {p q : ℕ} (hqp : q ≤ p) (r N : ℕ) (hN : N+r 
   exact congrArg (fun x => value period (wordAtLevel period 0 a.1.val a.2 (by have := a.1.isLt; omega) x))
     (wordAtLevel_restrict period hqp I.2 (by have := I.1.isLt; omega) u)
 
-/-- The complete-solution truncation leaves every retained actual Gevrey norm unchanged. -/
+/-- The complete-solution truncation leaves every retained actual Gevrey norm unchanged.
+@isnad1 id=eq.1h6v.s20.ba3f7c01cd69 from=translated src=- shape=ccc1a103 vocab=81df2f1f
+-/
 theorem weightedNorm_truncate {s : ℕ} (r N : ℕ) (hN : N+r ≤ s) (ρ : ℝ)
     (u : SobolevSpace period (s+1)) :
     weightedNorm period r N ρ (truncateOperator period s u) = weightedNorm period r N ρ u :=
   weightedNorm_restrict period (by omega : s ≤ s+1) r N hN ρ u
 
-/-- The complete-solution truncation leaves the retained radius-loss sum unchanged. -/
+/-- The complete-solution truncation leaves the retained radius-loss sum unchanged.
+@isnad1 id=eq.1h6v.s20.a1748f175ce7 from=translated src=- shape=ccc1a103 vocab=c92686bc
+-/
 theorem weightedLoss_truncate {s : ℕ} (r N : ℕ) (hN : N+r ≤ s) (ρ : ℝ)
     (u : SobolevSpace period (s+1)) :
     weightedLoss period r N ρ (truncateOperator period s u) = weightedLoss period r N ρ u :=

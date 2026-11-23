@@ -52,7 +52,9 @@ open _root_.MeasureTheory _root_.InnerProductSpace _root_.EulerLiftedGradientSpa
 variable {X Y : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
   [NormedAddCommGroup Y] [NormedSpace ℝ Y]
 
-/-- Exact equivariance of the residual plus the linearized quadratic increment. -/
+/-- Exact equivariance of the residual plus the linearized quadratic increment.
+@isnad1 id=eq.4h9v.s12.98410432028c from=translated src=- shape=ba2e707f vocab=03eab4d7
+-/
 theorem linearized_source_equivariant (R : X →L[ℝ] X) (S : Y →L[ℝ] Y)
     (B : X →L[ℝ] X →L[ℝ] Y) (C : X →L[ℝ] Y) (z : X) (r : Y)
     (hB : ∀ u v, S (B u v) = B (R u) (R v)) (hC : ∀ u, S (C u) = C (R u))
@@ -67,13 +69,17 @@ local instance correctionParityGroup (q : ℕ) : NormedAddCommGroup (SobolevSpac
 /-- The inherited real Sobolev module instance. -/
 local instance correctionParitySpace (q : ℕ) : NormedSpace ℝ (SobolevSpace period q) := inferInstance
 
-/-- Signed reflection on Sobolev fields has the literal signed L² value. -/
+/-- Signed reflection on Sobolev fields has the literal signed L² value.
+@isnad1 id=eq.0h3v.s20.1ef44118abc0 from=translated src=- shape=36ba58e0 vocab=c99998ce
+-/
 theorem value_oddReflection {q : ℕ} (u : SobolevSpace period q) :
     value period (oddReflection period q u) = -reflection period (value period u) := by
   change -value period (sobolevReflection period q u) = _
   rw [value_sobolevReflection]
 
-/-- Actual almost-everywhere odd parity is precisely a fixed point of signed reflection. -/
+/-- Actual almost-everywhere odd parity is precisely a fixed point of signed reflection.
+@isnad1 id=eq.1h3v.s20.c98b98909cfa from=translated src=- shape=be05aab4 vocab=eb3c8b1d
+-/
 theorem oddReflection_fixed_of_ae {q : ℕ} (u : SobolevSpace period q)
     (hu : ∀ᵐ x ∂liftMeasure period, value period u (-x) = -value period u x) :
     oddReflection period q u = u := by
@@ -87,14 +93,18 @@ theorem oddReflection_fixed_of_ae {q : ℕ} (u : SobolevSpace period q)
     exact h3
   rw [hh, neg_neg]
 
-/-- Signed reflection commutes with restriction to the next Sobolev order. -/
+/-- Signed reflection commutes with restriction to the next Sobolev order.
+@isnad1 id=eq.0h3v.s22.a75a25929aa2 from=translated src=- shape=5ff2bb7f vocab=270b8613
+-/
 theorem truncate_oddReflection {q : ℕ} (u : SobolevSpace period (q+1)) :
     truncateOperator period q (oddReflection period (q+1) u) =
       oddReflection period q (truncateOperator period q u) := by
   simp only [oddReflection_apply, map_neg]
   exact congrArg Neg.neg (truncate_reflection period u)
 
-/-- An actual even coefficient commutes with signed reflection. -/
+/-- An actual even coefficient commutes with signed reflection.
+@isnad1 id=eq.1h5v.s22.6e75f9aea1c4 from=translated src=- shape=098b6c9d vocab=20b46d5d
+-/
 theorem coefficient_oddReflection {q : ℕ} {A : SmoothCoefficient period}
     (K : CoefficientJet period standardDirection q A)
     (hA : ∀ x, A.coefficient (-x) = A.coefficient x) (u : SobolevSpace period q) :
@@ -103,7 +113,9 @@ theorem coefficient_oddReflection {q : ℕ} {A : SmoothCoefficient period}
   simp only [oddReflection_apply, map_neg]
   exact congrArg Neg.neg (coefficient_reflection period K hA u)
 
-/-- The actual pressure inverse commutes with signed reflection for an even metric. -/
+/-- The actual pressure inverse commutes with signed reflection for an even metric.
+@isnad1 id=eq.3h8v.s22.022291428a41 from=translated src=- shape=37528d28 vocab=08927e78
+-/
 theorem pressure_oddReflection {q : ℕ} {A : SmoothCoefficient period}
     (K : CoefficientJet period standardDirection q A)
     (hA : ∀ x, A.coefficient (-x) = A.coefficient x)
@@ -114,7 +126,9 @@ theorem pressure_oddReflection {q : ℕ} {A : SmoothCoefficient period}
   simp only [oddReflection_apply, map_neg]
   exact congrArg Neg.neg (pressureSobolev_reflection period K hA κ m c hc hpos u)
 
-/-- The actual pressure-corrected source commutes with signed reflection. -/
+/-- The actual pressure-corrected source commutes with signed reflection.
+@isnad1 id=eq.3h8v.s22.bddbfcfda61e from=translated src=- shape=37528d28 vocab=569f5d3f
+-/
 theorem projectedSource_oddReflection {q : ℕ} {A : SmoothCoefficient period}
     (K : CoefficientJet period standardDirection q A)
     (hA : ∀ x, A.coefficient (-x) = A.coefficient x)
@@ -126,7 +140,9 @@ theorem projectedSource_oddReflection {q : ℕ} {A : SmoothCoefficient period}
   exact congrArg Neg.neg (projectedSource_reflection period K hA κ m c hc hpos u)
 
 /-- The literal non-pressure correction source has odd-reflection symmetry
-under the source's actual even linear and odd quadratic coefficients. -/
+under the source's actual even linear and odd quadratic coefficients.
+@isnad1 id=eq.5h6v.s22.6e07066d974f from=translated src=- shape=d5f9cb7e vocab=541ef2ab
+-/
 theorem rawSource_oddReflection {q : ℕ} (hq : 6 ≤ q) {T : Type*} [TopologicalSpace T]
     (D : CorrectionData period q T) (t : T)
     (hL : ∀ x, (D.linear.coefficient t).coefficient (-x) = (D.linear.coefficient t).coefficient x)
@@ -151,7 +167,9 @@ theorem rawSource_oddReflection {q : ℕ} (hq : 6 ≤ q) {T : Type*} [Topologica
     (D.approximation t) (D.residual t) hF hC hz hr e
 
 /-- The genuine correction pressure transforms by signed reflection,
-with its sign fixed by the actual pressure definition. -/
+with its sign fixed by the actual pressure definition.
+@isnad1 id=eq.6h6v.s22.97dbab7aa2c3 from=translated src=- shape=bf9f4d98 vocab=08a94759
+-/
 theorem correction_pressure_oddReflection {q : ℕ} (hq : 6 ≤ q) {T : Type*} [TopologicalSpace T]
     (D : CorrectionData period q T) (t : T)
     (hG : ∀ x, (D.metric.coefficient t).coefficient (-x) = (D.metric.coefficient t).coefficient x)
@@ -171,7 +189,9 @@ theorem correction_pressure_oddReflection {q : ℕ} (hq : 6 ≤ q) {T : Type*} [
       (D.metric_pos t)) (rawSource_oddReflection period hq D t hL hQ hz hr e)))
 
 /-- The literal projected nonlinear correction equation has the required
-odd symmetry, derived from the concrete parity of its prescribed fields. -/
+odd symmetry, derived from the concrete parity of its prescribed fields.
+@isnad1 id=eq.6h6v.s22.683c523bcebe from=translated src=- shape=3190bb5f vocab=1bd5864f
+-/
 theorem correction_source_oddReflection {q : ℕ} (hq : 6 ≤ q) {T : Type*} [TopologicalSpace T]
     (D : CorrectionData period q T) (t : T)
     (hG : ∀ x, (D.metric.coefficient t).coefficient (-x) = (D.metric.coefficient t).coefficient x)

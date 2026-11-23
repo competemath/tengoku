@@ -69,7 +69,9 @@ def basePressureNorm {s : ℕ} {A : SmoothCoefficient period}
     (N : ℕ) (hN : N+6 ≤ s) (ρ : ℝ) (p : SobolevSpace period s) : ℝ :=
   ∑ n : Fin (N+1), weight ρ n.val * basePressureBlock period K (toJet period p) n.val (by have := n.isLt; omega)
 
-/-- Ordinary coefficient-product control for the actual external pressure commutator. -/
+/-- Ordinary coefficient-product control for the actual external pressure commutator.
+@isnad1 id=le.2h7v.s15.cdd5fb4cb9c2 from=translated src=- shape=8768b2b0 vocab=73cc64b9
+-/
 theorem externalPressureNorm_unshifted {s : ℕ} {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (N : ℕ) (hN : N+6 ≤ s) (ρ : ℝ) (hρ : 0 < ρ) (p : SobolevSpace period s) :
@@ -83,7 +85,9 @@ theorem externalPressureNorm_unshifted {s : ℕ} {A : SmoothCoefficient period}
   exact h.trans (EulerWeightedConvolution.unshifted_product_sum ρ hρ N _ _
     (fun _ => coefficientBlock_nonneg K) (fun _ => blockNorm_nonneg _))
 
-/-- External pressure commutators use only shifted pressure orders strictly below the chosen cutoff. -/
+/-- External pressure commutators use only shifted pressure orders strictly below the chosen cutoff.
+@isnad1 id=le.5h8v.s15.9a0169cff71e from=translated src=- shape=1900d515 vocab=f4cb6fe2
+-/
 theorem externalPressureNorm_shifted {s : ℕ} {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (N : ℕ) (hN : (N+1)+6 ≤ s) (ρ Rc : ℝ) (hρ : 0 < ρ) (hRc : 0 ≤ Rc)
@@ -93,14 +97,18 @@ theorem externalPressureNorm_shifted {s : ℕ} {A : SmoothCoefficient period}
     externalPressureNorm period K (N+1) ρ p ≤ 2*Rc*shiftedPressureNorm period N ρ p :=
   commutatorBlock_weighted_shifted period K (toJet period p) (N+1) hN ρ Rc hρ hRc hsmall hcoeff
 
-/-- Actual base pressure commutators are controlled by the unshifted one-order-lower pressure norm. -/
+/-- Actual base pressure commutators are controlled by the unshifted one-order-lower pressure norm.
+@isnad1 id=le.2h7v.s15.8586f56deb07 from=translated src=- shape=be4f847b vocab=681d23b9
+-/
 theorem basePressureNorm_lower {s : ℕ} {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)
     (N : ℕ) (hN : N+6 ≤ s) (ρ : ℝ) (hρ : 0 < ρ) (p : SobolevSpace period s) :
     basePressureNorm period K N hN ρ p ≤ 448*baseCoefficientSum period K*weightedNorm period 5 N ρ p :=
   basePressure_weighted_bound period K (toJet period p) N hN ρ hρ
 
-/-- The same actual base commutators can be controlled by an available H⁶ pressure bound. -/
+/-- The same actual base commutators can be controlled by an available H⁶ pressure bound.
+@isnad1 id=le.2h7v.s15.c7acb9ce62d7 from=translated src=- shape=be4f847b vocab=681d23b9
+-/
 theorem basePressureNorm_unshifted {s : ℕ} {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)
     (N : ℕ) (hN : N+6 ≤ s) (ρ : ℝ) (hρ : 0 < ρ) (p : SobolevSpace period s) :
@@ -109,7 +117,9 @@ theorem basePressureNorm_unshifted {s : ℕ} {A : SmoothCoefficient period}
     (weightedNorm_mono period (by norm_num : 5 ≤ 6) N ρ hρ p)
     (mul_nonneg (by norm_num) (baseCoefficientSum_nonneg period K)))
 
-/-- The actual nonlinear transport pressure has the required external commutator bound with no extra velocity order. -/
+/-- The actual nonlinear transport pressure has the required external commutator bound with no extra velocity order.
+@isnad1 id=le.11h14v.s16.b84e57f5c7e7 from=translated src=- shape=d97c43b4 vocab=5378f621
+-/
 theorem nonlinear_externalPressure_bound {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (κ : ℝ) (m : Vector3) (c : ℝ) (hc : 0 < c)

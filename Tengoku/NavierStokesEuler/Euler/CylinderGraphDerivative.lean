@@ -15,6 +15,9 @@ open scoped ContDiff Topology
 
 variable (P : ℝ) [Fact (0 < P)]
 
+/--
+@isnad1 id=hasderiv.11h12v.s16.b6429d0b10b7 from=translated src=- shape=c8cef8ee vocab=fb723293
+-/
 theorem graph_hasDerivWithinAt
     (u v : ℝ → LiftL2 P) (f : ℝ → LiftDomain P → Vector3)
     (hf : ∀ r x, ContDiff ℝ ∞ (localFieldLift P (f r) x))

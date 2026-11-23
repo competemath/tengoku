@@ -38,6 +38,9 @@ namespace TimeDerivative
 
 variable {hT : 0 ≤ T}
 
+/--
+@isnad1 id=timederi.2h8v.s7.07b75d8a6637 from=translated src=- shape=cfe3f8f6 vocab=ea3898f3
+-/
 theorem truncateFamily (M : ℕ) (f f' : ℕ → VectorField)
     (G : ∀ i, i ≤ M → Field P T (f i)) (G' : ∀ i, i ≤ M → Field P T (f' i))
     (hG : ∀ i (hi : i ≤ M), TimeDerivative hT (G i hi) (G' i hi)) (n : ℕ) :
@@ -48,6 +51,9 @@ theorem truncateFamily (M : ℕ) (f f' : ℕ → VectorField)
   · simp only [Field.truncateFamily,dite_eq_right hn]
     exact zero
 
+/--
+@isnad1 id=timederi.3h12v.s8.a482ec51f688 from=translated src=- shape=13ba07de vocab=b803d16e
+-/
 theorem assembleFamily (M : ℕ) (f f' c c' : ℕ → VectorField)
     (G : ∀ i, i ≤ M → Field P T (f i)) (G' : ∀ i, i ≤ M → Field P T (f' i))
     (H : ∀ i, i ≤ M → Field P T (c i)) (H' : ∀ i, i ≤ M → Field P T (c' i))
@@ -58,6 +64,9 @@ theorem assembleFamily (M : ℕ) (f f' c c' : ℕ → VectorField)
   | zero => exact truncateFamily M f f' G G' hG 0
   | succ n => exact (truncateFamily M f f' G G' hG (n+1)).add (truncateFamily M c c' H H' hH n)
 
+/--
+@isnad1 id=timederi.2h8v.s8.cd955fb2d572 from=translated src=- shape=98d3c9d1 vocab=4c06a918
+-/
 theorem evaluateFamily (M : ℕ) (κ : ℝ) (f f' : ℕ → VectorField)
     (G : ∀ i, Field P T (f i)) (G' : ∀ i, Field P T (f' i))
     (hG : ∀ i, TimeDerivative hT (G i) (G' i)) :

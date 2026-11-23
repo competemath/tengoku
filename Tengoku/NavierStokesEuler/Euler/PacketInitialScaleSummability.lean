@@ -21,6 +21,9 @@ def meanMajorant (J : ℕ) (C c K : ℝ) (p q N m : ℕ) (X : ℝ) (n : ℕ) : �
   (supportScale J X n)⁻¹^m/(frequency J X n)^2*
     (K*(parameterEnvelope J C c p q X n)^N)
 
+/--
+@isnad1 id=eq.0h10v.s8.43afc6265a77 from=translated src=- shape=ef65715c vocab=40a74522
+-/
 theorem high_expansion (J : ℕ) (C c K : ℝ) (p q N m : ℕ) (X : ℝ) (n : ℕ) :
     highMajorant J C c K p q N m X n=
       (K*C^N)*((J+n : ℕ) : ℝ)^(p*N)*(scaleSequence J X n)^(q*N)*
@@ -32,6 +35,9 @@ theorem high_expansion (J : ℕ) (C c K : ℝ) (p q N m : ℕ) (X : ℝ) (n : �
     ← pow_mul,exp_add,exp_nat_mul,neg_div,exp_neg,inv_inv]
   ring
 
+/--
+@isnad1 id=eq.0h10v.s8.e43ba10caf33 from=translated src=- shape=610ec4c3 vocab=7ba245c4
+-/
 theorem mean_expansion (J : ℕ) (C c K : ℝ) (p q N m : ℕ) (X : ℝ) (n : ℕ) :
     meanMajorant J C c K p q N m X n=
       (K*C^N)*((J+n : ℕ) : ℝ)^(p*N)*(scaleSequence J X n)^(q*N)*
@@ -45,6 +51,9 @@ theorem mean_expansion (J : ℕ) (C c K : ℝ) (p q N m : ℕ) (X : ℝ) (n : �
     ← pow_mul,exp_add,exp_nat_mul,neg_div,exp_neg,inv_inv,he]
   ring
 
+/--
+@isnad1 id=le.3h5v.s6.de1cc75bdbe6 from=translated src=- shape=cfddce28 vocab=c83b59df
+-/
 theorem current_real_power_le_previous (J : ℕ) (hJ : 2 ≤ J)
     (X : ℝ) (hX : 1 ≤ X) (n p : ℕ) (a : ℝ) (hpa : (p : ℝ) ≤ a) :
     scaleSequence J X n/((J+n : ℕ) : ℝ)^a ≤
@@ -58,6 +67,9 @@ theorem current_real_power_le_previous (J : ℕ) (hJ : 2 ≤ J)
   exact div_le_div_of_nonneg_left (zero_le_one.trans (sequence_one_le J (by omega) X hX n))
     (by positivity) hb
 
+/--
+@isnad1 id=summable.5h9v.s6.205c63c55ddd from=translated src=- shape=2bf06a35 vocab=9e2199f3
+-/
 theorem high_summable (J : ℕ) (hJ : 2 ≤ J) (C c K : ℝ)
     (hC : 0 < C) (hc : 0 ≤ c) (hK : 0 < K)
     (p q N m : ℕ) (X : ℝ) (hX : 1 ≤ X) :
@@ -88,6 +100,9 @@ theorem high_summable (J : ℕ) (hJ : 2 ≤ J) (C c K : ℝ)
       mul_le_mul_of_nonneg_left h2 (Nat.cast_nonneg m),
       mul_le_mul_of_nonneg_left h3 (mul_nonneg (Nat.cast_nonneg N) hc)]
 
+/--
+@isnad1 id=summable.4h9v.s6.96e963f5b39f from=translated src=- shape=1927663f vocab=ff9ca190
+-/
 theorem mean_summable (J : ℕ) (hJ : 2 ≤ J) (C c K : ℝ)
     (hC : 0 < C) (hK : 0 < K)
     (p q N m : ℕ) (X : ℝ) (hX : 1 ≤ X) :

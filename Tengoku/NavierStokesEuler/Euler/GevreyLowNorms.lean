@@ -56,7 +56,9 @@ open scoped Topology _root_.Topology
 
 variable (period : ℝ) [Fact (0 < period)]
 
-/-- Monotonicity in the fixed base Sobolev index. -/
+/-- Monotonicity in the fixed base Sobolev index.
+@isnad1 id=le.2h7v.s15.8db01bf9dcd9 from=translated src=- shape=d41c1251 vocab=2ab45792
+-/
 theorem weightedNorm_mono {s p q : ℕ} (hpq : p ≤ q) (N : ℕ) (ρ : ℝ) (hρ : 0 < ρ)
     (u : SobolevSpace period s) : weightedNorm period p N ρ u ≤ weightedNorm period q N ρ u := by
   apply Finset.sum_le_sum
@@ -65,7 +67,9 @@ theorem weightedNorm_mono {s p q : ℕ} (hpq : p ≤ q) (N : ℕ) (ρ : ℝ) (h�
   exact Finset.sum_le_sum_of_subset_of_nonneg (Finset.range_mono (by omega : p+1 ≤ q+1))
     (fun r _ _ => (levelNorm_nonneg (toJet period u) : 0 ≤ levelNorm period (toJet period u) (n+r)))
 
-/-- The actual base Sobolev norm is contained in every nonempty truncated weighted sum. -/
+/-- The actual base Sobolev norm is contained in every nonempty truncated weighted sum.
+@isnad1 id=le.2h6v.s20.ac2f78827779 from=translated src=- shape=bc1ca74d vocab=8e858bea
+-/
 theorem restrict_norm_le_weighted {s q : ℕ} (N : ℕ) (hq : q ≤ s) (ρ : ℝ) (hρ : 0 < ρ)
     (u : SobolevSpace period s) : ‖restrictOperator period hq u‖ ≤ weightedNorm period q N ρ u := by
   have hbase : ‖restrictOperator period hq u‖ ≤ blockNorm period (toJet period u) q 0 := by
@@ -82,7 +86,9 @@ theorem restrict_norm_le_weighted {s q : ℕ} (N : ℕ) (hq : q ≤ s) (ρ : ℝ
     simpa [weight, weightedNorm] using hsum
   exact hbase.trans hsum'
 
-/-- The actual pointwise bound has a constant depending only on the fixed base order six, never on the external cutoff. -/
+/-- The actual pointwise bound has a constant depending only on the fixed base order six, never on the external cutoff.
+@isnad1 id=eventual.2h5v.s15.31ec3c5be362 from=translated src=- shape=b866e1ed vocab=a32efca3
+-/
 theorem value_ae_weighted {s : ℕ} (N : ℕ) (hs : 6 ≤ s) (ρ : ℝ) (hρ : 0 < ρ)
     (u : SobolevSpace period s) :
     ∀ᵐ x ∂liftMeasure period, ‖value period u x‖ ≤ sobolevEmbeddingConstant period 6 * weightedNorm period 6 N ρ u := by
@@ -92,7 +98,9 @@ theorem value_ae_weighted {s : ℕ} (N : ℕ) (hs : 6 ≤ s) (ρ : ℝ) (hρ : 0
   exact hx.trans (mul_le_mul_of_nonneg_left (restrict_norm_le_weighted period N hs ρ hρ u)
     (sobolevEmbeddingConstant_nonneg period 6))
 
-/-- The exact metric radius-loss sum in fixed-base word notation. -/
+/-- The exact metric radius-loss sum in fixed-base word notation.
+@isnad1 id=eq.1h7v.s16.75cb47942ebb from=translated src=- shape=36bf88f9 vocab=1ef8dba6
+-/
 theorem metricLoss_eq {s : ℕ} (q N : ℕ) (hN : N+q ≤ s) (ρ : ℝ)
     (K : LiftL2 period →L[ℝ] LiftL2 period) (u : SobolevSpace period s) :
     weightedMetricLoss ρ (fun I : ExternalWord N => I.1.val) K (energyValues period q N hN u) =
@@ -101,7 +109,9 @@ theorem metricLoss_eq {s : ℕ} (q N : ℕ) (hN : N+q ≤ s) (ρ : ℝ)
           (by have := n.isLt; omega)) := by
   simp only [weightedMetricLoss, Fintype.sum_sigma, Finset.mul_sum, energyValues, baseWordMetricNorm]
 
-/-- The actual derivative-loss Sobolev sum is controlled by metric roots with only the fixed base-order constant. -/
+/-- The actual derivative-loss Sobolev sum is controlled by metric roots with only the fixed base-order constant.
+@isnad1 id=le.4h8v.s16.571c539fb869 from=translated src=- shape=f170b1fc vocab=0819df4b
+-/
 theorem weightedLoss_metric_lower {s : ℕ} (q N : ℕ) (hN : N+q ≤ s) (ρ : ℝ) (hρ : 0 < ρ)
     (K : LiftL2 period →L[ℝ] LiftL2 period) (u : SobolevSpace period s) (c : ℝ) (hc : 0 < c)
     (hK : ∀ v, c^2*‖v‖^2 ≤ ⟪K v,v⟫_ℝ) :

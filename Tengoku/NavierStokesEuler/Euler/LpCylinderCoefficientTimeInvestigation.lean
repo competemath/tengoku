@@ -68,7 +68,9 @@ section Square
 variable {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
   (S : Set Space) (hS : MeasurableSet S)
 
-/-- The two literal constructions are the same actual supported L² operator. -/
+/-- The two literal constructions are the same actual supported L² operator.
+@isnad1 id=eq.1h4v.s19.0e4de199c2e4 from=translated src=- shape=2e28810e vocab=2a28fa4c
+-/
 theorem supportedOperator_eq_square (A : Space →ᵇ V →L[ℝ] V) :
     supportedOperatorMap period S hS A = liftedOperator period S hS A := by
   apply ContinuousLinearMap.ext
@@ -81,6 +83,9 @@ theorem supportedOperator_eq_square (A : Space →ᵇ V →L[ℝ] V) :
       (u : CylinderL2 period V)] with x hl hr
   exact hl.trans hr.symm
 
+/--
+@isnad1 id=eq.1h5v.s20.973aa6625473 from=translated src=- shape=4ee6b88d vocab=af40fe6c
+-/
 theorem supportedPath_eq_square (T : ℝ) (A : C(Icc (0 : ℝ) T,Space →ᵇ V →L[ℝ] V)) :
     supportedPathMap period S hS A = liftedOperatorPath period S hS T A := by
   apply ContinuousMap.ext
@@ -112,7 +117,9 @@ variable (hA : ∀ t ∈ Icc (0 : ℝ) T, ∀ x : Space,
     (extendPath T hT A₁ t x) (Icc (0 : ℝ) T) t)
 
 include hA in
-/-- The true derivative of the actual supported coefficient operator. -/
+/-- The true derivative of the actual supported coefficient operator.
+@isnad1 id=hasderiv.3h8v.s21.9241bf7338cd from=translated src=- shape=cdc67711 vocab=4af7ca98
+-/
 theorem supportedPath_hasDerivWithinAt (t : Icc (0 : ℝ) T) :
     HasDerivWithinAt (extendPath T hT (supportedPathMap period S hS A))
       (supportedPathMap period S hS A₁ t) (Icc (0 : ℝ) T) t := by
@@ -131,7 +138,9 @@ theorem supportedPath_hasDerivWithinAt (t : Icc (0 : ℝ) T) :
   rwa [projIcc_of_mem hT t.property] at hd
 
 include hA in
-/-- The product rule is a genuine within-time statement, including the interval endpoints. -/
+/-- The product rule is a genuine within-time statement, including the interval endpoints.
+@isnad1 id=hasderiv.4h10v.s22.ffd82a2bf69b from=translated src=- shape=f85556bd vocab=76307647
+-/
 theorem supportedProduct_hasDerivWithinAt
     (u u₁ : C(Icc (0 : ℝ) T,Supported period E S hS))
     (hu : ∀ t : Icc (0 : ℝ) T,

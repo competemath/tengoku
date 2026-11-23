@@ -21,11 +21,17 @@ variable (P : ℝ) (k : ℝ) (m : Vector3)
     fun x => iteratedFieldDerivative P w f (cylinderGraph P k m x))
 
 include hu in
+/--
+@isnad1 id=memlp.1h7v.s13.d7ec4903deb4 from=translated src=- shape=7da0afa0 vocab=bad28495
+-/
 theorem graphWord_memLp (w : Fin n → Fin 4) :
     MemLp (fun x => iteratedFieldDerivative P w f (cylinderGraph P k m x)) 2 volume :=
   (memLp_congr_ae (hu w)).1 (Lp.memLp (u w))
 
 include hf hu in
+/--
+@isnad1 id=memlp.2h6v.s13.f4828e267891 from=translated src=- shape=9597c15e vocab=26700d87
+-/
 theorem physicalTensor_memLp :
     MemLp (iteratedFDeriv ℝ n (physicalField P k m f)) 2 volume := by
   have hs : MemLp (fun x => ∑ w : Fin n → Fin 4,
@@ -43,11 +49,17 @@ theorem physicalTensor_memLp :
 def physicalTensorLp : Lp (Vector3 [×n]→L[ℝ] Vector3) 2 (volume : Measure Vector3) :=
   (physicalTensor_memLp P k m f hf n u hu).toLp (iteratedFDeriv ℝ n (physicalField P k m f))
 
+/--
+@isnad1 id=eventual.2h6v.s15.410d257558a3 from=translated src=- shape=130c7a5a vocab=7203c7f5
+-/
 theorem physicalTensorLp_ae :
     (physicalTensorLp P k m f hf n u hu : Vector3 → (Vector3 [×n]→L[ℝ] Vector3)) =ᵐ[volume]
       iteratedFDeriv ℝ n (physicalField P k m f) :=
   (physicalTensor_memLp P k m f hf n u hu).coeFn_toLp
 
+/--
+@isnad1 id=le.2h6v.s15.8f0ee97bf88c from=translated src=- shape=c174b782 vocab=53ed3932
+-/
 theorem physicalTensorLp_norm_le :
     ‖physicalTensorLp P k m f hf n u hu‖ ≤ frequencyFactor k m^n * ∑ w, ‖u w‖ := by
   let β : ℝ≥0 := ⟨frequencyFactor k m^n,pow_nonneg (frequencyFactor_nonneg k m) n⟩

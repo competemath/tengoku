@@ -50,7 +50,9 @@ open LeanCert.Core
 
 /-- Upper bound lemma for core expressions (computable).
     FULLY PROVED - no sorry, no axioms. Accepts configurable Taylor depth.
-    Requires domain validity (e.g., log arguments must be positive). -/
+    Requires domain validity (e.g., log arguments must be positive).
+@isnad1 id=le.4h5v.s5.71abc2acd5c1 from=translated src=- shape=82be77d2 vocab=42e36ad0
+-/
 theorem exprCore_le_of_interval_hi (e : Expr) (hsupp : ExprSupportedCore e)
     (I : IntervalRat) (c : ℚ) (cfg : EvalConfig := {})
     (hdom : evalDomainValid1 e I cfg)
@@ -65,7 +67,9 @@ theorem exprCore_le_of_interval_hi (e : Expr) (hsupp : ExprSupportedCore e)
 
 /-- Lower bound lemma for core expressions (computable).
     FULLY PROVED - no sorry, no axioms. Accepts configurable Taylor depth.
-    Requires domain validity (e.g., log arguments must be positive). -/
+    Requires domain validity (e.g., log arguments must be positive).
+@isnad1 id=le.4h5v.s5.324a026bfce5 from=translated src=- shape=5dd1a75c vocab=a0cb79dd
+-/
 theorem exprCore_ge_of_interval_lo (e : Expr) (hsupp : ExprSupportedCore e)
     (I : IntervalRat) (c : ℚ) (cfg : EvalConfig := {})
     (hdom : evalDomainValid1 e I cfg)
@@ -80,7 +84,9 @@ theorem exprCore_ge_of_interval_lo (e : Expr) (hsupp : ExprSupportedCore e)
 
 /-- Strict upper bound for core expressions (computable).
     FULLY PROVED - no sorry, no axioms. Accepts configurable Taylor depth.
-    Requires domain validity (e.g., log arguments must be positive). -/
+    Requires domain validity (e.g., log arguments must be positive).
+@isnad1 id=lt.4h5v.s5.c8e04c4bb9e1 from=translated src=- shape=82be77d2 vocab=90f9eb1b
+-/
 theorem exprCore_lt_of_interval_hi_lt (e : Expr) (hsupp : ExprSupportedCore e)
     (I : IntervalRat) (c : ℚ) (cfg : EvalConfig := {})
     (hdom : evalDomainValid1 e I cfg)
@@ -95,7 +101,9 @@ theorem exprCore_lt_of_interval_hi_lt (e : Expr) (hsupp : ExprSupportedCore e)
 
 /-- Strict lower bound for core expressions (computable).
     FULLY PROVED - no sorry, no axioms. Accepts configurable Taylor depth.
-    Requires domain validity (e.g., log arguments must be positive). -/
+    Requires domain validity (e.g., log arguments must be positive).
+@isnad1 id=lt.4h5v.s5.541f36df4471 from=translated src=- shape=5dd1a75c vocab=1b90b168
+-/
 theorem exprCore_gt_of_interval_lo_gt (e : Expr) (hsupp : ExprSupportedCore e)
     (I : IntervalRat) (c : ℚ) (cfg : EvalConfig := {})
     (hdom : evalDomainValid1 e I cfg)
@@ -111,7 +119,9 @@ theorem exprCore_gt_of_interval_lo_gt (e : Expr) (hsupp : ExprSupportedCore e)
 /-! ### Tactic-facing lemmas for interval bounds (extended, noncomputable) -/
 
 /-- Upper bound lemma for extended expressions.
-    FULLY PROVED - no sorry, no axioms. -/
+    FULLY PROVED - no sorry, no axioms.
+@isnad1 id=le.3h4v.s5.6e5be019c550 from=translated src=- shape=77f72ce8 vocab=cbff818b
+-/
 theorem expr_le_of_interval_hi (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (c : ℚ) (hhi : (LeanCert.Internal.Rational.evalUnchecked1 e I).hi ≤ c) :
     ∀ x ∈ I, Expr.eval (fun _ => x) e ≤ c := by
@@ -123,7 +133,9 @@ theorem expr_le_of_interval_hi (e : Expr) (hsupp : ADSupported e)
   exact le_trans heval_le_hi hhi_le_c
 
 /-- Lower bound lemma for extended expressions.
-    FULLY PROVED - no sorry, no axioms. -/
+    FULLY PROVED - no sorry, no axioms.
+@isnad1 id=le.3h4v.s5.1554aec5d5ab from=translated src=- shape=a31c4e48 vocab=3eaca15d
+-/
 theorem expr_ge_of_interval_lo (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (c : ℚ) (hlo : c ≤ (LeanCert.Internal.Rational.evalUnchecked1 e I).lo) :
     ∀ x ∈ I, c ≤ Expr.eval (fun _ => x) e := by
@@ -135,7 +147,9 @@ theorem expr_ge_of_interval_lo (e : Expr) (hsupp : ADSupported e)
   exact le_trans hc_le_lo hlo_le_eval
 
 /-- Strict upper bound for extended expressions.
-    FULLY PROVED - no sorry, no axioms. -/
+    FULLY PROVED - no sorry, no axioms.
+@isnad1 id=lt.3h4v.s5.7ef8c99455be from=translated src=- shape=77f72ce8 vocab=2ea9b826
+-/
 theorem expr_lt_of_interval_hi_lt (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (c : ℚ) (hhi : (LeanCert.Internal.Rational.evalUnchecked1 e I).hi < c) :
     ∀ x ∈ I, Expr.eval (fun _ => x) e < c := by
@@ -147,7 +161,9 @@ theorem expr_lt_of_interval_hi_lt (e : Expr) (hsupp : ADSupported e)
   exact lt_of_le_of_lt heval_le_hi hhi_lt_c
 
 /-- Strict lower bound for extended expressions.
-    FULLY PROVED - no sorry, no axioms. -/
+    FULLY PROVED - no sorry, no axioms.
+@isnad1 id=lt.3h4v.s5.f77435c50765 from=translated src=- shape=a31c4e48 vocab=5e5efd55
+-/
 theorem expr_gt_of_interval_lo_gt (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (c : ℚ) (hlo : c < (LeanCert.Internal.Rational.evalUnchecked1 e I).lo) :
     ∀ x ∈ I, c < Expr.eval (fun _ => x) e := by
@@ -158,14 +174,18 @@ theorem expr_gt_of_interval_lo_gt (e : Expr) (hsupp : ADSupported e)
   have hc_lt_lo : (c : ℝ) < (LeanCert.Internal.Rational.evalUnchecked1 e I).lo := by exact_mod_cast hlo
   exact lt_of_lt_of_le hc_lt_lo hlo_le_eval
 
-/-- Variant for single point (extended). -/
+/-- Variant for single point (extended).
+@isnad1 id=le.3h4v.s5.77a6631577a0 from=translated src=- shape=631229df vocab=cbff818b
+-/
 theorem expr_le_of_mem_interval (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (c : ℚ) (x : ℝ) (hx : x ∈ I)
     (hhi : (LeanCert.Internal.Rational.evalUnchecked1 e I).hi ≤ c) :
     Expr.eval (fun _ => x) e ≤ c :=
   expr_le_of_interval_hi e hsupp I c hhi x hx
 
-/-- Variant for single point (extended). -/
+/-- Variant for single point (extended).
+@isnad1 id=le.3h4v.s5.9a28ec0d99c0 from=translated src=- shape=8551cbb2 vocab=3eaca15d
+-/
 theorem expr_ge_of_mem_interval (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (c : ℚ) (x : ℝ) (hx : x ∈ I)
     (hlo : c ≤ (LeanCert.Internal.Rational.evalUnchecked1 e I).lo) :

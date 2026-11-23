@@ -61,20 +61,31 @@ def energyLoss {s : ℕ} (N : ℕ) (hN : N+6 ≤ s) (ρ : ℝ)
 /-- A fixed conversion factor, with no external derivative cutoff in its definition. -/
 def metricAmplification (c : ℝ) : ℝ := 1+Real.sqrt 5461/c
 
+/--
+@isnad1 id=le.2h6v.s16.a77b4f084bf9 from=translated src=- shape=4c285c3b vocab=ec2ee425
+-/
 theorem energyNorm_nonneg {s : ℕ} (N : ℕ) (hN : N+6 ≤ s) (ρ : ℝ) (hρ : 0 < ρ)
     (K : LiftL2 period →L[ℝ] LiftL2 period) (u : SobolevSpace period s) : 0 ≤ energyNorm period N hN ρ K u :=
   Finset.sum_nonneg (fun I _ => mul_nonneg (weight_pos hρ I.1.val).le (Real.sqrt_nonneg _))
 
+/--
+@isnad1 id=le.2h6v.s16.f527645022c3 from=translated src=- shape=4c285c3b vocab=aba9f008
+-/
 theorem energyLoss_nonneg {s : ℕ} (N : ℕ) (hN : N+6 ≤ s) (ρ : ℝ) (hρ : 0 < ρ)
     (K : LiftL2 period →L[ℝ] LiftL2 period) (u : SobolevSpace period s) : 0 ≤ energyLoss period N hN ρ K u :=
   Finset.sum_nonneg (fun I _ => mul_nonneg (mul_nonneg (Nat.cast_nonneg I.1.val) (weight_pos hρ I.1.val).le) (Real.sqrt_nonneg _))
 
 omit [Fact (0 < period)] in
+/--
+@isnad1 id=le.1h1v.s4.86e80e4d6d40 from=translated src=- shape=a8dc2df9 vocab=c3c8b642
+-/
 theorem metricAmplification_one_le {c : ℝ} (hc : 0 < c) : 1 ≤ metricAmplification c := by
   unfold metricAmplification
   exact le_add_of_nonneg_right (div_nonneg (Real.sqrt_nonneg _) hc.le)
 
-/-- Every actual retained Sobolev block is bounded by the metric energy with the fixed factor. -/
+/-- Every actual retained Sobolev block is bounded by the metric energy with the fixed factor.
+@isnad1 id=le.4h7v.s16.52788938dc36 from=translated src=- shape=f0c05ee6 vocab=3031b8a7
+-/
 theorem weightedNorm_le_energy {s : ℕ} (N : ℕ) (hN : N+6 ≤ s) (ρ : ℝ) (hρ : 0 < ρ)
     (K : LiftL2 period →L[ℝ] LiftL2 period) (u : SobolevSpace period s) (c : ℝ) (hc : 0 < c)
     (hK : ∀ v, c^2*‖v‖^2 ≤ ⟪K v,v⟫_ℝ) :
@@ -86,7 +97,9 @@ theorem weightedNorm_le_energy {s : ℕ} (N : ℕ) (hN : N+6 ≤ s) (ρ : ℝ) (
   unfold metricAmplification
   nlinarith only [h,he]
 
-/-- The actual radius-loss sum obeys the identical fixed metric conversion. -/
+/-- The actual radius-loss sum obeys the identical fixed metric conversion.
+@isnad1 id=le.4h7v.s16.f142e7bee7f7 from=translated src=- shape=f0c05ee6 vocab=4a4bbb1f
+-/
 theorem weightedLoss_le_energy {s : ℕ} (N : ℕ) (hN : N+6 ≤ s) (ρ : ℝ) (hρ : 0 < ρ)
     (K : LiftL2 period →L[ℝ] LiftL2 period) (u : SobolevSpace period s) (c : ℝ) (hc : 0 < c)
     (hK : ∀ v, c^2*‖v‖^2 ≤ ⟪K v,v⟫_ℝ) :
@@ -98,7 +111,9 @@ theorem weightedLoss_le_energy {s : ℕ} (N : ℕ) (hN : N+6 ≤ s) (ρ : ℝ) (
   unfold metricAmplification
   nlinarith only [h,he]
 
-/-- Exact scalar conversion of a Sobolev forcing polynomial to metric energy and metric radius loss. -/
+/-- Exact scalar conversion of a Sobolev forcing polynomial to metric energy and metric radius loss.
+@isnad1 id=le.11h12v.s8.c0cf044b087f from=translated src=- shape=b66cda99 vocab=cef4cf1d
+-/
 theorem metric_polynomial_conversion (S0 S1 S2 D R B a E Y X Z H : ℝ)
     (hS1 : 0 ≤ S1) (hS2 : 0 ≤ S2) (hD : 0 ≤ D) (hB : 0 ≤ B) (ha : 1 ≤ a)
     (hE0 : 0 ≤ E) (hY0 : 0 ≤ Y) (hX0 : 0 ≤ X)
@@ -125,7 +140,9 @@ theorem metric_polynomial_conversion (S0 S1 S2 D R B a E Y X Z H : ℝ)
 def metricVelocityBound (c B X : ℝ) : NNReal :=
   (sobolevEmbeddingConstant period 6*(B+metricAmplification c*X)).toNNReal
 
-/-- The actual background-plus-error velocity satisfies the fixed-order bound used by the metric PDE estimate. -/
+/-- The actual background-plus-error velocity satisfies the fixed-order bound used by the metric PDE estimate.
+@isnad1 id=eventual.5h9v.s18.ed6bff0480ab from=translated src=- shape=affc8f2a vocab=0d5fbc51
+-/
 theorem velocity_ae_metric {s : ℕ} (N : ℕ) (hN : N+6 ≤ s) (ρ : ℝ) (hρ : 0 < ρ)
     (K : LiftL2 period →L[ℝ] LiftL2 period) (z e : SobolevSpace period s) (c B : ℝ) (hc : 0 < c)
     (hK : ∀ v, c^2*‖v‖^2 ≤ ⟪K v,v⟫_ℝ) (hz : weightedNorm period 6 N ρ z ≤ B) :

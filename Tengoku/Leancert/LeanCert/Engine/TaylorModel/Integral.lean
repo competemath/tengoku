@@ -76,6 +76,7 @@ This theorem is intentionally phrased in terms of the Taylor-model semantic
 predicate `evalSet`, so any Taylor-model construction that proves
 `∀ x ∈ tm.domain, f x ∈ tm.evalSet x` can immediately produce an integral
 certificate.
+@isnad1 id=mem.2h2v.s6.94fd0c455436 from=translated src=- shape=041b8a1c vocab=57f14b65
 -/
 theorem integral_mem_bound_coarse (tm : TaylorModel) (f : ℝ → ℝ)
     (hf : ∀ x ∈ tm.domain, f x ∈ tm.evalSet x)
@@ -145,6 +146,7 @@ The assumption `hPolyIntegral` is intentionally explicit: the reusable numeric
 soundness theorem here is the interval/remainder part of Taylor quadrature,
 while callers may discharge the polynomial antiderivative equality using the
 best local polynomial API available for their representation.
+@isnad1 id=mem.4h2v.s7.6e788fdf64e8 from=translated src=- shape=7eb4d2aa vocab=1c68e1f6
 -/
 theorem integral_mem_bound_polyExact_of_poly_integral (tm : TaylorModel) (f : ℝ → ℝ)
     (hf : ∀ x ∈ tm.domain, f x ∈ tm.evalSet x)

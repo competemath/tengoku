@@ -29,15 +29,24 @@ variable (S τ : ℝ) (hτ0 : 0 ≤ τ) (hτS : τ ≤ S)
 def profile : C(Icc (0 : ℝ) S,ℝ) :=
   join S τ hτ0 hτS (ContinuousMap.const _ 1) g hg0.symm
 
+/--
+@isnad1 id=eq.3h4v.s9.a9082d4b99e4 from=translated src=- shape=bcbdf905 vocab=66ad2fca
+-/
 theorem profile_left (t : Icc (0 : ℝ) τ) :
     profile S τ hτ0 hτS g hg0 ⟨t,t.property.1,t.property.2.trans hτS⟩ = 1 :=
   join_left S τ hτ0 hτS (ContinuousMap.const _ 1) g hg0.symm t
 
+/--
+@isnad1 id=eq.3h4v.s9.169020fc6dda from=translated src=- shape=4cab9674 vocab=ed53e381
+-/
 theorem profile_right (t : Icc τ S) :
     profile S τ hτ0 hτS g hg0 ⟨t,hτ0.trans t.property.1,t.property.2⟩ =
       g ⟨(t : ℝ)-τ,sub_nonneg.mpr t.property.1,sub_le_sub_right t.property.2 τ⟩ :=
   join_right S τ hτ0 hτS (ContinuousMap.const _ 1) g hg0.symm t
 
+/--
+@isnad1 id=lt.4h4v.s9.8cd7f14e1dd2 from=translated src=- shape=9749a3e3 vocab=958f1faa
+-/
 theorem profile_pos (hg : ∀ t, 0 < g t) (t : Icc (0 : ℝ) S) :
     0 < profile S τ hτ0 hτS g hg0 t := by
   by_cases ht : (t : ℝ) ≤ τ
@@ -52,12 +61,17 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   (hm : u ⟨τ,hτ0,le_rfl⟩ = v ⟨0,le_rfl,sub_nonneg.mpr hτS⟩)
 
 include hg0 hm in
+/--
+@isnad1 id=eq.5h6v.s11.3f576f12b41f from=translated src=- shape=35b4ba38 vocab=61121137
+-/
 theorem normalize_match : u ⟨τ,hτ0,le_rfl⟩ =
     normalize g hg v ⟨0,le_rfl,sub_nonneg.mpr hτS⟩ := by
   simp only [EulerContinuousTimeWeight.normalize_apply,hg0,inv_one,one_smul]
   exact hm
 
-/-- The normalized join is exactly the join of the normalized forward path. -/
+/-- The normalized join is exactly the join of the normalized forward path.
+@isnad1 id=eq.5h6v.s11.72adb815a060 from=translated src=- shape=084f57b2 vocab=d9917993
+-/
 theorem normalize_join :
     normalize (profile S τ hτ0 hτS g hg0) (profile_pos S τ hτ0 hτS g hg0 hg)
       (join S τ hτ0 hτS u v hm) =
@@ -78,7 +92,9 @@ theorem normalize_join :
       (normalize_match S τ hτ0 hτS g hg0 hg u v hm) ⟨t,hr,t.property.2⟩
     rw [EulerContinuousTimeWeight.normalize_apply,hp,hu,hv,EulerContinuousTimeWeight.normalize_apply]
 
-/-- Restriction of a normalized full path to the history is unchanged. -/
+/-- Restriction of a normalized full path to the history is unchanged.
+@isnad1 id=eq.4h5v.s10.c4d917bf9ef0 from=translated src=- shape=2d834c34 vocab=60e7858d
+-/
 theorem normalize_initial (p : C(Icc (0 : ℝ) S,E)) :
     (normalize (profile S τ hτ0 hτS g hg0) (profile_pos S τ hτ0 hτS g hg0 hg) p).comp
       (initialInclusion S τ hτS) = p.comp (initialInclusion S τ hτS) := by
@@ -87,7 +103,9 @@ theorem normalize_initial (p : C(Icc (0 : ℝ) S,E)) :
   change (profile S τ hτ0 hτS g hg0 ⟨t,t.property.1,t.property.2.trans hτS⟩)⁻¹ • p _ = p _
   rw [profile_left,inv_one,one_smul]
 
-/-- Restriction of the normalized full path to the future uses exactly g. -/
+/-- Restriction of the normalized full path to the future uses exactly g.
+@isnad1 id=eq.4h5v.s11.370e47e1d70a from=translated src=- shape=26315286 vocab=65c8f3f3
+-/
 theorem normalize_tail (p : C(Icc (0 : ℝ) S,E)) :
     (normalize (profile S τ hτ0 hτS g hg0) (profile_pos S τ hτ0 hτS g hg0 hg) p).comp
       (tailInclusion S τ hτ0) = normalize g hg (p.comp (tailInclusion S τ hτ0)) := by
@@ -113,6 +131,9 @@ open scoped ContDiff
 variable (P : ℝ) [Fact (0 < P)] {V : Type*}
   [NormedAddCommGroup V] [InnerProductSpace ℝ V]
 
+/--
+@isnad1 id=contdiff.2h5v.s18.e8cfc4a98752 from=translated src=- shape=acd0ce09 vocab=c6cff6cd
+-/
 theorem normalize_orbit_contDiff {K : Type*} [TopologicalSpace K] [CompactSpace K]
     (g : C(K,ℝ)) (hg : ∀ t, 0 < g t) (p : C(K,CylinderL2 P V))
     (hp : ContDiff ℝ ∞ (fun a => pathTranslate P a p)) :
@@ -123,7 +144,9 @@ theorem normalize_orbit_contDiff {K : Type*} [TopologicalSpace K] [CompactSpace 
   rw [he]
   exact (normalize g hg).contDiff.comp hp
 
-/-- Profile normalization at the join preserves the exact external radius. -/
+/-- Profile normalization at the join preserves the exact external radius.
+@isnad1 id=le.7h12v.s19.0d778cb88054 from=translated src=- shape=96c85932 vocab=bcdc449b
+-/
 theorem normalized_join_block (S τ : ℝ) (hτ0 : 0 ≤ τ) (hτS : τ ≤ S)
     (g : C(Icc (0 : ℝ) (S-τ),ℝ)) (hg : ∀ t, 0 < g t)
     (hg0 : g ⟨0,le_rfl,sub_nonneg.mpr hτS⟩ = 1)

@@ -90,7 +90,9 @@ open LeanCert.Core
 /-- Fundamental correctness theorem for extended evaluation.
 
     This theorem is FULLY PROVED (no sorry, no axioms) for supported expressions.
-    The `hsupp` hypothesis ensures we only consider expressions in the verified subset. -/
+    The `hsupp` hypothesis ensures we only consider expressions in the verified subset.
+@isnad1 id=mem.2h3v.s4.3f5a281d76b1 from=translated src=- shape=dbc499f1 vocab=fa5bc77e
+-/
 theorem evalInterval_correct (e : Expr) (hsupp : ADSupported e)
     (ρ_real : Nat → ℝ) (ρ_int : IntervalEnv) (hρ : envMem ρ_real ρ_int) :
     Expr.eval ρ_real e ∈ LeanCert.Internal.Rational.evalUnchecked e ρ_int := by
@@ -145,7 +147,9 @@ namespace LeanCert.Engine
 
 open LeanCert.Core
 
-/-- Correctness for single-variable extended evaluation -/
+/-- Correctness for single-variable extended evaluation
+@isnad1 id=mem.2h3v.s4.1ef6a7f344a9 from=translated src=- shape=7aa4642a vocab=6ae61ebb
+-/
 theorem evalInterval1_correct (e : Expr) (hsupp : ADSupported e)
     (x : ℝ) (I : IntervalRat) (hx : x ∈ I) :
     Expr.eval (fun _ => x) e ∈ LeanCert.Internal.Rational.evalUnchecked1 e I :=
@@ -266,7 +270,9 @@ def evalInterval? (e : Expr) (ρ : IntervalEnv) : Option IntervalRat :=
     This follows your suggestion to keep ADSupported syntactic and add
     separate semantic hypotheses. The key insight is that if evalInterval?
     succeeds (returns Some), the interval arithmetic has already verified
-    that no denominator interval contains zero. -/
+    that no denominator interval contains zero.
+@isnad1 id=mem.2h4v.s5.3cbcf2b69448 from=translated src=- shape=f8f79e7f vocab=6124189d
+-/
 theorem evalInterval?_correct (e : Expr)
     (ρ_int : IntervalEnv) (I : IntervalRat)
     (hsome : evalInterval? e ρ_int = some I)
@@ -520,7 +526,9 @@ def evalIntervalChecked (e : Expr) (ρ : IntervalEnv) : EvalResult IntervalRat :
   | none => .error (diagnoseEvalIntervalFailure e ρ)
 
 /-- Success of `evalIntervalChecked` is sufficient for enclosure correctness
-for every expression constructor. -/
+for every expression constructor.
+@isnad1 id=mem.2h4v.s5.5a77e8b8f777 from=translated src=- shape=f0b1f21c vocab=d5b0e8fd
+-/
 theorem evalIntervalChecked_correct (e : Expr) (ρ_int : IntervalEnv) (I : IntervalRat)
     (hsuccess : evalIntervalChecked e ρ_int = .ok I)
     (ρ_real : Nat → ℝ) (hρ : envMem ρ_real ρ_int) :
@@ -547,7 +555,9 @@ def evalIntervalTightChecked (e : Expr) (ρ : IntervalEnv)
 
 /-- Every successful tight checked Rational evaluation encloses the expression
 value. The core branch uses the core correctness theorem; the fallback uses
-the general checked evaluator theorem. -/
+the general checked evaluator theorem.
+@isnad1 id=mem.2h5v.s5.08623f45e9fb from=translated src=- shape=b8eff3f0 vocab=fb6f0bb6
+-/
 theorem evalIntervalTightChecked_correct (e : Expr) (ρ_int : IntervalEnv)
     (cfg : EvalConfig) (I : IntervalRat)
     (hsuccess : evalIntervalTightChecked e ρ_int cfg = .ok I)
@@ -576,7 +586,9 @@ theorem evalIntervalTightChecked_correct (e : Expr) (ρ_int : IntervalEnv)
 def evalInterval?1 (e : Expr) (I : IntervalRat) : Option IntervalRat :=
   evalInterval? e (fun _ => I)
 
-/-- Correctness for single-variable partial evaluation -/
+/-- Correctness for single-variable partial evaluation
+@isnad1 id=mem.2h4v.s5.09038ae10980 from=translated src=- shape=e35ee3c1 vocab=b1254bd3
+-/
 theorem evalInterval?1_correct (e : Expr)
     (I : IntervalRat) (J : IntervalRat)
     (hsome : evalInterval?1 e I = some J)
@@ -584,7 +596,9 @@ theorem evalInterval?1_correct (e : Expr)
     Expr.eval (fun _ => x) e ∈ J :=
   evalInterval?_correct e _ J hsome _ (fun _ => hx)
 
-/-- When evalInterval? succeeds, we get bounds -/
+/-- When evalInterval? succeeds, we get bounds
+@isnad1 id=le.3h5v.s5.d6efad79a606 from=translated src=- shape=620032d6 vocab=b88781ff
+-/
 theorem evalInterval?_le_of_hi (e : Expr)
     (I : IntervalRat) (J : IntervalRat) (c : ℚ)
     (hsome : evalInterval?1 e I = some J)
@@ -597,7 +611,9 @@ theorem evalInterval?_le_of_hi (e : Expr)
   have hhi_le_c : (J.hi : ℝ) ≤ c := by exact_mod_cast hhi
   exact le_trans heval_le_hi hhi_le_c
 
-/-- When evalInterval? succeeds, we get lower bounds -/
+/-- When evalInterval? succeeds, we get lower bounds
+@isnad1 id=le.3h5v.s5.9696529a4d9c from=translated src=- shape=7b0aa8f1 vocab=e74c843c
+-/
 theorem evalInterval?_ge_of_lo (e : Expr)
     (I : IntervalRat) (J : IntervalRat) (c : ℚ)
     (hsome : evalInterval?1 e I = some J)

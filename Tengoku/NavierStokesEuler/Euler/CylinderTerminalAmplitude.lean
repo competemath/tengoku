@@ -22,7 +22,9 @@ variable (P : ℝ) [Fact (0 < P)]
   [NormedAddCommGroup U] [NormedSpace ℝ U]
   [NormedAddCommGroup V] [NormedSpace ℝ V] [Fintype ι]
 
-/-- Embedding terminal data as a constant time path has block norm at most one. -/
+/-- Embedding terminal data as a constant time path has block norm at most one.
+@isnad1 id=le.1h9v.s17.915b2c9b2768 from=translated src=- shape=3b0cbe9a vocab=de78adb6
+-/
 theorem constantPath_block_le (directions : ι → LiftTangent) (q : ℕ)
     (Y : CylinderL2 P U) (hY : ContDiff ℝ ∞ (fun a : LiftTangent => translate P a Y))
     (n : ℕ) (a : LiftTangent) :
@@ -39,6 +41,9 @@ theorem constantPath_block_le (directions : ι → LiftTangent) (q : ℕ)
   exact hb.trans ((mul_le_mul_of_nonneg_right hn (block_nonneg directions q _ n a)).trans_eq
     (one_mul _))
 
+/--
+@isnad1 id=le.5h15v.s19.f8865bbeb150 from=translated src=- shape=38f800ae vocab=b88bdc91
+-/
 theorem terminal_amplitude_bound (directions : ι → LiftTangent) (q : ℕ)
     (S : CylinderL2 P U →L[ℝ] C(K,CylinderL2 P V))
     (hs : ∀ Y : CylinderL2 P U, ContDiff ℝ ∞ (fun a : LiftTangent => translate P a Y) →

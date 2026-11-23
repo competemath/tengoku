@@ -56,7 +56,9 @@ noncomputable def sinhRemainderBound (domain : IntervalRat) (n : ℕ) : ℚ :=
   let coshBound := (3 : ℚ) ^ (Nat.ceil r + 1)
   coshBound * r ^ (n + 1) / (Nat.factorial (n + 1) : ℚ)
 
-/-- Remainder bound for sinh is nonnegative -/
+/-- Remainder bound for sinh is nonnegative
+@isnad1 id=le.0h2v.s3.7714da990d0f from=translated src=- shape=0d4521f5 vocab=7a290da6
+-/
 theorem sinhRemainderBound_nonneg (domain : IntervalRat) (n : ℕ) :
     0 ≤ sinhRemainderBound domain n := by
   unfold sinhRemainderBound
@@ -90,7 +92,9 @@ noncomputable def coshRemainderBound (domain : IntervalRat) (n : ℕ) : ℚ :=
   let coshBound := (3 : ℚ) ^ (Nat.ceil r + 1)
   coshBound * r ^ (n + 1) / (Nat.factorial (n + 1) : ℚ)
 
-/-- Remainder bound for cosh is nonnegative -/
+/-- Remainder bound for cosh is nonnegative
+@isnad1 id=le.0h2v.s3.ca4e9fa2b71a from=translated src=- shape=0d4521f5 vocab=c47b40b3
+-/
 theorem coshRemainderBound_nonneg (domain : IntervalRat) (n : ℕ) :
     0 ≤ coshRemainderBound domain n := by
   unfold coshRemainderBound
@@ -129,7 +133,9 @@ noncomputable def atanRemainderBound (domain : IntervalRat) (n : ℕ) : ℚ :=
   let denom := max (1 - r_safe^2) (1/100)
   r_safe^(n+1) / denom
 
-/-- Remainder bound for atan is nonnegative -/
+/-- Remainder bound for atan is nonnegative
+@isnad1 id=le.0h2v.s3.0b07438ba1b2 from=translated src=- shape=0d4521f5 vocab=da00b677
+-/
 theorem atanRemainderBound_nonneg (domain : IntervalRat) (n : ℕ) :
     0 ≤ atanRemainderBound domain n := by
   unfold atanRemainderBound
@@ -168,7 +174,9 @@ noncomputable def atanhRemainderBound (domain : IntervalRat) (n : ℕ) : ℚ :=
   let denom := max (1 - r_safe^2) (1/100)
   r_safe^(n+1) / denom
 
-/-- Remainder bound for atanh is nonnegative -/
+/-- Remainder bound for atanh is nonnegative
+@isnad1 id=le.0h2v.s3.ec952ed7a3d5 from=translated src=- shape=0d4521f5 vocab=965f94d1
+-/
 theorem atanhRemainderBound_nonneg (domain : IntervalRat) (n : ℕ) :
     0 ≤ atanhRemainderBound domain n := by
   unfold atanhRemainderBound
@@ -207,7 +215,9 @@ noncomputable def asinhRemainderBound (domain : IntervalRat) (n : ℕ) : ℚ :=
   let M := asinhDerivSup domain (n + 1)
   (Int.ceil M : ℚ) * r ^ (n + 1) / (Nat.factorial (n + 1) : ℚ)
 
-/-- Remainder bound for asinh is nonnegative -/
+/-- Remainder bound for asinh is nonnegative
+@isnad1 id=le.0h2v.s3.31e68067f018 from=translated src=- shape=0d4521f5 vocab=e5353027
+-/
 theorem asinhRemainderBound_nonneg (domain : IntervalRat) (n : ℕ) :
     0 ≤ asinhRemainderBound domain n := by
   unfold asinhRemainderBound
@@ -318,7 +328,9 @@ private theorem abs_le_interval_radius {z : ℝ} {J : IntervalRat} (hz : z ∈ J
 
 /-- iteratedDeriv for sinh and cosh at 0, proved together.
     sinh: even n → 0, odd n → 1
-    cosh: even n → 1, odd n → 0 -/
+    cosh: even n → 1, odd n → 0
+@isnad1 id=and.0h1v.s7.c9e676ae4334 from=translated src=- shape=ebdb7da2 vocab=4a40e9d6
+-/
 theorem iteratedDeriv_sinh_cosh_zero (n : ℕ) :
     iteratedDeriv n Real.sinh 0 = (if n % 2 = 0 then 0 else 1) ∧
     iteratedDeriv n Real.cosh 0 = (if n % 2 = 0 then 1 else 0) := by
@@ -336,12 +348,16 @@ theorem iteratedDeriv_sinh_cosh_zero (n : ℕ) :
       rw [iteratedDeriv_succ', Real.deriv_cosh, ih.1]
       rcases hmod with h | h <;> simp [h, Nat.succ_mod_two_eq_zero_iff]
 
-/-- iteratedDeriv n sinh at 0 -/
+/-- iteratedDeriv n sinh at 0
+@isnad1 id=eq.0h1v.s6.d8a0eb53e670 from=translated src=- shape=f219cd9d vocab=fbccba71
+-/
 theorem iteratedDeriv_sinh_zero (n : ℕ) :
     iteratedDeriv n Real.sinh 0 = if n % 2 = 0 then 0 else 1 :=
   (iteratedDeriv_sinh_cosh_zero n).1
 
-/-- iteratedDeriv n cosh at 0 -/
+/-- iteratedDeriv n cosh at 0
+@isnad1 id=eq.0h1v.s6.3a66271e0fc7 from=translated src=- shape=f219cd9d vocab=880af7c4
+-/
 theorem iteratedDeriv_cosh_zero (n : ℕ) :
     iteratedDeriv n Real.cosh 0 = if n % 2 = 0 then 1 else 0 :=
   (iteratedDeriv_sinh_cosh_zero n).2
@@ -613,7 +629,9 @@ private lemma iteratedDeriv_one_add_sq_rpow_zero (a : ℝ) (n : ℕ) :
     field_simp [hfact] at hcoeff
     linarith
 
-/-- The sinhTaylorCoeffs match the Mathlib Taylor coefficients for sinh at 0 -/
+/-- The sinhTaylorCoeffs match the Mathlib Taylor coefficients for sinh at 0
+@isnad1 id=eq.1h2v.s5.12fbeb247af0 from=translated src=- shape=9bd76783 vocab=211165ba
+-/
 theorem sinhTaylorCoeffs_eq_iteratedDeriv (n i : ℕ) (hi : i ≤ n) :
     (sinhTaylorCoeffs n i : ℝ) = iteratedDeriv i Real.sinh 0 / i.factorial := by
   simp only [sinhTaylorCoeffs, hi, ↓reduceIte]
@@ -627,7 +645,9 @@ theorem sinhTaylorCoeffs_eq_iteratedDeriv (n i : ℕ) (hi : i ≤ n) :
     rw [iteratedDeriv_sinh_zero]
     simp only [heven, ↓reduceIte, zero_div]
 
-/-- The coshTaylorCoeffs match the Mathlib Taylor coefficients for cosh at 0 -/
+/-- The coshTaylorCoeffs match the Mathlib Taylor coefficients for cosh at 0
+@isnad1 id=eq.1h2v.s5.e42815eb73d0 from=translated src=- shape=9bd76783 vocab=b73f6f3d
+-/
 theorem coshTaylorCoeffs_eq_iteratedDeriv (n i : ℕ) (hi : i ≤ n) :
     (coshTaylorCoeffs n i : ℝ) = iteratedDeriv i Real.cosh 0 / i.factorial := by
   simp only [coshTaylorCoeffs, hi, ↓reduceIte]
@@ -642,7 +662,9 @@ theorem coshTaylorCoeffs_eq_iteratedDeriv (n i : ℕ) (hi : i ≤ n) :
 
 /-! ### Polynomial evaluation lemmas -/
 
-/-- sinhTaylorPoly evaluates to the standard Taylor sum for sinh at 0. -/
+/-- sinhTaylorPoly evaluates to the standard Taylor sum for sinh at 0.
+@isnad1 id=eq.0h2v.s7.9dba8322f873 from=translated src=- shape=10b20958 vocab=3d73fd3e
+-/
 theorem sinhTaylorPoly_aeval_eq (n : ℕ) (z : ℝ) :
     (Polynomial.aeval z (sinhTaylorPoly n) : ℝ) =
       ∑ i ∈ Finset.range (n + 1), (iteratedDeriv i Real.sinh 0 / i.factorial) * z ^ i := by
@@ -655,7 +677,9 @@ theorem sinhTaylorPoly_aeval_eq (n : ℕ) (z : ℝ) :
   change (sinhTaylorCoeffs n i : ℝ) * z ^ i = _
   rw [h]
 
-/-- coshTaylorPoly evaluates to the standard Taylor sum for cosh at 0. -/
+/-- coshTaylorPoly evaluates to the standard Taylor sum for cosh at 0.
+@isnad1 id=eq.0h2v.s7.e7886677add9 from=translated src=- shape=10b20958 vocab=95195e85
+-/
 theorem coshTaylorPoly_aeval_eq (n : ℕ) (z : ℝ) :
     (Polynomial.aeval z (coshTaylorPoly n) : ℝ) =
       ∑ i ∈ Finset.range (n + 1), (iteratedDeriv i Real.cosh 0 / i.factorial) * z ^ i := by
@@ -671,7 +695,9 @@ theorem coshTaylorPoly_aeval_eq (n : ℕ) (z : ℝ) :
 /-! ### atanh correctness helper -/
 
 /-- The atanh series representation: atanh(x) = Σ x^(2k+1)/(2k+1) for |x| < 1.
-    Derived from Mathlib's hasSum_log_sub_log_of_abs_lt_one. -/
+    Derived from Mathlib's hasSum_log_sub_log_of_abs_lt_one.
+@isnad1 id=hassum.1h1v.s6.b088b903134d from=translated src=- shape=a3eec94f vocab=a3b1c5e5
+-/
 theorem Real.atanh_hasSum {x : ℝ} (hx : |x| < 1) :
     HasSum (fun k : ℕ => x ^ (2 * k + 1) / (2 * k + 1)) (Real.atanh x) := by
   have hlog := Real.hasSum_log_sub_log_of_abs_lt_one hx
@@ -687,7 +713,9 @@ theorem Real.atanh_hasSum {x : ℝ} (hx : |x| < 1) :
   funext k
   field_simp
 
-/-- atanhTaylorPoly evaluates to the standard sum. -/
+/-- atanhTaylorPoly evaluates to the standard sum.
+@isnad1 id=eq.0h2v.s7.b6fd629ec93c from=translated src=- shape=7086c7d5 vocab=0f927910
+-/
 theorem atanhTaylorPoly_aeval_eq (n : ℕ) (z : ℝ) :
     (Polynomial.aeval z (atanhTaylorPoly n) : ℝ) =
       ∑ k ∈ Finset.range (n + 1), (atanhTaylorCoeffs n k : ℝ) * z ^ k := by
@@ -704,7 +732,9 @@ theorem atanhTaylorPoly_aeval_eq (n : ℕ) (z : ℝ) :
     1. atanh(z) = Σ_{k=0}^∞ z^(2k+1)/(2k+1) by Real.atanh_hasSum
     2. The polynomial computes partial sum of odd terms up to degree n
     3. Remainder = tail = Σ_{k: 2k+1 > n} z^(2k+1)/(2k+1)
-    4. |tail| ≤ Σ_{k: 2k+1 > n} |z|^(2k+1) ≤ |z|^(n+1)/(1-z²) by geometric series -/
+    4. |tail| ≤ Σ_{k: 2k+1 > n} |z|^(2k+1) ≤ |z|^(n+1)/(1-z²) by geometric series
+@isnad1 id=le.1h2v.s7.cb86a2a5d4a8 from=translated src=- shape=e0606edc vocab=91b5a4dc
+-/
 theorem atanh_series_remainder_bound {z : ℝ} (hz : |z| < 1) (n : ℕ) :
     |Real.atanh z - ∑ k ∈ Finset.range (n + 1), (atanhTaylorCoeffs n k : ℝ) * z ^ k| ≤
     |z| ^ (n + 1) / (1 - z ^ 2) := by
@@ -841,7 +871,9 @@ theorem atanh_series_remainder_bound {z : ℝ} (hz : |z| < 1) (n : ℕ) :
 /-! ### Correctness theorems -/
 
 /-- atanh z ∈ (tmAtanh J n).evalSet z for all z in J with |z| < 1.
-    Precondition: The domain radius must be ≤ 99/100. -/
+    Precondition: The domain radius must be ≤ 99/100.
+@isnad1 id=mem.3h3v.s6.bf3055034b57 from=translated src=- shape=0d517e63 vocab=09c425ee
+-/
 theorem tmAtanh_correct (J : IntervalRat) (n : ℕ)
     (hJ_radius : max (|J.lo|) (|J.hi|) ≤ 99/100) :
     ∀ z : ℝ, z ∈ J → |z| < 1 → Real.atanh z ∈ (tmAtanh J n).evalSet z := by
@@ -921,7 +953,9 @@ theorem tmAtanh_correct (J : IntervalRat) (n : ℕ)
   · simp only [hr_def, sub_zero]; ring_nf
 
 /-- sinh z ∈ (tmSinh J n).evalSet z for all z in J.
-    Uses taylor_remainder_bound with f = Real.sinh. -/
+    Uses taylor_remainder_bound with f = Real.sinh.
+@isnad1 id=mem.1h3v.s4.dcd7fa1da888 from=translated src=- shape=6ef91c96 vocab=6fa0721c
+-/
 theorem tmSinh_correct (J : IntervalRat) (n : ℕ) :
     ∀ z : ℝ, z ∈ J → Real.sinh z ∈ (tmSinh J n).evalSet z := by
   intro z hz
@@ -1002,7 +1036,9 @@ theorem tmSinh_correct (J : IntervalRat) (n : ℕ) :
     · exact le_trans (le_abs_self r) hr_le_rem
   · simp only [hr_def, sub_zero]; ring_nf
 
-/-- cosh z ∈ (tmCosh J n).evalSet z for all z in J. -/
+/-- cosh z ∈ (tmCosh J n).evalSet z for all z in J.
+@isnad1 id=mem.1h3v.s4.8b9b694c30e1 from=translated src=- shape=6ef91c96 vocab=6b96ced5
+-/
 theorem tmCosh_correct (J : IntervalRat) (n : ℕ) :
     ∀ z : ℝ, z ∈ J → Real.cosh z ∈ (tmCosh J n).evalSet z := by
   intro z hz
@@ -1093,7 +1129,9 @@ theorem tmCosh_correct (J : IntervalRat) (n : ℕ) :
 
     Note: This is proved using the known series expansion of arsinh,
     which satisfies arsinh(x) = Σ_{k=0}^∞ a_k x^(2k+1) where
-    a_k = Ring.choose (-1/2) k / (2k+1). -/
+    a_k = Ring.choose (-1/2) k / (2k+1).
+@isnad1 id=eq.0h1v.s7.f4215ed7d92d from=translated src=- shape=6031a5bb vocab=daf51f2c
+-/
 theorem iteratedDeriv_arsinh_zero (n : ℕ) :
     iteratedDeriv n Real.arsinh 0 =
       if n % 2 = 0 then 0 else
@@ -1117,7 +1155,9 @@ theorem iteratedDeriv_arsinh_zero (n : ℕ) :
       have heven : (m + 1) % 2 = 0 := by omega
       simp only [hm, heven, ↓reduceIte, mul_zero]
 
-/-- The asinhTaylorCoeffs match the Mathlib Taylor coefficients for arsinh at 0 -/
+/-- The asinhTaylorCoeffs match the Mathlib Taylor coefficients for arsinh at 0
+@isnad1 id=eq.1h2v.s5.6a00493c04fe from=translated src=- shape=9bd76783 vocab=59ed58f4
+-/
 theorem asinhTaylorCoeffs_eq_iteratedDeriv (n i : ℕ) (hi : i ≤ n) :
     (asinhTaylorCoeffs n i : ℝ) = iteratedDeriv i Real.arsinh 0 / i.factorial := by
   simp only [asinhTaylorCoeffs, hi, ↓reduceIte]
@@ -1151,7 +1191,9 @@ theorem asinhTaylorCoeffs_eq_iteratedDeriv (n i : ℕ) (hi : i ≤ n) :
     simp only [heven, ↓reduceIte, zero_div]
     norm_cast
 
-/-- asinhTaylorPoly evaluates to the standard Taylor sum for arsinh at 0. -/
+/-- asinhTaylorPoly evaluates to the standard Taylor sum for arsinh at 0.
+@isnad1 id=eq.0h2v.s7.fd0f3e9f3a40 from=translated src=- shape=10b20958 vocab=07ce061a
+-/
 theorem asinhTaylorPoly_aeval_eq (n : ℕ) (z : ℝ) :
     (Polynomial.aeval z (asinhTaylorPoly n) : ℝ) =
       ∑ i ∈ Finset.range (n + 1), (iteratedDeriv i Real.arsinh 0 / i.factorial) * z ^ i := by
@@ -1164,7 +1206,9 @@ theorem asinhTaylorPoly_aeval_eq (n : ℕ) (z : ℝ) :
   change (asinhTaylorCoeffs n i : ℝ) * z ^ i = _
   rw [h]
 
-/-- Bound on the n-th derivative of arsinh on the interval hull of `domain` and `0`. -/
+/-- Bound on the n-th derivative of arsinh on the interval hull of `domain` and `0`.
+@isnad1 id=le.1h3v.s6.3d649d635d7c from=translated src=- shape=20b3e501 vocab=a09b6173
+-/
 theorem arsinh_deriv_bound (domain : IntervalRat) (n : ℕ) :
     ∀ x ∈ Set.Icc (min (domain.lo : ℝ) 0) (max (domain.hi : ℝ) 0),
       ‖iteratedDeriv n Real.arsinh x‖ ≤ asinhDerivSup domain n := by
@@ -1182,7 +1226,9 @@ theorem arsinh_deriv_bound (domain : IntervalRat) (n : ℕ) :
     exact Set.mem_image_of_mem _ hx
 
 /-- arsinh z ∈ (tmAsinh J n).evalSet z for all z in J.
-    Uses taylor_remainder_bound with f = Real.arsinh, M = asinhDerivSup J (n+1). -/
+    Uses taylor_remainder_bound with f = Real.arsinh, M = asinhDerivSup J (n+1).
+@isnad1 id=mem.1h3v.s4.b9d3299d2e82 from=translated src=- shape=6ef91c96 vocab=a94004ee
+-/
 theorem tmAsinh_correct (J : IntervalRat) (n : ℕ) :
     ∀ z : ℝ, z ∈ J → Real.arsinh z ∈ (tmAsinh J n).evalSet z := by
   intro z hz

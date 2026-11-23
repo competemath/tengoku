@@ -16,6 +16,9 @@ universe u
 
 variable {V : Type u} [NormedAddCommGroup V] [NormedSpace ℝ V]
 
+/--
+@isnad1 id=eventual.0h3v.s14.a85473afee6f from=translated src=- shape=29b4055d vocab=a3b402da
+-/
 theorem jetLp_ae (A : SmoothL2Field V) (n : ℕ) :
     A.jetLp n =ᵐ[volume] iteratedFDeriv ℝ n A.field := (A.integrable n).coeFn_toLp
 
@@ -52,13 +55,18 @@ private theorem iteratedFDeriv_translation_ae_aux (n : ℕ) :
     rw [hm, hi]
     exact (iteratedFDeriv_succ_apply_right (f := A.field) (x := x+a) v).symm
 
+/--
+@isnad1 id=eventual.0h5v.s16.afa7f622db25 from=translated src=- shape=3e34c361 vocab=6ca99bda
+-/
 theorem iteratedFDeriv_translation_ae (A : SmoothL2Field V) (n : ℕ)
     (a : Space) (v : Fin n → Space) :
     iteratedFDeriv ℝ n (fun b : Space => translation b A.toLp) a v =ᵐ[volume]
       fun x => iteratedFDeriv ℝ n A.field (x+a) v :=
   iteratedFDeriv_translation_ae_aux n V A a v
 
-/-- The entire parameter derivative tensor is a bounded linear image of the actual spatial L² tensor. -/
+/-- The entire parameter derivative tensor is a bounded linear image of the actual spatial L² tensor.
+@isnad1 id=eq.0h4v.s19.a2d2ca16928d from=translated src=- shape=8d4d8631 vocab=19718454
+-/
 theorem iteratedFDeriv_translation_eq (A : SmoothL2Field V) (n : ℕ) (a : Space) :
     iteratedFDeriv ℝ n (fun b : Space => translation b A.toLp) a =
       multilinearBundling (P := Space) (V := V) volume n (translation a (A.jetLp n)) := by

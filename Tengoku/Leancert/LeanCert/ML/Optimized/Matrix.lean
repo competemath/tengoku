@@ -72,7 +72,9 @@ def ofFn {r c : Nat} (f : Fin r → Fin c → Int) : IntMatrix r c :=
     { data := Array.ofFn (flatToElem f hc)
       size_eq := Array.size_ofFn }
 
-/-- Get an element from an ofFn matrix -/
+/-- Get an element from an ofFn matrix
+@isnad1 id=eq.0h5v.s5.a32627d72e6c from=translated src=- shape=0432b288 vocab=d706c0b0
+-/
 @[simp] theorem ofFn_get {r c : Nat} (f : Fin r → Fin c → Int) (i : Fin r) (j : Fin c) :
     (ofFn f).get i j i.isLt j.isLt = f i j := by
   simp only [ofFn, get]
@@ -194,7 +196,9 @@ end IntervalMatrix
 /-- Value of integer as real given an exponent (2^exp scaling) -/
 noncomputable def intVal (x : Int) (exp : Int) : ℝ := x * (2 : ℝ) ^ exp
 
-/-- Multiplication of scaled values: intVal x e * intVal y e = intVal (x*y) (e+e) -/
+/-- Multiplication of scaled values: intVal x e * intVal y e = intVal (x*y) (e+e)
+@isnad1 id=eq.0h3v.s5.ee1ccb0d4be6 from=translated src=- shape=7bdcd380 vocab=ae7dca75
+-/
 theorem intVal_mul (x y : Int) (e : Int) :
     intVal x e * intVal y e = intVal (x * y) (e + e) := by
   unfold intVal
@@ -203,7 +207,9 @@ theorem intVal_mul (x y : Int) (e : Int) :
       = (x : ℝ) * y * ((2 : ℝ) ^ e * (2 : ℝ) ^ e) := by ring
     _ = (x : ℝ) * y * (2 : ℝ) ^ (e + e) := by rw [← zpow_add₀ (by norm_num : (2 : ℝ) ≠ 0)]
 
-/-- intVal distributes over addition -/
+/-- intVal distributes over addition
+@isnad1 id=eq.0h3v.s5.e73461587c4b from=translated src=- shape=5e37de24 vocab=b3c52db0
+-/
 theorem intVal_add (x y : Int) (e : Int) :
     intVal x e + intVal y e = intVal (x + y) e := by
   simp only [intVal, Int.cast_add]
@@ -234,7 +240,9 @@ private theorem foldl_add_f_eq_foldl_map {α β : Type*} [AddCommMonoid α]
     abel
 
 /-- Key lemma: foldl with addition over List.finRange equals Finset.univ.sum.
-    This converts the computational foldl in matmul to the mathematical Finset.sum. -/
+    This converts the computational foldl in matmul to the mathematical Finset.sum.
+@isnad1 id=eq.0h3v.s6.8d9049f6a822 from=translated src=- shape=d6fe5ac1 vocab=d44a6db9
+-/
 theorem finRange_foldl_add_eq_sum {α : Type*} [AddCommMonoid α] {m : Nat} (f : Fin m → α) :
     (List.finRange m).foldl (fun acc j => acc + f j) 0 = Finset.univ.sum f := by
   rw [foldl_add_f_eq_foldl_map, zero_add, Fin.sum_univ_def]
@@ -252,7 +260,9 @@ private theorem Int_cast_foldl_add_gen {β : Type*} (l : List β) (f : β → In
     rw [ih (init + f x)]
     simp only [Int.cast_add]
 
-/-- Int.cast distributes over foldl with addition -/
+/-- Int.cast distributes over foldl with addition
+@isnad1 id=eq.0h3v.s6.c1eefc7cc5ec from=translated src=- shape=e73675c1 vocab=47787b00
+-/
 theorem Int_cast_foldl_add {β : Type*} (l : List β) (f : β → Int) :
     ((l.foldl (fun acc b => acc + f b) 0 : Int) : ℝ) =
     l.foldl (fun acc b => acc + (f b : ℝ)) (0 : ℝ) := by
@@ -346,7 +356,9 @@ private theorem mul_mem_corners {x y a₁ a₂ b₁ b₂ : ℝ}
   ⟨mul_lower_bound ha hb, mul_upper_bound ha hb⟩
 
 /-- The interval multiplication is sound: if x ∈ [l1, h1] and y ∈ [l2, h2],
-    then x * y ∈ [intervalMul.lo, intervalMul.hi] -/
+    then x * y ∈ [intervalMul.lo, intervalMul.hi]
+@isnad1 id=match1.4h6v.s6.ef25c4b0def7 from=translated src=- shape=53ca2dc0 vocab=85b74a26
+-/
 theorem intervalMul_sound (l1 h1 l2 h2 : Int) (x y : ℝ)
     (hx_lo : (l1 : ℝ) ≤ x) (hx_hi : x ≤ h1)
     (hy_lo : (l2 : ℝ) ≤ y) (hy_hi : y ≤ h2) :
@@ -366,7 +378,9 @@ theorem intervalMul_sound (l1 h1 l2 h2 : Int) (x y : ℝ)
 
 /-- Scaled version of intervalMul_sound using intVal with exponents.
     If x ∈ [intVal l1 exp, intVal h1 exp] and y ∈ [intVal l2 exp, intVal h2 exp],
-    then x * y ∈ [intVal lo (exp+exp), intVal hi (exp+exp)] where (lo, hi) = intervalMul l1 h1 l2 h2. -/
+    then x * y ∈ [intVal lo (exp+exp), intVal hi (exp+exp)] where (lo, hi) = intervalMul l1 h1 l2 h2.
+@isnad1 id=match1.4h7v.s6.38654d080ee7 from=translated src=- shape=66485ea6 vocab=9e062cbb
+-/
 theorem intervalMul_sound_scaled (l1 h1 l2 h2 : Int) (x y : ℝ) (exp : Int)
     (hx_lo : intVal l1 exp ≤ x) (hx_hi : x ≤ intVal h1 exp)
     (hy_lo : intVal l2 exp ≤ y) (hy_hi : y ≤ intVal h2 exp) :
@@ -428,7 +442,9 @@ theorem intervalMul_sound_scaled (l1 h1 l2 h2 : Int) (x y : ℝ) (exp : Int)
 /-- **Soundness of Matrix Transpose**
 
   If A_real ∈ A_interval, then A_realᵀ ∈ A_intervalᵀ.
-  The exponent is preserved. -/
+  The exponent is preserved.
+@isnad1 id=mem.1h5v.s5.a387185e4729 from=translated src=- shape=20889576 vocab=fb9dddae
+-/
 theorem mem_transpose {r c : Nat}
     (M : IntervalMatrix r c) (exp : Int)
     (A_real : Matrix (Fin r) (Fin c) ℝ)
@@ -447,6 +463,7 @@ theorem mem_transpose {r c : Nat}
   (A_real * B_real) ∈ (A_interval * B_interval).
 
   Note: Exponents add. If A has exp `e` and B has exp `e`, result has `2e`.
+@isnad1 id=mem.2h8v.s6.03a6fd2b2f02 from=translated src=- shape=41ac5f81 vocab=92a63c90
 -/
 theorem mem_matmul {n m p : Nat}
     (A : IntervalMatrix n m) (B : IntervalMatrix m p)

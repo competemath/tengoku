@@ -46,7 +46,9 @@ def erfGELUIntervalRat (I : IntervalRat) (taylorDepth : Nat := 15) : IntervalRat
   let halfX := IntervalRat.scale (1 / 2) I
   IntervalRat.mul halfX onePlus
 
-/-- The constant interval used by exact GELU contains `1 / √2`. -/
+/-- The constant interval used by exact GELU contains `1 / √2`.
+@isnad1 id=mem.0h0v.s4.391ac0dfaca2 from=translated src=- shape=14abf7e0 vocab=937464b2
+-/
 theorem mem_erfGELUInvSqrt2 :
     1 / Real.sqrt 2 ∈ erfGELUInvSqrt2 := by
   have hsqrt_pos : 0 < Real.sqrt 2 := Real.sqrt_pos.2 (by norm_num)
@@ -66,7 +68,9 @@ theorem mem_erfGELUInvSqrt2 :
     nlinarith [sq_nonneg
       (Real.sqrt 2 - ((7071067811865476 / 10000000000000000 : ℚ) : ℝ))]
 
-/-- Soundness of the rational exact erf-GELU enclosure. -/
+/-- Soundness of the rational exact erf-GELU enclosure.
+@isnad1 id=mem.1h3v.s4.38899699fa4d from=translated src=- shape=71d4a1f7 vocab=d807950d
+-/
 theorem mem_erfGELUIntervalRat {x : ℝ} {I : IntervalRat} (hx : x ∈ I)
     (taylorDepth : Nat := 15) :
     Real.erfGELU x ∈ erfGELUIntervalRat I taylorDepth := by
@@ -85,7 +89,9 @@ def erfGELUInterval (I : IntervalDyadic) (prec : Int := -53)
     (taylorDepth : Nat := 15) : IntervalDyadic :=
   IntervalDyadic.ofIntervalRat (erfGELUIntervalRat I.toIntervalRat taylorDepth) prec
 
-/-- Soundness of the dyadic exact erf-GELU enclosure. -/
+/-- Soundness of the dyadic exact erf-GELU enclosure.
+@isnad1 id=mem.1h5v.s5.859b59c5f854 from=translated src=- shape=2d138596 vocab=eaa56d77
+-/
 theorem mem_erfGELUInterval {x : ℝ} {I : IntervalDyadic} (hx : x ∈ I)
     (prec : Int := -53) (taylorDepth : Nat := 15) (hprec : prec ≤ 0 := by norm_num) :
     Real.erfGELU x ∈ erfGELUInterval I prec taylorDepth := by
@@ -98,7 +104,9 @@ def erfGELUVector (v : IntervalVector) (prec : Int := -53)
     (taylorDepth : Nat := 15) : IntervalVector :=
   v.map (fun I => erfGELUInterval I prec taylorDepth)
 
-/-- Componentwise soundness of `erfGELUVector`. -/
+/-- Componentwise soundness of `erfGELUVector`.
+@isnad1 id=mem.3h6v.s7.b6e79beeeedf from=translated src=- shape=2838d356 vocab=fcd1ed49
+-/
 theorem mem_erfGELUVector {xs : List ℝ} {Is : IntervalVector}
     (hlen : xs.length = Is.length)
     (hmem : ∀ i, (hi : i < Is.length) → xs[i]'(by omega) ∈ Is[i]'hi)
@@ -132,7 +140,9 @@ def forwardInterval (l : AffineLayer) (x : IntervalVector)
     l.bias
     prec
 
-/-- Soundness of an affine layer under explicit matrix dimensions. -/
+/-- Soundness of an affine layer under explicit matrix dimensions.
+@isnad1 id=forall.3h5v.s6.f95196fa990d from=translated src=- shape=4639d387 vocab=6ee199a5
+-/
 theorem forwardInterval_correct (l : AffineLayer) {xs : List ℝ} {Is : IntervalVector}
     (hrows : ∀ row ∈ l.weights, row.length = Is.length)
     (hmem : List.Forall₂ (fun x I => x ∈ I) xs Is)
@@ -195,7 +205,9 @@ def forwardInterval (net : ErfGELUFFN) (x : IntervalVector)
 /-- Network-level soundness of `Linear → erf-GELU → Linear`.
 
 The dimension assumptions are explicit because the executable structures retain
-dimension-mismatch fallbacks for compatibility. -/
+dimension-mismatch fallbacks for compatibility.
+@isnad1 id=forall.5h6v.s7.5c5d269dbb90 from=translated src=- shape=cdcfe0d3 vocab=97353ada
+-/
 theorem forwardInterval_correct (net : ErfGELUFFN) {xs : List ℝ} {Is : IntervalVector}
     (hxmem : List.Forall₂ (fun x I => x ∈ I) xs Is)
     (hrows1 : ∀ row ∈ net.linear1.weights, row.length = Is.length)

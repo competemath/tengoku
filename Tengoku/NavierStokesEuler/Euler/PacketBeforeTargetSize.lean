@@ -14,6 +14,9 @@ namespace EulerPacketMovingFrame
 
 open Set EulerSmoothLimit EulerPacketGrowth EulerPacketFrameStability InnerProductSpace
 
+/--
+@isnad1 id=and.24h15v.s10.7e8e1476ee8e from=translated src=- shape=dd75d5fa vocab=4e16d777
+-/
 theorem physical_ideal_size_comparison_order40 (m v r w : ℝ → Space)
     {s₀ t₀ a ε τ Θ K e σ : ℝ} {Z Z₁ : ℝ → ℝ}
     (hs₀ : 0 < s₀) (hε : 0 < ε) (hσ : 0 < σ) (hσsmall : σ ≤ 1/4)
@@ -57,7 +60,9 @@ theorem physical_ideal_size_comparison_order40 (m v r w : ℝ → Space)
 
 /-- Every controlled neighboring primary before target is bounded by a
 fixed multiple of the center's actual target size.  All comparisons use
-the same genuine scalar ODE solution, including its initial slope. -/
+the same genuine scalar ODE solution, including its initial slope.
+@isnad1 id=le.25h19v.s10.57d5018eaf3c from=translated src=- shape=2e2eec5d vocab=3d9104ca
+-/
 theorem physical_before_target_size_bound {α : Type*} (center : α)
     (m v r w : α → ℝ → Space) {s₀ t₀ a ε T Θ K e σ : ℝ} {Z Z₁ : ℝ → ℝ}
     (hs₀ : 0 < s₀) (hε : 0 < ε) (hσ : 0 < σ) (hσsmall : σ ≤ 1/4)

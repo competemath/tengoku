@@ -355,7 +355,9 @@ def envMemAffine (ρ_real : Nat → ℝ) (ρ_affine : AffineEnv) (eps : AffineFo
 
 Unlike the legacy total evaluator, success itself discharges every partial
 domain condition. Operations without a dedicated affine linearization use the
-proved interval fallback and therefore remain sound while losing correlation. -/
+proved interval fallback and therefore remain sound while losing correlation.
+@isnad1 id=memaffin.3h6v.s5.d79e72d43663 from=translated src=- shape=d9cd237d vocab=c2350f26
+-/
 theorem evalIntervalAffine?_correct (e : Expr)
     (ρ_real : Nat → ℝ) (ρ_affine : AffineEnv) (eps : AffineForm.NoiseAssignment)
     (hvalid : AffineForm.validNoise eps)
@@ -542,7 +544,9 @@ theorem evalIntervalAffine?_correct (e : Expr)
       cases hsuccess
       exact AffineForm.mem_affine_of_interval c.mem_interval
 
-/-- Successful checked affine evaluation is sound for every expression. -/
+/-- Successful checked affine evaluation is sound for every expression.
+@isnad1 id=memaffin.3h6v.s5.c2b59bb5892c from=translated src=- shape=23698c12 vocab=4ad0af3e
+-/
 theorem evalIntervalAffineChecked_correct (e : Expr)
     (ρ_real : Nat → ℝ) (ρ_affine : AffineEnv) (eps : AffineForm.NoiseAssignment)
     (hvalid : AffineForm.validNoise eps)
@@ -585,7 +589,9 @@ def evalDomainValidAffine (e : Expr) (ρ : AffineEnv) (cfg : AffineConfig := {})
   | Expr.sqrt e => evalDomainValidAffine e ρ cfg
   | Expr.namedConst _ => True
 
-/-- Domain validity is trivially true for ADSupported expressions (which exclude log). -/
+/-- Domain validity is trivially true for ADSupported expressions (which exclude log).
+@isnad1 id=evaldoma.1h3v.s4.377ead5c61dd from=translated src=- shape=840064e3 vocab=31d19164
+-/
 theorem evalDomainValidAffine_of_ExprSupported {e : Expr} (hsupp : ADSupported e)
     (ρ : AffineEnv) (cfg : AffineConfig := {}) : evalDomainValidAffine e ρ cfg := by
   induction hsupp with
@@ -607,7 +613,9 @@ This proves soundness: the affine form always contains the true value.
 
 Note: Requires valid noise assignment and domain validity for log.
 Some transcendental cases (sin, cos, pi) use interval fallback and have
-separate soundness via interval bounds. -/
+separate soundness via interval bounds.
+@isnad1 id=memaffin.4h5v.s5.964a05de84e0 from=translated src=- shape=ebabe9ed vocab=3c151296
+-/
 theorem evalIntervalAffine_correct (e : Expr) (hsupp : ExprSupportedCore e)
     (ρ_real : Nat → ℝ) (ρ_affine : AffineEnv) (eps : AffineForm.NoiseAssignment)
     (hvalid : AffineForm.validNoise eps)
@@ -707,7 +715,9 @@ theorem evalIntervalAffine_correct (e : Expr) (hsupp : ExprSupportedCore e)
 /-- Corollary: The interval produced by toInterval contains the true value.
 
 This is the key result for optimization: if we compute an affine form and convert
-to an interval, the interval is guaranteed to contain the true value. -/
+to an interval, the interval is guaranteed to contain the true value.
+@isnad1 id=mem.5h5v.s6.113f699f33ae from=translated src=- shape=d7bbf4c0 vocab=17839366
+-/
 theorem evalIntervalAffine_toInterval_correct (e : Expr) (hsupp : ExprSupportedCore e)
     (ρ_real : Nat → ℝ) (ρ_affine : AffineEnv) (eps : AffineForm.NoiseAssignment)
     (hvalid : AffineForm.validNoise eps)

@@ -41,7 +41,9 @@ open _root_.EulerLiftedGradientSpace _root_.EulerCylinderSobolev _root_.EulerSpa
 variable (period : ℝ) [Fact (0 < period)]
 
 omit [Fact (0 < period)] in
-/-- The fixed H⁶ coefficient block is bounded by 448 times the base coefficient bound. -/
+/-- The fixed H⁶ coefficient block is bounded by 448 times the base coefficient bound.
+@isnad1 id=le.1h5v.s6.9c3dd785a8a4 from=translated src=- shape=3dbd07c7 vocab=16869a04
+-/
 theorem coefficientBlock_zero_le {s : ℕ} {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A) (L : ℝ)
     (hL : ∀ r ≤ 6, boundLevel period K r ≤ L) : coefficientBlock period K 6 0 ≤ 448*L := by
@@ -53,7 +55,9 @@ theorem coefficientBlock_zero_le {s : ℕ} {A : SmoothCoefficient period}
     _ = _ := by simp; ring
 
 omit [Fact (0 < period)] in
-/-- The finite weighted coefficient sum is bounded by its base block and a geometric tail. -/
+/-- The finite weighted coefficient sum is bounded by its base block and a geometric tail.
+@isnad1 id=le.4h7v.s7.7d84f97eeef9 from=translated src=- shape=c89ec8aa vocab=03fc75bb
+-/
 theorem weightedCoefficient_le {s : ℕ} {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (N : ℕ) (ρ Rc : ℝ) (hρ : 0 < ρ) (hRc : 0 ≤ Rc) (hsmall : ρ*Rc ≤ 1/2)
@@ -70,7 +74,9 @@ theorem weightedCoefficient_le {s : ℕ} {A : SmoothCoefficient period}
   exact add_le_add le_rfl h
 
 omit [Fact (0 < period)] in
-/-- Under the fixed geometric smallness condition the coefficient multiplier bound is independent of N. -/
+/-- Under the fixed geometric smallness condition the coefficient multiplier bound is independent of N.
+@isnad1 id=le.5h8v.s7.5b0199461e65 from=translated src=- shape=7ec56f26 vocab=6b40a412
+-/
 theorem weightedCoefficient_uniform {s : ℕ} {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (N : ℕ) (ρ Rc L : ℝ) (hρ : 0 < ρ) (hRc : 0 ≤ Rc) (hsmall : ρ*Rc ≤ 1/2)
@@ -82,7 +88,9 @@ theorem weightedCoefficient_uniform {s : ℕ} {A : SmoothCoefficient period}
   linarith
 
 omit [Fact (0 < period)] in
-/-- Summed positive base coefficient derivatives contribute at most 6L. -/
+/-- Summed positive base coefficient derivatives contribute at most 6L.
+@isnad1 id=le.1h4v.s6.60d11f63af11 from=translated src=- shape=ff2a3d46 vocab=690b3379
+-/
 theorem baseCoefficientSum_le {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A) (L : ℝ)
     (hL : ∀ r ≤ 6, boundLevel period K r ≤ L) : baseCoefficientSum period K ≤ 6*L := by
@@ -90,7 +98,9 @@ theorem baseCoefficientSum_le {A : SmoothCoefficient period}
   simpa [baseCoefficientSum] using h
 
 omit [Fact (0 < period)] in
-/-- One explicit polynomial bounds every coercive inverse at base order at most six. -/
+/-- One explicit polynomial bounds every coercive inverse at base order at most six.
+@isnad1 id=le.5h6v.s6.32bc0c952dce from=translated src=- shape=38b1f988 vocab=cd8e78e7
+-/
 theorem pressureConstant_le_six {q : ℕ} (hq : q ≤ 6) {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection q A)
     (c L : ℝ) (hc : 0 < c) (hL : 1 ≤ L) (hcL : c⁻¹ ≤ L)
@@ -101,7 +111,9 @@ theorem pressureConstant_le_six {q : ℕ} (hq : q ≤ 6) {A : SmoothCoefficient 
   exact h.trans (pow_le_pow_right₀ (by linarith : 1 ≤ 9*L) he)
 
 omit [Fact (0 < period)] in
-/-- Both fixed inverse orders needed by the actual pressure forcing have the same cutoff-independent polynomial bound. -/
+/-- Both fixed inverse orders needed by the actual pressure forcing have the same cutoff-independent polynomial bound.
+@isnad1 id=and.5h6v.s7.7c308ce5225e from=translated src=- shape=fa14501b vocab=336c0515
+-/
 theorem fixed_pressure_constants {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (c L : ℝ) (hc : 0 < c) (hL : 1 ≤ L) (hcL : c⁻¹ ≤ L)

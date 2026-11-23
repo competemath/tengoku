@@ -57,20 +57,29 @@ def toSet (I : IntervalRat) : Set ℝ := Set.Icc (I.lo : ℝ) (I.hi : ℝ)
 instance : Membership ℝ IntervalRat where
   mem I x := (I.lo : ℝ) ≤ x ∧ x ≤ (I.hi : ℝ)
 
+/--
+@isnad1 id=iff.0h2v.s4.4a484ff75326 from=translated src=- shape=33d729b2 vocab=2740a874
+-/
 @[simp]
 theorem mem_def (x : ℝ) (I : IntervalRat) : x ∈ I ↔ (I.lo : ℝ) ≤ x ∧ x ≤ (I.hi : ℝ) :=
   Iff.rfl
 
-/-- Membership in IntervalRat is the same as membership in Set.Icc -/
+/-- Membership in IntervalRat is the same as membership in Set.Icc
+@isnad1 id=iff.0h2v.s4.34794dbdbe07 from=translated src=- shape=5cc7655c vocab=b84101f8
+-/
 theorem mem_iff_mem_Icc (x : ℝ) (I : IntervalRat) : x ∈ I ↔ x ∈ Set.Icc (I.lo : ℝ) (I.hi : ℝ) := by
   simp only [mem_def, Set.mem_Icc]
 
-/-- Universal quantifier over IntervalRat equals universal over Set.Icc -/
+/-- Universal quantifier over IntervalRat equals universal over Set.Icc
+@isnad1 id=iff.0h2v.s5.43a2335ca6ec from=translated src=- shape=66ea5cfd vocab=b84101f8
+-/
 theorem forall_mem_iff_forall_Icc {P : ℝ → Prop} (I : IntervalRat) :
     (∀ x ∈ I, P x) ↔ (∀ x ∈ Set.Icc (I.lo : ℝ) (I.hi : ℝ), P x) := by
   constructor <;> intro h x hx <;> apply h <;> simp only [mem_iff_mem_Icc] at hx ⊢ <;> exact hx
 
-/-- Existence in IntervalRat equals existence in Set.Icc -/
+/-- Existence in IntervalRat equals existence in Set.Icc
+@isnad1 id=iff.0h2v.s5.84e720bf7ff6 from=translated src=- shape=52f47e7e vocab=b84101f8
+-/
 theorem exists_mem_iff_exists_Icc {P : ℝ → Prop} (I : IntervalRat) :
     (∃ x ∈ I, P x) ↔ (∃ x ∈ Set.Icc (I.lo : ℝ) (I.hi : ℝ), P x) := by
   constructor <;> intro ⟨x, hx, hp⟩ <;> exact ⟨x, by simp only [mem_iff_mem_Icc] at hx ⊢; exact hx, hp⟩
@@ -78,12 +87,18 @@ theorem exists_mem_iff_exists_Icc {P : ℝ → Prop} (I : IntervalRat) :
 /-- Create an interval from a single rational -/
 def singleton (q : ℚ) : IntervalRat := ⟨q, q, le_refl q⟩
 
+/--
+@isnad1 id=mem.0h1v.s3.48bcb59ab853 from=translated src=- shape=746edd34 vocab=0039e19c
+-/
 theorem mem_singleton (q : ℚ) : (q : ℝ) ∈ singleton q := by
   simp only [mem_def, singleton, le_refl, and_self]
 
 /-- The width of an interval -/
 def width (I : IntervalRat) : ℚ := I.hi - I.lo
 
+/--
+@isnad1 id=le.0h1v.s3.2c43ded0c948 from=translated src=- shape=b9369acb vocab=7e4b1a85
+-/
 theorem width_nonneg (I : IntervalRat) : 0 ≤ I.width := by
   simp only [width, sub_nonneg]
   exact I.le
@@ -91,7 +106,9 @@ theorem width_nonneg (I : IntervalRat) : 0 ≤ I.width := by
 /-- Midpoint of an interval -/
 def midpoint (I : IntervalRat) : ℚ := (I.lo + I.hi) / 2
 
-/-- The midpoint of an interval is contained in the interval -/
+/-- The midpoint of an interval is contained in the interval
+@isnad1 id=mem.0h1v.s3.c96dbfabd3d7 from=translated src=- shape=8e80c06b vocab=fdbb03f0
+-/
 theorem midpoint_mem (I : IntervalRat) : (I.midpoint : ℝ) ∈ I := by
   simp only [mem_def, midpoint]
   have hle : (I.lo : ℝ) ≤ I.hi := by exact_mod_cast I.le
@@ -115,7 +132,9 @@ def add (I J : IntervalRat) : IntervalRat where
   hi := I.hi + J.hi
   le := by linarith [I.le, J.le]
 
-/-- FTIA for addition -/
+/-- FTIA for addition
+@isnad1 id=mem.2h4v.s5.86502d76c700 from=translated src=- shape=52949ecd vocab=477f0461
+-/
 theorem mem_add {x y : ℝ} {I J : IntervalRat} (hx : x ∈ I) (hy : y ∈ J) :
     x + y ∈ add I J := by
   simp only [mem_def] at *
@@ -130,7 +149,9 @@ def neg (I : IntervalRat) : IntervalRat where
   hi := -I.lo
   le := by linarith [I.le]
 
-/-- FTIA for negation -/
+/-- FTIA for negation
+@isnad1 id=mem.1h2v.s4.db4cb102a99b from=translated src=- shape=81fdfc84 vocab=5a834f47
+-/
 theorem mem_neg {x : ℝ} {I : IntervalRat} (hx : x ∈ I) : -x ∈ neg I := by
   simp only [mem_def] at *
   simp only [neg, Rat.cast_neg]
@@ -141,7 +162,9 @@ theorem mem_neg {x : ℝ} {I : IntervalRat} (hx : x ∈ I) : -x ∈ neg I := by
 /-- Subtract two intervals -/
 def sub (I J : IntervalRat) : IntervalRat := add I (neg J)
 
-/-- FTIA for subtraction -/
+/-- FTIA for subtraction
+@isnad1 id=mem.2h4v.s5.73949981ab85 from=translated src=- shape=52949ecd vocab=0aed0744
+-/
 theorem mem_sub {x y : ℝ} {I J : IntervalRat} (hx : x ∈ I) (hy : y ∈ J) :
     x - y ∈ sub I J := by
   simp only [sub_eq_add_neg]
@@ -155,6 +178,9 @@ def min4 (a b c d : ℚ) : ℚ := min (min a b) (min c d)
 /-- Helper: maximum of four rationals -/
 def max4 (a b c d : ℚ) : ℚ := max (max a b) (max c d)
 
+/--
+@isnad1 id=and.0h4v.s5.47ff132f7bbb from=translated src=- shape=503c5471 vocab=cb4b7048
+-/
 theorem min4_le_all (a b c d : ℚ) :
     min4 a b c d ≤ a ∧ min4 a b c d ≤ b ∧ min4 a b c d ≤ c ∧ min4 a b c d ≤ d := by
   simp only [min4]
@@ -164,6 +190,9 @@ theorem min4_le_all (a b c d : ℚ) :
   · exact le_trans (min_le_right _ _) (min_le_left _ _)
   · exact le_trans (min_le_right _ _) (min_le_right _ _)
 
+/--
+@isnad1 id=and.0h4v.s5.66118ca99165 from=translated src=- shape=086b3329 vocab=b209ecfd
+-/
 theorem all_le_max4 (a b c d : ℚ) :
     a ≤ max4 a b c d ∧ b ≤ max4 a b c d ∧ c ≤ max4 a b c d ∧ d ≤ max4 a b c d := by
   simp only [max4]
@@ -173,10 +202,16 @@ theorem all_le_max4 (a b c d : ℚ) :
   · exact le_trans (le_max_left _ _) (le_max_right _ _)
   · exact le_trans (le_max_right _ _) (le_max_right _ _)
 
+/--
+@isnad1 id=iff.0h5v.s5.dfc2f8d8b936 from=translated src=- shape=6a937743 vocab=cb4b7048
+-/
 theorem le_min4_iff (x a b c d : ℚ) :
     x ≤ min4 a b c d ↔ x ≤ a ∧ x ≤ b ∧ x ≤ c ∧ x ≤ d := by
   simp only [min4, le_min_iff, and_assoc]
 
+/--
+@isnad1 id=iff.0h5v.s5.c11926cf20a3 from=translated src=- shape=5903f230 vocab=b209ecfd
+-/
 theorem max4_le_iff (x a b c d : ℚ) :
     max4 a b c d ≤ x ↔ a ≤ x ∧ b ≤ x ∧ c ≤ x ∧ d ≤ x := by
   simp only [max4, max_le_iff, and_assoc]
@@ -321,7 +356,9 @@ private theorem mul_mem_corners {x y a₁ a₂ b₁ b₂ : ℝ}
     x * y ≤ max (max (a₁ * b₁) (a₁ * b₂)) (max (a₂ * b₁) (a₂ * b₂)) :=
   ⟨mul_lower_bound ha hb, mul_upper_bound ha hb⟩
 
-/-- FTIA for multiplication -/
+/-- FTIA for multiplication
+@isnad1 id=mem.2h4v.s5.3f8cb9603a8c from=translated src=- shape=52949ecd vocab=502a916a
+-/
 theorem mem_mul {x y : ℝ} {I J : IntervalRat} (hx : x ∈ I) (hy : y ∈ J) :
     x * y ∈ mul I J := by
   simp only [mem_def] at *
@@ -397,7 +434,9 @@ private theorem mulFast_hi (I J : IntervalRat) : (mulFast I J).hi = (mul I J).hi
 
 /-- `mulFast` preserves the containment property of `mul`.
     This is retained as documentation and a future audited optimization hook;
-    production certificate checking currently uses `mul` directly. -/
+    production certificate checking currently uses `mul` directly.
+@isnad1 id=mem.2h4v.s5.fb15cc291090 from=translated src=- shape=52949ecd vocab=ea7c30a4
+-/
 theorem mem_mulFast {x y : ℝ} {I J : IntervalRat} (hx : x ∈ I) (hy : y ∈ J) :
     x * y ∈ mulFast I J := by
   simp only [mem_def]
@@ -444,6 +483,9 @@ def invNonzero (I : IntervalRatNonzero) : IntervalRat :=
 
 /-! ### FTIA for inversion -/
 
+/--
+@isnad1 id=mem.2h2v.s5.6a4002709c2e from=translated src=- shape=ad07b5f6 vocab=aee8d144
+-/
 theorem mem_invNonzero {x : ℝ} {I : IntervalRatNonzero} (hx : x ∈ I.toIntervalRat) (_hxne : x ≠ 0) :
     x⁻¹ ∈ invNonzero I := by
   simp only [mem_def] at *
@@ -485,7 +527,9 @@ def scale (q : ℚ) (I : IntervalRat) : IntervalRat :=
       hi := q * I.lo
       le := mul_le_mul_of_nonpos_left I.le (le_of_lt (not_le.mp hq)) }
 
-/-- FTIA for scaling -/
+/-- FTIA for scaling
+@isnad1 id=mem.1h3v.s5.20bb5f81eb29 from=translated src=- shape=318100e4 vocab=f2a46f53
+-/
 theorem mem_scale {x : ℝ} {I : IntervalRat} (q : ℚ) (hx : x ∈ I) :
     (q : ℝ) * x ∈ scale q I := by
   simp only [mem_def, scale] at *
@@ -508,74 +552,100 @@ def bisect (I : IntervalRat) : IntervalRat × IntervalRat :=
   (⟨I.lo, m, by show I.lo ≤ (I.lo + I.hi) / 2; linarith [I.le]⟩,
    ⟨m, I.hi, by show (I.lo + I.hi) / 2 ≤ I.hi; linarith [I.le]⟩)
 
+/--
+@isnad1 id=mem.2h2v.s4.c008e901399b from=translated src=- shape=7e80e8d4 vocab=84f7174f
+-/
 theorem mem_bisect_left {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (hm : x ≤ I.midpoint) :
     x ∈ (bisect I).1 := by
   simp only [mem_def, bisect] at *
   exact ⟨hx.1, hm⟩
 
+/--
+@isnad1 id=mem.2h2v.s4.e9e079604c6d from=translated src=- shape=c59233d6 vocab=c2163098
+-/
 theorem mem_bisect_right {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (hm : I.midpoint ≤ x) :
     x ∈ (bisect I).2 := by
   simp only [mem_def, bisect] at *
   exact ⟨hm, hx.2⟩
 
-/-- Distance from midpoint to lo is half the width -/
+/-- Distance from midpoint to lo is half the width
+@isnad1 id=eq.0h1v.s5.491222fee3f7 from=translated src=- shape=1fb15c44 vocab=a3c0b32a
+-/
 theorem midpoint_sub_lo (I : IntervalRat) :
     (I.midpoint : ℝ) - I.lo = (I.hi - I.lo) / 2 := by
   simp only [midpoint]
   simp only [Rat.cast_div, Rat.cast_add, Rat.cast_ofNat]
   ring
 
-/-- Distance from hi to midpoint is half the width -/
+/-- Distance from hi to midpoint is half the width
+@isnad1 id=eq.0h1v.s5.90efe2956a3e from=translated src=- shape=bf1597f2 vocab=a3c0b32a
+-/
 theorem hi_sub_midpoint (I : IntervalRat) :
     (I.hi : ℝ) - I.midpoint = (I.hi - I.lo) / 2 := by
   simp only [midpoint]
   simp only [Rat.cast_div, Rat.cast_add, Rat.cast_ofNat]
   ring
 
-/-- Midpoint is at least lo -/
+/-- Midpoint is at least lo
+@isnad1 id=le.0h1v.s3.c3ab5a995e46 from=translated src=- shape=b70c6bb1 vocab=09469784
+-/
 theorem midpoint_ge_lo (I : IntervalRat) : I.lo ≤ I.midpoint := by
   simp only [midpoint]
   have h := I.le
   linarith
 
-/-- Midpoint is at most hi -/
+/-- Midpoint is at most hi
+@isnad1 id=le.0h1v.s3.b16c31f5704a from=translated src=- shape=b70c6bb1 vocab=543814e2
+-/
 theorem midpoint_le_hi (I : IntervalRat) : I.midpoint ≤ I.hi := by
   simp only [midpoint]
   have h := I.le
   linarith
 
-/-- Midpoint is at least lo (real version) -/
+/-- Midpoint is at least lo (real version)
+@isnad1 id=le.0h1v.s3.5361d06e7a95 from=translated src=- shape=df1be1ee vocab=15ae3729
+-/
 theorem midpoint_ge_lo_real (I : IntervalRat) : (I.lo : ℝ) ≤ I.midpoint := by
   have := midpoint_ge_lo I
   exact_mod_cast this
 
-/-- Midpoint is at most hi (real version) -/
+/-- Midpoint is at most hi (real version)
+@isnad1 id=le.0h1v.s3.df7f8daaa411 from=translated src=- shape=df1be1ee vocab=e5221d08
+-/
 theorem midpoint_le_hi_real (I : IntervalRat) : (I.midpoint : ℝ) ≤ I.hi := by
   have := midpoint_le_hi I
   exact_mod_cast this
 
-/-- Left bisection is a subset of the original interval -/
+/-- Left bisection is a subset of the original interval
+@isnad1 id=mem.1h2v.s4.cf5a837b6309 from=translated src=- shape=57521742 vocab=f6fcdfe7
+-/
 theorem mem_of_mem_bisect_left {x : ℝ} {I : IntervalRat} (hx : x ∈ (bisect I).1) : x ∈ I := by
   simp only [mem_def, bisect] at *
   constructor
   · exact hx.1
   · exact le_trans hx.2 (Rat.cast_le.mpr (midpoint_le_hi I))
 
-/-- Right bisection is a subset of the original interval -/
+/-- Right bisection is a subset of the original interval
+@isnad1 id=mem.1h2v.s4.9c7c4837d683 from=translated src=- shape=57521742 vocab=563f26e8
+-/
 theorem mem_of_mem_bisect_right {x : ℝ} {I : IntervalRat} (hx : x ∈ (bisect I).2) : x ∈ I := by
   simp only [mem_def, bisect] at *
   constructor
   · exact le_trans (Rat.cast_le.mpr (midpoint_ge_lo I)) hx.1
   · exact hx.2
 
-/-- Any point in an interval is in one of its bisected halves -/
+/-- Any point in an interval is in one of its bisected halves
+@isnad1 id=or.1h2v.s5.663cf07cebf7 from=translated src=- shape=bc1cef2e vocab=9ec1ff0c
+-/
 theorem mem_bisect_or {x : ℝ} {I : IntervalRat} (hx : x ∈ I) :
     x ∈ (bisect I).1 ∨ x ∈ (bisect I).2 := by
   by_cases hm : x ≤ I.midpoint
   · left; exact mem_bisect_left hx hm
   · right; exact mem_bisect_right hx (le_of_lt (not_le.mp hm))
 
-/-- The default interval [0,0] contains only 0 -/
+/-- The default interval [0,0] contains only 0
+@isnad1 id=iff.0h1v.s4.0dce4508a017 from=translated src=- shape=416b0fb8 vocab=dc6b5909
+-/
 theorem mem_default (x : ℝ) : x ∈ (default : IntervalRat) ↔ x = 0 := by
   simp only [mem_def, Inhabited.default, Rat.cast_zero]
   constructor
@@ -593,7 +663,9 @@ def intersect (I J : IntervalRat) : Option IntervalRat :=
   else
     none
 
-/-- If intersection succeeds, the result contains any point in both intervals -/
+/-- If intersection succeeds, the result contains any point in both intervals
+@isnad1 id=ex.2h3v.s5.b4fbeab80b8f from=translated src=- shape=aab8dfb2 vocab=cb5d14a9
+-/
 theorem mem_intersect {x : ℝ} {I J : IntervalRat} (hI : x ∈ I) (hJ : x ∈ J) :
     ∃ K, intersect I J = some K ∧ x ∈ K := by
   simp only [mem_def] at hI hJ
@@ -621,7 +693,9 @@ theorem mem_intersect {x : ℝ} {I J : IntervalRat} (hI : x ∈ I) (hJ : x ∈ J
     | inl h => simp only [min_eq_left h]; exact hI.2
     | inr h => simp only [min_eq_right (le_of_lt h)]; exact hJ.2
 
-/-- If intersection returns some K, then K ⊆ I -/
+/-- If intersection returns some K, then K ⊆ I
+@isnad1 id=and.1h3v.s4.dbe2e226b29f from=translated src=- shape=de371d59 vocab=f79c0b70
+-/
 theorem intersect_subset_left {I J K : IntervalRat} (h : intersect I J = some K) :
     K.lo ≥ I.lo ∧ K.hi ≤ I.hi := by
   simp only [intersect] at h
@@ -631,7 +705,9 @@ theorem intersect_subset_left {I J K : IntervalRat} (h : intersect I J = some K)
     exact ⟨le_sup_left, inf_le_left⟩
   · simp only [hle, ↓reduceDIte, reduceCtorEq] at h
 
-/-- If intersection returns some K, then K ⊆ J -/
+/-- If intersection returns some K, then K ⊆ J
+@isnad1 id=and.1h3v.s4.bcf0af7476ca from=translated src=- shape=8de18dec vocab=f79c0b70
+-/
 theorem intersect_subset_right {I J K : IntervalRat} (h : intersect I J = some K) :
     K.lo ≥ J.lo ∧ K.hi ≤ J.hi := by
   simp only [intersect] at h

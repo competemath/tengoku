@@ -43,11 +43,16 @@ def baseCoefficientSum {A : SmoothCoefficient period}
   ∑ l ∈ Finset.range 6, boundLevel period K (l+1)
 
 omit [Fact (0 < period)] in
+/--
+@isnad1 id=le.0h3v.s4.0c7b1c2e8bd2 from=translated src=- shape=44451fa7 vocab=b13b32ac
+-/
 theorem baseCoefficientSum_nonneg {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A) : 0 ≤ baseCoefficientSum period K :=
   Finset.sum_nonneg fun _ _ => boundLevel_nonneg K
 
-/-- Every pressure derivative of order at most five is controlled by its genuine H⁵ norm. -/
+/-- Every pressure derivative of order at most five is controlled by its genuine H⁵ norm.
+@isnad1 id=le.1h4v.s10.20c51c6721cb from=translated src=- shape=3551a9ad vocab=50c8ff67
+-/
 theorem pressure_level_le_five {p : LiftL2 period}
     (J : EulerSpatialSobolevInverse.SpatialJet period standardDirection 6 p) {j : ℕ} (hj : j ≤ 5) :
     levelNorm period J j ≤ sobolevSize period (directions := standardDirection) 5 p := by
@@ -56,7 +61,9 @@ theorem pressure_level_le_five {p : LiftL2 period}
   have hmem : j ∈ Finset.range 6 := Finset.mem_range.mpr (by omega)
   exact Finset.single_le_sum (fun r _ => (levelNorm_nonneg J : 0 ≤ levelNorm period J r)) hmem
 
-/-- At each base derivative order, the actual coefficient commutator uses only H⁵ pressure. -/
+/-- At each base derivative order, the actual coefficient commutator uses only H⁵ pressure.
+@isnad1 id=le.1h6v.s10.227c6107c74c from=translated src=- shape=36d9f6b3 vocab=32ae92ec
+-/
 theorem base_order_bound {A : SmoothCoefficient period} {p : LiftL2 period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)
     (J : EulerSpatialSobolevInverse.SpatialJet period standardDirection 6 p) (r : ℕ) (hr : r ≤ 6) :
@@ -82,7 +89,9 @@ theorem base_order_bound {A : SmoothCoefficient period} {p : LiftL2 period}
   apply mul_le_mul_of_nonneg_left _ (by norm_num : (0 : ℝ) ≤ 64)
   exact Finset.sum_le_sum_of_subset_of_nonneg (Finset.range_mono hr) (fun _ _ _ => boundLevel_nonneg K)
 
-/-- Summing all base orders through six leaves a fixed constant and only H⁵ pressure. -/
+/-- Summing all base orders through six leaves a fixed constant and only H⁵ pressure.
+@isnad1 id=le.0h5v.s10.1a8392d694fc from=translated src=- shape=17721314 vocab=c7b62611
+-/
 theorem base_sum_bound {A : SmoothCoefficient period} {p : LiftL2 period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)
     (J : EulerSpatialSobolevInverse.SpatialJet period standardDirection 6 p) :
@@ -98,7 +107,9 @@ def basePressureBlock {s : ℕ} {A : SmoothCoefficient period} {p : LiftL2 perio
   ∑ w : Fin n → Fin 4, ∑ r ∈ Finset.range 7,
     commutatorBlock K (EulerH6Pressure.SpatialJet.derivativeJet (q := 6) J w hn) 0 r
 
-/-- At every external order, the base commutator loses no external derivative. -/
+/-- At every external order, the base commutator loses no external derivative.
+@isnad1 id=le.1h7v.s10.dfdae0fe45dc from=translated src=- shape=41e7b43c vocab=84cbd5f5
+-/
 theorem basePressureBlock_bound {s : ℕ} {A : SmoothCoefficient period} {p : LiftL2 period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)
     (J : EulerSpatialSobolevInverse.SpatialJet period standardDirection s p) (n : ℕ) (hn : n+6 ≤ s) :
@@ -106,7 +117,9 @@ theorem basePressureBlock_bound {s : ℕ} {A : SmoothCoefficient period} {p : Li
   rw [blockNorm_eq_word_sizes J (by omega : n+5 ≤ s), Finset.mul_sum]
   exact Finset.sum_le_sum fun w _ => base_sum_bound period K (EulerH6Pressure.SpatialJet.derivativeJet J w hn)
 
-/-- The complete finite weighted base pressure commutator is controlled by the unshifted H⁵ pressure sum. -/
+/-- The complete finite weighted base pressure commutator is controlled by the unshifted H⁵ pressure sum.
+@isnad1 id=le.2h8v.s10.4a73de2a1fdf from=translated src=- shape=b371bef3 vocab=e8464ce3
+-/
 theorem basePressure_weighted_bound {s : ℕ} {A : SmoothCoefficient period} {p : LiftL2 period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)
     (J : EulerSpatialSobolevInverse.SpatialJet period standardDirection s p) (N : ℕ) (hN : N+6 ≤ s)

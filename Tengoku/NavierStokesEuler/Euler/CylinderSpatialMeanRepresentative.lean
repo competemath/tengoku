@@ -15,7 +15,9 @@ open Set MeasureTheory ContinuousLinearMap EulerSmoothLimit EulerLiftedGradientS
 
 variable (P : ℝ) [Fact (0 < P)]
 
-/-- A continuous constant-angle field is spatially L² whenever its cylinder lift is L². -/
+/-- A continuous constant-angle field is spatially L² whenever its cylinder lift is L².
+@isnad1 id=memlp.2h3v.s9.b5820fe4de6c from=translated src=- shape=0ac3be7d vocab=21b7466b
+-/
 theorem continuous_memLp_of_lift {V : Type*} [NormedAddCommGroup V]
     (g : Space → V) (hg : Continuous g)
     (hgl : MemLp (fun z : LiftDomain P => g z.1) 2 (liftMeasure P)) :
@@ -37,6 +39,9 @@ variable (u : SobolevSpace P 3) (f : LiftDomain P → Space) (hf : Continuous f)
 
 include hf hrep
 
+/--
+@isnad1 id=continuo.2h3v.s15.09301fbe9927 from=translated src=- shape=236b198c vocab=ad16b8ab
+-/
 theorem rawMean_continuous : Continuous (rawMean P f) := by
   have he : rawMean P f = fun y => representative P (sobolevAverage P 3 u) (y,0) := by
     funext y
@@ -45,6 +50,9 @@ theorem rawMean_continuous : Continuous (rawMean P f) := by
   exact (representative_continuous P (sobolevAverage P 3 u)).comp
     (continuous_id.prodMk continuous_const)
 
+/--
+@isnad1 id=eventual.2h3v.s16.7f06c0a9e937 from=translated src=- shape=51d41288 vocab=243283d6
+-/
 theorem average_ae_rawMean :
     (average P (value P u) : LiftDomain P → Space) =ᵐ[liftMeasure P] fun z => rawMean P f z.1 := by
   have he (z : LiftDomain P) : representative P (sobolevAverage P 3 u) z = rawMean P f z.1 := by
@@ -58,11 +66,16 @@ theorem average_ae_rawMean :
   filter_upwards [representative_ae P (sobolevAverage P 3 u)] with z hz
   exact hz.trans (he z)
 
+/--
+@isnad1 id=memlp.2h3v.s15.768963c9d52d from=translated src=- shape=d71d4344 vocab=74d0df8e
+-/
 theorem rawMean_memLp : MemLp (rawMean P f) 2 (volume : Measure Space) := by
   apply continuous_memLp_of_lift P (rawMean P f) (rawMean_continuous P u f hf hrep)
   exact (memLp_congr_ae (average_ae_rawMean P u f hf hrep)).mp (Lp.memLp (average P (value P u)))
 
-/-- The actual ordinary-space L² mean has the normalized integral as its representative. -/
+/-- The actual ordinary-space L² mean has the normalized integral as its representative.
+@isnad1 id=eventual.2h3v.s16.24cab3778d47 from=translated src=- shape=0fb6be09 vocab=4fa14df5
+-/
 theorem mean_ae_rawMean :
     (mean P (value P u) : Space → Space) =ᵐ[volume] rawMean P f := by
   let v : SpatialL2 Space := (rawMean_memLp P u f hf hrep).toLp (rawMean P f)

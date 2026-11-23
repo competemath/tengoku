@@ -17,6 +17,9 @@ namespace EulerPacketMovingFrame
 open Set Real EulerPacketRay EulerPacketBridge EulerPacketGrowth
   EulerPacketPerturbation EulerPacketFrameStability EulerPacketExistence
 
+/--
+@isnad1 id=and.18h12v.s10.8ccdbf234517 from=translated src=- shape=3d6f7a41 vocab=11451da4
+-/
 theorem ray_controlled_velocity_error_within
     {β Θ T e ε : ℝ} {R A C : ℝ → Fin 3 → Fin 3 → ℝ} {P Q N : ℝ → ℝ}
     (hβ : 0 ≤ β) (hβupper : β ≤ 1) (hΘ : 1 ≤ Θ) (hT0 : 0 < T) (hT : T ≤ Θ)
@@ -75,6 +78,9 @@ theorem ray_controlled_velocity_error_within
   exact velocity_rhs_error_firstTwo hΘ he hε hεe hsmall hb (hAclose t ht)
     (hCclose t ht) hP₀ hQ₀ herrorP herrorQ herrorN
 
+/--
+@isnad1 id=le.35h21v.s11.df52c6b984f0 from=translated src=- shape=c8d9da6e vocab=ef753b06
+-/
 theorem controlled_neighbor_relative_error_within
     {σ Θ T e ε lam : ℝ} {F F₁ G G₁ Z Z₁ U V P Q N : ℝ → ℝ}
     {R A C : ℝ → Fin 3 → Fin 3 → ℝ}
@@ -154,11 +160,17 @@ theorem controlled_neighbor_relative_error_within
 
 def neighborStabilityConstant : ℝ := 1000000000*exp 6
 
+/--
+@isnad1 id=le.0h0v.s3.cb904444357f from=translated src=- shape=ff3a10fc vocab=3b52dffd
+-/
 theorem neighborStabilityConstant_ge : 1000000000 ≤ neighborStabilityConstant := by
   have h : 1 ≤ exp (6:ℝ) := one_le_exp_iff.mpr (by norm_num)
   unfold neighborStabilityConstant
   linarith only [h]
 
+/--
+@isnad1 id=ex.23h14v.s11.c8a88dcee017 from=translated src=- shape=c87f34c9 vocab=5681fb90
+-/
 theorem controlled_neighbor_stage_references_within
     {σ Θ T e ε lam : ℝ} {U V P Q N : ℝ → ℝ} {R A C : ℝ → Fin 3 → Fin 3 → ℝ}
     (hσ : 0 < σ) (hσsmall : σ ≤ 1/4) (hΘ : 1 ≤ Θ)

@@ -61,7 +61,9 @@ open _root_.MeasureTheory _root_.InnerProductSpace _root_.EulerLiftedGradientSpa
 
 variable (period : ℝ) [Fact (0 < period)]
 
-/-- The complete actual correction forcing has the metric polynomial bound used in the shrinking-radius energy argument. -/
+/-- The complete actual correction forcing has the metric polynomial bound used in the shrinking-radius energy argument.
+@isnad1 id=other.23h28v.s22.e0899b42670e from=translated src=- shape=6291e357 vocab=f4e834ca
+-/
 theorem correctionForcing_metric {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient period}
     (KG : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (KG0 : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)

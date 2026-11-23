@@ -228,7 +228,9 @@ private theorem abs_le_interval_radius {z : ℝ} {I : IntervalRat} (hz : z ∈ I
       _ ≤ |(I.lo : ℝ)| := neg_le_abs _
       _ ≤ max (|(I.lo : ℝ)|) (|(I.hi : ℝ)|) := le_max_left _ _
 
-/-- If an interval is atanh-safe, any value in the interval has |z| < 1. -/
+/-- If an interval is atanh-safe, any value in the interval has |z| < 1.
+@isnad1 id=lt.2h2v.s4.be3ac80d52a9 from=translated src=- shape=83d293c9 vocab=c1e86d34
+-/
 theorem abs_lt_one_of_atanhSafe {I : IntervalRat} (hsafe : atanhSafe I)
     {z : ℝ} (hz : z ∈ I) : |z| < 1 := by
   simp only [atanhSafe, decide_eq_true_eq] at hsafe
@@ -334,7 +336,9 @@ noncomputable def fromExpr? (e : Expr) (domain : IntervalRat) (degree : ℕ) :
 
 end TaylorModel
 
-/-- Centers produced by `fromExpr?` are always `domain.midpoint`. -/
+/-- Centers produced by `fromExpr?` are always `domain.midpoint`.
+@isnad1 id=eq.1h4v.s4.df607c09fc46 from=translated src=- shape=fe9ab25b vocab=9dc6d1b0
+-/
 theorem fromExpr?_center (e : Expr) (domain : IntervalRat) (degree : ℕ)
     (tm : TaylorModel) (h : TaylorModel.fromExpr? e domain degree = some tm) :
     tm.center = domain.midpoint := by
@@ -509,7 +513,9 @@ theorem fromExpr?_center (e : Expr) (domain : IntervalRat) (degree : ℕ)
 namespace TaylorModel
 
 /-- Composition lemma (addition): if sub-evaluations are in their evalSets, the sum is in
-the evalSet of the added TM (centers must match). -/
+the evalSet of the added TM (centers must match).
+@isnad1 id=mem.4h6v.s6.15cf2f0d8faa from=translated src=- shape=5d7ef138 vocab=d559fbc2
+-/
 theorem add_evalSet_correct
     (e1 e2 : Expr) (domain : IntervalRat)
     (tm1 tm2 : TaylorModel)
@@ -545,7 +551,9 @@ theorem add_evalSet_correct
             simp [hmap]
 
 /-- If `e` evaluates into `tm.evalSet x` on the domain, then `-e` evaluates into
-    `(neg tm).evalSet x` on the domain. -/
+    `(neg tm).evalSet x` on the domain.
+@isnad1 id=mem.2h4v.s5.dca69fdf061d from=translated src=- shape=5dcbe638 vocab=3281b5f3
+-/
 theorem neg_evalSet_correct
     (e : Expr) (domain : IntervalRat)
     (tm : TaylorModel)
@@ -560,7 +568,9 @@ theorem neg_evalSet_correct
 
 /-! ### Correctness of transcendental operations -/
 
-/-- sin preserves evalSet membership. -/
+/-- sin preserves evalSet membership.
+@isnad1 id=mem.2h4v.s5.05d6b65b842b from=translated src=- shape=8cd993dd vocab=64a36001
+-/
 theorem sin_evalSet_correct
     (f : ℝ → ℝ) (tm : TaylorModel) (degree : ℕ)
     (hf : ∀ x ∈ tm.domain, f x ∈ tm.evalSet x) :
@@ -578,7 +588,9 @@ theorem sin_evalSet_correct
     exact hsin_bound
   · simp only [Polynomial.aeval_zero]; ring
 
-/-- cos preserves evalSet membership. -/
+/-- cos preserves evalSet membership.
+@isnad1 id=mem.2h4v.s5.1c7d4b94f69f from=translated src=- shape=8cd993dd vocab=c55870ae
+-/
 theorem cos_evalSet_correct
     (f : ℝ → ℝ) (tm : TaylorModel) (degree : ℕ)
     (hf : ∀ x ∈ tm.domain, f x ∈ tm.evalSet x) :
@@ -595,7 +607,9 @@ theorem cos_evalSet_correct
     exact hcos_bound
   · simp only [Polynomial.aeval_zero]; ring
 
-/-- exp preserves evalSet membership. -/
+/-- exp preserves evalSet membership.
+@isnad1 id=mem.2h4v.s5.63b4e0508ee8 from=translated src=- shape=8cd993dd vocab=63a04be1
+-/
 theorem exp_evalSet_correct
     (f : ℝ → ℝ) (tm : TaylorModel) (degree : ℕ)
     (hf : ∀ x ∈ tm.domain, f x ∈ tm.evalSet x) :
@@ -612,7 +626,9 @@ theorem exp_evalSet_correct
     exact hexp_bound
   · simp only [Polynomial.aeval_zero]; ring
 
-/-- sinh preserves evalSet membership. -/
+/-- sinh preserves evalSet membership.
+@isnad1 id=mem.2h4v.s5.bb67c4bec80b from=translated src=- shape=8cd993dd vocab=2c212c10
+-/
 theorem sinh_evalSet_correct
     (f : ℝ → ℝ) (tm : TaylorModel) (degree : ℕ)
     (hf : ∀ x ∈ tm.domain, f x ∈ tm.evalSet x) :
@@ -629,7 +645,9 @@ theorem sinh_evalSet_correct
     exact hsinh_bound
   · simp only [Polynomial.aeval_zero]; ring
 
-/-- cosh preserves evalSet membership. -/
+/-- cosh preserves evalSet membership.
+@isnad1 id=mem.2h4v.s5.fef28d7c97c2 from=translated src=- shape=8cd993dd vocab=992b7a5b
+-/
 theorem cosh_evalSet_correct
     (f : ℝ → ℝ) (tm : TaylorModel) (degree : ℕ)
     (hf : ∀ x ∈ tm.domain, f x ∈ tm.evalSet x) :
@@ -646,7 +664,9 @@ theorem cosh_evalSet_correct
     exact hcosh_bound
   · simp only [Polynomial.aeval_zero]; ring
 
-/-- asinh preserves evalSet membership. -/
+/-- asinh preserves evalSet membership.
+@isnad1 id=mem.2h4v.s5.58b6697cb9c4 from=translated src=- shape=8cd993dd vocab=ee255eb8
+-/
 theorem asinh_evalSet_correct
     (f : ℝ → ℝ) (tm : TaylorModel) (degree : ℕ)
     (hf : ∀ x ∈ tm.domain, f x ∈ tm.evalSet x) :
@@ -663,7 +683,9 @@ theorem asinh_evalSet_correct
     exact hasinh_bound
   · simp only [Polynomial.aeval_zero]; ring
 
-/-- sinc preserves evalSet membership. -/
+/-- sinc preserves evalSet membership.
+@isnad1 id=mem.2h4v.s5.cebee360a5bb from=translated src=- shape=8cd993dd vocab=86752a0f
+-/
 theorem sinc_evalSet_correct
     (f : ℝ → ℝ) (tm : TaylorModel) (degree : ℕ)
     (hf : ∀ x ∈ tm.domain, f x ∈ tm.evalSet x) :
@@ -712,7 +734,9 @@ private theorem bound_contains_neg_one_one (tm : TaylorModel)
     have : (0 : ℝ) ≤ (boundPolyBernstein tm.poly tm.domain tm.center).hi := by exact_mod_cast hhi_bound
     linarith
 
-/-- tanh preserves evalSet membership. -/
+/-- tanh preserves evalSet membership.
+@isnad1 id=mem.2h4v.s5.b0b21323b1e0 from=translated src=- shape=8cd993dd vocab=81410ed0
+-/
 theorem tanh_evalSet_correct
     (f : ℝ → ℝ) (tm : TaylorModel) (degree : ℕ)
     (hf : ∀ x ∈ tm.domain, f x ∈ tm.evalSet x) :
@@ -755,7 +779,9 @@ theorem tanh_evalSet_correct
         (f x) hfbound
   · simp only [Polynomial.aeval_zero]; ring
 
-/-- atanh preserves evalSet membership when atanh? succeeds. -/
+/-- atanh preserves evalSet membership when atanh? succeeds.
+@isnad1 id=mem.3h5v.s6.b2902ea0c7d5 from=translated src=- shape=257e18b3 vocab=5aea879a
+-/
 theorem atanh_evalSet_correct'
     (f : ℝ → ℝ) (tm result : TaylorModel) (degree : ℕ)
     (hf : ∀ x ∈ tm.domain, f x ∈ tm.evalSet x)
@@ -789,7 +815,9 @@ end TaylorModel
 
 /-! ### Main fromExpr correctness -/
 
-/-- Helper: fromExpr? produces TaylorModels with matching domain. -/
+/-- Helper: fromExpr? produces TaylorModels with matching domain.
+@isnad1 id=eq.1h4v.s4.c63c570d8f2a from=translated src=- shape=b1afdb8b vocab=1a317fc1
+-/
 theorem fromExpr?_domain (e : Expr) (domain : IntervalRat) (degree : ℕ)
     (tm : TaylorModel) (h : TaylorModel.fromExpr? e domain degree = some tm) :
     tm.domain = domain := by
@@ -943,7 +971,9 @@ theorem fromExpr?_domain (e : Expr) (domain : IntervalRat) (degree : ℕ)
       cases h
       rfl
 
-/-- Core evalSet correctness: if fromExpr? succeeds, evaluation is in evalSet. -/
+/-- Core evalSet correctness: if fromExpr? succeeds, evaluation is in evalSet.
+@isnad1 id=mem.2h5v.s5.1b1bd260d2f5 from=translated src=- shape=8b82648f vocab=9cf709d2
+-/
 theorem fromExpr_evalSet_correct (e : Expr) (domain : IntervalRat) (degree : ℕ)
     (tm : TaylorModel) (h : TaylorModel.fromExpr? e domain degree = some tm) :
     ∀ x ∈ domain, Expr.eval (fun _ => x) e ∈ tm.evalSet x := by
@@ -1216,7 +1246,9 @@ theorem fromExpr_evalSet_correct (e : Expr) (domain : IntervalRat) (degree : ℕ
       refine ⟨c.toReal, c.mem_interval, ?_⟩
       simp only [Polynomial.aeval_zero]; ring
 
-/-- fromExpr? produces correct Taylor models when it succeeds. -/
+/-- fromExpr? produces correct Taylor models when it succeeds.
+@isnad1 id=mem.2h5v.s5.90ca9d4178ae from=translated src=- shape=8357481d vocab=12776179
+-/
 theorem fromExpr_correct (e : Expr) (domain : IntervalRat) (degree : ℕ)
     (tm : TaylorModel) (h : TaylorModel.fromExpr? e domain degree = some tm) :
     ∀ x ∈ domain, Expr.eval (fun _ => x) e ∈ tm.bound := by
@@ -1238,7 +1270,9 @@ noncomputable def expIntervalRefined (I : IntervalRat) : IntervalRat :=
   else
     IntervalRat.expInterval I
 
-/-- FTIA for refined exp: if x ∈ I, then exp(x) ∈ expIntervalRefined I -/
+/-- FTIA for refined exp: if x ∈ I, then exp(x) ∈ expIntervalRefined I
+@isnad1 id=mem.1h2v.s4.02bc1c2ecbae from=translated src=- shape=34c11fd3 vocab=6a6eb2fc
+-/
 theorem mem_expIntervalRefined {x : ℝ} {I : IntervalRat} (hx : x ∈ I) :
     Real.exp x ∈ expIntervalRefined I := by
   unfold expIntervalRefined

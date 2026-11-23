@@ -36,7 +36,9 @@ open EulerLiftedGradientSpace EulerCylinderSobolevSpace EulerCylinderSobolev Eul
   EulerJetProductBounds EulerH6Pressure EulerSobolevGevreyOperators EulerPacketWeights EulerGevreyMetricEstimate
 open _root_.EulerLiftedGradientSpace _root_.EulerCylinderSobolevSpace _root_.EulerCylinderSobolev _root_.EulerSpatialSobolevInverse _root_.EulerJetProductBounds _root_.EulerH6Pressure _root_.EulerSobolevGevreyOperators _root_.EulerPacketWeights _root_.EulerGevreyMetricEstimate
 
-/-- At every retained derivative order, the Gevrey weight is bounded below by one positive fixed-cutoff weight. -/
+/-- At every retained derivative order, the Gevrey weight is bounded below by one positive fixed-cutoff weight.
+@isnad1 id=le.4h4v.s5.79fd707f1ed9 from=translated src=- shape=7e860d4b vocab=c86833dc
+-/
 theorem weight_lower (ρ δ : ℝ) (hδ : 0 < δ) (hδρ : δ ≤ ρ) (hδ1 : δ ≤ 1)
     (n N : ℕ) (hn : n ≤ N) : weight δ N ≤ weight ρ n := by
   have hρ : 0 ≤ ρ := hδ.le.trans hδρ
@@ -48,7 +50,9 @@ theorem weight_lower (ρ δ : ℝ) (hδ : 0 < δ) (hδρ : δ ≤ ρ) (hδ1 : δ
 
 variable (period : ℝ) [Fact (0 < period)]
 
-/-- Each actual derivative coordinate is bounded by its genuine homogeneous derivative-sum norm. -/
+/-- Each actual derivative coordinate is bounded by its genuine homogeneous derivative-sum norm.
+@isnad1 id=le.0h4v.s16.fddd0fdf3c44 from=translated src=- shape=dabc75fd vocab=79484668
+-/
 theorem word_le_level {s : ℕ} (u : SobolevSpace period s) (w : SobolevWord s) :
     ‖u.val w‖ ≤ levelNorm period (toJet period u) w.1.val := by
   rw [levelNorm_eq_words]
@@ -57,7 +61,9 @@ theorem word_le_level {s : ℕ} (u : SobolevSpace period s) (w : SobolevWord s) 
   rw [toJet_word period u (by have := w.1.isLt; omega) w.2] at h
   exact h
 
-/-- Every derivative coordinate through the full energy order is contained in one retained external/base block. -/
+/-- Every derivative coordinate through the full energy order is contained in one retained external/base block.
+@isnad1 id=le.1h5v.s15.d5af37ddd2a2 from=translated src=- shape=549f1e1a vocab=95e14759
+-/
 theorem level_le_block {s : ℕ} (u : SobolevSpace period s) (N m : ℕ) (hm : m ≤ N+6) :
     levelNorm period (toJet period u) m ≤ blockNorm period (toJet period u) 6 (min m N) := by
   let n := min m N
@@ -70,7 +76,9 @@ theorem level_le_block {s : ℕ} (u : SobolevSpace period s) (N m : ℕ) (hm : m
   rw [he] at h
   exact h
 
-/-- A finite actual Gevrey bound controls the complete energy-order Sobolev norm on every positive-radius interval. -/
+/-- A finite actual Gevrey bound controls the complete energy-order Sobolev norm on every positive-radius interval.
+@isnad1 id=le.4h6v.s17.f04996cebf26 from=translated src=- shape=2324b009 vocab=cbdb11fd
+-/
 theorem norm_le_weighted {s : ℕ} (N : ℕ) (hS : s ≤ N+6) (ρ δ : ℝ)
     (hδ : 0 < δ) (hδρ : δ ≤ ρ) (hδ1 : δ ≤ 1) (u : SobolevSpace period s) :
     ‖u‖ ≤ weightedNorm period 6 N ρ u / weight δ N := by
@@ -93,7 +101,9 @@ theorem norm_le_weighted {s : ℕ} (N : ℕ) (hS : s ≤ N+6) (ρ δ : ℝ)
       _ ≤ _ := hh
   exact (le_div_iff₀ hw).mpr (by simpa only [mul_comm] using hle)
 
-/-- A metric Gevrey bound gives the actual finite-Sobolev state bound needed by the uniform local restart theorem. -/
+/-- A metric Gevrey bound gives the actual finite-Sobolev state bound needed by the uniform local restart theorem.
+@isnad1 id=le.7h8v.s17.1fa2161d33a5 from=translated src=- shape=a62dbdde vocab=03a6b815
+-/
 theorem norm_le_metric {s : ℕ} (N : ℕ) (hN : N+6 ≤ s) (hS : s ≤ N+6) (ρ δ : ℝ)
     (hδ : 0 < δ) (hδρ : δ ≤ ρ) (hδ1 : δ ≤ 1)
     (K : LiftL2 period →L[ℝ] LiftL2 period) (u : SobolevSpace period s) (c : ℝ) (hc : 0 < c)

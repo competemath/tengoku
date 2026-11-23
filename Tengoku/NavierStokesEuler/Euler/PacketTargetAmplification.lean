@@ -13,6 +13,9 @@ namespace EulerPacketMovingFrame
 
 open Set Real EulerSmoothLimit EulerPacketGrowth InnerProductSpace
 
+/--
+@isnad1 id=le.8h5v.s8.09d364b2014f from=translated src=- shape=f279c483 vocab=7fbf6227
+-/
 theorem equation30_target_exp_le {σ T Θ : ℝ} {Z Z₁ : ℝ → ℝ}
     (hσ : 0 < σ) (hσsmall : σ ≤ 1/4) (hTtarget : 1/σ ≤ T) (hTΘ : T ≤ Θ)
     (hZ : ∀ t, 0 ≤ t → HasDerivAt Z (Z₁ t) t)
@@ -39,6 +42,9 @@ theorem equation30_target_exp_le {σ T Θ : ℝ} {Z Z₁ : ℝ → ℝ}
     nlinarith only [hh, hTΘ]
   exact hraw.trans (mul_le_mul_of_nonneg_right hcoeff hpost.2.le)
 
+/--
+@isnad1 id=and.15h13v.s10.b9cc6e6e5c3c from=translated src=- shape=296ff1e2 vocab=b044d726
+-/
 theorem physical_target_exponential_lower (m v r w : ℝ → Space)
     {s₀ t₀ a ε σ T Θ : ℝ} {Z Z₁ : ℝ → ℝ}
     (hs₀ : 0 < s₀) (hε : ε ≠ 0) (hσ : 0 < σ) (hσsmall : σ ≤ 1/4)
@@ -72,7 +78,9 @@ theorem physical_target_exponential_lower (m v r w : ℝ → Space)
   exact ⟨hsizepos, by nlinarith only [h1, h2, h3]⟩
 
 /-- A bounded physical history size, or the numerator used to choose a
-packet amplitude, gains the actual target's exponential factor. -/
+packet amplitude, gains the actual target's exponential factor.
+@isnad1 id=and.5h6v.s7.36f11d087c0d from=translated src=- shape=3f4778e9 vocab=206cbf96
+-/
 theorem ratio_bound_from_target_growth {s₀ Θ x target value bound : ℝ}
     (hs₀ : 0 < s₀) (hΘ : 0 < Θ) (hbound : 0 ≤ bound) (hvalue : value ≤ bound)
     (hgrowth : s₀*exp x ≤ 4*Θ*target) :

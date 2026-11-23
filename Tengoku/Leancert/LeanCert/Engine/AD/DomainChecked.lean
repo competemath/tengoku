@@ -150,7 +150,9 @@ private theorem evalTotalCore_val_correct_of_check (e : Expr)
       simp [checkADDomain] at hcheck
 
 /-- Successful checked dual evaluation encloses the expression value for every
-real environment represented by the dual environment. -/
+real environment represented by the dual environment.
+@isnad1 id=mem.2h5v.s5.1dcfa1af4625 from=translated src=- shape=ac3dce7e vocab=9cebc732
+-/
 theorem evalDualChecked_val_correct (e : Expr)
     (ρReal : Nat → ℝ) (ρDual : DualEnv) (cfg : EvalConfig) (D : DualInterval)
     (hρ : ∀ i, ρReal i ∈ (ρDual i).val)
@@ -214,7 +216,9 @@ private theorem evalAlong_differentiableAt_of_check (e : Expr)
       simp [checkADDomain] at hcheck
 
 /-- A successful checked evaluation proves differentiability at every point in
-the input box along the selected coordinate. -/
+the input box along the selected coordinate.
+@isnad1 id=differen.3h7v.s6.70e63e455709 from=translated src=- shape=3475e94c vocab=6a08cab4
+-/
 theorem evalWithDerivChecked_differentiableAt (e : Expr)
     (ρReal : Nat → ℝ) (ρInt : IntervalEnv) (idx : Nat) (cfg : EvalConfig)
     (D : DualInterval) (x : ℝ) (hx : x ∈ ρInt idx)
@@ -345,7 +349,9 @@ private theorem evalTotalCore_der_correct_idx_of_check (e : Expr)
   | atan | arsinh | atanh | sinc | erf | sinh | cosh | tanh | sqrt | namedConst =>
       simp [checkADDomain] at hcheck
 
-/-- Successful checked indexed AD encloses the true partial derivative. -/
+/-- Successful checked indexed AD encloses the true partial derivative.
+@isnad1 id=mem.3h7v.s6.a142ebd75f1a from=translated src=- shape=1c72dbde vocab=af76f65a
+-/
 theorem evalWithDerivChecked_der_correct (e : Expr)
     (ρReal : Nat → ℝ) (ρInt : IntervalEnv) (idx : Nat) (cfg : EvalConfig)
     (D : DualInterval) (x : ℝ) (hx : x ∈ ρInt idx)
@@ -356,7 +362,9 @@ theorem evalWithDerivChecked_der_correct (e : Expr)
   exact evalTotalCore_der_correct_idx_of_check e ρReal ρInt idx cfg x hx hρ
     (checkADDomain_of_evalDualChecked_ok hok)
 
-/-- Golden soundness theorem for the checked derivative-only API. -/
+/-- Golden soundness theorem for the checked derivative-only API.
+@isnad1 id=mem.3h7v.s6.4b5d9e9ba594 from=translated src=- shape=305ba4f9 vocab=f49965b9
+-/
 theorem derivIntervalChecked_correct (e : Expr)
     (ρReal : Nat → ℝ) (ρInt : IntervalEnv) (idx : Nat) (cfg : EvalConfig)
     (dI : IntervalRat) (x : ℝ) (hx : x ∈ ρInt idx)

@@ -206,7 +206,9 @@ def rpowIntervalDyadic (base : IntervalDyadic) (p : ℚ) (cfg : DyadicConfig) : 
   rpowFromCachedLogDyadic logBase p cfg
 
 /-- Correctness of `rpowFromCachedLogDyadic`: a cached interval containing
-    `Real.log x` is enough to enclose `x ^ p`. -/
+    `Real.log x` is enough to enclose `x ^ p`.
+@isnad1 id=mem.2h5v.s5.80e63f167bc4 from=translated src=- shape=b45a7bb7 vocab=24d82104
+-/
 theorem mem_rpowFromCachedLogDyadic {x : ℝ} {logBase : IntervalDyadic}
     (hlog : Real.log x ∈ logBase) (hx_pos : 0 < x)
     (p : ℚ) (cfg : DyadicConfig) (hprec : cfg.precision ≤ 0 := by norm_num) :
@@ -225,7 +227,9 @@ theorem mem_rpowFromCachedLogDyadic {x : ℝ} {logBase : IntervalDyadic}
   have hexp := IntervalRat.mem_expComputable hrat cfg.taylorDepth
   exact IntervalDyadic.mem_ofIntervalRat hexp cfg.precision hprec
 
-/-- Correctness of rpowIntervalDyadic: if x ∈ base and base.lo > 0, then x^p ∈ result -/
+/-- Correctness of rpowIntervalDyadic: if x ∈ base and base.lo > 0, then x^p ∈ result
+@isnad1 id=mem.2h5v.s5.e568b41498ce from=translated src=- shape=62109a91 vocab=6c4ea9ec
+-/
 theorem mem_rpowIntervalDyadic {x : ℝ} {base : IntervalDyadic} (hx : x ∈ base)
     (hpos : base.toIntervalRat.lo > 0) (p : ℚ) (cfg : DyadicConfig)
     (hprec : cfg.precision ≤ 0 := by norm_num) :
@@ -363,6 +367,9 @@ def checkDomainValidDyadic (e : Expr) (ρ : IntervalDyadicEnv) (cfg : DyadicConf
   | Expr.sqrt e => checkDomainValidDyadic e ρ cfg
   | Expr.namedConst _ => true
 
+/--
+@isnad1 id=evaldoma.1h3v.s4.8b2f2dcbdb88 from=translated src=- shape=d731b9ee vocab=36b65378
+-/
 theorem checkDomainValidDyadic_correct (e : Expr) (ρ : IntervalDyadicEnv) (cfg : DyadicConfig) :
     checkDomainValidDyadic e ρ cfg = true → evalDomainValidDyadic e ρ cfg := by
   induction e with
@@ -428,6 +435,9 @@ def prepareContext (cfg : DyadicConfig) : PreparedContext :=
     cosCoeffs := IntervalRat.cosTaylorCoeffs cfg.taylorDepth
     atanhCoeffs := IntervalRat.atanhTaylorCoeffs cfg.taylorDepth }
 
+/--
+@isnad1 id=eq.0h1v.s3.91a64150f43e from=translated src=- shape=47dcad53 vocab=8483f013
+-/
 @[simp] theorem prepareContext_cfg (cfg : DyadicConfig) :
     (prepareContext cfg).cfg = cfg := rfl
 
@@ -441,6 +451,9 @@ def logIntervalPrepared (I : IntervalDyadic) (ctx : PreparedContext) : IntervalD
   else
     ⟨Core.Dyadic.ofInt (-1000), Core.Dyadic.ofInt 1000, by simp [Dyadic.toRat_ofInt]⟩
 
+/--
+@isnad1 id=eq.0h2v.s3.5a3550d102b6 from=translated src=- shape=1a1c6f0b vocab=69bab034
+-/
 theorem logIntervalPrepared_prepareContext (I : IntervalDyadic) (cfg : DyadicConfig) :
     logIntervalPrepared I (prepareContext cfg) = logIntervalDyadic I cfg := by
   simp [logIntervalPrepared, prepareContext, logIntervalDyadic,
@@ -452,6 +465,9 @@ def expIntervalPrepared (I : IntervalDyadic) (ctx : PreparedContext) : IntervalD
     ctx.expCoeffs
   IntervalDyadic.ofIntervalRat result ctx.cfg.precision
 
+/--
+@isnad1 id=eq.0h2v.s3.0026b2a0e358 from=translated src=- shape=1a1c6f0b vocab=43fdf168
+-/
 theorem expIntervalPrepared_prepareContext (I : IntervalDyadic) (cfg : DyadicConfig) :
     expIntervalPrepared I (prepareContext cfg) = expIntervalDyadic I cfg := by
   simp [expIntervalPrepared, prepareContext, expIntervalDyadic,
@@ -463,6 +479,9 @@ def sinIntervalPrepared (I : IntervalDyadic) (ctx : PreparedContext) : IntervalD
     ctx.sinCoeffs
   IntervalDyadic.ofIntervalRat result ctx.cfg.precision
 
+/--
+@isnad1 id=eq.0h2v.s3.9ae64b06d584 from=translated src=- shape=1a1c6f0b vocab=c155e322
+-/
 theorem sinIntervalPrepared_prepareContext (I : IntervalDyadic) (cfg : DyadicConfig) :
     sinIntervalPrepared I (prepareContext cfg) = sinIntervalDyadic I cfg := by
   simp [sinIntervalPrepared, prepareContext, sinIntervalDyadic,
@@ -474,6 +493,9 @@ def cosIntervalPrepared (I : IntervalDyadic) (ctx : PreparedContext) : IntervalD
     ctx.cosCoeffs
   IntervalDyadic.ofIntervalRat result ctx.cfg.precision
 
+/--
+@isnad1 id=eq.0h2v.s3.6e2d3a079cef from=translated src=- shape=1a1c6f0b vocab=7f7842ca
+-/
 theorem cosIntervalPrepared_prepareContext (I : IntervalDyadic) (cfg : DyadicConfig) :
     cosIntervalPrepared I (prepareContext cfg) = cosIntervalDyadic I cfg := by
   simp [cosIntervalPrepared, prepareContext, cosIntervalDyadic,
@@ -485,6 +507,9 @@ def atanhIntervalPrepared (I : IntervalDyadic) (ctx : PreparedContext) : Interva
     ctx.atanhCoeffs
   IntervalDyadic.ofIntervalRat result ctx.cfg.precision
 
+/--
+@isnad1 id=eq.0h2v.s3.40f9f4a4ac83 from=translated src=- shape=1a1c6f0b vocab=1fbdc212
+-/
 theorem atanhIntervalPrepared_prepareContext (I : IntervalDyadic) (cfg : DyadicConfig) :
     atanhIntervalPrepared I (prepareContext cfg) = atanhIntervalDyadic I cfg := by
   simp [atanhIntervalPrepared, prepareContext, atanhIntervalDyadic,
@@ -630,11 +655,17 @@ namespace LeanCert.Engine
 
 open LeanCert.Core
 
+/--
+@isnad1 id=eq.0h3v.s5.d04ddd88d3ce from=translated src=- shape=3bf0ba67 vocab=0d3eb275
+-/
 theorem evalIntervalDyadicCached_fst (e : Expr) (ρ : IntervalDyadicEnv)
     (cfg : DyadicConfig := {}) :
     (LeanCert.Internal.Dyadic.evalCached e ρ cfg).1 = LeanCert.Internal.Dyadic.evalUnchecked e ρ cfg := by
   induction e <;> simp [LeanCert.Internal.Dyadic.evalCached, LeanCert.Internal.Dyadic.evalUnchecked, *]
 
+/--
+@isnad1 id=eq.0h3v.s5.1d4b9210eed1 from=translated src=- shape=93ac6eeb vocab=9b5e0167
+-/
 theorem evalIntervalDyadicCached_snd (e : Expr) (ρ : IntervalDyadicEnv)
     (cfg : DyadicConfig := {}) :
     (LeanCert.Internal.Dyadic.evalCached e ρ cfg).2 = checkDomainValidDyadic e ρ cfg := by
@@ -642,6 +673,9 @@ theorem evalIntervalDyadicCached_snd (e : Expr) (ρ : IntervalDyadicEnv)
     simp [LeanCert.Internal.Dyadic.evalCached, checkDomainValidDyadic,
       evalIntervalDyadicCached_fst, *]
 
+/--
+@isnad1 id=eq.0h3v.s5.d02a12396343 from=translated src=- shape=0d230bfc vocab=0354cfad
+-/
 theorem evalIntervalDyadicPreparedCached_fst (e : Expr) (ρ : IntervalDyadicEnv)
     (cfg : DyadicConfig := {}) :
     (LeanCert.Internal.Dyadic.evalPreparedCached e ρ
@@ -656,6 +690,9 @@ theorem evalIntervalDyadicPreparedCached_fst (e : Expr) (ρ : IntervalDyadicEnv)
       LeanCert.Internal.Dyadic.cosIntervalPrepared_prepareContext,
       LeanCert.Internal.Dyadic.atanhIntervalPrepared_prepareContext, *]
 
+/--
+@isnad1 id=eq.0h3v.s5.08a5d65fe6b6 from=translated src=- shape=e1fd6ba1 vocab=838e2ce0
+-/
 theorem evalIntervalDyadicPreparedCached_snd (e : Expr) (ρ : IntervalDyadicEnv)
     (cfg : DyadicConfig := {}) :
     (LeanCert.Internal.Dyadic.evalPreparedCached e ρ
@@ -707,7 +744,9 @@ def evalIntervalDyadicChecked (e : Expr) (ρ : IntervalDyadicEnv)
   else
     .error (diagnoseEvalIntervalDyadicFailure e ρ cfg)
 
-/-- Domain validity is trivially true for ADSupported expressions (which exclude log). -/
+/-- Domain validity is trivially true for ADSupported expressions (which exclude log).
+@isnad1 id=evaldoma.1h3v.s4.9ba1f4eca74e from=translated src=- shape=bc9d8aa1 vocab=560ccde6
+-/
 theorem evalDomainValidDyadic_of_ExprSupported {e : Expr} (hsupp : ADSupported e)
     (ρ : IntervalDyadicEnv) (cfg : DyadicConfig := {}) : evalDomainValidDyadic e ρ cfg := by
   induction hsupp with
@@ -730,7 +769,9 @@ The proof follows the same structure as `evalIntervalCore_correct`, but
 with additional steps for handling Dyadic ↔ Rat conversions and rounding.
 Requires cfg.precision ≤ 0 (the default -53 satisfies this).
 
-Note: Requires domain validity for log (positive argument interval). -/
+Note: Requires domain validity for log (positive argument interval).
+@isnad1 id=mem.3h5v.s5.07a2731133b6 from=translated src=- shape=3d6f0d90 vocab=10ca7fdb
+-/
 theorem evalIntervalDyadic_correct (e : Expr) (hsupp : ExprSupportedCore e)
     (ρ_real : Nat → ℝ) (ρ_dyad : IntervalDyadicEnv)
     (hρ : envMemDyadic ρ_real ρ_dyad) (cfg : DyadicConfig := {})
@@ -838,7 +879,9 @@ theorem evalIntervalDyadic_correct (e : Expr) (hsupp : ExprSupportedCore e)
     exact IntervalDyadic.mem_ofIntervalRat c.mem_interval cfg.precision hprec
 
 /-- Correctness of Dyadic evaluation for every expression whose recursively
-checked domain conditions hold. -/
+checked domain conditions hold.
+@isnad1 id=mem.2h5v.s5.2c1ce94bdc36 from=translated src=- shape=b27fda61 vocab=f09b74a5
+-/
 theorem evalIntervalDyadic_correct_of_domain (e : Expr)
     (ρ_real : Nat → ℝ) (ρ_dyad : IntervalDyadicEnv)
     (hρ : envMemDyadic ρ_real ρ_dyad) (cfg : DyadicConfig := {})
@@ -975,7 +1018,9 @@ theorem evalIntervalDyadic_correct_of_domain (e : Expr)
     exact IntervalDyadic.mem_ofIntervalRat c.mem_interval cfg.precision hprec
 
 /-- Successful checked Dyadic evaluation encloses the true value for every
-expression, provided outward-rounding precision is nonpositive. -/
+expression, provided outward-rounding precision is nonpositive.
+@isnad1 id=mem.2h6v.s6.bb368265374a from=translated src=- shape=4701b21a vocab=cee7addf
+-/
 theorem evalIntervalDyadicChecked_correct (e : Expr)
     (ρ_real : Nat → ℝ) (ρ_dyad : IntervalDyadicEnv)
     (hρ : envMemDyadic ρ_real ρ_dyad) (cfg : DyadicConfig := {})

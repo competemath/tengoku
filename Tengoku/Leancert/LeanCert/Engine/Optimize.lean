@@ -121,7 +121,9 @@ where
             depth := max r₁.depth r₂.depth }
 
 /-- Base case correctness: interval evaluation gives a valid lower bound.
-    This theorem is FULLY PROVED - no sorry, no axioms. -/
+    This theorem is FULLY PROVED - no sorry, no axioms.
+@isnad1 id=le.2h3v.s4.24270a1673b0 from=translated src=- shape=af0e3f09 vocab=4d2c51dd
+-/
 theorem minimizeInterval_base_correct (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) :
     ∀ x ∈ I, (LeanCert.Internal.Rational.evalUnchecked1 e I).lo ≤ Expr.eval (fun _ => x) e := by
@@ -133,7 +135,9 @@ theorem minimizeInterval_base_correct (e : Expr) (hsupp : ADSupported e)
 /-! ### Derivative bounds and monotonicity -/
 
 /-- For single-variable expressions evaluated with (fun _ => I), derivative is correct.
-    We use evalWithDeriv1 which directly uses varActive for all variables. -/
+    We use evalWithDeriv1 which directly uses varActive for all variables.
+@isnad1 id=mem.2h3v.s5.5e940f91c02c from=translated src=- shape=69010ba4 vocab=5f1e00d3
+-/
 theorem derivInterval_correct_evalWithDeriv1 (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (x : ℝ) (hx : x ∈ I) :
     deriv (evalFunc1 e) x ∈ (evalWithDeriv1 e I).der := by
@@ -143,14 +147,18 @@ theorem derivInterval_correct_evalWithDeriv1 (e : Expr) (hsupp : ADSupported e)
   exact LeanCert.Engine.evalDualUnchecked_der_correct e hsupp I x hx
 
 /-- Derivative is in derivInterval for expressions that only use var 0.
-    FULLY PROVED - no sorry. -/
+    FULLY PROVED - no sorry.
+@isnad1 id=mem.3h3v.s5.7b3e8365f98e from=translated src=- shape=197e5041 vocab=ed0b4447
+-/
 theorem derivInterval_correct_single (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat) (x : ℝ) (hx : x ∈ I) :
     deriv (evalFunc1 e) x ∈ derivInterval e (fun _ => I) 0 := by
   rw [derivInterval_eq_evalWithDeriv1_of_UsesOnlyVar0 e hvar0]
   exact derivInterval_correct_evalWithDeriv1 e hsupp I x hx
 
-/-- If the derivative interval is strictly positive, derivative is positive everywhere -/
+/-- If the derivative interval is strictly positive, derivative is positive everywhere
+@isnad1 id=lt.4h3v.s6.d0fa216b7511 from=translated src=- shape=3912afd0 vocab=15238402
+-/
 theorem deriv_pos_on_interval (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat) (hpos : 0 < (derivInterval e (fun _ => I) 0).lo) :
     ∀ x ∈ I, 0 < deriv (evalFunc1 e) x := by
@@ -161,7 +169,9 @@ theorem deriv_pos_on_interval (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOn
   calc (0 : ℝ) < ((derivInterval e (fun _ => I) 0).lo : ℝ) := hlo_cast
     _ ≤ deriv (evalFunc1 e) x := hmem.1
 
-/-- If the derivative interval is strictly negative, derivative is negative everywhere -/
+/-- If the derivative interval is strictly negative, derivative is negative everywhere
+@isnad1 id=lt.4h3v.s6.8af0b4b57af7 from=translated src=- shape=33f76064 vocab=24972639
+-/
 theorem deriv_neg_on_interval (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat) (hneg : (derivInterval e (fun _ => I) 0).hi < 0) :
     ∀ x ∈ I, deriv (evalFunc1 e) x < 0 := by
@@ -172,7 +182,9 @@ theorem deriv_neg_on_interval (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOn
   calc deriv (evalFunc1 e) x ≤ ((derivInterval e (fun _ => I) 0).hi : ℝ) := hmem.2
     _ < 0 := hhi_cast
 
-/-- Strictly positive derivative implies strict monotonicity -/
+/-- Strictly positive derivative implies strict monotonicity
+@isnad1 id=strictmo.3h2v.s5.2a2ac0a91cb4 from=translated src=- shape=7dd12af3 vocab=ea85df72
+-/
 theorem strictMonoOn_of_deriv_pos_interval (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat) (hpos : 0 < (derivInterval e (fun _ => I) 0).lo) :
     StrictMonoOn (evalFunc1 e) (Set.Icc (I.lo : ℝ) (I.hi : ℝ)) := by
@@ -188,7 +200,9 @@ theorem strictMonoOn_of_deriv_pos_interval (e : Expr) (hsupp : ADSupported e) (h
       exact ⟨le_of_lt hx.1, le_of_lt hx.2⟩
     exact hderiv_pos x hx_mem
 
-/-- Strictly negative derivative implies strict antitonicity -/
+/-- Strictly negative derivative implies strict antitonicity
+@isnad1 id=strictan.3h2v.s5.63a5da37f789 from=translated src=- shape=39182b07 vocab=2b8a7f27
+-/
 theorem strictAntiOn_of_deriv_neg_interval (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat) (hneg : (derivInterval e (fun _ => I) 0).hi < 0) :
     StrictAntiOn (evalFunc1 e) (Set.Icc (I.lo : ℝ) (I.hi : ℝ)) := by
@@ -206,7 +220,9 @@ theorem strictAntiOn_of_deriv_neg_interval (e : Expr) (hsupp : ADSupported e) (h
 
 /-! ### Monotonicity-based bounds -/
 
-/-- For increasing functions, minimum is at the left endpoint -/
+/-- For increasing functions, minimum is at the left endpoint
+@isnad1 id=le.4h3v.s5.e1b30054a69a from=translated src=- shape=608f2a55 vocab=29d28617
+-/
 theorem increasing_min_at_left (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat) (hpos : 0 < (derivInterval e (fun _ => I) 0).lo) :
     ∀ x ∈ I, evalFunc1 e I.lo ≤ evalFunc1 e x := by
@@ -222,7 +238,9 @@ theorem increasing_min_at_left (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesO
     · simp only [Set.mem_Icc]; exact hx
     · exact lt_of_le_of_ne hx.1 heq
 
-/-- For decreasing functions, minimum is at the right endpoint -/
+/-- For decreasing functions, minimum is at the right endpoint
+@isnad1 id=le.4h3v.s5.c435062e449c from=translated src=- shape=a24e42e0 vocab=4734e976
+-/
 theorem decreasing_min_at_right (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat) (hneg : (derivInterval e (fun _ => I) 0).hi < 0) :
     ∀ x ∈ I, evalFunc1 e I.hi ≤ evalFunc1 e x := by
@@ -237,7 +255,9 @@ theorem decreasing_min_at_right (e : Expr) (hsupp : ADSupported e) (hvar0 : Uses
     · simp only [Set.mem_Icc]; exact ⟨(Rat.cast_le.mpr I.le), le_refl _⟩
     · exact lt_of_le_of_ne hx.2 heq
 
-/-- Interval at left endpoint gives valid lower bound for increasing functions -/
+/-- Interval at left endpoint gives valid lower bound for increasing functions
+@isnad1 id=le.4h3v.s5.b870286f7da7 from=translated src=- shape=7999a930 vocab=f2b28ca7
+-/
 theorem increasing_endpoint_bound (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat) (hpos : 0 < (derivInterval e (fun _ => I) 0).lo) :
     ∀ x ∈ I, (LeanCert.Internal.Rational.evalUnchecked1 e (IntervalRat.singleton I.lo)).lo ≤ Expr.eval (fun _ => x) e := by
@@ -251,7 +271,9 @@ theorem increasing_endpoint_bound (e : Expr) (hsupp : ADSupported e) (hvar0 : Us
       ≤ Expr.eval (fun _ => I.lo) e := by exact_mod_cast heval.1
     _ ≤ Expr.eval (fun _ => x) e := hmin
 
-/-- Interval at right endpoint gives valid lower bound for decreasing functions -/
+/-- Interval at right endpoint gives valid lower bound for decreasing functions
+@isnad1 id=le.4h3v.s5.59d7a6d35da7 from=translated src=- shape=fc02288f vocab=5317a6d9
+-/
 theorem decreasing_endpoint_bound (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat) (hneg : (derivInterval e (fun _ => I) 0).hi < 0) :
     ∀ x ∈ I, (LeanCert.Internal.Rational.evalUnchecked1 e (IntervalRat.singleton I.hi)).lo ≤ Expr.eval (fun _ => x) e := by
@@ -268,7 +290,9 @@ theorem decreasing_endpoint_bound (e : Expr) (hsupp : ADSupported e) (hvar0 : Us
 /-! ### Full optimization correctness -/
 
 /-- Helper lemma for go correctness.
-    FULLY PROVED for varIdx = 0 and UsesOnlyVar0 expressions. -/
+    FULLY PROVED for varIdx = 0 and UsesOnlyVar0 expressions.
+@isnad1 id=le.3h5v.s5.7e3e13006471 from=translated src=- shape=bec63063 vocab=3f3ac035
+-/
 theorem minimizeInterval_go_correct (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (maxDepth : ℕ) (depth : ℕ) (J : IntervalRat) :
     ∀ x ∈ J, (minimizeInterval.go e 0 maxDepth J depth).valueBound.lo
@@ -324,7 +348,9 @@ theorem minimizeInterval_go_correct (e : Expr) (hsupp : ADSupported e) (hvar0 : 
       | inr h2 => exact ih J.bisect.2 x h2
 
 /-- Correctness: the minimum is in the computed interval.
-    FULLY PROVED for varIdx = 0 and UsesOnlyVar0 expressions. -/
+    FULLY PROVED for varIdx = 0 and UsesOnlyVar0 expressions.
+@isnad1 id=le.3h4v.s5.253184f76632 from=translated src=- shape=d974a064 vocab=50122b58
+-/
 theorem minimizeInterval_correct (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat)
     (maxDepth : ℕ) :
@@ -343,7 +369,9 @@ noncomputable def maximizeInterval (e : Expr) (I : IntervalRat) (varIdx : Nat)
     depth := negResult.depth }
 
 /-- Correctness: the maximum is in the computed interval.
-    FULLY PROVED for varIdx = 0 and UsesOnlyVar0 expressions. -/
+    FULLY PROVED for varIdx = 0 and UsesOnlyVar0 expressions.
+@isnad1 id=le.3h4v.s5.644cf2c5bdff from=translated src=- shape=695ceac8 vocab=2d4c75b8
+-/
 theorem maximizeInterval_correct (e : Expr) (hsupp : ADSupported e) (hvar0 : UsesOnlyVar0 e)
     (I : IntervalRat)
     (maxDepth : ℕ) :
@@ -407,7 +435,9 @@ by fixing all but one variable and optimizing along that coordinate.
 /-! ### N-variable derivative bounds -/
 
 /-- If the derivative interval along `idx` is strictly positive, derivative is positive everywhere.
-    Generalized version that works with any variable index and environment. -/
+    Generalized version that works with any variable index and environment.
+@isnad1 id=lt.4h5v.s6.72c8d95b6122 from=translated src=- shape=e68366a2 vocab=cfd48e5d
+-/
 theorem deriv_pos_on_interval_idx (e : Expr) (hsupp : ADSupported e)
     (ρ_real : Nat → ℝ) (ρ_int : IntervalEnv) (idx : Nat)
     (hρ : ∀ i, ρ_real i ∈ ρ_int i)
@@ -421,7 +451,9 @@ theorem deriv_pos_on_interval_idx (e : Expr) (hsupp : ADSupported e)
     _ ≤ deriv (Expr.evalAlong e ρ_real idx) x := hmem.1
 
 /-- If the derivative interval along `idx` is strictly negative, derivative is negative everywhere.
-    Generalized version that works with any variable index and environment. -/
+    Generalized version that works with any variable index and environment.
+@isnad1 id=lt.4h5v.s6.13fc375bc14a from=translated src=- shape=eec2ae07 vocab=a93eda8e
+-/
 theorem deriv_neg_on_interval_idx (e : Expr) (hsupp : ADSupported e)
     (ρ_real : Nat → ℝ) (ρ_int : IntervalEnv) (idx : Nat)
     (hρ : ∀ i, ρ_real i ∈ ρ_int i)
@@ -435,7 +467,9 @@ theorem deriv_neg_on_interval_idx (e : Expr) (hsupp : ADSupported e)
     _ < 0 := hhi_cast
 
 /-- Strictly positive derivative along `idx` implies strict monotonicity.
-    Generalized n-variable version. -/
+    Generalized n-variable version.
+@isnad1 id=strictmo.3h4v.s6.1fda4aa33d62 from=translated src=- shape=158152da vocab=6f73498b
+-/
 theorem strictMonoOn_of_deriv_pos_interval_idx (e : Expr) (hsupp : ADSupported e)
     (ρ_real : Nat → ℝ) (ρ_int : IntervalEnv) (idx : Nat)
     (hρ : ∀ i, ρ_real i ∈ ρ_int i)
@@ -454,7 +488,9 @@ theorem strictMonoOn_of_deriv_pos_interval_idx (e : Expr) (hsupp : ADSupported e
     exact hderiv_pos x hx_mem
 
 /-- Strictly negative derivative along `idx` implies strict antitonicity.
-    Generalized n-variable version. -/
+    Generalized n-variable version.
+@isnad1 id=strictan.3h4v.s6.e8d0ecb91475 from=translated src=- shape=6c078f8b vocab=bfc65bb7
+-/
 theorem strictAntiOn_of_deriv_neg_interval_idx (e : Expr) (hsupp : ADSupported e)
     (ρ_real : Nat → ℝ) (ρ_int : IntervalEnv) (idx : Nat)
     (hρ : ∀ i, ρ_real i ∈ ρ_int i)
@@ -475,7 +511,9 @@ theorem strictAntiOn_of_deriv_neg_interval_idx (e : Expr) (hsupp : ADSupported e
 /-! ### N-variable monotonicity-based bounds -/
 
 /-- For increasing functions along `idx`, minimum is at the left endpoint.
-    Generalized n-variable version. -/
+    Generalized n-variable version.
+@isnad1 id=le.4h5v.s6.7192d45bbde0 from=translated src=- shape=2325ab41 vocab=a3152a22
+-/
 theorem increasing_min_at_left_idx (e : Expr) (hsupp : ADSupported e)
     (ρ_real : Nat → ℝ) (ρ_int : IntervalEnv) (idx : Nat)
     (hρ : ∀ i, ρ_real i ∈ ρ_int i)
@@ -495,7 +533,9 @@ theorem increasing_min_at_left_idx (e : Expr) (hsupp : ADSupported e)
     · exact lt_of_le_of_ne hx.1 heq
 
 /-- For decreasing functions along `idx`, minimum is at the right endpoint.
-    Generalized n-variable version. -/
+    Generalized n-variable version.
+@isnad1 id=le.4h5v.s6.0dc9d28c4867 from=translated src=- shape=3768dbf6 vocab=c51a2399
+-/
 theorem decreasing_min_at_right_idx (e : Expr) (hsupp : ADSupported e)
     (ρ_real : Nat → ℝ) (ρ_int : IntervalEnv) (idx : Nat)
     (hρ : ∀ i, ρ_real i ∈ ρ_int i)
@@ -592,7 +632,9 @@ where
 /-! ### N-variable minimization correctness -/
 
 /-- Base case correctness for n-variable optimization.
-    Interval evaluation gives a valid lower bound. -/
+    Interval evaluation gives a valid lower bound.
+@isnad1 id=le.2h3v.s5.ca46a6326eb6 from=translated src=- shape=10837637 vocab=c4559a12
+-/
 theorem minimizeIntervalIdx_base_correct (e : Expr) (hsupp : ADSupported e)
     (ρ_int : IntervalEnv) :
     ∀ ρ_real : Nat → ℝ, (∀ i, ρ_real i ∈ ρ_int i) →
@@ -602,7 +644,9 @@ theorem minimizeIntervalIdx_base_correct (e : Expr) (hsupp : ADSupported e)
   simp only [IntervalRat.mem_def] at h
   exact h.1
 
-/-- Helper lemma for go correctness in n-variable setting -/
+/-- Helper lemma for go correctness in n-variable setting
+@isnad1 id=le.4h8v.s6.9e5dd0c03cbe from=translated src=- shape=c808d87d vocab=b0401d19
+-/
 theorem minimizeIntervalIdx_go_correct (e : Expr) (hsupp : ADSupported e)
     (ρ_int : IntervalEnv) (idx : Nat) (maxDepth depth : ℕ) (J : IntervalRat)
     (hJ_sub : ∀ t, t ∈ J → t ∈ ρ_int idx) :
@@ -797,7 +841,9 @@ theorem minimizeIntervalIdx_go_correct (e : Expr) (hsupp : ADSupported e)
     For any real environment ρ_real satisfying ρ_int, and any t in ρ_int idx,
     the computed lower bound is valid.
 
-    FULLY PROVED - no sorry, no axioms. -/
+    FULLY PROVED - no sorry, no axioms.
+@isnad1 id=le.3h6v.s5.ac0bfa9b812f from=translated src=- shape=2c07fd56 vocab=a5150aff
+-/
 theorem minimizeIntervalIdx_correct (e : Expr) (hsupp : ADSupported e)
     (ρ_int : IntervalEnv) (idx : Nat) (maxDepth : ℕ) :
     ∀ ρ_real : Nat → ℝ, (∀ i, ρ_real i ∈ ρ_int i) →
@@ -817,7 +863,9 @@ noncomputable def maximizeIntervalIdx (e : Expr) (ρ : IntervalEnv) (idx : Nat)
     argBound := negResult.argBound
     depth := negResult.depth }
 
-/-- Correctness theorem for n-variable maximization -/
+/-- Correctness theorem for n-variable maximization
+@isnad1 id=le.3h6v.s5.69db3b194281 from=translated src=- shape=f48ad029 vocab=6a8b8701
+-/
 theorem maximizeIntervalIdx_correct (e : Expr) (hsupp : ADSupported e)
     (ρ_int : IntervalEnv) (idx : Nat) (maxDepth : ℕ) :
     ∀ ρ_real : Nat → ℝ, (∀ i, ρ_real i ∈ ρ_int i) →

@@ -85,7 +85,9 @@ def correctionForcing {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient period}
     basePressureForcing period K0 N hN p0 + externalPressureForcing period K N hN p1 +
     basePressureForcing period K0 N hN p1
 
-/-- The triangle inequality for seven actual forcing arrays has coefficient one. -/
+/-- The triangle inequality for seven actual forcing arrays has coefficient one.
+@isnad1 id=le.1h12v.s8.649a5ab2d5c8 from=translated src=- shape=34570680 vocab=49e1458e
+-/
 theorem forcing_seven_le {α β H : Type*} [Fintype α] [Fintype β] [NormedAddCommGroup H]
     (ρ : ℝ) (hρ : 0 < ρ) (order : α → ℕ) (a b c d e f g : α → β → H) :
     weightedForcingSum ρ order (a+b+c+d+e+f+g) ≤ weightedForcingSum ρ order a + weightedForcingSum ρ order b +
@@ -99,7 +101,9 @@ theorem forcing_seven_le {α β H : Type*} [Fintype α] [Fintype β] [NormedAddC
   have h6 := weightedForcingSum_add_le ρ hρ order (a+b+c+d+e+f) g
   linarith
 
-/-- All actual forcing components satisfy their derived bounds on finite Sobolev fields. -/
+/-- All actual forcing components satisfy their derived bounds on finite Sobolev fields.
+@isnad1 id=le.4h13v.s17.314f17f73a3d from=translated src=- shape=ef141d79 vocab=e043843e
+-/
 theorem correctionForcing_raw_bound {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (K0 : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)
@@ -128,7 +132,9 @@ theorem correctionForcing_raw_bound {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoeffici
   exact h.trans (add_le_add (add_le_add (add_le_add (add_le_add (add_le_add (add_le_add hS hE) hB) hP0) hQ0) hP1) hQ1)
 
 /-- The full actual forcing with both genuine projected pressure solves obeys the spatial part of equation (19).
-Every velocity derivative in the bound lies at or below the chosen cutoff. -/
+Every velocity derivative in the bound lies at or below the chosen cutoff.
+@isnad1 id=le.12h16v.s20.e0c603f425cd from=translated src=- shape=be0ac1a1 vocab=fd7103d7
+-/
 theorem correctionForcing_bound {s : ℕ} (hs : 6 ≤ s) {A : SmoothCoefficient period}
     (K : EulerSpatialSobolevInverse.CoefficientJet period standardDirection s A)
     (K0 : EulerSpatialSobolevInverse.CoefficientJet period standardDirection 6 A)

@@ -58,7 +58,9 @@ noncomputable def ofRealEndpoints (lo hi : ℝ) (hle : lo ≤ hi) : IntervalRat 
     have h3 : (⌊lo⌋ : ℝ) ≤ (⌈hi⌉ : ℝ) := le_trans h1 (le_trans hle h2)
     exact_mod_cast h3
 
-/-- Any point in [lo, hi] is in the rational enclosure [⌊lo⌋, ⌈hi⌉] -/
+/-- Any point in [lo, hi] is in the rational enclosure [⌊lo⌋, ⌈hi⌉]
+@isnad1 id=mem.2h3v.s5.208897d54b46 from=translated src=- shape=bdb75820 vocab=f0e3b50f
+-/
 theorem mem_ofRealEndpoints {x lo hi : ℝ} (hle : lo ≤ hi) (hx : lo ≤ x ∧ x ≤ hi) :
     x ∈ ofRealEndpoints lo hi hle := by
   simp only [mem_def, ofRealEndpoints]
@@ -77,7 +79,9 @@ noncomputable def expInterval (I : IntervalRat) : IntervalRat :=
   ofRealEndpoints (Real.exp I.lo) (Real.exp I.hi)
     (Real.exp_le_exp.mpr (by exact_mod_cast I.le))
 
-/-- FTIA for exp: if x ∈ I, then exp(x) ∈ expInterval(I) -/
+/-- FTIA for exp: if x ∈ I, then exp(x) ∈ expInterval(I)
+@isnad1 id=mem.1h2v.s4.8ffd2a968c4d from=translated src=- shape=34c11fd3 vocab=54dc812b
+-/
 theorem mem_expInterval {x : ℝ} {I : IntervalRat} (hx : x ∈ I) :
     Real.exp x ∈ expInterval I := by
   simp only [expInterval]
@@ -109,7 +113,9 @@ noncomputable def logInterval (I : IntervalRatPos) : IntervalRat :=
   ofRealEndpoints (Real.log I.lo) (Real.log I.hi)
     (Real.log_le_log (by exact_mod_cast I.lo_pos) (by exact_mod_cast I.le))
 
-/-- FTIA for log: if x ∈ I with lo > 0, then log(x) ∈ logInterval(I) -/
+/-- FTIA for log: if x ∈ I with lo > 0, then log(x) ∈ logInterval(I)
+@isnad1 id=mem.1h2v.s4.3ea52d9d95de from=translated src=- shape=e82d958e vocab=e00cca7f
+-/
 theorem mem_logInterval {x : ℝ} {I : IntervalRatPos} (hx : x ∈ I.toIntervalRat) :
     Real.log x ∈ logInterval I := by
   simp only [logInterval]
@@ -139,6 +145,9 @@ def IntervalRatInUnitBall.toIntervalRat (I : IntervalRatInUnitBall) : IntervalRa
 instance : Membership ℝ IntervalRatInUnitBall where
   mem I x := (I.lo : ℝ) ≤ x ∧ x ≤ I.hi
 
+/--
+@isnad1 id=iff.0h2v.s4.a29c624968a9 from=translated src=- shape=33d729b2 vocab=518966da
+-/
 theorem IntervalRatInUnitBall.mem_def {x : ℝ} {I : IntervalRatInUnitBall} :
     x ∈ I ↔ (I.lo : ℝ) ≤ x ∧ x ≤ I.hi := Iff.rfl
 
@@ -154,7 +163,9 @@ noncomputable def atanhIntervalComputed (I : IntervalRatInUnitBall) : IntervalRa
       (by rw [abs_lt]; constructor <;> linarith)
       hle)
 
-/-- FTIA for atanh: if x ∈ I and I ⊂ (-1, 1), then atanh(x) ∈ atanhIntervalComputed(I) -/
+/-- FTIA for atanh: if x ∈ I and I ⊂ (-1, 1), then atanh(x) ∈ atanhIntervalComputed(I)
+@isnad1 id=mem.1h2v.s4.d645fdc0609a from=translated src=- shape=22d049e5 vocab=3a6f10f8
+-/
 theorem mem_atanhIntervalComputed {x : ℝ} {I : IntervalRatInUnitBall} (hx : x ∈ I) :
     Real.atanh x ∈ atanhIntervalComputed I := by
   simp only [atanhIntervalComputed]
@@ -248,7 +259,9 @@ def sqrtRatUpperPrec (q : ℚ) (scaleBits : Nat := sqrtScaleBits) : ℚ :=
     let result := if s * s = prod then s else s + 1
     (result : ℚ) / (den * 2 ^ scaleBits)
 
-/-- Soundness of sqrtRatLower: sqrtRatLower q ≤ Real.sqrt q for q ≥ 0 -/
+/-- Soundness of sqrtRatLower: sqrtRatLower q ≤ Real.sqrt q for q ≥ 0
+@isnad1 id=le.1h1v.s4.966e472426bc from=translated src=- shape=3f37b117 vocab=f2dfe4aa
+-/
 theorem sqrtRatLower_le_sqrt {q : ℚ} (hq : 0 ≤ q) : (sqrtRatLower q : ℝ) ≤ Real.sqrt q := by
   simp only [sqrtRatLower]
   by_cases! hq0 : q ≤ 0
@@ -292,7 +305,9 @@ theorem sqrtRatLower_le_sqrt {q : ℚ} (hq : 0 ≤ q) : (sqrtRatLower q : ℝ) �
       _ = Real.sqrt (q.num.natAbs) * (Real.sqrt q.den * Real.sqrt q.den) := by ring
       _ = Real.sqrt (q.num.natAbs) * q.den := by rw [Real.mul_self_sqrt hden_nn]
 
-/-- Soundness of sqrtRatUpper: Real.sqrt q ≤ sqrtRatUpper q for q ≥ 0 -/
+/-- Soundness of sqrtRatUpper: Real.sqrt q ≤ sqrtRatUpper q for q ≥ 0
+@isnad1 id=le.1h1v.s4.3311b5c387a8 from=translated src=- shape=423f38fd vocab=3f20265f
+-/
 theorem sqrt_le_sqrtRatUpper {q : ℚ} (hq : 0 ≤ q) : Real.sqrt q ≤ (sqrtRatUpper q : ℝ) := by
   simp only [sqrtRatUpper]
   by_cases! hq0 : q ≤ 0
@@ -391,7 +406,9 @@ def sqrtIntervalTight (I : IntervalRat) : IntervalRat :=
   else
     ⟨0, max (sqrtRatUpper I.hi) 1, le_sup_of_le_right rfl⟩
 
-/-- Soundness of sqrtRatLowerPrec: sqrtRatLowerPrec q k ≤ Real.sqrt q for q ≥ 0 -/
+/-- Soundness of sqrtRatLowerPrec: sqrtRatLowerPrec q k ≤ Real.sqrt q for q ≥ 0
+@isnad1 id=le.1h2v.s4.fb314234c552 from=translated src=- shape=08159709 vocab=90ce8e5d
+-/
 theorem sqrtRatLowerPrec_le_sqrt {q : ℚ} (hq : 0 ≤ q) (k : Nat) :
     (sqrtRatLowerPrec q k : ℝ) ≤ Real.sqrt q := by
   simp only [sqrtRatLowerPrec]
@@ -461,7 +478,9 @@ theorem sqrtRatLowerPrec_le_sqrt {q : ℚ} (hq : 0 ≤ q) (k : Nat) :
       _ = Real.sqrt (num * den) / den := by rw [mul_div_mul_right _ _ (ne_of_gt h2k_pos)]
       _ = Real.sqrt num / Real.sqrt den := hsqrt_conv
 
-/-- Soundness of sqrtRatUpperPrec: Real.sqrt q ≤ sqrtRatUpperPrec q k for q ≥ 0 -/
+/-- Soundness of sqrtRatUpperPrec: Real.sqrt q ≤ sqrtRatUpperPrec q k for q ≥ 0
+@isnad1 id=le.1h2v.s4.37aa2de8bad6 from=translated src=- shape=43850992 vocab=20f4d410
+-/
 theorem sqrt_le_sqrtRatUpperPrec {q : ℚ} (hq : 0 ≤ q) (k : Nat) :
     Real.sqrt q ≤ (sqrtRatUpperPrec q k : ℝ) := by
   simp only [sqrtRatUpperPrec]
@@ -570,7 +589,9 @@ def sqrtIntervalTightPrec (I : IntervalRat) : IntervalRat :=
   else
     ⟨0, max (sqrtRatUpperPrec I.hi) 1, le_sup_of_le_right rfl⟩
 
-/-- Membership theorem for sqrtIntervalTightPrec -/
+/-- Membership theorem for sqrtIntervalTightPrec
+@isnad1 id=mem.1h2v.s4.e75325aa4073 from=translated src=- shape=34c11fd3 vocab=a528b003
+-/
 theorem mem_sqrtIntervalTightPrec' {x : ℝ} {I : IntervalRat} (hx : x ∈ I) :
     Real.sqrt x ∈ sqrtIntervalTightPrec I := by
   simp only [sqrtIntervalTightPrec, mem_def]
@@ -622,7 +643,9 @@ private theorem sqrt_le_max_one {x : ℝ} (hx : 0 ≤ x) : Real.sqrt x ≤ max x
     calc Real.sqrt x ≤ x := le_of_lt hsqrt_lt
       _ ≤ max x 1 := le_max_left x 1
 
-/-- Soundness of sqrt interval: if x ∈ I and x ≥ 0, then sqrt(x) ∈ sqrtInterval I -/
+/-- Soundness of sqrt interval: if x ∈ I and x ≥ 0, then sqrt(x) ∈ sqrtInterval I
+@isnad1 id=mem.2h2v.s4.5213c3f95fdf from=translated src=- shape=751d1a8c vocab=41d2eda4
+-/
 theorem mem_sqrtInterval {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (hx_nn : 0 ≤ x) :
     Real.sqrt x ∈ sqrtInterval I := by
   simp only [mem_def, sqrtInterval, Rat.cast_zero, Rat.cast_max, Rat.cast_one]
@@ -632,7 +655,9 @@ theorem mem_sqrtInterval {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (hx_nn : 0 �
       _ ≤ max (I.hi : ℝ) 1 := max_le_max_right 1 hx.2
 
 /-- General soundness of sqrt interval: works for any x ∈ I (including negative).
-    When x < 0, Real.sqrt x = 0, which is always in [0, max(hi, 1)]. -/
+    When x < 0, Real.sqrt x = 0, which is always in [0, max(hi, 1)].
+@isnad1 id=mem.1h2v.s4.ddbfb5b9ed9f from=translated src=- shape=34c11fd3 vocab=e6f43ddd
+-/
 theorem mem_sqrtInterval' {x : ℝ} {I : IntervalRat} (hx : x ∈ I) :
     Real.sqrt x ∈ sqrtInterval I := by
   rcases le_or_gt 0 x with hnn | hneg
@@ -661,7 +686,9 @@ private theorem sqrt_le_sqrtRatUpper_max {x : ℝ} {q : ℚ} (hx : 0 ≤ x) (hxq
       _ ≤ sqrtRatUpper q := sqrt_le_sqrtRatUpper (le_of_lt hq0)
       _ ≤ max (sqrtRatUpper q : ℝ) 1 := le_max_left (sqrtRatUpper q : ℝ) (1 : ℝ)
 
-/-- Soundness of tight sqrt interval: if x ∈ I and x ≥ 0, then sqrt(x) ∈ sqrtIntervalTight I -/
+/-- Soundness of tight sqrt interval: if x ∈ I and x ≥ 0, then sqrt(x) ∈ sqrtIntervalTight I
+@isnad1 id=mem.2h2v.s4.dc8d55fd5a37 from=translated src=- shape=751d1a8c vocab=2bce0678
+-/
 theorem mem_sqrtIntervalTight {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (hx_nn : 0 ≤ x) :
     Real.sqrt x ∈ sqrtIntervalTight I := by
   simp only [sqrtIntervalTight]
@@ -682,7 +709,9 @@ theorem mem_sqrtIntervalTight {x : ℝ} {I : IntervalRat} (hx : x ∈ I) (hx_nn 
     · exact sqrt_le_sqrtRatUpper_max hx_nn hx.2
 
 /-- General soundness of tight sqrt interval: works for any x ∈ I (including negative).
-    When x < 0, Real.sqrt x = 0, which is always in the result interval. -/
+    When x < 0, Real.sqrt x = 0, which is always in the result interval.
+@isnad1 id=mem.1h2v.s4.cdce14050077 from=translated src=- shape=34c11fd3 vocab=c28c2963
+-/
 theorem mem_sqrtIntervalTight' {x : ℝ} {I : IntervalRat} (hx : x ∈ I) :
     Real.sqrt x ∈ sqrtIntervalTight I := by
   rcases le_or_gt 0 x with hnn | hneg

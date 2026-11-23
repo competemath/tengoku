@@ -45,13 +45,18 @@ namespace NumericalRefinementSchedule
 def totalError (schedule : NumericalRefinementSchedule) (n : Nat) : ℝ :=
   schedule.spatial n + schedule.rounding n + schedule.analytic n
 
+/--
+@isnad1 id=le.0h2v.s4.978b13b84e4a from=translated src=- shape=0d4521f5 vocab=55cd7872
+-/
 theorem totalError_nonneg (schedule : NumericalRefinementSchedule) (n : Nat) :
     0 ≤ schedule.totalError n := by
   exact add_nonneg (add_nonneg (schedule.spatial_nonneg n)
     (schedule.rounding_nonneg n)) (schedule.analytic_nonneg n)
 
 /-- Coordinated spatial, rounding, and analytic refinement drives total error
-to zero. -/
+to zero.
+@isnad1 id=tendsto.0h1v.s4.5835b08c52cf from=translated src=- shape=f607c962 vocab=1ef726e6
+-/
 theorem totalError_tendsto_zero (schedule : NumericalRefinementSchedule) :
     Tendsto schedule.totalError atTop (nhds 0) := by
   change Tendsto
@@ -61,7 +66,9 @@ theorem totalError_tendsto_zero (schedule : NumericalRefinementSchedule) :
     (schedule.spatial_tendsto_zero.add schedule.rounding_tendsto_zero).add
       schedule.analytic_tendsto_zero
 
-/-- Every positive proof margin eventually dominates the total numerical error. -/
+/-- Every positive proof margin eventually dominates the total numerical error.
+@isnad1 id=eventual.1h2v.s4.661586771b54 from=translated src=- shape=54b16df9 vocab=2ecf0d63
+-/
 theorem eventually_totalError_lt (schedule : NumericalRefinementSchedule)
     {margin : ℝ} (hmargin : 0 < margin) :
     ∀ᶠ n in atTop, schedule.totalError n < margin := by
@@ -71,7 +78,9 @@ theorem eventually_totalError_lt (schedule : NumericalRefinementSchedule)
 
 If the mathematical bound has a positive margin below the target and the
 computed upper enclosure exceeds the true bound by at most `totalError`, then
-the checker eventually proves the target. -/
+the checker eventually proves the target.
+@isnad1 id=eventual.3h5v.s6.a536920ef535 from=translated src=- shape=6205876a vocab=4d3684d9
+-/
 theorem eventually_certifies_upper (schedule : NumericalRefinementSchedule)
     (upper : Nat → ℝ) {trueBound target margin : ℝ}
     (hmargin : 0 < margin)
@@ -83,7 +92,9 @@ theorem eventually_certifies_upper (schedule : NumericalRefinementSchedule)
 
 /-- Existential form used by finite search procedures: some refinement stage
 certifies every strict target whose positive margin dominates the vanishing
-error schedule. -/
+error schedule.
+@isnad1 id=ex.3h5v.s6.daa954c547b4 from=translated src=- shape=a95f7aef vocab=392c1518
+-/
 theorem exists_certifying_upper (schedule : NumericalRefinementSchedule)
     (upper : Nat → ℝ) {trueBound target margin : ℝ}
     (hmargin : 0 < margin)
@@ -93,7 +104,9 @@ theorem exists_certifying_upper (schedule : NumericalRefinementSchedule)
   exact (schedule.eventually_certifies_upper upper hmargin hstrict hupper).exists
 
 /-- Relative completeness for strict lower bounds, dual to
-`eventually_certifies_upper`. -/
+`eventually_certifies_upper`.
+@isnad1 id=eventual.3h5v.s6.78367f0c7f2f from=translated src=- shape=86be9779 vocab=4d3684d9
+-/
 theorem eventually_certifies_lower (schedule : NumericalRefinementSchedule)
     (lower : Nat → ℝ) {trueBound target margin : ℝ}
     (hmargin : 0 < margin)
@@ -103,7 +116,9 @@ theorem eventually_certifies_lower (schedule : NumericalRefinementSchedule)
   filter_upwards [schedule.eventually_totalError_lt hmargin] with n hn
   exact lt_of_lt_of_le (by linarith) (hlower n)
 
-/-- Existential finite-stage form of strict lower-bound completeness. -/
+/-- Existential finite-stage form of strict lower-bound completeness.
+@isnad1 id=ex.3h5v.s6.9c41c62d9837 from=translated src=- shape=e5b1defb vocab=392c1518
+-/
 theorem exists_certifying_lower (schedule : NumericalRefinementSchedule)
     (lower : Nat → ℝ) {trueBound target margin : ℝ}
     (hmargin : 0 < margin)

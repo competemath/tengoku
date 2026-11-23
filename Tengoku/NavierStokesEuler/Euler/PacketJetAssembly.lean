@@ -13,14 +13,23 @@ open EulerFiniteGrades Finset
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
+/--
+@isnad1 id=eq.0h2v.s9.10c02305cc30 from=translated src=- shape=3b81539a vocab=21090fa7
+-/
 theorem jet_zero (z : Domain) : jet (fun _ : Domain => (0 : E)) z = 0 := by
   simp [jet]
 
+/--
+@isnad1 id=eq.2h4v.s10.2783e98115a7 from=translated src=- shape=38dbb8e2 vocab=0181fe69
+-/
 theorem jet_add (f g : Domain → E) (z : Domain)
     (hf : DifferentiableAt ℝ f z) (hg : DifferentiableAt ℝ g z) :
     jet (f+g) z = jet f z+jet g z := by
   simp only [jet, Pi.add_apply, fderiv_add hf hg, Prod.mk_add_mk]
 
+/--
+@isnad1 id=eq.0h5v.s9.c45841ee094a from=translated src=- shape=1cac4e89 vocab=b3ab899e
+-/
 theorem jet_truncate (N n : ℕ) (u : ℕ → Domain → E) (z : Domain) :
     jet (truncate N u n) z = truncate N (fun i => jet (u i) z) n := by
   by_cases hn : n ≤ N
@@ -28,12 +37,18 @@ theorem jet_truncate (N n : ℕ) (u : ℕ → Domain → E) (z : Domain) :
   · simp only [truncate_of_gt N n _ (by omega), Pi.zero_def]
     exact jet_zero z
 
+/--
+@isnad1 id=eq.0h5v.s9.51c8547f7ee3 from=translated src=- shape=1cac4e89 vocab=4657df5b
+-/
 theorem jet_shiftUp (N n : ℕ) (u : ℕ → Domain → E) (z : Domain) :
     jet (shiftUp N u n) z = shiftUp N (fun i => jet (u i) z) n := by
   cases n with
   | zero => exact jet_zero z
   | succ n => exact jet_truncate N n u z
 
+/--
+@isnad1 id=differen.1h5v.s9.29f8f2a9df71 from=translated src=- shape=2b9432a0 vocab=357c71a2
+-/
 theorem differentiableAt_truncate (N n : ℕ) (u : ℕ → Domain → E) (z : Domain)
     (hu : ∀ i ≤ N, DifferentiableAt ℝ (u i) z) :
     DifferentiableAt ℝ (truncate N u n) z := by
@@ -42,6 +57,9 @@ theorem differentiableAt_truncate (N n : ℕ) (u : ℕ → Domain → E) (z : Do
   · simpa only [truncate_of_gt N n _ (by omega), Pi.zero_def] using
       (differentiableAt_const (c := (0 : E)))
 
+/--
+@isnad1 id=differen.1h5v.s9.ca7ae1840d6f from=translated src=- shape=2b9432a0 vocab=93ffaa46
+-/
 theorem differentiableAt_shiftUp (N n : ℕ) (u : ℕ → Domain → E) (z : Domain)
     (hu : ∀ i ≤ N, DifferentiableAt ℝ (u i) z) :
     DifferentiableAt ℝ (shiftUp N u n) z := by
@@ -49,6 +67,9 @@ theorem differentiableAt_shiftUp (N n : ℕ) (u : ℕ → Domain → E) (z : Dom
   | zero => exact differentiableAt_const (c := (0 : E))
   | succ n => exact differentiableAt_truncate N n u z hu
 
+/--
+@isnad1 id=eq.2h6v.s10.461b68daf75f from=translated src=- shape=97d2c33b vocab=de4bfe72
+-/
 theorem jet_assemble (N n : ℕ) (u c : ℕ → Domain → E) (z : Domain)
     (hu : ∀ i ≤ N, DifferentiableAt ℝ (u i) z)
     (hc : ∀ i ≤ N, DifferentiableAt ℝ (c i) z) :
@@ -59,13 +80,18 @@ theorem jet_assemble (N n : ℕ) (u c : ℕ → Domain → E) (z : Domain)
       (differentiableAt_shiftUp N n c z hc), jet_truncate, jet_shiftUp]
   rfl
 
+/--
+@isnad1 id=differen.2h6v.s10.fd5cad0b8358 from=translated src=- shape=b77de8ff vocab=343ada21
+-/
 theorem differentiableAt_assemble (N n : ℕ) (u c : ℕ → Domain → E) (z : Domain)
     (hu : ∀ i ≤ N, DifferentiableAt ℝ (u i) z)
     (hc : ∀ i ≤ N, DifferentiableAt ℝ (c i) z) :
     DifferentiableAt ℝ (assemble N u c n) z :=
   (differentiableAt_truncate N n u z hu).add (differentiableAt_shiftUp N n c z hc)
 
-/-- The extra degree N+1 is precisely the final divergence corrector in (13). -/
+/-- The extra degree N+1 is precisely the final divergence corrector in (13).
+@isnad1 id=eq.2h6v.s8.981c926e9b7a from=translated src=- shape=1b0958a1 vocab=d6ea99ad
+-/
 theorem fieldSum_assemble_from_one (N : ℕ) (κ : ℝ) (u c : ℕ → Domain → E)
     (hu : u 0=0) (hc : c 0=0) (z : Domain) :
     fieldSum (N+1) κ (assemble N u c) z =

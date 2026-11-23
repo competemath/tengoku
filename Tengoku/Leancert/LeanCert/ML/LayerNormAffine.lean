@@ -124,6 +124,7 @@ end LayerNormParams
 
     The proof requires additional hypotheses about positivity of variance + epsilon
     and compatibility of lengths, which are handled in the implementation.
+@isnad1 id=other.6h4v.s6.b9fe41371fde from=translated src=- shape=8fc9d8cd vocab=0d288899
 -/
 theorem mem_forwardAffine {xs : List ℝ} {Is : IntervalVector}
     (params : LayerNormParams)

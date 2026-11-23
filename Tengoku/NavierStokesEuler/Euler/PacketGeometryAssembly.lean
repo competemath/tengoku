@@ -65,6 +65,9 @@ structure PhysicalGeometryConclusion {α : Type*} (D : PhysicalGeometryData α)
       ‖u t‖ ≤ (560*D.Θ^10/D.ε)*
         (physicalProfile Z D.t₀ D.a D.ε t/physicalProfile Z D.t₀ D.a D.ε s)*‖u s‖
 
+/--
+@isnad1 id=ex.0h2v.s5.df94b374b235 from=translated src=- shape=27faffa3 vocab=b2687012
+-/
 theorem PhysicalGeometryData.exists_geometry {α : Type*} (D : PhysicalGeometryData α) :
     ∃ F F₁ Z Z₁ : ℝ → ℝ, PhysicalGeometryConclusion D F F₁ Z Z₁ := by
   have hK : 1 ≤ neighborStabilityConstant :=

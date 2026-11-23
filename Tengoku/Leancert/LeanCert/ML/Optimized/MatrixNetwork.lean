@@ -153,7 +153,9 @@ def layerForwardBatch {inDim outDim batchSize : Nat}
 
 /-! ### Soundness (Placeholder) -/
 
-/-- Soundness of batch linear transformation -/
+/-- Soundness of batch linear transformation
+@isnad1 id=mem.2h8v.s6.42d3fbe9ed19 from=translated src=- shape=d56fc2b6 vocab=3e533b29
+-/
 theorem mem_batchLinear {outDim inDim batchSize : Nat}
     (W : IntervalMatrix outDim inDim)
     (X : InputBatch inDim batchSize)
@@ -165,7 +167,9 @@ theorem mem_batchLinear {outDim inDim batchSize : Nat}
     (batchLinear W X).mem (exp + exp) (W_real * X_real) :=
   mem_matmul W X W_real X_real exp hW hX
 
-/-- Soundness of attention score computation -/
+/-- Soundness of attention score computation
+@isnad1 id=mem.2h7v.s6.9c7b76d7571c from=translated src=- shape=b6df576a vocab=afbeb73e
+-/
 theorem mem_attentionScores {seqLen dK : Nat}
     (Q K : IntervalMatrix seqLen dK)
     (Q_real K_real : Matrix (Fin seqLen) (Fin dK) ℝ)

@@ -25,6 +25,9 @@ variable {K : Type v} [TopologicalSpace K] [CompactSpace K]
   {V W : Type u} [NormedAddCommGroup V] [NormedSpace ℝ V]
   [NormedAddCommGroup W] [NormedSpace ℝ W]
 
+/--
+@isnad1 id=memlp.0h7v.s12.6efd6675b797 from=translated src=- shape=c07ffcc9 vocab=236a5cb4
+-/
 theorem product_memLp (A : SmoothCoefficientPath K (V →L[ℝ] W)) (t : K)
     (f : SmoothL2Field V) (n : ℕ) :
     MemLp (iteratedFDeriv ℝ n (fun x => A.field t x (f.field x))) 2 volume := by
@@ -55,9 +58,15 @@ def product (A : SmoothCoefficientPath K (V →L[ℝ] W)) (t : K)
   smooth := (A.smooth t).clm_apply f.smooth
   integrable := product_memLp A t f
 
+/--
+@isnad1 id=eq.0h7v.s11.929eda7515e0 from=translated src=- shape=8314060a vocab=00e1f478
+-/
 @[simp] theorem product_field (A : SmoothCoefficientPath K (V →L[ℝ] W)) (t : K)
     (f : SmoothL2Field V) (x : Space) : (product A t f).field x = A.field t x (f.field x) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s16.56062a1160e5 from=translated src=- shape=fb89d9f5 vocab=205fefee
+-/
 theorem product_toLp (A : SmoothCoefficientPath K (V →L[ℝ] W)) (t : K)
     (f : SmoothL2Field V) :
     (product A t f).toLp = EulerLpOperatorField.full volume (A.field t) f.toLp := by
@@ -74,6 +83,9 @@ def rightDerivative (A : SmoothCoefficientPath K (V →L[ℝ] W)) :
     SmoothCoefficientPath K ((Space →L[ℝ] V) →L[ℝ] (Space →L[ℝ] W)) :=
   SmoothCoefficientPath.map (compL ℝ Space V W) A
 
+/--
+@isnad1 id=eq.0h6v.s11.a475125245cf from=translated src=- shape=5c7d1c3b vocab=06df1d80
+-/
 theorem product_derivative_field (A : SmoothCoefficientPath K (V →L[ℝ] W)) (t : K)
     (f : SmoothL2Field V) :
     (product A t f).derivative.field =
@@ -92,12 +104,18 @@ theorem product_derivative_field (A : SmoothCoefficientPath K (V →L[ℝ] W)) (
     SmoothCoefficientPath.derivative, SmoothCoefficientPath.derivativeField_eq,
     hflip, flip_apply, compL_apply, comp_apply, add_apply] using he
 
+/--
+@isnad1 id=eq.1h4v.s14.1b0a9350e549 from=translated src=- shape=0ffaa20d vocab=8053796f
+-/
 theorem jetLp_congr (f g : SmoothL2Field V) (h : f.field = g.field) (n : ℕ) :
     f.jetLp n = g.jetLp n := by
   apply Lp.ext
   filter_upwards [f.jetLp_ae n, g.jetLp_ae n] with x h₁ h₂
   rw [h₁, h₂, h]
 
+/--
+@isnad1 id=eq.0h7v.s19.8ee3b2f617d8 from=translated src=- shape=a263b05f vocab=25ae88bb
+-/
 theorem product_derivative_jetLp (A : SmoothCoefficientPath K (V →L[ℝ] W)) (t : K)
     (f : SmoothL2Field V) (n : ℕ) :
     (product A t f).derivative.jetLp n =

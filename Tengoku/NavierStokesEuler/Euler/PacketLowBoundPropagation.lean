@@ -11,6 +11,9 @@ namespace EulerPacketLowBoundPropagation
 
 open Real EulerPacketBaseGuardScales
 
+/--
+@isnad1 id=le.6h6v.s7.344cfb458530 from=translated src=- shape=d6b4a115 vocab=e624faf6
+-/
 theorem gradient_bound (CM hprev hchild g b e : ℝ)
     (hCM : 4 ≤ CM) (hp : 1 ≤ hprev) (hc : 1 ≤ hchild)
     (hscale : hprev^2 ≤ hchild/4) (hg : 4*g ≤ CM)
@@ -23,6 +26,9 @@ theorem gradient_bound (CM hprev hchild g b e : ℝ)
   have hproduct : 4 ≤ CM*hchild := by nlinarith only [hCM,hc]
   nlinarith only [ho,hgood,hbad,hproduct]
 
+/--
+@isnad1 id=le.7h8v.s8.da183caa927f from=translated src=- shape=4b069c5f vocab=e624faf6
+-/
 theorem hessian_bound (CM CH hprev hold hchild g b e : ℝ)
     (hCH : 4 ≤ CH) (hp : 1 ≤ hprev) (hc : 1 ≤ hchild)
     (hhold : hold ≤ hprev) (hscale : hprev^2 ≤ hchild/4)
@@ -40,6 +46,9 @@ theorem hessian_bound (CM CH hprev hold hchild g b e : ℝ)
   have hproduct : 4 ≤ CH*(hchild*hprev) := by nlinarith only [hCH,hprod]
   nlinarith only [hh,hs,hgood,hmon,hbad,hproduct]
 
+/--
+@isnad1 id=le.10h10v.s8.2cbed91e6753 from=translated src=- shape=8601856d vocab=77024869
+-/
 theorem localized_cost_le (J : ℕ) (X K Be Bc Kcap Becap CM Cboundary T : ℝ)
     (hK : 0 ≤ K) (hBe : 0 ≤ Be) (hBc : 0 ≤ Bc) (hT : 0 ≤ T)
     (hC : 0 ≤ Cboundary) (hr : 0 ≤ baseRadius X)
@@ -53,6 +62,9 @@ theorem localized_cost_le (J : ℕ) (X K Be Bc Kcap Becap CM Cboundary T : ℝ)
   unfold baseGuardCost
   gcongr
 
+/--
+@isnad1 id=le.11h10v.s8.a936b5890cc3 from=translated src=- shape=b2b19b77 vocab=77024869
+-/
 theorem localized_guard (J : ℕ) (X K Be Bc Kcap Becap CM Cboundary T : ℝ)
     (hK : 0 ≤ K) (hBe : 0 ≤ Be) (hBc : 0 ≤ Bc) (hT : 0 ≤ T)
     (hC : 0 ≤ Cboundary) (hr : 0 ≤ baseRadius X)

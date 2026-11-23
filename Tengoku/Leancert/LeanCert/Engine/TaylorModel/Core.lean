@@ -60,7 +60,9 @@ noncomputable def boundPolyAbs (p : Polynomial ℚ) (domain : IntervalRat) (c : 
   let r := max (|domain.hi - c|) (|domain.lo - c|)
   ∑ i ∈ Finset.range (p.natDegree + 1), |p.coeff i| * r ^ i
 
-/-- The bound computed by boundPolyAbs is nonnegative -/
+/-- The bound computed by boundPolyAbs is nonnegative
+@isnad1 id=le.0h3v.s4.e12d1c8b1567 from=translated src=- shape=c304a0f7 vocab=80cb8073
+-/
 theorem boundPolyAbs_nonneg (p : Polynomial ℚ) (domain : IntervalRat) (c : ℚ) :
     0 ≤ boundPolyAbs p domain c := by
   unfold boundPolyAbs
@@ -124,7 +126,9 @@ def bernsteinCoeffsForDomain (p : Polynomial ℚ) (lo hi c : ℚ) : List ℚ :=
 def listMinMax (l : List ℚ) (default : ℚ) : ℚ × ℚ :=
   l.foldl (fun (lo, hi) x => (min lo x, max hi x)) (default, default)
 
-/-- Helper: foldl preserves the invariant lo ≤ hi -/
+/-- Helper: foldl preserves the invariant lo ≤ hi
+@isnad1 id=le.1h2v.s6.26168aae9169 from=translated src=- shape=51181f25 vocab=8bfa04ce
+-/
 theorem listMinMax_foldl_le (l : List ℚ) (p : ℚ × ℚ) (hp : p.1 ≤ p.2) :
     (l.foldl (fun (lo, hi) x => (min lo x, max hi x)) p).1 ≤
     (l.foldl (fun (lo, hi) x => (min lo x, max hi x)) p).2 := by
@@ -137,7 +141,9 @@ theorem listMinMax_foldl_le (l : List ℚ) (p : ℚ × ℚ) (hp : p.1 ≤ p.2) :
       _ ≤ p.2 := hp
       _ ≤ max p.2 x := le_max_left _ _
 
-/-- The listMinMax function returns lo ≤ hi -/
+/-- The listMinMax function returns lo ≤ hi
+@isnad1 id=le.0h2v.s4.053e192b32e5 from=translated src=- shape=b7f84e1d vocab=d4e02951
+-/
 theorem listMinMax_le (l : List ℚ) (d : ℚ) : (listMinMax l d).1 ≤ (listMinMax l d).2 := by
   unfold listMinMax
   exact listMinMax_foldl_le l (d, d) (le_refl d)
@@ -167,7 +173,9 @@ private theorem transformPolyCoeffs_zero (α β : ℚ) :
     Finset.sum_const_zero]
   rfl
 
-/-- For the zero polynomial, Bernstein bounds contain zero. -/
+/-- For the zero polynomial, Bernstein bounds contain zero.
+@isnad1 id=and.0h2v.s5.29922ddcafa2 from=translated src=- shape=72aa05be vocab=e3807afd
+-/
 theorem boundPolyBernstein_zero_poly (domain : IntervalRat) (c : ℚ) :
     (boundPolyBernstein 0 domain c).lo ≤ 0 ∧ 0 ≤ (boundPolyBernstein 0 domain c).hi := by
   have hcoeffs : bernsteinCoeffsForDomain 0 domain.lo domain.hi c = [0] := by
@@ -227,14 +235,18 @@ private theorem listMinMax_foldl_elem_le_hi (l : List ℚ) (p : ℚ × ℚ) (x :
       exact le_trans (le_max_right p.2 a) (init_le_listMinMax_foldl_hi as _)
     · exact ih _ hmem
 
-/-- Elements of a list lie between the listMinMax bounds -/
+/-- Elements of a list lie between the listMinMax bounds
+@isnad1 id=and.1h3v.s5.ad1c4f717a82 from=translated src=- shape=3cd5f5fc vocab=68565904
+-/
 theorem listMinMax_bounds_elem (l : List ℚ) (d : ℚ) (x : ℚ) (hx : x ∈ l) :
     (listMinMax l d).1 ≤ x ∧ x ≤ (listMinMax l d).2 := by
   unfold listMinMax
   exact ⟨listMinMax_foldl_lo_le_elem l (d, d) x hx,
          listMinMax_foldl_elem_le_hi l (d, d) x hx⟩
 
-/-- The default value lies between the listMinMax bounds -/
+/-- The default value lies between the listMinMax bounds
+@isnad1 id=and.0h2v.s4.9177373d3013 from=translated src=- shape=352e0c2d vocab=d4e02951
+-/
 theorem listMinMax_bounds_default (l : List ℚ) (d : ℚ) :
     (listMinMax l d).1 ≤ d ∧ d ≤ (listMinMax l d).2 := by
   unfold listMinMax
@@ -244,7 +256,9 @@ theorem listMinMax_bounds_default (l : List ℚ) (d : ℚ) :
 
 /-! ### Convex combination bounds -/
 
-/-- A weighted sum with non-negative weights summing to 1 is bounded above by the max. -/
+/-- A weighted sum with non-negative weights summing to 1 is bounded above by the max.
+@isnad1 id=le.3h4v.s7.c1731a385d4c from=translated src=- shape=faa0ddc0 vocab=c4978529
+-/
 theorem weighted_sum_le_sup {n : ℕ} (a w : Fin (n + 1) → ℝ) (M : ℝ)
     (hw_nn : ∀ k, 0 ≤ w k) (hw_sum : Finset.univ.sum w = 1)
     (ha_le : ∀ k, a k ≤ M) :
@@ -256,7 +270,9 @@ theorem weighted_sum_le_sup {n : ℕ} (a w : Fin (n + 1) → ℝ) (M : ℝ)
     _ = M * Finset.univ.sum w := by rw [← Finset.mul_sum]
     _ = M := by rw [hw_sum, mul_one]
 
-/-- A weighted sum with non-negative weights summing to 1 is bounded below by the min. -/
+/-- A weighted sum with non-negative weights summing to 1 is bounded below by the min.
+@isnad1 id=le.3h4v.s7.9dafeb83a817 from=translated src=- shape=4402e5c5 vocab=c4978529
+-/
 theorem inf_le_weighted_sum {n : ℕ} (a w : Fin (n + 1) → ℝ) (m : ℝ)
     (hw_nn : ∀ k, 0 ≤ w k) (hw_sum : Finset.univ.sum w = 1)
     (hm_le : ∀ k, m ≤ a k) :
@@ -270,7 +286,9 @@ theorem inf_le_weighted_sum {n : ℕ} (a w : Fin (n + 1) → ℝ) (m : ℝ)
 
 /-! ### Combinatorial identity -/
 
-/-- Key identity: C(k,j) * C(n,k) = C(n,j) * C(n-j, k-j) for j ≤ k ≤ n -/
+/-- Key identity: C(k,j) * C(n,k) = C(n,j) * C(n-j, k-j) for j ≤ k ≤ n
+@isnad1 id=eq.2h3v.s5.e5d80ed3dfff from=translated src=- shape=4ac098e1 vocab=005aed2a
+-/
 theorem choose_mul_choose_eq {n k j : ℕ} (hj : j ≤ k) (hk : k ≤ n) :
     Nat.choose k j * Nat.choose n k = Nat.choose n j * Nat.choose (n - j) (k - j) := by
   have hjn : j ≤ n := le_trans hj hk
@@ -312,7 +330,9 @@ theorem choose_mul_choose_eq {n k j : ℕ} (hj : j ≤ k) (hk : k ≤ n) :
 
 /-! ### Partition of unity for Bernstein basis -/
 
-/-- Bernstein basis functions sum to 1 (follows from binomial theorem). -/
+/-- Bernstein basis functions sum to 1 (follows from binomial theorem).
+@isnad1 id=eq.0h2v.s6.c6dcee9b6045 from=translated src=- shape=0f55033d vocab=45d3aa6f
+-/
 theorem bernstein_partition_of_unity (n : ℕ) (t : ℝ) :
     (Finset.range (n + 1)).sum (fun k =>
       (Nat.choose n k : ℝ) * t ^ k * (1 - t) ^ (n - k)) = 1 := by
@@ -326,7 +346,9 @@ theorem bernstein_partition_of_unity (n : ℕ) (t : ℝ) :
         t ^ k * (1 - t) ^ (n - k) * (Nat.choose n k : ℝ) from by ring]
   linarith
 
-/-- Bernstein basis functions are non-negative on [0, 1]. -/
+/-- Bernstein basis functions are non-negative on [0, 1].
+@isnad1 id=le.2h3v.s6.71afed2972a9 from=translated src=- shape=4b0a563b vocab=8b064fd1
+-/
 theorem bernstein_nonneg (n k : ℕ) (t : ℝ) (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
     0 ≤ (Nat.choose n k : ℝ) * t ^ k * (1 - t) ^ (n - k) := by
   apply mul_nonneg
@@ -351,7 +373,9 @@ which follows from tʲ · (t + (1-t))^(n-j) = tʲ (binomial theorem).
            = Σₖ≥ⱼ C(n-j,k-j) · tᵏ · (1-t)^(n-k)
 
     The proof follows from the binomial theorem: tʲ · (t + (1-t))^(n-j) = tʲ.
-    Expanding the binomial and reindexing m ↦ k=m+j gives the result. -/
+    Expanding the binomial and reindexing m ↦ k=m+j gives the result.
+@isnad1 id=eq.1h3v.s7.93fd7193f33c from=translated src=- shape=b40e850b vocab=67c92660
+-/
 theorem monomial_bernstein_expansion (n j : ℕ) (hjn : j ≤ n) (t : ℝ) :
     t ^ j = (Finset.range (n + 1)).sum (fun k =>
       if j ≤ k then (Nat.choose (n - j) (k - j) : ℝ) * t ^ k * (1 - t) ^ (n - k)
@@ -432,7 +456,9 @@ private theorem poly_aeval_eq_sum (p : Polynomial ℚ) (x : ℝ) :
     to the concrete Bernstein coefficients. The proof requires showing that
     the double sum can be reindexed to match the Bernstein coefficient formula. -/
 /-- Length of `monomialToBernstein` output. Public so computable Bernstein
-certificates (`Engine/Algebra/QPolyBernstein.lean`) can reuse the enclosure. -/
+certificates (`Engine/Algebra/QPolyBernstein.lean`) can reuse the enclosure.
+@isnad1 id=eq.1h1v.s4.b9d9fdbbc11f from=translated src=- shape=f3b6d067 vocab=9192b748
+-/
 theorem monomialToBernstein_length (qs : List ℚ) (hn : 0 < qs.length) :
     (monomialToBernstein qs).length = qs.length := by
   simp only [monomialToBernstein]
@@ -440,7 +466,9 @@ theorem monomialToBernstein_length (qs : List ℚ) (hn : 0 < qs.length) :
   simp only [this, ite_false, List.length_ofFn]
   omega
 
-/-- Auxiliary: getElem of monomialToBernstein output -/
+/-- Auxiliary: getElem of monomialToBernstein output
+@isnad1 id=eq.2h2v.s7.f864c06e2421 from=translated src=- shape=e388aa57 vocab=663d885a
+-/
 theorem monomialToBernstein_getElem (qs : List ℚ) (k : ℕ) (hk : k < qs.length)
     (hn : 0 < qs.length) :
     (monomialToBernstein qs)[k]'(by rw [monomialToBernstein_length qs hn]; exact hk) =
@@ -455,6 +483,9 @@ theorem monomialToBernstein_getElem (qs : List ℚ) (k : ℕ) (hk : k < qs.lengt
   rw [List.getElem_ofFn]
   rfl
 
+/--
+@isnad1 id=other.3h3v.s7.959e718445ef from=translated src=- shape=aa8ce635 vocab=c17ab14a
+-/
 theorem bernstein_representation (qs : List ℚ) (n : ℕ) (hn : qs.length = n + 1)
     (t : ℝ) (_ht0 : 0 ≤ t) (_ht1 : t ≤ 1) :
     let bs := monomialToBernstein qs
@@ -657,7 +688,9 @@ private theorem transformPolyCoeffs_correct (p : Polynomial ℚ) (α β : ℚ) (
   ring
 
 /-- The core Bernstein enclosure: for coefficients of length n+1 on [0,1],
-    Σⱼ qⱼ tʲ lies in the Bernstein bounds interval. -/
+    Σⱼ qⱼ tʲ lies in the Bernstein bounds interval.
+@isnad1 id=other.3h3v.s7.95125c80571c from=translated src=- shape=74689705 vocab=2fd07d2d
+-/
 theorem bernstein_enclosure_01 (qs : List ℚ) (n : ℕ) (hn : qs.length = n + 1)
     (t : ℝ) (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
     let bs := monomialToBernstein qs
@@ -724,6 +757,9 @@ private theorem bernsteinCoeffsForDomain_ne_nil (p : Polynomial ℚ) (lo hi c : 
   simp at hlen
   omega
 
+/--
+@isnad1 id=mem.1h4v.s6.b780bc45fcaa from=translated src=- shape=c88cd238 vocab=86b51030
+-/
 theorem poly_eval_mem_boundPolyBernstein (p : Polynomial ℚ) (domain : IntervalRat) (c : ℚ)
     (x : ℝ) (hx : x ∈ domain) :
     Polynomial.aeval (x - c) p ∈ boundPolyBernstein p domain c := by
@@ -873,7 +909,9 @@ noncomputable def valueAtCenterInterval (tm : TaylorModel) : IntervalRat :=
   let p0 : ℚ := tm.poly.coeff 0
   IntervalRat.add (IntervalRat.singleton p0) tm.remainder
 
-/-- Correctness: the true function value at center is in valueAtCenterInterval. -/
+/-- Correctness: the true function value at center is in valueAtCenterInterval.
+@isnad1 id=mem.2h2v.s5.7a1a5bc184c3 from=translated src=- shape=f0e0aded vocab=ae9d932b
+-/
 theorem valueAtCenter_correct (tm : TaylorModel) (f : ℝ → ℝ)
     (hf : ∀ x ∈ tm.domain, f x ∈ tm.evalSet x)
     (hc : (tm.center : ℝ) ∈ tm.domain) :
@@ -1011,7 +1049,9 @@ private theorem aeval_abs_le_sum (p : Polynomial ℚ) (y : ℝ) (r : ℝ) (hr : 
         · exact pow_le_pow_left₀ (abs_nonneg _) hr i
         · exact abs_nonneg _
 
-/-- Key lemma: polynomial evaluation is bounded by polyBoundInterval. -/
+/-- Key lemma: polynomial evaluation is bounded by polyBoundInterval.
+@isnad1 id=mem.1h2v.s4.df99986d3ba6 from=translated src=- shape=2a145732 vocab=bca646e9
+-/
 theorem evalPoly_mem_polyBoundInterval
     (tm : TaylorModel) (x : ℝ) (hx : x ∈ tm.domain) :
     tm.evalPoly x ∈ tm.polyBoundInterval := by
@@ -1047,7 +1087,9 @@ theorem evalPoly_mem_polyBoundInterval
     _ = (B : ℝ) := by rw [hB_def]
 
 /-- Taylor model bounds are correct: if f(x) ∈ evalSet for all x in domain,
-    then f(x) ∈ bound for all x in domain. -/
+    then f(x) ∈ bound for all x in domain.
+@isnad1 id=mem.2h3v.s5.ecbf2e77219a from=translated src=- shape=9bd9976d vocab=559c8a9f
+-/
 theorem taylorModel_correct (tm : TaylorModel) (f : ℝ → ℝ)
     (hf : ∀ x ∈ tm.domain, f x ∈ tm.evalSet x) :
     ∀ x ∈ tm.domain, f x ∈ tm.bound := by
@@ -1070,7 +1112,9 @@ theorem taylorModel_correct (tm : TaylorModel) (f : ℝ → ℝ)
 
 namespace TaylorModel
 
-/-- Constant TM correctness for evalSet: q ∈ const(q).evalSet x. -/
+/-- Constant TM correctness for evalSet: q ∈ const(q).evalSet x.
+@isnad1 id=mem.1h3v.s4.b09d8863a0da from=translated src=- shape=f04d9b8c vocab=7301b73b
+-/
 theorem const_evalSet_correct (q : ℚ) (domain : IntervalRat) :
     ∀ x ∈ domain, (q : ℝ) ∈ (const q domain).evalSet x := by
   intro x hx
@@ -1079,7 +1123,9 @@ theorem const_evalSet_correct (q : ℚ) (domain : IntervalRat) :
   · simpa using (IntervalRat.mem_singleton (0 : ℚ))
   · simp
 
-/-- Identity TM correctness for evalSet: x ∈ identity.evalSet x. -/
+/-- Identity TM correctness for evalSet: x ∈ identity.evalSet x.
+@isnad1 id=mem.1h2v.s4.2d5c3d479e5d from=translated src=- shape=3a3bd81c vocab=6c5dc832
+-/
 theorem identity_evalSet_correct (domain : IntervalRat) :
     ∀ x ∈ domain, x ∈ (identity domain).evalSet x := by
   intro x hx
@@ -1088,7 +1134,9 @@ theorem identity_evalSet_correct (domain : IntervalRat) :
   · simpa using (IntervalRat.mem_singleton (0 : ℚ))
   · simp
 
-/-- Negation preserves evalSet membership. -/
+/-- Negation preserves evalSet membership.
+@isnad1 id=mem.1h3v.s5.83fc8df5aeb7 from=translated src=- shape=e5338e30 vocab=b2a0f9f1
+-/
 theorem neg_evalSet_of_mem {tm : TaylorModel} {x r : ℝ}
     (hr : r ∈ tm.remainder) :
     -(tm.evalPoly x + r) ∈ (neg tm).evalSet x := by
@@ -1097,14 +1145,18 @@ theorem neg_evalSet_of_mem {tm : TaylorModel} {x r : ℝ}
   · exact IntervalRat.mem_neg hr
   · simp [map_neg, add_comm]
 
-/-- Convenience: any `evalPoly x + r` with `r ∈ remainder` lies in `evalSet`. -/
+/-- Convenience: any `evalPoly x + r` with `r ∈ remainder` lies in `evalSet`.
+@isnad1 id=mem.1h3v.s5.75b8aef559da from=translated src=- shape=190d02a7 vocab=868ba24a
+-/
 theorem evalSet_of_remainder (tm : TaylorModel) (x : ℝ) {r : ℝ}
     (hr : r ∈ tm.remainder) :
     tm.evalPoly x + r ∈ tm.evalSet x := by
   simp only [evalSet, Set.mem_ofPred_eq]
   exact ⟨r, hr, rfl⟩
 
-/-- Addition preserves evalSet membership when centers match. -/
+/-- Addition preserves evalSet membership when centers match.
+@isnad1 id=mem.3h5v.s5.ee534ba27cc2 from=translated src=- shape=8a32c4f6 vocab=0811bda9
+-/
 theorem add_evalSet_of_mem {tm1 tm2 : TaylorModel} {x : ℝ}
     (hcenter : tm1.center = tm2.center)
     {v1 v2 : ℝ} (hv1 : v1 ∈ tm1.evalSet x) (hv2 : v2 ∈ tm2.evalSet x) :
@@ -1128,12 +1180,16 @@ end TaylorModel
 
 /-! ### Polynomial helper lemmas for multiplication -/
 
-/-- truncPoly + tailPoly = original polynomial -/
+/-- truncPoly + tailPoly = original polynomial
+@isnad1 id=eq.0h2v.s5.f1c920fad774 from=translated src=- shape=423526d6 vocab=7117ee73
+-/
 theorem truncPoly_add_tailPoly (p : Polynomial ℚ) (n : ℕ) :
     truncPoly p n + tailPoly p n = p := by
   simp only [tailPoly, add_sub_cancel]
 
-/-- aeval distributes over truncPoly + tailPoly -/
+/-- aeval distributes over truncPoly + tailPoly
+@isnad1 id=eq.0h3v.s8.84a29a4e73d6 from=translated src=- shape=5a97e48f vocab=7cbe1bad
+-/
 theorem aeval_eq_truncPoly_add_tailPoly (p : Polynomial ℚ) (n : ℕ) (y : ℝ) :
     Polynomial.aeval y p =
       Polynomial.aeval y (truncPoly p n) + Polynomial.aeval y (tailPoly p n) := by
@@ -1141,7 +1197,9 @@ theorem aeval_eq_truncPoly_add_tailPoly (p : Polynomial ℚ) (n : ℕ) (y : ℝ)
   conv_lhs => rw [← h]
   simp only [map_add]
 
-/-- Tail polynomial evaluation is bounded by boundPolyAbs of tail. -/
+/-- Tail polynomial evaluation is bounded by boundPolyAbs of tail.
+@isnad1 id=le.1h5v.s7.40c8f4d3c306 from=translated src=- shape=d112322a vocab=bc289c53
+-/
 theorem tailPoly_eval_bounded (p : Polynomial ℚ) (n : ℕ) (domain : IntervalRat) (c : ℚ) (x : ℝ)
     (hx : x ∈ domain) :
     |Polynomial.aeval (x - c) (tailPoly p n)| ≤ boundPolyAbs (tailPoly p n) domain c := by
@@ -1163,7 +1221,9 @@ theorem tailPoly_eval_bounded (p : Polynomial ℚ) (n : ℕ) (domain : IntervalR
         simp only [Rat.cast_sum, Rat.cast_mul, Rat.cast_abs, Rat.cast_pow]
     _ = (B : ℝ) := by rw [hB_def]; rfl
 
-/-- Polynomial bound lemma: |P(y)| ≤ boundPolyAbs P domain c for y = x - c, x ∈ domain -/
+/-- Polynomial bound lemma: |P(y)| ≤ boundPolyAbs P domain c for y = x - c, x ∈ domain
+@isnad1 id=le.1h4v.s6.c349883861e8 from=translated src=- shape=f1051092 vocab=d1665721
+-/
 theorem poly_eval_bounded (p : Polynomial ℚ) (domain : IntervalRat) (c : ℚ) (x : ℝ)
     (hx : x ∈ domain) :
     |Polynomial.aeval (x - c) p| ≤ boundPolyAbs p domain c := by
@@ -1184,7 +1244,9 @@ theorem poly_eval_bounded (p : Polynomial ℚ) (domain : IntervalRat) (c : ℚ) 
         simp only [Rat.cast_sum, Rat.cast_mul, Rat.cast_abs, Rat.cast_pow]
     _ = (B : ℝ) := by rw [hB_def]; rfl
 
-/-- Value in symmetric interval from absolute bound -/
+/-- Value in symmetric interval from absolute bound
+@isnad1 id=mem.2h2v.s5.01e1f91fdb17 from=translated src=- shape=552e1384 vocab=c80c5218
+-/
 theorem mem_symmetric_interval_of_abs_le {x : ℝ} {B : ℚ} (hB : 0 ≤ B) (h : |x| ≤ B) :
     x ∈ (⟨-B, B, by linarith⟩ : IntervalRat) := by
   simp only [IntervalRat.mem_def, Rat.cast_neg]
@@ -1199,7 +1261,9 @@ These lemmas are pure TM algebra that don't depend on Expr or transcendentals.
 
 namespace TaylorModel
 
-/-- If x ∈ bound and bound doesn't contain zero, then x ≠ 0. -/
+/-- If x ∈ bound and bound doesn't contain zero, then x ≠ 0.
+@isnad1 id=ne.2h2v.s4.46f571c0687c from=translated src=- shape=b67f0b40 vocab=8ac69c09
+-/
 theorem ne_zero_of_mem_nonzero_bound {x : ℝ} {I : IntervalRat}
     (hx : x ∈ I) (hnz : ¬ IntervalRat.containsZero I) : x ≠ 0 := by
   simp only [IntervalRat.containsZero, not_and, not_le] at hnz
@@ -1214,7 +1278,9 @@ theorem ne_zero_of_mem_nonzero_bound {x : ℝ} {I : IntervalRat}
     linarith
 
 /-- FOIL expansion for Taylor model multiplication.
-(P₁ + r₁)(P₂ + r₂) = trunc(P₁P₂) + [tail(P₁P₂) + P₁r₂ + P₂r₁ + r₁r₂] -/
+(P₁ + r₁)(P₂ + r₂) = trunc(P₁P₂) + [tail(P₁P₂) + P₁r₂ + P₂r₁ + r₁r₂]
+@isnad1 id=eq.1h6v.s9.1f859f054580 from=translated src=- shape=0508d7a4 vocab=0565ccbf
+-/
 theorem foil_to_trunc_remainder {p1 p2 : Polynomial ℚ} {r1 r2 y : ℝ} {degree : ℕ}
     (hsplit : Polynomial.aeval y (p1 * p2) =
               Polynomial.aeval y (truncPoly (p1 * p2) degree) +
@@ -1240,7 +1306,9 @@ theorem foil_to_trunc_remainder {p1 p2 : Polynomial ℚ} {r1 r2 y : ℝ} {degree
          Polynomial.aeval y p1 * r2 + Polynomial.aeval y p2 * r1 + r1 * r2) := by ring
 
 /-- Four-term remainder membership: tail + p1r2 + p2r1 + r1r2 ∈ totalRemainder.
-This extracts the nested interval addition pattern from mul_evalSet_correct. -/
+This extracts the nested interval addition pattern from mul_evalSet_correct.
+@isnad1 id=mem.4h8v.s6.e400040d9e90 from=translated src=- shape=4178449d vocab=477f0461
+-/
 theorem remainder_four_terms_mem {v_tail v_p1r2 v_p2r1 v_r1r2 : ℝ}
     {I_tail I_p1r2 I_p2r1 I_r1r2 : IntervalRat}
     (htail : v_tail ∈ I_tail) (hp1r2 : v_p1r2 ∈ I_p1r2)
@@ -1265,6 +1333,7 @@ Then f₁(x) * f₂(x) ∈ (TaylorModel.mul tm1 tm2 degree).evalSet x.
 The expansion is:
   (P₁ + r₁)(P₂ + r₂) = P₁P₂ + P₁r₂ + P₂r₁ + r₁r₂
                      = trunc(P₁P₂) + [tail(P₁P₂) + P₁r₂ + P₂r₁ + r₁r₂]
+@isnad1 id=mem.5h6v.s6.269315f88cca from=translated src=- shape=4b2dbf32 vocab=74684d0a
 -/
 theorem mul_evalSet_correct
     (f₁ f₂ : ℝ → ℝ) (tm1 tm2 : TaylorModel) (degree : ℕ)
@@ -1357,6 +1426,7 @@ theorem mul_evalSet_correct
 
 Since `TaylorModel.inv` uses poly = 0 and remainder = invBound, we show
 that if `f(x) ∈ tm.evalSet x` for all x in domain, then `f(x)⁻¹ ∈ (inv tm hnz).evalSet x`.
+@isnad1 id=mem.3h3v.s5.dbf78257dbd9 from=translated src=- shape=777bdc5c vocab=9120a9af
 -/
 theorem inv_evalSet_correct
     (f : ℝ → ℝ) (tm : TaylorModel) (hnz : ¬ IntervalRat.containsZero tm.bound)

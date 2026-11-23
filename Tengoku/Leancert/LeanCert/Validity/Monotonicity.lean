@@ -70,7 +70,9 @@ def checkStrictlyDecreasing (e : Expr) (I : IntervalRat) (cfg : EvalConfig := {}
     is strictly increasing on `I`.
 
     This uses the Mean Value Theorem: if f'(x) > 0 for all x in the interior of I,
-    then f is strictly monotone on I. -/
+    then f is strictly monotone on I.
+@isnad1 id=strictmo.2h3v.s5.f79bec7a1d78 from=translated src=- shape=326e2d30 vocab=b8ce7df7
+-/
 theorem verify_strictly_increasing (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (cfg : EvalConfig)
     (h_check : checkStrictlyIncreasing e I cfg = true) :
@@ -82,7 +84,9 @@ theorem verify_strictly_increasing (e : Expr) (hsupp : ADSupported e)
 /-- **Golden Theorem for Strictly Decreasing Functions**
 
     If `checkStrictlyDecreasing e I cfg = true`, then the function defined by `e`
-    is strictly decreasing on `I`. -/
+    is strictly decreasing on `I`.
+@isnad1 id=strictan.2h3v.s5.6ed718b78449 from=translated src=- shape=326e2d30 vocab=13059a40
+-/
 theorem verify_strictly_decreasing (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (cfg : EvalConfig)
     (h_check : checkStrictlyDecreasing e I cfg = true) :
@@ -96,7 +100,9 @@ theorem verify_strictly_decreasing (e : Expr) (hsupp : ADSupported e)
 These theorems provide the monotonicity result in the form
 `∀ x y ∈ I, x < y → f(x) < f(y)`, which may be more convenient for some applications. -/
 
-/-- Strictly increasing: x < y implies f(x) < f(y) -/
+/-- Strictly increasing: x < y implies f(x) < f(y)
+@isnad1 id=lt.5h5v.s6.fafdad91c7a2 from=translated src=- shape=1c6bb52f vocab=7e75fe8d
+-/
 theorem verify_strictly_increasing_lt (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (cfg : EvalConfig)
     (h_check : checkStrictlyIncreasing e I cfg = true) :
@@ -106,7 +112,9 @@ theorem verify_strictly_increasing_lt (e : Expr) (hsupp : ADSupported e)
   intro x hx y hy hxy
   exact hmono hx hy hxy
 
-/-- Strictly decreasing: x < y implies f(x) > f(y) -/
+/-- Strictly decreasing: x < y implies f(x) > f(y)
+@isnad1 id=lt.5h5v.s6.c0886e0d8bcf from=translated src=- shape=657a1be6 vocab=eef2cb6f
+-/
 theorem verify_strictly_decreasing_lt (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (cfg : EvalConfig)
     (h_check : checkStrictlyDecreasing e I cfg = true) :
@@ -121,7 +129,9 @@ theorem verify_strictly_decreasing_lt (e : Expr) (hsupp : ADSupported e)
 For completeness, we provide theorems that derive weak monotonicity (≤) from
 the strict monotonicity checks. -/
 
-/-- Monotone (weak): x ≤ y implies f(x) ≤ f(y) -/
+/-- Monotone (weak): x ≤ y implies f(x) ≤ f(y)
+@isnad1 id=monotone.2h3v.s5.3bbe41e8f67b from=translated src=- shape=326e2d30 vocab=b25f07e7
+-/
 theorem verify_monotone (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (cfg : EvalConfig)
     (h_check : checkStrictlyIncreasing e I cfg = true) :
@@ -129,7 +139,9 @@ theorem verify_monotone (e : Expr) (hsupp : ADSupported e)
   have hstrict := verify_strictly_increasing e hsupp I cfg h_check
   exact hstrict.monotoneOn
 
-/-- Antitone (weak): x ≤ y implies f(x) ≥ f(y) -/
+/-- Antitone (weak): x ≤ y implies f(x) ≥ f(y)
+@isnad1 id=antitone.2h3v.s5.4fe06ae3bf0e from=translated src=- shape=326e2d30 vocab=405d3bad
+-/
 theorem verify_antitone (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (cfg : EvalConfig)
     (h_check : checkStrictlyDecreasing e I cfg = true) :
@@ -142,14 +154,18 @@ theorem verify_antitone (e : Expr) (hsupp : ADSupported e)
 These versions take rational endpoints directly, avoiding the need to construct
 an IntervalRat explicitly. -/
 
-/-- Convenience version with explicit rational endpoints -/
+/-- Convenience version with explicit rational endpoints
+@isnad1 id=strictmo.3h4v.s5.3b3d2d4129b6 from=translated src=- shape=3aeed6e8 vocab=cae12fc9
+-/
 theorem verify_strictly_increasing_rat (e : Expr) (hsupp : ADSupported e)
     (lo hi : ℚ) (hle : lo ≤ hi) (cfg : EvalConfig)
     (h_check : checkStrictlyIncreasing e ⟨lo, hi, hle⟩ cfg = true) :
     StrictMonoOn (fun x => Expr.eval (fun _ => x) e) (Set.Icc (lo : ℝ) hi) :=
   verify_strictly_increasing e hsupp ⟨lo, hi, hle⟩ cfg h_check
 
-/-- Convenience version with explicit rational endpoints -/
+/-- Convenience version with explicit rational endpoints
+@isnad1 id=strictan.3h4v.s5.a5ccb4fa5d6a from=translated src=- shape=3aeed6e8 vocab=4267593c
+-/
 theorem verify_strictly_decreasing_rat (e : Expr) (hsupp : ADSupported e)
     (lo hi : ℚ) (hle : lo ≤ hi) (cfg : EvalConfig)
     (h_check : checkStrictlyDecreasing e ⟨lo, hi, hle⟩ cfg = true) :

@@ -27,14 +27,26 @@ def ValueEq (I J : IntervalDyadic) : Prop :=
 
 namespace ValueEq
 
+/--
+@isnad1 id=valueeq.0h1v.s2.28d4894c91cf from=translated src=- shape=b3bac8d8 vocab=8f1767d6
+-/
 @[refl] theorem refl (I : IntervalDyadic) : I.ValueEq I := ⟨rfl, rfl⟩
 
+/--
+@isnad1 id=valueeq.1h2v.s3.e1906c33d8a9 from=translated src=- shape=7e524d71 vocab=8f1767d6
+-/
 theorem symm {I J : IntervalDyadic} (h : I.ValueEq J) : J.ValueEq I :=
   ⟨h.1.symm, h.2.symm⟩
 
+/--
+@isnad1 id=valueeq.2h3v.s4.389f9edee5c2 from=translated src=- shape=0bc0c4a6 vocab=8f1767d6
+-/
 theorem trans {I J K : IntervalDyadic} (hIJ : I.ValueEq J) (hJK : J.ValueEq K) :
     I.ValueEq K := ⟨hIJ.1.trans hJK.1, hIJ.2.trans hJK.2⟩
 
+/--
+@isnad1 id=iff.1h3v.s4.5b6ed9de6233 from=translated src=- shape=237f0897 vocab=690d424c
+-/
 theorem mem_iff {I J : IntervalDyadic} (h : I.ValueEq J) (x : ℝ) :
     x ∈ I ↔ x ∈ J := by
   simp only [IntervalDyadic.mem_def]
@@ -56,13 +68,18 @@ def index : DyadicPath → Nat
   | [] => 0
   | bit :: rest => (if bit then 2 ^ rest.length else 0) + index rest
 
-/-- A finite binary path always denotes an index at its depth. -/
+/-- A finite binary path always denotes an index at its depth.
+@isnad1 id=lt.0h1v.s4.68cb4bdbe07f from=translated src=- shape=eb025911 vocab=59a157c6
+-/
 theorem index_lt_pow_length (path : DyadicPath) : path.index < 2 ^ path.length := by
   induction path with
   | nil => simp [index]
   | cons bit rest ih =>
       cases bit <;> simp [index, pow_succ] <;> omega
 
+/--
+@isnad1 id=eq.0h1v.s5.ff5f81676d3b from=translated src=- shape=ecfe5793 vocab=3373a55d
+-/
 @[simp] theorem index_append_false (path : DyadicPath) :
     (path ++ [false]).index = 2 * path.index := by
   induction path with
@@ -71,6 +88,9 @@ theorem index_lt_pow_length (path : DyadicPath) : path.index < 2 ^ path.length :
       cases bit <;> simp [index, ih, pow_succ]
       omega
 
+/--
+@isnad1 id=eq.0h1v.s5.dd454f9e7cbb from=translated src=- shape=a739b7e8 vocab=f3246d6c
+-/
 @[simp] theorem index_append_true (path : DyadicPath) :
     (path ++ [true]).index = 2 * path.index + 1 := by
   induction path with
@@ -86,12 +106,18 @@ def decodeByBisection (root : IntervalDyadic) : DyadicPath → IntervalDyadic
       let children := root.bisect
       decodeByBisection (if bit then children.2 else children.1) rest
 
+/--
+@isnad1 id=eq.0h2v.s4.04144e835b50 from=translated src=- shape=dada15a0 vocab=61cbef88
+-/
 @[simp] theorem decodeByBisection_append_false (root : IntervalDyadic) (path : DyadicPath) :
     decodeByBisection root (path ++ [false]) = (decodeByBisection root path).bisect.1 := by
   induction path generalizing root with
   | nil => simp [decodeByBisection]
   | cons bit rest ih => cases bit <;> simp [decodeByBisection, ih]
 
+/--
+@isnad1 id=eq.0h2v.s4.ba419a242ac2 from=translated src=- shape=dada15a0 vocab=0b240fbb
+-/
 @[simp] theorem decodeByBisection_append_true (root : IntervalDyadic) (path : DyadicPath) :
     decodeByBisection root (path ++ [true]) = (decodeByBisection root path).bisect.2 := by
   induction path generalizing root with
@@ -108,7 +134,9 @@ structure DyadicCell where
 
 namespace DyadicCell
 
-/-- Cells are equal when their depths and numeric indices agree. -/
+/-- Cells are equal when their depths and numeric indices agree.
+@isnad1 id=eq.2h2v.s5.a832426002ea from=translated src=- shape=febfba21 vocab=31edb769
+-/
 @[ext] theorem ext' {a b : DyadicCell} (hdepth : a.depth = b.depth)
     (hindex : a.index.val = b.index.val) : a = b := by
   cases a with
@@ -135,15 +163,27 @@ def childRight (cell : DyadicCell) : DyadicCell :=
     rw [pow_succ]
     omega⟩⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.16eb58c028a5 from=translated src=- shape=ac0b5851 vocab=9999e09a
+-/
 @[simp] theorem childLeft_depth (cell : DyadicCell) :
     cell.childLeft.depth = cell.depth + 1 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.77fa5c891e9c from=translated src=- shape=ac0b5851 vocab=b51b215d
+-/
 @[simp] theorem childRight_depth (cell : DyadicCell) :
     cell.childRight.depth = cell.depth + 1 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.b138f9b9f65a from=translated src=- shape=ce62c2f7 vocab=99f7f2bd
+-/
 @[simp] theorem childLeft_index (cell : DyadicCell) :
     cell.childLeft.index.val = 2 * cell.index.val := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.4251e280e869 from=translated src=- shape=40869bc9 vocab=93570dd0
+-/
 @[simp] theorem childRight_index (cell : DyadicCell) :
     cell.childRight.index.val = 2 * cell.index.val + 1 := rfl
 
@@ -151,18 +191,30 @@ def childRight (cell : DyadicCell) : DyadicCell :=
 def ofPath (path : DyadicPath) : DyadicCell :=
   ⟨path.length, ⟨path.index, path.index_lt_pow_length⟩⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.36dd08075f15 from=translated src=- shape=fe6545dc vocab=3106f4e6
+-/
 @[simp] theorem ofPath_depth (path : DyadicPath) :
     (ofPath path).depth = path.length := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.6f9319101e08 from=translated src=- shape=45d94d13 vocab=27241a08
+-/
 @[simp] theorem ofPath_index (path : DyadicPath) :
     (ofPath path).index.val = path.index := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.0daeed250f40 from=translated src=- shape=aa3da40a vocab=b23539f9
+-/
 @[simp] theorem ofPath_append_false (path : DyadicPath) :
     ofPath (path ++ [false]) = (ofPath path).childLeft := by
   apply ext'
   · simp
   · simp
 
+/--
+@isnad1 id=eq.0h1v.s4.61e7382e59f4 from=translated src=- shape=aa3da40a vocab=744d000c
+-/
 @[simp] theorem ofPath_append_true (path : DyadicPath) :
     ofPath (path ++ [true]) = (ofPath path).childRight := by
   apply ext'
@@ -191,11 +243,16 @@ def decodeDirect (root : IntervalDyadic) (cell : DyadicCell) : IntervalDyadic :=
       linarith [root.le]
     exact mul_nonneg hwidth (zpow_nonneg (by norm_num) _)⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.b90a8bc8057a from=translated src=- shape=cd5f0fc3 vocab=da1deb42
+-/
 @[simp] theorem step_toRat (root : IntervalDyadic) (cell : DyadicCell) :
     (cell.step root).toRat = root.width.toRat * (2 : ℚ) ^ (-(cell.depth : Int)) := by
   simp [step, Dyadic.toRat_scale2]
 
-/-- The exact step at any depth is nonnegative. -/
+/-- The exact step at any depth is nonnegative.
+@isnad1 id=le.0h2v.s4.82f6e77753b2 from=translated src=- shape=ccdfd449 vocab=4eed105e
+-/
 theorem step_toRat_nonneg (root : IntervalDyadic) (depth : Nat) :
     0 ≤ (root.width.scale2 (-(depth : Int))).toRat := by
   rw [Dyadic.toRat_scale2, IntervalDyadic.width_toRat]
@@ -234,12 +291,18 @@ def intervalAt (level : PreparedDyadicLevel) (index : Fin level.cellCount) : Int
     simp only [Dyadic.toRat_add]
     exact le_add_of_nonneg_right level.step_nonneg⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.bd6e321d70bd from=translated src=- shape=c5279e8f vocab=1545b51d
+-/
 @[simp] theorem intervalAt_lo_toRat (level : PreparedDyadicLevel)
     (index : Fin level.cellCount) :
     (level.intervalAt index).lo.toRat =
       level.root.lo.toRat + level.step.toRat * index.val := by
   simp [intervalAt, Dyadic.toRat_add, Dyadic.toRat_mul, Dyadic.toRat_ofInt]
 
+/--
+@isnad1 id=eq.0h2v.s5.e735b0bb16bf from=translated src=- shape=1b4f0f5f vocab=8432dafd
+-/
 @[simp] theorem intervalAt_hi_toRat (level : PreparedDyadicLevel)
     (index : Fin level.cellCount) :
     (level.intervalAt index).hi.toRat =
@@ -247,7 +310,9 @@ def intervalAt (level : PreparedDyadicLevel) (index : Fin level.cellCount) : Int
   simp [intervalAt, Dyadic.toRat_add, Dyadic.toRat_mul, Dyadic.toRat_ofInt]
   ring
 
-/-- Prepared random access agrees with the original direct decoder. -/
+/-- Prepared random access agrees with the original direct decoder.
+@isnad1 id=valueeq.0h2v.s4.2cc9b3e7aa27 from=translated src=- shape=88643eff vocab=b32051ac
+-/
 theorem intervalAt_valueEq_decodeDirect (level : PreparedDyadicLevel)
     (index : Fin level.cellCount) :
     (level.intervalAt index).ValueEq
@@ -282,35 +347,52 @@ private def materializeFrom (level : PreparedDyadicLevel) : Nat → Dyadic → L
 def materialize (level : PreparedDyadicLevel) : List IntervalDyadic :=
   materializeFrom level level.cellCount level.root.lo
 
+/--
+@isnad1 id=eq.0h3v.s3.c82f5d97abf3 from=translated src=- shape=32782eb1 vocab=d6665135
+-/
 @[simp] theorem materializeFrom_length (level : PreparedDyadicLevel) (count : Nat) (lo : Dyadic) :
     (materializeFrom level count lo).length = count := by
   induction count generalizing lo with
   | zero => rfl
   | succ count ih => simp [materializeFrom, ih]
 
+/--
+@isnad1 id=eq.0h1v.s3.88eb97e5d748 from=translated src=- shape=981f0160 vocab=98249184
+-/
 @[simp] theorem materialize_length (level : PreparedDyadicLevel) :
     level.materialize.length = level.cellCount := by
   simp [materialize]
 
 end PreparedDyadicLevel
 
+/--
+@isnad1 id=eq.0h2v.s5.a152efca5e22 from=translated src=- shape=134bf742 vocab=a59f9eff
+-/
 @[simp] theorem decodeDirect_lo_toRat (root : IntervalDyadic) (cell : DyadicCell) :
     (cell.decodeDirect root).lo.toRat =
       root.lo.toRat + (cell.step root).toRat * cell.index.val := by
   simp [decodeDirect, Dyadic.toRat_add, Dyadic.toRat_mul, Dyadic.toRat_ofInt]
 
+/--
+@isnad1 id=eq.0h2v.s6.b2be845cd7d7 from=translated src=- shape=ec495ae0 vocab=a0e46f97
+-/
 @[simp] theorem decodeDirect_hi_toRat (root : IntervalDyadic) (cell : DyadicCell) :
     (cell.decodeDirect root).hi.toRat =
       root.lo.toRat + (cell.step root).toRat * (cell.index.val + 1) := by
   simp [decodeDirect, Dyadic.toRat_add, Dyadic.toRat_mul, Dyadic.toRat_ofInt]
   ring
 
-/-- Direct decoding gives every depth-`n` cell the root width divided by `2^n`. -/
+/-- Direct decoding gives every depth-`n` cell the root width divided by `2^n`.
+@isnad1 id=eq.0h2v.s3.2458df416255 from=translated src=- shape=1bede42a vocab=4760474c
+-/
 theorem decodeDirect_width_toRat (root : IntervalDyadic) (cell : DyadicCell) :
     (cell.decodeDirect root).width.toRat = (cell.step root).toRat := by
   rw [IntervalDyadic.width_toRat, decodeDirect_hi_toRat, decodeDirect_lo_toRat]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s4.aae9117cc5d9 from=translated src=- shape=db7b3411 vocab=8b5d5699
+-/
 theorem childLeft_step_toRat (root : IntervalDyadic) (cell : DyadicCell) :
     (cell.childLeft.step root).toRat = (cell.step root).toRat / 2 := by
   rw [step_toRat, step_toRat]
@@ -320,6 +402,9 @@ theorem childLeft_step_toRat (root : IntervalDyadic) (cell : DyadicCell) :
   norm_num
   ring
 
+/--
+@isnad1 id=eq.0h2v.s4.cb87653bce46 from=translated src=- shape=db7b3411 vocab=20e64734
+-/
 theorem childRight_step_toRat (root : IntervalDyadic) (cell : DyadicCell) :
     (cell.childRight.step root).toRat = (cell.step root).toRat / 2 := by
   rw [step_toRat, step_toRat]
@@ -329,7 +414,9 @@ theorem childRight_step_toRat (root : IntervalDyadic) (cell : DyadicCell) :
   norm_num
   ring
 
-/-- Directly decoding the left child agrees semantically with bisecting the parent. -/
+/-- Directly decoding the left child agrees semantically with bisecting the parent.
+@isnad1 id=valueeq.0h2v.s4.abe6f5b30cac from=translated src=- shape=2ccbd82a vocab=a9b165ac
+-/
 theorem decodeDirect_childLeft (root : IntervalDyadic) (cell : DyadicCell) :
     (cell.childLeft.decodeDirect root).ValueEq (cell.decodeDirect root).bisect.1 := by
   constructor
@@ -347,7 +434,9 @@ theorem decodeDirect_childLeft (root : IntervalDyadic) (cell : DyadicCell) :
     push_cast
     ring
 
-/-- Directly decoding the right child agrees semantically with bisecting the parent. -/
+/-- Directly decoding the right child agrees semantically with bisecting the parent.
+@isnad1 id=valueeq.0h2v.s4.bb5c2a28b594 from=translated src=- shape=2ccbd82a vocab=048ba4c8
+-/
 theorem decodeDirect_childRight (root : IntervalDyadic) (cell : DyadicCell) :
     (cell.childRight.decodeDirect root).ValueEq (cell.decodeDirect root).bisect.2 := by
   constructor
@@ -365,6 +454,9 @@ theorem decodeDirect_childRight (root : IntervalDyadic) (cell : DyadicCell) :
     push_cast
     ring
 
+/--
+@isnad1 id=valueeq.1h2v.s4.2b8ae3d4907f from=translated src=- shape=51aea71f vocab=f52ed6d7
+-/
 theorem valueEq_bisect_left {I J : IntervalDyadic} (h : I.ValueEq J) :
     I.bisect.1.ValueEq J.bisect.1 := by
   constructor
@@ -372,6 +464,9 @@ theorem valueEq_bisect_left {I J : IntervalDyadic} (h : I.ValueEq J) :
   · change I.midpoint.toRat = J.midpoint.toRat
     rw [IntervalDyadic.midpoint_toRat, IntervalDyadic.midpoint_toRat, h.1, h.2]
 
+/--
+@isnad1 id=valueeq.1h2v.s4.bcfa9a9441bd from=translated src=- shape=51aea71f vocab=2284bfb6
+-/
 theorem valueEq_bisect_right {I J : IntervalDyadic} (h : I.ValueEq J) :
     I.bisect.2.ValueEq J.bisect.2 := by
   constructor
@@ -379,6 +474,9 @@ theorem valueEq_bisect_right {I J : IntervalDyadic} (h : I.ValueEq J) :
     rw [IntervalDyadic.midpoint_toRat, IntervalDyadic.midpoint_toRat, h.1, h.2]
   · exact h.2
 
+/--
+@isnad1 id=valueeq.0h1v.s2.c22b163b43cc from=translated src=- shape=0f115577 vocab=2873ce67
+-/
 theorem decodeDirect_root (root : IntervalDyadic) :
     (DyadicCell.root.decodeDirect root).ValueEq root := by
   constructor
@@ -387,7 +485,9 @@ theorem decodeDirect_root (root : IntervalDyadic) :
     simp only [DyadicCell.root, step, Dyadic.toRat_scale2, IntervalDyadic.width_toRat]
     norm_num
 
-/-- Recursive bisection and direct affine decoding agree at every finite address. -/
+/-- Recursive bisection and direct affine decoding agree at every finite address.
+@isnad1 id=valueeq.0h2v.s3.6867fb7852a5 from=translated src=- shape=909ff325 vocab=17b3b5aa
+-/
 theorem decodeByBisection_valueEq_decodeDirect (root : IntervalDyadic) (path : DyadicPath) :
     (path.decodeByBisection root).ValueEq ((ofPath path).decodeDirect root) := by
   induction path using List.reverseRecOn with
@@ -425,14 +525,18 @@ def ownerSet (root : IntervalDyadic) (depth : Nat) (index : Fin (2 ^ depth)) : S
 def lastIndex (depth : Nat) : Fin (2 ^ depth) :=
   ⟨2 ^ depth - 1, Nat.sub_lt (by positivity) (by norm_num)⟩
 
-/-- Canonical ownership never enlarges the closed proof cell. -/
+/-- Canonical ownership never enlarges the closed proof cell.
+@isnad1 id=le.0h3v.s5.e6bfabe77889 from=translated src=- shape=e72c3436 vocab=13e7a8cd
+-/
 theorem ownerSet_subset_closedCell (root : IntervalDyadic) (depth : Nat)
     (index : Fin (2 ^ depth)) :
     ownerSet root depth index ⊆ (closedCell root depth index).toSet := by
   intro x hx
   exact hx.1
 
-/-- Distinct cells cannot canonically own the same point. -/
+/-- Distinct cells cannot canonically own the same point.
+@isnad1 id=disjoint.1h4v.s6.4fb0ca00cd87 from=translated src=- shape=bdc6510c vocab=12145039
+-/
 theorem ownerSet_disjoint {root : IntervalDyadic} {depth : Nat}
     {i j : Fin (2 ^ depth)} (hne : i ≠ j) :
     Disjoint (ownerSet root depth i) (ownerSet root depth j) := by
@@ -443,7 +547,9 @@ theorem ownerSet_disjoint {root : IntervalDyadic} {depth : Nat}
   exact hne (le_antisymm hij hji)
 
 /-- A point contained in a higher-index cell cannot be owned by a lower cell.
-This is the abstract seam-welding rule. -/
+This is the abstract seam-welding rule.
+@isnad1 id=not.2h5v.s6.d6beb86ecf47 from=translated src=- shape=83e54298 vocab=85bd2780
+-/
 theorem not_owns_of_mem_higher {root : IntervalDyadic} {depth : Nat}
     {i j : Fin (2 ^ depth)} {x : ℝ} (hij : i < j)
     (hj : x ∈ closedCell root depth j) :
@@ -452,7 +558,9 @@ theorem not_owns_of_mem_higher {root : IntervalDyadic} {depth : Nat}
   exact (not_le_of_gt hij) (hi.2 j hj)
 
 /-- Any point in the final closed cell is owned by that cell. In particular,
-the root's right endpoint remains owned rather than being discarded. -/
+the root's right endpoint remains owned rather than being discarded.
+@isnad1 id=owns.1h3v.s4.810215a4d63f from=translated src=- shape=e0aa0478 vocab=288468c8
+-/
 theorem last_owns_of_mem {root : IntervalDyadic} {depth : Nat} {x : ℝ}
     (hx : x ∈ closedCell root depth (lastIndex depth)) :
     Owns root depth (lastIndex depth) x := by
@@ -474,7 +582,9 @@ private theorem exists_path_mem (root : IntervalDyadic) (depth : Nat) {x : ℝ}
       · obtain ⟨path, hlen, hmem⟩ := ih (root := root.bisect.2) hright
         exact ⟨true :: path, by simp [hlen], by simpa [DyadicPath.decodeByBisection] using hmem⟩
 
-/-- Every point of the root lies in at least one fixed-depth closed proof cell. -/
+/-- Every point of the root lies in at least one fixed-depth closed proof cell.
+@isnad1 id=ex.1h3v.s5.9ef2e6923d77 from=translated src=- shape=f7aae933 vocab=f4a915c4
+-/
 theorem exists_mem_closedCell (root : IntervalDyadic) (depth : Nat) {x : ℝ}
     (hx : x ∈ root) :
     ∃ index : Fin (2 ^ depth), x ∈ closedCell root depth index := by
@@ -491,7 +601,9 @@ theorem exists_mem_closedCell (root : IntervalDyadic) (depth : Nat) {x : ℝ}
     apply PreparedDyadicLevel.intervalAt_valueEq_decodeDirect
   exact (hprepared.mem_iff x).mpr ((hrecursive.mem_iff x).mp hmem)
 
-/-- Every root point has a unique canonical owner at each fixed depth. -/
+/-- Every root point has a unique canonical owner at each fixed depth.
+@isnad1 id=existsun.1h3v.s5.f7ad086dcd12 from=translated src=- shape=70962a06 vocab=a74eebfe
+-/
 theorem exists_unique_owner (root : IntervalDyadic) (depth : Nat) {x : ℝ}
     (hx : x ∈ root) :
     ∃! index : Fin (2 ^ depth), Owns root depth index x := by
@@ -514,7 +626,9 @@ theorem exists_unique_owner (root : IntervalDyadic) (depth : Nat) {x : ℝ}
       exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, hother.1⟩) : other ≤ owner)
       (hother.2 owner hownerMem)
 
-/-- Canonical ownership covers the entire root interval. -/
+/-- Canonical ownership covers the entire root interval.
+@isnad1 id=ex.1h3v.s6.a529a10490d1 from=translated src=- shape=63821af0 vocab=b604a7e2
+-/
 theorem mem_ownerSet_of_mem_root (root : IntervalDyadic) (depth : Nat) {x : ℝ}
     (hx : x ∈ root) :
     ∃ index : Fin (2 ^ depth), x ∈ ownerSet root depth index := by

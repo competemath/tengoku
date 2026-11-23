@@ -14,17 +14,26 @@ open Set Real EulerSmoothLimit EulerPacketGrowth
 def primaryAmplitude (δ hchild : ℝ) (r w : ℝ → Space) (t : ℝ) : ℝ :=
   δ*hchild/(‖r t‖*‖w t‖)
 
+/--
+@isnad1 id=le.2h5v.s5.f70702c4bb77 from=translated src=- shape=fd7ee3bf vocab=684990f1
+-/
 theorem primaryAmplitude_nonneg (δ hchild : ℝ) (r w : ℝ → Space) (t : ℝ)
     (hδ : 0 ≤ δ) (hh : 0 ≤ hchild) : 0 ≤ primaryAmplitude δ hchild r w t := by
   unfold primaryAmplitude
   positivity
 
+/--
+@isnad1 id=eq.1h5v.s7.14a471bd0b0d from=translated src=- shape=adc92212 vocab=8a83138c
+-/
 theorem primaryAmplitude_target_identity (δ hchild : ℝ) (r w : ℝ → Space) (t : ℝ)
     (ht : 0 < ‖r t‖*‖w t‖) :
     primaryAmplitude δ hchild r w t*(‖r t‖*‖w t‖) = δ*hchild := by
   unfold primaryAmplitude
   exact div_mul_cancel₀ _ (ne_of_gt ht)
 
+/--
+@isnad1 id=le.5h8v.s8.d55bad0eb680 from=translated src=- shape=648807eb vocab=7f8fcc73
+-/
 theorem primaryAmplitude_exponential_bound (r w : ℝ → Space)
     {δ hchild s₀ Θ x t : ℝ} (hδ : 0 ≤ δ) (hh : 0 ≤ hchild) (hs₀ : 0 < s₀) (hΘ : 0 < Θ)
     (hgrowth : s₀*exp x ≤ 4*Θ*(‖r t‖*‖w t‖)) :
@@ -33,7 +42,9 @@ theorem primaryAmplitude_exponential_bound (r w : ℝ → Space)
   simpa only [primaryAmplitude, mul_assoc] using hb
 
 /-- The profile-weighted amplitude is bounded uniformly on the full
-forward horizon, including before scaled time one. -/
+forward horizon, including before scaled time one.
+@isnad1 id=le.13h12v.s9.ae571546b625 from=translated src=- shape=db486e70 vocab=f654f9e8
+-/
 theorem primaryAmplitude_profile_bound (r w : ℝ → Space)
     {δ hchild s₀ σ T H targetTime : ℝ} {Z Z₁ : ℝ → ℝ}
     (hδ : 0 ≤ δ) (hh : 0 ≤ hchild) (hs₀ : 0 < s₀)

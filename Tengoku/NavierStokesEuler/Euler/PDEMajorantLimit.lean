@@ -19,7 +19,9 @@ open scoped Topology
 variable (period : ℝ) [Fact (0 < period)]
 
 /-- Actual smooth-in-time finite-Sobolev PDE approximations imply the limiting signed integral energy bound.
-The premises include their literal PDEs and strong convergence, never an assumed energy inequality. -/
+The premises include their literal PDEs and strong convergence, never an assumed energy inequality.
+@isnad1 id=le.33h32v.s21.0fac494bfdc4 from=translated src=- shape=73ef470e vocab=db4aeb3b
+-/
 theorem weighted_pde_majorized_subinterval_limit {α β : Type*} [Fintype α] [Fintype β] {q : ℕ} (hq : 3 ≤ q)
     (T : ℝ) (hT : 0 ≤ T) (s t : ℝ) (h0s : 0 ≤ s) (hst : s ≤ t) (htT : t ≤ T) (order : α → ℕ) (a b d : C(Icc (0 : ℝ) T, ℝ)) (ρ ρ' : ℝ → ℝ)
     (κ : ℝ) (m : Vector3) (K G : ℝ → SmoothCoefficient period)

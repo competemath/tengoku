@@ -50,7 +50,9 @@ def checkLimitInterval (approx tail : ℕ → ℚ) (N : ℕ) (lo hi : ℚ) : Boo
 
 /-- Golden theorem for directed-limit certificates: a successful
 `checkLimitInterval` at any single index yields a two-sided real enclosure
-of the limit object. -/
+of the limit object.
+@isnad1 id=and.3h6v.s6.459e5d3667cb from=translated src=- shape=91ff3e8c vocab=3d6b9c01
+-/
 theorem verify_limit_interval {x : ℝ} {approx tail : ℕ → ℚ}
     (hupper : ∀ N, x ≤ (approx N : ℝ))
     (hlower : ∀ N, (approx N : ℝ) - (tail N : ℝ) ≤ x)
@@ -83,7 +85,9 @@ structure DirectedLimitCert where
 
 namespace DirectedLimitCert
 
-/-- Golden theorem, packaged form. -/
+/-- Golden theorem, packaged form.
+@isnad1 id=and.3h6v.s5.b5394d6437b5 from=translated src=- shape=87f43092 vocab=7550c8b4
+-/
 theorem verify_interval (C : DirectedLimitCert) {approx tail : ℕ → ℚ}
     (hA : C.approx = approx) (hT : C.tail = tail)
     (N : ℕ) (lo hi : ℚ)
@@ -92,7 +96,9 @@ theorem verify_interval (C : DirectedLimitCert) {approx tail : ℕ → ℚ}
   verify_limit_interval (hA ▸ C.limit_le_approx)
     (by rw [← hA, ← hT]; exact C.approx_sub_tail_le_limit) N lo hi hcheck
 
-/-- Vanishing tails imply convergence of the truncations to the limit. -/
+/-- Vanishing tails imply convergence of the truncations to the limit.
+@isnad1 id=tendsto.1h1v.s5.bd8caa47e01f from=translated src=- shape=5824287b vocab=039358e9
+-/
 theorem approx_tendsto_limit (C : DirectedLimitCert)
     (htail : Tendsto (fun N => (C.tail N : ℝ)) atTop (𝓝 0)) :
     Tendsto (fun N => (C.approx N : ℝ)) atTop (𝓝 C.limit) := by

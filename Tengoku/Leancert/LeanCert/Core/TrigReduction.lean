@@ -36,33 +36,43 @@ def twoPiRatLo : ℚ := 2 * piRatLo
 /-- Upper bound for 2π -/
 def twoPiRatHi : ℚ := 2 * piRatHi
 
-/-- `piRatLo < π`, proved from Mathlib's decimal π bounds. -/
+/-- `piRatLo < π`, proved from Mathlib's decimal π bounds.
+@isnad1 id=lt.0h0v.s3.f04dbb825476 from=translated src=- shape=28fc0566 vocab=a4ff2ee2
+-/
 theorem piRatLo_lt_pi : (piRatLo : ℝ) < Real.pi := by
   have h₁ : (piRatLo : ℝ) < (3.14159265358979323846 : ℝ) := by
     norm_num [piRatLo]
   exact lt_trans h₁ Real.pi_gt_d20
 
-/-- `π < piRatHi`, proved from Mathlib's decimal π bounds. -/
+/-- `π < piRatHi`, proved from Mathlib's decimal π bounds.
+@isnad1 id=lt.0h0v.s3.51456e00deb7 from=translated src=- shape=dfaa3aa7 vocab=d8c13f69
+-/
 theorem pi_lt_piRatHi : Real.pi < (piRatHi : ℝ) := by
   have h₁ : (3.14159265358979323847 : ℝ) < (piRatHi : ℝ) := by
     norm_num [piRatHi]
   exact lt_trans Real.pi_lt_d20 h₁
 
-/-- twoPiRatLo < 2π -/
+/-- twoPiRatLo < 2π
+@isnad1 id=lt.0h0v.s4.9874d789c68c from=translated src=- shape=f88084c2 vocab=387c177f
+-/
 theorem twoPiRatLo_lt_two_pi : (twoPiRatLo : ℝ) < 2 * Real.pi := by
   unfold twoPiRatLo
   simp only [Rat.cast_mul, Rat.cast_ofNat]
   have h := piRatLo_lt_pi
   linarith
 
-/-- 2π < twoPiRatHi -/
+/-- 2π < twoPiRatHi
+@isnad1 id=lt.0h0v.s4.63ba14edbe13 from=translated src=- shape=b6e781e9 vocab=dbb2b752
+-/
 theorem two_pi_lt_twoPiRatHi : 2 * Real.pi < (twoPiRatHi : ℝ) := by
   unfold twoPiRatHi
   simp only [Rat.cast_mul, Rat.cast_ofNat]
   have h := pi_lt_piRatHi
   linarith
 
-/-- twoPiRatLo ≤ twoPiRatHi -/
+/-- twoPiRatLo ≤ twoPiRatHi
+@isnad1 id=le.0h0v.s2.536755f98440 from=translated src=- shape=54c8eceb vocab=035eb176
+-/
 theorem twoPiRatLo_le_twoPiRatHi : twoPiRatLo ≤ twoPiRatHi := by
   unfold twoPiRatLo twoPiRatHi piRatLo piRatHi
   norm_num
@@ -99,7 +109,9 @@ def reduceToMainPeriod (I : IntervalRat) : IntervalRat × ℤ :=
 
 /-! ### Correctness of range reduction -/
 
-/-- If x ∈ I, then x - 2πk ∈ shiftInterval I k. -/
+/-- If x ∈ I, then x - 2πk ∈ shiftInterval I k.
+@isnad1 id=mem.1h3v.s5.1dc4cf56cedf from=translated src=- shape=fdef543f vocab=bd9c1d45
+-/
 theorem mem_shiftInterval_of_mem {x : ℝ} {I : IntervalRat} {k : ℤ}
     (hx : x ∈ I) : x - 2 * Real.pi * k ∈ shiftInterval I k := by
   simp only [IntervalRat.mem_def] at hx ⊢
@@ -136,7 +148,9 @@ theorem mem_shiftInterval_of_mem {x : ℝ} {I : IntervalRat} {k : ℤ}
       simp only [Rat.cast_sub, Rat.cast_mul, Rat.cast_intCast]
       linarith
 
-/-- Convenience form: if x ∈ I, then x - 2πk ∈ (reduceToMainPeriod I).1. -/
+/-- Convenience form: if x ∈ I, then x - 2πk ∈ (reduceToMainPeriod I).1.
+@isnad1 id=mem.1h2v.s5.450115ad7b47 from=translated src=- shape=9354b22e vocab=6c694ff6
+-/
 theorem mem_reduceToMainPeriod_of_mem {x : ℝ} {I : IntervalRat} (hx : x ∈ I) :
     x - 2 * Real.pi * (reduceToMainPeriod I).2 ∈ (reduceToMainPeriod I).1 := by
   unfold reduceToMainPeriod

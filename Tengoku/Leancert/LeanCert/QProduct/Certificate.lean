@@ -21,7 +21,9 @@ namespace LeanCert.QProduct
 def checkFiniteIntegralInterval (S : Finset Nat) (lo hi : ℚ) : Bool :=
   decide (lo ≤ finiteIntegralRat S) && decide (finiteIntegralRat S ≤ hi)
 
-/-- Golden theorem for exact finite q-product interval certificates. -/
+/-- Golden theorem for exact finite q-product interval certificates.
+@isnad1 id=and.1h3v.s5.8364f1440813 from=translated src=- shape=583fbd39 vocab=30fe84e5
+-/
 theorem verify_finiteIntegral_interval (S : Finset Nat) (lo hi : ℚ)
     (hcheck : checkFiniteIntegralInterval S lo hi = true) :
     (lo : ℝ) ≤ F S ∧ F S ≤ (hi : ℝ) := by
@@ -37,7 +39,9 @@ def checkFiniteIntegralUpper (S : Finset Nat) (hi : ℚ) : Bool :=
 def checkFiniteIntegralLower (S : Finset Nat) (lo : ℚ) : Bool :=
   decide (lo ≤ finiteIntegralRat S)
 
-/-- Golden theorem for exact finite q-product upper-bound certificates. -/
+/-- Golden theorem for exact finite q-product upper-bound certificates.
+@isnad1 id=le.1h2v.s4.d20c4f440836 from=translated src=- shape=5912b0c6 vocab=0ab14134
+-/
 theorem verify_finiteIntegral_upper (S : Finset Nat) (hi : ℚ)
     (hcheck : checkFiniteIntegralUpper S hi = true) :
     F S ≤ (hi : ℝ) := by
@@ -45,7 +49,9 @@ theorem verify_finiteIntegral_upper (S : Finset Nat) (hi : ℚ)
   rw [← finiteIntegralRat_correct]
   exact_mod_cast hcheck
 
-/-- Golden theorem for exact finite q-product lower-bound certificates. -/
+/-- Golden theorem for exact finite q-product lower-bound certificates.
+@isnad1 id=le.1h2v.s4.964d8a5636ac from=translated src=- shape=6ada9f52 vocab=f10f9e39
+-/
 theorem verify_finiteIntegral_lower (S : Finset Nat) (lo : ℚ)
     (hcheck : checkFiniteIntegralLower S lo = true) :
     (lo : ℝ) ≤ F S := by

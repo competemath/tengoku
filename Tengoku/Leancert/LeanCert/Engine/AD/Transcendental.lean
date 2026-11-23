@@ -60,7 +60,9 @@ noncomputable def exp (d : DualInterval) : DualInterval :=
 /-- The interval [0, 1] used to bound derivative factors in (0, 1] -/
 def unitInterval : IntervalRat := ⟨0, 1, by norm_num⟩
 
-/-- The derivative factor for arctan: 1/(1+x²) is in [0, 1] -/
+/-- The derivative factor for arctan: 1/(1+x²) is in [0, 1]
+@isnad1 id=mem.0h1v.s5.ecb7123fc20c from=translated src=- shape=5ed2c19e vocab=6884628f
+-/
 theorem arctan_deriv_factor_mem_unitInterval (y : ℝ) :
     1 / (1 + y ^ 2) ∈ unitInterval := by
   simp only [unitInterval, IntervalRat.mem_def, Rat.cast_zero, Rat.cast_one]
@@ -70,7 +72,9 @@ theorem arctan_deriv_factor_mem_unitInterval (y : ℝ) :
   · rw [div_le_one hpos]
     nlinarith [sq_nonneg y]
 
-/-- The derivative factor for arsinh: 1/√(1+x²) is in [0, 1] -/
+/-- The derivative factor for arsinh: 1/√(1+x²) is in [0, 1]
+@isnad1 id=mem.0h1v.s5.f0a9cd9cae03 from=translated src=- shape=aa22e41a vocab=1db5ace4
+-/
 theorem arsinh_deriv_factor_mem_unitInterval (y : ℝ) :
     (Real.sqrt (1 + y ^ 2))⁻¹ ∈ unitInterval := by
   simp only [unitInterval, IntervalRat.mem_def, Rat.cast_zero, Rat.cast_one]
@@ -227,7 +231,9 @@ def sqrtDerivCoefBound (lo : ℚ) (hpos : 0 < lo) : IntervalRat :=
   else
     ⟨0, 1 / 2, by norm_num⟩
 
-/-- For lo > 0, the derivative coefficient 1/(2*sqrt(x)) is bounded above for x ≥ lo. -/
+/-- For lo > 0, the derivative coefficient 1/(2*sqrt(x)) is bounded above for x ≥ lo.
+@isnad1 id=le.2h2v.s6.695de994f747 from=translated src=- shape=48199e6c vocab=985d7ac8
+-/
 theorem sqrtDerivCoef_bound {x lo : ℝ} (hlo_pos : 0 < lo) (hx_ge : lo ≤ x) :
     1 / (2 * Real.sqrt x) ≤ max (1 / (2 * lo)) (1 / 2) := by
   have hx_pos : 0 < x := lt_of_lt_of_le hlo_pos hx_ge

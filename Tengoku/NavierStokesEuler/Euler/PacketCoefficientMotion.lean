@@ -12,7 +12,9 @@ namespace EulerPacketMovingFrame
 open Set EulerPacketCoefficientControl EulerClosedIntervalDerivativeExtension
 
 /-- The existing quantitative motion estimate applies on closed intervals
-without assuming an extension of the original coefficient paths. -/
+without assuming an extension of the original coefficient paths.
+@isnad1 id=other.17h12v.s10.2b9b87472c2e from=translated src=- shape=3eb60b3e vocab=44964bd5
+-/
 theorem normalized_motion_errors_within
     {a ε Θ G d β : ℝ} {B E : ℝ → Fin 3 → Fin 3 → ℝ}
     {h h₁ b₁ k₁ : ℝ → ℝ}

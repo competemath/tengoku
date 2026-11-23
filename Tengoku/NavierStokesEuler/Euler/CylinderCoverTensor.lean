@@ -16,6 +16,9 @@ open scoped ContDiff
 variable (P : ℝ) {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
 
 omit [NormedAddCommGroup V] [NormedSpace ℝ V] in
+/--
+@isnad1 id=eq.0h3v.s10.c15973753881 from=translated src=- shape=4097ba3b vocab=0e4f9b74
+-/
 theorem coverField_eq_euclidean (f : LiftDomain P → V) :
     (fun x : LiftTangent => f (coveringMap P x)) =
       euclideanLift P f 0 ∘ coordinateEquiv.symm.toContinuousLinearMap := by
@@ -25,6 +28,9 @@ theorem coverField_eq_euclidean (f : LiftDomain P → V) :
     Prod.fst_zero, Prod.snd_zero, zero_add]
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.eafa7c1e16e4 from=translated src=- shape=836cec9b vocab=d41c7e23
+-/
 theorem coverField_word {n : ℕ} (w : Fin n → Fin 4) (f : LiftDomain P → V)
     (hf : ∀ x, ContDiff ℝ ∞ (localFieldLift P f x)) (x : LiftTangent) :
     iteratedFieldDerivative P w f (coveringMap P x) =
@@ -46,6 +52,9 @@ theorem coverField_word {n : ℕ} (w : Fin n → Fin 4) (f : LiftDomain P → V)
     ContinuousMultilinearMap.compContinuousLinearMap_apply,
     ContinuousLinearEquiv.coe_coe, standardDirection, coveringMap] using he
 
+/--
+@isnad1 id=le.1h5v.s11.6c13150c9464 from=translated src=- shape=bd700a92 vocab=68bfedf7
+-/
 theorem coverField_tensor_norm_le (n : ℕ) (f : LiftDomain P → V)
     (hf : ∀ x, ContDiff ℝ ∞ (localFieldLift P f x)) (x : LiftTangent) :
     ‖iteratedFDeriv ℝ n (fun y => f (coveringMap P y)) x‖ ≤

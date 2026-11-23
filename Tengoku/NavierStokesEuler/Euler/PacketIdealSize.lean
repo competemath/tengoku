@@ -16,6 +16,9 @@ open Set EulerPacketGrowth
 def idealPrimarySize (σ : ℝ) (Z : ℝ → ℝ) (t : ℝ) : ℝ :=
   Real.sqrt (1+(σ^2*t^2)^2)*Z t
 
+/--
+@isnad1 id=and.1h1v.s6.37e053050e24 from=translated src=- shape=99744080 vocab=1c908215
+-/
 theorem quadratic_weight_sqrt {p : ℝ} (hp : 0 ≤ p) :
     Real.sqrt (1+p^2) ≤ 1+p ∧ 1+p ≤ 2*Real.sqrt (1+p^2) := by
   constructor
@@ -24,6 +27,9 @@ theorem quadratic_weight_sqrt {p : ℝ} (hp : 0 ≤ p) :
     have hp' : p ≤ Real.sqrt (1+p^2) := Real.le_sqrt_of_sq_le (by linarith)
     linarith only [h1, hp']
 
+/--
+@isnad1 id=monotone.6h3v.s8.b2c290f8a970 from=translated src=- shape=82184f12 vocab=8e5d272e
+-/
 theorem equation30_polynomial_size_monotone {σ : ℝ} {Z Z₁ : ℝ → ℝ}
     (hσ : 0 < σ) (hσsmall : σ ≤ 1/4)
     (hZ : ∀ t, 0 ≤ t → HasDerivAt Z (Z₁ t) t)
@@ -70,7 +76,9 @@ theorem equation30_polynomial_size_monotone {σ : ℝ} {Z Z₁ : ℝ → ℝ}
     · exact hpostW s t (le_of_not_ge hspre) hst
 
 /-- The ideal physical primary size is bounded by twice its later size,
-uniformly in the initial nonnegative scalar slope. -/
+uniformly in the initial nonnegative scalar slope.
+@isnad1 id=le.8h5v.s8.0ac055ebc821 from=translated src=- shape=e7969276 vocab=e815988e
+-/
 theorem equation30_ideal_size_comparison {σ s t : ℝ} {Z Z₁ : ℝ → ℝ}
     (hσ : 0 < σ) (hσsmall : σ ≤ 1/4)
     (hZ : ∀ t, 0 ≤ t → HasDerivAt Z (Z₁ t) t)

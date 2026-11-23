@@ -51,6 +51,9 @@ noncomputable def finEnv {n : Nat} (x : Fin n → ℝ) : Nat → ℝ :=
 noncomputable def evalFin {n : Nat} (e : Expr) (x : Fin n → ℝ) : ℝ :=
   Expr.eval (finEnv x) e
 
+/--
+@isnad1 id=differen.1h2v.s6.8cff5468d5be from=translated src=- shape=1c96783b vocab=790065d8
+-/
 theorem evalFin_differentiable {n : Nat} (e : Expr) (h : ADSupported e) :
     Differentiable ℝ (evalFin (n := n) e) := by
   induction h with
@@ -84,6 +87,9 @@ theorem evalFin_differentiable {n : Nat} (e : Expr) (h : ADSupported e) :
       rw [show evalFin (n := n) (.exp _) = Real.exp ∘ evalFin (n := n) _ from rfl]
       exact Real.differentiable_exp.comp ih
 
+/--
+@isnad1 id=eq.0h4v.s5.7ff2b1c1bfc9 from=translated src=- shape=c887f854 vocab=971895fa
+-/
 theorem finEnv_update {n : Nat} (x : Fin n → ℝ) (j : Fin n) (t : ℝ) :
     finEnv (Function.update x j t) = Expr.updateVar (finEnv x) j.val t := by
   funext i
@@ -98,6 +104,9 @@ theorem finEnv_update {n : Nat} (x : Fin n → ℝ) (j : Fin n) (t : ℝ) :
   · have hij : i ≠ j.val := by omega
     simp [finEnv, Expr.updateVar, hi, hij]
 
+/--
+@isnad1 id=eq.1h4v.s8.55c60bf84b76 from=translated src=- shape=6edfb352 vocab=6a4071c8
+-/
 theorem fderiv_single_eq_deriv_evalAlong {n : Nat} (e : Expr) (h : ADSupported e)
     (x : Fin n → ℝ) (j : Fin n) :
     fderiv ℝ (evalFin (n := n) e) x (Pi.single j 1) =
@@ -119,6 +128,9 @@ theorem fderiv_single_eq_deriv_evalAlong {n : Nat} (e : Expr) (h : ADSupported e
 noncomputable def systemEval {n : Nat} (F : Fin n → Expr) (x : Fin n → ℝ) : Fin n → ℝ :=
   fun i => evalFin (F i) x
 
+/--
+@isnad1 id=differen.1h2v.s7.eaabfeb5200a from=translated src=- shape=da255212 vocab=eb324675
+-/
 theorem systemEval_differentiable {n : Nat} (F : Fin n → Expr)
     (h : ∀ i, ADSupported (F i)) : Differentiable ℝ (systemEval F) := by
   rw [differentiable_pi]
@@ -129,6 +141,9 @@ noncomputable def jacobianAt {n : Nat} (F : Fin n → Expr) (x : Fin n → ℝ) 
     Matrix (Fin n) (Fin n) ℝ :=
   LinearMap.toMatrix' (fderiv ℝ (systemEval F) x).toLinearMap
 
+/--
+@isnad1 id=eq.1h5v.s6.1cfa5cba7bde from=translated src=- shape=ce668e9e vocab=09ead221
+-/
 theorem jacobianAt_apply {n : Nat} (F : Fin n → Expr) (h : ∀ i, ADSupported (F i))
     (x : Fin n → ℝ) (i j : Fin n) :
     jacobianAt F x i j = deriv (Expr.evalAlong (F i) (finEnv x) j.val) (x j) := by
@@ -151,6 +166,9 @@ def intervalJacobian {n : Nat} (F : Fin n → Expr) (X : Fin n → IntervalRat)
     (cfg : EvalConfig := {}) : Matrix (Fin n) (Fin n) IntervalRat :=
   fun i j => Optimization.derivIntervalCoreN (F i) (finBoxEnv X) j.val cfg
 
+/--
+@isnad1 id=mem.1h4v.s4.b347943850b8 from=translated src=- shape=105f3807 vocab=11be5abd
+-/
 theorem finEnv_mem_finBoxEnv {n : Nat} {x : Fin n → ℝ} {X : Fin n → IntervalRat}
     (hx : FinBoxMem x X) : ∀ i, finEnv x i ∈ finBoxEnv X i := by
   intro i
@@ -158,6 +176,9 @@ theorem finEnv_mem_finBoxEnv {n : Nat} {x : Fin n → ℝ} {X : Fin n → Interv
   · simpa [finEnv, finBoxEnv, hi] using hx ⟨i, hi⟩
   · simpa [finEnv, finBoxEnv, hi] using IntervalRat.mem_singleton 0
 
+/--
+@isnad1 id=mem.2h7v.s5.eaa05ea13db5 from=translated src=- shape=d9cde655 vocab=493f3308
+-/
 theorem jacobianAt_mem_intervalJacobian {n : Nat} (F : Fin n → Expr)
     (h : ∀ i, ADSupported (F i)) (X : Fin n → IntervalRat)
     (x : Fin n → ℝ) (hx : FinBoxMem x X) (cfg : EvalConfig) (i j : Fin n) :
@@ -175,6 +196,9 @@ noncomputable def newtonMap {n : Nat} (Y : Matrix (Fin n) (Fin n) ℝ)
     (F : Fin n → Expr) (x : Fin n → ℝ) : Fin n → ℝ :=
   x - Matrix.mulVec Y (systemEval F x)
 
+/--
+@isnad1 id=differen.1h3v.s7.ab71d77bf3bc from=translated src=- shape=4a778fdc vocab=7f34abd8
+-/
 theorem newtonMap_differentiable {n : Nat} (Y : Matrix (Fin n) (Fin n) ℝ)
     (F : Fin n → Expr) (h : ∀ i, ADSupported (F i)) :
     Differentiable ℝ (newtonMap Y F) := by
@@ -185,6 +209,9 @@ theorem newtonMap_differentiable {n : Nat} (Y : Matrix (Fin n) (Fin n) ℝ)
     rfl]
   exact differentiable_id.sub hY
 
+/--
+@isnad1 id=eq.1h4v.s10.2f69232073a0 from=translated src=- shape=3aabacb3 vocab=de09eeb8
+-/
 theorem newtonMap_fderiv_matrix {n : Nat} (Y : Matrix (Fin n) (Fin n) ℝ)
     (F : Fin n → Expr) (h : ∀ i, ADSupported (F i)) (x : Fin n → ℝ) :
     LinearMap.toMatrix' (fderiv ℝ (newtonMap Y F) x).toLinearMap =
@@ -212,6 +239,9 @@ theorem newtonMap_fderiv_matrix {n : Nat} (Y : Matrix (Fin n) (Fin n) ℝ)
 def finBoxSet {n : Nat} (X : Fin n → IntervalRat) : Set (Fin n → ℝ) :=
   {x | FinBoxMem x X}
 
+/--
+@isnad1 id=isclosed.0h2v.s4.2da29022b461 from=translated src=- shape=6119df9a vocab=18dbc6cb
+-/
 theorem finBoxSet_closed {n : Nat} (X : Fin n → IntervalRat) : IsClosed (finBoxSet X) := by
   have hi : ∀ i : Fin n, IsClosed {x : Fin n → ℝ | x i ∈ X i} := by
     intro i
@@ -223,6 +253,9 @@ theorem finBoxSet_closed {n : Nat} (X : Fin n → IntervalRat) : IsClosed (finBo
   rw [← heq]
   exact hinter
 
+/--
+@isnad1 id=convex.0h2v.s5.7e2430932dca from=translated src=- shape=a001b2d1 vocab=4e86a7d0
+-/
 theorem finBoxSet_convex {n : Nat} (X : Fin n → IntervalRat) : Convex ℝ (finBoxSet X) := by
   intro x hx y hy a b ha hb hab i
   simp only [finBoxSet, Set.mem_ofPred_eq, FinBoxMem, IntervalRat.mem_def] at hx hy ⊢
@@ -247,6 +280,9 @@ theorem finBoxSet_convex {n : Nat} (X : Fin n → IntervalRat) : Convex ℝ (fin
           _ = 1 * (X i).hi := by rw [hab]
           _ = _ := by ring
 
+/--
+@isnad1 id=existsun.6h5v.s9.c075e507ecf7 from=translated src=- shape=33836320 vocab=68b061db
+-/
 theorem contraction_unique_fixedPoint_in_finBox {n : Nat}
     (X : Fin n → IntervalRat) (m : Fin n → ℝ) (hm : FinBoxMem m X)
     (g : (Fin n → ℝ) → (Fin n → ℝ)) (hmap : Set.MapsTo g (finBoxSet X) (finBoxSet X))
@@ -289,6 +325,9 @@ def preconditionedJacobian {n : Nat} (Y : Matrix (Fin n) (Fin n) ℚ)
     (J : Matrix (Fin n) (Fin n) IntervalRat) : Matrix (Fin n) (Fin n) IntervalRat :=
   fun i j => IntervalRat.sub (intervalIdentity i j) (ratMulInterval Y J i j)
 
+/--
+@isnad1 id=mem.1h4v.s6.edd7d84b8cb7 from=translated src=- shape=dc705da0 vocab=b9fe01a0
+-/
 theorem mem_interval_sum {ι : Type*} [Fintype ι] (s : Finset ι)
     (x : ι → ℝ) (I : ι → IntervalRat) (h : ∀ i ∈ s, x i ∈ I i) :
     (∑ i ∈ s, x i) ∈ ∑ i ∈ s, I i := by
@@ -306,6 +345,9 @@ theorem mem_interval_sum {ι : Type*} [Fintype ι] (s : Finset ι)
       exact IntervalRat.mem_add (h a (Or.inl rfl))
         (ih fun i hi => h i (Or.inr hi))
 
+/--
+@isnad1 id=mem.1h6v.s6.0ed692be6319 from=translated src=- shape=3818cd3c vocab=bd71b5fe
+-/
 theorem mem_ratMulInterval {n : Nat} (Y : Matrix (Fin n) (Fin n) ℚ)
     (Jreal : Matrix (Fin n) (Fin n) ℝ) (J : Matrix (Fin n) (Fin n) IntervalRat)
     (hJ : ∀ i j, Jreal i j ∈ J i j) (i j : Fin n) :
@@ -315,6 +357,9 @@ theorem mem_ratMulInterval {n : Nat} (Y : Matrix (Fin n) (Fin n) ℚ)
     (fun k => IntervalRat.scale (Y i k) (J k j)) fun k _ =>
       IntervalRat.mem_scale (Y i k) (hJ k j)
 
+/--
+@isnad1 id=mem.1h6v.s7.490b4268cdd4 from=translated src=- shape=4907016a vocab=19f256f2
+-/
 theorem mem_preconditionedJacobian {n : Nat} (Y : Matrix (Fin n) (Fin n) ℚ)
     (Jreal : Matrix (Fin n) (Fin n) ℝ) (J : Matrix (Fin n) (Fin n) IntervalRat)
     (hJ : ∀ i j, Jreal i j ∈ J i j) (i j : Fin n) :
@@ -335,6 +380,9 @@ def intervalMatrixRowBound {n : Nat} (A : Matrix (Fin n) (Fin n) IntervalRat)
 def intervalMatrixBound {n : Nat} (A : Matrix (Fin n) (Fin n) IntervalRat) : ℚ :=
   (List.ofFn fun i => intervalMatrixRowBound A i).foldl max 0
 
+/--
+@isnad1 id=le.1h2v.s4.81213764baa1 from=translated src=- shape=f0543a18 vocab=7f5ad9a8
+-/
 theorem abs_le_intervalAbsBound {x : ℝ} {I : IntervalRat} (hx : x ∈ I) :
     |x| ≤ intervalAbsBound I := by
   rw [abs_le]
@@ -376,11 +424,17 @@ private theorem le_foldl_max_of_mem {x : ℚ} {xs : List ℚ} (hx : x ∈ xs) :
       · exact le_trans (le_max_right _ _) (le_foldl_max as _)
       · exact le_trans (ih hx) (foldl_max_mono (le_max_left 0 a))
 
+/--
+@isnad1 id=le.0h3v.s4.7a60082f62f6 from=translated src=- shape=c45f8b81 vocab=a53ce404
+-/
 theorem intervalMatrixRowBound_le_bound {n : Nat} (A : Matrix (Fin n) (Fin n) IntervalRat)
     (i : Fin n) : intervalMatrixRowBound A i ≤ intervalMatrixBound A := by
   apply le_foldl_max_of_mem
   exact List.mem_ofFn.mpr ⟨i, rfl⟩
 
+/--
+@isnad1 id=le.1h3v.s6.045eb2cdb934 from=translated src=- shape=87e1c341 vocab=e8744d01
+-/
 theorem matrix_norm_le_intervalMatrixBound {n : Nat}
     (R : Matrix (Fin n) (Fin n) ℝ) (A : Matrix (Fin n) (Fin n) IntervalRat)
     (hmem : ∀ i j, R i j ∈ A i j) :
@@ -402,6 +456,9 @@ theorem matrix_norm_le_intervalMatrixBound {n : Nat}
     _ ≤ (intervalMatrixBound A : ℝ) := by
       exact_mod_cast intervalMatrixRowBound_le_bound A i
 
+/--
+@isnad1 id=le.2h6v.s9.bd03905a05e0 from=translated src=- shape=c71ed411 vocab=b3411888
+-/
 theorem newtonMap_fderiv_norm_le {n : Nat} (Y : Matrix (Fin n) (Fin n) ℚ)
     (F : Fin n → Expr) (h : ∀ i, ADSupported (F i)) (X : Fin n → IntervalRat)
     (x : Fin n → ℝ) (hx : FinBoxMem x X) (cfg : EvalConfig) :
@@ -429,6 +486,9 @@ def newtonCenterInterval {n : Nat} (F : Fin n → Expr) (m : Fin n → ℚ)
   fun i => IntervalRat.sub (IntervalRat.singleton (m i))
     (intervalRatMatVec Y (pointEvalIntervals F m cfg) i)
 
+/--
+@isnad1 id=mem.0h3v.s4.d7e349b97b40 from=translated src=- shape=5e6a7e58 vocab=0079281e
+-/
 theorem finEnv_ratCast_mem_pointIntervalEnv {n : Nat} (m : Fin n → ℚ) :
     ∀ i, finEnv (fun j => (m j : ℝ)) i ∈ pointIntervalEnv m i := by
   intro i
@@ -436,6 +496,9 @@ theorem finEnv_ratCast_mem_pointIntervalEnv {n : Nat} (m : Fin n → ℚ) :
   · simpa [finEnv, pointIntervalEnv, hi] using IntervalRat.mem_singleton (m ⟨i, hi⟩)
   · simpa [finEnv, pointIntervalEnv, hi] using IntervalRat.mem_singleton 0
 
+/--
+@isnad1 id=mem.1h5v.s5.0f940f7d4973 from=translated src=- shape=496e3e98 vocab=be1864ca
+-/
 theorem systemEval_mem_pointEvalIntervals {n : Nat} (F : Fin n → Expr)
     (h : ∀ i, ADSupported (F i)) (m : Fin n → ℚ) (cfg : EvalConfig) (i : Fin n) :
     systemEval F (fun j => (m j : ℝ)) i ∈ pointEvalIntervals F m cfg i := by
@@ -443,6 +506,9 @@ theorem systemEval_mem_pointEvalIntervals {n : Nat} (F : Fin n → Expr)
     (finEnv_ratCast_mem_pointIntervalEnv m) cfg
     (LeanCert.Engine.ADSupported.domainValid (h i) _ cfg)
 
+/--
+@isnad1 id=mem.1h6v.s6.38097bc2af0a from=translated src=- shape=174f6029 vocab=67e6f393
+-/
 theorem newtonMap_center_mem {n : Nat} (F : Fin n → Expr)
     (h : ∀ i, ADSupported (F i)) (m : Fin n → ℚ)
     (Y : Matrix (Fin n) (Fin n) ℚ) (cfg : EvalConfig) (i : Fin n) :
@@ -463,11 +529,17 @@ def coordinateRadius {n : Nat} (X : Fin n → IntervalRat) (m : Fin n → ℚ)
 def boxRadius {n : Nat} (X : Fin n → IntervalRat) (m : Fin n → ℚ) : ℚ :=
   (List.ofFn fun i => coordinateRadius X m i).foldl max 0
 
+/--
+@isnad1 id=le.0h4v.s4.acca3df0d4d6 from=translated src=- shape=5fef4baa vocab=49080815
+-/
 theorem coordinateRadius_le_boxRadius {n : Nat} (X : Fin n → IntervalRat)
     (m : Fin n → ℚ) (i : Fin n) : coordinateRadius X m i ≤ boxRadius X m := by
   apply le_foldl_max_of_mem
   exact List.mem_ofFn.mpr ⟨i, rfl⟩
 
+/--
+@isnad1 id=le.1h5v.s5.e1cb380f299a from=translated src=- shape=2bc64886 vocab=7b1ff404
+-/
 theorem abs_sub_center_le_coordinateRadius {n : Nat} {X : Fin n → IntervalRat}
     {m : Fin n → ℚ} {x : Fin n → ℝ} (hx : FinBoxMem x X) (i : Fin n) :
     |x i - (m i : ℝ)| ≤ coordinateRadius X m i := by
@@ -486,9 +558,15 @@ theorem abs_sub_center_le_coordinateRadius {n : Nat} {X : Fin n → IntervalRat}
     push_cast at hmaxR
     linarith
 
+/--
+@isnad1 id=le.0h3v.s4.6195ee347736 from=translated src=- shape=9d37e441 vocab=fec702e2
+-/
 theorem boxRadius_nonneg {n : Nat} (X : Fin n → IntervalRat) (m : Fin n → ℚ) :
     0 ≤ boxRadius X m := le_foldl_max _ 0
 
+/--
+@isnad1 id=le.1h4v.s6.736743184b44 from=translated src=- shape=a2c176b6 vocab=386b49b0
+-/
 theorem norm_sub_center_le_boxRadius {n : Nat} {X : Fin n → IntervalRat}
     {m : Fin n → ℚ} {x : Fin n → ℝ} (hx : FinBoxMem x X) :
     ‖x - (fun i => (m i : ℝ))‖ ≤ (boxRadius X m : ℝ) := by
@@ -513,12 +591,18 @@ def newtonImageEnclosure {n : Nat} (F : Fin n → Expr) (X : Fin n → IntervalR
 
 def intervalStrictInside (I X : IntervalRat) : Bool := X.lo < I.lo && I.hi < X.hi
 
+/--
+@isnad1 id=mem.2h3v.s4.30f85dba2990 from=translated src=- shape=9d73c9d3 vocab=67222261
+-/
 theorem intervalStrictInside_sound {I X : IntervalRat} (h : intervalStrictInside I X = true) :
     ∀ x : ℝ, x ∈ I → x ∈ X := by
   intro x hx
   simp only [intervalStrictInside, Bool.and_eq_true, decide_eq_true_eq] at h
   exact ⟨le_trans (by exact_mod_cast h.1.le) hx.1, le_trans hx.2 (by exact_mod_cast h.2.le)⟩
 
+/--
+@isnad1 id=mapsto.3h6v.s6.df5ca6c1c550 from=translated src=- shape=356dd5d2 vocab=d48b3ff0
+-/
 theorem newtonMap_mapsTo_of_imageEnclosure {n : Nat} (F : Fin n → Expr)
     (h : ∀ i, ADSupported (F i)) (X : Fin n → IntervalRat) (m : Fin n → ℚ)
     (hm : FinBoxMem (fun i => (m i : ℝ)) X) (Y : Matrix (Fin n) (Fin n) ℚ)
@@ -588,6 +672,9 @@ def krawczykCheck {n : Nat} (F : Fin n → Expr) (X : Fin n → IntervalRat)
 def SystemZero {n : Nat} (F : Fin n → Expr) (x : Fin n → ℝ) : Prop :=
   ∀ i, evalFin (F i) x = 0
 
+/--
+@isnad1 id=finboxme.1h3v.s4.ec5cb9a4be13 from=translated src=- shape=02d0ad6e vocab=612025bb
+-/
 theorem centerInside_sound {n : Nat} {X : Fin n → IntervalRat} {m : Fin n → ℚ}
     (h : centerInside X m) : FinBoxMem (fun i => (m i : ℝ)) X := by
   intro i
@@ -597,6 +684,9 @@ theorem centerInside_sound {n : Nat} {X : Fin n → IntervalRat} {m : Fin n → 
   · change (m i : ℝ) ≤ ((X i).hi : ℝ)
     exact_mod_cast (h i).2
 
+/--
+@isnad1 id=iff.1h4v.s6.92e40c4104e6 from=translated src=- shape=e9e1de5a vocab=67019902
+-/
 theorem fixedPoint_iff_systemZero {n : Nat} (F : Fin n → Expr)
     (Y : Matrix (Fin n) (Fin n) ℚ) (hdet : Y.det ≠ 0) (x : Fin n → ℝ) :
     newtonMap (Y.map fun q => (q : ℝ)) F x = x ↔ SystemZero F x := by
@@ -624,6 +714,9 @@ theorem fixedPoint_iff_systemZero {n : Nat} (F : Fin n → Expr)
     funext i
     simp [newtonMap, hs]
 
+/--
+@isnad1 id=existsun.1h5v.s5.d3443d064d8c from=translated src=- shape=2f1ef454 vocab=98d99d7b
+-/
 theorem krawczykCheck_sound {n : Nat} (F : Fin n → Expr) (X : Fin n → IntervalRat)
     (cert : KrawczykCert n) (cfg : EvalConfig)
     (hcheck : krawczykCheck F X cert cfg = true) :

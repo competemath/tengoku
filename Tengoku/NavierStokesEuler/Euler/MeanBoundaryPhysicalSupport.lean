@@ -10,6 +10,9 @@ namespace EulerMeanBoundary
 
 open MeasureTheory InnerProductSpace EulerSmoothLimit EulerMeanSolenoidal
 
+/--
+@isnad1 id=eventual.1h2v.s16.28ab8c4500d4 from=translated src=- shape=d3729b88 vocab=c265e7bf
+-/
 theorem scaledBoundary_zero_outside (ℓ : ℝ) (hℓ : 0 < ℓ) (z : L2) :
     ∀ᵐ x ∂volume, 2 < ‖ℓ • x‖ → boundaryOperator (scaledCutoff ℓ hℓ) z x = 0 := by
   have H := (ae_restrict_iff' (isClosed_tsupport (scaledCutoff ℓ hℓ).field).measurableSet.compl).1
@@ -20,6 +23,9 @@ theorem scaledBoundary_zero_outside (ℓ : ℝ) (hℓ : 0 < ℓ) (z : L2) :
   intro hm
   exact (not_le_of_gt hnorm) (scaledCutoff_support ℓ hℓ hm)
 
+/--
+@isnad1 id=eventual.1h3v.s17.f2b2fca3c8f9 from=translated src=- shape=170af72d vocab=c265e7bf
+-/
 theorem scaledBoundary_multiple_zero_outside (ℓ : ℝ) (hℓ : 0 < ℓ) (L : ℝ) (z : L2) :
     ∀ᵐ x ∂volume, 2 < ‖ℓ • x‖ → (L • boundaryOperator (scaledCutoff ℓ hℓ) z : L2) x = 0 := by
   filter_upwards [scaledBoundary_zero_outside ℓ hℓ z,
@@ -29,7 +35,9 @@ theorem scaledBoundary_multiple_zero_outside (ℓ : ℝ) (hℓ : 0 < ℓ) (L : �
   change L • boundaryOperator (scaledCutoff ℓ hℓ) z x = 0
   rw [hx hnorm, smul_zero]
 
-/-- Any continuous representative of the actual initial boundary velocity has this support. -/
+/-- Any continuous representative of the actual initial boundary velocity has this support.
+@isnad1 id=le.3h4v.s17.ee2a5db73568 from=translated src=- shape=10a07443 vocab=b3b3db83
+-/
 theorem scaledBoundary_continuous_support (ℓ : ℝ) (hℓ : 0 < ℓ) (L : ℝ) (z : L2)
     (b : Space → Space) (hb : Continuous b)
     (hrep : b =ᵐ[volume] (L • boundaryOperator (scaledCutoff ℓ hℓ) z : L2)) :
@@ -49,6 +57,9 @@ theorem scaledBoundary_continuous_support (ℓ : ℝ) (hℓ : 0 < ℓ) (L : ℝ)
   have hnorm : 2 < ‖ℓ • x‖ := lt_of_not_ge h
   exact hx (hzero hnorm)
 
+/--
+@isnad1 id=hascompa.3h4v.s17.5c6cfd2054a6 from=translated src=- shape=348e368e vocab=7b4dae2d
+-/
 theorem scaledBoundary_continuous_compact (ℓ : ℝ) (hℓ : 0 < ℓ) (L : ℝ) (z : L2)
     (b : Space → Space) (hb : Continuous b)
     (hrep : b =ᵐ[volume] (L • boundaryOperator (scaledCutoff ℓ hℓ) z : L2)) :

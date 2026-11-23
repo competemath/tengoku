@@ -37,12 +37,18 @@ namespace CompactField
 variable {P} {V : Type u} [NormedAddCommGroup V] [NormedSpace ℝ V]
 
 omit [Fact (0 < P)] in
+/--
+@isnad1 id=continuo.0h3v.s6.81ee67127919 from=translated src=- shape=7c87cea7 vocab=9cf203df
+-/
 theorem continuous (A : CompactField P V) : Continuous A.field :=
   smoothField_continuous P A.field A.smooth
 
 def toLp (A : CompactField P V) : CylinderL2 P V :=
   (A.continuous.memLp_of_hasCompactSupport A.compact).toLp A.field
 
+/--
+@isnad1 id=eventual.0h3v.s10.9998bffeee75 from=translated src=- shape=6b1a73bf vocab=860f3605
+-/
 theorem toLp_ae (A : CompactField P V) : A.toLp =ᵐ[liftMeasure P] A.field :=
   (A.continuous.memLp_of_hasCompactSupport A.compact).coeFn_toLp
 
@@ -52,6 +58,9 @@ def derivative (A : CompactField P V) : CompactField P (LiftTangent →L[ℝ] V)
   smooth := fieldFDeriv_smooth P A.field A.smooth
 
 omit [Fact (0 < P)] in
+/--
+@isnad1 id=ex.0h3v.s9.218798346ffa from=translated src=- shape=6402dec1 vocab=dad5304c
+-/
 theorem derivative_bound (A : CompactField P V) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ x a, ‖fderiv ℝ (localFieldLift P A.field x) a‖ ≤ C := by
   obtain ⟨C,hC,hb⟩ := (A.derivative.compact.isCompact_range A.derivative.continuous).isBounded.exists_pos_norm_le
@@ -62,7 +71,9 @@ theorem derivative_bound (A : CompactField P V) :
   exact hx
 
 omit [Fact (0 < P)] in
-/-- One compact set contains every translate by a covering vector of norm at most one. -/
+/-- One compact set contains every translate by a covering vector of norm at most one.
+@isnad1 id=ex.0h3v.s8.4e2e7842715a from=translated src=- shape=b0c2eb59 vocab=2b9b9676
+-/
 theorem translation_support (A : CompactField P V) :
     ∃ K : Set (LiftDomain P), IsCompact K ∧ tsupport A.field ⊆ K ∧
       ∀ a : LiftTangent, ‖a‖ ≤ 1 → ∀ x ∉ K, A.field (x+coveringMap P a) = 0 := by
@@ -81,6 +92,9 @@ theorem translation_support (A : CompactField P V) :
     · simpa only [Metric.mem_closedBall,dist_zero_right] using ha
     · exact add_sub_cancel_right x (coveringMap P a)
 
+/--
+@isnad1 id=ex.0h3v.s8.30432cf098e0 from=translated src=- shape=960b5e9e vocab=1c5b02b4
+-/
 theorem increment_bound (A : CompactField P V) :
     ∃ M : LiftDomain P → ℝ, MemLp M 2 (liftMeasure P) ∧ (∀ x, 0 ≤ M x) ∧
       ∀ a : LiftTangent, ‖a‖ ≤ 1 → ∀ x,
@@ -102,6 +116,9 @@ theorem increment_bound (A : CompactField P V) :
   · have hzero : A.field x = 0 := image_eq_zero_of_notMem_tsupport (fun hs => hx (hsub hs))
     simp only [hshift a ha x hx,hzero,sub_zero,norm_zero,Set.indicator_of_notMem hx,zero_mul,le_refl]
 
+/--
+@isnad1 id=hasfderi.0h3v.s14.c117545e69b1 from=translated src=- shape=d62d948f vocab=8c304b23
+-/
 theorem hasFDerivAt_zero (A : CompactField P V) :
     HasFDerivAt (fun a : LiftTangent => translate P a A.toLp)
       (derivativeMap (liftMeasure P) A.derivative.toLp) 0 := by
@@ -123,6 +140,9 @@ theorem hasFDerivAt_zero (A : CompactField P V) :
     simpa only [coveringMap,Prod.fst_zero,Prod.snd_zero,AddCircle.coe_zero,Prod.mk_zero_zero,add_zero] using
       hb a ((by simpa only [Metric.mem_ball,dist_zero_right] using ha : ‖a‖ < 1).le) x
 
+/--
+@isnad1 id=eq.0h4v.s18.bec49547d803 from=translated src=- shape=c494b0d7 vocab=21c10a83
+-/
 theorem derivativeMap_translation (D : CylinderL2 P (LiftTangent →L[ℝ] V)) (a : LiftTangent) :
     derivativeMap (liftMeasure P) (translate P a D) =
       (translate P a).toContinuousLinearMap.comp (derivativeMap (liftMeasure P) D) := by
@@ -136,6 +156,9 @@ theorem derivativeMap_translation (D : CylinderL2 P (LiftTangent →L[ℝ] V)) (
   change derivativeMap (liftMeasure P) (translate P a D) v x = translate P a (derivativeMap (liftMeasure P) D v) x
   rw [hm,ht,hv,hd]
 
+/--
+@isnad1 id=hasfderi.0h4v.s18.a5dba61c14ca from=translated src=- shape=f0c2d38b vocab=8c304b23
+-/
 theorem translation_hasFDerivAt (A : CompactField P V) (a : LiftTangent) :
     HasFDerivAt (fun b : LiftTangent => translate P b A.toLp)
       (derivativeMap (liftMeasure P) (translate P a A.derivative.toLp)) a := by
@@ -143,6 +166,9 @@ theorem translation_hasFDerivAt (A : CompactField P V) (a : LiftTangent) :
   exact EulerIsometricAction.hasFDerivAt_all (translate P) (translate_add P)
     A.toLp _ A.hasFDerivAt_zero a
 
+/--
+@isnad1 id=eq.0h3v.s19.00a7bdd22ece from=translated src=- shape=6283831f vocab=ac6c38bf
+-/
 theorem translation_fderiv (A : CompactField P V) :
     fderiv ℝ (fun a : LiftTangent => translate P a A.toLp) =
       fun a => derivativeBundling (liftMeasure P) (translate P a A.derivative.toLp) :=
@@ -164,7 +190,9 @@ private theorem translation_contDiff_aux (n : ℕ) :
       (E := CylinderL2 P (LiftTangent →L[ℝ] V)) (F := LiftTangent →L[ℝ] CylinderL2 P V)
       (derivativeBundling (liftMeasure P))).comp (ih (LiftTangent →L[ℝ] V) A.derivative)
 
-/-- All four covering directions are differentiated in the actual L² norm. -/
+/-- All four covering directions are differentiated in the actual L² norm.
+@isnad1 id=contdiff.0h3v.s13.fbea1c1888ff from=translated src=- shape=86ce8b96 vocab=005d04a2
+-/
 theorem translation_contDiff (A : CompactField P V) :
     ContDiff ℝ ∞ (fun a : LiftTangent => translate P a A.toLp) :=
   contDiff_infty.mpr (fun n => translation_contDiff_aux n V A)

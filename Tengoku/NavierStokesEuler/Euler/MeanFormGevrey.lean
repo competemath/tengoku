@@ -30,7 +30,9 @@ variable {P V W X : Type*} [NormedAddCommGroup P] [NormedSpace ℝ P]
 variable (J : W →L[ℝ] W) (R : W →L[ℝ] X)
   (H : P → W →L[ℝ] W) (C : P → X →L[ℝ] X)
 
-/-- The full physical form is a smooth polynomial in its genuine coefficient operators. -/
+/-- The full physical form is a smooth polynomial in its genuine coefficient operators.
+@isnad1 id=contdiff.2h8v.s9.ed0ea229b59d from=translated src=- shape=fc7aea4e vocab=c5f9915c
+-/
 theorem meanOperator_contDiff {n : ℕ∞ω} (hH : ContDiff ℝ n H) (hC : ContDiff ℝ n C) :
     ContDiff ℝ n (fun p => meanOperator J R (H p) (C p)) :=
   (contDiff_const.sub (contDiff_const.clm_comp (hH.clm_comp contDiff_const))).add
@@ -40,10 +42,15 @@ theorem meanOperator_contDiff {n : ℕ∞ω} (hH : ContDiff ℝ n H) (hC : ContD
 def baseAmplitude (CH CC : ℝ) : ℝ := 1+‖J‖^2*CH+‖R‖^2*CC
 
 omit [CompleteSpace W] [CompleteSpace X] in
+/--
+@isnad1 id=le.2h6v.s7.9db1a1555f03 from=translated src=- shape=580e0053 vocab=af01c1bd
+-/
 theorem baseAmplitude_nonneg (CH CC : ℝ) (hCH : 0 ≤ CH) (hCC : 0 ≤ CC) :
     0 ≤ baseAmplitude J R CH CC := by unfold baseAmplitude; positivity
 
-/-- The actual physical mean operator has the stated all-order factorial bound. -/
+/-- The actual physical mean operator has the stated all-order factorial bound.
+@isnad1 id=le.7h12v.s12.65403635556a from=translated src=- shape=d57ac4f7 vocab=5b8575e6
+-/
 theorem meanOperator_bound (hH : ContDiff ℝ ∞ H) (hC : ContDiff ℝ ∞ C)
     (r CH CC : ℝ) (hr : 0 ≤ r) (hCH : 0 ≤ CH) (hCC : 0 ≤ CC)
     (hHb : ∀ n x, ‖iteratedFDeriv ℝ n H x‖ ≤ CH * majorant r 0 n)
@@ -80,14 +87,18 @@ theorem meanOperator_bound (hH : ContDiff ℝ ∞ H) (hC : ContDiff ℝ ∞ C)
 
 variable (D : P → V →L[ℝ] W)
 
-/-- Pullback by the genuine coordinate derivative preserves coefficient regularity. -/
+/-- Pullback by the genuine coordinate derivative preserves coefficient regularity.
+@isnad1 id=contdiff.3h10v.s10.bb7cdd64fd7f from=translated src=- shape=eb226da2 vocab=fbe7ea7c
+-/
 theorem pullbackMeanOperator_contDiff {n : ℕ∞ω}
     (hD : ContDiff ℝ n D) (hH : ContDiff ℝ n H) (hC : ContDiff ℝ n C) :
     ContDiff ℝ n (fun p => transportedOperator (D p) (meanOperator J R (H p) (C p))) :=
   ((realAdjoint (U := V) (E := W)).contDiff.comp hD).clm_comp
     ((meanOperator_contDiff J R H C hH hC).clm_comp hD)
 
-/-- The full actual fixed-space mean operator obeys a polynomial factorial bound. -/
+/-- The full actual fixed-space mean operator obeys a polynomial factorial bound.
+@isnad1 id=le.10h15v.s12.1f26df178bdc from=translated src=- shape=09c0fbef vocab=2f8d4718
+-/
 theorem pullbackMeanOperator_bound
     (hD : ContDiff ℝ ∞ D) (hH : ContDiff ℝ ∞ H) (hC : ContDiff ℝ ∞ C)
     (r CD CH CC : ℝ) (hr : 0 ≤ r) (hCD : 0 ≤ CD) (hCH : 0 ≤ CH) (hCC : 0 ≤ CC)
@@ -117,7 +128,9 @@ theorem pullbackMeanOperator_bound
       simpa only [transportedOperator, Nat.zero_add] using h
     _ = _ := by ring
 
-/-- The genuine forcing pullback has the matching factorial shift. -/
+/-- The genuine forcing pullback has the matching factorial shift.
+@isnad1 id=le.7h12v.s12.ca69933ffb43 from=translated src=- shape=c28e5fe2 vocab=d70eb44d
+-/
 theorem pullbackMeanForcing_bound (f : P → W) (hD : ContDiff ℝ ∞ D) (hf : ContDiff ℝ ∞ f)
     (r CD CF : ℝ) (hr : 0 ≤ r) (hCD : 0 ≤ CD) (hCF : 0 ≤ CF) (d : ℕ)
     (hDb : ∀ n x, ‖iteratedFDeriv ℝ n D x‖ ≤ CD * majorant r 0 n)

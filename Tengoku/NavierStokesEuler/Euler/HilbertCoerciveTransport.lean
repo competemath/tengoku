@@ -23,12 +23,16 @@ variable {V W : Type*}
 def transportedOperator (D : V →L[ℝ] W) (A : W →L[ℝ] W) : V →L[ℝ] V :=
   D.adjoint.comp (A.comp D)
 
-/-- The transported bilinear form is exactly the original form on the image. -/
+/-- The transported bilinear form is exactly the original form on the image.
+@isnad1 id=eq.0h6v.s9.ce3348d4342a from=translated src=- shape=61bdbe9d vocab=e773f93d
+-/
 theorem transportedOperator_inner (D : V →L[ℝ] W) (A : W →L[ℝ] W) (u v : V) :
     ⟪transportedOperator D A u, v⟫_ℝ = ⟪A (D u), D v⟫_ℝ := by
   exact adjoint_inner_left D v (A (D u))
 
-/-- Coercivity transports using only a proved lower bound for the coordinate map. -/
+/-- Coercivity transports using only a proved lower bound for the coordinate map.
+@isnad1 id=le.3h7v.s9.97eccfcdb1cc from=translated src=- shape=3b9071a4 vocab=4dc6eeca
+-/
 theorem transportedOperator_coercive (D : V →L[ℝ] W) (A : W →L[ℝ] W)
     (a d : ℝ) (ha : 0 ≤ a)
     (hA : ∀ w, a * ‖w‖^2 ≤ ⟪A w, w⟫_ℝ)
@@ -40,7 +44,9 @@ theorem transportedOperator_coercive (D : V →L[ℝ] W) (A : W →L[ℝ] W)
     _ ≤ a * ‖D v‖^2 := mul_le_mul_of_nonneg_left (hD v) ha
     _ ≤ ⟪A (D v), D v⟫_ℝ := hA (D v)
 
-/-- The transported forcing is the actual adjoint pullback. -/
+/-- The transported forcing is the actual adjoint pullback.
+@isnad1 id=eq.0h5v.s11.aae1a2b7a16a from=translated src=- shape=30c5d8b5 vocab=78cbced7
+-/
 theorem transported_forcing_inner (D : V →L[ℝ] W) (f : W) (v : V) :
     ⟪D.adjoint f, v⟫_ℝ = ⟪f, D v⟫_ℝ := adjoint_inner_left D v f
 

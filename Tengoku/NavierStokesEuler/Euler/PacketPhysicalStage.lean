@@ -18,6 +18,9 @@ namespace EulerPacketMovingFrame
 open Set EulerSmoothLimit EulerPacketNormalizedPrimary EulerPacketRay
   EulerPacketStage EulerPacketPerturbation InnerProductSpace ContinuousLinearMap
 
+/--
+@isnad1 id=other.33h20v.s16.d4b4b5224f34 from=translated src=- shape=8ac9ef87 vocab=ffadf6fe
+-/
 theorem physical_stage_references
     {B B₁ M E : ℝ → Space →L[ℝ] Space} {m v r w : ℝ → Space}
     {c s₀ t₀ a ε σ Θ T G d lam : ℝ} {S : Set ℝ}

@@ -23,6 +23,9 @@ variable {K : Type v} [TopologicalSpace K] [CompactSpace K]
   {V W : Type u} [NormedAddCommGroup V] [NormedSpace ℝ V]
   [NormedAddCommGroup W] [NormedSpace ℝ W]
 
+/--
+@isnad1 id=eq.0h2v.s18.bb26468ab3ce from=translated src=- shape=62745912 vocab=b7508892
+-/
 theorem jetLp_zero_from_value (f : SmoothL2Field V) :
     f.jetLp 0 =
       (continuousMultilinearCurryFin0 ℝ Space V).symm.toContinuousLinearEquiv.toContinuousLinearMap.compLpL
@@ -34,6 +37,9 @@ theorem jetLp_zero_from_value (f : SmoothL2Field V) :
   rw [h₁, h₂, h₃, iteratedFDeriv_zero_eq_comp]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s20.40a0f8586927 from=translated src=- shape=caa9a4b5 vocab=12879353
+-/
 theorem jetLp_succ_from_derivative (f : SmoothL2Field V) (n : ℕ) :
     f.jetLp (n+1) =
       (continuousMultilinearCurryRightEquiv' ℝ n Space V).symm.toContinuousLinearEquiv.toContinuousLinearMap.compLpL
@@ -48,6 +54,9 @@ theorem jetLp_succ_from_derivative (f : SmoothL2Field V) (n : ℕ) :
   rw [h₁, h₂, h₃, iteratedFDeriv_succ_eq_comp_right]
   rfl
 
+/--
+@isnad1 id=continuo.1h5v.s16.22405ad3432a from=translated src=- shape=dbce6309 vocab=0b7ecaf0
+-/
 theorem continuous_product_value (A : SmoothCoefficientPath K (V →L[ℝ] W))
     (f : K → SmoothL2Field V) (hf : Continuous (fun t => (f t).jetLp 0)) :
     Continuous (fun t => (product A t (f t)).toLp) := by
@@ -93,7 +102,9 @@ private theorem continuous_product_jet_aux (n : ℕ) :
     rw [he]
     exact ContinuousLinearMap.continuous _ |>.comp hd
 
-/-- Every actual product jet is continuous in L², with no product-regularity hypothesis. -/
+/-- Every actual product jet is continuous in L², with no product-regularity hypothesis.
+@isnad1 id=continuo.1h6v.s17.53c5d8275b57 from=translated src=- shape=fbec3fc7 vocab=464f4981
+-/
 theorem continuous_product_jet (A : SmoothCoefficientPath K (V →L[ℝ] W))
     (f : K → SmoothL2Field V) (hf : ∀ n, Continuous (fun t => (f t).jetLp n)) (n : ℕ) :
     Continuous (fun t => (product A t (f t)).jetLp n) :=

@@ -234,7 +234,9 @@ def cosh (a : AffineForm) (taylorDepth : Nat := 8) : AffineForm :=
 
 /-! ## Soundness Theorems -/
 
-/-- exp is sound -/
+/-- exp is sound
+@isnad1 id=memaffin.2h4v.s4.24bc184d259b from=translated src=- shape=d4e4a120 vocab=de543bdf
+-/
 theorem mem_exp {a : AffineForm} {eps : NoiseAssignment} {v : ℝ}
     (hvalid : validNoise eps)
     (hmem : mem_affine a eps v)
@@ -302,7 +304,9 @@ theorem mem_exp {a : AffineForm} {eps : NoiseAssignment} {v : ℝ}
         _ = (((expI.hi - expI.lo) / 2 : ℚ) : ℝ) := by push_cast; ring
   · ring
 
-/-- tanh is sound -/
+/-- tanh is sound
+@isnad1 id=memaffin.2h3v.s4.d3c8fb5da994 from=translated src=- shape=0fc1d18a vocab=b745760b
+-/
 theorem mem_tanh {a : AffineForm} {eps : NoiseAssignment} {v : ℝ}
     (hvalid : validNoise eps)
     (hmem : mem_affine a eps v) :
@@ -350,7 +354,9 @@ theorem mem_tanh {a : AffineForm} {eps : NoiseAssignment} {v : ℝ}
         _ = (((tanhI.hi - tanhI.lo) / 2 : ℚ) : ℝ) := by push_cast; ring
   · ring
 
-/-- sinh is sound -/
+/-- sinh is sound
+@isnad1 id=memaffin.2h4v.s4.90ff4652db97 from=translated src=- shape=d4e4a120 vocab=55e42b25
+-/
 theorem mem_sinh {a : AffineForm} {eps : NoiseAssignment} {v : ℝ}
     (hvalid : validNoise eps)
     (hmem : mem_affine a eps v)
@@ -361,7 +367,9 @@ theorem mem_sinh {a : AffineForm} {eps : NoiseAssignment} {v : ℝ}
   -- Match the interval-centered form produced by sinh
   simpa [sinh] using (mem_affine_of_interval (eps := eps) hsinh_in)
 
-/-- cosh is sound -/
+/-- cosh is sound
+@isnad1 id=memaffin.2h4v.s4.c7b58cead656 from=translated src=- shape=d4e4a120 vocab=518d5255
+-/
 theorem mem_cosh {a : AffineForm} {eps : NoiseAssignment} {v : ℝ}
     (hvalid : validNoise eps)
     (hmem : mem_affine a eps v)
@@ -371,7 +379,9 @@ theorem mem_cosh {a : AffineForm} {eps : NoiseAssignment} {v : ℝ}
   have hcosh_in := IntervalRat.mem_coshComputable hv_in_I taylorDepth
   simpa [cosh] using (mem_affine_of_interval (eps := eps) hcosh_in)
 
-/-- log is sound for positive inputs -/
+/-- log is sound for positive inputs
+@isnad1 id=memaffin.4h5v.s5.a25c1054b5e2 from=translated src=- shape=4774a4aa vocab=11346b7d
+-/
 theorem mem_log {a : AffineForm} {eps : NoiseAssignment} {v : ℝ}
     (hvalid : validNoise eps)
     (hmem : mem_affine a eps v)

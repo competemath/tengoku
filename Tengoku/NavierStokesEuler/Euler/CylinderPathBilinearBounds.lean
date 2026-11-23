@@ -22,6 +22,9 @@ private local instance : NormedSpace ℝ (LiftL2 P) := inferInstance
 private local instance : NormedAddCommGroup C(K,LiftL2 P) := inferInstance
 private local instance : NormedSpace ℝ C(K,LiftL2 P) := inferInstance
 
+/--
+@isnad1 id=le.1h7v.s19.58aa3ccc2c69 from=translated src=- shape=27e4e69c vocab=0642216b
+-/
 theorem pathMap_block_le (A : Space →L[ℝ] Space) (p : C(K,LiftL2 P))
     (hp : ContDiff ℝ ∞ (fun a : LiftTangent => pathTranslate P a p))
     (q n : ℕ) (a : LiftTangent) :
@@ -42,7 +45,9 @@ variable (B : Space →L[ℝ] Space →L[ℝ] Space) (p q : C(K,LiftL2 P))
   (hp : ContDiff ℝ ∞ (fun a : LiftTangent => pathTranslate P a p))
   (hq : ContDiff ℝ ∞ (fun a : LiftTangent => pathTranslate P a q))
 
-/-- The field word radius is unchanged by an arbitrary fixed bounded bilinear vector map. -/
+/-- The field word radius is unchanged by an arbitrary fixed bounded bilinear vector map.
+@isnad1 id=le.7h12v.s19.21150db17627 from=translated src=- shape=6bccf810 vocab=fdd48bb2
+-/
 theorem bilinearProductPath_majorant (R A C : ℝ) (hR : 0 ≤ R) (hA : 0 ≤ A) (hC : 0 ≤ C)
     (d e : ℕ) (a : LiftTangent)
     (hb : ∀ n, block standardDirection 6 (fun b : LiftTangent => pathTranslate P b p) n a ≤

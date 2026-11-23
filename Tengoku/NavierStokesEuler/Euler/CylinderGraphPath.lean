@@ -25,11 +25,17 @@ variable (P : ℝ) [Fact (0 < P)]
 def graphPathValue (t : K) : Lp Vector3 2 (volume : Measure Vector3) :=
   graphRealization P (f t) (hf t) (u t) (v t) (hu t) (hv t) θ hθ
 
+/--
+@isnad1 id=eventual.4h7v.s15.257bb1443bb2 from=translated src=- shape=e0252955 vocab=f7ad2368
+-/
 theorem graphPathValue_ae (t : K) :
     (graphPathValue P u v f hf hu hv θ hθ t : Vector3 → Vector3) =ᵐ[volume]
       fun x => f t (x,θ x) :=
   graphRealization_ae P (f t) (hf t) (u t) (v t) (hu t) (hv t) θ hθ
 
+/--
+@isnad1 id=le.4h8v.s17.d8db7fcaf6fc from=translated src=- shape=41c40d34 vocab=e802c4b1
+-/
 theorem graphPathValue_sub_norm_sq_le (t s : K) :
     ‖graphPathValue P u v f hf hu hv θ hθ t-
       graphPathValue P u v f hf hu hv θ hθ s‖^2 ≤
@@ -48,6 +54,9 @@ theorem graphPathValue_sub_norm_sq_le (t s : K) :
       graphPathValue_ae P u v f hf hu hv θ hθ s] with x hs ht hu
     exact hs.trans (congrArg₂ (·-·) ht hu)
 
+/--
+@isnad1 id=continuo.4h6v.s16.dfc55e49760e from=translated src=- shape=d31769c2 vocab=f7ad2368
+-/
 theorem graphPathValue_continuous :
     Continuous (graphPathValue P u v f hf hu hv θ hθ) := by
   apply continuous_iff_continuousAt.mpr

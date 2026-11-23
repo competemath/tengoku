@@ -12,6 +12,9 @@ namespace EulerPacketMovingFrame
 open EulerSmoothLimit EulerPacketNormalizedPrimary EulerPacketRay EulerPacketFrameRenewal
   EulerPacketTargetCompression InnerProductSpace ContinuousLinearMap
 
+/--
+@isnad1 id=other.6h9v.s10.806c99a0ff4a from=translated src=- shape=5b1cdd3c vocab=2a667862
+-/
 theorem normalizedCompression_eq (M : Space →L[ℝ] Space) (m v r : ℝ → Space)
     {s₀ t₀ a ε τ : ℝ} (hs₀ : s₀ ≠ 0) (hε : ε ≠ 0)
     (hm : m (physicalTime t₀ a ε τ) ≠ 0) (hv : v (physicalTime t₀ a ε τ) ≠ 0)
@@ -45,6 +48,9 @@ theorem normalizedCompression_eq (M : Space →L[ℝ] Space) (m v r : ℝ → Sp
   dsimp only [R, p, q]
   field_simp
 
+/--
+@isnad1 id=other.7h12v.s15.bbf0c8818303 from=translated src=- shape=c0b565ee vocab=a3f536d0
+-/
 theorem physical_parent_compression (B M E : Space →L[ℝ] Space) (h : ℝ) (m v r : ℝ → Space)
     {s₀ t₀ a ε τ : ℝ} (hs₀ : s₀ ≠ 0) (hε : ε ≠ 0)
     (hm : m (physicalTime t₀ a ε τ) ≠ 0) (hv : v (physicalTime t₀ a ε τ) ≠ 0)
@@ -66,6 +72,9 @@ theorem physical_parent_compression (B M E : Space →L[ℝ] Space) (h : ℝ) (m
   exact (abs_add_le _ _).trans (add_le_add (frameMatrix_abs_le B _ _ hp hq hpq i j)
     (frameMatrix_abs_le E _ _ hp hq hpq i j))
 
+/--
+@isnad1 id=and.20h16v.s15.2435a9c1c9bd from=translated src=- shape=6b93ec4e vocab=f0986978
+-/
 theorem physical_target_compression (B M E : Space →L[ℝ] Space) (h : ℝ) (m v r : ℝ → Space)
     {s₀ t₀ a ε τ β Θ K e : ℝ} (hs₀ : s₀ ≠ 0) (hε : 0 < ε)
     (hm : m (physicalTime t₀ a ε τ) ≠ 0) (hv : v (physicalTime t₀ a ε τ) ≠ 0)

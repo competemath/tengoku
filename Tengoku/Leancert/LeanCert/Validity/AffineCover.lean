@@ -41,7 +41,9 @@ def checkLowerAffineCover (e : Expr) (c : ℚ) (cfg : AffineConfig) :
       && checkLowerAffineCover e c cfg hi rest
 
 /-- Golden theorem: a successful affine cover proves `c ≤ e` on the whole
-interval `[lo, last]`, where `last` is the final breakpoint. -/
+interval `[lo, last]`, where `last` is the final breakpoint.
+@isnad1 id=le.4h6v.s6.eddaa2cb239a from=translated src=- shape=08cabd22 vocab=15cb2cb9
+-/
 theorem verify_lower_affine_cover (e : Expr) (hsupp : ExprSupportedCore e)
     (c : ℚ) (cfg : AffineConfig) :
     ∀ (lo : ℚ) (bps : List ℚ) (hbps : bps ≠ []),
@@ -84,7 +86,9 @@ def checkLeAffineCover (f g : Expr) (cfg : AffineConfig) (lo : ℚ) (bps : List 
 /-- Golden theorem for affine comparison covers: a successful cover of `g - f`
 proves `f ≤ g` on the whole interval `[lo, last]`.  This closes
 dependency-heavy transcendental comparisons (e.g. `error ≤ admissible curve`)
-that the plain interval backend is too loose for even under subdivision. -/
+that the plain interval backend is too loose for even under subdivision.
+@isnad1 id=le.4h6v.s6.39777698ffa3 from=translated src=- shape=56e398ad vocab=799853a4
+-/
 theorem verify_le_affine_cover (f g : Expr)
     (hsupp : ExprSupportedCore (Expr.sub g f)) (cfg : AffineConfig)
     (lo : ℚ) (bps : List ℚ) (hbps : bps ≠ [])

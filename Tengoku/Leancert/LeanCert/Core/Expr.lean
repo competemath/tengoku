@@ -47,7 +47,9 @@ standard formula: `atanh x = (1/2) * log((1+x)/(1-x))` for `|x| < 1`.
 noncomputable def Real.atanh (x : ℝ) : ℝ :=
   (1 / 2) * Real.log ((1 + x) / (1 - x))
 
-/-- For |x| < 1, the argument (1+x)/(1-x) is positive. -/
+/-- For |x| < 1, the argument (1+x)/(1-x) is positive.
+@isnad1 id=lt.1h1v.s5.63f4e1895683 from=translated src=- shape=7a7f3841 vocab=6f27e6e0
+-/
 theorem Real.atanh_arg_pos {x : ℝ} (hx : |x| < 1) : 0 < (1 + x) / (1 - x) := by
   have h1 : -1 < x := by linarith [abs_lt.mp hx]
   have h2 : x < 1 := (abs_lt.mp hx).2
@@ -55,12 +57,16 @@ theorem Real.atanh_arg_pos {x : ℝ} (hx : |x| < 1) : 0 < (1 + x) / (1 - x) := b
   have hdenom : 0 < 1 - x := by linarith
   exact div_pos hnum hdenom
 
-/-- atanh(0) = 0 -/
+/-- atanh(0) = 0
+@isnad1 id=eq.0h0v.s3.9d2e9925590a from=translated src=- shape=3c26ae4f vocab=ebfc4d35
+-/
 @[simp]
 theorem Real.atanh_zero : Real.atanh 0 = 0 := by
   simp only [Real.atanh, add_zero, sub_zero, div_one, Real.log_one, mul_zero]
 
-/-- atanh(-x) = -atanh(x) for |x| < 1 -/
+/-- atanh(-x) = -atanh(x) for |x| < 1
+@isnad1 id=eq.1h1v.s4.375a95b02553 from=translated src=- shape=854ff378 vocab=8ebe579d
+-/
 theorem Real.atanh_neg {x : ℝ} (hx : |x| < 1) : Real.atanh (-x) = -Real.atanh x := by
   simp only [Real.atanh]
   have hlo : -1 < x := (abs_lt.mp hx).1
@@ -74,7 +80,9 @@ theorem Real.atanh_neg {x : ℝ} (hx : |x| < 1) : Real.atanh (-x) = -Real.atanh 
   rw [Real.log_div (ne_of_gt hpos1) (ne_of_gt hpos2)]
   ring
 
-/-- atanh is strictly monotone on (-1, 1) -/
+/-- atanh is strictly monotone on (-1, 1)
+@isnad1 id=strictmo.0h0v.s4.3fe5326c6cd2 from=translated src=- shape=c86032c6 vocab=0d1aabe9
+-/
 theorem Real.atanh_strictMonoOn : StrictMonoOn Real.atanh (Set.Ioo (-1) 1) := by
   intro x hx y hy hxy
   simp only [Real.atanh]
@@ -91,7 +99,9 @@ theorem Real.atanh_strictMonoOn : StrictMonoOn Real.atanh (Set.Ioo (-1) 1) := by
   ring_nf
   linarith
 
-/-- atanh is monotone on (-1, 1): if x ≤ y then atanh x ≤ atanh y -/
+/-- atanh is monotone on (-1, 1): if x ≤ y then atanh x ≤ atanh y
+@isnad1 id=le.3h2v.s5.35d168c1462c from=translated src=- shape=a08d7a86 vocab=e1aac04a
+-/
 theorem Real.atanh_mono {x y : ℝ} (hx : |x| < 1) (hy : |y| < 1) (hxy : x ≤ y) :
     Real.atanh x ≤ Real.atanh y := by
   rcases hxy.lt_or_eq with hlt | heq
@@ -148,7 +158,9 @@ private theorem integral_exp_neg_sq_nonneg (x : ℝ) (hx : 0 ≤ x) :
   intro t _
   exact le_of_lt (exp_neg_sq_pos t)
 
-/-- The error function is bounded above by 1. -/
+/-- The error function is bounded above by 1.
+@isnad1 id=le.0h1v.s3.a3aa1fb0e4b0 from=translated src=- shape=b14ee516 vocab=7ff87737
+-/
 theorem Real.erf_le_one (x : ℝ) : Real.erf x ≤ 1 := by
   unfold Real.erf
   by_cases! hx : 0 ≤ x
@@ -194,7 +206,9 @@ private theorem integral_exp_neg_sq_le_half_gaussian' (x : ℝ) (hx : x ≤ 0) :
   rw [hsub]
   exact integral_exp_neg_sq_le_half_gaussian (-x) (by linarith)
 
-/-- The error function is bounded below by -1. -/
+/-- The error function is bounded below by -1.
+@isnad1 id=le.0h1v.s4.a627f0925a84 from=translated src=- shape=18c18b5c vocab=4b0b848d
+-/
 theorem Real.neg_one_le_erf (x : ℝ) : -1 ≤ Real.erf x := by
   unfold Real.erf
   by_cases! hx : 0 ≤ x
@@ -225,11 +239,15 @@ theorem Real.neg_one_le_erf (x : ℝ) : -1 ≤ Real.erf x := by
           _ = 1 := by field_simp
     linarith
 
-/-- The error function always lies in `[-1, 1]`. -/
+/-- The error function always lies in `[-1, 1]`.
+@isnad1 id=mem.0h1v.s4.3cff531534f6 from=translated src=- shape=79c0dbe3 vocab=b747eaef
+-/
 theorem Real.erf_mem_Icc (x : ℝ) : Real.erf x ∈ Set.Icc (-1 : ℝ) 1 :=
   ⟨Real.neg_one_le_erf x, Real.erf_le_one x⟩
 
-/-- The normalized sinc function always lies in `[-1, 1]`. -/
+/-- The normalized sinc function always lies in `[-1, 1]`.
+@isnad1 id=mem.0h1v.s4.57e52de07519 from=translated src=- shape=79c0dbe3 vocab=b1140b28
+-/
 theorem Real.sinc_mem_Icc (x : ℝ) : Real.sinc x ∈ Set.Icc (-1 : ℝ) 1 :=
   ⟨Real.neg_one_le_sinc x, Real.sinc_le_one x⟩
 
@@ -346,14 +364,23 @@ def updateVar (ρ : Nat → ℝ) (idx : Nat) (x : ℝ) : Nat → ℝ :=
 
 scoped notation ρ "[" idx " ↦ " x "]" => updateVar ρ idx x
 
+/--
+@isnad1 id=eq.0h3v.s4.6b378b4974c8 from=translated src=- shape=f46a3c01 vocab=1232586c
+-/
 @[simp]
 theorem updateVar_same (ρ : Nat → ℝ) (idx : Nat) (x : ℝ) :
     updateVar ρ idx x idx = x := by simp [updateVar]
 
+/--
+@isnad1 id=eq.1h4v.s4.67c59ac736d3 from=translated src=- shape=22d521a2 vocab=1232586c
+-/
 @[simp]
 theorem updateVar_other (ρ : Nat → ℝ) (idx i : Nat) (x : ℝ) (h : i ≠ idx) :
     updateVar ρ idx x i = ρ i := by simp [updateVar, h]
 
+/--
+@isnad1 id=eq.0h2v.s4.ee26c6d59778 from=translated src=- shape=dd32f0ae vocab=1232586c
+-/
 theorem updateVar_self (ρ : Nat → ℝ) (idx : Nat) :
     updateVar ρ idx (ρ idx) = ρ := by
   funext i
@@ -395,80 +422,152 @@ def isClosed (e : Expr) : Prop := freeVars e = ∅
 
 -- Basic lemmas about eval
 
+/--
+@isnad1 id=eq.0h2v.s4.745ad8112c1f from=translated src=- shape=d817fcc1 vocab=21ec4052
+-/
 @[simp]
 theorem eval_const (ρ : Nat → ℝ) (q : ℚ) : eval ρ (const q) = q := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.17af5ca836dc from=translated src=- shape=02ea90bc vocab=9eb71465
+-/
 @[simp]
 theorem eval_var (ρ : Nat → ℝ) (idx : Nat) : eval ρ (var idx) = ρ idx := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.069c0a492abb from=translated src=- shape=0a17062c vocab=bd25ec4d
+-/
 @[simp]
 theorem eval_add (ρ : Nat → ℝ) (e₁ e₂ : Expr) :
     eval ρ (add e₁ e₂) = eval ρ e₁ + eval ρ e₂ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.456dab748fd8 from=translated src=- shape=0a17062c vocab=c6f484ca
+-/
 @[simp]
 theorem eval_mul (ρ : Nat → ℝ) (e₁ e₂ : Expr) :
     eval ρ (mul e₁ e₂) = eval ρ e₁ * eval ρ e₂ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.c3f84ad16a92 from=translated src=- shape=07892c53 vocab=e7de0e13
+-/
 @[simp]
 theorem eval_neg (ρ : Nat → ℝ) (e : Expr) : eval ρ (neg e) = -(eval ρ e) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.6fb88c0d6da6 from=translated src=- shape=07892c53 vocab=0c502a9f
+-/
 @[simp]
 theorem eval_inv (ρ : Nat → ℝ) (e : Expr) : eval ρ (inv e) = (eval ρ e)⁻¹ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.5592f30aeeff from=translated src=- shape=06185ba2 vocab=ed2db389
+-/
 @[simp]
 theorem eval_exp (ρ : Nat → ℝ) (e : Expr) : eval ρ (exp e) = Real.exp (eval ρ e) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.9f56fea0d62b from=translated src=- shape=06185ba2 vocab=81a224c4
+-/
 @[simp]
 theorem eval_sin (ρ : Nat → ℝ) (e : Expr) : eval ρ (sin e) = Real.sin (eval ρ e) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.25a1a8c654b0 from=translated src=- shape=06185ba2 vocab=917e9366
+-/
 @[simp]
 theorem eval_cos (ρ : Nat → ℝ) (e : Expr) : eval ρ (cos e) = Real.cos (eval ρ e) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.b5cdff01b51d from=translated src=- shape=06185ba2 vocab=5f45c79c
+-/
 @[simp]
 theorem eval_log (ρ : Nat → ℝ) (e : Expr) : eval ρ (log e) = Real.log (eval ρ e) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.a135275db0e7 from=translated src=- shape=06185ba2 vocab=699880ba
+-/
 @[simp]
 theorem eval_atan (ρ : Nat → ℝ) (e : Expr) : eval ρ (atan e) = Real.arctan (eval ρ e) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.15fc23b2c608 from=translated src=- shape=06185ba2 vocab=454136a3
+-/
 @[simp]
 theorem eval_arsinh (ρ : Nat → ℝ) (e : Expr) : eval ρ (arsinh e) = Real.arsinh (eval ρ e) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.1ef5978159ae from=translated src=- shape=06185ba2 vocab=2c67d645
+-/
 @[simp]
 theorem eval_atanh (ρ : Nat → ℝ) (e : Expr) : eval ρ (atanh e) = Real.atanh (eval ρ e) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.3eb9ed4ed3f3 from=translated src=- shape=06185ba2 vocab=9a242563
+-/
 @[simp]
 theorem eval_sinc (ρ : Nat → ℝ) (e : Expr) : eval ρ (sinc e) = Real.sinc (eval ρ e) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.7900e24db554 from=translated src=- shape=06185ba2 vocab=1ed68a1c
+-/
 @[simp]
 theorem eval_erf (ρ : Nat → ℝ) (e : Expr) : eval ρ (erf e) = Real.erf (eval ρ e) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.25dbc0c9bafb from=translated src=- shape=06185ba2 vocab=4a3af38b
+-/
 @[simp]
 theorem eval_sinh (ρ : Nat → ℝ) (e : Expr) : eval ρ (sinh e) = Real.sinh (eval ρ e) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.dd1a1bbc9022 from=translated src=- shape=06185ba2 vocab=f030dc40
+-/
 @[simp]
 theorem eval_cosh (ρ : Nat → ℝ) (e : Expr) : eval ρ (cosh e) = Real.cosh (eval ρ e) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.4645201a5a09 from=translated src=- shape=06185ba2 vocab=5217dcb4
+-/
 @[simp]
 theorem eval_tanh (ρ : Nat → ℝ) (e : Expr) : eval ρ (tanh e) = Real.tanh (eval ρ e) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.e7ff00723432 from=translated src=- shape=06185ba2 vocab=a50f7a81
+-/
 @[simp]
 theorem eval_sqrt (ρ : Nat → ℝ) (e : Expr) : eval ρ (sqrt e) = Real.sqrt (eval ρ e) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.6b010edb9ce5 from=translated src=- shape=f0c8d852 vocab=61669826
+-/
 @[simp]
 theorem eval_namedConst (ρ : Nat → ℝ) (c : MathConst) :
     eval ρ (namedConst c) = c.toReal := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.c199f56dd6cf from=translated src=- shape=b6cbb328 vocab=5c63e2e7
+-/
 theorem eval_eulerMascheroni (ρ : Nat → ℝ) :
     eval ρ (namedConst .eulerMascheroni) = Real.eulerMascheroniConstant := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.08248a35797d from=translated src=- shape=0a17062c vocab=45d7ca16
+-/
 @[simp]
 theorem eval_sub (ρ : Nat → ℝ) (e₁ e₂ : Expr) :
     eval ρ (sub e₁ e₂) = eval ρ e₁ - eval ρ e₂ := by simp [sub, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.0h3v.s4.3c94467bf1eb from=translated src=- shape=0a17062c vocab=dc653f96
+-/
 @[simp]
 theorem eval_div (ρ : Nat → ℝ) (e₁ e₂ : Expr) :
     eval ρ (div e₁ e₂) = eval ρ e₁ / eval ρ e₂ := by simp [div, div_eq_mul_inv]
 
+/--
+@isnad1 id=eq.0h3v.s4.86e37f4cc5cb from=translated src=- shape=1eb8cefd vocab=1576a001
+-/
 @[simp]
 theorem eval_pow (ρ : Nat → ℝ) (e : Expr) (n : ℕ) :
     eval ρ (pow e n) = (eval ρ e) ^ n := by
@@ -476,132 +575,184 @@ theorem eval_pow (ρ : Nat → ℝ) (e : Expr) (n : ℕ) :
   | zero => simp [pow]
   | succ n ih => simp only [pow, eval_mul, ih, pow_succ']
 
-/-- Evaluation of abs for any argument: |x| = sqrt(x²) -/
+/-- Evaluation of abs for any argument: |x| = sqrt(x²)
+@isnad1 id=eq.0h2v.s4.615d60a79673 from=translated src=- shape=07892c53 vocab=eae45334
+-/
 theorem eval_abs (ρ : Nat → ℝ) (e : Expr) :
     eval ρ (abs e) = |eval ρ e| := by
   simp only [abs, eval_sqrt, eval_mul, ← sq, Real.sqrt_sq_eq_abs]
 
-/-- Evaluation of sqrt(x * x) = |x| (unfolded form of `abs`). -/
+/-- Evaluation of sqrt(x * x) = |x| (unfolded form of `abs`).
+@isnad1 id=eq.0h2v.s4.0f8eedb7f7a8 from=translated src=- shape=3b95c81b vocab=54758b32
+-/
 theorem eval_sqrt_mul_self_eq_abs (ρ : Nat → ℝ) (e : Expr) :
     eval ρ (sqrt (mul e e)) = |eval ρ e| := eval_abs ρ e
 
-/-- `√(x * x) = |x|` — LeanCert-namespaced alias of `Real.sqrt_mul_self_eq_abs`. -/
+/-- `√(x * x) = |x|` — LeanCert-namespaced alias of `Real.sqrt_mul_self_eq_abs`.
+@isnad1 id=eq.0h1v.s4.5334b82ecc24 from=translated src=- shape=0cd1df8f vocab=047fd1c5
+-/
 theorem sqrt_mul_self_eq_abs (x : ℝ) : Real.sqrt (x * x) = |x| :=
   Real.sqrt_mul_self_eq_abs x
 
-/-- For positive x, sqrt(x²) = x -/
+/-- For positive x, sqrt(x²) = x
+@isnad1 id=eq.1h2v.s4.5efad2385d24 from=translated src=- shape=13ad2e62 vocab=8b7a0e09
+-/
 theorem eval_sqrt_sq_of_pos (ρ : Nat → ℝ) (e : Expr) (hpos : 0 < eval ρ e) :
     eval ρ (sqrt (mul e e)) = eval ρ e := by
   simp only [eval_sqrt, eval_mul, ← sq, Real.sqrt_sq (le_of_lt hpos)]
 
-/-- Abs correctly computes absolute value for positive inputs -/
+/-- Abs correctly computes absolute value for positive inputs
+@isnad1 id=eq.1h2v.s4.7e908a059453 from=translated src=- shape=c980dcf4 vocab=bc7f4b56
+-/
 theorem eval_abs_of_pos (ρ : Nat → ℝ) (e : Expr) (hpos : 0 < eval ρ e) :
     eval ρ (abs e) = eval ρ e := by
   rw [eval_abs, abs_of_pos hpos]
 
-/-- Abs correctly computes absolute value for negative inputs -/
+/-- Abs correctly computes absolute value for negative inputs
+@isnad1 id=eq.1h2v.s4.c56fd20c9e65 from=translated src=- shape=e31995ff vocab=871a4560
+-/
 theorem eval_abs_of_neg (ρ : Nat → ℝ) (e : Expr) (hneg : eval ρ e < 0) :
     eval ρ (abs e) = -(eval ρ e) := by
   rw [eval_abs, abs_of_neg hneg]
 
 -- Lemmas about evalAlong
 
+/--
+@isnad1 id=eq.0h4v.s4.c25aaf9d6b8c from=translated src=- shape=bae81796 vocab=a5614301
+-/
 theorem evalAlong_eq (e : Expr) (ρ : Nat → ℝ) (idx : Nat) (t : ℝ) :
     evalAlong e ρ idx t = eval (ρ[idx ↦ t]) e := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.5987045ff201 from=translated src=- shape=f9132f05 vocab=71915483
+-/
 theorem evalAlong_at_ρ (e : Expr) (ρ : Nat → ℝ) (idx : Nat) :
     evalAlong e ρ idx (ρ idx) = eval ρ e := by
   simp only [evalAlong, updateVar_self]
 
-/-- evalAlong for a constant is constant -/
+/-- evalAlong for a constant is constant
+@isnad1 id=eq.0h3v.s4.0e42fba5ba7c from=translated src=- shape=61bdf578 vocab=b04500f9
+-/
 theorem evalAlong_const' (ρ : Nat → ℝ) (idx : Nat) (q : ℚ) :
     evalAlong (const q) ρ idx = fun _ => (q : ℝ) := rfl
 
-/-- evalAlong for the active variable is the identity -/
+/-- evalAlong for the active variable is the identity
+@isnad1 id=eq.0h2v.s4.810eb8948277 from=translated src=- shape=a8040cbf vocab=344fb4aa
+-/
 theorem evalAlong_var_active (ρ : Nat → ℝ) (idx : Nat) :
     evalAlong (var idx) ρ idx = id := by
   funext t
   simp only [evalAlong, eval_var, updateVar_same, id_eq]
 
-/-- evalAlong for a passive variable is constant -/
+/-- evalAlong for a passive variable is constant
+@isnad1 id=eq.1h3v.s4.e887fac3eaa6 from=translated src=- shape=52fd0de7 vocab=4179968d
+-/
 theorem evalAlong_var_passive (ρ : Nat → ℝ) (idx i : Nat) (h : i ≠ idx) :
     evalAlong (var i) ρ idx = fun _ => ρ i := by
   funext t
   simp only [evalAlong, eval_var, updateVar_other _ _ _ _ h]
 
-/-- evalAlong for addition -/
+/-- evalAlong for addition
+@isnad1 id=eq.0h4v.s5.7b5d41b3ecf9 from=translated src=- shape=f7300076 vocab=6efdfbe6
+-/
 theorem evalAlong_add (e₁ e₂ : Expr) (ρ : Nat → ℝ) (idx : Nat) :
     evalAlong (add e₁ e₂) ρ idx = fun t => evalAlong e₁ ρ idx t + evalAlong e₂ ρ idx t := by
   funext t
   simp only [evalAlong, eval_add]
 
-/-- evalAlong for addition (Pi form for compatibility with deriv_add) -/
+/-- evalAlong for addition (Pi form for compatibility with deriv_add)
+@isnad1 id=eq.0h4v.s5.b108b493fdad from=translated src=- shape=0b195cf0 vocab=6efdfbe6
+-/
 theorem evalAlong_add_pi (e₁ e₂ : Expr) (ρ : Nat → ℝ) (idx : Nat) :
     evalAlong (add e₁ e₂) ρ idx = evalAlong e₁ ρ idx + evalAlong e₂ ρ idx := rfl
 
-/-- evalAlong for multiplication -/
+/-- evalAlong for multiplication
+@isnad1 id=eq.0h4v.s5.2e8b7f519469 from=translated src=- shape=f7300076 vocab=e15681b8
+-/
 theorem evalAlong_mul (e₁ e₂ : Expr) (ρ : Nat → ℝ) (idx : Nat) :
     evalAlong (mul e₁ e₂) ρ idx = fun t => evalAlong e₁ ρ idx t * evalAlong e₂ ρ idx t := by
   funext t
   simp only [evalAlong, eval_mul]
 
-/-- evalAlong for multiplication (Pi form for compatibility with deriv_mul) -/
+/-- evalAlong for multiplication (Pi form for compatibility with deriv_mul)
+@isnad1 id=eq.0h4v.s5.5639e4a52295 from=translated src=- shape=0b195cf0 vocab=e15681b8
+-/
 theorem evalAlong_mul_pi (e₁ e₂ : Expr) (ρ : Nat → ℝ) (idx : Nat) :
     evalAlong (mul e₁ e₂) ρ idx = evalAlong e₁ ρ idx * evalAlong e₂ ρ idx := rfl
 
-/-- evalAlong for negation -/
+/-- evalAlong for negation
+@isnad1 id=eq.0h3v.s4.b7415bab84da from=translated src=- shape=985c21bd vocab=80b68549
+-/
 theorem evalAlong_neg (e : Expr) (ρ : Nat → ℝ) (idx : Nat) :
     evalAlong (neg e) ρ idx = fun t => -(evalAlong e ρ idx t) := by
   funext t
   simp only [evalAlong, eval_neg]
 
-/-- evalAlong for negation (Pi form for compatibility with deriv.neg) -/
+/-- evalAlong for negation (Pi form for compatibility with deriv.neg)
+@isnad1 id=eq.0h3v.s5.902ed46d9c66 from=translated src=- shape=2390a6e7 vocab=80b68549
+-/
 theorem evalAlong_neg_pi (e : Expr) (ρ : Nat → ℝ) (idx : Nat) :
     evalAlong (neg e) ρ idx = -evalAlong e ρ idx := rfl
 
-/-- evalAlong for sin -/
+/-- evalAlong for sin
+@isnad1 id=eq.0h3v.s4.302bd97fb564 from=translated src=- shape=9896c634 vocab=3be22ffe
+-/
 theorem evalAlong_sin (e : Expr) (ρ : Nat → ℝ) (idx : Nat) :
     evalAlong (sin e) ρ idx = fun t => Real.sin (evalAlong e ρ idx t) := by
   funext t
   simp only [evalAlong, eval_sin]
 
-/-- evalAlong for cos -/
+/-- evalAlong for cos
+@isnad1 id=eq.0h3v.s4.d8118043cad2 from=translated src=- shape=9896c634 vocab=c7faad5f
+-/
 theorem evalAlong_cos (e : Expr) (ρ : Nat → ℝ) (idx : Nat) :
     evalAlong (cos e) ρ idx = fun t => Real.cos (evalAlong e ρ idx t) := by
   funext t
   simp only [evalAlong, eval_cos]
 
-/-- evalAlong for exp -/
+/-- evalAlong for exp
+@isnad1 id=eq.0h3v.s4.b09500d85569 from=translated src=- shape=9896c634 vocab=ec6c3d9a
+-/
 theorem evalAlong_exp (e : Expr) (ρ : Nat → ℝ) (idx : Nat) :
     evalAlong (exp e) ρ idx = fun t => Real.exp (evalAlong e ρ idx t) := by
   funext t
   simp only [evalAlong, eval_exp]
 
-/-- evalAlong for inv -/
+/-- evalAlong for inv
+@isnad1 id=eq.0h3v.s4.2186e2bfc008 from=translated src=- shape=985c21bd vocab=e7621b9b
+-/
 theorem evalAlong_inv (e : Expr) (ρ : Nat → ℝ) (idx : Nat) :
     evalAlong (inv e) ρ idx = fun t => (evalAlong e ρ idx t)⁻¹ := by
   funext t
   simp only [evalAlong, eval_inv]
 
-/-- evalAlong for log -/
+/-- evalAlong for log
+@isnad1 id=eq.0h3v.s4.c712f3800d4f from=translated src=- shape=9896c634 vocab=e977112d
+-/
 theorem evalAlong_log (e : Expr) (ρ : Nat → ℝ) (idx : Nat) :
     evalAlong (log e) ρ idx = fun t => Real.log (evalAlong e ρ idx t) := by
   funext t
   simp only [evalAlong, eval_log]
 
-/-- evalAlong for atan -/
+/-- evalAlong for atan
+@isnad1 id=eq.0h3v.s4.c2448d62d103 from=translated src=- shape=9896c634 vocab=248bf03f
+-/
 theorem evalAlong_atan (e : Expr) (ρ : Nat → ℝ) (idx : Nat) :
     evalAlong (atan e) ρ idx = fun t => Real.arctan (evalAlong e ρ idx t) := by
   funext t
   simp only [evalAlong, eval_atan]
 
-/-- evalAlong for arsinh -/
+/-- evalAlong for arsinh
+@isnad1 id=eq.0h3v.s4.7582fb01ee2f from=translated src=- shape=9896c634 vocab=da74a63d
+-/
 theorem evalAlong_arsinh (e : Expr) (ρ : Nat → ℝ) (idx : Nat) :
     evalAlong (arsinh e) ρ idx = fun t => Real.arsinh (evalAlong e ρ idx t) := by
   funext t
   simp only [evalAlong, eval_arsinh]
 
-/-- evalAlong for atanh -/
+/-- evalAlong for atanh
+@isnad1 id=eq.0h3v.s4.25bfe9682294 from=translated src=- shape=9896c634 vocab=7c9f1fc3
+-/
 theorem evalAlong_atanh (e : Expr) (ρ : Nat → ℝ) (idx : Nat) :
     evalAlong (atanh e) ρ idx = fun t => Real.atanh (evalAlong e ρ idx t) := by
   funext t
@@ -637,7 +788,9 @@ def usesOnlyVar0 : Expr → Bool
   | sqrt e => e.usesOnlyVar0
   | namedConst _ => true
 
-/-- If two environments agree on variable 0, then a usesOnlyVar0 expression evaluates the same -/
+/-- If two environments agree on variable 0, then a usesOnlyVar0 expression evaluates the same
+@isnad1 id=eq.2h3v.s5.dc7097472e51 from=translated src=- shape=f23e3dd4 vocab=d1bd89ae
+-/
 theorem eval_usesOnlyVar0_eq (e : Expr) (he : e.usesOnlyVar0 = true)
     (ρ₁ ρ₂ : Nat → ℝ) (h0 : ρ₁ 0 = ρ₂ 0) :
     eval ρ₁ e = eval ρ₂ e := by
@@ -700,13 +853,17 @@ theorem eval_usesOnlyVar0_eq (e : Expr) (he : e.usesOnlyVar0 = true)
   | namedConst _ => rfl
 
 /-- For single-variable expressions, `fun n => if n = 0 then x else 0` and `fun _ => x`
-    give the same evaluation result. -/
+    give the same evaluation result.
+@isnad1 id=eq.1h2v.s5.69cf85e06590 from=translated src=- shape=a6017fae vocab=5255ee95
+-/
 theorem eval_1d_equiv (e : Expr) (he : e.usesOnlyVar0 = true) (x : ℝ) :
     eval (fun n => if n = 0 then x else 0) e = eval (fun _ => x) e := by
   apply eval_usesOnlyVar0_eq e he
   simp
 
-/-- Alternative: evaluation with Box-style environment equals 1D evaluation -/
+/-- Alternative: evaluation with Box-style environment equals 1D evaluation
+@isnad1 id=eq.1h2v.s5.69cf85e06590 from=translated src=- shape=a6017fae vocab=5255ee95
+-/
 theorem eval_box1d_eq_eval1d (e : Expr) (he : e.usesOnlyVar0 = true) (x : ℝ) :
     eval (fun n => if n = 0 then x else 0) e = eval (fun _ => x) e :=
   eval_1d_equiv e he x

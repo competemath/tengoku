@@ -15,6 +15,9 @@ open scoped ContDiff
 
 variable (P k : ℝ) (m : Vector3)
 
+/--
+@isnad1 id=le.3h7v.s16.5cd10081fe90 from=translated src=- shape=a9ae24d9 vocab=d866a608
+-/
 theorem physicalTensor_norm_le_of_ae (f : LiftDomain P → Vector3)
     (hf : ∀ x, ContDiff ℝ ∞ (localFieldLift P f x)) (n : ℕ)
     (u : (Fin n → Fin 4) → Lp Vector3 2 (volume : Measure Vector3))
@@ -29,6 +32,9 @@ theorem physicalTensor_norm_le_of_ae (f : LiftDomain P → Vector3)
   rw [he]
   exact physicalTensorLp_norm_le P k m f hf n u hu
 
+/--
+@isnad1 id=le.6h10v.s18.526aa930c7bb from=translated src=- shape=227bf1c4 vocab=ec74b8d8
+-/
 theorem physicalTensor_difference_norm_le (f g : LiftDomain P → Vector3)
     (hf : ∀ x, ContDiff ℝ ∞ (localFieldLift P f x))
     (hg : ∀ x, ContDiff ℝ ∞ (localFieldLift P g x)) (n : ℕ)

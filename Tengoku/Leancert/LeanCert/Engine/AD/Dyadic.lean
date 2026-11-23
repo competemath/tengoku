@@ -125,6 +125,9 @@ def mkDualDyadicEnv (rho : IntervalDyadicEnv) (idx : Nat) : DualDyadicEnv :=
   fun i => if i = idx then DualIntervalDyadic.varActive (rho i)
     else DualIntervalDyadic.varPassive (rho i)
 
+/--
+@isnad1 id=eq.0h2v.s3.c6c81b587df3 from=translated src=- shape=22f25778 vocab=5e1845a8
+-/
 @[simp] theorem mkDualDyadicEnv_values (rho : IntervalDyadicEnv) (idx : Nat) :
     (mkDualDyadicEnv rho idx).values = rho := by
   funext i
@@ -191,7 +194,9 @@ def derivIntervalDyadicChecked1OfRat (e : Expr) (I : IntervalRat)
   derivIntervalDyadicCheckedOfRat e (fun _ => I) 0 cfg
 
 /-- The value projection of the dual kernel is exactly the ordinary Dyadic
-value kernel. -/
+value kernel.
+@isnad1 id=eq.1h3v.s4.4798fe17f058 from=translated src=- shape=24f20044 vocab=7eb2ae77
+-/
 theorem evalTotalDyadic_val_of_fragment (e : Expr) (rho : DualDyadicEnv)
     (cfg : DyadicConfig) (hsupp : checkDyadicADFragment e = true) :
     (LeanCert.Internal.AD.Dyadic.evalTotal e rho cfg).val =
@@ -245,7 +250,9 @@ private theorem evalTotalDyadic_val_correct_of_facts (e : Expr)
   rw [evalTotalDyadic_val_of_fragment e rho cfg hsupp]
   exact evalIntervalDyadic_correct_of_domain e rhoReal rho.values hrho cfg hprec hdom
 
-/-- Golden theorem for successful checked Dyadic dual evaluation. -/
+/-- Golden theorem for successful checked Dyadic dual evaluation.
+@isnad1 id=mem.2h5v.s5.baa042e57a65 from=translated src=- shape=ac3dce7e vocab=2f1d5117
+-/
 theorem evalDualDyadicChecked_val_correct (e : Expr)
     (rhoReal : Nat → ℝ) (rho : DualDyadicEnv) (cfg : DyadicConfig)
     (D : DualIntervalDyadic) (hrho : ∀ i, rhoReal i ∈ (rho i).val)
@@ -340,7 +347,9 @@ private theorem evalAlong_differentiableAt_of_dyadic_facts (e : Expr)
       simp [checkDyadicADFragment] at hsupp
 
 /-- Successful checked Dyadic indexed AD proves differentiability throughout
-the selected input interval. -/
+the selected input interval.
+@isnad1 id=differen.3h7v.s6.9ba871ff03fa from=translated src=- shape=3475e94c vocab=17b79198
+-/
 theorem evalWithDerivDyadicChecked_differentiableAt (e : Expr)
     (rhoReal : Nat → ℝ) (rho : IntervalDyadicEnv) (idx : Nat) (cfg : DyadicConfig)
     (D : DualIntervalDyadic) (x : ℝ) (hx : x ∈ rho idx)
@@ -553,7 +562,9 @@ private theorem evalTotalDyadic_der_correct_of_facts (e : Expr)
       simp [checkDyadicADFragment] at hsupp
 
 /-- Golden theorem: successful checked Dyadic indexed AD encloses the true
-partial derivative. -/
+partial derivative.
+@isnad1 id=mem.3h7v.s6.30e92dda3e34 from=translated src=- shape=1c72dbde vocab=a544ad3b
+-/
 theorem evalWithDerivDyadicChecked_der_correct (e : Expr)
     (rhoReal : Nat → ℝ) (rho : IntervalDyadicEnv) (idx : Nat) (cfg : DyadicConfig)
     (D : DualIntervalDyadic) (x : ℝ) (hx : x ∈ rho idx)
@@ -564,7 +575,9 @@ theorem evalWithDerivDyadicChecked_der_correct (e : Expr)
   exact evalTotalDyadic_der_correct_of_facts e rhoReal rho idx cfg x hx hrho hprec hsupp
     (by simpa using hdom)
 
-/-- Golden theorem for the derivative-only Dyadic API. -/
+/-- Golden theorem for the derivative-only Dyadic API.
+@isnad1 id=mem.3h7v.s6.9b139f7dbb35 from=translated src=- shape=305ba4f9 vocab=35a8ff7d
+-/
 theorem derivIntervalDyadicChecked_correct (e : Expr)
     (rhoReal : Nat → ℝ) (rho : IntervalDyadicEnv) (idx : Nat) (cfg : DyadicConfig)
     (dI : IntervalDyadic) (x : ℝ) (hx : x ∈ rho idx)
@@ -580,7 +593,9 @@ theorem derivIntervalDyadicChecked_correct (e : Expr)
       subst dI
       exact evalWithDerivDyadicChecked_der_correct e rhoReal rho idx cfg D x hx hrho hdual
 
-/-- Golden theorem for rational input boxes converted to the Dyadic backend. -/
+/-- Golden theorem for rational input boxes converted to the Dyadic backend.
+@isnad1 id=mem.3h7v.s6.6cc13e778aca from=translated src=- shape=169be1d0 vocab=81301409
+-/
 theorem derivIntervalDyadicCheckedOfRat_correct (e : Expr)
     (rhoReal : Nat → ℝ) (rho : IntervalEnv) (idx : Nat) (cfg : DyadicConfig)
     (dI : IntervalDyadic) (x : ℝ) (hx : x ∈ rho idx)
@@ -649,7 +664,9 @@ private theorem derivIntervalsDyadicChecked_correct (e : Expr)
                   (rhoReal i) (hrho i) hrho hdi)
                 (ih tail htail)
 
-/-- Golden theorem for the checked Dyadic gradient API. -/
+/-- Golden theorem for the checked Dyadic gradient API.
+@isnad1 id=forall.2h6v.s6.059a642ff35f from=translated src=- shape=cbf1b97f vocab=d0c8e1f6
+-/
 theorem gradientIntervalDyadicChecked_correct (e : Expr)
     (rhoReal : Nat → ℝ) (rho : IntervalDyadicEnv) (n : Nat) (cfg : DyadicConfig)
     (hrho : ∀ i, rhoReal i ∈ rho i) (gradient : List IntervalDyadic)
@@ -662,7 +679,9 @@ theorem gradientIntervalDyadicChecked_correct (e : Expr)
       (List.range n) gradient hok
   · contradiction
 
-/-- Golden theorem for checked Dyadic gradients over rational input boxes. -/
+/-- Golden theorem for checked Dyadic gradients over rational input boxes.
+@isnad1 id=forall.2h6v.s6.40a3197c4ad6 from=translated src=- shape=2b22d5b2 vocab=c8d389ad
+-/
 theorem gradientIntervalDyadicCheckedOfRat_correct (e : Expr)
     (rhoReal : Nat → ℝ) (rho : IntervalEnv) (n : Nat) (cfg : DyadicConfig)
     (hrho : ∀ i, rhoReal i ∈ rho i) (gradient : List IntervalDyadic)

@@ -18,6 +18,9 @@ open scoped ContDiff ENNReal NNReal
 variable (P : ℝ) [Fact (0 < P)] {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
 
 omit [Fact (0 < P)] [NormedAddCommGroup V] [NormedSpace ℝ V] in
+/--
+@isnad1 id=eq.0h5v.s6.1e497672fe4e from=translated src=- shape=db209c74 vocab=1d34f5d7
+-/
 theorem cover_periodic (f : LiftDomain P → V) (c : AddSubgroup.zmultiples P) (z : LiftTangent) :
     f (coveringMap P (z.1,(c : ℝ)+z.2)) = f (coveringMap P z) :=
   congrArg f (EulerCylinderMeasureDescent.coveringMap_deck P c z)
@@ -25,6 +28,9 @@ theorem cover_periodic (f : LiftDomain P → V) (c : AddSubgroup.zmultiples P) (
 def tensor (f : LiftDomain P → V) (n : ℕ) (q : LiftDomain P) : LiftTangent [×n]→L[ℝ] V :=
   jetSeries P (fun z => f (coveringMap P z)) q n
 
+/--
+@isnad1 id=continuo.1h4v.s9.5db0313457b3 from=translated src=- shape=5fe2e605 vocab=947a358b
+-/
 theorem tensor_continuous (f : LiftDomain P → V)
     (hf : ∀ q, ContDiff ℝ ∞ (localFieldLift P f q)) (n : ℕ) :
     Continuous (tensor P f n) :=
@@ -32,6 +38,9 @@ theorem tensor_continuous (f : LiftDomain P → V)
     ((coverField_contDiff P f hf).continuous_iteratedFDeriv (by simp))
     (fiber_constant_of_deck P _ (iteratedFDeriv_deck P _ (cover_periodic P f) n))
 
+/--
+@isnad1 id=le.1h5v.s11.9fbd22155e87 from=translated src=- shape=76c79433 vocab=e2675bfe
+-/
 theorem tensor_norm_le (f : LiftDomain P → V)
     (hf : ∀ q, ContDiff ℝ ∞ (localFieldLift P f q)) (n : ℕ) (q : LiftDomain P) :
     ‖tensor P f n q‖ ≤ ‖coordinateEquiv.symm.toContinuousLinearMap‖^n *
@@ -39,6 +48,9 @@ theorem tensor_norm_le (f : LiftDomain P → V)
   have h := coverField_tensor_norm_le P n f hf (sectionPoint P q)
   simpa only [tensor, jetSeries, descend, coveringMap_sectionPoint] using h
 
+/--
+@isnad1 id=memlp.2h4v.s11.8af749b7751e from=translated src=- shape=a109e063 vocab=02b33cac
+-/
 theorem tensor_memLp (f : LiftDomain P → V)
     (hf : ∀ q, ContDiff ℝ ∞ (localFieldLift P f q)) (n : ℕ)
     (hLp : ∀ w : Fin n → Fin 4, MemLp (iteratedFieldDerivative P w f) 2 (liftMeasure P)) :
@@ -52,6 +64,9 @@ theorem tensor_memLp (f : LiftDomain P → V)
     (Finset.sum_nonneg (fun _ _ => norm_nonneg _)))]
   exact tensor_norm_le P f hf n q
 
+/--
+@isnad1 id=le.2h4v.s12.6f0e1637450c from=translated src=- shape=d23257d9 vocab=8373dcdd
+-/
 theorem tensor_eLpNorm_le (f : LiftDomain P → V)
     (hf : ∀ q, ContDiff ℝ ∞ (localFieldLift P f q)) (n : ℕ)
     (hLp : ∀ w : Fin n → Fin 4, MemLp (iteratedFieldDerivative P w f) 2 (liftMeasure P)) :

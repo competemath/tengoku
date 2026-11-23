@@ -10,12 +10,18 @@ namespace EulerPacketMovingFrame
 
 open EulerSmoothLimit EulerPacketNormalizedPrimary EulerPacketRay InnerProductSpace
 
+/--
+@isnad1 id=le.3h4v.s8.5a6043317631 from=translated src=- shape=8930aa33 vocab=275a4a0d
+-/
 theorem frame_coordinate_abs_le_norm (p q x : Space)
     (hp : ⟪p,p⟫_ℝ = 1) (hq : ⟪q,q⟫_ℝ = 1) (hpq : ⟪p,q⟫_ℝ = 0) (i : Fin 3) :
     |frameCoordinates p q x i| ≤ ‖x‖ := by
   have h := abs_real_inner_le_norm (frame p q i) x
   simpa only [frameCoordinates, (frame_orthonormal p q hp hq hpq).norm_eq_one i, one_mul] using h
 
+/--
+@isnad1 id=le.3h3v.s8.5d96ce6b0428 from=translated src=- shape=a80233fd vocab=09f98c2b
+-/
 theorem norm_le_frame_norm3 (p q x : Space)
     (hp : ⟪p,p⟫_ℝ = 1) (hq : ⟪q,q⟫_ℝ = 1) (hpq : ⟪p,q⟫_ℝ = 0) :
     ‖x‖ ≤ norm3 (frameCoordinates p q x 0) (frameCoordinates p q x 1) (frameCoordinates p q x 2) := by
@@ -29,6 +35,9 @@ theorem norm_le_frame_norm3 (p q x : Space)
       simp only [norm_smul, Real.norm_eq_abs, frameBasis_apply,
         (frame_orthonormal p q hp hq hpq).norm_eq_one, mul_one, Fin.sum_univ_three, norm3, frameCoordinates]
 
+/--
+@isnad1 id=le.6h8v.s8.7267c952701b from=translated src=- shape=d3a8210a vocab=a7a106ed
+-/
 theorem scaledRay_norm_le_norm3 (m v r : ℝ → Space) {s₀ t₀ a ε τ : ℝ}
     (hs₀ : 0 < s₀) (hε : 0 < ε) (hε1 : ε ≤ 1)
     (hm : m (physicalTime t₀ a ε τ) ≠ 0) (hv : v (physicalTime t₀ a ε τ) ≠ 0)
@@ -49,6 +58,9 @@ theorem scaledRay_norm_le_norm3 (m v r : ℝ → Space) {s₀ t₀ a ε τ : ℝ
     (show 0 ≤ s₀*|scaledRay m v r s₀ t₀ a ε τ 1| by positivity)
   nlinarith only [hh, hbound]
 
+/--
+@isnad1 id=le.5h7v.s8.351c5927dfbc from=translated src=- shape=cc4e9c85 vocab=b8e78526
+-/
 theorem scaledVelocity_norm_le_norm3 (m v w : ℝ → Space) {t₀ a ε τ : ℝ}
     (hε : 0 < ε) (hε1 : ε ≤ 1)
     (hm : m (physicalTime t₀ a ε τ) ≠ 0) (hv : v (physicalTime t₀ a ε τ) ≠ 0)
@@ -69,6 +81,9 @@ theorem scaledVelocity_norm_le_norm3 (m v w : ℝ → Space) {t₀ a ε τ : ℝ
   have h2 := mul_le_mul_of_nonneg_right hε1 (abs_nonneg (scaledVelocity m v w t₀ a ε τ 2))
   nlinarith only [hh, h0, h2]
 
+/--
+@isnad1 id=le.7h9v.s9.7f573d82384e from=translated src=- shape=d84955d1 vocab=30edf661
+-/
 theorem physical_size_ge_second (m v r w : ℝ → Space) {s₀ t₀ a ε τ : ℝ}
     (hs₀ : 0 < s₀) (hε : ε ≠ 0)
     (hm : m (physicalTime t₀ a ε τ) ≠ 0) (hv : v (physicalTime t₀ a ε τ) ≠ 0)
@@ -97,6 +112,9 @@ theorem physical_size_ge_second (m v r w : ℝ → Space) {s₀ t₀ a ε τ : �
   have hp := mul_le_mul hr hw hV (norm_nonneg _)
   nlinarith only [hp]
 
+/--
+@isnad1 id=le.15h13v.s9.4ac359096434 from=translated src=- shape=33131757 vocab=ce739978
+-/
 theorem physical_size_le_scaled_state (m v r w : ℝ → Space)
     {s₀ t₀ a ε τ Θ ρ P₀ Q₀ : ℝ}
     (hs₀ : 0 < s₀) (hε : 0 < ε) (hε1 : ε ≤ 1)

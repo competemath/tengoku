@@ -36,6 +36,9 @@ def value (A : SmoothFamily μ P V) (a : P) : Lp V 2 μ :=
   (continuousMultilinearCurryFin0 ℝ P V).toContinuousLinearEquiv.toContinuousLinearMap.compLpL
     2 μ (A.jet 0 a)
 
+/--
+@isnad1 id=eventual.0h6v.s8.1d9dbc865140 from=translated src=- shape=15170d95 vocab=9fb07c67
+-/
 theorem value_ae (A : SmoothFamily μ P V) (a : P) : A.value a =ᵐ[μ] A.field a := by
   filter_upwards [(continuousMultilinearCurryFin0 ℝ P V).toContinuousLinearEquiv.toContinuousLinearMap.coeFn_compLpL
     (A.jet 0 a), A.jet_ae 0 a] with x hx hj
@@ -60,9 +63,15 @@ def derivative (A : SmoothFamily μ P V) : SmoothFamily μ P (P →L[ℝ] V) whe
   bounded n := (A.bounded (n+1)).mono (fun x hx a => by
     simpa only [norm_iteratedFDeriv_fderiv] using hx a)
 
+/--
+@isnad1 id=eventual.0h6v.s8.4230df4c4fdc from=translated src=- shape=d55b7b57 vocab=a9acef03
+-/
 theorem bound_nonneg (A : SmoothFamily μ P V) (n : ℕ) : ∀ᵐ x ∂μ, 0 ≤ A.bound n x :=
   (A.bounded n).mono (fun _ hx => (norm_nonneg _).trans (hx 0))
 
+/--
+@isnad1 id=hasfderi.0h6v.s10.c8dcd24d3e95 from=translated src=- shape=ff22ef97 vocab=d1377080
+-/
 theorem hasFDerivAt_value (A : SmoothFamily μ P V) (a : P) :
     HasFDerivAt A.value (derivativeMap μ (A.derivative.value a)) a := by
   have hshift : HasFDerivAt (fun b => A.value (b+a))
@@ -89,6 +98,9 @@ theorem hasFDerivAt_value (A : SmoothFamily μ P V) (a : P) :
       simpa only [zero_add] using (hx.differentiable (by simp) a).hasFDerivAt
   simpa only [zero_add] using (hasFDerivAt_comp_add_right a).mp hshift
 
+/--
+@isnad1 id=eq.0h5v.s15.c7e3abe835ca from=translated src=- shape=0378e1bc vocab=e8f8cfc8
+-/
 theorem fderiv_value (A : SmoothFamily μ P V) :
     fderiv ℝ A.value = fun a => derivativeBundling μ (A.derivative.value a) :=
   funext (fun a => (A.hasFDerivAt_value a).fderiv)

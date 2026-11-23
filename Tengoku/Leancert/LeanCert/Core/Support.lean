@@ -86,7 +86,9 @@ inductive ADSupported : Expr → Prop where
   | cos {e : Expr} : ADSupported e → ADSupported (Expr.cos e)
   | exp {e : Expr} : ADSupported e → ADSupported (Expr.exp e)
 
-/-- ADSupported expressions are also in ExprSupportedCore -/
+/-- ADSupported expressions are also in ExprSupportedCore
+@isnad1 id=exprsupp.1h1v.s2.1a4a4388e443 from=translated src=- shape=6321fd23 vocab=4f2593f8
+-/
 theorem ADSupported.toCore {e : Expr} (h : ADSupported e) : ExprSupportedCore e := by
   induction h with
   | const q => exact ExprSupportedCore.const q
@@ -107,7 +109,9 @@ def Expr.checkADSupported : Expr → Bool
   | _ => false
 
 /-- The executable support check recognizes exactly the differentiable
-`ADSupported` fragment used by the checked AD/monotonicity backend. -/
+`ADSupported` fragment used by the checked AD/monotonicity backend.
+@isnad1 id=iff.0h1v.s3.a27f606f3242 from=translated src=- shape=29662511 vocab=72e840a3
+-/
 theorem Expr.checkADSupported_eq_true_iff (e : Expr) :
     e.checkADSupported = true ↔ ADSupported e := by
   induction e with
@@ -163,7 +167,9 @@ def Expr.checkSupportedCore : Expr → Bool
   | _ => false
 
 /-- A successful computable core-support check produces the corresponding
-proof object required by the tight Rational evaluator theorem. -/
+proof object required by the tight Rational evaluator theorem.
+@isnad1 id=exprsupp.1h1v.s3.4d7d23241a1c from=translated src=- shape=6cf67292 vocab=137c587e
+-/
 theorem Expr.checkSupportedCore_correct {e : Expr}
     (h : e.checkSupportedCore = true) : ExprSupportedCore e := by
   induction e with

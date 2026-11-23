@@ -15,6 +15,9 @@ namespace EulerPacketMovingFrame
 open EulerSmoothLimit EulerPacketRay EulerPacketGrowth EulerPacketFrameStability
   EulerPacketFrameQuantitative InnerProductSpace
 
+/--
+@isnad1 id=le.18h12v.s9.89ffb1da5a57 from=translated src=- shape=43679523 vocab=ee112850
+-/
 theorem controlled_pressure_ratio_lower
     {A : Fin 3 → Fin 3 → ℝ} {σ Θ K e τ P Q N r : ℝ} {Z Z₁ : ℝ → ℝ}
     (hσ : 0 < σ) (hσsmall : σ ≤ 1/4) (hΘ : 1 ≤ Θ) (hK : 1 ≤ K) (he : 0 ≤ e)
@@ -95,7 +98,9 @@ theorem controlled_pressure_ratio_lower
     nlinarith only [hid, hnum]
   linarith only [(abs_le.mp herr).1, herrorSmall, hideal]
 
-/-- Source (33), stated for the actual physical ray and velocity. -/
+/-- Source (33), stated for the actual physical ray and velocity.
+@isnad1 id=and.26h16v.s11.5af0b04f70cb from=translated src=- shape=7c94fd91 vocab=7d7232d5
+-/
 theorem physical_pressure_positive_order40 (M : Space →L[ℝ] Space) (m v r w : ℝ → Space)
     {s₀ t₀ a ε τ σ Θ K e : ℝ} {Z Z₁ : ℝ → ℝ}
     (ha : 0 < a) (hs₀ : 0 < s₀) (hε : 0 < ε)

@@ -17,6 +17,9 @@ namespace EulerPacketMovingFrame
 open Set EulerSmoothLimit EulerPacketNormalizedPrimary EulerPacketRay
   EulerPacketStage EulerPacketPerturbation InnerProductSpace ContinuousLinearMap
 
+/--
+@isnad1 id=and.34h21v.s16.fe264e650aae from=translated src=- shape=14eeb122 vocab=8a6dfad6
+-/
 theorem physical_tangent_propagator
     {B B₁ M E : ℝ → Space →L[ℝ] Space} {m v r w : ℝ → Space}
     {c s₀ t₀ a ε σ Θ T G d : ℝ} {S : Set ℝ}

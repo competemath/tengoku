@@ -92,7 +92,9 @@ def checkUpperBoundSmart (e : Expr) (I : IntervalRat) (c : ℚ) (cfg : EvalConfi
 
 /-! ### Monotonicity Helper Theorems -/
 
-/-- Helper: For increasing functions, the minimum is at the left endpoint -/
+/-- Helper: For increasing functions, the minimum is at the left endpoint
+@isnad1 id=le.3h4v.s5.25c71523eb9a from=translated src=- shape=57f17585 vocab=cb2b5123
+-/
 theorem increasing_min_at_left_core (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (cfg : EvalConfig) (hpos : 0 < (derivIntervalCore e I cfg).lo) :
     ∀ x ∈ I, Expr.eval (fun _ => I.lo) e ≤ Expr.eval (fun _ => x) e := by
@@ -135,7 +137,9 @@ theorem increasing_min_at_left_core (e : Expr) (hsupp : ADSupported e)
     simp only [evalFunc1] at hnum_pos ⊢
     linarith
 
-/-- Helper: For decreasing functions, the minimum is at the right endpoint -/
+/-- Helper: For decreasing functions, the minimum is at the right endpoint
+@isnad1 id=le.3h4v.s5.db09a722acdf from=translated src=- shape=cedc3e84 vocab=e885d188
+-/
 theorem decreasing_min_at_right_core (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (cfg : EvalConfig) (hneg : (derivIntervalCore e I cfg).hi < 0) :
     ∀ x ∈ I, Expr.eval (fun _ => I.hi) e ≤ Expr.eval (fun _ => x) e := by
@@ -171,7 +175,9 @@ theorem decreasing_min_at_right_core (e : Expr) (hsupp : ADSupported e)
     simp only [evalFunc1] at hnum_neg ⊢
     linarith
 
-/-- Smart lower bound verification using monotonicity -/
+/-- Smart lower bound verification using monotonicity
+@isnad1 id=le.3h5v.s5.807137698972 from=translated src=- shape=077acda4 vocab=0ddb9926
+-/
 theorem verify_lower_bound_smart (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (c : ℚ) (cfg : EvalConfig)
     (h_cert : checkLowerBoundSmart e I c cfg = true) :
@@ -220,7 +226,9 @@ theorem verify_lower_bound_smart (e : Expr) (hsupp : ADSupported e)
       · -- Neither increasing nor decreasing => impossible since h_cert = true
         exact absurd h_cert Bool.false_ne_true
 
-/-- Helper: For increasing functions, the maximum is at the right endpoint -/
+/-- Helper: For increasing functions, the maximum is at the right endpoint
+@isnad1 id=le.3h4v.s5.eee5fab17a3d from=translated src=- shape=3add4e87 vocab=20440422
+-/
 theorem increasing_max_at_right_core (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (cfg : EvalConfig) (hpos : 0 < (derivIntervalCore e I cfg).lo) :
     ∀ x ∈ I, Expr.eval (fun _ => x) e ≤ Expr.eval (fun _ => I.hi) e := by
@@ -256,7 +264,9 @@ theorem increasing_max_at_right_core (e : Expr) (hsupp : ADSupported e)
     simp only [evalFunc1] at hnum_pos ⊢
     linarith
 
-/-- Helper: For decreasing functions, the maximum is at the left endpoint -/
+/-- Helper: For decreasing functions, the maximum is at the left endpoint
+@isnad1 id=le.3h4v.s5.9ecfdfe6f299 from=translated src=- shape=848766f2 vocab=20440422
+-/
 theorem decreasing_max_at_left_core (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (cfg : EvalConfig) (hneg : (derivIntervalCore e I cfg).hi < 0) :
     ∀ x ∈ I, Expr.eval (fun _ => x) e ≤ Expr.eval (fun _ => I.lo) e := by
@@ -292,7 +302,9 @@ theorem decreasing_max_at_left_core (e : Expr) (hsupp : ADSupported e)
     simp only [evalFunc1] at hnum_neg ⊢
     linarith
 
-/-- Smart upper bound verification using monotonicity -/
+/-- Smart upper bound verification using monotonicity
+@isnad1 id=le.3h5v.s5.21b3db7a20c0 from=translated src=- shape=bc83ceb3 vocab=48adbc40
+-/
 theorem verify_upper_bound_smart (e : Expr) (hsupp : ADSupported e)
     (I : IntervalRat) (c : ℚ) (cfg : EvalConfig)
     (h_cert : checkUpperBoundSmart e I c cfg = true) :

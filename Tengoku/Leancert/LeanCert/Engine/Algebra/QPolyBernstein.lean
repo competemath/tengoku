@@ -44,6 +44,9 @@ open LeanCert.Core
 def affineMap (I : IntervalRat) : QPoly :=
   (constant I.lo).add ((constant (I.hi - I.lo)).mul X)
 
+/--
+@isnad1 id=eq.0h2v.s6.43ef6ceae19d from=translated src=- shape=76d2d84e vocab=5e3e8395
+-/
 theorem aeval_affineMap (I : IntervalRat) (t : ℝ) :
     Polynomial.aeval t (affineMap I).toPoly = (I.lo : ℝ) + ((I.hi : ℝ) - I.lo) * t := by
   simp [affineMap, toPoly_add, toPoly_mul, toPoly_constant, toPoly_X]
@@ -54,11 +57,17 @@ def shiftedCoeffs (p : QPoly) (I : IntervalRat) : List ℚ :=
   | [] => [0]
   | c :: cs => c :: cs
 
+/--
+@isnad1 id=lt.0h2v.s4.5330468aedba from=translated src=- shape=8c8a1c2b vocab=ed7d3e2d
+-/
 theorem shiftedCoeffs_length_pos (p : QPoly) (I : IntervalRat) :
     0 < (shiftedCoeffs p I).length := by
   unfold shiftedCoeffs
   split <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s7.bc6f7f8074b7 from=translated src=- shape=9d433fb6 vocab=86409c60
+-/
 theorem aeval_shiftedCoeffs (p : QPoly) (I : IntervalRat) (t : ℝ) :
     Polynomial.aeval ((I.lo : ℝ) + ((I.hi : ℝ) - I.lo) * t) p.toPoly =
       ∑ j ∈ Finset.range (shiftedCoeffs p I).length,
@@ -75,6 +84,9 @@ theorem aeval_shiftedCoeffs (p : QPoly) (I : IntervalRat) (t : ℝ) :
 def bernsteinCoeffs (p : QPoly) (I : IntervalRat) : List ℚ :=
   monomialToBernstein (shiftedCoeffs p I)
 
+/--
+@isnad1 id=eq.0h2v.s4.c29095b8228c from=translated src=- shape=4deb3a02 vocab=23c55eec
+-/
 theorem bernsteinCoeffs_length (p : QPoly) (I : IntervalRat) :
     (bernsteinCoeffs p I).length = (shiftedCoeffs p I).length :=
   monomialToBernstein_length _ (shiftedCoeffs_length_pos p I)
@@ -108,7 +120,9 @@ private theorem exists_param {x : ℝ} {I : IntervalRat} (hx : x ∈ I) :
       ring
 
 /-- **Bernstein enclosure.** Every value of `p` on `I` lies in
-`bernsteinEnclosure p I`. -/
+`bernsteinEnclosure p I`.
+@isnad1 id=mem.1h3v.s6.8d79fce75716 from=translated src=- shape=b9922044 vocab=c58a7bb9
+-/
 theorem aeval_mem_bernsteinEnclosure (p : QPoly) (I : IntervalRat) {x : ℝ}
     (hx : x ∈ I) : Polynomial.aeval x p.toPoly ∈ bernsteinEnclosure p I := by
   obtain ⟨t, ht0, ht1, rfl⟩ := exists_param hx
@@ -147,6 +161,9 @@ def Cmp.check : Cmp → IntervalRat → ℚ → Bool
   | .strictLower, J, c => decide (c < J.lo)
   | .strictUpper, J, c => decide (J.hi < c)
 
+/--
+@isnad1 id=holds.2h4v.s4.13e706d5f1a6 from=translated src=- shape=858e3930 vocab=88740318
+-/
 theorem Cmp.holds_of_check {cmp : Cmp} {J : IntervalRat} {c : ℚ}
     (h : cmp.check J c = true) {y : ℝ} (hy : y ∈ J) : cmp.holds c y := by
   rw [IntervalRat.mem_def] at hy
@@ -180,7 +197,9 @@ def bernsteinBoxes (cmp : Cmp) (p : QPoly) (c : ℚ) (I : IntervalRat) : Nat →
       else 1 + bernsteinBoxes cmp p c (splitMid I).1 depth +
         bernsteinBoxes cmp p c (splitMid I).2 depth
 
-/-- **Soundness of the recursive Bernstein certificate.** -/
+/-- **Soundness of the recursive Bernstein certificate.**
+@isnad1 id=holds.2h6v.s6.aeae9104beba from=translated src=- shape=9be20d8a vocab=895a3d72
+-/
 theorem bernsteinCheck_sound {cmp : Cmp} {p : QPoly} {c : ℚ} {I : IntervalRat}
     {depth : Nat} (h : bernsteinCheck cmp p c I depth = true) :
     ∀ x ∈ I, cmp.holds c (Polynomial.aeval x p.toPoly) := by
@@ -197,22 +216,33 @@ theorem bernsteinCheck_sound {cmp : Cmp} {p : QPoly} {c : ℚ} {I : IntervalRat}
         · exact ih hl x hx'
         · exact ih hr x hx'
 
-/-- Lower bounds from a Bernstein certificate. -/
+/-- Lower bounds from a Bernstein certificate.
+@isnad1 id=le.2h5v.s6.4a1ea20794e1 from=translated src=- shape=ee55fd1b vocab=f7411d86
+-/
 theorem le_aeval_of_bernsteinCheck {p : QPoly} {c : ℚ} {I : IntervalRat} {depth : Nat}
     (h : bernsteinCheck .lower p c I depth = true) :
     ∀ x ∈ I, (c : ℝ) ≤ Polynomial.aeval x p.toPoly :=
   bernsteinCheck_sound h
 
+/--
+@isnad1 id=le.2h5v.s6.6538ba1d0d70 from=translated src=- shape=77d79644 vocab=19012abd
+-/
 theorem aeval_le_of_bernsteinCheck {p : QPoly} {c : ℚ} {I : IntervalRat} {depth : Nat}
     (h : bernsteinCheck .upper p c I depth = true) :
     ∀ x ∈ I, Polynomial.aeval x p.toPoly ≤ (c : ℝ) :=
   bernsteinCheck_sound h
 
+/--
+@isnad1 id=lt.2h5v.s6.ce0eb7f8bcc4 from=translated src=- shape=ee55fd1b vocab=c822886a
+-/
 theorem lt_aeval_of_bernsteinCheck {p : QPoly} {c : ℚ} {I : IntervalRat} {depth : Nat}
     (h : bernsteinCheck .strictLower p c I depth = true) :
     ∀ x ∈ I, (c : ℝ) < Polynomial.aeval x p.toPoly :=
   bernsteinCheck_sound h
 
+/--
+@isnad1 id=lt.2h5v.s6.c08729c1f74f from=translated src=- shape=77d79644 vocab=5b62a7bf
+-/
 theorem aeval_lt_of_bernsteinCheck {p : QPoly} {c : ℚ} {I : IntervalRat} {depth : Nat}
     (h : bernsteinCheck .strictUpper p c I depth = true) :
     ∀ x ∈ I, Polynomial.aeval x p.toPoly < (c : ℝ) :=

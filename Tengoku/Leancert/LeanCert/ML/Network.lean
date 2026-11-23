@@ -75,19 +75,25 @@ def forwardInterval (l : Layer) (x : IntervalVector) (prec : Int := -53) : Inter
   let withBias := addBias linear l.bias prec
   reluVector withBias
 
-/-- Length of real forward pass output -/
+/-- Length of real forward pass output
+@isnad1 id=eq.0h2v.s4.a4c59f19d555 from=translated src=- shape=7ce00103 vocab=110e3329
+-/
 theorem forwardReal_length (l : Layer) (x : List ℝ) :
     (forwardReal l x).length = min l.outputDim l.bias.length := by
   simp [forwardReal, realMatVecMul, realAddBias, outputDim, List.length_map, List.length_zipWith]
 
-/-- Length of interval forward pass output -/
+/-- Length of interval forward pass output
+@isnad1 id=eq.0h3v.s4.1fea4bd59b63 from=translated src=- shape=9026e5ca vocab=e6218096
+-/
 theorem forwardInterval_length (l : Layer) (x : IntervalVector) (prec : Int) :
     (forwardInterval l x prec).length = min l.outputDim l.bias.length := by
   simp only [forwardInterval, matVecMul, addBias, reluVector, List.length_map, List.length_zipWith]
   rfl
 
 /-- Soundness of layer forward pass.
-    If x ∈ I (component-wise), then forwardReal(x) ∈ forwardInterval(I). -/
+    If x ∈ I (component-wise), then forwardReal(x) ∈ forwardInterval(I).
+@isnad1 id=mem.5h6v.s7.3bc965e627c9 from=translated src=- shape=67feb97b vocab=35017bc8
+-/
 theorem mem_forwardInterval {l : Layer} {xs : List ℝ} {Is : IntervalVector}
     (hwf : l.WellFormed)
     (hdim : l.inputDim = Is.length)
@@ -148,7 +154,9 @@ def WellFormed (net : TwoLayerNet) : Prop :=
   net.layer2.WellFormed ∧
   net.layer2.inputDim = min net.layer1.outputDim net.layer1.bias.length
 
-/-- Soundness theorem for two-layer network -/
+/-- Soundness theorem for two-layer network
+@isnad1 id=mem.5h6v.s7.e4d3b2953685 from=translated src=- shape=7b358b8c vocab=cdd0650a
+-/
 theorem mem_forwardInterval {net : TwoLayerNet} {xs : List ℝ} {Is : IntervalVector}
     (hwf : net.WellFormed)
     (hdim : net.layer1.inputDim = Is.length)
