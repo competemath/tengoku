@@ -28,7 +28,7 @@ jobs:
         if: github.event_name == 'merge_group'
         run: echo "judged on the pull request"
       - if: github.event_name == 'pull_request_target'
-        uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
+        uses: step-security/harden-runner@aebdcf6156ab6691adf63218240e476564a1ed4c # v2
         with: { egress-policy: audit }
       # main's tip, by a plain clone of the public repository: the checks are main's, nothing of the pull request is fetched, and no token is kept
       - name: The checks, from main
