@@ -27,7 +27,7 @@ jobs:
     timeout-minutes: 15
     permissions: { contents: read, actions: read, checks: read, pull-requests: read }
     steps:
-      - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
+      - uses: step-security/harden-runner@aebdcf6156ab6691adf63218240e476564a1ed4c # v2
         with: { egress-policy: audit }
       # main's script, read through the API: a workflow_run workflow never checks a ref out
       - name: Main's script
